@@ -103,13 +103,19 @@ def estimate_snr(wav: np.ndarray, sr: int) -> float:
     return float(speech - noise)
 
 
-def auto_silence_threshold(wav: np.ndarray, sr: int, floor_db: float = -60.0) -> float:
-    """根据底噪和语音电平自动给出静音阈值。"""
-    noise, speech = noise_and_speech_levels(wav, sr)
-    if speech <= -99:
+def auto_silence_threshold(wav: np.ndarray, sr: int, floor_db: float = -65.0) -> float:
+    """自动静音阈值：以语音电平为基准（-30 dB），底噪较高时抬高到底噪之上 6 dB。
+
+    底噪用很低的分位数（3%）估计，这样即使音频首尾静音很短也不会把轻声部分误判成底噪。
+    """
+    db = frame_rms_db(wav, sr)
+    db = db[db > -100]
+    if db.size == 0:
         return -40.0
-    thr = max(noise + 8.0, speech - 35.0, floor_db)
-    return float(min(thr, speech - 12.0))
+    noise = float(np.percentile(db, 3))
+    speech = float(np.percentile(db, 95))
+    thr = max(speech - 30.0, noise + 6.0, floor_db)
+    return float(min(thr, speech - 15.0))
 
 
 def _fill_short_gaps(mask: np.ndarray, max_gap: int) -> np.ndarray:
