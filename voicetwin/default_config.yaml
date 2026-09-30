@@ -1,0 +1,139 @@
+# =====================================================================
+#  VoiceTwin 声音分身 —— 默认配置
+#  用 `voicetwin init-config` 复制一份到当前目录的 config.yaml 再修改。
+#  没写到的项会自动使用这里的默认值。
+# =====================================================================
+
+# 所有声音项目（素材、模型、输出）存放的根目录
+workspace: ./workspace
+
+# ---------------------------------------------------------------------
+# 1. 素材准备：从你的讲课视频 / 录音里提取干净、带文字的语音片段
+# ---------------------------------------------------------------------
+prepare:
+  sample_rate: 44100          # 片段统一采样率（训练时会按各引擎要求自动重采样）
+  highpass_hz: 60             # 去掉 60Hz 以下的低频嗡嗡声（空调、桌面震动）
+  denoise: auto               # off | auto | on  —— auto: 只在估计信噪比低于阈值时轻度降噪
+  denoise_strength: 0.6       # 0~1，越大降噪越狠，但太大会损伤音色，建议 ≤0.7
+  snr_threshold_db: 25        # auto 模式的降噪阈值
+  separate_vocals: false      # 视频里有背景音乐时改成 true（需要安装 demucs）
+  target_lufs: -20            # 片段统一响度
+  segmentation: auto          # auto: 视频旁边有同名 .srt 字幕就按字幕切，否则按静音切 | srt | energy
+  slicer:
+    threshold_db: auto        # 静音判定阈值，auto 会根据底噪自动计算
+    min_interval_ms: 300      # 至少这么长的停顿才会被当成可切分点
+    hop_ms: 10
+    max_sil_kept_ms: 400      # 片段两端最多保留的静音
+  min_duration: 2.0           # 片段最短 / 最长秒数
+  max_duration: 12.0
+  asr:
+    engine: faster-whisper    # faster-whisper（中英都好）| funasr（纯中文更准）| none（只用字幕）
+    model: large-v3           # faster-whisper: large-v3 / large-v3-turbo / medium；funasr: paraformer-zh / iic/SenseVoiceSmall
+    device: auto              # auto | cuda | cpu
+    compute_type: auto        # auto | float16 | int8_float16 | int8
+    language: auto            # auto（逐段自动识别）| zh | en
+    initial_prompt_zh: "以下是普通话的句子，使用简体中文和标点符号。"
+    beam_size: 5
+  filter:
+    min_avg_logprob: -1.0     # 识别置信度太低的片段丢掉（通常是含糊或识别错误）
+    max_no_speech_prob: 0.6
+    rate_outlier_low: 0.5     # 语速离中位数太远的片段（多半是文字对不上）丢掉
+    rate_outlier_high: 1.8
+    max_clip_ratio: 0.002     # 爆音（削波）样本比例上限
+    speaker_outlier: true     # 用声纹剔除不是你本人的片段（学生提问、插入的视频等）
+    speaker_min_similarity: auto
+  validation_count: 12        # 留出多少条不参与训练、专门用来自动挑选最佳模型
+  references:
+    count: 8                  # 挑选多少条最具代表性的参考音频
+    min_duration: 3.5         # GPT-SoVITS 要求参考音频 3~10 秒
+    max_duration: 9.5
+
+# ---------------------------------------------------------------------
+# 2. 合成引擎
+# ---------------------------------------------------------------------
+backend: gptsovits            # gptsovits（推荐，微调后最像）| qwen3tts | indextts | dummy（测试用）
+
+backends:
+  gptsovits:
+    root: ./third_party/GPT-SoVITS    # GPT-SoVITS 目录（Windows 整合包解压后的目录也可以）
+    python: auto              # auto 会依次查找 runtime/python.exe、.venv、当前 Python
+    version: v2ProPlus        # v2Pro | v2ProPlus（官方 2026 年推荐，接近 v4 的效果、v2 的速度）
+    api_url: ""               # 如果你已经手动启动了 api_v2.py，填 http://127.0.0.1:9880，程序就不再自己启动
+    port: 9880
+    device: cuda
+    is_half: true             # 显卡不支持半精度（如 10 系以前）改成 false
+    startup_timeout: 600
+    train:
+      sovits_epochs: auto     # auto: 素材 <30 分钟用 8 轮，更多用 12 轮
+      gpt_epochs: auto        # auto: 15 轮
+      batch_size: auto        # auto: 按显存自动计算
+      sovits_save_every: 4
+      gpt_save_every: 5
+      text_low_lr_rate: 0.4
+      gpu: "0"
+    infer:
+      top_k: 15
+      top_p: 1.0
+      temperature: 1.0
+      repetition_penalty: 1.35
+      aux_refs: 2             # 额外参考音频数量，用于融合音色（v2/v2Pro 支持）
+      sample_steps: 32        # 仅 v3/v4 使用
+
+  qwen3tts:
+    python: auto
+    repo: ./third_party/Qwen3-TTS     # 微调需要这个仓库里的 finetuning 脚本
+    model: Qwen/Qwen3-TTS-12Hz-1.7B-Base   # 零样本克隆用的模型，也可以填本地目录；显存小用 0.6B-Base
+    tokenizer: Qwen/Qwen3-TTS-Tokenizer-12Hz
+    models_dir: ./third_party/models  # 微调需要的模型会自动下载到这里
+    download_source: auto     # auto（先 HuggingFace 后 ModelScope）| hf | modelscope（国内推荐）
+    device: cuda:0
+    dtype: bfloat16
+    attn: auto                # auto | flash_attention_2 | sdpa
+    instruct: ""              # 仅 1.7B 微调模型：用自然语言描述语气，例如 "用耐心讲课的语气"
+    startup_timeout: 900
+    train:
+      init_model: Qwen/Qwen3-TTS-12Hz-0.6B-Base  # 全量微调：0.6B 约需 12GB 显存；1.7B 建议 32GB 以上
+      batch_size: 2
+      lr: 2.0e-5
+      epochs: 3
+
+  indextts:
+    root: ./third_party/index-tts
+    python: auto
+    model_dir: checkpoints
+    version: "2.5"            # "2.5" 或 "2"
+    half: true                # 2.5 用 bf16，2 用 fp16
+    emo_alpha: 0.6            # 用参考音频本身作为情绪参考时的强度
+    startup_timeout: 900
+
+  dummy: {}
+
+# ---------------------------------------------------------------------
+# 3. 合成（生成讲课音频）
+# ---------------------------------------------------------------------
+synth:
+  quality: balanced           # fast（每句 1 个候选）| balanced（3 个）| best（5 个并用识别校验）
+  candidates: auto            # 每句生成几个候选再自动挑最像的；auto 跟随 quality
+  max_units_zh: 50            # 每段最多多少个音节（汉字），太长会拆开合成
+  max_units_en: 45            # 英文每段最多多少个音节
+  min_units: 6                # 太短的句子会和下一句合并，避免一两个字单独合成不自然
+  seed: 20240601
+  speed: auto                 # auto: 使用自动校准出的语速，保证和你原本的节奏一致；也可以写 1.0
+  pauses: profile             # profile: 按你本人的停顿习惯插入停顿 | fixed
+  fixed_pauses: { clause: 0.25, sentence: 0.55, paragraph: 1.1 }
+  loudness: profile           # profile: 匹配你原始录音的响度 | 具体数值如 -16 | off
+  output_format: wav          # wav | mp3
+  subtitles: true             # 同时输出 .srt 字幕
+  skip_code_blocks: true      # Markdown 讲稿里的 ``` 代码块不朗读
+  asr_check: auto             # auto: quality=best 时开启；用识别模型检查有没有漏字/多字
+  asr_check_model: small
+  cer_retry_threshold: 0.15   # 漏字/错字率超过它就重新生成
+  max_retries: 2
+  score:
+    speaker: 1.0              # 声纹相似度权重
+    cer: 2.0                  # 错字率权重
+    rate: 0.6                 # 语速偏差权重
+    pitch: 0.3                # 音高偏差权重
+
+# 声纹模型：auto 会依次尝试 resemblyzer → speechbrain → 简易 MFCC
+speaker_encoder: auto
