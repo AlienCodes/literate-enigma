@@ -92,21 +92,12 @@ def resolve_path(cfg: Config, value: Optional[str]) -> Optional[Path]:
     return p.resolve()
 
 
-def write_example_config(dest: Path, replacements: Optional[Dict[str, str]] = None, overwrite: bool = False) -> Path:
-    """生成带中文注释的 config.yaml。replacements 形如 {"backends.gptsovits.root": "D:/GPT-SoVITS"}。"""
+def _apply_replacements(text: str, replacements: Optional[Dict[str, str]]) -> str:
+    """在保留注释和格式的前提下，替换 YAML 文本里指定键的值。键形如 "backends.gptsovits.root"。"""
     import re
 
-    dest = Path(dest)
-    if dest.exists() and not overwrite:
-        raise FileExistsError(f"{dest} 已存在，未覆盖。")
-    if dest.exists():
-        import shutil
-
-        shutil.copy2(dest, dest.with_suffix(dest.suffix + ".bak"))  # 覆盖前备份
-    text = DEFAULT_CONFIG_PATH.read_text(encoding="utf-8")
     for dotted, value in (replacements or {}).items():
         parts = dotted.split(".")
-        # 逐级定位到对应的缩进块，再替换这一行的值（保留注释）
         pos, indent = 0, 0
         for depth, key in enumerate(parts):
             m = re.compile(rf"^{' ' * indent}{re.escape(key)}:(.*)$", re.M).search(text, pos)
@@ -120,5 +111,33 @@ def write_example_config(dest: Path, replacements: Optional[Dict[str, str]] = No
                 text = text[:m.start()] + line + text[m.end():]
             else:
                 pos, indent = m.end(), indent + 2
+    return text
+
+
+def _backup(path: Path) -> None:
+    import shutil
+
+    shutil.copy2(path, path.with_suffix(path.suffix + ".bak"))
+
+
+def write_example_config(dest: Path, replacements: Optional[Dict[str, str]] = None, overwrite: bool = False) -> Path:
+    """生成带中文注释的 config.yaml。replacements 形如 {"backends.gptsovits.root": "D:/GPT-SoVITS"}。"""
+    dest = Path(dest)
+    if dest.exists() and not overwrite:
+        raise FileExistsError(f"{dest} 已存在，未覆盖。")
+    if dest.exists():
+        _backup(dest)  # 覆盖前备份
+    text = _apply_replacements(DEFAULT_CONFIG_PATH.read_text(encoding="utf-8"), replacements)
     dest.write_text(text, encoding="utf-8")
     return dest
+
+
+def update_config_file(path: Path, replacements: Dict[str, str]) -> Path:
+    """只修改已有 config.yaml 里的指定项，其余设置和注释原样保留。"""
+    path = Path(path)
+    text = path.read_text(encoding="utf-8")
+    new_text = _apply_replacements(text, replacements)
+    if new_text != text:
+        _backup(path)
+        path.write_text(new_text, encoding="utf-8")
+    return path

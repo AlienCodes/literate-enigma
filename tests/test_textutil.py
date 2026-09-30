@@ -29,3 +29,9 @@ def test_sentence_kind():
 
 def test_clean_transcript_restores_chinese_punct():
     assert clean_transcript("今天 我们 学习,好吗?") == "今天我们学习，好吗？"
+
+
+def test_clean_transcript_parentheses():
+    assert clean_transcript("今天学习列表推导式（已校对）。") == "今天学习列表推导式（已校对）。"
+    assert clean_transcript("这是函数(function)的定义") == "这是函数（function）的定义"
+    assert clean_transcript("We call f(x) here.") == "We call f(x) here."

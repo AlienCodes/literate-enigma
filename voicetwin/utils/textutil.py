@@ -152,6 +152,10 @@ def clean_transcript(text: str) -> str:
         text = re.sub(r"(?<=[一-鿿])\.(?!\d)", "。", text)
         text = re.sub(r"\s+(?=[一-鿿，。！？；：])", "", text)
         text = re.sub(r"(?<=[一-鿿，。！？；：])\s+(?=[一-鿿])", "", text)
+        # 括号里有中文、或紧跟在中文后面时，还原为全角括号（字幕更美观）
+        text = re.sub(r"\(([^()]*)\)", lambda m: f"（{m.group(1)}）"
+                      if count_cjk(m.group(1)) or count_cjk(m.string[max(0, m.start() - 1):m.start()])
+                      else m.group(0), text)
     return text
 
 

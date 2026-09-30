@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any, List, Optional
 
 from voicetwin import __version__
-from voicetwin.config import load_config, write_example_config
+from voicetwin.config import load_config, update_config_file, write_example_config
 
 EPILOG = """
 常用流程（把「我的声音」换成你喜欢的名字）：
@@ -46,7 +46,12 @@ def build_parser() -> argparse.ArgumentParser:
                                  epilog=EPILOG, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("-c", "--config", help="配置文件路径（默认使用当前目录的 config.yaml）")
     ap.add_argument("--verbose", action="store_true", help="输出更详细的日志")
+    # --verbose 放在子命令前后都可以（例如 voicetwin narrate ... --verbose）
+    common = argparse.ArgumentParser(add_help=False)
+    common.add_argument("--verbose", action="store_true", default=argparse.SUPPRESS, help="输出更详细的日志和完整错误信息")
     sub = ap.add_subparsers(dest="command", metavar="<命令>")
+    _add = sub.add_parser
+    sub.add_parser = lambda *a, **kw: _add(*a, parents=[common], **kw)  # type: ignore[method-assign]
 
     def voice_arg(p: argparse.ArgumentParser) -> None:
         p.add_argument("-v", "--voice", required=True, help="声音名称，例如：我的声音")
@@ -59,7 +64,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--gptsovits-root", help="GPT-SoVITS（或整合包）所在目录")
     p.add_argument("--workspace", help="数据存放目录（默认 ./workspace）")
     p.add_argument("--backend", choices=["gptsovits", "qwen3tts", "indextts"], help="默认引擎")
-    p.add_argument("--force", action="store_true", help="覆盖已有的 config.yaml")
+    p.add_argument("--force", action="store_true", help="重新生成 config.yaml（旧文件备份为 config.yaml.bak）")
     sub.add_parser("doctor", help="检查运行环境、显卡和各引擎是否就绪")
     sub.add_parser("list", help="列出已有的声音")
 
@@ -154,7 +159,22 @@ def main(argv: Optional[List[str]] = None) -> None:
             repl["workspace"] = args.workspace
         if args.backend:
             repl["backend"] = args.backend
-        path = write_example_config(Path.cwd() / "config.yaml", repl, overwrite=args.force)
+        path = Path.cwd() / "config.yaml"
+        if path.exists() and not args.force:
+            if repl:
+                done = {}
+                for key, value in repl.items():
+                    try:
+                        update_config_file(path, {key: value})
+                        done[key] = value
+                    except KeyError:
+                        print(f"⚠️ {path} 里没有 {key} 这一项，已跳过（可手动添加）")
+                if done:
+                    print(f"已更新 {path}：" + "，".join(f"{k} = {v}" for k, v in done.items()) + "（其余设置保持不变）")
+            else:
+                print(f"{path} 已存在，保持不变（加 --force 可重新生成，旧文件会备份为 config.yaml.bak）。")
+            return
+        write_example_config(path, repl, overwrite=args.force)
         print(f"已生成 {path}，按需修改即可。")
         return
     import logging

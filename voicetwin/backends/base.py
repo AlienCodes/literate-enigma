@@ -91,6 +91,16 @@ class Backend:
         return (self.project.load_models().get(self.name) or {}).get("speed", {}) or {}
 
     # ------------------------------------------------------------------ 工具
+    @staticmethod
+    def step(progress: Optional[ProgressFn], frac: float, msg: str) -> None:
+        """报告一个训练阶段：写入日志（网页/命令行可见），并更新进度条。"""
+        log.info(msg)
+        if progress:
+            try:
+                progress(frac, msg)
+            except Exception:
+                pass
+
     def resolve(self, key: str, default: str = "") -> Optional[Path]:
         return resolve_path(self.cfg, self.bcfg.get(key, default))
 
@@ -102,6 +112,7 @@ class Backend:
         log_path.parent.mkdir(parents=True, exist_ok=True)
         log.info(f"▶ {log_name}：{' '.join(str(c) for c in cmd[:4])} …（日志：{log_path}）")
         tail: List[str] = []
+        last_frac: Optional[float] = None
         creationflags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
         with open(log_path, "a", encoding="utf-8") as fh:
             proc = subprocess.Popen([str(c) for c in cmd], cwd=str(cwd) if cwd else None, env=env,
@@ -124,14 +135,20 @@ class Backend:
                     tail.append(line)
                     if len(tail) > 60:
                         tail.pop(0)
-                    if parse_progress and progress:
+                    if parse_progress:
                         frac = parse_progress(line)
                         if frac is not None:
-                            lo, hi = progress_range
-                            try:
-                                progress(lo + (hi - lo) * max(0.0, min(1.0, frac)), line[-120:])
-                            except Exception:
-                                pass
+                            frac = max(0.0, min(1.0, frac))
+                            # 进度变化时写一行到主日志，网页和命令行都能看到训练在推进
+                            if frac != last_frac:
+                                last_frac = frac
+                                log.info(f"  {log_name} 进度 {frac:.0%}")
+                            if progress:
+                                lo, hi = progress_range
+                                try:
+                                    progress(lo + (hi - lo) * frac, line[-120:])
+                                except Exception:
+                                    pass
             fh.flush()
             code = proc.wait()
         if code != 0:
