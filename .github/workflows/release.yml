@@ -40,7 +40,11 @@ jobs:
         run: |
           assets=(dist/*.zip)
           for pdf in dist/*.pdf; do
-            [ -e "$pdf" ] && assets+=("$pdf#声音分身VoiceTwin使用手册（PDF 图文教程）")
+            case "$pdf" in
+              *QuickStart*) assets+=("$pdf#快速上手（几页纸，先看这个）") ;;
+              *Manual*) assets+=("$pdf#详细使用手册（遇到问题时再查）") ;;
+              *) assets+=("$pdf") ;;
+            esac
           done
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" "${assets[@]}" --clobber

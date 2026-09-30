@@ -4,10 +4,12 @@
 
 嗓子哑了录不了课的时候，把讲稿交给它，就能用"你的声音"读出来，并同时生成字幕。
 
-> **👉 Windows 用户从这里开始：**
+> ## 👉 第一次用？只看这个：[**快速上手（10 分钟看完）**](快速上手.md)
+>
 > 1. 下载程序：[**Releases 页面 → VoiceTwin-Windows-v….zip**](https://github.com/AlienCodes/literate-enigma/releases/latest)
-> 2. 照着做：[**《声音分身 VoiceTwin 使用手册》PDF（约 80 页图文教程）**](docs/声音分身VoiceTwin使用手册.pdf)
->    或网页版 [**Windows 详细使用教程（一步一步，从下载到生成音频）**](docs/Windows详细使用教程.md)
+> 2. 照着 [**快速上手**](快速上手.md) 做：安装 → 训练你的声音 → 粘贴讲稿生成音频（也有 [4 页 PDF 版](docs/快速上手.pdf)）
+>
+> 遇到问题再查：[详细手册 PDF（78 页）](docs/声音分身VoiceTwin使用手册.pdf) · [Windows 详细教程（网页版）](docs/Windows详细使用教程.md)
 
 > 你已经录好的课程视频/音频就是训练素材。程序会自动从里面提取你的声音、识别文字、训练一个专属模型，
 > 然后按你本人的语速、停顿和语气来朗读新讲稿。
