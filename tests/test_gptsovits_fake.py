@@ -52,5 +52,7 @@ def test_check_reports_missing_models(prepared, tmp_path):
     root = build_fake_root(tmp_path / "GSV2")
     (root / "GPT_SoVITS/pretrained_models/s1v3.ckpt").unlink()
     gcfg = make_cfg(project.root.parent, backends={"gptsovits": {"root": str(root), "python": sys.executable}})
-    problems = get_backend("gptsovits", gcfg, project).check()
+    backend = get_backend("gptsovits", gcfg, project)
+    problems = backend.check()
     assert any("s1v3.ckpt" in p for p in problems)
+    assert backend.missing_pretrained() == ["GPT_SoVITS/pretrained_models/s1v3.ckpt"]

@@ -127,6 +127,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("-o", "--output", required=True)
     p.add_argument("--keep-original", action="store_true", help="保留原音轨并混音")
 
+    p = sub.add_parser("download-models", help="下载 GPT-SoVITS 缺失的预训练模型")
+    p.add_argument("--source", choices=["auto", "hf", "hf-mirror"], default="auto", help="下载源（国内推荐 hf-mirror）")
+
     p = sub.add_parser("clear-cache", help="清空某个声音的句子缓存")
     voice_arg(p)
 
@@ -234,6 +237,16 @@ def main(argv: Optional[List[str]] = None) -> None:
 
             out = mux_audio_into_video(Path(args.video), Path(args.audio), Path(args.output), args.keep_original)
             print(f"✅ 已生成 {out}")
+        elif args.command == "download-models":
+            from voicetwin.backends.gptsovits import GPTSoVITSBackend
+            from voicetwin.project import Project
+
+            backend = GPTSoVITSBackend(cfg, Project(cfg, "__download__"))
+            files = backend.download_pretrained(args.source)
+            import shutil
+
+            shutil.rmtree(backend.project.root, ignore_errors=True)
+            print(f"✅ 已下载 {len(files)} 个文件" if files else "✅ 预训练模型已齐全")
         elif args.command == "clear-cache":
             from voicetwin.synth.engine import clear_cache
 

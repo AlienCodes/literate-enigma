@@ -175,6 +175,8 @@ def build_fake_root(root: Path, version: str = "v2ProPlus") -> Path:
     pm = root / "GPT_SoVITS" / "pretrained_models"
     for d in ("chinese-roberta-wwm-ext-large", "chinese-hubert-base", "gsv-v2final-pretrained", "v2Pro", "sv"):
         (pm / d).mkdir(parents=True, exist_ok=True)
+    for d in ("chinese-roberta-wwm-ext-large", "chinese-hubert-base"):
+        (pm / d / "config.json").write_text("{}", encoding="utf-8")
     for f in ("v2Pro/s2Gv2Pro.pth", "v2Pro/s2Dv2Pro.pth", "v2Pro/s2Gv2ProPlus.pth", "v2Pro/s2Dv2ProPlus.pth", "s1v3.ckpt",
               "sv/pretrained_eres2netv2w24s4ep4.ckpt", "gsv-v2final-pretrained/s2G2333k.pth",
               "gsv-v2final-pretrained/s2D2333k.pth",

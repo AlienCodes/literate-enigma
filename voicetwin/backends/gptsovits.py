@@ -99,13 +99,71 @@ class GPTSoVITSBackend(Backend):
             return [f"找不到 GPT-SoVITS 目录：{self.root}（请运行安装脚本，或在 config.yaml 里设置 backends.gptsovits.root）"]
         if not (self.root / "api_v2.py").exists():
             problems.append(f"{self.root} 不是完整的 GPT-SoVITS 目录（缺少 api_v2.py）")
-        needed = [BERT_DIR, HUBERT_DIR, PRETRAINED_SOVITS[self.version], PRETRAINED_GPT[self.version]]
+        missing = self.missing_pretrained()
+        for rel in missing:
+            problems.append(f"缺少预训练模型：{rel}")
+        if missing:
+            problems.append("可运行 voicetwin download-models 自动下载（国内加 --source hf-mirror）")
+        return problems
+
+    def missing_pretrained(self) -> List[str]:
+        needed = [BERT_DIR, HUBERT_DIR, PRETRAINED_SOVITS[self.version], PRETRAINED_SOVITS[self.version].replace("s2G", "s2D"),
+                  PRETRAINED_GPT[self.version]]
         if "Pro" in self.version:
             needed.append(SV_PATH)
-        for rel in needed:
-            if not self.p(rel).exists():
-                problems.append(f"缺少预训练模型：{rel}")
-        return problems
+        return [rel for rel in needed if not self.p(rel).exists() or (self.p(rel).is_dir() and not any(self.p(rel).iterdir()))]
+
+    def download_pretrained(self, source: str = "auto", progress: Optional[ProgressFn] = None) -> List[str]:
+        """从 Hugging Face（lj1995/GPT-SoVITS）下载缺失的预训练模型；国内可用 source="hf-mirror"。"""
+        import requests
+
+        if not self.root or not self.root.exists():
+            raise RuntimeError(f"找不到 GPT-SoVITS 目录：{self.root}")
+        endpoints = {"hf": ["https://huggingface.co"], "hf-mirror": ["https://hf-mirror.com"]}.get(
+            source, [os.environ.get("HF_ENDPOINT", "https://huggingface.co").rstrip("/"), "https://hf-mirror.com"])
+        repo = "lj1995/GPT-SoVITS"
+        prefix = "GPT_SoVITS/pretrained_models/"
+        missing = self.missing_pretrained()
+        if not missing:
+            log.info("GPT-SoVITS 预训练模型齐全，无需下载")
+            return []
+        session = requests.Session()
+        last_error: Optional[Exception] = None
+        for ep in endpoints:
+            try:
+                files: List[str] = []
+                for rel in missing:
+                    remote = rel[len(prefix):]
+                    if rel in (BERT_DIR, HUBERT_DIR):
+                        r = session.get(f"{ep}/api/models/{repo}/tree/main/{remote}", timeout=30)
+                        r.raise_for_status()
+                        files += [item["path"] for item in r.json() if item.get("type") == "file"]
+                    else:
+                        files.append(remote)
+                for i, remote in enumerate(files):
+                    dst = self.p(prefix + remote)
+                    if dst.exists():
+                        continue
+                    dst.parent.mkdir(parents=True, exist_ok=True)
+                    tmp = dst.with_suffix(dst.suffix + ".part")
+                    log.info(f"下载 {remote}（{ep}）……")
+                    with session.get(f"{ep}/{repo}/resolve/main/{remote}", stream=True, timeout=60) as r:
+                        r.raise_for_status()
+                        total = int(r.headers.get("Content-Length", 0))
+                        done = 0
+                        with open(tmp, "wb") as f:
+                            for chunk in r.iter_content(chunk_size=1 << 20):
+                                f.write(chunk)
+                                done += len(chunk)
+                                if progress and total:
+                                    progress((i + done / total) / len(files), f"{remote} {done >> 20}/{total >> 20} MB")
+                    tmp.replace(dst)
+                return files
+            except Exception as exc:
+                last_error = exc
+                log.warning(f"从 {ep} 下载失败：{exc}")
+        raise RuntimeError(f"预训练模型下载失败：{last_error}。也可以手动从 https://huggingface.co/{repo} 下载后放入 "
+                           f"{self.p(prefix)}")
 
     def env(self, extra: Optional[Dict[str, Any]] = None) -> Dict[str, str]:
         assert self.root is not None
