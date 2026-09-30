@@ -97,3 +97,22 @@ def test_mp3_output(prepared, tmp_path):
     cfg, project, _ = prepared
     res = wf.run_narrate(cfg, project.voice, "测试一下输出 mp3 格式。", out=str(tmp_path / "x.mp3"), quality="fast")
     assert res.audio_path.suffix == ".mp3" and res.audio_path.exists()
+
+
+def test_references_are_unique_sentences(prepared):
+    from voicetwin.utils.textutil import normalize_for_cer
+
+    _, project, _ = prepared
+    texts = [normalize_for_cer(r["text"]) for r in project.load_references()]
+    assert len(texts) == len(set(texts))  # 素材里重复出现的句子只选一次
+
+
+def test_evaluate_whole_narration_has_no_false_alarms(prepared, tmp_path):
+    from voicetwin.synth.select import evaluate_file
+
+    cfg, project, _ = prepared
+    script = "大家好，今天我们学习函数。\n\n函数可以重复使用。[停顿=1.5]\n\n我们来看一个例子。这是第二句话。"
+    res = wf.run_narrate(cfg, project.voice, script, out=str(tmp_path / "n.wav"), quality="fast")
+    out = evaluate_file(cfg, project, res.audio_path)
+    assert "结论" in out and out["声纹相似度"] is not None
+    assert out["提示"] == ["无"], out["提示"]

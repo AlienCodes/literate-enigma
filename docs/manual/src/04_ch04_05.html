@@ -1,0 +1,121 @@
+<h1 class="chapter" id="ch4"><span class="no">第 4 章</span>准备你的讲课素材</h1>
+<p class="lead">素材是决定"像不像"最重要的因素。程序会自动处理大部分问题，但<strong>放进去的素材越好，出来的声音越像你</strong>。这一章花 10 分钟读完，能少走很多弯路。</p>
+
+<h2 id="ch4-1">4.1 什么样的素材最好</h2>
+<table class="t">
+  <tr><th style="width:50%">✅ 好素材</th><th>❌ 不好的素材</th></tr>
+  <tr><td>你本人正常讲课的状态，声音自然、有精神</td><td>嗓子哑了、感冒、疲惫状态下的录音</td></tr>
+  <tr><td>背景安静（普通房间、录音间）</td><td>全程有背景音乐、空调轰鸣、键盘声很大</td></tr>
+  <tr><td>用麦克风录的原始音频（wav），或者画质正常的讲课视频</td><td>被多次压缩、声音发闷发虚的低质量视频</td></tr>
+  <tr><td>只有你一个人在说话</td><td>多人对话、访谈、大量学生发言</td></tr>
+  <tr><td>内容丰富：有陈述、有提问、有感叹，语气自然多样</td><td>全程念稿、语调平淡；或者全是喊口号式的激动语气</td></tr>
+  <tr><td>和你以后想生成的内容风格一致（例如都是讲课）</td><td>风格完全不同（例如唱歌、配音、朗诵诗歌）</td></tr>
+</table>
+<div class="note">少量学生提问、偶尔的杂音不用担心：程序会用"声纹"自动识别并剔除不是你本人的片段，也会过滤掉有爆音、识别不清的片段。</div>
+
+<h2 id="ch4-2">4.2 需要多少素材</h2>
+<table class="t">
+  <tr><th style="width:22%">素材总时长</th><th style="width:20%">效果</th><th>说明</th></tr>
+  <tr><td>不到 10 分钟</td><td>能用，但一般</td><td>音色大致像，语气和节奏不够稳定。程序会给出提示。</td></tr>
+  <tr><td>10~30 分钟</td><td>较好</td><td>音色比较像，大部分句子自然。</td></tr>
+  <tr><td>30 分钟~1 小时</td><td>好</td><td>音色、语气都明显更像，推荐的起点。</td></tr>
+  <tr><td><strong>1~3 小时</strong></td><td><strong>最好</strong></td><td>推荐。语气、节奏、口头习惯都能学到。</td></tr>
+  <tr><td>3 小时以上</td><td>和 3 小时差不多</td><td>继续增加收益变小，训练时间变长；优先保证质量而不是数量。</td></tr>
+</table>
+<div class="tip">这里说的时长是<strong>你说话的时长</strong>。一节 45 分钟的课，去掉停顿、放 PPT 不说话的时间，实际说话可能只有 30 分钟左右，程序会自动统计给你看。</div>
+
+<h2 id="ch4-3">4.3 中文和英文素材的比例</h2>
+<ul>
+  <li><strong>只做中文课</strong>：全部放中文讲课素材即可。中文里夹英文单词（如 Python、list）没有问题。</li>
+  <li><strong>也要做英文课</strong>：请一定放入你<strong>讲英文</strong>的录音，至少 5~10 分钟，越多越好。否则生成的英文会带一点"中文腔"，不像你平时讲英文的样子。</li>
+  <li>程序会分别统计中文、英文素材的分钟数；英文不足 5 分钟时会给出提醒。</li>
+</ul>
+
+<h2 id="ch4-4">4.4 整理素材文件夹（实操）</h2>
+<ol class="steps">
+  <li>打开 D 盘，在空白处点右键 → <span class="ui">新建</span> → <span class="ui">文件夹</span>，命名为 <strong><code>讲课素材</code></strong>，也就是 <span class="path">D:\讲课素材</span>。</li>
+  <li>把你以前的讲课视频或音频<strong>复制</strong>（不是剪切）到这个文件夹里。支持的格式：
+    <table class="t compact">
+      <tr><th style="width:18%">视频</th><td>mp4、mov、mkv、avi、flv、webm、wmv、m4v、ts、mts、3gp</td></tr>
+      <tr><th>音频</th><td>wav、mp3、m4a、aac、flac、ogg、opus、wma、amr</td></tr>
+    </table></li>
+  <li>文件可以放在子文件夹里（例如按学期分），程序会自动找到所有子文件夹里的视频和音频。</li>
+  <li>文件名用什么都可以，建议用有意义的名字，例如 <code>第1课.mp4</code>、<code>第2课.mp4</code>。</li>
+</ol>
+<pre class="tree">D:\讲课素材
+├── 第1课.mp4
+├── 第1课.srt        <span class="cm">← 有字幕的话，和视频同名放在一起（可选，见 4.5 节）</span>
+├── 第2课.mp4
+├── 第3课.mp4
+└── 英文课\
+    ├── Lesson1.mp4
+    └── Lesson2.mp4</pre>
+
+<h2 id="ch4-5">4.5 用字幕文件提高准确度（可选）</h2>
+<p>如果你的视频本来就有字幕文件（<code>.srt</code> 或 <code>.vtt</code>，比如以前用剪映自动生成并导出的字幕），请把它和视频放在一起，并且<strong>文件名相同</strong>：</p>
+<ul>
+  <li><code>第1课.mp4</code> + <code>第1课.srt</code> ✅</li>
+  <li><code>第1课.mp4</code> + <code>第1课.zh.srt</code> ✅（也能识别）</li>
+  <li><code>第1课.mp4</code> + <code>字幕1.srt</code> ❌（名字不同，不会被使用）</li>
+</ul>
+<p>有字幕时，程序会直接用字幕里的文字和时间轴切分，比语音识别更准确，训练效果更好。没有字幕也完全没关系，程序会自动识别。</p>
+<div class="warn">字幕里的文字要和你实际说的话一致。如果字幕是后期重新写过的（和原话差别很大），反而会影响效果，这种情况下不要放字幕。</div>
+
+<h2 id="ch4-6">4.6 视频有背景音乐怎么办</h2>
+<p>如果只是片头片尾有音乐，不用处理（程序会过滤掉）。如果<strong>全程</strong>都有背景音乐，建议先用 GPT-SoVITS 整合包自带的人声分离工具把人声提取出来：</p>
+<ol class="steps">
+  <li>双击 <span class="path">D:\GPT-SoVITS\go-webui.bat</span>，等浏览器打开 GPT-SoVITS 的界面。</li>
+  <li>找到 <span class="ui">UVR5 人声伴奏分离</span>（通常在第一个标签页"前置数据集获取工具"里），勾选打开它的界面。</li>
+  <li>按页面提示选择模型（一般选带 "HP2" 或 "HP5" 的人声模型），输入你的视频 / 音频所在文件夹，指定输出文件夹，开始处理。</li>
+  <li>处理完成后，把输出文件夹里<strong>人声（vocal）</strong>的音频文件放进 <span class="path">D:\讲课素材</span>，代替原来有音乐的视频。</li>
+</ol>
+<div class="note">GPT-SoVITS 界面会随版本更新变化，具体按钮名称以它的界面为准。声音分身里也有"视频有背景音乐（去除背景音乐）"选项，但需要额外安装 demucs 组件，普通用户推荐用上面的 UVR5 方法。</div>
+
+<h2 id="ch4-7">4.7 素材准备检查表</h2>
+<ul class="check">
+  <li>素材放在 <span class="path">D:\讲课素材</span>（路径尽量简单）</li>
+  <li>总共有 30 分钟以上你说话的内容（1~3 小时最好）</li>
+  <li>是你正常讲课状态的录音，<strong>没有嗓子哑之后的录音</strong></li>
+  <li>要做英文课的话，放入了至少 5~10 分钟你讲英文的录音</li>
+  <li>有字幕的话，字幕和视频同名放在一起</li>
+  <li>全程有背景音乐的视频已经做过人声分离（或者不放）</li>
+</ul>
+
+
+<h1 class="chapter" id="ch5"><span class="no">第 5 章</span>启动程序与界面总览</h1>
+
+<h2 id="ch5-1">5.1 启动程序</h2>
+<ol class="steps">
+  <li>双击桌面上的 <strong>"声音分身 VoiceTwin"</strong> 图标（或者 <span class="path">D:\VoiceTwin\start_webui.bat</span>）。</li>
+  <li>会出现一个黑色窗口，显示"正在启动声音分身……"：
+<div class="console"><div class="bar">声音分身（示意）</div><pre>正在启动声音分身，浏览器会自动打开 http://127.0.0.1:7860 ，使用期间请不要关闭本窗口……
+21:30:02 | 网页界面：http://127.0.0.1:7860
+Running on local URL:  http://127.0.0.1:7860</pre></div>
+    <div class="bad"><strong>使用期间不要关闭这个黑色窗口。</strong>它就是程序本身，关掉它网页就不能用了。可以把它最小化。</div></li>
+  <li>等 10~30 秒，浏览器会自动打开程序界面，地址是 <span class="path">http://127.0.0.1:7860</span>。
+    如果浏览器没有自动打开，就自己打开浏览器，在地址栏输入 <code>127.0.0.1:7860</code>，按 <span class="key">Enter</span>。</li>
+</ol>
+<div class="note">这个网页只在你自己的电脑上运行（127.0.0.1 表示"本机"），不需要注册、登录，你的声音和素材也不会上传到任何地方。</div>
+
+<h2 id="ch5-2">5.2 界面总览</h2>
+<figure><img src="../images/01_prepare_form.png" alt="界面总览"><figcaption><b>图 5-1</b>　声音分身的网页界面（① 准备素材 页面，已填好声音名称和素材文件夹）</figcaption></figure>
+<p>界面从上到下分为三部分：</p>
+<table class="t">
+  <tr><th style="width:26%">位置</th><th>作用</th></tr>
+  <tr><td>最上面：<span class="ui">声音名称</span></td><td>选择或新建一个"声音"。第一次使用时直接输入名字（例如"我的声音"）；以后点右边的小三角从列表里选。旁边的 <span class="btn gray">🔄 刷新</span> 用来刷新列表。<strong>所有标签页都使用这里选中的声音。</strong></td></tr>
+  <tr><td>中间：五个标签页</td><td>
+    <span class="tab">① 准备素材</span> 放入讲课视频，自动切分、识别、过滤（第 6、7 章）<br>
+    <span class="tab">② 训练模型</span> 训练你的专属声音模型（第 8 章）<br>
+    <span class="tab">③ 生成讲课音频</span> 粘贴讲稿，生成音频和字幕（第 9 章）<br>
+    <span class="tab">④ 评估相似度</span> 给任意一段音频打分，看有多像你（第 12 章）<br>
+    <span class="tab">环境检查</span> 检查显卡、模型等是否正常（与安装时的检查相同）</td></tr>
+  <tr><td>下面：当前标签页的内容</td><td>各种输入框、按钮和运行日志。</td></tr>
+</table>
+<div class="tip">第一次使用请严格按 <span class="tab">①</span> → <span class="tab">②</span> → <span class="tab">③</span> 的顺序操作。训练好之后，日常只需要用 <span class="tab">③</span>。</div>
+
+<h2 id="ch5-3">5.3 关闭程序与下次打开</h2>
+<ul>
+  <li><strong>关闭</strong>：先关浏览器页面，再关掉黑色窗口（点右上角 ✕）。正在准备素材、训练或生成时不要关。</li>
+  <li><strong>下次打开</strong>：双击桌面图标 → 在 <span class="ui">声音名称</span> 里选"我的声音" → 直接去需要的标签页。之前准备的素材、训练的模型都会自动保留。</li>
+  <li><strong>电脑重启后</strong>：和"下次打开"一样，不需要重新安装。</li>
+</ul>

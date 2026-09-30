@@ -14,7 +14,7 @@ import numpy as np
 from voicetwin.project import Project
 from voicetwin.utils.audio import load_audio, save_audio, trim_silence
 from voicetwin.utils.log import get_logger
-from voicetwin.utils.textutil import ends_sentence, sentence_kind
+from voicetwin.utils.textutil import ends_sentence, normalize_for_cer, sentence_kind
 
 log = get_logger("references")
 
@@ -57,16 +57,22 @@ def select_references(project: Project, records: List[Dict[str, Any]], pcfg: Dic
         quota = max(2, round(count * len(items) / total))
         picked: List[Dict[str, Any]] = []
         used_sources: Dict[str, int] = {}
+        seen_texts: set = set()  # 同一句话（例如每节课都说的开场白）只选一次，让参考语气更多样
         for kind in ("question", "exclaim"):  # 各挑一条疑问句 / 感叹句
             best = next((r for r in items if sentence_kind(r["text"]) == kind), None)
             if best is not None:
                 picked.append(best)
+                seen_texts.add(normalize_for_cer(best["text"]))
         statements = [r for r in items if sentence_kind(r["text"]) == "statement"]
         for r in statements:  # 陈述句优先分散到不同视频
             if len([p for p in picked if sentence_kind(p["text"]) == "statement"]) >= quota:
                 break
             if used_sources.get(r["source"], 0) >= 2 and len(statements) > quota * 2:
                 continue
+            key = normalize_for_cer(r["text"])
+            if key in seen_texts:
+                continue
+            seen_texts.add(key)
             picked.append(r)
             used_sources[r["source"]] = used_sources.get(r["source"], 0) + 1
         chosen += picked

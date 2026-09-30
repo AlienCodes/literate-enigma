@@ -5,6 +5,9 @@
 
 以后日常使用只需要：**双击桌面图标 → 粘贴讲稿 → 点"生成"**。
 
+> 📘 想看带截图、更详细的版本：请打开 `VoiceTwin\docs` 文件夹里的 **《声音分身VoiceTwin使用手册.pdf》**（约 80 页，含界面截图、讲稿写法、剪映配音、盲测方法和 40 多个常见问题），
+> 也可以在 [Releases 页面](https://github.com/AlienCodes/literate-enigma/releases/latest) 单独下载。
+
 ---
 
 ## 目录

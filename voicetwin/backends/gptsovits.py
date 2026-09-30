@@ -384,10 +384,26 @@ class GPTSoVITSBackend(Backend):
         gpt = sorted(gpt_dir.glob(f"{self.exp_name}-e*.ckpt"), key=_epoch) if gpt_dir.exists() else []
         return sovits, gpt
 
+    def _locate_weight(self, path: str) -> Optional[Path]:
+        """models.json 里记的是绝对路径；整合包被移动 / 换了电脑后，按文件名到当前 root 里重新找。"""
+        if not path:
+            return None
+        p = Path(path)
+        if p.exists():
+            return p
+        if self.root is None:
+            return None
+        name = path.replace("\\", "/").rsplit("/", 1)[-1]
+        for d in (f"SoVITS_weights_{self.version}", f"GPT_weights_{self.version}"):
+            cand = self.p(d) / name
+            if cand.exists():
+                return cand
+        return None
+
     def checkpoints(self) -> List[Dict[str, Any]]:
         info = self.project.load_models().get(self.name) or {}
-        sovits = [Path(p) for p in info.get("sovits", []) if Path(p).exists()]
-        gpt = [Path(p) for p in info.get("gpt", []) if Path(p).exists()]
+        sovits = [w for w in (self._locate_weight(p) for p in info.get("sovits", [])) if w]
+        gpt = [w for w in (self._locate_weight(p) for p in info.get("gpt", [])) if w]
         if not sovits or not gpt:
             sovits, gpt = self._list_weights()
         out = []
@@ -399,8 +415,10 @@ class GPTSoVITSBackend(Backend):
     # ================================================================ 推理服务
     def _current_weights(self) -> Dict[str, str]:
         sel = self.selected_checkpoint()
-        if sel and Path(sel.get("sovits", "")).exists() and Path(sel.get("gpt", "")).exists():
-            return {"sovits": sel["sovits"], "gpt": sel["gpt"], "id": sel.get("id", "custom")}
+        if sel:
+            sovits, gpt = self._locate_weight(sel.get("sovits", "")), self._locate_weight(sel.get("gpt", ""))
+            if sovits and gpt:
+                return {"sovits": str(sovits), "gpt": str(gpt), "id": sel.get("id", "custom")}
         if self.root is None:
             return {"sovits": "", "gpt": "", "id": "external"}
         log.warning("还没有训练好的 GPT-SoVITS 模型，暂时使用官方底模做零样本克隆（像度会明显低于训练后）")

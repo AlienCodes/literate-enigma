@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>声音分身 VoiceTwin 使用手册</title>
+<style>
+  @page { size: A4; margin: 17mm 16mm 18mm 16mm;
+    @bottom-center { content: "第 " counter(page) " 页 / 共 " counter(pages) " 页"; font-family: "Noto Sans CJK SC", sans-serif; font-size: 8.5pt; color: #8a94a6; }
+    @top-right { content: "声音分身 VoiceTwin 使用手册"; font-family: "Noto Sans CJK SC", sans-serif; font-size: 7.8pt; color: #a3acbb; }
+  }
+  section.toc { break-before: page; }
+  :root {
+    --ink: #1d2433; --muted: #5b6475; --line: #d9dee7; --soft: #f5f7fb;
+    --brand: #1f5fbf; --brand-soft: #e8f0fc; --accent: #f97316; --accent-soft: #fff1e6;
+    --ok: #15803d; --ok-soft: #e9f7ee; --warn: #b45309; --warn-soft: #fff7e0;
+    --bad: #b91c1c; --bad-soft: #fdecec; --info: #0e7490; --info-soft: #e6f6f9;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; color: var(--ink); font: 10.5pt/1.78 "Noto Sans CJK SC", "WenQuanYi Zen Hei", sans-serif;
+         text-align: left; orphans: 3; widows: 3; }
+  p { margin: .45em 0 .7em; }
+  a { color: var(--brand); text-decoration: none; }
+  strong, b { font-weight: 700; color: #0f1728; }
+  code, .mono { font-family: "DejaVu Sans Mono", "Noto Sans CJK SC", monospace; font-size: .9em; }
+  code { background: #eef1f6; border: 1px solid #e1e5ec; border-radius: 4px; padding: .05em .35em; white-space: nowrap; }
+
+  /* ---------- 标题 ---------- */
+  h1.chapter { break-before: page; margin: 0 0 1.1em; padding: 18px 0 14px; border-bottom: 3px solid var(--brand);
+               font-size: 22pt; line-height: 1.3; color: #0f2a55; }
+  h1.chapter .no { display: block; font-size: 11pt; letter-spacing: .25em; color: var(--brand); font-weight: 700; margin-bottom: 4px; }
+  h2 { font-size: 14.5pt; margin: 1.6em 0 .55em; padding-bottom: 5px; border-bottom: 1px solid var(--line); color: #10284f;
+       break-after: avoid; }
+  h3 { font-size: 12pt; margin: 1.25em 0 .4em; color: #17325e; break-after: avoid; }
+  h3::before { content: ""; display: inline-block; width: 6px; height: 1em; background: var(--accent); border-radius: 2px;
+               margin-right: 8px; vertical-align: -2px; }
+  .lead { font-size: 11pt; color: #2b3345; background: var(--soft); border-radius: 8px; padding: 12px 16px; margin: .2em 0 1.2em; }
+
+  /* ---------- 步骤 ---------- */
+  ol.steps { counter-reset: step; list-style: none; padding-left: 0; margin: .6em 0 1em; }
+  ol.steps > li { counter-increment: step; position: relative; padding: 2px 0 8px 42px; margin: 0; break-inside: avoid; }
+  ol.steps > li::before { content: counter(step); position: absolute; left: 0; top: 2px; width: 28px; height: 28px; border-radius: 50%;
+                          background: var(--brand); color: #fff; font-weight: 700; font-size: 11pt; text-align: center; line-height: 28px; }
+  ol.steps > li > p:first-child { margin-top: 0; }
+  ul { padding-left: 1.4em; margin: .35em 0 .8em; }
+  ul li, ol li { margin: .18em 0; }
+
+  /* ---------- 界面元素 ---------- */
+  .btn { display: inline-block; background: linear-gradient(#ffd7b0, #ffb77a); color: #a83c00; border-radius: 5px; padding: 0 .55em;
+         font-weight: 700; font-size: .95em; border: 1px solid #f5a25d; white-space: nowrap; }
+  .btn.gray { background: #eceff4; color: #2d3648; border-color: #cfd5df; }
+  .ui { display: inline-block; border: 1px solid #c9d3e3; background: #f8fafd; color: #243a63; border-radius: 4px; padding: 0 .4em;
+        font-size: .95em; white-space: nowrap; }
+  .tab { display: inline-block; border-bottom: 2px solid var(--accent); color: #c2410c; padding: 0 .3em; font-weight: 700; white-space: nowrap; }
+  .key { display: inline-block; border: 1px solid #b8c0cc; border-bottom-width: 3px; border-radius: 4px; background: #fff; padding: 0 .45em;
+         font-family: "DejaVu Sans Mono", "Noto Sans CJK SC", monospace; font-size: .88em; line-height: 1.5; white-space: nowrap; }
+  .path { font-family: "DejaVu Sans Mono", "Noto Sans CJK SC", monospace; font-size: .92em; color: #0b4a8b; white-space: nowrap; }
+
+  /* ---------- 提示框 ---------- */
+  .box, .tip, .warn, .bad, .note, .ok { border-radius: 8px; padding: 10px 14px 10px 46px; margin: .9em 0; position: relative; break-inside: avoid; border: 1px solid; }
+  .box::before, .tip::before, .warn::before, .bad::before, .note::before, .ok::before { position: absolute; left: 14px; top: 9px; font-size: 15pt; line-height: 1.3; }
+  .box > :first-child, .tip > :first-child, .warn > :first-child, .bad > :first-child, .note > :first-child, .ok > :first-child { margin-top: 0; }
+  .box > :last-child, .tip > :last-child, .warn > :last-child, .bad > :last-child, .note > :last-child, .ok > :last-child { margin-bottom: 0; }
+  .box .t, .tip .t, .warn .t, .bad .t, .note .t, .ok .t { font-weight: 700; display: block; margin-bottom: 2px; }
+  .tip { background: var(--ok-soft); border-color: #bfe5cc; } .tip::before { content: "💡"; }
+  .warn { background: var(--warn-soft); border-color: #f3d98c; } .warn::before { content: "⚠️"; }
+  .bad { background: var(--bad-soft); border-color: #f3c0c0; } .bad::before { content: "⛔"; }
+  .note { background: var(--info-soft); border-color: #b8e1ea; } .note::before { content: "📌"; }
+  .ok { background: var(--ok-soft); border-color: #bfe5cc; } .ok::before { content: "✅"; }
+
+  /* ---------- 截图 ---------- */
+  figure { margin: 1em 0 1.3em; break-inside: avoid; text-align: center; }
+  figure img { max-width: 100%; border: 1px solid #cfd6e1; border-radius: 6px; box-shadow: 0 2px 8px rgba(20, 40, 80, .12); }
+  figure.w80 img { max-width: 82%; } figure.w65 img { max-width: 66%; }
+  figcaption { font-size: 9pt; color: var(--muted); margin-top: 6px; }
+  figcaption b { color: var(--brand); }
+
+  /* ---------- 命令行窗口（示意） ---------- */
+  .console { background: #0f1720; color: #dbe4ee; border-radius: 8px; margin: .9em 0 1.1em; break-inside: avoid; overflow: hidden;
+             font: 8.8pt/1.62 "DejaVu Sans Mono", "Noto Sans CJK SC", monospace; border: 1px solid #0b1118; }
+  .console .bar { background: #1f2a37; color: #9fb0c3; font: 8.5pt "Noto Sans CJK SC", sans-serif; padding: 5px 12px; }
+  .console .bar::before { content: "● ● ●"; color: #5b6b7d; letter-spacing: 2px; margin-right: 10px; }
+  .console pre { margin: 0; padding: 10px 14px 12px; white-space: pre-wrap; word-break: break-all; font: inherit; }
+  .c-cy { color: #67e8f9; } .c-gr { color: #86efac; } .c-ye { color: #fde68a; } .c-rd { color: #fca5a5; } .c-dim { color: #8193a8; }
+  .c-in { color: #ffffff; background: #334155; padding: 0 3px; border-radius: 2px; }
+
+  /* ---------- 表格 ---------- */
+  table.t { width: 100%; border-collapse: collapse; margin: .7em 0 1.1em; font-size: 9.6pt; line-height: 1.6; break-inside: auto; }
+  table.t th { background: #eaf0f9; color: #13305c; text-align: left; font-weight: 700; }
+  table.t th, table.t td { border: 1px solid #d3dae6; padding: 6px 9px; vertical-align: top; text-align: left; }
+  table.t { table-layout: fixed; }
+  table.t tr { break-inside: avoid; }
+  table.t thead tr { break-after: avoid; }
+  table.t code, code.long, .path.long { white-space: normal; overflow-wrap: anywhere; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  table.t tr:nth-child(even) td { background: #fafbfd; }
+  table.t td.c, table.t th.c { text-align: center; }
+  table.t.compact td, table.t.compact th { padding: 4px 8px; }
+
+  /* ---------- 文件夹树 / 代码 ---------- */
+  pre.tree, pre.code { background: #f6f8fb; border: 1px solid #dde3ec; border-radius: 8px; padding: 10px 14px; margin: .8em 0 1.1em;
+                       font: 9pt/1.6 "DejaVu Sans Mono", "Noto Sans CJK SC", monospace; white-space: pre-wrap; break-inside: avoid; }
+  pre .cm { color: #6b7a90; }
+
+  /* ---------- 流程图 ---------- */
+  .flow { display: flex; align-items: stretch; gap: 0; margin: 1em 0 1.3em; break-inside: avoid; }
+  .flow .node { flex: 1; border: 1.5px solid var(--brand); border-radius: 10px; background: var(--brand-soft); padding: 9px 10px; text-align: center;
+                font-size: 9.4pt; line-height: 1.5; }
+  .flow .node b { display: block; font-size: 10.5pt; color: #0f2a55; margin-bottom: 3px; }
+  .flow .node small { color: var(--muted); display: block; margin-top: 4px; }
+  .flow .node.hot { border-color: var(--accent); background: var(--accent-soft); }
+  .flow .arrow { flex: 0 0 26px; display: flex; align-items: center; justify-content: center; color: var(--brand); font-size: 16pt; font-weight: 700; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: .8em 0 1.1em; }
+  .card { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; background: #fff; break-inside: avoid; }
+  .card h4 { margin: 0 0 4px; font-size: 10.8pt; color: #10284f; }
+  .card p, .card ul { margin: .2em 0; font-size: 9.8pt; }
+
+  /* ---------- 检查表 ---------- */
+  ul.check { list-style: none; padding-left: 0; }
+  ul.check li { padding-left: 28px; position: relative; margin: .3em 0; }
+  ul.check li::before { content: ""; position: absolute; left: 2px; top: .3em; width: 14px; height: 14px; border: 1.6px solid #6b7a90; border-radius: 3px; background: #fff; }
+
+  /* ---------- 目录 ---------- */
+  .toc h1 { font-size: 20pt; color: #0f2a55; border-bottom: 3px solid var(--brand); padding-bottom: 10px; margin: 0 0 14px; }
+  .toc a { color: var(--ink); display: flex; align-items: baseline; }
+  .toc a .dots { flex: 1; border-bottom: 1.2px dotted #9aa6b8; margin: 0 6px; transform: translateY(-3px); }
+  .toc .l1 { font-weight: 700; font-size: 11pt; margin-top: 9px; color: #0f2a55; }
+  .toc .l1 a { color: #0f2a55; }
+  .toc .l2 { font-size: 9.8pt; margin-left: 24px; line-height: 1.75; }
+  .toc .pg { font-variant-numeric: tabular-nums; min-width: 22px; text-align: right; }
+
+  .qa { break-inside: avoid; margin: .5em 0 .9em; }
+  .qa .q { font-weight: 700; color: #0f2a55; }
+  .qa .q::before { content: "问"; display: inline-block; background: var(--brand); color: #fff; border-radius: 4px; font-size: 8.5pt;
+                   padding: 0 5px; margin-right: 7px; vertical-align: 1px; }
+  .qa .a { margin: .2em 0 0 30px; }
+  .pagebreak { break-before: page; }
+  .small { font-size: 9pt; color: var(--muted); }
+  .center { text-align: center; }
+  hr.sep { border: 0; border-top: 1px dashed var(--line); margin: 1.4em 0; }
+</style>
+</head>
+<body>

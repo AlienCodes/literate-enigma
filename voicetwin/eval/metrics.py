@@ -81,7 +81,7 @@ class Scorer:
         self.cer_checker = cer_checker
 
     def score(self, wav: np.ndarray, sr: int, text: str, lang: str, speed: float = 1.0,
-              use_asr: bool = True) -> Score:
+              use_asr: bool = True, check_pauses: bool = True) -> Score:
         issues: List[str] = []
         total = 0.0
         sim = None
@@ -91,8 +91,11 @@ class Scorer:
             sim = cosine(self.encoder.embed(wav, sr), self.centroid)
             total += self.w["speaker"] * sim
         voiced, pauses = speech_activity(wav, sr)
+        if voiced < 0.2:
+            issues.append("几乎没有声音")
+            total -= 2.0
         syl = syllable_count(text)
-        rate = syl / voiced if voiced > 0.2 and syl else None
+        rate = syl / voiced if voiced >= 0.2 and syl else None
         rate_dev = None
         if rate:
             target = target_rate(self.profile, lang) * float(speed or 1.0)
@@ -104,10 +107,7 @@ class Scorer:
             if rate > target * 2.0:
                 issues.append("语速过快/可能漏读")
                 total -= 0.5
-        else:
-            issues.append("几乎没有声音")
-            total -= 2.0
-        long_pauses = [p for p in pauses if p > 1.2]
+        long_pauses = [p for p in pauses if p > 1.2] if check_pauses else []
         if long_pauses:
             issues.append(f"句中有 {max(long_pauses):.1f}s 的异常停顿")
             total -= 0.3 * len(long_pauses)

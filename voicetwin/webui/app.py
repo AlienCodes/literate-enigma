@@ -100,7 +100,7 @@ def _summary_md(s: Dict[str, Any]) -> str:
         p = prof["pauses"]
         md.append(f"**你的停顿习惯**：逗号 {p['clause']:.2f}s / 句号 {p['sentence']:.2f}s / 段落 {p['paragraph']:.2f}s")
     if s.get("references"):
-        md.append("**自动挑选的参考音频**：\n" + "\n".join(f"- [{r['lang']}/{r['kind']}] {r['text']}" for r in s["references"][:8]))
+        md.append("**自动挑选的参考音频**：\n" + "\n".join(f"- [{r['lang']}/{r['kind']}] {r['text']}" for r in s["references"][:12]))
     return "\n\n".join(md)
 
 

@@ -1,0 +1,54 @@
+<style>
+  @page cover { margin: 0; @bottom-center { content: none; } @top-right { content: none; } }
+  .cover { page: cover; position: relative; width: 210mm; height: 296.5mm; overflow: hidden; background: #f7f9fd; }
+  .cover .band { position: absolute; left: 0; top: 0; right: 0; height: 128mm;
+                 background: linear-gradient(135deg, #0f2a55 0%, #1f5fbf 62%, #3b82f6 100%); }
+  .cover .wave { position: absolute; left: 0; right: 0; top: 92mm; }
+  .cover .inner { position: absolute; left: 20mm; right: 20mm; top: 30mm; color: #fff; }
+  .cover .kicker { font-size: 11pt; letter-spacing: .35em; opacity: .85; font-weight: 700; }
+  .cover .title { font-size: 40pt; font-weight: 700; line-height: 1.2; margin: 10px 0 6px; }
+  .cover .title small { display: block; font-size: 19pt; font-weight: 500; letter-spacing: .08em; margin-top: 8px; opacity: .95; }
+  .cover .sub { font-size: 12.5pt; opacity: .92; margin-top: 12px; line-height: 1.7; }
+  .cover .body { position: absolute; left: 20mm; right: 20mm; top: 146mm; color: #1d2433; }
+  .cover .steps3 { display: flex; gap: 10px; margin: 0 0 14mm; }
+  .cover .steps3 div { flex: 1; background: #fff; border: 1.5px solid #cfdcf3; border-radius: 12px; padding: 12px 12px 10px; text-align: center; }
+  .cover .steps3 b { display: block; font-size: 22pt; color: #f97316; line-height: 1.1; }
+  .cover .steps3 span { display: block; font-size: 11.5pt; font-weight: 700; color: #0f2a55; margin-top: 4px; }
+  .cover .steps3 small { display: block; font-size: 8.8pt; color: #5b6475; margin-top: 3px; line-height: 1.5; }
+  .cover ul.feat { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 12mm; font-size: 10.5pt; line-height: 2; }
+  .cover ul.feat li::before { content: "✔"; color: #15803d; font-weight: 700; margin-right: 8px; }
+  .cover .foot { position: absolute; left: 20mm; right: 20mm; bottom: 16mm; display: flex; justify-content: space-between; align-items: flex-end;
+                 border-top: 1px solid #d9dee7; padding-top: 8px; font-size: 9.5pt; color: #5b6475; }
+  .cover .foot b { color: #0f2a55; font-size: 11pt; }
+</style>
+<div class="cover">
+  <div class="band"></div>
+  <svg class="wave" viewBox="0 0 210 40" preserveAspectRatio="none" style="width:210mm;height:40mm">
+    <path d="M0,22 C20,10 35,34 55,22 S90,8 110,22 S150,36 170,20 S200,12 210,18 L210,40 L0,40 Z" fill="#f7f9fd"/>
+    <path d="M0,24 C20,12 35,36 55,24 S90,10 110,24 S150,38 170,22 S200,14 210,20" fill="none" stroke="#f97316" stroke-width=".7" opacity=".9"/>
+  </svg>
+  <div class="inner">
+    <div class="kicker">VOICETWIN · 使用手册</div>
+    <div class="title">声音分身 VoiceTwin<small>用你自己的声音，生成新的讲课音频</small></div>
+    <div class="sub">复刻你的音色、语气和说话节奏 · 支持中文和英文<br>从下载安装到做出整门课程的完整图文教程（Windows 版）</div>
+  </div>
+  <div class="body">
+    <div class="steps3">
+      <div><b>①</b><span>放入讲课视频</span><small>以前录好的课程视频、录音<br>自动切分、识别、过滤</small></div>
+      <div><b>②</b><span>训练专属声音</span><small>一键训练，自动挑选<br>最像你的模型、校准语速</small></div>
+      <div><b>③</b><span>粘贴讲稿生成</span><small>输出音频 + 字幕<br>可直接剪进课程视频</small></div>
+    </div>
+    <ul class="feat">
+      <li>零基础也能看懂，每一步都有说明</li>
+      <li>真实界面截图，照着点就行</li>
+      <li>讲稿写法、停顿与读音控制</li>
+      <li>剪映配音、替换视频原声</li>
+      <li>评估相似度与盲测方法</li>
+      <li>40 多个常见问题的解决办法</li>
+    </ul>
+  </div>
+  <div class="foot">
+    <div><b>适用版本 v0.1.1</b><br>Windows 10 / 11 · NVIDIA 显卡</div>
+    <div style="text-align:right">github.com/AlienCodes/literate-enigma<br>2026 年 9 月</div>
+  </div>
+</div>

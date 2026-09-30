@@ -1,0 +1,371 @@
+<h1 class="chapter" id="ch13"><span class="no">第 13 章</span>进阶技巧：让声音更像你</h1>
+<p class="lead">按前面的步骤操作，已经能得到不错的效果。这一章介绍几种进一步提升效果的方法，以及设置文件、可选引擎、备份和换电脑等进阶操作。</p>
+
+<h2 id="ch13-1">13.1 提升相似度的方法（按效果从大到小）</h2>
+<table class="t">
+  <tr><th class="c" style="width:7%">#</th><th style="width:28%">方法</th><th>具体怎么做</th></tr>
+  <tr><td class="c">1</td><td><strong>增加优质素材</strong></td><td>从 30 分钟增加到 1~3 小时，效果提升最明显（4.2 节）。放入新素材后：① 准备素材（只处理新文件）→ ② 重新训练。</td></tr>
+  <tr><td class="c">2</td><td><strong>校对文字</strong></td><td>识别错的字会变成模型的"口误"。花 10~20 分钟校对（第 7 章），然后重新训练。</td></tr>
+  <tr><td class="c">3</td><td><strong>剔除不好的素材</strong></td><td>把嗓子哑之后、感冒时、非常疲惫时的录音从素材里拿掉；在校对表里把有杂音、有别人说话的片段设为不保留。</td></tr>
+  <tr><td class="c">4</td><td><strong>用 best 档生成</strong></td><td>每句生成 5 个版本挑最像的，并自动检查漏字、读错（9.2 节）。</td></tr>
+  <tr><td class="c">5</td><td><strong>挑一个满意的参考音频</strong></td><td>参考音频决定了生成时的"状态"和"语气"。挑一条你最满意的，固定使用（13.2 节）。</td></tr>
+  <tr><td class="c">6</td><td><strong>改写讲稿</strong></td><td>口语化、短句、标点准确（10.8 节）。</td></tr>
+  <tr><td class="c">7</td><td><strong>补充英文素材</strong></td><td>要做英文课时特别重要（4.3 节）。</td></tr>
+</table>
+
+<h2 id="ch13-2">13.2 指定参考音频：固定你想要的语气</h2>
+<p>生成每一句话时，模型都需要一段你的真实录音作为<strong>参考音频</strong>，模仿它的音色、状态和语气。准备素材时，程序已经自动挑出了约 8~10 条最有代表性的参考音频（中文陈述句、疑问句、感叹句，英文句子各有），生成时会根据句子的语言和类型自动选择。</p>
+<p>如果你觉得生成的语气整体偏平淡、偏急促，或者某一条参考音频的状态特别好，可以<strong>手动指定</strong>一条：</p>
+<ol class="steps">
+  <li>打开文件夹 <span class="path">D:\VoiceTwin\workspace\我的声音\references</span>，里面是所有参考音频，例如：
+<pre class="tree">references\
+├── 第1课_b6dd09_0021.wav     <span class="cm">← 这里有一个常见的错误，很多同学都会犯。</span>
+├── 第1课_b6dd09_0047.wav     <span class="cm">← 但是要注意，不要把太复杂的逻辑都塞进一行。</span>
+├── 第2课_b09a84_0063.wav     <span class="cm">← 那么什么时候应该用普通的循环呢？（疑问句）</span>
+├── 第3课_ac0ef9_0061.wav     <span class="cm">← 今天的内容就到这里，大家辛苦了！（感叹句）</span>
+└── ……</pre></li>
+  <li>双击逐个试听，找一条你最满意的（声音状态好、语气自然、没有杂音）。</li>
+  <li>它的<strong>文件名去掉 .wav</strong> 就是参考音频 id，例如 <code>第1课_b6dd09_0047</code>。在文件上点右键 → <span class="ui">重命名</span>，按 <span class="key">Ctrl</span>+<span class="key">C</span> 复制文件名（复制后按 <span class="key">Esc</span> 取消重命名）。</li>
+  <li>在 <span class="tab">③ 生成讲课音频</span> 的 <span class="ui">指定参考音频 id</span> 里粘贴这个 id，然后生成。</li>
+</ol>
+<div class="note"><span class="t">参考音频的文字在哪看？</span>用记事本打开 <span class="path">D:\VoiceTwin\workspace\我的声音\references.json</span>，每一条参考音频都有 <code>id</code>（编号）、<code>text</code>（说的内容）、<code>lang</code>（zh 中文 / en 英文）、<code>kind</code>（statement 陈述 / question 疑问 / exclaim 感叹）、<code>duration</code>（秒数）。</div>
+<div class="warn">指定参考音频后，<strong>所有句子</strong>（包括疑问句、英文句子）都会用这一条参考。所以：中文讲稿请指定中文参考，英文讲稿请指定英文参考；如果讲稿里疑问句很多、希望疑问语气更明显，就留空让程序自动选。</div>
+<div class="tip"><span class="t">想用一条自己新录的参考？</span>参考音频必须来自素材。可以专门录一段 3~10 秒、状态很好的话（例如"同学们好，今天我们来学习一个新的知识点。"），放进素材文件夹，重新 ① 准备素材；它有很大概率会被选为参考音频。</div>
+
+<h2 id="ch13-3">13.3 设置文件 config.yaml 详解</h2>
+<p>网页上没有的设置，都在 <span class="path">D:\VoiceTwin\config.yaml</span> 里。大多数人不需要修改它。</p>
+<h3>如何修改</h3>
+<ol class="steps">
+  <li><strong>先备份</strong>：复制一份 <code>config.yaml</code>，改名为 <code>config备份.yaml</code>。</li>
+  <li>在 <code>config.yaml</code> 上点右键 → <span class="ui">打开方式</span> → <span class="ui">记事本</span>。</li>
+  <li>按 <span class="key">Ctrl</span>+<span class="key">F</span> 搜索要改的项目名称，例如 <code>output_format</code>，修改冒号后面的值。</li>
+  <li>按 <span class="key">Ctrl</span>+<span class="key">S</span> 保存，<strong>关闭黑色窗口，重新双击桌面图标</strong>启动，设置才会生效。</li>
+</ol>
+<div class="bad"><span class="t">修改时的三条规则</span>
+① 冒号后面必须有<strong>一个空格</strong>：<code>output_format: mp3</code> ✅，<code>output_format:mp3</code> ❌。
+② 每行前面的<strong>空格缩进不能改</strong>（缩进表示层级），也不能用 Tab 键。
+③ <code>#</code> 后面是说明文字，不影响设置。</div>
+<p>改坏了怎么办？把备份的文件改回 <code>config.yaml</code>；或者在命令提示符里运行 <code>voicetwin.bat init-config --force</code> 恢复默认设置（旧文件会自动备份为 <code>config.yaml.bak</code>；恢复默认后需要重新运行一次 <code>install_windows.bat</code> 写入整合包路径）。</p>
+
+<h3>常用设置一览</h3>
+<table class="t compact">
+  <tr><th style="width:30%">设置项</th><th style="width:16%">默认值</th><th>说明</th></tr>
+  <tr><td colspan="3"><strong>生成（synth 部分）</strong></td></tr>
+  <tr><td><code>output_format</code></td><td>wav</td><td>输出格式：<code>wav</code>（无损，推荐剪辑用）或 <code>mp3</code>（文件小，适合直接发布）。</td></tr>
+  <tr><td><code>quality</code></td><td>balanced</td><td>默认质量档位：fast / balanced / best。</td></tr>
+  <tr><td><code>speed</code></td><td>auto</td><td>auto 表示使用自动校准的语速（和你本人一致）。</td></tr>
+  <tr><td><code>pauses</code></td><td>profile</td><td><code>profile</code>：按你本人的停顿习惯；<code>fixed</code>：使用下面 <code>fixed_pauses</code> 里的固定秒数。</td></tr>
+  <tr><td><code>fixed_pauses</code></td><td>0.25 / 0.55 / 1.1</td><td>固定停顿时，逗号（clause）、句子（sentence）、段落（paragraph）各停多少秒。</td></tr>
+  <tr><td><code>loudness</code></td><td>profile</td><td><code>profile</code>：音量和你的原始录音一致；也可以写数值如 <code>-16</code>（更响，适合手机外放）；<code>off</code> 不调整。</td></tr>
+  <tr><td><code>subtitles</code></td><td>true</td><td>是否同时输出 .srt 字幕。</td></tr>
+  <tr><td><code>skip_code_blocks</code></td><td>true</td><td>Markdown 讲稿里的代码块是否跳过不读。</td></tr>
+  <tr><td><code>cer_retry_threshold</code></td><td>0.15</td><td>best 档：错字率超过 15% 自动重新生成这句。</td></tr>
+  <tr><td><code>max_retries</code></td><td>2</td><td>best 档：每句最多重试几次。</td></tr>
+  <tr><td><code>max_units_zh</code> / <code>max_units_en</code></td><td>50 / 45</td><td>一段最多多少个字 / 音节，超过会拆开（10.2 节）。</td></tr>
+  <tr><td colspan="3"><strong>素材准备（prepare 部分）</strong></td></tr>
+  <tr><td><code>asr: engine</code></td><td>faster-whisper</td><td>识别引擎。<strong>纯中文素材</strong>可以改成 <code>funasr</code>，中文识别更准，而且从国内的 ModelScope 下载，速度快。</td></tr>
+  <tr><td><code>asr: model</code></td><td>large-v3</td><td>识别模型。显存小（6GB）可以改成 <code>large-v3-turbo</code> 或 <code>medium</code>；用 funasr 时写 <code>paraformer-zh</code>。</td></tr>
+  <tr><td><code>denoise</code></td><td>auto</td><td>降噪：auto 只在噪音明显时轻度降噪；<code>off</code> 关闭；<code>on</code> 总是降噪。</td></tr>
+  <tr><td><code>min_duration</code> / <code>max_duration</code></td><td>2.0 / 12.0</td><td>切出的片段最短 / 最长秒数。</td></tr>
+  <tr><td><code>speaker_outlier</code></td><td>true</td><td>是否用声纹剔除不是你本人的片段。</td></tr>
+  <tr><td><code>validation_count</code></td><td>12</td><td>留多少条不参加训练、用来挑选最佳模型。</td></tr>
+  <tr><td><code>references: count</code></td><td>8</td><td>挑选多少条参考音频。</td></tr>
+  <tr><td colspan="3"><strong>GPT-SoVITS 引擎（backends → gptsovits 部分）</strong></td></tr>
+  <tr><td><code>root</code></td><td>（安装时写入）</td><td>GPT-SoVITS 整合包的位置。移动整合包后要改这里（或重新运行安装程序）。</td></tr>
+  <tr><td><code>is_half</code></td><td>true</td><td>半精度加速。GTX 10 系列及更老的显卡请改成 <code>false</code>。</td></tr>
+  <tr><td><code>port</code></td><td>9880</td><td>推理服务的端口。如果 9880 被其它程序占用，改成 9881 等。</td></tr>
+  <tr><td><code>train: batch_size</code></td><td>auto</td><td>训练批大小。显存不足时改成 <code>2</code> 或 <code>1</code>。</td></tr>
+  <tr><td><code>train: sovits_epochs</code> / <code>gpt_epochs</code></td><td>auto</td><td>训练轮数（8.7 节）。</td></tr>
+  <tr><td><code>infer: aux_refs</code></td><td>2</td><td>生成时额外融合几条参考音频的音色，让音色更稳定。一般不用改。</td></tr>
+  <tr><td colspan="3"><strong>其它</strong></td></tr>
+  <tr><td><code>workspace</code></td><td>./workspace</td><td>数据存放位置。想把数据放到其它盘，可以改成例如 <code>E:/VoiceTwinData</code>（先把原来的 workspace 文件夹复制过去）。</td></tr>
+  <tr><td><code>backend</code></td><td>gptsovits</td><td>默认引擎。</td></tr>
+</table>
+
+<h2 id="ch13-4">13.4 可选引擎：Qwen3-TTS 与 IndexTTS</h2>
+<p>除了默认的 GPT-SoVITS，声音分身还支持两个开源引擎。它们主要做<strong>零样本克隆</strong>（不训练，只用参考音频模仿），适合对比试听或临时使用：</p>
+<table class="t">
+  <tr><th style="width:18%">引擎</th><th style="width:30%">特点</th><th style="width:16%">是否需要训练</th><th>显存要求</th></tr>
+  <tr><td><strong>GPT-SoVITS</strong>（默认）</td><td>用你的素材微调，<strong>最像你</strong>；安装最简单</td><td>需要</td><td>6GB 以上</td></tr>
+  <tr><td>Qwen3-TTS</td><td>阿里开源，零样本自然度高，也支持微调</td><td>可选</td><td>零样本 8GB+；微调 12GB+</td></tr>
+  <tr><td>IndexTTS 2.5</td><td>B 站开源，零样本克隆，情绪和时长控制强</td><td>不需要</td><td>8GB+</td></tr>
+</table>
+<div class="warn">这两个引擎<strong>需要单独安装</strong>（要用到 conda、git 等工具），步骤比较专业，没有编程基础的用户建议只用默认的 GPT-SoVITS。安装方法见项目主页 README 的"可选引擎"一节。安装好后，在 <span class="tab">③ 生成讲课音频</span> 的 <span class="ui">引擎</span> 里选择即可；环境检查里对应的行会从 ⚠️ 变成 ✅。</div>
+
+<h2 id="ch13-5">13.5 管理多个声音</h2>
+<p>一个"声音名称"就是一套独立的素材和模型。你可以建多个声音，互不影响，例如：</p>
+<ul>
+  <li><strong>"我的声音"</strong>：日常讲课（中英文素材放在一起，推荐）。</li>
+  <li><strong>"我的声音-精神饱满"</strong>：只放状态最好的几节课，用来做重要的公开课。</li>
+  <li>帮同事做一个（需要对方本人授权，见附录 D）。</li>
+</ul>
+<p>新建方法：在最上面的 <span class="ui">声音名称</span> 里输入新名字，然后从 <span class="tab">① 准备素材</span> 开始。切换方法：点 <span class="ui">声音名称</span> 右边的小三角选择。</p>
+<div class="note">声音名称不能包含 <code>\ / : * ? " &lt; &gt; |</code> 这些字符。每个声音训练出的模型都会占用几百 MB 硬盘空间。</div>
+
+<h2 id="ch13-6">13.6 备份、换电脑和释放硬盘空间</h2>
+<h3>需要备份什么</h3>
+<table class="t">
+  <tr><th style="width:44%">文件夹</th><th>内容</th></tr>
+  <tr><td><span class="path">D:\VoiceTwin\workspace</span></td><td>所有声音的素材片段、校对结果、读音词典、参考音频、生成的音频。<strong>最重要。</strong></td></tr>
+  <tr><td><span class="path">D:\GPT-SoVITS\SoVITS_weights_v2ProPlus</span><br><span class="path">D:\GPT-SoVITS\GPT_weights_v2ProPlus</span></td><td>训练好的模型文件（文件名以 <code>vt_</code> 开头）。</td></tr>
+  <tr><td><span class="path">D:\VoiceTwin\config.yaml</span></td><td>你的设置。</td></tr>
+</table>
+<h3>换电脑</h3>
+<ol class="steps">
+  <li>把 <span class="path">D:\VoiceTwin</span> 和 <span class="path">D:\GPT-SoVITS</span> 两个文件夹整个复制到新电脑（用移动硬盘）。推荐放在和原来一样的位置（都在 D 盘根目录）；放到别的位置也可以，下一步安装时输入新的整合包路径即可，训练好的模型会被自动找到。</li>
+  <li>在新电脑上双击 <span class="path">D:\VoiceTwin\install_windows.bat</span> 重新安装一次（会重新生成桌面图标，已有的设置和数据会保留）。</li>
+  <li>双击桌面图标，选择"我的声音"，直接去 <span class="tab">③ 生成讲课音频</span> 就能用了，不需要重新训练。</li>
+</ol>
+<h3>释放硬盘空间</h3>
+<ul>
+  <li><strong>句子缓存</strong>：每一句生成的结果都会缓存（9.5 节），时间长了会占用较多空间。在命令提示符运行 <code>voicetwin.bat clear-cache -v 我的声音</code> 清空。清空后不影响模型，只是下次生成同样的句子时要重新生成。</li>
+  <li><strong>旧的生成结果</strong>：<span class="path">workspace\我的声音\outputs</span> 里不需要的音频可以直接删除。</li>
+  <li><strong>训练中间文件</strong>：<span class="path">D:\GPT-SoVITS\logs\vt_……</span> 是训练时产生的中间文件，训练完成后可以删除（下次重新训练会自动重新生成，只是多花一点时间）。</li>
+  <li><strong>多余的模型版本</strong>：训练会保存多个版本的模型（文件名里有 e4、e8 或 e5、e10、e15 等）。<strong>不建议手动删除</strong>，删错了会导致生成失败；确实需要空间时，可以只保留 <span class="tab">② 训练模型</span> 页面显示的最佳模型对应的文件。</li>
+</ul>
+
+<h2 id="ch13-7">13.7 在局域网或手机上使用（注意隐私）</h2>
+<p>默认情况下网页界面只能在本机打开。如果想在同一个局域网里的另一台电脑或平板上使用，可以在命令提示符里运行：</p>
+<pre class="code">voicetwin.bat webui --host 0.0.0.0 --port 7860</pre>
+<p>然后在另一台设备的浏览器里访问 <code>http://这台电脑的IP地址:7860</code>（IP 地址可以在命令提示符里输入 <code>ipconfig</code> 查看"IPv4 地址"）。Windows 防火墙可能会弹窗询问，选择"允许"（仅专用网络）。</p>
+<div class="bad"><span class="t">不要随意使用 --share</span><code>voicetwin.bat webui --share</code> 会生成一个<strong>任何人都能访问</strong>的公网链接，别人拿到链接就能用你的声音生成任意内容。除非你完全清楚风险，否则不要使用。</div>
+
+
+<h1 class="chapter" id="ch14"><span class="no">第 14 章</span>命令行用法（选读）</h1>
+<p class="lead">网页界面能完成所有日常操作。命令行适合想<strong>批量处理</strong>（例如一次生成十几节课）或者想自动化的用户。不熟悉电脑的老师可以跳过这一章。</p>
+
+<h2 id="ch14-1">14.1 基本用法</h2>
+<ol class="steps">
+  <li>按 3.7 节的方法，在 <span class="path">D:\VoiceTwin</span> 打开命令提示符。</li>
+  <li>所有命令的格式都是：<code>voicetwin.bat 命令 参数……</code>，输入后按 <span class="key">Enter</span>。</li>
+  <li>查看所有命令：<code>voicetwin.bat -h</code>；查看某个命令的详细参数：<code>voicetwin.bat narrate -h</code>。</li>
+</ol>
+<div class="warn"><span class="t">路径的写法</span>文件路径建议写<strong>完整路径</strong>（例如 <code>D:\讲稿\第1课.md</code>），路径里有空格时前后加英文双引号。<code>-v</code> 后面是声音名称，和网页里的"声音名称"一致。</div>
+
+<h2 id="ch14-2">14.2 全部命令一览</h2>
+<table class="t compact">
+  <tr><th style="width:17%">命令</th><th style="width:30%">作用</th><th>例子</th></tr>
+  <tr><td><code>doctor</code></td><td>环境检查</td><td><code>voicetwin.bat doctor</code></td></tr>
+  <tr><td><code>list</code></td><td>列出所有声音及素材、训练情况</td><td><code>voicetwin.bat list</code></td></tr>
+  <tr><td><code>prepare</code></td><td>准备素材（= 网页 ①）</td><td><code>voicetwin.bat prepare -v 我的声音 -i D:\讲课素材</code></td></tr>
+  <tr><td><code>review</code></td><td>读回 Excel 校对表的修改（7.3 节）</td><td><code>voicetwin.bat review -v 我的声音</code></td></tr>
+  <tr><td><code>analyze</code></td><td>重新分析说话风格（语速、停顿、音高、音量）</td><td><code>voicetwin.bat analyze -v 我的声音</code></td></tr>
+  <tr><td><code>train</code></td><td>训练并自动挑选最佳模型（= 网页 ②）</td><td><code>voicetwin.bat train -v 我的声音</code></td></tr>
+  <tr><td><code>select</code></td><td>只重新挑选最佳模型、校准语速</td><td><code>voicetwin.bat select -v 我的声音</code></td></tr>
+  <tr><td><code>narrate</code></td><td>把讲稿文件生成音频 + 字幕（= 网页 ③）</td><td><code>voicetwin.bat narrate -v 我的声音 D:\讲稿\第1课.md -q best</code></td></tr>
+  <tr><td><code>say</code></td><td>直接生成一句话（不输出字幕）</td><td><code>voicetwin.bat say -v 我的声音 "同学们好，欢迎来到今天的课程。"</code></td></tr>
+  <tr><td><code>evaluate</code></td><td>评估一段音频有多像你（= 网页 ④）</td><td><code>voicetwin.bat evaluate -v 我的声音 D:\测试.wav --text "音频里说的话"</code></td></tr>
+  <tr><td><code>auto</code></td><td>全自动：准备 → 训练 → 挑选 → 生成一段试听</td><td><code>voicetwin.bat auto -v 我的声音 -i D:\讲课素材</code></td></tr>
+  <tr><td><code>mux</code></td><td>把音频放进视频（替换原声）</td><td>见 11.3 节</td></tr>
+  <tr><td><code>download-models</code></td><td>下载缺少的 GPT-SoVITS 预训练模型</td><td><code>voicetwin.bat download-models --source hf-mirror</code></td></tr>
+  <tr><td><code>clear-cache</code></td><td>清空句子缓存</td><td><code>voicetwin.bat clear-cache -v 我的声音</code></td></tr>
+  <tr><td><code>init-config</code></td><td>生成 / 更新设置文件</td><td><code>voicetwin.bat init-config --gptsovits-root D:\GPT-SoVITS</code></td></tr>
+  <tr><td><code>webui</code></td><td>启动网页界面（= 双击桌面图标）</td><td><code>voicetwin.bat webui --port 7861</code></td></tr>
+</table>
+
+<h2 id="ch14-3">14.3 常用参数</h2>
+<table class="t compact">
+  <tr><th style="width:26%">参数</th><th style="width:20%">适用命令</th><th>含义</th></tr>
+  <tr><td><code>-v 名称</code></td><td>大多数命令</td><td>声音名称（必填）。</td></tr>
+  <tr><td><code>-i 路径 [路径…]</code></td><td>prepare、auto</td><td>素材文件或文件夹，可以写多个，用空格隔开。</td></tr>
+  <tr><td><code>--asr funasr</code></td><td>prepare</td><td>换识别引擎（faster-whisper / funasr / none）。</td></tr>
+  <tr><td><code>--language zh</code></td><td>prepare</td><td>素材语言：auto（逐段判断）/ zh / en。</td></tr>
+  <tr><td><code>--denoise off</code></td><td>prepare</td><td>降噪：auto / on / off。</td></tr>
+  <tr><td><code>--segmentation srt</code></td><td>prepare</td><td>切分方式：auto / srt（按字幕）/ energy（按静音）。</td></tr>
+  <tr><td><code>--sovits-epochs 12</code><br><code>--gpt-epochs 20</code><br><code>--batch-size 2</code></td><td>train</td><td>手动设置训练轮数和批大小（8.7 节）。</td></tr>
+  <tr><td><code>--no-select</code></td><td>train</td><td>训练后不自动挑选模型。</td></tr>
+  <tr><td><code>-q best</code></td><td>narrate、say</td><td>质量档位：fast / balanced / best。</td></tr>
+  <tr><td><code>-n 8</code></td><td>narrate、say</td><td>每句生成几个版本（覆盖质量档位的默认值）。</td></tr>
+  <tr><td><code>--speed 1.05</code></td><td>narrate、say</td><td>语速倍数。</td></tr>
+  <tr><td><code>--ref 第1课_b6dd09_0047</code></td><td>narrate、say</td><td>指定参考音频 id（13.2 节）。</td></tr>
+  <tr><td><code>--redo 3,5,8-10</code></td><td>narrate</td><td>只重新生成指定的句子（9.5 节）。</td></tr>
+  <tr><td><code>-o D:\成品\第1课.mp3</code></td><td>narrate、say、mux</td><td>输出文件（写 .mp3 就输出 mp3）。</td></tr>
+  <tr><td><code>--no-srt</code></td><td>narrate</td><td>不输出字幕。</td></tr>
+  <tr><td><code>-b gptsovits</code></td><td>train、narrate 等</td><td>指定引擎。</td></tr>
+  <tr><td><code>--verbose</code></td><td>所有命令</td><td>显示详细日志和完整错误信息（排查问题时用）。</td></tr>
+</table>
+
+<h2 id="ch14-4">14.4 实例：一次生成一整门课</h2>
+<p>假设你把 12 节课的讲稿放在 <span class="path">D:\讲稿</span> 里（<code>第01课.md</code> ~ <code>第12课.md</code>），想全部用 best 档生成，可以在 <span class="path">D:\VoiceTwin</span> 里新建一个文本文件，改名为 <code>批量生成.bat</code>，用记事本写入：</p>
+<pre class="code">@echo off
+chcp 65001 &gt;nul
+cd /d "%~dp0"
+for %%f in ("D:\讲稿\*.md") do (
+    echo 正在生成 %%~nf ……
+    call voicetwin.bat narrate -v 我的声音 "%%f" -q best -o "D:\成品\%%~nf.wav"
+)
+echo 全部完成！
+pause</pre>
+<p>保存时在记事本的"另存为"对话框里把编码选为 <strong>UTF-8</strong>。先建好 <span class="path">D:\成品</span> 文件夹，然后双击 <code>批量生成.bat</code>，电脑会一节一节地生成，完成后每节课的音频和字幕都在 <span class="path">D:\成品</span> 里。可以晚上开始，第二天早上来看结果。</p>
+<div class="tip">每节课生成完会在窗口里列出有"提示"的句子（例如 <code>⚠️ 第 7 句：语速过快/可能漏读（可用 --redo 7 重新生成）</code>），按提示用 <code>--redo</code> 重做那几句即可。</div>
+
+<h2 id="ch14-5">14.5 用 Excel 校对后同步</h2>
+<p>7.3 节介绍了用 Excel 校对 <code>transcripts.csv</code>。改完保存后，除了在网页里点按钮，也可以在命令行运行：</p>
+<pre class="code">voicetwin.bat review -v 我的声音
+voicetwin.bat train -v 我的声音</pre>
+
+
+<h1 class="chapter" id="ch15"><span class="no">第 15 章</span>常见问题与故障排除</h1>
+<p class="lead">遇到问题先别急。绝大多数问题都能在这一章找到答案。每个问题都按"<strong>现象 → 原因 → 解决办法</strong>"来写。找不到答案时，看 15.8 节如何收集信息求助。</p>
+
+<h2 id="ch15-1">15.1 安装阶段</h2>
+<div class="qa"><div class="q">双击 install_windows.bat 后，黑色窗口一闪就没了</div>
+<div class="a">原因：系统阻止了 PowerShell 脚本运行，或者安装包没有完整解压。<br>
+解决：① 确认你是在<strong>解压后的</strong> <span class="path">D:\VoiceTwin</span> 文件夹里双击，而不是在压缩包里直接双击；② 在 <code>install_windows.ps1</code> 上点右键 → <span class="ui">使用 PowerShell 运行</span>；③ 如果仍然不行，按 <span class="key">Win</span> 键，输入 <code>powershell</code>，打开"Windows PowerShell"，输入下面这行后回车：<br>
+<code>powershell -ExecutionPolicy Bypass -File D:\VoiceTwin\install_windows.ps1</code></div></div>
+
+<div class="qa"><div class="q">提示"没有找到 ……\runtime\python.exe"</div>
+<div class="a">原因：输入的 GPT-SoVITS 整合包路径不对。<br>
+解决：打开你的整合包文件夹，确认里面<strong>直接</strong>能看到 <code>runtime</code> 文件夹和 <code>go-webui.bat</code>。如果解压后多套了一层文件夹（例如 <span class="path">D:\GPT-SoVITS\GPT-SoVITS-v2pro-2026xxxx\runtime</span>），要输入里面那一层的路径。然后重新运行安装程序。</div></div>
+
+<div class="qa"><div class="q">提示"这个 GPT-SoVITS 整合包版本太旧（缺少 api_v2.py）"</div>
+<div class="a">解决：按 3.2 节重新下载<strong>最新版</strong>整合包。</div></div>
+
+<div class="qa"><div class="q">提示"安装失败：pip install ……请检查网络后重新运行安装程序"</div>
+<div class="a">原因：下载组件时网络中断。安装程序会先用国内镜像，失败后再试官方源。<br>
+解决：检查网络（关掉可能干扰的代理 / 加速器，或者反过来打开它），重新双击 <code>install_windows.bat</code>。重复运行是安全的，已经装好的部分不会重复下载。</div></div>
+
+<div class="qa"><div class="q">提示"安装路径里有中文或空格"</div>
+<div class="a">这是提醒不是错误。个别组件对中文路径支持不好，建议按手册把程序放在 <span class="path">D:\VoiceTwin</span>，整合包放在 <span class="path">D:\GPT-SoVITS</span>。</div></div>
+
+<div class="qa"><div class="q">环境检查里 ffmpeg 显示 ❌</div>
+<div class="a">解决：重新运行安装程序。仍然不行的话，确认整合包目录里有 <code>ffmpeg.exe</code>（整合包一般自带）；也可以在命令提示符里运行 <code>D:\GPT-SoVITS\runtime\python.exe -m pip install imageio-ffmpeg</code> 后再检查。</div></div>
+
+<div class="qa"><div class="q">杀毒软件报毒 / 拦截</div>
+<div class="a">安装过程会下载 Python 组件、生成 .bat 脚本，个别杀毒软件可能误报。请从本项目的 GitHub Release 页面下载（3.1 节），然后在杀毒软件里把 <span class="path">D:\VoiceTwin</span> 和 <span class="path">D:\GPT-SoVITS</span> 加入信任区。</div></div>
+
+<h2 id="ch15-2">15.2 启动与网页界面</h2>
+<div class="qa"><div class="q">双击桌面图标后，浏览器没有自动打开</div>
+<div class="a">解决：看黑色窗口里有没有出现 <code>Running on local URL: http://127.0.0.1:7860</code>。出现了就手动打开浏览器，输入 <code>127.0.0.1:7860</code> 回车。推荐使用 Edge 或 Chrome 浏览器。</div></div>
+
+<div class="qa"><div class="q">浏览器显示"无法访问此网站"</div>
+<div class="a">原因：程序还没启动完成，或者黑色窗口被关掉了、出错了。<br>
+解决：确认黑色窗口还开着；等 30 秒后刷新页面。黑色窗口里有红色报错的话，按 15.8 节处理。</div></div>
+
+<div class="qa"><div class="q">黑色窗口提示端口被占用（Cannot find empty port / address already in use）</div>
+<div class="a">原因：之前打开的声音分身没关，或者其它程序占用了 7860 端口。<br>
+解决：关掉所有声音分身的黑色窗口，再重新双击图标；或者重启电脑。也可以换一个端口启动：在命令提示符运行 <code>voicetwin.bat webui --port 7861</code>，然后访问 <code>127.0.0.1:7861</code>。</div></div>
+
+<div class="qa"><div class="q">黑色窗口里的中文显示成乱码</div>
+<div class="a">一般不影响使用，网页界面里的文字是正常的。启动脚本已经设置了 UTF-8 编码；个别老版本 Windows 仍可能显示乱码，可以忽略。</div></div>
+
+<div class="qa"><div class="q">网页上点了按钮没反应 / 一直转圈</div>
+<div class="a">准备素材、训练、第一次生成都需要较长时间，请看下方日志有没有在更新。日志完全不动超过 10 分钟，看黑色窗口有没有报错。刷新网页会丢失当前页面的显示，但<strong>正在后台运行的任务会继续</strong>，完成后结果照常保存在 workspace 里。</div></div>
+
+<div class="qa"><div class="q">下拉框里找不到"我的声音"</div>
+<div class="a">点 <span class="btn gray">🔄 刷新</span>。仍然没有的话，说明素材准备还没成功完成过一次，或者 config.yaml 里的 <code>workspace</code> 被改过。</div></div>
+
+<h2 id="ch15-3">15.3 准备素材阶段</h2>
+<div class="qa"><div class="q">提示"没有找到任何视频或音频文件"</div>
+<div class="a">原因：路径写错，或者文件格式不在支持列表里（4.4 节）。<br>
+解决：在文件夹地址栏复制路径再粘贴；确认文件扩展名（在资源管理器"查看"里勾选"文件扩展名"）。</div></div>
+
+<div class="qa"><div class="q">下载识别模型很慢，或者失败</div>
+<div class="a">程序默认使用国内镜像（hf-mirror.com）。如果还是失败：① 换个时间再试；② 素材以中文为主的话，在 <span class="ui">识别引擎</span> 里改用 <code>funasr</code>（从阿里 ModelScope 下载，国内速度快）；③ 显存或网速有限时，可以在 config.yaml 里把识别模型改成 <code>large-v3-turbo</code>（更小更快）。</div></div>
+
+<div class="qa"><div class="q">保留下来的素材比预期少很多</div>
+<div class="a">看处理结果里的"丢弃原因"（6.5 节）：<br>
+• "声音不像本人"很多：可能素材里确实有较多别人说话；也可能你的录音环境差别很大（不同教室、不同麦克风），可以在校对时把误删的改回保留；<br>
+• "识别置信度低""语速异常"很多：通常是录音质量差、背景音乐或回声大；<br>
+• "太短 / 太长"很多：说话停顿很少的话，可以在 config.yaml 里把 <code>max_duration</code> 调到 15。</div></div>
+
+<div class="qa"><div class="q">提示"可用素材只有 X 分钟"或"英文素材不足 5 分钟"</div>
+<div class="a">这是提醒：素材少也能训练，但效果会差一些。按 4.2、4.3 节补充素材。</div></div>
+
+<div class="qa"><div class="q">提示"去背景音乐需要安装 demucs"</div>
+<div class="a">你勾选了"视频有背景音乐"，但没有安装 demucs 组件。建议取消勾选，改用 4.6 节的 UVR5 方法先分离人声。</div></div>
+
+<div class="qa"><div class="q">提示"没有挑到合适的参考音频"</div>
+<div class="a">原因：没有找到 3.5~9.5 秒、完整一句话的片段。通常是素材太少，或者识别出的文字都没有句末标点。<br>
+解决：增加素材；或者在校对时给句子补上句号、问号，保存后再生成。</div></div>
+
+<h2 id="ch15-4">15.4 训练阶段</h2>
+<div class="qa"><div class="q">报错 "CUDA out of memory"（显存不足）</div>
+<div class="a">解决：① 关闭其它占用显卡的程序（游戏、剪辑软件、其它 AI 工具、浏览器里的视频）；② 在 <span class="tab">② 训练模型</span> 页面把 <span class="ui">batch</span> 改成 <code>2</code>（还不行改成 <code>1</code>）再训练；③ 或者在 config.yaml 里把 <code>batch_size: auto</code> 改成 <code>batch_size: 2</code>。</div></div>
+
+<div class="qa"><div class="q">GTX 10 系列等老显卡训练报错，或者生成的声音全是杂音</div>
+<div class="a">老显卡不支持半精度加速。在 config.yaml 里把 <code>is_half: true</code> 改成 <code>is_half: false</code>，重新启动程序后再训练。</div></div>
+
+<div class="qa"><div class="q">提示"没有检测到可用的 NVIDIA 显卡，训练会非常慢"</div>
+<div class="a">原因：电脑没有 NVIDIA 显卡，或者驱动没装好。<br>
+解决：按 2.4 节更新驱动后重启电脑，再运行环境检查。没有 N 卡的电脑训练可能需要几天，建议借用一台有 N 卡的电脑训练，训练好后把两个文件夹复制回来使用（13.6 节）。</div></div>
+
+<div class="qa"><div class="q">提示"GPT-SoVITS 环境有问题：缺少预训练模型……"</div>
+<div class="a">按 3.6 节运行 <code>voicetwin.bat download-models --source hf-mirror</code> 补齐模型。</div></div>
+
+<div class="qa"><div class="q">提示"gsv_s2_train 失败（退出码 X）"或"1A 文本处理没有产出"</div>
+<div class="a">训练的某一步出错了。错误信息下方会附上最后 30 行日志，常见原因：显存不足（见上）、硬盘空间不足（清理出 20GB 以上）、素材路径里有特殊字符。完整日志在 <span class="path">D:\VoiceTwin\workspace\我的声音\logs</span> 里（附录 C）。</div></div>
+
+<div class="qa"><div class="q">训练到一半电脑睡眠 / 断电 / 不小心关掉了窗口</div>
+<div class="a">重新打开程序，再点一次 <span class="btn">开始训练</span> 即可，从头开始训练。为避免这种情况，请按 8.1 节关闭自动睡眠。</div></div>
+
+<div class="qa"><div class="q">训练特别慢，进度很久不动</div>
+<div class="a">SoVITS 每一轮可能需要几分钟到十几分钟（素材越多越久），进度按"轮"更新，所以会有一段时间不动。打开任务管理器 → 性能 → GPU，如果 GPU 使用率很高，说明正在正常训练，耐心等待即可。</div></div>
+
+<h2 id="ch15-5">15.5 生成阶段</h2>
+<div class="qa"><div class="q">提示"GPT-SoVITS 推理服务启动失败"或"启动超时"</div>
+<div class="a">解决：打开 <span class="path">workspace\我的声音\logs\gptsovits_api.log</span>，看最后几行。常见原因：① 端口 9880 被占用（关闭其它 GPT-SoVITS 窗口，或者在 config.yaml 里把 <code>port</code> 改成 9881）；② 显存被其它程序占满；③ 模型文件不全（运行环境检查）。处理后关闭黑色窗口重新启动程序。</div></div>
+
+<div class="qa"><div class="q">提示"还没有训练好的 GPT-SoVITS 模型，暂时使用官方底模做零样本克隆"</div>
+<div class="a">说明你还没有完成训练（或者训练失败），这时生成的声音只是"有点像"。请先完成第 8 章的训练。</div></div>
+
+<div class="qa"><div class="q">提示"讲稿里没有可以朗读的内容"</div>
+<div class="a">讲稿为空，或者全部是代码块、图片、表情符号。检查讲稿内容；如果上传了文件，确认文件本身有文字（例如 Word 文档里的文字不是图片）。</div></div>
+
+<div class="qa"><div class="q">提示"读取 Word 讲稿需要：pip install python-docx"</div>
+<div class="a">把 Word 讲稿另存为 .txt 再上传即可；或者重新运行一次最新版的安装程序（v0.1.1 起会自动安装 Word 支持）。</div></div>
+
+<div class="qa"><div class="q">上传讲稿文件后，生成的还是文本框里的旧内容 / 反过来</div>
+<div class="a"><strong>上传了文件时以文件为准</strong>，文本框的内容会被忽略。想用文本框，先点上传区域右上角的 ✕ 移除文件。</div></div>
+
+<div class="qa"><div class="q">生成的音频里某些句子有杂音、电流声、吞字、重复</div>
+<div class="a">记下句子编号，用"只重新生成第几句"重做（9.5 节）；用 best 档会自动检查和重试。某一句反复出问题，改写这句话（拆短、换说法）。</div></div>
+
+<div class="qa"><div class="q">某个字 / 词总是读错</div>
+<div class="a">写进读音纠正词典（10.4 节）。</div></div>
+
+<div class="qa"><div class="q">生成很慢</div>
+<div class="a">第一次生成需要启动推理服务，多等 1 分钟是正常的。之后速度取决于档位：best 档每句生成 5 个版本还要识别检查，最慢。试听讲稿用 fast 档，正式生成再用 best 档。</div></div>
+
+<h2 id="ch15-6">15.6 效果问题</h2>
+<div class="qa"><div class="q">声音不够像</div>
+<div class="a">按 13.1 节的方法从上到下逐条尝试。其中增加素材、校对文字、剔除嗓子哑时的录音效果最明显。</div></div>
+
+<div class="qa"><div class="q">语速比我平时快 / 慢</div>
+<div class="a">程序已经自动校准了语速。如果仍然觉得不对，用 <span class="ui">语速倍数</span> 调整（0.95 慢一点，1.05 快一点）。也可以在 <span class="tab">② 训练模型</span> 页面点 <span class="btn gray">重新挑选最佳模型</span>，重新校准一次。</div></div>
+
+<div class="qa"><div class="q">句子之间的停顿太长 / 太短</div>
+<div class="a">停顿是按你素材里的习惯统计的。想整体调整，可以在 config.yaml 里把 <code>pauses</code> 改成 <code>fixed</code>，再修改 <code>fixed_pauses</code> 里的秒数（13.3 节）；个别位置用停顿标记（10.3 节）。</div></div>
+
+<div class="qa"><div class="q">英文有中文口音</div>
+<div class="a">加入你讲英文的录音（至少 5~10 分钟），重新 ① 准备素材、② 训练。</div></div>
+
+<div class="qa"><div class="q">语气太平淡，没有讲课的感觉</div>
+<div class="a">① 讲稿更口语化，多用问句、感叹句（10.8 节）；② 挑一条语气生动的参考音频指定使用（13.2 节）；③ 素材里多放一些你状态好、有激情的讲课录音。</div></div>
+
+<div class="qa"><div class="q">声音听起来有点闷 / 有点"电音"</div>
+<div class="a">通常和素材质量有关：素材被压缩得很厉害、降噪太强。可以在 config.yaml 里把 <code>denoise</code> 改成 <code>off</code>，或者换用更清晰的原始录音，重新准备素材并训练。</div></div>
+
+<h2 id="ch15-7">15.7 其它问题</h2>
+<div class="qa"><div class="q">我移动了 VoiceTwin 或 GPT-SoVITS 文件夹，现在打不开了</div>
+<div class="a">重新运行一次 <span class="path">install_windows.bat</span>，输入新的整合包路径。其它设置和 workspace 里的数据都会保留。</div></div>
+
+<div class="qa"><div class="q">如何升级到新版本</div>
+<div class="a">从 Release 页面下载新版本的压缩包，解压后<strong>覆盖</strong>到 <span class="path">D:\VoiceTwin</span>（选择"替换目标中的文件"），然后重新双击 <code>install_windows.bat</code>。你的 workspace、config.yaml 不会被覆盖（压缩包里不包含它们）。</div></div>
+
+<div class="qa"><div class="q">如何卸载</div>
+<div class="a">① 在命令提示符运行 <code>D:\GPT-SoVITS\runtime\python.exe -m pip uninstall voicetwin</code>；② 删除 <span class="path">D:\VoiceTwin</span> 文件夹（<strong>workspace 里有你的素材和生成的音频，需要的话先备份</strong>）；③ 删除桌面图标。GPT-SoVITS 整合包不需要的话也可以整个删除。</div></div>
+
+<div class="qa"><div class="q">没有网络能用吗</div>
+<div class="a">安装、第一次准备素材（下载识别模型）、第一次使用 best 档需要联网下载。全部下载完成后，准备素材、训练、生成都可以离线进行。</div></div>
+
+<h2 id="ch15-8">15.8 如何收集信息并求助</h2>
+<p>如果以上方法都解决不了，请收集下面这些信息再求助（例如在项目的 GitHub 页面提交 Issue），能大大加快解决速度：</p>
+<ol class="steps">
+  <li><strong>环境检查结果</strong>：在网页 <span class="tab">环境检查</span> 页面点检查，截图；或者在命令提示符运行 <code>voicetwin.bat doctor</code>，复制全部输出。</li>
+  <li><strong>出错时的完整信息</strong>：网页日志或黑色窗口里的红色报错，截图或复制文字。</li>
+  <li><strong>详细错误信息</strong>：用命令行重做出错的那一步，并在最后加上 <code>--verbose</code>，例如：<br><code>voicetwin.bat narrate -v 我的声音 D:\讲稿\第1课.md --verbose</code></li>
+  <li><strong>日志文件</strong>：<span class="path">D:\VoiceTwin\workspace\我的声音\logs</span> 里对应的日志（附录 C 说明了每个日志的用途）。</li>
+  <li><strong>你的电脑配置</strong>：显卡型号、显存、Windows 版本，以及声音分身的版本号（在 Release 页面或压缩包文件名里）。</li>
+</ol>
+<div class="warn">提交日志或截图前，请检查里面有没有你不想公开的信息（例如讲课内容、个人姓名、文件路径里的真实姓名）。<strong>不要上传你的素材音频或训练好的模型文件</strong>，别人拿到它们就能模仿你的声音。</div>
