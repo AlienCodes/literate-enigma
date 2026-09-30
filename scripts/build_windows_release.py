@@ -3,14 +3,17 @@
     pip install markdown-it-py mdit-py-plugins
     python scripts/build_windows_release.py [--version 0.1.0] [--notes dist/release_notes.md]
 
-压缩包内容：程序代码、Windows 安装脚本、README、docs/，以及由教程转换来的
-《使用教程（先看我）.html》——双击即可在浏览器里看带目录的图文教程。
-另外把 docs/声音分身VoiceTwin使用手册.pdf 复制为 dist/VoiceTwin-Manual-v<版本>.pdf，作为单独的 Release 附件。
+压缩包内容：程序代码、Windows 安装脚本、README、docs/，以及由《快速上手.md》转换来的
+《使用教程（先看我）.html》——双击即可在浏览器里看图文版快速上手（截图已内嵌）。
+另外把两份 PDF 复制到 dist/ 作为单独的 Release 附件：
+    docs/快速上手.pdf              → VoiceTwin-QuickStart-v<版本>.pdf（几页纸，先看这个）
+    docs/声音分身VoiceTwin使用手册.pdf → VoiceTwin-Manual-v<版本>.pdf（详细手册）
 """
 
 from __future__ import annotations
 
 import argparse
+import base64
 import html
 import re
 import shutil
@@ -19,7 +22,8 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-GUIDE = ROOT / "docs" / "Windows详细使用教程.md"
+QUICK = ROOT / "快速上手.md"
+QUICK_PDF = ROOT / "docs" / "快速上手.pdf"                   # 由 scripts/build_manual_pdf.py --quickstart 生成
 MANUAL_PDF = ROOT / "docs" / "声音分身VoiceTwin使用手册.pdf"   # 由 scripts/build_manual_pdf.py 生成
 INCLUDE = ["voicetwin", "docs", "install_windows.bat", "install_windows.ps1", "pyproject.toml", "README.md"]
 TOP = "VoiceTwin"
@@ -41,7 +45,14 @@ def github_slug(value: str, separator: str = "-") -> str:
     return value.replace(" ", separator)
 
 
-def markdown_to_html(md_text: str, title: str) -> str:
+def data_uri(path: Path) -> str:
+    mime = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".gif": "image/gif"}.get(path.suffix.lower(),
+                                                                                                 "application/octet-stream")
+    return f"data:{mime};base64," + base64.b64encode(path.read_bytes()).decode("ascii")
+
+
+def markdown_to_html(md_text: str, title: str, online_path: str = "快速上手.md", embed_images: bool = False,
+                     extra_css: str = "") -> str:
     try:
         # CommonMark 解析（与 GitHub 显示一致：列表里嵌套的列表/代码块用 3 个空格缩进）
         from markdown_it import MarkdownIt
@@ -54,6 +65,8 @@ def markdown_to_html(md_text: str, title: str) -> str:
         body = f"<pre>{html.escape(md_text)}</pre>"
     # 教程里指向仓库内其它文件的相对链接，换成 GitHub 上的地址
     body = re.sub(r'href="(?!https?://|#)([^"]+)"', lambda m: f'href="{REPO_URL}/blob/master/{m.group(1)}"', body)
+    if embed_images:  # 截图直接内嵌，单个 HTML / PDF 文件就能完整显示
+        body = re.sub(r'<img src="(?!https?://|data:)([^"]+)"', lambda m: f'<img src="{data_uri(ROOT / m.group(1))}"', body)
     return f"""<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -82,10 +95,12 @@ def markdown_to_html(md_text: str, title: str) -> str:
   th {{ background:var(--code); }}
   li {{ margin:.25em 0; }}
   .online {{ color:var(--muted); font-size:.9em; }}
+  img {{ max-width:100%; box-sizing:border-box; border:1px solid var(--border); border-radius:8px; }}
+{extra_css}
 </style>
 </head>
 <body><main>
-<p class="online">在线版（内容可能更新）：<a href="{REPO_URL}/blob/master/docs/Windows详细使用教程.md">{REPO_URL}</a></p>
+<p class="online">在线版（内容可能更新）：<a href="{REPO_URL}/blob/master/{online_path}">{REPO_URL}</a></p>
 {body}
 </main></body>
 </html>
@@ -95,27 +110,35 @@ def markdown_to_html(md_text: str, title: str) -> str:
 def release_notes(version: str, zip_name: str) -> str:
     return f"""## 声音分身 VoiceTwin v{version}（Windows）
 
-用你自己的讲课视频和录音，复刻你的音色、语气和节奏（中文 + 英文），把讲稿生成"你的声音"的讲课音频和字幕。
+用你以前的讲课视频训练出"你的声音"，以后粘贴讲稿就能生成你的声音读的讲课音频和字幕（中文 + 英文）。
 
-### 下载
+### 📥 下载（在下面的 Assets 里）
 
-👉 下面 **Assets** 里的 **`{zip_name}`**（不需要下载 Source code）。
+| 文件 | 是什么 |
+|---|---|
+| **`{quick_asset_name(version)}`** | **快速上手（几页纸，先看这个）** |
+| **`{zip_name}`** | 程序本体 |
+| `{manual_asset_name(version)}` | 详细手册（遇到问题时再查） |
 
-### 三步开始
+不需要下载 Source code。
 
-1. 下载并解压 [GPT-SoVITS 官方整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版）到 `D:\\GPT-SoVITS`；
-2. 把 `{zip_name}` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，选 **1**，输入 `D:\\GPT-SoVITS`；
-3. 双击桌面「声音分身 VoiceTwin」，按网页上的 ① 准备素材 → ② 训练 → ③ 生成讲课音频 操作。
+### 🚀 最快用起来
 
-**每一步的详细说明**：下载 Assets 里的 **《声音分身VoiceTwin使用手册》PDF**（`{manual_asset_name(version)}`，
-约 80 页图文教程，压缩包的 `docs` 文件夹里也有一份）；或解压后双击 **`使用教程（先看我）.html`**，或在线查看
-[Windows 详细使用教程]({REPO_URL}/blob/master/docs/Windows详细使用教程.md)。
+**安装（一次）**
+1. 下载 [GPT-SoVITS 整合包](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO)（最新 v2pro 版），解压并改名为 `D:\\GPT-SoVITS`
+2. 把 `{zip_name}` 解压到 `D:\\`，双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完
 
-### 电脑要求
+**训练（一次）**
+3. 把讲课视频复制到 `D:\\讲课素材`，双击桌面「声音分身 VoiceTwin」
+4. 声音名称填 `我的声音` → **① 准备素材**：文件夹填 `D:\\讲课素材` → 开始准备素材 → 等 ✅
+5. **② 训练模型** → 开始训练 → 等 ✅
 
-Windows 10/11，NVIDIA 显卡 6GB 显存以上（推荐 8GB+），硬盘空闲 30GB 以上。
+**以后每次**
+6. **③ 生成讲课音频** → 粘贴讲稿 → 生成 → 试听、下载音频和字幕
 
-> 只克隆你自己的声音，或已取得本人授权的声音；公开发布 AI 合成音频时请遵守平台关于 AI 内容标识的规定。
+图文版：[快速上手]({REPO_URL}/blob/master/快速上手.md)（解压后双击 `使用教程（先看我）.html` 也能看）。
+
+> 电脑要求：Windows 10/11，NVIDIA 显卡 6GB 显存以上，硬盘空闲 30GB。只克隆你自己的声音；公开发布 AI 合成音频时请按平台规定标注。
 """
 
 
@@ -133,15 +156,20 @@ def build(version: str, out_dir: Path) -> Path:
             files.append(p)
         else:
             raise SystemExit(f"缺少文件：{item}")
-    guide_html = markdown_to_html(GUIDE.read_text(encoding="utf-8"), "声音分身 VoiceTwin —— Windows 详细使用教程")
+    guide_html = markdown_to_html(QUICK.read_text(encoding="utf-8"), "声音分身 VoiceTwin 快速上手", embed_images=True)
     with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
         for f in files:
             zf.write(f, f"{TOP}/{f.relative_to(ROOT).as_posix()}")
         zf.writestr(f"{TOP}/使用教程（先看我）.html", guide_html)
-    # PDF 使用手册同时作为单独的 Release 附件（文件名用英文，GitHub 会去掉附件名里的中文）
-    if MANUAL_PDF.exists():
-        shutil.copyfile(MANUAL_PDF, out_dir / manual_asset_name(version))
+    # PDF 同时作为单独的 Release 附件（文件名用英文，GitHub 会去掉附件名里的中文）
+    for src, name in ((QUICK_PDF, quick_asset_name(version)), (MANUAL_PDF, manual_asset_name(version))):
+        if src.exists():
+            shutil.copyfile(src, out_dir / name)
     return zip_path
+
+
+def quick_asset_name(version: str) -> str:
+    return f"VoiceTwin-QuickStart-v{version}.pdf"
 
 
 def manual_asset_name(version: str) -> str:

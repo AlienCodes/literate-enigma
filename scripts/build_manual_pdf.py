@@ -3,9 +3,11 @@
 把 docs/manual/src/*.html 按文件名顺序拼成一个完整网页，自动生成目录（带页码和跳转链接），
 再用 Chromium 打印成 A4 PDF（带书签、页眉页脚），输出到 docs/声音分身VoiceTwin使用手册.pdf。
 
+加 --quickstart 时改为把根目录的《快速上手.md》打印成几页纸的 docs/快速上手.pdf。
+
 用法（维护者在 Linux 上运行）：
-    pip install playwright pypdf fonttools
-    python scripts/build_manual_pdf.py [--chromium /opt/pw-browsers/chromium] [--html-only]
+    pip install playwright pypdf fonttools markdown-it-py mdit-py-plugins
+    python scripts/build_manual_pdf.py [--chromium /opt/pw-browsers/chromium] [--html-only] [--quickstart]
 
 需要系统里有 Noto Sans CJK SC 字体（Regular / Medium / Bold）和 Noto Color Emoji。
 """
@@ -26,6 +28,26 @@ SRC = ROOT / "docs" / "manual" / "src"
 BUILD = ROOT / "docs" / "manual" / "build"
 OUT = ROOT / "docs" / "声音分身VoiceTwin使用手册.pdf"
 TITLE = "声音分身 VoiceTwin 使用手册"
+QUICK_MD = ROOT / "快速上手.md"
+QUICK_OUT = ROOT / "docs" / "快速上手.pdf"
+QUICK_TITLE = "声音分身 VoiceTwin 快速上手"
+# 快速上手的打印样式（在 build_windows_release.markdown_to_html 的网页样式基础上调整）
+QUICK_PRINT_CSS = """
+  @page { size: A4; margin: 14mm 15mm 15mm;
+    @bottom-center { content: "声音分身 VoiceTwin 快速上手 · 第 " counter(page) " 页 / 共 " counter(pages) " 页";
+                     font-family: "Noto Sans CJK SC", sans-serif; font-size: 8.5pt; color: #8a94a6; } }
+  body { font-family: "Noto Sans CJK SC", sans-serif; font-size: 11pt; line-height: 1.7; }
+  main { max-width: none; padding: 0; }
+  h1 { font-size: 21pt; color: #0f2a55; border-bottom: 3px solid #1f5fbf; margin-top: 0; }
+  h2 { font-size: 15pt; color: #10284f; margin-top: 1.3em; break-after: avoid; }
+  h2 + p, p:has(> strong:first-child) { break-after: avoid; }
+  hr { display: none; }
+  p:has(> img) { break-inside: avoid; margin: .5em 0 .9em; }
+  img { box-shadow: 0 1px 5px rgba(20, 40, 80, .12); }
+  blockquote, tr, li, ol, ul { break-inside: avoid; }
+  table { display: table; font-size: 10pt; }
+  code { font-family: "DejaVu Sans Mono", "Noto Sans CJK SC", monospace; }
+"""
 
 HEADING_RE = re.compile(r'<h([1-3])\b([^>]*)>(.*?)</h\1>', re.S)
 ID_RE = re.compile(r'\bid="([^"]+)"')
@@ -201,26 +223,51 @@ def outline_pages(pdf_path: Path, entries: List[Dict[str, str]]) -> Dict[str, in
     return pages
 
 
-def finalize(pdf_path: Path, out: Path) -> None:
+def finalize(pdf_path: Path, out: Path, title: str = TITLE) -> None:
     from pypdf import PdfReader, PdfWriter
 
     writer = PdfWriter(clone_from=PdfReader(str(pdf_path)))
-    writer.add_metadata({"/Title": TITLE, "/Author": "VoiceTwin 声音分身", "/Subject": "声音分身 VoiceTwin 详细图文使用教程（Windows）",
+    writer.add_metadata({"/Title": title, "/Author": "VoiceTwin 声音分身", "/Subject": "声音分身 VoiceTwin 详细图文使用教程（Windows）",
                          "/Keywords": "VoiceTwin, 声音分身, 声音克隆, GPT-SoVITS, 讲课, 教程"})
     writer.page_mode = "/UseOutlines"   # 打开 PDF 时显示书签栏
     with open(out, "wb") as f:
         writer.write(f)
 
 
+def build_quickstart(out: Path, font_css: str, chromium: Optional[str], html_only: bool) -> None:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from build_windows_release import markdown_to_html
+
+    doc = markdown_to_html(QUICK_MD.read_text(encoding="utf-8"), QUICK_TITLE, embed_images=True,
+                           extra_css=font_css + QUICK_PRINT_CSS)
+    html_path = BUILD / "quickstart.html"
+    html_path.write_text(doc, encoding="utf-8")
+    if html_only:
+        print(f"✅ {html_path}")
+        return
+    tmp = BUILD / "quickstart.pdf"
+    render(html_path, tmp, chromium)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    finalize(tmp, out, QUICK_TITLE)
+    from pypdf import PdfReader
+
+    print(f"✅ {out}（{len(PdfReader(str(out)).pages)} 页，{out.stat().st_size / 1024 / 1024:.1f} MB）")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--chromium", help="Chromium 可执行文件（默认用 Playwright 自带的）")
     ap.add_argument("--html-only", action="store_true", help="只生成 HTML，不打印 PDF")
-    ap.add_argument("-o", "--output", default=str(OUT))
+    ap.add_argument("--quickstart", action="store_true", help="生成几页纸的《快速上手》PDF（docs/快速上手.pdf）")
+    ap.add_argument("-o", "--output", default="")
     args = ap.parse_args()
 
     BUILD.mkdir(parents=True, exist_ok=True)
     font_css = patched_fonts()
+    if args.quickstart:
+        build_quickstart(Path(args.output or QUICK_OUT), font_css, args.chromium, args.html_only)
+        return
+    args.output = args.output or str(OUT)
     html_path = BUILD / "manual.html"
     doc, entries = assemble({}, font_css)
     html_path.write_text(doc, encoding="utf-8")
