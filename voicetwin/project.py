@@ -152,7 +152,9 @@ class Project:
                 keep = str(row.get("keep", "1")).strip() not in ("0", "false", "False", "否", "n", "N", "")
                 if keep != rec.get("keep", True):
                     rec["keep"] = keep
-                    rec["drop_reason"] = "" if keep else "手动删除"
+                    rec["manual_keep"] = keep
+                    if not keep:
+                        rec["drop_reason"] = rec.get("drop_reason") or "手动删除"
                     changed["keep"] += 1
                 lang = (row.get("lang") or "").strip().lower()
                 if lang in ("zh", "en") and lang != rec.get("lang"):
