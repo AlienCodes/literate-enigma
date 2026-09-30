@@ -64,9 +64,10 @@ def find_user_config(explicit: Optional[str] = None) -> Optional[Path]:
     return None
 
 
-def load_config(path: Optional[str] = None, overrides: Optional[Dict[str, Any]] = None) -> Config:
+def load_config(path: Optional[str] = None, overrides: Optional[Dict[str, Any]] = None,
+                user_config: bool = True) -> Config:
     cfg = load_default()
-    user_path = find_user_config(path)
+    user_path = find_user_config(path) if user_config else None
     if user_path is not None:
         with open(user_path, "r", encoding="utf-8") as f:
             cfg = deep_merge(cfg, yaml.safe_load(f) or {})
