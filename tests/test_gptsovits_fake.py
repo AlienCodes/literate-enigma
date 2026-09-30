@@ -56,3 +56,27 @@ def test_check_reports_missing_models(prepared, tmp_path):
     problems = backend.check()
     assert any("s1v3.ckpt" in p for p in problems)
     assert backend.missing_pretrained() == ["GPT_SoVITS/pretrained_models/s1v3.ckpt"]
+
+
+def test_selected_model_survives_moving_gptsovits(prepared, tmp_path):
+    """models.json 记录的是旧位置的绝对路径（例如 Windows 上的 D:\\GPT-SoVITS\\...），
+    整合包移动 / 换电脑后应按文件名在新 root 里找到训练好的模型，而不是退回底模。"""
+    cfg, project, _ = prepared
+    root = build_fake_root(tmp_path / "GSV-moved")
+    gcfg = make_cfg(project.root.parent, backends={"gptsovits": {"root": str(root), "python": sys.executable}})
+    backend = get_backend("gptsovits", gcfg, project)
+    exp = backend.exp_name
+    sov = root / "SoVITS_weights_v2ProPlus" / f"{exp}_e8_s80.pth"
+    gpt = root / "GPT_weights_v2ProPlus" / f"{exp}-e15.ckpt"
+    for p in (sov, gpt):
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_bytes(b"0")
+    old = "D:\\GPT-SoVITS-old"
+    project.update_models("gptsovits", {
+        "sovits": [f"{old}\\SoVITS_weights_v2ProPlus\\{sov.name}"], "gpt": [f"{old}\\GPT_weights_v2ProPlus\\{gpt.name}"],
+        "selected": {"id": "s8-g15", "sovits": f"{old}\\SoVITS_weights_v2ProPlus\\{sov.name}",
+                     "gpt": f"{old}\\GPT_weights_v2ProPlus\\{gpt.name}"},
+    })
+    w = backend._current_weights()
+    assert w["id"] == "s8-g15" and w["sovits"] == str(sov) and w["gpt"] == str(gpt)
+    assert [c["id"] for c in backend.checkpoints()] == ["s8-g15"]

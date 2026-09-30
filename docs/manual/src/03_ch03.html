@@ -1,0 +1,183 @@
+<h1 class="chapter" id="ch3"><span class="no">第 3 章</span>下载与安装</h1>
+<p class="lead">这一章完成后，你的电脑上会有两个文件夹：<span class="path">D:\VoiceTwin</span>（声音分身）和 <span class="path">D:\GPT-SoVITS</span>（整合包），
+桌面上会出现一个"声音分身 VoiceTwin"图标。整个过程大约 30~60 分钟，主要时间花在下载上。</p>
+
+<h2 id="ch3-1">3.1 下载声音分身 VoiceTwin</h2>
+<ol class="steps">
+  <li>用浏览器（推荐 Edge 或 Chrome）打开：<br><span class="path">https://github.com/AlienCodes/literate-enigma/releases/latest</span></li>
+  <li>页面上方是版本说明。往下拉，找到 <span class="ui">Assets</span>（资源）这一栏；如果它是折叠的，点一下把它展开。</li>
+  <li>点 <strong><code>VoiceTwin-Windows-v0.1.1.zip</code></strong>（版本号可能更高）开始下载。
+    <div class="warn">不要下载下面的 <code>Source code (zip)</code> 和 <code>Source code (tar.gz)</code>，那是给开发者的源代码。</div></li>
+  <li>下载完成后，打开"下载"文件夹（浏览器下载列表里点"在文件夹中显示"）。</li>
+  <li>在 <code>VoiceTwin-Windows-v0.1.1.zip</code> 上<strong>点鼠标右键</strong> → 选择 <span class="ui">全部解压缩…</span>
+    （Windows 11 需要先点 <span class="ui">显示更多选项</span>）。</li>
+  <li>在弹出的窗口里，把"文件将被提取到这个文件夹"下面的路径改成 <strong><code>D:\</code></strong>，然后点 <span class="ui">提取</span>。</li>
+  <li>打开 D 盘，你会看到一个 <span class="path">VoiceTwin</span> 文件夹，也就是 <span class="path">D:\VoiceTwin</span>。打开它，确认里面有这些文件：
+<pre class="tree">D:\VoiceTwin
+├── install_windows.bat        <span class="cm">← 安装程序（下一步要双击它）</span>
+├── install_windows.ps1
+├── 使用教程（先看我）.html      <span class="cm">← 简明网页版教程</span>
+├── README.md
+├── pyproject.toml
+├── docs\                      <span class="cm">← 本手册 PDF 也在这里</span>
+└── voicetwin\                 <span class="cm">← 程序本体，不要改动</span></pre></li>
+</ol>
+<div class="tip">GitHub 在国内有时打开很慢或打不开，可以多刷新几次、换个时间，或者换一个网络（例如手机热点）再试。</div>
+
+<h2 id="ch3-2">3.2 下载 GPT-SoVITS 整合包</h2>
+<p>GPT-SoVITS 是声音分身用来训练和生成你的声音的核心工具。它的官方团队为 Windows 提供了"整合包"，已经装好了 Python、PyTorch、显卡加速等所有复杂组件。</p>
+<ol class="steps">
+  <li>打开 GPT-SoVITS 官方文档的整合包下载页（国内用户）：<br>
+    <span class="path">https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO</span><br>
+    海外用户可以用：<span class="path">https://huggingface.co/lj1995/GPT-SoVITS-windows-package/tree/main</span></li>
+  <li>在"整合包"部分找到下载链接，下载<strong>最新版</strong>。怎么判断是不是新版：
+    <ul>
+      <li>文件名里带 <strong>v2pro</strong>（或者比 v2pro 更新的版本号）；</li>
+      <li>文件名里的日期越新越好（例如 2025 年 6 月以后）；</li>
+      <li>如果你的显卡是 <strong>RTX 50 系列</strong>（5060/5070/5080/5090），并且页面上有专门标注 50 系的版本（文件名带 <code>50</code> 或 <code>nvidia50</code> 字样），请选那个。</li>
+    </ul></li>
+  <li>整合包有好几个 GB，下载需要一段时间。下载时可以先去做第 4 章的素材整理。</li>
+</ol>
+
+<h2 id="ch3-3">3.3 解压整合包并放到正确位置</h2>
+<ol class="steps">
+  <li>在下载好的 <code>.7z</code> 文件上点右键 → <span class="ui">7-Zip</span> → <span class="ui">提取到 "文件名\"</span>（Windows 11 要先点"显示更多选项"）。解压需要几分钟。</li>
+  <li>解压完成后，会得到一个文件夹，名字类似 <code>GPT-SoVITS-v2pro-20250604</code>。</li>
+  <li>在这个文件夹上点右键 → <span class="ui">重命名</span>，改成 <strong><code>GPT-SoVITS</code></strong>。</li>
+  <li>把它<strong>剪切</strong>（<span class="key">Ctrl</span>+<span class="key">X</span>）到 D 盘根目录后<strong>粘贴</strong>（<span class="key">Ctrl</span>+<span class="key">V</span>），最终路径是 <span class="path">D:\GPT-SoVITS</span>。</li>
+  <li>打开 <span class="path">D:\GPT-SoVITS</span>，检查是否<strong>直接</strong>能看到下面这些：
+<pre class="tree">D:\GPT-SoVITS
+├── go-webui.bat          <span class="cm">← 有它说明位置对了</span>
+├── api_v2.py             <span class="cm">← 声音分身需要用到</span>
+├── runtime\              <span class="cm">← 整合包自带的 Python 环境</span>
+├── GPT_SoVITS\
+├── tools\
+└── ……</pre></li>
+</ol>
+<div class="bad"><span class="t">常见错误 1：多套了一层文件夹</span>
+如果你看到的是 <span class="path">D:\GPT-SoVITS\GPT-SoVITS-v2pro-2025xxxx\go-webui.bat</span>，说明多了一层。
+请打开里面那一层，全选（<span class="key">Ctrl</span>+<span class="key">A</span>）所有内容，剪切到外面的 <span class="path">D:\GPT-SoVITS</span> 里。（安装程序也会尝试自动找到里面那层。）</div>
+<div class="bad"><span class="t">常见错误 2：路径里有中文或空格</span>
+<span class="path">D:\GPT-SoVITS</span> ✅　　<span class="path">D:\新建文件夹\GPT SoVITS</span> ❌　　<span class="path">C:\Users\张老师\Desktop\GPT-SoVITS</span> ❌<br>
+中文和空格会导致部分组件报错，请一定放在类似 <span class="path">D:\GPT-SoVITS</span> 这样简单的路径里。</div>
+<div class="tip">想确认整合包本身是好的，可以双击 <span class="path">D:\GPT-SoVITS\go-webui.bat</span>，如果能打开 GPT-SoVITS 自己的网页界面，说明整合包正常。确认后关掉那个黑色窗口即可（声音分身不需要你手动打开它）。</div>
+
+<h2 id="ch3-4">3.4 运行安装程序</h2>
+<ol class="steps">
+  <li>打开 <span class="path">D:\VoiceTwin</span>，<strong>双击</strong> <code>install_windows.bat</code>。</li>
+  <li>如果弹出蓝色窗口 <strong>"Windows 已保护你的电脑"</strong>：点 <span class="ui">更多信息</span>，再点 <span class="ui">仍要运行</span>。<br>
+    如果 360、火绒等杀毒软件弹出拦截提示，选择 <span class="ui">允许</span> 或 <span class="ui">信任此程序</span>。
+    <div class="note">出现这个提示是因为安装程序是从网上下载的、没有购买微软的签名证书，并不是病毒。安装程序的全部内容都是公开的，可以用记事本打开 <code>install_windows.ps1</code> 查看。</div></li>
+  <li>会出现一个黑色窗口，显示安装菜单。输入 <span class="c-in mono">1</span>，按 <span class="key">Enter</span>：</li>
+</ol>
+<div class="console"><div class="bar">Windows PowerShell —— 安装程序（示意）</div><pre><span class="c-gr">=============================================
+   VoiceTwin 声音分身 安装程序
+=============================================</span>
+安装位置：D:\VoiceTwin
+
+请选择安装方式：
+  1) 推荐：安装到 GPT-SoVITS 整合包里（最省事，语音识别和训练都用显卡，不用重复下载 PyTorch）
+  2) 独立安装：创建单独的 Python 虚拟环境（需要本机已安装 Python 3.10 或 3.11，适合有经验的用户）
+请输入 1 或 2，然后按回车: <span class="c-in">1</span></pre></div>
+<ol class="steps" start="4" style="counter-reset: step 3">
+  <li>接着它会让你输入整合包的位置。输入 <span class="c-in mono">D:\GPT-SoVITS</span>，按 <span class="key">Enter</span>：</li>
+</ol>
+<div class="console"><div class="bar">Windows PowerShell —— 安装程序（示意）</div><pre>请输入 GPT-SoVITS 整合包所在的文件夹路径（打开那个文件夹，里面能看到 go-webui.bat 和 runtime 文件夹）。
+小技巧：在文件夹窗口顶部的地址栏点一下，复制路径，再回到这里右键粘贴。
+GPT-SoVITS 整合包路径（例如 D:\GPT-SoVITS）: <span class="c-in">D:\GPT-SoVITS</span></pre></div>
+<div class="tip"><span class="t">不想手打路径？</span>打开 <span class="path">D:\GPT-SoVITS</span> 文件夹 → 点窗口顶部的地址栏（路径会变成蓝色选中状态）→ 按 <span class="key">Ctrl</span>+<span class="key">C</span> 复制 → 回到黑色窗口，<strong>点鼠标右键</strong>就能粘贴。</div>
+<ol class="steps" start="5" style="counter-reset: step 4">
+  <li>等待 3~10 分钟。窗口里会滚动很多英文（这是在下载和安装组件），属于正常现象。<strong>请不要关闭窗口。</strong>
+    过程中会依次出现下面这些步骤标题：</li>
+</ol>
+<div class="console"><div class="bar">Windows PowerShell —— 安装程序（示意）</div><pre><span class="c-cy">==> 安装 VoiceTwin 到整合包环境（--no-deps：不改动整合包原有依赖的版本）</span>
+<span class="c-dim">Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing d:\voicetwin
+  ……（很多英文，正常现象）
+Successfully installed voicetwin-0.1.1</span>
+<span class="c-cy">==> 生成配置文件 config.yaml</span>
+已生成 D:\VoiceTwin\config.yaml，按需修改即可。
+<span class="c-cy">==> 生成启动脚本 start_webui.bat / voicetwin.bat</span>
+<span class="c-gr">已在桌面创建快捷方式「声音分身 VoiceTwin」</span>
+<span class="c-cy">==> 检查环境</span>
+✅ Python：3.x.x（Windows AMD64）
+✅ ffmpeg：D:\GPT-SoVITS\runtime\……\imageio_ffmpeg\binaries\ffmpeg-….exe
+✅ numpy：1.26.x
+……
+⚠️ funasr（中文识别，可选）：未安装
+✅ NVIDIA 显卡：NVIDIA GeForce RTX 3060, 12288 MiB, 5xx.xx
+✅ 引擎 GPT-SoVITS：就绪（Python：D:\GPT-SoVITS\runtime\python.exe）
+⚠️ 引擎 Qwen3-TTS：……（可选，不用管）
+⚠️ 引擎 IndexTTS：……（可选，不用管）
+
+<span class="c-gr">安装完成！</span>
+  - 双击桌面上的「声音分身 VoiceTwin」或本文件夹里的 start_webui.bat 打开网页界面
+  - 上面的检查如果有 ❌，请按提示处理（详见《Windows详细使用教程》的常见问题部分）
+按回车键关闭窗口:</pre></div>
+<ol class="steps" start="6" style="counter-reset: step 5">
+  <li>看到 <strong>"安装完成！"</strong> 后，先别急着关，按下一节的方法看一下"检查环境"的结果，然后按 <span class="key">Enter</span> 关闭窗口。</li>
+  <li>回到桌面，你会看到新出现的 <strong>"声音分身 VoiceTwin"</strong> 图标，以后双击它就能打开程序。</li>
+</ol>
+<div class="warn"><span class="t">双击 install_windows.bat 后窗口一闪就没了？</span>
+在 <code>install_windows.ps1</code> 上点右键 → 选择 <span class="ui">使用 PowerShell 运行</span>。如果仍然不行，请看第 15.1 节。</div>
+
+<h2 id="ch3-5">3.5 看懂安装结果（环境检查）</h2>
+<p>"检查环境"会逐项列出程序需要的组件。每一行前面有一个符号：</p>
+<table class="t">
+  <tr><th class="c" style="width:10%">符号</th><th style="width:22%">含义</th><th>你需要做什么</th></tr>
+  <tr><td class="c">✅</td><td>正常</td><td>不用管。</td></tr>
+  <tr><td class="c">⚠️</td><td>可选组件没装，或者是提醒</td><td>一般不用管。例如"funasr 未安装""demucs 未安装""引擎 Qwen3-TTS""引擎 IndexTTS"都是可选的。</td></tr>
+  <tr><td class="c">❌</td><td>必需的东西有问题</td><td>需要处理，见下表。</td></tr>
+</table>
+<table class="t">
+  <tr><th style="width:42%">常见的 ❌ 提示</th><th>处理方法</th></tr>
+  <tr><td>引擎 GPT-SoVITS：缺少预训练模型：……v2Pro……</td><td>整合包版本较早，没有自带 v2Pro 模型。按 3.6 节自动下载。</td></tr>
+  <tr><td>引擎 GPT-SoVITS：找不到 GPT-SoVITS 目录</td><td>整合包路径输错了，或者之后移动过文件夹。重新运行 <code>install_windows.bat</code>，输入正确路径。</td></tr>
+  <tr><td>NVIDIA 显卡：没有找到 nvidia-smi</td><td>显卡驱动没装好，或者电脑没有 NVIDIA 显卡。按 2.4 节更新驱动。</td></tr>
+  <tr><td>ffmpeg：找不到 ffmpeg</td><td>很少见。重新运行安装程序；仍然不行请看第 15.1 节。</td></tr>
+</table>
+
+<h2 id="ch3-6">3.6 补齐预训练模型（只在提示缺少时才需要）</h2>
+<p>较早的整合包没有自带 v2Pro 模型（大约 1~2GB）。声音分身可以自动帮你下载：</p>
+<ol class="steps">
+  <li>按 3.7 节的方法，在 <span class="path">D:\VoiceTwin</span> 文件夹里打开"命令提示符"。</li>
+  <li>输入下面这行，按 <span class="key">Enter</span>：<br><code>voicetwin.bat download-models --source hf-mirror</code></li>
+  <li>等待下载完成，看到 <strong>"✅ 已下载 N 个文件"</strong>。</li>
+  <li>再输入 <code>voicetwin.bat doctor</code> 按 <span class="key">Enter</span>，确认出现 <strong>"✅ 引擎 GPT-SoVITS：就绪"</strong>。</li>
+</ol>
+<div class="console"><div class="bar">命令提示符（示意）</div><pre>D:\VoiceTwin&gt;<span class="c-in">voicetwin.bat download-models --source hf-mirror</span>
+21:05:12 | 下载 v2Pro/s2Gv2ProPlus.pth（https://hf-mirror.com）……
+21:05:40 | 下载 v2Pro/s2Dv2ProPlus.pth（https://hf-mirror.com）……
+21:06:02 | 下载 sv/pretrained_eres2netv2w24s4ep4.ckpt（https://hf-mirror.com）……
+<span class="c-gr">✅ 已下载 4 个文件</span>
+
+D:\VoiceTwin&gt;<span class="c-in">voicetwin.bat doctor</span>
+……
+<span class="c-gr">✅ 引擎 GPT-SoVITS：就绪（Python：D:\GPT-SoVITS\runtime\python.exe）</span></pre></div>
+<div class="tip"><span class="t">下载总是失败？</span>
+用记事本打开 <span class="path">D:\VoiceTwin\config.yaml</span>，找到 <code>version: v2ProPlus</code> 这一行，改成 <code>version: v2</code>，保存。
+这样会使用整合包自带的 v2 模型，不需要下载，效果略逊一些。</div>
+
+<h2 id="ch3-7">3.7 如何打开"命令提示符"</h2>
+<p>大部分操作都在网页界面里完成，但有少数步骤（例如上一节）需要在黑色的"命令提示符"窗口里输入命令。打开方法：</p>
+<ol class="steps">
+  <li>打开 <span class="path">D:\VoiceTwin</span> 文件夹。</li>
+  <li>点一下窗口顶部的<strong>地址栏</strong>（显示"此电脑 › 本地磁盘 (D:) › VoiceTwin"的那一栏），里面的文字会变成可编辑的路径。</li>
+  <li>把地址栏里的文字删掉，输入 <strong><code>cmd</code></strong>，按 <span class="key">Enter</span>。</li>
+  <li>会弹出一个黑色窗口，第一行显示 <code>D:\VoiceTwin&gt;</code>，说明已经位于正确的文件夹，可以输入命令了。</li>
+</ol>
+<div class="note">在命令提示符里：输入命令后按 <span class="key">Enter</span> 执行；命令运行时不要关窗口；想复制窗口里的文字，用鼠标选中后按 <span class="key">Enter</span>（或右键）；想粘贴，点鼠标右键。</div>
+
+<h2 id="ch3-8">3.8 安装完成后的文件夹说明</h2>
+<pre class="tree">D:\VoiceTwin
+├── start_webui.bat          <span class="cm">← 启动程序（桌面图标指向它）</span>
+├── voicetwin.bat            <span class="cm">← 在命令提示符里使用的命令入口</span>
+├── config.yaml              <span class="cm">← 设置文件（第 13.3 节），可用记事本修改</span>
+├── install_windows.bat      <span class="cm">← 安装程序（重新安装、换整合包路径时再运行）</span>
+└── workspace\               <span class="cm">← 第一次准备素材后自动出现，你的所有数据都在这里</span>
+    └── 我的声音\
+        ├── outputs\          <span class="cm">← 生成的音频、字幕、报告</span>
+        ├── transcripts.csv   <span class="cm">← 校对表</span>
+        ├── lexicon.txt       <span class="cm">← 读音纠正词典</span>
+        └── ……（附录 B 有完整说明）</pre>
+<div class="warn"><span class="t">请不要随意删除 workspace 文件夹</span>里面保存着你切好的素材、校对结果和生成的音频。想换电脑时，把整个 <span class="path">D:\VoiceTwin</span> 和 <span class="path">D:\GPT-SoVITS</span> 一起复制过去即可。</div>

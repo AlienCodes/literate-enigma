@@ -1,0 +1,168 @@
+<h1 class="chapter" id="ch8"><span class="no">第 8 章</span>第二步：训练你的声音模型</h1>
+<p class="lead">这一步在 <span class="tab">② 训练模型</span> 页面完成。训练是让模型反复"听"你的素材、学会你的声音的过程，全部自动进行。训练结束后，程序还会<strong>自动挑选最像你的模型版本</strong>，并<strong>校准语速</strong>。</p>
+
+<h2 id="ch8-1">8.1 训练前的准备</h2>
+<ul class="check">
+  <li>已经完成第 6 章（准备素材），最好也完成了第 7 章（校对）。</li>
+  <li><strong>关闭电脑自动睡眠</strong>：打开"设置" → "系统" → "电源和电池"（或"电源"）→ "屏幕和睡眠"，把"接通电源时，使设备进入睡眠状态"改为 <strong>"从不"</strong>。笔记本请插上电源。</li>
+  <li>关闭大型游戏、视频剪辑、其它 AI 软件等占用显卡的程序。</li>
+  <li>预留 30~90 分钟（素材越多越久），期间电脑可以做轻度的事情（看网页、写文档），但会比较卡。</li>
+</ul>
+
+<h2 id="ch8-2">8.2 开始训练</h2>
+<ol class="steps">
+  <li>确认页面最上面的 <span class="ui">声音名称</span> 是"我的声音"。</li>
+  <li>点 <span class="tab">② 训练模型</span> 标签页。</li>
+  <li><span class="ui">引擎</span> 保持 <strong>gptsovits</strong>；<span class="ui">SoVITS 轮数</span>、<span class="ui">GPT 轮数</span>、<span class="ui">Qwen3 轮数</span>、<span class="ui">batch</span> 都保持 <strong>0</strong>（0 表示自动设置）。</li>
+  <li>点橙色的 <span class="btn">开始训练</span>。</li>
+  <li>下方的 <span class="ui">训练日志</span> 会显示进度。<strong>训练期间不要关闭黑色窗口，也不要关闭或刷新网页。</strong></li>
+  <li>看到 <strong>"✅ 训练完成，最佳模型：……"</strong> 就表示全部完成。</li>
+</ol>
+<figure><img src="../images/04_train_done.png" alt="训练完成"><figcaption><b>图 8-1</b>　训练完成：日志最后是自动挑选最佳模型的过程，底部显示最佳模型和语速校准结果</figcaption></figure>
+
+<h2 id="ch8-3">8.3 看懂训练日志</h2>
+<p>训练日志会依次经过下面这些阶段：</p>
+<table class="t">
+  <tr><th style="width:36%">日志内容</th><th>这一阶段在做什么</th></tr>
+  <tr><td><code>训练素材：N 条，X 分钟；实验名 vt_……</code></td><td>整理出参加训练的片段（验证集除外）。"实验名"是模型文件的名字前缀。</td></tr>
+  <tr><td><code>训练参数：batch=6，SoVITS 8 轮，GPT 15 轮（显存 12.0 GB）</code></td><td>程序根据你的显存和素材多少自动决定的训练参数。</td></tr>
+  <tr><td><code>1A 文本处理（音素 + BERT 特征）</code></td><td>把文字转换成发音信息。</td></tr>
+  <tr><td><code>1B 提取 HuBERT 特征与说话人声纹</code></td><td>提取每段录音的声音特征和你的声纹。</td></tr>
+  <tr><td><code>1C 提取语义 token</code></td><td>把声音转换成模型能学习的"语义单位"。</td></tr>
+  <tr><td><code>训练音色模型 SoVITS（共 8 轮）……</code><br><code>gsv_s2_train 进度 25%</code></td><td>学习你的<strong>音色</strong>。每完成一轮，进度增加一点；每一轮可能需要几分钟。</td></tr>
+  <tr><td><code>训练语气与节奏模型 GPT（共 15 轮）……</code><br><code>gsv_s1_train 进度 20%</code></td><td>学习你的<strong>语气和节奏</strong>。</td></tr>
+  <tr><td><code>启动 GPT-SoVITS 推理服务……已就绪</code></td><td>准备用训练好的模型试着说话。</td></tr>
+  <tr><td><code>评估模型 s4-g5 ……</code><br><code>s4-g5：相似度 0.925 / 与原句 0.901 / 节奏偏差 0.076 → 综合 1.765</code></td><td>逐个"考试"：让每个模型版本读验证集的句子，和你的原声比较。s4-g5 表示"音色模型第 4 轮 + 语气模型第 5 轮"的组合。</td></tr>
+  <tr><td><code>最佳模型：s8-g15；语速校准：{'zh': 1.04, 'en': 1.0}</code></td><td>综合分最高的组合被选为默认模型；语速校准 1.04 表示模型读得稍慢，生成时自动加快 4%。</td></tr>
+</table>
+<div class="note"><span class="t">如果看到"识别校验不可用"</span>
+日志里可能出现"识别校验不可用（……），将只用声纹和节奏打分"。这表示用来检查错字的识别模型没有加载成功（例如网络问题），
+挑选模型时会少一项"错字率"评分，<strong>不影响训练结果</strong>，可以忽略。正常情况下你会看到每个模型的"错字率 x%"。</div>
+
+<h2 id="ch8-4">8.4 训练需要多长时间</h2>
+<table class="t">
+  <tr><th style="width:26%">显卡</th><th>30 分钟素材</th><th>1 小时素材</th><th>3 小时素材</th></tr>
+  <tr><td>RTX 3060 / 4060</td><td>约 20~40 分钟</td><td>约 40~90 分钟</td><td>约 2~4 小时</td></tr>
+  <tr><td>RTX 3080 / 4070</td><td>约 15~25 分钟</td><td>约 25~50 分钟</td><td>约 1.5~2.5 小时</td></tr>
+  <tr><td>RTX 4090 / 5090</td><td>约 8~15 分钟</td><td>约 15~30 分钟</td><td>约 45~90 分钟</td></tr>
+</table>
+<p class="small">以上是粗略估计，实际时间受显卡、CPU、硬盘速度和素材情况影响。</p>
+
+<h2 id="ch8-5">8.5 "自动挑选最佳模型"和"语速校准"是什么</h2>
+<p>训练过程中，程序会在不同阶段保存多个模型版本（例如音色模型第 4、8 轮，语气模型第 5、10、15 轮）。训练得太少不够像，训练得太多又可能"学过头"（变得不自然）。
+哪个版本最像你？程序不靠猜，而是用第 6 章留出的"验证集"——你的真实录音、没有参加训练——来考试：</p>
+<ul>
+  <li><strong>相似度</strong>：生成的声音和你整体的声纹有多像；</li>
+  <li><strong>与原句</strong>：和这一句你本人读的录音有多像；</li>
+  <li><strong>错字率</strong>（如可用）：把生成的声音再识别成文字，和原文比对；</li>
+  <li><strong>节奏偏差</strong>：同一句话，模型读的时长和你本人读的时长差多少。</li>
+</ul>
+<p>综合分最高的版本成为默认模型；同时根据"时长比"算出语速校准系数，让生成的语速和你本人一致。这一切都是自动的，你不需要做任何设置。</p>
+
+<h2 id="ch8-6">8.6 什么时候需要重新训练</h2>
+<table class="t">
+  <tr><th style="width:44%">情况</th><th>怎么做</th></tr>
+  <tr><td>增加了新的讲课素材</td><td>① 准备素材 → 开始准备素材（只处理新文件）→ ② 开始训练</td></tr>
+  <tr><td>在训练之后才校对了文字</td><td>保存校对后 → ② 开始训练</td></tr>
+  <tr><td>删掉了一些不好的片段</td><td>保存校对后 → ② 开始训练</td></tr>
+  <tr><td>只想重新挑选最佳模型（例如装好了识别模型后想加上错字率评分）</td><td>② 点 <span class="btn gray">重新挑选最佳模型</span>（很快，不需要重新训练）</td></tr>
+</table>
+<div class="note">重新训练会覆盖同名的旧模型文件，这是正常的；新的模型会自动成为默认模型。</div>
+
+<h2 id="ch8-7">8.7 高级：手动设置训练参数</h2>
+<p>一般不需要改。如果你想自己控制：</p>
+<table class="t">
+  <tr><th style="width:24%">参数</th><th style="width:20%">自动值</th><th>说明</th></tr>
+  <tr><td>SoVITS 轮数</td><td>素材 &lt;30 分钟：8<br>≥30 分钟：12</td><td>音色训练的轮数，最大 25。太多可能不自然。</td></tr>
+  <tr><td>GPT 轮数</td><td>15</td><td>语气节奏训练的轮数。素材很多时可以试试 20。</td></tr>
+  <tr><td>batch</td><td>显存 GB ÷ 2</td><td>每次一起训练多少条。显存不足（报 out of memory）时改小，例如 2。</td></tr>
+</table>
+
+
+<h1 class="chapter" id="ch9"><span class="no">第 9 章</span>第三步：生成讲课音频</h1>
+<p class="lead">这一步在 <span class="tab">③ 生成讲课音频</span> 页面完成，也是你以后<strong>每天都会用</strong>的功能：粘贴讲稿，点"生成"，得到用你的声音读出来的讲课音频和字幕。</p>
+
+<h2 id="ch9-1">9.1 准备讲稿</h2>
+<p>讲稿就是你要"说"的内容。可以直接在网页里粘贴文字，也可以上传文件（txt、md、srt、docx）。写法很简单：</p>
+<ul>
+  <li>像平时写讲稿一样写，<strong>标点符号要写对</strong>（句号、逗号、问号会影响停顿和语气）。</li>
+  <li><strong>空一行表示分段</strong>，段与段之间会有稍长的停顿（按你本人的习惯）。</li>
+  <li>想在某处停顿几秒，写 <code>[停顿=2]</code>（2 秒）。</li>
+  <li>标题可以用 <code># 第四课：生成器表达式</code> 这样的写法，会被读出来并在后面停顿。</li>
+</ul>
+<p>更多写法（Markdown、读音纠正、按字幕时间轴生成等）见第 10 章。</p>
+
+<h2 id="ch9-2">9.2 各项设置说明</h2>
+<figure><img src="../images/05_generate_form.png" alt="生成页面"><figcaption><b>图 9-1</b>　③ 生成讲课音频：左边是讲稿，右边是设置</figcaption></figure>
+<table class="t">
+  <tr><th style="width:24%">设置</th><th style="width:18%">推荐值</th><th>说明</th></tr>
+  <tr><td><span class="ui">讲稿</span></td><td>—</td><td>粘贴讲稿文字。</td></tr>
+  <tr><td><span class="ui">或上传讲稿文件</span></td><td>—</td><td>上传 txt / md / srt / docx 文件。<strong>上传了文件时，以文件为准</strong>，上面文本框的内容会被忽略。</td></tr>
+  <tr><td><span class="ui">引擎</span></td><td>gptsovits</td><td>用你训练好的 GPT-SoVITS 模型。（qwen3tts、indextts 是可选引擎，见 13.4 节；dummy 是测试用的，不要选。）</td></tr>
+  <tr><td><span class="ui">质量</span></td><td>balanced / best</td><td>见下表。</td></tr>
+  <tr><td><span class="ui">语速倍数</span></td><td>1.0</td><td>1.0 表示和你本人一样快（程序已自动校准）。想整体快一点调到 1.05，慢一点调到 0.95。</td></tr>
+  <tr><td><span class="ui">指定参考音频 id</span></td><td>留空</td><td>留空时程序自动选择（疑问句用疑问参考、陈述句用陈述参考）。想固定某种语气，可以填一个参考音频的 id（13.2 节）。</td></tr>
+  <tr><td><span class="ui">只重新生成第几句</span></td><td>留空</td><td>第一次生成留空。对某几句不满意时填编号（9.5 节）。</td></tr>
+</table>
+<table class="t">
+  <tr><th style="width:16%">质量档位</th><th style="width:28%">每句生成几个版本</th><th style="width:14%">速度</th><th>适合</th></tr>
+  <tr><td>fast</td><td>1 个</td><td>最快</td><td>先快速试听讲稿内容</td></tr>
+  <tr><td><strong>balanced</strong></td><td>3 个，自动挑最像的</td><td>中等</td><td>日常使用（默认）</td></tr>
+  <tr><td><strong>best</strong></td><td>5 个，还会用识别模型检查漏字、读错，不合格自动重试</td><td>最慢</td><td><strong>正式发布的课程</strong></td></tr>
+</table>
+<div class="note">第一次使用 best 档时，程序会下载一个用于检查错字的小型识别模型（约 500MB）。</div>
+
+<h2 id="ch9-3">9.3 开始生成</h2>
+<ol class="steps">
+  <li>确认最上面的 <span class="ui">声音名称</span> 是"我的声音"。</li>
+  <li>粘贴讲稿，选择质量档位。</li>
+  <li>点橙色的 <span class="btn">生成</span>。</li>
+  <li>第一次生成时，程序需要先启动推理服务并加载模型，会多等 1 分钟左右；之后就快了。下方日志会逐句显示进度，例如 <code>[3/7] 生成 上节课我们学习了……（相似度 0.97）</code>。</li>
+  <li>完成后，页面上会出现：
+    <ul>
+      <li><span class="ui">结果</span>：音频播放器，点 ▶ 直接试听；</li>
+      <li><span class="ui">下载（音频 / 字幕 / 报告）</span>：三个文件，点文件名后面的大小（如 "2.0 MB ↓"）即可下载；</li>
+      <li>一个表格，列出每一句的声纹相似度和提示。</li>
+    </ul></li>
+</ol>
+<figure><img src="../images/06_generate_done.png" alt="生成完成"><figcaption><b>图 9-2</b>　生成完成：上方是试听播放器和下载文件，下方表格是每一句的相似度</figcaption></figure>
+
+<h2 id="ch9-4">9.4 看懂结果表和报告</h2>
+<table class="t">
+  <tr><th style="width:18%">列</th><th>含义</th></tr>
+  <tr><td>#</td><td>句子编号（重新生成某一句时用这个编号）。</td></tr>
+  <tr><td>句子</td><td>这一句的文字（长句子会被自动拆成几段，每段一个编号）。</td></tr>
+  <tr><td>声纹相似度</td><td>这一句和你的声纹有多像：<strong>≥0.86 非常像</strong>；0.78~0.86 比较像；0.70~0.78 有点像；&lt;0.70 不太像。</td></tr>
+  <tr><td>提示</td><td>程序发现的可能问题，例如"语速过快/可能漏读""句中有 1.5s 的异常停顿""识别错字率 35%"。有提示的句子建议试听一下，不满意就重新生成。</td></tr>
+</table>
+<p>下载的 <code>.report.json</code> 报告文件里有更详细的信息（每句的开始/结束时间、使用的参考音频、随机种子等），一般不需要看。</p>
+
+<h2 id="ch9-5">9.5 只重新生成不满意的句子</h2>
+<p>听完后如果某几句不满意（语气不对、有杂音、读错字），<strong>不需要全部重新生成</strong>：</p>
+<ol class="steps">
+  <li>记下这几句的编号（结果表的 # 列），例如第 3 句和第 5 句。</li>
+  <li>在 <span class="ui">只重新生成第几句</span> 里填 <code>3,5</code>。可以写范围，例如 <code>8-10</code> 表示第 8、9、10 句；可以混合，例如 <code>3,5,8-10</code>。</li>
+  <li>讲稿和其它设置<strong>保持不变</strong>，再点一次 <span class="btn">生成</span>。</li>
+  <li>只有这几句会重新生成（换一组随机版本），其它句子直接用上一次的结果，所以很快。</li>
+</ol>
+<div class="tip"><span class="t">程序会记住每一句</span>每一句生成的结果都会被缓存。如果你只修改了讲稿里的某一句话，再点生成时，<strong>只有改动的那一句会重新生成</strong>，其它句子秒出。所以放心地一边听一边改讲稿。</div>
+<div class="tip"><span class="t">一句反复都不满意？</span>试试：① 把这句话改写得更口语化或拆成两句；② 检查标点（问句用问号）；③ 用 <code>best</code> 档；④ 指定一个语气更合适的参考音频（13.2 节）。</div>
+
+<h2 id="ch9-6">9.6 生成的文件在哪里</h2>
+<p>除了在网页上下载，所有生成的文件也自动保存在：<span class="path">D:\VoiceTwin\workspace\我的声音\outputs\</span></p>
+<table class="t">
+  <tr><th style="width:44%">文件</th><th>说明</th></tr>
+  <tr><td><code>第四课_生成器表达式_20260930_213825.wav</code></td><td>生成的音频。文件名 = 讲稿第一行（或讲稿文件名）+ 生成时间。</td></tr>
+  <tr><td><code>……_213825.srt</code></td><td>字幕文件，时间轴和音频对应。</td></tr>
+  <tr><td><code>……_213825.report.json</code></td><td>生成报告。</td></tr>
+</table>
+<p>音频的音量已经自动调整到和你原来的录音一致，可以直接剪进课程视频里。想输出 mp3 格式，见 13.3 节的 <code>output_format</code> 设置。</p>
+
+<h2 id="ch9-7">9.7 生成一整门课程的建议流程</h2>
+<ol class="steps">
+  <li><strong>按节准备讲稿</strong>：每节课一个 txt 或 md 文件，例如 <code>第01课.md</code>、<code>第02课.md</code>。</li>
+  <li><strong>先用 fast 档快速过一遍</strong>：检查讲稿里有没有读错的词（多音字、专业术语、英文缩写），把需要纠正的写进读音词典（10.4 节）。</li>
+  <li><strong>用 best 档正式生成</strong>：上传讲稿文件，生成。</li>
+  <li><strong>逐句试听</strong>：重点听结果表里有"提示"或相似度较低的句子，不满意的用"只重新生成第几句"重做。</li>
+  <li><strong>导入剪辑软件</strong>：音频 + 字幕一起导入，和画面对齐（第 11 章）。</li>
+</ol>

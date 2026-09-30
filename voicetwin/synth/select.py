@@ -127,8 +127,9 @@ def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend
 
 
 def evaluate_file(cfg: Dict[str, Any], project: Project, audio: Path, text: str = "", lang: str = "") -> Dict[str, Any]:
-    """评估任意一段音频有多像你（例如对比不同引擎/参数的效果）。"""
+    """评估任意一段音频有多像你（例如对比不同引擎/参数的效果），返回中文可读的结果。"""
     from voicetwin.eval.metrics import Scorer, similarity_label
+    from voicetwin.style.profile import target_rate
     from voicetwin.utils.textutil import detect_lang
 
     encoder = get_speaker_encoder(cfg.get("speaker_encoder", "auto"))
@@ -139,8 +140,23 @@ def evaluate_file(cfg: Dict[str, Any], project: Project, audio: Path, text: str 
     wav, _, _ = trim_silence(wav, sr)
     lang = lang or (detect_lang(text) if text else "zh")
     scorer = Scorer(profile, cen, encoder, cfg.get("synth", {}).get("score"), checker)
-    score = scorer.score(wav, sr, text or "", lang, use_asr=bool(text))
-    d = score.to_dict()
-    d["label"] = similarity_label(score.speaker_sim, encoder.name)
-    d["encoder"] = encoder.name
-    return d
+    # 你自己上传的音频里的停顿是有意为之（段落、[停顿] 标记），这里不检查"异常停顿"；
+    # 该检查只用于合成时给同一句话的多个候选打分。
+    score = scorer.score(wav, sr, text or "", lang, use_asr=bool(text), check_pauses=False)
+    result: Dict[str, Any] = {
+        "结论": similarity_label(score.speaker_sim, encoder.name),
+        "声纹相似度": None if score.speaker_sim is None else round(score.speaker_sim, 3),
+        "相似度参考": "≥0.86 非常像；0.78~0.86 比较像；0.70~0.78 有点像；<0.70 不太像",
+        "时长（秒）": round(len(wav) / sr, 1),
+    }
+    if score.rate:
+        result["语速（音节/秒）"] = round(score.rate, 2)
+        result["你本人的平均语速"] = round(target_rate(profile, lang), 2)
+    if score.pitch_dev is not None:
+        result["音高偏差"] = f"{score.pitch_dev * 12:.1f} 半音（越小越接近你本人）"
+    if score.cer is not None:
+        result["错字率"] = f"{score.cer:.1%}"
+        result["识别出的文字"] = score.hyp
+    result["提示"] = score.issues or ["无"]
+    result["声纹模型"] = encoder.name
+    return result

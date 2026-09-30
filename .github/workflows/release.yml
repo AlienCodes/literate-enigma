@@ -38,9 +38,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          assets=(dist/*.zip)
+          for pdf in dist/*.pdf; do
+            [ -e "$pdf" ] && assets+=("$pdf#声音分身VoiceTwin使用手册（PDF 图文教程）")
+          done
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" dist/*.zip --clobber
+            gh release upload "$TAG" "${assets[@]}" --clobber
           else
-            gh release create "$TAG" dist/*.zip --target "$GITHUB_SHA" \
+            gh release create "$TAG" "${assets[@]}" --target "$GITHUB_SHA" \
               --title "声音分身 VoiceTwin $TAG（Windows）" --notes-file dist/release_notes.md --latest
           fi

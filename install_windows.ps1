@@ -66,7 +66,7 @@ if ($Mode -eq "gsv") {
     }
     Step "安装 VoiceTwin 到整合包环境（--no-deps：不改动整合包原有依赖的版本）"
     Pip $Py @("--no-deps", "--upgrade", "--force-reinstall", $Here)
-    Pip $Py @("pyloudnorm", "imageio-ffmpeg", "zhconv", "webrtcvad-wheels")
+    Pip $Py @("pyloudnorm", "imageio-ffmpeg", "zhconv", "webrtcvad-wheels", "python-docx")
     Pip $Py @("--no-deps", "resemblyzer")
     # 语音识别：整合包一般自带 faster-whisper；没有的话按 GPT-SoVITS 官方方式 --no-deps 安装
     & $Py -c "import faster_whisper" *> $null

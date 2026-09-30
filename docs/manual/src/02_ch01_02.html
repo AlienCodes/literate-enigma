@@ -1,0 +1,150 @@
+<h1 class="chapter" id="ch1"><span class="no">第 1 章</span>认识声音分身</h1>
+
+<h2 id="ch1-1">1.1 它能帮你做什么</h2>
+<p>声音分身 VoiceTwin 是一个在你自己电脑上运行的"声音克隆"程序。它会仔细"听"你以前录好的讲课视频和录音，学会你的声音；
+之后你只要把讲稿交给它，它就能用<strong>你的音色、你的语气、你的说话节奏</strong>把讲稿读出来，同时生成对应的字幕文件。</p>
+<div class="grid2">
+  <div class="card"><h4>🎙️ 嗓子不舒服也能继续出课</h4><p>感冒、嗓子哑、需要休息的时候，用讲稿直接生成讲课音频，课程更新不中断。</p></div>
+  <div class="card"><h4>✏️ 改一句不用重录整段</h4><p>录好的课程里讲错了一句话？只生成那一句替换进去，音色和前后完全一致。</p></div>
+  <div class="card"><h4>🌏 中文、英文、中英混说</h4><p>支持普通话讲解、英文讲解，以及中文里夹英文术语（如 "Python 的 list comprehension"）。</p></div>
+  <div class="card"><h4>📝 自动生成字幕</h4><p>每次生成都会同时输出 <code>.srt</code> 字幕文件，直接导入剪映等剪辑软件，时间轴自动对齐。</p></div>
+</div>
+
+<h2 id="ch1-2">1.2 它是怎么做到"像你"的</h2>
+<p>听起来"像不像一个人"，主要取决于三件事：<strong>音色</strong>（声音本身的质感）、<strong>语气</strong>（抑扬顿挫、提问和感叹时的语调）、
+<strong>节奏</strong>（说话快慢、在哪里停顿、停多久）。声音分身把目前最好的开源技术组合起来，分别处理这三件事：</p>
+<table class="t">
+  <tr><th style="width:17%">环节</th><th>程序做了什么</th><th style="width:17%">对应"像"的哪一方面</th></tr>
+  <tr><td>素材清理</td><td>从视频里提取声音；去掉空调、电流等低频嗡嗡声；只有录音明显有噪音时才轻度降噪（降噪过猛会把你的音色一起"削掉"）；统一音量。</td><td>音色干净、不失真</td></tr>
+  <tr><td>智能切分</td><td>在你说话自然停顿的地方，把长录音切成 3~12 秒的一句一句；视频有字幕时直接按字幕切，更准确。</td><td>训练数据完整准确</td></tr>
+  <tr><td>语音识别</td><td>自动把每一句话识别成文字（中文、英文逐句自动判断），并加上标点。</td><td>文字与声音严格对应</td></tr>
+  <tr><td>质量过滤</td><td>剔除识别不可靠、文字对不上、有爆音的片段；用"声纹"比对，自动剔除<strong>不是你本人</strong>的声音（例如学生提问）。</td><td>模型只学你的声音</td></tr>
+  <tr><td>风格分析</td><td>统计你的中文和英文语速、逗号 / 句号 / 段落处分别停顿多久、音高和起伏、原始录音的音量，生成你的"说话风格档案"。</td><td>节奏、语气</td></tr>
+  <tr><td>专属训练</td><td>用你的全部素材训练 GPT-SoVITS v2ProPlus 模型（目前开源社区里"用自己的声音训练"最成熟的方案之一，特点是更贴近<strong>整个训练素材的说话风格</strong>）。</td><td>音色 + 语气 + 口音</td></tr>
+  <tr><td>自动挑模型</td><td>训练会保存多个版本。程序留出一小部分<strong>没参加训练</strong>的你的真实录音当"考题"，让每个版本读同样的句子，和你的原声比较，选出总分最高的版本。</td><td>选出最像的模型</td></tr>
+  <tr><td>语速校准</td><td>同一句话，比较"模型读用了多久"和"你本人读用了多久"，自动算出语速校正系数。</td><td>快慢和你一致</td></tr>
+  <tr><td>多候选择优</td><td>每一句话生成 3~5 个版本，按"声纹相似度 + 语速 / 音高偏差 +（可选）识别错字率"打分，只保留最好的一个；发现漏字、读错会自动重试。</td><td>每一句都尽量最像</td></tr>
+  <tr><td>语气匹配</td><td>疑问句用你提问时的录音做参考，感叹句用你感叹时的录音，陈述句用陈述的录音。</td><td>语气</td></tr>
+  <tr><td>自然拼接</td><td>句子之间、段落之间按你本人的停顿习惯留空（带自然的长短变化），最终音量调到和你原来的录音一致。</td><td>节奏；能无缝剪进旧课程</td></tr>
+</table>
+
+<h2 id="ch1-3">1.3 实事求是：效果能达到什么程度</h2>
+<div class="note"><span class="t">实话实说</span>
+目前世界上还没有任何技术能保证"任何人、任何一句都 100% 听不出来"。声音分身能做到的是：在素材充足、干净、文字校对过的情况下，
+生成的声音和你本人<strong>非常接近</strong>，大多数听众很难分辨。</div>
+<p>最终效果主要取决于你提供的素材。按影响从大到小：</p>
+<ol>
+  <li><strong>素材时长</strong>：10 分钟能用，30 分钟以上明显更好，1~3 小时最好。</li>
+  <li><strong>素材质量</strong>：只有你本人、正常讲课状态、背景安静的录音最好。</li>
+  <li><strong>文字准确</strong>：识别出的文字校对过，模型就不会学到"口误"。</li>
+  <li><strong>生成时的质量档位</strong>：正式课程用 <code>best</code> 档，每句 5 个候选自动择优。</li>
+</ol>
+<p>第 12 章会教你用"评估"功能打分，以及用"盲测"的方法客观地检验效果。</p>
+
+<h2 id="ch1-4">1.4 整体流程一览</h2>
+<p>整个使用过程分为"安装一次"和"日常使用"两部分：</p>
+<div class="flow">
+  <div class="node"><b>① 安装</b>下载本程序和 GPT-SoVITS 整合包，运行安装程序<small>只需一次 · 约 30~60 分钟</small></div>
+  <div class="arrow">→</div>
+  <div class="node"><b>② 准备素材</b>放入你的讲课视频，程序自动切分、识别、过滤<small>约 10~40 分钟</small></div>
+  <div class="arrow">→</div>
+  <div class="node"><b>③ 训练</b>用你的素材训练专属模型，自动挑出最像的<small>约 30~90 分钟</small></div>
+  <div class="arrow">→</div>
+  <div class="node hot"><b>④ 生成</b>粘贴讲稿，点"生成"，得到音频 + 字幕<small>日常使用 · 几十秒到几分钟</small></div>
+</div>
+<p>①②③ 只需要做一次（以后增加了新素材，可以再做一次 ②③ 让声音更像）。之后每次出课，只需要做 ④。</p>
+
+<h2 id="ch1-5">1.5 几个常用名词</h2>
+<table class="t">
+  <tr><th style="width:22%">名词</th><th>意思</th></tr>
+  <tr><td>素材</td><td>你以前录的讲课视频或音频，程序从里面学习你的声音。</td></tr>
+  <tr><td>片段</td><td>程序把长录音切成的一小段一小段（每段 3~12 秒，大多是一句话）。</td></tr>
+  <tr><td>声音名称</td><td>你给这个声音起的名字，例如"我的声音"。一个声音对应一套素材和模型，以后每次使用都选这个名字。</td></tr>
+  <tr><td>参考音频</td><td>程序从你的素材里自动挑出的、最有代表性的几句话。生成时模型会参考它们的语气。</td></tr>
+  <tr><td>训练</td><td>让模型反复"听"你的素材、学习你的声音的过程，需要显卡，耗时较长。</td></tr>
+  <tr><td>模型</td><td>训练的结果，可以理解为"你的声音的数字副本"，保存在 GPT-SoVITS 文件夹里。</td></tr>
+  <tr><td>生成（合成）</td><td>用训练好的模型把文字读出来。</td></tr>
+  <tr><td>GPT-SoVITS</td><td>一个开源的声音克隆项目，声音分身用它来训练和生成声音。</td></tr>
+  <tr><td>整合包</td><td>GPT-SoVITS 官方为 Windows 用户打包好的版本，里面已经装好了所有复杂组件，解压就能用。</td></tr>
+  <tr><td>显存</td><td>显卡自带的内存。训练需要显存，6GB 以上可以训练，越大越快。</td></tr>
+  <tr><td>声纹相似度</td><td>程序用"声纹模型"衡量两段声音像不像同一个人，数字越接近 1 越像（0.86 以上可以认为非常像）。</td></tr>
+  <tr><td>字幕（srt）</td><td>带时间轴的文字文件，剪辑软件可以直接导入，显示在视频下方。</td></tr>
+</table>
+
+
+<h1 class="chapter" id="ch2"><span class="no">第 2 章</span>开始之前：检查电脑与准备工具</h1>
+
+<h2 id="ch2-1">2.1 电脑配置要求</h2>
+<table class="t">
+  <tr><th style="width:18%">项目</th><th style="width:38%">最低要求</th><th>推荐配置</th></tr>
+  <tr><td>操作系统</td><td>Windows 10（64 位）</td><td>Windows 10 / 11（64 位）</td></tr>
+  <tr><td>显卡</td><td>NVIDIA 显卡，显存 6GB</td><td>NVIDIA RTX 3060 12GB 或更好</td></tr>
+  <tr><td>内存</td><td>16GB</td><td>32GB</td></tr>
+  <tr><td>硬盘</td><td>剩余 30GB</td><td>剩余 50GB 以上，固态硬盘（SSD）更快</td></tr>
+  <tr><td>网络</td><td colspan="2">安装和第一次使用时需要下载约 10~15GB 的文件；之后日常使用不需要联网。</td></tr>
+</table>
+<div class="warn"><span class="t">没有 NVIDIA 显卡怎么办？</span>
+程序也能运行，但"训练"这一步会非常慢（可能需要几天）。建议找一台有 NVIDIA 显卡的电脑完成训练；训练好之后，生成音频对显卡的要求低很多。
+AMD 显卡和 Intel 集成显卡目前不支持加速训练。</div>
+
+<h2 id="ch2-2">2.2 查看显卡型号和显存</h2>
+<ol class="steps">
+  <li>同时按下键盘上的 <span class="key">Ctrl</span> + <span class="key">Shift</span> + <span class="key">Esc</span>，打开"任务管理器"。</li>
+  <li>如果窗口很小、只有几个程序名，点左下角的 <span class="ui">详细信息</span>。</li>
+  <li>点窗口上方（Windows 11 在左侧）的 <span class="ui">性能</span>。</li>
+  <li>在左侧列表里找到 <span class="ui">GPU 0</span> 或 <span class="ui">GPU 1</span>，逐个点开看。</li>
+  <li>看右上角的显卡名称，以及下方的 <span class="ui">专用 GPU 内存</span>：
+    <ul>
+      <li>名称里有 <strong>NVIDIA</strong>（例如 NVIDIA GeForce RTX 3060），并且专用 GPU 内存 <strong>≥ 6.0 GB</strong>：✅ 符合要求。</li>
+      <li>名称是 Intel 或 AMD：这是非 NVIDIA 显卡，训练会很慢，请看上面的黄色提示。</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="ch2-3">2.3 查看硬盘剩余空间</h2>
+<ol class="steps">
+  <li>双击桌面上的"此电脑"（或按 <span class="key">Win</span> + <span class="key">E</span> 打开文件资源管理器，点左侧的"此电脑"）。</li>
+  <li>在"设备和驱动器"里看每个盘下面的"可用空间"，选一个<strong>可用空间大于 30GB</strong> 的盘。</li>
+  <li>本手册统一以 <strong>D 盘</strong>为例。如果你的电脑没有 D 盘，或 D 盘空间不够，下面所有 <span class="path">D:\</span> 都换成你选的盘，例如 <span class="path">E:\</span>。</li>
+</ol>
+<div class="warn">尽量不要放在 C 盘（系统盘）：C 盘空间一般比较紧张，而且系统文件夹的权限限制可能导致安装失败。</div>
+
+<h2 id="ch2-4">2.4 更新显卡驱动（建议）</h2>
+<p>显卡驱动太旧，训练时可能会报错。建议更新到最新版本：</p>
+<ol class="steps">
+  <li>用浏览器打开 NVIDIA 驱动下载页：<span class="path">https://www.nvidia.cn/drivers/lookup/</span></li>
+  <li>按你的显卡型号选择（例如：GeForce → GeForce RTX 30 Series → GeForce RTX 3060 → Windows 11），点"查找"。</li>
+  <li>下载最新的"Game Ready"或"Studio"驱动，双击安装，一路选"同意并继续" → "精简安装"。</li>
+  <li>安装完成后重启电脑。</li>
+</ol>
+<div class="tip">如果电脑上装了 "NVIDIA App" 或 "GeForce Experience"，也可以直接在里面点"驱动程序" → "检查更新"。</div>
+
+<h2 id="ch2-5">2.5 安装解压软件 7-Zip</h2>
+<p>GPT-SoVITS 整合包是 <code>.7z</code> 格式的压缩包，需要用 7-Zip 解压（免费软件）：</p>
+<ol class="steps">
+  <li>打开 <span class="path">https://www.7-zip.org/</span></li>
+  <li>在页面最上面的下载表格里，点第一行（64-bit Windows x64）对应的 <span class="ui">Download</span>。</li>
+  <li>双击下载好的安装程序（文件名类似 <code>7z2409-x64.exe</code>），点 <span class="ui">Install</span>，完成后点 <span class="ui">Close</span>。</li>
+</ol>
+<div class="note">Windows 11 自带解压 7z 的功能，但遇到大文件时 7-Zip 更稳定、更快，建议还是安装。</div>
+
+<h2 id="ch2-6">2.6 需要下载的东西清单</h2>
+<table class="t">
+  <tr><th style="width:26%">名称</th><th style="width:15%">大小</th><th>下载地址 / 说明</th></tr>
+  <tr><td>声音分身 VoiceTwin</td><td>约 6MB</td><td><span class="path">https://github.com/AlienCodes/literate-enigma/releases/latest</span><br>下载 <code>VoiceTwin-Windows-v….zip</code>（第 3.1 节）</td></tr>
+  <tr><td>GPT-SoVITS 整合包</td><td>约 5~10GB</td><td>GPT-SoVITS 官方文档的下载页（第 3.2 节）</td></tr>
+  <tr><td>7-Zip</td><td>约 2MB</td><td><span class="path">https://www.7-zip.org/</span>（第 2.5 节）</td></tr>
+  <tr><td>语音识别模型等</td><td>约 3~5GB</td><td>第一次使用时程序<strong>自动下载</strong>，不用手动下载</td></tr>
+</table>
+
+<h2 id="ch2-7">2.7 准备工作检查表</h2>
+<p>开始安装前，确认下面每一项都已经完成（可以打印出来逐项打勾）：</p>
+<ul class="check">
+  <li>电脑是 Windows 10 或 Windows 11（64 位）</li>
+  <li>有 NVIDIA 显卡，专用 GPU 内存 ≥ 6GB（2.2 节）</li>
+  <li>选好了一个剩余空间 ≥ 30GB 的盘，下面以 D 盘为例（2.3 节）</li>
+  <li>显卡驱动已更新（2.4 节，建议）</li>
+  <li>已安装 7-Zip（2.5 节）</li>
+  <li>网络通畅，接下来 1 小时左右可以持续下载</li>
+  <li>准备好了你以前录的讲课视频或录音（第 4 章会详细讲怎么挑选）</li>
+</ul>
