@@ -9,7 +9,11 @@ from conftest import make_cfg
 from fake_gptsovits import build_fake_root
 
 
-def test_train_select_and_narrate(prepared, tmp_path):
+def test_train_select_and_narrate(prepared, tmp_path, monkeypatch):
+    from voicetwin.backends.gptsovits import GPTSoVITSBackend
+
+    # 测试环境里不要往当前 Python 的 site-packages 写 users.pth
+    monkeypatch.setattr(GPTSoVITSBackend, "ensure_users_pth", lambda self: None)
     cfg, project, _ = prepared
     root = build_fake_root(tmp_path / "GPT-SoVITS")
     gcfg = make_cfg(project.root.parent, backend="gptsovits", backends={"gptsovits": {

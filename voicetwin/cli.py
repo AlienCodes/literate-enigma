@@ -55,7 +55,11 @@ def build_parser() -> argparse.ArgumentParser:
         p.add_argument("-b", "--backend", choices=["gptsovits", "qwen3tts", "indextts", "dummy"],
                        help="合成引擎（默认看 config.yaml 的 backend）")
 
-    sub.add_parser("init-config", help="在当前目录生成可编辑的 config.yaml")
+    p = sub.add_parser("init-config", help="在当前目录生成可编辑的 config.yaml")
+    p.add_argument("--gptsovits-root", help="GPT-SoVITS（或整合包）所在目录")
+    p.add_argument("--workspace", help="数据存放目录（默认 ./workspace）")
+    p.add_argument("--backend", choices=["gptsovits", "qwen3tts", "indextts"], help="默认引擎")
+    p.add_argument("--force", action="store_true", help="覆盖已有的 config.yaml")
     sub.add_parser("doctor", help="检查运行环境、显卡和各引擎是否就绪")
     sub.add_parser("list", help="列出已有的声音")
 
@@ -140,7 +144,14 @@ def main(argv: Optional[List[str]] = None) -> None:
         ap.print_help()
         return
     if args.command == "init-config":
-        path = write_example_config(Path.cwd() / "config.yaml")
+        repl = {}
+        if args.gptsovits_root:
+            repl["backends.gptsovits.root"] = str(Path(args.gptsovits_root).expanduser().resolve()).replace("\\", "/")
+        if args.workspace:
+            repl["workspace"] = args.workspace
+        if args.backend:
+            repl["backend"] = args.backend
+        path = write_example_config(Path.cwd() / "config.yaml", repl, overwrite=args.force)
         print(f"已生成 {path}，按需修改即可。")
         return
     import logging

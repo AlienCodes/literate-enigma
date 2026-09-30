@@ -113,7 +113,10 @@ class GPTSoVITSBackend(Backend):
         paths = [root, os.path.join(root, "GPT_SoVITS"), os.path.join(root, "GPT_SoVITS", "BigVGAN"),
                  os.path.join(root, "tools"), os.path.join(root, "tools", "asr"), os.path.join(root, "tools", "uvr5")]
         existing = os.environ.get("PYTHONPATH", "")
+        # 整合包的 ffmpeg.exe 在根目录，Python 在 runtime/，与官方 go-webui.bat 一样加入 PATH
+        bin_paths = [root, os.path.join(root, "runtime")]
         env = subprocess_env({
+            "PATH": os.pathsep.join(bin_paths + [os.environ.get("PATH", "")]),
             "PYTHONPATH": os.pathsep.join(paths + ([existing] if existing else [])),
             "version": self.version,
             "is_half": str(self.is_half),
@@ -125,6 +128,32 @@ class GPTSoVITSBackend(Backend):
         if extra:
             env.update({k: str(v) for k, v in extra.items()})
         return env
+
+    def ensure_users_pth(self) -> None:
+        """和官方 webui.py 启动时一样，在 GPT-SoVITS 的 site-packages 写入 users.pth（整合包的训练脚本依赖它）。"""
+        assert self.root is not None
+        root = str(self.root).replace("\\", "/")
+        code = (
+            "import site, os\n"
+            f"root = {root!r}\n"
+            "content = '\\n'.join([root, root + '/GPT_SoVITS/BigVGAN', root + '/tools', root + '/tools/asr', "
+            "root + '/GPT_SoVITS', root + '/tools/uvr5'])\n"
+            "cands = [p for p in site.getsitepackages() if 'packages' in p] or [root + '/runtime/Lib/site-packages']\n"
+            "for sp in cands:\n"
+            "    if os.path.isdir(sp):\n"
+            "        f = os.path.join(sp, 'users.pth')\n"
+            "        try:\n"
+            "            if not os.path.exists(f) or open(f, encoding='utf-8', errors='ignore').read() != content:\n"
+            "                open(f, 'w', encoding='utf-8').write(content)\n"
+            "            break\n"
+            "        except OSError:\n"
+            "            pass\n"
+        )
+        try:
+            subprocess.run([self.python, "-c", code], env=self.env(), cwd=str(self.root), timeout=120,
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        except Exception as exc:  # pragma: no cover
+            log.warning(f"写入 users.pth 失败（通常不影响）：{exc}")
 
     # ================================================================ 训练
     def _gpu(self) -> str:
@@ -224,6 +253,7 @@ class GPTSoVITSBackend(Backend):
         tcfg = self.bcfg.get("train", {}) or {}
         log.info(f"训练参数：batch={params['batch_size']}，SoVITS {params['sovits_epochs']} 轮，GPT {params['gpt_epochs']} 轮"
                  f"（显存 {params['gpu_mem_gb']} GB）")
+        self.ensure_users_pth()
         opt_dir = self._prepare_features(Path(exp["list"]), Path(exp["wav_dir"]), progress)
 
         # ---------------- SoVITS

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+import json
 import os
 from pathlib import Path
 from typing import Any, Dict, Optional
@@ -91,9 +92,33 @@ def resolve_path(cfg: Config, value: Optional[str]) -> Optional[Path]:
     return p.resolve()
 
 
-def write_example_config(dest: Path) -> Path:
+def write_example_config(dest: Path, replacements: Optional[Dict[str, str]] = None, overwrite: bool = False) -> Path:
+    """生成带中文注释的 config.yaml。replacements 形如 {"backends.gptsovits.root": "D:/GPT-SoVITS"}。"""
+    import re
+
     dest = Path(dest)
-    if dest.exists():
+    if dest.exists() and not overwrite:
         raise FileExistsError(f"{dest} 已存在，未覆盖。")
-    dest.write_text(DEFAULT_CONFIG_PATH.read_text(encoding="utf-8"), encoding="utf-8")
+    if dest.exists():
+        import shutil
+
+        shutil.copy2(dest, dest.with_suffix(dest.suffix + ".bak"))  # 覆盖前备份
+    text = DEFAULT_CONFIG_PATH.read_text(encoding="utf-8")
+    for dotted, value in (replacements or {}).items():
+        parts = dotted.split(".")
+        # 逐级定位到对应的缩进块，再替换这一行的值（保留注释）
+        pos, indent = 0, 0
+        for depth, key in enumerate(parts):
+            m = re.compile(rf"^{' ' * indent}{re.escape(key)}:(.*)$", re.M).search(text, pos)
+            if not m:
+                raise KeyError(dotted)
+            if depth == len(parts) - 1:
+                rest = m.group(1)
+                comment = rest[rest.index("#"):] if "#" in rest else ""
+                quoted = json.dumps(str(value), ensure_ascii=False)
+                line = f"{' ' * indent}{key}: {quoted}" + (f"  {comment}" if comment else "")
+                text = text[:m.start()] + line + text[m.end():]
+            else:
+                pos, indent = m.end(), indent + 2
+    dest.write_text(text, encoding="utf-8")
     return dest
