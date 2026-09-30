@@ -1,13 +1,16 @@
 name: release
 
-# 推送 v* 标签（例如 v0.1.0）时，自动打包 Windows 版并发布到 GitHub Releases。
+# 发布 Windows 版到 GitHub Releases，两种触发方式：
+#   1. 推送 v* 标签（例如 git push origin v0.1.0）；
+#   2. 在 GitHub 网页 Actions → release → Run workflow，填写版本标签（例如 v0.1.0）。
+#      标签不存在时，会在所选分支的最新提交上自动创建。
 on:
   push:
     tags: ["v*"]
   workflow_dispatch:
     inputs:
       tag:
-        description: "要发布的标签（例如 v0.1.0，需已存在）"
+        description: "版本标签（例如 v0.1.0），需与 pyproject.toml 里的版本号一致"
         required: true
 
 permissions:
@@ -20,8 +23,6 @@ jobs:
       TAG: ${{ github.event.inputs.tag || github.ref_name }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.inputs.tag || github.ref }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -40,5 +41,6 @@ jobs:
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" dist/*.zip --clobber
           else
-            gh release create "$TAG" dist/*.zip --title "声音分身 VoiceTwin $TAG（Windows）" --notes-file dist/release_notes.md --latest
+            gh release create "$TAG" dist/*.zip --target "$GITHUB_SHA" \
+              --title "声音分身 VoiceTwin $TAG（Windows）" --notes-file dist/release_notes.md --latest
           fi
