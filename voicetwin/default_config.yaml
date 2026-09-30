@@ -82,14 +82,17 @@ backends:
   qwen3tts:
     python: auto
     repo: ./third_party/Qwen3-TTS     # 微调需要这个仓库里的 finetuning 脚本
-    model: Qwen/Qwen3-TTS-12Hz-1.7B-Base   # 也可以填本地目录；显存小用 0.6B-Base
+    model: Qwen/Qwen3-TTS-12Hz-1.7B-Base   # 零样本克隆用的模型，也可以填本地目录；显存小用 0.6B-Base
     tokenizer: Qwen/Qwen3-TTS-Tokenizer-12Hz
+    models_dir: ./third_party/models  # 微调需要的模型会自动下载到这里
+    download_source: auto     # auto（先 HuggingFace 后 ModelScope）| hf | modelscope（国内推荐）
     device: cuda:0
     dtype: bfloat16
     attn: auto                # auto | flash_attention_2 | sdpa
     instruct: ""              # 仅 1.7B 微调模型：用自然语言描述语气，例如 "用耐心讲课的语气"
     startup_timeout: 900
     train:
+      init_model: Qwen/Qwen3-TTS-12Hz-0.6B-Base  # 全量微调：0.6B 约需 12GB 显存；1.7B 建议 32GB 以上
       batch_size: 2
       lr: 2.0e-5
       epochs: 3
