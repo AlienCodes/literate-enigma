@@ -238,8 +238,7 @@ class GPTSoVITSBackend(Backend):
         # 1A：文本 → 音素 + BERT 特征
         path_text = opt_dir / "2-name2text.txt"
         if not path_text.exists() or len(path_text.read_text(encoding="utf-8").strip().splitlines()) < 2:
-            if progress:
-                progress(0.05, "1A 文本处理（音素 + BERT 特征）")
+            self.step(progress, 0.05, "1A 文本处理（音素 + BERT 特征）")
             self.run_logged([self.python, "-s", "GPT_SoVITS/prepare_datasets/1-get-text.py"], self.root,
                             self.env({**base, "bert_pretrained_dir": str(self.p(BERT_DIR))}), "gsv_1a_text")
             part = opt_dir / "2-name2text-0.txt"
@@ -250,8 +249,7 @@ class GPTSoVITSBackend(Backend):
             part.unlink(missing_ok=True)
 
         # 1B：HuBERT 特征 + 32k 音频（+ v2Pro 声纹）
-        if progress:
-            progress(0.12, "1B 提取 HuBERT 特征" + ("与说话人声纹" if "Pro" in self.version else ""))
+        self.step(progress, 0.12, "1B 提取 HuBERT 特征" + ("与说话人声纹" if "Pro" in self.version else ""))
         env_1b = {**base, "cnhubert_base_dir": str(self.p(HUBERT_DIR)), "sv_path": str(self.p(SV_PATH))}
         self.run_logged([self.python, "-s", "GPT_SoVITS/prepare_datasets/2-get-hubert-wav32k.py"], self.root,
                         self.env(env_1b), "gsv_1b_hubert")
@@ -262,8 +260,7 @@ class GPTSoVITSBackend(Backend):
         # 1C：语义 token
         path_sem = opt_dir / "6-name2semantic.tsv"
         if not path_sem.exists() or path_sem.stat().st_size < 31:
-            if progress:
-                progress(0.2, "1C 提取语义 token")
+            self.step(progress, 0.2, "1C 提取语义 token")
             env_1c = {**base, "pretrained_s2G": str(self.p(PRETRAINED_SOVITS[self.version])),
                       "s2config_path": self._s2_config_template()}
             self.run_logged([self.python, "-s", "GPT_SoVITS/prepare_datasets/3-get-semantic.py"], self.root,
@@ -339,6 +336,7 @@ class GPTSoVITSBackend(Backend):
         s2_path = self.work_dir / "tmp_s2.json"
         s2_path.write_text(json.dumps(s2, ensure_ascii=False), encoding="utf-8")
         total_s = int(params["sovits_epochs"])
+        self.step(progress, 0.25, f"训练音色模型 SoVITS（共 {total_s} 轮）……")
         self.run_logged([self.python, "-s", "GPT_SoVITS/s2_train.py", "--config", str(s2_path)], self.root, self.env(),
                         "gsv_s2_train", progress, (0.25, 0.6), _epoch_parser(total_s))
 
@@ -362,6 +360,7 @@ class GPTSoVITSBackend(Backend):
         (opt_dir / "logs_s1").mkdir(parents=True, exist_ok=True)
         s1_path = self.work_dir / "tmp_s1.yaml"
         s1_path.write_text(yaml.dump(s1, default_flow_style=False, allow_unicode=True), encoding="utf-8")
+        self.step(progress, 0.6, f"训练语气与节奏模型 GPT（共 {int(params['gpt_epochs'])} 轮）……")
         self.run_logged([self.python, "-s", "GPT_SoVITS/s1_train.py", "--config_file", str(s1_path)], self.root,
                         self.env({"_CUDA_VISIBLE_DEVICES": self._gpu(), "hz": "25hz"}), "gsv_s1_train",
                         progress, (0.6, 0.95), _epoch_parser(int(params["gpt_epochs"])))
@@ -375,8 +374,7 @@ class GPTSoVITSBackend(Backend):
             "selected": {"id": f"s{_epoch(sovits[-1])}-g{_epoch(gpt[-1])}", "sovits": str(sovits[-1]), "gpt": str(gpt[-1])},
         }
         self.project.update_models(self.name, info)
-        if progress:
-            progress(1.0, "GPT-SoVITS 训练完成")
+        self.step(progress, 1.0, "GPT-SoVITS 训练完成")
         return info
 
     def _list_weights(self) -> "tuple[List[Path], List[Path]]":

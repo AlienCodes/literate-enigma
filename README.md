@@ -4,6 +4,10 @@
 
 嗓子哑了录不了课的时候，把讲稿交给它，就能用"你的声音"读出来，并同时生成字幕。
 
+> **👉 Windows 用户从这里开始：**
+> 1. 下载程序：[**Releases 页面 → VoiceTwin-Windows-v….zip**](https://github.com/AlienCodes/literate-enigma/releases/latest)
+> 2. 照着做：[**Windows 详细使用教程（一步一步，从下载到生成音频）**](docs/Windows详细使用教程.md)
+
 > 你已经录好的课程视频/音频就是训练素材。程序会自动从里面提取你的声音、识别文字、训练一个专属模型，
 > 然后按你本人的语速、停顿和语气来朗读新讲稿。
 
@@ -77,12 +81,15 @@ VoiceTwin 把目前最好的开源技术组合起来，逐项处理：
 
 ### 第 2 步：下载 VoiceTwin
 
-在本页面点击绿色的 **Code → Download ZIP**，解压到例如 `D:\VoiceTwin`（或者 `git clone`）。
+打开 [Releases 页面](https://github.com/AlienCodes/literate-enigma/releases/latest)，在 Assets 里下载 `VoiceTwin-Windows-v….zip`，
+右键"全部解压缩"到 `D:\`，得到 `D:\VoiceTwin`。（也可以点本页面绿色的 **Code → Download ZIP**，或者 `git clone`。）
 
 ### 第 3 步：运行安装脚本
 
 双击 `install_windows.bat`，选择 **1**，粘贴第 1 步的整合包路径（如 `D:\GPT-SoVITS`），等它装完。
-安装脚本会：把 VoiceTwin 装进整合包环境（不改动整合包原有依赖的版本）→ 生成 `config.yaml` → 生成启动脚本 → 自动检查环境。
+安装脚本会：把 VoiceTwin 装进整合包环境（不改动整合包原有依赖的版本）→ 生成 `config.yaml` → 生成启动脚本和桌面图标「声音分身 VoiceTwin」→ 自动检查环境。
+
+> 每一步的截图级说明见 [Windows 详细使用教程](docs/Windows详细使用教程.md)。
 
 ### 第 4 步：补齐预训练模型（如有提示）
 
@@ -107,7 +114,7 @@ bash install.sh --mirror
 
 ## 三步用起来
 
-双击 **`start_webui.bat`**，浏览器会打开 `http://127.0.0.1:7860`：
+双击桌面上的 **「声音分身 VoiceTwin」**（或 `start_webui.bat`），浏览器会打开 `http://127.0.0.1:7860`：
 
 ### ① 准备素材
 

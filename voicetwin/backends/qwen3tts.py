@@ -128,15 +128,13 @@ class Qwen3TTSBackend(WorkerBackend):
         init_model = self._local_model(str(tcfg.get("init_model", "Qwen/Qwen3-TTS-12Hz-0.6B-Base")))
         tokenizer = self._local_model(str(self.bcfg.get("tokenizer", "Qwen/Qwen3-TTS-Tokenizer-12Hz")))
         coded = self.work_dir / "train_with_codes.jsonl"
-        if progress:
-            progress(0.05, "提取音频编码（Qwen3-TTS Tokenizer）")
+        self.step(progress, 0.05, "提取音频编码（Qwen3-TTS Tokenizer）")
         self.run_logged([self.python, "prepare_data.py", "--device", str(self.bcfg.get("device", "cuda:0")),
                          "--tokenizer_model_path", str(tokenizer), "--input_jsonl", str(exp["jsonl"]),
                          "--output_jsonl", str(coded)], finetune_dir, subprocess_env(), "qwen3_prepare")
         out_dir = self.work_dir / "output"
         epochs = int(tcfg.get("epochs", 3))
-        if progress:
-            progress(0.15, f"微调 Qwen3-TTS（{epochs} 轮）")
+        self.step(progress, 0.15, f"微调 Qwen3-TTS（{epochs} 轮）")
         epoch_re = re.compile(r"Epoch (\d+)")
         self.run_logged([self.python, str(WORKERS_DIR / "qwen3_sft_launcher.py"), str(finetune_dir / "sft_12hz.py"),
                          "--init_model_path", str(init_model), "--output_model_path", str(out_dir),
