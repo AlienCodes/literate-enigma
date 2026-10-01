@@ -14,9 +14,9 @@ In October 1945 Fleming, Florey and Chain shared the Nobel prize; Heatley was **
 
 ## 中文
 
-1928年9月，伦敦圣玛丽医院的细菌学家亚历山大·弗莱明度假归来，发现一团**不知从哪儿飘来的**(stray)**霉菌**(mould)**污染了**(contaminated)一只培养葡萄球菌这种常见**细菌**(bacteria)的培养皿，而霉菌周围什么也没长。**坊间传说**(mythology)把它归咎于一扇敞开的窗户；其实孢子很可能**来自**(originated)楼下的实验室，一位同事在那里**培育**(cultivated)霉菌。
+1928年9月，伦敦圣玛丽医院的细菌学家亚历山大·弗莱明度假归来，发现一团**不知从哪儿飘来的**(stray)**霉菌**(mould)**污染了**(contaminated)一只培养葡萄球菌这种**细菌**(bacteria)的培养皿。霉菌周围什么也没长。**坊间传说**(mythology)把它归咎于一扇敞开的窗户；其实孢子很可能**来自**(originated)楼下的实验室，一位同事在那里**培育**(cultivated)霉菌。
 
-弗莱明把霉菌分泌的这种液体称为青霉素，并于1929年6月发表了论文。然而，这种粗提液**未经加工**(crude)、性质**不稳定**(unstable)，又**怎么也**(stubbornly)难以**提纯**(purify)；他和他请来的化学家都缺乏**精炼**(refine)它所需的**专业知识**(expertise)。他**主要**(chiefly)用它来**分离**(isolate)其他**微生物**(microbes)，青霉素就此**沉寂**(dormant)，只是件**稀罕物**(curiosity)，而非一种**疗法**(cure)。
+弗莱明把霉菌分泌的这种液体称为青霉素，并于1929年6月发表了论文。然而，这种**粗制的**(crude)液体性质**不稳定**(unstable)，又**怎么也**(stubbornly)难以**提纯**(purify)；他和他请来的化学家都缺乏**精炼**(refine)它所需的**专业知识**(expertise)。他**主要**(chiefly)用它来**分离**(isolate)其他**微生物**(microbes)，青霉素就此**沉寂**(dormant)，只是件**稀罕物**(curiosity)，而非一种**疗法**(cure)。
 
 约十年后，在牛津，澳大利亚病理学家霍华德·弗洛里与德国出生的**化学家**(chemist)、犹太**难民**(refugee)恩斯特·钱恩一起，**重启**(revived)了这项研究。他们的同事诺曼·希特利用手边的材料**临时拼凑**(improvised)出一套**巧妙的**(ingenious)**装置**(apparatus)，用来**提取**(extract)这种**化合物**(compound)。1940年5月25日，八只小鼠接种了**致死**(lethal)**剂量**(dose)的细菌；只有另外**注射**(injected)了青霉素的那四只活了下来。同年8月，**享有盛誉的**(prestigious)期刊《柳叶刀》刊登了这一**结果**(outcome)。
 

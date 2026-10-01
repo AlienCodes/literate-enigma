@@ -6,7 +6,7 @@ On 29 May 1919, as a total **eclipse** **obscured** the sun, two British **exped
 
 On 6 November, at a **joint** meeting of the Royal Society and the Royal Astronomical Society, the **findings** were **hailed** as confirming it. The Times **proclaimed** a "Revolution in Science"; a New York Times **headline** read "Lights All Askew in the Heavens". Almost **overnight**, Einstein, **eminent** among **physicists**, became a global **celebrity**.
 
-Stockholm proved harder to **dazzle**. The Nobel physics committee valued **rigorous** **experimental** **confirmation**, and its member Allvar Gullstrand, a Nobel-winning eye **specialist**, **deemed** the **empirical** support for relativity **insufficient**. Since no **nomination** **fulfilled** Nobel's **criteria**, the 1921 prize was **reserved** for a year, as the **statutes** **permit**.
+Stockholm proved harder to **dazzle**. The Nobel physics committee valued **rigorous** **experimental** **confirmation**, and committee member Allvar Gullstrand, a Nobel-winning eye **specialist**, **deemed** the **empirical** support for relativity **insufficient**. Since no **nomination** **fulfilled** Nobel's **criteria**, the 1921 prize was **reserved** for a year, as the **statutes** **permit**.
 
 On 9 November 1922 the Royal Swedish Academy of Sciences **conferred** it on Einstein, **citing** his services to theoretical physics, especially his discovery of the law of the photoelectric effect. That law, which **governs** how light **ejects** **electrons** from metal, helped **underpin** **quantum** theory. A letter the next day **clarified** that the prize took no account of relativity. Einstein, then **aboard** a **steamer** **bound for** Japan, would miss the December **ceremony**.
 
@@ -80,7 +80,7 @@ On 11 July 1923, in Gothenburg, Sweden, he **delivered** his Nobel **lecture** b
 
 ## 史实与来源
 - 1919年5月29日日全食，两支英国观测队拍摄太阳附近恒星，检验光线是否被引力偏折：爱丁顿在西非外海的普林西比岛，克罗姆林与戴维森在巴西东北部的索布拉尔（内陆城镇，不是岛）；皇家天文学家戴森统筹（正文未写）。arXiv:1912.07674：https://arxiv.org/abs/1912.07674 （直连被代理拦截，只核到摘要）；FAPESP：https://revistapesquisa.fapesp.br/en/when-light-bent/ ；Science Friday：https://www.sciencefriday.com/articles/einstein-eclipse/ （被拦截，只核到摘要）
-- 1919年11月6日，皇家学会与皇家天文学会召开联席会议，宣布结果与爱因斯坦的预言相符（正文用 hailed as consistent，不写 proved；两地测值误差不小，索布拉尔一台望远镜的数据因对焦问题被弃，正文不写数字）。Science Friday（同上，仅摘要）；arXiv:1912.07674（同上，仅摘要）
+- 1919年11月6日，皇家学会与皇家天文学会召开联席会议，宣布结果与爱因斯坦的预言相符（正文用 hailed as confirming it，不写 proved；两地测值误差不小，索布拉尔一台望远镜的数据因对焦问题被弃，正文不写数字）。Science Friday（同上，仅摘要）；arXiv:1912.07674（同上，仅摘要）
 - 11月7日《泰晤士报》标题 “Revolution in Science”；11月10日《纽约时报》标题 “Lights All Askew in the Heavens”。BJHS（剑桥）“Constructing a 'revolution in science'”；rarenewspapers.com 1919-11-10《纽约时报》原报；Time
 - 爱丁顿数据偏向之争（1980年有学者提出；1979年重测底片结果与原值基本一致；Kennefick 认为无可信造假证据）：正文不涉及。Physics Today 2009：https://physicstoday.aip.org/features/testing-relativity-from-the-1919-eclipse-a-question-of-bias （被拦截，只核到摘要）
 - 委员会看重实验确证；委员、1911年诺贝尔生理学或医学奖得主、眼科学家古尔斯特兰德认为相对论未得到实验确证（正文不写动机，不直接引其报告）。Europhysics News 2005：https://www.europhysicsnews.org/articles/epn/pdf/2005/04/epn05405.pdf （被拦截，只核到摘要）；Hektoen International 2020：https://hekint.org/2020/03/31/albert-einstein-headed-off-at-the-nobel-pass-by-alvar-gullstrand/ ；Wikipedia「Allvar Gullstrand」：https://en.wikipedia.org/wiki/Allvar_Gullstrand

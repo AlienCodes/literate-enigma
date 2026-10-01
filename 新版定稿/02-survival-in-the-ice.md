@@ -26,7 +26,7 @@ Legend **rightly** **salutes** Shackleton for his **charisma**. Yet both ends of
 
 2022年3月5日，搜寻队在3,008米深的海底**找到**(located)了**残骸**(wreck)，船身**直立**(upright)，**完好无损**(intact)。它位于沃斯利1915年11月所记位置以南约四英里处；这个位置是小艇出航前几个月测算的。冰面一直在**漂移**(shifting)，在上面**计算**(calculation)出的位置只有这么一点**偏差**(discrepancy)，已属难得。
 
-传说**称颂**(salutes)沙克尔顿的**超凡魅力**(charisma)，这**理所当然**(rightly)。可这个故事的两头，都**取决于**(hinge on)沃斯利**一丝不苟的**(meticulous)**算术**(arithmetic)。领导力让28人始终抱成一团；**精确**(precision)则把其中六人送**上岸**(ashore)，送到了求救可及之处，一个世纪后，又让他们的船重回世人视野。
+传说**称颂**(salutes)沙克尔顿的**超凡魅力**(charisma)，这**理所当然**(rightly)。可这个故事的两头，都**取决于**(hinge on)沃斯利**一丝不苟的**(meticulous)**算术**(arithmetic)。领导力让28人始终抱成一团；**精确**(precision)则把其中六人送**上岸**(ashore)，送到了能求得救援的地方，一个世纪后，又让他们的船重回世人视野。
 
 ## 速查表
 | 词 | 释义 | 段 |

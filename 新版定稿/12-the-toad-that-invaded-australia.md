@@ -2,7 +2,7 @@
 # ZH: 入侵澳洲的毒蟾
 ## 英文
 
-Greyback cane **beetles**, whose **larvae** **devour** roots, were **plaguing** **lucrative** sugar **plantations** in Queensland, north-eastern Australia. In June 1935, 102 cane toads, **bulky** **amphibians** native to the Americas, were **imported** from Hawaii. That August about 2,400 of their young were **released**. **Biological** control, setting one **species** against a **pest**, had an **ambitious** new **recruit**.
+Greyback cane **beetles**, whose **larvae** **devour** roots, were **plaguing** **lucrative** sugar **plantations** in Queensland, north-eastern Australia. In June 1935 Queensland **imported** 102 cane toads, **bulky** **amphibians** native to the Americas, from Hawaii. That August about 2,400 of their young were **released**. **Biological** control, setting one **species** against a **pest**, had an **ambitious** new **recruit**.
 
 The **hasty** plan met **opposition**. In November 1935 an insect expert, Walter Froggatt, **persuaded** officials to **halt** releases; after Queensland's **lobbying**, they **resumed** in September 1936. The **scheme** **flopped**: the toads barely **dented** beetle numbers, perhaps because the insects stayed high up on cane **stalks**.
 
@@ -14,7 +14,7 @@ Biological control can **triumph**. From 1926 the cactus **moth**, Cactoblastis,
 
 ## 中文
 
-灰背蔗**甲虫**(beetles)的**幼虫**(larvae)**啃食**(devour)根系，正**困扰**(plaguing)着澳大利亚东北部昆士兰州**利润丰厚的**(lucrative)甘蔗**种植园**(plantations)。1935年6月，102只甘蔗蟾蜍从夏威夷被**引进**(imported)，这是一种原产美洲、**体型粗壮的**(bulky)**两栖动物**(amphibians)。同年8月，它们的约2,400只后代被**释放**(released)到野外。**生物**(Biological)防治，即用一个**物种**(species)去对付一种**害虫**(pest)，就此迎来了一名**雄心勃勃的**(ambitious)**新兵**(recruit)。
+灰背蔗**甲虫**(beetles)的**幼虫**(larvae)**啃食**(devour)根系，正**困扰**(plaguing)着澳大利亚东北部昆士兰州**利润丰厚的**(lucrative)甘蔗**种植园**(plantations)。1935年6月，昆士兰州从夏威夷**引进**(imported)了102只甘蔗蟾蜍，这是一种原产美洲、**体型粗壮的**(bulky)**两栖动物**(amphibians)。同年8月，它们的约2,400只后代被**释放**(released)到野外。**生物**(Biological)防治，即用一个**物种**(species)去对付一种**害虫**(pest)，就此迎来了一名**雄心勃勃的**(ambitious)**新兵**(recruit)。
 
 这个**草率的**(hasty)计划遭到了**反对**(opposition)。1935年11月，昆虫专家沃尔特·弗罗格特**说服**(persuaded)官员**叫停**(halt)释放；经昆士兰州**游说**(lobbying)，释放于1936年9月**恢复**(resumed)。这套**方案**(scheme)**以失败告终**(flopped)：蟾蜍几乎没能**削减**(dented)甲虫的数量，或许是因为这些昆虫一直待在甘蔗**茎秆**(stalks)的高处。
 

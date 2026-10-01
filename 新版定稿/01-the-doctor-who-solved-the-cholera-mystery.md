@@ -84,6 +84,7 @@ In 1855 a government **inquiry** **declined** to **condemn** the pump, **contend
 
 ## 史实与来源
 - 词数说明：全文 274 词，超出 271 上限 3 词，为用户 2026-09-30 特批（开头写明具体月份）。
+- 按 Snow 1855 表一（HistData Snow.dates），9月1–10日死亡 70+127+76+71+45+37+32+30+24+18＝530 人，故正文写 "In the first ten days of September 1854 … upwards of 500 people perished"（死亡数，不是发病数）。https://github.com/vincentarelbundock/Rdatasets/blob/master/csv/HistData/Snow.dates.csv
 - 疫情于1854年8月31日夜间暴发，十天内在宽街与剑桥街交会处250码范围内造成五百余例致命病例（斯诺原话 upwards of five hundred fatal attacks）；「拥挤」为叙事描写，斯诺同页记有大批出租寓所的房客。John Snow, On the Mode of Communication of Cholera, 2nd ed. (1855), pp.38–39：https://www.gutenberg.org/ebooks/72894 ；扫描本 https://kbroman.org/BMI881/assets/snow_cholera.pdf
 - 当时主流医学把霍乱归于「瘴气」，即腐败物质散发的有害空气。Wikipedia「1854 Broad Street cholera outbreak」（Competing theories of cholera 一节）：https://en.wikipedia.org/wiki/1854_Broad_Street_cholera_outbreak
 - 斯诺自1849年第一版起主张霍乱病原是「吞下去」的，经被病人排泄物污染的水传播。Snow 1855 序言与 p.15：https://www.gutenberg.org/ebooks/72894 ；Crouch Rare Books 对1849年第一版的说明：https://crouchrarebooks.com/browse/the-first-and-second-editions-of-snows-famous-epidemiological-work-inscribed-and-from-the-library-of-the-right-honourable-sir-robert-peel-prime-minister/?print=pdf
@@ -99,11 +100,11 @@ In 1855 a government **inquiry** **declined** to **condemn** the pump, **contend
 - 汉普斯特德西区一位59岁的寡妇好几个月没到过宽街一带，因喜欢这口泵的水，每天有车从宽街给她运去一大瓶；她8月31日、9月1日喝了，9月2日死亡。Snow 1855, p.44：https://kbroman.org/BMI881/assets/snow_cholera.pdf
 - 来访的侄女也喝了这水，回到「a high and healthy part of Islington」的家中后同样死于霍乱；当时两地都没有霍乱。Snow 1855, pp.44–45：https://kbroman.org/BMI881/assets/snow_cholera.pdf
 - 1855年卫生总会科学调查委员会（Committee for Scientific Inquiries）认为霍乱分布「belongs more to the air than the water」，泵水若有害，也只是吸收了大气中的致病因素。Paneth et al., AJPH 1998：https://epi-snow.ph.ucla.edu/articles/Paneth_Nigel_John_Snow_AJPH_1998.pdf ；Crouch Rare Books：https://crouchrarebooks.com/browse/all-smell-is-disease-2/
-- 啤酒厂工人按原文称 men（Snow p.42），正文写 70 men at a nearby brewery；斯诺用 fatal attacks，故写 daily fatal attacks。
+- 啤酒厂工人按原文称 men（Snow p.42），正文写 More than 70 nearby brewery workers；斯诺用 fatal attacks，故写 daily fatal attacks。
 - 斯诺9月3日晚检查泵水，只见很少有机杂质，一时不敢下结论，随后才去登记总署抄死亡名单。Snow 1855, p.39（src/snow1855.txt 约第1530行）。
 - 副牧师亨利·怀特黑德起初不信斯诺，1855年上半年挨家挨户调查死者情况，结论是斯诺是对的；但1855年官方调查委员会仍未采信，正文只说他证明斯诺是对的，不说官方翻案。https://www.cumbrianlives.org.uk/lives/the-rev-henry-whitehead.html ；https://johnsnow.matrix.msu.edu/work.php/id=15-78-AA/
 - 怀特黑德是圣詹姆斯教区（St James's, Westminster）霍乱调查委员会成员，该委员会1854年11月25日至1855年7月25日工作，与政府委员会同期；他原想反驳斯诺，调查却发现喝宽街泵水者死亡远多于不喝者，还找到可能的首例（5个月大的婴儿）及紧邻水井的渗粪池。Broadview Press：https://broadviewpress.com/?p=50781 ；Paneth 1998（同上）。
 - 83例死者中73例离宽街泵最近，10例离别的泵更近，故正文写 Most victims 而非 Virtually all。Snow 1855, pp.39–40。
-- 帕克斯的评论针对斯诺1855年书中的地图（地图1854年12月首次展示），故正文写 the cluster on Snow's map，不写斯诺当时据图找泵。
+- 帕克斯的评论针对斯诺1855年书中的地图（地图1854年12月首次展示），故正文写 the cluster on that map，不写斯诺当时据图找泵。
 - 词汇说明：register 机器分档为△（Zipf 4.59），保留理由：文中取「登记簿」义（death register），非基础「注册」义，速查表另收语域等考研义；peak 为✓（峰值义为考研常考）。
 - 济贫院有自己的井、侄女回伊斯灵顿家中后死亡：Snow 1855, pp.42, 44–45。汉普斯特德距苏豪约四英里，故写 miles away。

@@ -14,13 +14,13 @@ In January 2025 Oregon State University's William Ripple, an **advocate** of the
 
 ## 中文
 
-黄石公园那些**标志性的**(iconic)灰狼，到1926年已遭**赶尽杀绝**(exterminated)。1995年1月12日，八只在加拿大艾伯塔省**捕获**(captured)的狼装在**板条箱**(crates)里，**运**(hauled)进公园；随后又来了六只。3月下旬，它们被放出**围栏**(enclosures)，得以在**荒野**(wilderness)中**四处游荡**(roamed)。
+黄石公园那些**标志性的**(iconic)灰狼，到1926年已遭**赶尽杀绝**(exterminated)。1995年1月12日，八只在加拿大艾伯塔省**捕获**(captured)的狼装在**板条箱**(crates)里，一路**拖运**(hauled)进了公园；随后又来了六只。3月下旬，它们被放出**围栏**(enclosures)，得以在**荒野**(wilderness)中**四处游荡**(roamed)。
 
 2014年2月，一段由作家乔治·蒙比奥特解说的视频在网上**疯传**(viral)，**编织**(spun)出一个**引人入胜的**(compelling)**故事**(narrative)。片中说，麋鹿被狼捕杀得数量变少，又处处**提防**(wary)着狼，便**撤离**(retreated)了河谷，于是**柳树**(willows)**繁茂**(flourish)起来，河岸也**稳固**(stabilise)下来。生态学家把这称为营养**级联**(cascade)：**捕食者**(predators)吃掉或**吓阻**(deter)食草动物，**植被**(vegetation)便**恢复生长**(rebounds)。
 
 然而，**普查**(census)结果首先就**削弱**(undermined)了“鹿被狼吃少了”这一说法。黄石北部草场的麋鹿在1994年1月达到约19,000头的峰值，狼还没来就已**日渐减少**(dwindling)；**猎人**(hunters)、**干旱**(drought)和熊不断**削减**(depleted)着鹿群。“恐惧”一说看来也站不住。2013年6月，阿瑟·米德尔顿领导的怀俄明大学团队发现，园区东侧**戴项圈的**(collared)麋鹿照样**吃草**(grazing)，除非狼**闯**(ventured)进半英里以内。
 
-树木方面的证据也**好**(fared)不到哪里去。2021年11月，犹他州立大学的伊莱恩·布赖斯指出，只**抽样测量**(sampling)最高的**山杨**(aspens)，会把它们的**再生**(regrowth)程度**夸大**(overstated)四到七倍。更根本的**漏洞**(flaw)出在水上。科罗拉多州立大学的汤姆·霍布斯和戴维·库珀用围栏把麋鹿**挡在外面**(excluded)，并修建**人工**(artificial)海狸**坝**(dams)。2024年1月，他们报告说，**不断冲蚀**(eroding)河床的溪流下切太深，那些**矮小的**(stunted)柳树已经够不着水了。
+树木方面的证据也**好不到哪里去**(fared)：2021年11月，犹他州立大学的伊莱恩·布赖斯指出，只**抽样测量**(sampling)最高的**山杨**(aspens)，会把它们的**再生**(regrowth)程度**夸大**(overstated)四到七倍。更根本的**漏洞**(flaw)出在水上。科罗拉多州立大学的汤姆·霍布斯和戴维·库珀用围栏把麋鹿**挡在外面**(excluded)，并修建**人工**(artificial)海狸**坝**(dams)。2024年1月，他们报告说，**不断冲蚀**(eroding)河床的溪流下切太深，那些**矮小的**(stunted)柳树已经够不着水了。
 
 2025年1月，这一**假说**(hypothesis)的**倡导者**(advocate)、俄勒冈州立大学的威廉·里普尔发文称，黄石的级联效应位居世界最强之列；批评者则对他的方法提出**质疑**(disputed)。问题仍**悬而未决**(unresolved)，但狼投下的影子比**寓言**(fable)所说的要淡，相关研究也要**复杂纠结**(messier)得多。一门肯**修正**(revise)自己**珍视的**(cherished)案例的**学科**(discipline)，或许比那则寓言更值得信赖。
 
@@ -58,6 +58,7 @@ In January 2025 Oregon State University's William Ripple, an **advocate** of the
 | collared | v. (collar) 给（动物）戴项圈；（口）揪住，逮住；n. 衣领；（动物的）项圈（white-collar 白领的） | 3 |
 | grazing | v. (graze) （牲畜）吃草，放牧；擦伤，擦破（graze one's knee）；n. 擦伤 | 3 |
 | ventured | v. (venture) 冒险去（某处），斗胆前往（venture out/into/within）；大胆说出（venture an opinion）；n. （商业）风险项目（joint venture 合资企业） | 3 |
+| fared | v. (fare) （在某方面）进展，表现（fare no better 也好不到哪里去；fare well/badly 进展顺利/不顺；How did you fare? 你考得怎么样？）；n. 车费，船费，票价 | 4 |
 | sampling | n. (sample 的动名词) 抽样，采样（random sampling 随机抽样）；sample n. 样本，样品；v. 抽样；品尝，体验 | 4 |
 | aspens | n. (aspen) 山杨，颤杨（杨属，叶柄扁、风吹即颤；quaking aspen 美洲颤杨） | 4 |
 | overstated | v. (overstate) 夸大，言过其实（overstate the case/importance）；overstatement n.；反义 understate | 4 |
@@ -66,7 +67,6 @@ In January 2025 Oregon State University's William Ripple, an **advocate** of the
 | excluded | v. (exclude) 把……排除在外，不让进入（exclude sb/sth from）；不包括，排除（可能性）（exclusion n.；exclusive adj. 独有的，排外的） | 4 |
 | artificial | adj. 人造的，人工的（artificial intelligence 人工智能）；虚假的，矫揉造作的（an artificial smile） | 4 |
 | dams | n. (dam) 坝，水坝，堤（build a dam；beaver dam 海狸坝）；v. 筑坝拦（水） | 4 |
-| fared | v. (fare) （在某方面）进展，表现（fare well/badly 进展顺利/不顺；How did you fare? 你考得怎么样？）；n. 车费，船费，票价 | 4 |
 | eroding | v. (erode) 侵蚀，冲蚀（水土、河床）；削弱，逐渐毁坏（erode confidence/trust）；erosion n. 侵蚀 | 4 |
 | stunted | adj. 发育不良的，矮小的（stunted trees/growth）；stunt v. 阻碍……的发育；n. 特技，噱头（publicity stunt） | 4 |
 | advocate | n. 倡导者，拥护者（an advocate of/for）；辩护人，律师；v. 提倡，主张（advocate doing sth） | 5 |
@@ -88,5 +88,5 @@ In January 2025 Oregon State University's William Ripple, an **advocate** of the
 - 犹他州立大学伊莱恩·布赖斯等《Sampling bias exaggerates a textbook example of a trophic cascade》，Ecology Letters，2021年11月网络首发（正刊2022）：只量最高的山杨幼树，把更新高估4—7倍；随机抽样仍有级联，但较弱（正文写 In November 2021）。ScienceDaily 2021-11-13；PMC9298920：https://pmc.ncbi.nlm.nih.gov/articles/PMC9298920/
 - 科罗拉多州立大学汤姆·霍布斯、戴维·库珀自2001年起做围栏（排除麋鹿）×仿海狸坝（抬高水位）实验；海狸离开后溪流下切、地下水位下降，柳树根够不到水；2024年1月在 Ecological Monographs 发表：仅靠狼回归无法逆转（正文只转述）。CSU NREL：https://www.nrel.colostate.edu/?p=13965 ；TWS：https://wildlife.org/apex-predators-dont-restore-wetland-willows/
 - 【更正】William J. Ripple 等（含 Robert Beschta，俄勒冈州立大学）《The strength of the Yellowstone trophic cascade after wolf reintroduction》，Global Ecology and Conservation 58，2025年1月14日发表（doi:10.1016/j.gecco.2025.e03428）：2001—2020年北部草场河岸柳树冠幅体积增约1500%，称其为世界上最强的营养级联之一。v2 写作“反驳称级联较弱但存在”属立场颠倒，已改。PDF：https://consbio.org/wp-content/uploads/2025/02/1-s2.0-S2351989425000290-main.pdf
-- 随后 MacNulty、Cooper 等提出正式商榷，认为“用高度推算体积再用高度预测体积”存在循环论证，1500%不成立（正文只写 critics challenged his methods，不写日期与期刊）。EcoEvoRxiv：https://ecoevorxiv.org/repository/view/9749/ ；scienceblog.com 称该评论2025年10月发表（单一来源，正文不用月份）
+- 随后 MacNulty、Cooper 等提出正式商榷，认为“用高度推算体积再用高度预测体积”存在循环论证，1500%不成立（正文只写 critics disputed his methods，不写日期与期刊）。EcoEvoRxiv：https://ecoevorxiv.org/repository/view/9749/ ；scienceblog.com 称该评论2025年10月发表（单一来源，正文不用月份）
 - 核查环境说明：以上为检索结果交叉核对，期刊全文未逐页抓取。用户上传素材只借题材，未采信其事实。
