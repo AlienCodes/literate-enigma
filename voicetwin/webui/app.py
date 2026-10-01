@@ -33,8 +33,8 @@ import voicetwin
 from voicetwin import workflows as wf
 from voicetwin.config import Config
 from voicetwin.utils.log import get_logger
-from voicetwin.utils.progress import PROGRESS_CSS, render_notice_html
-from voicetwin.webui.tasks import current_task, request_stop, stream_task, task_banner_md
+from voicetwin.utils.progress import PROGRESS_CSS, format_elapsed, render_notice_html
+from voicetwin.webui.tasks import KIND_TABS, current_task, request_stop, stream_task, task_banner_md
 
 try:  # 浏览器标签页标题显示进度、完成时响一声（U1 提供；没有也不影响使用）
     from voicetwin.utils.progress import PROGRESS_JS
@@ -503,6 +503,9 @@ def _voice_status_md(cfg: Config, voice: Any) -> str:
     except ValueError as exc:
         return "⚠️ " + _md_text(exc)
     name = _md_text(v)
+    running = _running_line(v)
+    if running and not project.exists:  # 第一次准备素材，还在做：不要再说「还没有素材，请点开始」
+        return running.strip()
     if not project.exists:
         return (f"「{name}」是新声音，还没有素材。👉 下一步：在「① 准备素材」里填讲课视频所在的文件夹，"
                 "点「开始准备素材」。")
@@ -524,7 +527,15 @@ def _voice_status_md(cfg: Config, voice: Any) -> str:
               + "　👉 现在可以去「③ 生成讲课音频」了")
     if minutes < 10:
         md += "\n\n⚠️ 素材偏少（不到 10 分钟），声音可能不够像，建议再加一些讲课视频"
-    return md
+    return running + md
+
+
+def _running_line(voice: str) -> str:
+    info = current_task()
+    if info and info.get("running") and str(info.get("voice") or "") == voice:
+        pct = (info.get("snap") or {}).get("pct", 0)
+        return f"🔄 后台正在「{_md_text(info.get('label'))}」（完成 {pct}%），做完后这里会更新。\n\n"
+    return ""
 
 
 def _gen_warn_md(cfg: Config, voice: Any, backend: Any) -> str:
@@ -1247,10 +1258,14 @@ def _quick_problems(cfg: Config) -> List[str]:
             return []
     if str(cfg.get("backend") or "gptsovits") != "gptsovits":
         return []
+    project = None
+    existed = True
     try:
         from voicetwin.backends.gptsovits import GPTSoVITSBackend
 
-        b = GPTSoVITSBackend(cfg, wf.Project(cfg, "__quick__"))
+        project = wf.Project(cfg, "__quick__")
+        existed = project.root.exists()
+        b = GPTSoVITSBackend(cfg, project)  # 只看路径，不启动任何程序（但会建一个空的工作目录，下面删掉）
         if b.external_url:
             return []
         if not b.root or not b.root.exists():
@@ -1259,6 +1274,9 @@ def _quick_problems(cfg: Config) -> List[str]:
             return ["缺少 GPT-SoVITS 的模型文件。请打开「🩺 环境检查」页，点「⬇️ 下载缺少的模型」。"]
     except Exception as exc:
         log.debug(f"快速检查出错：{exc}")
+    finally:
+        if project is not None and not existed:
+            shutil.rmtree(project.root, ignore_errors=True)
     return []
 
 
@@ -1339,6 +1357,15 @@ def _report_audio_files(report: Dict[str, Any]) -> List[str]:
             seen.add(f)
             out.append(f)
     return out
+
+
+ATTACH_MISSED_MD = "刚才那个任务已经做完了，页面上已经换成最新的结果。"
+
+
+def _attach_missed(*args: Any, **kwargs: Any) -> None:
+    """接上正在进行的任务时用的占位函数：stream_task 发现同一个任务还在做就直接接上，不会调用它；
+    万一任务恰好在这一瞬间做完了，它什么也不做（不会用空的输入重新开始一次）。"""
+    return None
 
 
 def _verify_fallback(cfg: Config, voice: str, originals: Sequence[str], generated: Sequence[str],
@@ -1648,6 +1675,36 @@ class WebUI:
             return _friendly(f, what, _log_path(self.cfg, voice))
         return ""
 
+    @staticmethod
+    def _attaching(kind: str, voice: str) -> bool:
+        """同一种任务、同一个声音正在后台做（例如刷新网页后再点一次同一个按钮）：直接接上看进度，
+        不检查输入框（刷新后输入框是空的）。"""
+        info = current_task()
+        return bool(info and info.get("running") and info.get("kind") == kind
+                    and str(info.get("voice") or "") == str(voice or ""))
+
+    @staticmethod
+    def _other_task(kind: str, voice: str) -> str:
+        """另一件事正在做（不是同一种任务、同一个声音）时的说明；没有时返回 ''。
+
+        在检查输入之前先说这个：例如素材还在准备时点「开始训练」，应该说「正在准备素材，请等它完成」，
+        而不是「这个声音还没有准备素材」。"""
+        info = current_task()
+        if not info or not info.get("running"):
+            return ""
+        if info.get("kind") == kind and str(info.get("voice") or "") == str(voice or ""):
+            return ""
+        snap = info.get("snap") or {}
+        who = f"（声音：{info['voice']}）" if info.get("voice") else ""
+        tab = KIND_TABS.get(str(info.get("kind")), "")
+        return (f"现在正在「{info.get('label')}」{who}，已经进行 {format_elapsed(snap.get('elapsed'))}"
+                f"（{snap.get('pct', 0)}%）。同一时间只能做一件事，请等它完成后再点。"
+                + (f"进度可以在「{tab}」页看到。" if tab else ""))
+
+    @staticmethod
+    def _missed(attach: bool, st: Dict[str, Any]) -> bool:
+        return bool(attach and "value" in st and st.get("value") is None and not st.get("error"))
+
     def _project(self, voice: str) -> Tuple[Optional[Any], str]:
         """(Project, 出错说明)。名字不合法时返回说明而不是抛异常。"""
         try:
@@ -1693,7 +1750,10 @@ class WebUI:
 
     def on_load(self) -> Tuple[Any, ...]:
         """打开（或刷新）网页时：声音列表、当前声音的状态和片段、后台任务提示、快速检查、声音库。"""
-        voice_upd = self.refresh_voices()
+        info = current_task()
+        running_voice = str(info.get("voice") or "") if info and info.get("running") else ""
+        # 后台有任务在做时，直接选中那个声音：再点同一个按钮就能接上进度（而不是提示「正在做别的事」）
+        voice_upd = self.refresh_voices(running_voice or None)
         v = voice_upd.get("value") or ""
         status = self.on_voice_change(v)
         banner = task_banner_md()
@@ -1740,24 +1800,30 @@ class WebUI:
         if not v:
             yield self._o(O, prep_bar=self._notice(NEED_VOICE), **idle)
             return
+        busy = self._other_task("prepare", v)
+        if busy:
+            yield self._o(O, prep_bar=self._notice(busy), prep_log=busy, **idle)
+            return
         project, err = self._project(v)
         if project is None:
             yield self._o(O, prep_bar=self._notice(err), prep_md="", **idle)
             return
+        attach = self._attaching("prepare", v)
         uploads = _paths_of(files)
         folder_s = str(folder or "").strip().strip('"').strip("'").strip()
-        if folder_s and not Path(folder_s).expanduser().exists():
+        if not attach and folder_s and not Path(folder_s).expanduser().exists():
             yield self._o(O, prep_bar=self._notice(
                 f"找不到这个文件夹：{folder_s}。请检查是否写错（可以在文件夹窗口顶部的地址栏复制路径，再粘贴过来）。"), **idle)
             return
         if folder_s:
             folder_s = str(Path(folder_s).expanduser())
-        if not uploads and not folder_s and not project.exists:
+        if not attach and not uploads and not folder_s and not project.exists:
             yield self._o(O, prep_bar=self._notice("请上传文件或填写文件夹路径"), **idle)
             return
         overrides = {"asr": {"engine": asr or "faster-whisper", "language": lang or "auto"},
                      "denoise": denoise or "auto", "separate_vocals": bool(separate)}
-        stream = stream_task("prepare", "准备素材", v, _prepare_job, self.cfg, v, uploads, folder_s, overrides,
+        stream = stream_task("prepare", "准备素材", v, _attach_missed if attach else _prepare_job, self.cfg, v, uploads,
+                             folder_s, overrides,
                              stages=_stages(self.cfg, "prepare"), note=NOTE)
         for text, st in stream:
             if st.get("busy"):
@@ -1768,8 +1834,11 @@ class WebUI:
                               prep_stop=self._stop_shown(), prep_next=_btn(PREP_NEXT, visible=False))
                 continue
             ok = "value" in st and not st.get("error")
-            md = _summary_md(st.get("value") or {}) if ok else self._final_md(st, "素材准备", v)
-            if ok:
+            if self._missed(attach, st):
+                md = ATTACH_MISSED_MD
+            else:
+                md = _summary_md(st.get("value") or {}) if ok else self._final_md(st, "素材准备", v)
+            if ok and not self._missed(attach, st):
                 _info("✅ 素材准备完成！可以去「② 训练模型」了")
             yield self._o(O, prep_bar=st.get("bar", ""), prep_log=text, prep_md=md,
                           voice=_upd(choices=_voices(self.cfg), value=v), clips_count=_clips_count_md(self.cfg, v),
@@ -1893,15 +1962,20 @@ class WebUI:
         if not v:
             yield self._o(O, proof_bar=self._notice(NEED_VOICE), **idle)
             return
+        busy = self._other_task("proofcheck", v)
+        if busy:
+            yield self._o(O, proof_bar=self._notice(busy), prep_log=busy, **idle)
+            return
         project, err = self._project(v)
         if project is None or not project.exists:
             yield self._o(O, proof_bar=self._notice(err or NEED_PREPARE), **idle)
             return
+        attach = self._attaching("proofcheck", v)
         fn = getattr(wf, "run_proofcheck", None)
-        if not callable(fn):
+        if not attach and not callable(fn):
             yield self._o(O, proof_bar=self._notice("这个版本还没有「自动查找错字」功能。"), **idle)
             return
-        stream = stream_task("proofcheck", "查找可能的错字", v, fn, self.cfg, v,
+        stream = stream_task("proofcheck", "查找可能的错字", v, _attach_missed if attach else fn, self.cfg, v,
                              stages=[(0.0, "把每段话再听一遍，找出可能的错字")], note=NOTE)
         for text, st in stream:
             if st.get("busy"):
@@ -1912,7 +1986,9 @@ class WebUI:
                               proof_stop=self._stop_shown())
                 continue
             ok = "value" in st and not st.get("error")
-            if ok:
+            if self._missed(attach, st):
+                md = ATTACH_MISSED_MD
+            elif ok:
                 r = st.get("value") or {}
                 md = (f"### ✅ 检查完了：一共查了 {r.get('checked', 0)} 条，其中 **{r.get('flagged', 0)}** 条可能有错"
                       "（已在表格里标红）")
@@ -1948,18 +2024,24 @@ class WebUI:
         if not v:
             yield self._o(O, train_bar=self._notice(NEED_VOICE), **idle)
             return
+        busy = self._other_task(kind, v)
+        if busy:
+            yield self._o(O, train_bar=self._notice(busy), train_log=busy, **idle)
+            return
         project, err = self._project(v)
         if project is None or not project.exists:
             yield self._o(O, train_bar=self._notice(err or NEED_PREPARE), **idle)
             return
         backend = str(backend or self.default_train)
+        attach = self._attaching(kind, v)
         if kind == "train":
-            stream = stream_task("train", "训练模型", v, wf.run_train, self.cfg, v, backend,
+            stream = stream_task("train", "训练模型", v, _attach_missed if attach else wf.run_train, self.cfg, v, backend,
                                  stages=_stages(self.cfg, "train", backend),
                                  hint="训练通常要 30~90 分钟（素材越多越久），可以先去做别的事", note=NOTE, **opts)
             what, busy = "训练", TRAIN_BUSY
         else:
-            stream = stream_task("select", "重新挑选最佳模型", v, wf.run_select, self.cfg, v, backend,
+            stream = stream_task("select", "重新挑选最佳模型", v, _attach_missed if attach else wf.run_select, self.cfg, v,
+                                 backend,
                                  stages=_stages(self.cfg, "select"), note=NOTE)
             what, busy = "挑选模型", SELECT_BUSY
         plan = ""
@@ -1977,7 +2059,9 @@ class WebUI:
                 continue
             ok = "value" in st and not st.get("error")
             info = st.get("value") or {}
-            if ok and kind == "train":
+            if self._missed(attach, st):
+                md = ATTACH_MISSED_MD
+            elif ok and kind == "train":
                 md = _train_done_md(info, plan)
                 _info("✅ 训练完成！可以去「③ 生成讲课音频」了")
             elif ok:
@@ -2048,19 +2132,24 @@ class WebUI:
         if not v:
             yield self._o(O, gen_bar=self._notice(NEED_VOICE), **idle)
             return
+        busy = self._other_task("generate", v)
+        if busy:
+            yield self._o(O, gen_bar=self._notice(busy), gen_log=busy, **idle)
+            return
         project, err = self._project(v)
         if project is None or not project.exists:
             yield self._o(O, gen_bar=self._notice(err or NEED_PREPARE), **idle)
             return
+        attach = self._attaching("generate", v)
         try:
             from voicetwin.cli import _parse_redo
 
-            redo_list = _parse_redo(str(redo or ""))
+            redo_list = [] if attach else _parse_redo(str(redo or ""))
         except ValueError as exc:
             yield self._o(O, gen_bar=self._notice(str(exc)), **idle)
             return
         source, stem = self._source(text, sfile)
-        if not source:
+        if not source and not attach:
             yield self._o(O, gen_bar=self._notice("请先在「讲稿」框里粘贴讲稿，或上传讲稿文件。"), **idle)
             return
         fmt = str(out_fmt or self.cfg.get_path("synth.output_format", "wav") or "wav")
@@ -2068,7 +2157,8 @@ class WebUI:
         q = str(quality or "balanced")
         factor = _speed_factor(speed)
         log.info(f"质量 {q}（{QUALITY_SHORT.get(q, q)}），语速系数 {factor}")
-        stream = stream_task("generate", "生成讲课音频", v, wf.run_narrate, self.cfg, v, source, out=str(out),
+        stream = stream_task("generate", "生成讲课音频", v, _attach_missed if attach else wf.run_narrate, self.cfg, v, source,
+                             out=str(out),
                              backend_name=str(backend or self.default_synth), quality=q, speed=factor,
                              reference=str(ref or "").strip(), redo=redo_list, stages=_stages(self.cfg, "narrate"),
                              note=NOTE)
@@ -2079,6 +2169,9 @@ class WebUI:
             if not st.get("done"):
                 yield self._o(O, gen_bar=st.get("bar", ""), gen_log=logs, gen_btn=self._busy_btn(GEN_BUSY),
                               gen_stop=self._stop_shown(), speed_try=_upd(interactive=False))
+                continue
+            if self._missed(attach, st):
+                yield self._o(O, gen_bar=st.get("bar", ""), gen_log=logs, gen_md=ATTACH_MISSED_MD, **idle)
                 continue
             if "value" not in st or st.get("error"):
                 yield self._o(O, gen_bar=st.get("bar", ""), gen_log=logs, gen_md=self._final_md(st, "生成", v), **idle)
@@ -2165,6 +2258,10 @@ class WebUI:
         if not v:
             yield self._o(O, gen_bar=self._notice(NEED_VOICE), **idle)
             return
+        busy = self._other_task("speed", v)
+        if busy:
+            yield self._o(O, gen_bar=self._notice(busy), gen_log=busy, **idle)
+            return
         project, err = self._project(v)
         if project is None or not project.exists:
             yield self._o(O, gen_bar=self._notice(err or NEED_PREPARE), **idle)
@@ -2173,7 +2270,9 @@ class WebUI:
         factor = _speed_factor(speed)
         out = project.cache_dir / "speed_preview" / f"语速_{int(round(_num(speed) or 0)):+d}.wav"
         out.parent.mkdir(parents=True, exist_ok=True)
-        stream = stream_task("speed", "试听语速", v, wf.run_narrate, self.cfg, v, sentence, out=str(out),
+        attach = self._attaching("speed", v)
+        stream = stream_task("speed", "试听语速", v, _attach_missed if attach else wf.run_narrate, self.cfg, v, sentence,
+                             out=str(out),
                              backend_name=str(backend or self.default_synth), quality="fast", speed=factor,
                              subtitles=False, stages=_stages(self.cfg, "narrate"))
         for logs, st in stream:
@@ -2184,7 +2283,7 @@ class WebUI:
                 yield self._o(O, gen_bar=st.get("bar", ""), gen_log=logs, speed_try=self._busy_btn(SPEED_BUSY),
                               gen_btn=_upd(interactive=False), gen_stop=self._stop_shown())
                 continue
-            if "value" in st and not st.get("error"):
+            if "value" in st and not st.get("error") and st.get("value") is not None:
                 res = st["value"]
                 yield self._o(O, gen_bar=st.get("bar", ""), gen_log=logs,
                               speed_audio=_upd(value=str(getattr(res, "audio_path", out)), visible=True,
@@ -2248,12 +2347,17 @@ class WebUI:
         if not v:
             yield self._o(O, vf_bar=self._notice(NEED_VOICE), **idle)
             return
+        busy = self._other_task("verify", v)
+        if busy:
+            yield self._o(O, vf_bar=self._notice(busy), vf_log=busy, **idle)
+            return
         project, err = self._project(v)
         if project is None or not project.exists:
             yield self._o(O, vf_bar=self._notice(err or NEED_PREPARE), **idle)
             return
+        attach = self._attaching("verify", v)
         gen = _paths_of(generated)
-        if not gen:
+        if not gen and not attach:
             st = state if isinstance(state, dict) else {}
             if st.get("voice") == v and st.get("report") and Path(st["report"]).exists():
                 try:
@@ -2262,11 +2366,12 @@ class WebUI:
                     gen = []
             if not gen:
                 gen = _report_audio_files(_latest_report(project))
-        if not gen:
+        if not gen and not attach:
             yield self._o(O, vf_bar=self._notice("还没有生成过音频。请先在「③ 生成讲课音频」里生成一次，或在上面上传要鉴别的音频。"),
                           **idle)
             return
-        stream = stream_task("verify", "机器鉴别", v, _verify_job, self.cfg, v, _paths_of(originals), gen,
+        stream = stream_task("verify", "机器鉴别", v, _attach_missed if attach else _verify_job, self.cfg, v,
+                             _paths_of(originals), gen,
                              stages=[(0.0, "分析你的真实录音"), (0.3, "给每个音频打分")], note=NOTE)
         for text, st in stream:
             if st.get("busy"):
@@ -2275,7 +2380,9 @@ class WebUI:
             if not st.get("done"):
                 yield self._o(O, vf_bar=st.get("bar", ""), vf_log=text, vf_btn=self._busy_btn(VERIFY_BUSY))
                 continue
-            if "value" in st and not st.get("error"):
+            if self._missed(attach, st):
+                yield self._o(O, vf_bar=st.get("bar", ""), vf_log=text, vf_md=ATTACH_MISSED_MD, **idle)
+            elif "value" in st and not st.get("error"):
                 table, md = _verify_rows(st.get("value") or {})
                 yield self._o(O, vf_bar=st.get("bar", ""), vf_log=text, vf_md=md, vf_table=table, **idle)
             else:
@@ -2299,16 +2406,22 @@ class WebUI:
         if not v:
             yield self._o(O, bt_bar=self._notice(NEED_VOICE), **idle)
             return
+        busy = self._other_task("blind", v)
+        if busy:
+            yield self._o(O, bt_bar=self._notice(busy), vf_log=busy, **idle)
+            return
         project, err = self._project(v)
         if project is None or not project.exists:
             yield self._o(O, bt_bar=self._notice(err or NEED_PREPARE), **idle)
             return
+        attach = self._attaching("blind", v)
         fn = getattr(wf, "build_blind_test", None)
-        if not callable(fn):
+        if not attach and not callable(fn):
             yield self._o(O, bt_bar=self._notice("这个版本还没有「盲听测试」功能。"), **idle)
             return
         count = max(2, min(MAX_BLIND // 2, _int(n, 10) or 10))
-        stream = stream_task("blind", "生成盲听测试", v, _blind_job, self.cfg, v, count, str(quality or "balanced"),
+        stream = stream_task("blind", "生成盲听测试", v, _attach_missed if attach else _blind_job, self.cfg, v, count,
+                             str(quality or "balanced"),
                              stages=[(0.0, "挑选你的真实录音"), (0.1, "用你的模型读同样的句子"), (0.9, "调成一样的音量、打乱顺序")],
                              note=NOTE)
         for text, st in stream:
@@ -2318,6 +2431,9 @@ class WebUI:
             if not st.get("done"):
                 yield self._o(O, bt_bar=st.get("bar", ""), vf_log=text, bt_btn=self._busy_btn(BLIND_BUSY),
                               bt_submit=_btn(SUBMIT_BTN, visible=False))
+                continue
+            if self._missed(attach, st):
+                yield self._o(O, bt_bar=st.get("bar", ""), vf_log=text, bt_md=ATTACH_MISSED_MD, **idle)
                 continue
             if "value" not in st or st.get("error"):
                 yield self._o(O, bt_bar=st.get("bar", ""), vf_log=text, bt_md=self._final_md(st, "盲听测试", v), **idle)
@@ -2359,7 +2475,12 @@ class WebUI:
     def do_download(self) -> Iterator[Tuple[Any, ...]]:
         O = self.DL_OUT
         idle = dict(dl_btn=self._idle_btn(DL_BTN), dl_stop=self._stop_hidden())
-        stream = stream_task("download", "下载模型", "", _download_job, self.cfg,
+        busy = self._other_task("download", "")
+        if busy:
+            yield self._o(O, doc_bar=self._notice(busy), doc_log=busy, **idle)
+            return
+        attach = self._attaching("download", "")
+        stream = stream_task("download", "下载模型", "", _attach_missed if attach else _download_job, self.cfg,
                              stages=_stages(self.cfg, "download"), note=NOTE)
         for text, st in stream:
             if st.get("busy"):
@@ -2369,7 +2490,9 @@ class WebUI:
                 yield self._o(O, doc_bar=st.get("bar", ""), doc_log=text, dl_btn=self._busy_btn(DL_BUSY),
                               dl_stop=self._stop_shown())
                 continue
-            if "value" in st and not st.get("error"):
+            if self._missed(attach, st):
+                md = ATTACH_MISSED_MD
+            elif "value" in st and not st.get("error"):
                 files = st.get("value") or []
                 md = (f"### ✅ 已下载 {len(files)} 个文件，可以开始训练了" if files else "### ✅ 模型文件都齐全，不用下载")
                 self._doc_cache = None

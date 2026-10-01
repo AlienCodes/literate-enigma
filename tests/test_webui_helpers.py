@@ -391,6 +391,24 @@ def test_doctor_view_numbering_and_sorting():
     assert ok_summary.startswith("### ✅ 一切正常")
 
 
+def test_quick_check_on_page_load(tmp_path):
+    """打开网页时的快速检查：只看文件；缺模型时提示去「🩺 环境检查」下载；不留下临时文件夹。"""
+    from conftest import make_cfg
+
+    root = tmp_path / "GPT-SoVITS"
+    root.mkdir()
+    (root / "api_v2.py").write_text("", encoding="utf-8")
+    cfg = make_cfg(tmp_path / "ws", backend="gptsovits", backends={"gptsovits": {"root": str(root)}})
+    problems = A._quick_problems(cfg)
+    assert len(problems) == 1 and "下载缺少的模型" in problems[0]
+    assert "还差一步" in A._quick_html(problems) and "vt-note-error" in A._quick_html(problems)
+    assert not (tmp_path / "ws" / "__quick__").exists()
+    cfg2 = make_cfg(tmp_path / "ws2", backend="gptsovits", backends={"gptsovits": {"root": str(tmp_path / "没有")}})
+    assert "找不到 GPT-SoVITS" in A._quick_problems(cfg2)[0]
+    assert A._quick_problems(make_cfg(tmp_path / "ws3")) == []  # 测试引擎：不检查
+    assert A._quick_html([]) == ""
+
+
 def test_eval_md_card():
     res = {"结论": "比较像", "声纹相似度": 0.82, "相似度参考": "≥0.86 非常像", "时长（秒）": 3.2,
            "语速（音节/秒）": 4.1, "提示": ["无"], "各模型": {"resemblyzer": 91.2, "eres2netv2": 93.4}}
@@ -727,6 +745,24 @@ def test_one_task_at_a_time_and_reattach(prepared, tmp_path, monkeypatch):
     assert "vt-done" in last["prep_bar"] and last["prep_btn"]["interactive"] is True
     list(gen1)
     assert calls == [name]  # 只做了一次
+
+
+def test_reattach_skips_input_checks(prepared, tmp_path, monkeypatch):
+    """刷新网页后输入框是空的：再点同一个按钮要接上进度，而不是提示「请填写文件夹 / 讲稿」。
+    这里模拟「点的一瞬间任务刚好做完」：不会用空输入重新开始，只提示结果已经刷新。"""
+    cfg, name = _copy_voice(prepared, tmp_path)
+    ui = A.WebUI(cfg)
+    for kind in ("generate", "prepare"):
+        monkeypatch.setattr(A, "current_task", lambda k=kind: {"running": True, "kind": k, "voice": name,
+                                                               "label": "x"})
+        if kind == "generate":
+            outs = list(ui.do_generate(name, "", None, "dummy", "fast", 0, "", "看不懂的输入"))
+            last = dict(zip(ui.GEN_OUT, outs[-1]))
+            assert last["gen_md"] == A.ATTACH_MISSED_MD and _is_update(last["out_audio"])
+        else:
+            outs = list(ui.do_prepare(name, None, "", "none", "auto", "auto", False))
+            last = dict(zip(ui.PREP_OUT, outs[-1]))
+            assert last["prep_md"] == A.ATTACH_MISSED_MD and last["prep_btn"]["interactive"] is True
 
 
 def test_eval_refused_while_task_runs(prepared, monkeypatch):
