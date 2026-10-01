@@ -72,4 +72,5 @@
 | 10-02 03:59 | [1002_0359_bt5h1lpgr.txt](1002_0359_bt5h1lpgr.txt) | Poll until v0.1.7 release zip is downloadable | completed | Background command "Poll until v0.1.7 release zip is downloadable" completed (exit code 0) |
 | 10-02 05:07 | [1002_0507_b3x5xhrkm.txt](1002_0507_b3x5xhrkm.txt) | Wait until the v0.1.8 release has its assets | completed | Background command "Wait until the v0.1.8 release has its assets" completed (exit code 0) |
 | 10-02 05:36 | [1002_0536_bgruy9o0s.txt](1002_0536_bgruy9o0s.txt) | Wait for all CI checks on the new head | completed | Background command "Wait for all CI checks on the new head" completed (exit code 0) |
-| 10-02 05:40 | [1002_0540_buclxmfk5.txt](1002_0540_buclxmfk5.txt) |  |  |  |
+| 10-02 06:06 | [1002_0606_b80y2wo3y.txt](1002_0606_b80y2wo3y.txt) | Wait for CI on the v18 commit | completed | Background command "Wait for CI on the v18 commit" completed (exit code 0) |
+| 10-02 06:10 | [1002_0610_b71ls2c32.txt](1002_0610_b71ls2c32.txt) |  |  |  |
