@@ -1,5 +1,5 @@
-# EN: The Prize That Looked Away
-# ZH: 移开视线的奖
+# EN: The Scientific Giant Who Changed the World
+# ZH: 改变世界的科学巨匠
 ## 英文
 
 On 29 May 1919, as a total **eclipse** **obscured** the sun, two British **expeditions** photographed stars in its apparent **vicinity**. Arthur Eddington **observed** from Príncipe, an island off West Africa; Crommelin and Davidson from Sobral, in north-eastern Brazil. They were testing general relativity's **bold** prediction that the sun's **gravity** would **deflect** starlight.

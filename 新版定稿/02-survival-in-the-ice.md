@@ -1,5 +1,5 @@
-# EN: Four Sights, Four Miles
-# ZH: 四次测日，四英里之差
+# EN: Survival in the Ice: The Legend of Endurance
+# ZH: 冰海求生：坚忍号传奇
 ## 英文
 
 On 5 December 1914 Endurance **departed** South Georgia, a **remote** **whaling** **outpost**, for Antarctica's Weddell Sea. In January 1915 ice **trapped** the **vessel**. On 27 October, her **hull** **buckling**, the men **abandoned** ship. She **foundered** on 21 November; her captain, Frank Worsley, **logged** the spot.

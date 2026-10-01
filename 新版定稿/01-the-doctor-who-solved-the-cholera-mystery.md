@@ -1,5 +1,5 @@
-# EN: Where They Died, What They Drank
-# ZH: 死在哪里，喝了什么
+# EN: The Doctor Who Solved the Cholera Mystery
+# ZH: 破解霍乱之谜的医生
 ## 英文
 
 In the first ten days of September 1854, cholera **ravaged** an **overcrowded** corner of London's Soho; **upwards of** 500 people **perished**. Most doctors **attributed** **epidemics** to miasma, **foul** air **arising** from **filth**. John Snow, a **physician** who had been **convinced** since 1849 that cholera's poison was **swallowed**, not **inhaled**, suspected the Broad Street pump.

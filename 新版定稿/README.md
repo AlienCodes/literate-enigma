@@ -4,6 +4,6 @@
 
 | 篇 | 标题 | 词数 | 重点词 | 评审分 |
 |---|---|---|---|---|
-| 01 | Where They Died, What They Drank / 死在哪里，喝了什么 | 274（用户特批 +3） | 50 | 97 / 97.5 / 97.5 |
-| 02 | Four Sights, Four Miles / 四次测日，四英里之差 | 270 | 52 | 98 / 99 / 98 |
-| 03 | The Prize That Looked Away / 移开视线的奖 | 271 | 50 | 96 / 97.5 / 99 |
+| 01 | The Doctor Who Solved the Cholera Mystery / 破解霍乱之谜的医生 | 274（用户特批 +3） | 50 | 97 / 97.5 / 97.5 |
+| 02 | Survival in the Ice: The Legend of Endurance / 冰海求生：坚忍号传奇 | 270 | 52 | 98 / 99 / 98 |
+| 03 | The Scientific Giant Who Changed the World / 改变世界的科学巨匠 | 271 | 50 | 96 / 97.5 / 99 |
