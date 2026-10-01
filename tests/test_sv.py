@@ -299,7 +299,8 @@ def test_as_norm_matches_formula():
     s = float(np.dot(x, me))
     te = spk.topk_stats(me, cohort["emb"])
     tt = spk.topk_stats(x, cohort["emb"])
-    assert abs(m.norm_score(x) - 0.5 * ((s - te[0]) / te[1] + (s - tt[0]) / tt[1])) < 1e-6
+    # float32 计算：整合包里的 numpy 1.23 和新版 numpy 求和顺序不同，误差在 1e-6 量级（分数本身是 7 左右）
+    assert abs(m.norm_score(x) - 0.5 * ((s - te[0]) / te[1] + (s - tt[0]) / tt[1])) < 1e-5
     # 没有陌生人声纹库：就是余弦相似度；旧的换算方式（100 × s / p50，封顶 100）不变
     legacy = spk.JudgeMember(types.SimpleNamespace(name="f"), me, {"p50": 0.8})
     assert abs(legacy.norm_score(x) - s) < 1e-5 and not legacy.two_sided

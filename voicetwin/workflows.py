@@ -18,6 +18,7 @@ import shutil
 import subprocess
 import sys
 import time
+import warnings
 from pathlib import Path
 from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple
 
@@ -1082,6 +1083,14 @@ def sv_status(cfg: Config) -> Tuple[Optional[bool], str]:
 
 
 def doctor(cfg: Config) -> List[Dict[str, Any]]:
+    # 整合包里的第三方库（funasr、rotary_embedding_torch 等）导入时会打印英文警告（SyntaxWarning、FutureWarning），
+    # 夹在检查结果前面看着像出错，其实不影响使用：检查期间不显示
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        return _doctor(cfg)
+
+
+def _doctor(cfg: Config) -> List[Dict[str, Any]]:
     from voicetwin.backends.base import available_backends, get_backend
 
     rows: List[Dict[str, Any]] = []
