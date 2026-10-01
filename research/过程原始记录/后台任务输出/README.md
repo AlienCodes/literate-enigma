@@ -73,4 +73,5 @@
 | 10-02 05:07 | [1002_0507_b3x5xhrkm.txt](1002_0507_b3x5xhrkm.txt) | Wait until the v0.1.8 release has its assets | completed | Background command "Wait until the v0.1.8 release has its assets" completed (exit code 0) |
 | 10-02 05:36 | [1002_0536_bgruy9o0s.txt](1002_0536_bgruy9o0s.txt) | Wait for all CI checks on the new head | completed | Background command "Wait for all CI checks on the new head" completed (exit code 0) |
 | 10-02 06:06 | [1002_0606_b80y2wo3y.txt](1002_0606_b80y2wo3y.txt) | Wait for CI on the v18 commit | completed | Background command "Wait for CI on the v18 commit" completed (exit code 0) |
-| 10-02 06:10 | [1002_0610_b71ls2c32.txt](1002_0610_b71ls2c32.txt) |  |  |  |
+| 10-02 06:17 | [1002_0617_bkdf42ezd.txt](1002_0617_bkdf42ezd.txt) | Wait for CI on the records commit | completed | Background command "Wait for CI on the records commit" completed (exit code 0) |
+| 10-02 06:52 | [1002_0652_b3dayw4k8.txt](1002_0652_b3dayw4k8.txt) |  |  |  |
