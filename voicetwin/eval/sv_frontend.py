@@ -13,10 +13,16 @@ fbank 和 3D-Speaker / WeSpeaker 训练时用的 torchaudio.compliance.kaldi.fba
 from __future__ import annotations
 
 import threading
+import warnings
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 import numpy as np
+
+# onnxruntime 打开"极小数按 0 算"后，旧版 numpy（< 2.0，整合包里就是）第一次查浮点数范围时会打印
+# "The value of the smallest subnormal ... is zero" 的英文警告，对结果没有任何影响，不让它出现在窗口里吓人
+warnings.filterwarnings("ignore", message="The value of the smallest subnormal")
+_EPS32 = float(np.finfo(np.float32).eps)
 
 SR = 16000
 VAD_WINDOW = 512
@@ -73,7 +79,7 @@ def kaldi_fbank(wav: np.ndarray, sr: int = SR, num_bins: int = 80, frame_ms: flo
     n_fft = 1 << int(np.ceil(np.log2(flen)))
     power = np.abs(np.fft.rfft(frames, n=n_fft, axis=1)) ** 2
     mel = power @ _mel_banks(num_bins, n_fft, sr).T
-    return np.log(np.maximum(mel, np.finfo(np.float32).eps)).astype(np.float32)
+    return np.log(np.maximum(mel, _EPS32)).astype(np.float32)
 
 
 def ort_session(path: Path, threads: int = 0, device: str = "auto"):
