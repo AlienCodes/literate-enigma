@@ -1,0 +1,13 @@
+# 后台任务 b44qwcv6x
+# 开始：10-01 22:30:02（北京时间）  操作编号：#801  工具：Bash
+# 说明：Re-run full browser smoke test with fix
+# 结束状态：completed  Background command "Re-run full browser smoke test with fix" completed (exit code 0)
+# 命令：
+#   SP=<草稿目录>; M=$SP/m24i; cd $M && rm -rf ws && bash start.sh && for i in $(seq 1 90); do curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:7890/ 2>/dev/null | grep -q 200 && break; sleep 2; done; echo up; timeout 3000 python3 integ_check.py > final_check2.out 2>&1; echo "exit $?" >> final_check2.out; kill $(cat webui.pid) 2>/dev/null; grep -E "CHECK FAIL|SUMMARY|exit" final_check2.out
+# ---- 输出 ----
+started pid 4069
+up
+SUMMARY 37/37 passed; failed: []
+exit 0
+
+[exited with code 0]

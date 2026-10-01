@@ -1,0 +1,99 @@
+# 后台任务 bcb8iz0j9
+# 开始：?（北京时间）  操作编号：#?  工具：?
+# 说明：
+# 结束状态：  
+# 命令：
+# ---- 输出 ----
+Running on local URL:  http://127.0.0.1:7931
+
+To create a public link, set `share=True` in `launch()`.
+Exception in thread Thread-3:
+Traceback (most recent call last):
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpcore/_sync/http_proxy.py", line 297, in handle_request
+    raise ProxyError(msg)
+httpcore.ProxyError: 403 Forbidden
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.local/share/uv/python/cpython-3.9.23-linux-x86_64-gnu/lib/python3.9/threading.py", line 980, in _bootstrap_inner
+    self.run()
+  File "/root/.local/share/uv/python/cpython-3.9.23-linux-x86_64-gnu/lib/python3.9/threading.py", line 917, in run
+    self._target(*self._args, **self._kwargs)
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/gradio/analytics.py", line 63, in _do_normal_analytics_request
+    httpx.post(url, data=data, timeout=5)
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_api.py", line 304, in post
+    return request(
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_api.py", line 109, in request
+    return client.request(
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/root/.local/share/uv/python/cpython-3.9.23-linux-x86_64-gnu/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ProxyError: 403 Forbidden
+Exception in thread Thread-5:
+Traceback (most recent call last):
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpcore/_sync/http_proxy.py", line 297, in handle_request
+    raise ProxyError(msg)
+httpcore.ProxyError: 403 Forbidden
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.local/share/uv/python/cpython-3.9.23-linux-x86_64-gnu/lib/python3.9/threading.py", line 980, in _bootstrap_inner
+    self.run()
+  File "/root/.local/share/uv/python/cpython-3.9.23-linux-x86_64-gnu/lib/python3.9/threading.py", line 917, in run
+    self._target(*self._args, **self._kwargs)
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/gradio/analytics.py", line 63, in _do_normal_analytics_request
+    httpx.post(url, data=data, timeout=5)
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_api.py", line 304, in post
+    return request(
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_api.py", line 109, in request
+    return client.request(
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/root/.local/share/uv/python/cpython-3.9.23-linux-x86_64-gnu/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "<草稿目录>/gsv39/lib/python3.9/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ProxyError: 403 Forbidden
+
+[killed]

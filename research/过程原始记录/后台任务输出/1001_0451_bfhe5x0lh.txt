@@ -1,0 +1,12 @@
+# 后台任务 bfhe5x0lh
+# 开始：10-01 04:50:31（北京时间）  操作编号：#179  工具：Bash
+# 说明：Build compat venv matching GPT-SoVITS pinned versions
+# 结束状态：completed  Background command "Build compat venv matching GPT-SoVITS pinned versions" completed (exit code 0)
+# 命令：
+#   SP=<草稿目录> && rm -rf $SP/compat && python3 -m venv $SP/compat && $SP/compat/bin/pip install -q "numpy<2.0" "librosa==0.10.2" "gradio<5" scipy soundfile pyyaml tqdm requests pyloudnorm imageio-ffmpeg pytest "pydantic<=2.10.6" > $SP/compat_install.log 2>&1; $SP/compat/bin/pip install -q --no-deps --force-reinstall <仓库> >> $SP/compat_install.log 2>&1; echo "EXIT=$?" >> $SP/compat_install.log; $SP/compat/bin/python -c "import gradio, numpy, librosa; print(gradio.__version__, numpy.__version__, librosa.__version__)" >> $SP/compat_install.log 2>&1; tail -3 $SP/compat_install.log
+# ---- 输出 ----
+  File "<草稿目录>/compat/lib/python3.11/site-packages/gradio/oauth.py", line 13, in <module>
+    from huggingface_hub import HfFolder, whoami
+ImportError: cannot import name 'HfFolder' from 'huggingface_hub' (<草稿目录>/compat/lib/python3.11/site-packages/huggingface_hub/__init__.py)
+
+[exited with code 0]

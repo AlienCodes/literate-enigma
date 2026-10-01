@@ -1,0 +1,14 @@
+# 后台任务 bl9v0vutf
+# 开始：10-01 06:34:58（北京时间）  操作编号：#451  工具：Bash
+# 说明：Wait for v0.1.1 release assets to appear
+# 结束状态：completed  Background command "Wait for v0.1.1 release assets to appear" completed (exit code 0)
+# 命令：
+#   for i in $(seq 1 60); do out=$(curl -s https://api.github.com/repos/AlienCodes/literate-enigma/releases/tags/v0.1.1); n=$(echo "$out" | python3 -c "import sys,json; d=json.load(sys.stdin); print(len(d.get('assets',[])))" 2>/dev/null); if [ "${n:-0}" -ge 2 ]; then echo "$out" | python3 -c "
+#   import sys,json; d=json.load(sys.stdin); print(d['html_url'], d['name'], d['target_commitish'])
+#   for a in d['assets']: print(a['name'], a.get('label'), a['size'], a['browser_download_url'])"; break; fi; sleep 20; done; [ "${n:-0}" -ge 2 ] || echo "not ready: $n"
+# ---- 输出 ----
+https://github.com/AlienCodes/literate-enigma/releases/tag/v0.1.1 声音分身 VoiceTwin v0.1.1（Windows） eb130fed0dff28a4edc5d4a403cddef08747d1a8
+VoiceTwin-Manual-v0.1.1.pdf 声音分身VoiceTwin使用手册（PDF 图文教程） 9103060 https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.1/VoiceTwin-Manual-v0.1.1.pdf
+VoiceTwin-Windows-v0.1.1.zip  5531693 https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.1/VoiceTwin-Windows-v0.1.1.zip
+
+[exited with code 0]

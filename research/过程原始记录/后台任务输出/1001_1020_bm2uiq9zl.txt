@@ -1,0 +1,17 @@
+# 后台任务 bm2uiq9zl
+# 开始：10-01 10:16:52（北京时间）  操作编号：#543  工具：Bash
+# 说明：Run count display browser test
+# 结束状态：completed  Background command "Run count display browser test" completed (exit code 0)
+# 命令：
+#   SP=<草稿目录>; cd $SP/m24 && timeout 1500 python3 count_check.py > count_check.out 2>&1; tail -8 count_check.out
+# ---- 输出 ----
+rows in table: 15
+Traceback (most recent call last):
+  File "<草稿目录>/m24/count_check.py", line 22, in <module>
+    pg.get_by_role("button", name="保存修改").click(); wait_text(pg, "已保存", 120); pg.wait_for_timeout(1500)
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<草稿目录>/m24/count_check.py", line 8, in wait_text
+    raise TimeoutError(t)
+TimeoutError: 已保存
+
+[exited with code 0]

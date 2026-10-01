@@ -1,0 +1,11 @@
+# 后台任务 bt5h1lpgr
+# 开始：10-02 03:56:39（北京时间）  操作编号：#1361  工具：Bash
+# 说明：Poll until v0.1.7 release zip is downloadable
+# 结束状态：completed  Background command "Poll until v0.1.7 release zip is downloadable" completed (exit code 0)
+# 命令：
+#   for i in $(seq 1 90); do c=$(curl -s -o /dev/null -w "%{http_code}" -L -r 0-10 https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.7/VoiceTwin-Windows-v0.1.7.zip); if [ "$c" = "200" ] || [ "$c" = "206" ]; then echo "zip available ($c) after ${i}0s"; break; fi; sleep 10; done; date
+# ---- 输出 ----
+zip available (206) after 200s
+Thu Oct  1 19:59:58 UTC 2026
+
+[exited with code 0]

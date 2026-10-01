@@ -1,0 +1,39 @@
+# 后台任务 bdy23oe8a
+# 开始：10-01 04:29:38（北京时间）  操作编号：#138  工具：Bash
+# 说明：Test Linux installer in scratch copy (venv mode)
+# 结束状态：completed  Background command "Test Linux installer in scratch copy (venv mode)" completed (exit code 0)
+# 命令：
+#   cd <草稿目录>/inst && bash install.sh > install.log 2>&1; echo "EXIT=$?" >> install.log; tail -30 install.log
+# ---- 输出 ----
+Downloading webrtcvad_wheels-2.0.14-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (83 kB)
+Installing collected packages: webrtcvad-wheels
+Successfully installed webrtcvad-wheels-2.0.14
+Collecting resemblyzer
+  Downloading Resemblyzer-0.1.4-py3-none-any.whl.metadata (5.8 kB)
+Downloading Resemblyzer-0.1.4-py3-none-any.whl (15.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 15.7/15.7 MB 111.6 MB/s  0:00:00
+Installing collected packages: resemblyzer
+Successfully installed resemblyzer-0.1.4
+已生成 <草稿目录>/inst/config.yaml，按需修改即可。
+✅ Python：3.11.15（Linux x86_64）
+✅ ffmpeg：<草稿目录>/inst/.venv/lib/python3.11/site-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2
+✅ numpy：2.4.6
+✅ scipy：1.17.1
+✅ soundfile：0.14.0
+✅ librosa：0.11.0
+✅ pyloudnorm：已安装
+✅ faster-whisper（语音识别）：1.2.1
+⚠️ funasr（中文识别，可选）：未安装
+✅ resemblyzer（声纹打分）：已安装
+✅ gradio（网页界面）：6.29.0
+✅ noisereduce（降噪，可选）：已安装
+⚠️ demucs（去背景音乐，可选）：未安装
+⚠️ NVIDIA 显卡：没有找到 nvidia-smi（没有 N 卡时只能用 CPU，训练会非常慢）
+❌ 引擎 GPT-SoVITS：找不到 GPT-SoVITS 目录：<草稿目录>/inst/third_party/GPT-SoVITS（请运行安装脚本，或在 config.yaml 里设置 backends.gptsovits.root）（Python：<草稿目录>/inst/.venv/bin/python）
+⚠️ 引擎 Qwen3-TTS：Python 环境 <草稿目录>/inst/.venv/bin/python 里没有安装 qwen-tts（pip install -U qwen-tts），或在 config.yaml 里设置 backends.qwen3tts.python（Python：<草稿目录>/inst/.venv/bin/python）
+⚠️ 引擎 IndexTTS：找不到 index-tts 仓库：<草稿目录>/inst/third_party/index-tts（git clone https://github.com/index-tts/index-tts.git third_party/index-tts）（Python：<草稿目录>/inst/.venv/bin/python）
+
+安装完成！运行 ./start_webui.sh 打开网页界面，或 ./voicetwin.sh -h 查看命令。
+EXIT=0
+
+[exited with code 0]

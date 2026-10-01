@@ -1,0 +1,16 @@
+# 后台任务 btu1d2534
+# 开始：10-01 06:56:37（北京时间）  操作编号：#502  工具：Bash
+# 说明：Wait for v0.1.2 release with three assets
+# 结束状态：completed  Background command "Wait for v0.1.2 release with three assets" completed (exit code 0)
+# 命令：
+#   for i in $(seq 1 60); do out=$(curl -s https://api.github.com/repos/AlienCodes/literate-enigma/releases/tags/v0.1.2); n=$(echo "$out" | python3 -c "import sys,json; d=json.load(sys.stdin); print(len(d.get('assets',[])))" 2>/dev/null); if [ "${n:-0}" -ge 3 ]; then echo "$out" | python3 -c "
+#   import sys,json; d=json.load(sys.stdin); print(d['html_url'], d['name'])
+#   for a in d['assets']: print(a['name'], '|', a.get('label'), '|', a['size'])"; break; fi; sleep 20; done; [ "${n:-0}" -ge 3 ] || echo "not ready: $n"; curl -s https://api.github.com/repos/AlienCodes/literate-enigma/releases/latest | python3 -c "import sys,json; print('latest =', json.load(sys.stdin).get('tag_name'))"
+# ---- 输出 ----
+https://github.com/AlienCodes/literate-enigma/releases/tag/v0.1.2 声音分身 VoiceTwin v0.1.2（Windows）
+VoiceTwin-Manual-v0.1.2.pdf | 详细使用手册（遇到问题时再查） | 9104743
+VoiceTwin-QuickStart-v0.1.2.pdf | 快速上手（几页纸，先看这个） | 1293375
+VoiceTwin-Windows-v0.1.2.zip |  | 6908059
+latest = v0.1.2
+
+[exited with code 0]

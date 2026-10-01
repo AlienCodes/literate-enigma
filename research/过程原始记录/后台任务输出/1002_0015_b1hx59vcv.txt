@@ -1,0 +1,21 @@
+# 后台任务 b1hx59vcv
+# 开始：10-02 00:13:12（北京时间）  操作编号：#947  工具：Bash
+# 说明：List audio file paths and sizes per repo
+# 结束状态：failed  Background command "List audio file paths and sizes per repo" failed with exit code 144
+# 命令：
+#   SP=<草稿目录>; cd $SP/sv/repos && for d in */; do d=${d%/}; git -C $d ls-tree -r -l HEAD 2>/dev/null | grep -Ei '\.(wav|mp3|flac|m4a|ogg)$' | awk -v r=$d '{s=$4; $1=$2=$3=$4=""; sub(/^ +/,""); printf "%s\t%s\t%s\n", r, s, $0}'; done | sort | awk -F'\t' '{printf "%-28s %9s  %s\n", $1, $2, $3}' | cut -c1-160
+# ---- 输出 ----
+CorentinJ_Real-Time-Voice-Cloning     15453  samples/1320_00000.mp3
+CorentinJ_Real-Time-Voice-Cloning     15453  samples/3575_00000.mp3
+CorentinJ_Real-Time-Voice-Cloning     15561  samples/6829_00000.mp3
+CorentinJ_Real-Time-Voice-Cloning     16101  samples/8230_00000.mp3
+CorentinJ_Real-Time-Voice-Cloning     20205  samples/p240_00000.mp3
+CorentinJ_Real-Time-Voice-Cloning     20493  samples/p260_00000.mp3
+FireRedTeam_FireRedTTS          202234  examples/prompt_1.wav
+FireRedTeam_FireRedTTS          270694  examples/prompt_2.wav
+FireRedTeam_FireRedTTS2         109730  examples/chat_prompt/en/S2.flac
+FireRedTeam_FireRedTTS2         202988  examples/chat_prompt/en/S1.flac
+FireRedTeam_FireRedTTS2         215883  examples/chat_prompt/zh/S1.flac
+FireRedTeam_FireRedTTS2          99747  examples/chat_prompt/zh/S2.flac
+
+[exited with code 144]

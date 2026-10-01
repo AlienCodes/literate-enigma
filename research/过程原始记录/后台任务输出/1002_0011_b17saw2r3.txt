@@ -1,0 +1,32 @@
+# 后台任务 b17saw2r3
+# 开始：10-02 00:10:51（北京时间）  操作编号：#939  工具：Bash
+# 说明：Download all speaker models and silero VAD
+# 结束状态：completed  Background command "Download all speaker models and silero VAD" completed (exit code 0)
+# 命令：
+#   SP=<草稿目录>; cd $SP/sv/models; B=https://github.com/k2-fsa/sherpa-onnx/releases/download/speaker-recongition-models; for f in 3dspeaker_speech_campplus_sv_zh-cn_16k-common 3dspeaker_speech_campplus_sv_zh_en_16k-common_advanced 3dspeaker_speech_eres2netv2_sv_zh-cn_16k-common 3dspeaker_speech_eres2net_large_sv_zh-cn_3dspeaker_16k 3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common 3dspeaker_speech_eres2net_sv_zh-cn_16k-common 3dspeaker_speech_eres2net_sv_en_voxceleb_16k 3dspeaker_speech_campplus_sv_en_voxceleb_16k wespeaker_en_voxceleb_resnet293_LM wespeaker_en_voxceleb_resnet221_LM wespeaker_en_voxceleb_resnet152_LM wespeaker_en_voxceleb_resnet34_LM wespeaker_en_voxceleb_CAM++_LM wespeaker_zh_cnceleb_resnet34_LM wespeaker_zh_cnceleb_resnet34 nemo_en_titanet_large nemo_en_titanet_small; do [ -s $f.onnx ] || curl -s -L --max-time 600 -o $f.onnx "$B/$f.onnx"; done; for v in silero_vad.onnx silero_vad_v5.onnx; do curl -s -L --max-time 120 -o $v "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/$v"; done; ls -la; du -sh .
+# ---- 输出 ----
+total 1076644
+drwxr-xr-x 2 root root      4096 Oct  1 16:11 .
+drwxr-xr-x 5 root root      4096 Oct  1 16:10 ..
+-rw-r--r-- 1 root root  29596978 Oct  1 16:10 3dspeaker_speech_campplus_sv_en_voxceleb_16k.onnx
+-rw-r--r-- 1 root root  28281138 Oct  1 16:10 3dspeaker_speech_campplus_sv_zh-cn_16k-common.onnx
+-rw-r--r-- 1 root root  28281164 Oct  1 16:10 3dspeaker_speech_campplus_sv_zh_en_16k-common_advanced.onnx
+-rw-r--r-- 1 root root  39593765 Oct  1 16:10 3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common.onnx
+-rw-r--r-- 1 root root 116058710 Oct  1 16:10 3dspeaker_speech_eres2net_large_sv_zh-cn_3dspeaker_16k.onnx
+-rw-r--r-- 1 root root  26485263 Oct  1 16:10 3dspeaker_speech_eres2net_sv_en_voxceleb_16k.onnx
+-rw-r--r-- 1 root root 220623485 Oct  1 16:10 3dspeaker_speech_eres2net_sv_zh-cn_16k-common.onnx
+-rw-r--r-- 1 root root  71441526 Oct  1 16:10 3dspeaker_speech_eres2netv2_sv_zh-cn_16k-common.onnx
+-rw-r--r-- 1 root root 101405493 Oct  1 16:11 nemo_en_titanet_large.onnx
+-rw-r--r-- 1 root root  40257283 Oct  1 16:11 nemo_en_titanet_small.onnx
+-rw-r--r-- 1 root root    643854 Oct  1 16:11 silero_vad.onnx
+-rw-r--r-- 1 root root   2313101 Oct  1 16:11 silero_vad_v5.onnx
+-rw-r--r-- 1 root root  29292687 Oct  1 16:11 wespeaker_en_voxceleb_CAM++_LM.onnx
+-rw-r--r-- 1 root root  79158470 Oct  1 16:11 wespeaker_en_voxceleb_resnet152_LM.onnx
+-rw-r--r-- 1 root root  95037599 Oct  1 16:11 wespeaker_en_voxceleb_resnet221_LM.onnx
+-rw-r--r-- 1 root root 114336527 Oct  1 16:11 wespeaker_en_voxceleb_resnet293_LM.onnx
+-rw-r--r-- 1 root root  26530550 Oct  1 16:11 wespeaker_en_voxceleb_resnet34_LM.onnx
+-rw-r--r-- 1 root root  26534363 Oct  1 16:11 wespeaker_zh_cnceleb_resnet34.onnx
+-rw-r--r-- 1 root root  26530548 Oct  1 16:11 wespeaker_zh_cnceleb_resnet34_LM.onnx
+1.1G	.
+
+[exited with code 0]

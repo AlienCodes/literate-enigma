@@ -1,0 +1,38 @@
+# 后台任务 b8m7l2sa8
+# 开始：10-01 21:44:05（北京时间）  操作编号：#658  工具：Bash
+# 说明：Run docs screenshot capture against port 7877
+# 结束状态：completed  Background command "Run docs screenshot capture against port 7877" completed (exit code 0)
+# 命令：
+#   SP=<草稿目录>; cd $SP/m24d && timeout 5400 python3 capture_docs.py > capture.out 2>&1; echo "exit $?" >> capture.out; tail -40 capture.out
+# ---- 输出 ----
+saved 00_gpu_badge.png {'x': 22, 'y': 100, 'width': 1236, 'height': 64}
+saved 01_prepare_form.png {'x': 18, 'y': 2, 'width': 1244, 'height': 921}
+saved 02a_progress_running.png {'x': 37, 'y': 921, 'width': 1206, 'height': 196}
+  bar -> done done 100% (82s)
+saved 02_prepare_done.png {'x': 33, 'y': 917, 'width': 1214, 'height': 473}
+changed: 第1课_0114c2_0001 第1课_0114c2_0003
+  bar -> done done 100% (0s)
+  red spans: 3
+saved 03a_proofcheck_done.png {'x': 33, 'y': 917, 'width': 1214, 'height': 1123}
+saved 03_proofread.png {'x': 33, 'y': 1619, 'width': 1214, 'height': 1019}
+saved 04a_train_plan.png {'x': 33, 'y': 477, 'width': 1214, 'height': 133}
+saved 04b_train_running.png {'x': 37, 'y': 611, 'width': 1206, 'height': 196}
+  bar -> done done 100% (77s)
+saved 04_train_done.png {'x': 33, 'y': 607, 'width': 1214, 'height': 300}
+  checked radios: ['WAV（音质最好，剪映/后期用）', '完美：每句最多试 20 次、严格检查漏字错字，去掉杂音，句子之间完全静音，尽最大可能接近你本人（最慢）']
+saved 05_generate_form.png {'x': 32, 'y': 470, 'width': 1217, 'height': 843}
+saved 05b_speed_slider.png {'x': 755, 'y': 864, 'width': 489, 'height': 222}
+Traceback (most recent call last):
+  File "<草稿目录>/m24d/capture_docs.py", line 231, in <module>
+    wait_bar(pg, 2400, mid="05c_generate_running.png", mid_pct=30, old_run=old)
+  File "<草稿目录>/m24d/capture_docs.py", line 103, in wait_bar
+    shot(page, mid, [bar(page)], pad=8)
+  File "<草稿目录>/m24d/capture_docs.py", line 71, in shot
+    x0, y0, x1, y1 = union(page, locators, pad)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<草稿目录>/m24d/capture_docs.py", line 58, in union
+    raise RuntimeError("nothing to shoot")
+RuntimeError: nothing to shoot
+exit 1
+
+[exited with code 0]

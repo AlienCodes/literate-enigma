@@ -1,0 +1,21 @@
+# 后台任务 bitatnnrj
+# 开始：10-01 22:19:29（北京时间）  操作编号：#763  工具：Bash
+# 说明：Run full test suites in both Python environments
+# 结束状态：completed  Background command "Run full test suites in both Python environments" completed (exit code 0)
+# 命令：
+#   cd <仓库>; SP=<草稿目录>; (timeout 2400 python3 -m pytest -q -p no:cacheprovider -x 2>&1 | tail -6 > $SP/test311.out; PYTHONPATH=$PWD timeout 2400 $SP/gsv39/bin/python -m pytest -q -p no:cacheprovider tests --deselect tests/test_gptsovits_fake.py::test_train_select_and_narrate 2>&1 | tail -6 > $SP/test39.out); cat $SP/test311.out $SP/test39.out
+# ---- 输出 ----
+........................................................................ [ 56%]
+........................................................................ [ 68%]
+........................................................................ [ 79%]
+........s............................................................... [ 90%]
+..........................................................               [100%]
+633 passed, 2 skipped in 161.98s (0:02:41)
+tests/test_webui_build.py::test_build_app_local_and_remote
+  <草稿目录>/gsv39/lib/python3.9/site-packages/matplotlib/_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+634 passed, 8 skipped, 1 deselected, 60 warnings in 128.64s (0:02:08)
+
+[exited with code 0]

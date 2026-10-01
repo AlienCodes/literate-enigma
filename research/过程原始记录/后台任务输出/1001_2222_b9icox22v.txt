@@ -1,0 +1,64 @@
+# 后台任务 b9icox22v
+# 开始：10-01 22:19:45（北京时间）  操作编号：#764  工具：Bash
+# 说明：Fix blind-test wait and recapture steps e–i
+# 结束状态：completed  Background command "Fix blind-test wait and recapture steps e–i" completed (exit code 0)
+# 命令：
+#   SP=<草稿目录>; cd $SP/m24d && python3 - <<'EOF'
+#   p='capture_docs.py'
+#   s=open(p).read()
+#   s=s.replace('''def md(page, text):''','''def wait_new_done(page, old_runs, timeout_s):
+#       """等任意一个可见的进度条出现新的（run 不在 old_runs 里）完成 / 出错状态，返回它的序号。"""
+#       t0 = time.time()
+#       while time.time() - t0 < timeout_s:
+#           states = page.evaluate("""() => [...document.querySelectorAll('.vt-prog')].filter(e => e.offsetParent !== null)
+#               .map(e => [e.dataset.status, e.dataset.run])""")
+#           for i, (st, run) in enumerate(states):
+#               if run not in old_runs and st in ("done", "error", "stopped"):
+#                   print(f"  bar #{i} -> {st} ({time.time() - t0:.0f}s)", flush=True)
+#                   return i
+#           time.sleep(0.4)
+#       print("  wait_new_done timeout", flush=True)
+#       return None
+#   
+#   
+#   def runs(page):
+#       return set(page.evaluate("() => [...document.querySelectorAll('.vt-prog')].map(e => e.dataset.run)"))
+#   
+#   
+#   def md(page, text):''')
+#   s=s.replace('''        old = bar_state(pg)[3]
+#           pg.get_by_role("button", name="生成盲听测试").click()
+#           wait_bar(pg, 900, old_run=old)''','''        old = runs(pg)
+#           pg.get_by_role("button", name="生成盲听测试").click()
+#           wait_new_done(pg, old, 900)''')
+#   s=s.replace('''                  "Let's look at a quick example.")''','''                  "Let's look at a quick example. 好，我们一起来看一个例子。")''')
+#   open(p,'w').write(s)
+#   EOF
+#   grep -n "wait_new_done\|quick example" capture_docs.py | head; (timeout 5400 python3 capture_docs.py e f g h i > capture3.out 2>&1; echo "exit $?" >> capture3.out); tail -25 capture3.out
+# ---- 输出 ----
+117:def wait_new_done(page, old_runs, timeout_s):
+128:    print("  wait_new_done timeout", flush=True)
+247:                  "Let's look at a quick example. 好，我们一起来看一个例子。")
+306:        wait_new_done(pg, old, 900)
+  checked radios: ['WAV（音质最好，剪映/后期用）', '完美：每句最多试 20 次、严格检查漏字错字，同时做「未去杂音 / 去杂音」两个版本让你选，句子之间完全静音，尽最大可能接近你本人（最慢）']
+saved 05_generate_form.png {'x': 32, 'y': 643, 'width': 1217, 'height': 864}
+saved 05b_speed_slider.png {'x': 755, 'y': 1058, 'width': 489, 'height': 222}
+saved 05c_generate_running.png {'x': 37, 'y': 1506, 'width': 1206, 'height': 196}
+  bar -> done done 100% (5s)
+saved 06_generate_done.png {'x': 33, 'y': 1457, 'width': 1214, 'height': 439}
+saved 06c_two_versions.png {'x': 34, 'y': 2088, 'width': 1212, 'height': 197}
+saved 06b_download.png {'x': 33, 'y': 2544, 'width': 1214, 'height': 170}
+saved 06d_result_table.png {'x': 36, 'y': 2833, 'width': 1208, 'height': 438}
+saved 07_evaluate.png {'x': 20, 'y': 268, 'width': 1240, 'height': 765}
+  bar -> done done 100% (1s)
+saved 08_verify.png {'x': 33, 'y': 555, 'width': 1214, 'height': 1190}
+  bar #1 -> done (2s)
+saved 08b_blind_test.png {'x': 33, 'y': 1754, 'width': 1214, 'height': 455}
+saved 10_doctor.png {'x': 33, 'y': 600, 'width': 1213, 'height': 613}
+saved 00b_voice_library.png {'x': 33, 'y': 368, 'width': 1213, 'height': 171}
+  bar -> error error 0% (2s)
+saved 09_error_red.png {'x': 33, 'y': 1457, 'width': 1214, 'height': 396}
+DONE
+exit 0
+
+[exited with code 0]

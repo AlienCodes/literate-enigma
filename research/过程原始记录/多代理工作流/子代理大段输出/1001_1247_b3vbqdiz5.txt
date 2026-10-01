@@ -1,0 +1,133 @@
+下一版（v0.1.4）最主要的改动是加上进度条。准备素材、训练、生成、下载模型的时候，按钮下面会出现一条进度条，写清楚现在是第几步（一共几步）、在做什么、完成了百分之多少、已经用了多久、这一步大概还要多久。做完会变成绿色；出了错会变成红色，并且用大白话说明原因和怎么办。
+
+刷新网页或者不小心关掉网页都没关系，后台的任务会继续做，再点一次同一个按钮就能接着看进度。程序也会防止同时开两个任务，免得把显卡挤爆。
+
+页面最上面会显示这个声音做到了哪一步、下一步该点哪里。选项都改成中文，平时用不到的设置收进「高级设置」，测试用的假引擎也藏起来了。
+
+生成页上传讲稿以后，内容会直接放进文字框。生成结果用「很像 / 比较像」和「第几句可能有问题」来说明，并告诉你文件存在哪里。
+
+另外还有三点：程序工作时会自动阻止电脑睡眠；第二次双击桌面图标会直接打开已经在运行的网页；缺少模型时可以在网页里一键下载。
+{
+ "name": "U2 网页界面（webui/app.py）",
+ "files": [
+  "voicetwin/webui/app.py",
+  "tests/test_webui_helpers.py",
+  "tests/test_webui_build.py"
+ ],
+ "items": [
+  {
+   "title": "进度条：①②③ 和环境检查的下载都有；运行中按钮变灰、旧结果不消失（用户最想要的）",
+   "priority": "must",
+   "spec": "Import from voicetwin.webui.tasks: stream_task, task_banner_md, current_task. Import PROGRESS_CSS from voicetwin.utils.progress. Delete app.py:32-75 (_QueueHandler and the local stream_task).\n\nBlocks: gr.Blocks(title='声音分身 VoiceTwin', analytics_enabled=False, css=PROGRESS_CSS, delete_cache=(86400, 86400)). css and delete_cache are at G/blocks.py:551, 555.\n\nLayout:\n- Add prep_bar, train_bar, gen_bar and doc_bar = gr.HTML('', elem_classes='vt-bar-box') directly UNDER each primary button row and ABOVE the log, so the bar is visible without scrolling.\n- Move each log Textbox into gr.Accordion('详细过程（出问题时可以复制给帮你的人）', open=False) with show_copy_button=True (G/components/textbox.py:55) and label '运行记录'.\n\nEvery heavy .click gets show_progress='hidden' (G/events.py:214), so gradio's overlay and pulsing border don't compete with our bar.\n\nIt also gets concurrency_limit=None (G/events.py:224, 245). gradio's default per-event limit of 1 would make a second browser tab's click wait silently in gradio's queue; with the progress overlay hidden it would look dead. tasks._LOCK is the real one-task guard.\n\nOutputs (every yield in a handler MUST have exactly this many elements):\n- prep_btn.click(do_prepare, [voice, files, folder, asr, lang, denoise, separate], [prep_bar, prep_log, prep_md, voice, clips_count, clips, prep_btn, voice_status])\n- train_btn.click(do_train, [voice, t_backend, s_ep, g_ep, q_ep, bs], [train_bar, train_log, train_md, train_btn, select_btn, voice_status])\n- select_btn.click(do_select, [voice, t_backend], same outputs as train_btn)\n- gen_btn.click(do_generate, [voice, script, script_file, s_backend, quality, speed, ref, redo], [gen_bar, out_audio, out_files, gen_log, gen_md, gen_btn, redo])\n\nCalls:\n- stream_task('prepare', '准备素材', voice, _prepare_job, cfg, voice, upload_paths, folder, overrides, stages=wf.task_stages('prepare', cfg), note=NOTE)\n- stream_task('train', '训练模型', voice, wf.run_train, cfg, voice, backend, stages=wf.task_stages('train', cfg, backend), hint='训练通常要 30~90 分钟（素材越多越久），可以先去做别的事', note=NOTE, **opts)\n- stream_task('select', '重新挑选最佳模型', voice, wf.run_select, cfg, voice, backend, stages=wf.task_stages('select', cfg))\n- stream_task('generate', '生成讲课音频', voice, wf.run_narrate, cfg, voice, source, backend_name=…, quality=…, speed=…, reference=…, redo=…, stages=wf.task_stages('narrate', cfg))\n- NOTE = '运行期间电脑不会自动睡眠；可以去做别的事，但不要关闭黑色窗口。' when os.name == 'nt', else '可以去做别的事，但不要关闭运行程序的窗口。'\n- If wf.task_stages is missing (U3 not merged), wrap in try and pass stages=None.\n\nWhile running:\n- Yield state['bar'] and the log text.\n- Yield gr.update() (NOT None) for out_audio/out_files/clips etc., so the previous result stays playable. Today app.py:361 wipes them.\n- Primary button: gr.update(interactive=False, value='⏳ 正在准备素材……' / '⏳ 正在训练……' / '⏳ 正在生成……') (G/components/button.py:26, 31). Also disable select_btn during training.\n- Restore value and interactive=True on the final yield and on every early return.\n\nOn success, call gr.Info inside the do_* generator, never inside the worker thread:\n- '✅ 素材准备完成！可以去「② 训练模型」了'\n- '✅ 训练完成！可以去「③ 生成讲课音频」了'\n- '✅ 已重新挑好最像你的模型'\n- '✅ 音频生成好了，点 ▶ 试听'\n\nThis works in 4.24 because utils.py:724-741 gen_wrapper sets LocalContext before every next(), and helpers.py:1106-1121 reads it. Called from a plain threading.Thread it would only print to the console.\n\nWhy not gr.Progress: helpers.py:638-643 takes its callback from LocalContext, which the worker thread lacks. StatusTracker draws the bar only while status === 'pending' (G/_frontend_code/statustracker/static/index.svelte:201), which ends at the first yield.",
+   "test": "New tests/test_webui_build.py:\n- Skip unless gradio.__version__ starts with '4.'. The default env has gradio 6.29.\n- Run it with `GRADIO_ANALYTICS_ENABLED=False PYTHONPATH=<仓库> <scratchpad>/gsv39/bin/python -m pytest -q tests/test_webui_build.py`. That venv has gradio 4.24.0, py3.9 and pytest; the current app already builds there.\n- build_app(make_cfg(tmp)) succeeds.\n- For every f in app.fns where inspect.isgeneratorfunction(f.fn), call f.fn with voice='' and None or '' for the other inputs. Every yielded tuple has len == len(f.outputs). This catches the 'returned too few values' error.\n\nManual:\n- `voicetwin webui` with backend dummy and asr none. The bar walks through '第 2 步（共 7 步）' and so on, the button greys out, and the bar turns green.\n- In ③ the previous audio stays during a rerun."
+  },
+  {
+   "title": "同一时间只做一件事；刷新网页后顶部提示「后台正在…」，再点同一个按钮接着看",
+   "priority": "must",
+   "spec": "Add task_banner = gr.Markdown(visible=False) directly under the voice row. app.load (app.py:170 already exists, so extend it or add another) → gr.update(value=task_banner_md(), visible=bool(md)).\n\nIn each do_*:\n- state.get('busy'): yield the bar (yellow notice) plus log text, restore the buttons, and return.\n- attached: just keep following.\n\ndo_save guard: if current_task() is running with kind 'prepare' and the same voice, return '素材准备正在进行，请等它完成后再点「保存修改」。你在表格里改的内容还在，不会丢。' and gr.update() ×2. Otherwise prepare.py:345 save_manifest would overwrite the edits.\n\ndo_eval guard: if any task is running, return '现在正在「{label}」，评估也要用显卡，请等它完成后再试。'.",
+   "test": "Manual with two browser tabs:\n- Start prepare in A. B shows the banner.\n- B clicking 开始准备素材 attaches ('已接上正在进行的任务').\n- B clicking 开始训练 shows the yellow busy notice.\n- Refreshing A mid-task shows the banner, and clicking again re-attaches without a second worker (check the log has no duplicate '找到 … 个视频')."
+  },
+  {
+   "title": "出错时说人话：红色进度条 + 「怎么办」；不再出现只写「Error」的弹窗",
+   "priority": "must",
+   "spec": "On a final state with 'friendly': md = errors.friendly_md(f, what='素材准备' / '训练' / '挑选模型' / '生成' / '下载', log_path=str(wf.Project(cfg, voice).logs_dir / 'voicetwin.log')). Guarded import; fallback '### ❌ 没有完成：' + str(err). Put it into prep_md / train_md / gen_md / doc_md. The bar is already red from the tracker.\n\nAdd a `_safe(what)` decorator for the non-streaming handlers (do_save, the load_clips lambda at app.py:228, do_eval, the doctor lambda at app.py:391, refresh_voices). It catches Exception and returns the friendly text in the handler's Markdown output and gr.update() for the others, instead of raising into gradio. Today launch() has no show_error, so queueing.py:531-539 sends error=None.\n\nIn do_prepare, wrap wf.Project(cfg, voice_name) (name validation, project.py:16-22, today app.py:214 raises) and yield the message.\n\nGuard the Numbers: int(se or 0), etc. (app.py:291). gr.Number returns None when cleared.",
+   "test": "Manual:\n- Voice name 'a/b' gives friendly text in the page, not a red 'Error'.\n- A prepare folder containing only a .txt gives a red bar plus '文件夹里没找到视频或录音' plus 怎么办.\n- Clearing a number box and clicking 开始训练 does not crash.\n\nThe arity test covers the early-return yields."
+  },
+  {
+   "title": "顶部「当前声音状态」卡、默认名字「我的声音」、换声音自动载入片段；③ 页提示还没训练",
+   "priority": "must",
+   "spec": "Add voice_status = gr.Markdown() under the voice row.\n\nModule-level pure `_voice_status_md(cfg, voice) -> str`. Normalise with _voice_name, catch the Project ValueError, and read Project.exists, prepare_summary.json and load_models().\n- Empty: '👈 先在左边「声音名称」里给你的声音起个名字，例如：我的声音'\n- Invalid name: '⚠️ ' + message.\n- New voice: '「{v}」是新声音，还没有素材。👉 下一步：在「① 准备素材」里填讲课视频所在的文件夹，点「开始准备素材」。'\n- Prepared but not trained: '① 素材 ✅ {m} 分钟（{n} 条）　② 训练 ⬜ 还没训练　👉 下一步：去「② 训练模型」点「开始训练」（通常要 30~90 分钟）'\n- Trained (any backend entry with 'selected'): '① 素材 ✅ {m} 分钟　② 训练 ✅ {trained_at} 完成{（自动挑选：比较像）}　👉 现在可以去「③ 生成讲课音频」了'. The label comes from eval.metrics.similarity_label(best speaker_sim, '') using selection.results / best; omit it if missing.\n- minutes < 10 adds the line '⚠️ 素材偏少（不到 10 分钟），声音可能不够像，建议再加一些讲课视频'.\n\nAdd gen_warn = gr.Markdown() at the top of ③ via `_gen_warn_md(cfg, voice, backend)`:\n- gptsovits with no selected model: '⚠️ 这个声音还没有训练，现在生成用的是通用模型，听起来不太像你。建议先去「② 训练模型」点「开始训练」。' Today the only signal is a log warning at gptsovits.py:424.\n- Not prepared: '⚠️ 这个声音还没有准备素材，请先完成「① 准备素材」。'\n- Otherwise ''.\n\nEvents:\n- voice.change(_on_voice_change, voice, [voice_status, clips_count, clips, gen_warn], show_progress='hidden'). The voice dropdown has no .change today, so the table stays empty until the user clicks 载入片段列表. app.load's voice refresh triggers it too.\n- s_backend.change → gen_warn.\n\nDefaults:\n- value=(_voices(cfg) or ['我的声音'])[0], so it is not None (app.py:159).\n- refresh_voices falls back to '我的声音' instead of '' (app.py:165).\n- allow_custom_value=True means it need not be in choices.\n\nRename buttons: '🔄 刷新' → '🔄 刷新声音列表'; '载入片段列表' → '🔄 重新载入'.\n\nThe final yields of prepare/train/select also refresh voice_status.",
+   "test": "tests/test_webui_helpers.py:\n- '' gives '起个名字'.\n- An unknown voice gives '是新声音'.\n- The `prepared` fixture gives '还没训练' and '分钟'.\n- After project.update_models('gptsovits', {'selected': {'id': 's8-g15'}, 'trained_at': '2026-09-28 10:00'}) it gives '训练 ✅'.\n- A list input is normalised.\n- _gen_warn_md for an untrained voice contains '还没有训练'."
+  },
+  {
+   "title": "选项改成中文、用不到的收进「高级设置」、隐藏测试引擎",
+   "priority": "must",
+   "spec": "Use (label, value) tuples, supported in 4.24 (G/components/radio.py:25, G/components/dropdown.py:33). Functions still receive the English values.\n\n① Put asr/lang/denoise into gr.Accordion('高级设置（一般不用改）', open=False) (G/layouts/accordion.py:29):\n- asr: [('通用（中英文都行，推荐）','faster-whisper'),('纯中文课更准','funasr'),('不识别（只用字幕）','none')]\n- lang: [('自动识别','auto'),('中文','zh'),('英文','en')]\n- denoise: [('自动','auto'),('开','on'),('关','off')]\n- The '视频有背景音乐' checkbox stays outside.\n\n② Shorten the intro (app.py:270-272) to '直接点「开始训练」就行，电脑会自动完成（素材越多越久，通常 30~90 分钟）。训练时可以去做别的事，但不要关闭黑色窗口。训练结束后会自动挑出最像你的模型，并把语速调得和你本人一样。'\n- t_backend and the 4 numbers move into Accordion('高级设置（一般不用改，数字保持 0 = 自动）', open=False), together with the Qwen3/IndexTTS explanation.\n- Number labels: '音色训练轮数（0 = 自动）', '语气训练轮数（0 = 自动）', 'Qwen3 训练轮数（0 = 默认）', '每批数量 batch（0 = 自动；显存不够报错时改成 2）', with minimum=0 (G/components/number.py:41) and precision=0.\n- t_backend: [('GPT-SoVITS（推荐）','gptsovits'),('Qwen3-TTS','qwen3tts')].\n\n③\n- quality: gr.Radio([('快速试听（最快）','fast'),('标准（推荐）','balanced'),('最好（每句做 5 遍并检查错字，最慢，正式发布用）','best')], label='质量').\n- speed label: '语速（1.0 = 和你平时一样；0.9 = 慢一点）'.\n- s_backend and ref move into Accordion('高级设置（一般不用改）', open=False).\n- s_backend: [('GPT-SoVITS（推荐，用你训练的模型）','gptsovits'),('Qwen3-TTS','qwen3tts'),('IndexTTS（不用训练）','indextts')]. ('测试引擎（不是你的声音）','dummy') appears only when cfg backend == 'dummy'. Today 'dummy' is always offered (app.py:153, 323) and produces synthetic tones (backends/dummy.py).\n- ref label: '指定参考音频编号（留空 = 自动挑选）'.",
+   "test": "The build test passes. Manual: choosing '标准（推荐）' logs 质量 balanced in the run log; dummy is not listed with the default config."
+  },
+  {
+   "title": "① 上传：不再整个读进内存、不再重复处理；先检查文件夹路径",
+   "priority": "must",
+   "spec": "Today do_prepare copies uploads with dst.write_bytes(src.read_bytes()) into a NEW random temp dir each click (app.py:205-211). That reads multi-GB videos into RAM, and because source_id hashes the resolved path (prepare.py:55-57) every re-click reprocesses everything. It also happens before stream_task, with no feedback.\n\nNew module-level `_prepare_job(cfg, voice, upload_paths, folder, overrides, progress=None)`, run inside the worker:\n- updir = wf.Project(cfg, voice).root / 'uploads'; create it.\n- For k, src:\n  - dst = updir / src.name.\n  - Skip if dst exists with the same st_size.\n  - Otherwise unlink dst if it exists, then try os.link(src, dst) and fall back to shutil.copyfile (streams, no RAM spike) on OSError.\n  - progress(0.02*k/n, f'整理上传的文件 {k}/{n}：{src.name}').\n- inputs = ([str(updir)] if uploads) + ([folder] if folder).\n- return wf.run_prepare(cfg, voice, inputs, progress=progress, overrides=overrides).\n- Same-name .srt files land next to their videos (find_sidecar_subtitle, subtitles.py:155-163).\n\nPrecheck in do_prepare before starting:\n- p = Path(folder.strip().strip('\"')). If it does not exist, yield render_notice_html('找不到这个文件夹：{p}。请检查是否写错（可以在文件夹窗口顶部的地址栏复制路径，再粘贴过来）。', 'warn') and return.\n- Keep the '请上传文件或填写文件夹路径' check.\n\ngr.File(file_types=sorted(MEDIA_EXTS) + ['.srt', '.vtt']), with MEDIA_EXTS from voicetwin.data.prepare (G/components/file.py:36; it only filters the picker). Add the hint under it: '视频很大（几个 GB）时，建议直接在右边填文件夹路径，不用上传，更快，也不占 C 盘。'",
+   "test": "Unit: call _prepare_job with 2 temp files and a monkeypatched wf.run_prepare. The files are copied into project/uploads with progress calls 0.01 and 0.02. Called again, nothing is copied.\n\nManual: upload the same small wav twice. The second run logs '之前已经处理过' and the clip count does not double."
+  },
+  {
+   "title": "校对表：排序后试听不再播错；播放器放到表格上方；「保留」填 是/否；Excel 占用时不丢修改",
+   "priority": "must",
+   "spec": "Selection:\n- clips.select(on_select, [voice, clips], clip_audio). Use row = evt.index[0]. If evt.index[1] == 1 (the id column), id = evt.value; otherwise id = str(table.iloc[row, 1]).\n- Look up the record by id (dict from load_manifest), NOT load_manifest()[row] as app.py:233-235 does. 4.24 sorts in the browser (dataframe/shared/Table.svelte), and SelectData has no row_value in 4.24 (G/events.py:111-132).\n- Return gr.update(value=path, label=f'试听：第 {table.iloc[row, 0]} 条　{text[:24]}'), so a mismatch would be visible.\n\nPlayer: move clip_audio above the table (below clips_count) with autoplay=True (G/components/audio.py:92).\n\n保留 column:\n- Display '是' / '否'; header '保留（是/否）'.\n- Module-level `_parse_keep(v) -> Optional[bool]`.\n  - Drop: {'否','不','不要','删','删除','n','no','false','0','x','×','✘','✗','ｘ'}, case-insensitive.\n  - Keep: {'是','要','保留','y','yes','true','1','✔','✓','√',''}.\n  - Anything else → None: keep the record's current value and collect '第 {序号} 行「保留」填的是「{v}」，看不懂，已保持原样'.\n  - Today only ✘/0/x/X/否 count as drop (app.py:259), so IME characters like × silently keep a clip.\n\nInstructions (app.py:189-190): '**双击格子就能改错字，改完按回车**；不想要的片段把「保留」改成「否」；**点一下某一行就能听**。改完一定要点「保存修改」。（只改「文字」和「保留」两列就行）'\n\ndo_save:\n- Write the CSV to a temp file, then os.replace.\n- On PermissionError return 'transcripts.csv 正被 Excel/WPS 打开，请先关掉它，再点一次「保存修改」。表格里的修改还在，不会丢。'\n- If no row id belongs to the voice, return '表格里的片段不属于「{voice}」，请先点「🔄 重新载入」。' without writing.\n- Success: '✅ 已保存：改了 {text} 处文字、{keep} 处「保留」、{lang} 处语言', using import_csv's keys (project.py:138), followed by the friendly summary.",
+   "test": "Unit tests for _parse_keep. Update the existing helpers test if it relied on ✔/✘.\n\nManual: sort by the 秒 column, click a row, and confirm the player label matches the row number and text. With transcripts.csv open in another program (simulate via chmod on Linux), saving shows the friendly text."
+  },
+  {
+   "title": "③ 生成：上传讲稿直接放进文字框；结果说人话（存在哪、哪几句要重做）；重做框用完清空",
+   "priority": "must",
+   "spec": "script_file:\n- script_file = gr.File(..., file_types=['.txt','.md','.docx','.srt','.vtt']). Add script_hint = gr.Markdown() under it.\n- script_file.upload(on_script_upload, script_file, [script, script_file, script_hint]):\n  - .txt/.md/.docx: read with voicetwin.synth.script.read_script_file and return (text, None, '已把「{name}」的内容放进上面的讲稿框，可以直接修改。'). On an exception return (gr.update(), gr.update(), '❌ 读不了这个文件：' + friendly title + '。Word 文件请另存为 .docx 或 .txt 再上传。').\n  - .srt/.vtt: keep the file and return the hint '已载入字幕文件「{name}」：会按字幕的时间轴生成（适合给视频配音）。要改用上面的文字，请点文件右上角的 × 删除它。'\n  - Anything else: (gr.update(), None, '不支持这种文件（.doc / .wps / .pdf）。请在 Word 或 WPS 里点「文件 → 另存为」，类型选 .docx 或 .txt，再上传。')\n  - This fixes app.py:343-346, which silently prefers a stale uploaded file over newly pasted text.\n\ndo_generate:\n- Parse redo first. On ValueError from cli._parse_redo (U6 makes the message Chinese), yield a notice and return. Today a bad input raises before the thread starts and shows a blank 'Error'.\n- files_out = [audio] + ([srt] if srt). Drop the .report.json (app.py:354).\n\nModule-level pure `_gen_summary_md(res) -> str`:\n- '### ✅ 生成好了：音频长 {m 分 s 秒}，共 {N} 句'\n- '整体听起来：{similarity_label(mean)}（平均相似度 {mean:.2f}）' when any speaker_sim exists\n- '已保存到：`{audio_path}`（同一个文件夹里还有同名的 .srt 字幕）'\n- flagged = getattr(res, 'flagged', None) or [s['index'] for s in res.segments if s.get('issues')]. If any: '⚠️ 第 {3、17} 句可能有问题。想重做的话，在「只重新生成第几句」里填：{3,17}，再点「生成」，只重做这几句，很快。'\n- Other warnings, i.e. ones not starting with '第 N 句：' such as subtitle lag: '> ⚠️ …', first 10, then '还有 N 条'.\n- '#### 每一句的情况' table: | 第几句 | 句子 | 像不像 | 需要注意 |. Show the full sentence with '|' escaped; 像不像 via similarity_label, or '—' when None (never the literal 'None' that app.py:356 prints today); append '（沿用上次）' for cached sentences.\n\nAfter a successful run:\n- Yield '' into redo, so the next run doesn't re-roll the same sentences with new seeds (engine.py:155-157).\n- Add '已重新生成第 3、5 句' when redo was used.",
+   "test": "Unit test _gen_summary_md with a SimpleNamespace res (segments with speaker_sim None and with issues, plus one lag warning). It contains '生成好了' and '第 2 句', and contains no 'None'.\n\nManual: uploading a .docx fills the text box; an .srt shows the hint; a renamed .doc is rejected; after a redo the box is empty."
+  },
+  {
+   "title": "完成后的摘要不再出现 Python 字典和术语",
+   "priority": "must",
+   "spec": "Rewrite _summary_md (app.py:129-147). Today it prints dicts like {'zh': 52.3}.\n- '### ✅ 素材准备好了：可用 **{minutes_kept} 分钟**（中文 {x} 分钟，英文 {y} 分钟），一共 {clips_kept} 条'\n- '自动去掉了 {n} 条：{reason} {k} 条，…'\n- Warnings as '> ⚠️'.\n- '你的语速：中文每秒 {p50:.1f} 个字；英文每秒 {p50:.1f} 个音节'\n- '你的停顿习惯：逗号处约 {:.1f} 秒，句号处约 {:.1f} 秒，段落之间约 {:.1f} 秒'\n- '其中 {val} 条留作「考试题」：训练后用来自动挑出最像你的模型' replaces '验证集'.\n- References: only the first 3, kind shown as 陈述/提问/感叹 (statement/question/exclaim), plus '（一共自动挑了 {n} 条参考录音）'.\n- If summary.get('skipped_files'): '⚠️ 有 {n} 个文件没能处理：{name}（{reason}）……换个文件后再点「开始准备素材」，已处理的不会重做'.\n\nTraining done (app.py:297):\n- '### ✅ 训练完成（用时 {train_minutes} 分钟）\\n\\n已经自动挑出最像你的版本（{label}），并把语速调得和你本人一样。\\n\\n👉 下一步：去「③ 生成讲课音频」。\\n\\n<small>版本编号：{best}</small>'\n- With selection_error: '### ✅ 训练完成（用时 X 分钟）\\n\\n⚠️ 「自动挑选最像你的模型」这一步没成功（{reason}），现在先用最后一轮的模型。可以稍后点「重新挑选最佳模型」再试。'\n\nSelect done (app.py:308): '### ✅ 已重新挑好最像你的模型（{label}，版本 {best}）；语速：{\"已校准\" if any value != 1.0 else \"和你本人一致，不用调\"}'.",
+   "test": "Unit: _summary_md(summary from the `prepared` fixture) contains '分钟' and contains no '{' or \"'zh'\"."
+  },
+  {
+   "title": "环境检查页：一键「⬇️ 下载缺少的模型」（不用再开 cmd 敲命令）",
+   "priority": "must",
+   "spec": "Rename the tab to '🩺 环境检查'. Add:\n- dl_btn = gr.Button('⬇️ 下载缺少的模型', variant='primary')\n- doc_bar = gr.HTML()\n- doc_log inside the accordion\n- doc_md\n- The doctor button label becomes '检查环境（约 10~30 秒）'; doc_out gets interactive=False.\n\nModule-level `_download_job(cfg, progress=None)`:\n- project = wf.Project(cfg, '__download__').\n- try: b = GPTSoVITSBackend(cfg, project); return b.download_pretrained('auto', progress=progress)\n- finally: shutil.rmtree(project.root, ignore_errors=True). Same as cli.py:260-269.\n- download_pretrained already reports MB progress (gptsovits.py:158-159). 'auto' tries HF_ENDPOINT (start_webui.bat sets hf-mirror, ps1:108) and then hf-mirror.\n\ndl_btn.click → stream_task('download', '下载模型', '', _download_job, cfg, stages=wf.task_stages('download', cfg)), with outputs [doc_bar, doc_log, doc_md, dl_btn].\n- Success: '✅ 已下载 {n} 个文件，可以开始训练了' or '✅ 模型文件都齐全，不用下载'.\n\nThis replaces the cmd instructions at 快速上手.md:33-34 and gptsovits.py:106. errors.py rule 11 points here.",
+   "test": "Unit: monkeypatch GPTSoVITSBackend.download_pretrained to call progress(0.5, 'x 1/2 MB') and return ['a']. _download_job returns ['a'] and removes the temp project.\n\nManual: the bar shows MB progress against the fake root with a missing model."
+  },
+  {
+   "title": "启动交给 launcher；build_app(cfg, local)",
+   "priority": "must",
+   "spec": "Signature: build_app(cfg, local: bool = True). local hides the open-folder buttons, which are should-level, when the server is not on this PC.\n\nKeep app.launch(cfg, host, port, share) as a thin delegate: `from voicetwin.webui.launcher import launch as _launch; return _launch(cfg, host=host, port=port, share=share)`. cli.py switches to launcher directly (U6).",
+   "test": "The build test calls build_app(cfg, local=False)."
+  },
+  {
+   "title": "⏹ 停止按钮",
+   "priority": "should",
+   "spec": "Next to prep_btn, train_btn/select_btn and gen_btn, add gr.Button('⏹ 停止', variant='stop', visible=False) (G/components/button.py:26).\n- The start yield sets it visible=True; the final yield hides it.\n- First click: the label becomes '再点一次确认停止', using a gr.State timestamp. A second click within 5 s calls tasks.request_stop() and shows '正在停止……（等这一小步做完）'.\n- Do NOT use gradio cancels=: 'functions that are currently running will be allowed to finish' (G/events.py:241), and the worker thread would keep going.\n- Requires U1 request_stop, U3 check_cancel and U4's kill-tree.",
+   "test": "Manual: stop a dummy narrate mid-way. The bar turns grey with '⏹ 已停止', and a rerun reuses the cached sentences. On Windows, stop training and confirm in Task Manager that no python.exe from s2_train remains."
+  },
+  {
+   "title": "浏览器标签页标题显示进度、完成时响一声",
+   "priority": "should",
+   "spec": "gr.Blocks(js=PROGRESS_JS) (G/blocks.py:552). PROGRESS_JS comes from U1.",
+   "test": "Manual browser check (see U1)."
+  },
+  {
+   "title": "环境检查自动运行、问题排前面、可选组件折叠；打开网页时缺模型就在顶部提醒",
+   "priority": "should",
+   "spec": "Inputs and layout:\n- `with gr.Tab('🩺 环境检查', id='env') as env_tab:` then env_tab.select(run_doctor, None, [doc_summary, doc_out, doc_opt]). Tab has EVENTS=[select] (G/layouts/tabs.py:59).\n- Cache the result for 60 s.\n- Use wf.sort_doctor_rows. Non-optional rows go in doc_out; optional rows go in gr.Accordion('可选组件（没装也不影响使用）', open=False).\n- doc_summary: '### ✅ 一切正常，可以开始使用' or '### ❌ 有 2 项需要处理（处理完点「重新检查」）' plus a numbered list of fixes from a small item→advice map.\n\nOn app.load, run wf.quick_check(cfg) (filesystem only). If it finds problems, show a red Markdown under INTRO: '⚠️ 还差一步：缺少 GPT-SoVITS 的模型文件。请打开「🩺 环境检查」页，点「⬇️ 下载缺少的模型」。'\n\nNever call wf.doctor in load: it runs nvidia-smi and subprocess checks.",
+   "test": "Manual: page load stays fast (<1 s extra). A missing fake model shows the banner."
+  },
+  {
+   "title": "④ 评估：结果用一张卡片说清楚，出错不弹空白 Error",
+   "priority": "should",
+   "spec": "Replace gr.JSON (app.py:372) with gr.Markdown, rendered from evaluate_file's dict:\n- '## 🙂 比较像（0.82）'\n- The standards line.\n- '- 语速：每秒 4.1 个字（你平时 4.3 个字）'\n- '- 音高：差 0.8 个半音（越小越像）'\n- '- 错字：2%（识别出的文字：……）'\n- '- 提示：无'\n\nWrap in _safe. Add progress=gr.Progress() with '正在加载声纹模型…' and '正在识别文字…'. It works here because do_eval is a normal function, so the bar shows while pending.\n\nAdd a button '📥 评估刚才生成的音频' that fills ev_audio from a gr.State set by do_generate. Rename the tab '④ 试试像不像（可选）'.",
+   "test": "Manual: an unprepared voice shows the friendly text; a valid file shows the card."
+  },
+  {
+   "title": "「📂 打开保存文件夹」「📍 在文件夹里找到这个文件」和「下一步 →」按钮",
+   "priority": "should",
+   "spec": "Only when local=True:\n- Buttons call winsys.open_path(project.outputs_dir) and open_path(audio_path, select=True) (U6).\n- After success, a '去训练 →' or '去生成 →' button returns gr.Tabs(selected='train' / 'gen'). This needs `with gr.Tabs() as tabs` and gr.Tab(..., id=…) (G/layouts/tabs.py:20, 67). Layout blocks can be outputs; the prototype built under 4.24 (scratchpad/proto_v014.py).",
+   "test": "Manual on Windows: Explorer opens with the file selected."
+  },
+  {
+   "title": "逐句结果表：点哪一句就单独听哪一句",
+   "priority": "should",
+   "spec": "Under the summary, add gen_table = gr.Dataframe(headers=['第几句','开始时间','句子','像不像','需要注意'], interactive=False, wrap=True, column_widths=['8%','11%','51%','12%','18%'], height=420) (G/components/dataframe.py:84, 87, 94).\n- Add a hint '👆 点表格里任意一句，就能单独听这一句'.\n- seg_audio = gr.Audio(autoplay=True).\n- select reads the '第几句' value from the passed table value (robust to sorting) and plays seg_report['clip'] from U3.",
+   "test": "Manual: clicking row 3 plays sentence 3, including after sorting."
+  },
+  {
+   "title": "保存的文件名和格式（WAV / MP3）",
+   "priority": "should",
+   "spec": "- out_name = gr.Textbox(label='保存的文件名（可以不填）', placeholder='例如：第3课 牛顿第二定律'), auto-filled from the uploaded file stem.\n- out_fmt = gr.Radio([('WAV（音质最好，剪映/后期用）','wav'),('MP3（文件小，方便发微信、上传）','mp3')]).\n- Build out = outputs_dir / f\"{safe_name(name, 30)}_{time.strftime('%m月%d日%H点%M分')}.{fmt}\" and pass out= to wf.run_narrate. _write_audio already encodes by suffix (engine.py:321-328).",
+   "test": "Manual: an MP3 is produced with the given name."
+  },
+  {
+   "title": "在网页里改读音词典 + 试读一句",
+   "priority": "later",
+   "spec": "Add an Accordion '🔤 读音纠正' in ③ containing:\n- '原文' and '读成' inputs with an add button.\n- The full lexicon textbox, loaded from project.lexicon_path. Saving writes through a temp file and keeps LEXICON_TEMPLATE comments.\n- A '🔊 试读一句' button that runs quality fast with subtitles=False.",
+   "test": "Manual."
+  }
+ ]
+}

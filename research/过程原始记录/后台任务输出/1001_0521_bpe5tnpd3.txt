@@ -1,0 +1,16 @@
+# 后台任务 bpe5tnpd3
+# 开始：10-01 05:19:57（北京时间）  操作编号：#258  工具：Bash
+# 说明：Wait for release workflow to finish and check the release
+# 结束状态：completed  Background command "Wait for release workflow to finish and check the release" completed (exit code 0)
+# 命令：
+#   API=https://api.github.com/repos/AlienCodes/literate-enigma; for i in $(seq 1 40); do r=$(curl -sS -m 20 "$API/actions/workflows/release.yml/runs?per_page=1" || true); st=$(printf '%s' "$r" | python3 -c "import json,sys
+#   try:
+#     d=json.load(sys.stdin)['workflow_runs'][0]; print(d['status'], d.get('conclusion'), d['id'], d['event'])
+#   except Exception as e: print('unknown', e)"); echo "$(date +%H:%M:%S) $st"; case "$st" in completed*) break;; esac; sleep 30; done; curl -sS -m 20 "$API/releases/tags/v0.1.0" | python3 -c "import json,sys; d=json.load(sys.stdin); print('RELEASE:', d.get('html_url'), d.get('name'), [ (a['name'], a['size'], a['browser_download_url']) for a in d.get('assets',[])] if 'html_url' in d else d)"
+# ---- 输出 ----
+21:19:58 in_progress None 36778709594 workflow_dispatch
+21:20:29 in_progress None 36778709594 workflow_dispatch
+21:20:59 completed success 36778709594 workflow_dispatch
+RELEASE: https://github.com/AlienCodes/literate-enigma/releases/tag/v0.1.0 声音分身 VoiceTwin v0.1.0（Windows） [('VoiceTwin-Windows-v0.1.0.zip', 145319, 'https://github.com/AlienCodes/literate-enigma/releases/download/v0.1.0/VoiceTwin-Windows-v0.1.0.zip')]
+
+[exited with code 0]
