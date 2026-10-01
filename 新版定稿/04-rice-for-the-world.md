@@ -1,5 +1,5 @@
-# EN: The Seed That Changed the World
-# ZH: 一粒种子改变世界
+# EN: Rice for the World
+# ZH: 稻济天下
 ## 英文
 
 In July 1964, **inspecting** rice ear by ear in a **paddy** at Anjiang Agricultural School in Hunan province, the **instructor** Yuan Longping spotted a **peculiar** plant. It was male-**sterile**, **shedding** no **viable** **pollen**. Rice pollinates itself, so breeding **hybrid** seed in **bulk** depends on such plants. In February 1966 he **detailed** the **anomaly** in the **journal** Chinese Science Bulletin.
