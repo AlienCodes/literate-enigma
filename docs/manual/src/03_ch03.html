@@ -156,7 +156,7 @@ Successfully installed voicetwin-0.1.6</span>
   <tr><td>ffmpeg：找不到 ffmpeg</td><td>很少见。重新运行安装程序；仍然不行请看第 15.1 节。</td></tr>
 </table>
 <p>以后想再检查，不用再看黑色窗口：打开程序，点 <span class="tab">🩺 环境检查</span> 标签页，它会自动检查一次。结果是一张带编号的表格（# / 状态 / 项目 / 说明），表格下面写着"共 N 项"；
-最上面直接告诉你结论和要点哪里，可选组件收在折叠的"可选组件（没装也不影响使用）"里（图 3-1）。处理完问题后，点 <span class="btn gray">🔄 重新检查（约 10~30 秒）</span>。</p>
+最上面直接告诉你结论和要点哪里，可选组件收在折叠的"可选组件（没装也不影响使用，共 N 项）"里（图 3-1）。处理完问题后，点 <span class="btn gray">🔄 重新检查（约 10~30 秒）</span>。</p>
 <figure class="w80"><img src="../images/10_doctor.png" alt="环境检查页面"><figcaption><b>图 3-1</b>　🩺 环境检查 页面：上面是"重新检查"和"下载缺少的模型"两个按钮，表格每一行有编号，有 ⚠️ / ❌ 的行排在最前面（演示电脑上的结果，路径和版本号与你的电脑不同）</figcaption></figure>
 
 <h2 id="ch3-6">3.6 补齐预训练模型（只在提示缺少时才需要）</h2>
@@ -222,8 +222,8 @@ D:\VoiceTwin&gt;<span class="c-in">voicetwin.bat doctor</span>
 <ol class="steps">
   <li>先关掉声音分身的黑色窗口。按 3.1 节下载新的 <code>VoiceTwin-Windows-v0.1.6.zip</code>，右键 → <span class="ui">全部解压缩…</span>，位置同样填 <strong><code>D:\</code></strong>，点 <span class="ui">提取</span>。
     提示"目标已包含同名文件"时，选 <span class="ui">替换目标中的文件</span>。</li>
-  <li>双击 <span class="path">D:\VoiceTwin\install_windows.bat</span>，输入 <span class="c-in mono">1</span> 按 <span class="key">Enter</span>。问整合包路径时，会显示"上次用的整合包：D:\GPT-SoVITS"，直接按 <span class="key">Enter</span>（输入 <span class="c-in mono">D:\GPT-SoVITS</span> 也可以）。
-    窗口里还会显示"检测到你已经有的声音（共 N 个）……（重新安装不会删除它们）"。</li>
+  <li>双击 <span class="path">D:\VoiceTwin\install_windows.bat</span>。窗口上方会先显示"检测到你已经有的声音（共 N 个）：……（重新安装不会删除它们）"。
+    输入 <span class="c-in mono">1</span> 按 <span class="key">Enter</span>。问整合包路径时，会显示"上次用的整合包：D:\GPT-SoVITS（直接按回车继续用它；……）"，直接按 <span class="key">Enter</span>（输入 <span class="c-in mono">D:\GPT-SoVITS</span> 也可以）。</li>
   <li>看到"✅ 安装成功！"后打开程序，网页最上面的标题显示"声音分身 VoiceTwin v0.1.6"，就说明升级好了。</li>
 </ol>
 <div class="note"><span class="t">为什么数据不会丢</span>你的素材、校对结果和生成的音频都在 <span class="path">D:\VoiceTwin\workspace</span> 里，训练好的模型在 <span class="path">D:\GPT-SoVITS</span> 里，设置在 <span class="path">config.yaml</span> 里。

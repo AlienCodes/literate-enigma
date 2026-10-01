@@ -10,7 +10,7 @@
   <tr><td><strong>.srt / .vtt</strong> 字幕</td><td>剪映等软件导出</td><td>按字幕的<strong>时间轴</strong>生成，每一句放在字幕对应的时间点上（10.7 节）。</td></tr>
   <tr><td>直接粘贴</td><td>网页里的 <span class="ui">讲稿</span> 文本框</td><td>适合短内容。粘贴后的效果和 .txt 一样。</td></tr>
 </table>
-<div class="tip">长讲稿推荐用 <strong>.txt 或 .md 文件上传</strong>：方便保存、修改后再次上传，程序只会重新生成改动过的句子（9.5 节）。</div>
+<div class="tip">长讲稿推荐用 <strong>.txt 或 .md 文件上传</strong>：方便保存。上传后文件内容会放进讲稿框，可以直接在网页里修改；改完再生成时，程序只会重新生成改动过的句子（9.5 节）。</div>
 
 <h2 id="ch10-2">10.2 程序是怎么把讲稿切成句子的</h2>
 <p>模型一次只能读一小段话，所以程序会先把讲稿切成一句一句，逐句生成，再按你本人的停顿习惯拼接起来。切分规则如下，了解它能帮你写出更顺的讲稿：</p>
@@ -23,7 +23,7 @@
   <tr><td>太长的句子会拆开</td><td>中文超过 50 个字、英文超过约 45 个音节的句子，会在逗号、顿号等处拆成几段生成，中间用很短的<strong>逗号停顿</strong>连接，听起来仍然是一句话。</td></tr>
   <tr><td>句子的语气类型</td><td>以问号结尾的是<strong>疑问句</strong>，以感叹号结尾的是<strong>感叹句</strong>，其它是<strong>陈述句</strong>。程序会给不同类型的句子挑不同语气的参考音频（13.2 节）。</td></tr>
 </table>
-<div class="note"><span class="t">为什么停顿会像我？</span>第 6 章准备素材时，程序已经从你的录音里统计出了你的停顿习惯（逗号处停多久、句号处停多久、换段落停多久），生成时就按这个习惯插入停顿，并且每次有轻微的自然波动，不会像机器一样整齐划一。</div>
+<div class="note"><span class="t">为什么停顿会像我？</span>第 6 章准备素材时，程序已经从你的录音里统计出了你的停顿习惯（逗号处停多久、句号处停多久、换段落停多久），生成时就按这个习惯决定每个停顿的<strong>长短</strong>，并且长短每次略有变化，不会像机器一样整齐划一。停顿里面是<strong>完全的静音</strong>：没有背景声、没有底噪，成品里只有你的声音。</div>
 
 <h2 id="ch10-3">10.3 停顿标记：想在哪儿停，停多久</h2>
 <p>除了标点和空行，你还可以在讲稿里直接写<strong>停顿标记</strong>，精确控制停顿。标记本身不会被读出来，也不会出现在字幕里。</p>
@@ -42,6 +42,7 @@
   <li>停顿标记要写在<strong>句子后面</strong>：它会替换掉这句话后面原本的停顿。</li>
   <li>方括号用中文输入法的 <code>【】</code> 不行，必须是英文的 <code>[ ]</code>；里面的"停顿"两个字不能写错。</li>
   <li>写在讲稿最开头的停顿标记会被忽略（音频开头本来就有一小段静音）。</li>
+  <li>停顿标记产生的停顿和其它停顿一样，都是完全的静音。</li>
 </ul>
 <div class="tip"><span class="t">录屏课程的好帮手</span>讲到"大家看屏幕上这段代码"时，后面加一个 <code>[停顿=3]</code>，就能留出 3 秒让画面演示，剪辑时对齐轻松很多（第 11 章）。</div>
 
@@ -105,17 +106,17 @@ API => A P I</pre></li>
   <li><strong>中文里夹英文单词</strong>：直接写即可，例如"我们用 Python 的 list 来存数据"。英文单词前后加不加空格都可以。</li>
   <li><strong>整句英文</strong>：会自动识别为英文句子，用你的英文参考音频、英文语速来读。一段话里中英文句子可以交替出现。</li>
 </ul>
-<div class="tip">拿不准的读法，先用 <code>fast</code> 档生成试听一遍（几秒钟一句），把读错的词记下来统一写进词典，再用 <code>best</code> 档正式生成。</div>
+<div class="tip">拿不准的读法，先用"快速"档生成试听一遍（几秒钟一句），把读错的词记下来统一写进词典，再用"完美"档正式生成。</div>
 
 <h2 id="ch10-7">10.7 按字幕时间轴生成（给现成的视频重新配音）</h2>
 <p>如果你有一个视频和它的字幕文件（.srt），想用你的新声音把它重新配一遍，并且让每句话还出现在原来的时间点，可以直接把 <strong>.srt 文件作为讲稿上传</strong>：</p>
 <ol class="steps">
   <li>在剪映等软件里给视频生成字幕，检查、修改好字幕文字，导出为 <strong>.srt</strong> 文件。</li>
-  <li>在 <span class="tab">③ 生成讲课音频</span> 的 <span class="ui">或上传讲稿文件</span> 里上传这个 .srt 文件。</li>
+  <li>在 <span class="tab">③ 生成讲课音频</span> 的 <span class="ui">或上传讲稿文件（txt / docx / md / srt）</span> 里上传这个 .srt 文件。页面会提示"已载入字幕文件……会按字幕的时间轴生成"。</li>
   <li>点 <span class="btn">生成</span>。每一条字幕会被读出来，并放在这条字幕的<strong>开始时间</strong>上。</li>
   <li>生成的音频长度和原视频对得上，可以直接替换原视频的声音（11.3 节）。</li>
 </ol>
-<div class="warn"><span class="t">如果提示"第 N 句比字幕时间轴晚了 X 秒"</span>说明上一条字幕的文字太多、而它的时间段太短，你的语速读不完，后面的句子只能顺延。解决方法：精简上一条字幕的文字，或者在剪辑软件里把那一段画面放慢一点；也可以把 <span class="ui">语速倍数</span> 稍微调快（如 1.05）。</div>
+<div class="warn"><span class="t">如果提示"第 N 句比字幕时间轴晚了 X 秒"</span>说明上一条字幕的文字太多、而它的时间段太短，你的语速读不完，后面的句子只能顺延。解决方法：精简上一条字幕的文字，或者在剪辑软件里把那一段画面放慢一点；也可以把 <span class="ui">语速</span> 拉杆稍微往左拉（例如 −5，就是快 5%）。</div>
 <div class="note">按字幕生成时，句子之间的停顿由字幕时间决定，讲稿里的 <code>[停顿]</code> 标记和"空行分段"规则不适用。</div>
 
 <h2 id="ch10-8">10.8 写出"像你在讲"的讲稿：12 条技巧</h2>
@@ -131,7 +132,7 @@ API => A P I</pre></li>
   <li><strong>重要的话单独成句。</strong>"注意，这一点非常重要。"单独一句，比埋在长句子里效果好。</li>
   <li><strong>中英文切换不要太频繁。</strong>一句话里夹一两个英文术语没问题；中英文整句交替时，最好一段内保持同一种语言。</li>
   <li><strong>和你的训练素材风格一致。</strong>模型最擅长模仿你讲课的样子；用它念诗、演戏、喊口号效果会差很多。</li>
-  <li><strong>先试听再定稿。</strong>写完先用 fast 档听一遍，把拗口的句子改顺。</li>
+  <li><strong>先试听再定稿。</strong>写完先用"快速"档听一遍，把拗口的句子改顺。</li>
 </ol>
 
 <h2 id="ch10-9">10.9 一份完整的示例讲稿</h2>
@@ -156,14 +157,14 @@ Today, let's also look at the English term. It's called a generator expression.
 
 
 <h1 class="chapter" id="ch11"><span class="no">第 11 章</span>把生成的音频用到课程视频里</h1>
-<p class="lead">生成的音频（.wav）和字幕（.srt）可以直接导入任何剪辑软件。这一章以最常用的<strong>剪映（电脑版 / 专业版）</strong>为例，介绍三种常见的用法；也介绍一个不用剪辑软件、一条命令替换视频声音的方法。</p>
+<p class="lead">生成的音频（.wav）和字幕（.srt）可以直接导入任何剪辑软件。这一章以最常用的<strong>剪映（电脑版 / 专业版）</strong>为例，介绍几种常见的用法；也介绍一个不用剪辑软件、一条命令替换视频声音的方法。</p>
 
-<h2 id="ch11-1">11.1 三种常见用法</h2>
+<h2 id="ch11-1">11.1 四种常见用法</h2>
 <div class="grid2">
   <div class="card"><h4>A. 录屏 + 新配音</h4><p>先写讲稿、生成音频，再对着音频录屏或做 PPT 动画。<strong>最推荐</strong>：嗓子不用出力，画面跟着声音走。</p></div>
   <div class="card"><h4>B. 给旧视频换声音</h4><p>原视频声音质量差（嗓子哑、有杂音），用字幕时间轴重新生成（10.7 节），再替换原音轨（11.3 节）。</p></div>
-  <div class="card"><h4>C. 补录、修改某一段</h4><p>视频里某句话讲错了，只生成这一句，剪进去替换掉。因为音色、音量都和你一致，听众很难察觉。</p></div>
-  <div class="card"><h4>D. 纯音频课程</h4><p>音频课、播客式课程：直接把生成的音频（可输出 mp3，13.3 节）上传到课程平台。</p></div>
+  <div class="card"><h4>C. 补录、修改某一段</h4><p>视频里某句话讲错了，只生成这一句，剪进去替换掉。音色、音量都接近你本人，一般不容易察觉。</p></div>
+  <div class="card"><h4>D. 纯音频课程</h4><p>音频课、播客式课程：直接把生成的音频上传到课程平台（③ 页面的"保存格式"可以选 MP3，9.2 节）。</p></div>
 </div>
 
 <h2 id="ch11-2">11.2 在剪映里使用生成的音频和字幕</h2>
@@ -184,7 +185,7 @@ Today, let's also look at the English term. It's called a generator expression.
 <ol class="steps">
   <li>按 3.7 节的方法，在 <span class="path">D:\VoiceTwin</span> 打开命令提示符。</li>
   <li>输入下面的命令（换成你自己的文件路径），按 <span class="key">Enter</span>：
-<pre class="code">voicetwin.bat mux --video "D:\讲课素材\第1课.mp4" --audio "D:\VoiceTwin\workspace\我的声音\outputs\第1课_20260930_213825.wav" -o "D:\成品\第1课_新配音.mp4"</pre></li>
+<pre class="code">voicetwin.bat mux --video "D:\讲课素材\第1课.mp4" --audio "D:\VoiceTwin\workspace\我的声音\outputs\第1课_10月01日14点19分.wav" -o "D:\成品\第1课_新配音.mp4"</pre></li>
   <li>看到 <code>✅ 已生成 D:\成品\第1课_新配音.mp4</code> 就完成了。</li>
 </ol>
 <table class="t">
@@ -200,82 +201,105 @@ Today, let's also look at the English term. It's called a generator expression.
 <ul>
   <li><strong>需要等画面时</strong>，在讲稿对应位置加 <code>[停顿=秒数]</code>，例如演示操作前加 <code>[停顿=3]</code>。</li>
   <li><strong>已有视频要配音时</strong>，用字幕时间轴生成（10.7 节），比手动对齐省事得多。</li>
-  <li><strong>整体长度差一点</strong>：用 <span class="ui">语速倍数</span> 微调（0.95~1.05 之间听起来仍然自然），不要超过 0.9~1.1。</li>
+  <li><strong>整体长度差一点</strong>：用 <span class="ui">语速</span> 拉杆微调（−5～+5 之间几乎听不出变化），最多不要超过 −15～+15（9.2 节）。</li>
   <li><strong>某一句太长/太短</strong>：改写这一句，只重新生成这一句（9.5 节）。</li>
 </ul>
 
 <h2 id="ch11-5">11.5 声音后期处理建议</h2>
+<p>生成的音频<strong>已经是干净的成品</strong>：只有你的声音，没有背景音和底噪；句子之间的停顿是完全静音；音量已经<strong>自动调到和你原始录音一样</strong>。所以一般什么都不用处理，直接用就行。</p>
 <ul>
-  <li>生成的音频已经<strong>自动调整到和你原始录音一样的音量</strong>，一般不需要再调音量、压缩。</li>
-  <li><strong>不要加重的混响、变声、美化效果</strong>，会让声音变得不像你。</li>
-  <li>加背景音乐时，把音乐音量调低（比人声低 15~20 dB，剪映里一般把音乐音量调到 10%~20%），避免盖住讲解。</li>
-  <li>生成的音频和你的真人录音可以混在一个视频里使用。如果听起来"空间感"不同（例如真人录音有房间回声），可以给两者加同样的轻微降噪或同样的 EQ，让它们更统一。</li>
-  <li>导出视频时，音频选 AAC、192kbps 或更高即可。</li>
+  <li><strong>不需要再降噪、调音量、压缩</strong>。觉得声音里有轻微杂音时，用"完美"档的版本 B（去杂音）即可（9.4 节）。</li>
+  <li><strong>不要加混响、变声、美化效果</strong>，会让声音变得不像你；也不需要另外加什么"环境声""底噪"。</li>
+  <li>生成的音频可以和你的真人录音混在一个视频里使用，两者音量已经接近，生成的音频不需要加任何效果。</li>
+  <li>如果课程本身要配背景音乐，把音乐音量调低（比人声低 15~20 dB，剪映里一般把音乐音量调到 10%~20%），避免盖住讲解。</li>
+  <li>剪辑时用 WAV 文件最好；导出视频时，音频选 AAC、192kbps 或更高即可。</li>
 </ul>
 
 
-<h1 class="chapter" id="ch12"><span class="no">第 12 章</span>检验效果：评估相似度与盲测</h1>
-<p class="lead">"像不像"不能只凭感觉。这一章教你两种方法：用程序的 <span class="tab">④ 评估相似度</span> 功能给任意一段音频<strong>打分</strong>；以及组织一次简单的<strong>盲测</strong>，让别人来判断哪段是真人、哪段是生成的。</p>
+<h1 class="chapter" id="ch12"><span class="no">第 12 章</span>检验效果：评估、鉴别与盲测</h1>
+<p class="lead">"像不像"不能只凭感觉。程序里有三个检验工具：<span class="tab">④ 试试像不像（可选）</span> 给任意一段音频<strong>打分</strong>；<span class="tab">⑤ 鉴别</span> 里的<strong>机器鉴别</strong>一次给很多段音频打分、排名；同一页的<strong>观众盲听测试</strong>让别人来判断哪段是真人、哪段是生成的。</p>
 
-<h2 id="ch12-1">12.1 用"评估相似度"给音频打分</h2>
+<h2 id="ch12-1">12.1 用"④ 试试像不像"给一段音频打分</h2>
 <ol class="steps">
   <li>确认最上面的 <span class="ui">声音名称</span> 是"我的声音"。</li>
-  <li>点 <span class="tab">④ 评估相似度</span> 标签页。</li>
-  <li>在 <span class="ui">音频</span> 框里点 <strong>上传</strong> 图标（↑），选择要评估的音频文件（wav、mp3 等都可以）；也可以直接把文件拖进框里。</li>
-  <li>（可选）在 <span class="ui">对应文字</span> 里填入这段音频说的内容。填了之后程序会把音频识别成文字，和你填的对比，计算<strong>错字率</strong>和<strong>语速</strong>。第一次使用会下载一个小型识别模型。</li>
-  <li>点 <span class="btn gray">评估</span>，几秒钟后下方显示结果。</li>
+  <li>点 <span class="tab">④ 试试像不像（可选）</span> 标签页。</li>
+  <li>在 <span class="ui">音频</span> 框里点 <strong>上传</strong> 图标（↑），选择要评估的音频文件（wav、mp3 等都可以）；也可以直接把文件拖进框里。<strong>想评估刚才生成的音频</strong>，不用找文件，点 <span class="btn gray">📥 评估刚才生成的音频</span>，它会自动放进音频框（在 ③ 页面生成完后点 <span class="btn gray">④ 评估刚才生成的音频 →</span> 也一样）。</li>
+  <li>（可选）在 <span class="ui">对应文字（可选，填了会检查错字）</span> 里填入这段音频说的内容。填了之后程序会把音频识别成文字，和你填的对比，计算<strong>错字率</strong>和<strong>语速</strong>。</li>
+  <li>点 <span class="btn">评估</span>，稍等一会儿，下方显示结果。</li>
 </ol>
-<figure><img src="../images/07_evaluate.png" alt="评估相似度"><figcaption><b>图 12-1</b>　④ 评估相似度：上传一段 34 秒的生成音频，结论为"非常像"</figcaption></figure>
+<figure class="w80"><img src="../images/07_evaluate.png" alt="试试像不像"><figcaption><b>图 12-1</b>　④ 试试像不像：评估刚才生成的一段 42 秒音频。演示电脑只有简易的 MFCC 声纹模型，数字只是示例</figcaption></figure>
 
 <h2 id="ch12-2">12.2 看懂评估结果</h2>
 <table class="t">
   <tr><th style="width:22%">项目</th><th>含义与参考标准</th></tr>
-  <tr><td>结论</td><td>根据声纹相似度给出的一句话结论：非常像 / 比较像 / 有点像 / 不太像。</td></tr>
-  <tr><td>声纹相似度</td><td>这段音频和你本人声纹的接近程度，0~1 之间，越大越像。<strong>≥0.86 非常像；0.78~0.86 比较像；0.70~0.78 有点像；&lt;0.70 不太像。</strong>作为参考：你本人的不同真实录音之间一般在 0.85 以上。</td></tr>
+  <tr><td>结论（最上面的大字）</td><td>例如"像你本人 81.1%（有点像）"。100% = 和你自己的真实录音一样像（9.4 节）。<strong>95% 以上非常像；85%~95% 比较像；75%~85% 有点像；低于 75% 不太像。</strong>低于 85% 就算不够像。</td></tr>
   <tr><td>时长（秒）</td><td>去掉开头结尾静音后的长度。</td></tr>
+  <tr><td>各声纹模型</td><td>每个声纹模型分别打的"像你本人（%）"，括号后面是原始相似度（0~1），一般不用看。几个模型的结果差不多时，分数更可信。</td></tr>
   <tr><td>语速（音节/秒）</td><td>（填了文字才有）每秒说多少个字/音节。</td></tr>
   <tr><td>你本人的平均语速</td><td>（填了文字才有）从你的素材里统计出的平均语速。两者越接近，节奏越像你。中文讲课一般在每秒 3.5~5 个字之间。</td></tr>
   <tr><td>音高偏差</td><td>这段音频的平均音高和你本人差多少个"半音"。<strong>1 个半音以内</strong>基本听不出差别；超过 2 个半音会感觉音调偏高或偏低。</td></tr>
   <tr><td>错字率</td><td>（填了文字才有）识别出的文字和你填的文字有多少不同。5% 以下很好；超过 15% 说明可能有漏读、读错，或者识别模型听错了（专业术语、人名容易被识别错，不一定是真的读错了）。</td></tr>
   <tr><td>识别出的文字</td><td>（填了文字才有）识别模型听到的内容，可以和原文逐字对照，找出读错的地方。</td></tr>
   <tr><td>提示</td><td>发现的问题，例如"语速过快/可能漏读""几乎没有声音"。显示"无"表示没发现问题。</td></tr>
-  <tr><td>声纹模型</td><td>用来计算相似度的模型名称（一般是 resemblyzer）。不同声纹模型的分数标准不同，不要跨模型比较。</td></tr>
+  <tr><td>声纹模型</td><td>这次用来打分的声纹模型。正常是"ERes2NetV2（GPT-SoVITS 自带）"和"Resemblyzer"；如果只写着"简易 MFCC（仅供参考）"，说明没有可靠的声纹模型，百分比只能粗略参考（可以到 <span class="tab">🩺 环境检查</span> 看看缺什么）。</td></tr>
 </table>
-<div class="warn"><span class="t">分数是参考，耳朵是最终标准</span>声纹相似度衡量的是"音色"，对语气、节奏、口音不太敏感；0.9 分的音频也可能某一句语气不对。分数用来<strong>快速比较</strong>，最终请一定用耳朵听，或者做盲测（12.4 节）。</div>
+<div class="warn"><span class="t">分数是参考，耳朵是最终标准</span>相似度是声纹模型自动打分，越高越像，但<strong>不是绝对精确</strong>。它衡量的主要是"音色"，对语气、节奏、口音不太敏感：90% 的音频也可能某一句语气不对。分数用来<strong>快速比较</strong>，最终请一定用耳朵听，或者做盲听测试（12.4 节）。</div>
 
-<h2 id="ch12-3">12.3 用评估功能做对比实验</h2>
-<p>评估功能最有用的地方是<strong>比较</strong>：同一段讲稿，用不同的方法生成，看哪种更像你。例如：</p>
+<h2 id="ch12-3">12.3 "⑤ 鉴别"：机器鉴别，一次给很多段打分排名</h2>
+<p>"④"一次只评一段；<span class="tab">⑤ 鉴别</span> 上半部分的 <strong>🤖 机器鉴别</strong> 可以一次给很多段生成的音频打分，并按"像你本人（%）"排好名次。</p>
+<ol class="steps">
+  <li>点 <span class="tab">⑤ 鉴别</span> 标签页。</li>
+  <li>两个上传框都可以<strong>不选</strong>：不选时，程序自动用素材里留出的你的真实录音（"考试题"）当标准，鉴别<strong>最近一次生成的结果</strong>（两个版本和每一句）。</li>
+  <li>想鉴别别的音频，在 <span class="ui">要鉴别的生成音频（可选，可多选）</span> 里上传，一次可以选好几个；想用别的真实录音当标准（例如最近新录的几段），在 <span class="ui">你的原始录音（可选，可多选）</span> 里上传。</li>
+  <li>点橙色的 <span class="btn">开始鉴别</span>，等进度条走完。</li>
+</ol>
+<figure class="w80"><img src="../images/08_verify.png" alt="机器鉴别"><figcaption><b>图 12-2</b>　机器鉴别：不上传文件，直接鉴别最近一次生成的两个版本和 8 句话，按综合分排名（演示电脑只有简易 MFCC，全部低于 85%，数字只是示例）</figcaption></figure>
+<p>结果上方写着"🤖 鉴别完成：共 N 个文件，其中 M 个 ≥ 85%"和这次用到的声纹模型。表格各列：</p>
+<table class="t compact">
+  <tr><th style="width:20%">列</th><th>含义</th></tr>
+  <tr><td>#</td><td>编号，从 1 开始。</td></tr>
+  <tr><td>文件</td><td>鉴别的是哪个文件。最近一次生成的会写成"版本 A：未去杂音（……）""第 2 句：……"。</td></tr>
+  <tr><td>各模型 %</td><td>每个声纹模型分别打的分（括号里是原始相似度）。</td></tr>
+  <tr><td>综合 %</td><td>几个模型的平均，就是这个文件"像你本人"的百分比。</td></tr>
+  <tr><td>排名</td><td>按综合 % 从高到低排。</td></tr>
+  <tr><td>是否 ≥85%</td><td>够不够 85% 的标准：✅ 是 / 🔴 否。</td></tr>
+</table>
+<p>机器鉴别最适合做<strong>对比实验</strong>：同一段讲稿用不同的方法各生成一次，把几个文件一起上传，看谁排在前面。例如：</p>
 <table class="t">
   <tr><th style="width:36%">想比较什么</th><th>怎么做</th></tr>
-  <tr><td>校对前 vs 校对后训练的模型</td><td>校对前训练一次、生成一段；校对后重新训练、生成同样的讲稿，分别评估。</td></tr>
-  <tr><td>balanced vs best 档</td><td>同一讲稿用两个档位各生成一次，分别评估。</td></tr>
-  <tr><td>不同的参考音频</td><td>在 <span class="ui">指定参考音频 id</span> 里填不同的 id 生成（13.2 节），比较分数和听感。</td></tr>
-  <tr><td>不同的引擎</td><td>用 gptsovits 和可选引擎（13.4 节）分别生成，比较分数。</td></tr>
-  <tr><td>你自己的真实录音（作为"满分"参照）</td><td>上传一段<strong>没有用来训练</strong>的真实录音（例如最近新录的一小段），看看你本人能得多少分，作为比较的基准。</td></tr>
+  <tr><td>校对前 vs 校对后训练的模型</td><td>校对前训练一次、生成一段；校对后重新训练、生成同样的讲稿，两个文件一起鉴别。</td></tr>
+  <tr><td>均衡 vs 完美 档</td><td>同一讲稿用两个档位各生成一次，一起鉴别。</td></tr>
+  <tr><td>不同的参考音频</td><td>在"指定参考音频编号"里填不同的编号生成（13.2 节），比较分数和听感。</td></tr>
+  <tr><td>不同的引擎</td><td>用 GPT-SoVITS 和可选引擎（13.4 节）分别生成，比较分数。</td></tr>
+  <tr><td>你自己的真实录音（作为"满分"参照）</td><td>把一段<strong>没有用来训练</strong>的真实录音（例如最近新录的一小段）也放进"要鉴别的生成音频"里，看看你本人能得多少分，作为比较的基准。</td></tr>
 </table>
 
-<h2 id="ch12-4">12.4 盲测：让别人来判断</h2>
-<p>最客观的检验方法是<strong>盲测</strong>：让听的人不知道哪段是真人、哪段是生成的，看他们能不能分辨出来。</p>
+<h2 id="ch12-4">12.4 观众盲听测试：让别人来判断</h2>
+<p>最客观的检验方法是<strong>盲测</strong>：听的人不知道哪段是真人、哪段是生成的，看他们能不能分辨出来。<span class="tab">⑤ 鉴别</span> 下半部分的 <strong>👂 观众盲听测试</strong> 会帮你把题目做好：电脑从你没参加训练的真实录音里挑几句，再用你的模型读<strong>同样的句子</strong>，统一音量、打乱顺序、编上号。</p>
 <ol class="steps">
-  <li><strong>准备真人录音</strong>：找 5 段你本人的讲课录音，每段 10~20 秒。最好是<strong>没有用来训练</strong>的录音（例如新录的，或者特意没放进素材文件夹的一节课）。</li>
-  <li><strong>准备生成录音</strong>：把这 5 段录音说的话整理成文字，用你的声音模型生成同样内容的 5 段音频（best 档）。</li>
-  <li><strong>统一格式</strong>：把 10 段音频都转成同样的格式、同样的音量。可以在剪映里把它们放在一起统一导出，避免因为文件格式、音量不同被"猜"出来。</li>
-  <li><strong>打乱顺序、重新命名</strong>：把 10 个文件改名为 <code>01.wav</code> ~ <code>10.wav</code>，顺序随机。自己另外记一张答案表（哪些是真人）。</li>
-  <li><strong>请人来听</strong>：找 3~5 位熟悉你声音的人（同事、学生），每段听一遍，判断是"真人"还是"生成"。不要告诉他们各有几段。</li>
-  <li><strong>统计正确率</strong>：用下面的表格记录，再按标准判断。</li>
+  <li>在 <span class="ui">用几句话（真人和生成的各这么多段）</span> 里选数量，例如 10（就是真人 10 段 + 生成 10 段，一共 20 段）。</li>
+  <li>点 <span class="btn">生成盲听测试</span>，等进度条走完（会用到显卡，大约几分钟）。生成用的是 ③ 页面当前选的质量档位。</li>
+  <li>页面上出现"第 1 段""第 2 段"……每段一个播放器，旁边是 <strong>真人</strong> / <strong>生成</strong> 两个选项（图 12-3）。</li>
+  <li>请听众（同事、学生，最好是熟悉你声音的人）逐段听，每段选"真人"或"生成"。不要告诉他们各有几段。</li>
+  <li>全部选完后点 <span class="btn">提交答案</span>，程序马上批改：显示答了几段、答对几段、正确率，以及每段的正确答案。<strong>答案在提交之前不会显示。</strong></li>
 </ol>
-<table class="t compact">
-  <tr><th style="width:11%">听众</th><th class="c">01</th><th class="c">02</th><th class="c">03</th><th class="c">04</th><th class="c">05</th><th class="c">06</th><th class="c">07</th><th class="c">08</th><th class="c">09</th><th class="c">10</th><th class="c" style="width:13%">判断正确数</th></tr>
-  <tr><td>答案</td><td class="c">生成</td><td class="c">真人</td><td class="c">真人</td><td class="c">生成</td><td class="c">真人</td><td class="c">生成</td><td class="c">生成</td><td class="c">真人</td><td class="c">生成</td><td class="c">真人</td><td class="c">—</td></tr>
-  <tr><td>张老师</td><td class="c">真人</td><td class="c">真人</td><td class="c">生成</td><td class="c">生成</td><td class="c">真人</td><td class="c">真人</td><td class="c">生成</td><td class="c">真人</td><td class="c">真人</td><td class="c">生成</td><td class="c">5 / 10</td></tr>
-  <tr><td>……</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
-</table>
+<figure class="w80"><img src="../images/08b_blind_test.png" alt="观众盲听测试"><figcaption><b>图 12-3</b>　观众盲听测试：真人和生成各 10 段，顺序已经打乱；每段旁边选"真人"或"生成"（图里只截到第 1 段）</figcaption></figure>
+
+<h3>离线测试：把题目发给别人，收回答题卡再批改</h3>
+<ol class="steps">
+  <li>生成盲听测试后，页面上写着题目文件夹的位置，例如 <span class="path">……\outputs\盲听测试_20261001_142739</span>。里面是编好号的录音（01.wav、02.wav……）和一份 <code>听众答题卡.txt</code>。把<strong>整个文件夹</strong>发给听众。</li>
+  <li>答案<strong>不在</strong>这个文件夹里，而是在它旁边的"……_答案（只给老师看，不要发给听众）.json"，<strong>不要一起发</strong>。</li>
+  <li>听众在答题卡上每段写"真人"或"生成"，交回给你。</li>
+  <li>回到 <span class="tab">⑤ 鉴别</span>，点开 <span class="ui" style="white-space:normal">📝 批改收上来的答题卡（离线测试、网页刷新过也能用）</span>，在 <span class="ui">选一次盲听测试</span> 里选这次测试，把答案填进 <span class="ui">听众的答案</span>（可以写 <code>1 真人 2 生成 3 真人 ……</code>，也可以不写编号、按顺序写 <code>真人 生成 真人 ……</code>），点 <span class="btn">📝 批改</span>。</li>
+</ol>
+<p>有几位听众就分别批改几次，再把正确率平均一下，按下表判断：</p>
 <table class="t">
   <tr><th style="width:30%">平均正确率</th><th>说明</th></tr>
   <tr><td><strong>≤ 60%</strong></td><td>和瞎猜（50%）差不多，<strong>基本听不出区别</strong>。效果非常好。</td></tr>
-  <tr><td>60%~80%</td><td>有时能听出来。问问听众是怎么判断的（"这句语气怪""这里停顿太整齐"），针对性改进。</td></tr>
-  <tr><td>&gt; 80%</td><td>比较容易分辨。按 12.5 节和第 13 章的方法改进：增加素材、校对文字、使用 best 档等。</td></tr>
+  <tr><td>60%~80%</td><td>有时能听出来。看看哪几段最容易被听出来，问问听众是怎么判断的（"这句语气怪""这个字读得不对"），针对性改进，例如用"完美"档重新生成那几句。</td></tr>
+  <tr><td>&gt; 80%</td><td>比较容易分辨。按 12.5 节和第 13 章的方法改进：增加素材、校对文字、用"完美"档等。</td></tr>
 </table>
+<div class="note">题目太少（少于 6 段）时，结果只能参考，程序也会这样提示。正确率只说明"这几位听众、这几句话"的情况，换了内容、换了听众，结果会有不同。</div>
 
 <h2 id="ch12-5">12.5 客观看待效果：哪些地方最容易露馅</h2>
 <p>根据经验，下面这些情况最容易让人听出是生成的，写讲稿和挑选句子时可以留意：</p>
@@ -285,8 +309,9 @@ Today, let's also look at the English term. It's called a generator expression.
   <tr><td>强烈的情绪（大笑、激动、生气）</td><td>模型主要学会了你<strong>讲课时</strong>的状态，强烈情绪很难模仿。讲稿里尽量避免，或者这几句用真人录音。</td></tr>
   <tr><td>笑声、咳嗽、清嗓子、"嗯……"等</td><td>无法生成，不要写在讲稿里。</td></tr>
   <tr><td>专业术语、人名、多音字读错</td><td>用读音词典纠正（10.4 节）。</td></tr>
-  <tr><td>停顿太规律</td><td>程序已经加入了自然波动；也可以手动加一些 <code>[停顿=…]</code> 让节奏有变化。</td></tr>
+  <tr><td>停顿太规律</td><td>程序按你的习惯决定停顿长短，每次略有变化；也可以手动加一些 <code>[停顿=…]</code> 让节奏有变化。</td></tr>
+  <tr><td>停顿处特别安静</td><td>这是特意这样做的：成品里只要你的声音，停顿是完全静音。单独放在课程视频里一般不明显；但和带环境声的真人录音紧挨着仔细对比时，有可能被听出来。</td></tr>
   <tr><td>英文带中文腔</td><td>增加你讲英文的素材（4.3 节）后重新训练。</td></tr>
-  <tr><td>个别句子有杂音、电流声、吞字</td><td>只重新生成这几句（9.5 节）；用 best 档会自动检查和重试。</td></tr>
+  <tr><td>个别句子有杂音、电流声、吞字</td><td>只重新生成这几句（9.5 节）；最好、极致、完美档会自动检查和重做；"完美"档还可以选去杂音的版本 B。</td></tr>
 </table>
 <div class="note">任何声音克隆技术都做不到 100% 无法分辨。本程序的目标是：在正常讲课内容上，让大多数听众<strong>注意不到</strong>是生成的。关于公开使用时是否需要说明，请看附录 D。</div>

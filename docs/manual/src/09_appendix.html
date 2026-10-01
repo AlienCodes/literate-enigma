@@ -3,12 +3,13 @@
 
 <h2 id="appA-1">A.1 生成一节课（5 步）</h2>
 <div class="flow">
-  <div class="node hot"><b>① 打开</b><small>双击桌面图标<br>"声音分身 VoiceTwin"</small></div><div class="arrow">→</div>
-  <div class="node"><b>② 选声音</b><small>声音名称<br>选"我的声音"</small></div><div class="arrow">→</div>
+  <div class="node hot"><b>① 打开</b><small>双击桌面图标<br>显卡条是绿色就行</small></div><div class="arrow">→</div>
+  <div class="node"><b>② 选声音</b><small>声音名称或<br>🎙️ 我的声音库</small></div><div class="arrow">→</div>
   <div class="node"><b>③ 贴讲稿</b><small>③ 生成讲课音频<br>粘贴或上传讲稿</small></div><div class="arrow">→</div>
-  <div class="node"><b>④ 生成</b><small>选质量档位<br>点"生成"</small></div><div class="arrow">→</div>
-  <div class="node hot"><b>⑤ 试听下载</b><small>不满意的句子<br>填编号重做</small></div>
+  <div class="node"><b>④ 生成</b><small>质量已自动选好<br>点"生成"，看进度条</small></div><div class="arrow">→</div>
+  <div class="node hot"><b>⑤ 试听下载</b><small>选版本、下载<br>不满意的句子重做</small></div>
 </div>
+<div class="tip">进度条：🟩 绿色 = 正常工作；🟨 黄色 = 好几分钟没有新进度，先等一等；🟥 红色 = 出问题了，照着"原因 / 怎么办"做；✅ 100% = 完成。关掉或刷新网页不会打断任务，黑色窗口不要关。</div>
 
 <h2 id="appA-2">A.2 讲稿写法速查</h2>
 <table class="t compact">
@@ -26,25 +27,29 @@
 
 <h2 id="appA-3">A.3 质量档位速查</h2>
 <table class="t compact">
-  <tr><th style="width:18%">档位</th><th style="width:30%">什么时候用</th><th>特点</th></tr>
-  <tr><td>fast</td><td>检查讲稿、试听读音</td><td>每句 1 个版本，最快</td></tr>
-  <tr><td>balanced</td><td>日常使用</td><td>每句 3 个版本挑最像的</td></tr>
-  <tr><td>best</td><td>正式发布的课程</td><td>每句 5 个版本，检查漏字错字，不合格自动重试</td></tr>
+  <tr><th style="width:20%">档位</th><th>每句怎么做</th><th style="width:30%">什么时候用</th></tr>
+  <tr><td>快速（fast）</td><td>只做 1 遍，最快；偶尔会有读错或不太像的句子</td><td>检查讲稿、试听读音</td></tr>
+  <tr><td>均衡（balanced）</td><td>做 3 遍，自动挑最像你的</td><td>日常草稿；没有能用的显卡时默认选它</td></tr>
+  <tr><td>最好（best）</td><td>做 5 遍，并检查漏字错字，不合格自动重做</td><td>正式课程，想快一点时</td></tr>
+  <tr><td>极致（max）</td><td>做 8 遍（显存小时 6 遍），严格检查，不够像的自动重做；时间大约是「均衡」的 3～5 倍</td><td>显存小于 8GB 时默认选它</td></tr>
+  <tr><td><strong>完美（perfect）</strong></td><td>最多试 20 次、严格检查漏字错字；做"未去杂音 / 去杂音"两个版本，标 ⭐ 推荐更像你的那个；最慢</td><td><strong>最终发布</strong>；显存 8GB 以上时默认选它</td></tr>
 </table>
+<p class="small">括号里是命令行 <code>-q</code> 后面写的名字。档位越高越慢，结果更稳定，但不会 100% 一模一样：素材的质量和数量、认真校对文字，对像不像影响最大。不管哪个档位，句子之间的停顿都是完全静音。</p>
 
 <h2 id="appA-4">A.4 相似度分数速查</h2>
 <table class="t compact">
-  <tr><th style="width:30%">声纹相似度</th><th>含义</th></tr>
-  <tr><td>≥ 0.86</td><td>非常像</td></tr>
-  <tr><td>0.78 ~ 0.86</td><td>比较像</td></tr>
-  <tr><td>0.70 ~ 0.78</td><td>有点像（建议重新生成这句）</td></tr>
-  <tr><td>&lt; 0.70</td><td>不太像（一定要重新生成或改写）</td></tr>
+  <tr><th style="width:24%">像你本人（%）</th><th style="width:22%">表格里显示</th><th>含义</th></tr>
+  <tr><td>≥ 95%</td><td>✅ 很像</td><td>和你本人的真实录音几乎一样像。</td></tr>
+  <tr><td>85% ~ 95%</td><td>🟢 比较像</td><td>合格。</td></tr>
+  <tr><td>&lt; 85%</td><td>🔴 不够像</td><td>建议重新生成或改写这一句（候选低于 85% 会被自动淘汰）。</td></tr>
+  <tr><td>有提示时</td><td>⚠️ 需要注意</td><td>看"提示"一列，例如"可能有读错的字"。</td></tr>
 </table>
+<p class="small">100% = 和你自己另一段真实录音一样像。这是声纹模型自动打分，越高越像，但不是绝对精确，最终以耳朵为准；页面上提示"只有简易的 MFCC"时，百分比只能粗略参考。</p>
 
 <h2 id="appA-5">A.5 什么时候要重新训练</h2>
 <ul class="check">
   <li>加入了新的讲课素材 → ① 准备素材 → ② 开始训练</li>
-  <li>校对 / 删除了片段 → 保存修改 → ② 开始训练</li>
+  <li>校对 / 采用了错字建议 / 删除了片段 → 保存修改 → ② 开始训练</li>
   <li>只是写了新讲稿、改了读音词典 → <strong>不需要</strong>重新训练，直接生成</li>
 </ul>
 
@@ -52,9 +57,10 @@
 <table class="t compact">
   <tr><th style="width:36%">做什么</th><th>命令（在 D:\VoiceTwin 打开命令提示符）</th></tr>
   <tr><td>环境检查</td><td><code>voicetwin.bat doctor</code></td></tr>
-  <tr><td>补齐预训练模型</td><td><code>voicetwin.bat download-models --source hf-mirror</code></td></tr>
-  <tr><td>用讲稿文件生成</td><td><code>voicetwin.bat narrate -v 我的声音 D:\讲稿\第1课.md -q best</code></td></tr>
-  <tr><td>只重做第 3、5 句</td><td><code>voicetwin.bat narrate -v 我的声音 D:\讲稿\第1课.md -q best --redo 3,5</code></td></tr>
+  <tr><td>补齐预训练模型</td><td><code>voicetwin.bat download-models --source hf-mirror</code>（网页 🩺 环境检查 里点"⬇️ 下载缺少的模型"也行）</td></tr>
+  <tr><td>用讲稿文件生成</td><td><code>voicetwin.bat narrate -v 我的声音 D:\讲稿\第1课.md -q perfect</code></td></tr>
+  <tr><td>只重做第 3、5 句</td><td><code>voicetwin.bat narrate -v 我的声音 D:\讲稿\第1课.md -q perfect --redo 3,5</code></td></tr>
+  <tr><td>比原声慢 10%</td><td><code>voicetwin.bat narrate -v 我的声音 D:\讲稿\第1课.md --slower 10</code></td></tr>
   <tr><td>替换视频的声音</td><td><code>voicetwin.bat mux --video 原视频.mp4 --audio 新音频.wav -o 新视频.mp4</code></td></tr>
   <tr><td>清空缓存</td><td><code>voicetwin.bat clear-cache -v 我的声音</code></td></tr>
 </table>
@@ -70,7 +76,7 @@
 ├── start_webui.bat             <span class="cm">启动网页界面（安装后生成，桌面图标指向它）</span>
 ├── voicetwin.bat               <span class="cm">命令行入口（安装后生成）</span>
 ├── config.yaml                 <span class="cm">设置文件（安装后生成，第 13.3 节）</span>
-├── 使用教程（先看我）.html       <span class="cm">网页版简明教程</span>
+├── 使用教程（先看我）.html       <span class="cm">图文版快速上手（双击用浏览器打开）</span>
 ├── README.md                   <span class="cm">项目说明</span>
 ├── pyproject.toml              <span class="cm">程序的版本和依赖信息</span>
 ├── docs\                       <span class="cm">文档（本手册 PDF 也在这里）</span>
@@ -83,7 +89,7 @@
   <tr><td><code>raw\</code></td><td>不要改</td><td>从你的视频里提取出的完整音频（每个素材文件一个 wav）。</td></tr>
   <tr><td><code>clips\</code></td><td>不要改</td><td>切好的一句一句的素材片段，训练用。</td></tr>
   <tr><td><code>references\</code></td><td>可以试听</td><td>自动挑选的参考音频，文件名就是参考音频 id（13.2 节）。</td></tr>
-  <tr><td><code>outputs\</code></td><td>可以删除</td><td><strong>生成的音频、字幕、报告</strong>。</td></tr>
+  <tr><td><code>outputs\</code></td><td>可以删除</td><td><strong>生成的音频、字幕、报告</strong>；「完美」档的两个版本（文件名后面带 <code>_未去杂音</code> / <code>_去杂音</code>）、试听语速的音频、盲听测试的文件夹也在这里。</td></tr>
   <tr><td><code>cache\</code></td><td>可以清空</td><td>句子缓存和声纹缓存（用 clear-cache 命令清空，13.6 节）。</td></tr>
   <tr><td><code>logs\</code></td><td>可以查看</td><td>各步骤的日志（附录 C）。</td></tr>
   <tr><td><code>exports\</code>、<code>models\</code></td><td>不要改</td><td>交给 GPT-SoVITS 训练用的文件列表和配置。</td></tr>
@@ -96,6 +102,7 @@
   <tr><td><code>sources.json</code></td><td>不要改</td><td>处理过的素材文件记录（用于下次只处理新文件）。</td></tr>
   <tr><td><code>prepare_summary.json</code></td><td>可以查看</td><td>最近一次素材准备的摘要。</td></tr>
   <tr><td><code>speaker_centroid.*.npy</code></td><td>不要改</td><td>你的"平均声纹"，用于过滤素材和打分。</td></tr>
+  <tr><td><code>speaker_calibration.json</code></td><td>不要改</td><td>"像你本人（%）"的标尺：用你没参与训练的真实录音算出来，素材变了会自动重算。</td></tr>
 </table>
 
 <h2 id="appB-3">B.3 GPT-SoVITS 整合包里与你相关的文件</h2>
@@ -103,7 +110,7 @@
   <tr><th style="width:42%">位置</th><th>内容</th></tr>
   <tr><td><code>D:\GPT-SoVITS\SoVITS_weights_v2ProPlus\vt_…pth</code></td><td>训练好的音色模型（多个版本）。</td></tr>
   <tr><td><code>D:\GPT-SoVITS\GPT_weights_v2ProPlus\vt_…ckpt</code></td><td>训练好的语气节奏模型（多个版本）。</td></tr>
-  <tr><td><code>D:\GPT-SoVITS\logs\vt_…\</code></td><td>训练的中间文件，训练完成后可以删除（13.6 节）。</td></tr>
+  <tr><td><code>D:\GPT-SoVITS\logs\vt_…\</code></td><td>训练的中间文件（里面的 <code>old_runs</code> 是以前几次训练的备份），训练完成后可以删除（13.6 节）。</td></tr>
   <tr><td><code>D:\GPT-SoVITS\GPT_SoVITS\pretrained_models\</code></td><td>官方预训练模型（底模），不要删除。</td></tr>
 </table>
 <div class="note">文件名里的 <code>vt_</code> 表示由声音分身训练；后面跟着声音名称里的英文部分和一段编号，用来区分不同的声音。</div>
@@ -123,7 +130,7 @@
   <tr><td><code>gptsovits_api.log</code></td><td>生成时的推理服务</td><td>"推理服务启动失败 / 超时"、生成报错时。</td></tr>
   <tr><td><code>qwen3tts_worker.log</code> 等</td><td>可选引擎</td><td>使用 Qwen3-TTS、IndexTTS 报错时。</td></tr>
 </table>
-<div class="tip">日志很长时，按 <span class="key">Ctrl</span>+<span class="key">End</span> 跳到文件末尾，从下往上找 <code>Error</code>、<code>Traceback</code>、<code>错误</code>、<code>失败</code> 等字样，通常就是问题所在。</div>
+<div class="tip">日志很长时，按 <span class="key">Ctrl</span>+<span class="key">End</span> 跳到文件末尾，从下往上找 <code>Error</code>、<code>Traceback</code>、<code>错误</code>、<code>失败</code> 等字样，通常就是问题所在。网页上出错时，点开进度条下面的"详细过程（出问题时可以复制给帮你的人）"，看到的就是同样的内容，不用自己去找文件。</div>
 
 
 <h1 class="chapter" id="appD"><span class="no">附录 D</span>隐私、安全与合规使用</h1>
@@ -155,15 +162,16 @@
 <h2 id="appE-1">E.1 本手册对应的版本</h2>
 <table class="t compact">
   <tr><th style="width:24%">项目</th><th>内容</th></tr>
-  <tr><td>程序</td><td>声音分身 VoiceTwin <strong>v0.1.3</strong>（Windows 版）</td></tr>
+  <tr><td>程序</td><td>声音分身 VoiceTwin <strong>v0.1.6</strong>（Windows 版）</td></tr>
   <tr><td>下载地址</td><td><a href="https://github.com/AlienCodes/literate-enigma/releases/latest">github.com/AlienCodes/literate-enigma/releases/latest</a></td></tr>
   <tr><td>默认引擎</td><td>GPT-SoVITS v2ProPlus</td></tr>
-  <tr><td>手册日期</td><td>2026 年 9 月</td></tr>
+  <tr><td>手册日期</td><td>2026 年 10 月</td></tr>
 </table>
 
 <h2 id="appE-2">E.2 更新记录</h2>
 <table class="t compact">
   <tr><th style="width:14%">版本</th><th>主要内容</th></tr>
+  <tr><td>v0.1.6</td><td><strong>每个耗时的步骤都有进度条</strong>：百分比、第几步、已用时间、预计几点完成，用颜色说明状态（绿色正常、黄色好久没进度、红色出错、灰色已停止），关掉网页也不会打断；页面最上面<strong>一直显示显卡状态</strong>，不正常时告诉你怎么办；所有表格都有编号和总数；新增 <strong>🎙️ 我的声音库</strong>；训练按显卡显存和素材多少<strong>自动选择最好的训练方案</strong>，显存不够时自动减小设置重试；新增「极致」和<strong>「完美」档</strong>，「完美」档做"未去杂音 / 去杂音"两个版本并推荐更像你的那个；<strong>"像你本人（%）"</strong>用你自己的真实录音校准，低于 85% 的候选自动淘汰；生成的音频里只有你的声音，句子之间是<strong>绝对静音</strong>；新增<strong>语速拉杆</strong>和"▶ 试听语速"；<strong>自动查找可能的错字</strong>，用红色标出并给出建议；新增 <strong>⑤ 鉴别</strong>（机器鉴别和观众盲听测试）；出错时用大白话写出"原因 / 怎么办"；启动更省心：重复双击不会开第二个、端口被占用自动换一个、点黑色窗口不再卡住、长任务进行时电脑不睡眠；🩺 环境检查里可以直接下载缺少的模型。（v0.1.4、v0.1.5 没有单独发布。）</td></tr>
   <tr><td>v0.1.3</td><td>校对表显示总条数和序号；修复 gradio 4.24 下按钮报错；环境检查能发现显卡驱动问题；说明桌面图标创建失败的原因；不再提示升级 gradio。</td></tr>
   <tr><td>v0.1.2</td><td>新增 4 页的《快速上手》（PDF 和网页版），压缩包里的"使用教程（先看我）"也换成了快速上手。</td></tr>
   <tr><td>v0.1.1</td><td>新增本 PDF 使用手册；评估结果改为中文结论，不再误报"异常停顿"；参考音频不再重复；安装程序支持 Word 讲稿；移动整合包或换电脑后自动找回训练好的模型。</td></tr>
@@ -176,7 +184,7 @@
   <tr><th style="width:30%">项目</th><th>用途</th></tr>
   <tr><td>GPT-SoVITS</td><td>声音克隆训练与合成（默认引擎）</td></tr>
   <tr><td>faster-whisper / Whisper、FunASR</td><td>中英文语音识别</td></tr>
-  <tr><td>Resemblyzer</td><td>声纹相似度计算</td></tr>
+  <tr><td>Resemblyzer、ERes2NetV2（3D-Speaker，GPT-SoVITS 整合包自带）</td><td>声纹相似度计算（"像你本人（%）"）</td></tr>
   <tr><td>Qwen3-TTS、IndexTTS</td><td>可选合成引擎</td></tr>
-  <tr><td>FFmpeg、librosa、pyloudnorm、Gradio</td><td>音视频处理、音频分析、响度标准化、网页界面</td></tr>
+  <tr><td>FFmpeg、librosa、pyloudnorm、noisereduce、Gradio</td><td>音视频处理、音频分析、响度标准化、去杂音（「完美」档的版本 B）、网页界面</td></tr>
 </table>
