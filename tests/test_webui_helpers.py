@@ -284,7 +284,7 @@ def test_gen_summary_and_rows():
     assert "第 2、4 句可能有问题" in md and "2,4" in md
     assert "已重新生成第 3、5 句" in md
     assert "晚了 1.2 秒" in md and "None" not in md and "{" not in md
-    assert "/tmp/out.wav" in md and ".srt" in md
+    assert str(Path("/tmp/out.wav")) in md and ".srt" in md  # Windows 上路径显示成 \\tmp\\out.wav
     rows = A._gen_rows(res)
     assert [r[0] for r in rows] == [1, 2, 3, 4]
     assert rows[0][2] == "—" and "沿用上次" in rows[0][4]

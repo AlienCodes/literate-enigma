@@ -1222,6 +1222,20 @@ class GPTSoVITSBackend(Backend):
     def _alive(self) -> bool:
         """api_v2 对不带参数的 /tts 请求会返回 400 + {"message": ...}，以此判断服务已就绪。"""
         try:
+            # 先很快地看端口有没有打开：Windows 上连一个还没打开的端口要等 2 秒左右才失败，
+            # 直接发请求的话每次检查都要卡这么久（启动时的「已等待 N 秒」提示也会出不来）
+            from urllib.parse import urlsplit
+
+            u = urlsplit(str(self.api_url))
+            host, port = u.hostname or "127.0.0.1", u.port or (443 if u.scheme == "https" else 80)
+            if host in ("127.0.0.1", "localhost", "::1"):  # 只查本机的服务（别的电脑上的服务网络可能比较慢）
+                with socket.create_connection((host, port), timeout=0.5):
+                    pass
+        except OSError:
+            return False
+        except Exception:  # 网址解析不了等意外情况：直接发请求试
+            pass
+        try:
             r = self._session().get(f"{self.api_url}/tts", timeout=3)
             return r.status_code == 400 and "message" in r.json()
         except Exception:

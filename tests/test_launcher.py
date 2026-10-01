@@ -69,7 +69,8 @@ def test_free_port_skips_busy_port():
     base = _free_base_port()
     s = _listen(base)
     try:
-        assert launcher._free_port(base, "127.0.0.1") == base + 1
+        probes = [(p, launcher._bind_ok("127.0.0.1", p), launcher._port_listening("127.0.0.1", p)) for p in (base, base + 1)]
+        assert launcher._free_port(base, "127.0.0.1") == base + 1, f"(端口, 能绑定, 连得上)：{probes}"
     finally:
         s.close()
     assert launcher._free_port(base, "127.0.0.1") == base
@@ -136,13 +137,15 @@ def test_prepare_proxy_env_copies_registry_on_windows(monkeypatch):
     assert os.environ["https_proxy"] == "http://127.0.0.1:7890"
     assert os.environ["HTTP_PROXY"] == "http://127.0.0.1:7890"
     assert "127.0.0.1" in os.environ["no_proxy"].split(",")
-    # 已经有代理环境变量时不改
+    # 已经有代理环境变量时不改（Windows 的环境变量不分大小写：先全部删掉，再只设一个）
+    for name in ("http_proxy", "https_proxy", "HTTP_PROXY", "HTTPS_PROXY"):
+        monkeypatch.delenv(name, raising=False)
     monkeypatch.setenv("HTTPS_PROXY", "http://proxy.example:8080")
-    monkeypatch.delenv("https_proxy", raising=False)
-    monkeypatch.setattr(urllib.request, "getproxies_registry", lambda: {"https": "http://other:1"}, raising=False)
+    monkeypatch.setattr(urllib.request, "getproxies_registry", lambda: {"https": "http://other:1", "http": "http://other:1"},
+                        raising=False)
     launcher._prepare_proxy_env()
     assert os.environ["HTTPS_PROXY"] == "http://proxy.example:8080"
-    assert "https_proxy" not in os.environ
+    assert os.environ.get("http_proxy") != "http://other:1" and os.environ.get("HTTP_PROXY") != "http://other:1"
 
 
 def test_prepare_proxy_env_never_raises(monkeypatch):

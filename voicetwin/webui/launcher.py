@@ -109,10 +109,16 @@ def _port_listening(host: str, port: int, timeout: float = 0.3) -> bool:
 
 
 def _bind_ok(host: str, port: int) -> bool:
+    """这个端口现在能不能绑定（没有别的程序占着）。"""
     bind_host = "127.0.0.1" if host in LOOPBACK_HOSTS else (host.strip("[]") or "0.0.0.0")
     family = socket.AF_INET6 if ":" in bind_host else socket.AF_INET
     with socket.socket(family, socket.SOCK_STREAM) as s:
         try:
+            # Windows 默认允许不同的地址"共用"同一个端口，绑定测试会把占着的端口误当成空闲；
+            # 独占方式绑定时，只要有任何程序占着这个端口就会失败
+            excl = getattr(socket, "SO_EXCLUSIVEADDRUSE", None)
+            if excl is not None:
+                s.setsockopt(socket.SOL_SOCKET, excl, 1)
             s.bind((bind_host, port))
             return True
         except OSError:
@@ -120,17 +126,24 @@ def _bind_ok(host: str, port: int) -> bool:
 
 
 def _free_port(preferred: int, host: str = "127.0.0.1") -> int:
-    """从 preferred 开始找一个空闲端口（能绑定、而且没有程序在监听）。都不行时返回 preferred。"""
+    """从 preferred 开始找一个空闲端口（能绑定、而且没有程序在监听）。
+
+    连接测试只是辅助（有的电脑上连接测试不可靠，空闲的端口也会显示"连得上"）：都不行时，
+    退回到第一个能绑定的端口；一个都绑定不了时才返回 preferred。"""
+    first_bindable: Optional[int] = None
     for port in [preferred] + list(range(preferred + 1, preferred + 50)):
         if port > 65535:
             break
         try:
-            # 先用绑定测试（很快）；Windows 上别的程序监听 0.0.0.0 时绑定 127.0.0.1 也可能成功，所以再试着连一下
-            if _bind_ok(host, port) and not _port_listening(host, port):
+            if not _bind_ok(host, port):  # 绑定测试很快，先做
+                continue
+            if first_bindable is None:
+                first_bindable = port
+            if not _port_listening(host, port):
                 return port
         except Exception:
             continue
-    return preferred
+    return first_bindable if first_bindable is not None else preferred
 
 
 def _find_existing(host: str, preferred: int, span: int = SCAN_PORTS) -> Optional[str]:
