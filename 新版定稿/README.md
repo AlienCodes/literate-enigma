@@ -9,3 +9,4 @@
 | 03 | The Scientific Giant Who Changed the World / 改变世界的科学巨匠 | 271 | 50 | 96 / 97.5 / 99 |
 | 04 | Rice for the World / 稻济天下 | 271 | 50 | 99 / 99.5 / 97 |
 | 05 | Shadows of Wolves Over Yellowstone / 黄石公园狼影再现 | 271 | 51 | 97 / 95.5 / 98 |
+| 06 | The Myth of the Unsinkable / 永不沉没的神话 | 271 | 53 | 96 / 96 / 100 |
