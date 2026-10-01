@@ -79,7 +79,21 @@ def _voices(cfg: Config) -> List[str]:
     return [v["voice"] for v in wf.list_voices(cfg)]
 
 
-def _clips_table(cfg: Config, voice: str) -> List[List[Any]]:
+NEED_VOICE = "请先在页面最上面的「声音名称」里选择或填写声音（例如：我的声音）。"
+
+
+def _voice_name(value: Any) -> str:
+    """下拉框的值统一成字符串。
+
+    部分 gradio 版本（例如 GPT-SoVITS 整合包自带的 4.24）在更新选项或刷新页面后，会把下拉框的值传成
+    列表（[] 或 ["我的声音"]）甚至 None，直接拿去用会报错。"""
+    if isinstance(value, (list, tuple)):
+        value = next((v for v in value if v), "")
+    return str(value).strip() if value else ""
+
+
+def _clips_table(cfg: Config, voice: Any) -> List[List[Any]]:
+    voice = _voice_name(voice)
     if not voice:
         return []
     project = wf.Project(cfg, voice)
@@ -90,10 +104,11 @@ def _clips_table(cfg: Config, voice: str) -> List[List[Any]]:
     return rows
 
 
-def _clips_count_md(cfg: Config, voice: str) -> str:
+def _clips_count_md(cfg: Config, voice: Any) -> str:
     """校对表上方的总数：一共多少条、保留多少条（多少分钟）、不保留多少条。"""
+    voice = _voice_name(voice)
     if not voice:
-        return ""
+        return NEED_VOICE
     records = wf.Project(cfg, voice).load_manifest()
     if not records:
         return "还没有片段，请先点上面的「开始准备素材」。"
@@ -144,7 +159,15 @@ def build_app(cfg: Config):
             voice = gr.Dropdown(choices=_voices(cfg), value=(_voices(cfg) or [None])[0], label="声音名称（新建请直接输入名字）",
                                 allow_custom_value=True, scale=4)
             refresh = gr.Button("🔄 刷新", scale=1)
-        refresh.click(lambda: gr.update(choices=_voices(cfg)), outputs=voice)
+
+        def refresh_voices(current=None):
+            names = _voices(cfg)
+            value = _voice_name(current) or (names[0] if names else "")
+            return gr.update(choices=names, value=value)
+
+        refresh.click(refresh_voices, voice, voice)
+        # 刷新网页时重新读取声音列表（服务启动后新建的声音也能直接选到）
+        app.load(lambda: refresh_voices(), None, voice)
 
         # ------------------------------------------------------------ ① 准备素材
         with gr.Tab("① 准备素材"):
@@ -174,8 +197,9 @@ def build_app(cfg: Config):
             review_md = gr.Markdown()
 
             def do_prepare(voice_name, up_files, folder_path, asr_engine, language, dn, sep):
+                voice_name = _voice_name(voice_name)
                 if not voice_name:
-                    yield "请先在上方填写声音名称", "", gr.update(), gr.update(), gr.update()
+                    yield NEED_VOICE, "", gr.update(), gr.update(), gr.update()
                     return
                 inputs = []
                 if up_files:
@@ -193,17 +217,18 @@ def build_app(cfg: Config):
                 overrides = {"asr": {"engine": asr_engine, "language": language}, "denoise": dn, "separate_vocals": bool(sep)}
                 for text, state in stream_task(wf.run_prepare, cfg, voice_name, inputs, overrides=overrides):
                     if state.get("done") and "value" in state:
-                        # 完成后自动载入片段列表，并显示一共多少条
-                        yield (text, _summary_md(state.get("value")), gr.update(choices=_voices(cfg)),
+                        # 完成后自动载入片段列表，并显示一共多少条；下拉框只在最后更新一次，并明确保持当前声音
+                        yield (text, _summary_md(state.get("value")), gr.update(choices=_voices(cfg), value=voice_name),
                                _clips_count_md(cfg, voice_name), _clips_table(cfg, voice_name))
                     else:
-                        yield text, "", gr.update(choices=_voices(cfg)), gr.update(), gr.update()
+                        yield text, "", gr.update(), gr.update(), gr.update()
 
             prep_btn.click(do_prepare, [voice, files, folder, asr, lang, denoise, separate],
                            [prep_log, prep_md, voice, clips_count, clips])
             load_clips.click(lambda v: (_clips_count_md(cfg, v), _clips_table(cfg, v)), voice, [clips_count, clips])
 
             def on_select(voice_name, evt: gr.SelectData):
+                voice_name = _voice_name(voice_name)
                 try:
                     row = evt.index[0] if isinstance(evt.index, (list, tuple)) else evt.index
                     project = wf.Project(cfg, voice_name)
@@ -217,6 +242,9 @@ def build_app(cfg: Config):
             def do_save(voice_name, table):
                 import csv
 
+                voice_name = _voice_name(voice_name)
+                if not voice_name:
+                    return NEED_VOICE, gr.update(), gr.update()
                 project = wf.Project(cfg, voice_name)
                 rows = table.values.tolist() if hasattr(table, "values") else table
                 records = {r["id"]: r for r in project.load_manifest()}
@@ -256,6 +284,10 @@ def build_app(cfg: Config):
             train_md = gr.Markdown()
 
             def do_train(voice_name, backend, se, ge, qe, b):
+                voice_name = _voice_name(voice_name)
+                if not voice_name:
+                    yield NEED_VOICE, ""
+                    return
                 opts = {"sovits_epochs": int(se) or None, "gpt_epochs": int(ge) or None, "epochs": int(qe) or None,
                         "batch_size": int(b) or None}
                 for text, state in stream_task(wf.run_train, cfg, voice_name, backend, **opts):
@@ -266,6 +298,10 @@ def build_app(cfg: Config):
                     yield text, md
 
             def do_select(voice_name, backend):
+                voice_name = _voice_name(voice_name)
+                if not voice_name:
+                    yield NEED_VOICE, ""
+                    return
                 for text, state in stream_task(wf.run_select, cfg, voice_name, backend):
                     md = ""
                     if state.get("done") and "value" in state:
@@ -299,6 +335,10 @@ def build_app(cfg: Config):
             def do_generate(voice_name, text, sfile, backend, q, spd, ref_id, redo_s):
                 from voicetwin.cli import _parse_redo
 
+                voice_name = _voice_name(voice_name)
+                if not voice_name:
+                    yield None, None, NEED_VOICE, ""
+                    return
                 source = ""
                 if sfile:
                     source = str(sfile if isinstance(sfile, str) else getattr(sfile, "name", sfile))
@@ -334,6 +374,11 @@ def build_app(cfg: Config):
             def do_eval(voice_name, audio, text):
                 from voicetwin.synth.select import evaluate_file
 
+                voice_name = _voice_name(voice_name)
+                if not voice_name:
+                    return {"提示": NEED_VOICE}
+                if not audio:
+                    return {"提示": "请先上传一段音频"}
                 project = wf.open_project(cfg, voice_name, must_exist=True)
                 return evaluate_file(cfg, project, Path(audio), text or "")
 

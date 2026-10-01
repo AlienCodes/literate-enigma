@@ -1,6 +1,6 @@
 """网页界面的辅助函数（不需要 gradio）和环境检查里的显卡判断。"""
 
-from voicetwin.webui.app import CLIP_HEADERS, _clips_count_md, _clips_table
+from voicetwin.webui.app import CLIP_HEADERS, NEED_VOICE, _clips_count_md, _clips_table, _voice_name
 from voicetwin.workflows import nvidia_smi_status
 
 
@@ -25,7 +25,16 @@ def test_clip_count_for_voice_without_clips(tmp_path):
 
     cfg = make_cfg(tmp_path)
     assert "还没有片段" in _clips_count_md(cfg, "新声音")
-    assert _clips_count_md(cfg, "") == ""
+    assert _clips_count_md(cfg, "") == NEED_VOICE
+    assert _clips_count_md(cfg, []) == NEED_VOICE
+
+
+def test_voice_dropdown_value_is_normalized(prepared):
+    # gradio 4.24（整合包自带）更新选项或刷新页面后，下拉框的值可能变成列表或 None
+    assert _voice_name(None) == "" and _voice_name([]) == "" and _voice_name([""]) == ""
+    assert _voice_name(["我的声音"]) == "我的声音" and _voice_name(" 我的声音 ") == "我的声音"
+    cfg, project, _ = prepared
+    assert _clips_table(cfg, [project.voice]) == _clips_table(cfg, project.voice)
 
 
 def test_nvidia_smi_driver_failure_is_not_ok():
