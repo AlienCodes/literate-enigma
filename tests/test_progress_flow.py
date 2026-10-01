@@ -109,6 +109,56 @@ def test_bad_video_is_skipped_and_retried(tmp_path):
     assert [x["file"] for x in again["skipped_files"]] == ["bad.mp4"]
 
 
+def test_unexpected_errors_keep_the_real_cause_in_the_log(tmp_path, monkeypatch):
+    """跳过文件、自动查错字失败这类「接着做」的地方：网页上只显示中文，但原始报错要写进日志（给帮忙的人查）。"""
+    import logging
+
+    from voicetwin.data import prepare as prep
+
+    src = tmp_path / "in"
+    make_lecture(src / "a.wav", repeats=2)
+    make_lecture(src / "b.wav", repeats=2, seed=5)
+    orig = prep.enhance_file
+
+    bad_sid = prep.source_id(src / "b.wav")
+
+    def flaky(raw, clean, *a, **k):
+        if Path(clean).stem == bad_sid:
+            raise IndexError("REAL-CAUSE-PREP list index out of range")
+        return orig(raw, clean, *a, **k)
+
+    monkeypatch.setattr(prep, "enhance_file", flaky)
+
+    def boom(*a, **k):
+        raise ValueError("REAL-CAUSE-PROOF bad value")
+
+    monkeypatch.setattr(wf, "proofcheck_plan", lambda cfg, overrides=None: (True, "funasr", "测试"))
+    monkeypatch.setattr(wf, "_proofcheck_module", lambda: types.SimpleNamespace(find_suspects=boom))
+    records = []
+
+    class H(logging.Handler):
+        def emit(self, record):
+            records.append(record)
+
+    h = H(level=logging.DEBUG)
+    logging.getLogger("voicetwin").addHandler(h)
+    try:
+        cfg = make_cfg(tmp_path / "ws")
+        summary = wf.run_prepare(cfg, "v", [str(src)])
+    finally:
+        logging.getLogger("voicetwin").removeHandler(h)
+    assert [x["file"] for x in summary["skipped_files"]] == ["b.wav"]
+    with_exc = [r for r in records if r.exc_info]
+    causes = " ".join(repr(r.exc_info[1]) for r in with_exc)
+    assert "REAL-CAUSE-PREP" in causes
+    # 网页上显示的那一行（getMessage）只有中文说明，没有英文报错
+    assert all("REAL-CAUSE" not in r.getMessage() for r in records)
+    project = wf.open_project(cfg, "v", must_exist=True)
+    db = project.read_json(project.sources_path, {})
+    assert any("REAL-CAUSE-PREP" in str(v.get("error", "")) for v in db.values())
+    assert any("自动查错字没有完成" in w for w in summary["warnings"]) and "REAL-CAUSE-PROOF" in causes
+
+
 def test_all_videos_broken_gives_friendly_error(tmp_path):
     src = tmp_path / "in"
     src.mkdir()

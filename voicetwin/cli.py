@@ -127,7 +127,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--batch-size", type=int, help="批大小（默认按显存自动）")
     p.add_argument("--epochs", type=int, help="Qwen3-TTS：微调轮数")
     p.add_argument("--dpo", choices=["auto", "on", "off"], default="auto",
-                   help="GPT-SoVITS 的 DPO（实验功能）：auto = 显存 ≥22GB 且素材干净时才开（默认）")
+                   help="GPT-SoVITS 的 DPO（实验功能）：auto = 不开（默认；没有可靠证据说明它能让声音更像），on = 手动打开")
     p.add_argument("--no-select", action="store_true", help="训练后不自动挑选模型")
 
     p = sub.add_parser("select", help="用验证集自动挑选最像你的模型，并校准语速")
@@ -401,8 +401,11 @@ def _download_models(cfg: Any, source: str, check: bool) -> int:
                 print(f"{i:>2}. {rel}")
             print("可以运行 voicetwin download-models --source hf-mirror 自动下载（大约 1~2GB）。")
             return 3
+        from voicetwin.workflows import keep_awake
+
         progress = _cli_progress("download", cfg, "下载模型")
-        files = backend.download_pretrained(source, progress=progress)
+        with keep_awake():  # 1~2 GB，网慢时要很久：下载期间电脑不自动睡眠
+            files = backend.download_pretrained(source, progress=progress)
         _finish(progress)
         print(f"✅ 已下载 {len(files)} 个文件" if files else "✅ 预训练模型已齐全")
         return 0

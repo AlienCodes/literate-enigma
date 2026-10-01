@@ -13,6 +13,7 @@ import importlib
 import json
 import platform
 import random
+import re
 import shutil
 import subprocess
 import sys
@@ -391,7 +392,8 @@ def run_prepare(cfg: Config, voice: str, inputs: Iterable[str], progress: Option
                     summary["warnings"].append(f"其中 {res['flagged']} 条文字可能有错（已标红），请在校对表里看一看")
             except Exception as exc:
                 why = _explain_title(exc)
-                log.warning(f"⚠️ 自动查错字没有完成（{why}），素材已经准备好了，不影响使用")
+                # exc_info：原始的报错（英文 Traceback）只写进黑色窗口和 voicetwin.log，给帮忙的人看；网页上只显示这一行中文
+                log.warning(f"⚠️ 自动查错字没有完成（{why}），素材已经准备好了，不影响使用", exc_info=exc)
                 summary["warnings"].append(f"自动查错字没有完成（{why}）。可以稍后在校对表上方点「🔍 自动查找可能的错字」再试")
         saved = {k: v for k, v in summary.items() if k != "profile"}
         project.write_json(project.root / "prepare_summary.json", saved)
@@ -452,7 +454,11 @@ def apply_suggestion(cfg: Config, voice: str, clip_id: str) -> Dict[str, Any]:
     old = rec.get("text", "")
     new = project.set_clip_text(clip_id, alt)
     log.info(f"已采用建议：{old} → {new.get('text')}")
-    return {"id": clip_id, "old_text": old, "text": new.get("text", ""), "lang": new.get("lang", "")}
+    out = {"id": clip_id, "old_text": old, "text": new.get("text", ""), "lang": new.get("lang", "")}
+    if new.get("csv_locked"):
+        log.warning("transcripts.csv 正被别的程序（Excel/WPS）打开，这次没能同步更新；修改已经保存在 manifest 里")
+        out["csv_locked"] = True
+    return out
 
 
 def run_analyze(cfg: Config, voice: str) -> Dict[str, Any]:
@@ -462,6 +468,21 @@ def run_analyze(cfg: Config, voice: str) -> Dict[str, Any]:
 
 
 # ---------------------------------------------------------------------------- 训练 / 挑选
+def download_models(cfg: Config, source: str = "auto", progress: Optional[ProgressFn] = None) -> List[str]:
+    """下载 GPT-SoVITS 缺少的预训练模型（网页的「⬇️ 下载缺少的模型」和命令行 download-models 共用）。
+
+    要下 1~2 GB，网慢时很久：下载期间电脑不会自动睡眠（网络流量不会让 Windows 觉得「有人在用」）。"""
+    from voicetwin.backends.gptsovits import GPTSoVITSBackend
+
+    with keep_awake():
+        project = Project(cfg, "__download__")
+        try:
+            backend = GPTSoVITSBackend(cfg, project)
+            return list(backend.download_pretrained(source, progress=progress) or [])
+        finally:
+            shutil.rmtree(project.root, ignore_errors=True)
+
+
 def run_train(cfg: Config, voice: str, backend_name: Optional[str] = None, progress: Optional[ProgressFn] = None,
               select: bool = True, **opts: Any) -> Dict[str, Any]:
     from voicetwin.backends.base import get_backend
@@ -484,8 +505,9 @@ def run_train(cfg: Config, voice: str, backend_name: Optional[str] = None, progr
             except Exception as exc:  # 训练已经成功了：不能显示成失败（停止按钮的 TaskCancelled 照常传出去）
                 reason = _explain_title(exc)
                 log.warning(f"⚠️ 训练已经成功完成并保存了，只是「自动挑选最像你的模型」这一步没成功（{reason}）。"
-                            "现在先用最后一轮的模型；可以稍后在「② 训练模型」页点「重新挑选最佳模型」再试。")
+                            "现在先用最后一轮的模型；可以稍后在「② 训练模型」页点「重新挑选最佳模型」再试。", exc_info=exc)
                 info["selection_error"] = reason
+                info["selection_error_detail"] = repr(exc)[:500]
         _report(progress, 1.0, "训练完成")
     return info
 
@@ -615,6 +637,8 @@ def choose_variant(cfg: Config, voice: str, report_path: str, name: str) -> Dict
         x["final"] = x is v
     report["variants"] = variants
     report["final"] = v.get("name")
+    if v.get("pct") is not None:  # 整篇百分比跟着最终版本走（和生成时的规则一样）
+        report["overall_pct"] = v.get("pct")
     tmp = rp.with_suffix(rp.suffix + ".tmp")
     tmp.write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
     tmp.replace(rp)
@@ -681,6 +705,60 @@ def preview_speed(cfg: Config, voice: str, text: str = "", value: Any = 0, backe
 
 # ---------------------------------------------------------------------------- 鉴别：盲听测试
 _REAL, _GEN = "真人", "生成"
+#: 答案文件放在测试文件夹「旁边」，不放在里面：老师会把整个文件夹发给听众
+BLIND_ANSWER_SUFFIX = "_答案（只给老师看，不要发给听众）.json"
+
+
+def blind_answer_path(test_dir: Any) -> Path:
+    """盲听测试的答案文件：<文件夹名>_答案（只给老师看，不要发给听众）.json，和文件夹放在一起。
+    以前的版本把 答案.json 放在文件夹里面，也认。"""
+    d = Path(str(test_dir))
+    side = d.with_name(d.name + BLIND_ANSWER_SUFFIX)
+    if side.exists() or not (d / "答案.json").exists():
+        return side
+    return d / "答案.json"
+
+
+def list_blind_tests(cfg: Config, voice: str) -> List[Dict[str, Any]]:
+    """这个声音做过的盲听测试（有答案文件的），新的在前：[{dir, name, count, created}]。"""
+    project = open_project(cfg, voice, must_exist=True)
+    out: List[Dict[str, Any]] = []
+    if not project.outputs_dir.is_dir():
+        return out
+    for d in project.outputs_dir.iterdir():
+        if not d.is_dir() or not d.name.startswith("盲听测试_"):
+            continue
+        ap = blind_answer_path(d)
+        if not ap.exists():
+            continue
+        try:
+            data = json.loads(ap.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        out.append({"dir": str(d), "name": d.name, "count": int(data.get("count") or len(data.get("items") or [])),
+                    "created": str(data.get("created") or "")})
+    out.sort(key=lambda x: x["name"], reverse=True)
+    return out
+
+
+_HINT_RE = re.compile(r"[（(]\s*真人\s*[/／|｜]\s*生成\s*[）)]")
+_PAIR_RE = re.compile(r"(\d+)\s*[.、:：)）\]】\-—=]*\s*([^\d\s,，;；.、:：]+)")
+
+
+def parse_blind_answers(text: Any) -> Any:
+    """把老师贴进来的听众答案变成 grade_blind_test 认识的格式。认这几种写法：
+    「1 真人 2 生成 3 真人」「1.真人 2.生成」「1真2假」、照着答题卡填的「01. 真人（真人 / 生成）」，
+    或者不写编号、按顺序写「真人 生成 真人」。返回 {编号: 答案} 或按顺序的列表。"""
+    s = _HINT_RE.sub(" ", str(text or ""))
+    pairs: Dict[int, str] = {}
+    for m in _PAIR_RE.finditer(s):
+        word = m.group(2).strip("_＿-—（）()")
+        if _norm_answer(word):
+            pairs[int(m.group(1))] = word
+    if pairs:
+        return pairs
+    words = [w for w in re.split(r"[\s,，;；、/／|｜]+", s) if w]
+    return [w for w in words if _norm_answer(w)]
 
 
 def _blind_pool(project: Project, n: int) -> List[Dict[str, Any]]:
@@ -700,8 +778,9 @@ def build_blind_test(cfg: Config, voice: str, n: int = 10, quality: Optional[str
                      backend_name: Optional[str] = None, progress: Optional[ProgressFn] = None, backend=None,
                      seed: Optional[int] = None) -> Dict[str, Any]:
     """观众盲听测试：挑 n 段你的真实录音（优先验证集），用现在最好的模型读同样的文字，
-    统一音量后打乱顺序，存成 outputs/盲听测试_<时间>/01.wav…，答案在 答案.json（网页提交前不显示），
-    还有一份 听众答题卡.txt 可以发给听众。返回的 items 里不含答案。"""
+    统一音量后打乱顺序，存成 outputs/盲听测试_<时间>/01.wav…，还有一份 听众答题卡.txt，整个文件夹可以直接发给听众。
+    答案放在文件夹旁边的 盲听测试_<时间>_答案（只给老师看，不要发给听众）.json（网页提交前不显示）。
+    返回的 items 里不含答案。"""
     from voicetwin.backends.base import get_backend
     from voicetwin.synth.engine import QUALITY_SHORT, Narrator, trim_edges
     from voicetwin.utils.audio import load_audio, normalize_lufs, resample, save_audio
@@ -755,12 +834,13 @@ def build_blind_test(cfg: Config, voice: str, n: int = 10, quality: Optional[str
         quality_name = narrator.quality
         data = {"created": time.strftime("%Y-%m-%d %H:%M"), "voice": project.voice, "quality": quality_name,
                 "count": len(items), "items": answers}
-        answer_path = out_dir / "答案.json"
+        answer_path = out_dir.with_name(out_dir.name + BLIND_ANSWER_SUFFIX)
         answer_path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
         card_lines = [f"听众答题卡（共 {len(items)} 段）", "",
                       "每段听完，在后面写「真人」或「生成」。只听一遍，凭第一感觉写，不要回头改。", ""]
         card_lines += [f"{it['no']:0{width}d}. ________（真人 / 生成）" for it in items]
-        card_lines += ["", "答完后把答案交给老师，在「⑤ 鉴别」页里填进去就能看到正确率。"]
+        card_lines += ["", "答完后把答案交给老师：老师在「⑤ 鉴别」页的「批改收上来的答题卡」里选这次测试、"
+                           "把答案填进去，就能看到正确率。"]
         card_path = out_dir / "听众答题卡.txt"
         card_path.write_text("\n".join(card_lines) + "\n", encoding="utf-8-sig")
         _report(progress, 1.0, f"盲听测试做好了：共 {len(items)} 段（{len(pool)} 段真人 + {len(pool)} 段生成），"
@@ -787,8 +867,12 @@ def _norm_answer(ans: Any) -> str:
 def grade_blind_test(test_dir: str, answers: Any) -> Dict[str, Any]:
     """批改盲听测试。answers 可以是 {编号: '真人'/'生成'}，也可以是按顺序的列表。"""
     path = Path(str(test_dir))
-    answer_file = path / "答案.json" if path.is_dir() else path
+    answer_file = blind_answer_path(path) if path.is_dir() else path
+    if not answer_file.exists():
+        raise FileNotFoundError(f"找不到这次盲听测试的答案文件：{answer_file.name}")
     data = json.loads(answer_file.read_text(encoding="utf-8"))
+    if isinstance(answers, str):
+        answers = parse_blind_answers(answers)
     items = data.get("items") or []
     if isinstance(answers, (list, tuple)):
         given_map = {i + 1: a for i, a in enumerate(answers)}
@@ -857,7 +941,8 @@ def verify_files(cfg: Config, voice: str, generated: Sequence[str], originals: O
                  progress: Optional[ProgressFn] = None) -> Dict[str, Any]:
     """机器鉴别：给每个生成的文件打"像你本人（%）"（几个声纹模型分别打分再平均），按分数排名。
 
-    originals 是你挑的原声（≥3 段时用它们当标准；不选就用这个声音的验证集校准）。
+    originals 是你挑的原声（≥3 段时用它们当标准；1~2 段时用素材里留出的真实录音和它们比来校准；
+    不选就用这个声音的验证集校准）。返回的 calibration_source 说明「100%」的标准实际是怎么来的。
     """
     from voicetwin.eval.speaker import HONEST_NOTE, MODEL_LABELS, PCT_HELP, SimilarityJudge
 
@@ -872,7 +957,7 @@ def verify_files(cfg: Config, voice: str, generated: Sequence[str], originals: O
         orig = [Path(str(p)) for p in (originals or []) if p and Path(str(p)).exists()]
         if orig:
             judge = SimilarityJudge.from_files(cfg, orig, fallback=base,
-                                               encoders=[m.encoder for m in base.members] or None)
+                                               encoders=[m.encoder for m in base.members] or None, project=project)
         else:
             judge = base
         if not judge.available:
@@ -899,7 +984,16 @@ def verify_files(cfg: Config, voice: str, generated: Sequence[str], originals: O
     _report(progress, 1.0, f"打分完成：共 {len(rows)} 个文件，{sum(1 for r in rows if r['pass'])} 个达到 {min_pct:.0f}%")
     return {"rows": ranked, "headers": headers, "table": table, "count": len(rows), "models": judge.info(),
             "originals": [p.name for p in orig], "calibrated": judge.calibrated, "min_pct": min_pct,
+            "calibration_source": _calib_source(judge),
             "definition": PCT_HELP, "note": HONEST_NOTE}
+
+
+def _calib_source(judge: Any) -> str:
+    """几个声纹模型的「100%」标准是怎么来的（都一样时返回那一种；不一样时返回 mixed）。"""
+    sources = {str((m.calib or {}).get("source") or "") for m in getattr(judge, "members", []) if m.p50 is not None}
+    if not sources:
+        return ""
+    return sources.pop() if len(sources) == 1 else "mixed"
 
 
 # ---------------------------------------------------------------------------- 一条龙
@@ -986,7 +1080,9 @@ def doctor(cfg: Config) -> List[Dict[str, Any]]:
             m = importlib.import_module(mod)
             add(label, True, getattr(m, "__version__", "已安装"), optional)
         except Exception:
-            add(label, False if required else None, "未安装" + ("（必需）" if required else ""), optional)
+            hint = "（必需）" if required else ("（重新双击 install_windows.bat 安装一次就会装上）"
+                                              if mod == "noisereduce" else "")
+            add(label, False if required else None, "未安装" + hint, optional)
     gpu = _gpu_row()
     if gpu is not None:
         add("NVIDIA 显卡", gpu[0], gpu[1])

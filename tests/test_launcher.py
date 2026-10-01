@@ -260,10 +260,59 @@ def test_launch_reuses_running_instance(fake_env, capsys):
 def test_launch_port_error_is_chinese(fake_env):
     app = FakeApp(fail=OSError("Cannot find empty port in range"))
     fake_env.monkeypatch.setattr(fake_env.app_mod, "build_app", lambda cfg, local=True: app)
+    fake_env.monkeypatch.setattr(launcher, "PORT_RETRY_SECONDS", 0.0)
     base = _free_base_port()
     with pytest.raises(RuntimeError) as ei:
         launcher.launch({}, port=base)
-    assert f"端口 {base} 被占用" in str(ei.value)
+    assert f"端口 {base} 被占用" in str(ei.value) and "关掉其它黑色窗口" not in str(ei.value)
+    fd = launcher._acquire_instance_lock(base)  # 出错后锁也放开了
+    assert fd is not None
+    launcher._release_instance_lock(fd)
+
+
+def test_double_click_race_opens_the_running_one(fake_env, capsys):
+    """两个窗口同时启动：后启动的那个占不到端口时，不能叫老师关掉能用的那个，而是直接打开它。"""
+    base = _free_base_port()
+    servers = []
+
+    class RacingApp(FakeApp):
+        def launch(self, **kwargs):
+            servers.append(_Server("声音分身 VoiceTwin", port=kwargs["server_port"]))  # 另一个窗口先占了端口
+            raise OSError("Cannot find empty port in range")
+
+    fake_env.monkeypatch.setattr(fake_env.app_mod, "build_app", lambda cfg, local=True: RacingApp())
+    try:
+        launcher.launch({}, port=base)
+    finally:
+        for srv in servers:
+            srv.close()
+    assert fake_env.opened == [f"http://127.0.0.1:{base}"]
+    assert "声音分身已经在运行了" in capsys.readouterr().out
+
+
+def test_second_window_waits_for_the_first_one(fake_env, capsys):
+    """第一个窗口还在建网页（端口还没占上）时又双击了一次：第二个窗口不再启动一个，等第一个好了就打开它。"""
+    base = _free_base_port()
+
+    def build_app(cfg, local=True):
+        raise AssertionError("另一个窗口正在启动时不应该再建一个网页")
+
+    fake_env.monkeypatch.setattr(fake_env.app_mod, "build_app", build_app)
+    held = launcher._acquire_instance_lock(base)
+    assert held is not None and held >= 0
+    servers = []
+    timer = threading.Timer(1.2, lambda: servers.append(_Server("声音分身 VoiceTwin", port=base)))
+    timer.start()
+    try:
+        launcher.launch({}, port=base)
+    finally:
+        timer.join()
+        for srv in servers:
+            srv.close()
+        launcher._release_instance_lock(held)
+    out = capsys.readouterr().out
+    assert "正在另一个黑色窗口里启动" in out and "声音分身已经在运行了" in out
+    assert fake_env.opened == [f"http://127.0.0.1:{base}"]
 
 
 def test_launch_proxy_error_is_chinese(fake_env):

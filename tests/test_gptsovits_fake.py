@@ -433,9 +433,15 @@ def test_auto_save_every_keeps_last_epoch():
              1: (1, 1), 2: (2, 1), 3: (3, 1), 7: (7, 1), 9: (9, 3)}
     for epochs, expected in table.items():
         assert _auto_save_every(epochs) == expected, epochs
-    for epochs in range(3, 51):
-        e, s = _auto_save_every(epochs)
-        assert e % s == 0 and 2 <= e // s <= 8 and e in (epochs, epochs + 1)
+    # 原来的轮数只能存 2 个（22 = 2 × 11）：多练 1~2 轮，凑成能多存几个的轮数（不超过上限）
+    assert _auto_save_every(22, 25) == (24, 4) and _auto_save_every(46, 50) == (48, 8)
+    assert _auto_save_every(34, 50) == (35, 7) and _auto_save_every(25, 25) == (25, 5)
+    for max_ep in (25, 50):
+        for epochs in range(3, max_ep + 1):
+            e, s = _auto_save_every(epochs, max_ep)
+            assert e % s == 0 and 3 <= e // s <= 8 and epochs <= e <= max(max_ep, epochs) and e - epochs <= 2, epochs
+    p = plan_training(300, 45, 11.99, user={"sovits_epochs": 22})
+    assert (p["sovits_epochs"], p["sovits_save_every"]) == (24, 4)
 
 
 def _plan(total, minutes=45.0, clips=300, free=None, **kw):
@@ -467,7 +473,7 @@ def test_plan_summary_12gb():
     s = p["summary"]
     assert s.startswith("训练计划：显存 12 GB → 每批 6 条；素材 45 分钟（300 条） → 音色 SoVITS 12 轮、语气 GPT 15 轮")
     assert "音色每 2 轮、语气每 3 轮存一次模型，训练完自动挑最像你的那个" in s
-    assert "不开 DPO（它是实验功能，要显存 ≥ 22 GB" in s
+    assert "不开 DPO（官方实验功能" in s and "高级设置里手动打开" in s
     assert "\n" not in s and p["notes"] == []
 
 
@@ -481,11 +487,16 @@ def test_plan_epochs_by_material_not_vram():
 
 
 def test_plan_dpo_only_when_research_supports_it():
+    """research_quality.md §1.4 / §8.5：DPO 自动时一律不开（显存再大也不开），只在手动打开时用。"""
     big = _plan(23.99, minutes=85, clips=600, free=23.5)
-    assert big["if_dpo"] is True and big["gpt_batch_size"] == 6 and big["batch_size"] == 12
-    assert "开启 DPO（官方实验功能，用来减少重复、漏字；语气训练每批 6 条，会慢 2～4 倍）" in big["summary"]
-    assert _plan(47.5)["gpt_batch_size"] == 8
-    assert _plan(19.6)["if_dpo"] is False                   # 20 GB 不自动开
+    assert big["if_dpo"] is False and big["gpt_batch_size"] == 12 and big["batch_size"] == 12
+    assert "不开 DPO（官方实验功能" in big["summary"] and "高级设置里手动打开" in big["summary"]
+    assert _plan(47.5)["if_dpo"] is False and _plan(31.5, user={"if_dpo": "auto"})["if_dpo"] is False
+    on = _plan(23.99, minutes=85, clips=600, free=23.5, user={"if_dpo": "on"})
+    assert on["if_dpo"] is True and on["gpt_batch_size"] == 6 and on["batch_size"] == 12
+    assert "开启 DPO（你指定的；官方实验功能，用来减少重复、漏字；语气训练每批 6 条，会慢 2～4 倍）" in on["summary"]
+    assert _plan(47.5, user={"if_dpo": True})["gpt_batch_size"] == 8
+    assert _plan(19.6)["if_dpo"] is False
     assert _plan(23.99, noisy=True)["if_dpo"] is False
     sus = _plan(23.99, clips=100, suspects=10)
     assert sus["if_dpo"] is False and "还有 10 条文字可能有错" in sus["summary"]
@@ -660,10 +671,62 @@ def test_retrain_after_material_change_starts_fresh(prepared, tmp_path, no_users
         assert Path(path).stat().st_mtime >= started - 2
     assert set(second["sovits"]).isdisjoint(first["sovits"])   # 步数不同 → 新文件名；旧文件不混进来
     assert len(second["sovits"]) == 4 and len(second["gpt"]) == 4
-    # 旧素材的模型文件还在硬盘上（以前选中的模型不会突然消失），只是不再参加挑选
-    assert all(Path(p).exists() for p in first["sovits"])
+    # 旧素材的模型文件还在硬盘上（挪进了 old_runs，以前选中的模型不会突然消失），只是不再参加挑选
+    for path in first["sovits"] + first["gpt"]:
+        sub = Path(path).parent.name
+        assert (old_runs[0] / sub / Path(path).name).exists()
     b = get_backend("gptsovits", gcfg, p2)
     assert {c["sovits"] for c in b.checkpoints()} <= set(second["sovits"])
+
+
+@needs_fake_python
+def test_retrain_with_same_weight_names_gives_new_model_id(prepared, tmp_path, no_users_pth):
+    """只改了错字（条数不变）再重新训练：新模型的文件名和旧的一模一样。旧模型要挪进 old_runs（不被覆盖），
+    model_id 要变（不然生成时一直用旧模型的缓存），旧的挑选结果和语速校准也不能留给新模型。"""
+    cfg, project, _ = prepared
+    ws = _copy_project(project, tmp_path / "ws")
+    root = build_fake_root(tmp_path / "GSV-same")
+    gcfg = make_cfg(ws, backend="gptsovits", backends={"gptsovits": {
+        "root": str(root), "python": sys.executable, "train": {"sovits_epochs": 4, "gpt_epochs": 4, "batch_size": 2}}})
+    p2 = wf.open_project(gcfg, project.voice, must_exist=True)
+    first = wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    b = get_backend("gptsovits", gcfg, p2)
+    id1 = b.model_id()
+    p2.update_models("gptsovits", {"speed": {"zh": 1.2}, "selection": {"best": first["selected"]["id"], "results": []}})
+    time.sleep(0.05)
+    rec = next(r for r in p2.load_manifest() if r.get("keep", True) and r.get("split", "train") == "train")
+    p2.set_clip_text(rec["id"], rec["text"] + "改")
+    second = wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    assert [Path(x).name for x in second["sovits"]] == [Path(x).name for x in first["sovits"]]  # 文件名真的一样
+    b2 = get_backend("gptsovits", gcfg, p2)
+    assert b2.model_id() != id1
+    entry = p2.load_models()["gptsovits"]
+    assert "speed" not in entry and "selection" not in entry and b2.speed_calibration() == {}
+    opt_dir = root / "logs" / first["exp_name"]
+    (run,) = list((opt_dir / "old_runs").iterdir())
+    for path in first["sovits"] + first["gpt"]:
+        assert (run / Path(path).parent.name / Path(path).name).exists()
+
+
+@needs_fake_python
+def test_archive_keeps_selected_model_usable(prepared, tmp_path, no_users_pth):
+    """重新训练刚开始就停下（还没有新模型）：models.json 指向挪走后的旧模型，原来选中的模型照样能用。"""
+    cfg, project, _ = prepared
+    ws = _copy_project(project, tmp_path / "ws")
+    root = build_fake_root(tmp_path / "GSV-arch")
+    gcfg = make_cfg(ws, backend="gptsovits", backends={"gptsovits": {
+        "root": str(root), "python": sys.executable, "train": {"sovits_epochs": 4, "gpt_epochs": 4, "batch_size": 2}}})
+    p2 = wf.open_project(gcfg, project.voice, must_exist=True)
+    first = wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    b = get_backend("gptsovits", gcfg, p2)
+    dest = b._archive_old_run(root / "logs" / first["exp_name"])
+    assert dest is not None
+    entry = p2.load_models()["gptsovits"]
+    sel = entry["selected"]
+    assert Path(sel["sovits"]).exists() and str(dest) in sel["sovits"] and str(dest) in sel["gpt"]
+    assert all(Path(x).exists() and str(dest) in x for x in entry["sovits"] + entry["gpt"])
+    assert b._current_weights()["id"] == first["selected"]["id"]
+    assert not list((root / "SoVITS_weights_v2ProPlus").glob(first["exp_name"] + "_e*"))
 
 
 # ---------------------------------------------------------------------------- 推理服务

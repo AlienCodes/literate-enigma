@@ -11,7 +11,8 @@
 - 轮数看素材多少和干不干净，不看显存：SoVITS 素材 < 30 分钟 8 轮、≥ 30 分钟 12 轮（有底噪/背景音时最多 8 轮），
   GPT 15 轮（官方默认；轮数太多反而容易漏字、复读）。
 - 多存几个模型（每 2~3 轮存一次，最后一轮一定会存下来），训练完自动挑最像你的那个（不是越多轮越好）。
-- DPO 是官方的实验功能：只在显存 ≥ 22 GB、素材干净时自动开启，其余情况不开。
+- DPO 是官方的实验功能：自动时一律不开（没有可靠的测量说明它能让声音更像，而且显存翻倍、语气训练慢 2~4 倍），
+  只在高级设置 / config.yaml / 命令行里手动打开时才用。
 - 训练时显存不够（CUDA out of memory）：自动把每批数量减半，再试一次。
 高级设置 / config.yaml / 命令行里明确填写的数值优先。
 """
@@ -85,7 +86,6 @@ BATCH_CAP = 12                    # 再大只是更快，不会更好（每轮�
 LOW_TIER_BATCH = 2
 TINY_GPU_GB = 5.0                 # 4 GB 级别的卡：每批 1 条
 CPU_BATCH = 2
-DPO_AUTO_MIN_GB = 22.0            # DPO 显存翻倍、语气训练慢 2~4 倍：只在 22 GB 以上自动开
 DPO_RISKY_GB = 12.0               # 低于它手动开 DPO 基本会显存不够
 SOVITS_EPOCHS_SMALL = 8           # 官方默认（素材 < 30 分钟）
 SOVITS_EPOCHS_LARGE = 12          # 素材 ≥ 30 分钟
@@ -167,15 +167,17 @@ def _dpo_choice(value: Any) -> Optional[bool]:
     return None
 
 
-def _auto_save_every(epochs: int) -> Tuple[int, int]:
+def _auto_save_every(epochs: int, max_epochs: Optional[int] = None) -> Tuple[int, int]:
     """自动的保存间隔：返回 (轮数, 每几轮存一次)。
 
     GPT-SoVITS 只在「轮数是保存间隔的整数倍」时导出模型，所以最后一轮必须是倍数，否则最后一轮的模型存不下来。
-    尽量让每个模型存 5 个左右（3~8 个，同样接近时多存）；轮数是大于 8 的质数时多练 1 轮凑成偶数。"""
+    尽量让每个模型存 5 个左右（3~8 个，同样接近时多存）。按原来的轮数只能存 2 个时（例如 22 轮只能每 11 轮存一次），
+    多练 1~2 轮（不超过上限 max_epochs）凑一个能多存几个的轮数：22 → 24 轮每 4 轮存一次，存 6 个。"""
     epochs = max(1, int(epochs))
     if epochs <= 2:
         return epochs, 1
-    for e in (epochs, epochs + 1):
+
+    def best_for(e: int) -> Optional[Tuple[Tuple[int, int], int]]:
         best: Optional[Tuple[Tuple[int, int], int]] = None
         for d in range(1, e + 1):
             if e % d:
@@ -186,9 +188,22 @@ def _auto_save_every(epochs: int) -> Tuple[int, int]:
             score = (abs(count - SAVE_TARGET_COUNT), -count)
             if best is None or score < best[0]:
                 best = (score, d)
-        if best is not None:
-            return e, best[1]
-    return epochs, 1  # 走不到这里（epochs+1 是偶数，总能找到）
+        return best
+
+    options = []
+    for e in (epochs, epochs + 1, epochs + 2):  # 尽量少改轮数：第一个能存 ≥ 3 个的就用它
+        if e != epochs and max_epochs is not None and e > max_epochs:
+            continue
+        b = best_for(e)
+        if b is None:
+            continue
+        if e // b[1] >= 3:
+            return e, b[1]
+        options.append((b[0], e - epochs, e, b[1]))
+    if options:  # 到了上限也凑不出 3 个：至少存 2 个（最后一轮一定存）
+        _, _, e, d = min(options)
+        return e, d
+    return epochs, 1  # 走不到这里（epochs+1、epochs+2 里总有偶数）
 
 
 def _fit_explicit_save(epochs: int, save: int, max_epochs: int) -> Tuple[int, int]:
@@ -310,7 +325,7 @@ def plan_training(n_clips: int, minutes: float, total_gb: Optional[float] = None
     # ---- 多久存一次（最后一轮一定要存下来）
     def fit_save(key: str, epochs: int, max_epochs: int, name: str) -> Tuple[int, int]:
         if auto[key]:
-            new_ep, save = _auto_save_every(epochs)
+            new_ep, save = _auto_save_every(epochs, max_epochs)
         else:
             new_ep, save = _fit_explicit_save(epochs, _to_int(user.get(key), 1), max_epochs)
         if new_ep != epochs:
@@ -323,14 +338,17 @@ def plan_training(n_clips: int, minutes: float, total_gb: Optional[float] = None
     # ---- DPO（官方实验功能）
     why_not = ""
     if dpo_user is None:
-        if g < DPO_AUTO_MIN_GB:
-            dpo, why_not = False, f"它是实验功能，要显存 ≥ {DPO_AUTO_MIN_GB:.0f} GB，开了语气训练会慢 2～4 倍"
+        # 自动时一律不开（research_quality.md §1.4、§8.5：没有可靠的测量说明它能提升效果；它是实验功能，
+        # 显存翻倍、语气训练慢 2~4 倍，整合包里的版本还有已知问题）。想试的话在高级设置里手动打开。
+        dpo = False
+        if g < DPO_RISKY_GB:
+            why_not = "官方实验功能，显存也不够；需要的话可以在高级设置里手动打开"
         elif noisy:
-            dpo, why_not = False, "素材有底噪或背景音乐，开了反而可能变差"
+            why_not = "官方实验功能；素材有底噪或背景音乐，开了反而可能变差"
         elif n_clips and suspects / float(n_clips) > SUSPECT_MAX_RATIO:
-            dpo, why_not = False, f"还有 {suspects} 条文字可能有错，先校对好再开"
+            why_not = f"官方实验功能；还有 {suspects} 条文字可能有错，先校对好"
         else:
-            dpo = True
+            why_not = "官方实验功能，没有可靠的证据说明能让声音更像，开了语气训练会慢 2～4 倍；想试可以在高级设置里手动打开"
     else:
         dpo = dpo_user
         if not dpo:
@@ -818,8 +836,44 @@ class GPTSoVITSBackend(Backend):
         except (OSError, ValueError):
             return 0.0
 
+    def _weight_files(self) -> List[Tuple[str, Path]]:
+        """这个声音导出过的模型文件：[(所在的文件夹名, 文件)]。"""
+        out: List[Tuple[str, Path]] = []
+        for sub, pattern in ((f"SoVITS_weights_{self.version}", f"{self.exp_name}_e*_s*.pth"),
+                             (f"GPT_weights_{self.version}", f"{self.exp_name}-e*.ckpt")):
+            d = self.p(sub)
+            if d.is_dir():
+                out += [(sub, f) for f in sorted(d.glob(pattern)) if f.is_file()]
+        return out
+
+    def _repoint_models(self, moved: Dict[str, str]) -> None:
+        """旧模型文件挪进 old_runs 以后，models.json 里记的路径跟着改：重新训练中途停下时，原来选中的模型照样能用。"""
+        if not moved:
+            return
+        models = self.project.load_models()
+        entry = models.get(self.name)
+        if not entry:
+            return
+
+        def fix(path: Any) -> Any:
+            name = str(path or "").replace("\\", "/").rsplit("/", 1)[-1]
+            return moved.get(name, path)
+
+        for key in ("sovits", "gpt"):
+            if isinstance(entry.get(key), list):
+                entry[key] = [fix(x) for x in entry[key]]
+        sel = entry.get("selected")
+        if isinstance(sel, dict):
+            for key in ("sovits", "gpt"):
+                if sel.get(key):
+                    sel[key] = fix(sel[key])
+        self.project.write_json(self.project.models_path, models)
+
     def _archive_old_run(self, opt_dir: Path) -> Optional[Path]:
-        """素材变了：把旧的训练进度（GPT-SoVITS 会从这里接着练）移到 old_runs/<时间>/，这次从头训练。"""
+        """素材变了：把旧的训练进度（GPT-SoVITS 会从这里接着练）和旧的模型文件移到 old_runs/<时间>/，这次从头训练。
+
+        模型文件也要挪走：素材条数不变时（例如只改了错字），新模型的文件名和旧的一模一样，不挪的话会直接覆盖掉
+        原来选中的模型，而且新旧模型分不出来（生成时会一直用到旧模型的缓存）。models.json 里的路径跟着改到新位置。"""
         names = [f"logs_s2_{self.version}", f"logs_s1_{self.version}", "logs_s1"]
         existing = []
         for n in names:
@@ -829,7 +883,8 @@ class GPTSoVITSBackend(Backend):
                     existing.append(d)
             except OSError:
                 continue
-        if not existing:
+        weights = self._weight_files() if self.root is not None else []
+        if not existing and not weights:
             return None
         base = opt_dir / "old_runs" / time.strftime("%Y%m%d_%H%M%S")
         dest, i = base, 1
@@ -846,15 +901,33 @@ class GPTSoVITSBackend(Backend):
                 shutil.rmtree(src, ignore_errors=True)
                 if src.exists():
                     log.warning(f"{src} 删不掉（可能被别的程序占用），这次训练可能会接着旧的进度")
+        moved_weights: Dict[str, str] = {}
+        for sub, f in weights:
+            target = dest / sub / f.name
+            try:
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.move(str(f), str(target))
+                moved_weights[f.name] = str(target)
+                moved = True
+            except Exception as exc:
+                log.warning(f"备份旧的模型文件 {f.name} 没成功（{exc}），这次训练可能会覆盖它")
+        try:
+            self._repoint_models(moved_weights)
+        except Exception as exc:
+            log.warning(f"更新 models.json 里的模型位置没成功：{exc}")
         if not moved:
             try:
                 dest.rmdir()
             except OSError:
                 pass
         old_root = opt_dir / "old_runs"
-        try:  # 只留最近几次备份（每次大约 1 GB），免得占满硬盘
+        try:  # 只留最近几次备份（每次大约 1 GB），免得占满硬盘；正在用的模型所在的那次不删
+            sel = (self.project.load_models().get(self.name) or {}).get("selected") or {}
+            in_use = [str(sel.get(k) or "") for k in ("sovits", "gpt") if sel.get(k)]
             runs = sorted((p for p in old_root.iterdir() if p.is_dir()), key=lambda p: p.stat().st_mtime)
             for p in runs[:-KEEP_OLD_RUNS]:
+                if any(u.startswith(str(p)) for u in in_use):
+                    continue
                 shutil.rmtree(p, ignore_errors=True)
         except OSError:
             pass
@@ -1058,7 +1131,8 @@ class GPTSoVITSBackend(Backend):
             "params": params, "sovits": [str(p) for p in sovits], "gpt": [str(p) for p in gpt],
             "selected": {"id": f"s{_epoch(sovits[-1])}-g{_epoch(gpt[-1])}", "sovits": str(sovits[-1]), "gpt": str(gpt[-1])},
         }
-        self.project.update_models(self.name, info)
+        # 旧模型的挑选结果和语速校准不能留给新模型用（自动挑选没做成功、或者不挑选时，会一直用着旧的数字）
+        self.project.update_models(self.name, info, drop=("selection", "speed", "selection_error"))
         self.step(progress, 1.0, "GPT-SoVITS 训练完成")
         return info
 
@@ -1124,8 +1198,18 @@ class GPTSoVITSBackend(Backend):
                 "id": "pretrained"}
 
     def model_id(self) -> str:
+        """当前用的模型的标识（生成的缓存按它区分）。除了路径，还算上文件的大小和修改时间：
+        重新训练后文件名可能一模一样，内容却换了，不能还用旧模型生成的缓存。"""
         w = self._current_weights()
-        return f"gsv-{self.version}-{w['id']}-{short_hash(w['sovits'], w['gpt'], n=6)}"
+
+        def sig(path: str) -> str:
+            try:
+                st = Path(path).stat()
+                return f"{st.st_size}-{st.st_mtime_ns}"
+            except (OSError, ValueError):
+                return ""
+
+        return f"gsv-{self.version}-{w['id']}-{short_hash(w['sovits'], w['gpt'], sig(w['sovits']), sig(w['gpt']), n=6)}"
 
     def _session(self):
         if self._http is None:

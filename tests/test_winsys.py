@@ -48,6 +48,27 @@ def test_noop_on_linux(monkeypatch):
     assert winsys.disable_quick_edit() is False
 
 
+def test_model_download_keeps_pc_awake(monkeypatch, tmp_path):
+    """下载模型（1~2 GB）时电脑不能睡眠：网页上写着「运行期间电脑不会自动睡眠」。"""
+    from conftest import make_cfg
+
+    from voicetwin import workflows as wf
+    from voicetwin.backends.gptsovits import GPTSoVITSBackend
+
+    k = FakeKernel32()
+    monkeypatch.setattr(winsys.sys, "platform", "win32")
+    monkeypatch.setattr(winsys, "_kernel32", lambda: k)
+    seen = []
+
+    def fake_download(self, source="auto", progress=None):
+        seen.append(list(_exec_states(k)))
+        return ["a.bin"]
+
+    monkeypatch.setattr(GPTSoVITSBackend, "download_pretrained", fake_download)
+    assert wf.download_models(make_cfg(tmp_path / "ws")) == ["a.bin"]
+    assert seen == [[0x80000001]] and _exec_states(k) == [0x80000001, 0x80000000]
+
+
 def test_keep_awake_nested_sets_once(monkeypatch, caplog):
     k = FakeKernel32()
     monkeypatch.setattr(winsys.sys, "platform", "win32")

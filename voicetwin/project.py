@@ -167,7 +167,10 @@ class Project:
         return changed
 
     def set_clip_text(self, clip_id: str, text: str) -> Dict[str, Any]:
-        """改一个片段的文字（例如采用"可能有错"的建议），保存 manifest 并重新导出校对表。"""
+        """改一个片段的文字（例如采用"可能有错"的建议），保存 manifest 并重新导出校对表。
+
+        manifest 才是真正的数据：transcripts.csv 正被 Excel/WPS 打开（Windows 上会锁住文件）时，
+        修改照样生效，只是 CSV 这次没能同步——返回值里 ``csv_locked`` 为 True，界面会提醒关掉 Excel 后再保存一次。"""
         from voicetwin.utils.textutil import clean_transcript
 
         records = self.load_manifest()
@@ -182,7 +185,12 @@ class Project:
         else:
             rec.pop("suspect", None)
         self.save_manifest(records)
-        self.export_csv(records)
+        try:
+            self.export_csv(records)
+        except PermissionError:
+            out = dict(rec)
+            out["csv_locked"] = True
+            return out
         return rec
 
     def last_modified(self) -> float:
@@ -214,9 +222,13 @@ class Project:
     def load_models(self) -> Dict[str, Any]:
         return self.read_json(self.models_path, {}) or {}
 
-    def update_models(self, backend: str, info: Dict[str, Any]) -> Dict[str, Any]:
+    def update_models(self, backend: str, info: Dict[str, Any], drop: Iterable[str] = ()) -> Dict[str, Any]:
+        """把 info 合并进 models.json 里这个引擎的记录。drop 里的键先删掉（例如重新训练后，
+        旧模型的挑选结果和语速校准已经不对了）。"""
         models = self.load_models()
         entry = models.get(backend, {})
+        for key in drop:
+            entry.pop(key, None)
         entry.update(info)
         models[backend] = entry
         self.write_json(self.models_path, models)

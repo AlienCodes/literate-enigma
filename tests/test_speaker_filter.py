@@ -82,6 +82,73 @@ def test_judge_from_uploaded_originals(prepared):
     assert res["pct"] is None and res["sims"]  # 没法换算百分比时，只给原始相似度
 
 
+class _NoisyEncoder(spk.SpeakerEncoder):
+    """假的声纹模型：每段录音 = 同一个人的声纹 + 随机噪声（两段录音之间余弦约 0.65，像真的 ERes2NetV2 那样）。"""
+
+    name = "noisy"
+    reliable = True
+
+    def __init__(self, dim=192, sigma=0.735):
+        rng = np.random.default_rng(1)
+        self.s = spk._l2(rng.normal(size=dim))
+        self.dim, self.sigma = dim, sigma
+
+    def embed_file(self, path):
+        seed = sum(ord(ch) for ch in str(path)) * 7919 % (2 ** 32)
+        n = np.random.default_rng(seed).normal(size=self.dim) / np.sqrt(self.dim)
+        return spk._l2(self.s + self.sigma * n)
+
+
+def test_one_or_two_originals_are_not_deflated(prepared):
+    """只上传 1~2 段原声：「100%」的标准要用同样的方式算（素材里的真实录音和这 1~2 段比），
+    不能借用「和几十段平均声纹比」的校准——那样你自己的真实录音也只有 80% 左右，被标成 🔴。"""
+    cfg, project, _ = prepared
+    enc = _NoisyEncoder()
+    recs = project.load_manifest(only_kept=True)
+    paths = [project.abspath(r["path"]) for r in recs]
+    cen_many = spk.centroid([enc.embed_file(p) for p in paths[:40]])
+    p50_many = float(np.median([spk.cosine(enc.embed_file(p), cen_many) for p in paths[:40]]))
+    base = spk.SimilarityJudge([spk.JudgeMember(enc, cen_many, {"p50": p50_many, "source": "val"})])
+    upload = paths[:1]
+    judge = spk.SimilarityJudge.from_files(cfg, upload, fallback=base, encoders=[enc], project=project)
+    member = judge.members[0]
+    assert member.calib["source"] == "voice_clips_vs_uploaded" and member.p50 is not None
+    others = paths[1:]
+    new = np.median([judge.judge_embeddings({"noisy": enc.embed_file(p)})["pct"] for p in others])
+    one_cen = spk.centroid([enc.embed_file(p) for p in upload])
+    old = np.median([spk.pct_from_sim(spk.cosine(enc.embed_file(p), one_cen), p50_many) for p in others])
+    assert old < 90.0 <= new  # 以前的做法：你自己的录音只有 80% 左右；现在接近 100%
+    # 没给 project：直接用这个声音原来的标准（平均声纹和校准都是它自己的），不再把两种标准混在一起
+    alone = spk.SimilarityJudge.from_files(cfg, upload, fallback=base, encoders=[enc])
+    assert alone.members[0].calib["source"] == "voice_calibration"
+    assert np.allclose(alone.members[0].centroid, cen_many) and alone.members[0].p50 == base.members[0].p50
+
+
+def test_eres2netv2_embeds_long_audio_in_windows():
+    """ERes2NetV2 一次只看约 10 秒：整篇讲课分段算再平均（一次送进去会显存不够）。"""
+    enc = spk.ERes2NetV2Encoder.__new__(spk.ERes2NetV2Encoder)
+    seen = []
+
+    class Model:
+        def __call__(self, x):
+            seen.append(x.a.shape[1])
+            return _T(np.ones((1, 4), np.float32))
+
+    enc._torch, enc._model, enc._device = _fake_torch(), Model(), "cpu"
+    enc._kaldi = types.SimpleNamespace(fbank=lambda x, **k: _T(np.zeros(((x.a.shape[1] - 400) // 160 + 1, 80))))
+    import threading
+
+    enc._lock = threading.Lock()
+    sr = 16000
+    rng = np.random.default_rng(0)
+    long_wav = (0.2 * rng.normal(size=sr * 95)).astype(np.float32)
+    emb = enc.embed(long_wav, sr)
+    assert emb.shape == (4,) and len(seen) == 10 and max(seen) <= 1001  # 每段不超过 10 秒（约 1000 帧）
+    seen.clear()
+    enc.embed(long_wav[: sr * 8], sr)
+    assert len(seen) == 1  # 短的照旧一次算完
+
+
 def test_empty_judge_returns_nothing():
     judge = spk.SimilarityJudge([])
     assert not judge.available and judge.judge(np.zeros(16000, np.float32), 16000)["pct"] is None

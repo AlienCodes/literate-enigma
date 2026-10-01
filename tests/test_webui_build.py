@@ -99,7 +99,10 @@ def test_prepare_through_the_page(tmp_path, lecture_dir):
     assert "vt-done" in last["prep_bar"], last["prep_md"]
     assert last["prep_btn"]["interactive"] is True and last["prep_stop"]["visible"] is False
     assert last["prep_md"].startswith("### ✅ 素材准备好了") and "{" not in last["prep_md"]
-    assert last["clips"] and last["clips"][0][0] == 1
+    # 表格由接在后面的 after_prepare_clips 刷新
+    after = next(f for f in app.fns if getattr(getattr(f.fn, "__wrapped__", f.fn), "__name__", "") == "after_prepare_clips")
+    count, clips, _ = after.fn("网页声音", False, None, last["clips_base"])
+    assert clips and clips[0][0] == 1 and "一共" in count
     assert "还没训练" in last["voice_status"]
     assert last["prep_next"]["visible"] is True
     # 页面再点一次：已经处理过的文件不会重做（同一个文件夹）
@@ -116,3 +119,56 @@ def test_select_handlers_accept_gradio_event_data(prepared):
     evt = gr.SelectData(None, {"index": [1, 5], "value": rows[1][5], "selected": True})
     audio, panel, adopt, cid = clip_fn.fn(project.voice, rows, evt)
     assert cid == rows[1][1] and audio["value"].endswith(".wav")
+
+
+def _dep(app, ui, comp, event):
+    conf = app.get_config_file()
+    cid = ui.c[comp]._id
+    return [d for d in conf["dependencies"] if any(t[0] == cid and t[1] == event for t in d["targets"])]
+
+
+def test_wiring_review_fixes(tmp_path):
+    """几处容易漏接的事件：换版本更新下载列表；准备素材带上「只看可能有错的」和表格；数字框 always_last；
+    ③ 的提醒在打开这一页、做完训练后会刷新；停止按钮 5 秒后变回来。"""
+    ui = A.WebUI(_cfg(tmp_path))
+    app = ui.build()
+    ids = {k: getattr(v, "_id", None) for k, v in ui.c.items()}
+    (var,) = _dep(app, ui, "var_choice", "input")
+    assert ids["out_files"] in var["outputs"] and ids["out_audio"] in var["outputs"]
+    (prep,) = _dep(app, ui, "prep_btn", "click")
+    assert ids["only_sus"] in prep["inputs"] and ids["clips"] in prep["inputs"]
+    for name in ("s_ep", "g_ep", "bs"):
+        (d,) = _dep(app, ui, name, "input")
+        assert d["trigger_mode"] == "always_last"
+    (adopt,) = _dep(app, ui, "adopt_btn", "click")
+    assert ids["clips"] in adopt["inputs"]
+    (filt,) = _dep(app, ui, "only_sus", "change")
+    assert ids["clips"] in filt["inputs"]
+    conf = app.get_config_file()
+    warn_deps = [d for d in conf["dependencies"] if d["outputs"] == [ids["gen_warn"]]]
+    events = {tuple(t) for d in warn_deps for t in d["targets"]}
+    assert any(e[1] == "select" for e in events)  # 打开 ③ 这一页
+    assert any(e[1] == "then" for e in events)  # 准备素材 / 训练做完后
+    (voice,) = [d for d in _dep(app, ui, "voice", "change") if ids["gen_warn"] in d["outputs"]]
+    assert ids["s_backend"] in voice["inputs"]
+
+
+def test_result_tables_have_no_phantom_zero_row(tmp_path):
+    """还没有结果的表格不能显示一行「0」（gradio 4.24 默认用 0 填数字列）。"""
+    ui = A.WebUI(_cfg(tmp_path))
+    ui.build()
+    for name in ("gen_table", "vf_table", "doc_out", "doc_opt"):
+        comp = ui.c[name]
+        data = comp.postprocess(comp.value).model_dump()["data"] if hasattr(comp.postprocess(comp.value), "model_dump") \
+            else comp.value["data"]
+        assert all(cell in ("", None) for row in data for cell in row), (name, data)
+        assert comp.value["headers"][0] == "#"
+
+
+def test_clip_player_and_diff_are_below_the_table(tmp_path):
+    """点一行时会出现/消失的播放器、对比、「采用建议」放在校对表下面：放在上面会把表格顶上顶下，双击改字点不中。"""
+    ui = A.WebUI(_cfg(tmp_path))
+    ui.build()
+    table = ui.c["clips"]._id
+    for name in ("clip_audio", "clip_diff", "adopt_btn"):
+        assert ui.c[name]._id > table, name

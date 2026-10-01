@@ -349,7 +349,19 @@ class Narrator:
         sim_cfg = dict(cfg.get("similarity", {}) or {})
         self.min_pct = float(sim_cfg.get("min_pct", 85) or 85)
         self.filter_mode = str(sim_cfg.get("filter", "auto") or "auto").lower()
-        self.target_pct = float(preset.get("target_pct", sim_cfg.get("target_pct", 99)) or 99)
+        # 「完美」档的目标：synth.tiers.<档位>.target_pct 优先，其次 similarity.target_pct（配置文件里写着的那个），
+        # 都没写（或写 auto）才用档位自带的 99
+        tier_target = (tiers_cfg.get(self.quality) or {}).get("target_pct")
+        if tier_target not in (None, "auto", ""):
+            target = tier_target
+        elif sim_cfg.get("target_pct") not in (None, "auto", ""):
+            target = sim_cfg.get("target_pct")
+        else:
+            target = preset.get("target_pct", 99)
+        try:
+            self.target_pct = float(target) if float(target) > 0 else 99.0
+        except (TypeError, ValueError):
+            self.target_pct = 99.0
 
     # ------------------------------------------------------------------ 显卡档位
     @property
@@ -515,12 +527,17 @@ class Narrator:
     def _pct_ok(self, c: _Cand) -> bool:
         return not self.sim_filter or c.score.pct is None or c.score.pct >= self.min_pct
 
-    def _select(self, cands: List[_Cand], lang: str) -> Tuple[_Cand, List[_Cand]]:
+    def _select(self, cands: List[_Cand], lang: str, seg: Optional[ScriptSegment] = None) -> Tuple[_Cand, List[_Cand]]:
         alive = [c for c in cands if "几乎没有声音" not in c.score.issues] or cands
         survivors = [c for c in alive if self._pct_ok(c)]
         pool = survivors or alive
-        # 读对的永远排在读错的前面；同一类里按综合分（相似度为主）
-        best = max(pool, key=lambda c: (self._cer_ok(c, lang), c.score.total))
+        # 读对的永远排在读错的前面；同一类里按综合分（相似度为主）。
+        # 「完美」档（给了 seg）：达到全部严格标准的排在没达到的前面——综合分最高的不一定达标
+        # （综合分里语速/音高偏差也要扣分），已经有达标的就要用达标的。
+        if self.adaptive and seg is not None:
+            best = max(pool, key=lambda c: (self._cer_ok(c, lang), self._meets_targets(c, seg), c.score.total))
+        else:
+            best = max(pool, key=lambda c: (self._cer_ok(c, lang), c.score.total))
         return best, survivors
 
     def _meets_targets(self, c: _Cand, seg: ScriptSegment) -> bool:
@@ -529,6 +546,17 @@ class Narrator:
         pct_ok = s.pct is None or not self.sim_filter or s.pct >= self.target_pct
         return bool(cer_ok and pct_ok and "几乎没有声音" not in s.issues
                     and self.scorer.in_normal_range(s, seg.lang, self._speed_multiplier()))
+
+    def _target_miss(self, c: _Cand, seg: ScriptSegment) -> str:
+        """「完美」档没达标时，按真正没达到的那一项写提示。"""
+        s = c.score
+        if self.sim_filter and s.pct is not None and s.pct < self.target_pct:
+            return "这一句可能不够像，建议重新生成或改写"
+        if s.cer is not None and not (s.cer <= self._thr("cer_target", seg.lang, 0.05, c) or s.errors == 0):
+            return "这一句可能有个别字读得不太准，建议重新生成或改写"
+        if not self.scorer.in_normal_range(s, seg.lang, self._speed_multiplier()):
+            return "这一句的语速或音调和你平时不太一样，建议重新生成或改写"
+        return "这一句可能不够像，建议重新生成或改写"
 
     def _clearly_good(self, c: _Cand, seg: ScriptSegment) -> bool:
         s = c.score
@@ -622,7 +650,8 @@ class Narrator:
                     msg = (f"{head} 第 {n_try}/{cap} 次尝试：{seg.display[:20]}" if b == 0 else
                            f"{head} 还没达到「完美」标准，继续试（第 {n_try}/{cap} 次）")
                     attempt(b, k, sampling, msg)
-                if cands and self._meets_targets(self._select(cands, seg.lang)[0], seg):
+                # 任何一个候选达到全部严格标准就停（不只看综合分最高的那个）
+                if any(self._meets_targets(c, seg) for c in cands):
                     met = True
                     break
                 if not cands and state["tried"] >= 2 * batch:
@@ -658,7 +687,9 @@ class Narrator:
             why = _reason(exc) if exc is not None else "生成的音频是空的"
             raise RuntimeError(f"第 {seg.index + 1} 句没能生成（原因：{why}）：{seg.text[:30]}") from exc
 
-        best, survivors = self._select(cands, seg.lang)
+        best, survivors = self._select(cands, seg.lang, seg)
+        if self.adaptive:
+            met = self._meets_targets(best, seg)
         filt = self.sim_filter
         hints: List[str] = []
         if filt and best.score.pct is not None and best.score.pct < self.min_pct:
@@ -666,7 +697,7 @@ class Narrator:
         if self.use_asr and not self._cer_ok(best, seg.lang):
             hints.append("可能有读错的字" + (f"（识别为：{best.score.hyp}）" if best.score.hyp else "") + "，建议重新生成或改写这一句")
         if self.adaptive and not met and not hints:
-            hints.append("这一句可能不够像，建议重新生成或改写")
+            hints.append(self._target_miss(best, seg))
         issues = list(best.score.issues)
         pct = best.score.pct
         if filt and pct is not None:
@@ -685,6 +716,10 @@ class Narrator:
                               "chosen": c is best})
         cand_info.sort(key=lambda d: (d["pct"] is None, -(d["pct"] or 0.0), -(d["total"] or 0.0)))
         save_audio(plan.wav_path, best.wav, best.sr)
+        # 重新生成（--redo / 只重新生成第几句）会写到同一个缓存文件：旁边旧的「去杂音」版本是旧句子做的，必须删掉，
+        # 否则长度刚好一样时版本 B 里还是旧的那句
+        for old in plan.wav_path.parent.glob(plan.wav_path.stem + ".dn*.wav"):
+            old.unlink(missing_ok=True)
         score = best.score.to_dict()
         meta = {"text": seg.text, "lang": seg.lang, "ref": ref["id"], "seed": best.seed, "score": score,
                 "candidates": cand_info, "model": self.backend.model_id(), "quality": self.quality,
@@ -936,7 +971,7 @@ class Narrator:
             audio_by_name[VARIANT_DENOISED] = audio_b
         else:
             msg = ("没有安装 noisereduce，这次只生成了「未去杂音」一个版本（想要「去杂音」版本，"
-                   "请重新双击 install_windows.bat 安装一次）")
+                   "请重新双击 install_windows.bat 安装一次，安装程序会自动装上它）")
             self.warnings.append(msg)
             self.notes.append(msg)
             log.warning(msg)
@@ -962,8 +997,10 @@ class Narrator:
         cache = r.path.with_name(r.path.stem + f".dn{sr}.wav") if r.path is not None else None
         if cache is not None and cache.exists():
             try:
+                # 比这句的音频还旧的去杂音版本不能用（这句后来重新生成过）
+                fresh = not r.path.exists() or cache.stat().st_mtime >= r.path.stat().st_mtime
                 w, s = load_audio(cache)
-                if s == sr and len(w) == len(wav):
+                if fresh and s == sr and len(w) == len(wav):
                     return w
             except Exception:
                 pass

@@ -119,6 +119,7 @@ def test_evaluate_whole_narration_has_no_false_alarms(prepared, tmp_path):
 
 
 # ============================================================================ v0.1.6：档位、相似度、静音、两个版本、语速
+import os  # noqa: E402
 import sys  # noqa: E402
 import time  # noqa: E402
 import types  # noqa: E402
@@ -381,6 +382,78 @@ def test_perfect_adaptive_hard_cap_and_flag(prepared, tmp_path, monkeypatch):
     assert any("需要注意的句子：第 1 句" in n for n in res.notes)
 
 
+def test_perfect_adaptive_stops_when_any_candidate_meets_targets(prepared, tmp_path, monkeypatch):
+    """综合分最高的候选不一定达标（语速/音高偏差也扣分）：只要有一个候选达到全部严格标准就停，并且用达标的那个。"""
+    from voicetwin.eval import metrics
+
+    cfg, project, _ = prepared
+    _use_judge(monkeypatch, FakeJudge([99.4] + [100.0] * 50))
+    FakeChecker.seq = [(0.0, 0)]
+    monkeypatch.setattr(eng, "CERChecker", FakeChecker)
+    orig = metrics.Scorer.score
+
+    def score(self, *a, **k):
+        sc = orig(self, *a, **k)
+        if sc.pct == 100.0:
+            sc.total += 1.0  # 百分比更高、综合分也更高，但语速不在你平时的范围里
+        return sc
+
+    monkeypatch.setattr(metrics.Scorer, "score", score)
+    monkeypatch.setattr(metrics.Scorer, "in_normal_range", lambda self, s, lang, speed=1.0: s.pct != 100.0)
+    res = wf.run_narrate(cfg, project.voice, _uniq("完美档有一个达标就停"), out=str(tmp_path / "m.wav"),
+                         quality="perfect", variants=False)
+    seg = res.segments[0]
+    assert seg["tries"] == 4 and seg["met"] is True and seg["pct"] == 99.4 and not seg["flagged"]
+    # 都不达标时：提示写真正没达到的那一项（这里是语速/音调，不是「不够像」）
+    _use_judge(monkeypatch, FakeJudge([100.0]))
+    res2 = wf.run_narrate(cfg, project.voice, _uniq("完美档语速一直不对"), out=str(tmp_path / "m2.wav"),
+                          quality="perfect", variants=False)
+    seg2 = res2.segments[0]
+    assert seg2["tries"] == 20 and seg2["met"] is False and "语速或音调" in seg2["hint"]
+
+
+def test_similarity_target_pct_from_config(prepared):
+    """配置文件里的 similarity.target_pct 要真的生效；synth.tiers.perfect.target_pct 更优先。"""
+    cfg, project, _ = prepared
+    backend = get_backend("dummy", cfg, project)
+    base = dict(cfg.data) if hasattr(cfg, "data") else dict(cfg)
+    n = eng.Narrator({**base, "similarity": {**(base.get("similarity") or {}), "target_pct": 95}}, project, backend,
+                     quality="perfect", tier="high")
+    assert n.target_pct == 95.0
+    synth = {**(base.get("synth") or {}), "tiers": {"perfect": {"target_pct": 97}}}
+    n2 = eng.Narrator({**base, "synth": synth, "similarity": {"target_pct": 95}}, project, backend, quality="perfect",
+                      tier="high")
+    assert n2.target_pct == 97.0
+    n3 = eng.Narrator({**base, "similarity": {"target_pct": "auto"}}, project, backend, quality="perfect", tier="high")
+    assert n3.target_pct == 99.0
+
+
+def test_redo_clears_stale_denoised_cache(prepared, tmp_path, monkeypatch):
+    """重新生成某一句后，旁边旧的「去杂音」缓存是旧句子做的：长度一样也不能再用。"""
+    cfg, project, _ = prepared
+    _fake_noisereduce(monkeypatch)
+    monkeypatch.setattr("voicetwin.eval.metrics.Scorer.in_normal_range", lambda self, s, lang, speed=1.0: True)
+    text = _uniq("重做以后去杂音版本也要跟着换")
+    wf.run_narrate(cfg, project.voice, text, out=str(tmp_path / "r1.wav"), quality="perfect")
+    backend = get_backend("dummy", cfg, project)
+    n = eng.Narrator(cfg, project, backend, quality="perfect", tier="none")
+    seg = n._segments(text)[0]
+    plan = n._plan(seg)
+    assert plan.cached and list(plan.wav_path.parent.glob(plan.wav_path.stem + ".dn*.wav"))
+    n.synthesize_segment(seg, force=True)  # 和「只重新生成第几句」一样：同一个缓存文件写入新的一句
+    assert not list(plan.wav_path.parent.glob(plan.wav_path.stem + ".dn*.wav"))
+    # 直接检查 _denoised：缓存比这句的音频旧时不用它
+    seg_wav = tmp_path / "seg.wav"
+    w = (np.sin(np.linspace(0, 400, 16000)) * 0.3).astype(np.float32)
+    eng.save_audio(seg_wav, w, 16000)
+    cache = seg_wav.with_name(seg_wav.stem + ".dn16000.wav")
+    eng.save_audio(cache, np.zeros_like(w), 16000, subtype="FLOAT")
+    os.utime(cache, (1, 1))  # 比音频旧
+    r = types.SimpleNamespace(path=seg_wav)
+    out = n._denoised(r, w, 16000)
+    assert out is not None and np.abs(out).max() > 0.1  # 重新算了，不是旧缓存（全是 0）
+
+
 def test_quality_tiers_and_labels(prepared):
     cfg, project, _ = prepared
     assert [v for _, v in eng.quality_choices()] == ["fast", "balanced", "best", "max", "perfect"]
@@ -548,11 +621,20 @@ def test_blind_test_build_and_grade(prepared):
     assert d.name.startswith("盲听测试_") and out["count"] == 2 * out["n_real"]
     assert [it["file"] for it in out["items"]] == [f"{i:02d}.wav" for i in range(1, out["count"] + 1)]
     assert all((d / it["file"]).exists() and "truth" not in it for it in out["items"])
-    answers = json.loads((d / "答案.json").read_text(encoding="utf-8"))
+    # 答案不能放在要发给听众的文件夹里，放在旁边
+    assert not any("答案" in p.name for p in d.iterdir()) and not (d / "答案.json").exists()
+    answer_file = Path(out["answer_path"])
+    assert answer_file.parent == d.parent and answer_file.name == d.name + wf.BLIND_ANSWER_SUFFIX
+    assert wf.blind_answer_path(d) == answer_file
+    answers = json.loads(answer_file.read_text(encoding="utf-8"))
     truths = [a["truth"] for a in answers["items"]]
     assert truths.count("真人") == truths.count("生成") == out["n_real"]
     card = (d / "听众答题卡.txt").read_text(encoding="utf-8-sig")
-    assert f"共 {out['count']} 段" in card and "01. ________（真人 / 生成）" in card
+    assert f"共 {out['count']} 段" in card and "01. ________（真人 / 生成）" in card and "批改收上来的答题卡" in card
+    assert [t["dir"] for t in wf.list_blind_tests(cfg, project.voice)][0] == str(d)
+    # 收上来的答题卡直接贴文字也能批改
+    typed = "\n".join(f"{a['no']:02d}. {a['truth']}（真人 / 生成）" for a in answers["items"])
+    assert wf.grade_blind_test(out["dir"], typed)["accuracy"] == 1.0
     # 所有的都填"真人"：正确率 50%，听众基本分辨不出
     g = wf.grade_blind_test(out["dir"], {i: "真人" for i in range(1, out["count"] + 1)})
     assert g["accuracy"] == 0.5 and "基本分辨不出" in g["verdict"] and g["total"] == out["count"]

@@ -379,8 +379,10 @@ def prepare(project: Project, inputs: Iterable[str], cfg: Dict[str, Any], progre
             if _is_disk_full(exc):  # 硬盘满了：后面的文件也一样会失败
                 raise
             reason = _friendly_title(exc)
-            log.warning(f"⚠️ 跳过第 {k} 个文件「{media.name}」：{reason}（其它视频继续处理）")
-            sources_db[sid] = {"file": str(media), "failed": reason}  # 没有 done：修好文件后下次会重试
+            # 原始报错（英文 Traceback）只写进黑色窗口和 voicetwin.log；sources.json 里也记一份，方便帮忙的人查
+            log.warning(f"⚠️ 跳过第 {k} 个文件「{media.name}」：{reason}（其它视频继续处理）", exc_info=exc)
+            sources_db[sid] = {"file": str(media), "failed": reason,  # 没有 done：修好文件后下次会重试
+                               "error": repr(exc)[:500]}
             skipped_files.append({"file": media.name, "path": str(media), "reason": reason})
             project.write_json(project.sources_path, sources_db)
             continue

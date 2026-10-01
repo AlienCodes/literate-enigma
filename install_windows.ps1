@@ -254,6 +254,9 @@ if ($Mode -eq "gsv") {
     Step "安装辅助组件"
     Pip $Py @("pyloudnorm", "imageio-ffmpeg", "zhconv", "webrtcvad-wheels", "python-docx")
     Pip $Py @("--no-deps", "resemblyzer")
+    # 「完美」档的「去杂音」版本要用 noisereduce（整合包里没有）。--no-deps：它要的 numpy、scipy、joblib、tqdm、
+    # matplotlib 整合包里都有，不改动整合包原有依赖的版本
+    Pip $Py @("--no-deps", "noisereduce")
     # 语音识别：整合包一般自带 faster-whisper；没有的话按 GPT-SoVITS 官方方式 --no-deps 安装
     & $Py -c "import faster_whisper" *> $null
     if ($LASTEXITCODE -ne 0) {

@@ -155,3 +155,19 @@ def test_set_clip_text(tmp_path):
         project.set_clip_text("zzz", "x")
     with pytest.raises(ValueError):
         project.set_clip_text("c", "  ")
+
+
+def test_set_clip_text_when_csv_locked_by_excel(tmp_path, monkeypatch):
+    """transcripts.csv 被 Excel/WPS 锁住：manifest 照样改好（不能先改一半再报错），返回值提醒 CSV 没同步。"""
+    project = _project(tmp_path)
+    _manifest(project)
+    project.export_csv()
+
+    def locked(records=None):
+        raise PermissionError(13, "Permission denied", str(project.csv_path))
+
+    monkeypatch.setattr(project, "export_csv", locked)
+    rec = project.set_clip_text("a", "今天我们讲函数。")
+    assert rec["text"] == "今天我们讲函数。" and rec.get("csv_locked") is True
+    saved = {r["id"]: r for r in project.load_manifest()}["a"]
+    assert saved["text"] == "今天我们讲函数。" and "suspect" not in saved and "csv_locked" not in saved

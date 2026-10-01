@@ -67,6 +67,7 @@ else:
 STOP_LABEL = "⏹ 停止"
 STOP_CONFIRM = "再点一次确认停止（5 秒内）"
 STOP_PENDING = "正在停止……（等这一小步做完）"
+STOP_EXPIRED = "确认超时了，请在 5 秒内再点一次"
 STOP_WINDOW = 5.0
 STOPPED_MD = "### ⏹ 已停止\n\n已经做好的部分不会丢。需要时再点一次开始就行。"
 
@@ -367,6 +368,14 @@ def _stages(cfg: Config, kind: str, backend: Optional[str] = None, **kw: Any) ->
     except Exception as exc:
         log.debug(f"task_stages({kind}) 不可用：{exc}")
         return None
+
+
+def _blank_rows(headers: Sequence[str]) -> List[List[Any]]:
+    """还没有结果的表格的初始值：一行空格子。
+
+    不能不给值：gradio 4.24 会用 0 填「数字」列，表格里就多出一行「0」（看起来像第 0 条结果）；
+    也不能给 []：那样表头会被换成 1、2、3……"""
+    return [[""] * len(headers)]
 
 
 def _table_records(table: Any, headers: Sequence[str]) -> List[Dict[str, Any]]:
@@ -732,6 +741,75 @@ def _clips_table(cfg: Config, voice: Any, only_suspect: bool = False) -> List[Li
                      _LANG_NAMES.get(r.get("lang", ""), r.get("lang", "")), round(float(r.get("duration", 0) or 0), 1),
                      text, marked, r.get("drop_reason", "") or ""])
     return rows
+
+
+_EDIT_COLS = (COL_KEEP, COL_LANG, COL_TEXT)  # 老师能改的三列
+
+
+def _row_edited(row: Dict[str, Any], rec: Dict[str, Any]) -> bool:
+    """表格的这一行（按表头的字典）和硬盘上的片段比，「保留 / 语言 / 文字」有没有不一样（判断方法和「保存修改」一样）。"""
+    text = _clean_cell(row.get(COL_TEXT))
+    if text and text != str(rec.get("text", "") or "").strip():
+        return True
+    if _parse_keep(row.get(COL_KEEP)) != bool(rec.get("keep", True)):
+        return True
+    lang = _LANG_CODES.get(_clean_cell(row.get(COL_LANG)), rec.get("lang", ""))
+    return lang != rec.get("lang", "")
+
+
+def _pending_edits(cfg: Config, voice: Any, table: Any, skip: Sequence[str] = ()) -> Dict[str, Dict[str, Any]]:
+    """表格里改了、还没点「保存修改」的行：{id: 这一行}。
+
+    和硬盘上的校对表比，所以只在这三列没被别的步骤改过时用（查错字只改标红；采用建议只改那一条，用 skip 排除）。"""
+    v = _voice_name(voice)
+    rows = _table_records(table, CLIP_HEADERS)
+    if not v or not rows:
+        return {}
+    try:
+        records = {r["id"]: r for r in wf.Project(cfg, v).load_manifest()}
+    except ValueError:
+        return {}
+    skip_set = {str(x) for x in skip}
+    out: Dict[str, Dict[str, Any]] = {}
+    for row in rows:
+        rid = _clean_cell(row.get(COL_ID))
+        rec = records.get(rid)
+        if rec is not None and rid not in skip_set and _row_edited(row, rec):
+            out[rid] = row
+    return out
+
+
+def _keep_pending(rows: List[List[Any]], pending: Dict[str, Dict[str, Any]]) -> List[List[Any]]:
+    """把还没保存的修改放回刚从硬盘读出来的表格里（按 id 找行）。被「只看可能有错的」筛掉的行也留在表格最后，
+    这样修改不会因为换了显示方式就没了。改过文字的行，红色标记是按原来的文字算的，先不显示。"""
+    if not pending:
+        return rows
+    i_id, i_text, i_sus = (CLIP_HEADERS.index(h) for h in (COL_ID, COL_TEXT, COL_SUSPECT))
+    out: List[List[Any]] = []
+    seen = set()
+    for row in rows:
+        row = list(row)
+        p = pending.get(str(row[i_id]))
+        if p is not None:
+            seen.add(str(row[i_id]))
+            old_text = str(row[i_text] or "").strip()
+            for col in _EDIT_COLS:
+                val = _clean_cell(p.get(col))
+                if val or col != COL_TEXT:  # 文字格清空了：「保存修改」会保持原文，这里也一样
+                    row[CLIP_HEADERS.index(col)] = val
+            if str(row[i_text] or "").strip() != old_text:
+                row[i_sus] = ""
+        out.append(row)
+    for rid, p in pending.items():
+        if rid not in seen:
+            out.append([p.get(h) if h == COL_SEC else _clean_cell(p.get(h)) for h in CLIP_HEADERS])
+    for n, row in enumerate(out, 1):
+        row[0] = n
+    return out
+
+
+def _pending_note(n: int) -> str:
+    return f"✏️ 表格里还有 **{n}** 条修改没有保存（已经帮你留在表格里），记得点下面的「保存修改」。"
 
 
 def _clips_count_md(cfg: Config, voice: Any) -> str:
@@ -1131,8 +1209,12 @@ def _variants_md(vs: Sequence[Dict[str, Any]]) -> str:
         gap = ""
         pr, po = _pct_of(rec), _pct_of(other[0]) if other else None
         sr, so = _num(rec.get("score")), _num(other[0].get("score")) if other else None
-        if pr is not None and po is not None and abs(pr - po) >= 0.05:
-            gap = f"（高 {abs(pr - po):.1f} 个百分点）"
+        if pr is not None and po is not None and pr - po >= 0.05:
+            gap = f"（高 {pr - po:.1f} 个百分点）"
+        elif pr is not None and po is not None and po - pr >= 0.05:
+            # 推荐是按综合得分挑的（声纹为主，再扣语速、音高的偏差），所以百分比可能反而低一点：照实说
+            extra = f"，但综合得分高 {abs(sr - so):.3f}" if sr is not None and so is not None else ""
+            gap = f"（百分比低 {po - pr:.1f}{extra}：语速、音高更接近你平时说话）"
         elif sr is not None and so is not None and abs(sr - so) >= 0.0005:
             # 百分比一样时按综合得分推荐（声纹为主，再看语速、音高和你本人差多少）
             gap = f"（百分比差不多，综合得分高 {abs(sr - so):.3f}）" if pr is not None else f"（相似度高 {abs(sr - so):.3f}）"
@@ -1141,6 +1223,14 @@ def _variants_md(vs: Sequence[Dict[str, Any]]) -> str:
         lines.append(f"\n⭐ 推荐：版本 {_variant_letter(rec, rec_i)}，更像你的原声{gap}")
     lines.append(f"\n<small>两个版本的文字、停顿和字幕完全一样，只是 B 去掉了轻微的杂音。{HONEST_SIM}</small>")
     return "\n".join(lines)
+
+
+def _gen_files(audio: Any, srt: Any, vs: Sequence[Dict[str, Any]]) -> List[str]:
+    """「下载（音频 / 字幕）」列表：最终音频、字幕、两个版本各自的文件（只列硬盘上真有的）。"""
+    audio = str(audio or "")
+    files = [audio] + ([str(srt)] if srt else []) + [str(x.get("path") or "") for x in vs
+                                                      if str(x.get("path") or "") != audio]
+    return [f for f in dict.fromkeys(files) if f and Path(f).exists()]
 
 
 def _recommended_variant(vs: Sequence[Dict[str, Any]]) -> str:
@@ -1183,7 +1273,14 @@ def _output_path(project: Any, name: str, fmt: str, fallback: str) -> Path:
 
     stem = safe_name((name or "").strip() or fallback or "讲课音频", 30)
     fmt = fmt if fmt in ("wav", "mp3") else "wav"
-    return Path(project.outputs_dir) / f"{stem}_{time.strftime('%m月%d日%H点%M分')}.{fmt}"
+    return Path(project.outputs_dir) / f"{stem}_{_time_suffix()}.{fmt}"
+
+
+def _time_suffix(t: Optional[float] = None) -> str:
+    """文件名里的时间「10月01日21点30分」。中文字不能放进 strftime 的格式里：
+    Windows 上的 Python 3.9 会按系统的非 Unicode 语言（例如英文系统的 cp1252）编码格式串，遇到「月」就报错。"""
+    lt = time.localtime(t)
+    return f"{lt.tm_mon:02d}月{lt.tm_mday:02d}日{lt.tm_hour:02d}点{lt.tm_min:02d}分"
 
 
 # ============================================================================ ④ 评估
@@ -1319,15 +1416,8 @@ def _prepare_job(cfg: Config, voice: str, upload_paths: Sequence[str], folder: s
 
 
 def _download_job(cfg: Config, progress: Optional[Callable[[float, str], None]] = None) -> List[str]:
-    """下载 GPT-SoVITS 缺少的预训练模型（和命令行 voicetwin download-models 一样）。"""
-    from voicetwin.backends.gptsovits import GPTSoVITSBackend
-
-    project = wf.Project(cfg, "__download__")
-    try:
-        b = GPTSoVITSBackend(cfg, project)
-        return list(b.download_pretrained("auto", progress=progress) or [])
-    finally:
-        shutil.rmtree(project.root, ignore_errors=True)
+    """下载 GPT-SoVITS 缺少的预训练模型（和命令行 voicetwin download-models 一样；下载时电脑不会自动睡眠）。"""
+    return wf.download_models(cfg, "auto", progress=progress)
 
 
 def _latest_report(project: Any) -> Dict[str, Any]:
@@ -1450,8 +1540,17 @@ def _verify_rows(result: Dict[str, Any], labels: Optional[Dict[str, str]] = None
     if model_labels:
         lines.append("用到的声纹模型：" + "、".join(_md_text(x) for x in model_labels)
                      + ("（几个模型分别打分，「综合 %」是它们的平均）" if len(model_labels) > 1 else ""))
-    if result.get("originals"):
-        lines.append(f"「100%」的标准：你选的 {len(result['originals'])} 段原始录音彼此之间有多像。")
+    n_orig = len(result.get("originals") or [])
+    source = str(result.get("calibration_source") or ("uploaded_loo" if n_orig >= 3 else ""))
+    if n_orig and source == "uploaded_loo":
+        lines.append(f"「100%」的标准：你选的 {n_orig} 段原始录音彼此之间有多像。")
+    elif n_orig and source == "voice_clips_vs_uploaded":
+        lines.append(f"「100%」的标准：素材里留出来的你的真实录音，和你选的这 {n_orig} 段原始录音有多像"
+                     "（选的不到 3 段，没法让它们互相比）。")
+    elif n_orig and source in ("voice_calibration", "val", "train_unused", "train"):
+        lines.append(f"你只选了 {n_orig} 段原始录音（不到 3 段）：「100%」的标准改用这个声音素材里你自己的真实录音。")
+    elif n_orig and source == "mixed":
+        lines.append(f"「100%」的标准：参考了你选的 {n_orig} 段原始录音和素材里你自己的真实录音。")
     if result.get("calibrated") is False:
         lines.append("⚠️ 你的真实录音太少，百分比只能粗略参考。")
     elif info.get("reliable") is False:
@@ -1549,8 +1648,11 @@ def _blind_answer_file(result: Dict[str, Any]) -> str:
         if v and Path(str(v)).exists():
             return str(v)
     d = _blind_dir(result)
-    p = Path(d) / "答案.json" if d else None
-    return str(p) if p is not None and p.exists() else ""
+    if not d:
+        return ""
+    finder = getattr(wf, "blind_answer_path", None)
+    p = Path(finder(d)) if callable(finder) else Path(d) / "答案.json"
+    return str(p) if p.exists() else ""
 
 
 def _blind_verdict(acc: float) -> str:
@@ -1576,13 +1678,61 @@ def _blind_result_md(choices: Sequence[Any], answers: Dict[int, bool]) -> str:
             correct += int(ok)
             lines.append(f"| {i} | {mine} | {truth} | {'✅' if ok else '❌'} |")
         else:
-            lines.append(f"| {i} | （没选） | {truth} | — |")
+            lines.append(f"| {i} | （没选） | — | — |")  # 没答的不显示答案（不然答一段就能看到全部答案）
     if not answered:
         return "⚠️ 还没有选任何一段。请先在每段下面选「真人」或「生成」，再点「提交答案」。"
     acc = correct / answered
     head = (f"### 👂 盲听结果：答了 {answered} 段，答对 {correct} 段，正确率 **{acc:.0%}**\n\n"
             f"{_blind_verdict(acc)}\n\n")
     return head + "\n".join(lines)
+
+
+def _blind_missing(choices: Sequence[Any], answers: Dict[int, bool]) -> List[int]:
+    """还没选「真人 / 生成」的编号。"""
+    return [i for i in sorted(answers) if i - 1 >= len(choices) or choices[i - 1] not in ("real", "fake")]
+
+
+def _blind_grade_md(g: Dict[str, Any], name: str = "") -> str:
+    """批改收上来的答题卡（wf.grade_blind_test 的结果）。没答的题不显示答案。"""
+    if not g.get("answered"):
+        return ("⚠️ 没看懂填的答案。请这样填：`1 真人 2 生成 3 真人 ……`，"
+                "或者不写编号、按顺序写：`真人 生成 真人 ……`。")
+    lines = ["| # | 听众的答案 | 正确答案 | 对不对 |", "|---|---|---|---|"]
+    for r in g.get("items") or []:
+        if r.get("answer") in (None, "", "（没答）"):
+            lines.append(f"| {r.get('no')} | （没答） | — | — |")
+        else:
+            lines.append(f"| {r.get('no')} | {r.get('answer')} | {r.get('truth')} | {'✅' if r.get('correct') else '❌'} |")
+    head = (f"### 📝 {_md_text(name) + '：' if name else ''}答了 {g.get('answered')} 段（共 {g.get('total')} 段），"
+            f"答对 {g.get('correct')} 段，正确率 **{g.get('pct')}%**\n\n{_md_text(g.get('verdict') or '')}\n\n")
+    tips = g.get("tips") or []
+    tail = ("\n\n可以试试：\n" + "\n".join(f"- {_md_text(t)}" for t in tips)) if tips else ""
+    return head + "\n".join(lines) + tail
+
+
+def _blind_test_choices(cfg: Config, voice: Any) -> List[Tuple[str, str]]:
+    v = _voice_name(voice)
+    fn = getattr(wf, "list_blind_tests", None)
+    if not v or not callable(fn):
+        return []
+    try:
+        tests = fn(cfg, v)
+    except Exception as exc:
+        log.debug(f"列出盲听测试失败：{exc}")
+        return []
+    return [(f"{t['name']}（{t.get('count', 0)} 段{('，' + t['created']) if t.get('created') else ''}）", t["dir"])
+            for t in tests]
+
+
+#: 点过第一次、还没确认也还没过期的停止按钮（记的是第一次点的时间）
+_STOP_ARMED: set = set()
+
+
+def _float_or_zero(v: Any) -> float:
+    try:
+        return float(v or 0)
+    except (TypeError, ValueError):
+        return 0.0
 
 
 class _StopOnce:
@@ -1606,14 +1756,14 @@ class WebUI:
     """网页的全部处理函数。build() 画页面；其余方法都可以在没有 gradio 4.24 的环境里直接调用测试。"""
 
     # 每个流式按钮的输出（顺序就是 build() 里 outputs 的顺序）
-    PREP_OUT = ("prep_bar", "prep_log", "prep_md", "voice", "clips_count", "clips", "prep_btn", "prep_stop",
-                "voice_status", "prep_next")
+    PREP_OUT = ("prep_bar", "prep_log", "prep_md", "voice", "clips_count", "prep_btn", "prep_stop",
+                "voice_status", "prep_next", "clips_base")
     TRAIN_OUT = ("train_bar", "train_log", "train_md", "train_btn", "select_btn", "train_stop", "voice_status",
                  "train_next", "train_plan")
     GEN_OUT = ("gen_bar", "out_audio", "out_files", "gen_log", "gen_md", "gen_btn", "gen_stop", "redo", "gen_table",
                "var_box", "var_md", "var_a", "var_b", "var_choice", "gen_state", "speed_try", "gen_after", "var_note")
     SPEED_OUT = ("gen_bar", "gen_log", "speed_audio", "speed_try", "gen_btn", "gen_stop")
-    PROOF_OUT = ("proof_bar", "proof_md", "clips_count", "clips", "proof_btn", "proof_stop", "prep_log")
+    PROOF_OUT = ("proof_bar", "proof_md", "clips_count", "proof_btn", "proof_stop", "prep_log")
     DL_OUT = ("doc_bar", "doc_log", "doc_md", "dl_btn", "dl_stop")
     VERIFY_OUT = ("vf_bar", "vf_md", "vf_table", "vf_btn", "vf_log")
     BLIND_OUT = (("bt_bar", "bt_md", "bt_btn", "bt_state", "bt_submit", "bt_result", "vf_log")
@@ -1704,14 +1854,14 @@ class WebUI:
             return None, "⚠️ " + str(exc)
 
     # ------------------------------------------------------------------ 顶部：声音、显卡、声音库
-    def on_voice_change(self, voice: Any, only_sus: bool = False) -> Tuple[Any, ...]:
+    def on_voice_change(self, voice: Any, only_sus: bool = False, backend: Any = None) -> Tuple[Any, ...]:
         v = _voice_name(voice)
         try:
             table = _clips_table(self.cfg, v, bool(only_sus)) if v else []
         except ValueError:
             table = []
         return self._o(self.VOICE_OUT, voice_status=_voice_status_md(self.cfg, v), clips_count=_clips_count_md(self.cfg, v),
-                       clips=table, gen_warn=_gen_warn_md(self.cfg, v, self.default_synth), clip_diff="",
+                       clips=table, gen_warn=_gen_warn_md(self.cfg, v, backend or self.default_synth), clip_diff="",
                        adopt_btn=_btn(ADOPT_BTN, visible=False), sel_clip="", clip_audio=_upd(value=None, visible=False))
 
     def refresh_voices(self, current: Any = None) -> Dict[str, Any]:
@@ -1770,21 +1920,37 @@ class WebUI:
     # ------------------------------------------------------------------ 停止按钮
     @staticmethod
     def on_stop(armed: Any) -> Tuple[Dict[str, Any], float]:
-        """第一次点：按钮变成「再点一次确认停止」；5 秒内再点一次才真的停止。"""
+        """第一次点：按钮变成「再点一次确认停止」；5 秒内再点一次才真的停止。
+        超过 5 秒才点第二次：不停止，按钮上明确写「确认超时了」（不能和第一次点完一模一样，否则看不出这次没生效）。"""
         now = time.time()
-        try:
-            armed_at = float(armed or 0)
-        except (TypeError, ValueError):
-            armed_at = 0.0
+        armed_at = _float_or_zero(armed)
+        _STOP_ARMED.discard(armed_at)
         if armed_at and now - armed_at <= STOP_WINDOW:
             if request_stop():
                 return _upd(value=STOP_PENDING, interactive=False), 0.0
             return _btn(STOP_LABEL, visible=False, interactive=True), 0.0
-        return _upd(value=STOP_CONFIRM), now
+        _STOP_ARMED.add(now)
+        return _upd(value=STOP_EXPIRED if armed_at else STOP_CONFIRM), now
+
+    @staticmethod
+    def on_stop_expire(armed: Any, wait: bool = True) -> Tuple[Any, Any]:
+        """点了第一次、5 秒内没确认：把按钮改回「⏹ 停止」（接在 on_stop 后面运行）。
+        已经确认停止、或者又点了一次（重新开始计时）的，不动它。"""
+        armed_at = _float_or_zero(armed)
+        if not armed_at:
+            return _upd(), _upd()
+        if wait:
+            time.sleep(max(0.0, armed_at + STOP_WINDOW + 0.3 - time.time()))
+        if armed_at not in _STOP_ARMED:
+            return _upd(), _upd()
+        _STOP_ARMED.discard(armed_at)
+        return _upd(value=STOP_LABEL), 0.0
 
     # ------------------------------------------------------------------ ① 准备素材
     def do_prepare(self, voice: Any, files: Any, folder: Any, asr: Any, lang: Any, denoise: Any,
-                   separate: Any) -> Iterator[Tuple[Any, ...]]:
+                   separate: Any, only_sus: Any = False, table: Any = None) -> Iterator[Tuple[Any, ...]]:
+        """「开始准备素材」。校对表不在这里刷新：做完后由 after_prepare_clips 刷新（那时才能拿到老师在等待期间改过的表格），
+        这里只把开始时的表格和还没保存的修改记进 clips_base。"""
         O = self.PREP_OUT
         idle = dict(prep_btn=self._idle_btn(PREP_BTN), prep_stop=self._stop_hidden())
         v = _voice_name(voice)
@@ -1813,6 +1979,12 @@ class WebUI:
             return
         overrides = {"asr": {"engine": asr or "faster-whisper", "language": lang or "auto"},
                      "denoise": denoise or "auto", "separate_vocals": bool(separate)}
+        try:
+            base = {"voice": v, "table": _table_records(table, CLIP_HEADERS),
+                    "pending": sorted(_pending_edits(self.cfg, v, table))}
+        except Exception as exc:  # 只是为了不丢表格里的修改，出问题也不影响准备素材
+            log.debug(f"记录校对表的修改失败：{exc}")
+            base = {"voice": v, "table": [], "pending": []}
         stream = stream_task("prepare", "准备素材", v, _attach_missed if attach else _prepare_job, self.cfg, v, uploads,
                              folder_s, overrides,
                              stages=_stages(self.cfg, "prepare", overrides=overrides), note=NOTE)
@@ -1823,7 +1995,7 @@ class WebUI:
                 return
             if not st.get("done"):
                 yield self._o(O, prep_bar=st.get("bar", ""), prep_log=text, prep_btn=self._busy_btn(PREP_BUSY),
-                              prep_stop=stop_once(), prep_next=_btn(PREP_NEXT, visible=False))
+                              prep_stop=stop_once(), prep_next=_btn(PREP_NEXT, visible=False), clips_base=base)
                 continue
             ok = "value" in st and not st.get("error")
             if self._missed(attach, st):
@@ -1834,12 +2006,47 @@ class WebUI:
                 _info("✅ 素材准备完成！可以去「② 训练模型」了")
             yield self._o(O, prep_bar=st.get("bar", ""), prep_log=text, prep_md=md,
                           voice=_upd(choices=_voices(self.cfg), value=v), clips_count=_clips_count_md(self.cfg, v),
-                          clips=_clips_table(self.cfg, v), voice_status=_voice_status_md(self.cfg, v),
-                          prep_next=_btn(PREP_NEXT, visible=ok), **idle)
+                          voice_status=_voice_status_md(self.cfg, v), prep_next=_btn(PREP_NEXT, visible=ok),
+                          clips_base=base, **idle)
+
+    def after_prepare_clips(self, voice: Any, only_sus: Any = False, table: Any = None, base: Any = None
+                            ) -> Tuple[Any, Any, Any]:
+        """素材准备做完后刷新校对表（接在 do_prepare 后面）：按「只看可能有错的」筛选；
+        开始前没保存的修改、等待期间在表格里改的内容都留着（准备素材会重新判断「保留」，所以不能直接和硬盘比）。
+
+        返回 (片段总数, 表格, 清空的 clips_base)。这次没真正开始准备（没填声音、别的任务在做……）时 clips_base 是空的，
+        什么都不改。"""
+        v = _voice_name(voice)
+        if not v or not isinstance(base, dict) or base.get("voice") != v:
+            return _upd(), _upd(), {}
+        b = base
+        start = {_clean_cell(r.get(COL_ID)): r for r in _table_records(b.get("table") or [], CLIP_HEADERS)}
+        end = {_clean_cell(r.get(COL_ID)): r for r in _table_records(table, CLIP_HEADERS)}
+        ids = {str(x) for x in (b.get("pending") or [])}
+        for rid, row in end.items():
+            s0 = start.get(rid)
+            if s0 is not None and any(_clean_cell(row.get(c)) != _clean_cell(s0.get(c)) for c in _EDIT_COLS):
+                ids.add(rid)
+        try:
+            known = {r["id"] for r in wf.Project(self.cfg, v).load_manifest()}
+        except ValueError:
+            known = set()
+        pending = {rid: (end.get(rid) or start[rid]) for rid in ids if rid in known and (rid in end or rid in start)}
+        rows = _keep_pending(_clips_table(self.cfg, v, bool(only_sus)), pending)
+        count = _clips_count_md(self.cfg, v) + ("\n\n" + _pending_note(len(pending)) if pending else "")
+        return count, rows, {}
 
     # ------------------------------------------------------------------ ① 校对
     def load_clips(self, voice: Any, only_sus: Any = False) -> Tuple[Any, Any]:
+        """「🔄 重新载入」：完全按硬盘上的校对表重新显示（没保存的修改不要了）。"""
         return _clips_count_md(self.cfg, voice), _clips_table(self.cfg, voice, bool(only_sus))
+
+    def refresh_clips(self, voice: Any, only_sus: Any = False, table: Any = None) -> Tuple[Any, Any]:
+        """切换「只看可能有错的」、查完错字以后刷新表格：按硬盘重新读，但表格里还没保存的修改原样留着。"""
+        pending = _pending_edits(self.cfg, voice, table)
+        rows = _keep_pending(_clips_table(self.cfg, voice, bool(only_sus)), pending)
+        count = _clips_count_md(self.cfg, voice) + ("\n\n" + _pending_note(len(pending)) if pending else "")
+        return count, rows
 
     def on_clip_pick(self, voice: Any, table: Any, row: int, col: int, value: Any = None) -> Tuple[Any, ...]:
         """点校对表的一行：按 id 找片段（排序、筛选后也不会播错），显示两次识别的对比。"""
@@ -1866,8 +2073,8 @@ class WebUI:
         can_adopt = bool(alt) and callable(getattr(wf, "apply_suggestion", None))
         return audio, panel, _btn(ADOPT_BTN, visible=can_adopt), cid
 
-    def do_adopt(self, voice: Any, clip_id: Any, only_sus: Any = False) -> Tuple[Any, ...]:
-        """「✅ 采用建议」：把这条片段的文字改成第二次识别的结果，并刷新表格。"""
+    def do_adopt(self, voice: Any, clip_id: Any, only_sus: Any = False, table: Any = None) -> Tuple[Any, ...]:
+        """「✅ 采用建议」：把这条片段的文字改成第二次识别的结果，并刷新表格（别的行里还没保存的修改留着）。"""
         v = _voice_name(voice)
         cid = str(clip_id or "")
         if not v or not cid:
@@ -1878,10 +2085,17 @@ class WebUI:
         fn = getattr(wf, "apply_suggestion", None)
         if not callable(fn):
             return "这个版本还不能自动采用建议，请直接在表格的「文字」列里修改。", _upd(), _upd(), _upd(), _upd()
+        pending = _pending_edits(self.cfg, v, table, skip=[cid])
         rec = fn(self.cfg, v, cid) or {}
         text = rec.get("text") if isinstance(rec, dict) else ""
         msg = f"✅ 已采用建议：{_md_text(text)}" if text else "✅ 已采用建议"
-        return (msg, _clips_count_md(self.cfg, v), _clips_table(self.cfg, v, bool(only_sus)), "", _btn(ADOPT_BTN, visible=False))
+        if isinstance(rec, dict) and rec.get("csv_locked"):
+            msg += ("\n\n⚠️ transcripts.csv 正被 Excel/WPS 打开，那个文件这次没能同步（网页里已经改好了）。"
+                    "关掉 Excel/WPS 后点一次「保存修改」就会同步。")
+        if pending:
+            msg += "\n\n" + _pending_note(len(pending))
+        rows = _keep_pending(_clips_table(self.cfg, v, bool(only_sus)), pending)
+        return (msg, _clips_count_md(self.cfg, v), rows, "", _btn(ADOPT_BTN, visible=False))
 
     @staticmethod
     def _edit_guard(voice: str, action: str = "保存修改") -> str:
@@ -1889,7 +2103,7 @@ class WebUI:
         info = current_task()
         if info and info.get("running") and info.get("voice") == voice and info.get("kind") in ("prepare", "proofcheck"):
             return (f"「{info.get('label')}」正在进行，请等它完成后再点「{action}」。"
-                    "你在表格里改的内容还在，不会丢。")
+                    "你在表格里改的内容还在，做完刷新表格时也会留着，不会丢。")
         return ""
 
     def do_save(self, voice: Any, table: Any, only_sus: Any = False) -> Tuple[Any, Any, Any]:
@@ -1997,8 +2211,10 @@ class WebUI:
                 _info("✅ 检查完了，可能有错的字已经标红")
             else:
                 md = self._final_md(st, "查找错字", v)
+            # 表格不在这里刷新：这里拿到的是点按钮那一刻的表格，查错字期间老师改的内容会被冲掉。
+            # 接在后面的 refresh_clips 读的是那时的表格，没保存的修改会留着。
             yield self._o(O, proof_bar=st.get("bar", ""), proof_md=md, prep_log=text,
-                          clips_count=_clips_count_md(self.cfg, v), clips=_clips_table(self.cfg, v, bool(only_sus)), **idle)
+                          clips_count=_clips_count_md(self.cfg, v), **idle)
 
     # ------------------------------------------------------------------ ② 训练
     def train_plan_preview(self, voice: Any, backend: Any = None, s_ep: Any = 0, g_ep: Any = 0, bs: Any = 0,
@@ -2190,8 +2406,7 @@ class WebUI:
             vs = _variants(res)
             audio = str(getattr(res, "audio_path", "") or "")
             srt = getattr(res, "srt_path", None)
-            files_out = [audio] + ([str(srt)] if srt else []) + [str(x["path"]) for x in vs if str(x["path"]) != audio]
-            files_out = [f for f in dict.fromkeys(files_out) if f and Path(f).exists()]
+            files_out = _gen_files(audio, srt, vs)
             state = {"voice": v, "audio": audio, "report": str(getattr(res, "report_path", "") or ""),
                      "srt": str(srt or ""), "variants": [dict(x) for x in vs]}
             var: Dict[str, Any] = dict(var_box=_upd(visible=False), var_md="", var_note="")
@@ -2206,27 +2421,32 @@ class WebUI:
                           out_files=files_out, gen_log=logs, gen_md=_gen_summary_md(res, redo_list), redo="",
                           gen_table=_gen_rows(res), gen_state=state, gen_after=_upd(visible=True), **var, **idle)
 
-    def on_choose_variant(self, voice: Any, state: Any, name: Any) -> Tuple[Any, Any]:
-        """「最终使用哪个版本」：把选中的版本复制成最终的 <名字>.wav，并更新上面的播放器。"""
+    def on_choose_variant(self, voice: Any, state: Any, name: Any) -> Tuple[Any, Any, Any]:
+        """「最终使用哪个版本」：把选中的版本复制成最终的 <名字>.wav，并更新上面的播放器和下载列表。
+
+        返回 (结果播放器, 下载列表, 说明)。下载列表必须重新发一次：gradio 4.24 发文件时会按内容复制一份到它的缓存里，
+        不重新发的话，列表里的 <名字>.wav 下载到的还是换版本之前的内容。"""
         v = _voice_name(voice) or (state or {}).get("voice", "")
         st = state if isinstance(state, dict) else {}
         vs = st.get("variants") or []
         chosen = next((x for x in vs if str(x.get("name")) == str(name)), None)
         if not v or chosen is None:
-            return _upd(), "请先生成一次（「完美」质量会做两个版本）。"
+            return _upd(), _upd(), "请先生成一次（「完美」质量会做两个版本）。"
         try:  # 已经是最终版本就什么都不做（gradio 4.24：这组控件刚显示出来时也会触发一次 input，实测）
             current = json.loads(Path(str(st.get("report", ""))).read_text(encoding="utf-8")).get("final")
         except Exception:
             current = None
         if current is not None and str(current) == str(name):
-            return _upd(), _upd()
+            return _upd(), _upd(), _upd()
         res = wf.choose_variant(self.cfg, v, st.get("report", ""), str(name)) or {}
         final = str(res.get("audio") or st.get("audio") or "")
         i = vs.index(chosen)
         title = _variant_title(chosen, i)
+        files = _gen_files(final, st.get("srt") or None, vs)
         # 播放器放版本自己的文件：最终文件名没变，浏览器可能还在用旧的缓存
-        return (_upd(value=str(chosen["path"]), label=f"结果（{title}）"),
-                f"✅ 已改用{_md_text(title.split('（')[0])}：`{final.replace('`', '')}` 现在就是这个版本。")
+        return (_upd(value=str(chosen["path"]), label=f"结果（{title}）"), files,
+                f"✅ 已改用{_md_text(title.split('（')[0])}：`{final.replace('`', '')}` 现在就是这个版本"
+                "（下面的下载列表也已经换好了）。")
 
     def on_gen_pick(self, state: Any, table: Any, row: int) -> Dict[str, Any]:
         """点逐句结果表的一行：单独播放这一句（按 # 列找，排序后也不会播错）。"""
@@ -2405,7 +2625,7 @@ class WebUI:
         for i in range(MAX_BLIND):
             if i < len(items):
                 out[f"bt_audio_{i}"] = _upd(value=items[i], visible=True, label=f"第 {i + 1} 段")
-                out[f"bt_pick_{i}"] = _upd(value=None, visible=True, label=f"第 {i + 1} 段是：")
+                out[f"bt_pick_{i}"] = _upd(value=None, visible=True, label=f"第 {i + 1} 段是：", interactive=True)
             else:
                 out[f"bt_audio_{i}"] = _upd(value=None, visible=False)
                 out[f"bt_pick_{i}"] = _upd(value=None, visible=False)
@@ -2455,24 +2675,74 @@ class WebUI:
             card = Path(d) / "听众答题卡.txt" if d else None
             md = (f"### 👂 盲听测试做好了：一共 {len(items)} 段，真人和生成的顺序已经打乱\n\n"
                   "请让听众（或你自己）逐段听，选「真人」还是「生成」，全部选完后点「提交答案」。答案提交之前不会显示。"
-                  + (f"\n\n想给别人离线测试：把这个文件夹发给他们，里面有听众答题卡：`{str(card).replace('`', '')}`"
+                  + (f"\n\n想给别人离线测试：把这个文件夹发给他们（里面是编好号的录音和听众答题卡）："
+                     f"`{str(card.parent).replace('`', '')}`。答案没有放在文件夹里，在它旁边的"
+                     f"「…{getattr(wf, 'BLIND_ANSWER_SUFFIX', '_答案.json')}」，不要一起发。"
+                     "收回答题卡后，在下面「批改收上来的答题卡」里填进去就能看到正确率。"
                      if card is not None and card.exists() else ""))
             state = {"voice": v, "dir": d, "answers": _blind_answer_file(result), "n": len(items)}
             yield self._o(O, bt_bar=st.get("bar", ""), vf_log=text, bt_md=md, bt_state=state, bt_result="",
                           bt_submit=_btn(SUBMIT_BTN, visible=bool(items)), **self._blind_slots(items), **idle)
 
-    @staticmethod
-    def on_blind_submit(state: Any, *choices: Any) -> str:
+    BLIND_SUBMIT_OUT = ("bt_result", "bt_submit") + tuple(f"bt_pick_{i}" for i in range(MAX_BLIND))
+    BLIND_OPEN_OUT = (("bt_md", "bt_state", "bt_submit", "bt_result")
+                      + tuple(f"bt_audio_{i}" for i in range(MAX_BLIND)) + tuple(f"bt_pick_{i}" for i in range(MAX_BLIND)))
+
+    @classmethod
+    def on_blind_submit(cls, state: Any, *choices: Any) -> Tuple[Any, ...]:
+        """「提交答案」：每段都选了才显示答案；显示以后锁住选项（不能看了答案再改）。"""
+        O = cls.BLIND_SUBMIT_OUT
         st = state if isinstance(state, dict) else {}
         path = st.get("answers") or ""
         if not path or not Path(path).exists():
-            return "⚠️ 找不到答案文件，请重新生成一次盲听测试。"
+            return cls._o(O, bt_result="⚠️ 找不到答案文件，请重新生成一次盲听测试，或在下面选一次以前做的测试。")
         try:
             answers = _blind_answers(json.loads(Path(path).read_text(encoding="utf-8")))
         except Exception as exc:
-            return f"⚠️ 读不了答案文件：{_md_text(exc)}"
+            return cls._o(O, bt_result=f"⚠️ 读不了答案文件：{_md_text(exc)}")
         n = int(st.get("n") or len(choices))
-        return _blind_result_md(list(choices)[:n], answers)
+        picks = list(choices)[:n]
+        missing = _blind_missing(picks, answers)
+        if missing:
+            nums = "、".join(str(i) for i in missing[:12]) + ("……" if len(missing) > 12 else "")
+            return cls._o(O, bt_result=f"⚠️ 还有第 {nums} 段没选。每一段都选好「真人」或「生成」再点「提交答案」"
+                                       "（提交以后才显示答案）。")
+        locked = {f"bt_pick_{i}": _upd(interactive=False) for i in range(n)}
+        md = (_blind_result_md(picks, answers) + "\n\n<small>答案已经显示，选项已锁住。想让别人再测：点「生成盲听测试」"
+              "重新做一份，或者在下面「批改收上来的答题卡」里填他们的答案。</small>")
+        return cls._o(O, bt_result=md, bt_submit=_btn(SUBMIT_BTN, visible=False), **locked)
+
+    def blind_tests(self, voice: Any) -> Dict[str, Any]:
+        """「批改收上来的答题卡」的下拉框：这个声音做过的盲听测试，新的在前。"""
+        choices = _blind_test_choices(self.cfg, voice)
+        return _upd(choices=choices, value=choices[0][1] if choices else None)
+
+    def on_blind_open(self, voice: Any, test_dir: Any) -> Tuple[Any, ...]:
+        """选一次以前做的盲听测试：把编好号的录音重新放到上面，可以在网页上再答一遍（网页刷新过也不怕）。"""
+        O = self.BLIND_OPEN_OUT
+        v = _voice_name(voice)
+        d = str(test_dir or "")
+        if not v or not d or not Path(d).is_dir():
+            return self._o(O)
+        items = _blind_items({"dir": d})
+        state = {"voice": v, "dir": d, "answers": _blind_answer_file({"dir": d}), "n": len(items)}
+        md = (f"### 👂 已打开以前的盲听测试：{_md_text(Path(d).name)}，一共 {len(items)} 段\n\n"
+              "可以在上面逐段听、选「真人」还是「生成」，全部选完后点「提交答案」；收上来的纸质答题卡填在下面。")
+        return self._o(O, bt_md=md, bt_state=state, bt_result="", bt_submit=_btn(SUBMIT_BTN, visible=bool(items)),
+                       **self._blind_slots(items))
+
+    def on_blind_grade(self, voice: Any, test_dir: Any, text: Any) -> str:
+        """「📝 批改」：把收上来的答题卡（贴进来的文字）和这次测试的答案对一下。"""
+        v = _voice_name(voice)
+        if not v:
+            return NEED_VOICE
+        d = str(test_dir or "")
+        if not d or not Path(d).is_dir():
+            return "请先在「选一次盲听测试」里选要批改的那一次（没有的话先点上面的「生成盲听测试」）。"
+        if not str(text or "").strip():
+            return "请把听众的答案填在框里，例如：`1 真人 2 生成 3 真人 ……`"
+        g = wf.grade_blind_test(d, str(text))
+        return _blind_grade_md(g, Path(d).name)
 
     # ------------------------------------------------------------------ 环境检查
     def run_doctor(self, force: bool = False) -> Tuple[Any, ...]:
@@ -2533,7 +2803,8 @@ class WebUI:
         def stop_button(name: str) -> Any:
             c[name] = gr.Button(STOP_LABEL, variant="stop", visible=False, scale=1)
             armed = gr.State(0.0)
-            c[name].click(self.on_stop, armed, [c[name], armed], **quick)
+            c[name].click(self.on_stop, armed, [c[name], armed], **quick).then(
+                self.on_stop_expire, armed, [c[name], armed], **quick)
             return c[name]
 
         def outs(names: Sequence[str]) -> List[Any]:
@@ -2597,7 +2868,8 @@ class WebUI:
 
                     gr.Markdown("### ✍️ 校对文字（可选，但能明显提升效果）\n"
                                 "**双击格子就能改错字，改完按回车**；不想要的片段把「保留」改成「否」；"
-                                "**点一下某一行就能听**。改完一定要点「保存修改」。（只改「文字」和「保留」两列就行）")
+                                "**点一下某一行就能听**（播放器和两次识别的对比在表格下面）。"
+                                "改完一定要点「保存修改」。（只改「文字」和「保留」两列就行）")
                     c["clips_count"] = gr.Markdown(elem_classes="vt-md")
                     with gr.Row():
                         c["proof_btn"] = gr.Button(PROOF_BTN, scale=2,
@@ -2607,14 +2879,17 @@ class WebUI:
                         load_clips = gr.Button("🔄 重新载入", scale=1)
                     c["proof_bar"] = gr.HTML("", elem_classes="vt-bar-box")
                     c["proof_md"] = gr.Markdown(elem_classes="vt-md")
-                    c["clip_audio"] = gr.Audio(label="试听选中的片段", type="filepath", autoplay=True, interactive=False,
-                                               visible=False)
-                    c["clip_diff"] = gr.HTML("")
                     c["sel_clip"] = gr.State("")
-                    c["adopt_btn"] = gr.Button(ADOPT_BTN, visible=False, size="sm")
+                    c["clips_base"] = gr.State({})
                     c["clips"] = gr.Dataframe(headers=CLIP_HEADERS, datatype=CLIP_TYPES, interactive=True, wrap=True,
                                               latex_delimiters=[], col_count=(len(CLIP_HEADERS), "fixed"),
                                               column_widths=["5%", "9%", "8%", "6%", "6%", "34%", "22%", "10%"])
+                    # 播放器、对比、「采用建议」都放在表格下面：点一行时它们会出现/消失，放在上面会把整张表顶上顶下，
+                    # 双击改字时第二下就点到别的格子上了（gradio 4.24 只认同一个格子上的双击）
+                    c["clip_audio"] = gr.Audio(label="试听选中的片段", type="filepath", autoplay=True, interactive=False,
+                                               visible=False)
+                    c["clip_diff"] = gr.HTML("")
+                    c["adopt_btn"] = gr.Button(ADOPT_BTN, visible=False, size="sm")
                     gr.Markdown("标红只是提醒「可能有错」，不一定真错；也可能有个别错字没被发现。"
                                 "「可能有错（红色）」这一列只用来看，改字请改「文字」列（双击它会看到格式代码，不用管）。",
                                 elem_classes="vt-honest")
@@ -2645,12 +2920,12 @@ class WebUI:
                             c["bs"] = gr.Number(label="每批数量 batch（0 = 自动；显存不够报错时改成 2）", value=0,
                                                 precision=0, minimum=0)
                         c["dpo"] = gr.Radio(DPO_CHOICES, value="auto", label="DPO（GPT-SoVITS 的实验功能）",
-                                            info="自动：显存很大（≥22 GB）、素材干净时才开。开了语气训练会慢 2～4 倍，"
-                                                 "显存不够时更容易出错。")
+                                            info="自动 = 不开（实验功能，没有可靠的证据说明能让声音更像）。"
+                                                 "想试再选「开」：语气训练会慢 2～4 倍，显存最好 ≥ 22 GB，不够时容易出错。")
                     log_box("train_log", 16)
 
                 # ---------------------------------------------------- ③ 生成
-                with gr.Tab("③ 生成讲课音频", id="gen"):
+                with gr.Tab("③ 生成讲课音频", id="gen") as gen_tab:
                     c["gen_warn"] = gr.Markdown(elem_classes="vt-md")
                     gr.Markdown("粘贴讲稿或上传讲稿文件。空一行 = 段落停顿；`[停顿=1.5]` 指定停顿秒数。"
                                 "多音字、术语读音可在 `workspace/声音名/lexicon.txt` 里纠正。")
@@ -2702,7 +2977,8 @@ class WebUI:
                         ev_jump = gr.Button("④ 评估刚才生成的音频 →", size="sm")
                     c["open_msg"] = gr.Markdown(elem_classes="vt-md")
                     gr.Markdown("#### 每一句的情况　👆 点表格里任意一句，就能单独听这一句")
-                    c["gen_table"] = gr.Dataframe(headers=GEN_HEADERS, datatype=["number", "str", "str", "str", "str"],
+                    c["gen_table"] = gr.Dataframe(_blank_rows(GEN_HEADERS), headers=GEN_HEADERS,
+                                                  datatype=["number", "str", "str", "str", "str"],
                                                   interactive=False, wrap=True, height=420,
                                                   column_widths=["7%", "50%", "13%", "12%", "18%"])
                     c["seg_audio"] = gr.Audio(label="单独听这一句", type="filepath", autoplay=True, interactive=False,
@@ -2722,7 +2998,7 @@ class WebUI:
                     c["ev_out"] = gr.Markdown()
 
                 # ---------------------------------------------------- ⑤ 鉴别
-                with gr.Tab("⑤ 鉴别", id="verify"):
+                with gr.Tab("⑤ 鉴别", id="verify") as verify_tab:
                     gr.Markdown("### 🤖 机器鉴别\n用声纹模型给生成的音频打分，看它们「像你本人」百分之多少，并排好名次。"
                                 "不选文件时，自动用素材里留出的你的真实录音，和最近一次生成的结果。\n\n"
                                 f"<small>{HONEST_SIM}{PCT_HELP}</small>")
@@ -2732,7 +3008,8 @@ class WebUI:
                     c["vf_btn"] = gr.Button(VERIFY_BTN, variant="primary")
                     c["vf_bar"] = gr.HTML("", elem_classes="vt-bar-box")
                     c["vf_md"] = gr.Markdown(elem_classes="vt-md")
-                    c["vf_table"] = gr.Dataframe(headers=VERIFY_HEADERS, datatype=["number", "str", "str", "str", "number", "str"],
+                    c["vf_table"] = gr.Dataframe(_blank_rows(VERIFY_HEADERS), headers=VERIFY_HEADERS,
+                                                 datatype=["number", "str", "str", "str", "number", "str"],
                                                  interactive=False, wrap=True)
                     has_blind = callable(getattr(wf, "build_blind_test", None))
                     gr.Markdown("### 👂 观众盲听测试\n电脑从你的真实录音里挑几句，再用你的模型读同样的句子，"
@@ -2753,6 +3030,16 @@ class WebUI:
                                                          visible=False, scale=1)
                     c["bt_submit"] = gr.Button(SUBMIT_BTN, variant="primary", visible=False)
                     c["bt_result"] = gr.Markdown(elem_classes="vt-md")
+                    with gr.Accordion("📝 批改收上来的答题卡（离线测试、网页刷新过也能用）", open=False, visible=has_blind):
+                        gr.Markdown("选一次以前做的盲听测试（上面会重新显示那次的录音），把听众交回来的答案填进框里，点「批改」。"
+                                    "可以写 `1 真人 2 生成 3 真人 ……`，也可以不写编号、按顺序写 `真人 生成 真人 ……`。")
+                        with gr.Row():
+                            c["bt_old"] = gr.Dropdown([], label="选一次盲听测试", value=None, scale=4)
+                            bt_old_refresh = gr.Button("🔄 刷新", size="sm", scale=1)
+                        c["bt_paste"] = gr.Textbox(label="听众的答案", lines=3,
+                                                   placeholder="例如：1 真人 2 生成 3 真人 4 生成 ……")
+                        bt_grade = gr.Button("📝 批改", variant="primary")
+                        c["bt_grade_md"] = gr.Markdown(elem_classes="vt-md")
                     log_box("vf_log", 8)
 
                 # ---------------------------------------------------- 环境检查
@@ -2764,18 +3051,27 @@ class WebUI:
                         stop_button("dl_stop")
                     c["doc_bar"] = gr.HTML("", elem_classes="vt-bar-box")
                     c["doc_md"] = gr.Markdown(elem_classes="vt-md")
-                    c["doc_out"] = gr.Dataframe(headers=DOC_HEADERS, datatype=["number", "str", "str", "str"],
+                    c["doc_out"] = gr.Dataframe(_blank_rows(DOC_HEADERS), headers=DOC_HEADERS, datatype=["number", "str", "str", "str"],
                                                 interactive=False, wrap=True, column_widths=["6%", "8%", "26%", "60%"])
                     c["doc_total"] = gr.Markdown()
                     with gr.Accordion("可选组件（没装也不影响使用）", open=False, visible=False) as doc_opt_acc:
                         c["doc_opt_acc"] = doc_opt_acc
-                        c["doc_opt"] = gr.Dataframe(headers=DOC_HEADERS, datatype=["number", "str", "str", "str"],
+                        c["doc_opt"] = gr.Dataframe(_blank_rows(DOC_HEADERS), headers=DOC_HEADERS,
+                                                    datatype=["number", "str", "str", "str"],
                                                     interactive=False, wrap=True)
                     log_box("doc_log", 10)
 
             # ======================================================== 事件
             after_outs = [c["gpu_badge"], c["task_banner"]] + outs(self.LIB_OUT)
             voice_outs = outs(self.VOICE_OUT)
+
+            def gen_warn(voice: Any, backend: Any) -> str:
+                """③ 页顶部的提醒（还没准备素材 / 还没训练），按现在选的声音和引擎重新算。"""
+                try:
+                    return _gen_warn_md(cfg, voice, backend)
+                except Exception as exc:
+                    log.debug(f"刷新 ③ 的提醒失败：{exc}")
+                    return ""
 
             # 顶部
             load_outs = voice_outs + [c["voice"], c["task_banner"], c["quick_banner"]] + outs(self.LIB_OUT)
@@ -2784,8 +3080,8 @@ class WebUI:
             gpu_btn.click(self.refresh_gpu, None, c["gpu_badge"], **quick)
             refresh.click(self.refresh_voices, c["voice"], c["voice"], **quick).then(
                 self.library, None, outs(self.LIB_OUT), **quick)
-            c["voice"].change(_safe("读取声音", len(voice_outs), 0)(self.on_voice_change), [c["voice"], c["only_sus"]],
-                              voice_outs, **quick)
+            c["voice"].change(_safe("读取声音", len(voice_outs), 0)(self.on_voice_change),
+                              [c["voice"], c["only_sus"], c["s_backend"]], voice_outs, **quick)
             plan_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["bs"], c["dpo"]]
             c["voice"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
 
@@ -2799,14 +3095,17 @@ class WebUI:
             c["lib_table"].select(lib_pick, c["lib_table"], [c["voice"], c["lib_audio"]], **quick)
 
             # ①
-            prep_in = [c["voice"], c["files"], c["folder"], c["asr"], c["lang"], c["denoise"], c["separate"]]
+            clip_outs = [c["clips_count"], c["clips"]]
+            prep_in = [c["voice"], c["files"], c["folder"], c["asr"], c["lang"], c["denoise"], c["separate"],
+                       c["only_sus"], c["clips"]]
             c["prep_btn"].click(self.do_prepare, prep_in, outs(self.PREP_OUT), **heavy).then(
-                self.after_task, None, after_outs, **quick)
+                _safe("载入片段", 3, 0)(self.after_prepare_clips), [c["voice"], c["only_sus"], c["clips"], c["clips_base"]],
+                clip_outs + [c["clips_base"]], **quick).then(
+                self.after_task, None, after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick)
             c["prep_next"].click(lambda: gr.Tabs(selected="train"), None, tabs, **quick)
-            load_clips.click(_safe("载入片段", 2, 0)(self.load_clips), [c["voice"], c["only_sus"]],
-                             [c["clips_count"], c["clips"]], **quick)
-            c["only_sus"].change(_safe("载入片段", 2, 0)(self.load_clips), [c["voice"], c["only_sus"]],
-                                 [c["clips_count"], c["clips"]], **quick)
+            load_clips.click(_safe("载入片段", 2, 0)(self.load_clips), [c["voice"], c["only_sus"]], clip_outs, **quick)
+            c["only_sus"].change(_safe("载入片段", 2, 0)(self.refresh_clips), [c["voice"], c["only_sus"], c["clips"]],
+                                 clip_outs, **quick)
 
             def clip_pick(voice: Any, table: Any, evt: gr.SelectData) -> Tuple[Any, ...]:
                 try:
@@ -2818,31 +3117,37 @@ class WebUI:
 
             c["clips"].select(clip_pick, [c["voice"], c["clips"]],
                               [c["clip_audio"], c["clip_diff"], c["adopt_btn"], c["sel_clip"]], **quick)
-            c["adopt_btn"].click(_safe("采用建议", 5, 0)(self.do_adopt), [c["voice"], c["sel_clip"], c["only_sus"]],
+            c["adopt_btn"].click(_safe("采用建议", 5, 0)(self.do_adopt), [c["voice"], c["sel_clip"], c["only_sus"], c["clips"]],
                                  [c["review_md"], c["clips_count"], c["clips"], c["clip_diff"], c["adopt_btn"]], **quick)
             save_clips.click(_safe("保存修改", 3, 0)(self.do_save), [c["voice"], c["clips"], c["only_sus"]],
                              [c["review_md"], c["clips_count"], c["clips"]], **quick)
             c["proof_btn"].click(self.do_proofcheck, [c["voice"], c["only_sus"]], outs(self.PROOF_OUT), **heavy).then(
+                _safe("载入片段", 2, 0)(self.refresh_clips), [c["voice"], c["only_sus"], c["clips"]], clip_outs, **quick).then(
                 self.after_task, None, after_outs, **quick)
 
             # ②
             train_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["q_ep"], c["bs"], c["dpo"]]
             c["train_btn"].click(self.do_train, train_in, outs(self.TRAIN_OUT), **heavy).then(
-                self.after_task, None, after_outs, **quick)
+                self.after_task, None, after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick)
             c["select_btn"].click(self.do_select, [c["voice"], c["t_backend"]], outs(self.TRAIN_OUT), **heavy).then(
-                self.after_task, None, after_outs, **quick)
+                self.after_task, None, after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick)
             c["train_next"].click(lambda: gr.Tabs(selected="gen"), None, tabs, **quick)
             # 打开「② 训练模型」页、换引擎、改高级设置时，重新预览这次会怎么训练（只读文件和 nvidia-smi，很快）
             train_tab.select(self.train_plan_preview, plan_in, c["train_plan"], **quick)
             c["t_backend"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
             c["dpo"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
             for name in ("s_ep", "g_ep", "bs"):
-                c[name].input(self.train_plan_preview, plan_in, c["train_plan"], **quick)
+                # 数字框每按一个键就触发一次；默认的 trigger_mode="once" 会把预览还没算完时按的键丢掉
+                # （打「12」只预览到「1」）。always_last：算完后再按最后的值算一次。
+                c[name].input(self.train_plan_preview, plan_in, c["train_plan"], trigger_mode="always_last", **quick)
+                c[name].submit(self.train_plan_preview, plan_in, c["train_plan"], trigger_mode="always_last", **quick)
 
             # ③
             c["script_file"].upload(self.on_script_upload, [c["script_file"], c["out_name"]],
                                     [c["script"], c["script_file"], c["script_hint"], c["out_name"]], **quick)
-            c["s_backend"].change(lambda v, b: _gen_warn_md(cfg, v, b), [c["voice"], c["s_backend"]], c["gen_warn"], **quick)
+            c["s_backend"].change(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick)
+            # 刚做完素材准备/训练再切到这一页，提醒要跟着变（不然还写着「还没训练」）
+            gen_tab.select(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick)
             c["speed"].change(lambda s: f"**{_speed_text(s)}**　<small>{SPEED_NOTE}</small>", c["speed"], c["speed_text"],
                               **quick)
             gen_in = [c["voice"], c["script"], c["script_file"], c["s_backend"], c["quality"], c["speed"], c["ref"], c["redo"],
@@ -2851,8 +3156,8 @@ class WebUI:
                 self.after_task, None, after_outs, **quick)
             c["speed_try"].click(self.do_speed_preview, [c["voice"], c["script"], c["speed"], c["s_backend"]],
                                  outs(self.SPEED_OUT), **heavy)
-            c["var_choice"].input(_safe("切换版本", 2, 1)(self.on_choose_variant), [c["voice"], c["gen_state"], c["var_choice"]],
-                                  [c["out_audio"], c["var_note"]], **quick)
+            c["var_choice"].input(_safe("切换版本", 3, 2)(self.on_choose_variant), [c["voice"], c["gen_state"], c["var_choice"]],
+                                  [c["out_audio"], c["out_files"], c["var_note"]], **quick)
             open_dir.click(_safe("打开文件夹", 1)(lambda v, s: self.open_outputs(v, s, False)), [c["voice"], c["gen_state"]],
                            c["open_msg"], **quick)
             locate.click(_safe("打开文件夹", 1)(lambda v, s: self.open_outputs(v, s, True)), [c["voice"], c["gen_state"]],
@@ -2880,9 +3185,16 @@ class WebUI:
             c["vf_btn"].click(self.do_verify, [c["voice"], c["vf_orig"], c["vf_gen"], c["gen_state"]],
                               outs(self.VERIFY_OUT), **heavy).then(self.after_task, None, after_outs, **quick)
             c["bt_btn"].click(self.do_blind, [c["voice"], c["bt_n"], c["quality"]], outs(self.BLIND_OUT), **heavy).then(
-                self.after_task, None, after_outs, **quick)
-            c["bt_submit"].click(_safe("提交答案", 1)(self.on_blind_submit),
-                                 [c["bt_state"]] + [c[f"bt_pick_{i}"] for i in range(MAX_BLIND)], c["bt_result"], **quick)
+                self.after_task, None, after_outs, **quick).then(self.blind_tests, c["voice"], c["bt_old"], **quick)
+            c["bt_submit"].click(_safe("提交答案", len(self.BLIND_SUBMIT_OUT), 0)(self.on_blind_submit),
+                                 [c["bt_state"]] + [c[f"bt_pick_{i}"] for i in range(MAX_BLIND)],
+                                 outs(self.BLIND_SUBMIT_OUT), **quick)
+            verify_tab.select(self.blind_tests, c["voice"], c["bt_old"], **quick)
+            bt_old_refresh.click(self.blind_tests, c["voice"], c["bt_old"], **quick)
+            c["bt_old"].input(_safe("打开盲听测试", len(self.BLIND_OPEN_OUT), 0)(self.on_blind_open),
+                              [c["voice"], c["bt_old"]], outs(self.BLIND_OPEN_OUT), **quick)
+            bt_grade.click(_safe("批改", 1)(self.on_blind_grade), [c["voice"], c["bt_old"], c["bt_paste"]],
+                           c["bt_grade_md"], **quick)
 
             # 环境检查
             doc_outs = [c["doc_summary"], c["doc_out"], c["doc_total"], c["doc_opt"], c["doc_opt_acc"]]

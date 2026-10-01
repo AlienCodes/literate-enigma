@@ -1453,18 +1453,19 @@ class _EngineRunner:
                 self.ck = _make_checker(name, self.cfg)
             except Exception as exc:  # noqa: BLE001
                 self.notes.append(f"{ENGINE_LABELS.get(name, name)}用不了（{_why(exc)}）")
+                log.warning(f"查错字：{self.notes[-1]}", exc_info=exc)  # 原始报错只进 voicetwin.log
                 continue
             self.loaded, self.ok, self.fails = False, 0, 0
         return self.ck
 
-    def _drop(self, why: str) -> None:
+    def _drop(self, why: str, exc: Optional[BaseException] = None) -> None:
         ck = self.ck
         self.ck = None
         nxt = ENGINE_LABELS.get(self.pending[0], self.pending[0]) if self.pending else "规则检查"
         sep = " " if nxt[:1].isascii() else ""
         note = f"{getattr(ck, 'label', '识别引擎')} 没能用上（{why}），改用{sep}{nxt}"
         self.notes.append(note)
-        log.warning(f"⚠️ 查错字：{note}")
+        log.warning(f"⚠️ 查错字：{note}", exc_info=exc)  # 原始报错（英文 Traceback）只进黑色窗口和 voicetwin.log
         try:
             ck.close()
         except Exception:
@@ -1493,8 +1494,7 @@ class _EngineRunner:
                     ck.load()
                     self.loaded = True
                 except Exception as exc:  # noqa: BLE001 - 换下一种方法；停止按钮照常传出去
-                    log.debug(f"加载 {ck.name} 失败：{exc!r}")
-                    self._drop(_why(exc))
+                    self._drop(_why(exc), exc)
                     continue
             wav = _load_wav16(self.project, rec)  # 录音读不出来：只是这一段的问题，不怪引擎
             try:
@@ -1502,7 +1502,7 @@ class _EngineRunner:
             except Exception as exc:  # noqa: BLE001
                 self.fails += 1
                 if (self.ok == 0 and self.fails >= MAX_LOAD_FAILS_BEFORE_OK) or self.fails >= MAX_CONSECUTIVE_FAILS:
-                    self._drop(_why(exc))
+                    self._drop(_why(exc), exc)
                     continue
                 raise
             self.ok += 1
@@ -1620,7 +1620,8 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
                     eng = ""
                     if len(err_samples) < 3:
                         err_samples.append(f"{rec.get('id')}：{_why(exc)}")
-                        log.warning(f"⚠️ 查错字：片段 {rec.get('id')} 出错（{_why(exc)}），这一段只用规则检查")
+                        log.warning(f"⚠️ 查错字：片段 {rec.get('id')} 出错（{_why(exc)}），这一段只用规则检查",
+                                    exc_info=exc)
                     try:
                         sus = build_suspect(text, None, None, **heur_kw)
                     except Exception:  # noqa: BLE001
@@ -1642,7 +1643,7 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
             try:
                 project.save_manifest(records)
             except Exception as exc:  # noqa: BLE001
-                log.warning(f"⚠️ 查错字：保存已检查的结果失败（{_why(exc)}）")
+                log.warning(f"⚠️ 查错字：保存已检查的结果失败（{_why(exc)}）", exc_info=exc)
         runner.close()
     project.save_manifest(records)
 

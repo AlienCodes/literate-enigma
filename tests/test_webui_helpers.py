@@ -309,6 +309,16 @@ def test_variants_md_and_recommendation():
     assert A._variants_md(vs[:1]) == ""
 
 
+def test_variants_md_recommended_with_lower_percentage_is_honest():
+    """推荐是按综合得分挑的，推荐的版本百分比可能反而低：不能写成「高 X 个百分点」。"""
+    vs = [{"name": "未去杂音", "path": "/a.wav", "score": 0.95, "pct": 98.2, "recommended": True},
+          {"name": "去杂音", "path": "/b.wav", "score": 0.93, "pct": 99.1, "recommended": False}]
+    md = A._variants_md(vs)
+    line = next(x for x in md.splitlines() if x.startswith("⭐ 推荐"))
+    assert "版本 A" in line and "高 0.9 个百分点" not in line
+    assert "百分比低 0.9" in line and "综合得分高 0.020" in line
+
+
 @pytest.mark.parametrize("value,factor,text", [
     (0, 1.0, "当前：和你原声一样"), (-20, 1.2, "当前：比你原声快 20%"), (15, 0.85, "当前：比你原声慢 15%"),
     (None, 1.0, "当前：和你原声一样"), (-99, 1.3, "当前：比你原声快 30%"), (30, 0.7, "当前：比你原声慢 30%"),
@@ -432,6 +442,19 @@ def test_verify_rows_are_ranked():
     assert "共 3 个文件，其中 1 个 ≥ 85%" in md
 
 
+def test_verify_explains_the_100_percent_standard():
+    """「100%」的标准要和实际用的一致：只选 1~2 段原声时不能说「你选的几段彼此之间有多像」。"""
+    rows = [{"file": "a.wav", "pct": 97.0, "pcts": {"m": 97.0}}]
+    _, md3 = A._verify_rows({"rows": rows, "originals": ["1", "2", "3"], "calibration_source": "uploaded_loo"})
+    assert "你选的 3 段原始录音彼此之间有多像" in md3
+    _, md1 = A._verify_rows({"rows": rows, "originals": ["1"], "calibration_source": "voice_clips_vs_uploaded"})
+    assert "彼此之间" not in md1 and "和你选的这 1 段原始录音有多像" in md1
+    _, md2 = A._verify_rows({"rows": rows, "originals": ["1", "2"], "calibration_source": "voice_calibration"})
+    assert "彼此之间" not in md2 and "改用这个声音素材里你自己的真实录音" in md2
+    _, md0 = A._verify_rows({"rows": rows})
+    assert "「100%」的标准" not in md0
+
+
 @pytest.mark.parametrize("data", [
     {"01": "真人", "02": "生成", "03": "real"},
     [{"index": 1, "kind": "real"}, {"index": 2, "kind": "generated"}, {"index": 3, "is_real": True}],
@@ -446,6 +469,7 @@ def test_blind_result_accuracy():
     answers = {1: True, 2: False, 3: True, 4: False}
     md = A._blind_result_md(["real", "real", "real", None], answers)
     assert "答了 3 段，答对 2 段" in md and "67%" in md and "有时能分辨" in md and "（没选）" in md
+    assert "| 4 | （没选） | — | — |" in md  # 没答的那段不显示答案
     assert "还没有选" in A._blind_result_md([None, None], answers)
     assert "分辨不出" in A._blind_verdict(0.5) and "容易分辨" in A._blind_verdict(0.9)
 
@@ -455,12 +479,63 @@ def test_blind_items_and_answer_file(tmp_path):
     d.mkdir()
     for i in (2, 1, 3):
         (d / f"{i:02d}.wav").write_bytes(b"")
-    (d / "答案.json").write_text(json.dumps({"01": "真人"}), encoding="utf-8")
+    (d / "答案.json").write_text(json.dumps({"01": "真人"}), encoding="utf-8")  # 老版本：答案在文件夹里面
     res = {"dir": str(d)}
     assert [Path(p).name for p in A._blind_items(res)] == ["01.wav", "02.wav", "03.wav"]
     assert A._blind_answer_file(res).endswith("答案.json")
-    st = {"answers": A._blind_answer_file(res), "n": 3}
-    assert "答对 1 段" in A.WebUI.on_blind_submit(st, "real", None, None)
+    st = {"answers": A._blind_answer_file(res), "n": 1}
+    out = dict(zip(A.WebUI.BLIND_SUBMIT_OUT, A.WebUI.on_blind_submit(st, "real", None, None)))
+    assert "答对 1 段" in out["bt_result"]
+    # 新版本：答案在文件夹旁边（文件夹可以整个发给听众）
+    side = tmp_path / ("盲听测试_1" + wf.BLIND_ANSWER_SUFFIX)
+    side.write_text(json.dumps({"01": "生成"}), encoding="utf-8")
+    assert A._blind_answer_file(res) == str(side)
+
+
+def test_blind_submit_needs_every_answer_and_then_locks(tmp_path):
+    """答一段就点提交：不能显示任何答案（否则看完答案改选项再交就是 100%）；全部答完才显示，并锁住选项。"""
+    ans = tmp_path / "a.json"
+    ans.write_text(json.dumps({"items": [{"no": 1, "truth": "真人"}, {"no": 2, "truth": "生成"},
+                                         {"no": 3, "truth": "生成"}]}, ensure_ascii=False), encoding="utf-8")
+    st = {"answers": str(ans), "n": 3}
+    picks = ["real", None, None] + [None] * (A.MAX_BLIND - 3)
+    out = dict(zip(A.WebUI.BLIND_SUBMIT_OUT, A.WebUI.on_blind_submit(st, *picks)))
+    assert "还有第 2、3 段没选" in out["bt_result"] and "生成" not in out["bt_result"].split("没选")[0]
+    assert "正确答案" not in out["bt_result"] and _is_update(out["bt_submit"]) and "visible" not in out["bt_submit"]
+    picks = ["real", "real", "fake"] + [None] * (A.MAX_BLIND - 3)
+    out = dict(zip(A.WebUI.BLIND_SUBMIT_OUT, A.WebUI.on_blind_submit(st, *picks)))
+    assert "答对 2 段" in out["bt_result"] and out["bt_submit"]["visible"] is False
+    assert all(out[f"bt_pick_{i}"]["interactive"] is False for i in range(3))
+
+
+def test_blind_offline_grading_and_reopen(prepared, tmp_path, monkeypatch):
+    """新开的网页（没有 bt_state）也能批改收上来的答题卡，也能重新打开以前的测试在网页上答。"""
+    cfg, name = _copy_voice(prepared, tmp_path)
+    project = wf.Project(cfg, name)
+    shutil.rmtree(project.outputs_dir, ignore_errors=True)  # 共享的 prepared 里可能已经有别的测试做的盲听测试
+    d = project.outputs_dir / "盲听测试_20261001_090000"
+    d.mkdir(parents=True)
+    clips = [project.abspath(r["path"]) for r in project.load_manifest()][:4]
+    truths = ["真人", "生成", "生成", "真人"]
+    for i, src in enumerate(clips, 1):
+        shutil.copyfile(src, d / f"{i:02d}.wav")
+    data = {"created": "2026-10-01 09:00", "count": 4,
+            "items": [{"no": i, "file": f"{i:02d}.wav", "truth": t} for i, t in enumerate(truths, 1)]}
+    (project.outputs_dir / (d.name + wf.BLIND_ANSWER_SUFFIX)).write_text(json.dumps(data, ensure_ascii=False),
+                                                                          encoding="utf-8")
+    ui = A.WebUI(cfg)
+    dd = ui.blind_tests(name)
+    assert dd["value"] == str(d) and "4 段" in dd["choices"][0][0]
+    md = ui.on_blind_grade(name, str(d), "01. 真人（真人 / 生成）\n02. 生成（真人 / 生成）\n03. 真人\n04. 真人")
+    assert "答了 4 段" in md and "答对 3 段" in md and "75" in md
+    md2 = ui.on_blind_grade(name, str(d), "1 真人 2 生成")
+    assert "答了 2 段" in md2 and "| 3 | （没答） | — | — |" in md2  # 没答的不显示答案
+    assert "没看懂" in ui.on_blind_grade(name, str(d), "随便写的")
+    assert "请先在「选一次盲听测试」" in ui.on_blind_grade(name, "", "1 真人")
+    opened = dict(zip(ui.BLIND_OPEN_OUT, ui.on_blind_open(name, str(d))))
+    assert opened["bt_state"]["n"] == 4 and opened["bt_state"]["answers"].endswith(wf.BLIND_ANSWER_SUFFIX)
+    assert opened["bt_audio_0"]["visible"] is True and opened["bt_pick_0"]["interactive"] is True
+    assert opened["bt_audio_4"]["visible"] is False and opened["bt_submit"]["visible"] is True
 
 
 # ---------------------------------------------------------------------------- 处理函数（不需要 gradio）
@@ -508,8 +583,28 @@ def test_stop_needs_two_clicks(monkeypatch):
     assert btn["value"] == A.STOP_CONFIRM and armed > 0 and calls == []
     btn2, armed2 = A.WebUI.on_stop(armed)
     assert btn2["value"] == A.STOP_PENDING and calls == [1] and armed2 == 0.0
-    btn3, _ = A.WebUI.on_stop(time.time() - 60)  # 太久以前点的第一次：重新确认
-    assert btn3["value"] == A.STOP_CONFIRM and calls == [1]
+    btn3, armed3 = A.WebUI.on_stop(time.time() - 60)  # 太久以前点的第一次：重新确认，并且明说超时了
+    assert btn3["value"] == A.STOP_EXPIRED != A.STOP_CONFIRM and calls == [1] and armed3 > 0
+
+
+def test_stop_confirm_label_expires(monkeypatch):
+    """点了第一次没确认：5 秒后按钮自己变回「⏹ 停止」；已经确认停止的不会被改回去。"""
+    calls = []
+    monkeypatch.setattr(A, "request_stop", lambda: calls.append(1) or True)
+    btn, armed = A.WebUI.on_stop(0.0)
+    assert btn["value"] == A.STOP_CONFIRM
+    back, armed_back = A.WebUI.on_stop_expire(armed, wait=False)
+    assert back["value"] == A.STOP_LABEL and armed_back == 0.0
+    # 下一次点击又是正常的第一次
+    btn2, armed2 = A.WebUI.on_stop(armed_back)
+    assert btn2["value"] == A.STOP_CONFIRM and calls == []
+    # 5 秒内确认了：过期处理什么都不改（按钮保持「正在停止……」）
+    btn3, _ = A.WebUI.on_stop(armed2)
+    assert btn3["value"] == A.STOP_PENDING and calls == [1]
+    late, late_armed = A.WebUI.on_stop_expire(armed2, wait=False)
+    assert late == {"__type__": "update"} and late_armed == {"__type__": "update"}
+    # 没点过（armed=0）：什么都不改
+    assert A.WebUI.on_stop_expire(0.0, wait=False) == ({"__type__": "update"}, {"__type__": "update"})
 
 
 def test_script_upload(tmp_path):
@@ -569,6 +664,23 @@ def test_nvidia_smi_driver_failure_is_not_ok():
         True, "NVIDIA GeForce RTX 5070, 12227 MiB, 576.02")
 
 
+def test_output_name_time_has_no_cjk_in_strftime(monkeypatch):
+    """文件名里的「10月01日21点30分」不能靠 strftime 的中文格式（Windows 上非中文系统会报错）。"""
+    calls = []
+    real = time.strftime
+
+    def spy(fmt, *a):
+        calls.append(fmt)
+        return real(fmt, *a)
+
+    monkeypatch.setattr(A.time, "strftime", spy)
+    t = time.mktime((2026, 10, 1, 21, 5, 0, 0, 0, -1))
+    assert A._time_suffix(t) == "10月01日21点05分"
+    assert all(ord(ch) < 128 for fmt in calls for ch in fmt)
+    p = A._output_path(SimpleNamespace(outputs_dir="/tmp/x"), "第3课", "mp3", "")
+    assert p.name.startswith("第3课_") and p.suffix == ".mp3" and "月" in p.name
+
+
 def test_header_shows_version():
     import voicetwin
 
@@ -607,13 +719,116 @@ def test_proofcheck_through_task(prepared, tmp_path, monkeypatch):
     assert "vt-done" in last["proof_bar"] and "其中 **1** 条可能有错" in last["proof_md"]
     assert "用 FunASR 又听了一遍" in last["proof_md"]
     assert "其中 **1** 条可能有错（已标红）" in last["clips_count"]
+    # 表格由接在后面的 refresh_clips 刷新（读的是那时网页上的表格，查错字期间改的内容不会被冲掉）
+    count, rows = ui.refresh_clips(name, False, None)
     col = CLIP_HEADERS.index("可能有错（红色）")
-    assert "color:#dc2626" in last["clips"][0][col]
+    assert "color:#dc2626" in rows[0][col] and "其中 **1** 条可能有错" in count
     # 点这一行：出现对比和「采用建议」按钮
-    audio, panel, adopt, cid = ui.on_clip_pick(name, last["clips"], 0, 0)
+    audio, panel, adopt, cid = ui.on_clip_pick(name, rows, 0, 0)
     assert "识别 A" in panel and "识别 B" in panel and adopt["visible"] is True and adopt["value"] == A.ADOPT_BTN
     msg, count, table, diff, adopt2 = ui.do_adopt(name, cid)
     assert msg.startswith("✅ 已采用建议") and adopt2["visible"] is False and adopt2["value"] == A.ADOPT_BTN
+
+
+def _edit_rows(rows, edits):
+    """模拟老师在网页表格里改了还没保存：{行号: {列名: 新值}}。"""
+    rows = [list(r) for r in rows]
+    for i, cols in edits.items():
+        for k, v in cols.items():
+            rows[i][CLIP_HEADERS.index(k)] = v
+    return rows
+
+
+def test_adopt_and_filter_keep_unsaved_edits(prepared, tmp_path):
+    """校对时手改了几行还没保存，再点别的行「✅ 采用建议」、勾「只看可能有错的」：手改的内容不能被冲掉。"""
+    cfg, name = _copy_voice(prepared, tmp_path)
+    project = wf.Project(cfg, name)
+    recs = project.load_manifest()
+    for r in recs:  # 共享的 prepared 可能被别的测试标过红
+        r.pop("suspect", None)
+    recs[-1]["suspect"] = {"spans": [[0, 1]], "alt": "建议的文字。", "reasons": ["两次识别不一样"], "score": 0.5}
+    project.save_manifest(recs)
+    ui = A.WebUI(cfg)
+    text_col, keep_col = A.COL_TEXT, A.COL_KEEP
+    flip = "否" if recs[1].get("keep", True) else "是"  # 共享的 prepared 可能被别的测试改过「保留」
+    rows = _edit_rows(A._clips_table(cfg, name), {0: {text_col: "老师手动改的第一行"}, 1: {keep_col: flip}})
+    sus_id = recs[-1]["id"]
+    msg, count, table, diff, adopt = ui.do_adopt(name, sus_id, False, rows)
+    assert msg.startswith("✅ 已采用建议") and "还有 **2** 条修改没有保存" in msg
+    by_id = {r[1]: r for r in table}
+    assert by_id[recs[0]["id"]][CLIP_HEADERS.index(text_col)] == "老师手动改的第一行"
+    assert by_id[recs[1]["id"]][CLIP_HEADERS.index(keep_col)] == flip
+    assert by_id[sus_id][CLIP_HEADERS.index(text_col)] == "建议的文字。"
+    # 硬盘上只改了采用建议的那一条，手改的还等着「保存修改」
+    saved = {r["id"]: r for r in project.load_manifest()}
+    assert saved[recs[0]["id"]]["text"] == recs[0]["text"] and saved[sus_id]["text"] == "建议的文字。"
+    # 勾「只看可能有错的」：没有标红的行了，但改过还没保存的两行留在表格里
+    recs2 = project.load_manifest()
+    recs2[2]["suspect"] = {"spans": [[0, 1]], "alt": "x", "reasons": ["r"], "score": 0.5}
+    project.save_manifest(recs2)
+    count2, filtered = ui.refresh_clips(name, True, table)
+    ids = [r[1] for r in filtered]
+    assert ids[0] == recs2[2]["id"] and set(ids[1:]) == {recs[0]["id"], recs[1]["id"]}
+    assert [r[0] for r in filtered] == [1, 2, 3] and "还有 **2** 条修改没有保存" in count2
+    assert {r[1]: r for r in filtered}[recs[0]["id"]][CLIP_HEADERS.index(text_col)] == "老师手动改的第一行"
+    # 然后点「保存修改」：手改的内容真的存进去了
+    ui.do_save(name, filtered, True)
+    saved = {r["id"]: r for r in project.load_manifest()}
+    assert saved[recs[0]["id"]]["text"] == "老师手动改的第一行" and saved[recs[1]["id"]]["keep"] is (flip == "是")
+    # 没改过东西时：和「重新载入」一样，不多提示
+    count3, plain = ui.refresh_clips(name, False, A._clips_table(cfg, name))
+    assert "没有保存" not in count3 and plain == A._clips_table(cfg, name)
+
+
+def test_after_prepare_keeps_edits_and_filter(prepared, tmp_path):
+    """素材准备做完后刷新表格：按「只看可能有错的」筛选；开始前没保存的、等待期间改的都留着。"""
+    cfg, name = _copy_voice(prepared, tmp_path)
+    project = wf.Project(cfg, name)
+    recs = project.load_manifest()
+    for r in recs:
+        r.pop("suspect", None)
+    recs[3]["suspect"] = {"spans": [[0, 1]], "alt": "x", "reasons": ["r"], "score": 0.5}
+    project.save_manifest(recs)
+    ui = A.WebUI(cfg)
+    start = _edit_rows(A._clips_table(cfg, name), {0: {A.COL_TEXT: "开始前改的"}})
+    base = {"voice": name, "table": A._table_records(start, CLIP_HEADERS),
+            "pending": sorted(A._pending_edits(cfg, name, start))}
+    # 准备素材期间：别的步骤把第 2 条的「保留」改了（不能被当成老师的修改），老师又改了第 3 条
+    recs = project.load_manifest()
+    recs[1]["keep"] = not recs[1].get("keep", True)
+    project.save_manifest(recs)
+    end = _edit_rows(start, {2: {A.COL_TEXT: "等待时改的"}})
+    count, rows, cleared = ui.after_prepare_clips(name, True, end, base)
+    assert cleared == {}
+    by_id = {r[1]: r for r in rows}
+    assert rows[0][1] == recs[3]["id"]  # 只看可能有错的：标红的在前面
+    assert by_id[recs[0]["id"]][CLIP_HEADERS.index(A.COL_TEXT)] == "开始前改的"
+    assert by_id[recs[2]["id"]][CLIP_HEADERS.index(A.COL_TEXT)] == "等待时改的"
+    assert recs[1]["id"] not in by_id and "还有 **2** 条修改没有保存" in count
+    # 没勾筛选、也没改过：就是最新的完整表格
+    plain = A._clips_table(cfg, name)
+    base2 = {"voice": name, "table": A._table_records(plain, CLIP_HEADERS), "pending": []}
+    assert ui.after_prepare_clips(name, False, plain, base2)[1] == plain
+    # 这次没真正开始准备（clips_base 是空的）：表格不动
+    assert all(_is_update(x) for x in ui.after_prepare_clips(name, False, plain, {})[:2])
+
+
+def test_adopt_when_csv_locked_still_refreshes(prepared, tmp_path, monkeypatch):
+    """transcripts.csv 被 Excel/WPS 打开时点「采用建议」：照样改好、表格照样刷新，并提醒关掉 Excel 后再保存一次。"""
+    cfg, name = _copy_voice(prepared, tmp_path)
+    project = wf.Project(cfg, name)
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[0, 1]], "alt": "新的建议文字。", "reasons": ["r"], "score": 0.5}
+    project.save_manifest(recs)
+
+    def locked(self, records=None):
+        raise PermissionError(13, "Permission denied")
+
+    monkeypatch.setattr(wf.Project, "export_csv", locked)
+    msg, count, table, diff, adopt = A.WebUI(cfg).do_adopt(name, recs[0]["id"], False, A._clips_table(cfg, name))
+    assert msg.startswith("✅ 已采用建议") and "Excel/WPS" in msg
+    assert {r[1]: r for r in table}[recs[0]["id"]][CLIP_HEADERS.index(A.COL_TEXT)] == "新的建议文字。"
+    assert {r["id"]: r for r in project.load_manifest()}[recs[0]["id"]]["text"] == "新的建议文字。"
 
 
 def test_blind_test_through_task(prepared, tmp_path, monkeypatch):
@@ -642,8 +857,12 @@ def test_blind_test_through_task(prepared, tmp_path, monkeypatch):
     assert "一共 4 段" in last["bt_md"] and "听众答题卡" in last["bt_md"]
     assert last["bt_submit"]["visible"] is True and last["bt_submit"]["value"] == A.SUBMIT_BTN
     assert last["bt_audio_3"]["visible"] is True and last["bt_audio_4"]["visible"] is False
-    md = ui.on_blind_submit(last["bt_state"], "real", "fake", "fake", None, *([None] * 20))
-    assert "答了 3 段，答对 2 段" in md
+    out = dict(zip(ui.BLIND_SUBMIT_OUT, ui.on_blind_submit(last["bt_state"], "real", "fake", "fake", None,
+                                                           *([None] * 20))))
+    assert "还有第 4 段没选" in out["bt_result"]
+    out = dict(zip(ui.BLIND_SUBMIT_OUT, ui.on_blind_submit(last["bt_state"], "real", "fake", "fake", "fake",
+                                                           *([None] * 20))))
+    assert "答了 4 段，答对 3 段" in out["bt_result"]
 
 
 def test_verify_through_task(prepared, tmp_path):
@@ -688,20 +907,25 @@ def test_choose_variant_copies_through_workflow(tmp_path, prepared):
                 {"name": "去杂音", "label": "版本 B：去杂音", "path": str(b), "score": 0.90, "pct": 95.4,
                  "recommended": False, "final": False}]
     report = tmp_path / "x.report.json"
-    report.write_text(json.dumps({"audio": str(final), "variants": variants, "final": "未去杂音"}, ensure_ascii=False),
-                      encoding="utf-8")
-    state = {"voice": name, "audio": str(final), "report": str(report), "variants": variants}
-    audio, note = A.WebUI(cfg).on_choose_variant(name, state, "去杂音")
+    report.write_text(json.dumps({"audio": str(final), "variants": variants, "final": "未去杂音", "overall_pct": 96.2},
+                                 ensure_ascii=False), encoding="utf-8")
+    srt = tmp_path / "x.srt"
+    srt.write_text("1\n", encoding="utf-8")
+    state = {"voice": name, "audio": str(final), "report": str(report), "variants": variants, "srt": str(srt)}
+    audio, files, note = A.WebUI(cfg).on_choose_variant(name, state, "去杂音")
     assert final.read_bytes() == b"B" and audio["value"] == str(b) and "版本 B" in note and str(final) in note
+    # 下载列表也要重新发（gradio 4.24 按内容缓存文件，不重新发的话 x.wav 下载到的还是旧版本）
+    assert files == [str(final), str(srt), str(a), str(b)]
     data = json.loads(report.read_text(encoding="utf-8"))
     assert data["final"] == "去杂音" and [v["final"] for v in data["variants"]] == [False, True]
+    assert data["overall_pct"] == 95.4  # 整篇百分比跟着最终版本走
     # 已经是最终版本：什么都不改、不提示（gradio 4.24 显示这组控件时会自动触发一次）
     final.write_bytes(b"B")
-    audio_same, note_same = A.WebUI(cfg).on_choose_variant(name, state, "去杂音")
-    assert _is_update(audio_same) and "value" not in audio_same and _is_update(note_same)
+    audio_same, files_same, note_same = A.WebUI(cfg).on_choose_variant(name, state, "去杂音")
+    assert _is_update(audio_same) and "value" not in audio_same and _is_update(note_same) and _is_update(files_same)
     # 没生成过（state 是空的）：只给一句提示，不报错
-    audio2, note2 = A.WebUI(cfg).on_choose_variant(name, {}, "去杂音")
-    assert _is_update(audio2) and "请先生成一次" in note2
+    audio2, files2, note2 = A.WebUI(cfg).on_choose_variant(name, {}, "去杂音")
+    assert _is_update(audio2) and _is_update(files2) and "请先生成一次" in note2
 
 
 def test_one_task_at_a_time_and_reattach(prepared, tmp_path, monkeypatch):

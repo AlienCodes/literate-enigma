@@ -38,6 +38,8 @@ log = get_logger("speaker")
 SV_CKPT_REL = "GPT_SoVITS/pretrained_models/sv/pretrained_eres2netv2w24s4ep4.ckpt"
 ERES_DIR_REL = "GPT_SoVITS/eres2net"
 CALIBRATION_FILE = "speaker_calibration.json"
+#: ERes2NetV2 一次只看这么长：整篇讲课一次送进去，显存/内存按长度涨（每秒约 30 MB，10 分钟要十几 GB）
+SV_WINDOW_SECONDS = 10.0
 PCT_HELP = "100% = 和你自己的真实录音一样像"
 HONEST_NOTE = "相似度是声纹模型自动打分，越高越像，但不是绝对精确，最终以耳朵为准"
 MIN_PCT_DEFAULT = 85.0
@@ -208,6 +210,8 @@ class ERes2NetV2Encoder(SpeakerEncoder):
         self._lock = threading.Lock()
 
     def embed(self, wav: np.ndarray, sr: int) -> np.ndarray:
+        """一段音频的声纹。长音频（整篇讲课）切成约 10 秒一段分别算，再取平均：
+        一次整段送进模型的话，显存/内存跟着长度涨，几分钟的文件就会显存不够（而且出错时不会报出来）。"""
         torch = self._torch
         w16 = resample(np.asarray(wav, dtype=np.float32), sr, 16000)
         trimmed, _, _ = trim_silence(w16, 16000, pad_ms=60)
@@ -215,12 +219,28 @@ class ERes2NetV2Encoder(SpeakerEncoder):
             w16 = trimmed
         if len(w16) < 8000:  # 太短的片段重复一下，fbank 至少要几十帧
             w16 = np.tile(w16, int(np.ceil(8000 / max(len(w16), 1)))) if len(w16) else np.zeros(8000, np.float32)
-        x = torch.from_numpy(np.ascontiguousarray(w16, dtype=np.float32)).unsqueeze(0)
+        win = int(16000 * SV_WINDOW_SECONDS)
+        chunks = [w16] if len(w16) <= win * 1.2 else list(np.array_split(w16, int(np.ceil(len(w16) / win))))
+        if len(chunks) > 1:  # 整段都是静音的窗口（长停顿）不算
+            loud = [c for c in chunks if float(np.sqrt(np.mean(np.square(c, dtype=np.float64)))) >= 0.003]
+            chunks = loud or chunks
+        embs, weights = [], []
         with self._lock, torch.no_grad():
-            feat = self._kaldi.fbank(x, num_mel_bins=80, sample_frequency=16000, dither=0.0)
-            feat = feat - feat.mean(dim=0, keepdim=True)
-            emb = self._model(feat.unsqueeze(0).to(self._device))
-        return _l2(emb.reshape(-1).float().cpu().numpy())
+            for ch in chunks:
+                x = torch.from_numpy(np.ascontiguousarray(ch, dtype=np.float32)).unsqueeze(0)
+                feat = self._kaldi.fbank(x, num_mel_bins=80, sample_frequency=16000, dither=0.0)
+                feat = feat - feat.mean(dim=0, keepdim=True)
+                emb = self._model(feat.unsqueeze(0).to(self._device))
+                embs.append(_l2(emb.reshape(-1).float().cpu().numpy()))
+                weights.append(float(len(ch)))
+            if len(chunks) > 1 and str(self._device).startswith("cuda"):
+                try:  # 把这次多占的显存还回去，别影响接下来的生成
+                    torch.cuda.empty_cache()
+                except Exception:
+                    pass
+        if len(embs) == 1:
+            return embs[0]
+        return _l2(np.average(np.stack(embs), axis=0, weights=np.asarray(weights)))
 
 
 class MFCCEncoder(SpeakerEncoder):
@@ -434,6 +454,19 @@ def judge_centroid(project, encoder: SpeakerEncoder, refresh: bool = False,
     return cen, ids
 
 
+def _calibration_records(project, used_ids: Sequence[str] = ()) -> Tuple[List[Dict[str, Any]], str]:
+    """校准用的真实录音：优先验证集；不够 3 条时用没参与平均声纹的训练片段；再不够就用全部。"""
+    recs = project.load_manifest(only_kept=True)
+    used = set(used_ids)
+    val = [r for r in recs if r.get("split") == "val"]
+    if len(val) >= 3:
+        return val, "val"
+    val = [r for r in recs if r["id"] not in used]
+    if len(val) >= 3:
+        return val, "train_unused"
+    return list(recs), "train"
+
+
 def calibrate(project, encoder: SpeakerEncoder, cen: np.ndarray, used_ids: Sequence[str] = (),
               refresh: bool = False, max_clips: int = 40) -> Dict[str, Any]:
     """你自己的真实录音和"平均声纹"有多像：p10 / p50 / p90（每个声纹模型分别算，结果缓存）。
@@ -444,16 +477,7 @@ def calibrate(project, encoder: SpeakerEncoder, cen: np.ndarray, used_ids: Seque
 
     root = Path(project.root)
     cache_path = root / CALIBRATION_FILE
-    recs = project.load_manifest(only_kept=True)
-    used = set(used_ids)
-    val = [r for r in recs if r.get("split") == "val"]
-    source = "val"
-    if len(val) < 3:
-        val = [r for r in recs if r["id"] not in used]
-        source = "train_unused"
-    if len(val) < 3:
-        val = list(recs)
-        source = "train"
+    val, source = _calibration_records(project, used_ids)
     val = spread_sample(sorted(val, key=lambda r: r["id"]), max_clips)
     sig = short_hash(encoder.name, np.round(np.asarray(cen, dtype=np.float64), 5).tolist(),
                      sorted(r["id"] for r in val), n=12)
@@ -531,10 +555,23 @@ class SimilarityJudge:
 
     @classmethod
     def from_files(cls, cfg: Any, files: Sequence[Path], fallback: Optional["SimilarityJudge"] = None,
-                   encoders: Optional[Sequence[SpeakerEncoder]] = None) -> "SimilarityJudge":
-        """用你挑的几段原声当"标准"。≥3 段时用留一法校准（每段和其它几段的平均声纹比）；
-        少于 3 段时借用这个声音已有的校准（fallback），否则只给原始相似度、不换算百分比。"""
+                   encoders: Optional[Sequence[SpeakerEncoder]] = None, project: Any = None,
+                   max_clips: int = 20) -> "SimilarityJudge":
+        """用你挑的几段原声当"标准"。
+
+        - ≥3 段：留一法校准（每段和其它几段的平均声纹比）。
+        - 1~2 段：给了 project 时，用这个声音素材里留出来的真实录音和这 1~2 段的平均声纹比，得到「100%」的标准
+          （打分和校准用同一个标准）。不能借用这个声音原来的校准：那是和几十段的平均声纹比出来的，
+          和 1~2 段比天然偏低，百分比会系统性地偏小。
+        - 上面都做不到：直接用这个声音原来的标准（fallback：它自己的平均声纹 + 校准，source = voice_calibration），
+          这时上传的原声只当参考、不参与打分；连 fallback 也没有时只给原始相似度、不换算百分比。"""
         members: List[JudgeMember] = []
+        uploaded = set()
+        for f in files:
+            try:
+                uploaded.add(str(Path(f).resolve()))
+            except OSError:
+                uploaded.add(str(f))
         for enc in (encoders if encoders is not None else get_speaker_ensemble(cfg)):
             try:
                 embs = [enc.embed_file(Path(f)) for f in files]
@@ -550,10 +587,37 @@ class SimilarityJudge:
                 arr = np.asarray(loo, dtype=np.float64)
                 calib.update({"p10": round(float(np.percentile(arr, 10)), 4), "p50": round(float(np.median(arr)), 4),
                               "p90": round(float(np.percentile(arr, 90)), 4), "source": "uploaded_loo"})
-            elif fallback is not None:
-                other = next((m for m in fallback.members if m.name == enc.name), None)
-                if other is not None and other.p50 is not None:
-                    calib.update({"p50": other.p50, "source": "voice_calibration"})
+                members.append(JudgeMember(enc, cen, calib))
+                continue
+            if project is not None:
+                sims: List[float] = []
+                try:
+                    # 这里的平均声纹只来自上传的原声，所以素材里别的片段（验证集优先，不够再加训练片段）都能拿来校准
+                    recs = [r for r in project.load_manifest(only_kept=True)
+                            if str(Path(project.abspath(r["path"])).resolve()) not in uploaded]
+                    val = sorted((r for r in recs if r.get("split") == "val"), key=lambda r: r["id"])
+                    rest = sorted((r for r in recs if r.get("split") != "val"), key=lambda r: r["id"])
+                    pick = spread_sample(val, max_clips)
+                    pick += spread_sample(rest, max_clips - len(pick)) if len(pick) < max_clips else []
+                    for r in pick:
+                        try:
+                            sims.append(cosine(enc.embed_file(project.abspath(r["path"])), cen))
+                        except Exception as exc:
+                            log.debug(f"校准时跳过 {r.get('id')}：{exc}")
+                except Exception as exc:
+                    log.debug(f"用素材里的录音校准失败：{exc}")
+                if len(sims) >= 3 and float(np.median(sims)) > 0.05:
+                    arr = np.asarray(sims, dtype=np.float64)
+                    calib.update({"p10": round(float(np.percentile(arr, 10)), 4),
+                                  "p50": round(float(np.median(arr)), 4),
+                                  "p90": round(float(np.percentile(arr, 90)), 4), "n_clips": int(arr.size),
+                                  "source": "voice_clips_vs_uploaded"})
+                    members.append(JudgeMember(enc, cen, calib))
+                    continue
+            other = next((m for m in fallback.members if m.name == enc.name), None) if fallback is not None else None
+            if other is not None and other.p50 is not None:
+                members.append(JudgeMember(enc, other.centroid, dict(other.calib, source="voice_calibration")))
+                continue
             members.append(JudgeMember(enc, cen, calib))
         return cls(members)
 
@@ -579,7 +643,7 @@ class SimilarityJudge:
             "models": self.models,
             "labels": [MODEL_LABELS.get(n, n) for n in self.models],
             "reliable": self.reliable,
-            "calibration": {m.name: {k: m.calib.get(k) for k in ("p10", "p50", "p90", "n", "source")}
+            "calibration": {m.name: {k: m.calib.get(k) for k in ("p10", "p50", "p90", "n", "n_clips", "source")}
                             for m in self.members},
             "definition": PCT_HELP,
             "note": HONEST_NOTE,

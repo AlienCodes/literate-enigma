@@ -9,6 +9,8 @@ import json
 import os
 import socket
 import sys
+import tempfile
+import time
 import urllib.request
 import webbrowser
 from typing import Any, List, Optional
@@ -20,6 +22,12 @@ SCAN_PORTS = 10  # 第一次启动时 7860 被占、改用了 7861……再次�
 
 ALREADY_RUNNING_MSG = "声音分身已经在运行了（在另一个黑色窗口里），已经帮你打开网页。这个窗口可以关掉。"
 ALREADY_RUNNING_REMOTE_MSG = "声音分身已经在运行了（在另一个黑色窗口里），网页地址：{url}。这个窗口可以关掉。"
+STARTING_ELSEWHERE_MSG = ("声音分身正在另一个黑色窗口里启动（刚才可能连着双击了两次图标）。"
+                          "请不要关掉那个窗口，这里等它启动好就帮你打开网页……")
+#: 另一个窗口正在启动时最多等多久（第一次启动、电脑慢时要 30 秒以上）
+STARTUP_WAIT_SECONDS = 180.0
+#: 端口突然被占（几乎都是同时启动了两个）时，再找几秒已经在运行的那个
+PORT_RETRY_SECONDS = 15.0
 
 
 def _quiet_gradio_env() -> None:
@@ -138,6 +146,74 @@ def _find_existing(host: str, preferred: int, span: int = SCAN_PORTS) -> Optiona
     return None
 
 
+def _acquire_instance_lock(port: int) -> Optional[int]:
+    """同一时间只让一个声音分身启动（文件锁，进程退出时系统自动放开）。
+
+    返回锁住的文件描述符；另一个声音分身正在启动 / 运行时返回 None；锁文件建不了时返回 -1（照常启动）。"""
+    try:
+        path = os.path.join(tempfile.gettempdir(), f"voicetwin_webui_{int(port)}.lock")
+        fd = os.open(path, os.O_RDWR | os.O_CREAT, 0o666)
+    except OSError:
+        return -1
+    try:
+        if os.name == "nt":
+            import msvcrt
+
+            os.lseek(fd, 0, 0)
+            msvcrt.locking(fd, msvcrt.LK_NBLCK, 1)  # type: ignore[attr-defined]
+        else:
+            import fcntl
+
+            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        return fd
+    except ImportError:
+        return fd  # 没有文件锁可用：照常启动
+    except OSError:
+        os.close(fd)
+        return None
+
+
+def _release_instance_lock(fd: Optional[int]) -> None:
+    if fd is None or fd < 0:
+        return
+    try:
+        if os.name == "nt":
+            import msvcrt
+
+            os.lseek(fd, 0, 0)
+            msvcrt.locking(fd, msvcrt.LK_UNLCK, 1)  # type: ignore[attr-defined]
+    except Exception:
+        pass
+    try:
+        os.close(fd)  # 关闭文件时锁也会放开
+    except OSError:
+        pass
+
+
+def _open_existing(url: str, local: bool) -> None:
+    if local:
+        _say(ALREADY_RUNNING_MSG)
+        try:
+            webbrowser.open(url)
+        except Exception:
+            pass
+    else:
+        _say(ALREADY_RUNNING_REMOTE_MSG.format(url=url))
+
+
+def _wait_for_existing(host: str, ports: List[int], seconds: float) -> Optional[str]:
+    """等几秒，看另一个窗口里的声音分身是不是启动好了；找到就返回它的地址。"""
+    deadline = time.time() + max(0.0, seconds)
+    while True:
+        for port in ports:
+            found = _find_existing(host, port)
+            if found:
+                return found
+        if time.time() >= deadline:
+            return None
+        time.sleep(1.0)
+
+
 def banner(url: str) -> str:
     try:
         from voicetwin import __version__
@@ -197,32 +273,50 @@ def launch(cfg: Any, host: str = "127.0.0.1", port: int = 7860, share: bool = Fa
 
     existing = _find_existing(host, port)
     if existing:
-        if local:
-            _say(ALREADY_RUNNING_MSG)
-            try:
-                webbrowser.open(existing)
-            except Exception:
-                pass
-        else:
-            _say(ALREADY_RUNNING_REMOTE_MSG.format(url=existing))
+        _open_existing(existing, local)
         return
 
-    p = _free_port(port, host)
-    if p != port:
-        _say(f"{port} 端口被别的软件占用了，这次改用 {p} 端口。")
-    url = _url(host, p)
-    _say(banner(url))
+    # 第一个窗口要先建好网页（10~30 秒）才会占住端口；这段时间里再双击一次图标，不能再启动一个
+    lock = _acquire_instance_lock(port)
+    if lock is None:
+        _say(STARTING_ELSEWHERE_MSG)
+        deadline = time.time() + STARTUP_WAIT_SECONDS
+        while True:
+            existing = _wait_for_existing(host, [port], 1.0)
+            if existing:
+                _open_existing(existing, local)
+                return
+            lock = _acquire_instance_lock(port)
+            if lock is not None:  # 那个窗口没启动成功（已经关掉了）：这次自己启动
+                break
+            if time.time() >= deadline:
+                raise RuntimeError("另一个黑色窗口里的声音分身一直没有启动好。请关掉所有黑色窗口，再双击一次桌面图标。")
 
-    app = _build(cfg, local)
-    app.queue()
     try:
-        app.launch(server_name=host, server_port=p, share=share, inbrowser=local, show_error=True,
-                   show_api=False, quiet=not share)
-    except OSError as exc:
-        raise RuntimeError(f"网页界面没能启动：端口 {p} 被占用。请关掉其它黑色窗口，或者重启电脑后再试。") from exc
-    except ValueError as exc:
-        if "localhost is not accessible" in str(exc) or "share=True" in str(exc):
-            raise RuntimeError("网页界面没能启动：电脑上的代理软件（VPN、加速器）挡住了本机地址 127.0.0.1。"
-                               "请先关掉代理软件，或者在代理软件里把 127.0.0.1 和 localhost 设为「直连 / 不走代理」，"
-                               "然后重新双击桌面图标。") from exc
-        raise
+        p = _free_port(port, host)
+        if p != port:
+            _say(f"{port} 端口被别的软件占用了，这次改用 {p} 端口。")
+        url = _url(host, p)
+        _say(banner(url))
+
+        app = _build(cfg, local)
+        app.queue()
+        try:
+            app.launch(server_name=host, server_port=p, share=share, inbrowser=local, show_error=True,
+                       show_api=False, quiet=not share)
+        except OSError as exc:
+            # 几乎都是同时启动了两个（另一个先占了端口）：那个能用，直接打开它，别让老师去关掉能用的那个窗口
+            existing = _wait_for_existing(host, list(dict.fromkeys([p, port])), PORT_RETRY_SECONDS)
+            if existing:
+                _open_existing(existing, local)
+                return
+            raise RuntimeError(f"网页界面没能启动：端口 {p} 被占用。如果浏览器里已经打开了声音分身的网页，直接用它就行；"
+                               "否则请重启电脑后再试。") from exc
+        except ValueError as exc:
+            if "localhost is not accessible" in str(exc) or "share=True" in str(exc):
+                raise RuntimeError("网页界面没能启动：电脑上的代理软件（VPN、加速器）挡住了本机地址 127.0.0.1。"
+                                   "请先关掉代理软件，或者在代理软件里把 127.0.0.1 和 localhost 设为「直连 / 不走代理」，"
+                                   "然后重新双击桌面图标。") from exc
+            raise
+    finally:
+        _release_instance_lock(lock)
