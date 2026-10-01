@@ -700,6 +700,32 @@ def test_doctor_marks_optional_rows(tmp_path):
     assert not by["numpy"]["optional"]
 
 
+
+def test_doctor_hides_third_party_import_warnings(tmp_path, monkeypatch, capfd):
+    """老师的整合包里 funasr 导入时会打印 SyntaxWarning / FutureWarning，夹在检查结果前面像出错：检查时不显示。"""
+    import sys as _sys
+    import warnings
+
+    pkg = tmp_path / "fakemods"
+    pkg.mkdir()
+    (pkg / "funasr.py").write_text(
+        "import warnings\n"
+        "vad = 1\n"
+        "if vad is not -2:\n"  # 和 funasr 一样：编译时就会出 SyntaxWarning
+        "    pass\n"
+        "warnings.warn('torch.cuda.amp.autocast(args...) is deprecated', FutureWarning)\n"
+        "__version__ = '1.0.27'\n", encoding="utf-8")
+    monkeypatch.syspath_prepend(str(pkg))
+    monkeypatch.delitem(_sys.modules, "funasr", raising=False)
+    monkeypatch.setattr(_sys, "dont_write_bytecode", True)
+    with warnings.catch_warnings(record=True) as shown:
+        warnings.simplefilter("always")  # 平时会显示的警告都记下来；doctor 自己要把它们关掉
+        rows = {r["item"]: r for r in wf.doctor(make_cfg(tmp_path / "ws"))}
+    assert rows["funasr（中文识别、查错字，可选）"]["detail"] == "1.0.27"
+    assert not [w for w in shown if "fakemods" in str(w.filename)], [str(w.message) for w in shown]
+    assert "Warning" not in capfd.readouterr().err
+
+
 def test_whisper_download_shows_megabytes(tmp_path, monkeypatch):
     from voicetwin.data import asr
 

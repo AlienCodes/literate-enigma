@@ -1,0 +1,11 @@
+# 后台任务 b566fmtzg
+# 开始：10-02 02:50:56（北京时间）  操作编号：#1266  工具：Bash
+# 说明：Wait for no-VAD comparison embeddings
+# 结束状态：completed  Background command "Wait for no-VAD comparison embeddings" completed (exit code 0)
+# 命令：
+#   until [ "$(grep -c ' in ' <草稿目录>/sv/prod_bench_novad.log)" -ge 39 ] || grep -q Traceback <草稿目录>/sv/prod_bench_novad.log; do sleep 20; done; tail -2 <草稿目录>/sv/prod_bench_novad.log
+# ---- 输出 ----
+eres2net-base-zh rob_crop3: 86 in 9s
+eres2net-base-zh rob_crop15: 86 in 5s
+
+[exited with code 0]

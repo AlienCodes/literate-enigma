@@ -1,0 +1,39 @@
+v0.1.6 集成：合并 U1–U9，对齐接口，浏览器实测修复
+
+合并 v015/u1-progress、u5-errors、u9-gpu、u6-install（经 u3-workflows）、u8-proofcheck、
+u4-backends、u2-webui（git 层面没有冲突），然后修各部分之间对不上的地方：
+
+接口对齐
+- ⑤ 机器鉴别：wf.verify_files 的参数顺序是 generated 在前，网页原来按位置传反了；改成按名字传，
+  结果表读 pcts/sims/pass/rank/models.labels，单句音频显示「第 N 句：……」而不是一串字母数字；
+  默认比较最近一次的两个版本 + 每一句（和 wf.verify_defaults 一样）。去掉网页里的简易版鉴别。
+- 阶段表：生成按选的质量传 quality（「完美」多一步），素材准备传 overrides（会不会查错字），
+  查错字 / 鉴别 / 盲听用 workflows 里的阶段表；命令行也传 quality / overrides。
+- 训练计划预览：新增 wf.training_plan(cfg, voice, backend, **opts)，GPT-SoVITS 的 training_plan
+  加 quick=True（只用 nvidia-smi，不跑十几秒的 PyTorch）；打开「② 训练模型」、换声音、改高级设置时刷新；
+  高级设置加「DPO：自动/开/关」，命令行加 --dpo。训练完成说明不再重复显示训练方案。
+- 质量档的中文名只在 synth/engine.py 写一份（网页、命令行、报告一致：快速/均衡/最好/极致/完美；
+  「完美」用 R5d 的原话；「极致」不写「最慢」，因为「完美」更慢）。
+- 逐句结果表的「状态 / 提示」以生成引擎的判断为准（只有可靠的声纹模型才按 85% 淘汰、标红）；
+  只有简易 MFCC 时在摘要里如实说明；显示引擎小结（平均每句试了几次等）。
+- 「最终使用哪个版本」直接用 wf.choose_variant；已经是最终版本时什么都不做。
+- 声音库直接用 wf.voice_library（非默认引擎训练的写中文引擎名）；快速自检 wf.quick_check
+  改成每个问题一行中文（缺几个模型文件也只一行，指向「⬇️ 下载缺少的模型」）。
+- 后台任务登记表补上 proofcheck / speed / verify / blind 的页面和按钮名；报错里的「怎么办」
+  和网页上的字对上（「保留」填「是」）。
+- default_config.yaml：保存间隔 auto，写明 if_dpo: auto。版本号 0.1.6。
+- 修 U6 / U4 合并后坏掉的 download-models --check 测试（用完整的假整合包）。
+
+浏览器实测（gradio 4.24）发现并修好
+- 停止按钮：进度每 0.6 秒刷新时把「再点一次确认停止」改回「⏹ 停止」，只在第一次显示它。
+- gradio 4.24 流式输出：任务很快做完时头两条消息挤在一起，偶尔 Markdown 收到「差异」列表
+  （x.trim is not a function），之后整页不再刷新、换不了页。后台任务第二次产出至少隔 1.2 秒，
+  页面脚本再给列表补一个 trim 作保护。
+- 黄色（好一会儿没进度）时不再显示按旧速度算的「预计几点完成」。
+- 查错字 0 条时不再说「已在表格里标红」；两个版本百分比相同时不再说「高 0.0 个百分点」；
+  训练接着上次很快结束时不再写「用时 0.0 分钟」；没有显卡时的质量说明用「均衡」。
+
+新增 tests/test_integration.py（各部分之间的接口检查）。
+
+Co-Authored-By: Claude <模型> <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01PwXvLynw8dAvAfJEJKMB77

@@ -80,6 +80,89 @@ def version_status(version: str) -> Tuple[bool, str]:
     return False, (f"设置里用的是 {version}，不是最新的 {LATEST_VERSION}。怎么办：用记事本打开 config.yaml，把 "
                    f"backends → gptsovits 下面的 version 改成 {LATEST_VERSION}，保存后在 ② 训练模型 重新训练一次")
 
+# ---------------------------------------------------------------- 从模型文件本身读出版本
+# 和 GPT-SoVITS 自己判断的方法完全一样（GPT_SoVITS/process_ckpt.py 的 get_sovits_version_from_path_fast）：
+#   1. 官方底模：文件开头 8192 字节的 MD5 对照表；
+#   2. 训练出来的新格式模型：文件开头 2 个字节是版本标记（00=v1 01=v2 02=v3 03=v3 LoRA 04=v4 LoRA 05=v2Pro 06=v2ProPlus）；
+#   3. 旧格式（开头是 PK 的 zip）：按文件大小分 v1 / v2 / v3。
+# 对照表会再从整合包里的 process_ckpt.py 读一遍（以后官方出了新版本，例如 v5，标记会自动认出来）；
+# 两边都不认识的标记就如实显示"未知版本"，不猜。
+SOVITS_HEAD_VERSION: Dict[bytes, Tuple[str, bool]] = {
+    b"00": ("v1", False), b"01": ("v2", False), b"02": ("v3", False), b"03": ("v3", True),
+    b"04": ("v4", True), b"05": ("v2Pro", False), b"06": ("v2ProPlus", False),
+}
+SOVITS_HASH_VERSION: Dict[str, str] = {
+    "dc3c97e17592963677a4a1681f30c653": "v2",         # s2G488k.pth（v1 底模，官方按 v2 处理）
+    "43797be674a37c1c83ee81081941ed0f": "v3",         # s2Gv3.pth
+    "6642b37f3dbb1f76882b69937c95a5f3": "v2",         # s2G2333k.pth
+    "4f26b9476d0c5033e04162c486074374": "v4",         # s2Gv4.pth
+    "c7e9fce2223f3db685cdfa1e6368728a": "v2Pro",      # s2Gv2Pro.pth
+    "66b313e39455b57ab1b0bc0b239c9d0a": "v2ProPlus",  # s2Gv2ProPlus.pth
+}
+_GSV_MAPS_CACHE: Dict[str, Tuple[float, Dict[bytes, Tuple[str, bool]], Dict[str, str]]] = {}
+
+
+def gsv_version_maps(root: Optional[Path]) -> Tuple[Dict[bytes, Tuple[str, bool]], Dict[str, str]]:
+    """版本对照表：内置的 + 整合包 process_ckpt.py 里的（整合包的优先，新版本的标记也能认出来）。"""
+    heads, hashes = dict(SOVITS_HEAD_VERSION), dict(SOVITS_HASH_VERSION)
+    src = Path(root) / "GPT_SoVITS" / "process_ckpt.py" if root else None
+    try:
+        if src is None or not src.exists():
+            return heads, hashes
+        key, mtime = str(src), src.stat().st_mtime
+        cached = _GSV_MAPS_CACHE.get(key)
+        if cached is None or cached[0] != mtime:
+            import ast
+
+            text = src.read_text(encoding="utf-8", errors="replace")
+            h2v: Dict[bytes, Tuple[str, bool]] = {}
+            hsh: Dict[str, str] = {}
+            m = re.search(r"^head2version\s*=\s*(\{.*?\n\})", text, re.S | re.M)
+            if m:
+                for k, v in ast.literal_eval(m.group(1)).items():
+                    if isinstance(k, bytes) and isinstance(v, (list, tuple)) and len(v) >= 2:
+                        h2v[k] = (str(v[1]), bool(v[2]) if len(v) > 2 else False)
+            m = re.search(r"^hash_pretrained_dict\s*=\s*(\{.*?\n\})", text, re.S | re.M)
+            if m:
+                for k, v in ast.literal_eval(m.group(1)).items():
+                    if isinstance(v, (list, tuple)) and len(v) >= 2:
+                        hsh[str(k)] = str(v[1])
+            cached = (mtime, h2v, hsh)
+            _GSV_MAPS_CACHE[key] = cached
+        heads.update(cached[1])
+        hashes.update(cached[2])
+    except Exception as exc:  # 读不懂整合包的文件：用内置的对照表
+        log.debug(f"读取 process_ckpt.py 的版本对照表失败：{exc}")
+    return heads, hashes
+
+
+def detect_sovits_version(path: Any, root: Optional[Path] = None) -> Dict[str, Any]:
+    """读 SoVITS 模型文件，判断它是哪个 GPT-SoVITS 版本。只读文件开头几 KB，很快。
+
+    返回 {"version": "v2ProPlus" / None, "lora": bool, "how": 判断依据（中文）, "file": 路径}。"""
+    p = Path(str(path or ""))
+    out: Dict[str, Any] = {"version": None, "lora": False, "how": "", "file": str(p)}
+    if not str(path or "") or not p.is_file():
+        out["how"] = "找不到模型文件"
+        return out
+    heads, hashes = gsv_version_maps(root)
+    with open(p, "rb") as f:
+        head = f.read(8192)
+    digest = hashlib.md5(head).hexdigest()
+    if digest in hashes:
+        out.update(version=hashes[digest], how="官方底模（按文件内容核对）")
+    elif head[:2] in heads:
+        ver, lora = heads[head[:2]]
+        out.update(version=ver, lora=lora, how="模型文件里的版本标记")
+    elif head[:2] == b"PK":
+        size = p.stat().st_size
+        out.update(version="v1" if size < 82978 * 1024 else ("v2" if size < 700 * 1024 * 1024 else "v3"),
+                   how="旧格式模型（按文件大小判断）")
+    else:
+        out["how"] = f"不认识的版本标记 {head[:2]!r}（可能是更新的 GPT-SoVITS 版本）"
+    return out
+
+
 #: 模型文件夹里必须有的文件：每一组里至少要有一个（下载到一半的 *.part 不算）
 DIR_REQUIREMENTS: Dict[str, Tuple[Tuple[str, ...], ...]] = {
     BERT_DIR: (("config.json",), ("pytorch_model.bin", "model.safetensors"), ("tokenizer.json", "vocab.txt")),
@@ -1175,6 +1258,24 @@ class GPTSoVITSBackend(Backend):
             if cand.exists():
                 return cand
         return None
+
+    def model_version_info(self) -> Dict[str, Any]:
+        """生成时实际会用的 SoVITS 模型是哪个版本：从模型文件本身读出来（不是照抄设置）。
+
+        返回 detect_sovits_version 的结果，再加 source（"trained" 训练好的 / "pretrained" 还没训练、用底模 /
+        "external" 用的是别处的 GPT-SoVITS 服务，读不到文件）和 configured（设置里的版本）。"""
+        info: Dict[str, Any] = {"version": None, "lora": False, "how": "", "file": "", "configured": self.version}
+        sel = self.selected_checkpoint()
+        path = self._locate_weight(str(sel.get("sovits") or "")) if sel else None
+        if path is not None:
+            info.update(detect_sovits_version(path, self.root), source="trained")
+        elif self.external_url or self.root is None:
+            info.update(source="external", how="用的是别处的 GPT-SoVITS 服务，读不到模型文件")
+        else:
+            info.update(detect_sovits_version(self.p(PRETRAINED_SOVITS[self.version]), self.root), source="pretrained")
+            info["trained_missing"] = bool(sel)  # 训练过，但模型文件找不到了（生成时也会退回底模）
+        info["configured"] = self.version
+        return info
 
     def checkpoints(self, max_sovits: Optional[int] = None, max_gpt: Optional[int] = None) -> List[Dict[str, Any]]:
         """自动挑选要试的模型组合：SoVITS 默认 4 个 × GPT 3 个，从早到晚均匀挑（最后一轮一定在内）。

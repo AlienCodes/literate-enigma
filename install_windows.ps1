@@ -35,14 +35,16 @@ function Ask([string]$prompt, [string]$default) {
     return "$answer".Trim()
 }
 function Pip($py, [string[]]$pipArgs) {
-    & $py -m pip install --disable-pip-version-check -i $Mirror @pipArgs
+    # --no-warn-script-location：不显示"voicetwin.exe 不在 PATH 里"的英文警告（程序不靠 PATH 启动，这个警告没有影响）
+    & $py -m pip install --disable-pip-version-check --no-warn-script-location -i $Mirror @pipArgs
     if ($LASTEXITCODE -ne 0) {
         Write-Host "镜像源安装失败，改用官方源重试……" -ForegroundColor Yellow
-        & $py -m pip install --disable-pip-version-check @pipArgs
+        & $py -m pip install --disable-pip-version-check --no-warn-script-location @pipArgs
         if ($LASTEXITCODE -ne 0) { Fail "安装失败：pip install $($pipArgs -join ' ')。请检查网络后重新运行安装程序。" }
     }
 }
 function Test-NonAsciiOrSpace([string]$path) { return ($path -match "[^\x00-\x7F]" -or $path -match " ") }
+function Test-NonAscii([string]$path) { return ($path -match "[^\x00-\x7F]") }
 
 # ---------------------------------------------------------------- 找 GPT-SoVITS 整合包
 function Test-GsvRoot([string]$p) {
@@ -356,15 +358,29 @@ $shortcutOk = $false
 if (-not $NoShortcut) {
     try {
         $desktop = [Environment]::GetFolderPath("Desktop")
+        $target = Join-Path $Here "start_webui.bat"
+        # Windows 的快捷方式组件（WScript.Shell）在「非 Unicode 程序的语言」不是中文的电脑上，会把中文文件名变成 ????，
+        # 然后保存失败（Unable to save shortcut "...\???? VoiceTwin.lnk"）。所以先用英文文件名建好，
+        # 再用 PowerShell（支持中文）改成中文名、移到桌面（桌面在 OneDrive 里也可以）。
+        $tmpDir = $Here
+        if (Test-NonAscii $tmpDir) { $tmpDir = [System.IO.Path]::GetTempPath() }
+        $tmpLnk = Join-Path $tmpDir "VoiceTwin-shortcut.lnk"
         $shell = New-Object -ComObject WScript.Shell
-        $lnk = $shell.CreateShortcut((Join-Path $desktop "声音分身 VoiceTwin.lnk"))
-        $lnk.TargetPath = Join-Path $Here "start_webui.bat"
+        $lnk = $shell.CreateShortcut($tmpLnk)
+        $lnk.TargetPath = $target
         $lnk.WorkingDirectory = $Here
         $lnk.Save()
+        # 安装文件夹的路径里有中文时，快捷方式里记下的位置也可能变成 ????：读回来核对，不对就不放到桌面
+        if (-not (Test-Path -LiteralPath $shell.CreateShortcut($tmpLnk).TargetPath)) {
+            Remove-Item -LiteralPath $tmpLnk -Force -ErrorAction SilentlyContinue
+            throw "安装文件夹的路径里有中文（$Here）"
+        }
+        Move-Item -LiteralPath $tmpLnk -Destination (Join-Path $desktop "声音分身 VoiceTwin.lnk") -Force
         $shortcutOk = $true
         Write-Host "已在桌面创建快捷方式「声音分身 VoiceTwin」" -ForegroundColor Green
     } catch {
-        Write-Host "没能在桌面创建快捷方式（$($_.Exception.Message)），常见原因是安全软件拦截。" -ForegroundColor Yellow
+        if ($tmpLnk) { Remove-Item -LiteralPath $tmpLnk -Force -ErrorAction SilentlyContinue }
+        Write-Host "没能在桌面创建快捷方式（$($_.Exception.Message)）。" -ForegroundColor Yellow
         Write-Host "  自己创建：在 $Here 里右键 start_webui.bat → 发送到 → 桌面快捷方式（Windows 11 先点「显示更多选项」）" -ForegroundColor Yellow
         Write-Host "  不创建也可以：以后直接双击 $Here\start_webui.bat" -ForegroundColor Yellow
     }

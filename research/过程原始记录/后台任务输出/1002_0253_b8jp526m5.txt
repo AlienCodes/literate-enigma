@@ -1,0 +1,12 @@
+# 后台任务 b8jp526m5
+# 开始：10-02 02:32:04（北京时间）  操作编号：#1246  工具：Bash
+# 说明：Wait for product benchmark embeddings
+# 结束状态：completed  Background command "Wait for product benchmark embeddings" completed (exit code 0)
+# 命令：
+#   S=<草稿目录>/sv; until [ "$(grep -c ' in ' $S/prod_bench.log)" -ge 52 ] || grep -q Traceback $S/prod_bench.log; do sleep 20; done; tail -3 $S/prod_bench.log
+# ---- 输出 ----
+campplus-zh-en rob_noisy: 86 in 8s
+campplus-zh-en rob_crop3: 86 in 8s
+campplus-zh-en rob_crop15: 86 in 6s
+
+[exited with code 0]

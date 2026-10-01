@@ -18,6 +18,7 @@ import shutil
 import subprocess
 import sys
 import time
+import warnings
 from pathlib import Path
 from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple
 
@@ -233,6 +234,59 @@ def list_voices(cfg: Config) -> List[Dict[str, Any]]:
         out.append({"voice": proj.voice, "minutes": summary.get("minutes_kept"), "clips": summary.get("clips_kept"),
                     "trained": [k for k, v in models.items() if v.get("selected")],
                     "profile": proj.profile_path.exists()})
+    return out
+
+
+def model_badge(cfg: Config, voice: str = "") -> Dict[str, Any]:
+    """网页顶部「声音分身 VoiceTwin v0.1.x」右边显示的模型型号。
+
+    GPT-SoVITS：从这个声音生成时实际要用的 SoVITS 模型文件里读出版本（训练好的模型；还没训练就读底模），
+    不照抄设置；读不出来就如实说读不出来。其他引擎（不需要训练）显示引擎名字。
+    返回 {"text": "GPT-SoVITS v2ProPlus", "note": "", "detail": 悬停时的说明, "version": "v2ProPlus" / None,
+          "source": "trained" / "pretrained" / "external" / "", "level": "ok" / "warn"}。"""
+    from voicetwin.backends.base import get_backend
+
+    name = str(cfg.get("backend") or "gptsovits").lower()
+    out: Dict[str, Any] = {"text": "", "note": "", "detail": "", "version": None, "source": "", "level": "ok"}
+    probe: Optional[Project] = None
+    try:
+        proj: Optional[Project] = None
+        if voice:
+            try:
+                proj = Project(cfg, voice)
+            except ValueError:
+                proj = None
+        if proj is None or not proj.exists:  # 还没有这个声音：用临时目录看底模，不在声音库里多建一个文件夹
+            proj = probe = Project(cfg, f"__model_badge_{time.time_ns()}__")
+        backend = get_backend(name, cfg, proj)
+        label = str(getattr(backend, "display_name", name))
+        info = backend.model_version_info() if hasattr(backend, "model_version_info") else None
+        if info is None:
+            out.update(text=label, detail=f"{label}：零样本克隆，不需要训练（没有 GPT-SoVITS 那样的模型版本）")
+            return out
+        ver, src = info.get("version"), info.get("source", "")
+        out.update(version=ver, source=src)
+        fname = Path(str(info.get("file") or "")).name
+        if ver:
+            out["text"] = f"{label} {ver}"
+            out["detail"] = f"从模型文件读出来的版本（{info.get('how')}）：{fname}"
+            if src == "pretrained":
+                out["note"] = ("找不到训练好的模型文件，现在用的是底模" if info.get("trained_missing")
+                               else "底模，这个声音还没训练")
+                out["level"] = "warn" if info.get("trained_missing") else out["level"]
+            configured = str(info.get("configured") or "")
+            if configured and configured != ver:
+                out["level"] = "warn"
+                out["detail"] += f"；设置里的版本是 {configured}，重新训练后会换成 {configured}"
+        else:
+            out.update(text=f"{label} 版本读不出来", level="warn", detail=str(info.get("how") or ""))
+            if fname:
+                out["detail"] += f"：{fname}"
+    except Exception as exc:
+        out.update(text=f"{name} 版本读不出来", level="warn", detail=_explain_title(exc))
+    finally:
+        if probe is not None:
+            shutil.rmtree(probe.root, ignore_errors=True)
     return out
 
 
@@ -1082,6 +1136,14 @@ def sv_status(cfg: Config) -> Tuple[Optional[bool], str]:
 
 
 def doctor(cfg: Config) -> List[Dict[str, Any]]:
+    # 整合包里的第三方库（funasr、rotary_embedding_torch 等）导入时会打印英文警告（SyntaxWarning、FutureWarning），
+    # 夹在检查结果前面看着像出错，其实不影响使用：检查期间不显示
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        return _doctor(cfg)
+
+
+def _doctor(cfg: Config) -> List[Dict[str, Any]]:
     from voicetwin.backends.base import available_backends, get_backend
 
     rows: List[Dict[str, Any]] = []

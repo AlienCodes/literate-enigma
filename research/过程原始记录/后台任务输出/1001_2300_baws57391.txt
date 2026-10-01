@@ -1,0 +1,21 @@
+# 后台任务 baws57391
+# 开始：10-01 22:58:22（北京时间）  操作编号：#824  工具：Bash
+# 说明：Find sparse pages and render thumbnails
+# 结束状态：failed  Background command "Find sparse pages and render thumbnails" failed with exit code 127
+# 命令：
+#   SP=<草稿目录>; cd <仓库>; python3 -c "
+#   from pypdf import PdfReader
+#   r=PdfReader('docs/声音分身VoiceTwin使用手册.pdf')
+#   for i,p in enumerate(r.pages):
+#       t=p.extract_text() or ''
+#       n=len(t.replace(' ','').replace('\n',''))
+#       imgs=len(p.images) if hasattr(p,'images') else 0
+#       if n<250: print('page',i+1,'chars',n,'imgs',imgs, repr(t.strip()[:80]))
+#   "; mkdir -p $SP/man16 && rm -f $SP/man16/*.png && pdftoppm -r 18 -png docs/声音分身VoiceTwin使用手册.pdf $SP/man16/p && ls $SP/man16 | wc -l
+# ---- 输出 ----
+page 15 chars 89 imgs 0 '声音分身 VoiceTwin 使用手册\n第 15 页 / 共 103 页\n已安装 7-Zip（2.5 节）\n网络通畅，接下来 1 小时左右可以持续下载\n准备好了'
+page 38 chars 173 imgs 0 '声音分身 VoiceTwin 使用手册\n第 38 页 / 共 103 页\n素材时长 大约用时（有 NVIDIA 显卡）\n1 小时 10~30 分钟\n3 小时 3'
+page 81 chars 121 imgs 0 '声音分身 VoiceTwin 使用手册\n第 81 页 / 共 103 页\n不要随意使用 --share\nvoicetwin.bat webui --share '
+/bin/bash: line 17: pdftoppm: command not found
+
+[exited with code 127]

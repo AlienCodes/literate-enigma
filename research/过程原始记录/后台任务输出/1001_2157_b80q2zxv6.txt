@@ -1,0 +1,40 @@
+# 后台任务 b80q2zxv6
+# 开始：10-01 21:48:36（北京时间）  操作编号：#687  工具：Bash
+# 说明：Resume screenshot capture from generate step
+# 结束状态：completed  Background command "Resume screenshot capture from generate step" completed (exit code 0)
+# 命令：
+#   SP=<草稿目录>; cd $SP/m24d && python3 - <<'EOF'
+#   p='capture_docs.py'
+#   s=open(p).read()
+#   s=s.replace("""    pg.wait_for_timeout(4000)
+#   
+#       # ------------------------------------------------------------ a:""","""    pg.wait_for_timeout(4000)
+#       if ONLY and "a" not in ONLY:  # 从中间开始时也要先选中声音
+#           v = pg.get_by_label("声音名称（新建请直接输入名字）")
+#           v.click()
+#           v.fill("我的声音")
+#           v.press("Enter")
+#           pg.keyboard.press("Escape")
+#           pg.mouse.click(5, 5)
+#           pg.wait_for_timeout(2500)
+#   
+#       # ------------------------------------------------------------ a:""")
+#   open(p,'w').write(s)
+#   EOF
+#   (timeout 5400 python3 capture_docs.py e f g h i > capture2.out 2>&1; echo "exit $?" >> capture2.out) ; tail -30 capture2.out
+# ---- 输出 ----
+Terminated
+  checked radios: ['WAV（音质最好，剪映/后期用）', '完美：每句最多试 20 次、严格检查漏字错字，去掉杂音，句子之间完全静音，尽最大可能接近你本人（最慢）']
+saved 05_generate_form.png {'x': 32, 'y': 643, 'width': 1217, 'height': 843}
+saved 05b_speed_slider.png {'x': 755, 'y': 1037, 'width': 489, 'height': 222}
+  bar -> done done 100% (2s)
+saved 06_generate_done.png {'x': 33, 'y': 1436, 'width': 1214, 'height': 439}
+saved 06c_two_versions.png {'x': 34, 'y': 2067, 'width': 1212, 'height': 197}
+saved 06b_download.png {'x': 33, 'y': 2523, 'width': 1214, 'height': 170}
+saved 06d_result_table.png {'x': 36, 'y': 2812, 'width': 1208, 'height': 421}
+saved 07_evaluate.png {'x': 20, 'y': 268, 'width': 1240, 'height': 765}
+  bar -> done done 100% (2s)
+saved 08_verify.png {'x': 33, 'y': 555, 'width': 1214, 'height': 1153}
+exit 143
+
+[exited with code 0]

@@ -1,0 +1,19 @@
+# 后台任务 bakzl2rul
+# 开始：10-02 02:01:01（北京时间）  操作编号：#1228  工具：Bash
+# 说明：Wait for cohort build to finish
+# 结束状态：completed  Background command "Wait for cohort build to finish" completed (exit code 0)
+# 命令：
+#   until grep -q "已写入\|Error\|Traceback" <草稿目录>/sv/cohort_build.log; do sleep 10; done; tail -12 <草稿目录>/sv/cohort_build.log
+# ---- 输出 ----
+484 人，平均人声 8.2 秒
+redimnet2-b6: (484, 192)
+campplus-zh-en: (484, 192)
+eres2netv2-zh: (484, 192)
+eres2net-base-zh: (484, 512)
+campplus-zh: (484, 192)
+redimnet2-b3: (484, 192)
+resnet34-cnceleb: (484, 256)
+去掉重复的人 4 个：zh_modelscope_FunASR__web-pages_product-site_assets_audio_speech-sample.wav、idx_Speaker_5.wav、fun_repos/FunAudioLLM_FunAudioLLM.github.io/audios/s2st/zh/zh_prompt.wav、fun_repos/FunAudioLLM_FunAudioLLM.github.io/cosyvoice2/audios/1.ZeroShot/ZH_2_prompt.wav
+已写入 <草稿目录>/sv/sv_cohort_all.npz（1523 KB）
+
+[exited with code 0]

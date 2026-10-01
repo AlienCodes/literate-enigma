@@ -1,0 +1,86 @@
+[13.2] CHECK PASS a.version_in_header 🎙️ 声音分身 VoiceTwin v0.1.6
+
+用你自己的讲课视频/录音，复刻你的音色、语气和节奏（中文 + 英文）
+[13.2] CHECK PASS a.gpu_badge_error_in_sandbox ❌ 显卡没有正常工作：没有找到 NVIDIA 显卡（或者显卡驱动没装） 怎么办：没有 N 卡（NVIDIA 显卡）也能用，但训练会非常慢（可能要十几个小时）。如
+[13.2] CHECK PASS a.voice_library_header 🎙️ 我的声音库（共 0 个）
+saved <草稿目录>/integ_shots/a_header_gpu_library.png
+saved <草稿目录>/integ_shots/b1_prepare_running.png
+  mid-run: status=running level=ok pct=5
+[98.5] CHECK PASS b.prepare_bar_seen_running
+[98.5] CHECK PASS b.prepare_done status=done level=done pct=100
+[101.0] CHECK PASS b.done_bar_text ✅ 全部完成！用时 1 分 23 秒
+100%
+「准备素材」已经做好了 · 完成时间 14:31
+  done bar color: rgb(22, 163, 74) | none
+saved <草稿目录>/integ_shots/b2_prepare_done.png
+[101.5] CHECK PASS b.summary_md
+[101.5] CHECK PASS b.count_line 📊 一共 228 条片段：保留 228 条（16.4 分钟），不保留 0 条 英文 60 条，中文 168 条；其中 20 条留作「考试题」（用来自动挑选最像你的模型）
+[101.5] CHECK PASS b.suspect_column
+[101.5] CHECK PASS b.table_numbered_from_1 ['1', '2', '3', '4', '5']
+saved b3_count_and_table.png
+saved <草稿目录>/integ_shots/b4_prepare_summary.png
+changed: 第1课_07cc78_0001 第1课_07cc78_0003
+[105.7] CHECK PASS c.proof_button_visible
+[107.3] CHECK PASS c.proofcheck_done status=done pct=100
+[109.4] CHECK PASS c.proofcheck_message ✅ 检查完了：一共查了 228 条，其中 
+2
+ 条可能有错（已在表格里标红）
+saved <草稿目录>/integ_shots/c_proofcheck_done.png
+  count after proofcheck: 📊 一共 228 条片段：保留 228 条（16.4 分钟），不保留 0 条，其中 2 条可能有错（已标红） 英文 60 条，中文 168 条；其中 20 条留作「考试题」（用来自动挑选最像你的模型）
+  red spans in table: 3
+[110.1] CHECK PASS c.red_marks_present 3 red spans
+[112.7] CHECK PASS c.filter_only_suspects 2 rows after filter
+saved <草稿目录>/integ_shots/c2_red_marked_rows.png
+[115.9] CHECK PASS c.diff_panel ⚠️ 可能有错：「VFIXED」像是听错的英文（不是常见的缩写）
+识别 A（现在的文字）：今天我们来学习 VFIXED 里面的列表推导式。
+识别 B：（没有建议。请听一听录音，有错就直接在「文字」列里改）
+saved <草稿目录>/integ_shots/c3_diff_panel.png
+[118.4] CHECK PASS d.plan_preview 电脑会自动这样训练
+saved <草稿目录>/integ_shots/d1_train_running.png
+  mid-run: status=running level=ok pct=10
+[237.3] CHECK PASS d.train_bar_seen_running
+[237.3] CHECK PASS d.train_done status=done level=done pct=100
+saved <草稿目录>/integ_shots/d2_train_done.png
+[240.4] CHECK PASS d.train_done_md
+  checked radios on 3: ['WAV（音质最好，剪映/后期用）', '均衡（每句做 3 遍，挑最像你的）']
+[241.7] CHECK PASS e.default_quality_balanced_without_gpu ['WAV（音质最好，剪映/后期用）', '均衡（每句做 3 遍，挑最像你的）']
+saved <草稿目录>/integ_shots/e0_generate_tab.png
+saved <草稿目录>/integ_shots/e1_generate_running.png
+  mid-run: status=running level=ok pct=41
+[246.3] CHECK PASS e.generate_bar_seen_running
+[246.3] CHECK PASS e.generate_done status=done pct=100
+saved <草稿目录>/integ_shots/e2_generate_done.png
+[249.4] CHECK PASS e.result_table_1_based ['1', '2', '3', '4']
+saved <草稿目录>/integ_shots/e3_result_table.png
+[252.1] CHECK PASS f.doctor_table_numbered ['1', '2', '3', '4', '5', '6']
+[252.1] CHECK PASS f.doctor_total 共 12 项
+saved <草稿目录>/integ_shots/f_doctor.png
+[255.3] CHECK PASS g.error_bar status=error level=error
+  error bar color: rgb(220, 38, 38) | none
+[256.8] CHECK PASS g.error_bar_has_advice ❌ 没有完成：停在第 1 步「启动合成引擎」 / 0% / 原因：讲稿是空的 / 怎么办：在「讲稿」框里粘贴文字，或者上传 txt / Word 文件。 / 已用 0 秒 · 详细的出错信息在下方「详细过程」里，需要时可以复制给帮你的人。
+[256.8] CHECK PASS g.friendly_md ❌ 生成没有完成：讲稿是空的
+
+怎么办：在「讲稿」框里粘贴文字，或者上传 txt / Word 文件。
+
+详细记录在：<会话临时目录>
+saved <草稿目录>/integ_shots/g_error_red_bar.png
+  tab5 box before click: {'x': 558.0625, 'y': 406.484375, 'width': 79.015625, 'height': 30} scrollY 0
+  selected after 1st click: ['⑤ 鉴别']
+  before verify: {'tabs': ['① 准备素材', '② 训练模型', '③ 生成讲课音频', '④ 试试像不像（可选）', '⑤ 鉴别 *', '🩺 环境检查'], 'btns': ['🔄 重新检查显卡', '🔄 刷新声音列表', '🎙️ 我的声音库（共 1 个）\n▼', '① 准备素材', '② 训练模型', '③ 生成讲课音频', '④ 试试像不像（可选）', '⑤ 鉴别', '🩺 环境检查', '开始鉴别', '生成盲听测试']}
+[259.8] CHECK PASS h.verify_done status=done
+[261.4] CHECK PASS h.verify_table_numbered ['1', '2', '3', '4', '5']
+saved <草稿目录>/integ_shots/h_verify.png
+saved <草稿目录>/integ_shots/j1_perfect_running.png
+  mid-run: status=running level=ok pct=46
+[267.6] CHECK PASS j.perfect_done status=done pct=100
+[270.1] CHECK PASS j.two_versions_md 🎧 这次做了两个版本，听一听，选你更喜欢的 / 版本 A：未去杂音（像你本人 72.3%）　⭐ 推荐：更像你的原声 / 版本 B：去杂音（像你本人 72.3%） /  / ⭐ 推荐：版本 A，更像你的原声（两个版本几乎一样像，听哪个顺耳就用哪个） /  / 两个版本的文字、停顿和字幕完全一样，只是 B 去掉了轻微的杂音。相似度是声纹模型自动打分，越高越像，但不是绝对精确，最终以耳朵为准。
+  version labels: ['版本 A：未去杂音（像你本人 72.3%）', '版本 B：去杂音（像你本人 72.3%）', '版本 A：未去杂音', '版本 B：去杂音']
+[270.1] CHECK PASS j.version_players
+saved <草稿目录>/integ_shots/j2_two_versions.png
+[271.4] CHECK PASS j.choose_variant_b
+saved <草稿目录>/integ_shots/j3_chose_b.png
+[278.0] CHECK PASS a.voice_library_after_prepare 🎙️ 我的声音库（共 1 个）
+[278.0] CHECK PASS a.library_numbered ['1']
+saved <草稿目录>/integ_shots/a2_header_after_tasks.png
+SUMMARY 37/37 passed; failed: []
+exit 0

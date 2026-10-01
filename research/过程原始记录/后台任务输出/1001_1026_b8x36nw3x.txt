@@ -1,0 +1,10 @@
+# 后台任务 b8x36nw3x
+# 开始：10-01 10:24:32（北京时间）  操作编号：#559  工具：Bash
+# 说明：Restart server; run prepare+save and refresh+save scenarios
+# 结束状态：completed  Background command "Restart server; run prepare+save and refresh+save scenarios" completed (exit code 0)
+# 命令：
+#   SP=<草稿目录>; cd $SP/m24 && kill $(cat webui.pid) 2>/dev/null; sleep 1; rm -rf ws count.png; (nohup $SP/gsv39/bin/python run_webui.py > webui.log 2>&1 & echo $! > webui.pid); for i in $(seq 1 60); do curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:7871/ 2>/dev/null | grep -q 200 && break; sleep 2; done; echo started; (timeout 1500 python3 count_check.py > count_check.out 2>&1; echo "count_check exit $?" >> count_check.out; timeout 300 python3 save_check.py fresh >> count_check.out 2>&1; echo "tracebacks: $(grep -c Traceback webui.log)" >> count_check.out) 
+# ---- 输出 ----
+started
+
+[exited with code 0]

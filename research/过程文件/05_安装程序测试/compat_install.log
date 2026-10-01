@@ -1,0 +1,35 @@
+
+[notice] A new release of pip is available: 24.0 -> 26.2.1
+[notice] To update, run: python3 -m pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.0 -> 26.2.1
+[notice] To update, run: python3 -m pip install --upgrade pip
+EXIT=0
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<草稿目录>/compat/lib/python3.11/site-packages/gradio/__init__.py", line 3, in <module>
+    import gradio._simple_templates
+  File "<草稿目录>/compat/lib/python3.11/site-packages/gradio/_simple_templates/__init__.py", line 1, in <module>
+    from .simpledropdown import SimpleDropdown
+  File "<草稿目录>/compat/lib/python3.11/site-packages/gradio/_simple_templates/simpledropdown.py", line 6, in <module>
+    from gradio.components.base import Component, FormComponent
+  File "<草稿目录>/compat/lib/python3.11/site-packages/gradio/components/__init__.py", line 1, in <module>
+    from gradio.components.annotated_image import AnnotatedImage
+  File "<草稿目录>/compat/lib/python3.11/site-packages/gradio/components/annotated_image.py", line 14, in <module>
+    from gradio.components.base import Component
+  File "<草稿目录>/compat/lib/python3.11/site-packages/gradio/components/base.py", line 20, in <module>
+    from gradio.blocks import Block, BlockContext
+  File "<草稿目录>/compat/lib/python3.11/site-packages/gradio/blocks.py", line 39, in <module>
+    from gradio import (
+  File "<草稿目录>/compat/lib/python3.11/site-packages/gradio/networking.py", line 15, in <module>
+    from gradio.routes import App  # HACK: to avoid circular import # noqa: F401
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<草稿目录>/compat/lib/python3.11/site-packages/gradio/routes.py", line 69, in <module>
+    from gradio import ranged_response, route_utils, utils, wasm_utils
+  File "<草稿目录>/compat/lib/python3.11/site-packages/gradio/route_utils.py", line 53, in <module>
+    from gradio.helpers import EventData
+  File "<草稿目录>/compat/lib/python3.11/site-packages/gradio/helpers.py", line 26, in <module>
+    from gradio import components, oauth, processing_utils, routes, utils, wasm_utils
+  File "<草稿目录>/compat/lib/python3.11/site-packages/gradio/oauth.py", line 13, in <module>
+    from huggingface_hub import HfFolder, whoami
+ImportError: cannot import name 'HfFolder' from 'huggingface_hub' (<草稿目录>/compat/lib/python3.11/site-packages/huggingface_hub/__init__.py)

@@ -1,0 +1,87 @@
+            if st.get("busy"):
+                yield self._o(O, train_bar=st.get("bar", ""), train_log=text, **idle)
+                return
+            plan = _plan_line(text) or plan
+            if not st.get("done"):
+                running = dict(train_btn=self._busy_btn(busy if kind == "train" else TRAIN_BTN),
+                               select_btn=self._busy_btn(busy if kind == "select" else SELECT_BTN),
+                               train_stop=stop_once(), train_next=_btn(TRAIN_NEXT, visible=False))
+                yield self._o(O, train_bar=st.get("bar", ""), train_log=text,
+                              train_plan=_plan_md(plan) if plan else _upd(), **running)
+                continue
+            ok = "value" in st and not st.get("error")
+            info = st.get("value") or {}
+            if self._missed(attach, st):
+                md = ATTACH_MISSED_MD
+            elif ok and kind == "train":
+                md = _train_done_md(info, plan, show_plan=False)
+                _info("✅ 训练完成！可以去「③ 生成讲课音频」了")
+            elif ok:
+                md = _select_done_md(info)
+                _info("✅ 已重新挑好最像你的模型")
+            else:
+                md = self._final_md(st, what, v)
+            final_plan = _plan_md(plan or (_plan_text(info) if ok else ""))
+            yield self._o(O, train_bar=st.get("bar", ""), train_log=text, train_md=md,
+                          voice_status=_voice_status_md(self.cfg, v), train_next=_btn(TRAIN_NEXT, visible=ok),
+                          train_plan=final_plan or _upd(), **idle)
+
+    @staticmethod
+    def _train_opts(s_ep: Any, g_ep: Any, q_ep: Any, bs: Any, dpo: Any = "auto") -> Dict[str, Any]:
+        """高级设置 → 训练选项（0 / 空 = 自动，交给引擎按显卡和素材决定）。"""
+        opts: Dict[str, Any] = {"sovits_epochs": _int(s_ep) or None, "gpt_epochs": _int(g_ep) or None,
+                                "epochs": _int(q_ep) or None, "batch_size": _int(bs) or None}
+        d = str(dpo or "auto").strip().lower()
+        opts["if_dpo"] = True if d == "on" else (False if d == "off" else None)
+        return opts
+
+    def do_train(self, voice: Any, backend: Any, s_ep: Any, g_ep: Any, q_ep: Any, bs: Any,
+                 dpo: Any = "auto") -> Iterator[Tuple[Any, ...]]:
+        yield from self._train_common("train", voice, backend, self._train_opts(s_ep, g_ep, q_ep, bs, dpo))
+
+    def do_select(self, voice: Any, backend: Any) -> Iterator[Tuple[Any, ...]]:
+        yield from self._train_common("select", voice, backend, {})
+
+    # ------------------------------------------------------------------ ③ 生成
+    def on_script_upload(self, f: Any, current_name: Any = "") -> Tuple[Any, Any, Any, Any]:
+        """上传讲稿：txt / md / docx 的内容直接放进讲稿框；srt / vtt 保留文件（按字幕时间轴生成）。"""
+        path = _path_of(f)
+        if not path:
+            return _upd(), _upd(), "", _upd()
+        p = Path(path)
+125:DPO_CHOICES = [("自动（推荐）", "auto"), ("开", "on"), ("关", "off")]
+892:_PLAN_RE = re.compile(r"(显存.*(batch|每批|轮|DPO))|(自动.*(训练方案|选择).*(轮|batch))", re.I)
+2005:                           dpo: Any = "auto") -> str:
+2011:                                        **self._train_opts(s_ep, g_ep, 0, bs, dpo))
+2079:    def _train_opts(s_ep: Any, g_ep: Any, q_ep: Any, bs: Any, dpo: Any = "auto") -> Dict[str, Any]:
+2083:        d = str(dpo or "auto").strip().lower()
+2084:        opts["if_dpo"] = True if d == "on" else (False if d == "off" else None)
+2088:                 dpo: Any = "auto") -> Iterator[Tuple[Any, ...]]:
+2089:        yield from self._train_common("train", voice, backend, self._train_opts(s_ep, g_ep, q_ep, bs, dpo))
+2647:                        c["dpo"] = gr.Radio(DPO_CHOICES, value="auto", label="DPO（GPT-SoVITS 的实验功能）",
+    is_half: true             # 显卡不支持半精度（如 10 系以前）改成 false
+    startup_timeout: 600
+    train:
+      # 下面都写 auto 就行：电脑按显卡（显存）和素材多少自动决定，训练开始时会打印一行「训练计划：……」说明为什么。
+      # 想自己指定时填数字（网页「② 训练模型」→「高级设置」、命令行 --sovits-epochs 等也可以临时改）。
+      sovits_epochs: auto     # auto: 素材 <30 分钟用 8 轮，更多用 12 轮（练太多反而会变差，训练完会自动挑最像的那一轮）
+      gpt_epochs: auto        # auto: 15 轮
+      batch_size: auto        # auto: 按显存自动计算（显存一半左右，最多 12；显存不够时会自动减半再试一次）
+      sovits_save_every: auto # auto: 每个模型存 5 个左右，训练完从中自动挑最像你的（老版本的 4 / 5 也当作 auto）
+      gpt_save_every: auto
+      if_dpo: auto            # DPO（GPT-SoVITS 的实验功能）：auto = 显存 ≥22GB、素材干净、错字很少时才开；
+                              # true 强制开（语气训练慢 2～4 倍，显存不够会出错），false 强制关
+      text_low_lr_rate: 0.4
+      gpu: "0"
+    infer:
+      top_k: 15
+      top_p: 1.0
+      temperature: 1.0
+      repetition_penalty: 1.35
+      aux_refs: 2             # 额外参考音频数量（v2/v2Pro：把几条参考的音色平均一下）。快速/均衡/最好用这个数；
+                              # 极致/完美自动用 3 条（显存小于 8GB 用 2 条）。说实话：它几乎不占显存，效果提升也有限
+docs/manual/build/quickstart.html:96:<p><img src="data:image/png;base64,<长串数据已省略>" alt="准备素材" /></p>
+docs/manual/build/quickstart.html:108:<p><img src="data:image/png;base64,<长串数据已省略>" alt="生成讲课音频" /></p>
+docs/manual/build/quickstart.html:110:<p><img src="data:image/png;base64,<长串数据已省略>" alt="试听和下载" /></p>
+README.md:278:国内网络建议：语音识别模型设置环境变量 `HF_ENDPOINT=https://hf-mirror.com` 后再运行；
+README.md:278:国内网络建议：语音识别模型设置环境变量 `HF_ENDPOINT=https://hf-mirror.com` 后再运行；

@@ -148,7 +148,9 @@ for e in range(epoch_str, t["epochs"] + 1):
             open(os.path.join(ckpt_dir, "D_233333333333.pth"), "w").write(str(e))
         if t.get("if_save_every_weights"):
             ck = f"{name}_e{e}_s{global_step}"
-            open(f"{cfg['save_weight_dir']}/{ck}.pth", "wb").write(b"x" * 64)
+            # 和真的一样：Pro / v3 / v4 的模型文件开头 2 个字节是版本标记（process_ckpt.py 的 my_save2），v2 是 zip（PK）
+            head = {"v3": b"03", "v4": b"04", "v2Pro": b"05", "v2ProPlus": b"06"}.get(cfg["model"]["version"], b"PK")
+            open(f"{cfg['save_weight_dir']}/{ck}.pth", "wb").write(head + b"x" * 62)
             info("saving ckpt %s_e%s:%s" % (name, e, "Success."))
     info("====> Epoch: {}".format(e))
 print("training done", flush=True)

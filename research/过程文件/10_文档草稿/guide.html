@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>声音分身 VoiceTwin —— Windows 详细使用教程</title>
+<style>
+  :root { --fg:#1f2328; --muted:#59636e; --bg:#ffffff; --code:#f6f8fa; --border:#d1d9e0; --accent:#0969da; --note:#fff8c5; }
+  @media (prefers-color-scheme: dark) {
+    :root { --fg:#e6edf3; --muted:#9198a1; --bg:#0d1117; --code:#161b22; --border:#3d444d; --accent:#4493f8; --note:#2d2a12; }
+  }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:16px/1.75 "Microsoft YaHei","PingFang SC","Noto Sans CJK SC",system-ui,sans-serif; }
+  main { max-width:880px; margin:0 auto; padding:24px 16px 80px; }
+  h1 { font-size:1.9em; border-bottom:1px solid var(--border); padding-bottom:.3em; }
+  h2 { margin-top:2.2em; border-bottom:1px solid var(--border); padding-bottom:.25em; }
+  h3 { margin-top:1.6em; }
+  a { color:var(--accent); }
+  code { background:var(--code); padding:.15em .4em; border-radius:6px; font-family:Consolas,"Cascadia Mono",monospace; font-size:.92em; }
+  pre { background:var(--code); padding:14px 16px; border-radius:8px; overflow-x:auto; }
+  pre code { padding:0; background:none; }
+  blockquote { margin:1em 0; padding:.6em 1em; background:var(--note); border-left:4px solid #d4a72c; border-radius:6px; }
+  blockquote p { margin:.3em 0; }
+  table { border-collapse:collapse; width:100%; margin:1em 0; display:block; overflow-x:auto; }
+  th, td { border:1px solid var(--border); padding:6px 12px; text-align:left; }
+  th { background:var(--code); }
+  li { margin:.25em 0; }
+  .online { color:var(--muted); font-size:.9em; }
+</style>
+</head>
+<body><main>
+<p class="online">在线版（内容可能更新）：<a href="https://github.com/AlienCodes/literate-enigma/blob/master/docs/Windows详细使用教程.md">https://github.com/AlienCodes/literate-enigma</a></p>
+<h1 id="声音分身-voicetwin--windows-详细使用教程">声音分身 VoiceTwin —— Windows 详细使用教程</h1>
+<p>这份教程从零开始，一步一步带你完成：<strong>下载 → 安装 → 放入你的讲课视频 → 训练你的声音 → 用你的声音生成讲课音频</strong>。
+每一步都写了&quot;要点哪里、会看到什么、看到什么算成功&quot;。第一次完整走完大约需要 <strong>2~3 个小时</strong>，其中大部分时间是电脑在自动下载和训练，你只需要等。</p>
+<p>以后日常使用只需要：<strong>双击桌面图标 → 粘贴讲稿 → 点&quot;生成&quot;</strong>。</p>
+<hr />
+<h2 id="目录">目录</h2>
+<ul>
+<li><a href="#%E7%AC%AC-0-%E6%AD%A5%E7%A1%AE%E8%AE%A4%E7%94%B5%E8%84%91%E9%85%8D%E7%BD%AE%E5%87%86%E5%A4%87%E8%A7%A3%E5%8E%8B%E8%BD%AF%E4%BB%B6">第 0 步：确认电脑配置，准备解压软件</a></li>
+<li><a href="#%E7%AC%AC-1-%E6%AD%A5%E4%B8%8B%E8%BD%BD%E5%A3%B0%E9%9F%B3%E5%88%86%E8%BA%AB-voicetwin">第 1 步：下载声音分身 VoiceTwin</a></li>
+<li><a href="#%E7%AC%AC-2-%E6%AD%A5%E4%B8%8B%E8%BD%BD-gpt-sovits-%E6%95%B4%E5%90%88%E5%8C%85">第 2 步：下载 GPT-SoVITS 整合包</a></li>
+<li><a href="#%E7%AC%AC-3-%E6%AD%A5%E8%BF%90%E8%A1%8C%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F">第 3 步：运行安装程序</a></li>
+<li><a href="#%E7%AC%AC-4-%E6%AD%A5%E8%A1%A5%E9%BD%90%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%8F%AA%E5%9C%A8%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%B0%91%E6%97%B6%E6%89%8D%E9%9C%80%E8%A6%81">第 4 步：补齐预训练模型（只在提示缺少时才需要）</a></li>
+<li><a href="#%E7%AC%AC-5-%E6%AD%A5%E6%95%B4%E7%90%86%E4%BD%A0%E7%9A%84%E8%AE%B2%E8%AF%BE%E7%B4%A0%E6%9D%90">第 5 步：整理你的讲课素材</a></li>
+<li><a href="#%E7%AC%AC-6-%E6%AD%A5%E6%89%93%E5%BC%80%E7%A8%8B%E5%BA%8F%E7%95%8C%E9%9D%A2">第 6 步：打开程序界面</a></li>
+<li><a href="#%E7%AC%AC-7-%E6%AD%A5%E5%87%86%E5%A4%87%E7%B4%A0%E6%9D%90">第 7 步：准备素材</a></li>
+<li><a href="#%E7%AC%AC-8-%E6%AD%A5%E6%A0%A1%E5%AF%B9%E6%96%87%E5%AD%97%E5%BC%BA%E7%83%88%E5%BB%BA%E8%AE%AE">第 8 步：校对文字（强烈建议）</a></li>
+<li><a href="#%E7%AC%AC-9-%E6%AD%A5%E8%AE%AD%E7%BB%83%E4%BD%A0%E7%9A%84%E5%A3%B0%E9%9F%B3%E6%A8%A1%E5%9E%8B">第 9 步：训练你的声音模型</a></li>
+<li><a href="#%E7%AC%AC-10-%E6%AD%A5%E7%94%9F%E6%88%90%E8%AE%B2%E8%AF%BE%E9%9F%B3%E9%A2%91">第 10 步：生成讲课音频</a></li>
+<li><a href="#%E7%AC%AC-11-%E6%AD%A5%E6%8A%8A%E9%9F%B3%E9%A2%91%E6%94%BE%E8%BF%9B%E8%AF%BE%E7%A8%8B%E8%A7%86%E9%A2%91">第 11 步：把音频放进课程视频</a></li>
+<li><a href="#%E7%AC%AC-12-%E6%AD%A5%E4%BB%A5%E5%90%8E%E6%AF%8F%E6%AC%A1%E6%80%8E%E4%B9%88%E7%94%A8">第 12 步：以后每次怎么用</a></li>
+<li><a href="#%E8%AE%B2%E7%A8%BF%E5%86%99%E6%B3%95%E9%80%9F%E6%9F%A5">讲稿写法速查</a></li>
+<li><a href="#%E6%80%8E%E4%B9%88%E6%A3%80%E9%AA%8C%E5%83%8F%E4%B8%8D%E5%83%8F%E7%9B%B2%E6%B5%8B">怎么检验&quot;像不像&quot;：盲测</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题</a></li>
+</ul>
+<hr />
+<h2 id="第-0-步确认电脑配置准备解压软件">第 0 步：确认电脑配置，准备解压软件</h2>
+<h3 id="01-看看你的显卡">0.1 看看你的显卡</h3>
+<ol>
+<li>同时按下键盘上的 <strong>Ctrl + Shift + Esc</strong>，打开&quot;任务管理器&quot;。</li>
+<li>如果窗口很小，点左下角的 <strong>&quot;详细信息&quot;</strong>。</li>
+<li>点上方（或左侧）的 <strong>&quot;性能&quot;</strong>。</li>
+<li>在左边列表里找到 <strong>&quot;GPU&quot;</strong>，点它。</li>
+<li>看右上角的显卡名称，以及下方的 <strong>&quot;专用 GPU 内存&quot;</strong>：
+<ul>
+<li>名称里有 <strong>NVIDIA</strong>（例如 NVIDIA GeForce RTX 3060），并且专用 GPU 内存 <strong>≥ 6 GB</strong>：✅ 可以。</li>
+<li>8 GB 以上更好，训练更快。</li>
+<li>只有 Intel / AMD 显卡、或者没有独立显卡：也能运行，但训练会非常慢（可能要几天）。建议换一台有 NVIDIA 显卡的电脑来训练；训练好后，生成音频对显卡要求低一些。</li>
+</ul>
+</li>
+</ol>
+<h3 id="02-看看硬盘空间">0.2 看看硬盘空间</h3>
+<p>打开&quot;此电脑&quot;，选一个空间大的盘（下面都以 <strong>D 盘</strong> 为例），确认剩余空间 <strong>≥ 30 GB</strong>。
+如果你没有 D 盘，下面所有 <code>D:\</code> 都换成你自己的盘符，比如 <code>E:\</code>。</p>
+<h3 id="03-更新显卡驱动建议">0.3 更新显卡驱动（建议）</h3>
+<p>打开 NVIDIA 官网驱动下载页 <a href="https://www.nvidia.cn/drivers/lookup/">https://www.nvidia.cn/drivers/lookup/</a>，按你的显卡型号下载最新驱动并安装。驱动太旧可能导致训练报错。</p>
+<h3 id="04-安装解压软件-7-zip">0.4 安装解压软件 7-Zip</h3>
+<p>GPT-SoVITS 整合包是 <code>.7z</code> 格式，需要 7-Zip 来解压：</p>
+<ol>
+<li>打开 <a href="https://www.7-zip.org/">https://www.7-zip.org/</a>。</li>
+<li>点第一行的 <strong>Download</strong>（64-bit Windows x64）。</li>
+<li>双击下载好的安装包，点 <strong>Install</strong>，装好后点 <strong>Close</strong>。</li>
+</ol>
+<hr />
+<h2 id="第-1-步下载声音分身-voicetwin">第 1 步：下载声音分身 VoiceTwin</h2>
+<ol>
+<li>用浏览器打开：<strong><a href="https://github.com/AlienCodes/literate-enigma/releases/latest">https://github.com/AlienCodes/literate-enigma/releases/latest</a></strong></li>
+<li>页面往下拉，找到 <strong>&quot;Assets&quot;</strong>（资源）这一栏。如果它是折叠的，点一下展开。</li>
+<li>点 <strong><code>VoiceTwin-Windows-v0.1.0.zip</code></strong>（版本号可能更新），浏览器开始下载。文件不大，几十秒就好。</li>
+<li>下载完成后，打开&quot;下载&quot;文件夹（浏览器下载栏里点&quot;在文件夹中显示&quot;）。</li>
+<li>在 <code>VoiceTwin-Windows-v0.1.0.zip</code> 上 <strong>点右键 → &quot;全部解压缩...&quot;</strong>（Windows 11 可能要先点&quot;显示更多选项&quot;）。</li>
+<li>在弹出的窗口里，把路径改成 <strong><code>D:\</code></strong>，然后点 <strong>&quot;提取&quot;</strong>。</li>
+<li>打开 D 盘，你会看到一个 <strong><code>VoiceTwin</code></strong> 文件夹，也就是 <strong><code>D:\VoiceTwin</code></strong>。</li>
+<li>打开它，确认里面有这些文件：<code>install_windows.bat</code>、<code>install_windows.ps1</code>、<code>使用教程（先看我）.html</code>、<code>voicetwin</code> 文件夹等。</li>
+</ol>
+<blockquote>
+<p>💡 GitHub 在国内有时打不开或很慢，可以多刷新几次，或换个时间再试。</p>
+</blockquote>
+<hr />
+<h2 id="第-2-步下载-gpt-sovits-整合包">第 2 步：下载 GPT-SoVITS 整合包</h2>
+<p>GPT-SoVITS 是目前最成熟的开源声音克隆工具，VoiceTwin 用它来训练你的声音。官方提供了 Windows &quot;整合包&quot;，里面已经装好了所有复杂的组件。</p>
+<h3 id="21-下载">2.1 下载</h3>
+<ol>
+<li>打开 GPT-SoVITS 官方文档的下载页：
+<strong><a href="https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO">https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO</a></strong>
+（海外可用：<a href="https://huggingface.co/lj1995/GPT-SoVITS-windows-package/tree/main">https://huggingface.co/lj1995/GPT-SoVITS-windows-package/tree/main</a>）</li>
+<li>在&quot;整合包&quot;部分，下载 <strong>最新版</strong>。认准两点：
+<ul>
+<li>文件名里带 <strong><code>v2pro</code></strong>（或者比 v2pro 更新的版本号）；</li>
+<li>日期最新。</li>
+<li>如果你的显卡是 <strong>RTX 50 系列</strong>，而页面上有专门的 50 系版本（文件名带 <code>50</code> 或 <code>nvidia50</code> 字样），就选那个。</li>
+</ul>
+</li>
+<li>文件有好几个 GB，下载需要一些时间，耐心等待。</li>
+</ol>
+<h3 id="22-解压">2.2 解压</h3>
+<ol>
+<li>在下载好的 <code>.7z</code> 文件上 <strong>点右键 → 7-Zip → &quot;提取到 &quot;文件名&quot;&quot;</strong>（Windows 11 要先点&quot;显示更多选项&quot;）。</li>
+<li>解压完成后得到一个文件夹，例如 <code>GPT-SoVITS-v2pro-2025xxxx</code>。</li>
+<li>把这个文件夹 <strong>重命名为 <code>GPT-SoVITS</code></strong>，然后 <strong>剪切到 D 盘根目录</strong>，最终路径是 <strong><code>D:\GPT-SoVITS</code></strong>。</li>
+</ol>
+<h3 id="23-检查">2.3 检查</h3>
+<p>打开 <code>D:\GPT-SoVITS</code>，<strong>直接</strong>能看到下面这些东西，就说明放对了：</p>
+<ul>
+<li><code>go-webui.bat</code></li>
+<li><code>api_v2.py</code></li>
+<li><code>runtime</code> 文件夹</li>
+<li><code>GPT_SoVITS</code> 文件夹</li>
+</ul>
+<blockquote>
+<p>⚠️ 常见错误是多了一层文件夹，比如 <code>D:\GPT-SoVITS\GPT-SoVITS-v2pro-xxxx\go-webui.bat</code>。遇到这种情况，把里面那层的所有内容移到外面来。安装程序也会尝试自动找到里面那层。</p>
+<p>⚠️ 路径里 <strong>不要有中文和空格</strong>。<code>D:\GPT-SoVITS</code> 可以，<code>D:\新建文件夹\GPT SoVITS</code> 不行。</p>
+</blockquote>
+<hr />
+<h2 id="第-3-步运行安装程序">第 3 步：运行安装程序</h2>
+<ol>
+<li>打开 <code>D:\VoiceTwin</code>，<strong>双击 <code>install_windows.bat</code></strong>。</li>
+<li>如果弹出蓝色窗口 <strong>&quot;Windows 已保护你的电脑&quot;</strong>：点 <strong>&quot;更多信息&quot;</strong>，再点 <strong>&quot;仍要运行&quot;</strong>。
+如果杀毒软件（360、火绒等）弹出拦截提示，选择 <strong>&quot;允许&quot;</strong> 或 <strong>&quot;信任&quot;</strong>。</li>
+<li>出现一个黑色窗口，显示：<pre><code>请选择安装方式：
+  1) 推荐：安装到 GPT-SoVITS 整合包里 ……
+  2) 独立安装 ……
+请输入 1 或 2，然后按回车
+</code></pre>
+输入 <strong><code>1</code></strong>，按 <strong>回车</strong>。</li>
+<li>接着让你输入 GPT-SoVITS 整合包的路径。输入 <strong><code>D:\GPT-SoVITS</code></strong>，按 <strong>回车</strong>。
+<blockquote>
+<p>小技巧：打开 <code>D:\GPT-SoVITS</code> 文件夹，点窗口顶部的地址栏，按 Ctrl+C 复制路径，再回到黑色窗口 <strong>点右键</strong> 就能粘贴。</p>
+</blockquote>
+</li>
+<li>等待 <strong>3~10 分钟</strong>。窗口里会滚动很多英文，这是在下载和安装组件，属于正常现象。<strong>不要关闭窗口。</strong></li>
+<li>最后会出现 <strong>&quot;==&gt; 检查环境&quot;</strong>，下面有一排 ✅ / ⚠️ / ❌：
+<ul>
+<li>✅ 正常。</li>
+<li>⚠️ 是可选组件，<strong>不用管</strong>。例如&quot;funasr 未安装&quot;&quot;demucs 未安装&quot;&quot;引擎 Qwen3-TTS&quot;&quot;引擎 IndexTTS&quot;都属于这类。</li>
+<li>❌ 需要处理。最常见的是 <strong>&quot;引擎 GPT-SoVITS：缺少预训练模型……&quot;</strong>，按下面第 4 步处理即可。</li>
+</ul>
+</li>
+<li>看到 <strong>&quot;安装完成！&quot;</strong> 后，按 <strong>回车</strong> 关闭窗口。</li>
+<li>桌面上会多出一个 <strong>&quot;声音分身 VoiceTwin&quot;</strong> 图标，以后双击它就能打开程序。</li>
+</ol>
+<blockquote>
+<p>如果双击 <code>install_windows.bat</code> 后窗口一闪就没了：在 <code>install_windows.ps1</code> 上 <strong>右键 → &quot;使用 PowerShell 运行&quot;</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="第-4-步补齐预训练模型只在提示缺少时才需要">第 4 步：补齐预训练模型（只在提示缺少时才需要）</h2>
+<p>较早的整合包没有自带 v2Pro 模型。VoiceTwin 可以自动帮你下载：</p>
+<ol>
+<li>打开 <code>D:\VoiceTwin</code> 文件夹。</li>
+<li>点窗口顶部的 <strong>地址栏</strong>，把里面的文字删掉，输入 <strong><code>cmd</code></strong>，按 <strong>回车</strong>。会打开一个黑色的&quot;命令提示符&quot;窗口，而且已经位于这个文件夹里。</li>
+<li>在黑色窗口里输入下面这行，按 <strong>回车</strong>：<pre><code>voicetwin.bat download-models --source hf-mirror
+</code></pre>
+</li>
+<li>等待下载（大约 1~2 GB）。完成后显示 <strong>&quot;✅ 已下载 N 个文件&quot;</strong>。</li>
+<li>再输入下面这行，按 <strong>回车</strong>，检查一遍：<pre><code>voicetwin.bat doctor
+</code></pre>
+看到 <strong>&quot;✅ 引擎 GPT-SoVITS：就绪&quot;</strong> 就可以了。</li>
+</ol>
+<blockquote>
+<p>如果下载一直失败：用记事本打开 <code>D:\VoiceTwin\config.yaml</code>，找到 <code>version: v2ProPlus</code>，改成 <code>version: v2</code>，保存。这样会使用整合包自带的 v2 模型，效果略逊，但不需要下载。</p>
+</blockquote>
+<hr />
+<h2 id="第-5-步整理你的讲课素材">第 5 步：整理你的讲课素材</h2>
+<ol>
+<li>在 D 盘新建一个文件夹：<strong><code>D:\讲课素材</code></strong>。</li>
+<li>把你以前录的讲课<strong>视频或音频</strong>复制进去。支持的格式：
+<ul>
+<li>视频：mp4、mov、mkv、avi、flv、webm、wmv、m4v、ts</li>
+<li>音频：wav、mp3、m4a、aac、flac、ogg、wma</li>
+</ul>
+</li>
+<li><strong>如果视频有字幕文件</strong>（<code>.srt</code>），把它和视频放在一起，并且<strong>文件名相同</strong>，例如：<pre><code>第1课.mp4
+第1课.srt
+</code></pre>
+有字幕的话，程序会直接用字幕里的文字，比语音识别更准，效果更好。</li>
+<li>挑选素材的原则：
+<ul>
+<li>✅ <strong>总时长越多越好</strong>：至少 30 分钟，<strong>1~3 小时最好</strong>。</li>
+<li>✅ 你<strong>正常讲课状态</strong>的录音。</li>
+<li>✅ 要做英文课的话，一定放入你<strong>讲英文</strong>的录音（至少 5~10 分钟），否则英文会带中文口音。</li>
+<li>✅ 如果当初录课有单独保存的原始音频（wav），优先用它，比从视频里提取的质量更好。</li>
+<li>❌ <strong>不要放嗓子哑了之后的录音。</strong></li>
+<li>❌ 尽量少放有背景音乐、多人对话、很吵的片段。少量的学生提问没关系，程序会通过声纹自动识别并剔除。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="第-6-步打开程序界面">第 6 步：打开程序界面</h2>
+<ol>
+<li>双击桌面上的 <strong>&quot;声音分身 VoiceTwin&quot;</strong>（或者 <code>D:\VoiceTwin\start_webui.bat</code>）。</li>
+<li>会出现一个黑色窗口，显示&quot;正在启动声音分身……&quot;。<strong>使用期间不要关闭这个黑色窗口</strong>，关掉它程序就停了。</li>
+<li>等 10~30 秒，浏览器会自动打开一个网页，地址是 <strong><code>http://127.0.0.1:7860</code></strong>。
+如果浏览器没有自动打开，就自己打开浏览器，在地址栏输入 <code>http://127.0.0.1:7860</code>，按回车。</li>
+<li>网页最上面有一个 <strong>&quot;声音名称&quot;</strong> 输入框，下面有几个标签页：
+<strong>① 准备素材 / ② 训练模型 / ③ 生成讲课音频 / ④ 评估相似度 / 环境检查</strong>。</li>
+</ol>
+<blockquote>
+<p>这个网页只在你自己的电脑上运行，不需要联网登录，你的声音也不会上传到任何地方。</p>
+</blockquote>
+<hr />
+<h2 id="第-7-步准备素材">第 7 步：准备素材</h2>
+<ol>
+<li>在最上面的 <strong>&quot;声音名称&quot;</strong> 框里输入一个名字，例如 <strong><code>我的声音</code></strong>。以后每次都用这个名字。</li>
+<li>确认当前在 <strong>&quot;① 准备素材&quot;</strong> 标签页。</li>
+<li>在 <strong>&quot;或者填写电脑上的文件夹路径&quot;</strong> 框里输入 <strong><code>D:\讲课素材</code></strong>。
+<blockquote>
+<p>也可以用左边的&quot;上传&quot;区域选文件，但视频很大时上传会比较慢，建议直接填文件夹路径。</p>
+</blockquote>
+</li>
+<li>其它选项：
+<ul>
+<li><strong>语音识别引擎</strong>：保持 <code>faster-whisper</code>（中英文都支持）。如果你的课全是中文，也可以选 <code>funasr</code>（阿里的中文识别模型，中文更准）。</li>
+<li><strong>素材语言</strong>：保持 <code>auto</code>。</li>
+<li><strong>降噪</strong>：保持 <code>auto</code>（只在录音明显有噪音时才轻度降噪）。</li>
+<li><strong>&quot;视频有背景音乐&quot;</strong>：一般<strong>不勾</strong>。如果你的视频全程有背景音乐，请看<a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题</a>里的处理方法。</li>
+</ul>
+</li>
+<li>点橙色的 <strong>&quot;开始准备素材&quot;</strong> 按钮。</li>
+<li>下方的 <strong>&quot;运行日志&quot;</strong> 会实时显示进度：
+<ul>
+<li><code>[1/5] 处理 第1课.mp4</code> —— 正在提取、清理音频，切分句子；</li>
+<li><code>加载识别模型 ……首次使用会自动下载</code> —— <strong>第一次</strong>会下载语音识别模型（约 3 GB），需要几分钟到十几分钟；</li>
+<li><code>识别 21/800：……</code> —— 正在把每句话识别成文字；</li>
+<li><code>计算声纹</code> —— 正在剔除不是你本人的片段。</li>
+</ul>
+</li>
+<li>处理时间参考：1 小时素材，有显卡大约 10~30 分钟。</li>
+<li>完成后，日志下方会显示一段摘要，例如：<pre><code>✅ 素材准备完成：保留 812 / 905 条，共 76.3 分钟
+你的语速：中文 4.62 音节/秒，英文 4.10 音节/秒
+你的停顿习惯：逗号 0.26s / 句号 0.71s / 段落 1.20s
+自动挑选的参考音频：……
+</code></pre>
+黄色的 ⚠️ 提示会告诉你素材是否够用，比如&quot;英文素材不足 5 分钟&quot;。</li>
+</ol>
+<hr />
+<h2 id="第-8-步校对文字强烈建议">第 8 步：校对文字（强烈建议）</h2>
+<p>语音识别偶尔会听错字。训练素材里的错字，会变成模型的&quot;口误&quot;。花 10~20 分钟校对，效果会明显更好。</p>
+<ol>
+<li>在&quot;① 准备素材&quot;页面往下拉，点 <strong>&quot;载入片段列表&quot;</strong>。</li>
+<li>下方表格会列出所有片段：
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>片段编号</td>
+</tr>
+<tr>
+<td>保留</td>
+<td>✔ 参与训练，✘ 不参与</td>
+</tr>
+<tr>
+<td>语言</td>
+<td>zh 中文 / en 英文</td>
+</tr>
+<tr>
+<td>秒</td>
+<td>片段时长</td>
+</tr>
+<tr>
+<td>文字</td>
+<td>识别出的文字，<strong>可以直接修改</strong></td>
+</tr>
+<tr>
+<td>丢弃原因</td>
+<td>程序自动丢弃这一条的原因</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><strong>点击任意一行</strong>，下方的&quot;试听选中的片段&quot;会加载这段录音，点播放键就能听。</li>
+<li>发现错字：<strong>双击&quot;文字&quot;那一格</strong>，改成正确的文字，按回车。</li>
+<li>某条不是你说的、或者质量很差：把 <strong>&quot;保留&quot;</strong> 那一格改成 <strong><code>✘</code></strong>（也可以输入 <code>0</code>）。</li>
+<li>全部改完后，点橙色的 <strong>&quot;保存修改&quot;</strong>。下方会显示&quot;已保存：{'text': 12, 'keep': 3, ...}&quot;，表示改了 12 处文字、3 处保留状态。</li>
+</ol>
+<blockquote>
+<p>习惯用 Excel 的话：用 Excel 打开 <code>D:\VoiceTwin\workspace\我的声音\transcripts.csv</code>，修改&quot;text&quot;和&quot;keep&quot;两列，保存（保持 CSV 格式）。然后在 <code>D:\VoiceTwin</code> 文件夹的地址栏输入 <code>cmd</code> 回车，运行 <code>voicetwin.bat review -v 我的声音</code>。</p>
+</blockquote>
+<hr />
+<h2 id="第-9-步训练你的声音模型">第 9 步：训练你的声音模型</h2>
+<ol>
+<li>点上方的 <strong>&quot;② 训练模型&quot;</strong> 标签页。</li>
+<li><strong>引擎</strong> 保持 <strong><code>gptsovits</code></strong>。下面几个数字都保持 <strong>0</strong>，表示全部自动设置。</li>
+<li>点橙色的 <strong>&quot;开始训练&quot;</strong>。</li>
+<li><strong>&quot;训练日志&quot;</strong> 会依次显示这几个阶段：
+<ul>
+<li><code>1A 文本处理</code> → <code>1B 提取 HuBERT 特征与说话人声纹</code> → <code>1C 提取语义 token</code>：准备训练数据；</li>
+<li><code>训练音色模型 SoVITS（共 12 轮）……</code>，接着不断出现 <code>gsv_s2_train 进度 25%</code>、<code>50%</code>……：训练音色；</li>
+<li><code>训练语气与节奏模型 GPT（共 15 轮）……</code>，接着 <code>gsv_s1_train 进度 20%</code>……：训练语气和节奏；</li>
+<li>每一轮可能要几分钟，进度数字隔一会儿才变一次，这是正常的；</li>
+<li><code>评估模型 s8-g10 ……</code>：用你没参与训练的真实录音，给每个模型版本打分；</li>
+<li>最后显示 <strong>&quot;✅ 训练完成，最佳模型：s12-g15，语速校准：{'zh': 1.02, 'en': 0.98}&quot;</strong>。</li>
+</ul>
+</li>
+<li>训练时间参考：1 小时素材，RTX 3060 约 40~90 分钟，RTX 4090 约 15~30 分钟。</li>
+<li>训练期间：
+<ul>
+<li><strong>不要关闭黑色窗口，也不要关闭网页。</strong></li>
+<li>把电脑设置成<strong>不自动睡眠</strong>：设置 → 系统 → 电源 → 屏幕和睡眠 → &quot;睡眠&quot;改为&quot;从不&quot;。</li>
+<li>电脑会比较卡、风扇会比较响，这是正常的。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>以后如果增加了素材或重新校对了文字，再点一次&quot;开始训练&quot;即可。</p>
+</blockquote>
+<hr />
+<h2 id="第-10-步生成讲课音频">第 10 步：生成讲课音频</h2>
+<ol>
+<li>点上方的 <strong>&quot;③ 生成讲课音频&quot;</strong> 标签页。</li>
+<li>在左边的 <strong>&quot;讲稿&quot;</strong> 框里粘贴你的讲稿，或者在下面&quot;或上传讲稿文件&quot;里选择文件（支持 txt、md、srt、docx）。</li>
+<li>右边的设置：
+<ul>
+<li><strong>引擎</strong>：<code>gptsovits</code>。</li>
+<li><strong>质量</strong>：
+<ul>
+<li><code>fast</code>：最快，每句只生成 1 个版本，适合先试听；</li>
+<li><code>balanced</code>（推荐）：每句生成 3 个版本，自动挑最像的；</li>
+<li><code>best</code>：每句 5 个版本，还会自动检查漏字、读错，最慢但最好，<strong>正式课程推荐用这个</strong>。</li>
+</ul>
+</li>
+<li><strong>语速倍数</strong>：保持 <strong>1.0</strong>，意思是和你本人的语速一样（程序已经自动校准过）。想整体快一点，可以调到 1.05。</li>
+<li><strong>指定参考音频 id</strong>：留空，程序会自动选。</li>
+<li><strong>只重新生成第几句</strong>：第一次留空。</li>
+</ul>
+</li>
+<li>点橙色的 <strong>&quot;生成&quot;</strong>。
+<ul>
+<li>第一次生成时，需要先启动推理服务，大约多等 1 分钟。</li>
+<li>下方日志会显示 <code>[3/25] 生成 …（相似度 0.87）</code>。</li>
+</ul>
+</li>
+<li>完成后：
+<ul>
+<li><strong>&quot;结果&quot;</strong> 播放器里可以直接试听；</li>
+<li><strong>&quot;下载&quot;</strong> 区域有 3 个文件：<strong>音频（.wav）</strong>、<strong>字幕（.srt）</strong>、<strong>报告（.report.json）</strong>；</li>
+<li>同样的文件也自动保存在 <strong><code>D:\VoiceTwin\workspace\我的声音\outputs\</code></strong> 里。</li>
+</ul>
+</li>
+<li>下方表格列出每一句的 <strong>声纹相似度</strong>（越接近 1 越像你）和提示。</li>
+<li>某几句不满意时：在 <strong>&quot;只重新生成第几句&quot;</strong> 里填编号，例如 <code>3,5,8-10</code>，再点一次 <strong>&quot;生成&quot;</strong>。只会重新生成这几句，其它句子直接用上次的结果，几秒钟就好。</li>
+</ol>
+<hr />
+<h2 id="第-11-步把音频放进课程视频">第 11 步：把音频放进课程视频</h2>
+<h3 id="用剪映或其它剪辑软件">用剪映（或其它剪辑软件）</h3>
+<ol>
+<li>打开剪映，导入你的课程画面（录屏、PPT 视频等）。</li>
+<li>把生成的 <strong><code>.wav</code></strong> 音频拖到音频轨道上。</li>
+<li>导入字幕：菜单 <strong>文本 → 本地字幕 → 导入</strong>，选择生成的 <strong><code>.srt</code></strong> 文件，字幕会自动对齐时间。</li>
+<li>导出视频。</li>
+</ol>
+<h3 id="直接替换视频的音轨命令行">直接替换视频的音轨（命令行）</h3>
+<p>在 <code>D:\VoiceTwin</code> 文件夹的地址栏输入 <code>cmd</code> 回车，然后运行（换成你自己的文件路径）：</p>
+<pre><code>voicetwin.bat mux --video D:\课程\第3课画面.mp4 --audio D:\VoiceTwin\workspace\我的声音\outputs\第3课.wav -o D:\课程\第3课成品.mp4
+</code></pre>
+<h3 id="给已有视频按字幕时间轴重新配音">给已有视频按字幕时间轴重新配音</h3>
+<p>如果你有一个视频和它的 <code>.srt</code> 字幕，想按字幕的时间点重新配音：在&quot;③ 生成讲课音频&quot;里<strong>上传这个 <code>.srt</code> 文件</strong>作为讲稿。每句话会被放在字幕对应的开始时间上。</p>
+<hr />
+<h2 id="第-12-步以后每次怎么用">第 12 步：以后每次怎么用</h2>
+<ol>
+<li>双击桌面上的 <strong>&quot;声音分身 VoiceTwin&quot;</strong>。</li>
+<li>浏览器打开后，在 <strong>&quot;声音名称&quot;</strong> 里选择 <strong><code>我的声音</code></strong>。</li>
+<li>进入 <strong>&quot;③ 生成讲课音频&quot;</strong>，粘贴讲稿，点 <strong>&quot;生成&quot;</strong>。</li>
+</ol>
+<p>就这么简单。有了新的讲课素材，想让声音更像：先在 ① 里再运行一次&quot;开始准备素材&quot;（<strong>只会处理新增的文件</strong>，之前的校对不会丢），然后在 ② 里重新训练。</p>
+<hr />
+<h2 id="讲稿写法速查">讲稿写法速查</h2>
+<pre><code class="language-markdown"># 第三课：列表推导式
+
+大家好，今天我们来学习 Python 里面的列表推导式。它可以让代码更简洁。
+
+那么大家想一想，这段代码输出什么？[停顿=2]
+
+Next, let's look at a slightly more complex example.
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>空一行</td>
+<td>段落停顿（按你本人的段落停顿习惯）</td>
+</tr>
+<tr>
+<td><code>[停顿]</code></td>
+<td>段落停顿</td>
+</tr>
+<tr>
+<td><code>[停顿=2]</code>、<code>[停顿 1.5秒]</code>、<code>[pause=800ms]</code></td>
+<td>指定停顿时长</td>
+</tr>
+<tr>
+<td><code># 标题</code></td>
+<td>标题会被读出来，读完后停顿</td>
+</tr>
+<tr>
+<td><code>```</code> 代码块 <code>```</code></td>
+<td>默认<strong>不朗读</strong></td>
+</tr>
+<tr>
+<td>中英混写</td>
+<td>自动识别；整句英文会用你的英文参考音频</td>
+</tr>
+<tr>
+<td>疑问句（？结尾）</td>
+<td>自动使用你问问题时的语气作为参考</td>
+</tr>
+</tbody>
+</table>
+<p><strong>纠正读音</strong>：用记事本打开 <code>D:\VoiceTwin\workspace\我的声音\lexicon.txt</code>，每行写一条 <code>原文 =&gt; 读法</code>：</p>
+<pre><code>SQL =&gt; sequel
+GPT =&gt; G P T
+重庆 =&gt; 虫庆
+行长 =&gt; 航长
+</code></pre>
+<p>保存后再生成即可。字幕里仍然显示原文。</p>
+<hr />
+<h2 id="怎么检验像不像盲测">怎么检验&quot;像不像&quot;：盲测</h2>
+<ol>
+<li>从你的旧课程里剪 3 段真实录音，每段 10 秒左右。</li>
+<li>用程序生成 3 段内容类似的音频。</li>
+<li>打乱顺序，给家人朋友或同事听，让他们猜哪几段是真的。</li>
+<li>如果他们猜不出来，就可以放心用了。如果能听出来，看下面&quot;声音不够像&quot;那一条。</li>
+</ol>
+<hr />
+<h2 id="常见问题">常见问题</h2>
+<p><strong>双击 install_windows.bat 后窗口一闪就没了</strong>
+在 <code>install_windows.ps1</code> 上右键，选 <strong>&quot;使用 PowerShell 运行&quot;</strong>。</p>
+<p><strong>安装时提示&quot;没有找到 ……\runtime\python.exe&quot;</strong>
+整合包的路径输错了。打开你的 GPT-SoVITS 文件夹，确认里面<strong>直接</strong>有 <code>runtime</code> 文件夹，然后重新运行安装程序，输入正确的路径。</p>
+<p><strong>安装时提示&quot;整合包版本太旧（缺少 api_v2.py）&quot;</strong>
+请重新下载最新版的 GPT-SoVITS 整合包。</p>
+<p><strong>下载模型很慢或失败</strong>
+程序默认已经使用国内镜像（hf-mirror.com）。如果还是失败：检查网络，换个时间再试；或者在 ① 里把识别引擎换成 <code>funasr</code>（它从阿里的 ModelScope 下载，国内速度快）。</p>
+<p><strong>浏览器没有自动打开，或者打开后显示&quot;无法访问此网站&quot;</strong>
+确认黑色窗口还开着，而且没有报错；等 30 秒后手动访问 <code>http://127.0.0.1:7860</code>。如果提示端口被占用，关闭其它黑色窗口，或者重启电脑后再试。</p>
+<p><strong>训练时报错 &quot;CUDA out of memory&quot;（显存不足）</strong>
+用记事本打开 <code>D:\VoiceTwin\config.yaml</code>，找到 <code>batch_size: auto</code>（在 <code>gptsovits</code> → <code>train</code> 下面），改成 <code>batch_size: 2</code>（还不行就改成 <code>1</code>），保存后重新训练。GTX 10 系列等较老的显卡，还需要把 <code>is_half: true</code> 改成 <code>is_half: false</code>。</p>
+<p><strong>生成时提示&quot;GPT-SoVITS 推理服务启动失败&quot;</strong>
+打开 <code>D:\VoiceTwin\workspace\我的声音\logs\gptsovits_api.log</code>，看最后几行的报错。常见原因是模型文件不全（运行第 4 步）或显存被其它程序占用（关掉游戏、其它 AI 软件）。</p>
+<p><strong>提示&quot;找不到 GPT-SoVITS 目录&quot;</strong>
+你移动过 GPT-SoVITS 的文件夹。重新运行一次 <code>install_windows.bat</code>，输入新的路径即可（其它设置会保留）。</p>
+<p><strong>声音不够像</strong>
+按效果从大到小排列：</p>
+<ol>
+<li>增加素材（30 分钟 → 1~3 小时）；</li>
+<li>校对文字（第 8 步）；</li>
+<li>检查素材是否干净，把嗓子哑之后的录音删掉；</li>
+<li>生成时用 <code>best</code> 质量；</li>
+<li>在 <code>workspace\我的声音\references.json</code> 里挑一条语气最满意的参考音频，把它的 id 填到&quot;指定参考音频 id&quot;；</li>
+<li>重新训练。</li>
+</ol>
+<p><strong>某个字总是读错</strong>
+写进 <code>lexicon.txt</code>，见<a href="#%E8%AE%B2%E7%A8%BF%E5%86%99%E6%B3%95%E9%80%9F%E6%9F%A5">讲稿写法速查</a>。</p>
+<p><strong>英文有中文口音</strong>
+加入你讲英文的录音，重新运行 ① 和 ②。</p>
+<p><strong>视频里全程有背景音乐</strong>
+先用 GPT-SoVITS 整合包自带的人声分离工具去掉背景音乐：双击 <code>D:\GPT-SoVITS\go-webui.bat</code>，在打开的页面里找到 <strong>&quot;UVR5 人声伴奏分离&quot;</strong>，把视频的音频分离出人声，再把分离出的人声文件放进 <code>D:\讲课素材</code>。</p>
+<p><strong>我移动了 VoiceTwin 文件夹</strong>
+重新运行一次 <code>install_windows.bat</code>（会重新生成启动脚本和桌面图标），<code>workspace</code> 里的数据都在，不受影响。</p>
+<p><strong>想看更详细的错误信息</strong>
+每一步的日志都在 <code>D:\VoiceTwin\workspace\我的声音\logs\</code> 里。也可以在命令行里加 <code>--verbose</code> 运行，例如 <code>voicetwin.bat narrate -v 我的声音 讲稿.txt --verbose</code>。</p>
+<p><strong>怎么卸载</strong></p>
+<ol>
+<li>在 <code>D:\VoiceTwin</code> 地址栏输入 <code>cmd</code> 回车，运行 <code>D:\GPT-SoVITS\runtime\python.exe -m pip uninstall voicetwin</code>；</li>
+<li>删除 <code>D:\VoiceTwin</code> 文件夹（注意：<code>workspace</code> 里有你训练好的模型和生成的音频，需要的话先备份）；</li>
+<li>删除桌面图标。</li>
+</ol>
+<hr />
+<blockquote>
+<p>使用须知：只克隆你自己的声音，或已取得本人明确授权的声音。在公开平台发布 AI 合成音频时，请遵守平台和所在地区关于 AI 生成内容标识的规定。</p>
+</blockquote>
+
+</main></body>
+</html>

@@ -1,0 +1,27 @@
+  checked radios on 3: ['WAV（音质最好，剪映/后期用）', '均衡（每句做 3 遍，挑最像你的）']
+[65.9] CHECK PASS e.default_quality_balanced_without_gpu ['WAV（音质最好，剪映/后期用）', '均衡（每句做 3 遍，挑最像你的）']
+saved <草稿目录>/integ_shots/e0_generate_tab.png
+[68.5] CHECK PASS e.generate_bar_seen_running
+[68.5] CHECK PASS e.generate_done status=done pct=100
+saved <草稿目录>/integ_shots/e2_generate_done.png
+[71.6] CHECK PASS e.result_table_1_based ['1', '2', '3', '4']
+saved <草稿目录>/integ_shots/e3_result_table.png
+[74.4] CHECK PASS f.doctor_table_numbered ['1', '2', '3', '4', '5', '6']
+[74.4] CHECK PASS f.doctor_total 共 12 项
+saved <草稿目录>/integ_shots/f_doctor.png
+[77.6] CHECK PASS g.error_bar status=error level=error
+  error bar color: rgb(220, 38, 38) | none
+[79.2] CHECK PASS g.error_bar_has_advice ❌ 没有完成：停在第 1 步「启动合成引擎」 / 0% / 原因：讲稿是空的 / 怎么办：在「讲稿」框里粘贴文字，或者上传 txt / Word 文件。 / 已用 0 秒 · 详细的出错信息在下方「详细过程」里，需要时可以复制给帮你的人。
+[79.2] CHECK PASS g.friendly_md ❌ 生成没有完成：讲稿是空的
+
+怎么办：在「讲稿」框里粘贴文字，或者上传 txt / Word 文件。
+
+详细记录在：<会话临时目录>
+saved <草稿目录>/integ_shots/g_error_red_bar.png
+  tab5 box before click: {'x': 558.0625, 'y': 535.234375, 'width': 79.015625, 'height': 30} scrollY 0
+  selected after 1st click: ['⑤ 鉴别']
+  before verify: {'tabs': ['① 准备素材', '② 训练模型', '③ 生成讲课音频', '④ 试试像不像（可选）', '⑤ 鉴别 *', '🩺 环境检查'], 'btns': ['🔄 重新检查显卡', '🔄 刷新声音列表', '🎙️ 我的声音库（共 1 个）\n▼', '① 准备素材', '② 训练模型', '③ 生成讲课音频', '④ 试试像不像（可选）', '⑤ 鉴别', '🩺 环境检查', '开始鉴别', '生成盲听测试']}
+[82.3] CHECK PASS h.verify_done status=done
+[83.8] CHECK PASS h.verify_table_numbered ['1', '2', '3', '4', '5']
+saved <草稿目录>/integ_shots/h_verify.png
+SUMMARY 11/11 passed; failed: []

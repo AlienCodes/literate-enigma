@@ -1,0 +1,40 @@
+./README.md:278:国内网络建议：语音识别模型设置环境变量 `HF_ENDPOINT=https://hf-mirror.com` 后再运行；
+./voicetwin/cli.py:129:    p.add_argument("--dpo", choices=["auto", "on", "off"], default="auto",
+./voicetwin/cli.py:130:                   help="GPT-SoVITS 的 DPO（实验功能）：auto = 显存 ≥22GB 且素材干净时才开（默认）")
+./voicetwin/cli.py:499:                    "epochs": args.epochs, "if_dpo": {"on": True, "off": False}.get(str(args.dpo or "auto"))}
+./voicetwin/webui/app.py:125:DPO_CHOICES = [("自动（推荐）", "auto"), ("开", "on"), ("关", "off")]
+./voicetwin/webui/app.py:892:_PLAN_RE = re.compile(r"(显存.*(batch|每批|轮|DPO))|(自动.*(训练方案|选择).*(轮|batch))", re.I)
+./voicetwin/webui/app.py:2005:                           dpo: Any = "auto") -> str:
+./voicetwin/webui/app.py:2011:                                        **self._train_opts(s_ep, g_ep, 0, bs, dpo))
+./voicetwin/webui/app.py:2079:    def _train_opts(s_ep: Any, g_ep: Any, q_ep: Any, bs: Any, dpo: Any = "auto") -> Dict[str, Any]:
+./voicetwin/webui/app.py:2083:        d = str(dpo or "auto").strip().lower()
+./voicetwin/webui/app.py:2084:        opts["if_dpo"] = True if d == "on" else (False if d == "off" else None)
+./voicetwin/webui/app.py:2088:                 dpo: Any = "auto") -> Iterator[Tuple[Any, ...]]:
+./voicetwin/webui/app.py:2089:        yield from self._train_common("train", voice, backend, self._train_opts(s_ep, g_ep, q_ep, bs, dpo))
+./voicetwin/webui/app.py:2647:                        c["dpo"] = gr.Radio(DPO_CHOICES, value="auto", label="DPO（GPT-SoVITS 的实验功能）",
+./voicetwin/webui/app.py:2789:            plan_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["bs"], c["dpo"]]
+./voicetwin/webui/app.py:2829:            train_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["q_ep"], c["bs"], c["dpo"]]
+./voicetwin/webui/app.py:2838:            c["dpo"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
+./voicetwin/data/asr.py:5:国内网络下载模型慢时，可设置环境变量 HF_ENDPOINT=https://hf-mirror.com。
+./voicetwin/data/asr.py:270:    if os.environ.get("HF_ENDPOINT"):
+./voicetwin/data/asr.py:272:    return "（如果下载模型很慢或失败，可以先设置环境变量 HF_ENDPOINT=https://hf-mirror.com 再运行）"
+./voicetwin/default_config.yaml:75:      if_dpo: auto            # DPO（GPT-SoVITS 的实验功能）：auto = 显存 ≥22GB、素材干净、错字很少时才开；
+./voicetwin/eval/speaker.py:5:2. speechbrain ECAPA —— 精度更高，首次使用需下载（国内可设 HF_ENDPOINT=https://hf-mirror.com）；
+./voicetwin/backends/workers/download_model.py:3:优先 Hugging Face（可用 HF_ENDPOINT=https://hf-mirror.com 加速），失败时尝试 ModelScope（国内快）。
+./build/lib/voicetwin/data/asr.py:5:国内网络下载模型慢时，可设置环境变量 HF_ENDPOINT=https://hf-mirror.com。
+./build/lib/voicetwin/data/asr.py:190:    if os.environ.get("HF_ENDPOINT"):
+./build/lib/voicetwin/data/asr.py:192:    return "（如果下载模型很慢或失败，可以先设置环境变量 HF_ENDPOINT=https://hf-mirror.com 再运行）"
+./build/lib/voicetwin/eval/speaker.py:5:2. speechbrain ECAPA —— 精度更高，首次使用需下载（国内可设 HF_ENDPOINT=https://hf-mirror.com）；
+./build/lib/voicetwin/backends/workers/download_model.py:3:优先 Hugging Face（可用 HF_ENDPOINT=https://hf-mirror.com 加速），失败时尝试 ModelScope（国内快）。
+./docs/manual/build/quickstart.html:96:<p><img src="data:image/png;base64,<长串数据已省略>" alt="准备素材" /></p>
+./docs/manual/build/quickstart.html:108:<p><img src="data:image/png;base64,<长串数据已省略>" alt="生成讲课音频" /></p>
+./docs/manual/build/quickstart.html:110:<p><img src="data:image/png;base64,<长串数据已省略>" alt="试听和下载" /></p>
+./.claude/worktrees/wf_08725f86-d54-6/README.md:278:国内网络建议：语音识别模型设置环境变量 `HF_ENDPOINT=https://hf-mirror.com` 后再运行；
+./.claude/worktrees/wf_08725f86-d54-6/voicetwin/data/asr.py:5:国内网络下载模型慢时，可设置环境变量 HF_ENDPOINT=https://hf-mirror.com。
+./.claude/worktrees/wf_08725f86-d54-6/voicetwin/data/asr.py:190:    if os.environ.get("HF_ENDPOINT"):
+./.claude/worktrees/wf_08725f86-d54-6/voicetwin/data/asr.py:192:    return "（如果下载模型很慢或失败，可以先设置环境变量 HF_ENDPOINT=https://hf-mirror.com 再运行）"
+./.claude/worktrees/wf_08725f86-d54-6/voicetwin/eval/speaker.py:5:2. speechbrain ECAPA —— 精度更高，首次使用需下载（国内可设 HF_ENDPOINT=https://hf-mirror.com）；
+./.claude/worktrees/wf_08725f86-d54-6/voicetwin/backends/workers/download_model.py:3:优先 Hugging Face（可用 HF_ENDPOINT=https://hf-mirror.com 加速），失败时尝试 ModelScope（国内快）。
+./.claude/worktrees/wf_08725f86-d54-7/README.md:278:国内网络建议：语音识别模型设置环境变量 `HF_ENDPOINT=https://hf-mirror.com` 后再运行；
+./.claude/worktrees/wf_08725f86-d54-7/voicetwin/webui/app.py:915:_PLAN_RE = re.compile(r"(显存.*(batch|轮|DPO))|(自动.*(训练方案|选择).*(轮|batch))", re.I)
+./.claude/worktrees/wf_08725f86-d54-7/voicetwin/data/asr.py:5:国内网络下载模型慢时，可设置环境变量 HF_ENDPOINT=https://hf-mirror.com。

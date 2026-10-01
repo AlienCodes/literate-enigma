@@ -89,8 +89,26 @@ SUBMIT_BTN = "提交答案"
 LOG_ACCORDION = "详细过程（出问题时可以复制给帮你的人）"
 ADV_LABEL = "高级设置（一般不用改）"
 
-INTRO = (f"# 🎙️ {APP_TITLE}" + (f" v{APP_VERSION}" if APP_VERSION else "") + "\n"
-         "用你自己的讲课视频/录音，复刻你的**音色、语气和节奏**（中文 + 英文）。按 ① → ② → ③ 的顺序操作就行。")
+INTRO_TITLE = f"# 🎙️ {APP_TITLE}" + (f" v{APP_VERSION}" if APP_VERSION else "")
+INTRO_SUB = "用你自己的讲课视频/录音，复刻你的**音色、语气和节奏**（中文 + 英文）。按 ① → ② → ③ 的顺序操作就行。"
+MODEL_PENDING = "正在读取模型型号……"
+
+
+def header_md(badge: Optional[Dict[str, Any]] = None) -> str:
+    """页面顶部：标题，右边是检测出来的模型型号（workflows.model_badge 从模型文件里读出来的，不是照抄设置）。"""
+    if not badge:
+        pill = f'<span class="vt-model vt-model-pending">{MODEL_PENDING}</span>'
+    else:
+        text = html.escape(str(badge.get("text") or "版本读不出来"))
+        if badge.get("note"):
+            text += f'<small>（{html.escape(str(badge["note"]))}）</small>'
+        level = "warn" if badge.get("level") == "warn" else "ok"
+        tip = html.escape(str(badge.get("detail") or ""), quote=True)
+        pill = f'<span class="vt-model vt-model-{level}" title="{tip}">模型：{text}</span>'
+    return f"{INTRO_TITLE} {pill}\n{INTRO_SUB}"
+
+
+INTRO = header_md(None)
 
 HONEST_SIM = "相似度是几个声纹模型一起自动打分，越高越像；机器打分不可能百分之百准确，最终以耳朵为准。"
 PCT_HELP = ("「像你本人」的百分比：100% = 和你自己的真实录音一样像，0% = 陌生人的水平。"
@@ -146,7 +164,17 @@ SCRIPT_SUB_EXTS = (".srt", ".vtt")
 APP_CSS = """
 .wrap.default.hidden,.wrap.center.hidden{display:none!important}
 .vt-md .min{min-height:0!important}
-.vt-header h1{margin-bottom:2px}
+/* gradio 的标题是 flex 不换行：允许换行，手机上模型型号自动换到第二行 */
+.vt-header h1{margin-bottom:2px;flex-wrap:wrap;align-items:center;gap:4px 12px}
+.vt-model{display:inline-block;vertical-align:middle;max-width:100%;padding:2px 12px;border:1px solid;border-radius:999px;
+  font-size:15px;line-height:1.6;font-weight:600}
+.vt-model small{font-size:13px;font-weight:400}
+.vt-model-ok{color:#166534;background:#f0fdf4;border-color:#16a34a}
+.vt-model-warn{color:#92400e;background:#fffbeb;border-color:#d97706}
+.vt-model-pending{color:#374151;background:#f3f4f6;border-color:#6b7280;font-weight:400}
+.dark .vt-model-ok{color:#bbf7d0;background:rgba(22,163,74,.18)}
+.dark .vt-model-warn{color:#fde68a;background:rgba(217,119,6,.18)}
+.dark .vt-model-pending{color:#e5e7eb;background:rgba(107,114,128,.20)}
 .vt-honest{color:var(--body-text-color-subdued);font-size:var(--text-sm)}
 .vt-diff{margin:4px 0;padding:8px 12px;border-left:4px solid #dc2626;background:var(--background-fill-secondary);
   border-radius:4px;line-height:1.7;overflow-wrap:anywhere}
@@ -1946,6 +1974,14 @@ class WebUI:
         q, note = _recommended_quality(status)
         return _gpu_badge(status), _upd(value=q), f"{QUALITY_NOTE}\n\n{note}"
 
+    def model_header(self, voice: Any) -> str:
+        """顶部标题 + 检测出来的模型型号（读模型文件开头几 KB，很快）。"""
+        try:
+            return header_md(wf.model_badge(self.cfg, str(voice or "").strip()))
+        except Exception as exc:  # 顶部标题不能因为这个出错
+            log.debug(f"读取模型型号失败：{exc}")
+            return header_md({"text": "版本读不出来", "level": "warn", "detail": str(exc)})
+
     def refresh_gpu(self) -> str:
         return _gpu_badge(_gpu_status(refresh=True))
 
@@ -2850,7 +2886,7 @@ class WebUI:
 
         with gr.Blocks(**blocks_kw) as app:
             # -------------------------------------------------------- 顶部
-            gr.Markdown(INTRO, elem_classes="vt-header")
+            c["header"] = gr.Markdown(INTRO, elem_classes="vt-header")
             with gr.Row(equal_height=True):
                 with gr.Column(scale=8, min_width=240):
                     c["gpu_badge"] = gr.HTML(_gpu_pending())
@@ -3116,6 +3152,9 @@ class WebUI:
             app.load(_safe("打开网页", len(load_outs), 0)(self.on_load), None, load_outs, **quick)
             app.load(self.on_load_gpu, None, [c["gpu_badge"], c["quality"], c["quality_note"]], **quick)
             gpu_btn.click(self.refresh_gpu, None, c["gpu_badge"], **quick)
+            # 顶部的模型型号：打开网页、换声音、训练 / 重新挑选模型之后都重新读一次模型文件
+            app.load(self.model_header, c["voice"], c["header"], **quick)
+            c["voice"].change(self.model_header, c["voice"], c["header"], **quick)
             refresh.click(self.refresh_voices, c["voice"], c["voice"], **quick).then(
                 self.library, None, outs(self.LIB_OUT), **quick)
             c["voice"].change(_safe("读取声音", len(voice_outs), 0)(self.on_voice_change),
@@ -3167,10 +3206,12 @@ class WebUI:
             # ②
             train_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["q_ep"], c["bs"], c["dpo"]]
             c["train_btn"].click(_settled(self.do_train), train_in, outs(self.TRAIN_OUT), **heavy).then(
-                self.after_task, None, after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick)
+                self.after_task, None, after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick).then(
+                self.model_header, c["voice"], c["header"], **quick)
             c["select_btn"].click(_settled(self.do_select), [c["voice"], c["t_backend"]], outs(self.TRAIN_OUT),
                                   **heavy).then(
-                self.after_task, None, after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick)
+                self.after_task, None, after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick).then(
+                self.model_header, c["voice"], c["header"], **quick)
             c["train_next"].click(lambda: gr.Tabs(selected="gen"), None, tabs, **quick)
             # 打开「② 训练模型」页、换引擎、改高级设置时，重新预览这次会怎么训练（只读文件和 nvidia-smi，很快）
             train_tab.select(self.train_plan_preview, plan_in, c["train_plan"], **quick)

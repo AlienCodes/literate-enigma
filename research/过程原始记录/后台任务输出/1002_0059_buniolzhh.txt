@@ -1,0 +1,14 @@
+# 后台任务 buniolzhh
+# 开始：10-02 00:49:17（北京时间）  操作编号：#1047  工具：Bash
+# 说明：Wait for ReDimNet2 b6 raw sets to finish
+# 结束状态：completed  Background command "Wait for ReDimNet2 b6 raw sets to finish" completed (exit code 0)
+# 命令：
+#   S=<草稿目录>/sv; until grep -q "redimnet2_b6_cnc raw en_cohort\|Traceback\|Error" $S/queue.log; do sleep 20; done; tail -4 $S/queue.log; date
+# ---- 输出 ----
+redimnet2_b6_cnc raw en_eval: 600 in 320s
+redimnet2_b6_cnc raw en_cohort: 400 in 174s
+redimnet2_b6_cnc raw zh: 86 in 69s
+redimnet2_b6_cnc raw clone: 178 in 236s
+Thu Oct  1 16:59:38 UTC 2026
+
+[exited with code 0]

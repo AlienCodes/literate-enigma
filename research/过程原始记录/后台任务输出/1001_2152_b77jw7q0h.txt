@@ -1,0 +1,42 @@
+# 后台任务 b77jw7q0h
+# 开始：10-01 21:38:38（北京时间）  操作编号：#627  工具：Bash
+# 说明：Run full browser smoke test on final code
+# 结束状态：completed  Background command "Run full browser smoke test on final code" completed (exit code 0)
+# 命令：
+#   SP=<草稿目录>; M=$SP/m24i; cd $M && kill $(cat webui.pid 2>/dev/null) 2>/dev/null; sleep 1; bash start.sh; for i in $(seq 1 90); do curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:7876/ 2>/dev/null | grep -q 200 && break; sleep 2; done; echo up; timeout 3000 python3 integ_check.py > final_check.out 2>&1; echo "exit $?" >> final_check.out; kill $(cat webui.pid) 2>/dev/null; grep -E "CHECK|exit" final_check.out | tail -60
+# ---- 输出 ----
+started pid 23754
+up
+Terminated
+[929.9] CHECK PASS a.version_in_header 🎙️ 声音分身 VoiceTwin v0.1.6
+[930.0] CHECK PASS a.gpu_badge_error_in_sandbox ❌ 显卡没有正常工作：没有找到 NVIDIA 显卡（或者显卡驱动没装） 怎么办：没有 N 卡（NVIDIA 显卡）也能用，但训练会非常慢（可能要十几个小时）。如
+[930.0] CHECK PASS a.voice_library_header 🎙️ 我的声音库（共 0 个）
+[18.9] CHECK PASS b.prepare_bar_seen_running
+[18.9] CHECK PASS b.prepare_done status=done level=done pct=100
+[21.4] CHECK PASS b.done_bar_text ✅ 全部完成！用时 1 分 27 秒
+[22.0] CHECK PASS b.summary_md
+[22.0] CHECK PASS b.count_line 📊 一共 228 条片段：保留 228 条（16.4 分钟），不保留 0 条 英文 60 条，中文 168 条；其中 20 条留作「考试题」（用来自动挑选最像你的模型）
+[22.0] CHECK PASS b.suspect_column
+[22.0] CHECK PASS b.table_numbered_from_1 ['1', '2', '3', '4', '5']
+[23.4] CHECK PASS c.proof_button_visible
+[23.5] CHECK PASS c.proofcheck_done status=done pct=100
+[25.5] CHECK PASS c.proofcheck_message ✅ 检查完了：一共查了 228 条，没有发现可能有错的字
+[26.2] CHECK FAIL c.red_marks_present 0 red spans
+[28.3] CHECK PASS d.plan_preview 电脑会自动这样训练
+[146.9] CHECK PASS d.train_bar_seen_running
+[146.9] CHECK PASS d.train_done status=done level=done pct=100
+[150.4] CHECK PASS d.train_done_md
+[151.8] CHECK PASS e.default_quality_balanced_without_gpu ['WAV（音质最好，剪映/后期用）', '均衡（每句做 3 遍，挑最像你的）']
+[156.4] CHECK PASS e.generate_bar_seen_running
+[156.4] CHECK PASS e.generate_done status=done pct=100
+[159.4] CHECK PASS e.result_table_1_based ['1', '2', '3', '4']
+[162.2] CHECK PASS f.doctor_table_numbered ['1', '2', '3', '4', '5', '6']
+[162.2] CHECK PASS f.doctor_total 共 12 项
+[165.4] CHECK PASS g.error_bar status=error level=error
+[166.9] CHECK PASS g.error_bar_has_advice ❌ 没有完成：停在第 1 步「启动合成引擎」 / 0% / 原因：讲稿是空的 / 怎么办：在「讲稿」框里粘贴文字，或者上传 txt / Word 文件。 / 已用 0 秒 · 详细的出错信息在下方「详细过程」里，需要时可以复制给帮你的人。
+[166.9] CHECK PASS g.friendly_md ❌ 生成没有完成：讲稿是空的
+[170.0] CHECK PASS h.verify_done status=done
+[171.5] CHECK PASS h.verify_table_numbered ['1', '2', '3', '4', '5']
+exit 143
+
+[exited with code 0]
