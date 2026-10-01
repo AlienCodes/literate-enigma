@@ -280,7 +280,10 @@ def apply_filters(project: Project, records: List[Dict[str, Any]], pcfg: Dict[st
                 np.save(project.root / f"speaker_centroid.{encoder.name}.npy", cen)
 
     for r in records:
-        if r.get("manual_keep") is not None:
+        if r.get("deleted"):  # 老师在校对表里删除的：一直不用（可以在校对表下面恢复）
+            r["keep"] = False
+            r["drop_reason"] = "老师删除"
+        elif r.get("manual_keep") is not None:
             r["keep"] = bool(r["manual_keep"])
         else:
             r["keep"] = not r["drop_reason"]

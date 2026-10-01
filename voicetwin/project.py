@@ -273,14 +273,28 @@ def normalize_lexicon_line(line: str) -> str:
 
 
 def apply_text_edit(rec: Dict[str, Any], text: str) -> None:
-    """片段文字被人改过：更新语言和语速，去掉"可能有错"的标记（它是针对旧文字的）。"""
+    """片段文字被人改过：更新语言和语速；记下最初识别的文字（orig_text，校对表用蓝色显示改过的字）。
+
+    "可能有错"的标记：改过的地方不再标红；没改到的红字留着（记下它们是针对哪段文字算的，显示时换算位置），
+    一处都不剩时去掉整个标记。"""
     from voicetwin.utils.textutil import detect_lang, syllable_count
 
+    old = str(rec.get("text", "") or "")
+    if old and text != old:
+        rec.setdefault("orig_text", old)
     rec["text"] = text
     rec["lang"] = detect_lang(text)
     if rec.get("voiced"):
         rec["rate"] = syllable_count(text) / max(rec["voiced"], 1e-3)
-    rec.pop("suspect", None)
+    sus = rec.get("suspect")
+    if isinstance(sus, dict) and old:
+        sus.setdefault("text", old)
+        from voicetwin.data.review import analyze
+
+        if not analyze(rec)["active"]:
+            rec.pop("suspect", None)
+    else:
+        rec.pop("suspect", None)
     rec["text_edited"] = True
 
 
