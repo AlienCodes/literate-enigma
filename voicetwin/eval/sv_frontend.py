@@ -20,8 +20,10 @@ import numpy as np
 
 SR = 16000
 VAD_WINDOW = 512
-#: 每段人声前后各多留 100 ms（不切掉字头字尾）
-VAD_PAD_SECONDS = 0.10
+#: 每段人声前后多留多少原始音频。实测 0 最好：多留的部分在原声里是环境声、在生成的声音里是绝对静音，
+#: 留得越多两边差得越多（0 → 0.1 秒：同一个人的分数偏差从约 −1.8% 变成约 −2.5%），准确度不变
+#: （research/sv_benchmark/记录.md 第 11 节）
+VAD_PAD_SECONDS = 0.0
 #: 检测出来的人声加起来不到这么长时，就用整段（太短的话声纹不可靠，宁可带上停顿）
 MIN_SPEECH_SECONDS = 0.5
 
@@ -148,7 +150,7 @@ class SileroVAD:
         return [(a * VAD_WINDOW, b * VAD_WINDOW) for a, b in spans if b - a >= min_windows]
 
     def speech_only(self, wav: np.ndarray) -> np.ndarray:
-        """只保留说话的部分（每段前后多留 100 ms 原始音频），拼起来。人声太少时返回原音频。"""
+        """只保留说话的部分，拼起来。人声太少时返回原音频。"""
         wav = np.asarray(wav, dtype=np.float32).reshape(-1)
         spans = self.spans(wav)
         if not spans:
