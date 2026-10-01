@@ -1,0 +1,14 @@
+# 后台任务 b3x5xhrkm
+# 开始：10-02 05:04:09（北京时间）  操作编号：#1549  工具：Bash
+# 说明：Wait until the v0.1.8 release has its assets
+# 结束状态：  
+# 命令：
+#   cd <仓库>; until curl -s https://api.github.com/repos/AlienCodes/literate-enigma/releases/tags/v0.1.8 | python3 -c "import json,sys; d=json.load(sys.stdin); a=[x['name'] for x in d.get('assets',[])]; print(a); sys.exit(0 if len(a)>=2 else 1)"; do sleep 20; done; curl -s https://api.github.com/repos/AlienCodes/literate-enigma/releases/tags/v0.1.8 | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['html_url'], d['published_at']); [print(x['name'], x['size'], x['browser_download_url']) for x in d['assets']]"
+# ---- 输出 ----
+[]
+[]
+[]
+[]
+[]
+[]
+[]
