@@ -1,0 +1,42 @@
+model                                                prep norm | EN2s-A  EN2s-B  DCF-B | ZH2s EER  DCF
+redimnet2_b6_cnc                                     raw  asn  |  1.48%   1.21%  0.139 |  0.25%  0.037
+3dspeaker_speech_eres2net_sv_zh-cn_16k-common        raw  asn  |  1.70%   1.42%  0.161 |  0.27%  0.072
+3dspeaker_speech_eres2netv2_sv_zh-cn_16k-common      raw  asn  |  1.59%   1.52%  0.174 |  0.37%  0.126
+redimnet2_b6_cnc                                     raw  cos  |  1.94%   1.85%  0.202 |  0.05%  0.016
+redimnet2_b3_cnc                                     raw  asn  |  2.49%   1.44%  0.178 |  0.03%  0.016
+3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-com raw  asn  |  1.93%   1.98%  0.181 |  0.34%  0.108
+3dspeaker_speech_eres2netv2_sv_zh-cn_16k-common      raw  cos  |  1.93%   2.20%  0.247 |  0.24%  0.056
+3dspeaker_speech_eres2net_sv_zh-cn_16k-common        raw  cos  |  2.05%   2.29%  0.251 |  0.26%  0.045
+redimnet2_b3_cnc                                     raw  cos  |  2.61%   2.07%  0.222 |  0.02%  0.003
+3dspeaker_speech_campplus_sv_zh_en_16k-common_advanc raw  asn  |  1.92%   2.06%  0.212 |  0.94%  0.225
+3dspeaker_speech_campplus_sv_zh_en_16k-common_advanc raw  cos  |  2.38%   2.51%  0.248 |  0.30%  0.122
+3dspeaker_speech_campplus_sv_zh-cn_16k-common        raw  asn  |  2.15%   2.61%  0.237 |  0.90%  0.192
+3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-com raw  cos  |  2.49%   2.93%  0.258 |  0.31%  0.025
+3dspeaker_speech_campplus_sv_zh-cn_16k-common        raw  cos  |  2.61%   2.94%  0.303 |  0.26%  0.069
+redimnet2_b6_vb2                                     raw  asn  |  2.59%   2.29%  0.224 |  1.50%  0.112
+nemo_en_titanet_small                                raw  asn  |  1.93%   2.40%  0.243 |  2.19%  0.216
+redimnet2_b6_vb2                                     raw  cos  |  2.95%   2.51%  0.247 |  1.30%  0.076
+wespeaker_zh_cnceleb_resnet34_LM                     raw  asn  |  3.40%   3.59%  0.374 |  1.19%  0.329
+nemo_en_titanet_small                                raw  cos  |  2.38%   3.27%  0.331 |  2.76%  0.243
+nemo_en_titanet_large                                raw  asn  |  2.81%   3.70%  0.334 |  2.50%  0.303
+nemo_en_titanet_large                                raw  cos  |  3.30%   4.14%  0.404 |  2.81%  0.427
+3dspeaker_speech_eres2net_large_sv_zh-cn_3dspeaker_1 raw  asn  |  4.88%   5.23%  0.477 |  0.57%  0.172
+3dspeaker_speech_eres2net_sv_en_voxceleb_16k         raw  asn  |  5.44%   4.79%  0.450 |  1.88%  0.221
+3dspeaker_speech_eres2net_large_sv_zh-cn_3dspeaker_1 raw  cos  |  6.00%   5.77%  0.532 |  0.56%  0.143
+3dspeaker_speech_eres2net_sv_en_voxceleb_16k         raw  cos  |  6.24%   5.23%  0.489 |  2.19%  0.304
+wespeaker_zh_cnceleb_resnet34_LM                     raw  cos  |  5.44%   6.01%  0.572 |  2.55%  0.212
+wespeaker_en_voxceleb_resnet293_LM                   raw  asn  | 12.13%  12.42%  0.857 | 11.25%  0.870
+wespeaker_en_voxceleb_resnet152_LM                   raw  asn  | 13.85%  14.16%  0.830 | 14.69%  0.857
+wespeaker_en_voxceleb_resnet34_LM                    raw  asn  | 16.20%  15.79%  0.900 | 15.62%  0.948
+wespeaker_en_voxceleb_resnet221_LM                   raw  asn  | 15.78%  16.01%  0.836 | 20.00%  0.941
+wespeaker_en_voxceleb_CAM++_LM                       raw  asn  | 17.03%  18.30%  0.940 | 18.12%  0.931
+wespeaker_en_voxceleb_resnet293_LM                   raw  cos  | 21.09%  19.05%  0.979 | 15.31%  0.938
+wespeaker_en_voxceleb_CAM++_LM                       raw  cos  | 19.18%  21.24%  0.952 | 17.54%  0.960
+wespeaker_en_voxceleb_resnet34_LM                    raw  cos  | 22.12%  20.92%  0.982 | 15.65%  0.961
+wespeaker_en_voxceleb_resnet152_LM                   raw  cos  | 25.28%  23.09%  0.961 | 15.89%  0.962
+wespeaker_en_voxceleb_resnet221_LM                   raw  cos  | 25.17%  24.74%  0.962 | 20.94%  0.931
++ redimnet2_b6_cnc                                   -> EN2s-B EER 1.21% DCF 0.139 | ZH2s EER 0.25% DCF 0.037
++ 3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-c -> EN2s-B EER 0.87% DCF 0.082 | ZH2s EER 0.04% DCF 0.016
++ nemo_en_titanet_small                              -> EN2s-B EER 0.66% DCF 0.065 | ZH2s EER 0.07% DCF 0.013
++ 3dspeaker_speech_eres2netv2_sv_zh-cn_16k-common    -> EN2s-B EER 0.65% DCF 0.063 | ZH2s EER 0.06% DCF 0.013
++ redimnet2_b3_cnc                                   -> EN2s-B EER 0.54% DCF 0.057 | ZH2s EER 0.04% DCF 0.006
