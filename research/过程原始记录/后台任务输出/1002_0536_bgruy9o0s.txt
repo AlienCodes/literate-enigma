@@ -1,0 +1,36 @@
+# 后台任务 bgruy9o0s
+# 开始：10-02 05:30:35（北京时间）  操作编号：#1608  工具：Bash
+# 说明：Wait for all CI checks on the new head
+# 结束状态：completed  Background command "Wait for all CI checks on the new head" completed (exit code 0)
+# 命令：
+#   SHA=368373000ddd83da961dfdc6cb5e58c334edd980; until curl -s "https://api.github.com/repos/AlienCodes/literate-enigma/commits/$SHA/check-runs?per_page=50" | python3 -c "
+#   import json,sys
+#   d=json.load(sys.stdin); runs=d.get('check_runs',[])
+#   done=[r for r in runs if r['status']=='completed']
+#   print(len(runs), len(done), sorted(set(r['conclusion'] for r in done if r['conclusion'])))
+#   sys.exit(0 if runs and len(done)==len(runs) and len(runs)>=8 else 1)"; do sleep 30; done; curl -s "https://api.github.com/repos/AlienCodes/literate-enigma/commits/$SHA/check-runs?per_page=50" | python3 -c "
+#   import json,sys; [print(r['name'], r['conclusion'], r['html_url']) for r in json.load(sys.stdin)['check_runs']]"
+# ---- 输出 ----
+8 0 []
+8 0 []
+8 0 []
+8 0 []
+8 0 []
+8 0 []
+8 0 []
+8 4 ['success']
+8 4 ['success']
+8 4 ['success']
+8 7 ['success']
+8 7 ['success']
+8 8 ['success']
+test (ubuntu-latest, 3.9) success https://github.com/AlienCodes/literate-enigma/actions/runs/36929141295/job/110593815277
+test (windows-latest, 3.11) success https://github.com/AlienCodes/literate-enigma/actions/runs/36929141295/job/110593815271
+test (ubuntu-latest, 3.11) success https://github.com/AlienCodes/literate-enigma/actions/runs/36929141295/job/110593815247
+test (windows-latest, 3.9) success https://github.com/AlienCodes/literate-enigma/actions/runs/36929141295/job/110593815120
+test (windows-latest, 3.9) success https://github.com/AlienCodes/literate-enigma/actions/runs/36929134616/job/110593776620
+test (ubuntu-latest, 3.11) success https://github.com/AlienCodes/literate-enigma/actions/runs/36929134616/job/110593776498
+test (windows-latest, 3.11) success https://github.com/AlienCodes/literate-enigma/actions/runs/36929134616/job/110593776480
+test (ubuntu-latest, 3.9) success https://github.com/AlienCodes/literate-enigma/actions/runs/36929134616/job/110593776379
+
+[exited with code 0]
