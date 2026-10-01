@@ -367,3 +367,7 @@ scripts/
 运行测试：`pip install -e ".[dev]" && pytest`（不需要显卡：用测试引擎和仿真的 GPT-SoVITS 目录验证整条流程）。
 
 修改《快速上手》后重新生成 PDF：`pip install playwright pypdf fonttools && python scripts/build_manual_pdf.py --quickstart`（需要 Noto Sans CJK SC 字体）。
+
+---
+
+> 给开发者 / 接手的 AI 助手：先读 [交接说明.md](交接说明.md)（项目全貌、规定、测试和发布步骤），开发全过程在 [research/时间线.md](research/时间线.md)。

@@ -71,4 +71,4 @@
 | 10-02 03:35 | [1002_0335_bqv03kw3e.txt](1002_0335_bqv03kw3e.txt) | Wait for cohort rebuild | completed | Background command "Wait for cohort rebuild" completed (exit code 0) |
 | 10-02 03:59 | [1002_0359_bt5h1lpgr.txt](1002_0359_bt5h1lpgr.txt) | Poll until v0.1.7 release zip is downloadable | completed | Background command "Poll until v0.1.7 release zip is downloadable" completed (exit code 0) |
 | 10-02 05:07 | [1002_0507_b3x5xhrkm.txt](1002_0507_b3x5xhrkm.txt) | Wait until the v0.1.8 release has its assets | completed | Background command "Wait until the v0.1.8 release has its assets" completed (exit code 0) |
-| 10-02 05:07 | [1002_0507_bq2h4nvik.txt](1002_0507_bq2h4nvik.txt) |  |  |  |
+| 10-02 05:28 | [1002_0528_bb14pf9y8.txt](1002_0528_bb14pf9y8.txt) |  |  |  |
