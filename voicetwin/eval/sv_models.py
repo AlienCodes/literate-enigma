@@ -95,7 +95,12 @@ MODELS: Dict[str, SVModel] = {
 DEFAULT_ENSEMBLE: Tuple[str, ...] = ("redimnet2-b6", "eres2netv2-zh", "eres2net-base-zh")
 
 #: 自检用的固定测试音频（确定的伪随机"类语音"信号，不依赖任何文件）和每个模型应该得到的声纹（前 16 维 + 范数）
-SELFTEST: Dict[str, Dict[str, Any]] = {}
+SELFTEST: Dict[str, Dict[str, Any]] = {
+    # scripts/export_redimnet2.py 导出时算出的（PyTorch 和 ONNX 的结果一致：余弦 0.9999999）
+    "redimnet2-b6": {"head": [-0.309238, -1.057459, -1.967821, -2.821322, -1.075717, 0.521827, -0.64086, 0.692654,
+                              0.6594, 0.05059, -1.36933, -0.441233, 0.86425, 0.866227, -0.968835, 0.969402],
+                     "norm": 21.660431},
+}
 
 
 def selftest_signal(seconds: float = 3.0) -> np.ndarray:

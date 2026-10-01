@@ -1,18 +1,30 @@
 name: sv-models
 
 # 发布「精准声纹打分」用的模型文件到 GitHub Releases 的 sv-models-1（程序第一次用到时从这里下载）。
-# 只在模型清单变了时手动运行一次：Actions → sv-models → Run workflow。
 #   - ReDimNet2：从官方权重（核对 sha256）导出 ONNX，逐个和 PyTorch 的结果比对；
-#   - 3D-Speaker / WeSpeaker 模型和 silero-vad：从 sherpa-onnx 的发布页下载（核对 sha256），原样转存。
+#   - 3D-Speaker 模型和 silero-vad：从 sherpa-onnx 的发布页下载（核对 sha256），原样转存。
+# 已经发布的文件**不会被覆盖**（程序里记着它们的 sha256），只补上还没有的文件。
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/sv-models.yml"
+      - "scripts/export_redimnet2.py"
+      - "scripts/fetch_sv_models.py"
 
 permissions:
   contents: write
 
+concurrency:
+  group: sv-models
+  cancel-in-progress: false
+
 jobs:
   models:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TAG: sv-models-1
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -26,14 +38,20 @@ jobs:
         run: python scripts/export_redimnet2.py --out dist/sv-models --model b6
       - name: Fetch the other models
         run: python scripts/fetch_sv_models.py --out dist/sv-models
-      - name: Publish
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Publish (only files that are not there yet)
         run: |
           cd dist/sv-models
           ls -l
-          if ! gh release view sv-models-1 >/dev/null 2>&1; then
-            gh release create sv-models-1 --target "$GITHUB_SHA" --prerelease --latest=false \
+          sha256sum *.onnx
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --target "$GITHUB_SHA" --prerelease --latest=false \
               --title "声纹打分模型 sv-models-1（程序会自动下载，不用手动下载）" --notes-file NOTES.md
           fi
-          gh release upload sv-models-1 *.onnx *.json --clobber
+          have="$(gh release view "$TAG" --json assets --jq '.assets[].name')"
+          for f in *.onnx *.json; do
+            if printf '%s\n' "$have" | grep -qxF "$f"; then
+              echo "已经有 $f，不覆盖"
+            else
+              gh release upload "$TAG" "$f"
+            fi
+          done
