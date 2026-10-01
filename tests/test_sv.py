@@ -221,7 +221,12 @@ def test_download_verifies_and_falls_back(tmp_path, monkeypatch):
             return _Resp(b"", status=404)
 
     monkeypatch.setattr(requests, "Session", Broken)
-    (tmp_path / "sv" / "m1.onnx").write_bytes(b"Y" * 4096)  # 被改坏的文件
+    path = tmp_path / "sv" / "m1.onnx"
+    before = path.stat()
+    path.write_bytes(b"Y" * 4096)  # 被改坏的文件（大小一样）
+    import os
+
+    os.utime(path, ns=(before.st_atime_ns, before.st_mtime_ns))  # 修改时间也一样（Windows 上快速改写时就会这样）
     with pytest.raises(RuntimeError, match="模型一 下载失败"):
         sv_models.download(cfg)
     assert not (tmp_path / "sv" / "m1.onnx").exists()  # 核对不通过的文件不会留下来

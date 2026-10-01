@@ -147,8 +147,9 @@ _VERIFIED: Dict[Tuple[str, int, float], bool] = {}
 _VERIFY_LOCK = threading.Lock()
 
 
-def file_ok(spec: SVModel, path: Path, deep: bool = False) -> bool:
-    """文件在不在、大小对不对；deep=True 时再核对 sha256（或跑自检）。结果按（路径, 大小, 修改时间）缓存。"""
+def file_ok(spec: SVModel, path: Path, deep: bool = False, fresh: bool = False) -> bool:
+    """文件在不在、大小对不对；deep=True 时再核对 sha256（或跑自检）。结果按（路径, 大小, 修改时间）缓存；
+    fresh=True 时不用缓存、重新核对（下载时用：Windows 的修改时间精度只有十几毫秒，快速改写同样大小的文件时看不出来）。"""
     try:
         st = path.stat()
     except OSError:
@@ -159,7 +160,7 @@ def file_ok(spec: SVModel, path: Path, deep: bool = False) -> bool:
         return True
     key = (str(path), int(st.st_size), float(st.st_mtime))
     with _VERIFY_LOCK:
-        if key in _VERIFIED:
+        if key in _VERIFIED and not fresh:
             return _VERIFIED[key]
     if spec.sha256:
         ok = _sha256(path) == spec.sha256
@@ -218,7 +219,7 @@ def download(cfg: Any, progress: Optional[ProgressFn] = None, keys: Optional[Seq
 
     root = model_dir(cfg)
     root.mkdir(parents=True, exist_ok=True)
-    todo = [m for m in required(cfg, keys) if not file_ok(m, root / m.file, deep=True)]
+    todo = [m for m in required(cfg, keys) if not file_ok(m, root / m.file, deep=True, fresh=True)]
     if not todo:
         return []
     total = sum(max(m.size, 30 << 20) for m in todo)
@@ -230,14 +231,16 @@ def download(cfg: Any, progress: Optional[ProgressFn] = None, keys: Optional[Seq
         if dst.exists():  # 核对不通过的旧文件（下载坏了或被改过）：先删掉，免得下载失败时还被当成好的
             dst.unlink()
         errors: List[str] = []
+        ok = False
         for url in m.sources:
             for attempt in range(1, DOWNLOAD_ATTEMPTS + 1):
                 try:
                     check_cancel()
                     _fetch(session, url, dst, m, progress, done_bytes, total)
-                    if not file_ok(m, dst, deep=True):
+                    if not file_ok(m, dst, deep=True, fresh=True):
                         dst.unlink()
                         raise IOError("下载的文件核对不通过（不完整或被改过），已删除")
+                    ok = True
                     break
                 except TaskCancelled:
                     raise
@@ -245,9 +248,9 @@ def download(cfg: Any, progress: Optional[ProgressFn] = None, keys: Optional[Seq
                     errors.append(f"{url}：{exc}")
                     if attempt < DOWNLOAD_ATTEMPTS:
                         time.sleep(2.0 * attempt)
-            if file_ok(m, dst, deep=True):
+            if ok:
                 break
-        if not file_ok(m, dst, deep=True):
+        if not ok:
             raise RuntimeError(f"{m.label} 下载失败：" + "；".join(errors[-3:]) +
                                f"。也可以手动下载 {m.sources[0]} 放到 {root}")
         done_bytes += max(m.size, 30 << 20)
