@@ -7,7 +7,7 @@
 > ## 👉 第一次用？只看这个：[**快速上手（10 分钟看完）**](快速上手.md)
 >
 > 1. 下载程序：[**Releases 页面 → VoiceTwin-Windows-v….zip**](https://github.com/AlienCodes/literate-enigma/releases/latest)
-> 2. 照着 [**快速上手**](快速上手.md) 做：安装 → 训练你的声音 → 粘贴讲稿生成音频（也有 [4 页 PDF 版](docs/快速上手.pdf)）
+> 2. 照着 [**快速上手**](快速上手.md) 做：安装 → 训练你的声音 → 粘贴讲稿生成音频（也有 [7 页 PDF 版](docs/快速上手.pdf)，带截图）
 >
 > 遇到问题再查：[详细手册 PDF（78 页）](docs/声音分身VoiceTwin使用手册.pdf) · [Windows 详细教程（网页版）](docs/Windows详细使用教程.md)
 
