@@ -360,6 +360,40 @@ def _safe(what: str, n_out: int, md_pos: int = 0) -> Callable[[Callable[..., Any
     return deco
 
 
+#: 流式任务最后一次产出之后，再等这么久才真正结束（见 _settled）
+SETTLE_SECONDS = 0.6
+
+
+def _settled(fn: Callable[..., Iterator[Any]]) -> Callable[..., Iterator[Any]]:
+    """给流式（边做边显示进度）的按钮用：最后一次产出之后停一下再结束。
+
+    gradio 4.24 的坑（浏览器里实测）：任务结束时，最后一次进度更新、「任务完成」和「关闭连接」三条消息几乎同时到达网页。
+    网页把前两条推迟处理，却立刻处理「关闭连接」，顺手丢掉了这个任务记着的上一次的值；推迟的那条进度更新只是「和上次比的差异」，
+    于是被原样当成了新的值：没变化的输出收到一个空列表 []。「只重新生成第几句」的框就这样变成了 []，下一次点「生成」
+    会提示「看不懂「[]」」（Markdown 收到列表时还会报 trim 错、整个页面不再刷新）。最后停一下，让网页先把最后一条进度更新
+    按差异处理完，「关闭连接」再到。"""
+
+    @functools.wraps(fn)
+    def run(*args: Any, **kwargs: Any) -> Iterator[Any]:
+        yield from fn(*args, **kwargs)
+        time.sleep(SETTLE_SECONDS)
+
+    return run
+
+
+def _text_in(value: Any) -> str:
+    """文字框传来的值统一成字符串。
+
+    碰上 _settled 说的那个 gradio 4.24 的坑时（例如旧版本留下的网页还开着），文字框里存的会是一个列表，
+    交回来时变成字符串 "[]"。列表 / "[]" 都当成空的，不要把它当成老师填的内容。"""
+    if value is None:
+        return ""
+    if isinstance(value, (list, tuple)):
+        return "".join(str(v) for v in value if isinstance(v, (str, int, float)))
+    text = str(value)
+    return "" if text.strip() in ("[]", "{}") else text
+
+
 def _stages(cfg: Config, kind: str, backend: Optional[str] = None, **kw: Any) -> Optional[List[Tuple[float, str]]]:
     """每种任务分哪几步（wf.task_stages）。生成要把选的质量传进来（quality=，「完美」档多一步），
     素材准备要传 overrides=（会不会自动查错字）。出错时返回 None（进度条照样能用，只是不显示第几步）。"""
@@ -2369,7 +2403,7 @@ class WebUI:
         try:
             from voicetwin.cli import _parse_redo
 
-            redo_list = [] if attach else _parse_redo(str(redo or ""))
+            redo_list = [] if attach else _parse_redo(_text_in(redo))
         except ValueError as exc:
             yield self._o(O, gen_bar=self._notice(str(exc)), **idle)
             return
@@ -3098,7 +3132,7 @@ class WebUI:
             clip_outs = [c["clips_count"], c["clips"]]
             prep_in = [c["voice"], c["files"], c["folder"], c["asr"], c["lang"], c["denoise"], c["separate"],
                        c["only_sus"], c["clips"]]
-            c["prep_btn"].click(self.do_prepare, prep_in, outs(self.PREP_OUT), **heavy).then(
+            c["prep_btn"].click(_settled(self.do_prepare), prep_in, outs(self.PREP_OUT), **heavy).then(
                 _safe("载入片段", 3, 0)(self.after_prepare_clips), [c["voice"], c["only_sus"], c["clips"], c["clips_base"]],
                 clip_outs + [c["clips_base"]], **quick).then(
                 self.after_task, None, after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick)
@@ -3121,15 +3155,17 @@ class WebUI:
                                  [c["review_md"], c["clips_count"], c["clips"], c["clip_diff"], c["adopt_btn"]], **quick)
             save_clips.click(_safe("保存修改", 3, 0)(self.do_save), [c["voice"], c["clips"], c["only_sus"]],
                              [c["review_md"], c["clips_count"], c["clips"]], **quick)
-            c["proof_btn"].click(self.do_proofcheck, [c["voice"], c["only_sus"]], outs(self.PROOF_OUT), **heavy).then(
+            c["proof_btn"].click(_settled(self.do_proofcheck), [c["voice"], c["only_sus"]], outs(self.PROOF_OUT),
+                                 **heavy).then(
                 _safe("载入片段", 2, 0)(self.refresh_clips), [c["voice"], c["only_sus"], c["clips"]], clip_outs, **quick).then(
                 self.after_task, None, after_outs, **quick)
 
             # ②
             train_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["q_ep"], c["bs"], c["dpo"]]
-            c["train_btn"].click(self.do_train, train_in, outs(self.TRAIN_OUT), **heavy).then(
+            c["train_btn"].click(_settled(self.do_train), train_in, outs(self.TRAIN_OUT), **heavy).then(
                 self.after_task, None, after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick)
-            c["select_btn"].click(self.do_select, [c["voice"], c["t_backend"]], outs(self.TRAIN_OUT), **heavy).then(
+            c["select_btn"].click(_settled(self.do_select), [c["voice"], c["t_backend"]], outs(self.TRAIN_OUT),
+                                  **heavy).then(
                 self.after_task, None, after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick)
             c["train_next"].click(lambda: gr.Tabs(selected="gen"), None, tabs, **quick)
             # 打开「② 训练模型」页、换引擎、改高级设置时，重新预览这次会怎么训练（只读文件和 nvidia-smi，很快）
@@ -3152,9 +3188,9 @@ class WebUI:
                               **quick)
             gen_in = [c["voice"], c["script"], c["script_file"], c["s_backend"], c["quality"], c["speed"], c["ref"], c["redo"],
                       c["out_name"], c["out_fmt"]]
-            c["gen_btn"].click(self.do_generate, gen_in, outs(self.GEN_OUT), **heavy).then(
+            c["gen_btn"].click(_settled(self.do_generate), gen_in, outs(self.GEN_OUT), **heavy).then(
                 self.after_task, None, after_outs, **quick)
-            c["speed_try"].click(self.do_speed_preview, [c["voice"], c["script"], c["speed"], c["s_backend"]],
+            c["speed_try"].click(_settled(self.do_speed_preview), [c["voice"], c["script"], c["speed"], c["s_backend"]],
                                  outs(self.SPEED_OUT), **heavy)
             c["var_choice"].input(_safe("切换版本", 3, 2)(self.on_choose_variant), [c["voice"], c["gen_state"], c["var_choice"]],
                                   [c["out_audio"], c["out_files"], c["var_note"]], **quick)
@@ -3182,9 +3218,10 @@ class WebUI:
                           c["gen_state"], [tabs, c["ev_audio"]], **quick)
 
             # ⑤
-            c["vf_btn"].click(self.do_verify, [c["voice"], c["vf_orig"], c["vf_gen"], c["gen_state"]],
+            c["vf_btn"].click(_settled(self.do_verify), [c["voice"], c["vf_orig"], c["vf_gen"], c["gen_state"]],
                               outs(self.VERIFY_OUT), **heavy).then(self.after_task, None, after_outs, **quick)
-            c["bt_btn"].click(self.do_blind, [c["voice"], c["bt_n"], c["quality"]], outs(self.BLIND_OUT), **heavy).then(
+            c["bt_btn"].click(_settled(self.do_blind), [c["voice"], c["bt_n"], c["quality"]], outs(self.BLIND_OUT),
+                              **heavy).then(
                 self.after_task, None, after_outs, **quick).then(self.blind_tests, c["voice"], c["bt_old"], **quick)
             c["bt_submit"].click(_safe("提交答案", len(self.BLIND_SUBMIT_OUT), 0)(self.on_blind_submit),
                                  [c["bt_state"]] + [c[f"bt_pick_{i}"] for i in range(MAX_BLIND)],
@@ -3200,7 +3237,7 @@ class WebUI:
             doc_outs = [c["doc_summary"], c["doc_out"], c["doc_total"], c["doc_opt"], c["doc_opt_acc"]]
             env_tab.select(_safe("环境检查", 5, 0)(lambda: self.run_doctor(False)), None, doc_outs)
             doc_btn.click(_safe("环境检查", 5, 0)(lambda: self.run_doctor(True)), None, doc_outs)
-            c["dl_btn"].click(self.do_download, None, outs(self.DL_OUT), **heavy).then(
+            c["dl_btn"].click(_settled(self.do_download), None, outs(self.DL_OUT), **heavy).then(
                 self.after_task, None, after_outs, **quick)
         return app
 

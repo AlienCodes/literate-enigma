@@ -552,6 +552,10 @@ def test_handlers_early_returns_have_right_arity(prepared, tmp_path):
     assert len(out) == 1 and len(out[0]) == len(ui.GEN_OUT) and "请这样填" in out[0][0]
     out = list(ui.do_generate(project.voice, "", None, "dummy", "fast", 0, "", ""))
     assert "请先在「讲稿」框里粘贴讲稿" in out[0][0]
+    # gradio 4.24 的坑留下的 []（交回来是字符串 "[]"）当成空的，不能提示「看不懂「[]」」
+    for stale in ("[]", [], None):
+        out = list(ui.do_generate(project.voice, "", None, "dummy", "fast", 0, "", stale))
+        assert "请先在「讲稿」框里粘贴讲稿" in out[0][0], out[0][0]
     out = list(ui.do_generate("没准备的声音", "大家好", None, "dummy", "fast", 0, "", ""))
     assert "还没有准备素材" in out[0][0]
     out = list(ui.do_train("没准备的声音", "gptsovits", None, "", 0, None))
@@ -626,6 +630,47 @@ def test_script_upload(tmp_path):
     # 讲稿来源：字幕文件优先，其次是文字框
     assert ui._source("文字", str(srt))[0] == str(srt)
     assert ui._source("第一句。第二句。", None) == ("第一句。第二句。", "第一句。")
+
+
+def test_text_in_treats_stale_lists_as_empty():
+    assert A._text_in(None) == "" and A._text_in([]) == "" and A._text_in("[]") == "" and A._text_in(" {} ") == ""
+    assert A._text_in("3,5") == "3,5" and A._text_in(["3,5"]) == "3,5" and A._text_in(3) == "3"
+
+
+def test_settled_pauses_after_the_last_yield(monkeypatch):
+    """流式处理函数最后一次产出之后要停一下再结束（gradio 4.24：不然最后一条进度更新会被网页当成新的值）。"""
+    import inspect
+
+    monkeypatch.setattr(A, "SETTLE_SECONDS", 0.2)
+
+    def handler(voice, text="", n=2):
+        for i in range(n):
+            yield (voice, text, i)
+
+    wrapped = A._settled(handler)
+    assert inspect.isgeneratorfunction(wrapped)  # gradio 靠它判断是不是流式
+    assert inspect.signature(wrapped) == inspect.signature(handler)  # gradio 按参数个数传输入
+    it = wrapped("我的声音", text="x")
+    assert [next(it), next(it)] == [("我的声音", "x", 0), ("我的声音", "x", 1)]
+    t0 = time.monotonic()
+    with pytest.raises(StopIteration):
+        next(it)
+    assert time.monotonic() - t0 >= 0.18
+
+
+def test_every_streaming_button_is_settled():
+    """每个流式按钮（do_ 开头的生成器）注册时都包了 _settled。"""
+    import inspect
+    import re
+
+    src = Path(A.__file__).read_text(encoding="utf-8")
+    streaming = {name for name, fn in inspect.getmembers(A.WebUI, inspect.isfunction)
+                 if name.startswith("do_") and inspect.isgeneratorfunction(fn)}
+    assert {"do_prepare", "do_generate", "do_verify"} <= streaming
+    registered = set(re.findall(r"\.click\(\s*(?:_settled\()?self\.(do_\w+)", src))
+    settled = set(re.findall(r"\.click\(\s*_settled\(self\.(do_\w+)\)", src))
+    assert streaming <= registered, streaming - registered
+    assert streaming <= settled, streaming - settled
 
 
 def test_generate_with_dummy_backend(prepared, tmp_path):
