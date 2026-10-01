@@ -123,7 +123,9 @@ if (-not $NoShortcut) {
         $lnk.Save()
         Write-Host "已在桌面创建快捷方式「声音分身 VoiceTwin」" -ForegroundColor Green
     } catch {
-        Write-Host "（没能创建桌面快捷方式，可以直接双击 start_webui.bat）" -ForegroundColor Yellow
+        Write-Host "没能在桌面创建快捷方式（$($_.Exception.Message)），常见原因是安全软件拦截。" -ForegroundColor Yellow
+        Write-Host "  自己创建：在 $Here 里右键 start_webui.bat → 发送到 → 桌面快捷方式（Windows 11 先点「显示更多选项」）" -ForegroundColor Yellow
+        Write-Host "  不创建也可以：以后直接双击 $Here\start_webui.bat" -ForegroundColor Yellow
     }
 }
 
@@ -132,5 +134,6 @@ Step "检查环境"
 
 Write-Host "`n安装完成！" -ForegroundColor Green
 Write-Host "  - 双击桌面上的「声音分身 VoiceTwin」或本文件夹里的 start_webui.bat 打开网页界面"
-Write-Host "  - 上面的检查如果有 ❌，请按提示处理（详见《Windows详细使用教程》的常见问题部分）"
+Write-Host "  - 上面的检查如果有 ❌，请按提示处理（详见《快速上手》的「遇到问题」或详细手册第 15 章）"
+Write-Host "  - 「NVIDIA 显卡」或「PyTorch 显卡加速」是 ❌ 时，先安装最新显卡驱动并重启电脑，否则训练会非常慢"
 Pause-End

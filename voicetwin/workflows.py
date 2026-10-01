@@ -9,7 +9,7 @@ import subprocess
 import sys
 import time
 from pathlib import Path
-from typing import Any, Callable, Dict, Iterable, List, Optional
+from typing import Any, Callable, Dict, Iterable, List, Optional, Tuple
 
 from voicetwin.config import Config
 from voicetwin.project import Project
@@ -183,6 +183,16 @@ def run_auto(cfg: Config, voice: str, inputs: Iterable[str], backend_name: Optio
 
 
 # ---------------------------------------------------------------------------- 环境检查
+def nvidia_smi_status(returncode: int, output: str) -> Tuple[bool, str]:
+    """把 nvidia-smi 的结果翻译成（是否正常, 说明）。驱动没装好时它也会输出一段报错文字，不能当成正常。"""
+    text = (output or "").strip()
+    if returncode != 0 or not text or "failed" in text.lower() or "error" in text.lower():
+        first = text.splitlines()[0][:160] if text else "没有输出"
+        return False, (f"显卡驱动没有正常工作（{first}）。请到 https://www.nvidia.cn/drivers/lookup/ "
+                       "下载安装最新驱动，然后重启电脑")
+    return True, text
+
+
 def doctor(cfg: Config) -> List[Dict[str, str]]:
     from voicetwin.backends.base import available_backends, get_backend
 
@@ -213,13 +223,27 @@ def doctor(cfg: Config) -> List[Dict[str, str]]:
     smi = shutil.which("nvidia-smi")
     if smi:
         try:
-            out = subprocess.run([smi, "--query-gpu=name,memory.total,driver_version", "--format=csv,noheader"],
-                                 stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, timeout=20).stdout.decode().strip()
-            add("NVIDIA 显卡", bool(out), out or "未检测到")
+            proc = subprocess.run([smi, "--query-gpu=name,memory.total,driver_version", "--format=csv,noheader"],
+                                  stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=20)
+            add("NVIDIA 显卡", *nvidia_smi_status(proc.returncode, proc.stdout.decode("utf-8", errors="replace")))
         except Exception as exc:
             add("NVIDIA 显卡", None, str(exc))
     else:
         add("NVIDIA 显卡", None, "没有找到 nvidia-smi（没有 N 卡时只能用 CPU，训练会非常慢）")
+    try:  # 整合包环境里有 PyTorch：直接确认训练能不能用上显卡
+        import torch  # type: ignore
+
+        # 只有装在 GPT-SoVITS 整合包里（runtime\python.exe）时，这里的 torch 才是训练要用的那个
+        in_gsv_runtime = (Path(sys.executable).resolve().parent.parent / "api_v2.py").exists()
+        if torch.cuda.is_available():
+            add("PyTorch 显卡加速", True, f"可用：{torch.cuda.get_device_name(0)}（torch {torch.__version__}）")
+        else:
+            add("PyTorch 显卡加速", False if in_gsv_runtime else None, f"不可用（torch {torch.__version__}）：训练会非常慢。"
+                "请到 https://www.nvidia.cn/drivers/lookup/ 安装最新显卡驱动并重启电脑；RTX 50 系列请使用 nvidia50 版整合包")
+    except ImportError:
+        pass
+    except Exception as exc:
+        add("PyTorch 显卡加速", None, str(exc))
     dummy = Project(cfg, "__doctor__")
     for name in available_backends():
         if name == "dummy":
