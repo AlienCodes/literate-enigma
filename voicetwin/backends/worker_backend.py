@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from voicetwin.backends.base import Backend, SynthRequest
+from voicetwin.backends.base import Backend, SynthRequest, check_cancel
 from voicetwin.backends.worker import WorkerClient, subprocess_env
 
 WORKERS_DIR = Path(__file__).with_name("workers")
@@ -33,6 +33,7 @@ class WorkerBackend(Backend):
 
     # 通用实现
     def start(self) -> None:
+        check_cancel()  # 点了「停止」就不要再花几分钟加载模型
         if self.client is None:
             self.client = WorkerClient(
                 self.worker_command(), cwd=self.worker_cwd(), env=self.worker_env(),

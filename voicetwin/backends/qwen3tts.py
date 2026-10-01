@@ -10,9 +10,9 @@ from __future__ import annotations
 import re
 import time
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
-from voicetwin.backends.base import ProgressFn, SynthRequest, resolve_python
+from voicetwin.backends.base import ProgressFn, Stage, SynthRequest, resolve_python
 from voicetwin.backends.worker import subprocess_env
 from voicetwin.backends.worker_backend import WORKERS_DIR, WorkerBackend
 from voicetwin.utils.ffmpeg import atempo
@@ -21,6 +21,21 @@ from voicetwin.utils.textutil import short_hash
 
 log = get_logger("qwen3tts")
 LANG_NAMES = {"zh": "Chinese", "en": "English"}
+_EPOCH_RE = re.compile(r"Epoch (\d+)")
+
+
+def _epoch_parser(epochs: int) -> Callable[[str], Optional[Tuple[float, str]]]:
+    """官方 sft_12hz.py 每隔几步打印「Epoch 0 | Step 10 | Loss: …」（轮数从 0 开始，是正在练的那一轮）。"""
+    epochs = max(1, int(epochs))
+
+    def parse(line: str) -> Optional[Tuple[float, str]]:
+        m = _EPOCH_RE.search(line)
+        if not m:
+            return None
+        e = int(m.group(1))
+        return max(0.0, min(1.0, e / float(epochs))), f"微调训练：第 {min(e + 1, epochs)}/{epochs} 轮"
+
+    return parse
 
 
 def _speaker_name(voice: str) -> str:
@@ -33,6 +48,7 @@ class Qwen3TTSBackend(WorkerBackend):
     display_name = "Qwen3-TTS"
     supports_training = True
     supports_speed = False
+    train_stages: List[Stage] = [(0.0, "准备"), (0.05, "提取音频编码"), (0.15, "微调训练")]
 
     def __init__(self, cfg, project):
         super().__init__(cfg, project)
@@ -89,7 +105,8 @@ class Qwen3TTSBackend(WorkerBackend):
 
     def synthesize(self, req: SynthRequest, out_path: Path) -> Path:
         out = super().synthesize(req, out_path)
-        if req.speed and abs(req.speed - 1.0) > 0.02:  # 引擎不支持调速，用 ffmpeg 高质量变速
+        # 这个引擎本身不能调语速：用 ffmpeg atempo（WSOLA，变速不变调，音高和音色不变）；不做重采样
+        if req.speed and abs(req.speed - 1.0) > 0.02:
             tmp = out.with_suffix(".tempo.wav")
             atempo(out, tmp, req.speed)
             tmp.replace(out)
@@ -106,12 +123,14 @@ class Qwen3TTSBackend(WorkerBackend):
             return local
         log.info(f"下载模型 {repo_or_path}（只需一次）……")
         self.run_logged([self.python, str(WORKERS_DIR / "download_model.py"), repo_or_path, str(local),
-                         str(self.bcfg.get("download_source", "auto"))], None, subprocess_env(), "qwen3_download")
+                         str(self.bcfg.get("download_source", "auto"))], None, subprocess_env(), "qwen3_download",
+                        label="下载 Qwen3-TTS 模型")
         return local
 
     def train(self, progress: Optional[ProgressFn] = None, **opts: Any) -> Dict[str, Any]:
         from voicetwin.data.exporters import export_qwen3
 
+        self.step(progress, 0.0, "准备 Qwen3-TTS 训练数据……")
         problems = self.check()
         finetune_dir = (self.repo / "finetuning") if self.repo else None
         if not finetune_dir or not (finetune_dir / "sft_12hz.py").exists():
@@ -131,17 +150,17 @@ class Qwen3TTSBackend(WorkerBackend):
         self.step(progress, 0.05, "提取音频编码（Qwen3-TTS Tokenizer）")
         self.run_logged([self.python, "prepare_data.py", "--device", str(self.bcfg.get("device", "cuda:0")),
                          "--tokenizer_model_path", str(tokenizer), "--input_jsonl", str(exp["jsonl"]),
-                         "--output_jsonl", str(coded)], finetune_dir, subprocess_env(), "qwen3_prepare")
+                         "--output_jsonl", str(coded)], finetune_dir, subprocess_env(), "qwen3_prepare",
+                        progress, (0.05, 0.15), label="提取音频编码")
         out_dir = self.work_dir / "output"
         epochs = int(tcfg.get("epochs", 3))
         self.step(progress, 0.15, f"微调 Qwen3-TTS（{epochs} 轮）")
-        epoch_re = re.compile(r"Epoch (\d+)")
         self.run_logged([self.python, str(WORKERS_DIR / "qwen3_sft_launcher.py"), str(finetune_dir / "sft_12hz.py"),
                          "--init_model_path", str(init_model), "--output_model_path", str(out_dir),
                          "--train_jsonl", str(coded), "--batch_size", str(tcfg.get("batch_size", 2)),
                          "--lr", str(tcfg.get("lr", 2e-5)), "--num_epochs", str(epochs), "--speaker_name", self.speaker],
-                        finetune_dir, subprocess_env(), "qwen3_sft", progress, (0.15, 0.95),
-                        lambda line: (int(m.group(1)) + 1) / epochs if (m := epoch_re.search(line)) else None)
+                        finetune_dir, subprocess_env(), "qwen3_sft", progress, (0.15, 0.95), _epoch_parser(epochs),
+                        label="微调训练")
         ckpts = self._list_checkpoints(out_dir)
         if not ckpts:
             raise RuntimeError("微调结束但没有找到 checkpoint，请查看 logs/qwen3_sft.log")
@@ -150,6 +169,7 @@ class Qwen3TTSBackend(WorkerBackend):
                 "selected": {"id": ckpts[-1].name, "path": str(ckpts[-1])}}
         self.project.update_models(self.name, info)
         self.stop()
+        self.step(progress, 1.0, "Qwen3-TTS 微调完成")
         return info
 
     @staticmethod
