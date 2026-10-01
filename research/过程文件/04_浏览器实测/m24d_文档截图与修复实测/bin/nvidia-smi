@@ -1,0 +1,7 @@
+#!/bin/bash
+# 演示用：假装有一张 RTX 4070（12GB）显卡
+case "$*" in
+  *memory.free*) echo "NVIDIA GeForce RTX 4070, 12282, 1534, 10748, 576.02" ;;
+  *query-gpu*) echo "NVIDIA GeForce RTX 4070, 12282 MiB, 576.02" ;;
+  *) echo "NVIDIA-SMI 576.02   Driver Version: 576.02   CUDA Version: 12.9"; echo "NVIDIA GeForce RTX 4070  12282MiB" ;;
+esac

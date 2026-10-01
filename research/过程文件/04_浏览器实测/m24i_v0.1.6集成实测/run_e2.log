@@ -1,0 +1,18 @@
+  checked radios on 3: ['WAV（音质最好，剪映/后期用）', '均衡（每句做 3 遍，挑最像你的）']
+[728.0] CHECK PASS e.default_quality_balanced_without_gpu ['WAV（音质最好，剪映/后期用）', '均衡（每句做 3 遍，挑最像你的）']
+saved <草稿目录>/integ_shots/e0_generate_tab.png
+[730.7] CHECK PASS e.generate_bar_seen_running
+[730.7] CHECK PASS e.generate_done status=done pct=100
+saved <草稿目录>/integ_shots/e2_generate_done.png
+[733.8] CHECK PASS e.result_table_1_based ['1', '2', '3', '4']
+saved <草稿目录>/integ_shots/e3_result_table.png
+[737.1] CHECK PASS g.error_bar status=error level=error
+  error bar color: rgb(220, 38, 38) | none
+[738.6] CHECK PASS g.error_bar_has_advice ❌ 没有完成：停在第 1 步「启动合成引擎」 / 0% / 原因：讲稿是空的 / 怎么办：在「讲稿」框里粘贴文字，或者上传 txt / Word 文件。 / 已用 0 秒 · 详细的出错信息在下方「详细过程」里，需要时可以复制给帮你的人。
+[738.6] CHECK PASS g.friendly_md ❌ 生成没有完成：讲稿是空的
+
+怎么办：在「讲稿」框里粘贴文字，或者上传 txt / Word 文件。
+
+详细记录在：<会话临时目录>
+saved <草稿目录>/integ_shots/g_error_red_bar.png
+SUMMARY 7/7 passed; failed: []

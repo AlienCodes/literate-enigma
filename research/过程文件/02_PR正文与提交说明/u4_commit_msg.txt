@@ -1,0 +1,34 @@
+v0.1.5 U4：训练进度、自动训练设置（按显存）、显存不够自动重试、停止、素材变化后从头训练
+
+backends/base.py
+- Backend.train_stages（各引擎训练步骤）、training_plan() 预览接口。
+- run_logged(label=, poll_progress=, poll_interval=)：解析结果可以是小数或 (小数, 中文说明)；
+  主日志只写简短中文（每 10% 一行，或每轮完成），不再刷「gsv_s2_train 进度 38%」；完整命令写进步骤日志开头。
+- 停止：后台线程每秒看 CANCEL，结束整个子进程树（Windows taskkill /F /T，其它系统进程组 killpg），抛 TaskCancelled；
+  读日志中途出意外也会收拾子进程。
+- 失败抛 TrainStepError（RuntimeError 子类）：第一行中文（用 errors.explain 认出原因），保留「<日志名> 失败（退出码 N）」，
+  oom=True 表示日志里有 CUDA out of memory。
+
+backends/gptsovits.py
+- plan_training()：每批数量 = 官方 floor((显存+0.4)/2)，最多 12，小显存最多 2（4 GB 级 1），不超过素材条数/4，
+  全精度减半，显卡被别的程序占着时按空闲显存算；SoVITS 素材 <30 分钟 8 轮、≥30 分钟 12 轮（有底噪最多 8 轮），GPT 15 轮；
+  多存模型（每 2~3 轮，最后一轮一定能存下来）；DPO 只在显存 ≥ 22 GB、素材干净、文字没有大量疑似错字时自动开。
+  一行中文「训练计划：……」写进日志和进度条，也存进 models.json 的 params.summary。高级设置/config/命令行的值优先；
+  旧版 config.yaml 里抄来的 sovits_save_every: 4 / gpt_save_every: 5 当作自动。
+- 训练时 CUDA out of memory：每批数量减半自动重试一次（GPT-SoVITS 会接着已保存的进度练）。
+- 进度：修正 SoVITS 超前一轮、GPT 到不了 100%；中文步骤（处理文字 n/N、提取声音特征 n/N（数文件）、提取声纹、
+  提取语义、训练音色：第 3/12 轮（45%）、训练语气和节奏：第 4/15 轮（20%）、保存模型）。
+- 素材变了：旧的训练进度移到 logs/<实验名>/old_runs/<时间>/（只留最近 2 次），这次真的从头训练；
+  models.json 只记这一轮训练存下的模型。
+- 自动挑选：SoVITS 4 个 × GPT 3 个，从早到晚均匀挑（checkpoints() 带 sovits_epoch / gpt_epoch）。
+- 推理服务：每 15 秒报一次「还在启动」，启动时也能停止；「还没训练」的警告只说一次；
+  合成失败说出 api_v2 返回的真正原因，服务退出时附上日志尾巴；不响应的服务不再白等 10 秒。
+- 预训练模型：文件夹里缺必需文件、模型小于 1 KB 都算缺少（下载到一半的 *.part 不算）；下载每个文件最多试 3 次，每 10% 记一行。
+- 语速：注明 speed_factor 是模型内部的时长控制（不变调），不对音频做后期变速。
+
+backends/qwen3tts.py：train_stages、中文步骤名、去掉海象运算符、轮数不再超前。
+backends/indextts.py / worker_backend.py：语速说明；点了停止不再加载模型。
+tests：fake GPT-SoVITS 按真实格式打印日志、只在整数倍轮数保存、会接着上次进度练、能模拟显存不够；新增 27 个测试（这个文件共 30 个）。
+
+Co-Authored-By: Claude <模型> <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01PwXvLynw8dAvAfJEJKMB77

@@ -1,0 +1,16 @@
+  checked radios on 3: ['WAV（音质最好，剪映/后期用）', '均衡（每句做 3 遍，挑最像你的）']
+[605.8] CHECK PASS e.default_quality_balanced_without_gpu ['WAV（音质最好，剪映/后期用）', '均衡（每句做 3 遍，挑最像你的）']
+saved <草稿目录>/integ_shots/e0_generate_tab.png
+[608.2] CHECK PASS e.generate_bar_seen_running
+[608.2] CHECK PASS e.generate_done status=done pct=100
+saved <草稿目录>/integ_shots/e2_generate_done.png
+[611.5] CHECK PASS e.result_table_1_based ['1', '2', '3', '4']
+saved <草稿目录>/integ_shots/e3_result_table.png
+[614.0] CHECK PASS j.perfect_done status=done pct=100
+[616.5] CHECK PASS j.two_versions_md 🎧 这次做了两个版本，听一听，选你更喜欢的 / 版本 A：未去杂音（像你本人 72.3%）　⭐ 推荐：更像你的原声 / 版本 B：去杂音（像你本人 72.3%） /  / ⭐ 推荐：版本 A，更像你的原声（两个版本几乎一样像，听哪个顺耳就用哪个） /  / 两个版本的文字、停顿和字幕完全一样，只是 B 去掉了轻微的杂音。相似度是声纹模型自动打分，越高越像，但不是绝对精确，最终以耳朵为准。
+  version labels: ['版本 A：未去杂音（像你本人 72.3%）', '版本 B：去杂音（像你本人 72.3%）', '版本 A：未去杂音', '版本 B：去杂音']
+[616.5] CHECK PASS j.version_players
+saved <草稿目录>/integ_shots/j2_two_versions.png
+[617.8] CHECK PASS j.choose_variant_b
+saved <草稿目录>/integ_shots/j3_chose_b.png
+SUMMARY 8/8 passed; failed: []

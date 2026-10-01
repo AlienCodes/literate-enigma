@@ -1,0 +1,43 @@
+<!doctype html><meta charset=utf-8><style>body{font-family:'Noto Sans CJK SC',sans-serif;margin:0;padding:12px;width:1100px;background:#fff;--body-text-color:#1f2937;--body-text-color-subdued:#6b7280;--background-fill-secondary:#f9fafb;--border-color-primary:#e5e7eb;color:#1f2937}.cap{font-weight:700;margin:14px 0 4px;font-size:15px}</style><style>
+.vt-prog{margin:4px 0;padding:10px 12px;border:1px solid var(--border-color-primary);border-radius:8px;
+  background:var(--background-fill-primary);line-height:1.5;box-sizing:border-box;max-width:100%;overflow-wrap:anywhere}
+.vt-top{font-size:var(--text-sm);color:var(--body-text-color-subdued);margin-bottom:2px}
+.vt-tip{margin-left:4px}
+.vt-head{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;font-weight:700}
+.vt-stage{flex:1 1 auto;min-width:0}
+.vt-pct{flex:0 0 auto;font-size:1.9em;line-height:1.1;font-weight:800;font-variant-numeric:tabular-nums}
+.vt-track{height:16px;border-radius:8px;background:var(--background-fill-secondary);
+  border:1px solid var(--border-color-primary);overflow:hidden;margin:6px 0;box-sizing:border-box}
+.vt-fill{height:100%;width:0;background-color:#16a34a;transition:width .5s}
+.vt-running .vt-fill{background-image:linear-gradient(45deg,rgba(255,255,255,.3) 25%,transparent 25%,transparent 50%,
+  rgba(255,255,255,.3) 50%,rgba(255,255,255,.3) 75%,transparent 75%,transparent);
+  background-size:28px 28px;animation:vt-move 1s linear infinite}
+.vt-running.vt-stall .vt-fill{background-color:#d97706;animation-duration:2.5s}
+.vt-done .vt-fill{background-color:#16a34a;background-image:none}
+.vt-error .vt-fill{background-color:#dc2626;background-image:none}
+.vt-stopped .vt-fill{background-color:#6b7280;background-image:none}
+.vt-running .vt-pct,.vt-done .vt-pct{color:#16a34a}
+.vt-running.vt-stall .vt-pct{color:#d97706}
+.vt-error .vt-pct{color:#dc2626}
+.vt-stopped .vt-pct{color:#6b7280}
+.vt-prog.vt-done{border-color:#16a34a}
+.vt-prog.vt-stall{border-color:#d97706}
+.vt-prog.vt-error{border-color:#dc2626}
+.vt-done .vt-track{border-color:#16a34a}
+.vt-stall .vt-track{border-color:#d97706;background:rgba(217,119,6,.12)}
+.vt-error .vt-track{border-color:#dc2626;background:rgba(220,38,38,.12)}
+.vt-meta,.vt-msg,.vt-small,.vt-beat{color:var(--body-text-color-subdued);font-size:var(--text-sm)}
+.vt-eta{font-weight:600;margin-top:2px}
+.vt-msg{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vt-warn{margin-top:6px;padding:6px 10px;border-left:4px solid #d97706;background:rgba(217,119,6,.12);border-radius:4px}
+.vt-errbox{margin:6px 0 4px;padding:6px 10px;border-left:4px solid #dc2626;background:rgba(220,38,38,.10);border-radius:4px}
+.vt-small{margin-top:4px}
+@keyframes vt-move{from{background-position:0 0}to{background-position:28px 0}}
+.vt-note{margin:4px 0;padding:8px 12px;border-left:4px solid var(--color-accent);background:var(--background-fill-secondary);
+  border-radius:4px;line-height:1.5;overflow-wrap:anywhere}
+.vt-note-warn{border-left-color:#d97706;background:rgba(217,119,6,.12)}
+.vt-note-error{border-left-color:#dc2626;background:rgba(220,38,38,.10)}
+.vt-note-ok{border-left-color:#16a34a;background:rgba(22,163,74,.10)}
+.vt-bar-box .generating{border:none!important;animation:none!important}
+@media (max-width:480px){.vt-prog{padding:8px}.vt-pct{font-size:1.5em}.vt-tip{display:none}}
+</style><div class="cap">① 绿色：正在正常工作</div><div class="vt-prog vt-running" data-status="running" data-level="ok" data-pct="46" data-title="46% 逐句生成" data-run="1790862609.113-1"><div class="vt-top">🟢 正在生成讲课音频……<span class="vt-tip">（绿色条纹在动，说明程序在正常工作）</span></div><div class="vt-head"><div class="vt-stage">第 2 步（共 3 步）：逐句生成</div><div class="vt-pct">46%</div></div><div class="vt-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="46"><div class="vt-fill" style="width:46%"></div></div><div class="vt-meta">第 7 / 12 句 · 已用 6 分 12 秒 · 这一步大约还要 6 分钟</div><div class="vt-eta">⏱ 全部大约还要 7 分钟，预计 15:42 左右完成</div><div class="vt-msg" title="逐句生成 第 7/12 句（第 2 次尝试）">现在：逐句生成 第 7/12 句（第 2 次尝试）</div></div><div class="cap">② 黄色：好几分钟没有新进度</div><div class="vt-prog vt-running vt-stall" data-status="running" data-level="stall" data-pct="46" data-title="46% 逐句生成" data-run="1790862609.113-1"><div class="vt-top">🟡 还在生成讲课音频，但已经好一会儿没有新进度</div><div class="vt-head"><div class="vt-stage">第 2 步（共 3 步）：逐句生成</div><div class="vt-pct">46%</div></div><div class="vt-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="46"><div class="vt-fill" style="width:46%"></div></div><div class="vt-meta">第 7 / 12 句 · 已用 16 分 20 秒</div><div class="vt-eta">⏱ 全部还要多久：暂时算不出来（这一步一直没有新进度）</div><div class="vt-msg" title="逐句生成 第 7/12 句（第 2 次尝试）">现在：逐句生成 第 7/12 句（第 2 次尝试）</div><div class="vt-warn">⚠️ 已经 7 分钟没有新进度：这一步可能比较慢，也可能卡住了。请先等一等，不要关闭黑色窗口。</div></div><div class="cap">③ 红色：出问题停下了</div><div class="vt-prog vt-error" data-status="error" data-level="error" data-pct="30" data-title="30% 逐句生成" data-run="1790862609.365-2"><div class="vt-head"><div class="vt-stage">❌ 没有完成：停在第 2 步「逐句生成」</div><div class="vt-pct">30%</div></div><div class="vt-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30"><div class="vt-fill" style="width:30%"></div></div><div class="vt-errbox"><div><b>原因：</b>讲稿里有一句太长，模型读不了</div><div><b>怎么办：</b>在这句话中间加一个逗号或句号，再点「生成」。</div></div><div class="vt-meta">已用 2 分 25 秒 · 详细的出错信息在下方「详细过程」里，需要时可以复制给帮你的人。</div></div><div class="cap">④ 灰色：你点了停止</div><div class="vt-prog vt-stopped" data-status="stopped" data-level="stopped" data-pct="55" data-title="55% 逐句生成" data-run="1790862609.365-3"><div class="vt-head"><div class="vt-stage">⏹ 已停止</div><div class="vt-pct">55%</div></div><div class="vt-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="55"><div class="vt-fill" style="width:55%"></div></div><div class="vt-meta">停在第 2 步「逐句生成」 · 已用 4 分 20 秒</div><div class="vt-small">已经做好的部分不会丢。需要时再点一次开始就行。</div></div><div class="cap">⑤ 实心绿色 100%：全部完成</div><div class="vt-prog vt-done" data-status="done" data-level="done" data-pct="100" data-title="100% 拼接、导出音频和字幕" data-run="1790862609.365-4"><div class="vt-head"><div class="vt-stage">✅ 全部完成！用时 18 分 40 秒</div><div class="vt-pct">100%</div></div><div class="vt-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><div class="vt-fill" style="width:100%"></div></div><div class="vt-meta">「生成讲课音频」已经做好了 · 完成时间 15:42</div></div>
