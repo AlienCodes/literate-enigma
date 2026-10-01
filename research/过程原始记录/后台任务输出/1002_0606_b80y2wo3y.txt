@@ -1,0 +1,24 @@
+# 后台任务 b80y2wo3y
+# 开始：10-02 05:57:47（北京时间）  操作编号：#1651  工具：Bash
+# 说明：Wait for CI on the v18 commit
+# 结束状态：completed  Background command "Wait for CI on the v18 commit" completed (exit code 0)
+# 命令：
+#   SHA=1201d3de5a8d9fc88709be200b5a9c41be37c72f; until curl -s "https://api.github.com/repos/AlienCodes/literate-enigma/commits/$SHA/check-runs?per_page=50" | python3 -c "
+#   import json,sys
+#   d=json.load(sys.stdin); runs=d.get('check_runs',[])
+#   done=[r for r in runs if r['status']=='completed']
+#   bad=[r for r in done if r['conclusion']!='success']
+#   if bad: print('FAILED', [(r['name'],r['conclusion']) for r in bad]); sys.exit(0)
+#   sys.exit(0 if runs and len(done)==len(runs) and len(runs)>=8 else 1)"; do sleep 20; done; curl -s "https://api.github.com/repos/AlienCodes/literate-enigma/commits/$SHA/check-runs?per_page=50" | python3 -c "
+#   import json,sys; [print(r['name'], r['conclusion']) for r in json.load(sys.stdin)['check_runs']]"
+# ---- 输出 ----
+test (ubuntu-latest, 3.11) success
+test (ubuntu-latest, 3.9) success
+test (windows-latest, 3.11) success
+test (windows-latest, 3.9) success
+test (ubuntu-latest, 3.9) success
+test (ubuntu-latest, 3.11) success
+test (windows-latest, 3.9) success
+test (windows-latest, 3.11) success
+
+[exited with code 0]
