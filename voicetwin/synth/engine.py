@@ -229,6 +229,17 @@ def denoise_light(wav: np.ndarray, sr: int, strength: float = 0.5) -> Optional[n
         return wav.copy()
 
 
+SHORT_HINT = "这一句很短（人声不到 2 秒），「像你本人」的分数只能粗略参考，请用耳朵听一下"
+
+
+def _is_short(score: Any) -> bool:
+    """这个候选的人声是不是太短（< 2 秒）——这时声纹打分波动大。"""
+    from voicetwin.eval.speaker import SHORT_WARN_SECONDS
+
+    sec = getattr(score, "speech_seconds", None)
+    return isinstance(sec, (int, float)) and sec < SHORT_WARN_SECONDS
+
+
 @dataclass
 class SegmentResult:
     segment: ScriptSegment
@@ -618,13 +629,18 @@ class Narrator:
         if res.get("sim") is not None:
             score["speaker_sim"] = res.get("sim")
         hints = [h for h in str(meta.get("hint") or "").split("；") if h and "不够像" not in h and "低于" not in h]
+        score["speech_seconds"] = res.get("seconds")
         pct = score.get("pct")
         filt = self.sim_filter
+        short = bool(res.get("short"))
+        hints = [h for h in hints if h != SHORT_HINT]
         if filt and pct is not None and pct < self.min_pct:
-            hints.insert(0, f"低于 {self.min_pct:.0f}%，建议重新生成或改写这一句")
+            hints.insert(0, SHORT_HINT if short else f"低于 {self.min_pct:.0f}%，建议重新生成或改写这一句")
         issues = list(score.get("issues") or [])
         if filt and pct is not None:
             status = status_for_pct(pct, self.min_pct)
+            if status == "🔴" and short:
+                status = "⚠️"
             if status != "🔴" and (hints or issues):
                 status = "⚠️"
         else:
@@ -742,8 +758,9 @@ class Narrator:
             met = self._meets_targets(best, seg)
         filt = self.sim_filter
         hints: List[str] = []
+        short = _is_short(best.score)
         if filt and best.score.pct is not None and best.score.pct < self.min_pct:
-            hints.append(f"低于 {self.min_pct:.0f}%，建议重新生成或改写这一句")
+            hints.append(SHORT_HINT if short else f"低于 {self.min_pct:.0f}%，建议重新生成或改写这一句")
         if self.use_asr and not self._cer_ok(best, seg.lang):
             hints.append("可能有读错的字" + (f"（识别为：{best.score.hyp}）" if best.score.hyp else "") + "，建议重新生成或改写这一句")
         if self.adaptive and not met and not hints:
@@ -752,6 +769,8 @@ class Narrator:
         pct = best.score.pct
         if filt and pct is not None:
             status = status_for_pct(pct, self.min_pct)
+            if status == "🔴" and short:  # 很短的句子：分数波动大，不直接判"不像"，提醒用耳朵听
+                status = "⚠️"
             if status != "🔴" and (hints or issues):
                 status = "⚠️"
         else:

@@ -430,3 +430,61 @@ def test_cached_sentences_are_rescored_when_the_judge_changes(tmp_path):
     assert json.loads(meta_path.read_text(encoding="utf-8"))["judge"] == "new"
     again = eng._rescore_cached(meta, np.zeros(1600, np.float32), 16000, plan)
     assert again is meta and len(judged) == 1  # 标准没变：不再重复打分
+
+
+# ---------------------------------------------------------------------------- 短句子
+def test_short_sentences_use_a_length_matched_standard():
+    """短句子的声纹天然没那么稳：和"截成同样长度的你自己的录音"比，不然会系统性地偏低十几个百分点。"""
+    _, me, cohort, noisy = _world(4)
+    enc = types.SimpleNamespace(name="f", reliable=True)
+    calib = {"norm": "asnorm", "g50": 10.0, "i0": 0.0, "g50_short": {"1.5": 6.0, "3": 8.0}, "full_seconds": 6.0}
+    m = spk.JudgeMember(enc, me, calib, cohort)
+    assert [round(m.g50_for(s), 2) for s in (None, 0.8, 1.5, 2.25, 3.0, 4.5, 6.0, 12.0)] == \
+        [10.0, 6.0, 6.0, 7.0, 8.0, 9.0, 10.0, 10.0]
+    m.calib = dict(calib, g50_short={"1.5": 9.0, "3": 7.0})  # 越长越稳：标准不会随长度变低
+    assert m.g50_for(3.0) == 9.0
+    judge = spk.SimilarityJudge([spk.JudgeMember(enc, me, calib, cohort)])
+    x = noisy(me, 0.5)
+    short, full = judge.judge_embeddings({"f": x}, seconds=1.5), judge.judge_embeddings({"f": x}, seconds=8.0)
+    assert short["short"] and not full["short"] and short["seconds"] == 1.5
+    assert short["pct_raw"] > full["pct_raw"]  # 同样的分数，短句子按短句子的标准算，更高
+
+
+class _LengthNoisyEncoder(spk.SpeakerEncoder):
+    """假的精准声纹模型：越短的人声越"吵"（声纹离本人越远），和真的模型一样。"""
+
+    name = "lenfake"
+    reliable = True
+    prep_key = ("speech16k", 0)
+
+    def __init__(self, dim=48):
+        self.s = spk._l2(np.random.default_rng(5).normal(size=dim))
+        self.dim = dim
+
+    def prepare(self, wav, sr):
+        from voicetwin.utils.audio import resample
+
+        return resample(np.asarray(wav, np.float32), sr, 16000)
+
+    def embed_prepared(self, speech):
+        seed = int(abs(float(np.sum(speech[:2000]))) * 1e6 + speech.size) % (2 ** 32)
+        sigma = 0.9 * np.sqrt(16000 * 1.0 / max(speech.size, 1600))
+        return spk._l2(self.s + sigma * np.random.default_rng(seed).normal(size=self.dim) / np.sqrt(self.dim))
+
+    def embed(self, wav, sr):
+        return self.embed_prepared(self.prepare(wav, sr))
+
+
+def test_calibration_records_short_standards(prepared, tmp_path):
+    cfg, project, _ = prepared
+    enc = _LengthNoisyEncoder()
+    rng = np.random.default_rng(9)
+    cohort_emb = np.stack([spk._l2(rng.normal(size=enc.dim)) for _ in range(150)]).astype(np.float32)
+    mu, sd = spk.cohort_self_stats(cohort_emb)
+    cohort = {"emb": cohort_emb, "mu": mu, "sd": sd}
+    cen, ids = spk.judge_centroid(project, enc, refresh=True)
+    entry = spk.calibrate(project, enc, cen, ids, refresh=True, cohort=cohort)
+    assert entry["norm"] == "asnorm" and entry["full_seconds"] > 3.0
+    short = entry["g50_short"]
+    assert short["1.5"] < short["3"] < entry["g50"]  # 越短越"不像"：所以短句子要单独的标准
+    assert spk.calibrate(project, enc, cen, ids, cohort=cohort) == entry  # 第二次直接用缓存

@@ -500,6 +500,12 @@ def get_speaker_ensemble(cfg: Any) -> List[SpeakerEncoder]:
 COHORT_FILE = Path(__file__).with_name("sv_cohort.npz")
 #: AS-norm 取和这段声音最像的多少个陌生人
 AS_NORM_TOPK = 100
+#: 短句子单独校准的长度（秒，只算人声）：你自己的真实录音截成这么长，作为同样长的句子的「100%」
+SHORT_SECONDS = (1.5, 3.0)
+#: 人声不到这么多秒时，分数只能粗略参考
+SHORT_WARN_SECONDS = 2.0
+#: 校准方法改了就加 1（缓存的校准结果作废，重新算）
+CALIB_VERSION = 2
 #: 0% 的标准：陌生人里第几百分位的分数（95 = 比 95% 的陌生人都像才开始算分；见 docs/声纹打分准确度.md）
 IMPOSTOR_PERCENTILE = 95.0
 _COHORT_CACHE: Dict[str, Optional[Dict[str, np.ndarray]]] = {}
@@ -669,7 +675,7 @@ def calibrate(project, encoder: SpeakerEncoder, cen: np.ndarray, used_ids: Seque
     val, source = _calibration_records(project, used_ids)
     val = spread_sample(sorted(val, key=lambda r: r["id"]), max_clips)
     sig = short_hash(encoder.name, np.round(np.asarray(cen, dtype=np.float64), 5).tolist(),
-                     sorted(r["id"] for r in val), _cohort_sig(cohort), n=12)
+                     sorted(r["id"] for r in val), _cohort_sig(cohort), CALIB_VERSION if cohort is not None else 1, n=12)
     try:
         cache = json.loads(cache_path.read_text(encoding="utf-8")) if cache_path.exists() else {}
     except Exception:
@@ -680,9 +686,22 @@ def calibrate(project, encoder: SpeakerEncoder, cen: np.ndarray, used_ids: Seque
     member = JudgeMember(encoder, cen, {}, cohort)
     sims: List[float] = []
     norms: List[float] = []
+    lengths: List[float] = []
+    short: Dict[float, List[float]] = {b: [] for b in SHORT_SECONDS}
+    can_crop = cohort is not None and hasattr(encoder, "prepare") and hasattr(encoder, "embed_prepared")
     for r in val:
         try:
-            emb = encoder.embed_file(project.abspath(r["path"]))
+            if can_crop:  # 同时算截短的版本：短句子要和"同样长的你自己的录音"比
+                wav, sr = load_audio(project.abspath(r["path"]), sr=16000)
+                speech = encoder.prepare(wav, sr)
+                emb = encoder.embed_prepared(speech)
+                lengths.append(speech.size / 16000.0)
+                for b in SHORT_SECONDS:
+                    if speech.size >= int(b * 16000) * 1.3:
+                        mid = (speech.size - int(b * 16000)) // 2
+                        short[b].append(member.norm_score(encoder.embed_prepared(speech[mid:mid + int(b * 16000)])))
+            else:
+                emb = encoder.embed_file(project.abspath(r["path"]))
         except Exception as exc:  # 个别片段读不了不影响
             log.debug(f"校准时跳过 {r.get('id')}：{exc}")
             continue
@@ -693,6 +712,11 @@ def calibrate(project, encoder: SpeakerEncoder, cen: np.ndarray, used_ids: Seque
         return {"p10": None, "p50": None, "p90": None, "n": 0, "source": source, "sig": sig}
     entry = calibration_stats(sims, norms if cohort is not None else None,
                               impostor_scores(cohort, cen) if cohort is not None else None)
+    if entry.get("norm") == "asnorm" and lengths:
+        table = {f"{b:g}": round(float(np.median(v)), 4) for b, v in short.items() if len(v) >= 3}
+        if table:
+            entry["g50_short"] = table
+            entry["full_seconds"] = round(float(np.median(lengths)), 2)
     entry.update({"source": source, "sig": sig})
     cache[encoder.name] = entry
     try:
@@ -746,10 +770,25 @@ class JudgeMember:
             enroll = topk_stats(ref, self.cohort["emb"])
         return as_norm(s, enroll, topk_stats(emb, self.cohort["emb"]))
 
-    def pct_raw(self, emb: np.ndarray) -> Optional[float]:
-        """没有封顶的"像你本人"（可以超过 100，也可以是负数）；没校准时返回 None。"""
+    def g50_for(self, seconds: Optional[float] = None) -> float:
+        """「100%」的标准：一般是你自己真实录音的中位数；句子很短时，用你自己的录音截成同样长度的中位数
+        （短句子的声纹天然没那么稳，不这样的话短句子会系统性地偏低十几个百分点）。"""
+        g50 = float(self.calib["g50"])
+        table = self.calib.get("g50_short") or {}
+        full = self.calib.get("full_seconds")
+        if seconds is None or not table or not isinstance(full, (int, float)):
+            return g50
+        pts = sorted([(float(k), float(v)) for k, v in table.items() if float(k) < float(full)] + [(float(full), g50)])
+        xs = np.array([p[0] for p in pts])
+        ys = np.maximum.accumulate(np.array([p[1] for p in pts]))  # 越长越稳：标准只会随长度变高
+        return float(np.interp(float(seconds), xs, ys))
+
+    def pct_raw(self, emb: np.ndarray, seconds: Optional[float] = None) -> Optional[float]:
+        """没有封顶的"像你本人"（可以超过 100，也可以是负数）；没校准时返回 None。seconds：这段声音里人声有几秒。"""
         if self.two_sided:
-            g50, i0 = float(self.calib["g50"]), float(self.calib["i0"])
+            g50, i0 = self.g50_for(seconds), float(self.calib["i0"])
+            if g50 <= i0:
+                g50 = float(self.calib["g50"])
             return 100.0 * (self.norm_score(emb) - i0) / (g50 - i0)
         p50 = self.p50
         if p50 is None:
@@ -945,7 +984,7 @@ class SimilarityJudge:
         return out
 
     # ------------------------------------------------------------------ 打分
-    def judge_embeddings(self, embs: Dict[str, np.ndarray]) -> Dict[str, Any]:
+    def judge_embeddings(self, embs: Dict[str, np.ndarray], seconds: Optional[float] = None) -> Dict[str, Any]:
         """pct：像你本人（0~100，每个模型分别校准再取平均）；pct_raw：没封顶的平均值（排序用，能分出 100% 以上的高低）；
         pcts：每个模型各自的百分比；spread：几个模型之间差多少（越小越一致）；sims：原始余弦相似度。"""
         sims: Dict[str, float] = {}
@@ -955,7 +994,7 @@ class SimilarityJudge:
             if emb is None:
                 continue
             sims[m.name] = round(cosine(emb, m.centroid), 4)
-            raw = m.pct_raw(emb)
+            raw = m.pct_raw(emb, seconds)
             if raw is not None and np.isfinite(raw):
                 raws[m.name] = float(raw)
         pcts = {k: _clamp_pct(v) for k, v in raws.items()}
@@ -964,10 +1003,16 @@ class SimilarityJudge:
         return {"pct": _clamp_pct(pct_raw) if pct_raw is not None else None,
                 "pct_raw": round(pct_raw, 2) if pct_raw is not None else None,
                 "pcts": pcts, "sims": sims, "sim": first,
-                "spread": round(float(np.std(list(raws.values()))), 1) if len(raws) > 1 else None}
+                "spread": round(float(np.std(list(raws.values()))), 1) if len(raws) > 1 else None,
+                "seconds": round(float(seconds), 2) if seconds is not None else None,
+                "short": bool(seconds is not None and seconds < SHORT_WARN_SECONDS)}
 
     def embed(self, wav: np.ndarray, sr: int) -> Dict[str, np.ndarray]:
         """每个模型的声纹。精准声纹模型共用一次人声检测（同一段音频只去一次停顿）。"""
+        return self.embed_with_seconds(wav, sr)[0]
+
+    def embed_with_seconds(self, wav: np.ndarray, sr: int) -> Tuple[Dict[str, np.ndarray], Optional[float]]:
+        """每个模型的声纹 + 人声一共几秒（没有人声检测的旧模型时为 None）。"""
         out: Dict[str, np.ndarray] = {}
         prepared: Dict[Any, np.ndarray] = {}
         for m in self.members:
@@ -982,12 +1027,15 @@ class SimilarityJudge:
                 out[m.name] = enc.embed_prepared(prepared[key])
             except Exception as exc:
                 log.debug(f"{m.name} 打分失败：{exc}")
-        return out
+        seconds = next((float(v.size) / 16000.0 for v in prepared.values()), None)
+        return out, seconds
 
     def judge(self, wav: np.ndarray, sr: int) -> Dict[str, Any]:
         if not self.members or wav is None or len(wav) < sr * 0.3:
-            return {"pct": None, "pct_raw": None, "pcts": {}, "sims": {}, "sim": None, "spread": None}
-        return self.judge_embeddings(self.embed(wav, sr))
+            return {"pct": None, "pct_raw": None, "pcts": {}, "sims": {}, "sim": None, "spread": None,
+                    "seconds": None, "short": False}
+        embs, seconds = self.embed_with_seconds(wav, sr)
+        return self.judge_embeddings(embs, seconds)
 
     def judge_file(self, path: Path) -> Dict[str, Any]:
         wav, sr = load_audio(path, sr=16000)
