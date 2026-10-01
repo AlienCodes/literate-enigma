@@ -1142,6 +1142,14 @@ def doctor(cfg: Config) -> List[Dict[str, Any]]:
     except Exception as exc:
         add("PyTorch 显卡加速", None, str(exc))
     add("精准声纹打分", *sv_status(cfg))
+    try:
+        from voicetwin.backends.gptsovits import LATEST_VERSION, SUPPORTED_VERSIONS, version_status
+
+        raw = str(((cfg.get("backends") or {}).get("gptsovits") or {}).get("version") or LATEST_VERSION)
+        latest, note = version_status(raw if raw in SUPPORTED_VERSIONS else LATEST_VERSION)
+        add("GPT-SoVITS 模型版本", True if latest else None, note, optional=str(cfg.get("backend") or "") != "gptsovits")
+    except Exception as exc:
+        add("GPT-SoVITS 模型版本", None, str(exc), optional=True)
     default = str(cfg.get("backend") or "")
     dummy = Project(cfg, "__doctor__")
     for name in available_backends():

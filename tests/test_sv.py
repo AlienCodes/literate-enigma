@@ -493,3 +493,21 @@ def test_calibration_records_short_standards(prepared, tmp_path):
     short = entry["g50_short"]
     assert short["1.5"] < short["3"] < entry["g50"]  # 越短越"不像"：所以短句子要单独的标准
     assert spk.calibrate(project, enc, cen, ids, cohort=cohort) == entry  # 第二次直接用缓存
+
+
+def test_gptsovits_uses_the_latest_public_version(tmp_path):
+    """老师要求：必须确定用的是最新、最强的版本（目前公开的是 v2ProPlus；V5 还没公开）。"""
+    from voicetwin.backends.gptsovits import LATEST_VERSION, SUPPORTED_VERSIONS, version_status
+    from voicetwin.config import load_config
+
+    assert LATEST_VERSION == "v2ProPlus" and LATEST_VERSION in SUPPORTED_VERSIONS
+    defaults = load_config(user_config=False)
+    assert defaults["backends"]["gptsovits"]["version"] == LATEST_VERSION  # 默认就是最新版本
+    ok, note = version_status("v2ProPlus")
+    assert ok and "最新" in note
+    ok, note = version_status("v2Pro")
+    assert not ok and "v2ProPlus" in note and "重新训练" in note
+    rows = {r["item"]: r for r in wf.doctor(make_cfg(tmp_path))}
+    assert rows["GPT-SoVITS 模型版本"]["status"] == "✅"
+    old = make_cfg(tmp_path, backends={"gptsovits": {"version": "v2Pro"}})
+    assert {r["item"]: r for r in wf.doctor(old)}["GPT-SoVITS 模型版本"]["status"] == "⚠️"
