@@ -1,0 +1,10 @@
+# 第11篇 来源摘录（2026-10-01，WebSearch 摘要；WebFetch 未逐页抓取）
+P1 Thompson et al., "Lost at Sea: Where Is All the Plastic?", Science 304:838, 7 May 2004 (PubMed 15131299 https://pubmed.ncbi.nlm.nih.gov/15131299/; Univ. Southampton news 2004-05 https://www.southampton.ac.uk/news/2004/05/where-does-all-the-plastic-go.page; History.com "This day: May 7"). 摘：8 名科学家（Plymouth、Southampton、SAHFOS）；用存档浮游生物样本显示微小塑料碎片与纤维自 1960 年代显著增加；命名 microplastics。注："<5 mm"定义来自后续（NOAA 2008 研讨会），非 2004 论文——正文不归于 Thompson。
+P2 Microbead-Free Waters Act of 2015, H.R.1321, Public Law 114-114，2015-12-28 奥巴马签署（UL https://www.ul.com/news/president-obama-signs-law-microbead-free-waters-act-2015；WEF stormwater 2015-12）。禁冲洗型化妆品塑料微珠：2017-07-01 停产，2018-07-01 停售。en.wikipedia 被检索到但未抓取。
+P3 Leslie et al., Environment International，在线 2022-03-24（Food Packaging Forum；chemeurope）。22 名健康成人全血，17 人(约 3/4)检出；均值 1.6 µg/mL；方法 Pyr-GC/MS；"首次"在人血中量化塑料颗粒。样本小。
+P4 Marfella et al., NEJM 2024-03-07（HealthDay；MDedge；CNN 转载）。304 名颈动脉内膜切除患者（257 人完成随访），约 58% 斑块检出聚乙烯（部分 PVC）；平均 34 个月随访，心梗/卒中/全因死亡复合终点 HR 4.53；作者称不能证明因果。
+P5 Nihart et al., Nature Medicine 2025-02-03。脑组织中位数约 4.9 mg/g，被媒体换算为"一勺塑料"；2016→2024 浓度上升；痴呆患者更高。批评：The Transmitter 报道图像重复；化学家称 Pyr-GC/MS 可能把脑脂质误读为聚乙烯、缺污染对照，可能高估（thetransmitter.org；insidehook；R&D World）。——"一勺"禁作事实。
+P6 WWF/Univ. Newcastle (Australia) "No Plastic in Nature: Assessing Plastic Ingestion from Nature to People"，2019-06（WEF 2019-06 转述；Plastics News）。称人均每周约 5 g，"一张信用卡"。批评：Full Fact https://fullfact.org/health/credit-card-microplastic-week/ ；2021–22 年有论文（Mohamed Nor 等 2021 估算远低几个数量级，慎用）指出方法缺陷。——禁作事实。
+P7 WHO "Microplastics in drinking-water"，2019-08-22（WHO 记者会文字稿 https://www.who.int/news-room/transcripts/detail/20-08-2019-microplastics-in-drinking-water；ASDWA）。依有限证据，当前水平"似不构成健康风险"，呼吁更多研究。WHO 2022-06 "Dietary and inhalation exposure to nano- and microplastic particles" 结论相近（数据不足以评估风险）——未本轮直核，慎用。
+P8 Orb Media 2017-09 自来水调查（83% 样本检出）：非同行评审、单源——不用。
+被拦截/未抓：en.wikipedia.org（未尝试抓取）；science.org、nejm.org、nature.com 全文付费，仅用摘要级。

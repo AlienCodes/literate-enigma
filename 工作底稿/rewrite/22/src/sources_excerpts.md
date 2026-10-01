@@ -1,0 +1,10 @@
+# 第22篇 来源摘录（S1–S6，2026-10-01 WebSearch 交叉核）
+
+- **S1 原始实验**：Stanford 校园 Bing Nursery School，late 1960s–early 1970s；学前儿童（约 4–5 岁；文献口径 3.5–5.5）；一颗零食即刻吃，或独自等待（约 15 分钟，部分版本至 20 分钟）得两颗。https://en.wikipedia.org/wiki/Stanford_marshmallow_experiment ；https://www.simplypsychology.org/?p=11458
+- **S2 追踪研究**：1988 年 *Journal of Personality and Social Psychology* 54:687–696（父母评定青少年能力；**非** Developmental Psychology）；1990 年 *Developmental Psychology* 26(6)（期号对应 November 1990，月份未在搜索摘要直接出现 → ○）报告等待时长与 SAT 相关（部分分析 r≈0.42）。样本：Bing 主要为 Stanford faculty/alumni（一说 staff/grad students）的中产子女；进入 SAT 相关分析者仅约 35–90 人（口径不一，写 *only a few dozen*）。https://www.smith.edu/news/peake-on-marshmallow-test-studies/ ；https://scholarworks.smith.edu/psy_facpubs/79
+- **S3 2018 概念复制**：*Psychological Science*，first published online **25 May 2018**；NICHD Study of Early Child Care and Youth Development，918 名儿童（写 *more than 900*）；4.5 岁测等待（上限 7 分钟——○，正文不写），15 岁测学业成绩；双变量相关约为原研究一半；控制家庭背景（母亲教育、收入、家庭环境）与早期认知能力后缩小约三分之二，多数不显著。https://journals.sagepub.com/doi/10.1177/0956797618761661 ；https://neurosciencenews.com/marshmallow-test-delayed-gratification-9137/ ；https://conversableeconomist.com/2018/06/04/the-not-so-triumphant-return-of-the-marshmallow-test/
+- **S4 2020 回应**：*Psychological Science* 2020，另一组研究者用同一 NICHD 数据预注册再分析，按原研究方法 5 项结果中 3 项相关显著——说明"缩小≠归零"。https://pmc.ncbi.nlm.nih.gov/articles/PMC7197218 。另：2020 年一项对 **原 Bing 样本中年期**（约 46 岁）的追踪（经济学期刊）未发现等待时长预测约十余项成人结果。https://anderson-review.ucla.edu/new-study-disavows-marshmallow-tests-predictive-powers/
+- **S5 26 岁追踪**：*Child Development* **2024**，同一 NICHD 样本 702 人追至 26 岁，几乎不预测成人结果。月份未核 → ○。https://psypost.org/an-iconic-psychology-test-just-took-a-massive-hit-to-its-credibility
+- **S6 环境可靠性**：*Cognition* 126(1)，印刷版 **January 2013**（online October 2012）；先让儿童经历守信或失信的实验者，守信组平均等得明显更久——等待也反映对环境可靠性的理性判断。https://pmc.ncbi.nlm.nih.gov/articles/PMC3730121/ ；https://www.psychologytoday.com/us/blog/brain-babble/201210/kids-willpower-influenced-others-reliability
+
+**交叉核结论**：①任务所列"1988 与 1990 均为 Developmental Psychology"不实——1988 在 JPSP；②"2020 年追至 26–30 岁"不实——26 岁追踪为 2024（Child Development），2020 年为中年 Bing 样本或 NICHD 再分析；正文避开此条或按 T9 措辞上限写。

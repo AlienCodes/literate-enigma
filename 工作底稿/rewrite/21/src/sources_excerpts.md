@@ -1,0 +1,8 @@
+# 第21篇 来源摘录（S1–S6，2026-10-01 WebSearch 核）
+
+- **S1 Nature 408:537（30 November 2000）摘要**：east-coast song "replaced rapidly and completely by the song of the Australian west coast population from the Indian Ocean, apparently as a result of the introduction of only a small number of 'foreign' singers"; "unprecedented in animal cultural vocal traditions"; "suggests that novelty may stimulate change". https://www.nature.com/articles/35046199 ；https://ideas.repec.org/a/nat/nature/v408y2000i6812d10.1038_35046199.html
+- **S2 数据口径**：录音地点 southeast Queensland（东澳迁徙路线）, 1995–1998；1995 年 82 只歌者中 2 只唱新歌；1997 年多数（一说 94%）改唱；1998 年只闻新歌。**口径冲突**：一摘要称"1996 年 2%"。https://www.scientificamerican.com/article/whale-song-revolution ；https://www.cwr.org.au/scientific-publication-stories-02.html
+- **S3 Current Biology（online 14 April 2011）**：South Pacific 六个种群 11 年数据；11 种歌型多由东澳起始，逐级向东传至 French Polynesia，"like cultural ripples"，通常约两年传遍；东澳种群最大，影响最大。https://www.sciencedaily.com/releases/2011/04/110414131444.htm ；https://news.uq.edu.au/2011-04-15-humpback-whales-spread-songs-across-pacific ；https://www.smithsonianmag.com/science-nature/humpback-whale-songs-spread-from-west-to-east-176855840/
+- **S4 结构**：unit（最短音）→ phrase（数个 unit）→ theme（phrase 重复数分钟）→ song（数个 theme，约 7–30 分钟）；反复成 session，可超 20 小时。PMC5830736；https://dosits.org/animals/use-of-sound/marine-mammal-communication/vocalizations-associated-with-reproduction
+- **S5 功能**：歌者为雄性，主要在繁殖地唱；功能"seems to be related to mating"（吸引雌性／向雄性示威），**未定论**。同 S4；https://blog.labroots.com/trending/plants-and-animals/737/whale-songs-one-of-science-s-great-mysteries
+- **S6 渐变 vs 革命**：通常一个种群内所有雄鲸唱同一首歌、并逐年渐变（evolutionary change）；1995–96 东澳本歌也在渐变，革命式替换为特例。S1/S2；St Andrews 新闻 https://news.st-andrews.ac.uk/?p=18509
