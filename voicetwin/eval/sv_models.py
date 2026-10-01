@@ -70,16 +70,13 @@ def _sherpa(key: str, label: str, file: str, size: int, sha256: str, origin: str
                    origin=origin, scale=scale, dim=dim)
 
 
-#: 候选模型（实测准确度见 docs/声纹打分准确度.md）。DEFAULT_ENSEMBLE 是默认一起打分的几个。
+#: 精准声纹打分用的模型（为什么选这几个：research/sv_benchmark/记录.md）。DEFAULT_ENSEMBLE 是默认一起打分的几个，
+#: campplus-zh-en 是备选（可在 similarity.sv_models 里换上）。
 MODELS: Dict[str, SVModel] = {
     m.key: m for m in (
         SVModel(key="redimnet2-b6", label="ReDimNet2-B6（2026 年最新，中英文 10 万人训练）",
                 file="redimnet2_b6_vb2_vox2_cnc2_lm.onnx", kind="wave", size=0, sha256=None,
                 sources=_gh(RELEASE_BASE + "redimnet2_b6_vb2_vox2_cnc2_lm.onnx"),
-                origin="ReDimNet2（Interspeech 2026，Palabra.ai，MIT 许可），VoxBlink2 + VoxCeleb2 + CN-Celeb2 训练"),
-        SVModel(key="redimnet2-b3", label="ReDimNet2-B3（2026，中英文训练，轻量）",
-                file="redimnet2_b3_vb2_vox2_cnc2_lm.onnx", kind="wave", size=0, sha256=None,
-                sources=_gh(RELEASE_BASE + "redimnet2_b3_vb2_vox2_cnc2_lm.onnx"),
                 origin="ReDimNet2（Interspeech 2026，Palabra.ai，MIT 许可），VoxBlink2 + VoxCeleb2 + CN-Celeb2 训练"),
         _sherpa("campplus-zh-en", "CAM++（3D-Speaker，中英文 20 万人训练）",
                 "3dspeaker_speech_campplus_sv_zh_en_16k-common_advanced.onnx", 28281164,
@@ -93,17 +90,9 @@ MODELS: Dict[str, SVModel] = {
                 "3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common.onnx", 39593765,
                 "e2d2048292e055f7b61cdec3db010503f35369b245bf0b3bbad021c9a91e4053",
                 "3D-Speaker（阿里通义实验室，Apache-2.0 许可）", dim=512),
-        _sherpa("campplus-zh", "CAM++（3D-Speaker，中文 20 万人训练）",
-                "3dspeaker_speech_campplus_sv_zh-cn_16k-common.onnx", 28281138,
-                "f682b514c05d947ee3fa91cd6ec6c5c7543479a128373fa29b1faedccd21fd11",
-                "3D-Speaker（阿里通义实验室，Apache-2.0 许可）"),
-        _sherpa("resnet34-cnceleb", "ResNet34-LM（WeSpeaker，CN-Celeb 训练）",
-                "wespeaker_zh_cnceleb_resnet34_LM.onnx", 26530548,
-                "87d1d5068397f3792c730570b53d66cd8be1da7ea22dd04f5b6706d96a3cd168",
-                "WeSpeaker（Apache-2.0 许可）", dim=256, scale=32768.0),
     )
 }
-DEFAULT_ENSEMBLE: Tuple[str, ...] = ("redimnet2-b6", "campplus-zh-en", "eres2netv2-zh")
+DEFAULT_ENSEMBLE: Tuple[str, ...] = ("redimnet2-b6", "eres2netv2-zh", "eres2net-base-zh")
 
 #: 自检用的固定测试音频（确定的伪随机"类语音"信号，不依赖任何文件）和每个模型应该得到的声纹（前 16 维 + 范数）
 SELFTEST: Dict[str, Dict[str, Any]] = {}

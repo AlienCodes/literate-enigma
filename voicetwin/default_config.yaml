@@ -164,7 +164,7 @@ similarity:
   models: auto                # auto: 精准声纹打分（下面 sv_models 里的几个模型 + 人声检测 + 陌生人声纹库，两头校准）；
                               # 这些模型没下载时，用 GPT-SoVITS 整合包自带的 ERes2NetV2 + resemblyzer；
                               # 都没有时用简易 MFCC（仅供参考）。也可以写成 eres2netv2,resemblyzer
-  sv_models: auto             # 精准声纹打分用哪几个模型：auto = redimnet2-b6, campplus-zh-en, eres2netv2-zh
+  sv_models: auto             # 精准声纹打分用哪几个模型：auto = redimnet2-b6, eres2netv2-zh, eres2net-base-zh（备选 campplus-zh-en）
   model_dir: ./models/sv      # 这些模型放在哪里（voicetwin download-models --sv 下载，约 170 MB）
   device: auto                # 旧的 ERes2NetV2 用：auto | cuda | cpu（精准声纹打分固定用 CPU，不和 GPT-SoVITS 抢显存）
   min_pct: 85                 # 低于这个百分比的候选直接淘汰；整句都达不到时保留最好的一个并标红提醒
