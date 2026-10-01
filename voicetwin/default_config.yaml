@@ -42,7 +42,8 @@ prepare:
     max_clip_ratio: 0.002     # 爆音（削波）样本比例上限
     speaker_outlier: true     # 用声纹剔除不是你本人的片段（学生提问、插入的视频等）
     speaker_min_similarity: auto
-  validation_count: 12        # 留出多少条不参与训练、专门用来自动挑选最佳模型
+  validation_count: 20        # 留出多少条不参与训练、专门用来自动挑选最佳模型和校准"像你本人（%）"（素材少时自动减少）
+  proofcheck: auto            # 素材准备最后自动"查找可能的错字"：auto（装了第二个识别引擎时才做）| on | off
   references:
     count: 8                  # 挑选多少条最具代表性的参考音频
     min_duration: 3.5         # GPT-SoVITS 要求参考音频 3~10 秒
@@ -76,7 +77,8 @@ backends:
       top_p: 1.0
       temperature: 1.0
       repetition_penalty: 1.35
-      aux_refs: 2             # 额外参考音频数量，用于融合音色（v2/v2Pro 支持）
+      aux_refs: 2             # 额外参考音频数量（v2/v2Pro：把几条参考的音色平均一下）。快速/均衡/最好用这个数；
+                              # 极致/完美自动用 3 条（显存小于 8GB 用 2 条）。说实话：它几乎不占显存，效果提升也有限
       sample_steps: 32        # 仅 v3/v4 使用
 
   qwen3tts:
@@ -112,28 +114,56 @@ backends:
 # 3. 合成（生成讲课音频）
 # ---------------------------------------------------------------------
 synth:
-  quality: balanced           # fast（每句 1 个候选）| balanced（3 个）| best（5 个并用识别校验）
-  candidates: auto            # 每句生成几个候选再自动挑最像的；auto 跟随 quality
+  # 质量档位（档位越高越慢，但结果更稳定、更像你；只是让出错更少、挑得更准，不会超过模型训练出来的水平）：
+  #   auto      按显卡自动选：显存 ≥ 8GB → perfect；更小 → max；没有能用的 N 卡 → balanced
+  #   fast      快速：每句只生成 1 次，最快；偶尔会有读错或不太像的句子
+  #   balanced  均衡：每句生成 3 次，自动挑最像你的
+  #   best      最好：每句生成 5 次，并用语音识别检查漏字、错字
+  #   max       极致：每句生成 8 次（显存 <8GB 时 6 次）、识别校验一直开着、错字门槛更严，不够像的自动重做
+  #   perfect   完美：每句 4 次一批地试，达到严格标准（错字率 ≤5%、像你本人 ≥99%、语速音高在你平时的范围内）就停，
+  #             最多 20 次；挑长短最接近的参考音频；同时输出「未去杂音」「去杂音」两个版本并推荐更像你的那个（最慢）
+  quality: auto
+  candidates: auto            # 每句生成几个候选再自动挑最像的；auto 跟随 quality（完美档是每批几个）
   max_units_zh: 50            # 每段最多多少个音节（汉字），太长会拆开合成
   max_units_en: 45            # 英文每段最多多少个音节
   min_units: 6                # 太短的句子会和下一句合并，避免一两个字单独合成不自然
   seed: 20240601
-  speed: auto                 # auto: 使用自动校准出的语速，保证和你原本的节奏一致；也可以写 1.0
+  speed: auto                 # 语速倍数。auto/1.0 = 和你原声一样（自动校准）；1.2 = 快 20%，0.85 = 慢 15%。
+                              # 快慢由合成模型自己控制（只改时长，不改音高和音色）；句间停顿也按比例变长/变短。
+                              # 太极端（超过 ±20%）会不自然，建议 0.85～1.15
   pauses: profile             # profile: 按你本人的停顿习惯插入停顿 | fixed
   fixed_pauses: { clause: 0.25, sentence: 0.55, paragraph: 1.1 }
+  # 句子之间、开头和结尾永远是绝对的数字静音（全是 0），没有底噪；每句首尾的杂音会被切掉并淡入淡出
   loudness: profile           # profile: 匹配你原始录音的响度 | 具体数值如 -16 | off
-  output_format: wav          # wav | mp3
+  output_format: wav          # wav | mp3（mp3 压缩后静音处可能有极小的杂讯；要绝对静音请用 wav）
   subtitles: true             # 同时输出 .srt 字幕
   skip_code_blocks: true      # Markdown 讲稿里的 ``` 代码块不朗读
-  asr_check: auto             # auto: quality=best 时开启；用识别模型检查有没有漏字/多字
-  asr_check_model: small
-  cer_retry_threshold: 0.15   # 漏字/错字率超过它就重新生成
-  max_retries: 2
-  score:
-    speaker: 1.0              # 声纹相似度权重
-    cer: 2.0                  # 错字率权重
-    rate: 0.6                 # 语速偏差权重
-    pitch: 0.3                # 音高偏差权重
+  asr_check: auto             # auto: quality=best/max/perfect 时开启；用识别模型检查有没有漏字/多字
+  asr_check_model: auto       # auto: 中文优先用整合包自带的 Paraformer（更准）；否则显存 ≥8GB 用 large-v3-turbo，更小用 small
+  cer_retry_threshold: 0.15   # 均衡/最好：漏字/错字率超过它就重新生成（极致/完美有自己更严的门槛，见下面 tiers）
+  max_retries: 2              # 均衡/最好：最多重做几轮
+  min_wrong_chars: 2          # 只错 1 个字（多半是识别误差）不算读错，避免短句被反复重做
+  # 各档位的细节都可以单独改，例如：
+  # tiers:
+  #   max:     { candidates: 8, retry_rounds: 3, retry_candidates: 3, cer_retry_threshold: 0.10, aux_refs: 3 }
+  #   perfect: { candidates: 4, max_candidates: 20, target_pct: 99, cer_target: 0.05, cer_retry_threshold: 0.08 }
+  tiers: {}
+  score:                      # 给候选打分的权重：相似度为主，其它只做扣分
+    speaker: 2.0              # "像你本人（%）"的权重
+    cer: 1.0                  # 错字率权重（读错太多的候选会先被淘汰，这里只管细微差别）
+    rate: 0.4                 # 语速偏差权重
+    pitch: 0.2                # 音高偏差权重
 
-# 声纹模型：auto 会依次尝试 resemblyzer → speechbrain → 简易 MFCC
+# "像你本人（%）"：100% = 和你自己的真实录音一样像（用没参与训练的验证集片段校准）。
+# 相似度是声纹模型自动打分，越高越像，但不是绝对精确，最终以耳朵为准。
+similarity:
+  models: auto                # auto: GPT-SoVITS 整合包自带的 ERes2NetV2 + resemblyzer 一起打分取平均；
+                              # 都没有时用简易 MFCC（仅供参考）。也可以写成 eres2netv2,resemblyzer
+  device: auto                # auto | cuda | cpu
+  min_pct: 85                 # 低于这个百分比的候选直接淘汰；整句都达不到时保留最好的一个并标红提醒
+  filter: auto                # auto: 有可靠的声纹模型时才淘汰 | on | off
+  target_pct: 99              # 「完美」档的目标：达到就提前停止
+
+# 素材准备时剔除"不是你本人"的片段用的声纹模型：auto 会依次尝试 resemblyzer → speechbrain → 简易 MFCC。
+# 写成具体名字（例如 resemblyzer）时，"像你本人（%）"也只用这一个模型打分。
 speaker_encoder: auto

@@ -129,8 +129,12 @@ class Project:
         return self.csv_path
 
     def import_csv(self) -> Dict[str, int]:
-        """读回校对表，把修改（文字、keep、语言）同步到 manifest。"""
-        from voicetwin.utils.textutil import clean_transcript, detect_lang, syllable_count
+        """读回校对表，把修改（文字、keep、语言）同步到 manifest。
+
+        - 改了文字的片段：去掉"可能有错"的标记（suspect），重新算语速；
+        - 「保留」那一格空着：保持原来的选择（不再当成"删掉"）。
+        """
+        from voicetwin.utils.textutil import clean_transcript
 
         if not self.csv_path.exists():
             raise FileNotFoundError(f"找不到校对表 {self.csv_path}")
@@ -142,26 +146,63 @@ class Project:
                 if rid not in records:
                     continue
                 rec = records[rid]
-                text = clean_transcript(row.get("text", ""))
+                text = clean_transcript(row.get("text") or "")
                 if text and text != rec.get("text"):
-                    rec["text"] = text
-                    rec["lang"] = detect_lang(text)
-                    if rec.get("voiced"):
-                        rec["rate"] = syllable_count(text) / max(rec["voiced"], 1e-3)
+                    apply_text_edit(rec, text)
                     changed["text"] += 1
-                keep = str(row.get("keep", "1")).strip() not in ("0", "false", "False", "否", "n", "N", "")
-                if keep != rec.get("keep", True):
-                    rec["keep"] = keep
-                    rec["manual_keep"] = keep
-                    if not keep:
-                        rec["drop_reason"] = rec.get("drop_reason") or "手动删除"
-                    changed["keep"] += 1
+                raw_keep = str(row.get("keep") if row.get("keep") is not None else "").strip()
+                if raw_keep:
+                    keep = raw_keep not in KEEP_FALSE_VALUES
+                    if keep != rec.get("keep", True):
+                        rec["keep"] = keep
+                        rec["manual_keep"] = keep
+                        if not keep:
+                            rec["drop_reason"] = rec.get("drop_reason") or "手动删除"
+                        changed["keep"] += 1
                 lang = (row.get("lang") or "").strip().lower()
                 if lang in ("zh", "en") and lang != rec.get("lang"):
                     rec["lang"] = lang
                     changed["lang"] += 1
         self.save_manifest(records.values())
         return changed
+
+    def set_clip_text(self, clip_id: str, text: str) -> Dict[str, Any]:
+        """改一个片段的文字（例如采用"可能有错"的建议），保存 manifest 并重新导出校对表。"""
+        from voicetwin.utils.textutil import clean_transcript
+
+        records = self.load_manifest()
+        rec = next((r for r in records if r.get("id") == clip_id), None)
+        if rec is None:
+            raise KeyError(f"找不到片段 {clip_id}")
+        text = clean_transcript(text or "")
+        if not text:
+            raise ValueError("文字不能为空")
+        if text != rec.get("text"):
+            apply_text_edit(rec, text)
+        else:
+            rec.pop("suspect", None)
+        self.save_manifest(records)
+        self.export_csv(records)
+        return rec
+
+    def last_modified(self) -> float:
+        """这个声音最后一次改动的时间（素材、校对、训练、生成里最新的那个）。"""
+        latest = 0.0
+        for p in (self.manifest_path, self.csv_path, self.models_path, self.profile_path, self.references_path,
+                  self.root / "prepare_summary.json"):
+            try:
+                latest = max(latest, p.stat().st_mtime)
+            except OSError:
+                continue
+        try:
+            for p in self.outputs_dir.iterdir():
+                try:
+                    latest = max(latest, p.stat().st_mtime)
+                except OSError:
+                    continue
+        except OSError:
+            pass
+        return latest
 
     # ------------------------------------------------------------------ 其它产物
     def load_references(self) -> List[Dict[str, Any]]:
@@ -182,12 +223,20 @@ class Project:
         return entry
 
     def load_lexicon(self) -> List[tuple]:
-        """lexicon.txt：每行 `原文 => 读法`，用来纠正多音字、专业术语、英文缩写的读法。"""
+        """lexicon.txt：每行 `原文 => 读法`，用来纠正多音字、专业术语、英文缩写的读法。
+
+        中文输入法打出来的 ＝＞、＝>、=＞、->、→、⇒ 和全角空格也都认。
+        """
         pairs = []
         if not self.lexicon_path.exists():
             return pairs
-        for line in self.lexicon_path.read_text(encoding="utf-8").splitlines():
-            line = line.strip()
+        raw = self.lexicon_path.read_bytes()
+        try:
+            content = raw.decode("utf-8-sig")
+        except UnicodeDecodeError:
+            content = raw.decode("gb18030", errors="replace")  # 记事本另存为 ANSI 的情况
+        for line in content.splitlines():
+            line = normalize_lexicon_line(line)
             if not line or line.startswith("#") or "=>" not in line:
                 continue
             src, dst = line.split("=>", 1)
@@ -195,6 +244,32 @@ class Project:
             if src:
                 pairs.append((src, dst))
         return pairs
+
+
+KEEP_FALSE_VALUES = ("0", "false", "False", "FALSE", "否", "n", "N", "no", "No", "x", "X", "×", "✘", "✗", "删", "删除",
+                     "不", "不要", "不保留")
+_ARROWS = ("＝＞", "＝>", "=＞", "⇒", "→", "->", "＞＞")
+
+
+def normalize_lexicon_line(line: str) -> str:
+    line = (line or "").replace("\u3000", " ").strip()
+    if line.startswith("＃"):
+        line = "#" + line[1:]
+    for arrow in _ARROWS:
+        line = line.replace(arrow, "=>")
+    return line
+
+
+def apply_text_edit(rec: Dict[str, Any], text: str) -> None:
+    """片段文字被人改过：更新语言和语速，去掉"可能有错"的标记（它是针对旧文字的）。"""
+    from voicetwin.utils.textutil import detect_lang, syllable_count
+
+    rec["text"] = text
+    rec["lang"] = detect_lang(text)
+    if rec.get("voiced"):
+        rec["rate"] = syllable_count(text) / max(rec["voiced"], 1e-3)
+    rec.pop("suspect", None)
+    rec["text_edited"] = True
 
 
 LEXICON_TEMPLATE = """# 读音纠正词典：每行一条，格式为  原文 => 实际朗读的文字
