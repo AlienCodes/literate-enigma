@@ -29,10 +29,10 @@ def _copy_voice(prepared, tmp_path):
 
 
 def test_version_is_shown_in_page_header():
-    assert voicetwin.__version__ == "0.1.6"
-    assert "声音分身 VoiceTwin v0.1.6" in A.INTRO
+    assert voicetwin.__version__ == "0.1.7"
+    assert "声音分身 VoiceTwin v0.1.7" in A.INTRO
     text = (Path(__file__).resolve().parents[1] / "pyproject.toml").read_text(encoding="utf-8")
-    assert 'version = "0.1.6"' in text
+    assert 'version = "0.1.7"' in text
 
 
 def test_quality_names_are_one_source():

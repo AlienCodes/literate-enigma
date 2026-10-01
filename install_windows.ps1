@@ -228,7 +228,7 @@ if (-not $Mode) {
 
 $Py = ""
 if ($Mode -eq "gsv") {
-    $script:Total = 6
+    $script:Total = 7
     Step "检查电脑和整合包"
     $GsvRoot = Find-GsvRoot $GsvRoot
     Write-Host "整合包位置：$GsvRoot"
@@ -257,6 +257,12 @@ if ($Mode -eq "gsv") {
     # 「完美」档的「去杂音」版本要用 noisereduce（整合包里没有）。--no-deps：它要的 numpy、scipy、joblib、tqdm、
     # matplotlib 整合包里都有，不改动整合包原有依赖的版本
     Pip $Py @("--no-deps", "noisereduce")
+    # 精准声纹打分（"像你本人"百分比）用 onnxruntime 运行模型：整合包一般自带 onnxruntime-gpu，没有才装 CPU 版
+    & $Py -c "import onnxruntime" *> $null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "安装声纹打分组件 onnxruntime……"
+        Pip $Py @("onnxruntime")
+    }
     # 语音识别：整合包一般自带 faster-whisper；没有的话按 GPT-SoVITS 官方方式 --no-deps 安装
     & $Py -c "import faster_whisper" *> $null
     if ($LASTEXITCODE -ne 0) {
@@ -264,7 +270,7 @@ if ($Mode -eq "gsv") {
         Pip $Py @("--no-deps", "faster-whisper")
     }
 } else {
-    $script:Total = 7
+    $script:Total = 8
     Step "检查电脑和 Python"
     Check-Disk @($Here)
     $sysPy = $null
@@ -284,7 +290,7 @@ if ($Mode -eq "gsv") {
     & $Py -m pip install --disable-pip-version-check -U pip -i $Mirror | Out-Null
 
     Step "安装声音分身及语音识别、网页界面等组件（需要几分钟，下面滚动的英文是正常的，请不要关窗口）"
-    Pip $Py @("-e", "$Here[asr,webui,denoise,docx]")
+    Pip $Py @("-e", "$Here[asr,webui,denoise,docx,sv]")
 
     Step "安装声纹打分组件（PyTorch CPU 版 + resemblyzer）"
     Pip $Py @("torch", "--index-url", "https://download.pytorch.org/whl/cpu")
@@ -314,6 +320,12 @@ if ($GsvRoot) {
     } elseif ($modelCode -ne 0) {
         Write-Host "⚠️ 没能检查预训练模型是否齐全（下面的环境检查会再看一次）。" -ForegroundColor Yellow
     }
+}
+
+Step "下载精准声纹打分的模型（约 170 MB，用来算「像你本人」的百分比）"
+& $Py -m voicetwin download-models --sv
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "⚠️ 声纹模型没有下载成功（多半是网络问题）。不影响使用：先用旧的打分方式；以后在网页上点「⬇️ 下载缺少的模型」再试。" -ForegroundColor Yellow
 }
 
 Step "生成桌面图标"

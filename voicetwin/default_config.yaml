@@ -161,9 +161,12 @@ synth:
 # "像你本人（%）"：100% = 和你自己的真实录音一样像（用没参与训练的验证集片段校准）。
 # 相似度是声纹模型自动打分，越高越像，但不是绝对精确，最终以耳朵为准。
 similarity:
-  models: auto                # auto: GPT-SoVITS 整合包自带的 ERes2NetV2 + resemblyzer 一起打分取平均；
+  models: auto                # auto: 精准声纹打分（下面 sv_models 里的几个模型 + 人声检测 + 陌生人声纹库，两头校准）；
+                              # 这些模型没下载时，用 GPT-SoVITS 整合包自带的 ERes2NetV2 + resemblyzer；
                               # 都没有时用简易 MFCC（仅供参考）。也可以写成 eres2netv2,resemblyzer
-  device: auto                # auto | cuda | cpu
+  sv_models: auto             # 精准声纹打分用哪几个模型：auto = redimnet2-b6, eres2netv2-zh, eres2net-base-zh（备选 campplus-zh-en）
+  model_dir: ./models/sv      # 这些模型放在哪里（voicetwin download-models --sv 下载，约 170 MB）
+  device: auto                # 旧的 ERes2NetV2 用：auto | cuda | cpu（精准声纹打分固定用 CPU，不和 GPT-SoVITS 抢显存）
   min_pct: 85                 # 低于这个百分比的候选直接淘汰；整句都达不到时保留最好的一个并标红提醒
   filter: auto                # auto: 有可靠的声纹模型时才淘汰 | on | off
   target_pct: 99              # 「完美」档的目标：达到就提前停止

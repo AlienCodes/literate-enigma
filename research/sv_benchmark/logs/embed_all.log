@@ -1,0 +1,38 @@
+3dspeaker_speech_campplus_sv_en_voxceleb_16k raw en_eval: 600 in 20s
+3dspeaker_speech_campplus_sv_en_voxceleb_16k raw en_cal: 600 in 20s
+3dspeaker_speech_campplus_sv_en_voxceleb_16k raw en_cohort: 400 in 13s
+3dspeaker_speech_campplus_sv_en_voxceleb_16k raw zh: 86 in 4s
+3dspeaker_speech_campplus_sv_en_voxceleb_16k vad en_eval: 600 in 14s
+3dspeaker_speech_campplus_sv_en_voxceleb_16k vad en_cal: 600 in 16s
+3dspeaker_speech_campplus_sv_en_voxceleb_16k vad en_cohort: 400 in 10s
+3dspeaker_speech_campplus_sv_en_voxceleb_16k vad zh: 86 in 3s
+3dspeaker_speech_campplus_sv_zh-cn_16k-common raw en_eval: 600 in 21s
+3dspeaker_speech_campplus_sv_zh-cn_16k-common raw en_cal: 600 in 20s
+3dspeaker_speech_campplus_sv_zh-cn_16k-common raw en_cohort: 400 in 13s
+Traceback (most recent call last):
+  File "research/sv_benchmark/embed_all.py", line 102, in <module>
+    main(sys.argv[1:])
+  File "research/sv_benchmark/embed_all.py", line 90, in main
+    src = sets[s]["audio"] if prep == "raw" else vad_cache[s]
+          ~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/numpy/lib/_npyio_impl.py", line 245, in __getitem__
+    with self.zip.open(key) as bytes:
+         ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/zipfile.py", line 1598, in open
+    raise BadZipFile("Bad magic number for file header")
+zipfile.BadZipFile: Bad magic number for file header
+3dspeaker_speech_campplus_sv_zh-cn_16k-common raw zh: 86 in 3s
+3dspeaker_speech_campplus_sv_zh-cn_16k-common vad en_eval: 600 in 14s
+3dspeaker_speech_campplus_sv_zh-cn_16k-common vad en_cal: 600 in 14s
+3dspeaker_speech_campplus_sv_zh-cn_16k-common vad en_cohort: 400 in 10s
+3dspeaker_speech_campplus_sv_zh-cn_16k-common vad zh: 86 in 3s
+3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common raw en_eval: 600 in 32s
+3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common raw en_cal: 600 in 31s
+3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common raw en_cohort: 400 in 22s
+3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common raw zh: 86 in 10s
+3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common vad en_eval: 600 in 41s
+3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common vad en_cal: 600 in 51s
+3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common vad en_cohort: 400 in 24s
+3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common vad zh: 86 in 5s
+3dspeaker_speech_eres2net_large_sv_zh-cn_3dspeaker_16k raw en_eval: 600 in 158s
+3dspeaker_speech_eres2net_large_sv_zh-cn_3dspeaker_16k raw en_cal: 600 in 371s

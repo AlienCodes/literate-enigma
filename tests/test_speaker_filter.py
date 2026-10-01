@@ -157,7 +157,7 @@ def test_empty_judge_returns_nothing():
 def test_ensemble_names_follow_config(tmp_path):
     assert spk.ensemble_names(make_cfg(tmp_path)) == ["mfcc"]  # 测试配置指定了 mfcc
     auto = make_cfg(tmp_path, speaker_encoder="auto")
-    assert spk.ensemble_names(auto) == ["eres2netv2", "resemblyzer"]
+    assert spk.ensemble_names(auto) == [spk.SV_AUTO, "eres2netv2", "resemblyzer"]  # 先精准声纹模型，没下载时用旧的
     assert spk.ensemble_names(make_cfg(tmp_path, speaker_encoder="auto", similarity={"models": "resemblyzer，mfcc"})) \
         == ["resemblyzer", "mfcc"]
 

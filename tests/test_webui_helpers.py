@@ -384,9 +384,22 @@ def test_download_job_cleans_up(tmp_path, monkeypatch):
         return ["a"]
 
     monkeypatch.setattr(GPTSoVITSBackend, "download_pretrained", fake)
-    assert A._download_job(cfg, progress=lambda f, m: seen.append(m)) == ["a"]
-    assert seen == ["x 1/2 MB"]
+    from voicetwin.eval import sv_models
+
+    def fake_sv(cfg, progress=None, keys=None):
+        progress(0.5, "下载声纹模型 y.onnx：1/2 MB")
+        return ["y.onnx"]
+
+    monkeypatch.setattr(sv_models, "download", fake_sv)
+    assert A._download_job(cfg, progress=lambda f, m: seen.append((round(f, 3), m))) == ["a", "y.onnx"]
+    assert seen == [(0.425, "x 1/2 MB"), (0.925, "下载声纹模型 y.onnx：1/2 MB")]  # 声纹模型排在最后 15%
     assert not wf.Project(cfg, "__download__").root.exists()
+
+    def broken_sv(cfg, progress=None, keys=None):
+        raise RuntimeError("网络断了")
+
+    monkeypatch.setattr(sv_models, "download", broken_sv)
+    assert A._download_job(cfg, progress=lambda f, m: None) == ["a"]  # 声纹模型下载失败不影响 GPT-SoVITS 的模型
 
 
 # ---------------------------------------------------------------------------- 环境检查 / 评估 / 鉴别

@@ -66,6 +66,19 @@ BERT_DIR = "GPT_SoVITS/pretrained_models/chinese-roberta-wwm-ext-large"
 HUBERT_DIR = "GPT_SoVITS/pretrained_models/chinese-hubert-base"
 SV_PATH = "GPT_SoVITS/pretrained_models/sv/pretrained_eres2netv2w24s4ep4.ckpt"
 SUPPORTED_VERSIONS = tuple(PRETRAINED_SOVITS)
+#: 目前公开的最新、最强版本。官方 wiki《GPT‐SoVITS‐features(Latest‐Including‐v5)》：
+#: 时间顺序 V1<V2<V3<V4<V2Pro(Plus)<V5；v2ProPlus "超 v4 的性能"，Zero Shot 相似度比 v2Pro 略高；
+#: V5 截至 2026-10-01 还没有公开的代码和模型（GitHub 最新发布 20250606v2pro）。V5 公开后再实测比较。
+LATEST_VERSION = "v2ProPlus"
+
+
+def version_status(version: str) -> Tuple[bool, str]:
+    """GPT-SoVITS 模型版本是不是目前公开的最新版本：(是否最新, 说明)。"""
+    if version == LATEST_VERSION:
+        return True, (f"{version}：目前公开的最新、最强版本（官方版本顺序 V1<V2<V3<V4<V2Pro(Plus)<V5，"
+                      "V5 还没有公开；v2ProPlus 比 v2Pro 更像）")
+    return False, (f"设置里用的是 {version}，不是最新的 {LATEST_VERSION}。怎么办：用记事本打开 config.yaml，把 "
+                   f"backends → gptsovits 下面的 version 改成 {LATEST_VERSION}，保存后在 ② 训练模型 重新训练一次")
 
 #: 模型文件夹里必须有的文件：每一组里至少要有一个（下载到一半的 *.part 不算）
 DIR_REQUIREMENTS: Dict[str, Tuple[Tuple[str, ...], ...]] = {
@@ -1106,7 +1119,9 @@ class GPTSoVITSBackend(Backend):
         if self.proc is not None:  # 推理服务占着显存，先关掉
             self.stop()
         exp = export_gptsovits(self.project, speaker=self.exp_name)
-        log.info(f"实验名 {self.exp_name}；版本 {self.version}")
+        latest, note = version_status(self.version)
+        log.info(f"实验名 {self.exp_name}；GPT-SoVITS 版本 {self.version}"
+                 + ("（目前公开的最新、最强版本）" if latest else f"（⚠️ {note}）"))
         self.step(progress, 0.02, f"训练素材 {exp['count']} 条，共 {exp['minutes']} 分钟")
         params = self._make_plan(int(exp["count"]), float(exp["minutes"]), opts)
         self.step(progress, 0.03, params["summary"])

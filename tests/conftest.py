@@ -57,11 +57,19 @@ def lecture_dir(tmp_path_factory):
     return d
 
 
+@pytest.fixture(autouse=True)
+def _no_sv_download(monkeypatch):
+    """测试不联网下载声纹模型（要测下载本身的测试自己换回真的 download，并换掉网络请求）。"""
+    from voicetwin.eval import sv_models
+
+    monkeypatch.setattr(sv_models, "download", lambda cfg, progress=None, keys=None: [])
+
+
 def make_cfg(workspace: Path, **extra):
     overrides = {"workspace": str(workspace), "backend": "dummy", "prepare": {"asr": {"engine": "none"}},
-                 "speaker_encoder": "mfcc"}
+                 "speaker_encoder": "mfcc", "similarity": {"model_dir": str(Path(workspace) / "_sv_models")}}
     for k, v in extra.items():
-        overrides[k] = v
+        overrides[k] = dict(overrides[k], **v) if k == "similarity" else v
     return load_config(overrides=overrides, user_config=False)
 
 
