@@ -5,9 +5,8 @@
 
 压缩包内容：程序代码、Windows 安装脚本、README、docs/，以及由《快速上手.md》转换来的
 《使用教程（先看我）.html》——双击即可在浏览器里看图文版快速上手（截图已内嵌）。
-另外把两份 PDF 复制到 dist/ 作为单独的 Release 附件：
+另外把快速上手的 PDF 复制到 dist/ 作为单独的 Release 附件（详细的长手册已经不再发布）：
     docs/快速上手.pdf              → VoiceTwin-QuickStart-v<版本>.pdf（几页纸，先看这个）
-    docs/声音分身VoiceTwin使用手册.pdf → VoiceTwin-Manual-v<版本>.pdf（详细手册）
 """
 
 from __future__ import annotations
@@ -24,7 +23,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 QUICK = ROOT / "快速上手.md"
 QUICK_PDF = ROOT / "docs" / "快速上手.pdf"                   # 由 scripts/build_manual_pdf.py --quickstart 生成
-MANUAL_PDF = ROOT / "docs" / "声音分身VoiceTwin使用手册.pdf"   # 由 scripts/build_manual_pdf.py 生成
 INCLUDE = ["voicetwin", "docs", "install_windows.bat", "install_windows.ps1", "pyproject.toml", "README.md"]
 TOP = "VoiceTwin"
 REPO_URL = "https://github.com/AlienCodes/literate-enigma"
@@ -107,10 +105,36 @@ def markdown_to_html(md_text: str, title: str, online_path: str = "快速上手.
 """
 
 
+#: 每个版本在 Release 页面上写的「这一版新增」（没有写的版本就不显示这一段）
+WHATS_NEW = {
+    "0.1.6": [
+        "**每一步都有进度条**：百分比、第几步、已用时间、预计几点完成；绿色 = 正常，黄色 = 好几分钟没动静，红色 = 出问题（写明原因和怎么办）",
+        "**网页最上面一直显示显卡状态**：绿色 = 正常；红色时告诉你怎么修",
+        "**所有表格都有编号和总数**；新增 **🎙️ 我的声音库**，点一下就选中声音",
+        "**训练参数全自动**：按你的显卡和素材选出最好的设置，显存不够自动重试",
+        "**新的「完美」质量**：每句最多试 20 次；同时做「未去杂音 / 去杂音」两个版本，自动推荐更像你原声的那个，由你选",
+        "**每句都有「像你本人（%）」**：用你自己的真实录音做标尺，低于 85% 的自动淘汰",
+        "**绝对静音**：生成的音频只有你的声音，没有背景音、没有底噪，句子之间完全静音",
+        "**语速拉杆**：往左更快、往右更慢，音色不变",
+        "**自动查找错字**：可能识别错的字标成红色，并给出修改建议",
+        "**⑤ 鉴别**：机器打分排名 + 观众盲听测试",
+        "出错时用中文说明原因和怎么办；修复生成失败后再点「生成」可能提示「看不懂「[]」」的问题",
+    ],
+}
+
+
 def release_notes(version: str, zip_name: str) -> str:
+    news = WHATS_NEW.get(version)
+    news_md = ("\n### ✨ 这一版新增\n\n" + "\n".join(f"- {line}" for line in news) + "\n") if news else ""
     return f"""## 声音分身 VoiceTwin v{version}（Windows）
 
 用你以前的讲课视频训练出"你的声音"，以后粘贴讲稿就能生成你的声音读的讲课音频和字幕（中文 + 英文）。
+{news_md}
+### 🔄 已经装过旧版本？升级只要 3 步（声音和训练好的模型都不会丢）
+
+1. 下载下面的 `{zip_name}`，右键 → 全部解压缩 → 位置填 `D:\\`，提示有同名文件时选**替换**
+2. 双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完
+3. 双击桌面「声音分身 VoiceTwin」，网页标题显示 v{version} 就对了
 
 ### 📥 下载（在下面的 Assets 里）
 
@@ -118,7 +142,6 @@ def release_notes(version: str, zip_name: str) -> str:
 |---|---|
 | **`{quick_asset_name(version)}`** | **快速上手（几页纸，先看这个）** |
 | **`{zip_name}`** | 程序本体 |
-| `{manual_asset_name(version)}` | 详细手册（遇到问题时再查） |
 
 不需要下载 Source code。
 
@@ -162,7 +185,7 @@ def build(version: str, out_dir: Path) -> Path:
             zf.write(f, f"{TOP}/{f.relative_to(ROOT).as_posix()}")
         zf.writestr(f"{TOP}/使用教程（先看我）.html", guide_html)
     # PDF 同时作为单独的 Release 附件（文件名用英文，GitHub 会去掉附件名里的中文）
-    for src, name in ((QUICK_PDF, quick_asset_name(version)), (MANUAL_PDF, manual_asset_name(version))):
+    for src, name in ((QUICK_PDF, quick_asset_name(version)),):
         if src.exists():
             shutil.copyfile(src, out_dir / name)
     return zip_path
@@ -172,8 +195,6 @@ def quick_asset_name(version: str) -> str:
     return f"VoiceTwin-QuickStart-v{version}.pdf"
 
 
-def manual_asset_name(version: str) -> str:
-    return f"VoiceTwin-Manual-v{version}.pdf"
 
 
 def main() -> None:

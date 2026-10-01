@@ -48,10 +48,26 @@ class ScriptSegment:
 
 
 # ----------------------------------------------------------------------------- 读取
+SCRIPT_EXTS = (".txt", ".md", ".markdown", ".srt", ".vtt", ".docx")
+UNSUPPORTED_MSG = ("不支持这种文件（.doc / .wps / .pdf）。请在 Word 或 WPS 里点「文件 → 另存为」，"
+                   "类型选 .docx 或 .txt，再上传。")
+
+
+def _looks_binary(text: str) -> bool:
+    """控制字符超过 5%：多半是 .doc/.pdf 之类的二进制文件被改了扩展名，读出来会是一堆乱码。"""
+    if not text:
+        return False
+    sample = text[:20000]
+    bad = sum(1 for ch in sample if (ord(ch) < 32 and ch not in "\t\n\r\f") or ch == "\ufffd")
+    return bad / max(len(sample), 1) > 0.05
+
+
 def read_script_file(path: Path) -> Tuple[str, Optional[list]]:
-    """返回 (纯文本, 字幕 cue 列表或 None)。"""
+    """返回 (纯文本, 字幕 cue 列表或 None)。只支持 .txt / .md / .srt / .vtt / .docx。"""
     path = Path(path)
     ext = path.suffix.lower()
+    if ext not in SCRIPT_EXTS:
+        raise RuntimeError(UNSUPPORTED_MSG)
     if ext in (".srt", ".vtt"):
         from voicetwin.data.subtitles import parse_subtitles
 
@@ -61,15 +77,24 @@ def read_script_file(path: Path) -> Tuple[str, Optional[list]]:
             import docx  # type: ignore
         except ImportError as exc:
             raise RuntimeError("读取 Word 讲稿需要：pip install python-docx（或另存为 txt）") from exc
-        doc = docx.Document(str(path))
+        try:
+            doc = docx.Document(str(path))
+        except Exception as exc:  # 改了扩展名的 .doc / 损坏的文件
+            raise RuntimeError(UNSUPPORTED_MSG) from exc
         return "\n\n".join(p.text for p in doc.paragraphs if p.text.strip()), None
     raw = path.read_bytes()
-    for enc in ("utf-8-sig", "gb18030", "utf-16"):
+    text = None
+    for enc in ("utf-8-sig", "utf-16") if raw[:2] in (b"\xff\xfe", b"\xfe\xff") else ("utf-8-sig", "gb18030"):
         try:
-            return raw.decode(enc), None
+            text = raw.decode(enc)
+            break
         except UnicodeDecodeError:
             continue
-    return raw.decode("utf-8", errors="replace"), None
+    if text is None:
+        text = raw.decode("utf-8", errors="replace")
+    if _looks_binary(text):
+        raise RuntimeError(UNSUPPORTED_MSG)
+    return text, None
 
 
 # ----------------------------------------------------------------------------- 清理
@@ -219,7 +244,7 @@ def parse_script(source: Union[str, Path], lexicon: Sequence[Tuple[str, str]] = 
                  max_units_en: int = 45, min_units: int = 6, skip_code_blocks: bool = True) -> List[ScriptSegment]:
     cues = None
     if isinstance(source, Path) or (isinstance(source, str) and len(source) < 1024 and "\n" not in source
-                                    and Path(source).suffix.lower() in (".txt", ".md", ".srt", ".vtt", ".docx", ".markdown")
+                                    and Path(source).suffix.lower() in SCRIPT_EXTS
                                     and Path(source).exists()):
         text, cues = read_script_file(Path(source))
     else:

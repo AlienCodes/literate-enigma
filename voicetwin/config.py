@@ -6,7 +6,7 @@ import copy
 import json
 import os
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Tuple
 
 import yaml
 
@@ -65,13 +65,55 @@ def find_user_config(explicit: Optional[str] = None) -> Optional[Path]:
     return None
 
 
+class ConfigError(ValueError):
+    """config.yaml 读不了或格式不对。消息是给老师看的中文，包含解决办法。"""
+
+
+FIX_HINT = ("解决办法：如果同一个文件夹里有 config.yaml.bak（上一次的备份），把它改名为 config.yaml 覆盖它；"
+            "没有的话，删掉 config.yaml，再双击 install_windows.bat 重新生成。")
+
+
+def read_text_any(path: Path) -> Tuple[str, str]:
+    """读取文本文件，返回（内容, 编码）。先按 UTF-8（带不带 BOM 都行），不行再按 GBK（记事本「ANSI」）。"""
+    data = Path(path).read_bytes()
+    try:
+        text, encoding = data.decode("utf-8-sig"), "utf-8"
+    except UnicodeDecodeError:
+        try:
+            text, encoding = data.decode("gbk"), "gbk"
+        except UnicodeDecodeError as exc:
+            raise ConfigError(f"设置文件 {path} 的编码看不懂（既不是 UTF-8 也不是 GBK）。{FIX_HINT}") from exc
+    # 和 read_text() 一样统一换行符，写回时才不会变成 \r\r\n
+    return text.replace("\r\n", "\n").replace("\r", "\n"), encoding
+
+
+def parse_user_yaml(text: str, path: Path) -> Dict[str, Any]:
+    """解析用户的 config.yaml；格式不对时抛出带行号和解决办法的中文 ConfigError。"""
+    try:
+        data = yaml.safe_load(text)
+    except yaml.YAMLError as exc:
+        mark = getattr(exc, "problem_mark", None) or getattr(exc, "context_mark", None)
+        where = f"第 {mark.line + 1} 行" if mark is not None and getattr(mark, "line", None) is not None else ""
+        raise ConfigError(f"设置文件 {path} {where}格式不对（常见原因：前面的空格数不对，或者冒号后面少了一个空格）。"
+                          f"{FIX_HINT}") from exc
+    if data is None:
+        return {}
+    if not isinstance(data, dict):
+        raise ConfigError(f"设置文件 {path} 的内容不对（应该是一行一行「名字: 值」这样的设置）。{FIX_HINT}")
+    return data
+
+
 def load_config(path: Optional[str] = None, overrides: Optional[Dict[str, Any]] = None,
                 user_config: bool = True) -> Config:
     cfg = load_default()
     user_path = find_user_config(path) if user_config else None
     if user_path is not None:
-        with open(user_path, "r", encoding="utf-8") as f:
-            cfg = deep_merge(cfg, yaml.safe_load(f) or {})
+        text, encoding = read_text_any(user_path)
+        if encoding != "utf-8":
+            from voicetwin.utils.log import get_logger
+
+            get_logger("config").warning(f"{user_path.name} 不是 UTF-8 编码，已按 GBK 读取")
+        cfg = deep_merge(cfg, parse_user_yaml(text, user_path))
         base_dir = user_path.parent.resolve()
     else:
         base_dir = Path.cwd().resolve()
@@ -135,7 +177,7 @@ def write_example_config(dest: Path, replacements: Optional[Dict[str, str]] = No
 def update_config_file(path: Path, replacements: Dict[str, str]) -> Path:
     """只修改已有 config.yaml 里的指定项，其余设置和注释原样保留。"""
     path = Path(path)
-    text = path.read_text(encoding="utf-8")
+    text, _ = read_text_any(path)  # 记事本另存为 ANSI（GBK）的也能改；写回时统一存成 UTF-8
     new_text = _apply_replacements(text, replacements)
     if new_text != text:
         _backup(path)

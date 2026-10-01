@@ -51,6 +51,7 @@ class IndexTTSBackend(WorkerBackend):
         if float(self.bcfg.get("emo_alpha", 0.6)) > 0:
             params["emo_audio"] = ref  # 用你自己的参考音频作为情绪/语气参考
             params["emo_alpha"] = float(self.bcfg.get("emo_alpha", 0.6))
+        # 语速：IndexTTS2.5 在模型内部控制时长（duration_factor），音高和音色不变，不对音频做后期变速
         if self.version.startswith("2.5") and req.speed and abs(req.speed - 1.0) > 0.01:
             params["duration_factor"] = 1.0 / float(req.speed)
         for key in ("temperature", "top_p", "top_k"):
@@ -62,6 +63,7 @@ class IndexTTSBackend(WorkerBackend):
 
     def synthesize(self, req: SynthRequest, out_path: Path) -> Path:
         out = super().synthesize(req, out_path)
+        # IndexTTS2 没有时长控制：用 ffmpeg atempo（WSOLA，变速不变调）；不做重采样
         if not self.version.startswith("2.5") and req.speed and abs(req.speed - 1.0) > 0.02:
             tmp = out.with_suffix(".tempo.wav")
             atempo(out, tmp, req.speed)

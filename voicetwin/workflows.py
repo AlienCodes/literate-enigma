@@ -1,24 +1,203 @@
-"""高层工作流：命令行和网页界面共用。"""
+"""高层工作流：命令行和网页界面共用。
+
+进度约定（interface E）：每个长任务的进度都是 0~1、只往前走：
+- 素材准备：prepare() 只报 0.00~0.95；run_prepare 报 0.95（分析说话风格）和 1.0。
+  要自动"查找可能的错字"时，prepare() 压缩到 0~0.85，风格分析 0.85，查错字 0.87~0.99。
+- 训练：backend.train 占 0~0.88，自动挑选最佳模型占 0.88~1.0。
+- 网页上传文件时复制文件占 0.00~0.02（网页那边做）。
+"""
 
 from __future__ import annotations
 
 import importlib
+import json
 import platform
+import random
+import re
 import shutil
 import subprocess
 import sys
 import time
 from pathlib import Path
-from typing import Any, Callable, Dict, Iterable, List, Optional, Tuple
+from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple
 
-from voicetwin.config import Config
+from voicetwin.config import Config, deep_merge
 from voicetwin.project import Project
 from voicetwin.utils.log import get_logger, setup_logging
 
+try:  # U6：任务进行中阻止电脑睡眠（同一线程可以嵌套）
+    from voicetwin.utils.winsys import keep_awake
+except ImportError:  # pragma: no cover - 没有 U6 时什么都不做
+    from contextlib import nullcontext as keep_awake  # type: ignore
+
+try:  # U1：停止按钮
+    from voicetwin.utils.progress import check_cancel as _check_cancel
+except ImportError:  # pragma: no cover
+    def _check_cancel() -> None:
+        return None
+
 log = get_logger("workflow")
 ProgressFn = Callable[[float, str], None]
+Stage = Tuple[float, str]
+
+# ---------------------------------------------------------------------------- 进度阶段表
+STAGES_PREPARE: List[Stage] = [(0.00, "整理要处理的文件"), (0.02, "提取声音、降噪、切成小段"), (0.40, "识别每段话的文字"),
+                               (0.74, "分析语速和停顿"), (0.80, "检查是不是你本人的声音"), (0.90, "挑选参考音频、保存结果"),
+                               (0.95, "分析你的说话风格")]
+STAGES_SELECT: List[Stage] = [(0.00, "加载打分模型"), (0.05, "启动合成引擎"), (0.10, "逐个试听每个模型，挑最像你的")]
+STAGES_NARRATE: List[Stage] = [(0.00, "启动合成引擎"), (0.03, "逐句生成"), (0.95, "拼接音频、生成字幕")]
+#: 「完美」档多一步：做「去杂音」版本并比较
+STAGES_NARRATE_VARIANTS: List[Stage] = [(0.00, "启动合成引擎"), (0.03, "逐句生成"), (0.90, "拼接音频、生成字幕"),
+                                        (0.93, "做「去杂音」版本并比较哪个更像你")]
+STAGES_DOWNLOAD: List[Stage] = [(0.0, "下载模型文件")]
+STAGES_PROOFCHECK: List[Stage] = [(0.00, "准备识别引擎"), (0.02, "逐条检查文字，标出可能的错字")]
+STAGES_BLIND_TEST: List[Stage] = [(0.00, "挑选你的真实录音"), (0.05, "用同样的文字生成"), (0.90, "统一音量、打乱顺序、保存")]
+STAGES_VERIFY: List[Stage] = [(0.00, "加载声纹模型"), (0.10, "逐个打分")]
+TRAIN_SELECT_SPLIT = 0.88
+PROOFCHECK_PREPARE_END = 0.85     # 要查错字时，prepare() 的 0.95 压缩到这里
+PROOFCHECK_START = 0.87
+PROOFCHECK_END = 0.99
+STAGES_PREPARE_PROOFCHECK: List[Stage] = (
+    [(round(f * PROOFCHECK_PREPARE_END / 0.95, 4), n) for f, n in STAGES_PREPARE[:-1]]
+    + [(PROOFCHECK_PREPARE_END, "分析你的说话风格"), (PROOFCHECK_START, "查找可能的错字")]
+)
+
+SPEED_SLIDER_MIN, SPEED_SLIDER_MAX = -30, 30
+SPEED_NOTE = "语速调得越极端（超过 ±20%），越可能不自然；建议在 −15～+15 之间。"
+SPEED_LABEL = "语速（← 往左更快　·　中间 0 = 和你原声一样　·　往右更慢 →）"
+DEFAULT_SAMPLE_ZH = "大家好，这是试听语速的一句话，你听听快慢合不合适。"
+DEFAULT_SAMPLE_EN = "Hello everyone, this is a short sample to check the speaking speed."
 
 
+def _sub(progress: Optional[ProgressFn], lo: float, hi: float) -> Optional[ProgressFn]:
+    """把子任务自己的 0~1 进度映射到 [lo, hi]。progress 为 None 时返回 None。"""
+    if progress is None:
+        return None
+
+    def sub(frac: float, msg: str = "") -> None:
+        try:
+            f = float(frac)
+        except (TypeError, ValueError):
+            f = 0.0
+        progress(lo + (hi - lo) * max(0.0, min(1.0, f)), msg)
+
+    return sub
+
+
+def _report(progress: Optional[ProgressFn], frac: float, msg: str) -> None:
+    """写一行日志并更新进度条；进度条出问题不影响任务（TaskCancelled 是 BaseException，照常传出去）。"""
+    log.info(msg)
+    if progress is not None:
+        try:
+            progress(max(0.0, min(1.0, frac)), msg)
+        except Exception:
+            pass
+
+
+def _explain_title(exc: BaseException) -> str:
+    try:
+        from voicetwin.errors import explain
+
+        return explain(exc).title
+    except Exception:
+        return str(exc)[:80] or type(exc).__name__
+
+
+def _backend_class(name: str) -> Any:
+    """不创建引擎对象，只拿到它的类（看 train_stages / supports_training 用）。"""
+    from voicetwin.backends.base import _BACKENDS
+
+    mod_name, cls_name = _BACKENDS[name].split(":")
+    return getattr(importlib.import_module(mod_name), cls_name)
+
+
+def _effective_cfg(cfg: Config, overrides: Optional[Dict[str, Any]]) -> Config:
+    """把网页/命令行传来的素材准备选项（overrides）合并进配置，返回新的 Config。"""
+    if not overrides:
+        return cfg
+    merged = Config(deep_merge(dict(cfg), {"prepare": dict(overrides)}))
+    return merged
+
+
+def _proofcheck_module() -> Any:
+    try:
+        from voicetwin.data import proofcheck  # U8
+
+        return proofcheck
+    except ImportError:
+        return None
+
+
+def proofcheck_plan(cfg: Config, overrides: Optional[Dict[str, Any]] = None) -> Tuple[bool, str, str]:
+    """素材准备最后要不要自动"查找可能的错字"：返回（要不要做, 引擎名, 中文说明）。
+
+    prepare.proofcheck：auto（默认，装了和主识别引擎不同的第二个引擎时才做）| on（总是做）| off。
+    """
+    eff = _effective_cfg(cfg, overrides)
+    mode = eff.get_path("prepare.proofcheck", "auto")
+    if mode is True:
+        mode = "on"
+    elif mode is False:
+        mode = "off"
+    mode = str(mode or "auto").strip().lower()
+    if mode in ("off", "false", "no", "0", "none"):
+        return False, "", ""
+    mod = _proofcheck_module()
+    if mod is None:
+        return False, "", "查错字功能还没装好"
+    try:
+        engine, reason = mod.available_checker(eff)
+    except Exception as exc:
+        return False, "", f"查不到可用的识别引擎（{exc}）"
+    if mode in ("on", "true", "yes", "1"):
+        return True, str(engine or ""), str(reason or "")
+    primary = str(eff.get_path("prepare.asr.engine", "faster-whisper") or "faster-whisper").lower()
+    second = engine in ("funasr", "faster-whisper") and engine != primary
+    return bool(second), str(engine or ""), str(reason or "")
+
+
+def task_stages(kind: str, cfg: Optional[Config] = None, backend_name: Optional[str] = None, select: bool = True,
+                quality: Optional[str] = None, proofcheck: Optional[bool] = None,
+                overrides: Optional[Dict[str, Any]] = None) -> List[Stage]:
+    """给进度条用的阶段表：[(开始的进度, 中文步骤名), ...]，从小到大。
+
+    kind：prepare | train | select | narrate（= generate）| download | proofcheck | blind_test | verify。
+    narrate 请把网页上选的 quality 一起传进来（「完美」档多一步）；prepare 可以传 overrides / proofcheck。
+    """
+    kind = (kind or "").strip().lower()
+    if kind == "prepare":
+        plan = proofcheck if proofcheck is not None else (proofcheck_plan(cfg, overrides)[0] if cfg is not None else False)
+        return list(STAGES_PREPARE_PROOFCHECK if plan else STAGES_PREPARE)
+    if kind == "select":
+        return list(STAGES_SELECT)
+    if kind in ("narrate", "generate", "say"):
+        from voicetwin.synth.engine import QUALITY_PRESETS, resolve_quality
+
+        q = resolve_quality(quality if quality not in (None, "") else
+                            ((cfg or {}).get("synth", {}) or {}).get("quality", "auto"))
+        return list(STAGES_NARRATE_VARIANTS if QUALITY_PRESETS[q].get("variants") else STAGES_NARRATE)
+    if kind == "download":
+        return list(STAGES_DOWNLOAD)
+    if kind == "proofcheck":
+        return list(STAGES_PROOFCHECK)
+    if kind in ("blind_test", "blind"):
+        return list(STAGES_BLIND_TEST)
+    if kind == "verify":
+        return list(STAGES_VERIFY)
+    if kind == "train":
+        name = str(backend_name or (cfg or {}).get("backend") or "gptsovits").lower()
+        try:
+            stages = list(getattr(_backend_class(name), "train_stages", None) or [(0.0, "训练模型")])
+        except Exception:
+            stages = [(0.0, "训练模型")]
+        stages = sorted((float(f), str(n)) for f, n in stages)
+        if select:
+            return [(round(f * TRAIN_SELECT_SPLIT, 4), n) for f, n in stages] + [(TRAIN_SELECT_SPLIT, "自动挑选最像你的模型")]
+        return stages
+    return []
+
+
+# ---------------------------------------------------------------------------- 声音
 def open_project(cfg: Config, voice: str, must_exist: bool = False) -> Project:
     project = Project(cfg, voice)
     if must_exist and not project.exists:
@@ -28,34 +207,197 @@ def open_project(cfg: Config, voice: str, must_exist: bool = False) -> Project:
     return project
 
 
-def list_voices(cfg: Config) -> List[Dict[str, Any]]:
+def _voice_dirs(cfg: Config) -> List[Project]:
     from voicetwin.config import resolve_path
 
     ws = resolve_path(cfg, cfg.get("workspace", "./workspace"))
-    out = []
+    out: List[Project] = []
     if ws and ws.exists():
         for d in sorted(p for p in ws.iterdir() if p.is_dir()):
-            proj = Project(cfg, d.name)
-            if not proj.exists:
+            if d.name.startswith("__"):  # 环境检查等临时目录
                 continue
-            summary = proj.read_json(proj.root / "prepare_summary.json", {}) or {}
-            models = proj.load_models()
-            out.append({"voice": d.name, "minutes": summary.get("minutes_kept"), "clips": summary.get("clips_kept"),
-                        "trained": [k for k, v in models.items() if v.get("selected")],
-                        "profile": proj.profile_path.exists()})
+            try:
+                proj = Project(cfg, d.name)
+            except ValueError:
+                continue
+            if proj.exists:
+                out.append(proj)
+    return out
+
+
+def list_voices(cfg: Config) -> List[Dict[str, Any]]:
+    out = []
+    for proj in _voice_dirs(cfg):
+        summary = proj.read_json(proj.root / "prepare_summary.json", {}) or {}
+        models = proj.load_models()
+        out.append({"voice": proj.voice, "minutes": summary.get("minutes_kept"), "clips": summary.get("clips_kept"),
+                    "trained": [k for k, v in models.items() if v.get("selected")],
+                    "profile": proj.profile_path.exists()})
+    return out
+
+
+def _main_reference(proj: Project) -> str:
+    try:
+        from voicetwin.data.references import pick_reference
+
+        refs = proj.load_references()
+        if not refs:
+            return ""
+        langs = [r.get("lang") for r in refs]
+        lang = "zh" if "zh" in langs else langs[0]
+        path = proj.abspath(pick_reference(refs, lang, "statement")["path"])
+        return str(path.resolve()) if path.exists() else ""
+    except Exception:
+        return ""
+
+
+def voice_library(cfg: Config) -> List[Dict[str, Any]]:
+    """我的声音库：每个已保存的声音一行（最近改过的排前面）。
+
+    键：no（从 1 开始）、voice / name、minutes、clips_kept / clips、trained（bool）、trained_backends、
+    best_model、main_reference（绝对路径或 ''）、modified（时间戳）、modified_text（"2026-10-01 21:30"）、status（中文）。
+    """
+    default_backend = str(cfg.get("backend") or "gptsovits").lower()
+    try:
+        needs_training = bool(getattr(_backend_class(default_backend), "supports_training", True))
+    except Exception:
+        needs_training = True
+    rows: List[Dict[str, Any]] = []
+    for proj in _voice_dirs(cfg):
+        summary = proj.read_json(proj.root / "prepare_summary.json", {}) or {}
+        models = proj.load_models()
+        trained_backends = [k for k, v in models.items() if isinstance(v, dict) and v.get("selected")]
+        best = ""
+        for name in [default_backend] + [b for b in trained_backends if b != default_backend]:
+            sel = (models.get(name) or {}).get("selected") if isinstance(models.get(name), dict) else None
+            if sel:
+                best = str(sel.get("id") or "")
+                if name != default_backend:  # 不是默认引擎训练的：注明是哪个引擎（用中文界面上的名字）
+                    try:
+                        label = str(getattr(_backend_class(name), "display_name", name))
+                    except Exception:
+                        label = name
+                    best += f"（{label}）"
+                break
+        clips = summary.get("clips_kept")
+        minutes = summary.get("minutes_kept")
+        if trained_backends:
+            status = "✅ 已训练，可以生成"
+        elif clips and not needs_training:
+            status = "✅ 素材已准备，可以生成（这个引擎不需要训练）"
+        elif clips:
+            status = "⚠️ 素材已准备，还没训练"
+        else:
+            status = "⏳ 还没准备素材"
+        modified = proj.last_modified()
+        rows.append({
+            "voice": proj.voice, "name": proj.voice, "minutes": minutes, "clips_kept": clips, "clips": clips,
+            "trained": bool(trained_backends), "trained_backends": trained_backends, "best_model": best,
+            "main_reference": _main_reference(proj), "modified": modified,
+            "modified_text": time.strftime("%Y-%m-%d %H:%M", time.localtime(modified)) if modified else "",
+            "status": status, "profile": proj.profile_path.exists(),
+        })
+    rows.sort(key=lambda r: (-(r["modified"] or 0.0), r["voice"]))
+    for i, r in enumerate(rows, 1):
+        r["no"] = i
+    return rows
+
+
+VOICE_LIBRARY_HEADERS = ["#", "名称", "素材（分钟 / 条）", "状态", "最佳模型", "最后修改时间"]
+
+
+def voice_library_rows(cfg: Config) -> List[List[Any]]:
+    """声音库表格的行（列见 VOICE_LIBRARY_HEADERS），# 从 1 开始。"""
+    out = []
+    for r in voice_library(cfg):
+        mats = f"{float(r.get('minutes') or 0):g} 分钟 / {r['clips_kept']} 条" if r.get("clips_kept") else "—"
+        out.append([r["no"], r["voice"], mats, r["status"], r["best_model"] or "—", r["modified_text"] or "—"])
     return out
 
 
 # ---------------------------------------------------------------------------- 素材
+def _clean_input(p: Any) -> str:
+    s = str(p or "").strip()
+    if len(s) >= 2 and s[0] == s[-1] and s[0] in "\"'“”":
+        s = s[1:-1].strip()
+    return s.strip("“”").strip()
+
+
+def _precheck_prepare(cfg: Config, voice: str, inputs: List[str], overrides: Optional[Dict[str, Any]]) -> List[str]:
+    """开始前先检查（几秒钟）：文件夹在不在、识别组件装没装、硬盘空间。返回要提醒的话。"""
+    from voicetwin.data.asr import engine_importable
+    from voicetwin.data.prepare import discover_sources, source_id
+    from voicetwin.data.subtitles import find_sidecar_subtitle
+
+    for p in inputs:
+        if not Path(p).expanduser().exists():
+            raise FileNotFoundError(f"找不到文件夹：{p}。请在文件夹窗口顶部的地址栏复制路径，再粘贴过来")
+    eff = _effective_cfg(cfg, overrides)
+    project = Project(cfg, voice)
+    sources_db = project.read_json(project.sources_path, {}) or {}
+    files = discover_sources(inputs)
+    new = []
+    for f in files:
+        try:
+            if not (sources_db.get(source_id(f)) or {}).get("done"):
+                new.append(f)
+        except OSError:
+            continue
+    pending = [r for r in project.load_manifest() if not r.get("text") and not r.get("asr_done")]
+    engine = str(eff.get_path("prepare.asr.engine", "faster-whisper") or "faster-whisper").lower()
+    seg_mode = str(eff.get_path("prepare.segmentation", "auto") or "auto").lower()
+    need_asr = bool(pending) or any(not (seg_mode in ("auto", "srt") and find_sidecar_subtitle(f)) for f in new)
+    if need_asr and engine != "none" and not engine_importable(engine):
+        raise RuntimeError("语音识别组件没装好，请重新双击 install_windows.bat 安装一次")
+    notes: List[str] = []
+    try:
+        size = sum(f.stat().st_size for f in new)
+        root = project.root if project.root.exists() else project.root.parent
+        root.mkdir(parents=True, exist_ok=True)
+        free = shutil.disk_usage(str(root)).free
+        if free < 1.5 * size + 2 * 1024 ** 3:
+            msg = f"⚠️ 硬盘剩余空间可能不够（还剩 {free / 1024 ** 3:.1f} GB），建议先清理一下再处理"
+            log.warning(msg)
+            notes.append(msg)
+    except OSError:
+        pass
+    return notes
+
+
 def run_prepare(cfg: Config, voice: str, inputs: Iterable[str], progress: Optional[ProgressFn] = None,
                 overrides: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     from voicetwin.data.prepare import prepare
     from voicetwin.style.profile import build_profile
 
-    project = open_project(cfg, voice)
-    summary = prepare(project, list(inputs), cfg, progress, overrides)
-    if summary["clips_kept"]:
-        summary["profile"] = build_profile(project)
+    inputs = [s for s in (_clean_input(p) for p in (inputs or [])) if s]
+    notes = _precheck_prepare(cfg, voice, inputs, overrides)
+    with keep_awake():
+        project = open_project(cfg, voice)
+        do_proof, engine, reason = proofcheck_plan(cfg, overrides)
+        if do_proof:
+            summary = prepare(project, inputs, cfg, _sub(progress, 0.0, PROOFCHECK_PREPARE_END / 0.95), overrides)
+        else:
+            summary = prepare(project, inputs, cfg, progress, overrides)
+        summary["warnings"] = list(notes) + list(summary.get("warnings") or [])
+        if summary["clips_kept"]:
+            _report(progress, PROOFCHECK_PREPARE_END if do_proof else 0.95, "分析你的说话风格（语速、停顿、音高）……")
+            summary["profile"] = build_profile(project)
+        if do_proof and summary["clips_kept"]:
+            _report(progress, PROOFCHECK_START, "查找可能的错字" + (f"（{reason}）" if reason else "") + "……")
+            try:
+                res = _proofcheck_module().find_suspects(project, _effective_cfg(cfg, overrides),
+                                                         progress=_sub(progress, PROOFCHECK_START, PROOFCHECK_END))
+                summary["proofcheck"] = res
+                if (res or {}).get("flagged"):
+                    summary["warnings"].append(f"其中 {res['flagged']} 条文字可能有错（已标红），请在校对表里看一看")
+            except Exception as exc:
+                why = _explain_title(exc)
+                # exc_info：原始的报错（英文 Traceback）只写进黑色窗口和 voicetwin.log，给帮忙的人看；网页上只显示这一行中文
+                log.warning(f"⚠️ 自动查错字没有完成（{why}），素材已经准备好了，不影响使用", exc_info=exc)
+                summary["warnings"].append(f"自动查错字没有完成（{why}）。可以稍后在校对表上方点「🔍 自动查找可能的错字」再试")
+        saved = {k: v for k, v in summary.items() if k != "profile"}
+        project.write_json(project.root / "prepare_summary.json", saved)
+        _report(progress, 1.0, "素材准备完成")
     return summary
 
 
@@ -74,7 +416,7 @@ def apply_review(cfg: Config, voice: str) -> Dict[str, Any]:
             r["_stats_text"] = r.get("text")
     pcfg = cfg.get("prepare", {})
     apply_filters(project, records, pcfg, cfg)
-    assign_splits(records, int(pcfg.get("validation_count", 12)))
+    assign_splits(records, int(pcfg.get("validation_count", 20)))
     project.save_manifest(records)
     refs = select_references(project, records, pcfg)
     project.export_csv(records)
@@ -85,6 +427,40 @@ def apply_review(cfg: Config, voice: str) -> Dict[str, Any]:
     return summary
 
 
+def run_proofcheck(cfg: Config, voice: str, progress: Optional[ProgressFn] = None, only_kept: bool = True,
+                   limit: Optional[int] = None) -> Dict[str, Any]:
+    """🔍 自动查找可能的错字：把每段再听一遍，标出可能识别错的字。返回 {checked, flagged, engine, note}。"""
+    mod = _proofcheck_module()
+    if mod is None:
+        raise RuntimeError("查错字功能没有装好（缺少 voicetwin/data/proofcheck.py），请更新声音分身后再试")
+    with keep_awake():
+        project = open_project(cfg, voice, must_exist=True)
+        _report(progress, 0.0, "准备识别引擎（第一次使用会先下载）……")
+        res = mod.find_suspects(project, cfg, progress=_sub(progress, 0.02, 0.99), only_kept=only_kept, limit=limit)
+        res = dict(res or {})
+        _report(progress, 1.0, f"查完了：检查了 {res.get('checked', 0)} 条，其中 {res.get('flagged', 0)} 条可能有错（已标红）")
+    return res
+
+
+def apply_suggestion(cfg: Config, voice: str, clip_id: str) -> Dict[str, Any]:
+    """✅ 采用建议：把这条片段的文字换成"可能有错"给出的建议，去掉标红，并重新导出校对表。"""
+    project = open_project(cfg, voice, must_exist=True)
+    rec = next((r for r in project.load_manifest() if r.get("id") == clip_id), None)
+    if rec is None:
+        raise ValueError(f"找不到这条片段（{clip_id}），请刷新一下校对表")
+    alt = str(((rec.get("suspect") or {}).get("alt") or "")).strip()
+    if not alt:
+        raise ValueError("这条没有可以采用的建议")
+    old = rec.get("text", "")
+    new = project.set_clip_text(clip_id, alt)
+    log.info(f"已采用建议：{old} → {new.get('text')}")
+    out = {"id": clip_id, "old_text": old, "text": new.get("text", ""), "lang": new.get("lang", "")}
+    if new.get("csv_locked"):
+        log.warning("transcripts.csv 正被别的程序（Excel/WPS）打开，这次没能同步更新；修改已经保存在 manifest 里")
+        out["csv_locked"] = True
+    return out
+
+
 def run_analyze(cfg: Config, voice: str) -> Dict[str, Any]:
     from voicetwin.style.profile import build_profile
 
@@ -92,31 +468,63 @@ def run_analyze(cfg: Config, voice: str) -> Dict[str, Any]:
 
 
 # ---------------------------------------------------------------------------- 训练 / 挑选
+def download_models(cfg: Config, source: str = "auto", progress: Optional[ProgressFn] = None) -> List[str]:
+    """下载 GPT-SoVITS 缺少的预训练模型（网页的「⬇️ 下载缺少的模型」和命令行 download-models 共用）。
+
+    要下 1~2 GB，网慢时很久：下载期间电脑不会自动睡眠（网络流量不会让 Windows 觉得「有人在用」）。"""
+    from voicetwin.backends.gptsovits import GPTSoVITSBackend
+
+    with keep_awake():
+        project = Project(cfg, "__download__")
+        try:
+            backend = GPTSoVITSBackend(cfg, project)
+            return list(backend.download_pretrained(source, progress=progress) or [])
+        finally:
+            shutil.rmtree(project.root, ignore_errors=True)
+
+
 def run_train(cfg: Config, voice: str, backend_name: Optional[str] = None, progress: Optional[ProgressFn] = None,
               select: bool = True, **opts: Any) -> Dict[str, Any]:
     from voicetwin.backends.base import get_backend
 
-    project = open_project(cfg, voice, must_exist=True)
-    backend = get_backend(backend_name or cfg.get("backend"), cfg, project)
-    if not backend.supports_training:
-        raise RuntimeError(f"{backend.display_name} 不需要训练（零样本克隆），可以直接合成")
-    t0 = time.time()
-    info = backend.train(progress=progress, **opts)
-    info["train_minutes"] = round((time.time() - t0) / 60.0, 1)
-    if select:
-        info["selection"] = run_select(cfg, voice, backend.name, progress=progress)
+    with keep_awake():
+        project = open_project(cfg, voice, must_exist=True)
+        backend = get_backend(backend_name or cfg.get("backend"), cfg, project)
+        if not backend.supports_training:
+            raise RuntimeError(f"{backend.display_name} 不需要训练（零样本克隆），可以直接合成")
+        t0 = time.time()
+        info = backend.train(progress=_sub(progress, 0.0, TRAIN_SELECT_SPLIT) if select else progress, **opts)
+        info["train_minutes"] = round((time.time() - t0) / 60.0, 1)
+        if select:
+            _report(progress, TRAIN_SELECT_SPLIT, "训练完成，开始自动挑选最像你的模型（大约 5~15 分钟）")
+            try:
+                selection = run_select(cfg, voice, backend.name, progress=_sub(progress, TRAIN_SELECT_SPLIT, 1.0))
+                info["selection"] = selection
+                if selection.get("selected"):
+                    info["selected"] = selection["selected"]
+            except Exception as exc:  # 训练已经成功了：不能显示成失败（停止按钮的 TaskCancelled 照常传出去）
+                reason = _explain_title(exc)
+                log.warning(f"⚠️ 训练已经成功完成并保存了，只是「自动挑选最像你的模型」这一步没成功（{reason}）。"
+                            "现在先用最后一轮的模型；可以稍后在「② 训练模型」页点「重新挑选最佳模型」再试。", exc_info=exc)
+                info["selection_error"] = reason
+                info["selection_error_detail"] = repr(exc)[:500]
+        _report(progress, 1.0, "训练完成")
     return info
 
 
-def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, items: int = 12,
+def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, items: Optional[int] = None,
                use_asr: Optional[bool] = None, progress: Optional[ProgressFn] = None) -> Dict[str, Any]:
     from voicetwin.backends.base import get_backend
-    from voicetwin.synth.select import select_and_calibrate
+    from voicetwin.synth.select import DEFAULT_ITEMS, select_and_calibrate
 
-    project = open_project(cfg, voice, must_exist=True)
-    backend = get_backend(backend_name or cfg.get("backend"), cfg, project)
-    with backend:
-        return select_and_calibrate(cfg, project, backend, max_items=items, use_asr=use_asr, progress=progress)
+    with keep_awake():
+        project = open_project(cfg, voice, must_exist=True)
+        backend = get_backend(backend_name or cfg.get("backend"), cfg, project)
+        try:  # 引擎在 select_and_calibrate 里"启动合成引擎"那一步才启动，进度条上能看到
+            return select_and_calibrate(cfg, project, backend, max_items=int(items or DEFAULT_ITEMS), use_asr=use_asr,
+                                        progress=progress)
+        finally:
+            backend.stop()
 
 
 # ---------------------------------------------------------------------------- 合成
@@ -126,59 +534,491 @@ def default_output(project: Project, stem: str, fmt: str) -> Path:
     return project.outputs_dir / f"{safe_name(stem, 30)}_{time.strftime('%Y%m%d_%H%M%S')}.{fmt}"
 
 
+def recommended_quality(tier: Optional[str] = None) -> Tuple[str, str]:
+    """网页「质量」的默认值和一句说明（按显卡：≥8GB → 完美；更小 → 极致；没有能用的显卡 → 均衡）。"""
+    from voicetwin.synth.engine import recommended_quality as _rec
+
+    return _rec(tier)
+
+
+def quality_choices() -> List[Tuple[str, str]]:
+    """网页「质量」单选框的 (中文标签, 值)，从快到慢；每档的一行说明见 quality_help()。"""
+    from voicetwin.synth.engine import quality_choices as _choices
+
+    return _choices()
+
+
+def quality_help() -> Dict[str, str]:
+    from voicetwin.synth.engine import QUALITY_HELP, QUALITY_NOTE
+
+    return {**QUALITY_HELP, "note": QUALITY_NOTE}
+
+
 def run_narrate(cfg: Config, voice: str, source: str, out: Optional[str] = None, backend_name: Optional[str] = None,
                 quality: Optional[str] = None, candidates: Optional[int] = None, speed: Any = None,
                 reference: str = "", redo: Iterable[int] = (), subtitles: Optional[bool] = None,
-                asr_check: Optional[bool] = None, progress: Optional[ProgressFn] = None, backend=None):
+                asr_check: Optional[bool] = None, progress: Optional[ProgressFn] = None, backend=None,
+                variants: Optional[bool] = None):
     from voicetwin.backends.base import get_backend
     from voicetwin.synth.engine import Narrator
 
-    project = open_project(cfg, voice, must_exist=True)
-    fmt = cfg.get("synth", {}).get("output_format", "wav")
-    src_path = Path(source) if len(source) < 1024 and "\n" not in source else None
-    if src_path is not None and src_path.exists():
-        stem = src_path.stem
-    else:
-        stem = source.strip().splitlines()[0][:20] if source.strip() else "output"
-    out_path = Path(out) if out else default_output(project, stem, fmt)
-    own_backend = backend is None
-    backend = backend or get_backend(backend_name or cfg.get("backend"), cfg, project)
+    source = str(source or "")
+    if not source.strip():
+        raise ValueError("讲稿里没有可以朗读的内容")
+    with keep_awake():
+        project = open_project(cfg, voice, must_exist=True)
+        fmt = cfg.get("synth", {}).get("output_format", "wav")
+        src_path = Path(source.strip()) if len(source) < 1024 and "\n" not in source.strip() else None
+        is_file = bool(src_path is not None and src_path.suffix and src_path.exists() and src_path.is_file())
+        if is_file:
+            stem = src_path.stem
+        else:
+            stem = source.strip().splitlines()[0][:20] if source.strip() else "output"
+        out_path = Path(out) if out else default_output(project, stem, fmt)
+        own_backend = backend is None
+        backend = backend or get_backend(backend_name or cfg.get("backend"), cfg, project)
+        try:
+            narrator = Narrator(cfg, project, backend, quality=quality, candidates=candidates, speed=speed,
+                                reference=reference, asr_check=asr_check, progress=progress, variants=variants)
+            return narrator.narrate(src_path if is_file else source, out_path, redo=redo, subtitles=subtitles)
+        finally:
+            if own_backend:
+                backend.stop()
+
+
+def narration_table(segments: Sequence[Dict[str, Any]]) -> Tuple[List[str], List[List[Any]]]:
+    """逐句结果表：(表头, 行)，表头 #, 句子, 像你本人（%）, 状态, 提示；# 从 1 开始，和「重做」填的编号一样。"""
+    from voicetwin.synth.engine import RESULT_HEADERS, result_rows
+
+    return list(RESULT_HEADERS), result_rows(segments)
+
+
+def _variant_match(variants: List[Dict[str, Any]], name: str) -> Optional[Dict[str, Any]]:
+    want = str(name or "").strip()
+    if not want:
+        return None
+    for v in variants:  # 先精确匹配名字（「去杂音」是「未去杂音」的一部分，不能用包含）
+        if want == v.get("name") or want == v.get("label"):
+            return v
+    letter = want.upper().replace("版本", "").strip()
+    if len(letter) == 1 and "A" <= letter <= "Z":
+        idx = ord(letter) - ord("A")
+        return variants[idx] if idx < len(variants) else None
+    for v in variants:
+        label = str(v.get("label") or "")
+        if label and (want in label or label in want):
+            return v
+    return None
+
+
+def choose_variant(cfg: Config, voice: str, report_path: str, name: str) -> Dict[str, Any]:
+    """「完美」档的两个版本里，选一个作为最终版本：把它复制成 <名字>.wav，并在报告里记下 final。"""
+    open_project(cfg, voice, must_exist=True)
+    rp = Path(str(report_path))
+    if not rp.exists():
+        raise FileNotFoundError(f"找不到这次生成的报告：{rp}")
+    report = json.loads(rp.read_text(encoding="utf-8"))
+    variants = list(report.get("variants") or [])
+    if not variants:
+        raise ValueError("这次生成只有一个版本，不用选")
+    v = _variant_match(variants, name)
+    if v is None:
+        names = "、".join(str(x.get("name")) for x in variants)
+        raise ValueError(f"没有「{name}」这个版本，可以选：{names}")
+    src = Path(str(v.get("path") or ""))
+    dst = Path(str(report.get("audio") or ""))
+    if not src.exists():
+        raise FileNotFoundError(f"找不到「{v.get('name')}」的音频文件：{src}")
+    if not dst.name:
+        raise ValueError("报告里没有最终音频的位置")
+    if src.resolve() != dst.resolve():
+        shutil.copyfile(src, dst)
+    for x in variants:
+        x["final"] = x is v
+    report["variants"] = variants
+    report["final"] = v.get("name")
+    if v.get("pct") is not None:  # 整篇百分比跟着最终版本走（和生成时的规则一样）
+        report["overall_pct"] = v.get("pct")
+    tmp = rp.with_suffix(rp.suffix + ".tmp")
+    tmp.write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
+    tmp.replace(rp)
+    log.info(f"最终版本改成「{v.get('name')}」：{dst}")
+    return {"final": v.get("name"), "audio": str(dst), "variants": variants, "report": str(rp)}
+
+
+# ---------------------------------------------------------------------------- 语速
+def slider_to_speed(value: Any) -> float:
+    """语速滑块（−30…+30，往左更快）→ 语速倍数：1 − value/100（−20 → 1.20 快 20%；+15 → 0.85 慢 15%）。"""
     try:
-        narrator = Narrator(cfg, project, backend, quality=quality, candidates=candidates, speed=speed,
-                            reference=reference, asr_check=asr_check, progress=progress)
-        return narrator.narrate(source if src_path is None or not src_path.exists() else src_path, out_path,
-                                redo=redo, subtitles=subtitles)
-    finally:
-        if own_backend:
-            backend.stop()
+        v = float(value or 0)
+    except (TypeError, ValueError):
+        v = 0.0
+    v = max(float(SPEED_SLIDER_MIN), min(float(SPEED_SLIDER_MAX), v))
+    return round(1.0 - v / 100.0, 4)
 
 
+def speed_note(value: Any) -> str:
+    """滑块下面那一行：当前：和你原声一样 / 比你原声快 20% / 比你原声慢 15%。"""
+    try:
+        v = int(round(float(value or 0)))
+    except (TypeError, ValueError):
+        v = 0
+    v = max(SPEED_SLIDER_MIN, min(SPEED_SLIDER_MAX, v))
+    if v == 0:
+        text = "当前：和你原声一样"
+    elif v < 0:
+        text = f"当前：比你原声快 {-v}%"
+    else:
+        text = f"当前：比你原声慢 {v}%"
+    if abs(v) > 20:
+        text += "（太极端可能不自然，建议在 −15～+15 之间）"
+    return text
+
+
+def _first_sentence(cfg: Config, project: Project, text: str) -> str:
+    from voicetwin.synth.script import parse_script
+
+    text = str(text or "").strip()
+    if text:
+        try:
+            segs = parse_script(text, lexicon=())
+            if segs:
+                return segs[0].display
+        except Exception:
+            pass
+    langs = {r.get("lang") for r in project.load_references()}
+    return DEFAULT_SAMPLE_ZH if ("zh" in langs or not langs) else DEFAULT_SAMPLE_EN
+
+
+def preview_speed(cfg: Config, voice: str, text: str = "", value: Any = 0, backend_name: Optional[str] = None,
+                  progress: Optional[ProgressFn] = None, backend=None):
+    """▶ 试听语速：用「快速」档把讲稿第一句（或一句默认的话）按选的快慢读一遍。"""
+    project = open_project(cfg, voice, must_exist=True)
+    sentence = _first_sentence(cfg, project, text)
+    speed = slider_to_speed(value)
+    v = int(round((1.0 - speed) * 100))
+    tag = "原速" if v == 0 else (f"快{-v}%" if v < 0 else f"慢{v}%")
+    out = project.outputs_dir / f"试听语速_{tag}.wav"
+    return run_narrate(cfg, voice, sentence, out=str(out), backend_name=backend_name, quality="fast", speed=speed,
+                       subtitles=False, progress=progress, backend=backend, variants=False)
+
+
+# ---------------------------------------------------------------------------- 鉴别：盲听测试
+_REAL, _GEN = "真人", "生成"
+#: 答案文件放在测试文件夹「旁边」，不放在里面：老师会把整个文件夹发给听众
+BLIND_ANSWER_SUFFIX = "_答案（只给老师看，不要发给听众）.json"
+
+
+def blind_answer_path(test_dir: Any) -> Path:
+    """盲听测试的答案文件：<文件夹名>_答案（只给老师看，不要发给听众）.json，和文件夹放在一起。
+    以前的版本把 答案.json 放在文件夹里面，也认。"""
+    d = Path(str(test_dir))
+    side = d.with_name(d.name + BLIND_ANSWER_SUFFIX)
+    if side.exists() or not (d / "答案.json").exists():
+        return side
+    return d / "答案.json"
+
+
+def list_blind_tests(cfg: Config, voice: str) -> List[Dict[str, Any]]:
+    """这个声音做过的盲听测试（有答案文件的），新的在前：[{dir, name, count, created}]。"""
+    project = open_project(cfg, voice, must_exist=True)
+    out: List[Dict[str, Any]] = []
+    if not project.outputs_dir.is_dir():
+        return out
+    for d in project.outputs_dir.iterdir():
+        if not d.is_dir() or not d.name.startswith("盲听测试_"):
+            continue
+        ap = blind_answer_path(d)
+        if not ap.exists():
+            continue
+        try:
+            data = json.loads(ap.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        out.append({"dir": str(d), "name": d.name, "count": int(data.get("count") or len(data.get("items") or [])),
+                    "created": str(data.get("created") or "")})
+    out.sort(key=lambda x: x["name"], reverse=True)
+    return out
+
+
+_HINT_RE = re.compile(r"[（(]\s*真人\s*[/／|｜]\s*生成\s*[）)]")
+_PAIR_RE = re.compile(r"(\d+)\s*[.、:：)）\]】\-—=]*\s*([^\d\s,，;；.、:：]+)")
+
+
+def parse_blind_answers(text: Any) -> Any:
+    """把老师贴进来的听众答案变成 grade_blind_test 认识的格式。认这几种写法：
+    「1 真人 2 生成 3 真人」「1.真人 2.生成」「1真2假」、照着答题卡填的「01. 真人（真人 / 生成）」，
+    或者不写编号、按顺序写「真人 生成 真人」。返回 {编号: 答案} 或按顺序的列表。"""
+    s = _HINT_RE.sub(" ", str(text or ""))
+    pairs: Dict[int, str] = {}
+    for m in _PAIR_RE.finditer(s):
+        word = m.group(2).strip("_＿-—（）()")
+        if _norm_answer(word):
+            pairs[int(m.group(1))] = word
+    if pairs:
+        return pairs
+    words = [w for w in re.split(r"[\s,，;；、/／|｜]+", s) if w]
+    return [w for w in words if _norm_answer(w)]
+
+
+def _blind_pool(project: Project, n: int) -> List[Dict[str, Any]]:
+    from voicetwin.eval.speaker import spread_sample
+
+    recs = [r for r in project.load_manifest(only_kept=True) if r.get("text")]
+    ref_ids = {r["id"] for r in project.load_references()}
+    pool = [r for r in recs if r.get("split") == "val"]
+    if len(pool) < n:
+        extra = [r for r in recs if r.get("split", "train") != "val" and r["id"] not in ref_ids
+                 and 2.5 <= float(r.get("duration", 0)) <= 10.0]
+        pool += spread_sample(sorted(extra, key=lambda r: r["id"]), n - len(pool))
+    return spread_sample(sorted(pool, key=lambda r: r["id"]), n)
+
+
+def build_blind_test(cfg: Config, voice: str, n: int = 10, quality: Optional[str] = None,
+                     backend_name: Optional[str] = None, progress: Optional[ProgressFn] = None, backend=None,
+                     seed: Optional[int] = None) -> Dict[str, Any]:
+    """观众盲听测试：挑 n 段你的真实录音（优先验证集），用现在最好的模型读同样的文字，
+    统一音量后打乱顺序，存成 outputs/盲听测试_<时间>/01.wav…，还有一份 听众答题卡.txt，整个文件夹可以直接发给听众。
+    答案放在文件夹旁边的 盲听测试_<时间>_答案（只给老师看，不要发给听众）.json（网页提交前不显示）。
+    返回的 items 里不含答案。"""
+    from voicetwin.backends.base import get_backend
+    from voicetwin.synth.engine import QUALITY_SHORT, Narrator, trim_edges
+    from voicetwin.utils.audio import load_audio, normalize_lufs, resample, save_audio
+
+    n = max(2, min(int(n or 10), 50))
+    with keep_awake():
+        project = open_project(cfg, voice, must_exist=True)
+        _report(progress, 0.0, "挑选你的真实录音（没参与训练的那部分）……")
+        pool = _blind_pool(project, n)
+        if len(pool) < 2:
+            raise RuntimeError("真实录音太少，做不了盲听测试（至少要 2 段完整的话）")
+        real_ids = {r["id"] for r in pool}
+        own = backend is None
+        backend = backend or get_backend(backend_name or cfg.get("backend"), cfg, project)
+        pieces: List[Tuple[str, Dict[str, Any], Any, int, Optional[float]]] = []
+        try:
+            narrator = Narrator(cfg, project, backend, quality=quality, variants=False)
+            narrator.refs = [r for r in narrator.refs if r["id"] not in real_ids] or narrator.refs
+            for k, rec in enumerate(pool):
+                _check_cancel()
+                lo = 0.05 + 0.85 * k / len(pool)
+                hi = 0.05 + 0.85 * (k + 1) / len(pool)
+                _report(progress, lo, f"生成第 {k + 1}/{len(pool)} 句：{rec['text'][:20]}")
+                narrator.progress = _sub(progress, lo, hi)
+                wav, sr, results = narrator.synthesize_text(rec["text"])
+                pct = results[0].pct if len(results) == 1 else None
+                real, rsr = load_audio(project.abspath(rec["path"]))
+                pieces.append((_REAL, rec, real, rsr, None))
+                pieces.append((_GEN, rec, wav, sr, pct))
+        finally:
+            if own:
+                backend.stop()
+        _report(progress, 0.90, "统一音量、打乱顺序、保存……")
+        out_sr = min(p[3] for p in pieces)  # 统一成较低的采样率，避免"音质高低"泄露答案
+        rng = random.Random(seed if seed is not None else time.time_ns())
+        order = list(range(len(pieces)))
+        rng.shuffle(order)
+        out_dir = project.outputs_dir / f"盲听测试_{time.strftime('%Y%m%d_%H%M%S')}"
+        out_dir.mkdir(parents=True, exist_ok=True)
+        answers, items = [], []
+        width = max(2, len(str(len(order))))
+        for no, idx in enumerate(order, 1):
+            kind, rec, wav, sr, pct = pieces[idx]
+            w = trim_edges(resample(wav, sr, out_sr), out_sr)  # 真人和生成的首尾做一样的处理
+            w = normalize_lufs(w, out_sr, -20.0, ceiling_db=-1.0)
+            name = f"{no:0{width}d}.wav"
+            save_audio(out_dir / name, w, out_sr)
+            items.append({"no": no, "file": name, "path": str(out_dir / name)})
+            answers.append({"no": no, "file": name, "truth": kind, "text": rec["text"], "clip": rec["id"],
+                            "pct": pct})
+        quality_name = narrator.quality
+        data = {"created": time.strftime("%Y-%m-%d %H:%M"), "voice": project.voice, "quality": quality_name,
+                "count": len(items), "items": answers}
+        answer_path = out_dir.with_name(out_dir.name + BLIND_ANSWER_SUFFIX)
+        answer_path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+        card_lines = [f"听众答题卡（共 {len(items)} 段）", "",
+                      "每段听完，在后面写「真人」或「生成」。只听一遍，凭第一感觉写，不要回头改。", ""]
+        card_lines += [f"{it['no']:0{width}d}. ________（真人 / 生成）" for it in items]
+        card_lines += ["", "答完后把答案交给老师：老师在「⑤ 鉴别」页的「批改收上来的答题卡」里选这次测试、"
+                           "把答案填进去，就能看到正确率。"]
+        card_path = out_dir / "听众答题卡.txt"
+        card_path.write_text("\n".join(card_lines) + "\n", encoding="utf-8-sig")
+        _report(progress, 1.0, f"盲听测试做好了：共 {len(items)} 段（{len(pool)} 段真人 + {len(pool)} 段生成），"
+                               f"质量「{QUALITY_SHORT.get(quality_name, quality_name)}」")
+    return {"dir": str(out_dir), "items": items, "count": len(items), "answer_path": str(answer_path),
+            "card_path": str(card_path), "n_real": len(pool), "n_generated": len(pool), "quality": quality_name}
+
+
+def _norm_answer(ans: Any) -> str:
+    s = str(ans or "").strip().lower()
+    if not s:
+        return ""
+    if s in ("真人", "真", "人", "real", "r", "human", "h", "原声", "本人"):
+        return _REAL
+    if s in ("生成", "合成", "假", "机器", "ai", "fake", "g", "gen", "generated", "tts", "克隆"):
+        return _GEN
+    if "真" in s or "本人" in s:
+        return _REAL
+    if "生成" in s or "合成" in s or "机器" in s:
+        return _GEN
+    return ""
+
+
+def grade_blind_test(test_dir: str, answers: Any) -> Dict[str, Any]:
+    """批改盲听测试。answers 可以是 {编号: '真人'/'生成'}，也可以是按顺序的列表。"""
+    path = Path(str(test_dir))
+    answer_file = blind_answer_path(path) if path.is_dir() else path
+    if not answer_file.exists():
+        raise FileNotFoundError(f"找不到这次盲听测试的答案文件：{answer_file.name}")
+    data = json.loads(answer_file.read_text(encoding="utf-8"))
+    if isinstance(answers, str):
+        answers = parse_blind_answers(answers)
+    items = data.get("items") or []
+    if isinstance(answers, (list, tuple)):
+        given_map = {i + 1: a for i, a in enumerate(answers)}
+    else:
+        given_map = {}
+        for k, v in dict(answers or {}).items():
+            try:
+                given_map[int(str(k).strip().lstrip("0") or 0)] = v
+            except ValueError:
+                continue
+    rows, correct, answered = [], 0, 0
+    for it in items:
+        given = _norm_answer(given_map.get(int(it["no"])))
+        ok = bool(given) and given == it["truth"]
+        answered += 1 if given else 0
+        correct += 1 if ok else 0
+        rows.append({"no": it["no"], "file": it.get("file"), "answer": given or "（没答）", "truth": it["truth"],
+                     "correct": ok, "text": it.get("text", "")})
+    acc = correct / answered if answered else None
+    tips: List[str] = []
+    if acc is None:
+        verdict = "还没有填答案"
+    elif acc <= 0.60:
+        verdict = f"听众基本分辨不出（正确率 {acc:.0%}，和瞎猜的 50% 差不多）"
+    elif acc <= 0.80:
+        verdict = f"有时能分辨（正确率 {acc:.0%}）"
+        tips = ["看看哪几段最容易被听出来，是语气、停顿还是个别字不像", "用「完美」档重新生成那几句"]
+    else:
+        verdict = f"容易分辨（正确率 {acc:.0%}）"
+        tips = ["多加一些干净的讲课录音（1~3 小时最好），重新准备素材和训练",
+                "在「① 准备素材」的校对表里把文字校对一遍（错字会让模型学歪）",
+                "生成时用「完美」档", "看看哪几段最容易被听出来，是语气、停顿还是个别字不像"]
+    if answered and answered < 6:
+        verdict += "（题目太少，结果只能参考）"
+    return {"items": rows, "answered": answered, "correct": correct, "total": len(items),
+            "accuracy": None if acc is None else round(acc, 4), "pct": None if acc is None else round(acc * 100, 1),
+            "verdict": verdict, "tips": tips}
+
+
+# ---------------------------------------------------------------------------- 鉴别：机器打分
+def verify_defaults(cfg: Config, voice: str, max_clips: int = 20) -> Dict[str, List[str]]:
+    """「机器鉴别」默认要比的文件：原声 = 验证集里的真实录音；生成 = 最近一次生成的各个版本和逐句音频。"""
+    project = open_project(cfg, voice, must_exist=True)
+    originals = [str(project.abspath(r["path"])) for r in project.load_manifest(only_kept=True)
+                 if r.get("split") == "val"][:10]
+    generated: List[str] = []
+    reports = sorted(project.outputs_dir.glob("*.report.json"), key=lambda p: p.stat().st_mtime, reverse=True)
+    if reports:
+        try:
+            rep = json.loads(reports[0].read_text(encoding="utf-8"))
+            for v in rep.get("variants") or []:
+                if v.get("path") and Path(v["path"]).exists():
+                    generated.append(str(v["path"]))
+            if not generated and rep.get("audio") and Path(rep["audio"]).exists():
+                generated.append(str(rep["audio"]))
+            for s in (rep.get("segments") or [])[:max_clips]:
+                clip = s.get("clip")
+                if clip and project.abspath(clip).exists():
+                    generated.append(str(project.abspath(clip)))
+        except Exception:
+            pass
+    return {"originals": originals, "generated": generated}
+
+
+def verify_files(cfg: Config, voice: str, generated: Sequence[str], originals: Optional[Sequence[str]] = None,
+                 progress: Optional[ProgressFn] = None) -> Dict[str, Any]:
+    """机器鉴别：给每个生成的文件打"像你本人（%）"（几个声纹模型分别打分再平均），按分数排名。
+
+    originals 是你挑的原声（≥3 段时用它们当标准；1~2 段时用素材里留出的真实录音和它们比来校准；
+    不选就用这个声音的验证集校准）。返回的 calibration_source 说明「100%」的标准实际是怎么来的。
+    """
+    from voicetwin.eval.speaker import HONEST_NOTE, MODEL_LABELS, PCT_HELP, SimilarityJudge
+
+    project = open_project(cfg, voice, must_exist=True)
+    gen = [Path(str(p)) for p in (generated or []) if p and Path(str(p)).exists()]
+    if not gen:
+        raise ValueError("请先选择或上传要鉴别的生成音频")
+    min_pct = float((cfg.get("similarity") or {}).get("min_pct", 85) or 85)
+    with keep_awake():
+        _report(progress, 0.0, "加载声纹模型，计算你本人的声音标准……")
+        base = SimilarityJudge.for_project(cfg, project)
+        orig = [Path(str(p)) for p in (originals or []) if p and Path(str(p)).exists()]
+        if orig:
+            judge = SimilarityJudge.from_files(cfg, orig, fallback=base,
+                                               encoders=[m.encoder for m in base.members] or None, project=project)
+        else:
+            judge = base
+        if not judge.available:
+            raise RuntimeError("没有可用的声纹模型，没法打分")
+        rows: List[Dict[str, Any]] = []
+        for k, p in enumerate(gen):
+            _check_cancel()
+            _report(progress, 0.10 + 0.88 * k / len(gen), f"打分 {k + 1}/{len(gen)}：{p.name}")
+            res = judge.judge_file(p)
+            pct = res.get("pct")
+            rows.append({"file": p.name, "path": str(p), "pct": pct, "pcts": dict(res.get("pcts") or {}),
+                         "sims": dict(res.get("sims") or {}), "pass": bool(pct is not None and pct >= min_pct)})
+    ranked = sorted(rows, key=lambda r: (r["pct"] is None, -(r["pct"] or 0.0)))
+    for i, r in enumerate(ranked, 1):
+        r["rank"] = i
+    names = judge.models
+    labels = [MODEL_LABELS.get(n, n) for n in names]
+    headers = ["#", "文件"] + [f"{lab}（%）" for lab in labels] + ["综合（%）", "排名", f"是否 ≥{min_pct:.0f}%"]
+    table = []
+    for i, r in enumerate(ranked, 1):
+        per = [("" if r["pcts"].get(n) is None else f"{r['pcts'][n]:.1f}") for n in names]
+        table.append([i, r["file"]] + per + ["" if r["pct"] is None else f"{r['pct']:.1f}", r["rank"],
+                                             "✅ 是" if r["pass"] else "🔴 否"])
+    _report(progress, 1.0, f"打分完成：共 {len(rows)} 个文件，{sum(1 for r in rows if r['pass'])} 个达到 {min_pct:.0f}%")
+    return {"rows": ranked, "headers": headers, "table": table, "count": len(rows), "models": judge.info(),
+            "originals": [p.name for p in orig], "calibrated": judge.calibrated, "min_pct": min_pct,
+            "calibration_source": _calib_source(judge),
+            "definition": PCT_HELP, "note": HONEST_NOTE}
+
+
+def _calib_source(judge: Any) -> str:
+    """几个声纹模型的「100%」标准是怎么来的（都一样时返回那一种；不一样时返回 mixed）。"""
+    sources = {str((m.calib or {}).get("source") or "") for m in getattr(judge, "members", []) if m.p50 is not None}
+    if not sources:
+        return ""
+    return sources.pop() if len(sources) == 1 else "mixed"
+
+
+# ---------------------------------------------------------------------------- 一条龙
 def run_auto(cfg: Config, voice: str, inputs: Iterable[str], backend_name: Optional[str] = None,
              skip_train: bool = False, progress: Optional[ProgressFn] = None) -> Dict[str, Any]:
     """一条龙：素材准备 → 风格分析 → 训练 → 挑最佳模型 → 生成试听。"""
     from voicetwin.backends.base import get_backend
 
-    def sub(lo: float, hi: float) -> Optional[ProgressFn]:
-        if progress is None:
-            return None
-        return lambda f, m: progress(lo + (hi - lo) * f, m)
-
-    result: Dict[str, Any] = {"prepare": run_prepare(cfg, voice, inputs, sub(0.0, 0.25))}
-    project = open_project(cfg, voice, must_exist=True)
-    backend = get_backend(backend_name or cfg.get("backend"), cfg, project)
-    if backend.supports_training and not skip_train:
-        result["train"] = run_train(cfg, voice, backend.name, sub(0.25, 0.9), select=True)
-    else:
-        result["selection"] = run_select(cfg, voice, backend.name, progress=sub(0.25, 0.9))
-    demo = []
-    refs = project.load_references()
-    if any(r["lang"] == "zh" for r in refs):
-        demo.append("大家好，欢迎来到今天的课程。今天我们要讲的内容非常重要，大家一定要认真听。")
-    if any(r["lang"] == "en" for r in refs) or not demo:
-        demo.append("Hello everyone, welcome back. Today we're going to learn something really useful.")
-    res = run_narrate(cfg, voice, "\n\n".join(demo), out=str(project.outputs_dir / "试听_demo.wav"),
-                      backend_name=backend.name, progress=sub(0.9, 1.0))
-    result["demo"] = str(res.audio_path)
+    with keep_awake():
+        result: Dict[str, Any] = {"prepare": run_prepare(cfg, voice, inputs, _sub(progress, 0.0, 0.25))}
+        project = open_project(cfg, voice, must_exist=True)
+        backend = get_backend(backend_name or cfg.get("backend"), cfg, project)
+        if backend.supports_training and not skip_train:
+            result["train"] = run_train(cfg, voice, backend.name, _sub(progress, 0.25, 0.9), select=True)
+        else:
+            result["selection"] = run_select(cfg, voice, backend.name, progress=_sub(progress, 0.25, 0.9))
+        demo = []
+        refs = project.load_references()
+        if any(r["lang"] == "zh" for r in refs):
+            demo.append("大家好，欢迎来到今天的课程。今天我们要讲的内容非常重要，大家一定要认真听。")
+        if any(r["lang"] == "en" for r in refs) or not demo:
+            demo.append("Hello everyone, welcome back. Today we're going to learn something really useful.")
+        res = run_narrate(cfg, voice, "\n\n".join(demo), out=str(project.outputs_dir / "试听_demo.wav"),
+                          backend_name=backend.name, progress=_sub(progress, 0.9, 1.0))
+        result["demo"] = str(res.audio_path)
     return result
 
 
@@ -193,13 +1033,32 @@ def nvidia_smi_status(returncode: int, output: str) -> Tuple[bool, str]:
     return True, text
 
 
-def doctor(cfg: Config) -> List[Dict[str, str]]:
+def _gpu_row() -> Optional[Tuple[Optional[bool], str]]:
+    """用 U9 的 gpu_status 检查显卡；没有它时返回 None（退回旧的 nvidia-smi 检查）。"""
+    try:
+        from voicetwin.utils.gpu import gpu_status
+    except ImportError:
+        return None
+    try:
+        st = gpu_status(refresh=True)
+    except Exception:
+        return None
+    level = st.get("level")
+    ok: Optional[bool] = True if level == "ok" else (None if level == "warn" else False)
+    detail = str(st.get("message") or "")
+    if st.get("advice"):
+        detail += "。怎么办：" + str(st["advice"])
+    return ok, detail
+
+
+def doctor(cfg: Config) -> List[Dict[str, Any]]:
     from voicetwin.backends.base import available_backends, get_backend
 
-    rows: List[Dict[str, str]] = []
+    rows: List[Dict[str, Any]] = []
 
-    def add(item: str, ok: Optional[bool], detail: str) -> None:
-        rows.append({"item": item, "status": "✅" if ok else ("⚠️" if ok is None else "❌"), "detail": detail})
+    def add(item: str, ok: Optional[bool], detail: str, optional: bool = False) -> None:
+        rows.append({"item": item, "status": "✅" if ok else ("⚠️" if ok is None else "❌"), "detail": detail,
+                     "optional": bool(optional)})
 
     add("Python", sys.version_info >= (3, 9), f"{platform.python_version()}（{platform.system()} {platform.machine()}）")
     try:
@@ -208,28 +1067,36 @@ def doctor(cfg: Config) -> List[Dict[str, str]]:
         add("ffmpeg", True, find_ffmpeg())
     except Exception as exc:
         add("ffmpeg", False, str(exc))
-    for mod, label, required in (
-        ("numpy", "numpy", True), ("scipy", "scipy", True), ("soundfile", "soundfile", True),
-        ("librosa", "librosa", True), ("pyloudnorm", "pyloudnorm", True),
-        ("faster_whisper", "faster-whisper（语音识别）", False), ("funasr", "funasr（中文识别，可选）", False),
-        ("resemblyzer", "resemblyzer（声纹打分）", False), ("gradio", "gradio（网页界面）", False),
-        ("noisereduce", "noisereduce（降噪，可选）", False), ("demucs", "demucs（去背景音乐，可选）", False),
+    for mod, label, required, optional in (
+        ("numpy", "numpy", True, False), ("scipy", "scipy", True, False), ("soundfile", "soundfile", True, False),
+        ("librosa", "librosa", True, False), ("pyloudnorm", "pyloudnorm", True, False),
+        ("faster_whisper", "faster-whisper（语音识别）", False, False),
+        ("funasr", "funasr（中文识别、查错字，可选）", False, True),
+        ("resemblyzer", "resemblyzer（声纹打分）", False, False), ("gradio", "gradio（网页界面）", False, False),
+        ("noisereduce", "noisereduce（降噪、「完美」档的去杂音版本，可选）", False, True),
+        ("demucs", "demucs（去背景音乐，可选）", False, True),
     ):
         try:
             m = importlib.import_module(mod)
-            add(label, True, getattr(m, "__version__", "已安装"))
+            add(label, True, getattr(m, "__version__", "已安装"), optional)
         except Exception:
-            add(label, False if required else None, "未安装" + ("（必需）" if required else ""))
-    smi = shutil.which("nvidia-smi")
-    if smi:
-        try:
-            proc = subprocess.run([smi, "--query-gpu=name,memory.total,driver_version", "--format=csv,noheader"],
-                                  stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=20)
-            add("NVIDIA 显卡", *nvidia_smi_status(proc.returncode, proc.stdout.decode("utf-8", errors="replace")))
-        except Exception as exc:
-            add("NVIDIA 显卡", None, str(exc))
+            hint = "（必需）" if required else ("（重新双击 install_windows.bat 安装一次就会装上）"
+                                              if mod == "noisereduce" else "")
+            add(label, False if required else None, "未安装" + hint, optional)
+    gpu = _gpu_row()
+    if gpu is not None:
+        add("NVIDIA 显卡", gpu[0], gpu[1])
     else:
-        add("NVIDIA 显卡", None, "没有找到 nvidia-smi（没有 N 卡时只能用 CPU，训练会非常慢）")
+        smi = shutil.which("nvidia-smi")
+        if smi:
+            try:
+                proc = subprocess.run([smi, "--query-gpu=name,memory.total,driver_version", "--format=csv,noheader"],
+                                      stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=20)
+                add("NVIDIA 显卡", *nvidia_smi_status(proc.returncode, proc.stdout.decode("utf-8", errors="replace")))
+            except Exception as exc:
+                add("NVIDIA 显卡", None, str(exc))
+        else:
+            add("NVIDIA 显卡", None, "没有找到 nvidia-smi（没有 N 卡时只能用 CPU，训练会非常慢）")
     try:  # 整合包环境里有 PyTorch：直接确认训练能不能用上显卡
         import torch  # type: ignore
 
@@ -244,6 +1111,7 @@ def doctor(cfg: Config) -> List[Dict[str, str]]:
         pass
     except Exception as exc:
         add("PyTorch 显卡加速", None, str(exc))
+    default = str(cfg.get("backend") or "")
     dummy = Project(cfg, "__doctor__")
     for name in available_backends():
         if name == "dummy":
@@ -252,9 +1120,95 @@ def doctor(cfg: Config) -> List[Dict[str, str]]:
             b = get_backend(name, cfg, dummy)
             problems = b.check()
             py = getattr(b, "python", "")
-            add(f"引擎 {b.display_name}", not problems if name == cfg.get("backend") else (None if problems else True),
-                ("；".join(problems) if problems else "就绪") + (f"（Python：{py}）" if py else ""))
+            add(f"引擎 {b.display_name}", not problems if name == default else (None if problems else True),
+                ("；".join(problems) if problems else "就绪") + (f"（Python：{py}）" if py else ""),
+                optional=name != default)
         except Exception as exc:
-            add(f"引擎 {name}", None, str(exc))
+            add(f"引擎 {name}", None, str(exc), optional=name != default)
     shutil.rmtree(dummy.root, ignore_errors=True)
     return rows
+
+
+_STATUS_ORDER = {"❌": 0, "⚠️": 1, "✅": 2}
+
+
+def sort_doctor_rows(rows: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """问题排前面：❌，然后不是可选的 ⚠️，然后 ✅，最后是可选组件。同一类里保持原来的顺序。"""
+    return sorted(rows, key=lambda r: (1 if r.get("optional") else 0, _STATUS_ORDER.get(str(r.get("status")), 1)))
+
+
+def doctor_table(rows: Sequence[Dict[str, Any]]) -> Tuple[List[str], List[List[Any]], str]:
+    """环境检查表：(表头, 行, 总数说明)。# 从 1 开始。"""
+    rows = sort_doctor_rows(rows)
+    table = [[i, r.get("status"), r.get("item"),
+              str(r.get("detail") or "") + ("（可选，不用管）" if r.get("optional") and r.get("status") != "✅" else "")]
+             for i, r in enumerate(rows, 1)]
+    bad = sum(1 for r in rows if r.get("status") == "❌" and not r.get("optional"))
+    warn = sum(1 for r in rows if r.get("status") == "⚠️" and not r.get("optional"))
+    total = f"共 {len(rows)} 项：❌ {bad} 项，⚠️ {warn} 项"
+    return ["#", "状态", "项目", "说明"], table, total
+
+
+def quick_check(cfg: Config) -> List[str]:
+    """打开网页时的快速自检（只看文件，不启动子进程、不导入 torch，一般不到 1 秒）。
+
+    返回给老师看的中文问题列表：每个问题一行，直接说点哪里（缺几个模型文件也只占一行）。"""
+    problems: List[str] = []
+    try:
+        from voicetwin.utils.ffmpeg import find_ffmpeg
+
+        find_ffmpeg()
+    except Exception:
+        problems.append("没有找到 ffmpeg：请重新双击 install_windows.bat 安装一次（你的数据不会丢）")
+    if str(cfg.get("backend") or "gptsovits").lower() == "gptsovits":
+        probe = None
+        try:
+            from voicetwin.backends.base import get_backend
+
+            probe = Project(cfg, "__quick_check__")
+            b = get_backend("gptsovits", cfg, probe)
+            root = getattr(b, "root", None)
+            if getattr(b, "external_url", ""):
+                pass
+            elif not root or not Path(root).exists():
+                problems.append("找不到 GPT-SoVITS 整合包。请重新双击 install_windows.bat，按提示填写整合包的位置。")
+            elif not (Path(root) / "api_v2.py").exists():
+                problems.append(f"{root} 不是完整的 GPT-SoVITS 整合包（缺少 api_v2.py）。"
+                                "请重新双击 install_windows.bat，填写整合包解压后的那个文件夹。")
+            else:
+                missing = list(b.missing_pretrained())
+                if missing:
+                    names = "、".join(Path(m).name for m in missing[:3]) + ("等" if len(missing) > 3 else "")
+                    problems.append(f"缺少 {len(missing)} 个 GPT-SoVITS 模型文件（{names}）。"
+                                    "请打开「🩺 环境检查」页，点「⬇️ 下载缺少的模型」。")
+        except Exception as exc:
+            problems.append(f"检查 GPT-SoVITS 时出错：{_explain_title(exc)}")
+        finally:
+            if probe is not None:
+                shutil.rmtree(probe.root, ignore_errors=True)
+    return problems
+
+
+def training_plan(cfg: Config, voice: str, backend_name: Optional[str] = None, **opts: Any) -> str:
+    """训练前预览：电脑会怎么自动选训练设置（一行中文，例如「显存 12 GB → 每批 6 条；素材 85 分钟 → …」）。
+
+    只读文件和 nvidia-smi，不训练、不启动 GPT-SoVITS 的 Python（读不到显卡时就按「没有显卡」说）。
+    声音还没准备素材、或者引擎不需要训练时返回 ''。opts 和 run_train 的一样（None / "auto" = 自动）。"""
+    from voicetwin.backends.base import get_backend
+
+    project = Project(cfg, voice)
+    if not project.exists:
+        return ""
+    backend = get_backend(backend_name or cfg.get("backend"), cfg, project)
+    if not backend.supports_training:
+        return ""
+    fn = getattr(backend, "training_plan", None)
+    if fn is None:
+        return ""
+    try:
+        plan = fn(quick=True, **opts)
+    except TypeError:
+        plan = fn(**opts)
+    if isinstance(plan, str):
+        return plan.strip()
+    return str((plan or {}).get("summary") or "").strip()

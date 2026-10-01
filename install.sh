@@ -35,8 +35,10 @@ if [[ -n "$GSV" ]]; then
   PY="$(command -v python)"
   echo "==> 安装到当前 Python 环境（$PY），不改动已有依赖版本"
   pipi --no-deps -e "$HERE"
-  pipi pyloudnorm imageio-ffmpeg zhconv webrtcvad-wheels
+  pipi pyloudnorm imageio-ffmpeg zhconv webrtcvad-wheels python-docx
   pipi --no-deps resemblyzer
+  # 「完美」档的「去杂音」版本要用 noisereduce；它要的 numpy/scipy/joblib/tqdm/matplotlib 环境里都有
+  pipi --no-deps noisereduce
   "$PY" -m voicetwin init-config --gptsovits-root "$GSV" --backend gptsovits --force
 else
   SYSPY="$(command -v python3.11 || command -v python3.10 || command -v python3)"

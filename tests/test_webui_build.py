@@ -1,0 +1,174 @@
+"""在 gradio 4.24（GPT-SoVITS 整合包自带的版本）下建出整个网页，并检查每个流式处理函数的每一次输出个数都对。
+
+默认的测试环境装的是新版 gradio，这个文件会自动跳过。用整合包同款环境运行：
+    GRADIO_ANALYTICS_ENABLED=False PYTHONPATH=$PWD <scratchpad>/gsv39/bin/python -m pytest -q tests/test_webui_build.py
+"""
+
+import inspect
+import shutil
+
+import pytest
+
+gr = pytest.importorskip("gradio")
+if not str(getattr(gr, "__version__", "")).startswith("4."):
+    pytest.skip("这个测试只针对 gradio 4.x（整合包自带 4.24）", allow_module_level=True)
+
+from voicetwin import workflows as wf  # noqa: E402
+from voicetwin.webui import app as A  # noqa: E402
+from voicetwin.webui.app import build_app  # noqa: E402
+
+
+def _cfg(tmp_path, **extra):
+    from conftest import make_cfg
+
+    return make_cfg(tmp_path / "ws", **extra)
+
+
+def _blank(component):
+    if isinstance(component, (gr.Number, gr.Slider)):
+        return None
+    if isinstance(component, gr.Checkbox):
+        return False
+    if isinstance(component, gr.State):
+        return {}
+    if isinstance(component, (gr.File, gr.Audio, gr.Dataframe)):
+        return None
+    return ""
+
+
+def _streaming(app):
+    return [f for f in app.fns if f.fn is not None and inspect.isgeneratorfunction(f.fn)]
+
+
+def test_build_app_local_and_remote(tmp_path):
+    cfg = _cfg(tmp_path)
+    app = build_app(cfg)
+    assert app.title == "声音分身 VoiceTwin"
+    conf = app.get_config_file()
+    assert ".vt-prog" in (conf.get("css") or "") and ".vt-gpu" in (conf.get("css") or "")
+    assert build_app(cfg, local=False) is not None
+
+
+def test_every_streaming_yield_matches_outputs(tmp_path):
+    """每个流式处理函数：声音名称留空、其它输入都是空值时，每次 yield 的个数都等于 outputs 的个数。"""
+    app = build_app(_cfg(tmp_path))
+    fns = _streaming(app)
+    assert len(fns) >= 8
+    for f in fns:
+        args = [_blank(c) for c in f.inputs]
+        for out in f.fn(*args):
+            assert isinstance(out, tuple), f.name
+            assert len(out) == len(f.outputs), f"{f.name}: {len(out)} != {len(f.outputs)}"
+
+
+def test_heavy_events_hide_overlay_and_have_no_queue_limit(tmp_path):
+    app = build_app(_cfg(tmp_path))
+    conf = app.get_config_file()
+    deps = conf["dependencies"]
+    streaming_ids = {id(f.fn) for f in _streaming(app)}
+    heavy = [(d, f) for d, f in zip(deps, app.fns) if id(f.fn) in streaming_ids]
+    assert heavy
+    for d, f in heavy:
+        assert d.get("show_progress") == "hidden", f.name
+        assert f.concurrency_limit is None, f.name
+
+
+def test_dummy_engine_only_offered_in_test_config(tmp_path):
+    ui = A.WebUI(_cfg(tmp_path, backend="gptsovits"))
+    ui.build()
+    choices = [v for _, v in ui.c["s_backend"].choices]
+    assert "dummy" not in choices and ui.c["s_backend"].value == "gptsovits"
+    ui2 = A.WebUI(_cfg(tmp_path / "b"))  # 测试配置里 backend = dummy
+    ui2.build()
+    assert "dummy" in [v for _, v in ui2.c["s_backend"].choices]
+    assert [v for _, v in ui2.c["quality"].choices] == ["fast", "balanced", "best", "max", "perfect"]
+    assert ui2.c["speed"].minimum == -30 and ui2.c["speed"].maximum == 30 and ui2.c["speed"].value == 0
+
+
+def test_prepare_through_the_page(tmp_path, lecture_dir):
+    """在 4.24 下点「开始准备素材」：按钮变灰、进度条走到绿色、片段表和状态卡刷新。"""
+    app_ui = A.WebUI(_cfg(tmp_path))
+    app = app_ui.build()
+    f = next(f for f in app.fns if getattr(f.fn, "__name__", "") == "do_prepare")
+    outs = list(f.fn("网页声音", None, str(lecture_dir), "none", "auto", "off", False))
+    assert all(len(o) == len(f.outputs) for o in outs)
+    names = app_ui.PREP_OUT
+    first, last = dict(zip(names, outs[0])), dict(zip(names, outs[-1]))
+    if len(outs) > 1:
+        assert first["prep_btn"]["interactive"] is False and first["prep_stop"]["visible"] is True
+    assert "vt-done" in last["prep_bar"], last["prep_md"]
+    assert last["prep_btn"]["interactive"] is True and last["prep_stop"]["visible"] is False
+    assert last["prep_md"].startswith("### ✅ 素材准备好了") and "{" not in last["prep_md"]
+    # 表格由接在后面的 after_prepare_clips 刷新
+    after = next(f for f in app.fns if getattr(getattr(f.fn, "__wrapped__", f.fn), "__name__", "") == "after_prepare_clips")
+    count, clips, _ = after.fn("网页声音", False, None, last["clips_base"])
+    assert clips and clips[0][0] == 1 and "一共" in count
+    assert "还没训练" in last["voice_status"]
+    assert last["prep_next"]["visible"] is True
+    # 页面再点一次：已经处理过的文件不会重做（同一个文件夹）
+    assert wf.Project(app_ui.cfg, "网页声音").exists
+    shutil.rmtree(wf.Project(app_ui.cfg, "网页声音").root, ignore_errors=True)
+
+
+def test_select_handlers_accept_gradio_event_data(prepared):
+    cfg, project, _ = prepared
+    ui = A.WebUI(cfg)
+    app = ui.build()
+    clip_fn = next(f for f in app.fns if getattr(f.fn, "__name__", "") == "clip_pick")
+    rows = A._clips_table(cfg, project.voice)
+    evt = gr.SelectData(None, {"index": [1, 5], "value": rows[1][5], "selected": True})
+    audio, panel, adopt, cid = clip_fn.fn(project.voice, rows, evt)
+    assert cid == rows[1][1] and audio["value"].endswith(".wav")
+
+
+def _dep(app, ui, comp, event):
+    conf = app.get_config_file()
+    cid = ui.c[comp]._id
+    return [d for d in conf["dependencies"] if any(t[0] == cid and t[1] == event for t in d["targets"])]
+
+
+def test_wiring_review_fixes(tmp_path):
+    """几处容易漏接的事件：换版本更新下载列表；准备素材带上「只看可能有错的」和表格；数字框 always_last；
+    ③ 的提醒在打开这一页、做完训练后会刷新；停止按钮 5 秒后变回来。"""
+    ui = A.WebUI(_cfg(tmp_path))
+    app = ui.build()
+    ids = {k: getattr(v, "_id", None) for k, v in ui.c.items()}
+    (var,) = _dep(app, ui, "var_choice", "input")
+    assert ids["out_files"] in var["outputs"] and ids["out_audio"] in var["outputs"]
+    (prep,) = _dep(app, ui, "prep_btn", "click")
+    assert ids["only_sus"] in prep["inputs"] and ids["clips"] in prep["inputs"]
+    for name in ("s_ep", "g_ep", "bs"):
+        (d,) = _dep(app, ui, name, "input")
+        assert d["trigger_mode"] == "always_last"
+    (adopt,) = _dep(app, ui, "adopt_btn", "click")
+    assert ids["clips"] in adopt["inputs"]
+    (filt,) = _dep(app, ui, "only_sus", "change")
+    assert ids["clips"] in filt["inputs"]
+    conf = app.get_config_file()
+    warn_deps = [d for d in conf["dependencies"] if d["outputs"] == [ids["gen_warn"]]]
+    events = {tuple(t) for d in warn_deps for t in d["targets"]}
+    assert any(e[1] == "select" for e in events)  # 打开 ③ 这一页
+    assert any(e[1] == "then" for e in events)  # 准备素材 / 训练做完后
+    (voice,) = [d for d in _dep(app, ui, "voice", "change") if ids["gen_warn"] in d["outputs"]]
+    assert ids["s_backend"] in voice["inputs"]
+
+
+def test_result_tables_have_no_phantom_zero_row(tmp_path):
+    """还没有结果的表格不能显示一行「0」（gradio 4.24 默认用 0 填数字列）。"""
+    ui = A.WebUI(_cfg(tmp_path))
+    ui.build()
+    for name in ("gen_table", "vf_table", "doc_out", "doc_opt"):
+        comp = ui.c[name]
+        data = comp.postprocess(comp.value).model_dump()["data"] if hasattr(comp.postprocess(comp.value), "model_dump") \
+            else comp.value["data"]
+        assert all(cell in ("", None) for row in data for cell in row), (name, data)
+        assert comp.value["headers"][0] == "#"
+
+
+def test_clip_player_and_diff_are_below_the_table(tmp_path):
+    """点一行时会出现/消失的播放器、对比、「采用建议」放在校对表下面：放在上面会把表格顶上顶下，双击改字点不中。"""
+    ui = A.WebUI(_cfg(tmp_path))
+    ui.build()
+    table = ui.c["clips"]._id
+    for name in ("clip_audio", "clip_diff", "adopt_btn"):
+        assert ui.c[name]._id > table, name

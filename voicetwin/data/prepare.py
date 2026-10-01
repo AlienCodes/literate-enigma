@@ -5,6 +5,7 @@
 
 from __future__ import annotations
 
+import errno
 import time
 from pathlib import Path
 from typing import Any, Callable, Dict, Iterable, List, Optional
@@ -23,6 +24,12 @@ from voicetwin.utils.log import get_logger, setup_logging
 from voicetwin.utils.textutil import detect_lang, ends_sentence, safe_name, short_hash, syllable_count
 
 log = get_logger("prepare")
+
+try:  # U1：停止按钮
+    from voicetwin.utils.progress import check_cancel as _check_cancel
+except ImportError:  # pragma: no cover
+    def _check_cancel() -> None:
+        return None
 
 VIDEO_EXTS = {".mp4", ".mov", ".mkv", ".avi", ".flv", ".webm", ".wmv", ".m4v", ".ts", ".mts", ".3gp"}
 AUDIO_EXTS = {".wav", ".mp3", ".m4a", ".aac", ".flac", ".ogg", ".opus", ".wma", ".amr"}
@@ -57,13 +64,48 @@ def source_id(path: Path) -> str:
     return f"{safe_name(path.stem, 24)}_{short_hash(str(path.resolve()), st.st_size, n=6)}"
 
 
-def _progress(cb: Optional[ProgressFn], frac: float, msg: str) -> None:
-    log.info(msg)
+def _progress(cb: Optional[ProgressFn], frac: float, msg: str, log_it: bool = True) -> None:
+    """报告进度。逐段的高频进度传 log_it=False，免得网页日志刷屏。TaskCancelled（停止按钮）照常传出去。"""
+    if log_it:
+        log.info(msg)
     if cb:
         try:
             cb(max(0.0, min(1.0, frac)), msg)
         except Exception:
             pass
+
+
+def _size_text(n_bytes: int) -> str:
+    if n_bytes >= 1024 ** 3:
+        return f"{n_bytes / 1024 ** 3:.1f} GB"
+    return f"{max(1, round(n_bytes / 1024 ** 2))} MB"
+
+
+def _file_size(path: Path) -> int:
+    try:
+        return max(1, int(path.stat().st_size))
+    except OSError:
+        return 1
+
+
+def _friendly_title(exc: BaseException) -> str:
+    try:
+        from voicetwin.errors import explain
+
+        return explain(exc).title
+    except Exception:
+        return str(exc)[:120] or type(exc).__name__
+
+
+def _is_disk_full(exc: BaseException) -> bool:
+    if isinstance(exc, OSError) and (exc.errno == errno.ENOSPC or getattr(exc, "winerror", None) == 112):
+        return True
+    try:
+        from voicetwin.errors import explain
+
+        return explain(exc).key == "disk"
+    except Exception:
+        return False
 
 
 # ============================================================================ 切片
@@ -198,6 +240,7 @@ def apply_filters(project: Project, records: List[Dict[str, Any]], pcfg: Dict[st
     if fcfg.get("speaker_outlier", True):
         from voicetwin.eval.speaker import centroid, cosine, get_speaker_encoder
 
+        _progress(progress, 0.80, "加载声纹模型，检查每段话是不是你本人的声音……")
         try:
             encoder = get_speaker_encoder(cfg.get("speaker_encoder", "auto"))
         except Exception as exc:
@@ -206,11 +249,15 @@ def apply_filters(project: Project, records: List[Dict[str, Any]], pcfg: Dict[st
         if encoder is not None:
             cache = _embedding_cache(project, encoder.name)
             active = [r for r in records if not r["drop_reason"]]
-            for i, r in enumerate(active):
-                if r["id"] not in cache:
-                    cache[r["id"]] = encoder.embed_file(project.abspath(r["path"]))
-                if i % 50 == 0:
-                    _progress(progress, 0.8 + 0.1 * i / max(len(active), 1), f"计算声纹 {i}/{len(active)}")
+            todo_emb = [r for r in active if r["id"] not in cache]
+            for j, r in enumerate(todo_emb):
+                _check_cancel()
+                cache[r["id"]] = encoder.embed_file(project.abspath(r["path"]))
+                if j % 10 == 0 or j == len(todo_emb) - 1:
+                    _progress(progress, 0.80 + 0.10 * (j + 1) / len(todo_emb), f"计算声纹 {j + 1}/{len(todo_emb)}",
+                              log_it=(j % 50 == 0 or j == len(todo_emb) - 1))
+                if j % 200 == 199:
+                    _save_embedding_cache(project, encoder.name, cache)
             _save_embedding_cache(project, encoder.name, cache)
             if len(active) >= 5:
                 cen = centroid([cache[r["id"]] for r in active])
@@ -273,6 +320,7 @@ def assign_splits(records: List[Dict[str, Any]], count: int) -> None:
 # ============================================================================ 主流程
 def prepare(project: Project, inputs: Iterable[str], cfg: Dict[str, Any], progress: Optional[ProgressFn] = None,
             overrides: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    """素材准备。进度只报 0.00~0.95（之后的风格分析、查错字和 100% 由 workflows.run_prepare 报告）。"""
     from voicetwin.data.references import select_references
 
     pcfg = dict(cfg.get("prepare", {}))
@@ -287,69 +335,129 @@ def prepare(project: Project, inputs: Iterable[str], cfg: Dict[str, Any], progre
     t0 = time.time()
     sources_db: Dict[str, Any] = project.read_json(project.sources_path, {}) or {}
     records: Dict[str, Dict[str, Any]] = {r["id"]: r for r in project.load_manifest()}
+    had_records = bool(records)
     files = discover_sources(inputs)
     if not files and not records:
         raise FileNotFoundError("没有找到任何视频或音频文件。支持：" + " ".join(sorted(MEDIA_EXTS)))
     sr = int(pcfg.get("sample_rate", 44100))
 
-    # 1) 提取 + 清理 + 切片
-    for i, media in enumerate(files):
+    # 0) 只处理新文件（之前处理过的跳过；上次失败的会重试）
+    new = [f for f in files if not sources_db.get(source_id(f), {}).get("done")]
+    done_before = len(files) - len(new)
+    head = f"找到 {len(files)} 个视频/录音"
+    if done_before:
+        head += f"，其中 {len(new)} 个是新的（另有 {done_before} 个文件之前已经处理过，这次跳过）"
+    _progress(progress, 0.0, head)
+
+    # 1) 提取 + 清理 + 切片：按文件大小分配进度
+    total_bytes = sum(_file_size(f) for f in new) or 1
+    cum = 0
+    skipped_files: List[Dict[str, str]] = []
+    n_new = len(new)
+    for k, media in enumerate(new, 1):
+        _check_cancel()
+        size = _file_size(media)
+        base = 0.02 + 0.38 * cum / total_bytes
+        span = 0.38 * size / total_bytes
+        cum += size
         sid = source_id(media)
-        if sources_db.get(sid, {}).get("done"):
-            continue
-        _progress(progress, 0.05 + 0.35 * i / max(len(files), 1), f"[{i + 1}/{len(files)}] 处理 {media.name}")
         raw = project.raw_dir / f"{sid}.src.wav"
         clean = project.raw_dir / f"{sid}.wav"
-        extract_audio(media, raw, sample_rate=sr)
-        _, info = enhance_file(raw, clean, pcfg, work_dir=project.raw_dir)
-        raw.unlink(missing_ok=True)
-        new_recs = _slice_source(project, sid, media, clean, pcfg)
+        tag = f"[第 {k}/{n_new} 个文件]"
+        try:
+            _progress(progress, base, f"{tag} 从视频里提取声音：{media.name}（{_size_text(size)}）")
+            extract_audio(media, raw, sample_rate=sr)
+            _check_cancel()
+            step2 = "去除背景音乐（这一步很慢，大约是视频时长的 1/3）" if pcfg.get("separate_vocals") else "降噪、统一音量"
+            _progress(progress, base + 0.25 * span, f"{tag} {step2}")
+            _, info = enhance_file(raw, clean, pcfg, work_dir=project.raw_dir)
+            _check_cancel()
+            _progress(progress, base + 0.75 * span, f"{tag} 切成小段……")
+            new_recs = _slice_source(project, sid, media, clean, pcfg)
+            log.info(f"  切出 {len(new_recs)} 段")
+        except Exception as exc:
+            if _is_disk_full(exc):  # 硬盘满了：后面的文件也一样会失败
+                raise
+            reason = _friendly_title(exc)
+            # 原始报错（英文 Traceback）只写进黑色窗口和 voicetwin.log；sources.json 里也记一份，方便帮忙的人查
+            log.warning(f"⚠️ 跳过第 {k} 个文件「{media.name}」：{reason}（其它视频继续处理）", exc_info=exc)
+            sources_db[sid] = {"file": str(media), "failed": reason,  # 没有 done：修好文件后下次会重试
+                               "error": repr(exc)[:500]}
+            skipped_files.append({"file": media.name, "path": str(media), "reason": reason})
+            project.write_json(project.sources_path, sources_db)
+            continue
+        finally:
+            raw.unlink(missing_ok=True)
         for r in new_recs:
             records[r["id"]] = r
         wav_dur = sum(r["duration"] for r in new_recs)
         sources_db[sid] = {"file": str(media), "clean": project.relpath(clean), "segments": len(new_recs),
-                           "speech_seconds": round(wav_dur, 1), "done": True, **{k: (round(v, 2) if isinstance(v, float) else v) for k, v in info.items()}}
+                           "speech_seconds": round(wav_dur, 1), "done": True,
+                           **{k2: (round(v, 2) if isinstance(v, float) else v) for k2, v in info.items()}}
         project.write_json(project.sources_path, sources_db)
         project.save_manifest(records.values())
+    if new and len(skipped_files) == len(new) and not records:
+        detail = "；".join(f"{x['file']}（{x['reason']}）" for x in skipped_files[:3])
+        raise RuntimeError(f"所有视频都没能处理：{detail}。请换成能正常播放的视频或录音再试。")
 
     # 2) 语音识别
     todo = [r for r in records.values() if not r.get("text") and not r.get("asr_done")]
     asr_cfg = dict(pcfg.get("asr", {}) or {})
     if todo and asr_cfg.get("engine", "faster-whisper") != "none":
-        _progress(progress, 0.42, f"语音识别 {len(todo)} 个片段……{hf_mirror_hint()}")
+        _progress(progress, 0.40, "加载识别模型（第一次使用会先自动下载，约 3 GB，可能要 10~30 分钟，之后就快了）"
+                  + hf_mirror_hint())
         transcriber = Transcriber(asr_cfg)
+        transcriber.progress = progress
+        transcriber.progress_range = (0.40, 0.44)
+        transcriber._load()
+        _progress(progress, 0.44, f"开始识别每段话的文字（共 {len(todo)} 段）")
+        last = 0.0
         for i, r in enumerate(todo):
+            _check_cancel()
             wav16, _ = load_audio(project.abspath(r["path"]), sr=16000)
             res = transcriber.transcribe(wav16)
             r.update({"text": res.text, "lang": res.lang, "asr_done": True,
                       "asr": {"engine": res.engine, "avg_logprob": res.avg_logprob, "no_speech_prob": res.no_speech_prob}})
-            if i % 20 == 0:
-                _progress(progress, 0.42 + 0.3 * i / len(todo), f"识别 {i + 1}/{len(todo)}：{res.text[:30]}")
+            is_last = i == len(todo) - 1
+            if time.time() - last >= 1.0 or is_last:
+                last = time.time()
+                _progress(progress, 0.44 + 0.30 * (i + 1) / len(todo), f"识别 {i + 1}/{len(todo)}：{res.text[:20]}",
+                          log_it=(i % 20 == 0 or is_last))
+            if i % 20 == 19:
                 project.save_manifest(records.values())
         project.save_manifest(records.values())
     elif todo:
         log.warning(f"{len(todo)} 个片段没有文字（识别引擎为 none 且没有字幕），它们不会参与训练")
 
     # 3) 片段统计
-    _progress(progress, 0.74, "分析每个片段的语速、停顿和音质……")
-    for r in records.values():
-        if "voiced" not in r or r.get("_stats_text") != r.get("text"):
-            _clip_stats(project, r)
-            r["_stats_text"] = r.get("text")
+    need = [r for r in records.values() if "voiced" not in r or r.get("_stats_text") != r.get("text")]
+    _progress(progress, 0.74, f"分析每段话的语速和停顿（共 {len(need)} 段）……")
+    for k, r in enumerate(need):
+        _check_cancel()
+        _clip_stats(project, r)
+        r["_stats_text"] = r.get("text")
+        if k % 25 == 0 or k == len(need) - 1:
+            _progress(progress, 0.74 + 0.06 * (k + 1) / len(need), f"分析语速和停顿 {k + 1}/{len(need)}", log_it=False)
 
     # 4) 过滤 / 划分 / 参考音频
     recs = sorted(records.values(), key=lambda r: r["id"])
-    _progress(progress, 0.8, "过滤低质量片段、剔除不是你本人的声音……")
     apply_filters(project, recs, pcfg, cfg, progress)
-    assign_splits(recs, int(pcfg.get("validation_count", 12)))
+    assign_splits(recs, int(pcfg.get("validation_count", 20)))
     project.save_manifest(recs)
-    _progress(progress, 0.92, "挑选最具代表性的参考音频……")
+    _progress(progress, 0.90, "挑选最具代表性的参考音频……")
     refs = select_references(project, recs, pcfg)
     project.export_csv(recs)
     summary = summarize(project, recs, refs)
     summary["elapsed_min"] = round((time.time() - t0) / 60.0, 1)
+    summary["files_total"] = len(files)
+    summary["files_new"] = n_new - len(skipped_files)
+    summary["skipped_files"] = skipped_files
+    if had_records and not new:
+        summary["warnings"].insert(0, "这次没有找到新的视频（文件夹里的都处理过了）")
+    if skipped_files:
+        summary["warnings"].insert(0, f"有 {len(skipped_files)} 个文件没能处理（见「跳过的文件」），其它的已经处理好了")
     project.write_json(project.root / "prepare_summary.json", summary)
-    _progress(progress, 1.0, "素材准备完成")
+    _progress(progress, 0.95, "素材整理完成")
     return summary
 
 
@@ -379,7 +487,8 @@ def summarize(project: Project, records: List[Dict[str, Any]], refs: List[Dict[s
         "minutes_by_lang": {k: round(v / 60.0, 1) for k, v in by_lang.items()},
         "val_clips": sum(1 for r in kept if r.get("split") == "val"),
         "dropped": reasons,
-        "references": [{"id": r["id"], "lang": r["lang"], "kind": r["kind"], "text": r["text"]} for r in refs],
+        "references": [{"no": i, "id": r["id"], "lang": r["lang"], "kind": r["kind"], "text": r["text"]}
+                       for i, r in enumerate(refs, 1)],
         "warnings": warnings,
         "transcripts_csv": str(project.csv_path),
     }

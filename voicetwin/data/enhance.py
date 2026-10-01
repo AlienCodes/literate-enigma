@@ -45,7 +45,8 @@ def denoise(wav: np.ndarray, sr: int, strength: float = 0.6) -> np.ndarray:
     try:
         import noisereduce as nr
     except ImportError:
-        log.warning("未安装 noisereduce，跳过降噪（pip install \"voicetwin[denoise]\"）")
+        log.warning("未安装 noisereduce，跳过降噪（重新双击 install_windows.bat 安装一次就会装上；"
+                    "命令行：pip install noisereduce）")
         return wav
     out = nr.reduce_noise(y=wav, sr=sr, stationary=True, prop_decrease=float(strength), n_std_thresh_stationary=1.5)
     return np.asarray(out, dtype=np.float32)

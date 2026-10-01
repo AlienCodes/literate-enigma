@@ -1,14 +1,14 @@
 <h1 class="chapter" id="ch6"><span class="no">第 6 章</span>第一步：准备素材</h1>
-<p class="lead">这一步在 <span class="tab">① 准备素材</span> 页面完成。程序会自动：从视频里提取声音 → 清理 → 切成一句一句 → 识别成文字 → 过滤掉质量差的和不是你本人的片段 → 分析你的说话风格 → 挑选参考音频。你只需要填两个地方、点一个按钮。</p>
+<p class="lead">这一步在 <span class="tab">① 准备素材</span> 页面完成。程序会自动：从视频里提取声音 → 清理 → 切成一句一句 → 识别成文字 → 过滤掉质量差的和不是你本人的片段 → 分析你的说话风格 → 挑选参考音频。你只需要填两个地方、点一个按钮，然后看进度条等它做完。</p>
 
 <h2 id="ch6-1">6.1 填写声音名称</h2>
 <ol class="steps">
   <li>点页面最上面的 <span class="ui">声音名称（新建请直接输入名字）</span> 输入框。</li>
-  <li>输入一个名字，例如 <strong><code>我的声音</code></strong>，按 <span class="key">Enter</span>。</li>
+  <li>输入一个名字，例如 <strong><code>我的声音</code></strong>，按 <span class="key">Enter</span>。名称下面会出现一行提示，例如"「我的声音」是新声音，还没有素材。👉 下一步：……"。</li>
 </ol>
 <ul>
   <li>名字可以用中文，但不能包含 <code>\ / : * ? " &lt; &gt; |</code> 这些符号。</li>
-  <li><strong>以后每次使用都要选同一个名字</strong>，这样才能用到你训练好的模型。</li>
+  <li><strong>以后每次使用都要选同一个名字</strong>，这样才能用到你训练好的模型。也可以在 <span class="ui">🎙️ 我的声音库</span> 里点一下来选（5.2 节）。</li>
   <li>一台电脑可以有多个声音（例如"讲课声音""激情版"），它们的素材和模型互相独立。</li>
 </ul>
 
@@ -16,8 +16,8 @@
 <p>有两种方式，任选其一：</p>
 <div class="grid2">
   <div class="card"><h4>方式一（推荐）：填写文件夹路径</h4>
-    <p>在 <span class="ui">或者填写电脑上的文件夹路径</span> 里输入 <code>D:\讲课素材</code>。</p>
-    <p class="small">优点：不需要上传，视频再大、再多都很快。程序会自动找到文件夹及子文件夹里的所有视频和音频。</p></div>
+    <p>在 <span class="ui">或者填写电脑上的文件夹路径（推荐）</span> 里输入 <code>D:\讲课素材</code>。</p>
+    <p class="small">优点：不需要上传，视频再大、再多都很快，也不占 C 盘。程序会自动找到文件夹及子文件夹里的所有视频和音频。</p></div>
   <div class="card"><h4>方式二：上传文件</h4>
     <p>点左边的 <span class="ui">上传视频/音频/字幕（可多选）</span> 区域，选择文件（按住 <span class="key">Ctrl</span> 可多选），或者直接把文件拖进去。</p>
     <p class="small">适合文件较少、较小的情况。大视频上传会比较慢。</p></div>
@@ -25,60 +25,60 @@
 <div class="tip">小技巧：打开 <span class="path">D:\讲课素材</span> 文件夹 → 点地址栏 → <span class="key">Ctrl</span>+<span class="key">C</span> 复制路径 → 回到网页，点输入框 → <span class="key">Ctrl</span>+<span class="key">V</span> 粘贴。</div>
 
 <h2 id="ch6-3">6.3 其它选项说明</h2>
-<p>一般保持默认即可。各选项的含义：</p>
+<p>一般保持默认即可。<span class="ui">视频有背景音乐（去除背景音乐，会慢一些）</span> 直接显示在页面上，其余三项收在 <span class="ui">高级设置（一般不用改）</span> 里，点一下才会展开：</p>
 <table class="t">
-  <tr><th style="width:22%">选项</th><th style="width:16%">默认值</th><th>说明与建议</th></tr>
-  <tr><td><span class="ui">语音识别引擎</span></td><td>faster-whisper</td><td><strong>faster-whisper</strong>：中文、英文都识别得好，推荐。<br><strong>funasr</strong>：阿里的中文识别模型，纯中文课程识别更准，但英文较弱（需要整合包里带有 funasr，一般都有）。<br><strong>none</strong>：不做识别，只用字幕文件里的文字（所有视频都有字幕时可选）。</td></tr>
-  <tr><td><span class="ui">素材语言</span></td><td>auto</td><td><strong>auto</strong>：每一句自动判断是中文还是英文（推荐）。素材全是中文可以选 zh，全是英文可以选 en。</td></tr>
-  <tr><td><span class="ui">降噪</span></td><td>auto</td><td><strong>auto</strong>：程序估算录音的噪音大小，只有噪音明显时才轻度降噪（推荐）。<br><strong>on</strong>：总是降噪。<strong>off</strong>：从不降噪。<br>降噪太狠会损伤音色，所以默认很保守。</td></tr>
+  <tr><th style="width:22%">选项</th><th style="width:18%">默认值</th><th>说明与建议</th></tr>
   <tr><td><span class="ui">视频有背景音乐</span></td><td>不勾选</td><td>勾选后会用 Demucs 去除背景音乐，需要额外安装 demucs 组件，处理也较慢。一般不勾，推荐用 4.6 节的方法。</td></tr>
+  <tr><td><span class="ui">识别文字用哪个引擎</span></td><td>通用（中英文都行，推荐）</td><td><strong>通用（中英文都行，推荐）</strong>：faster-whisper，中文、英文都识别得好。<br><strong>纯中文课更准</strong>：阿里的 FunASR，纯中文课程识别更准，但英文较弱（需要整合包里带有 funasr，一般都有）。<br><strong>不识别（只用字幕）</strong>：不做识别，只用字幕文件里的文字（所有视频都有字幕时可选）。</td></tr>
+  <tr><td><span class="ui">素材语言</span></td><td>自动识别</td><td><strong>自动识别</strong>：每一句自动判断是中文还是英文（推荐）。素材全是中文可以选"中文"，全是英文可以选"英文"。</td></tr>
+  <tr><td><span class="ui">降噪</span></td><td>自动</td><td><strong>自动</strong>：程序估算录音的噪音大小，只有噪音明显时才轻度降噪（推荐）。<br><strong>开</strong>：总是降噪。<strong>关</strong>：从不降噪。<br>降噪太狠会损伤音色，所以默认很保守。</td></tr>
 </table>
 
-<h2 id="ch6-4">6.4 开始处理并看懂日志</h2>
+<h2 id="ch6-4">6.4 开始处理，看进度条</h2>
 <ol class="steps">
-  <li>点橙色的 <span class="btn">开始准备素材</span> 按钮。</li>
-  <li>下方的 <span class="ui">运行日志</span> 会实时滚动显示进度。<strong>第一次</strong>运行时，程序会先下载语音识别模型（约 3GB），需要几分钟到十几分钟，请耐心等待。</li>
-  <li>全部完成后，日志下方会出现 <strong>"✅ 素材准备完成"</strong> 的汇总信息。</li>
+  <li>点橙色的 <span class="btn">开始准备素材</span> 按钮。按钮会变成"⏳ 正在准备素材……"，旁边出现 <span class="btn gray">⏹ 停止</span>。</li>
+  <li>按钮下面出现绿色进度条（样子见图 5-4），写着做到百分之几、第几步、已经用了多久、<strong>预计几点完成</strong>。准备素材一共 7 步：
+    <table class="t compact">
+      <tr><th style="width:12%">第几步</th><th>在做什么</th></tr>
+      <tr><td class="c">1</td><td>整理要处理的文件</td></tr>
+      <tr><td class="c">2</td><td>提取声音、降噪、切成小段（有同名字幕时按字幕切）</td></tr>
+      <tr><td class="c">3</td><td>识别每段话的文字（<strong>第一次</strong>会先下载语音识别模型，约 3GB，要几分钟到十几分钟）</td></tr>
+      <tr><td class="c">4</td><td>分析语速和停顿</td></tr>
+      <tr><td class="c">5</td><td>检查是不是你本人的声音（用声纹剔除学生提问等）</td></tr>
+      <tr><td class="c">6</td><td>挑选参考音频、保存结果</td></tr>
+      <tr><td class="c">7</td><td>分析你的说话风格</td></tr>
+    </table>
+    如果电脑上装了第二个识别引擎，最后还会自动多做一步"查找可能的错字"（共 8 步，见 7.2 节）。</li>
+  <li>全部完成后，进度条变成实心绿色 <strong>"✅ 全部完成！"</strong>，下面出现 <strong>"✅ 素材准备好了"</strong> 的摘要和 <span class="btn gray">去「② 训练模型」 →</span> 按钮；再往下，所有片段的校对表会<strong>自动列出来</strong>（第 7 章）。</li>
 </ol>
-<figure><img src="../images/02_prepare_done.png" alt="素材准备完成"><figcaption><b>图 6-1</b>　素材准备完成后的日志和汇总（示例：3 节课、16.4 分钟素材）</figcaption></figure>
-<p>日志里常见的内容及含义：</p>
-<table class="t">
-  <tr><th style="width:40%">日志内容</th><th>含义</th></tr>
-  <tr><td><code>[1/3] 处理 第1课.mp4</code></td><td>正在处理第 1 个文件（共 3 个）：提取声音、清理、切分。</td></tr>
-  <tr><td><code>使用字幕 第1课.srt（76 条）切分</code></td><td>找到了同名字幕，按字幕切分（没有字幕时不会出现这一行）。</td></tr>
-  <tr><td><code>估计信噪比 18.3 dB，进行轻度降噪</code></td><td>这个文件噪音较明显，自动做了轻度降噪。</td></tr>
-  <tr><td><code>加载识别模型 faster-whisper/large-v3 …首次使用会自动下载</code></td><td>正在加载（第一次是下载）语音识别模型。</td></tr>
-  <tr><td><code>识别 21/800：今天我们来学习……</code></td><td>正在把第 21 个片段识别成文字（共 800 个）。</td></tr>
-  <tr><td><code>分析每个片段的语速、停顿和音质……</code></td><td>统计每一句的语速、停顿、音量等。</td></tr>
-  <tr><td><code>计算声纹 100/228</code></td><td>正在计算每个片段的声纹，用来剔除不是你本人的声音。</td></tr>
-  <tr><td><code>主参考（zh）：……（5.14 秒）</code></td><td>自动选出的中文主参考音频（生成中文时主要参考它的语气）。</td></tr>
-  <tr><td><code>中文语速 / 音高 / 停顿习惯</code></td><td>你的"说话风格档案"，生成时会按这些数据控制节奏。</td></tr>
-</table>
+<figure class="w80"><img src="../images/02_prepare_done.png" alt="素材准备完成"><figcaption><b>图 6-1</b>　素材准备完成：100% 的进度条和"✅ 素材准备好了"摘要（示例：3 节课、16.4 分钟素材，数字只是例子）</figcaption></figure>
+<div class="note">第一次下载识别模型时，进度条可能会变成黄色（好几分钟没有新进度），这是正常的，耐心等就行。原来的详细日志还在，收在进度条下面的 <span class="ui">详细过程（出问题时可以复制给帮你的人）</span> 里，平时不用看；进度条变红时照 5.3 节处理。</div>
 
 <h2 id="ch6-5">6.5 看懂处理结果</h2>
-<p>汇总信息里每一项的意思：</p>
+<p>摘要里每一项的意思（数字以图 6-1 为例）：</p>
 <table class="t">
-  <tr><th style="width:30%">项目</th><th>含义</th></tr>
-  <tr><td>保留 228 / 228 条，共 16.4 分钟</td><td>一共切出 228 个片段，全部保留（质量都合格），合计 16.4 分钟你说话的内容。</td></tr>
-  <tr><td>各语言分钟数 {'zh': 12.6, 'en': 3.8}</td><td>中文 12.6 分钟，英文 3.8 分钟。</td></tr>
-  <tr><td>验证集 12 条</td><td>程序留出 12 句<strong>不参加训练</strong>，训练后用它们当"考题"挑选最像的模型、校准语速。</td></tr>
-  <tr><td>丢弃原因（如果有）</td><td>被自动删掉的片段数量和原因，见下表。</td></tr>
-  <tr><td>⚠️ 黄色提示</td><td>素材可能不够的提醒，见下表。</td></tr>
-  <tr><td>你的语速</td><td>不含停顿时每秒说几个音节（字）。一般人讲课在 3.5~5.5 之间。</td></tr>
-  <tr><td>你的停顿习惯</td><td>你在逗号、句号、段落处平均停顿多少秒。生成时会模仿。</td></tr>
-  <tr><td>自动挑选的参考音频</td><td>最能代表你讲课状态的几句话，[zh/statement] 表示"中文 / 陈述句"，question 是疑问句，exclaim 是感叹句。</td></tr>
+  <tr><th style="width:38%">项目</th><th>含义</th></tr>
+  <tr><td>✅ 素材准备好了：可用 16.4 分钟（英文 3.8 分钟，中文 12.6 分钟），一共 228 条</td><td>保留下来、能用来训练的是 228 个片段，合计 16.4 分钟你说话的内容，其中中文 12.6 分钟、英文 3.8 分钟。</td></tr>
+  <tr><td>自动去掉了 N 条（共 M 种原因）</td><td>被自动删掉的片段数量和原因，见下面的"丢弃原因"表。全部保留时不显示这一项。</td></tr>
+  <tr><td>⚠️ 黄色提醒</td><td>素材可能不够的提醒，见下表。</td></tr>
+  <tr><td>你的语速：中文每秒 4.5 个字；英文每秒 4.2 个音节</td><td>不含停顿时每秒说几个字（音节）。一般人讲课在 3.5~5.5 之间。</td></tr>
+  <tr><td>你的停顿习惯：逗号处约 0.2 秒，句号处约 0.9 秒，段落之间约 1.1 秒</td><td>你在逗号、句号、段落处平均停顿多久。生成时停顿的长短就按这个习惯来（停顿处是完全静音）。</td></tr>
+  <tr><td>其中 20 条留作「考试题」</td><td>程序留出 20 句<strong>不参加训练</strong>，训练后用它们当"考题"挑选最像你的模型、校准语速和"像你本人（%）"。素材少时会自动少留几条。</td></tr>
+  <tr><td>自动挑选的参考录音（一共 10 条，下面是前 3 条）</td><td>最能代表你讲课状态的几句话。[中文·陈述] 表示"中文 / 陈述句"，另外还有"提问""感叹"。</td></tr>
 </table>
-<p><strong>黄色提示</strong>的含义和处理：</p>
+<p>校对表上方还有一行总数，例如 <strong>"📊 一共 228 条片段：保留 228 条（16.4 分钟），不保留 0 条"</strong>，下面一行写着中文、英文各多少条。以后你在校对表里删掉或恢复片段，点"保存修改"后这一行会跟着变。</p>
+<p><strong>黄色提醒</strong>的含义和处理：</p>
 <table class="t">
-  <tr><th style="width:44%">提示</th><th>怎么办</th></tr>
-  <tr><td>可用素材只有 X 分钟。能训练，但建议 ≥30 分钟……</td><td>可以先继续往下做，看看效果；有条件的话再加素材（重新运行本步骤只会处理新文件）。</td></tr>
+  <tr><th style="width:44%">提醒</th><th>怎么办</th></tr>
+  <tr><td>可用素材只有 X 分钟。能训练，但建议 ≥30 分钟，1~3 小时效果最好。</td><td>可以先继续往下做，看看效果；有条件的话再加素材（重新运行本步骤只会处理新文件）。</td></tr>
   <tr><td>英文素材不足 5 分钟：英文会带一点「中文腔」……</td><td>只做中文课可以忽略；要做英文课请补充英文讲课录音。</td></tr>
   <tr><td>素材里没有英文……</td><td>同上。</td></tr>
+  <tr><td>有 N 个文件没能处理（后面写着文件名和原因）</td><td>换个文件（例如重新导出视频）后再点 <span class="btn">开始准备素材</span>，已经处理好的不会重做。</td></tr>
 </table>
 <p><strong>丢弃原因</strong>说明（被丢弃的片段不参与训练，可以在第 7 章的校对表里手动恢复）：</p>
 <table class="t">
   <tr><th style="width:34%">丢弃原因</th><th>意思</th></tr>
-  <tr><td>没有识别出文字</td><td>这一段可能是静音、音乐、咳嗽等。</td></tr>
+  <tr><td>没有识别出文字 / 没有有效语音</td><td>这一段可能是静音、音乐、咳嗽等。</td></tr>
   <tr><td>疑似识别错误</td><td>识别结果像"谢谢观看""字幕由…"这类常见错误，或同一个词重复很多遍。</td></tr>
   <tr><td>语言不是中文/英文</td><td>识别为其它语言。</td></tr>
   <tr><td>太短 / 太长</td><td>短于 2 秒或长于 13 秒，不适合训练。</td></tr>
@@ -86,16 +86,11 @@
   <tr><td>识别置信度低 / 可能不是语音</td><td>识别模型自己也不确定，文字很可能不准。</td></tr>
   <tr><td>语速异常（文字可能不对）</td><td>文字长度和音频时长明显对不上，多半是识别错了。</td></tr>
   <tr><td>声音不像本人（可能是别人说话）</td><td>声纹和你的整体声纹差别很大，例如学生提问、插入的视频。</td></tr>
-  <tr><td>手动删除</td><td>你在校对表里把它标记为不保留。</td></tr>
+  <tr><td>手动删除</td><td>你在校对表里把"保留"改成了"否"。</td></tr>
 </table>
 
 <h2 id="ch6-6">6.6 需要多长时间</h2>
-<table class="t">
-  <tr><th style="width:30%">素材时长</th><th>大约用时（有 NVIDIA 显卡）</th></tr>
-  <tr><td>30 分钟</td><td>5~15 分钟（第一次另加下载识别模型的时间）</td></tr>
-  <tr><td>1 小时</td><td>10~30 分钟</td></tr>
-  <tr><td>3 小时</td><td>30~90 分钟</td></tr>
-</table>
+<p>有 NVIDIA 显卡时大约是：<strong>30 分钟素材要 5~15 分钟</strong>（第一次另加下载识别模型的时间），<strong>1 小时素材要 10~30 分钟</strong>，<strong>3 小时素材要 30~90 分钟</strong>。你的电脑上具体要多久，看进度条上的"预计几点完成"就行。</p>
 <div class="tip"><span class="t">以后增加素材</span>把新的视频也放进 <span class="path">D:\讲课素材</span>，再点一次 <span class="btn">开始准备素材</span>。程序<strong>只会处理新增的文件</strong>，之前处理过的和你校对过的内容都会保留。之后记得重新训练（第 8 章）。</div>
 
 
@@ -103,31 +98,35 @@
 
 <h2 id="ch7-1">7.1 为什么要校对</h2>
 <p>训练时，模型会把"这段声音"和"这段文字"一一对应起来学习。如果识别出的文字有错（例如把"推导式"识别成"推倒是"），模型就会学到错误的发音对应关系，
-生成时可能出现<strong>读错字、吞字、语气奇怪</strong>的情况。花 10~20 分钟校对，效果会明显更好，是性价比最高的一步。</p>
+生成时可能出现<strong>读错字、吞字、语气奇怪</strong>的情况。现在程序可以<strong>自动找出可能识别错的字</strong>，你只要看一看、听一听、点一点，花 5~20 分钟，效果会明显更好，是性价比最高的一步。</p>
 <div class="note">如果你的素材都有准确的字幕文件（4.5 节），文字本身就是准确的，可以只快速浏览一遍。</div>
 
-<h2 id="ch7-2">7.2 在网页里校对</h2>
+<h2 id="ch7-2">7.2 在网页里校对：自动查找可能的错字</h2>
 <ol class="steps">
-  <li>在 <span class="tab">① 准备素材</span> 页面往下拉，找到 <strong>"校对文字"</strong> 部分，点 <span class="btn gray">载入片段列表</span>。</li>
-  <li>表格里会列出所有片段，每行一个：
+  <li>素材准备完成后，在 <span class="tab">① 准备素材</span> 页面往下拉，找到 <strong>"✍️ 校对文字（可选，但能明显提升效果）"</strong>。片段表格已经自动列好了，表格上方写着一共多少条、保留多少条（多少分钟）、不保留多少条。</li>
+  <li>点 <span class="btn gray">🔍 自动查找可能的错字</span>，等进度条走到 100%（准备素材时已经自动查过的话，可以跳过这一步）。程序会用第二个识别引擎把每一段再听一遍（faster-whisper 和 FunASR 互相核对），两次听到的不一样、或者识别时没把握的字，再加上一些规则（例如一串看不懂的大写英文、同一个词重复好几遍），都会被标为"可能有错"。查完会显示 <strong>"✅ 检查完了：一共查了 228 条，其中 2 条可能有错（已在表格里标红）"</strong>。
+    <figure class="w80"><img src="../images/03a_proofcheck_done.png" alt="查找错字完成"><figcaption><b>图 7-1</b>　查找错字完成：表格上方的总数、两个按钮和"只看可能有错的"勾选框、100% 的进度条和检查结果（示例）</figcaption></figure></li>
+  <li>勾选 <span class="ui">只看可能有错的</span>，表格里就只剩这些行。各列的意思：
     <table class="t compact">
-      <tr><th style="width:18%">列</th><th>含义</th></tr>
-      <tr><td>#</td><td>序号（第几条）。表格上方会写着<strong>一共多少条、保留多少条（多少分钟）、不保留多少条</strong>。</td></tr>
+      <tr><th style="width:22%">列</th><th>含义</th></tr>
+      <tr><td>#</td><td>序号（第几条），从 1 开始。</td></tr>
       <tr><td>id</td><td>片段编号（"文件名_编号"），不要修改。</td></tr>
-      <tr><td>保留</td><td>✔ 参加训练；✘ 不参加。</td></tr>
-      <tr><td>语言</td><td>zh 中文 / en 英文（一般不用改）。</td></tr>
+      <tr><td>保留（是/否）</td><td>"是"参加训练；"否"不参加。</td></tr>
+      <tr><td>语言</td><td>中文 / 英文（一般不用改）。</td></tr>
       <tr><td>秒</td><td>片段时长。</td></tr>
       <tr><td>文字</td><td>识别出的文字，<strong>可以直接修改</strong>。</td></tr>
+      <tr><td>可能有错（红色）</td><td>可能识别错的字用<strong>红色</strong>标出来（建议改成什么，点这一行后在下面的对比框里看）。这一列只用来看，改字请改"文字"列。</td></tr>
       <tr><td>丢弃原因</td><td>被自动丢弃的原因（保留的片段这一栏是空的）。</td></tr>
     </table></li>
-  <li><strong>点击任意一行</strong>，下方的 <span class="ui">试听选中的片段</span> 会加载这一段录音，点 ▶ 播放，一边听一边核对文字。</li>
-  <li>发现错字：<strong>双击</strong>这一行的"文字"格子，修改成正确的文字，按 <span class="key">Enter</span> 确认。</li>
-  <li>某一段不是你说的、质量很差、或者说错了话：把"保留"格子改成 <strong><code>✘</code></strong>（也可以输入 <code>0</code>）。</li>
-  <li>想恢复被自动丢弃的片段：把它的"保留"改成 <code>✔</code>（或 <code>1</code>）。</li>
-  <li>全部改完后，点橙色的 <span class="btn">保存修改</span>。下方会显示类似"已保存：{'text': 12, 'keep': 3, 'lang': 0}"，意思是改了 12 处文字、3 处保留状态。</li>
+  <li><strong>点击任意一行</strong>：表格下面会出现一个播放器（标题是"试听：第 1 条 ……"），自动播放这一段录音；标红的片段还会显示一个红边框的对比框，写着可能有错的原因，以及"识别 A（现在的文字）"和"识别 B"（第二个引擎听到的）两次结果，不一样的字会标出来。</li>
+  <li>建议是对的：点 <span class="btn gray">✅ 采用建议</span>（有建议时才会出现），文字马上改好。建议不对、但原文确实错了：<strong>双击</strong>这一行的"文字"格子，改成正确的文字，按 <span class="key">Enter</span> 确认。</li>
+  <li>某一段不是你说的、质量很差、或者说错了话：把"保留"格子改成 <strong><code>否</code></strong>。想恢复被自动丢弃的片段：把它的"保留"改成 <code>是</code>。</li>
+  <li>全部改完后，点橙色的 <span class="btn">保存修改</span>。下方会显示类似"✅ 已保存：改了 12 处文字、3 处「保留」、0 处语言"。</li>
 </ol>
-<figure><img src="../images/03_proofread.png" alt="校对表"><figcaption><b>图 7-1</b>　校对表：点击一行即可在下方试听；双击"文字"格子可以修改</figcaption></figure>
-<div class="warn">修改完一定要点 <span class="btn">保存修改</span>，否则关掉页面后修改会丢失。片段很多时，可以分几次校对，每次改完都保存。</div>
+<figure><img src="../images/03_proofread.png" alt="校对表"><figcaption><b>图 7-2</b>　只看可能有错的片段：红色是可能识别错的字；点了第 1 行，下面播放这段录音并显示对比框（这台演示电脑没有第二个识别引擎，所以识别 B 没有建议，也就没有"采用建议"按钮）</figcaption></figure>
+<div class="warn">修改完一定要点 <span class="btn">保存修改</span>，否则关掉页面后修改会丢失。有修改还没保存时，表格一刷新（例如勾选或取消"只看可能有错的"、查完错字），上方就会提醒"表格里还有 N 条修改没有保存"。<span class="btn gray">🔄 重新载入</span> 会按已经保存的内容重新显示表格，<strong>没保存的修改会被丢掉</strong>，所以先保存再点它。片段很多时，可以分几次校对，每次改完都保存。</div>
+<div class="note"><p>标红只是提醒"可能有错"，不一定真错；也可能有个别错字没被发现。重要的片段最好自己听一听。</p>
+<p>没有装第二个识别引擎时，程序会改用识别时的"把握程度"来找；连这个也没有时只按规则检查，结果里会写"没有可用的第二个识别引擎，能发现的错字比较少"，这时更要自己多听一听。</p></div>
 
 <h3>校对时重点看什么</h3>
 <ul>
@@ -141,11 +140,12 @@
 <h2 id="ch7-3">7.3 用 Excel 校对（适合片段很多时）</h2>
 <ol class="steps">
   <li>打开 <span class="path">D:\VoiceTwin\workspace\我的声音\transcripts.csv</span>（用 Excel 或 WPS 表格打开，中文不会乱码）。</li>
-  <li>修改 <code>text</code> 列的文字；不想要的行把 <code>keep</code> 改成 <code>0</code>。最后一列 <code>audio</code> 是音频文件的位置，可以复制路径去播放。</li>
-  <li>保存时选择<strong>保持 CSV 格式</strong>（Excel 提示"可能会丢失某些功能"时选"是 / 保持当前格式"）。</li>
+  <li>修改 <code>text</code> 列的文字；不想要的行把 <code>keep</code> 改成 <code>0</code>（要恢复就改成 <code>1</code>）。最后一列 <code>audio</code> 是音频文件的位置，可以复制路径去播放。Excel 里看不到红色标记，想用"自动查找错字"请在网页里校对。</li>
+  <li>保存时选择<strong>保持 CSV 格式</strong>（Excel 提示"可能会丢失某些功能"时选"是 / 保持当前格式"），然后<strong>关掉 Excel / WPS</strong>。</li>
   <li>在 <span class="path">D:\VoiceTwin</span> 打开命令提示符（3.7 节），输入 <code>voicetwin.bat review -v 我的声音</code> 按 <span class="key">Enter</span>，程序会读回你的修改。</li>
+  <li>回到网页，点 <span class="btn gray">🔄 重新载入</span>，表格里就是你在 Excel 里改好的内容了。</li>
 </ol>
-<div class="warn">用 Excel 修改期间不要同时在网页里点"保存修改"，以免互相覆盖。二选一即可。</div>
+<div class="warn">Excel 开着这个文件时，网页里点"保存修改"会提示"transcripts.csv 正被 Excel/WPS 打开，请先关掉它"。Excel 和网页<strong>二选一</strong>：在 Excel 里改完、还没运行上面第 4 步之前，不要在网页里点"保存修改"或"✅ 采用建议"，否则网页里的旧内容会盖掉你在 Excel 里的修改。</div>
 
 <h2 id="ch7-4">7.4 什么样的片段应该删掉</h2>
 <ul>
@@ -158,5 +158,5 @@
 <p>删掉少量片段不会影响效果，<strong>宁缺毋滥</strong>。</p>
 
 <h2 id="ch7-5">7.5 校对之后</h2>
-<p>点 <span class="btn">保存修改</span> 后，程序会自动重新统计语速、重新过滤、重新挑选参考音频，并更新你的说话风格档案。然后就可以进入第 8 章开始训练了。
+<p>点 <span class="btn">保存修改</span>（或运行 <code>voicetwin.bat review</code>）后，程序会自动重新统计语速、重新过滤、重新挑选参考音频，并更新你的说话风格档案。然后就可以进入第 8 章开始训练了。
 如果你是在训练<strong>之后</strong>才校对的，校对完需要<strong>重新训练</strong>一次，修改才会生效。</p>

@@ -7,10 +7,13 @@
 
 from __future__ import annotations
 
+import importlib.util
 import os
 import re
+from contextlib import contextmanager
 from dataclasses import dataclass
-from typing import Any, Dict, Optional
+from pathlib import Path
+from typing import Any, Callable, Dict, Iterator, Optional, Tuple
 
 import numpy as np
 
@@ -46,14 +49,83 @@ def _auto_device(device: str) -> str:
         return "cpu"
 
 
+ENGINE_MODULES = {"faster-whisper": "faster_whisper", "funasr": "funasr"}
+#: 第一次使用时要下载的大小（MB，大约值），用来显示"已下载 X / Y MB"
+WHISPER_SIZES_MB = {"large-v3": 3100, "large-v2": 3100, "large-v3-turbo": 1600, "medium": 1500, "small": 480,
+                    "base": 150, "tiny": 80}
+
+
+def hf_cache_dir() -> Path:
+    try:
+        from huggingface_hub import constants  # type: ignore
+
+        return Path(constants.HF_HUB_CACHE)
+    except Exception:
+        home = os.environ.get("HF_HOME") or str(Path.home() / ".cache" / "huggingface")
+        return Path(home) / "hub"
+
+
+def whisper_cache_path(model_name: str) -> Optional[Path]:
+    """faster-whisper 模型在 Hugging Face 缓存里的目录；model_name 是本地文件夹时返回 None。"""
+    if not model_name or "/" in model_name or "\\" in model_name or Path(model_name).exists():
+        return None
+    return hf_cache_dir() / f"models--Systran--faster-whisper-{model_name}"
+
+
+def whisper_needs_download(model_name: str) -> bool:
+    path = whisper_cache_path(model_name)
+    return path is not None and not (path / "snapshots").exists()
+
+
+def engine_importable(engine: str) -> bool:
+    """识别引擎的 Python 包装好了没有（只查找、不真正导入，很快）。"none" 和未知引擎返回 True。"""
+    mod = ENGINE_MODULES.get(str(engine or "").lower())
+    if not mod:
+        return True
+    try:
+        return importlib.util.find_spec(mod) is not None
+    except Exception:
+        return False
+
+
+@contextmanager
+def _watch(path: Any, mb: int, progress: Optional[Callable[[float, str], None]], rng: Tuple[float, float],
+           label: str) -> Iterator[None]:
+    """第一次下载模型时报告已下载多少 MB（U1 的 watch_download；没有它或出错时什么都不做）。"""
+    ctx: Any = None
+    if progress is not None and path is not None:
+        try:
+            from voicetwin.utils.progress import watch_download
+
+            ctx = watch_download(path, mb, progress, rng[0], rng[1], label)
+            ctx.__enter__()
+        except Exception:
+            ctx = None
+    try:
+        yield
+    finally:
+        if ctx is not None:
+            try:
+                ctx.__exit__(None, None, None)
+            except Exception:
+                pass
+
+
 class Transcriber:
-    """统一接口：transcribe(wav_16k_float32) -> ASRResult。"""
+    """统一接口：transcribe(wav_16k_float32) -> ASRResult。
+
+    可选属性 progress / progress_range / download_label：第一次使用要下载模型时，
+    在 progress 里报告"已下载 X / Y MB"（素材准备时由 prepare 设置）。
+    """
 
     def __init__(self, cfg: Dict[str, Any]):
         self.cfg = dict(cfg or {})
         self.engine = self.cfg.get("engine", "faster-whisper")
         self.language = self.cfg.get("language", "auto")
         self._model: Any = None
+        self.progress: Optional[Callable[[float, str], None]] = None
+        self.progress_range: Tuple[float, float] = (0.40, 0.44)
+        self.download_label = "识别模型"
 
     # ------------------------------------------------------------------ 加载
     def _load(self) -> None:
@@ -70,7 +142,15 @@ class Transcriber:
                 compute_type = "float16" if device == "cuda" else "int8"
             model_name = self.cfg.get("model", "large-v3")
             log.info(f"加载识别模型 faster-whisper/{model_name}（{device}, {compute_type}）……首次使用会自动下载")
-            self._model = WhisperModel(model_name, device=device, compute_type=compute_type)
+            path, mb = None, 0
+            try:
+                if whisper_needs_download(str(model_name)):
+                    path = whisper_cache_path(str(model_name))
+                    mb = WHISPER_SIZES_MB.get(str(model_name), 1500)
+            except Exception:
+                path = None
+            with _watch(path, mb, self.progress, self.progress_range, self.download_label):
+                self._model = WhisperModel(model_name, device=device, compute_type=compute_type)
         elif self.engine == "funasr":
             try:
                 from funasr import AutoModel
