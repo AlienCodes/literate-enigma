@@ -14,6 +14,8 @@ from voicetwin.eval import sv_models
 
 from conftest import make_cfg
 
+REAL_DOWNLOAD = sv_models.download  # conftest 默认把下载换成不联网的假函数
+
 
 # ---------------------------------------------------------------------------- 前端
 def test_kaldi_fbank_matches_torchaudio():
@@ -203,6 +205,7 @@ def test_download_verifies_and_falls_back(tmp_path, monkeypatch):
     import requests
 
     monkeypatch.setattr(requests, "Session", Session)
+    monkeypatch.setattr(sv_models, "download", REAL_DOWNLOAD)
     cfg = make_cfg(tmp_path, similarity={"model_dir": str(tmp_path / "sv")})
     assert [m.key for m in sv_models.missing(cfg)] == ["silero-vad", "m1"]
     seen = []
