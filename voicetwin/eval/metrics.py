@@ -262,6 +262,7 @@ class Score:
     pitch_dev: Optional[float] = None
     issues: List[str] = field(default_factory=list)
     pct: Optional[float] = None                       # 像你本人（%），几个声纹模型校准后的平均
+    pct_raw: Optional[float] = None                   # 没封顶的平均值（排序用：能分出 100% 以上谁更像）
     pcts: Dict[str, float] = field(default_factory=dict)   # 每个声纹模型的百分比
     sims: Dict[str, float] = field(default_factory=dict)   # 每个声纹模型的原始余弦相似度
     errors: Optional[int] = None                       # 识别出来错了几个字
@@ -306,18 +307,22 @@ class Scorer:
         total = 0.0
         sim = None
         pct: Optional[float] = None
+        pct_raw: Optional[float] = None
         pcts: Dict[str, float] = {}
         sims: Dict[str, float] = {}
         if wav.size > sr * 0.3:
             if self.judge is not None:
                 res = self.judge.judge(wav, sr)
                 sim, pct, pcts, sims = res.get("sim"), res.get("pct"), res.get("pcts") or {}, res.get("sims") or {}
+                pct_raw = res.get("pct_raw")
             elif self.encoder is not None and self.centroid is not None:
                 from voicetwin.eval.speaker import cosine
 
                 sim = cosine(self.encoder.embed(wav, sr), self.centroid)
-        if pct is not None:
-            total += self.w["speaker"] * pct / 100.0  # 相似度为主：用校准后的百分比
+        if pct_raw is not None:  # 相似度为主：用校准后的百分比（不封顶，100% 以上也分得出高低）
+            total += self.w["speaker"] * float(np.clip(pct_raw, -50.0, 150.0)) / 100.0
+        elif pct is not None:
+            total += self.w["speaker"] * pct / 100.0
         elif sim is not None:
             total += self.w["speaker"] * sim
         voiced, pauses = speech_activity(wav, sr)
@@ -365,7 +370,7 @@ class Scorer:
                 if cer_val > 0.3:
                     issues.append(f"识别错字率 {cer_val:.0%}")
         return Score(total=total, speaker_sim=sim, cer=cer_val, hyp=hyp, rate=rate, rate_dev=rate_dev,
-                     pitch_dev=pitch_dev, issues=issues, pct=pct, pcts=pcts, sims=sims, errors=errors, f0=f0_med,
+                     pitch_dev=pitch_dev, issues=issues, pct=pct, pct_raw=pct_raw, pcts=pcts, sims=sims, errors=errors, f0=f0_med,
                      checker=checker)
 
     def in_normal_range(self, score: Score, lang: str, speed: float = 1.0) -> bool:

@@ -24,12 +24,12 @@ from voicetwin.data.references import pick_reference
 from voicetwin.eval.metrics import CERChecker
 from voicetwin.eval.speaker import (
     HONEST_NOTE,
-    MODEL_LABELS,
     PCT_HELP,
     SimilarityJudge,
     cosine,
     get_speaker_encoder,
     gsv_root_from_cfg,
+    model_label,
     voice_centroid,
 )
 from voicetwin.project import Project
@@ -106,7 +106,7 @@ class _Sim:
     def info(self) -> Dict[str, Any]:
         if self.judge is not None:
             return self.judge.info()
-        return {"models": [self.encoder.name], "labels": [MODEL_LABELS.get(self.encoder.name, self.encoder.name)],
+        return {"models": [self.encoder.name], "labels": [model_label(self.encoder.name)],
                 "reliable": bool(self.encoder.reliable), "calibration": {}, "definition": PCT_HELP, "note": HONEST_NOTE}
 
 
@@ -272,7 +272,7 @@ def evaluate_file(cfg: Dict[str, Any], project: Project, audio: Path, text: str 
         "时长（秒）": round(len(wav) / sr, 1),
     }
     if judge is not None and score.sims:
-        result["各声纹模型"] = {MODEL_LABELS.get(name, name): {"像你本人（%）": score.pcts.get(name),
+        result["各声纹模型"] = {model_label(name): {"像你本人（%）": score.pcts.get(name),
                                                           "原始相似度": round(float(s), 3)}
                            for name, s in score.sims.items()}
     if score.rate:

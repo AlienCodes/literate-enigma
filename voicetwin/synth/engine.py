@@ -543,14 +543,24 @@ class Narrator:
     def _meets_targets(self, c: _Cand, seg: ScriptSegment) -> bool:
         s = c.score
         cer_ok = s.cer is None or s.cer <= self._thr("cer_target", seg.lang, 0.05, c) or s.errors == 0
-        pct_ok = s.pct is None or not self.sim_filter or s.pct >= self.target_pct
+        pct_ok = s.pct is None or not self.sim_filter or s.pct >= self.effective_target(self.target_pct)
         return bool(cer_ok and pct_ok and "几乎没有声音" not in s.issues
                     and self.scorer.in_normal_range(s, seg.lang, self._speed_multiplier()))
+
+    def effective_target(self, target: float) -> float:
+        """「像你本人」要达到多少才算达标：配置的目标（默认 99%），但不要求超过你自己真实录音的正常水平——
+        精准打分时，你自己的真实录音本身就在一个范围里波动（例如 90%~110%），落在你自己录音的下四分位以上，
+        声纹模型就分不出它和你的真实录音，算达标；无论如何不低于淘汰线（85%）。"""
+        natural = getattr(self._judge, "natural_range", None)
+        rng = natural() if callable(natural) else None
+        if rng and isinstance(rng.get("p25"), (int, float)):
+            return float(max(self.min_pct, min(target, float(rng["p25"]))))
+        return float(target)
 
     def _target_miss(self, c: _Cand, seg: ScriptSegment) -> str:
         """「完美」档没达标时，按真正没达到的那一项写提示。"""
         s = c.score
-        if self.sim_filter and s.pct is not None and s.pct < self.target_pct:
+        if self.sim_filter and s.pct is not None and s.pct < self.effective_target(self.target_pct):
             return "这一句可能不够像，建议重新生成或改写"
         if s.cer is not None and not (s.cer <= self._thr("cer_target", seg.lang, 0.05, c) or s.errors == 0):
             return "这一句可能有个别字读得不太准，建议重新生成或改写"
@@ -562,7 +572,7 @@ class Narrator:
         s = c.score
         thr = self._thr("cer_retry_threshold", seg.lang, 0.12, c)
         cer_ok = s.cer is None or s.cer <= thr / 2 or s.errors == 0
-        pct_ok = s.pct is None or s.pct >= float(self.preset.get("early_pct", 99.0))
+        pct_ok = s.pct is None or s.pct >= self.effective_target(float(self.preset.get("early_pct", 99.0)))
         return bool(cer_ok and pct_ok and "几乎没有声音" not in s.issues)
 
     def _retry_reason(self, cands: List[_Cand], seg: ScriptSegment) -> Optional[str]:
@@ -580,11 +590,51 @@ class Narrator:
     def _load_cached(self, seg: ScriptSegment, plan: _Plan) -> SegmentResult:
         meta = json.loads(plan.meta_path.read_text(encoding="utf-8"))
         wav, sr = load_audio(plan.wav_path)
+        meta = self._rescore_cached(meta, wav, sr, plan)
         score = meta.get("score", {}) or {}
         return SegmentResult(seg, wav, sr, score, plan.ref["id"], True, meta.get("seed", 0), meta.get("candidates", []),
                              path=plan.wav_path, pct=score.get("pct"), status=meta.get("status", ""),
                              hint=meta.get("hint", ""), flagged=bool(meta.get("flagged")), tries=int(meta.get("tries", 0)),
                              met=meta.get("met"))
+
+    def _judge_sig(self) -> str:
+        sig = getattr(self.judge, "signature", None)
+        return str(sig()) if callable(sig) else ""
+
+    def _rescore_cached(self, meta: Dict[str, Any], wav: np.ndarray, sr: int, plan: _Plan) -> Dict[str, Any]:
+        """以前生成好的句子：打分方式变了（例如升级到精准声纹打分、素材变了）时，只重新打"像你本人"这一项，
+        声音不用重新生成。新旧两种百分比的标准不一样，混在一起会误导。"""
+        sig = self._judge_sig()
+        if not sig or meta.get("judge") == sig:
+            return meta
+        try:
+            res = self.judge.judge(wav, sr)
+        except Exception as exc:
+            log.debug(f"重新打分失败：{exc}")
+            return meta
+        score = dict(meta.get("score") or {})
+        for key in ("pct", "pct_raw", "pcts", "sims"):
+            score[key] = res.get(key)
+        if res.get("sim") is not None:
+            score["speaker_sim"] = res.get("sim")
+        hints = [h for h in str(meta.get("hint") or "").split("；") if h and "不够像" not in h and "低于" not in h]
+        pct = score.get("pct")
+        filt = self.sim_filter
+        if filt and pct is not None and pct < self.min_pct:
+            hints.insert(0, f"低于 {self.min_pct:.0f}%，建议重新生成或改写这一句")
+        issues = list(score.get("issues") or [])
+        if filt and pct is not None:
+            status = status_for_pct(pct, self.min_pct)
+            if status != "🔴" and (hints or issues):
+                status = "⚠️"
+        else:
+            status = "⚠️" if (hints or issues) else "✅"
+        meta = dict(meta, score=score, hint="；".join(hints), status=status, flagged=bool(hints or issues), judge=sig)
+        try:
+            plan.meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
+        except OSError:
+            pass
+        return meta
 
     def synthesize_segment(self, seg: ScriptSegment, force: bool = False) -> SegmentResult:
         plan = self._plan(seg)
@@ -724,7 +774,7 @@ class Narrator:
         meta = {"text": seg.text, "lang": seg.lang, "ref": ref["id"], "seed": best.seed, "score": score,
                 "candidates": cand_info, "model": self.backend.model_id(), "quality": self.quality,
                 "tries": state["tried"], "met": met, "hint": "；".join(hints), "status": status, "flagged": flagged,
-                "created": time.strftime("%Y-%m-%d %H:%M:%S")}
+                "judge": self._judge_sig(), "created": time.strftime("%Y-%m-%d %H:%M:%S")}
         plan.meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
         return SegmentResult(seg, best.wav, best.sr, score, ref["id"], False, best.seed, cand_info, path=plan.wav_path,
                              pct=pct, status=status, hint=meta["hint"], flagged=flagged, tries=state["tried"], met=met)

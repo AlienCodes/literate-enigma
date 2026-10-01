@@ -175,9 +175,10 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("-o", "--output", required=True)
     p.add_argument("--keep-original", action="store_true", help="保留原音轨并混音")
 
-    p = sub.add_parser("download-models", help="下载 GPT-SoVITS 缺失的预训练模型")
+    p = sub.add_parser("download-models", help="下载缺少的模型（GPT-SoVITS 预训练模型 + 精准声纹打分模型）")
     p.add_argument("--source", choices=["auto", "hf", "hf-mirror"], default="auto", help="下载源（国内推荐 hf-mirror）")
-    p.add_argument("--check", action="store_true", help="只检查缺哪些模型、不下载（缺模型时退出码为 3）")
+    p.add_argument("--check", action="store_true", help="只检查缺哪些 GPT-SoVITS 模型、不下载（缺模型时退出码为 3）")
+    p.add_argument("--sv", action="store_true", help="只下载精准声纹打分的模型（约 170 MB；加 --check 只检查）")
 
     p = sub.add_parser("clear-cache", help="清空某个声音的句子缓存")
     voice_arg(p)
@@ -379,6 +380,35 @@ def _print_voices(wf: Any, cfg: Any) -> None:
         print(f"{i:>2}. {name}：素材 {minutes} 分钟 / {clips} 条；{status}" + (f"；最佳模型：{best}" if best else ""))
 
 
+def _download_sv_models(cfg: Any, check: bool) -> int:
+    """精准声纹打分的模型（"像你本人"百分比）。返回退出码：0 = 齐全/下载完成，3 = 只检查且有缺失，4 = 下载失败。"""
+    from voicetwin.eval import sv_models
+
+    need = sv_models.missing(cfg)
+    if not need:
+        print("✅ 精准声纹打分的模型已齐全")
+        return 0
+    if check:
+        print(f"缺少 {len(need)} 个精准声纹打分的模型：")
+        for i, m in enumerate(need, 1):
+            print(f"{i:>2}. {m.label}（{m.file}）")
+        print("可以运行 voicetwin download-models --sv 自动下载。")
+        return 3
+    from voicetwin.workflows import keep_awake
+
+    progress = _cli_progress("download", cfg, "下载声纹模型")
+    try:
+        with keep_awake():
+            files = sv_models.download(cfg, progress=progress)
+    except Exception as exc:
+        print(f"⚠️ 声纹模型没有下载成功：{exc}")
+        print("不影响使用（先用旧的打分方式，准确度低一些）；以后可以在网页上点「⬇️ 下载缺少的模型」再试。")
+        return 4
+    _finish(progress)
+    print(f"✅ 已下载 {len(files)} 个声纹模型（在 {sv_models.model_dir(cfg)}）")
+    return 0
+
+
 def _download_models(cfg: Any, source: str, check: bool) -> int:
     """下载（或只检查）GPT-SoVITS 预训练模型。返回退出码：0 = 齐全/下载完成，3 = 只检查且有缺失。"""
     import shutil
@@ -401,13 +431,12 @@ def _download_models(cfg: Any, source: str, check: bool) -> int:
                 print(f"{i:>2}. {rel}")
             print("可以运行 voicetwin download-models --source hf-mirror 自动下载（大约 1~2GB）。")
             return 3
-        from voicetwin.workflows import keep_awake
+        from voicetwin.workflows import download_models
 
         progress = _cli_progress("download", cfg, "下载模型")
-        with keep_awake():  # 1~2 GB，网慢时要很久：下载期间电脑不自动睡眠
-            files = backend.download_pretrained(source, progress=progress)
+        files = download_models(cfg, source, progress=progress)  # 包括精准声纹打分的模型；下载期间电脑不自动睡眠
         _finish(progress)
-        print(f"✅ 已下载 {len(files)} 个文件" if files else "✅ 预训练模型已齐全")
+        print(f"✅ 已下载 {len(files)} 个文件" if files else "✅ 模型已齐全")
         return 0
     finally:
         shutil.rmtree(project.root, ignore_errors=True)
@@ -547,7 +576,7 @@ def main(argv: Optional[List[str]] = None) -> None:
             out = mux_audio_into_video(Path(args.video), Path(args.audio), Path(args.output), args.keep_original)
             print(f"✅ 已生成 {out}")
         elif args.command == "download-models":
-            code = _download_models(cfg, args.source, args.check)
+            code = _download_sv_models(cfg, args.check) if args.sv else _download_models(cfg, args.source, args.check)
             if code:
                 sys.exit(code)
         elif args.command == "clear-cache":

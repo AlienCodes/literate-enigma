@@ -28,6 +28,8 @@ funasr = ["funasr>=1.1.0", "modelscope>=1.15"]
 # 然后执行 `pip install resemblyzer --no-deps`（安装脚本会自动完成）。
 eval = ["torch>=2.0", "webrtcvad-wheels>=2.0.11"]
 denoise = ["noisereduce>=3.0"]
+# 精准声纹打分（"像你本人"百分比）：模型是 ONNX 格式，用 onnxruntime 在 CPU 上运行
+sv = ["onnxruntime>=1.14"]
 separate = ["demucs>=4.0"]
 webui = ["gradio>=4.0"]
 docx = ["python-docx>=1.0"]
@@ -40,7 +42,7 @@ voicetwin = "voicetwin.cli:main"
 include = ["voicetwin*"]
 
 [tool.setuptools.package-data]
-voicetwin = ["backends/workers/*.py", "default_config.yaml"]
+voicetwin = ["backends/workers/*.py", "default_config.yaml", "eval/sv_cohort.npz"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

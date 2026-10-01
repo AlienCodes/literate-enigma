@@ -474,13 +474,21 @@ def download_models(cfg: Config, source: str = "auto", progress: Optional[Progre
     要下 1~2 GB，网慢时很久：下载期间电脑不会自动睡眠（网络流量不会让 Windows 觉得「有人在用」）。"""
     from voicetwin.backends.gptsovits import GPTSoVITSBackend
 
+    from voicetwin.eval import sv_models
+
     with keep_awake():
         project = Project(cfg, "__download__")
         try:
             backend = GPTSoVITSBackend(cfg, project)
-            return list(backend.download_pretrained(source, progress=progress) or [])
+            files = list(backend.download_pretrained(source, progress=_sub(progress, 0.0, 0.85)) or [])
         finally:
             shutil.rmtree(project.root, ignore_errors=True)
+        # 精准声纹打分的模型（约 170 MB）：下载失败不影响 GPT-SoVITS 的模型，只是先用旧的打分方式
+        try:  # 停止按钮的 TaskCancelled 是 BaseException，照常传出去
+            files += sv_models.download(cfg, progress=_sub(progress, 0.85, 1.0))
+        except Exception as exc:
+            log.warning(f"⚠️ 精准声纹打分的模型没有下载成功（{exc}）。先用旧的打分方式；以后再点一次「⬇️ 下载缺少的模型」就行")
+        return files
 
 
 def run_train(cfg: Config, voice: str, backend_name: Optional[str] = None, progress: Optional[ProgressFn] = None,
@@ -944,7 +952,7 @@ def verify_files(cfg: Config, voice: str, generated: Sequence[str], originals: O
     originals 是你挑的原声（≥3 段时用它们当标准；1~2 段时用素材里留出的真实录音和它们比来校准；
     不选就用这个声音的验证集校准）。返回的 calibration_source 说明「100%」的标准实际是怎么来的。
     """
-    from voicetwin.eval.speaker import HONEST_NOTE, MODEL_LABELS, PCT_HELP, SimilarityJudge
+    from voicetwin.eval.speaker import HONEST_NOTE, PCT_HELP, SimilarityJudge, model_label
 
     project = open_project(cfg, voice, must_exist=True)
     gen = [Path(str(p)) for p in (generated or []) if p and Path(str(p)).exists()]
@@ -974,7 +982,7 @@ def verify_files(cfg: Config, voice: str, generated: Sequence[str], originals: O
     for i, r in enumerate(ranked, 1):
         r["rank"] = i
     names = judge.models
-    labels = [MODEL_LABELS.get(n, n) for n in names]
+    labels = [model_label(n) for n in names]
     headers = ["#", "文件"] + [f"{lab}（%）" for lab in labels] + ["综合（%）", "排名", f"是否 ≥{min_pct:.0f}%"]
     table = []
     for i, r in enumerate(ranked, 1):
@@ -1051,6 +1059,28 @@ def _gpu_row() -> Optional[Tuple[Optional[bool], str]]:
     return ok, detail
 
 
+def sv_status(cfg: Config) -> Tuple[Optional[bool], str]:
+    """精准声纹打分（"像你本人"百分比）用的模型齐不齐：(True/None, 说明)。缺了不影响使用，只是退回旧的打分方式。"""
+    from voicetwin.eval import sv_models
+    from voicetwin.eval.speaker import COHORT_FILE
+
+    try:
+        import onnxruntime  # noqa: F401
+    except Exception:
+        return None, ("没有安装 onnxruntime，「像你本人（%）」只能用旧的打分方式（准确度低一些）。"
+                      "怎么办：重新双击 install_windows.bat 安装一次")
+    need = sv_models.missing(cfg)
+    if need:
+        mb = sum(m.size or (52 << 20) for m in need) / (1 << 20)
+        return None, (f"还缺 {len(need)} 个模型（约 {mb:.0f} MB）：" + "、".join(m.label for m in need)
+                      + "。现在用旧的打分方式（准确度低一些）。怎么办：点「⬇️ 下载缺少的模型」，"
+                      "或运行 voicetwin download-models")
+    if not COHORT_FILE.exists():
+        return None, "陌生人声纹库（sv_cohort.npz）不见了，百分比只能按旧方式换算。怎么办：重新下载安装 VoiceTwin"
+    labels = [sv_models.MODELS[k].label.split("（")[0] for k in sv_models.ensemble_keys(cfg) if k in sv_models.MODELS]
+    return True, "已就绪：" + " + ".join(labels) + f"（模型在 {sv_models.model_dir(cfg)}）"
+
+
 def doctor(cfg: Config) -> List[Dict[str, Any]]:
     from voicetwin.backends.base import available_backends, get_backend
 
@@ -1111,6 +1141,7 @@ def doctor(cfg: Config) -> List[Dict[str, Any]]:
         pass
     except Exception as exc:
         add("PyTorch 显卡加速", None, str(exc))
+    add("精准声纹打分", *sv_status(cfg))
     default = str(cfg.get("backend") or "")
     dummy = Project(cfg, "__doctor__")
     for name in available_backends():

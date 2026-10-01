@@ -92,8 +92,8 @@ ADV_LABEL = "高级设置（一般不用改）"
 INTRO = (f"# 🎙️ {APP_TITLE}" + (f" v{APP_VERSION}" if APP_VERSION else "") + "\n"
          "用你自己的讲课视频/录音，复刻你的**音色、语气和节奏**（中文 + 英文）。按 ① → ② → ③ 的顺序操作就行。")
 
-HONEST_SIM = "相似度是声纹模型自动打分，越高越像，但不是绝对精确，最终以耳朵为准。"
-PCT_HELP = ("「像你本人」的百分比：100% = 和你自己的真实录音一样像。"
+HONEST_SIM = "相似度是几个声纹模型一起自动打分，越高越像；机器打分不可能百分之百准确，最终以耳朵为准。"
+PCT_HELP = ("「像你本人」的百分比：100% = 和你自己的真实录音一样像，0% = 陌生人的水平。"
             "有可靠的声纹模型时，低于 85% 的会被自动淘汰或标红。")
 MFCC_NOTE = ("⚠️ 这次没有可靠的声纹模型（只有简易的 MFCC），百分比只能粗略参考，也不会按 85% 自动淘汰。"
              "GPT-SoVITS 整合包里自带的声纹模型能用时会自动用上。")
@@ -1535,9 +1535,9 @@ def _blind_job(cfg: Config, voice: str, n: int, quality: str,
 
 def _model_label(name: str) -> str:
     try:
-        from voicetwin.eval.speaker import MODEL_LABELS
+        from voicetwin.eval.speaker import model_label
 
-        return str(MODEL_LABELS.get(name, name))
+        return str(model_label(name))
     except Exception:
         return str(name)
 
@@ -1574,6 +1574,10 @@ def _verify_rows(result: Dict[str, Any], labels: Optional[Dict[str, str]] = None
     if model_labels:
         lines.append("用到的声纹模型：" + "、".join(_md_text(x) for x in model_labels)
                      + ("（几个模型分别打分，「综合 %」是它们的平均）" if len(model_labels) > 1 else ""))
+    rng = info.get("natural_range") if isinstance(info.get("natural_range"), dict) else None
+    if info.get("precise") and rng and _num(rng.get("p10")) is not None and _num(rng.get("p90")) is not None:
+        lines.append(f"精准打分：你自己的真实录音在 {_num(rng['p10']):.0f}%～{_num(rng['p90']):.0f}% 之间（中间值 100%），"
+                     "陌生人在 0% 左右；生成的声音落在你自己录音的范围里，声纹模型就分不出它和你的真实录音。")
     n_orig = len(result.get("originals") or [])
     source = str(result.get("calibration_source") or ("uploaded_loo" if n_orig >= 3 else ""))
     if n_orig and source == "uploaded_loo":

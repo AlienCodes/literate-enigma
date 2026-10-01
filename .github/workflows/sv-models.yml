@@ -1,0 +1,39 @@
+name: sv-models
+
+# 发布「精准声纹打分」用的模型文件到 GitHub Releases 的 sv-models-1（程序第一次用到时从这里下载）。
+# 只在模型清单变了时手动运行一次：Actions → sv-models → Run workflow。
+#   - ReDimNet2：从官方权重（核对 sha256）导出 ONNX，逐个和 PyTorch 的结果比对；
+#   - 3D-Speaker / WeSpeaker 模型和 silero-vad：从 sherpa-onnx 的发布页下载（核对 sha256），原样转存。
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  models:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: |
+          python -m pip install -e ".[sv]" onnx
+          python -m pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+      - name: Export ReDimNet2
+        run: python scripts/export_redimnet2.py --out dist/sv-models --model b6
+      - name: Fetch the other models
+        run: python scripts/fetch_sv_models.py --out dist/sv-models
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd dist/sv-models
+          ls -l
+          if ! gh release view sv-models-1 >/dev/null 2>&1; then
+            gh release create sv-models-1 --target "$GITHUB_SHA" --prerelease --latest=false \
+              --title "声纹打分模型 sv-models-1（程序会自动下载，不用手动下载）" --notes-file NOTES.md
+          fi
+          gh release upload sv-models-1 *.onnx *.json --clobber
