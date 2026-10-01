@@ -75,7 +75,8 @@ def _sherpa(key: str, label: str, file: str, size: int, sha256: str, origin: str
 MODELS: Dict[str, SVModel] = {
     m.key: m for m in (
         SVModel(key="redimnet2-b6", label="ReDimNet2-B6（2026 年最新，中英文 10 万人训练）",
-                file="redimnet2_b6_vb2_vox2_cnc2_lm.onnx", kind="wave", size=0, sha256=None,
+                file="redimnet2_b6_vb2_vox2_cnc2_lm.onnx", kind="wave", size=51181366,
+                sha256="cc3c77b26a59e6537c2ce9e4889e36c4430439b96d33e9bfa9b022be55d9e461",
                 sources=_gh(RELEASE_BASE + "redimnet2_b6_vb2_vox2_cnc2_lm.onnx"),
                 origin="ReDimNet2（Interspeech 2026，Palabra.ai，MIT 许可），VoxBlink2 + VoxCeleb2 + CN-Celeb2 训练"),
         _sherpa("campplus-zh-en", "CAM++（3D-Speaker，中英文 20 万人训练）",
