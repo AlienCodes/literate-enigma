@@ -16,7 +16,8 @@ from voicetwin.eval.speaker import OnnxSVEncoder  # noqa: E402
 from voicetwin.eval.sv_frontend import SileroVAD  # noqa: E402
 
 MD = os.path.join(HERE, "models_prod")
-OUT = os.path.join(HERE, "emb_prod")
+NOVAD = os.environ.get("NOVAD") == "1"  # comparison: same product code but without the speech-only step
+OUT = os.path.join(HERE, "emb_prod_novad" if NOVAD else "emb_prod")
 os.makedirs(OUT, exist_ok=True)
 SETS = os.environ.get("SETS", "zh,zh_short,en_short,en_cohort,clone,rob_dsil,rob_dn,rob_quiet,rob_loud,rob_noisy,"
                       "rob_crop3,rob_crop15").split(",")
@@ -35,7 +36,10 @@ def main(keys):
             if s not in data:
                 data[s] = np.load(os.path.join(HERE, f"set_{s}.npz"), allow_pickle=True)["audio"]
             t0 = time.time()
-            E = np.stack([enc.embed(np.asarray(a, np.float32), 16000) for a in data[s]])
+            if NOVAD:
+                E = np.stack([enc.embed_prepared(np.asarray(a, np.float32)) for a in data[s]])
+            else:
+                E = np.stack([enc.embed(np.asarray(a, np.float32), 16000) for a in data[s]])
             np.save(p, E.astype(np.float32))
             print(f"{key} {s}: {len(E)} in {time.time() - t0:.0f}s", flush=True)
 

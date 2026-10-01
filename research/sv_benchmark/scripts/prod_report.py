@@ -13,7 +13,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from metrics2 import eer_dcf, meta  # noqa: E402
 
-P = os.path.join(HERE, "emb_prod")
+P = os.path.join(HERE, os.environ.get("EMB_DIR", "emb_prod"))
 
 
 def l2(x):
@@ -87,3 +87,65 @@ def main(keys):
 
 if __name__ == "__main__":
     main(sys.argv[1:])
+
+
+# ----------------------------------------------------------------------------- robustness / clones / calibration
+CONDS = ["dsil", "dn", "quiet", "loud", "noisy", "crop3", "crop15"]
+
+
+def robustness(keys):
+    """How far does product-style processing move the score of the SAME voice? In % units of each model's scale
+    (100 % = mean same-speaker score, 0 % = 95th percentile of different-speaker scores on the original set)."""
+    lab = meta("zh")["labels"]
+    keep = np.array(["single_reference" not in x for x in lab])
+    same = (lab[:, None] == lab[None, :]) & keep[:, None] & keep[None, :]
+    off = ~np.eye(len(lab), dtype=bool)
+    diff = (lab[:, None] != lab[None, :]) & keep[:, None] & keep[None, :]
+    rows = {}
+    fused = {c: [] for c in CONDS}
+    for key in keys:
+        C = cohort(key)
+        E0 = E(key, "zh")
+        S0 = asn(E0, E0, C)
+        tgt, imp = S0[same & off].mean(), np.percentile(S0[diff], 95)
+        r = {}
+        for c in CONDS:
+            Ec = E(key, f"rob_{c}")
+            if Ec is None:
+                continue
+            Sc = asn(Ec, E0, C)
+            d = 100 * (Sc - S0)[same & off] / (tgt - imp)
+            r[c] = (float(d.mean()), float(d.std()), eer_dcf(Sc[off & (same | diff)], same[off & (same | diff)])[0])
+            fused[c].append(d)
+        rows[key] = r
+        print(f"{key:18s} " + "  ".join(f"{c}:{v[0]:+5.1f}±{v[1]:4.1f}" for c, v in r.items()))
+    print(f"{'FUSED':18s} " + "  ".join(f"{c}:{np.mean(np.mean(v, 0)):+5.1f}±{np.std(np.mean(v, 0)):4.1f}"
+                                       for c, v in fused.items() if v))
+    return rows
+
+
+def clones(keys):
+    m = meta("clone")
+    P = np.flatnonzero(m["kind"] == "prompt"); Cl = np.flatnonzero(m["kind"] == "clone")
+    same = m["labels"][Cl][:, None] == m["labels"][P][None, :]
+    systems = m["system"][Cl]
+    allS = []
+    for key in keys:
+        X = E(key, "clone")
+        S = asn(X[Cl], X[P], cohort(key))
+        allS.append(S)
+        acc = float(np.mean(np.argmax(S, 1) == np.argmax(same, 1)))
+        print(f"{key:18s} clone attribution {acc*100:5.1f}%  EER {eer_dcf(S.ravel(), same.ravel())[0]*100:5.2f}%")
+    S = np.mean(allS, 0)
+    acc = float(np.mean(np.argmax(S, 1) == np.argmax(same, 1)))
+    print(f"{'FUSED':18s} clone attribution {acc*100:5.1f}%  EER {eer_dcf(S.ravel(), same.ravel())[0]*100:5.2f}%")
+    order = sorted(set(systems), key=lambda s: -np.mean(S[same][systems == s]))
+    print("   system ranking (fused):", " > ".join(order))
+
+
+if __name__ == "__main__" and len(sys.argv) > 1:
+    keys = sys.argv[1:]
+    print("== robustness (ZH, same voice: processed vs original, % units)")
+    robustness(keys)
+    print("== clones")
+    clones(keys)
