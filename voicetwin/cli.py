@@ -191,7 +191,14 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def _safe_console() -> None:
-    """输出被重定向到 GBK 编码的文件/管道时，遇到 ✅ 这类字符不要报错退出，用 ? 代替。"""
+    """输出被重定向到 GBK 编码的文件/管道时，遇到 ✅ 这类字符不要报错退出，用 ? 代替。
+    老式黑色窗口的字体没有中文字时（中文会显示成 ?），换成有中文字的字体。"""
+    try:
+        from voicetwin.utils.winsys import use_chinese_console_font
+
+        use_chinese_console_font()
+    except Exception:
+        pass
     for stream in (sys.stdout, sys.stderr):
         try:
             enc = (getattr(stream, "encoding", "") or "").lower().replace("-", "")

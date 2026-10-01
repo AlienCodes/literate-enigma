@@ -218,3 +218,73 @@ def test_open_path_windows_select(tmp_path, monkeypatch):
     f.write_bytes(b"x")
     assert winsys.open_path(f, select=True) is True
     assert calls == [f'explorer /select,"{f.resolve()}"']
+
+
+# ---- 老式黑色窗口没有中文字体：中文全部显示成 ?（老师右键「以管理员身份运行」安装时遇到）----
+class FontKernel32(FakeKernel32):
+    def __init__(self, face="Terminal", accept=("NSimSun",), get_font_ok=1, **kw):
+        super().__init__(**kw)
+        self.face, self.accept, self.get_font_ok = face, accept, get_font_ok
+
+    def GetCurrentConsoleFontEx(self, handle, maximum, ref):
+        self.calls.append(("GetCurrentConsoleFontEx", handle))
+        if self.get_font_ok:
+            ref._obj.FaceName = self.face
+            ref._obj.dwFontSize.Y = 12
+        return self.get_font_ok
+
+    def SetCurrentConsoleFontEx(self, handle, maximum, ref):
+        face = ref._obj.FaceName
+        self.calls.append(("SetCurrentConsoleFontEx", face, ref._obj.dwFontSize.Y, ref._obj.FontFamily))
+        if face in self.accept:
+            self.face = face
+            return 1
+        return 0
+
+
+def test_chinese_console_font_switches_raster_font(monkeypatch):
+    monkeypatch.setattr(winsys.sys, "platform", "win32")
+    monkeypatch.delenv("WT_SESSION", raising=False)
+    k = FontKernel32(face="Terminal")
+    monkeypatch.setattr(winsys, "_kernel32", lambda: k)
+    assert winsys.use_chinese_console_font() is True
+    sets = [c for c in k.calls if c[0] == "SetCurrentConsoleFontEx"]
+    assert sets[0][1] == "NSimSun" and sets[0][2] >= 16 and sets[0][3] == 54
+    assert ("GetStdHandle", winsys.STD_OUTPUT_HANDLE) in k.calls
+
+
+def test_chinese_console_font_falls_back_and_never_raises(monkeypatch):
+    monkeypatch.setattr(winsys.sys, "platform", "win32")
+    monkeypatch.delenv("WT_SESSION", raising=False)
+    k = FontKernel32(face="Consolas", accept=("SimSun",))  # 没有新宋体：换宋体
+    monkeypatch.setattr(winsys, "_kernel32", lambda: k)
+    assert winsys.use_chinese_console_font() is True and k.face == "SimSun"
+    k = FontKernel32(face="Consolas", accept=())  # 哪个都换不了：不报错
+    monkeypatch.setattr(winsys, "_kernel32", lambda: k)
+    assert winsys.use_chinese_console_font() is False
+
+    def boom():
+        raise OSError("no kernel32")
+
+    monkeypatch.setattr(winsys, "_kernel32", boom)
+    assert winsys.use_chinese_console_font() is False
+
+
+def test_chinese_console_font_leaves_good_setups_alone(monkeypatch):
+    monkeypatch.setattr(winsys.sys, "platform", "win32")
+    for face in ("新宋体", "NSimSun", "Microsoft YaHei Mono"):  # 本来就有中文字
+        k = FontKernel32(face=face)
+        monkeypatch.setattr(winsys, "_kernel32", lambda: k)
+        monkeypatch.delenv("WT_SESSION", raising=False)
+        assert winsys.use_chinese_console_font() is False
+        assert not [c for c in k.calls if c[0] == "SetCurrentConsoleFontEx"]
+    k = FontKernel32(face="Terminal", get_font_ok=0)  # 输出被重定向（不是黑色窗口）
+    monkeypatch.setattr(winsys, "_kernel32", lambda: k)
+    assert winsys.use_chinese_console_font() is False
+    monkeypatch.setenv("WT_SESSION", "x")  # Windows Terminal 自己会处理字体
+    k = FontKernel32(face="Terminal")
+    monkeypatch.setattr(winsys, "_kernel32", lambda: k)
+    assert winsys.use_chinese_console_font() is False and not k.calls
+    monkeypatch.setattr(winsys.sys, "platform", "linux")
+    monkeypatch.delenv("WT_SESSION", raising=False)
+    assert winsys.use_chinese_console_font() is False and not k.calls

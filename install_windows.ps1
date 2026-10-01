@@ -15,6 +15,57 @@ $ErrorActionPreference = "Continue"
 $Here = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $Here
 try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 } catch {}
+# 老式黑色窗口（例如右键「以管理员身份运行」，或者没有 Windows Terminal 的电脑）在「非 Unicode 程序的语言」不是中文的
+# 电脑上，默认字体没有中文字，下面所有中文都会显示成「?」。换成有中文字的等宽字体「新宋体」（NSimSun）。
+# Windows Terminal 里不需要（它自己会找字体）；换不了也不影响安装。
+function Use-ChineseConsoleFont {
+    if ($env:WT_SESSION) { return }
+    if ($PSVersionTable.PSEdition -eq "Core" -and -not $IsWindows) { return }
+    try {
+        if (-not ("VtConsoleFont" -as [type])) {
+            Add-Type -ErrorAction Stop -TypeDefinition @"
+using System;
+using System.Runtime.InteropServices;
+public static class VtConsoleFont {
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct FontInfo {
+        public uint cbSize; public uint nFont; public short X; public short Y; public uint FontFamily; public uint FontWeight;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)] public string FaceName;
+    }
+    [DllImport("kernel32.dll", SetLastError = true)] static extern IntPtr GetStdHandle(int n);
+    [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)] static extern bool GetCurrentConsoleFontEx(IntPtr h, bool max, ref FontInfo f);
+    [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)] static extern bool SetCurrentConsoleFontEx(IntPtr h, bool max, ref FontInfo f);
+    public static string Face() {
+        FontInfo f = new FontInfo(); f.cbSize = (uint)Marshal.SizeOf(typeof(FontInfo));
+        if (!GetCurrentConsoleFontEx(GetStdHandle(-11), false, ref f)) { return null; }
+        return f.FaceName;
+    }
+    public static bool Use(string face) {
+        FontInfo f = new FontInfo(); f.cbSize = (uint)Marshal.SizeOf(typeof(FontInfo));
+        IntPtr h = GetStdHandle(-11);
+        if (!GetCurrentConsoleFontEx(h, false, ref f)) { return false; }
+        f.FaceName = face; f.FontFamily = 54; f.FontWeight = 400; f.nFont = 0; f.X = 0;
+        if (f.Y < 16) { f.Y = 16; }
+        return SetCurrentConsoleFontEx(h, false, ref f);
+    }
+}
+"@
+        }
+        $face = [VtConsoleFont]::Face()
+        if ($null -eq $face) { return }   # 输出被重定向，不是黑色窗口
+        if (Test-ChineseFace $face) { return }
+        foreach ($name in @("NSimSun", "SimSun", "MS Gothic")) {
+            if ([VtConsoleFont]::Use($name)) {
+                $now = [VtConsoleFont]::Face()
+                if ($now -eq $name -or (Test-ChineseFace $now)) { return }
+            }
+        }
+    } catch {}
+}
+function Test-ChineseFace([string]$face) {
+    return ($face -match "[^\x00-\x7F]" -or $face -match "(?i)simsun|simhei|yahei|gothic|mincho|ming|song|kai|hei|sarasa|cjk|source han")
+}
+Use-ChineseConsoleFont
 $env:PYTHONIOENCODING = "utf-8"
 
 $script:StepNo = 0

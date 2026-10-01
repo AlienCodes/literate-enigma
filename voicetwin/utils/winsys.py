@@ -127,6 +127,85 @@ def disable_quick_edit() -> bool:
         return False
 
 
+STD_OUTPUT_HANDLE = -11
+#: 有中文字的等宽字体：新宋体（每台装了中文显示语言的 Windows 都有）、宋体、MS Gothic
+CJK_CONSOLE_FONTS = ("NSimSun", "SimSun", "MS Gothic")
+_CJK_FACE_HINTS = ("simsun", "simhei", "yahei", "gothic", "mincho", "ming", "song", "kai", "hei", "sarasa", "noto sans cjk",
+                   "noto sans mono cjk", "source han")
+
+
+def face_has_chinese(face: str) -> bool:
+    """控制台字体名看起来是不是带中文字的字体（中文名、宋体、黑体、雅黑……）。"""
+    f = str(face or "").strip()
+    if not f:
+        return False
+    if any(ord(ch) > 127 for ch in f):  # 「新宋体」这类中文字体名
+        return True
+    low = f.lower()
+    return any(h in low for h in _CJK_FACE_HINTS)
+
+
+def _font_info_type() -> Any:
+    import ctypes
+
+    class COORD(ctypes.Structure):
+        _fields_ = [("X", ctypes.c_short), ("Y", ctypes.c_short)]
+
+    class CONSOLE_FONT_INFOEX(ctypes.Structure):
+        _fields_ = [("cbSize", ctypes.c_ulong), ("nFont", ctypes.c_ulong), ("dwFontSize", COORD),
+                    ("FontFamily", ctypes.c_uint), ("FontWeight", ctypes.c_uint), ("FaceName", ctypes.c_wchar * 32)]
+
+    return CONSOLE_FONT_INFOEX
+
+
+def use_chinese_console_font() -> bool:
+    """老式黑色窗口（例如右键「以管理员身份运行」，或者没有 Windows Terminal 的电脑）在「非 Unicode 程序的语言」
+    不是中文的电脑上，默认字体没有中文字，中文会全部显示成「?」。这里把这个窗口的字体换成有中文字的「新宋体」。
+
+    在 Windows Terminal 里（它自己会处理字体）、不是 Windows、没有控制台、字体本来就有中文时什么都不做。
+    换了字体返回 True；任何情况下都不会抛出异常。"""
+    if not _is_windows() or os.environ.get("WT_SESSION"):
+        return False
+    try:
+        import ctypes
+
+        k32 = _kernel32()
+        get_std = k32.GetStdHandle
+        try:
+            get_std.restype = ctypes.c_void_p
+        except Exception:
+            pass
+        handle = get_std(STD_OUTPUT_HANDLE)
+        if handle in (None, 0, -1) or handle == ctypes.c_void_p(-1).value:
+            return False
+        info_t = _font_info_type()
+        info = info_t()
+        info.cbSize = ctypes.sizeof(info_t)
+        if not k32.GetCurrentConsoleFontEx(handle, False, ctypes.byref(info)):
+            return False  # 输出被重定向到文件 / 管道，不是黑色窗口
+        if face_has_chinese(info.FaceName):
+            return False
+        for face in CJK_CONSOLE_FONTS:
+            new = info_t()
+            new.cbSize = ctypes.sizeof(info_t)
+            new.nFont = 0
+            new.dwFontSize.X = 0
+            new.dwFontSize.Y = max(16, int(info.dwFontSize.Y or 0))
+            new.FontFamily = 54  # FF_MODERN | TMPF_TRUETYPE | TMPF_VECTOR：等宽 TrueType 字体
+            new.FontWeight = 400
+            new.FaceName = face
+            if k32.SetCurrentConsoleFontEx(handle, False, ctypes.byref(new)):
+                check = info_t()
+                check.cbSize = ctypes.sizeof(info_t)
+                # 读回来的名字可能是中文名（例如「新宋体」）
+                if k32.GetCurrentConsoleFontEx(handle, False, ctypes.byref(check)) and \
+                        (check.FaceName == face or face_has_chinese(check.FaceName)):
+                    return True
+        return False
+    except Exception:
+        return False
+
+
 def open_path(path: Union[str, Path], select: bool = False) -> bool:
     """在资源管理器（访达）里打开文件夹；select=True 时打开所在文件夹并选中这个文件。不会抛出异常。"""
     try:
