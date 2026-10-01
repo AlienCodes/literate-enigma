@@ -67,12 +67,13 @@ CACHE_VERSION = "v2"
 ProgressFn = Callable[[float, str], None]
 
 QUALITY_ORDER = ("fast", "balanced", "best", "max", "perfect")
+#: 网页「质量」单选框上的字（命令行、报告里也用它）。「极致」不写「最慢」：「完美」比它更慢。
 QUALITY_LABELS = {
-    "fast": "快速",
-    "balanced": "均衡",
-    "best": "最好",
+    "fast": "快速（最快，每句只做 1 遍）",
+    "balanced": "均衡（每句做 3 遍，挑最像你的）",
+    "best": "最好（每句做 5 遍，并检查漏字错字）",
     "max": "极致（很慢，更稳更像，建议显存 ≥ 8GB）",
-    "perfect": "完美（超过极致：每句最多试 20 次、严格检查、去杂音，最慢）",
+    "perfect": "完美：每句最多试 20 次、严格检查漏字错字，去掉杂音，句子之间完全静音，尽最大可能接近你本人（最慢）",
 }
 QUALITY_SHORT = {"fast": "快速", "balanced": "均衡", "best": "最好", "max": "极致", "perfect": "完美"}
 #: 每个档位一行说明（网页上显示，诚实：只说多试几次、挑得更准，不吹"一模一样"）

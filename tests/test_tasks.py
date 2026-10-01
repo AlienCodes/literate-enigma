@@ -262,8 +262,12 @@ def test_banner_error_is_escaped():
 
 
 def test_kind_labels_contract():
-    assert tasks.KIND_LABELS == {"prepare": "准备素材", "train": "训练模型", "select": "重新挑选最佳模型",
-                                 "generate": "生成讲课音频", "download": "下载模型"}
+    base = {"prepare": "准备素材", "train": "训练模型", "select": "重新挑选最佳模型", "generate": "生成讲课音频",
+            "download": "下载模型"}
+    assert {k: tasks.KIND_LABELS[k] for k in base} == base
+    # 网页上的其它长任务也要能说出「在哪一页、点哪个按钮接着看」
+    for kind in ("proofcheck", "speed", "verify", "blind"):
+        assert tasks.KIND_LABELS[kind] and tasks.KIND_TABS[kind] and tasks.KIND_BUTTONS[kind]
     assert tasks.POLL_SECONDS == 0.02  # 被测试改小了；默认值见下
     assert "POLL_SECONDS = 0.6" in inspect.getsource(tasks)
 

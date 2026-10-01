@@ -733,19 +733,21 @@ class GPTSoVITSBackend(Backend):
     def _gpu(self) -> str:
         return str((self.bcfg.get("train", {}) or {}).get("gpu", "0"))
 
-    def _gpu_memory(self) -> Tuple[float, Optional[float], str]:
+    def _gpu_memory(self, quick: bool = False) -> Tuple[float, Optional[float], str]:
         """（显存 GiB 原始读数, 空闲 GiB 或 None, 来源）。先用网页顶部那个显卡检查（快，还知道空闲多少），
-        读不到时再用 GPT-SoVITS 自己的 PyTorch 读（慢一点）。"""
+        读不到时再用 GPT-SoVITS 自己的 PyTorch 读（慢一点，可能要十几秒）。quick=True（网页上的预览）时不用慢的办法。"""
         try:
             from voicetwin.utils.gpu import gpu_status
 
-            st = gpu_status(refresh=True)
+            st = gpu_status(refresh=not quick)
             total = _pos_float(st.get("total_gb"))
             if st.get("level") != "error" and total:
                 free = st.get("free_gb")
                 return total, (_pos_float(free) if free is not None else None), str(st.get("source") or "gpu")
         except Exception:
             pass
+        if quick:
+            return 0.0, None, "none"
         return gpu_memory_gb(self.python, self.env()) if self.root else 0.0, None, "torch"
 
     def _material_quality(self) -> Tuple[bool, float, int]:
@@ -782,9 +784,9 @@ class GPTSoVITSBackend(Backend):
                 user[k] = v
         return user
 
-    def _make_plan(self, n_clips: int, minutes: float, opts: Dict[str, Any]) -> Dict[str, Any]:
-        total, free, source = self._gpu_memory()
-        if total <= 0:
+    def _make_plan(self, n_clips: int, minutes: float, opts: Dict[str, Any], quick: bool = False) -> Dict[str, Any]:
+        total, free, source = self._gpu_memory(quick)
+        if total <= 0 and not quick:
             log.warning("没有检测到可用的 NVIDIA 显卡，训练会非常慢（CPU 训练可能需要数天）")
         noisy, share, suspects = self._material_quality()
         plan = plan_training(n_clips, minutes, total, free, is_half=self.is_half, noisy=noisy, suspects=suspects,
@@ -793,13 +795,15 @@ class GPTSoVITSBackend(Backend):
         plan["noisy_share"] = round(share, 2)
         return plan
 
-    def training_plan(self, **opts: Any) -> Dict[str, Any]:
-        """训练前预览这次的自动训练设置（不训练、不导出文件）。"""
+    def training_plan(self, quick: bool = False, **opts: Any) -> Dict[str, Any]:
+        """训练前预览这次的自动训练设置（不训练、不导出文件）。
+
+        quick=True：只用 nvidia-smi 读显卡（网页上每次换声音都会预览，不能等十几秒）。"""
         from voicetwin.data.exporters import train_records
 
         recs = train_records(self.project)
         minutes = round(sum(float(r.get("duration") or 0.0) for r in recs) / 60.0, 1)
-        return self._make_plan(len(recs), minutes, opts)
+        return self._make_plan(len(recs), minutes, opts, quick=quick)
 
     # ================================================================ 训练
     def _opt_dir(self) -> Path:

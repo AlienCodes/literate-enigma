@@ -100,7 +100,7 @@ def vt_log():
 def no_users_pth(monkeypatch):
     # 测试环境里不要往当前 Python 的 site-packages 写 users.pth；也不要去读真显卡（慢）
     monkeypatch.setattr(GPTSoVITSBackend, "ensure_users_pth", lambda self: None)
-    monkeypatch.setattr(GPTSoVITSBackend, "_gpu_memory", lambda self: (11.99, 11.2, "test"))
+    monkeypatch.setattr(GPTSoVITSBackend, "_gpu_memory", lambda self, quick=False: (11.99, 11.2, "test"))
     monkeypatch.setattr(GPTSoVITSBackend, "POLL_SECONDS", 0.05)
 
 
@@ -522,7 +522,8 @@ def test_user_settings_treat_legacy_save_every_as_auto(prepared, tmp_path):
         "batch_size": "auto", "sovits_save_every": 4, "gpt_save_every": 5}}})
     b = get_backend("gptsovits", old, project)
     u = b._user_settings({})
-    assert u["sovits_save_every"] == "auto" and u["gpt_save_every"] == "auto" and u["if_dpo"] is None
+    # default_config.yaml 写的是 if_dpo: auto（和没写一样，都是自动）
+    assert u["sovits_save_every"] == "auto" and u["gpt_save_every"] == "auto" and u["if_dpo"] in (None, "auto")
     u = b._user_settings({"sovits_save_every": 4, "batch_size": None, "gpt_epochs": 20, "if_dpo": False})
     assert u["sovits_save_every"] == 4 and u["batch_size"] == "auto" and u["gpt_epochs"] == 20 and u["if_dpo"] is False
     mine = make_cfg(project.root.parent, backends={"gptsovits": {"root": str(root), "python": sys.executable, "train": {

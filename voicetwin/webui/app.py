@@ -20,7 +20,6 @@ import difflib
 import functools
 import glob
 import html
-import inspect
 import json
 import os
 import re
@@ -32,6 +31,7 @@ from typing import Any, Callable, Dict, Iterator, List, Optional, Sequence, Tupl
 import voicetwin
 from voicetwin import workflows as wf
 from voicetwin.config import Config
+from voicetwin.synth import engine as _engine
 from voicetwin.utils.log import get_logger
 from voicetwin.utils.progress import PROGRESS_CSS, format_elapsed, render_notice_html
 from voicetwin.webui.tasks import KIND_TABS, current_task, request_stop, stream_task, task_banner_md
@@ -92,7 +92,10 @@ INTRO = (f"# 🎙️ {APP_TITLE}" + (f" v{APP_VERSION}" if APP_VERSION else "") 
          "用你自己的讲课视频/录音，复刻你的**音色、语气和节奏**（中文 + 英文）。按 ① → ② → ③ 的顺序操作就行。")
 
 HONEST_SIM = "相似度是声纹模型自动打分，越高越像，但不是绝对精确，最终以耳朵为准。"
-PCT_HELP = "「像你本人」的百分比：100% = 和你自己的真实录音一样像。低于 85% 的会被自动淘汰或标红。"
+PCT_HELP = ("「像你本人」的百分比：100% = 和你自己的真实录音一样像。"
+            "有可靠的声纹模型时，低于 85% 的会被自动淘汰或标红。")
+MFCC_NOTE = ("⚠️ 这次没有可靠的声纹模型（只有简易的 MFCC），百分比只能粗略参考，也不会按 85% 自动淘汰。"
+             "GPT-SoVITS 整合包里自带的声纹模型能用时会自动用上。")
 
 # ---------------------------------------------------------------------------- 表头
 CLIP_HEADERS = ["#", "id", "保留（是/否）", "语言", "秒", "文字", "可能有错（红色）", "丢弃原因"]
@@ -119,16 +122,12 @@ TRAIN_BACKENDS = [("GPT-SoVITS（推荐）", "gptsovits"), ("Qwen3-TTS", "qwen3t
 SYNTH_BACKENDS = [("GPT-SoVITS（推荐，用你训练的模型）", "gptsovits"), ("Qwen3-TTS", "qwen3tts"),
                   ("IndexTTS（不用训练）", "indextts")]
 DUMMY_BACKEND = ("测试引擎（不是你的声音）", "dummy")
+DPO_CHOICES = [("自动（推荐）", "auto"), ("开", "on"), ("关", "off")]
 FORMAT_CHOICES = [("WAV（音质最好，剪映/后期用）", "wav"), ("MP3（文件小，方便发微信、上传）", "mp3")]
 
-QUALITY_CHOICES = [
-    ("快速试听（最快，每句只做 1 遍）", "fast"),
-    ("标准（每句做几遍，挑最像的）", "balanced"),
-    ("最好（每句多做几遍，并检查漏字错字）", "best"),
-    ("极致（最慢，最稳最像，建议显存 ≥ 8GB）", "max"),
-    ("完美：每句最多试 20 次、严格检查漏字错字，去掉杂音，句子之间完全静音，尽最大可能接近你本人（最慢）", "perfect"),
-]
-QUALITY_SHORT = {"fast": "快速试听", "balanced": "标准", "best": "最好", "max": "极致", "perfect": "完美"}
+# 质量档位的中文名和说明只在 synth/engine.py 里写一份（网页、命令行、报告用的是同一套名字）
+QUALITY_CHOICES: List[Tuple[str, str]] = wf.quality_choices()
+QUALITY_SHORT: Dict[str, str] = dict(_engine.QUALITY_SHORT)
 QUALITY_NOTE = ("越往下越慢，但每句会多试几次、自动挑最像你的，结果更稳定。不会 100% 一模一样："
                 "素材的质量和数量、认真校对文字，对像不像影响最大。")
 TIER_QUALITY = {"high": "perfect", "mid": "perfect", "low": "max", "none": "balanced"}
@@ -154,6 +153,25 @@ APP_CSS = """
 .vt-diff .vt-diff-tag{display:inline-block;min-width:4.5em;font-weight:700}
 .vt-diff .vt-diff-reason{color:var(--body-text-color-subdued);font-size:var(--text-sm)}
 """
+
+
+# gradio 4.24 的保护（浏览器里实测）：流式输出的头两条消息挤在一起到达时，偶尔有一个 Markdown 收到的是「差异」列表，
+# 它的 message.trim() 会报错，Svelte 的刷新从此停住（进度条不动、换页也换不了）。给列表补一个 trim，
+# 让这个 Markdown 暂时显示空白、页面照常工作；紧跟着的完整结果会把内容补上。（webui/tasks.py 也把头两次产出隔开了。）
+GUARD_JS = """() => {
+  try {
+    if (!Array.prototype.trim) {
+      Object.defineProperty(Array.prototype, 'trim', {value: function () { return ''; }, configurable: true, writable: true});
+    }
+  } catch (e) {}
+}"""
+
+
+def page_js() -> str:
+    """交给 gr.Blocks(js=...) 的函数：先装上面的保护，再运行进度条用的脚本（标签页标题显示进度、完成时响一声）。"""
+    parts = [GUARD_JS] + ([PROGRESS_JS] if PROGRESS_JS else [])
+    calls = "\n".join(f"  try {{ ({p.strip()})(); }} catch (e) {{}}" for p in parts)
+    return "() => {\n" + calls + "\n}"
 
 
 # ============================================================================ 通用小工具
@@ -265,7 +283,7 @@ def _pct_text(p: Optional[float]) -> str:
     return "—" if p is None else f"{p:.1f}%"
 
 
-_PCT_KEYS = ("pct", "percent", "similarity_pct", "sim_pct", "speaker_pct", "like_pct", "像你本人")
+_PCT_KEYS = ("pct", "percent", "similarity_pct", "sim_pct", "speaker_pct", "like_pct", "像你本人（%）", "像你本人")
 
 
 def _pct_of(item: Any) -> Optional[float]:
@@ -341,13 +359,11 @@ def _safe(what: str, n_out: int, md_pos: int = 0) -> Callable[[Callable[..., Any
     return deco
 
 
-def _stages(cfg: Config, kind: str, backend: Optional[str] = None) -> Optional[List[Tuple[float, str]]]:
-    """每种任务分哪几步（U3 的 wf.task_stages）；没有这个函数或出错时返回 None（进度条照样能用）。"""
-    fn = getattr(wf, "task_stages", None)
-    if fn is None:
-        return None
+def _stages(cfg: Config, kind: str, backend: Optional[str] = None, **kw: Any) -> Optional[List[Tuple[float, str]]]:
+    """每种任务分哪几步（wf.task_stages）。生成要把选的质量传进来（quality=，「完美」档多一步），
+    素材准备要传 overrides=（会不会自动查错字）。出错时返回 None（进度条照样能用，只是不显示第几步）。"""
     try:
-        return list(fn(kind, cfg, backend) if backend else fn(kind, cfg))
+        return list(wf.task_stages(kind, cfg, backend, **kw))
     except Exception as exc:
         log.debug(f"task_stages({kind}) 不可用：{exc}")
         return None
@@ -439,7 +455,7 @@ def _vram_tier(status: Optional[Dict[str, Any]]) -> str:
 
 
 def _recommended_quality(status: Optional[Dict[str, Any]]) -> Tuple[str, str]:
-    """按显卡推荐默认质量：高/中档 → 完美；小显存 → 极致；没有能用的 N 卡 → 标准。返回 (值, 一句说明)。"""
+    """按显卡推荐默认质量：高/中档 → 完美；小显存 → 极致；没有能用的 N 卡 → 均衡。返回 (值, 一句说明)。"""
     tier = _vram_tier(status)
     q = TIER_QUALITY.get(tier, "balanced")
     gb = None
@@ -447,7 +463,7 @@ def _recommended_quality(status: Optional[Dict[str, Any]]) -> Tuple[str, str]:
         gb = _num(status.get("nominal_gb")) or _num(status.get("total_gb"))
     size = f"显存 {gb:.0f} GB" if gb else "你的显卡"
     if tier == "none":
-        note = ("没检测到能用的 N 卡（NVIDIA 显卡），已先选「标准」。用 CPU 生成会很慢，"
+        note = (f"没检测到能用的 N 卡（NVIDIA 显卡），已先选「{QUALITY_SHORT[q]}」。用 CPU 生成会很慢，"
                 "「极致」「完美」会更慢。")
     elif tier == "low":
         note = f"已按你的显卡自动选好「{QUALITY_SHORT[q]}」（{size}，显存偏小，「完美」会非常慢）。"
@@ -556,47 +572,6 @@ def _gen_warn_md(cfg: Config, voice: Any, backend: Any) -> str:
     return ""
 
 
-def _main_reference(project: Any) -> str:
-    try:
-        refs = project.load_references()
-    except Exception:
-        return ""
-    if not refs:
-        return ""
-    ref = next((r for r in refs if r.get("kind") == "statement" and r.get("lang") == "zh"), None) or refs[0]
-    path = project.abspath(str(ref.get("path") or ""))
-    return str(path) if ref.get("path") and path.exists() else ""
-
-
-def _library_fallback(cfg: Config) -> List[Dict[str, Any]]:
-    """wf.voice_library 还不存在时（U3 未合并），用现有的信息拼出声音库。"""
-    out = []
-    for v in wf.list_voices(cfg):
-        name = str(v.get("voice") or "")
-        try:
-            project = wf.Project(cfg, name)
-        except ValueError:
-            continue
-        minutes, clips = _material_stats(project)
-        models = project.load_models() or {}
-        trained = [k for k, e in models.items() if isinstance(e, dict) and e.get("selected")]
-        best = ""
-        for k in (["gptsovits"] if "gptsovits" in trained else []) + trained:
-            best = _best_selection(models[k])[0]
-            if best:
-                break
-        mtimes = []
-        for p in (project.manifest_path, project.models_path, project.root / "prepare_summary.json"):
-            try:
-                mtimes.append(p.stat().st_mtime)
-            except OSError:
-                pass
-        out.append({"voice": name, "minutes": minutes, "clips_kept": clips, "trained": bool(trained),
-                    "best_model": best, "main_reference": _main_reference(project),
-                    "modified": max(mtimes) if mtimes else None})
-    return out
-
-
 def _library_status(e: Dict[str, Any]) -> str:
     status = str(e.get("status") or "").strip()
     if status:
@@ -612,21 +587,12 @@ def _library_status(e: Dict[str, Any]) -> str:
 
 
 def _library_entries(cfg: Config) -> List[Dict[str, Any]]:
-    """声音库：每个已保存的声音一条（名称、素材、状态、最佳模型、主参考音频、修改时间）。"""
-    entries: Optional[List[Dict[str, Any]]] = None
-    fn = getattr(wf, "voice_library", None)
-    if callable(fn):
-        try:
-            entries = [dict(e) for e in (fn(cfg) or [])]
-        except Exception as exc:
-            log.warning(f"读取声音库失败，改用简单方式：{exc}")
-            entries = None
-    if entries is None:
-        try:
-            entries = _library_fallback(cfg)
-        except Exception as exc:
-            log.warning(f"读取声音库失败：{exc}")
-            entries = []
+    """声音库：每个已保存的声音一条（名称、素材、状态、最佳模型、主参考音频、修改时间），最近改过的排前面。"""
+    try:
+        entries = [dict(e) for e in (wf.voice_library(cfg) or [])]
+    except Exception as exc:  # 工作目录读不了时不让整个页面打不开
+        log.warning(f"读取声音库失败：{exc}")
+        entries = []
     out = []
     for e in entries:
         name = str(e.get("voice") or e.get("name") or "").strip()
@@ -715,12 +681,12 @@ def _render_marked(text: str, spans: Any) -> str:
     return "".join(out)
 
 
-def _render_diff(text: str, alt: str) -> str:
-    """两次识别结果对比（优先用 U8 的 proofcheck.render_diff_html）。"""
+def _render_diff(text: str, alt: str, spans: Any = None) -> str:
+    """两次识别结果对比（优先用 U8 的 proofcheck.render_diff_html；没有建议时把可疑的字标红）。"""
     try:
         from voicetwin.data.proofcheck import render_diff_html
 
-        return str(render_diff_html(text, alt))
+        return str(render_diff_html(text, alt, spans))
     except ImportError:
         pass
     except Exception as exc:
@@ -897,10 +863,21 @@ def _selection_info(info: Dict[str, Any]) -> Dict[str, Any]:
     return info if isinstance(info, dict) else {}
 
 
+PLAN_PREFIX = "训练计划："
+
+
+def _strip_plan(text: str) -> str:
+    text = str(text or "").strip()
+    return text[len(PLAN_PREFIX):].strip() if text.startswith(PLAN_PREFIX) else text
+
+
 def _plan_text(info: Any) -> str:
-    """训练结果里的自动方案（U4 可能放在 auto_plan / plan / plan_text 里）。"""
+    """训练结果里的自动训练设置：GPT-SoVITS 放在 params["summary"]（models.json 里也有一份）。"""
     if not isinstance(info, dict):
         return ""
+    params = info.get("params")
+    if isinstance(params, dict) and isinstance(params.get("summary"), str) and params["summary"].strip():
+        return _strip_plan(params["summary"])
     for key in ("plan_text", "auto_plan", "plan", "auto"):
         v = info.get(key)
         if isinstance(v, str) and v.strip():
@@ -912,31 +889,37 @@ def _plan_text(info: Any) -> str:
     return ""
 
 
-_PLAN_RE = re.compile(r"(显存.*(batch|轮|DPO))|(自动.*(训练方案|选择).*(轮|batch))", re.I)
+_PLAN_RE = re.compile(r"(显存.*(batch|每批|轮|DPO))|(自动.*(训练方案|选择).*(轮|batch))", re.I)
 
 
 def _plan_line(log_text: str) -> str:
-    """从运行记录里找 U4 打印的那行「自动训练方案」（例如「显存 12 GB → batch 8；素材 85 分钟 → …」）。"""
+    """从运行记录里找 GPT-SoVITS 打印的那行「训练计划：显存 12 GB → 每批 6 条；素材 85 分钟 → …」。"""
     for line in reversed(str(log_text or "").splitlines()):
         msg = line.split(" | ", 1)[-1].strip()
-        if _PLAN_RE.search(msg):
-            return msg
+        if msg.startswith(PLAN_PREFIX) or _PLAN_RE.search(msg):
+            return _strip_plan(msg)
     return ""
 
 
 def _plan_md(text: str) -> str:
-    return f"🧠 **这次自动选择的训练方案**：{_md_text(text)}" if text else ""
+    return f"🧠 **这次自动选择的训练方案**：{_md_text(_strip_plan(text))}" if text else ""
 
 
 PLAN_DEFAULT = ("🧠 不用自己调参数：电脑会根据你的显卡（显存）和素材多少，自动选择每批数量、训练轮数和保存间隔，"
                 "训练完自动挑出最像你的那一版。具体方案开始训练后会显示在这里。")
 
 
-def _train_done_md(info: Dict[str, Any], plan: str = "") -> str:
-    mins = info.get("train_minutes") if isinstance(info, dict) else None
-    head = f"### ✅ 训练完成（用时 {mins} 分钟）" if mins is not None else "### ✅ 训练完成"
+def _train_done_md(info: Dict[str, Any], plan: str = "", show_plan: bool = True) -> str:
+    """训练完成的说明。show_plan=False：训练页上方已经单独显示了训练方案，这里不再重复。"""
+    mins = _num(info.get("train_minutes")) if isinstance(info, dict) else None
+    if mins is None:
+        head = "### ✅ 训练完成"
+    elif mins < 1:  # 素材没变、接着上次练完的：几秒钟就结束了
+        head = "### ✅ 训练完成（用时不到 1 分钟）"
+    else:
+        head = f"### ✅ 训练完成（用时 {mins:g} 分钟）"
     err = info.get("selection_error") if isinstance(info, dict) else None
-    plan_md = _plan_md(plan or _plan_text(info))
+    plan_md = _plan_md(plan or _plan_text(info)) if show_plan else ""
     if err:
         md = (f"{head}\n\n⚠️ 「自动挑选最像你的模型」这一步没成功（{_md_text(err)}），现在先用最后一轮的模型。"
               "可以稍后点「重新挑选最佳模型」再试。")
@@ -981,40 +964,58 @@ def _seg_no(seg: Dict[str, Any], fallback: int) -> int:
 
 
 def _seg_flagged(seg: Dict[str, Any]) -> bool:
-    if seg.get("flagged"):
-        return True
+    """这一句要不要提醒重做：以生成引擎的判断为准（seg["flagged"]）；老的报告里没有这个字段时，
+    有问题（issues）或低于 85% 就提醒。"""
+    if "flagged" in seg:
+        return bool(seg.get("flagged"))
     pct = _pct_of(seg)
-    return pct is not None and pct < PASS_PCT
+    return bool(seg.get("issues")) or (pct is not None and pct < PASS_PCT)
 
 
 def _seg_tips(seg: Dict[str, Any]) -> str:
-    tips = [str(x) for x in (seg.get("issues") or []) if x]
-    pct = _pct_of(seg)
-    if pct is not None and pct < PASS_PCT:
-        tips.append("低于 85%，建议重新生成或改写这一句")
-    elif seg.get("flagged") and not tips:
+    """「提示」列：生成引擎写好的提示（低于 85%、可能有读错的字……）+ 具体问题 + 是否沿用上次。"""
+    tips = [t for t in str(seg.get("hint") or "").split("；") if t.strip()]
+    tips += [str(x) for x in (seg.get("issues") or []) if x]
+    if "flagged" not in seg and not tips:  # 老的报告：没有引擎的判断时自己按 85% 提醒
+        pct = _pct_of(seg)
+        if pct is not None and pct < PASS_PCT:
+            tips.append("低于 85%，建议重新生成或改写这一句")
+    if seg.get("flagged") and not tips:
         tips.append("这一句可能不够像，建议重新生成或改写")
     if seg.get("cached"):
         tips.append("沿用上次")
     return "；".join(dict.fromkeys(tips))
 
 
+_STATUS_TEXT = {"🟢": "🟢 比较像", "🔴": "🔴 不够像", "⚠️": "⚠️ 需要注意"}
+
+
+def _seg_status(seg: Dict[str, Any], pct: Optional[float]) -> str:
+    """「状态」列。生成引擎给的是 ✅ / 🟢 / 🔴 / ⚠️（只有声纹模型可靠时才按 85% 淘汰、标红）。"""
+    status = str(seg.get("status") or "").strip()
+    if status == "✅":
+        return "✅ 很像" if pct is not None and pct >= GREAT_PCT else "✅"
+    if status in _STATUS_TEXT:
+        return _STATUS_TEXT[status]
+    if status:
+        return status
+    if pct is not None:
+        return _status_for_pct(pct)
+    if seg.get("flagged"):
+        return "🔴 可能不够像"
+    if seg.get("issues"):
+        return "⚠️ 需要注意"
+    if seg.get("speaker_sim") is not None:
+        return "🙂 " + _label_for_sim(_num(seg.get("speaker_sim")))
+    return "✅"
+
+
 def _gen_rows(res: Any) -> List[List[Any]]:
-    """逐句结果表：#（从 1 开始）、句子、像你本人（%）、状态、提示。"""
+    """逐句结果表：#（从 1 开始，和「只重新生成第几句」填的编号一样）、句子、像你本人（%）、状态、提示。"""
     rows = []
     for i, s in enumerate(_segments(res), 1):
         pct = _pct_of(s)
-        if pct is not None:
-            status = _status_for_pct(pct)
-        elif s.get("issues"):
-            status = "⚠️ 需要注意"
-        elif s.get("speaker_sim") is not None:
-            status = "🙂 " + _label_for_sim(_num(s.get("speaker_sim")))
-        else:
-            status = "✅"
-        if s.get("flagged") and pct is None:
-            status = "🔴 可能不够像"
-        rows.append([_seg_no(s, i), str(s.get("text", "")), _pct_text(pct), status, _seg_tips(s)])
+        rows.append([_seg_no(s, i), str(s.get("text", "")), _pct_text(pct), _seg_status(s, pct), _seg_tips(s)])
     return rows
 
 
@@ -1025,7 +1026,7 @@ def _flagged_numbers(res: Any) -> List[int]:
             return sorted({int(x) for x in flagged})
         except (TypeError, ValueError):
             pass
-    return [_seg_no(s, i) for i, s in enumerate(_segments(res), 1) if s.get("issues") or _seg_flagged(s)]
+    return [_seg_no(s, i) for i, s in enumerate(_segments(res), 1) if _seg_flagged(s)]
 
 
 def _mean_pct(res: Any) -> Optional[float]:
@@ -1047,6 +1048,8 @@ def _gen_summary_md(res: Any, redo: Optional[Sequence[int]] = None) -> str:
     sims = [x for x in (_num(s.get("speaker_sim")) for s in segs) if x is not None]
     if mean is not None:
         md.append(f"整体听起来：像你本人 **{mean:.1f}%**（每句的平均）")
+        if _report_field(res, "similarity_filter") is False:
+            md.append(MFCC_NOTE)
     elif sims:
         avg = sum(sims) / len(sims)
         md.append(f"整体听起来：{_label_for_sim(avg)}（平均相似度 {avg:.2f}）")
@@ -1057,15 +1060,31 @@ def _gen_summary_md(res: Any, redo: Optional[Sequence[int]] = None) -> str:
     flagged = _flagged_numbers(res)
     if flagged:
         nums = "、".join(str(n) for n in flagged)
-        md.append(f"⚠️ 第 {nums} 句可能有问题。想重做的话，在「只重新生成第几句」里填：{','.join(str(n) for n in flagged)}，"
-                  "再点「生成」，只重做这几句，很快。")
+        md.append(f"⚠️ 第 {nums} 句可能有问题（下面的表格里写了原因）。想重做的话，在「只重新生成第几句」里填："
+                  f"{','.join(str(n) for n in flagged)}，再点「生成」，只重做这几句，很快。")
     others = [w for w in (getattr(res, "warnings", None) or []) if not re.match(r"^第\s*\d+\s*句[：:]", str(w))]
     if others:
         md.append("\n".join(f"> ⚠️ {_md_text(w)}" for w in others[:10])
                   + (f"\n>\n> 还有 {len(others) - 10} 条" if len(others) > 10 else ""))
+    # 生成引擎的小结：平均每句试了几次、几句达到了「完美」的严格标准……（整篇百分比、要注意的句子上面已经说了）
+    notes = [str(n) for n in (getattr(res, "notes", None) or [])
+             if str(n).strip() and not str(n).startswith(("整篇像你本人", "需要注意的句子", "没有需要特别注意"))]
+    if notes:
+        md.append("<small>" + "<br>".join(_md_text(n) for n in notes[:6]) + "</small>")
     if mean is not None or sims:
         md.append(f"<small>{HONEST_SIM}{PCT_HELP if mean is not None else ''}</small>")
     return "\n\n".join(md)
+
+
+def _report_field(res: Any, key: str) -> Any:
+    """读这次生成报告（*.report.json）里的一个字段；读不到时返回 None。"""
+    path = getattr(res, "report_path", None)
+    try:
+        if path and Path(str(path)).exists():
+            return json.loads(Path(str(path)).read_text(encoding="utf-8")).get(key)
+    except Exception:
+        pass
+    return None
 
 
 def _variants(res: Any) -> List[Dict[str, Any]]:
@@ -1112,10 +1131,13 @@ def _variants_md(vs: Sequence[Dict[str, Any]]) -> str:
         gap = ""
         pr, po = _pct_of(rec), _pct_of(other[0]) if other else None
         sr, so = _num(rec.get("score")), _num(other[0].get("score")) if other else None
-        if pr is not None and po is not None:
+        if pr is not None and po is not None and abs(pr - po) >= 0.05:
             gap = f"（高 {abs(pr - po):.1f} 个百分点）"
-        elif sr is not None and so is not None:
-            gap = f"（相似度高 {abs(sr - so):.3f}）"
+        elif sr is not None and so is not None and abs(sr - so) >= 0.0005:
+            # 百分比一样时按综合得分推荐（声纹为主，再看语速、音高和你本人差多少）
+            gap = f"（百分比差不多，综合得分高 {abs(sr - so):.3f}）" if pr is not None else f"（相似度高 {abs(sr - so):.3f}）"
+        elif pr is not None or sr is not None:
+            gap = "（两个版本几乎一样像，听哪个顺耳就用哪个）"
         lines.append(f"\n⭐ 推荐：版本 {_variant_letter(rec, rec_i)}，更像你的原声{gap}")
     lines.append(f"\n<small>两个版本的文字、停顿和字幕完全一样，只是 B 去掉了轻微的杂音。{HONEST_SIM}</small>")
     return "\n".join(lines)
@@ -1165,7 +1187,7 @@ def _output_path(project: Any, name: str, fmt: str, fallback: str) -> Path:
 
 
 # ============================================================================ ④ 评估
-_EVAL_SKIP = {"结论", "声纹相似度", "相似度参考"}
+_EVAL_SKIP = {"结论", "声纹相似度", "相似度参考", "说明"}  # 「说明」和卡片最后那行诚实提示是同一句话
 
 
 def _flat(v: Any) -> str:
@@ -1248,36 +1270,12 @@ def _doctor_view(rows: Sequence[Dict[str, Any]]) -> Tuple[str, List[List[Any]], 
 
 
 def _quick_problems(cfg: Config) -> List[str]:
-    """打开网页时的快速检查（只看文件，不运行任何程序）。"""
-    fn = getattr(wf, "quick_check", None)
-    if callable(fn):
-        try:
-            return [str(x) for x in (fn(cfg) or []) if x]
-        except Exception as exc:
-            log.debug(f"quick_check 出错：{exc}")
-            return []
-    if str(cfg.get("backend") or "gptsovits") != "gptsovits":
-        return []
-    project = None
-    existed = True
+    """打开网页时的快速检查（wf.quick_check：只看文件，不运行任何程序）。出错时不提示任何东西。"""
     try:
-        from voicetwin.backends.gptsovits import GPTSoVITSBackend
-
-        project = wf.Project(cfg, "__quick__")
-        existed = project.root.exists()
-        b = GPTSoVITSBackend(cfg, project)  # 只看路径，不启动任何程序（但会建一个空的工作目录，下面删掉）
-        if b.external_url:
-            return []
-        if not b.root or not b.root.exists():
-            return ["找不到 GPT-SoVITS 整合包。请重新双击 install_windows.bat，按提示填写整合包的位置。"]
-        if b.missing_pretrained():
-            return ["缺少 GPT-SoVITS 的模型文件。请打开「🩺 环境检查」页，点「⬇️ 下载缺少的模型」。"]
+        return [str(x) for x in (wf.quick_check(cfg) or []) if x]
     except Exception as exc:
-        log.debug(f"快速检查出错：{exc}")
-    finally:
-        if project is not None and not existed:
-            shutil.rmtree(project.root, ignore_errors=True)
-    return []
+        log.debug(f"quick_check 出错：{exc}")
+        return []
 
 
 def _quick_html(problems: Sequence[str]) -> str:
@@ -1344,13 +1342,43 @@ def _latest_report(project: Any) -> Dict[str, Any]:
     return {}
 
 
-def _report_audio_files(report: Dict[str, Any]) -> List[str]:
+def _report_labels(report: Dict[str, Any], project: Any = None) -> Dict[str, str]:
+    """一次生成里每个音频文件 → 给老师看的名字（「版本 A：未去杂音」「第 3 句：……」）。"""
+    out: Dict[str, str] = {}
+    for i, v in enumerate(report.get("variants") or []):
+        if isinstance(v, dict) and v.get("path"):
+            out[str(v["path"])] = f"版本 {_variant_letter(v, i)}：{v.get('name') or ''}（{Path(str(v['path'])).name}）"
+    if report.get("audio") and str(report["audio"]) not in out:
+        out[str(report["audio"])] = f"整篇：{Path(str(report['audio'])).name}"
+    if project is not None:
+        for k, seg in enumerate(report.get("segments") or [], 1):
+            clip = seg.get("clip") if isinstance(seg, dict) else None
+            if clip:
+                try:
+                    text = str(seg.get("text") or "")
+                    out[str(project.abspath(str(clip)))] = (f"第 {_seg_no(seg, k)} 句：{text[:16]}"
+                                                            + ("…" if len(text) > 16 else ""))
+                except Exception:
+                    pass
+    return out
+
+
+def _report_audio_files(report: Dict[str, Any], project: Any = None, max_clips: int = 20) -> List[str]:
+    """一次生成的所有音频：两个版本（或最终音频）+ 前 max_clips 句的单句音频（机器鉴别默认就比这些）。"""
     files: List[str] = []
     for v in report.get("variants") or []:
         if isinstance(v, dict) and v.get("path"):
             files.append(str(v["path"]))
-    if report.get("audio"):
+    if report.get("audio") and not files:  # 有两个版本时，最终音频只是其中一个的复制品
         files.append(str(report["audio"]))
+    if project is not None:
+        for seg in (report.get("segments") or [])[:max_clips]:
+            clip = seg.get("clip") if isinstance(seg, dict) else None
+            if clip:
+                try:
+                    files.append(str(project.abspath(str(clip))))
+                except Exception:
+                    pass
     seen, out = set(), []
     for f in files:
         if f not in seen and Path(f).exists():
@@ -1368,117 +1396,68 @@ def _attach_missed(*args: Any, **kwargs: Any) -> None:
     return None
 
 
-def _verify_fallback(cfg: Config, voice: str, originals: Sequence[str], generated: Sequence[str],
-                     progress: Optional[Callable[[float, str], None]] = None) -> Dict[str, Any]:
-    """机器鉴别的简单版（U3 的 wf.verify_files 还不存在时用）：只用一个声纹模型，按同样的定义算百分比：
-    100% = 和你自己的真实录音一样像（你的真实录音和你声音中心的相似度中位数）。"""
-    import numpy as np
-
-    from voicetwin.eval.speaker import centroid, cosine, get_speaker_encoder, voice_centroid
-    from voicetwin.utils.audio import load_audio, trim_silence
-
-    project = wf.open_project(cfg, voice, must_exist=True)
-    enc = get_speaker_encoder(cfg.get("speaker_encoder", "auto"))
-    total = max(1, len(originals) + len(generated) + 1)
-    step = [0]
-
-    def tick(msg: str) -> None:
-        step[0] += 1
-        if progress:
-            progress(min(0.99, step[0] / total), msg)
-
-    def emb(path: Any) -> Any:
-        wav, sr = load_audio(path)
-        wav, _, _ = trim_silence(wav, sr)
-        return enc.embed(wav, sr)
-
-    real_sims: List[float] = []
-    if originals:
-        embs = []
-        for k, p in enumerate(originals, 1):
-            embs.append(emb(p))
-            tick(f"分析你的原始录音 {k}/{len(originals)}")
-        cen = centroid(embs)
-        if len(embs) >= 2:
-            for i, e in enumerate(embs):
-                real_sims.append(cosine(e, centroid([x for j, x in enumerate(embs) if j != i])))
-    else:
-        cen = voice_centroid(project, enc)
-        recs = project.load_manifest(only_kept=True)
-        val = [r for r in recs if r.get("split") == "val"] or recs
-        for r in val[:30]:
-            try:
-                real_sims.append(cosine(emb(project.abspath(r["path"])), cen))
-            except Exception:
-                continue
-        tick("分析你的真实录音")
-    if cen is None:
-        raise RuntimeError("还没有你的声音样本，请先完成「① 准备素材」。")
-    p50 = float(np.median(real_sims)) if real_sims else None
-    rows = []
-    for k, path in enumerate(generated, 1):
-        s = float(cosine(emb(path), cen))
-        pct = round(100.0 * min(1.0, s / p50), 1) if p50 and p50 > 0 else None
-        rows.append({"file": str(path), "models": {enc.name: pct}, "raw": {enc.name: round(s, 4)}, "pct": pct})
-        tick(f"鉴别 {k}/{len(generated)}：{Path(str(path)).name}")
-    note = (f"用的声纹模型：{enc.name}。你自己的真实录音之间的典型相似度是 {p50:.3f}（记为 100%）。"
-            if p50 else "你的真实录音太少，算不出百分比，只显示原始相似度。")
-    return {"models": [enc.name], "rows": rows, "p50_real": {enc.name: p50}, "note": note}
-
-
-def _accepts_progress(fn: Callable[..., Any]) -> bool:
-    try:
-        params = inspect.signature(fn).parameters.values()
-    except (TypeError, ValueError):
-        return True
-    return any(p.name == "progress" or p.kind == p.VAR_KEYWORD for p in params)
-
-
-def _call_with_progress(fn: Callable[..., Any], *args: Any, progress: Any = None, **kwargs: Any) -> Any:
-    """调用 U3 的新函数：它接受 progress 参数时才传进去（接口里没写死这一点）。"""
-    if _accepts_progress(fn):
-        kwargs["progress"] = progress
-    return fn(*args, **kwargs)
-
-
 def _verify_job(cfg: Config, voice: str, originals: Sequence[str], generated: Sequence[str],
                 progress: Optional[Callable[[float, str], None]] = None) -> Dict[str, Any]:
-    """机器鉴别：U3 提供 wf.verify_files(cfg, voice, originals, generated, progress=None) 时用它（多个声纹模型），
-    否则用这里的简单版。"""
-    fn = getattr(wf, "verify_files", None)
-    if callable(fn):
-        return _call_with_progress(fn, cfg, voice, list(originals), list(generated), progress=progress)
-    return _verify_fallback(cfg, voice, originals, generated, progress=progress)
+    """机器鉴别：wf.verify_files 用几个声纹模型分别打分再平均（注意它的参数顺序是 generated 在前）。"""
+    return wf.verify_files(cfg, voice, generated=list(generated), originals=list(originals) or None,
+                           progress=progress)
 
 
 def _blind_job(cfg: Config, voice: str, n: int, quality: str,
                progress: Optional[Callable[[float, str], None]] = None) -> Dict[str, Any]:
-    """观众盲听测试：U3 的 wf.build_blind_test(cfg, voice, n=10, quality=...)。"""
-    return dict(_call_with_progress(wf.build_blind_test, cfg, voice, n=n, quality=quality, progress=progress) or {})
+    """观众盲听测试：wf.build_blind_test 挑 n 段真实录音、用现在最好的模型读同样的文字，打乱顺序编号。"""
+    return dict(wf.build_blind_test(cfg, voice, n=n, quality=quality, progress=progress) or {})
 
 
-def _verify_rows(result: Dict[str, Any]) -> Tuple[List[List[Any]], str]:
-    """机器鉴别结果 → 按综合 % 从高到低排名的表格 + 总结。"""
+def _model_label(name: str) -> str:
+    try:
+        from voicetwin.eval.speaker import MODEL_LABELS
+
+        return str(MODEL_LABELS.get(name, name))
+    except Exception:
+        return str(name)
+
+
+def _verify_rows(result: Dict[str, Any], labels: Optional[Dict[str, str]] = None) -> Tuple[List[List[Any]], str]:
+    """机器鉴别结果 → 按综合 % 从高到低排名的表格（#、文件、各模型 %、综合 %、排名、是否 ≥85%）+ 总结。
+
+    labels：{文件的绝对路径: 给老师看的名字}，例如单句音频显示成「第 2 句：今天我们……」而不是一串字母数字。"""
+    labels = labels or {}
     rows = [r for r in (result.get("rows") or result.get("files") or []) if isinstance(r, dict)]
-
-    def overall(r: Dict[str, Any]) -> Optional[float]:
-        return _pct_of(r)
-
-    ranked = sorted(rows, key=lambda r: (overall(r) is None, -(overall(r) or 0.0)))
+    min_pct = _num(result.get("min_pct")) or PASS_PCT
+    ranked = sorted(rows, key=lambda r: (_pct_of(r) is None, -(_pct_of(r) or 0.0)))
     table = []
     for i, r in enumerate(ranked, 1):
-        models = r.get("models") or {}
-        per = "；".join(f"{k} {_pct_text(_num(v))}" for k, v in models.items()) if isinstance(models, dict) else ""
-        if not per and isinstance(r.get("raw"), dict):
-            per = "；".join(f"{k} 原始 {v}" for k, v in r["raw"].items())
-        pct = overall(r)
-        passed = "—" if pct is None else ("✅ 是" if pct >= PASS_PCT else "🔴 否")
-        table.append([i, Path(str(r.get("file") or r.get("path") or "")).name, per or "—", _pct_text(pct), i, passed])
-    n_pass = sum(1 for r in ranked if (overall(r) or 0) >= PASS_PCT)
-    md = (f"### 🤖 鉴别完成：共 {len(ranked)} 个文件，其中 {n_pass} 个 ≥ 85%"
-          + (f"\n\n{_md_text(result.get('note'))}" if result.get("note") else "")
-          + f"\n\n<small>{HONEST_SIM}{PCT_HELP}</small>")
-    return table, md
+        pcts = r.get("pcts") if isinstance(r.get("pcts"), dict) else r.get("models")
+        sims = r.get("sims") if isinstance(r.get("sims"), dict) else r.get("raw")
+        parts = []
+        for name, v in (pcts or {}).items() if isinstance(pcts, dict) else []:
+            raw = _num((sims or {}).get(name)) if isinstance(sims, dict) else None
+            parts.append(f"{_model_label(name)} {_pct_text(_num(v))}" + (f"（原始 {raw:.3f}）" if raw is not None else ""))
+        if not parts and isinstance(sims, dict):
+            parts = [f"{_model_label(k)} 原始 {_num(v) or 0:.3f}" for k, v in sims.items()]
+        pct = _pct_of(r)
+        passed = r.get("pass")
+        if passed is None:
+            passed = pct is not None and pct >= min_pct
+        mark = "—" if pct is None else ("✅ 是" if passed else "🔴 否")
+        name = labels.get(str(r.get("path") or "")) or Path(str(r.get("file") or r.get("path") or "")).name
+        table.append([i, name, "；".join(parts) or "—", _pct_text(pct), int(r.get("rank") or i), mark])
+    n_pass = sum(1 for row in table if row[5] == "✅ 是")
+    info = result.get("models") if isinstance(result.get("models"), dict) else {}
+    model_labels = [str(x) for x in (info.get("labels") or [])]
+    lines = [f"### 🤖 鉴别完成：共 {len(ranked)} 个文件，其中 {n_pass} 个 ≥ {min_pct:.0f}%"]
+    if model_labels:
+        lines.append("用到的声纹模型：" + "、".join(_md_text(x) for x in model_labels)
+                     + ("（几个模型分别打分，「综合 %」是它们的平均）" if len(model_labels) > 1 else ""))
+    if result.get("originals"):
+        lines.append(f"「100%」的标准：你选的 {len(result['originals'])} 段原始录音彼此之间有多像。")
+    if result.get("calibrated") is False:
+        lines.append("⚠️ 你的真实录音太少，百分比只能粗略参考。")
+    elif info.get("reliable") is False:
+        lines.append(MFCC_NOTE.replace("，也不会按 85% 自动淘汰", ""))
+    lines.append(f"<small>{HONEST_SIM}{PCT_HELP}</small>")
+    return table, "\n\n".join(lines)
 
 
 _REAL_WORDS = {"真人", "real", "human", "原声", "真人录音", "original", "recording", "true", "1", "yes"}
@@ -1606,6 +1585,22 @@ def _blind_result_md(choices: Sequence[Any], answers: Dict[int, bool]) -> str:
     return head + "\n".join(lines)
 
 
+class _StopOnce:
+    """长任务进行中的停止按钮：只在第一次刷新时显示出来，之后不再改它。
+
+    否则每 0.6 秒刷新一次进度条时，都会把「再点一次确认停止（5 秒内）」/「正在停止……」改回「⏹ 停止」
+    （浏览器里实测：确认的字一闪就没了）。"""
+
+    def __init__(self) -> None:
+        self.shown = False
+
+    def __call__(self) -> Dict[str, Any]:
+        if self.shown:
+            return _upd()
+        self.shown = True
+        return _upd(visible=True, value=STOP_LABEL, interactive=True)
+
+
 # ============================================================================ 网页
 class WebUI:
     """网页的全部处理函数。build() 画页面；其余方法都可以在没有 gradio 4.24 的环境里直接调用测试。"""
@@ -1616,7 +1611,7 @@ class WebUI:
     TRAIN_OUT = ("train_bar", "train_log", "train_md", "train_btn", "select_btn", "train_stop", "voice_status",
                  "train_next", "train_plan")
     GEN_OUT = ("gen_bar", "out_audio", "out_files", "gen_log", "gen_md", "gen_btn", "gen_stop", "redo", "gen_table",
-               "var_box", "var_md", "var_a", "var_b", "var_choice", "gen_state", "speed_try", "gen_after")
+               "var_box", "var_md", "var_a", "var_b", "var_choice", "gen_state", "speed_try", "gen_after", "var_note")
     SPEED_OUT = ("gen_bar", "gen_log", "speed_audio", "speed_try", "gen_btn", "gen_stop")
     PROOF_OUT = ("proof_bar", "proof_md", "clips_count", "clips", "proof_btn", "proof_stop", "prep_log")
     DL_OUT = ("doc_bar", "doc_log", "doc_md", "dl_btn", "dl_stop")
@@ -1654,10 +1649,6 @@ class WebUI:
     @staticmethod
     def _idle_btn(label: str) -> Dict[str, Any]:
         return _upd(interactive=True, value=label)
-
-    @staticmethod
-    def _stop_shown() -> Dict[str, Any]:
-        return _upd(visible=True, value=STOP_LABEL, interactive=True)
 
     @staticmethod
     def _stop_hidden() -> Dict[str, Any]:
@@ -1824,14 +1815,15 @@ class WebUI:
                      "denoise": denoise or "auto", "separate_vocals": bool(separate)}
         stream = stream_task("prepare", "准备素材", v, _attach_missed if attach else _prepare_job, self.cfg, v, uploads,
                              folder_s, overrides,
-                             stages=_stages(self.cfg, "prepare"), note=NOTE)
+                             stages=_stages(self.cfg, "prepare", overrides=overrides), note=NOTE)
+        stop_once = _StopOnce()
         for text, st in stream:
             if st.get("busy"):
                 yield self._o(O, prep_bar=st.get("bar", ""), prep_log=text, **idle)
                 return
             if not st.get("done"):
                 yield self._o(O, prep_bar=st.get("bar", ""), prep_log=text, prep_btn=self._busy_btn(PREP_BUSY),
-                              prep_stop=self._stop_shown(), prep_next=_btn(PREP_NEXT, visible=False))
+                              prep_stop=stop_once(), prep_next=_btn(PREP_NEXT, visible=False))
                 continue
             ok = "value" in st and not st.get("error")
             if self._missed(attach, st):
@@ -1870,7 +1862,7 @@ class WebUI:
         alt = str(sus.get("alt") or "")
         panel = ('<div class="vt-diff">' + (f'<div class="vt-diff-reason">⚠️ 可能有错：{html.escape(reasons)}</div>'
                                              if reasons else "")
-                 + _render_diff(text, alt) + "</div>")
+                 + _render_diff(text, alt, sus.get("spans")) + "</div>")
         can_adopt = bool(alt) and callable(getattr(wf, "apply_suggestion", None))
         return audio, panel, _btn(ADOPT_BTN, visible=can_adopt), cid
 
@@ -1976,25 +1968,32 @@ class WebUI:
             yield self._o(O, proof_bar=self._notice("这个版本还没有「自动查找错字」功能。"), **idle)
             return
         stream = stream_task("proofcheck", "查找可能的错字", v, _attach_missed if attach else fn, self.cfg, v,
-                             stages=[(0.0, "把每段话再听一遍，找出可能的错字")], note=NOTE)
+                             stages=_stages(self.cfg, "proofcheck"), note=NOTE)
+        stop_once = _StopOnce()
         for text, st in stream:
             if st.get("busy"):
                 yield self._o(O, proof_bar=st.get("bar", ""), prep_log=text, **idle)
                 return
             if not st.get("done"):
                 yield self._o(O, proof_bar=st.get("bar", ""), prep_log=text, proof_btn=self._busy_btn(PROOF_BUSY),
-                              proof_stop=self._stop_shown())
+                              proof_stop=stop_once())
                 continue
             ok = "value" in st and not st.get("error")
             if self._missed(attach, st):
                 md = ATTACH_MISSED_MD
             elif ok:
                 r = st.get("value") or {}
-                md = (f"### ✅ 检查完了：一共查了 {r.get('checked', 0)} 条，其中 **{r.get('flagged', 0)}** 条可能有错"
-                      "（已在表格里标红）")
+                flagged = _int(r.get("flagged"))
+                if flagged:
+                    md = (f"### ✅ 检查完了：一共查了 {r.get('checked', 0)} 条，其中 **{flagged}** 条可能有错"
+                          "（已在表格里标红）")
+                else:
+                    md = f"### ✅ 检查完了：一共查了 {r.get('checked', 0)} 条，没有发现可能有错的字"
                 if r.get("note"):
                     md += f"\n\n{_md_text(r['note'])}"
-                md += "\n\n勾上「只看可能有错的」，可以只看标红的片段。"
+                if flagged:
+                    md += ("\n\n勾上「只看可能有错的」，可以只看标红的片段；点某一行能看到两次识别的对比，"
+                           "有建议时可以点「✅ 采用建议」。")
                 _info("✅ 检查完了，可能有错的字已经标红")
             else:
                 md = self._final_md(st, "查找错字", v)
@@ -2002,16 +2001,17 @@ class WebUI:
                           clips_count=_clips_count_md(self.cfg, v), clips=_clips_table(self.cfg, v, bool(only_sus)), **idle)
 
     # ------------------------------------------------------------------ ② 训练
-    def train_plan_preview(self, voice: Any, backend: Any = None) -> str:
-        """训练前就显示电脑会怎么自动选参数（U3/U4 提供 wf.training_plan 时显示具体数字）。"""
+    def train_plan_preview(self, voice: Any, backend: Any = None, s_ep: Any = 0, g_ep: Any = 0, bs: Any = 0,
+                           dpo: Any = "auto") -> str:
+        """训练前就显示电脑会怎么自动选参数（wf.training_plan：看显卡和素材，只读文件和 nvidia-smi，很快）。"""
         v = _voice_name(voice)
-        fn = getattr(wf, "training_plan", None)
-        if v and callable(fn):
+        if v:
             try:
-                plan = fn(self.cfg, v, backend or self.default_train)
-                text = plan if isinstance(plan, str) else _plan_text({"plan": plan})
+                text = wf.training_plan(self.cfg, v, str(backend or self.default_train),
+                                        **self._train_opts(s_ep, g_ep, 0, bs, dpo))
                 if text:
-                    return "🧠 **电脑会自动这样训练**：" + _md_text(text) + "（想自己改，可以打开下面的「高级设置」）"
+                    return ("🧠 **电脑会自动这样训练**：" + _md_text(_strip_plan(text))
+                            + "（想自己改，可以打开下面的「高级设置」）")
             except Exception as exc:
                 log.debug(f"training_plan 出错：{exc}")
         return PLAN_DEFAULT
@@ -2045,6 +2045,7 @@ class WebUI:
                                  stages=_stages(self.cfg, "select"), note=NOTE)
             what, busy = "挑选模型", SELECT_BUSY
         plan = ""
+        stop_once = _StopOnce()
         for text, st in stream:
             if st.get("busy"):
                 yield self._o(O, train_bar=st.get("bar", ""), train_log=text, **idle)
@@ -2053,7 +2054,7 @@ class WebUI:
             if not st.get("done"):
                 running = dict(train_btn=self._busy_btn(busy if kind == "train" else TRAIN_BTN),
                                select_btn=self._busy_btn(busy if kind == "select" else SELECT_BTN),
-                               train_stop=self._stop_shown(), train_next=_btn(TRAIN_NEXT, visible=False))
+                               train_stop=stop_once(), train_next=_btn(TRAIN_NEXT, visible=False))
                 yield self._o(O, train_bar=st.get("bar", ""), train_log=text,
                               train_plan=_plan_md(plan) if plan else _upd(), **running)
                 continue
@@ -2062,7 +2063,7 @@ class WebUI:
             if self._missed(attach, st):
                 md = ATTACH_MISSED_MD
             elif ok and kind == "train":
-                md = _train_done_md(info, plan)
+                md = _train_done_md(info, plan, show_plan=False)
                 _info("✅ 训练完成！可以去「③ 生成讲课音频」了")
             elif ok:
                 md = _select_done_md(info)
@@ -2074,10 +2075,18 @@ class WebUI:
                           voice_status=_voice_status_md(self.cfg, v), train_next=_btn(TRAIN_NEXT, visible=ok),
                           train_plan=final_plan or _upd(), **idle)
 
-    def do_train(self, voice: Any, backend: Any, s_ep: Any, g_ep: Any, q_ep: Any, bs: Any) -> Iterator[Tuple[Any, ...]]:
-        opts = {"sovits_epochs": _int(s_ep) or None, "gpt_epochs": _int(g_ep) or None, "epochs": _int(q_ep) or None,
-                "batch_size": _int(bs) or None}
-        yield from self._train_common("train", voice, backend, opts)
+    @staticmethod
+    def _train_opts(s_ep: Any, g_ep: Any, q_ep: Any, bs: Any, dpo: Any = "auto") -> Dict[str, Any]:
+        """高级设置 → 训练选项（0 / 空 = 自动，交给引擎按显卡和素材决定）。"""
+        opts: Dict[str, Any] = {"sovits_epochs": _int(s_ep) or None, "gpt_epochs": _int(g_ep) or None,
+                                "epochs": _int(q_ep) or None, "batch_size": _int(bs) or None}
+        d = str(dpo or "auto").strip().lower()
+        opts["if_dpo"] = True if d == "on" else (False if d == "off" else None)
+        return opts
+
+    def do_train(self, voice: Any, backend: Any, s_ep: Any, g_ep: Any, q_ep: Any, bs: Any,
+                 dpo: Any = "auto") -> Iterator[Tuple[Any, ...]]:
+        yield from self._train_common("train", voice, backend, self._train_opts(s_ep, g_ep, q_ep, bs, dpo))
 
     def do_select(self, voice: Any, backend: Any) -> Iterator[Tuple[Any, ...]]:
         yield from self._train_common("select", voice, backend, {})
@@ -2160,15 +2169,16 @@ class WebUI:
         stream = stream_task("generate", "生成讲课音频", v, _attach_missed if attach else wf.run_narrate, self.cfg, v, source,
                              out=str(out),
                              backend_name=str(backend or self.default_synth), quality=q, speed=factor,
-                             reference=str(ref or "").strip(), redo=redo_list, stages=_stages(self.cfg, "narrate"),
-                             note=NOTE)
+                             reference=str(ref or "").strip(), redo=redo_list,
+                             stages=_stages(self.cfg, "narrate", quality=q), note=NOTE)
+        stop_once = _StopOnce()
         for logs, st in stream:
             if st.get("busy"):
                 yield self._o(O, gen_bar=st.get("bar", ""), gen_log=logs, **idle)
                 return
             if not st.get("done"):
                 yield self._o(O, gen_bar=st.get("bar", ""), gen_log=logs, gen_btn=self._busy_btn(GEN_BUSY),
-                              gen_stop=self._stop_shown(), speed_try=_upd(interactive=False))
+                              gen_stop=stop_once(), speed_try=_upd(interactive=False))
                 continue
             if self._missed(attach, st):
                 yield self._o(O, gen_bar=st.get("bar", ""), gen_log=logs, gen_md=ATTACH_MISSED_MD, **idle)
@@ -2184,13 +2194,13 @@ class WebUI:
             files_out = [f for f in dict.fromkeys(files_out) if f and Path(f).exists()]
             state = {"voice": v, "audio": audio, "report": str(getattr(res, "report_path", "") or ""),
                      "srt": str(srt or ""), "variants": [dict(x) for x in vs]}
-            var: Dict[str, Any] = dict(var_box=_upd(visible=False), var_md="")
+            var: Dict[str, Any] = dict(var_box=_upd(visible=False), var_md="", var_note="")
             if len(vs) >= 2:
                 choices = [(_variant_title(x, i).split("（")[0], str(x.get("name") or i)) for i, x in enumerate(vs)]
                 var = dict(var_box=_upd(visible=True), var_md=_variants_md(vs),
                            var_a=_upd(value=str(vs[0]["path"]), label=_variant_title(vs[0], 0)),
                            var_b=_upd(value=str(vs[1]["path"]), label=_variant_title(vs[1], 1)),
-                           var_choice=_upd(choices=choices, value=_recommended_variant(vs)))
+                           var_choice=_upd(choices=choices, value=_recommended_variant(vs)), var_note="")
             _info("✅ 音频生成好了，点 ▶ 试听")
             yield self._o(O, gen_bar=st.get("bar", ""), out_audio=_upd(value=audio or None, label="结果"),
                           out_files=files_out, gen_log=logs, gen_md=_gen_summary_md(res, redo_list), redo="",
@@ -2204,22 +2214,19 @@ class WebUI:
         chosen = next((x for x in vs if str(x.get("name")) == str(name)), None)
         if not v or chosen is None:
             return _upd(), "请先生成一次（「完美」质量会做两个版本）。"
-        fn = getattr(wf, "choose_variant", None)
-        if callable(fn):
-            fn(self.cfg, v, st.get("report", ""), str(name))
-        elif st.get("audio"):
-            shutil.copyfile(str(chosen["path"]), st["audio"])
-            try:
-                rp = Path(st.get("report", ""))
-                data = json.loads(rp.read_text(encoding="utf-8"))
-                data["final"] = str(name)
-                rp.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
-            except Exception:
-                pass
+        try:  # 已经是最终版本就什么都不做（gradio 4.24：这组控件刚显示出来时也会触发一次 input，实测）
+            current = json.loads(Path(str(st.get("report", ""))).read_text(encoding="utf-8")).get("final")
+        except Exception:
+            current = None
+        if current is not None and str(current) == str(name):
+            return _upd(), _upd()
+        res = wf.choose_variant(self.cfg, v, st.get("report", ""), str(name)) or {}
+        final = str(res.get("audio") or st.get("audio") or "")
         i = vs.index(chosen)
         title = _variant_title(chosen, i)
+        # 播放器放版本自己的文件：最终文件名没变，浏览器可能还在用旧的缓存
         return (_upd(value=str(chosen["path"]), label=f"结果（{title}）"),
-                f"✅ 已改用{_md_text(title.split('（')[0])}：`{str(st.get('audio', '')).replace('`', '')}` 现在就是这个版本。")
+                f"✅ 已改用{_md_text(title.split('（')[0])}：`{final.replace('`', '')}` 现在就是这个版本。")
 
     def on_gen_pick(self, state: Any, table: Any, row: int) -> Dict[str, Any]:
         """点逐句结果表的一行：单独播放这一句（按 # 列找，排序后也不会播错）。"""
@@ -2274,14 +2281,15 @@ class WebUI:
         stream = stream_task("speed", "试听语速", v, _attach_missed if attach else wf.run_narrate, self.cfg, v, sentence,
                              out=str(out),
                              backend_name=str(backend or self.default_synth), quality="fast", speed=factor,
-                             subtitles=False, stages=_stages(self.cfg, "narrate"))
+                             subtitles=False, variants=False, stages=_stages(self.cfg, "narrate", quality="fast"))
+        stop_once = _StopOnce()
         for logs, st in stream:
             if st.get("busy"):
                 yield self._o(O, gen_bar=st.get("bar", ""), gen_log=logs, **idle)
                 return
             if not st.get("done"):
                 yield self._o(O, gen_bar=st.get("bar", ""), gen_log=logs, speed_try=self._busy_btn(SPEED_BUSY),
-                              gen_btn=_upd(interactive=False), gen_stop=self._stop_shown())
+                              gen_btn=_upd(interactive=False), gen_stop=stop_once())
                 continue
             if "value" in st and not st.get("error") and st.get("value") is not None:
                 res = st["value"]
@@ -2357,22 +2365,26 @@ class WebUI:
             return
         attach = self._attaching("verify", v)
         gen = _paths_of(generated)
+        labels: Dict[str, str] = {}
         if not gen and not attach:
             st = state if isinstance(state, dict) else {}
+            report: Dict[str, Any] = {}
             if st.get("voice") == v and st.get("report") and Path(st["report"]).exists():
                 try:
-                    gen = _report_audio_files(json.loads(Path(st["report"]).read_text(encoding="utf-8")))
+                    report = json.loads(Path(st["report"]).read_text(encoding="utf-8"))
                 except Exception:
-                    gen = []
+                    report = {}
+            gen = _report_audio_files(report, project) if report else []
             if not gen:
-                gen = _report_audio_files(_latest_report(project))
+                report = _latest_report(project)
+                gen = _report_audio_files(report, project)
+            labels = _report_labels(report, project)
         if not gen and not attach:
             yield self._o(O, vf_bar=self._notice("还没有生成过音频。请先在「③ 生成讲课音频」里生成一次，或在上面上传要鉴别的音频。"),
                           **idle)
             return
         stream = stream_task("verify", "机器鉴别", v, _attach_missed if attach else _verify_job, self.cfg, v,
-                             _paths_of(originals), gen,
-                             stages=[(0.0, "分析你的真实录音"), (0.3, "给每个音频打分")], note=NOTE)
+                             _paths_of(originals), gen, stages=_stages(self.cfg, "verify"), note=NOTE)
         for text, st in stream:
             if st.get("busy"):
                 yield self._o(O, vf_bar=st.get("bar", ""), vf_log=text, **idle)
@@ -2383,7 +2395,7 @@ class WebUI:
             if self._missed(attach, st):
                 yield self._o(O, vf_bar=st.get("bar", ""), vf_log=text, vf_md=ATTACH_MISSED_MD, **idle)
             elif "value" in st and not st.get("error"):
-                table, md = _verify_rows(st.get("value") or {})
+                table, md = _verify_rows(st.get("value") or {}, labels)
                 yield self._o(O, vf_bar=st.get("bar", ""), vf_log=text, vf_md=md, vf_table=table, **idle)
             else:
                 yield self._o(O, vf_bar=st.get("bar", ""), vf_log=text, vf_md=self._final_md(st, "鉴别", v), **idle)
@@ -2422,8 +2434,7 @@ class WebUI:
         count = max(2, min(MAX_BLIND // 2, _int(n, 10) or 10))
         stream = stream_task("blind", "生成盲听测试", v, _attach_missed if attach else _blind_job, self.cfg, v, count,
                              str(quality or "balanced"),
-                             stages=[(0.0, "挑选你的真实录音"), (0.1, "用你的模型读同样的句子"), (0.9, "调成一样的音量、打乱顺序")],
-                             note=NOTE)
+                             stages=_stages(self.cfg, "blind"), note=NOTE)
         for text, st in stream:
             if st.get("busy"):
                 yield self._o(O, bt_bar=st.get("bar", ""), vf_log=text, **idle)
@@ -2482,13 +2493,14 @@ class WebUI:
         attach = self._attaching("download", "")
         stream = stream_task("download", "下载模型", "", _attach_missed if attach else _download_job, self.cfg,
                              stages=_stages(self.cfg, "download"), note=NOTE)
+        stop_once = _StopOnce()
         for text, st in stream:
             if st.get("busy"):
                 yield self._o(O, doc_bar=st.get("bar", ""), doc_log=text, **idle)
                 return
             if not st.get("done"):
                 yield self._o(O, doc_bar=st.get("bar", ""), doc_log=text, dl_btn=self._busy_btn(DL_BUSY),
-                              dl_stop=self._stop_shown())
+                              dl_stop=stop_once())
                 continue
             if self._missed(attach, st):
                 md = ATTACH_MISSED_MD
@@ -2509,8 +2521,7 @@ class WebUI:
         c = self.c
         css = PROGRESS_CSS + (getattr(_gpu, "GPU_CSS", "") if _gpu is not None else "") + APP_CSS
         blocks_kw: Dict[str, Any] = dict(title=APP_TITLE, analytics_enabled=False, css=css, delete_cache=(86400, 86400))
-        if PROGRESS_JS:
-            blocks_kw["js"] = PROGRESS_JS
+        blocks_kw["js"] = page_js()
         heavy = dict(show_progress="hidden", concurrency_limit=None)
         quick = dict(show_progress="hidden")
 
@@ -2611,7 +2622,7 @@ class WebUI:
                     c["review_md"] = gr.Markdown(elem_classes="vt-md")
 
                 # ---------------------------------------------------- ② 训练
-                with gr.Tab("② 训练模型", id="train"):
+                with gr.Tab("② 训练模型", id="train") as train_tab:
                     gr.Markdown("直接点「开始训练」就行，电脑会自动完成（素材越多越久，通常 30~90 分钟）。"
                                 "训练时可以去做别的事，但不要关闭黑色窗口。训练结束后会自动挑出最像你的模型，"
                                 "并把语速调得和你本人一样。")
@@ -2633,6 +2644,9 @@ class WebUI:
                             c["q_ep"] = gr.Number(label="Qwen3 训练轮数（0 = 默认）", value=0, precision=0, minimum=0)
                             c["bs"] = gr.Number(label="每批数量 batch（0 = 自动；显存不够报错时改成 2）", value=0,
                                                 precision=0, minimum=0)
+                        c["dpo"] = gr.Radio(DPO_CHOICES, value="auto", label="DPO（GPT-SoVITS 的实验功能）",
+                                            info="自动：显存很大（≥22 GB）、素材干净时才开。开了语气训练会慢 2～4 倍，"
+                                                 "显存不够时更容易出错。")
                     log_box("train_log", 16)
 
                 # ---------------------------------------------------- ③ 生成
@@ -2772,7 +2786,8 @@ class WebUI:
                 self.library, None, outs(self.LIB_OUT), **quick)
             c["voice"].change(_safe("读取声音", len(voice_outs), 0)(self.on_voice_change), [c["voice"], c["only_sus"]],
                               voice_outs, **quick)
-            c["voice"].change(self.train_plan_preview, [c["voice"], c["t_backend"]], c["train_plan"], **quick)
+            plan_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["bs"], c["dpo"]]
+            c["voice"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
 
             def lib_pick(table: Any, evt: gr.SelectData) -> Tuple[Any, Any]:
                 try:
@@ -2811,13 +2826,18 @@ class WebUI:
                 self.after_task, None, after_outs, **quick)
 
             # ②
-            train_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["q_ep"], c["bs"]]
+            train_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["q_ep"], c["bs"], c["dpo"]]
             c["train_btn"].click(self.do_train, train_in, outs(self.TRAIN_OUT), **heavy).then(
                 self.after_task, None, after_outs, **quick)
             c["select_btn"].click(self.do_select, [c["voice"], c["t_backend"]], outs(self.TRAIN_OUT), **heavy).then(
                 self.after_task, None, after_outs, **quick)
             c["train_next"].click(lambda: gr.Tabs(selected="gen"), None, tabs, **quick)
-            c["t_backend"].change(self.train_plan_preview, [c["voice"], c["t_backend"]], c["train_plan"], **quick)
+            # 打开「② 训练模型」页、换引擎、改高级设置时，重新预览这次会怎么训练（只读文件和 nvidia-smi，很快）
+            train_tab.select(self.train_plan_preview, plan_in, c["train_plan"], **quick)
+            c["t_backend"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
+            c["dpo"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
+            for name in ("s_ep", "g_ep", "bs"):
+                c[name].input(self.train_plan_preview, plan_in, c["train_plan"], **quick)
 
             # ③
             c["script_file"].upload(self.on_script_upload, [c["script_file"], c["out_name"]],

@@ -233,15 +233,18 @@ def test_download_models_check_exit_codes(tmp_path, monkeypatch, capsys):
     out = capsys.readouterr().out
     assert "缺少" in out and " 1. " in out
     assert not (tmp_path / "ws" / "__download__").exists()  # 临时项目已清理
-    # 补齐所有模型后：退出码 0
+    # 只下了一半（权重只有 1 字节、文件夹里只有 config.json）：仍然算缺少
     for rel in (g.BERT_DIR, g.HUBERT_DIR):
         (root / rel).mkdir(parents=True, exist_ok=True)
         (root / rel / "config.json").write_text("{}", encoding="utf-8")
-    for ver in ("v2ProPlus",):
-        for rel in (g.PRETRAINED_SOVITS[ver], g.PRETRAINED_SOVITS[ver].replace("s2G", "s2D"), g.PRETRAINED_GPT[ver],
-                    g.SV_PATH):
-            (root / rel).parent.mkdir(parents=True, exist_ok=True)
-            (root / rel).write_bytes(b"x")
+    with pytest.raises(SystemExit) as ei:
+        main(["-c", str(cfg), "download-models", "--check"])
+    assert ei.value.code == 3
+    capsys.readouterr()
+    # 补齐所有模型后：退出码 0
+    from fake_gptsovits import build_fake_root
+
+    build_fake_root(root)
     main(["-c", str(cfg), "download-models", "--check"])
     assert "齐全" in capsys.readouterr().out
 

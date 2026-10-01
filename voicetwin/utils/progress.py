@@ -558,7 +558,9 @@ def render_progress_html(snap: Optional[Dict[str, Any]], note: str = "") -> str:
             meta.append(str(snap.get("eta_text")))
         parts.append(f'<div class="vt-meta">{_e(" · ".join(meta))}</div>')
         total_text = str(snap.get("eta_total_text") or ("全部还要多久：" + ESTIMATING))
-        if snap.get("eta_total") is None and snap.get("hint"):
+        if stall:  # 好一会儿没有新进度时，按过去的速度算出来的时间不可信：不显示假数字
+            total_text = "全部还要多久：暂时算不出来（这一步一直没有新进度）"
+        elif snap.get("eta_total") is None and snap.get("hint"):
             total_text += f"（{snap.get('hint')}）"
         parts.append(f'<div class="vt-eta">⏱ {_e(total_text)}</div>')
         if snap.get("msg"):

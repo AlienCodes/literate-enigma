@@ -126,6 +126,8 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--gpt-epochs", type=int, help="GPT-SoVITS：GPT 训练轮数（默认自动）")
     p.add_argument("--batch-size", type=int, help="批大小（默认按显存自动）")
     p.add_argument("--epochs", type=int, help="Qwen3-TTS：微调轮数")
+    p.add_argument("--dpo", choices=["auto", "on", "off"], default="auto",
+                   help="GPT-SoVITS 的 DPO（实验功能）：auto = 显存 ≥22GB 且素材干净时才开（默认）")
     p.add_argument("--no-select", action="store_true", help="训练后不自动挑选模型")
 
     p = sub.add_parser("select", help="用验证集自动挑选最像你的模型，并校准语速")
@@ -261,8 +263,11 @@ class _ConsoleProgress:
                 pass
 
 
-def _cli_progress(kind: str, cfg: Any, title: str, backend: Optional[str] = None, select: bool = True) -> Any:
-    """给命令行的长任务做一个进度回调：返回的对象可以当 progress(frac, msg) 用，并有 finish(ok)。"""
+def _cli_progress(kind: str, cfg: Any, title: str, backend: Optional[str] = None, select: bool = True,
+                  **stage_kw: Any) -> Any:
+    """给命令行的长任务做一个进度回调：返回的对象可以当 progress(frac, msg) 用，并有 finish(ok)。
+
+    stage_kw 传给 wf.task_stages：生成时 quality=（「完美」档多一步），素材准备时 overrides=（会不会查错字）。"""
     from voicetwin import workflows as wf
     from voicetwin.utils.log import get_logger
 
@@ -275,7 +280,12 @@ def _cli_progress(kind: str, cfg: Any, title: str, backend: Optional[str] = None
     task_stages = getattr(wf, "task_stages", None)
     if task_stages is not None and kind:
         try:
-            stages = task_stages(kind, cfg, backend, select=select) if kind == "train" else task_stages(kind, cfg, backend)
+            stages = task_stages(kind, cfg, backend, select=select, **stage_kw)
+        except TypeError:  # 老版本的 task_stages 不认识这些参数
+            try:
+                stages = task_stages(kind, cfg, backend)
+            except Exception:
+                stages = None
         except Exception:
             stages = None
     try:
@@ -474,7 +484,7 @@ def main(argv: Optional[List[str]] = None) -> None:
                 overrides["separate_vocals"] = True
             if args.segmentation:
                 overrides["segmentation"] = args.segmentation
-            progress = _cli_progress("prepare", cfg, "准备素材")
+            progress = _cli_progress("prepare", cfg, "准备素材", overrides=overrides)
             summary = wf.run_prepare(cfg, args.voice, args.input, progress=progress, overrides=overrides)
             _finish(progress)
             _print_summary(summary)
@@ -486,7 +496,7 @@ def main(argv: Optional[List[str]] = None) -> None:
             wf.run_analyze(cfg, args.voice)
         elif args.command == "train":
             opts = {"sovits_epochs": args.sovits_epochs, "gpt_epochs": args.gpt_epochs, "batch_size": args.batch_size,
-                    "epochs": args.epochs}
+                    "epochs": args.epochs, "if_dpo": {"on": True, "off": False}.get(str(args.dpo or "auto"))}
             progress = _cli_progress("train", cfg, "训练模型", args.backend, select=not args.no_select)
             info = wf.run_train(cfg, args.voice, args.backend, progress=progress, select=not args.no_select, **opts)
             _finish(progress)
@@ -507,7 +517,7 @@ def main(argv: Optional[List[str]] = None) -> None:
             if args.command == "narrate" and not Path(source).exists():
                 raise FileNotFoundError(f"找不到讲稿文件：{source}")
             redo = _parse_redo(getattr(args, "redo", ""))
-            progress = _cli_progress("narrate", cfg, "生成音频", args.backend)
+            progress = _cli_progress("narrate", cfg, "生成音频", args.backend, quality=args.quality)
             res = wf.run_narrate(cfg, args.voice, source, out=args.output, backend_name=args.backend,
                                  quality=args.quality, candidates=args.candidates, speed=_speed_arg(args),
                                  reference=args.ref,
@@ -584,6 +594,9 @@ def _variant_score_text(v: Dict[str, Any]) -> str:
 
 def _print_narration(res: Any, is_narrate: bool) -> None:
     print(f"\n✅ 音频：{res.audio_path}（{res.duration:.1f} 秒）")
+    overall = getattr(res, "overall_pct", None)
+    if isinstance(overall, (int, float)):
+        print(f"   整篇像你本人 {float(overall):.1f}%（100% = 和你自己的真实录音一样像；声纹模型自动打分，最终以耳朵为准）")
     variants = [v for v in (getattr(res, "variants", None) or []) if isinstance(v, dict)]
     if variants:
         print(f"   共 {len(variants)} 个版本（{res.audio_path} 是现在用的那个）：")

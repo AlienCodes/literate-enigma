@@ -65,11 +65,15 @@ backends:
     is_half: true             # 显卡不支持半精度（如 10 系以前）改成 false
     startup_timeout: 600
     train:
-      sovits_epochs: auto     # auto: 素材 <30 分钟用 8 轮，更多用 12 轮
+      # 下面都写 auto 就行：电脑按显卡（显存）和素材多少自动决定，训练开始时会打印一行「训练计划：……」说明为什么。
+      # 想自己指定时填数字（网页「② 训练模型」→「高级设置」、命令行 --sovits-epochs 等也可以临时改）。
+      sovits_epochs: auto     # auto: 素材 <30 分钟用 8 轮，更多用 12 轮（练太多反而会变差，训练完会自动挑最像的那一轮）
       gpt_epochs: auto        # auto: 15 轮
-      batch_size: auto        # auto: 按显存自动计算
-      sovits_save_every: 4
-      gpt_save_every: 5
+      batch_size: auto        # auto: 按显存自动计算（显存一半左右，最多 12；显存不够时会自动减半再试一次）
+      sovits_save_every: auto # auto: 每个模型存 5 个左右，训练完从中自动挑最像你的（老版本的 4 / 5 也当作 auto）
+      gpt_save_every: auto
+      if_dpo: auto            # DPO（GPT-SoVITS 的实验功能）：auto = 显存 ≥22GB、素材干净、错字很少时才开；
+                              # true 强制开（语气训练慢 2～4 倍，显存不够会出错），false 强制关
       text_low_lr_rate: 0.4
       gpu: "0"
     infer:

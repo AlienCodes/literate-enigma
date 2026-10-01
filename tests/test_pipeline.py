@@ -384,7 +384,7 @@ def test_perfect_adaptive_hard_cap_and_flag(prepared, tmp_path, monkeypatch):
 def test_quality_tiers_and_labels(prepared):
     cfg, project, _ = prepared
     assert [v for _, v in eng.quality_choices()] == ["fast", "balanced", "best", "max", "perfect"]
-    assert eng.QUALITY_LABELS["max"].startswith("极致（") and eng.QUALITY_LABELS["perfect"].startswith("完美（")
+    assert eng.QUALITY_LABELS["max"].startswith("极致（") and eng.QUALITY_LABELS["perfect"].startswith("完美：每句最多试 20 次")
     assert set(eng.QUALITY_HELP) == set(eng.QUALITY_ORDER)
     assert eng.resolve_quality("完美") == "perfect" and eng.resolve_quality(eng.QUALITY_LABELS["max"]) == "max"
     assert eng.resolve_quality(["best"]) == "best" and eng.resolve_quality("不知道") == "balanced"

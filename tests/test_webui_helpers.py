@@ -197,14 +197,15 @@ def test_voice_status_card(prepared, tmp_path):
     assert "准备素材" in A._gen_warn_md(make_cfg(tmp_path / "x"), "新的", "gptsovits")
 
 
-def test_voice_library_fallback(prepared, tmp_path):
+def test_voice_library_entries(prepared, tmp_path):
     cfg, name = _copy_voice(prepared, tmp_path)
     p = wf.Project(cfg, name)
     p.update_models("gptsovits", {"selected": {"id": "s8-g15"}, "selection": {"best": "s8-g15", "results": []}})
     entries = A._library_entries(cfg)
     assert len(entries) == 1
     e = entries[0]
-    assert e["name"] == name and e["status"] == "✅ 已训练，可以生成" and e["best_model"] == "s8-g15"
+    # 测试配置的默认引擎是 dummy，所以会注明「GPT-SoVITS」；老师的电脑上默认就是 GPT-SoVITS，只显示编号
+    assert e["name"] == name and e["status"] == "✅ 已训练，可以生成" and e["best_model"] == "s8-g15（GPT-SoVITS）"
     assert e["main_reference"] and Path(e["main_reference"]).exists()
     rows = A._library_rows(entries)
     assert rows[0][0] == 1 and rows[0][1] == name and "分钟" in rows[0][2] and "条" in rows[0][2]
@@ -321,7 +322,7 @@ def test_quality_choices_and_recommendation():
     values = [v for _, v in A.QUALITY_CHOICES]
     assert values == ["fast", "balanced", "best", "max", "perfect"]
     labels = dict((v, k) for k, v in A.QUALITY_CHOICES)
-    assert labels["max"] == "极致（最慢，最稳最像，建议显存 ≥ 8GB）"
+    assert labels["max"] == "极致（很慢，更稳更像，建议显存 ≥ 8GB）"  # 不写「最慢」：「完美」比它更慢
     assert labels["perfect"].startswith("完美：每句最多试 20 次")
     mid = {"ok": True, "level": "ok", "total_gb": 11.94, "nominal_gb": 12.0}
     high = {"ok": True, "level": "ok", "total_gb": 23.6}
@@ -399,12 +400,12 @@ def test_quick_check_on_page_load(tmp_path):
     root.mkdir()
     (root / "api_v2.py").write_text("", encoding="utf-8")
     cfg = make_cfg(tmp_path / "ws", backend="gptsovits", backends={"gptsovits": {"root": str(root)}})
-    problems = A._quick_problems(cfg)
-    assert len(problems) == 1 and "下载缺少的模型" in problems[0]
+    problems = [p for p in A._quick_problems(cfg) if "ffmpeg" not in p]
+    assert len(problems) == 1 and "下载缺少的模型" in problems[0] and "缺少 6 个" in problems[0]
     assert "还差一步" in A._quick_html(problems) and "vt-note-error" in A._quick_html(problems)
-    assert not (tmp_path / "ws" / "__quick__").exists()
+    assert not (tmp_path / "ws" / "__quick__").exists() and not (tmp_path / "ws" / "__quick_check__").exists()
     cfg2 = make_cfg(tmp_path / "ws2", backend="gptsovits", backends={"gptsovits": {"root": str(tmp_path / "没有")}})
-    assert "找不到 GPT-SoVITS" in A._quick_problems(cfg2)[0]
+    assert any("找不到 GPT-SoVITS" in p for p in A._quick_problems(cfg2))
     assert A._quick_problems(make_cfg(tmp_path / "ws3")) == []  # 测试引擎：不检查
     assert A._quick_html([]) == ""
 
@@ -584,22 +585,6 @@ def test_safe_decorator_returns_friendly_text():
     assert "没有完成" in A._safe("评估", 1)(boom)()
 
 
-def test_call_with_progress_only_when_accepted():
-    seen = {}
-
-    def old_style(cfg, voice, n=10, quality="x"):
-        seen["old"] = (n, quality)
-        return {"dir": ""}
-
-    def new_style(cfg, voice, n=10, quality="x", progress=None):
-        seen["new"] = progress
-        return {}
-
-    A._call_with_progress(old_style, 1, 2, n=3, quality="fast", progress=print)
-    A._call_with_progress(new_style, 1, 2, n=3, quality="fast", progress=print)
-    assert seen == {"old": (3, "fast"), "new": print}
-
-
 def test_proofcheck_through_task(prepared, tmp_path, monkeypatch):
     cfg, name = _copy_voice(prepared, tmp_path)
 
@@ -661,7 +646,7 @@ def test_blind_test_through_task(prepared, tmp_path, monkeypatch):
     assert "答了 3 段，答对 2 段" in md
 
 
-def test_verify_through_task_with_fallback(prepared, tmp_path):
+def test_verify_through_task(prepared, tmp_path):
     cfg, name = _copy_voice(prepared, tmp_path)
     project = wf.Project(cfg, name)
     rec = project.load_manifest()[0]
@@ -674,8 +659,9 @@ def test_verify_through_task_with_fallback(prepared, tmp_path):
     assert "鉴别完成：共 1 个文件" in last["vf_md"], last["vf_md"]
     row = last["vf_table"][0]
     assert row[0] == 1 and row[1] == "生成的.wav" and row[3].endswith("%")
-    # 没生成过也没上传：提示先生成
+    # 没生成过也没上传：提示先生成（共享的 prepared 可能已经被别的测试生成过音频，副本里删掉）
     cfg2, name2 = _copy_voice(prepared, tmp_path / "b")
+    shutil.rmtree(wf.Project(cfg2, name2).outputs_dir, ignore_errors=True)
     out = list(A.WebUI(cfg2).do_verify(name2, None, None, {}))
     assert "还没有生成过音频" in out[0][0]
 
@@ -690,20 +676,32 @@ def test_download_through_task(tmp_path, monkeypatch):
     assert "已下载 2 个文件" in last["doc_md"] and last["dl_btn"]["interactive"] is True
 
 
-def test_choose_variant_fallback_copies(tmp_path, prepared):
+def test_choose_variant_copies_through_workflow(tmp_path, prepared):
+    """「最终使用哪个版本」：网页调用 wf.choose_variant，把选中的版本复制成最终文件，报告里记下 final。"""
     cfg, name = _copy_voice(prepared, tmp_path)
     a, b, final = tmp_path / "x_未去杂音.wav", tmp_path / "x_去杂音.wav", tmp_path / "x.wav"
     a.write_bytes(b"A")
     b.write_bytes(b"B")
     final.write_bytes(b"A")
+    variants = [{"name": "未去杂音", "label": "版本 A：未去杂音", "path": str(a), "score": 0.91, "pct": 96.2,
+                 "recommended": True, "final": True},
+                {"name": "去杂音", "label": "版本 B：去杂音", "path": str(b), "score": 0.90, "pct": 95.4,
+                 "recommended": False, "final": False}]
     report = tmp_path / "x.report.json"
-    report.write_text("{}", encoding="utf-8")
-    state = {"voice": name, "audio": str(final), "report": str(report),
-             "variants": [{"name": "未去杂音", "path": str(a), "score": 0.91, "recommended": True},
-                          {"name": "去杂音", "path": str(b), "score": 0.90, "recommended": False}]}
+    report.write_text(json.dumps({"audio": str(final), "variants": variants, "final": "未去杂音"}, ensure_ascii=False),
+                      encoding="utf-8")
+    state = {"voice": name, "audio": str(final), "report": str(report), "variants": variants}
     audio, note = A.WebUI(cfg).on_choose_variant(name, state, "去杂音")
-    assert final.read_bytes() == b"B" and audio["value"] == str(b) and "版本 B" in note
-    assert json.loads(report.read_text(encoding="utf-8"))["final"] == "去杂音"
+    assert final.read_bytes() == b"B" and audio["value"] == str(b) and "版本 B" in note and str(final) in note
+    data = json.loads(report.read_text(encoding="utf-8"))
+    assert data["final"] == "去杂音" and [v["final"] for v in data["variants"]] == [False, True]
+    # 已经是最终版本：什么都不改、不提示（gradio 4.24 显示这组控件时会自动触发一次）
+    final.write_bytes(b"B")
+    audio_same, note_same = A.WebUI(cfg).on_choose_variant(name, state, "去杂音")
+    assert _is_update(audio_same) and "value" not in audio_same and _is_update(note_same)
+    # 没生成过（state 是空的）：只给一句提示，不报错
+    audio2, note2 = A.WebUI(cfg).on_choose_variant(name, {}, "去杂音")
+    assert _is_update(audio2) and "请先生成一次" in note2
 
 
 def test_one_task_at_a_time_and_reattach(prepared, tmp_path, monkeypatch):

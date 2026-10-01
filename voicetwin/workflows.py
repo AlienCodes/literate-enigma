@@ -270,7 +270,13 @@ def voice_library(cfg: Config) -> List[Dict[str, Any]]:
         for name in [default_backend] + [b for b in trained_backends if b != default_backend]:
             sel = (models.get(name) or {}).get("selected") if isinstance(models.get(name), dict) else None
             if sel:
-                best = str(sel.get("id") or "") + ("" if name == default_backend else f"（{name}）")
+                best = str(sel.get("id") or "")
+                if name != default_backend:  # 不是默认引擎训练的：注明是哪个引擎（用中文界面上的名字）
+                    try:
+                        label = str(getattr(_backend_class(name), "display_name", name))
+                    except Exception:
+                        label = name
+                    best += f"（{label}）"
                 break
         clips = summary.get("clips_kept")
         minutes = summary.get("minutes_kept")
@@ -1048,24 +1054,65 @@ def doctor_table(rows: Sequence[Dict[str, Any]]) -> Tuple[List[str], List[List[A
 
 
 def quick_check(cfg: Config) -> List[str]:
-    """打开网页时的快速自检（只看文件，不启动子进程、不导入 torch，一般不到 1 秒）。返回中文问题列表。"""
+    """打开网页时的快速自检（只看文件，不启动子进程、不导入 torch，一般不到 1 秒）。
+
+    返回给老师看的中文问题列表：每个问题一行，直接说点哪里（缺几个模型文件也只占一行）。"""
     problems: List[str] = []
     try:
         from voicetwin.utils.ffmpeg import find_ffmpeg
 
         find_ffmpeg()
     except Exception:
-        problems.append("没有找到 ffmpeg：请重新双击 install_windows.bat 安装一次")
+        problems.append("没有找到 ffmpeg：请重新双击 install_windows.bat 安装一次（你的数据不会丢）")
     if str(cfg.get("backend") or "gptsovits").lower() == "gptsovits":
         probe = None
         try:
             from voicetwin.backends.base import get_backend
 
             probe = Project(cfg, "__quick_check__")
-            problems += list(get_backend("gptsovits", cfg, probe).check())
+            b = get_backend("gptsovits", cfg, probe)
+            root = getattr(b, "root", None)
+            if getattr(b, "external_url", ""):
+                pass
+            elif not root or not Path(root).exists():
+                problems.append("找不到 GPT-SoVITS 整合包。请重新双击 install_windows.bat，按提示填写整合包的位置。")
+            elif not (Path(root) / "api_v2.py").exists():
+                problems.append(f"{root} 不是完整的 GPT-SoVITS 整合包（缺少 api_v2.py）。"
+                                "请重新双击 install_windows.bat，填写整合包解压后的那个文件夹。")
+            else:
+                missing = list(b.missing_pretrained())
+                if missing:
+                    names = "、".join(Path(m).name for m in missing[:3]) + ("等" if len(missing) > 3 else "")
+                    problems.append(f"缺少 {len(missing)} 个 GPT-SoVITS 模型文件（{names}）。"
+                                    "请打开「🩺 环境检查」页，点「⬇️ 下载缺少的模型」。")
         except Exception as exc:
-            problems.append(f"检查 GPT-SoVITS 时出错：{exc}")
+            problems.append(f"检查 GPT-SoVITS 时出错：{_explain_title(exc)}")
         finally:
             if probe is not None:
                 shutil.rmtree(probe.root, ignore_errors=True)
     return problems
+
+
+def training_plan(cfg: Config, voice: str, backend_name: Optional[str] = None, **opts: Any) -> str:
+    """训练前预览：电脑会怎么自动选训练设置（一行中文，例如「显存 12 GB → 每批 6 条；素材 85 分钟 → …」）。
+
+    只读文件和 nvidia-smi，不训练、不启动 GPT-SoVITS 的 Python（读不到显卡时就按「没有显卡」说）。
+    声音还没准备素材、或者引擎不需要训练时返回 ''。opts 和 run_train 的一样（None / "auto" = 自动）。"""
+    from voicetwin.backends.base import get_backend
+
+    project = Project(cfg, voice)
+    if not project.exists:
+        return ""
+    backend = get_backend(backend_name or cfg.get("backend"), cfg, project)
+    if not backend.supports_training:
+        return ""
+    fn = getattr(backend, "training_plan", None)
+    if fn is None:
+        return ""
+    try:
+        plan = fn(quick=True, **opts)
+    except TypeError:
+        plan = fn(**opts)
+    if isinstance(plan, str):
+        return plan.strip()
+    return str((plan or {}).get("summary") or "").strip()

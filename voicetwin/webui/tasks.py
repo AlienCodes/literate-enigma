@@ -30,6 +30,8 @@ from voicetwin.utils.progress import (
 log = get_logger("tasks")
 
 POLL_SECONDS = 0.6
+#: 第二次产出至少在第一次之后 FIRST_GAP_FACTOR × POLL_SECONDS 秒（见 _follow 里的说明）
+FIRST_GAP_FACTOR = 2.0
 MAX_LINES = 2000
 #: 网页上一次最多显示多少行运行记录
 SHOW_LINES = 400
@@ -42,23 +44,35 @@ KIND_LABELS = {
     "select": "重新挑选最佳模型",
     "generate": "生成讲课音频",
     "download": "下载模型",
+    "proofcheck": "查找可能的错字",
+    "speed": "试听语速",
+    "verify": "机器鉴别",
+    "blind": "生成盲听测试",
 }
 #: 每种任务的进度在哪个页面、点哪个按钮能看到（用在提示文字里）
 KIND_TABS = {
     "prepare": "① 准备素材",
+    "proofcheck": "① 准备素材",
     "train": "② 训练模型",
     "select": "② 训练模型",
     "generate": "③ 生成讲课音频",
     "narrate": "③ 生成讲课音频",
+    "speed": "③ 生成讲课音频",
+    "verify": "⑤ 鉴别",
+    "blind": "⑤ 鉴别",
     "download": "🩺 环境检查",
 }
 KIND_BUTTONS = {
     "prepare": "开始准备素材",
+    "proofcheck": "🔍 自动查找可能的错字",
     "train": "开始训练",
     "select": "重新挑选最佳模型",
     "generate": "生成",
     "narrate": "生成",
-    "download": "下载缺少的模型",
+    "speed": "▶ 试听语速",
+    "verify": "开始鉴别",
+    "blind": "生成盲听测试",
+    "download": "⬇️ 下载缺少的模型",
 }
 
 ATTACHED_NOTE = "（已接上正在进行的任务，不会重新开始；新选的内容要等它完成后再点一次）"
@@ -263,6 +277,7 @@ def _follow(task: _Task, note: str, attached: bool) -> Generator[Tuple[str, Dict
     if attached:
         view["attached"] = True
     prefix = (ATTACHED_NOTE + "\n") if attached else ""
+    first_at: Optional[float] = None
     while True:
         alive = task.alive()
         snap = task.tracker.snapshot()
@@ -281,10 +296,18 @@ def _follow(task: _Task, note: str, attached: bool) -> Generator[Tuple[str, Dict
             yield text, dict(view)
             return
         yield text, dict(view)  # 每次一个新的 dict，前面产出的不会被后面的改掉
+        if first_at is None:
+            first_at = time.time()
         if task.thread is not None:
             task.thread.join(POLL_SECONDS)  # 任务一结束马上返回，不用等满
         else:  # pragma: no cover - 不会发生
             time.sleep(POLL_SECONDS)
+        # 第一次和第二次产出至少隔 FIRST_GAP_FACTOR × POLL_SECONDS（默认 1.2 秒）。浏览器里实测（gradio 4.24）：
+        # 任务很快就做完时，头两次产出前后脚到达网页，偶尔第二次的「差异」会被原样当成新的值（Markdown 收到一个列表，
+        # 报 x.trim is not a function），之后整个页面不再刷新、也换不了页。隔开一点，就不会挤在一起。
+        wait = FIRST_GAP_FACTOR * POLL_SECONDS - (time.time() - first_at)
+        if wait > 0:
+            time.sleep(wait)
 
 
 def current_task() -> Optional[Dict[str, Any]]:
