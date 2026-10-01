@@ -12,3 +12,4 @@
 | 06 | The Myth of the Unsinkable / 永不沉没的神话 | 271 | 53 | 96 / 96 / 100 |
 | 07 | The Mould That Changed the World / 改变人类命运的霉菌 | 271 | 52 | 97 / 95.5 / 99 |
 | 08 | Saving the Sky / 拯救天空 | 271 | 53 | 97 / 97 / 99 |
+| 09 | Apollo 13: The Successful Failure / 阿波罗13号：成功的失败 | 271 | 51 | 95.5 / 95 / 98 |
