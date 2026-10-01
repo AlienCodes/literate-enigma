@@ -7,7 +7,7 @@
 - **红色 = 可能有错**：查错字时标出来的位置；那个地方被改过以后就不再标红（改过的地方变蓝）。
 - **修改建议**：查错字时第二个识别引擎给的建议（``suspect.alt``），拆成一处一处的改动；
   点一下就把还没改的那几处改好（只改建议的地方，老师自己改过的地方不动）。
-- **删除**：不是真的删文件，只是这一条不再用来训练、表格里不显示；随时可以恢复。
+- **删除**：不是真的删文件，这一行在表格里变成灰色、不再用来训练；「⋯ 选项」里点「↩️ 撤销删除」就回来。
 
 位置说明：``suspect`` 里的 spans / alt 是针对查错字那一刻的文字（``suspect["text"]``，没有这个键时 = 现在保存的文字）。
 文字改过以后，用逐字对比把这些位置换算到新文字上。
@@ -171,6 +171,23 @@ def map_range(blocks: Sequence[Tuple[int, int, int, int]], s: int, e: int) -> Op
     return None
 
 
+def touched(ops: Sequence[Tuple[str, int, int, int, int]], s: int, e: int) -> bool:
+    """旧文字的 [s, e) 有没有被改到。挨着边的插入也算改到（查错字时"这里漏了字"标的是缺字位置两边的字）；
+    s == e（建议在这里插入）时，这个位置上或者两边有改动都算。"""
+    for tag, i1, i2, _j1, _j2 in ops:
+        if tag == "equal":
+            continue
+        if i1 == i2:
+            if s <= i1 <= e:
+                return True
+        elif s == e:
+            if i1 <= s <= i2:
+                return True
+        elif i1 < e and s < i2:
+            return True
+    return False
+
+
 def _merge(ranges: Iterable[Sequence[int]], n: int) -> List[Range]:
     out: List[List[int]] = []
     for s, e in sorted((max(0, int(a)), min(n, int(b))) for a, b in ranges):
@@ -194,11 +211,31 @@ def original_text(rec: Dict[str, Any]) -> str:
     return str(rec.get("orig_text") or rec.get("text", "") or "")
 
 
+def _word_char(ch: str) -> bool:
+    return ch.isascii() and ch.isalnum()
+
+
 def suggestion_edits(base: str, alt: str) -> List[Edit]:
-    """建议（alt）和查错字时的文字（base）逐字对比，拆成一处一处的改动 (start, end, 换成什么)，位置按 base 算。"""
+    """建议（alt）和查错字时的文字（base）逐字对比，拆成一处一处的改动 (start, end, 换成什么)，位置按 base 算。
+
+    英文按整个单词改（VFIXED → V fixed，而不是 FIXED → fixed），老师看得懂、也不会只改半个词。"""
     if not alt or alt == base:
         return []
-    return [(i1, i2, alt[j1:j2]) for tag, i1, i2, j1, j2 in _opcodes(base, alt) if tag != "equal"]
+    spans: List[List[int]] = []
+    for tag, i1, i2, j1, j2 in _opcodes(base, alt):
+        if tag == "equal":
+            continue
+        while i1 > 0 and j1 > 0 and base[i1 - 1] == alt[j1 - 1] and _word_char(base[i1 - 1]) and (
+                (i1 < len(base) and _word_char(base[i1])) or (j1 < len(alt) and _word_char(alt[j1]))):
+            i1, j1 = i1 - 1, j1 - 1
+        while i2 < len(base) and j2 < len(alt) and base[i2] == alt[j2] and _word_char(base[i2]) and (
+                (i2 > 0 and _word_char(base[i2 - 1])) or (j2 > 0 and _word_char(alt[j2 - 1]))):
+            i2, j2 = i2 + 1, j2 + 1
+        if spans and i1 <= spans[-1][1] and j1 <= spans[-1][3]:  # 扩成整词以后和上一处连上了：合成一处
+            spans[-1][1], spans[-1][3] = max(spans[-1][1], i2), max(spans[-1][3], j2)
+        else:
+            spans.append([i1, i2, j1, j2])
+    return [(i1, i2, alt[j1:j2]) for i1, i2, j1, j2 in spans]
 
 
 def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
@@ -231,18 +268,19 @@ def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
     reasons = [str(x) for x in (sus.get("reasons") or []) if x]
     if sus:
         base = suspect_base(rec)
-        blocks = _equal_blocks(base, cur) if base != cur else [(0, len(base), 0, len(cur))]
+        ops = _opcodes(base, cur) if base != cur else [("equal", 0, len(base), 0, len(cur))]
+        blocks = [(i1, i2, j1, j2) for tag, i1, i2, j1, j2 in ops if tag == "equal"]
         for span in sus.get("spans") or []:
             try:
                 s, e = int(span[0]), int(span[1])
             except (TypeError, ValueError, IndexError):
                 continue
-            m = map_range(blocks, s, e)
+            m = None if touched(ops, s, e) else map_range(blocks, s, e)
             if m is not None and m[1] > m[0]:
                 red.append(m)
         all_edits = suggestion_edits(base, str(sus.get("alt") or ""))
         for s, e, rep in all_edits:
-            m = map_range(blocks, s, e)
+            m = None if touched(ops, s, e) else map_range(blocks, s, e)
             if m is not None:
                 edits.append((m[0], m[1], rep))
         adopted = bool(all_edits) and not edits and cur != base
@@ -320,7 +358,7 @@ def save_rows(project: Any, ids: Optional[Iterable[str]] = None) -> Dict[str, An
         saved: List[str] = []
         for rec in records:
             rid = rec.get("id")
-            if rid not in want:
+            if rid not in want or rec.get("deleted"):  # 删除（灰色）的行不保存，撤销删除以后还能接着改
                 continue
             vals = draft[rid]
             touched = False
@@ -355,7 +393,7 @@ def save_rows(project: Any, ids: Optional[Iterable[str]] = None) -> Dict[str, An
 
 
 def delete_clip(project: Any, clip_id: str) -> Dict[str, Any]:
-    """「🗑️ 删除这一行」：这一条不再用来训练、表格里不显示（音频文件不删，随时可以恢复）。马上保存。"""
+    """「🗑️ 删除这一行」：这一行变灰、不再用来训练（音频文件不删，随时可以撤销删除）。马上保存。"""
     with _LOCK:
         records = project.load_manifest()
         rec = next((r for r in records if r.get("id") == clip_id), None)
@@ -368,10 +406,7 @@ def delete_clip(project: Any, clip_id: str) -> Dict[str, Any]:
             rec["keep"] = False
             rec["manual_keep"] = False
             rec["drop_reason"] = DELETED_REASON
-        project.save_manifest(records)
-        draft = load_draft(project)
-        if draft.pop(clip_id, None) is not None:
-            save_draft(project, draft)
+        project.save_manifest(records)  # 没保存的修改（草稿）留着：撤销删除以后还在
         locked = False
         try:
             project.export_csv(records)
@@ -381,7 +416,7 @@ def delete_clip(project: Any, clip_id: str) -> Dict[str, Any]:
 
 
 def restore_clip(project: Any, clip_id: str) -> Dict[str, Any]:
-    """恢复删除的片段：回到删除之前的「保留」。"""
+    """撤销删除：回到删除之前的「保留」。"""
     with _LOCK:
         records = project.load_manifest()
         rec = next((r for r in records if r.get("id") == clip_id), None)

@@ -31,6 +31,7 @@ from typing import Any, Callable, Dict, Iterator, List, Optional, Sequence, Tupl
 import voicetwin
 from voicetwin import workflows as wf
 from voicetwin.config import Config
+from voicetwin.data import review as _review
 from voicetwin.synth import engine as _engine
 from voicetwin.utils.log import get_logger
 from voicetwin.utils.progress import PROGRESS_CSS, format_elapsed, render_notice_html
@@ -83,7 +84,14 @@ BLIND_BTN, BLIND_BUSY = "生成盲听测试", "⏳ 正在生成盲听测试…�
 
 PREP_NEXT = "去「② 训练模型」 →"
 TRAIN_NEXT = "去「③ 生成讲课音频」 →"
-ADOPT_BTN = "✅ 采用建议"
+REVIEW_HELP = ("### ✍️ 校对文字（可选，但能明显提升效果）\n"
+               "- **改错字：双击「文字」那一格**，会打开一个会自动换行的框，整句话都看得见；改好按**回车**（或点别的地方）。\n"
+               "- **「修改建议」里的 ✅**：点一下就按建议自动改好；改过的字在旁边那一列变成**蓝色**。\n"
+               "- **「⋯ 选项」**：只保存这一行、撤销这一行的修改、这句没错（不再标红）、删除这一行（会再问一次）。\n"
+               "- **删除的行变成灰色**（⚪ 已删除）：灰色 = 不用来训练；删错了在那一行的「⋯ 选项」里点「↩️ 撤销删除」。\n"
+               "- **小灯**：🔴 没保存 = 改了还没保存；🟢 已保存 = 改过、已经保存了。点最下面的「**保存修改**」（全部保存）"
+               "或「⋯ 选项」里的「只保存这一行」都会变绿。\n"
+               "- **点一下某一行就能听录音**（播放器在表格下面）；双击「保留」切换 是 / 否，双击「语言」切换 中文 / 英文。")
 SUBMIT_BTN = "提交答案"
 
 LOG_ACCORDION = "详细过程（出问题时可以复制给帮你的人）"
@@ -117,9 +125,18 @@ MFCC_NOTE = ("⚠️ 这次没有可靠的声纹模型（只有简易的 MFCC）
              "GPT-SoVITS 整合包里自带的声纹模型能用时会自动用上。")
 
 # ---------------------------------------------------------------------------- 表头
-CLIP_HEADERS = ["#", "id", "保留（是/否）", "语言", "秒", "文字", "可能有错（红色）", "丢弃原因"]
-CLIP_TYPES = ["number", "str", "str", "str", "number", "str", "markdown", "str"]
-COL_ID, COL_KEEP, COL_LANG, COL_SEC, COL_TEXT, COL_SUSPECT, COL_DROP = CLIP_HEADERS[1:]
+# 校对表：老师不在格子里直接打字（gradio 4.24 的格子编辑框只有一行，长句子会挤成一行、超出格子），
+# 而是双击「文字」打开一个会自动换行的编辑框（REVIEW_JS）；所有修改先存成草稿（红灯），保存后变绿灯。
+CLIP_HEADERS = ["#", "状态", "id", "保留", "语言", "秒", "文字（双击修改）", "可能有错（红）· 改过（蓝）", "修改建议",
+                "选项"]
+CLIP_TYPES = ["number", "markdown", "str", "str", "str", "number", "str", "markdown", "markdown", "markdown"]
+(COL_STATE, COL_ID, COL_KEEP, COL_LANG, COL_SEC, COL_TEXT, COL_SUSPECT, COL_SUGGEST,
+ COL_MENU) = CLIP_HEADERS[1:]
+STATE_DIRTY = '<span class="vt-state vt-state-dirty">🔴 没保存</span>'
+STATE_SAVED = '<span class="vt-state vt-state-saved">🟢 已保存</span>'
+STATE_DELETED = '<span class="vt-state vt-state-del">⚪ 已删除</span>'  # 整行变灰（CSS / REVIEW_JS）
+MENU_CELL = '<span class="vt-menu-btn" title="保存这一行、撤销、删除……">⋯ 选项</span>'
+CLIP_WIDTHS = ["4%", "8%", "9%", "5%", "5%", "4%", "27%", "21%", "11%", "6%"]
 LIB_HEADERS = ["#", "名称", "素材（分钟 / 条）", "状态", "最佳模型", "最后修改时间"]
 DOC_HEADERS = ["#", "状态", "项目", "说明"]
 GEN_HEADERS = ["#", "句子", "像你本人（%）", "状态", "提示"]
@@ -166,7 +183,7 @@ APP_CSS = """
 .vt-md .min{min-height:0!important}
 /* gradio 的标题是 flex 不换行：允许换行，手机上模型型号自动换到第二行 */
 .vt-header h1{margin-bottom:2px;flex-wrap:wrap;align-items:center;gap:4px 12px}
-.vt-model{display:inline-block;vertical-align:middle;max-width:100%;padding:2px 12px;border:1px solid;border-radius:999px;
+.vt-model{display:inline-block;vertical-align:middle;max-width:100%;padding:3px 12px;border:1px solid;border-radius:8px;
   font-size:15px;line-height:1.6;font-weight:600}
 .vt-model small{font-size:13px;font-weight:400}
 .vt-model-ok{color:#166534;background:#f0fdf4;border-color:#16a34a}
@@ -181,6 +198,55 @@ APP_CSS = """
 .vt-diff .vt-diff-row{margin:2px 0}
 .vt-diff .vt-diff-tag{display:inline-block;min-width:4.5em;font-weight:700}
 .vt-diff .vt-diff-reason{color:var(--body-text-color-subdued);font-size:var(--text-sm)}
+/* 校对表 */
+.vt-bridge{display:none!important}
+.vt-review-help ul{margin-top:2px}
+#vt-clips td{cursor:default}
+.vt-sug{display:inline-block;padding:3px 9px;border-radius:7px;background:#dcfce7;color:#166534;border:1px solid #16a34a;
+  cursor:pointer;font-weight:600;line-height:1.5}
+.vt-sug:hover{background:#bbf7d0}
+.vt-sug-busy{background:#f3f4f6;color:#374151;border-color:#9ca3af}
+.vt-sug-done{color:#6b7280}
+.vt-sug-none{color:#9ca3af;font-size:12px}
+.vt-menu-btn{display:inline-block;padding:3px 9px;border:1px solid #9ca3af;border-radius:7px;cursor:pointer;
+  white-space:nowrap;font-weight:600}
+.vt-menu-btn:hover{background:#f3f4f6}
+.vt-state{white-space:nowrap;font-weight:600}
+.vt-state-dirty{color:#b91c1c}
+.vt-state-saved{color:#15803d}
+.vt-state-del{color:#6b7280}
+/* 删除的行：整行变灰（灰色 = 不用来训练）。:has() 不认识的旧浏览器由 REVIEW_JS 加上 vt-row-del */
+#vt-clips tbody tr:has(.vt-state-del) td,#vt-clips tbody tr.vt-row-del td{background:#e5e7eb!important;
+  color:#9ca3af!important}
+#vt-clips tbody tr:has(.vt-state-del) td *,#vt-clips tbody tr.vt-row-del td *{color:#9ca3af!important;
+  background:transparent!important;border-color:#d1d5db!important}
+.dark #vt-clips tbody tr:has(.vt-state-del) td,.dark #vt-clips tbody tr.vt-row-del td{background:#374151!important}
+.dark .vt-sug{background:rgba(22,163,74,.2);color:#bbf7d0}
+.dark .vt-menu-btn:hover{background:rgba(255,255,255,.08)}
+.vt-editor{position:absolute;z-index:2000;background:var(--background-fill-primary,#fff);border:2px solid #f97316;
+  border-radius:8px;box-shadow:0 8px 28px rgba(0,0,0,.22);padding:8px 10px 6px;box-sizing:border-box}
+.vt-editor-text{display:block;width:100%;box-sizing:border-box;border:none;outline:none;resize:none;overflow:hidden;
+  font:inherit;font-size:16px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;background:transparent;
+  color:var(--body-text-color,#111);padding:0;margin:0}
+.vt-editor-bar{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;justify-content:flex-end;margin-top:6px;
+  border-top:1px solid var(--border-color-primary,#e5e7eb);padding-top:6px}
+.vt-editor-hint{flex:1 1 auto;font-size:13px;color:var(--body-text-color-subdued,#6b7280)}
+.vt-editor-warn{color:#dc2626;font-weight:600}
+.vt-editor-btn{padding:4px 12px;border-radius:6px;border:1px solid #d1d5db;background:var(--background-fill-secondary,#f9fafb);
+  cursor:pointer;font-size:14px;color:var(--body-text-color,#111)}
+.vt-editor-ok{background:#f97316;border-color:#ea580c;color:#fff;font-weight:700}
+.vt-menu{position:absolute;z-index:2001;min-width:240px;max-width:320px;background:var(--background-fill-primary,#fff);
+  border:1px solid var(--border-color-primary,#d1d5db);border-radius:8px;box-shadow:0 8px 28px rgba(0,0,0,.22);padding:6px}
+.vt-menu-title{font-weight:700;padding:4px 8px 6px}
+.vt-menu-danger{color:#dc2626}
+.vt-menu-note{font-size:13px;line-height:1.6;padding:0 8px 8px;color:var(--body-text-color-subdued,#4b5563)}
+.vt-menu-item{display:block;width:100%;text-align:left;padding:7px 10px;border:none;border-radius:6px;background:transparent;
+  cursor:pointer;font-size:15px;color:var(--body-text-color,#111)}
+.vt-menu-item:hover:not(:disabled){background:var(--background-fill-secondary,#f3f4f6)}
+.vt-menu-item:disabled{color:#9ca3af;cursor:not-allowed}
+.vt-menu-row{display:flex;gap:8px;padding:0 4px 4px}
+.vt-menu-row .vt-menu-item{text-align:center;border:1px solid #d1d5db}
+.vt-menu-yes{background:#dc2626!important;color:#fff!important;border-color:#b91c1c!important;font-weight:700}
 """
 
 
@@ -196,9 +262,294 @@ GUARD_JS = """() => {
 }"""
 
 
+# 校对表的网页脚本。gradio 4.24 的表格格子编辑框是单行的 <input>（长句子会挤成一行、超出格子、看不全），
+# 所以表格设成不能直接打字，改由这个脚本处理：
+# - 双击「文字」：在格子上面打开一个会自动换行的编辑框（整句话都看得见），回车 / 点别处 = 改好，Esc = 不改；
+#   正在用拼音输入法选字时按的回车不算（isComposing）；
+# - 双击「保留」/「语言」：切换 是/否、中文/英文；
+# - 点「修改建议」里的 ✅：采用建议；点「⋯ 选项」：弹出菜单（只保存这一行 / 撤销 / 这句没错 / 删除，删除要再确认一次）；
+#   删除的行变灰（不用来训练），它的菜单里是「↩️ 撤销删除」；
+# - 删除的行整行变灰：CSS 用 :has()，旧浏览器由 markRows() 给那一行加上 vt-row-del。
+# 每个操作都把 {"action", "id", ...} 放进隐藏的输入框 #vt-clip-action，再按隐藏的按钮 #vt-clip-action-btn，
+# 由 WebUI.do_clip_action 处理并重新画出整张表。行用 id 列找（排序、筛选、表格重画以后都不会找错）。
+REVIEW_JS_TEMPLATE = r"""() => {
+  if (window.__vtReview) return;
+  window.__vtReview = true;
+  const C = __COLS__;
+  let seq = 0, editor = null, menu = null, lastAdopt = {id: '', t: 0};
+
+  function el(tag, cls, text) {
+    const x = document.createElement(tag);
+    if (cls) x.className = cls;
+    if (text !== undefined) x.textContent = text;
+    return x;
+  }
+  function cellsOf(tr) {
+    return Array.prototype.filter.call(tr.children, (x) => x.tagName === 'TD');
+  }
+  function rowInfo(td) {
+    const tr = td && td.closest ? td.closest('tr') : null;
+    if (!tr || !td.closest('#vt-clips')) return null;
+    const tds = cellsOf(tr);
+    const idCell = tds[C.id];
+    const state = tds[C.state] ? tds[C.state].innerText : '';
+    return {tr: tr, tds: tds, col: tds.indexOf(td), deleted: state.indexOf('已删除') >= 0,
+            dirty: state.indexOf('没保存') >= 0,
+            id: idCell ? idCell.innerText.trim() : '', no: tds[0] ? tds[0].innerText.trim() : ''};
+  }
+  function markRows() {
+    const rows = document.querySelectorAll('#vt-clips tbody tr');
+    for (let i = 0; i < rows.length; i++) {
+      rows[i].classList.toggle('vt-row-del', !!rows[i].querySelector('.vt-state-del'));
+    }
+  }
+  function findTd(id, col) {
+    const rows = document.querySelectorAll('#vt-clips tbody tr');
+    for (let i = 0; i < rows.length; i++) {
+      const tds = cellsOf(rows[i]);
+      if (tds[C.id] && tds[C.id].innerText.trim() === id) return tds[col] || null;
+    }
+    return null;
+  }
+  function clearSel() {
+    try { window.getSelection().removeAllRanges(); } catch (e) {}
+  }
+  function send(payload) {
+    const box = document.querySelector('#vt-clip-action textarea, #vt-clip-action input');
+    const btn = document.querySelector('#vt-clip-action-btn');
+    if (!box || !btn) {
+      alert('网页还没准备好，请按 F5 刷新网页后再试一次。');
+      return;
+    }
+    seq += 1;
+    payload.seq = seq + '-' + Date.now();
+    box.value = JSON.stringify(payload);
+    box.dispatchEvent(new Event('input', {bubbles: true}));
+    setTimeout(() => btn.click(), 60);
+  }
+
+  // ------------------------------------------------------------------ 编辑框
+  function fit() {
+    if (!editor) return;
+    const ta = editor.ta;
+    ta.style.height = 'auto';
+    ta.style.height = Math.max(ta.scrollHeight, editor.minH) + 'px';
+  }
+  function placeEditor() {
+    if (!editor) return;
+    let td = editor.td;
+    if (!td || !td.isConnected) {
+      td = findTd(editor.id, C.text);
+      if (td) editor.td = td;
+    }
+    if (!td || !td.isConnected) return;
+    const r = td.getBoundingClientRect();
+    const vw = document.documentElement.clientWidth;
+    const w = Math.min(Math.max(r.width + 24, 360), vw - 16);
+    let left = r.left + window.scrollX - 12;
+    left = Math.min(left, window.scrollX + vw - 8 - w);
+    left = Math.max(left, window.scrollX + 8);
+    editor.box.style.left = left + 'px';
+    editor.box.style.top = Math.max(r.top + window.scrollY - 8, window.scrollY + 4) + 'px';
+    editor.box.style.width = w + 'px';
+    editor.minH = Math.max(r.height - 8, 48);
+    fit();
+  }
+  function closeEditor(commit) {
+    if (!editor) return;
+    const e = editor;
+    editor = null;
+    const val = e.ta.value.replace(/\s*[\r\n]+\s*/g, ' ').trim();
+    e.box.remove();
+    if (commit && val && val !== e.orig) send({action: 'edit', id: e.id, no: e.no, text: val});
+  }
+  function tryCommit() {
+    if (!editor) return;
+    if (!editor.ta.value.trim()) {
+      editor.hint.textContent = '文字不能是空的。不想要这一条，请按 Esc，再用「⋯ 选项」里的「删除这一行」。';
+      editor.hint.classList.add('vt-editor-warn');
+      editor.ta.focus();
+      return;
+    }
+    closeEditor(true);
+  }
+  function openEditor(td, info) {
+    closeEditor(true);
+    closeMenu();
+    const box = el('div', 'vt-editor');
+    const ta = el('textarea', 'vt-editor-text');
+    ta.value = (td.innerText || '').trim();
+    ta.setAttribute('spellcheck', 'false');
+    ta.setAttribute('aria-label', '修改第 ' + info.no + ' 条的文字');
+    const bar = el('div', 'vt-editor-bar');
+    const hint = el('span', 'vt-editor-hint', '第 ' + info.no + ' 条：改好按回车（或点别的地方）；按 Esc 不改了');
+    const cancel = el('button', 'vt-editor-btn vt-editor-cancel', '✖ 不改了');
+    const ok = el('button', 'vt-editor-btn vt-editor-ok', '✔ 改好了');
+    cancel.type = 'button';
+    ok.type = 'button';
+    bar.append(hint, cancel, ok);
+    box.append(ta, bar);
+    document.body.appendChild(box);
+    editor = {box: box, ta: ta, hint: hint, td: td, id: info.id, no: info.no, orig: ta.value, minH: 48};
+    placeEditor();
+    ta.focus();
+    ta.setSelectionRange(ta.value.length, ta.value.length);
+    ta.addEventListener('input', fit);
+    ta.addEventListener('keydown', (ev) => {
+      if (ev.isComposing || ev.keyCode === 229) return;  // 正在用输入法选字：这个回车是输入法的
+      if (ev.key === 'Enter') { ev.preventDefault(); tryCommit(); }
+      else if (ev.key === 'Escape') { ev.preventDefault(); closeEditor(false); }
+    });
+    ta.addEventListener('blur', () => {
+      setTimeout(() => {
+        if (editor && editor.ta === ta && !box.contains(document.activeElement)) closeEditor(!!ta.value.trim());
+      }, 200);
+    });
+    [ok, cancel].forEach((b) => b.addEventListener('mousedown', (ev) => ev.preventDefault()));
+    ok.addEventListener('click', tryCommit);
+    cancel.addEventListener('click', () => closeEditor(false));
+  }
+
+  // ------------------------------------------------------------------ 选项菜单
+  function closeMenu() {
+    if (menu) { menu.box.remove(); menu = null; }
+  }
+  function placeMenu(td) {
+    if (!menu) return;
+    const r = td.getBoundingClientRect();
+    const vw = document.documentElement.clientWidth;
+    const w = menu.box.offsetWidth || 260;
+    let left = r.right + window.scrollX - w;
+    left = Math.max(window.scrollX + 8, Math.min(left, window.scrollX + vw - 8 - w));
+    menu.box.style.left = left + 'px';
+    menu.box.style.top = (r.bottom + window.scrollY + 4) + 'px';
+  }
+  function openMenu(td, info) {
+    closeMenu();
+    closeEditor(true);
+    const dirty = info.dirty;
+    const colored = info.tds[C.colored];
+    const red = !!colored && !!colored.querySelector('.vt-red');
+    const box = el('div', 'vt-menu');
+    box.setAttribute('role', 'menu');
+    menu = {box: box, id: info.id};
+    const act = (action) => { closeMenu(); send({action: action, id: info.id, no: info.no}); };
+    function item(label, enabled, fn, tip) {
+      const b = el('button', 'vt-menu-item', label);
+      b.type = 'button';
+      if (!enabled) { b.disabled = true; if (tip) b.title = tip; }
+      else b.addEventListener('click', fn);
+      box.appendChild(b);
+      return b;
+    }
+    function showMain() {
+      box.innerHTML = '';
+      if (info.deleted) {
+        box.appendChild(el('div', 'vt-menu-title', '第 ' + info.no + ' 条（已删除，灰色 = 不用来训练）'));
+        item('↩️ 撤销删除', true, () => act('restore'));
+        item('✖ 关闭', true, closeMenu);
+        return;
+      }
+      box.appendChild(el('div', 'vt-menu-title', '第 ' + info.no + ' 条'));
+      item('💾 只保存这一行', dirty, () => act('save_row'), '这一行没有要保存的修改（不是红灯）');
+      if (dirty) item('↩️ 撤销这一行的修改', true, () => act('revert'));
+      if (red) item('👍 这句没错，不再标红', true, () => act('ok'));
+      item('🗑️ 删除这一行…', true, showConfirm);
+      item('✖ 关闭', true, closeMenu);
+    }
+    function showConfirm() {
+      box.innerHTML = '';
+      box.appendChild(el('div', 'vt-menu-title vt-menu-danger', '确定要删除第 ' + info.no + ' 条吗？'));
+      box.appendChild(el('div', 'vt-menu-note',
+        '删除后这一行变成灰色，不会用来训练（录音文件不会删掉）。删错了随时可以在「⋯ 选项」里点「↩️ 撤销删除」。'));
+      const row = el('div', 'vt-menu-row');
+      const yes = el('button', 'vt-menu-item vt-menu-yes', '🗑️ 确定删除');
+      const no = el('button', 'vt-menu-item', '取消');
+      yes.type = 'button';
+      no.type = 'button';
+      yes.addEventListener('click', () => act('delete'));
+      no.addEventListener('click', showMain);
+      row.append(no, yes);
+      box.appendChild(row);
+      placeMenu(td);
+    }
+    showMain();
+    document.body.appendChild(box);
+    placeMenu(td);
+  }
+
+  // ------------------------------------------------------------------ 事件（挂在 document 上：表格重画以后照样有效）
+  document.addEventListener('dblclick', (ev) => {
+    const td = ev.target && ev.target.closest ? ev.target.closest('#vt-clips td') : null;
+    if (!td) return;
+    const info = rowInfo(td);
+    if (!info || !info.id) return;
+    if (info.deleted && (info.col === C.text || info.col === C.keep || info.col === C.lang)) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      clearSel();
+      send({action: 'blocked', id: info.id, no: info.no});
+      return;
+    }
+    if (info.col === C.text) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      clearSel();
+      openEditor(td, info);
+    } else if (info.col === C.keep || info.col === C.lang) {
+      ev.preventDefault();
+      clearSel();
+      send({action: info.col === C.keep ? 'keep' : 'lang', id: info.id, no: info.no});
+    }
+  }, true);
+
+  document.addEventListener('click', (ev) => {
+    if (menu && !menu.box.contains(ev.target)) closeMenu();
+    const td = ev.target && ev.target.closest ? ev.target.closest('#vt-clips td') : null;
+    if (!td) return;
+    const info = rowInfo(td);
+    if (!info || !info.id) return;
+    if (info.col === C.suggest && td.querySelector('.vt-sug') && !info.deleted) {
+      const now = Date.now();
+      if (lastAdopt.id === info.id && now - lastAdopt.t < 2000) return;  // 双击 = 只采用一次
+      lastAdopt = {id: info.id, t: now};
+      const b = td.querySelector('.vt-sug');
+      if (b) { b.textContent = '⏳ 正在改……'; b.classList.add('vt-sug-busy'); }
+      send({action: 'adopt', id: info.id, no: info.no});
+    } else if (info.col === C.menu) {
+      openMenu(td, info);
+    }
+  }, true);
+
+  document.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape' && menu) { closeMenu(); return; }
+    if (ev.key !== 'Enter' || editor || ev.isComposing) return;
+    const act = document.activeElement;
+    if (!act || !act.closest || !act.closest('#vt-clips')) return;
+    const td = document.querySelector('#vt-clips td.focus');
+    const info = td ? rowInfo(td) : null;
+    if (info && info.id && info.col === C.text && !info.deleted) { ev.preventDefault(); openEditor(td, info); }
+  }, true);
+
+  document.addEventListener('scroll', () => { placeEditor(); closeMenu(); markRows(); }, true);
+  window.addEventListener('resize', () => { placeEditor(); closeMenu(); });
+  new MutationObserver(markRows).observe(document.body, {childList: true, subtree: true});
+}"""
+
+
+def review_js() -> str:
+    """把列的位置填进 REVIEW_JS_TEMPLATE（列的顺序改了也不会对不上）。"""
+    cols = {"state": CLIP_HEADERS.index(COL_STATE), "id": CLIP_HEADERS.index(COL_ID),
+            "keep": CLIP_HEADERS.index(COL_KEEP), "lang": CLIP_HEADERS.index(COL_LANG),
+            "text": CLIP_HEADERS.index(COL_TEXT), "colored": CLIP_HEADERS.index(COL_SUSPECT),
+            "suggest": CLIP_HEADERS.index(COL_SUGGEST), "menu": CLIP_HEADERS.index(COL_MENU)}
+    return REVIEW_JS_TEMPLATE.replace("__COLS__", json.dumps(cols))
+
+
 def page_js() -> str:
-    """交给 gr.Blocks(js=...) 的函数：先装上面的保护，再运行进度条用的脚本（标签页标题显示进度、完成时响一声）。"""
-    parts = [GUARD_JS] + ([PROGRESS_JS] if PROGRESS_JS else [])
+    """交给 gr.Blocks(js=...) 的函数：先装上面的保护，再运行进度条用的脚本（标签页标题显示进度、完成时响一声）、
+    校对表的脚本（双击改字的编辑框、修改建议、选项菜单）。"""
+    parts = [GUARD_JS] + ([PROGRESS_JS] if PROGRESS_JS else []) + [review_js()]
     calls = "\n".join(f"  try {{ ({p.strip()})(); }} catch (e) {{}}" for p in parts)
     return "() => {\n" + calls + "\n}"
 
@@ -705,8 +1056,10 @@ def _library_total_md(n: int) -> str:
 
 # ============================================================================ ① 校对表
 _MD_ESC = {c: "&#%d;" % ord(c) for c in "\\`*_{}[]()#+-.!|~>$"}
-_RED_SPAN = '<span style="color:#dc2626;font-weight:700;background:#fee2e2">'
+_RED_SPAN = '<span class="vt-red" style="color:#dc2626;font-weight:700;background:#fee2e2">'
 _GREEN_SPAN = '<span style="color:#15803d;font-weight:700;background:#dcfce7">'
+_BLUE_SPAN = '<span class="vt-blue" style="color:#1d4ed8;font-weight:700;background:#bfdbfe">'
+_BLUE_DEL = '<s class="vt-blue-del" title="删掉的字" style="color:#2563eb;background:#dbeafe">'
 
 
 def _cell_esc(s: str) -> str:
@@ -782,96 +1135,102 @@ def _render_diff(text: str, alt: str, spans: Any = None) -> str:
 
 
 def _suspect(rec: Dict[str, Any]) -> Dict[str, Any]:
+    """这一条还算不算「可能有错」：还有没改过的红字、或者还有没采用的建议（改过的地方不算）。"""
     s = rec.get("suspect")
-    return s if isinstance(s, dict) and (s.get("spans") or s.get("alt") or s.get("reasons")) else {}
+    if not (isinstance(s, dict) and (s.get("spans") or s.get("alt") or s.get("reasons"))):
+        return {}
+    return s if _review.analyze(rec)["active"] else {}
+
+
+def _colored_html(info: Dict[str, Any]) -> str:
+    """「可能有错（红）· 改过（蓝）」这一列：红 = 可能有错、还没改；蓝 = 改过的字；蓝色删除线 = 删掉的字。"""
+    text = str(info.get("text") or "")
+    red, blue, deleted = info.get("red") or [], info.get("blue") or [], info.get("deleted") or []
+    if not (red or blue or deleted):
+        return ""
+    marks: Dict[int, List[str]] = {}
+    for pos, gone in deleted:
+        marks.setdefault(int(pos), []).append(_BLUE_DEL + _cell_esc(gone) + "</s>")
+    spans = sorted([(s, e, _RED_SPAN) for s, e in red] + [(s, e, _BLUE_SPAN) for s, e in blue])
+    out: List[str] = []
+    pos = 0
+
+    def plain(a: int, b: int) -> None:
+        for i in range(a, b):
+            out.extend(marks.pop(i, []))
+            out.append(_cell_esc(text[i]))
+
+    for s, e, tag in spans:
+        if s < pos:
+            continue
+        plain(pos, s)
+        out.extend(marks.pop(s, []))
+        out.append(tag + _cell_esc(text[s:e]) + "</span>")
+        pos = e
+    plain(pos, len(text))
+    for k in sorted(marks):
+        out.extend(marks[k])
+    return "".join(out)
+
+
+def _suggest_cell(info: Dict[str, Any]) -> str:
+    """「修改建议」这一列：有还没采用的建议时是一个绿色的 ✅ 按钮（点一下就改好）。"""
+    if info.get("edits"):
+        what = _review.describe_edits(str(info.get("text") or ""), info["edits"], limit=2)
+        return f'<span class="vt-sug" title="点一下就按建议改好">✅ 采用：{_cell_esc(what)}</span>'
+    if info.get("adopted"):
+        return '<span class="vt-sug-done">✔ 已采用</span>'
+    if info.get("red"):
+        return '<span class="vt-sug-none">没有建议，请听录音后双击「文字」修改</span>'
+    return ""
+
+
+def _state_cell(dirty: bool, saved_edit: bool) -> str:
+    if dirty:
+        return STATE_DIRTY
+    return STATE_SAVED if saved_edit else ""
 
 
 def _clips_table(cfg: Config, voice: Any, only_suspect: bool = False) -> List[List[Any]]:
-    """校对表：每条片段一行。# 是显示的序号（从 1 开始），找片段一律用 id 列。"""
+    """校对表：每条片段一行（删除的变灰，「⚪ 已删除」）。显示的是「保存过的 + 没保存的修改（草稿）」。
+    # 是显示的序号（从 1 开始），找片段一律用 id 列。只看可能有错的：没保存的修改也一直显示，免得看不到。"""
     voice = _voice_name(voice)
     if not voice:
         return []
     project = wf.Project(cfg, voice)
-    rows = []
+    draft = _review.load_draft(project)
+    rows: List[List[Any]] = []
     for r in project.load_manifest():
-        sus = _suspect(r)
-        if only_suspect and not sus:
+        entry = draft.get(r["id"])
+        vals = _review.current_values(r, entry)
+        dirty = _review.is_dirty(r, entry)
+        info = _review.analyze(r, vals["text"])
+        if only_suspect and not (info["active"] or dirty):
             continue
-        text = str(r.get("text", "") or "")
-        marked = _render_marked(text, sus.get("spans") or []) if sus else ""
-        rows.append([len(rows) + 1, r["id"], "是" if r.get("keep", True) else "否",
-                     _LANG_NAMES.get(r.get("lang", ""), r.get("lang", "")), round(float(r.get("duration", 0) or 0), 1),
-                     text, marked, r.get("drop_reason", "") or ""])
+        deleted = bool(r.get("deleted"))
+        state = STATE_DELETED if deleted else _state_cell(dirty, _review.has_saved_edit(r))
+        rows.append([len(rows) + 1, state, r["id"], "否" if deleted else ("是" if vals["keep"] else "否"),
+                     _LANG_NAMES.get(vals["lang"], vals["lang"]), round(float(r.get("duration", 0) or 0), 1),
+                     vals["text"], _colored_html(info), "" if deleted else _suggest_cell(info), MENU_CELL])
     return rows
 
 
-_EDIT_COLS = (COL_KEEP, COL_LANG, COL_TEXT)  # 老师能改的三列
-
-
-def _row_edited(row: Dict[str, Any], rec: Dict[str, Any]) -> bool:
-    """表格的这一行（按表头的字典）和硬盘上的片段比，「保留 / 语言 / 文字」有没有不一样（判断方法和「保存修改」一样）。"""
-    text = _clean_cell(row.get(COL_TEXT))
-    if text and text != str(rec.get("text", "") or "").strip():
-        return True
-    if _parse_keep(row.get(COL_KEEP)) != bool(rec.get("keep", True)):
-        return True
-    lang = _LANG_CODES.get(_clean_cell(row.get(COL_LANG)), rec.get("lang", ""))
-    return lang != rec.get("lang", "")
-
-
-def _pending_edits(cfg: Config, voice: Any, table: Any, skip: Sequence[str] = ()) -> Dict[str, Dict[str, Any]]:
-    """表格里改了、还没点「保存修改」的行：{id: 这一行}。
-
-    和硬盘上的校对表比，所以只在这三列没被别的步骤改过时用（查错字只改标红；采用建议只改那一条，用 skip 排除）。"""
+def _unsaved_count(cfg: Config, voice: Any) -> int:
     v = _voice_name(voice)
-    rows = _table_records(table, CLIP_HEADERS)
-    if not v or not rows:
-        return {}
+    if not v:
+        return 0
     try:
-        records = {r["id"]: r for r in wf.Project(cfg, v).load_manifest()}
-    except ValueError:
-        return {}
-    skip_set = {str(x) for x in skip}
-    out: Dict[str, Dict[str, Any]] = {}
-    for row in rows:
-        rid = _clean_cell(row.get(COL_ID))
-        rec = records.get(rid)
-        if rec is not None and rid not in skip_set and _row_edited(row, rec):
-            out[rid] = row
-    return out
-
-
-def _keep_pending(rows: List[List[Any]], pending: Dict[str, Dict[str, Any]]) -> List[List[Any]]:
-    """把还没保存的修改放回刚从硬盘读出来的表格里（按 id 找行）。被「只看可能有错的」筛掉的行也留在表格最后，
-    这样修改不会因为换了显示方式就没了。改过文字的行，红色标记是按原来的文字算的，先不显示。"""
-    if not pending:
-        return rows
-    i_id, i_text, i_sus = (CLIP_HEADERS.index(h) for h in (COL_ID, COL_TEXT, COL_SUSPECT))
-    out: List[List[Any]] = []
-    seen = set()
-    for row in rows:
-        row = list(row)
-        p = pending.get(str(row[i_id]))
-        if p is not None:
-            seen.add(str(row[i_id]))
-            old_text = str(row[i_text] or "").strip()
-            for col in _EDIT_COLS:
-                val = _clean_cell(p.get(col))
-                if val or col != COL_TEXT:  # 文字格清空了：「保存修改」会保持原文，这里也一样
-                    row[CLIP_HEADERS.index(col)] = val
-            if str(row[i_text] or "").strip() != old_text:
-                row[i_sus] = ""
-        out.append(row)
-    for rid, p in pending.items():
-        if rid not in seen:
-            out.append([p.get(h) if h == COL_SEC else _clean_cell(p.get(h)) for h in CLIP_HEADERS])
-    for n, row in enumerate(out, 1):
-        row[0] = n
-    return out
+        project = wf.Project(cfg, v)
+        _review.prune_draft(project)
+        gone = {r["id"] for r in project.load_manifest() if r.get("deleted")}
+        return sum(1 for k in _review.load_draft(project) if k not in gone)
+    except (ValueError, OSError):
+        return 0
 
 
 def _pending_note(n: int) -> str:
-    return f"✏️ 表格里还有 **{n}** 条修改没有保存（已经帮你留在表格里），记得点下面的「保存修改」。"
+    return (f"🔴 还有 **{n}** 条修改没有保存（红灯的那几行）：点下面的「保存修改」全部保存，"
+            "或者在那一行的「⋯ 选项」里只保存那一行。")
 
 
 def _clips_count_md(cfg: Config, voice: Any) -> str:
@@ -888,17 +1247,22 @@ def _clips_count_md(cfg: Config, voice: Any) -> str:
     kept = [r for r in records if r.get("keep", True)]
     minutes = sum(float(r.get("duration", 0) or 0) for r in kept) / 60.0
     val = sum(1 for r in kept if r.get("split") == "val")
-    sus = sum(1 for r in records if _suspect(r))
+    deleted = sum(1 for r in records if r.get("deleted"))
+    sus = sum(1 for r in records if not r.get("deleted") and _suspect(r))
     by_lang: Dict[str, int] = {}
     for r in kept:
         by_lang[r.get("lang", "")] = by_lang.get(r.get("lang", ""), 0) + 1
     langs = "，".join(f"{_LANG_NAMES.get(k, k or '未知')} {v} 条" for k, v in sorted(by_lang.items()))
     text = (f"### 📊 一共 **{len(records)}** 条片段：保留 **{len(kept)}** 条（{minutes:.1f} 分钟），"
             f"不保留 **{len(records) - len(kept)}** 条")
+    if deleted:
+        text += f"（其中你删除的 {deleted} 条）"
     if sus:
-        text += f"，其中 **{sus}** 条可能有错（已标红）"
+        text += f"，**{sus}** 条可能有错（已标红）"
     details = [x for x in (langs, f"其中 {val} 条留作「考试题」（用来自动挑选最像你的模型）" if val else "") if x]
-    return text + ("\n\n" + "；".join(details) if details else "")
+    text += ("\n\n" + "；".join(details) if details else "")
+    unsaved = _unsaved_count(cfg, voice)
+    return text + ("\n\n" + _pending_note(unsaved) if unsaved else "")
 
 
 _DROP_WORDS = {"否", "不", "不要", "删", "删除", "n", "no", "false", "0", "x", "×", "✘", "✗", "ｘ", "✕"}
@@ -1834,7 +2198,7 @@ class WebUI:
     VERIFY_OUT = ("vf_bar", "vf_md", "vf_table", "vf_btn", "vf_log")
     BLIND_OUT = (("bt_bar", "bt_md", "bt_btn", "bt_state", "bt_submit", "bt_result", "vf_log")
                  + tuple(f"bt_audio_{i}" for i in range(MAX_BLIND)) + tuple(f"bt_pick_{i}" for i in range(MAX_BLIND)))
-    VOICE_OUT = ("voice_status", "clips_count", "clips", "gen_warn", "clip_diff", "adopt_btn", "sel_clip", "clip_audio")
+    VOICE_OUT = ("voice_status", "clips_count", "clips", "gen_warn", "clip_diff", "sel_clip", "clip_audio", "clip_msg")
     LIB_OUT = ("lib_acc", "lib_table", "lib_total")
 
     def __init__(self, cfg: Config, local: bool = True):
@@ -1928,7 +2292,7 @@ class WebUI:
             table = []
         return self._o(self.VOICE_OUT, voice_status=_voice_status_md(self.cfg, v), clips_count=_clips_count_md(self.cfg, v),
                        clips=table, gen_warn=_gen_warn_md(self.cfg, v, backend or self.default_synth), clip_diff="",
-                       adopt_btn=_btn(ADOPT_BTN, visible=False), sel_clip="", clip_audio=_upd(value=None, visible=False))
+                       sel_clip="", clip_audio=_upd(value=None, visible=False), clip_msg="")
 
     def refresh_voices(self, current: Any = None) -> Dict[str, Any]:
         names = _voices(self.cfg)
@@ -2053,12 +2417,7 @@ class WebUI:
             return
         overrides = {"asr": {"engine": asr or "faster-whisper", "language": lang or "auto"},
                      "denoise": denoise or "auto", "separate_vocals": bool(separate)}
-        try:
-            base = {"voice": v, "table": _table_records(table, CLIP_HEADERS),
-                    "pending": sorted(_pending_edits(self.cfg, v, table))}
-        except Exception as exc:  # 只是为了不丢表格里的修改，出问题也不影响准备素材
-            log.debug(f"记录校对表的修改失败：{exc}")
-            base = {"voice": v, "table": [], "pending": []}
+        base = {"voice": v}  # 做完后刷新校对表（没保存的修改在硬盘上的草稿里，不会丢）
         stream = stream_task("prepare", "准备素材", v, _attach_missed if attach else _prepare_job, self.cfg, v, uploads,
                              folder_s, overrides,
                              stages=_stages(self.cfg, "prepare", overrides=overrides), note=NOTE)
@@ -2085,91 +2444,72 @@ class WebUI:
 
     def after_prepare_clips(self, voice: Any, only_sus: Any = False, table: Any = None, base: Any = None
                             ) -> Tuple[Any, Any, Any]:
-        """素材准备做完后刷新校对表（接在 do_prepare 后面）：按「只看可能有错的」筛选；
-        开始前没保存的修改、等待期间在表格里改的内容都留着（准备素材会重新判断「保留」，所以不能直接和硬盘比）。
+        """素材准备做完后刷新校对表（接在 do_prepare 后面）。没保存的修改存在硬盘上的草稿里，准备素材不会动它，
+        这里只去掉已经不存在的片段的草稿。返回 (片段总数, 表格, 清空的 clips_base)。
 
-        返回 (片段总数, 表格, 清空的 clips_base)。这次没真正开始准备（没填声音、别的任务在做……）时 clips_base 是空的，
-        什么都不改。"""
+        这次没真正开始准备（没填声音、别的任务在做……）时 clips_base 是空的，什么都不改。"""
         v = _voice_name(voice)
         if not v or not isinstance(base, dict) or base.get("voice") != v:
             return _upd(), _upd(), {}
-        b = base
-        start = {_clean_cell(r.get(COL_ID)): r for r in _table_records(b.get("table") or [], CLIP_HEADERS)}
-        end = {_clean_cell(r.get(COL_ID)): r for r in _table_records(table, CLIP_HEADERS)}
-        ids = {str(x) for x in (b.get("pending") or [])}
-        for rid, row in end.items():
-            s0 = start.get(rid)
-            if s0 is not None and any(_clean_cell(row.get(c)) != _clean_cell(s0.get(c)) for c in _EDIT_COLS):
-                ids.add(rid)
         try:
-            known = {r["id"] for r in wf.Project(self.cfg, v).load_manifest()}
-        except ValueError:
-            known = set()
-        pending = {rid: (end.get(rid) or start[rid]) for rid in ids if rid in known and (rid in end or rid in start)}
-        rows = _keep_pending(_clips_table(self.cfg, v, bool(only_sus)), pending)
-        count = _clips_count_md(self.cfg, v) + ("\n\n" + _pending_note(len(pending)) if pending else "")
-        return count, rows, {}
+            _review.prune_draft(wf.Project(self.cfg, v))
+        except (ValueError, OSError):
+            pass
+        return _clips_count_md(self.cfg, v), _clips_table(self.cfg, v, bool(only_sus)), {}
 
     # ------------------------------------------------------------------ ① 校对
     def load_clips(self, voice: Any, only_sus: Any = False) -> Tuple[Any, Any]:
-        """「🔄 重新载入」：完全按硬盘上的校对表重新显示（没保存的修改不要了）。"""
+        """「🔄 刷新表格」：按硬盘上的校对表和没保存的修改（草稿）重新显示。"""
         return _clips_count_md(self.cfg, voice), _clips_table(self.cfg, voice, bool(only_sus))
 
     def refresh_clips(self, voice: Any, only_sus: Any = False, table: Any = None) -> Tuple[Any, Any]:
-        """切换「只看可能有错的」、查完错字以后刷新表格：按硬盘重新读，但表格里还没保存的修改原样留着。"""
-        pending = _pending_edits(self.cfg, voice, table)
-        rows = _keep_pending(_clips_table(self.cfg, voice, bool(only_sus)), pending)
-        count = _clips_count_md(self.cfg, voice) + ("\n\n" + _pending_note(len(pending)) if pending else "")
-        return count, rows
+        """切换「只看可能有错的」、查完错字以后刷新表格（没保存的修改在草稿里，一直留着）。"""
+        return _clips_count_md(self.cfg, voice), _clips_table(self.cfg, voice, bool(only_sus))
 
     def on_clip_pick(self, voice: Any, table: Any, row: int, col: int, value: Any = None) -> Tuple[Any, ...]:
-        """点校对表的一行：按 id 找片段（排序、筛选后也不会播错），显示两次识别的对比。"""
+        """点校对表的一行：按 id 找片段（排序、筛选后也不会播错），播放录音，显示两次识别的对比。
+        点「修改建议」「选项」两列是按按钮（网页里的脚本处理），不重新播放。"""
         v = _voice_name(voice)
-        cid = _clean_cell(value) if col == 1 else _clean_cell(_cell(table, CLIP_HEADERS, row, COL_ID))
+        if col in (CLIP_HEADERS.index(COL_SUGGEST), CLIP_HEADERS.index(COL_MENU)):
+            return _upd(), _upd(), _upd()
+        cid = (_clean_cell(value) if col == CLIP_HEADERS.index(COL_ID)
+               else _clean_cell(_cell(table, CLIP_HEADERS, row, COL_ID)))
         if not v or not cid:
-            return _upd(), "", _btn(ADOPT_BTN, visible=False), ""
+            return _upd(), "", ""
         project = wf.Project(self.cfg, v)
         rec = {r["id"]: r for r in project.load_manifest()}.get(cid)
         if rec is None:
-            return (_upd(value=None, label="试听选中的片段"), self._notice("表格里的片段不属于这个声音，请先点「🔄 重新载入」。"),
-                    _btn(ADOPT_BTN, visible=False), "")
+            return (_upd(value=None, label="试听选中的片段"), self._notice("表格里的片段不属于这个声音，请先点「🔄 刷新表格」。"), "")
         no = _clean_cell(_cell(table, CLIP_HEADERS, row, "#")) or "?"
-        text = str(rec.get("text", "") or "")
+        vals = _review.current_values(rec, _review.load_draft(project).get(cid))
+        text = vals["text"]
         audio = _upd(value=str(project.abspath(rec["path"])), label=f"试听：第 {no} 条　{text[:24]}", visible=True)
-        sus = _suspect(rec)
-        if not sus:
-            return audio, "", _btn(ADOPT_BTN, visible=False), cid
-        reasons = "；".join(str(x) for x in (sus.get("reasons") or []) if x)
-        alt = str(sus.get("alt") or "")
+        sus = rec.get("suspect") if isinstance(rec.get("suspect"), dict) else {}
+        info = _review.analyze(rec, text)
+        if not sus or not (info["active"] or info["adopted"]):
+            return audio, "", cid
+        reasons = "；".join(info["reasons"])
+        alt = _review.apply_edits(text, info["edits"]) if info["edits"] else ""
         panel = ('<div class="vt-diff">' + (f'<div class="vt-diff-reason">⚠️ 可能有错：{html.escape(reasons)}</div>'
                                              if reasons else "")
-                 + _render_diff(text, alt, sus.get("spans")) + "</div>")
-        can_adopt = bool(alt) and callable(getattr(wf, "apply_suggestion", None))
-        return audio, panel, _btn(ADOPT_BTN, visible=can_adopt), cid
+                 + _render_diff(text, alt, info["red"]) + "</div>")
+        return audio, panel, cid
+
+    def _review_outputs(self, voice: str, only_sus: Any, msg: str) -> Tuple[Any, ...]:
+        """校对表的操作做完以后：(提示, 片段总数, 表格)。"""
+        return msg, _clips_count_md(self.cfg, voice), _clips_table(self.cfg, voice, bool(only_sus))
 
     def do_adopt(self, voice: Any, clip_id: Any, only_sus: Any = False, table: Any = None) -> Tuple[Any, ...]:
-        """「✅ 采用建议」：把这条片段的文字改成第二次识别的结果，并刷新表格（别的行里还没保存的修改留着）。"""
+        """采用建议（「修改建议」那一列的 ✅）：把还没采用的建议改进这一行（先存成草稿，红灯；保存后变绿灯）。
+        返回 (提示, 片段总数, 表格)。"""
         v = _voice_name(voice)
         cid = str(clip_id or "")
         if not v or not cid:
-            return "请先点表格里标红的那一行。", _upd(), _upd(), "", _btn(ADOPT_BTN, visible=False)
-        guard = self._edit_guard(v, "采用建议")
-        if guard:
-            return guard, _upd(), _upd(), _upd(), _upd()
-        fn = getattr(wf, "apply_suggestion", None)
-        if not callable(fn):
-            return "这个版本还不能自动采用建议，请直接在表格的「文字」列里修改。", _upd(), _upd(), _upd(), _upd()
-        pending = _pending_edits(self.cfg, v, table, skip=[cid])
-        rec = fn(self.cfg, v, cid) or {}
-        text = rec.get("text") if isinstance(rec, dict) else ""
-        msg = f"✅ 已采用建议：{_md_text(text)}" if text else "✅ 已采用建议"
-        if isinstance(rec, dict) and rec.get("csv_locked"):
-            msg += ("\n\n⚠️ transcripts.csv 正被 Excel/WPS 打开，那个文件这次没能同步（网页里已经改好了）。"
-                    "关掉 Excel/WPS 后点一次「保存修改」就会同步。")
-        if pending:
-            msg += "\n\n" + _pending_note(len(pending))
-        rows = _keep_pending(_clips_table(self.cfg, v, bool(only_sus)), pending)
-        return (msg, _clips_count_md(self.cfg, v), rows, "", _btn(ADOPT_BTN, visible=False))
+            return "请先点表格里标红的那一行。", _upd(), _upd()
+        res = _review.adopt_suggestion(wf.Project(self.cfg, v), cid)
+        msg = (f"✅ 已按建议改好（{_md_text(res.get('changes') or '')}）：{_md_text(res.get('text') or '')}"
+               "\n\n这一行现在是 🔴 没保存，记得点「保存修改」。")
+        return msg, _clips_count_md(self.cfg, v), _clips_table(self.cfg, v, bool(only_sus))
 
     @staticmethod
     def _edit_guard(voice: str, action: str = "保存修改") -> str:
@@ -2177,11 +2517,11 @@ class WebUI:
         info = current_task()
         if info and info.get("running") and info.get("voice") == voice and info.get("kind") in ("prepare", "proofcheck"):
             return (f"「{info.get('label')}」正在进行，请等它完成后再点「{action}」。"
-                    "你在表格里改的内容还在，做完刷新表格时也会留着，不会丢。")
+                    "你在表格里改的内容还在（红灯的那几行），不会丢。")
         return ""
 
-    def do_save(self, voice: Any, table: Any, only_sus: Any = False) -> Tuple[Any, Any, Any]:
-        """「保存修改」：把表格里的修改写回校对表，重新统计。被 Excel 打开时不丢修改。"""
+    def do_save(self, voice: Any, table: Any = None, only_sus: Any = False) -> Tuple[Any, Any, Any]:
+        """「保存修改」：把所有没保存的修改（红灯的行）写进校对表，重新统计。被 Excel 打开时不丢修改。"""
         v = _voice_name(voice)
         if not v:
             return NEED_VOICE, _upd(), _upd()
@@ -2189,51 +2529,99 @@ class WebUI:
         if guard:
             return guard, _upd(), _upd()
         project = wf.Project(self.cfg, v)
-        records = {r["id"]: r for r in project.load_manifest()}
-        rows = _table_records(table, CLIP_HEADERS)
-        out_rows: List[Dict[str, Any]] = []
-        notes: List[str] = []
-        changed_text: Dict[str, str] = {}
-        for i, row in enumerate(rows, 1):
-            rid = _clean_cell(row.get(COL_ID))
-            rec = records.get(rid)
-            if rec is None:
-                continue
-            keep = _parse_keep(row.get(COL_KEEP))
-            if keep is None:
-                notes.append(f"第 {_clean_cell(row.get('#')) or i} 行「保留」填的是「{_clean_cell(row.get(COL_KEEP))}」，看不懂，已保持原样")
-                keep = bool(rec.get("keep", True))
-            text = _clean_cell(row.get(COL_TEXT))
-            if text and text != str(rec.get("text", "")).strip():
-                changed_text[rid] = str(rec.get("text", ""))
-            lang = _LANG_CODES.get(_clean_cell(row.get(COL_LANG)), rec.get("lang", ""))
-            out_rows.append({"id": rid, "keep": 1 if keep else 0, "split": rec.get("split", "train"), "lang": lang,
-                             "duration": rec.get("duration", 0), "text": text or rec.get("text", ""),
-                             "drop_reason": _clean_cell(row.get(COL_DROP)), "audio": ""})
-        if not out_rows:
-            return (f"表格里的片段不属于「{_md_text(v)}」，请先点「🔄 重新载入」。", _upd(), _upd())
-        fields = ["id", "keep", "split", "lang", "duration", "text", "drop_reason", "audio"]
+        if not project.exists:
+            return NEED_PREPARE, _upd(), _upd()
+        res = wf.review_save(self.cfg, v)
+        return self._save_md(res), _clips_count_md(self.cfg, v), _clips_table(self.cfg, v, bool(only_sus))
+
+    @staticmethod
+    def _save_md(res: Dict[str, Any], one: str = "") -> str:
+        if not res.get("saved"):
+            return "没有需要保存的修改（表格里没有 🔴 红灯的行）。"
+        ch = res.get("changed") or {}
+        head = f"✅ {one}已保存" if one else f"✅ 已保存 {len(res['saved'])} 条"
+        md = f"{head}：改了 {ch.get('text', 0)} 处文字、{ch.get('keep', 0)} 处「保留」、{ch.get('lang', 0)} 处语言（这几行现在是 🟢）"
+        if res.get("csv_locked"):
+            md += ("\n\n⚠️ transcripts.csv 正被 Excel/WPS 打开，那个文件这次没能同步（程序里已经保存好了）。"
+                   "关掉 Excel/WPS 后再点一次「保存修改」就会同步。")
+        if res.get("summary"):
+            md += "\n\n" + _summary_md(res["summary"])
+        return md
+
+    def do_clip_action(self, voice: Any, payload: Any, only_sus: Any = False) -> Tuple[Any, ...]:
+        """校对表里的操作（网页脚本把 {"action", "id", ...} 放进隐藏的输入框，再按隐藏的按钮）：
+
+        edit 改文字、keep 切换保留、lang 切换语言、adopt 采用建议、revert 撤销这一行的修改（这几个只改草稿）；
+        save_row 只保存这一行、delete 删除、restore 恢复、ok 这句没错（这几个马上写进校对表）。
+        删除的行（灰色）只能撤销删除，别的操作会提示先撤销删除。返回 (提示, 片段总数, 表格)。"""
+        v = _voice_name(voice)
         try:
-            _write_csv_atomic(project.csv_path, out_rows, fields)
-        except PermissionError:
-            return ("transcripts.csv 正被 Excel/WPS 打开，请先关掉它，再点一次「保存修改」。"
-                    "表格里的修改还在，不会丢。", _upd(), _upd())
-        summary = wf.apply_review(self.cfg, v)
-        if changed_text:  # 改过文字的片段：旧的「可能有错」标记已经不对了（U3 也会做，这里保险）
-            recs = project.load_manifest()
-            dirty = False
-            for r in recs:
-                if r.get("id") in changed_text and "suspect" in r and r.get("text") != changed_text[r["id"]]:
-                    r.pop("suspect", None)
-                    dirty = True
-            if dirty:
-                project.save_manifest(recs)
-        ch = summary.get("changed") or {}
-        md = f"✅ 已保存：改了 {ch.get('text', 0)} 处文字、{ch.get('keep', 0)} 处「保留」、{ch.get('lang', 0)} 处语言"
-        if notes:
-            md += "\n\n" + "\n".join(f"> ⚠️ {_md_text(n)}" for n in notes)
-        md += "\n\n" + _summary_md(summary)
-        return md, _clips_count_md(self.cfg, v), _clips_table(self.cfg, v, bool(only_sus))
+            data = json.loads(str(payload or "")) if payload else {}
+        except ValueError:
+            data = {}
+        action, cid = str(data.get("action") or ""), str(data.get("id") or "").strip()
+        if not v:
+            return NEED_VOICE, _upd(), _upd()
+        if not action or not cid:
+            return _upd(), _upd(), _upd()
+        project = wf.Project(self.cfg, v)
+        recs = {r["id"]: r for r in project.load_manifest()}
+        rec = recs.get(cid)
+        if rec is None:
+            return self._review_outputs(v, only_sus, "这一条已经不在校对表里了（可能重新准备过素材），表格已经刷新。")
+        no = str(data.get("no") or "").strip()
+        which = f"第 {no} 条" if no else "这一条"
+        if action in ("save_row", "delete", "restore", "ok"):
+            guard = self._edit_guard(v, {"save_row": "保存这一行", "delete": "删除", "restore": "恢复",
+                                         "ok": "这句没错"}[action])
+            if guard:
+                return guard, _upd(), _upd()
+        if rec.get("deleted") and action not in ("restore", "delete"):
+            return self._review_outputs(v, only_sus, f"{which}已经删除了（灰色 = 不用来训练）。要改它，请先在「⋯ 选项」里点"
+                                                     "「↩️ 撤销删除」。")
+        vals = _review.current_values(rec, _review.load_draft(project).get(cid))
+        msg = ""
+        if action == "edit":
+            text = str(data.get("text") or "")
+            res = _review.set_draft(project, cid, text=text)
+            msg = (f"✏️ {which}改好了（🔴 没保存）：{_md_text(res['values']['text'])}" if res["dirty"]
+                   else f"{which}和保存过的一样，不用保存。")
+        elif action == "keep":
+            res = _review.set_draft(project, cid, keep=not vals["keep"])
+            msg = f"{which}的「保留」改成了「{'是' if res['values']['keep'] else '否'}」" + ("（🔴 没保存）" if res["dirty"] else "")
+        elif action == "lang":
+            res = _review.set_draft(project, cid, lang="en" if vals["lang"] == "zh" else "zh")
+            msg = (f"{which}的语言改成了「{_LANG_NAMES.get(res['values']['lang'], res['values']['lang'])}」"
+                   + ("（🔴 没保存）" if res["dirty"] else ""))
+        elif action == "adopt":
+            res = _review.adopt_suggestion(project, cid)
+            msg = f"✅ {which}已按建议改好（{_md_text(res.get('changes') or '')}），改过的字是蓝色；现在是 🔴 没保存。"
+            _info(f"✅ {which}已按建议改好，记得保存")
+        elif action == "revert":
+            n = _review.discard_draft(project, cid)
+            msg = f"↩️ {which}已撤销修改，回到保存过的样子。" if n else f"{which}没有要撤销的修改。"
+        elif action == "save_row":
+            res = wf.review_save(self.cfg, v, [cid])
+            msg = self._save_md(res, one=which)
+            if res.get("saved"):
+                _info(f"✅ {which}已保存")
+        elif action == "delete":
+            res = wf.review_delete(self.cfg, v, cid)
+            msg = (f"🗑️ 已删除{which}：这一行变成灰色，不会用来训练。删错了？在这一行的「⋯ 选项」里点「↩️ 撤销删除」。"
+                   + ("\n\n⚠️ transcripts.csv 正被 Excel/WPS 打开，那个文件这次没能同步。" if res.get("csv_locked") else ""))
+            _info(f"🗑️ 已删除{which}（变灰了，可以撤销）")
+        elif action == "restore":
+            wf.review_restore(self.cfg, v, cid)
+            msg = f"↩️ 已撤销删除，{which}回来了：{_md_text(str(rec.get('text', ''))[:30])}"
+            _info(f"↩️ {which}回来了")
+        elif action == "ok":
+            from voicetwin.data.proofcheck import dismiss_suspect
+
+            dismiss_suspect(project, cid)
+            msg = f"👍 好的，{which}不再标红。"
+        else:
+            return _upd(), _upd(), _upd()
+        return self._review_outputs(v, only_sus, msg)
 
     def do_proofcheck(self, voice: Any, only_sus: Any = False) -> Iterator[Tuple[Any, ...]]:
         O = self.PROOF_OUT
@@ -2940,32 +3328,34 @@ class WebUI:
                     c["prep_next"] = gr.Button(PREP_NEXT, visible=False)
                     log_box("prep_log")
 
-                    gr.Markdown("### ✍️ 校对文字（可选，但能明显提升效果）\n"
-                                "**双击格子就能改错字，改完按回车**；不想要的片段把「保留」改成「否」；"
-                                "**点一下某一行就能听**（播放器和两次识别的对比在表格下面）。"
-                                "改完一定要点「保存修改」。（只改「文字」和「保留」两列就行）")
+                    gr.Markdown(REVIEW_HELP, elem_classes="vt-review-help")
                     c["clips_count"] = gr.Markdown(elem_classes="vt-md")
                     with gr.Row():
                         c["proof_btn"] = gr.Button(PROOF_BTN, scale=2,
                                                    visible=callable(getattr(wf, "run_proofcheck", None)))
                         stop_button("proof_stop")
                         c["only_sus"] = gr.Checkbox(label="只看可能有错的", value=False, scale=1)
-                        load_clips = gr.Button("🔄 重新载入", scale=1)
+                        load_clips = gr.Button("🔄 刷新表格", scale=1)
                     c["proof_bar"] = gr.HTML("", elem_classes="vt-bar-box")
                     c["proof_md"] = gr.Markdown(elem_classes="vt-md")
                     c["sel_clip"] = gr.State("")
                     c["clips_base"] = gr.State({})
-                    c["clips"] = gr.Dataframe(headers=CLIP_HEADERS, datatype=CLIP_TYPES, interactive=True, wrap=True,
+                    c["clip_msg"] = gr.Markdown(elem_classes="vt-md vt-clip-msg")
+                    # 表格本身不能直接打字（interactive=False）：改字、采用建议、选项都由 REVIEW_JS 处理，
+                    # 再通过下面两个隐藏的组件交给 do_clip_action
+                    c["clips"] = gr.Dataframe(headers=CLIP_HEADERS, datatype=CLIP_TYPES, interactive=False, wrap=True,
                                               latex_delimiters=[], col_count=(len(CLIP_HEADERS), "fixed"),
-                                              column_widths=["5%", "9%", "8%", "6%", "6%", "34%", "22%", "10%"])
-                    # 播放器、对比、「采用建议」都放在表格下面：点一行时它们会出现/消失，放在上面会把整张表顶上顶下，
-                    # 双击改字时第二下就点到别的格子上了（gradio 4.24 只认同一个格子上的双击）
+                                              elem_id="vt-clips", column_widths=CLIP_WIDTHS)
+                    c["clip_action"] = gr.Textbox(elem_id="vt-clip-action", elem_classes="vt-bridge", show_label=False,
+                                                  container=False)
+                    c["clip_action_btn"] = gr.Button("clip-action", elem_id="vt-clip-action-btn", elem_classes="vt-bridge")
+                    # 播放器和对比放在表格下面：点一行时它们会出现/消失，放在上面会把整张表顶上顶下
                     c["clip_audio"] = gr.Audio(label="试听选中的片段", type="filepath", autoplay=True, interactive=False,
                                                visible=False)
                     c["clip_diff"] = gr.HTML("")
-                    c["adopt_btn"] = gr.Button(ADOPT_BTN, visible=False, size="sm")
                     gr.Markdown("标红只是提醒「可能有错」，不一定真错；也可能有个别错字没被发现。"
-                                "「可能有错（红色）」这一列只用来看，改字请改「文字」列（双击它会看到格式代码，不用管）。",
+                                "「修改建议」来自另一个识别引擎，大多数是对的，但不能保证百分之百对：点了以后改过的字会变成蓝色，"
+                                "请看一眼对不对（不对就双击「文字」再改，或者在「⋯ 选项」里撤销）。",
                                 elem_classes="vt-honest")
                     save_clips = gr.Button("保存修改", variant="primary")
                     c["review_md"] = gr.Markdown(elem_classes="vt-md")
@@ -3190,12 +3580,13 @@ class WebUI:
                     return self.on_clip_pick(voice, table, row, col, getattr(evt, "value", None))
                 except Exception as exc:
                     log.warning(f"试听片段出错：{exc}")
-                    return _upd(), "", _btn(ADOPT_BTN, visible=False), ""
+                    return _upd(), "", ""
 
-            c["clips"].select(clip_pick, [c["voice"], c["clips"]],
-                              [c["clip_audio"], c["clip_diff"], c["adopt_btn"], c["sel_clip"]], **quick)
-            c["adopt_btn"].click(_safe("采用建议", 5, 0)(self.do_adopt), [c["voice"], c["sel_clip"], c["only_sus"], c["clips"]],
-                                 [c["review_md"], c["clips_count"], c["clips"], c["clip_diff"], c["adopt_btn"]], **quick)
+            c["clips"].select(clip_pick, [c["voice"], c["clips"]], [c["clip_audio"], c["clip_diff"], c["sel_clip"]],
+                              **quick)
+            review_outs = [c["clip_msg"], c["clips_count"], c["clips"]]
+            c["clip_action_btn"].click(_safe("校对表", len(review_outs), 0)(self.do_clip_action),
+                                       [c["voice"], c["clip_action"], c["only_sus"]], review_outs, **quick)
             save_clips.click(_safe("保存修改", 3, 0)(self.do_save), [c["voice"], c["clips"], c["only_sus"]],
                              [c["review_md"], c["clips_count"], c["clips"]], **quick)
             c["proof_btn"].click(_settled(self.do_proofcheck), [c["voice"], c["only_sus"]], outs(self.PROOF_OUT),
