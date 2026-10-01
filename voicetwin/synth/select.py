@@ -268,7 +268,7 @@ def evaluate_file(cfg: Dict[str, Any], project: Project, audio: Path, text: str 
         "结论": pct_label(score.pct) if score.pct is not None else similarity_label(score.speaker_sim, first_model),
         "像你本人（%）": score.pct,
         "声纹相似度": None if score.speaker_sim is None else round(score.speaker_sim, 3),
-        "相似度参考": "像你本人 ≥95% 非常像；85%~95% 比较像；<85% 不太像（" + PCT_HELP + "）",
+        "相似度参考": "像你本人 ≥95% 非常像；85%~95% 比较像；75%~85% 有点像（不到 85% 就算不够像）；<75% 不太像（" + PCT_HELP + "）",
         "时长（秒）": round(len(wav) / sr, 1),
     }
     if judge is not None and score.sims:

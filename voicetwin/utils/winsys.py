@@ -5,6 +5,7 @@
 
 from __future__ import annotations
 
+import atexit
 import contextlib
 import os
 import subprocess
@@ -78,11 +79,24 @@ def quick_edit_mask(mode: int) -> int:
     return (int(mode) & ~ENABLE_QUICK_EDIT_MODE) | ENABLE_EXTENDED_FLAGS
 
 
+_RESTORE_REGISTERED = False
+
+
+def _restore_console_mode(handle: Any, mode: int) -> None:
+    """程序结束时把黑色窗口的设置改回去（atexit 调用，不会抛出异常）。"""
+    try:
+        _kernel32().SetConsoleMode(handle, int(mode))
+    except Exception:
+        pass
+
+
 def disable_quick_edit() -> bool:
     """关闭黑色窗口的「快速编辑模式」：否则用鼠标点一下窗口，程序输出就会被冻结，训练看起来像卡住。
 
-    成功返回 True；不是 Windows、没有控制台或调用失败时返回 False。
+    程序结束时会自动改回原来的设置：在自己打开的「命令提示符」里运行过 voicetwin.bat 之后，
+    仍然可以用鼠标选中、复制窗口里的文字。成功返回 True；不是 Windows、没有控制台或调用失败时返回 False。
     """
+    global _RESTORE_REGISTERED
     if not _is_windows():
         return False
     try:
@@ -103,7 +117,12 @@ def disable_quick_edit() -> bool:
         new_mode = quick_edit_mask(mode.value)
         if new_mode == mode.value:
             return True
-        return bool(k32.SetConsoleMode(handle, new_mode))
+        if not k32.SetConsoleMode(handle, new_mode):
+            return False
+        if not _RESTORE_REGISTERED:
+            atexit.register(_restore_console_mode, handle, mode.value)
+            _RESTORE_REGISTERED = True
+        return True
     except Exception:
         return False
 

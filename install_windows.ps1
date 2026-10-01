@@ -369,7 +369,7 @@ if ($doctorCode -eq 0) {
 } elseif ($doctorCode -eq 2) {
     Write-Host "⚠️ 程序已经装好，但还有问题要先处理：请看上面标着 ❌ 的行。处理完后再双击 install_windows.bat 检查一次（你的数据不会丢）。" -ForegroundColor Yellow
     Write-Host "  - 「NVIDIA 显卡」或「PyTorch 显卡加速」是 ❌ 时，先安装最新显卡驱动并重启电脑，否则训练会非常慢" -ForegroundColor Yellow
-    Write-Host "  - 其它问题请看《快速上手》的「遇到问题」或详细手册的常见问题" -ForegroundColor Yellow
+    Write-Host "  - 其它问题请看《快速上手》最后的「遇到问题」" -ForegroundColor Yellow
 } else {
     Write-Host "❌ 环境检查没能运行。请把这个窗口拍照或截图，发给帮你安装的人。" -ForegroundColor Red
 }

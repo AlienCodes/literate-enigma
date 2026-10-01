@@ -111,7 +111,7 @@
   <li>帮同事做一个（需要对方本人授权，见附录 D）。</li>
 </ul>
 <p><strong>新建</strong>：在最上面的 <span class="ui">声音名称</span> 里输入新名字，然后从 <span class="tab">① 准备素材</span> 开始。</p>
-<p><strong>查看和切换</strong>：点开声音名称下面的 <span class="ui">🎙️ 我的声音库（共 N 个）</span>，每个声音一行，列出 # / 名称 / 素材（分钟 / 条）/ 状态 / 最佳模型 / 最后修改时间，一眼就能看出哪个声音训练好了。<strong>点哪一行就选中哪个声音</strong>（上面的"声音名称"会跟着变），还可以点 <span class="ui">▶ 试听这个声音</span> 听一听（5.2 节）。也可以点 <span class="ui">声音名称</span> 右边的小三角直接选。新建的声音没出现时，点 <span class="btn gray">🔄 刷新声音列表</span>。</p>
+<p><strong>查看和切换</strong>：点开声音名称下面的 <span class="ui">🎙️ 我的声音库（共 N 个）</span>，每个声音一行，列出 # / 名称 / 素材（分钟 / 条）/ 状态 / 最佳模型 / 最后修改时间，一眼就能看出哪个声音训练好了。<strong>点哪一行就选中哪个声音</strong>（上面的"声音名称"会跟着变），表格下面还会出现 <span class="ui">▶ 试听这个声音</span> 播放器，可以听一听（5.2 节）。也可以点 <span class="ui">声音名称</span> 右边的小三角直接选。新建的声音没出现时，点 <span class="btn gray">🔄 刷新声音列表</span>。</p>
 <div class="note">声音名称不能包含 <code>\ / : * ? " &lt; &gt; |</code> 这些字符。每个声音训练出的模型都会占用不少硬盘空间（通常 1 GB 以上）。程序同一时间只做一件耗时的事：一个声音正在训练时，不能同时给另一个声音准备素材或生成音频。</div>
 
 <h2 id="ch13-6">13.6 备份、换电脑和释放硬盘空间</h2>
@@ -137,9 +137,8 @@
 </ul>
 
 <h2 id="ch13-7">13.7 在局域网或手机上使用（注意隐私）</h2>
-<p>默认情况下网页界面只能在本机打开。如果想在同一个局域网里的另一台电脑或平板上使用，先<strong>关掉桌面图标打开的那个黑色窗口</strong>（否则下面的命令只会打开那个已经在运行、只能本机访问的网页），然后在命令提示符里运行：</p>
-<pre class="code">voicetwin.bat webui --host 0.0.0.0 --port 7860</pre>
-<p>然后在另一台设备的浏览器里访问 <code>http://这台电脑的IP地址:7860</code>（IP 地址可以在命令提示符里输入 <code>ipconfig</code> 查看"IPv4 地址"；7860 端口被占用时程序会自动换一个，以黑色窗口里显示的端口为准）。Windows 防火墙可能会弹窗询问，选择"允许"（仅专用网络）。</p>
+<p>默认情况下网页界面只能在本机打开。想在同一个局域网里的另一台电脑或平板上使用：先<strong>关掉桌面图标打开的那个黑色窗口</strong>（否则只会提示"声音分身已经在运行了"），再在命令提示符里运行 <code>voicetwin.bat webui --host 0.0.0.0 --port 7860</code>，
+然后在另一台设备的浏览器里访问 <code>http://这台电脑的IP地址:7860</code>（IP 地址用 <code>ipconfig</code> 查看"IPv4 地址"；端口以黑色窗口里显示的为准）。Windows 防火墙弹窗时选"允许"（仅专用网络）。</p>
 <div class="bad"><span class="t">不要随意使用 --share</span><code>voicetwin.bat webui --share</code> 会生成一个<strong>任何人都能访问</strong>的公网链接，别人拿到链接就能用你的声音生成任意内容。除非你完全清楚风险，否则不要使用。</div>
 
 
@@ -221,7 +220,7 @@ pause</pre>
 <p>7.3 节介绍了用 Excel 校对 <code>transcripts.csv</code>。改完保存并关掉 Excel 后，在命令行运行下面两行：第一行读回你的修改，第二行重新训练。</p>
 <pre class="code">voicetwin.bat review -v 我的声音
 voicetwin.bat train -v 我的声音</pre>
-<p>网页里的校对表要点 <span class="btn gray">🔄 重新载入</span> 才会显示新内容。读回之前不要在网页里点"保存修改"，否则网页表格里的旧内容会盖掉 Excel 里的修改。</p>
+<p>运行完第一行后，网页里的校对表要点 <span class="btn gray">🔄 重新载入</span> 才会显示新内容。在重新载入之前不要在网页里点"保存修改"，否则网页表格里的旧内容会盖掉 Excel 里的修改。</p>
 
 
 <h1 class="chapter" id="ch15"><span class="no">第 15 章</span>常见问题与故障排除</h1>
@@ -287,7 +286,7 @@ voicetwin.bat train -v 我的声音</pre>
 <div class="a">黄色表示已经 3 分钟以上没有新进度，这时"全部还要多久"会显示"暂时算不出来"。多数情况是这一步本来就慢：第一次下载识别模型（约 3 GB）、处理很长的视频、训练中比较长的一轮。<br>
 解决：① 先耐心等，<strong>不要关黑色窗口</strong>；② 打开任务管理器 → 性能 → GPU，显卡使用率很高说明正在干活；③ 超过半小时还不动，点 <span class="btn gray">⏹ 停止</span>（5 秒内点两次），再重新点开始。已经做好的部分不会丢。</div></div>
 
-<div class="qa"><div class="q">点了按钮，提示"现在正在「……」，同一时间只能做一件事"</div>
+<div class="qa"><div class="q">点了按钮，提示"现在正在「……」……同一时间只能做一件事"</div>
 <div class="a">这不是出错。准备素材、训练、生成这些事都很占显卡，程序同一时间只做一件，例如素材还在准备时又点了"开始训练"。提示里写着正在做什么、已经做了多久、百分之几，以及进度在哪一页能看到。等它完成后再点；不想等，就到那一页点 <span class="btn gray">⏹ 停止</span>（5 秒内点两次）。</div></div>
 
 <div class="qa"><div class="q">不小心关掉或刷新了网页，正在做的事还在吗</div>

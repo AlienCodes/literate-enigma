@@ -51,7 +51,7 @@
     如果电脑上装了第二个识别引擎，最后还会自动多做一步"查找可能的错字"（共 8 步，见 7.2 节）。</li>
   <li>全部完成后，进度条变成实心绿色 <strong>"✅ 全部完成！"</strong>，下面出现 <strong>"✅ 素材准备好了"</strong> 的摘要和 <span class="btn gray">去「② 训练模型」 →</span> 按钮；再往下，所有片段的校对表会<strong>自动列出来</strong>（第 7 章）。</li>
 </ol>
-<figure><img src="../images/02_prepare_done.png" alt="素材准备完成"><figcaption><b>图 6-1</b>　素材准备完成：100% 的进度条和"✅ 素材准备好了"摘要（示例：3 节课、16.4 分钟素材，数字只是例子）</figcaption></figure>
+<figure class="w80"><img src="../images/02_prepare_done.png" alt="素材准备完成"><figcaption><b>图 6-1</b>　素材准备完成：100% 的进度条和"✅ 素材准备好了"摘要（示例：3 节课、16.4 分钟素材，数字只是例子）</figcaption></figure>
 <div class="note">第一次下载识别模型时，进度条可能会变成黄色（好几分钟没有新进度），这是正常的，耐心等就行。原来的详细日志还在，收在进度条下面的 <span class="ui">详细过程（出问题时可以复制给帮你的人）</span> 里，平时不用看；进度条变红时照 5.3 节处理。</div>
 
 <h2 id="ch6-5">6.5 看懂处理结果</h2>
@@ -66,7 +66,7 @@
   <tr><td>其中 20 条留作「考试题」</td><td>程序留出 20 句<strong>不参加训练</strong>，训练后用它们当"考题"挑选最像你的模型、校准语速和"像你本人（%）"。素材少时会自动少留几条。</td></tr>
   <tr><td>自动挑选的参考录音（一共 10 条，下面是前 3 条）</td><td>最能代表你讲课状态的几句话。[中文·陈述] 表示"中文 / 陈述句"，另外还有"提问""感叹"。</td></tr>
 </table>
-<p>校对表上方还有一行总数，例如 <strong>"📊 一共 228 条片段：保留 228 条（16.4 分钟），不保留 0 条"</strong>，下面一行写着中文、英文各多少条。以后你在校对表里删掉或恢复片段，这一行会跟着变。</p>
+<p>校对表上方还有一行总数，例如 <strong>"📊 一共 228 条片段：保留 228 条（16.4 分钟），不保留 0 条"</strong>，下面一行写着中文、英文各多少条。以后你在校对表里删掉或恢复片段，点"保存修改"后这一行会跟着变。</p>
 <p><strong>黄色提醒</strong>的含义和处理：</p>
 <table class="t">
   <tr><th style="width:44%">提醒</th><th>怎么办</th></tr>
@@ -90,13 +90,7 @@
 </table>
 
 <h2 id="ch6-6">6.6 需要多长时间</h2>
-<table class="t">
-  <tr><th style="width:30%">素材时长</th><th>大约用时（有 NVIDIA 显卡）</th></tr>
-  <tr><td>30 分钟</td><td>5~15 分钟（第一次另加下载识别模型的时间）</td></tr>
-  <tr><td>1 小时</td><td>10~30 分钟</td></tr>
-  <tr><td>3 小时</td><td>30~90 分钟</td></tr>
-</table>
-<p>你的电脑上具体要多久，看进度条上的"预计几点完成"就行。</p>
+<p>有 NVIDIA 显卡时大约是：<strong>30 分钟素材要 5~15 分钟</strong>（第一次另加下载识别模型的时间），<strong>1 小时素材要 10~30 分钟</strong>，<strong>3 小时素材要 30~90 分钟</strong>。你的电脑上具体要多久，看进度条上的"预计几点完成"就行。</p>
 <div class="tip"><span class="t">以后增加素材</span>把新的视频也放进 <span class="path">D:\讲课素材</span>，再点一次 <span class="btn">开始准备素材</span>。程序<strong>只会处理新增的文件</strong>，之前处理过的和你校对过的内容都会保留。之后记得重新训练（第 8 章）。</div>
 
 
@@ -151,7 +145,7 @@
   <li>在 <span class="path">D:\VoiceTwin</span> 打开命令提示符（3.7 节），输入 <code>voicetwin.bat review -v 我的声音</code> 按 <span class="key">Enter</span>，程序会读回你的修改。</li>
   <li>回到网页，点 <span class="btn gray">🔄 重新载入</span>，表格里就是你在 Excel 里改好的内容了。</li>
 </ol>
-<div class="warn">Excel 开着这个文件时，网页里点"保存修改"会提示"transcripts.csv 正被 Excel/WPS 打开，请先关掉它"。Excel 和网页<strong>二选一</strong>：在 Excel 里改完、还没运行上面第 4 步之前，不要在网页里点"保存修改"，否则网页表格里的旧内容会盖掉你在 Excel 里的修改。</div>
+<div class="warn">Excel 开着这个文件时，网页里点"保存修改"会提示"transcripts.csv 正被 Excel/WPS 打开，请先关掉它"。Excel 和网页<strong>二选一</strong>：在 Excel 里改完、还没运行上面第 4 步之前，不要在网页里点"保存修改"或"✅ 采用建议"，否则网页里的旧内容会盖掉你在 Excel 里的修改。</div>
 
 <h2 id="ch7-4">7.4 什么样的片段应该删掉</h2>
 <ul>

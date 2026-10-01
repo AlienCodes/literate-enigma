@@ -144,7 +144,7 @@ def build_parser() -> argparse.ArgumentParser:
         p.add_argument("text" if name == "say" else "script", help="要说的文字" if name == "say" else "讲稿文件路径")
         p.add_argument("-o", "--output", help="输出文件（.wav 或 .mp3），默认保存到 workspace/声音名/outputs/")
         p.add_argument("-q", "--quality", choices=QUALITY_CHOICES,
-                       help="质量档位：fast 快速 | balanced 均衡 | best 精细 | max 极致 | perfect 完美"
+                       help="质量档位：fast 快速 | balanced 均衡 | best 最好 | max 极致 | perfect 完美"
                             "（越往后越慢，但每句更稳、更像你；默认看 config.yaml）")
         p.add_argument("-n", "--candidates", type=int, help="每句生成几个候选（覆盖质量档位）")
         speed_group = p.add_mutually_exclusive_group()

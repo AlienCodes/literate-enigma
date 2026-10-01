@@ -151,6 +151,22 @@ def test_disable_quick_edit_sets_mask(monkeypatch):
     assert sets == [("SetConsoleMode", 7, (0x01F7 & ~0x0040) | 0x0080)]
 
 
+def test_disable_quick_edit_restores_mode_at_exit(monkeypatch):
+    """程序结束时把原来的设置改回去（只登记一次）。"""
+    k = FakeKernel32(console_mode=0x01F7)
+    registered = []
+    monkeypatch.setattr(winsys.sys, "platform", "win32")
+    monkeypatch.setattr(winsys, "_kernel32", lambda: k)
+    monkeypatch.setattr(winsys, "_RESTORE_REGISTERED", False)
+    monkeypatch.setattr(winsys.atexit, "register", lambda fn, *a: registered.append((fn, a)))
+    assert winsys.disable_quick_edit() is True
+    assert winsys.disable_quick_edit() is True
+    assert len(registered) == 1
+    fn, args = registered[0]
+    fn(*args)
+    assert k.calls[-1] == ("SetConsoleMode", 7, 0x01F7)
+
+
 def test_disable_quick_edit_failures(monkeypatch):
     monkeypatch.setattr(winsys.sys, "platform", "win32")
     k = FakeKernel32(get_ok=0)  # 没有控制台（例如被重定向）

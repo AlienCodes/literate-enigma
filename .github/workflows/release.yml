@@ -42,7 +42,6 @@ jobs:
           for pdf in dist/*.pdf; do
             case "$pdf" in
               *QuickStart*) assets+=("$pdf#快速上手（几页纸，先看这个）") ;;
-              *Manual*) assets+=("$pdf#详细使用手册（遇到问题时再查）") ;;
               *) assets+=("$pdf") ;;
             esac
           done

@@ -5,9 +5,8 @@
 
 压缩包内容：程序代码、Windows 安装脚本、README、docs/，以及由《快速上手.md》转换来的
 《使用教程（先看我）.html》——双击即可在浏览器里看图文版快速上手（截图已内嵌）。
-另外把两份 PDF 复制到 dist/ 作为单独的 Release 附件：
+另外把快速上手的 PDF 复制到 dist/ 作为单独的 Release 附件（详细的长手册已经不再发布）：
     docs/快速上手.pdf              → VoiceTwin-QuickStart-v<版本>.pdf（几页纸，先看这个）
-    docs/声音分身VoiceTwin使用手册.pdf → VoiceTwin-Manual-v<版本>.pdf（详细手册）
 """
 
 from __future__ import annotations
@@ -24,7 +23,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 QUICK = ROOT / "快速上手.md"
 QUICK_PDF = ROOT / "docs" / "快速上手.pdf"                   # 由 scripts/build_manual_pdf.py --quickstart 生成
-MANUAL_PDF = ROOT / "docs" / "声音分身VoiceTwin使用手册.pdf"   # 由 scripts/build_manual_pdf.py 生成
 INCLUDE = ["voicetwin", "docs", "install_windows.bat", "install_windows.ps1", "pyproject.toml", "README.md"]
 TOP = "VoiceTwin"
 REPO_URL = "https://github.com/AlienCodes/literate-enigma"
@@ -144,7 +142,6 @@ def release_notes(version: str, zip_name: str) -> str:
 |---|---|
 | **`{quick_asset_name(version)}`** | **快速上手（几页纸，先看这个）** |
 | **`{zip_name}`** | 程序本体 |
-| `{manual_asset_name(version)}` | 详细手册（遇到问题时再查） |
 
 不需要下载 Source code。
 
@@ -188,7 +185,7 @@ def build(version: str, out_dir: Path) -> Path:
             zf.write(f, f"{TOP}/{f.relative_to(ROOT).as_posix()}")
         zf.writestr(f"{TOP}/使用教程（先看我）.html", guide_html)
     # PDF 同时作为单独的 Release 附件（文件名用英文，GitHub 会去掉附件名里的中文）
-    for src, name in ((QUICK_PDF, quick_asset_name(version)), (MANUAL_PDF, manual_asset_name(version))):
+    for src, name in ((QUICK_PDF, quick_asset_name(version)),):
         if src.exists():
             shutil.copyfile(src, out_dir / name)
     return zip_path
@@ -198,8 +195,6 @@ def quick_asset_name(version: str) -> str:
     return f"VoiceTwin-QuickStart-v{version}.pdf"
 
 
-def manual_asset_name(version: str) -> str:
-    return f"VoiceTwin-Manual-v{version}.pdf"
 
 
 def main() -> None:

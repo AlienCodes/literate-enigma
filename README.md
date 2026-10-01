@@ -9,7 +9,7 @@
 > 1. 下载程序：[**Releases 页面 → VoiceTwin-Windows-v….zip**](https://github.com/AlienCodes/literate-enigma/releases/latest)
 > 2. 照着 [**快速上手**](快速上手.md) 做：安装 → 训练你的声音 → 粘贴讲稿生成音频（也有 [7 页 PDF 版](docs/快速上手.pdf)，带截图）
 >
-> 遇到问题再查：[详细手册 PDF（78 页）](docs/声音分身VoiceTwin使用手册.pdf) · [Windows 详细教程（网页版）](docs/Windows详细使用教程.md)
+> 想看每一步更细的说明（网页版，需要时再看）：[Windows 详细教程](docs/Windows详细使用教程.md)
 
 > 你已经录好的课程视频/音频就是训练素材。程序会自动从里面提取你的声音、识别文字、训练一个专属模型，
 > 然后按你本人的语速、停顿和语气来朗读新讲稿。
@@ -358,12 +358,12 @@ voicetwin/
 │   └── workers/              在各引擎自己的 Python 环境里运行的子进程（JSON Lines 协议）
 └── webui/                    Gradio 中文界面
 tests/                        单元测试、端到端测试、仿真 GPT-SoVITS 集成测试
-docs/manual/                  PDF 使用手册的源文件（HTML + 界面截图）
+docs/manual/images/           快速上手里用到的界面截图（docs/manual/src 是旧的详细手册源文件，已不再发布）
 scripts/
-├── build_manual_pdf.py       生成 docs/声音分身VoiceTwin使用手册.pdf（Chromium 打印，自动目录、书签、页码）
+├── build_manual_pdf.py       用 --quickstart 生成 docs/快速上手.pdf（Chromium 打印）
 └── build_windows_release.py  打包 Windows 发布版 zip（Release 工作流调用）
 ```
 
 运行测试：`pip install -e ".[dev]" && pytest`（不需要显卡：用测试引擎和仿真的 GPT-SoVITS 目录验证整条流程）。
 
-修改手册后重新生成 PDF：`pip install playwright pypdf fonttools && python scripts/build_manual_pdf.py`（需要 Noto Sans CJK SC 字体）。
+修改《快速上手》后重新生成 PDF：`pip install playwright pypdf fonttools && python scripts/build_manual_pdf.py --quickstart`（需要 Noto Sans CJK SC 字体）。
