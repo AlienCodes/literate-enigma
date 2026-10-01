@@ -1,5 +1,5 @@
-# EN: The First Shot Against Smallpox
-# ZH: 终结天花的第一针
+# EN: From a Scratch to a World Without Smallpox
+# ZH: 从一道划痕到天花绝迹
 
 ## 英文
 Smallpox, a **contagious** **affliction**, killed about three in ten of its **sufferers** and an estimated 300 million in the 20th century. An early **safeguard**, **deliberately** **implanting** matter from its **sores** in the healthy, was **practised** in China by the 16th century and reached England in 1721. The **procedure** itself could cause **grave** **sickness** or death, if less **frequently** than natural smallpox.
