@@ -17,3 +17,4 @@
 | 11 | Microplastics: Everywhere, but How Harmful? / 微塑料：无处不在，危害几何？ | 271 | 51 | 97 / 98.5 / 96.5 |
 | 12 | The Toad That Invaded Australia / 入侵澳洲的毒蟾 | 271 | 52 | 96.5 / 98 / 97 |
 | 13 | Y2K: The Crisis That Success Erased / 千年虫：被成功抹去的危机 | 269 | 54 | 98 / 97 / 98 |
+| 14 | The Wind That Kept No Time: The Fall of Galloping Gertie / 不合拍的风：塔科马大桥的陨落 | 268 | 52 | 98 / 96.5 / 98 |
