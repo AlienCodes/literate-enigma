@@ -268,8 +268,9 @@ def launch(cfg: Any, host: str = "127.0.0.1", port: int = 7860, share: bool = Fa
     """启动网页界面（会一直运行，直到关闭黑色窗口或按 Ctrl+C）。"""
     _quiet_gradio_env()
     try:
-        from voicetwin.utils.winsys import disable_quick_edit
+        from voicetwin.utils.winsys import disable_quick_edit, use_chinese_console_font
 
+        use_chinese_console_font()  # 老式黑色窗口没有中文字体时，中文提示会显示成 ?
         disable_quick_edit()
     except Exception:
         pass

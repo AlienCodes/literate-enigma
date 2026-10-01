@@ -102,3 +102,75 @@ def test_requirements_accept_gsv_package_versions():
            "imageio-ffmpeg": "0.6.0"}
     for name, ver in gsv.items():
         assert Version(ver) in reqs[name].specifier, f"{name} {ver} 不满足 {reqs[name]}"
+
+
+# ---- 老式黑色窗口里中文全部变成「?」（老师右键「以管理员身份运行」安装 v0.1.8 时遇到）----
+def test_windows_launcher_reopens_in_windows_terminal():
+    text = (ROOT / "install_windows.bat").read_bytes().decode("utf-8")
+    assert "\n" not in text.replace("\r\n", "")  # 全部是 CRLF
+    lines = text.split("\r\n")
+    ps_line = next(i for i, ln in enumerate(lines) if ln.startswith("powershell "))
+    start = next(i for i, ln in enumerate(lines) if ln.startswith('start "" wt.exe'))
+    assert start < ps_line
+    guards = lines[:start]
+    # 带参数运行（自动测试、高级用法）、已经在 Windows Terminal 里、已经换过一次：都不再换窗口，避免来回打开
+    assert 'if not "%~1"=="" goto run' in guards and "if defined WT_SESSION goto run" in guards
+    assert "if defined VOICETWIN_NO_WT goto run" in guards and "where wt.exe >nul 2>nul || goto run" in guards
+    assert '-d "%~dp0."' in lines[start] and "VOICETWIN_NO_WT=1&& install_windows.bat" in lines[start]
+    assert lines[start + 1] == "if errorlevel 1 goto run" and lines[start + 2] == "exit /b 0"
+    # 换不了窗口时给一句看得见的英文提示（中文这时候显示不出来）
+    assert any("Run as administrator" in ln and ln.isascii() for ln in lines[start:ps_line])
+
+
+def test_windows_installer_switches_old_console_to_chinese_font():
+    text = (ROOT / "install_windows.ps1").read_bytes()[3:].decode("utf-8")
+    call = text.index("\r\nUse-ChineseConsoleFont\r\n")
+    first_output = min(text.index("Write-Host"), text.index("\r\nStep "))
+    assert text.index("function Use-ChineseConsoleFont") < call
+    assert text.index("function Test-ChineseFace") < call
+    assert call < text.index("function Step(")  # 在打印任何中文之前
+    assert "if ($env:WT_SESSION) { return }" in text and '"NSimSun", "SimSun", "MS Gothic"' in text
+    assert first_output > 0
+
+
+def test_windows_installer_font_code_compiles():
+    """C# 部分用 PowerShell 实际编译一次（有 pwsh 时）；在 Windows 上再调用一次，没有黑色窗口时不能报错。"""
+    import re
+    import shutil
+    import subprocess
+
+    import pytest
+
+    pwsh = shutil.which("pwsh")
+    if not pwsh:
+        pytest.skip("没有 PowerShell 7（pwsh）")
+    text = (ROOT / "install_windows.ps1").read_bytes()[3:].decode("utf-8")
+    csharp = re.search(r'-TypeDefinition @"\r\n(.*?)\r\n"@', text, re.S).group(1)
+    script = ("Add-Type -ErrorAction Stop -TypeDefinition @'\n" + csharp.replace("\r\n", "\n") + "\n'@\n"
+              "if ($IsWindows) { [void][VtConsoleFont]::Face() }\n'COMPILED'\n")
+    out = subprocess.run([pwsh, "-NoProfile", "-Command", script], stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                         timeout=180).stdout.decode("utf-8", "replace")
+    assert "COMPILED" in out, out
+
+
+def test_windows_launcher_runs_installer_without_windows_terminal(tmp_path):
+    """只在 Windows 上跑：没有 Windows Terminal、或者已经在里面时，install_windows.bat 直接运行 install_windows.ps1。"""
+    import os
+    import shutil
+    import subprocess
+    import sys
+
+    import pytest
+
+    if sys.platform != "win32":
+        pytest.skip("只在 Windows 上测试")
+    shutil.copy(ROOT / "install_windows.bat", tmp_path / "install_windows.bat")
+    (tmp_path / "install_windows.ps1").write_bytes(b"\xef\xbb\xbfWrite-Output 'DUMMY-INSTALLER-RAN'\r\n")
+    sysroot = os.environ.get("SystemRoot", r"C:\Windows")
+    base = {k: v for k, v in os.environ.items() if k.upper() not in ("WT_SESSION", "VOICETWIN_NO_WT", "PATH")}
+    base["PATH"] = os.pathsep.join([os.path.join(sysroot, "System32"), sysroot,
+                                    os.path.join(sysroot, "System32", "WindowsPowerShell", "v1.0")])
+    for extra in ({}, {"WT_SESSION": "test"}):
+        out = subprocess.run(["cmd", "/c", "install_windows.bat"], cwd=str(tmp_path), env=dict(base, **extra),
+                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=120).stdout.decode("utf-8", "replace")
+        assert "DUMMY-INSTALLER-RAN" in out, out
