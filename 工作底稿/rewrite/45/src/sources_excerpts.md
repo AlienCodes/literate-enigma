@@ -1,0 +1,10 @@
+# 第45篇 来源摘要（检索摘要，不得直接引用原文）
+- S1 Wikipedia "Hindenburg disaster": 6 May 1937, Manchester Township/Lakehurst NJ; 97 aboard (36 passengers, 61 crew); 35 aboard died (13 passengers, 22 crew) + 1 ground crew = 36; departed Frankfurt evening 3 May 1937, first of 10 scheduled round trips of 1937 season; hours behind schedule, thunderstorms delayed landing / captain circled over an hour; ~7:25 pm flames seen near the tail/upper fin; publicity ended airship era; cause never definitively established; leading theory static spark igniting leaking hydrogen.
+- S2 airships.net / Smithsonian: 62 of 97 survived (~64%); duration of fire reported variously 32–37 s ("about 34 seconds" most cited; "less than forty seconds"); paint ("incendiary paint") theory rejected by investigators/analysis.
+- S3 airships.net / WLS: Herbert Morrison's eyewitness report was recorded for WLS Chicago, NOT broadcast live; aired next day (WLS ~noon, NBC 3 p.m.); words paired with newsreel film only decades later. Newsreel cameras & photographers were at the field.
+- S4 Helium: US Helium Control Act 1927; US refused to export helium to Germany; ship used hydrogen (~7 million cu ft).
+- S5 Interiors (airships.net): dining room, lounge, writing room, promenades; smoking room kept at positive pressure behind an airlock; no open flame — single electric lighter; grand piano aboard in 1936, removed in 1937 (not on final flight).
+- S6 1936 season: 17 round trips (34 crossings); first North America flight departed Frankfurt 6 May 1936, landed Lakehurst 9 May 1936.
+- S7 Werner Franz, 14, cabin boy: drenched by a burst water tank above him, dropped through a hatch and escaped; Bangor Daily News/Scholastic: 'saved by a soaking from a burst water tank', 'narrowly escape[d] the inferno'; died 2014.
+- S8 USS Akron, 4 April 1933, 73 of 76 died — deadliest airship crash; Hindenburg not the deadliest. blimpinfo.com 2013: 'Forgotten Airship Disaster Recalled 80 Years Later'.
+- S9 LZ127 Graf Zeppelin withdrawn from service after the disaster (1937); scrapped 1940.
