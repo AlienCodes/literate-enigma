@@ -60,11 +60,13 @@ def test_clip_table_has_row_numbers_and_count(prepared):
             assert rec["drop_reason"] not in r[st]  # 老师说不用写原因
 
     md = _clips_count_md(cfg, project.voice)
-    kept = sum(1 for r in records if r.get("keep", True))
-    assert f"一共 **{len(records)}** 条片段" in md
-    assert f"保留 **{kept}** 条" in md
-    assert f"不保留 **{len(records) - kept}** 条" in md
-    assert "可能有错" not in md  # 还没查过错字
+    material = sum(1 for r in records if A._review.is_material(r))
+    unusable = len(records) - material - sum(1 for r in records if r.get("deleted"))
+    assert "### 🎯 用来训练的句子：" in md and f"= **{material}** 条" in md or f"：**{material}** 条" in md
+    if unusable:
+        assert f"{len(records)} − {unusable}（程序判断不能用的）" in md
+    assert "可能有错（已标红）" not in md  # 还没查过错字
+    assert "确认训练素材" in md
 
 
 def test_clip_count_for_voice_without_clips(tmp_path):
@@ -917,7 +919,7 @@ def test_after_prepare_keeps_edits_and_filter(prepared, tmp_path):
 
 
 def test_delete_turns_gray_and_undo(prepared, tmp_path):
-    """删除一行：不消失，整行变灰（⚪ 已删除，不用来训练）；选项里是「撤销删除」，点了就回来。"""
+    """删除一行：不消失，整行变紫色（不再算训练素材）；选项里是「撤销删除」，点了就回来，数量跟着加减。"""
     cfg, name = _copy_voice(prepared, tmp_path)
     project = wf.Project(cfg, name)
     ui = A.WebUI(cfg)
@@ -929,7 +931,7 @@ def test_delete_turns_gray_and_undo(prepared, tmp_path):
     idc, st, sug = (CLIP_HEADERS.index(x) for x in (A.COL_ID, A.COL_MENU, A.COL_SUGGEST))
     by_id = {r[idc]: r for r in rows}
     assert len(rows) == n and A.FLAG_DELETED in by_id[cid][st]
-    assert "灰色" in msg and "撤销删除" in msg and "你删除的 1 条" in count
+    assert "紫色" in msg and "撤销删除" in msg and "1（你删除的）" in count
     saved = {r["id"]: r for r in project.load_manifest()}[cid]
     assert saved["deleted"] is True and saved["keep"] is False and saved["drop_reason"] == "老师删除"
     # 删除的行：改字、切换都不行，提示先撤销删除；「保存修改」也不保存它
@@ -1181,3 +1183,101 @@ def test_cell_escape_shows_quotes_and_symbols_as_typed():
     for text in ["Next, let's look at it.", '1. *设置* <b>x</b> & "q" #3 $5']:
         out = A._cell_esc(text)
         assert _html.unescape(out) == text and "<" not in out and "&#x" not in out and "*" not in out
+
+
+
+def _all_usable(project):
+    """把共享素材里的片段都设成「能用」（这些测试要数得清清楚楚）。"""
+    recs = project.load_manifest()
+    for r in recs:
+        r.update(keep=True, manual_keep=True)
+        r.pop("deleted", None)
+        r.pop("suspect", None)
+    project.save_manifest(recs)
+    return recs
+
+
+def test_count_formula_follows_delete_and_undo(prepared, tmp_path):
+    """老师要的数字：一共 N 条，删 2 条显示 N − 2 = N-2，撤销 1 条显示 N − 1 = N-1，全撤销又是 N。"""
+    cfg, name = _copy_voice(prepared, tmp_path)
+    project = wf.Project(cfg, name)
+    recs = _all_usable(project)
+    ui = A.WebUI(cfg)
+    n = len(recs)
+    count, _ = ui.load_clips(name)
+    assert f"用来训练的句子：**{n}** 条" in count and "−" not in count.split("\n")[0]
+    _act(ui, name, "delete", recs[0]["id"])
+    _, count, _ = _act(ui, name, "delete", recs[1]["id"])
+    assert f"{n} − 2（你删除的） = **{n - 2}** 条" in count
+    _, count, _ = _act(ui, name, "restore", recs[0]["id"])
+    assert f"{n} − 1（你删除的） = **{n - 1}** 条" in count
+    _, count, _ = _act(ui, name, "restore", recs[1]["id"])
+    assert f"用来训练的句子：**{n}** 条" in count
+
+
+def test_confirm_material_orange_numbers_and_purple_rows(prepared, tmp_path):
+    """「确认训练素材」：用来训练的行号橙色（FLAG_TRAIN），删除的（紫色）和不能用的不显示行号（FLAG_OUT）；
+    以后再删除 / 撤销，行号马上按现在的样子变，并提醒再确认一次。"""
+    cfg, name = _copy_voice(prepared, tmp_path)
+    project = wf.Project(cfg, name)
+    recs = _all_usable(project)
+    ui = A.WebUI(cfg)
+    menu, idc = CLIP_HEADERS.index(A.COL_MENU), CLIP_HEADERS.index(A.COL_ID)
+    _act(ui, name, "delete", recs[0]["id"])
+    _act(ui, name, "edit", recs[1]["id"], text="确认前改的、还没保存的文字。")
+    rows = _clips_table(cfg, name)
+    assert A.FLAG_DELETED in rows[0][menu] and A.FLAG_TRAIN not in rows[0][menu]  # 紫色；还没确认：没有橙色记号
+    md, count, rows = ui.do_confirm(name)
+    by_id = {r[idc]: r for r in rows}
+    assert md.startswith("### ✅ 训练素材已确认") and "先帮你保存了 1 条" in md
+    assert A.FLAG_OUT in by_id[recs[0]["id"]][menu] and A.FLAG_DELETED in by_id[recs[0]["id"]][menu]
+    assert all(A.FLAG_TRAIN in by_id[r["id"]][menu] for r in recs[1:])
+    assert "训练素材已确认" in count and {x["id"]: x for x in project.load_manifest()}[recs[1]["id"]]["text"] == \
+        "确认前改的、还没保存的文字。"
+    # 确认以后撤销删除：行号马上变回橙色，提醒再确认一次
+    _, count, rows = _act(ui, name, "restore", recs[0]["id"])
+    assert A.FLAG_TRAIN in {r[idc]: r for r in rows}[recs[0]["id"]][menu] and "再点一次" in count
+    md2, count2, _ = ui.do_confirm(name)
+    assert "训练素材已确认" in count2 and "再点一次" not in count2
+    # 准备素材 / 查错字正在进行时不能确认
+    import voicetwin.webui.app as appmod
+
+    orig = appmod.current_task
+    appmod.current_task = lambda: {"running": True, "voice": name, "kind": "prepare", "label": "准备素材"}
+    try:
+        assert "请等它完成后再点「确认训练素材」" in ui.do_confirm(name)[0]
+    finally:
+        appmod.current_task = orig
+
+
+def test_no_text_clips_delete_and_warning(tmp_path, lecture_dir):
+    """v18.1 老师遇到的情况：片段切好了、文字还没识别出来（识别中途停了）。删除不能报错（以前报「还没有可用的素材」）；
+    表格写「还没有识别出文字」、上方说清楚再点一次「开始准备素材」；一条能用的都没有时不能确认。"""
+    from conftest import make_cfg
+
+    root = tmp_path / "src"
+    root.mkdir()
+    from conftest import make_lecture
+
+    make_lecture(root / "0006.wav", with_srt=False)
+    cfg = make_cfg(tmp_path / "ws")
+    try:
+        wf.run_prepare(cfg, "v", [str(root)])
+    except Exception:
+        pass
+    project = wf.Project(cfg, "v")
+    recs = project.load_manifest()
+    for r in recs:  # 和老师那次一样：识别没做完，过滤也还没跑
+        r.update(keep=True, text="", lang="")
+        r.pop("asr_done", None)
+    project.save_manifest(recs)
+    ui = A.WebUI(cfg)
+    msg, count, rows = _act(ui, "v", "delete", recs[0]["id"])
+    assert "紫色" in msg and "还没有可用的素材" not in msg
+    assert A.FLAG_DELETED in rows[0][CLIP_HEADERS.index(A.COL_MENU)]
+    assert "还没有识别出文字" in rows[1][CLIP_HEADERS.index(A.COL_TEXT)]
+    assert "开始准备素材" in count and "= **0** 条" in count
+    md, _, _ = ui.do_confirm("v")
+    assert "一条能用来训练的句子都没有" in md and not A._review.load_confirmed(project)
+    msg2, _, _ = _act(ui, "v", "use", recs[1]["id"])
+    assert "还没有文字" in msg2

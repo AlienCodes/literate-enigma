@@ -212,3 +212,49 @@ def test_known_english_rule_stays_conservative():
     recs = [{"text": "也就是说 as所代替的"}, {"text": "As it is reported"}, {"text": "it"},
             {"text": "as", "deleted": True}]
     assert P.voice_vocab(recs) == frozenset({"as", "it"})  # 删除的那一条不算（as 只算了两段）
+
+
+def test_prepare_again_finishes_missing_text(tmp_path, lecture_dir, monkeypatch):
+    """识别文字中途停了（片段切好了、没有文字）：再点一次「开始准备素材」会接着识别，片段不会重新切、删除的还是删除。"""
+    from types import SimpleNamespace
+
+    from conftest import make_cfg
+    from voicetwin.data import asr as asr_mod
+    from voicetwin.data import prepare as prep
+
+    cfg = make_cfg(tmp_path / "ws")
+    wf.run_prepare(cfg, "v", [str(lecture_dir)])
+    proj = wf.Project(cfg, "v")
+    recs = proj.load_manifest()
+    before = [(r["id"], r["duration"]) for r in recs]
+    for r in recs:
+        r.update(text="", lang="", keep=True)
+        r.pop("asr_done", None)
+    proj.save_manifest(recs)
+    R.delete_clip(proj, recs[0]["id"])
+
+    class FakeTranscriber:
+        progress = None
+        progress_range = (0, 1)
+
+        def __init__(self, cfg):
+            pass
+
+        def _load(self):
+            pass
+
+        def transcribe(self, wav):
+            return SimpleNamespace(text="这是识别出来的一句话。", lang="zh", engine="fake", avg_logprob=-0.2,
+                                   no_speech_prob=0.01)
+
+    monkeypatch.setattr(prep, "Transcriber", FakeTranscriber)
+    monkeypatch.setattr(asr_mod, "engine_importable", lambda engine: True)
+    cfg2 = make_cfg(tmp_path / "ws", prepare={"asr": {"engine": "faster-whisper"}})
+    wf.run_prepare(cfg2, "v", [str(lecture_dir)])
+    after = proj.load_manifest()
+    assert [(r["id"], r["duration"]) for r in after] == before  # 没有重新切
+    assert all(r["text"] == "这是识别出来的一句话。" and r["asr_done"] for r in after)
+    by_id = {r["id"]: r for r in after}
+    assert by_id[recs[0]["id"]]["deleted"] and by_id[recs[0]["id"]]["keep"] is False  # 删除的还是删除
+    c = R.material_counts(after)
+    assert c["deleted"] == 1 and c["no_text"] == 0 and c["material"] >= 1

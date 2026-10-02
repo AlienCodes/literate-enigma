@@ -102,7 +102,7 @@ def test_prepare_through_the_page(tmp_path, lecture_dir):
     # 表格由接在后面的 after_prepare_clips 刷新
     after = next(f for f in app.fns if getattr(getattr(f.fn, "__wrapped__", f.fn), "__name__", "") == "after_prepare_clips")
     count, clips, _ = after.fn("网页声音", False, None, last["clips_base"])
-    assert clips and clips[0][0] == 1 and "一共" in count
+    assert clips and clips[0][0] == 1 and "用来训练的句子" in count
     assert "还没训练" in last["voice_status"]
     assert last["prep_next"]["visible"] is True
     # 页面再点一次：已经处理过的文件不会重做（同一个文件夹）
@@ -183,6 +183,10 @@ def test_review_table_is_display_only_with_bridge(tmp_path):
     app = ui.build()
     clips = ui.c["clips"]
     assert clips.interactive is False and clips.elem_id == "vt-clips" and clips.headers == A.CLIP_HEADERS
+    (conf,) = _dep(app, ui, "confirm_btn", "click")  # 「✅ 确认训练素材」在「保存修改」下面
+    ids = {k: getattr(v, "_id", None) for k, v in ui.c.items()}
+    assert conf["outputs"] == [ids["review_md"], ids["clips_count"], ids["clips"]]
+    assert ui.c["confirm_btn"]._id > ids["clips"] and ui.c["confirm_btn"].value == A.CONFIRM_BTN
     for name, eid in (("clip_action", "vt-clip-action"), ("clip_action_btn", "vt-clip-action-btn")):
         comp = ui.c[name]
         assert comp.elem_id == eid and "vt-bridge" in (comp.elem_classes or []) and comp.visible is not False

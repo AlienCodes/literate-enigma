@@ -76,4 +76,5 @@
 | 10-02 06:17 | [1002_0617_bkdf42ezd.txt](1002_0617_bkdf42ezd.txt) | Wait for CI on the records commit | completed | Background command "Wait for CI on the records commit" completed (exit code 0) |
 | 10-02 07:42 | [1002_0742_btrzorj0j.txt](1002_0742_btrzorj0j.txt) | Run full suite in teacher-equivalent gsv39 env | completed | Background command "Run full suite in teacher-equivalent gsv39 env" completed (exit code 0) |
 | 10-02 08:38 | [1002_0838_bitv3am0z.txt](1002_0838_bitv3am0z.txt) | Run teacher-env suite in background | completed | Background command "Run teacher-env suite in background" completed (exit code 0) |
-| 10-02 08:41 | [1002_0841_b7nphv7tz.txt](1002_0841_b7nphv7tz.txt) |  |  |  |
+| 10-02 09:03 | [1002_0903_bm333azvk.txt](1002_0903_bm333azvk.txt) | Wait until release v18.1 appears | completed | Background command "Wait until release v18.1 appears" completed (exit code 0) |
+| 10-02 10:12 | [1002_1012_bcp3ezwn6.txt](1002_1012_bcp3ezwn6.txt) |  |  |  |

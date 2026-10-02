@@ -29,11 +29,13 @@ def _copy_voice(prepared, tmp_path):
 
 
 def test_version_is_shown_in_page_header():
-    """老师要求网页标题一直显示「v18」：18.1 这样的小版本只在悬停提示、黑色窗口、发布页里写完整号码。"""
-    assert voicetwin.__version__ == "18.1"
-    assert A.APP_TITLE_VERSION == "18" and "# 🎙️ 声音分身 VoiceTwin v18 " in A.INTRO and "18.1" not in A.INTRO
+    """老师的永久要求：网页标题永远显示「v18」，版本号（18.2……）只在黑色窗口、发布页、下载的文件名里。"""
+    assert voicetwin.__version__ == "18.2"
+    assert A.APP_TITLE_VERSION == "18" and "# 🎙️ 声音分身 VoiceTwin v18 " in A.INTRO and "18.2" not in A.INTRO
     text = (Path(__file__).resolve().parents[1] / "pyproject.toml").read_text(encoding="utf-8")
-    assert 'version = "18.1"' in text
+    assert 'version = "18.2"' in text
+    src = (Path(__file__).resolve().parents[1] / "voicetwin" / "webui" / "app.py").read_text(encoding="utf-8")
+    assert '\nAPP_TITLE_VERSION = "18"\n' in src  # 写死的，不跟着版本号变
 
 
 def test_quality_names_are_one_source():
