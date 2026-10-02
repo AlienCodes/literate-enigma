@@ -67,14 +67,14 @@ def select_references(project: Project, records: List[Dict[str, Any]], pcfg: Dic
         for r in statements:  # 陈述句优先分散到不同视频
             if len([p for p in picked if sentence_kind(p["text"]) == "statement"]) >= quota:
                 break
-            if used_sources.get(r["source"], 0) >= 2 and len(statements) > quota * 2:
+            if used_sources.get(r.get("source", ""), 0) >= 2 and len(statements) > quota * 2:
                 continue
             key = normalize_for_cer(r["text"])
             if key in seen_texts:
                 continue
             seen_texts.add(key)
             picked.append(r)
-            used_sources[r["source"]] = used_sources.get(r["source"], 0) + 1
+            used_sources[r.get("source", "")] = used_sources.get(r.get("source", ""), 0) + 1
         chosen += picked
 
     refs: List[Dict[str, Any]] = []
@@ -98,7 +98,7 @@ def select_references(project: Project, records: List[Dict[str, Any]], pcfg: Dic
             "kind": sentence_kind(r["text"]),
             "duration": round(dur, 2),
             "score": round(float(r.get("_ref_score", 0.0)), 3),
-            "source": r["source"],
+            "source": r.get("source", ""),
             "rate": r.get("rate"),
         })
     for r in records:

@@ -183,6 +183,11 @@ def test_learn_from_teacher_edits():
             {"orig_text": "整句改掉了", "text": "完全不一样的说法", "deleted": True}]
     learned = lf.learn_from_edits(recs)
     assert learned == {"艾子": "as", "带词": "代词"}
+    # 用的时候再筛：母本里出现过的、常用词不学
+    lex = lf.Lexicon.build(["我们来看这个位置"], learned={"艾子": "as", "位置": "which", "按照": "and"})
+    assert "艾子" in lex.learned and "位置" not in lex.learned
+    if HAS_JIEBA:
+        assert "按照" not in lex.learned
 
 
 # ---------------------------------------------------------------------------- 整个声音
@@ -253,6 +258,11 @@ def test_teacher_rows_are_fixed_exactly_like_the_manual_review(tmp_path):
         if o["id"] in draft:
             assert draft[o["id"]]["text"] == c["text"], o["id"]
     assert res["fixes"] >= 138
+    # 老师看过、点了「保存修改」以后再点一次：什么都不应该再改（以前出过错：从保存的修改里学到「位置 → which」「按照 → and」，
+    # 别的句子里正常的「位置」「按照」也被改掉了）
+    review.save_rows(project)
+    res2 = tf.check_with_transcript(project)
+    assert review.load_draft(project) == {} and res2["fixes"] == 0, list(review.load_draft(project).items())[:3]
 
 
 @need_both

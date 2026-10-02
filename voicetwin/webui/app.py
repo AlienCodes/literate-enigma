@@ -3191,9 +3191,11 @@ class WebUI:
         if no_sug:
             parts.append(f"还有 **{no_sug}** 条只标红、没有建议（程序不知道该改成什么）：勾上「只看可能有错的」，"
                          "点那一行听一听录音，双击「文字」自己改")
-        parts.append(f"标准库：你的母本 {_int(r.get('builtin_lines'))} 句 + 语法术语和常用说法 {_int(r.get('terms'))} 个 + "
+        habits = max(0, _int(r.get("terms")) - _int(r.get("builtin_terms")))
+        parts.append(f"标准库：你的母本 {_int(r.get('builtin_lines'))} 句 + 语法术语和常用说法 {_int(r.get('builtin_terms'))} 个 + "
                      f"对照表 {_int(r.get('corrections'))} 条"
-                     + (f" + 你以前自己改过的 {_int(r.get('learned'))} 种错" if _int(r.get("learned")) else ""))
+                     + (f"；另外从母本里统计出你常说的词 {habits} 个" if habits else "")
+                     + (f"；你以前自己改过的错 {_int(r.get('learned'))} 种" if _int(r.get("learned")) else ""))
         files = r.get("files") or []
         if files:
             parts.append(f"另外用了你上传的：{_md_text('、'.join(files[:3]))}{' 等' if len(files) > 3 else ''}")

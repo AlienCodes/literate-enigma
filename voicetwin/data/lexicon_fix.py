@@ -47,6 +47,7 @@ _HAN = re.compile(r"^[㐀-䶿一-鿿豈-﫿]+$")
 MAX_TERM = 10
 HABIT_MIN = 3  # 母本里至少说过这么多次的词，算老师的习惯说法
 COMMON_FREQ = 2000  # jieba 词典里这么常见的词（「一声」「以下」）不当成写错的
+LEARN_MAX_FREQ = 100  # 老师改过的错，错的写法在 jieba 词典里这么常见（「位置」「按照」「一声」）就不学
 
 
 # ============================================================================ 自带的词库
@@ -221,8 +222,11 @@ class Lexicon:
     def __init__(self, terms: Iterable[str], corrections: Dict[str, str], mother_texts: Sequence[str] = (),
                  learned: Optional[Dict[str, str]] = None):
         self.corrections = dict(corrections)
-        self.learned = dict(learned or {})
         self.counts = _count_ngrams(mother_texts)
+        # 老师以前改过的：错的写法在母本里出现过（「位置」「按照」平时就这么说）、或者本身是常用词，就不学——
+        # 不然把某一句里「位置 → which」学去，别的句子里正常的「位置」也会被改掉（真实浏览器实测发现的）
+        self.learned = {w: r for w, r in (learned or {}).items()
+                        if not self.counts.get(w) and word_freq(w) < LEARN_MAX_FREQ}
         self.has_mother = bool(mother_texts)
         self.builtin = set(t for t in terms if _HAN.match(t) and len(t) >= 2)
         habits: Set[str] = set()
