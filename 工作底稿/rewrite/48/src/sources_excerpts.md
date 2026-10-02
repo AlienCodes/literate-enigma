@@ -1,0 +1,7 @@
+# 第48篇 来源摘要（检索摘要，不得直接引用原文）
+- S1 Wikipedia "Dagen H": 3 September 1967 Sweden switched from left- to right-hand traffic. In a 1955 referendum about 83% voted to keep driving on the left. The Riksdag approved PM Tage Erlander's proposal on 10 May 1963 for right-hand traffic from 1967.
+- S2 Reasons: all neighbouring countries (incl. Norway, Finland, land borders) drove on the right, about 5 million vehicles crossing annually; about 90% of Swedes drove left-hand-drive cars, leading to head-on collisions when overtaking on narrow two-lane roads.
+- S3 Preparation: Statens högertrafikkommission (HTK) ran it; logo a large H with an arrow; a TV song contest winner "Håll dig till höger, Svensson" (Keep to the right, Svensson) reached No. 5 in the Swedish chart; about 360,000 road signs switched; over 1,000 new buses bought with doors on the right.
+- S4 The day: non-essential traffic banned from 01:00 to 06:00; all remaining traffic halted at 04:50, carefully changed sides, resumed at 05:00. Stockholm and Malmö: longer ban, 10:00 Saturday to 15:00 Sunday, so crews could reconfigure intersections.
+- S5 Results: on the following Monday 125 traffic accidents were reported, against 130–198 on previous Mondays; dip attributed to cautious driving; by 1969 accident and fatality rates had returned to their pre-switch levels.
+- S6 Iceland followed, switching on 26 May 1968 (H-dagurinn), influenced by Sweden's decision.
