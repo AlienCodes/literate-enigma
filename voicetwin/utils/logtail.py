@@ -192,7 +192,7 @@ def diagnose_gsv_api(text: str) -> List[str]:
         notes.append(f"引擎对程序的请求回答了 {n500} 次「内部错误」（HTTP 500）。")
     if re.search(r"CUDA out of memory|OutOfMemoryError", text):
         notes.append("引擎记录里有「显卡内存（显存）不够」（CUDA out of memory）。")
-    if re.search(r"Address already in use|error while attempting to bind|10048", text):
+    if re.search(r"Address already in use|error while attempting to bind|WinError 10048|Errno 10048|Errno 98\b", text):
         notes.append("引擎记录显示：端口被别的程序占用了（可能是上次没关掉的引擎）。")
     for exc, cnt in exception_counts(text)[:3]:
         notes.append(f"引擎报错：{exc[:200]}" + (f"（共 {cnt} 次）" if cnt > 1 else ""))

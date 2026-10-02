@@ -230,3 +230,81 @@ def open_path(path: Union[str, Path], select: bool = False) -> bool:
         return True
     except Exception:
         return False
+
+
+# ---------------------------------------------------------------------------- 子进程跟着声音分身一起结束
+JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE = 0x2000
+JOB_OBJECT_EXTENDED_LIMIT_INFORMATION_CLASS = 9
+_job: Any = None
+_job_lock = threading.Lock()
+
+
+def _job_handle() -> Any:
+    """整个程序共用一个 Windows「作业对象」（Job Object），设置成「作业关闭时结束里面所有进程」。
+
+    这个句柄故意一直不关：声音分身不管怎么结束（关掉黑色窗口、崩溃、任务管理器结束），Windows 都会关掉它，
+    里面的 GPT-SoVITS 进程（以及它们开的子进程）就一起结束，不会留在后台占着显卡内存和端口。"""
+    global _job
+    with _job_lock:
+        if _job is not None:
+            return _job
+        import ctypes
+        from ctypes import wintypes
+
+        class IO_COUNTERS(ctypes.Structure):
+            _fields_ = [(n, ctypes.c_ulonglong) for n in (
+                "ReadOperationCount", "WriteOperationCount", "OtherOperationCount",
+                "ReadTransferCount", "WriteTransferCount", "OtherTransferCount")]
+
+        class JOBOBJECT_BASIC_LIMIT_INFORMATION(ctypes.Structure):
+            _fields_ = [("PerProcessUserTimeLimit", ctypes.c_int64), ("PerJobUserTimeLimit", ctypes.c_int64),
+                        ("LimitFlags", wintypes.DWORD), ("MinimumWorkingSetSize", ctypes.c_size_t),
+                        ("MaximumWorkingSetSize", ctypes.c_size_t), ("ActiveProcessLimit", wintypes.DWORD),
+                        ("Affinity", ctypes.c_size_t), ("PriorityClass", wintypes.DWORD),
+                        ("SchedulingClass", wintypes.DWORD)]
+
+        class JOBOBJECT_EXTENDED_LIMIT_INFORMATION(ctypes.Structure):
+            _fields_ = [("BasicLimitInformation", JOBOBJECT_BASIC_LIMIT_INFORMATION), ("IoInfo", IO_COUNTERS),
+                        ("ProcessMemoryLimit", ctypes.c_size_t), ("JobMemoryLimit", ctypes.c_size_t),
+                        ("PeakProcessMemoryUsed", ctypes.c_size_t), ("PeakJobMemoryUsed", ctypes.c_size_t)]
+
+        k32 = _kernel32()
+        k32.CreateJobObjectW.restype = wintypes.HANDLE
+        k32.CreateJobObjectW.argtypes = [ctypes.c_void_p, wintypes.LPCWSTR]
+        k32.SetInformationJobObject.restype = wintypes.BOOL
+        k32.SetInformationJobObject.argtypes = [wintypes.HANDLE, ctypes.c_int, ctypes.c_void_p, wintypes.DWORD]
+        job = k32.CreateJobObjectW(None, None)
+        if not job:
+            raise OSError(ctypes.get_last_error(), "CreateJobObjectW")
+        info = JOBOBJECT_EXTENDED_LIMIT_INFORMATION()
+        info.BasicLimitInformation.LimitFlags = JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE
+        if not k32.SetInformationJobObject(job, JOB_OBJECT_EXTENDED_LIMIT_INFORMATION_CLASS,
+                                           ctypes.byref(info), ctypes.sizeof(info)):
+            raise OSError(ctypes.get_last_error(), "SetInformationJobObject")
+        _job = job
+        return _job
+
+
+def kill_with_parent(proc: Any) -> bool:
+    """让这个子进程（和它以后开的子进程）在声音分身结束时一起结束。只在 Windows 上起作用；不会抛出异常。
+
+    为什么需要：推理服务用 CREATE_NO_WINDOW 启动，和黑色窗口没有关系，老师关掉黑色窗口时它不会跟着结束，
+    会一直占着 2~3 GB 显卡内存和端口，下次训练就可能显存不够。返回是否加进去了。"""
+    if not _is_windows() or proc is None:
+        return False
+    try:
+        import ctypes
+        from ctypes import wintypes
+
+        job = _job_handle()
+        k32 = _kernel32()
+        k32.AssignProcessToJobObject.restype = wintypes.BOOL
+        k32.AssignProcessToJobObject.argtypes = [wintypes.HANDLE, wintypes.HANDLE]
+        handle = int(getattr(proc, "_handle"))
+        if not k32.AssignProcessToJobObject(job, handle):
+            log.debug(f"子进程没能加入作业对象（错误码 {ctypes.get_last_error()}）")
+            return False
+        return True
+    except Exception as exc:  # 老系统、权限等原因：不影响使用，只是关窗口时子进程可能留在后台
+        log.debug(f"子进程没能加入作业对象：{exc}")
+        return False

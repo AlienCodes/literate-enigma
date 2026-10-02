@@ -10,6 +10,7 @@
 
 import json
 import os
+import re
 import socket
 import sys
 import time
@@ -23,7 +24,7 @@ from voicetwin.backends.base import SynthRequest, get_backend
 from voicetwin.backends.gptsovits import GPTSoVITSBackend
 
 from conftest import make_cfg
-from fake_gptsovits import REAL_API_V2, build_fake_root
+from fake_gptsovits import API_V2, REAL_API_V2, REAL_API_V2_2025, build_fake_root
 
 pytest.importorskip("fastapi")
 pytest.importorskip("uvicorn")
@@ -37,6 +38,12 @@ def quick(monkeypatch):
     monkeypatch.setattr(GPTSoVITSBackend, "_gpu_memory", lambda self, quick=False: (11.99, 11.2, "test"))
     monkeypatch.setattr(GPTSoVITSBackend, "POLL_SECONDS", 0.05)
     monkeypatch.setattr(GPTSoVITSBackend, "STARTUP_NOTE_SECONDS", 0.4)
+    # 程序用「解析后的」Python 运行 GPT-SoVITS（和真的整合包一样）。在 venv 里（比如和整合包同版本的 py3.9 测试环境）
+    # 解析后是 venv 外面的 Python，找不到 venv 里装的 fastapi / numpy，所以把 venv 的 site-packages 告诉它。
+    import sysconfig
+
+    paths = [sysconfig.get_paths()["purelib"], sysconfig.get_paths()["platlib"], os.environ.get("PYTHONPATH", "")]
+    monkeypatch.setenv("PYTHONPATH", os.pathsep.join(p for p in dict.fromkeys(paths) if p))
 
 
 def _port() -> int:
@@ -56,7 +63,7 @@ def _api_log(project) -> str:
     return (project.logs_dir / "gptsovits_api.log").read_text(encoding="utf-8", errors="replace")
 
 
-def _assert_clean_api_log(project):
+def _assert_clean_api_log(project, expected=()):
     """最后一次启动的引擎记录里没有报错。
 
     唯一的例外是停止时的 /control?command=exit：真实的 api_v2 先 os.kill(自己, SIGTERM) 再 exit(0)。
@@ -69,6 +76,8 @@ def _assert_clean_api_log(project):
     kept = []
     for unit in _units(text.splitlines()):
         if unit[0].startswith("Traceback") and unit[-1].startswith("SystemExit"):
+            continue
+        if unit[0].startswith("Traceback") and any(x in unit[-1] for x in expected):  # 测试故意弄出来的报错
             continue
         if len(unit) == 1 and "/control?command=exit" in unit[0]:
             continue
@@ -90,9 +99,10 @@ def test_vendored_api_is_the_teachers_version():
     assert '@APP.get("/control")' in lines[447]
 
 
-def test_real_api_start_switch_synthesize_stop(prepared, tmp_path, quick):
+@pytest.mark.parametrize("api_src", [REAL_API_V2, REAL_API_V2_2025], ids=["abe9843", "20250606v2pro"])
+def test_real_api_start_switch_synthesize_stop(prepared, tmp_path, quick, api_src):
     cfg, project, _ = prepared
-    root = build_fake_root(tmp_path / "GPT-SoVITS", real_api=True)
+    root = build_fake_root(tmp_path / "GPT-SoVITS", real_api=api_src)
     gcfg = make_cfg(project.root.parent, backends={"gptsovits": {
         "root": str(root), "python": sys.executable, "port": _port(), "startup_timeout": 60}})
     p2 = wf.open_project(gcfg, project.voice, must_exist=True)
@@ -120,6 +130,23 @@ def test_real_api_start_switch_synthesize_stop(prepared, tmp_path, quick):
         out2 = b.synthesize(SynthRequest(text="Hello everyone.", lang="en", ref_audio=ref, ref_text=ref_text,
                                          ref_lang=ref_lang), tmp_path / "b.wav")
         assert sf.info(str(out2)).frames > 0
+        # 显存不够：真实的引擎不报错，回 200 + 1 秒静音；程序要认出来，并从引擎记录里找出真正的原因
+        with pytest.raises(RuntimeError) as ei:
+            b.synthesize(SynthRequest(text="【测试显存不够】这一句。", lang="zh", ref_audio=ref, ref_text=ref_text,
+                                      ref_lang=ref_lang), tmp_path / "c.wav")
+        assert str(ei.value).startswith("GPT-SoVITS 合成失败：RuntimeError: CUDA out of memory")
+        from voicetwin.errors import explain, is_fatal
+
+        assert explain(ei.value).key == "gpu_oom" and is_fatal(ei.value)
+        assert not (tmp_path / "c.wav").exists()
+        # 换一个不存在的模型：说清楚原因，不是一串 JSON
+        with pytest.raises(RuntimeError) as ei:
+            b.use_checkpoint({"gpt": str(tmp_path / "没有-e3.ckpt"), "sovits": ""})
+        assert str(ei.value).startswith("切换 GPT 模型失败：") and '{"message"' not in str(ei.value).splitlines()[0]
+        # 引擎还能接着用
+        out3 = b.synthesize(SynthRequest(text="还能接着用。", lang="zh", ref_audio=ref, ref_text=ref_text,
+                                         ref_lang=ref_lang), tmp_path / "d.wav")
+        assert sf.info(str(out3)).frames > 0
     finally:
         b.stop()
     assert b.proc is None
@@ -127,7 +154,7 @@ def test_real_api_start_switch_synthesize_stop(prepared, tmp_path, quick):
     while time.time() < deadline and _pid_alive(pid):
         time.sleep(0.2)
     assert not _pid_alive(pid)
-    _assert_clean_api_log(p2)
+    _assert_clean_api_log(p2, expected=("CUDA out of memory",))
 
 
 def test_real_api_bare_get_tts_is_a_trap(prepared, tmp_path, quick):
@@ -228,6 +255,108 @@ def test_timeout_message_says_where_it_got_stuck(prepared, tmp_path, quick, monk
     from voicetwin.errors import explain
 
     assert explain(ei.value).key == "api_start"
+
+
+def test_does_not_take_over_a_server_it_did_not_start(prepared, tmp_path, quick):
+    """端口上已经有一个别人开的 api_v2（例如以前没关掉的）：不接手，换一个端口自己开，结束时关掉自己的。"""
+    import subprocess
+
+    cfg, project, _ = prepared
+    other_root = build_fake_root(tmp_path / "Other", real_api=True)
+    port = _port()
+    gcfg = make_cfg(project.root.parent, backends={"gptsovits": {
+        "root": str(other_root), "python": sys.executable, "port": port, "startup_timeout": 60}})
+    p2 = wf.open_project(gcfg, project.voice, must_exist=True)
+    other = get_backend("gptsovits", gcfg, p2)
+    other.start()  # 「别人」的服务，占着 port
+    try:
+        root = build_fake_root(tmp_path / "Mine", real_api=True)
+        gcfg2 = make_cfg(project.root.parent, backends={"gptsovits": {
+            "root": str(root), "python": sys.executable, "port": port, "startup_timeout": 60}})
+        b = get_backend("gptsovits", gcfg2, p2)
+        try:
+            b.start()
+            assert b.proc is not None and b.port != port  # 自己开了一个，换了端口
+            assert not _calls(other_root) or all(c["kind"] != "run" for c in _calls(other_root))
+        finally:
+            b.stop()
+        assert other._alive()  # 别人的服务不受影响
+    finally:
+        other.stop()
+
+
+def test_start_hint_is_measured(prepared, tmp_path, quick):
+    cfg, project, _ = prepared
+    root = build_fake_root(tmp_path / "GPT-SoVITS", real_api=True)
+    gcfg = make_cfg(project.root.parent, backends={"gptsovits": {
+        "root": str(root), "python": sys.executable, "port": _port(), "startup_timeout": 60}})
+    p2 = wf.open_project(gcfg, project.voice, must_exist=True)
+    b = get_backend("gptsovits", gcfg, p2)
+    f = b.work_dir / "api_start_seconds.txt"
+    if f.exists():
+        f.unlink()
+    assert b.start_hint() == "要先加载模型"  # 没测过就不说要多久（永久规定：不乱写）
+    try:
+        b.start()
+    finally:
+        b.stop()
+    assert re.fullmatch(r"上次用了 \d+ 秒", b.start_hint())
+
+
+def test_is_half_string_values(prepared, tmp_path):
+    cfg, project, _ = prepared
+    for raw, want in (("false", False), ("False", False), ("0", False), ("true", True), (False, False), (True, True)):
+        gcfg = make_cfg(project.root.parent, backends={"gptsovits": {"root": str(tmp_path), "is_half": raw}})
+        assert get_backend("gptsovits", gcfg, wf.open_project(gcfg, project.voice, must_exist=True)).is_half is want
+
+
+def test_missing_weight_file_is_explained(prepared, tmp_path, quick, monkeypatch):
+    cfg, project, _ = prepared
+    root = build_fake_root(tmp_path / "GPT-SoVITS", real_api=True)
+    gcfg = make_cfg(project.root.parent, backends={"gptsovits": {
+        "root": str(root), "python": sys.executable, "port": _port(), "startup_timeout": 60}})
+    p2 = wf.open_project(gcfg, project.voice, must_exist=True)
+    b = get_backend("gptsovits", gcfg, p2)
+    monkeypatch.setattr(b, "_current_weights", lambda: {"id": "x", "gpt": str(tmp_path / "没有-e15.ckpt"),
+                                                         "sovits": str(tmp_path / "没有_e8_s1.pth")})
+    with pytest.raises(RuntimeError) as ei:
+        b.start()
+    assert "找不到要用的模型文件" in str(ei.value) and b.proc is None
+
+
+def test_kill_with_parent_is_safe_everywhere():
+    from voicetwin.utils import winsys
+
+    assert winsys.kill_with_parent(None) is False
+    if os.name != "nt":
+        assert winsys.kill_with_parent(object()) is False
+
+
+@pytest.mark.skipif(os.name != "nt", reason="Windows 才有作业对象（Job Object）")
+def test_children_die_with_voicetwin_on_windows(tmp_path):
+    """声音分身被直接结束（相当于关掉黑色窗口）时，它开的子进程也一起结束，不留在后台占显卡。"""
+    import subprocess
+
+    pidfile = tmp_path / "child.pid"
+    code = ("import subprocess, sys, time\n"
+            "from voicetwin.utils.winsys import kill_with_parent\n"
+            "c = subprocess.Popen([sys.executable, '-c', 'import time; time.sleep(120)'],"
+            " creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))\n"
+            "assert kill_with_parent(c)\n"
+            f"open({str(pidfile)!r}, 'w').write(str(c.pid))\n"
+            "time.sleep(120)\n")
+    parent = subprocess.Popen([sys.executable, "-c", code], cwd=str(Path(__file__).resolve().parents[1]))
+    deadline = time.time() + 60
+    while time.time() < deadline and not pidfile.exists():
+        time.sleep(0.2)
+    child = int(pidfile.read_text())
+    assert _pid_alive(child)
+    parent.kill()  # TerminateProcess：和关掉窗口、任务管理器结束一样，来不及做任何收尾
+    parent.wait(10)
+    deadline = time.time() + 15
+    while time.time() < deadline and _pid_alive(child):
+        time.sleep(0.2)
+    assert not _pid_alive(child)
 
 
 def _pid_alive(pid):

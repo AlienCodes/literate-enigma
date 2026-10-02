@@ -86,16 +86,39 @@ def test_read_text_tail_of_big_file(tmp_path):
 
 
 # ---------------------------------------------------------------------------- report
-def test_report_failure_writes_file_and_short_text(tmp_path, caplog):
+class _Lines(logging.Handler):
+    def __init__(self):
+        super().__init__()
+        self.records = []
+
+    def emit(self, record):
+        self.records.append(record)
+
+
+@pytest.fixture
+def vt_records():
+    """直接挂在 voicetwin 日志上（它不往上传，pytest 的 caplog 收不到）。"""
+    h = _Lines()
+    lg = logging.getLogger("voicetwin")
+    old = lg.level
+    lg.addHandler(h)
+    lg.setLevel(logging.INFO)
+    try:
+        yield h
+    finally:
+        lg.removeHandler(h)
+        lg.setLevel(old)
+
+
+def test_report_failure_writes_file_and_short_text(tmp_path, vt_records):
     logs = tmp_path / "我的声音" / "logs"
     logs.mkdir(parents=True)
     (logs / "gptsovits_api.log").write_text(teacher_like_log(), encoding="utf-8")
     (logs / "voicetwin.log").write_text("不应该重复出现在报告里\n", encoding="utf-8")
     exc = RuntimeError("GPT-SoVITS 推理服务启动超时（等了 600 秒）。引擎的完整记录在 D:\\x\\gptsovits_api.log")
-    with caplog.at_level(logging.INFO, logger="voicetwin"):
-        path = report.report_failure(exc, what="重新挑选最佳模型", voice="我的声音", where="停在第 2 步「启动合成引擎」",
-                                     elapsed="10 分 27 秒", logs_dir=logs, task_lines=["15:43:24 | 启动合成引擎……"],
-                                     since=time.time() - 60)
+    path = report.report_failure(exc, what="重新挑选最佳模型", voice="我的声音", where="停在第 2 步「启动合成引擎」",
+                                 elapsed="10 分 27 秒", logs_dir=logs, task_lines=["15:43:24 | 启动合成引擎……"],
+                                 since=time.time() - 60)
     assert path is not None and path.parent == logs and path.name.startswith("问题报告_")
     raw = path.read_bytes()
     assert raw.startswith(b"\xef\xbb\xbf")  # 记事本按 UTF-8 打开
@@ -106,15 +129,14 @@ def test_report_failure_writes_file_and_short_text(tmp_path, caplog):
                  "【合成引擎的记录 gptsovits_api.log", "又重复了 299 次", "【电脑情况】", "系统：", "Python："):
         assert part in full, part
     assert "不应该重复出现在报告里" not in full
-    short = "\n".join(r.getMessage() for r in caplog.records if r.getMessage().startswith("📋 问题报告"))
+    short = "\n".join(r.getMessage() for r in vt_records.records if r.getMessage().startswith("📋 问题报告"))
     assert "原因：GPT-SoVITS 没能启动" in short and "自动诊断出的线索：" in short and str(path) in short
     assert "【技术细节】" not in short  # 网页上只放简短的
 
 
-def test_report_failure_without_logs_dir_still_logs(caplog):
-    with caplog.at_level(logging.INFO, logger="voicetwin"):
-        assert report.report_failure(ValueError("boom"), what="生成讲课音频") is None
-    assert any(r.getMessage().startswith("📋 问题报告") for r in caplog.records)
+def test_report_failure_without_logs_dir_still_logs(vt_records):
+    assert report.report_failure(ValueError("boom"), what="生成讲课音频") is None
+    assert any(r.getMessage().startswith("📋 问题报告") for r in vt_records.records)
 
 
 def test_report_never_raises(tmp_path, monkeypatch):

@@ -1,0 +1,8 @@
+            raise RuntimeError(f"连接不上 GPT-SoVITS 服务 {self.external_url}，请先启动 api_v2.py")
+            raise RuntimeError("GPT-SoVITS 环境有问题：\n- " + "\n- ".join(problems))
+                raise RuntimeError("GPT-SoVITS 推理服务启动失败：\n" + tail)
+>       raise RuntimeError(f"GPT-SoVITS 推理服务启动超时，请查看 {log_path}")
+E       RuntimeError: GPT-SoVITS 推理服务启动超时，请查看 /tmp/pytest-of-root/pytest-70/ws0/测试声音/logs/gptsovits_api.log
+voicetwin/backends/gptsovits.py:1426: RuntimeError
+E       AssertionError: RuntimeError('GPT-SoVITS 推理服务启动超时，请查看 /tmp/pytest-of-root/pytest-70/test_real_api_full_flow_train_0/ws/测试声音/logs/gptsovits_api.log')
+    raise RuntimeError(f"GPT-SoVITS 推理服务启动超时，请查看 {log_path}")

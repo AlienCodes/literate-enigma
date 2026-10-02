@@ -195,9 +195,11 @@ def _log_file_hint(voice: str) -> str:
             files.append(str(name))
     if voice:
         marker = os.sep + voice + os.sep
-        for name in reversed(files):
-            if marker in name:
-                return f"（详细的出错信息已保存在：{name}）"
+        mine = [n for n in files if marker in n]
+        # 优先说 voicetwin.log（总的运行记录）；以前会挑到最后加进来的 prepare.log，老师被指到了不相关的文件
+        mine.sort(key=lambda n: os.path.basename(n) != "voicetwin.log")
+        if mine:
+            return f"（详细的出错信息已保存在：{mine[0]}）"
     return "（详细的英文出错信息显示在黑色窗口里，需要时可以截图发给帮你的人）"
 
 

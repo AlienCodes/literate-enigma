@@ -750,7 +750,7 @@ def test_synthesis_failure_reports_real_reason(prepared, tmp_path, monkeypatch, 
     ref, ref_text, ref_lang = _ref(p2)
     try:
         b.start()
-        assert any(m.startswith("推理服务启动中……已等待") for m in vt_log.messages())
+        assert any(m.startswith("推理服务启动中（正在加载模型）……已等待") for m in vt_log.messages())
         out = b.synthesize(SynthRequest(text="你好。", lang="zh", ref_audio=ref, ref_text=ref_text, ref_lang=ref_lang,
                                         speed=0.85), tmp_path / "ok.wav")
         assert out.exists() and out.stat().st_size > 1000

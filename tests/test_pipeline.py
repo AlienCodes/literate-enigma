@@ -228,6 +228,20 @@ def test_trim_edges_removes_hiss_and_starts_at_zero():
     assert eng.trim_edges(np.zeros(1000, np.float32), sr).size == 0
 
 
+def test_trim_edges_keeps_onset_when_audio_starts_with_speech():
+    """真实的 GPT-SoVITS 输出开头没有空白（第一个采样就是声音），后面补 0.3 秒的 0：
+    不能把第一个字的开头淡掉，只允许 4 毫秒以内的防「咔哒」淡入。"""
+    sr = 32000
+    t = np.arange(int(0.8 * sr)) / sr
+    tone = (0.4 * np.sin(2 * np.pi * 180 * t)).astype(np.float32)
+    wav = np.concatenate([tone, np.zeros(int(0.3 * sr), np.float32)])
+    out = eng.trim_edges(wav, sr)
+    assert out[0] == 0.0 and out[-1] == 0.0
+    head = out[int(0.005 * sr):int(0.030 * sr)]
+    ref = tone[int(0.005 * sr):int(0.030 * sr)]
+    assert np.allclose(head, ref, atol=1e-6)  # 5 毫秒以后和原来一模一样（以前要到 34 毫秒以后）
+
+
 def test_denoise_falls_back_without_noisereduce(monkeypatch):
     monkeypatch.setitem(sys.modules, "noisereduce", None)  # import 会失败
     assert eng.denoise_light(np.ones(16000, np.float32) * 0.1, 16000) is None

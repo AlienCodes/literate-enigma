@@ -142,7 +142,10 @@ if os.environ.get("FAKE_GSV_HANG"):
         info("Train Epoch: %d [%.0f%%]" % (epoch_str, 0.0))
         time.sleep(0.2)
 print("start training from epoch %s" % epoch_str, flush=True)
-os.makedirs(cfg["save_weight_dir"], exist_ok=True)
+# 真实的 s2_train.py 不建 save_weight_dir（只有官方 webui.py 会建）；没有这个文件夹时存不下模型（process_ckpt.savee 吞掉报错）
+weights_ok = os.path.isdir(cfg["save_weight_dir"])
+if not weights_ok:
+    print("saving ckpt failed: [Errno 2] No such file or directory: %r" % cfg["save_weight_dir"], flush=True)
 for e in range(epoch_str, t["epochs"] + 1):
     info("Train Epoch: {} [{:.0f}%]".format(e, 0.0))
     info("Train Epoch: {} [{:.0f}%]".format(e, 50.0))
@@ -152,7 +155,7 @@ for e in range(epoch_str, t["epochs"] + 1):
             os.makedirs(ckpt_dir, exist_ok=True)
             open(latest, "w").write(str(e))
             open(os.path.join(ckpt_dir, "D_233333333333.pth"), "w").write(str(e))
-        if t.get("if_save_every_weights"):
+        if t.get("if_save_every_weights") and weights_ok:
             ck = f"{name}_e{e}_s{global_step}"
             # 和真的一样：Pro / v3 / v4 的模型文件开头 2 个字节是版本标记（process_ckpt.py 的 my_save2），v2 是 zip（PK）
             head = {"v3": b"03", "v4": b"04", "v2Pro": b"05", "v2ProPlus": b"06"}.get(cfg["model"]["version"], b"PK")
@@ -180,7 +183,10 @@ print("ckpt_path:", ckpt_path, flush=True)
 if ckpt_path:  # Lightning trainer.fit(ckpt_path=...) 接着上次练
     start = int(re.search(r"epoch=(\\d+)", ckpt_path).group(1)) + 1
 maybe_oom(t["batch_size"])
-os.makedirs(t["half_weights_save_dir"], exist_ok=True)
+# 真实的 s1_train.py 也不建 half_weights_save_dir
+if not os.path.isdir(t["half_weights_save_dir"]):
+    print("FileNotFoundError: [Errno 2] No such file or directory: %r" % t["half_weights_save_dir"], flush=True)
+    sys.exit(1)
 for e in range(start, t["epochs"]):
     # Lightning 的进度条写到 stderr，用 \\r 刷新同一行
     sys.stderr.write(f"Epoch {e}:  50%|█████     | 1/2 [00:00<00:00]\\r")
@@ -282,6 +288,8 @@ srv.serve_forever()
 
 #: 真实的 api_v2.py（GPT-SoVITS @ abe9843，老师电脑上的版本，MIT 许可，见 tests/gsv_real/README.md）
 REAL_API_V2 = Path(__file__).resolve().parent / "gsv_real" / "api_v2.py"
+#: 2025 年中的整合包（20250606v2pro）里的 api_v2.py：老师以后也可能装这一版
+REAL_API_V2_2025 = Path(__file__).resolve().parent / "gsv_real" / "api_v2_20250606v2pro.py"
 
 #: real_api=True 时，真实 api_v2.py 要 import 的几个模块换成假的：不用 torch、不用模型，
 #: 但输入检查和打印的内容照着真实的 TTS.py（@ abe9843）写，输出也是真实格式（int16、32000 Hz）。
@@ -359,15 +367,23 @@ class TTS:
             if not os.path.exists(p):
                 raise FileNotFoundError(p)
         _record("run", req={k: v for k, v in inputs.items()}, t2s=self.t2s, vits=self.vits)
-        sr = 32000
-        epoch = int(self.t2s.rsplit("-e", 1)[-1].split(".")[0]) if "-e" in self.t2s else 1
-        speed = float(inputs.get("speed_factor", 1.0) or 1.0)
-        dur = max(0.5, len(text) * (0.2 + 0.01 * epoch) / max(speed, 0.1))
-        t = np.arange(int(dur * sr)) / sr
-        wav = 0.3 * np.sin(2 * np.pi * 150 * t) * (0.6 + 0.4 * np.sin(2 * np.pi * 4 * t))
-        pad = np.zeros(int(0.2 * sr))
-        audio = np.concatenate([pad, wav, pad])
-        yield sr, (audio * 32768).astype(np.int16).clip(-32768, 32767)  # TTS.py 最后也是转成 int16
+        try:
+            if "【测试显存不够】" in text:
+                raise RuntimeError("CUDA out of memory. Tried to allocate 1.00 GiB")
+            sr = 32000
+            epoch = int(self.t2s.rsplit("-e", 1)[-1].split(".")[0]) if "-e" in self.t2s else 1
+            speed = float(inputs.get("speed_factor", 1.0) or 1.0)
+            dur = max(0.5, len(text) * (0.2 + 0.01 * epoch) / max(speed, 0.1))
+            t = np.arange(int(dur * sr)) / sr
+            wav = 0.3 * np.sin(2 * np.pi * 150 * t) * (0.6 + 0.4 * np.sin(2 * np.pi * 4 * t))
+            # TTS.py 的 audio_postprocess：开头不加空白，后面补 fragment_interval 秒的 0，最后转成 int16
+            tail = np.zeros(int(sr * float(inputs.get("fragment_interval", 0.3) or 0)))
+            audio = np.concatenate([wav, tail])
+            yield sr, (audio * 32768).clip(-32768, 32767).astype(np.int16)
+        except Exception as e:  # TTS.py 第 1516~1518 行：不报错，打印 Traceback，回 1 秒 16 kHz 的静音
+            import traceback
+            traceback.print_exc()
+            yield 16000, np.zeros(int(16000), dtype=np.int16)
 ''',
 }
 
@@ -375,11 +391,13 @@ class TTS:
 FAKE_WEIGHT = b"x" * 2048
 
 
-def build_fake_root(root: Path, version: str = "v2ProPlus", real_api: bool = False) -> Path:
-    """real_api=True：推理服务用真实的 api_v2.py（只有模型是假的），用来保证程序和真的 GPT-SoVITS 对得上。"""
+def build_fake_root(root: Path, version: str = "v2ProPlus", real_api=False) -> Path:
+    """real_api=True（或者某个真实 api_v2.py 的路径）：推理服务用真实的 api_v2.py（只有模型是假的），
+    用来保证程序和真的 GPT-SoVITS 对得上。"""
     root = Path(root)
+    real_src = (REAL_API_V2 if real_api is True else Path(real_api)) if real_api else None
     files = {
-        "api_v2.py": REAL_API_V2.read_text(encoding="utf-8") if real_api else API_V2,
+        "api_v2.py": real_src.read_text(encoding="utf-8") if real_src else API_V2,
         "GPT_SoVITS/prepare_datasets/1-get-text.py": GET_TEXT,
         "GPT_SoVITS/prepare_datasets/2-get-hubert-wav32k.py": GET_HUBERT,
         "GPT_SoVITS/prepare_datasets/2-get-sv.py": GET_SV,

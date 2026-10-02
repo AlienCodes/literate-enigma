@@ -155,7 +155,8 @@ def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend
         real_voiced[it["id"]] = it.get("voiced") or speech_activity(wav, sr)[0]
 
     ckpts = backend.checkpoints() or [None]
-    _p(0.05, "启动合成引擎（第一次大约 1~2 分钟）……", log_it=True)
+    hint = getattr(backend, "start_hint", lambda: "")()
+    _p(0.05, "启动合成引擎" + (f"（{hint}）" if hint else "") + "……", log_it=True)
     backend.start()
     tmp = project.cache_dir / "select"
     tmp.mkdir(parents=True, exist_ok=True)

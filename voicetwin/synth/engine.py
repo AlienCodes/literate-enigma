@@ -166,14 +166,20 @@ def trim_edges(wav: np.ndarray, sr: int, pad_ms: float = 30.0) -> np.ndarray:
     hop = sr * hop_ms / 1000.0
     half = sr * win_ms / 2000.0
     pad = int(sr * pad_ms / 1000.0)
-    start = max(0, int(voiced[0] * hop - half) - pad)
-    end = min(len(wav), int(voiced[-1] * hop + half) + pad)
+    v0 = int(voiced[0] * hop - half)
+    v1 = int(voiced[-1] * hop + half)
+    start = max(0, v0 - pad)
+    end = min(len(wav), v1 + pad)
     out = wav[start:end].astype(np.float32, copy=True)
     n = len(out)
     if n < 4:
         return out[:0]
-    n_in = min(n // 2, pad + int(sr * 0.004))
-    n_out = min(n // 2, pad + int(sr * 0.008))
+    # 淡入淡出放在语音前后的余量里（再往语音里多 4 / 8 毫秒）。真实的 GPT-SoVITS 输出开头没有空白、
+    # 第一个采样就是声音：这时前面没有余量，只淡入 4 毫秒防止「咔哒」声，不能把第一个字的开头淡掉。
+    lead = max(0, v0 - start)
+    tail = max(0, end - v1)
+    n_in = min(n // 2, max(int(sr * 0.002), lead + int(sr * 0.004)))
+    n_out = min(n // 2, max(int(sr * 0.002), tail + int(sr * 0.008)))
     if n_in > 1:
         out[:n_in] *= (0.5 - 0.5 * np.cos(np.linspace(0.0, np.pi, n_in))).astype(np.float32)
     if n_out > 1:
@@ -507,7 +513,8 @@ class Narrator:
         if frac is None:
             i, n = self._pos
             frac = self._gen_range[0] + (self._gen_range[1] - self._gen_range[0]) * i / max(n, 1)
-        self._progress(frac, "启动合成引擎（第一次大约 1~2 分钟）……")
+        hint = getattr(self.backend, "start_hint", lambda: "")()
+        self._progress(frac, "启动合成引擎" + (f"（{hint}）" if hint else "") + "……")
         self.backend.start()  # 已经在运行的服务也要调用：它会切换到这个声音的模型
         self._started = True
 
