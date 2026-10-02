@@ -1,0 +1,9 @@
+In late 2015 Tom Patterson, a 69-year-old **psychiatry** professor at UC San Diego, fell ill in Egypt. The **bacterium** responsible, Acinetobacter baumannii, **shrugged** off every available **antibiotic**. After he was flown home, a **surgical** drain slipped and **spilled** the **germs** into his **abdomen** and bloodstream. Septic shock followed, and he lay **unresponsive** in a **coma**.
+
+Help came from a **century-old** idea. In 1917, at the Institut Pasteur, Félix d'Hérelle examined a dysentery patient's samples and found a virus that **preys** on bacteria. He named it the **bacteriophage**, **literally** "bacteria-eater", and proposed it as an **antidote**. Frederick Twort had reported a similar agent in 1915.
+
+After the Second World War, penicillin became medicine's **cornerstone**, early preparations proved less reliable, and phages became a Western **outcast**. Phage therapy found a **haven** in Soviet Georgia. George Eliava founded a Tbilisi institute in 1923, where d'Hérelle worked in 1933–35. Eliava was shot in Stalin's **purge** of 1937, yet phage **cocktails** were even sold **over the counter**.
+
+Patterson's wife, epidemiologist Steffanie Strathdee, sought phages that could kill his strain. Teams at Texas A&M and the US Navy, whose collection drew partly on **sewage**, found matches. In March 2016 he became the first US patient to have phages **infused** into a **vein** for a **systemic** multidrug-resistant infection. About three days later he **awakened**, and he was **discharged** on 12 August.
+
+Antibiotic resistance, a growing **threat**, has **stirred** a **resurgence** of interest in phage therapy. One recovery cannot prove phages will replace antibiotics, but it suggests a remedy the West had **forsaken** deserves a second look. Ninety-nine years separated d'Hérelle's discovery from Patterson's first treatment.
