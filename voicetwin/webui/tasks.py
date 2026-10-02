@@ -156,6 +156,36 @@ def _explain(exc: BaseException) -> Any:
     return _FallbackFriendly(title=title, advice="", detail=repr(exc)[:2000])
 
 
+def _logs_dir_for(voice: str) -> Optional[str]:
+    """这个声音的 logs 文件夹（从正在写的 voicetwin.log 找）；找不到返回 None。"""
+    if not voice:
+        return None
+    marker = os.sep + voice + os.sep
+    for h in reversed(logging.getLogger("voicetwin").handlers):
+        name = getattr(h, "baseFilename", "")
+        if isinstance(h, logging.FileHandler) and name and marker in str(name):
+            return os.path.dirname(str(name))
+    return None
+
+
+def _problem_report(task: "_Task", exc: BaseException, friendly: Any) -> None:
+    """出错时自动生成问题报告（显示在「详细过程」里，并存成文件）。永远不抛异常。"""
+    try:
+        from voicetwin.report import report_failure
+        from voicetwin.utils.progress import _where_stopped
+
+        snap = task.tracker.snapshot()
+        with task.lines_lock:
+            lines = list(task.lines)[-150:]
+        path = report_failure(exc, what=task.label, voice=task.voice, where=_where_stopped(snap),
+                              elapsed=format_elapsed(snap.get("elapsed")), logs_dir=_logs_dir_for(task.voice),
+                              task_lines=lines, since=task.started, friendly=friendly)
+        if path is not None:
+            task.state["report"] = str(path)
+    except Exception:
+        pass
+
+
 def _log_file_hint(voice: str) -> str:
     """告诉用户详细的出错信息存在哪里。"""
     files: List[str] = []
@@ -211,6 +241,7 @@ def _run(task: _Task, fn: Callable[..., Any], args: Tuple[Any, ...], kwargs: Dic
         log.error("❌ 出错了：" + f.title + ("。怎么办：" + f.advice if getattr(f, "advice", "") else ""),
                   exc_info=True)
         log.info(_log_file_hint(task.voice))
+        _problem_report(task, exc, f)
     except BaseException as exc:  # SystemExit / KeyboardInterrupt 等：不让线程悄悄死掉
         f = _explain(exc)
         task.state.update(error=exc, friendly=f)
@@ -289,7 +320,7 @@ def _follow(task: _Task, note: str, attached: bool) -> Generator[Tuple[str, Dict
         view["bar"] = render_progress_html(snap, note=note if alive else "")
         text = prefix + task.text()
         if not alive:
-            for key in ("value", "error", "friendly", "stopped"):
+            for key in ("value", "error", "friendly", "stopped", "report"):
                 if key in task.state:
                     view[key] = task.state[key]
             view["done"] = True

@@ -48,6 +48,7 @@ from voicetwin.backends.base import (
 )
 from voicetwin.backends.worker import subprocess_env
 from voicetwin.utils.log import get_logger
+from voicetwin.utils.logtail import RUN_MARKER, condense, diagnose_gsv_api, last_run, read_text
 from voicetwin.utils.textutil import short_hash
 
 log = get_logger("gptsovits")
@@ -201,6 +202,15 @@ SELECT_GPT = 3
 RUN_STAMP = "voicetwin_run_started"
 KEEP_OLD_RUNS = 2
 USER_KEYS = ("batch_size", "sovits_epochs", "gpt_epochs", "sovits_save_every", "gpt_save_every", "if_dpo")
+
+
+def _json_has(r: Any, key: str) -> bool:
+    """HTTP 回答是不是 JSON、里面有没有 key。"""
+    try:
+        j = r.json()
+    except Exception:
+        return False
+    return isinstance(j, dict) and key in j
 
 
 def _free_port(preferred: int) -> int:
@@ -641,6 +651,12 @@ class GPTSoVITSBackend(Backend):
     POLL_SECONDS = 2.0
     #: 推理服务启动时多久报一次「还在启动」（秒）
     STARTUP_NOTE_SECONDS = 15.0
+    #: 端口已经打开、但回答和 api_v2 对不上时，最多再等多久就报错（秒）。
+    #: api_v2 是加载完全部模型之后才打开端口的（api_v2.py 先 TTS(tts_config) 再 uvicorn.run），
+    #: 端口一开就应该马上能用；这么久还对不上，说明是别的程序或者版本对不上，不用白等到超时。
+    MISMATCH_GRACE_SECONDS = 60.0
+    #: gptsovits_api.log 超过这么大（字节）时，启动前先改名成 gptsovits_api.old.log，重新记
+    API_LOG_MAX_BYTES = 5_000_000
 
     def __init__(self, cfg, project):
         super().__init__(cfg, project)
@@ -1335,8 +1351,16 @@ class GPTSoVITSBackend(Backend):
             self._http.trust_env = False  # 访问本机服务不走代理
         return self._http
 
-    def _alive(self) -> bool:
-        """api_v2 对不带参数的 /tts 请求会返回 400 + {"message": ...}，以此判断服务已就绪。"""
+    def _probe(self) -> Tuple[bool, str]:
+        """推理服务现在能不能用。返回 (能不能用, 不能用的原因)；原因是空字符串表示端口还没打开（还在加载模型）。
+
+        问法：GET /control，不带 command。官方 api_v2.py 从 2024-08 的第一版（52c50c6）到现在（abe9843）
+        都回答 400 + {"message": "command is required"}，而且什么也不做。
+        千万不能用不带参数的 GET /tts：所有官方版本都在检查参数之前先执行 text_lang.lower()，报错回 500。
+        v18.2 及以前就是用它判断的，结果引擎明明一分钟内就开好了，程序却一直等到 10 分钟超时
+        （老师的 gptsovits_api.log 里同一个报错重复了 867 次，见 research/合成引擎启动/）。"""
+        import requests
+
         try:
             # 先很快地看端口有没有打开：Windows 上连一个还没打开的端口要等 2 秒左右才失败，
             # 直接发请求的话每次检查都要卡这么久（启动时的「已等待 N 秒」提示也会出不来）
@@ -1348,29 +1372,63 @@ class GPTSoVITSBackend(Backend):
                 with socket.create_connection((host, port), timeout=0.5):
                     pass
         except OSError:
-            return False
+            return False, ""
         except Exception:  # 网址解析不了等意外情况：直接发请求试
             pass
+        # Connection: close —— 每次检查用一个新连接，不受上一次请求的影响
+        headers = {"Connection": "close"}
         try:
-            r = self._session().get(f"{self.api_url}/tts", timeout=3)
-            return r.status_code == 400 and "message" in r.json()
+            r = self._session().get(f"{self.api_url}/control", timeout=5, headers=headers)
+        except requests.exceptions.ConnectionError:
+            return False, ""
+        except Exception as exc:
+            return False, f"端口已经打开，但是 5 秒内没有回答（{type(exc).__name__}）"
+        if r.status_code == 400 and _json_has(r, "message"):
+            return True, ""
+        # 兜底：FastAPI 自带的接口清单里有 /tts 和 /set_gpt_weights，也认作 api_v2（以后的版本万一改了 /control 的回答）
+        try:
+            r2 = self._session().get(f"{self.api_url}/openapi.json", timeout=5, headers=headers)
+            paths = r2.json().get("paths", {}) if r2.status_code == 200 else {}
+            if isinstance(paths, dict) and "/tts" in paths and "/set_gpt_weights" in paths:
+                return True, ""
         except Exception:
-            return False
+            pass
+        body = re.sub(r"\s+", " ", r.text or "").strip()[:150]
+        return False, f"端口已经打开，但回答和 GPT-SoVITS 的 api_v2 对不上（HTTP {r.status_code}：{body or '没有内容'}）"
+
+    def _alive(self) -> bool:
+        return self._probe()[0]
 
     def _api_log_path(self) -> Path:
         return self.project.logs_dir / "gptsovits_api.log"
 
     def _api_tail(self, n: int) -> str:
+        """引擎记录最后一次启动之后的部分，整理过（重复的报错只留一份），最多 n 行。"""
         try:
             if self._log_fh is not None:
                 self._log_fh.flush()
         except Exception:
             pass
+        return condense(last_run(read_text(self._api_log_path())), max_lines=max(10, n))
+
+    def _api_report(self, n: int = 40) -> str:
+        """出错时附在报错后面的说明：自动诊断的结论 + 整理过的引擎记录。"""
+        text = last_run(read_text(self._api_log_path()))
+        notes = diagnose_gsv_api(text)
+        out = ""
+        if notes:
+            out += "自动诊断：\n" + "\n".join("- " + x for x in notes) + "\n"
+        tail = condense(text, max_lines=n)
+        if tail:
+            out += f"引擎记录（{self._api_log_path().name} 最后一次启动的部分，重复的已合并）：\n" + tail
+        return out
+
+    def _rotate_api_log(self, path: Path) -> None:
         try:
-            lines = self._api_log_path().read_text(encoding="utf-8", errors="replace").splitlines()
+            if path.exists() and path.stat().st_size > self.API_LOG_MAX_BYTES:
+                os.replace(path, path.with_name(path.stem + ".old" + path.suffix))
         except OSError:
-            return ""
-        return "\n".join(lines[-n:])
+            pass  # 改不了名（比如被别的程序打开着）：接着往后写，不影响使用
 
     def start(self) -> None:
         if self._alive():
@@ -1396,34 +1454,62 @@ class GPTSoVITSBackend(Backend):
         log_path = self._api_log_path()
         log.info(f"启动 GPT-SoVITS 推理服务（端口 {self.port}，模型 {weights['id']}）……")
         creationflags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+        self._rotate_api_log(log_path)
         self._log_fh = open(log_path, "a", encoding="utf-8")
+        try:  # 分隔线：出错时只看这一次启动的记录
+            from voicetwin import __version__
+
+            self._log_fh.write(f"\n{RUN_MARKER} {__version__} 启动推理服务 {time.strftime('%Y-%m-%d %H:%M:%S')}"
+                               f"（端口 {self.port}，模型 {weights['id']}）=====\n")
+            self._log_fh.flush()
+        except Exception:
+            pass
         self.proc = subprocess.Popen(
             [self.python, "api_v2.py", "-a", "127.0.0.1", "-p", str(self.port), "-c", str(cfg_path)],
             cwd=str(self.root), env=self.env(), stdout=self._log_fh, stderr=subprocess.STDOUT, creationflags=creationflags,
         )
         t0 = time.time()
-        deadline = t0 + float(self.bcfg.get("startup_timeout", 600))
+        timeout = float(self.bcfg.get("startup_timeout", 600))
+        deadline = t0 + timeout
         next_note = float(self.STARTUP_NOTE_SECONDS)
+        open_since: Optional[float] = None  # 端口打开了、但还对不上的开始时间
+        last_why = ""
         while time.time() < deadline:
             if cancel_requested():
                 self.stop()
                 raise TaskCancelled("已按你的要求停止")
             if self.proc.poll() is not None:
-                tail = self._api_tail(30)
+                code = self.proc.returncode
+                report = self._api_report()
                 self.stop()
-                raise RuntimeError("GPT-SoVITS 推理服务启动失败：\n" + tail)
-            if self._alive():
+                raise RuntimeError(f"GPT-SoVITS 推理服务启动失败（退出码 {code}）：\n" + report)
+            ok, why = self._probe()
+            if ok:
                 self._loaded = {"sovits": weights["sovits"], "gpt": weights["gpt"]}
-                log.info("GPT-SoVITS 推理服务已就绪")
+                log.info(f"GPT-SoVITS 推理服务已就绪（启动用了 {int(time.time() - t0)} 秒）")
                 return
+            if why:
+                last_why = why
+                if open_since is None:
+                    open_since = time.time()
+                    log.info("合成引擎已经打开了，正在确认能不能用……")
+                elif time.time() - open_since >= float(self.MISMATCH_GRACE_SECONDS):
+                    report = self._api_report()
+                    self.stop()
+                    raise RuntimeError(f"GPT-SoVITS 推理服务打开了，但是程序没法和它对上话：{why}\n" + report)
+            else:
+                open_since = None
             time.sleep(min(2.0, max(0.1, float(self.STARTUP_NOTE_SECONDS) / 4)))
             waited = time.time() - t0
             if waited >= next_note:
                 log.info(f"推理服务启动中……已等待 {int(waited)} 秒（第一次比较慢，请稍等）")
                 while next_note <= waited:
                     next_note += float(self.STARTUP_NOTE_SECONDS)
+        report = self._api_report()
         self.stop()
-        raise RuntimeError(f"GPT-SoVITS 推理服务启动超时，请查看 {log_path}")
+        state = last_why or "合成引擎一直没有加载完模型（端口没有打开）"
+        raise RuntimeError(f"GPT-SoVITS 推理服务启动超时（等了 {int(timeout)} 秒，{state}）。"
+                           f"引擎的完整记录在 {log_path}\n" + report)
 
     def stop(self) -> None:
         if self.proc is not None:
@@ -1509,12 +1595,22 @@ class GPTSoVITSBackend(Backend):
             "sample_steps": int(icfg.get("sample_steps", 32)),
             "super_sampling": False,
         }
-        try:
-            r = self._session().post(f"{self.api_url}/tts", json=payload, timeout=600)
-        except Exception as exc:
-            if self._server_died():
-                raise RuntimeError("GPT-SoVITS 推理服务意外退出了。最后的日志：\n" + self._api_tail(5)) from exc
-            raise
+        import requests
+
+        r = None
+        for attempt in (1, 2):
+            try:
+                r = self._session().post(f"{self.api_url}/tts", json=payload, timeout=600)
+                break
+            except Exception as exc:
+                if self._server_died():
+                    raise RuntimeError("GPT-SoVITS 推理服务意外退出了。\n" + self._api_report(20)) from exc
+                # 连接被断开（比如空闲太久后服务端刚好关掉了旧连接）：服务还活着就重试一次，不算这句失败
+                if attempt == 1 and isinstance(exc, requests.exceptions.ConnectionError) and self._alive():
+                    log.debug(f"连接合成引擎时断开了一下（{type(exc).__name__}），重试一次")
+                    continue
+                raise
+        assert r is not None
         if r.status_code != 200:
             try:
                 j = r.json()
@@ -1524,7 +1620,7 @@ class GPTSoVITSBackend(Backend):
                 msg = r.text
             text = f"GPT-SoVITS 合成失败：{msg}"
             if self._server_died():
-                text += "\n推理服务已经退出了，最后的日志：\n" + self._api_tail(5)
+                text += "\n推理服务已经退出了。\n" + self._api_report(20)
             raise RuntimeError(text)
         out_path = Path(out_path)
         out_path.parent.mkdir(parents=True, exist_ok=True)

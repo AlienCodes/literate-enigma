@@ -837,12 +837,12 @@ def _status_for_pct(pct: Optional[float]) -> str:
     return "🔴 不够像"
 
 
-def _friendly(exc: Any, what: str = "", log_path: str = "") -> str:
+def _friendly(exc: Any, what: str = "", log_path: str = "", report_path: str = "") -> str:
     """把报错变成给老师看的 Markdown（优先用 errors.friendly_md；没有时退回简单的一行）。"""
     try:
         from voicetwin.errors import friendly_md
 
-        return friendly_md(exc, what=what, log_path=log_path)
+        return friendly_md(exc, what=what, log_path=log_path, report_path=report_path)
     except Exception:
         title = str(exc).strip()[:300] if exc is not None else ""
         return f"### ❌ {what}没有完成：" + _md_text(title or "出现了意外错误")
@@ -1664,6 +1664,10 @@ def _train_done_md(info: Dict[str, Any], plan: str = "", show_plan: bool = True)
     if err:
         md = (f"{head}\n\n⚠️ 「自动挑选最像你的模型」这一步没成功（{_md_text(err)}），现在先用最后一轮的模型。"
               "可以稍后点「重新挑选最佳模型」再试。")
+        rep = info.get("selection_error_report") if isinstance(info, dict) else None
+        if rep:
+            md += ("\n\n📋 已自动生成问题报告（也显示在下面的「详细过程」里），需要帮忙时把这个文件发给帮你的人：`"
+                   + str(rep).replace("`", "'") + "`")
     else:
         sel = _selection_info(info)
         best, label = _best_selection({"selection": sel.get("selection"), "selected": info.get("selected")})
@@ -2482,7 +2486,7 @@ class WebUI:
             return STOPPED_MD
         f = st.get("friendly") or st.get("error")
         if f is not None:
-            return _friendly(f, what, _log_path(self.cfg, voice))
+            return _friendly(f, what, _log_path(self.cfg, voice), str(st.get("report") or ""))
         return ""
 
     @staticmethod

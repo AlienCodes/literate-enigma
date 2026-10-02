@@ -635,6 +635,7 @@ def run_train(cfg: Config, voice: str, backend_name: Optional[str] = None, progr
         info["train_minutes"] = round((time.time() - t0) / 60.0, 1)
         if select:
             _report(progress, TRAIN_SELECT_SPLIT, "训练完成，开始自动挑选最像你的模型（大约 5~15 分钟）")
+            t_select = time.time()
             try:
                 selection = run_select(cfg, voice, backend.name, progress=_sub(progress, TRAIN_SELECT_SPLIT, 1.0))
                 info["selection"] = selection
@@ -646,6 +647,12 @@ def run_train(cfg: Config, voice: str, backend_name: Optional[str] = None, progr
                             "现在先用最后一轮的模型；可以稍后在「② 训练模型」页点「重新挑选最佳模型」再试。", exc_info=exc)
                 info["selection_error"] = reason
                 info["selection_error_detail"] = repr(exc)[:500]
+                from voicetwin.report import report_failure
+
+                path = report_failure(exc, what="训练后自动挑选最像你的模型", voice=voice, logs_dir=project.logs_dir,
+                                      since=t_select)
+                if path is not None:
+                    info["selection_error_report"] = str(path)
         _report(progress, 1.0, "训练完成")
     return info
 

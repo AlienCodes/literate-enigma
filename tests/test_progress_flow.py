@@ -367,6 +367,9 @@ def test_selection_failure_does_not_fail_training(prepared, monkeypatch):
     info = wf.run_train(cfg, project.voice, "gptsovits", select=True)
     assert info["selection_error"]
     assert info["selected"] == {"id": "x"}
+    # 挑选没成功时也自动生成问题报告
+    rep = Path(info["selection_error_report"])
+    assert rep.parent == project.logs_dir and "所有模型都合成失败" in rep.read_text(encoding="utf-8-sig")
 
 
 def test_train_stages_table():
