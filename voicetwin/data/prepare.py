@@ -227,7 +227,8 @@ def apply_filters(project: Project, records: List[Dict[str, Any]], pcfg: Dict[st
 
     # 语速离群：多半是文字和音频对不上
     for lang in ("zh", "en"):
-        rates = [r["rate"] for r in records if not r["drop_reason"] and r.get("lang") == lang and r.get("rate")]
+        rates = [r["rate"] for r in records if not r["drop_reason"] and not r.get("deleted") and r.get("lang") == lang
+                 and r.get("rate")]
         if len(rates) < 8:
             continue
         med = float(np.median(rates))
@@ -248,7 +249,8 @@ def apply_filters(project: Project, records: List[Dict[str, Any]], pcfg: Dict[st
             encoder = None
         if encoder is not None:
             cache = _embedding_cache(project, encoder.name)
-            active = [r for r in records if not r["drop_reason"]]
+            # 老师删除的不算（比如删的是学生说话、别人的声音）：不然会把「你本人的声音」的平均值带偏
+            active = [r for r in records if not r["drop_reason"] and not r.get("deleted")]
             todo_emb = [r for r in active if r["id"] not in cache]
             for j, r in enumerate(todo_emb):
                 _check_cancel()

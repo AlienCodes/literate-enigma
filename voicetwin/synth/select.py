@@ -171,6 +171,7 @@ def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend
     tmp = project.cache_dir / "select"
     tmp.mkdir(parents=True, exist_ok=True)
     results: List[Dict[str, Any]] = []
+    asr_failed = False
     total_steps = max(1, len(ckpts) * len(items))
     step = 0
     log.info(f"共 {len(ckpts)} 个模型 × {len(items)} 句验证集，逐个试听（声纹模型：{'、'.join(sim.info()['labels'])}）")
@@ -216,7 +217,13 @@ def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend
             if gen_voiced > 0.2 and real_voiced[it["id"]] > 0.2:
                 ratios.setdefault(it["lang"], []).append(gen_voiced / real_voiced[it["id"]])
             if checker is not None:
-                res = checker.check(wav, sr, it["text"], it["lang"])
+                try:
+                    res = checker.check(wav, sr, it["text"], it["lang"])
+                except Exception as exc:
+                    # 识别校验只是帮着挑的（比如识别模型显存不够）：关掉它接着挑，不能让整个挑选停下
+                    log.warning(f"⚠️ 识别校验出错了（{str(exc).splitlines()[0] if str(exc) else type(exc).__name__}），"
+                                "这次只按声纹和节奏挑选（所有模型都不算错字率，比较才公平）")
+                    checker, asr_failed, res = None, True, None
                 if res:
                     cers.append(res["cer"])
             _p(0.10 + 0.90 * step / total_steps, f"试听模型 {ck_id}：{step}/{total_steps}")
@@ -239,6 +246,11 @@ def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend
                  + f" / 节奏偏差 {rhythm_dev:.3f} → 综合 {entry['total']:.3f}")
     if not results:
         raise RuntimeError("所有模型都合成失败，请检查引擎日志")
+    if asr_failed:  # 有的模型算了错字率、有的没算：都不算，按同样的标准比
+        for e in results:
+            if e["cer"]:
+                e["total"] += 2.0 * e["cer"]
+            e["cer"] = None
     best = max(results, key=lambda e: e["total"])
     speed = {}
     for lang, ratio in best["duration_ratio"].items():

@@ -168,8 +168,14 @@ def _logs_dir_for(voice: str) -> Optional[str]:
     return None
 
 
+#: 这些不是程序出错，是「还差一步」（没保存、没确认训练素材）：页面上已经说清楚怎么办，不生成问题报告
+NO_REPORT_KEYS = frozenset({"unsaved_edits", "not_confirmed", "confirm_stale"})
+
+
 def _problem_report(task: "_Task", exc: BaseException, friendly: Any) -> None:
     """出错时自动生成问题报告（显示在「详细过程」里，并存成文件）。永远不抛异常。"""
+    if getattr(friendly, "key", "") in NO_REPORT_KEYS:
+        return
     try:
         from voicetwin.report import report_failure
         from voicetwin.utils.progress import _where_stopped

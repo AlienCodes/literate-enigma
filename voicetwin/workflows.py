@@ -630,6 +630,7 @@ def run_train(cfg: Config, voice: str, backend_name: Optional[str] = None, progr
         backend = get_backend(backend_name or cfg.get("backend"), cfg, project)
         if not backend.supports_training:
             raise RuntimeError(f"{backend.display_name} 不需要训练（零样本克隆），可以直接合成")
+        _check_material_before_training(project)
         t0 = time.time()
         info = backend.train(progress=_sub(progress, 0.0, TRAIN_SELECT_SPLIT) if select else progress, **opts)
         info["train_minutes"] = round((time.time() - t0) / 60.0, 1)
@@ -657,6 +658,66 @@ def run_train(cfg: Config, voice: str, backend_name: Optional[str] = None, progr
     return info
 
 
+def training_blocker(project: Project) -> str:
+    """还不能开始训练的原因（空字符串 = 可以训练）。
+
+    老师的要求（10-02）：
+    - 绝对不能用没改好的文字训练 → 还有没保存的修改时不训练（直接训练会用改之前的旧文字）；
+    - 必须先点「✅ 确认训练素材」才能训练 → 没确认过、或者确认以后又改过（改字、删除、撤销删除）时不训练。"""
+    from voicetwin.data import review
+
+    n = review.unsaved_count(project)
+    if n:
+        return (f"校对表里还有 {n} 条修改没有保存，这次没有开始训练（没保存的修改不会用来训练，"
+                "直接训练就会用改之前的旧文字）。")
+    records = project.load_manifest()
+    conf = review.load_confirmed(project)
+    if not conf:
+        return "还没有确认训练素材，这次没有开始训练（必须先在校对表下面点「✅ 确认训练素材」）。"
+    if conf.get("signature") != review.material_signature(records):
+        return ("确认训练素材以后，校对表又改过（改了文字、删除或撤销删除了句子），这次没有开始训练"
+                f"（上次确认是 {str(conf.get('time') or '')[5:16]}）。")
+    return ""
+
+
+def training_blocker_for(cfg: Config, voice: str) -> str:
+    try:
+        return training_blocker(open_project(cfg, voice, must_exist=True))
+    except Exception:
+        return ""
+
+
+def _check_material_before_training(project: Project) -> None:
+    """训练只用校对表里「保存」并「确认」过的文字（manifest），删除的句子不用；不满足就不开始（training_blocker），
+    满足时在「详细过程」里写清楚这次用了哪些句子。"""
+    from voicetwin.data.exporters import train_records
+
+    why = training_blocker(project)
+    if why:
+        raise RuntimeError(why)
+    records = project.load_manifest()
+    material = train_records(project, include_val=True)
+    val = sum(1 for r in material if r.get("split") == "val")
+    edited = sum(1 for r in material if r.get("text_edited") or r.get("orig_text"))
+    deleted = sum(1 for r in records if r.get("deleted"))
+    log.info(f"这次训练用校对表里保存好的文字：{len(material) - val} 条训练、{val} 条当「考试题」"
+             + (f"；其中 {edited} 条是你改过文字的，按改好的文字训练" if edited else "")
+             + (f"；你删除的 {deleted} 条（音频和文字）都不用" if deleted else ""))
+
+
+def material_changed_note(cfg: Config, voice: str, backend_name: Optional[str] = None) -> str:
+    """校对表在上次训练以后又改过（文字、删除、恢复）时返回一句提醒；没训练过、没变、判断不了时返回空字符串。"""
+    from voicetwin.backends.base import get_backend
+
+    try:
+        project = open_project(cfg, voice, must_exist=True)
+        backend = get_backend(backend_name or cfg.get("backend"), cfg, project)
+        fn = getattr(backend, "trained_material_note", None)
+        return str(fn() or "") if fn else ""
+    except Exception:
+        return ""
+
+
 def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, items: Optional[int] = None,
                use_asr: Optional[bool] = None, progress: Optional[ProgressFn] = None) -> Dict[str, Any]:
     from voicetwin.backends.base import get_backend
@@ -665,6 +726,9 @@ def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, item
     with keep_awake():
         project = open_project(cfg, voice, must_exist=True)
         backend = get_backend(backend_name or cfg.get("backend"), cfg, project)
+        note = getattr(backend, "trained_material_note", lambda: "")()
+        if note:
+            log.warning(note)
         try:  # 引擎在 select_and_calibrate 里"启动合成引擎"那一步才启动，进度条上能看到
             return select_and_calibrate(cfg, project, backend, max_items=int(items or DEFAULT_ITEMS), use_asr=use_asr,
                                         progress=progress)
@@ -722,6 +786,9 @@ def run_narrate(cfg: Config, voice: str, source: str, out: Optional[str] = None,
         out_path = Path(out) if out else default_output(project, stem, fmt)
         own_backend = backend is None
         backend = backend or get_backend(backend_name or cfg.get("backend"), cfg, project)
+        note = getattr(backend, "trained_material_note", lambda: "")()
+        if note:
+            log.warning(note)
         try:
             narrator = Narrator(cfg, project, backend, quality=quality, candidates=candidates, speed=speed,
                                 reference=reference, asr_check=asr_check, progress=progress, variants=variants)

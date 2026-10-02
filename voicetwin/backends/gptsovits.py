@@ -1481,6 +1481,29 @@ class GPTSoVITSBackend(Backend):
         body = re.sub(r"\s+", " ", r.text or "").strip()[:150]
         return False, f"端口已经打开，但回答和 GPT-SoVITS 的 api_v2 对不上（HTTP {r.status_code}：{body or '没有内容'}）"
 
+    def trained_material_note(self) -> str:
+        """校对表在上次训练以后又改过（改了文字、删除或恢复了句子）时返回一句提醒，否则返回空字符串。
+
+        怎么判断：训练开始时 _prepare_features 记下了当时训练列表的指纹（GPT-SoVITS 的 logs/<实验名>/voicetwin_list.sha1）；
+        用现在校对表里保存好的文字按同样的方法算一遍（旧版本训练的模型也能判断）。"""
+        try:
+            stamp = self._opt_dir() / "voicetwin_list.sha1"
+            if not stamp.exists() or not (self.project.load_models().get(self.name) or {}).get("sovits"):
+                return ""
+            from voicetwin.data.exporters import gptsovits_list_text, train_records
+
+            recs = train_records(self.project)
+            if not recs:
+                return ""
+            # 和 export_gptsovits 写文件时一样：文本方式写入，Windows 上换行是 \r\n
+            data = gptsovits_list_text(self.project, self.exp_name, recs).replace("\n", os.linesep).encode("utf-8")
+            if hashlib.sha1(data + self.version.encode()).hexdigest() == stamp.read_text().strip():
+                return ""
+        except Exception:
+            return ""
+        return ("⚠️ 校对表在上次训练以后改过（改了文字、删除或恢复了句子），现在的模型还是用改之前的素材训练的。"
+                "想让改好的文字生效，请到「② 训练模型」重新点「开始训练」（只用保存好的文字、不用删除的句子）。")
+
     def start_hint(self) -> str:
         """上次启动推理服务实际用了多久（start() 就绪时记下的）；没有记录时只说要先加载模型。"""
         try:

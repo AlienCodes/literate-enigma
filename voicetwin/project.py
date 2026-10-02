@@ -95,8 +95,8 @@ class Project:
                 line = line.strip()
                 if line:
                     records.append(json.loads(line))
-        if only_kept:
-            records = [r for r in records if r.get("keep", True)]
+        if only_kept:  # 校对表里删除的一定不算（delete_clip 也会把 keep 设成 False，这里再保险一次）
+            records = [r for r in records if r.get("keep", True) and not r.get("deleted")]
         if split:
             records = [r for r in records if r.get("split", "train") == split]
         return records

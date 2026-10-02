@@ -502,8 +502,9 @@ class Narrator:
         if not self.backend.supports_aux_refs:
             aux = []
         speed = self._speed_for(seg.lang)
-        key = short_hash(CACHE_VERSION, self.backend.model_id(), seg.text, seg.lang, ref["id"], [a["id"] for a in aux],
-                         round(speed, 3), self._tier_sig(), self.base_seed, n=16)
+        # 参考音频的文字也算进去：老师在校对表里改了这条参考的文字以后，不能再用改之前生成的缓存
+        key = short_hash(CACHE_VERSION, self.backend.model_id(), seg.text, seg.lang, ref["id"], ref.get("text", ""),
+                         [a["id"] for a in aux], round(speed, 3), self._tier_sig(), self.base_seed, n=16)
         wav_path, meta_path = self._cache_paths(key)
         return _Plan(ref, aux, speed, key, wav_path, meta_path)
 
@@ -705,7 +706,16 @@ class Narrator:
             if wav is None or wav.size == 0:
                 return
             # 在裁剪前打分（语速测量需要首尾的静音作为底噪参考）
-            score = self.scorer.score(wav, sr, seg.text, seg.lang, speed=mult, use_asr=self.use_asr)
+            try:
+                score = self.scorer.score(wav, sr, seg.text, seg.lang, speed=mult, use_asr=self.use_asr)
+            except Exception as exc:
+                if not self.use_asr:
+                    raise
+                # 识别校验（查错字）只是帮着挑的：它出错（比如识别模型显存不够）时关掉它接着生成，不能让整篇停下
+                log.warning(f"⚠️ 识别校验出错了（{str(exc).splitlines()[0] if str(exc) else type(exc).__name__}），"
+                            "后面只按声纹、语速和停顿挑选")
+                self.use_asr = False
+                score = self.scorer.score(wav, sr, seg.text, seg.lang, speed=mult, use_asr=False)
             trimmed = trim_edges(wav, sr)
             if trimmed.size == 0:
                 return

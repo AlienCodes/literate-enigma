@@ -151,6 +151,13 @@ def prune_draft(project: Any) -> int:
         return removed
 
 
+def unsaved_count(project: Any) -> int:
+    """还有几条没保存的修改（删除了的那几行不算：它们本来就不用来训练）。"""
+    prune_draft(project)
+    gone = {r.get("id") for r in project.load_manifest() if r.get("deleted")}
+    return sum(1 for k in load_draft(project) if k not in gone)
+
+
 # ============================================================================ 位置换算
 def _opcodes(a: str, b: str) -> List[Tuple[str, int, int, int, int]]:
     return difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes()

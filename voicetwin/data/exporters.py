@@ -18,6 +18,18 @@ def train_records(project: Project, include_val: bool = False) -> List[Dict[str,
     return recs
 
 
+def gptsovits_list_text(project: Project, speaker: str, recs: Optional[List[Dict[str, Any]]] = None) -> str:
+    """GPT-SoVITS 训练列表的内容：每行 `音频文件名|说话人|语言|文字`。
+    文字就是校对表里「保存」过的文字（manifest 的 text）；删除的、不能用的、「考试题」都不在里面。"""
+    recs = train_records(project) if recs is None else recs
+    lines = []
+    for r in recs:
+        wav = project.abspath(r["path"])
+        text = ensure_final_punct(r["text"].replace("|", " "), r["lang"])
+        lines.append(f"{wav.name}|{speaker}|{r['lang']}|{text}")
+    return "\n".join(lines) + "\n"
+
+
 def export_gptsovits(project: Project, speaker: str, include_val: bool = False) -> Dict[str, Any]:
     """GPT-SoVITS 训练列表：`音频文件名|说话人|语言|文字`，音频统一放在 clips/ 目录。"""
     out_dir = project.exports_dir / "gptsovits"
@@ -25,11 +37,7 @@ def export_gptsovits(project: Project, speaker: str, include_val: bool = False) 
     recs = train_records(project, include_val)
     if not recs:
         raise RuntimeError("没有可用于训练的片段，请先运行素材准备并检查 transcripts.csv。")
-    lines = []
-    for r in recs:
-        wav = project.abspath(r["path"])
-        text = ensure_final_punct(r["text"].replace("|", " "), r["lang"])
-        lines.append(f"{wav.name}|{speaker}|{r['lang']}|{text}")
+    lines = gptsovits_list_text(project, speaker, recs).rstrip("\n").split("\n")
     list_path = out_dir / "train.list"
     list_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     return {"list": list_path, "wav_dir": project.clips_dir, "count": len(lines),

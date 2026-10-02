@@ -23,7 +23,7 @@ from voicetwin import workflows as wf
 from voicetwin.backends.base import SynthRequest, get_backend
 from voicetwin.backends.gptsovits import GPTSoVITSBackend
 
-from conftest import make_cfg
+from conftest import make_cfg, confirm_material
 from fake_gptsovits import API_V2, REAL_API_V2, REAL_API_V2_2025, build_fake_root
 
 pytest.importorskip("fastapi")
@@ -194,6 +194,7 @@ def test_real_api_full_flow_train_select_narrate(prepared, tmp_path, quick, monk
         "root": str(root), "python": sys.executable, "port": _port(), "startup_timeout": 60, "is_half": True,
         "train": {"sovits_epochs": 4, "gpt_epochs": 4, "batch_size": 2}}})
     p2 = wf.open_project(gcfg, project.voice, must_exist=True)
+    confirm_material(gcfg, project.voice)
     info = wf.run_train(gcfg, project.voice, "gptsovits", select=True, sovits_save_every=2, gpt_save_every=2)
     assert "selection_error" not in info, info.get("selection_error_detail")
     models = p2.load_models()["gptsovits"]
@@ -313,6 +314,7 @@ def test_select_skips_a_broken_checkpoint(prepared, tmp_path, quick, monkeypatch
     gcfg = make_cfg(ws, backend="gptsovits", backends={"gptsovits": {
         "root": str(root), "python": sys.executable, "port": _port(), "startup_timeout": 60, "is_half": True,
         "train": {"sovits_epochs": 2, "gpt_epochs": 2, "batch_size": 2}}})
+    confirm_material(gcfg, project.voice)
     wf.run_train(gcfg, project.voice, "gptsovits", select=False, sovits_save_every=2, gpt_save_every=2)
     orig = GPTSoVITSBackend.checkpoints
 

@@ -3125,14 +3125,27 @@ class WebUI:
         """训练前就显示电脑会怎么自动选参数（wf.training_plan：看显卡和素材，只读文件和 nvidia-smi，很快）。"""
         v = _voice_name(voice)
         if v:
+            note = wf.material_changed_note(self.cfg, v, str(backend or self.default_train))
+            head = (_md_text(note) + "\n\n") if note else ""
+            why = wf.training_blocker_for(self.cfg, v)
+            if why:
+                try:
+                    from voicetwin.errors import explain
+
+                    f = explain(why)
+                    head = f"⚠️ **{_md_text(f.title)}**：{_md_text(f.advice)}\n\n" + head
+                except Exception:
+                    head = "⚠️ " + _md_text(why) + "\n\n" + head
             try:
                 text = wf.training_plan(self.cfg, v, str(backend or self.default_train),
                                         **self._train_opts(s_ep, g_ep, 0, bs, dpo))
                 if text:
-                    return ("🧠 **电脑会自动这样训练**：" + _md_text(_strip_plan(text))
+                    return (head + "🧠 **电脑会自动这样训练**：" + _md_text(_strip_plan(text))
                             + "（想自己改，可以打开下面的「高级设置」）")
             except Exception as exc:
                 log.debug(f"training_plan 出错：{exc}")
+            if head:
+                return head + PLAN_DEFAULT
         return PLAN_DEFAULT
 
     def _train_common(self, kind: str, voice: Any, backend: Any, opts: Dict[str, Any]) -> Iterator[Tuple[Any, ...]]:
@@ -3153,6 +3166,19 @@ class WebUI:
             return
         backend = str(backend or self.default_train)
         attach = self._attaching(kind, v)
+        if kind == "train" and not attach:
+            # 老师的要求：必须先「✅ 确认训练素材」（而且确认以后没再改过、没有没保存的修改）才能训练
+            why = wf.training_blocker_for(self.cfg, v)
+            if why:
+                try:
+                    from voicetwin.errors import explain
+
+                    f = explain(why)
+                    text = f"⚠️ {f.title}。{f.advice}"
+                except Exception:
+                    text = "⚠️ " + why
+                yield self._o(O, train_bar=self._notice(text), train_log=text, **idle)
+                return
         if kind == "train":
             stream = stream_task("train", "训练模型", v, _attach_missed if attach else wf.run_train, self.cfg, v, backend,
                                  stages=_stages(self.cfg, "train", backend),

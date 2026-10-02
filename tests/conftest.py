@@ -81,5 +81,15 @@ def prepared(tmp_path_factory, lecture_dir):
     ws = tmp_path_factory.mktemp("ws")
     cfg = make_cfg(ws)
     summary = wf.run_prepare(cfg, "测试声音", [str(lecture_dir)])
+    wf.review_confirm(cfg, "测试声音")  # 和老师一样：先「✅ 确认训练素材」才能训练（复制这个声音时确认记录跟着走）
     project = wf.open_project(cfg, "测试声音", must_exist=True)
     return cfg, project, summary
+
+
+def confirm_material(cfg, voice: str) -> None:
+    """测试里训练前「✅ 确认训练素材」（只记下现在的素材，不重新统计）：和老师一样，没确认不能训练。"""
+    from voicetwin import workflows as wf
+    from voicetwin.data import review
+
+    p = wf.open_project(cfg, voice, must_exist=True)
+    review.save_confirmed(p, p.load_manifest())
