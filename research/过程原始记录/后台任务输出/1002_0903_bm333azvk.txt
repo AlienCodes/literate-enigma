@@ -1,0 +1,10 @@
+# 后台任务 bm333azvk
+# 开始：10-02 09:00:28（北京时间）  操作编号：#1959  工具：Bash
+# 说明：Wait until release v18.1 appears
+# 结束状态：completed  Background command "Wait until release v18.1 appears" completed (exit code 0)
+# 命令：
+#   for i in $(seq 1 90); do c=$(curl -sS -o /dev/null -w '%{http_code}' https://api.github.com/repos/AlienCodes/literate-enigma/releases/tags/v18.1 2>/dev/null); if [ "$c" = "200" ]; then echo "release v18.1 exists"; exit 0; fi; sleep 10; done; echo "timeout waiting (last code $c)"
+# ---- 输出 ----
+release v18.1 exists
+
+[exited with code 0]
