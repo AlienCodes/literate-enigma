@@ -103,7 +103,7 @@ def test_suspect_column_count_and_filter(prepared, tmp_path):
     assert "vt-sug-blue" in rows[1][sug] and "VFIXED → V fixed" in rows[1][sug]  # 蓝色小按钮 = 还没用这条建议
     only = _clips_table(cfg, name, only_suspect=True)
     idc = CLIP_HEADERS.index(A.COL_ID)
-    assert len(only) == 1 and only[0][0] == 1 and only[0][idc] == recs[1]["id"]  # 序号重新从 1 开始，id 不变
+    assert len(only) == 1 and only[0][0] == 2 and only[0][idc] == recs[1]["id"]  # 行号是整张表里的位置（不重新编号）
     assert "**1** 条可能有错（已标红）" in _clips_count_md(cfg, name)
 
 
@@ -880,7 +880,7 @@ def test_unsaved_edits_survive_filter_reload_and_adopt(prepared, tmp_path):
     # 勾「只看可能有错的」：没保存的行一直显示
     count2, filtered = ui.refresh_clips(name, True, None)
     assert {r[idc] for r in filtered} == {recs[0]["id"], recs[1]["id"], sus_id}
-    assert [r[0] for r in filtered] == [1, 2, 3]
+    assert [r[0] for r in filtered] == [1, 2, len(recs)]  # 行号是全部句子里的位置，筛选后不变
     # 「🔄 刷新表格」也不会把没保存的修改冲掉
     assert plain({r[idc]: r for r in ui.load_clips(name)[1]}[recs[0]["id"]][text_c]) == "老师手动改的第一行"
     # 撤销其中一行
@@ -1281,3 +1281,138 @@ def test_no_text_clips_delete_and_warning(tmp_path, lecture_dir):
     assert "一条能用来训练的句子都没有" in md and not A._review.load_confirmed(project)
     msg2, _, _ = _act(ui, "v", "use", recs[1]["id"])
     assert "还没有文字" in msg2
+
+
+def test_find_replace_like_word(prepared, tmp_path):
+    """查找 / 替换：表格只列出找到的句子（行号不变），找到的黄色、现在这一处橙色；上一处 / 下一处；
+    替换这一处（红灯，跳到下一处）；全部替换（换好的句子列出来）；撤销刚才的替换；删除的句子不查不换；关闭查找看全部。"""
+    cfg, name = _copy_voice(prepared, tmp_path)
+    project = wf.Project(cfg, name)
+    recs = _all_usable(project)
+    recs[0]["text"] = "大多数情况下，艾子所代替的一般是主句。在定语从句中，艾子主要被翻译为正如。"
+    recs[1]["text"] = "艾子 has nothing to do with it, as you see."
+    recs[2]["text"] = "这一句没有那个词。"
+    recs[3]["text"] = "删除的句子里也有艾子。"
+    recs[3].update(deleted=True, keep=False)
+    project.save_manifest(recs)
+    ui = A.WebUI(cfg)
+    tc, idc, nc = CLIP_HEADERS.index(A.COL_TEXT), CLIP_HEADERS.index(A.COL_ID), 0
+    status, count, rows, _ = ui.do_find(name, "艾子", True)
+    assert [r[idc] for r in rows] == [recs[0]["id"], recs[1]["id"]]  # 删除的不列出来
+    assert [r[nc] for r in rows] == [1, 2] and "找到 <b>3</b> 处" in status and "正在查找「艾子」" in count
+    assert rows[0][tc].count('class="vt-find-cur"') == 1 and rows[0][tc].count('class="vt-find"') == 1
+    status, _, rows, _ = ui.do_find_move(name, 1)
+    assert "现在是第 <b>2</b> 处" in status and rows[0][tc].count('class="vt-find-cur"') == 1
+    assert rows[0][tc].index("vt-find-cur") > rows[0][tc].index('class="vt-find"')  # 第 1 句里的第二个
+    status, _, rows, _ = ui.do_find_move(name, -2)  # 从第 2 处往前两处：回到最后一处
+    assert "现在是第 <b>3</b> 处" in status
+    # 替换这一处（现在是第 3 处 = 第 2 句的艾子）
+    status, count, rows, _ = ui.do_replace_one(name, "艾子", "as", True)
+    assert "第 2 条换好了" in status and "没保存" in status
+    # 换完这一句里已经没有「艾子」了，但它还列在表格里（换上的 as 是绿色），不会突然不见
+    r2 = {r[idc]: r for r in rows}[recs[1]["id"]]
+    assert "vt-green" in r2[tc] and "vt-find" not in r2[tc] and "vt-light-dirty" in r2[-1]
+    t2 = A._review.current_values(project.load_manifest()[1], A._review.load_draft(project).get(recs[1]["id"]))["text"]
+    assert t2.startswith("as has nothing") and "还有 **" in count  # 红灯（没保存）
+    # 撤销刚才的替换
+    status, _, _, _ = ui.do_undo_replace(name)
+    assert "撤销" in status and recs[1]["id"] not in A._review.load_draft(project)
+    # 全部替换：英文只找整个单词，"has" 里的 as 不动
+    status, count, rows, q = ui.do_replace_all(name, "艾子", "as", True)
+    assert "已经把 <b>3</b> 处「艾子」换成「as」（2 句" in status and "没保存" in status
+    draft = A._review.load_draft(project)
+    assert draft[recs[0]["id"]]["text"].count("as") == 2 and "艾子" not in draft[recs[0]["id"]]["text"]
+    assert draft[recs[1]["id"]]["text"].startswith("as has nothing")
+    assert recs[3]["id"] not in draft  # 删除的不换
+    # 表格接着列出换好的这两句（换上的字绿色），查找框里还是「艾子」
+    assert [r[idc] for r in rows] == [recs[0]["id"], recs[1]["id"]] and "value" not in q
+    assert all("vt-green" in r[tc] and "vt-find" not in r[tc] for r in rows)
+    assert "现在没有「艾子」了" in status and "正在查找「艾子」" in count and "找到过的 2 句" in count
+    # 撤销全部替换：又找到 3 处
+    status, _, rows, _ = ui.do_undo_replace(name)
+    assert "2 句改回去了" in status and "找到 <b>3</b> 处" in status and len(rows) == 2
+    status, _, rows, _ = ui.do_replace_all(name, "艾子", "as", True)
+    # 查找 as：英文只找整个单词，"has" 里的 as 不算
+    status, _, rows, _ = ui.do_find(name, "as", True)
+    has_row = {r[idc]: r for r in rows}[recs[1]["id"]][tc]
+    assert has_row.count("vt-find") == 2  # 开头的 as 和后面的 as
+    # 关闭查找：表格显示全部
+    status, count, rows, q = ui.do_find_close(name)
+    assert status == "" and len(rows) == len(recs) and q["value"] == "" and "正在查找" not in count
+
+
+def test_find_keeps_deleted_rows_visible(prepared, tmp_path):
+    """查找时删除找到的那一句：那一行变紫色、还在表格里（不会消失），撤销删除也在；重新点「查找」才按新的结果列。"""
+    cfg, name = _copy_voice(prepared, tmp_path)
+    project = wf.Project(cfg, name)
+    recs = _all_usable(project)
+    recs[0]["text"] = "第一句有艾子。"
+    recs[2]["text"] = "第三句也有艾子。"
+    project.save_manifest(recs)
+    ui = A.WebUI(cfg)
+    idc, tc = CLIP_HEADERS.index(A.COL_ID), CLIP_HEADERS.index(A.COL_TEXT)
+    _, _, rows, _ = ui.do_find(name, "艾子", True)
+    assert [r[idc] for r in rows] == [recs[0]["id"], recs[2]["id"]]
+    _, _, table = _act(ui, name, "delete", recs[0]["id"])
+    by_id = {r[idc]: r for r in table}
+    assert list(by_id) == [recs[0]["id"], recs[2]["id"]] and A.FLAG_DELETED in by_id[recs[0]["id"]][-1]
+    status, count, _, _ = ui._find_out(name, False)
+    assert "找到 <b>1</b> 处" in status and "找到过的 2 句" in count
+    _, _, table = _act(ui, name, "restore", recs[0]["id"])
+    assert [r[idc] for r in table] == [recs[0]["id"], recs[2]["id"]]
+    # 自己双击改掉「艾子」：这一句也还在（改过的字绿色）
+    _, _, table = _act(ui, name, "edit", recs[2]["id"], text="第三句也有as。")
+    assert "vt-green" in {r[idc]: r for r in table}[recs[2]["id"]][tc]
+    # 重新点「查找」：只列现在找到的
+    _, _, rows, _ = ui.do_find(name, "艾子", True)
+    assert [r[idc] for r in rows] == [recs[0]["id"]]
+
+
+def test_undo_replace_after_save_and_after_later_edit(prepared, tmp_path):
+    """撤销替换：已经保存了也能改回去（变成没保存的修改，红灯）；替换以后老师又改过的句子不动，并且说清楚。"""
+    cfg, name = _copy_voice(prepared, tmp_path)
+    project = wf.Project(cfg, name)
+    recs = _all_usable(project)
+    recs[0]["text"] = "第一句有艾子。"
+    recs[1]["text"] = "第二句也有艾子。"
+    project.save_manifest(recs)
+    ui = A.WebUI(cfg)
+    ui.do_replace_all(name, "艾子", "as", True)
+    ui.do_save(name)
+    m = {r["id"]: r for r in project.load_manifest()}
+    assert m[recs[0]["id"]]["text"] == "第一句有as。" and not A._review.load_draft(project)
+    status, _, _, _ = ui.do_undo_replace(name)
+    assert "2 句改回去了" in status and "没保存" in status
+    draft = A._review.load_draft(project)
+    assert draft[recs[0]["id"]]["text"] == "第一句有艾子。" and draft[recs[1]["id"]]["text"] == "第二句也有艾子。"
+    ui.do_save(name)
+    assert {r["id"]: r for r in project.load_manifest()}[recs[0]["id"]]["text"] == "第一句有艾子。"
+    # 替换以后又自己改了第二句：撤销只改回第一句，第二句老师的修改留着
+    ui.do_replace_all(name, "艾子", "as", True)
+    _act(ui, name, "edit", recs[1]["id"], text="第二句老师自己又改了。")
+    status, _, _, _ = ui.do_undo_replace(name)
+    assert "1 句改回去了" in status and "另有 1 句替换以后又改过" in status
+    draft = A._review.load_draft(project)
+    assert recs[0]["id"] not in draft and draft[recs[1]["id"]]["text"] == "第二句老师自己又改了。"
+    status, _, _, _ = ui.do_undo_replace(name)  # 只能撤销最近一次
+    assert "没有可以撤销的替换" in status
+
+
+def test_find_whole_word_option_and_empty_result(prepared, tmp_path):
+    cfg, name = _copy_voice(prepared, tmp_path)
+    project = wf.Project(cfg, name)
+    recs = _all_usable(project)
+    recs[0]["text"] = "He has it."
+    project.save_manifest(recs)
+    ui = A.WebUI(cfg)
+    status, _, rows, _ = ui.do_find(name, "as", True)
+    assert "没有找到" in status and "把下面的勾去掉" in status and "关闭查找" in status and rows == []
+    status, _, rows, _ = ui.do_find(name, "as", False)  # 不勾：单词里面的也找
+    assert "找到 <b>1</b> 处" in status and len(rows) == 1
+    status, _, _, _ = ui.do_find(name, "   ", True)
+    assert "请在「查找」框里输入" in status
+    # 换了关键字还没点查找就点「替换这一处」：先找到第一处，不直接换
+    status, _, _, _ = ui.do_replace_one(name, "He", "She", True)
+    assert "先找到了第一处" in status and not A._review.load_draft(project)
+    status, _, _, _ = ui.do_replace_one(name, "He", "She", True)
+    assert "换好了" in status
