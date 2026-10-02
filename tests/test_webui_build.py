@@ -188,4 +188,5 @@ def test_review_table_is_display_only_with_bridge(tmp_path):
         assert comp.elem_id == eid and "vt-bridge" in (comp.elem_classes or []) and comp.visible is not False
     assert ".vt-bridge{display:none!important}" in A.APP_CSS
     js = A.page_js()
-    assert "vt-clip-action-btn" in js and "isComposing" in js and '"text": 5' in js
+    assert "vt-clip-action-btn" in js and "isComposing" in js
+    assert f'"text": {A.CLIP_HEADERS.index(A.COL_TEXT)}' in js and f'"menu": {A.CLIP_HEADERS.index(A.COL_MENU)}' in js

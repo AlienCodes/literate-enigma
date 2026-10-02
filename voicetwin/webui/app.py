@@ -55,6 +55,8 @@ os.environ.setdefault("GRADIO_ANALYTICS_ENABLED", "False")
 
 APP_TITLE = "声音分身 VoiceTwin"
 APP_VERSION = str(getattr(voicetwin, "__version__", "") or "")
+# 网页标题只显示大版本号（老师要求标题一直是「v18」）；完整版本号（18.1）在黑色窗口、发布页和下载的文件名里
+APP_TITLE_VERSION = APP_VERSION.split(".")[0] if re.fullmatch(r"\d+(\.\d+)+", APP_VERSION) else APP_VERSION
 DEFAULT_VOICE = "我的声音"
 
 NEED_VOICE = "请先在页面最上面的「声音名称」里选择或填写声音（例如：我的声音）。"
@@ -100,7 +102,7 @@ SUBMIT_BTN = "提交答案"
 LOG_ACCORDION = "详细过程（出问题时可以复制给帮你的人）"
 ADV_LABEL = "高级设置（一般不用改）"
 
-INTRO_TITLE = f"# 🎙️ {APP_TITLE}" + (f" v{APP_VERSION}" if APP_VERSION else "")
+INTRO_TITLE = f"# 🎙️ {APP_TITLE}" + (f" v{APP_TITLE_VERSION}" if APP_TITLE_VERSION else "")
 INTRO_SUB = "用你自己的讲课视频/录音，复刻你的**音色、语气和节奏**（中文 + 英文）。按 ① → ② → ③ 的顺序操作就行。"
 MODEL_PENDING = "正在读取模型型号……"
 
@@ -292,6 +294,17 @@ REVIEW_JS_TEMPLATE = r"""() => {
   if (window.__vtReview) return;
   window.__vtReview = true;
   const C = __COLS__;
+  // gradio 4.24 点格子时会让整张表获得焦点（parent.focus()），浏览器就把页面滚过去：表格靠近屏幕下边时，
+  // 双击的第一下让页面跳了一截，第二下点到了别的行，编辑框打开的是另一句。这张表获得焦点时不滚动页面。
+  try {
+    const focus0 = HTMLElement.prototype.focus;
+    HTMLElement.prototype.focus = function (opts) {
+      if (this.classList && this.classList.contains('table-wrap') && this.closest && this.closest('#vt-clips')) {
+        return focus0.call(this, Object.assign({}, opts || {}, {preventScroll: true}));
+      }
+      return focus0.call(this, opts);
+    };
+  } catch (e) {}
   let seq = 0, editor = null, menu = null, lastAdopt = {id: '', t: 0};
 
   function el(tag, cls, text) {
@@ -329,6 +342,15 @@ REVIEW_JS_TEMPLATE = r"""() => {
     }
     return null;
   }
+  // gradio 的表格滚动时会把同一个格子拿去显示别的行：用之前先确认这个格子还是这一行（按 id），不是就重新找
+  function tdFor(id, col, td) {
+    if (td && td.isConnected) {
+      const tr = td.closest('tr');
+      const tds = tr ? cellsOf(tr) : [];
+      if (tds[C.id] && tds[C.id].innerText.trim() === id && tds[col] === td) return td;
+    }
+    return findTd(id, col);
+  }
   function clearSel() {
     try { window.getSelection().removeAllRanges(); } catch (e) {}
   }
@@ -355,12 +377,9 @@ REVIEW_JS_TEMPLATE = r"""() => {
   }
   function placeEditor() {
     if (!editor) return;
-    let td = editor.td;
-    if (!td || !td.isConnected) {
-      td = findTd(editor.id, C.text);
-      if (td) editor.td = td;
-    }
-    if (!td || !td.isConnected) return;
+    const td = tdFor(editor.id, C.text, editor.td);
+    if (!td) return;  // 这一行滚出去了：编辑框留在原地，照样可以改
+    editor.td = td;
     const r = td.getBoundingClientRect();
     const vw = document.documentElement.clientWidth;
     const w = Math.min(Math.max(r.width + 24, 360), vw - 16);
@@ -432,15 +451,24 @@ REVIEW_JS_TEMPLATE = r"""() => {
   function closeMenu() {
     if (menu) { menu.box.remove(); menu = null; }
   }
+  // 菜单贴着那一格：下面放不下就往上开（不会开到屏幕外面看不见）；页面或表格滚动时跟着那一行走，不会自己关掉
   function placeMenu(td) {
     if (!menu) return;
+    td = tdFor(menu.id, C.menu, td);
+    if (!td) return;
+    menu.td = td;
     const r = td.getBoundingClientRect();
     const vw = document.documentElement.clientWidth;
+    const vh = window.innerHeight || document.documentElement.clientHeight;
     const w = menu.box.offsetWidth || 260;
+    const h = menu.box.offsetHeight || 240;
     let left = r.right + window.scrollX - w;
     left = Math.max(window.scrollX + 8, Math.min(left, window.scrollX + vw - 8 - w));
+    let top = r.bottom + 4;
+    if (top + h > vh - 8 && r.top - h - 4 >= 8) top = r.top - h - 4;
+    top = Math.max(8, Math.min(top, vh - h - 8));
     menu.box.style.left = left + 'px';
-    menu.box.style.top = (r.bottom + window.scrollY + 4) + 'px';
+    menu.box.style.top = (top + window.scrollY) + 'px';
   }
   function openMenu(td, info) {
     closeMenu();
@@ -450,7 +478,7 @@ REVIEW_JS_TEMPLATE = r"""() => {
     const red = !!colored && !!colored.querySelector('.vt-red');
     const box = el('div', 'vt-menu');
     box.setAttribute('role', 'menu');
-    menu = {box: box, id: info.id};
+    menu = {box: box, id: info.id, td: td};
     const act = (action) => { closeMenu(); send({action: action, id: info.id, no: info.no}); };
     function item(label, enabled, fn, tip) {
       const b = el('button', 'vt-menu-item', label);
@@ -568,8 +596,8 @@ REVIEW_JS_TEMPLATE = r"""() => {
     if (info && info.id && info.col === C.text && !info.deleted) { ev.preventDefault(); openEditor(td, info); }
   }, true);
 
-  document.addEventListener('scroll', () => { placeEditor(); closeMenu(); markRows(); }, true);
-  window.addEventListener('resize', () => { placeEditor(); closeMenu(); });
+  document.addEventListener('scroll', () => { placeEditor(); if (menu) placeMenu(menu.td); markRows(); }, true);
+  window.addEventListener('resize', () => { placeEditor(); if (menu) placeMenu(menu.td); });
   new MutationObserver(markRows).observe(document.body, {childList: true, subtree: true});
 }"""
 
@@ -1093,6 +1121,7 @@ def _library_total_md(n: int) -> str:
 
 # ============================================================================ ① 校对表
 _MD_ESC = {c: "&#%d;" % ord(c) for c in "\\`*_{}[]()#+-.!|~>$"}
+_HTML_CHARS = frozenset("&<>\"'")
 _RED_SPAN = '<span class="vt-red" style="color:#dc2626;font-weight:700;background:#fee2e2">'
 _GREEN_SPAN = '<span style="color:#15803d;font-weight:700;background:#dcfce7">'
 _BLUE_SPAN = '<span class="vt-blue" style="color:#1d4ed8;font-weight:700;background:#bfdbfe">'
@@ -1101,8 +1130,10 @@ _BLUE_DEL = '<s class="vt-blue-del" title="删掉的字" style="color:#2563eb;ba
 
 
 def _cell_esc(s: str) -> str:
-    """放进 markdown 表格格子的文字：HTML 转义 + markdown 符号变成数字实体（研究里实测过能原样显示）。"""
-    return "".join(_MD_ESC.get(c, c) for c in html.escape(str(s), quote=True))
+    """放进 markdown 表格格子的文字：HTML 符号和 markdown 符号都变成十进制数字实体（每个字只转一次）。
+
+    以前先 html.escape 再转 markdown 符号，「'」变成的 &#x27; 里的 # 又被转了一次，网页上显示成「let&#x27;s」。"""
+    return "".join(_MD_ESC.get(c) or ("&#%d;" % ord(c) if c in _HTML_CHARS else c) for c in str(s))
 
 
 def _merge_spans(spans: Any, n: int) -> List[Tuple[int, int]]:

@@ -156,6 +156,7 @@ class Project:
                     if keep != rec.get("keep", True):
                         rec["keep"] = keep
                         rec["manual_keep"] = keep
+                        rec["edited"] = True
                         if not keep:
                             rec["drop_reason"] = rec.get("drop_reason") or "手动删除"
                         changed["keep"] += 1
@@ -163,6 +164,7 @@ class Project:
                 if lang in ("zh", "en") and lang != rec.get("lang"):
                     rec["lang"] = lang
                     changed["lang"] += 1
+                    rec["edited"] = True
         self.save_manifest(records.values())
         return changed
 

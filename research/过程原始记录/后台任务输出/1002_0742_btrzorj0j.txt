@@ -1,0 +1,15 @@
+# 后台任务 btrzorj0j
+# 开始：10-02 07:40:45（北京时间）  操作编号：#1838  工具：Bash
+# 说明：Run full suite in teacher-equivalent gsv39 env
+# 结束状态：completed  Background command "Run full suite in teacher-equivalent gsv39 env" completed (exit code 0)
+# 命令：
+#   PY=<草稿目录>/gsv39/bin/python; PYTHONPATH=$PWD timeout 1200 $PY -m pytest -q -p no:cacheprovider 2>&1 | tail -6
+# ---- 输出 ----
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_webui_build.py::test_select_handlers_accept_gradio_event_data
+FAILED tests/test_webui_build.py::test_wiring_review_fixes - KeyError: 'adopt...
+FAILED tests/test_webui_build.py::test_clip_player_and_diff_are_below_the_table
+3 failed, 682 passed, 13 skipped, 59 warnings in 118.58s (0:01:58)
+
+[exited with code 0]

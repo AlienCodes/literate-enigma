@@ -798,7 +798,7 @@ def test_output_name_time_has_no_cjk_in_strftime(monkeypatch):
 def test_header_shows_version():
     import voicetwin
 
-    assert f"声音分身 VoiceTwin v{voicetwin.__version__}" in A.INTRO
+    assert f"声音分身 VoiceTwin v{A.APP_TITLE_VERSION} " in A.INTRO and voicetwin.__version__.startswith(A.APP_TITLE_VERSION)
 
 
 # ---------------------------------------------------------------------------- 更多处理函数（真的走后台任务）
@@ -1172,3 +1172,12 @@ def test_changed_words_are_green_in_text_column(prepared, tmp_path):
     assert cell.count('class="vt-green"') == 1 and plain(cell) == "1. *设置*两下"  # 汉字前的空格会被统一去掉
     assert all("vt-green" not in r[tc] for r in rows if r[idc] != recs[0]["id"] and "text_edited" not in
                {x["id"]: x for x in recs}[r[idc]])
+
+
+def test_cell_escape_shows_quotes_and_symbols_as_typed():
+    """英文的 let's、引号、& 在表格里要原样显示（以前「'」显示成「&#x27;」）。"""
+    import html as _html
+
+    for text in ["Next, let's look at it.", '1. *设置* <b>x</b> & "q" #3 $5']:
+        out = A._cell_esc(text)
+        assert _html.unescape(out) == text and "<" not in out and "&#x" not in out and "*" not in out

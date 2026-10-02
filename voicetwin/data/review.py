@@ -83,8 +83,9 @@ def is_dirty(rec: Dict[str, Any], entry: Optional[Dict[str, Any]]) -> bool:
 
 
 def has_saved_edit(rec: Dict[str, Any]) -> bool:
-    """这一条老师改过、而且已经保存了（绿灯）。"""
-    return bool(rec.get("edited") or rec.get("text_edited") or rec.get("manual_keep") is not None)
+    """这一条老师改过、而且已经保存了（绿灯）：网页里保存过的修改（edited），或者改过文字（text_edited，
+    也包括在 Excel 里改的）。"""
+    return bool(rec.get("edited") or rec.get("text_edited"))
 
 
 def _records(project: Any) -> Dict[str, Dict[str, Any]]:
