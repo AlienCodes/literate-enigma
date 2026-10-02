@@ -264,6 +264,10 @@ APP_CSS = """
   font-weight:800!important;font-size:15px}
 #vt-clips tbody tr:has(.vt-mark-out) td:first-child,#vt-clips tbody tr:has(.vt-mark-out) td:first-child *,
 #vt-clips tbody tr.vt-row-out td:first-child,#vt-clips tbody tr.vt-row-out td:first-child *{color:transparent!important}
+.vt-find-bar{margin:6px 0;border:2px solid #fde047!important;border-radius:10px}
+.vt-find-status{padding:6px 10px;margin:4px 0;border-radius:8px;background:#fefce8;border:1px solid #fde047;line-height:1.7}
+.vt-find-status .vt-find-cur{background:#f97316;color:#fff;padding:0 4px;border-radius:4px}
+.dark .vt-find-status{background:rgba(253,224,71,.12)}
 .vt-confirm-btn{background:#16a34a!important;color:#fff!important;border-color:#15803d!important;font-weight:700!important}
 .vt-confirm-btn:hover{background:#15803d!important}
 .dark .vt-menu-btn:hover{background:rgba(255,255,255,.08)}
@@ -615,6 +619,44 @@ REVIEW_JS_TEMPLATE = r"""() => {
       openMenu(td, info);
     }
   }, true);
+
+  // 「全部替换」：先问一次（点取消就什么都不做）
+  document.addEventListener('click', (ev) => {
+    const b = ev.target && ev.target.closest ? ev.target.closest('#vt-find-all') : null;
+    if (!b) return;
+    const val = (sel) => { const x = document.querySelector(sel + ' textarea, ' + sel + ' input'); return x ? x.value.trim() : ''; };
+    const q = val('#vt-find-q'), r = val('#vt-find-r');
+    if (!q) return;  // 没写要找的字：交给程序提示
+    const st = document.querySelector('#vt-find-status[data-q]');
+    const n = st && st.dataset.q === q ? '（一共 ' + st.dataset.count + ' 处）' : '';
+    const ok = window.confirm('确定把所有的「' + q + '」都换成「' + r + '」吗？' + n +
+      '\n\n换完以后要点「保存修改」才生效；换错了可以点「撤销刚才的替换」。');
+    if (!ok) { ev.preventDefault(); ev.stopImmediatePropagation(); ev.stopPropagation(); }
+  }, true);
+
+  // 查找：把表格滚到现在这一处（橙色）那一句
+  let lastFindSeq = '';
+  function scrollToFind() {
+    const st = document.querySelector('#vt-find-status[data-cur-id]');
+    if (!st || st.dataset.seq === lastFindSeq) return;
+    const id = st.dataset.curId;
+    const td = findTd(id, C.text);
+    if (td) { lastFindSeq = st.dataset.seq; td.scrollIntoView({block: 'center'}); return; }
+    // 表格只画了看得见的几行：按行号判断往上还是往下滚，等表格画好再找
+    const scroller = Array.from(document.querySelectorAll('#vt-clips *')).find(
+      (e) => e.scrollHeight > e.clientHeight + 20 && /(auto|scroll)/.test(getComputedStyle(e).overflowY));
+    if (!scroller) return;
+    const tries = Number(st.dataset.tries || 0);
+    if (tries > 40) { lastFindSeq = st.dataset.seq; return; }
+    st.dataset.tries = String(tries + 1);
+    const nos = Array.from(document.querySelectorAll('#vt-clips tbody.tbody tr')).map(
+      (tr) => Number((cellsOf(tr)[0] || {}).innerText)).filter((x) => x > 0);
+    const want = Number(st.dataset.curNo || 0);
+    const up = nos.length && want < Math.min.apply(null, nos);
+    scroller.scrollTop = Math.max(0, scroller.scrollTop + (up ? -1 : 1) * scroller.clientHeight * 0.9);
+    setTimeout(scrollToFind, 120);
+  }
+  new MutationObserver(() => setTimeout(scrollToFind, 80)).observe(document.body, {childList: true, subtree: true});
 
   document.addEventListener('keydown', (ev) => {
     if (ev.key === 'Escape' && menu) { closeMenu(); return; }
@@ -1156,6 +1198,8 @@ _RED_SPAN = '<span class="vt-red" style="color:#dc2626;font-weight:700;backgroun
 _GREEN_SPAN = '<span style="color:#15803d;font-weight:700;background:#dcfce7">'
 _BLUE_SPAN = '<span class="vt-blue" style="color:#1d4ed8;font-weight:700;background:#bfdbfe">'
 _GREEN_TEXT = '<span class="vt-green" style="color:#15803d;font-weight:700;background:#dcfce7">'
+_FIND_SPAN = '<span class="vt-find" style="background:#fde047;color:#111827">'
+_FIND_CUR_SPAN = '<span class="vt-find-cur" style="background:#f97316;color:#fff;font-weight:700">'
 _BLUE_DEL = '<s class="vt-blue-del" title="删掉的字" style="color:#2563eb;background:#dbeafe">'
 
 
@@ -1290,20 +1334,33 @@ def _suggest_cell(info: Dict[str, Any]) -> str:
     return ""
 
 
-def _text_html(info: Dict[str, Any], rec: Optional[Dict[str, Any]] = None) -> str:
+def _text_html(info: Dict[str, Any], rec: Optional[Dict[str, Any]] = None,
+               finds: Optional[Sequence[Tuple[int, int, bool]]] = None) -> str:
     """「文字」那一列：老师改过、新打上去的字是绿色（和最初识别的文字比），别的照常。
+    查找时：找到的字黄色，现在这一处橙色（finds = [(开始, 结束, 是不是现在这一处)]）。
     没有文字时写一句灰色的提示（双击照样可以自己打字）。"""
     text = str(info.get("text") or "")
     if not text.strip():
         done = bool((rec or {}).get("asr_done"))
         return ('<span class="vt-notext">（没有识别出文字）</span>' if done
                 else '<span class="vt-notext">（还没有识别出文字）</span>')
-    out: List[str] = []
-    pos = 0
+    flags = [""] * len(text)  # 每个字：g = 改过（绿）、f = 找到的（黄）、c = 现在这一处（橙）
     for s, e in info.get("blue") or []:
-        out += [_cell_esc(text[pos:s]), _GREEN_TEXT, _cell_esc(text[s:e]), "</span>"]
-        pos = e
-    out.append(_cell_esc(text[pos:]))
+        for k in range(max(0, s), min(len(text), e)):
+            flags[k] = "g"
+    for s, e, cur in finds or []:
+        for k in range(max(0, s), min(len(text), e)):
+            flags[k] = "c" if cur else "f"
+    tags = {"g": _GREEN_TEXT, "f": _FIND_SPAN, "c": _FIND_CUR_SPAN}
+    out: List[str] = []
+    k = 0
+    while k < len(text):
+        j = k
+        while j < len(text) and flags[j] == flags[k]:
+            j += 1
+        piece = _cell_esc(text[k:j])
+        out.append(tags[flags[k]] + piece + "</span>" if flags[k] else piece)
+        k = j
     return "".join(out)
 
 
@@ -1311,7 +1368,7 @@ def _clips_table(cfg: Config, voice: Any, only_suspect: bool = False) -> List[Li
     """校对表：每条片段一行。老师删除的整行紫色，程序判断不能用的（比如没有文字）整行灰色，不写原因；
     点过「确认训练素材」以后，用来训练的行号橙色、不用的不显示行号（按硬盘上保存的样子）。
     显示的是「保存过的 + 没保存的修改（草稿）」。
-    # 是显示的序号（从 1 开始），找片段一律用 id 列。只看可能有错的：没保存的修改也一直显示，免得看不到。"""
+    # 是这一句在整张表里的位置（筛选以后也不变），找片段一律用 id 列。只看可能有错的：没保存的修改也一直显示。"""
     voice = _voice_name(voice)
     if not voice:
         return []
@@ -1319,13 +1376,23 @@ def _clips_table(cfg: Config, voice: Any, only_suspect: bool = False) -> List[Li
     draft = _review.load_draft(project)
     records = project.load_manifest()
     confirmed = bool(_review.load_confirmed(project))  # 点过「确认训练素材」：行号橙色 / 不显示（按现在的样子）
+    # 查找时（上面的查找框）：只显示找到的句子，找到的字黄色，现在这一处橙色
+    find = _review.load_find(project)
+    by_row: Dict[str, List[Tuple[int, int, bool]]] = {}
+    if find:
+        matches = _review.find_matches(project, find["q"], find.get("word", True))
+        cur = min(int(find.get("i", 0)), len(matches) - 1) if matches else -1
+        for k, (rid, s0, e0) in enumerate(matches):
+            by_row.setdefault(rid, []).append((s0, e0, k == cur))
     rows: List[List[Any]] = []
-    for r in records:
+    for no, r in enumerate(records, 1):  # 行号是在整张表里的位置（筛选以后也不变，「第 164 条」一直是同一句）
         entry = draft.get(r["id"])
         vals = _review.current_values(r, entry)
         dirty = _review.is_dirty(r, entry)
         info = _review.analyze(r, vals["text"])
         if only_suspect and not (info["active"] or dirty):
+            continue
+        if find and r["id"] not in by_row:
             continue
         deleted = bool(r.get("deleted"))
         menu = _menu_cell(dirty=dirty and not deleted, saved=_review.has_saved_edit(r) and not deleted,
@@ -1333,8 +1400,9 @@ def _clips_table(cfg: Config, voice: Any, only_suspect: bool = False) -> List[Li
                           train=_review.is_material(r) if confirmed else None)
         colored = _colored_html(info)
         suggest = "" if deleted or not colored else _suggest_cell(info)  # 「可能有错」那一列空着：没有建议按钮
-        rows.append([len(rows) + 1, r["id"], _LANG_NAMES.get(vals["lang"], vals["lang"]),
-                     round(float(r.get("duration", 0) or 0), 1), _text_html(info, r), colored, suggest, menu])
+        rows.append([no, r["id"], _LANG_NAMES.get(vals["lang"], vals["lang"]),
+                     round(float(r.get("duration", 0) or 0), 1), _text_html(info, r, by_row.get(r["id"])), colored,
+                     suggest, menu])
     return rows
 
 
@@ -1418,6 +1486,11 @@ def _clips_count_md(cfg: Config, voice: Any) -> str:
                      "改好了请再点一次最下面的「✅ 确认训练素材」。")
     else:
         text += "\n\n改好以后点最下面的「✅ 确认训练素材」：用来训练的句子行号会变成**橙色**，不用的不显示行号。"
+    find = _review.load_find(project)
+    if find:
+        matches = _review.find_matches(project, find["q"], find.get("word", True))
+        text += (f"\n\n🔍 **正在查找「{_md_text(find['q'])}」**：找到 {len(matches)} 处"
+                 f"（{len({m[0] for m in matches})} 句），表格里只列出这些句子；点「✖ 关闭查找」看全部。")
     note = _no_text_note(c)
     if note:
         text += "\n\n" + note
@@ -2358,7 +2431,9 @@ class WebUI:
     VERIFY_OUT = ("vf_bar", "vf_md", "vf_table", "vf_btn", "vf_log")
     BLIND_OUT = (("bt_bar", "bt_md", "bt_btn", "bt_state", "bt_submit", "bt_result", "vf_log")
                  + tuple(f"bt_audio_{i}" for i in range(MAX_BLIND)) + tuple(f"bt_pick_{i}" for i in range(MAX_BLIND)))
-    VOICE_OUT = ("voice_status", "clips_count", "clips", "gen_warn", "clip_diff", "sel_clip", "clip_audio", "clip_msg")
+    VOICE_OUT = ("voice_status", "clips_count", "clips", "gen_warn", "clip_diff", "sel_clip", "clip_audio", "clip_msg",
+                 "find_status")
+    FIND_OUT = ("find_status", "clips_count", "clips", "find_q")
     LIB_OUT = ("lib_acc", "lib_table", "lib_total")
 
     def __init__(self, cfg: Config, local: bool = True):
@@ -2446,13 +2521,18 @@ class WebUI:
     # ------------------------------------------------------------------ 顶部：声音、显卡、声音库
     def on_voice_change(self, voice: Any, only_sus: bool = False, backend: Any = None) -> Tuple[Any, ...]:
         v = _voice_name(voice)
+        try:  # 打开网页 / 换声音：从「没在查找」开始（查找框是空的，表格就要显示全部）
+            if v:
+                _review.clear_find(wf.Project(self.cfg, v))
+        except (ValueError, OSError):
+            pass
         try:
             table = _clips_table(self.cfg, v, bool(only_sus)) if v else []
         except ValueError:
             table = []
         return self._o(self.VOICE_OUT, voice_status=_voice_status_md(self.cfg, v), clips_count=_clips_count_md(self.cfg, v),
                        clips=table, gen_warn=_gen_warn_md(self.cfg, v, backend or self.default_synth), clip_diff="",
-                       sel_clip="", clip_audio=_upd(value=None, visible=False), clip_msg="")
+                       sel_clip="", clip_audio=_upd(value=None, visible=False), clip_msg="", find_status="")
 
     def refresh_voices(self, current: Any = None) -> Dict[str, Any]:
         names = _voices(self.cfg)
@@ -2693,6 +2773,137 @@ class WebUI:
             return NEED_PREPARE, _upd(), _upd()
         res = wf.review_save(self.cfg, v)
         return self._save_md(res), _clips_count_md(self.cfg, v), _clips_table(self.cfg, v, bool(only_sus))
+
+    # ------------------------------------------------------------------ 查找 / 替换（像 Word）
+    def _find_out(self, v: str, only_sus: Any, msg: str = "", query: Any = None) -> Tuple[Any, ...]:
+        """查找以后：(查找结果那一行, 片段总数, 表格, 查找框)。结果那一行带着现在这一处是哪一句，网页脚本据此把表格滚过去。"""
+        project = wf.Project(self.cfg, v)
+        find = _review.load_find(project)
+        status = msg
+        attrs = ""
+        if find:
+            matches = _review.find_matches(project, find["q"], find.get("word", True))
+            if matches:
+                i = min(int(find.get("i", 0)), len(matches) - 1)
+                rid = matches[i][0]
+                no = next((k for k, r in enumerate(project.load_manifest(), 1) if r["id"] == rid), 0)
+                head = (f"🔍 找到 <b>{len(matches)}</b> 处「{html.escape(find['q'])}」（在 {len({m[0] for m in matches})} 句里）"
+                        f"　·　现在是第 <b>{i + 1}</b> 处（第 {no} 条，<span class=\"vt-find-cur\">橙色</span>的那个）")
+                attrs = (f' data-count="{len(matches)}" data-q="{html.escape(find["q"], quote=True)}"'
+                         f' data-cur-id="{html.escape(rid, quote=True)}" data-cur-no="{no}" data-seq="{time.time():.3f}"')
+            else:
+                head = f"🔍 没有找到「{html.escape(find['q'])}」" + ("（英文只找整个单词：可以把下面的勾去掉再找）"
+                                                                 if find.get("word", True) else "")
+                attrs = ' data-count="0"'
+            status = head + (f"<br>{msg}" if msg else "")
+        html_out = f'<div class="vt-find-status" id="vt-find-status"{attrs}>{status}</div>' if status else ""
+        q_upd = _upd() if query is None else _upd(value=query)
+        return html_out, _clips_count_md(self.cfg, v), _clips_table(self.cfg, v, bool(only_sus)), q_upd
+
+    def do_find(self, voice: Any, query: Any, word: Any = True, only_sus: Any = False) -> Tuple[Any, ...]:
+        """「🔍 查找」：表格里只列出找到的句子，找到的字黄色，第一处橙色。"""
+        v = _voice_name(voice)
+        if not v:
+            return NEED_VOICE, _upd(), _upd(), _upd()
+        project = wf.Project(self.cfg, v)
+        if not str(query or "").strip():
+            _review.clear_find(project)
+            return self._find_out(v, only_sus, "请在「查找」框里输入要找的字。")
+        _review.save_find(project, query, bool(word), 0)
+        return self._find_out(v, only_sus)
+
+    def do_find_move(self, voice: Any, delta: int, only_sus: Any = False) -> Tuple[Any, ...]:
+        """「⬆ 上一处 / ⬇ 下一处」：到了最后一处再点「下一处」回到第一处。"""
+        v = _voice_name(voice)
+        if not v:
+            return NEED_VOICE, _upd(), _upd(), _upd()
+        project = wf.Project(self.cfg, v)
+        find = _review.load_find(project)
+        if not find:
+            return self._find_out(v, only_sus, "请先输入要找的字，点「🔍 查找」。")
+        n = len(_review.find_matches(project, find["q"], find.get("word", True)))
+        if n:
+            _review.save_find(project, find["q"], find.get("word", True), (int(find.get("i", 0)) + delta) % n)
+        return self._find_out(v, only_sus)
+
+    def do_replace_one(self, voice: Any, query: Any, repl: Any, word: Any = True, only_sus: Any = False) -> Tuple[Any, ...]:
+        """「替换这一处」：把橙色的那一处换掉（存成没保存的修改，红灯），然后跳到下一处。"""
+        v = _voice_name(voice)
+        if not v:
+            return NEED_VOICE, _upd(), _upd(), _upd()
+        guard = self._edit_guard(v, "替换")
+        if guard:
+            return guard, _upd(), _upd(), _upd()
+        project = wf.Project(self.cfg, v)
+        find = _review.load_find(project)
+        q = str(query or "").strip()
+        if not q:
+            return self._find_out(v, only_sus, "请在「查找」框里输入要找的字。")
+        if not find or find["q"] != q or bool(find.get("word", True)) != bool(word):
+            _review.save_find(project, q, bool(word), 0)  # 换了关键字还没点查找：先找到第一处
+            return self._find_out(v, only_sus, "先找到了第一处（橙色）。再点一次「替换这一处」就会换掉它。")
+        matches = _review.find_matches(project, q, bool(word))
+        if not matches:
+            return self._find_out(v, only_sus)
+        i = min(int(find.get("i", 0)), len(matches) - 1)
+        rid, start, _end = matches[i]
+        order = {r["id"]: k for k, r in enumerate(project.load_manifest())}
+        res = _review.replace_matches(project, q, repl, bool(word), target=(rid, start))
+        if not res["count"]:
+            msg = "这一处换完以后这句话就空了，没有换（不想要这一句请用「⋯ 选项」删除）。" if res["skipped"] else "没有换。"
+            return self._find_out(v, only_sus, msg)
+        after = _review.find_matches(project, q, bool(word))
+        pos = start + len(str(repl or ""))
+        nxt = next((k for k, (r2, s2, _e2) in enumerate(after)
+                    if order.get(r2, 0) > order.get(rid, 0) or (r2 == rid and s2 >= pos)), 0)
+        _review.save_find(project, q, bool(word), nxt)
+        no = order.get(rid, 0) + 1
+        return self._find_out(v, only_sus, f"✅ 第 {no} 条换好了（🔴 没保存，改过的字是绿色）；换错了点「↩️ 撤销刚才的替换」。")
+
+    def do_replace_all(self, voice: Any, query: Any, repl: Any, word: Any = True, only_sus: Any = False) -> Tuple[Any, ...]:
+        """「全部替换」（网页上会先问一次）：所有没删除的句子里找到的都换掉，存成没保存的修改（红灯）。
+        换完以后表格列出换好的句子（新的字标黄），查找框里变成新的字。"""
+        v = _voice_name(voice)
+        if not v:
+            return NEED_VOICE, _upd(), _upd(), _upd()
+        guard = self._edit_guard(v, "替换")
+        if guard:
+            return guard, _upd(), _upd(), _upd()
+        q, r = str(query or "").strip(), str(repl or "")
+        if not q:
+            return self._find_out(v, only_sus, "请在「查找」框里输入要找的字。")
+        project = wf.Project(self.cfg, v)
+        res = _review.replace_matches(project, q, r, bool(word))
+        if not res["count"]:
+            _review.save_find(project, q, bool(word), 0)
+            extra = f"（{res['skipped']} 句换完会变成空的，没有换）" if res["skipped"] else ""
+            return self._find_out(v, only_sus, "没有可以替换的地方" + extra + "。")
+        msg = (f"✅ 已经把 <b>{res['count']}</b> 处「{html.escape(q)}」换成「{html.escape(r)}」（{res['rows']} 句，🔴 没保存）。"
+               "记得点下面的「保存修改」；换错了点「↩️ 撤销刚才的替换」。")
+        if res["skipped"]:
+            msg += f"（另有 {res['skipped']} 句换完会变成空的，没有换。）"
+        if r.strip():
+            _review.save_find(project, r.strip(), bool(word), 0)  # 表格列出换好的句子
+            return self._find_out(v, only_sus, msg, query=r.strip())
+        _review.clear_find(project)
+        return self._find_out(v, only_sus, msg, query="")
+
+    def do_undo_replace(self, voice: Any, only_sus: Any = False) -> Tuple[Any, ...]:
+        """「↩️ 撤销刚才的替换」：上一次替换（一处或全部）改过的句子改回去。"""
+        v = _voice_name(voice)
+        if not v:
+            return NEED_VOICE, _upd(), _upd(), _upd()
+        n = _review.undo_replace(wf.Project(self.cfg, v))
+        msg = f"↩️ 已经撤销刚才的替换（{n} 句改回去了）。" if n else "没有可以撤销的替换（只能撤销最近一次）。"
+        return self._find_out(v, only_sus, msg)
+
+    def do_find_close(self, voice: Any, only_sus: Any = False) -> Tuple[Any, ...]:
+        """「✖ 关闭查找」：表格显示全部句子。"""
+        v = _voice_name(voice)
+        if not v:
+            return NEED_VOICE, _upd(), _upd(), _upd()
+        _review.clear_find(wf.Project(self.cfg, v))
+        return self._find_out(v, only_sus, "", query="")
 
     def do_confirm(self, voice: Any, only_sus: Any = False) -> Tuple[Any, Any, Any]:
         """「✅ 确认训练素材」：先保存所有没保存的修改，再重新统计，记下现在用来训练的句子（行号变橙色，不用的不显示行号）。"""
@@ -3550,6 +3761,24 @@ class WebUI:
                     c["proof_md"] = gr.Markdown(elem_classes="vt-md")
                     c["sel_clip"] = gr.State("")
                     c["clips_base"] = gr.State({})
+                    # 查找 / 替换（像 Word）：表格只列出找到的句子；替换以后存成没保存的修改（红灯），保存才生效
+                    with gr.Group(elem_classes="vt-find-bar"):
+                        with gr.Row():
+                            c["find_q"] = gr.Textbox(label="🔍 查找（例如：艾子）", scale=3, max_lines=1,
+                                                     elem_id="vt-find-q")
+                            c["find_r"] = gr.Textbox(label="替换成（例如：as）", scale=3, max_lines=1,
+                                                     elem_id="vt-find-r")
+                            c["find_word"] = gr.Checkbox(label="英文只找整个单词（找 as 不会找到 has）", value=True,
+                                                         scale=2)
+                        with gr.Row():
+                            c["find_btn"] = gr.Button("🔍 查找", size="sm", variant="primary")
+                            c["find_prev"] = gr.Button("⬆ 上一处", size="sm")
+                            c["find_next"] = gr.Button("⬇ 下一处", size="sm")
+                            c["find_rep1"] = gr.Button("替换这一处", size="sm")
+                            c["find_repall"] = gr.Button("全部替换", size="sm", elem_id="vt-find-all")
+                            c["find_undo"] = gr.Button("↩️ 撤销刚才的替换", size="sm")
+                            c["find_close"] = gr.Button("✖ 关闭查找", size="sm")
+                    c["find_status"] = gr.HTML("")
                     c["clip_msg"] = gr.Markdown(elem_classes="vt-md vt-clip-msg")
                     # 表格本身不能直接打字（interactive=False）：改字、采用建议、选项都由 REVIEW_JS 处理，
                     # 再通过下面两个隐藏的组件交给 do_clip_action
@@ -3802,6 +4031,21 @@ class WebUI:
                              [c["review_md"], c["clips_count"], c["clips"]], **quick)
             c["confirm_btn"].click(_safe("确认训练素材", 3, 0)(self.do_confirm), [c["voice"], c["only_sus"]],
                                    [c["review_md"], c["clips_count"], c["clips"]], **quick)
+            find_outs = outs(self.FIND_OUT)
+            find_in = [c["voice"], c["find_q"], c["find_word"], c["only_sus"]]
+            rep_in = [c["voice"], c["find_q"], c["find_r"], c["find_word"], c["only_sus"]]
+            c["find_btn"].click(_safe("查找", 4, 0)(self.do_find), find_in, find_outs, **quick)
+            c["find_q"].submit(_safe("查找", 4, 0)(self.do_find), find_in, find_outs, **quick)  # 在查找框里按回车 = 查找
+            c["find_prev"].click(_safe("查找", 4, 0)(lambda v, o: self.do_find_move(v, -1, o)), [c["voice"], c["only_sus"]],
+                                 find_outs, **quick)
+            c["find_next"].click(_safe("查找", 4, 0)(lambda v, o: self.do_find_move(v, 1, o)), [c["voice"], c["only_sus"]],
+                                 find_outs, **quick)
+            c["find_rep1"].click(_safe("替换", 4, 0)(self.do_replace_one), rep_in, find_outs, **quick)
+            c["find_repall"].click(_safe("全部替换", 4, 0)(self.do_replace_all), rep_in, find_outs, **quick)
+            c["find_undo"].click(_safe("撤销替换", 4, 0)(self.do_undo_replace), [c["voice"], c["only_sus"]], find_outs,
+                                 **quick)
+            c["find_close"].click(_safe("关闭查找", 4, 0)(self.do_find_close), [c["voice"], c["only_sus"]], find_outs,
+                                  **quick)
             c["proof_btn"].click(_settled(self.do_proofcheck), [c["voice"], c["only_sus"]], outs(self.PROOF_OUT),
                                  **heavy).then(
                 _safe("载入片段", 2, 0)(self.refresh_clips), [c["voice"], c["only_sus"], c["clips"]], clip_outs, **quick).then(

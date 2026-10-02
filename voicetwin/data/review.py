@@ -16,6 +16,7 @@
 from __future__ import annotations
 
 import difflib
+import re
 import json
 import threading
 import time
@@ -544,3 +545,146 @@ def save_confirmed(project: Any, records: Sequence[Dict[str, Any]]) -> Dict[str,
     tmp.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     tmp.replace(p)
     return data
+
+
+# ============================================================================ 查找 / 替换（像 Word）
+FIND_FILE = "review_find.json"
+UNDO_FILE = "review_undo.json"
+_WORDISH = re.compile(r"[A-Za-z0-9]+(?:[ '\-][A-Za-z0-9]+)*")
+
+Match = Tuple[str, int, int]  # (片段 id, 开始, 结束)：位置按这一行现在的文字（含没保存的修改）算
+
+
+def find_pattern(query: Any, whole_word: bool = True) -> Optional["re.Pattern[str]"]:
+    """查找用的规则：不分大小写；英文词（as、NVH、in the）勾了「只找整个单词」时不找单词里面的（as 不会找到 has）。
+    中文、标点照原样找。空的返回 None。"""
+    q = str(query or "").strip()
+    if not q:
+        return None
+    body = re.escape(q)
+    if whole_word and _WORDISH.fullmatch(q):
+        body = r"(?<![A-Za-z0-9])" + body + r"(?![A-Za-z0-9])"
+    return re.compile(body, re.IGNORECASE)
+
+
+def find_matches(project: Any, query: Any, whole_word: bool = True) -> List[Match]:
+    """所有没删除的句子里找到的地方，按表格顺序。"""
+    pat = find_pattern(query, whole_word)
+    if pat is None:
+        return []
+    draft = load_draft(project)
+    out: List[Match] = []
+    for rec in project.load_manifest():
+        if rec.get("deleted"):
+            continue
+        text = current_values(rec, draft.get(rec["id"]))["text"]
+        out += [(rec["id"], m.start(), m.end()) for m in pat.finditer(text) if m.end() > m.start()]
+    return out
+
+
+def load_find(project: Any) -> Dict[str, Any]:
+    """现在正在找什么：{"q": 关键字, "word": 英文只找整个单词, "i": 现在是第几处（从 0 开始）}；没在找返回 {}。"""
+    try:
+        data = json.loads((Path(project.root) / FIND_FILE).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    return data if isinstance(data, dict) and str(data.get("q") or "").strip() else {}
+
+
+def save_find(project: Any, query: Any, whole_word: bool, index: int = 0) -> Dict[str, Any]:
+    data = {"q": str(query or "").strip(), "word": bool(whole_word), "i": max(0, int(index))}
+    p = Path(project.root) / FIND_FILE
+    tmp = p.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+    tmp.replace(p)
+    return data
+
+
+def clear_find(project: Any) -> None:
+    try:
+        (Path(project.root) / FIND_FILE).unlink()
+    except OSError:
+        pass
+
+
+def _replace_in_text(pat: "re.Pattern[str]", text: str, repl: str, start: Optional[int] = None) -> Tuple[str, int]:
+    """把 text 里找到的换成 repl（start 给了时只换从这个位置开始的那一处）。返回 (新文字, 换了几处)。"""
+    if start is None:
+        new, n = pat.subn(lambda m: repl, text)
+        return new, n
+    m = pat.match(text, start)
+    if not m or m.start() != start:
+        return text, 0
+    return text[:m.start()] + repl + text[m.end():], 1
+
+
+def replace_matches(project: Any, query: Any, repl: Any, whole_word: bool = True,
+                    target: Optional[Tuple[str, int]] = None) -> Dict[str, Any]:
+    """替换：target=(id, 位置) 只换那一处，None 换全部。换完的句子存成没保存的修改（红灯），和自己改字一样，要保存才生效。
+    换之前记下这些句子原来的样子，「撤销刚才的替换」可以改回去。
+
+    返回 {"count": 换了几处, "rows": 改了几句, "skipped": 换完会变成空的、没换的句子数, "ids": [...]}。"""
+    pat = find_pattern(query, whole_word)
+    if pat is None:
+        raise ValueError("请先在「查找」里输入要找的字")
+    repl = str(repl or "")
+    with _LOCK:
+        draft = load_draft(project)
+        recs = [r for r in project.load_manifest() if not r.get("deleted")]
+        if target is not None:
+            recs = [r for r in recs if r["id"] == target[0]]
+        undo: Dict[str, Any] = {}
+        count = rows = skipped = 0
+        ids: List[str] = []
+        for rec in recs:
+            rid = rec["id"]
+            text = current_values(rec, draft.get(rid))["text"]
+            new, n = _replace_in_text(pat, text, repl, target[1] if target is not None else None)
+            if not n or new == text:
+                continue
+            if not clean_transcript(new):
+                skipped += 1
+                continue
+            undo[rid] = draft.get(rid)
+            set_draft(project, rid, text=new)
+            draft = load_draft(project)
+            count += n
+            rows += 1
+            ids.append(rid)
+        if undo:
+            p = Path(project.root) / UNDO_FILE
+            p.write_text(json.dumps({"query": str(query), "repl": repl, "rows": undo}, ensure_ascii=False),
+                         encoding="utf-8")
+        return {"count": count, "rows": rows, "skipped": skipped, "ids": ids}
+
+
+def undo_replace(project: Any) -> int:
+    """撤销上一次替换：那几句改回替换之前的样子（替换之前就有的没保存的修改也恢复）。返回改回了几句；没有可撤销的返回 0。"""
+    p = Path(project.root) / UNDO_FILE
+    try:
+        data = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return 0
+    rows = data.get("rows") if isinstance(data, dict) else None
+    if not isinstance(rows, dict) or not rows:
+        return 0
+    with _LOCK:
+        draft = load_draft(project)
+        known = {r["id"]: r for r in project.load_manifest()}
+        n = 0
+        for rid, entry in rows.items():
+            if rid not in known:
+                continue
+            if isinstance(entry, dict) and is_dirty(known[rid], entry):
+                draft[rid] = {"text": str(entry.get("text", "")), "keep": bool(entry.get("keep", True)),
+                              "lang": str(entry.get("lang", ""))}
+            else:
+                draft.pop(rid, None)
+            n += 1
+        save_draft(project, draft)
+        p.unlink()
+        return n
+
+
+def has_undo(project: Any) -> bool:
+    return (Path(project.root) / UNDO_FILE).exists()
