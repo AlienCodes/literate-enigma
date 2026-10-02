@@ -8,7 +8,7 @@ Taking it for a recent death, rescuers used a jackhammer that **ripped** **flesh
 
 In 2001, X-rays revealed a **flint** arrowhead **lodged** in his left shoulder, **unseen** by **examiners** a decade earlier. A **scanner** showed that the **puncture** had **ruptured** an artery, a **mortal** injury causing heavy **bleeding**, and left a large **clot**. Researchers believe he died within minutes. He was about 46.
 
-Another person, it is thought, killed him. From the wound's depth they **inferred** that an **archer** shot him from the **rear**, at about 30 metres. The **shooter** probably caught him **unawares**. A 2018 study found that he had **dined** on dried ibex meat and fat, red **deer** and einkorn wheat, a **hearty**, **nourishing** meal reportedly **consumed** within two hours of his death.
+Another person, it is thought, killed him. From the wound's depth researchers **inferred** that an **archer** shot him from the **rear**, at about 30 metres. The **shooter** probably caught him **unawares**. A 2018 study found he had **dined** on dried ibex meat and fat, red **deer** and einkorn wheat, a **hearty**, **nourishing** meal reportedly **consumed** within two hours of his death.
 
 **Curators** in Bolzano now keep Ötzi, whose 61 **tattoos** on joints and **spine** were perhaps an early form of **acupuncture**. The archer's **identity** is an **enigma**, and any **motive** is **conjecture**. Ötzi has a name, a last meal and a cause of death, while his **anonymous** **killer** has none.
 
@@ -20,7 +20,7 @@ Another person, it is thought, killed him. From the wound's depth they **inferre
 
 2001年，X 光片显示，他左肩里**嵌着**(lodged)一枚**燧石**(flint)箭头，十年前的**检查人员**(examiners)对此**未曾察觉**(unseen)。**扫描仪**(scanner)显示，这处**穿刺伤**(puncture)**撕裂**(ruptured)了一条动脉，这是会引起大量**出血**(bleeding)的**致命**(mortal)伤，伤处还留下一大块**血块**(clot)。研究者认为他在几分钟内就死了。他死时约46岁。
 
-据认为，是另一个人杀死了他。他们根据伤口的深度**推断**(inferred)，一名**弓箭手**(archer)从**背后**(rear)约30米处向他射箭。**射手**(shooter)很可能趁他**毫无防备**(unawares)时出手。2018年的一项研究发现，他最后一餐**享用**(dined)的是干野山羊肉和脂肪、**马鹿**(deer)肉以及单粒小麦，这是一顿**丰盛**(hearty)而**富有营养**(nourishing)的饭；据报道，他在死前两小时内**吃下**(consumed)了这顿饭。
+据认为，是另一个人杀死了他。研究者根据伤口的深度**推断**(inferred)，一名**弓箭手**(archer)从**背后**(rear)约30米处向他射箭。**射手**(shooter)很可能趁他**毫无防备**(unawares)时出手。2018年的一项研究发现，他最后一餐**享用**(dined)的是干野山羊肉和脂肪、**马鹿**(deer)肉以及单粒小麦，这是一顿**丰盛**(hearty)而**富有营养**(nourishing)的饭；据报道，他在死前两小时内**吃下**(consumed)了这顿饭。
 
 博尔扎诺的博物馆**管理员**(curators)如今保管着奥茨，他身上的61处**文身**(tattoos)位于关节和**脊柱**(spine)，也许是一种早期的**针灸**(acupuncture)。那名弓箭手的**身份**(identity)是个**谜团**(enigma)，任何**动机**(motive)都只是**猜测**(conjecture)。奥茨有名字，有最后一餐，也有死因，而那个**无名**(anonymous)的**凶手**(killer)这些都没有。
 
