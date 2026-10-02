@@ -290,7 +290,9 @@ def test_run_proofcheck_and_apply_suggestion(tmp_path, lecture_dir, fake_proofch
     out = wf.apply_suggestion(cfg, "v", target["id"])
     assert out["text"].startswith("改过的")
     after = next(r for r in project.load_manifest() if r["id"] == target["id"])
-    assert after["text"] == out["text"] and "suspect" not in after
+    from voicetwin.data.review import analyze
+
+    assert after["text"] == out["text"] and not analyze(after)["active"]  # 不再标红（采用的记录留着，可以撤销）
     assert out["text"] in project.csv_path.read_text(encoding="utf-8-sig")
     with pytest.raises(ValueError, match="没有可以采用的建议"):
         wf.apply_suggestion(cfg, "v", target["id"])

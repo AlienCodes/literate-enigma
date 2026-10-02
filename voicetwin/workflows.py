@@ -455,14 +455,17 @@ def run_prepare(cfg: Config, voice: str, inputs: Iterable[str], progress: Option
     return summary
 
 
-def apply_review(cfg: Config, voice: str) -> Dict[str, Any]:
-    """读回你在 transcripts.csv 里的修改，重新统计、过滤、挑参考音频。"""
+def apply_review(cfg: Config, voice: str, read_csv: bool = True) -> Dict[str, Any]:
+    """读回你在 transcripts.csv 里的修改，重新统计、过滤、挑参考音频。
+
+    read_csv=False：修改已经直接写进 manifest 了（网页校对表的保存），不再读 CSV
+    （CSV 被 Excel 打开、没能同步时，读回去会把刚保存的修改改回旧的）。"""
     from voicetwin.data.prepare import _clip_stats, apply_filters, assign_splits, summarize
     from voicetwin.data.references import select_references
     from voicetwin.style.profile import build_profile
 
     project = open_project(cfg, voice, must_exist=True)
-    changed = project.import_csv()
+    changed = project.import_csv() if read_csv else {"text": 0, "keep": 0, "lang": 0}
     records = project.load_manifest()
     for r in records:
         if r.get("_stats_text") != r.get("text"):
@@ -473,12 +476,55 @@ def apply_review(cfg: Config, voice: str) -> Dict[str, Any]:
     assign_splits(records, int(pcfg.get("validation_count", 20)))
     project.save_manifest(records)
     refs = select_references(project, records, pcfg)
-    project.export_csv(records)
+    csv_locked = False
+    try:
+        project.export_csv(records)
+    except PermissionError:
+        if read_csv:
+            raise
+        csv_locked = True
     build_profile(project)
     summary = summarize(project, records, refs)
     summary["changed"] = changed
     project.write_json(project.root / "prepare_summary.json", summary)
+    if csv_locked:
+        summary["csv_locked"] = True
     return summary
+
+
+def review_save(cfg: Config, voice: str, ids: Optional[Iterable[str]] = None) -> Dict[str, Any]:
+    """校对表「保存修改」（ids=None，全部）/「💾 保存这一行」（ids=[那一条]）：把没保存的修改写进校对表，
+    再重新统计、过滤、挑参考音频（和以前的保存一样）。"""
+    from voicetwin.data import review
+
+    project = open_project(cfg, voice, must_exist=True)
+    res = review.save_rows(project, ids)
+    res["summary"] = apply_review(cfg, voice, read_csv=False) if res["saved"] else None
+    if res["summary"] and res["summary"].get("csv_locked"):
+        res["csv_locked"] = True
+    return res
+
+
+def review_delete(cfg: Config, voice: str, clip_id: str) -> Dict[str, Any]:
+    """校对表「🗑️ 删除这一行」：这一条不再用来训练（音频不删，可以恢复），马上保存并重新统计。"""
+    from voicetwin.data import review
+
+    project = open_project(cfg, voice, must_exist=True)
+    res = review.delete_clip(project, clip_id)
+    res["summary"] = apply_review(cfg, voice, read_csv=False)
+    res["csv_locked"] = bool(res.get("csv_locked") or res["summary"].get("csv_locked"))
+    return res
+
+
+def review_restore(cfg: Config, voice: str, clip_id: str) -> Dict[str, Any]:
+    """恢复删除的片段，马上保存并重新统计。"""
+    from voicetwin.data import review
+
+    project = open_project(cfg, voice, must_exist=True)
+    res = review.restore_clip(project, clip_id)
+    res["summary"] = apply_review(cfg, voice, read_csv=False)
+    res["csv_locked"] = bool(res.get("csv_locked") or res["summary"].get("csv_locked"))
+    return res
 
 
 def run_proofcheck(cfg: Config, voice: str, progress: Optional[ProgressFn] = None, only_kept: bool = True,
@@ -497,16 +543,19 @@ def run_proofcheck(cfg: Config, voice: str, progress: Optional[ProgressFn] = Non
 
 
 def apply_suggestion(cfg: Config, voice: str, clip_id: str) -> Dict[str, Any]:
-    """✅ 采用建议：把这条片段的文字换成"可能有错"给出的建议，去掉标红，并重新导出校对表。"""
+    """✅ 采用建议（命令行 / 旧接口）：把"可能有错"的建议改进这条片段的文字（只改建议的那几处），马上保存并重新导出校对表。
+    网页的校对表用 review.adopt_suggestion（先存成草稿，老师点保存才写进去）。"""
     project = open_project(cfg, voice, must_exist=True)
     rec = next((r for r in project.load_manifest() if r.get("id") == clip_id), None)
     if rec is None:
         raise ValueError(f"找不到这条片段（{clip_id}），请刷新一下校对表")
-    alt = str(((rec.get("suspect") or {}).get("alt") or "")).strip()
-    if not alt:
-        raise ValueError("这条没有可以采用的建议")
+    from voicetwin.data.review import analyze, apply_edits
+
     old = rec.get("text", "")
-    new = project.set_clip_text(clip_id, alt)
+    info = analyze(rec)
+    if not info["edits"]:
+        raise ValueError("这条没有可以采用的建议")
+    new = project.set_clip_text(clip_id, apply_edits(old, info["edits"]))  # 只改建议的那几处
     log.info(f"已采用建议：{old} → {new.get('text')}")
     out = {"id": clip_id, "old_text": old, "text": new.get("text", ""), "lang": new.get("lang", "")}
     if new.get("csv_locked"):

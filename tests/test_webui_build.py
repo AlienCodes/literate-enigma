@@ -116,9 +116,10 @@ def test_select_handlers_accept_gradio_event_data(prepared):
     app = ui.build()
     clip_fn = next(f for f in app.fns if getattr(f.fn, "__name__", "") == "clip_pick")
     rows = A._clips_table(cfg, project.voice)
-    evt = gr.SelectData(None, {"index": [1, 5], "value": rows[1][5], "selected": True})
-    audio, panel, adopt, cid = clip_fn.fn(project.voice, rows, evt)
-    assert cid == rows[1][1] and audio["value"].endswith(".wav")
+    tc, idc = A.CLIP_HEADERS.index(A.COL_TEXT), A.CLIP_HEADERS.index(A.COL_ID)
+    evt = gr.SelectData(None, {"index": [1, tc], "value": rows[1][tc], "selected": True})
+    audio, panel, cid = clip_fn.fn(project.voice, rows, evt)
+    assert cid == rows[1][idc] and audio["value"].endswith(".wav")
 
 
 def _dep(app, ui, comp, event):
@@ -140,8 +141,9 @@ def test_wiring_review_fixes(tmp_path):
     for name in ("s_ep", "g_ep", "bs"):
         (d,) = _dep(app, ui, name, "input")
         assert d["trigger_mode"] == "always_last"
-    (adopt,) = _dep(app, ui, "adopt_btn", "click")
-    assert ids["clips"] in adopt["inputs"]
+    (act,) = _dep(app, ui, "clip_action_btn", "click")  # 校对表里的操作（网页脚本按的隐藏按钮）
+    assert act["inputs"] == [ids["voice"], ids["clip_action"], ids["only_sus"]]
+    assert act["outputs"] == [ids["clip_msg"], ids["clips_count"], ids["clips"]]
     (filt,) = _dep(app, ui, "only_sus", "change")
     assert ids["clips"] in filt["inputs"]
     conf = app.get_config_file()
@@ -166,9 +168,25 @@ def test_result_tables_have_no_phantom_zero_row(tmp_path):
 
 
 def test_clip_player_and_diff_are_below_the_table(tmp_path):
-    """点一行时会出现/消失的播放器、对比、「采用建议」放在校对表下面：放在上面会把表格顶上顶下，双击改字点不中。"""
+    """点一行时会出现/消失的播放器、对比放在校对表下面：放在上面会把表格顶上顶下。"""
     ui = A.WebUI(_cfg(tmp_path))
     ui.build()
     table = ui.c["clips"]._id
-    for name in ("clip_audio", "clip_diff", "adopt_btn"):
+    for name in ("clip_audio", "clip_diff"):
         assert ui.c[name]._id > table, name
+
+
+def test_review_table_is_display_only_with_bridge(tmp_path):
+    """校对表不能直接在格子里打字（gradio 4.24 的格子编辑框只有一行）：改字由网页脚本的编辑框做，
+    通过隐藏的输入框 + 按钮交给 do_clip_action。隐藏用 CSS（visible=False 的组件不会出现在网页里，脚本找不到）。"""
+    ui = A.WebUI(_cfg(tmp_path))
+    app = ui.build()
+    clips = ui.c["clips"]
+    assert clips.interactive is False and clips.elem_id == "vt-clips" and clips.headers == A.CLIP_HEADERS
+    for name, eid in (("clip_action", "vt-clip-action"), ("clip_action_btn", "vt-clip-action-btn")):
+        comp = ui.c[name]
+        assert comp.elem_id == eid and "vt-bridge" in (comp.elem_classes or []) and comp.visible is not False
+    assert ".vt-bridge{display:none!important}" in A.APP_CSS
+    js = A.page_js()
+    assert "vt-clip-action-btn" in js and "isComposing" in js
+    assert f'"text": {A.CLIP_HEADERS.index(A.COL_TEXT)}' in js and f'"menu": {A.CLIP_HEADERS.index(A.COL_MENU)}' in js

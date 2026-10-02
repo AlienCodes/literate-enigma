@@ -56,7 +56,9 @@ def test_srt_script(tmp_path):
 # ============================================================================ 讲稿文件、读音词典、校对表更宽容
 import csv  # noqa: E402
 
-import pytest  # noqa: E402
+import pytest
+
+from voicetwin.data.review import analyze  # noqa: E402
 
 from voicetwin.project import Project  # noqa: E402
 from voicetwin.synth.script import UNSUPPORTED_MSG, read_script_file  # noqa: E402
@@ -139,7 +141,9 @@ def test_import_csv_drops_suspect_on_edit_and_empty_keep_keeps(tmp_path):
     changed = project.import_csv()
     recs = {r["id"]: r for r in project.load_manifest()}
     assert changed == {"text": 1, "keep": 1, "lang": 0}
-    assert recs["a"]["text"] == "今天我们讲函数。" and "suspect" not in recs["a"] and recs["a"]["keep"] is True
+    # 改成了建议的写法：不再算可能有错（采用的记录留着，校对表里按钮是红的、可以撤销）
+    assert recs["a"]["text"] == "今天我们讲函数。" and not analyze(recs["a"])["active"] and recs["a"]["keep"] is True
+    assert analyze(recs["a"])["adopted"] and recs["a"]["orig_text"] == "今天我们讲VFIXED。"
     assert abs(recs["a"]["rate"] - 7 / 2.0) < 1e-6
     assert recs["b"]["keep"] is False and "suspect" in recs["b"]  # 文字没改：标记留着；「保留」空着：不变
     assert recs["c"]["keep"] is False and recs["c"]["manual_keep"] is False
@@ -149,7 +153,7 @@ def test_set_clip_text(tmp_path):
     project = _project(tmp_path)
     _manifest(project)
     rec = project.set_clip_text("a", "今天我们讲函数。")
-    assert rec["text"] == "今天我们讲函数。" and "suspect" not in rec
+    assert rec["text"] == "今天我们讲函数。" and not analyze(rec)["active"]
     assert "今天我们讲函数。" in project.csv_path.read_text(encoding="utf-8-sig")
     with pytest.raises(KeyError):
         project.set_clip_text("zzz", "x")
@@ -170,4 +174,4 @@ def test_set_clip_text_when_csv_locked_by_excel(tmp_path, monkeypatch):
     rec = project.set_clip_text("a", "今天我们讲函数。")
     assert rec["text"] == "今天我们讲函数。" and rec.get("csv_locked") is True
     saved = {r["id"]: r for r in project.load_manifest()}["a"]
-    assert saved["text"] == "今天我们讲函数。" and "suspect" not in saved and "csv_locked" not in saved
+    assert saved["text"] == "今天我们讲函数。" and not analyze(saved)["active"] and "csv_locked" not in saved

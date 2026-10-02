@@ -1,0 +1,17 @@
+# 后台任务 bkdf42ezd
+# 开始：10-02 06:11:09（北京时间）  操作编号：#1665  工具：Bash
+# 说明：Wait for CI on the records commit
+# 结束状态：completed  Background command "Wait for CI on the records commit" completed (exit code 0)
+# 命令：
+#   SHA=99e0155bca622817c1090757bad55775f6e19c1b; until curl -s "https://api.github.com/repos/AlienCodes/literate-enigma/commits/$SHA/check-runs?per_page=50" | python3 -c "
+#   import json,sys
+#   d=json.load(sys.stdin); runs=d.get('check_runs',[])
+#   done=[r for r in runs if r['status']=='completed']
+#   bad=[r for r in done if r['conclusion']!='success']
+#   if bad: print('FAILED', [(r['name'],r['conclusion']) for r in bad]); sys.exit(0)
+#   sys.exit(0 if runs and len(done)==len(runs) and len(runs)>=8 else 1)"; do sleep 20; done; curl -s "https://api.github.com/repos/AlienCodes/literate-enigma/commits/$SHA/check-runs?per_page=50" | python3 -c "
+#   import json,sys; rs=json.load(sys.stdin)['check_runs']; print(len(rs), sorted(set(r['conclusion'] for r in rs)))"
+# ---- 输出 ----
+8 ['success']
+
+[exited with code 0]

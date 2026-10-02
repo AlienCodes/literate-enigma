@@ -1,0 +1,13 @@
+# 后台任务 bitv3am0z
+# 开始：10-02 08:36:20（北京时间）  操作编号：#1909  工具：Bash
+# 说明：Run teacher-env suite in background
+# 结束状态：completed  Background command "Run teacher-env suite in background" completed (exit code 0)
+# 命令：
+#   PY=<草稿目录>/gsv39/bin/python; PYTHONPATH=$PWD timeout 1200 $PY -m pytest -q -p no:cacheprovider 2>&1 | tail -4
+# ---- 输出 ----
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+690 passed, 13 skipped, 63 warnings in 122.69s (0:02:02)
+
+[exited with code 0]

@@ -42,7 +42,7 @@ import unicodedata
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
-from typing import Any, Callable, Dict, Iterable, List, NamedTuple, Optional, Sequence, Tuple
+from typing import AbstractSet, Any, Callable, Dict, FrozenSet, Iterable, List, NamedTuple, Optional, Sequence, Tuple
 
 from voicetwin.utils.log import get_logger
 from voicetwin.utils.textutil import clean_transcript, count_cjk
@@ -627,8 +627,10 @@ def _han_surface(toks: Sequence[Tok], text: str) -> Optional[str]:
 
 
 def _classify(tag: str, at: Sequence[Tok], bt: Sequence[Tok], text: str, other: str, engine: str,
-              w_diff: float) -> Tuple[str, float, str]:
-    """一处不一样：返回 (类别, 权重, 能不能拼进建议 yes/if_heur/no)。权重 0 = 不算。"""
+              w_diff: float, vocab: AbstractSet[str] = frozenset()) -> Tuple[str, float, str]:
+    """一处不一样：返回 (类别, 权重, 能不能拼进建议 yes/if_heur/no)。权重 0 = 不算。
+
+    vocab：这个声音的素材里本来就有的英文词（见 voice_vocab）。"""
     ak, bk = _keys(at), _keys(bt)
     aj, bj = "".join(ak), "".join(bk)
     if aj == bj:  # "VFIXED" 和 "v fixed"：只是空格或分词不同
@@ -657,6 +659,8 @@ def _classify(tag: str, at: Sequence[Tok], bt: Sequence[Tok], text: str, other: 
         if a_han and b_lat:
             if whisper_b:
                 return ("en_guess", W_EN_GUESS, "no") if b_guess else ("cjk_vs_en", W_LATIN, "yes")
+            if _known_english(ak, bk, vocab):
+                return "cjk_vs_en_known", W_LATIN, "yes"  # 艾子 ↔ as：老师说的英文被写成了读音相近的汉字
             return "cjk_vs_en_f", W_LATIN_WEAK, "no"
         if a_lat and b_lat:
             return ("latin", W_LATIN, "yes") if whisper_b else ("latin_f", W_LATIN_WEAK, "no")
@@ -671,6 +675,30 @@ def _classify(tag: str, at: Sequence[Tok], bt: Sequence[Tok], text: str, other: 
         return ("del_en", W_LATIN, "yes") if whisper_b else ("del_en_f", 0.4, "no")
     splice = "no" if (not whisper_b and any(_latin_key(k) for k in bk)) else "yes"
     return "diff", w_diff, splice
+
+
+def _known_english(ak: Sequence[str], bk: Sequence[str], vocab: AbstractSet[str]) -> bool:
+    """FunASR 听到的是英文、主识别写的是几个汉字：FunASR 的英文一般不可靠，但这几个英文词在老师自己的素材里
+    （主识别引擎自己写出来过、或者老师改过的文字里）本来就常出现，而且汉字不多（像是英文的读音），就可以采用。"""
+    if not vocab or not bk or len(bk) > 3:
+        return False
+    if not all(k in vocab and k not in CONFUSABLE_SOFT and len(k) >= 2 for k in bk):
+        return False
+    return 1 <= len(ak) <= 3 * len(bk)
+
+
+def voice_vocab(records: Iterable[Dict[str, Any]], min_clips: int = 2) -> FrozenSet[str]:
+    """这个声音的素材里出现在至少 min_clips 段里的英文词（小写）：主识别写出来的、老师改过的文字都算。"""
+    counts: Dict[str, int] = {}
+    for r in records:
+        if r.get("deleted"):
+            continue
+        words = set()
+        for t in (r.get("text"), r.get("orig_text")):
+            words |= {k for k in _keys(tokenize(str(t or ""))) if _latin_key(k)}
+        for w in words:
+            counts[w] = counts.get(w, 0) + 1
+    return frozenset(w for w, c in counts.items() if c >= min_clips)
 
 
 def _pad(text: str, s: int, e: int, rep: str) -> str:
@@ -731,7 +759,8 @@ class Compared(NamedTuple):
     other: str  # 清理后的第二次识别结果
 
 
-def compare(text: str, other: str, engine: str = ENGINE_FUNASR, srt: bool = False) -> Compared:
+def compare(text: str, other: str, engine: str = ENGINE_FUNASR, srt: bool = False,
+            vocab: AbstractSet[str] = frozenset()) -> Compared:
     """把现在的文字（A）和第二个引擎的结果（B）逐字对比，返回证据。engine 是 B 来自哪个引擎。"""
     text = str(text or "")
     b = _clean_other(other)
@@ -759,7 +788,7 @@ def compare(text: str, other: str, engine: str = ENGINE_FUNASR, srt: bool = Fals
                                         (ta.start, ta.end, _pad(text, ta.start, ta.end, bo)), "yes"))
             continue
         at, bt = A[i1:i2], B[j1:j2]
-        kind, weight, splice = _classify(tag, at, bt, text, b, engine, w_diff)
+        kind, weight, splice = _classify(tag, at, bt, text, b, engine, w_diff, vocab)
         size = j2 - j1
         if tag == "insert" and weight > 0 and (_keys(A[max(0, i1 - size):i1]) == _keys(bt)
                                               or _keys(A[i1:i1 + size]) == _keys(bt)):
@@ -988,7 +1017,8 @@ def _reasons(evs: Sequence[_Ev]) -> List[str]:
 
 def build_suspect(text: str, other: Optional[str] = None, words: Any = None, *, engine: str = "",
                   known_terms: Iterable[str] = (), frequent: Iterable[str] = (), lang: str = "",
-                  srt: bool = False, avg_logprob: Optional[float] = None) -> Optional[Dict[str, Any]]:
+                  srt: bool = False, avg_logprob: Optional[float] = None,
+                  vocab: AbstractSet[str] = frozenset()) -> Optional[Dict[str, Any]]:
     """把所有证据合起来，返回 record["suspect"]（没问题时返回 None）。
 
     other：第二个引擎听到的文字（None = 没有第二个引擎 / 这段没用它；"" = 它什么都没听到）。
@@ -1001,7 +1031,7 @@ def build_suspect(text: str, other: Optional[str] = None, words: Any = None, *, 
     ev: List[_Ev] = list(heur)
     total_alt: Optional[str] = None
     if other is not None and engine != ENGINE_WHISPER_WORDS:
-        cmp = compare(text, other, engine=engine or ENGINE_FUNASR, srt=srt)
+        cmp = compare(text, other, engine=engine or ENGINE_FUNASR, srt=srt, vocab=vocab)
         ev.extend(cmp.evidence)
         if cmp.total:
             total_alt = cmp.total_alt
@@ -1591,6 +1621,7 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
         chain = []
     known = _known_terms(project, cfg)
     frequent = _frequent_caps(records)
+    vocab = voice_vocab(records)
     runner = _EngineRunner(project, cfg, chain, progress)
     used: Dict[str, int] = {}
     errors, flagged, checked, dismissed = 0, 0, 0, 0
@@ -1614,7 +1645,7 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
                     other, words, eng = runner.recognize(rec, lang)
                     asr = rec.get("asr") if isinstance(rec.get("asr"), dict) else {}
                     sus = build_suspect(text, other, words, engine=eng, srt=_is_srt_text(rec),
-                                        avg_logprob=asr.get("avg_logprob"), **heur_kw)
+                                        avg_logprob=asr.get("avg_logprob"), vocab=vocab, **heur_kw)
                 except Exception as exc:  # noqa: BLE001 - 一段出错不影响别的段；停止按钮（TaskCancelled）照常传出去
                     errors += 1
                     eng = ""
@@ -1690,5 +1721,5 @@ __all__ = [
     "ENGINE_FUNASR", "ENGINE_WHISPER", "ENGINE_WHISPER_WORDS", "ENGINE_LABELS", "FLAG_THRESHOLD", "RED_SPAN",
     "GREEN_SPAN", "Tok", "tokenize", "merge_spans", "compare", "heuristics", "low_prob_spans", "build_suspect",
     "render_marked", "render_plain", "render_diff_html", "available_checker", "find_suspects", "dismiss_suspect",
-    "paraformer_path",
+    "paraformer_path", "voice_vocab",
 ]
