@@ -196,7 +196,7 @@ def release_notes(version: str, zip_name: str) -> str:
 
 1. 下载下面的 `{zip_name}`，右键 → 全部解压缩 → 位置填 `D:\\`，提示有同名文件时选**替换**
 2. 双击 `D:\\VoiceTwin\\install_windows.bat`，输入 **1** 回车，再输入 `D:\\GPT-SoVITS` 回车，等它装完
-3. 双击桌面「声音分身 VoiceTwin」，网页标题显示 v{version} 就对了
+3. 双击桌面「声音分身 VoiceTwin」，黑色窗口里写着「声音分身 VoiceTwin v{version} 正在启动」就对了（网页标题永远显示 v18）
 
 ### 📥 下载（在下面的 Assets 里）
 

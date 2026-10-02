@@ -36,6 +36,17 @@ def test_version_is_shown_in_page_header():
     assert 'version = "18.3"' in text
     src = (Path(__file__).resolve().parents[1] / "voicetwin" / "webui" / "app.py").read_text(encoding="utf-8")
     assert '\nAPP_TITLE_VERSION = "18"\n' in src  # 写死的，不跟着版本号变
+    # 发布说明和《快速上手》不能说「网页标题显示新版本号」：新版本号写在黑色窗口里
+    import importlib.util
+
+    root = Path(__file__).resolve().parents[1]
+    spec = importlib.util.spec_from_file_location("bwr", root / "scripts" / "build_windows_release.py")
+    bwr = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(bwr)
+    notes = bwr.release_notes("18.3", "VoiceTwin-Windows-v18.3.zip")
+    assert "「声音分身 VoiceTwin v18.3 正在启动」就对了" in notes and "标题显示 v18.3" not in notes
+    quick = (root / "快速上手.md").read_text(encoding="utf-8")
+    assert "网页标题里显示新版本号" not in quick and "网页标题永远显示 v18" in quick
 
 
 def test_quality_names_are_one_source():
