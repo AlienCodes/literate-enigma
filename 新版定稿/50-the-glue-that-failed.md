@@ -1,4 +1,4 @@
-# EN: The Glue That Failed
+# EN: The Glue That Failed Its Way to Success
 # ZH: 失败的胶水，成功的便利贴
 
 ## 英文
