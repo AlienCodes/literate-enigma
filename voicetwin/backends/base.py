@@ -18,6 +18,7 @@ from voicetwin.backends.worker import subprocess_env
 from voicetwin.config import Config, resolve_path
 from voicetwin.project import Project
 from voicetwin.utils.log import get_logger
+from voicetwin.utils.winsys import kill_with_parent
 
 try:  # U1：停止按钮（CANCEL 事件 + TaskCancelled）
     from voicetwin.utils.progress import CANCEL as _CANCEL
@@ -161,6 +162,10 @@ class Backend:
     def start(self) -> None:
         pass
 
+    def start_hint(self) -> str:
+        """进度条上「启动合成引擎」后面的说明（只写测出来的，例如「上次用了 40 秒」）；不知道就是空字符串。"""
+        return ""
+
     def stop(self) -> None:
         pass
 
@@ -276,6 +281,7 @@ class Backend:
             fh.flush()
             proc = subprocess.Popen(cmd_s, cwd=str(cwd) if cwd else None, env=env, stdout=subprocess.PIPE,
                                     stderr=subprocess.STDOUT, bufsize=0, creationflags=creationflags, **popen_extra)
+            kill_with_parent(proc)  # 关掉声音分身时训练进程一起结束，不留在后台占显卡
             finished = False
             try:
                 if _CANCEL is not None:

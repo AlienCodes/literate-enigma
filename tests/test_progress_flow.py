@@ -16,7 +16,7 @@ import pytest
 
 from voicetwin import workflows as wf
 
-from conftest import make_cfg, make_lecture
+from conftest import make_cfg, make_lecture, confirm_material
 
 
 class Rec:
@@ -327,6 +327,7 @@ def test_train_progress_does_not_jump_back_after_training(prepared, monkeypatch)
     stub = _stub_train_backend()
     monkeypatch.setattr("voicetwin.backends.base.get_backend", lambda name, c, p: stub(c, p))
     rec = Rec()
+    confirm_material(cfg, project.voice)
     info = wf.run_train(cfg, project.voice, "dummy", progress=rec, select=True)
     rec.assert_monotonic()
     assert rec.fracs[-1] == 1.0
@@ -343,6 +344,7 @@ def test_train_without_select_passes_progress_unchanged(prepared, monkeypatch):
     stub = _stub_train_backend()
     monkeypatch.setattr("voicetwin.backends.base.get_backend", lambda name, c, p: stub(c, p))
     rec = Rec()
+    confirm_material(cfg, project.voice)
     wf.run_train(cfg, project.voice, "dummy", progress=rec, select=False)
     assert ("训练 100%" in rec.msgs) and max(f for f, m in rec.calls if m == "训练 100%") == 1.0
 
@@ -364,9 +366,13 @@ def test_selection_failure_does_not_fail_training(prepared, monkeypatch):
         raise RuntimeError("所有模型都合成失败，请检查引擎日志")
 
     monkeypatch.setattr(wf, "run_select", boom)
+    confirm_material(cfg, project.voice)
     info = wf.run_train(cfg, project.voice, "gptsovits", select=True)
     assert info["selection_error"]
     assert info["selected"] == {"id": "x"}
+    # 挑选没成功时也自动生成问题报告
+    rep = Path(info["selection_error_report"])
+    assert rep.parent == project.logs_dir and "所有模型都合成失败" in rep.read_text(encoding="utf-8-sig")
 
 
 def test_train_stages_table():
@@ -412,6 +418,7 @@ def test_train_flow_with_fake_gptsovits(prepared, tmp_path, monkeypatch):
         "train": {"sovits_epochs": 8, "gpt_epochs": 10, "batch_size": 2, "sovits_save_every": 4, "gpt_save_every": 5},
     }})
     rec = Rec()
+    confirm_material(gcfg, project.voice)
     info = wf.run_train(gcfg, project.voice, "gptsovits", select=True, progress=rec)
     rec.assert_monotonic()
     assert rec.fracs[-1] == 1.0

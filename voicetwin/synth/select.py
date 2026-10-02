@@ -110,6 +110,16 @@ class _Sim:
                 "reliable": bool(self.encoder.reliable), "calibration": {}, "definition": PCT_HELP, "note": HONEST_NOTE}
 
 
+def _fatal(exc: BaseException) -> bool:
+    """重试也没用的错误（显存不够、引擎起不来……，见 errors.FATAL_KEYS）。"""
+    try:
+        from voicetwin.errors import is_fatal
+
+        return is_fatal(exc)
+    except Exception:
+        return False
+
+
 def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend, max_items: int = DEFAULT_ITEMS,
                          use_asr: Optional[bool] = None, progress: Optional[ProgressFn] = None) -> Dict[str, Any]:
     def _p(frac: float, msg: str, log_it: bool = False) -> None:
@@ -155,11 +165,13 @@ def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend
         real_voiced[it["id"]] = it.get("voiced") or speech_activity(wav, sr)[0]
 
     ckpts = backend.checkpoints() or [None]
-    _p(0.05, "启动合成引擎（第一次大约 1~2 分钟）……", log_it=True)
+    hint = getattr(backend, "start_hint", lambda: "")()
+    _p(0.05, "启动合成引擎" + (f"（{hint}）" if hint else "") + "……", log_it=True)
     backend.start()
     tmp = project.cache_dir / "select"
     tmp.mkdir(parents=True, exist_ok=True)
     results: List[Dict[str, Any]] = []
+    asr_failed = False
     total_steps = max(1, len(ckpts) * len(items))
     step = 0
     log.info(f"共 {len(ckpts)} 个模型 × {len(items)} 句验证集，逐个试听（声纹模型：{'、'.join(sim.info()['labels'])}）")
@@ -167,7 +179,15 @@ def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend
         ck_id = (ck or {}).get("id", "当前模型")
         _p(0.10 + 0.90 * (j * len(items)) / total_steps, f"切换到模型 {ck_id}（第 {j + 1}/{len(ckpts)} 个）", log_it=True)
         if ck is not None:
-            backend.use_checkpoint(ck)
+            try:
+                backend.use_checkpoint(ck)
+            except Exception as exc:
+                if _fatal(exc):  # 显存不够、引擎起不来……：后面的模型也一样，直接报出真正的原因
+                    raise
+                # 某一个模型文件坏了 / 读不了：跳过它，接着比别的，不要整个挑选都停下
+                log.warning(f"  模型 {ck_id} 加载失败，跳过这个模型：{str(exc).splitlines()[0] if str(exc) else exc!r}")
+                step += len(items)
+                continue
         sims_c, sims_i, pcts, cers, ratios = [], [], [], [], {"zh": [], "en": []}
         for it in items:
             _check_cancel()
@@ -180,6 +200,8 @@ def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend
                                                 ref_text=ref["text"], ref_lang=ref["lang"], seed=1234, speed=1.0), out)
                 wav, sr = load_audio(out)
             except Exception as exc:
+                if _fatal(exc):  # 例如显存不够：每一句都会一样失败，不要白试完所有模型才说「都失败了」
+                    raise
                 log.warning(f"  合成失败：{exc}")
                 _p(0.10 + 0.90 * step / total_steps, f"试听模型 {ck_id}：{step}/{total_steps}")
                 continue
@@ -195,7 +217,13 @@ def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend
             if gen_voiced > 0.2 and real_voiced[it["id"]] > 0.2:
                 ratios.setdefault(it["lang"], []).append(gen_voiced / real_voiced[it["id"]])
             if checker is not None:
-                res = checker.check(wav, sr, it["text"], it["lang"])
+                try:
+                    res = checker.check(wav, sr, it["text"], it["lang"])
+                except Exception as exc:
+                    # 识别校验只是帮着挑的（比如识别模型显存不够）：关掉它接着挑，不能让整个挑选停下
+                    log.warning(f"⚠️ 识别校验出错了（{str(exc).splitlines()[0] if str(exc) else type(exc).__name__}），"
+                                "这次只按声纹和节奏挑选（所有模型都不算错字率，比较才公平）")
+                    checker, asr_failed, res = None, True, None
                 if res:
                     cers.append(res["cer"])
             _p(0.10 + 0.90 * step / total_steps, f"试听模型 {ck_id}：{step}/{total_steps}")
@@ -218,6 +246,11 @@ def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend
                  + f" / 节奏偏差 {rhythm_dev:.3f} → 综合 {entry['total']:.3f}")
     if not results:
         raise RuntimeError("所有模型都合成失败，请检查引擎日志")
+    if asr_failed:  # 有的模型算了错字率、有的没算：都不算，按同样的标准比
+        for e in results:
+            if e["cer"]:
+                e["total"] += 2.0 * e["cer"]
+            e["cer"] = None
     best = max(results, key=lambda e: e["total"])
     speed = {}
     for lang, ratio in best["duration_ratio"].items():

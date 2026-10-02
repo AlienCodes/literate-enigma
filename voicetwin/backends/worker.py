@@ -62,6 +62,9 @@ class WorkerClient:
             self.cmd, cwd=self.cwd, env=self.env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
             stderr=subprocess.PIPE, bufsize=0, creationflags=creationflags,
         )
+        from voicetwin.utils.winsys import kill_with_parent
+
+        kill_with_parent(self.proc)  # 关掉声音分身时一起结束，不留在后台占显卡
         threading.Thread(target=self._pump_stdout, daemon=True).start()
         threading.Thread(target=self._pump_stderr, daemon=True).start()
         deadline = time.time() + self.startup_timeout

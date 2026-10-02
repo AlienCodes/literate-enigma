@@ -837,12 +837,12 @@ def _status_for_pct(pct: Optional[float]) -> str:
     return "🔴 不够像"
 
 
-def _friendly(exc: Any, what: str = "", log_path: str = "") -> str:
+def _friendly(exc: Any, what: str = "", log_path: str = "", report_path: str = "") -> str:
     """把报错变成给老师看的 Markdown（优先用 errors.friendly_md；没有时退回简单的一行）。"""
     try:
         from voicetwin.errors import friendly_md
 
-        return friendly_md(exc, what=what, log_path=log_path)
+        return friendly_md(exc, what=what, log_path=log_path, report_path=report_path)
     except Exception:
         title = str(exc).strip()[:300] if exc is not None else ""
         return f"### ❌ {what}没有完成：" + _md_text(title or "出现了意外错误")
@@ -1088,8 +1088,12 @@ def _voice_status_md(cfg: Config, voice: Any) -> str:
     minutes, clips = _material_stats(project)
     trained = [(k, e) for k, e in (project.load_models() or {}).items() if isinstance(e, dict) and e.get("selected")]
     if not trained:
-        md = (f"① 素材 ✅ {minutes} 分钟（{clips} 条）　② 训练 ⬜ 还没训练　"
-              "👉 下一步：去「② 训练模型」点「开始训练」（通常要 30~90 分钟）")
+        if wf.training_blocker_for(cfg, v):  # 还没确认训练素材（或者确认以后又改过、有没保存的修改）
+            md = (f"① 素材 ✅ {minutes} 分钟（{clips} 条）　② 训练 ⬜ 还没训练　"
+                  "👉 下一步：在「① 准备素材」把校对表看一遍、改好，点最下面的「✅ 确认训练素材」，再去「② 训练模型」点「开始训练」")
+        else:
+            md = (f"① 素材 ✅ {minutes} 分钟（{clips} 条）　② 训练 ⬜ 还没训练　"
+                  "👉 下一步：去「② 训练模型」点「开始训练」（通常要 30~90 分钟）")
     else:
         entry = trained[0][1]
         for k, e in trained:  # 有 GPT-SoVITS 时优先显示它
@@ -1664,6 +1668,10 @@ def _train_done_md(info: Dict[str, Any], plan: str = "", show_plan: bool = True)
     if err:
         md = (f"{head}\n\n⚠️ 「自动挑选最像你的模型」这一步没成功（{_md_text(err)}），现在先用最后一轮的模型。"
               "可以稍后点「重新挑选最佳模型」再试。")
+        rep = info.get("selection_error_report") if isinstance(info, dict) else None
+        if rep:
+            md += ("\n\n📋 已自动生成问题报告（也显示在下面的「详细过程」里），需要帮忙时把这个文件发给帮你的人：`"
+                   + str(rep).replace("`", "'") + "`")
     else:
         sel = _selection_info(info)
         best, label = _best_selection({"selection": sel.get("selection"), "selected": info.get("selected")})
@@ -2482,7 +2490,7 @@ class WebUI:
             return STOPPED_MD
         f = st.get("friendly") or st.get("error")
         if f is not None:
-            return _friendly(f, what, _log_path(self.cfg, voice))
+            return _friendly(f, what, _log_path(self.cfg, voice), str(st.get("report") or ""))
         return ""
 
     @staticmethod
@@ -3121,15 +3129,41 @@ class WebUI:
         """训练前就显示电脑会怎么自动选参数（wf.training_plan：看显卡和素材，只读文件和 nvidia-smi，很快）。"""
         v = _voice_name(voice)
         if v:
+            note = wf.material_changed_note(self.cfg, v, str(backend or self.default_train))
+            head = (_md_text(note) + "\n\n") if note else ""
+            why = wf.training_blocker_for(self.cfg, v)
+            if why:
+                try:
+                    from voicetwin.errors import explain
+
+                    f = explain(why)
+                    head = f"⚠️ **{_md_text(f.title)}**：{_md_text(f.advice)}\n\n" + head
+                except Exception:
+                    head = "⚠️ " + _md_text(why) + "\n\n" + head
             try:
                 text = wf.training_plan(self.cfg, v, str(backend or self.default_train),
                                         **self._train_opts(s_ep, g_ep, 0, bs, dpo))
                 if text:
-                    return ("🧠 **电脑会自动这样训练**：" + _md_text(_strip_plan(text))
+                    return (head + "🧠 **电脑会自动这样训练**：" + _md_text(_strip_plan(text))
                             + "（想自己改，可以打开下面的「高级设置」）")
             except Exception as exc:
                 log.debug(f"training_plan 出错：{exc}")
+            if head:
+                return head + PLAN_DEFAULT
         return PLAN_DEFAULT
+
+    #: 「还差一步」的提示里会有的字（见 errors 的 unsaved_edits / not_confirmed / confirm_stale）
+    _BLOCKER_WORDS = ("还没有确认训练素材", "确认以后素材又改过", "还有修改没有保存")
+
+    def refresh_train_bar(self, voice: Any, bar: Any) -> Any:
+        """训练页上留着的「还差一步」提示：那一步已经做好了就去掉；别的内容（进度条、出错说明）不动。"""
+        text = str(bar or "")
+        if not any(w in text for w in self._BLOCKER_WORDS):
+            return _upd()
+        v = _voice_name(voice)
+        if v and not wf.training_blocker_for(self.cfg, v):
+            return ""
+        return _upd()
 
     def _train_common(self, kind: str, voice: Any, backend: Any, opts: Dict[str, Any]) -> Iterator[Tuple[Any, ...]]:
         O = self.TRAIN_OUT
@@ -3149,6 +3183,19 @@ class WebUI:
             return
         backend = str(backend or self.default_train)
         attach = self._attaching(kind, v)
+        if kind == "train" and not attach:
+            # 老师的要求：必须先「✅ 确认训练素材」（而且确认以后没再改过、没有没保存的修改）才能训练
+            why = wf.training_blocker_for(self.cfg, v)
+            if why:
+                try:
+                    from voicetwin.errors import explain
+
+                    f = explain(why)
+                    text = f"⚠️ {f.title}。{f.advice}"
+                except Exception:
+                    text = "⚠️ " + why
+                yield self._o(O, train_bar=self._notice(text), train_log=text, **idle)
+                return
         if kind == "train":
             stream = stream_task("train", "训练模型", v, _attach_missed if attach else wf.run_train, self.cfg, v, backend,
                                  stages=_stages(self.cfg, "train", backend),
@@ -4080,6 +4127,8 @@ class WebUI:
             c["train_next"].click(lambda: gr.Tabs(selected="gen"), None, tabs, **quick)
             # 打开「② 训练模型」页、换引擎、改高级设置时，重新预览这次会怎么训练（只读文件和 nvidia-smi，很快）
             train_tab.select(self.train_plan_preview, plan_in, c["train_plan"], **quick)
+            # 刚才点「开始训练」时的「还没有确认训练素材」提示：确认好以后回到这一页就去掉（别的进度 / 出错说明不动）
+            train_tab.select(self.refresh_train_bar, [c["voice"], c["train_bar"]], c["train_bar"], **quick)
             c["t_backend"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
             c["dpo"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
             for name in ("s_ep", "g_ep", "bs"):

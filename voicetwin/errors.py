@@ -75,7 +75,7 @@ _SEARCH_LIMIT = 20000
 #: （电脑内存不够 'ram' 不算：可能只是某个视频太长，换个文件也许就行。）
 FATAL_KEYS = frozenset({
     "stopped", "gpu_oom", "disk", "torch_cpu", "gpu_arch", "driver", "gsv_missing", "models_missing",
-    "api_start", "module", "import_version", "dll", "speaker_model", "ffmpeg_missing",
+    "api_start", "api_mismatch", "module", "import_version", "dll", "speaker_model", "ffmpeg_missing",
 })
 
 _CJK = re.compile(r"[\u4e00-\u9fff]")
@@ -641,9 +641,31 @@ _RULES: List[_Rule] = [
           fill=_fill_path),
 
     # ---- 外层包装：只有找不到根本原因时才用
+    _Rule("unsaved_edits", r"条修改没有保存，这次没有开始训练",
+          "还有修改没有保存，所以没有开始训练",
+          "没保存的修改不会用来训练。到「① 准备素材」的校对表点「保存修改」（或者最下面的「✅ 确认训练素材」），"
+          "再回来点「开始训练」。红灯的那几行就是没保存的。",
+          wrapper=True),
+    _Rule("not_confirmed", r"还没有确认训练素材，这次没有开始训练",
+          "还没有确认训练素材，所以没有开始训练",
+          "到「① 准备素材」，把校对表看一遍、改好、删好以后，点最下面绿色的「✅ 确认训练素材」，再回来点「开始训练」。"
+          "只有确认过的素材才会用来训练。",
+          wrapper=True),
+    _Rule("confirm_stale", r"确认训练素材以后，校对表又改过",
+          "确认以后素材又改过，所以没有开始训练",
+          "到「① 准备素材」再点一次最下面绿色的「✅ 确认训练素材」（会用现在保存好的文字和没删除的句子），"
+          "再回来点「开始训练」。",
+          wrapper=True),
+    _Rule("api_mismatch", r"推理服务打开了，但是程序没法和它对上话",
+          "GPT-SoVITS 已经打开了，但和声音分身对不上",
+          "多半是 GPT-SoVITS 整合包的版本和声音分身不配套，或者有别的程序占着同一个端口。"
+          "先关掉所有声音分身的黑色窗口再打开试一次；还不行就把「详细过程」里的问题报告"
+          "（或者 logs 文件夹里最新的「问题报告」文件）发给帮你的人。",
+          wrapper=True),
     _Rule("api_start", r"推理服务启动失败|推理服务启动超时|启动失败（退出码|启动超时（|意外退出",
           "{engine}没能启动",
-          "关掉所有声音分身的黑色窗口，再重新打开试试；还不行就到「🩺 环境检查」页看看，或者重启电脑后再试。",
+          "关掉所有声音分身的黑色窗口，再重新打开试试；还不行就到「🩺 环境检查」页看看，或者重启电脑后再试。"
+          "再不行就把「详细过程」里的问题报告（或者 logs 文件夹里最新的「问题报告」文件）发给帮你的人。",
           fill=_fill_engine, wrapper=True),
     _Rule("text_step_empty", r"1A 文本处理没有产出",
           "GPT-SoVITS「处理文字」这一步没有结果",
@@ -859,7 +881,7 @@ def _as_friendly(f: Any) -> Friendly:
     return f if isinstance(f, Friendly) else explain(f)
 
 
-def friendly_md(f: Friendly, what: str = "", log_path: str = "") -> str:
+def friendly_md(f: Friendly, what: str = "", log_path: str = "", report_path: str = "") -> str:
     """生成给网页 gr.Markdown 用的报错说明。
 
     ### ❌ 训练没有完成：显卡内存（显存）不够
@@ -881,6 +903,9 @@ def friendly_md(f: Friendly, what: str = "", log_path: str = "") -> str:
     md = f"### ❌ {_md_escape(what)}没有完成：{title}" if what else f"### ❌ {title}"
     if advice:
         md += f"\n\n**怎么办**：{advice}"
+    if report_path:
+        md += ("\n\n📋 已自动生成问题报告（也显示在下面的「详细过程」里），需要帮忙时把这个文件发给帮你的人：`"
+               + str(report_path).replace("`", "'") + "`")
     if log_path:
         md += "\n\n详细记录在：`" + str(log_path).replace("`", "'") + "`"
     detail = (f.detail or "").strip()

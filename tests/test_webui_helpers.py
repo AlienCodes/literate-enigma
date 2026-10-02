@@ -66,7 +66,7 @@ def test_clip_table_has_row_numbers_and_count(prepared):
     if unusable:
         assert f"{len(records)} − {unusable}（程序判断不能用的）" in md
     assert "可能有错（已标红）" not in md  # 还没查过错字
-    assert "确认训练素材" in md
+    assert "确认训练素材" in md or "训练素材已确认" in md
 
 
 def test_clip_count_for_voice_without_clips(tmp_path):

@@ -1,0 +1,85 @@
+老师发来的 gptsovits_api.log（v18.2，10-02 15:43 那次「重新挑选最佳模型」之后）——统计和整理结果
+（原文件 3.1 MB、36468 行，没有放进仓库；这里是用 voicetwin/utils/logtail.py 整理出来的）
+
+启动次数（Started server process）：3
+「Uvicorn running on」出现次数：3
+"GET /tts HTTP/1.1" 500 次数：867
+"GET /tts HTTP/1.1" 400 次数：0
+报错种类：[("AttributeError: 'NoneType' object has no attribute 'lower'", 867)]
+
+自动诊断（diagnose_gsv_api，整份文件）：
+- 引擎记录显示：合成引擎已经加载完模型并打开了（http://127.0.0.1:9880）。
+- 引擎对程序的请求回答了 867 次「内部错误」（HTTP 500）。
+- 引擎报错：AttributeError: 'NoneType' object has no attribute 'lower'（共 867 次）
+
+整理后的记录（condense，max_lines=70）：
+---------------------------------------------TTS Config---------------------------------------------
+device              : cuda
+is_half             : True
+version             : v2ProPlus
+t2s_weights_path    : D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\GPT_weights_v2ProPlus\vt_433bc0-e15.ckpt
+vits_weights_path   : D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\SoVITS_weights_v2ProPlus\vt_433bc0_e8_s1984.pth
+bert_base_path      : D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\GPT_SoVITS\pretrained_models\chinese-roberta-wwm-ext-large
+cnhuhbert_base_path : D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\GPT_SoVITS\pretrained_models\chinese-hubert-base
+----------------------------------------------------------------------------------------------------
+
+Loading Text2Semantic weights from D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\GPT_weights_v2ProPlus\vt_433bc0-e15.ckpt
+Loading VITS weights from D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\SoVITS_weights_v2ProPlus\vt_433bc0_e8_s1984.pth. _IncompatibleKeys(missing_keys=['enc_q.pre.weight', 'enc_q.pre.bias', 'enc_q.enc.in_layers.0.bias', 'enc_q.enc.in_layers.0.weight_g', 'enc_q.enc.in_layers.0.weight_v', 'enc_q.e……（这一行太长，后面省略 3509 字）
+Loading BERT weights from D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\GPT_SoVITS\pretrained_models\chinese-roberta-wwm-ext-large
+Loading CNHuBERT weights from D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\GPT_SoVITS\pretrained_models\chinese-hubert-base
+INFO:     Started server process [29260]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:9880 (Press CTRL+C to quit)
+INFO:     127.0.0.1:50268 - "GET /tts HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  ……（18 层 Python 库内部的调用，省略）
+  File "D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\api_v2.py", line 484, in tts_get_endpoint
+    "text_lang": text_lang.lower(),
+AttributeError: 'NoneType' object has no attribute 'lower'
+……（中间省略 9 行）
+----------------------------------------------------------------------------------------------------
+
+Loading Text2Semantic weights from D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\GPT_weights_v2ProPlus\vt_433bc0-e15.ckpt
+Loading VITS weights from D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\SoVITS_weights_v2ProPlus\vt_433bc0_e8_s1984.pth. _IncompatibleKeys(missing_keys=['enc_q.pre.weight', 'enc_q.pre.bias', 'enc_q.enc.in_layers.0.bias', 'enc_q.enc.in_layers.0.weight_g', 'enc_q.enc.in_layers.0.weight_v', 'enc_q.e……（这一行太长，后面省略 3509 字）
+Loading BERT weights from D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\GPT_SoVITS\pretrained_models\chinese-roberta-wwm-ext-large
+Loading CNHuBERT weights from D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\GPT_SoVITS\pretrained_models\chinese-hubert-base
+INFO:     Started server process [47884]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:9880 (Press CTRL+C to quit)
+INFO:     127.0.0.1:52070 - "GET /tts HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  ……（18 层 Python 库内部的调用，省略）
+  File "D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\api_v2.py", line 484, in tts_get_endpoint
+    "text_lang": text_lang.lower(),
+AttributeError: 'NoneType' object has no attribute 'lower'
+……（上面这一段又重复了 289 次，已省略）
+---------------------------------------------TTS Config---------------------------------------------
+device              : cuda
+is_half             : True
+version             : v2ProPlus
+t2s_weights_path    : D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\GPT_weights_v2ProPlus\vt_433bc0-e15.ckpt
+vits_weights_path   : D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\SoVITS_weights_v2ProPlus\vt_433bc0_e8_s1984.pth
+bert_base_path      : D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\GPT_SoVITS\pretrained_models\chinese-roberta-wwm-ext-large
+cnhuhbert_base_path : D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\GPT_SoVITS\pretrained_models\chinese-hubert-base
+----------------------------------------------------------------------------------------------------
+
+Loading Text2Semantic weights from D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\GPT_weights_v2ProPlus\vt_433bc0-e15.ckpt
+Loading VITS weights from D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\SoVITS_weights_v2ProPlus\vt_433bc0_e8_s1984.pth. _IncompatibleKeys(missing_keys=['enc_q.pre.weight', 'enc_q.pre.bias', 'enc_q.enc.in_layers.0.bias', 'enc_q.enc.in_layers.0.weight_g', 'enc_q.enc.in_layers.0.weight_v', 'enc_q.e……（这一行太长，后面省略 3509 字）
+Loading BERT weights from D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\GPT_SoVITS\pretrained_models\chinese-roberta-wwm-ext-large
+Loading CNHuBERT weights from D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\GPT_SoVITS\pretrained_models\chinese-hubert-base
+INFO:     Started server process [8800]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:9880 (Press CTRL+C to quit)
+INFO:     127.0.0.1:62506 - "GET /tts HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  ……（18 层 Python 库内部的调用，省略）
+  File "D:\GPT-SoVITS\GPT-SoVITS-v2pro-20250604-nvidia50\api_v2.py", line 484, in tts_get_endpoint
+    "text_lang": text_lang.lower(),
+AttributeError: 'NoneType' object has no attribute 'lower'
+……（上面这一段又重复了 287 次，已省略）

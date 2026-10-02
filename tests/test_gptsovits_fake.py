@@ -27,7 +27,7 @@ from voicetwin.backends.gptsovits import (
     plan_training,
 )
 
-from conftest import make_cfg
+from conftest import make_cfg, confirm_material
 from fake_gptsovits import build_fake_root
 
 
@@ -142,6 +142,7 @@ def test_train_select_and_narrate(prepared, tmp_path, monkeypatch, no_users_pth,
     gcfg = _gcfg(project, root, 19880, sovits_epochs=8, gpt_epochs=10, batch_size=2)
     rec = Rec()
     # 高级设置里明确指定的保存间隔要照办
+    confirm_material(gcfg, project.voice)
     info = wf.run_train(gcfg, project.voice, "gptsovits", select=True, progress=rec, sovits_save_every=4,
                         gpt_save_every=5)
 
@@ -606,6 +607,7 @@ def test_oom_retry_halves_batch_once(prepared, tmp_path, monkeypatch, no_users_p
         "train": {"sovits_epochs": 4, "gpt_epochs": 4, "batch_size": 4}}})
     monkeypatch.setenv("FAKE_GSV_OOM_ABOVE", "2")
     rec = Rec()
+    confirm_material(gcfg, project.voice)
     info = wf.run_train(gcfg, project.voice, "gptsovits", select=False, progress=rec)
     params = info["params"]
     assert params["oom_retry"] is True and params["batch_size_used"] == 2 and params["gpt_batch_size_used"] == 2
@@ -625,6 +627,7 @@ def test_oom_with_batch_one_gives_friendly_error(prepared, tmp_path, monkeypatch
     gcfg = make_cfg(ws, backend="gptsovits", backends={"gptsovits": {
         "root": str(root), "python": sys.executable, "train": {"sovits_epochs": 2, "gpt_epochs": 2, "batch_size": 1}}})
     monkeypatch.setenv("FAKE_GSV_OOM_ABOVE", "0")
+    confirm_material(gcfg, project.voice)
     with pytest.raises(TrainStepError) as ei:
         wf.run_train(gcfg, project.voice, "gptsovits", select=False)
     from voicetwin.errors import explain
@@ -643,6 +646,7 @@ def test_retrain_after_material_change_starts_fresh(prepared, tmp_path, no_users
     gcfg = make_cfg(ws, backend="gptsovits", backends={"gptsovits": {
         "root": str(root), "python": sys.executable, "train": {"sovits_epochs": 4, "gpt_epochs": 4, "batch_size": 2}}})
     p2 = wf.open_project(gcfg, project.voice, must_exist=True)
+    confirm_material(gcfg, project.voice)
     first = wf.run_train(gcfg, project.voice, "gptsovits", select=False)
     exp = first["exp_name"]
     opt_dir = root / "logs" / exp
@@ -650,6 +654,7 @@ def test_retrain_after_material_change_starts_fresh(prepared, tmp_path, no_users
     assert (opt_dir / "logs_s2_v2ProPlus" / "G_233333333333.pth").exists()
 
     # 同样的素材再练一次：GPT-SoVITS 接着上次的进度，0 轮可练，模型还是原来那些
+    confirm_material(gcfg, project.voice)
     again = wf.run_train(gcfg, project.voice, "gptsovits", select=False)
     assert again["sovits"] == first["sovits"] and again["gpt"] == first["gpt"]
 
@@ -660,6 +665,10 @@ def test_retrain_after_material_change_starts_fresh(prepared, tmp_path, no_users
     for r in kept[:3]:
         r["keep"] = False
     p2.save_manifest(recs)
+    from voicetwin.data import review
+
+    review.save_confirmed(p2, recs)  # 素材改了要再「✅ 确认训练素材」才能训练
+    confirm_material(gcfg, project.voice)
     second = wf.run_train(gcfg, project.voice, "gptsovits", select=False)
     old_runs = list((opt_dir / "old_runs").iterdir())
     assert len(old_runs) == 1 and (old_runs[0] / "logs_s2_v2ProPlus").is_dir() and (old_runs[0] / "logs_s1_v2ProPlus").is_dir()
@@ -689,6 +698,7 @@ def test_retrain_with_same_weight_names_gives_new_model_id(prepared, tmp_path, n
     gcfg = make_cfg(ws, backend="gptsovits", backends={"gptsovits": {
         "root": str(root), "python": sys.executable, "train": {"sovits_epochs": 4, "gpt_epochs": 4, "batch_size": 2}}})
     p2 = wf.open_project(gcfg, project.voice, must_exist=True)
+    confirm_material(gcfg, project.voice)
     first = wf.run_train(gcfg, project.voice, "gptsovits", select=False)
     b = get_backend("gptsovits", gcfg, p2)
     id1 = b.model_id()
@@ -696,6 +706,7 @@ def test_retrain_with_same_weight_names_gives_new_model_id(prepared, tmp_path, n
     time.sleep(0.05)
     rec = next(r for r in p2.load_manifest() if r.get("keep", True) and r.get("split", "train") == "train")
     p2.set_clip_text(rec["id"], rec["text"] + "改")
+    confirm_material(gcfg, project.voice)
     second = wf.run_train(gcfg, project.voice, "gptsovits", select=False)
     assert [Path(x).name for x in second["sovits"]] == [Path(x).name for x in first["sovits"]]  # 文件名真的一样
     b2 = get_backend("gptsovits", gcfg, p2)
@@ -717,6 +728,7 @@ def test_archive_keeps_selected_model_usable(prepared, tmp_path, no_users_pth):
     gcfg = make_cfg(ws, backend="gptsovits", backends={"gptsovits": {
         "root": str(root), "python": sys.executable, "train": {"sovits_epochs": 4, "gpt_epochs": 4, "batch_size": 2}}})
     p2 = wf.open_project(gcfg, project.voice, must_exist=True)
+    confirm_material(gcfg, project.voice)
     first = wf.run_train(gcfg, project.voice, "gptsovits", select=False)
     b = get_backend("gptsovits", gcfg, p2)
     dest = b._archive_old_run(root / "logs" / first["exp_name"])
@@ -750,7 +762,7 @@ def test_synthesis_failure_reports_real_reason(prepared, tmp_path, monkeypatch, 
     ref, ref_text, ref_lang = _ref(p2)
     try:
         b.start()
-        assert any(m.startswith("推理服务启动中……已等待") for m in vt_log.messages())
+        assert any(m.startswith("推理服务启动中（正在加载模型）……已等待") for m in vt_log.messages())
         out = b.synthesize(SynthRequest(text="你好。", lang="zh", ref_audio=ref, ref_text=ref_text, ref_lang=ref_lang,
                                         speed=0.85), tmp_path / "ok.wav")
         assert out.exists() and out.stat().st_size > 1000

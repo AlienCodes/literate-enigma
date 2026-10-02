@@ -166,14 +166,20 @@ def trim_edges(wav: np.ndarray, sr: int, pad_ms: float = 30.0) -> np.ndarray:
     hop = sr * hop_ms / 1000.0
     half = sr * win_ms / 2000.0
     pad = int(sr * pad_ms / 1000.0)
-    start = max(0, int(voiced[0] * hop - half) - pad)
-    end = min(len(wav), int(voiced[-1] * hop + half) + pad)
+    v0 = int(voiced[0] * hop - half)
+    v1 = int(voiced[-1] * hop + half)
+    start = max(0, v0 - pad)
+    end = min(len(wav), v1 + pad)
     out = wav[start:end].astype(np.float32, copy=True)
     n = len(out)
     if n < 4:
         return out[:0]
-    n_in = min(n // 2, pad + int(sr * 0.004))
-    n_out = min(n // 2, pad + int(sr * 0.008))
+    # 淡入淡出放在语音前后的余量里（再往语音里多 4 / 8 毫秒）。真实的 GPT-SoVITS 输出开头没有空白、
+    # 第一个采样就是声音：这时前面没有余量，只淡入 4 毫秒防止「咔哒」声，不能把第一个字的开头淡掉。
+    lead = max(0, v0 - start)
+    tail = max(0, end - v1)
+    n_in = min(n // 2, max(int(sr * 0.002), lead + int(sr * 0.004)))
+    n_out = min(n // 2, max(int(sr * 0.002), tail + int(sr * 0.008)))
     if n_in > 1:
         out[:n_in] *= (0.5 - 0.5 * np.cos(np.linspace(0.0, np.pi, n_in))).astype(np.float32)
     if n_out > 1:
@@ -496,8 +502,9 @@ class Narrator:
         if not self.backend.supports_aux_refs:
             aux = []
         speed = self._speed_for(seg.lang)
-        key = short_hash(CACHE_VERSION, self.backend.model_id(), seg.text, seg.lang, ref["id"], [a["id"] for a in aux],
-                         round(speed, 3), self._tier_sig(), self.base_seed, n=16)
+        # 参考音频的文字也算进去：老师在校对表里改了这条参考的文字以后，不能再用改之前生成的缓存
+        key = short_hash(CACHE_VERSION, self.backend.model_id(), seg.text, seg.lang, ref["id"], ref.get("text", ""),
+                         [a["id"] for a in aux], round(speed, 3), self._tier_sig(), self.base_seed, n=16)
         wav_path, meta_path = self._cache_paths(key)
         return _Plan(ref, aux, speed, key, wav_path, meta_path)
 
@@ -507,7 +514,8 @@ class Narrator:
         if frac is None:
             i, n = self._pos
             frac = self._gen_range[0] + (self._gen_range[1] - self._gen_range[0]) * i / max(n, 1)
-        self._progress(frac, "启动合成引擎（第一次大约 1~2 分钟）……")
+        hint = getattr(self.backend, "start_hint", lambda: "")()
+        self._progress(frac, "启动合成引擎" + (f"（{hint}）" if hint else "") + "……")
         self.backend.start()  # 已经在运行的服务也要调用：它会切换到这个声音的模型
         self._started = True
 
@@ -698,7 +706,16 @@ class Narrator:
             if wav is None or wav.size == 0:
                 return
             # 在裁剪前打分（语速测量需要首尾的静音作为底噪参考）
-            score = self.scorer.score(wav, sr, seg.text, seg.lang, speed=mult, use_asr=self.use_asr)
+            try:
+                score = self.scorer.score(wav, sr, seg.text, seg.lang, speed=mult, use_asr=self.use_asr)
+            except Exception as exc:
+                if not self.use_asr:
+                    raise
+                # 识别校验（查错字）只是帮着挑的：它出错（比如识别模型显存不够）时关掉它接着生成，不能让整篇停下
+                log.warning(f"⚠️ 识别校验出错了（{str(exc).splitlines()[0] if str(exc) else type(exc).__name__}），"
+                            "后面只按声纹、语速和停顿挑选")
+                self.use_asr = False
+                score = self.scorer.score(wav, sr, seg.text, seg.lang, speed=mult, use_asr=False)
             trimmed = trim_edges(wav, sr)
             if trimmed.size == 0:
                 return
