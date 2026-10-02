@@ -247,7 +247,8 @@ def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
       deleted   [(位置, 删掉的字)] 删掉的字，显示成蓝色删除线
       red       [(s, e)] 还可能有错、没改过的地方
       edits     [(s, e, 换成什么)] 还没采用的建议（位置按现在的文字算）
-      adopted   建议是不是已经全部用上了
+      undo      [(s, e, 换回什么)] 已经采用了的建议，撤销时怎么改回去（位置按现在的文字算）
+      adopted   建议已经全部用上了（「修改建议」的按钮变红）
       reasons   标红的原因
       active    这一行还算不算「可能有错」（还有红字或者还有没采用的建议）
     """
@@ -258,12 +259,17 @@ def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
     if orig and cur != orig:
         for tag, i1, i2, j1, j2 in _opcodes(orig, cur):
             if tag in ("replace", "insert") and j2 > j1:
+                while j1 > 0 and _word_char(cur[j1 - 1]) and _word_char(cur[j1]):  # 英文按整个单词变蓝
+                    j1 -= 1
+                while j2 < len(cur) and _word_char(cur[j2]) and _word_char(cur[j2 - 1]):
+                    j2 += 1
                 blue.append((j1, j2))
             elif tag == "delete" and i2 > i1:
                 deleted.append((j1, orig[i1:i2]))
     sus = rec.get("suspect") if isinstance(rec.get("suspect"), dict) else {}
     red: List[Range] = []
     edits: List[Edit] = []
+    undo: List[Edit] = []
     adopted = False
     reasons = [str(x) for x in (sus.get("reasons") or []) if x]
     if sus:
@@ -278,15 +284,22 @@ def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
             m = None if touched(ops, s, e) else map_range(blocks, s, e)
             if m is not None and m[1] > m[0]:
                 red.append(m)
-        all_edits = suggestion_edits(base, str(sus.get("alt") or ""))
-        for s, e, rep in all_edits:
+        alt = str(sus.get("alt") or "")
+        for s, e, rep in suggestion_edits(base, alt):
             m = None if touched(ops, s, e) else map_range(blocks, s, e)
             if m is not None:
                 edits.append((m[0], m[1], rep))
-        adopted = bool(all_edits) and not edits and cur != base
+        if alt and alt != base and cur != base:  # 建议的地方现在是不是就是建议的写法（= 采用过）
+            ops2 = _opcodes(alt, cur) if alt != cur else [("equal", 0, len(alt), 0, len(cur))]
+            blocks2 = [(i1, i2, j1, j2) for tag, i1, i2, j1, j2 in ops2 if tag == "equal"]
+            for s, e, rep in suggestion_edits(alt, base):
+                m = None if touched(ops2, s, e) else map_range(blocks2, s, e)
+                if m is not None:
+                    undo.append((m[0], m[1], rep))
+        adopted = bool(undo) and not edits
     red = _merge(red, len(cur))
     return {"text": cur, "blue": _merge(blue, len(cur)), "deleted": deleted, "red": red, "edits": edits,
-            "adopted": adopted, "reasons": reasons, "active": bool(red or edits)}
+            "undo": undo, "adopted": adopted, "reasons": reasons, "active": bool(red or edits)}
 
 
 def apply_edits(text: str, edits: Sequence[Edit]) -> str:
@@ -301,20 +314,33 @@ def apply_edits(text: str, edits: Sequence[Edit]) -> str:
     return clean_transcript(out)
 
 
-def describe_edits(text: str, edits: Sequence[Edit], limit: int = 3) -> str:
-    """建议改哪里（给老师看的一句话）：「艾子 → as；删掉「的」；补上「了」」。"""
-    parts: List[str] = []
-    for s, e, rep in edits[:limit]:
-        old = text[s:e]
-        old_s, rep_s = old.strip(), rep.strip()
+def describe_adopted(text: str, undo: Sequence[Edit], limit: int = 3) -> str:
+    """已经采用的建议改了哪里：和 describe_edits 一样的说法（艾子 → as）。undo 是撤销时怎么改回去。"""
+    return describe_edits(text, undo, limit, flip=True)
+
+
+def describe_edits(text: str, edits: Sequence[Edit], limit: int = 3, flip: bool = False) -> str:
+    """建议改哪里（给老师看的一句话）：「艾子 → as；删掉「的」；补上「了」」。flip：edits 是"改回去"的（已采用的建议）。"""
+    items: List[str] = []
+    counts: Dict[str, int] = {}
+    for s, e, rep in edits:
+        old_s, rep_s = text[s:e].strip(), rep.strip()
+        if flip:
+            old_s, rep_s = rep_s, old_s
         if old_s and rep_s:
-            parts.append(f"{old_s} → {rep_s}")
+            item = f"{old_s} → {rep_s}"
         elif old_s:
-            parts.append(f"删掉「{old_s}」")
+            item = f"删掉「{old_s}」"
         elif rep_s:
-            parts.append(f"补上「{rep_s}」")
-    if len(edits) > limit:
-        parts.append(f"还有 {len(edits) - limit} 处")
+            item = f"补上「{rep_s}」"
+        else:
+            continue
+        if item not in counts:
+            items.append(item)
+        counts[item] = counts.get(item, 0) + 1
+    parts = [x + (f"（{counts[x]} 处）" if counts[x] > 1 else "") for x in items[:limit]]
+    if len(items) > limit:
+        parts.append(f"还有 {sum(counts[x] for x in items[limit:])} 处")
     return "；".join(parts)
 
 
@@ -334,6 +360,25 @@ def adopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
             raise ValueError("采用建议以后文字是空的，没有改。请听一听录音，双击「文字」自己改")
         out = set_draft(project, clip_id, text=new)
         out.update(old_text=vals["text"], text=new, changes=describe_edits(vals["text"], info["edits"], limit=6))
+        return out
+
+
+def unadopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
+    """再点一下变红的按钮：撤销已经采用的建议（只把建议改过的地方改回去，老师自己改的别处不动）。存进草稿。"""
+    with _LOCK:
+        recs = _records(project)
+        rec = recs.get(clip_id)
+        if rec is None:
+            raise KeyError(f"找不到这条片段（{clip_id}），请点「🔄 刷新表格」")
+        vals = current_values(rec, load_draft(project).get(clip_id))
+        info = analyze(rec, vals["text"])
+        if not info["undo"]:
+            raise ValueError("这一条没有采用过的建议可以撤销")
+        new = apply_edits(vals["text"], info["undo"])
+        if not new:
+            raise ValueError("撤销以后文字是空的，没有改")
+        out = set_draft(project, clip_id, text=new)
+        out.update(old_text=vals["text"], text=new, changes=describe_adopted(vals["text"], info["undo"], limit=6))
         return out
 
 

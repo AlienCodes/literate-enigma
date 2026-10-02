@@ -85,13 +85,16 @@ BLIND_BTN, BLIND_BUSY = "生成盲听测试", "⏳ 正在生成盲听测试…�
 PREP_NEXT = "去「② 训练模型」 →"
 TRAIN_NEXT = "去「③ 生成讲课音频」 →"
 REVIEW_HELP = ("### ✍️ 校对文字（可选，但能明显提升效果）\n"
-               "- **改错字：双击「文字」那一格**，会打开一个会自动换行的框，整句话都看得见；改好按**回车**（或点别的地方）。\n"
-               "- **「修改建议」里的 ✅**：点一下就按建议自动改好；改过的字在旁边那一列变成**蓝色**。\n"
-               "- **「⋯ 选项」**：只保存这一行、撤销这一行的修改、这句没错（不再标红）、删除这一行（会再问一次）。\n"
-               "- **删除的行变成灰色**（⚪ 已删除）：灰色 = 不用来训练；删错了在那一行的「⋯ 选项」里点「↩️ 撤销删除」。\n"
-               "- **小灯**：🔴 没保存 = 改了还没保存；🟢 已保存 = 改过、已经保存了。点最下面的「**保存修改**」（全部保存）"
-               "或「⋯ 选项」里的「只保存这一行」都会变绿。\n"
-               "- **点一下某一行就能听录音**（播放器在表格下面）；双击「保留」切换 是 / 否，双击「语言」切换 中文 / 英文。")
+               "- **改错字：双击「文字」那一格**（或者「⋯ 选项」→「修改文字」），会打开一个会自动换行的框，整句话都看得见；"
+               "改好按**回车**（或点别的地方）。你改过、新打上去的字是**绿色**。\n"
+               "- **「修改建议」里的蓝色小按钮**：点一下就按建议自动改好，按钮**变红 = 建议已经生效**，改过的字在旁边那一列"
+               "变成**蓝色**；再点一下红色按钮可以撤销。只有「可能有错」那一列有内容的行才有这个按钮。\n"
+               "- **最右边「⋯ 选项」**：保存这一行、删除这一行（会再问一次；删除以后这里变成「撤销删除」）、修改文字、听一听、"
+               "撤销这一行的修改、这句没错（不再标红）。\n"
+               "- **灰色的行 = 不用来训练**（你删除的，或者程序判断不能用的）。删错了在「⋯ 选项」里点「↩️ 撤销删除」。\n"
+               "- **「⋯ 选项」左边的小灯**：🔴 = 改了还没保存；🟢 = 改过、已经保存了。点最下面的「**保存修改**」（全部保存）"
+               "或「⋯ 选项」里的「保存这一行」都会变绿。\n"
+               "- **点一下某一行就能听录音**（播放器在表格下面）；双击「语言」切换 中文 / 英文。")
 SUBMIT_BTN = "提交答案"
 
 LOG_ACCORDION = "详细过程（出问题时可以复制给帮你的人）"
@@ -127,16 +130,26 @@ MFCC_NOTE = ("⚠️ 这次没有可靠的声纹模型（只有简易的 MFCC）
 # ---------------------------------------------------------------------------- 表头
 # 校对表：老师不在格子里直接打字（gradio 4.24 的格子编辑框只有一行，长句子会挤成一行、超出格子），
 # 而是双击「文字」打开一个会自动换行的编辑框（REVIEW_JS）；所有修改先存成草稿（红灯），保存后变绿灯。
-CLIP_HEADERS = ["#", "状态", "id", "保留", "语言", "秒", "文字（双击修改）", "可能有错（红）· 改过（蓝）", "修改建议",
-                "选项"]
-CLIP_TYPES = ["number", "markdown", "str", "str", "str", "number", "str", "markdown", "markdown", "markdown"]
-(COL_STATE, COL_ID, COL_KEEP, COL_LANG, COL_SEC, COL_TEXT, COL_SUSPECT, COL_SUGGEST,
- COL_MENU) = CLIP_HEADERS[1:]
-STATE_DIRTY = '<span class="vt-state vt-state-dirty">🔴 没保存</span>'
-STATE_SAVED = '<span class="vt-state vt-state-saved">🟢 已保存</span>'
-STATE_DELETED = '<span class="vt-state vt-state-del">⚪ 已删除</span>'  # 整行变灰（CSS / REVIEW_JS）
-MENU_CELL = '<span class="vt-menu-btn" title="保存这一行、撤销、删除……">⋯ 选项</span>'
-CLIP_WIDTHS = ["4%", "8%", "9%", "5%", "5%", "4%", "27%", "21%", "11%", "6%"]
+# 老师定的样子：没有「保留」「丢弃原因」「状态」三列。不用来训练的行（老师删除的 / 程序判断不能用的）整行变灰，不写原因；
+# 最右边「选项」：按钮左边是小灯（🔴 改了没保存 / 🟢 已保存），菜单里一定有「保存这一行」和「删除 / 撤销删除」。
+# 「文字」一列里老师改过、新打上去的字是绿色（所以这一列是 markdown）。
+CLIP_HEADERS = ["#", "id", "语言", "秒", "文字（双击修改）", "可能有错（红）· 改过（蓝）", "修改建议", "选项"]
+CLIP_TYPES = ["number", "str", "str", "number", "markdown", "markdown", "markdown", "markdown"]
+(COL_ID, COL_LANG, COL_SEC, COL_TEXT, COL_SUSPECT, COL_SUGGEST, COL_MENU) = CLIP_HEADERS[1:]
+LIGHT_DIRTY = '<span class="vt-light vt-light-dirty" title="改了还没保存">🔴</span>'
+LIGHT_SAVED = '<span class="vt-light vt-light-saved" title="改过，已经保存了">🟢</span>'
+FLAG_DELETED = '<span class="vt-flag vt-flag-del"></span>'  # 看不见的记号：整行变灰（CSS / REVIEW_JS），选项菜单变成「撤销删除」
+FLAG_UNUSED = '<span class="vt-flag vt-flag-unused"></span>'  # 程序判断不能用：也变灰，选项里可以「这一条也要用」
+MENU_BTN = '<span class="vt-menu-btn" title="保存这一行、删除……">⋯ 选项</span>'
+MENU_CELL = MENU_BTN
+
+
+def _menu_cell(dirty: bool = False, saved: bool = False, deleted: bool = False, unused: bool = False) -> str:
+    """最右边「选项」那一格：小灯 + 看不见的记号 + 选项按钮。"""
+    light = LIGHT_DIRTY if dirty else (LIGHT_SAVED if saved else "")
+    flag = FLAG_DELETED if deleted else (FLAG_UNUSED if unused else "")
+    return light + flag + MENU_BTN
+CLIP_WIDTHS = ["4%", "8%", "6%", "4%", "31%", "24%", "13%", "10%"]
 LIB_HEADERS = ["#", "名称", "素材（分钟 / 条）", "状态", "最佳模型", "最后修改时间"]
 DOC_HEADERS = ["#", "状态", "项目", "说明"]
 GEN_HEADERS = ["#", "句子", "像你本人（%）", "状态", "提示"]
@@ -202,26 +215,29 @@ APP_CSS = """
 .vt-bridge{display:none!important}
 .vt-review-help ul{margin-top:2px}
 #vt-clips td{cursor:default}
-.vt-sug{display:inline-block;padding:3px 9px;border-radius:7px;background:#dcfce7;color:#166534;border:1px solid #16a34a;
-  cursor:pointer;font-weight:600;line-height:1.5}
-.vt-sug:hover{background:#bbf7d0}
-.vt-sug-busy{background:#f3f4f6;color:#374151;border-color:#9ca3af}
-.vt-sug-done{color:#6b7280}
+/* 10 列：屏幕窄（手机）时表格不挤成一条，左右滑动看 */
+#vt-clips table{min-width:1080px}
+.vt-sug-btn{display:inline-block;margin:0 6px 2px 0;padding:2px 10px;border-radius:6px;color:#fff;font-weight:700;
+  cursor:pointer;line-height:1.6;white-space:nowrap;user-select:none;box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.vt-sug-blue{background:#2563eb;border:1px solid #1d4ed8}
+.vt-sug-blue:hover{background:#1d4ed8}
+.vt-sug-red{background:#dc2626;border:1px solid #b91c1c}
+.vt-sug-red:hover{background:#b91c1c}
+.vt-sug-busy{background:#9ca3af!important;border-color:#6b7280!important}
+.vt-sug-text{font-size:13px;color:var(--body-text-color)}
 .vt-sug-none{color:#9ca3af;font-size:12px}
 .vt-menu-btn{display:inline-block;padding:3px 9px;border:1px solid #9ca3af;border-radius:7px;cursor:pointer;
   white-space:nowrap;font-weight:600}
 .vt-menu-btn:hover{background:#f3f4f6}
-.vt-state{white-space:nowrap;font-weight:600}
-.vt-state-dirty{color:#b91c1c}
-.vt-state-saved{color:#15803d}
-.vt-state-del{color:#6b7280}
-/* 删除的行：整行变灰（灰色 = 不用来训练）。:has() 不认识的旧浏览器由 REVIEW_JS 加上 vt-row-del */
-#vt-clips tbody tr:has(.vt-state-del) td,#vt-clips tbody tr.vt-row-del td{background:#e5e7eb!important;
+.vt-light{margin-right:6px;font-size:15px;vertical-align:middle}
+.vt-flag{display:none}
+.vt-green{color:#15803d;font-weight:700;background:#dcfce7}
+/* 不用来训练的行（删除的 / 程序判断不能用的）：整行变灰。:has() 不认识的旧浏览器由 REVIEW_JS 加上 vt-row-del */
+#vt-clips tbody tr:has(.vt-flag) td,#vt-clips tbody tr.vt-row-del td{background:#e5e7eb!important;
   color:#9ca3af!important}
-#vt-clips tbody tr:has(.vt-state-del) td *,#vt-clips tbody tr.vt-row-del td *{color:#9ca3af!important;
+#vt-clips tbody tr:has(.vt-flag) td *,#vt-clips tbody tr.vt-row-del td *{color:#9ca3af!important;
   background:transparent!important;border-color:#d1d5db!important}
-.dark #vt-clips tbody tr:has(.vt-state-del) td,.dark #vt-clips tbody tr.vt-row-del td{background:#374151!important}
-.dark .vt-sug{background:rgba(22,163,74,.2);color:#bbf7d0}
+.dark #vt-clips tbody tr:has(.vt-flag) td,.dark #vt-clips tbody tr.vt-row-del td{background:#374151!important}
 .dark .vt-menu-btn:hover{background:rgba(255,255,255,.08)}
 .vt-editor{position:absolute;z-index:2000;background:var(--background-fill-primary,#fff);border:2px solid #f97316;
   border-radius:8px;box-shadow:0 8px 28px rgba(0,0,0,.22);padding:8px 10px 6px;box-sizing:border-box}
@@ -266,8 +282,8 @@ GUARD_JS = """() => {
 # 所以表格设成不能直接打字，改由这个脚本处理：
 # - 双击「文字」：在格子上面打开一个会自动换行的编辑框（整句话都看得见），回车 / 点别处 = 改好，Esc = 不改；
 #   正在用拼音输入法选字时按的回车不算（isComposing）；
-# - 双击「保留」/「语言」：切换 是/否、中文/英文；
-# - 点「修改建议」里的 ✅：采用建议；点「⋯ 选项」：弹出菜单（只保存这一行 / 撤销 / 这句没错 / 删除，删除要再确认一次）；
+# - 双击「语言」：切换中文 / 英文；
+# - 点「修改建议」里的蓝色小按钮：采用建议（按钮变红 = 生效）；再点红色按钮：撤销；点「⋯ 选项」：弹出菜单（只保存这一行 / 撤销 / 这句没错 / 删除，删除要再确认一次）；
 #   删除的行变灰（不用来训练），它的菜单里是「↩️ 撤销删除」；
 # - 删除的行整行变灰：CSS 用 :has()，旧浏览器由 markRows() 给那一行加上 vt-row-del。
 # 每个操作都把 {"action", "id", ...} 放进隐藏的输入框 #vt-clip-action，再按隐藏的按钮 #vt-clip-action-btn，
@@ -287,24 +303,26 @@ REVIEW_JS_TEMPLATE = r"""() => {
   function cellsOf(tr) {
     return Array.prototype.filter.call(tr.children, (x) => x.tagName === 'TD');
   }
+  // gradio 4.24 的表格里还有一张看不见的「量宽度」的表（一行，混着各行最长的格子），只认真正的表格 tbody.tbody
   function rowInfo(td) {
     const tr = td && td.closest ? td.closest('tr') : null;
-    if (!tr || !td.closest('#vt-clips')) return null;
+    if (!tr || !td.closest('#vt-clips tbody.tbody')) return null;
     const tds = cellsOf(tr);
     const idCell = tds[C.id];
-    const state = tds[C.state] ? tds[C.state].innerText : '';
-    return {tr: tr, tds: tds, col: tds.indexOf(td), deleted: state.indexOf('已删除') >= 0,
-            dirty: state.indexOf('没保存') >= 0,
+    const m = tds[C.menu];
+    const has = (sel) => !!(m && m.querySelector(sel));
+    return {tr: tr, tds: tds, col: tds.indexOf(td), deleted: has('.vt-flag-del'), unused: has('.vt-flag-unused'),
+            dirty: has('.vt-light-dirty'),
             id: idCell ? idCell.innerText.trim() : '', no: tds[0] ? tds[0].innerText.trim() : ''};
   }
   function markRows() {
-    const rows = document.querySelectorAll('#vt-clips tbody tr');
+    const rows = document.querySelectorAll('#vt-clips tbody.tbody tr');
     for (let i = 0; i < rows.length; i++) {
-      rows[i].classList.toggle('vt-row-del', !!rows[i].querySelector('.vt-state-del'));
+      rows[i].classList.toggle('vt-row-del', !!rows[i].querySelector('.vt-flag'));
     }
   }
   function findTd(id, col) {
-    const rows = document.querySelectorAll('#vt-clips tbody tr');
+    const rows = document.querySelectorAll('#vt-clips tbody.tbody tr');
     for (let i = 0; i < rows.length; i++) {
       const tds = cellsOf(rows[i]);
       if (tds[C.id] && tds[C.id].innerText.trim() === id) return tds[col] || null;
@@ -442,17 +460,32 @@ REVIEW_JS_TEMPLATE = r"""() => {
       box.appendChild(b);
       return b;
     }
+    function listen() {
+      closeMenu();
+      const first = info.tds[C.sec] || info.tds[0];  // 点一下这一行（不是按钮的格子）= 播放录音
+      if (first) first.click();
+    }
+    function editText() {
+      closeMenu();
+      const td = findTd(info.id, C.text);
+      if (td) openEditor(td, rowInfo(td));
+    }
     function showMain() {
       box.innerHTML = '';
       if (info.deleted) {
         box.appendChild(el('div', 'vt-menu-title', '第 ' + info.no + ' 条（已删除，灰色 = 不用来训练）'));
         item('↩️ 撤销删除', true, () => act('restore'));
+        item('🔊 听一听这一条', true, listen);
         item('✖ 关闭', true, closeMenu);
         return;
       }
-      box.appendChild(el('div', 'vt-menu-title', '第 ' + info.no + ' 条'));
-      item('💾 只保存这一行', dirty, () => act('save_row'), '这一行没有要保存的修改（不是红灯）');
-      if (dirty) item('↩️ 撤销这一行的修改', true, () => act('revert'));
+      box.appendChild(el('div', 'vt-menu-title', '第 ' + info.no + ' 条' + (info.unused ? '（灰色 = 现在不用来训练）' : '')
+                         + (dirty ? '　🔴 改了还没保存' : '')));
+      item('💾 保存这一行', true, () => act('save_row'));
+      if (info.unused) item('✅ 这一条也要用（用来训练）', true, () => act('use'));
+      item('✏️ 修改文字', true, editText);
+      item('🔊 听一听这一条', true, listen);
+      if (dirty) item('↩️ 撤销这一行的修改（回到保存过的样子）', true, () => act('revert'));
       if (red) item('👍 这句没错，不再标红', true, () => act('ok'));
       item('🗑️ 删除这一行…', true, showConfirm);
       item('✖ 关闭', true, closeMenu);
@@ -484,7 +517,7 @@ REVIEW_JS_TEMPLATE = r"""() => {
     if (!td) return;
     const info = rowInfo(td);
     if (!info || !info.id) return;
-    if (info.deleted && (info.col === C.text || info.col === C.keep || info.col === C.lang)) {
+    if (info.deleted && (info.col === C.text || info.col === C.lang)) {
       ev.preventDefault();
       ev.stopPropagation();
       clearSel();
@@ -496,10 +529,10 @@ REVIEW_JS_TEMPLATE = r"""() => {
       ev.stopPropagation();
       clearSel();
       openEditor(td, info);
-    } else if (info.col === C.keep || info.col === C.lang) {
+    } else if (info.col === C.lang) {
       ev.preventDefault();
       clearSel();
-      send({action: info.col === C.keep ? 'keep' : 'lang', id: info.id, no: info.no});
+      send({action: 'lang', id: info.id, no: info.no});
     }
   }, true);
 
@@ -509,13 +542,17 @@ REVIEW_JS_TEMPLATE = r"""() => {
     if (!td) return;
     const info = rowInfo(td);
     if (!info || !info.id) return;
-    if (info.col === C.suggest && td.querySelector('.vt-sug') && !info.deleted) {
+    const sug = ev.target.closest ? ev.target.closest('.vt-sug-btn') : null;
+    if (info.col === C.suggest && sug && !info.deleted) {
+      // 正在处理（⏳）时再点不算：双击只算一次；表格重画出新按钮以后才能再点（再点一下 = 撤销）
+      if (sug.classList.contains('vt-sug-busy')) return;
       const now = Date.now();
-      if (lastAdopt.id === info.id && now - lastAdopt.t < 2000) return;  // 双击 = 只采用一次
+      if (lastAdopt.id === info.id && now - lastAdopt.t < 600) return;
       lastAdopt = {id: info.id, t: now};
-      const b = td.querySelector('.vt-sug');
-      if (b) { b.textContent = '⏳ 正在改……'; b.classList.add('vt-sug-busy'); }
-      send({action: 'adopt', id: info.id, no: info.no});
+      const undo = sug.classList.contains('vt-sug-red');
+      sug.textContent = '⏳';
+      sug.classList.add('vt-sug-busy');
+      send({action: undo ? 'unadopt' : 'adopt', id: info.id, no: info.no});
     } else if (info.col === C.menu) {
       openMenu(td, info);
     }
@@ -539,8 +576,8 @@ REVIEW_JS_TEMPLATE = r"""() => {
 
 def review_js() -> str:
     """把列的位置填进 REVIEW_JS_TEMPLATE（列的顺序改了也不会对不上）。"""
-    cols = {"state": CLIP_HEADERS.index(COL_STATE), "id": CLIP_HEADERS.index(COL_ID),
-            "keep": CLIP_HEADERS.index(COL_KEEP), "lang": CLIP_HEADERS.index(COL_LANG),
+    cols = {"sec": CLIP_HEADERS.index(COL_SEC), "id": CLIP_HEADERS.index(COL_ID),
+            "lang": CLIP_HEADERS.index(COL_LANG),
             "text": CLIP_HEADERS.index(COL_TEXT), "colored": CLIP_HEADERS.index(COL_SUSPECT),
             "suggest": CLIP_HEADERS.index(COL_SUGGEST), "menu": CLIP_HEADERS.index(COL_MENU)}
     return REVIEW_JS_TEMPLATE.replace("__COLS__", json.dumps(cols))
@@ -1059,6 +1096,7 @@ _MD_ESC = {c: "&#%d;" % ord(c) for c in "\\`*_{}[]()#+-.!|~>$"}
 _RED_SPAN = '<span class="vt-red" style="color:#dc2626;font-weight:700;background:#fee2e2">'
 _GREEN_SPAN = '<span style="color:#15803d;font-weight:700;background:#dcfce7">'
 _BLUE_SPAN = '<span class="vt-blue" style="color:#1d4ed8;font-weight:700;background:#bfdbfe">'
+_GREEN_TEXT = '<span class="vt-green" style="color:#15803d;font-weight:700;background:#dcfce7">'
 _BLUE_DEL = '<s class="vt-blue-del" title="删掉的字" style="color:#2563eb;background:#dbeafe">'
 
 
@@ -1174,25 +1212,38 @@ def _colored_html(info: Dict[str, Any]) -> str:
 
 
 def _suggest_cell(info: Dict[str, Any]) -> str:
-    """「修改建议」这一列：有还没采用的建议时是一个绿色的 ✅ 按钮（点一下就改好）。"""
+    """「修改建议」这一列（老师要求的样子）：蓝色小按钮 = 还没用这条建议，点一下就按建议改好、按钮变红；
+    红色 = 建议已经生效（那几个字已经改掉，左边变蓝），再点一下可以撤销、变回蓝色。
+    只有「可能有错」那一列有内容的行才有（调用的地方保证）。"""
+    text = str(info.get("text") or "")
     if info.get("edits"):
-        what = _review.describe_edits(str(info.get("text") or ""), info["edits"], limit=2)
-        return f'<span class="vt-sug" title="点一下就按建议改好">✅ 采用：{_cell_esc(what)}</span>'
+        what = _review.describe_edits(text, info["edits"], limit=2)
+        return (f'<span class="vt-sug-btn vt-sug-blue" title="点一下：按建议改好">采用</span>'
+                f'<span class="vt-sug-text">{_cell_esc(what)}</span>')
     if info.get("adopted"):
-        return '<span class="vt-sug-done">✔ 已采用</span>'
+        what = _review.describe_adopted(text, info.get("undo") or [], limit=2)
+        return (f'<span class="vt-sug-btn vt-sug-red" title="建议已经生效；再点一下可以撤销">已采用</span>'
+                f'<span class="vt-sug-text">{_cell_esc(what)}</span>')
     if info.get("red"):
         return '<span class="vt-sug-none">没有建议，请听录音后双击「文字」修改</span>'
     return ""
 
 
-def _state_cell(dirty: bool, saved_edit: bool) -> str:
-    if dirty:
-        return STATE_DIRTY
-    return STATE_SAVED if saved_edit else ""
+def _text_html(info: Dict[str, Any]) -> str:
+    """「文字」那一列：老师改过、新打上去的字是绿色（和最初识别的文字比），别的照常。"""
+    text = str(info.get("text") or "")
+    out: List[str] = []
+    pos = 0
+    for s, e in info.get("blue") or []:
+        out += [_cell_esc(text[pos:s]), _GREEN_TEXT, _cell_esc(text[s:e]), "</span>"]
+        pos = e
+    out.append(_cell_esc(text[pos:]))
+    return "".join(out)
 
 
 def _clips_table(cfg: Config, voice: Any, only_suspect: bool = False) -> List[List[Any]]:
-    """校对表：每条片段一行（删除的变灰，「⚪ 已删除」）。显示的是「保存过的 + 没保存的修改（草稿）」。
+    """校对表：每条片段一行。不用来训练的变灰（老师删除的「⚪ 已删除」，程序判断不能用的「⚪ 不用」，不写原因）。
+    显示的是「保存过的 + 没保存的修改（草稿）」。
     # 是显示的序号（从 1 开始），找片段一律用 id 列。只看可能有错的：没保存的修改也一直显示，免得看不到。"""
     voice = _voice_name(voice)
     if not voice:
@@ -1208,10 +1259,12 @@ def _clips_table(cfg: Config, voice: Any, only_suspect: bool = False) -> List[Li
         if only_suspect and not (info["active"] or dirty):
             continue
         deleted = bool(r.get("deleted"))
-        state = STATE_DELETED if deleted else _state_cell(dirty, _review.has_saved_edit(r))
-        rows.append([len(rows) + 1, state, r["id"], "否" if deleted else ("是" if vals["keep"] else "否"),
-                     _LANG_NAMES.get(vals["lang"], vals["lang"]), round(float(r.get("duration", 0) or 0), 1),
-                     vals["text"], _colored_html(info), "" if deleted else _suggest_cell(info), MENU_CELL])
+        menu = _menu_cell(dirty=dirty and not deleted, saved=_review.has_saved_edit(r) and not deleted,
+                          deleted=deleted, unused=not deleted and not vals["keep"])
+        colored = _colored_html(info)
+        suggest = "" if deleted or not colored else _suggest_cell(info)  # 「可能有错」那一列空着：没有建议按钮
+        rows.append([len(rows) + 1, r["id"], _LANG_NAMES.get(vals["lang"], vals["lang"]),
+                     round(float(r.get("duration", 0) or 0), 1), _text_html(info), colored, suggest, menu])
     return rows
 
 
@@ -2551,7 +2604,8 @@ class WebUI:
     def do_clip_action(self, voice: Any, payload: Any, only_sus: Any = False) -> Tuple[Any, ...]:
         """校对表里的操作（网页脚本把 {"action", "id", ...} 放进隐藏的输入框，再按隐藏的按钮）：
 
-        edit 改文字、keep 切换保留、lang 切换语言、adopt 采用建议、revert 撤销这一行的修改（这几个只改草稿）；
+        edit 改文字、use 灰色的行改成要用、keep 切换保留（旧）、lang 切换语言、adopt 采用建议、unadopt 撤销采用的建议、revert 撤销这一行的修改
+        （这几个只改草稿）；
         save_row 只保存这一行、delete 删除、restore 恢复、ok 这句没错（这几个马上写进校对表）。
         删除的行（灰色）只能撤销删除，别的操作会提示先撤销删除。返回 (提示, 片段总数, 表格)。"""
         v = _voice_name(voice)
@@ -2586,6 +2640,9 @@ class WebUI:
             res = _review.set_draft(project, cid, text=text)
             msg = (f"✏️ {which}改好了（🔴 没保存）：{_md_text(res['values']['text'])}" if res["dirty"]
                    else f"{which}和保存过的一样，不用保存。")
+        elif action == "use":
+            res = _review.set_draft(project, cid, keep=True)
+            msg = f"✅ {which}改成要用了（🔴 没保存，保存以后用来训练）。" if res["dirty"] else f"{which}本来就要用。"
         elif action == "keep":
             res = _review.set_draft(project, cid, keep=not vals["keep"])
             msg = f"{which}的「保留」改成了「{'是' if res['values']['keep'] else '否'}」" + ("（🔴 没保存）" if res["dirty"] else "")
@@ -2595,8 +2652,13 @@ class WebUI:
                    + ("（🔴 没保存）" if res["dirty"] else ""))
         elif action == "adopt":
             res = _review.adopt_suggestion(project, cid)
-            msg = f"✅ {which}已按建议改好（{_md_text(res.get('changes') or '')}），改过的字是蓝色；现在是 🔴 没保存。"
+            msg = (f"✅ {which}已按建议改好（{_md_text(res.get('changes') or '')}）：按钮变红 = 建议已经生效，改过的字是蓝色；"
+                   "现在是 🔴 没保存。")
             _info(f"✅ {which}已按建议改好，记得保存")
+        elif action == "unadopt":
+            res = _review.unadopt_suggestion(project, cid)
+            msg = f"↩️ {which}已撤销建议（{_md_text(res.get('changes') or '')}），按钮变回蓝色。"
+            _info(f"↩️ {which}已撤销建议")
         elif action == "revert":
             n = _review.discard_draft(project, cid)
             msg = f"↩️ {which}已撤销修改，回到保存过的样子。" if n else f"{which}没有要撤销的修改。"

@@ -33,6 +33,14 @@ def _is_update(v):
     return isinstance(v, dict) and v.get("__type__") == "update"
 
 
+def plain(cell):
+    """「文字」一列是 markdown（改过的字是绿色）：去掉格式，只看文字。"""
+    import html as _html
+    import re as _re
+
+    return _html.unescape(_re.sub(r"<[^>]+>", "", str(cell)))
+
+
 # ---------------------------------------------------------------------------- 校对表
 def test_clip_table_has_row_numbers_and_count(prepared):
     cfg, project, _ = prepared
@@ -42,9 +50,14 @@ def test_clip_table_has_row_numbers_and_count(prepared):
     assert all(len(r) == len(CLIP_HEADERS) for r in rows) and len(A.CLIP_WIDTHS) == len(CLIP_HEADERS)
     assert [r[0] for r in rows] == list(range(1, len(records) + 1))
     assert rows[0][CLIP_HEADERS.index(A.COL_ID)] == records[0]["id"]
-    assert {r[CLIP_HEADERS.index(A.COL_KEEP)] for r in rows} <= {"是", "否"}
-    assert all(r[CLIP_HEADERS.index(A.COL_MENU)] == A.MENU_CELL for r in rows)
+    assert all(r[CLIP_HEADERS.index(A.COL_MENU)].endswith(A.MENU_BTN) for r in rows)  # 最右边一定是「⋯ 选项」
     assert "丢弃原因" not in CLIP_HEADERS and A.COL_SUGGEST == "修改建议"
+    assert not any(h.startswith("保留") for h in CLIP_HEADERS)  # 老师说「保留」一列没用：不用的行变灰
+    st = CLIP_HEADERS.index(A.COL_MENU)
+    for rec, r in zip(records, rows):
+        assert (A.FLAG_UNUSED in r[st]) is (not rec.get("keep", True) and not rec.get("deleted"))  # 不能用的：灰色
+        if rec.get("drop_reason"):
+            assert rec["drop_reason"] not in r[st]  # 老师说不用写原因
 
     md = _clips_count_md(cfg, project.voice)
     kept = sum(1 for r in records if r.get("keep", True))
@@ -85,7 +98,7 @@ def test_suspect_column_count_and_filter(prepared, tmp_path):
     col, sug = CLIP_HEADERS.index(A.COL_SUSPECT), CLIP_HEADERS.index(A.COL_SUGGEST)
     assert rows[1][col].count('class="vt-red"') == 1 and "VFIXED" in rows[1][col]
     assert rows[0][col] == "" and rows[0][sug] == ""
-    assert 'class="vt-sug"' in rows[1][sug] and "VFIXED → V fixed" in rows[1][sug]
+    assert "vt-sug-blue" in rows[1][sug] and "VFIXED → V fixed" in rows[1][sug]  # 蓝色小按钮 = 还没用这条建议
     only = _clips_table(cfg, name, only_suspect=True)
     idc = CLIP_HEADERS.index(A.COL_ID)
     assert len(only) == 1 and only[0][0] == 1 and only[0][idc] == recs[1]["id"]  # 序号重新从 1 开始，id 不变
@@ -138,19 +151,22 @@ def test_do_save_round_trip_and_guards(prepared, tmp_path, monkeypatch):
     project = wf.Project(cfg, name)
     recs = project.load_manifest()
     a, b = recs[0]["id"], recs[1]["id"]
-    st, keep_c, text_c = (CLIP_HEADERS.index(x) for x in (A.COL_STATE, A.COL_KEEP, A.COL_TEXT))
-    keep_before = recs[0].get("keep", True)
-    msg, count, rows = _act(ui, name, "keep", a)
-    assert "没保存" in msg and rows[0][st] == A.STATE_DIRTY and rows[0][keep_c] == ("否" if keep_before else "是")
+    st, lang_c, text_c = (CLIP_HEADERS.index(x) for x in (A.COL_MENU, A.COL_LANG, A.COL_TEXT))
+    for r in recs[:2]:  # 这个测试看红灯 / 绿灯：先让前两条都是「要用」的
+        r.update(keep=True, manual_keep=True)
+    project.save_manifest(recs)
+    lang_before = recs[0].get("lang")
+    msg, count, rows = _act(ui, name, "lang", a)
+    assert "没保存" in msg and A.LIGHT_DIRTY in rows[0][st] and rows[0][lang_c] != A._LANG_NAMES.get(lang_before)
     msg, count, rows = _act(ui, name, "edit", b, text=recs[1]["text"] + "改")
-    assert rows[1][st] == A.STATE_DIRTY and rows[1][text_c].endswith("改") and "还有 **2** 条修改没有保存" in count
+    assert A.LIGHT_DIRTY in rows[1][st] and plain(rows[1][text_c]).endswith("改") and "还有 **2** 条修改没有保存" in count
     # 硬盘上的校对表还没变（只存在草稿里）
     assert {r["id"]: r for r in project.load_manifest()}[b]["text"] == recs[1]["text"]
     md, count_md, table = ui.do_save(name)
-    assert md.startswith("✅ 已保存 2 条：改了 1 处文字、1 处「保留」") and "{" not in md
+    assert md.startswith("✅ 已保存 2 条：改了 1 处文字、0 处「保留」、1 处语言") and "{" not in md
     saved = {r["id"]: r for r in project.load_manifest()}
-    assert saved[a]["keep"] is (not keep_before) and saved[b]["text"].endswith("改")
-    assert table[0][st] == A.STATE_SAVED and table[1][st] == A.STATE_SAVED  # 保存了：绿灯
+    assert saved[a]["lang"] != lang_before and saved[b]["text"].endswith("改")
+    assert A.LIGHT_SAVED in table[0][st] and A.LIGHT_SAVED in table[1][st]  # 保存了：绿灯
     assert "没有保存" not in count_md and saved[b]["text"] in project.csv_path.read_text(encoding="utf-8-sig")
     assert ui.do_save(name)[0].startswith("没有需要保存的修改")
 
@@ -162,7 +178,7 @@ def test_do_save_round_trip_and_guards(prepared, tmp_path, monkeypatch):
     monkeypatch.setattr(wf.Project, "export_csv", locked)
     md3, _, t3 = ui.do_save(name)
     assert "Excel/WPS" in md3 and {r["id"]: r for r in project.load_manifest()}[a]["text"] == "被锁住时改的。"
-    assert t3[0][st] == A.STATE_SAVED
+    assert A.LIGHT_SAVED in t3[0][st]
     assert ui.do_save("")[0] == NEED_VOICE
 
 
@@ -196,7 +212,13 @@ def test_do_save_keeps_untouched_red_marks(prepared, tmp_path):
     msg, count, rows = _act(ui, name, "adopt", recs[0]["id"])
     assert msg.startswith("✅") and "艾子 → as" in msg
     assert 'class="vt-red"' not in rows[0][col] and rows[0][col].count('class="vt-blue"') == 2
-    assert "已采用" in rows[0][sug] and rows[0][CLIP_HEADERS.index(A.COL_TEXT)] == t.replace("艾子", "as")
+    assert "vt-sug-red" in rows[0][sug] and "已采用" in rows[0][sug]  # 按钮变红 = 建议已经生效
+    assert plain(rows[0][CLIP_HEADERS.index(A.COL_TEXT)]) == t.replace("艾子", "as")
+    # 再点红色按钮：撤销建议，回到采用之前（老师自己改的第二处也是建议的写法，一起改回去）
+    msg, count, rows = _act(ui, name, "unadopt", recs[0]["id"])
+    assert msg.startswith("↩️") and "vt-sug-blue" in rows[0][sug] and plain(rows[0][CLIP_HEADERS.index(A.COL_TEXT)]) == t
+    # 「可能有错」那一列空着的行：没有建议按钮
+    assert all(r[sug] == "" for r in rows if r[col] == "")
 
 
 def test_save_refused_while_prepare_runs(prepared, monkeypatch):
@@ -819,7 +841,7 @@ def test_proofcheck_through_task(prepared, tmp_path, monkeypatch):
     audio, panel, cid = ui.on_clip_pick(name, rows, 0, 0)
     assert "识别 A" in panel and "识别 B" in panel
     msg, count, table = ui.do_adopt(name, cid)
-    assert msg.startswith("✅ 已按建议改好") and table[0][CLIP_HEADERS.index(A.COL_STATE)] == A.STATE_DIRTY
+    assert msg.startswith("✅ 已按建议改好") and A.LIGHT_DIRTY in table[0][CLIP_HEADERS.index(A.COL_MENU)]
 
 
 def _edit_rows(rows, edits):
@@ -841,31 +863,32 @@ def test_unsaved_edits_survive_filter_reload_and_adopt(prepared, tmp_path):
     recs[-1]["suspect"] = {"spans": [[0, 1]], "alt": "建议的文字。", "reasons": ["两次识别不一样"], "score": 0.5}
     project.save_manifest(recs)
     ui = A.WebUI(cfg)
-    idc, text_c, keep_c = (CLIP_HEADERS.index(x) for x in (A.COL_ID, A.COL_TEXT, A.COL_KEEP))
-    flip = "否" if recs[1].get("keep", True) else "是"
+    idc, text_c, lang_c = (CLIP_HEADERS.index(x) for x in (A.COL_ID, A.COL_TEXT, A.COL_LANG))
+    lang1 = A._LANG_NAMES.get(recs[1].get("lang"))
+    flip = "英文" if lang1 == "中文" else "中文"
     _act(ui, name, "edit", recs[0]["id"], text="老师手动改的第一行")
-    _act(ui, name, "keep", recs[1]["id"])
+    _act(ui, name, "lang", recs[1]["id"])
     sus_id = recs[-1]["id"]
     msg, count, table = _act(ui, name, "adopt", sus_id)
     assert "已按建议改好" in msg and "还有 **3** 条修改没有保存" in count
     by_id = {r[idc]: r for r in table}
-    assert by_id[recs[0]["id"]][text_c] == "老师手动改的第一行" and by_id[recs[1]["id"]][keep_c] == flip
-    assert by_id[sus_id][text_c] == "建议的文字。"
+    assert plain(by_id[recs[0]["id"]][text_c]) == "老师手动改的第一行" and by_id[recs[1]["id"]][lang_c] == flip
+    assert plain(by_id[sus_id][text_c]) == "建议的文字。"
     assert {r["id"]: r for r in project.load_manifest()}[sus_id]["text"] == recs[-1]["text"]  # 采用建议也要保存
     # 勾「只看可能有错的」：没保存的行一直显示
     count2, filtered = ui.refresh_clips(name, True, None)
     assert {r[idc] for r in filtered} == {recs[0]["id"], recs[1]["id"], sus_id}
     assert [r[0] for r in filtered] == [1, 2, 3]
     # 「🔄 刷新表格」也不会把没保存的修改冲掉
-    assert {r[idc]: r for r in ui.load_clips(name)[1]}[recs[0]["id"]][text_c] == "老师手动改的第一行"
+    assert plain({r[idc]: r for r in ui.load_clips(name)[1]}[recs[0]["id"]][text_c]) == "老师手动改的第一行"
     # 撤销其中一行
     _, _, t2 = _act(ui, name, "revert", recs[1]["id"])
-    assert {r[idc]: r for r in t2}[recs[1]["id"]][keep_c] == ("是" if recs[1].get("keep", True) else "否")
+    assert {r[idc]: r for r in t2}[recs[1]["id"]][lang_c] == lang1
     # 只保存一行：只有那一行变绿，别的还是红灯
     msg, _, t3 = _act(ui, name, "save_row", recs[0]["id"])
-    st = CLIP_HEADERS.index(A.COL_STATE)
+    st = CLIP_HEADERS.index(A.COL_MENU)
     by_id = {r[idc]: r for r in t3}
-    assert "已保存" in msg and by_id[recs[0]["id"]][st] == A.STATE_SAVED and by_id[sus_id][st] == A.STATE_DIRTY
+    assert "已保存" in msg and A.LIGHT_SAVED in by_id[recs[0]["id"]][st] and A.LIGHT_DIRTY in by_id[sus_id][st]
     saved = {r["id"]: r for r in project.load_manifest()}
     assert saved[recs[0]["id"]]["text"] == "老师手动改的第一行" and saved[sus_id]["text"] == recs[-1]["text"]
 
@@ -887,7 +910,7 @@ def test_after_prepare_keeps_edits_and_filter(prepared, tmp_path):
     count, rows, cleared = ui.after_prepare_clips(name, True, None, {"voice": name})
     idc = CLIP_HEADERS.index(A.COL_ID)
     assert cleared == {} and [r[idc] for r in rows] == [recs[0]["id"], recs[3]["id"]]
-    assert rows[0][CLIP_HEADERS.index(A.COL_TEXT)] == "开始前改的" and "还有 **1** 条修改没有保存" in count
+    assert plain(rows[0][CLIP_HEADERS.index(A.COL_TEXT)]) == "开始前改的" and "还有 **1** 条修改没有保存" in count
     assert "已经没有的片段" not in A._review.load_draft(project)
     # 这次没真正开始准备（clips_base 是空的）：表格不动
     assert all(_is_update(x) for x in ui.after_prepare_clips(name, False, None, {})[:2])
@@ -903,9 +926,9 @@ def test_delete_turns_gray_and_undo(prepared, tmp_path):
     keep_before = recs[2].get("keep", True)
     _act(ui, name, "edit", cid, text="删除前改了还没保存的。")
     msg, count, rows = _act(ui, name, "delete", cid)
-    idc, st, keep_c, sug = (CLIP_HEADERS.index(x) for x in (A.COL_ID, A.COL_STATE, A.COL_KEEP, A.COL_SUGGEST))
+    idc, st, sug = (CLIP_HEADERS.index(x) for x in (A.COL_ID, A.COL_MENU, A.COL_SUGGEST))
     by_id = {r[idc]: r for r in rows}
-    assert len(rows) == n and by_id[cid][st] == A.STATE_DELETED and by_id[cid][keep_c] == "否"
+    assert len(rows) == n and A.FLAG_DELETED in by_id[cid][st]
     assert "灰色" in msg and "撤销删除" in msg and "你删除的 1 条" in count
     saved = {r["id"]: r for r in project.load_manifest()}[cid]
     assert saved["deleted"] is True and saved["keep"] is False and saved["drop_reason"] == "老师删除"
@@ -917,7 +940,7 @@ def test_delete_turns_gray_and_undo(prepared, tmp_path):
     # 撤销删除：回来，删除前没保存的修改也还在（红灯）
     msg3, count3, rows3 = _act(ui, name, "restore", cid)
     by_id = {r[idc]: r for r in rows3}
-    assert "回来了" in msg3 and by_id[cid][st] == A.STATE_DIRTY
+    assert "回来了" in msg3 and A.LIGHT_DIRTY in by_id[cid][st]
     after = {r["id"]: r for r in project.load_manifest()}[cid]
     assert "deleted" not in after and after["keep"] is keep_before and "你删除的" not in count3
     # 准备素材 / 查错字正在进行时不能删除
@@ -929,6 +952,34 @@ def test_delete_turns_gray_and_undo(prepared, tmp_path):
         assert "请等它完成后再点「删除」" in _act(ui, name, "delete", cid)[0]
     finally:
         appmod.current_task = orig
+
+
+def test_unused_rows_are_gray_and_can_be_used(prepared, tmp_path):
+    """程序判断不能用的行（以前「保留」= 否）：也是灰色（不写原因）；「这一条也要用」以后保存就用来训练。"""
+    cfg, name = _copy_voice(prepared, tmp_path)
+    project = wf.Project(cfg, name)
+    recs = project.load_manifest()
+    recs[0].update(keep=False, drop_reason="语速异常（文字可能不对）")
+    recs[0].pop("manual_keep", None)
+    project.save_manifest(recs)
+    ui = A.WebUI(cfg)
+    st, idc = CLIP_HEADERS.index(A.COL_MENU), CLIP_HEADERS.index(A.COL_ID)
+    row = {r[idc]: r for r in _clips_table(cfg, name)}[recs[0]["id"]]
+    assert A.FLAG_UNUSED in row[st] and "语速异常" not in row[st]
+    msg, _, rows = _act(ui, name, "use", recs[0]["id"])
+    row = {r[idc]: r for r in rows}[recs[0]["id"]]
+    assert "要用" in msg and A.LIGHT_DIRTY in row[st]
+    _act(ui, name, "save_row", recs[0]["id"])
+    saved = {r["id"]: r for r in project.load_manifest()}[recs[0]["id"]]
+    assert saved["keep"] is True and saved["manual_keep"] is True
+    # 灰色（不用）的行改了字还没保存：灰色 + 红灯
+    recs = project.load_manifest()
+    recs[1].update(keep=False, drop_reason="太短")
+    recs[1].pop("manual_keep", None)
+    project.save_manifest(recs)
+    _, _, rows = _act(ui, name, "edit", recs[1]["id"], text="灰色的行也能改字。")
+    row = {r[idc]: r for r in rows}[recs[1]["id"]]
+    assert A.FLAG_UNUSED in row[st] and A.LIGHT_DIRTY in row[st]
 
 
 def test_clip_action_ignores_bad_payloads(prepared, tmp_path):
@@ -1103,3 +1154,21 @@ def test_eval_refused_while_task_runs(prepared, monkeypatch):
     cfg, project, _ = prepared
     monkeypatch.setattr(A, "current_task", lambda: {"running": True, "label": "训练模型", "voice": "x", "kind": "train"})
     assert "评估也要用显卡" in A.WebUI(cfg).eval_impl(project.voice, "/tmp/a.wav", "")
+
+
+def test_changed_words_are_green_in_text_column(prepared, tmp_path):
+    """「文字」一列：老师改过、新打上去的字是绿色；没改过的行没有颜色；格式代码不会被当成 Markdown。"""
+    cfg, name = _copy_voice(prepared, tmp_path)
+    project = wf.Project(cfg, name)
+    recs = project.load_manifest()
+    recs[0].update(text="1. *设置* 一下", orig_text="1. *设置* 一下")
+    project.save_manifest(recs)
+    ui = A.WebUI(cfg)
+    tc, idc = CLIP_HEADERS.index(A.COL_TEXT), CLIP_HEADERS.index(A.COL_ID)
+    rows = _clips_table(cfg, name)
+    assert "vt-green" not in rows[0][tc] and plain(rows[0][tc]) == "1. *设置* 一下" and "*" not in rows[0][tc]
+    _, _, rows = _act(ui, name, "edit", recs[0]["id"], text="1. *设置* 两下")
+    cell = {r[idc]: r for r in rows}[recs[0]["id"]][tc]
+    assert cell.count('class="vt-green"') == 1 and plain(cell) == "1. *设置*两下"  # 汉字前的空格会被统一去掉
+    assert all("vt-green" not in r[tc] for r in rows if r[idc] != recs[0]["id"] and "text_edited" not in
+               {x["id"]: x for x in recs}[r[idc]])

@@ -543,16 +543,19 @@ def run_proofcheck(cfg: Config, voice: str, progress: Optional[ProgressFn] = Non
 
 
 def apply_suggestion(cfg: Config, voice: str, clip_id: str) -> Dict[str, Any]:
-    """✅ 采用建议：把这条片段的文字换成"可能有错"给出的建议，去掉标红，并重新导出校对表。"""
+    """✅ 采用建议（命令行 / 旧接口）：把"可能有错"的建议改进这条片段的文字（只改建议的那几处），马上保存并重新导出校对表。
+    网页的校对表用 review.adopt_suggestion（先存成草稿，老师点保存才写进去）。"""
     project = open_project(cfg, voice, must_exist=True)
     rec = next((r for r in project.load_manifest() if r.get("id") == clip_id), None)
     if rec is None:
         raise ValueError(f"找不到这条片段（{clip_id}），请刷新一下校对表")
-    alt = str(((rec.get("suspect") or {}).get("alt") or "")).strip()
-    if not alt:
-        raise ValueError("这条没有可以采用的建议")
+    from voicetwin.data.review import analyze, apply_edits
+
     old = rec.get("text", "")
-    new = project.set_clip_text(clip_id, alt)
+    info = analyze(rec)
+    if not info["edits"]:
+        raise ValueError("这条没有可以采用的建议")
+    new = project.set_clip_text(clip_id, apply_edits(old, info["edits"]))  # 只改建议的那几处
     log.info(f"已采用建议：{old} → {new.get('text')}")
     out = {"id": clip_id, "old_text": old, "text": new.get("text", ""), "lang": new.get("lang", "")}
     if new.get("csv_locked"):

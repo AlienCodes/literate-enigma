@@ -42,7 +42,7 @@ def test_analyze_untouched_text():
     info = R.analyze(_rec())
     assert info["red"] == [(S1, S1 + 2), (S2, S2 + 2)] and info["blue"] == [] and info["active"]
     assert info["edits"] == [(S1, S1 + 2, "as"), (S2, S2 + 2, "as")] and not info["adopted"]
-    assert R.describe_edits(T, info["edits"]) == "艾子 → as；艾子 → as"
+    assert R.describe_edits(T, info["edits"]) == "艾子 → as（2 处）"  # 一样的改动合在一起说
 
 
 def test_fixing_one_spot_turns_it_blue_and_keeps_the_other_red():
@@ -106,9 +106,22 @@ def test_apply_text_edit_keeps_untouched_marks_and_original_text():
     assert rec["orig_text"] == T and rec["suspect"]["text"] == T and rec["text_edited"]
     assert R.analyze(rec)["red"] == [(S1, S1 + 2)]
     apply_text_edit(rec, T.replace("艾子", "as"))
-    assert "suspect" not in rec and rec["orig_text"] == T  # 一处都不剩：去掉标记；最初的文字一直记着
     info = R.analyze(rec)
+    assert rec["orig_text"] == T and not info["active"] and info["adopted"]  # 不再算可能有错；建议生效（按钮红）
     assert info["blue"] == [(S1, S1 + 2), (S2, S2 + 2)]
+    apply_text_edit(rec, T.replace("艾子", "as") + "再加一句。")
+    assert "suspect" in rec  # 采用过的建议一直记着（按钮一直是红的，也能撤销）
+    rec2 = {"id": "z", "text": "一二三四", "suspect": {"spans": [[0, 1]], "alt": "", "reasons": ["r"]}}
+    apply_text_edit(rec2, "改一二三四")  # 红字被改掉、又没有建议：整个标记去掉
+    assert "suspect" not in rec2
+
+
+def test_unadopt_reverts_only_suggestion_spots():
+    rec = _rec()
+    adopted = T.replace("艾子", "as")
+    info = R.analyze(rec, "其实" + adopted)  # 采用以后老师又在前面加了两个字
+    assert info["adopted"] and R.describe_adopted("其实" + adopted, info["undo"]) == "艾子 → as（2 处）"
+    assert R.apply_edits("其实" + adopted, info["undo"]) == "其实" + T  # 只改回建议的地方
 
 
 # ---------------------------------------------------------------------------- 草稿、保存、删除
