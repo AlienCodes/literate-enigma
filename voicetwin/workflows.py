@@ -483,9 +483,17 @@ def apply_review(cfg: Config, voice: str, read_csv: bool = True) -> Dict[str, An
         if read_csv:
             raise
         csv_locked = True
-    build_profile(project)
+    no_material = ""
+    try:
+        build_profile(project)
+    except RuntimeError as exc:  # 一条能用的都没有（比如文字还没识别出来）：校对表的删除 / 保存照样要成功
+        no_material = str(exc)
+        log.warning(f"⚠️ 重新统计时没法分析说话风格：{exc}")
     summary = summarize(project, records, refs)
     summary["changed"] = changed
+    if no_material:
+        summary.setdefault("warnings", []).insert(
+            0, "现在一条能用来训练的片段都没有（多半是文字还没识别出来），所以这次没法分析说话风格")
     project.write_json(project.root / "prepare_summary.json", summary)
     if csv_locked:
         summary["csv_locked"] = True
@@ -503,6 +511,25 @@ def review_save(cfg: Config, voice: str, ids: Optional[Iterable[str]] = None) ->
     if res["summary"] and res["summary"].get("csv_locked"):
         res["csv_locked"] = True
     return res
+
+
+def review_confirm(cfg: Config, voice: str) -> Dict[str, Any]:
+    """校对表「✅ 确认训练素材」：先把没保存的修改全部保存（和「保存修改」一样），重新统计，再记下现在用来训练的是哪些句子。
+
+    一条能用来训练的都没有时不记（返回 confirmed=False），界面会说明原因。"""
+    from voicetwin.data import review
+
+    project = open_project(cfg, voice, must_exist=True)
+    saved = review.save_rows(project)
+    summary = apply_review(cfg, voice, read_csv=False)
+    records = project.load_manifest()
+    counts = review.material_counts(records)
+    out = {"saved": saved["saved"], "changed": saved["changed"], "summary": summary, "counts": counts,
+           "csv_locked": bool(saved.get("csv_locked") or summary.get("csv_locked")), "confirmed": False}
+    if counts["material"] > 0:
+        out["confirmed"] = True
+        out["time"] = review.save_confirmed(project, records)["time"]
+    return out
 
 
 def review_delete(cfg: Config, voice: str, clip_id: str) -> Dict[str, Any]:

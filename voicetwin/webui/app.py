@@ -55,8 +55,9 @@ os.environ.setdefault("GRADIO_ANALYTICS_ENABLED", "False")
 
 APP_TITLE = "声音分身 VoiceTwin"
 APP_VERSION = str(getattr(voicetwin, "__version__", "") or "")
-# 网页标题只显示大版本号（老师要求标题一直是「v18」）；完整版本号（18.1）在黑色窗口、发布页和下载的文件名里
-APP_TITLE_VERSION = APP_VERSION.split(".")[0] if re.fullmatch(r"\d+(\.\d+)+", APP_VERSION) else APP_VERSION
+# 老师的永久要求：网页标题**永远**显示「v18」，以后版本号怎么变都不改这里。
+# 真正的版本号（18.1、18.2……）在黑色窗口、发布页和下载的文件名里。
+APP_TITLE_VERSION = "18"
 DEFAULT_VOICE = "我的声音"
 
 NEED_VOICE = "请先在页面最上面的「声音名称」里选择或填写声音（例如：我的声音）。"
@@ -93,7 +94,10 @@ REVIEW_HELP = ("### ✍️ 校对文字（可选，但能明显提升效果）\n
                "变成**蓝色**；再点一下红色按钮可以撤销。只有「可能有错」那一列有内容的行才有这个按钮。\n"
                "- **最右边「⋯ 选项」**：保存这一行、删除这一行（会再问一次；删除以后这里变成「撤销删除」）、修改文字、听一听、"
                "撤销这一行的修改、这句没错（不再标红）。\n"
-               "- **灰色的行 = 不用来训练**（你删除的，或者程序判断不能用的）。删错了在「⋯ 选项」里点「↩️ 撤销删除」。\n"
+               "- **删除的行整行变紫色 = 不再算训练素材**；删错了在「⋯ 选项」里点「↩️ 撤销删除」，紫色消失、又算训练素材。"
+               "灰色的行是程序判断不能用的（比如没有文字）。\n"
+               "- 表格上方的「🎯 用来训练的句子」：删几条就减几条（例如 1000 − 2 = 998），撤销删除就加回来。\n"
+               "- 改好以后点最下面的「**✅ 确认训练素材**」：用来训练的句子**行号变橙色**，不用的不显示行号。\n"
                "- **「⋯ 选项」左边的小灯**：🔴 = 改了还没保存；🟢 = 改过、已经保存了。点最下面的「**保存修改**」（全部保存）"
                "或「⋯ 选项」里的「保存这一行」都会变绿。\n"
                "- **点一下某一行就能听录音**（播放器在表格下面）；双击「语言」切换 中文 / 英文。")
@@ -140,18 +144,24 @@ CLIP_TYPES = ["number", "str", "str", "number", "markdown", "markdown", "markdow
 (COL_ID, COL_LANG, COL_SEC, COL_TEXT, COL_SUSPECT, COL_SUGGEST, COL_MENU) = CLIP_HEADERS[1:]
 LIGHT_DIRTY = '<span class="vt-light vt-light-dirty" title="改了还没保存">🔴</span>'
 LIGHT_SAVED = '<span class="vt-light vt-light-saved" title="改过，已经保存了">🟢</span>'
-FLAG_DELETED = '<span class="vt-flag vt-flag-del"></span>'  # 看不见的记号：整行变灰（CSS / REVIEW_JS），选项菜单变成「撤销删除」
-FLAG_UNUSED = '<span class="vt-flag vt-flag-unused"></span>'  # 程序判断不能用：也变灰，选项里可以「这一条也要用」
+# 看不见的记号（放在「选项」那一格里，CSS 的 :has() 和 REVIEW_JS 按它给整行上色）：
+FLAG_DELETED = '<span class="vt-mark vt-mark-del"></span>'  # 老师删除的：整行紫色（= 不用来训练），菜单变成「撤销删除」
+FLAG_UNUSED = '<span class="vt-mark vt-mark-unused"></span>'  # 程序判断不能用（比如没有文字）：整行灰色
+FLAG_TRAIN = '<span class="vt-mark vt-mark-train"></span>'  # 点过「确认训练素材」以后：用来训练的，行号橙色
+FLAG_OUT = '<span class="vt-mark vt-mark-out"></span>'  # 点过「确认训练素材」以后：不用来训练的，行号不显示
 MENU_BTN = '<span class="vt-menu-btn" title="保存这一行、删除……">⋯ 选项</span>'
 MENU_CELL = MENU_BTN
 
 
-def _menu_cell(dirty: bool = False, saved: bool = False, deleted: bool = False, unused: bool = False) -> str:
-    """最右边「选项」那一格：小灯 + 看不见的记号 + 选项按钮。"""
+def _menu_cell(dirty: bool = False, saved: bool = False, deleted: bool = False, unused: bool = False,
+               train: Optional[bool] = None) -> str:
+    """最右边「选项」那一格：小灯 + 看不见的记号 + 选项按钮。train：确认过训练素材时这一条用不用来训练（没确认过是 None）。"""
     light = LIGHT_DIRTY if dirty else (LIGHT_SAVED if saved else "")
     flag = FLAG_DELETED if deleted else (FLAG_UNUSED if unused else "")
-    return light + flag + MENU_BTN
+    mark = "" if train is None else (FLAG_TRAIN if train else FLAG_OUT)
+    return light + flag + mark + MENU_BTN
 CLIP_WIDTHS = ["4%", "8%", "6%", "4%", "31%", "24%", "13%", "10%"]
+CONFIRM_BTN = "✅ 确认训练素材"
 LIB_HEADERS = ["#", "名称", "素材（分钟 / 条）", "状态", "最佳模型", "最后修改时间"]
 DOC_HEADERS = ["#", "状态", "项目", "说明"]
 GEN_HEADERS = ["#", "句子", "像你本人（%）", "状态", "提示"]
@@ -232,14 +242,30 @@ APP_CSS = """
   white-space:nowrap;font-weight:600}
 .vt-menu-btn:hover{background:#f3f4f6}
 .vt-light{margin-right:6px;font-size:15px;vertical-align:middle}
-.vt-flag{display:none}
+.vt-mark{display:none}
 .vt-green{color:#15803d;font-weight:700;background:#dcfce7}
-/* 不用来训练的行（删除的 / 程序判断不能用的）：整行变灰。:has() 不认识的旧浏览器由 REVIEW_JS 加上 vt-row-del */
-#vt-clips tbody tr:has(.vt-flag) td,#vt-clips tbody tr.vt-row-del td{background:#e5e7eb!important;
+.vt-notext{color:#9ca3af;font-style:italic}
+/* 整行上色（:has() 不认识的旧浏览器由 REVIEW_JS 的 markRows() 加上 vt-row-del / vt-row-unused / vt-row-train / vt-row-out）
+   老师删除的：紫色（= 不用来训练）；程序判断不能用的：灰色 */
+#vt-clips tbody tr:has(.vt-mark-del) td,#vt-clips tbody tr.vt-row-del td{background:#e9d5ff!important;
+  color:#6b21a8!important}
+#vt-clips tbody tr:has(.vt-mark-del) td *,#vt-clips tbody tr.vt-row-del td *{color:#6b21a8!important;
+  background:transparent!important;border-color:#c084fc!important}
+#vt-clips tbody tr:has(.vt-mark-unused) td,#vt-clips tbody tr.vt-row-unused td{background:#e5e7eb!important;
   color:#9ca3af!important}
-#vt-clips tbody tr:has(.vt-flag) td *,#vt-clips tbody tr.vt-row-del td *{color:#9ca3af!important;
+#vt-clips tbody tr:has(.vt-mark-unused) td *,#vt-clips tbody tr.vt-row-unused td *{color:#9ca3af!important;
   background:transparent!important;border-color:#d1d5db!important}
-.dark #vt-clips tbody tr:has(.vt-flag) td,.dark #vt-clips tbody tr.vt-row-del td{background:#374151!important}
+.dark #vt-clips tbody tr:has(.vt-mark-del) td,.dark #vt-clips tbody tr.vt-row-del td{background:#4c1d95!important}
+.dark #vt-clips tbody tr:has(.vt-mark-del) td *,.dark #vt-clips tbody tr.vt-row-del td *{color:#e9d5ff!important}
+.dark #vt-clips tbody tr:has(.vt-mark-unused) td,.dark #vt-clips tbody tr.vt-row-unused td{background:#374151!important}
+/* 点过「确认训练素材」以后：用来训练的行号橙色，不用的行号不显示 */
+#vt-clips tbody tr:has(.vt-mark-train) td:first-child,#vt-clips tbody tr:has(.vt-mark-train) td:first-child *,
+#vt-clips tbody tr.vt-row-train td:first-child,#vt-clips tbody tr.vt-row-train td:first-child *{color:#ea580c!important;
+  font-weight:800!important;font-size:15px}
+#vt-clips tbody tr:has(.vt-mark-out) td:first-child,#vt-clips tbody tr:has(.vt-mark-out) td:first-child *,
+#vt-clips tbody tr.vt-row-out td:first-child,#vt-clips tbody tr.vt-row-out td:first-child *{color:transparent!important}
+.vt-confirm-btn{background:#16a34a!important;color:#fff!important;border-color:#15803d!important;font-weight:700!important}
+.vt-confirm-btn:hover{background:#15803d!important}
 .dark .vt-menu-btn:hover{background:rgba(255,255,255,.08)}
 .vt-editor{position:absolute;z-index:2000;background:var(--background-fill-primary,#fff);border:2px solid #f97316;
   border-radius:8px;box-shadow:0 8px 28px rgba(0,0,0,.22);padding:8px 10px 6px;box-sizing:border-box}
@@ -287,7 +313,7 @@ GUARD_JS = """() => {
 # - 双击「语言」：切换中文 / 英文；
 # - 点「修改建议」里的蓝色小按钮：采用建议（按钮变红 = 生效）；再点红色按钮：撤销；点「⋯ 选项」：弹出菜单（只保存这一行 / 撤销 / 这句没错 / 删除，删除要再确认一次）；
 #   删除的行变灰（不用来训练），它的菜单里是「↩️ 撤销删除」；
-# - 删除的行整行变灰：CSS 用 :has()，旧浏览器由 markRows() 给那一行加上 vt-row-del。
+# - 删除的行整行紫色、程序判断不能用的灰色、确认以后行号橙色 / 不显示：CSS 用 :has()，旧浏览器由 markRows() 加 class。
 # 每个操作都把 {"action", "id", ...} 放进隐藏的输入框 #vt-clip-action，再按隐藏的按钮 #vt-clip-action-btn，
 # 由 WebUI.do_clip_action 处理并重新画出整张表。行用 id 列找（排序、筛选、表格重画以后都不会找错）。
 REVIEW_JS_TEMPLATE = r"""() => {
@@ -324,14 +350,18 @@ REVIEW_JS_TEMPLATE = r"""() => {
     const idCell = tds[C.id];
     const m = tds[C.menu];
     const has = (sel) => !!(m && m.querySelector(sel));
-    return {tr: tr, tds: tds, col: tds.indexOf(td), deleted: has('.vt-flag-del'), unused: has('.vt-flag-unused'),
+    return {tr: tr, tds: tds, col: tds.indexOf(td), deleted: has('.vt-mark-del'), unused: has('.vt-mark-unused'),
             dirty: has('.vt-light-dirty'),
             id: idCell ? idCell.innerText.trim() : '', no: tds[0] ? tds[0].innerText.trim() : ''};
   }
   function markRows() {
     const rows = document.querySelectorAll('#vt-clips tbody.tbody tr');
     for (let i = 0; i < rows.length; i++) {
-      rows[i].classList.toggle('vt-row-del', !!rows[i].querySelector('.vt-flag'));
+      const r = rows[i];
+      r.classList.toggle('vt-row-del', !!r.querySelector('.vt-mark-del'));
+      r.classList.toggle('vt-row-unused', !!r.querySelector('.vt-mark-unused'));
+      r.classList.toggle('vt-row-train', !!r.querySelector('.vt-mark-train'));
+      r.classList.toggle('vt-row-out', !!r.querySelector('.vt-mark-out'));
     }
   }
   function findTd(id, col) {
@@ -415,7 +445,7 @@ REVIEW_JS_TEMPLATE = r"""() => {
     closeMenu();
     const box = el('div', 'vt-editor');
     const ta = el('textarea', 'vt-editor-text');
-    ta.value = (td.innerText || '').trim();
+    ta.value = td.querySelector('.vt-notext') ? '' : (td.innerText || '').trim();  // 「还没有识别出文字」只是提示
     ta.setAttribute('spellcheck', 'false');
     ta.setAttribute('aria-label', '修改第 ' + info.no + ' 条的文字');
     const bar = el('div', 'vt-editor-bar');
@@ -501,7 +531,7 @@ REVIEW_JS_TEMPLATE = r"""() => {
     function showMain() {
       box.innerHTML = '';
       if (info.deleted) {
-        box.appendChild(el('div', 'vt-menu-title', '第 ' + info.no + ' 条（已删除，灰色 = 不用来训练）'));
+        box.appendChild(el('div', 'vt-menu-title', '第 ' + info.no + ' 条（已删除，紫色 = 不用来训练）'));
         item('↩️ 撤销删除', true, () => act('restore'));
         item('🔊 听一听这一条', true, listen);
         item('✖ 关闭', true, closeMenu);
@@ -522,7 +552,7 @@ REVIEW_JS_TEMPLATE = r"""() => {
       box.innerHTML = '';
       box.appendChild(el('div', 'vt-menu-title vt-menu-danger', '确定要删除第 ' + info.no + ' 条吗？'));
       box.appendChild(el('div', 'vt-menu-note',
-        '删除后这一行变成灰色，不会用来训练（录音文件不会删掉）。删错了随时可以在「⋯ 选项」里点「↩️ 撤销删除」。'));
+        '删除后这一行变成紫色，不会用来训练（录音文件不会删掉）。删错了随时可以在「⋯ 选项」里点「↩️ 撤销删除」。'));
       const row = el('div', 'vt-menu-row');
       const yes = el('button', 'vt-menu-item vt-menu-yes', '🗑️ 确定删除');
       const no = el('button', 'vt-menu-item', '取消');
@@ -1260,9 +1290,14 @@ def _suggest_cell(info: Dict[str, Any]) -> str:
     return ""
 
 
-def _text_html(info: Dict[str, Any]) -> str:
-    """「文字」那一列：老师改过、新打上去的字是绿色（和最初识别的文字比），别的照常。"""
+def _text_html(info: Dict[str, Any], rec: Optional[Dict[str, Any]] = None) -> str:
+    """「文字」那一列：老师改过、新打上去的字是绿色（和最初识别的文字比），别的照常。
+    没有文字时写一句灰色的提示（双击照样可以自己打字）。"""
     text = str(info.get("text") or "")
+    if not text.strip():
+        done = bool((rec or {}).get("asr_done"))
+        return ('<span class="vt-notext">（没有识别出文字）</span>' if done
+                else '<span class="vt-notext">（还没有识别出文字）</span>')
     out: List[str] = []
     pos = 0
     for s, e in info.get("blue") or []:
@@ -1273,7 +1308,8 @@ def _text_html(info: Dict[str, Any]) -> str:
 
 
 def _clips_table(cfg: Config, voice: Any, only_suspect: bool = False) -> List[List[Any]]:
-    """校对表：每条片段一行。不用来训练的变灰（老师删除的「⚪ 已删除」，程序判断不能用的「⚪ 不用」，不写原因）。
+    """校对表：每条片段一行。老师删除的整行紫色，程序判断不能用的（比如没有文字）整行灰色，不写原因；
+    点过「确认训练素材」以后，用来训练的行号橙色、不用的不显示行号（按硬盘上保存的样子）。
     显示的是「保存过的 + 没保存的修改（草稿）」。
     # 是显示的序号（从 1 开始），找片段一律用 id 列。只看可能有错的：没保存的修改也一直显示，免得看不到。"""
     voice = _voice_name(voice)
@@ -1281,8 +1317,10 @@ def _clips_table(cfg: Config, voice: Any, only_suspect: bool = False) -> List[Li
         return []
     project = wf.Project(cfg, voice)
     draft = _review.load_draft(project)
+    records = project.load_manifest()
+    confirmed = bool(_review.load_confirmed(project))  # 点过「确认训练素材」：行号橙色 / 不显示（按现在的样子）
     rows: List[List[Any]] = []
-    for r in project.load_manifest():
+    for r in records:
         entry = draft.get(r["id"])
         vals = _review.current_values(r, entry)
         dirty = _review.is_dirty(r, entry)
@@ -1291,11 +1329,12 @@ def _clips_table(cfg: Config, voice: Any, only_suspect: bool = False) -> List[Li
             continue
         deleted = bool(r.get("deleted"))
         menu = _menu_cell(dirty=dirty and not deleted, saved=_review.has_saved_edit(r) and not deleted,
-                          deleted=deleted, unused=not deleted and not vals["keep"])
+                          deleted=deleted, unused=not deleted and not _review.is_material(dict(r, keep=vals["keep"])),
+                          train=_review.is_material(r) if confirmed else None)
         colored = _colored_html(info)
         suggest = "" if deleted or not colored else _suggest_cell(info)  # 「可能有错」那一列空着：没有建议按钮
         rows.append([len(rows) + 1, r["id"], _LANG_NAMES.get(vals["lang"], vals["lang"]),
-                     round(float(r.get("duration", 0) or 0), 1), _text_html(info), colored, suggest, menu])
+                     round(float(r.get("duration", 0) or 0), 1), _text_html(info, r), colored, suggest, menu])
     return rows
 
 
@@ -1317,34 +1356,71 @@ def _pending_note(n: int) -> str:
             "或者在那一行的「⋯ 选项」里只保存那一行。")
 
 
+def _material_formula(c: Dict[str, Any]) -> str:
+    """「1000 − 2（你删除的）= 998」：老师删几条就减几条，撤销删除就加回来。"""
+    terms = []
+    if c["deleted"]:
+        terms.append(f"{c['deleted']}（你删除的）")
+    if c["unusable"]:
+        terms.append(f"{c['unusable']}（程序判断不能用的）")
+    if not terms:
+        return f"**{c['material']}** 条"
+    return f"{c['total']} − " + " − ".join(terms) + f" = **{c['material']}** 条"
+
+
+def _no_text_note(c: Dict[str, Any]) -> str:
+    """没有文字的片段：说清楚为什么、怎么办。"""
+    if not c["no_text"]:
+        return ""
+    if c["pending"]:
+        return (f"⚠️ **有 {c['pending']} 条还没有识别出文字**（表格里写着「还没有识别出文字」，它们不能用来训练）：上次「开始准备素材」的"
+                "「识别文字」这一步没有做完（可能中途点了停止，或者出错了）。**请再点一次上面的「开始准备素材」**，"
+                "会接着把文字识别完（已经切好的片段不用重做，不用重新上传）。")
+    return (f"ℹ️ 有 {c['no_text']} 条识别引擎没听出文字（可能是音乐、咳嗽、杂音），不会用来训练；"
+            "确实是你在说话的，可以双击「文字」自己打上去。")
+
+
 def _clips_count_md(cfg: Config, voice: Any) -> str:
-    """校对表上方的总数：一共多少条、保留多少条（多少分钟）、不保留多少条、几条可能有错。"""
+    """校对表上方：用来训练的句子数（一共 − 你删除的 − 程序判断不能用的 = 用来训练的）、考试题、可能有错、确认了没有。"""
     voice = _voice_name(voice)
     if not voice:
         return NEED_VOICE
     try:
-        records = wf.Project(cfg, voice).load_manifest()
+        project = wf.Project(cfg, voice)
+        records = project.load_manifest()
     except ValueError as exc:
         return "⚠️ " + _md_text(exc)
     if not records:
         return "还没有片段，请先点上面的「开始准备素材」。"
-    kept = [r for r in records if r.get("keep", True)]
-    minutes = sum(float(r.get("duration", 0) or 0) for r in kept) / 60.0
-    val = sum(1 for r in kept if r.get("split") == "val")
-    deleted = sum(1 for r in records if r.get("deleted"))
+    c = _review.material_counts(records)
+    material = [r for r in records if _review.is_material(r)]
     sus = sum(1 for r in records if not r.get("deleted") and _suspect(r))
     by_lang: Dict[str, int] = {}
-    for r in kept:
+    for r in material:
         by_lang[r.get("lang", "")] = by_lang.get(r.get("lang", ""), 0) + 1
-    langs = "，".join(f"{_LANG_NAMES.get(k, k or '未知')} {v} 条" for k, v in sorted(by_lang.items()))
-    text = (f"### 📊 一共 **{len(records)}** 条片段：保留 **{len(kept)}** 条（{minutes:.1f} 分钟），"
-            f"不保留 **{len(records) - len(kept)}** 条")
-    if deleted:
-        text += f"（其中你删除的 {deleted} 条）"
+    text = f"### 🎯 用来训练的句子：{_material_formula(c)}（{c['minutes']:.1f} 分钟）"
+    details = []
+    if c["val"]:
+        details.append(f"其中 {c['train']} 条训练、{c['val']} 条当「考试题」（不训练，用来自动挑选最像你的模型）")
+    if by_lang:
+        details.append("，".join(f"{_LANG_NAMES.get(k, k or '未知')} {v} 条" for k, v in sorted(by_lang.items())))
     if sus:
-        text += f"，**{sus}** 条可能有错（已标红）"
-    details = [x for x in (langs, f"其中 {val} 条留作「考试题」（用来自动挑选最像你的模型）" if val else "") if x]
-    text += ("\n\n" + "；".join(details) if details else "")
+        details.append(f"**{sus}** 条可能有错（已标红）")
+    if details:
+        text += "\n\n" + "；".join(details)
+    conf = _review.load_confirmed(project)
+    if conf:
+        when = str(conf.get("time") or "")[5:16]
+        if conf.get("signature") == _review.material_signature(records):
+            text += (f"\n\n✅ **训练素材已确认**（{when}）：行号是**橙色**的句子用来训练，没有行号的不用。")
+        else:
+            text += (f"\n\n⚠️ 确认（{when}）以后又改过（删除、撤销删除或保存了修改），行号已经按现在的样子显示；"
+                     "改好了请再点一次最下面的「✅ 确认训练素材」。")
+    else:
+        text += "\n\n改好以后点最下面的「✅ 确认训练素材」：用来训练的句子行号会变成**橙色**，不用的不显示行号。"
+    note = _no_text_note(c)
+    if note:
+        text += "\n\n" + note
     unsaved = _unsaved_count(cfg, voice)
     return text + ("\n\n" + _pending_note(unsaved) if unsaved else "")
 
@@ -2618,6 +2694,36 @@ class WebUI:
         res = wf.review_save(self.cfg, v)
         return self._save_md(res), _clips_count_md(self.cfg, v), _clips_table(self.cfg, v, bool(only_sus))
 
+    def do_confirm(self, voice: Any, only_sus: Any = False) -> Tuple[Any, Any, Any]:
+        """「✅ 确认训练素材」：先保存所有没保存的修改，再重新统计，记下现在用来训练的句子（行号变橙色，不用的不显示行号）。"""
+        v = _voice_name(voice)
+        if not v:
+            return NEED_VOICE, _upd(), _upd()
+        guard = self._edit_guard(v, "确认训练素材")
+        if guard:
+            return guard, _upd(), _upd()
+        project = wf.Project(self.cfg, v)
+        if not project.exists:
+            return NEED_PREPARE, _upd(), _upd()
+        res = wf.review_confirm(self.cfg, v)
+        c = res["counts"]
+        if res.get("confirmed"):
+            md = (f"### ✅ 训练素材已确认：{_material_formula(c)}（{c['minutes']:.1f} 分钟）\n\n"
+                  "表格里**行号是橙色**的句子会用来训练；**没有行号**的（紫色 = 你删除的，灰色 = 程序判断不能用的）不用。")
+            if c["val"]:
+                md += f"\n\n其中 {c['train']} 条训练、{c['val']} 条当「考试题」（不训练，用来自动挑选最像你的模型）。"
+            _info(f"✅ 训练素材已确认：{c['material']} 条")
+        else:
+            md = "### ⚠️ 现在一条能用来训练的句子都没有，所以没有确认。"
+        if res.get("saved"):
+            md += f"\n\n（先帮你保存了 {len(res['saved'])} 条没保存的修改。）"
+        note = _no_text_note(c)
+        if note:
+            md += "\n\n" + note
+        if res.get("csv_locked"):
+            md += "\n\n⚠️ transcripts.csv 正被 Excel/WPS 打开，那个文件这次没能同步（程序里已经保存好了）。"
+        return md, _clips_count_md(self.cfg, v), _clips_table(self.cfg, v, bool(only_sus))
+
     @staticmethod
     def _save_md(res: Dict[str, Any], one: str = "") -> str:
         if not res.get("saved"):
@@ -2672,6 +2778,9 @@ class WebUI:
             msg = (f"✏️ {which}改好了（🔴 没保存）：{_md_text(res['values']['text'])}" if res["dirty"]
                    else f"{which}和保存过的一样，不用保存。")
         elif action == "use":
+            if not str(vals["text"] or "").strip():
+                return self._review_outputs(v, only_sus, f"{which}还没有文字，不能用来训练：先双击「文字」把这句话打上去"
+                                                         "（或者再点一次「开始准备素材」让程序识别），再保存。")
             res = _review.set_draft(project, cid, keep=True)
             msg = f"✅ {which}改成要用了（🔴 没保存，保存以后用来训练）。" if res["dirty"] else f"{which}本来就要用。"
         elif action == "keep":
@@ -2693,20 +2802,28 @@ class WebUI:
         elif action == "revert":
             n = _review.discard_draft(project, cid)
             msg = f"↩️ {which}已撤销修改，回到保存过的样子。" if n else f"{which}没有要撤销的修改。"
-        elif action == "save_row":
-            res = wf.review_save(self.cfg, v, [cid])
-            msg = self._save_md(res, one=which)
-            if res.get("saved"):
-                _info(f"✅ {which}已保存")
-        elif action == "delete":
-            res = wf.review_delete(self.cfg, v, cid)
-            msg = (f"🗑️ 已删除{which}：这一行变成灰色，不会用来训练。删错了？在这一行的「⋯ 选项」里点「↩️ 撤销删除」。"
-                   + ("\n\n⚠️ transcripts.csv 正被 Excel/WPS 打开，那个文件这次没能同步。" if res.get("csv_locked") else ""))
-            _info(f"🗑️ 已删除{which}（变灰了，可以撤销）")
-        elif action == "restore":
-            wf.review_restore(self.cfg, v, cid)
-            msg = f"↩️ 已撤销删除，{which}回来了：{_md_text(str(rec.get('text', ''))[:30])}"
-            _info(f"↩️ {which}回来了")
+        elif action in ("save_row", "delete", "restore"):
+            # 这三个马上写进校对表、再重新统计。重新统计出了问题（例如一条能用的都没有）也照样刷新表格：
+            # 删除 / 撤销删除本身已经保存好了，不能让老师看到报错却以为没删掉（v18.1 老师遇到过）
+            try:
+                if action == "save_row":
+                    res = wf.review_save(self.cfg, v, [cid])
+                    msg = self._save_md(res, one=which)
+                    if res.get("saved"):
+                        _info(f"✅ {which}已保存")
+                elif action == "delete":
+                    res = wf.review_delete(self.cfg, v, cid)
+                    msg = (f"🗑️ 已删除{which}：**这一行变成紫色，不再算训练素材**。删错了？在这一行的「⋯ 选项」里点"
+                           "「↩️ 撤销删除」。"
+                           + ("\n\n⚠️ transcripts.csv 正被 Excel/WPS 打开，那个文件这次没能同步。" if res.get("csv_locked") else ""))
+                    _info(f"🗑️ 已删除{which}（变紫色了，可以撤销）")
+                else:
+                    wf.review_restore(self.cfg, v, cid)
+                    msg = f"↩️ 已撤销删除，{which}回来了（不再是紫色），又算训练素材了：{_md_text(str(rec.get('text', ''))[:30])}"
+                    _info(f"↩️ {which}回来了")
+            except Exception as exc:  # noqa: BLE001 - 表格照样刷新，说明写在表格上方
+                log.error(f"校对表「{action}」出错：{exc}", exc_info=True)
+                msg = _friendly(exc, {"save_row": "保存这一行", "delete": "删除", "restore": "撤销删除"}[action])
         elif action == "ok":
             from voicetwin.data.proofcheck import dismiss_suspect
 
@@ -3451,6 +3568,7 @@ class WebUI:
                                 "请看一眼对不对（不对就双击「文字」再改，或者在「⋯ 选项」里撤销）。",
                                 elem_classes="vt-honest")
                     save_clips = gr.Button("保存修改", variant="primary")
+                    c["confirm_btn"] = gr.Button(CONFIRM_BTN, elem_classes="vt-confirm-btn")
                     c["review_md"] = gr.Markdown(elem_classes="vt-md")
 
                 # ---------------------------------------------------- ② 训练
@@ -3682,6 +3800,8 @@ class WebUI:
                                        [c["voice"], c["clip_action"], c["only_sus"]], review_outs, **quick)
             save_clips.click(_safe("保存修改", 3, 0)(self.do_save), [c["voice"], c["clips"], c["only_sus"]],
                              [c["review_md"], c["clips_count"], c["clips"]], **quick)
+            c["confirm_btn"].click(_safe("确认训练素材", 3, 0)(self.do_confirm), [c["voice"], c["only_sus"]],
+                                   [c["review_md"], c["clips_count"], c["clips"]], **quick)
             c["proof_btn"].click(_settled(self.do_proofcheck), [c["voice"], c["only_sus"]], outs(self.PROOF_OUT),
                                  **heavy).then(
                 _safe("载入片段", 2, 0)(self.refresh_clips), [c["voice"], c["only_sus"], c["clips"]], clip_outs, **quick).then(

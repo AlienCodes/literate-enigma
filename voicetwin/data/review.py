@@ -488,3 +488,59 @@ def restore_clip(project: Any, clip_id: str) -> Dict[str, Any]:
 
 def deleted_records(project: Any) -> List[Dict[str, Any]]:
     return [r for r in project.load_manifest() if r.get("deleted")]
+
+
+# ============================================================================ 训练素材：数量、确认
+CONFIRM_FILE = "review_confirmed.json"
+
+
+def is_material(rec: Dict[str, Any]) -> bool:
+    """这一条会不会用来训练（含「考试题」）：没被删除、程序判断能用、有文字。"""
+    return (not rec.get("deleted")) and bool(rec.get("keep", True)) and bool(str(rec.get("text") or "").strip())
+
+
+def material_counts(records: Sequence[Dict[str, Any]]) -> Dict[str, Any]:
+    """校对表上方那一行的数字：一共 total − 你删除的 deleted − 程序判断不能用的 unusable = 用来训练的 material。
+
+    material 里 val 条是「考试题」（不进训练，用来自动挑选最像你的模型），train = material − val。
+    no_text：没有文字的片段（不算删除的）；pending：其中「识别文字」这一步还没做的（再点开始准备素材会接着识别）。"""
+    total = len(records)
+    deleted = sum(1 for r in records if r.get("deleted"))
+    material = [r for r in records if is_material(r)]
+    val = sum(1 for r in material if r.get("split") == "val")
+    no_text = [r for r in records if not r.get("deleted") and not str(r.get("text") or "").strip()]
+    return {"total": total, "deleted": deleted, "unusable": total - deleted - len(material),
+            "material": len(material), "val": val, "train": len(material) - val,
+            "minutes": round(sum(float(r.get("duration", 0) or 0) for r in material) / 60.0, 1),
+            "no_text": len(no_text), "pending": sum(1 for r in no_text if not r.get("asr_done"))}
+
+
+def material_signature(records: Sequence[Dict[str, Any]]) -> str:
+    """用来训练的是哪些句子、文字是什么：确认以后又改过（删除、恢复、保存了修改）时这个值会变。"""
+    import hashlib
+
+    items = sorted(f"{r.get('id')}\t{r.get('text')}" for r in records if is_material(r))
+    return hashlib.sha1("\n".join(items).encode("utf-8")).hexdigest()
+
+
+def confirm_path(project: Any) -> Path:
+    return Path(project.root) / CONFIRM_FILE
+
+
+def load_confirmed(project: Any) -> Dict[str, Any]:
+    """{"time": "...", "signature": "...", "counts": {...}}；还没确认过（或文件坏了）返回 {}。"""
+    try:
+        data = json.loads(confirm_path(project).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    return data if isinstance(data, dict) and data.get("signature") else {}
+
+
+def save_confirmed(project: Any, records: Sequence[Dict[str, Any]]) -> Dict[str, Any]:
+    data = {"time": time.strftime("%Y-%m-%d %H:%M:%S"), "signature": material_signature(records),
+            "counts": material_counts(records)}
+    p = confirm_path(project)
+    tmp = p.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    tmp.replace(p)
+    return data
