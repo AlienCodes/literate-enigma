@@ -52,7 +52,7 @@ STAGES_NARRATE_VARIANTS: List[Stage] = [(0.00, "启动合成引擎"), (0.03, "�
                                         (0.93, "做「去杂音」版本并比较哪个更像你")]
 STAGES_DOWNLOAD: List[Stage] = [(0.0, "下载模型文件")]
 STAGES_PROOFCHECK: List[Stage] = [(0.00, "准备识别引擎"), (0.02, "逐条检查文字，标出可能的错字")]
-STAGES_TEXTFIX: List[Stage] = [(0.00, "读逐字稿"), (0.15, "一句一句和逐字稿比对")]
+STAGES_TEXTFIX: List[Stage] = [(0.00, "读母本和语法术语"), (0.15, "一句一句检查")]
 STAGES_BLIND_TEST: List[Stage] = [(0.00, "挑选你的真实录音"), (0.05, "用同样的文字生成"), (0.90, "统一音量、打乱顺序、保存")]
 STAGES_VERIFY: List[Stage] = [(0.00, "加载声纹模型"), (0.10, "逐个打分")]
 TRAIN_SELECT_SPLIT = 0.88
@@ -573,18 +573,25 @@ def run_proofcheck(cfg: Config, voice: str, progress: Optional[ProgressFn] = Non
 
 
 def run_transcript_fix(cfg: Config, voice: str, files: Optional[Sequence[Any]] = None,
-                       progress: Optional[ProgressFn] = None) -> Dict[str, Any]:
-    """📝 文字校正：用老师的逐字稿（txt）检查校对表的文字，结果写进「可能有错」列（v18.5）。
+                       progress: Optional[ProgressFn] = None, adopt_all: bool = True) -> Dict[str, Any]:
+    """📝 一键全部文字校正（v18.5）：以母本标准库为准检查校对表的文字，确定的错直接改好；
+    adopt_all=True 时再把所有的修改建议一次全部采用。改的都存成没保存的修改（红灯），老师点「保存修改」才生效。
 
-    files：这次上传的 txt（替换上次存的）；不给时用上次存在声音文件夹「逐字稿」里的。"""
+    files：这次上传的母本（txt / transcripts.csv，替换上次上传的）；不给时用上次存的（没有也行，程序自带母本）。"""
     from voicetwin.data import transcript_fix
 
     project = open_project(cfg, voice, must_exist=True)
     if files:
         info = transcript_fix.save_transcripts(project, files)
         _report(progress, 0.01, f"已保存逐字稿：{'、'.join(info['files'])}（共 {info['chars']} 字）")
-    res = transcript_fix.check_with_transcript(project, progress=progress)
-    return dict(res or {})
+    res = dict(transcript_fix.check_with_transcript(project, progress=_sub(progress, 0.0, 0.95)) or {})
+    if adopt_all:  # 一键全部文字校正：剩下的修改建议（标准库的、自动查错字的）也一次全部采用
+        from voicetwin.data import review
+
+        _report(progress, 0.96, "把所有的修改建议一次全部采用……")
+        res["adopted"] = review.adopt_all_suggestions(project)
+        _report(progress, 1.0, f"校正完了：一共改了 {res.get('fixes', 0) + res['adopted']['changes']} 处")
+    return res
 
 
 def transcript_info(cfg: Config, voice: str) -> Dict[str, Any]:

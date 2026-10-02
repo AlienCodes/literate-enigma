@@ -400,6 +400,28 @@ class Lexicon:
 
 
 # ============================================================================ 老师以前改过的
+def _word_around(a: Sequence[Any], b: Sequence[Any], i: int, j: int, new: str) -> Optional[Tuple[int, int, int, int]]:
+    """改了一个字：右边（或左边）连着一个没改的汉字、改好以后这两个字是一个词（标准库里的词或者 jieba 词典里的词），
+    返回扩大以后的范围；凑不成词返回 None。"""
+    vocab = set(builtin_terms())
+    for di, dj, si, sj in ((0, 0, 2, 2), (-1, -1, 2, 2)):
+        i1, j1 = i + di, j + dj
+        i2, j2 = i1 + si, j1 + sj
+        if i1 < 0 or j1 < 0 or i2 > len(a) or j2 > len(b):
+            continue
+        if any(t.kind != "han" for t in list(a[i1:i2]) + list(b[j1:j2])):
+            continue
+        k = i1 if di == 0 else i1  # 没改的那个字两边要一样
+        other_a = a[i1 + 1] if di == 0 else a[i1]
+        other_b = b[j1 + 1] if dj == 0 else b[j1]
+        if other_a.key != other_b.key:
+            continue
+        word = new[b[j1].start:b[j2 - 1].end]
+        if word in vocab or word_freq(word) > 0:
+            return i1, i2, j1, j2
+    return None
+
+
 def learn_from_edits(records: Iterable[Dict[str, Any]]) -> Dict[str, str]:
     """校对表里老师改过的地方（最初识别的文字 orig_text → 改好的 text）：读音相同或相近的词、英文被写成汉字。
 
@@ -416,6 +438,12 @@ def learn_from_edits(records: Iterable[Dict[str, Any]]) -> Dict[str, str]:
         for tag, i1, i2, j1, j2 in sm.get_opcodes():
             if tag != "replace" or not (1 <= i2 - i1 <= 4 and 1 <= j2 - j1 <= 4):
                 continue
+            if i2 - i1 == 1 and j2 - j1 == 1 and a[i1].kind == "han" and b[j1].kind == "han":
+                # 只改了一个字（关系带词 → 关系代词）：连上旁边没改的字，凑成一个词（带词 → 代词）再学
+                ext = _word_around(a, b, i1, j1, new)
+                if ext is None:
+                    continue
+                i1, i2, j1, j2 = ext
             at, bt = a[i1:i2], b[j1:j2]
             wrong = old[at[0].start:at[-1].end]
             right = new[bt[0].start:bt[-1].end]

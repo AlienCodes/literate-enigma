@@ -391,6 +391,43 @@ def unadopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
         return out
 
 
+def adopt_all_suggestions(project: Any) -> Dict[str, Any]:
+    """「一键全部文字校正」的第二步：所有还没采用的修改建议一次全部采用（和一行一行点「采用」一样，存成草稿、红灯）。
+
+    删除的行不动；只标红、没有建议的地方没法自动改（不知道该改成什么），留着红色。
+    返回 {"rows": 改了几条, "changes": 改了几处, "no_suggestion": 只标红没有建议的有几条, "examples": [...]}。"""
+    with _LOCK:
+        records = project.load_manifest()
+        draft = load_draft(project)
+        rows = changes = no_sug = 0
+        examples: List[str] = []
+        for rec in records:
+            if rec.get("deleted"):
+                continue
+            rid = rec.get("id")
+            vals = current_values(rec, draft.get(rid))
+            info = analyze(rec, vals["text"])
+            if not info["edits"]:
+                if info["red"]:
+                    no_sug += 1
+                continue
+            new = apply_edits(vals["text"], info["edits"])
+            if not new or new == vals["text"]:
+                continue
+            if len(examples) < 6:
+                examples.append(describe_edits(vals["text"], info["edits"], limit=1))
+            nv = dict(vals, text=new, lang=detect_lang(new) or vals["lang"])
+            if nv == saved_values(rec):
+                draft.pop(rid, None)
+            else:
+                draft[rid] = nv
+            rows += 1
+            changes += len(info["edits"])
+        if rows:
+            save_draft(project, draft)
+        return {"rows": rows, "changes": changes, "no_suggestion": no_sug, "examples": examples}
+
+
 # ============================================================================ 保存、删除、恢复
 def _apply_text(rec: Dict[str, Any], text: str) -> None:
     """改文字（apply_text_edit 会记下最初识别的文字、换算没改到的红字位置）。"""

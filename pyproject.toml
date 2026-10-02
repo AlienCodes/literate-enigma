@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "voicetwin"
-version = "18.4"
+version = "18.5"
 description = "声音分身 VoiceTwin：用你自己的讲课录音/视频，复刻你的音色、语气和节奏（中文 + 英文）"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -33,7 +33,7 @@ sv = ["onnxruntime>=1.14"]
 separate = ["demucs>=4.0"]
 webui = ["gradio>=4.0"]
 docx = ["python-docx>=1.0"]
-dev = ["pytest>=7", "fastapi", "uvicorn", "python-multipart"]  # tests/test_gsv_real_api.py 运行真实的 GPT-SoVITS api_v2.py（整合包里是 fastapi[standard]，带 python-multipart）
+dev = ["pytest>=7", "fastapi", "uvicorn", "python-multipart", "pypinyin", "jieba"]  # tests/test_gsv_real_api.py 运行真实的 GPT-SoVITS api_v2.py（整合包里是 fastapi[standard]，带 python-multipart）；文字校正要用 pypinyin、jieba（整合包里都有）
 
 [project.scripts]
 voicetwin = "voicetwin.cli:main"
@@ -42,7 +42,7 @@ voicetwin = "voicetwin.cli:main"
 include = ["voicetwin*"]
 
 [tool.setuptools.package-data]
-voicetwin = ["backends/workers/*.py", "default_config.yaml", "eval/sv_cohort.npz"]
+voicetwin = ["backends/workers/*.py", "default_config.yaml", "eval/sv_cohort.npz", "data/lexicon/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

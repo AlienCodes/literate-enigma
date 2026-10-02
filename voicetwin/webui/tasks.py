@@ -45,7 +45,7 @@ KIND_LABELS = {
     "generate": "生成讲课音频",
     "download": "下载模型",
     "proofcheck": "查找可能的错字",
-    "textfix": "文字校正",
+    "textfix": "一键全部文字校正",
     "speed": "试听语速",
     "verify": "机器鉴别",
     "blind": "生成盲听测试",
@@ -67,7 +67,7 @@ KIND_TABS = {
 KIND_BUTTONS = {
     "prepare": "开始准备素材",
     "proofcheck": "🔍 自动查找可能的错字",
-    "textfix": "📝 文字校正",
+    "textfix": "📝 一键全部文字校正",
     "train": "开始训练",
     "select": "重新挑选最佳模型",
     "generate": "生成",

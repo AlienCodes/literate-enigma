@@ -651,8 +651,11 @@ class _Align:
         return left, right, i1 == 0, i2 == len(self.exact)
 
     def confirmed(self) -> Set[int]:
-        """逐字稿证明没错的字（识别文字里的位置）：整句对齐时连着 ≥ 2 个一模一样，局部对齐时连着 ≥ 4 个。"""
-        need = 2 if self.mode == "S" else CONFIRM_RUN_L
+        """母本证明没错的字（识别文字里的位置）：只有整句几乎一样（≥ 85% 的字对得上）时，连着 ≥ 2 个一模一样的字才算。
+        局部对上（「这个句子」这种常说的话）不能证明录音里就是这么说的，不算。"""
+        if self.mode != "S" or self.cov < STRONG_COVERAGE:
+            return set()
+        need = 2
         out: Set[int] = set()
         k, n = 0, len(self.exact)
         while k < n:
