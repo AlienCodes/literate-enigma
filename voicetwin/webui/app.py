@@ -1376,14 +1376,16 @@ def _clips_table(cfg: Config, voice: Any, only_suspect: bool = False) -> List[Li
     draft = _review.load_draft(project)
     records = project.load_manifest()
     confirmed = bool(_review.load_confirmed(project))  # 点过「确认训练素材」：行号橙色 / 不显示（按现在的样子）
-    # 查找时（上面的查找框）：只显示找到的句子，找到的字黄色，现在这一处橙色
+    # 查找时（上面的查找框）：只显示这次找到过的句子（换完、删除了也不会不见），找到的字黄色，现在这一处橙色
     find = _review.load_find(project)
     by_row: Dict[str, List[Tuple[int, int, bool]]] = {}
+    shown = set(find.get("ids") or [])
     if find:
         matches = _review.find_matches(project, find["q"], find.get("word", True))
         cur = min(int(find.get("i", 0)), len(matches) - 1) if matches else -1
         for k, (rid, s0, e0) in enumerate(matches):
             by_row.setdefault(rid, []).append((s0, e0, k == cur))
+        shown |= set(by_row)
     rows: List[List[Any]] = []
     for no, r in enumerate(records, 1):  # 行号是在整张表里的位置（筛选以后也不变，「第 164 条」一直是同一句）
         entry = draft.get(r["id"])
@@ -1392,7 +1394,7 @@ def _clips_table(cfg: Config, voice: Any, only_suspect: bool = False) -> List[Li
         info = _review.analyze(r, vals["text"])
         if only_suspect and not (info["active"] or dirty):
             continue
-        if find and r["id"] not in by_row:
+        if find and r["id"] not in shown:
             continue
         deleted = bool(r.get("deleted"))
         menu = _menu_cell(dirty=dirty and not deleted, saved=_review.has_saved_edit(r) and not deleted,
@@ -1489,8 +1491,9 @@ def _clips_count_md(cfg: Config, voice: Any) -> str:
     find = _review.load_find(project)
     if find:
         matches = _review.find_matches(project, find["q"], find.get("word", True))
-        text += (f"\n\n🔍 **正在查找「{_md_text(find['q'])}」**：找到 {len(matches)} 处"
-                 f"（{len({m[0] for m in matches})} 句），表格里只列出这些句子；点「✖ 关闭查找」看全部。")
+        seen = len(set(find.get("ids") or []) | {m[0] for m in matches})
+        text += (f"\n\n🔍 **正在查找「{_md_text(find['q'])}」**：现在有 {len(matches)} 处"
+                 f"（{len({m[0] for m in matches})} 句），表格里只列出这次找到过的 {seen} 句；点「✖ 关闭查找」看全部。")
     note = _no_text_note(c)
     if note:
         text += "\n\n" + note
@@ -2790,12 +2793,18 @@ class WebUI:
                 head = (f"🔍 找到 <b>{len(matches)}</b> 处「{html.escape(find['q'])}」（在 {len({m[0] for m in matches})} 句里）"
                         f"　·　现在是第 <b>{i + 1}</b> 处（第 {no} 条，<span class=\"vt-find-cur\">橙色</span>的那个）")
                 attrs = (f' data-count="{len(matches)}" data-q="{html.escape(find["q"], quote=True)}"'
-                         f' data-cur-id="{html.escape(rid, quote=True)}" data-cur-no="{no}" data-seq="{time.time():.3f}"')
+                         f' data-cur-id="{html.escape(rid, quote=True)}" data-cur-no="{no}"')
+            elif find.get("ids"):
+                head = (f"🔍 现在没有「{html.escape(find['q'])}」了。下面列出的是这次找到过的 {len(find['ids'])} 句"
+                        "（改过的字是绿色）；点「✖ 关闭查找」看全部句子。")
+                attrs = ' data-count="0"'
             else:
-                head = f"🔍 没有找到「{html.escape(find['q'])}」" + ("（英文只找整个单词：可以把下面的勾去掉再找）"
-                                                                 if find.get("word", True) else "")
+                head = (f"🔍 没有找到「{html.escape(find['q'])}」" + ("（英文只找整个单词：可以把下面的勾去掉再找）"
+                                                                    if find.get("word", True) else "")
+                        + "。点「✖ 关闭查找」看全部句子。")
                 attrs = ' data-count="0"'
             status = head + (f"<br>{msg}" if msg else "")
+        attrs += f' data-seq="{time.time():.3f}"'  # 每次都不一样：网页脚本据此知道又找了一次（要重新滚过去）
         html_out = f'<div class="vt-find-status" id="vt-find-status"{attrs}>{status}</div>' if status else ""
         q_upd = _upd() if query is None else _upd(value=query)
         return html_out, _clips_count_md(self.cfg, v), _clips_table(self.cfg, v, bool(only_sus)), q_upd
@@ -2809,7 +2818,7 @@ class WebUI:
         if not str(query or "").strip():
             _review.clear_find(project)
             return self._find_out(v, only_sus, "请在「查找」框里输入要找的字。")
-        _review.save_find(project, query, bool(word), 0)
+        _review.save_find(project, query, bool(word), 0, fresh=True)
         return self._find_out(v, only_sus)
 
     def do_find_move(self, voice: Any, delta: int, only_sus: Any = False) -> Tuple[Any, ...]:
@@ -2840,7 +2849,7 @@ class WebUI:
         if not q:
             return self._find_out(v, only_sus, "请在「查找」框里输入要找的字。")
         if not find or find["q"] != q or bool(find.get("word", True)) != bool(word):
-            _review.save_find(project, q, bool(word), 0)  # 换了关键字还没点查找：先找到第一处
+            _review.save_find(project, q, bool(word), 0, fresh=True)  # 换了关键字还没点查找：先找到第一处
             return self._find_out(v, only_sus, "先找到了第一处（橙色）。再点一次「替换这一处」就会换掉它。")
         matches = _review.find_matches(project, q, bool(word))
         if not matches:
@@ -2862,7 +2871,7 @@ class WebUI:
 
     def do_replace_all(self, voice: Any, query: Any, repl: Any, word: Any = True, only_sus: Any = False) -> Tuple[Any, ...]:
         """「全部替换」（网页上会先问一次）：所有没删除的句子里找到的都换掉，存成没保存的修改（红灯）。
-        换完以后表格列出换好的句子（新的字标黄），查找框里变成新的字。"""
+        换完以后表格接着列出这些句子（换上的字是绿色），关闭查找才显示全部。"""
         v = _voice_name(voice)
         if not v:
             return NEED_VOICE, _upd(), _upd(), _upd()
@@ -2882,11 +2891,8 @@ class WebUI:
                "记得点下面的「保存修改」；换错了点「↩️ 撤销刚才的替换」。")
         if res["skipped"]:
             msg += f"（另有 {res['skipped']} 句换完会变成空的，没有换。）"
-        if r.strip():
-            _review.save_find(project, r.strip(), bool(word), 0)  # 表格列出换好的句子
-            return self._find_out(v, only_sus, msg, query=r.strip())
-        _review.clear_find(project)
-        return self._find_out(v, only_sus, msg, query="")
+        _review.save_find(project, q, bool(word), 0, extra=res["ids"])  # 表格接着列出换好的句子（改过的字绿色）
+        return self._find_out(v, only_sus, msg)
 
     def do_undo_replace(self, voice: Any, only_sus: Any = False) -> Tuple[Any, ...]:
         """「↩️ 撤销刚才的替换」：上一次替换（一处或全部）改过的句子改回去。"""
@@ -4032,20 +4038,21 @@ class WebUI:
             c["confirm_btn"].click(_safe("确认训练素材", 3, 0)(self.do_confirm), [c["voice"], c["only_sus"]],
                                    [c["review_md"], c["clips_count"], c["clips"]], **quick)
             find_outs = outs(self.FIND_OUT)
+            # 查找的按钮一个接一个处理（不会同时改查找的记录）；上一处 / 下一处连点几下就走几处（像 Word）
+            fq = dict(quick, concurrency_id="vt-find")
+            fq_multi = dict(fq, trigger_mode="multiple")
             find_in = [c["voice"], c["find_q"], c["find_word"], c["only_sus"]]
             rep_in = [c["voice"], c["find_q"], c["find_r"], c["find_word"], c["only_sus"]]
-            c["find_btn"].click(_safe("查找", 4, 0)(self.do_find), find_in, find_outs, **quick)
-            c["find_q"].submit(_safe("查找", 4, 0)(self.do_find), find_in, find_outs, **quick)  # 在查找框里按回车 = 查找
+            c["find_btn"].click(_safe("查找", 4, 0)(self.do_find), find_in, find_outs, **fq)
+            c["find_q"].submit(_safe("查找", 4, 0)(self.do_find), find_in, find_outs, **fq)  # 在查找框里按回车 = 查找
             c["find_prev"].click(_safe("查找", 4, 0)(lambda v, o: self.do_find_move(v, -1, o)), [c["voice"], c["only_sus"]],
-                                 find_outs, **quick)
+                                 find_outs, **fq_multi)
             c["find_next"].click(_safe("查找", 4, 0)(lambda v, o: self.do_find_move(v, 1, o)), [c["voice"], c["only_sus"]],
-                                 find_outs, **quick)
-            c["find_rep1"].click(_safe("替换", 4, 0)(self.do_replace_one), rep_in, find_outs, **quick)
-            c["find_repall"].click(_safe("全部替换", 4, 0)(self.do_replace_all), rep_in, find_outs, **quick)
-            c["find_undo"].click(_safe("撤销替换", 4, 0)(self.do_undo_replace), [c["voice"], c["only_sus"]], find_outs,
-                                 **quick)
-            c["find_close"].click(_safe("关闭查找", 4, 0)(self.do_find_close), [c["voice"], c["only_sus"]], find_outs,
-                                  **quick)
+                                 find_outs, **fq_multi)
+            c["find_rep1"].click(_safe("替换", 4, 0)(self.do_replace_one), rep_in, find_outs, **fq)
+            c["find_repall"].click(_safe("全部替换", 4, 0)(self.do_replace_all), rep_in, find_outs, **fq)
+            c["find_undo"].click(_safe("撤销替换", 4, 0)(self.do_undo_replace), [c["voice"], c["only_sus"]], find_outs, **fq)
+            c["find_close"].click(_safe("关闭查找", 4, 0)(self.do_find_close), [c["voice"], c["only_sus"]], find_outs, **fq)
             c["proof_btn"].click(_settled(self.do_proofcheck), [c["voice"], c["only_sus"]], outs(self.PROOF_OUT),
                                  **heavy).then(
                 _safe("载入片段", 2, 0)(self.refresh_clips), [c["voice"], c["only_sus"], c["clips"]], clip_outs, **quick).then(

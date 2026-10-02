@@ -1309,6 +1309,9 @@ def test_find_replace_like_word(prepared, tmp_path):
     # 替换这一处（现在是第 3 处 = 第 2 句的艾子）
     status, count, rows, _ = ui.do_replace_one(name, "艾子", "as", True)
     assert "第 2 条换好了" in status and "没保存" in status
+    # 换完这一句里已经没有「艾子」了，但它还列在表格里（换上的 as 是绿色），不会突然不见
+    r2 = {r[idc]: r for r in rows}[recs[1]["id"]]
+    assert "vt-green" in r2[tc] and "vt-find" not in r2[tc] and "vt-light-dirty" in r2[-1]
     t2 = A._review.current_values(project.load_manifest()[1], A._review.load_draft(project).get(recs[1]["id"]))["text"]
     assert t2.startswith("as has nothing") and "还有 **" in count  # 红灯（没保存）
     # 撤销刚才的替换
@@ -1321,12 +1324,48 @@ def test_find_replace_like_word(prepared, tmp_path):
     assert draft[recs[0]["id"]]["text"].count("as") == 2 and "艾子" not in draft[recs[0]["id"]]["text"]
     assert draft[recs[1]["id"]]["text"].startswith("as has nothing")
     assert recs[3]["id"] not in draft  # 删除的不换
-    assert q["value"] == "as" and "正在查找「as」" in count  # 表格列出换好的句子
+    # 表格接着列出换好的这两句（换上的字绿色），查找框里还是「艾子」
+    assert [r[idc] for r in rows] == [recs[0]["id"], recs[1]["id"]] and "value" not in q
+    assert all("vt-green" in r[tc] and "vt-find" not in r[tc] for r in rows)
+    assert "现在没有「艾子」了" in status and "正在查找「艾子」" in count and "找到过的 2 句" in count
+    # 撤销全部替换：又找到 3 处
+    status, _, rows, _ = ui.do_undo_replace(name)
+    assert "2 句改回去了" in status and "找到 <b>3</b> 处" in status and len(rows) == 2
+    status, _, rows, _ = ui.do_replace_all(name, "艾子", "as", True)
+    # 查找 as：英文只找整个单词，"has" 里的 as 不算
+    status, _, rows, _ = ui.do_find(name, "as", True)
     has_row = {r[idc]: r for r in rows}[recs[1]["id"]][tc]
-    assert has_row.count("vt-find") == 2  # 开头的 as 和后面的 as；has 里的 as 不算
+    assert has_row.count("vt-find") == 2  # 开头的 as 和后面的 as
     # 关闭查找：表格显示全部
     status, count, rows, q = ui.do_find_close(name)
     assert status == "" and len(rows) == len(recs) and q["value"] == "" and "正在查找" not in count
+
+
+def test_find_keeps_deleted_rows_visible(prepared, tmp_path):
+    """查找时删除找到的那一句：那一行变紫色、还在表格里（不会消失），撤销删除也在；重新点「查找」才按新的结果列。"""
+    cfg, name = _copy_voice(prepared, tmp_path)
+    project = wf.Project(cfg, name)
+    recs = _all_usable(project)
+    recs[0]["text"] = "第一句有艾子。"
+    recs[2]["text"] = "第三句也有艾子。"
+    project.save_manifest(recs)
+    ui = A.WebUI(cfg)
+    idc, tc = CLIP_HEADERS.index(A.COL_ID), CLIP_HEADERS.index(A.COL_TEXT)
+    _, _, rows, _ = ui.do_find(name, "艾子", True)
+    assert [r[idc] for r in rows] == [recs[0]["id"], recs[2]["id"]]
+    _, _, table = _act(ui, name, "delete", recs[0]["id"])
+    by_id = {r[idc]: r for r in table}
+    assert list(by_id) == [recs[0]["id"], recs[2]["id"]] and A.FLAG_DELETED in by_id[recs[0]["id"]][-1]
+    status, count, _, _ = ui._find_out(name, False)
+    assert "找到 <b>1</b> 处" in status and "找到过的 2 句" in count
+    _, _, table = _act(ui, name, "restore", recs[0]["id"])
+    assert [r[idc] for r in table] == [recs[0]["id"], recs[2]["id"]]
+    # 自己双击改掉「艾子」：这一句也还在（改过的字绿色）
+    _, _, table = _act(ui, name, "edit", recs[2]["id"], text="第三句也有as。")
+    assert "vt-green" in {r[idc]: r for r in table}[recs[2]["id"]][tc]
+    # 重新点「查找」：只列现在找到的
+    _, _, rows, _ = ui.do_find(name, "艾子", True)
+    assert [r[idc] for r in rows] == [recs[0]["id"]]
 
 
 def test_find_whole_word_option_and_empty_result(prepared, tmp_path):
@@ -1337,7 +1376,7 @@ def test_find_whole_word_option_and_empty_result(prepared, tmp_path):
     project.save_manifest(recs)
     ui = A.WebUI(cfg)
     status, _, rows, _ = ui.do_find(name, "as", True)
-    assert "没有找到" in status and "把下面的勾去掉" in status and rows == []
+    assert "没有找到" in status and "把下面的勾去掉" in status and "关闭查找" in status and rows == []
     status, _, rows, _ = ui.do_find(name, "as", False)  # 不勾：单词里面的也找
     assert "找到 <b>1</b> 处" in status and len(rows) == 1
     status, _, _, _ = ui.do_find(name, "   ", True)

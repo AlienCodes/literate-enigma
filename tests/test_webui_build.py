@@ -194,3 +194,23 @@ def test_review_table_is_display_only_with_bridge(tmp_path):
     js = A.page_js()
     assert "vt-clip-action-btn" in js and "isComposing" in js
     assert f'"text": {A.CLIP_HEADERS.index(A.COL_TEXT)}' in js and f'"menu": {A.CLIP_HEADERS.index(A.COL_MENU)}' in js
+
+
+def test_find_bar_wiring(tmp_path):
+    """查找栏在表格上面；每个按钮都更新（查找结果、片段总数、表格、查找框）；查找的按钮一个接一个处理，
+    上一处 / 下一处连点几下走几处（trigger_mode=multiple），替换只算一次（防止连点换两次）；查找框按回车 = 查找。"""
+    ui = A.WebUI(_cfg(tmp_path))
+    app = ui.build()
+    ids = {k: getattr(v, "_id", None) for k, v in ui.c.items()}
+    want = [ids[k] for k in A.WebUI.FIND_OUT]
+    assert ids["find_q"] < ids["clips"] and ids["find_status"] < ids["clips"]
+    assert ui.c["find_q"].elem_id == "vt-find-q" and ui.c["find_repall"].elem_id == "vt-find-all"
+    for comp, event, mode in (("find_btn", "click", "once"), ("find_q", "submit", "once"),
+                              ("find_prev", "click", "multiple"), ("find_next", "click", "multiple"),
+                              ("find_rep1", "click", "once"), ("find_repall", "click", "once"),
+                              ("find_undo", "click", "once"), ("find_close", "click", "once")):
+        (d,) = _dep(app, ui, comp, event)
+        fn = app.fns[app.get_config_file()["dependencies"].index(d)]
+        assert d["outputs"] == want and d["trigger_mode"] == mode and fn.concurrency_id == "vt-find", comp
+    js = A.page_js()
+    assert "#vt-find-all" in js and "window.confirm" in js and "scrollToFind" in js

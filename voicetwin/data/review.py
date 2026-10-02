@@ -583,7 +583,8 @@ def find_matches(project: Any, query: Any, whole_word: bool = True) -> List[Matc
 
 
 def load_find(project: Any) -> Dict[str, Any]:
-    """现在正在找什么：{"q": 关键字, "word": 英文只找整个单词, "i": 现在是第几处（从 0 开始）}；没在找返回 {}。"""
+    """现在正在找什么：{"q": 关键字, "word": 英文只找整个单词, "i": 现在是第几处（从 0 开始）,
+    "ids": 这次查找找到过的句子}；没在找返回 {}。"""
     try:
         data = json.loads((Path(project.root) / FIND_FILE).read_text(encoding="utf-8"))
     except (OSError, ValueError):
@@ -591,8 +592,19 @@ def load_find(project: Any) -> Dict[str, Any]:
     return data if isinstance(data, dict) and str(data.get("q") or "").strip() else {}
 
 
-def save_find(project: Any, query: Any, whole_word: bool, index: int = 0) -> Dict[str, Any]:
-    data = {"q": str(query or "").strip(), "word": bool(whole_word), "i": max(0, int(index))}
+def save_find(project: Any, query: Any, whole_word: bool, index: int = 0, fresh: bool = False,
+              extra: Iterable[str] = ()) -> Dict[str, Any]:
+    """记下现在找什么、是第几处，和这次查找找到过的句子（ids）。
+
+    找到过的句子在关闭查找之前一直列在表格里：换完、改完、删除以后那一句不会突然不见（删除的变紫色）。
+    fresh=True（点「🔍 查找」、换了关键字）重新开始记。"""
+    q, word = str(query or "").strip(), bool(whole_word)
+    old = {} if fresh else load_find(project)
+    ids = list(old.get("ids") or []) if old.get("q") == q and bool(old.get("word", True)) == word else []
+    for rid in [m[0] for m in find_matches(project, q, word)] + list(extra):
+        if rid not in ids:
+            ids.append(rid)
+    data = {"q": q, "word": word, "i": max(0, int(index)), "ids": ids}
     p = Path(project.root) / FIND_FILE
     tmp = p.with_suffix(".json.tmp")
     tmp.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
