@@ -300,3 +300,22 @@ def test_training_requires_confirmed_material(env):
     lines = (project.exports_dir / "gptsovits" / "train.list").read_text(encoding="utf-8")
     wav = Path(project.abspath(next(r for r in project.load_manifest() if r["id"] == rid)["path"])).name
     assert wav not in lines and info.get("train_minutes") is not None
+
+
+def test_train_tab_drops_stale_confirm_notice(env):
+    """训练页上「还没有确认训练素材」的提示：确认以后回到训练页就去掉；别的内容（进度、出错说明）不动。"""
+    pytest.importorskip("gradio")
+    from voicetwin.webui import app as A
+
+    cfg, project, root = env
+    ui = A.WebUI(cfg)
+    voice = project.voice
+    review.confirm_path(project).unlink()
+    stale = "⚠️ 还没有确认训练素材，所以没有开始训练。到「① 准备素材」……"
+    assert ui.refresh_train_bar(voice, stale) != ""  # 还没确认：提示留着
+    assert "还没有确认训练素材" in ui.train_plan_preview(voice, "gptsovits")
+    wf.review_confirm(cfg, voice)
+    assert ui.refresh_train_bar(voice, stale) == ""  # 确认好了：去掉
+    assert "还没有确认训练素材" not in ui.train_plan_preview(voice, "gptsovits")
+    other = "<div class='vt-error'>没有完成：GPT-SoVITS 没能启动</div>"
+    assert ui.refresh_train_bar(voice, other) != ""  # 出错说明不动

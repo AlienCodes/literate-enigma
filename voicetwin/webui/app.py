@@ -1088,8 +1088,12 @@ def _voice_status_md(cfg: Config, voice: Any) -> str:
     minutes, clips = _material_stats(project)
     trained = [(k, e) for k, e in (project.load_models() or {}).items() if isinstance(e, dict) and e.get("selected")]
     if not trained:
-        md = (f"① 素材 ✅ {minutes} 分钟（{clips} 条）　② 训练 ⬜ 还没训练　"
-              "👉 下一步：去「② 训练模型」点「开始训练」（通常要 30~90 分钟）")
+        if wf.training_blocker_for(cfg, v):  # 还没确认训练素材（或者确认以后又改过、有没保存的修改）
+            md = (f"① 素材 ✅ {minutes} 分钟（{clips} 条）　② 训练 ⬜ 还没训练　"
+                  "👉 下一步：在「① 准备素材」把校对表看一遍、改好，点最下面的「✅ 确认训练素材」，再去「② 训练模型」点「开始训练」")
+        else:
+            md = (f"① 素材 ✅ {minutes} 分钟（{clips} 条）　② 训练 ⬜ 还没训练　"
+                  "👉 下一步：去「② 训练模型」点「开始训练」（通常要 30~90 分钟）")
     else:
         entry = trained[0][1]
         for k, e in trained:  # 有 GPT-SoVITS 时优先显示它
@@ -3148,6 +3152,19 @@ class WebUI:
                 return head + PLAN_DEFAULT
         return PLAN_DEFAULT
 
+    #: 「还差一步」的提示里会有的字（见 errors 的 unsaved_edits / not_confirmed / confirm_stale）
+    _BLOCKER_WORDS = ("还没有确认训练素材", "确认以后素材又改过", "还有修改没有保存")
+
+    def refresh_train_bar(self, voice: Any, bar: Any) -> Any:
+        """训练页上留着的「还差一步」提示：那一步已经做好了就去掉；别的内容（进度条、出错说明）不动。"""
+        text = str(bar or "")
+        if not any(w in text for w in self._BLOCKER_WORDS):
+            return _upd()
+        v = _voice_name(voice)
+        if v and not wf.training_blocker_for(self.cfg, v):
+            return ""
+        return _upd()
+
     def _train_common(self, kind: str, voice: Any, backend: Any, opts: Dict[str, Any]) -> Iterator[Tuple[Any, ...]]:
         O = self.TRAIN_OUT
         idle = dict(train_btn=self._idle_btn(TRAIN_BTN), select_btn=self._idle_btn(SELECT_BTN),
@@ -4110,6 +4127,8 @@ class WebUI:
             c["train_next"].click(lambda: gr.Tabs(selected="gen"), None, tabs, **quick)
             # 打开「② 训练模型」页、换引擎、改高级设置时，重新预览这次会怎么训练（只读文件和 nvidia-smi，很快）
             train_tab.select(self.train_plan_preview, plan_in, c["train_plan"], **quick)
+            # 刚才点「开始训练」时的「还没有确认训练素材」提示：确认好以后回到这一页就去掉（别的进度 / 出错说明不动）
+            train_tab.select(self.refresh_train_bar, [c["voice"], c["train_bar"]], c["train_bar"], **quick)
             c["t_backend"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
             c["dpo"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
             for name in ("s_ep", "g_ep", "bs"):
