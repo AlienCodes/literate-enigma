@@ -1139,17 +1139,24 @@ def _wrap(text: str, ranges: Sequence[Sequence[int]], open_tag: str) -> str:
     return "".join(out)
 
 
-def render_diff_html(text: Any, alt: Any, spans: Any = None) -> str:
+def render_diff_html(text: Any, alt: Any, spans: Any = None, label_b: str = "") -> str:
     """详情面板：两行对比。「识别 A」是现在的文字（不一样的字标红），「识别 B」是另一次识别的建议（标绿）。
 
     alt 为空（没有建议）时，第一行按 spans 标红（可以不给），第二行写"没有建议"。全部内容都已转义。
+    label_b：建议不是来自识别引擎时（文字校正：「按逐字稿改成」），两行改成「现在的文字」「label_b」。
     """
     text, alt = str(text or ""), str(alt or "")
-    tag_a = '<span class="vt-diff-tag">识别 A（现在的文字）：</span>'
-    tag_b = '<span class="vt-diff-tag">识别 B（建议改成）：</span>'
+    if label_b:
+        tag_a = '<span class="vt-diff-tag">现在的文字：</span>'
+        tag_b = f'<span class="vt-diff-tag">{_esc(label_b)}：</span>'
+        tag_none = f'<span class="vt-diff-tag">{_esc(label_b)}：</span>'
+    else:
+        tag_a = '<span class="vt-diff-tag">识别 A（现在的文字）：</span>'
+        tag_b = '<span class="vt-diff-tag">识别 B（建议改成）：</span>'
+        tag_none = '<span class="vt-diff-tag">识别 B：</span>'
     if not alt.strip():
         return (f'<div class="vt-diff-row">{tag_a}{_wrap(text, spans or [], RED_SPAN)}</div>'
-                '<div class="vt-diff-row vt-diff-reason"><span class="vt-diff-tag">识别 B：</span>'
+                f'<div class="vt-diff-row vt-diff-reason">{tag_none}'
                 '（没有建议。请听一听录音，有错就直接在「文字」列里改）</div>')
     ra, rb = _diff_ranges(text, alt)
     return (f'<div class="vt-diff-row">{tag_a}{_wrap(text, ra, RED_SPAN)}</div>'
@@ -1663,6 +1670,7 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
                 flagged += 1
             else:
                 rec.pop("suspect", None)
+            rec.pop("suspect_auto", None)  # 重新自动查过：以前「文字校正」时存的旧结果不要了
             checked += 1
             _report(progress, i / n, f"已检查 {i} / {n} 条，其中 {flagged} 条可能有错")
             if i % SAVE_EVERY == 0 and i < n:
@@ -1711,6 +1719,7 @@ def dismiss_suspect(project: Any, clip_id: str) -> bool:
     for rec in records:
         if str(rec.get("id")) == str(clip_id):
             rec.pop("suspect", None)
+            rec.pop("suspect_auto", None)
             rec["suspect_ok"] = str(rec.get("text") or "")
             project.save_manifest(records)
             return True

@@ -554,6 +554,53 @@ def save_confirmed(project: Any, records: Sequence[Dict[str, Any]]) -> Dict[str,
     return data
 
 
+# ============================================================================ 下载改好的文字（txt）
+EXPORT_DIR = "改好的文字"
+KEEP_EXPORTS = 20
+
+
+def export_text(project: Any) -> Dict[str, Any]:
+    """「⬇️ 下载改好的文字（txt）」：把「文字」列现在的文字（含没保存的修改）按表格的顺序存成 txt，一行一句。
+
+    删除的（紫色）行不要；没有文字的行跳过。存在 ``workspace/<声音>/改好的文字/``（只留最近 20 个），
+    记事本能直接打开（UTF-8 带 BOM、Windows 换行）；下次可以当逐字稿上传，做「文字校正」。
+    返回 {"path", "lines", "unsaved", "deleted"}：unsaved = 其中还没保存的修改有几条（提醒老师点保存）。"""
+    with _LOCK:
+        records = project.load_manifest()
+        draft = load_draft(project)
+        lines: List[str] = []
+        unsaved = deleted = 0
+        for rec in records:
+            if rec.get("deleted"):
+                deleted += 1
+                continue
+            entry = draft.get(rec.get("id"))
+            text = re.sub(r"\s+", " ", str(current_values(rec, entry)["text"] or "")).strip()
+            if not text:
+                continue
+            lines.append(text)
+            if is_dirty(rec, entry):
+                unsaved += 1
+    if not lines:
+        raise ValueError("校对表里还没有文字，没有可以下载的。请先点上面的「开始准备素材」。")
+    folder = Path(project.root) / EXPORT_DIR
+    folder.mkdir(parents=True, exist_ok=True)
+    safe = re.sub(r'[\\/:*?"<>|\s]+', "_", str(getattr(project, "voice", "") or "声音")).strip("_") or "声音"
+    path = folder / f"改好的文字_{safe}_{time.strftime('%Y%m%d_%H%M%S')}.txt"
+    k = 2
+    while path.exists():
+        path = folder / f"改好的文字_{safe}_{time.strftime('%Y%m%d_%H%M%S')}_{k}.txt"
+        k += 1
+    path.write_bytes(("\r\n".join(lines) + "\r\n").encode("utf-8-sig"))
+    old = sorted(folder.glob("改好的文字_*.txt"), key=lambda q: q.stat().st_mtime)
+    for q in old[:-KEEP_EXPORTS]:
+        try:
+            q.unlink()
+        except OSError:
+            pass
+    return {"path": str(path), "lines": len(lines), "unsaved": unsaved, "deleted": deleted}
+
+
 # ============================================================================ 查找 / 替换（像 Word）
 FIND_FILE = "review_find.json"
 UNDO_FILE = "review_undo.json"

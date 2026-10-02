@@ -52,6 +52,7 @@ STAGES_NARRATE_VARIANTS: List[Stage] = [(0.00, "启动合成引擎"), (0.03, "�
                                         (0.93, "做「去杂音」版本并比较哪个更像你")]
 STAGES_DOWNLOAD: List[Stage] = [(0.0, "下载模型文件")]
 STAGES_PROOFCHECK: List[Stage] = [(0.00, "准备识别引擎"), (0.02, "逐条检查文字，标出可能的错字")]
+STAGES_TEXTFIX: List[Stage] = [(0.00, "读逐字稿"), (0.15, "一句一句和逐字稿比对")]
 STAGES_BLIND_TEST: List[Stage] = [(0.00, "挑选你的真实录音"), (0.05, "用同样的文字生成"), (0.90, "统一音量、打乱顺序、保存")]
 STAGES_VERIFY: List[Stage] = [(0.00, "加载声纹模型"), (0.10, "逐个打分")]
 TRAIN_SELECT_SPLIT = 0.88
@@ -162,7 +163,7 @@ def task_stages(kind: str, cfg: Optional[Config] = None, backend_name: Optional[
                 overrides: Optional[Dict[str, Any]] = None) -> List[Stage]:
     """给进度条用的阶段表：[(开始的进度, 中文步骤名), ...]，从小到大。
 
-    kind：prepare | train | select | narrate（= generate）| download | proofcheck | blind_test | verify。
+    kind：prepare | train | select | narrate（= generate）| download | proofcheck | textfix | blind_test | verify。
     narrate 请把网页上选的 quality 一起传进来（「完美」档多一步）；prepare 可以传 overrides / proofcheck。
     """
     kind = (kind or "").strip().lower()
@@ -181,6 +182,8 @@ def task_stages(kind: str, cfg: Optional[Config] = None, backend_name: Optional[
         return list(STAGES_DOWNLOAD)
     if kind == "proofcheck":
         return list(STAGES_PROOFCHECK)
+    if kind == "textfix":
+        return list(STAGES_TEXTFIX)
     if kind in ("blind_test", "blind"):
         return list(STAGES_BLIND_TEST)
     if kind == "verify":
@@ -567,6 +570,39 @@ def run_proofcheck(cfg: Config, voice: str, progress: Optional[ProgressFn] = Non
         res = dict(res or {})
         _report(progress, 1.0, f"查完了：检查了 {res.get('checked', 0)} 条，其中 {res.get('flagged', 0)} 条可能有错（已标红）")
     return res
+
+
+def run_transcript_fix(cfg: Config, voice: str, files: Optional[Sequence[Any]] = None,
+                       progress: Optional[ProgressFn] = None) -> Dict[str, Any]:
+    """📝 文字校正：用老师的逐字稿（txt）检查校对表的文字，结果写进「可能有错」列（v18.5）。
+
+    files：这次上传的 txt（替换上次存的）；不给时用上次存在声音文件夹「逐字稿」里的。"""
+    from voicetwin.data import transcript_fix
+
+    project = open_project(cfg, voice, must_exist=True)
+    if files:
+        info = transcript_fix.save_transcripts(project, files)
+        _report(progress, 0.01, f"已保存逐字稿：{'、'.join(info['files'])}（共 {info['chars']} 字）")
+    res = transcript_fix.check_with_transcript(project, progress=progress)
+    return dict(res or {})
+
+
+def transcript_info(cfg: Config, voice: str) -> Dict[str, Any]:
+    """存好的逐字稿：{"files": [...], "chars": n}；声音还不存在时返回空的。"""
+    from voicetwin.data import transcript_fix
+
+    try:
+        project = open_project(cfg, voice, must_exist=True)
+    except (ValueError, RuntimeError, OSError):
+        return {"files": [], "chars": 0}
+    return transcript_fix.transcript_info(project)
+
+
+def export_review_text(cfg: Config, voice: str) -> Dict[str, Any]:
+    """⬇️ 下载改好的文字（txt）：见 review.export_text。"""
+    from voicetwin.data import review
+
+    return review.export_text(open_project(cfg, voice, must_exist=True))
 
 
 def apply_suggestion(cfg: Config, voice: str, clip_id: str) -> Dict[str, Any]:

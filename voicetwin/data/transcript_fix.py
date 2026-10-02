@@ -55,7 +55,7 @@ log = get_logger("transcript_fix")
 ProgressFn = Callable[[float, str], None]
 
 TRANSCRIPT_DIR = "逐字稿"  # 声音文件夹里存老师上传的逐字稿（再点「文字校正」不用重新上传）
-TEXT_SUFFIXES = (".txt",)
+TEXT_SUFFIXES = (".txt", ".csv", ".tsv")  # txt：一行一句；transcripts.csv：用 text 列（删除的句子不要）
 MAX_TOKENS = 400_000  # 逐字稿太长时只用前面这么多字（大约 25 节课），免得占太多内存
 MIN_CHARS = 10
 
@@ -118,10 +118,48 @@ def _file_name(p: Any) -> str:
     return str(getattr(p, "name", p) or "")
 
 
-def save_transcripts(project: Any, paths: Iterable[Any]) -> Dict[str, Any]:
-    """把这次上传的逐字稿存进声音文件夹（替换上次的），统一存成 UTF-8。返回 transcript_info。
+def parse_mother(name: str, text: str) -> List[Tuple[str, str]]:
+    """一个母本文件 → [(句子 id, 文字)]。txt 一行一句（没有 id）；transcripts.csv 用 id 和 text 两列，
+    老师删除的句子不要；声音分身自己的 tsv（id<TAB>文字，# 开头是说明）。"""
+    suffix = Path(str(name)).suffix.lower()
+    out: List[Tuple[str, str]] = []
+    if suffix == ".csv":
+        import csv
+        import io
 
-    不是 txt、读出来没有文字的文件：说明原因（ValueError），一个都不存。"""
+        reader = csv.DictReader(io.StringIO(text.lstrip("\ufeff")))
+        fields = [str(f or "").strip().lower() for f in (reader.fieldnames or [])]
+        if "text" in fields:
+            for row in reader:
+                low = {str(k or "").strip().lower(): (v or "") for k, v in row.items()}
+                if str(low.get("drop_reason", "")).strip() == "老师删除":
+                    continue
+                line = " ".join(str(low.get("text", "")).split())
+                if line:
+                    out.append((str(low.get("id", "")).strip(), line))
+            return out
+    if suffix == ".tsv":
+        for ln in text.splitlines():
+            if not ln.strip() or ln.lstrip().startswith("#"):
+                continue
+            rid, _, line = ln.partition("\t")
+            if not _:
+                rid, line = "", rid
+            line = " ".join(line.split())
+            if line:
+                out.append((rid.strip(), line))
+        return out
+    for ln in text.splitlines():
+        line = " ".join(ln.split())
+        if line:
+            out.append(("", line))
+    return out
+
+
+def save_transcripts(project: Any, paths: Iterable[Any]) -> Dict[str, Any]:
+    """把这次上传的母本 / 逐字稿存进声音文件夹（替换上次上传的），统一存成 UTF-8。返回 transcript_info。
+
+    txt、transcripts.csv 都行。读出来没有文字的、不是这两种的：说明原因（ValueError），一个都不存。"""
     items: List[Tuple[str, str]] = []
     bad: List[str] = []
     for p in paths or []:
@@ -129,57 +167,91 @@ def save_transcripts(project: Any, paths: Iterable[Any]) -> Dict[str, Any]:
         if not src.name:
             continue
         if src.suffix.lower() not in TEXT_SUFFIXES:
-            bad.append(f"「{src.name}」不是 txt 文件")
+            bad.append(f"「{src.name}」不是 txt 或 csv 文件")
             continue
         try:
             text = read_text_file(src)
         except OSError as exc:
             bad.append(f"「{src.name}」读不出来（{exc}）")
             continue
-        if _useful_chars(text) < MIN_CHARS:
+        if _useful_chars(" ".join(x for _, x in parse_mother(src.name, text))) < MIN_CHARS:
             bad.append(f"「{src.name}」里几乎没有文字")
             continue
         items.append((src.name, text))
     if bad:
-        raise ValueError("逐字稿没有存上：" + "；".join(bad) + "。请上传记事本保存的 .txt 文件（Word 文档可以先「另存为」纯文本 .txt）。")
+        raise ValueError("母本没有存上：" + "；".join(bad) + "。请上传记事本保存的 .txt 文件，或者声音文件夹里的 "
+                         "transcripts.csv（Word 文档可以先「另存为」纯文本 .txt）。")
     if not items:
-        raise ValueError("没有收到逐字稿文件，请先选好 txt 文件再点「文字校正」。")
+        raise ValueError("没有收到母本文件，请先选好文件再点「文字校正」。")
     folder = transcript_dir(project)
     if folder.exists():
         shutil.rmtree(folder, ignore_errors=True)
     folder.mkdir(parents=True, exist_ok=True)
     used: Set[str] = set()
     for name, text in items:
-        stem = re.sub(r'[\\/:*?"<>|]+', "_", Path(name).stem).strip() or "逐字稿"
-        out, k = f"{stem}.txt", 2
+        stem = re.sub(r'[\\/:*?"<>|]+', "_", Path(name).stem).strip() or "母本"
+        suffix = Path(name).suffix.lower()
+        out, k = f"{stem}{suffix}", 2
         while out.lower() in used:
-            out, k = f"{stem}_{k}.txt", k + 1
+            out, k = f"{stem}_{k}{suffix}", k + 1
         used.add(out.lower())
         (folder / out).write_text(text.replace("\r\n", "\n"), encoding="utf-8")
     info = transcript_info(project)
-    log.info(f"已保存逐字稿：{'、'.join(info['files'])}（共 {info['chars']} 字）")
+    log.info(f"已保存母本：{'、'.join(info['files'])}（共 {info['chars']} 字）")
     return info
 
 
-def load_transcripts(project: Any) -> Tuple[str, List[str]]:
-    """存好的逐字稿（几个文件接在一起，中间空一行）和文件名。没有时返回 ("", [])。"""
+def load_transcripts(project: Any) -> Tuple[List[Tuple[str, str]], List[str]]:
+    """老师上传的母本：[(句子 id, 文字)] 和文件名。没有时返回 ([], [])。"""
     folder = transcript_dir(project)
     if not folder.is_dir():
-        return "", []
+        return [], []
     files = sorted(p for p in folder.iterdir() if p.is_file() and p.suffix.lower() in TEXT_SUFFIXES)
-    texts, names = [], []
+    lines: List[Tuple[str, str]] = []
+    names: List[str] = []
     for p in files:
         try:
-            texts.append(read_text_file(p))
+            lines += parse_mother(p.name, read_text_file(p))
             names.append(p.name)
         except OSError:
             continue
-    return "\n\n".join(texts), names
+    return lines, names
 
 
 def transcript_info(project: Any) -> Dict[str, Any]:
-    text, names = load_transcripts(project)
-    return {"files": names, "chars": _useful_chars(text) if text else 0}
+    lines, names = load_transcripts(project)
+    return {"files": names, "chars": _useful_chars(" ".join(x for _, x in lines)) if lines else 0,
+            "builtin": len(builtin_mother())}
+
+
+BUILTIN_MOTHER = Path(__file__).resolve().parent / "lexicon" / "core_corpus.tsv"
+BUILTIN_FIXES = Path(__file__).resolve().parent / "lexicon" / "core_fixes.tsv"
+
+
+@lru_cache(maxsize=1)
+def builtin_mother() -> Tuple[Tuple[str, str], ...]:
+    """程序自带的母本：老师修缮过的讲课文字（老师同意公开）。"""
+    try:
+        return tuple(parse_mother(BUILTIN_MOTHER.name, BUILTIN_MOTHER.read_text(encoding="utf-8")))
+    except OSError:
+        return ()
+
+
+@lru_cache(maxsize=1)
+def builtin_fixes() -> Dict[str, Tuple[Tuple[str, str, str], ...]]:
+    """逐句修缮母本时改掉的识别错误：{句子 id: ((原来, 改成, 原因), ...)}。"""
+    out: Dict[str, List[Tuple[str, str, str]]] = {}
+    try:
+        text = BUILTIN_FIXES.read_text(encoding="utf-8")
+    except OSError:
+        return {}
+    for ln in text.splitlines():
+        if not ln.strip() or ln.startswith("#"):
+            continue
+        parts = ln.split("\t")
+        if len(parts) >= 3 and parts[1] and parts[2]:
+            out.setdefault(parts[0], []).append((parts[1], parts[2], parts[3] if len(parts) > 3 else ""))
+    return {k: tuple(v) for k, v in out.items()}
 
 
 # ============================================================================ 读音
@@ -396,8 +468,17 @@ def _num_pinyin(surface: str) -> Optional[List[str]]:
 class Reference:
     """处理好的逐字稿：每个字的读音、按读音找位置的索引、哪些写法出现过。"""
 
-    def __init__(self, text: str, progress: Optional[ProgressFn] = None):
-        self.text = str(text or "")
+    def __init__(self, text: Any, progress: Optional[ProgressFn] = None):
+        """text：一整段文字，或者 [(句子 id, 文字)]（有 id 的句子会记下它在哪里，比对同一句时可以跳过它自己）。"""
+        if isinstance(text, (list, tuple)):
+            lines = [(str(i or ""), str(x or "")) for i, x in text]
+        else:
+            lines = [("", str(text or ""))]
+        self.text = "\n".join(x for _, x in lines)
+        starts, pos = [], 0
+        for _, x in lines:
+            starts.append(pos)
+            pos += len(x) + 1
         toks = tokens(self.text)
         self.truncated = len(toks) > MAX_TOKENS
         self.toks = toks[:MAX_TOKENS]
@@ -413,6 +494,15 @@ class Reference:
                 self.idx3[(f[i] << 42) | (f[i + 1] << 21) | f[i + 2]].append(i)
         self.joined = "\x1f" + "\x1f".join(self.keys) + "\x1f"
         self.latin = Counter(t.key for t in self.toks if t.kind == "lat")
+        import bisect
+
+        self.id_range: Dict[str, Tuple[int, int]] = {}
+        for k, tk in enumerate(self.toks):
+            li = bisect.bisect_right(starts, tk.start) - 1
+            rid = lines[li][0] if 0 <= li < len(lines) else ""
+            if rid:
+                a, b = self.id_range.get(rid, (k, k + 1))
+                self.id_range[rid] = (min(a, k), max(b, k + 1))
 
     def __len__(self) -> int:
         return len(self.toks)
@@ -467,6 +557,7 @@ class Prop:
     need: int = 1  # 逐字稿里至少几处这么写才算
     locs: Set[int] = field(default_factory=set)
     ref: Tuple[int, int] = (0, 0)
+    strong: bool = False  # 整句几乎一样、前后都对得上：按母本直接改
 
 
 def _rep_text(ref: Reference, j1: int, j2: int, kind: str) -> str:
@@ -531,6 +622,7 @@ class _Align:
         self.matched = sum(i2 - i1 for tag, i1, i2, _, _ in self.ops if tag == "equal" and (i2 - i1 >= 2 or n <= 3))
         self.longest = max([i2 - i1 for tag, i1, i2, _, _ in self.ops if tag == "equal"] or [0])
         self.mode = "S" if n and self.matched >= min(S_MIN_MATCH, n) and self.matched / n >= S_COVERAGE else "L"
+        self.cov = self.matched / n if n else 0.0
         self.exact = [False] * n
         self.partner = [-1] * n
         for tag, i1, i2, j1, _ in self.ops:
@@ -593,6 +685,17 @@ def _style_pair(a: str, b: str) -> bool:
     return any(a in g and b in g for g in _STYLE_GROUPS)
 
 
+STRONG_COVERAGE = 0.85  # 整句这么多字都对得上，并且不一样的地方前后各有 ≥ 2 个一样的字：按母本直接改
+_STRONG_KINDS = ("near", "same", "cjk_en", "en_cjk", "en")
+
+
+def _strong(al: "_Align", kind: str, i1: int, i2: int, j1: int, j2: int) -> bool:
+    if al.mode != "S" or al.cov < STRONG_COVERAGE or kind not in _STRONG_KINDS:
+        return False
+    left, right, at_start, at_end = al.ctx(i1, i2, j1, j2)
+    return (left >= 2 or at_start) and (right >= 2 or at_end) and left + right >= 2
+
+
 def _absent_around(clip: _Clip, ref: Reference, i1: int, i2: int) -> bool:
     """识别出来的写法在逐字稿里没出现过（单个字时看它和左右邻字组成的词）。"""
     if i2 - i1 >= 2:
@@ -636,7 +739,7 @@ def _props_equal_block(al: _Align, i1: int, i2: int, j1: int) -> List[Prop]:
             rep = _rep_text(ref, b1, b2, "near")
             if same:
                 need = 2 if al.mode == "L" else 1
-                reason = f"「{_q(cs)}」和逐字稿里的「{_q(rep)}」读音一样（不影响训练，改不改都行）"
+                reason = f"「{_q(cs)}」和母本里的「{_q(rep)}」读音一样（不影响训练，改不改都行）"
                 kind = "same"
             else:
                 if al.mode == "L" and not _absent_around(clip, ref, a1, a2):
@@ -644,18 +747,19 @@ def _props_equal_block(al: _Align, i1: int, i2: int, j1: int) -> List[Prop]:
                 need = 2 if (al.mode == "L" and a2 - a1 >= 2 and all_diff) else 1
                 if need == 2 and sum(al.ctx(a1, a2, b1, b2)[:2]) < 4:
                     continue
-                reason = f"「{_q(cs)}」读音和逐字稿里的「{_q(rep)}」很像，可能是识别错了"
+                reason = f"「{_q(cs)}」读音和母本里的「{_q(rep)}」很像，可能是识别错了"
                 kind = "near"
         elif kinds == {"lat"}:
             if al.mode == "L" and (ref.latin.get(ct[0].key) or a2 - a1 > 2):
                 continue
             rep = _rep_text(ref, b1, b2, "en")
-            reason = f"英文「{_q(cs)}」逐字稿里写的是「{_q(rep)}」（读音一样，可能是识别错了）"
+            reason = f"英文「{_q(cs)}」母本里写的是「{_q(rep)}」（读音一样，可能是识别错了）"
             kind = "en"
             need = 1
         else:
             continue
-        out.append(Prop(a1, a2, rep, kind, al.mode, W[(kind, al.mode)], reason, need, {b1}, (b1, b2)))
+        out.append(Prop(a1, a2, rep, kind, al.mode, W[(kind, al.mode)], reason, need, {b1}, (b1, b2),
+                        strong=need == 1 and _strong(al, kind, a1, a2, b1, b2)))
     return out
 
 
@@ -742,7 +846,8 @@ def _props_replace_one(al: _Align, i1: int, i2: int, j1: int, j2: int) -> List[P
             return []
         rep = _rep_text(ref, j1, j2, "cjk_en")
         return [Prop(i1, i2, rep, "cjk_en", al.mode, W[("cjk_en", al.mode)],
-                     f"「{_q(cs)}」可能是英文「{_q(rep)}」（逐字稿里是 {_q(rep)}）", 1, {j1}, (j1, j2))]
+                     f"「{_q(cs)}」可能是英文「{_q(rep)}」（母本里是 {_q(rep)}）", 1, {j1}, (j1, j2),
+                     strong=_strong(al, "cjk_en", i1, i2, j1, j2))]
     if ck == {"lat"} and rk == {"han"} and len(ct) <= 2:
         words = [t.key for t in ct]
         conf = all(w in pc.CONFUSABLE_EN or w in pc.CONFUSABLE_SOFT for w in words)
@@ -755,7 +860,8 @@ def _props_replace_one(al: _Align, i1: int, i2: int, j1: int, j2: int) -> List[P
             return []
         rep = _rep_text(ref, j1, j2, "en_cjk")
         return [Prop(i1, i2, rep, "en_cjk", al.mode, W[("en_cjk", al.mode)],
-                     f"「{_q(cs)}」可能是中文「{_q(rep)}」（逐字稿里是「{_q(rep)}」）", 1, {j1}, (j1, j2))]
+                     f"「{_q(cs)}」可能是中文「{_q(rep)}」（母本里是「{_q(rep)}」）", 1, {j1}, (j1, j2),
+                     strong=_strong(al, "en_cjk", i1, i2, j1, j2))]
     if ck == {"lat"} and rk == {"lat"} and len(ct) <= 2 and len(rt) <= 2:
         a, b = " ".join(t.key for t in ct), " ".join(t.key for t in rt)
         ratio = difflib.SequenceMatcher(None, a, b, autojunk=False).ratio()
@@ -766,7 +872,8 @@ def _props_replace_one(al: _Align, i1: int, i2: int, j1: int, j2: int) -> List[P
             return []
         rep = _rep_text(ref, j1, j2, "en")
         return [Prop(i1, i2, rep, "en", al.mode, W[("en", al.mode)],
-                     f"英文「{_q(cs)}」逐字稿里写的是「{_q(rep)}」（可能拼错了）", 1, {j1}, (j1, j2))]
+                     f"英文「{_q(cs)}」母本里写的是「{_q(rep)}」（可能拼错了）", 1, {j1}, (j1, j2),
+                     strong=_strong(al, "en", i1, i2, j1, j2))]
     if ck == {"num"} and rk == {"num"} and len(ct) == 1 and len(rt) == 1:
         a = _num_pinyin(clip.text[ct[0].start:ct[0].end])
         b = _num_pinyin(ref.text[rt[0].start:rt[0].end])
@@ -774,7 +881,7 @@ def _props_replace_one(al: _Align, i1: int, i2: int, j1: int, j2: int) -> List[P
             return []
         rep = ref.text[rt[0].start:rt[0].end]
         return [Prop(i1, i2, rep, "num", al.mode, W[("num", al.mode)],
-                     f"数字「{_q(cs)}」读音和逐字稿里的「{_q(rep)}」很像，可能是识别错了", 1, {j1}, (j1, j2))]
+                     f"数字「{_q(cs)}」读音和母本里的「{_q(rep)}」很像，可能是识别错了", 1, {j1}, (j1, j2))]
     return []
 
 
@@ -786,9 +893,12 @@ class ClipResult:
     ref_text: str
 
 
-def check_text(text: str, ref: Reference) -> ClipResult:
-    """一句识别文字和逐字稿比：返回可能有错的地方、逐字稿证明没错的字（字符位置）、整句对齐了没有。"""
+def check_text(text: str, ref: Reference, exclude_id: str = "") -> ClipResult:
+    """一句识别文字和母本比：返回可能有错的地方、母本证明没错的字（字符位置）、整句对齐了没有。
+
+    exclude_id：母本里同一句（同一个 id，就是这一句自己）不拿来比。"""
     clip = _Clip(text, ref)
+    skip = ref.id_range.get(exclude_id) if exclude_id else None
     if not clip.toks or not len(ref):
         return ClipResult([], set(), False, "")
     found: Dict[Tuple[int, int, str], Prop] = {}
@@ -796,6 +906,13 @@ def check_text(text: str, ref: Reference) -> ClipResult:
     aligned = False
     best_region: Optional[Tuple[int, int, int]] = None  # (对上的字数, 开始, 结束)
     for w0, w1 in _windows(clip, ref):
+        if skip is not None and w0 < skip[1] and skip[0] < w1:
+            if w0 < skip[0] - 2:
+                w1 = skip[0]
+            elif w1 > skip[1] + 2:
+                w0 = skip[1]
+            else:
+                continue
         al = _Align(clip, ref, w0, w1)
         if not al.useful():
             continue
@@ -820,6 +937,7 @@ def check_text(text: str, ref: Reference) -> ClipResult:
                     if p.weight > old.weight:
                         old.weight, old.mode, old.reason, old.need, old.ref = p.weight, p.mode, p.reason, p.need, p.ref
                     old.need = min(old.need, p.need)
+                    old.strong = old.strong or p.strong
     props = []
     for p in found.values():
         if len(p.locs) < p.need:
@@ -881,15 +999,39 @@ def _noisy_or(ws: Iterable[float]) -> float:
     return 1.0 - keep
 
 
-def merge_with_auto(cur: str, res: ClipResult, auto: Optional[Dict[str, Any]], rec: Dict[str, Any]
-                    ) -> Tuple[Optional[Dict[str, Any]], str]:
-    """逐字稿的结果和原来自动查错字的结果（auto）合起来，返回 (新的 suspect 或 None, 发生了什么)。
+def props_to_fixes(cur: str, res: ClipResult, lex: Any = None) -> List[Any]:
+    """和母本对齐找出来的（Prop）→ 统一的改法（lexicon_fix.Fix）。整句几乎一样的直接改，别的只给建议。
 
-    发生了什么：found = 逐字稿发现了错；cleared = 原来标红、逐字稿证明没错，去掉了；kept_auto = 只剩自动检查的标红；
-    unchanged_auto = 原样保留自动检查的结果；none = 没有标红。"""
-    from voicetwin.data import review as _review
+    只给建议的再筛一遍（母本里有很多相似的句子，对齐到别的句子上容易误报）：标准库里的词（「及物动词」）不动；
+    只差一个字的不提示；「英文被写成汉字」的那几个字本来就是常用的词（「它」「那么」「短语」）不提示。"""
+    from voicetwin.data.lexicon_fix import COMMON_FREQ, Fix, word_freq
 
     clip = tokens(cur)
+    out = []
+    for p in res.props:
+        s, e = clip[p.i1].start, clip[p.i2 - 1].end
+        if not p.strong:
+            if lex is not None and lex.inside_vocab(cur, s, e):
+                continue
+            if p.kind in ("near", "same") and p.i2 - p.i1 == 1:
+                continue
+            if p.kind == "cjk_en" and lex is not None and lex.has_common_word(cur[s:e]):
+                continue
+        out.append(Fix(s, e, pc._pad(cur, s, e, p.rep), "align", bool(p.strong), p.weight, p.reason))
+    return out
+
+
+def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: Optional[Dict[str, Any]],
+                    rec: Dict[str, Any], ref_text: str = "") -> Tuple[Optional[Dict[str, Any]], str, List[Tuple[int, int, str]]]:
+    """标准库 / 母本找出来的改法（fixes）和原来自动查错字的结果（auto）合起来。
+
+    返回 (新的 suspect 或 None, 发生了什么, 要直接改的地方 [(开始, 结束, 改成)])。
+    发生了什么：fixed = 有直接改好的；found = 只有建议；cleared = 原来标红、母本证明没错，去掉了；
+    kept_auto = 只剩自动检查的标红（去掉了一部分）；unchanged_auto = 原样保留；none = 没有标红。"""
+    from voicetwin.data import review as _review
+    from voicetwin.data.lexicon_fix import resolve
+
+    fixes = resolve(list(fixes))
     a_red: List[Tuple[int, int]] = []
     a_edits: List[Tuple[int, int, str]] = []
     a_reasons: List[str] = []
@@ -903,34 +1045,38 @@ def merge_with_auto(cur: str, res: ClipResult, auto: Optional[Dict[str, Any]], r
         except (TypeError, ValueError):
             a_score = 0.6
     tokchars = _token_chars(cur)
-    red_keep = [sp for sp in a_red if not _is_confirmed(sp[0], sp[1], res.confirmed_chars, tokchars)]
+    fixed_chars = {k for f in fixes for k in range(f.start, f.end)}
+    red_keep = [sp for sp in a_red if not _is_confirmed(sp[0], sp[1], confirmed, tokchars)
+                and not all(k in fixed_chars for k in range(sp[0], sp[1]) if k in tokchars)]
     t_edits: List[Tuple[int, int, str]] = []
+    direct: List[Tuple[int, int, str]] = []
     spans: List[List[int]] = []
     reasons: List[str] = []
     weights: List[float] = []
-    for p in res.props:
-        s, e = clip[p.i1].start, clip[p.i2 - 1].end
-        rep = pc._pad(cur, s, e, p.rep)
-        w, reason = p.weight, p.reason
-        if any(es == s and ee == e and pc.tokenize(er) and [t.key for t in pc.tokenize(er)] ==
-               [t.key for t in pc.tokenize(rep)] for es, ee, er in a_edits):
+    for f in fixes:
+        w, reason = f.weight, f.reason
+        if any(es == f.start and ee == f.end and [x.key for x in pc.tokenize(er)] ==
+               [x.key for x in pc.tokenize(f.rep)] for es, ee, er in a_edits):
             w = min(0.95, w + AGREE_BONUS)
             reason += "（另一个识别引擎也听成这样）"
-        t_edits.append((s, e, rep))
-        spans.append([s, e])
+        t_edits.append((f.start, f.end, f.rep))
+        if f.direct:
+            direct.append((f.start, f.end, f.rep))
+            reason = "已按标准库改好：" + reason
+        spans.append([f.start, max(f.end, f.start + 1)])
         reasons.append(reason)
         weights.append(w)
-    edits_keep = [ed for ed in a_edits if not _is_confirmed(ed[0], ed[1], res.confirmed_chars, tokchars)
+    edits_keep = [ed for ed in a_edits if not _is_confirmed(ed[0], ed[1], confirmed, tokchars)
                   and all(ed[1] <= s or e <= ed[0] for s, e, _ in t_edits)
                   and any(not (ed[1] <= rs or re_ <= ed[0]) or ed[0] == ed[1] for rs, re_ in red_keep)]
     auto_left = bool(red_keep or edits_keep)
-    if not res.props:
+    if not fixes:
         if not auto:
-            return None, "none"
+            return None, "none", []
         if not auto_left:
-            return None, "cleared"
+            return None, "cleared", []
         if len(red_keep) == len(a_red) and len(edits_keep) == len(a_edits):
-            return auto, "unchanged_auto"
+            return auto, "unchanged_auto", []
     if auto_left:
         spans += [list(sp) for sp in red_keep]
         reasons += [AUTO_PREFIX + r for r in a_reasons]
@@ -940,9 +1086,10 @@ def merge_with_auto(cur: str, res: ClipResult, auto: Optional[Dict[str, Any]], r
     sus: Dict[str, Any] = {"spans": pc.merge_spans(spans, cur), "alt": alt if alt != cur else "",
                            "reasons": _limit_reasons(reasons), "score": round(_noisy_or(weights), 3),
                            "text": cur, "src": "transcript"}
-    if res.ref_text and res.props:
-        sus["ref"] = res.ref_text
-    return sus, ("found" if res.props else "kept_auto")
+    if ref_text and fixes:
+        sus["ref"] = ref_text
+    what = "fixed" if direct else ("found" if fixes else "kept_auto")
+    return sus, what, direct
 
 
 def _limit_reasons(reasons: Sequence[str]) -> List[str]:
@@ -969,56 +1116,112 @@ def auto_suspect(rec: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     return sus or None
 
 
-def check_with_transcript(project: Any, text: Optional[str] = None, progress: Optional[ProgressFn] = None,
-                          names: Optional[Sequence[str]] = None) -> Dict[str, Any]:
-    """用逐字稿检查这个声音的校对表，结果写进 manifest。返回统计（见 _summary）。"""
+def _row_fixes(rid: str, cur: str, table: Dict[str, Sequence[Tuple[str, str, str]]]) -> List[Any]:
+    """逐句修缮母本时这一句改掉的错（按句子 id）：那几个字还在就直接改（已经改过的不动）。"""
+    from voicetwin.data.lexicon_fix import Fix
+
+    out = []
+    for wrong, right, why in table.get(rid, ()):
+        k = cur.find(wrong)
+        while k >= 0:
+            out.append(Fix(k, k + len(wrong), right, "same_row", True, 0.9,
+                           f"「{_q(wrong)}」应该是「{_q(right)}」（逐句修缮母本时改的：{why or '识别错'}）"))
+            k = cur.find(wrong, k + len(wrong))
+    return out
+
+
+def _same_id_fixes(cur: str, mother: str, dirty: bool) -> List[Any]:
+    """老师上传的 transcripts.csv 里有同一句（同一个 id）：和它不一样的地方按它改（老师改过的样子）。
+    这一句现在有没保存的修改、或者和母本差得太多（不像同一句）时只给建议。"""
+    from voicetwin.data.lexicon_fix import Fix
+
+    a, b = tokens(cur), tokens(mother)
+    if not a or not b:
+        return []
+    sm = difflib.SequenceMatcher(None, [x.key for x in a], [x.key for x in b], autojunk=False)
+    similar = sm.ratio() >= 0.8
+    out = []
+    for tag, i1, i2, j1, j2 in sm.get_opcodes():
+        if tag == "equal":
+            continue
+        s = a[i1].start if i1 < len(a) else len(cur)
+        e = a[i2 - 1].end if i2 > i1 else s
+        rep = mother[b[j1].start:b[j2 - 1].end] if j2 > j1 else ""
+        if not rep and e <= s:
+            continue
+        rep = pc._pad(cur, s, e, rep)
+        out.append(Fix(s, e, rep, "same_row", similar and not dirty, 0.85,
+                       f"母本里这一句是「{_q(rep or '（没有）')}」（现在是「{_q(cur[s:e] or '（没有）')}」）"))
+    return out
+
+
+def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
+                          lines: Optional[Sequence[Tuple[str, str]]] = None, use_builtin: bool = True,
+                          names: Optional[Sequence[str]] = None, use_row_fixes: bool = True) -> Dict[str, Any]:
+    """📝 文字校正：以标准库（老师的母本 + 语法术语 + 对照表）为标准检查这个声音的校对表。
+
+    直接改的存成没保存的修改（草稿），建议和原因写进「可能有错」列（record["suspect"]）。
+    lines：老师上传的母本（不给就读声音文件夹里存的）；use_builtin：用不用程序自带的母本（测试时可以关掉）。"""
     from voicetwin.data import review as _review
+    from voicetwin.data.lexicon_fix import Lexicon, builtin_info, has_jieba, learn_from_edits
 
     t0 = time.time()
-    if text is None:
-        text, names = load_transcripts(project)
-    if not text or _useful_chars(text) < MIN_CHARS:
-        raise ValueError("还没有上传逐字稿：请先在「文字校正」左边选好逐字稿（txt 文件），再点「文字校正」。")
-    _report(progress, 0.02, "正在读逐字稿……")
-    ref = Reference(text)
-    _report(progress, 0.15, f"逐字稿有 {len(ref)} 个字 / 词，开始一句一句比对……")
+    if lines is None:
+        lines, names = load_transcripts(project)
+    lines = list(lines or [])
+    builtin = list(builtin_mother()) if use_builtin else []
+    all_lines = builtin + lines
+    _report(progress, 0.02, "正在读母本和语法术语……")
+    ref = Reference(all_lines) if all_lines else None
     records = project.load_manifest()
+    lex = Lexicon.build([x for _, x in all_lines], learned=learn_from_edits(records))
+    row_table = dict(builtin_fixes()) if (use_builtin and use_row_fixes) else {}
+    by_id = {rid: x for rid, x in lines if rid}  # 老师上传的 transcripts.csv 里的句子（按 id）
+    _report(progress, 0.15, f"标准库：母本 {len(ref) if ref else 0} 个字 / 词，语法术语和常说的词 {len(lex.vocab)} 个，"
+                            f"对照表 {len(lex.corrections)} 条，开始一句一句检查……")
     draft = _review.load_draft(project)
     todo = []
     dismissed = 0
     for r in records:
         if r.get("deleted"):
             continue
-        vals = _review.current_values(r, draft.get(r["id"]))
+        entry = draft.get(r["id"])
+        vals = _review.current_values(r, entry)
         cur = str(vals["text"] or "")
         if not cur.strip() or not vals["keep"]:
             continue
         if r.get("suspect_ok") and r.get("suspect_ok") == cur:
             dismissed += 1
             continue
-        todo.append((r["id"], cur))
-    results: Dict[str, Tuple[str, ClipResult]] = {}
+        todo.append((r["id"], cur, _review.is_dirty(r, entry)))
+    results: Dict[str, Tuple[str, List[Any], ClipResult]] = {}
     n = len(todo)
-    for i, (rid, cur) in enumerate(todo, 1):
+    for i, (rid, cur, dirty) in enumerate(todo, 1):
         _check_cancel()
-        results[rid] = (cur, check_text(cur, ref))
+        res = check_text(cur, ref, exclude_id=rid) if ref is not None else ClipResult([], set(), False, "")
+        fixes = _row_fixes(rid, cur, row_table) + lex.find(cur) + props_to_fixes(cur, res, lex)
+        if rid in by_id:
+            fixes += _same_id_fixes(cur, by_id[rid], dirty)
+        results[rid] = (cur, fixes, res)
         if i % 20 == 0 or i == n:
-            _report(progress, 0.15 + 0.8 * i / max(n, 1), f"已比对 {i} / {n} 条")
-    stats = Counter()
+            _report(progress, 0.15 + 0.8 * i / max(n, 1), f"已检查 {i} / {n} 条")
+    stats: Counter = Counter()
     examples: List[str] = []
     with _review._LOCK:
         records = project.load_manifest()
         draft = _review.load_draft(project)
+        changed_draft = False
         for r in records:
             item = results.get(r.get("id"))
             if item is None:
                 continue
-            cur, res = item
-            vals = _review.current_values(r, draft.get(r["id"]))
-            if str(vals["text"] or "") != cur:  # 比对期间改过（一般不会：比对时不能改表格）
+            cur, fixes, res = item
+            entry = draft.get(r["id"])
+            vals = _review.current_values(r, entry)
+            if str(vals["text"] or "") != cur:  # 检查期间改过（一般不会：检查时不能改表格）
                 continue
             auto = auto_suspect(r)
-            sus, what = merge_with_auto(cur, res, auto, r)
+            sus, what, direct = merge_with_auto(cur, fixes, res.confirmed_chars, auto, r, res.ref_text)
             stats[what] += 1
             stats["aligned"] += int(res.aligned)
             if auto:
@@ -1030,24 +1233,42 @@ def check_with_transcript(project: Any, text: Optional[str] = None, progress: Op
             else:
                 r["suspect"] = sus
                 stats["flagged"] += 1
-            if what == "found" and len(examples) < 5:
-                clip = tokens(cur)
-                for p in res.props[:2]:
-                    examples.append(f"{cur[clip[p.i1].start:clip[p.i2 - 1].end]} → {p.rep}")
+            if direct:
+                new = _apply(cur, direct)
+                if new.strip() and new != cur:
+                    from voicetwin.utils.textutil import detect_lang
+
+                    nv = {"text": new, "keep": vals["keep"], "lang": detect_lang(new) or vals["lang"]}
+                    if nv == _review.saved_values(r):
+                        draft.pop(r["id"], None)
+                    else:
+                        draft[r["id"]] = nv
+                    changed_draft = True
+                    stats["fixes"] += len(direct)
+                    for s, e, rep in direct:
+                        if len(examples) < 8:
+                            examples.append(f"{cur[s:e] or '（补上）'} → {rep.strip() or '（去掉）'}")
         project.save_manifest(records)
+        if changed_draft:
+            _review.save_draft(project, draft)
     secs = round(time.time() - t0, 1)
-    out = {"checked": n, "flagged": stats["flagged"], "found": stats["found"], "aligned": stats["aligned"],
-           "cleared": stats["cleared"], "kept_auto": stats["kept_auto"] + stats["unchanged_auto"],
-           "dismissed": dismissed, "chars": len(ref), "files": list(names or []), "pinyin": has_pinyin(),
-           "truncated": ref.truncated, "examples": examples[:5], "seconds": secs}
-    log.info(f"文字校正完成：比对了 {n} 条，{out['found']} 条和逐字稿对比发现可能有错，{out['aligned']} 条整句对上，"
-             f"{out['cleared']} 条原来的标红被逐字稿证明没错、已去掉，保留自动检查标红 {out['kept_auto']} 条；用时 {secs} 秒。")
-    _report(progress, 1.0, f"比对完了：{out['found']} 条和逐字稿对比发现可能有错（已标红）")
+    info = builtin_info()
+    out = {"checked": n, "flagged": stats["flagged"], "fixed_rows": stats["fixed"], "fixes": stats["fixes"],
+           "found": stats["found"], "aligned": stats["aligned"], "cleared": stats["cleared"],
+           "kept_auto": stats["kept_auto"] + stats["unchanged_auto"], "dismissed": dismissed,
+           "chars": len(ref) if ref else 0, "files": list(names or []), "builtin_lines": len(builtin),
+           "terms": len(lex.vocab), "builtin_terms": info["terms"], "corrections": len(lex.corrections),
+           "learned": len(lex.learned), "pinyin": has_pinyin(), "jieba": has_jieba(),
+           "truncated": bool(ref.truncated) if ref else False, "examples": examples, "seconds": secs}
+    log.info(f"文字校正完成：检查了 {n} 条，直接改好 {out['fixes']} 处（{out['fixed_rows']} 条，存成没保存的修改），"
+             f"另外 {out['found']} 条标红给了建议；{out['cleared']} 条原来的标红被母本证明没错、已去掉，"
+             f"保留自动检查标红 {out['kept_auto']} 条；用时 {secs} 秒。")
+    _report(progress, 1.0, f"检查完了：直接改好 {out['fixes']} 处，另外 {out['found']} 条给了建议")
     return out
 
 
 __all__ = [
     "TRANSCRIPT_DIR", "read_text_file", "save_transcripts", "load_transcripts", "transcript_info", "Reference",
     "check_text", "check_with_transcript", "merge_with_auto", "auto_suspect", "tokens", "fuzzy", "en_code",
-    "sounds_like_english", "has_pinyin",
+    "sounds_like_english", "has_pinyin", "parse_mother", "builtin_mother", "builtin_fixes", "props_to_fixes",
 ]

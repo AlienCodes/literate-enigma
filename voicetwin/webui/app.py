@@ -80,6 +80,19 @@ TRAIN_BTN, TRAIN_BUSY = "开始训练", "⏳ 正在训练……"
 SELECT_BTN, SELECT_BUSY = "重新挑选最佳模型", "⏳ 正在挑选……"
 GEN_BTN, GEN_BUSY = "生成", "⏳ 正在生成……"
 PROOF_BTN, PROOF_BUSY = "🔍 自动查找可能的错字", "⏳ 正在查找……"
+TEXTFIX_BTN, TEXTFIX_BUSY = "📝 文字校正", "⏳ 正在比对……"
+DLTXT_BTN = "⬇️ 下载改好的文字（txt）"
+TEXTFIX_HELP = ("**📝 有自己的逐字稿？**（讲课的讲稿、平时讲课的文字都行，txt 文件）在下面上传，点「📝 文字校正」："
+                "按**读音和前后文**和识别出来的文字比对，可能识别错的字标红，「修改建议」里是逐字稿的写法。"
+                "逐字稿**不用和录音一模一样**：你讲课时换了说法（读音不一样）的地方不算错。"
+                "没有逐字稿就不用管，上面的「🔍 自动查找可能的错字」照常用。")
+#: 「下载改好的文字」：文件准备好以后，自动点一下下载链接（gradio 的文件框里那个链接）
+AUTO_DOWNLOAD_JS = """() => { setTimeout(() => {
+  const a = document.querySelector('#vt-dl-txt a[download]') || document.querySelector('#vt-dl-txt a[href]');
+  if (a) a.click();
+}, 400); }"""
+TEXTFIX_NEED_FILE = ("请先在左边选好你的逐字稿（txt 文件，可以选好几个），再点「📝 文字校正」。"
+                     "Word 文档可以先打开，点「文件 → 另存为」，类型选「纯文本 (*.txt)」。")
 DL_BTN, DL_BUSY = "⬇️ 下载缺少的模型", "⏳ 正在下载……"
 SPEED_BTN, SPEED_BUSY = "▶ 试听语速", "⏳ 正在生成试听……"
 VERIFY_BTN, VERIFY_BUSY = "开始鉴别", "⏳ 正在鉴别……"
@@ -1253,11 +1266,14 @@ def _render_marked(text: str, spans: Any) -> str:
     return "".join(out)
 
 
-def _render_diff(text: str, alt: str, spans: Any = None) -> str:
-    """两次识别结果对比（优先用 U8 的 proofcheck.render_diff_html；没有建议时把可疑的字标红）。"""
+def _render_diff(text: str, alt: str, spans: Any = None, transcript: bool = False) -> str:
+    """两次识别结果对比（优先用 U8 的 proofcheck.render_diff_html；没有建议时把可疑的字标红）。
+    transcript=True：建议来自老师的逐字稿（文字校正），第二行写「按逐字稿改成」。"""
     try:
         from voicetwin.data.proofcheck import render_diff_html
 
+        if transcript:
+            return str(render_diff_html(text, alt, spans, label_b="按逐字稿改成"))
         return str(render_diff_html(text, alt, spans))
     except ImportError:
         pass
@@ -2439,6 +2455,8 @@ class WebUI:
                "var_box", "var_md", "var_a", "var_b", "var_choice", "gen_state", "speed_try", "gen_after", "var_note")
     SPEED_OUT = ("gen_bar", "gen_log", "speed_audio", "speed_try", "gen_btn", "gen_stop")
     PROOF_OUT = ("proof_bar", "proof_md", "clips_count", "proof_btn", "proof_stop", "prep_log")
+    TEXTFIX_OUT = ("proof_bar", "proof_md", "clips_count", "tr_btn", "prep_log", "tr_info")
+    DLTXT_OUT = ("dl_txt_md", "dl_txt_file")
     DL_OUT = ("doc_bar", "doc_log", "doc_md", "dl_btn", "dl_stop")
     VERIFY_OUT = ("vf_bar", "vf_md", "vf_table", "vf_btn", "vf_log")
     BLIND_OUT = (("bt_bar", "bt_md", "bt_btn", "bt_state", "bt_submit", "bt_result", "vf_log")
@@ -2742,9 +2760,14 @@ class WebUI:
             return audio, "", cid
         reasons = "；".join(info["reasons"])
         alt = _review.apply_edits(text, info["edits"]) if info["edits"] else ""
+        from_tr = sus.get("src") == "transcript"
+        ref_row = ""
+        if from_tr and sus.get("ref"):
+            ref_row = ('<div class="vt-diff-row"><span class="vt-diff-tag">逐字稿里的原句：</span>'
+                       f'{html.escape(str(sus["ref"]))}</div>')
         panel = ('<div class="vt-diff">' + (f'<div class="vt-diff-reason">⚠️ 可能有错：{html.escape(reasons)}</div>'
                                              if reasons else "")
-                 + _render_diff(text, alt, info["red"]) + "</div>")
+                 + _render_diff(text, alt, info["red"], from_tr) + ref_row + "</div>")
         return audio, panel, cid
 
     def _review_outputs(self, voice: str, only_sus: Any, msg: str) -> Tuple[Any, ...]:
@@ -2767,7 +2790,7 @@ class WebUI:
     def _edit_guard(voice: str, action: str = "保存修改") -> str:
         """素材准备 / 查找错字正在改这个声音的片段时，不让表格的修改把它覆盖掉（反过来也一样）。"""
         info = current_task()
-        if info and info.get("running") and info.get("voice") == voice and info.get("kind") in ("prepare", "proofcheck"):
+        if info and info.get("running") and info.get("voice") == voice and info.get("kind") in ("prepare", "proofcheck", "textfix"):
             return (f"「{info.get('label')}」正在进行，请等它完成后再点「{action}」。"
                     "你在表格里改的内容还在（红灯的那几行），不会丢。")
         return ""
@@ -3122,6 +3145,131 @@ class WebUI:
             # 接在后面的 refresh_clips 读的是那时的表格，没保存的修改会留着。
             yield self._o(O, proof_bar=st.get("bar", ""), proof_md=md, prep_log=text,
                           clips_count=_clips_count_md(self.cfg, v), **idle)
+
+    def textfix_info(self, voice: Any) -> str:
+        """「文字校正」按钮下面的小字：上次存的逐字稿是哪几个文件、多少字。"""
+        v = _voice_name(voice)
+        if not v:
+            return ""
+        try:
+            info = wf.transcript_info(self.cfg, v)
+        except Exception as exc:  # noqa: BLE001 - 只是一行说明
+            log.debug(f"读取逐字稿信息失败：{exc}")
+            return ""
+        if not info.get("files"):
+            return "还没有上传逐字稿。"
+        names = "、".join(info["files"][:3]) + (f" 等 {len(info['files'])} 个文件" if len(info["files"]) > 3 else "")
+        return (f"已存的逐字稿：{_md_text(names)}（{info.get('chars', 0)} 个字 / 词）。"
+                "不重新上传的话，点「📝 文字校正」用的就是它。")
+
+    @staticmethod
+    def _textfix_md(r: Dict[str, Any]) -> str:
+        found, checked = _int(r.get("found")), _int(r.get("checked"))
+        if found:
+            md = (f"### ✅ 文字校正完成：和逐字稿比对了 {checked} 条，其中 **{found}** 条发现可能识别错的字"
+                  "（已在表格里标红，「修改建议」里是逐字稿的写法）")
+        else:
+            md = f"### ✅ 文字校正完成：和逐字稿比对了 {checked} 条，没有发现和逐字稿对比可能识别错的字"
+        parts = []
+        files = r.get("files") or []
+        if files:
+            parts.append(f"逐字稿：{_md_text('、'.join(files[:3]))}{' 等' if len(files) > 3 else ''}"
+                         f"（{_int(r.get('chars'))} 个字 / 词）")
+        parts.append(f"{_int(r.get('aligned'))} 条在逐字稿里找到了几乎一样的句子，逐句比对；"
+                     "其余的按你平时的说法（常说的词、术语）比对")
+        if _int(r.get("cleared")):
+            parts.append(f"原来自动查错字标红、逐字稿证明没错的 **{_int(r.get('cleared'))}** 条，红色已经去掉")
+        if _int(r.get("kept_auto")):
+            parts.append(f"逐字稿里对不上的地方，保留了原来自动查错字的标红（{_int(r.get('kept_auto'))} 条，"
+                         "原因前面写着「自动检查」）")
+        if _int(r.get("dismissed")):
+            parts.append(f"你点过「这句没错」的 {_int(r.get('dismissed'))} 条没有动")
+        md += "\n\n" + "\n".join(f"- {x}" for x in parts)
+        ex = [str(x) for x in (r.get("examples") or [])][:4]
+        if ex:
+            md += "\n\n例如：" + "；".join(_md_text(x) for x in ex)
+        if not r.get("pinyin", True):
+            md += ("\n\n⚠️ 这台电脑上没有找到拼音工具（pypinyin），只能按字比对，读音相近的别字找不出来。"
+                   "请用 GPT-SoVITS 整合包里的 Python 运行声音分身（安装时选 1）。")
+        if r.get("truncated"):
+            md += "\n\n逐字稿太长，只用了前面大约 40 万个字 / 词。"
+        if found:
+            md += ("\n\n标红只是提醒：读音像、逐字稿里这样写，不一定就是录音里说的。勾上「只看可能有错的」，"
+                   "点一行可以听录音、看逐字稿里的原句；对的话点「修改建议」里的「采用」，最后点「保存修改」。")
+        return md
+
+    def do_textfix(self, voice: Any, files: Any = None, only_sus: Any = False) -> Iterator[Tuple[Any, ...]]:
+        """「📝 文字校正」：存好这次上传的逐字稿（不上传就用上次的），再在后台和校对表的文字比对。"""
+        O = self.TEXTFIX_OUT
+        idle = dict(tr_btn=self._idle_btn(TEXTFIX_BTN))
+        v = _voice_name(voice)
+        if not v:
+            yield self._o(O, proof_bar=self._notice(NEED_VOICE), **idle)
+            return
+        busy = self._other_task("textfix", v)
+        if busy:
+            yield self._o(O, proof_bar=self._notice(busy), prep_log=busy, **idle)
+            return
+        project, err = self._project(v)
+        if project is None or not project.exists:
+            yield self._o(O, proof_bar=self._notice(err or NEED_PREPARE), **idle)
+            return
+        attach = self._attaching("textfix", v)
+        if not attach:
+            from voicetwin.data import transcript_fix
+
+            paths = [str(getattr(f, "name", f) or "") for f in (files if isinstance(files, (list, tuple)) else
+                                                                   ([files] if files else []))]
+            paths = [x for x in paths if x]
+            try:
+                if paths:  # 先存好（不是 txt、没有文字时直接说明，不算出错、不生成问题报告）
+                    transcript_fix.save_transcripts(project, paths)
+                elif not transcript_fix.transcript_info(project)["files"]:
+                    yield self._o(O, proof_bar=self._notice(TEXTFIX_NEED_FILE), **idle)
+                    return
+            except ValueError as exc:
+                yield self._o(O, proof_bar=self._notice(str(exc)), tr_info=self.textfix_info(v), **idle)
+                return
+        stream = stream_task("textfix", "文字校正", v, _attach_missed if attach else wf.run_transcript_fix, self.cfg, v,
+                             stages=_stages(self.cfg, "textfix"), note=NOTE)
+        for text, st in stream:
+            if st.get("busy"):
+                yield self._o(O, proof_bar=st.get("bar", ""), prep_log=text, **idle)
+                return
+            if not st.get("done"):
+                yield self._o(O, proof_bar=st.get("bar", ""), prep_log=text, tr_btn=self._busy_btn(TEXTFIX_BUSY))
+                continue
+            ok = "value" in st and not st.get("error")
+            if self._missed(attach, st):
+                md = ATTACH_MISSED_MD
+            elif ok:
+                md = self._textfix_md(st.get("value") or {})
+                _info("✅ 文字校正完成")
+            else:
+                md = self._final_md(st, "文字校正", v)
+            # 表格不在这里刷新（和查错字一样）：接在后面的 refresh_clips 读的是那时的表格，没保存的修改会留着
+            yield self._o(O, proof_bar=st.get("bar", ""), proof_md=md, prep_log=text,
+                          clips_count=_clips_count_md(self.cfg, v), tr_info=self.textfix_info(v), **idle)
+
+    def do_download_text(self, voice: Any) -> Tuple[Any, ...]:
+        """「⬇️ 下载改好的文字（txt）」：把「文字」列现在的文字存成 txt，网页上给出下载。"""
+        O = self.DLTXT_OUT
+        v = _voice_name(voice)
+        hidden = _upd(value=None, visible=False)
+        if not v:
+            return self._o(O, dl_txt_md="⚠️ " + NEED_VOICE, dl_txt_file=hidden)
+        try:
+            res = wf.export_review_text(self.cfg, v)
+        except (ValueError, RuntimeError) as exc:
+            return self._o(O, dl_txt_md="⚠️ " + _md_text(exc), dl_txt_file=hidden)
+        md = (f"⬇️ 已经把 **{res['lines']}** 句改好的文字存成 txt（一行一句，按表格的顺序"
+              + (f"；紫色删除的 {res['deleted']} 句不在里面" if res.get("deleted") else "")
+              + f"），浏览器会自动下载。电脑上也存了一份：`{_md_text(res['path'])}`"
+              "\n\n下次可以把它当逐字稿上传，点「📝 文字校正」。")
+        if res.get("unsaved"):
+            md += (f"\n\n🔴 其中 **{res['unsaved']}** 条修改还没保存（文件里是改过的样子）：记得点下面的「保存修改」，"
+                   "不然训练时不会用这些修改。")
+        return self._o(O, dl_txt_md=md, dl_txt_file=_upd(value=res["path"], visible=True))
 
     # ------------------------------------------------------------------ ② 训练
     def train_plan_preview(self, voice: Any, backend: Any = None, s_ep: Any = 0, g_ep: Any = 0, bs: Any = 0,
@@ -3822,6 +3970,19 @@ class WebUI:
                         load_clips = gr.Button("🔄 刷新表格", scale=1)
                     c["proof_bar"] = gr.HTML("", elem_classes="vt-bar-box")
                     c["proof_md"] = gr.Markdown(elem_classes="vt-md")
+                    # 文字校正（v18.5，老师的要求）：上传自己的逐字稿，按读音和前后文比对，结果覆盖「可能有错」列；
+                    # 下载改好的文字：「文字」列现在的文字存成 txt（下次可以当逐字稿上传）
+                    gr.Markdown(TEXTFIX_HELP, elem_classes="vt-md vt-textfix-help")
+                    with gr.Row(equal_height=False):
+                        c["tr_files"] = gr.File(label="📄 上传逐字稿（txt 文件，可以选好几个）", file_count="multiple",
+                                                file_types=[".txt"], scale=3, elem_id="vt-tr-files")
+                        with gr.Column(scale=2, min_width=220):
+                            c["tr_btn"] = gr.Button(TEXTFIX_BTN, variant="primary", elem_id="vt-tr-btn")
+                            c["dl_txt_btn"] = gr.Button(DLTXT_BTN, elem_id="vt-dl-txt-btn")
+                            c["tr_info"] = gr.Markdown(elem_classes="vt-md vt-tr-info")
+                    c["dl_txt_md"] = gr.Markdown(elem_classes="vt-md")
+                    c["dl_txt_file"] = gr.File(label="改好的文字（没有自动下载的话，点文件名下载）", visible=False,
+                                               interactive=False, elem_id="vt-dl-txt")
                     c["sel_clip"] = gr.State("")
                     c["clips_base"] = gr.State({})
                     # 查找 / 替换（像 Word）：表格只列出找到的句子；替换以后存成没保存的修改（红灯），保存才生效
@@ -3856,7 +4017,7 @@ class WebUI:
                                                visible=False)
                     c["clip_diff"] = gr.HTML("")
                     gr.Markdown("标红只是提醒「可能有错」，不一定真错；也可能有个别错字没被发现。"
-                                "「修改建议」来自另一个识别引擎，大多数是对的，但不能保证百分之百对：点了以后改过的字会变成蓝色，"
+                                "「修改建议」来自另一个识别引擎或你的逐字稿，大多数是对的，但不能保证百分之百对：点了以后改过的字会变成蓝色，"
                                 "请看一眼对不对（不对就双击「文字」再改，或者在「⋯ 选项」里撤销）。",
                                 elem_classes="vt-honest")
                     save_clips = gr.Button("保存修改", variant="primary")
@@ -4114,6 +4275,16 @@ class WebUI:
                                  **heavy).then(
                 _safe("载入片段", 2, 0)(self.refresh_clips), [c["voice"], c["only_sus"], c["clips"]], clip_outs, **quick).then(
                 self.after_task, None, after_outs, **quick)
+            c["tr_btn"].click(_settled(self.do_textfix), [c["voice"], c["tr_files"], c["only_sus"]],
+                              outs(self.TEXTFIX_OUT), **heavy).then(
+                _safe("载入片段", 2, 0)(self.refresh_clips), [c["voice"], c["only_sus"], c["clips"]], clip_outs, **quick).then(
+                self.after_task, None, after_outs, **quick)
+            # 下载：先在电脑上存好 txt，再让浏览器自动点一下下载链接（没自动下载时老师可以自己点文件名）
+            c["dl_txt_btn"].click(_safe("下载改好的文字", 2, 0)(self.do_download_text), c["voice"],
+                                  outs(self.DLTXT_OUT), **quick).then(None, None, None, js=AUTO_DOWNLOAD_JS, **quick)
+            app.load(self.textfix_info, c["voice"], c["tr_info"], **quick)
+            c["voice"].change(self.textfix_info, c["voice"], c["tr_info"], **quick)
+            c["voice"].change(lambda: ("", _upd(value=None, visible=False)), None, outs(self.DLTXT_OUT), **quick)
 
             # ②
             train_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["q_ep"], c["bs"], c["dpo"]]
