@@ -1,5 +1,5 @@
 # EN: The Glue That Failed
-# ZH: 一个失败的胶水
+# ZH: 失败的胶水，成功的便利贴
 
 ## 英文
 In 1968 Spencer Silver, a scientist at 3M, set out to make a super-strong **adhesive**. The **polymer** he produced did something else. Its tiny **spheres** formed a layer with little **tack**, giving paper a **temporary** hold, so it would **adhere**, peel off and be **reapplied**. To an **inventor** chasing strength, the **formulation** was a **setback**.
