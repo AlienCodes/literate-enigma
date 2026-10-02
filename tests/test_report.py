@@ -80,7 +80,7 @@ def test_diagnose_stuck_while_loading_and_oom():
 
 def test_read_text_tail_of_big_file(tmp_path):
     p = tmp_path / "big.log"
-    p.write_text("旧" * 100 + "\n" + "x" * 1000 + "\n最后一行\n", encoding="utf-8")
+    p.write_bytes(("旧" * 100 + "\n" + "x" * 1000 + "\n最后一行\n").encode("utf-8"))  # Windows 上 write_text 会写成 \r\n
     assert logtail.read_text(p, max_bytes=50).endswith("最后一行\n")
     assert logtail.read_text(tmp_path / "没有.log") == ""
 

@@ -33,7 +33,7 @@ sv = ["onnxruntime>=1.14"]
 separate = ["demucs>=4.0"]
 webui = ["gradio>=4.0"]
 docx = ["python-docx>=1.0"]
-dev = ["pytest>=7", "fastapi", "uvicorn"]  # fastapi + uvicorn：tests/test_gsv_real_api.py 运行真实的 GPT-SoVITS api_v2.py
+dev = ["pytest>=7", "fastapi", "uvicorn", "python-multipart"]  # tests/test_gsv_real_api.py 运行真实的 GPT-SoVITS api_v2.py（整合包里是 fastapi[standard]，带 python-multipart）
 
 [project.scripts]
 voicetwin = "voicetwin.cli:main"
