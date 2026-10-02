@@ -257,6 +257,76 @@ def test_timeout_message_says_where_it_got_stuck(prepared, tmp_path, quick, monk
     assert explain(ei.value).key == "api_start"
 
 
+def test_engine_restart_keeps_the_checkpoint_being_tested(prepared, tmp_path, quick):
+    """自动挑选时一个一个试模型：引擎中途重启后，还要用正在试的那个模型，不能换回默认的。"""
+    cfg, project, _ = prepared
+    root = build_fake_root(tmp_path / "GPT-SoVITS", real_api=True)
+    gcfg = make_cfg(project.root.parent, backends={"gptsovits": {
+        "root": str(root), "python": sys.executable, "port": _port(), "startup_timeout": 60}})
+    p2 = wf.open_project(gcfg, project.voice, must_exist=True)
+    b = get_backend("gptsovits", gcfg, p2)
+    ref, ref_text, ref_lang = _ref(p2)
+    pm = root / "GPT_SoVITS" / "pretrained_models"
+    ck = {"id": "试的", "gpt": str(pm / "gsv-v2final-pretrained" / "s1bert25hz-5kh-longer-epoch=12-step=369668.ckpt"),
+          "sovits": str(pm / "v2Pro" / "s2Gv2Pro.pth")}
+    try:
+        b.use_checkpoint(ck)
+        b.proc.kill()  # 引擎意外退出
+        b.proc.wait(10)
+        b.synthesize(SynthRequest(text="重启以后还是这个模型。", lang="zh", ref_audio=ref, ref_text=ref_text,
+                                  ref_lang=ref_lang), tmp_path / "x.wav")
+    finally:
+        b.stop()
+    run = [c for c in _calls(root) if c["kind"] == "run"][-1]
+    assert run["t2s"] == ck["gpt"] and run["vits"] == ck["sovits"]
+
+
+def test_int16_wrap_click_is_repaired():
+    """半精度时 1.0 × 32768 溢出成 -32768（满幅度的「咔哒」）；真正的 -1.0 不动。"""
+    import io
+
+    import numpy as np
+
+    from voicetwin.backends.gptsovits import _fix_int16_wrap
+
+    x = np.array([0, 20000, 32700, -32768, -32768, 32600, 1000, -30000, -32768, -31000, 0], dtype=np.int16)
+    buf = io.BytesIO()
+    sf.write(buf, x, 32000, format="WAV", subtype="PCM_16")
+    y, sr = sf.read(io.BytesIO(_fix_int16_wrap(buf.getvalue())), dtype="int16")
+    assert sr == 32000
+    assert list(y[3:5]) == [32767, 32767]  # 两边是正的：溢出，改回来
+    assert y[8] == -32768  # 两边是负的：真的 -1.0，不动
+    clean = io.BytesIO()
+    sf.write(clean, np.array([0, 100, -100, 0], dtype=np.int16), 32000, format="WAV", subtype="PCM_16")
+    assert _fix_int16_wrap(clean.getvalue()) == clean.getvalue()  # 没有问题就原样
+    assert _fix_int16_wrap(b"not a wav") == b"not a wav"
+
+
+def test_select_skips_a_broken_checkpoint(prepared, tmp_path, quick, monkeypatch):
+    """自动挑选时某一个模型文件坏了：跳过它接着比别的，不要整个挑选都停下。"""
+    import shutil
+
+    cfg, project, _ = prepared
+    ws = tmp_path / "ws"
+    shutil.copytree(project.root, ws / project.voice)
+    root = build_fake_root(tmp_path / "GPT-SoVITS", real_api=True)
+    gcfg = make_cfg(ws, backend="gptsovits", backends={"gptsovits": {
+        "root": str(root), "python": sys.executable, "port": _port(), "startup_timeout": 60, "is_half": True,
+        "train": {"sovits_epochs": 2, "gpt_epochs": 2, "batch_size": 2}}})
+    wf.run_train(gcfg, project.voice, "gptsovits", select=False, sovits_save_every=2, gpt_save_every=2)
+    orig = GPTSoVITSBackend.checkpoints
+
+    def with_broken(self, *a, **k):
+        good = orig(self, *a, **k)
+        bad = dict(good[0], id="坏了的", gpt=str(tmp_path / "坏了-e9.ckpt"))
+        return [bad] + good
+
+    monkeypatch.setattr(GPTSoVITSBackend, "checkpoints", with_broken)
+    sel = wf.run_select(gcfg, project.voice, "gptsovits")
+    ids = [r["id"] for r in sel["selection"]["results"]]
+    assert "坏了的" not in ids and ids and sel["selected"]["id"] != "坏了的"
+
+
 def test_does_not_take_over_a_server_it_did_not_start(prepared, tmp_path, quick):
     """端口上已经有一个别人开的 api_v2（例如以前没关掉的）：不接手，换一个端口自己开，结束时关掉自己的。"""
     import subprocess

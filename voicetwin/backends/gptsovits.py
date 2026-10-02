@@ -216,6 +216,45 @@ def _api_reason(r: Any) -> str:
     return str(r.text or f"HTTP {getattr(r, 'status_code', '?')}")
 
 
+def _fix_int16_wrap(data: bytes) -> bytes:
+    """修好真实 GPT-SoVITS 输出里的「咔哒」声。
+
+    半精度（is_half）时声码器最后的 tanh 会正好等于 1.0，TTS.py 的 audio_postprocess 只在 >1 时才缩放，
+    然后 (audio * 32768).astype(np.int16) 把 32768 溢出成 -32768：一个满幅度的跳变，听起来就是「咔哒」。
+    （GPT_SoVITS/TTS_infer_pack/TTS.py @ abe9843 第 1559、1590 行。）真正的 -1.0 两边是负的，溢出的两边是正的，
+    所以把两边有正数的 -32768 改回 32767。没有这种情况就原样返回。"""
+    try:
+        import io
+
+        import numpy as np
+        import soundfile as sf
+
+        info = sf.info(io.BytesIO(data))
+        if info.subtype != "PCM_16" or info.channels != 1:
+            return data
+        x, sr = sf.read(io.BytesIO(data), dtype="int16", always_2d=False)
+        idx = np.flatnonzero(x == -32768)
+        if idx.size == 0:
+            return data
+        brk = np.r_[True, np.diff(idx) > 1]
+        starts, ends = idx[brk], idx[np.r_[brk[1:], True]]
+        fixed = 0
+        for a, b in zip(starts, ends):
+            before = int(x[a - 1]) if a > 0 else 0
+            after = int(x[b + 1]) if b + 1 < len(x) else 0
+            if before > 0 or after > 0:
+                x[a:b + 1] = 32767
+                fixed += int(b - a + 1)
+        if not fixed:
+            return data
+        buf = io.BytesIO()
+        sf.write(buf, x, sr, format="WAV", subtype="PCM_16")
+        log.debug(f"修好了 {fixed} 个溢出的采样点（半精度时 1.0 变成了 -32768）")
+        return buf.getvalue()
+    except Exception:
+        return data
+
+
 def _silent_answer(data: bytes) -> str:
     """引擎回的 WAV 是不是一点声音都没有；是的话返回一句描述（例如「1.0 秒的静音」），否则返回空字符串。"""
     try:
@@ -707,6 +746,8 @@ class GPTSoVITSBackend(Backend):
         self.api_url = self.external_url or f"http://127.0.0.1:{self.port}"
         self.proc: Optional[subprocess.Popen] = None
         self._loaded: Dict[str, str] = {}
+        #: use_checkpoint 指定的模型（自动挑选时一个一个试）；引擎中途重启或重新确认时也用它，不要换回默认的模型
+        self._wanted: Optional[Dict[str, Any]] = None
         self._http = None
         self._log_fh = None
         self._warned_pretrained = False
@@ -1508,7 +1549,7 @@ class GPTSoVITSBackend(Backend):
             self.stop()
         self.port = _free_port(self.port)
         self.api_url = f"http://127.0.0.1:{self.port}"
-        weights = self._current_weights()
+        weights = self._weights_to_use()
         missing = [w for w in (weights.get("gpt"), weights.get("sovits")) if not w or not Path(w).exists()]
         if missing:
             # 真实的 TTS_Config 找不到文件时会悄悄改用官方底模（TTS.py @ main），声音就不像了，所以先说清楚
@@ -1631,12 +1672,16 @@ class GPTSoVITSBackend(Backend):
                 raise RuntimeError(f"切换 {kind} 模型失败：{_api_reason(r)}（{path}）\n" + self._api_report(20))
             self._loaded[key] = path
 
+    def _weights_to_use(self) -> Dict[str, Any]:
+        return self._wanted or self._current_weights()
+
     def _ensure_weights(self) -> None:
-        w = self._current_weights()
+        w = self._weights_to_use()
         if w["sovits"] and w["gpt"]:
             self._set_weights(w["gpt"], w["sovits"])
 
     def use_checkpoint(self, ckpt: Dict[str, Any]) -> None:
+        self._wanted = {"id": ckpt.get("id", "?"), "gpt": ckpt["gpt"], "sovits": ckpt["sovits"]}
         if not self._alive():
             self.start()
         self._set_weights(ckpt["gpt"], ckpt["sovits"])
@@ -1712,7 +1757,7 @@ class GPTSoVITSBackend(Backend):
                                + "\n" + self._api_report(20))
         out_path = Path(out_path)
         out_path.parent.mkdir(parents=True, exist_ok=True)
-        out_path.write_bytes(r.content)
+        out_path.write_bytes(_fix_int16_wrap(r.content))
         return out_path
 
     def _api_new_text(self, pos: int) -> str:

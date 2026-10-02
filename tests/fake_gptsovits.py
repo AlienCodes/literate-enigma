@@ -25,7 +25,7 @@
 - FAKE_GSV_CLIP_SLEEP=秒：1B / 声纹每条素材睡多久（默认 0.01），用来观察「数文件」的进度。
 - FAKE_GSV_HANG=1：s2 训练一直不结束（并开一个子进程），用来测试「停止」会结束整个进程树。
 - FAKE_GSV_API_DELAY=秒：推理服务启动前先等一会儿（模拟加载模型）。
-- 合成的文字里有「【测试显存不够】」时，api 返回真实格式的合成失败。
+- 合成的文字里有「【测试显存不够】」时，api 和真的一样：记录里打印 Traceback，回 200 + 1 秒静音。
 """
 
 import json
@@ -274,9 +274,18 @@ class H(BaseHTTPRequestHandler):
         if not os.path.exists(req["ref_audio_path"]):
             return self._json(400, {"message": "ref missing"})
         assert req["text_split_method"] == "cut0"
-        if "【测试显存不够】" in req["text"]:  # api_v2.py:444-445 的真实返回格式
-            return self._json(400, {"message": "tts failed",
-                                    "Exception": "CUDA out of memory. Tried to allocate 1.00 GiB"})
+        if "【测试显存不够】" in req["text"]:
+            # 真实的 TTS.run 出错时不报错（TTS.py @ abe9843 第 1516~1518 行）：打印 Traceback，回 200 + 1 秒 16 kHz 静音
+            print("Traceback (most recent call last):\\n"
+                  '  File "GPT_SoVITS/TTS_infer_pack/TTS.py", line 1300, in run\\n'
+                  "    pred_semantic_list, idx_list = self.t2s_model.model.infer_panel(\\n"
+                  "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.00 GiB", flush=True)
+            buf = io.BytesIO()
+            with wave.open(buf, "wb") as w:
+                w.setnchannels(1); w.setsampwidth(2); w.setframerate(16000); w.writeframes(b"\\x00\\x00" * 16000)
+            data = buf.getvalue()
+            self.send_response(200); self.send_header("Content-Type", "audio/wav")
+            self.send_header("Content-Length", str(len(data))); self.end_headers(); self.wfile.write(data); return
         data = make_wav(req["text"], float(req.get("speed_factor", 1.0)), state["gpt"])
         self.send_response(200); self.send_header("Content-Type", "audio/wav")
         self.send_header("Content-Length", str(len(data))); self.end_headers(); self.wfile.write(data)
@@ -357,21 +366,24 @@ class TTS:
         text = inputs.get("text", ""); text_lang = inputs.get("text_lang", "")
         ref = inputs.get("ref_audio_path", ""); prompt_lang = inputs.get("prompt_lang", "")
         assert text_lang in self.configs.languages  # TTS.py 里的同一句检查
-        assert prompt_lang in self.configs.languages
+        if inputs.get("prompt_text"):  # TTS.py：只在有参考文字时检查 prompt_lang
+            assert prompt_lang in self.configs.languages
         if not os.path.exists(ref):
             raise FileNotFoundError(ref)
         info = sf.info(ref)  # TTS.py：参考音频必须在 3~10 秒之间（按 16 kHz 重采样后的长度判断）
         if not (3.0 <= info.frames / info.samplerate <= 10.0):
             raise OSError("参考音频在3~10秒范围外，请更换！")
         for p in inputs.get("aux_ref_audio_paths") or []:
-            if not os.path.exists(p):
-                raise FileNotFoundError(p)
+            if not os.path.exists(p):  # TTS.py：辅助参考音频不存在时只打印一句、跳过
+                print("音频文件不存在，跳过：", p)
         _record("run", req={k: v for k, v in inputs.items()}, t2s=self.t2s, vits=self.vits)
         try:
             if "【测试显存不够】" in text:
                 raise RuntimeError("CUDA out of memory. Tried to allocate 1.00 GiB")
             sr = 32000
-            epoch = int(self.t2s.rsplit("-e", 1)[-1].split(".")[0]) if "-e" in self.t2s else 1
+            import re
+            m = re.search(r"-e(\\d+)\\.ckpt$", self.t2s)
+            epoch = int(m.group(1)) if m else 1
             speed = float(inputs.get("speed_factor", 1.0) or 1.0)
             dur = max(0.5, len(text) * (0.2 + 0.01 * epoch) / max(speed, 0.1))
             t = np.arange(int(dur * sr)) / sr

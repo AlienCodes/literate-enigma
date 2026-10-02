@@ -110,6 +110,16 @@ class _Sim:
                 "reliable": bool(self.encoder.reliable), "calibration": {}, "definition": PCT_HELP, "note": HONEST_NOTE}
 
 
+def _fatal(exc: BaseException) -> bool:
+    """重试也没用的错误（显存不够、引擎起不来……，见 errors.FATAL_KEYS）。"""
+    try:
+        from voicetwin.errors import is_fatal
+
+        return is_fatal(exc)
+    except Exception:
+        return False
+
+
 def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend, max_items: int = DEFAULT_ITEMS,
                          use_asr: Optional[bool] = None, progress: Optional[ProgressFn] = None) -> Dict[str, Any]:
     def _p(frac: float, msg: str, log_it: bool = False) -> None:
@@ -168,7 +178,15 @@ def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend
         ck_id = (ck or {}).get("id", "当前模型")
         _p(0.10 + 0.90 * (j * len(items)) / total_steps, f"切换到模型 {ck_id}（第 {j + 1}/{len(ckpts)} 个）", log_it=True)
         if ck is not None:
-            backend.use_checkpoint(ck)
+            try:
+                backend.use_checkpoint(ck)
+            except Exception as exc:
+                if _fatal(exc):  # 显存不够、引擎起不来……：后面的模型也一样，直接报出真正的原因
+                    raise
+                # 某一个模型文件坏了 / 读不了：跳过它，接着比别的，不要整个挑选都停下
+                log.warning(f"  模型 {ck_id} 加载失败，跳过这个模型：{str(exc).splitlines()[0] if str(exc) else exc!r}")
+                step += len(items)
+                continue
         sims_c, sims_i, pcts, cers, ratios = [], [], [], [], {"zh": [], "en": []}
         for it in items:
             _check_cancel()
@@ -181,6 +199,8 @@ def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend
                                                 ref_text=ref["text"], ref_lang=ref["lang"], seed=1234, speed=1.0), out)
                 wav, sr = load_audio(out)
             except Exception as exc:
+                if _fatal(exc):  # 例如显存不够：每一句都会一样失败，不要白试完所有模型才说「都失败了」
+                    raise
                 log.warning(f"  合成失败：{exc}")
                 _p(0.10 + 0.90 * step / total_steps, f"试听模型 {ck_id}：{step}/{total_steps}")
                 continue
