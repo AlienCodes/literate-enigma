@@ -650,15 +650,16 @@ def replace_matches(project: Any, query: Any, repl: Any, whole_word: bool = True
         ids: List[str] = []
         for rec in recs:
             rid = rec["id"]
-            text = current_values(rec, draft.get(rid))["text"]
+            before = current_values(rec, draft.get(rid))
+            text = before["text"]
             new, n = _replace_in_text(pat, text, repl, target[1] if target is not None else None)
             if not n or new == text:
                 continue
             if not clean_transcript(new):
                 skipped += 1
                 continue
-            undo[rid] = draft.get(rid)
-            set_draft(project, rid, text=new)
+            after = set_draft(project, rid, text=new)["values"]
+            undo[rid] = {"text": text, "lang": before["lang"], "after": after["text"]}
             draft = load_draft(project)
             count += n
             rows += 1
@@ -670,32 +671,35 @@ def replace_matches(project: Any, query: Any, repl: Any, whole_word: bool = True
         return {"count": count, "rows": rows, "skipped": skipped, "ids": ids}
 
 
-def undo_replace(project: Any) -> int:
-    """撤销上一次替换：那几句改回替换之前的样子（替换之前就有的没保存的修改也恢复）。返回改回了几句；没有可撤销的返回 0。"""
+def undo_replace(project: Any) -> Dict[str, int]:
+    """撤销上一次替换：那几句的文字改回替换之前的样子（存成没保存的修改，和替换一样要保存才生效；
+    替换以后已经保存了也能改回去）。替换以后又改过、或者删除了的句子不动（不把老师后来的修改冲掉）。
+
+    返回 {"rows": 改回了几句, "kept": 又改过所以没动的句子数}；没有可撤销的两个都是 0。"""
     p = Path(project.root) / UNDO_FILE
+    out = {"rows": 0, "kept": 0}
     try:
         data = json.loads(p.read_text(encoding="utf-8"))
     except (OSError, ValueError):
-        return 0
+        return out
     rows = data.get("rows") if isinstance(data, dict) else None
     if not isinstance(rows, dict) or not rows:
-        return 0
+        return out
     with _LOCK:
         draft = load_draft(project)
         known = {r["id"]: r for r in project.load_manifest()}
-        n = 0
         for rid, entry in rows.items():
-            if rid not in known:
+            rec = known.get(rid)
+            if rec is None or not isinstance(entry, dict) or not str(entry.get("text") or "").strip():
                 continue
-            if isinstance(entry, dict) and is_dirty(known[rid], entry):
-                draft[rid] = {"text": str(entry.get("text", "")), "keep": bool(entry.get("keep", True)),
-                              "lang": str(entry.get("lang", ""))}
-            else:
-                draft.pop(rid, None)
-            n += 1
-        save_draft(project, draft)
+            if rec.get("deleted") or current_values(rec, draft.get(rid))["text"] != entry.get("after"):
+                out["kept"] += 1
+                continue
+            set_draft(project, rid, text=entry["text"], lang=entry.get("lang"))
+            draft = load_draft(project)
+            out["rows"] += 1
         p.unlink()
-        return n
+        return out
 
 
 def has_undo(project: Any) -> bool:

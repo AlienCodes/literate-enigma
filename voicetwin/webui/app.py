@@ -629,7 +629,8 @@ REVIEW_JS_TEMPLATE = r"""() => {
     if (!q) return;  // 没写要找的字：交给程序提示
     const st = document.querySelector('#vt-find-status[data-q]');
     const n = st && st.dataset.q === q ? '（一共 ' + st.dataset.count + ' 处）' : '';
-    const ok = window.confirm('确定把所有的「' + q + '」都换成「' + r + '」吗？' + n +
+    const what = r ? '都换成「' + r + '」' : '都删掉（「替换成」是空的）';
+    const ok = window.confirm('确定把所有的「' + q + '」' + what + '吗？' + n +
       '\n\n换完以后要点「保存修改」才生效；换错了可以点「撤销刚才的替换」。');
     if (!ok) { ev.preventDefault(); ev.stopImmediatePropagation(); ev.stopPropagation(); }
   }, true);
@@ -2887,7 +2888,8 @@ class WebUI:
             _review.save_find(project, q, bool(word), 0)
             extra = f"（{res['skipped']} 句换完会变成空的，没有换）" if res["skipped"] else ""
             return self._find_out(v, only_sus, "没有可以替换的地方" + extra + "。")
-        msg = (f"✅ 已经把 <b>{res['count']}</b> 处「{html.escape(q)}」换成「{html.escape(r)}」（{res['rows']} 句，🔴 没保存）。"
+        what = f"换成「{html.escape(r)}」" if r.strip() else "删掉了"
+        msg = (f"✅ 已经把 <b>{res['count']}</b> 处「{html.escape(q)}」{what}（{res['rows']} 句，🔴 没保存）。"
                "记得点下面的「保存修改」；换错了点「↩️ 撤销刚才的替换」。")
         if res["skipped"]:
             msg += f"（另有 {res['skipped']} 句换完会变成空的，没有换。）"
@@ -2899,8 +2901,16 @@ class WebUI:
         v = _voice_name(voice)
         if not v:
             return NEED_VOICE, _upd(), _upd(), _upd()
-        n = _review.undo_replace(wf.Project(self.cfg, v))
-        msg = f"↩️ 已经撤销刚才的替换（{n} 句改回去了）。" if n else "没有可以撤销的替换（只能撤销最近一次）。"
+        res = _review.undo_replace(wf.Project(self.cfg, v))
+        if res["rows"]:
+            msg = f"↩️ 已经撤销刚才的替换（{res['rows']} 句改回去了，🔴 没保存：点「保存修改」才生效）。"
+        elif not res["kept"]:
+            msg = "没有可以撤销的替换（只能撤销最近一次）。"
+        else:
+            msg = ""
+        if res["kept"]:
+            msg += (f"另有 {res['kept']} 句替换以后又改过（或删除了），没有动它；"
+                    "要改回去请在那一行的「⋯ 选项」里撤销，或者双击文字修改。")
         return self._find_out(v, only_sus, msg)
 
     def do_find_close(self, voice: Any, only_sus: Any = False) -> Tuple[Any, ...]:

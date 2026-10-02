@@ -1368,6 +1368,36 @@ def test_find_keeps_deleted_rows_visible(prepared, tmp_path):
     assert [r[idc] for r in rows] == [recs[0]["id"]]
 
 
+def test_undo_replace_after_save_and_after_later_edit(prepared, tmp_path):
+    """撤销替换：已经保存了也能改回去（变成没保存的修改，红灯）；替换以后老师又改过的句子不动，并且说清楚。"""
+    cfg, name = _copy_voice(prepared, tmp_path)
+    project = wf.Project(cfg, name)
+    recs = _all_usable(project)
+    recs[0]["text"] = "第一句有艾子。"
+    recs[1]["text"] = "第二句也有艾子。"
+    project.save_manifest(recs)
+    ui = A.WebUI(cfg)
+    ui.do_replace_all(name, "艾子", "as", True)
+    ui.do_save(name)
+    m = {r["id"]: r for r in project.load_manifest()}
+    assert m[recs[0]["id"]]["text"] == "第一句有as。" and not A._review.load_draft(project)
+    status, _, _, _ = ui.do_undo_replace(name)
+    assert "2 句改回去了" in status and "没保存" in status
+    draft = A._review.load_draft(project)
+    assert draft[recs[0]["id"]]["text"] == "第一句有艾子。" and draft[recs[1]["id"]]["text"] == "第二句也有艾子。"
+    ui.do_save(name)
+    assert {r["id"]: r for r in project.load_manifest()}[recs[0]["id"]]["text"] == "第一句有艾子。"
+    # 替换以后又自己改了第二句：撤销只改回第一句，第二句老师的修改留着
+    ui.do_replace_all(name, "艾子", "as", True)
+    _act(ui, name, "edit", recs[1]["id"], text="第二句老师自己又改了。")
+    status, _, _, _ = ui.do_undo_replace(name)
+    assert "1 句改回去了" in status and "另有 1 句替换以后又改过" in status
+    draft = A._review.load_draft(project)
+    assert recs[0]["id"] not in draft and draft[recs[1]["id"]]["text"] == "第二句老师自己又改了。"
+    status, _, _, _ = ui.do_undo_replace(name)  # 只能撤销最近一次
+    assert "没有可以撤销的替换" in status
+
+
 def test_find_whole_word_option_and_empty_result(prepared, tmp_path):
     cfg, name = _copy_voice(prepared, tmp_path)
     project = wf.Project(cfg, name)
