@@ -185,9 +185,10 @@ synth:
       refine_tempo: true      # 挑出来的那个语速和你平时差得多时，同一个版本只改语速再生成一次（也一起比）
       pipeline: auto          # 一边生成一边打分（没有 N 卡时不用）
       judge_device: auto      # 有显卡版 onnxruntime、显卡还空 1.5 GB 以上、实测和处理器算出来的一样时，声纹打分用显卡；否则用处理器
+      continuity: true        # 整篇再挑一遍：每句在留下来的版本里（同一个档次），按前后两句的音调、语速、音色变化和你本人比，
+                              # 整篇一起挑；重新生成几句时只换这几句。false = 每句就用它自己挑出来的那个
       # 下面几项是「一模一样」后面几步才用的设置，这一版改了还不起作用
       speed_trick: auto       # 「语速 1.0001」自检：现在一直按 auto（自检通过才同时生成语速正好 1.0 的句子）
-      continuity: true
       two_checkpoints: true
   score:                      # 给候选打分的权重：相似度为主，其它只做扣分
     speaker: 2.0              # "像你本人（%）"的权重

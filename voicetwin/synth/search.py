@@ -1070,10 +1070,11 @@ class IdenticalSearch:
 
     # ------------------------------------------------------------------ 进度
     def _frac(self) -> float:
+        """这一句在整篇进度里走到哪了：按每句最多试几个算（设计方案 §2 P6：进度的分母是 max_candidates）。"""
         lo, hi = self.n._gen_range
         i, total_n = self.n._pos
         k = len(self.cands)
-        return lo + (hi - lo) * (i + min(0.95, k / max(self.min_c, 1))) / max(total_n, 1)
+        return lo + (hi - lo) * (i + min(0.95, k / max(self.max_c, 1))) / max(total_n, 1)
 
     def _note(self) -> None:
         i, total_n = self.n._pos

@@ -1942,7 +1942,8 @@ def _gen_summary_md(res: Any, redo: Optional[Sequence[int]] = None) -> str:
     notes = [str(n) for n in (getattr(res, "notes", None) or [])
              if str(n).strip() and not str(n).startswith(("整篇像你本人", "需要注意的句子", "没有需要特别注意"))]
     if notes:
-        md.append("<small>" + "<br>".join(_md_text(n) for n in notes[:6]) + "</small>")
+        # 「一模一样」的小结多几行实测（停顿、音量差、每句几秒）：最多显示 10 行
+        md.append("<small>" + "<br>".join(_md_text(n) for n in notes[:10]) + "</small>")
     if mean is not None or sims:
         md.append(f"<small>{HONEST_SIM}{PCT_HELP if mean is not None else ''}</small>")
     return "\n\n".join(md)

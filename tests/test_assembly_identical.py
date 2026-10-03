@@ -475,6 +475,35 @@ def test_model_names_tags_and_file_stems():
     assert eng.out_parts("x/IndexTTS2.5", "mp3")[1:] == ("IndexTTS2_5", ".mp3")
 
 
+def test_chunked_gap_detector_is_the_same_detector():
+    """量整篇停顿时逐帧电平分段算（一小时的讲课音频整个算要好几 GB 内存）：和整个算的结果一模一样。"""
+    from voicetwin.utils.audio import frame_rms_db_chunked, silent_runs
+
+    rng = np.random.default_rng(1)
+    for sr in (16000, 22050, 32000, 44100):
+        x = (rng.normal(0, 0.1, sr * 5) * (rng.random(sr * 5) > 0.3)).astype(np.float32)
+        x[sr:2 * sr] = 0.0
+        x[3 * sr:int(3.3 * sr)] = 0.0
+        assert np.allclose(frame_rms_db(x, sr), frame_rms_db_chunked(x, sr, chunk_frames=37), atol=1e-5)
+        assert silent_runs(x, sr) == silent_runs(x, sr, chunked=True)
+
+
+def test_narration_reports_new_and_old_names(tmp_path):
+    """找生成过的报告：新的「<名字>_<模型名>.json」和以前的「<名字>.report.json」都认，盲听测试的答案等别的 .json 不算。"""
+    import os
+    import time
+
+    old = tmp_path / "第1课.report.json"
+    old.write_text(json.dumps({"audio": "a.wav", "segments": []}), encoding="utf-8")
+    (tmp_path / ("盲听测试_1" + wf.BLIND_ANSWER_SUFFIX)).write_text(json.dumps({"items": []}), encoding="utf-8")
+    (tmp_path / "坏的.json").write_text("{", encoding="utf-8")
+    new = tmp_path / "第2课_V4.json"
+    new.write_text(json.dumps({"audio": "b.wav", "segments": [{"index": 1}]}), encoding="utf-8")
+    now = time.time()
+    os.utime(old, (now - 100, now - 100))
+    assert wf.narration_reports(tmp_path) == [new, old]
+
+
 def _all_names(folder):
     return sorted(p.name for p in Path(folder).iterdir() if p.is_file())
 
@@ -495,6 +524,14 @@ def test_dummy_names_clash_sanitise_comment_and_unknown(prepared, tmp_path, monk
     assert res.srt_path.name == "第3课_10月05日09点30分_dummy.srt"
     assert res.report_path.name == "第3课_10月05日09点30分_dummy.json"
     assert "模型：dummy" in audio_comment(res.audio_path)
+    # 这一版以前生成的句子（记录里没有模型名）：能用上缓存就说明是现在这个模型生成的，按现在的模型文件检测
+    seg_meta = Path(project.abspath(res.segments[0]["clip"])).with_suffix(".json")
+    meta = json.loads(seg_meta.read_text(encoding="utf-8"))
+    meta.pop("model_info")
+    meta.pop("model_name")
+    seg_meta.write_text(json.dumps(meta, ensure_ascii=False), encoding="utf-8")
+    again = wf.run_narrate(cfg, project.voice, res.segments[0]["text"], out=str(out_dir / "旧记录.wav"), quality="fast")
+    assert again.segments[0]["cached"] and again.audio_path.name == "旧记录_dummy.wav"
     second = A._output_path(proj, "第3课", "wav", "x")  # 同一分钟又生成一次：_2 在模型名前面
     assert second.name == "第3课_10月05日09点30分_2.wav"
     res2 = wf.run_narrate(cfg, project.voice, _uniq("文件名测试第二次"), out=str(second), quality="fast")

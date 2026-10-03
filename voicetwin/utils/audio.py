@@ -109,6 +109,35 @@ def frame_rms_db(wav: np.ndarray, sr: int, hop_ms: float = 10.0, win_ms: float =
     return (10.0 * np.log10(energy + EPS)).astype(np.float32)
 
 
+def frame_rms_db_chunked(wav: np.ndarray, sr: int, hop_ms: float = 10.0, win_ms: float = 40.0,
+                         chunk_frames: int = 10_000) -> np.ndarray:
+    """和 frame_rms_db 一样的逐帧电平（同样的帧、同样的窗、同样的算法），只是分段算：整篇讲课音频（一小时 32 kHz
+    一亿多个采样）整个算要好几 GB 内存，分段算（每段 100 秒）每段只要几十 MB。数值和 frame_rms_db 只差浮点运算的先后（10⁻⁶ dB 以下）。"""
+    hop = max(1, int(round(sr * hop_ms / 1000.0)))
+    win = max(hop, int(round(sr * win_ms / 1000.0)))
+    n = len(wav)
+    if n == 0:
+        return np.zeros(0, dtype=np.float32)
+    pad = win // 2
+    total = n + 2 * pad                      # frame_rms_db 里补过 0 的长度
+    n_frames = 1 + (n - 1) // hop
+    out = np.empty(n_frames, dtype=np.float32)
+    for f0 in range(0, n_frames, max(1, int(chunk_frames))):
+        f1 = min(n_frames, f0 + int(chunk_frames))
+        a = f0 * hop                         # 这一段在补过 0 的信号里从哪到哪
+        b = min((f1 - 1) * hop + win, total)
+        seg = np.zeros(b - a, dtype=np.float64)
+        lo, hi = max(a - pad, 0), min(b - pad, n)
+        if hi > lo:
+            seg[lo - (a - pad):hi - (a - pad)] = wav[lo:hi]
+        csum = np.concatenate([[0.0], np.cumsum(seg ** 2)])
+        starts = np.arange(f0, f1) * hop
+        ends = np.minimum(starts + win, total)
+        energy = (csum[ends - a] - csum[starts - a]) / np.maximum(ends - starts, 1)
+        out[f0:f1] = (10.0 * np.log10(energy + EPS)).astype(np.float32)
+    return out
+
+
 def noise_and_speech_levels(wav: np.ndarray, sr: int) -> Tuple[float, float]:
     """粗略估计底噪电平与语音电平（dBFS）：分别取帧能量的 10% / 95% 分位。"""
     db = frame_rms_db(wav, sr)
@@ -201,14 +230,20 @@ def mask_runs(mask: np.ndarray, min_frames: int = 1) -> List[Tuple[int, int]]:
 
 
 def silent_runs(wav: np.ndarray, sr: int, threshold_db: Optional[float] = None, hop_ms: float = 10.0,
-                min_run_ms: float = 120.0) -> List[Tuple[float, float]]:
+                min_run_ms: float = 120.0, chunked: bool = False) -> List[Tuple[float, float]]:
     """返回所有长度 ≥ min_run_ms 的静音区间 [(start_sec, end_sec), ...]（包括文件开头和结尾的静音）。
 
     10 ms 一帧、40 ms 窗、自动静音阈值——和切片时量停顿用的是同一个方法；「一模一样」档量你本人的停顿
-    （twin_profile）和量生成结果的停顿都用它，两边才能直接比。"""
-    if threshold_db is None:
-        threshold_db = auto_silence_threshold(wav, sr)
-    db = frame_rms_db(wav, sr, hop_ms=hop_ms)
+    （twin_profile）和量生成结果的停顿都用它，两边才能直接比。chunked：整篇讲课音频这种很长的，逐帧电平分段算
+    （frame_rms_db_chunked，结果一样，内存少很多）。"""
+    if chunked:
+        db = frame_rms_db_chunked(wav, sr, hop_ms=hop_ms)
+        if threshold_db is None:
+            threshold_db = silence_threshold_from_db(db) if hop_ms == 10.0 else auto_silence_threshold(wav, sr)
+    else:
+        if threshold_db is None:
+            threshold_db = auto_silence_threshold(wav, sr)
+        db = frame_rms_db(wav, sr, hop_ms=hop_ms)
     hop_s = hop_ms / 1000.0
     min_frames = max(1, int(round(min_run_ms / hop_ms)))
     total = len(wav) / sr if sr else 0.0

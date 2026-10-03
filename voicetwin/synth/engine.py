@@ -2448,7 +2448,7 @@ class Narrator:
     def _measure_gaps(self, audio: np.ndarray, sr: int, layout: List[Tuple[float, int]]) -> List[Optional[float]]:
         """量每两句之间的停顿有多长：用量你本人停顿的同一个方法（utils.audio.silent_runs：10 ms 一帧、40 ms 窗、
         整段音频的自动静音阈值、至少 120 ms），找跨过这两句之间那段数字静音的静音区间。量不到（比 120 ms 短）是 None。"""
-        runs = silent_runs(audio, sr)
+        runs = silent_runs(audio, sr, chunked=True)  # 整篇音频很长：逐帧电平分段算（结果一样，内存少很多）
         out: List[Optional[float]] = []
         for i in range(len(layout) - 1):
             end = layout[i][0] + layout[i][1] / sr
