@@ -425,7 +425,8 @@ def _precheck_prepare(cfg: Config, voice: str, inputs: List[str], overrides: Opt
 
 #: 校对表保存 / 确认时顺便更新「一模一样」档的说话习惯（twin_profile.json）：只在要新量的录音不多时做。
 #: 第一次（还一条都没量过）要把全部录音量一遍，留到素材准备、「重新分析说话风格」、生成「一模一样」时再做，
-#: 保存 / 确认不会因此变慢；量过以后改文字只要重新对齐标点（声音特征有缓存）
+#: 保存 / 确认不会因此变慢；量过以后改文字只要重新对齐标点（声音特征有缓存）。开发机实测每段约 55 毫秒、
+#: 改一句文字后重算 13 毫秒（research/一模一样/scripts/time_twin_profile_结果.txt）：60 段约 3 秒
 TWIN_REVIEW_MAX_NEW_CLIPS = 60
 TWIN_REVIEW_MAX_NEW_SOURCE_MB = 50.0
 
