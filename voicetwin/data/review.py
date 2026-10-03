@@ -670,14 +670,14 @@ def middle_state(st: Dict[str, str], cur: str) -> Optional[str]:
     都改好以后（alt）都近（改动少）时，返回 "direct" / "sure"；否则 None（按两头算）。"""
     if not st or st.get("alt") == st.get("base"):
         return None
-    ends = min(len(change_pieces(st["base"], cur)), len(change_pieces(st["alt"], cur)))
-    best, dist = None, ends
-    for k in ("direct", "sure"):
-        x = st.get(k)
-        if x is not None and x not in (st["base"], st["alt"]):
-            d = len(change_pieces(x, cur))
-            if d < dist:
-                best, dist = k, d
+    mids = [k for k in ("direct", "sure") if st.get(k) is not None and st[k] not in (st["base"], st["alt"])]
+    if not mids:
+        return None  # 没有中间的整句（大多数行）：不用比
+    best, dist = None, min(len(change_pieces(st["base"], cur)), len(change_pieces(st["alt"], cur)))
+    for k in mids:
+        d = len(change_pieces(st[k], cur))
+        if d < dist:
+            best, dist = k, d
     return best
 
 
