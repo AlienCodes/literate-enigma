@@ -69,10 +69,26 @@ LTAS_SR = 32000
 LTAS_CENTERS = 1000.0 * 2.0 ** (np.arange(-10, 12) / 3.0)   # 22 个 1/3 倍频程：约 100 Hz … 12.7 kHz
 EDGE_HOP_MS, EDGE_WIN_MS = 2.5, 10.0       # 句首起音 / 句尾收音用更细的帧
 
-#: 同一个程序里两个保存同时更新时一个一个来（第二个看到 signature 一样就直接返回）
-_LOCK = threading.RLock()
+#: 每个声音一把锁：同一个声音的两个更新一个一个来（第二个看到 signature 一样就直接返回），缓存文件不会互相冲掉。
+#: 不同的声音互不等待（以前全程序共用一把锁：一个声音第一次量全部录音时——按实测每段 43~55 毫秒估计，1004 段约一分钟——
+#: 另一个声音的「保存修改」也跟着等）
+_LOCKS: Dict[str, "threading.RLock"] = {}
+_LOCKS_GUARD = threading.Lock()
 
 ProgressFn = Callable[[float, str], None]
+
+
+def _lock_for(project: Project) -> "threading.RLock":
+    """这个声音（文件夹）的锁。"""
+    try:
+        key = str(Path(project.root).resolve())
+    except (OSError, RuntimeError):
+        key = str(Path(project.root).absolute())
+    with _LOCKS_GUARD:
+        lock = _LOCKS.get(key)
+        if lock is None:
+            lock = _LOCKS[key] = threading.RLock()
+        return lock
 
 
 # ============================================================================ 小工具
@@ -500,7 +516,7 @@ def collect_clips(project: Project, records: Sequence[Dict[str, Any]], max_new_c
     返回 {片段 id: {"feat": 声音特征, "mode": "raw" | "clips", "vs"/"ve": 开口和收音（秒，片段里的时间）,
     "inner": [(开始, 结束)] 片段里面的停顿, "gap_before"/"gap_after": 片段前后的停顿秒数（只有 raw 才有）}}。
     读不了的片段跳过。max_new_*：要新量的太多时抛 _OverBudget（什么都不量）。"""
-    with _LOCK:  # 缓存文件同一时间只有一个在改（不然后写的会把先写的新结果冲掉）
+    with _lock_for(project):  # 缓存文件同一时间只有一个在改（不然后写的会把先写的新结果冲掉）
         return _collect_clips(project, records, max_new_clips, max_new_source_mb, progress)
 
 
@@ -748,20 +764,31 @@ def _kept(records: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]:
 
 
 def build_twin_profile(project: Project, force: bool = False, max_new_clips: Optional[int] = None,
-                       max_new_source_mb: Optional[float] = None,
-                       progress: Optional[ProgressFn] = None) -> Optional[Dict[str, Any]]:
+                       max_new_source_mb: Optional[float] = None, progress: Optional[ProgressFn] = None,
+                       lock_wait: Optional[float] = None) -> Optional[Dict[str, Any]]:
     """量你本人的说话习惯，写进 workspace/<声音>/twin_profile.json（先写临时文件再换上去）。
 
     素材没变（signature 一样）时直接返回上次的结果。max_new_*：要新量的录音太多时这次不做、返回 None
-    （校对表保存时用：第一次要把全部录音量一遍，留到素材准备 / 生成「一模一样」时再做，保存不会因此变慢）。"""
-    with _LOCK:
+    （校对表保存时用：第一次要把全部录音量一遍，留到素材准备 / 生成「一模一样」时再做，保存不会因此变慢）。
+    lock_wait：同一个声音正在别处量（比如「重新分析说话风格」第一次把全部录音量一遍）时最多等几秒，等不到这次先不做、
+    返回 None（校对表保存时用，保存不会因此卡住；下次更新时按新的文字重算）；None = 一直等。"""
+    lock = _lock_for(project)
+    if lock_wait is None:
+        got = lock.acquire()
+    elif lock_wait > 0:
+        got = lock.acquire(timeout=float(lock_wait))
+    else:
+        got = lock.acquire(blocking=False)
+    if not got:
+        log.debug("这个声音的说话习惯正在别处量，这次先不更新")
+        return None
+    try:
         records = project.load_manifest()
         kept = sorted(_kept(records), key=lambda r: str(r["id"]))
         sig = twin_signature(project, kept)
-        if not force:
-            old = load_twin_profile(project)
-            if old is not None and old.get("signature") == sig:
-                return old
+        old = load_twin_profile(project)
+        if not force and old is not None and old.get("signature") == sig:
+            return old
         try:
             clips = collect_clips(project, kept, max_new_clips=max_new_clips, max_new_source_mb=max_new_source_mb,
                                   progress=progress)
@@ -769,8 +796,11 @@ def build_twin_profile(project: Project, force: bool = False, max_new_clips: Opt
             log.debug(f"说话习惯这次先不量：{exc}")
             return None
         prof = _aggregate(project, records, kept, clips, sig)
+        prof["deltas"]["timbre"] = _timbre_now(project, records, old)
         _write_json(twin_profile_path(project), prof)
         return prof
+    finally:
+        lock.release()
 
 
 def _aggregate(project: Project, records: Sequence[Dict[str, Any]], kept: Sequence[Dict[str, Any]],
@@ -919,7 +949,7 @@ def _aggregate(project: Project, records: Sequence[Dict[str, Any]], kept: Sequen
             d_rate[typ].append(math.log(float(fb["rate"]) / float(fa["rate"])))
     deltas: Dict[str, Any] = {typ: {"f0_med_st": _mean_sd(d_f0[typ], 4), "log_rate": _mean_sd(d_rate[typ], 4)}
                               for typ in ("sentence", "clause")}
-    deltas["timbre"] = None  # 参考录音库（build_reference_bank）算出声纹以后填
+    deltas["timbre"] = None  # 参考录音库（build_reference_bank）算出声纹以后填；重算时 build_twin_profile 接着用
 
     # ---------------------------------------------------------------- 频谱（只记录）
     ltas_rows = [clips[str(r["id"])]["feat"].get("ltas") for r in used]
@@ -954,24 +984,66 @@ def _aggregate(project: Project, records: Sequence[Dict[str, Any]], kept: Sequen
     }
 
 
-def fill_timbre_deltas(project: Project, records: Sequence[Dict[str, Any]], embs: Dict[str, Dict[str, np.ndarray]],
-                       judge_sig: str = "") -> Optional[Dict[str, Any]]:
-    """参考录音库算出声纹以后：前后连着说的两段之间音色差多少（1 − 余弦相似度，几个声纹模型取平均），
-    按 sentence / clause 分开，写进 twin_profile.json 的 deltas.timbre（signature 不变）。"""
+# ============================================================================ 前后两句的音色变化（参考录音库填）
+def _timbre_stats(records: Sequence[Dict[str, Any]], embs: Dict[str, Dict[str, np.ndarray]], judge_sig: str,
+                  key: Optional[str]) -> Dict[str, Any]:
+    """前后连着说的两段之间音色差多少（1 − 余弦相似度，几个声纹模型取平均），按 sentence / clause 分开。
+    key：算的时候参考录音库是什么样（timbre_key），重算说话习惯时据此判断能不能接着用。"""
     from voicetwin.eval.speaker import cosine
 
-    with _LOCK:
+    vals: Dict[str, List[float]] = {"sentence": [], "clause": []}
+    for a, b, typ in consecutive_pairs(records, set(embs)):
+        ea, eb = embs.get(a) or {}, embs.get(b) or {}
+        common = sorted(set(ea) & set(eb))
+        if common:
+            vals[typ].append(float(np.mean([1.0 - cosine(ea[m], eb[m]) for m in common])))
+    timbre: Dict[str, Any] = {typ: _mean_sd(vals[typ], 5) for typ in vals}
+    timbre["judge_sig"] = judge_sig
+    timbre["key"] = key
+    return timbre
+
+
+def timbre_key(bank: Dict[str, Any], records: Sequence[Dict[str, Any]]) -> str:
+    """参考录音库（refs_bank.json）的声纹打分标准、库里有哪些片段和文字、库里前后连着的是哪几对（按现在的文字分
+    sentence / clause）：这几样都没变，前后两句的音色变化就和上次算的一模一样。"""
+    ids = {str(e.get("id")) for e in bank.get("entries") or [] if isinstance(e, dict)}
+    return short_hash(str(bank.get("judge_sig") or ""), str(bank.get("bank_sig") or ""),
+                      sorted(str(m) for m in bank.get("judge_models") or []), consecutive_pairs(records, ids), n=16)
+
+
+def _timbre_now(project: Project, records: Sequence[Dict[str, Any]],
+                old: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+    """重算说话习惯时（改了一句文字并保存等）前后两句的音色变化不能丢：参考录音库没变（timbre_key 一样）就接着用
+    上次的；变了就用缓存的声纹（cache/bank_emb.npz）按现在的文字重新算，不用打分模型；没有库、没有声纹时是 None。"""
+    try:
+        from voicetwin.data.references import cached_bank_embeddings, load_reference_bank
+
+        bank = load_reference_bank(project)
+        if not bank or not bank.get("judge_models"):  # 建库时没有声纹打分：没有这一项
+            return None
+        key = timbre_key(bank, records)
+        prev = ((old or {}).get("deltas") or {}).get("timbre")
+        if isinstance(prev, dict) and prev.get("key") == key:
+            return prev
+        embs = cached_bank_embeddings(project, bank)
+        return _timbre_stats(records, embs, str(bank.get("judge_sig") or ""), key) if embs else None
+    except Exception as exc:  # noqa: BLE001 - 只是少一项统计（生成「一模一样」时重建参考录音库会再填）
+        log.debug(f"前后两句的音色变化没接上：{exc}")
+        return None
+
+
+def fill_timbre_deltas(project: Project, records: Sequence[Dict[str, Any]], embs: Dict[str, Dict[str, np.ndarray]],
+                       judge_sig: str = "") -> Optional[Dict[str, Any]]:
+    """参考录音库算出声纹以后：前后连着说的两段之间音色差多少，写进 twin_profile.json 的 deltas.timbre
+    （signature 不变）。refs_bank.json 要先写好（据此记下 key，以后重算说话习惯时接着用）。"""
+    from voicetwin.data.references import load_reference_bank
+
+    with _lock_for(project):
         prof = load_twin_profile(project)
         if prof is None:
             return None
-        vals: Dict[str, List[float]] = {"sentence": [], "clause": []}
-        for a, b, typ in consecutive_pairs(records, set(embs)):
-            ea, eb = embs.get(a) or {}, embs.get(b) or {}
-            common = sorted(set(ea) & set(eb))
-            if common:
-                vals[typ].append(float(np.mean([1.0 - cosine(ea[m], eb[m]) for m in common])))
-        timbre = {typ: _mean_sd(vals[typ], 5) for typ in vals}
-        timbre["judge_sig"] = judge_sig
-        prof.setdefault("deltas", {})["timbre"] = timbre
+        bank = load_reference_bank(project)
+        key = timbre_key(bank, records) if bank and str(bank.get("judge_sig") or "") == judge_sig else None
+        prof.setdefault("deltas", {})["timbre"] = _timbre_stats(records, embs, judge_sig, key)
         _write_json(twin_profile_path(project), prof)
         return prof

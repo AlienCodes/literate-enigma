@@ -411,6 +411,129 @@ def test_bank_embeddings_are_cached_and_fill_timbre_deltas(voice):
     assert j3.calls == 1
 
 
+def test_timbre_deltas_survive_rebuilds(voice):
+    """建了带声纹的参考录音库以后，说话习惯重算（改一句文字并保存、twin_profile.json 删了）时前后两句的音色变化不能丢：
+    库没变就沿用；库里前后两段的关系变了就用缓存的声纹重新算（不用打分模型）；没有库时是 null。"""
+    from voicetwin.data import review
+
+    cfg, proj = voice
+    tp.build_twin_profile(proj)
+    bank = R.build_reference_bank(proj, proj.load_manifest(), judge=FakeJudge())
+    first = tp.load_twin_profile(proj)
+    timbre = first["deltas"]["timbre"]
+    assert timbre["judge_sig"] == "fake-sig" and timbre["sentence"]["n"] >= 8
+    ids = {e["id"] for e in bank}
+    recs = proj.load_manifest()
+    # 改一句不在库里的话（验证集的）并保存：说话习惯重算了，音色变化照样在、一点没变
+    other = next(r for r in recs if r["id"] not in ids and r.get("split") == "val" and r.get("text"))
+    review.set_draft(proj, other["id"], text=other["text"].rstrip("。") + "啊。")
+    wf.review_save(cfg, proj.voice)
+    after = tp.load_twin_profile(proj)
+    assert after["signature"] != first["signature"] and after["deltas"]["timbre"] == timbre
+    # twin_profile.json 被删了：重算时用缓存的声纹算回来，和建库时算的一模一样
+    tp.twin_profile_path(proj).unlink()
+    assert tp.build_twin_profile(proj)["deltas"]["timbre"] == timbre
+    # 库里一段的句末标点改了（这一对从「句子之间」变成「句子里面」）：按现在的文字重新算
+    a, b, typ = tp.consecutive_pairs(recs, ids)[0]
+    assert typ == "sentence"
+    text_a = next(r["text"] for r in recs if r["id"] == a)
+    review.set_draft(proj, a, text=text_a[:-1] + "，")
+    wf.review_save(cfg, proj.voice)
+    t2 = tp.load_twin_profile(proj)["deltas"]["timbre"]
+    assert t2["clause"]["n"] == 1 and t2["sentence"]["n"] == timbre["sentence"]["n"] - 1
+    assert t2["judge_sig"] == "fake-sig"
+    # 没有参考录音库：没有就是没有
+    R.bank_path(proj).unlink()
+    assert tp.build_twin_profile(proj, force=True)["deltas"]["timbre"] is None
+
+
+def _copy_voice(prepared, dst):
+    from conftest import make_cfg
+
+    cfg, project, _ = prepared
+    shutil.copytree(project.root, dst / project.voice)
+    cfg2 = make_cfg(dst)
+    return cfg2, wf.Project(cfg2, project.voice)
+
+
+def _hold_cold_build(proj, monkeypatch):
+    """在另一个线程里第一次量 proj（缓存删掉），量第一段时停住，直到 release.set()。返回 (线程, release)。"""
+    import threading
+
+    (proj.cache_dir / tp.CLIP_CACHE_FILE).unlink()
+    started, release = threading.Event(), threading.Event()
+    real = tp.acoustic_features
+
+    def slow(wav, sr):
+        if threading.current_thread().name == "twin-cold":
+            started.set()
+            release.wait(60)
+        return real(wav, sr)
+
+    monkeypatch.setattr(tp, "acoustic_features", slow)
+    th = threading.Thread(target=tp.build_twin_profile, args=(proj,), kwargs={"force": True}, name="twin-cold")
+    th.start()
+    assert started.wait(30)
+    return th, release
+
+
+def _run_with_timeout(fn, seconds):
+    import threading
+
+    box = {}
+    th = threading.Thread(target=lambda: box.setdefault("res", fn()), name="save")
+    th.start()
+    th.join(seconds)
+    return th, box
+
+
+def test_other_voice_save_does_not_wait_for_a_long_build(prepared, tmp_path, monkeypatch):
+    """一个声音第一次量说话习惯（老师 1004 段估计要一分钟左右）的时候，另一个声音的「保存修改」不用等它。"""
+    from voicetwin.data import review
+
+    _, proj_a = _copy_voice(prepared, tmp_path / "wsA")
+    cfg_b, proj_b = _copy_voice(prepared, tmp_path / "wsB")
+    before = tp.build_twin_profile(proj_b)
+    rec = next(r for r in proj_b.load_manifest() if "，" in r["text"])
+    review.set_draft(proj_b, rec["id"], text=rec["text"].replace("，", "、", 1))
+    th_a, release = _hold_cold_build(proj_a, monkeypatch)
+    try:
+        th_b, box = _run_with_timeout(lambda: wf.review_save(cfg_b, proj_b.voice), 20)
+        assert not th_b.is_alive(), "另一个声音在量说话习惯，这个声音的保存不该等它"
+        assert box["res"]["saved"] == [rec["id"]]
+        assert tp.load_twin_profile(proj_b)["signature"] != before["signature"]  # 这个声音照样更新了
+    finally:
+        release.set()
+        th_a.join(60)
+        if "th_b" in locals():
+            th_b.join(60)
+
+
+def test_same_voice_save_skips_update_while_a_long_build_runs(voice, monkeypatch):
+    """同一个声音正在第一次量（比如「重新分析说话风格」）的时候点「保存修改」：保存照样马上完成，
+    说话习惯这次先不更新（量完以后下一次更新时会按新文字重算）。"""
+    from voicetwin.data import review
+
+    cfg, proj = voice
+    tp.build_twin_profile(proj)
+    monkeypatch.setattr(wf, "TWIN_REVIEW_LOCK_WAIT", 0.2)
+    rec = next(r for r in proj.load_manifest() if "，" in r["text"])
+    review.set_draft(proj, rec["id"], text=rec["text"].replace("，", "、", 1))
+    th_a, release = _hold_cold_build(proj, monkeypatch)
+    try:
+        th_b, box = _run_with_timeout(lambda: wf.review_save(cfg, proj.voice), 20)
+        assert not th_b.is_alive(), "同一个声音在量说话习惯，保存最多等一小会儿，不该一直等"
+        assert box["res"]["saved"] == [rec["id"]]
+    finally:
+        release.set()
+        th_a.join(60)
+        if "th_b" in locals():
+            th_b.join(60)
+    stale = tp.load_twin_profile(proj)  # 量的是保存以前的文字
+    prof = tp.build_twin_profile(proj)
+    assert prof["signature"] != stale["signature"] and prof["pauses"]["enum"]["n_marks"] == 1
+
+
 # ---------------------------------------------------------------------------- 共用的小工具
 def test_silent_and_speech_runs():
     x = np.zeros(SR * 2, np.float32)

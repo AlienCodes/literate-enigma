@@ -227,8 +227,8 @@ def load_reference_bank(project: Project) -> Optional[Dict[str, Any]]:
     return data
 
 
-def _load_bank_emb(project: Project) -> Dict[str, np.ndarray]:
-    """声纹缓存（只是为了快）：读不了就当没有，重新算。"""
+def _load_bank_emb(project: Project, quiet: bool = False) -> Dict[str, np.ndarray]:
+    """声纹缓存（只是为了快）：读不了就当没有，重新算。quiet：只是顺便看看（重算说话习惯时），读不了不提醒。"""
     path = project.cache_dir / BANK_EMB_FILE
     if not path.exists():
         return {}
@@ -236,8 +236,45 @@ def _load_bank_emb(project: Project) -> Dict[str, np.ndarray]:
         with np.load(path) as data:
             return {k: data[k] for k in data.files}
     except Exception as exc:  # noqa: BLE001 - 写到一半断电留下的半个文件等
-        log.warning(f"参考录音库的声纹缓存读不了（{exc}），重新计算")
+        if quiet:
+            log.debug(f"参考录音库的声纹缓存读不了（{exc}）")
+        else:
+            log.warning(f"参考录音库的声纹缓存读不了（{exc}），重新计算")
         return {}
+
+
+def _emb_base(project: Project, entry: Dict[str, Any]) -> str:
+    """声纹缓存里这一条的名字：片段 id + 文件大小 + 修改时间（片段文件变了就对不上，要重新算）。"""
+    from voicetwin.style.twin_profile import _file_key
+
+    return f"{entry['id']}|{_file_key(project.abspath(entry['path'])) or '-'}"
+
+
+def _done_tag(models: List[str]) -> str:
+    return "__done__" + ",".join(models)
+
+
+def cached_bank_embeddings(project: Project, bank: Dict[str, Any]) -> Dict[str, Dict[str, np.ndarray]]:
+    """refs_bank.json 里每条录音缓存好的声纹 {片段 id: {模型: 声纹}}（不用打分模型；片段文件变了的、没算过的不在里面）。
+    重算说话习惯时用它重新算前后两句的音色变化。"""
+    models = sorted(str(m) for m in bank.get("judge_models") or [])
+    if not models:
+        return {}
+    cache = _load_bank_emb(project, quiet=True)
+    if not cache:
+        return {}
+    out: Dict[str, Dict[str, np.ndarray]] = {}
+    for e in bank.get("entries") or []:
+        try:
+            base = _emb_base(project, e)
+        except (KeyError, TypeError, ValueError):
+            continue
+        if f"{base}|{_done_tag(models)}" not in cache:
+            continue
+        got = {m: cache[f"{base}|{m}"] for m in models if f"{base}|{m}" in cache}
+        if got:
+            out[str(e["id"])] = got
+    return out
 
 
 def _save_bank_emb(project: Project, cache: Dict[str, np.ndarray]) -> None:
@@ -339,12 +376,11 @@ def build_reference_bank(project: Project, records: List[Dict[str, Any]], judge:
             judge_sig = ""
         cache = _load_bank_emb(project)
         keep: Dict[str, np.ndarray] = {}
-        done_tag = "__done__" + ",".join(models)
+        done_tag = _done_tag(models)
         fresh = 0
         for k, e in enumerate(entries):
             check_cancel()
-            fkey = tp._file_key(project.abspath(e["path"])) or "-"
-            base = f"{e['id']}|{fkey}"
+            base = _emb_base(project, e)
             if f"{base}|{done_tag}" in cache:
                 got = {m: cache[f"{base}|{m}"] for m in models if f"{base}|{m}" in cache}
                 secs = float(cache[f"{base}|{done_tag}"].reshape(-1)[0])
@@ -361,7 +397,8 @@ def build_reference_bank(project: Project, records: List[Dict[str, Any]], judge:
             for m, v in got.items():
                 keep[f"{base}|{m}"] = np.asarray(v, dtype=np.float32)
             keep[f"{base}|{done_tag}"] = np.asarray([secs], dtype=np.float64)
-            embs_by_id[e["id"]] = got
+            # 用存进缓存的那份（float32）：以后重算说话习惯时从缓存算的音色变化和这次一个数都不差
+            embs_by_id[e["id"]] = {m: keep[f"{base}|{m}"] for m in got}
             try:
                 res = judge.judge_embeddings(got, secs if secs >= 0 else None)
                 e["self_pct"] = tp._r(res.get("pct_raw"), 2)

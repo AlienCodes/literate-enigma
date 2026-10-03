@@ -429,6 +429,9 @@ def _precheck_prepare(cfg: Config, voice: str, inputs: List[str], overrides: Opt
 #: 改一句文字后重算 13 毫秒（research/一模一样/scripts/time_twin_profile_结果.txt）：60 段约 3 秒
 TWIN_REVIEW_MAX_NEW_CLIPS = 60
 TWIN_REVIEW_MAX_NEW_SOURCE_MB = 50.0
+#: 同一个声音的说话习惯正在别处量（比如「重新分析说话风格」第一次把全部录音量一遍，按上面的实测估计 1004 段约一分钟）时，
+#: 保存最多等这么多秒，等不到这次先不更新（保存不会卡住；下次更新时按新的文字重算）。另一个保存的更新（只重新对齐标点）等得到
+TWIN_REVIEW_LOCK_WAIT = 2.0
 
 
 def _update_twin_profile(project: Project, review: bool = False) -> None:
@@ -439,7 +442,7 @@ def _update_twin_profile(project: Project, review: bool = False) -> None:
 
         if review:
             build_twin_profile(project, max_new_clips=TWIN_REVIEW_MAX_NEW_CLIPS,
-                               max_new_source_mb=TWIN_REVIEW_MAX_NEW_SOURCE_MB)
+                               max_new_source_mb=TWIN_REVIEW_MAX_NEW_SOURCE_MB, lock_wait=TWIN_REVIEW_LOCK_WAIT)
         else:
             build_twin_profile(project)
     except Exception as exc:  # noqa: BLE001 - 只是「一模一样」档要用的统计，不能让素材准备 / 保存失败
