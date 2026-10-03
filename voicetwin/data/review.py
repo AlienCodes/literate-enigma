@@ -93,7 +93,7 @@ def _records(project: Any) -> Dict[str, Dict[str, Any]]:
     return {r["id"]: r for r in project.load_manifest()}
 
 
-def set_draft(project: Any, clip_id: str, **changes: Any) -> Dict[str, Any]:
+def set_draft(project: Any, clip_id: str, remember: bool = True, **changes: Any) -> Dict[str, Any]:
     """改一条（text / keep / lang 任选），只改草稿。和保存过的一样时草稿自动去掉。
 
     返回 {"dirty": 改完以后还有没保存的修改, "values": 现在的值}。"""
@@ -117,8 +117,8 @@ def set_draft(project: Any, clip_id: str, **changes: Any) -> Dict[str, Any]:
         if "lang" in changes and changes["lang"] in ("zh", "en"):
             vals["lang"] = changes["lang"]
         old_text = current_values(rec, draft.get(clip_id))["text"]
-        if vals["text"] != old_text:  # 老师自己打字把采用过的建议改回去了：记下来，再点一键校正不再改回来
-            _remember_rejects(project, clip_id, old_text, reverted_undos(rec, old_text, vals["text"]))
+        if remember and vals["text"] != old_text:  # 老师自己打字把改过的地方改回去了：记下来，再点一键校正不再改回来
+            _remember_rejects(project, clip_id, reverted_pieces(rec, old_text, vals["text"]))
         if vals == saved_values(rec):
             draft.pop(clip_id, None)
         else:
@@ -140,7 +140,7 @@ def discard_draft(project: Any, clip_id: Optional[str] = None) -> int:
             rec = _records(project).get(clip_id) if entry else None
             if rec is not None:  # 撤销这一行的修改：里面采用过的建议也算老师不要的，再点一键校正不再改回来
                 old_text = current_values(rec, entry)["text"]
-                _remember_rejects(project, clip_id, old_text, reverted_undos(rec, old_text, saved_values(rec)["text"]))
+                _remember_rejects(project, clip_id, reverted_pieces(rec, old_text, saved_values(rec)["text"]))
         save_draft(project, draft)
         return n
 
@@ -474,24 +474,21 @@ def _undo_pieces(text: str, undo: Sequence[Edit]) -> List[List[str]]:
     return out
 
 
-def reverted_undos(rec: Dict[str, Any], old: str, new: str) -> List[Edit]:
-    """老师把文字从 old 改成 new（自己打字、撤销这一行的修改）时，顺便把哪些采用过的建议改回去了。"""
+def reverted_pieces(rec: Dict[str, Any], old: str, new: str) -> List[List[str]]:
+    """老师把文字从 old 改成 new（自己打字、撤销这一行的修改）时，把以前改过的地方（程序改的、采用的建议）改回了最初识别的样子：
+    返回这些改法 [[原来的, 改成的], ...]。和最初识别的文字比（不靠「可能有错」列还在不在：点过「这句没错」、
+    重新查过错字以后也认得出来），句子开头 / 结尾、删掉的字、英文单词都一样。"""
     if old == new:
         return []
-    undo = analyze(rec, old)["undo"]
-    if not undo:
+    orig = original_text(rec)
+    if not orig or orig == old:
         return []
-    blocks = _equal_blocks(old, new)
-    out = []
-    for s, e, rep in undo:
-        js, je = map_range(blocks, s, s), map_range(blocks, e, e)
-        if js is not None and je is not None and js[0] <= je[0] and new[js[0]:je[0]] == rep:
-            out.append((s, e, rep))
-    return out
+    undone = set(change_pieces(old, new))
+    return [[a, b] for a, b in change_pieces(orig, old) if (b, a) in undone]
 
 
-def _remember_rejects(project: Any, clip_id: str, text: str, undo: Sequence[Edit]) -> None:
-    pairs = _undo_pieces(text, undo)
+def _remember_rejects(project: Any, clip_id: str, pairs: Sequence[Sequence[str]]) -> None:
+    pairs = [[str(a), str(b)] for a, b in pairs]
     if not pairs:
         return
     data = load_rejected(project)
@@ -547,7 +544,7 @@ def unadopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
         new = apply_edits(vals["text"], info["undo"])
         if not new:
             raise ValueError("撤销以后文字是空的，没有改")
-        _remember_rejects(project, clip_id, vals["text"], info["undo"])  # 再点一键校正时不再改回来
+        _remember_rejects(project, clip_id, _undo_pieces(vals["text"], info["undo"]))  # 再点一键校正时不再改回来
         out = set_draft(project, clip_id, text=new)
         out.update(old_text=vals["text"], text=new, changes=describe_adopted(vals["text"], info["undo"], limit=6))
         return out
@@ -904,6 +901,7 @@ def replace_matches(project: Any, query: Any, repl: Any, whole_word: bool = True
     repl = str(repl or "")
     with _LOCK:
         draft = load_draft(project)
+        rejected_before = load_rejected(project)  # 「撤销刚才的替换」时连撤销记录一起恢复
         recs = [r for r in project.load_manifest() if not r.get("deleted")]
         if target is not None:
             recs = [r for r in recs if r["id"] == target[0]]
@@ -928,7 +926,8 @@ def replace_matches(project: Any, query: Any, repl: Any, whole_word: bool = True
             ids.append(rid)
         if undo:
             p = Path(project.root) / UNDO_FILE
-            p.write_text(json.dumps({"query": str(query), "repl": repl, "rows": undo}, ensure_ascii=False),
+            p.write_text(json.dumps({"query": str(query), "repl": repl, "rows": undo,
+                                     "rejected": {k: rejected_before.get(k, []) for k in undo}}, ensure_ascii=False),
                          encoding="utf-8")
         return {"count": count, "rows": rows, "skipped": skipped, "ids": ids}
 
@@ -957,9 +956,18 @@ def undo_replace(project: Any) -> Dict[str, int]:
             if rec.get("deleted") or current_values(rec, draft.get(rid))["text"] != entry.get("after"):
                 out["kept"] += 1
                 continue
-            set_draft(project, rid, text=entry["text"], lang=entry.get("lang"))
+            set_draft(project, rid, remember=False, text=entry["text"], lang=entry.get("lang"))  # 撤销替换不算老师不要程序的改法
             draft = load_draft(project)
             out["rows"] += 1
+            before = data.get("rejected") if isinstance(data.get("rejected"), dict) else None
+            if before is not None:  # 替换时记下的撤销（替换把采用的建议改回去了）也恢复成替换以前的样子
+                rej = load_rejected(project)
+                old_pairs = [x for x in (before.get(rid) or []) if isinstance(x, list) and len(x) == 2]
+                if old_pairs:
+                    rej[rid] = old_pairs
+                else:
+                    rej.pop(rid, None)
+                _save_rejected(project, rej)
         p.unlink()
         return out
 

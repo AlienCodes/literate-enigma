@@ -956,3 +956,171 @@ def test_rows_still_red_after_adopting_are_counted(tmp_path):
     project.save_manifest(recs)
     res = wf.run_transcript_fix(cfg, "校正声音")
     assert res["adopted"]["changes"] == 1 and res["adopted"]["no_suggestion"] == 1
+
+
+# ---------------------------------------------------------------------------- 第四次独立检查发现的问题（每个都有一个测试）
+@need_both
+@pytest.mark.parametrize("how", ["type", "revert"])
+def test_typed_or_row_revert_is_remembered_at_sentence_edges(tmp_path, how):
+    """问题 1（重要）：在句子开头 / 结尾改好的字，老师自己打回去或者「撤销这一行的修改」，再点又改回来。"""
+    texts = ["借词后面一般要接名词或者代词。", "我们今天要讲的这个就是借词"]
+    cfg, project = _voice(tmp_path, texts, ids=["e_0001", "e_0002"])
+    wf.run_transcript_fix(cfg, "校正声音")
+    for rid in ("e_0001", "e_0002"):
+        if how == "type":
+            review.set_draft(project, rid, text=_cur(project, rid)[1].replace("介词", "借词"))
+        else:
+            review.discard_draft(project, rid)
+    wf.run_transcript_fix(cfg, "校正声音")
+    assert [_cur(project, r)[1] for r in ("e_0001", "e_0002")] == texts and review.load_draft(project) == {}
+
+
+@need_both
+@pytest.mark.parametrize("how", ["type", "revert", "unadopt"])
+def test_undoing_a_deletion_is_remembered(tmp_path, how):
+    """问题 1（续）：按上传的同一句删掉的字（那个），老师改回去以后再点又删掉。"""
+    right, wrong = "我们今天来讲一下定语从句的用法。", "我们今天来讲一下那个定语从句的用法。"
+    cfg, project = _voice(tmp_path, [wrong, "这是另外一句话，没有问题。"], ids=["x_0001", "x_0002"])
+    up = tmp_path / "transcripts.csv"
+    up.write_text(f"id,text\nx_0001,{right}\nx_0002,这是另外一句话，没有问题。\n", encoding="utf-8")
+    wf.run_transcript_fix(cfg, "校正声音", files=[str(up)])
+    assert _cur(project, "x_0001")[1] == right
+    {"type": lambda: review.set_draft(project, "x_0001", text=wrong),
+     "revert": lambda: review.discard_draft(project, "x_0001"),
+     "unadopt": lambda: review.unadopt_suggestion(project, "x_0001")}[how]()
+    wf.run_transcript_fix(cfg, "校正声音")
+    assert _cur(project, "x_0001")[1] == wrong
+
+
+@need_both
+@pytest.mark.parametrize("how", ["type", "revert"])
+def test_teacher_typing_every_fix_back_on_real_rows_is_remembered(tmp_path, how):
+    """老师真实的 1004 句：123 句全部自己打回去（或撤销这一行的修改），再点一句都不改回来（以前有 2 句：开头的斌与、英文 home）。"""
+    if not (HAS_PINYIN and HAS_JIEBA):
+        pytest.skip("没有装 pypinyin / jieba")
+    orig = list(csv.DictReader(open(MOTHER_DIR / "母本_原文.csv", encoding="utf-8-sig")))
+    cfg = make_cfg(tmp_path / "ws")
+    project = wf.Project(cfg, "老师").ensure()
+    project.save_manifest([{"id": r["id"], "path": f"clips/{r['id']}.wav", "text": r["text"], "lang": "zh",
+                            "duration": 3.0, "keep": r["keep"] == "1", "deleted": r["drop_reason"] == "老师删除",
+                            "split": "train"} for r in orig])
+    wf.run_transcript_fix(cfg, "老师")
+    texts = {r["id"]: r["text"] for r in orig}
+    for cid in list(review.load_draft(project)):
+        if how == "type":
+            review.set_draft(project, cid, text=texts[cid])
+        else:
+            review.discard_draft(project, cid)
+    assert review.load_draft(project) == {}
+    res = wf.run_transcript_fix(cfg, "老师")
+    assert review.load_draft(project) == {} and res["fixes"] == 0 and res["adopted"]["changes"] == 0
+
+
+@need_both
+@pytest.mark.parametrize("how", ["dismiss_revert", "dismiss_type", "autocheck_type"])
+def test_typed_undo_is_remembered_after_dismiss_or_auto_check(tmp_path, monkeypatch, how):
+    """问题 2：点过「这句没错」、或者保存以后又自动查过错字（「可能有错」列的记录没了），老师再改回去，一键又改回来。"""
+    from voicetwin.data import proofcheck as pc
+
+    t = "这是一个定语从剧，那个修饰名词。"
+    cfg, project = _voice(tmp_path, [t], ids=["w_0001"])
+    recs = project.load_manifest()
+    k = t.index("那个")
+    recs[0]["suspect"] = {"spans": [[k, k + 2]], "alt": t.replace("那个", "这个"), "reasons": ["两个引擎"], "score": 0.6}
+    project.save_manifest(recs)
+    wf.run_transcript_fix(cfg, "校正声音")
+    if how.startswith("dismiss"):
+        pc.dismiss_suspect(project, "w_0001")
+    else:
+        review.save_rows(project)
+        monkeypatch.setattr(pc, "build_suspect", lambda text, *a, **kw: None)
+        pc.find_suspects(project, cfg)
+    if how.endswith("revert"):
+        review.discard_draft(project, "w_0001")
+    else:
+        review.set_draft(project, "w_0001", text=_cur(project, "w_0001")[1].replace("从句", "从剧"))
+        review.save_rows(project)
+    wf.run_transcript_fix(cfg, "校正声音")
+    assert "从剧" in _cur(project, "w_0001")[1]
+
+
+@need_both
+def test_auto_suggestion_never_overrides_teachers_typing(tmp_path, monkeypatch):
+    """问题 3：老师自己打的「威驰」（识别的是「微池」）保存了，自动查错字的另一个引擎听成 which，一键把它改成了 which。"""
+    from voicetwin.data import proofcheck as pc
+
+    cfg, project = _voice(tmp_path, ["我昨天开的是一辆微池汽车。"], ids=["b_0001"])
+    review.set_draft(project, "b_0001", text="我昨天开的是一辆威驰汽车。")
+    review.save_rows(project)
+
+    def fake(text, *a, **kw):
+        k = text.index("威驰")
+        return {"spans": [[k, k + 2]], "alt": text[:k] + "which" + text[k + 2:], "reasons": ["另一个引擎"], "score": 0.7}
+
+    monkeypatch.setattr(pc, "build_suspect", fake)
+    pc.find_suspects(project, cfg)
+    res = wf.run_transcript_fix(cfg, "校正声音")
+    assert _cur(project, "b_0001")[1] == "我昨天开的是一辆威驰汽车。" and res["adopted"]["changes"] == 0
+
+
+@need_both
+def test_fix_right_next_to_a_teacher_deletion_still_works(tmp_path):
+    """问题 4：老师删掉了「借词」后面的「嗯」，一键校正就不改「借词」了（删掉的地方旁边的字也被当成老师改过的）。"""
+    orig = ["这个借词嗯用来连接名词。", "这个借词用来连接名词嗯。", "这个借词用来连接名词。"]
+    cfg, project = _voice(tmp_path, orig, ids=["y_0001", "y_0002", "y_0003"])
+    review.set_draft(project, "y_0001", text="这个借词用来连接名词。")
+    review.set_draft(project, "y_0002", text="这个借词用来连接名词。")
+    review.save_rows(project)
+    wf.run_transcript_fix(cfg, "校正声音")
+    for rid in ("y_0001", "y_0002", "y_0003"):
+        assert _cur(project, rid)[1] == "这个介词用来连接名词。", rid
+
+
+@need_both
+def test_rejected_fix_is_not_shown_as_a_suggestion_again(tmp_path):
+    """问题 5：一行两处改好的，老师把一处打回去：再点（保存以后也一样），那一处还显示成蓝色「采用」、说明写着「已按标准库改好」。"""
+    cfg, project = _voice(tmp_path, ["这个借词引导一个定语从剧。"], ids=["k_0001"])
+    wf.run_transcript_fix(cfg, "校正声音")
+    review.set_draft(project, "k_0001", text=_cur(project, "k_0001")[1].replace("介词", "借词"))
+    for _ in range(2):
+        res = wf.run_transcript_fix(cfg, "校正声音")
+        rec, cur = _cur(project, "k_0001")
+        info = review.analyze(rec, cur)
+        assert cur == "这个借词引导一个定语从句。" and info["edits"] == [] and info["red"] == []
+        assert info["adopted"] and not any("借词" in x for x in rec["suspect"]["reasons"])  # 从剧 → 从句 还能撤销
+        assert res["adopted"]["unsure"] == 0 and res["adopted"]["no_suggestion"] == 0
+        review.save_rows(project)
+
+
+@need_both
+def test_undo_replace_is_not_recorded_as_rejecting_a_fix(tmp_path):
+    """问题 6：查找替换「从剧 → 从句」再「撤销刚才的替换」，被记成老师不要这个改法，一键校正就不改了。"""
+    texts = ["这是一个定语从剧，修饰名词。", "这是一个定语从剧，也修饰名词。"]
+    cfg, project = _voice(tmp_path, texts, ids=["z_0001", "z_0002"])
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[6, 8]], "alt": texts[0].replace("从剧", "从句"), "reasons": ["两个引擎"], "score": 0.6}
+    project.save_manifest(recs)
+    review.replace_matches(project, "从剧", "从句")
+    review.undo_replace(project)
+    assert review.load_rejected(project) == {}
+    wf.run_transcript_fix(cfg, "校正声音")
+    assert all("从句" in _cur(project, r)[1] for r in ("z_0001", "z_0002"))
+
+
+@need_both
+def test_builtin_mother_still_confirms_the_same_sentence_with_another_id(tmp_path):
+    """问题 7：和程序自带母本一模一样、但 id 不一样的句子（重新切的片段），母本不再能证明它没错（自动查错字的错标红留着）。"""
+    lines = [x for rid, x in tf.builtin_mother() if rid and 15 <= len(x) <= 40][:12]
+    cfg, project = _voice(tmp_path, lines)
+    recs = project.load_manifest()
+    for r in recs:
+        t = r["text"]
+        r["suspect"] = {"spans": [[3, 5]], "alt": t[:3] + "那个" + t[5:], "reasons": ["两个引擎"], "score": 0.6}
+    project.save_manifest(recs)
+    wf.run_transcript_fix(cfg, "校正声音")
+    left = 0
+    for r in project.load_manifest():
+        rec, cur = _cur(project, r["id"])
+        info = review.analyze(rec, cur)
+        left += bool(info["red"] or info["edits"])
+    assert left <= 1 and review.load_draft(project) == {}
