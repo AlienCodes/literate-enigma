@@ -182,7 +182,7 @@ def save_transcripts(project: Any, paths: Iterable[Any]) -> Dict[str, Any]:
         raise ValueError("母本没有存上：" + "；".join(bad) + "。请上传记事本保存的 .txt 文件，或者声音文件夹里的 "
                          "transcripts.csv（Word 文档可以先「另存为」纯文本 .txt）。")
     if not items:
-        raise ValueError("没有收到母本文件，请先选好文件再点「文字校正」。")
+        raise ValueError("没有收到母本文件，请先选好文件再点「📝 一键全部文字校正」。")
     folder = transcript_dir(project)
     if folder.exists():
         shutil.rmtree(folder, ignore_errors=True)

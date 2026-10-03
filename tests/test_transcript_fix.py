@@ -622,3 +622,17 @@ def test_teacher_uploads_her_raw_transcripts_csv_again(tmp_path):
     review.save_rows(project)
     res2 = wf.run_transcript_fix(cfg, "老师")
     assert review.load_draft(project) == {} and res2["fixes"] == 0 and res2["adopted"]["changes"] == 0
+
+
+@need_both
+def test_clip_count_after_one_click_only_counts_rows_still_wrong(tmp_path):
+    """表格上方「N 条可能有错」：一键校正改好、还没保存的不算（以前按保存的文字算，改好的 123 条也算进去了）。"""
+    pytest.importorskip("gradio")
+    from voicetwin.webui.app import _clips_count_md
+
+    cfg, project = _voice(tmp_path, ["小明昨天说借词后面接名词", "今天李华同学回答得很好"])
+    recs = project.load_manifest()
+    recs[1]["suspect"] = {"spans": [[2, 4]], "alt": "今天理化同学回答得很好", "reasons": ["另一个引擎"], "score": 0.6}
+    project.save_manifest(recs)
+    wf.run_transcript_fix(cfg, "校正声音")
+    assert "**1** 条可能有错" in _clips_count_md(cfg, "校正声音")  # 只剩没把握的那一条

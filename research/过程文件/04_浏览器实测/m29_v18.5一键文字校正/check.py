@@ -95,9 +95,12 @@ def main():
         check("证明不了的建议（多一个「到」）没有自动采用：还是红色、有建议，结果说明写着没有把握",
               list(ORIG)[2] not in d and info2["edits"] and not info2["sure"] and "没有把握" in md,
               str(info2["edits"]))
-        summary = [ln for ln in md.splitlines() if "一共改了" in ln or "直接改好" in ln or "全部采用" in ln]
+        summary = [ln for ln in md.splitlines() if "一共改了" in ln or "直接改好" in ln or "一起采用了" in ln]
         check("结果说明写着改了多少处、下一步点保存修改", bool(summary) and "保存修改" in md and "确认训练素材" in md,
               " / ".join(summary[:3]))
+        cnt = wait_text(page, "body", ["条可能有错"], 10)
+        line = next((ln for ln in cnt.splitlines() if "条可能有错" in ln), "")
+        check("表格上方的「可能有错」只算还没改的（改好、没保存的不算）：只剩那 1 条没把握的", "1 条可能有错" in line, line[-60:])
         page.screenshot(path=str(SHOTS / "02_done.png"), full_page=False)
 
         # 表格：只看可能有错的 → 第一处改过的行：绿色 / 蓝色 / 红灯
@@ -159,6 +162,17 @@ def main():
         check("上传 txt 母本以后再点一次也能用，按钮下面写着上传的文件", "新讲稿.txt" in info and "没有完成" not in md, info[-60:])
         check("改好、保存过的句子不会再被改（这次没有新的没保存的修改）", not draft(), str(list(draft())[:3]))
         page.screenshot(path=str(SHOTS / "05_uploaded.png"))
+        # 快速上手用的截图（docs/manual/images/03c_textfix.png）：说明 + 上传框 + 两个按钮 + 标准库那行字
+        boxes = [page.locator(sel).first.bounding_box() for sel in
+                 (".vt-textfix-help", "#vt-tr-files", "#vt-tr-btn", ".vt-tr-info")]
+        boxes = [b for b in boxes if b]
+        if boxes:
+            x0, y0 = min(b["x"] for b in boxes) - 8, min(b["y"] for b in boxes) - 8
+            x1 = max(b["x"] + b["width"] for b in boxes) + 8
+            y1 = max(b["y"] + b["height"] for b in boxes) + 8
+            sy = page.evaluate("() => window.scrollY")  # bounding_box 是相对窗口的；整页截图要加上滚动的距离
+            page.screenshot(path=str(SHOTS / "03c_textfix.png"), full_page=True,
+                            clip={"x": max(0, x0), "y": max(0, y0 + sy), "width": x1 - max(0, x0), "height": y1 - y0})
         check("网页上没有脚本错误", not errors, errors[:3])
         browser.close()
     passed = sum(1 for _, ok, _ in RESULTS if ok)

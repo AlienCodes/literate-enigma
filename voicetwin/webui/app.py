@@ -1299,12 +1299,13 @@ def _render_diff(text: str, alt: str, spans: Any = None, transcript: bool = Fals
             f'<div class="vt-diff-row"><span class="vt-diff-tag">识别 B：</span>{"".join(b_out)}</div>')
 
 
-def _suspect(rec: Dict[str, Any]) -> Dict[str, Any]:
-    """这一条还算不算「可能有错」：还有没改过的红字、或者还有没采用的建议（改过的地方不算）。"""
+def _suspect(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
+    """这一条还算不算「可能有错」：还有没改过的红字、或者还有没采用的建议（改过的地方不算）。
+    text：表格里显示的文字（有没保存的修改就是改过的那句；不给就用保存的）。"""
     s = rec.get("suspect")
     if not (isinstance(s, dict) and (s.get("spans") or s.get("alt") or s.get("reasons"))):
         return {}
-    return s if _review.analyze(rec)["active"] else {}
+    return s if _review.analyze(rec, text)["active"] else {}
 
 
 def _colored_html(info: Dict[str, Any]) -> str:
@@ -1486,7 +1487,9 @@ def _clips_count_md(cfg: Config, voice: Any) -> str:
         return "还没有片段，请先点上面的「开始准备素材」。"
     c = _review.material_counts(records)
     material = [r for r in records if _review.is_material(r)]
-    sus = sum(1 for r in records if not r.get("deleted") and _suspect(r))
+    draft = _review.load_draft(project)  # 和表格一样按显示的文字算（一键校正改好、还没保存的不算可能有错）
+    sus = sum(1 for r in records if not r.get("deleted")
+              and _suspect(r, _review.current_values(r, draft.get(r.get("id")))["text"]))
     by_lang: Dict[str, int] = {}
     for r in material:
         by_lang[r.get("lang", "")] = by_lang.get(r.get("lang", ""), 0) + 1
@@ -3186,7 +3189,7 @@ class WebUI:
         if fixes:
             parts.append(f"按母本标准库直接改好 **{fixes}** 处（{_int(r.get('fixed_rows'))} 条）")
         if adopted:
-            parts.append(f"把「修改建议」一次全部采用：**{adopted}** 处（{ad_rows} 条）")
+            parts.append(f"「修改建议」里有把握的也一起采用了：**{adopted}** 处（{ad_rows} 条）")
         elif found and not ad:
             parts.append(f"另外 **{found}** 条标红给了建议")
         unsure = _int(ad.get("unsure"))
@@ -3290,7 +3293,7 @@ class WebUI:
         md = (f"⬇️ 已经把 **{res['lines']}** 句改好的文字存成 txt（一行一句，按表格的顺序"
               + (f"；紫色删除的 {res['deleted']} 句不在里面" if res.get("deleted") else "")
               + f"），浏览器会自动下载。电脑上也存了一份：`{_md_text(res['path'])}`"
-              "\n\n下次可以把它当逐字稿上传，点「📝 文字校正」。")
+              "\n\n下次可以把它当母本上传（「上传更多母本」那里），再点「📝 一键全部文字校正」。")
         if res.get("unsaved"):
             md += (f"\n\n🔴 其中 **{res['unsaved']}** 条修改还没保存（文件里是改过的样子）：记得点下面的「保存修改」，"
                    "不然训练时不会用这些修改。")
