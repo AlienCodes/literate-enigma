@@ -819,3 +819,140 @@ def test_result_message_wording():
     md = WebUI._textfix_md({"checked": 2, "adopted": {"unsure": 2}})
     assert "没有需要改的地方" not in md and "听一听" in md and "「采用」" in md and "✓ 采用" not in md
     assert "没有需要改的地方" in WebUI._textfix_md({"checked": 2, "adopted": {}})
+
+
+# ---------------------------------------------------------------------------- 第三次独立检查发现的问题（每个都有一个测试）
+@need_both
+@pytest.mark.parametrize("text", ["这里借词主剧都要记一下", "它是关系带词艾子的用法", "看一下借词主剧的意思",
+                                  "我们说借词是什么，" * 8, "这个从剧的借词要注意"])
+def test_undo_is_remembered_for_neighbouring_and_bundled_changes(tmp_path, text):
+    """问题 1（重要）：撤销记的是「前后 3 个字」，挨着的两处、一次改好几处、重复很多遍的句子都对不上，再点又改回来
+    （老师真实数据上 123 句里有 12 句）。现在按「原来的字 → 程序想改成的字」记，不管位置。"""
+    cfg, project = _voice(tmp_path, [text])
+    wf.run_transcript_fix(cfg, "校正声音")
+    assert _cur(project, "c000")[1] != text
+    review.unadopt_suggestion(project, "c000")
+    assert _cur(project, "c000")[1] == text
+    for _ in range(2):
+        res = wf.run_transcript_fix(cfg, "校正声音")
+        assert _cur(project, "c000")[1] == text and res["fixes"] == 0 and res["adopted"]["changes"] == 0
+        review.save_rows(project)
+
+
+def test_teacher_undoing_every_fix_on_her_real_rows_is_remembered(tmp_path):
+    """老师真实的 1004 句：一键校正以后 123 句全部点红色按钮撤销，再点一键校正：一句都不改回来（保存前后都一样）。"""
+    if not (HAS_PINYIN and HAS_JIEBA):
+        pytest.skip("没有装 pypinyin / jieba")
+    orig = list(csv.DictReader(open(MOTHER_DIR / "母本_原文.csv", encoding="utf-8-sig")))
+    cfg = make_cfg(tmp_path / "ws")
+    project = wf.Project(cfg, "老师").ensure()
+    project.save_manifest([{"id": r["id"], "path": f"clips/{r['id']}.wav", "text": r["text"], "lang": "zh",
+                            "duration": 3.0, "keep": r["keep"] == "1", "deleted": r["drop_reason"] == "老师删除",
+                            "split": "train"} for r in orig])
+    wf.run_transcript_fix(cfg, "老师")
+    changed = list(review.load_draft(project))
+    assert len(changed) == 123
+    for cid in changed:
+        review.unadopt_suggestion(project, cid)
+    assert review.load_draft(project) == {}
+    res = wf.run_transcript_fix(cfg, "老师")
+    assert review.load_draft(project) == {} and res["fixes"] == 0 and res["adopted"]["changes"] == 0
+
+
+@need_both
+def test_teachers_own_typing_is_never_overridden(tmp_path):
+    """问题 2：老师自己把改好的字打回去（主句 → 主剧）并保存、或者自己打了「借词」：一键校正又改掉了。"""
+    cfg, project = _voice(tmp_path, ["他说这个主剧的结构很完整", "英语里有很多外来的词"])
+    wf.run_transcript_fix(cfg, "校正声音")
+    review.save_rows(project)
+    review.set_draft(project, "c000", text="他说这个主剧的结构很完整")  # 双击自己改回去
+    review.save_rows(project)
+    review.set_draft(project, "c001", text="英语里有很多借词，也就是外来的词")  # 自己打的
+    for _ in range(2):
+        res = wf.run_transcript_fix(cfg, "校正声音")
+        assert _cur(project, "c000")[1] == "他说这个主剧的结构很完整"
+        assert _cur(project, "c001")[1] == "英语里有很多借词，也就是外来的词"
+        assert res["fixes"] == 0 and res["adopted"]["changes"] == 0
+        review.save_rows(project)
+
+
+@need_both
+def test_row_revert_counts_as_undo(tmp_path):
+    """「撤销这一行的修改」把一键校正改好的撤销了：再点也不改回来。"""
+    cfg, project = _voice(tmp_path, ["他说这个主剧的结构很完整"])
+    wf.run_transcript_fix(cfg, "校正声音")
+    review.discard_draft(project, "c000")
+    wf.run_transcript_fix(cfg, "校正声音")
+    assert _cur(project, "c000")[1] == "他说这个主剧的结构很完整" and review.load_draft(project) == {}
+
+
+@need_both
+def test_dismissed_row_is_never_changed_by_old_suggestions(tmp_path):
+    """问题 3：点过「这句没错」的句子，以前留下的建议被一键校正采用了。"""
+    from voicetwin.data.proofcheck import dismiss_suspect
+
+    t0 = "这里的借词后面要接名词，大家记一下"
+    cfg, project = _voice(tmp_path, [t0])
+    dismiss_suspect(project, "c000")
+    review.set_draft(project, "c000", text=t0.replace("大家", "同学们"))
+    wf.run_transcript_fix(cfg, "校正声音")
+    review.set_draft(project, "c000", text=t0)  # 改回老师确认过的那句
+    res = wf.run_transcript_fix(cfg, "校正声音")
+    rec, cur = _cur(project, "c000")
+    assert cur == t0 and res["dismissed"] == 1 and res["adopted"]["changes"] == 0
+    assert not rec.get("suspect")  # 以前的标红、建议也去掉了
+
+
+@need_both
+def test_uploading_the_downloaded_text_does_not_hide_auto_flags(tmp_path):
+    """问题 4：把下载的「改好的文字」当母本上传，每一句都和自己对上，自动查错字标红的地方被当成「母本证明没错」去掉了。"""
+    texts = ["今天我们讲一下定语从句的用法和意义", "大家先把课本翻到第三十二页看一下", "这个句子里面有一个先行词需要注意"]
+    cfg, project = _voice(tmp_path, texts)
+    recs = project.load_manifest()
+    recs[1]["suspect"] = {"spans": [[10, 12]], "alt": texts[1].replace("三十二", "三十三"), "reasons": ["另一个引擎"],
+                          "score": 0.7}
+    recs[2]["suspect"] = {"spans": [[0, 2]], "alt": "", "reasons": ["识别时没把握"], "score": 0.6}
+    project.save_manifest(recs)
+    wf.run_transcript_fix(cfg, "校正声音")
+    out = review.export_text(project)
+    res = wf.run_transcript_fix(cfg, "校正声音", files=[out["path"]])
+    assert res["cleared"] == 0
+    for cid, red in (("c001", ["十二"]), ("c002", ["这个"])):
+        rec, cur = _cur(project, cid)
+        assert [cur[s:e] for s, e in review.analyze(rec, cur)["red"]] == red
+
+
+@need_both
+def test_undo_clicked_while_auto_check_runs_is_kept(tmp_path, monkeypatch):
+    """问题 5：自动查错字正在进行时点红色按钮撤销：查错字最后保存校对表时把撤销的记录冲掉了（现在记在单独的文件里）。"""
+    from voicetwin.data import proofcheck as pc
+
+    cfg, project = _voice(tmp_path, ["他说这个主剧的结构很完整"] + [f"这是第{i}句普通的话" for i in range(5)])
+    wf.run_transcript_fix(cfg, "校正声音")
+    state = {"done": False}
+
+    def build(text, *a, **k):
+        if not state["done"]:
+            state["done"] = True
+            review.unadopt_suggestion(project, "c000")
+        return None
+
+    monkeypatch.setattr(pc, "build_suspect", build)
+    pc.find_suspects(project, cfg)
+    assert review.load_rejected(project).get("c000")
+    wf.run_transcript_fix(cfg, "校正声音")
+    assert _cur(project, "c000")[1] == "他说这个主剧的结构很完整"
+
+
+@need_both
+def test_rows_still_red_after_adopting_are_counted(tmp_path):
+    """问题 6：一行采用了有把握的建议以后还有标红（没有建议），结果说明里没算进「要你听」的句子。"""
+    t = "我们先看威驰引导的从句，然后再看后面那个例子的用法"
+    cfg, project = _voice(tmp_path, [t])
+    recs = project.load_manifest()
+    a, b = t.index("威驰"), t.index("那个")
+    recs[0]["suspect"] = {"spans": [[a, a + 2], [b, b + 2]], "alt": t.replace("威驰", "which"),
+                          "reasons": ["另一个引擎听到 which", "识别时没把握"], "score": 0.7}
+    project.save_manifest(recs)
+    res = wf.run_transcript_fix(cfg, "校正声音")
+    assert res["adopted"]["changes"] == 1 and res["adopted"]["no_suggestion"] == 1

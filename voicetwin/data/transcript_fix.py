@@ -492,6 +492,10 @@ def _num_pinyin(surface: str) -> Optional[List[str]]:
 
 
 # ============================================================================ 逐字稿
+def _norm_line(text: str) -> str:
+    return " ".join(str(text or "").split())
+
+
 class Reference:
     """处理好的逐字稿：每个字的读音、按读音找位置的索引、哪些写法出现过。"""
 
@@ -523,19 +527,21 @@ class Reference:
         self.latin = Counter(t.key for t in self.toks if t.kind == "lat")
         import bisect
 
-        # 每个 id 的句子在哪里（一个 id 可能出现好几次：程序自带的母本和老师上传的 transcripts.csv 里都有同一句）
-        self.id_ranges: Dict[str, List[Tuple[int, int]]] = {}
-        last_li = -1
+        # 每一句在哪里：按 id（一个 id 可能出现好几次：程序自带的母本和老师上传的 transcripts.csv 里都有同一句）、
+        # 按文字（没有 id 的 txt 里和这一句一模一样的那一行就是它自己，不能拿来证明它没错）
+        line_span: Dict[int, Tuple[int, int]] = {}
         for k, tk in enumerate(self.toks):
             li = bisect.bisect_right(starts, tk.start) - 1
-            rid = lines[li][0] if 0 <= li < len(lines) else ""
+            if 0 <= li < len(lines):
+                a, _b = line_span.get(li, (k, k + 1))
+                line_span[li] = (a, k + 1)
+        self.id_ranges: Dict[str, List[Tuple[int, int]]] = {}
+        self.text_ranges: Dict[str, List[Tuple[int, int]]] = {}
+        for li in sorted(line_span):
+            rid, x = lines[li]
             if rid:
-                spans = self.id_ranges.setdefault(rid, [])
-                if li == last_li and spans:
-                    spans[-1] = (spans[-1][0], k + 1)
-                else:
-                    spans.append((k, k + 1))
-            last_li = li
+                self.id_ranges.setdefault(rid, []).append(line_span[li])
+            self.text_ranges.setdefault(_norm_line(x), []).append(line_span[li])
 
     def __len__(self) -> int:
         return len(self.toks)
@@ -928,12 +934,15 @@ class ClipResult:
     ref_text: str
 
 
-def check_text(text: str, ref: Reference, exclude_id: str = "") -> ClipResult:
+def check_text(text: str, ref: Reference, exclude_id: str = "", exclude_texts: Iterable[str] = ()) -> ClipResult:
     """一句识别文字和母本比：返回可能有错的地方、母本证明没错的字（字符位置）、整句对齐了没有。
 
-    exclude_id：母本里同一句（同一个 id，就是这一句自己）不拿来比。"""
+    exclude_id：母本里同一句（同一个 id，就是这一句自己）不拿来比；exclude_texts：母本里和这些文字一模一样的行
+    （这一句现在的 / 保存的 / 最初识别的样子）也不拿来比——它就是这一句自己，证明不了什么。"""
     clip = _Clip(text, ref)
-    skips = ref.id_ranges.get(exclude_id, []) if exclude_id else []
+    skips = list(ref.id_ranges.get(exclude_id, [])) if exclude_id else []
+    for t in set(_norm_line(x) for x in exclude_texts if x):
+        skips += ref.text_ranges.get(t, [])
     if not clip.toks or not len(ref):
         return ClipResult([], set(), False, "")
     found: Dict[Tuple[int, int, str], Prop] = {}
@@ -1092,7 +1101,8 @@ def _same_place(ed: Tuple[int, int, str], span: Sequence[int]) -> bool:
 
 def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: Optional[Dict[str, Any]],
                     rec: Dict[str, Any], ref_text: str = "", lex: Any = None,
-                    allow_unchanged: bool = False) -> Tuple[Optional[Dict[str, Any]], str, List[Tuple[int, int, str]]]:
+                    allow_unchanged: bool = False,
+                    rejected: Any = None) -> Tuple[Optional[Dict[str, Any]], str, List[Tuple[int, int, str]]]:
     """标准库 / 母本找出来的改法（fixes）和原来自动查错字的结果（auto）合起来。
 
     返回 (新的 suspect 或 None, 发生了什么, 要直接改的地方 [(开始, 结束, 改成)])。
@@ -1149,7 +1159,7 @@ def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: O
     edits_keep = [ed for ed in a_edits if not _is_confirmed(ed[0], ed[1], confirmed, tokchars)
                   and all(ed[1] <= s or e <= ed[0] for s, e, _ in t_edits)
                   and any(not (ed[1] <= rs or re_ <= ed[0]) or ed[0] == ed[1] for rs, re_ in red_keep)
-                  and not _review.is_rejected(rec, cur, *ed)]  # 老师撤销过的不再建议
+                  and not _review.is_rejected(rejected, cur, *ed)]  # 老师撤销过的不再建议
     auto_left = bool(red_keep or edits_keep)
     if not fixes:
         if not auto:
@@ -1324,15 +1334,15 @@ def _changed_chars(rec: Dict[str, Any], cur: str) -> Set[int]:
 
 
 def _protect(fixes: Sequence[Any], cur: str, changed: Set[int], lex: Any) -> List[Any]:
-    """和母本对齐找出来的改法再把一道关：
-    - 碰到已经改过的字（老师改的、上次改好的）不动——母本里旧的写法不能把它改回去；
-    - 改完以后标准库马上又会说有错的（改成了「借词」这种），不改。"""
+    """所有改法再把一道关：
+    - 碰到已经改过的字（老师自己改的、上次改好的）不动——老师的修改为准，母本里旧的写法也不能把它改回去；
+    - 和母本对齐找出来的：改完以后标准库马上又会说有错的（改成了「借词」这种），不改。"""
     out = []
     for f in fixes:
+        span = range(f.start, max(f.end, f.start + 1))
+        if any(k in changed for k in span) or (f.start == f.end and f.start - 1 in changed):
+            continue
         if f.kind == "align":
-            span = range(f.start, max(f.end, f.start + 1))
-            if any(k in changed for k in span) or (f.start == f.end and f.start - 1 in changed):
-                continue
             if lex is not None:
                 new = _apply(cur, [(f.start, f.end, f.rep)])
                 e2 = f.start + len(f.rep)
@@ -1399,8 +1409,10 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
     _report(progress, 0.15, f"标准库：母本 {len(ref) if ref else 0} 个字 / 词，语法术语和常说的词 {len(lex.vocab)} 个，"
                             f"对照表 {len(lex.corrections)} 条，开始一句一句检查……")
     draft = _review.load_draft(project)
+    rejected = _review.load_rejected(project)
     todo = []
     dismissed = 0
+    dismissed_ids: Set[str] = set()
     for r in records:
         if r.get("deleted"):
             continue
@@ -1411,6 +1423,7 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
             continue
         if r.get("suspect_ok") and r.get("suspect_ok") == cur:
             dismissed += 1
+            dismissed_ids.add(r["id"])
             continue
         todo.append((r, cur, _review.is_dirty(r, entry) or _text_edited(r)))
     results: Dict[str, Tuple[str, List[Any], ClipResult]] = {}
@@ -1418,13 +1431,15 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
     for i, (r, cur, edited) in enumerate(todo, 1):
         _check_cancel()
         rid = r["id"]
-        res = check_text(cur, ref, exclude_id=rid) if ref is not None else ClipResult([], set(), False, "")
-        fixes = (_row_fixes(rid, cur, row_table, builtin_by_id.get(rid)) + lex.find(cur)
-                 + _protect(props_to_fixes(cur, res, lex), cur, _changed_chars(r, cur), lex))
+        selves = (cur, str(r.get("text") or ""), _review.original_text(r))
+        res = (check_text(cur, ref, exclude_id=rid, exclude_texts=selves) if ref is not None
+               else ClipResult([], set(), False, ""))
+        fixes = _row_fixes(rid, cur, row_table, builtin_by_id.get(rid)) + lex.find(cur) + props_to_fixes(cur, res, lex)
         if rid in by_id:
             fixes += _same_id_fixes(cur, by_id[rid], edited)
-        # 老师撤销过的改法（点过红色按钮）：不再改回来，也不再建议
-        fixes = [f for f in fixes if not _review.is_rejected(r, cur, f.start, f.end, f.rep)]
+        fixes = _protect(fixes, cur, _changed_chars(r, cur), lex)
+        # 老师撤销过的改法（点过红色按钮、自己改回去、撤销这一行的修改）：不再改回来，也不再建议
+        fixes = [f for f in fixes if not _review.is_rejected(rejected.get(rid), cur, f.start, f.end, f.rep)]
         results[rid] = (cur, fixes, res)
         if i % 20 == 0 or i == n:
             _report(progress, 0.15 + 0.8 * i / max(n, 1), f"已检查 {i} / {n} 条")
@@ -1435,6 +1450,12 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
         draft = _review.load_draft(project)
         changed_draft = False
         for r in records:
+            if r.get("id") in dismissed_ids:  # 「这句没错」：以前留下的标红、建议都去掉（不然一键会采用旧建议）
+                vals = _review.current_values(r, draft.get(r["id"]))
+                if r.get("suspect_ok") == vals["text"]:
+                    r.pop("suspect", None)
+                    r.pop("suspect_auto", None)
+                continue
             item = results.get(r.get("id"))
             if item is None:
                 continue
@@ -1448,7 +1469,8 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
             auto = auto_suspect(r)
             if auto:  # 自动查错字的结果是按当时保存的文字算的：记下那段文字，保存修改以后位置也换算得对
                 auto = dict(auto, text=str(auto.get("text") or r.get("text") or ""))
-            sus, what, direct = merge_with_auto(cur, fixes, res.confirmed_chars, auto, r, res.ref_text, lex)
+            sus, what, direct = merge_with_auto(cur, fixes, res.confirmed_chars, auto, r, res.ref_text, lex,
+                                                rejected=rejected.get(r["id"]))
             if sus is None and old_undo:
                 # 这一行以前采用过的建议（按钮是红的，可以撤销）：没有新的问题也留着，不然撤销不了
                 sus, what = old, "kept_undo"

@@ -116,6 +116,9 @@ def set_draft(project: Any, clip_id: str, **changes: Any) -> Dict[str, Any]:
             vals["keep"] = bool(changes["keep"])
         if "lang" in changes and changes["lang"] in ("zh", "en"):
             vals["lang"] = changes["lang"]
+        old_text = current_values(rec, draft.get(clip_id))["text"]
+        if vals["text"] != old_text:  # 老师自己打字把采用过的建议改回去了：记下来，再点一键校正不再改回来
+            _remember_rejects(project, clip_id, old_text, reverted_undos(rec, old_text, vals["text"]))
         if vals == saved_values(rec):
             draft.pop(clip_id, None)
         else:
@@ -132,7 +135,12 @@ def discard_draft(project: Any, clip_id: Optional[str] = None) -> int:
             n = len(draft)
             draft = {}
         else:
-            n = 1 if draft.pop(clip_id, None) is not None else 0
+            entry = draft.pop(clip_id, None)
+            n = 1 if entry is not None else 0
+            rec = _records(project).get(clip_id) if entry else None
+            if rec is not None:  # 撤销这一行的修改：里面采用过的建议也算老师不要的，再点一键校正不再改回来
+                old_text = current_values(rec, entry)["text"]
+                _remember_rejects(project, clip_id, old_text, reverted_undos(rec, old_text, saved_values(rec)["text"]))
         save_draft(project, draft)
         return n
 
@@ -379,74 +387,130 @@ def describe_edits(text: str, edits: Sequence[Edit], limit: int = 3, flip: bool 
 
 
 # ============================================================================ 老师撤销过的改法（不再自动改回来）
-REJECTED_KEY = "fix_rejected"  # record 里：[[错的写法和前后几个字, 改好的写法和前后几个字], ...]
-_REJECT_PAD = 3
+REJECTED_FILE = "review_rejected.json"  # {片段 id: [[原来的字, 程序想改成的字], ...]}：老师撤销过、不要的改法
 
 
-def _reject_pairs(text: str, undo: Sequence[Edit]) -> List[List[str]]:
-    """撤销的那几处（undo 是撤销时怎么改回去，位置按现在的文字算）→ 记下「程序想改成的样子」和「老师要的样子」（带前后几个字）。"""
-    out = []
-    for s, e, rep in undo:
-        a, b = max(0, s - _REJECT_PAD), min(len(text), e + _REJECT_PAD)
-        wanted = text[a:s] + rep + text[e:b]  # 撤销以后（老师要的）
-        proposed = text[a:b]  # 程序改成的
-        if wanted != proposed:
-            out.append([wanted, proposed])
+def rejected_path(project: Any) -> Path:
+    return Path(project.root) / REJECTED_FILE
+
+
+def load_rejected(project: Any) -> Dict[str, List[List[str]]]:
+    """老师撤销过的改法（单独一个文件，查错字 / 准备素材写校对表时不会把它冲掉）；文件坏了当作没有。"""
+    try:
+        data = json.loads(rejected_path(project).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    if not isinstance(data, dict):
+        return {}
+    out: Dict[str, List[List[str]]] = {}
+    for k, v in data.items():
+        if isinstance(v, list):
+            out[str(k)] = [[str(x[0]), str(x[1])] for x in v if isinstance(x, (list, tuple)) and len(x) == 2]
     return out
 
 
-def is_rejected(rec: Dict[str, Any], text: str, s: int, e: int, rep: str) -> bool:
-    """在 text 的 [s, e) 换成 rep，是不是老师撤销过的改法（撤销过就不再自动改回来，也不再建议）。"""
-    pairs = rec.get(REJECTED_KEY) if isinstance(rec.get(REJECTED_KEY), list) else []
+def _save_rejected(project: Any, data: Dict[str, List[List[str]]]) -> None:
+    p = rejected_path(project)
+    data = {k: v for k, v in data.items() if v}
+    if not data:
+        try:
+            p.unlink()
+        except OSError:
+            pass
+        return
+    tmp = p.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    tmp.replace(p)
+
+
+_UNIT = re.compile(r"[A-Za-z0-9']+|\S")
+
+
+def change_pieces(old: str, new: str) -> List[Tuple[str, str]]:
+    """一处改动拆成最小的改动（原来的, 改成的）：按「单位」比（一个英文单词、一个汉字、一个标点是一个单位，空格不算），
+    一样多的单位一对一拆开：「壮与从剧 → 状语从句」= [(壮, 状), (与, 语), (剧, 句)]，「eggs rainbow → egg scramble」=
+    [(eggs, egg), (rainbow, scramble)]，「艾子 → as」= [(艾子, as)]。撤销的时候和以后检查的时候都这样拆，
+    所以不管位置、不管几处连在一起、不管从哪边比，都对得上。"""
+    if old == new:
+        return []
+    a, b = _UNIT.findall(old), _UNIT.findall(new)
+    out: List[Tuple[str, str]] = []
+    for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes():
+        if tag == "equal":
+            continue
+        if tag == "replace" and i2 - i1 == j2 - j1:
+            pairs = [(a[i1 + k], b[j1 + k]) for k in range(i2 - i1)]
+        else:
+            pairs = [(" ".join(a[i1:i2]), " ".join(b[j1:j2]))]
+        for x in pairs:
+            if x[0] != x[1] and x not in out:
+                out.append(x)
+    return out
+
+
+def is_rejected(pairs: Any, text: str, s: int, e: int, rep: str) -> bool:
+    """在 text 的 [s, e) 换成 rep，里面有没有老师撤销过的改法（pairs：这一行的 [[原来的, 程序想改成的], ...]）。
+    这一处单独比、放在整句里比，有一个对上就算（两种比法拆出来的偶尔不一样）。"""
     if not pairs or not (0 <= s <= e <= len(text)):
         return False
-    new = text[:s] + rep + text[e:]
-    blocks = [(i1, i2, j1, j2) for tag, i1, i2, j1, j2 in _opcodes(text, new) if tag != "equal"]
-    if not blocks:
-        return False
-    c1, c2 = min(b[0] for b in blocks), max(b[1] for b in blocks)  # 真正改到的那几个字
-    for pair in pairs:
-        try:
-            wanted, proposed = str(pair[0]), str(pair[1])
-        except (TypeError, IndexError):
-            continue
-        if not wanted:
-            continue
-        k = text.find(wanted, max(0, c2 - len(wanted)))
-        while 0 <= k <= c1:
-            if k + len(wanted) >= c2 and new[k:k + len(proposed)] == proposed:
-                return True
-            k = text.find(wanted, k + 1)
-    return False
+    bad = {(str(p[0]), str(p[1])) for p in pairs if isinstance(p, (list, tuple)) and len(p) == 2}
+    if any(pc in bad for pc in change_pieces(text[s:e], rep)):
+        return True
+    return any(pc in bad for pc in change_pieces(text, text[:s] + rep + text[e:]))
+
+
+def _undo_pieces(text: str, undo: Sequence[Edit]) -> List[List[str]]:
+    """撤销的那几处（位置按现在的文字算，现在的文字里是程序改成的样子）→ [[原来的, 程序想改成的], ...]：
+    整句比一次、每一处单独比一次，都记下。"""
+    out: List[List[str]] = []
+    wanted = apply_edits(text, undo)
+    found = change_pieces(wanted, text)
+    for s, e, rep in undo:
+        if 0 <= s <= e <= len(text):
+            found += change_pieces(rep, text[s:e])
+    for a, b in found:
+        if [a, b] not in out:
+            out.append([a, b])
+    return out
+
+
+def reverted_undos(rec: Dict[str, Any], old: str, new: str) -> List[Edit]:
+    """老师把文字从 old 改成 new（自己打字、撤销这一行的修改）时，顺便把哪些采用过的建议改回去了。"""
+    if old == new:
+        return []
+    undo = analyze(rec, old)["undo"]
+    if not undo:
+        return []
+    blocks = _equal_blocks(old, new)
+    out = []
+    for s, e, rep in undo:
+        js, je = map_range(blocks, s, s), map_range(blocks, e, e)
+        if js is not None and je is not None and js[0] <= je[0] and new[js[0]:je[0]] == rep:
+            out.append((s, e, rep))
+    return out
 
 
 def _remember_rejects(project: Any, clip_id: str, text: str, undo: Sequence[Edit]) -> None:
-    pairs = _reject_pairs(text, undo)
+    pairs = _undo_pieces(text, undo)
     if not pairs:
         return
-    records = project.load_manifest()
-    for rec in records:
-        if rec.get("id") == clip_id:
-            old = [p for p in (rec.get(REJECTED_KEY) or []) if isinstance(p, list)]
-            rec[REJECTED_KEY] = (old + [p for p in pairs if p not in old])[-50:]
-            project.save_manifest(records)
-            return
+    data = load_rejected(project)
+    old = data.get(clip_id, [])
+    data[clip_id] = (old + [p for p in pairs if p not in old])[-100:]
+    _save_rejected(project, data)
 
 
 def _forget_rejects(project: Any, clip_id: str, text: str, edits: Sequence[Edit]) -> None:
     """老师自己点「采用」：这些改法不再算撤销过的。"""
-    records = project.load_manifest()
-    for rec in records:
-        if rec.get("id") == clip_id and rec.get(REJECTED_KEY):
-            keep = [p for p in rec[REJECTED_KEY] if not any(is_rejected({REJECTED_KEY: [p]}, text, s, e, r)
-                                                            for s, e, r in edits)]
-            if keep != rec[REJECTED_KEY]:
-                if keep:
-                    rec[REJECTED_KEY] = keep
-                else:
-                    rec.pop(REJECTED_KEY, None)
-                project.save_manifest(records)
-            return
+    data = load_rejected(project)
+    if not data.get(clip_id):
+        return
+    used = {(a, b) for s, e, rep in edits if 0 <= s <= e <= len(text)
+            for a, b in change_pieces(text[s:e], rep) + change_pieces(text, text[:s] + rep + text[e:])}
+    keep = [p for p in data[clip_id] if (p[0], p[1]) not in used]
+    if keep != data[clip_id]:
+        data[clip_id] = keep
+        _save_rejected(project, data)
 
 
 def adopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
@@ -499,6 +563,7 @@ def adopt_all_suggestions(project: Any) -> Dict[str, Any]:
     with _LOCK:
         records = project.load_manifest()
         draft = load_draft(project)
+        rejected = load_rejected(project)
         rows = changes = no_sug = unsure = 0
         examples: List[str] = []
         for rec in records:
@@ -508,16 +573,17 @@ def adopt_all_suggestions(project: Any) -> Dict[str, Any]:
             vals = current_values(rec, draft.get(rid))
             if not vals["keep"]:
                 continue
+            if rec.get("suspect_ok") and rec.get("suspect_ok") == vals["text"]:
+                continue  # 老师点过「这句没错」（文字没再改过）：不动
             info = analyze(rec, vals["text"])
-            todo = [ed for ed in info["sure"] if not is_rejected(rec, vals["text"], *ed)]
+            todo = [ed for ed in info["sure"] if not is_rejected(rejected.get(rid), vals["text"], *ed)]
             new = apply_edits(vals["text"], todo) if todo else vals["text"]
-            if info["edits"] and (not new or analyze(rec, new)["edits"]):
+            after = analyze(rec, new) if new else info
+            if after["edits"]:
                 unsure += 1  # 采用了有把握的以后还剩下建议：没把握的，留给老师
-            if not todo:
-                if info["red"] and not info["edits"]:
-                    no_sug += 1
-                continue
-            if not new or new == vals["text"]:
+            elif after["red"]:
+                no_sug += 1  # 还有标红、没有建议的地方
+            if not todo or not new or new == vals["text"]:
                 continue
             if len(examples) < 6:
                 examples.append(describe_edits(vals["text"], todo, limit=1))
