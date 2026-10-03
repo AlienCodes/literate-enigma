@@ -15,6 +15,7 @@ from voicetwin.utils.log import get_logger
 log = get_logger("project")
 
 MANIFEST_FIELDS_CSV = ["id", "keep", "split", "lang", "duration", "text", "drop_reason", "audio"]
+_WARNED_EMPTY: set = set()  # 已经说过「manifest.jsonl 是空的」的声音（每个只说一次）
 
 
 def _safe_voice_name(name: str) -> str:
@@ -125,11 +126,28 @@ class Project:
         if bad:  # 坏了的行（写到一半断电）：跳过、留一份副本，别的照常用（以前整个校对表打不开、保存 / 确认一直失败）
             log.warning(f"校对表 manifest.jsonl 有 {bad} 行坏了，跳过（留了一份 manifest.jsonl.bad）")
             atomic.keep_bad_copy(self.manifest_path)
+        elif not records:
+            self._warn_empty_manifest()
         if only_kept:  # 校对表里删除的一定不算（delete_clip 也会把 keep 设成 False，这里再保险一次）
             records = [r for r in records if r.get("keep", True) and not r.get("deleted")]
         if split:
             records = [r for r in records if r.get("split", "train") == split]
         return records
+
+    def _warn_empty_manifest(self) -> None:
+        """manifest.jsonl 在、却是空的，切好的片段还在：多半是保存的时候断电了（以前一声不吭，网页只说「还没有片段」）。
+        每个声音只在黑色窗口 / 记录里说一次（这个函数一直被调用）。"""
+        key = str(self.manifest_path)
+        if key in _WARNED_EMPTY:
+            return
+        try:
+            has_clips = any(self.clips_dir.glob("*.wav"))
+        except OSError:
+            has_clips = False
+        if has_clips:
+            _WARNED_EMPTY.add(key)
+            log.warning(f"校对表 manifest.jsonl 是空的，可是切好的片段还在（{self.clips_dir}）：多半是保存的时候电脑断电或死机了。"
+                        f"上次保存的文字在 {self.csv_path.name} 里还有一份，程序不会再用空的校对表把它冲掉（会先另存一份备份）")
 
     def save_manifest(self, records: Iterable[Dict[str, Any]]) -> None:
         self.root.mkdir(parents=True, exist_ok=True)
@@ -142,6 +160,7 @@ class Project:
         from voicetwin.utils import atomic
 
         records = records if records is not None else self.load_manifest()
+        self._keep_old_csv(records)
         tmp = atomic.tmp_for(self.csv_path)  # 先写临时文件再换上去：被 Excel 打开着时不会留下半个表
         try:
             with open(tmp, "w", encoding="utf-8-sig", newline="") as f:
@@ -175,6 +194,36 @@ class Project:
             pass
         return self.csv_path
 
+    def _keep_old_csv(self, records: List[Dict[str, Any]]) -> Optional[Path]:
+        """这次要写的校对表比上次写的少了句子：正常情况下句子只会多不会少（删除也只是标成紫色），少了多半是 manifest.jsonl
+        坏了 / 空了（保存的时候断电）。先把上次的 transcripts.csv 另存一份「transcripts_备份_时间.csv」，再写新的——
+        以前照着网页说的再点「开始准备素材」，最后一份改好的文字也被空表冲掉了。返回备份的位置（没备份返回 None）。"""
+        import shutil
+        import time
+
+        if not self.csv_path.exists():
+            return None
+        snap = self.read_json(self.csv_snapshot_path, None)
+        if not isinstance(snap, dict) or not snap:
+            return None
+        ids = {str(r.get("id")) for r in records}
+        lost = sum(1 for k in snap if k not in ids)
+        if not lost:
+            return None
+        dest = self.root / f"transcripts_备份_{time.strftime('%Y%m%d_%H%M%S')}.csv"
+        k = 2
+        while dest.exists():
+            dest = self.root / f"transcripts_备份_{time.strftime('%Y%m%d_%H%M%S')}_{k}.csv"
+            k += 1
+        try:
+            shutil.copy2(self.csv_path, dest)
+        except OSError as exc:
+            log.warning(f"没能另存 transcripts.csv 的备份（{exc}）")
+            return None
+        log.warning(f"这次的校对表比上次少了 {lost} 句（多半是 manifest.jsonl 坏了 / 空了）：上次的 transcripts.csv 另存成了 "
+                    f"{dest.name}，里面有原来改好的文字")
+        return dest
+
     def import_csv(self) -> Dict[str, int]:
         """读回校对表，把修改（文字、keep、语言）同步到 manifest。
 
@@ -186,6 +235,9 @@ class Project:
         if not self.csv_path.exists():
             raise FileNotFoundError(f"找不到校对表 {self.csv_path}")
         records = {r["id"]: r for r in self.load_manifest()}
+        from voicetwin.data.review import upgrade_confirmed
+
+        upgrade_confirmed(self, list(records.values()))  # 旧版本的确认记录先换成新算法（Excel 里只改了语言也看得出来）
         changed = {"text": 0, "keep": 0, "lang": 0}
         snap = self.read_json(self.csv_snapshot_path, None)
         snap = snap if isinstance(snap, dict) else {}

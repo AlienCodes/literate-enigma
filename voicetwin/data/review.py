@@ -3,6 +3,7 @@
 - **没保存的修改（草稿）**：老师在表格里改的文字 / 保留 / 语言，先存在 ``workspace/<声音>/review_draft.json``，
   点「保存修改」（或这一行的「💾 保存这一行」）才写进校对表（manifest + transcripts.csv）。
   草稿放在硬盘上：网页刷新、浏览器关掉、两次修改挤在一起提交，都不会丢。
+  每条草稿记下真的改过哪几样（``own``）：没改过的那几样一直跟着保存过的走（程序后来改了保存过的值也不会被旧的副本冲掉）。
 - **蓝色 = 改过的字**：现在的文字和最初识别出来的文字（``orig_text``）比，不一样的地方。
 - **红色 = 可能有错**：查错字时标出来的位置；那个地方被改过以后就不再标红（改过的地方变蓝）。
 - **修改建议**：查错字时第二个识别引擎给的建议（``suspect.alt``），拆成一处一处的改动；
@@ -60,8 +61,16 @@ def _read_side_json(p: Path, what: str) -> Any:
         return None
 
 
+#: 草稿里的三样。每条草稿另外记下 "own"：老师（或者采用建议、替换、一键校正这些按钮）真的改过哪几样。没改过的那几样
+#: 不用草稿里的副本，一直跟着保存过的走。以前每条草稿把文字、保留、语言三样都抄一份：抄完以后程序自己改了保存过的值
+#: （再点「开始准备素材」识别出文字、重新过滤），「保存修改」就把抄的旧值当成老师选的写回去——老师打了字的那条被固定成
+#: 「不用」，程序判断不能用的被硬塞进训练（第四轮找 bug 发现）。
+FIELDS = ("text", "keep", "lang")
+
+
 def load_draft(project: Any) -> Dict[str, Dict[str, Any]]:
-    """{片段 id: {"text": ..., "keep": True/False, "lang": "zh"/"en"}}；文件坏了当作没有草稿。"""
+    """{片段 id: {"text": ..., "keep": True/False, "lang": "zh"/"en", "own": [改过的几样]}}；文件坏了当作没有草稿。
+    旧版本存的草稿没有 own（见 own_fields）。"""
     p = draft_path(project)
     data = _read_side_json(p, "没保存的修改")
     if not isinstance(data, dict):
@@ -69,18 +78,19 @@ def load_draft(project: Any) -> Dict[str, Dict[str, Any]]:
     out: Dict[str, Dict[str, Any]] = {}
     for k, v in data.items():
         if isinstance(v, dict):
-            out[str(k)] = {"text": str(v.get("text", "")), "keep": bool(v.get("keep", True)),
-                           "lang": str(v.get("lang", ""))}
+            entry = {"text": str(v.get("text", "")), "keep": bool(v.get("keep", True)), "lang": str(v.get("lang", ""))}
+            if isinstance(v.get("own"), list):
+                entry["own"] = [f for f in FIELDS if f in v["own"]]
+            out[str(k)] = entry
     return out
 
 
 def save_draft(project: Any, draft: Dict[str, Dict[str, Any]]) -> None:
     p = draft_path(project)
     if not draft:
-        try:
-            p.unlink()
-        except OSError:
-            pass
+        # 删不掉（Windows 上这一刻正被别的按钮读着）等一会儿再试，还不行就写成空的；都不行才报错——
+        # 以前悄悄当成删掉了：「撤销这一行的修改」说撤销了，下次「保存修改」却把撤销了的字存了进去
+        atomic.remove(p, fallback_text="{}")
         return
     p.parent.mkdir(parents=True, exist_ok=True)
     atomic.write_text(p, json.dumps(draft, ensure_ascii=False, indent=1))
@@ -91,9 +101,68 @@ def saved_values(rec: Dict[str, Any]) -> Dict[str, Any]:
             "lang": str(rec.get("lang", "") or "")}
 
 
+def follow_lang(rec: Dict[str, Any], text: str) -> str:
+    """语言没手动改过时，这一句的文字改成 text、保存以后的语言（和保存时 apply_text_edit 算的一样：按文字自动判断，
+    以前手动选过、已经保存的语言不动）。"""
+    old, lang = str(rec.get("text", "") or ""), str(rec.get("lang", "") or "")
+    if not text or text == old:
+        return lang
+    return lang_after_edit(old, lang, text) or detect_lang(text)
+
+
+def own_fields(rec: Dict[str, Any], entry: Optional[Dict[str, Any]]) -> set:
+    """这条草稿真的改过哪几样（{"text", "keep", "lang"} 里的）。
+
+    旧版本存的草稿没记：和保存过的不一样的那几样就算改过（和以前一样），只有「不用」例外——表格里只能把一句改成
+    「要用」（「✅ 这一条也要用」），草稿里的「不用」只可能是抄的旧值（程序后来把这一句判成能用了）。"""
+    if not entry:
+        return set()
+    if isinstance(entry.get("own"), (list, tuple, set)):
+        return {f for f in FIELDS if f in entry["own"]}
+    saved = saved_values(rec)
+    text = str(entry.get("text", "") or "")
+    out = {"text"} if text != saved["text"] else set()
+    if bool(entry.get("keep", True)) and not saved["keep"]:
+        out.add("keep")
+    if str(entry.get("lang", "") or "") != follow_lang(rec, text):
+        out.add("lang")
+    return out
+
+
 def current_values(rec: Dict[str, Any], entry: Optional[Dict[str, Any]]) -> Dict[str, Any]:
-    """表格里显示的值：有草稿用草稿，没有用保存过的。"""
-    return dict(entry) if entry else saved_values(rec)
+    """表格里显示的值（也是保存时写进去的值）：草稿里改过的那几样用草稿的，没改过的跟着保存过的走；没有草稿用保存过的。"""
+    if not entry:
+        return saved_values(rec)
+    own, saved = own_fields(rec, entry), saved_values(rec)
+    text = str(entry.get("text", "") or "") if "text" in own else saved["text"]
+    keep = bool(entry.get("keep", True)) if "keep" in own else saved["keep"]
+    lang = str(entry.get("lang", "") or "") if "lang" in own else follow_lang(rec, text)
+    return {"text": text, "keep": keep, "lang": lang}
+
+
+def store_entry(draft: Dict[str, Dict[str, Any]], rec: Dict[str, Any], vals: Dict[str, Any], own: Iterable[str]
+                ) -> Dict[str, Any]:
+    """把这一句改好的值 vals 放进草稿 draft（就地改，调用的地方自己 save_draft）：记下改过哪几样 own；
+    和保存过的一样时从草稿里去掉。返回现在的值（current_values）。"""
+    entry = {"text": str(vals.get("text", "") or ""), "keep": bool(vals.get("keep", True)),
+             "lang": str(vals.get("lang", "") or ""), "own": [f for f in FIELDS if f in set(own)]}
+    cur = current_values(rec, entry)
+    if cur == saved_values(rec):
+        draft.pop(rec["id"], None)
+    else:
+        draft[rec["id"]] = dict(cur, own=entry["own"])
+    return cur
+
+
+def put_text(draft: Dict[str, Dict[str, Any]], rec: Dict[str, Any], text: str) -> Dict[str, Any]:
+    """草稿里这一句的文字改成 text（采用建议、一键校正用；draft 就地改）：和自己改字一样，语言跟着文字自动换
+    （老师手动选过的不动）；「保留」和没改过的语言继续跟着保存过的走。返回现在的值。"""
+    entry = draft.get(rec["id"])
+    vals = current_values(rec, entry)
+    new = dict(vals, text=text)
+    if text != vals["text"]:
+        new["lang"] = lang_after_edit(vals["text"], vals["lang"], text)
+    return store_entry(draft, rec, new, own_fields(rec, entry) | {"text"})
 
 
 def is_dirty(rec: Dict[str, Any], entry: Optional[Dict[str, Any]]) -> bool:
@@ -129,7 +198,9 @@ def set_draft(project: Any, clip_id: str, remember: bool = True, **changes: Any)
         if rec is None:
             raise KeyError(f"找不到这条片段（{clip_id}），请点「🔄 重新载入」")
         draft = load_draft(project)
-        vals = current_values(rec, draft.get(clip_id))
+        entry = draft.get(clip_id)
+        old = current_values(rec, entry)
+        vals, own = dict(old), own_fields(rec, entry)  # own：这一句改过哪几样（这次改的也记上）
         if "text" in changes and changes["text"] is not None:
             text = clean_transcript(str(changes["text"]))
             if not text:
@@ -138,17 +209,17 @@ def set_draft(project: Any, clip_id: str, remember: bool = True, **changes: Any)
                 if "lang" not in changes:
                     vals["lang"] = lang_after_edit(vals["text"], vals["lang"], text)
                 vals["text"] = text
+                own.add("text")
         if "keep" in changes and changes["keep"] is not None:
             vals["keep"] = bool(changes["keep"])
+            own.add("keep")
         if "lang" in changes and changes["lang"] in ("zh", "en"):
             vals["lang"] = changes["lang"]
-        old_text = current_values(rec, draft.get(clip_id))["text"]
+            own.add("lang")
+        old_text = old["text"]
         if remember and vals["text"] != old_text:  # 老师自己打字把改过的地方改回去了：记下来，再点一键校正不再改回来
             _remember_rejects(project, clip_id, reverted_pieces(rec, old_text, vals["text"]))
-        if vals == saved_values(rec):
-            draft.pop(clip_id, None)
-        else:
-            draft[clip_id] = vals
+        vals = store_entry(draft, rec, vals, own)
         save_draft(project, draft)
         return {"dirty": clip_id in draft, "values": vals}
 
@@ -180,7 +251,10 @@ def prune_draft(project: Any) -> int:
         recs = _records(project)
         keep = {k: v for k, v in draft.items() if k in recs and is_dirty(recs[k], v)}
         removed = len(draft) - len(keep)
-        if removed:
+        old = [k for k, v in keep.items() if "own" not in v]
+        for k in old:  # 旧版本存的草稿：按现在的样子记下改过哪几样（以后程序改了保存过的值，没改过的跟着走）
+            keep[k] = dict(current_values(recs[k], keep[k]), own=sorted(own_fields(recs[k], keep[k]), key=FIELDS.index))
+        if removed or old:
             save_draft(project, keep)
         return removed
 
@@ -615,10 +689,7 @@ def _save_rejected(project: Any, data: Dict[str, List[List[str]]]) -> None:
     p = rejected_path(project)
     data = {k: v for k, v in data.items() if v}
     if not data:
-        try:
-            p.unlink()
-        except OSError:
-            pass
+        atomic.remove(p, fallback_text="{}")  # 删不掉等一会儿再试、再不行写成空的（不悄悄当成删掉了）
         return
     atomic.write_text(p, json.dumps(data, ensure_ascii=False, indent=1))
 
@@ -1019,11 +1090,7 @@ def adopt_all_suggestions(project: Any, only: Optional[Iterable[str]] = None) ->
                 continue
             if len(examples) < 6:
                 examples.append(describe_edits(vals["text"], todo, limit=1))
-            nv = dict(vals, text=new, lang=lang_after_edit(vals["text"], vals["lang"], new))
-            if nv == saved_values(rec):
-                draft.pop(rid, None)
-            else:
-                draft[rid] = nv
+            put_text(draft, rec, new)  # 只记下改了文字：「保留」、语言没动过的继续跟着保存过的走
             rows += 1
             changes += len(todo)
         if rows:
@@ -1048,13 +1115,14 @@ def save_rows(project: Any, ids: Optional[Iterable[str]] = None) -> Dict[str, An
         draft = load_draft(project)
         want = set(draft) if ids is None else {str(i) for i in ids} & set(draft)
         records = project.load_manifest()
+        upgrade_confirmed(project, records)  # 旧版本的确认记录先换成新算法（这次只改了语言也看得出来「确认以后又改过」）
         changed = {"text": 0, "keep": 0, "lang": 0}
         saved: List[str] = []
         for rec in records:
             rid = rec.get("id")
             if rid not in want or rec.get("deleted"):  # 删除（紫色）的行不保存，撤销删除以后还能接着改
                 continue
-            vals = draft[rid]
+            vals = current_values(rec, draft[rid])  # 只有草稿里真的改过的那几样和保存过的不一样（不写回抄下来的旧值）
             touched = False
             if vals["text"] and vals["text"] != rec.get("text"):
                 _apply_text(rec, vals["text"])  # 语言跟着文字自动换（老师手动选过的不动）
@@ -1194,13 +1262,43 @@ def confirm_path(project: Any) -> Path:
     return Path(project.root) / CONFIRM_FILE
 
 
-def load_confirmed(project: Any) -> Dict[str, Any]:
-    """{"time": "...", "signature": "...", "counts": {...}}；还没确认过（或文件坏了）返回 {}。"""
+def _read_confirmed(project: Any) -> Dict[str, Any]:
     try:
         data = json.loads(confirm_path(project).read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return {}
     return data if isinstance(data, dict) and data.get("signature") else {}
+
+
+def upgrade_confirmed(project: Any, records: Optional[Sequence[Dict[str, Any]]] = None) -> Dict[str, Any]:
+    """v18.2 ~ v18.4 的确认记录（算法里没有语言）：还和现在的素材对得上，就原样换成新算法（确认的时间、数量都不变）。
+    升级以后不用为了这个重新确认，之后只改了语言也看得出来「确认以后又改过」——以前旧记录一直按旧算法比，
+    升级以后只改语言照样能开始训练。records：现在的校对表（不给就读一遍）。写不了（Windows 上一时被占用）就算了、
+    下次再试（不能因为这个让保存失败）。返回现在的确认记录。"""
+    with _LOCK:
+        conf = _read_confirmed(project)
+        if not conf or conf.get("sig_version"):
+            return conf
+        if records is None:
+            records = project.load_manifest()
+        if not confirmed_matches(conf, records):
+            return conf  # 已经对不上了（确认以后又改过）：原样留着，照样要求重新确认
+        new = dict(conf, signature=material_signature(records), sig_version=SIGNATURE_VERSION)
+        try:
+            atomic.write_text(confirm_path(project), json.dumps(new, ensure_ascii=False, indent=1))
+        except OSError as exc:
+            log.warning(f"旧版本的确认记录没能换成新的算法（{exc}），下次再试")
+            return conf
+        return new
+
+
+def load_confirmed(project: Any) -> Dict[str, Any]:
+    """{"time": "...", "signature": "...", "sig_version": 2, "counts": {...}}；还没确认过（或文件坏了）返回 {}。
+    旧版本的确认记录在这里换成新算法（打开校对表就会读到，老师改语言之前就换好了）。"""
+    conf = _read_confirmed(project)
+    if conf and not conf.get("sig_version"):
+        conf = upgrade_confirmed(project)
+    return conf
 
 
 def save_confirmed(project: Any, records: Sequence[Dict[str, Any]]) -> Dict[str, Any]:
@@ -1344,7 +1442,8 @@ def replace_matches(project: Any, query: Any, repl: Any, whole_word: bool = True
     """替换：target=(id, 位置) 只换那一处，None 换全部。换完的句子存成没保存的修改（红灯），和自己改字一样，要保存才生效。
     换之前记下这些句子原来的样子，「撤销刚才的替换」可以改回去。
 
-    返回 {"count": 换了几处, "rows": 改了几句, "skipped": 换完会变成空的、没换的句子数, "ids": [...]}。"""
+    返回 {"count": 换了几处, "rows": 改了几句, "skipped": 换完会变成空的、没换的句子数,
+          "same": 换完被表格的统一写法改回原样、等于没换的句子数, "ids": [...]}。"""
     pat = find_pattern(query, whole_word)
     if pat is None:
         raise ValueError("请先在「查找」里输入要找的字")
@@ -1356,7 +1455,7 @@ def replace_matches(project: Any, query: Any, repl: Any, whole_word: bool = True
         if target is not None:
             recs = [r for r in recs if r["id"] == target[0]]
         undo: Dict[str, Any] = {}
-        count = rows = skipped = 0
+        count = rows = skipped = same = 0
         ids: List[str] = []
         for rec in recs:
             rid = rec["id"]
@@ -1365,11 +1464,18 @@ def replace_matches(project: Any, query: Any, repl: Any, whole_word: bool = True
             new, n = _replace_in_text(pat, text, repl, target[1] if target is not None else None)
             if not n or new == text:
                 continue
-            if not clean_transcript(new):
+            cleaned = clean_transcript(new)
+            if not cleaned:
                 skipped += 1
                 continue
+            if cleaned == text:
+                # 表格的统一写法又把它改回原样了（英文后面的标点一律半角、中文后面全角）：等于没换，不算、不记撤销
+                # （以前说「已经把 5 处换成…（🔴 没保存）」，其实什么都没变，还冲掉了上一次替换的撤销记录）
+                same += 1
+                continue
             after = set_draft(project, rid, text=new)["values"]
-            undo[rid] = {"text": text, "lang": before["lang"], "after": after["text"]}
+            # after_lang：替换以后这一句的语言（撤销时语言还是它才改回去；老师后来改了语言就照老师的）
+            undo[rid] = {"text": text, "lang": before["lang"], "after": after["text"], "after_lang": after["lang"]}
             added = [x for x in load_rejected(project).get(rid, []) if x not in rejected_before.get(rid, [])]
             if added:  # 这次替换把采用过的建议改回去了：记下是替换加的，「撤销刚才的替换」时只去掉这些
                 undo[rid]["rejected_added"] = added
@@ -1380,21 +1486,32 @@ def replace_matches(project: Any, query: Any, repl: Any, whole_word: bool = True
         if undo:
             from voicetwin import __version__
 
+            # seq：每次替换都不一样（「确认训练素材」靠它认出确认期间又做了新的替换，见 undo_stamp）
             atomic.write_text(Path(project.root) / UNDO_FILE,
-                              json.dumps({"query": str(query), "repl": repl, "rows": undo, "version": __version__},
-                                         ensure_ascii=False))
-        return {"count": count, "rows": rows, "skipped": skipped, "ids": ids}
+                              json.dumps({"query": str(query), "repl": repl, "rows": undo, "version": __version__,
+                                          "seq": time.time_ns()}, ensure_ascii=False))
+        return {"count": count, "rows": rows, "skipped": skipped, "same": same, "ids": ids}
 
 
 def clear_undo(project: Any) -> None:
     """「撤销刚才的替换」的记录不要了：确认了训练素材、点了一键全部文字校正以后，「刚才的替换」已经不是刚才的了
     （以前几天前的替换记录还在，一键校正以后点这个按钮，会把早就保存、确认好的字改回去）。"""
     try:
-        (Path(project.root) / UNDO_FILE).unlink()
-    except FileNotFoundError:
-        pass
+        atomic.remove(Path(project.root) / UNDO_FILE, fallback_text="{}")  # 写成空的也算删掉了（_load_undo 不认）
     except OSError as exc:
         log.warning(f"删不掉「撤销刚才的替换」的记录（{exc}）")
+
+
+def undo_stamp(project: Any) -> Optional[str]:
+    """现在的「撤销刚才的替换」记录（原样的文字；没有是 None）。「确认训练素材」开始时记一下，做完时一样才删：
+    确认要重新统计音频（几秒钟），这期间老师又点了「全部替换」，那次替换的撤销记录不能删（以前一起删了，
+    「↩️ 撤销刚才的替换」说没有可以撤销的）。读不了时返回一个每次都不一样的值（宁可不删）。"""
+    try:
+        return atomic.read_text(Path(project.root) / UNDO_FILE)
+    except FileNotFoundError:
+        return None
+    except OSError:
+        return f"读不了 {time.time_ns()}"
 
 
 def _load_undo(project: Any) -> Optional[Dict[str, Any]]:
@@ -1432,13 +1549,20 @@ def undo_replace(project: Any) -> Dict[str, int]:
             rec = known.get(rid)
             if rec is None or not isinstance(entry, dict) or not str(entry.get("text") or "").strip():
                 continue
-            now = current_values(rec, draft.get(rid))["text"]
+            cur = current_values(rec, draft.get(rid))
+            now = cur["text"]
             if not rec.get("deleted") and now == entry.get("text"):
                 continue  # 已经是替换以前的样子了（比如撤销过这一行的修改）：不用再改，也不说「又改过」
             if rec.get("deleted") or now != entry.get("after"):
                 out["kept"] += 1
                 continue
-            set_draft(project, rid, remember=False, text=entry["text"], lang=entry.get("lang"))  # 撤销替换不算老师不要程序的改法
+            lang: Dict[str, Any] = {}
+            if "after_lang" in entry and cur["lang"] != entry["after_lang"]:
+                lang = {"lang": cur["lang"]}  # 替换以后老师又改了这一句的语言：只把文字改回去，语言照老师后来选的
+            elif "after_lang" not in entry or "lang" in own_fields(rec, draft.get(rid)):
+                lang = {"lang": entry.get("lang")}  # 语言是老师手动选的（或者旧记录）：改回替换以前的
+            # 别的：语言跟着文字自动换（和替换以前一样），不当成老师选的
+            set_draft(project, rid, remember=False, text=entry["text"], **lang)  # 撤销替换不算老师不要程序的改法
             draft = load_draft(project)
             out["rows"] += 1
             added = [x for x in (entry.get("rejected_added") or []) if isinstance(x, list) and len(x) == 2]
@@ -1446,7 +1570,7 @@ def undo_replace(project: Any) -> Dict[str, int]:
                 rej = load_rejected(project)
                 rej[rid] = [x for x in rej.get(rid, []) if x not in added]
                 _save_rejected(project, rej)
-        p.unlink(missing_ok=True)
+        atomic.remove(p, fallback_text="{}")  # 删不掉等一会儿再试、再不行写成空的（_load_undo 不认空的）
         return out
 
 
