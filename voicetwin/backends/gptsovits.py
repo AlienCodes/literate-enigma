@@ -1804,6 +1804,8 @@ class GPTSoVITSBackend(Backend):
                               ("names_sig", "names"), ("version", "version")):
                 if info.get(key) != feat[key]:
                     kinds.append(kind)
+            if "names" in kinds and "clips" in kinds:  # 句子增减了，录音的指纹当然也变了：原因是素材改过
+                kinds.remove("clips")
             old_list = str(info.get("list_sha1") or "")
         else:  # 以前的版本训练的：指纹只有训练列表 + 版本，处理文字用的是官方的方法
             kinds.append("legacy")
