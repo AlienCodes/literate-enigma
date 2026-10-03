@@ -1304,7 +1304,9 @@ def test_safe_apply_refuses_results_it_cannot_explain():
     sure = "定语从句的关系代词我们也用"
     alt = "定语从句的关代词我们也用"
     cur = "定语从句的关系代词咱们也用"
-    assert review.safe_apply(cur, [(7, 8, "系带")], alt, base) in ("", "定语从具的关系带词咱们也用")
+    # 只给了错的那一句（alt）：可以不改、可以只撤销没碰到的那一处，但不能改乱
+    got = review.safe_apply(cur, [(7, 8, "系带")], alt, base)
+    assert got in ("", "定语从具的关系带词咱们也用", "定语从具的关系代词咱们也用") and "系系" not in got
     assert review.safe_apply(cur, [(7, 8, "系带")], [alt, sure], base) == "定语从具的关系带词咱们也用"
 
 
@@ -1349,3 +1351,80 @@ def test_three_way_merge_refuses_when_both_sides_touch_the_same_place():
     src, a, b = "关代词我们", "关系带词我们", "关系代词咱们"  # 两边都在「关」后面加了字：不知道先后
     assert review.merge3(src, a, b) == ""
     assert review.merge3("那我们就先来", "那我来", "那咱们就先来") == "那咱来"  # 只是挨着：照样合
+
+
+def test_adopt_skips_only_the_suggestion_that_overlaps_the_teachers_change(tmp_path):
+    """随机操作找到的：两个建议里有一个和老师改的字（查找替换 我们 → 咱们）碰在一起（表格上不显示它），点「采用」整行都不改。
+    现在只跳过碰到的那一个，按钮上写的那一处照样改；再点「已采用」原样撤销。"""
+    base = "接下来我们学习一下关系带词that的使用方法。"
+    sure = base.replace("带词", "代词")
+    alt = sure.replace("下来我", "as")
+    cfg, project = _voice(tmp_path, [base], ids=["q_0067"])
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[1, 4], [11, 12]], "alt": alt, "sure_alt": sure, "text": base, "src": "transcript",
+                          "reasons": ["r"], "score": 0.9}
+    project.save_manifest(recs)
+    review.replace_matches(project, "我们", "咱们")
+    rec, cur = _cur(project, "q_0067")
+    assert [cur[s:e] + "→" + rep for s, e, rep in review.analyze(rec, cur)["edits"]] == ["带→代"]
+    out = review.adopt_suggestion(project, "q_0067")
+    assert out["text"] == "接下来咱们学习一下关系代词that的使用方法。"
+    out = review.unadopt_suggestion(project, "q_0067")
+    assert out["text"] == cur
+
+
+def test_red_mark_of_an_adopted_insertion_stays_gone_next_to_a_fix():
+    """随机操作找到的：自动查错字建议「补上『的』」（标红后面的「它」），老师采用了；字旁边又改过（从具 → 从句）以后，
+    「它」又标红了——同一个改动 difflib 有时分成「换 + 插入」、有时合成一个「换」，结果就不一样。"""
+    t = "所以说这个从具它没有办法独立存在"
+    k = t.index("它")
+    rec = {"id": "q", "text": t, "suspect": {"spans": [[k, k + 1]], "alt": t[:k] + "的" + t[k:], "reasons": ["r"], "score": 0.6}}
+    for cur in (t[:k] + "的" + t[k:], (t[:k] + "的" + t[k:]).replace("从具", "从句")):
+        info = review.analyze(rec, cur)
+        assert info["red"] == [] and info["edits"] == [] and info["undo"], cur
+
+
+@need_both
+def test_two_clicks_after_adopting_an_insertion_give_the_same_table(tmp_path):
+    t = "必然是要存在于句子里面才可以，所以说这个从具它没有办法独立存在，只能在句子里面才有意义。"
+    k = t.index("它")
+    cfg, project = _voice(tmp_path, [t], ids=["22222222222_56d51b_0070"])
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[k, k + 1]], "alt": t[:k] + "的" + t[k:], "reasons": ["自动"], "score": 0.6}
+    project.save_manifest(recs)
+    review.adopt_suggestion(project, "22222222222_56d51b_0070")
+    seen = []
+    for _ in range(2):
+        wf.run_transcript_fix(cfg, "校正声音")
+        rec, cur = _cur(project, "22222222222_56d51b_0070")
+        info = review.analyze(rec, cur)
+        seen.append((cur, info["red"], info["edits"], bool(info["undo"])))
+    assert seen[0] == seen[1] and "从句的它" in seen[0][0] and seen[0][1] == [] and seen[0][3]
+
+
+@need_both
+def test_second_click_with_nothing_changed_keeps_the_same_suggestions(tmp_path):
+    """随机操作找到的：自动查错字建议在「从据」后面补上 which，第一次点一键校正（从据 → 从句）建议还在，
+    第二次点（什么都没变）建议没了——第二次是从改好的文字算的，挨着改好的字的建议算得不一样。
+    现在：上次点完以后什么都没变（母本、自动查错字的结果、撤销记录、文字），结果原样留着。"""
+    t = "而且很明显，这个定于从据是属于这个宾语从句里面的一部分。"
+    k = t.index("是")
+    cfg, project = _voice(tmp_path, [t], ids=["22222222222_56d51b_0058"])
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[k, k + 1]], "alt": t[:k] + "which" + t[k:], "reasons": ["自动"], "score": 0.6}
+    project.save_manifest(recs)
+    seen = []
+    for _ in range(3):
+        wf.run_transcript_fix(cfg, "校正声音")
+        rec, cur = _cur(project, "22222222222_56d51b_0058")
+        info = review.analyze(rec, cur)
+        seen.append((cur, info["red"], info["edits"], info["undo"], rec["suspect"]))
+    assert seen[0] == seen[1] == seen[2]
+    assert "从句是" in seen[0][0] and [rep for _s, _e, rep in seen[0][2]] == ["which"]
+    review.save_rows(project)  # 保存以后再点也一样
+    wf.run_transcript_fix(cfg, "校正声音")
+    rec, cur = _cur(project, "22222222222_56d51b_0058")
+    assert review.analyze(rec, cur)["edits"] == seen[0][2]
+    review.unadopt_suggestion(project, "22222222222_56d51b_0058")  # 撤销记录变了：重新算，撤销的不再改回来
+    wf.run_transcript_fix(cfg, "校正声音")
+    assert "从据" in _cur(project, "22222222222_56d51b_0058")[1]

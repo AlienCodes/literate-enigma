@@ -1509,6 +1509,40 @@ def _rebase(rec: Dict[str, Any], sus: Dict[str, Any], cur: str, old_undo: Sequen
     return cand
 
 
+def _global_fp(all_lines: Sequence[Tuple[str, str]], row_table: Dict[str, Any], lex: Any,
+               use_builtin: bool, use_row_fixes: bool) -> str:
+    """这次文字校正用的标准库（母本、按句子的修缮记录、对照表、术语、程序版本）的指纹。"""
+    import hashlib
+    import json
+
+    from voicetwin import __version__
+    from voicetwin.data.lexicon_fix import has_jieba
+
+    data = [__version__, use_builtin, use_row_fixes, has_pinyin(), has_jieba(), [list(x) for x in all_lines],
+            sorted((k, [list(v) for v in vs]) for k, vs in row_table.items()), sorted(lex.corrections.items()),
+            sorted(lex.vocab)]
+    return hashlib.sha1(json.dumps(data, ensure_ascii=False, default=str).encode("utf-8")).hexdigest()
+
+
+def _row_fp(gfp: str, auto: Optional[Dict[str, Any]], rejected: Any, orig: str) -> str:
+    """一行的指纹：标准库 + 这一行自动查错字的结果 + 老师撤销过的改法 + 最初识别的文字。"""
+    import hashlib
+    import json
+
+    data = [gfp, auto or None, sorted([str(a), str(b)] for a, b in (rejected or [])), orig]
+    return hashlib.sha1(json.dumps(data, ensure_ascii=False, sort_keys=True, default=str).encode("utf-8")).hexdigest()
+
+
+def _program_states(rec: Dict[str, Any], sus: Dict[str, Any]) -> Set[str]:
+    """上次点完以后程序留下的样子：直接改好的（没有直接改的就是查错字时的样子）、有把握的也采用了、都采用了。"""
+    from voicetwin.data import review as _review
+
+    st = _review.known_states(dict(rec, suspect=sus))
+    if not st:
+        return set()
+    return {x for x in (st.get("direct") or st["base"], st.get("sure"), st["alt"]) if x}
+
+
 def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
                           lines: Optional[Sequence[Tuple[str, str]]] = None, use_builtin: bool = True,
                           names: Optional[Sequence[str]] = None, use_row_fixes: bool = True) -> Dict[str, Any]:
@@ -1538,6 +1572,7 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
     # 不再从校对表里「学」老师改过的错：保存的修改里也有程序自己改的（采用的建议），学进去会越改越错（检查时发现的）
     lex = Lexicon.build([x for _, x in all_lines])
     by_id = {rid: x for rid, x in lines if rid}  # 老师上传的 transcripts.csv 里的句子（按 id）
+    gfp = _global_fp(all_lines, row_table, lex, use_builtin, use_row_fixes)
     _report(progress, 0.15, f"标准库：母本 {len(ref) if ref else 0} 个字 / 词，语法术语和常说的词 {len(lex.vocab)} 个，"
                             f"对照表 {len(lex.corrections)} 条，开始一句一句检查……")
     draft = _review.load_draft(project)
@@ -1581,6 +1616,7 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
     with _review._LOCK:
         records = project.load_manifest()
         draft = _review.load_draft(project)
+        rejected_now = _review.load_rejected(project)  # 检查期间老师可能又撤销了：按现在的算
         changed_draft = False
         for r in records:
             if r.get("id") in dismissed_ids:  # 「这句没错」：以前留下的标红、建议都去掉（不然一键会采用旧建议）
@@ -1598,10 +1634,19 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
             if str(vals["text"] or "") != cur:  # 检查期间改过（一般不会：检查时不能改表格）
                 continue
             old = r.get("suspect") if isinstance(r.get("suspect"), dict) else None
-            old_undo = _review.analyze(r, cur)["undo"] if old else []
             auto = auto_suspect(r)
             if auto:  # 自动查错字的结果是按当时保存的文字算的：记下那段文字，保存修改以后位置也换算得对
                 auto = dict(auto, text=str(auto.get("text") or r.get("text") or ""))
+            fp = _row_fp(gfp, auto, rejected_now.get(r["id"]), _review.original_text(r))
+            if old and old.get("src") == "transcript" and old.get("fp") == fp and cur in _program_states(r, old):
+                # 上次点完以后什么都没变（母本、自动查错字的结果、撤销记录都一样，文字还是程序改成的样子）：
+                # 结果原样留着。不然这次是从改好的文字算的，挨着改好的字的建议会算得不一样（随机操作发现：连点两次不一样）
+                stats["same"] += 1
+                stats["flagged"] += 1
+                if "sure_alt" in old:
+                    stats["unsure"] += 1
+                continue
+            old_undo = _review.analyze(r, cur)["undo"] if old else []
             sus, what, direct = merge_with_auto(cur, fixes, res.confirmed_chars, auto, r, res.ref_text, lex,
                                                 rejected=rejected.get(r["id"]), changed=changed)
             if sus is None and old_undo:
@@ -1624,6 +1669,8 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
             if sus is None:
                 r.pop("suspect", None)
             else:
+                if sus.get("src") == "transcript":
+                    sus = dict(sus, fp=fp)  # 这次用的东西记下来（下次什么都没变就原样留着）
                 r["suspect"] = sus
                 stats["flagged"] += 1
                 if "sure_alt" in sus and sus.get("src") == "transcript":

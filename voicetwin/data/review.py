@@ -192,7 +192,7 @@ def touched(ops: Sequence[Tuple[str, int, int, int, int]], s: int, e: int, stric
     """旧文字的 [s, e) 有没有被改到。挨着边的插入也算改到（查错字时"这里漏了字"标的是缺字位置两边的字）；
     s == e（建议在这里插入）时，这个位置上或者两边有改动都算。strict：插入的位置只有正好在改动中间、
     或者那里也插入了东西才算（换算「撤销」用）。"""
-    for tag, i1, i2, _j1, _j2 in ops:
+    for tag, i1, i2, j1, j2 in ops:
         if tag == "equal":
             continue
         if i1 == i2:
@@ -202,6 +202,10 @@ def touched(ops: Sequence[Tuple[str, int, int, int, int]], s: int, e: int, stric
             if (i1 < s < i2) if strict else (i1 <= s <= i2):
                 return True
         elif i1 < e and s < i2:
+            return True
+        elif not strict and tag == "replace" and j2 - j1 > i2 - i1 and (e == i1 or s == i2):
+            # 换成更长的字 = 换 + 插入，插入在哪一头不知道：挨着两头也算改到（和插入一样）。不然同一个改动
+            # difflib 有时分成「换 + 插入」、有时合成一个「换」，结果就不一样（随机操作发现：连点两次红字又冒出来）
             return True
     return False
 
@@ -641,14 +645,26 @@ def merge3(src: str, a: str, b: str) -> str:
     return apply_edits(src, out) if out else src
 
 
+def _merge_part(src: str, dst: str, cur: str) -> Tuple[str, str]:
+    """三方合并，但建议里和老师改的碰到一起的那几处不改（表格上也不显示它们，按钮上写的只有别的那几处）。
+    返回 (合并以后的文字, 只用不碰到的建议改出来的那一句)；一处都用不上返回 ("", "")。"""
+    ea, eb = suggestion_edits(src, dst), suggestion_edits(src, cur)
+    keep = [ed for ed in ea if ed in eb or not any(_clash(ed, f) for f in eb)]
+    if not keep or len(keep) == len(ea):
+        return "", ""
+    part = apply_edits(src, keep)
+    return merge3(src, part, cur), part
+
+
 def safe_apply(cur: str, edits: Sequence[Edit], src: Union[str, Sequence[str]], dst: str) -> str:
     """文字不是记下的整句时（老师又改过别处）采用 / 撤销：把建议（src → dst）用到 cur 上。src 可以给几个记下的整句
     （现在的文字可能是从其中哪一句改出来的），离现在的文字最近的先试。
 
-    办法：三方合并——老师改的（src → cur）和建议（src → dst）都按 src 的位置合起来；两边碰到一起就不合（不猜）。
-    合不了再试一处一处改（edits），改完检查三条：cur → 结果的每一处都是建议本身的改动；老师改的别处都还在；
-    把结果再改回去（dst → src）又正好是 cur。都不行返回 ""（不改，不能把文字改坏——检查时发现过「了、宾语、宾语」
-    「关系系带词」）。"""
+    1. 三方合并：老师改的（src → cur）和建议（src → dst）都按 src 的位置合起来，同一处改得一样算一处；
+    2. 合不了就试一处一处改（edits），改完要「改回去又正好是 cur」；
+    3. 还不行：建议里和老师改的碰到一起的那几处不改（表格上本来也不显示），别的照样合。
+    每一步都检查：cur → 结果的每一处都是建议本身的改动、老师改的别处都还在。都不行返回 ""（不改，不能把文字改坏——
+    检查时发现过「了、宾语、宾语」「关系系带词」）。"""
     srcs = [src] if isinstance(src, str) else list(src)
     srcs = sorted(dict.fromkeys(x for x in srcs if x and x != dst), key=lambda x: len(change_pieces(x, cur)))
     for x in srcs:
@@ -662,6 +678,11 @@ def safe_apply(cur: str, edits: Sequence[Edit], src: Union[str, Sequence[str]], 
             if (_within(cur, cand, change_pieces(x, dst)) and _within(dst, cand, change_pieces(x, cur))
                     and _merge_onto(dst, x, cand, strict=True) == cur):
                 return cand
+    for x in srcs:
+        cand, part = _merge_part(x, dst, cur)
+        if (cand and cand != cur and _within(cur, cand, change_pieces(x, dst))
+                and _within(part, cand, change_pieces(x, cur))):
+            return cand
     return ""
 
 
