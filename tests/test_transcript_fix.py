@@ -702,14 +702,14 @@ def test_unsure_insertion_next_to_the_same_character_is_not_adopted(tmp_path):
 @need_both
 def test_partly_similar_same_id_row_is_only_an_unsure_suggestion(tmp_path):
     """问题 3：上传的 csv 里同一个 id 的句子只有点像（切的位置不一样），一键校正把录音里没有的话补了进去。
-    母本优先以后：按内容找到这一句正好是母本那一句的后半句（切的位置不一样），一个字都不补、也不建议补。"""
+    （母本优先以后照旧：老师上传的文字不是「说了算」的母本，多出来的话不按它补，只给没把握的建议。）"""
     cfg, project = _voice(tmp_path, ["那么到底什么是定语从句呢"], ids=["x_0031"])
     up = tmp_path / "transcripts.csv"
     up.write_text("id,text\nx_0031,我们今天来学习定语从句那么到底什么是定语从句呢\n", encoding="utf-8")
     res = wf.run_transcript_fix(cfg, "校正声音", files=[str(up)])
-    assert review.load_draft(project) == {} and res["adopted"]["changes"] == 0
+    assert review.load_draft(project) == {} and res["adopted"]["unsure"] == 1
     rec, cur = _cur(project, "x_0031")
-    assert not review.analyze(rec, cur)["edits"]  # 录音里没有的话不建议补
+    assert review.analyze(rec, cur)["edits"]  # 建议还在，老师听了录音可以自己采用
 
 
 @need_both

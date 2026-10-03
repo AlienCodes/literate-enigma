@@ -1833,7 +1833,7 @@ MOTHER_WEIGHT = 0.95  # 按母本的改法：不是直接改的时候（自动�
 def _mother_first(cur: str, rid: str, ref: Optional[Reference], selves: Sequence[str], own_line: bool = True
                   ) -> Tuple[List[Any], List[Tuple[int, int]], str, bool]:
     """母本优先：这一句按内容在母本里找对应的那一段（mother_first.find_segments），和母本不一样的地方都按母本改。
-    返回 (改法, 母本对上的部分 [(开始, 结束)], 母本里的原句, 整句是不是都对上了)。
+    返回 (改法, 母本说了算的部分 [(开始, 结束)]（只算程序自带的、修缮过的母本）, 母本里的原句, 整句是不是都由它说了算)。
 
     不拿来比的：老师上传的母本里和这一句现在的 / 保存的 / 最初识别的文字一模一样的行（就是它自己，证明不了什么）。
     同一个 id 的那一句（程序自带的、上传的 transcripts.csv 里的）照样用，id 只当提示（文字也对得上才优先用它）；
@@ -1859,21 +1859,79 @@ def _mother_first(cur: str, rid: str, ref: Optional[Reference], selves: Sequence
     for seg in segs:
         if seg.ambiguous:  # 母本里好几处一样像、写法又不一样：分不出是哪一处，这一段不按母本改
             continue
-        used += seg.length
-        covered.append((toks[seg.r1].start, toks[seg.r2 - 1].end))
         upload = seg.m2 > ref.unvetted_from
         if not snippet:
             snippet = ref.snippet(seg.m1, seg.m2, pad=0, limit=120)
         who = "按你上传的母本" if upload else "按母本"
+        holes: List[Tuple[int, int]] = []
         for s, e, rep in mf.segment_edits(cur, toks, ref, seg):
             item = _edit_item(cur, s, e, rep)
+            if upload and not _sound_alike(cur[s:e], rep):
+                # 老师上传的文字没修缮过，可能是讲课以前写的讲稿：讲的时候多说的「呢、那」、换的说法、页码不一样，
+                # 读音不像识别错（实测：按讲稿改会把 7 / 45 句实际说的话改掉，见 research/文字校正/母本优先/讲稿实测.py）
+                # → 这种地方不按上传的文字改，交给标准库和另一个识别引擎
+                holes.append((s, e))
+                continue
             if upload and _one_homophone(cur, s, e, rep):
                 # 只对上了老师上传的母本（没修缮过）、读音一样的一个字：说不准是识别错了还是上传的文字打错了
                 out.append(Fix(s, e, rep, "mother_upload", False, UNVETTED_WEIGHT,
                                f"没把握（请听录音）：{who}：{item}"))
                 continue
             out.append(Fix(s, e, rep, "mother_upload" if upload else "mother", True, MOTHER_WEIGHT, f"{who}：{item}"))
+        if not upload:
+            # 只有程序自带的、老师修缮过的母本才「说了算」：对上的部分别的办法都不用、和它矛盾的自动建议不要。
+            # 老师上传的（没修缮过、可能是讲稿）只当多一种改法：标准库（对照表、术语）照样查整句，自动查错字的结果照样留着
+            # （上传讲稿时的实测：上传的也「说了算」的话，对照表能改好的「猪语 → 主语」这种反而没改，31 句里少改对 3 句）
+            covered += _minus((toks[seg.r1].start, toks[seg.r2 - 1].end), holes)
+            used += seg.length
     return out, covered, snippet, bool(toks) and used >= len(toks)
+
+
+def _sound_alike(old: str, new: str) -> bool:
+    """一处改动像不像识别错（读音一样 / 很像）：汉字读音（模糊音）一样、汉字读音像英文（艾子 / as）、英文拼法很像
+    （clouse / clause）、中文数字读音一样。多出来、少了的字，读音不一样的说法（高考 / 考试、三十六 / 三十五）都不算。"""
+    a, b = tokens(old), tokens(new)
+    if not a or not b:
+        return False
+    ka, kb = {t.kind for t in a}, {t.kind for t in b}
+    if ka == {"han"} and kb == {"lat"}:
+        return sounds_like_english([t.tone for t in a], [t.key for t in b])
+    if ka == {"lat"} and kb == {"han"}:
+        return sounds_like_english([t.tone for t in b], [t.key for t in a])
+    if len(a) != len(b):
+        return False
+    for x, y in zip(a, b):
+        if x.kind != y.kind:
+            return False
+        if x.kind == "han" and x.fz != y.fz:
+            return False
+        if x.kind == "lat" and difflib.SequenceMatcher(None, x.key, y.key, autojunk=False).ratio() < 0.75 \
+                and x.snd != y.snd:
+            return False
+        if x.kind == "num":
+            pa, pb = _num_pinyin(old[x.start:x.end]), _num_pinyin(new[y.start:y.end])
+            if not pa or not pb or [fuzzy(z) for z in pa] != [fuzzy(z) for z in pb]:
+                return False
+        if x.kind == "other" and x.key != y.key:
+            return False
+    return True
+
+
+def _minus(rng: Tuple[int, int], holes: Sequence[Tuple[int, int]]) -> List[Tuple[int, int]]:
+    """母本对上的范围去掉不按母本改的地方（剩下的才算母本管的）。"""
+    parts = [rng]
+    for s, e in holes:
+        nxt = []
+        for a, b in parts:
+            if e < a or b < s or (s == e and not (a < s < b)):
+                nxt.append((a, b))
+                continue
+            if a < s:
+                nxt.append((a, s))
+            if max(e, s) < b:
+                nxt.append((max(e, s), b))
+        parts = nxt
+    return [(a, b) for a, b in parts if b > a]
 
 
 def _edit_item(cur: str, s: int, e: int, rep: str) -> str:
@@ -1902,8 +1960,9 @@ def _mother_notes(cur: str, mfixes: Sequence[Any], changed: Tuple[Set[int], Set[
         left, right = cur[max(0, f.start - 2):f.start], cur[f.end:f.end + 2]
         now, want = left + cur[f.start:f.end] + right, left + str(f.rep) + right
         if _touches_changed(f.start, f.end, changed):
-            out.append(f"母本里这里是「{_q(want)}」，你自己改成了「{_q(now)}」：程序没有动（你的修改为准；"
-                       "如果是打错了，请双击「文字」改成母本的写法）")
+            # 和最初识别的不一样的字：老师自己打的，或者老师以前采用、保存过的修改（分不清是哪一种，都算老师定的）
+            out.append(f"母本里这里是「{_q(want)}」，现在是「{_q(now)}」（你改过这里，或者以前采用过别的修改）："
+                       "程序没有动（你的修改为准；如果是错的，请双击「文字」改成母本的写法）")
         elif _review.is_rejected(rejected, cur, f.start, f.end, f.rep):
             out.append(f"母本里这里是「{_q(want)}」，这个改法你撤销过：程序没有再改（你的决定为准）")
     return out

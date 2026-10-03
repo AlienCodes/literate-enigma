@@ -33,7 +33,7 @@ from __future__ import annotations
 import difflib
 from dataclasses import dataclass, field
 from types import SimpleNamespace
-from typing import Any, List, Optional, Sequence, Tuple
+from typing import List, Optional, Sequence, Tuple
 
 from voicetwin.data import proofcheck as pc
 from voicetwin.data import transcript_fix as tf
@@ -265,6 +265,12 @@ def _best(toks: Sequence[tf.Tk], fid: Sequence[int], ref: tf.Reference, lo: int,
         return None
     cands.sort(key=lambda s: (-s.q, -s.sim, -s.keys_equal, s.m1))
     best = cands[0]
+    near = [s for s in cands if s.q >= best.q - TIE_EPS]
+    vetted = [s for s in near if s.m2 <= ref.unvetted_from]
+    if vetted and len(vetted) < len(near):
+        # 差不多一样像时，老师修缮过的母本（程序自带的）比上传的、没修缮过的可信：只看修缮过的
+        cands = vetted + [s for s in cands if s not in near]
+        best = cands[0]
     hinted = [s for s in cands if s.hint and s.q >= best.q - TIE_EPS]
     if hinted:  # 同一个 id 的那一句文字也对得上：用它（id 只当提示）
         return _to_line_edges(toks, fid, ref, lo, hi, hinted[0], hints)

@@ -1798,6 +1798,9 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
     - 每段都报告进度（"已检查 3 / 120 条……"），每 20 段存一次；点停止时先保存已经查完的部分再停。
     - 某一段出错只跳过那一段（改用规则检查），不会让整个任务失败。
     - 用户确认过"这句没错"（dismiss_suspect）且文字没再改过的片段，不再标红。
+    - 母本优先（老师 10-04 的要求）：查完以后每一句都先和母本对照（transcript_fix.check_with_transcript(merge_only=True)，
+      不改字）：母本里有这一句的，建议就是母本的写法（「按母本：」，排最前面），和母本矛盾的另一个引擎的建议、标红都不要；
+      母本里没有的部分才用这次查的结果。
     """
     t0 = time.time()
     records = project.load_manifest()
@@ -1858,6 +1861,7 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
                 dismissed += 1
                 rec.pop("suspect", None)
                 rec.pop("suspect_auto", None)
+                rec.pop("mother_note", None)
                 checked += 1
                 _report(progress, i / n, f"已检查 {i} / {n} 条")
                 continue

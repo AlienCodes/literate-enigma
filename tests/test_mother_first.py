@@ -270,6 +270,22 @@ def test_uploaded_master_with_a_typo_does_not_override_correct_text(tmp_path):
     assert _shown(project, "up_0001")[1] == t and res["adopted"]["changes"] == 0
 
 
+@need_both
+def test_uploaded_lecture_script_does_not_overwrite_what_was_said(tmp_path):
+    """老师上传的讲稿（讲课以前写的）：讲的时候换的说法（多说的「我们」、不一样的页码）不按讲稿改——上传的文字不是
+    「说了算」的母本，只有读音像识别错的地方（瑞森 → reason）才按它改。实测见 research/文字校正/母本优先/讲稿实测.py。"""
+    said = ["请大家翻到课本第三十六页，看第二大题。", "那如果我们用一个句子来修饰名词，这个句子就叫做定语从句。",
+            "第一小题，空格前面的先行词是 the 瑞森。"]
+    ids = ["k1", "k2", "k3"]
+    cfg, project = _voice(tmp_path, said, ids)
+    up = tmp_path / "讲稿.txt"
+    up.write_text("请大家翻到课本第三十五页，看第二大题。\n那如果用一个句子来修饰名词，这个句子就叫做定语从句。\n"
+                  "第一小题，空格前面的先行词是 the reason。\n", encoding="utf-8")
+    wf.run_transcript_fix(cfg, VOICE, files=[str(up)])
+    assert _shown(project, "k1")[1] == said[0] and _shown(project, "k2")[1] == said[1]
+    assert "the reason" in _shown(project, "k3")[1]
+
+
 def test_mother_first_without_any_master_does_nothing():
     """没有母本（读不到）时一点都不出错。"""
     assert tf._mother_first("定于从句", "x", None, ("定于从句",)) == ([], [], "", False)
