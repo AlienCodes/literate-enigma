@@ -70,6 +70,8 @@ SPEED_ARM_DEV = 0.08
 SPEED_ARM_CLIP = (0.9, 1.1)
 #: 第 1 轮以后最多再加几种组合（更稳的设置 2 种 + 改语速 1 种）：完整打分的名额先给它们留着
 EXTRA_ARMS_MAX = 3
+#: 已经有版本了、后面却连着这么多次请求什么都没拿到（出错）：不再试，用已经有的里面最好的
+EMPTY_STREAK_STOP = 4
 STORE_FILE = "cands.json"
 STORE_EMB = "cands.npz"
 STORE_VERSION = 1
@@ -703,10 +705,20 @@ class IdenticalSearch:
     def _gave_up(self) -> bool:
         return self.empty >= 2 and not self.cands
 
+    def _stuck(self) -> bool:
+        """已经有版本了，后面的请求却一直什么都没拿到：不再试（不然会一直试下去），用已经有的里面最好的。"""
+        if self.cands and self.empty >= EMPTY_STREAK_STOP:
+            log.warning(f"  第 {self.seg.index + 1} 句：连着 {self.empty} 次请求都没生成出来，"
+                        f"先用已经试过的 {len(self.cands)} 个版本里最好的")
+            return True
+        return False
+
     def _stop(self) -> str:
         """停下的原因（还要接着试时是空字符串）。"""
         if len(self.cands) >= self.max_c:
             return "max"
+        if self._stuck():
+            return "errors"
         full = [c for c in self.pool if c.score is not None]
         best = self.pick(full)
         if best is None or len(self.cands) < self.min_c:

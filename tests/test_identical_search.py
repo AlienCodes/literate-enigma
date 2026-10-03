@@ -378,6 +378,30 @@ def test_gives_up_after_two_empty_requests(tmp_path):
     assert len(b3.calls) == 1
 
 
+class FlakyBackend(FakeBackend):
+    """前 ok 次请求正常，之后一直出错（不是「重试也没用」的那种）。"""
+
+    def __init__(self, ok, **kw):
+        super().__init__(**kw)
+        self.ok = ok
+
+    def synthesize_many(self, req, n, out_dir):
+        if len(self.calls) >= self.ok:
+            self.calls.append((dataclasses.replace(req), int(n)))
+            raise RuntimeError("偶然的错误")
+        return super().synthesize_many(req, n, out_dir)
+
+
+def test_keeps_the_best_when_later_requests_keep_failing(tmp_path):
+    """已经有版本了、后面的请求却一直出错：不会一直试下去，连着 4 次以后用已经有的里面最好的。"""
+    n, b = _narrator(tmp_path, scorer=FakeScorer(totals=[1.0 + 0.1 * i for i in range(10)]),
+                     backend=FlakyBackend(ok=3))
+    seg = _seg()
+    out = n._search_obj().run(seg, n._plan(seg))
+    assert out.tries == 3 and out.stats["stop"] == "errors" and len(b.calls) == 3 + 4
+    assert out.best.total == pytest.approx(1.2)
+
+
 def test_stop_needs_the_search_target_on_the_best(tmp_path):
     """挑出来的那个读错了（错字检查没通过）：没达到继续找的目标，一直试到最多。"""
     n, b = _narrator(tmp_path, scorer=FakeScorer(totals=[1.0], cer=0.5), use_asr=True)
@@ -567,8 +591,11 @@ def test_gpu_judge_never_fails_without_cuda(monkeypatch):
     assert got is judge and "处理器" in note
     assert IJ.judge_on_gpu(judge, "cpu", clips)[0] is judge
     assert IJ.judge_on_gpu(None, "auto", clips) == (None, "")
-    ort = pytest.importorskip("onnxruntime")
-    monkeypatch.setattr(ort, "get_available_providers", lambda: ["CUDAExecutionProvider", "CPUExecutionProvider"])
+    import types
+
+    ort = types.ModuleType("onnxruntime")  # 假装有显卡版的 onnxruntime（这台机器上没有显卡）
+    ort.get_available_providers = lambda: ["CUDAExecutionProvider", "CPUExecutionProvider"]
+    monkeypatch.setitem(sys.modules, "onnxruntime", ort)
     got, note = IJ.judge_on_gpu(judge, "auto", clips, free_gb=1.0)
     assert got is judge and "1.0 GB" in note
 

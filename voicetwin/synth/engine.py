@@ -58,7 +58,7 @@ from voicetwin.utils.audio import (
 )
 from voicetwin.utils.ffmpeg import encode
 from voicetwin.utils.log import get_logger
-from voicetwin.utils.textutil import send_lang, short_hash, syllable_count
+from voicetwin.utils.textutil import count_cjk, en_words, send_lang, short_hash, syllable_count
 
 try:  # U1：停止按钮
     from voicetwin.utils.progress import check_cancel as _check_cancel
@@ -866,6 +866,10 @@ class Narrator:
             return
         need = {"paraformer" if self._checker.wants_paraformer(send_lang(s.text, s.lang), s.text) else "whisper"
                 for s in segments}
+        mixed = getattr(self._checker, "mixed_available", None)
+        if self.quality == "identical" and callable(mixed) and any(
+                count_cjk(s.text) and en_words(s.text) for s in segments) and mixed():
+            need |= {"paraformer", "whisper"}  # 中文里夹着英文：中文用 Paraformer、英文单词用 Whisper 分开查
         for name in sorted(need):
             try:
                 if name == "paraformer":
