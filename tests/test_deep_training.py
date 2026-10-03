@@ -140,9 +140,9 @@ def test_identical_plan_numbers():
         p = plan_training(5000, 300, 23.99, None, mode="identical", probe_batch=b)
         assert p["sovits_epochs"] % p["sovits_save_every"] == 0 and p["sovits_epochs"] <= 48
         assert p["gpt_epochs"] % p["gpt_save_every"] == 0 and p["gpt_epochs"] <= 50
-    # 你自己填的数优先（填了每批数量就不用实测的）
+    # 你自己填的数优先（填了每批数量就不用实测的；每批不到 4 条时语气轮数按 4 条算，还是 20 轮）
     u = _plan(mode="identical", probe_batch=6, user={"sovits_epochs": 30, "gpt_save_every": 5, "batch_size": 3})
-    assert (u["batch_size"], u["sovits_epochs"], u["gpt_epochs"], u["gpt_save_every"]) == (3, 30, 15, 5)
+    assert (u["batch_size"], u["sovits_epochs"], u["gpt_epochs"], u["gpt_save_every"]) == (3, 30, 20, 5)
     assert "音色 SoVITS 30 轮（你指定的）" in u["summary"] and "每批 3 条（你指定的）" in u["summary"]
     # config.yaml 可以改每批 4 条时的训练量
     assert _nums(_plan(mode="identical", deep={"sovits_epochs": 16, "gpt_epochs": 10})) == (4, 16, 2, 10, 1)
@@ -153,10 +153,10 @@ def test_identical_plan_summary_says_only_what_will_happen():
     assert s.startswith("训练计划：「一模一样」训练——显存 8 GB → 先实测一次能练几条（按显存估计每批 4 条）；")
     assert "音色 SoVITS 24 轮、每 2 轮存一个；语气 GPT 20 轮、每轮存一个（实测的每批条数不一样时，轮数按比例调整，模型更新的次数不变）" in s
     assert "中文和英文都参加训练（素材里有 559 句夹着英文）" in s
-    assert "训练完用你没参加训练的 20 句录音把每个存下的版本都试一遍，挑最像你的" in s
+    assert "训练完用你没参加训练的 20 句录音把第 4 轮以后存下的每个版本都试一遍，挑最像你的" in s
     measured = _plan(mode="identical", probe_batch=6, will_probe=True)
     assert "每批 6 条（实测）" in measured["summary"] and "先实测" not in measured["summary"]
-    assert any("练得太多可能变差，所以每个存下的版本都会拿来比较" in n for n in measured["notes"])
+    assert any("练得太多可能变差，所以第 4 轮以后存下的每个版本都会拿来比较" in n for n in measured["notes"])
     assert "每批 4 条（和上次一样）" in _plan(mode="identical", probe_batch=4, batch_source="previous")["summary"]
     # 只实测出音色的：语气的每批条数按显存的公式，说明里不能写成实测的
     one = plan_training(984, 32.8, 11.99, 11.2, mode="identical", probe_batch={"sovits": 8, "gpt": None})
@@ -336,6 +336,23 @@ def test_training_measures_the_batch_first(gsv_env, monkeypatch):
     assert not b.p(f"logs/{b.exp_name}_probe").exists()
 
 
+@needs_fake_python
+def test_plan_does_not_claim_a_probe_that_found_nothing(gsv_env, monkeypatch):
+    """实测没有结果（每个数量都没成功）：按显存的公式练，存下来的、网页上显示的训练计划都不能再写「先实测」。"""
+    cfg, project, b = gsv_env()
+    monkeypatch.setattr(GPTSoVITSBackend, "_probe_batch",
+                        lambda self, kind, cands, d, progress=None, prange=(0, 1):
+                        (None, [{"bs": c, "ok": False, "why": "测试"} for c in cands]))
+    confirm_material(cfg, project.voice)
+    msgs = []
+    info = wf.run_train(cfg, project.voice, "gptsovits", select=False, progress=lambda f, m="": msgs.append(m))
+    p = info["params"]
+    assert p["mode"] == "identical" and "先实测" not in p["summary"] and "（实测）" not in p["summary"]
+    assert project.load_models()["gptsovits"]["params"]["summary"] == p["summary"]
+    plans = [m for m in msgs if m.startswith("训练计划：")]
+    assert "先实测" in plans[0] and plans[-1] == p["summary"]
+
+
 # ============================================================================ 显存不够：每批减 1 条
 def test_oom_ladder_steps_one_at_a_time(gsv_env, vt_log):
     _, _, b = gsv_env()
@@ -508,7 +525,9 @@ def test_run_states_extend_skip_fresh(gsv_env, monkeypatch, vt_log):
     assert timing["sovits_s_per_epoch"] is not None and timing["features_s"] >= 0
     entry = project.load_models()["gptsovits"]
     assert entry["params"]["train_minutes"] == deep["train_minutes"]
-    assert set(entry["timing_by_mode"]) == {"standard", "identical"}
+    # 接着练只做了一部分：「训练方式」后面的「上次实测」不记它（不然下次从头练看起来快很多），网页上还是写估计
+    assert set(entry["timing_by_mode"]) == {"standard"}
+    assert wf.measured_train_minutes(cfg, project.voice, "gptsovits").get("identical") is None
     assert "实际参加训练：音色" in p["report"][0]
 
     # 再练一次：素材没变、已经按「一模一样」练过 → 不重新训练（训练日志不变）
@@ -519,6 +538,14 @@ def test_run_states_extend_skip_fresh(gsv_env, monkeypatch, vt_log):
     assert "素材没变，已经按「一模一样」练过了：这次不重新训练，直接重新挑选。" in vt_log.messages
     # 没重新训练：上次实测的用时不改
     assert project.load_models()["gptsovits"]["params"]["train_minutes"] == deep["train_minutes"]
+    # 这次什么都没练：显示的是上次训练实测的结果，标明是上次的，不写「这次」
+    rep = again["params"]["report"]
+    assert rep[0].startswith("这次没有重新训练；下面是上次训练（") and rep[0].endswith("）实测的结果：")
+    assert rep[1:] == _report_lines(deep["params"], previous=True) and not any("这次" in ln for ln in rep[1:])
+    from voicetwin.webui import app as A
+
+    md = A._train_done_md(again, show_plan=False)
+    assert "素材没变，这次不用重新训练" in md and "这次也参加了训练" not in md and "上次训练（" in md
     # 网页预览也知道
     assert b.training_plan(quick=True)["state"] == "skip"
 
@@ -535,6 +562,8 @@ def test_run_states_extend_skip_fresh(gsv_env, monkeypatch, vt_log):
     assert "这次会从头训练（原因：素材改过）。你原来的模型会备份起来，一起参加比较" in b.training_plan(quick=True)["state_note"]
     fresh = wf.run_train(cfg, project.voice, "gptsovits", select=False, mode="identical")
     assert fresh["params"]["run_state"] == "fresh"
+    # 从头完整练了一次：这次的用时记成「一模一样」的实测用时
+    assert project.load_models()["gptsovits"]["timing_by_mode"]["identical"]["train_minutes"] == fresh["train_minutes"]
     prev = project.load_models()["gptsovits"]["previous_selected"]
     assert prev["pending"] is True and prev["id"] == "s24-g20" and Path(prev["sovits"]).exists()
     (old,) = list((b._opt_dir() / "old_runs").iterdir())
@@ -617,7 +646,10 @@ def test_disk_guard_doubles_the_save_interval_and_resumes(gsv_env, monkeypatch, 
     monkeypatch.setattr(gsv.shutil, "disk_usage",
                         lambda p: real(p)._replace(free=2 * 1024 ** 3 + 200))   # 留出 2 GB 以后只剩 200 字节
     params = {"batch_size": 4, "sovits_epochs": 8, "sovits_save_every": 1, "mode": "identical", "tier": "mid"}
-    b._train_sovits(b._opt_dir(), params, None, gsv.TRAIN_POS["identical"], {})
+    counts = {}
+    b._train_sovits(b._opt_dir(), params, None, gsv.TRAIN_POS["identical"], counts)
+    # 重新开始时日志里是「start training from epoch 2」，但这一步是从第 0 轮开始练的：每轮用时要除以 8 轮，不是 7 轮
+    assert counts["resumed_from"] >= 1 and counts["start_epoch"] == 0 and gsv._stage_start(counts, 0) == 0
     # 第 1 轮的模型 64 字节：剩下每轮存一个要 448 字节 → 每 4 轮存一个（还剩 2 个 128 字节）
     assert params["sovits_save_every"] == 4 and params["disk_guard"]["sovits"]["save_every"] == 4
     assert any(m.startswith("硬盘空间不够存这么多版本：每个模型实测") and m.endswith("已改成每 4 轮存一个。")
@@ -674,7 +706,7 @@ def test_plan_preview_shows_state_and_audit(gsv_env):
     text = wf.training_plan(cfg, project.voice, "gptsovits")
     first, *rest = text.split("\n")
     assert first.startswith("训练计划：「一模一样」训练——显存 12 GB → 先实测一次能练几条")
-    assert "中文和英文都参加训练（素材里有" in first and "句录音把每个存下的版本都试一遍" in first
+    assert "中文和英文都参加训练（素材里有" in first and "句录音把第 4 轮以后存下的每个版本都试一遍" in first
     std = wf.training_plan(cfg, project.voice, "gptsovits", mode="standard")
     assert std.split("\n")[0].startswith("训练计划：显存 12 GB → 每批")
     # 素材检查里实际有的情况（测试素材：没有去过杂音、硬切开的就不说）
@@ -693,6 +725,10 @@ def test_web_training_mode_radio(gsv_env, monkeypatch):
     assert A.TRAIN_MODE_LABELS["identical"].startswith("一模一样（默认）") and "（很慢）" in A.TRAIN_MODE_LABELS["identical"]
     assert A.TRAIN_MODE_LABELS["standard"] == "标准：和以前一样的训练量，训练完挑一次（快很多）"
     assert "估计要几个小时" in A.TRAIN_INTRO and "实际用的时间" in A.TRAIN_INTRO
+    for t in (A.TRAIN_MODE_LABELS["identical"], A.TRAIN_INTRO, A.TRAIN_MODE_INFO, A.SELECT_HINT["identical"]):
+        assert "第 4 轮以后存下的每个版本都试一遍" in t and "把每个版本" not in t
+    # 「训练方式」也决定「重新挑选最佳模型」怎么比：页面上写清楚，进度条上说快慢（标准的分钟数标明是估计）
+    assert "重新挑选最佳模型" in A.TRAIN_MODE_INFO and "估计" in A.SELECT_HINT["standard"]
     for t in list(A.TRAIN_MODE_LABELS.values()) + [A.TRAIN_INTRO]:
         assert "V4" not in t and "检查用的句子" not in t
     upd = ui.on_load_train_mode(project.voice)
@@ -719,6 +755,7 @@ def test_web_page_has_training_mode(tmp_path):
     ui = A.WebUI(make_cfg(tmp_path / "ws"))
     app = ui.build()
     assert ui.c["train_mode"].value == "identical" and ui.c["train_mode"].label == "训练方式"
+    assert ui.c["train_mode"].info == A.TRAIN_MODE_INFO
     conf = json.dumps(app.get_config_file(), ensure_ascii=False)
     assert A.TRAIN_INTRO in conf and "V4" not in conf
 
@@ -746,3 +783,234 @@ def test_cli_mode_argument(monkeypatch, tmp_path, capsys):
     out = capsys.readouterr().out
     assert seen == {"mode": "standard", "select": True}
     assert "实际参加训练：音色 9 条" in out and "排第 2 名" in out
+
+
+def test_cli_says_when_nothing_was_trained(monkeypatch, tmp_path, capsys):
+    """素材没变、这次没训练：命令行不能说「训练完成（用时 0.0 分钟）」，上次的结果标明是上次的。"""
+    from voicetwin import cli
+
+    def fake_train(cfg, voice, backend, progress=None, select=True, mode=None, **opts):
+        return {"train_minutes": 0.0, "selected": {"id": "s24-g20"},
+                "params": {"run_state": "skip", "report": ["这次没有重新训练；下面是上次训练（2026-10-01 12:00）实测的结果：",
+                                                           "实际参加训练：音色 9 条、语气 9 条（一共 9 条）。"]}}
+
+    monkeypatch.setattr(wf, "run_train", fake_train)
+    monkeypatch.chdir(tmp_path)
+    cli.main(["train", "-v", "x"])
+    out = capsys.readouterr().out
+    assert "素材没变，这次不用重新训练" in out and "训练完成（用时" not in out
+    assert "下面是上次训练（2026-10-01 12:00）实测的结果" in out
+
+
+# ============================================================================ 审查后补的回归测试
+def test_identical_never_trains_less_than_standard():
+    """每批不到 4 条（没有 N 卡、4 GB / 6 GB 的卡、显存被别的程序占着、全精度）：轮数按每批 4 条算，
+    「一模一样」不会比「标准」练得少（以前每批 1 条时只练音色 6 轮、语气 5 轮）。"""
+    cases = [(None, None, {}), (4.0, 3.5, {}), (6.0, 5.5, {}), (7.96, 3.0, {}), (7.96, 6.8, {"is_half": False}),
+             (7.96, 6.8, {}), (11.99, 11.2, {})]
+    for total, free, kw in cases:
+        std = plan_training(984, 32.8, total, free, **kw)
+        deep = plan_training(984, 32.8, total, free, mode="identical", **kw)
+        assert deep["batch_size"] == std["batch_size"], (total, free, kw)
+        # 每批条数一样：轮数多 = 模型更新的次数多
+        assert deep["sovits_epochs"] >= std["sovits_epochs"] and deep["gpt_epochs"] >= std["gpt_epochs"], (total, free, kw)
+        assert deep["sovits_epochs"] >= 24 and deep["gpt_epochs"] >= 20
+    cpu = plan_training(984, 32.8, None, None, mode="identical")
+    assert _nums(cpu) == (2, 24, 2, 20, 1) and "音色 SoVITS 24 轮" in cpu["summary"] and "语气 GPT 20 轮" in cpu["summary"]
+    # 显存不够退到每批 3 条以后，接着练 / 不重新练时沿用的每批条数小于 4：轮数也不减
+    prev3 = plan_training(984, 32.8, 7.96, 6.8, mode="identical", probe_batch=3, batch_source="previous")
+    assert _nums(prev3) == (3, 24, 2, 20, 1)
+
+
+def test_identical_plan_drops_notes_that_do_not_apply():
+    """「一模一样」的说明里不能有只对「标准」才对的话（有底噪时最多 8 轮、为了存下最后一轮把 12 轮改成几轮），
+    每批条数是实测的时也不能说「按空闲的显存算」「全精度减半」。"""
+    noisy_std = plan_training(984, 32.8, 7.96, 6.8, noisy=True)
+    assert noisy_std["sovits_epochs"] == 8 and any("最多 8 轮" in n for n in noisy_std["notes"])   # 标准照旧
+    noisy = plan_training(984, 32.8, 7.96, 6.8, mode="identical", noisy=True)
+    assert noisy["sovits_epochs"] == 24 and not any("最多 8 轮" in n for n in noisy["notes"])
+    u = plan_training(984, 32.8, 7.96, 6.8, mode="identical", user={"sovits_save_every": 5})
+    assert u["sovits_epochs"] == 25 and any("从 24 调整为 25" in n for n in u["notes"])
+    assert not any("从 12 调整为" in n for n in u["notes"])
+    busy = plan_training(984, 32.8, 11.99, 3.0, mode="identical", probe_batch=6)
+    assert busy["batch_size"] == 6 and not any("按空闲的显存算" in n for n in busy["notes"])
+    assert "（现在空闲 3.0 GB）" in busy["summary"]   # 量到的空闲显存照样写
+    half = plan_training(984, 32.8, 11.99, 11.2, mode="identical", probe_batch=6, is_half=False)
+    assert half["batch_size"] == 6 and not any("减半" in n for n in half["notes"])
+    # 只实测出音色的：语气还是按显存的公式算，这句话留着；没实测时也留着；标准方式照旧
+    one = plan_training(984, 32.8, 11.99, 3.0, mode="identical", probe_batch={"sovits": 6, "gpt": None})
+    assert any("按空闲的显存算" in n for n in one["notes"])
+    assert any("按空闲的显存算" in n for n in plan_training(984, 32.8, 11.99, 3.0, mode="identical")["notes"])
+    assert any("按空闲的显存算" in n for n in plan_training(984, 32.8, 11.99, 3.0)["notes"])
+    assert any("减半" in n for n in plan_training(984, 32.8, 11.99, 11.2, is_half=False)["notes"])
+
+
+def test_gpu_sampler_counts_only_while_training(monkeypatch):
+    """start() 时训练程序还没开始、stop() 时已经结束：这两个时候显卡闲着，不能算进平均使用率。"""
+    holder = {}
+
+    def fake(index=0):
+        s = holder.get("s")
+        busy = s is not None and not s._stop.is_set()
+        return {"used_gb": 9.0 if busy else 1.0, "total_gb": 12.0, "util": 100.0 if busy else 0.0}
+
+    monkeypatch.setattr(gpu_mod, "smi_sample", fake)
+    s = gpu_mod.GpuSampler(0.1)
+    s.start()
+    holder["s"] = s       # 训练程序这时才开始
+    time.sleep(0.55)
+    r = s.stop()          # 训练程序已经结束
+    assert r["util_avg"] == 100.0 and r["peak_gb"] == 9.0 and r["n"] >= 3
+
+
+def test_capture_s1_keeps_the_first_start_epoch():
+    counts = {"start_epoch": 0}
+    _capture_s1("Restoring states from the checkpoint path at /x/ckpt/epoch=2-step=30.ckpt", counts)
+    _capture_s1("semantic_data_len: 10", counts)
+    assert counts["resumed_from"] == 3 and counts["start_epoch"] == 0 and gsv._stage_start(counts, 5) == 0
+    assert gsv._stage_start({"start_epoch": None}, 15) == 15 and gsv._stage_start({}, 8) == 8
+
+
+def test_measured_minutes_only_from_a_full_run(tmp_path):
+    """models.json 里只有一次接着练 / 接着没练完的用时：不能当成「一模一样」的实测用时。"""
+    cfg = make_cfg(tmp_path / "ws")
+    project = Project(cfg, "用时")
+    project.root.mkdir(parents=True)
+    project.save_manifest([{"id": "a1", "path": "clips/a1.wav", "text": "今天。", "split": "train", "duration": 3.0}])
+    for state in ("extend", "continue", "skip"):
+        project.update_models("gptsovits", {"params": {"mode": "identical", "run_state": state, "train_minutes": 3.0}})
+        assert wf.measured_train_minutes(cfg, "用时", "gptsovits") == {}
+    project.update_models("gptsovits", {"params": {"mode": "identical", "run_state": "fresh", "train_minutes": 95.0}})
+    assert wf.measured_train_minutes(cfg, "用时", "gptsovits") == {"identical": {"train_minutes": 95.0}}
+
+
+def test_audit_ignores_sources_that_were_not_really_denoised(tmp_path, monkeypatch):
+    """没装 noisereduce 时降噪其实没做：sources.json 不记「去过杂音」；以前的版本记错的（降噪前后信噪比一样）也不算。"""
+    import numpy as np
+
+    from voicetwin.data import enhance
+    from voicetwin.data.audit import material_audit
+    from voicetwin.utils.audio import save_audio
+
+    sr = 16000
+    t = np.arange(sr * 2) / sr
+    wav = (0.3 * np.sin(2 * np.pi * 220 * t) + 0.02 * np.random.default_rng(0).standard_normal(t.size)).astype(np.float32)
+    src = tmp_path / "a.wav"
+    save_audio(src, wav, sr)
+    monkeypatch.setitem(sys.modules, "noisereduce", None)   # 没装 noisereduce
+    _, info = enhance.enhance_file(src, tmp_path / "b.wav", {"denoise": "on", "sample_rate": sr}, tmp_path)
+    assert "denoised" not in info and "snr_after" not in info and info["denoise_skipped"]
+
+    cfg = make_cfg(tmp_path / "ws")
+    project = Project(cfg, "降噪")
+    project.root.mkdir(parents=True)
+    project.save_manifest([{"id": "a1", "path": "clips/a1.wav", "text": "今天学列表。", "lang": "zh", "split": "train",
+                            "source": "s1", "duration": 3.0}])
+    for s1 in ({"done": True, "snr_before": 12.34, **info}, {"done": True, "denoised": True, "snr_before": 12.34,
+                                                            "snr_after": 12.34}):
+        project.write_json(project.sources_path, {"s1": s1})
+        a = material_audit(project)
+        assert a["lines"] == [] and a["train_sources_denoised"] == 0 and a["sources_denoised"] == 0
+    project.write_json(project.sources_path, {"s1": {"done": True, "denoised": True, "snr_before": 12.34, "snr_after": 19.8}})
+    assert material_audit(project)["lines"] == ["有 1 个素材文件在准备时去过杂音（去杂音可能会被当成你的音色学进去）。"]
+
+
+def test_reselect_uses_the_mode_the_model_was_trained_with(gsv_env, monkeypatch):
+    """「重新挑选最佳模型」/ voicetwin select 没指定挑法：按现在的模型是怎么练的（以前的版本、标准练的不会变成每个版本都试）。"""
+    from voicetwin.synth import select as sel
+
+    cfg, project, _ = gsv_env()
+    seen = []
+
+    def fake_select(cfg, project, backend, max_items=20, use_asr=None, progress=None, all_checkpoints=False):
+        seen.append(all_checkpoints)
+        return {"selection": {"ranking": []}}
+
+    monkeypatch.setattr(sel, "select_and_calibrate", fake_select)
+    msgs = []
+
+    def prog(frac, msg=""):
+        msgs.append(msg)
+
+    for params, every in (({}, False), ({"mode": "standard"}, False), ({"mode": "identical"}, True)):
+        project.update_models("gptsovits", {"params": params})
+        wf.run_select(cfg, project.voice, "gptsovits", progress=prog)
+        assert seen[-1] is every, params
+    # 指定了就按指定的（网页上按「训练方式」传进来）
+    wf.run_select(cfg, project.voice, "gptsovits", mode="identical", progress=prog)
+    assert seen[-1] is True
+    wf.run_select(cfg, project.voice, "gptsovits", mode="standard", progress=prog)
+    assert seen[-1] is False
+    assert any("第 4 轮以后存下的每个版本都试一遍，比较慢" in m for m in msgs)
+    assert any(m.startswith("挑选方式：标准") and "估计" in m for m in msgs)
+
+
+def test_every_version_wording_matches_what_is_compared():
+    """说「每个存下的版本都试一遍」的地方都写明「第 4 轮以后」（checkpoints(all=True) 不试第 1~3 轮的）。"""
+    from voicetwin import cli
+
+    texts = [plan_training(984, 32.8, 7.96, 6.8, mode="identical", n_val=20)["summary"],
+             plan_training(984, 32.8, 7.96, 6.8, mode="identical")["summary"],
+             cli.build_parser().format_help()]
+    help_texts = []
+    for action in cli.build_parser()._subparsers._group_actions[0].choices.values():
+        help_texts += [a.help or "" for a in action._actions]
+    for t in texts + help_texts:
+        if "每个" in t and "版本" in t:
+            assert "第 4 轮以后存下的每个版本" in t, t
+
+
+@needs_fake_python
+def test_explicit_settings_that_need_retraining_start_fresh(gsv_env, vt_log):
+    """素材没变、已经按「一模一样」练过：你明确打开 DPO（或者改了保存间隔）只有重新训练才用得上 → 从头练
+    （特征接着用，原来的模型备份、一起参加比较）；不重新练时的训练计划写上次实际怎么练的。"""
+    cfg, project, b = gsv_env(batch_size=4)
+    confirm_material(cfg, project.voice)
+    first = wf.run_train(cfg, project.voice, "gptsovits", select=False, mode="identical")
+    assert first["params"]["if_dpo"] is False
+    st = b.training_plan(quick=True)
+    assert st["state"] == "skip" and st["summary"].startswith("训练计划：这次不重新训练，沿用上次训练好的模型（上次：「一模一样」训练——")
+    std = b.training_plan(quick=True, mode="standard")   # 标准练得更少：也不重新练，说明里不能写成这次要练 12 轮
+    assert std["state"] == "skip" and "音色 SoVITS 24 轮" in std["summary"] and "12 轮" not in std["summary"]
+
+    pre = b.training_plan(quick=True, if_dpo=True)
+    assert pre["state"] == "fresh" and "这次会从头训练（原因：你改了训练设置（开启 DPO））" in pre["state_note"]
+    text = b._opt_dir() / "2-name2text.txt"
+    before = text.stat().st_mtime_ns
+    s1_log = project.logs_dir / "gsv_s1_train.log"
+    size = s1_log.stat().st_size
+    dpo = wf.run_train(cfg, project.voice, "gptsovits", select=False, mode="identical", if_dpo=True)
+    p = dpo["params"]
+    assert p["run_state"] == "fresh" and p["if_dpo"] is True and "开启 DPO（你指定的；" in p["summary"]
+    assert project.load_models()["gptsovits"]["params"]["if_dpo"] is True
+    assert s1_log.stat().st_size > size and _epochs(dpo["gpt"]) == list(range(1, 21))
+    assert text.stat().st_mtime_ns == before   # 素材没变：文字特征接着用
+    prev = project.load_models()["gptsovits"]["previous_selected"]
+    assert prev["pending"] is True and prev["id"] == first["selected"]["id"]
+    (old,) = list((b._opt_dir() / "old_runs").iterdir())
+    assert prev["sovits"].startswith(str(old))
+    assert any(m.startswith("训练设置改了：这次会从头训练新模型") for m in vt_log.messages)
+
+    # 同样的设置再练一次：不重新练
+    assert b.training_plan(quick=True, if_dpo=True)["state"] == "skip"
+    # 不重新练时，你指定的保存间隔和上次的不一样：从头练；自动的不算
+    st = b.training_plan(quick=True, if_dpo=True, gpt_save_every=2)
+    assert st["state"] == "fresh" and "你改了训练设置（语气每 2 轮存一个）" in st["state_note"]
+    assert b.training_plan(quick=True, if_dpo=True, gpt_save_every="auto")["state"] == "skip"
+
+
+@needs_fake_python
+def test_unfinished_run_continues_without_archiving(gsv_env, vt_log):
+    """上次已经提取好特征、训练没做完（models.json 里没有这份素材练好的模型）：接着往下练，不备份、不从头来。"""
+    cfg, project, b = gsv_env(batch_size=4)
+    confirm_material(cfg, project.voice)
+    _features(b)
+    assert b.training_plan(quick=True)["state"] == "continue"
+    info = wf.run_train(cfg, project.voice, "gptsovits", select=False, mode="identical")
+    assert info["params"]["run_state"] == "continue"
+    assert "素材没变：接着上次没做完的训练往下练。" in vt_log.messages
+    old_root = b._opt_dir() / "old_runs"
+    assert not old_root.exists() or not any(old_root.iterdir())
+    assert "previous_selected" not in project.load_models()["gptsovits"]
+    # 只做了一部分：「上次实测」的用时不记
+    assert "identical" not in (project.load_models()["gptsovits"].get("timing_by_mode") or {})

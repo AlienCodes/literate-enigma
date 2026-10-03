@@ -15,6 +15,15 @@ from voicetwin.utils.textutil import count_cjk, en_words, ensure_final_punct_tra
 log = get_logger("audit")
 
 
+def _denoised(src: Dict[str, Any]) -> bool:
+    """这个素材文件准备时真的去过杂音。以前的版本没装 noisereduce 时也记了 denoised（其实什么都没做，
+    降噪前后量出来的信噪比一模一样）——这种不算，免得说成去过杂音。"""
+    if not src.get("denoised") or src.get("denoise_skipped"):
+        return False
+    before, after = src.get("snr_before"), src.get("snr_after")
+    return not (before is not None and after is not None and before == after)
+
+
 def material_audit(project: Project) -> Dict[str, Any]:
     """返回实测的计数 + lines（给老师看的几句话，只有真的有这种情况时才写）。"""
     from voicetwin.data.exporters import train_records
@@ -35,9 +44,9 @@ def material_audit(project: Project) -> Dict[str, Any]:
     if isinstance(sources, dict):
         used = {str(r.get("source") or "") for r in train}
         info = {sid: s for sid, s in sources.items() if isinstance(s, dict)}
-        out["sources_denoised"] = sum(1 for s in info.values() if s.get("denoised"))
+        out["sources_denoised"] = sum(1 for s in info.values() if _denoised(s))
         out["sources_separated"] = sum(1 for s in info.values() if s.get("separated"))
-        den_used = {sid for sid, s in info.items() if sid in used and s.get("denoised")}
+        den_used = {sid for sid, s in info.items() if sid in used and _denoised(s)}
         out["train_sources_denoised"] = len(den_used)
         out["train_clips_denoised"] = sum(1 for r in train if str(r.get("source") or "") in den_used)
     out["forced_cuts"] = sum(1 for r in train if int(r.get("forced_cuts") or 0) > 0)

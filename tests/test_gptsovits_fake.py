@@ -687,7 +687,8 @@ def test_retrain_after_material_change_starts_fresh(prepared, tmp_path, no_users
     for path in second["sovits"] + second["gpt"]:
         assert Path(path).stat().st_mtime >= started - 2
     assert set(second["sovits"]).isdisjoint(first["sovits"])   # 步数不同 → 新文件名；旧文件不混进来
-    assert len(second["sovits"]) == 4 and len(second["gpt"]) == 4
+    # 默认「一模一样」：每批 2 条时保存间隔按每批 4 条算——音色每 2 轮存一个（第 2、4 轮），语气每轮存一个
+    assert len(second["sovits"]) == 2 and len(second["gpt"]) == 4
     # 旧素材的模型文件还在硬盘上（挪进了 old_runs，以前选中的模型不会突然消失），只是不再参加挑选
     for path in first["sovits"] + first["gpt"]:
         sub = Path(path).parent.name

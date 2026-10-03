@@ -61,7 +61,7 @@ STAGES_TEXTFIX: List[Stage] = [(0.00, "读母本和语法术语"), (0.15, "一�
 STAGES_BLIND_TEST: List[Stage] = [(0.00, "挑选你的真实录音"), (0.05, "用同样的文字生成"), (0.90, "统一音量、打乱顺序、保存")]
 STAGES_VERIFY: List[Stage] = [(0.00, "加载声纹模型"), (0.10, "逐个打分")]
 TRAIN_SELECT_SPLIT = 0.88
-#: 「一模一样」训练：挑选要把每个存下的版本都试一遍，占的时间多，训练只占前 62%
+#: 「一模一样」训练：挑选要把第 4 轮以后存下的每个版本都试一遍，占的时间多，训练只占前 62%
 TRAIN_SELECT_SPLIT_IDENTICAL = 0.62
 PROOFCHECK_PREPARE_END = 0.85     # 要查错字时，prepare() 的 0.95 压缩到这里
 PROOFCHECK_START = 0.87
@@ -175,6 +175,22 @@ def train_mode(cfg: Optional[Config], mode: Any = None) -> str:
         except AttributeError:
             mode = None
     return resolve_train_mode(mode)
+
+
+def trained_mode(project: Project, backend: str) -> str:
+    """现在的模型是用哪种训练方式练的（models.json 里记的）；以前的版本练的（没记）算「标准」。"""
+    try:
+        params = (project.load_models().get(backend) or {}).get("params") or {}
+    except Exception:
+        params = {}
+    return "identical" if params.get("mode") == "identical" else "standard"
+
+
+#: 「重新挑选最佳模型」开始时的一句话（两种挑法差很多，先说清楚）
+SELECT_HOW = {
+    "identical": "挑选方式：「一模一样」——把第 4 轮以后存下的每个版本都试一遍，比较慢（存下的版本越多越久），可以先去做别的事",
+    "standard": "挑选方式：标准——从早到晚均匀挑几个版本比（大约 5~15 分钟，估计）",
+}
 
 
 def train_select_split(mode: Any = None) -> float:
@@ -880,8 +896,8 @@ def run_train(cfg: Config, voice: str, backend_name: Optional[str] = None, progr
             except Exception as exc:  # noqa: BLE001 - 记不下用时不影响训练结果
                 log.debug(f"记下训练用时没成功：{exc}")
         if select:
-            _report(progress, split, "训练完成，开始自动挑选最像你的模型"
-                    + ("（每个存下的版本都试一遍，比较慢）" if has_modes and m == "identical" else "（大约 5~15 分钟）"))
+            # 有两种训练方式的引擎：怎么挑、快慢由 run_select 开头那句说（SELECT_HOW），这里不重复
+            _report(progress, split, "训练完成，开始自动挑选最像你的模型" + ("" if has_modes else "（大约 5~15 分钟，估计）"))
             t_select = time.time()
             try:
                 selection = run_select(cfg, voice, backend.name, progress=_sub(progress, split, 1.0),
@@ -902,7 +918,9 @@ def run_train(cfg: Config, voice: str, backend_name: Optional[str] = None, progr
                                       since=t_select)
                 if path is not None:
                     info["selection_error_report"] = str(path)
-        if has_modes and trained:  # 「训练方式」后面显示的「上次实测用时」（每种方式各记一份）
+        # 「训练方式」后面显示的「上次实测用时」（每种方式各记一份）：只记从头完整练过的一次——接着上次练、
+        # 接着没练完的只做了一部分，记下来会让下次从头练看起来快很多
+        if has_modes and trained and params.get("run_state") == "fresh":
             _record_train_minutes(project, backend.name, m, info)
         _report(progress, 1.0, "训练完成")
     return info
@@ -922,7 +940,8 @@ def _record_train_minutes(project: Project, backend: str, mode: str, info: Dict[
 
 
 def measured_train_minutes(cfg: Config, voice: str, backend_name: Optional[str] = None) -> Dict[str, Dict[str, Any]]:
-    """这台电脑上每种训练方式上次实测用了多久：{"identical": {"train_minutes", "select_minutes"}, ...}（没练过的没有）。"""
+    """这台电脑上每种训练方式上次从头完整练一次实测用了多久：{"identical": {"train_minutes", "select_minutes"}, ...}
+    （没从头练过的没有；接着上次练的只做了一部分，不算）。"""
     try:
         project = Project(cfg, voice)
         if not project.exists:
@@ -930,7 +949,8 @@ def measured_train_minutes(cfg: Config, voice: str, backend_name: Optional[str] 
         entry = project.load_models().get(str(backend_name or cfg.get("backend") or "gptsovits")) or {}
         out = {k: v for k, v in (entry.get("timing_by_mode") or {}).items() if isinstance(v, dict)}
         params = entry.get("params") or {}
-        if not out and params.get("mode") in ("identical", "standard") and params.get("train_minutes") is not None:
+        if (not out and params.get("mode") in ("identical", "standard") and params.get("train_minutes") is not None
+                and params.get("run_state") in (None, "fresh")):
             out[params["mode"]] = {"train_minutes": params["train_minutes"]}
         return out
     except Exception:
@@ -1003,8 +1023,10 @@ def material_changed_note(cfg: Config, voice: str, backend_name: Optional[str] =
 def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, items: Optional[int] = None,
                use_asr: Optional[bool] = None, progress: Optional[ProgressFn] = None,
                mode: Optional[str] = None) -> Dict[str, Any]:
-    """挑最像你的模型。mode = identical（「一模一样」，不传按 config.yaml）：每个存下的版本都试
-    （checkpoints(all=True)）；standard：从早到晚均匀挑 4 × 3 个。两种都把原来用的模型一起比较。"""
+    """挑最像你的模型。mode = identical（「一模一样」）：第 4 轮以后存下的每个版本都试（checkpoints(all=True)）；
+    standard：从早到晚均匀挑 4 × 3 个。两种都把原来用的模型一起比较。
+    不传 mode（命令行 select / auto --skip-train 没写 --mode）：按现在的模型是怎么练的（trained_mode；以前的版本练的算标准）
+    ——标准练的模型不会突然变成每个版本都试。网页上按「训练方式」选的传进来。"""
     from voicetwin.backends.base import get_backend
     from voicetwin.synth.select import DEFAULT_ITEMS, select_and_calibrate
 
@@ -1014,7 +1036,11 @@ def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, item
         note = getattr(backend, "trained_material_note", lambda: "")()
         if note:
             log.warning(note)
-        every = hasattr(backend, "train_stages_for") and train_mode(cfg, mode) == "identical"
+        has_modes = hasattr(backend, "train_stages_for")
+        how = (train_mode(cfg, mode) if mode not in (None, "") else trained_mode(project, backend.name)) if has_modes else ""
+        every = how == "identical"
+        if how:
+            _report(progress, 0.0, SELECT_HOW[how])
         try:  # 引擎在 select_and_calibrate 里"启动合成引擎"那一步才启动，进度条上能看到
             res = select_and_calibrate(cfg, project, backend, max_items=int(items or DEFAULT_ITEMS), use_asr=use_asr,
                                        progress=progress, all_checkpoints=every)

@@ -24,7 +24,7 @@ from voicetwin.backends.base import get_backend
 from voicetwin.backends.gptsovits import GPTSoVITSBackend
 from voicetwin.backends.gsv_mixed_text import ARPABET_RE, assemble, count_en_phones, is_arpabet, merge_segments
 
-from conftest import make_cfg
+from conftest import confirm_material, make_cfg
 from fake_gptsovits import build_fake_root
 
 TEACHER_LINE = "翻译成英文就是There are some nuts which Lucy bought on the table."
@@ -381,3 +381,89 @@ def test_mixed_runner_is_packaged():
     assert (gsv.MIXED_SCRIPT.parent.parent / "gsv_mixed_text.py").exists()
     build = (root / "scripts" / "build_windows_release.py").read_text(encoding="utf-8")
     assert '"voicetwin"' in build.split("INCLUDE = ", 1)[1].split("\n", 1)[0]
+
+
+def _fake_python_ok() -> bool:
+    try:
+        proc = subprocess.run([str(Path(sys.executable).resolve()), "-c", "import yaml"],
+                              stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=60)
+        return proc.returncode == 0
+    except Exception:
+        return False
+
+
+#: 下面这个测试要跑完整的训练（仿真 s1 要 yaml）
+needs_fake_python = pytest.mark.skipif(not _fake_python_ok(), reason="这个环境里 fake GPT-SoVITS 的子进程缺少 yaml（已知的环境问题）")
+
+
+@needs_fake_python
+def test_fallback_is_not_claimed_and_mixed_is_retried_later(gsv_env, monkeypatch, vt_log):
+    """新方法没成功、退回了官方的方法：训练计划（存进 models.json 的、网页上显示的、之后的预览）不能再写「中文和英文都参加训练」。
+    下次训练先在临时文件夹里再试一次：还是不行 → 接着用现在的特征（不重新练、不备份）；成功了 → 从头练，
+    原来的模型备份起来、一起参加比较。"""
+    monkeypatch.setenv("VOICETWIN_TEXT_DRYRUN", "1")
+    monkeypatch.setenv("FAKE_GSV_LANGSEG_RAISE", "1")
+    make, _ = gsv_env
+    cfg, project, b = make(batch_size=4)
+    confirm_material(cfg, project.voice)
+    msgs = []
+
+    def prog(frac, msg=""):
+        msgs.append(msg)
+
+    first = wf.run_train(cfg, project.voice, "gptsovits", select=False, mode="identical", progress=prog)
+    p = first["params"]
+    assert p["text_frontend"] == "official" and "中文和英文都参加训练" not in p["summary"]
+    assert "中文和英文都参加训练" not in project.load_models()["gptsovits"]["params"]["summary"]
+    assert not any(ln.startswith("英文") for ln in p["report"])
+    # 网页上训练计划那一栏显示的是日志里最后一行「训练计划：」
+    plans = [m for m in msgs if m.startswith("训练计划：")]
+    assert plans and "中文和英文都参加训练" in plans[0] and "中文和英文都参加训练" not in plans[-1]
+    pre = b.training_plan(quick=True)
+    assert pre["state"] == "skip" and "中文和英文都参加训练" not in pre["summary"]
+
+    # 新方法还是不行：不从头练，现在的特征不动
+    opt = b._opt_dir()
+    text = opt / "2-name2text.txt"
+    before = (text.stat().st_mtime_ns, text.read_bytes())
+    again = wf.run_train(cfg, project.voice, "gptsovits", select=False, mode="identical")
+    assert again["params"]["run_state"] == "skip" and again["sovits"] == first["sovits"]
+    assert (text.stat().st_mtime_ns, text.read_bytes()) == before
+    assert not (opt / "_vt_mixed_try").exists() and not (opt / "old_runs").exists()
+    assert any(m.startswith("中英文一起训练的新方法这次还是没成功（原因：") for m in vt_log.messages)
+    assert (opt / gsv.FRONTEND_FILE).read_text(encoding="utf-8") == "official"
+
+    # 新方法好了：先在临时文件夹里试成功 → 从头练（中英文一起），原来的模型备份、下次挑选时一起比较
+    monkeypatch.delenv("FAKE_GSV_LANGSEG_RAISE")
+    fresh = wf.run_train(cfg, project.voice, "gptsovits", select=False, mode="identical")
+    fp = fresh["params"]
+    assert fp["run_state"] == "fresh" and fp["text_frontend"] == "mixed" and fp["en_lines"] > 0
+    assert "中文和英文都参加训练" in fp["summary"]
+    assert any(ln.startswith("英文：") and "这次也参加了训练" in ln for ln in fp["report"])
+    assert (opt / gsv.FRONTEND_FILE).read_text(encoding="utf-8") == "mixed" and not (opt / "_vt_mixed_try").exists()
+    (old,) = list((opt / "old_runs").iterdir())
+    prev = project.load_models()["gptsovits"]["previous_selected"]
+    assert prev["pending"] is True and prev["id"] == first["selected"]["id"] and prev["sovits"].startswith(str(old))
+
+
+@needs_fake_python
+def test_settings_change_also_retries_mixed(gsv_env, monkeypatch):
+    """上次退回了官方的方法、这次只是明确改了训练设置（打开 DPO，要从头练、文字特征本来接着用）：也先再试一次「中英文一起」，
+    成功了就用新方法处理文字，两个原因都写上。"""
+    monkeypatch.setenv("VOICETWIN_TEXT_DRYRUN", "1")
+    monkeypatch.setenv("FAKE_GSV_LANGSEG_RAISE", "1")
+    make, _ = gsv_env
+    cfg, project, b = make(batch_size=4)
+    confirm_material(cfg, project.voice)
+    first = wf.run_train(cfg, project.voice, "gptsovits", select=False, mode="identical")
+    assert first["params"]["text_frontend"] == "official"
+    monkeypatch.delenv("FAKE_GSV_LANGSEG_RAISE")
+    msgs = []
+    dpo = wf.run_train(cfg, project.voice, "gptsovits", select=False, mode="identical", if_dpo=True,
+                       progress=lambda f, m="": msgs.append(m))
+    p = dpo["params"]
+    assert p["run_state"] == "fresh" and p["text_frontend"] == "mixed" and p["if_dpo"] is True and p["en_lines"] > 0
+    assert "这次会从头训练（原因：你改了训练设置（开启 DPO）、中英文一起训练的新方法）。" in "\n".join(msgs)
+    assert (b._opt_dir() / gsv.FRONTEND_FILE).read_text(encoding="utf-8") == "mixed"
+    prev = project.load_models()["gptsovits"]["previous_selected"]
+    assert prev["pending"] is True and prev["id"] == first["selected"]["id"]

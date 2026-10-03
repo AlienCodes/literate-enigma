@@ -426,7 +426,7 @@ def test_train_flow_with_fake_gptsovits(prepared, tmp_path, monkeypatch):
     info = wf.run_train(gcfg, project.voice, "gptsovits", select=True, progress=rec)
     rec.assert_monotonic()
     assert rec.fracs[-1] == 1.0
-    # 默认「一模一样」：训练占前 62%，后面是挑选（每个存下的版本都试）
+    # 默认「一模一样」：训练占前 62%，后面是挑选（第 4 轮以后存下的每个版本都试）
     split = wf.TRAIN_SELECT_SPLIT_IDENTICAL
     assert any(split <= f <= 1.0 and "挑选" in m for f, m in rec.calls)
     assert all(f <= split + 1e-9 for f, m in rec.calls if m.startswith("训练音色") or m.startswith("训练语气"))

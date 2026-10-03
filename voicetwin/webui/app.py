@@ -213,13 +213,19 @@ DUMMY_BACKEND = ("测试引擎（不是你的声音）", "dummy")
 DPO_CHOICES = [("自动（推荐）", "auto"), ("开", "on"), ("关", "off")]
 #: 「② 训练模型」的「训练方式」（GPT-SoVITS）。每次打开网页都先选好「一模一样」（和生成页的质量一样，不读 config.yaml）
 TRAIN_MODE_LABELS: Dict[str, str] = {
-    "identical": "一模一样（默认）：练得更久、多存版本，再用你没参加训练的录音把每个版本都试一遍，挑最像你的（很慢）",
+    "identical": "一模一样（默认）：练得更久、多存版本，再用你没参加训练的录音把第 4 轮以后存下的每个版本都试一遍，挑最像你的（很慢）",
     "standard": "标准：和以前一样的训练量，训练完挑一次（快很多）",
 }
 TRAIN_MODE_CHOICES: List[Tuple[str, str]] = [(TRAIN_MODE_LABELS[k], k) for k in ("identical", "standard")]
 TRAIN_INTRO = ("直接点「开始训练」就行。默认用「一模一样」的方式训练：练得更久、多存几个版本，再用你没参加训练的录音"
-               "把每个版本都试一遍，挑出最像你的。第一次会很慢（估计要几个小时）；做完一次以后，这里会显示你电脑上实际用的时间。"
-               "训练时可以去做别的事，但不要关闭黑色窗口。")
+               "把第 4 轮以后存下的每个版本都试一遍，挑出最像你的。第一次会很慢（估计要几个小时）；"
+               "从头完整练完一次以后，这里会显示你电脑上实际用的时间。训练时可以去做别的事，但不要关闭黑色窗口。")
+#: 「训练方式」下面的小字：它也决定「重新挑选最佳模型」怎么比（两种挑法用的时间差很多）
+TRAIN_MODE_INFO = ("「重新挑选最佳模型」也按这里选的方式比：一模一样 = 把第 4 轮以后存下的每个版本都试一遍（比较慢）；"
+                   "标准 = 从早到晚均匀挑几个版本比（快很多）。")
+#: 「重新挑选最佳模型」进度条上的「要多久」（没有实测，只说快慢；标准的分钟数标明是估计）
+SELECT_HINT = {"identical": "把第 4 轮以后存下的每个版本都试一遍，比较慢，可以先去做别的事",
+               "standard": "大约 5~15 分钟（估计）"}
 #: MP3 是有损压缩：句子之间的静音里会有极小的压缩杂讯（大约 -90 dB，听不见，但不是绝对的 0）——老师要绝对静音，如实写明
 FORMAT_CHOICES = [("WAV（音质最好，句子之间绝对静音；剪映/后期用）", "wav"),
                   ("MP3（文件小，方便发微信、上传；压缩会在停顿里留下听不见的极小杂讯，要绝对静音请选 WAV）", "mp3")]
@@ -3563,7 +3569,8 @@ class WebUI:
             what, busy = "训练", TRAIN_BUSY
         else:
             stream = stream_task("select", "重新挑选最佳模型", v, _attach_missed if attach else wf.run_select, self.cfg, v,
-                                 backend, stages=_stages(self.cfg, "select"), note=NOTE, mode=mode)
+                                 backend, stages=_stages(self.cfg, "select"), hint=SELECT_HINT.get(mode, ""), note=NOTE,
+                                 mode=mode)
             what, busy = "挑选模型", SELECT_BUSY
         plan = ""
         stop_once = _StopOnce()
@@ -4280,7 +4287,7 @@ class WebUI:
                 # ---------------------------------------------------- ② 训练
                 with gr.Tab("② 训练模型", id="train") as train_tab:
                     gr.Markdown(TRAIN_INTRO)
-                    c["train_mode"] = gr.Radio(TRAIN_MODE_CHOICES, value="identical", label="训练方式")
+                    c["train_mode"] = gr.Radio(TRAIN_MODE_CHOICES, value="identical", label="训练方式", info=TRAIN_MODE_INFO)
                     c["train_plan"] = gr.Markdown(PLAN_DEFAULT, elem_classes="vt-md")
                     with gr.Row():
                         c["train_btn"] = gr.Button(TRAIN_BTN, variant="primary", scale=3)

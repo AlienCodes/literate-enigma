@@ -20,7 +20,8 @@
 - standard（标准）：上面这些，和以前一样的训练量；
 - identical（「一模一样」，默认）：练得更久、多存几个版本（每批 4 条时音色 24 轮每 2 轮存一个、语气 20 轮每轮存一个），
   训练前先用官方的训练程序实测显卡一次最多能练几条（_probe_batch：练够 40 步或 90 秒就停，比每秒练几条、看显存有没有满），
-  每批多练几条时轮数按比例加多（模型更新的次数和每批 4 条时一样）。训练完把每个存下的版本都拿来比较。
+  每批多练几条时轮数按比例加多（模型更新的次数和每批 4 条时一样；每批不到 4 条时按 4 条算，轮数不会比每批 4 条时少）。
+  训练完把第 4 轮以后存下的每个版本都拿来比较。
 两种方式都用 VoiceTwin 自己的「处理文字」（gsv_scripts/get_text_mixed.py：中文句子里夹着的英文也参加训练，
 不成功自动退回官方的 1-get-text.py）和「末尾没有标点补「，」」：这两条是修正素材，不是加大训练量。
 素材、处理文字的方法、录音文件变了 → 从头训练（旧模型备份起来，下次挑选时也参加比较）；
@@ -226,8 +227,10 @@ SOVITS_EPOCHS_DEEP = 24
 GPT_EPOCHS_DEEP = 20
 SOVITS_SAVE_DEEP = 2
 GPT_SAVE_DEEP = 1
+#: 轮数按比例换算的基准：每批 b 条时按 max(b, 4) 换算——每批不到 4 条（没有 N 卡、显存小、显存不够退到 1~3 条）时
+#: 轮数不减少，「一模一样」不会比「标准」练得少
 DEEP_BASE_BATCH = 4
-#: 每批多练几条时轮数按比例加多，但不超过这些（练太多会变差；每个存下的版本都会拿来比较）
+#: 每批多练几条时轮数按比例加多，但不超过这些（练太多会变差；第 4 轮以后存下的每个版本都会拿来比较）
 DEEP_MAX_SOVITS = 48
 #: 实测显卡一次能练几条：用最长的 128 条素材，每个数量练够 40 步（日志里记的步数）或 90 秒就停，第 10 步以后才算速度
 PROBE_CLIPS = 128
@@ -718,8 +721,9 @@ def plan_training(n_clips: int, minutes: float, total_gb: Optional[float] = None
 
     user 里不是「自动」的值优先（来自高级设置 / config.yaml / 命令行）。
     mode="identical"（「一模一样」）：每批 b 条（probe_batch = 实测出来的；可以是一个数，也可以是
-    {"sovits": b1, "gpt": b2}；没有实测时按显存的公式）时，音色 min(48, ⌈24·b/4⌉) 轮、每 max(1, round(2·b/4)) 轮存一个，
-    语气 min(50, ⌈20·b/4⌉) 轮、每 max(1, round(b/4)) 轮存一个——模型更新的次数和每批 4 条时一样；最后一轮一定存下来。
+    {"sovits": b1, "gpt": b2}；没有实测时按显存的公式）时，记 r = max(b, 4) / 4：音色 min(48, ⌈24·r⌉) 轮、
+    每 max(1, round(2·r)) 轮存一个，语气 min(50, ⌈20·r⌉) 轮、每 max(1, round(r)) 轮存一个——每批多于 4 条时模型更新的
+    次数和每批 4 条时一样；每批不到 4 条时轮数和每批 4 条时一样（不会比「标准」练得少）；最后一轮一定存下来。
     deep 可以改每批 4 条时的轮数和保存间隔（config.yaml 的 deep_sovits_epochs 等）。standard 的结果和以前完全一样。
     will_probe / n_val / en_lines / mixed_text / batch_source 只影响说明里的话（会不会先实测、挑选用几句录音、
     几句夹着英文、probe_batch 是实测的 "probe" 还是接着练时沿用上次的 "previous"）。"""
@@ -728,6 +732,8 @@ def plan_training(n_clips: int, minutes: float, total_gb: Optional[float] = None
     n_clips = max(0, int(n_clips or 0))
     minutes = float(minutes or 0.0)
     notes: List[str] = []
+    std_only: List[int] = []      # 只对「标准」的轮数说的话（有底噪时最多 8 轮、为了存下最后一轮改轮数）的位置
+    formula_notes: List[int] = []  # 按显存的公式算每批数量时才对的话（按空闲显存算、全精度减半）的位置
     total = _pos_float(total_gb)
     free = _pos_float(free_gb)
     g_total = total + REPORTED_FUDGE_GB if total else 0.0
@@ -761,6 +767,7 @@ def plan_training(n_clips: int, minutes: float, total_gb: Optional[float] = None
     if auto["batch_size"]:
         bs = vram_batch(g)
         if by_free:
+            formula_notes.append(len(notes))
             notes.append(f"显卡现在有 {max(0.0, total - free):.1f} GB 被别的程序占着（只空闲 {free:.1f} GB），"
                          "每批数量按空闲的显存算；想练得快一点，可以先关掉游戏、剪映、在线视频等占用显卡的程序")
     else:
@@ -770,6 +777,7 @@ def plan_training(n_clips: int, minutes: float, total_gb: Optional[float] = None
         bs = clip_cap
     if not is_half:
         bs = max(1, bs // 2)
+        formula_notes.append(len(notes))
         notes.append("显卡用全精度训练（is_half: false），每批数量减半")
 
     # ---- 轮数（看素材，不看显存）
@@ -777,6 +785,7 @@ def plan_training(n_clips: int, minutes: float, total_gb: Optional[float] = None
         s_ep = SOVITS_EPOCHS_LARGE if minutes >= SOVITS_LARGE_MINUTES else SOVITS_EPOCHS_SMALL
         if noisy and s_ep > SOVITS_EPOCHS_SMALL:
             s_ep = SOVITS_EPOCHS_SMALL
+            std_only.append(len(notes))
             notes.append(f"素材里一大半有底噪或背景音乐，音色训练最多 {SOVITS_EPOCHS_SMALL} 轮（练太多会把杂音也学进去）")
     else:
         s_ep = max(1, min(_to_int(user.get("sovits_epochs"), SOVITS_EPOCHS_SMALL), SOVITS_MAX_EPOCHS))
@@ -792,6 +801,7 @@ def plan_training(n_clips: int, minutes: float, total_gb: Optional[float] = None
         else:
             new_ep, save = _fit_explicit_save(epochs, _to_int(user.get(key), 1), max_epochs)
         if new_ep != epochs:
+            std_only.append(len(notes))
             notes.append(f"为了让最后一轮的模型能保存下来，{name}轮数从 {epochs} 调整为 {new_ep}")
         return new_ep, save
 
@@ -879,8 +889,13 @@ def _probe_pair(probe_batch: Any) -> Tuple[Optional[int], Optional[int]]:
 
 
 def _plan_deep(v: Dict[str, Any]) -> Dict[str, Any]:
-    """plan_training 的「一模一样」部分（v 是 plan_training 里算到 DPO 为止的局部变量）。"""
-    user, auto, notes = v["user"], v["auto"], v["notes"]
+    """plan_training 的「一模一样」部分（v 是 plan_training 里算到 DPO 为止的局部变量）。
+
+    每批 b 条时轮数按 max(b, 4) 换算：每批不到 4 条时轮数和每批 4 条时一样（不会比「标准」练得少）。
+    只对「标准」的轮数说的话（有底噪时最多 8 轮、为了存下最后一轮改轮数）不留；音色和语气的每批条数都是实测的 /
+    沿用上次的时，「按空闲显存算」「全精度减半」这两句也不留（每批数量不是按显存的公式算的）。"""
+    user, auto = v["user"], v["auto"]
+    drop = set(v["std_only"])
     deep = dict(v.get("deep") or {})
     base_s = max(1, _to_int(deep.get("sovits_epochs"), SOVITS_EPOCHS_DEEP))
     base_g = max(1, _to_int(deep.get("gpt_epochs"), GPT_EPOCHS_DEEP))
@@ -894,9 +909,13 @@ def _plan_deep(v: Dict[str, Any]) -> Dict[str, Any]:
             bs = min(p_s, clip_cap) if v["n_clips"] else p_s
         if p_g and not v["dpo"]:
             gpt_bs = min(p_g, clip_cap) if v["n_clips"] else p_g
+        if p_s and p_g and not v["dpo"]:
+            drop |= set(v["formula_notes"])
+    notes = [x for i, x in enumerate(v["notes"]) if i not in drop]
 
     def scaled(base_ep: int, base_save: int, b: int, cap: int) -> Tuple[int, int]:
-        return min(cap, int(math.ceil(base_ep * b / float(DEEP_BASE_BATCH)))), max(1, _half_up(base_save * b / float(DEEP_BASE_BATCH)))
+        r = max(b, DEEP_BASE_BATCH) / float(DEEP_BASE_BATCH)   # 每批不到 4 条时按 4 条算：轮数不减少
+        return min(cap, int(math.ceil(base_ep * r))), max(1, _half_up(base_save * r))
 
     s_ep, s_save = scaled(base_s, base_ss, bs, DEEP_MAX_SOVITS)
     g_ep, g_save = scaled(base_g, base_gs, gpt_bs, GPT_MAX_EPOCHS)
@@ -954,9 +973,9 @@ def _plan_deep(v: Dict[str, Any]) -> Dict[str, Any]:
         parts.append("中文和英文都参加训练" + (f"（素材里有 {en} 句夹着英文）" if en else ""))
     n_val = v.get("n_val")
     if n_val:
-        parts.append(f"训练完用你没参加训练的 {n_val} 句录音把每个存下的版本都试一遍，挑最像你的")
+        parts.append(f"训练完用你没参加训练的 {n_val} 句录音把第 4 轮以后存下的每个版本都试一遍，挑最像你的")
     else:
-        parts.append("训练完把每个存下的版本都试一遍，挑最像你的")
+        parts.append("训练完把第 4 轮以后存下的每个版本都试一遍，挑最像你的")
     dpo = v["dpo"]
     if dpo:
         who = "" if auto["if_dpo"] else "你指定的；"
@@ -964,7 +983,7 @@ def _plan_deep(v: Dict[str, Any]) -> Dict[str, Any]:
     else:
         parts.append(f"不开 DPO（{v['why_not']}）")
     if max(bs, gpt_bs) > DEEP_BASE_BATCH and (auto["sovits_epochs"] or auto["gpt_epochs"]):
-        notes.append("每批多练几条时轮数会跟着加多，每句话总共会被多练几遍；练得太多可能变差，所以每个存下的版本都会拿来比较")
+        notes.append("每批多练几条时轮数会跟着加多，每句话总共会被多练几遍；练得太多可能变差，所以第 4 轮以后存下的每个版本都会拿来比较")
     summary = "训练计划：「一模一样」训练——" + "；".join(parts) + "。"
     return {
         "mode": "identical",
@@ -978,6 +997,7 @@ def _plan_deep(v: Dict[str, Any]) -> Dict[str, Any]:
         "minutes": v["minutes"], "n_clips": v["n_clips"], "noisy": bool(v["noisy"]), "suspects": int(v["suspects"]),
         "auto": auto, "notes": notes, "summary": summary,
         "probe_batch": {"sovits": p_s, "gpt": p_g} if (p_s or p_g) else None,
+        "mixed_text": bool(v.get("mixed_text")),
     }
 
 
@@ -1051,10 +1071,9 @@ def _capture_s1(line: str, counts: Dict[str, Any]) -> None:
         return
     m = _S1_SEM_LEN.search(line)
     if m:
-        keep = counts.get("resumed_from")
+        keep = {k: counts[k] for k in ("resumed_from", "start_epoch") if k in counts}
         counts.clear()
-        if keep is not None:
-            counts["resumed_from"] = keep
+        counts.update(keep)
         counts["semantic_len"] = int(m.group(1))
         return
     m = _S1_DELETED.search(line)
@@ -1324,8 +1343,17 @@ def _trained_counts(s2: Dict[str, Any], s1: Dict[str, Any], expected: int) -> Di
     return out
 
 
-def _report_lines(params: Dict[str, Any]) -> List[str]:
-    """训练完给老师看的几句话，每个数字都是这次实测（数出来 / nvidia-smi 量出来 / 计时）的；没测出来的写「没测出来」或不写。"""
+def _stage_start(counts: Dict[str, Any], done: int) -> int:
+    """这一步（音色 / 语气）第一次开始时是接着第几轮练的：_run_stage 记下的 start_epoch（日志里第一次的
+    「start training from epoch N」/「ckpt_path: …」）；日志里没有（从第 0 轮开始）时是 done。
+    硬盘不够 / 显存不够中途重新开始时日志里的轮数不算：这一步的总用时是从第一次开始算的。"""
+    v = counts.get("start_epoch")
+    return int(v) if v is not None else int(done)
+
+
+def _report_lines(params: Dict[str, Any], previous: bool = False) -> List[str]:
+    """训练完给老师看的几句话，每个数字都是这次实测（数出来 / nvidia-smi 量出来 / 计时）的；没测出来的写「没测出来」或不写。
+    previous=True：这次没有重新训练、显示的是上次训练实测的（不写「这次」）。"""
     lines: List[str] = []
     tc = params.get("trained_counts") or {}
     n = tc.get("expected")
@@ -1344,7 +1372,8 @@ def _report_lines(params: Dict[str, Any]) -> List[str]:
                     if ids else "训练程序没有记下是哪几条")
             lines.append(f"有 {k} 条没参加训练（原因：{why}），一般是文字和声音对不上或者太短；不影响使用，{tail}。")
     if params.get("text_frontend") == "mixed" and params.get("en_lines"):
-        lines.append(f"英文：{params['en_lines']} 句里的英文这次也参加了训练（一共 {params.get('en_phones') or 0} 个英文音素）。")
+        lines.append(f"英文：{params['en_lines']} 句里的英文{'' if previous else '这次'}也参加了训练"
+                     f"（一共 {params.get('en_phones') or 0} 个英文音素）。")
     gpu = params.get("gpu") or {}
     parts = []
     low = False
@@ -1760,7 +1789,10 @@ class GPTSoVITSBackend(Backend):
             plan = state["plan"]
         else:
             will = mode == "identical" and self._probe_enabled() and gpu[0] > 0
-            plan = self._make_plan(len(recs), minutes, opts, quick=quick, gpu=gpu, mode=mode, will_probe=will)
+            kw: Dict[str, Any] = {"will_probe": will}
+            if mode == "identical" and self.root is not None:
+                kw["mixed_text"] = self._mixed_planned(self._opt_dir(), state.get("state") or "fresh", state.get("kinds"))
+            plan = self._make_plan(len(recs), minutes, opts, quick=quick, gpu=gpu, mode=mode, **kw)
         plan["state"] = state.get("state", "")
         plan["state_note"] = state.get("note", "")
         try:
@@ -1857,10 +1889,51 @@ class GPTSoVITSBackend(Backend):
             return None
         return entry
 
+    def _mixed_planned(self, opt_dir: Path, state: str, kinds: Optional[List[str]] = None) -> bool:
+        """训练计划里写不写「中文和英文都参加训练」：设置成官方的方法 → 不写；这次要重新处理文字（从头练、还没处理过）→
+        写（新方法没成功、退回官方的方法时，train() 会按实际用的方法重写说明）；接着用现在的文字特征 → 看上次实际用的方法。"""
+        if self._text_frontend() != "mixed":
+            return False
+        reuse = (opt_dir / "2-name2text.txt").exists() and (state != "fresh" or set(kinds or []) == {"settings"})
+        return not reuse or self._frontend_used(opt_dir) == "mixed"
+
+    @staticmethod
+    def _settings_changed(plan: Dict[str, Any], pp: Dict[str, Any], state: str) -> List[str]:
+        """你明确指定的设置（高级设置 / config.yaml / 命令行）和上次训练实际用的不一样、只有重新训练才用得上时，
+        返回中文说明（例如「开启 DPO」）；没有就是 []。
+        - DPO：语气训练的方法变了，接着上次的进度练也不行；
+        - 保存间隔：只在不重新训练（skip）时算——存下了哪些版本已经定了（接着练时新练的部分会按新的间隔存）；
+          硬盘不够、自动加大过保存间隔的那一步不算（再练一次还是存不下）。
+        自动的设置不算（自动的就按上次练好的用）。"""
+        auto = plan.get("auto") or {}
+        out: List[str] = []
+        if not auto.get("if_dpo", True) and bool(plan.get("if_dpo")) != bool(pp.get("if_dpo")):
+            out.append("开启 DPO" if plan.get("if_dpo") else "关掉 DPO")
+        if state == "skip":
+            guard = pp.get("disk_guard") or {}
+            for kind, name in (("sovits", "音色"), ("gpt", "语气")):
+                key = f"{kind}_save_every"
+                k = _to_int(plan.get(key), 0)
+                if not auto.get(key, True) and kind not in guard and k != _to_int(pp.get(key), 0):
+                    out.append(f"{name}{'每轮' if k == 1 else f'每 {k} 轮'}存一个")
+        return out
+
+    @staticmethod
+    def _skip_plan(plan: Dict[str, Any], pp: Dict[str, Any]) -> Dict[str, Any]:
+        """不重新训练时的「训练计划」：写上次实际是怎么练的（这次的设置不会用上，不能写成这次要做的事）。"""
+        prev = str(pp.get("summary") or "").strip()
+        prev = prev[len("训练计划："):] if prev.startswith("训练计划：") else prev
+        summary = ("训练计划：这次不重新训练，沿用上次训练好的模型"
+                   + (f"（上次：{prev.rstrip('。')}）" if prev else "") + "。")
+        return dict(plan, summary=summary, notes=[])
+
     def _run_state(self, feat: Dict[str, str], mode: str, opts: Dict[str, Any], n_clips: int, minutes: float,
                    gpu: Tuple[float, Optional[float], str]) -> Dict[str, Any]:
         """这次怎么练：{"state": fresh / extend / skip / continue, "note": 给老师看的一句话, "reasons": [...],
-        "kinds": [...], "plan": 训练计划（接着练 / 不重新练时按上次的每批条数算）, "previous": 上次的记录}。"""
+        "kinds": [...], "plan": 训练计划（接着练时按上次的每批条数算；不重新练时写上次实际怎么练的）,
+        "plan_kw": 算这个计划用的参数, "previous": 上次的记录}。
+        素材没变，但你明确改了只有重新训练才用得上的设置（DPO；不重新训练时还有保存间隔，见 _settings_changed）→ 也从头练
+        （kinds = ["settings"]：特征接着用，旧的训练和模型照样备份、一起参加比较）。"""
         opt_dir = self._opt_dir()
         changed, kinds, reasons = self._material_changes(feat, opt_dir)
         prev = None if changed else self._previous_run(feat)
@@ -1869,20 +1942,30 @@ class GPTSoVITSBackend(Backend):
             pp = prev["params"]
             prev_b = {"sovits": pp.get("batch_size_used") or pp.get("batch_size"),
                       "gpt": pp.get("gpt_batch_size_used") or pp.get("gpt_batch_size")}
-            kw: Dict[str, Any] = {"probe_batch": prev_b, "batch_source": "previous"} if mode == "identical" else {}
+            kw: Dict[str, Any] = {}
+            if mode == "identical":  # 接着用现在的文字特征：说明按上次实际用的处理文字的方法写
+                kw = {"probe_batch": prev_b, "batch_source": "previous",
+                      "mixed_text": self._mixed_planned(opt_dir, "extend")}
             plan = self._make_plan(n_clips, minutes, opts, gpu=gpu, mode=mode, **kw)
             more = (int(plan["sovits_epochs"]) > _to_int(pp.get("sovits_epochs"), 0)
                     or int(plan["gpt_epochs"]) > _to_int(pp.get("gpt_epochs"), 0))
-            out["plan"] = plan
-            if more:
+            settings = self._settings_changed(plan, pp, "extend" if more else "skip")
+            if settings:  # 你明确改了的设置只有重新训练才用得上：从头练（素材没变，特征接着用）
+                kinds = ["settings"]
+                reasons = [f"你改了训练设置（{'、'.join(settings)}）"]
+                out.update(kinds=kinds, reasons=reasons)
+                changed = True
+            elif more:
+                out["plan"], out["plan_kw"] = plan, kw
                 out["state"] = "extend"
                 out["note"] = "素材没变：接着上次的训练往下练（上次存下的版本也一起参加比较）。"
             else:
+                out["plan"], out["plan_kw"] = self._skip_plan(plan, pp), kw
                 out["state"] = "skip"
                 out["note"] = ("素材没变，已经按「一模一样」练过了：这次不重新训练，直接重新挑选。"
                                if pp.get("mode") == "identical" else
                                "素材没变，上次已经练够了这么多轮：这次不重新训练，直接重新挑选。")
-        elif changed:
+        if changed:
             out["state"] = "fresh"
             entry = self.project.load_models().get(self.name) or {}
             if "first" in kinds or not entry.get("selected"):
@@ -1890,7 +1973,7 @@ class GPTSoVITSBackend(Backend):
             else:
                 out["note"] = (f"这次会从头训练（原因：{'、'.join(reasons)}）。你原来的模型会备份起来，一起参加比较；"
                                "新模型实测不比它好，就继续用它。")
-        else:
+        elif prev is None:
             out["state"] = "continue"
             out["note"] = "素材没变：接着上次没做完的训练往下练。"
         return out
@@ -2070,14 +2153,17 @@ class GPTSoVITSBackend(Backend):
                     self.project.update_models(self.name, {"list_sha1": prev_list})
             except Exception as exc:  # noqa: BLE001
                 log.debug(f"记下旧模型用的素材指纹没成功：{exc}")
+        settings_only = bool(kinds) and set(kinds) == {"settings"}
         if changed and old is not None:
             text_only = (("legacy" not in kinds and set(kinds) <= {"frontend", "list"})
                          or set(kinds) == {"legacy", "frontend"})
-            if text_only:
+            if settings_only:
+                log.info("素材没变，只是训练设置改了：特征接着用，这次从头训练")
+            elif text_only:
                 log.info("处理文字的方法或训练文字变了：重新处理文字（声音特征没变，接着用）")
             else:
                 log.info("训练素材有变化，清理旧的特征文件后重新提取")
-            for name in (TEXT_FEATURES if text_only else ALL_FEATURES):
+            for name in (() if settings_only else TEXT_FEATURES if text_only else ALL_FEATURES):
                 target = opt_dir / name
                 if target.is_dir():
                     shutil.rmtree(target, ignore_errors=True)
@@ -2086,13 +2172,15 @@ class GPTSoVITSBackend(Backend):
             for f in list(opt_dir.glob("2-name2text-*.txt")) + list(opt_dir.glob("6-name2semantic-*.tsv")):
                 f.unlink(missing_ok=True)
             archived = self._archive_old_run(opt_dir)
+            what = "训练设置改了" if settings_only else "检测到素材有变化"
             if archived is not None:
-                log.info(f"检测到素材有变化：这次会从头训练新模型（旧的训练进度已备份到 {archived}）")
+                log.info(f"{what}：这次会从头训练新模型（旧的训练进度已备份到 {archived}）")
             else:
-                log.info("检测到素材有变化：这次会从头训练新模型")
+                log.info(f"{what}：这次会从头训练新模型")
         if changed:
             (opt_dir / RUN_STAMP).write_text(f"{time.time():.3f}", encoding="utf-8")
-            (opt_dir / PROBE_FILE).unlink(missing_ok=True)
+            if not settings_only:  # 素材没变时上次实测的每批条数照样能用
+                (opt_dir / PROBE_FILE).unlink(missing_ok=True)
         stamp.write_text(feat["digest"])
         (opt_dir / FEATURES_FILE).write_text(json.dumps(feat, ensure_ascii=False), encoding="utf-8")
         n = max(1, int(n_clips or 0) or len(list_path.read_text(encoding="utf-8").strip().splitlines()))
@@ -2596,8 +2684,11 @@ class GPTSoVITSBackend(Backend):
                 parser = _gpt_parser(total, counts)
                 log_name, label = "gsv_s1_train", "训练语气和节奏"
             watch = _DiskWatch(self, kind, total, save)
-            res = self.run_logged(cmd, self.root, env, log_name, progress, prange, parser, label=label,
-                                  on_poll=watch.poll, poll_interval=self.POLL_SECONDS)
+            try:
+                res = self.run_logged(cmd, self.root, env, log_name, progress, prange, parser, label=label,
+                                      on_poll=watch.poll, poll_interval=self.POLL_SECONDS)
+            finally:  # 第一次开始时接着第几轮练（硬盘不够 / 显存不够重新开始的不算）：每轮用时按它算
+                counts.setdefault("start_epoch", counts.get("resumed_from"))
             if res.get("stopped") and watch.new_save and restarts < 3:
                 params[save_key] = watch.new_save
                 params.setdefault("disk_guard", {})[kind] = {"weight_mb": watch.size_mb, "save_every": watch.new_save}
@@ -2695,18 +2786,24 @@ class GPTSoVITSBackend(Backend):
         feat = self._feature_digest(list_path, wav_dir)
         st = self._run_state(feat, mode, dict(opts), n, minutes, gpu)
         mixed_ready = None
-        if (st["state"] in ("extend", "skip", "continue") and feat["frontend"] == "mixed"
+        settings_only = set(st.get("kinds") or []) == {"settings"}   # 素材没变、只是训练设置改了：文字特征也是接着用的
+        if ((st["state"] in ("extend", "skip", "continue") or settings_only) and feat["frontend"] == "mixed"
                 and self._frontend_used(opt_dir) == "official" and (opt_dir / "2-name2text.txt").exists()):
             mixed_ready = self._try_mixed(list_path, wav_dir, opt_dir, n, progress, pos, parts)
             if mixed_ready is not None:
-                st.update(state="fresh", kinds=["frontend"], reasons=["中英文一起训练的新方法"], plan=None,
-                          note=("这次会从头训练（原因：中英文一起训练的新方法）。你原来的模型会备份起来，一起参加比较；"
+                reasons = list(st.get("reasons") or []) if settings_only else []
+                reasons.append("中英文一起训练的新方法")
+                st.update(state="fresh", kinds=["frontend"], reasons=reasons, plan=None, plan_kw=None,
+                          note=(f"这次会从头训练（原因：{'、'.join(reasons)}）。你原来的模型会备份起来，一起参加比较；"
                                 "新模型实测不比它好，就继续用它。"))
         state = st["state"]
         user_batch = not _is_auto(self._user_settings(opts).get("batch_size"))
         will_probe = (mode == "identical" and state in ("fresh", "continue") and not user_batch and gpu[0] > 0
                       and self._probe_enabled())
-        params = st.get("plan") or self._make_plan(n, minutes, opts, gpu=gpu, mode=mode, will_probe=will_probe)
+        plan_kw: Dict[str, Any] = dict(st.get("plan_kw") or {"will_probe": will_probe})
+        if mode == "identical":
+            plan_kw.setdefault("mixed_text", self._mixed_planned(opt_dir, state, st.get("kinds")))
+        params = st.get("plan") or self._make_plan(n, minutes, opts, gpu=gpu, mode=mode, **plan_kw)
         self.step(progress, pos["plan"], params["summary"])
         for line in params["notes"]:
             log.info(f"  · {line}")
@@ -2717,7 +2814,11 @@ class GPTSoVITSBackend(Backend):
         if state == "skip":
             assert prev is not None
             info = {k: v for k, v in prev.items() if k not in ("selection", "speed", "selection_error")}
-            info["params"] = dict(prev["params"], run_state="skip")
+            # 这次什么都没练、没量：上次实测的结果标明是上次的（不能写成「这次」）
+            old = _report_lines(prev["params"], previous=True)
+            when = str(prev.get("trained_at") or "").strip()
+            head = f"这次没有重新训练；下面是上次训练（{when}）实测的结果：" if when else "这次没有重新训练；下面是上次训练实测的结果："
+            info["params"] = dict(prev["params"], run_state="skip", report=[head] + old if old else [])
             self.project.update_models(self.name, {"params": info["params"]})
             self.step(progress, 1.0, "GPT-SoVITS 训练完成（素材没变，这次不用重新训练）")
             return info
@@ -2728,17 +2829,30 @@ class GPTSoVITSBackend(Backend):
                                        kinds=st.get("kinds"), pos=pos, parts=parts, mixed_ready=mixed_ready)
         features_s = time.time() - t_feat
         features = self._count_features(opt_dir, n)
+        mixed_used = feats["frontend"] == "mixed"
+        if mode == "identical":
+            plan_kw["mixed_text"] = mixed_used
 
         probe_s = None
         probe: Optional[Dict[str, Any]] = None
+        probed = False
         if will_probe:
             probe, probe_s = self._probe_or_cached(opt_dir, feat["digest"], n, bool(params.get("if_dpo")), progress, pos)
-            if probe and (probe.get("sovits") or probe.get("gpt")):
-                params = self._make_plan(n, minutes, opts, gpu=gpu, mode=mode,
+            probed = bool(probe and (probe.get("sovits") or probe.get("gpt")))
+            if probed:
+                assert probe is not None
+                params = self._make_plan(n, minutes, opts, gpu=gpu, mode=mode, mixed_text=mixed_used,
                                          probe_batch={"sovits": probe.get("sovits"), "gpt": probe.get("gpt")})
                 self.step(progress, pos["sovits"], params["summary"])
                 for line in params["notes"]:
                     log.info(f"  · {line}")
+            else:  # 没实测出来（素材太少 / 每个数量都没成功）：按显存的公式，说明里不能再写「先实测」
+                plan_kw["will_probe"] = False
+        if mode == "identical" and (bool(params.get("mixed_text")) != mixed_used or (will_probe and not probed)):
+            # 说明要按实际做的重写（存进 models.json、网页上训练计划那一栏显示的也是这份）：
+            # 「中英文一起」的新方法没成功、退回了官方的方法 → 不能再写「中文和英文都参加训练」；没实测出来 → 不能再写「先实测」
+            params = self._make_plan(n, minutes, opts, gpu=gpu, mode=mode, **plan_kw)
+            self.step(progress, pos["sovits"], params["summary"])
         params["tier"] = tier
 
         pp = (prev or {}).get("params") or {}
@@ -2766,7 +2880,7 @@ class GPTSoVITSBackend(Backend):
                 gpu_used[kind] = sampler.stop()
             secs = time.time() - t0
             counts = counts_s if kind == "sovits" else counts_g
-            start = int(counts.get("resumed_from") or done)
+            start = _stage_start(counts, done)   # 这一步第一次开始时接着第几轮练（中途重新开始的不算）
             timing[f"{kind}_s"] = round(secs, 1)
             if total > start:
                 timing[f"{kind}_s_per_epoch"] = round(secs / (total - start), 1)
@@ -2888,7 +3002,7 @@ class GPTSoVITSBackend(Backend):
     def checkpoints(self, max_sovits: Optional[int] = None, max_gpt: Optional[int] = None,
                     all: bool = False) -> List[Dict[str, Any]]:  # noqa: A002 - 设计方案里就叫 all
         """自动挑选要试的模型组合：SoVITS 默认 4 个 × GPT 3 个，从早到晚均匀挑（最后一轮一定在内）。
-        all=True（「一模一样」）：每个存下的版本都试（练到第 4 轮以后的；不到 4 轮的只有最后一个）。
+        all=True（「一模一样」）：第 4 轮以后存下的每个版本都试（一个都没有时只试最后一个；第 1~3 轮的太早，不试）。
 
         两种都把原来用的模型（previous_selected，文件还在时）加在最后一起比较。
         config.yaml 的 backends.gptsovits.train.select_sovits / select_gpt 可以改前两个数。"""

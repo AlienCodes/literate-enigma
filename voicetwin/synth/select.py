@@ -123,7 +123,7 @@ def _fatal(exc: BaseException) -> bool:
 def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend, max_items: int = DEFAULT_ITEMS,
                          use_asr: Optional[bool] = None, progress: Optional[ProgressFn] = None,
                          all_checkpoints: bool = False) -> Dict[str, Any]:
-    """用验证集挑最像你的模型并校准语速。all_checkpoints=True（「一模一样」训练）：每个存下的版本都试
+    """用验证集挑最像你的模型并校准语速。all_checkpoints=True（「一模一样」训练）：第 4 轮以后存下的每个版本都试
     （GPT-SoVITS 的 checkpoints(all=True)），否则从早到晚均匀挑几个。"""
     def _p(frac: float, msg: str, log_it: bool = False) -> None:
         if log_it:

@@ -536,7 +536,10 @@ def smi_sample(index: Any = 0) -> Optional[Dict[str, float]]:
 class GpuSampler:
     """后台每 interval 秒用 nvidia-smi 量一次显卡（smi_sample），stop() 时返回实测的平均使用率和最高显存：
     {"util_avg": %, "peak_gb": GiB, "n": 量了几次}。没有 nvidia-smi（第一次就量不出来）时什么都不做，
-    返回 {"util_avg": None, "peak_gb": None, "n": 0}——没量到的数字不显示。"""
+    返回 {"util_avg": None, "peak_gb": None, "n": 0}——没量到的数字不显示。
+
+    只算 start() 和 stop() 之间后台量到的：start() 里那一次只是看 nvidia-smi 能不能用（那时训练程序还没开始），
+    stop() 也不再补量（训练程序已经结束了，显卡闲着）——这两次都会把平均使用率拉低。"""
 
     def __init__(self, interval: float = 5.0, index: Any = 0) -> None:
         self.interval = max(0.05, float(interval))
@@ -552,6 +555,8 @@ class GpuSampler:
         s = smi_sample(self.index)
         if not s:
             return False
+        if self._stop.is_set():  # stop() 已经叫停了：训练程序结束以后量到的不算
+            return True
         with self._lock:
             self._n += 1
             if s.get("util") is not None:
@@ -562,7 +567,7 @@ class GpuSampler:
         return True
 
     def start(self) -> "GpuSampler":
-        if self._thread is not None or not self._take():
+        if self._thread is not None or not smi_sample(self.index):   # 只看能不能量，这一次不算
             return self
 
         def loop() -> None:
@@ -577,7 +582,6 @@ class GpuSampler:
         self._stop.set()
         if self._thread is not None:
             self._thread.join(timeout=self.interval + SMI_SAMPLE_TIMEOUT + 1)
-            self._take()
         with self._lock:
             util = round(sum(self._utils) / len(self._utils), 1) if self._utils else None
             peak = round(self._peak, 2) if self._peak is not None else None
