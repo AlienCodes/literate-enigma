@@ -1121,6 +1121,20 @@ def _core_fix(cur: str, f: Any) -> Any:
     return _replace(f, start=f.start + p, end=f.end - q, rep=b[p:len(b) - q])
 
 
+def _distinct_spans(spans: Sequence[Sequence[int]], text: str) -> List[List[int]]:
+    """标红的地方：去掉无效的、重复的，排好序，但**不把挨着的合成一段**——改好的字和旁边自动查错字的标红合成一段以后，
+    改好那几个字一变，整段都不红了；再点一次又冒出来（检查时发现的）。显示时表格自己会把挨着的红连起来。"""
+    out: List[List[int]] = []
+    for sp in spans:
+        try:
+            a, b = max(0, int(sp[0])), min(len(text), int(sp[1]))
+        except (TypeError, ValueError, IndexError):
+            continue
+        if b > a and [a, b] not in out:
+            out.append([a, b])
+    return sorted(out)
+
+
 def _same_place(ed: Tuple[int, int, str], span: Sequence[int]) -> bool:
     return ed[0] == span[0] and ed[1] == span[1]
 
@@ -1206,7 +1220,7 @@ def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: O
                 unsure.append([ed[0], ed[1]])
     edits = t_edits + edits_keep
     alt = _apply(cur, edits) if edits else ""
-    sus: Dict[str, Any] = {"spans": pc.merge_spans(spans, cur), "alt": alt if alt != cur else "",
+    sus: Dict[str, Any] = {"spans": _distinct_spans(spans, cur), "alt": alt if alt != cur else "",
                            "reasons": _limit_reasons(reasons), "score": round(_noisy_or(weights), 3),
                            "text": cur, "src": "transcript"}
     if unsure and sus["alt"]:

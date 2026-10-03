@@ -572,6 +572,37 @@ def _forget_rejects(project: Any, clip_id: str, text: str, edits: Sequence[Edit]
         _save_rejected(project, data)
 
 
+def _within(cur: str, new: str, allowed: Sequence[Tuple[str, str]]) -> bool:
+    """cur → new 的每一处改动都是 allowed 里的（建议本身的改动）：不会多出别的字。"""
+    ok = set(allowed)
+    return all(pc in ok for pc in change_pieces(cur, new))
+
+
+def _merge_onto(src: str, dst: str, other: str) -> str:
+    """把 src → other 的改动（老师自己改的别处）搬到 dst 上：dst 里那几个地方和 src 一样时才搬。"""
+    blocks = _equal_blocks(src, dst)
+    ops = _opcodes(src, dst)
+    edits: List[Edit] = []
+    for s, e, rep in suggestion_edits(src, other):
+        m = None if touched(ops, s, e) else map_range(blocks, s, e)
+        if m is None:
+            return ""
+        edits.append((m[0], m[1], rep))
+    return apply_edits(dst, edits) if edits else dst
+
+
+def safe_apply(cur: str, edits: Sequence[Edit], src: str, dst: str) -> str:
+    """一处一处地改（文字不是记下的整句时）：把 src → dst 的建议用到 cur 上。改完检查一遍：cur → 结果的每一处改动
+    都必须是建议本身的改动、而且老师自己改的别处都还在；不行就换个办法（把老师改的别处搬到 dst 上）再查一遍；
+    还不行返回 ""（不改，不能把文字改坏——检查时发现过「了、宾语、宾语」）。"""
+    allowed = change_pieces(src, dst)
+    theirs = change_pieces(src, cur)
+    for cand in (apply_edits(cur, edits) if edits else cur, _merge_onto(src, dst, cur)):
+        if cand and cand != cur and _within(cur, cand, allowed) and _within(dst, cand, theirs):
+            return cand
+    return ""
+
+
 def known_states(rec: Dict[str, Any]) -> Dict[str, str]:
     """「可能有错」标记里记下的几个完整的句子：base = 查错字时的样子，direct = 直接改好以后，sure = 有把握的都改好以后，
     alt = 所有建议都改好以后。表格里的文字正好是其中一个时，采用 / 撤销直接换成另一个整句——不用一处一处对位置
@@ -604,8 +635,12 @@ def adopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
             new = info["to_alt"]  # 整句换成「所有建议都改好以后」的样子（不会配错位置）
             changes = describe_states(rec, vals["text"], new, limit=6)
         else:
-            new = apply_edits(vals["text"], info["edits"])
-            changes = describe_edits(vals["text"], info["edits"], limit=6)
+            st = known_states(rec)
+            new = safe_apply(vals["text"], info["edits"], st["base"], st["alt"]) if st else ""
+            changes = describe_change(vals["text"], new, limit=6) if new else ""
+            if not new:
+                raise ValueError("这一行你改过别的地方，程序没法确定建议该放在哪里，所以没有改（免得把字改乱）。"
+                                 "请听一听录音，双击「文字」自己改：" + describe_edits(vals["text"], info["edits"], limit=3))
         if not new:
             raise ValueError("采用建议以后文字是空的，没有改。请听一听录音，双击「文字」自己改")
         _forget_rejects(project, clip_id, vals["text"], info["edits"])
@@ -630,9 +665,13 @@ def unadopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
             pairs = [list(x) for x in change_pieces(new, vals["text"])]
             changes = describe_states(rec, new, vals["text"], limit=6)
         else:
-            new = apply_edits(vals["text"], info["undo"])
-            pairs = _undo_pieces(vals["text"], info["undo"])
-            changes = describe_adopted(vals["text"], info["undo"], limit=6)
+            st = known_states(rec)
+            new = safe_apply(vals["text"], info["undo"], st["alt"], st["base"]) if st else ""
+            if not new:
+                raise ValueError("这一行你改过别的地方，程序没法确定该撤销哪几个字，所以没有改（免得把字改乱）。"
+                                 "请双击「文字」自己改回去")
+            pairs = [list(x) for x in change_pieces(new, vals["text"])]
+            changes = describe_change(new, vals["text"], limit=6)
         if not new:
             raise ValueError("撤销以后文字是空的，没有改")
         _remember_rejects(project, clip_id, pairs)  # 再点一键校正时不再改回来
@@ -665,12 +704,16 @@ def adopt_all_suggestions(project: Any) -> Dict[str, Any]:
                 continue  # 老师点过「这句没错」（文字没再改过）：不动
             info = analyze(rec, vals["text"])
             todo = [ed for ed in info["sure"] if not is_rejected(rejected.get(rid), vals["text"], *ed)]
-            new = apply_edits(vals["text"], todo) if todo else vals["text"]
             st = known_states(rec)
             target = st.get("sure") if st else None
             if (todo and target and target != vals["text"] and vals["text"] in (st["base"], st.get("direct"))
                     and not is_rejected(rejected.get(rid), vals["text"], 0, len(vals["text"]), target)):
                 new = target  # 整句换成「有把握的都改好以后」的样子（不会配错位置）
+            elif todo and target:
+                # 一处一处改，改完检查；不确定就不改（这一行留给老师）
+                new = safe_apply(vals["text"], todo, st["base"], target) or vals["text"]
+            else:
+                new = vals["text"]
             after = analyze(rec, new) if new else info
             if after["edits"]:
                 unsure += 1  # 采用了有把握的以后还剩下建议：没把握的，留给老师
