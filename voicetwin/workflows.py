@@ -46,6 +46,10 @@ STAGES_PREPARE: List[Stage] = [(0.00, "整理要处理的文件"), (0.02, "提�
                                (0.74, "分析语速和停顿"), (0.80, "检查是不是你本人的声音"), (0.90, "挑选参考音频、保存结果"),
                                (0.95, "分析你的说话风格")]
 STAGES_SELECT: List[Stage] = [(0.00, "加载打分模型"), (0.05, "启动合成引擎"), (0.10, "逐个试听每个模型，挑最像你的")]
+#: 「一模一样」的挑选（select_deep）分三步，再试听参考录音、校准打分（和 select_deep 报的进度对齐）
+STAGES_SELECT_IDENTICAL: List[Stage] = [(0.00, "加载打分模型、整理参考录音"), (0.05, "挑选：先比语气模型"),
+                                        (0.34, "挑选：再比音色模型"), (0.60, "挑选：最后几组按「一模一样」的方式比"),
+                                        (0.87, "试听参考录音、校准打分")]
 STAGES_NARRATE: List[Stage] = [(0.00, "启动合成引擎"), (0.03, "逐句生成"), (0.95, "拼接音频、生成字幕")]
 #: 「完美」档多一步：做「去杂音」版本并比较（「一模一样」见下面 STAGES_NARRATE_IDENTICAL）
 STAGES_NARRATE_VARIANTS: List[Stage] = [(0.00, "启动合成引擎"), (0.03, "逐句生成"), (0.90, "拼接音频、生成字幕"),
@@ -188,7 +192,9 @@ def trained_mode(project: Project, backend: str) -> str:
 
 #: 「重新挑选最佳模型」开始时的一句话（两种挑法差很多，先说清楚）
 SELECT_HOW = {
-    "identical": "挑选方式：「一模一样」——把第 4 轮以后存下的每个版本都试一遍，比较慢（存下的版本越多越久），可以先去做别的事",
+    "identical": "挑选方式：「一模一样」——把第 4 轮以后存下的每个版本都试一遍，比较慢（存下的版本越多越久），可以先去做别的事。"
+                 "分三步：先比语气模型、再比音色模型，最后最好的几组按「一模一样」生成的方式比；用你没参加训练的录音和"
+                 "检查用的句子，按「中英夹在一起 / 纯中文 / 纯英文 / 综合总评分」四项实测打分",
     "standard": "挑选方式：标准——从早到晚均匀挑几个版本比（大约 5~15 分钟，估计）",
 }
 
@@ -212,7 +218,10 @@ def task_stages(kind: str, cfg: Optional[Config] = None, backend_name: Optional[
         plan = proofcheck if proofcheck is not None else (proofcheck_plan(cfg, overrides)[0] if cfg is not None else False)
         return list(STAGES_PREPARE_PROOFCHECK if plan else STAGES_PREPARE)
     if kind == "select":
-        return list(STAGES_SELECT)
+        # 只有明确说了按「一模一样」挑（网页按「训练方式」传进来）才是三步的表；没说时 run_select 按模型是怎么练的定，
+        # 这里不知道是哪个声音，用标准的表
+        return list(STAGES_SELECT_IDENTICAL if mode not in (None, "") and train_mode(cfg, mode) == "identical"
+                    else STAGES_SELECT)
     if kind in ("narrate", "generate", "say"):
         from voicetwin.synth.engine import QUALITY_PRESETS, resolve_quality
 
@@ -1023,12 +1032,14 @@ def material_changed_note(cfg: Config, voice: str, backend_name: Optional[str] =
 def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, items: Optional[int] = None,
                use_asr: Optional[bool] = None, progress: Optional[ProgressFn] = None,
                mode: Optional[str] = None) -> Dict[str, Any]:
-    """挑最像你的模型。mode = identical（「一模一样」）：第 4 轮以后存下的每个版本都试（checkpoints(all=True)）；
-    standard：从早到晚均匀挑 4 × 3 个。两种都把原来用的模型一起比较。
+    """挑最像你的模型。mode = identical（「一模一样」）：select_deep 分三步把第 4 轮以后存下的每个版本都试一遍
+    （checkpoints(all=True)），按四项评分排名，再校准语速、排序权重、试听参考录音；standard：从早到晚均匀挑 4 × 3 个。
+    两种都把原来用的模型一起比较。「一模一样」的挑选出错（停止按钮除外）时自动改用标准的挑法，保证一定有挑好的模型，
+    原因写进结果的 selection_error、日志和问题报告。
     不传 mode（命令行 select / auto --skip-train 没写 --mode）：按现在的模型是怎么练的（trained_mode；以前的版本练的算标准）
     ——标准练的模型不会突然变成每个版本都试。网页上按「训练方式」选的传进来。"""
     from voicetwin.backends.base import get_backend
-    from voicetwin.synth.select import DEFAULT_ITEMS, select_and_calibrate
+    from voicetwin.synth.select import DEFAULT_ITEMS, select_and_calibrate, select_deep
 
     with keep_awake():
         project = open_project(cfg, voice, must_exist=True)
@@ -1038,12 +1049,40 @@ def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, item
             log.warning(note)
         has_modes = hasattr(backend, "train_stages_for")
         how = (train_mode(cfg, mode) if mode not in (None, "") else trained_mode(project, backend.name)) if has_modes else ""
-        every = how == "identical"
         if how:
             _report(progress, 0.0, SELECT_HOW[how])
-        try:  # 引擎在 select_and_calibrate 里"启动合成引擎"那一步才启动，进度条上能看到
-            res = select_and_calibrate(cfg, project, backend, max_items=int(items or DEFAULT_ITEMS), use_asr=use_asr,
-                                       progress=progress, all_checkpoints=every)
+        n_items = int(items or DEFAULT_ITEMS)
+        last = [0.0]
+
+        def tracked(frac: float, msg: str = "") -> None:
+            last[0] = max(last[0], float(frac))
+            if progress is not None:
+                progress(frac, msg)
+
+        try:  # 引擎在挑选里"启动合成引擎"那一步才启动，进度条上能看到
+            res: Dict[str, Any]
+            if how == "identical":
+                t0 = time.time()
+                try:
+                    res = select_deep(cfg, project, backend, progress=tracked, max_items=n_items, use_asr=use_asr)
+                except Exception as exc:  # 停止按钮（TaskCancelled）是 BaseException，照常传出去
+                    reason = _explain_title(exc)
+                    log.warning(f"⚠️ 「一模一样」的挑选这次没成功（{reason}），改用标准的挑法（从早到晚均匀挑几个版本比），"
+                                "保证一定有挑好的模型", exc_info=exc)
+                    from voicetwin.report import report_failure
+
+                    path = report_failure(exc, what="按「一模一样」的方式挑选最像你的模型", voice=voice,
+                                          logs_dir=project.logs_dir, since=t0)
+                    res = select_and_calibrate(cfg, project, backend, max_items=n_items, use_asr=use_asr,
+                                               progress=_sub(progress, min(last[0], 0.95), 1.0), all_checkpoints=False)
+                    res["selection_error"] = reason
+                    res["selection_error_detail"] = repr(exc)[:500]
+                    res["fallback"] = "standard"
+                    if path is not None:
+                        res["selection_error_report"] = str(path)
+            else:
+                res = select_and_calibrate(cfg, project, backend, max_items=n_items, use_asr=use_asr,
+                                           progress=progress, all_checkpoints=False)
             if note and isinstance(res, dict):
                 res["material_note"] = note  # 结果里也说（以前只在「详细过程」里）
             _previous_model_result(project, backend.name, res)

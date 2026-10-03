@@ -76,6 +76,9 @@ backends:
       deep_gpt_epochs: 20     # （每批多练几条时轮数按比例加多，音色最多 48 轮、语气最多 50 轮）
       deep_sovits_save: 2
       deep_gpt_save: 1
+      select_test_texts: 24   # 「一模一样」挑模型时，除了没参加训练的录音，再加几句检查用的句子（问句、夹着英文、长句，最多 24）
+      select_screen_seeds: 2  # 挑选第一步（比语气模型）、第二步（比音色模型）每句同时生成几个
+      select_final_candidates: 8  # 挑选第三步每句一共生成几个（2 条参考录音 × 每条 4 个）
       sovits_epochs: auto     # auto: 素材 <30 分钟用 8 轮，更多用 12 轮（练太多反而会变差，训练完会自动挑最像的那一轮）
                               # （这一行和下面几行写了数字时两种训练方式都照你写的）
       gpt_epochs: auto        # auto: 15 轮

@@ -104,11 +104,14 @@ QUALITY_NOTE = ("越往下越慢。默认是「一模一样」：它是努力的
                 "也不会超过模型训练出来的水平。素材的质量和数量、认真校对文字，对像不像影响最大。")
 #: 打开网页时「质量」下面的说明（按显卡；{size} 是检测到的显存，例如「显存 12 GB」，检测不到写「你的显卡」；
 #: {cap} 是这种显卡每句最多试几个，和真正生成时一样：自带的值合并 config.yaml 的 synth.tiers.identical，见 identical_limits）。
-#: 「新模型第一次先做一次准备」（第 8 步）等设计方案 §4.2 的说法，等那几步做好了再写上；「不会因为显存不够而停下」
+#: 「新模型第一次先做一次准备」：第 8 步做好了（synth/select.py 的 prepare_identical：以前的版本练的、标准方式练的模型
+#: 第一次按「一模一样」生成时先用没参加训练的录音做一次小校准）。「不会因为显存不够而停下」
 #: 不写：同时生成的个数减到 1 个、让出识别模型的显存以后还不够，生成还是会停下（并说明原因）
 QUALITY_TIER_NOTES = {
-    "high": "已选好「一模一样」（{size}）。每句会试很多个版本，所以很慢；生成时会按实际速度告诉你还要多久。",
-    "mid": "已选好「一模一样」（{size}）。每句会试很多个版本，所以很慢；生成时会按实际速度告诉你还要多久。",
+    "high": "已选好「一模一样」（{size}）。每句会试很多个版本，所以很慢；第一次用一个新训练的模型时，还要先做一次准备。"
+            "生成时会按实际速度告诉你还要多久。",
+    "mid": "已选好「一模一样」（{size}）。每句会试很多个版本，所以很慢；第一次用一个新训练的模型时，还要先做一次准备。"
+           "生成时会按实际速度告诉你还要多久。",
     "low": "已选好「一模一样」（{size}，显存偏小）：每句最多试 {cap} 个版本，会很慢；显存不够时会先自动减少同时生成的个数"
            "再接着试。着急的话可以改选「均衡」。",
     "none": "没检测到能用的 N 卡（NVIDIA 显卡），仍然先选好「一模一样」：用处理器生成会非常慢，每句最多试 {cap} 个版本。"
@@ -779,6 +782,27 @@ class Narrator:
                 "weights": weights, "weights_version": str(block.get("weights_version") or "default"),
                 "block": block, "profile_sig": str((twin or {}).get("signature") or "")}
 
+    def _prepare_identical(self) -> None:
+        """「准备「一模一样」」（synth/select.py 的 prepare_identical）：你本人的说话习惯、带声纹的参考录音库、
+        models.json 里这个模型按「一模一样」校准的结果（以前的版本练的、标准方式练的模型没有：用没参加训练的录音做一次
+        小校准，只做一次）。用这里已经加载的声纹打分和识别模型，不再加载一遍。出错不影响生成（按以前的方式）。"""
+        from voicetwin.synth.select import prepare_identical
+
+        lo = self._gen_range[0]
+        a, b = min(0.02, lo), min(0.07, lo)
+
+        def prog(frac: float, msg: str) -> None:
+            self._progress(a + (b - a) * max(0.0, min(1.0, frac)), msg)
+
+        try:
+            judge = self.judge  # 用到时才建打分器（声纹模型、识别模型只加载一次）
+            prepare_identical(self.cfg, self.project, self.backend, progress=prog, judge=judge,
+                              checker=self._checker if self.use_asr else None, use_asr=self.use_asr)
+        except Exception as exc:  # noqa: BLE001 - 停止按钮不是 Exception，照常传出去
+            if _is_fatal(exc):
+                raise
+            log.warning(f"「一模一样」的准备这次没做完（{_reason(exc)}），按以前的方式生成")
+
     def _para_initial(self, seg: ScriptSegment) -> bool:
         """这句话是不是一段话的开头（挑参考录音时，段落开头的语气用段落开头的录音更像）。"""
         if self._para_first is not None:
@@ -1337,7 +1361,11 @@ class Narrator:
             # 「一模一样」先准备（素材没变时几乎不花时间）：参考录音库的指纹在缓存键里，要先知道哪些句子已经生成过
             self._para_first = {s.index for k, s in enumerate(segments)
                                 if k == 0 or segments[k - 1].paragraph != s.paragraph}
+            self._prepare_identical()
             self._identical = self._load_identical(report=True)
+            configure = getattr(self._scorer, "configure", None)
+            if callable(configure):  # 准备时可能重新校准了排序权重 / 重新量了说话习惯：打分器跟着换（不重新加载模型）
+                configure(twin=self._identical.get("twin"), rank_weights=self._identical.get("weights"))
         plans = [self._plan(s) for s in segments]
         # 不用合成引擎的句子：已经生成过的；「一模一样」只是排序权重变了（缓存键变了）、同样设置留下的版本还在的
         # （按新权重从留下的版本里重新挑，只用处理器）。都不用时不启动合成引擎（真的引擎启动要占显卡、几十秒）

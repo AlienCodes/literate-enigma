@@ -220,6 +220,18 @@ def bank_signature(entries: List[Dict[str, Any]]) -> str:
     return h.hexdigest()[:16]
 
 
+def eligible_signature(project: Project, records: List[Dict[str, Any]]) -> str:
+    """能进库的片段的指纹：哪些片段、文字、录音文件（大小 + 修改时间）。和库里记的不一样，库就要重新整理
+    （「准备「一模一样」」用它判断，不用读音频）。"""
+    import hashlib
+
+    from voicetwin.style.twin_profile import _file_key
+
+    rows = sorted(f"{r['id']}|{str(r.get('text') or '').strip()}|{_file_key(project.abspath(r['path'])) or '-'}"
+                  for r in records if bank_eligible(r) and r.get("id") and r.get("path"))
+    return hashlib.sha1("\n".join(rows).encode("utf-8")).hexdigest()[:16]
+
+
 def load_reference_bank(project: Project) -> Optional[Dict[str, Any]]:
     data = project.read_json(bank_path(project), None)
     if not isinstance(data, dict) or data.get("version") != BANK_VERSION:
@@ -415,7 +427,8 @@ def build_reference_bank(project: Project, records: List[Dict[str, Any]], judge:
                 log.debug(f"参考录音库的声纹缓存写不了：{exc}")
 
     data = {"version": BANK_VERSION, "bank_sig": bank_signature(entries), "judge_sig": judge_sig,
-            "judge_models": models, "n": len(entries), "seconds": list(BANK_SECONDS), "entries": entries}
+            "judge_models": models, "n": len(entries), "seconds": list(BANK_SECONDS), "entries": entries,
+            "eligible_sig": eligible_signature(project, records)}
     from voicetwin.utils import atomic
 
     atomic.write_text(bank_path(project), tp.dumps(data))

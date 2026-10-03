@@ -224,7 +224,8 @@ TRAIN_INTRO = ("直接点「开始训练」就行。默认用「一模一样」�
 TRAIN_MODE_INFO = ("「重新挑选最佳模型」也按这里选的方式比：一模一样 = 把第 4 轮以后存下的每个版本都试一遍（比较慢）；"
                    "标准 = 从早到晚均匀挑几个版本比（快很多）。")
 #: 「重新挑选最佳模型」进度条上的「要多久」（没有实测，只说快慢；标准的分钟数标明是估计）
-SELECT_HINT = {"identical": "把第 4 轮以后存下的每个版本都试一遍，比较慢，可以先去做别的事",
+SELECT_HINT = {"identical": "把第 4 轮以后存下的每个版本都试一遍（先比语气模型、再比音色模型，最后几组按「一模一样」的方式比），"
+                            "比较慢，可以先去做别的事",
                "standard": "大约 5~15 分钟（估计）"}
 #: MP3 是有损压缩：句子之间的静音里会有极小的压缩杂讯（大约 -90 dB，听不见，但不是绝对的 0）——老师要绝对静音，如实写明
 FORMAT_CHOICES = [("WAV（音质最好，句子之间绝对静音；剪映/后期用）", "wav"),
@@ -1787,6 +1788,9 @@ def _train_done_md(info: Dict[str, Any], plan: str = "", show_plan: bool = True)
     else:
         sel = _selection_info(info)
         best, label = _best_selection({"selection": sel.get("selection"), "selected": info.get("selected")})
+        if isinstance(sel.get("selection"), dict) and sel["selection"].get("method") == "deep" \
+                and label.startswith("像你本人 "):
+            label = "综合总评分 " + label[len("像你本人 "):]  # 「一模一样」的挑选：四项评分里的综合总评分
         if sel.get("selection"):
             md = (f"{head}\n\n已经自动挑出最像你的版本" + (f"（{_md_text(label)}）" if label else "")
                   + "，并把语速调得和你本人一样。\n\n👉 下一步：去「③ 生成讲课音频」。")
@@ -1797,8 +1801,38 @@ def _train_done_md(info: Dict[str, Any], plan: str = "", show_plan: bool = True)
     report = _train_report_md(info)
     if report:
         md += "\n\n" + report
+    sel_info = info.get("selection") if isinstance(info, dict) else None
+    if not err and isinstance(sel_info, dict):
+        extra = [x for x in (_fallback_md(sel_info), _deep_lines_md(sel_info.get("selection"))) if x]
+        if extra:
+            md += "\n\n" + "\n\n".join(extra)
     if plan_md:
         md += "\n\n" + plan_md
+    return md
+
+
+def _deep_lines_md(sel: Any) -> str:
+    """「一模一样」挑选（select_deep）的实测结果：前 5 名的四项评分（中英夹在一起 / 纯中文 / 纯英文 / 综合总评分）和错字率、
+    分不出来 / 各有长处、为什么不能排第一、按句子种类校准的说明……每句一行（文字由 synth/select.py 的 deep_summary_lines 写，
+    都是实测的数，量不出来写「（没测出来）」）。标准的挑选没有这些，返回空字符串。"""
+    if not isinstance(sel, dict) or sel.get("method") != "deep":
+        return ""
+    lines = [str(x) for x in (sel.get("lines") or []) if str(x or "").strip()]
+    if not lines:
+        return ""
+    head, rest = lines[0], lines[1:]
+    return f"**{_md_text(head)}**\n\n" + "\n".join(f"- {_md_text(x)}" for x in rest)
+
+
+def _fallback_md(info: Any) -> str:
+    """「一模一样」的挑选出错、自动改用了标准的挑法时的说明（挑选结果照样能用）。"""
+    if not isinstance(info, dict) or not info.get("selection_error"):
+        return ""
+    md = (f"⚠️ 按「一模一样」的方式挑选这次没成功（{_md_text(info['selection_error'])}），已经自动改用标准的挑法"
+          "（从早到晚均匀挑几个版本比）挑好了模型，可以正常生成；以后可以再点「重新挑选最佳模型」试试。")
+    if info.get("selection_error_report"):
+        md += ("\n\n📋 已自动生成问题报告（也显示在下面的「详细过程」里），需要帮忙时把这个文件发给帮你的人：`"
+               + str(info["selection_error_report"]).replace("`", "'") + "`")
     return md
 
 
@@ -1806,9 +1840,18 @@ def _select_done_md(info: Dict[str, Any]) -> str:
     best, label = _best_selection({"selection": info.get("selection"), "selected": info.get("selected")})
     speed = info.get("speed") or {}
     calibrated = any(abs((_num(v) or 1.0) - 1.0) > 1e-6 for v in speed.values()) if isinstance(speed, dict) else False
+    deep = isinstance(info.get("selection"), dict) and info["selection"].get("method") == "deep"
+    if deep and label.startswith("像你本人 "):
+        label = "综合总评分 " + label[len("像你本人 "):]
     parts = [x for x in (label, f"版本 {best}" if best else "") if x]
     md = ("### ✅ 已重新挑好最像你的模型" + (f"（{_md_text('，'.join(parts))}）" if parts else "")
           + f"；语速：{'已校准' if calibrated else '和你本人一致，不用调'}")
+    fb = _fallback_md(info)
+    if fb:
+        md += "\n\n" + fb
+    table = _deep_lines_md(info.get("selection"))
+    if table:
+        md += "\n\n" + table
     if info.get("previous_note"):
         md += "\n\n" + _md_text(info["previous_note"])
     if info.get("material_note"):
@@ -3569,7 +3612,8 @@ class WebUI:
             what, busy = "训练", TRAIN_BUSY
         else:
             stream = stream_task("select", "重新挑选最佳模型", v, _attach_missed if attach else wf.run_select, self.cfg, v,
-                                 backend, stages=_stages(self.cfg, "select"), hint=SELECT_HINT.get(mode, ""), note=NOTE,
+                                 backend, stages=_stages(self.cfg, "select", mode=mode), hint=SELECT_HINT.get(mode, ""),
+                                 note=NOTE,
                                  mode=mode)
             what, busy = "挑选模型", SELECT_BUSY
         plan = ""

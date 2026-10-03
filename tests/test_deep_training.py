@@ -706,7 +706,8 @@ def test_plan_preview_shows_state_and_audit(gsv_env):
     text = wf.training_plan(cfg, project.voice, "gptsovits")
     first, *rest = text.split("\n")
     assert first.startswith("训练计划：「一模一样」训练——显存 12 GB → 先实测一次能练几条")
-    assert "中文和英文都参加训练（素材里有" in first and "句录音把第 4 轮以后存下的每个版本都试一遍" in first
+    # 第 8 步起「一模一样」的挑选另外加 24 句检查用的句子（config.yaml 的 select_test_texts）
+    assert "中文和英文都参加训练（素材里有" in first and "句录音和 24 句检查用的句子，把第 4 轮以后存下的每个版本都试一遍" in first
     std = wf.training_plan(cfg, project.voice, "gptsovits", mode="standard")
     assert std.split("\n")[0].startswith("训练计划：显存 12 GB → 每批")
     # 素材检查里实际有的情况（测试素材：没有去过杂音、硬切开的就不说）
@@ -916,7 +917,8 @@ def test_audit_ignores_sources_that_were_not_really_denoised(tmp_path, monkeypat
 
 
 def test_reselect_uses_the_mode_the_model_was_trained_with(gsv_env, monkeypatch):
-    """「重新挑选最佳模型」/ voicetwin select 没指定挑法：按现在的模型是怎么练的（以前的版本、标准练的不会变成每个版本都试）。"""
+    """「重新挑选最佳模型」/ voicetwin select 没指定挑法：按现在的模型是怎么练的（以前的版本、标准练的不会变成每个版本都试）。
+    「一模一样」的挑法（第 8 步起）是 select_deep：分三步把第 4 轮以后存下的每个版本都试一遍；标准的是 4 × 3 个。"""
     from voicetwin.synth import select as sel
 
     cfg, project, _ = gsv_env()
@@ -926,7 +928,12 @@ def test_reselect_uses_the_mode_the_model_was_trained_with(gsv_env, monkeypatch)
         seen.append(all_checkpoints)
         return {"selection": {"ranking": []}}
 
+    def fake_deep(cfg, project, backend, progress=None, max_items=20, use_asr=None, judge=None, checker=None):
+        seen.append(True)  # 「一模一样」：每个版本都试
+        return {"selection": {"ranking": []}}
+
     monkeypatch.setattr(sel, "select_and_calibrate", fake_select)
+    monkeypatch.setattr(sel, "select_deep", fake_deep)
     msgs = []
 
     def prog(frac, msg=""):
