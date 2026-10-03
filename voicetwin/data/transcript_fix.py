@@ -602,9 +602,12 @@ def _norm_line(text: str) -> str:
 class Reference:
     """处理好的逐字稿：每个字的读音、按读音找位置的索引、哪些写法出现过。"""
 
-    def __init__(self, text: Any, progress: Optional[ProgressFn] = None, own_from: int = 0):
+    def __init__(self, text: Any, progress: Optional[ProgressFn] = None, own_from: int = 0,
+                 vetted_lines: Optional[int] = None):
         """text：一整段文字，或者 [(句子 id, 文字)]（有 id 的句子会记下它在哪里，比对同一句时可以跳过它自己）。
-        own_from：从第几行开始是老师上传的（这些行和某一句一模一样时算「它自己」；程序自带的修缮过的母本不算）。"""
+        own_from：从第几行开始是老师上传的（这些行和某一句一模一样时算「它自己」；程序自带的修缮过的母本不算）。
+        vetted_lines：前面这么多行是修缮过的（程序自带的母本），后面的是老师上传、没修缮过的（打字的讲稿、别的识别软件的文字，
+        可能有同音错字）——只对上后面这些的单个字不直接改（见 check_text）。不给：都当修缮过的（以前的做法）。"""
         if isinstance(text, (list, tuple)):
             lines = [(str(i or ""), str(x or "")) for i, x in text]
         else:
@@ -647,6 +650,9 @@ class Reference:
                 self.id_ranges.setdefault(rid, []).append(line_span[li])
             if li >= own_from:
                 self.text_ranges.setdefault(_norm_line(x), []).append(line_span[li])
+        # 老师上传的（没修缮过的）从第几个字 / 词开始
+        firsts = [line_span[li][0] for li in line_span if vetted_lines is not None and li >= vetted_lines]
+        self.unvetted_from = min(firsts) if firsts else len(self.toks)
 
     def __len__(self) -> int:
         return len(self.toks)
@@ -702,6 +708,7 @@ class Prop:
     locs: Set[int] = field(default_factory=set)
     ref: Tuple[int, int] = (0, 0)
     strong: bool = False  # 整句几乎一样、前后都对得上：按母本直接改
+    unvetted: bool = False  # 只对上了老师上传的母本（没修缮过）的单个字：不直接改，读音很像的只给没把握的建议
 
 
 def _rep_text(ref: Reference, j1: int, j2: int, kind: str) -> str:
@@ -834,6 +841,8 @@ def _style_pair(a: str, b: str) -> bool:
 
 STRONG_COVERAGE = 0.85  # 整句这么多字都对得上，并且不一样的地方前后各有 ≥ 2 个一样的字：按母本直接改
 _STRONG_KINDS = ("near", "same", "cjk_en", "en_cjk", "en")
+_UNVETTED_KINDS = ("near", "same")  # 只对上老师上传的母本时不直接改的（单个汉字）
+UNVETTED_WEIGHT = 0.6  # 这种只给没把握的建议（一键校正不自动采用，老师听录音决定）
 
 
 def _strong(al: "_Align", kind: str, i1: int, i2: int, j1: int, j2: int) -> bool:
@@ -1081,6 +1090,10 @@ def check_text(text: str, ref: Reference, exclude_id: str = "", exclude_texts: I
             else:
                 props = []
             for p in props:
+                if p.strong and p.kind in _UNVETTED_KINDS and p.i2 - p.i1 == 1 and p.ref[0] >= ref.unvetted_from:
+                    # 只对上了老师上传的母本（没修缮过）：读音一样 / 很像的单个字，说不准是识别错了还是上传的文字打错了
+                    # （拼音输入法打的讲稿常有「主雨」「过去试」），不直接改（以前把对的字直接改成了上传文字里的错字）
+                    p.strong, p.unvetted = False, True
                 key = (p.i1, p.i2, p.rep)
                 old = found.get(key)
                 if old is None:
@@ -1091,6 +1104,7 @@ def check_text(text: str, ref: Reference, exclude_id: str = "", exclude_texts: I
                         old.weight, old.mode, old.reason, old.need, old.ref = p.weight, p.mode, p.reason, p.need, p.ref
                     old.need = min(old.need, p.need)
                     old.strong = old.strong or p.strong
+                    old.unvetted = old.unvetted or p.unvetted
     props = []
     for p in found.values():
         if len(p.locs) < p.need:
@@ -1176,14 +1190,20 @@ def props_to_fixes(cur: str, res: ClipResult, lex: Any = None) -> List[Any]:
     out = []
     for p in res.props:
         s, e = clip[p.i1].start, clip[p.i2 - 1].end
+        weight, reason = p.weight, p.reason
         if not p.strong:
             if lex is not None and lex.inside_vocab(cur, s, e):
                 continue
             if p.kind in ("near", "same") and p.i2 - p.i1 == 1:
-                continue
+                if not (p.unvetted and p.kind == "near"):
+                    continue
+                # 只对上了老师上传的母本、读音很像（声调不一样，影响训练）的单个字：给一个没把握的建议，老师听录音决定；
+                # 读音一样的（不影响训练）不提示
+                weight = min(weight, UNVETTED_WEIGHT)
+                reason = reason.replace("母本里", "你上传的母本里", 1)
             if p.kind == "cjk_en" and lex is not None and lex.has_common_word(cur[s:e]):
                 continue
-        out.append(Fix(s, e, pc._pad(cur, s, e, p.rep), "align", bool(p.strong), p.weight, p.reason))
+        out.append(Fix(s, e, pc._pad(cur, s, e, p.rep), "align", bool(p.strong), weight, reason))
     return out
 
 
@@ -1678,10 +1698,13 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
     lines = [(rid, x) for rid, x in lines if _norm_line(x) not in selves]
     all_lines = builtin + lines
     _report(progress, 0.02, "正在读母本和语法术语……")
-    ref = Reference(all_lines, own_from=len(builtin)) if all_lines else None
+    ref = Reference(all_lines, own_from=len(builtin), vetted_lines=len(builtin)) if all_lines else None
     records = project.load_manifest()
     # 不再从校对表里「学」老师改过的错：保存的修改里也有程序自己改的（采用的建议），学进去会越改越错（检查时发现的）
     lex = Lexicon.build([x for _, x in all_lines])
+    # 把关用的标准库只用程序自带的母本：老师上传的文字里的错字（「过去试」）会被当成老师的说法，
+    # 「改完以后标准库马上又会说有错的不改」这一关就失效了，对的「过去式」被改成「过去试」（检查时发现的）
+    guard = Lexicon.build([x for _, x in builtin]) if (lines and builtin) else lex
     by_id = {rid: x for rid, x in lines if rid}  # 老师上传的 transcripts.csv 里的句子（按 id）
     gfp = _global_fp(all_lines, row_table, lex, use_builtin, use_row_fixes)
     _report(progress, 0.15, f"标准库：母本 {len(ref) if ref else 0} 个字 / 词，语法术语和常说的词 {len(lex.vocab)} 个，"
@@ -1717,7 +1740,7 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
         if rid in by_id:
             fixes += _same_id_fixes(cur, by_id[rid], edited)
         changed = _changed_chars(r, cur)
-        fixes = _protect(fixes, cur, changed, lex)
+        fixes = _protect(fixes, cur, changed, guard)
         # 老师撤销过的改法（点过红色按钮、自己改回去、撤销这一行的修改）：不再改回来，也不再建议
         fixes = [f for f in fixes if not _review.is_rejected(rejected.get(rid), cur, f.start, f.end, f.rep)]
         if merge_only:  # 只合并结果：一个字都不改（能确定的也只当建议，老师自己决定）
@@ -1801,9 +1824,11 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
                         draft[r["id"]] = nv
                     changed_draft = True
                     stats["fixes"] += len(direct)
-                    for s, e, rep in direct:
+                    # 例子按整句比（和表格里的说法一样）：以前按改动的那几个字说，英文被切开（「Caesa → 's scisso」）、
+                    # 汉字没有前后文（「到 → 道」）；现在是「Tony Caesars → Tony's scissors」「报到 → 报道」
+                    for it in _review._change_items(cur, new):
                         if len(examples) < 8:
-                            examples.append(f"{cur[s:e] or '（补上）'} → {rep.strip() or '（去掉）'}")
+                            examples.append(it)
         project.save_manifest(records)
         if changed_draft:
             _review.save_draft(project, draft)

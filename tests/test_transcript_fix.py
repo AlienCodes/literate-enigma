@@ -825,6 +825,60 @@ def test_result_message_wording():
     assert "没有需要改的地方" in WebUI._textfix_md({"checked": 2, "adopted": {}})
 
 
+@need_both
+def test_typos_in_an_uploaded_script_never_overwrite_correct_text(tmp_path):
+    """第四轮找 bug：老师上传自己用拼音输入法打的讲稿（或者别的识别软件的文字），里面有同音错字（过去试、主雨、同位于、度、在）。
+    校对表里本来对的字被直接改成了这些错字，还写「已按标准库改好」；标准库的术语（过去式、宾语）也被改坏。
+    现在：只对上上传文字（没修缮过）的单个字不直接改，读音很像的只给没把握的建议；把关的标准库只用程序自带的母本。"""
+    rows = ["这个句子的谓语动词是过去式，所以我们要注意时态的变化。", "好，我们一起来读一下这个句子，注意它的语调和停顿。",
+            "我们再来看一个同位语从句的例子，它和定语从句不一样。", "这个动名词在句子里面作主语，后面的动词要用单数。",
+            "我们来看一下宾语从句，它在句子里面作宾语。"]
+    typed = ["这个句子的谓语动词是过去试，所以我们要注意时态的变化。", "好，我们一起来度一下这个句子，注意它的语调和停顿。",
+             "我们在来看一个同位于从句的例子，它和定语从句不一样。", "这个动名词在句子里面作主雨，后面的动词要用单数。",
+             "我们来看一下彬鱼从句，它在句子里面作宾语。"]
+    cfg, project = _voice(tmp_path, rows)
+    up = tmp_path / "讲稿.txt"
+    up.write_text("\n".join(typed) + "\n", encoding="utf-8")
+    res = wf.run_transcript_fix(cfg, "校正声音", once=True, files=[str(up)])
+    assert res["fixes"] == 0 and res["adopted"]["changes"] == 0 and review.load_draft(project) == {}
+    rec, cur = _cur(project, "c001")
+    info = review.analyze(rec, cur)
+    assert cur == rows[1] and info["edits"] == [(7, 8, "度")] and not info["sure"]  # 只是没把握的建议，老师听录音决定
+    assert any("你上传的母本" in r for r in info["reasons"])
+
+
+@need_both
+def test_correct_uploaded_script_still_fixes_recognition_errors(tmp_path):
+    """上传的讲稿是对的：英文被写成汉字（威驰 → which）照样直接改；读音很像的单个字给建议（老师点「采用」就改好）。"""
+    rows = ["我们先来复习一下关系代词威驰的用法，它可以指物。", "好，我们一起来度一下这个句子，注意它的语调和停顿。"]
+    script = ["我们先来复习一下关系代词which的用法，它可以指物。", "好，我们一起来读一下这个句子，注意它的语调和停顿。"]
+    cfg, project = _voice(tmp_path, rows)
+    up = tmp_path / "讲稿.txt"
+    up.write_text("\n".join(script) + "\n", encoding="utf-8")
+    wf.run_transcript_fix(cfg, "校正声音", once=True, files=[str(up)])
+    assert _cur(project, "c000")[1] == script[0]
+    rec, cur = _cur(project, "c001")
+    assert cur == rows[1] and review.analyze(rec, cur)["edits"] == [(7, 8, "读")]
+    review.adopt_suggestion(project, "c001")
+    assert _cur(project, "c001")[1] == script[1]
+
+
+@need_both
+def test_result_examples_keep_whole_words(tmp_path):
+    """第四轮找 bug：结果里的「例如：」按改动的那几个字说，英文被切开（「Caesa → 's scisso」）、汉字没有前后文（「到 → 道」）。"""
+    pytest.importorskip("gradio")
+    from voicetwin.webui.app import WebUI
+
+    ids = ["0006_9498bb_0031", "0006_9498bb_0037", "0006_9498bb_0043", "0006_9498bb_0072", "0006_9498bb_0104",
+           "0007_d8ade5_0073"]
+    rows = {r["id"]: r["text"] for r in csv.DictReader(open(MOTHER_DIR / "母本_原文.csv", encoding="utf-8-sig"))}
+    cfg, project = _voice(tmp_path, [rows[i] for i in ids], ids=ids)
+    res = wf.run_transcript_fix(cfg, "校正声音", once=True)
+    line = [ln for ln in WebUI._textfix_md(res).splitlines() if ln.startswith("例如")][0]
+    assert "Tony Caesars → Tony's scissors" in line and "报到 → 报道" in line and "原形 → 原型" in line, line
+    assert "Caesa →" not in line and "；到 → 道" not in line and "例如：到 → 道" not in line
+
+
 # ---------------------------------------------------------------------------- 第三次独立检查发现的问题（每个都有一个测试）
 @need_both
 @pytest.mark.parametrize("text", ["这里借词主剧都要记一下", "它是关系带词艾子的用法", "看一下借词主剧的意思",

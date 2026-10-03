@@ -1022,8 +1022,9 @@ def adopt_all_suggestions(project: Any, only: Optional[Iterable[str]] = None) ->
                 no_sug += 1  # 还有标红、没有建议的地方
             if not todo or not new or new == vals["text"]:
                 continue
-            if len(examples) < 6:
-                examples.append(describe_edits(vals["text"], todo, limit=1))
+            for it in _change_items(vals["text"], new):  # 按整句比：英文整个单词、汉字带上所在的词（不说「借 → 介」）
+                if len(examples) < 6:
+                    examples.append(it)
             nv = dict(vals, text=new, lang=lang_after_edit(vals["text"], vals["lang"], new))
             if nv == saved_values(rec):
                 draft.pop(rid, None)
