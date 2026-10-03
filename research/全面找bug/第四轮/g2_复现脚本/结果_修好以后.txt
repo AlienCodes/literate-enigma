@@ -1,0 +1,86 @@
+===== r_punct.py
+SAME '那么这个句子……我们先放一放。' -> '那么这个句子……我们先放一放。' | twice ok
+SAME '我们先放一放！！然后看下一个？！' -> '我们先放一放！！然后看下一个？！' | twice ok
+SAME '这个句子（定语从句），我们先放一放。' -> '这个句子（定语从句），我们先放一放。' | twice ok
+SAME '他说“先放一放”，然后看下一个。' -> '他说“先放一放”，然后看下一个。' | twice ok
+SAME '你知道吗？？' -> '你知道吗？？' | twice ok
+SAME '等一下…' -> '等一下…' | twice ok
+SAME '《语法》，很好。' -> '《语法》，很好。' | twice ok
+DIFF '好的...' -> '好的……' | twice ok
+DIFF '那个...嗯' -> '那个……嗯' | twice ok
+SAME 'Hello...world' -> 'Hello...world' | twice ok
+SAME '温度是3.5度。' -> '温度是3.5度。' | twice ok
+SAME '版本1.2.3里' -> '版本1.2.3里' | twice ok
+DIFF '今天 我们 学习,好吗?' -> '今天我们学习，好吗？' | twice ok
+SAME 'We call f(x) here.' -> 'We call f(x) here.' | twice ok
+DIFF 'which, 我们' -> 'which,我们' | twice ok
+DIFF '这是函数(function)的定义' -> '这是函数（function）的定义' | twice ok
+DIFF 'f(x), 然后' -> 'f(x),然后' | twice ok
+===== r_numrepeat.py
+'那么第一种情况第二种情况我们分别来看' []
+'三月三号三月四号我们考试' []
+'第一个例句第二个例句都是定语从句' []
+'第一个空第二个空第三个空都填介词' []
+'第一种情况第一种情况我们分别来看' [('第一种情况', '「第一种情况」连着重复了 2 遍', 0.6)]
+'我们来看一下我们来看一下' [('我们来看一下', '「我们来看一下」连着重复了 2 遍', 0.6)]
+'第一题第二题' []
+'第三种用法，第四种用法' []
+'三三三' []
+'第一第一第一' []
+===== r_repeat_en.py
+'I have a sister who is a doctor.' red: [] active: False | fresh: None
+'翻译成英文就是I have a sister who is a doctor。' red: [] active: False | fresh: None
+'we need the the answer here' red: [] active: False | fresh: None
+'we need the answer here' red: [] active: False | fresh: None
+'定语从句很重要' red: [] active: False | fresh: None
+'I have a brother I have a sister who is a doctor.' red: [] active: False | fresh: None
+===== r_reasons.py
+rejected first: ['另一个识别引擎听到的是「黄」', '另一个识别引擎听到的是「早」'] [(2, 3, '黄'), (10, 11, '早')]
+  rejected file: {'c000': [['王', '黄'], ['好', '早']]}
+  after 🔍: 今天王芳同学回答得很好 red: ['好'] edits: [(10, 11, '早')] reasons: ['另一个识别引擎听到的是「早」']
+typed first: ['另一个识别引擎听到的是「黄」', '另一个识别引擎听到的是「早」'] [(2, 3, '黄'), (10, 11, '早')]
+  after 🔍: 今天汪芳同学回答得很好 red: ['好'] edits: [(10, 11, '早')] reasons: ['另一个识别引擎听到的是「早」']
+===== r_stop.py
+full 1st 🔍: (['最'], [(1, 2, '很')])
+  after one-click: ([], []) grey: True
+  2nd 🔍: finished -> ([], []) grey: True
+stop_loop 1st 🔍: (['最'], [(1, 2, '很')])
+  after one-click: ([], []) grey: True
+  2nd 🔍: stopped: 已按你的要求停止 -> ([], []) grey: True
+stop_merge 1st 🔍: (['最'], [(1, 2, '很')])
+  after one-click: ([], []) grey: True
+  2nd 🔍: stopped: 已按你的要求停止 -> ([], []) grey: True
+===== r_examples.py
+raw examples: ['报到 → 报道', '一声 → 医生', '一声 → 医生', '一种 → 句中', "Tony Caesars → Tony's scissors", '原形 → 原型', '原形 → 原型', '借词 → 介词'] []
+["例如：报到 → 报道；一声 → 医生；一种 → 句中；Tony Caesars → Tony's scissors；原形 → 原型"]
+  报到 → 报道
+  一声 → 医生（2 处）
+  一种 → 句中
+  Tony Caesars → Tony's scissors
+  原形 → 原型（2 处）
+  借词 → 介词
+===== r_upload_typo.py
+no upload fixes: 0 adopted: 0 examples: []
+upload fixes: 0 adopted: 0 examples: []
+  flagged 好，我们一起来读一下这个句子，注意它的语调和停顿。 ['读'] [(7, 8, '度')] ['没把握（请听录音）：「读」读音和你上传的母本里的「度」很像，可能是识别错了']
+===== r_guard.py
+new fixes 0 []
+   same    这个句子的谓语动词是过去式，所以我们要注意时态的变化。 
+   same    我们来看一下宾语从句，它在句子里面作宾语。 
+   same    接下来我们讲一讲非谓语动词的用法，这个很重要。 
+   same    这里要用一般过去时，因为是昨天发生的事情。 
+===== r_perf.py
+9 份 1.37 MB：没存（2.9 秒）：母本没有存上：这次上传的文字一共 404316 个字 / 词（和校对表一模一样的句子不算），最多只能用 358091 个
+7 份 1.07 MB：存好 3.8 秒，chars 314468 / room 358091
+transcript_info 第 1 次 0.01 秒
+transcript_info 第 2 次 0.01 秒
+transcript_info 第 3 次 0.01 秒
+===== teacher5.py
+不上传: 改对 123/123，多改 0 句 []，剩下标红 0 句，用时 6.8 秒
+修缮前 csv: 改对 123/123，多改 0 句 []，剩下标红 0 句，用时 6.0 秒
+修缮后 csv: 改对 123/123，多改 0 句 []，剩下标红 0 句，用时 6.0 秒
+GBK csv: 改对 123/123，多改 0 句 []，剩下标红 0 句，用时 6.2 秒
+修缮前 txt: 改对 123/123，多改 0 句 []，剩下标红 0 句，用时 5.8 秒
+修缮后 txt: 改对 123/123，多改 0 句 []，剩下标红 1 句，用时 6.2 秒
+===== cmp_corpus.py
+texts 3021 diff 0
