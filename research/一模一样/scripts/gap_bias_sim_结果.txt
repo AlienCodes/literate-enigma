@@ -1,0 +1,10 @@
+PART 1 (profile side, simulated lecture, true gap median 0.45 s)
+  true gaps: n=600 median=0.418 p25=0.314 p75=0.552
+  clip gap_after (what build_profile uses): n=273 median=0.550 p25=0.430 p75=0.660
+  gaps hidden inside clips (inner_gaps): n=248 median=0.420
+  every gap re-measured on the source with the slicer's detector: n=599 median=0.440
+PART 2 (generation side): requested pause vs silence measured with the slicer's detector
+  requested 0.25 s -> measured gap 0.280 s (exact-zero run 0.250 s)
+  requested 0.45 s -> measured gap 0.480 s (exact-zero run 0.450 s)
+  requested 0.70 s -> measured gap 0.730 s (exact-zero run 0.700 s)
+  requested 1.10 s -> measured gap 1.130 s (exact-zero run 1.100 s)
