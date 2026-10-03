@@ -457,8 +457,61 @@ def apply_edits(text: str, edits: Sequence[Edit]) -> str:
     return clean_transcript(out)
 
 
-def describe_change(old: str, new: str, limit: int = 3) -> str:
-    """两句话哪里不一样（给老师看）：「像主语 → 了；补上「那个」」。按单位比（一个英文单词、一个汉字算一个），
+_CJK_CHAR = re.compile(r"[\u4e00-\u9fff]")
+
+
+def _fmt_items(items: Sequence[str], limit: int) -> str:
+    """一样的改法合在一起说：「借词 → 介词（2 处）」；超过 limit 种时写「还有 N 处」。"""
+    order: List[str] = []
+    counts: Dict[str, int] = {}
+    for it in items:
+        if it not in counts:
+            order.append(it)
+        counts[it] = counts.get(it, 0) + 1
+    parts = [x + (f"（{counts[x]} 处）" if counts[x] > 1 else "") for x in order[:limit]]
+    if len(order) > limit:
+        parts.append(f"还有 {sum(counts[x] for x in order[limit:])} 处")
+    return "；".join(parts)
+
+
+def _word_context(old: str, a0: int, a1: int, new: str, b0: int, b1: int) -> Tuple[str, str]:
+    """一个汉字换成另一个汉字时，带上它所在的词一起说（「借 → 介」说成「借词 → 介词」），老师一眼看出是哪个词。
+    按改好的那句（new）分词；没有 jieba 时带上后面（没有就前面）一个汉字。两边的上下文对不上时原样返回。"""
+    a, b = old[a0:a1], new[b0:b1]
+    if not (len(a) == len(b) == 1 and _CJK_CHAR.fullmatch(a) and _CJK_CHAR.fullmatch(b)):
+        return a, b
+    try:
+        from voicetwin.data.lexicon_fix import word_bounds
+
+        bounds = word_bounds(new)
+    except Exception:  # noqa: BLE001 - 分词出问题就不带上下文
+        bounds = None
+    left = right = ""
+    if bounds is not None:
+        ws = max((x for x in bounds if x <= b0), default=b0)
+        we = min((x for x in bounds if x >= b1), default=b1)
+        if we - ws <= 4:  # 太长的「词」（分词出错）不用
+            left, right = new[ws:b0], new[b1:we]
+    elif b1 < len(new) and _CJK_CHAR.fullmatch(new[b1]):
+        right = new[b1]
+    elif b0 > 0 and _CJK_CHAR.fullmatch(new[b0 - 1]):
+        left = new[b0 - 1]
+    if old[max(0, a0 - len(left)):a0] != left or old[a1:a1 + len(right)] != right:
+        return a, b
+    return left + a + right, left + b + right
+
+
+def _item(a: str, b: str) -> str:
+    a, b = a.strip(), b.strip()
+    if a and b:
+        return f"{a} → {b}"
+    if a:
+        return f"删掉「{a}」"
+    return f"补上「{b}」" if b else ""
+
+
+def _change_items(old: str, new: str) -> List[str]:
+    """两句话的每一处不一样（一样的改法出现几次就有几条）。按单位比（一个英文单词、一个汉字算一个），
     不会把「像主语、宾语 → 了、宾语」说成「像主 → 了、宾」。"""
     ua = [(m.start(), m.end(), m.group()) for m in _UNIT.finditer(old)]
     ub = [(m.start(), m.end(), m.group()) for m in _UNIT.finditer(new)]
@@ -467,18 +520,19 @@ def describe_change(old: str, new: str, limit: int = 3) -> str:
                                                        autojunk=False).get_opcodes():
         if tag == "equal":
             continue
-        a = old[ua[i1][0]:ua[i2 - 1][1]] if i2 > i1 else ""
-        b = new[ub[j1][0]:ub[j2 - 1][1]] if j2 > j1 else ""
-        if a and b:
-            items.append(f"{a} → {b}")
-        elif a:
-            items.append(f"删掉「{a}」")
-        elif b:
-            items.append(f"补上「{b}」")
-    parts = items[:limit]
-    if len(items) > limit:
-        parts.append(f"还有 {len(items) - limit} 处")
-    return "；".join(parts)
+        a0, a1 = (ua[i1][0], ua[i2 - 1][1]) if i2 > i1 else (0, 0)
+        b0, b1 = (ub[j1][0], ub[j2 - 1][1]) if j2 > j1 else (0, 0)
+        a, b = (_word_context(old, a0, a1, new, b0, b1) if i2 > i1 and j2 > j1
+                else (old[a0:a1], new[b0:b1]))
+        item = _item(a, b)
+        if item:
+            items.append(item)
+    return items
+
+
+def describe_change(old: str, new: str, limit: int = 3) -> str:
+    """两句话哪里不一样（给老师看）：「像主语 → 了；补上「那个」」；一样的改法合在一起：「借词 → 介词（2 处）」。"""
+    return _fmt_items(_change_items(old, new), limit)
 
 
 def describe_states(rec: Dict[str, Any], a: str, b: str, limit: int = 3) -> str:
@@ -496,11 +550,8 @@ def describe_states(rec: Dict[str, Any], a: str, b: str, limit: int = 3) -> str:
     path = seq[i:j + 1] if i < j else seq[j:i + 1]
     items: List[str] = []
     for x, y in zip(path, path[1:]):
-        d = describe_change(x, y, limit=99)
-        items += [t for t in d.split("；") if t and t not in items]
-    if len(items) > limit:
-        items = items[:limit] + [f"还有 {len(items) - limit} 处"]
-    return "；".join(items)
+        items += _change_items(x, y)
+    return _fmt_items(items, limit)
 
 
 def describe_adopted(text: str, undo: Sequence[Edit], limit: int = 3) -> str:
@@ -509,28 +560,34 @@ def describe_adopted(text: str, undo: Sequence[Edit], limit: int = 3) -> str:
 
 
 def describe_edits(text: str, edits: Sequence[Edit], limit: int = 3, flip: bool = False) -> str:
-    """建议改哪里（给老师看的一句话）：「艾子 → as；删掉「的」；补上「了」」。flip：edits 是"改回去"的（已采用的建议）。"""
-    items: List[str] = []
-    counts: Dict[str, int] = {}
-    for s, e, rep in edits:
-        old_s, rep_s = text[s:e].strip(), rep.strip()
-        if flip:
-            old_s, rep_s = rep_s, old_s
-        if old_s and rep_s:
-            item = f"{old_s} → {rep_s}"
-        elif old_s:
-            item = f"删掉「{old_s}」"
-        elif rep_s:
-            item = f"补上「{rep_s}」"
-        else:
+    """建议改哪里（给老师看的一句话）：「艾子 → as；删掉「的」；补上「了」」；一样的改法合在一起（2 处）。
+    flip：edits 是"改回去"的（已采用的建议）。"""
+    good = sorted((e for e in edits if 0 <= e[0] <= e[1] <= len(text)), key=lambda x: (x[0], x[1]))
+    other, spans, pos, shift = [], [], 0, 0  # 改完以后的整句，和每一处在改完的句子里的位置
+    for s, e, rep in good:
+        if s < pos:  # 和前一处重叠：跳过（apply_edits 也跳过）
+            spans.append(None)
             continue
-        if item not in counts:
+        other.append(text[pos:s])
+        shift += len(text[pos:s])
+        spans.append((shift, shift + len(rep)))
+        other.append(rep)
+        shift += len(rep)
+        pos = e
+    other.append(text[pos:])
+    after = "".join(other)
+    items: List[str] = []
+    for (s, e, rep), sp in zip(good, spans):
+        if sp is None:
+            continue
+        if flip:  # text 是改好的，after 是改回去的（原来错的）：说成「原来的 → 改好的」
+            a, b = _word_context(after, sp[0], sp[1], text, s, e)
+        else:
+            a, b = _word_context(text, s, e, after, sp[0], sp[1])
+        item = _item(a, b)
+        if item:
             items.append(item)
-        counts[item] = counts.get(item, 0) + 1
-    parts = [x + (f"（{counts[x]} 处）" if counts[x] > 1 else "") for x in items[:limit]]
-    if len(items) > limit:
-        parts.append(f"还有 {sum(counts[x] for x in items[limit:])} 处")
-    return "；".join(parts)
+    return _fmt_items(items, limit)
 
 
 # ============================================================================ 老师撤销过的改法（不再自动改回来）

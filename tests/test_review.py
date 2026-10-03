@@ -258,3 +258,23 @@ def test_prepare_again_finishes_missing_text(tmp_path, lecture_dir, monkeypatch)
     assert by_id[recs[0]["id"]]["deleted"] and by_id[recs[0]["id"]]["keep"] is False  # 删除的还是删除
     c = R.material_counts(after)
     assert c["deleted"] == 1 and c["no_text"] == 0 and c["material"] >= 1
+
+
+def test_describe_merges_same_change_and_shows_the_word():
+    """10-03 截图发现：一句里两处「借词」的建议写成「借 → 介；借 → 介」（只差一个字时只写那个字、同样的改法重复写）
+    → 带上所在的词、一样的合在一起：「借词 → 介词（2 处）」。有没有 jieba 都一样（没有时带上后面一个汉字）。"""
+    t = "在这个句子中，which前面的借词是in，借词加上关系代词就可以引导一个定语从句。"
+    alt = t.replace("借词", "介词")
+    s1, s2 = t.index("借词"), t.rindex("借词")
+    rec = {"id": "a", "text": t, "lang": "zh", "keep": True,
+           "suspect": {"spans": [[s1, s1 + 2], [s2, s2 + 2]], "alt": alt, "reasons": ["r"], "score": 0.75}}
+    assert R.describe_change(t, alt) == "借词 → 介词（2 处）"
+    assert R.describe_states(rec, t, alt) == "借词 → 介词（2 处）"
+    info = R.analyze(rec, t)
+    assert R.describe_edits(t, info["edits"]) == "借词 → 介词（2 处）"
+    done = R.analyze(rec, alt)  # 采用以后：「已采用」那里也一样
+    assert done["adopted"] and R.describe_adopted(alt, done["undo"]) == "借词 → 介词（2 处）"
+    # 不同的改法照样分开写（带上所在的词：「了 → 过」说成「去了 → 去过」）；超过 limit 种写「还有」
+    two = R.describe_change("他去了学校", "她去过学校").split("；")
+    assert len(two) == 2 and "她" in two[0] and "过" in two[1] and "处）" not in "".join(two)
+    assert R.describe_change("cat x dog x pig x cow", "bat x log x big x how", limit=2) == "cat → bat；dog → log；还有 2 处"
