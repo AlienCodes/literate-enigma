@@ -494,6 +494,9 @@ class Narrator:
         self._search: Any = None
         self._para_first: Optional[set] = None
         self._judge_device_done = False
+        #: 不能拿来当参考的录音（片段 id）：盲听测试里当「真人」播放的那几段（「一模一样」从参考录音库挑参考，
+        #: 只改 self.refs 管不到库；见 _load_identical）
+        self.exclude_refs: set = set()
         sim_cfg = dict(cfg.get("similarity", {}) or {})
         self.min_pct = float(sim_cfg.get("min_pct", 85) or 85)
         self.filter_mode = str(sim_cfg.get("filter", "auto") or "auto").lower()
@@ -744,14 +747,19 @@ class Narrator:
         except Exception as exc:  # noqa: BLE001
             log.warning(f"参考录音库这次没整理好（{exc}），用以前挑好的参考录音")
         by_id = {str(r.get("id")): r for r in records}
+        # 不能当参考的录音（盲听测试的「真人」录音）不进挑参考的范围；指纹按剩下的录音算，缓存键跟着变
+        # （以前用它们当参考生成好的不能拿来用）
+        skip = {str(x) for x in (self.exclude_refs or ())}
         pool = []
         for e in S.pool_from_bank(bank):  # 库里现在还能用的录音（片段还在、还用来训练、文字没改过）
             r = by_id.get(str(e["id"]))
-            if r is not None and bank_eligible(r) and str(r.get("text") or "").strip() == e["text"]:
+            if (r is not None and str(e["id"]) not in skip and bank_eligible(r)
+                    and str(r.get("text") or "").strip() == e["text"]):
                 pool.append(e)
         bank_sig = bank_signature(pool) if pool else ""
         if not pool:
-            pool = S.pool_from_refs(self.refs)
+            # 全都不能用时照旧用 references.json（和 build_blind_test 里 refs 的兜底一样）
+            pool = S.pool_from_refs([r for r in self.refs if str(r.get("id")) not in skip] or self.refs)
             bank_sig = S.pool_signature(pool)
         block: Dict[str, Any] = {}
         try:
@@ -1041,8 +1049,9 @@ class Narrator:
         res = self._finish_segment(seg, plan, best, out.cands, out.tries, out.met, extra=extra,
                                    wav=trim_edges(best.wav, best.sr), ref_id=best.arm.ref_id, cached=cached)
         k = max(1, int(self.preset.get("store_top_k", 6) or 6))
-        store_candidates(store_dir(self.project.cache_dir, plan.pool_key), out.cands, k, judge_sig=self._judge_sig(),
-                         extra={"tries": out.tries, "text": seg.text})
+        # 挑出来的那个一定留下（排第一）：只留前 k 个时，差不多一样高按时长、音调挑出来的那个按综合分可能排不进去
+        store_candidates(store_dir(self.project.cache_dir, plan.pool_key), out.keep or out.cands, k,
+                         judge_sig=self._judge_sig(), extra={"tries": out.tries, "text": seg.text})
         return res
 
     def _rescore_cached(self, meta: Dict[str, Any], wav: np.ndarray, sr: int, plan: _Plan) -> Dict[str, Any]:
@@ -1217,7 +1226,12 @@ class Narrator:
             res = self._rerank(seg, plan)
             if res is not None:
                 return res
-        self._ensure_started()
+        if not self._started:
+            # 整篇开始时以为这句只要从留下的版本里重新挑（没启动合成引擎），结果留下的版本读不了：这时才启动。
+            # 和整篇开始时一样的顺序：识别模型先加载好，再看空闲显存够不够把声纹模型放到显卡上
+            self._ensure_started()
+            self._warm_up([seg])
+            self._judge_device()
         out = self._search_obj().run(seg, plan, force)
         return self._finish_identical(seg, plan, out, cached=False)
 
@@ -1325,7 +1339,10 @@ class Narrator:
                                 if k == 0 or segments[k - 1].paragraph != s.paragraph}
             self._identical = self._load_identical(report=True)
         plans = [self._plan(s) for s in segments]
-        need_engine = any(i in redo_set or not p.cached for i, p in enumerate(plans))
+        # 不用合成引擎的句子：已经生成过的；「一模一样」只是排序权重变了（缓存键变了）、同样设置留下的版本还在的
+        # （按新权重从留下的版本里重新挑，只用处理器）。都不用时不启动合成引擎（真的引擎启动要占显卡、几十秒）
+        ready = [i not in redo_set and (p.cached or (identical and self._has_stored(p))) for i, p in enumerate(plans)]
+        need_engine = not all(ready)
         if need_engine and not self._started:
             # 「一模一样」的进度和阶段表对齐（0.02 准备、0.08 逐句生成）；盲听测试等别的地方用时不超过开始生成的位置
             self._ensure_started(min(0.06, lo) if identical else 0.0)
@@ -1335,7 +1352,7 @@ class Narrator:
                 self._judge_device()
         self._progress(lo, f"开始生成，共 {n} 句（{self._desc()}）")
         results: List[SegmentResult] = []
-        todo = [i for i, p in enumerate(plans) if i in redo_set or not p.cached]
+        todo = [i for i, ok in enumerate(ready) if not ok]  # 真要生成的（估算还要多久只算这些）
         fresh_s: List[float] = []
         for i, seg in enumerate(segments):
             _check_cancel()
@@ -1357,6 +1374,12 @@ class Narrator:
                 self.warnings.append(f"第 {i + 1} 句：{res.hint}")
         return results
 
+    def _has_stored(self, plan: _Plan) -> bool:
+        """「一模一样」这句话同样的设置（缓存键去掉排序权重的版本）有没有留下来的版本。"""
+        from voicetwin.synth.search import has_stored, store_dir
+
+        return bool(plan.pool_key) and has_stored(store_dir(self.project.cache_dir, plan.pool_key))
+
     def _eta(self, fresh_s: List[float], left: int, frac: float) -> None:
         """「一模一样」：新生成满 3 句以后，按实测的每句用时估算还要多久（之后每 5 句更新一次）。"""
         k = len(fresh_s)
@@ -1374,7 +1397,7 @@ class Narrator:
         if getattr(self, "_judge_device_done", False):
             return
         self._judge_device_done = True
-        judge = self._judge
+        judge = self.judge  # 用到时才建打分器（整篇开始时没启动引擎、到这一句才启动时，打分器可能还没建）
         if judge is None or not getattr(judge, "precise", False):
             return
         from voicetwin.data.references import bank_wav

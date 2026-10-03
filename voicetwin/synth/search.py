@@ -298,6 +298,7 @@ class SearchCand:
     refine_of: Optional["SearchCand"] = None
     model: str = ""
     embs: Dict[str, np.ndarray] = field(default_factory=dict)
+    speech_sec: Optional[float] = None  # 人声几秒（没舍入；和声纹一起存，重新打分时短句子的标准不变）
 
     @property
     def round(self) -> int:
@@ -311,11 +312,12 @@ class SearchCand:
 @dataclass
 class Outcome:
     best: SearchCand
-    cands: List[SearchCand]          # 完整打过分的版本（这次的 + 以前存下的）
+    cands: List[SearchCand]          # 完整打过分的版本（这次的 + 以前存下的），按档次和综合分排
     tries: int                       # 这次新试了几个版本（不算语速微调）
     met: bool
     arms: List[Dict[str, Any]]
     stats: Dict[str, Any]
+    keep: List[SearchCand] = field(default_factory=list)  # 要留下来的顺序（挑出来的那个第一，见 keep_order）
 
 
 @dataclass
@@ -450,8 +452,9 @@ def store_dir(cache_dir: Path, pool_key: str) -> Path:
 
 def store_candidates(folder: Path, cands: Sequence[SearchCand], k: int = 6, judge_sig: str = "",
                      extra: Optional[Dict[str, Any]] = None) -> int:
-    """把排在最前面的 k 个版本存下来：c{i}.flac（引擎原样的声音，无损）+ cands.json（分数、组合、种子、第几行、模型）
-    + cands.npz（每个声纹模型的声纹）。先写到临时文件夹再换上去；存不了不影响生成（返回存了几个）。"""
+    """把排在最前面的 k 个版本存下来：c{i}.flac（引擎原样的声音，无损）+ cands.json（分数、组合、种子、第几行、模型、
+    人声几秒）+ cands.npz（每个声纹模型的声纹）。cands 的顺序就是存的顺序（挑出来的那个排第一，见 IdenticalSearch.keep_order）。
+    先写到临时文件夹再换上去；存不了不影响生成（返回存了几个）。"""
     from voicetwin.utils.audio import save_audio
 
     folder = Path(folder)
@@ -471,7 +474,8 @@ def store_candidates(folder: Path, cands: Sequence[SearchCand], k: int = 6, judg
             items.append({"file": name, "sr": int(c.sr), "seed": int(c.seed), "req_seed": int(c.req_seed),
                           "row": int(c.row), "req_no": int(c.req_no), "req_n": int(c.req_n), "speed": float(c.speed),
                           "mode": c.mode, "arm": c.arm.to_dict(), "score": c.score.to_dict(), "model": c.model,
-                          "refined": bool(c.refined), "judge_sig": judge_sig, "embs": sorted(c.embs or {})})
+                          "refined": bool(c.refined), "judge_sig": judge_sig, "embs": sorted(c.embs or {}),
+                          "speech_sec": c.speech_sec})
         if embs:
             np.savez(tmp / STORE_EMB, **embs)
         (tmp / STORE_FILE).write_text(json.dumps({"version": STORE_VERSION, "items": items, **(extra or {})},
@@ -484,6 +488,16 @@ def store_candidates(folder: Path, cands: Sequence[SearchCand], k: int = 6, judg
         log.debug(f"留下的版本存不了：{exc}")
         shutil.rmtree(tmp, ignore_errors=True)
         return 0
+
+
+def has_stored(folder: Path) -> bool:
+    """这句话有没有留下来的版本（只看 cands.json，不读声音：整篇开始前每句都要查，要快）。
+    声音读不了的，到时候重新排不成，再启动合成引擎重新生成。"""
+    try:
+        data = json.loads((Path(folder) / STORE_FILE).read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return False
+    return isinstance(data, dict) and data.get("version") == STORE_VERSION and bool(data.get("items"))
 
 
 def store_info(folder: Path) -> Dict[str, Any]:
@@ -577,19 +591,38 @@ class IdenticalSearch:
         fn = getattr(self.scorer, "non_timbre", None)
         return float(fn(c.score)) if callable(fn) else c.total
 
+    def _pick_pool(self, cands: Sequence[SearchCand]) -> Tuple[List[SearchCand], Dict[int, Tuple[bool, bool, float]]]:
+        """pick() 从哪些里挑：几乎没声音的不要；不够像（< 85%，有可靠声纹打分时）的不要（都不够像时照样比）。"""
+        full = [c for c in cands if c.score is not None]
+        alive = [c for c in full if "几乎没有声音" not in c.score.issues] or full
+        pool = [c for c in alive if self.n._pct_ok(c)] or alive
+        return pool, {id(c): self._key(c) for c in pool}
+
+    def _top(self, cands: Sequence[SearchCand]) -> Optional[SearchCand]:
+        """pick() 里定标准的那个：档次最高（读对了、达到全部标准）、综合分最高的；「差不多一样高」从它往下算。"""
+        pool, keys = self._pick_pool(cands)
+        return max(pool, key=lambda c: keys[id(c)]) if pool else None
+
     def pick(self, cands: Sequence[SearchCand]) -> Optional[SearchCand]:
         """和最后真正用的一样挑：几乎没声音的不要；不够像（< 85%，有可靠声纹打分时）的排后面；
         读对的 > 达到全部标准的 > 综合分高的；综合分差不到 0.02 时按时长、音调、读得准不准挑。"""
-        full = [c for c in cands if c.score is not None]
-        if not full:
+        pool, keys = self._pick_pool(cands)
+        if not pool:
             return None
-        alive = [c for c in full if "几乎没有声音" not in c.score.issues] or full
-        pool = [c for c in alive if self.n._pct_ok(c)] or alive
-        keys = {id(c): self._key(c) for c in pool}
         top = max(pool, key=lambda c: keys[id(c)])
         cls = keys[id(top)][:2]
         group = [c for c in pool if keys[id(c)][:2] == cls and c.total >= top.total - TIE_EPS]
         return max(group, key=lambda c: (round(self._non_timbre(c), 9), c.total))
+
+    def keep_order(self, best: SearchCand, cands: Sequence[SearchCand],
+                   left: Optional[Sequence[SearchCand]] = None) -> List[SearchCand]:
+        """要留下来的版本的顺序：挑出来的那个排第一，定「差不多一样高」标准的那个（档次最高、综合分最高的）第二，
+        其余按档次和综合分。只留前 6 个时挑出来的那个也一定在里面：分数不变时从留下来的里重新挑还是它，
+        重新生成时它也一起比。left：挑的时候实际是从哪些里挑的（去掉了去首尾以后是空的那些）。"""
+        full = [c for c in cands if c.score is not None]
+        top = self._top(left if left is not None else full)
+        head = [best] + ([top] if top is not None and top is not best else [])
+        return head + sorted((c for c in full if all(c is not h for h in head)), key=self._value, reverse=True)
 
     def _value(self, c: Optional[SearchCand]) -> float:
         if c is None:
@@ -618,7 +651,9 @@ class IdenticalSearch:
         self.last_mode, self.last_batch = "", 0
         self.batches: List[int] = []
         self.refined: List[SearchCand] = []
-        self.extra_done = False
+        self.extra_done = False                  # 第 1 轮以后要不要加组合已经定了
+        self.pending: List[Arm] = []             # 这一轮还没回来的请求的组合（完整打分给还没出场的留名额）
+        self.left: List[SearchCand] = []         # 挑出来的那个是从哪些里挑的（_best_nonempty）
         self.model = str(getattr(n.backend, "model_id", lambda: "")())
 
     def run(self, seg: Any, plan: Any, force: bool = False) -> Outcome:
@@ -656,7 +691,8 @@ class IdenticalSearch:
                  "pipeline": self.producer is not None, "stop": stop or "max",
                  "seconds": round(time.monotonic() - t0, 2), "chosen_arm": best.arm.label(plan.refs),
                  "chosen_stored": best.stored, "chosen_refined": best.refined}
-        return Outcome(best, full, len(self.cands), met, self._arm_rows(), stats)
+        return Outcome(best, full, len(self.cands), met, self._arm_rows(), stats,
+                       keep=self.keep_order(best, full, self.left))
 
     def _best_nonempty(self) -> Optional[SearchCand]:
         """挑出来的那个去掉首尾以后不能是空的（整段都是底噪）；是空的就换下一个。"""
@@ -668,6 +704,7 @@ class IdenticalSearch:
             if best is None:
                 return None
             if trim_edges(best.wav, best.sr).size > 0:
+                self.left = left
                 return best
             left = [c for c in left if c is not best]
         return None
@@ -854,21 +891,28 @@ class IdenticalSearch:
         if self.producer is not None:
             for j in jobs:
                 self.producer.submit(j)
-        for j in jobs:
-            if self._gave_up():  # 连着 2 次什么都没拿到、又一个版本都没有：后面的不再等（生成线程里排着的作废）
-                break
-            try:
-                if self.producer is not None:
-                    job, out = self.producer.get(_check_cancel)
-                else:
-                    _check_cancel()
-                    job, out = j, self._work(j)
-            except Exception as exc:  # noqa: BLE001 - 停止按钮不是 Exception，照常传出去
+        # 这一轮还没回来的请求：完整打分的名额给它们的组合留着（包括第 1 轮以后加的组合，见 _reserve）
+        self.pending = [j.arm for j in jobs]
+        try:
+            for j in jobs:
+                if self._gave_up():  # 连着 2 次什么都没拿到、又一个版本都没有：后面的不再等（生成线程里排着的作废）
+                    break
+                try:
+                    if self.producer is not None:
+                        job, out = self.producer.get(_check_cancel)
+                    else:
+                        _check_cancel()
+                        job, out = j, self._work(j)
+                except Exception as exc:  # noqa: BLE001 - 停止按钮不是 Exception，照常传出去
+                    self.requests += 1
+                    self.pending.remove(j.arm)  # 生成线程按顺序发：出错的就是这一个
+                    self._failed(exc)
+                    continue
                 self.requests += 1
-                self._failed(exc)
-                continue
-            self.requests += 1
-            got += self._absorb(job, out)
+                self.pending.remove(j.arm)
+                got += self._absorb(job, out)
+        finally:
+            self.pending = []
         return got
 
     def _failed(self, exc: BaseException) -> None:
@@ -932,9 +976,10 @@ class IdenticalSearch:
         return got
 
     def _reserve(self) -> int:
-        """完整打分的名额要给还没出场的组合留几个（每种组合最好的那个一定要完整打分）。"""
+        """完整打分的名额要给还没出场的组合留几个（每种组合最好的那个一定要完整打分）：这一轮还没回来的请求的组合
+        （第 1 轮的、第 1 轮以后加的），再加上还没决定要不要加的组合（最多 3 种）。"""
         seen = {c.arm for c in self.cands}
-        return sum(1 for a in self.plan.arms if a not in seen) + (0 if self.extra_done else EXTRA_ARMS_MAX)
+        return len({a for a in self.pending if a not in seen}) + (0 if self.extra_done else EXTRA_ARMS_MAX)
 
     def _cascade(self) -> None:
         """完整打分：每种组合最好的那个、快速分排在前 full_score_top（12）名的；每句最多 full_score_max（24）个，
@@ -972,7 +1017,8 @@ class IdenticalSearch:
         c.score.model = c.model
         if isinstance(prepared, dict):
             c.embs = {k: np.asarray(v, dtype=np.float32) for k, v in (prepared.get("embs") or {}).items()}
-            prepared["speech"] = {}  # 声纹已经算好了：人声检测的结果不用再留着
+            c.speech_sec = prepared.get("seconds")
+            prepared["speech"] = {}  # 声纹已经算好了：人声检测的结果不用再留着（人声几秒记在 prepared["seconds"]）
         if count:
             self.n_full += 1
 
@@ -1081,8 +1127,11 @@ class IdenticalSearch:
                            refined=bool(it.get("refined")), model=str(it.get("model") or ""))
             prepare = getattr(self.scorer, "prepare", None)
             prepared = prepare(wav, sr) if callable(prepare) else None
-            if isinstance(prepared, dict) and it.get("judge_sig") == sig_now and it.get("emb"):
+            if isinstance(prepared, dict) and it.get("judge_sig") == sig_now and it.get("emb") and "speech_sec" in it:
+                # 打分标准没变：声纹沿用存下来的（不再做人声检测），人声几秒也沿用当时量的（短句子的标准按它定）；
+                # 没记人声几秒的（这一版以前存的）重新做一遍人声检测
                 prepared["embs"].update(it["emb"])
+                prepared["seconds"] = it["speech_sec"]
             s = it.get("score") or {}
             cer = None
             if s.get("cer") is not None:
@@ -1093,6 +1142,8 @@ class IdenticalSearch:
             c.score.model = c.model
             if isinstance(prepared, dict):
                 c.embs = {k: np.asarray(v, dtype=np.float32) for k, v in (prepared.get("embs") or {}).items()}
+                c.speech_sec = prepared.get("seconds")
+                prepared["speech"] = {}
             out.append(c)
         return out
 
@@ -1109,4 +1160,5 @@ class IdenticalSearch:
         full = sorted(stored, key=self._value, reverse=True)
         stats = {"reranked": True, "stored_competed": len(stored), "requests": 0, "candidates": 0,
                  "chosen_arm": best.arm.label(plan.refs), "chosen_stored": True}
-        return Outcome(best, full, int(tries), bool(self.n._meets_targets(best, seg)), [], stats)
+        return Outcome(best, full, int(tries), bool(self.n._meets_targets(best, seg)), [], stats,
+                       keep=self.keep_order(best, full, self.left))

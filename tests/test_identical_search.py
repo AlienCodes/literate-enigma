@@ -7,10 +7,12 @@
 - 停下的规则（按顺序给分数）：试满至少的个数而且再试也不更好就停、一直变好就试满、不超过最多的个数、
   连着 2 次什么都没拿到就放弃；
 - 生成线程：生成和打分同时进行（总时间比两样加起来短）、点停止两个线程都停、不留临时文件、生成线程里的错在主线程原样抛出；
-- 两步打分：每种组合至少一个完整打分、每句最多 24 个；
+- 两步打分：每种组合（包括第 1 轮以后加的更稳的设置）至少一个完整打分、每句最多 24 个；
 - 「像你本人」那一项：几个模型说法不一致的分数排在后面、封顶在你自己录音的 p90、没有精准打分时和以前一样；
 - 中英文分开查错字（假的识别模型）；没有 funasr 时和以前一样；
-- 留下最好的 6 个：重新生成时最好的不会变差、标准变了时不用显卡重新排、清缓存时一起删掉；
+- 留下最好的 6 个：重新生成时最好的不会变差、标准变了时不用显卡重新排、清缓存时一起删掉；挑出来的那个一定留下；
+  重新打分时人声几秒跟声纹一起沿用（真的 SimilarityJudge：短句子的分数一个数都不差）；只是排序权重变了时整篇也不启动合成引擎；
+- 盲听测试当「真人」播放的录音不当参考（主参考、辅助参考）；
 - 缓存键：设计里列的每一项变了都变，每次同时生成几个变了不变；
 - 语速微调：真实 api_v2 上重发的请求只有 speed_factor 不一样；测试引擎上微调以后语速和目标差 3% 以内。
 """
@@ -493,6 +495,18 @@ def test_cascade_limits(tmp_path):
     # 前几次请求时快速分前 12 名都完整打了分
     first = [c for c in search.cands if c.req_no == 0]
     assert all(c.score is not None for c in first)
+    # 每个版本都读错 → 第 1 轮以后加 2 种更稳的设置：后出场的那种也要有完整打分的名额（审查发现：
+    # 以前决定加组合时就不再给它们留名额，第一种加的把 24 个用完，第二种一个都没有，读对的版本也挑不出来）
+    sc2 = FakeScorer(totals=list(np.linspace(0.0, 1.0, 64)), cer=0.5)
+    n2, _ = _narrator(tmp_path, tier="mid", scorer=sc2, use_asr=True, name="搜索2")
+    plan2 = n2._plan(seg)
+    s2 = n2._search_obj()
+    s2.run(seg, plan2)
+    arms2 = list(dict.fromkeys(c.arm for c in s2.cands))
+    assert len([a for a in arms2 if a.preset_idx == S.RESCUE]) == 2
+    for arm in arms2:
+        assert any(c.score is not None for c in s2.cands if c.arm == arm), arm.label(plan2.refs)
+    assert s2.n_full <= 24 and sc2.full_n == s2.n_full
 
 
 # ============================================================================ 「像你本人」那一项
@@ -728,6 +742,211 @@ def test_top_k_store_redo_and_rerank_without_synthesis(tmp_path):
     # 清缓存：留下来的版本一起删掉
     eng.clear_cache(n.project)
     assert not folder.exists()
+
+
+_DIM = 16
+_CEN = np.ones(_DIM, np.float32) / np.sqrt(_DIM)
+
+
+class _VadEncoder:
+    """假的精准声纹模型：和 OnnxSVEncoder 一样先做人声检测（这里是去掉静音）、再算声纹；同一段人声永远同一个声纹。"""
+    name = "eres2net-base-zh"
+    reliable = True
+    prep_key = ("speech16k", 1)
+
+    def __init__(self):
+        self.prepares = 0
+
+    def prepare(self, wav, sr):
+        from voicetwin.utils.audio import resample
+
+        self.prepares += 1
+        w = resample(np.asarray(wav, np.float32), sr, 16000)
+        return w[np.abs(w) > 1e-4]
+
+    def embed_prepared(self, speech):
+        rng = np.random.default_rng(zlib.crc32(np.asarray(speech, np.float32).tobytes()))
+        v = _CEN + 0.15 * rng.normal(size=_DIM).astype(np.float32)
+        return (v / np.linalg.norm(v)).astype(np.float32)
+
+    def embed(self, wav, sr):
+        return self.embed_prepared(self.prepare(wav, sr))
+
+
+def _vad_judge():
+    """真的 SimilarityJudge（两头校准、陌生人声纹库）；校准里有短句子的标准（g50_short：人声 1.5 秒时「100%」低一些）。"""
+    from voicetwin.eval import speaker as SP
+
+    cohort = {"emb": np.random.default_rng(0).normal(size=(50, _DIM)).astype(np.float32)}
+    calib = {"norm": "asnorm", "g10": 2.2, "g25": 2.6, "g50": 3.0, "g90": 3.6, "i0": 0.5, "sig": "x",
+             "g50_short": {"1.5": 2.0, "3": 2.5}, "full_seconds": 5.0}
+    judge = SP.SimilarityJudge([SP.JudgeMember(_VadEncoder(), _CEN, calib, cohort)])
+    assert judge.precise
+    return judge
+
+
+def test_stored_versions_keep_their_speech_seconds(tmp_path):
+    """留下来的版本重新打分时声纹沿用存下来的，人声有几秒也要一起沿用（短句子「100%」的标准按人声长短定）。
+    审查发现：以前沿用声纹就不再做人声检测、人声秒数变成「不知道」，按整句的标准算——短句子重新排名时
+    从 100% ✅ 掉到 84% 🔴，重新生成时留下来的最好版本也被算低、换成了更差的新版本。"""
+    judge = _vad_judge()
+    w = {"speaker": 2.0, "cer": 1.0, "rate": 0.4, "pitch": 0.2}
+    n, b = _narrator(tmp_path, scorer=IJ.IdenticalScorer({}, None, None, w, judge=judge))
+    n._judge = judge
+    seg = _seg("好的，我们开始。")  # 短句：人声不到 1.5 秒
+    first = n.synthesize_segment(seg)
+    assert first.score["speech_seconds"] is not None and first.score["speech_seconds"] < 1.5
+    plan = n._plan(seg)
+    items = S.load_candidates(S.store_dir(n.project.cache_dir, plan.pool_key))
+    keys = ("pct", "pct_raw", "pcts", "total", "speech_seconds")
+    saved = {(it["seed"], it["row"]): {k: it["score"].get(k) for k in keys} for it in items}
+    assert len(saved) == len(items) >= 2
+    # 按现在的标准重新排名（不生成）：每个留下的版本分数一个数都不差，而且没有再做人声检测（声纹沿用存下来的）
+    enc = judge.members[0].encoder
+    before = enc.prepares
+    again = n._search_obj().rerank(seg, plan, 0)
+    assert enc.prepares == before
+    assert {(c.seed, c.row): {k: c.score.to_dict().get(k) for k in keys} for c in again.cands} == saved
+    # 老师能看到的：只是说话习惯的指纹变了（例如改了素材里别的一句话的文字）→ 重新排名后百分比、状态、提示都不变
+    calls = len(b.calls)
+    n._identical["profile_sig"] = "twin-after-text-edit"
+    r2 = n.synthesize_segment(seg)
+    assert len(b.calls) == calls and r2.cached
+    assert (r2.pct, r2.status, r2.hint, r2.seed) == (first.pct, first.status, first.hint, first.seed)
+    assert r2.score["speech_seconds"] == first.score["speech_seconds"]
+    # 重新生成：留下来的版本和当时的分数一样，最好的不会变差
+    out = n._search_obj().run(seg, plan, force=True)
+    stored = {(c.seed, c.row): round(c.total, 4) for c in out.cands if c.stored}
+    assert stored == {k: v["total"] for k, v in saved.items()}
+    assert out.best.total >= max(stored.values()) - S.TIE_EPS
+
+
+class _TieScorer(FakeScorer):
+    """同一段声音永远同一个分数；综合分都差不到 0.02（差不多一样高）；「非音色部分」正好和综合分反过来
+    （综合分低一点的那个时长、音调更好）——挑出来的那个按综合分排在后面。"""
+
+    def _total(self, wav):
+        return 1.0 + 0.0025 * (zlib.crc32(np.asarray(wav, np.float32).tobytes()) % 8)
+
+    def non_timbre(self, s):
+        return -s.total
+
+
+def test_chosen_version_is_always_stored(tmp_path):
+    """挑出来的那个（差不多一样高时按时长、音调挑的，按综合分排不进前 6）也一定留下来：分数不变时重新排名还是它，
+    重新生成时它也一起比（审查发现：以前只留综合分前 6 个，重新排名换成了另一个版本）。"""
+    cfg = make_cfg(tmp_path / "ws", synth=_limits(min_candidates=10, max_candidates=10))
+    n, b = _narrator(tmp_path, scorer=_TieScorer(), cfg=cfg)
+    seg = _seg()
+    res = n.synthesize_segment(seg)
+    plan = n._plan(seg)
+    search = n._search_obj()
+    stored = S.load_candidates(S.store_dir(n.project.cache_dir, plan.pool_key))
+    ranked = sorted(search.pool, key=search._value, reverse=True)
+    assert res.tries == 10 and len(stored) == 6
+    assert [c.seed for c in ranked].index(res.seed) >= 6  # 按综合分排不进前 6（不然测不出来）
+    assert stored[0]["seed"] == res.seed and len({it["seed"] for it in stored}) == 6
+    # 只是说话习惯的指纹变了（每个版本的分数完全一样）：重新排名还是同一个版本
+    calls = len(b.calls)
+    n._scorer = _TieScorer()
+    n._identical["profile_sig"] = "twin-b"
+    r2 = n.synthesize_segment(seg)
+    assert len(b.calls) == calls and r2.cached and r2.seed == res.seed
+    # 重新生成：它也一起比
+    n._scorer = _TieScorer()
+    out = n._search_obj().run(seg, plan, force=True)
+    assert res.seed in {c.seed for c in out.cands if c.stored}
+
+
+class _CountingBackend(FakeBackend):
+    def __init__(self, **kw):
+        super().__init__(**kw)
+        self.starts = 0
+
+    def start(self):
+        self.starts += 1
+
+
+def test_weights_change_reranks_without_starting_the_engine(tmp_path):
+    """只是排序权重变了（缓存键跟着变）：留下的版本都在、一个请求都不用发，整篇生成时也不启动合成引擎
+    （真的 GPT-SoVITS 启动要占显卡、几十秒）。留下的版本读不了时才启动、重新生成这一句。"""
+    n1, b1 = _narrator(tmp_path, backend=_CountingBackend())
+    n1._started = False
+    seg = _seg()
+    n1.synthesize_all([seg])
+    assert b1.starts == 1 and b1.calls
+
+    def again(version):
+        models = n1.project.load_models()
+        models.setdefault(b1.name, {})["identical"] = {"weights_version": version, "weights": {}}
+        n1.project.models_path.write_text(json.dumps(models), encoding="utf-8")
+        b = _CountingBackend()
+        nn = eng.Narrator(n1.cfg, n1.project, b, quality="identical", tier="none")
+        nn._scorer, nn._judge, nn.use_asr = FakeScorer(), None, False
+        rec = []
+        nn.progress = lambda f, m: rec.append(m)
+        return b, nn.synthesize_all([seg]), rec
+
+    b2, r2, rec2 = again("w2")
+    assert (b2.starts, len(b2.calls), r2[0].cached) == (0, 0, True)
+    assert not any("启动合成引擎" in m for m in rec2)
+    # 留下的版本读不了（声音文件坏了）：这时才启动合成引擎、重新生成
+    folder = S.store_dir(n1.project.cache_dir, n1._plan(seg).pool_key)
+    for f in folder.glob("*.flac"):
+        f.write_bytes(b"broken")
+    b3, r3, _ = again("w3")
+    assert b3.starts == 1 and b3.calls and not r3[0].cached
+
+
+def test_blind_test_never_uses_its_real_clips_as_references(prepared, tmp_path, monkeypatch):
+    """盲听测试当「真人」播放的录音，不能拿来当生成那一段的参考（主参考、辅助参考都不行）：「一模一样」从参考录音库
+    挑参考，以前只从 references.json 里去掉了它们（审查发现：验证集不够、要用训练集的录音时，它们还在库里能被挑上）。"""
+    from voicetwin import workflows as wf
+
+    _constant_scores(monkeypatch)
+    cfg, project, _ = prepared
+    n_val = sum(1 for r in project.load_manifest(only_kept=True) if r.get("text") and r.get("split") == "val")
+    real_ids = {r["id"] for r in wf._blind_pool(project, n_val + 6)}
+    seen = {"pool": set(), "used": set()}
+    orig = eng.Narrator._plan_identical
+
+    def spy(self, seg):
+        plan = orig(self, seg)
+        seen["pool"] |= {e["id"] for e in self._identical_ctx()["pool"]}
+        seen["used"] |= {r["id"] for r in plan.refs} | {a["id"] for v in plan.aux_by_ref.values() for a in v}
+        return plan
+
+    monkeypatch.setattr(eng.Narrator, "_plan_identical", spy)
+    res = wf.build_blind_test(cfg, project.voice, n=n_val + 6, quality="identical", seed=3)
+    ans = json.loads(Path(res["answer_path"]).read_text(encoding="utf-8"))
+    import shutil  # 共用的测试声音：这次的盲听测试不留着（别的测试看「最新的盲听测试」）
+
+    shutil.rmtree(res["dir"], ignore_errors=True)
+    Path(res["answer_path"]).unlink()
+    assert {it["clip"] for it in ans["items"] if it["truth"] == "真人"} == real_ids
+    bank = json.loads((project.root / "refs_bank.json").read_text(encoding="utf-8"))
+    assert real_ids & {e["id"] for e in bank["entries"]}  # 库里本来有盲听测试的录音（不然测不出来）
+    assert seen["pool"] and not seen["pool"] & real_ids and not seen["used"] & real_ids
+
+
+def test_excluded_refs_never_planned_as_main_or_aux(tmp_path):
+    """不能用的参考录音（exclude_refs，盲听测试的「真人」录音）：不当主参考、不当辅助参考（测试引擎不支持辅助参考，
+    这里用支持的假引擎），缓存键跟着变（以前用它们当参考生成好的不能拿来用）；全都不能用时照旧用 references.json。"""
+    n, b = _narrator(tmp_path, tier="mid")
+    seg = _seg()
+    n._identical = None
+    plan = n._plan(seg)
+    used = {r["id"] for r in plan.refs} | {a["id"] for v in plan.aux_by_ref.values() for a in v}
+    assert {"r1", "r2"} <= used
+    n.exclude_refs = {"r1", "r2"}
+    n._identical = None
+    plan2 = n._plan(seg)
+    used2 = {r["id"] for r in plan2.refs} | {a["id"] for v in plan2.aux_by_ref.values() for a in v}
+    assert used2 and not used2 & {"r1", "r2"} and plan2.key != plan.key
+    assert not {"r1", "r2"} & {e["id"] for e in n._identical_ctx()["pool"]}
+    n.exclude_refs = {r["id"] for r in _REFS}
+    n._identical = None
+    assert n._plan(seg).refs  # 全都不能用：照旧有参考（和 build_blind_test 里 refs 的兜底一样）
 
 
 # ============================================================================ 缓存键

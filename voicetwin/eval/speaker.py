@@ -1084,12 +1084,15 @@ class SimilarityJudge:
 
     def prepare(self, wav: np.ndarray, sr: int) -> Dict[str, Any]:
         """先把一段声音准备好（人声检测、每个模型的声纹都是用到时才算、算过就记住）：
-        「一模一样」先只用一个模型快速打分，挑出来的几个再用全部模型打分，人声检测和那个模型的声纹不用再算一遍。"""
-        return {"wav": wav, "sr": int(sr), "speech": {}, "embs": {}}
+        「一模一样」先只用一个模型快速打分，挑出来的几个再用全部模型打分，人声检测和那个模型的声纹不用再算一遍。
+        seconds：人声一共几秒（做过人声检测以后记下；短句子「100%」的标准按它定）。"""
+        return {"wav": wav, "sr": int(sr), "speech": {}, "embs": {}, "seconds": None}
 
     def judge_prepared(self, prepared: Dict[str, Any], members: Optional[Sequence[str]] = None) -> Dict[str, Any]:
         """和 judge() 一样打分，但用 prepare() 准备好的声音；members：只用这几个模型（名字），None = 全部。
-        同一段声音的人声检测只做一次、每个模型的声纹只算一次（存在 prepared 里，下次直接用）。"""
+        同一段声音的人声检测只做一次、每个模型的声纹只算一次（存在 prepared 里，下次直接用）。
+        声纹都已经有了（例如留下来的版本沿用存下来的声纹）、不用再做人声检测时，人声几秒用 prepared["seconds"]：
+        不然短句子会按整句的标准算，分数偏低十几个百分点。"""
         wav, sr = prepared.get("wav"), int(prepared.get("sr") or 0)
         if not self.members or wav is None or sr <= 0 or len(wav) < sr * 0.3:
             return _EMPTY_JUDGE.copy()
@@ -1110,7 +1113,11 @@ class SimilarityJudge:
                 embs[m.name] = enc.embed_prepared(speech[key])
             except Exception as exc:
                 log.debug(f"{m.name} 打分失败：{exc}")
-        seconds = next((float(v.size) / 16000.0 for v in speech.values()), None)
+        if speech:
+            seconds = next((float(v.size) / 16000.0 for v in speech.values()), None)
+            prepared["seconds"] = seconds
+        else:
+            seconds = prepared.get("seconds")
         return self.judge_embeddings({m.name: embs[m.name] for m in want if m.name in embs}, seconds)
 
     def judge_file(self, path: Path) -> Dict[str, Any]:
