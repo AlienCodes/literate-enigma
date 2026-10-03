@@ -158,6 +158,10 @@ def test_identical_plan_summary_says_only_what_will_happen():
     assert "每批 6 条（实测）" in measured["summary"] and "先实测" not in measured["summary"]
     assert any("练得太多可能变差，所以每个存下的版本都会拿来比较" in n for n in measured["notes"])
     assert "每批 4 条（和上次一样）" in _plan(mode="identical", probe_batch=4, batch_source="previous")["summary"]
+    # 只实测出音色的：语气的每批条数按显存的公式，说明里不能写成实测的
+    one = plan_training(984, 32.8, 11.99, 11.2, mode="identical", probe_batch={"sovits": 8, "gpt": None})
+    assert (one["batch_size"], one["gpt_batch_size"]) == (8, 6)
+    assert "音色每批 8 条（实测）、语气每批 6 条（按显存估计）" in one["summary"]
     cpu = plan_training(984, 32.8, None, None, mode="identical")
     assert "没有检测到能用的 N 卡" in cpu["summary"] and "仍然按「一模一样」训练，但用处理器会非常慢" in cpu["summary"]
     for p in (cpu, measured, _plan(mode="identical")):

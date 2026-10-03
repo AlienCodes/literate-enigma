@@ -889,13 +889,11 @@ def _plan_deep(v: Dict[str, Any]) -> Dict[str, Any]:
     p_s, p_g = _probe_pair(v.get("probe_batch"))
     clip_cap = v["clip_cap"]
     bs, gpt_bs = v["bs"], v["gpt_bs"]
-    if auto["batch_size"]:  # 你自己填了每批数量：不实测，用你填的
+    if auto["batch_size"]:  # 你自己填了每批数量：不实测，用你填的；只实测出一个时另一个按显存的公式
         if p_s:
             bs = min(p_s, clip_cap) if v["n_clips"] else p_s
         if p_g and not v["dpo"]:
             gpt_bs = min(p_g, clip_cap) if v["n_clips"] else p_g
-        elif not v["dpo"]:
-            gpt_bs = bs if not p_g else gpt_bs
 
     def scaled(base_ep: int, base_save: int, b: int, cap: int) -> Tuple[int, int]:
         return min(cap, int(math.ceil(base_ep * b / float(DEEP_BASE_BATCH)))), max(1, _half_up(base_save * b / float(DEEP_BASE_BATCH)))
@@ -935,8 +933,13 @@ def _plan_deep(v: Dict[str, Any]) -> Dict[str, Any]:
         if probing:
             parts.append(f"{gpu} → 先实测一次能练几条（按显存估计每批 {bs} 条）")
         elif measured:
-            parts.append(f"{gpu} → 每批 {bs} 条" + (f"（语气 {gpt_bs} 条）" if gpt_bs != bs else "")
-                         + ("（和上次一样）" if v.get("batch_source") == "previous" else "（实测）"))
+            lab = "（和上次一样）" if v.get("batch_source") == "previous" else "（实测）"
+            lab_s = lab if p_s else "（按显存估计）"
+            lab_g = lab if (p_g and not v["dpo"]) else ("（开 DPO 时的设置）" if v["dpo"] else "（按显存估计）")
+            if bs == gpt_bs and lab_s == lab_g:
+                parts.append(f"{gpu} → 每批 {bs} 条{lab_s}")
+            else:
+                parts.append(f"{gpu} → 音色每批 {bs} 条{lab_s}、语气每批 {gpt_bs} 条{lab_g}")
         else:
             parts.append(f"{gpu} → 每批 {bs} 条{mine('batch_size')}")
     else:
