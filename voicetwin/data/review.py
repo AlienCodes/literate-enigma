@@ -210,6 +210,26 @@ def _merge(ranges: Iterable[Sequence[int]], n: int) -> List[Range]:
 
 
 # ============================================================================ 一行的分析：红 / 蓝 / 建议
+WHOLE_SENTENCE_RATIO = 0.5  # 建议和原来的文字只有这么像（差不多整句都换了）：不知道哪个对，一键校正不自动采用
+
+
+def whole_sentence_suggestion(sus: Dict[str, Any], base: str) -> bool:
+    """这个建议差不多是把整句换掉（另一个识别引擎整句听得都不一样）。"""
+    alt = str((sus or {}).get("alt") or "")
+    if not alt or alt == base:
+        return False
+    if any("整句可能都不对" in str(r) for r in (sus.get("reasons") or [])):
+        return True
+    return difflib.SequenceMatcher(None, base, alt, autojunk=False).ratio() < WHOLE_SENTENCE_RATIO
+
+
+def _overlap(s: int, e: int, us: int, ue: int) -> bool:
+    """两段位置有没有重叠（插入的位置挨着也算）。"""
+    if s == e or us == ue:
+        return us <= e and s <= ue
+    return s < ue and us < e
+
+
 def suspect_base(rec: Dict[str, Any]) -> str:
     sus = rec.get("suspect") if isinstance(rec.get("suspect"), dict) else {}
     return str(sus.get("text") or rec.get("text", "") or "")
@@ -256,6 +276,7 @@ def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
       deleted   [(位置, 删掉的字)] 删掉的字，显示成蓝色删除线
       red       [(s, e)] 还可能有错、没改过的地方
       edits     [(s, e, 换成什么)] 还没采用的建议（位置按现在的文字算）
+      sure      edits 里有把握的（「一键全部文字校正」只自动采用这些；没把握的要老师听录音，自己点这一行的「采用」）
       undo      [(s, e, 换回什么)] 已经采用了的建议，撤销时怎么改回去（位置按现在的文字算）
       adopted   建议已经全部用上了（「修改建议」的按钮变红）
       reasons   标红的原因
@@ -278,6 +299,7 @@ def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
     sus = rec.get("suspect") if isinstance(rec.get("suspect"), dict) else {}
     red: List[Range] = []
     edits: List[Edit] = []
+    sure: List[Edit] = []
     undo: List[Edit] = []
     adopted = False
     reasons = [str(x) for x in (sus.get("reasons") or []) if x]
@@ -294,10 +316,21 @@ def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
             if m is not None and m[1] > m[0]:
                 red.append(m)
         alt = str(sus.get("alt") or "")
+        unsure: List[Range] = []
+        for span in sus.get("unsure") or []:
+            try:
+                unsure.append((int(span[0]), int(span[1])))
+            except (TypeError, ValueError, IndexError):
+                continue
+        # 一键校正只自动采用「文字校正」检查过、有把握的建议；没经过文字校正的（自动查错字原来的建议）一律算没把握
+        vetted = sus.get("src") == "transcript"
+        whole = bool(alt) and whole_sentence_suggestion(sus, base)
         for s, e, rep in suggestion_edits(base, alt):
             m = None if touched(ops, s, e) else map_range(blocks, s, e)
             if m is not None:
                 edits.append((m[0], m[1], rep))
+                if vetted and not whole and not any(_overlap(s, e, us, ue) for us, ue in unsure):
+                    sure.append((m[0], m[1], rep))
         if alt and alt != base and cur != base:  # 建议的地方现在是不是就是建议的写法（= 采用过）
             ops2 = _opcodes(alt, cur) if alt != cur else [("equal", 0, len(alt), 0, len(cur))]
             blocks2 = [(i1, i2, j1, j2) for tag, i1, i2, j1, j2 in ops2 if tag == "equal"]
@@ -308,7 +341,7 @@ def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
         adopted = bool(undo) and not edits
     red = _merge(red, len(cur))
     return {"text": cur, "blue": _merge(blue, len(cur)), "deleted": deleted, "red": red, "edits": edits,
-            "undo": undo, "adopted": adopted, "reasons": reasons, "active": bool(red or edits)}
+            "sure": sure, "undo": undo, "adopted": adopted, "reasons": reasons, "active": bool(red or edits)}
 
 
 def apply_edits(text: str, edits: Sequence[Edit]) -> str:
@@ -392,40 +425,47 @@ def unadopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
 
 
 def adopt_all_suggestions(project: Any) -> Dict[str, Any]:
-    """「一键全部文字校正」的第二步：所有还没采用的修改建议一次全部采用（和一行一行点「采用」一样，存成草稿、红灯）。
+    """「一键全部文字校正」的第二步：所有有把握的修改建议一次全部采用（和一行一行点「采用」一样，存成草稿、红灯）。
 
-    删除的行不动；只标红、没有建议的地方没法自动改（不知道该改成什么），留着红色。
-    返回 {"rows": 改了几条, "changes": 改了几处, "no_suggestion": 只标红没有建议的有几条, "examples": [...]}。"""
+    删除的行、不保留（不当训练素材）的行不动；只标红、没有建议的地方没法自动改（不知道该改成什么），留着红色；
+    没把握的建议（分量不够、另一个引擎整句听得都不一样）也不自动采用，留着红色，老师听了录音自己点这一行的「采用」。
+    返回 {"rows": 改了几条, "changes": 改了几处, "no_suggestion": 只标红没有建议的有几条,
+          "unsure": 有建议但没把握、没有自动采用的有几条, "examples": [...]}。"""
     with _LOCK:
         records = project.load_manifest()
         draft = load_draft(project)
-        rows = changes = no_sug = 0
+        rows = changes = no_sug = unsure = 0
         examples: List[str] = []
         for rec in records:
             if rec.get("deleted"):
                 continue
             rid = rec.get("id")
             vals = current_values(rec, draft.get(rid))
+            if not vals["keep"]:
+                continue
             info = analyze(rec, vals["text"])
-            if not info["edits"]:
-                if info["red"]:
+            todo = info["sure"]
+            if len(todo) < len(info["edits"]):
+                unsure += 1
+            if not todo:
+                if info["red"] and not info["edits"]:
                     no_sug += 1
                 continue
-            new = apply_edits(vals["text"], info["edits"])
+            new = apply_edits(vals["text"], todo)
             if not new or new == vals["text"]:
                 continue
             if len(examples) < 6:
-                examples.append(describe_edits(vals["text"], info["edits"], limit=1))
+                examples.append(describe_edits(vals["text"], todo, limit=1))
             nv = dict(vals, text=new, lang=detect_lang(new) or vals["lang"])
             if nv == saved_values(rec):
                 draft.pop(rid, None)
             else:
                 draft[rid] = nv
             rows += 1
-            changes += len(info["edits"])
+            changes += len(todo)
         if rows:
             save_draft(project, draft)
-        return {"rows": rows, "changes": changes, "no_suggestion": no_sug, "examples": examples}
+        return {"rows": rows, "changes": changes, "no_suggestion": no_sug, "unsure": unsure, "examples": examples}
 
 
 # ============================================================================ 保存、删除、恢复

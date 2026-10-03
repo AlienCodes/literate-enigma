@@ -84,8 +84,9 @@ TEXTFIX_BTN, TEXTFIX_BUSY = "📝 一键全部文字校正", "⏳ 正在校正�
 DLTXT_BTN = "⬇️ 下载改好的文字（txt）"
 TEXTFIX_HELP = ("**📝 一键全部文字校正**：以你的**母本标准库**为准（你修缮过的讲课母本 = 你所有的说话习惯，"
                 "+ 所有的英语语法术语 + 「错的写法 → 正确写法」对照表：借词 → 介词、艾子 → as……，程序里已经带着），"
-                "点一下，所有能确定该怎么改的地方**一次全部改好**（包括「修改建议」那一列的建议）。"
-                "改过的字照旧：「文字」列**绿色**、「可能有错」列**蓝色**；只标红、没有建议的地方还是**红色**，请听录音自己改。"
+                "点一下，所有能确定该怎么改的地方**一次全部改好**（包括「修改建议」那一列有把握的建议）。"
+                "改过的字照旧：「文字」列**绿色**、「可能有错」列**蓝色**；没把握的、只标红没有建议的地方还是**红色**，"
+                "请听录音：建议对就点那一行的「✓ 采用」，不对就自己改。"
                 "只想改某一行：点那一行「修改建议」里的小按钮。改好以后点「**保存修改**」确认文字，要训练时再点「✅ 确认训练素材」。"
                 "有新的讲稿或改好的文字（txt 或 transcripts.csv），可以在下面上传，一起当母本用（可选）。")
 #: 「下载改好的文字」：文件准备好以后，自动点一下下载链接（gradio 的文件框里那个链接）
@@ -3188,14 +3189,17 @@ class WebUI:
             parts.append(f"把「修改建议」一次全部采用：**{adopted}** 处（{ad_rows} 条）")
         elif found and not ad:
             parts.append(f"另外 **{found}** 条标红给了建议")
+        unsure = _int(ad.get("unsure"))
+        if unsure:
+            parts.append(f"还有 **{unsure}** 条有修改建议、但程序没有把握（可能对也可能不对），**没有自动改**，还是红色："
+                         "勾上「只看可能有错的」，点那一行听一听录音，建议对的话点这一行的「✓ 采用」，不对就双击「文字」自己改")
         if no_sug:
             parts.append(f"还有 **{no_sug}** 条只标红、没有建议（程序不知道该改成什么）：勾上「只看可能有错的」，"
                          "点那一行听一听录音，双击「文字」自己改")
         habits = max(0, _int(r.get("terms")) - _int(r.get("builtin_terms")))
         parts.append(f"标准库：你的母本 {_int(r.get('builtin_lines'))} 句 + 语法术语和常用说法 {_int(r.get('builtin_terms'))} 个 + "
                      f"对照表 {_int(r.get('corrections'))} 条"
-                     + (f"；另外从母本里统计出你常说的词 {habits} 个" if habits else "")
-                     + (f"；你以前自己改过的错 {_int(r.get('learned'))} 种" if _int(r.get("learned")) else ""))
+                     + (f"；另外从母本里统计出你常说的词 {habits} 个" if habits else ""))
         files = r.get("files") or []
         if files:
             parts.append(f"另外用了你上传的：{_md_text('、'.join(files[:3]))}{' 等' if len(files) > 3 else ''}")
@@ -3244,6 +3248,12 @@ class WebUI:
                     transcript_fix.save_transcripts(project, paths)
             except ValueError as exc:
                 yield self._o(O, proof_bar=self._notice(str(exc)), tr_info=self.textfix_info(v), **idle)
+                return
+            except OSError as exc:  # 文件读不了 / 存不进去（被别的程序占用、磁盘满了）
+                log.error(f"保存上传的母本出错：{exc}", exc_info=True)
+                msg = ("上传的文件没能存进声音文件夹（可能正被别的程序打开，或者磁盘满了）。"
+                       "请关掉打开这个文件的程序（Excel、WPS、记事本），再上传一次。")
+                yield self._o(O, proof_bar=self._notice(msg), tr_info=self.textfix_info(v), **idle)
                 return
         stream = stream_task("textfix", "一键全部文字校正", v, _attach_missed if attach else wf.run_transcript_fix, self.cfg, v,
                              stages=_stages(self.cfg, "textfix"), note=NOTE)

@@ -288,6 +288,9 @@ def apply_text_edit(rec: Dict[str, Any], text: str) -> None:
     rec["lang"] = detect_lang(text)
     if rec.get("voiced"):
         rec["rate"] = syllable_count(text) / max(rec["voiced"], 1e-3)
+    auto = rec.get("suspect_auto")
+    if isinstance(auto, dict) and old:  # 文字校正以前自动查错字的结果（再点一次文字校正时用）：也记下它是按哪段文字算的
+        auto.setdefault("text", old)
     sus = rec.get("suspect")
     if isinstance(sus, dict) and old:
         sus.setdefault("text", old)

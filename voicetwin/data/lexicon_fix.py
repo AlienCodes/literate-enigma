@@ -8,14 +8,15 @@
   corrections.txt（错的写法 => 正确写法）。
 - 老师上传的母本（修缮过的 transcripts.csv 或 txt，存在声音文件夹「逐字稿」里，不放进公开的仓库）：
   用来统计老师的习惯写法（每个词说了多少次）。
-- 老师以前在校对表里自己改过的（最初识别的文字 → 改好的文字）：别的句子里同样的错也改。
+（learn_from_edits「从校对表里老师改过的地方学」还在，但「文字校正」不再用它：保存的修改里也有程序自己改的、
+  老师采用的建议，学进去会把错的改法扩散到别的句子。）
 
 找错的办法（每一处都要「刚好是一个完整的词」：用 jieba 分词判断，「凭借词汇」里的「借词」、「介词一起」里的
 「词一」都不算）：
-1. 对照表里左边的写法 → 直接改成右边的。
+1. 对照表里左边的写法 → 直接改成右边的（没有 jieba 时判断不了完整的词，只给没把握的建议）。
 2. 读音和标准库里的某个词（术语、母本里常说的词）一样、写法不一样、至少一半的字相同，而且这种写法在母本里
-   几乎没出现过（老师自己的写法是另一种）→ 读音完全一样的直接改；声调不同的只给建议。
-3. 老师以前自己改过的错（读音相同或相近的词、英文被写成汉字）→ 直接改。
+   几乎没出现过（老师自己的写法是另一种）→ 读音完全一样、而且写成了「不是词」的样子（定语从剧）的直接改；
+   本身是一个词的（壮语、定于）和声调不同的只给建议（没把握，一键校正不自动采用）。
 直接改的存成没保存的修改（红灯），老师看一眼再点「保存修改」；「修改建议」的红色按钮可以撤销。
 
 对外接口：Lexicon.build(...)、Lexicon.find(text) -> List[Fix]、learn_from_edits(records)、builtin_info()
@@ -323,8 +324,12 @@ class Lexicon:
                     e = k + len(wrong)
                     if self._ok_place(text, k, e, bounds, wrong):
                         what = "对照表" if kind == "list" else "你以前改过"
-                        fixes.append(Fix(k, e, pc._pad(text, k, e, right), kind, True, w0,
-                                         f"「{wrong}」应该是「{right}」（{what}）"))
+                        if bounds is None:  # 没有分词，判断不了是不是一个完整的词（「凭借词汇」）：只给没把握的建议
+                            fixes.append(Fix(k, e, pc._pad(text, k, e, right), kind, False, 0.6,
+                                             f"「{wrong}」可能是「{right}」（{what}；这台电脑没有分词工具，请听录音确认）"))
+                        else:
+                            fixes.append(Fix(k, e, pc._pad(text, k, e, right), kind, True, w0,
+                                             f"「{wrong}」应该是「{right}」（{what}）"))
                     k = text.find(wrong, k + 1)
         fixes += self._sound_fixes(text, bounds)
         return resolve(fixes)
@@ -386,10 +391,8 @@ class Lexicon:
             if habit and not nonword:
                 continue  # 母本里常说的词（不是术语）：只有写成「不是词」的样子才算写错
             if same_tone:
-                direct = (term in self.builtin and (ct >= HABIT_MIN or nonword or not self.has_mother)) or \
-                         (habit and nonword)
-                if bounds is None:
-                    direct = False  # 没有分词：只给建议
+                # 只有写成了「不是词」的样子才直接改（「定语从剧」）；本身是一个词的（「壮语」「定于」）只给建议
+                direct = nonword and bounds is not None
             else:
                 if not nonword or cw:
                     continue

@@ -575,7 +575,8 @@ def run_proofcheck(cfg: Config, voice: str, progress: Optional[ProgressFn] = Non
 def run_transcript_fix(cfg: Config, voice: str, files: Optional[Sequence[Any]] = None,
                        progress: Optional[ProgressFn] = None, adopt_all: bool = True) -> Dict[str, Any]:
     """📝 一键全部文字校正（v18.5）：以母本标准库为准检查校对表的文字，确定的错直接改好；
-    adopt_all=True 时再把所有的修改建议一次全部采用。改的都存成没保存的修改（红灯），老师点「保存修改」才生效。
+    adopt_all=True 时再把有把握的修改建议一次全部采用（没把握的留着红色，老师听录音自己点那一行的「采用」）。
+    改的都存成没保存的修改（红灯），老师点「保存修改」才生效。
 
     files：这次上传的母本（txt / transcripts.csv，替换上次上传的）；不给时用上次存的（没有也行，程序自带母本）。"""
     from voicetwin.data import transcript_fix
@@ -585,10 +586,10 @@ def run_transcript_fix(cfg: Config, voice: str, files: Optional[Sequence[Any]] =
         info = transcript_fix.save_transcripts(project, files)
         _report(progress, 0.01, f"已保存逐字稿：{'、'.join(info['files'])}（共 {info['chars']} 字）")
     res = dict(transcript_fix.check_with_transcript(project, progress=_sub(progress, 0.0, 0.95)) or {})
-    if adopt_all:  # 一键全部文字校正：剩下的修改建议（标准库的、自动查错字的）也一次全部采用
+    if adopt_all:  # 一键全部文字校正：剩下的有把握的修改建议（标准库的、自动查错字的）也一次全部采用
         from voicetwin.data import review
 
-        _report(progress, 0.96, "把所有的修改建议一次全部采用……")
+        _report(progress, 0.96, "把有把握的修改建议一次全部采用……")
         res["adopted"] = review.adopt_all_suggestions(project)
         _report(progress, 1.0, f"校正完了：一共改了 {res.get('fixes', 0) + res['adopted']['changes']} 处")
     return res

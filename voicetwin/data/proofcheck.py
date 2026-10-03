@@ -1714,15 +1714,20 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
 
 
 def dismiss_suspect(project: Any, clip_id: str) -> bool:
-    """「这句没错」：去掉标红，并记住这句文字；以后再查错字时，只要文字没改，就不再标红。返回有没有找到这条。"""
-    records = project.load_manifest()
-    for rec in records:
-        if str(rec.get("id")) == str(clip_id):
-            rec.pop("suspect", None)
-            rec.pop("suspect_auto", None)
-            rec["suspect_ok"] = str(rec.get("text") or "")
-            project.save_manifest(records)
-            return True
+    """「这句没错」：去掉标红，并记住这句文字（表格里显示的那句，有没保存的修改就是改过的那句）；
+    以后再查错字 / 文字校正时，只要文字没改，就不再标红、不再改。返回有没有找到这条。"""
+    from voicetwin.data import review
+
+    with review._LOCK:
+        records = project.load_manifest()
+        draft = review.load_draft(project)
+        for rec in records:
+            if str(rec.get("id")) == str(clip_id):
+                rec.pop("suspect", None)
+                rec.pop("suspect_auto", None)
+                rec["suspect_ok"] = str(review.current_values(rec, draft.get(rec.get("id")))["text"] or "")
+                project.save_manifest(records)
+                return True
     return False
 
 

@@ -129,9 +129,24 @@ def test_check_text_leaves_different_wording_alone(text):
 def test_check_text_skips_its_own_line():
     lines = [("r1", "被修饰的名词叫做先行次"), ("r2", "今天我们讲状语从句")]
     ref = tf.Reference(lines)
-    assert ref.id_range["r1"][0] == 0
+    assert ref.id_ranges["r1"] == [(0, 11)]
     res = tf.check_text("被修饰的名词叫做先行次", ref, exclude_id="r1")
     assert res.props == [] and not res.aligned  # 只有它自己能对上：不拿自己证明自己没错
+
+
+@need_pinyin
+def test_same_id_twice_skips_both_copies_but_not_the_lines_between():
+    """程序自带的母本和老师上传的 transcripts.csv 里有同一个 id：两处都跳过，中间别的句子照常拿来比
+    （以前只记一个从第一处到最后一处的范围，把中间所有的句子都跳过了）。"""
+    lines = [("r1", "被修饰的名词叫做先行次"), ("r2", "我们先来看艾子引导的定语从句"), ("r3", "今天我们讲状语从句"),
+             ("r1", "被修饰的名词叫做先行次")]
+    ref = tf.Reference(lines)
+    assert len(ref.id_ranges["r1"]) == 2 and ref.id_ranges["r2"] == [(11, 25)]
+    res = tf.check_text("被修饰的名词叫做先行次", ref, exclude_id="r1")
+    assert res.props == [] and not res.aligned
+    ref2 = tf.Reference([("r1", "我们先来看as引导的定语从句"), ("r2", "今天我们讲状语从句"), ("r1", "这一句完全不一样了")])
+    res2 = tf.check_text("我们先来看艾子引导的定语从句", ref2, exclude_id="x")
+    assert [p.rep for p in res2.props] == ["as"]
 
 
 # ---------------------------------------------------------------------------- 标准库
@@ -170,8 +185,9 @@ def test_lexicon_without_jieba_is_conservative(monkeypatch):
     monkeypatch.setattr(lf, "_tokenizer", lambda: None)
     lex = lf.Lexicon.build(["关系代词和介词", "定语从句"])
     fixes = lex.find("不能和借词一起提前；表语和同位语")
-    assert [(f.rep, f.direct) for f in fixes if f.direct] == [("介词", True)]  # 对照表照样改；同位语里的「位语」不动
-    assert all(not f.direct for f in fixes if f.kind in ("term", "habit"))  # 读音找到的只给建议
+    # 判断不了是不是一个完整的词（「凭借词汇」）：对照表也只给没把握的建议（一键校正不自动采用）；同位语里的「位语」不动
+    assert [(f.rep, f.direct, f.weight < tf.SURE_WEIGHT) for f in fixes] == [("介词", False, True)]
+    assert lex.find("凭借词汇量取胜") and all(not f.direct for f in lex.find("凭借词汇量取胜"))
 
 
 @need_pinyin
@@ -281,11 +297,12 @@ def test_second_run_uses_the_original_auto_result(tmp_path):
     project.save_manifest(recs)
     tf.check_with_transcript(project)
     r = project.load_manifest()[0]
-    assert r["suspect_auto"] == auto and r["suspect"]["src"] == "transcript"
+    pinned = dict(auto, text="不能和借词一起提前到句首")  # 记下是按哪段文字算的（保存修改以后位置才换算得对）
+    assert r["suspect_auto"] == pinned and r["suspect"]["src"] == "transcript"
     review.discard_draft(project)
     tf.check_with_transcript(project)
     r = project.load_manifest()[0]
-    assert r["suspect_auto"] == auto  # 不会把上次文字校正的结果当成自动检查的
+    assert r["suspect_auto"] == pinned  # 不会把上次文字校正的结果当成自动检查的
 
 
 # ---------------------------------------------------------------------------- 下载改好的文字
@@ -322,19 +339,33 @@ def test_workflow_helpers(tmp_path):
 
 # ---------------------------------------------------------------------------- 一键全部文字校正
 def test_adopt_all_suggestions(tmp_path):
-    cfg, project = _voice(tmp_path, ["我们先来看艾子引导的从句", "这里可能有错但是没有建议", "没有标红的句子"])
+    texts = ["我们先来看艾子引导的从句", "这里可能有错但是没有建议", "没有标红的句子", "周末我们一起去公园散步",
+             "小明昨天说接词后面接名词", "不当训练素材的艾子"]
+    cfg, project = _voice(tmp_path, texts)
     recs = project.load_manifest()
-    recs[0]["suspect"] = {"spans": [[5, 7]], "alt": "我们先来看as引导的从句", "reasons": ["自动的"], "score": 0.7}
+    recs[0]["suspect"] = {"spans": [[5, 7]], "alt": "我们先来看as引导的从句", "reasons": ["文字校正的"], "score": 0.7,
+                          "text": texts[0], "src": "transcript"}
     recs[1]["suspect"] = {"spans": [[2, 4]], "alt": "", "reasons": ["自动的"], "score": 0.6}
+    # 自动查错字原来的建议（没经过文字校正）：不知道对不对，一键不自动采用
+    recs[3]["suspect"] = {"spans": [[0, 2]], "alt": "周日我们一起去公园散步", "reasons": ["自动的"], "score": 0.6}
+    # 文字校正标了「没把握」的建议：也不自动采用
+    recs[4]["suspect"] = {"spans": [[5, 7]], "alt": "小明昨天说介词后面接名词", "reasons": ["没把握"], "score": 0.6,
+                          "text": texts[4], "src": "transcript", "unsure": [[5, 7]]}
+    recs[5]["keep"] = False  # 不当训练素材的行不动
+    recs[5]["suspect"] = {"spans": [[7, 9]], "alt": "不当训练素材的as", "reasons": ["文字校正的"], "score": 0.7,
+                          "text": texts[5], "src": "transcript"}
     project.save_manifest(recs)
     res = review.adopt_all_suggestions(project)
-    assert res["rows"] == 1 and res["changes"] == 1 and res["no_suggestion"] == 1
+    assert (res["rows"], res["changes"], res["no_suggestion"], res["unsure"]) == (1, 1, 1, 2), res
     draft = review.load_draft(project)
     assert draft["c000"]["text"] == "我们先来看as引导的从句" and set(draft) == {"c000"}
     rec = project.load_manifest()[0]
     info = review.analyze(rec, draft["c000"]["text"])
     assert info["adopted"] and info["blue"]  # 改过的地方是蓝色，「修改建议」按钮变红（可以撤销）
     assert review.adopt_all_suggestions(project)["rows"] == 0  # 再点一次：没有可以采用的了
+    # 没把握的照样可以一行一行采用
+    review.adopt_suggestion(project, "c004")
+    assert review.load_draft(project)["c004"]["text"] == "小明昨天说介词后面接名词"
 
 
 @need_both
