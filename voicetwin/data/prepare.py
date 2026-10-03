@@ -559,6 +559,8 @@ def prepare(project: Project, inputs: Iterable[str], cfg: Dict[str, Any], progre
     todo = [r for r in records.values() if not r.get("text") and not r.get("asr_done")]
     asr_cfg = dict(pcfg.get("asr", {}) or {})
     if todo and asr_cfg.get("engine", "faster-whisper") != "none":
+        if [r.pop("no_asr") for r in todo if "no_asr" in r]:  # 这次真的识别：去掉「上次选了不识别」的记号（中途停下也不留着）
+            project.save_manifest(records.values())
         _progress(progress, 0.40, "加载识别模型（第一次使用会先自动下载，约 3 GB，可能要 10~30 分钟，之后就快了）"
                   + hf_mirror_hint())
         transcriber = Transcriber(asr_cfg)
@@ -582,6 +584,9 @@ def prepare(project: Project, inputs: Iterable[str], cfg: Dict[str, Any], progre
                 project.save_manifest(records.values())
         project.save_manifest(records.values())
     elif todo:
+        # 记下「没有字幕、又选了不识别」：网页上就不会说成「识别中途停下了，再点一次就好」（再点也还是不识别）
+        for r in todo:
+            r["no_asr"] = True
         log.warning(f"{len(todo)} 个片段没有文字（识别引擎为 none 且没有字幕），它们不会参与训练")
 
     # 3) 片段统计

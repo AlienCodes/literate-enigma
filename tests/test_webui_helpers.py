@@ -995,8 +995,11 @@ def test_clip_action_ignores_bad_payloads(prepared, tmp_path):
     assert ui.do_clip_action("", '{"action": "keep", "id": "x"}', False)[0] == NEED_VOICE
     msg, _, rows = ui.do_clip_action(name, '{"action": "keep", "id": "没有这个"}', False)
     assert "不在校对表里" in msg and rows
-    with pytest.raises(ValueError, match="空的"):
-        _act(ui, name, "edit", wf.Project(cfg, name).load_manifest()[0]["id"], text="   ")
+    # 文字是空的：不改，说明原因（不是出错：不写 ❌ 和英文技术细节），表格照样重画（第四轮 g1）
+    cid = wf.Project(cfg, name).load_manifest()[0]["id"]
+    msg, _, rows = _act(ui, name, "edit", cid, text="   ")
+    assert msg.startswith("⚠️") and "空的" in msg and "ValueError" not in msg and rows
+    assert cid not in A._review.load_draft(wf.Project(cfg, name))
 
 
 def test_blind_test_through_task(prepared, tmp_path, monkeypatch):
@@ -1273,13 +1276,14 @@ def test_no_text_clips_delete_and_warning(tmp_path, lecture_dir):
     for r in recs:  # 和老师那次一样：识别没做完，过滤也还没跑
         r.update(keep=True, text="", lang="")
         r.pop("asr_done", None)
+        r.pop("no_asr", None)  # 不是「选了不识别」（那种另有说明，见 test_bug_hunt4）
     project.save_manifest(recs)
     ui = A.WebUI(cfg)
     msg, count, rows = _act(ui, "v", "delete", recs[0]["id"])
     assert "紫色" in msg and "还没有可用的素材" not in msg
     assert A.FLAG_DELETED in rows[0][CLIP_HEADERS.index(A.COL_MENU)]
     assert "还没有识别出文字" in rows[1][CLIP_HEADERS.index(A.COL_TEXT)]
-    assert "开始准备素材" in count and "= **0** 条" in count
+    assert "开始准备素材" in count and "= **0** 条" in count and "中途点了停止" in count
     md, _, _ = ui.do_confirm("v")
     assert "一条能用来训练的句子都没有" in md and not A._review.load_confirmed(project)
     msg2, _, _ = _act(ui, "v", "use", recs[1]["id"])

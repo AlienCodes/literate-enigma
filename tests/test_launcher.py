@@ -194,8 +194,10 @@ def fake_env(monkeypatch):
     monkeypatch.setitem(sys.modules, "gradio", types.ModuleType("gradio"))
     monkeypatch.setattr(launcher.webbrowser, "open", lambda url, *a, **k: opened.append(url))
     monkeypatch.setattr(launcher, "_prepare_proxy_env", lambda: None)
+    cache_cfgs = []  # 不在当前文件夹里建临时文件夹、不改环境变量；只记下调用过
+    monkeypatch.setattr(launcher, "_use_workspace_cache", lambda cfg: cache_cfgs.append(cfg))
     monkeypatch.delenv("GRADIO_ANALYTICS_ENABLED", raising=False)
-    return types.SimpleNamespace(app_mod=app_mod, opened=opened, monkeypatch=monkeypatch)
+    return types.SimpleNamespace(app_mod=app_mod, opened=opened, monkeypatch=monkeypatch, cache_cfgs=cache_cfgs)
 
 
 def test_launch_uses_build_app_local_and_free_port(fake_env, capsys):
