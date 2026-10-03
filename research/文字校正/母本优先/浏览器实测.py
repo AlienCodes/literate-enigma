@@ -101,14 +101,48 @@ def run_check(url: str, work: Path):
         return page.evaluate(f"() => Array.from(document.querySelectorAll({json.dumps(sel)}))"
                              ".map(e => e.innerText).join('\\n')")
 
+    # 表格是虚拟滚动的（只画看得见的几行）：一点一点往下滚，边滚边找 / 边收集
+    scroller = """(dy) => { const t = document.querySelector('#vt-clips tbody.tbody');
+      let el = t; while (el && !(el.scrollHeight > el.clientHeight + 5 && getComputedStyle(el).overflowY !== 'visible')) {
+        el = el.parentElement; }
+      if (!el) return -1; if (dy === 0) { el.scrollTop = 0; } else { el.scrollTop += dy; }
+      return el.scrollTop + el.clientHeight >= el.scrollHeight - 2 ? 1 : 0; }"""
+
+    def rows_now(page):
+        return page.evaluate("""() => Array.from(document.querySelectorAll('#vt-clips tbody.tbody tr'))
+          .map(tr => Array.from(tr.querySelectorAll('td')).map(td => td.innerText))""")
+
+    def scan(page):
+        """整张表每一行（按 id）：[各格文字]。"""
+        seen = {}
+        page.evaluate(scroller, 0)
+        time.sleep(0.6)
+        for _ in range(200):
+            for cells in rows_now(page):
+                if len(cells) > 1:
+                    seen[cells[1].strip()] = cells
+            if page.evaluate(scroller, 250) != 0:
+                time.sleep(0.6)
+                for cells in rows_now(page):
+                    if len(cells) > 1:
+                        seen[cells[1].strip()] = cells
+                break
+            time.sleep(0.4)
+        return seen
+
     def click_row(page, rid):
-        page.evaluate("""(rid) => { const rows = Array.from(document.querySelectorAll('#vt-clips tbody.tbody tr'));
-          const r = rows.find(tr => tr.innerText.includes(rid)); if (r) { r.scrollIntoView(); } }""", rid)
-        time.sleep(0.5)
-        cell = page.locator("#vt-clips tbody.tbody tr", has_text=rid).first.locator("td").nth(1)
-        cell.click()
-        time.sleep(2.5)
-        return text_of(page, ".vt-diff")
+        page.evaluate(scroller, 0)
+        time.sleep(0.6)
+        for _ in range(200):
+            loc = page.locator("#vt-clips tbody.tbody tr", has_text=rid)
+            if loc.count():
+                loc.first.locator("td").nth(1).click()
+                time.sleep(2.5)
+                return text_of(page, ".vt-diff")
+            if page.evaluate(scroller, 250) != 0 and not page.locator("#vt-clips tbody.tbody tr", has_text=rid).count():
+                return ""
+            time.sleep(0.4)
+        return ""
 
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path="/opt/pw-browsers/chromium")
@@ -121,9 +155,12 @@ def run_check(url: str, work: Path):
         time.sleep(2)
         body = text_of(page, "body")
         check("说明里写着「母本最优先」", "母本最优先" in body)
-        table = text_of(page, "#vt-clips tbody.tbody")
-        check("还没点一键校正，「修改建议」那一列就有「按母本：」的建议", table.count("按母本：") >= 30, f"{table.count('按母本：')} 处")
-        check("和母本矛盾的「定语 → 定于」没有出现", "定语 → 定于" not in table and "→ 定于" not in table)
+        rows_seen = scan(page)
+        sug = {rid: cells[6] for rid, cells in rows_seen.items() if len(cells) > 6}
+        n_m = sum(1 for rid in info["diff"] if "按母本：" in sug.get(rid, ""))
+        check("还没点一键校正，和母本不一样的 40 句「修改建议」那一列都有「按母本：」的建议（老师改过的那句除外）",
+              n_m >= len(info["diff"]) - 1, f"{n_m} / {len(info['diff'])} 句；整张表看到 {len(rows_seen)} 行")
+        check("和母本矛盾的「定语 → 定于」没有出现", not any("→ 定于" in x for x in sug.values()))
         panel = click_row(page, info["diff"][0])
         check("点一行看得到「按母本改成」和「母本里的原句」", "按母本改成" in panel and "母本里的原句" in panel, panel[:80])
         panel = click_row(page, info["typed"])
@@ -137,7 +174,11 @@ def run_check(url: str, work: Path):
         check("一键校正的结果说明在母本里找到了几句", "母本最优先：在你的母本里找到了" in text_of(page, "body"))
         time.sleep(2)
         draft = json.loads((voice_dir / "review_draft.json").read_text(encoding="utf-8"))
-        manifest = {r["id"]: r for r in json.loads((voice_dir / "manifest.json").read_text(encoding="utf-8"))}
+        manifest = {}
+        for ln in (voice_dir / "manifest.jsonl").read_text(encoding="utf-8").splitlines():
+            if ln.strip():
+                r = json.loads(ln)
+                manifest[r["id"]] = r
         from voicetwin.utils.textutil import clean_transcript
 
         wrong = [rid for rid in info["diff"] if rid != info["typed"]
