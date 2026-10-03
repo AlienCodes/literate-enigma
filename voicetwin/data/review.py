@@ -110,6 +110,15 @@ def _records(project: Any) -> Dict[str, Dict[str, Any]]:
     return {r["id"]: r for r in project.load_manifest()}
 
 
+def lang_after_edit(old_text: str, old_lang: str, new_text: str) -> str:
+    """改了文字以后这一句的语言：原来的语言就是按文字自动判断出来的 → 按新的文字重新判断；
+    老师手动改过语言（和按文字判断的不一样）→ 不动（以前改一个字，老师选的「英文」就悄悄变回「中文」）。"""
+    old_lang = str(old_lang or "")
+    if old_lang in ("zh", "en") and str(old_text or "").strip() and old_lang != detect_lang(str(old_text)):
+        return old_lang
+    return detect_lang(str(new_text or "")) or old_lang
+
+
 def set_draft(project: Any, clip_id: str, remember: bool = True, **changes: Any) -> Dict[str, Any]:
     """改一条（text / keep / lang 任选），只改草稿。和保存过的一样时草稿自动去掉。
 
@@ -126,9 +135,9 @@ def set_draft(project: Any, clip_id: str, remember: bool = True, **changes: Any)
             if not text:
                 raise ValueError("文字不能是空的。不想要这一条，请用「选项」里的「🗑️ 删除这一行」")
             if text != vals["text"]:
-                vals["text"] = text
                 if "lang" not in changes:
-                    vals["lang"] = detect_lang(text) or vals["lang"]
+                    vals["lang"] = lang_after_edit(vals["text"], vals["lang"], text)
+                vals["text"] = text
         if "keep" in changes and changes["keep"] is not None:
             vals["keep"] = bool(changes["keep"])
         if "lang" in changes and changes["lang"] in ("zh", "en"):
@@ -221,6 +230,32 @@ def touched(ops: Sequence[Tuple[str, int, int, int, int]], s: int, e: int, stric
         elif i1 < e and s < i2:
             return True
     return False
+
+
+def _repeat_run(text: str, s: int, e: int) -> Optional[Range]:
+    """[s, e) 是不是「连着重复」的后面几遍（查错字标的是重复出来的那几遍，不是第一遍）：是的话返回整串重复的范围
+    （包括第一遍），不是返回 None。"""
+    n = e - s
+    for size in range(1, n + 1):
+        if n % size or s - size < 0:
+            continue
+        unit = text[s:s + size]
+        if not unit.strip() or text[s - size:s] != unit or text[s:e] != unit * (n // size):
+            continue
+        a, b = s - size, e
+        while a - size >= 0 and text[a - size:a] == unit:
+            a -= size
+        while text[b:b + size] == unit:
+            b += size
+        return a, b
+    return None
+
+
+def _repeat_fixed(ops: Sequence[Tuple[str, int, int, int, int]], text: str, s: int, e: int) -> bool:
+    """标红的是连着重复的字（「定语从句定语从句」），老师删掉了其中一遍：删掉的位置常被对到第一遍上（标红的是后面那遍），
+    也算改过了，不再标红（以前一直标着「重复了 2 遍」）。"""
+    run = _repeat_run(text, s, e)
+    return run is not None and touched(ops, run[0], run[1], strict=True)
 
 
 def _merge(ranges: Iterable[Sequence[int]], n: int) -> List[Range]:
@@ -336,7 +371,7 @@ def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
                 s, e = int(span[0]), int(span[1])
             except (TypeError, ValueError, IndexError):
                 continue
-            m = None if touched(ops, s, e) else map_range(blocks, s, e)
+            m = None if touched(ops, s, e) or _repeat_fixed(ops, base, s, e) else map_range(blocks, s, e)
             if m is not None and m[1] > m[0]:
                 red.append(m)
         alt = str(sus.get("alt") or "")
@@ -927,7 +962,7 @@ def adopt_all_suggestions(project: Any, only: Optional[Iterable[str]] = None) ->
                 continue
             if len(examples) < 6:
                 examples.append(describe_edits(vals["text"], todo, limit=1))
-            nv = dict(vals, text=new, lang=detect_lang(new) or vals["lang"])
+            nv = dict(vals, text=new, lang=lang_after_edit(vals["text"], vals["lang"], new))
             if nv == saved_values(rec):
                 draft.pop(rid, None)
             else:
@@ -965,9 +1000,10 @@ def save_rows(project: Any, ids: Optional[Iterable[str]] = None) -> Dict[str, An
             vals = draft[rid]
             touched = False
             if vals["text"] and vals["text"] != rec.get("text"):
-                _apply_text(rec, vals["text"])
+                _apply_text(rec, vals["text"])  # 语言跟着文字自动换（老师手动选过的不动）
                 changed["text"] += 1
                 touched = True
+            auto_lang = rec.get("lang")
             if vals["keep"] != bool(rec.get("keep", True)):
                 rec["keep"] = vals["keep"]
                 rec["manual_keep"] = vals["keep"]
@@ -975,7 +1011,7 @@ def save_rows(project: Any, ids: Optional[Iterable[str]] = None) -> Dict[str, An
                     rec["drop_reason"] = rec.get("drop_reason") or "手动不保留"
                 changed["keep"] += 1
                 touched = True
-            if vals["lang"] in ("zh", "en") and vals["lang"] != rec.get("lang"):
+            if vals["lang"] in ("zh", "en") and vals["lang"] != auto_lang:  # 老师改了语言（不算跟着文字自动换的）
                 rec["lang"] = vals["lang"]
                 changed["lang"] += 1
                 touched = True
@@ -1071,12 +1107,30 @@ def material_counts(records: Sequence[Dict[str, Any]]) -> Dict[str, Any]:
             "no_text": len(no_text), "pending": sum(1 for r in no_text if not r.get("asr_done"))}
 
 
-def material_signature(records: Sequence[Dict[str, Any]]) -> str:
-    """用来训练的是哪些句子、文字是什么：确认以后又改过（删除、恢复、保存了修改）时这个值会变。"""
+SIGNATURE_VERSION = 2  # 2：语言也算（训练时每一句按它的语言读）；1（v18.5 以前）：只有句子和文字
+
+
+def material_signature(records: Sequence[Dict[str, Any]], version: int = SIGNATURE_VERSION) -> str:
+    """用来训练的是哪些句子、文字和语言是什么：确认以后又改过（删除、恢复、保存了修改、改了语言）时这个值会变。"""
     import hashlib
 
-    items = sorted(f"{r.get('id')}\t{r.get('text')}" for r in records if is_material(r))
+    if version >= 2:
+        items = sorted(f"{r.get('id')}\t{r.get('lang')}\t{r.get('text')}" for r in records if is_material(r))
+    else:
+        items = sorted(f"{r.get('id')}\t{r.get('text')}" for r in records if is_material(r))
     return hashlib.sha1("\n".join(items).encode("utf-8")).hexdigest()
+
+
+def confirmed_matches(conf: Dict[str, Any], records: Sequence[Dict[str, Any]]) -> bool:
+    """确认训练素材以后，用来训练的句子、文字、语言都没变。旧版本的确认记录（没有语言）按旧的算法比，
+    升级以后不用为了这个重新确认。"""
+    if not conf or not conf.get("signature"):
+        return False
+    try:
+        version = int(conf.get("sig_version") or 1)
+    except (TypeError, ValueError):
+        version = 1
+    return conf["signature"] == material_signature(records, version)
 
 
 def confirm_path(project: Any) -> Path:
@@ -1094,7 +1148,7 @@ def load_confirmed(project: Any) -> Dict[str, Any]:
 
 def save_confirmed(project: Any, records: Sequence[Dict[str, Any]]) -> Dict[str, Any]:
     data = {"time": time.strftime("%Y-%m-%d %H:%M:%S"), "signature": material_signature(records),
-            "counts": material_counts(records)}
+            "sig_version": SIGNATURE_VERSION, "counts": material_counts(records)}
     p = confirm_path(project)
     atomic.write_text(p, json.dumps(data, ensure_ascii=False, indent=1))
     return data
@@ -1267,10 +1321,40 @@ def replace_matches(project: Any, query: Any, repl: Any, whole_word: bool = True
             rows += 1
             ids.append(rid)
         if undo:
-            p = Path(project.root) / UNDO_FILE
-            p.write_text(json.dumps({"query": str(query), "repl": repl, "rows": undo}, ensure_ascii=False),
-                         encoding="utf-8")
+            from voicetwin import __version__
+
+            atomic.write_text(Path(project.root) / UNDO_FILE,
+                              json.dumps({"query": str(query), "repl": repl, "rows": undo, "version": __version__},
+                                         ensure_ascii=False))
         return {"count": count, "rows": rows, "skipped": skipped, "ids": ids}
+
+
+def clear_undo(project: Any) -> None:
+    """「撤销刚才的替换」的记录不要了：确认了训练素材、点了一键全部文字校正以后，「刚才的替换」已经不是刚才的了
+    （以前几天前的替换记录还在，一键校正以后点这个按钮，会把早就保存、确认好的字改回去）。"""
+    try:
+        (Path(project.root) / UNDO_FILE).unlink()
+    except FileNotFoundError:
+        pass
+    except OSError as exc:
+        log.warning(f"删不掉「撤销刚才的替换」的记录（{exc}）")
+
+
+def _load_undo(project: Any) -> Optional[Dict[str, Any]]:
+    """这一版本做的替换的撤销记录；旧版本留下的（升级以前的）不算（删掉）。"""
+    from voicetwin import __version__
+
+    p = Path(project.root) / UNDO_FILE
+    try:
+        data = json.loads(atomic.read_text(p))
+    except FileNotFoundError:
+        return None
+    except (OSError, ValueError):
+        return None
+    if not isinstance(data, dict) or data.get("version") != __version__:
+        clear_undo(project)
+        return None
+    return data
 
 
 def undo_replace(project: Any) -> Dict[str, int]:
@@ -1280,10 +1364,7 @@ def undo_replace(project: Any) -> Dict[str, int]:
     返回 {"rows": 改回了几句, "kept": 又改过所以没动的句子数}；没有可撤销的两个都是 0。"""
     p = Path(project.root) / UNDO_FILE
     out = {"rows": 0, "kept": 0}
-    try:
-        data = json.loads(p.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return out
+    data = _load_undo(project)
     rows = data.get("rows") if isinstance(data, dict) else None
     if not isinstance(rows, dict) or not rows:
         return out
@@ -1294,7 +1375,10 @@ def undo_replace(project: Any) -> Dict[str, int]:
             rec = known.get(rid)
             if rec is None or not isinstance(entry, dict) or not str(entry.get("text") or "").strip():
                 continue
-            if rec.get("deleted") or current_values(rec, draft.get(rid))["text"] != entry.get("after"):
+            now = current_values(rec, draft.get(rid))["text"]
+            if not rec.get("deleted") and now == entry.get("text"):
+                continue  # 已经是替换以前的样子了（比如撤销过这一行的修改）：不用再改，也不说「又改过」
+            if rec.get("deleted") or now != entry.get("after"):
                 out["kept"] += 1
                 continue
             set_draft(project, rid, remember=False, text=entry["text"], lang=entry.get("lang"))  # 撤销替换不算老师不要程序的改法
@@ -1305,9 +1389,9 @@ def undo_replace(project: Any) -> Dict[str, int]:
                 rej = load_rejected(project)
                 rej[rid] = [x for x in rej.get(rid, []) if x not in added]
                 _save_rejected(project, rej)
-        p.unlink()
+        p.unlink(missing_ok=True)
         return out
 
 
 def has_undo(project: Any) -> bool:
-    return (Path(project.root) / UNDO_FILE).exists()
+    return _load_undo(project) is not None

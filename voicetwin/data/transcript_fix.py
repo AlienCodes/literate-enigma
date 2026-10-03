@@ -36,7 +36,7 @@ import re
 import shutil
 import time
 from collections import Counter, defaultdict
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Callable, Dict, Iterable, List, NamedTuple, Optional, Sequence, Set, Tuple
@@ -256,7 +256,7 @@ def _all_ids(project: Any) -> List[str]:
     return [str(r.get("id")) for r in project.load_manifest() if r.get("id")]
 
 
-def _eligible_ids(project: Any) -> List[str]:
+def textfix_eligible_ids(project: Any) -> List[str]:
     """「一键全部文字校正」能处理的句子：没删除、要用（不是「不用」）、已经有文字（按表格里显示的，含没保存的修改）。
     还没识别出文字、标了「不用」的句子不算——等识别完 / 改成要用以后才算新素材。"""
     from voicetwin.data import review as _review
@@ -272,19 +272,24 @@ def _eligible_ids(project: Any) -> List[str]:
     return out
 
 
-def textfix_batch_ids(project: Any) -> List[str]:
-    """用一键全部文字校正时算「这批素材」的句子：已经有文字的（删除的、标了「不用」的也算——以后恢复、改成要用，
-    不算新素材，按钮不会因此又亮）。还没识别出文字的不算：识别完以后才是新素材。"""
-    from voicetwin.data import review as _review
-
-    draft = _review.load_draft(project)
-    return [str(r["id"]) for r in project.load_manifest()
-            if r.get("id") and str(_review.current_values(r, draft.get(r["id"]))["text"] or "").strip()]
-
-
 def textfix_ever_used(project: Any) -> bool:
     """这个声音用过「一键全部文字校正」没有（有记录）。"""
     return (Path(project.root) / USED_FILE).exists()
+
+
+def textfix_done_ids(project: Any) -> Set[str]:
+    """用过「一键全部文字校正」的句子（记录里的 id）；没有记录、读不了都返回空的（只用来合并结果，不改记录）。"""
+    import json
+
+    from voicetwin.utils import atomic
+
+    try:
+        data = json.loads(atomic.read_text(Path(project.root) / USED_FILE))
+    except (OSError, ValueError):
+        return set()
+    if isinstance(data, dict) and isinstance(data.get("ids"), list):
+        return {str(x) for x in data["ids"]}
+    return set()
 
 
 def textfix_new_ids(project: Any) -> List[str]:
@@ -295,7 +300,7 @@ def textfix_new_ids(project: Any) -> List[str]:
     from voicetwin.utils import atomic
 
     path = Path(project.root) / USED_FILE
-    live = _eligible_ids(project)
+    live = textfix_eligible_ids(project)
     try:
         text = atomic.read_text(path)
     except FileNotFoundError:
@@ -1273,8 +1278,11 @@ def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: O
             a_score = 0.6
     tokchars = _token_chars(cur)
     fixed_chars = {k for f in fixes for k in range(f.start, f.end)}
+    # 老师撤销过的自动查错字建议：不再建议，那几个字也不再标红（和 🔍 自动查找一样）
+    a_rej = [ed for ed in a_edits if _review.is_rejected(rejected, cur, *ed)] if rejected else []
     red_keep = [sp for sp in a_red if not _is_confirmed(sp[0], sp[1], confirmed, tokchars)
                 and not all(k in fixed_chars for k in range(sp[0], sp[1]) if k in tokchars)
+                and not any(sp[0] < max(e, s + 1) and s < sp[1] for s, e, _ in a_rej)
                 and not (changed and _touches_changed(sp[0], sp[1], changed))]  # 老师自己改的字不标红
     t_edits: List[Tuple[int, int, str]] = []
     direct: List[Tuple[int, int, str]] = []
@@ -1644,12 +1652,15 @@ def _program_states(rec: Dict[str, Any], sus: Dict[str, Any]) -> Set[str]:
 def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
                           lines: Optional[Sequence[Tuple[str, str]]] = None, use_builtin: bool = True,
                           names: Optional[Sequence[str]] = None, use_row_fixes: bool = True,
-                          only: Optional[Iterable[str]] = None) -> Dict[str, Any]:
+                          only: Optional[Iterable[str]] = None, merge_only: bool = False) -> Dict[str, Any]:
     """📝 文字校正：以标准库（老师的母本 + 语法术语 + 对照表）为标准检查这个声音的校对表。
 
     直接改的存成没保存的修改（草稿），建议和原因写进「可能有错」列（record["suspect"]）。
     lines：老师上传的母本（不给就读声音文件夹里存的）；use_builtin：用不用程序自带的母本（测试时可以关掉）。
-    only：只检查这些句子（id），别的句子一点都不动（一键全部文字校正每批素材只能用一次：以后只改新加的句子）。"""
+    only：只检查这些句子（id），别的句子一点都不动（一键全部文字校正每批素材只能用一次：以后只改新加的句子）。
+    merge_only=True：🔍 自动查找（加了新素材时准备素材也会自动查）以后，把新查出来的结果和一键校正的结果合在一起
+    （以前一键校正的结果会被冲掉：建议没了、母本证明没错的标红又回来了），一个字都不改（标准库能确定的也只当建议），
+    也不算用了一次一键校正。"""
     from voicetwin.data import review as _review
     from voicetwin.data.lexicon_fix import Lexicon, builtin_info, has_jieba
 
@@ -1709,6 +1720,8 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
         fixes = _protect(fixes, cur, changed, lex)
         # 老师撤销过的改法（点过红色按钮、自己改回去、撤销这一行的修改）：不再改回来，也不再建议
         fixes = [f for f in fixes if not _review.is_rejected(rejected.get(rid), cur, f.start, f.end, f.rep)]
+        if merge_only:  # 只合并结果：一个字都不改（能确定的也只当建议，老师自己决定）
+            fixes = [replace(f, direct=False) if f.direct else f for f in fixes]
         results[rid] = (cur, fixes, res, changed)
         if i % 20 == 0 or i == n:
             _report(progress, 0.15 + 0.8 * i / max(n, 1), f"已检查 {i} / {n} 条")
@@ -1778,12 +1791,10 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
                 stats["flagged"] += 1
                 if "sure_alt" in sus and sus.get("src") == "transcript":
                     stats["unsure"] += 1
-            if direct:
+            if direct and not merge_only:
                 new = _apply(cur, direct)
                 if new.strip() and new != cur:
-                    from voicetwin.utils.textutil import detect_lang
-
-                    nv = {"text": new, "keep": vals["keep"], "lang": detect_lang(new) or vals["lang"]}
+                    nv = {"text": new, "keep": vals["keep"], "lang": _review.lang_after_edit(cur, vals["lang"], new)}
                     if nv == _review.saved_values(r):
                         draft.pop(r["id"], None)
                     else:

@@ -337,11 +337,13 @@ def apply_text_edit(rec: Dict[str, Any], text: str) -> None:
     红字一处都不剩、也没有采用过的建议时去掉整个标记。"""
     from voicetwin.utils.textutil import detect_lang, syllable_count
 
+    from voicetwin.data.review import lang_after_edit
+
     old = str(rec.get("text", "") or "")
     if text != old:  # 最初没有识别出文字（old 是空的）也记下：老师自己打的字要认得出来（标蓝、一键校正不动）
         rec.setdefault("orig_text", old)
     rec["text"] = text
-    rec["lang"] = detect_lang(text)
+    rec["lang"] = lang_after_edit(old, str(rec.get("lang") or ""), text) or detect_lang(text)
     if rec.get("voiced"):
         rec["rate"] = syllable_count(text) / max(rec["voiced"], 1e-3)
     auto = rec.get("suspect_auto")

@@ -1130,17 +1130,20 @@ def test_builtin_mother_still_confirms_the_same_sentence_with_another_id(tmp_pat
 @need_both
 def test_undo_replace_keeps_an_undo_made_after_the_replace(tmp_path):
     """随机操作脚本发现：先查找替换（我们 → 咱们），再一键校正、点红色按钮撤销（从剧），最后「撤销刚才的替换」：
-    以前把撤销记录整个恢复成替换以前的样子，老师后来的撤销丢了，再点一键又改回「从句」。"""
+    以前把撤销记录整个恢复成替换以前的样子，老师后来的撤销丢了，再点一键又改回「从句」。
+    10-03 起一键校正以后「刚才的替换」就不再能撤销（几天前的替换会把确认好的字改回去）：什么都不动。"""
     t = "在这个句子里面定语从剧的关系代词，我们也使用了which。"
     cfg, project = _voice(tmp_path, [t], ids=["c000"])
     review.replace_matches(project, "我们", "咱们")
+    assert review.has_undo(project)
     wf.run_transcript_fix(cfg, "校正声音")
-    assert "从句" in _cur(project, "c000")[1]
+    assert "从句" in _cur(project, "c000")[1] and not review.has_undo(project)
     review.unadopt_suggestion(project, "c000")
-    review.undo_replace(project)
-    assert _cur(project, "c000")[1] == t
+    assert review.undo_replace(project) == {"rows": 0, "kept": 0}
+    after = t.replace("我们", "咱们")
+    assert _cur(project, "c000")[1] == after
     wf.run_transcript_fix(cfg, "校正声音")
-    assert _cur(project, "c000")[1] == t  # 老师撤销的「从剧 → 从句」不再改回来
+    assert _cur(project, "c000")[1] == after  # 老师撤销的「从剧 → 从句」不再改回来
 
 
 # ---------------------------------------------------------------------------- 第五次独立检查发现的问题（每个都有一个测试）

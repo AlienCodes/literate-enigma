@@ -478,14 +478,14 @@ class Progress:
 
 ROWS = [
     {"text": "我们今天讲VFIXED的用法。"},
-    {"text": "这个户字的意思是whose，大家记一下。"},
+    {"text": "这本书的意思是shoe，大家记一下。"},  # shoe：老师的母本里没有这个词（whose 有，见下面的测试）
     {"text": "我们今天讲十个函数。", "suspect": {"spans": [[0, 1]], "alt": "旧的", "reasons": ["旧"], "score": 0.9}},
     {"text": "这一段完全没有问题。", "suspect": {"spans": [[0, 1]], "alt": "", "reasons": ["旧"], "score": 0.9}},
     {"text": "We will use VFIXED here.", "lang": "en"},
     {"text": "不保留的片段VFIXED。", "keep": False},
     {"text": ""},
 ]
-ANSWERS = {"c_0000": "我们今天讲v fixed的用法", "c_0001": "这个户字的意思是户字大家记一下", "c_0002": "我们今天讲是个函数",
+ANSWERS = {"c_0000": "我们今天讲v fixed的用法", "c_0001": "这本书的意思是书大家记一下", "c_0002": "我们今天讲是个函数",
            "c_0003": "这一段完全没有问题"}
 
 
@@ -516,7 +516,7 @@ def test_find_suspects_with_second_engine_and_cache(tmp_path, fake_engines):
     res = pc.find_suspects(project, cfg)
     assert res["engine"] == "funasr" and res["checked"] == 5 and res["flagged"] == 3
     recs = {r["id"]: r for r in project.load_manifest()}
-    assert recs["c_0001"]["suspect"]["alt"] == "这个户字的意思是户字，大家记一下。"
+    assert recs["c_0001"]["suspect"]["alt"] == "这本书的意思是书，大家记一下。"
     assert recs["c_0002"]["suspect"]["alt"] == "我们今天讲是个函数。"
     assert recs["c_0002"]["suspect"]["spans"] == [[5, 6]]
     assert "suspect" not in recs["c_0003"]

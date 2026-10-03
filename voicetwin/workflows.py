@@ -570,6 +570,7 @@ def review_confirm(cfg: Config, voice: str) -> Dict[str, Any]:
         if counts["material"] > 0:
             out["confirmed"] = True
             out["time"] = review.save_confirmed(project, records)["time"]
+            review.clear_undo(project)  # 确认以后「撤销刚才的替换」不能再把确认好的字改回去
     return out
 
 
@@ -615,6 +616,11 @@ TEXTFIX_ONCE_MSG = ("这批素材已经用过「📝 一键全部文字校正」
                     "或者双击「文字」自己改。以后加了新的素材、识别完，按钮会再亮起来（只改新加的句子）。")
 
 
+TEXTFIX_NEED_TOOLS_MSG = ("这台电脑上的声音分身没有找到拼音 / 分词工具（pypinyin、jieba），一键全部文字校正只能改很少的一部分。"
+                          "每批素材只能用一次，为了不白白用掉这次机会，这次没有开始，什么都没改。"
+                          "请重新运行 install_windows.bat、选 1（装进 GPT-SoVITS 整合包，里面有这两个工具），再点这个按钮。")
+
+
 def run_transcript_fix(cfg: Config, voice: str, files: Optional[Sequence[Any]] = None,
                        progress: Optional[ProgressFn] = None, adopt_all: bool = True,
                        once: bool = False) -> Dict[str, Any]:
@@ -629,18 +635,21 @@ def run_transcript_fix(cfg: Config, voice: str, files: Optional[Sequence[Any]] =
 
     project = open_project(cfg, voice, must_exist=True)
     only = None
-    batch: List[str] = []
     if once:
         only = transcript_fix.textfix_new_ids(project)
         if not only:
             raise ValueError(TEXTFIX_ONCE_MSG)
-        eligible = set(only)
-        # 这批素材里不处理、但也算「用过」的：删除的、标了「不用」的（以后恢复 / 改成要用不算新素材）
-        batch = [x for x in transcript_fix.textfix_batch_ids(project) if x not in eligible]
+        from voicetwin.data.lexicon_fix import has_jieba
+
+        if not (transcript_fix.has_pinyin() and has_jieba()):  # 只能改一点点：不能用掉这批素材唯一的一次
+            raise ValueError(TEXTFIX_NEED_TOOLS_MSG)
     if files:
         info = transcript_fix.save_transcripts(project, files)
         _report(progress, 0.01, f"已保存逐字稿：{'、'.join(info['files'])}（共 {info['chars']} 字）")
     res = dict(transcript_fix.check_with_transcript(project, progress=_sub(progress, 0.0, 0.95), only=only) or {})
+    from voicetwin.data import review as _review
+
+    _review.clear_undo(project)  # 一键校正以后「撤销刚才的替换」就不是「刚才的」了（会把一键校正前的字改回去）
     if adopt_all:  # 一键全部文字校正：剩下的有把握的修改建议（标准库的、自动查错字的）也一次全部采用
         from voicetwin.data import review
 
@@ -648,9 +657,13 @@ def run_transcript_fix(cfg: Config, voice: str, files: Optional[Sequence[Any]] =
         res["adopted"] = review.adopt_all_suggestions(project, only=only)
         _report(progress, 1.0, f"校正完了：一共改了 {res.get('fixes', 0) + res['adopted']['changes']} 处")
     if once:  # 做完才记（中途出错 / 停止的不算用过，可以再点）；在后台任务里记，网页关掉了也记得上；
-        # 只记真的处理过的句子（检查期间老师又改了的那句这次没处理，下次还能用）
-        transcript_fix.mark_textfix_used(project, list(res.get("handled") or []) + batch)
+        # 只记真的处理过的句子：检查期间老师又改了的、删除的、标了「不用」的这次没处理，
+        # 以后（恢复、改成要用）还能用一次——每一句都只改一次
+        handled = list(res.get("handled") or [])
+        transcript_fix.mark_textfix_used(project, handled)
         res["only"] = len(only or [])
+        res["skipped_edited"] = len(set(only or []) - set(handled))  # 检查期间又改过的（这次没处理，按钮还亮着）
+        res["all_rows"] = len(transcript_fix.textfix_eligible_ids(project))
     return res
 
 
@@ -663,6 +676,17 @@ def textfix_ever_used(cfg: Config, voice: str) -> bool:
     except (ValueError, RuntimeError, OSError):
         return False
     return transcript_fix.textfix_ever_used(project)
+
+
+def textfix_new_ids(cfg: Config, voice: str) -> List[str]:
+    """还没用过「一键全部文字校正」、现在能处理的句子（id）；声音还不存在时是空的。"""
+    from voicetwin.data import transcript_fix
+
+    try:
+        project = open_project(cfg, voice, must_exist=True)
+    except (ValueError, RuntimeError, OSError):
+        return []
+    return transcript_fix.textfix_new_ids(project)
 
 
 def textfix_used(cfg: Config, voice: str) -> bool:
@@ -801,7 +825,7 @@ def training_blocker(project: Project) -> str:
     if not conf:
         return ("还没有确认训练素材，这次没有开始训练（必须先在校对表下面点「✅ 确认训练素材」；"
                 "用命令行的话运行 voicetwin confirm）。")
-    if conf.get("signature") != review.material_signature(records):
+    if not review.confirmed_matches(conf, records):
         return ("确认训练素材以后，校对表又改过（改了文字、删除或撤销删除了句子），这次没有开始训练"
                 f"（上次确认是 {str(conf.get('time') or '')[5:16]}；用命令行的话再运行一次 voicetwin confirm）。")
     return ""

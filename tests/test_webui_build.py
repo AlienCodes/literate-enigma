@@ -238,6 +238,7 @@ def test_review_table_actions_queue_and_refresh(tmp_path):
     assert after and all(status_id in d["outputs"] for d in after)
     out = ui.after_task("")
     assert len(out) == len(after[0]["outputs"])
-    btn_id = ui.c["tr_btn"]._id
-    refresh = [d for d, f in zip(deps, app.fns) if getattr(f.fn, "__name__", "") == "textfix_btn"]
-    assert len(refresh) >= 4 and all(d["outputs"] == [btn_id] for d in refresh)  # 打开网页、换声音、准备素材后、一键校正后
+    want = [ui.c[k]._id for k in ("tr_btn", "tr_files", "tr_info")]
+    refresh = [d for d, f in zip(deps, app.fns) if getattr(f.fn, "__name__", "") == "textfix_state"]
+    # 打开网页、换声音、准备素材后、一键校正后、表格操作 / 保存 / 确认以后
+    assert len(refresh) >= 7 and all(d["outputs"] == want for d in refresh)

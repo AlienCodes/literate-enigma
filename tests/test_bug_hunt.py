@@ -148,7 +148,12 @@ def test_rows_not_processed_by_the_one_click_are_not_marked_used(tmp_path):
     wf.run_transcript_fix(cfg, "等识别", once=True)
     draft = review.load_draft(project)
     assert "关系代词" in draft["c001"]["text"] and set(draft) == {"c000", "c001"}  # 只改了新识别出来的那句
-    review.restore_clip(project, "c002")  # 恢复删除的行：不算新素材，按钮不亮
+    # 恢复删除的行：它还没用过一键校正（删除时没处理），按钮亮，只改这一句（每一句都只改一次）
+    review.restore_clip(project, "c002")
+    assert not wf.textfix_used(cfg, "等识别") and wf.textfix_new_ids(cfg, "等识别") == ["c002"]
+    wf.run_transcript_fix(cfg, "等识别", once=True)
+    draft = review.load_draft(project)
+    assert "介词" in draft["c002"]["text"] and draft["c001"]["text"] == "我们看关系代词。"
     assert wf.textfix_used(cfg, "等识别")
     assert not wf.textfix_ever_used(cfg, "没有的声音")
 
