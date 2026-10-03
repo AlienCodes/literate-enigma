@@ -716,12 +716,13 @@ class Narrator:
             self._identical = self._load_identical()
         return self._identical
 
-    def _load_identical(self, report: bool = False) -> Dict[str, Any]:
+    def _load_identical(self, report: bool = False, quiet: bool = False) -> Dict[str, Any]:
         """「一模一样」要用的东西：你本人的说话习惯（twin_profile.json）、参考录音库（refs_bank.json）、
         models.json 里挑模型时按「一模一样」校准过的设置（identical：语速、排序权重、试听参考录音的结果，P8 写）。
         素材没变时几乎不花时间；第一次要把你的录音量一遍。量不出来的项目按以前的方式（没测出来就不用）。
         参考录音库：以前没有、或者是这里（不带声纹）整理的，就重新整理一遍（几毫秒到一两秒）；带声纹的库由
-        「准备「一模一样」」（P8）负责更新，这里不动它，只用里面现在还能用的录音。"""
+        「准备「一模一样」」（P8）负责更新，这里不动它，只用里面现在还能用的录音。
+        quiet：准备（prepare_identical）已经在进度条上报过这几步了，这里只写日志（进度不往回跳）。"""
         from voicetwin.data.references import (bank_eligible, bank_signature, build_reference_bank,
                                                load_reference_bank)
         from voicetwin.style.twin_profile import build_twin_profile, load_twin_profile
@@ -730,7 +731,7 @@ class Narrator:
         twin = None
         lo = self._gen_range[0]
         try:
-            if report:
+            if report and not quiet:
                 self._progress(min(0.02, lo), "准备「一模一样」：测量你的说话习惯（停顿、音调、语速）……")
             twin = build_twin_profile(self.project)
         except Exception as exc:  # noqa: BLE001 - 停止按钮不是 Exception，照常传出去
@@ -743,7 +744,7 @@ class Narrator:
             records = self.project.load_manifest()
             bank = load_reference_bank(self.project)
             if bank is None or not bank.get("judge_models"):
-                if report:
+                if report and not quiet:
                     self._progress(min(0.05, lo), "准备「一模一样」：整理参考录音……")
                 build_reference_bank(self.project, records)
                 bank = load_reference_bank(self.project)
@@ -789,7 +790,7 @@ class Narrator:
         from voicetwin.synth.select import prepare_identical
 
         lo = self._gen_range[0]
-        a, b = min(0.02, lo), min(0.07, lo)
+        a, b = min(0.02, lo), min(0.055, lo)  # 后面「启动合成引擎」在 0.06：进度不往回跳
 
         def prog(frac: float, msg: str) -> None:
             self._progress(a + (b - a) * max(0.0, min(1.0, frac)), msg)
@@ -1362,7 +1363,7 @@ class Narrator:
             self._para_first = {s.index for k, s in enumerate(segments)
                                 if k == 0 or segments[k - 1].paragraph != s.paragraph}
             self._prepare_identical()
-            self._identical = self._load_identical(report=True)
+            self._identical = self._load_identical(report=True, quiet=True)
             configure = getattr(self._scorer, "configure", None)
             if callable(configure):  # 准备时可能重新校准了排序权重 / 重新量了说话习惯：打分器跟着换（不重新加载模型）
                 configure(twin=self._identical.get("twin"), rank_weights=self._identical.get("weights"))

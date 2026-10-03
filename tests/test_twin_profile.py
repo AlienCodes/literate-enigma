@@ -32,8 +32,16 @@ def voice(prepared, tmp_path):
 
 
 def _no_bank(root):
-    """共用的测试声音可能已经被别的测试（「一模一样」生成时）建过参考录音库：复制出来的这份从没有库开始。"""
+    """共用的测试声音可能已经被别的测试（「一模一样」生成时）建过参考录音库：复制出来的这份从没有库开始。
+    第 8 步起生成前的准备会建带声纹的库，顺便填 twin_profile.json 的音色变化（deltas.timbre）：也一起去掉。"""
     (root / "refs_bank.json").unlink(missing_ok=True)
+    (root / "cache" / "bank_emb.npz").unlink(missing_ok=True)
+    prof_path = root / "twin_profile.json"
+    if prof_path.exists():
+        prof = json.loads(prof_path.read_text(encoding="utf-8"))
+        if (prof.get("deltas") or {}).get("timbre") is not None:
+            prof["deltas"]["timbre"] = None
+            prof_path.write_text(json.dumps(prof, ensure_ascii=False), encoding="utf-8")
     (root / "cache" / "bank_emb.npz").unlink(missing_ok=True)
     shutil.rmtree(root / "references" / "bank", ignore_errors=True)
 

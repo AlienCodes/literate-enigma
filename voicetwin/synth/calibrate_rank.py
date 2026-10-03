@@ -6,9 +6,9 @@
 顺序和真实答案最一致（每句里的 Spearman 等级相关，取平均）。
 
 为了不自己骗自己：每次留出一句不看，用其余的句子挑权重，再拿这组权重去排留出的那句（leave-one-item-out）；
-平均下来比默认权重至少好 0.05、并且不是碰巧（对句子重新抽样 2000 次，95% 范围的下限也比默认的好）才换，
+平均下来比默认权重至少好 0.05、并且不是碰巧（对句子重新抽样 2000 次，里面至少 99% 都比默认的好）才换，
 否则照旧用默认权重（adopted = False）。只看平均好 0.05：几十句、每句 8 个版本时，纯随机的真实答案也有大约四分之一的机会
-碰巧超过（实测，见 research/一模一样/记录.md），所以另加了「不是碰巧」这一条。
+碰巧超过（实测 20 句时 26.5%，见 research/一模一样/记录.md），所以另加了「不是碰巧」这一条。
 """
 
 from __future__ import annotations
@@ -35,9 +35,10 @@ W_SPEAKER = 2.0
 W_CER = 1.0
 #: 一句话里至少要有几个能比的版本
 MIN_CANDS = 3
-#: 「不是碰巧」：对句子重新抽样几次、用哪个种子
+#: 「不是碰巧」：对句子重新抽样几次、用哪个种子、重新抽样里至少多少比例要比默认的好（取这个分位数 > 0）
 N_BOOT = 2000
 BOOT_SEED = 1234
+SURE_PCT = 1.0
 
 
 def _num(x: Any) -> Optional[float]:
@@ -169,7 +170,7 @@ def calibrate(cands_by_group: Dict[Any, Sequence[Dict[str, Any]]], cap_value: Op
     out["gain"] = round(gain, 4)
     g = np.asarray(item_gain, dtype=np.float64)
     idx = np.random.default_rng(BOOT_SEED).integers(0, g.size, size=(N_BOOT, g.size))
-    lo = float(np.percentile(g[idx].mean(axis=1), 2.5))
+    lo = float(np.percentile(g[idx].mean(axis=1), SURE_PCT))
     out["gain_lo"] = round(lo, 4)
     if gain >= min_gain and lo > 0:
         w = table[_argmax(S.mean(axis=0), d_idx)]
@@ -199,5 +200,5 @@ def describe(result: Dict[str, Any]) -> str:
         return (f"排序权重已按你的录音校准（留一句法实测比默认的排得更准 {gain:+.3f}）：语速 {w.get('rate')}、"
                 f"音调起伏 {w.get('pros')}、频谱 {w.get('ltas')}、像你本人{'封顶在你自己录音的 p90' if w.get('cap') == 'p90' else '不封顶'}")
     if gain >= float(result.get("min_gain", MIN_GAIN)):
-        return f"排序权重照旧用默认的（按你的录音校准好 {gain:+.3f}，但可能是碰巧：误差范围的下限没有比默认的好）"
+        return f"排序权重照旧用默认的（按你的录音校准好 {gain:+.3f}，但可能是碰巧：重新抽样里不到 99% 比默认的好）"
     return f"排序权重照旧用默认的（按你的录音校准只好 {gain:+.3f}，不到 {result.get('min_gain', MIN_GAIN)}，不值得换）"

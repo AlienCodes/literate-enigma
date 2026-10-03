@@ -457,9 +457,35 @@ def gsv_project(prepared, tmp_path, monkeypatch):
     return cfg, wf.open_project(cfg, project.voice, must_exist=True)
 
 
-def test_select_deep_error_falls_back_to_the_standard_selection(gsv_project, monkeypatch, caplog):
+class _Log:
+    """记下 voicetwin 的日志（不用 caplog：别的测试可能把 voicetwin 的日志设成不往上传）。"""
+
+    def __init__(self):
+        import logging
+
+        self.messages = []
+        h = logging.Handler(logging.DEBUG)
+        h.emit = lambda record: self.messages.append(record.getMessage())
+        self.handler = h
+
+
+@pytest.fixture
+def vt_log():
     import logging
 
+    rec = _Log()
+    logger = logging.getLogger("voicetwin")
+    old = logger.level
+    logger.addHandler(rec.handler)
+    logger.setLevel(logging.INFO)
+    try:
+        yield rec
+    finally:
+        logger.removeHandler(rec.handler)
+        logger.setLevel(old)
+
+
+def test_select_deep_error_falls_back_to_the_standard_selection(gsv_project, monkeypatch, vt_log):
     from voicetwin import workflows as wf
 
     cfg, project = gsv_project
@@ -475,11 +501,10 @@ def test_select_deep_error_falls_back_to_the_standard_selection(gsv_project, mon
 
     monkeypatch.setattr(sel, "select_deep", boom)
     monkeypatch.setattr(sel, "select_and_calibrate", standard)
-    with caplog.at_level(logging.WARNING, logger="voicetwin"):
-        res = wf.run_select(cfg, project.voice, "gptsovits", mode="identical")
+    res = wf.run_select(cfg, project.voice, "gptsovits", mode="identical")
     assert seen == ["deep", ("standard", False)]
     assert "测试：深度挑选出错了" in res["selection_error"] and res["fallback"] == "standard"
-    assert any("「一模一样」的挑选这次没成功" in r.getMessage() for r in caplog.records)
+    assert any("「一模一样」的挑选这次没成功" in m for m in vt_log.messages)
     assert Path(res["selection_error_report"]).exists()
     from voicetwin.webui import app as A
 
@@ -571,6 +596,38 @@ def test_narrator_prepares_before_identical_generation(prepared, tmp_path, monke
     assert k < next(i for i, m in enumerate(rec) if m.startswith("开始生成"))
     # 测试引擎不能训练：不做小校准（models.json 里没有 identical）
     assert "identical" not in (project.load_models().get("dummy") or {})
+
+
+def test_identical_generation_on_an_old_model_prepares_once(tmp_path, fast, monkeypatch):
+    """以前练的模型第一次按「一模一样」生成：先做小校准（进度一直往前走、停在「启动合成引擎」之前），第二次不再做；
+    小校准出来的语速用在生成上（缓存键里的语速跟着变）。"""
+    from voicetwin.synth import engine as eng
+    from voicetwin.synth.script import ScriptSegment
+
+    monkeypatch.setattr(eng, "_vram_tier", lambda: "none")
+    cfg, project = _project(tmp_path)
+    b = FakeQualityBackend(project, sovits=(8,), gpt=(6,), ratio=1.15)
+    _old_model(project, b)
+    seg = ScriptSegment(text="今天我们复习一下上节课的内容。", display="今天我们复习一下上节课的内容。", lang="zh",
+                        kind="statement", index=0, pause_after="sentence")
+    rec = []
+    n = eng.Narrator(cfg, project, b, quality="identical", tier="none", asr_check=False,
+                     progress=lambda f, m: rec.append((f, m)))
+    n._gen_range = (0.08, 0.88)
+    n.synthesize_all([seg])
+    block = project.load_models()["gptsovits"]["identical"]
+    assert block["mini"] is True and block["speed"]["zh"] == pytest.approx(1.15, abs=0.03)
+    fr = [f for f, _ in rec]
+    assert fr == sorted(fr)
+    prep = [f for f, m in rec if "准备「一模一样」（这个模型只做一次）" in m]
+    assert prep and max(prep) < 0.06 and rec[-1][0] >= 0.08
+    assert n._speed_for("zh") == pytest.approx(block["speed"]["zh"])
+    calls = len(b.calls)
+    n2 = eng.Narrator(cfg, project, b, quality="identical", tier="none", asr_check=False)
+    n2._gen_range = (0.08, 0.88)
+    n2.synthesize_all([seg])
+    assert not any(c[0].seed >= sel.SEED_BASE and c[1] == 2 and c[0].speed == 1.0 for c in b.calls[calls:])
+    assert project.load_models()["gptsovits"]["identical"]["evaluated_at"] == block["evaluated_at"]
 
 
 # ============================================================================ 真实 api_v2：第三步的请求

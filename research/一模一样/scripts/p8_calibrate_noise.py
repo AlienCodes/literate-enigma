@@ -1,6 +1,6 @@
 """P8 排序权重校准（voicetwin/synth/calibrate_rank.py）：真实答案是纯随机数时，会不会「碰巧」换掉默认权重；
 埋进去的权重能不能找回来。比较只看「留一句法平均好 0.05」（设计方案原文）和另加「对句子重新抽样 2000 次、
-95% 范围的下限也比默认的好」两种规则。
+里面至少 99% 都比默认的好」两种规则（calibrate_rank.SURE_PCT = 1：第 1 百分位 > 0）。
 运行：python research/一模一样/scripts/p8_calibrate_noise.py
 """
 import sys
@@ -39,7 +39,7 @@ for n_groups in (20, 60):
         both += int(r["adopted"])
     dt = (time.perf_counter() - t0) / len(seeds)
     print(f"纯随机，{n_groups} 句 × 8 个版本，{len(seeds)} 个种子：只看平均好 0.05 → {only_mean} 次换掉默认权重"
-          f"（{100 * only_mean / len(seeds):.1f}%）；另加误差范围下限 → {both} 次（{100 * both / len(seeds):.1f}%）；"
+          f"（{100 * only_mean / len(seeds):.1f}%）；另加「重新抽样 99% 都更好」 → {both} 次（{100 * both / len(seeds):.1f}%）；"
           f"每次校准 {1000 * dt:.0f} 毫秒")
 planted = {"rate": 0.8, "pros": 0.3, "ltas": 0.04, "cap": "none"}
 ok = 0
