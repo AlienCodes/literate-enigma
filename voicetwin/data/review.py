@@ -901,7 +901,7 @@ def replace_matches(project: Any, query: Any, repl: Any, whole_word: bool = True
     repl = str(repl or "")
     with _LOCK:
         draft = load_draft(project)
-        rejected_before = load_rejected(project)  # 「撤销刚才的替换」时连撤销记录一起恢复
+        rejected_before = load_rejected(project)  # 替换加了哪些撤销记录（「撤销刚才的替换」时去掉）
         recs = [r for r in project.load_manifest() if not r.get("deleted")]
         if target is not None:
             recs = [r for r in recs if r["id"] == target[0]]
@@ -920,14 +920,16 @@ def replace_matches(project: Any, query: Any, repl: Any, whole_word: bool = True
                 continue
             after = set_draft(project, rid, text=new)["values"]
             undo[rid] = {"text": text, "lang": before["lang"], "after": after["text"]}
+            added = [x for x in load_rejected(project).get(rid, []) if x not in rejected_before.get(rid, [])]
+            if added:  # 这次替换把采用过的建议改回去了：记下是替换加的，「撤销刚才的替换」时只去掉这些
+                undo[rid]["rejected_added"] = added
             draft = load_draft(project)
             count += n
             rows += 1
             ids.append(rid)
         if undo:
             p = Path(project.root) / UNDO_FILE
-            p.write_text(json.dumps({"query": str(query), "repl": repl, "rows": undo,
-                                     "rejected": {k: rejected_before.get(k, []) for k in undo}}, ensure_ascii=False),
+            p.write_text(json.dumps({"query": str(query), "repl": repl, "rows": undo}, ensure_ascii=False),
                          encoding="utf-8")
         return {"count": count, "rows": rows, "skipped": skipped, "ids": ids}
 
@@ -959,14 +961,10 @@ def undo_replace(project: Any) -> Dict[str, int]:
             set_draft(project, rid, remember=False, text=entry["text"], lang=entry.get("lang"))  # 撤销替换不算老师不要程序的改法
             draft = load_draft(project)
             out["rows"] += 1
-            before = data.get("rejected") if isinstance(data.get("rejected"), dict) else None
-            if before is not None:  # 替换时记下的撤销（替换把采用的建议改回去了）也恢复成替换以前的样子
+            added = [x for x in (entry.get("rejected_added") or []) if isinstance(x, list) and len(x) == 2]
+            if added:  # 替换时加上的撤销记录去掉（之后老师自己撤销的留着）
                 rej = load_rejected(project)
-                old_pairs = [x for x in (before.get(rid) or []) if isinstance(x, list) and len(x) == 2]
-                if old_pairs:
-                    rej[rid] = old_pairs
-                else:
-                    rej.pop(rid, None)
+                rej[rid] = [x for x in rej.get(rid, []) if x not in added]
                 _save_rejected(project, rej)
         p.unlink()
         return out

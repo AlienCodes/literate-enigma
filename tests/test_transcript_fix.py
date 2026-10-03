@@ -1124,3 +1124,19 @@ def test_builtin_mother_still_confirms_the_same_sentence_with_another_id(tmp_pat
         info = review.analyze(rec, cur)
         left += bool(info["red"] or info["edits"])
     assert left <= 1 and review.load_draft(project) == {}
+
+
+@need_both
+def test_undo_replace_keeps_an_undo_made_after_the_replace(tmp_path):
+    """随机操作脚本发现：先查找替换（我们 → 咱们），再一键校正、点红色按钮撤销（从剧），最后「撤销刚才的替换」：
+    以前把撤销记录整个恢复成替换以前的样子，老师后来的撤销丢了，再点一键又改回「从句」。"""
+    t = "在这个句子里面定语从剧的关系代词，我们也使用了which。"
+    cfg, project = _voice(tmp_path, [t], ids=["c000"])
+    review.replace_matches(project, "我们", "咱们")
+    wf.run_transcript_fix(cfg, "校正声音")
+    assert "从句" in _cur(project, "c000")[1]
+    review.unadopt_suggestion(project, "c000")
+    review.undo_replace(project)
+    assert _cur(project, "c000")[1] == t
+    wf.run_transcript_fix(cfg, "校正声音")
+    assert _cur(project, "c000")[1] == t  # 老师撤销的「从剧 → 从句」不再改回来
