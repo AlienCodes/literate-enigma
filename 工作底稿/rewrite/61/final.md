@@ -2,13 +2,13 @@
 # ZH: 孩子们发明的语言
 
 ## 英文
-On a **rattling** bus in Managua, deaf pupils kept up a **brisk**, **voiceless** **hubbub** across the **aisle**, **palms** **fluttering**, **wrists** **darting**. Their teachers could not follow a word.
+On a **rattling** bus in Managua, deaf pupils kept up a **brisk**, **voiceless** **hubbub** across the **aisle**, **palms** **fluttering**, **wrists** **flicking**. Their teachers could not follow a word.
 
 Before the late 1970s Nicaragua had no deaf **community**. Most deaf people led **secluded** lives, sharing a **homemade** **repertoire** of gestures with parents and **siblings**. In 1977 a special-education centre opened in Managua's San Judas district with 50 deaf pupils. By 1983 the centre and a **vocational** school for **teenage** pupils held more than 400.
 
 The **curriculum** **hinged** on **oral** Spanish and **lipreading**, and teachers signed only the **alphabet**. Pupils studied **lips** in **vain**, and most failed to grasp what a Spanish word was. At **recess**, in the street and on the buses, they **mingled** gestures with home signs. A **rough** **jumble** **ripened** **rapidly** into a **coherent** language **entirely** their own.
 
-The **bewildered** teachers found it **unintelligible**, and in June 1986 the Ministry of Education brought in Judy Kegl, an American Sign Language linguist from MIT. A 2001 study found that pupils who arrived younger, and later **intakes**, used **grammatical** devices more often and more **uniformly** than their **forerunners**. Each fresh wave of young **signers** added **complexity**.
+The teachers found it **unintelligible**, and in June 1986 the Ministry of Education brought in Judy Kegl, an American Sign Language linguist from MIT. A 2001 study found that pupils who arrived younger, and later **intakes**, used **grammatical** devices more often and more **uniformly** than their **forerunners**. Each fresh wave of young **signers** added **complexity**.
 
 In a 2004 study, gesturing Spanish speakers and the earliest signers described something rolling **downhill** by **welding** how it moved and where it went into one **undivided** movement. Later signers **dismantled** it into **discrete** **segments** in **linear** order, a **framework** found **nowhere** in the gestures around them.
 
@@ -16,13 +16,13 @@ Linguists had a rare chance to watch a language grow from **infancy** to **matur
 
 ## 中文
 
-马那瓜，一辆**哐当作响**(rattling)的公共汽车上，聋人学生们隔着**过道**(aisle)，**轻快**(brisk)地进行着一场**无声**(voiceless)的**热闹交谈**(hubbub)，**手掌**(palms)上下**翻飞**(fluttering)，**手腕**(wrists)飞快地**舞动**(darting)。他们的老师一个字也看不懂。
+马那瓜，一辆**哐当作响**(rattling)的公共汽车上，聋人学生们隔着**过道**(aisle)，**轻快**(brisk)地进行着一场**无声**(voiceless)的**热闹交谈**(hubbub)，**手掌**(palms)上下**翻飞**(fluttering)，**手腕**(wrists)飞快地**舞动**(flicking)。他们的老师一个字也看不懂。
 
 20世纪70年代末以前，尼加拉瓜没有聋人**群体**(community)。大多数聋人过着**与世隔绝**(secluded)的生活，只和父母、**兄弟姐妹**(siblings)共用一套**自家创造**(homemade)的手势**词汇**(repertoire)。1977年，马那瓜圣胡达斯区开办了一所特殊教育中心，招收了50名聋童。到1983年，这所中心和一所面向**青少年**(teenage)的**职业**(vocational)学校，已共有400多名聋生。
 
 **课程**(curriculum)全都**围绕**(hinged)西班牙语**口语**(oral)和**唇读**(lipreading)展开，老师们打手语时只比划**字母**(alphabet)。学生们盯着**嘴唇**(lips)看，却是**徒劳**(vain)，多数人始终没弄明白西班牙语的"词"是什么。在**课间**(recess)、街头和公共汽车上，他们把各种手势与自家手势**混合**(mingled)在一起。一堆**粗糙**(rough)的**大杂烩**(jumble)，**迅速**(rapidly)地**成熟**(ripened)为一门**连贯**(coherent)的、**完全**(entirely)属于他们自己的语言。
 
-**困惑**(bewildered)的老师们觉得这种手语**无法理解**(unintelligible)。1986年6月，教育部请来了麻省理工学院的美国手语语言学家朱迪·凯格尔。2001年的一项研究发现，入学年龄更小的学生，以及后来入学的几批**新生**(intakes)，使用**语法**(grammatical)手段比他们的**前辈**(forerunners)更频繁，也更**统一**(uniformly)。每一批年幼的**手语者**(signers)加入，都让这门语言增添了**复杂性**(complexity)。
+老师们觉得这种手语**无法理解**(unintelligible)。1986年6月，教育部请来了麻省理工学院的美国手语语言学家朱迪·凯格尔。2001年的一项研究发现，入学年龄更小的学生，以及后来入学的几批**新生**(intakes)，使用**语法**(grammatical)手段比他们的**前辈**(forerunners)更频繁，也更**统一**(uniformly)。每一批年幼的**手语者**(signers)加入，都让这门语言增添了**复杂性**(complexity)。
 
 在2004年的一项研究中，打手势的西班牙语使用者和最早一批手语者描述东西**滚下坡**(downhill)时，都把它怎样运动、往哪里去**熔接**(welding)成一个**不可分割**(undivided)的动作。后来的手语者则把它**拆解**(dismantled)成**离散**(discrete)的**片段**(segments)，按**线性**(linear)顺序排列，这种**结构**(framework)在他们周围的手势中**无处**(nowhere)可见。
 
@@ -39,7 +39,7 @@ Linguists had a rare chance to watch a language grow from **infancy** to **matur
 | palms | n. (palm) 手掌（read sb's palm） | 1 |
 | fluttering | v. (flutter) 翻飞，颤动（flags fluttering in the wind） | 1 |
 | wrists | n. (wrist) 手腕（a broken wrist） | 1 |
-| darting | v. (dart) 疾动，猛冲（fish darting about） | 1 |
+| flicking | v. (flick) 轻快地抖动，轻弹（flick a switch） | 1 |
 | community | n. 群体，社区（the deaf community） | 2 |
 | secluded | adj. 隐居的，与世隔绝的（a secluded life） | 2 |
 | homemade | adj. 自制的（homemade bread） | 2 |
@@ -62,7 +62,6 @@ Linguists had a rare chance to watch a language grow from **infancy** to **matur
 | rapidly | adv. 迅速地（grow rapidly） | 3 |
 | coherent | adj. 连贯的，条理清楚的（a coherent argument） | 3 |
 | entirely | adv. 完全地（entirely different） | 3 |
-| bewildered | adj. 困惑的（a bewildered expression） | 4 |
 | unintelligible | adj. 难以理解的（unintelligible speech） | 4 |
 | intakes | n. (intake) （一批）新生，招收人数（this year's intake of students） | 4 |
 | grammatical | adj. 语法的（grammatical rules） | 4 |
