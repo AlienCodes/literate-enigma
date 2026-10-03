@@ -7,7 +7,8 @@ sys.path[:0] = [str(ROOT), str(ROOT / "tests")]
 import csv, sys, importlib.util
 sys.path.insert(0, str(ROOT))
 import subprocess, tempfile
-_old = Path(tempfile.mkdtemp()) / "textutil_old.py"  # 修以前的版本（第四轮开始时的提交 c46f66c）
+_tmp = tempfile.TemporaryDirectory()  # 跑完自动删掉
+_old = Path(_tmp.name) / "textutil_old.py"  # 修以前的版本（第四轮开始时的提交 c46f66c）
 _old.write_bytes(subprocess.check_output(["git", "-C", str(ROOT), "show", "c46f66c:voicetwin/utils/textutil.py"]))
 spec = importlib.util.spec_from_file_location("old", str(_old))
 old = importlib.util.module_from_spec(spec); spec.loader.exec_module(old)

@@ -43,7 +43,8 @@ cases = [("不上传", None),
 need = {o["id"] for o, c in zip(ORIG, CLEAN) if o["text"] != c["text"] and o["drop_reason"] != "老师删除"}
 clean = {c["id"]: c["text"] for c in CLEAN}
 for title, up in cases:
-    root = tempfile.mkdtemp()
+    tmp = tempfile.TemporaryDirectory()  # 跑完自动删掉
+    root = tmp.name
     recs = [{"id": r["id"], "text": r["text"], "keep": r["keep"] == "1", "deleted": r["drop_reason"] == "老师删除",
              "path": "x.wav"} for r in ORIG]
     p = P(root, recs)
@@ -65,3 +66,4 @@ for title, up in cases:
         if review.analyze(r, cur)["active"]:
             red += 1
     print(f"{title}: 改对 {exact}/{len(need)}，多改 {len(extra)} 句 {extra[:3]}，剩下标红 {red} 句，用时 {time.time() - t0:.1f} 秒")
+    tmp.cleanup()
