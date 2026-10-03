@@ -390,29 +390,24 @@ def _clean_input(p: Any) -> str:
 def _precheck_prepare(cfg: Config, voice: str, inputs: List[str], overrides: Optional[Dict[str, Any]]) -> List[str]:
     """开始前先检查（几秒钟）：文件夹在不在、识别组件装没装、硬盘空间。返回要提醒的话。"""
     from voicetwin.data.asr import engine_importable
-    from voicetwin.data.prepare import discover_sources
-    from voicetwin.data.subtitles import find_sidecar_subtitle
+    from voicetwin.data.prepare import discover_sources, usable_sidecar
 
     for p in inputs:
         if not Path(p).expanduser().exists():
             raise FileNotFoundError(f"找不到文件夹：{p}。请在文件夹窗口顶部的地址栏复制路径，再粘贴过来")
     eff = _effective_cfg(cfg, overrides)
     project = Project(cfg, voice)
-    from voicetwin.data.prepare import _own_dirs, already_done, load_sources
+    from voicetwin.data.prepare import _own_dirs, load_sources, pending_sources
 
-    sources_db = load_sources(project, project.load_manifest())
+    records = project.load_manifest()
+    sources_db = load_sources(project, records)
     files = discover_sources(inputs, exclude=_own_dirs(project, eff))
-    new = []
-    for f in files:
-        try:
-            if not already_done(sources_db, f):
-                new.append(f)
-        except OSError:
-            continue
-    pending = [r for r in project.load_manifest() if not r.get("text") and not r.get("asr_done")]
+    new, _ = pending_sources(project, files, sources_db, records)  # 同一个视频的几份只算一份（硬盘空间也只算一份）
+    pending = [r for r in records if not r.get("text") and not r.get("asr_done")]
     engine = str(eff.get_path("prepare.asr.engine", "faster-whisper") or "faster-whisper").lower()
     seg_mode = str(eff.get_path("prepare.segmentation", "auto") or "auto").lower()
-    need_asr = bool(pending) or any(not (seg_mode in ("auto", "srt") and find_sidecar_subtitle(f)) for f in new)
+    # 同名字幕读不出内容的视频要靠语音识别（会改用静音切分 + 识别）
+    need_asr = bool(pending) or any(not (seg_mode in ("auto", "srt") and usable_sidecar(f)) for f in new)
     if need_asr and engine != "none" and not engine_importable(engine):
         raise RuntimeError("语音识别组件没装好，请重新双击 install_windows.bat 安装一次")
     notes: List[str] = []

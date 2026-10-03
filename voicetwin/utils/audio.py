@@ -242,6 +242,30 @@ def clip_ratio(wav: np.ndarray, level: float = 0.995) -> float:
     return float(np.mean(np.abs(wav) >= level))
 
 
+def clip_counts(wav: np.ndarray, sr: int, level: float = 0.995, hop_ms: float = 1.0) -> Tuple[np.ndarray, int]:
+    """每 hop_ms 毫秒里有几个样本到了满格（削顶 / 爆音）。返回 (每帧的个数, 每帧几个样本)。
+    要在统一音量以前、对原始录音算（统一音量以后最响只有 -1 dB，永远不会满格）；整段录音很长时分块算，不多占内存。"""
+    hop = max(1, int(round(sr * hop_ms / 1000.0)))
+    n = int(len(wav))
+    out = np.zeros((n + hop - 1) // hop, dtype=np.uint16)
+    chunk = hop * 65536
+    for i in range(0, n, chunk):
+        part = np.abs(wav[i:i + chunk]) >= level
+        pad = (-len(part)) % hop
+        if pad:
+            part = np.concatenate([part, np.zeros(pad, dtype=bool)])
+        k = i // hop
+        out[k:k + len(part) // hop] = part.reshape(-1, hop).sum(axis=1)
+    return out, hop
+
+
+def clipped_fraction(counts: np.ndarray, hop: int, start: int, end: int) -> float:
+    """clip_counts 算出来的结果里，样本 [start, end) 这一段满格样本的比例（误差不超过一帧）。"""
+    if end <= start or hop <= 0:
+        return 0.0
+    return float(np.sum(counts[start // hop:end // hop], dtype=np.int64)) / float(end - start)
+
+
 # ----------------------------------------------------------------------------- 滤波/响度
 def highpass(wav: np.ndarray, sr: int, cutoff_hz: float = 60.0, order: int = 4) -> np.ndarray:
     if not cutoff_hz or cutoff_hz <= 0 or wav.size < 64:
