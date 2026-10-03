@@ -126,8 +126,9 @@ synth:
   #   max       极致：每句生成 8 次（显存 <8GB 时 6 次）、识别校验一直开着、错字门槛更严，不够像的自动重做
   #   perfect   完美：每句 4 次一批地试，达到严格标准（错字率 ≤5%、像你本人 ≥99%、语速音高在你平时的范围内）就停，
   #             最多 20 次；挑长短最接近的参考音频；同时输出「未去杂音」「去杂音」两个版本并推荐更像你的那个（很慢）
-  #   identical 一模一样：每句至少 / 最多试几个按显卡分档（见下面 tiers.identical），挑出来的那个达到严格标准、
-  #             并且再试也不更好时才停；同时输出「未去杂音」「去杂音」两个版本（最慢）
+  #   identical 一模一样：每句换几条参考录音、几种生成设置，引擎自检通过时一次同时生成好几个版本；每句至少 / 最多试几个
+  #             按显卡分档（见下面 tiers.identical），挑出来的那个达到严格标准、并且再试也不更好时才停；
+  #             同时输出「未去杂音」「去杂音」两个版本（最慢）
   # 网页每次打开都先选好「一模一样」（网页不看这一项）；命令行没写 -q 时按这一项，写了别的档位会提示一句。
   quality: auto               # auto（默认）= identical「一模一样」；fast | balanced | best | max | perfect | identical
   candidates: auto            # 每句生成几个候选再自动挑最像的；auto 跟随 quality（完美档是每批几个；一模一样档不看这一项，见 tiers.identical）
@@ -155,26 +156,28 @@ synth:
   #   perfect: { candidates: 4, max_candidates: 20, target_pct: 99, cer_target: 0.05, cer_retry_threshold: 0.08 }
   tiers:
     identical:                # 「一模一样」的细节，一般不用改（都写 auto 就行）
-      batch: auto             # 每批试几个版本：显存 ≥16GB 12 / 8GB 档 8 / 更小 2 / 没有 N 卡 1
+      batch: auto             # 每次同时生成几个版本：显存 ≥16GB 12 / 8GB 档 8 / 更小 2 / 没有 N 卡 1（合成引擎自检通过才同时生成）；
+                              # auto 时开头 6 次请求在这个数和它的一半之间按实测的「每秒几个版本」选；显存不够自动减半
       min_candidates: auto    # 每句至少试几个：40 / 小显存 16 / 没有 N 卡 6
       max_candidates: auto    # 每句最多试几个：64 / 32 / 12（命令行 -n 也是改这个）
-      # 上面三项可以写一个数（每种显卡都用它），也可以只改一种显卡，例如 { high: 100 }：没写的显卡还是用默认的
+      refs_per_sentence: auto # 每句从参考录音库里挑几条参考录音：3 / 小显存 2 / 没有 N 卡 2
+      # 上面四项可以写一个数（每种显卡都用它），也可以只改一种显卡，例如 { high: 100 }：没写的显卡还是用默认的
+      aux_options: [3, 0]     # 每条参考配几条辅助参考（融合音色），两种都试
       plateau: 8              # 最近 8 个版本……
       plateau_eps: 0.02       # ……最高分涨不到 0.02，就算「再试也不更好」
+      full_score_top: 12      # 每个版本先只用一个声纹模型快速打分，前 12 名（和每种组合最好的那个）再完整打分……
+      full_score_max: 24      # ……每句最多完整打分 24 个（三个声纹模型 + 错字检查 + 音调）
+      store_top_k: 6          # 每句留下最好的几个版本：重新生成时一起比；打分标准变了时不用显卡、按新标准重新排
       cer_target: { strong: 0.03, weak: 0.06 }
       cer_retry_threshold: { strong: 0.08, weak: 0.12 }
       search_target: p50      # 继续找的目标：你自己录音的中位水平（不受 similarity.target_pct 影响）
       pass_target: p25        # 算「达标」：不低于你自己录音的常见水平（下四分位）
+      refine_tempo: true      # 挑出来的那个语速和你平时差得多时，同一个版本只改语速再生成一次（也一起比）
+      pipeline: auto          # 一边生成一边打分（没有 N 卡时不用）
+      judge_device: auto      # 有显卡版 onnxruntime、显卡还空 1.5 GB 以上、实测和处理器算出来的一样时，声纹打分用显卡；否则用处理器
       # 下面几项是「一模一样」后面几步才用的设置，这一版改了还不起作用
-      refs_per_sentence: auto # 3 / 2 / 2
-      aux_options: [3, 0]
-      full_score_top: 12
-      store_top_k: 6
-      refine_tempo: true
+      speed_trick: auto       # 「语速 1.0001」自检：现在一直按 auto（自检通过才同时生成语速正好 1.0 的句子）
       continuity: true
-      pipeline: auto
-      speed_trick: auto
-      judge_device: auto
       two_checkpoints: true
   score:                      # 给候选打分的权重：相似度为主，其它只做扣分
     speaker: 2.0              # "像你本人（%）"的权重

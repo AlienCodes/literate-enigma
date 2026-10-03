@@ -6,7 +6,8 @@ P1（对所有档位都有效的修正）：
 - 训练列表里末尾没有标点的片段补「，」不补「。」；
 - 素材准备的小结如实数出中文句子里夹着的英文。
 P2（「一模一样」档的接线和默认值）：任何显卡、网页每次打开、命令行、旧版本写进 config.yaml 的默认值，都是「一模一样」；
-它现在先用「完美」的一批一批地试，但每句至少 / 最多试几个、停下的标准是它自己的。
+每句至少 / 最多试几个、停下的标准是它自己的。第 2 步时它先用「完美」的一批一批地试；第 5 步（P5）起换成真正的搜索
+（synth/search.py，测试在 test_identical_search.py），这里整篇走一遍的测试按新的搜索改了（意图不变）。
 """
 
 import json
@@ -616,7 +617,11 @@ class _Checker:
 
 def _scripted(monkeypatch, totals, pct=100.0, pct_raw=None, natural=None, tier="none"):
     """每个候选的分数按顺序给（用完后一直是最后一个）；「像你本人」固定，或者和综合分一起按 (综合分, 没封顶的百分比) 给。
-    没有 N 卡：每批 1 个、至少 6 个、最多 12 个。"""
+    没有 N 卡：每批 1 个、至少 6 个、最多 12 个。「一模一样」的两步打分（快速 / 完整）也按同一个顺序给：
+    每个版本快速打分时取下一个分数，完整打分时用同一个。"""
+    import dataclasses
+
+    from voicetwin.eval import identical_judge as IJ
     from voicetwin.eval import metrics
 
     monkeypatch.setattr(eng, "_vram_tier", lambda: tier)
@@ -633,8 +638,21 @@ def _scripted(monkeypatch, totals, pct=100.0, pct_raw=None, natural=None, tier="
             p = min(float(raw), 100.0)
         return metrics.Score(total=float(t), pct=p, pct_raw=raw, cer=0.0, errors=0, rate=4.0, speaker_sim=0.8)
 
+    held = {}
+
+    def quick(self, wav, sr, text, lang, mult=1.0):
+        s = score(self, wav, sr, text, lang)
+        held[id(wav)] = s
+        return IJ.QuickScore(total=s.total, pct_raw=s.pct_raw, voiced=1.0, expected=None, dur_dev=None, gate_ok=True)
+
+    def full(self, wav, sr, text, lang, mult=1.0, prepared=None, use_asr=True, cer=None, check_pauses=True):
+        s = held.get(id(wav)) or score(self, wav, sr, text, lang)
+        return dataclasses.replace(s, stage="full", issues=list(s.issues))
+
     monkeypatch.setattr(metrics.Scorer, "score", score)
     monkeypatch.setattr(metrics.Scorer, "in_normal_range", lambda self, s, lang, speed=1.0: True)
+    monkeypatch.setattr(IJ.IdenticalScorer, "quick", quick)
+    monkeypatch.setattr(IJ.IdenticalScorer, "full", full)
     return state
 
 
@@ -653,7 +671,9 @@ def test_identical_stops_at_minimum_when_nothing_gets_better(prepared, tmp_path,
     assert res.quality == "identical" and seg["tries"] == 6 and seg["met"] is True and not seg["flagged"]
     assert any("达到了「一模一样」的严格标准" in n for n in res.notes)
     assert any("平均每句试了 6.0 个版本（最多 12 个）" in n for n in res.notes)
-    assert any("已经达到标准，再多试几个，确认没有更好的（第 2 个）" in m for _, m in rec)
+    # 没有 N 卡：第 1 轮 3 种组合各 1 个，挑出来的那个已经达标，接着试是为了确认没有更好的
+    assert any("已经达到标准，再多试几个，确认没有更好的（第 4 个）" in m for _, m in rec)
+    assert any("[1/1] 已试 3 个版本，目前最像你的 100.0%" in m for _, m in rec)
     gen = [f for f, m in rec if m.startswith("[1/1]")]
     assert gen and all(0.08 <= f <= 0.88 for f in gen)  # 和阶段表「逐句生成」对齐
     assert any(abs(f - 0.99) < 1e-9 and "写字幕和报告" in m for f, m in rec) and rec[-1][0] == 1.0
@@ -677,7 +697,8 @@ def test_identical_not_similar_enough_tries_to_cap(prepared, tmp_path, monkeypat
     res, rec = _narrate(prepared, tmp_path, "一模一样不够像", quality="identical")
     seg = res.segments[0]
     assert seg["tries"] == 12 and seg["met"] is False and "可能不够像" in seg["hint"] and seg["flagged"]
-    assert any("还没达到「一模一样」标准，继续试（第 2/12 次）" in m for _, m in rec)
+    assert any("已试 12 个版本，目前最像你的 95.0%" in m for _, m in rec)
+    assert not any("已经达到标准" in m for _, m in rec)
 
 
 def test_identical_targets_follow_her_natural_range(prepared, tmp_path, monkeypatch):
@@ -783,14 +804,19 @@ def _feature_flags():
     import importlib.util
 
     from voicetwin.backends.base import Backend
+    from voicetwin.backends.gptsovits import _new_batch_stats
     from voicetwin.eval.metrics import CERChecker
     from voicetwin.synth import select
 
-    batch = hasattr(Backend, "synthesize_many")  # 第 4 步：一次请求同时生成好几个、显存不够自动减半
+    search = importlib.util.find_spec("voicetwin.synth.search") is not None  # 第 5 步：真正的搜索
+    batch = hasattr(Backend, "synthesize_many") and search  # 第 4 步能同时生成好几个，第 5 步的搜索真的用上它
     return {
         "batch": batch,
-        "oom": batch and not eng._is_fatal(RuntimeError("CUDA out of memory. Tried to allocate 20.00 MiB")),
-        "multi_ref": importlib.util.find_spec("voicetwin.synth.search") is not None,  # 第 5 步：每句几条参考
+        "oom_halve": batch and "oom_backoffs" in _new_batch_stats(),  # 第 4 步：同时生成时显存不够就减半
+        # 同时生成的个数减到 1、让出识别模型的显存也不够时，生成还是会停下（显存不够是「重试也没用」的错误）
+        "oom_never_stop": not eng._is_fatal(RuntimeError("CUDA out of memory. Tried to allocate 20.00 MiB")),
+        "gpu_full": False,  # 「用满显卡」「显卡一直满负荷」：没有实测就永远不能写（设计方案 §0.3）
+        "multi_ref": search,                                                           # 第 5 步：每句几条参考
         "mixed_cer": hasattr(CERChecker, "check_mixed"),                               # 第 5 步：中英文分开查错字
         "continuity": hasattr(eng.Narrator, "_continuity"),                            # 第 6 步：整篇再挑一遍
         "prepare": hasattr(select, "prepare_identical"),                               # 第 8 步：新模型先准备
@@ -799,22 +825,24 @@ def _feature_flags():
 
 #: 每个功能对应的说法：功能没做好之前，给老师看的字里不能有
 UNBUILT_PHRASES = {
-    "batch": ("同时生成", "用满显卡", "一次生成好几个"),
-    "oom": ("不会因为显存不够而停下", "显存不够自动减半", "少生成一些再接着试"),
+    "batch": ("同时生成", "一次生成好几个"),
+    "oom_halve": ("显存不够自动减半", "减少同时生成的个数", "少生成一些再接着试"),
+    "oom_never_stop": ("不会因为显存不够而停下",),
+    "gpu_full": ("用满显卡", "显卡一直满负荷"),
     "multi_ref": ("换几条", "几条最合适", "每句用几条参考录音："),
     "mixed_cer": ("中英文分开",),
-    "continuity": ("整篇再挑一遍", "整篇按你的停顿和音量"),
+    "continuity": ("整篇再挑一遍", "整篇按你的停顿和音量", "按你本人的停顿长短和音量拼接"),
     "prepare": ("先做一次准备",),
 }
 
 
 def test_texts_only_describe_what_the_code_does(tmp_path):
-    """「一模一样」的说明只写现在真的会做的事（老师的规定：不要乱写）：显存不够现在还是会停下（显存不够是
-    「重试也没用」的错误），一次请求只生成一个版本，每句一条参考……这些功能做好之前，说明里不能先写上。"""
+    """「一模一样」的说明只写现在真的会做的事（老师的规定：不要乱写）：同时生成的个数减到 1 个也显存不够时还是会停下
+    （显存不够是「重试也没用」的错误），「用满显卡」没有实测，整篇再挑一遍、新模型先准备还没做……这些说法不能先写上。"""
     from voicetwin.webui import app as A
 
     flags = _feature_flags()
-    assert eng._is_fatal(RuntimeError("torch.OutOfMemoryError: CUDA out of memory")) or flags["oom"]
+    assert eng._is_fatal(RuntimeError("torch.OutOfMemoryError: CUDA out of memory")) or flags["oom_never_stop"]
     cfg, project = _key_project(tmp_path)
     texts = [eng.QUALITY_LABELS["identical"], eng.QUALITY_HELP["identical"], eng.QUALITY_NOTE, A.BLIND_QUALITY_NOTE]
     texts += list(eng.QUALITY_TIER_NOTES.values())
@@ -842,9 +870,8 @@ def test_identical_stop_rule_looks_at_the_best_version(prepared, tmp_path, monke
     res, rec = _narrate(prepared, tmp_path, "一模一样看挑出来的那个", quality="identical")
     seg = res.segments[0]
     assert seg["tries"] == 12 and seg["pct"] == 95.0 and seg["met"] is True  # 95% 不低于下四分位 90%：算达标
-    # 只有第 1 个试完时挑出来的（101%）到了目标；第 2 个以后挑出来的是 95% 的，不能一直说「已经达到标准」
-    reached = [m for _, m in rec if "已经达到标准" in m]
-    assert reached and all("（第 2 个）" in m for m in reached)
+    # 挑出来的一直是 95% 的那个（综合分高）：一次都不能说「已经达到标准」
+    assert not any("已经达到标准" in m for _, m in rec)
     # 挑出来的那个到了目标：照样至少试满 6 个、再试也不更好就停
     _scripted(monkeypatch, [(1.0, 95.0), (2.0, 101.0)], natural=natural)
     res2, _ = _narrate(prepared, tmp_path, "一模一样挑出来的到了目标", quality="identical")
@@ -982,6 +1009,20 @@ def test_attempt_scores_and_checks_with_the_language_sent(prepared, monkeypatch,
     monkeypatch.setattr(metrics.Scorer, "score", score)
     monkeypatch.setattr(eng.Narrator, "_thr", thr)
     monkeypatch.setattr(eng.Narrator, "_cer_ok", cer_ok)
+    from voicetwin.eval import identical_judge as IJ
+
+    real_quick, real_full = IJ.IdenticalScorer.quick, IJ.IdenticalScorer.full
+
+    def quick(self, wav, sr, text, lang, *a, **k):  # 「一模一样」用两步打分（快速 / 完整）
+        seen["score"].append(lang)
+        return real_quick(self, wav, sr, text, lang, *a, **k)
+
+    def full(self, wav, sr, text, lang, *a, **k):
+        seen["score"].append(lang)
+        return real_full(self, wav, sr, text, lang, *a, **k)
+
+    monkeypatch.setattr(IJ.IdenticalScorer, "quick", quick)
+    monkeypatch.setattr(IJ.IdenticalScorer, "full", full)
     n = eng.Narrator(cfg, project, get_backend("dummy", cfg, project), quality=quality)
     seg = ScriptSegment(text=MIXED, display=MIXED, lang="en", kind="statement", index=0)
     res = n.synthesize_segment(seg, force=True)

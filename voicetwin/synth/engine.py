@@ -4,7 +4,9 @@
 1. 每句话生成多个候选（不同随机种子），用"像你本人（%）"（几个声纹模型校准后的平均）、
    识别错字率、语速/音高偏差打分；低于 85% 的候选直接淘汰，剩下的里面相似度为主挑最像的；
 2. 错字太多（漏字/多字/读错）或者都不够像时自动重做；「完美」档会一批一批地试，直到达到严格标准或试满 20 次；
-   「一模一样」档（默认）每句至少 / 最多试几个按显卡分档，挑出来的那个达到严格标准、并且再试也不更好时才停；
+   「一模一样」档（默认，synth/search.py）每句从参考录音库里换几条参考、试几种生成设置，一次请求同时生成好几个版本
+   （引擎自检通过时），先快速打分、挑出来的再完整打分（eval/identical_judge.py），每句至少 / 最多试几个按显卡分档，
+   挑出来的那个达到严格标准、并且再试也不更好时才停；每句留下最好的几个版本，重新生成时一起比；
 3. 疑问句用你的疑问语气参考音频，陈述句用陈述参考（「完美」档还会挑长短最接近的参考）；
 4. 句间/段间停顿按你本人的停顿习惯（含自然波动），停顿和开头结尾都是绝对的数字静音（全是 0），没有任何底噪；
 5. 每句首尾的非语音会被切掉并淡入淡出，句子边上不留杂音；
@@ -78,9 +80,9 @@ QUALITY_LABELS = {
     "best": "最好（每句做 5 遍，并检查漏字错字）",
     "max": "极致（很慢，更稳更像，建议显存 ≥ 8GB）",
     "perfect": "完美：每句最多试 20 次、严格检查漏字错字，同时做「未去杂音 / 去杂音」两个版本让你选，句子之间完全静音（很慢）",
-    # 只写现在真的会做的事（不要乱写）：设计方案 §4.1 里「用满显卡」「整篇按你的音量拼接」这些说法，
-    # 等后面几步（一次同时生成好几个、整篇再挑一遍……）做好了再写上（tests/test_identical_tier.py 会核对）
-    "identical": "一模一样（默认）：每句试很多个版本、严格检查漏字错字，挑最像你的；"
+    # 只写现在真的会做的事（不要乱写）：设计方案 §4.1 里「用满显卡」（没有实测）、「整篇按你的停顿和音量拼接」
+    # （第 6 步）这些说法，等做好了、量出来了再写上（tests/test_identical_tier.py 会核对）
+    "identical": "一模一样（默认）：每句换几条你的录音当参考、试很多个版本，严格检查漏字错字，挑最像你的；"
                  "同时做「未去杂音 / 去杂音」两个版本，句子之间完全静音（最慢）",
 }
 QUALITY_SHORT = {"fast": "快速", "balanced": "均衡", "best": "最好", "max": "极致", "perfect": "完美",
@@ -92,19 +94,23 @@ QUALITY_HELP = {
     "best": "最好：每句生成 5 次，并用语音识别检查漏字、错字；更慢，但更稳。",
     "max": "极致：每句生成 8 次并严格检查漏字错字，不够像的自动重做；时间大约是「均衡」的 3～5 倍。",
     "perfect": "完美：每句最多试 20 次、严格检查漏字错字，同时做「未去杂音 / 去杂音」两个版本让你选，句子之间完全静音（很慢）。",
-    "identical": "一模一样：每句试很多个版本（显卡越好试得越多），换着用几种生成设置；用声纹打分、错字检查和你本人的语速、"
-                 "音调一起挑最像你的，达到严格标准、并且再试也不更好时才停。停顿按你本人的习惯，句子之间是完全的数字静音，"
+    "identical": "一模一样：每句从你的录音里换几条最合适的当参考，换着用几种生成设置，一共试很多个版本（显卡越好试得越多；"
+                 "合成引擎自检通过时，显卡一次同时生成好几个版本）；用声纹打分（精准声纹模型下载了时是三个模型一起）、"
+                 "中英文分开的错字检查（有中文识别模型 Paraformer 时）和你本人的语速、音调一起挑最像你的，"
+                 "达到严格标准、并且再试也不更好时才停。停顿按你本人的习惯，句子之间是完全的数字静音，"
                  "同时给出「未去杂音 / 去杂音」两个版本。最慢。这是努力的方向，不能保证百分之百一样。",
 }
 QUALITY_NOTE = ("越往下越慢。默认是「一模一样」：它是努力的方向，不是保证——任何声音克隆都做不到百分之百一样，"
                 "也不会超过模型训练出来的水平。素材的质量和数量、认真校对文字，对像不像影响最大。")
 #: 打开网页时「质量」下面的说明（按显卡；{size} 是检测到的显存，例如「显存 12 GB」，检测不到写「你的显卡」；
 #: {cap} 是这种显卡每句最多试几个，和真正生成时一样：自带的值合并 config.yaml 的 synth.tiers.identical，见 identical_limits）。
-#: 「显存不够也不停下」「新模型第一次先做一次准备」等设计方案 §4.2 的说法，等那几步做好了再写上
+#: 「新模型第一次先做一次准备」（第 8 步）等设计方案 §4.2 的说法，等那几步做好了再写上；「不会因为显存不够而停下」
+#: 不写：同时生成的个数减到 1 个、让出识别模型的显存以后还不够，生成还是会停下（并说明原因）
 QUALITY_TIER_NOTES = {
     "high": "已选好「一模一样」（{size}）。每句会试很多个版本，所以很慢；生成时会按实际速度告诉你还要多久。",
     "mid": "已选好「一模一样」（{size}）。每句会试很多个版本，所以很慢；生成时会按实际速度告诉你还要多久。",
-    "low": "已选好「一模一样」（{size}，显存偏小）：每句最多试 {cap} 个版本，会很慢。着急的话可以改选「均衡」。",
+    "low": "已选好「一模一样」（{size}，显存偏小）：每句最多试 {cap} 个版本，会很慢；显存不够时会先自动减少同时生成的个数"
+           "再接着试。着急的话可以改选「均衡」。",
     "none": "没检测到能用的 N 卡（NVIDIA 显卡），仍然先选好「一模一样」：用处理器生成会非常慢，每句最多试 {cap} 个版本。"
             "着急的话可以改选「均衡」。",
 }
@@ -123,9 +129,8 @@ QUALITY_PRESETS: Dict[str, Dict[str, Any]] = {
                 "asr": True, "force_asr": True, "aux_refs": 3, "low_tier_aux_refs": 2,
                 "cer_retry_threshold": {"strong": 0.08, "weak": 0.12}, "cer_target": {"strong": 0.05, "weak": 0.08},
                 "target_pct": 99.0, "variants": True, "match_reference": True},
-    # 「一模一样」：按显卡分档的值（high / mid / low / none）在 Narrator 里按显卡取出来。
-    # 现在（第 2 步）先用「完美」的一批一批地试，只是每句至少 / 最多试的个数、停下的标准是它自己的；
-    # presets / rescue_preset / 参考录音几条 / 打分分两步 / 存几个候选 / 拼接这些以后的步骤才用（见 research/一模一样/设计方案原文.md）
+    # 「一模一样」：按显卡分档的值（high / mid / low / none）在 Narrator 里按显卡取出来；怎么找见 synth/search.py。
+    # continuity / two_checkpoints / speed_trick 是后面几步才用的（见 research/一模一样/设计方案原文.md）
     "identical": {"search": True, "adaptive": True, "candidates": 4, "asr": True, "force_asr": True,
                   "batch": {"high": 12, "mid": 8, "low": 2, "none": 1},
                   "min_candidates": {"high": 40, "mid": 40, "low": 16, "none": 6},
@@ -389,6 +394,12 @@ class _Plan:
     key: str
     wav_path: Path
     meta_path: Path
+    # 下面几项只有「一模一样」才有（synth/search.py）：这句话挑的几条参考录音、每条的辅助参考、第 1 轮的组合、
+    # 留下来的版本存在哪（pool_key：和 key 一样，只是不算排序权重——权重变了时不用显卡、按新权重重新排）
+    refs: List[Dict[str, Any]] = field(default_factory=list)
+    aux_by_ref: Dict[str, List[Dict[str, Any]]] = field(default_factory=dict)
+    arms: List[Any] = field(default_factory=list)
+    pool_key: str = ""
 
     @property
     def cached(self) -> bool:
@@ -476,6 +487,13 @@ class Narrator:
         self._pos: Tuple[int, int] = (0, 1)
         self._gen_range: Tuple[float, float] = (0.03, 0.95)
         self.base_seed = int(self.scfg.get("seed", 20240601))
+        #: 「一模一样」：你本人的说话习惯、参考录音库、models.json 里的 identical 设置（_identical_ctx）；
+        #: 每次同时生成几个（_batch_tuner）；每段话的第一句是第几句（挑参考时用）
+        self._identical: Optional[Dict[str, Any]] = None
+        self._tuner: Any = None
+        self._search: Any = None
+        self._para_first: Optional[set] = None
+        self._judge_device_done = False
         sim_cfg = dict(cfg.get("similarity", {}) or {})
         self.min_pct = float(sim_cfg.get("min_pct", 85) or 85)
         self.filter_mode = str(sim_cfg.get("filter", "auto") or "auto").lower()
@@ -555,7 +573,20 @@ class Narrator:
                 self._checker = CERChecker(self.scfg.get("asr_check_model", "auto"), progress=self.progress,
                                            vram_tier=self.tier, gsv_root=gsv_root_from_cfg(self.cfg),
                                            progress_range=(0.02, 0.03))
-            self._scorer = Scorer(self.profile, cen, encoder, self.scfg.get("score"), self._checker, judge=self._judge)
+            if self.quality == "identical":
+                from voicetwin.eval.identical_judge import IdenticalScorer
+
+                ctx = self._identical_ctx()
+                self._scorer = IdenticalScorer(self.profile, cen, encoder, self.scfg.get("score"), self._checker,
+                                               judge=self._judge, twin=ctx.get("twin"),
+                                               rank_weights=ctx.get("weights"))
+                release = getattr(self._checker, "release_gpu", None)
+                if callable(release):
+                    # 一次只生成一个也显存不够时，合成引擎先请识别校验模型让出显卡再试一次（返回有没有真的让出）
+                    self.backend.release_gpu_callback = release
+            else:
+                self._scorer = Scorer(self.profile, cen, encoder, self.scfg.get("score"), self._checker,
+                                      judge=self._judge)
             if self._judge is not None:
                 log.info("声纹打分模型：" + "、".join(self._judge.info()["labels"]) + f"（{PCT_HELP}）")
         return self._scorer
@@ -595,8 +626,13 @@ class Narrator:
         return float(min(2.0, max(0.5, val))) if math.isfinite(val) and val > 0 else 1.0
 
     def _speed_for(self, lang: str) -> float:
-        """最终传给引擎的语速 = 自动校准系数 × 用户倍数（由模型自己控制时长，不改音高音色）。"""
+        """最终传给引擎的语速 = 自动校准系数 × 用户倍数（由模型自己控制时长，不改音高音色）。
+        「一模一样」：挑模型时按「一模一样」的方式校准过（models.json 里的 identical.speed）就用它。"""
         cal = self.backend.speed_calibration()
+        if self.quality == "identical":
+            own = (self._identical_ctx().get("block") or {}).get("speed")
+            if isinstance(own, dict) and own:
+                cal = own
         val = float(cal.get(lang, cal.get("zh", 1.0)) or 1.0) * self._speed_multiplier()
         return float(min(2.0, max(0.5, val)))
 
@@ -642,6 +678,8 @@ class Narrator:
         return sig
 
     def _plan(self, seg: ScriptSegment) -> _Plan:
+        if self.quality == "identical":
+            return self._plan_identical(seg)
         ref = self._ref_for(seg)
         aux = aux_references(self.refs, ref, self._n_aux())
         if not self.backend.supports_aux_refs:
@@ -664,6 +702,151 @@ class Narrator:
         key = short_hash(*parts, n=16)
         wav_path, meta_path = self._cache_paths(key)
         return _Plan(ref, aux, speed, key, wav_path, meta_path)
+
+    # ------------------------------------------------------------------ 「一模一样」
+    def _identical_ctx(self) -> Dict[str, Any]:
+        """「一模一样」要用的东西（第一次用到时准备，见 _load_identical）。"""
+        if self._identical is None:
+            self._identical = self._load_identical()
+        return self._identical
+
+    def _load_identical(self, report: bool = False) -> Dict[str, Any]:
+        """「一模一样」要用的东西：你本人的说话习惯（twin_profile.json）、参考录音库（refs_bank.json）、
+        models.json 里挑模型时按「一模一样」校准过的设置（identical：语速、排序权重、试听参考录音的结果，P8 写）。
+        素材没变时几乎不花时间；第一次要把你的录音量一遍。量不出来的项目按以前的方式（没测出来就不用）。
+        参考录音库：以前没有、或者是这里（不带声纹）整理的，就重新整理一遍（几毫秒到一两秒）；带声纹的库由
+        「准备「一模一样」」（P8）负责更新，这里不动它，只用里面现在还能用的录音。"""
+        from voicetwin.data.references import (bank_eligible, bank_signature, build_reference_bank,
+                                               load_reference_bank)
+        from voicetwin.style.twin_profile import build_twin_profile, load_twin_profile
+        from voicetwin.synth import search as S
+
+        twin = None
+        try:
+            if report:
+                self._progress(0.02, "准备「一模一样」：测量你的说话习惯（停顿、音调、语速）……")
+            twin = build_twin_profile(self.project)
+        except Exception as exc:  # noqa: BLE001 - 停止按钮不是 Exception，照常传出去
+            log.warning(f"你本人的说话习惯这次没量出来（{exc}），语速按以前的方式比")
+        if twin is None:
+            twin = load_twin_profile(self.project)
+        records: List[Dict[str, Any]] = []
+        bank = None
+        try:
+            records = self.project.load_manifest()
+            bank = load_reference_bank(self.project)
+            if bank is None or not bank.get("judge_models"):
+                if report:
+                    self._progress(0.05, "准备「一模一样」：整理参考录音……")
+                build_reference_bank(self.project, records)
+                bank = load_reference_bank(self.project)
+        except Exception as exc:  # noqa: BLE001
+            log.warning(f"参考录音库这次没整理好（{exc}），用以前挑好的参考录音")
+        by_id = {str(r.get("id")): r for r in records}
+        pool = []
+        for e in S.pool_from_bank(bank):  # 库里现在还能用的录音（片段还在、还用来训练、文字没改过）
+            r = by_id.get(str(e["id"]))
+            if r is not None and bank_eligible(r) and str(r.get("text") or "").strip() == e["text"]:
+                pool.append(e)
+        bank_sig = bank_signature(pool) if pool else ""
+        if not pool:
+            pool = S.pool_from_refs(self.refs)
+            bank_sig = S.pool_signature(pool)
+        block: Dict[str, Any] = {}
+        try:
+            got = (self.project.load_models().get(self.backend.name) or {}).get("identical")
+            block = got if isinstance(got, dict) else {}
+        except Exception:  # noqa: BLE001
+            block = {}
+        audition = block.get("ref_prior") if isinstance(block.get("ref_prior"), dict) else None
+        weights = block.get("weights") if isinstance(block.get("weights"), dict) else {}
+        n_bank = sum(1 for e in pool if e.get("_bank"))
+        if report:
+            log.info(f"「一模一样」：参考录音 {len(pool)} 条" + ("（参考录音库）" if n_bank else "（还没有参考录音库，"
+                                                              "用以前挑好的参考录音）"))
+        return {"twin": twin or {}, "bank": bank, "pool": pool, "bank_sig": bank_sig,
+                "prior": S.prior_scores(pool, audition),
+                "prior_version": str(block.get("ref_prior_version") or "") if audition else "",
+                "weights": weights, "weights_version": str(block.get("weights_version") or "default"),
+                "block": block, "profile_sig": str((twin or {}).get("signature") or "")}
+
+    def _para_initial(self, seg: ScriptSegment) -> bool:
+        """这句话是不是一段话的开头（挑参考录音时，段落开头的语气用段落开头的录音更像）。"""
+        if self._para_first is not None:
+            return seg.index in self._para_first
+        return seg.index == 0
+
+    def _batch_tuner(self) -> Any:
+        """每次同时生成几个（按实测速度选，整个生成过程只选一次；config.yaml 里写了每批几个就照写的）。"""
+        if self._tuner is None:
+            from voicetwin.synth.search import BatchTuner
+
+            tiers = self.scfg.get("tiers") if isinstance(self.scfg.get("tiers"), dict) else {}
+            own = tiers.get("identical") if isinstance(tiers.get("identical"), dict) else {}
+            fixed = own.get("batch") not in (None, "auto", "")
+            self._tuner = BatchTuner(self.n_candidates,
+                                     enabled=bool(getattr(self.backend, "supports_batch", False)) and not fixed)
+        return self._tuner
+
+    def _search_obj(self) -> Any:
+        if self._search is None:
+            from voicetwin.synth.search import IdenticalSearch
+
+            self._search = IdenticalSearch(self)
+        return self._search
+
+    def _arm_sig(self, refs: List[Dict[str, Any]], aux_by_ref: Dict[str, List[Dict[str, Any]]], arms: List[Any]) -> str:
+        """「一模一样」怎么找的设置（缓存键用）：第 1 轮的组合、参考和辅助参考、生成设置、门槛和目标、打分分几步。
+        每次同时生成几个不算在里面（只影响快慢，不影响找出来的结果是什么样的）。"""
+        keys = ("presets", "rescue_preset", "aux_options", "cer_retry_threshold", "cer_target", "search_target",
+                "pass_target", "member_floor", "full_score_top", "full_score_max", "refine_tempo")
+        return short_hash([(a.ref_id, a.preset_idx, a.aux_n, a.speed_mult, a.ckpt) for a in arms],
+                          [(r["id"], r.get("text", ""), [a["id"] for a in aux_by_ref.get(str(r["id"])) or []])
+                           for r in refs],
+                          {k: self.preset.get(k) for k in keys}, self.search_target, self.pass_target, self.R,
+                          self.use_asr, self.min_wrong, self.min_pct, self.filter_mode, n=12)
+
+    def _plan_identical(self, seg: ScriptSegment) -> _Plan:
+        """「一模一样」：这句话挑哪几条参考录音、每条配哪几条辅助参考、第 1 轮试哪些组合，以及缓存键：
+        模型、文字、发给引擎的语言、参考录音库、试听结果的版本、怎么找的设置、排序权重的版本、
+        每句至少 / 最多试几个和「再试也不更好」的标准、语速、种子（设计方案 §2 P5）。"""
+        from voicetwin.synth import search as S
+
+        ctx = self._identical_ctx()
+        pool = ctx["pool"]
+        forced = S.find_forced(self.reference, pool, self.refs)
+        refs = S.shortlist_refs(seg, pool, ctx["prior"], self.R, forced=forced, para_initial=self._para_initial(seg))
+        if not refs:  # 能用的参考录音的文字都和这句话一样：和以前一样从 references.json 挑
+            refs = S.pool_from_refs([self._ref_for(seg)])
+        n_aux = self._n_aux() if self.backend.supports_aux_refs else 0
+        aux_by_ref = {str(r["id"]): S.aux_set(r, pool, ctx["prior"], n_aux) for r in refs}
+        presets = [p for p in (self.preset.get("presets") or []) if isinstance(p, dict)]
+        arms = S.plan_arms(self.tier, refs, aux_by_ref, n_presets=max(1, len(presets)),
+                           aux_options=self.preset.get("aux_options") or (3, 0))
+        if not arms:
+            arms = [S.Arm(str(refs[0]["id"]), 0, 0)]
+        speed = self._speed_for(seg.lang)
+        common = ["i1", sorted([self.backend.model_id()]), seg.text, send_lang(seg.text, seg.lang), ctx["bank_sig"],
+                  ctx["prior_version"], self._arm_sig(refs, aux_by_ref, arms)]
+        tail = [(self.min_candidates, self.max_candidates, self.plateau, self.plateau_eps), round(speed, 3),
+                self.base_seed]
+        key = short_hash(*common, ctx["weights_version"], *tail, n=16)
+        pool_key = short_hash(*common, "pool", *tail, n=16)
+        wav_path, meta_path = self._cache_paths(key)
+        main = refs[0]
+        return _Plan(main, (aux_by_ref.get(str(main["id"])) or [])[:arms[0].aux_n], speed, key, wav_path, meta_path,
+                     refs=refs, aux_by_ref=aux_by_ref, arms=arms, pool_key=pool_key)
+
+    def _identical_ok(self, s: Score) -> bool:
+        """「一模一样」达标的另外两条：时长在你平时的波动范围里（±2 个标准差），每个声纹模型都不低于它自己给你
+        真实录音打的 p10（精准打分时才查）。"""
+        if s.dur_z is not None and abs(float(s.dur_z)) > 2.0:
+            return False
+        if not self.sim_filter:
+            return True
+        floor = str(self.preset.get("member_floor") or "p10").strip().lower()
+        fn = getattr(self.scorer, "member_floor_ok", None)
+        return bool(fn(s, "g" + floor[1:])) if callable(fn) and floor.startswith("p") else True
 
     def _ensure_started(self, frac: Optional[float] = None) -> None:
         if self._started:
@@ -723,8 +906,11 @@ class Narrator:
         lang = send_lang(seg.text, seg.lang)
         cer_ok = s.cer is None or s.cer <= self._thr("cer_target", lang, 0.05, c) or s.errors == 0
         pct_ok = s.pct is None or not self.sim_filter or self._pct_value(s) >= self._sim_target(which)
-        return bool(cer_ok and pct_ok and "几乎没有声音" not in s.issues
-                    and self.scorer.in_normal_range(s, lang, self._speed_multiplier()))
+        ok = bool(cer_ok and pct_ok and "几乎没有声音" not in s.issues
+                  and self.scorer.in_normal_range(s, lang, self._speed_multiplier()))
+        if ok and self.quality == "identical":
+            ok = self._identical_ok(s)
+        return ok
 
     def _pct_value(self, s: Score) -> float:
         """和目标比的「像你本人」：「一模一样」用没封顶的值（目标可以是你自己录音的中位水平 100% 或更高）。"""
@@ -771,6 +957,8 @@ class Narrator:
             return "这一句可能有个别字读得不太准，建议重新生成或改写"
         if not self.scorer.in_normal_range(s, lang, self._speed_multiplier()):
             return "这一句的语速或音调和你平时不太一样，建议重新生成或改写"
+        if self.quality == "identical" and s.dur_z is not None and abs(float(s.dur_z)) > 2.0:
+            return "这一句的语速或音调和你平时不太一样，建议重新生成或改写"
         return "这一句可能不够像，建议重新生成或改写"
 
     def _clearly_good(self, c: _Cand, seg: ScriptSegment) -> bool:
@@ -795,10 +983,17 @@ class Narrator:
     # ------------------------------------------------------------------ 单句
     def _load_cached(self, seg: ScriptSegment, plan: _Plan) -> SegmentResult:
         meta = json.loads(plan.meta_path.read_text(encoding="utf-8"))
+        identical = self.quality == "identical"
+        if identical and self._identical_stale(meta):
+            # 打分标准 / 你的说话习惯 / 排序权重变了：留下来的几个版本按新标准重新排（只用处理器，不再生成）
+            res = self._rerank(seg, plan, int(meta.get("tries", 0) or 0))
+            if res is not None:
+                return res
         wav, sr = load_audio(plan.wav_path)
         meta = self._rescore_cached(meta, wav, sr, plan)
         score = meta.get("score", {}) or {}
-        return SegmentResult(seg, wav, sr, score, plan.ref["id"], True, meta.get("seed", 0), meta.get("candidates", []),
+        ref_id = meta.get("ref") if identical and meta.get("ref") else plan.ref["id"]
+        return SegmentResult(seg, wav, sr, score, ref_id, True, meta.get("seed", 0), meta.get("candidates", []),
                              path=plan.wav_path, pct=score.get("pct"), status=meta.get("status", ""),
                              hint=meta.get("hint", ""), flagged=bool(meta.get("flagged")), tries=int(meta.get("tries", 0)),
                              met=meta.get("met"))
@@ -806,6 +1001,44 @@ class Narrator:
     def _judge_sig(self) -> str:
         sig = getattr(self.judge, "signature", None)
         return str(sig()) if callable(sig) else ""
+
+    def _identical_stale(self, meta: Dict[str, Any]) -> bool:
+        """「一模一样」以前生成好的这句：打分标准、你的说话习惯、排序权重有没有变（变了就按新标准重新排）。"""
+        ctx = self._identical_ctx()
+        return (meta.get("profile_sig", "") != ctx["profile_sig"] or meta.get("judge", "") != self._judge_sig()
+                or meta.get("weights_version", "") != ctx["weights_version"])
+
+    def _rerank(self, seg: ScriptSegment, plan: _Plan, tries: Optional[int] = None) -> Optional[SegmentResult]:
+        """只用这句话留下来的几个版本、按现在的标准重新挑（不用显卡、不调用合成引擎）。没有留下的版本时返回 None。"""
+        from voicetwin.synth.search import store_dir, store_info
+
+        if tries is None:
+            tries = int(store_info(store_dir(self.project.cache_dir, plan.pool_key)).get("tries", 0) or 0)
+        try:
+            out = self._search_obj().rerank(seg, plan, tries)
+        except Exception as exc:  # noqa: BLE001 - 重新排不了：照旧用以前挑好的那个
+            log.debug(f"第 {seg.index + 1} 句留下的版本重新排名失败：{exc}")
+            return None
+        if out is None:
+            return None
+        log.info(f"第 {seg.index + 1} 句：打分标准、说话习惯或排序权重变了，按新标准从留下的 {len(out.cands)} 个版本里"
+                 "重新挑（不用重新生成）")
+        return self._finish_identical(seg, plan, out, cached=True)
+
+    def _finish_identical(self, seg: ScriptSegment, plan: _Plan, out: Any, cached: bool) -> SegmentResult:
+        """「一模一样」挑好以后：写这句的声音和记录，再把最好的几个版本存下来（重新生成时一起比、标准变了时重新排）。"""
+        from voicetwin.synth.search import store_candidates, store_dir
+
+        ctx = self._identical_ctx()
+        best = out.best
+        extra = {"profile_sig": ctx["profile_sig"], "weights_version": ctx["weights_version"], "arm": best.arm.to_dict(),
+                 "search": out.stats, "arms": out.arms}
+        res = self._finish_segment(seg, plan, best, out.cands, out.tries, out.met, extra=extra,
+                                   wav=trim_edges(best.wav, best.sr), ref_id=best.arm.ref_id, cached=cached)
+        k = max(1, int(self.preset.get("store_top_k", 6) or 6))
+        store_candidates(store_dir(self.project.cache_dir, plan.pool_key), out.cands, k, judge_sig=self._judge_sig(),
+                         extra={"tries": out.tries, "text": seg.text})
+        return res
 
     def _rescore_cached(self, meta: Dict[str, Any], wav: np.ndarray, sr: int, plan: _Plan) -> Dict[str, Any]:
         """以前生成好的句子：打分方式变了（例如升级到精准声纹打分、素材变了）时，只重新打"像你本人"这一项，
@@ -854,6 +1087,8 @@ class Narrator:
                 return self._load_cached(seg, plan)
             except Exception as exc:  # noqa: BLE001 - 缓存坏了（写到一半关了窗口、断电）：重新生成这一句，不能一直失败
                 log.warning(f"第 {seg.index + 1} 句的缓存读不了（{exc}），重新生成")
+        if self.quality == "identical":
+            return self._synthesize_identical(seg, plan, force)
         self._ensure_started()
         ref, aux, speed, key = plan.ref, plan.aux, plan.speed, plan.key
         seed0 = self.base_seed + seg.index * 7919
@@ -865,7 +1100,7 @@ class Narrator:
         state = {"tried": 0, "last_exc": None}
         i, total_n = self._pos
         lo, hi = self._gen_range
-        expected = (self.min_candidates if self.quality == "identical" else 8) if self.adaptive else self.n_candidates
+        expected = 8 if self.adaptive else self.n_candidates
         mult = self._speed_multiplier()
         lang = send_lang(seg.text, seg.lang)  # 打分、查错字按真正发给引擎的语言（有汉字就是 zh）
         ref_audio = self.project.abspath(ref["path"])
@@ -916,10 +1151,7 @@ class Narrator:
         met: Optional[bool] = None
         if self.adaptive:
             batch, cap, b = self.n_candidates, self.max_candidates, 0
-            identical = self.quality == "identical"
             short = QUALITY_SHORT[self.quality]
-            best_hist: List[float] = []  # 每试一个以后，到那时为止最高的综合分（看「再试也不更好」用）
-            reached = False              # 「一模一样」：已经有版本达到继续找的目标了
             met = False
             while state["tried"] < cap:
                 sampling = None if b % 3 == 0 else RETRY_SAMPLING[(b % 3) - 1]
@@ -927,24 +1159,11 @@ class Narrator:
                     n_try = state["tried"] + 1
                     if b == 0:
                         msg = f"{head} 第 {n_try}/{cap} 次尝试：{seg.display[:20]}"
-                    elif identical and reached:
-                        msg = f"{head} 已经达到标准，再多试几个，确认没有更好的（第 {n_try} 个）"
                     else:
                         msg = f"{head} 还没达到「{short}」标准，继续试（第 {n_try}/{cap} 次）"
                     attempt(b, k, sampling, msg)
-                    best_hist.append(max((c.score.total for c in cands), default=float("-inf")))
-                if identical:
-                    # 「一模一样」：至少试满 min_candidates 个、挑出来的那个（和最后真正用的一样挑）达到继续找的目标
-                    # （你自己录音的中位水平），并且最近 plateau 个版本的最高分涨不到 plateau_eps（再试也不更好）才停；
-                    # 最多试 cap 个。不能看「有没有哪个版本到过目标」：那个版本综合分不高、最后不会被选上（设计方案 §1.7）。
-                    # 试过的还不到 plateau 个（没有 N 卡时至少试 6 个）就看已经试过的这几个
-                    reached = bool(cands) and self._meets_targets(self._select(cands, lang, seg)[0], seg, "search")
-                    w = min(self.plateau, len(best_hist) - 1)
-                    flat = self.plateau <= 0 or w <= 0 or best_hist[-1] - best_hist[-1 - w] < self.plateau_eps
-                    if reached and flat and state["tried"] >= self.min_candidates:
-                        break
-                # 任何一个候选达到全部严格标准就停（不只看综合分最高的那个）
-                elif any(self._meets_targets(c, seg) for c in cands):
+                # 任何一个候选达到全部严格标准就停（不只看综合分最高的那个）。「一模一样」不走这里（synth/search.py）
+                if any(self._meets_targets(c, seg) for c in cands):
                     met = True
                     break
                 if not cands and state["tried"] >= 2 * batch:
@@ -983,6 +1202,29 @@ class Narrator:
         best, survivors = self._select(cands, lang, seg)
         if self.adaptive:
             met = self._meets_targets(best, seg)
+        return self._finish_segment(seg, plan, best, cands, state["tried"], met)
+
+    def _synthesize_identical(self, seg: ScriptSegment, plan: _Plan, force: bool) -> SegmentResult:
+        """「一模一样」：每句换几条参考录音、几种生成设置，一次请求同时生成好几个版本，分两步打分挑最像的
+        （synth/search.py）。force（重新生成）：以前留下来的几个版本也一起比，最好的不会变差。"""
+        if not force:
+            # 只是排序权重变了（缓存键跟着变了）：同样的设置以前留下的版本还在，按新权重重新排，不用再生成
+            res = self._rerank(seg, plan)
+            if res is not None:
+                return res
+        self._ensure_started()
+        out = self._search_obj().run(seg, plan, force)
+        return self._finish_identical(seg, plan, out, cached=False)
+
+    def _finish_segment(self, seg: ScriptSegment, plan: _Plan, best: Any, cands: Sequence[Any], tries: int,
+                        met: Optional[bool], extra: Optional[Dict[str, Any]] = None, wav: Optional[np.ndarray] = None,
+                        ref_id: Optional[str] = None, cached: bool = False) -> SegmentResult:
+        """挑好以后：写提示和状态、写这句的缓存（声音 + 记录）。所有档位共用（以前写在 synthesize_segment 里，
+        别的档位写出来的东西一个字节都没变）。extra / wav / ref_id 只有「一模一样」才给：记录里多几项、
+        存的是去掉首尾的声音（打分用的是引擎原样的声音）、用的是哪条参考。"""
+        ref = plan.ref
+        lang = send_lang(seg.text, seg.lang)
+        out_wav = best.wav if wav is None else wav
         filt = self.sim_filter
         hints: List[str] = []
         short = _is_short(best.score)
@@ -1006,26 +1248,32 @@ class Narrator:
         cand_info = []
         for c in cands:
             d = c.score.to_dict()
-            cand_info.append({"seed": c.seed, "pct": d.get("pct"), "cer": d.get("cer"), "errors": d.get("errors"),
-                              "total": d.get("total"), "speaker_sim": d.get("speaker_sim"), "round": c.round,
-                              "eliminated": bool(filt and c.score.pct is not None and c.score.pct < self.min_pct),
-                              "chosen": c is best})
+            info = {"seed": c.seed, "pct": d.get("pct"), "cer": d.get("cer"), "errors": d.get("errors"),
+                    "total": d.get("total"), "speaker_sim": d.get("speaker_sim"), "round": c.round,
+                    "eliminated": bool(filt and c.score.pct is not None and c.score.pct < self.min_pct),
+                    "chosen": c is best}
+            if extra is not None and hasattr(c, "arm"):  # 「一模一样」：哪种组合、第几行、是不是以前留下的 / 语速微调的
+                info.update({"arm": d.get("arm"), "row": c.row, "stored": bool(c.stored), "refined": bool(c.refined)})
+            cand_info.append(info)
         cand_info.sort(key=lambda d: (d["pct"] is None, -(d["pct"] or 0.0), -(d["total"] or 0.0)))
         tmp_wav = atomic.tmp_for(plan.wav_path).with_suffix(".wav")  # 先写临时文件再换上去：不会留下半个缓存
-        save_audio(tmp_wav, best.wav, best.sr)
+        save_audio(tmp_wav, out_wav, best.sr)
         atomic.finish(tmp_wav, plan.wav_path)
         # 重新生成（--redo / 只重新生成第几句）会写到同一个缓存文件：旁边旧的「去杂音」版本是旧句子做的，必须删掉，
         # 否则长度刚好一样时版本 B 里还是旧的那句
         for old in plan.wav_path.parent.glob(plan.wav_path.stem + ".dn*.wav"):
             old.unlink(missing_ok=True)
         score = best.score.to_dict()
-        meta = {"text": seg.text, "lang": seg.lang, "ref": ref["id"], "seed": best.seed, "score": score,
+        rid = ref_id if ref_id is not None else ref["id"]
+        meta = {"text": seg.text, "lang": seg.lang, "ref": rid, "seed": best.seed, "score": score,
                 "candidates": cand_info, "model": self.backend.model_id(), "quality": self.quality,
-                "tries": state["tried"], "met": met, "hint": "；".join(hints), "status": status, "flagged": flagged,
+                "tries": tries, "met": met, "hint": "；".join(hints), "status": status, "flagged": flagged,
                 "judge": self._judge_sig(), "created": time.strftime("%Y-%m-%d %H:%M:%S")}
+        if extra:
+            meta.update(extra)
         atomic.write_text(plan.meta_path, json.dumps(meta, ensure_ascii=False, indent=1))  # 最后写：有它才算缓存好了
-        return SegmentResult(seg, best.wav, best.sr, score, ref["id"], False, best.seed, cand_info, path=plan.wav_path,
-                             pct=pct, status=status, hint=meta["hint"], flagged=flagged, tries=state["tried"], met=met)
+        return SegmentResult(seg, out_wav, best.sr, score, rid, cached, best.seed, cand_info, path=plan.wav_path,
+                             pct=pct, status=status, hint=meta["hint"], flagged=flagged, tries=tries, met=met)
 
     # ------------------------------------------------------------------ 整篇
     def _segments(self, source: Union[str, Path, Sequence[ScriptSegment]]) -> List[ScriptSegment]:
@@ -1065,17 +1313,28 @@ class Narrator:
             self.warnings.append(msg)
             log.warning(msg)
         lo, hi = self._gen_range
+        identical = self.quality == "identical"
+        if identical:
+            # 「一模一样」先准备（素材没变时几乎不花时间）：参考录音库的指纹在缓存键里，要先知道哪些句子已经生成过
+            self._para_first = {s.index for k, s in enumerate(segments)
+                                if k == 0 or segments[k - 1].paragraph != s.paragraph}
+            self._identical = self._load_identical(report=True)
         plans = [self._plan(s) for s in segments]
         need_engine = any(i in redo_set or not p.cached for i, p in enumerate(plans))
         if need_engine and not self._started:
-            self._ensure_started(0.0)
-            self._progress(0.02, "加载打分模型（第一次使用会先下载）……")
+            self._ensure_started(0.06 if identical else 0.0)
+            self._progress(0.07 if identical else 0.02, "加载打分模型（第一次使用会先下载）……")
             self._warm_up(segments)
+            if identical:
+                self._judge_device()
         self._progress(lo, f"开始生成，共 {n} 句（{self._desc()}）")
         results: List[SegmentResult] = []
+        todo = [i for i, p in enumerate(plans) if i in redo_set or not p.cached]
+        fresh_s: List[float] = []
         for i, seg in enumerate(segments):
             _check_cancel()
             self._pos = (i, n)
+            t_seg = time.monotonic()
             res = self.synthesize_segment(seg, force=i in redo_set)
             results.append(res)
             tag = "已有，直接用" if res.cached else "生成"
@@ -1083,11 +1342,53 @@ class Narrator:
             msg = f"[{i + 1}/{n}] {tag}：{seg.display[:20]}" + (f"（像你本人 {pct:.1f}%）" if pct is not None else "")
             log.info(msg)
             self._progress(lo + (hi - lo) * (i + 1) / max(n, 1), msg)
+            if identical and not res.cached:
+                fresh_s.append(time.monotonic() - t_seg)
+                self._eta(fresh_s, sum(1 for j in todo if j > i), lo + (hi - lo) * (i + 1) / max(n, 1))
             for issue in res.score.get("issues") or []:
                 self.warnings.append(f"第 {i + 1} 句：{issue}")
             if res.hint:
                 self.warnings.append(f"第 {i + 1} 句：{res.hint}")
         return results
+
+    def _eta(self, fresh_s: List[float], left: int, frac: float) -> None:
+        """「一模一样」：新生成满 3 句以后，按实测的每句用时估算还要多久（之后每 5 句更新一次）。"""
+        k = len(fresh_s)
+        if k < 3 or left <= 0 or not (k == 3 or k % 5 == 0):
+            return
+        sec = float(np.mean(fresh_s)) * left
+        when = "不到 1 分钟" if sec < 60 else f"大约 {int(round(sec / 60.0))} 分钟"
+        line = f"按刚才实测的速度估算，生成还要{when}（还有 {left} 句；刚才平均每句 {np.mean(fresh_s):.0f} 秒）"
+        log.info(line)
+        self._progress(frac, line)
+
+    def _judge_device(self) -> None:
+        """「一模一样」的声纹模型能不能放到显卡上（judge_device: auto）：条件都满足、实测和处理器算出来的一样才用，
+        不然照旧用处理器（永远不会因为这个出错）。只查一次。"""
+        if getattr(self, "_judge_device_done", False):
+            return
+        self._judge_device_done = True
+        judge = self._judge
+        if judge is None or not getattr(judge, "precise", False):
+            return
+        from voicetwin.data.references import bank_wav
+        from voicetwin.eval.identical_judge import judge_on_gpu
+
+        clips = []
+        for e in self._identical_ctx()["pool"][:3]:
+            try:
+                path = bank_wav(self.project, e) if e.get("_bank") else self.project.abspath(e["path"])
+                clips.append(load_audio(path))
+            except Exception:  # noqa: BLE001
+                continue
+        new, note = judge_on_gpu(judge, str(self.preset.get("judge_device", "auto")), clips)
+        if note:
+            log.info(note)
+        if new is not judge:
+            self._judge = new
+            use = getattr(self._scorer, "use_judge", None)
+            if callable(use):
+                use(new)
 
     def synthesize_text(self, text: Union[str, Sequence[ScriptSegment]]) -> Tuple[np.ndarray, int, List[SegmentResult]]:
         """合成一段文字，返回拼好的波形（停顿是绝对静音），不写输出文件（盲听测试、试听语速用）。"""

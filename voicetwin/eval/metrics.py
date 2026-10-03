@@ -20,7 +20,7 @@ from voicetwin.style.profile import target_rate
 from voicetwin.style.prosody import f0_stats
 from voicetwin.utils.audio import clip_ratio, resample, speech_activity
 from voicetwin.utils.log import get_logger
-from voicetwin.utils.textutil import ALL_PUNCT_RE, CJK_RE, NUM_RUN_RE, syllable_count, to_simplified
+from voicetwin.utils.textutil import ALL_PUNCT_RE, CJK_RE, EN_WORD_RE, NUM_RUN_RE, syllable_count, to_simplified
 
 log = get_logger("metrics")
 ProgressFn = Callable[[float, str], None]
@@ -95,6 +95,30 @@ def _seq_distance(a: List[str], b: List[str]) -> int:
         cur = [i]
         for j, cb in enumerate(b, 1):
             cur.append(min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (ca != cb)))
+        prev = cur
+    return prev[-1]
+
+
+def _cjk_units(text: str, pinyin: Optional[Callable[[str], List[str]]]) -> List[str]:
+    """只要汉字（不带声调的拼音；没有 pypinyin 时就是汉字本身）：中英文分开查错字时，中文那一半用它比。"""
+    norm = to_simplified(unicodedata.normalize("NFKC", text or ""))
+    out: List[str] = []
+    for ch in norm:
+        if CJK_RE.match(ch):
+            py = pinyin(ch) if pinyin is not None else None
+            out.append(py[0] if py else ch)
+    return out
+
+
+def _lcs_len(a: List[str], b: List[str]) -> int:
+    """两个序列的最长公共子序列有多长（原文里有几个字按顺序读出来了；多读的不算）。"""
+    if not a or not b:
+        return 0
+    prev = [0] * (len(b) + 1)
+    for ca in a:
+        cur = [0]
+        for j, cb in enumerate(b, 1):
+            cur.append(prev[j - 1] + 1 if ca == cb else max(prev[j], cur[j - 1]))
         prev = cur
     return prev[-1]
 
@@ -287,8 +311,57 @@ class CERChecker:
         return {"cer": rate, "hyp": hyp, "errors": errors, "units": units, "engine": engine,
                 "strong": engine_is_strong(engine)}
 
+    # ------------------------------------------------------------------ 「一模一样」：中英文分开查
+    def mixed_available(self) -> bool:
+        """中英文夹着的句子能不能分开查：要有 funasr（Paraformer）而且没失败过、识别模型是 auto 或 paraformer。"""
+        return (self.model_name in ("auto", "paraformer") and not self._para_failed and self.available
+                and _has_module("funasr"))
+
+    def check_mixed(self, wav: np.ndarray, sr: int, text: str) -> Optional[Dict[str, Any]]:
+        """「一模一样」查错字：纯中文按中文查，纯英文按英文查（和 check 一样）；中文里夹着英文时分开查——
+        汉字用 Paraformer（中文最准，但拼不出英文），英文单词用 Whisper（现在用的那个模型，language="zh"，
+        不把原文当提示），只算漏读和读错（识别多出来的字不算错：Paraformer 会把 Python 写成「派森」）。
+        错了几个 = (原文汉字个数 − 两边汉字的最长公共子序列) + (原文英文单词个数 − 两边英文单词的最长公共子序列)，
+        错字率 = 错了几个 / (汉字个数 + 英文单词个数)；引擎记作 paraformer+whisper，算「准」的。
+        没有 funasr 时和以前一样（check）。"""
+        has_cjk = bool(CJK_RE.search(text or ""))
+        words = [w.lower() for w in EN_WORD_RE.findall(text or "")]
+        if not has_cjk:
+            return self.check(wav, sr, text, "en" if words else "zh")
+        if not words or not self.mixed_available():
+            return self.check(wav, sr, text, "zh")
+        wav16 = resample(wav, sr, 16000)
+        with self._use_lock:
+            if not self._load_paraformer():
+                return self._check16(wav16, text, "zh")
+            try:
+                hyp_cjk = self._paraformer_text(wav16)
+            except Exception as exc:
+                log.warning(f"Paraformer 识别失败（{exc}），这一句改用 Whisper")
+                return self._check16(wav16, text, "zh")
+            if not self._load():
+                return None
+            hyp_all = self._model.transcribe(wav16, language="zh").text
+        pinyin = _pinyin_fn()
+        ref_units = _cjk_units(text, pinyin)
+        hyp_units = _cjk_units(hyp_cjk, pinyin)
+        hyp_words = [w.lower() for w in EN_WORD_RE.findall(hyp_all or "")]
+        err_cjk = len(ref_units) - _lcs_len(ref_units, hyp_units)
+        err_en = len(words) - _lcs_len(words, hyp_words)
+        n = len(ref_units) + len(words)
+        errors = err_cjk + err_en
+        shown = hyp_cjk + (f"（英文：{' '.join(hyp_words)}）" if hyp_words else "")
+        return {"cer": errors / n if n else 0.0, "hyp": shown, "errors": errors, "units": n,
+                "engine": "paraformer+whisper", "strong": True, "errors_cjk": err_cjk, "errors_en": err_en,
+                "hyp_en": hyp_all}
+
 
 # ============================================================================ 打分
+#: 只有「一模一样」打分时才有的几项：没有值时 to_dict 不写（别的档位存下来的分数和以前一样）
+IDENTICAL_SCORE_FIELDS = ("lcb", "spread", "voiced", "expected", "dur_dev", "dur_z", "prosody_z", "ltas_d", "stage",
+                          "arm", "model")
+
+
 @dataclass
 class Score:
     total: float
@@ -307,11 +380,25 @@ class Score:
     errors: Optional[int] = None                       # 识别出来错了几个字
     f0: Optional[float] = None                         # 音高中位数（Hz）
     checker: str = ""
+    # 下面几项只有「一模一样」打分时才有（eval/identical_judge.py）；以前存下来的分数里没有，from_dict 照样读得进来
+    lcb: Optional[float] = None                        # 几个声纹模型一起的保守分数：平均 − 0.5 × 模型之间的差别
+    spread: Optional[float] = None                     # 几个声纹模型之间差多少（标准差，百分点）
+    voiced: Optional[float] = None                     # 说话的时长（秒，不含停顿）
+    expected: Optional[float] = None                   # 按你本人的语速，这句话应该说多少秒（没测出来是 None）
+    dur_dev: Optional[float] = None                    # |ln(说话时长 / 应该说的时长)|
+    dur_z: Optional[float] = None                      # 时长偏差是你自己平时波动的几倍（±2 以内算正常）
+    prosody_z: Optional[float] = None                  # 音调起伏和你平时差多少（权重默认 0，只有校准过才用）
+    ltas_d: Optional[float] = None                     # 频谱形状和你平时差多少（权重默认 0，只记录）
+    stage: str = ""                                    # quick（只用一个声纹模型快速打分）/ full（完整打分）
+    arm: str = ""                                      # 用的是哪种组合（参考录音、生成设置）
+    model: str = ""                                    # 用的是哪个模型
 
     def to_dict(self) -> Dict[str, Any]:
         d = asdict(self)
         out: Dict[str, Any] = {}
         for k, v in d.items():
+            if k in IDENTICAL_SCORE_FIELDS and v in (None, ""):
+                continue  # 别的档位存下来的分数和以前一个字节都不差
             if isinstance(v, float):
                 out[k] = round(v, 4)
             elif isinstance(v, dict):

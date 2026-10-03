@@ -253,12 +253,15 @@ class OnnxSVEncoder(SpeakerEncoder):
 
     reliable = True
 
-    def __init__(self, spec: Any, path: Path, vad: Any) -> None:
+    def __init__(self, spec: Any, path: Path, vad: Any, device: str = "cpu") -> None:
         from voicetwin.eval.sv_models import OnnxEmbedder
 
         self.spec = spec
         self.name = spec.key
-        self._model = OnnxEmbedder(spec, path)
+        self.path = Path(path)
+        #: 「一模一样」可以把声纹模型放到显卡上（先核对显卡和处理器算出来的一样，见 eval/identical_judge.py）；默认处理器
+        self.device = device
+        self._model = OnnxEmbedder(spec, path, device=device)
         self._vad = vad
 
     @property
@@ -816,10 +819,27 @@ class JudgeMember:
             return None
         return 100.0 * max(0.0, cosine(emb, self.centroid)) / p50
 
+    def natural_pct(self, key: str) -> Optional[float]:
+        """这个模型给你自己的真实录音（验证集）打的「像你本人」：key 是 g10 / g25 / g90（第 10 / 25 / 90 百分位），
+        = 100 × (calib[key] − i0) / (g50 − i0)。只有两头校准（精准打分）时才有，量不出来返回 None。
+        「一模一样」用它：每个模型都不低于它自己给你真实录音打的 p10、封顶在 p90。"""
+        if not self.two_sided:
+            return None
+        val = self.calib.get(key)
+        if not isinstance(val, (int, float)):
+            return None
+        g50, i0 = float(self.calib["g50"]), float(self.calib["i0"])
+        return 100.0 * (float(val) - i0) / (g50 - i0)
+
 
 def cohort_for(enc: SpeakerEncoder) -> Optional[Dict[str, np.ndarray]]:
     """精准声纹模型的陌生人声纹库（旧模型没有）。"""
     return load_cohort(enc.name) if isinstance(enc, OnnxSVEncoder) else None
+
+
+#: 打不了分时 judge() 的结果（声音太短、没有模型）
+_EMPTY_JUDGE: Dict[str, Any] = {"pct": None, "pct_raw": None, "pcts": {}, "sims": {}, "sim": None, "spread": None,
+                                "seconds": None, "short": False}
 
 
 def model_label(name: str) -> str:
@@ -1053,10 +1073,45 @@ class SimilarityJudge:
 
     def judge(self, wav: np.ndarray, sr: int) -> Dict[str, Any]:
         if not self.members or wav is None or len(wav) < sr * 0.3:
-            return {"pct": None, "pct_raw": None, "pcts": {}, "sims": {}, "sim": None, "spread": None,
-                    "seconds": None, "short": False}
+            return _EMPTY_JUDGE.copy()
         embs, seconds = self.embed_with_seconds(wav, sr)
         return self.judge_embeddings(embs, seconds)
+
+    # ------------------------------------------------------------------ 「一模一样」：分两步打分
+    def member(self, name: str) -> Optional[JudgeMember]:
+        """按名字找一个声纹模型（没有返回 None）。"""
+        return next((m for m in self.members if m.name == name), None)
+
+    def prepare(self, wav: np.ndarray, sr: int) -> Dict[str, Any]:
+        """先把一段声音准备好（人声检测、每个模型的声纹都是用到时才算、算过就记住）：
+        「一模一样」先只用一个模型快速打分，挑出来的几个再用全部模型打分，人声检测和那个模型的声纹不用再算一遍。"""
+        return {"wav": wav, "sr": int(sr), "speech": {}, "embs": {}}
+
+    def judge_prepared(self, prepared: Dict[str, Any], members: Optional[Sequence[str]] = None) -> Dict[str, Any]:
+        """和 judge() 一样打分，但用 prepare() 准备好的声音；members：只用这几个模型（名字），None = 全部。
+        同一段声音的人声检测只做一次、每个模型的声纹只算一次（存在 prepared 里，下次直接用）。"""
+        wav, sr = prepared.get("wav"), int(prepared.get("sr") or 0)
+        if not self.members or wav is None or sr <= 0 or len(wav) < sr * 0.3:
+            return _EMPTY_JUDGE.copy()
+        want = [m for m in self.members if members is None or m.name in members]
+        speech: Dict[Any, np.ndarray] = prepared.setdefault("speech", {})
+        embs: Dict[str, np.ndarray] = prepared.setdefault("embs", {})
+        for m in want:
+            if m.name in embs:
+                continue
+            enc = m.encoder
+            try:
+                key = getattr(enc, "prep_key", None)
+                if key is None:
+                    embs[m.name] = enc.embed(wav, sr)
+                    continue
+                if key not in speech:
+                    speech[key] = enc.prepare(wav, sr)
+                embs[m.name] = enc.embed_prepared(speech[key])
+            except Exception as exc:
+                log.debug(f"{m.name} 打分失败：{exc}")
+        seconds = next((float(v.size) / 16000.0 for v in speech.values()), None)
+        return self.judge_embeddings({m.name: embs[m.name] for m in want if m.name in embs}, seconds)
 
     def judge_file(self, path: Path) -> Dict[str, Any]:
         wav, sr = load_audio(path, sr=16000)

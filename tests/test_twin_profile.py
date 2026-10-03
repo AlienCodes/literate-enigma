@@ -26,8 +26,16 @@ def voice(prepared, tmp_path):
     cfg, project, _ = prepared
     ws = tmp_path / "ws"
     shutil.copytree(project.root, ws / project.voice)
+    _no_bank(ws / project.voice)
     cfg2 = make_cfg(ws)
     return cfg2, wf.Project(cfg2, project.voice)
+
+
+def _no_bank(root):
+    """共用的测试声音可能已经被别的测试（「一模一样」生成时）建过参考录音库：复制出来的这份从没有库开始。"""
+    (root / "refs_bank.json").unlink(missing_ok=True)
+    (root / "cache" / "bank_emb.npz").unlink(missing_ok=True)
+    shutil.rmtree(root / "references" / "bank", ignore_errors=True)
 
 
 def _truth_pauses():
@@ -452,6 +460,7 @@ def _copy_voice(prepared, dst):
 
     cfg, project, _ = prepared
     shutil.copytree(project.root, dst / project.voice)
+    _no_bank(dst / project.voice)
     cfg2 = make_cfg(dst)
     return cfg2, wf.Project(cfg2, project.voice)
 
