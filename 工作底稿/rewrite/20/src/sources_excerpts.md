@@ -1,0 +1,8 @@
+# 第20篇 来源摘录（WebSearch 2026-10-01，多源交叉，未逐页核读）
+
+- **S1 PNAS 2000**：PNAS 97(8):4398–4403，"Navigation-related structural change in the hippocampi of taxi drivers"。在线 14 March 2000，**纸本期号 11 April 2000**。https://pmc.ncbi.nlm.nih.gov/articles/PMC18253 ；作者实验室 PDF https://www.fil.ion.ucl.ac.uk/Maguire/Maguire_CORE_2000.pdf ；摘要：16 名右利手男性持照出租车司机（驾龄 >1.5 年）vs 50 名非出租车司机男性对照；后部海马更大，前部对照组更大；驾龄与后部体积正相关、与前部负相关；作者解读为"健康成人大脑可局部结构可塑"。
+- **S2 The Knowledge**：ScienceDaily 2011-12-08 https://www.sciencedaily.com/releases/2011/12/111208125720.htm ：约 25,000 条街道、数千地点；通常 3–4 年；**仅约一半通过**（研究样本口径）。Granta / exploring-london.com：查令十字 6 英里半径；1865 年起（○）；"约 70% 中途放弃"（另一口径，○，与"约一半"冲突，正文二选一不写百分比或写 *only about half*）。
+- **S3 2006 公交司机对照**：Hippocampus 16(12)，**December 2006**，"London taxi drivers and bus drivers: a structural MRI and neuropsychological analysis" https://www.fil.ion.ucl.ac.uk/wp-content/uploads/2019/11/Maguire2006.pdf ；themantic-education 摘要：18 名出租车司机 vs 17 名公交司机，驾驶经验与压力匹配，公交走固定线路；出租车司机后部灰质更多、前部更少，随出租车驾龄变化。注：一份搜索摘要误称刊于 Current Biology——以 PDF 为准（Hippocampus）。
+- **S4 2011 纵向研究**：Current Biology 21(24):2109–2114，**8 December 2011**（在线），"Acquiring 'the Knowledge' of London's layout drives structural brain changes" https://www.fil.ion.ucl.ac.uk/Maguire/WoollettMaguireCBDec2011.pdf ；NPR 2011-12-09 https://www.npr.org/sections/thetwo-way/2011/12/09/143465903/ ；memory-key 摘要 https://archive.memory-key.com/node/2668 ：79 名学员 + 31 名对照，培训开始时与 3–4 年后各扫一次；39 人通过；通过者后部海马灰质选择性增加；未通过者与对照无变化；通过者在 Rey-Osterrieth 复杂图形延迟回忆（一种视觉空间记忆测试）上差于对照。
+- **S5 退休司机**：作者综述（Phil. Trans. R. Soc. B, 2009, "Talent in the taxi"，PMC2685665 相关）提到退休司机后部海马灰质低于在职者，样本极小，○→正文不写。
+- **S6 公允/局限**：2000 年为横断面相关，不能排除"天生海马大的人才去开出租"；2011 研究以前后对比部分回答；样本小、全为男性；体积变化幅度小。

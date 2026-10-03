@@ -1,0 +1,3 @@
+# EN: t
+## 英文
+**volunteers** **participants** **subjects** **informants** **narrators** **respondents** **scientists** **precious** **fleeting** **unrepeatable** **singular** **items** **raised** **reared** **nurtured** **bystanders** **invaluable** **once-in-a-lifetime** **newborn** **embryo** **sprouting** **harvest** **midwife** **architects** **authors** **draughtsmen** **craftsmen** **ensemble** **collectively** **jointly** **communal** **collective** **shared** **unison** **peers** **classmates** **comrades** **companions** **playmates** **mates** **schoolmates** **kin** **fellow** **chums** 

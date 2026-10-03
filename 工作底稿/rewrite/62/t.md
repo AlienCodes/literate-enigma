@@ -1,0 +1,5 @@
+# EN: t
+
+## 英文
+
+**journeyed** **propelled** **consigned** **cartons** **specimens** **massif** **halted** **alongside** **grapple** **poured** **spilled** **capacity** **contagion** **encompassed** **departed** **modelled** **drylands** **harvestable** **icy** **chill** **uprooting** **tunnel** **entrance** **plunged** **seeping** **overflow** **fertile** **foothold** **motherland** **rebuilt** **replenish** **duplicate** **duplicated** **insurance** **mirror** **mirrored** **copy** **wartime** **conflict-torn** **war-torn** **strife** **evacuation** **upheld** **vowed** **pledged** **fulfilled** **honoured** **complied** **granted** **approved** **agreed** **authorised** **returned** **redeemed** **collected** **retrieval** **extraction** **removal** **departure** **exodus** **outflow** **trickle** **firmly** **tightly** **snugly** **inert** **lifeless** **frosty** **glacial** **freezing** **frigid** **icy** **bitter** **bleakly** **wintry** **thermometer** **degrees** **warmed** **overheated** **heatwave** 

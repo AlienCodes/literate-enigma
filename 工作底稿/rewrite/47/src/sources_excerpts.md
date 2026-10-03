@@ -1,0 +1,10 @@
+# 第47篇 来源摘要（检索摘要，不得直接引用原文）
+- S1 Wikipedia "Dolly (sheep)"/Univ. of Edinburgh "Cloning of Dolly": born 5 July 1996, Roslin Institute, Midlothian, Scotland; cell from the mammary gland of a six-year-old Finn-Dorset ewe; the only live lamb from 277 attempts; first mammal cloned from an adult somatic cell; announced 22 February 1997, timed to coincide with the scientific paper; named after the singer Dolly Parton (because the cell came from a mammary gland).
+- S2 Edinburgh "Life of Dolly"/Sci Am: the egg came from a Scottish Blackface ewe and the surrogate mother was a Scottish Blackface; Dolly's white face showed she came from the Finn Dorset donor cell. Dolly was kept indoors (slept inside) for security reasons; confinement indoors is thought to have contributed to the disease that killed her.
+- S3 Megan and Morag: born June 1995 at Roslin, cloned from cultured embryonic cells (Keith Campbell); made Dolly possible. Earlier clones were all from embryo DNA. Frogs: Briggs & King (1950s) and John Gurdon (1962) nuclear transfer in frogs.
+- S4 Clinton, March 1997 (4 March directive): banned the use of federal funds for human-cloning experiments.
+- S5 1999 (Shiels et al., Nature, May 1999): Dolly's telomeres about 20% shorter than those of sheep her age — fuelled fears she was "born old".
+- S6 Death: euthanised 14 February 2003, aged six, with progressive lung disease (ovine pulmonary adenocarcinoma/Jaagsiekte, a fairly common sheep disease caused by a virus, JSRV) and arthritis.
+- S7 2016 (Nottingham, July 2016, Nature Communications): 13 clones incl. 4 from the same cell line as Dolly (Debbie, Denise, Dianna, Daisy, aged 9) were ageing normally — no signs of hypertension, diabetes or serious arthritis. 2017 (Glasgow/Nottingham, Nov 2017): radiographs of Dolly's skeleton showed osteoarthritis similar to naturally conceived sheep; early-onset concerns unfounded.
+- S8 Bonnie, Dolly's first lamb, born April 1998 by natural breeding with a Welsh Mountain ram; six lambs in total.
+- S9 Dolly stuffed and displayed at the National Museum of Scotland, Edinburgh, since 2003.

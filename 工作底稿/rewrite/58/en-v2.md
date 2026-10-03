@@ -1,0 +1,9 @@
+On 3 June 1952 Rosario Mazzeo released a Manx shearwater in Boston. It came by **rail** and **airliner** from its **burrow** on Skokholm, an **isle** off Wales, and Mazzeo posted a letter at once. After a roughly 3,200-mile **odyssey** across the **unbroken** Atlantic, the **feathered** **traveller** was back on its **doorstep** twelve and a half days later. The letter arrived **afterwards**.
+
+The first **hints** of a compass were **celestial**. In the 1950s Kramer kept starlings **cooped** in cages and moved the apparent sun with mirrors. The **duped** birds **swivelled** to match, allowing for the sun's daily **arc**. In the 1960s Emlen **curtained** off stars in a planetarium's **vault**. His buntings steered by stars around the **pole-star**, the **axis** of the **nightly** **whirl**.
+
+In 1972 the Wiltschkos showed that **robins** read Earth's **magnetic** field by **inclination**, not **polarity**, unlike a **sailor**'s **needle**. In 1978 Schulten proposed a **light-triggered** reaction to **decode** the field. Proposed in 2000, cryptochrome, a **protein** in the **retina**, is now the **foremost** suspect. In 2021 robin cryptochrome proved more **finely** **tuned** in the laboratory than that of chickens or **pigeons**. Proof in a living bird is **awaited**.
+
+In 2014 came an **eerie**, **man-made** twist. At Oldenburg University, robins in campus **huts** lost that sense. In huts **clad** in grounded aluminium, they **reclaimed** their **bearings**. Removing the grounding, or **piping** radio noise in, **bewildered** them again in double-blind tests. The **interference**, a **murmur** from everyday **appliances**, sat far below WHO safety limits.
+
+How a **wanderer** knows where it is remains **unanswered**. The compass code is partly **cracked**, but the **atlas** that steered the shearwater has yet to be read.

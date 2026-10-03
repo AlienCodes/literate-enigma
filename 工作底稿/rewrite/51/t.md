@@ -1,0 +1,3 @@
+# EN: t
+
+**ushered**. **tainted**. **overlooked**. **curbing**. **curtailed**. **deterring**. **spurred**. **readily**. **subsequent**. **prior**. **previously**. **annually**. **apiece**. **respectively**. **countless**. **legible**. **ruler**. **rulers**. **regent**. **crowned**. **dispenses**. **dispense**. **spelled**. **spells**. **relies**. **reliance**. **unspoken**. **implicit**. **explicit**. **unmistakable**. **alone**. **lone**. **stands**. **signify**. **signifies**. **emblematic**. **denote**. **denotes**. **declares**. **proclaim**. **proclaims**. **unlabelled**. **anonymous**. **anonymity**. **bareheaded**. **visage**. **countenance**. **outlier**. **oddity**. **singular**. **distinctive**. 
