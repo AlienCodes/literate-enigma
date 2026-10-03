@@ -741,6 +741,75 @@ def test_archive_keeps_selected_model_usable(prepared, tmp_path, no_users_pth):
     assert not list((root / "SoVITS_weights_v2ProPlus").glob(first["exp_name"] + "_e*"))
 
 
+def _small_train_cfg(project, tmp_path, name):
+    ws = _copy_project(project, tmp_path / "ws")
+    root = build_fake_root(tmp_path / name)
+    gcfg = make_cfg(ws, backend="gptsovits", backends={"gptsovits": {
+        "root": str(root), "python": sys.executable, "train": {"sovits_epochs": 4, "gpt_epochs": 4, "batch_size": 2}}})
+    return gcfg, root, wf.open_project(gcfg, project.voice, must_exist=True)
+
+
+@needs_fake_python
+def test_empty_text_step_does_not_block_later_training(prepared, tmp_path, monkeypatch, no_users_pth):
+    """1A（处理文字）一句都没做成（例如 G2PW 模型缺了又下载不了、显存被别的程序占满）：GPT-SoVITS 的脚本照样退出 0，
+    留下一个只有换行的 2-name2text-0.txt。真实脚本看到这个文件就什么都不做——以前这个文件一直留着，
+    原因修好了、改了素材再训练，也一直报「1A 文本处理没有产出」，只能去整合包里删隐藏的文件。"""
+    cfg, project, _ = prepared
+    gcfg, root, p2 = _small_train_cfg(project, tmp_path, "GSV-1a")
+    confirm_material(gcfg, project.voice)
+    monkeypatch.setenv("FAKE_GSV_TEXT_FAIL", "1")
+    with pytest.raises(RuntimeError, match="1A 文本处理没有产出"):
+        wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    monkeypatch.delenv("FAKE_GSV_TEXT_FAIL")
+    info = wf.run_train(gcfg, project.voice, "gptsovits", select=False)  # 原因修好了：这次要真的重新处理文字
+    opt_dir = root / "logs" / info["exp_name"]
+    assert len((opt_dir / "2-name2text.txt").read_text(encoding="utf-8").strip().splitlines()) >= 2
+    assert not list(opt_dir.glob("2-name2text-*.txt")) and not list(opt_dir.glob("6-name2semantic-*.tsv"))
+    assert info["sovits"] and info["gpt"]
+
+
+@needs_fake_python
+def test_leftover_part_files_are_not_reused_after_material_change(prepared, tmp_path, no_users_pth):
+    """上次处理完、还没来得及合并就停了（或者杀毒软件占着删不掉），留下了旧素材的分块结果：
+    改了素材再训练，不能悄悄用旧的文字 / 语义（真实脚本看到分块文件在就直接跳过）。"""
+    cfg, project, _ = prepared
+    gcfg, root, p2 = _small_train_cfg(project, tmp_path, "GSV-parts")
+    confirm_material(gcfg, project.voice)
+    first = wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    opt_dir = root / "logs" / first["exp_name"]
+    (opt_dir / "2-name2text-0.txt").write_text("old.wav\tph\t1\t旧素材的文字\n", encoding="utf-8")
+    (opt_dir / "6-name2semantic-0.tsv").write_text("old.wav\t9 9 9\n", encoding="utf-8")
+    time.sleep(0.05)
+    rec = next(r for r in p2.load_manifest() if r.get("keep", True) and r.get("split", "train") == "train")
+    p2.set_clip_text(rec["id"], rec["text"] + "改好了")
+    confirm_material(gcfg, project.voice)
+    wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    text = (opt_dir / "2-name2text.txt").read_text(encoding="utf-8")
+    assert "旧素材的文字" not in text and rec["text"] + "改好了" in text
+    assert "old.wav" not in (opt_dir / "6-name2semantic.tsv").read_text(encoding="utf-8")
+
+
+@needs_fake_python
+def test_empty_semantic_step_stops_before_training(prepared, tmp_path, monkeypatch, no_users_pth):
+    """1C（提取语义）一句都没做成：以前只写一个表头就接着训练（白白练十几分钟音色，最后 GPT 那一步才出错），
+    现在马上说清楚；原因修好以后再点「开始训练」就正常。"""
+    cfg, project, _ = prepared
+    gcfg, root, p2 = _small_train_cfg(project, tmp_path, "GSV-1c")
+    confirm_material(gcfg, project.voice)
+    (p2.logs_dir / "gsv_s2_train.log").unlink(missing_ok=True)  # 复制来的声音里可能有别的测试留下的
+    monkeypatch.setenv("FAKE_GSV_SEMANTIC_FAIL", "1")
+    with pytest.raises(RuntimeError, match="1C 提取语义没有产出") as ei:
+        wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    from voicetwin.errors import explain
+
+    assert explain(ei.value).key == "semantic_step_empty"
+    assert not (p2.logs_dir / "gsv_s2_train.log").exists()  # 没有接着去训练
+    monkeypatch.delenv("FAKE_GSV_SEMANTIC_FAIL")
+    info = wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    opt_dir = root / "logs" / info["exp_name"]
+    assert len((opt_dir / "6-name2semantic.tsv").read_text(encoding="utf-8").strip().splitlines()) >= 2
+
+
 # ---------------------------------------------------------------------------- 推理服务
 def _ref(project):
     refs = project.load_references()

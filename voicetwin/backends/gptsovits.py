@@ -298,6 +298,23 @@ def _free_port(preferred: int) -> int:
     return preferred
 
 
+def _remove_parts(opt_dir: Path, *patterns: str) -> None:
+    """删掉上次留下的分块结果（2-name2text-0.txt、6-name2semantic-0.tsv）。
+
+    GPT-SoVITS 的 1-get-text.py / 3-get-semantic.py 看到分块文件已经在了，就什么都不做（直接用旧的）：
+    上次一句都没处理成（只写了一个换行）、或者素材改过以后，就会一直用到旧的结果（以前一次失败以后每次训练都报同样的错）。
+    删不掉（被杀毒软件或别的程序占着）就停下说清楚，不能悄悄用旧的。"""
+    for pattern in patterns:
+        for f in opt_dir.glob(pattern):
+            try:
+                f.unlink()
+            except FileNotFoundError:
+                continue
+            except OSError as exc:
+                raise RuntimeError(f"上次训练留下的临时文件删不掉：{f}（{exc}）。不删掉的话 GPT-SoVITS 会直接用上次的旧结果。"
+                                   "请关掉可能打开着它的程序（或者重启电脑）后，再点一次「开始训练」。") from exc
+
+
 def _exp_name(voice: str) -> str:
     ascii_part = re.sub(r"[^A-Za-z0-9_-]+", "", voice)[:20]
     return f"vt_{ascii_part + '_' if ascii_part else ''}{short_hash(voice, n=6)}"
@@ -1147,6 +1164,7 @@ class GPTSoVITSBackend(Backend):
                     shutil.rmtree(target, ignore_errors=True)
                 elif target.exists():
                     target.unlink()
+            _remove_parts(opt_dir, "2-name2text-*.txt", "6-name2semantic-*.tsv")
             archived = self._archive_old_run(opt_dir)
             if archived is not None:
                 log.info(f"检测到素材有变化：这次会从头训练新模型（旧的训练进度已备份到 {archived}）")
@@ -1165,12 +1183,14 @@ class GPTSoVITSBackend(Backend):
         path_text = opt_dir / "2-name2text.txt"
         if not path_text.exists() or len(path_text.read_text(encoding="utf-8").strip().splitlines()) < 2:
             self.step(progress, 0.05, "处理文字（把讲稿转成拼音和特征）")
+            _remove_parts(opt_dir, "2-name2text-*.txt")
             self.run_logged([self.python, "-s", "GPT_SoVITS/prepare_datasets/1-get-text.py"], self.root,
                             self.env({**base, "bert_pretrained_dir": str(self.p(BERT_DIR))}), "gsv_1a_text",
                             progress, (0.05, 0.12), _line_counter(n, "处理文字"), label="处理文字")
             part = opt_dir / "2-name2text-0.txt"
             lines = part.read_text(encoding="utf-8").strip("\n").split("\n") if part.exists() else []
             if not "".join(lines).strip():
+                part.unlink(missing_ok=True)  # 留着的话下次脚本什么都不做，会一直报这个错（下次开始前也会再删一次）
                 raise RuntimeError("1A 文本处理没有产出，请查看日志 logs/gsv_1a_text.log")
             path_text.write_text("\n".join(lines) + "\n", encoding="utf-8")
             part.unlink(missing_ok=True)
@@ -1191,16 +1211,21 @@ class GPTSoVITSBackend(Backend):
         path_sem = opt_dir / "6-name2semantic.tsv"
         if not path_sem.exists() or path_sem.stat().st_size < 31:
             self.step(progress, 0.20, "提取语义（大约 1~3 分钟）")
+            _remove_parts(opt_dir, "6-name2semantic-*.tsv")
             env_1c = {**base, "pretrained_s2G": str(self.p(PRETRAINED_SOVITS[self.version])),
                       "s2config_path": self._s2_config_template()}
             self.run_logged([self.python, "-s", "GPT_SoVITS/prepare_datasets/3-get-semantic.py"], self.root,
                             self.env(env_1c), "gsv_1c_semantic", progress, (0.20, 0.25), label="提取语义")
             part = opt_dir / "6-name2semantic-0.tsv"
-            lines = ["item_name\tsemantic_audio"]
-            if part.exists():
-                lines += part.read_text(encoding="utf-8").strip("\n").split("\n")
-                part.unlink()
-            path_sem.write_text("\n".join(lines) + "\n", encoding="utf-8")
+            got = part.read_text(encoding="utf-8").strip("\n").split("\n") if part.exists() else []
+            got = [ln for ln in got if ln.strip()]
+            # 和 1A 一样：脚本逐句 try/except，一句都没做成也退出 0。只有表头的列表拿去训练，
+            # 要白白练完音色、到 GPT 那一步才出错，所以这里就停下说清楚
+            if not got:
+                part.unlink(missing_ok=True)
+                raise RuntimeError("1C 提取语义没有产出，请查看日志 logs/gsv_1c_semantic.log")
+            path_sem.write_text("\n".join(["item_name\tsemantic_audio"] + got) + "\n", encoding="utf-8")
+            part.unlink(missing_ok=True)
         return opt_dir
 
     def _s2_config_template(self) -> str:

@@ -25,6 +25,7 @@
 - FAKE_GSV_CLIP_SLEEP=秒：1B / 声纹每条素材睡多久（默认 0.01），用来观察「数文件」的进度。
 - FAKE_GSV_HANG=1：s2 训练一直不结束（并开一个子进程），用来测试「停止」会结束整个进程树。
 - FAKE_GSV_API_DELAY=秒：推理服务启动前先等一会儿（模拟加载模型）。
+- FAKE_GSV_TEXT_FAIL=1 / FAKE_GSV_SEMANTIC_FAIL=1：1A / 1C 每一句都出错（和真的一样只打印、照样退出 0，留下空的分块结果）。
 - 合成的文字里有「【测试显存不够】」时，api 和真的一样：记录里打印 Traceback，回 200 + 1 秒静音。
 """
 
@@ -50,6 +51,9 @@ assert os.path.isdir(os.environ["bert_pretrained_dir"])
 # GPT-SoVITS 依赖 PYTHONPATH 里有 GPT_SoVITS 目录
 assert any(p.endswith("GPT_SoVITS") for p in os.environ["PYTHONPATH"].split(os.pathsep))
 opt = os.environ["opt_dir"]; os.makedirs(opt, exist_ok=True)
+txt_path = f"{opt}/2-name2text-{os.environ['i_part']}.txt"
+if os.path.exists(txt_path):  # 真实脚本 1-get-text.py:46-47：分块结果已经在了，就什么都不做（直接用旧的）
+    sys.exit(0)
 lines = open(os.environ["inp_text"], encoding="utf8").read().strip("\\n").split("\\n")
 out = []
 for line in lines:
@@ -57,8 +61,12 @@ for line in lines:
     assert lang in ("zh", "en"), lang
     assert os.path.exists(os.path.join(os.environ["inp_wav_dir"], wav)), wav
     print(os.path.basename(wav))  # 真实脚本 1-get-text.py:91 就是这样逐条打印文件名
+    if os.environ.get("FAKE_GSV_TEXT_FAIL"):  # 真实脚本逐句 try/except：每句都出错时只打印 Traceback，照样退出 0
+        print(wav, text, "Traceback (most recent call last):\\nRuntimeError: fake per-line failure")
+        continue
     out.append(f"{wav}\\tph\\t1\\t{text}")
-open(f"{opt}/2-name2text-{os.environ['i_part']}.txt", "w", encoding="utf8").write("\\n".join(out))
+with open(txt_path, "w", encoding="utf8") as f:  # 真实脚本 1-get-text.py:142-143（一句都没做成时写进去的是一个换行）
+    f.write("\\n".join(out) + "\\n")
 '''
 
 GET_HUBERT = COMMON + '''
@@ -96,8 +104,13 @@ need("inp_text", "exp_name", "opt_dir", "pretrained_s2G", "s2config_path", "i_pa
 assert os.path.exists(os.environ["pretrained_s2G"])
 assert os.path.exists(os.environ["s2config_path"])
 opt = os.environ["opt_dir"]
+semantic_path = f"{opt}/6-name2semantic-{os.environ['i_part']}.tsv"
+if os.path.exists(semantic_path):  # 真实脚本 3-get-semantic.py:58-59：分块结果已经在了，就什么都不做
+    sys.exit(0)
 names = [l.split("\\t")[0] for l in open(f"{opt}/2-name2text.txt", encoding="utf8").read().strip().split("\\n")]
-open(f"{opt}/6-name2semantic-{os.environ['i_part']}.tsv", "w", encoding="utf8").write("\\n".join(f"{n}\\t1 2 3" for n in names))
+if os.environ.get("FAKE_GSV_SEMANTIC_FAIL"):  # 真实脚本也是逐句 try/except：每句都出错时写进去的是空文件，退出 0
+    names = []
+open(semantic_path, "w", encoding="utf8").write("\\n".join(f"{n}\\t1 2 3" for n in names))
 '''
 
 OOM = '''
