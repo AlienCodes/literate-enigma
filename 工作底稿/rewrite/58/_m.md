@@ -1,13 +1,13 @@
-# EN: The Virus That Saved a Life
+# EN: x
 
 ## 英文
 
-In late 2015 Tom Patterson, a 69-year-old psychiatry professor at UC San Diego, fell ill in Egypt. The bacterium responsible, Acinetobacter baumannii, **shrugged** off every available **antibiotic**. After he was flown home, a **surgical** drain slipped and **spilled** the **germs** into his **abdomen** and bloodstream. Septic shock followed, and he sank into a **coma**.
+On 3 June 1952 Rosario Mazzeo released a Manx shearwater in Boston. It came by **rail** and **airliner** from its **burrow** on Skokholm, an **isle** off Wales, and Mazzeo posted a letter at once. After a roughly 3,200-mile **odyssey** across the **unbroken** Atlantic, the **feathered** **traveller** was back on its **doorstep** twelve and a half days later. The letter arrived **afterwards**.
 
-Help came from a **century-old** idea. In 1917, at the Institut Pasteur, Félix d'Hérelle examined a dysentery patient's samples and found a virus that **preys** on bacteria. He named it the **bacteriophage**, **literally** "bacteria-eater", and proposed it as a treatment. Frederick Twort had independently reported a similar agent in 1915.
+The first **hints** of a compass were **celestial**. In the 1950s Kramer kept starlings **cooped** in cages and moved the apparent sun with mirrors. The **duped** birds **swivelled** to match, allowing for the sun's daily **arc**. In the 1960s Emlen **curtained** off stars in a planetarium's **vault**. His buntings steered by stars around the **pole-star**, the **axis** of the **nightly** **whirl**.
 
-Early phage preparations proved less reliable, and after the Second World War, with penicillin as medicine's **cornerstone**, phages became a Western **outcast**. Phage therapy found a **haven** in Soviet Georgia. George Eliava founded a Tbilisi institute in 1923, where d'Hérelle worked in 1933–35. Though Eliava was executed in Stalin's **purge** of 1937, Georgian phage **cocktails** were later sold even **over the counter**.
+In 1972 the Wiltschkos showed that **robins** read Earth's **magnetic** field by **inclination**, not **polarity**, unlike a **sailor**'s **needle**. In 1978 Schulten proposed a **light-triggered** reaction to **decode** the field. Named in 2000, cryptochrome, a **protein** in the **retina**, is now the **foremost** suspect. In 2021 robin cryptochrome proved more **finely** **tuned** in the laboratory than that of chickens or **pigeons**. Proof in a living bird is **awaited**.
 
-Patterson's wife, the epidemiologist Steffanie Strathdee, sought phages to kill his strain. Teams at Texas A&M and the US Navy found matches, the Navy's collection drawing partly on **sewage**. In March 2016, ninety-nine years after d'Hérelle's discovery, he became the first US patient to have phages **infused** into a **vein** for a **systemic** multidrug-resistant infection. He woke about three days later and was **discharged** on 12 August.
+In 2014 came an **eerie**, **man-made** twist. At Oldenburg University, robins in campus **huts** lost that sense. In huts **clad** in grounded aluminium, they **reclaimed** their **bearings**. Removing the grounding, or **piping** radio noise in, **bewildered** them again in double-blind tests. The **interference**, a **murmur** from everyday **appliances**, sat far below WHO safety limits.
 
-Antibiotic resistance, a growing **threat**, has **stirred** a **resurgence** of interest in phage therapy. One recovery cannot prove phages will replace antibiotics, but it suggests a remedy the West had **forsaken** deserves a second look.
+How a **wanderer** knows where it is remains **unanswered**. The compass code is partly **cracked**, but the **atlas** that steered the shearwater has yet to be read.

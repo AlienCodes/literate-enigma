@@ -1,76 +1,73 @@
-# 第58篇评审 · 英语语言学教授 · 第1轮
+# 第58篇（鸟类导航）评审 · 英语语言学教授 · 第1轮
 
-## 总分：95 / 100（无硬伤；达标线）
+## 总分：96 / 100（无硬伤；达标）
 
-> 用户已接受重点词 31 个（低于 50）与 bacteriophage 偏僻，本轮不就此扣分。用户新要求"文章质量第一"，本评审对科学与史实的精确度从严。
+> 硬标准：英文 ≤271 词（现 271 ✓）、重点词 ≥50（现 54 ✓）。其余按"质量第一"评判。
 
 ## 各项得分
 | 项 | 满分 | 得分 | 说明 |
 |---|---|---|---|
-| 1 史实与科学准确 | 15 | 12 | antidote 用词不准 −1；"shot"超出来源 −1；early preparations 指代不明 −0.5；Twort 缺 independently −0.5 |
-| 2 论证与结构 | 10 | 10 | 危局→发现→遗忘→重生→意义，反转成立；结尾 99 年（1917→2016）算对 |
-| 3 语言质量 | 15 | 15 | — |
-| 4 适配读者 | 5 | 5 | Acinetobacter baumannii、bacteriophage 均有交代 |
-| 5 学习价值 | 12 | 11 | psychiatry、bacterium 在约稿单"同根/已占勿加粗"名单内却加粗 −1 |
-| 6 用法典型 | 8 | 8 | shrugged off every available antibiotic、preys on bacteria、found a haven、over the counter、infused into a vein、a resurgence of interest 均地道 |
-| 7 速查表释义 | 10 | 10 | — |
-| 8 忠实 | 10 | 10 | 对冲（cannot prove…suggests）保留 |
-| 9 通顺地道 | 10 | 9 | 满不在乎；泼洒 |
-| 10 重点词对应 | 5 | 5 | — |
-| **合计** | 100 | **95** | |
+| 1 史实与科学准确 | 15 | 13.5 | cryptochrome "by 2000 … the front-runner" 时间线超前 −1；Wiltschko 单数 −0.5 |
+| 2 论证与结构 | 10 | 10 | 鹱的归巢→天体罗盘→磁罗盘→人为干扰→"地图"未解，层层推进；结尾回扣开篇鹱，事实成立 |
+| 3 语言质量 | 15 | 15 | 段落 [60,61,67,57,26]，P3 偏长、P5 偏短，属结构选择，不扣 |
+| 4 适配读者 | 5 | 4 | P4 的 noise 未说明是电磁噪声，考研读者易理解成声音 −1 |
+| 5 学习价值 | 12 | 11 | 54 词全 ✓；afterwards、sailor、traveller、robbed、pigeons 偏基础（因需守 ≥50，不要求替换）−1 |
+| 6 用法典型 | 8 | 8 | 见"已核未扣" |
+| 7 速查表释义 | 10 | 10 | inclination 给出"倾角；倾向"两义，bearings 给 lose/find one's bearings，均好 |
+| 8 忠实 | 10 | 10 | is awaited / has yet to be read / remains unanswered 等对冲保留 |
+| 9 通顺地道 | 10 | 9.5 | "低鸣" 同第4项问题 |
+| 10 重点词对应 | 5 | 5 | 线索/轴心/倾角/极性/方向感 等唯一 |
+| **合计** | 100 | **96** | |
 
 ## 史实与科学逐项核对
 | 正文 | 来源 | 判定 |
 |---|---|---|
-| late 2015, 69-year-old UC San Diego psychiatry professor, fell ill in Egypt | S1 | ✓ |
-| Acinetobacter baumannii … every available antibiotic | S1 "resistant to all available antibiotics" | ✓ |
-| After he was flown home, a surgical drain slipped … septic shock … coma | S1 列于转运之后，顺序未明说"回国后" | 可接受（S1 叙述顺序支持），"after he was flown home"属合理排序，标待核 |
-| 1917, Institut Pasteur, dysentery patient's samples, virus that infects bacteria, named bacteriophage "bacteria-eater" | S2 | ✓（preys on 为通俗比喻，噬菌体实为感染并裂解细菌，比喻可接受） |
-| proposed it as an **antidote** | S2 "suggested it could treat bacterial infections" | ✗ antidote 专指解毒剂（针对毒物/毒素），细菌感染不是中毒；科学上用词不准 |
-| Frederick Twort had reported a similar agent in 1915 | S2 "independently reported" | 缺 independently，易被读成德埃雷勒在其基础上工作；约稿单明令须体现两人各自发现 |
-| early preparations proved less reliable | S3 "early preparations were less reliable"（指噬菌体制剂） | 英文紧跟 penicillin 一句，early preparations 易被读成青霉素制剂；中文已补"噬菌体"，英文须补 |
-| Eliava was **shot** in Stalin's purge of 1937 | S3 "executed in 1937" | "shot"为来源外细节（处决方式），约稿单亦要求不展开其死的政治细节；"Stalin's purge"为公认史实背景，可保留作 purge 的语境 |
-| phage cocktails were even sold over the counter | S3 "preparations … even over the counter" | ✓（格鲁吉亚制剂确为多株混合，cocktails 可接受） |
-| Texas A&M and US Navy … sewage … found matches | S4 | ✓ |
-| March 2016 first US patient … phages infused into a vein for a systemic multidrug-resistant infection | S4 原话即"first person in the US treated with intravenous phages for a systemic multidrug-resistant infection" | ✓ 措辞精确，限定语完整，未夸大为"美国首例噬菌体治疗" |
-| About three days later he awakened; discharged on 12 August | S4 | ✓ |
-| resistance … stirred a resurgence of interest | S5 | ✓（概括，未写数字） |
-| Ninety-nine years separated d'Hérelle's discovery from Patterson's first treatment | 1917→2016 | ✓ |
+| 3 June 1952 Mazzeo released a Manx shearwater in Boston; came by rail and airliner from its burrow on Skokholm, an isle off Wales; posted a letter at once | S1 | ✓ |
+| 3,200-mile … unbroken Atlantic … back twelve and a half days later; the letter arrived afterwards | S1（3 June 放飞，16 June 在巢中被发现；鸟比信快） | ✓ |
+| 1950s Kramer, starlings in cages, mirrors moved the apparent sun, birds swivelled to match, allowing for its daily arc | S2（镜子移动太阳视位置→转向；并补偿太阳日移） | ✓ "allowing for its daily arc" 正是时间补偿，表述精到 |
+| 1960s Emlen curtained off stars in a planetarium's vault; buntings steered by stars around the pole-star, the axis of the nightly whirl | S3 | ✓ 抓住了"天球旋转中心"这一关键 |
+| In 1972 Wiltschko showed … robins read Earth's magnetic field by its inclination, not its polarity, unlike a sailor's needle | S4 | 科学内容 ✓（倾角罗盘、对极性不敏感，与指南针对比恰当）。但 1972 年《科学》论文作者是 Wolfgang 与 Roswitha Wiltschko 夫妇，单写 Wiltschko 不完整 |
+| 1978 Schulten proposed a light-triggered reaction to decode the field | S5 | ✓（自由基对机制，"light-triggered chemical reaction"） |
+| **by 2000** cryptochrome … was the **front-runner** | S5："in 2000 cryptochrome … was **proposed** as the molecule"；"still a leading hypothesis"指现在 | ✗ 时间线超前：2000 年只是被提出，成为"领跑者"是之后十余年积累的结果 |
+| 2021 the robin's proved more finely tuned in the laboratory than chickens' or pigeons' | S5（CRY4 体外磁敏感性高于鸡、鸽） | ✓ "in the laboratory"限定到位 |
+| Proof in a living bird is awaited | S5 | ✓ |
+| 2014 Oldenburg: robins in campus huts lost the sense; aluminium-clad grounded huts restored it; removing grounding or piping noise in disoriented them again; double-blind; everyday appliances; far below WHO limits | S6 | 史实 ✓；但"noise"在 S6 是 50 kHz–5 MHz 的**电磁**噪声，正文与中文"低鸣"都没点明，读者会理解成声音（见第4项） |
+| How a wanderer knows where it is remains unanswered | S7（"map"未明） | ✓ 结尾 atlas 呼应"地图"问题，字面成立 |
 
 ## 必改项
 
-1. **必改｜第1项｜−1**（antidote）
-   原文：He named it the **bacteriophage**, **literally** "bacteria-eater", and proposed it as an **antidote**.
-   问题：antidote 是"解毒剂"，细菌感染不是中毒，科学上不准；考研读者也会学到错误搭配。
-   改法：He named it the **bacteriophage**, **literally** "bacteria-eater", and proposed using it to treat bacterial infections.（antidote 去粗；remedy、combat 经 wt.sh 测为 OCC，不可加粗；+4 词）中文：并提出可以用它来治疗细菌感染。速查表删 antidote 行。
+1. **必改｜第1项｜−1**（cryptochrome 时间线）
+   原文：…and by 2000 cryptochrome, a **protein** in the **retina**, was the **front-runner**.
+   改法：…and in 2000 cryptochrome, a **protein** in the **retina**, was proposed; it is now the **front-runner**.（+4 词，须同段删 4 词抵消，见下）
+   中文：……2000年，**视网膜**(retina)中的一种**蛋白质**(protein)隐花色素被提出，如今它已是**领跑者**(front-runner)。
 
-2. **必改｜第1项｜−1**（shot）
-   原文：Eliava was shot in Stalin's **purge** of 1937
-   改法：Eliava was executed in Stalin's **purge** of 1937（0 词）。中文"被枪决"改为"被处决"。
+2. **必改｜第4项｜−1；第9项｜−0.5**（电磁噪声）
+   原文：Removing the grounding, or **piping** noise in, **bewildered** them again. … The **interference**, a **murmur** from everyday **appliances**, …
+   改法：Removing the grounding, or **piping** radio noise in, **bewildered** them again.（+1 词；50 kHz–5 MHz 属射频，radio noise 准确且通俗）
+   中文：拆掉接地，或往屋里**灌入**(piping)无线电噪声，又让它们**晕头转向**(bewildered)。……这种**干扰**(interference)只是日常**电器**(appliances)发出的一阵电磁**低语**(murmur)……
 
-3. **必改｜第5项｜−1**（违反约稿单同根名单）
-   原文：**psychiatry** professor；The **bacterium** responsible
-   问题：约稿单第7节明列 psychiatry、bacterium 为"同根/已占勿加粗"（psychology、bacteria 已用）。
-   改法：两词去粗；中文"**精神病学**""**菌体**"去粗（"菌体"另见第9项，改"细菌"）；速查表删两行。（P1 重点词由 10 降为 8，用户已接受低词数）
+3. **该改｜第1项｜−0.5**（Wiltschko）
+   原文：In 1972 Wiltschko showed that…
+   改法：In 1972 the Wiltschkos showed that…（+1 词）中文：1972年，维尔奇科夫妇证明……
 
-4. **该改｜第1项｜−0.5**
-   原文：penicillin became medicine's **cornerstone**, early preparations proved less reliable, and phages became a Western **outcast**
-   改法：…, early phage preparations proved less reliable, …（+1 词）
+   ——第1–3条合计 **+6 词**，须删 6 词保持 ≤271（均不动重点词）：
+   ① P1 It had come by **rail** → It came by **rail**（−1）
+   ② P1 and Mazzeo posted a letter at once → and Mazzeo posted a letter（−2；中文"随即"可保留语气）
+   ③ P2 In the 1950s Gustav Kramer → In the 1950s Kramer（−1）
+   ④ P3 In 1978 Klaus Schulten proposed → In 1978 Schulten proposed（−1）
+   ⑤ P3 European **robins** → **robins**（−1；中文仍作"欧亚知更鸟"，英式语境 robin 即指欧亚鸲，不算增义）
+   **净 0 词，仍 271**；各段重点词不变。
 
-5. **该改｜第1项｜−0.5**
-   原文：Frederick Twort had reported a similar agent in 1915.
-   改法：Frederick Twort had independently reported a similar agent in 1915.（+1 词）中文：弗雷德里克·特沃特早在1915年就已**独立**报道过一种类似的病原。
-
-## 可改项（第9项 −1）
-- "对所有可用的**抗生素**(antibiotic)都**满不在乎**(shrugged)"：拟人过度，读来轻佻。改"对所有可用的**抗生素**(antibiotic)都**不为所动**(shrugged)"。
-- "把**病菌**(germs)一下子**泼洒**(spilled)进他的**腹腔**"：泼洒用于液体泼出，不合病菌；改"让**病菌**(germs)**溢入**(spilled)他的**腹腔**(abdomen)和血液"。
+## 已核未扣
+- 英文：by rail and airliner、an isle off Wales、a 3,200-mile odyssey across unbroken Atlantic、the feathered traveller was back on its doorstep、The letter arrived afterwards、cooped starlings in cages、The duped birds swivelled to match、curtained off stars in a planetarium's vault、the axis of the nightly whirl、unlike a sailor's needle、a light-triggered reaction to decode the field、more finely tuned、robbed of that sense、huts clad in grounded aluminium、reclaimed their bearings、bewildered them again、far below WHO safety limits、The compass is partly cracked, but the atlas…has yet to be read——比喻生动且贴科学事实，地道。
+- 中文：洞巢、火车、客机、一望无际、远征、门口、线索、天上、关进笼子、受骗、转身、弧线、穹顶、北极星、轴心、知更鸟、倾角、极性、指针、由光触发、解读、视网膜、蛋白质、领跑者、调校、精细、有待、诡异、人为、夺去、包覆、找回、方向感、晕头转向、毫不含糊、干扰、电器、漫游者、没有答案、破解、地图——准确。
 
 ## 考研学习价值
-31 个重点词中，abdomen、cornerstone、outcast、haven、purge、sewage、infused、vein、systemic、discharged、resurgence、forsaken、literally、threat 等均为考研阅读高频或医学、社会类文章常见词，搭配典型（a safe haven、a resurgence of interest、be discharged from hospital、systemic infection），学习价值高；century-old、over the counter 为实用复合词与短语。
+celestial、axis、inclination、polarity、decode、protein、retina、front-runner、eerie、man-made、clad、bearings、bewildered、unambiguous、interference、appliances、unanswered、odyssey、unbroken、arc 等均为考研阅读（科普类）高频或高价值词，搭配典型（lose/find one's bearings、household appliances、a finely tuned…、celestial bodies、unanswered questions）；多义词（inclination 倾角/倾向、vault 穹顶/保险库、needle 指针/针、crack 破解/破裂）在速查表中两义并列，学习价值高。
 
 ## 达标需改
-必改三条改完可到 98；全改 100。注意：现稿已 268 词（上限），第1、4、5条共约 +6 词，须同段删词抵消，例如 P2 删 "Help came from a century-old idea." 中的 century-old 不可（重点词），可删 P5 "a growing" 前后冗词或 P3 "even"；请写作组据 en_check 调整。
+改必改两条可到 98.5；全改 99（第5项基础词为守 ≥50 保留）。
 
-总分 = 12+10+15+5+11+8+10+10+9+5 = 95
+总分 = 13.5+10+15+4+11+8+10+10+9.5+5 = 96
 
 总分 = 各项之和 已核

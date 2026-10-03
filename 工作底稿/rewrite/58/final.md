@@ -1,64 +1,91 @@
-# EN: The Virus That Saved a Life
-# ZH: 病毒盟友：噬菌体
+# EN: The Bird That Beat the Letter Home
+# ZH: 比信先到家的鸟
 
 ## 英文
-In late 2015 Tom Patterson, a 69-year-old psychiatry professor at UC San Diego, fell ill in Egypt. The bacterium responsible, Acinetobacter baumannii, **shrugged** off every available **antibiotic**. After he was flown home, a **surgical** drain slipped and **spilled** the **germs** into his **abdomen** and bloodstream. Septic shock followed, and he sank into a **coma**.
+On 3 June 1952 Rosario Mazzeo released a Manx shearwater in Boston. It came by **rail** and **airliner** from its **burrow** on Skokholm, an **isle** off Wales, and Mazzeo posted a letter at once. After a roughly 3,200-mile **odyssey** across the **unbroken** Atlantic, the **feathered** **traveller** was back on its **doorstep** twelve and a half days later. The letter arrived **afterwards**.
 
-Help came from a **century-old** idea. In 1917, at the Institut Pasteur, Félix d'Hérelle examined a dysentery patient's samples and found a virus that **preys** on bacteria. He named it the **bacteriophage**, **literally** "bacteria-eater", and proposed it as a treatment. Frederick Twort had independently reported a similar agent in 1915.
+The first **hints** of a compass were **celestial**. In the 1950s Kramer kept starlings **cooped** in cages and moved the apparent sun with mirrors. The **duped** birds **swivelled** to match, allowing for the sun's daily **arc**. In the 1960s Emlen **curtained** off stars in a planetarium's **vault**. His buntings steered by stars around the **pole-star**, the **axis** of the **nightly** **whirl**.
 
-Early phage preparations proved less reliable, and after the Second World War, with penicillin as medicine's **cornerstone**, phages became a Western **outcast**. Phage therapy found a **haven** in Soviet Georgia. George Eliava founded a Tbilisi institute in 1923, where d'Hérelle worked in 1933–35. Though Eliava was executed in Stalin's **purge** of 1937, Georgian phage **cocktails** were later sold even **over the counter**.
+In 1972 the Wiltschkos showed that **robins** read Earth's **magnetic** field by **inclination**, not **polarity**, unlike a **sailor**'s **needle**. In 1978 Schulten proposed a **light-triggered** reaction to **decode** the field. Proposed in 2000, cryptochrome, a **protein** in the **retina**, is now the **foremost** suspect. In 2021 robin cryptochrome proved more **finely** **tuned** in the laboratory than that of chickens or **pigeons**. Proof in a living bird is **awaited**.
 
-Patterson's wife, the epidemiologist Steffanie Strathdee, sought phages to kill his strain. Teams at Texas A&M and the US Navy found matches, the Navy's collection drawing partly on **sewage**. In March 2016, ninety-nine years after d'Hérelle's discovery, Patterson became the first US patient to have phages **infused** into a **vein** for a **systemic** multidrug-resistant infection. He woke about three days later and was **discharged** on 12 August.
+In 2014 came an **eerie**, **man-made** twist. At Oldenburg University, robins in campus **huts** lost that sense. In huts **clad** in grounded aluminium, they **reclaimed** their **bearings**. Removing the grounding, or **piping** radio noise in, **bewildered** them again in double-blind tests. The **interference**, a **murmur** from everyday **appliances**, sat far below WHO safety limits.
 
-Antibiotic resistance, a growing **threat**, has **stirred** a **resurgence** of interest in phage therapy. One recovery cannot prove phages will replace antibiotics, but it suggests a remedy the West had **forsaken** deserves a second look.
+How a **wanderer** knows where it is remains **unanswered**. The compass code is partly **cracked**, but the **atlas** that steered the shearwater has yet to be read.
 
 ## 中文
 
-2015年末，加州大学圣迭戈分校69岁的精神病学教授汤姆·帕特森在埃及病倒。罪魁祸首是鲍曼不动杆菌，它对所有现有的**抗生素**(antibiotic)都**无动于衷**(shrugged)。他被送回国后，一根**手术**(surgical)引流管滑脱，**病菌**(germs)随之**流入**(spilled)他的**腹腔**(abdomen)和血液。随之而来的是感染性休克，他陷入了**昏迷**(coma)。
+1952年6月3日，罗萨里奥·马泽奥在波士顿放飞了一只大西洋鹱。它来自威尔士外海斯科克霍姆这座**小岛**(isle)上的**洞巢**(burrow)，先坐**火车**(rail)，再搭**客机**(airliner)，一路被带到这里。马泽奥随即寄出一封信。这位**披着羽毛**(feathered)的**旅行者**(traveller)飞越约三千二百英里**一望无际**(unbroken)的大西洋，完成了一场**远征**(odyssey)，十二天半后回到自家**门口**(doorstep)。那封信是**随后**(afterwards)才到的。
 
-援手来自一个已有**百年之久**(century-old)的想法。1917年，费利克斯·德埃雷勒在巴斯德研究所检查一名痢疾病人的样本，发现了一种**捕食**(preys)细菌的病毒。他把它命名为**噬菌体**(bacteriophage)，**字面**(literally)意思是"吃细菌者"，并提出可以用它治疗细菌感染。弗雷德里克·特沃特早在1915年就已独立报道过一种类似的病原。
+最初的罗盘**线索**(hints)来自**天上**(celestial)。20世纪50年代，克雷默把椋鸟**关进**(cooped)笼子里，再用镜子挪动太阳的视位置。**受骗**(duped)的鸟随之**转身**(swivelled)，而且会顾及太阳每天划过的**弧线**(arc)。20世纪60年代，埃姆伦在天文馆的**穹顶**(vault)上把星星一片片**遮住**(curtained)。他的靛蓝彩鹀依靠**北极星**(pole-star)周围的星星辨向，北极星正是星空**每夜**(nightly)都绕着**旋转**(whirl)的**轴心**(axis)。
 
-早期的噬菌体制剂不够可靠；第二次世界大战后，青霉素成了医学的**基石**(cornerstone)，噬菌体也就成了西方的**弃儿**(outcast)。噬菌体疗法在苏联治下的格鲁吉亚找到了**避风港**(haven)。1923年，乔治·埃利亚瓦在第比利斯创办了一家研究所，德埃雷勒1933至1935年曾在那里工作。尽管埃利亚瓦在1937年斯大林的**大清洗**(purge)中被处决，格鲁吉亚的噬菌体**混合制剂**(cocktails)后来甚至**在药店柜台就能买到**(over the counter)。
+1972年，维尔奇科夫妇证明，**知更鸟**(robins)读取地球**磁场**(magnetic)时，看的是**倾角**(inclination)，而不是**极性**(polarity)，这一点和**水手**(sailor)的罗盘**指针**(needle)不同。1978年，舒尔滕提出，一种**由光触发**(light-triggered)的化学反应可以**解读**(decode)磁场。2000年，**视网膜**(retina)中的一种**蛋白质**(protein)隐花色素被提了出来，如今它是**头号**(foremost)嫌疑对象。2021年的实验室测试表明，知更鸟的隐花色素比鸡和**鸽子**(pigeons)的**调校**(tuned)得更**精细**(finely)。在活鸟身上的证据，仍**有待**(awaited)取得。
 
-帕特森的妻子、流行病学家斯特芬妮·斯特拉斯迪四处寻找能杀死这株细菌的噬菌体。德州农工大学和美国海军的团队找到了匹配的噬菌体，海军的藏品有一部分取自**污水**(sewage)。2016年3月，也就是德埃雷勒发现噬菌体九十九年后，医生把噬菌体**输注**(infused)进他的**静脉**(vein)，治疗**全身性**(systemic)多重耐药感染，他由此成为美国第一位接受这种治疗的病人。大约三天后他醒了过来，并于8月12日**出院**(discharged)。
+2014年，事情出现了一个**诡异**(eerie)的、**人为**(man-made)的转折。在奥尔登堡大学，校园**小木屋**(huts)里的知更鸟失去了这种感知。在**包覆**(clad)接地铝板的小屋里，它们**找回**(reclaimed)了**方向感**(bearings)。在双盲实验中，拆掉接地，或往屋里**灌入**(piping)无线电噪声，又让它们**晕头转向**(bewildered)。这种**干扰**(interference)只是日常**电器**(appliances)发出的一阵电磁**低语**(murmur)，强度远低于世卫组织的安全限值。
 
-抗生素耐药是日益严重的**威胁**(threat)，它**激起**(stirred)了人们对噬菌体疗法兴趣的**复苏**(resurgence)。一次康复并不能证明噬菌体会取代抗生素，但它表明，这种曾被西方**抛弃**(forsaken)的疗法值得重新审视。
+一位**漫游者**(wanderer)如何知道自己身在何处，至今仍**没有答案**(unanswered)。罗盘的密码已**破解**(cracked)了一部分，但指引那只大西洋鹱的那张**地图**(atlas)，还没有人读懂。
 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
-| shrugged | v. (shrug off) 对……无动于衷，不把……当回事；耸肩（shrug off criticism/an injury） | 1 |
-| antibiotic | n. 抗生素（a course of antibiotics） | 1 |
-| surgical | adj. 外科的，手术的（a surgical procedure/drain） | 1 |
-| spilled | v. (spill) 洒出，溢出，流入（spill coffee on the table） | 1 |
-| germs | n. (germ) 病菌，细菌（kill germs） | 1 |
-| abdomen | n. 腹部，腹腔（pain in the abdomen） | 1 |
-| coma | n. 昏迷（fall into a coma） | 1 |
-| century-old | adj. 百年之久的（a century-old tradition/building） | 2 |
-| preys | v. (prey on) 捕食（owls prey on mice） | 2 |
-| bacteriophage | n. 噬菌体（phage）（bacteriophage therapy） | 2 |
-| literally | adv. 字面上；确实（translate literally） | 2 |
-| cornerstone | n. 基石（the cornerstone of policy） | 3 |
-| outcast | n. 被抛弃者，弃儿（a social outcast） | 3 |
-| haven | n. 避风港，庇护所（a safe haven） | 3 |
-| purge | n. 清洗，整肃（a political purge） | 3 |
-| cocktails | n. (cocktail) 混合物；鸡尾酒（a drug cocktail） | 3 |
-| over the counter | phr. （药品）不需处方，在柜台出售（buy medicine over the counter） | 3 |
-| sewage | n. 污水（a sewage works/treatment plant） | 4 |
-| infused | v. (infuse) 输注；注入（infuse a drug into a vein） | 4 |
-| vein | n. 静脉（inject into a vein） | 4 |
-| systemic | adj. 全身的，系统性的（a systemic infection；systemic problems） | 4 |
-| discharged | v. (discharge) 准许出院；排出（be discharged from hospital） | 4 |
-| threat | n. 威胁（a threat to health） | 5 |
-| stirred | v. (stir) 激起；搅拌（stir interest/emotions） | 5 |
-| resurgence | n. 再度兴起，复苏（a resurgence of interest） | 5 |
-| forsaken | v. (forsake) 抛弃，放弃（forsake old habits） | 5 |
+| rail | n. 铁路（travel by rail） | 1 |
+| airliner | n. 客机（a jet airliner） | 1 |
+| burrow | n. 洞穴，地洞（a rabbit burrow） | 1 |
+| isle | n. 岛，小岛（the British Isles） | 1 |
+| odyssey | n. 漫长的历险，远征（a spiritual odyssey） | 1 |
+| unbroken | adj. 连续不断的，一望无际的（an unbroken line/view） | 1 |
+| feathered | adj. 长羽毛的（our feathered friends） | 1 |
+| traveller | n. 旅行者（a seasoned traveller） | 1 |
+| doorstep | n. 门口，门阶（on sb's doorstep） | 1 |
+| afterwards | adv. 之后，随后（shortly afterwards） | 1 |
+| hints | n. (hint) 线索，暗示（drop a hint；a hint of sth） | 2 |
+| celestial | adj. 天上的，天体的（celestial bodies） | 2 |
+| cooped | v. (coop up) 关进笼子，困住（cooped up indoors） | 2 |
+| duped | v. (dupe) 欺骗，愚弄（be duped into signing） | 2 |
+| swivelled | v. (swivel) 转动，旋转（swivel round in one's chair） | 2 |
+| arc | n. 弧，弧线（the arc of a rainbow） | 2 |
+| curtained | v. (curtain off) 用帘子遮挡（curtain off part of a room） | 2 |
+| vault | n. 拱顶，穹顶；保险库（the vault of heaven；a bank vault） | 2 |
+| pole-star | n. 北极星（steer by the pole-star） | 2 |
+| axis | n. 轴，轴心（the earth's axis） | 2 |
+| nightly | adj./adv. 每夜的（a nightly news programme） | 2 |
+| whirl | n./v. 旋转（a whirl of activity；leaves whirled） | 2 |
+| robins | n. (robin) 知更鸟，欧亚鸲（a robin redbreast） | 3 |
+| magnetic | adj. 磁的（a magnetic field） | 3 |
+| inclination | n. 倾角；倾向（an inclination to agree；angle of inclination） | 3 |
+| polarity | n. 极性（reverse the polarity） | 3 |
+| sailor | n. 水手（an experienced sailor） | 3 |
+| needle | n. 指针；针（a compass needle） | 3 |
+| light-triggered | adj. 由光触发的（a light-triggered reaction） | 3 |
+| decode | v. 解码，解读（decode a message） | 3 |
+| protein | n. 蛋白质（a high-protein diet） | 3 |
+| retina | n. 视网膜（damage to the retina） | 3 |
+| foremost | adj. 最重要的，首要的（the foremost expert；first and foremost） | 3 |
+| finely | adv. 精细地（finely balanced；finely chopped） | 3 |
+| tuned | adj./v. (tune) 调校好的（a finely tuned engine） | 3 |
+| pigeons | n. (pigeon) 鸽子（homing pigeons） | 3 |
+| awaited | v. (await) 等待（eagerly awaited results） | 3 |
+| eerie | adj. 怪异的，诡异的（an eerie silence） | 4 |
+| man-made | adj. 人造的，人为的（man-made fibres/disasters） | 4 |
+| huts | n. (hut) 小屋，棚屋（a wooden hut） | 4 |
+| clad | adj. 包覆着……的（ivy-clad walls；clad in steel） | 4 |
+| reclaimed | v. (reclaim) 找回，收回（reclaim one's title） | 4 |
+| bearings | n. (bearing) 方位，方向感（lose/find one's bearings） | 4 |
+| piping | v. (pipe) 用管道输送；播放（pipe music into a store） | 4 |
+| bewildered | adj. 困惑的，晕头转向的（a bewildered look） | 4 |
+| interference | n. 干扰（radio interference） | 4 |
+| murmur | n. 低沉连续的声音；（喻）微弱的信号（the murmur of traffic） | 4 |
+| appliances | n. (appliance) 电器，器具（household appliances） | 4 |
+| wanderer | n. 漫游者，流浪者（a lonely wanderer） | 5 |
+| unanswered | adj. 未答复的，悬而未决的（unanswered questions） | 5 |
+| cracked | v. (crack) 破解；破裂（crack a code/case） | 5 |
+| atlas | n. 地图集（a world atlas） | 5 |
 
 ## 史实与来源
-- 【T1】2015年末，69岁的加州大学圣迭戈分校精神病学教授汤姆·帕特森与妻子在埃及度假时患病，12月3日送往法兰克福，12月12日转回圣迭戈；感染的鲍曼不动杆菌对所有可用抗生素耐药；引流管滑脱后细菌进入腹腔和血液，出现感染性休克并昏迷。转运日期正文不写。S1
-- 【T2】1917年，巴斯德研究所的费利克斯·德埃雷勒用痢疾病人的样本发现一种感染细菌的病毒，命名为 bacteriophage，字面意为"吃细菌者"，并提出用它治疗感染；特沃特1915年已独立报道类似病原。正文"吃细菌者"是词义说明，不是人物引语。S2
-- 【T3】二战后，随着青霉素等抗生素普及（加上早期制剂不够可靠），西方基本放弃噬菌体疗法；它在苏联特别是格鲁吉亚延续；埃利亚瓦1923年在第比利斯创办研究所，德埃雷勒1933–35年在那里工作；埃利亚瓦1937年被处决；当地噬菌体制剂甚至可以在柜台购买。英文 executed 与来源一致，中文"处决"。S3
-- 【T4】斯特拉斯迪寻找噬菌体研究者；德州农工大学和美国海军的团队（海军噬菌体部分采自污水等来源）找到匹配的噬菌体；2016年3月，他成为美国首位因全身性多重耐药感染接受静脉注射噬菌体的病人；约三天后苏醒；2016年8月12日出院，后重返工作岗位。S1；S4
-- 【T5】抗生素耐药日益严重，重新引起了人们对噬菌体疗法的兴趣（只作一般陈述）。S5
-- 【补】第4段"ninety-nine years after d'Hérelle's discovery"：1917年发现，2016年3月首次治疗，相隔99年。海军藏品部分取自污水，英文已限定为 the Navy's collection。
-- 【说明】所有来源均为检索摘要，正文未用直接引语。按用户优先级，本篇以文章质量为先，重点词26个，低于50个的常规下限；bacteriophage 被工具判为冷僻，按用户要求保留为重点词。排除：血腥描写、"噬菌体完全取代抗生素"、来源外数字、把德埃雷勒写成唯一发现者、埃利亚瓦之死的政治细节。英文未写明的因果，中文不加"因此""于是"。
+- 【T1】1952年，罗萨里奥·马泽奥把环号 AX6587 的大西洋鹱从威尔士外海斯科克霍姆岛经火车带到伦敦、再乘飞机到波士顿；6月3日上午8:15在洛根机场放飞；6月16日它已回到岛上的洞巢，约3,200英里开阔大西洋，用时12.5天；他放飞后立刻寄信，信比鸟晚到。环号、放飞时刻与洛克利的误会正文不写。S1
+- 【T2】20世纪50年代，古斯塔夫·克雷默把椋鸟关在圆笼里，用镜子改变太阳的视位置，鸟的朝向随之改变，并能补偿太阳一天中的移动。S2
+- 【T3】20世纪60年代，斯蒂芬·埃姆伦在天文馆遮去部分星星，发现靛蓝彩鹀靠北极星周围的星座（天空旋转的中心）定向。S3
+- 【T4】1972年，法兰克福的维尔奇科夫妇（英文 the Wiltschkos）证明欧亚鸲利用地磁场，读的是磁力线的倾角而不是极性。S4
+- 【T5】1978年舒尔滕提出光触发的化学反应可让鸟感知磁场；2000年提出视网膜中的隐花色素为关键分子（英文 foremost suspect，中文"头号嫌疑对象"）；2021年实验室中知更鸟的隐花色素4比鸡、鸽子的更敏感。仍是主流假说，未在活鸟体内完全证实，正文以"仍有待"表述。S5
+- 【T6】2014年（《自然》），奥尔登堡大学：校园未屏蔽木屋中的知更鸟无法使用磁罗盘；在接地的铝皮屏蔽屋中恢复定向；拆掉接地或加入无线电频段噪声又再失灵；双盲实验；这种电磁噪声来自日常电子设备，并非声音（中文"电磁低语"），远低于世卫组织安全限值。S6
+- 【T7】鸟如何知道自己身在何处（"地图感"）至今未完全弄清。结尾"罗盘部分破解、地图尚未读懂"即据 T5–T7。S7
+- 【说明】所有来源均为检索摘要，正文未用直接引语。英文未写明的因果，中文不加"因此""于是"。
