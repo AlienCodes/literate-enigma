@@ -273,13 +273,17 @@ class Backend:
                    progress: Optional[ProgressFn] = None, progress_range: Tuple[float, float] = (0.0, 1.0),
                    parse_progress: Optional[Callable[[str], ParseResult]] = None, *, label: str = "",
                    poll_progress: Optional[Callable[[], Optional[Tuple[int, int]]]] = None,
-                   poll_interval: float = 2.0) -> None:
+                   poll_interval: float = 2.0, stop_when: Optional[Callable[[str], Any]] = None,
+                   on_poll: Optional[Callable[[], Any]] = None) -> Dict[str, Any]:
         """运行训练类子进程：输出完整写进 logs/<log_name>.log，主日志只写简短的中文进度。
 
         - parse_progress(line) 可以返回 None、0~1 的小数，或 (小数, 中文说明)。
         - poll_progress() 返回 (已完成, 总数)：后台每 poll_interval 秒数一次文件（脚本自己不打印进度时用）。
+        - stop_when(line) 返回真值、或 on_poll()（后台每 poll_interval 秒调用一次）返回 True：程序自己要它停下
+          （例如「实测显卡一次能练几条」练够了步数）。结束整个子进程树，正常返回（不算失败）。
         - 点了停止：结束整个子进程树，抛出 TaskCancelled。
         - 失败：抛出 TrainStepError，第一行是中文说明，后面带日志尾巴。
+        返回 {"stopped": 是不是程序自己让它停下的, "code": 退出码, "oom": 日志里有没有显存不够}。
         """
         check_cancel()
         log_path = self.project.logs_dir / f"{log_name}.log"
@@ -313,7 +317,15 @@ class Backend:
 
         done = threading.Event()
         cancelled = threading.Event()
+        stopped = threading.Event()
         threads: List[threading.Thread] = []
+        proc_box: List[Any] = []
+
+        def request_stop() -> None:
+            if not stopped.is_set():
+                stopped.set()
+                if proc_box:
+                    kill_process_tree(proc_box[0])
         creationflags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
         popen_extra: Dict[str, Any] = {} if os.name == "nt" else {"start_new_session": True}
         cmd_s = [str(c) for c in cmd]
@@ -324,6 +336,7 @@ class Backend:
             proc = subprocess.Popen(cmd_s, cwd=str(cwd) if cwd else None, env=env, stdout=subprocess.PIPE,
                                     stderr=subprocess.STDOUT, bufsize=0, creationflags=creationflags, **popen_extra)
             kill_with_parent(proc)  # 关掉声音分身时训练进程一起结束，不留在后台占显卡
+            proc_box.append(proc)
             finished = False
             try:
                 if _CANCEL is not None:
@@ -353,6 +366,17 @@ class Backend:
                                 pass
 
                     threads.append(threading.Thread(target=poll, name="vt-poll-progress", daemon=True))
+                if on_poll is not None:
+                    def poll_hook() -> None:
+                        while not done.wait(max(0.01, float(poll_interval))):
+                            try:
+                                if on_poll() is True:
+                                    request_stop()
+                                    return
+                            except BaseException:  # noqa: B036 - 后台线程什么都不能抛
+                                pass
+
+                    threads.append(threading.Thread(target=poll_hook, name="vt-on-poll", daemon=True))
                 for t in threads:
                     t.start()
                 assert proc.stdout is not None
@@ -374,6 +398,12 @@ class Backend:
                             tail.pop(0)
                         if not oom and OOM_PATTERN.search(line):
                             oom = True
+                        if stop_when is not None and not stopped.is_set():
+                            try:
+                                if stop_when(line):
+                                    request_stop()
+                            except Exception:
+                                pass
                         if parse_progress is None:
                             continue
                         try:
@@ -415,8 +445,11 @@ class Backend:
                     t.join(timeout=5)
         if cancelled.is_set():
             raise TaskCancelled("已按你的要求停止")
+        if stopped.is_set():  # 程序自己让它停下的：被结束的退出码不算失败
+            return {"stopped": True, "code": code, "oom": oom}
         if code != 0:
             raise self._step_error(log_name, step_name, code, tail, log_path, oom)
+        return {"stopped": False, "code": code, "oom": oom}
 
     @staticmethod
     def _step_error(log_name: str, step_name: str, code: int, tail: List[str], log_path: Path,

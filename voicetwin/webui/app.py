@@ -211,6 +211,15 @@ SYNTH_BACKENDS = [("GPT-SoVITS（推荐，用你训练的模型）", "gptsovits"
                   ("IndexTTS（不用训练）", "indextts")]
 DUMMY_BACKEND = ("测试引擎（不是你的声音）", "dummy")
 DPO_CHOICES = [("自动（推荐）", "auto"), ("开", "on"), ("关", "off")]
+#: 「② 训练模型」的「训练方式」（GPT-SoVITS）。每次打开网页都先选好「一模一样」（和生成页的质量一样，不读 config.yaml）
+TRAIN_MODE_LABELS: Dict[str, str] = {
+    "identical": "一模一样（默认）：练得更久、多存版本，再用你没参加训练的录音把每个版本都试一遍，挑最像你的（很慢）",
+    "standard": "标准：和以前一样的训练量，训练完挑一次（快很多）",
+}
+TRAIN_MODE_CHOICES: List[Tuple[str, str]] = [(TRAIN_MODE_LABELS[k], k) for k in ("identical", "standard")]
+TRAIN_INTRO = ("直接点「开始训练」就行。默认用「一模一样」的方式训练：练得更久、多存几个版本，再用你没参加训练的录音"
+               "把每个版本都试一遍，挑出最像你的。第一次会很慢（估计要几个小时）；做完一次以后，这里会显示你电脑上实际用的时间。"
+               "训练时可以去做别的事，但不要关闭黑色窗口。")
 #: MP3 是有损压缩：句子之间的静音里会有极小的压缩杂讯（大约 -90 dB，听不见，但不是绝对的 0）——老师要绝对静音，如实写明
 FORMAT_CHOICES = [("WAV（音质最好，句子之间绝对静音；剪映/后期用）", "wav"),
                   ("MP3（文件小，方便发微信、上传；压缩会在停顿里留下听不见的极小杂讯，要绝对静音请选 WAV）", "mp3")]
@@ -1726,10 +1735,35 @@ PLAN_DEFAULT = ("🧠 不用自己调参数：电脑会根据你的显卡（显�
                 "训练完自动挑出最像你的那一版。具体方案开始训练后会显示在这里。")
 
 
+def _minutes_text(t: Dict[str, Any]) -> str:
+    """实测用时：「训练 32 分钟、挑选 15 分钟」（只写量到的）。"""
+    bits = []
+    for key, name in (("train_minutes", "训练"), ("select_minutes", "挑选")):
+        v = _num(t.get(key))
+        if v is not None:
+            bits.append(f"{name}不到 1 分钟" if v < 1 else f"{name} {v:g} 分钟")
+    return "、".join(bits)
+
+
+def _train_report_md(info: Any) -> str:
+    """训练完实测的几句话（实际参加训练的条数、英文、显卡、用时）和原来的模型排第几，每句一行。"""
+    if not isinstance(info, dict):
+        return ""
+    params = info.get("params") if isinstance(info.get("params"), dict) else {}
+    lines = [str(x) for x in (params.get("report") or []) if str(x or "").strip()]
+    sel = info.get("selection") if isinstance(info.get("selection"), dict) else info
+    if isinstance(sel, dict) and sel.get("previous_note"):
+        lines.append(str(sel["previous_note"]))
+    return "\n".join(f"- {_md_text(x)}" for x in lines)
+
+
 def _train_done_md(info: Dict[str, Any], plan: str = "", show_plan: bool = True) -> str:
     """训练完成的说明。show_plan=False：训练页上方已经单独显示了训练方案，这里不再重复。"""
     mins = _num(info.get("train_minutes")) if isinstance(info, dict) else None
-    if mins is None:
+    skipped = isinstance(info, dict) and (info.get("params") or {}).get("run_state") == "skip"
+    if skipped:
+        head = "### ✅ 素材没变，这次不用重新训练"
+    elif mins is None:
         head = "### ✅ 训练完成"
     elif mins < 1:  # 素材没变、接着上次练完的：几秒钟就结束了
         head = "### ✅ 训练完成（用时不到 1 分钟）"
@@ -1754,6 +1788,9 @@ def _train_done_md(info: Dict[str, Any], plan: str = "", show_plan: bool = True)
             md = f"{head}\n\n现在用的是最后一轮的模型。\n\n👉 下一步：去「③ 生成讲课音频」。"
         if best:
             md += f"\n\n<small>版本编号：{_md_text(best)}</small>"
+    report = _train_report_md(info)
+    if report:
+        md += "\n\n" + report
     if plan_md:
         md += "\n\n" + plan_md
     return md
@@ -1766,6 +1803,8 @@ def _select_done_md(info: Dict[str, Any]) -> str:
     parts = [x for x in (label, f"版本 {best}" if best else "") if x]
     md = ("### ✅ 已重新挑好最像你的模型" + (f"（{_md_text('，'.join(parts))}）" if parts else "")
           + f"；语速：{'已校准' if calibrated else '和你本人一致，不用调'}")
+    if info.get("previous_note"):
+        md += "\n\n" + _md_text(info["previous_note"])
     if info.get("material_note"):
         md += "\n\n> " + _md_text(info["material_note"])
     return md
@@ -3442,8 +3481,9 @@ class WebUI:
 
     # ------------------------------------------------------------------ ② 训练
     def train_plan_preview(self, voice: Any, backend: Any = None, s_ep: Any = 0, g_ep: Any = 0, bs: Any = 0,
-                           dpo: Any = "auto") -> str:
-        """训练前就显示电脑会怎么自动选参数（wf.training_plan：看显卡和素材，只读文件和 nvidia-smi，很快）。"""
+                           dpo: Any = "auto", mode: Any = "identical") -> str:
+        """训练前就显示电脑会怎么自动选参数（wf.training_plan：看显卡和素材，只读文件和 nvidia-smi，很快）；
+        下面一行一句：这次会从头练 / 接着练 / 不重新练，素材检查里实际有的情况（都是按现在的文件算出来的）。"""
         v = _voice_name(voice)
         if v:
             note = wf.material_changed_note(self.cfg, v, str(backend or self.default_train))
@@ -3459,10 +3499,12 @@ class WebUI:
                     head = "⚠️ " + _md_text(why) + "\n\n" + head
             try:
                 text = wf.training_plan(self.cfg, v, str(backend or self.default_train),
-                                        **self._train_opts(s_ep, g_ep, 0, bs, dpo))
+                                        **self._train_opts(s_ep, g_ep, 0, bs, dpo, mode))
                 if text:
-                    return (head + "🧠 **电脑会自动这样训练**：" + _md_text(_strip_plan(text))
-                            + "（想自己改，可以打开下面的「高级设置」）")
+                    first, *rest = text.split("\n")
+                    more = "".join(f"\n- {_md_text(x)}" for x in rest if x.strip())
+                    return (head + "🧠 **电脑会自动这样训练**：" + _md_text(_strip_plan(first))
+                            + "（想自己改，可以打开下面的「高级设置」）" + ("\n" + more if more else ""))
             except Exception as exc:
                 log.debug(f"training_plan 出错：{exc}")
             if head:
@@ -3513,15 +3555,15 @@ class WebUI:
                     text = "⚠️ " + why
                 yield self._o(O, train_bar=self._notice(text), train_log=text, **idle)
                 return
+        mode = wf.train_mode(self.cfg, opts.get("mode"))
         if kind == "train":
             stream = stream_task("train", "训练模型", v, _attach_missed if attach else wf.run_train, self.cfg, v, backend,
-                                 stages=_stages(self.cfg, "train", backend),
-                                 hint="训练通常要 30~90 分钟（素材越多越久），可以先去做别的事", note=NOTE, **opts)
+                                 stages=_stages(self.cfg, "train", backend, mode=mode),
+                                 hint=self._train_hint(v, backend, mode), note=NOTE, **opts)
             what, busy = "训练", TRAIN_BUSY
         else:
             stream = stream_task("select", "重新挑选最佳模型", v, _attach_missed if attach else wf.run_select, self.cfg, v,
-                                 backend,
-                                 stages=_stages(self.cfg, "select"), note=NOTE)
+                                 backend, stages=_stages(self.cfg, "select"), note=NOTE, mode=mode)
             what, busy = "挑选模型", SELECT_BUSY
         plan = ""
         stop_once = _StopOnce()
@@ -3555,20 +3597,49 @@ class WebUI:
                           train_plan=final_plan or _upd(), **idle)
 
     @staticmethod
-    def _train_opts(s_ep: Any, g_ep: Any, q_ep: Any, bs: Any, dpo: Any = "auto") -> Dict[str, Any]:
-        """高级设置 → 训练选项（0 / 空 = 自动，交给引擎按显卡和素材决定）。"""
+    def _train_opts(s_ep: Any, g_ep: Any, q_ep: Any, bs: Any, dpo: Any = "auto", mode: Any = "identical") -> Dict[str, Any]:
+        """高级设置 → 训练选项（0 / 空 = 自动，交给引擎按显卡和素材决定）；mode 是「训练方式」（网页上默认「一模一样」）。"""
         opts: Dict[str, Any] = {"sovits_epochs": _int(s_ep) or None, "gpt_epochs": _int(g_ep) or None,
                                 "epochs": _int(q_ep) or None, "batch_size": _int(bs) or None}
         d = str(dpo or "auto").strip().lower()
         opts["if_dpo"] = True if d == "on" else (False if d == "off" else None)
+        opts["mode"] = "standard" if str(mode or "").strip() == "standard" else "identical"
         return opts
 
-    def do_train(self, voice: Any, backend: Any, s_ep: Any, g_ep: Any, q_ep: Any, bs: Any,
-                 dpo: Any = "auto") -> Iterator[Tuple[Any, ...]]:
-        yield from self._train_common("train", voice, backend, self._train_opts(s_ep, g_ep, q_ep, bs, dpo))
+    def _train_hint(self, voice: str, backend: str, mode: str) -> str:
+        """进度条上「要多久」：这台电脑上次实测的（训练 + 挑选）；没测过时只说估计。"""
+        t = wf.measured_train_minutes(self.cfg, voice, backend).get(mode) or {}
+        if t.get("train_minutes") is not None:
+            return "上次实测：" + _minutes_text(t) + "，可以先去做别的事"
+        if mode == "identical":
+            return "第一次会很慢（估计要几个小时），可以先去做别的事"
+        return "训练通常要 30~90 分钟（估计，素材越多越久），可以先去做别的事"
 
-    def do_select(self, voice: Any, backend: Any) -> Iterator[Tuple[Any, ...]]:
-        yield from self._train_common("select", voice, backend, {})
+    def train_mode_choices(self, voice: Any, backend: Any = None) -> List[Tuple[str, str]]:
+        """「训练方式」的两个选项；做完过一次的那种方式后面写上次实测用了多久。"""
+        v = _voice_name(voice)
+        times = wf.measured_train_minutes(self.cfg, v, str(backend or self.default_train)) if v else {}
+        out = []
+        for label, key in TRAIN_MODE_CHOICES:
+            t = times.get(key) or {}
+            out.append((label + (f"（上次实测：{_minutes_text(t)}）" if t.get("train_minutes") is not None else ""), key))
+        return out
+
+    def on_load_train_mode(self, voice: Any) -> Any:
+        """打开（刷新）网页时：「训练方式」先选好「一模一样」（和生成页的质量一样）。"""
+        return _upd(choices=self.train_mode_choices(voice), value="identical")
+
+    def refresh_train_mode(self, voice: Any, backend: Any = None) -> Any:
+        """换声音 / 训练完：选项后面的实测用时跟着更新，选中的不变。"""
+        return _upd(choices=self.train_mode_choices(voice, backend))
+
+    def do_train(self, voice: Any, backend: Any, s_ep: Any, g_ep: Any, q_ep: Any, bs: Any,
+                 dpo: Any = "auto", mode: Any = "identical") -> Iterator[Tuple[Any, ...]]:
+        yield from self._train_common("train", voice, backend, self._train_opts(s_ep, g_ep, q_ep, bs, dpo, mode))
+
+    def do_select(self, voice: Any, backend: Any, mode: Any = "identical") -> Iterator[Tuple[Any, ...]]:
+        yield from self._train_common("select", voice, backend,
+                                      {"mode": "standard" if str(mode or "").strip() == "standard" else "identical"})
 
     # ------------------------------------------------------------------ ③ 生成
     def on_script_upload(self, f: Any, current_name: Any = "") -> Tuple[Any, Any, Any, Any]:
@@ -4208,9 +4279,8 @@ class WebUI:
 
                 # ---------------------------------------------------- ② 训练
                 with gr.Tab("② 训练模型", id="train") as train_tab:
-                    gr.Markdown("直接点「开始训练」就行，电脑会自动完成（素材越多越久，通常 30~90 分钟）。"
-                                "训练时可以去做别的事，但不要关闭黑色窗口。训练结束后会自动挑出最像你的模型，"
-                                "并把语速调得和你本人一样。")
+                    gr.Markdown(TRAIN_INTRO)
+                    c["train_mode"] = gr.Radio(TRAIN_MODE_CHOICES, value="identical", label="训练方式")
                     c["train_plan"] = gr.Markdown(PLAN_DEFAULT, elem_classes="vt-md")
                     with gr.Row():
                         c["train_btn"] = gr.Button(TRAIN_BTN, variant="primary", scale=3)
@@ -4397,8 +4467,11 @@ class WebUI:
                 self.library, None, outs(self.LIB_OUT), **quick)
             c["voice"].change(_safe("读取声音", len(voice_outs), 0)(self.on_voice_change),
                               [c["voice"], c["only_sus"], c["s_backend"]], voice_outs, **quick)
-            plan_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["bs"], c["dpo"]]
+            plan_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["bs"], c["dpo"], c["train_mode"]]
             c["voice"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
+            # 「训练方式」：每次打开网页都先选好「一模一样」；换声音时选项后面的实测用时跟着变
+            app.load(self.on_load_train_mode, c["voice"], c["train_mode"], **quick)
+            c["voice"].change(self.refresh_train_mode, [c["voice"], c["t_backend"]], c["train_mode"], **quick)
 
             def lib_pick(table: Any, evt: gr.SelectData) -> Tuple[Any, Any]:
                 try:
@@ -4480,14 +4553,16 @@ class WebUI:
             c["voice"].change(lambda: ("", _upd(value=None, visible=False)), None, outs(self.DLTXT_OUT), **quick)
 
             # ②
-            train_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["q_ep"], c["bs"], c["dpo"]]
+            train_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["q_ep"], c["bs"], c["dpo"], c["train_mode"]]
             c["train_btn"].click(_settled(self.do_train), train_in, outs(self.TRAIN_OUT), **heavy).then(
                 self.after_task, c["voice"], after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick).then(
-                self.model_header, c["voice"], c["header"], **quick)
-            c["select_btn"].click(_settled(self.do_select), [c["voice"], c["t_backend"]], outs(self.TRAIN_OUT),
-                                  **heavy).then(
+                self.model_header, c["voice"], c["header"], **quick).then(
+                self.refresh_train_mode, [c["voice"], c["t_backend"]], c["train_mode"], **quick)
+            c["select_btn"].click(_settled(self.do_select), [c["voice"], c["t_backend"], c["train_mode"]],
+                                  outs(self.TRAIN_OUT), **heavy).then(
                 self.after_task, c["voice"], after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick).then(
-                self.model_header, c["voice"], c["header"], **quick)
+                self.model_header, c["voice"], c["header"], **quick).then(
+                self.refresh_train_mode, [c["voice"], c["t_backend"]], c["train_mode"], **quick)
             c["train_next"].click(lambda: gr.Tabs(selected="gen"), None, tabs, **quick)
             # 打开「② 训练模型」页、换引擎、改高级设置时，重新预览这次会怎么训练（只读文件和 nvidia-smi，很快）
             train_tab.select(self.train_plan_preview, plan_in, c["train_plan"], **quick)
@@ -4495,6 +4570,7 @@ class WebUI:
             train_tab.select(self.refresh_train_bar, [c["voice"], c["train_bar"]], c["train_bar"], **quick)
             c["t_backend"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
             c["dpo"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
+            c["train_mode"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
             for name in ("s_ep", "g_ep", "bs"):
                 # 数字框每按一个键就触发一次；默认的 trigger_mode="once" 会把预览还没算完时按的键丢掉
                 # （打「12」只预览到「1」）。always_last：算完后再按最后的值算一次。

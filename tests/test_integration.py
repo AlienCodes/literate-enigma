@@ -143,9 +143,12 @@ def test_training_plan_preview_is_quick(prepared, tmp_path, monkeypatch):
     monkeypatch.setattr(G, "gpu_memory_gb", slow)
     monkeypatch.setattr(gpu, "gpu_status", lambda refresh=False: {"ok": True, "level": "ok", "total_gb": 11.99,
                                                                   "free_gb": 11.2, "source": "test"})
-    md = ui.train_plan_preview(name, "gptsovits")
+    md = ui.train_plan_preview(name, "gptsovits", 0, 0, 0, "auto", "standard")  # 训练方式选「标准」
     assert md.startswith("🧠 **电脑会自动这样训练**：显存 12 GB → 每批") and "训练计划：" not in md
     assert "不开 DPO" in md and "高级设置" in md
+    deep = ui.train_plan_preview(name, "gptsovits")  # 默认「一模一样」：先实测显卡一次能练几条
+    assert deep.startswith("🧠 **电脑会自动这样训练**：「一模一样」训练——显存 12 GB → 先实测一次能练几条")
+    assert "训练计划：" not in deep and "不开 DPO" in deep
     md2 = ui.train_plan_preview(name, "gptsovits", 0, 0, 2, "on")
     assert "每批 2 条（你指定的）" in md2 and "开启 DPO（你指定的" in md2
     monkeypatch.setattr(gpu, "gpu_status", lambda refresh=False: {"ok": False, "level": "error", "total_gb": None})

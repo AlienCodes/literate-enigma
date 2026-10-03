@@ -121,7 +121,10 @@ def _fatal(exc: BaseException) -> bool:
 
 
 def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend, max_items: int = DEFAULT_ITEMS,
-                         use_asr: Optional[bool] = None, progress: Optional[ProgressFn] = None) -> Dict[str, Any]:
+                         use_asr: Optional[bool] = None, progress: Optional[ProgressFn] = None,
+                         all_checkpoints: bool = False) -> Dict[str, Any]:
+    """用验证集挑最像你的模型并校准语速。all_checkpoints=True（「一模一样」训练）：每个存下的版本都试
+    （GPT-SoVITS 的 checkpoints(all=True)），否则从早到晚均匀挑几个。"""
     def _p(frac: float, msg: str, log_it: bool = False) -> None:
         if log_it:
             log.info(msg)
@@ -164,7 +167,13 @@ def select_and_calibrate(cfg: Dict[str, Any], project: Project, backend: Backend
         real_emb[it["id"]] = sim.embed(wav, sr)
         real_voiced[it["id"]] = it.get("voiced") or speech_activity(wav, sr)[0]
 
-    ckpts = backend.checkpoints() or [None]
+    if all_checkpoints:
+        try:
+            ckpts = backend.checkpoints(all=True) or [None]  # type: ignore[call-arg]
+        except TypeError:  # 这个引擎不分（只有一种挑法）
+            ckpts = backend.checkpoints() or [None]
+    else:
+        ckpts = backend.checkpoints() or [None]
     hint = getattr(backend, "start_hint", lambda: "")()
     _p(0.05, "启动合成引擎" + (f"（{hint}）" if hint else "") + "……", log_it=True)
     backend.start()

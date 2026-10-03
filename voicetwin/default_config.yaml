@@ -67,9 +67,19 @@ backends:
     train:
       # 下面都写 auto 就行：电脑按显卡（显存）和素材多少自动决定，训练开始时会打印一行「训练计划：……」说明为什么。
       # 想自己指定时填数字（网页「② 训练模型」→「高级设置」、命令行 --sovits-epochs 等也可以临时改）。
+      mode: auto              # 训练方式：auto（默认）= identical「一模一样」（练得更久、多存版本、每个版本都试一遍再挑）
+                              # | standard（和以前一样的训练量）。网页上每次打开都先选好「一模一样」，命令行用 --mode
+      text_frontend: auto     # auto = 中文句子里夹着的英文也参加训练（不成功自动退回官方的方法）| official（官方的方法）
+      batch_probe: auto       # 「一模一样」训练前先实测显卡一次能练几条（练几十步就停）；false = 不实测，按显存的公式算
+      feature_parts: auto     # 提取特征分几路同时做：auto = 8GB 档以上 2 路，否则 1 路
+      deep_sovits_epochs: 24  # 「一模一样」每批 4 条时：音色 24 轮、每 2 轮存一个；语气 20 轮、每轮存一个
+      deep_gpt_epochs: 20     # （每批多练几条时轮数按比例加多，音色最多 48 轮、语气最多 50 轮）
+      deep_sovits_save: 2
+      deep_gpt_save: 1
       sovits_epochs: auto     # auto: 素材 <30 分钟用 8 轮，更多用 12 轮（练太多反而会变差，训练完会自动挑最像的那一轮）
+                              # （这一行和下面几行写了数字时两种训练方式都照你写的）
       gpt_epochs: auto        # auto: 15 轮
-      batch_size: auto        # auto: 按显存自动计算（显存一半左右，最多 12；显存不够时会自动减半再试一次）
+      batch_size: auto        # auto: 按显存自动计算（显存一半左右，最多 12；显存不够时每次减 1 条接着练，最多减 3 次）
       sovits_save_every: auto # auto: 每个模型存 5 个左右，训练完从中自动挑最像你的（老版本的 4 / 5 也当作 auto）
       gpt_save_every: auto
       if_dpo: auto            # DPO（GPT-SoVITS 的实验功能）：auto = 不开（没有可靠的测量说明它能让声音更像）；

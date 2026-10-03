@@ -498,6 +498,92 @@ def render_gpu_pending_html() -> str:
     return '<div class="vt-gpu vt-gpu-pending" data-level="pending">⏳ 正在检查显卡……</div>'
 
 
+# ---------------------------------------------------------------------------- 训练 / 生成时实测显卡用了多少
+SMI_SAMPLE_QUERY = "--query-gpu=index,memory.used,memory.total,utilization.gpu"
+SMI_SAMPLE_TIMEOUT = 5.0
+
+
+def smi_sample(index: Any = 0) -> Optional[Dict[str, float]]:
+    """用 nvidia-smi 量一次第 index 块显卡：{"used_gb", "total_gb", "util"（使用率 %）}（GiB 原始数字）。
+
+    没有 nvidia-smi、超时、读不出来时返回 None（不猜）。永远不抛异常。"""
+    try:
+        exe = _find_nvidia_smi()
+        if not exe:
+            return None
+        kwargs: Dict[str, Any] = {}
+        if sys.platform.startswith("win"):
+            kwargs["creationflags"] = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+        proc = subprocess.run([exe, SMI_SAMPLE_QUERY, SMI_FORMAT], stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                              stdin=subprocess.DEVNULL, timeout=SMI_SAMPLE_TIMEOUT, **kwargs)
+        ok, text = smi_status(proc.returncode, _decode(proc.stdout or b""))
+        if not ok:
+            return None
+        want = str(index if index is not None else 0).split(",")[0].strip() or "0"
+        for line in text.splitlines():
+            fields = [f.strip() for f in line.split(",")]
+            if len(fields) < 4 or fields[0] != want:
+                continue
+            used, total, util = _num(fields[1]), _num(fields[2]), _num(fields[3])
+            if used is None or total is None:
+                return None
+            return {"used_gb": used / 1024.0, "total_gb": total / 1024.0, "util": util}
+    except Exception:
+        return None
+    return None
+
+
+class GpuSampler:
+    """后台每 interval 秒用 nvidia-smi 量一次显卡（smi_sample），stop() 时返回实测的平均使用率和最高显存：
+    {"util_avg": %, "peak_gb": GiB, "n": 量了几次}。没有 nvidia-smi（第一次就量不出来）时什么都不做，
+    返回 {"util_avg": None, "peak_gb": None, "n": 0}——没量到的数字不显示。"""
+
+    def __init__(self, interval: float = 5.0, index: Any = 0) -> None:
+        self.interval = max(0.05, float(interval))
+        self.index = index
+        self._utils: List[float] = []
+        self._peak: Optional[float] = None
+        self._n = 0
+        self._stop = threading.Event()
+        self._thread: Optional[threading.Thread] = None
+        self._lock = threading.Lock()
+
+    def _take(self) -> bool:
+        s = smi_sample(self.index)
+        if not s:
+            return False
+        with self._lock:
+            self._n += 1
+            if s.get("util") is not None:
+                self._utils.append(float(s["util"]))
+            used = s.get("used_gb")
+            if used is not None and (self._peak is None or used > self._peak):
+                self._peak = float(used)
+        return True
+
+    def start(self) -> "GpuSampler":
+        if self._thread is not None or not self._take():
+            return self
+
+        def loop() -> None:
+            while not self._stop.wait(self.interval):
+                self._take()
+
+        self._thread = threading.Thread(target=loop, name="vt-gpu-sampler", daemon=True)
+        self._thread.start()
+        return self
+
+    def stop(self) -> Dict[str, Any]:
+        self._stop.set()
+        if self._thread is not None:
+            self._thread.join(timeout=self.interval + SMI_SAMPLE_TIMEOUT + 1)
+            self._take()
+        with self._lock:
+            util = round(sum(self._utils) / len(self._utils), 1) if self._utils else None
+            peak = round(self._peak, 2) if self._peak is not None else None
+            return {"util_avg": util, "peak_gb": peak, "n": self._n}
+
+
 GPU_CSS = """
 .vt-gpu{display:block;box-sizing:border-box;width:100%;margin:2px 0 6px;padding:8px 14px;border:1px solid;
   border-left-width:6px;border-radius:8px;font-size:15px;line-height:1.6;font-weight:600;word-break:break-word}

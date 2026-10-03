@@ -143,8 +143,9 @@ def test_train_select_and_narrate(prepared, tmp_path, monkeypatch, no_users_pth,
     rec = Rec()
     # 高级设置里明确指定的保存间隔要照办
     confirm_material(gcfg, project.voice)
+    # 这个测试看的是「标准」训练方式的进度和步骤（和以前一样）；「一模一样」的在 test_deep_training.py
     info = wf.run_train(gcfg, project.voice, "gptsovits", select=True, progress=rec, sovits_save_every=4,
-                        gpt_save_every=5)
+                        gpt_save_every=5, mode="standard")
 
     backend = get_backend("gptsovits", gcfg, project)
     exp = backend.exp_name
@@ -548,10 +549,13 @@ def test_training_plan_preview(prepared, tmp_path, no_users_pth):
     cfg, project, _ = prepared
     root = build_fake_root(tmp_path / "GSV-plan")
     b = get_backend("gptsovits", _gcfg(project, root, 19881), project)
-    plan = b.training_plan()
+    plan = b.training_plan(mode="standard")
     assert plan["summary"].startswith("训练计划：显存 12 GB")
     assert plan["n_clips"] > 0 and plan["minutes"] > 0 and plan["noisy"] is False
     assert b.training_plan(batch_size=1)["batch_size"] == 1
+    # 默认是「一模一样」：先实测显卡一次能练几条
+    deep = b.training_plan()
+    assert deep["summary"].startswith("训练计划：「一模一样」训练——显存 12 GB → 先实测一次能练几条")
 
 
 def test_material_noise_from_sources(prepared, tmp_path):
@@ -598,7 +602,8 @@ def test_checkpoints_spread_early_to_late(prepared, tmp_path):
 
 # ---------------------------------------------------------------------------- 显存不够自动重试
 @needs_fake_python
-def test_oom_retry_halves_batch_once(prepared, tmp_path, monkeypatch, no_users_pth, vt_log):
+def test_oom_ladder_steps_down_one_at_a_time(prepared, tmp_path, monkeypatch, no_users_pth, vt_log):
+    """显存不够：每批减 1 条接着练（以前是减半、只试一次）。4 条不够 → 3 条还不够 → 2 条。"""
     cfg, project, _ = prepared
     ws = _copy_project(project, tmp_path / "ws")
     root = build_fake_root(tmp_path / "GSV-oom")
@@ -608,11 +613,14 @@ def test_oom_retry_halves_batch_once(prepared, tmp_path, monkeypatch, no_users_p
     monkeypatch.setenv("FAKE_GSV_OOM_ABOVE", "2")
     rec = Rec()
     confirm_material(gcfg, project.voice)
-    info = wf.run_train(gcfg, project.voice, "gptsovits", select=False, progress=rec)
+    info = wf.run_train(gcfg, project.voice, "gptsovits", select=False, progress=rec, mode="standard")
     params = info["params"]
     assert params["oom_retry"] is True and params["batch_size_used"] == 2 and params["gpt_batch_size_used"] == 2
-    warn = [m for m in vt_log.messages(logging.WARNING) if "显存不够：自动把每批数量从 4 减到 2" in m]
-    assert len(warn) == 2 and warn[0].startswith("训练音色（SoVITS）") and warn[1].startswith("训练语气和节奏（GPT）")
+    warn = [m for m in vt_log.messages(logging.WARNING) if "显存不够：每批从" in m]
+    assert warn == ["训练音色（SoVITS）：显存不够：每批从 4 条减到 3 条，接着练（已经练好的部分会接着用）",
+                    "训练音色（SoVITS）：显存不够：每批从 3 条减到 2 条，接着练（已经练好的部分会接着用）",
+                    "训练语气和节奏（GPT）：显存不够：每批从 4 条减到 3 条，接着练（已经练好的部分会接着用）",
+                    "训练语气和节奏（GPT）：显存不够：每批从 3 条减到 2 条，接着练（已经练好的部分会接着用）"]
     assert len(info["sovits"]) == 4 and len(info["gpt"]) == 4  # 4 轮：每轮都存
     fracs = [f for f, _ in rec.train_part()]
     assert fracs == sorted(fracs)
@@ -685,7 +693,10 @@ def test_retrain_after_material_change_starts_fresh(prepared, tmp_path, no_users
         sub = Path(path).parent.name
         assert (old_runs[0] / sub / Path(path).name).exists()
     b = get_backend("gptsovits", gcfg, p2)
-    assert {c["sovits"] for c in b.checkpoints()} <= set(second["sovits"])
+    assert {c["sovits"] for c in b.checkpoints() if not c.get("previous")} <= set(second["sovits"])
+    # 原来用的模型（挪进了 old_runs）也参加下次的挑选：新模型实测不比它好，就继续用它
+    (prev,) = [c for c in b.checkpoints() if c.get("previous")]
+    assert prev["sovits"].startswith(str(old_runs[0])) and prev["id"].startswith("prev-")
 
 
 @needs_fake_python
