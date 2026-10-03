@@ -934,6 +934,11 @@ def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, item
         note = getattr(backend, "trained_material_note", lambda: "")()
         if note:
             log.warning(note)
+        missing = getattr(backend, "missing_model_files", lambda: [])()
+        if missing and not backend.checkpoints():
+            # 训练过，但训练好的模型文件一个都找不到了：接着挑只能试官方底模，白等几分钟，
+            # 还会把原来模型的语速校准换成底模的，所以先停下说清楚
+            raise RuntimeError(f"找不到训练好的模型文件（{'、'.join(missing)}），没有可以挑选的模型，这次没有开始挑选")
         try:  # 引擎在 select_and_calibrate 里"启动合成引擎"那一步才启动，进度条上能看到
             res = select_and_calibrate(cfg, project, backend, max_items=int(items or DEFAULT_ITEMS), use_asr=use_asr,
                                        progress=progress)
@@ -1004,6 +1009,9 @@ def run_narrate(cfg: Config, voice: str, source: str, out: Optional[str] = None,
                                 reference=reference, asr_check=asr_check, progress=progress, variants=variants)
             if note:  # 「训练以后校对表又改过」也写进生成结果的提醒里（以前只在折起来的「详细过程」里）
                 narrator.warnings.append(note)
+            missing = getattr(backend, "missing_model_note", lambda: "")()
+            if missing:  # 训练好的模型文件找不到了、这次用的是底模：也写进生成结果（详细过程里引擎启动时会说一次）
+                narrator.warnings.append(missing)
             return narrator.narrate(src_path if is_file else source, out_path, redo=redo, subtitles=subtitles)
         finally:
             if own_backend:

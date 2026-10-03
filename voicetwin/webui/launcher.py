@@ -133,19 +133,11 @@ def _port_listening(host: str, port: int, timeout: float = 0.3) -> bool:
 
 def _bind_ok(host: str, port: int) -> bool:
     """这个端口现在能不能绑定（没有别的程序占着）。"""
+    from voicetwin.utils.net import exclusive_bind_ok
+
     bind_host = "127.0.0.1" if host in LOOPBACK_HOSTS else (host.strip("[]") or "0.0.0.0")
-    family = socket.AF_INET6 if ":" in bind_host else socket.AF_INET
-    with socket.socket(family, socket.SOCK_STREAM) as s:
-        try:
-            # Windows 默认允许不同的地址"共用"同一个端口，绑定测试会把占着的端口误当成空闲；
-            # 独占方式绑定时，只要有任何程序占着这个端口就会失败
-            excl = getattr(socket, "SO_EXCLUSIVEADDRUSE", None)
-            if excl is not None:
-                s.setsockopt(socket.SOL_SOCKET, excl, 1)
-            s.bind((bind_host, port))
-            return True
-        except OSError:
-            return False
+    # Windows 默认允许不同的地址"共用"同一个端口，绑定测试会把占着的端口误当成空闲：用独占方式绑定（和推理服务选端口共用）
+    return exclusive_bind_ok(bind_host, port)
 
 
 def _free_port(preferred: int, host: str = "127.0.0.1") -> int:

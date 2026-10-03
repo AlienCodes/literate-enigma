@@ -156,6 +156,27 @@ def test_training_plan_preview_is_quick(prepared, tmp_path, monkeypatch):
     assert wf.training_plan(cfg, name, "indextts") == ""
 
 
+def test_optional_engine_not_installed_says_so(prepared, tmp_path, monkeypatch):
+    """「高级设置」里能选 IndexTTS（不用训练），但一般电脑上没装：以前直接启动，报「找不到文件或文件夹：index-tts，
+    检查路径有没有写对……」（老师根本没填过路径；Windows 上还是一句没翻译的「目录名称无效」）。
+    现在先查装好没有，说清楚这是可选引擎、把引擎换回 GPT-SoVITS 就行。"""
+    from voicetwin.backends import worker as W
+    from voicetwin.errors import explain
+
+    cfg, name = _copy_voice(prepared, tmp_path)
+    cfg = make_cfg(Path(cfg["workspace"]), backends={"indextts": {"root": str(tmp_path / "没有装的 index-tts")}})
+    started = []
+    monkeypatch.setattr(W.WorkerClient, "start", lambda self: started.append(self))
+    with pytest.raises(RuntimeError) as ei:
+        wf.run_narrate(cfg, name, "大家好，这是一句话。", out=str(tmp_path / "x.wav"), backend_name="indextts",
+                       quality="fast")
+    assert not started  # 没装好就不去启动
+    f = explain(ei.value)
+    assert f.key == "optional_engine_missing" and f.title.startswith("IndexTTS")
+    assert "GPT-SoVITS" in f.advice and "高级设置" in f.advice and "路径" not in f.advice
+    assert "找不到 index-tts 仓库" in f.detail  # 技术细节里留着具体缺什么，给帮忙的人看
+
+
 def test_plan_line_from_training_log():
     log_text = ("21:00:01 | 检查显卡、整理训练素材（大约半分钟）……\n"
                 "21:00:03 | 训练计划：没有检测到能用的 N 卡 → 每批 2 条（用 CPU 训练会非常慢）；素材 3 分钟（30 条）→ 音色 SoVITS 8 轮。\n"

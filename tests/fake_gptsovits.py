@@ -232,7 +232,9 @@ time.sleep(float(os.environ.get("FAKE_GSV_API_DELAY", "0") or 0))  # 真实的�
 def make_wav(text, speed, gpt_path):
     sr = 32000
     # 时长与文字长度成正比；不同 GPT 权重读得快慢不同（模拟不同 epoch 的差异）
-    epoch = int(gpt_path.rsplit("-e", 1)[-1].split(".")[0]) if "-e" in gpt_path else 1
+    # 只看文件名（底模 s1v3.ckpt 没有轮数；文件夹名里有「-e」时也不能读错，例如 literate-enigma）
+    name = os.path.basename(gpt_path)
+    epoch = int(name.rsplit("-e", 1)[-1].split(".")[0]) if "-e" in name and name.rsplit("-e", 1)[-1].split(".")[0].isdigit() else 1
     dur = max(0.5, len(text) * (0.2 + 0.01 * epoch) / max(speed, 0.1))
     n = int(dur * sr)
     buf = io.BytesIO()

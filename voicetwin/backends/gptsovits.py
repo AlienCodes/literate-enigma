@@ -288,13 +288,18 @@ def _json_has(r: Any, key: str) -> bool:
 
 
 def _free_port(preferred: int) -> int:
+    """从 preferred 开始找一个没有程序占着的本机端口。
+
+    用独占方式绑定来查（和网页启动器一样）：Windows 上别的程序（例如整合包自带的 api.py，默认监听 0.0.0.0:9880）
+    占着端口时，普通绑定 127.0.0.1 照样成功，以前会把推理服务开在这个端口上，等它加载模型时连上的是别人的程序
+    （对不上话、白等一分钟，结束时还会把人家的程序关掉）。不再加连接测试：Windows 上每试一个关着的端口要等 2 秒。"""
+    from voicetwin.utils.net import exclusive_bind_ok
+
     for port in [preferred] + list(range(preferred + 1, preferred + 50)):
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            try:
-                s.bind(("127.0.0.1", port))
-                return port
-            except OSError:
-                continue
+        if port > 65535:
+            break
+        if exclusive_bind_ok("127.0.0.1", port):
+            return port
     return preferred
 
 
@@ -313,12 +318,12 @@ def _in_old_runs(path: str) -> bool:
     return "old_runs" in str(path).replace("\\", "/").split("/")
 
 
-def _remove_parts(opt_dir: Path, *patterns: str) -> None:
+def _remove_parts(opt_dir: Path, *patterns: str, quiet: bool = False) -> None:
     """删掉上次留下的分块结果（2-name2text-0.txt、6-name2semantic-0.tsv）。
 
     GPT-SoVITS 的 1-get-text.py / 3-get-semantic.py 看到分块文件已经在了，就什么都不做（直接用旧的）：
     上次一句都没处理成（只写了一个换行）、或者素材改过以后，就会一直用到旧的结果（以前一次失败以后每次训练都报同样的错）。
-    删不掉（被杀毒软件或别的程序占着）就停下说清楚，不能悄悄用旧的。"""
+    删不掉（被杀毒软件或别的程序占着）就停下说清楚，不能悄悄用旧的；quiet=True 时删不掉就算了（马上要报别的错）。"""
     for pattern in patterns:
         for f in opt_dir.glob(pattern):
             try:
@@ -326,6 +331,8 @@ def _remove_parts(opt_dir: Path, *patterns: str) -> None:
             except FileNotFoundError:
                 continue
             except OSError as exc:
+                if quiet:
+                    continue
                 raise RuntimeError(f"上次训练留下的临时文件删不掉：{f}（{exc}）。不删掉的话 GPT-SoVITS 会直接用上次的旧结果。"
                                    "请关掉可能打开着它的程序（或者重启电脑）后，再点一次「开始训练」。") from exc
 
@@ -1159,10 +1166,12 @@ class GPTSoVITSBackend(Backend):
         old_root = opt_dir / "old_runs"
         try:  # 只留最近几次备份（每次大约 1 GB），免得占满硬盘；正在用的模型所在的那次不删
             sel = (self.project.load_models().get(self.name) or {}).get("selected") or {}
-            in_use = [str(sel.get(k) or "") for k in ("sovits", "gpt") if sel.get(k)]
+            # 按实际找到的文件比（整合包移动过时 models.json 里记的还是旧位置，直接比路径文字会对不上、把它删掉）
+            in_use = [self._locate_weight(str(sel.get(k))) for k in ("sovits", "gpt") if sel.get(k)]
+            in_use_dirs = [set(f.resolve().parents) for f in in_use if f is not None]
             runs = sorted((p for p in old_root.iterdir() if p.is_dir()), key=lambda p: p.stat().st_mtime)
             for p in runs[:-KEEP_OLD_RUNS]:
-                if any(u.startswith(str(p)) for u in in_use):
+                if any(p.resolve() in dirs for dirs in in_use_dirs):
                     continue
                 shutil.rmtree(p, ignore_errors=True)
         except OSError:
@@ -1218,7 +1227,8 @@ class GPTSoVITSBackend(Backend):
             part = opt_dir / "2-name2text-0.txt"
             lines = part.read_text(encoding="utf-8").strip("\n").split("\n") if part.exists() else []
             if not "".join(lines).strip():
-                part.unlink(missing_ok=True)  # 留着的话下次脚本什么都不做，会一直报这个错（下次开始前也会再删一次）
+                # 留着的话下次脚本什么都不做，会一直报这个错（这里删不掉也没关系：下次开始前还会再删一次）
+                _remove_parts(opt_dir, part.name, quiet=True)
                 raise RuntimeError("1A 文本处理没有产出，请查看日志 logs/gsv_1a_text.log")
             path_text.write_text("\n".join(lines) + "\n", encoding="utf-8")
             part.unlink(missing_ok=True)
@@ -1250,7 +1260,7 @@ class GPTSoVITSBackend(Backend):
             # 和 1A 一样：脚本逐句 try/except，一句都没做成也退出 0。只有表头的列表拿去训练，
             # 要白白练完音色、到 GPT 那一步才出错，所以这里就停下说清楚
             if not got:
-                part.unlink(missing_ok=True)
+                _remove_parts(opt_dir, part.name, quiet=True)
                 raise RuntimeError("1C 提取语义没有产出，请查看日志 logs/gsv_1c_semantic.log")
             path_sem.write_text("\n".join(["item_name\tsemantic_audio"] + got) + "\n", encoding="utf-8")
             part.unlink(missing_ok=True)
@@ -1483,9 +1493,34 @@ class GPTSoVITSBackend(Backend):
             return {"sovits": "", "gpt": "", "id": "external"}
         if not self._warned_pretrained:  # 每句话都会问一次模型，警告只说一次
             self._warned_pretrained = True
-            log.warning("还没有训练好的 GPT-SoVITS 模型，暂时使用官方底模做零样本克隆（像度会明显低于训练后）")
+            # 训练过、只是文件找不到了时不能说「还没有训练好」：说清楚是哪个文件、怎么办
+            log.warning(self.missing_model_note() or
+                        "还没有训练好的 GPT-SoVITS 模型，暂时使用官方底模做零样本克隆（像度会明显低于训练后）")
         return {"sovits": str(self.p(PRETRAINED_SOVITS[self.version])), "gpt": str(self.p(PRETRAINED_GPT[self.version])),
                 "id": "pretrained"}
+
+    def missing_model_files(self) -> List[str]:
+        """训练过（models.json 里有选中的模型），但训练好的模型文件找不到了：返回找不到的文件名；没训练过、文件都在时返回空列表。"""
+        if self.root is None or self.external_url:
+            return []
+        sel = self.selected_checkpoint()
+        if not sel:
+            return []
+        return [str(sel.get(k) or "").replace("\\", "/").rsplit("/", 1)[-1] or label
+                for k, label in (("sovits", "SoVITS 模型"), ("gpt", "GPT 模型"))
+                if self._locate_weight(str(sel.get(k) or "")) is None]
+
+    def missing_model_note(self) -> str:
+        """训练好的模型文件找不到了时返回一句提醒（找不到哪个文件、怎么办）；没训练过、文件都在时返回空字符串。
+
+        这时生成只能先用官方底模（真实的 api_v2 找不到文件时也会悄悄改用底模），声音会明显不像，
+        所以生成结果里也要写上，不能只在折起来的「详细过程」里。"""
+        missing = self.missing_model_files()
+        if not missing:
+            return ""
+        return (f"找不到训练好的模型文件（{'、'.join(missing)}），这次只能用官方底模，声音会明显不像你。"
+                "可能被移动或删除了（例如换了新的 GPT-SoVITS 整合包、删掉了旧的，或者被杀毒软件删掉了）："
+                "到「② 训练模型」点「重新挑选最佳模型」（还有别的训练好的模型时会换上它），还不行就重新训练一次。")
 
     def model_id(self) -> str:
         """当前用的模型的标识（生成的缓存按它区分）。除了路径，还算上文件的大小和修改时间：
@@ -1640,7 +1675,8 @@ class GPTSoVITSBackend(Backend):
     def start(self) -> None:
         # 只接着用「自己开的、还活着的」服务，或者 config.yaml 里指定的外部服务（api_url）。
         # 端口上别的程序开的 api_v2（例如以前没关掉的）不接手：它的显卡设置不一定对，结束时也关不掉它。
-        # 这时 _free_port 会换一个空闲端口，自己开一个。（v18.2 及以前因为检查方式不对，这条路从来没走到过。）
+        # 这时 _free_port 会换一个空闲端口，自己开一个。（v18.2 及以前因为检查方式不对，这条路从来没走到过；
+        # Windows 上别的程序监听 0.0.0.0 时，要用独占方式绑定才查得出端口被占，见 _free_port。）
         own = self.proc is not None and self.proc.poll() is None
         if (own or self.external_url) and self._alive():
             self._ensure_weights()

@@ -76,6 +76,7 @@ _SEARCH_LIMIT = 20000
 FATAL_KEYS = frozenset({
     "stopped", "gpu_oom", "disk", "torch_cpu", "gpu_arch", "driver", "gsv_missing", "models_missing",
     "api_start", "api_mismatch", "module", "import_version", "dll", "speaker_model", "ffmpeg_missing",
+    "optional_engine_missing",
 })
 
 _CJK = re.compile(r"[\u4e00-\u9fff]")
@@ -380,6 +381,12 @@ def _fill_engine(ctx: _Ctx) -> Dict[str, str]:
     return {"engine": m.group(1) + " " if m else "合成引擎"}
 
 
+def _fill_optional_engine(ctx: _Ctx) -> Dict[str, str]:
+    # 「IndexTTS 是可选引擎，这台电脑没有装好……」：引擎名就在命中的那一行开头
+    m = re.search(r"(Qwen3-TTS|IndexTTS)\s*$", ctx.text[:ctx.match.start()], re.I)
+    return {"engine": m.group(1) + " " if m else "这个引擎"}
+
+
 def _fill_voice(ctx: _Ctx) -> Dict[str, str]:
     m = re.search(r"还没有名为「([^」\n]{1,60})」的声音", ctx.text)
     return {"voice": f"「{m.group(1)}」这个声音" if m else "这个声音"}
@@ -396,6 +403,23 @@ _NET_EXCLUDE = r"127\.0\.0\.1|localhost"
 
 # 顺序很重要：越具体、越像「根本原因」的越靠前；wrapper=True 的是外层包装，放最后。
 _RULES: List[_Rule] = [
+    # ---- 声音分身自己查出来、已经说清楚原因的（排在最前面：技术细节里的英文报错不能把它盖过去）
+    _Rule("trained_missing", r"找不到训练好的模型文件.*没有可以挑选的模型",
+          "找不到训练好的模型，所以没有开始挑选",
+          "训练好的模型文件可能被移动或删除了（例如换了新的 GPT-SoVITS 整合包、删掉了旧的，或者被杀毒软件删掉了）。"
+          "用官方底模挑选没有意义，还会把语速校准改乱，所以没有挑。"
+          "如果只是把整合包挪了地方，请重新双击 install_windows.bat，输入整合包现在的位置；"
+          "不然就到「② 训练模型」重新训练一次。"),
+    _Rule("optional_engine_missing", r"是可选引擎，这台电脑没有装好",
+          "{engine}没有装好，用不了",
+          "这是可选的引擎，不装也行：到「③ 生成讲课音频」的「高级设置（一般不用改）」里，把引擎换回「GPT-SoVITS」，"
+          "再点一次「生成」。确实想用它，请帮你的人按下面技术细节里的说明安装。",
+          fill=_fill_optional_engine),
+    _Rule("stale_part_locked", r"上次训练留下的临时文件删不掉",
+          "上次训练留下的临时文件删不掉",
+          "这个文件不删掉的话，GPT-SoVITS 会直接用上次的旧结果，所以没有接着训练。可能是杀毒软件正在检查它，"
+          "或者别的程序打开着它：等一两分钟、关掉别的程序（或者重启电脑）以后，再点一次「开始训练」。"),
+
     # ---- 用户自己停下的
     _Rule("stopped", r"\bTaskCancelled\b|\bKeyboardInterrupt\b",
           "已停止",

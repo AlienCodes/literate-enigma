@@ -274,6 +274,62 @@ def test_pretrained_warning_only_once(prepared, tmp_path, vt_log):
     assert len(warnings) == 1
 
 
+def test_missing_trained_model_is_told_not_hidden(prepared, tmp_path, vt_log):
+    """训练过、选好了模型，但模型文件找不到了（换了整合包、删掉了旧的，或者被杀毒软件删了）：
+    生成只能退回底模（这是有意的，顶部也会提醒），但不能说「还没有训练好」；说清楚是哪个文件、怎么办。
+    「重新挑选」这时没有可以挑的模型：以前白白拿底模挑几分钟，还把原来模型的语速校准换成底模的。"""
+    cfg, project, _ = prepared
+    ws = _copy_project(project, tmp_path / "ws")
+    root = build_fake_root(tmp_path / "GSV-gone")
+    gcfg = make_cfg(ws, backends={"gptsovits": {"root": str(root), "python": sys.executable}})
+    p2 = wf.open_project(gcfg, project.voice, must_exist=True)
+    backend = get_backend("gptsovits", gcfg, p2)
+    exp = backend.exp_name
+    sov, gpt = f"D:\\GPT-SoVITS-old\\SoVITS_weights_v2ProPlus\\{exp}_e8_s80.pth", f"D:\\GPT-SoVITS-old\\GPT_weights_v2ProPlus\\{exp}-e15.ckpt"
+    p2.update_models("gptsovits", {"sovits": [sov], "gpt": [gpt], "speed": {"zh": 1.1},
+                                   "selected": {"id": "s8-g15", "sovits": sov, "gpt": gpt}})
+    assert backend._current_weights()["id"] == "pretrained"  # 生成照样能用（底模），这是原来的设计
+    warns = vt_log.messages(logging.WARNING)
+    assert not any("还没有训练好" in m for m in warns)
+    assert any("找不到训练好的模型文件" in m and f"{exp}_e8_s80.pth" in m and "重新挑选最佳模型" in m for m in warns)
+    assert backend.missing_model_files() == [f"{exp}_e8_s80.pth", f"{exp}-e15.ckpt"]
+    assert "找不到训练好的模型文件" in backend.missing_model_note()
+    with pytest.raises(RuntimeError, match="没有可以挑选的模型") as ei:
+        wf.run_select(gcfg, project.voice, "gptsovits")
+    from voicetwin.errors import explain
+
+    f = explain(ei.value)
+    assert f.key == "trained_missing" and "install_windows.bat" in f.advice and "重新训练" in f.advice
+    assert p2.load_models()["gptsovits"]["speed"] == {"zh": 1.1}  # 原来的语速校准没被改掉
+    # 文件找回来了（例如重新填好整合包的位置）：不再提醒
+    for name in (f"SoVITS_weights_v2ProPlus/{exp}_e8_s80.pth", f"GPT_weights_v2ProPlus/{exp}-e15.ckpt"):
+        (root / name).parent.mkdir(parents=True, exist_ok=True)
+        (root / name).write_bytes(b"0")
+    assert backend.missing_model_note() == "" and backend._current_weights()["id"] == "s8-g15"
+    # 从来没训练过：还是原来的说法，也不算「找不到」
+    p2.models_path.unlink()
+    fresh = get_backend("gptsovits", gcfg, p2)
+    assert fresh.missing_model_note() == "" and fresh._current_weights()["id"] == "pretrained"
+    assert any("还没有训练好的 GPT-SoVITS 模型" in m for m in vt_log.messages(logging.WARNING))
+
+
+@needs_fake_python
+def test_narrate_with_missing_trained_model_warns_in_result(prepared, tmp_path, no_users_pth):
+    """生成时训练好的模型文件找不到了：照样用底模生成完，但生成结果的提醒里要写清楚（以前只有折起来的详细过程里一句
+    「还没有训练好」，而且是错的）。"""
+    cfg, project, _ = prepared
+    gcfg, root, p2 = _small_train_cfg(project, tmp_path, "GSV-narrate-gone", port=19893, startup_timeout=60)
+    confirm_material(gcfg, project.voice)
+    wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    sel = p2.load_models()["gptsovits"]["selected"]
+    for k in ("sovits", "gpt"):
+        Path(sel[k]).unlink()
+    res = wf.run_narrate(gcfg, project.voice, "大家好，这是一句话。", out=str(tmp_path / "gone.wav"),
+                         backend_name="gptsovits", quality="fast")
+    assert res.audio_path.exists()
+    assert any("找不到训练好的模型文件" in w and Path(sel["sovits"]).name in w for w in res.warnings), res.warnings
+
+
 # ---------------------------------------------------------------------------- 日志 → 进度
 def test_sovits_parser_real_format():
     p = _sovits_parser(12)
@@ -799,18 +855,25 @@ def test_backups_are_found_by_place_not_by_name_after_moving(prepared, tmp_path)
     assert b._locate_weight(old_main) == main
     p2.update_models("gptsovits", {"sovits": [old_main, old_backup], "gpt": [],
                                    "selected": {"id": "s4-g4", "sovits": old_backup, "gpt": ""}})
+    # 更早的备份最多留 2 次：选中的模型所在的那次（models.json 里记的还是旧位置）不能被当成没用的删掉
+    old_root = root / "logs" / exp / "old_runs"
+    for i, run in enumerate(("20261003_120000", "20261003_130000", "20261003_140000")):
+        (old_root / run / "x").mkdir(parents=True, exist_ok=True)
+        os.utime(old_root / run, (1_700_000_000 + i * 100, 1_700_000_000 + i * 100))
     dest = b._archive_old_run(root / "logs" / exp)
     entry = p2.load_models()["gptsovits"]
     assert entry["sovits"][0] == str(dest / "SoVITS_weights_v2ProPlus" / name)
     assert entry["sovits"][1] == old_backup and entry["selected"]["sovits"] == old_backup
+    assert not (old_root / "20261003_130000").exists()  # 没在用的旧备份照样清理
     assert b._locate_weight(entry["selected"]["sovits"]).read_bytes() == b"old"
 
 
-def _small_train_cfg(project, tmp_path, name):
+def _small_train_cfg(project, tmp_path, name, **gsv_extra):
     ws = _copy_project(project, tmp_path / "ws")
     root = build_fake_root(tmp_path / name)
-    gcfg = make_cfg(ws, backend="gptsovits", backends={"gptsovits": {
-        "root": str(root), "python": sys.executable, "train": {"sovits_epochs": 4, "gpt_epochs": 4, "batch_size": 2}}})
+    gcfg = make_cfg(ws, backend="gptsovits", backends={"gptsovits": dict({
+        "root": str(root), "python": sys.executable, "train": {"sovits_epochs": 4, "gpt_epochs": 4, "batch_size": 2}},
+        **gsv_extra)})
     return gcfg, root, wf.open_project(gcfg, project.voice, must_exist=True)
 
 
@@ -854,6 +917,31 @@ def test_leftover_part_files_are_not_reused_after_material_change(prepared, tmp_
     assert "old.wav" not in (opt_dir / "6-name2semantic.tsv").read_text(encoding="utf-8")
 
 
+def test_locked_leftover_part_file_stops_with_clear_message(tmp_path, monkeypatch):
+    """上次留下的分块结果删不掉（杀毒软件正在检查、别的程序打开着）：不能悄悄让 GPT-SoVITS 接着用旧的，
+    停下说清楚；页面上不能显示成「Excel 打开了 transcripts.csv」那种不相干的说法。"""
+    from voicetwin.errors import explain
+
+    part = tmp_path / "2-name2text-0.txt"
+    part.write_text("old.wav\tph\t1\t旧文字\n", encoding="utf-8")
+    real_unlink = Path.unlink
+
+    def locked(self, *a, **k):
+        if self.name == part.name:
+            raise PermissionError(13, "[WinError 32] 另一个程序正在使用此文件，进程无法访问。", str(self))
+        return real_unlink(self, *a, **k)
+
+    monkeypatch.setattr(Path, "unlink", locked)
+    with pytest.raises(RuntimeError, match="临时文件删不掉") as ei:
+        gsv._remove_parts(tmp_path, "2-name2text-*.txt")
+    f = explain(ei.value)
+    assert f.key == "stale_part_locked" and "开始训练" in f.advice and "transcripts.csv" not in f.advice
+    gsv._remove_parts(tmp_path, "2-name2text-*.txt", quiet=True)  # 马上要报别的错时：删不掉就算了，不另外报错
+    monkeypatch.setattr(Path, "unlink", real_unlink)
+    gsv._remove_parts(tmp_path, "2-name2text-*.txt", "6-name2semantic-*.tsv")
+    assert not part.exists()
+
+
 @needs_fake_python
 def test_empty_semantic_step_stops_before_training(prepared, tmp_path, monkeypatch, no_users_pth):
     """1C（提取语义）一句都没做成：以前只写一个表头就接着训练（白白练十几分钟音色，最后 GPT 那一步才出错），
@@ -876,6 +964,65 @@ def test_empty_semantic_step_stops_before_training(prepared, tmp_path, monkeypat
 
 
 # ---------------------------------------------------------------------------- 推理服务
+class _WindowsBindSocket:
+    """模拟 Windows 的绑定规则：别的程序监听 0.0.0.0:BUSY 时，普通方式绑定 127.0.0.1:BUSY 照样成功，
+    只有独占方式（SO_EXCLUSIVEADDRUSE）绑定才会失败。Linux 上普通绑定本来就失败，所以只能这样模拟。"""
+
+    BUSY = 9880
+    EXCL = -5  # Windows 上 SO_EXCLUSIVEADDRUSE 的值（~SO_REUSEADDR）
+
+    def __init__(self, *a, **k):
+        self.excl = False
+
+    def setsockopt(self, level, opt, value):
+        if opt == self.EXCL:
+            self.excl = bool(value)
+
+    def bind(self, addr):
+        if addr[1] == self.BUSY and self.excl:
+            raise OSError(10048, "通常每个套接字地址只允许使用一次")
+
+    def close(self):
+        pass
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+
+def test_free_port_skips_port_taken_on_windows(monkeypatch):
+    """Windows：整合包自带的 api.py 默认监听 0.0.0.0:9880。以前普通绑定 127.0.0.1:9880 成功，就把推理服务开在 9880 上，
+    加载模型时连上的是 api.py（对不上话、白等一分钟，结束时还把它关掉）。现在和网页启动器一样用独占方式检查，换到 9881。"""
+    import socket
+
+    from voicetwin.webui import launcher
+
+    monkeypatch.setattr(socket, "SO_EXCLUSIVEADDRUSE", _WindowsBindSocket.EXCL, raising=False)
+    monkeypatch.setattr(socket, "socket", _WindowsBindSocket)
+    assert gsv._free_port(9880) == 9881
+    assert gsv._free_port(9870) == 9870
+    assert launcher._bind_ok("127.0.0.1", 9880) is False and launcher._bind_ok("localhost", 9881) is True
+
+
+def test_free_port_real_socket_skips_listening_port():
+    """真的有程序在听的端口不选（这台电脑的系统规则下）。"""
+    import socket
+
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as srv:
+        for busy in range(19950, 20450, 10):  # 后面要留出空闲端口可选，不用系统随机给的（可能贴着 65535）
+            try:
+                srv.bind(("127.0.0.1", busy))
+                break
+            except OSError:
+                continue
+        srv.listen(1)
+        busy = srv.getsockname()[1]
+        got = gsv._free_port(busy)
+        assert got != busy and busy < got < busy + 50
+
+
 def _ref(project):
     refs = project.load_references()
     r = refs[0]
