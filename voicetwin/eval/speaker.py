@@ -338,14 +338,33 @@ def voice_centroid(project, encoder: SpeakerEncoder, max_clips: int = 80, refres
     """你本人声音的"平均声纹"，按声纹模型分别缓存。"""
     path = Path(project.root) / f"speaker_centroid.{encoder.name}.npy"
     if path.exists() and not refresh:
-        return np.load(path)
+        try:
+            return np.load(path)
+        except Exception as exc:  # noqa: BLE001 - 半个文件（断电、硬盘满了）：重新算
+            log.warning(f"平均声纹缓存读不了（{exc}），重新计算")
     chosen = _choose_centroid_clips(project, max_clips)
     if not chosen:
         return None
     embs = [encoder.embed_file(project.abspath(r["path"])) for r in chosen]
     cen = centroid(embs)
-    np.save(path, cen)
+    _save_npy_atomic(path, cen)
     return cen
+
+
+def _save_npy_atomic(path: Path, arr: np.ndarray) -> None:
+    """先写临时文件再换上去：不会留下半个文件。"""
+    from voicetwin.utils import atomic
+
+    tmp = atomic.tmp_for(path).with_suffix(".npy")
+    try:
+        np.save(tmp, arr)
+    except BaseException:
+        try:
+            tmp.unlink()
+        except OSError:
+            pass
+        raise
+    atomic.finish(tmp, path)
 
 
 # ============================================================================ 多模型一起打分
@@ -609,9 +628,11 @@ def judge_centroid(project, encoder: SpeakerEncoder, refresh: bool = False,
         return None, []
     embs = [encoder.embed_file(project.abspath(r["path"])) for r in chosen]
     cen = centroid(embs)
-    np.save(path, cen)
+    _save_npy_atomic(path, cen)
     ids = [r["id"] for r in chosen]
-    meta_path.write_text(json.dumps({"sig": sig, "ids": ids}, ensure_ascii=False), encoding="utf-8")
+    from voicetwin.utils import atomic
+
+    atomic.write_text(meta_path, json.dumps({"sig": sig, "ids": ids}, ensure_ascii=False))
     return cen, ids
 
 
@@ -720,9 +741,9 @@ def calibrate(project, encoder: SpeakerEncoder, cen: np.ndarray, used_ids: Seque
     entry.update({"source": source, "sig": sig})
     cache[encoder.name] = entry
     try:
-        tmp = cache_path.with_suffix(".json.tmp")
-        tmp.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
-        tmp.replace(cache_path)
+        from voicetwin.utils import atomic
+
+        atomic.write_text(cache_path, json.dumps(cache, ensure_ascii=False, indent=1))
     except OSError:
         pass
     return entry

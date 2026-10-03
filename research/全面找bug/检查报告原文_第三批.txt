@@ -1,0 +1,416 @@
+=== [0.0] high :: Upgrade steps in 快速上手 and the release notes put the new version in a new folder, so the teacher's voice seems to disappear
+  reproduction: Checked in the files. 快速上手.md lines 11-14 (the same text ships inside the zip as 使用教程（先看我）.html) and scripts/build_windows_release.py release_notes() line 233 both say: extract the zip with 位置填 D:\, then run D:\VoiceTwin\install_windows.bat. The zip's top folder is TOP="VoiceTwin" (build_windows_release.py line 27). The teacher's real install is D:\VoiceTwin-Windows-v18.2\VoiceTwin (教学手册.md line 810). research/时间线.md lines 570 and 576 show the developers had to tell her privately in chat to extract into that original folder instead. install_windows.ps1 Show-ExistingVoices (lines 241-257) only looks at $Here\workspace. Line 429 does Move-Item ... -Force onto 「声音分身 VoiceTwin.lnk», which replaces the old desktop shortcut.
+  observed: If she follows the written steps she gets a second install at D:\VoiceTwin with an empty workspace. The desktop shortcut now opens that empty install. The page says 「我的声音」是新声音，还没有素材: her 1000 proofread sentences, her training-material confirmation and her trained-model selection (models.json) all look gone. The text also promises 「声音和训练好的模型都不会丢」.
+  expected: Either the upgrade steps say to extract into the folder she already uses (the one the desktop icon opens, e.g. D:\VoiceTwin-Windows-v18.2), or the installer notices the earlier install and keeps using its workspace.
+  impact: A non-technical teacher will think all her proofreading and training was lost. She may redo hours of preparation and training, or end up with two installs out of sync. Nothing is actually deleted, but she has no way to know that.
+  suggested_fix: (1) Change the upgrade text in 快速上手.md and release_notes() to: 解压到你原来装的文件夹（就是桌面图标打开的那个，例如 D:\VoiceTwin-Windows-v18.2），有同名文件选替换. (2) In install_windows.ps1, before replacing the desktop shortcut, read its WorkingDirectory. If that folder is not $Here and has workspace\*\manifest.jsonl, tell her in Chinese and offer to keep using it (write the absolute workspace path into config.yaml, or move the workspace over).
+
+=== [0.1] medium :: One-click marks clips it never checked as used: clips not yet recognised and grey clips stay uncorrected and the button stays grey
+  reproduction: cd /tmp/claude-0/-home-user-literate-enigma/a7bf493d-04b5-5828-bb09-9d8cecef37ad/scratchpad/sweep/upgrade && ./repro_all.sh (sections repro_pending.py and repro_grey.py). It rebuilds a v18.4 workspace with the real v18.4 code (build_old.py) and then runs the current code. repro_pending.py: two clips have empty text and no asr_done (an interrupted recognition, which v18.2 tells her to fix by clicking 开始准备素材 again). She clicks the one-click, then runs prepare again; recognition is faked with a stub because faster-whisper is not installed here. repro_grey.py: a row the program marked keep=False (语速异常（文字可能不对）), which she later turns on with the row menu ("use") and saves. Code: transcript_fix.textfix_new_ids (line 259) returns every non-deleted id. check_with_transcript skips rows where `not cur.strip() or not vals["keep"]` (line 1646). workflows.run_transcript_fix still marks the whole `only` list as used (lines 595 and 609).
+  observed: The pending clips are recorded in textfix_used.json before they have any text. After recognition they read 「这里的借词后面要接宾语，艾子引导的定语从剧。」 and 「所以这个现行词就是整个主剧。」, but textfix_new_ids is [] and the button stays grey. The info still says 「以后加了新的素材、识别完，按钮会再亮起来」. The grey row 「…关系代词，艾子，这个关系带词…」 was never checked. After she turned it on it became training material with 艾子 and 关系带词 still in it, and the button stayed grey. The one-click summary («检查了 17 条») does not mention that these rows were skipped.
+  expected: Only rows the one-click actually checked (plus rows skipped on purpose because she clicked 「这句没错」) are recorded as used. Clips that get text later, or grey rows that later become usable, light the button again (only those rows get corrected), as 快速上手 and TEXTFIX_LOCKED_INFO promise.
+  impact: Her v18.2 workspace is known to have had clips without text; the v18.2 fix was for exactly that. Rows judged unusable are often the ones with recognition errors. These sentences miss the correction the release notes promise («装好这一版点一次…就会全部改好»). Words like 借词 and 艾子 can reach the training text unnoticed, and she has no way to run the one-click on them.
+  suggested_fix: Have check_with_transcript return the ids it actually processed (todo plus dismissed_ids) and pass only those to mark_textfix_used. Alternatively, make textfix_new_ids skip rows with no text or keep=False, so they count as new once they become usable. Add a test: pending clip → one-click → recognition → button lights up for that clip only.
+
+=== [0.2] low :: Without pypinyin/jieba the one-click runs in a weak mode, tells her to reinstall, and still uses up the batch
+  reproduction: repro_all.sh sections repro_nopinyin.py and after_reinstall.py. repro_nopinyin.py makes pypinyin and jieba unimportable (as on the separate .venv install route 2, whose pyproject dependencies do not include them), runs ui.do_textfix, then checks the button. after_reinstall.py reopens the same workspace with pypinyin available.
+  observed: The result shows 「⚠️ 这台电脑上没有找到拼音 / 分词工具…请用 GPT-SoVITS 整合包里的 Python 运行声音分身（安装时选 1）」, but the batch is already marked used. After pypinyin is available, textfix_btn interactive is still False.
+  expected: A weak run should not use up the one allowed run, or the warning should come before running and nothing should be recorded.
+  impact: Following the program's own advice (reinstall with option 1) can never give her the full correction for this material. The teacher's integrated package does include pypinyin and jieba, so this mainly hits the other install route.
+  suggested_fix: In run_transcript_fix(once=True), skip mark_textfix_used when not (has_pinyin() and has_jieba()), or record the environment in textfix_used.json and allow one re-run when it improves. Better still, check before running and explain.
+
+=== [0.3] low :: An old 撤销刚才的替换 record survives the upgrade: after the one-click it silently undoes a days-old saved and confirmed fix
+  reproduction: repro_all.sh section repro_undo_replace.py. In v18.4 she did 全部替换 借词→介词, saved and confirmed; that leaves review_undo.json behind. After upgrading she runs the one-click, then presses 「↩️ 撤销刚才的替换」 (ui.do_undo_replace).
+  observed: The page says 「↩️ 已经撤销刚才的替换（1 句改回去了…）」 and the row goes back to 「我们先来看借词后面接宾语的情况。」. That brings back a recognition error she fixed in an older version, saved and confirmed. The one-click is now grey, so it cannot fix it again. undo_replace uses remember=False, so the revert is not even recorded as a rejection.
+  expected: 「撤销刚才的替换」 only undoes the most recent replace in this session. After saving, confirming, a version upgrade or the one-click, the old record should be gone or clearly labelled.
+  impact: Right after a big automatic change she is likely to press the button labelled 「撤销刚才的替换」 thinking it undoes the one-click. It undoes a correction from days ago, which then goes back into training after she saves.
+  suggested_fix: Delete review_undo.json in review_confirm, run_transcript_fix and review_save (or store a time and version in it and ignore it across versions or sessions). Hide or disable the button when has_undo() is False.
+
+=== [0.4] low :: An undo of an adopted suggestion done in an older version is not remembered; the one-click re-applies it
+  reproduction: repro_all.sh section 'old undo not remembered'. old_rev.py uses the real v18.4 code: adopt 壮与从剧→状语从句, save, then click the red button to undo it, save. new_rev.py then runs wf.run_transcript_fix(once=True) with the current code. Also shows in check_new.py (row 8) for workspaces built with v18.1-v18.4.
+  observed: The v18.4 record is text == orig_text == 「这个句子里的壮与从剧放在据首。」, text_edited=True, and the suspect still holds alt 「…状语从句…」. After the one-click the row reads 「这个句子里的状语从句放在句首。」: the change she explicitly undid is back. review_rejected.json only exists from v18.5, so undos made before the upgrade are lost.
+  expected: A change the teacher explicitly undid is not re-applied automatically, as already happens for undos made in v18.5.
+  impact: Small: in this case the re-applied change is usually right. It still goes against her explicit choice, and «你撤销过的不会再改回来» is only true for undos made after upgrading.
+  suggested_fix: One-time migration on first open (or inside check_with_transcript): for saved records with text_edited, orig_text == text, and a suspect without src whose alt differs from text, seed review_rejected.json with review.change_pieces(suspect.text, suspect.alt). At minimum, mention in the release notes that undos made before v18.5 are not remembered.
+
+=== [0.5] low :: Restoring a deleted row re-enables the one-click, but the page only shows it after a reload
+  reproduction: repro_all.sh section repro_restore.py. Row 5 was deleted in v18.4. After upgrading she runs the one-click (button turns grey), then restores row 5 through the row menu (do_clip_action restore).
+  observed: do_clip_action returns only (clip_msg, clips_count, clips). The wiring at app.py lines 4317-4319 has no .then() that refreshes tr_btn or tr_info, so the button stays grey and 「🔒 这批素材已经用过了」 stays on screen. After a page reload textfix_btn is enabled again, and clicking it checks just that 1 row.
+  expected: Button and info text agree with the actual state right after the restore. The lock text should also say that restored rows count as new.
+  impact: The button looks grey or blue depending on whether the page was reloaded. That contradicts the shown rule 「每批素材只能用一次」 and confuses her about what will happen.
+  suggested_fix: Chain self.textfix_btn and self.textfix_info after clip_action_btn.click, as is already done after prepare. In TEXTFIX_LOCKED_INFO, mention that rows brought back with 撤销删除 can still be corrected once.
+
+=== [0.6] low :: 下载改好的文字 tells her to upload it and click the one-click again even when the one-click is locked
+  reproduction: repro_all.sh section repro_dltext.py: run the one-click, then call ui.do_download_text. The text is hard-coded at voicetwin/webui/app.py line 3331.
+  observed: The button is grey (interactive False), but the message says 「下次可以把它当母本上传（「上传更多母本」那里），再点「📝 一键全部文字校正」。」
+  expected: When the batch is already used, the message should not tell her to click the one-click again. For example: «以后加了新的素材时可以当母本上传».
+  impact: The page tells her to do something she cannot do (the button is grey), and the two features seem to contradict each other.
+  suggested_fix: In do_download_text, check self._textfix_used(v) and use different wording, or drop the sentence.
+
+=== [1.0] high :: One-click lock marks rows it never checked as 'used' (grey rows, rows whose text was not recognised yet, rows edited during the run), so those rows can never be one-click corrected
+  reproduction: D=/tmp/claude-0/-home-user-literate-enigma/a7bf493d-04b5-5828-bb09-9d8cecef37ad/scratchpad/sweep/proofconflict; cd $D && /tmp/gsv39/bin/python s1_targeted.py skipped   (and: /tmp/gsv39/bin/python s2_targeted.py editduring). The fuzzer flags it too: fuzz_handlers.py 21 70 shows 'rows recognised later can never get one-click'. Code: workflows.py:608-609 calls mark_textfix_used(project, only), and `only` = every live id from transcript_fix.textfix_new_ids (transcript_fix.py:263). But check_with_transcript skips rows with empty text or keep=False (transcript_fix.py:1646), skips rows edited during the run, and adopt_all_suggestions skips keep=False too.
+  observed: Voice with row a = '…艾子…' (usable), row b = '关系代词that不能和借词一起提前。' (grey: low ASR confidence), row c = '' (ASR not finished; the header shows the 'still not recognised' warning). The teacher clicks 📝 一键全部文字校正: a is fixed and the button turns grey. She then clicks 「✅ 这一条也要用」 on b and saves, and the next 开始准备素材 finishes recognising c ('这里的借词后面要接宾语。'). Both b and c are now training material, but textfix_used=True and the button stays grey. b and c still contain 借词. Clicking anyway gives '这批素材已经用过…'. The same happens to a row the teacher double-click edits while one-click is running: the run skips it ('检查期间改过') but still marks it used.
+  expected: Only rows that were actually checked should be recorded as done. Rows recognised later, made usable later, or skipped because they were edited mid-run should count as new, so the button lights up again. TEXTFIX_LOCKED_INFO and TEXTFIX_ONCE_MSG promise exactly this: '以后加了新的素材、识别完，按钮会再亮起来'.
+  impact: Grey rows are usually the ones with low recognition confidence, so they are the most error-prone, and the teacher has no way to get them one-click corrected. Text with known 母本 errors (借词, 艾子…) silently goes into training. What the page tells her about when the button comes back is false.
+  suggested_fix: Have check_with_transcript return the ids it actually processed (non-empty text, keep=True, text unchanged at merge time), and mark only those in run_transcript_fix(once=True). Alternatively, make textfix_new_ids ignore ids whose text or keep changed since they were marked, e.g. store id→text fingerprint instead of a bare id. Add tests: a grey row then 'use', an ASR-pending row then text filled, and an edit during the run.
+
+=== [1.1] medium :: A red 'may be wrong' mark that overlaps a changed (blue) word is drawn under the blue and becomes invisible; the row still counts as 可能有错 and 「这句没错」 is not offered
+  reproduction: cd $D && /tmp/gsv39/bin/python s4b_redhidden_teacher.py (the teacher corrects 主语→宾语 and saves; 🔍 自动查找's second engine also heard 主语). Variants: s4_redhidden.py (one-click 艾子→as, save, 🔍) and s6_newbatch.py (it happens automatically when new material is added, because prepare re-runs the check over ALL rows). Found by fuzz_handlers.py seeds 9, 33, 47, 48. Code: app.py:1326 sorts red and blue spans together, and app.py:1336 `if s < pos: continue` drops whichever span comes second. The blue tag string sorts before the red one, so equal-start overlaps always lose the red. REVIEW_JS app.py:532/571 offers 「👍 这句没错」 only when the cell contains .vt-red.
+  observed: The proofcheck result says '其中 **1** 条可能有错（已在表格里标红）' and the header says '**1** 条可能有错', but the 可能有错 cell has only <span class="vt-blue">宾</span>, with no vt-red anywhere. 修改建议 shows '采用 宾 → 主', or '没有建议，请听录音后双击「文字」修改' in the as-case. The ⋯ menu has no 「这句没错」, so the teacher cannot clear the flag. The row stays counted as 可能有错 and keeps appearing in 只看可能有错的.
+  expected: A flagged word must stay visibly red even when it was changed before (for example red text with a blue underline, or red taking priority). Whenever a row counts as 可能有错, 「这句没错」 must be available.
+  impact: The teacher is told rows are 'marked red' and finds nothing red. She cannot dismiss the flag, so the count never reaches 0. This hits exactly the words she or the program already corrected, and it is triggered automatically each time she adds a new batch of material, because prepare runs the check over all rows.
+  suggested_fix: In _colored_html, render overlaps explicitly: split ranges at the boundaries and give red priority, or combine both classes. In REVIEW_JS, decide whether to show 「这句没错」 from a server-side marker (for example a hidden vt-mark-sus flag in the menu cell when info['active'] is true) instead of from .vt-red. Add a test with red==blue span.
+
+=== [1.2] medium :: 🔍 自动查找 after an unsaved one-click (or other unsaved edits) reports rows 'marked red' that are not, and hides the new finding for a 'next one-click' that the per-batch lock no longer allows
+  reproduction: cd $D && /tmp/gsv39/bin/python s5_proofcount.py. Fuzz: fuzz_handlers.py 25 70 shows 'proofcheck says N, header says M' (12 vs 6). Code: proofcheck.py:1677-1687. For a dirty row with undo it keeps the old marker, stores the new result in rec['suspect_auto'] (comment: '下次点「📝 一键全部文字校正」时用') and still does flagged += 1. find_suspects also always checks the saved text, not the text shown in the table.
+  observed: One-click changes 艾子→as (unsaved). 🔍 then has the second engine hear 指导 for 引导. The result says '其中 **1** 条可能有错（已在表格里标红）', but the header has no 可能有错 line and 0 rows are red. The suspicion {'spans': [[7,8]], 'alt': '…指导…'} sits only in suspect_auto. The one-click button is grey (used), and after 保存修改 the row still shows only '已采用 艾子 → as'. The 引导/指导 doubt is never shown to the teacher.
+  expected: The number in the result must match what the table shows. A second-engine suspicion must reach the table, either after saving or immediately, merged into the marker. It must not wait for a one-click that is locked for this batch.
+  impact: The teacher is told N rows are red and cannot find them, and a real possible recognition error is silently dropped. This is a conflict between the new once-per-batch lock and older proofcheck logic that assumes one-click can be clicked again.
+  suggested_fix: Count flagged rows from what analyze() reports on the displayed text. Where a kept marker exists, merge the new spans into it (or show them once the row is saved, for example by applying suspect_auto in save_rows / apply_text_edit when the one-click lock covers the row) instead of parking them in suspect_auto.
+
+=== [1.3] medium :: Changing a sentence's language after ✅ 确认训练素材 does not invalidate the confirmation, but training uses the new language
+  reproduction: cd $D && /tmp/gsv39/bin/python s1_targeted.py lang. Code: review.material_signature (review.py:1055-1060) hashes only id + text. The training list (exporters.gptsovits_list_text) writes `wav|speaker|lang|text`, and gptsovits.trained_material_note hashes the full list including lang.
+  observed: Confirm, then double-click the 语言 cell of row 1 (→ 英文), then 保存修改. The message reads '改了 0 处文字、0 处「保留」、1 处语言'. Afterwards training_blocker returns '', the header still says '✅ 训练素材已确认' with no '确认以后又改过' warning, and the training list line becomes '第1课_bc8110_0001.wav|spk|en|它可以让代码变得更加简洁…'. After a training run, trained_material_note would report the material changed, but the confirm check does not.
+  expected: Any saved change that affects the training list, including language, should show '⚠️ 确认（…）以后又改过' and block training until the teacher confirms again (her rule: train only on confirmed material).
+  impact: A Chinese sentence can be trained with the English text frontend, or the reverse, without the re-confirmation the teacher asked for. The status shown ('已确认') is false.
+  suggested_fix: Include lang in material_signature, e.g. f"{id}\t{lang}\t{text}". Mind existing review_confirmed.json files: either accept a one-time 're-confirm' or store a signature version. Add a test: confirm, then lang toggle + save, should block.
+
+=== [1.4] medium :: The teacher's manual language choice is silently reset by any later text change, and the save message then reports '0 处语言'
+  reproduction: cd $D && /tmp/gsv39/bin/python s2_targeted.py langlost. Code: review.set_draft review.py:111-113 sets `vals['lang'] = detect_lang(text)` on every text change unless lang is passed. The same happens in adopt_all (review.py:911), one-click direct fixes (transcript_fix.py:1740) and replace (via set_draft). project.apply_text_edit (project.py:285) sets rec['lang'] = detect_lang(text) before save_rows compares lang (review.py:959), so the language change is not counted.
+  observed: For row 'Next, let's look at the 定语 clause example.' (detect_lang → zh), the teacher double-clicks 语言 → 英文 and saves (lang=en). Later she edits one word ('examples'): the draft lang goes back to zh, and 保存修改 says '改了 1 处文字、0 处「保留」、0 处语言' while the saved lang changed en→zh. The same reset happens after 全部替换 (clause→Clause) and after 采用 / one-click on that row.
+  expected: A language the teacher set by hand should survive later text edits, replacements and suggestions. Any language change should at least be counted correctly in the save message.
+  impact: The teacher loses an edit she made on purpose without noticing, and the number shown is wrong (project rule: shown numbers must be real). Training then uses the language she rejected.
+  suggested_fix: Store a manual-language flag (e.g. rec['manual_lang'] / draft 'lang_manual') when the 语言 cell is toggled, and only auto-detect when the flag is not set. In save_rows, compute changed['lang'] against the language before apply_text_edit.
+
+=== [1.5] medium :: 查找 together with 只看可能有错的: the table can show nothing while the status says N matches, and 替换这一处 replaces a match in a row the teacher cannot see
+  reproduction: cd $D && /tmp/gsv39/bin/python s1_targeted.py findsus. Code: _clips_table applies both filters (app.py:1432 only_suspect, app.py:1434 find), and do_find / do_replace_one never clear or override only_sus (FIND_OUT has no only_sus output).
+  observed: With 只看可能有错的 checked, searching 我们 gives the status '🔍 找到 15 处「我们」（在 15 句里）·现在是第 1 处（第 1 条，橙色的那个）', and the header says '表格里只列出这次找到过的 15 句'. The table has 0 rows, so the current match (data-cur-id) is not on the page. 替换这一处 then reports '✅ 第 1 条换好了' after changing row 1, which the teacher never saw.
+  expected: While a search is active, either ignore 只看可能有错的 (show all found rows) or uncheck it and say so. Never replace a match the teacher cannot see, and never print '表格里只列出…15 句' when fewer rows are listed.
+  impact: The teacher replaces text blindly, sees an empty table that contradicts the message, and the scroll-to-match does nothing.
+  suggested_fix: In _clips_table, skip the only_suspect filter when find is active (or intersect but count it in the message). Alternatively, have do_find return an update that unchecks only_sus, with a one-line note.
+
+=== [1.6] low :: Saved one-click corrections lose their 「已采用」 undo button after 🔍 自动查找 or after adding new material, while the per-batch lock prevents re-processing
+  reproduction: cd $D && /tmp/gsv39/bin/python s3_targeted.py proofundo, and s6_newbatch.py (adding batch 2 runs prepare's automatic check over the old rows). Code: proofcheck.py:1688-1694 replaces rec['suspect'] for rows that are not dirty.
+  observed: After one-click (艾子→as) the 修改建议 cell shows '已采用 艾子 → as', and it still does after 保存修改. After 🔍 (or after adding a new batch) that cell is empty or '没有建议…', so the button that 快速上手 says can undo a wrong one-click change is gone. 一键 cannot rebuild it, because the row is locked as used.
+  expected: Either keep the transcript marker (with its undo) for rows changed by one-click, as is already done for unsaved rows, or tell the teacher in 快速上手 that after saving the undo is only by editing.
+  impact: The teacher can no longer undo a wrong automatic change with one click after she saved and later checked again or added material. She has to retype it.
+  suggested_fix: In find_suspects, treat rows whose saved text still matches the marker's program states (review.known_states) like the dirty-with-undo case: keep the marker and merge the new spans.
+
+=== [1.7] low :: 「撤销刚才的替换」 says a row 'was changed after the replacement, not touched, please undo it yourself' when that row is already back to its original text
+  reproduction: cd $D && /tmp/gsv39/bin/python s3_targeted.py undomsg (fuzz seed 29 also hits it). Code: review.undo_replace review.py:1278 counts every row whose current text != entry['after'] as kept, including rows already equal to entry['text'].
+  observed: Steps: 全部替换 我们→咱们 (15 rows), then 撤销这一行的修改 on row 1 (back to '今天我们来…'), then 撤销刚才的替换. The message says '…14 句改回去了…另有 1 句替换以后又改过（或删除了），没有动它；要改回去请在那一行的「⋯ 选项」里撤销，或者双击文字修改。' Row 1 already reads '今天我们来学习…'.
+  expected: Rows whose current text already equals the pre-replace text should count neither as kept nor as an undo. No instruction to undo something that is already undone.
+  impact: A false instruction confuses a non-technical teacher, who may go looking for a change that is not there.
+  suggested_fix: In undo_replace: `if cur == entry['text']: continue` (count as done or silently skip) before the kept check.
+
+=== [1.8] low :: The one-click button is not refreshed after 删除 / 撤销删除 (and similar), so its grey/lit state can contradict the backend
+  reproduction: cd $D && /tmp/gsv39/bin/python s2_targeted.py stalebtn. Code: do_clip_action is wired to review_outs = [clip_msg, clips_count, clips] (app.py:4317), with no tr_btn / tr_info. textfix_new_ids counts only non-deleted rows (transcript_fix.py:263).
+  observed: Delete a row, then run one-click (button grey), then 撤销删除 that row. Now wf.textfix_used=False, new ids = ['第1课_bc8110_0005'], and textfix_info no longer says locked, but the page button stays grey until reload or voice change. The reverse: after new material, deleting all the new rows leaves the button lit, and clicking it says '这批素材已经用过「📝 一键全部文字校正」了'.
+  expected: The button and its info line should always show what clicking will do, refreshed after any table action that changes the set of rows. Alternatively, define the lock so that delete/restore does not change it.
+  impact: The button state is misleading: it is unclickable when it would work, or clickable and then refusing with a message about a batch she never used it on.
+  suggested_fix: Append .then(self.textfix_btn, voice, tr_btn).then(self.textfix_info, voice, tr_info) to clip_action_btn (and save/confirm), or base textfix_new_ids on all ids, including deleted ones.
+
+=== [1.9] low :: After ✅ 确认训练素材, an unsaved edit leaves the header saying '✅ 训练素材已确认' while training is refused
+  reproduction: cd $D && /tmp/gsv39/bin/python s1_targeted.py confirmdirty. Code: _clips_count_md app.py:1521-1524 compares only the saved signature; training_blocker (workflows.py:733) blocks on unsaved drafts.
+  observed: Header: '✅ **训练素材已确认**（10-03 06:18）：行号是橙色的句子用来训练…', followed by '🔴 还有 **1** 条修改没有保存'. Clicking 开始训练 is refused ('校对表里还有 1 条修改没有保存…').
+  expected: While unsaved changes exist, the confirmation line should not show as a plain ✅. It should say the confirmation will need redoing once she saves, or that training needs saving plus confirming.
+  impact: Two contradictory states are shown at once; the teacher may believe she can train.
+  suggested_fix: In _clips_count_md, when _unsaved_count>0 and the signature matches, show '⚠️ 确认以后又改了 N 处（还没保存）：保存后请再点一次「✅ 确认训练素材」'.
+
+=== [2.0] medium :: The quick-start PDF ('先看这个') is out of date: it never says that 一键全部文字校正 can be used only once per batch
+  reproduction: cd /home/user/literate-enigma && python3 -c "import pymupdf;t=''.join(p.get_text() for p in pymupdf.open('docs/快速上手.pdf')).replace(chr(10),'');print('每批素材只能用一次' in t, '按钮变灰' in t)" prints False False. git log shows docs/快速上手.pdf was last built in 6ee82a8 (2026-10-03 01:42). 快速上手.md got the sentence '**每批素材只能用一次**：用完按钮变灰；以后加了新的素材、识别完，按钮会再亮起来……' later, in 533de0d (05:56). Run `git diff 6ee82a8 HEAD -- 快速上手.md` to see it. The screenshot docs/manual/images/03c_textfix.png (embedded in the PDF and the HTML guide) also predates the lock: its help text has no once-per-batch sentence. scripts/build_windows_release.py only copies docs/快速上手.pdf, and nothing checks that it matches the .md. Also, docs/Windows详细使用教程.md is still shipped in the zip under docs/ and says nothing about any v18.5 feature.
+  observed: The release would publish VoiceTwin-QuickStart-v18.5.pdf ('快速上手（几页纸，先看这个）') and the same PDF inside the zip without the once-per-batch rule. The 使用教程（先看我）.html in the same zip, built from the current .md, does have it. The two guides disagree.
+  expected: The PDF matches 快速上手.md at release time, as 教学手册 section 十七 step 3 requires ('界面文字变了就更新 快速上手.md，然后重新生成 PDF').
+  impact: The teacher reads the PDF first. After one click the button turns grey for good on this batch, and the PDF never warned her. She may think the program broke, or click it too early, before checking her material.
+  suggested_fix: Rebuild the PDF with scripts/build_manual_pdf.py --quickstart and retake 03c_textfix.png. Add a test that extracts the PDF text (pymupdf / pypdf) and checks that key sentences from 快速上手.md (e.g. '每批素材只能用一次') appear in it. Alternatively, have release.yml fail when 快速上手.md has commits newer than docs/快速上手.pdf.
+
+=== [2.1] medium :: Upgrading while the old version is still running opens the OLD page; the new version never starts
+  reproduction: Run /tmp/gsv39/bin/python /tmp/claude-0/-home-user-literate-enigma/a7bf493d-04b5-5828-bb09-9d8cecef37ad/scratchpad/sweep/packaging/repro_old_instance.py. It serves a fake running v18.4 page whose /config title is '声音分身 VoiceTwin v18' (fixed since v18.0), then calls voicetwin.webui.launcher.launch on that port.
+  observed: The launcher prints '声音分身已经在运行了（在另一个黑色窗口里），已经帮你打开网页。这个窗口可以关掉。', opens the old page and returns. The new v18.5 app is never built and the 'v18.5 正在启动' banner never appears. Because the title never changes, _existing_instance (launcher.py ~line 90) cannot tell versions apart. Nothing warns her either: install_windows.ps1 never checks for a running instance, and neither the upgrade steps in 快速上手.md nor release_notes() say to close the old black window first. The installer's own last step ('现在就打开声音分身吗？' → start_webui.bat) also lands on the old page.
+  expected: Upgrading either refuses or warns while the old window is open, or the new launcher detects an older running version and tells her to close that window. The upgrade steps say to close the old black window first.
+  impact: The teacher follows the 3 upgrade steps exactly and sees no 一键全部文字校正 button, so she thinks the upgrade failed. Worse, she keeps working in an old process whose files were just replaced under it by pip --force-reinstall: modules it imports later come from the new version. I did not reproduce a crash from this mix.
+  suggested_fix: (1) In install_windows.ps1, before the pip step, probe 127.0.0.1:7860-7869/config for a '声音分身' title. If one is found, ask her to close the 声音分身 black window and press Enter. (2) Expose the real version (e.g. a small FastAPI route or a hidden element) and have the launcher compare it with voicetwin.__version__. If they differ, or the old page has no version, tell her to close the old window instead of opening it. (3) Add '先关掉声音分身的黑色窗口' to the upgrade steps in 快速上手.md and in release_notes().
+
+=== [2.2] medium :: (Committed HEAD d15de2e) One-time 一键全部文字校正 can be used up on clips whose speech recognition has not finished; after recognition the button stays grey
+  reproduction: git archive HEAD | tar -x -C <dir>, then VT_ROOT=<dir> /tmp/gsv39/bin/python /tmp/claude-0/-home-user-literate-enigma/a7bf493d-04b5-5828-bb09-9d8cecef37ad/scratchpad/sweep/packaging/repro_once_untranscribed.py. Steps: batch 1 is corrected → button grey. Two new clips are added with empty text (prepare.py saves the manifest after slicing and before ASR; a stopped or failed recognition leaves them like this, as described in v18.2). The button lights up; she clicks. Recognition then fills in '这里用的是借词短语。' and '这是一个定语从剧。'.
+  observed: On HEAD the button lit up before recognition finished. run_transcript_fix(once=True) marked both empty clips as used (workflows.py: only = textfix_new_ids(...); mark_textfix_used(project, only)). After recognition, textfix_used is True, a click is refused with TEXTFIX_ONCE_MSG, and 借词短语 / 定语从剧 are never corrected. The uncommitted working tree I tested later keeps the button grey while recognition is pending and corrects both after it finishes, so a fix seems to be in progress.
+  expected: Matches WHATS_NEW 18.5 / TEXTFIX_ONCE_MSG: '以后加了新的素材、识别完，按钮会再亮起来，只改新加的句子'. Clips without recognized text are not counted as used.
+  impact: If preparing material is interrupted (model download, stop button, crash), one click silently uses up the only correction pass for the new material.
+  suggested_fix: Commit the working-tree change, which excludes clips without text from the batch. Add this exact scenario as a regression test (empty-text clip → click → recognition finishes → button lights again and corrects them).
+
+=== [2.3] medium :: An install without pypinyin/jieba uses up the one-time correction while fixing nothing (Windows option 2 and install.sh never install them)
+  reproduction: /tmp/gsv39/bin/python /tmp/claude-0/-home-user-literate-enigma/a7bf493d-04b5-5828-bb09-9d8cecef37ad/scratchpad/sweep/packaging/repro_no_pinyin.py. It makes pypinyin, jieba and jieba_fast impossible to import, then runs wf.run_transcript_fix(once=True) on '我们来看这个借词短语。' and '这是一个定语从剧，关系带词是which。'. Packaging evidence: install_windows.ps1 option 2 runs Pip -e "$Here[asr,webui,denoise,docx,sv]", and install.sh's venv branch runs pipi -e "$HERE[asr,webui,denoise,docx]". In pyproject.toml, pypinyin and jieba appear only in the dev extra, and no other extra pulls them in. `voicetwin doctor` (workflows.py ~1420) does not check them either.
+  observed: fixes 0, adopted 0, pinyin False, jieba False; textfix_used → True (button grey for this batch). Both sentences stay wrong. With the libraries present, the same input gives 3 fixes (介词短语 / 定语从句 / 关系代词). The page's warning ('⚠️ 这台电脑上没有找到拼音 / 分词工具…请用 GPT-SoVITS 整合包里的 Python 运行声音分身') only appears after the use is gone.
+  expected: Every supported install mode can run the feature, or the button refuses or warns before using up the one-time pass, without marking the batch used.
+  impact: The recommended option 1 (inside the GPT-SoVITS package) is fine: that package ships pypinyin, jieba and jieba_fast. Anyone on the 'independent install' gets a feature that does nothing and then locks itself, with no way to rerun it after fixing the install.
+  suggested_fix: Add pypinyin and jieba to an extra the venv installers use (e.g. webui, or a new textfix extra listed in install_windows.ps1 and install.sh). Add doctor rows for them. In run_transcript_fix(once=True), raise a friendly ValueError before doing anything when has_pinyin() or has_jieba() is False, and do not call mark_textfix_used.
+
+=== [2.4] low :: After the one-time use, a new 母本 uploaded in 「📄 上传更多母本」 is silently ignored (not even saved)
+  reproduction: /tmp/gsv39/bin/python /tmp/claude-0/-home-user-literate-enigma/a7bf493d-04b5-5828-bb09-9d8cecef37ad/scratchpad/sweep/packaging/repro_upload_locked.py. It runs WebUI.do_textfix once, then uploads 新讲稿.txt ('我们今天讲同位语从句。'). The file is saved only inside do_textfix (app.py tr_btn.click is the only consumer of tr_files), and that button is now non-interactive. Reproduced on both HEAD and the current working tree.
+  observed: used: True, button interactive: False. After the upload, wf.transcript_info().files == [] and the row is unchanged. The upload box stays active and gives no message. Meanwhile WHATS_NEW 18.5 still says '可以上传新的讲稿或改好的文字（txt 或 transcripts.csv）一起当母本用（可选）', and TEXTFIX_LOCKED_INFO says nothing about uploads.
+  expected: While the batch is locked, the upload box is either disabled with an explanation, or the file is saved and the page says it will be used for the next batch of material.
+  impact: Two v18.5 features quietly conflict. The teacher uploads a new lecture script after the first click, nothing happens, and she gets no explanation.
+  suggested_fix: Make the textfix_btn/textfix_info updates also set tr_files interactive=False while locked, and add one sentence to TEXTFIX_LOCKED_INFO. Or save uploads on tr_files.change and say they will be used for the next batch. Adjust the WHATS_NEW line to match.
+
+=== [2.5] low :: Release-notes text: one-click sub-bullets end up under the '修好' item, and '1008 句' disagrees with the page's '你的母本 1005 句'
+  reproduction: scripts/build_windows_release.py WHATS_NEW['18.5']: line 121 '修好：「保存修改」以后马上点「✅ 确认训练素材」，偶尔会报错…' is followed by lines 122-124, '· 颜色还是原来的规矩…' and '· 只改「刚好是一个完整的词」的地方…'. Running the script with --notes renders them as sub-points of the '修好' item. Line 125 says '1008 句里还有 138 处…'. transcript_fix.builtin_mother() returns 1005 sentences (core_corpus.tsv drops the 3 deleted ones), and the page (textfix_info, plus the 03c_textfix.png screenshot) shows '你的母本 1005 句'.
+  observed: In the teacher-facing release page, the colour rules and whole-word rule for one-click correction appear under the save/confirm bug fix. The sentence count she reads there (1008) differs from what the page shows (1005).
+  expected: All one-click sub-bullets sit under the one-click item, and the numbers shown to the teacher agree (CLAUDE.md rule 7).
+  impact: Small confusion for a non-technical reader who compares the release page with the screen.
+  suggested_fix: Move line 121 below line 124 (or next to the title line at the end). Write '1008 句（你删除的 3 句不算，标准库里是 1005 句）里还有 138 处…', or use 1005 consistently.
+
+=== [2.6] low :: 教学手册 (handover manual) tells future maintainers to have the teacher 'check the title version', which contradicts permanent rule 13; other version facts are stale
+  reproduction: 教学手册.md line 146: '发布新版本后告诉老师：…→ 看标题版本号'. Line 665 (section 十七 step 9): '告诉老师：下载地址 + 升级 3 步（…→ 看标题版本号）'. Line 67: '现在 | 最新版本 **v18**（2026-10-02 06:09…）', but releases now go up to v18.4. Lines 222 and 653: '下一个默认是 **v19**'. The project actually uses 18.x, and the title is fixed at v18 (rule 13 at line 173, APP_TITLE_VERSION = "18").
+  observed: A maintainer following the manual would tell the teacher to confirm the upgrade by the web title. The title always reads v18, so every upgrade would look like a failure. The 'latest version' facts are wrong too.
+  expected: The manual says to check the black window ('声音分身 VoiceTwin v18.x 正在启动'), as release_notes() and 快速上手.md already do. Its version facts are current.
+  impact: Indirect: wrong instructions passed on to the teacher in a later session.
+  suggested_fix: Change both '看标题版本号' to '看黑色窗口里的版本号（网页标题永远是 v18）'. Update line 67 to the latest release, and change 'next default v19' to the 18.x scheme (ask the teacher).
+
+=== [3.0] medium :: Command line `train` and `auto` (the README's 懒人模式) can never train a GPT-SoVITS voice: there is no command-line way to confirm the training material
+  reproduction: S=/tmp/claude-0/-home-user-literate-enigma/a7bf493d-04b5-5828-bb09-9d8cecef37ad/scratchpad/sweep/train_gen; first build the base voice: cd $S && /tmp/gsv39/bin/python base.py. Then: /tmp/gsv39/bin/python s1_cli_confirm.py train (runs voicetwin prepare -> review -> train --no-select with a fake GPT-SoVITS that uses the real api_v2.py), and /tmp/gsv39/bin/python s1_cli_confirm.py auto (runs voicetwin auto -v 乙 -i lectures).
+  observed: Both commands exit with code 1 and print: ❌ 还没有确认训练素材，这次没有开始训练（必须先在校对表下面点「✅ 确认训练素材」）. cli.py has no confirm subcommand, `voicetwin review` (cli.py:530) does not confirm, and workflows.run_auto (workflows.py:1339-1349) calls run_train straight after run_prepare. So `auto` fails on every run, and so does the flow in the EPILOG and README (prepare -> review -> train). No test covers run_auto or the CLI train.
+  expected: The documented flows should work. The command line needs a way to confirm (for example `voicetwin confirm -v 我的声音` calling wf.review_confirm). `auto` should confirm on its own after prepare, because the user asked for a fully automatic run. A refusal on the command line should name the command to run, not a web button.
+  impact: README line 167 advertises `voicetwin.bat auto -v 我的声音 -i D:\讲课视频` as the one-command lazy mode, and voicetwin.bat is installed next to her program. Whoever follows the README (her or a helper) gets an error that points to a web button the command line doesn't have.
+  suggested_fix: Add a `confirm` subcommand (wf.review_confirm) and have `review` print a hint to run it. In run_auto, call review_confirm(cfg, voice) after run_prepare (stop if confirmed=False). Give training_blocker's message a command-line variant, or say which command to run when called from the CLI. Add a test for run_auto and for CLI train.
+
+=== [3.1] medium :: A retrain that fails or is stopped silently removes the 'model was trained on the old text' warning, while the old model keeps being used
+  reproduction: cd $S && /tmp/gsv39/bin/python s10_failed_retrain.py (train -> fix a sentence, save, confirm -> retrain with FAKE_GSV_OOM_ABOVE=0 so s2 runs out of VRAM even at batch 1 -> check material_changed_note and the train tab).
+  observed: 1) note after editing: True. 2) retrain failed: 「训练音色」这一步出错了：显卡内存（显存）不够. 3) model still selected: s1-g1 (the old model, now moved to old_runs; file exists). 4) note after failed retrain: '' (empty). 5) train tab mentions old material: False. Cause: _prepare_features writes logs/<exp>/voicetwin_list.sha1 at the start of training (gptsovits.py:1151 `stamp.write_text(digest)`), before SoVITS/GPT training succeeds. trained_material_note (gptsovits.py:1484) compares the current material with that stamp, so it decides the model already matches the new text. Pressing 停止 during training takes the same path, because the stamp is written before s2 starts.
+  expected: Until a retrain actually finishes, the program should keep warning, on the train tab and in generation, that the model in use was trained on text that has since changed.
+  impact: She requires that only corrected text be used. After a retrain that ran out of VRAM, or that she stopped because it took long, she generates lectures with the old model (old, uncorrected text) and nothing tells her.
+  suggested_fix: Keep the features-cache stamp separate from a 'trained-on' fingerprint. At the end of a successful GPTSoVITSBackend.train(), store the sha1 of the train list in models.json (e.g. info['list_sha1']), and make trained_material_note compare against models.json[...]['list_sha1'], falling back to the old stamp for voices trained by earlier versions. Add a test: train, edit, failed retrain, note still shown.
+
+=== [3.2] medium :: Generating an MP3 deletes the WAV with the same name (web UI names have minute resolution); same-minute generations overwrite each other
+  reproduction: cd $S && /tmp/gsv39/bin/python s5_name_clash.py (uses webui.app._output_path('第3课', 'wav') then 'mp3' in the same minute, like switching the 保存格式 radio and clicking 生成 again). Also s4_perfect.py: perfect tier as WAV, then again as MP3 with the same stem.
+  observed: After the WAV run: 第3课_10月03日06点37分.wav/.srt/.report.json. After the MP3 run: .mp3/.srt/.report.json; WAV still exists: False. With the perfect tier, p_未去杂音.wav and p_去杂音.wav are deleted too, and p.report.json is overwritten with the MP3 run's report. Cause: Narrator._write_audio (engine.py:1178-1183) always writes a temporary WAV at out_path.with_suffix('.wav') and then unlinks it after encoding. _output_path (app.py:1977, _time_suffix at :1985) only has minute resolution, so any two generations with the same name in the same minute also overwrite each other's audio, srt and report.
+  expected: A new generation must never delete or overwrite an earlier result. Temporary files go to a unique temp path. Output names are unique (seconds, or a _2 suffix when the file exists).
+  impact: With cached sentences a regeneration takes seconds, so she can easily generate WAV and then MP3 within the same minute (or redo sentence 3). The WAV she just listened to disappears, and the player and download links on the page point to a deleted file.
+  suggested_fix: In _write_audio, encode from a unique temp WAV (e.g. atomic.tmp_for(out_path).with_suffix('.wav') or project.cache_dir/tmp/<uuid>.wav) and never touch out_path.with_suffix('.wav') unless the requested format is wav. In _output_path, add seconds or a counter while the target (or its .report.json) exists.
+
+=== [3.3] low :: On ③ 生成, the 'text changed after training' warning is only in the collapsed 详细过程 log, not in the result summary
+  reproduction: cd $S && /tmp/gsv39/bin/python s6_changed_note.py (train, then change and save one sentence, then WebUI.do_generate).
+  observed: material_changed_note returns the ⚠️ text. gen_md has note: False; gen_log has note: True (the log is inside gr.Accordion(LOG_ACCORDION, open=False), app.py log_box). run_narrate only calls log.warning(note) (workflows.py:918) and never puts it in narrator.warnings, which is what _gen_summary_md shows. run_select (workflows.py:858) and _select_done_md behave the same way. The train tab preview does show it.
+  expected: The finished-generation summary should carry the same ⚠️ line (现在的模型还是用改之前的素材训练的……请重新训练) whenever the material changed after training.
+  impact: She looks at the green result summary, not the folded log. She won't notice that the audio was made by a model trained on text she has since corrected.
+  suggested_fix: In run_narrate (and run_select), after computing note, append it to the result's warnings (e.g. pass it into Narrator so it lands in self.warnings, or res.warnings.insert(0, note)). _gen_summary_md and _select_done_md then show it.
+
+=== [3.4] low :: SRT-timed generation (配音): sentences can overlap by up to 20 ms, or touch with no silence at all, when the subtitle slot is shorter than the generated speech
+  reproduction: cd $S && /tmp/gsv39/bin/python s8_timed.py (dummy backend; cue 2 placed 10, 19, 30 and 600 ms before generated sentence 1 ends).
+  observed: delta=10 ms: seg1 [1.000,4.420], seg2 [4.410,6.170], 10 ms overlap; the audio is summed and the output SRT cues overlap (00:00:04,420 vs 00:00:04,410). delta=19 ms: 19 ms overlap. delta=30 ms and 600 ms: seg2 starts exactly at seg1's end (4.420), with no digital-silence gap between the sentences. Only the 600 ms case gives a warning. Code: engine.py:1134 `if start < cursor - 0.02:` (tolerates going back 20 ms) and :1143 `cursor = r.end + (0.08 if clause else 0.0)` (no minimum pause after a full sentence).
+  expected: Sentences never overlap. Between sentences there is always some exact digital silence (for example at least her comma or sentence pause). Overlapping SRT cues are never written.
+  impact: When dubbing a video from its subtitles (back-to-back cues are common), sentences run into each other with no breathing pause. That breaks the 'exact digital silence between sentences' rule and sounds rushed.
+  suggested_fix: Use start = max(cue_start, cursor) with no backwards tolerance, and set cursor = r.end + max(min_gap, clause_gap), where min_gap is e.g. the profile's sentence pause or at least 0.15 s. Warn when this pushes a sentence later than its cue by more than a small amount.
+
+=== [3.5] low :: MP3 output (offered in the web UI) is not exact digital silence in the pauses, and the UI doesn't say so
+  reproduction: cd $S && /tmp/gsv39/bin/python s3_mp3.py (same 4-sentence script saved as wav and as mp3 with the dummy backend; decode and check the gaps between segments).
+  observed: wav: 0/68256 pause samples non-zero. mp3: 6138/68256 pause samples non-zero (about 9%), peak -92.7 dBFS; the lead-in is also non-zero (9e-07). The web UI radio is FORMAT_CHOICES (app.py:207): 'MP3（文件小，方便发微信、上传）' with no caveat. The 完美 label promises '句子之间完全静音'. Only the comment in default_config.yaml:142 mentions it.
+  expected: Either MP3 keeps exact zeros (not possible with a lossy codec), or the UI states it plainly (e.g. 'MP3：停顿处会有极小的压缩杂讯，要绝对静音请选 WAV').
+  impact: She has made absolute silence a permanent rule. Choosing MP3 quietly breaks it (inaudibly at -93 dBFS, but measurably), and the page says nothing.
+  suggested_fix: Add the honest note to the MP3 choice label or under the radio (and to 快速上手 if MP3 is mentioned). Optionally recommend WAV for the perfect tier.
+
+=== [3.6] low :: SRT timestamps can come out as '00:00:60,000' (invalid): the rounding carry doesn't reach minutes or hours
+  reproduction: /tmp/gsv39/bin/python -c "import sys; sys.path.insert(0,'/home/user/literate-enigma'); from voicetwin.data.subtitles import _fmt_time; print(_fmt_time(59.9999), _fmt_time(3599.9996))"
+  observed: Prints '00:00:60,000 00:59:60,000'. _fmt_time (voicetwin/data/subtitles.py:62-70) turns ms==1000 into s+1 but never carries s==60 into minutes or m==60 into hours. Generated SRT times (r.start/r.end = start + n/sr) are arbitrary floats, so any cue time within 0.5 ms below a full minute produces this. That is roughly a 1% chance per 500-sentence lecture.
+  expected: '00:01:00,000' and '01:00:00,000'.
+  impact: Some editors and players (剪映, Premiere, web players) reject or misplace a cue with seconds = 60. She would see one subtitle missing or the file refused, at random.
+  suggested_fix: Compute total_ms = int(round(max(0, t) * 1000)) first, then derive h, m, s, ms from total_ms by integer division.
+
+=== [3.7] low :: The training log's 'N 条是你改过文字的，按改好的文字训练' overstates N: it counts validation sentences (not trained) and sentences changed back to the original
+  reproduction: cd $S && /tmp/gsv39/bin/python s13_edit_count.py (edit only one 考试题/val sentence; change one training sentence and then change it back to exactly the recognized text; save, confirm, train).
+  observed: Log: '这次训练用校对表里保存好的文字：27 条训练、3 条当「考试题」；其中 2 条是你改过文字的，按改好的文字训练', although no trained sentence differs from the recognized text (the edited val clip is not in train.list). workflows.py:827 counts over train_records(include_val=True) and uses text_edited/orig_text, which stay set even when the text equals orig_text.
+  expected: Count only sentences in the training split whose saved text differs from orig_text, so the number is 0 here.
+  impact: CLAUDE.md rule 7 says numbers shown to her must be measured and true. This one overstates how many corrected sentences went into training.
+  suggested_fix: edited = sum(1 for r in material if r.get('split','train') == 'train' and r.get('orig_text') is not None and r['orig_text'] != r.get('text')).
+
+=== [3.8] low :: A script with only non-readable content (a ``` code block, [停顿], emoji) says '讲稿是空的' and creates a full 问题报告 file
+  reproduction: cd $S && /tmp/gsv39/bin/python s12_empty.py (WebUI.do_generate with '```python\nprint(1)\n```', '[停顿]' and '😀😀').
+  observed: Each one gives '### ❌ 生成没有完成：讲稿是空的', with advice '在「讲稿」框里粘贴文字，或者上传 txt / Word 文件', and writes a new logs/问题报告_*.txt plus '需要帮忙时把这个文件发给帮你的人'. The box was not empty; code blocks are skipped by default (synth.skip_code_blocks). empty_script (errors.py:498) is not in tasks.NO_REPORT_KEYS (tasks.py:175).
+  expected: The message should explain that nothing in the script can be read aloud (code blocks in ``` are not read, pause marks and emoji are ignored). No problem report should be written for an input issue.
+  impact: A teacher who pastes a script that is mostly fenced code gets a confusing 'empty' message and a 'send this report to your helper' prompt for something that isn't a program fault.
+  suggested_fix: Add 'empty_script' to NO_REPORT_KEYS. Make the rule's advice mention code blocks, pause marks and emoji, or have do_generate pre-parse and explain.
+
+=== [4.0] high :: 🔍 自动查找 (also the automatic check when new material is added) overwrites the results of 📝 一键全部文字校正, and the greyed-out one-click button means they cannot be recovered
+  reproduction: Run each script with: cd /tmp/claude-0/-home-user-literate-enigma/a7bf493d-04b5-5828-bb09-9d8cecef37ad/scratchpad/sweep/proofcheck && /tmp/gsv39/bin/python <script>
+(a) s1_oneclick_then_auto.py: one-click (once=True) leaves a standard-library suggestion that it did not apply automatically, then pc.find_suspects runs.
+(b) s3_new_material.py: the real wf.run_prepare is called twice, the second time with a new lecture (proofcheck=auto; FunASR is faked as installed).
+(c) s8_cleared_then_auto.py and s15_mother_scale.py: one-click clears red marks because the teacher's mother text proves the sentence is right, then auto-check runs again.
+(d) s2b_hidden.py: after one-click, the second engine hears a new difference (完整/完成).
+Code: voicetwin/data/proofcheck.py find_suspects, the block starting at `old = rec.get("suspect")` (around lines 1712-1735).
+  observed: (a) x_0031 after one-click: edits=[('', '我们今天来学习定语从句')] src=transcript. After the auto check: edits=[] src=None, so the suggestion is gone. Running one-click again raises TEXTFIX_ONCE_MSG (按钮是灰色的).
+(b) Same result with real prepare: after the new material is added, the old row's suggestion is gone (src=None). one-click on the new material has only=10 rows, so it never brings the old suggestion back.
+(c) On the teacher's own 1005 corrected sentences: the check during prepare flags 50 rows, one-click clears all 50, and auto-check again flags 50 rows red. The button is grey, so the teacher would have to click 「这句没错」 50 times.
+(d) The new auto finding is counted in flagged=1 but is only written to rec['suspect_auto']. The table shows the old 'adopted' state with no red. It stays hidden after saving and re-checking, because only the next one-click reads suspect_auto, and that button is grey.
+  expected: Rows already handled by one-click keep their standard-library result: suggestions stay, red marks the library cleared stay cleared, and any new auto-check findings are merged in and shown. Adding new material or clicking 🔍 never removes earlier one-click work.
+  impact: 快速上手 step 6½.1 tells the teacher 「以前查过的也再点一次」 the 🔍 button. A prepare run with new material also re-checks every old row automatically. Either way, the old batch silently loses the standard-library suggestions she has not reviewed yet, and false red marks come back (for example 50 rows on her real text). She cannot redo one-click because the batch is marked used. This is exactly the kind of feature conflict she asked to have prevented.
+  suggested_fix: In find_suspects, for every row whose old suspect has src=='transcript' (or whose id is in textfix_used.json), never replace rec['suspect']. Store the fresh auto result in suspect_auto, then re-merge only those rows, for example by calling transcript_fix.check_with_transcript(project, only=<those ids>) without adopt_all and without marking them used, or by adding a merge-only helper around merge_with_auto. Rejected pieces already block re-applying direct fixes the teacher undid. Add tests for: one-click → find_suspects → same suggestions and same cleared marks; prepare with new material → old rows unchanged; a new auto finding on a one-click row is visible.
+
+=== [4.1] medium :: Correct English grammar words (whose/why/he/way/she/my/one) are marked red, and the suggestion replaces them with Chinese homophones (whose→户字, why→外, he→喜, way→位)
+  reproduction: cd <scratch>/sweep/proofcheck && /tmp/gsv39/bin/python s9_english_to_chinese.py  (FunASR faked; it hears 户字/位/喜/外, as the real FunASR, which cannot spell English, would)
+/tmp/gsv39/bin/python s7_mother_fp.py  (rules only, run on the built-in mother text)
+  observed: s9: all 5 correct sentences are flagged. The button shows 「采用 whose → 户字」, 「采用 way → 位」, 「采用 he → 喜」, 「采用 why → 外」. One-click clears 3 of them, but 「whose → 户字」 stays on 2 rows, and clicking 采用 changes the text to 「今天我们来讲户字引导的定语从句」.
+s7: rules alone flag 50 of the teacher's 1005 hand-corrected sentences (whose 23, why 16, so 6, my 3, he 3, way 3, one 2, she 2…). This happens even though pc.voice_vocab() of her own material contains whose/why/she: heuristics() never receives vocab, and _classify gives en_vs_cjk splice='if_heur', which splices the Chinese homophone in.
+  expected: English words that occur repeatedly in the teacher's own material, the mother text or the lexicon are not flagged as 「可能是把中文听成了英文」. FunASR's Chinese transliteration of a known English word is never offered as a replacement.
+  impact: She teaches English grammar, so these words are everywhere. She sees red marks and 「采用」 buttons on correct text, and one click writes 「户字」 into her training text.
+  suggested_fix: Pass vocab (voice_vocab plus the built-in mother vocabulary and lexicon terms) into heuristics(), and skip the 'confusable' rule for words in it. In _classify, for a_lat and b_han, return splice='no' when the English word is in vocab or known_terms. Add tests using the mother sentences that contain whose/why/he/way.
+
+=== [4.2] medium :: A suggestion the teacher undid comes back after 🔍 or after new material: find_suspects ignores review_rejected.json
+  reproduction: cd <scratch>/sweep/proofcheck && /tmp/gsv39/bin/python s11_rejected_back.py
+The fuzz script fuzz_auto.py (invariant I, seeds 400-429) also hit this.
+  observed: The auto check suggests 王→黄. The teacher clicks 采用, then 已采用 to undo it; review_rejected.json records {'c000': [['王','黄']]}. After one-click: edits=[], so it is no longer suggested, which is correct. After 🔍 again: edits=[('王','黄')] and the blue 「采用」 button is back.
+  expected: The handbook's design table says: 老师撤销的改法……以后这一行不再改、不再建议. The auto check should not offer it again.
+  impact: The teacher's decision is forgotten. She has to reject the same wrong suggestion again, and one inattentive click writes the wrong word into her training text.
+  suggested_fix: In find_suspects, call review.load_rejected(project) once. After _protect_changed, drop suggestion edits where review.is_rejected(rejected.get(id), text, s, e, rep), using review.suggestion_edits(text, alt) and apply_edits, the same way merge_with_auto does. Add a test: adopt → unadopt → find_suspects → no suggestion.
+
+=== [4.3] medium :: 「检查完了：其中 N 条可能有错（已在表格里标红）」 does not match the red rows in the table
+  reproduction: cd <scratch>/sweep/proofcheck && /tmp/gsv39/bin/python s2c_webui.py   (the real WebUI.do_proofcheck)
+/tmp/gsv39/bin/python s2b_hidden.py
+/tmp/gsv39/bin/python s12_unused_rows.py
+fuzz_auto.py check C failed 35 times across 135 seeds.
+  observed: s2c: the teacher has already fixed 十→四 as an unsaved edit. The message says 「其中 **1** 条可能有错（已在表格里标红）」 and the toast says 「可能有错的字已经标红」, but there are 0 red cells and no 可能有错 line in the header. flagged counts the result computed on the saved text.
+s2b: flagged=1 comes from a result hidden in suspect_auto (see finding 1); nothing is red.
+s12: a row set to not-used (keep=False) is skipped by the check, but its old red mark stays. The message says 「没有发现可能有错的字」 while the header says 「**1** 条可能有错」 and the row is red.
+  expected: The number in the message equals what the table shows (the same rule as _clips_count_md: analyze(rec, shown text)['active']).
+  impact: CLAUDE.md rule 7 says numbers shown to the teacher must be measured and true. Two counts that disagree, or a 「已标红」 with nothing red, confuse a non-technical user and make her distrust the tool.
+  suggested_fix: After the loop, compute flagged as the number of checked rows where review.analyze(rec, current shown text)['active'] is true. Either clear the suspect on keep=False rows or leave them out of the header count, and do it the same way in both places.
+
+=== [4.4] low :: A red mark 「「X」连着重复了 N 遍」 stays after the teacher deletes the repeated word
+  reproduction: cd <scratch>/sweep/proofcheck && /tmp/gsv39/bin/python s14_repeat_fix.py
+  observed: 「定语从句定语从句很重要」, teacher's fix 「定语从句很重要」: red ['定语从句'] with reason 「「定语从句」连着重复了 2 遍」, both unsaved and after saving. 「这个这个这个函数很重要」→「这个这个函数很重要」 and 「看看看这个例子」→「看看这个例子」 keep 「连着重复了 3 遍」 the same way. Cause: _repeats marks the later copy, difflib aligns the deletion to the first copy, so analyze and apply_text_edit move the span onto the remaining copy (touched() returns False).
+  expected: The handbook says 那个地方被改过以后就不再标红. After she removes the repeat, the mark goes away.
+  impact: Repeats like 我们我们 and 这个这个 are among the most common ASR fixes in lectures. She fixes it, the table still says it is wrong, and the reason text (重复了 2 遍) no longer matches the sentence.
+  suggested_fix: Store the whole run for repeat evidence (for example a 'kind':'repeat' entry with the unit and the full run span). In analyze, treat a deletion of the same unit next to or inside the run as touching it, or re-run _repeats on the current text and drop repeat spans and reasons that no longer hold.
+
+=== [4.5] low :: The 「已采用」 (undo) button disappears after 🔍 or new material for a suggestion the teacher adopted with the row button and saved
+  reproduction: cd <scratch>/sweep/proofcheck && /tmp/gsv39/bin/python s5_adopted_saved_recheck.py
+fuzz_auto.py check E:auto+saved, seed 237.
+  observed: After adopting and saving: undo=[('是','十')] and the red 已采用 button is present. After auto check: undo=[] and no button. unadopt_suggestion then raises 「这一条没有采用过的建议可以撤销」. Rows adopted by one-click (src=transcript) keep the button in the same situation.
+  expected: Behaviour is the same for both: apply_text_edit deliberately keeps the record (采用了的建议留着记录：按钮一直是红的，也能撤销), and a re-check should not remove it.
+  impact: Re-running the check after saving takes away her way to undo her own adoption, and the behaviour depends on which button she used to adopt.
+  suggested_fix: In find_suspects, keep the old suspect whenever analyze(rec, shown)['undo'] is non-empty, not only when the row is dirty or src=='transcript'. Store the new result in suspect_auto, or merge any new red spans into it.
+
+=== [4.6] low :: The auto-check result text tells the teacher to click 「✅ 采用建议」, but no button has that name
+  reproduction: voicetwin/webui/app.py line 3166 (do_proofcheck): "有建议时可以点「✅ 采用建议」。"; the table button made by _suggest_cell is the blue 「采用」 in the 「修改建议」 column (快速上手.md also calls it 蓝色的「采用」).
+  observed: The message names a button that does not exist.
+  expected: The text names the real control, for example 「点那一行「修改建议」里蓝色的「采用」」.
+  impact: CLAUDE.md rule 5 asks for clear Chinese instructions for a non-technical user. She will look for a button that is not there.
+  suggested_fix: Change the sentence at app.py:3166 to refer to the blue 「采用」 button in the 「修改建议」 column.
+
+=== [5.0] medium :: docs/快速上手.pdf is out of date: it is missing the 'each batch can only be used once' rule that 快速上手.md and the web page now describe
+  reproduction: python3 -c "import pymupdf,re;t=re.sub(r'\s+','',''.join(p.get_text() for p in pymupdf.open('/home/user/literate-enigma/docs/快速上手.pdf')));print('每批素材只能用一次' in t, '下载改好的文字' in t)" prints False True. Git history: the PDF was last built in 6ee82a8 (10-03 01:42). 快速上手.md line 77 was changed afterwards in 533de0d (05:56). A line-by-line diff of md against the PDF text (my script, output saved as scratchpad/sweep/truth/pdf.txt) finds only line 77 missing. The screenshot docs/manual/images/03c_textfix.png (01:42) also shows the old help text without the once-per-batch sentence.
+  observed: The PDF's step 6½.2 ends at '……可以把改好的文字一次存下来'. Missing: '每批素材只能用一次：用完按钮变灰；以后加了新的素材、识别完，按钮会再亮起来，只改新加的句子。用之前你自己改过的字，它不会动'. build_windows_release.py copies this stale PDF as the release asset VoiceTwin-QuickStart-v18.5.pdf. The HTML inside the zip is rebuilt from the md, so the two documents she gets disagree.
+  expected: The PDF matches 快速上手.md (manual 16.11 says to rebuild it whenever the md changes). The screenshot shows the current help text.
+  impact: The teacher reads the PDF ('先看这个'). After one click the button turns grey and nothing in her guide explains why. She will think the program is broken or that she did something wrong.
+  suggested_fix: Rebuild with `python3 scripts/build_manual_pdf.py --quickstart --chromium /opt/pw-browsers/chromium`, retake 03c_textfix.png, and add a test or CI check that fails when 快速上手.md is newer than docs/快速上手.pdf (or compare extracted text).
+
+=== [5.1] medium :: The download-txt message tells her to upload the file and click 「📝 一键全部文字校正」 again, but the button is already grey and her own downloaded lines are thrown away
+  reproduction: D=/tmp/claude-0/-home-user-literate-enigma/a7bf493d-04b5-5828-bb09-9d8cecef37ad/scratchpad/sweep/truth; cd $D && mkdir -p tmp && TMPDIR=$PWD/tmp /tmp/gsv39/bin/python t5_download_after_use.py  (runs WebUI.do_textfix, then WebUI.do_download_text, then uploads the downloaded file). Code: voicetwin/webui/app.py:3341-3344; also WHATS_NEW 18.5, scripts/build_windows_release.py:128 ('下次可以当母本上传').
+  observed: After the one-click run the button is grey (interactive False). The download message still says: '下次可以把它当母本上传（「上传更多母本」那里），再点「📝 一键全部文字校正」。' The downloaded file has 3 lines. After upload, 0 of them survive as reference text, because check_with_transcript drops lines identical to the table's own rows. Clicking anyway (on a stale page) only returns TEXTFIX_ONCE_MSG.
+  expected: Advice that matches the once-per-batch rule. Either drop the suggestion, or say it only helps when new material is added later.
+  impact: This is exactly the feature conflict the teacher is worried about. Following the instruction leads her to a grey button, and the upload does nothing.
+  suggested_fix: Replace the line with something like '这份文字可以自己留着、或者发给别人看。' Or show the advice only while the button is lit (not wf.textfix_used). Update WHATS_NEW 18.5 to match.
+
+=== [5.2] medium :: The path shown in the download message is wrong: escaped text inside a Markdown code span shows literal backslashes
+  reproduction: Browser: start the web UI with scratchpad/sweep/truth/web/run_webui.py (workspace from web_setup.py), then run `PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers python3 web_check4.py http://127.0.0.1:<port>/`, which clicks 「⬇️ 下载改好的文字（txt）」. Code: voicetwin/webui/app.py:3343 wraps `_md_text(res['path'])` in backticks. _md_text (app.py:794-797) backslash-escapes \ ` * _ [ ] # | ~ $, and Markdown does not undo escapes inside code spans.
+  observed: Rendered text: '电脑上也存了一份：…/改好的文字/改好的文字\_我的声音\_20261003\_065947.txt'. The real file is '改好的文字_我的声音_20261003_065947.txt'. On Windows every backslash in D:\VoiceTwin\workspace\… would also show doubled.
+  expected: The exact path on disk, the way errors.friendly_md shows its paths (only backticks replaced, no Markdown escaping inside the code span).
+  impact: Rule 7 says what she sees must be true. If she types or pastes this path into Explorer, the file is not found ('\_' reads as a folder separator).
+  suggested_fix: Use "`" + str(res['path']).replace('`', "'") + "`" (same as errors.py:907-910), or drop the backticks and keep _md_text.
+
+=== [5.3] medium :: The one-click button is grey with no explanation when the voice has no recognized text yet (or every row is deleted), and the help text says grey means 'already used'
+  reproduction: D=…/scratchpad/sweep/truth; cd $D && mkdir -p tmp && TMPDIR=$PWD/tmp /tmp/gsv39/bin/python t3_scenarios.py (sections (b) and (b2)). Also confirmed in a real browser (gradio 4.24): web_check2.py switches to the voice '没文字' (3 clips with empty text), giving btn disabled True with only the 标准库 line under it. Code: app.py:3189-3195 (lock text only when textfix_ever_used), app.py:3213-3215, transcript_fix.textfix_new_ids returns [] when no eligible rows.
+  observed: Button disabled. tr_info shows only '标准库：你的母本 1005 句 + …（程序自带）。' TEXTFIX_HELP above it says '每批素材只能用一次：用完按钮变灰'.
+  expected: When the button is grey because nothing is ready to fix yet, say so, for example '还没有识别出文字的句子：先点「开始准备素材」把文字识别完，按钮会亮起来' or '所有句子都删除了'.
+  impact: The teacher sees a grey button she never used. The help text tells her that grey means used. This is the case 快速上手 itself describes ('写着还没有识别出文字…再点一次开始准备素材').
+  suggested_fix: In textfix_info, when _textfix_used(v) is true and ever is false, add a reason line (no text yet / no usable sentences / all deleted), or add it to TEXTFIX_LOCKED_INFO variants.
+
+=== [5.4] medium :: After the one-click run, uploading a mother text silently does nothing, and new uploads replace old ones despite the label 「上传更多母本」
+  reproduction: t3_scenarios.py section (d): after use, do_textfix('v', [file]) returns TEXTFIX_ONCE_MSG and wf.transcript_info shows files [] (nothing saved). In the real page the button is disabled, so nothing happens at all: the gr.File 'tr_files' (app.py:4053-4055) has no handler and is read only in the tr_btn click (app.py:4361). transcript_fix.save_transcripts (183-186, 215-217) rmtrees the previous uploads.
+  observed: The upload box stays active and accepts files, with no message and no effect. TEXTFIX_HELP (app.py:95) and WHATS_NEW 18.5 ('可以上传新的讲稿或改好的文字…一起当母本用') don't say the upload only counts if it is done before the one click. A later upload deletes the earlier uploaded files, although the label says 'more'.
+  expected: Either disable or hide the upload box while the button is grey, or show a line saying uploads are used the next time new material is added. Say that a new upload replaces the earlier one (or keep both).
+  impact: Two features conflict without any feedback: she uploads her corrected transcript expecting it to be used and nothing happens.
+  suggested_fix: Return interactive=not used for tr_files together with textfix_btn, and add one sentence to TEXTFIX_LOCKED_INFO. Either rename the box to '上传母本（会替换上次上传的）' or append instead of rmtree.
+
+=== [5.5] low :: Double-clicking a deleted (purple) row says it is '灰色'
+  reproduction: D=…/scratchpad/sweep/truth; cd $D && mkdir -p tmp && TMPDIR=$PWD/tmp /tmp/gsv39/bin/python t6_stale_msgs.py (step 2b). This is reachable in the UI: REVIEW_JS app.py:608-612 sends {action:'blocked'} when a deleted row's text is double-clicked, and the server answers at app.py:3054-3056.
+  observed: Right after '🗑️ 已删除第 2 条：这一行变成紫色…', the next message is '第 2 条已经删除了（灰色 = 不用来训练）。要改它，请先…撤销删除'. The row menu (app.py:560) says '紫色 = 不用来训练'.
+  expected: '已经删除了（紫色 = 不用来训练）'. Since v18.2, grey means rows the program judged unusable.
+  impact: This contradicts the colour rules the teacher was taught (purple = deleted by her, grey = program judged unusable).
+  suggested_fix: Change '灰色' to '紫色' at app.py:3055 (and in the review.py docstrings at lines 10, 963, 998 for consistency).
+
+=== [5.6] low :: The 「保存修改」 result message still mentions the removed 「保留」 column
+  reproduction: t6_stale_msgs.py step 1 (WebUI.do_save after one draft edit). Code: app.py:3017.
+  observed: '✅ 已保存 1 条：改了 1 处文字、0 处「保留」、0 处语言（这几行现在是 🟢）'. Also, '处' counts rows here, not places.
+  expected: No reference to a column that v18.1 removed. If anything, '…条改成要用' when keep changed.
+  impact: The teacher looks for a 「保留」 column that does not exist.
+  suggested_fix: Build the sentence only from non-zero parts, e.g. '改了 N 条的文字' plus (if keep changed) 'N 条改成要用' plus (if lang changed) 'N 条的语言'.
+
+=== [5.7] low :: The proofcheck result points to a 「✅ 采用建议」 button that no longer exists
+  reproduction: t6_stale_msgs.py step 3 (wf.run_proofcheck stubbed to {checked:3, flagged:1}, then WebUI.do_proofcheck). Code: app.py:3165-3166.
+  observed: '…点某一行能看到两次识别的对比，有建议时可以点「✅ 采用建议」。' The actual control is the blue 「采用」 button in the 修改建议 column (app.py:1362; 快速上手 says '蓝色的「采用」').
+  expected: '有建议时点那一行「修改建议」里蓝色的「采用」'.
+  impact: She searches for a button label that isn't there.
+  suggested_fix: Reword to match the current button label.
+
+=== [5.8] low :: errors.py 'no_clips' advice tells her to change the 「保留」 column to 「是」, but that column was removed
+  reproduction: t6_stale_msgs.py step 4: errors.explain(RuntimeError('没有可用于训练的片段…')). Code: voicetwin/errors.py:485-488.
+  observed: Advice: '到「① 准备素材」的校对表里，把要用的句子的「保留」改成「是」，再点「保存修改」'.
+  expected: Current wording: undo deletes in 「⋯ 选项」, use '✅ 这一条也要用' for grey rows, then 「✅ 确认训练素材」.
+  impact: The only fix offered for this error refers to a control that no longer exists.
+  suggested_fix: Rewrite the advice for the v18.2+ table (purple/grey rows, ⋯ 选项, 确认训练素材).
+
+=== [5.9] low :: The undo-delete message says the row '又算训练素材了' even when it is still unusable (grey)
+  reproduction: D=…/scratchpad/sweep/truth; cd $D && mkdir -p tmp && TMPDIR=$PWD/tmp /tmp/gsv39/bin/python t7_restore_claim.py. Code: app.py:3104.
+  observed: For a row with no text (not material before the delete): '↩️ 已撤销删除，第 2 条回来了（不再是紫色），又算训练素材了：' (with an empty quote at the end). review.is_material stays False, keep False, and material_counts still has unusable 1.
+  expected: Only say '又算训练素材了' when is_material is true afterwards. Otherwise say it is back but still grey (unusable) and why.
+  impact: A false count claim. She believes the sentence will be trained on.
+  suggested_fix: Check _review.is_material(rec) after wf.review_restore and pick the wording from that. Drop the trailing '：' when the text is empty.
+
+=== [5.10] low :: If a sentence is edited while the one-click check runs, the result says nothing about it and the button stays lit with no explanation
+  reproduction: D=…/scratchpad/sweep/truth; cd $D && mkdir -p tmp && TMPDIR=$PWD/tmp /tmp/gsv39/bin/python t9_edit_during.py (check_text patched to set a draft for row c1 during the check, simulating a teacher edit in the table).
+  observed: '检查了 3 条，一共改了 2 处' with no mention that c1 was skipped. tr_btn interactive True afterwards, and tr_info has no explanation, while the help says '用完按钮变灰'.
+  expected: For example '有 1 条在检查时你又改过，这次没有动；按钮还亮着，可以再点一次处理它'. 'checked' should reflect the rows actually handled.
+  impact: After the run is announced as finished, the button looks like it is still unused. The teacher can't tell whether she can or should click again.
+  suggested_fix: Return skipped = n - len(handled_non_dismissed) from check_with_transcript and render it in _textfix_md. Mention it in textfix_info while the button is lit and ever_used is true.
+
+=== [5.11] low :: The second-batch result doesn't say that only the newly added sentences were checked
+  reproduction: t3_scenarios.py section (c): after the first use, add 1 new row and click again.
+  observed: '### ✅ 一键全部文字校正完成：检查了 1 条，一共改了 1 处' for a 4-row voice. run_transcript_fix stores res['only'] (workflows.py:655), but _textfix_md (app.py:3218-3267) never uses it.
+  expected: '检查了新加的 1 条（以前的句子一点没动）'.
+  impact: With a 1000-row voice, '检查了 5 条' looks like a failure unless she remembers the once-per-batch rule.
+  suggested_fix: When r.get('only') is set and less than the total sentence count, use the '新加的 N 条' wording.
+
+=== [5.12] low :: The browser tab title never shows v18
+  reproduction: Browser check (web_check.py): page.title() returns '声音分身 VoiceTwin'. During or after a task it becomes '✅ 完成了 - 声音分身'. Code: app.py:3963 Blocks(title=APP_TITLE), utils/progress.py:699-716.
+  observed: Tab title '声音分身 VoiceTwin' without 'v18'. Only the in-page h1 shows '🎙️ 声音分身 VoiceTwin v18'.
+  expected: CLAUDE.md rule 10 and WHATS_NEW say '网页标题永远显示「声音分身 VoiceTwin v18」'. The browser tab is the most literal 网页标题.
+  impact: The teacher said twice that 'V18 永远不要变'. A tab without v18 invites another 'the title changed' report.
+  suggested_fix: Use title=f"{APP_TITLE} v{APP_TITLE_VERSION}" and set the same base in the progress.js title restore.
+
+=== [5.13] low :: Gradio's built-in English text shows on an English-locale browser (the teacher's Windows is English), and the toast header is always 'Info'
+  reproduction: Browser scan of all tabs, web_check3.py: with locale en-US the visible text includes 'Drop File Here', 'Click to Upload', 'Drop Audio Here', 'Built with Gradio'; with zh-CN these are translated. The toast after each _info() call (23 call sites) is titled 'Info' in every locale. See the after_use.png screenshot and gradio source research/过程文件/11_第三方源码摘录_gradio4.24/ToastContent.svelte:46 `{type}`. The teacher's admin console title starts with 'Administrator' (教学手册.md:184), which suggests an English Windows UI.
+  observed: English chrome on the upload areas of ① and ③ and on every success toast.
+  expected: The UI is entirely in Chinese for the teacher (rule 5).
+  impact: Minor confusion for a non-technical user. The upload box is something she is told to use ('或者在下面上传 txt / Word 文件').
+  suggested_fix: Force the gradio i18n locale to zh-CN (e.g. a head script overriding navigator.language before gradio loads), and add CSS to replace .toast-title text with '提示'.
+
+=== [5.14] low :: WHATS_NEW 18.5: a 修好 line sits in the middle of the one-click sub-bullets, so the two bullets after it read as part of the fix
+  reproduction: python3 -c "import sys;sys.path.insert(0,'/home/user/literate-enigma/scripts');import build_windows_release as b;print(b.release_notes('18.5','x.zip'))". See scripts/build_windows_release.py:121.
+  observed: Rendered list: …'· 改错了可以撤销…', then '- 修好：「保存修改」以后马上点「✅ 确认训练素材」，偶尔会报错…', then '- · 颜色还是原来的规矩…' and '- · 只改「刚好是一个完整的词」…'.
+  expected: All '·' sub-items directly under the 一键全部文字校正 item, with the 修好 line afterwards.
+  impact: The release page the teacher reads is confusing.
+  suggested_fix: Move line 121 below the last '·' item (after line 124).
+
+=== [5.15] low :: The release notes promise '138 处'; on the same data the button reports '一共改了 143 处', and the examples repeat
+  reproduction: D=…/scratchpad/sweep/truth; cd $D && mkdir -p tmp && TMPDIR=$PWD/tmp /tmp/gsv39/bin/python t2_teacher_once.py (real button path WebUI.do_textfix on research/文字校正/老师的母本/母本_原文.csv).
+  observed: Result: '检查了 1004 条，一共改了 143 处 … 按母本标准库直接改好 143 处（123 条）'. The outcome is correct: 123/123 sentences match the hand-repaired text, 0 extra rows changed. But WHATS_NEW (build_windows_release.py:125) says '1008 句里还有 138 处'. The examples line shows '一声 → 医生；一声 → 医生' (also '艾子 → as' twice in t1).
+  expected: The same number in both places, or WHATS_NEW worded so it doesn't conflict (for example '123 句'), and no duplicate examples.
+  impact: The teacher checks numbers ('数字必须是实测的'). 138 vs 143 looks like an error even though the corrections are right.
+  suggested_fix: Quote '123 句' in WHATS_NEW (that matches '（123 条）' in the UI), or count UI 处 the same way as the repair log. De-duplicate examples in _textfix_md.
+
+=== [5.16] low :: The long guide docs/Windows详细使用教程.md is shipped in the zip and linked from README, but it is stale
+  reproduction: grep -c '一键全部文字校正\|下载改好的文字' docs/Windows详细使用教程.md gives 0. Line 255 shows '📊 一共 812 条片段：保留 790 条（74.9 分钟），不保留 22 条'. build_windows_release.INCLUDE packs docs/ (only docs/manual is excluded). README.md:14 links it as '每一步更细的说明'.
+  observed: It describes the pre-v18.2 table header and has nothing about the v18.5 one-click correction or the once-per-batch rule.
+  expected: Either kept in sync with 快速上手 or not shipped/linked (rule 2: only the short quick-start is maintained).
+  impact: If she opens the 'more detailed' guide, it contradicts what she sees.
+  suggested_fix: Remove it from the zip and README link, or add a banner pointing to 快速上手 and fix line 255 plus the step 8 section.
+

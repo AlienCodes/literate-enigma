@@ -1,0 +1,240 @@
+"""v18.5 真实浏览器（gradio 4.24、和整合包同版本的 Python 3.9 + pypinyin + jieba）里点一遍「一键全部文字校正」：
+1. 按钮和标准库说明在「检查完了」那里；
+2. 点一次：老师修缮前的 1004 句里需要改的 123 句全部改好（和逐句修缮一样）；标准库能证明的自动查错字建议
+   （威驰 → which）一起采用，证明不了的（多一个「到」）不自动采用、还是红色有建议，结果说明里写着「没有把握」；
+   改过的字「文字」列绿色、「可能有错」列蓝色，红灯（没保存）；
+3. 「⬇️ 下载改好的文字（txt）」浏览器自动下载，里面是改好的文字；
+4. 保存修改 → 确认训练素材 → 训练页不再提醒，训练用的是改好的字；
+5. 每批素材只能用一次（老师 10-03 的要求）：用过以后按钮变灰、刷新网页也是灰的；
+6. 加了新素材（新的句子）以后按钮又亮了；上传一个 txt 母本一起用，只改新加的句子，以前的句子一点不动；用完又变灰。
+截图放在 shots/。"""
+import csv
+import json
+import sys
+import time
+from pathlib import Path
+
+from playwright.sync_api import sync_playwright
+
+B = Path(__file__).resolve().parent
+URL = sys.argv[1] if len(sys.argv) > 1 else "http://127.0.0.1:7951/"
+SHOTS = B / "shots"
+SHOTS.mkdir(exist_ok=True)
+WORK = B / "work"
+VOICE = WORK / "ws" / "我的声音"
+REPO = Path("/home/user/literate-enigma")
+CLEAN = {r["id"]: r["text"] for r in csv.DictReader(open(REPO / "research/文字校正/老师的母本/母本_修缮后.csv",
+                                                           encoding="utf-8-sig"))}
+ORIG = {r["id"]: r["text"] for r in csv.DictReader(open(REPO / "research/文字校正/老师的母本/母本_原文.csv",
+                                                          encoding="utf-8-sig"))}
+NEED = {i for i in ORIG if ORIG[i] != CLEAN[i]}
+RESULTS = []
+LIGHT_DIRTY_MARK = "vt-light-dirty"
+
+
+def check(name, ok, detail=""):
+    RESULTS.append((name, bool(ok), detail))
+    print(("PASS " if ok else "FAIL ") + name + (f" — {detail}" if detail else ""), flush=True)
+
+
+def text_of(page, sel):
+    return page.evaluate(f"() => Array.from(document.querySelectorAll({json.dumps(sel)})).map(e => e.innerText).join('\\n')")
+
+
+def wait_text(page, sel, needles, timeout=60):
+    t0 = time.time()
+    while time.time() - t0 < timeout:
+        t = text_of(page, sel)
+        if any(n in t for n in needles):
+            return t
+        time.sleep(0.5)
+    return text_of(page, sel)
+
+
+def draft():
+    p = VOICE / "review_draft.json"
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+
+
+def main():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(executable_path="/opt/pw-browsers/chromium")
+        # 老师的 Windows 是英文版：浏览器语言用英文，网页上 gradio 自带的字也要是中文
+        ctx = browser.new_context(viewport={"width": 1366, "height": 900}, accept_downloads=True, locale="en-US")
+        page = ctx.new_page()
+        errors = []
+        page.on("pageerror", lambda e: errors.append(str(e)))
+        page.goto(URL)
+        page.wait_for_selector("#vt-clips tbody.tbody tr", timeout=120000)
+        time.sleep(2)
+        title = page.evaluate("() => document.querySelector('.vt-header h1').innerText")
+        check("网页标题仍是 v18", "VoiceTwin v18" in title and "18.5" not in title, title)
+        check("浏览器标签页上也是「声音分身 VoiceTwin v18」", page.title() == "声音分身 VoiceTwin v18", page.title())
+        body = text_of(page, "body")
+        check("英文系统的浏览器里 gradio 自带的字也是中文（没有 Drop File Here）",
+              "Drop File Here" not in body and "Click to Upload" not in body and "点击上传" in body)
+        import urllib.request
+
+        conf = json.loads(urllib.request.urlopen(URL.rstrip("/") + "/config", timeout=10).read().decode("utf-8"))
+        vers = [c for c in conf.get("components", []) if (c.get("props") or {}).get("elem_id") == "vt-version"]
+        check("网页里藏着真正的版本号（升级时分辨旧版本还开着）", bool(vers) and "18.5" in vers[0]["props"]["value"])
+        btn = page.locator("#vt-tr-btn")
+        check("「📝 一键全部文字校正」按钮在", btn.is_visible() and "一键全部文字校正" in btn.inner_text())
+        info = wait_text(page, ".vt-tr-info", ["标准库"], 20)
+        check("按钮下面写着标准库（母本 1005 句 + 术语 + 对照表）", "你的母本 1005 句" in info and "对照表" in info, info[:80])
+        btn.scroll_into_view_if_needed()
+        page.screenshot(path=str(SHOTS / "01_buttons.png"))
+
+        # ① 一键全部文字校正
+        t0 = time.time()
+        btn.click()
+        md = wait_text(page, "body", ["一键全部文字校正完成", "没有完成"], 300)
+        took = time.time() - t0
+        check("一键全部文字校正走完", "一键全部文字校正完成" in md and "没有完成" not in md, f"{took:.0f} 秒")
+        time.sleep(1)
+        info = text_of(page, ".vt-tr-info")
+        check("用过一次以后按钮变灰（点不了），按钮下面写着每批素材只能用一次", btn.is_disabled() and "每批素材只能用一次" in info,
+              info[:60])
+        check("没有三个小圆点（老师改了主意：不要解锁）", page.locator(".vt-dot").count() == 0)
+        check("用过以后「上传更多母本」也是灰的（上传了也不会用）", "点击上传" not in text_of(page, "#vt-tr-files"),
+              text_of(page, "#vt-tr-files")[:40])
+        toast = page.evaluate("() => { const t = document.querySelector('.toast-title'); "
+                              "return t ? getComputedStyle(t, '::after').content : ''; }")
+        check("右上角提示的标题是中文（不是 Info）", "提示" in toast, toast)
+        d = draft()
+        exact = sum(1 for i in NEED if i in d and d[i]["text"] == CLEAN[i])
+        check("需要改的 123 句全部改得和逐句修缮一样（存成没保存的修改）", exact == len(NEED) == 123, f"{exact}/{len(NEED)}")
+        extra = [i for i in d if i not in NEED]
+        vetted = [i for i in extra if "威驰" not in d[i]["text"] and d[i]["text"] == ORIG[i]]
+        check("标准库能证明的自动查错字建议一起采用了（威驰 → which，只多了那一句）", len(extra) == 1 and vetted == extra,
+              str([(i, d[i]["text"][:30]) for i in extra[:3]]))
+        rec2 = {json.loads(ln)["id"]: json.loads(ln) for ln in
+                (VOICE / "manifest.jsonl").read_text(encoding="utf-8").splitlines() if ln.strip()}[list(ORIG)[2]]
+        sys.path.insert(0, str(REPO))
+        from voicetwin.data import review as _rv
+
+        info2 = _rv.analyze(rec2, rec2["text"])
+        check("证明不了的建议（多一个「到」）没有自动采用：还是红色、有建议，结果说明写着没有把握",
+              list(ORIG)[2] not in d and info2["edits"] and not info2["sure"] and "没有把握" in md,
+              str(info2["edits"]))
+        summary = [ln for ln in md.splitlines() if "一共改了" in ln or "直接改好" in ln or "一起采用了" in ln]
+        check("结果说明写着改了多少处、下一步点保存修改", bool(summary) and "保存修改" in md and "确认训练素材" in md,
+              " / ".join(summary[:3]))
+        cnt = wait_text(page, "body", ["条可能有错"], 10)
+        line = next((ln for ln in cnt.splitlines() if "条可能有错" in ln), "")
+        check("表格上方的「可能有错」只算还没改的（改好、没保存的不算）：只剩那 1 条没把握的", "1 条可能有错" in line, line[-60:])
+        page.screenshot(path=str(SHOTS / "02_done.png"), full_page=False)
+
+        # 表格：只看可能有错的 → 第一处改过的行：绿色 / 蓝色 / 红灯
+        page.get_by_label("只看可能有错的").check()
+        time.sleep(3)
+        html = page.evaluate("() => document.querySelector('#vt-clips').innerHTML")
+        check("「文字」列改过的字是绿色", 'class="vt-green"' in html)
+        check("「可能有错」列改过的地方是蓝色", 'class="vt-blue"' in html)
+        check("改过的行亮红灯（没保存）", LIGHT_DIRTY_MARK in html)
+        page.screenshot(path=str(SHOTS / "03_table_marks.png"), full_page=False)
+
+        # ② 下载改好的文字
+        with page.expect_download(timeout=30000) as dl_info:
+            page.locator("#vt-dl-txt-btn").click()
+        dl = dl_info.value
+        path = dl.path()
+        body = Path(path).read_bytes().decode("utf-8-sig")
+        lines = body.splitlines()
+        check("浏览器自动下载了改好的文字（txt）", dl.suggested_filename.startswith("改好的文字_") and len(lines) > 900,
+              f"{dl.suggested_filename}，{len(lines)} 行")
+        check("下载的文字里是改好的（没有「借词」「关系带词」）", "借词" not in body and "关系带词" not in body and "介词" in body)
+        page.screenshot(path=str(SHOTS / "04_download.png"))
+
+        # ③ 保存修改 → 确认训练素材
+        page.get_by_role("button", name="保存修改").click()
+        t0 = time.time()
+        while draft() and time.time() - t0 < 60:
+            time.sleep(0.5)
+        saved = {json.loads(ln)["id"]: json.loads(ln)["text"] for ln in
+                 (VOICE / "manifest.jsonl").read_text(encoding="utf-8").splitlines() if ln.strip()}
+        check("保存修改以后校对表里是改好的文字", not draft() and all(saved[i] == CLEAN[i] for i in NEED))
+        page.get_by_role("button", name="✅ 确认训练素材").click()
+        t = wait_text(page, "body", ["训练素材已确认"], 60)
+        check("确认训练素材成功", "训练素材已确认" in t)
+        page.get_by_role("tab", name="② 训练模型").click()
+        time.sleep(2)
+        check("训练页不再提醒（可以训练了）", "还没有确认训练素材" not in text_of(page, "body"))
+        sys.path.insert(0, str(REPO))
+        from voicetwin.config import load_config
+        from voicetwin.data.exporters import gptsovits_list_text
+        from voicetwin import workflows as wf
+        import os
+
+        os.chdir(WORK)
+        listing = gptsovits_list_text(wf.Project(load_config(), "我的声音"), "我的声音")
+        check("训练用的文字是改好的（训练列表里没有「借词」「定语从剧」）",
+              "借词" not in listing and "定语从剧" not in listing and "介词" in listing)
+
+        # ④ 每批素材只能用一次：刷新网页还是灰的
+        page.reload()
+        page.wait_for_selector("#vt-tr-btn", timeout=60000)
+        time.sleep(3)
+        btn = page.locator("#vt-tr-btn")
+        check("刷新网页以后按钮还是灰的", btn.is_disabled())
+        # 加了新素材（准备素材识别出新的句子）：按钮又亮了
+        recs = [json.loads(ln) for ln in (VOICE / "manifest.jsonl").read_text(encoding="utf-8").splitlines() if ln.strip()]
+        old_saved = {r["id"]: r["text"] for r in recs}
+        src = VOICE / recs[0]["path"]
+        NEW = {"new_0001": "这里的借词后面要接宾语。", "new_0002": "我们先来看艾子引导的定语从句。"}
+        for nid, t in NEW.items():
+            (VOICE / "clips" / f"{nid}.wav").write_bytes(src.read_bytes())
+            recs.append(dict(recs[0], id=nid, path=f"clips/{nid}.wav", text=t, orig_text=t, keep=True, deleted=False))
+            recs[-1].pop("suspect", None)
+            recs[-1].pop("suspect_auto", None)
+        (VOICE / "manifest.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in recs),
+                                              encoding="utf-8")
+        page.reload()
+        page.wait_for_selector("#vt-tr-btn", timeout=60000)
+        time.sleep(3)
+        btn = page.locator("#vt-tr-btn")
+        check("加了新素材以后按钮又亮了（可以再用一次）", not btn.is_disabled())
+
+        # ⑤ 上传一个 txt 母本，再点一次
+        page.get_by_role("tab", name="① 准备素材").click()
+        time.sleep(1)
+        txt = WORK / "新讲稿.txt"
+        txt.write_text("今天我们来讲状语从句。状语从句就是在句子里做状语的从句。\n", encoding="utf-8")
+        page.locator("#vt-tr-files input[type=file]").set_input_files(str(txt))
+        time.sleep(2)
+        btn.click()
+        md = wait_text(page, "body", ["一键全部文字校正完成", "没有完成"], 300)
+        info = wait_text(page, ".vt-tr-info", ["新讲稿.txt"], 20)
+        check("加了新素材以后上传 txt 母本再点一次也能用，按钮下面写着上传的文件", "新讲稿.txt" in info and "没有完成" not in md,
+              info[-60:])
+        d = draft()
+        check("只改了新加的句子（借词 → 介词、艾子 → as）", set(d) == set(NEW) and "介词" in d["new_0001"]["text"]
+              and "as" in d["new_0002"]["text"], str({k: v["text"] for k, v in d.items()}))
+        now = {json.loads(ln)["id"]: json.loads(ln)["text"] for ln in
+               (VOICE / "manifest.jsonl").read_text(encoding="utf-8").splitlines() if ln.strip()}
+        check("以前的句子一点没动（保存的文字都一样）", all(now[k] == v for k, v in old_saved.items()))
+        time.sleep(1)
+        check("再用一次以后按钮又变灰了", btn.is_disabled())
+        page.screenshot(path=str(SHOTS / "05_uploaded.png"))
+        # 快速上手用的截图（docs/manual/images/03c_textfix.png）：说明 + 上传框 + 两个按钮 + 标准库那行字
+        boxes = [page.locator(sel).first.bounding_box() for sel in
+                 (".vt-textfix-help", "#vt-tr-files", "#vt-tr-btn", ".vt-tr-info")]
+        boxes = [b for b in boxes if b]
+        if boxes:
+            x0, y0 = min(b["x"] for b in boxes) - 8, min(b["y"] for b in boxes) - 8
+            x1 = max(b["x"] + b["width"] for b in boxes) + 8
+            y1 = max(b["y"] + b["height"] for b in boxes) + 8
+            sy = page.evaluate("() => window.scrollY")  # bounding_box 是相对窗口的；整页截图要加上滚动的距离
+            page.screenshot(path=str(SHOTS / "03c_textfix.png"), full_page=True,
+                            clip={"x": max(0, x0), "y": max(0, y0 + sy), "width": x1 - max(0, x0), "height": y1 - y0})
+        check("网页上没有脚本错误", not errors, errors[:3])
+        browser.close()
+    passed = sum(1 for _, ok, _ in RESULTS if ok)
+    out = [f"{'PASS' if ok else 'FAIL'} {n}" + (f" — {d}" if d else "") for n, ok, d in RESULTS]
+    out.append(f"合计：{passed}/{len(RESULTS)} 通过")
+    (B / "check_结果.txt").write_text("\n".join(out) + "\n", encoding="utf-8")
+    print(out[-1])
+
+
+if __name__ == "__main__":
+    main()

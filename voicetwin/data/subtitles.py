@@ -60,13 +60,11 @@ def parse_subtitle_text(raw: str) -> List[Cue]:
 
 
 def _fmt_time(t: float) -> str:
-    t = max(0.0, t)
-    h = int(t // 3600)
-    m = int((t % 3600) // 60)
-    s = int(t % 60)
-    ms = int(round((t - int(t)) * 1000))
-    if ms == 1000:
-        s, ms = s + 1, 0
+    # 先换成整毫秒再拆：59.9996 秒是 00:01:00,000（以前进位只进到秒，写出 00:00:60,000，剪映等软件不认）
+    total = int(round(max(0.0, float(t)) * 1000))
+    h, rest = divmod(total, 3_600_000)
+    m, rest = divmod(rest, 60_000)
+    s, ms = divmod(rest, 1000)
     return f"{h:02d}:{m:02d}:{s:02d},{ms:03d}"
 
 

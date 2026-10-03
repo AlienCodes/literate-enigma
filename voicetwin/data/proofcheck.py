@@ -42,7 +42,7 @@ import unicodedata
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
-from typing import AbstractSet, Any, Callable, Dict, FrozenSet, Iterable, List, NamedTuple, Optional, Sequence, Tuple
+from typing import AbstractSet, Any, Callable, Dict, FrozenSet, Iterable, List, NamedTuple, Optional, Sequence, Set, Tuple
 
 from voicetwin.utils.log import get_logger
 from voicetwin.utils.textutil import clean_transcript, count_cjk
@@ -687,6 +687,26 @@ def _known_english(ak: Sequence[str], bk: Sequence[str], vocab: AbstractSet[str]
     return 1 <= len(ak) <= 3 * len(bk)
 
 
+@lru_cache(maxsize=1)
+def _mother_vocab() -> FrozenSet[str]:
+    """程序自带的老师母本（老师一句一句改好的讲课文字）里的英文词（小写）：都是老师真的说过的。"""
+    try:
+        from voicetwin.data.transcript_fix import builtin_mother
+
+        words = set()
+        for _rid, line in builtin_mother():
+            words |= {k for k in _keys(tokenize(str(line or ""))) if _latin_key(k)}
+        return frozenset(words)
+    except Exception as exc:  # noqa: BLE001 - 读不了母本：只用素材里的词
+        log.debug(f"读取母本里的英文词失败：{exc}")
+        return frozenset()
+
+
+def english_vocab(records: Iterable[Dict[str, Any]]) -> FrozenSet[str]:
+    """老师常说的英文词：素材里出现在至少两段里的（voice_vocab）+ 程序自带的母本里的。"""
+    return voice_vocab(records) | _mother_vocab()
+
+
 def voice_vocab(records: Iterable[Dict[str, Any]], min_clips: int = 2) -> FrozenSet[str]:
     """这个声音的素材里出现在至少 min_clips 段里的英文词（小写）：主识别写出来的、老师改过的文字都算。"""
     counts: Dict[str, int] = {}
@@ -833,8 +853,12 @@ def compare(text: str, other: str, engine: str = ENGINE_FUNASR, srt: bool = Fals
     return Compared(evidence, False, "", ratio, b)
 
 
-def heuristics(text: str, known_terms: Iterable[str] = (), frequent: Iterable[str] = (), lang: str = "") -> List[_Ev]:
-    """只看文字本身的规则检查（不需要模型）。"""
+def heuristics(text: str, known_terms: Iterable[str] = (), frequent: Iterable[str] = (), lang: str = "",
+               vocab: AbstractSet[str] = frozenset()) -> List[_Ev]:
+    """只看文字本身的规则检查（不需要模型）。
+
+    vocab：老师本来就常说的英文词（小写；见 english_vocab）：whose、why、he、way……不再当成「把中文听成了英文」
+    （老师教英语语法，这些词到处都是；以前在老师自己改好的 1005 句里标红了 50 句，还建议换成「户字」「外」「喜」）。"""
     text = str(text or "")
     ev: List[_Ev] = []
     if not text.strip():
@@ -859,7 +883,7 @@ def heuristics(text: str, known_terms: Iterable[str] = (), frequent: Iterable[st
                 ev.append(_Ev(s, e, f"「{_short(w)}」像是听错的英文（不是常见的缩写）", w_, "caps"))
                 continue
             low = w.lower()
-            if low in CONFUSABLE_EN or low in CONFUSABLE_SOFT:
+            if (low in CONFUSABLE_EN or low in CONFUSABLE_SOFT) and low not in vocab:
                 left = norm[:s].rstrip()[-1:]
                 right = norm[e:].lstrip()[:1]
                 lat_l = bool(left) and (left.isascii() and left.isalnum())
@@ -1027,7 +1051,7 @@ def build_suspect(text: str, other: Optional[str] = None, words: Any = None, *, 
     text = str(text or "")
     if not text.strip():
         return None
-    heur = heuristics(text, known_terms, frequent, lang)
+    heur = heuristics(text, known_terms, frequent, lang, vocab=vocab)
     ev: List[_Ev] = list(heur)
     total_alt: Optional[str] = None
     if other is not None and engine != ENGINE_WHISPER_WORDS:
@@ -1139,17 +1163,24 @@ def _wrap(text: str, ranges: Sequence[Sequence[int]], open_tag: str) -> str:
     return "".join(out)
 
 
-def render_diff_html(text: Any, alt: Any, spans: Any = None) -> str:
+def render_diff_html(text: Any, alt: Any, spans: Any = None, label_b: str = "") -> str:
     """详情面板：两行对比。「识别 A」是现在的文字（不一样的字标红），「识别 B」是另一次识别的建议（标绿）。
 
     alt 为空（没有建议）时，第一行按 spans 标红（可以不给），第二行写"没有建议"。全部内容都已转义。
+    label_b：建议不是来自识别引擎时（文字校正：「按逐字稿改成」），两行改成「现在的文字」「label_b」。
     """
     text, alt = str(text or ""), str(alt or "")
-    tag_a = '<span class="vt-diff-tag">识别 A（现在的文字）：</span>'
-    tag_b = '<span class="vt-diff-tag">识别 B（建议改成）：</span>'
+    if label_b:
+        tag_a = '<span class="vt-diff-tag">现在的文字：</span>'
+        tag_b = f'<span class="vt-diff-tag">{_esc(label_b)}：</span>'
+        tag_none = f'<span class="vt-diff-tag">{_esc(label_b)}：</span>'
+    else:
+        tag_a = '<span class="vt-diff-tag">识别 A（现在的文字）：</span>'
+        tag_b = '<span class="vt-diff-tag">识别 B（建议改成）：</span>'
+        tag_none = '<span class="vt-diff-tag">识别 B：</span>'
     if not alt.strip():
         return (f'<div class="vt-diff-row">{tag_a}{_wrap(text, spans or [], RED_SPAN)}</div>'
-                '<div class="vt-diff-row vt-diff-reason"><span class="vt-diff-tag">识别 B：</span>'
+                f'<div class="vt-diff-row vt-diff-reason">{tag_none}'
                 '（没有建议。请听一听录音，有错就直接在「文字」列里改）</div>')
     ra, rb = _diff_ranges(text, alt)
     return (f'<div class="vt-diff-row">{tag_a}{_wrap(text, ra, RED_SPAN)}</div>'
@@ -1591,6 +1622,89 @@ def _is_srt_text(rec: Dict[str, Any]) -> bool:
     return rec.get("seg_mode") == "srt" and not rec.get("asr_done")
 
 
+def _protect_changed(rec: Dict[str, Any], text: str, sus: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+    """自动查错字的结果里，碰到已经改过的字（和最初识别的不一样：老师自己改的、一键校正改好的）的标红和建议去掉：
+    另一个识别引擎还是听成原来的错字时，不能把改好的字标红、更不能建议改回去（检查时发现「系 → 键」「句呀 → 剧」）。"""
+    if not sus:
+        return sus
+    try:
+        from voicetwin.data import review as _review
+        from voicetwin.data.transcript_fix import _changed_chars, _touches_changed
+
+        changed = _changed_chars(rec, text)
+        if not changed[0] and not changed[1]:
+            return sus
+        spans = []
+        for sp in sus.get("spans") or []:
+            try:
+                a, b = int(sp[0]), int(sp[1])
+            except (TypeError, ValueError, IndexError):
+                continue
+            if not _touches_changed(a, b, changed):
+                spans.append([a, b])
+        edits = [ed for ed in _review.suggestion_edits(text, str(sus.get("alt") or ""))
+                 if not _touches_changed(ed[0], ed[1], changed)]
+        alt = _review.apply_edits(text, edits) if edits else ""
+        if not spans and not edits:
+            return None
+        return dict(sus, spans=spans, alt=alt if alt and alt != text else "")
+    except Exception as exc:  # noqa: BLE001 - 保护失败也不能让查错字失败：原样返回
+        log.warning(f"⚠️ 查错字：去掉改过的字上的标红时出错（{_why(exc)}）", exc_info=exc)
+        return sus
+
+
+def _drop_rejected_auto(rec: Dict[str, Any], text: str, sus: Optional[Dict[str, Any]],
+                        pairs: Any) -> Optional[Dict[str, Any]]:
+    """自动查错字的结果里，老师撤销过的改法（点过「已采用」撤销、自己改回去）去掉：不再建议，那几个字也不再标红。"""
+    if not sus or not pairs:
+        return sus
+    try:
+        from voicetwin.data import review as _review
+
+        edits = _review.suggestion_edits(text, str(sus.get("alt") or ""))
+        bad = [ed for ed in edits if _review.is_rejected(pairs, text, *ed)]
+        if not bad:
+            return sus
+        keep = [ed for ed in edits if ed not in bad]
+        spans = []
+        for sp in sus.get("spans") or []:
+            try:
+                a, b = int(sp[0]), int(sp[1])
+            except (TypeError, ValueError, IndexError):
+                continue
+            if not any(a < max(e, s + 1) and s < b for s, e, _ in bad):
+                spans.append([a, b])
+        alt = _review.apply_edits(text, keep) if keep else ""
+        if not spans and not keep:
+            return None
+        return dict(sus, spans=spans, alt=alt if alt and alt != text else "")
+    except Exception as exc:  # noqa: BLE001 - 去不掉也不能让查错字失败：原样返回
+        log.warning(f"⚠️ 查错字：去掉撤销过的改法时出错（{_why(exc)}）", exc_info=exc)
+        return sus
+
+
+def _count_flagged(project: Any, ids: Set[str]) -> int:
+    """这次查过的句子里，表格上显示成「可能有错」的有几条（和校对表上方的数字一样算法：按显示的文字）。"""
+    try:
+        from voicetwin.data import review as _review
+
+        draft = _review.load_draft(project)
+        n = 0
+        for rec in project.load_manifest():
+            if str(rec.get("id")) not in ids or rec.get("deleted"):
+                continue
+            sus = rec.get("suspect")
+            if not (isinstance(sus, dict) and (sus.get("spans") or sus.get("alt") or sus.get("reasons"))):
+                continue
+            shown = _review.current_values(rec, draft.get(rec.get("id")))["text"]
+            if _review.analyze(rec, shown)["active"]:
+                n += 1
+        return n
+    except Exception as exc:  # noqa: BLE001
+        log.warning(f"⚠️ 查错字：统计标红的句子时出错（{_why(exc)}）", exc_info=exc)
+        return 0
+
+
 def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None, only_kept: bool = True,
                   limit: Optional[int] = None) -> Dict[str, Any]:
     """逐段查找可能的错字，结果写进 manifest（record["suspect"]），返回
@@ -1621,8 +1735,22 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
         chain = []
     known = _known_terms(project, cfg)
     frequent = _frequent_caps(records)
-    vocab = voice_vocab(records)
+    vocab = english_vocab(records)
     runner = _EngineRunner(project, cfg, chain, progress)
+    try:  # 表格里没保存的修改（「这句没错」按显示的文字记；一键校正改好、还没保存的行要能撤销）
+        from voicetwin.data import review as _review
+
+        draft = _review.load_draft(project)
+        rejected = _review.load_rejected(project)  # 老师撤销过的改法：不再建议
+    except Exception:  # noqa: BLE001
+        _review, draft, rejected = None, {}, {}
+    try:  # 用过「📝 一键全部文字校正」的句子：查完以后把新结果和一键校正的结果合在一起（不能冲掉）
+        from voicetwin.data import transcript_fix as _tf
+
+        oneclick = _tf.textfix_done_ids(project)
+    except Exception:  # noqa: BLE001
+        _tf, oneclick = None, set()
+    remerge: List[str] = []
     used: Dict[str, int] = {}
     errors, flagged, checked, dismissed = 0, 0, 0, 0
     err_samples: List[str] = []
@@ -1635,17 +1763,24 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
             runner.frac = (i - 1) / n
             text = str(rec.get("text") or "")
             lang = str(rec.get("lang") or "")
-            heur_kw = {"known_terms": known, "frequent": frequent, "lang": lang}
+            heur_kw = {"known_terms": known, "frequent": frequent, "lang": lang, "vocab": vocab}
             eng = ""
-            if rec.get("suspect_ok") and rec.get("suspect_ok") == text:
-                sus = None  # 用户确认过这句没错（文字也没再改过）
+            entry = draft.get(rec.get("id")) if draft else None
+            shown = str(_review.current_values(rec, entry)["text"] or "") if (_review and entry) else text
+            if rec.get("suspect_ok") and rec.get("suspect_ok") in (text, shown):
+                # 用户确认过这句没错（文字也没再改过；表格里显示的那句也算）：不再标红
                 dismissed += 1
+                rec.pop("suspect", None)
+                rec.pop("suspect_auto", None)
+                checked += 1
+                _report(progress, i / n, f"已检查 {i} / {n} 条")
+                continue
             else:
                 try:
                     other, words, eng = runner.recognize(rec, lang)
                     asr = rec.get("asr") if isinstance(rec.get("asr"), dict) else {}
                     sus = build_suspect(text, other, words, engine=eng, srt=_is_srt_text(rec),
-                                        avg_logprob=asr.get("avg_logprob"), vocab=vocab, **heur_kw)
+                                        avg_logprob=asr.get("avg_logprob"), **heur_kw)
                 except Exception as exc:  # noqa: BLE001 - 一段出错不影响别的段；停止按钮（TaskCancelled）照常传出去
                     errors += 1
                     eng = ""
@@ -1658,13 +1793,34 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
                     except Exception:  # noqa: BLE001
                         sus = None
                 used[eng] = used.get(eng, 0) + 1
-            if sus:
-                rec["suspect"] = sus
-                flagged += 1
+            sus = _protect_changed(rec, text, sus)  # 改过的字（老师改的、一键校正改好的）不标红、不建议改回去
+            sus = _drop_rejected_auto(rec, text, sus, rejected.get(rec.get("id")))  # 老师撤销过的改法不再建议
+            old = rec.get("suspect") if isinstance(rec.get("suspect"), dict) else None
+            undo = bool(old and _review is not None and _review.analyze(rec, shown)["undo"])
+            if old and old.get("src") == "transcript":
+                # 一键校正的结果（保存了也算）：表格上的标记留着，这次查的结果当「自动查错字的结果」存起来，
+                # 查完以后和一键校正的结果合在一起（以前直接换掉：没采用的建议没了、母本证明没错的标红又回来了，
+                # 按钮是灰的，再也找不回来）
+                if sus:
+                    rec["suspect_auto"] = dict(sus, text=text)
+                else:
+                    rec.pop("suspect_auto", None)
+                remerge.append(str(rec.get("id")))
+            elif undo:
+                # 这一行有还能撤销的修改（点过「采用」的建议，保存了也算）：标记留着，不然「已采用」的按钮没了、撤销不了
+                rec.pop("suspect_auto", None)
             else:
-                rec.pop("suspect", None)
+                if sus:
+                    rec["suspect"] = sus
+                else:
+                    rec.pop("suspect", None)
+                rec.pop("suspect_auto", None)  # 重新自动查过：以前「文字校正」时存的旧结果不要了
+                if str(rec.get("id")) in oneclick:
+                    # 一键校正处理过、但没留下标记的行（没找到要改的、或者标红被母本证明没错去掉了）：
+                    # 新查出来的也要拿母本再核对一遍（不然母本证明没错的标红又回来了）
+                    remerge.append(str(rec.get("id")))
             checked += 1
-            _report(progress, i / n, f"已检查 {i} / {n} 条，其中 {flagged} 条可能有错")
+            _report(progress, i / n, f"已检查 {i} / {n} 条")
             if i % SAVE_EVERY == 0 and i < n:
                 project.save_manifest(records)
                 runner.save()
@@ -1677,6 +1833,13 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
                 log.warning(f"⚠️ 查错字：保存已检查的结果失败（{_why(exc)}）", exc_info=exc)
         runner.close()
     project.save_manifest(records)
+    if remerge and _tf is not None:
+        _report(progress, 1.0, f"和「一键全部文字校正」的结果合在一起（{len(remerge)} 条）……")
+        try:
+            _tf.check_with_transcript(project, only=remerge, merge_only=True)
+        except Exception as exc:  # noqa: BLE001 - 合不上：自动查错字的结果已经存好了，一键校正的标记也还在（停止照常传出去）
+            log.warning(f"⚠️ 查错字：和一键全部文字校正的结果合在一起时出错（{_why(exc)}）", exc_info=exc)
+    flagged = _count_flagged(project, {str(r.get("id")) for r in todo})
 
     real = {k: v for k, v in used.items() if k}
     main_engine = max(real, key=lambda k: real[k]) if real else ""
@@ -1706,14 +1869,20 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
 
 
 def dismiss_suspect(project: Any, clip_id: str) -> bool:
-    """「这句没错」：去掉标红，并记住这句文字；以后再查错字时，只要文字没改，就不再标红。返回有没有找到这条。"""
-    records = project.load_manifest()
-    for rec in records:
-        if str(rec.get("id")) == str(clip_id):
-            rec.pop("suspect", None)
-            rec["suspect_ok"] = str(rec.get("text") or "")
-            project.save_manifest(records)
-            return True
+    """「这句没错」：去掉标红，并记住这句文字（表格里显示的那句，有没保存的修改就是改过的那句）；
+    以后再查错字 / 文字校正时，只要文字没改，就不再标红、不再改。返回有没有找到这条。"""
+    from voicetwin.data import review
+
+    with review._LOCK:
+        records = project.load_manifest()
+        draft = review.load_draft(project)
+        for rec in records:
+            if str(rec.get("id")) == str(clip_id):
+                rec.pop("suspect", None)
+                rec.pop("suspect_auto", None)
+                rec["suspect_ok"] = str(review.current_values(rec, draft.get(rec.get("id")))["text"] or "")
+                project.save_manifest(records)
+                return True
     return False
 
 
@@ -1721,5 +1890,5 @@ __all__ = [
     "ENGINE_FUNASR", "ENGINE_WHISPER", "ENGINE_WHISPER_WORDS", "ENGINE_LABELS", "FLAG_THRESHOLD", "RED_SPAN",
     "GREEN_SPAN", "Tok", "tokenize", "merge_spans", "compare", "heuristics", "low_prob_spans", "build_suspect",
     "render_marked", "render_plain", "render_diff_html", "available_checker", "find_suspects", "dismiss_suspect",
-    "paraformer_path", "voice_vocab",
+    "paraformer_path", "voice_vocab", "english_vocab",
 ]

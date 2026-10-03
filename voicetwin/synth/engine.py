@@ -42,6 +42,7 @@ from voicetwin.eval.speaker import (
 from voicetwin.project import Project
 from voicetwin.style.profile import pause_range, pause_seconds
 from voicetwin.synth.script import ScriptSegment, parse_script
+from voicetwin.utils import atomic
 from voicetwin.utils.audio import (
     auto_silence_threshold,
     fade,
@@ -305,6 +306,10 @@ class _Cand:
     round: int
     k: int
 
+
+#: 按字幕时间轴配音时，句子之间至少留的绝对静音（秒）：逗号处 / 句子之间
+TIMED_MIN_CLAUSE_GAP = 0.08
+TIMED_MIN_GAP = 0.15
 
 class Narrator:
     def __init__(self, cfg: Dict[str, Any], project: Project, backend: Backend, quality: Optional[str] = None,
@@ -655,7 +660,7 @@ class Narrator:
             status = "⚠️" if (hints or issues) else "✅"
         meta = dict(meta, score=score, hint="；".join(hints), status=status, flagged=bool(hints or issues), judge=sig)
         try:
-            plan.meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
+            atomic.write_text(plan.meta_path, json.dumps(meta, ensure_ascii=False, indent=1))
         except OSError:
             pass
         return meta
@@ -663,7 +668,10 @@ class Narrator:
     def synthesize_segment(self, seg: ScriptSegment, force: bool = False) -> SegmentResult:
         plan = self._plan(seg)
         if plan.cached and not force:
-            return self._load_cached(seg, plan)
+            try:
+                return self._load_cached(seg, plan)
+            except Exception as exc:  # noqa: BLE001 - 缓存坏了（写到一半关了窗口、断电）：重新生成这一句，不能一直失败
+                log.warning(f"第 {seg.index + 1} 句的缓存读不了（{exc}），重新生成")
         self._ensure_started()
         ref, aux, speed, key = plan.ref, plan.aux, plan.speed, plan.key
         seed0 = self.base_seed + seg.index * 7919
@@ -801,7 +809,9 @@ class Narrator:
                               "eliminated": bool(filt and c.score.pct is not None and c.score.pct < self.min_pct),
                               "chosen": c is best})
         cand_info.sort(key=lambda d: (d["pct"] is None, -(d["pct"] or 0.0), -(d["total"] or 0.0)))
-        save_audio(plan.wav_path, best.wav, best.sr)
+        tmp_wav = atomic.tmp_for(plan.wav_path).with_suffix(".wav")  # 先写临时文件再换上去：不会留下半个缓存
+        save_audio(tmp_wav, best.wav, best.sr)
+        atomic.finish(tmp_wav, plan.wav_path)
         # 重新生成（--redo / 只重新生成第几句）会写到同一个缓存文件：旁边旧的「去杂音」版本是旧句子做的，必须删掉，
         # 否则长度刚好一样时版本 B 里还是旧的那句
         for old in plan.wav_path.parent.glob(plan.wav_path.stem + ".dn*.wav"):
@@ -811,7 +821,7 @@ class Narrator:
                 "candidates": cand_info, "model": self.backend.model_id(), "quality": self.quality,
                 "tries": state["tried"], "met": met, "hint": "；".join(hints), "status": status, "flagged": flagged,
                 "judge": self._judge_sig(), "created": time.strftime("%Y-%m-%d %H:%M:%S")}
-        plan.meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
+        atomic.write_text(plan.meta_path, json.dumps(meta, ensure_ascii=False, indent=1))  # 最后写：有它才算缓存好了
         return SegmentResult(seg, best.wav, best.sr, score, ref["id"], False, best.seed, cand_info, path=plan.wav_path,
                              pct=pct, status=status, hint=meta["hint"], flagged=flagged, tries=state["tried"], met=met)
 
@@ -1125,7 +1135,7 @@ class Narrator:
             n = len(resample(r.wav, r.sr, sr)) if r.sr != sr else len(r.wav)
             if timed and r.segment.cue_start is not None:
                 start = r.segment.cue_start
-                if start < cursor - 0.02:
+                if start < cursor:  # 不能和上一句叠在一起（以前允许往回 20 毫秒：两句重叠、字幕时间也重叠）
                     if start + 0.5 < cursor:
                         self.warnings.append(f"第 {i + 1} 句比字幕时间轴晚了 {cursor - start:.1f} 秒（上一句太长）")
                     start = cursor
@@ -1134,7 +1144,8 @@ class Narrator:
             r.start, r.end = start, start + n / sr
             layout.append((start, n))
             if timed:
-                cursor = r.end + (0.08 if r.segment.pause_after == "clause" else 0.0)
+                # 句子之间至少留一点绝对静音（以前字幕挨着时两句之间一点停顿都没有）
+                cursor = r.end + (TIMED_MIN_CLAUSE_GAP if r.segment.pause_after == "clause" else TIMED_MIN_GAP)
             else:
                 pause = self._pause(r.segment, i)
                 if not isinstance(r.segment.pause_after, (int, float)):
@@ -1170,13 +1181,18 @@ class Narrator:
             audio = normalize_lufs(audio, sr, target, ceiling_db=-1.0)  # 只乘一个系数：0 还是 0
         fmt = (out_path.suffix.lower().lstrip(".") or self.scfg.get("output_format", "wav"))
         wav_path = out_path.with_suffix(".wav")
-        save_audio(wav_path, audio, sr)
-        log.info(f"输出响度 {measure_lufs(audio, sr):.1f} LUFS，时长 {len(audio) / sr:.1f} 秒")
-        if fmt in ("mp3", "m4a", "flac"):
-            final = encode(wav_path, out_path.with_suffix("." + fmt))
-            wav_path.unlink(missing_ok=True)
-            return final
-        return wav_path
+        # 先写到一个只有这次用的临时文件：要 MP3 时不会碰到旁边同名的 WAV（以前同一分钟里先生成 WAV、
+        # 再生成 MP3，刚听过的 WAV 被删掉了）；写到一半出错也不会留下半个文件
+        tmp = atomic.tmp_for(wav_path).with_suffix(".wav")
+        try:
+            save_audio(tmp, audio, sr)
+            log.info(f"输出响度 {measure_lufs(audio, sr):.1f} LUFS，时长 {len(audio) / sr:.1f} 秒")
+            if fmt in ("mp3", "m4a", "flac"):
+                return encode(tmp, out_path.with_suffix("." + fmt))
+            atomic.finish(tmp, wav_path)
+            return wav_path
+        finally:
+            tmp.unlink(missing_ok=True)
 
     def _write_srt(self, results: List[SegmentResult], path: Path) -> Path:
         from voicetwin.data.subtitles import Cue, write_srt

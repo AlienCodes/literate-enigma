@@ -1,0 +1,15 @@
+from common import *
+from voicetwin.webui import app as A
+ws = Path(sys.argv[1]); cfg = make_cfg(ws); ui = A.WebUI(cfg)
+p = wf.open_project(cfg, V, must_exist=True)
+print("BLOCK:", BLOCK, "has_pinyin:", tf.has_pinyin(), "has_jieba:", lf.has_jieba())
+print("button before:", ui.textfix_btn(V)["interactive"])
+outs = list(ui.do_textfix(V))
+last = dict(zip(ui.TEXTFIX_OUT, outs[-1]))
+md = str(last.get("proof_md"))
+print("--- result md (first line):", md.split("\n")[0])
+print("warning line:", [l for l in md.split("\n") if "pypinyin" in l])
+print("other notices:", [str(x)[:200] for k, x in last.items() if k == "proof_bar"])
+print("button after:", ui.textfix_btn(V)["interactive"])
+print("textfix_used.json exists:", (Path(p.root) / tf.USED_FILE).exists())
+for t in texts(p): print("   ", t)

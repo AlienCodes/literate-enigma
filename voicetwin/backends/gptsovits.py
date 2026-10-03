@@ -1132,6 +1132,13 @@ class GPTSoVITSBackend(Backend):
         stamp = opt_dir / "voicetwin_list.sha1"
         old = stamp.read_text().strip() if stamp.exists() else None
         fresh = old is None
+        if old:  # 旧版本训练的模型：models.json 里没记它用的素材，先把上次的指纹记过去（这次训练失败 / 停止时还能提醒）
+            try:
+                entry = self.project.load_models().get(self.name) or {}
+                if entry.get("sovits") and not entry.get("list_sha1"):
+                    self.project.update_models(self.name, {"list_sha1": old})
+            except Exception as exc:  # noqa: BLE001
+                log.debug(f"记下旧模型用的素材指纹没成功：{exc}")
         if old is not None and old != digest:
             log.info("训练素材有变化，清理旧的特征文件后重新提取")
             for name in ("2-name2text.txt", "6-name2semantic.tsv", "3-bert", "4-cnhubert", "5-wav32k", "7-sv_cn"):
@@ -1327,6 +1334,10 @@ class GPTSoVITSBackend(Backend):
             "params": params, "sovits": [str(p) for p in sovits], "gpt": [str(p) for p in gpt],
             "selected": {"id": f"s{_epoch(sovits[-1])}-g{_epoch(gpt[-1])}", "sovits": str(sovits[-1]), "gpt": str(gpt[-1])},
         }
+        try:  # 这个模型是用哪份素材训练好的（训练做完才记：训练失败 / 停止了，还是旧模型的指纹，提醒不会消失）
+            info["list_sha1"] = (opt_dir / "voicetwin_list.sha1").read_text().strip()
+        except OSError:
+            pass
         # 旧模型的挑选结果和语速校准不能留给新模型用（自动挑选没做成功、或者不挑选时，会一直用着旧的数字）
         self.project.update_models(self.name, info, drop=("selection", "speed", "selection_error"))
         self.step(progress, 1.0, "GPT-SoVITS 训练完成")
@@ -1487,8 +1498,11 @@ class GPTSoVITSBackend(Backend):
         怎么判断：训练开始时 _prepare_features 记下了当时训练列表的指纹（GPT-SoVITS 的 logs/<实验名>/voicetwin_list.sha1）；
         用现在校对表里保存好的文字按同样的方法算一遍（旧版本训练的模型也能判断）。"""
         try:
+            entry = self.project.load_models().get(self.name) or {}
             stamp = self._opt_dir() / "voicetwin_list.sha1"
-            if not stamp.exists() or not (self.project.load_models().get(self.name) or {}).get("sovits"):
+            # 训练做完时记下的指纹（训练失败 / 中途停止不会改它）；旧版本训练的模型只有训练开始时写的那份
+            want = str(entry.get("list_sha1") or "") or (stamp.read_text().strip() if stamp.exists() else "")
+            if not want or not entry.get("sovits"):
                 return ""
             from voicetwin.data.exporters import gptsovits_list_text, train_records
 
@@ -1497,7 +1511,7 @@ class GPTSoVITSBackend(Backend):
                 return ""
             # 和 export_gptsovits 写文件时一样：文本方式写入，Windows 上换行是 \r\n
             data = gptsovits_list_text(self.project, self.exp_name, recs).replace("\n", os.linesep).encode("utf-8")
-            if hashlib.sha1(data + self.version.encode()).hexdigest() == stamp.read_text().strip():
+            if hashlib.sha1(data + self.version.encode()).hexdigest() == want:
                 return ""
         except Exception:
             return ""

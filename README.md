@@ -11,7 +11,7 @@
 > 1. 下载程序：[**Releases 页面 → VoiceTwin-Windows-v….zip**](https://github.com/AlienCodes/literate-enigma/releases/latest)
 > 2. 照着 [**快速上手**](快速上手.md) 做：安装 → 训练你的声音 → 粘贴讲稿生成音频（也有 [7 页 PDF 版](docs/快速上手.pdf)，带截图）
 >
-> 想看每一步更细的说明（网页版，需要时再看）：[Windows 详细教程](docs/Windows详细使用教程.md)
+> 说明只维护这一份《快速上手》（老的长教程 docs/Windows详细使用教程.md 停在 v18.1 以前，不再更新，和现在的界面不一样）。
 
 > 你已经录好的课程视频/音频就是训练素材。程序会自动从里面提取你的声音、识别文字、训练一个专属模型，
 > 然后按你本人的语速、停顿和语气来朗读新讲稿。
@@ -95,7 +95,7 @@ VoiceTwin 把目前最好的开源技术组合起来，逐项处理：
 双击 `install_windows.bat`，选择 **1**，粘贴第 1 步的整合包路径（如 `D:\GPT-SoVITS`），等它装完。
 安装脚本会：把 VoiceTwin 装进整合包环境（不改动整合包原有依赖的版本）→ 生成 `config.yaml` → 生成启动脚本和桌面图标「声音分身 VoiceTwin」→ 自动检查环境。
 
-> 每一步的截图级说明见 [Windows 详细使用教程](docs/Windows详细使用教程.md)。
+> 每一步带截图的说明见 [快速上手](快速上手.md)。
 
 ### 第 4 步：补齐预训练模型（如有提示）
 
@@ -235,6 +235,7 @@ voicetwin doctor                                    # 检查环境（显卡、�
 voicetwin prepare -v 我的声音 -i D:/讲课视频 E:/录音   # 准备素材（可多个文件/文件夹）
 voicetwin prepare -v 我的声音 -i D:/讲课视频 --asr funasr   # 纯中文课用阿里 FunASR 识别
 voicetwin review  -v 我的声音                        # 用 Excel 改完 transcripts.csv 后同步
+voicetwin confirm -v 我的声音                        # 确认训练素材（训练前必须做）
 voicetwin train   -v 我的声音                        # 训练 + 自动挑最佳模型 + 语速校准
 voicetwin select  -v 我的声音 --asr                  # 单独重新挑模型（带识别校验）
 voicetwin narrate -v 我的声音 第3课.md -q perfect     # 讲稿 → 音频 + 字幕 + 报告（质量：fast/balanced/best/max/perfect）

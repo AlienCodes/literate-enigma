@@ -19,8 +19,9 @@ EPILOG = """
   1. voicetwin doctor                                   检查环境
   2. voicetwin prepare -v 我的声音 -i D:/讲课视频        从视频/录音准备素材（自动识别文字）
   3. （可选）用 Excel 打开 workspace/我的声音/transcripts.csv 校对文字，然后 voicetwin review -v 我的声音
-  4. voicetwin train -v 我的声音                         训练（GPT-SoVITS），完成后自动挑选最像的模型
-  5. voicetwin narrate -v 我的声音 第1课讲稿.md          生成讲课音频 + 字幕
+  4. voicetwin confirm -v 我的声音                       确认训练素材（训练前必须做；改过素材要再确认一次）
+  5. voicetwin train -v 我的声音                         训练（GPT-SoVITS），完成后自动挑选最像的模型
+  6. voicetwin narrate -v 我的声音 第1课讲稿.md          生成讲课音频 + 字幕
   或者一条命令全自动：voicetwin auto -v 我的声音 -i D:/讲课视频
   网页界面：voicetwin webui
 """
@@ -114,6 +115,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--segmentation", choices=["auto", "srt", "energy"], help="切分方式")
 
     p = sub.add_parser("review", help="读回 transcripts.csv 里的人工校对结果")
+    voice_arg(p)
+
+    p = sub.add_parser("confirm", help="确认训练素材（和网页上的「✅ 确认训练素材」一样；训练前必须做）")
     voice_arg(p)
 
     p = sub.add_parser("analyze", help="重新分析说话风格（语速、停顿、音高、响度）")
@@ -531,6 +535,13 @@ def main(argv: Optional[List[str]] = None) -> None:
             summary = wf.apply_review(cfg, args.voice)
             print(f"已同步修改：{summary['changed']}")
             _print_summary(summary)
+        elif args.command == "confirm":
+            res = wf.review_confirm(cfg, args.voice)
+            if res.get("confirmed"):
+                print(f"✅ 训练素材已确认（{res.get('time', '')}）：可以运行 voicetwin train -v {args.voice}")
+            else:
+                print("⚠️ 现在一条能用来训练的片段都没有，没法确认（先准备素材、检查校对表）")
+                sys.exit(1)
         elif args.command == "analyze":
             wf.run_analyze(cfg, args.voice)
         elif args.command == "train":

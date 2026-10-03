@@ -7,6 +7,8 @@
 from __future__ import annotations
 
 import math
+import threading
+from pathlib import Path
 from typing import Any, Dict, List
 
 import numpy as np
@@ -33,7 +35,23 @@ def _score(r: Dict[str, Any], med_rate: float) -> float:
     return 3.0 * sim + 1.0 * snr + 0.6 * lp_n - 2.5 * rate_dev + 0.6 * dur_pref - 0.6 * long_pause
 
 
-def select_references(project: Project, records: List[Dict[str, Any]], pcfg: Dict[str, Any]) -> List[Dict[str, Any]]:
+#: 同时挑参考音频（例如两个保存同时做完）时一个一个来，不会互相删掉对方刚写的文件
+_REFS_LOCK = threading.Lock()
+
+
+def select_references(project: Project, records: List[Dict[str, Any]], pcfg: Dict[str, Any],
+                      cleanup: bool = False) -> List[Dict[str, Any]]:
+    """挑参考音频（每种语言几条、陈述 / 疑问 / 感叹都有），写进 references/ 和 references.json。
+
+    不删正在用的文件：表格保存时重新挑，只加新的（同一句已经有了就不重写）；「生成」「挑选最佳模型」这时可能正用着
+    以前挑的那几条（以前先把 references/ 里的全删掉，生成到一半找不到参考音频就失败了）。cleanup=True（准备素材时，
+    这时不会有生成在跑）才把不再用的旧文件删掉。"""
+    with _REFS_LOCK:
+        return _select_references(project, records, pcfg, cleanup)
+
+
+def _select_references(project: Project, records: List[Dict[str, Any]], pcfg: Dict[str, Any],
+                       cleanup: bool) -> List[Dict[str, Any]]:
     rcfg = pcfg.get("references", {}) or {}
     count = int(rcfg.get("count", 8))
     min_d, max_d = float(rcfg.get("min_duration", 3.5)), float(rcfg.get("max_duration", 9.5))
@@ -67,20 +85,18 @@ def select_references(project: Project, records: List[Dict[str, Any]], pcfg: Dic
         for r in statements:  # 陈述句优先分散到不同视频
             if len([p for p in picked if sentence_kind(p["text"]) == "statement"]) >= quota:
                 break
-            if used_sources.get(r["source"], 0) >= 2 and len(statements) > quota * 2:
+            if used_sources.get(r.get("source", ""), 0) >= 2 and len(statements) > quota * 2:
                 continue
             key = normalize_for_cer(r["text"])
             if key in seen_texts:
                 continue
             seen_texts.add(key)
             picked.append(r)
-            used_sources[r["source"]] = used_sources.get(r["source"], 0) + 1
+            used_sources[r.get("source", "")] = used_sources.get(r.get("source", ""), 0) + 1
         chosen += picked
 
     refs: List[Dict[str, Any]] = []
     project.refs_dir.mkdir(parents=True, exist_ok=True)
-    for old in project.refs_dir.glob("*.wav"):
-        old.unlink()
     for r in chosen:
         wav, sr = load_audio(project.abspath(r["path"]))
         trimmed, _, _ = trim_silence(wav, sr, pad_ms=80)
@@ -89,7 +105,19 @@ def select_references(project: Project, records: List[Dict[str, Any]], pcfg: Dic
             # 太长就从句中停顿处截短不可靠，直接跳过；太短也跳过
             continue
         path = project.refs_dir / f"{r['id']}.wav"
-        save_audio(path, trimmed, sr)
+        if not path.exists():  # 同一句的参考音频内容一样：已经有了就不重写（可能正被生成用着）
+            from voicetwin.utils import atomic
+
+            tmp = atomic.tmp_for(path).with_suffix(".wav")
+            try:
+                save_audio(tmp, trimmed, sr)
+            except BaseException:
+                try:
+                    tmp.unlink()
+                except OSError:
+                    pass
+                raise
+            atomic.finish(tmp, path)
         refs.append({
             "id": r["id"],
             "path": project.relpath(path),
@@ -98,13 +126,21 @@ def select_references(project: Project, records: List[Dict[str, Any]], pcfg: Dic
             "kind": sentence_kind(r["text"]),
             "duration": round(dur, 2),
             "score": round(float(r.get("_ref_score", 0.0)), 3),
-            "source": r["source"],
+            "source": r.get("source", ""),
             "rate": r.get("rate"),
         })
     for r in records:
         r.pop("_ref_score", None)
     refs.sort(key=lambda x: (x["lang"], x["kind"] != "statement", -x["score"]))
     project.write_json(project.references_path, refs)
+    if cleanup:  # 准备素材时：不再用的旧参考音频删掉（这时不会有生成在跑）
+        keep = {Path(x["path"]).name for x in refs}
+        for old in project.refs_dir.glob("*.wav"):
+            if old.name not in keep:
+                try:
+                    old.unlink()
+                except OSError:
+                    pass
     if not refs:
         log.warning("没有挑到合适的参考音频（需要 3.5~9.5 秒、完整一句话的片段）。可在 transcripts.csv 里检查文字后重试。")
     else:

@@ -29,11 +29,11 @@ def _copy_voice(prepared, tmp_path):
 
 
 def test_version_is_shown_in_page_header():
-    """老师的永久要求：网页标题永远显示「v18」，版本号（18.4……）只在黑色窗口、发布页、下载的文件名里。"""
-    assert voicetwin.__version__ == "18.4"
-    assert A.APP_TITLE_VERSION == "18" and "# 🎙️ 声音分身 VoiceTwin v18 " in A.INTRO and "18.4" not in A.INTRO
+    """老师的永久要求：网页标题永远显示「v18」，版本号（18.5……）只在黑色窗口、发布页、下载的文件名里。"""
+    assert voicetwin.__version__ == "18.5"
+    assert A.APP_TITLE_VERSION == "18" and "# 🎙️ 声音分身 VoiceTwin v18 " in A.INTRO and "18.5" not in A.INTRO
     text = (Path(__file__).resolve().parents[1] / "pyproject.toml").read_text(encoding="utf-8")
-    assert 'version = "18.4"' in text
+    assert 'version = "18.5"' in text
     src = (Path(__file__).resolve().parents[1] / "voicetwin" / "webui" / "app.py").read_text(encoding="utf-8")
     assert '\nAPP_TITLE_VERSION = "18"\n' in src  # 写死的，不跟着版本号变
     # 发布说明和《快速上手》不能说「网页标题显示新版本号」：新版本号写在黑色窗口里
@@ -43,8 +43,8 @@ def test_version_is_shown_in_page_header():
     spec = importlib.util.spec_from_file_location("bwr", root / "scripts" / "build_windows_release.py")
     bwr = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(bwr)
-    notes = bwr.release_notes("18.4", "VoiceTwin-Windows-v18.4.zip")
-    assert "「声音分身 VoiceTwin v18.4 正在启动」就对了" in notes and "标题显示 v18.4" not in notes
+    notes = bwr.release_notes("18.5", "VoiceTwin-Windows-v18.5.zip")
+    assert "「声音分身 VoiceTwin v18.5 正在启动」就对了" in notes and "标题显示 v18.5" not in notes
     quick = (root / "快速上手.md").read_text(encoding="utf-8")
     assert "网页标题里显示新版本号" not in quick and "网页标题永远显示 v18" in quick
 
@@ -264,7 +264,10 @@ def test_error_advice_names_real_ui_labels():
     from voicetwin.errors import explain
 
     f = explain(RuntimeError("没有可用于训练的片段，请先运行素材准备并检查 transcripts.csv。"))
-    assert "「保留」改成「是」" in f.advice  # 校对表的「保留」列填 是/否
+    # 「保留」那一列 v18.1 起就没有了：说现在表格里真有的（紫色 = 删除的、灰色 = 不能用的、⋯ 选项里的两个按钮）
+    assert "保留" not in f.advice and "↩️ 撤销删除" in f.advice and "✅ 这一条也要用" in f.advice
+    src = (Path(A.__file__)).read_text(encoding="utf-8")
+    assert "↩️ 撤销删除" in src and "✅ 这一条也要用" in src and "✅ 确认训练素材" in src
     f = explain(RuntimeError("GPT-SoVITS 环境有问题：\n- 配置了外部 api_url 时无法自动训练"))
     assert f.key == "gsv_env" and "「检查环境」" not in f.advice and "🩺 环境检查" in f.advice
     f = explain(RuntimeError("CUDA out of memory. Tried to allocate 2.00 GiB"))

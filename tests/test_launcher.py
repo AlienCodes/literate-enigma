@@ -33,8 +33,15 @@ def _free_base_port():
 class _Server:
     """在后台线程里跑一个很小的 http 服务，/config 返回指定的网页标题。"""
 
-    def __init__(self, title, port=0):
-        payload = json.dumps({"title": title, "version": "4.24.0"}, ensure_ascii=False).encode("utf-8")
+    def __init__(self, title, port=0, vt_version=None):
+        import voicetwin
+
+        vt_version = voicetwin.__version__ if vt_version is None else vt_version
+        comps = ([{"id": 1, "type": "html", "props": {"elem_id": "vt-version", "visible": False,
+                                                      "value": f'<span data-vt-version="{vt_version}"></span>'}}]
+                 if vt_version else [])  # 旧版本（v18.4 以前）的网页里没有版本号
+        payload = json.dumps({"title": title, "version": "4.24.0", "components": comps},
+                             ensure_ascii=False).encode("utf-8")
 
         class Handler(BaseHTTPRequestHandler):
             def do_GET(self):  # noqa: N802
@@ -258,6 +265,26 @@ def test_launch_reuses_running_instance(fake_env, capsys):
         srv.close()
     assert fake_env.opened == [srv.url]
     assert "声音分身已经在运行了" in capsys.readouterr().out
+
+
+def test_launch_waits_for_an_old_version_to_close(fake_env, capsys):
+    """升级以后旧版本的黑色窗口还开着：以前直接打开旧网页（看不到新功能，老师以为升级失败）。
+    现在请老师关掉旧窗口，关掉以后自动接着启动新版本。"""
+    started = []
+
+    def build_app(cfg, local=True):
+        started.append(True)
+        raise RuntimeError("测试：到这里就算启动了新版本")
+
+    fake_env.monkeypatch.setattr(fake_env.app_mod, "build_app", build_app)
+    fake_env.monkeypatch.setattr(launcher.time, "sleep", lambda s: srv.close() if srv.httpd.socket.fileno() >= 0 else None)
+    for old in ("", "18.4"):
+        srv = _Server("声音分身 VoiceTwin v18", vt_version=old)
+        with pytest.raises(RuntimeError, match="启动了新版本"):
+            launcher.launch({}, port=srv.port)
+        out = capsys.readouterr().out
+        assert "旧版本" in out and "关掉" in out and fake_env.opened == []
+    assert len(started) == 2
 
 
 def test_launch_port_error_is_chinese(fake_env):

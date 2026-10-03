@@ -52,6 +52,7 @@ STAGES_NARRATE_VARIANTS: List[Stage] = [(0.00, "启动合成引擎"), (0.03, "�
                                         (0.93, "做「去杂音」版本并比较哪个更像你")]
 STAGES_DOWNLOAD: List[Stage] = [(0.0, "下载模型文件")]
 STAGES_PROOFCHECK: List[Stage] = [(0.00, "准备识别引擎"), (0.02, "逐条检查文字，标出可能的错字")]
+STAGES_TEXTFIX: List[Stage] = [(0.00, "读母本和语法术语"), (0.15, "一句一句检查")]
 STAGES_BLIND_TEST: List[Stage] = [(0.00, "挑选你的真实录音"), (0.05, "用同样的文字生成"), (0.90, "统一音量、打乱顺序、保存")]
 STAGES_VERIFY: List[Stage] = [(0.00, "加载声纹模型"), (0.10, "逐个打分")]
 TRAIN_SELECT_SPLIT = 0.88
@@ -162,7 +163,7 @@ def task_stages(kind: str, cfg: Optional[Config] = None, backend_name: Optional[
                 overrides: Optional[Dict[str, Any]] = None) -> List[Stage]:
     """给进度条用的阶段表：[(开始的进度, 中文步骤名), ...]，从小到大。
 
-    kind：prepare | train | select | narrate（= generate）| download | proofcheck | blind_test | verify。
+    kind：prepare | train | select | narrate（= generate）| download | proofcheck | textfix | blind_test | verify。
     narrate 请把网页上选的 quality 一起传进来（「完美」档多一步）；prepare 可以传 overrides / proofcheck。
     """
     kind = (kind or "").strip().lower()
@@ -181,6 +182,8 @@ def task_stages(kind: str, cfg: Optional[Config] = None, backend_name: Optional[
         return list(STAGES_DOWNLOAD)
     if kind == "proofcheck":
         return list(STAGES_PROOFCHECK)
+    if kind == "textfix":
+        return list(STAGES_TEXTFIX)
     if kind in ("blind_test", "blind"):
         return list(STAGES_BLIND_TEST)
     if kind == "verify":
@@ -380,7 +383,7 @@ def _clean_input(p: Any) -> str:
 def _precheck_prepare(cfg: Config, voice: str, inputs: List[str], overrides: Optional[Dict[str, Any]]) -> List[str]:
     """开始前先检查（几秒钟）：文件夹在不在、识别组件装没装、硬盘空间。返回要提醒的话。"""
     from voicetwin.data.asr import engine_importable
-    from voicetwin.data.prepare import discover_sources, source_id
+    from voicetwin.data.prepare import discover_sources
     from voicetwin.data.subtitles import find_sidecar_subtitle
 
     for p in inputs:
@@ -388,12 +391,14 @@ def _precheck_prepare(cfg: Config, voice: str, inputs: List[str], overrides: Opt
             raise FileNotFoundError(f"找不到文件夹：{p}。请在文件夹窗口顶部的地址栏复制路径，再粘贴过来")
     eff = _effective_cfg(cfg, overrides)
     project = Project(cfg, voice)
-    sources_db = project.read_json(project.sources_path, {}) or {}
-    files = discover_sources(inputs)
+    from voicetwin.data.prepare import _own_dirs, already_done, load_sources
+
+    sources_db = load_sources(project, project.load_manifest())
+    files = discover_sources(inputs, exclude=_own_dirs(project, eff))
     new = []
     for f in files:
         try:
-            if not (sources_db.get(source_id(f)) or {}).get("done"):
+            if not already_done(sources_db, f):
                 new.append(f)
         except OSError:
             continue
@@ -455,6 +460,18 @@ def run_prepare(cfg: Config, voice: str, inputs: Iterable[str], progress: Option
     return summary
 
 
+#: apply_review 重新统计时算出来、写进校对表的东西（别的字段都是老师 / 别的功能改的，合并时不碰）
+REVIEW_DERIVED = ("voiced", "pauses", "syllables", "rate", "snr", "clip_ratio", "_stats_text", "drop_reason",
+                  "speaker_sim", "keep", "split")
+#: 会影响上面这些的东西：期间变了就要重新算
+REVIEW_INPUTS = ("id", "text", "lang", "deleted", "manual_keep", "duration", "path", "asr", "forced_cuts", "source",
+                 "start")
+
+
+def _same_review_inputs(a: List[Dict[str, Any]], b: List[Dict[str, Any]]) -> bool:
+    return len(a) == len(b) and all(all(x.get(k) == y.get(k) for k in REVIEW_INPUTS) for x, y in zip(a, b))
+
+
 def apply_review(cfg: Config, voice: str, read_csv: bool = True) -> Dict[str, Any]:
     """读回你在 transcripts.csv 里的修改，重新统计、过滤、挑参考音频。
 
@@ -464,17 +481,40 @@ def apply_review(cfg: Config, voice: str, read_csv: bool = True) -> Dict[str, An
     from voicetwin.data.references import select_references
     from voicetwin.style.profile import build_profile
 
+    import copy
+
+    from voicetwin.data import review as _review
+
     project = open_project(cfg, voice, must_exist=True)
     changed = project.import_csv() if read_csv else {"text": 0, "keep": 0, "lang": 0}
-    records = project.load_manifest()
-    for r in records:
-        if r.get("_stats_text") != r.get("text"):
-            _clip_stats(project, r)
-            r["_stats_text"] = r.get("text")
     pcfg = cfg.get("prepare", {})
-    apply_filters(project, records, pcfg, cfg)
-    assign_splits(records, int(pcfg.get("validation_count", 20)))
-    project.save_manifest(records)
+
+    def derive(records: List[Dict[str, Any]]) -> None:
+        for r in records:
+            if r.get("_stats_text") != r.get("text"):
+                _clip_stats(project, r)
+                r["_stats_text"] = r.get("text")
+        apply_filters(project, records, pcfg, cfg)
+        assign_splits(records, int(pcfg.get("validation_count", 20)))
+
+    # 慢的部分（读音频、算声纹）不占着校对表的锁，算在一份拷贝上；写回时拿着锁重新读一遍，只把这次算出来的
+    # 东西合进去——期间老师保存的另一行、删除、「这句没错」、一键校正都留着（以前整个写回旧的那份，会把它们冲掉）
+    before = project.load_manifest()
+    snapshot = copy.deepcopy(before)
+    derive(snapshot)
+    with _review._LOCK:
+        fresh = project.load_manifest()
+        if _same_review_inputs(before, fresh):
+            for r, b, d in zip(fresh, before, snapshot):
+                for k in REVIEW_DERIVED:
+                    if k in d:
+                        r[k] = d[k]
+                    elif k in b:
+                        r.pop(k, None)
+        else:
+            derive(fresh)  # 期间改了会影响统计的东西（文字、删除、要不要用）：拿着锁重新算一遍（很少见）
+        records = fresh
+        project.save_manifest(records)
     refs = select_references(project, records, pcfg)
     csv_locked = False
     try:
@@ -522,13 +562,15 @@ def review_confirm(cfg: Config, voice: str) -> Dict[str, Any]:
     project = open_project(cfg, voice, must_exist=True)
     saved = review.save_rows(project)
     summary = apply_review(cfg, voice, read_csv=False)
-    records = project.load_manifest()
-    counts = review.material_counts(records)
-    out = {"saved": saved["saved"], "changed": saved["changed"], "summary": summary, "counts": counts,
-           "csv_locked": bool(saved.get("csv_locked") or summary.get("csv_locked")), "confirmed": False}
-    if counts["material"] > 0:
-        out["confirmed"] = True
-        out["time"] = review.save_confirmed(project, records)["time"]
+    with review._LOCK:  # 记下的「确认了哪些句子」和这一刻的校对表一致（期间别的按钮改了也不会错开）
+        records = project.load_manifest()
+        counts = review.material_counts(records)
+        out = {"saved": saved["saved"], "changed": saved["changed"], "summary": summary, "counts": counts,
+               "csv_locked": bool(saved.get("csv_locked") or summary.get("csv_locked")), "confirmed": False}
+        if counts["material"] > 0:
+            out["confirmed"] = True
+            out["time"] = review.save_confirmed(project, records)["time"]
+            review.clear_undo(project)  # 确认以后「撤销刚才的替换」不能再把确认好的字改回去
     return out
 
 
@@ -567,6 +609,115 @@ def run_proofcheck(cfg: Config, voice: str, progress: Optional[ProgressFn] = Non
         res = dict(res or {})
         _report(progress, 1.0, f"查完了：检查了 {res.get('checked', 0)} 条，其中 {res.get('flagged', 0)} 条可能有错（已标红）")
     return res
+
+
+TEXTFIX_ONCE_MSG = ("这批素材已经用过「📝 一键全部文字校正」了：每批素材只能用一次，所以按钮是灰色的。"
+                    "改好的地方都在下面的表格里，还没保存的请点「保存修改」；还要改的，请用每一行「修改建议」里的按钮，"
+                    "或者双击「文字」自己改。以后加了新的素材、识别完（或者恢复了删除的句子），按钮会再亮起来"
+                    "（只改这些还没改过的句子）。")
+
+
+TEXTFIX_NEED_TOOLS_MSG = ("这台电脑上的声音分身没有找到拼音 / 分词工具（pypinyin、jieba），一键全部文字校正只能改很少的一部分。"
+                          "每批素材只能用一次，为了不白白用掉这次机会，这次没有开始，什么都没改。"
+                          "请重新运行 install_windows.bat、选 1（装进 GPT-SoVITS 整合包，里面有这两个工具），再点这个按钮。")
+
+
+def run_transcript_fix(cfg: Config, voice: str, files: Optional[Sequence[Any]] = None,
+                       progress: Optional[ProgressFn] = None, adopt_all: bool = True,
+                       once: bool = False) -> Dict[str, Any]:
+    """📝 一键全部文字校正（v18.5）：以母本标准库为准检查校对表的文字，确定的错直接改好；
+    adopt_all=True 时再把有把握的修改建议一次全部采用（没把握的留着红色，老师听录音自己点那一行的「采用」）。
+    改的都存成没保存的修改（红灯），老师点「保存修改」才生效。
+
+    files：这次上传的母本（txt / transcripts.csv，替换上次上传的）；不给时用上次存的（没有也行，程序自带母本）。
+    once=True（网页上的按钮）：每批素材只能用一次（老师的要求）——只改还没用过的句子（新加的素材），别的句子一点不动；
+    都用过了就不做（ValueError）；做完记下这些句子用过了，按钮变灰。"""
+    from voicetwin.data import transcript_fix
+
+    project = open_project(cfg, voice, must_exist=True)
+    only = None
+    if once:
+        only = transcript_fix.textfix_new_ids(project)
+        if not only:
+            raise ValueError(TEXTFIX_ONCE_MSG)
+        from voicetwin.data.lexicon_fix import has_jieba
+
+        if not (transcript_fix.has_pinyin() and has_jieba()):  # 只能改一点点：不能用掉这批素材唯一的一次
+            raise ValueError(TEXTFIX_NEED_TOOLS_MSG)
+    if files:
+        info = transcript_fix.save_transcripts(project, files)
+        _report(progress, 0.01, f"已保存逐字稿：{'、'.join(info['files'])}（共 {info['chars']} 字）")
+    res = dict(transcript_fix.check_with_transcript(project, progress=_sub(progress, 0.0, 0.95), only=only) or {})
+    from voicetwin.data import review as _review
+
+    _review.clear_undo(project)  # 一键校正以后「撤销刚才的替换」就不是「刚才的」了（会把一键校正前的字改回去）
+    if adopt_all:  # 一键全部文字校正：剩下的有把握的修改建议（标准库的、自动查错字的）也一次全部采用
+        from voicetwin.data import review
+
+        _report(progress, 0.96, "把有把握的修改建议一次全部采用……")
+        res["adopted"] = review.adopt_all_suggestions(project, only=only)
+        _report(progress, 1.0, f"校正完了：一共改了 {res.get('fixes', 0) + res['adopted']['changes']} 处")
+    if once:  # 做完才记（中途出错 / 停止的不算用过，可以再点）；在后台任务里记，网页关掉了也记得上；
+        # 只记真的处理过的句子：检查期间老师又改了的、删除的、标了「不用」的这次没处理，
+        # 以后（恢复、改成要用）还能用一次——每一句都只改一次
+        handled = list(res.get("handled") or [])
+        transcript_fix.mark_textfix_used(project, handled)
+        res["only"] = len(only or [])
+        res["skipped_edited"] = len(set(only or []) - set(handled))  # 检查期间又改过的（这次没处理，按钮还亮着）
+        res["all_rows"] = len(transcript_fix.textfix_eligible_ids(project))
+    return res
+
+
+def textfix_ever_used(cfg: Config, voice: str) -> bool:
+    """这个声音用过「一键全部文字校正」没有（按钮下面「已经用过了」的说明只在用过以后才显示）。"""
+    from voicetwin.data import transcript_fix
+
+    try:
+        project = open_project(cfg, voice, must_exist=True)
+    except (ValueError, RuntimeError, OSError):
+        return False
+    return transcript_fix.textfix_ever_used(project)
+
+
+def textfix_new_ids(cfg: Config, voice: str) -> List[str]:
+    """还没用过「一键全部文字校正」、现在能处理的句子（id）；声音还不存在时是空的。"""
+    from voicetwin.data import transcript_fix
+
+    try:
+        project = open_project(cfg, voice, must_exist=True)
+    except (ValueError, RuntimeError, OSError):
+        return []
+    return transcript_fix.textfix_new_ids(project)
+
+
+def textfix_used(cfg: Config, voice: str) -> bool:
+    """这个声音现在的素材是不是都用过「一键全部文字校正」了（用过了按钮是灰色的；加了新素材又变成 False）；
+    声音还不存在时 False。"""
+    from voicetwin.data import transcript_fix
+
+    try:
+        project = open_project(cfg, voice, must_exist=True)
+    except (ValueError, RuntimeError, OSError):
+        return False
+    return transcript_fix.textfix_used(project)
+
+
+def transcript_info(cfg: Config, voice: str) -> Dict[str, Any]:
+    """存好的逐字稿：{"files": [...], "chars": n}；声音还不存在时返回空的。"""
+    from voicetwin.data import transcript_fix
+
+    try:
+        project = open_project(cfg, voice, must_exist=True)
+    except (ValueError, RuntimeError, OSError):
+        return {"files": [], "chars": 0}
+    return transcript_fix.transcript_info(project)
+
+
+def export_review_text(cfg: Config, voice: str) -> Dict[str, Any]:
+    """⬇️ 下载改好的文字（txt）：见 review.export_text。"""
+    from voicetwin.data import review
+
+    return review.export_text(open_project(cfg, voice, must_exist=True))
 
 
 def apply_suggestion(cfg: Config, voice: str, clip_id: str) -> Dict[str, Any]:
@@ -673,10 +824,11 @@ def training_blocker(project: Project) -> str:
     records = project.load_manifest()
     conf = review.load_confirmed(project)
     if not conf:
-        return "还没有确认训练素材，这次没有开始训练（必须先在校对表下面点「✅ 确认训练素材」）。"
-    if conf.get("signature") != review.material_signature(records):
+        return ("还没有确认训练素材，这次没有开始训练（必须先在校对表下面点「✅ 确认训练素材」；"
+                "用命令行的话运行 voicetwin confirm）。")
+    if not review.confirmed_matches(conf, records):
         return ("确认训练素材以后，校对表又改过（改了文字、删除或撤销删除了句子），这次没有开始训练"
-                f"（上次确认是 {str(conf.get('time') or '')[5:16]}）。")
+                f"（上次确认是 {str(conf.get('time') or '')[5:16]}；用命令行的话再运行一次 voicetwin confirm）。")
     return ""
 
 
@@ -698,7 +850,9 @@ def _check_material_before_training(project: Project) -> None:
     records = project.load_manifest()
     material = train_records(project, include_val=True)
     val = sum(1 for r in material if r.get("split") == "val")
-    edited = sum(1 for r in material if r.get("text_edited") or r.get("orig_text"))
+    # 真正进训练的（不算「考试题」）、现在的文字和最初识别的不一样的（改了又改回去的不算）
+    edited = sum(1 for r in material if r.get("split", "train") == "train"
+                 and r.get("orig_text") is not None and r.get("orig_text") != r.get("text"))
     deleted = sum(1 for r in records if r.get("deleted"))
     log.info(f"这次训练用校对表里保存好的文字：{len(material) - val} 条训练、{val} 条当「考试题」"
              + (f"；其中 {edited} 条是你改过文字的，按改好的文字训练" if edited else "")
@@ -730,8 +884,11 @@ def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, item
         if note:
             log.warning(note)
         try:  # 引擎在 select_and_calibrate 里"启动合成引擎"那一步才启动，进度条上能看到
-            return select_and_calibrate(cfg, project, backend, max_items=int(items or DEFAULT_ITEMS), use_asr=use_asr,
-                                        progress=progress)
+            res = select_and_calibrate(cfg, project, backend, max_items=int(items or DEFAULT_ITEMS), use_asr=use_asr,
+                                       progress=progress)
+            if note and isinstance(res, dict):
+                res["material_note"] = note  # 结果里也说（以前只在「详细过程」里）
+            return res
         finally:
             backend.stop()
 
@@ -777,8 +934,8 @@ def run_narrate(cfg: Config, voice: str, source: str, out: Optional[str] = None,
     with keep_awake():
         project = open_project(cfg, voice, must_exist=True)
         fmt = cfg.get("synth", {}).get("output_format", "wav")
-        src_path = Path(source.strip()) if len(source) < 1024 and "\n" not in source.strip() else None
-        is_file = bool(src_path is not None and src_path.suffix and src_path.exists() and src_path.is_file())
+        src_path = _script_file(source)
+        is_file = src_path is not None
         if is_file:
             stem = src_path.stem
         else:
@@ -792,10 +949,28 @@ def run_narrate(cfg: Config, voice: str, source: str, out: Optional[str] = None,
         try:
             narrator = Narrator(cfg, project, backend, quality=quality, candidates=candidates, speed=speed,
                                 reference=reference, asr_check=asr_check, progress=progress, variants=variants)
+            if note:  # 「训练以后校对表又改过」也写进生成结果的提醒里（以前只在折起来的「详细过程」里）
+                narrator.warnings.append(note)
             return narrator.narrate(src_path if is_file else source, out_path, redo=redo, subtitles=subtitles)
         finally:
             if own_backend:
                 backend.stop()
+
+
+def _script_file(source: str) -> Optional[Path]:
+    """讲稿框里填的是文件路径（.txt / .docx）就返回路径，否则（是讲稿文字）返回 None。
+
+    一行很长、里面有「.」的讲稿（比如「Python 3.9」、英文句子）不能当路径去问硬盘：
+    Linux / Mac 上会报「文件名太长」（OSError），以前老师会看到「安装路径太长」之类不相干的提示。
+    """
+    text = source.strip()
+    if not text or len(text) >= 1024 or "\n" in text:
+        return None
+    try:
+        path = Path(text)
+        return path if path.suffix and path.is_file() else None
+    except (OSError, ValueError):
+        return None
 
 
 def narration_table(segments: Sequence[Dict[str, Any]]) -> Tuple[List[str], List[List[Any]]]:
@@ -851,9 +1026,9 @@ def choose_variant(cfg: Config, voice: str, report_path: str, name: str) -> Dict
     report["final"] = v.get("name")
     if v.get("pct") is not None:  # 整篇百分比跟着最终版本走（和生成时的规则一样）
         report["overall_pct"] = v.get("pct")
-    tmp = rp.with_suffix(rp.suffix + ".tmp")
-    tmp.write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
-    tmp.replace(rp)
+    from voicetwin.utils import atomic
+
+    atomic.write_text(rp, json.dumps(report, ensure_ascii=False, indent=1))
     log.info(f"最终版本改成「{v.get('name')}」：{dst}")
     return {"final": v.get("name"), "audio": str(dst), "variants": variants, "report": str(rp)}
 
@@ -1216,6 +1391,7 @@ def run_auto(cfg: Config, voice: str, inputs: Iterable[str], backend_name: Optio
 
     with keep_awake():
         result: Dict[str, Any] = {"prepare": run_prepare(cfg, voice, inputs, _sub(progress, 0.0, 0.25))}
+        review_confirm(cfg, voice)  # 全自动：没有人工校对这一步，准备好的素材直接确认（不然训练不会开始）
         project = open_project(cfg, voice, must_exist=True)
         backend = get_backend(backend_name or cfg.get("backend"), cfg, project)
         if backend.supports_training and not skip_train:
@@ -1316,6 +1492,8 @@ def _doctor(cfg: Config) -> List[Dict[str, Any]]:
         ("funasr", "funasr（中文识别、查错字，可选）", False, True),
         ("resemblyzer", "resemblyzer（声纹打分）", False, False), ("gradio", "gradio（网页界面）", False, False),
         ("noisereduce", "noisereduce（降噪、「完美」档的去杂音版本，可选）", False, True),
+        ("pypinyin", "pypinyin（一键全部文字校正：按读音找错字）", False, False),
+        ("jieba", "jieba（一键全部文字校正：分词）", False, False),
         ("demucs", "demucs（去背景音乐，可选）", False, True),
     ):
         try:
@@ -1323,7 +1501,9 @@ def _doctor(cfg: Config) -> List[Dict[str, Any]]:
             add(label, True, getattr(m, "__version__", "已安装"), optional)
         except Exception:
             hint = "（必需）" if required else ("（重新双击 install_windows.bat 安装一次就会装上）"
-                                              if mod == "noisereduce" else "")
+                                              if mod == "noisereduce" else
+                                              "（重新双击 install_windows.bat、选 1 装进 GPT-SoVITS 整合包就有）"
+                                              if mod in ("pypinyin", "jieba") else "")
             add(label, False if required else None, "未安装" + hint, optional)
     gpu = _gpu_row()
     if gpu is not None:
