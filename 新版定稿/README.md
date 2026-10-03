@@ -4,77 +4,80 @@
 
 评审分依次为：英文总编辑 / 语言学教授 / 英文母语读者（16 篇起另加总编辑本人）。01–05、07–15 篇的分数为**定稿复核分**：三位评审对发布稿本身逐处复核后给出（2026-10-01），原始各轮分数见各篇评分记录。每篇的详细打分记录（各轮分数、逐项扣分、问题与解决、会签）见「评分记录」一栏。
 
-| 篇 | 标题 | 词数 | 重点词 | 评审分（定稿） | 评分记录 |
-|---|---|---|---|---|---|
-| 01 | The Doctor Who Solved the Cholera Mystery / 破解霍乱之谜的医生 | 274（用户特批 +3） | 50 | 99 / 99 / 98 | [查看](评分记录/01-评分记录.md) |
-| 02 | Survival in the Ice: The Legend of Endurance / 冰海求生：坚忍号传奇 | 270 | 52 | 99.5 / 99.5 / 100 | [查看](评分记录/02-评分记录.md) |
-| 03 | The Scientific Giant Who Changed the World / 改变世界的科学巨匠 | 271 | 50 | 100 / 99.5 / 99 | [查看](评分记录/03-评分记录.md) |
-| 04 | Rice for the World / 稻济天下 | 271 | 50 | 99.5 / 100 / 99 | [查看](评分记录/04-评分记录.md) |
-| 05 | Shadows of Wolves Over Yellowstone / 黄石公园狼影再现 | 271 | 51 | 100 / 99 / 99.5 | [查看](评分记录/05-评分记录.md) |
-| 06 | The Myth of the Unsinkable / 永不沉没的神话 | 271 | 53 | 96 / 96 / 100 | [查看](评分记录/06-评分记录.md) |
-| 07 | The Mould That Changed the World / 改变人类命运的霉菌 | 271 | 52 | 99 / 99 / 100 | [查看](评分记录/07-评分记录.md) |
-| 08 | Saving the Sky / 拯救天空 | 271 | 53 | 98.5 / 99.5 / 100 | [查看](评分记录/08-评分记录.md) |
-| 09 | Apollo 13: The Successful Failure / 阿波罗13号：成功的失败 | 271 | 51 | 97.5 / 99.5 / 100 | [查看](评分记录/09-评分记录.md) |
-| 10 | Tulip Mania: The Bubble and the Legend / 郁金香狂热：泡沫与传说 | 271 | 52 | 98.5 / 100 / 100 | [查看](评分记录/10-评分记录.md) |
-| 11 | Microplastics: Everywhere, but How Harmful? / 微塑料：无处不在，危害几何？ | 271 | 51 | 99 / 99.5 / 100 | [查看](评分记录/11-评分记录.md) |
-| 12 | The Toad That Invaded Australia / 入侵澳洲的毒蟾 | 271 | 52 | 98.5 / 99 / 99.5 | [查看](评分记录/12-评分记录.md) |
-| 13 | Y2K: The Crisis That Success Erased / 千年虫：被成功抹去的危机 | 269 | 54 | 100 / 98.5 / 99 | [查看](评分记录/13-评分记录.md) |
-| 14 | The Wind That Kept No Time: The Fall of Galloping Gertie / 不合拍的风：塔科马大桥的陨落 | 268 | 52 | 100 / 100 / 99.5 | [查看](评分记录/14-评分记录.md) |
-| 15 | The Day Zero That Never Came / 没有到来的零日 | 270 | 54 | 96 / 99 / 99.5 | [查看](评分记录/15-评分记录.md) |
-| 16 | The Sound That Shook the World / 震动世界的一声巨响 | 271 | 55 | 99.5 / 99.5 / 100 / 98* | [查看](评分记录/16-评分记录.md) |
-| 17 | The Crowded Heavens / 拥挤的苍穹 | 271 | 54 | 99 / 99 / 100 / 98* | [查看](评分记录/17-评分记录.md) |
-| 18 | The Web Beneath the Woods / 林下之网 | 270 | 54 | 99 / 100 / 100 / 98.5* | [查看](评分记录/18-评分记录.md) |
-| 19 | Life in the Forbidden Zone / 禁区里的生机 | 270 | 54 | 98 / 97 / 98.5 / 98* | [查看](评分记录/19-评分记录.md) |
-| 20 | The Brain That Learned London / 被街道重塑的大脑 | 271 | 54 | 99 / 97.5 / 95.5 / 97* | [查看](评分记录/20-评分记录.md) |
-| 21 | A Change of Anthem in the Deep / 鲸歌易帜 | 270 | 54 | 98.5 / 99 / 96 / 97* | [查看](评分记录/21-评分记录.md) |
-| 22 | The Truth About One Marshmallow / 一颗棉花糖的真相 | 269 | 54 | 99 / 98 / 97 / 97.5* | [查看](评分记录/22-评分记录.md) |
-| 23 | The Steel Box That Remade the World / 集装箱：重塑世界的铁盒子 | 271 | 53 | 98.5 / 100 / 98 / 99* | [查看](评分记录/23-评分记录.md) |
-| 24 | The Killer Smog of 1952 / 夺命毒雾：伦敦1952 | 270 | 50 | 97 / 98 / 97.5 / 98* | [查看](评分记录/24-评分记录.md) |
-| 25 | The Secret of Rome's Undying Concrete / 罗马混凝土的千年之谜 | 269 | 51 | 99 / 100 / 98.5 / 99.5* | [查看](评分记录/25-评分记录.md) |
-| 26 | The Man Who Gave Machines a Mind / 为机器点燃思想的人 | 271 | 54 | 100 / 99 / 99.5 / 99* | [查看](评分记录/26-评分记录.md) |
-| 27 | A Handful of Wormwood That Saved Millions / 青蒿一握，济世千万 | 271 | 55 | 99 / 98 / 99 / 98.5* | [查看](评分记录/27-评分记录.md) |
-| 28 | The Woman Who Won Two Nobels / 两度摘得诺奖的女人 | 271 | 54 | 97 / 97.5 / 95 / 98* | [查看](评分记录/28-评分记录.md) |
-| 29 | The Letter That Startled Darwin / 一封信惊醒了达尔文 | 271 | 54 | 98.5 / 98 / 97 / 98* | [查看](评分记录/29-评分记录.md) |
-| 30 | From a Scratch to a World Without Smallpox / 从一道划痕到天花绝迹 | 271 | 54 | 99 / 98 / 97 / 97* | [查看](评分记录/30-评分记录.md) |
-| 31 | From a Garage to the Top of the World / 从车库到世界之巅 | 271 | 54 | 98 / 97 / 97.5 / 96.5* | [查看](评分记录/31-评分记录.md) |
-| 32 | The Fingerprint in the Blood / 血里的指纹 | 271 | 54 | 96.5 / 97 / 95.5 / 96.5* | [查看](评分记录/32-评分记录.md) |
-| 33 | Eleven Days Without Sleep / 十一天不睡觉的少年 | 270 | 54 | 98 / 98 / 98 / 96* | [查看](评分记录/33-评分记录.md) |
-| 34 | The Stolen Smile / 被偷走的微笑 | 271 | 54 | 97 / 98 / 98 / 96* | [查看](评分记录/34-评分记录.md) |
-| 35 | The Trial of the Father of the Atomic Bomb / 原子弹之父的审判 | 271 | 54 | 97 / 99.5 / 96.5 / 96* | [查看](评分记录/35-评分记录.md) |
-| 36 | The Book Twelve Publishers Turned Down / 被拒绝了十二次的哈利·波特 | 270 | 52 | 97 / 99.5 / 98 / 96* | [查看](评分记录/36-评分记录.md) |
-| 37 | The Curse of the Pharaoh / 法老的诅咒 | 270 | 53 | 99 / 99 / 97.5 / 96* | [查看](评分记录/37-评分记录.md) |
-| 38 | The Planet That Was Demoted / 被降级的冥王星 | 270 | 50 | 99 / 98.5 / 99 / 96* | [查看](评分记录/38-评分记录.md) |
-| 39 | The Octopus That Escaped / 越狱的章鱼 | 270 | 52 | 99.5 / 99.5 / 98.5 / 96.5* | [查看](评分记录/39-评分记录.md) |
-| 40 | Move 37 / 第37手 | 271 | 50 | 98 / 99.5 / 98 / 96* | [查看](评分记录/40-评分记录.md) |
-| 41 | Thirteen in the Cave / 洞穴里的十三个人 | 262 | 50 | 99.5 / 98.5 / 98 / 96* | [查看](评分记录/41-评分记录.md) |
-| 42 | The Telescope That Needed Glasses / 需要戴眼镜的望远镜 | 271 | 50 | 99 / 100 / 98 / 97.5* | [查看](评分记录/42-评分记录.md) |
-| 43 | The 5,000-Year-Old Murder in the Ice / 冰里的五千年凶案 | 270 | 50 | 98.5 / 99.5 / 98.5 / 97* | [查看](评分记录/43-评分记录.md) |
-| 44 | The 79 Days of New Coke / 新可乐的 79 天 | 271 | 51 | 99.5 / 99.5 / 97 / 96.5* | [查看](评分记录/44-评分记录.md) |
-| 45 | The Last Flight of the Hindenburg / 兴登堡号的 34 秒 | 271 | 51 | 99 / 99.5 / 98 / 96.5* | [查看](评分记录/45-评分记录.md) |
-| 46 | The Horse That Could Count / 会算术的马 | 270 | 50 | 99 / 99 / 97.5 / 96.5* | [查看](评分记录/46-评分记录.md) |
-| 47 | Dolly, the Copied Sheep / 多莉：一只羊的复制 | 271 | 50 | 98.5 / 99.5 / 97.5 / 96.5* | [查看](评分记录/47-评分记录.md) |
-| 48 | The Night Sweden Switched Sides / 一夜之间换边开车 | 270 | 50 | 98 / 99 / 96.5 / 96.5* | [查看](评分记录/48-评分记录.md) |
-| 49 | The Cave Found by a Dog / 几个少年和一只狗发现的洞穴 | 266 | 50 | 99.5 / 99 / 99 / 96.5* | [查看](评分记录/49-评分记录.md) |
-| 50 | The Glue That Failed Its Way to Success / 失败的胶水，成功的便利贴 | 260 | 50 | 99 / 100 / 98.5 / 97* | [查看](评分记录/50-评分记录.md) |
-| 51 | The Stamp That Changed the Post / 一枚邮票改变通信 | 262 | 50 | 98.5 / 100 / 98.5 / 97* | [查看](评分记录/51-评分记录.md) |
-| 52 | The Great Emu War / 向鸸鹋宣战 | 268 | 54 | 99.5 / 99.5 / 98 / 97* | [查看](评分记录/52-评分记录.md) |
-| 53 | Dynamite for the Heart / 炸药大王的救心药 | 270 | 51 | 99 / 100 / 98 / 97* | [查看](评分记录/53-评分记录.md) |
-| 54 | The Joke That Became OK / OK 原本是个玩笑 | 268 | 50 | 100 / 99.5 / 99 / 97.5* | [查看](评分记录/54-评分记录.md) |
-| 55 | The Building That Melted a Car / 会烤化汽车的大楼 | 268 | 50 | 98 / 98 / 98 / 97* | [查看](评分记录/55-评分记录.md) |
-| 56 | The Company That Invented Its Own Killer / 发明了数码相机，却被它打败 | 267 | 50 | 98 / 97.5 / 97 / 97* | [查看](评分记录/56-评分记录.md) |
-| 57 | The Burrs That Became Velcro / 一颗刺果钩出的发明 | 268 | 50 | 98.5 / 98.5 / 98.5 / 97* | [查看](评分记录/57-评分记录.md) |
-| 58 | The Bird That Beat the Letter Home / 比信先到家的鸟 | 271 | 52 | 98.5 / 99.5 / 98.5 / 97.5* | [查看](评分记录/58-评分记录.md) |
-| 59 | Lost in the Glare / 光之殇 | 271 | 54 | 99.5 / 99.5 / 98.5 / 98* | [查看](评分记录/59-评分记录.md) |
-| 60 | The Bread Made from Air / 从空气中造面包 | 270 | 52 | 98.5 / 98.5 / 97 / 97.5* | [查看](评分记录/60-评分记录.md) |
-| 61 | The Language the Children Invented / 孩子们发明的语言 | 270 | 51 | 99 / 99 / 99 / 98* | [查看](评分记录/61-评分记录.md) |
-| 62 | The Day the Doomsday Vault Opened / 末日种子库的第一次取种 | 265 | 52 | 99.5 / 99 / 98.5 / 98* | [查看](评分记录/62-评分记录.md) |
-| 63 | The Robber Who Thought Lemon Juice Made Him Invisible / 以为柠檬汁能隐身的劫匪 | 271 | 52 | 99 / 100 / 98.5 / 98.5* | [查看](评分记录/63-评分记录.md) |
-| 64 | The Game That Escaped the Soviet Union / 越过铁幕的俄罗斯方块 | 266 | 51 | 99 / 99 / 97.5 / 98* | [查看](评分记录/64-评分记录.md) |
-| 65 | The Fungus That Turns Ants into Zombies / 让蚂蚁变僵尸的真菌 | 255 | 52 | 99.5 / 99 / 99.5 / 98.5* | [查看](评分记录/65-评分记录.md) |
-| 66 | The Man Who Sold the Eiffel Tower Twice / 两次卖掉埃菲尔铁塔的骗子 | 271 | 52 | 99 / 99 / 99 / 98.5* | [查看](评分记录/66-评分记录.md) |
-| 67 | The Doctor Who Drank Bacteria to Win an Argument / 喝下细菌的医生 | 264 | 50 | 99 / 99 / 97.5 / 98* | [查看](评分记录/67-评分记录.md) |
-| 68 | The Volcano That Gave Us Frankenstein / 一座火山，造出了《弗兰肯斯坦》 | 267 | 50 | 99 / 97.5 / 97.5 / 98* | [查看](评分记录/68-评分记录.md) |
-| 69 | The Stink That Built London's Sewers / 大恶臭逼出了下水道 | 268 | 51 | 99 / 98.5 / 99.5 / 98.5* | [查看](评分记录/69-评分记录.md) |
-| 70 | The Record Humanity Threw into the Stars / 写给外星人的一张唱片 | 271 | 50 | 98 / 96 / 98.5 / 98* | [查看](评分记录/70-评分记录.md) |
+
+> **2026-10-03 重新编号**：按三位考研生（英语一基础薄弱 / 英语二文科二战 / 英语一冲高分）通读全部 70 篇后的平均喜爱度排序，第 1 篇最抓人。表中「原编号」为写作时的编号；各篇评分记录、工作底稿和评审说明里提到的"第 N 篇"、篇目范围等均沿用**原编号**（各篇正文附注里的篇目引用已改为新编号），对照见下表最后一列或 [编号对照](编号对照.md)。
+
+| 篇 | 标题 | 词数 | 重点词 | 评审分（定稿） | 评分记录 | 原编号 |
+|---|---|---|---|---|---|---|
+| 01 | The Robber Who Thought Lemon Juice Made Him Invisible / 以为柠檬汁能隐身的劫匪 | 271 | 52 | 99 / 100 / 98.5 / 98.5* | [查看](评分记录/01-评分记录.md) | 63 |
+| 02 | The Truth About One Marshmallow / 一颗棉花糖的真相 | 269 | 54 | 99 / 98 / 97 / 97.5* | [查看](评分记录/02-评分记录.md) | 22 |
+| 03 | The Doctor Who Drank Bacteria to Win an Argument / 喝下细菌的医生 | 264 | 50 | 99 / 99 / 97.5 / 98* | [查看](评分记录/03-评分记录.md) | 67 |
+| 04 | The Brain That Learned London / 被街道重塑的大脑 | 271 | 54 | 99 / 97.5 / 95.5 / 97* | [查看](评分记录/04-评分记录.md) | 20 |
+| 05 | The Fingerprint in the Blood / 血里的指纹 | 271 | 54 | 96.5 / 97 / 95.5 / 96.5* | [查看](评分记录/05-评分记录.md) | 32 |
+| 06 | The Horse That Could Count / 会算术的马 | 270 | 50 | 99 / 99 / 97.5 / 96.5* | [查看](评分记录/06-评分记录.md) | 46 |
+| 07 | The Octopus That Escaped / 越狱的章鱼 | 270 | 52 | 99.5 / 99.5 / 98.5 / 96.5* | [查看](评分记录/07-评分记录.md) | 39 |
+| 08 | The Doctor Who Solved the Cholera Mystery / 破解霍乱之谜的医生 | 274（用户特批 +3） | 50 | 99 / 99 / 98 | [查看](评分记录/08-评分记录.md) | 01 |
+| 09 | The Great Emu War / 向鸸鹋宣战 | 268 | 54 | 99.5 / 99.5 / 98 / 97* | [查看](评分记录/09-评分记录.md) | 52 |
+| 10 | The Stolen Smile / 被偷走的微笑 | 271 | 54 | 97 / 98 / 98 / 96* | [查看](评分记录/10-评分记录.md) | 34 |
+| 11 | Move 37 / 第37手 | 271 | 50 | 98 / 99.5 / 98 / 96* | [查看](评分记录/11-评分记录.md) | 40 |
+| 12 | The 79 Days of New Coke / 新可乐的 79 天 | 271 | 51 | 99.5 / 99.5 / 97 / 96.5* | [查看](评分记录/12-评分记录.md) | 44 |
+| 13 | Eleven Days Without Sleep / 十一天不睡觉的少年 | 270 | 54 | 98 / 98 / 98 / 96* | [查看](评分记录/13-评分记录.md) | 33 |
+| 14 | The Fungus That Turns Ants into Zombies / 让蚂蚁变僵尸的真菌 | 255 | 52 | 99.5 / 99 / 99.5 / 98.5* | [查看](评分记录/14-评分记录.md) | 65 |
+| 15 | The Myth of the Unsinkable / 永不沉没的神话 | 271 | 53 | 96 / 96 / 100 | [查看](评分记录/15-评分记录.md) | 06 |
+| 16 | The Bread Made from Air / 从空气中造面包 | 270 | 52 | 98.5 / 98.5 / 97 / 97.5* | [查看](评分记录/16-评分记录.md) | 60 |
+| 17 | The Curse of the Pharaoh / 法老的诅咒 | 270 | 53 | 99 / 99 / 97.5 / 96* | [查看](评分记录/17-评分记录.md) | 37 |
+| 18 | The Mould That Changed the World / 改变人类命运的霉菌 | 271 | 52 | 99 / 99 / 100 | [查看](评分记录/18-评分记录.md) | 07 |
+| 19 | Tulip Mania: The Bubble and the Legend / 郁金香狂热：泡沫与传说 | 271 | 52 | 98.5 / 100 / 100 | [查看](评分记录/19-评分记录.md) | 10 |
+| 20 | The 5,000-Year-Old Murder in the Ice / 冰里的五千年凶案 | 270 | 50 | 98.5 / 99.5 / 98.5 / 97* | [查看](评分记录/20-评分记录.md) | 43 |
+| 21 | The Man Who Sold the Eiffel Tower Twice / 两次卖掉埃菲尔铁塔的骗子 | 271 | 52 | 99 / 99 / 99 / 98.5* | [查看](评分记录/21-评分记录.md) | 66 |
+| 22 | The Building That Melted a Car / 会烤化汽车的大楼 | 268 | 50 | 98 / 98 / 98 / 97* | [查看](评分记录/22-评分记录.md) | 55 |
+| 23 | The Man Who Gave Machines a Mind / 为机器点燃思想的人 | 271 | 54 | 100 / 99 / 99.5 / 99* | [查看](评分记录/23-评分记录.md) | 26 |
+| 24 | Survival in the Ice: The Legend of Endurance / 冰海求生：坚忍号传奇 | 270 | 52 | 99.5 / 99.5 / 100 | [查看](评分记录/24-评分记录.md) | 02 |
+| 25 | Apollo 13: The Successful Failure / 阿波罗13号：成功的失败 | 271 | 51 | 97.5 / 99.5 / 100 | [查看](评分记录/25-评分记录.md) | 09 |
+| 26 | The Language the Children Invented / 孩子们发明的语言 | 270 | 51 | 99 / 99 / 99 / 98* | [查看](评分记录/26-评分记录.md) | 61 |
+| 27 | Life in the Forbidden Zone / 禁区里的生机 | 270 | 54 | 98 / 97 / 98.5 / 98* | [查看](评分记录/27-评分记录.md) | 19 |
+| 28 | A Handful of Wormwood That Saved Millions / 青蒿一握，济世千万 | 271 | 55 | 99 / 98 / 99 / 98.5* | [查看](评分记录/28-评分记录.md) | 27 |
+| 29 | The Volcano That Gave Us Frankenstein / 一座火山，造出了《弗兰肯斯坦》 | 267 | 50 | 99 / 97.5 / 97.5 / 98* | [查看](评分记录/29-评分记录.md) | 68 |
+| 30 | The Stink That Built London's Sewers / 大恶臭逼出了下水道 | 268 | 51 | 99 / 98.5 / 99.5 / 98.5* | [查看](评分记录/30-评分记录.md) | 69 |
+| 31 | The Book Twelve Publishers Turned Down / 被拒绝了十二次的哈利·波特 | 270 | 52 | 97 / 99.5 / 98 / 96* | [查看](评分记录/31-评分记录.md) | 36 |
+| 32 | The Planet That Was Demoted / 被降级的冥王星 | 270 | 50 | 99 / 98.5 / 99 / 96* | [查看](评分记录/32-评分记录.md) | 38 |
+| 33 | Thirteen in the Cave / 洞穴里的十三个人 | 262 | 50 | 99.5 / 98.5 / 98 / 96* | [查看](评分记录/33-评分记录.md) | 41 |
+| 34 | The Game That Escaped the Soviet Union / 越过铁幕的俄罗斯方块 | 266 | 51 | 99 / 99 / 97.5 / 98* | [查看](评分记录/34-评分记录.md) | 64 |
+| 35 | The Bird That Beat the Letter Home / 比信先到家的鸟 | 271 | 52 | 98.5 / 99.5 / 98.5 / 97.5* | [查看](评分记录/35-评分记录.md) | 58 |
+| 36 | The Company That Invented Its Own Killer / 发明了数码相机，却被它打败 | 267 | 50 | 98 / 97.5 / 97 / 97* | [查看](评分记录/36-评分记录.md) | 56 |
+| 37 | Dynamite for the Heart / 炸药大王的救心药 | 270 | 51 | 99 / 100 / 98 / 97* | [查看](评分记录/37-评分记录.md) | 53 |
+| 38 | The Web Beneath the Woods / 林下之网 | 270 | 54 | 99 / 100 / 100 / 98.5* | [查看](评分记录/38-评分记录.md) | 18 |
+| 39 | Y2K: The Crisis That Success Erased / 千年虫：被成功抹去的危机 | 269 | 54 | 100 / 98.5 / 99 | [查看](评分记录/39-评分记录.md) | 13 |
+| 40 | The Glue That Failed Its Way to Success / 失败的胶水，成功的便利贴 | 260 | 50 | 99 / 100 / 98.5 / 97* | [查看](评分记录/40-评分记录.md) | 50 |
+| 41 | The Toad That Invaded Australia / 入侵澳洲的毒蟾 | 271 | 52 | 98.5 / 99 / 99.5 | [查看](评分记录/41-评分记录.md) | 12 |
+| 42 | The Telescope That Needed Glasses / 需要戴眼镜的望远镜 | 271 | 50 | 99 / 100 / 98 / 97.5* | [查看](评分记录/42-评分记录.md) | 42 |
+| 43 | From a Garage to the Top of the World / 从车库到世界之巅 | 271 | 54 | 98 / 97 / 97.5 / 96.5* | [查看](评分记录/43-评分记录.md) | 31 |
+| 44 | The Night Sweden Switched Sides / 一夜之间换边开车 | 270 | 50 | 98 / 99 / 96.5 / 96.5* | [查看](评分记录/44-评分记录.md) | 48 |
+| 45 | The Record Humanity Threw into the Stars / 写给外星人的一张唱片 | 271 | 50 | 98 / 96 / 98.5 / 98* | [查看](评分记录/45-评分记录.md) | 70 |
+| 46 | Lost in the Glare / 光之殇 | 271 | 54 | 99.5 / 99.5 / 98.5 / 98* | [查看](评分记录/46-评分记录.md) | 59 |
+| 47 | Shadows of Wolves Over Yellowstone / 黄石公园狼影再现 | 271 | 51 | 100 / 99 / 99.5 | [查看](评分记录/47-评分记录.md) | 05 |
+| 48 | Rice for the World / 稻济天下 | 271 | 50 | 99.5 / 100 / 99 | [查看](评分记录/48-评分记录.md) | 04 |
+| 49 | The Woman Who Won Two Nobels / 两度摘得诺奖的女人 | 271 | 54 | 97 / 97.5 / 95 / 98* | [查看](评分记录/49-评分记录.md) | 28 |
+| 50 | Microplastics: Everywhere, but How Harmful? / 微塑料：无处不在，危害几何？ | 271 | 51 | 99 / 99.5 / 100 | [查看](评分记录/50-评分记录.md) | 11 |
+| 51 | The Joke That Became OK / OK 原本是个玩笑 | 268 | 50 | 100 / 99.5 / 99 / 97.5* | [查看](评分记录/51-评分记录.md) | 54 |
+| 52 | The Killer Smog of 1952 / 夺命毒雾：伦敦1952 | 270 | 50 | 97 / 98 / 97.5 / 98* | [查看](评分记录/52-评分记录.md) | 24 |
+| 53 | The Wind That Kept No Time: The Fall of Galloping Gertie / 不合拍的风：塔科马大桥的陨落 | 268 | 52 | 100 / 100 / 99.5 | [查看](评分记录/53-评分记录.md) | 14 |
+| 54 | The Sound That Shook the World / 震动世界的一声巨响 | 271 | 55 | 99.5 / 99.5 / 100 / 98* | [查看](评分记录/54-评分记录.md) | 16 |
+| 55 | The Secret of Rome's Undying Concrete / 罗马混凝土的千年之谜 | 269 | 51 | 99 / 100 / 98.5 / 99.5* | [查看](评分记录/55-评分记录.md) | 25 |
+| 56 | The Letter That Startled Darwin / 一封信惊醒了达尔文 | 271 | 54 | 98.5 / 98 / 97 / 98* | [查看](评分记录/56-评分记录.md) | 29 |
+| 57 | A Change of Anthem in the Deep / 鲸歌易帜 | 270 | 54 | 98.5 / 99 / 96 / 97* | [查看](评分记录/57-评分记录.md) | 21 |
+| 58 | From a Scratch to a World Without Smallpox / 从一道划痕到天花绝迹 | 271 | 54 | 99 / 98 / 97 / 97* | [查看](评分记录/58-评分记录.md) | 30 |
+| 59 | Saving the Sky / 拯救天空 | 271 | 53 | 98.5 / 99.5 / 100 | [查看](评分记录/59-评分记录.md) | 08 |
+| 60 | The Scientific Giant Who Changed the World / 改变世界的科学巨匠 | 271 | 50 | 100 / 99.5 / 99 | [查看](评分记录/60-评分记录.md) | 03 |
+| 61 | The Steel Box That Remade the World / 集装箱：重塑世界的铁盒子 | 271 | 53 | 98.5 / 100 / 98 / 99* | [查看](评分记录/61-评分记录.md) | 23 |
+| 62 | Dolly, the Copied Sheep / 多莉：一只羊的复制 | 271 | 50 | 98.5 / 99.5 / 97.5 / 96.5* | [查看](评分记录/62-评分记录.md) | 47 |
+| 63 | The Crowded Heavens / 拥挤的苍穹 | 271 | 54 | 99 / 99 / 100 / 98* | [查看](评分记录/63-评分记录.md) | 17 |
+| 64 | The Day Zero That Never Came / 没有到来的零日 | 270 | 54 | 96 / 99 / 99.5 | [查看](评分记录/64-评分记录.md) | 15 |
+| 65 | The Day the Doomsday Vault Opened / 末日种子库的第一次取种 | 265 | 52 | 99.5 / 99 / 98.5 / 98* | [查看](评分记录/65-评分记录.md) | 62 |
+| 66 | The Burrs That Became Velcro / 一颗刺果钩出的发明 | 268 | 50 | 98.5 / 98.5 / 98.5 / 97* | [查看](评分记录/66-评分记录.md) | 57 |
+| 67 | The Cave Found by a Dog / 几个少年和一只狗发现的洞穴 | 266 | 50 | 99.5 / 99 / 99 / 96.5* | [查看](评分记录/67-评分记录.md) | 49 |
+| 68 | The Last Flight of the Hindenburg / 兴登堡号的 34 秒 | 271 | 51 | 99 / 99.5 / 98 / 96.5* | [查看](评分记录/68-评分记录.md) | 45 |
+| 69 | The Trial of the Father of the Atomic Bomb / 原子弹之父的审判 | 271 | 54 | 97 / 99.5 / 96.5 / 96* | [查看](评分记录/69-评分记录.md) | 35 |
+| 70 | The Stamp That Changed the Post / 一枚邮票改变通信 | 262 | 50 | 98.5 / 100 / 98.5 / 97* | [查看](评分记录/70-评分记录.md) | 51 |
 
 \* 自第 16 篇起增设第四位评审「总编辑本人」，评审分依次为：主编 / 语言学教授 / 母语读者 / 总编辑本人，四人均 ≥95 分、零硬伤才定稿。自第 17 篇起另须双总编辑会签（总编辑本人与英文总编辑）。
