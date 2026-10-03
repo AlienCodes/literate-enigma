@@ -1239,6 +1239,9 @@ def build_blind_test(cfg: Config, voice: str, n: int = 10, quality: Optional[str
         try:
             narrator = Narrator(cfg, project, backend, quality=quality, variants=False)
             narrator.refs = [r for r in narrator.refs if r["id"] not in real_ids] or narrator.refs
+            # 「一模一样」从参考录音库挑参考（库里有训练集的录音，验证集不够时盲听测试也用训练集的）：也不能用它们
+            narrator.exclude_refs = set(real_ids)
+            narrator._identical = None
             for k, rec in enumerate(pool):
                 _check_cancel()
                 lo = 0.05 + 0.85 * k / len(pool)
