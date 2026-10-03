@@ -1140,3 +1140,120 @@ def test_undo_replace_keeps_an_undo_made_after_the_replace(tmp_path):
     assert _cur(project, "c000")[1] == t
     wf.run_transcript_fix(cfg, "校正声音")
     assert _cur(project, "c000")[1] == t  # 老师撤销的「从剧 → 从句」不再改回来
+
+
+# ---------------------------------------------------------------------------- 第五次独立检查发现的问题（每个都有一个测试）
+@need_both
+@pytest.mark.parametrize("case", ["adopted_then_undone", "real_error"])
+def test_uploading_the_downloaded_text_never_hides_real_errors(tmp_path, case):
+    """问题 1：把下载的「改好的文字」当母本上传（网页上建议这么做）：没检查过的句子「自己证明自己没错」，
+    自动查错字的标红、「线性 → 先行」这种建议被去掉了。"""
+    from voicetwin.data import proofcheck as pc  # noqa: F401
+
+    if case == "adopted_then_undone":
+        t = "但是如果我们只是单独把关系带词which放在定语从句句首的话，那么这个which是可以直接被省略掉的。"
+        cfg, project = _voice(tmp_path, [t, "这个句子完全没有错误，我们继续往下看。"], ids=["0007_d8ade5_0026", "s_0002"])
+        recs = project.load_manifest()
+        k = t.index("单独把")
+        recs[0]["suspect"] = {"spans": [[k, k + 3]], "alt": t[:k] + "单单把" + t[k + 3:], "reasons": ["另一个引擎"],
+                              "score": 0.7}
+        project.save_manifest(recs)
+        wf.run_transcript_fix(cfg, "校正声音")
+        review.unadopt_suggestion(project, "0007_d8ade5_0026")
+        rid, want = "0007_d8ade5_0026", "单独把"
+    else:
+        t = "两者最主要的区别，就是当线性词是物的情况下，"
+        cfg, project = _voice(tmp_path, [t], ids=["0007_d8ade5_0004"])
+        wf.run_transcript_fix(cfg, "校正声音")
+        rid, want = "0007_d8ade5_0004", "线性"
+    rec, cur = _cur(project, rid)
+    assert want in [cur[s:e] for s, e in review.analyze(rec, cur)["red"]]
+    out = review.export_text(project)
+    res = wf.run_transcript_fix(cfg, "校正声音", files=[out["path"]])
+    rec, cur = _cur(project, rid)
+    info = review.analyze(rec, cur)
+    assert res["cleared"] == 0 and want in [cur[s:e] for s, e in info["red"]] and info["edits"]
+
+
+@need_both
+def test_mixed_row_adopt_and_undo_never_garble_the_text(tmp_path):
+    """问题 2 / 3：一行里有直接改好的（斌与 → 宾语）和挨着的没把握的建议（像主语 → 了）：点蓝色「采用」变成了
+    「了、宾语、宾语」，红色撤销也撤不回去；再点一次一键校正，红色「已采用」没了。"""
+    pytest.importorskip("gradio")
+    from voicetwin.webui.app import _suggest_cell
+
+    t = "如果因为缺少类似于像主语、斌与或者是表语而无法构成一个完整的句子，"
+    cfg, project = _voice(tmp_path, [t], ids=["05_27d31c_0082"])  # 老师那一句的 id（自带母本里同一句不拿来比）
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[9, 12]], "alt": t[:9] + "了" + t[12:], "reasons": ["另一个引擎听到「了」"], "score": 0.6}
+    project.save_manifest(recs)
+    for _ in range(2):  # 连点两次一键校正：结果一样，两个按钮都在，说明不乱
+        wf.run_transcript_fix(cfg, "校正声音")
+        rec, cur = _cur(project, "05_27d31c_0082")
+        assert cur == t.replace("斌与", "宾语")
+        html = _suggest_cell(review.analyze(rec, cur))
+        assert "像主语 → 了" in html and "斌与 → 宾语" in html and "vt-sug-red" in html
+    out = review.adopt_suggestion(project, "05_27d31c_0082")
+    assert out["text"] == "如果因为缺少类似于了、宾语或者是表语而无法构成一个完整的句子，" and out["changes"] == "像主语 → 了"
+    out = review.unadopt_suggestion(project, "05_27d31c_0082")
+    assert out["text"] == t and "斌与 → 宾语" in out["changes"]
+
+
+@need_both
+def test_two_clicks_in_a_row_give_the_same_result(tmp_path):
+    """问题 4：直接改好的那几个字里没变的字（关键代词 → 关系代词 里的「词」）上自动查错字的标红，第一次被盖住、第二次又冒出来。"""
+    t = "接下来我们学习一下关键代词that的使用方法。"
+    cfg, project = _voice(tmp_path, [t], ids=["0007_d8ade5_0067"])
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[12, 13]], "alt": t[:12] + "那个" + t[12:], "reasons": ["另一个引擎"], "score": 0.6}
+    project.save_manifest(recs)
+    seen = []
+    for _ in range(2):
+        res = wf.run_transcript_fix(cfg, "校正声音")
+        rec, cur = _cur(project, "0007_d8ade5_0067")
+        info = review.analyze(rec, cur)
+        seen.append((cur, [cur[s:e] for s, e in info["red"]], len(info["edits"]), res["adopted"]["unsure"]))
+    assert seen[0] == seen[1] and seen[0][1] == ["词"] and seen[0][3] == 1
+
+
+@need_both
+def test_auto_suggestion_on_half_a_common_word_is_not_sure(tmp_path):
+    """问题 6：另一个引擎把「结构」里的「构」听成 which，一键校正把它改成了「结which」。"""
+    t = "我们来看一下这个句子的结构，它有一个定语从句。"
+    cfg, project = _voice(tmp_path, [t], ids=["q_0001"])
+    recs = project.load_manifest()
+    k = t.index("构")
+    recs[0]["suspect"] = {"spans": [[k, k + 1]], "alt": t[:k] + "which" + t[k + 1:], "reasons": ["另一个引擎"], "score": 0.6}
+    project.save_manifest(recs)
+    res = wf.run_transcript_fix(cfg, "校正声音")
+    assert _cur(project, "q_0001")[1] == t and res["adopted"]["changes"] == 0
+
+
+@need_both
+def test_undoing_one_of_two_same_fixes_keeps_the_other_undoable(tmp_path):
+    """问题 7：一句里同样的改法有两处（原形 → 原型），老师把第一处打回去：再点以后，第二处（还改着）没有撤销按钮了。"""
+    orig = {r["id"]: r["text"] for r in csv.DictReader(open(MOTHER_DIR / "母本_原文.csv", encoding="utf-8-sig"))}
+    rid = "0006_9498bb_0104"
+    cfg, project = _voice(tmp_path, [orig[rid]], ids=[rid])
+    wf.run_transcript_fix(cfg, "校正声音")
+    cur = _cur(project, rid)[1]
+    assert cur.count("原型") == 2
+    review.set_draft(project, rid, text=cur.replace("原型", "原形", 1))
+    wf.run_transcript_fix(cfg, "校正声音")
+    rec, cur = _cur(project, rid)
+    info = review.analyze(rec, cur)
+    assert cur.count("原型") == 1 and info["undo"]  # 第二处还能撤销
+
+
+@need_both
+def test_adopting_next_to_a_teacher_change_still_gives_an_undo_button(tmp_path):
+    """问题 8：查找替换「我们 → 咱们」以后采用「删掉『们就先』」：没有撤销按钮（挨着老师改过的字）。"""
+    t = "那我们就先来分析一下这个定语从句原型的句子成分。"
+    cfg, project = _voice(tmp_path, [t], ids=["q_0042"])
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[2, 5]], "alt": t[:2] + t[5:], "reasons": ["另一个引擎没听到"], "score": 0.6}
+    project.save_manifest(recs)
+    review.replace_matches(project, "我们", "咱们")
+    review.adopt_suggestion(project, "q_0042")
+    rec, cur = _cur(project, "q_0042")
+    assert review.analyze(rec, cur)["undo"]
