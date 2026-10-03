@@ -44,7 +44,8 @@ def test_parse_mother_csv_skips_deleted_rows_and_keeps_ids():
             "a1,1,train,zh,5,第一句  定语从句,,x.wav\n"
             "a2,0,train,zh,5,删掉的那句,老师删除,x.wav\n"
             "a3,0,train,zh,1,太短的,太短,x.wav\n")
-    assert tf.parse_mother("transcripts.csv", text) == [("a1", "第一句 定语从句"), ("a3", "太短的")]
+    # 整理成和校对表一样的写法（clean_transcript：中文中间的空格去掉）
+    assert tf.parse_mother("transcripts.csv", text) == [("a1", "第一句定语从句"), ("a3", "太短的")]
     assert tf.parse_mother("x.tsv", "# 说明\nb1\t文字一\n\n文字二\n") == [("b1", "文字一"), ("", "文字二")]
     assert tf.parse_mother("x.txt", "第一行\n\n 第二行 \n") == [("", "第一行"), ("", "第二行")]
 
@@ -1257,3 +1258,94 @@ def test_adopting_next_to_a_teacher_change_still_gives_an_undo_button(tmp_path):
     review.adopt_suggestion(project, "q_0042")
     rec, cur = _cur(project, "q_0042")
     assert review.analyze(rec, cur)["undo"]
+
+
+# ---------------------------------------------------------------------------- 第五次检查以后随机操作脚本找到的问题
+def _mixed_row(tmp_path):
+    """一行：有把握的改好了（从具 → 从句、关系带词 → 关系代词），还有一个挨着的没把握的建议（删掉「系」）；
+    老师又在别处改过（查找替换 我们 → 咱们）。"""
+    orig = "在这个句子里面定语从具的关系带词，我们也使用了which。"
+    base = orig.replace("，", "曌")  # 老师先改过的标点
+    sure = base.replace("从具", "从句").replace("关系带词", "关系代词")
+    alt = sure.replace("关系代词", "关代词")
+    cfg, project = _voice(tmp_path, [orig], ids=["0007_d8ade5_0015"])
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[10, 11], [13, 14], [14, 15]], "alt": alt, "sure_alt": sure, "direct_alt": sure,
+                          "text": base, "src": "transcript", "reasons": ["已按标准库改好"], "score": 0.9}
+    project.save_manifest(recs)
+    review.set_draft(project, "0007_d8ade5_0015", text=sure.replace("我们", "咱们"))
+    return project, base, sure, alt
+
+
+def test_undo_next_to_an_unsure_suggestion_never_garbles_the_text(tmp_path):
+    """随机操作找到的：上面那一行点红色「已采用」撤销，变成了「关系系带词」（把没采用的「删掉系」也当成采用过的去撤销）。"""
+    project, base, sure, alt = _mixed_row(tmp_path)
+    rec, cur = _cur(project, "0007_d8ade5_0015")
+    info = review.analyze(rec, cur)
+    assert [cur[s:e] + "→" + rep for s, e, rep in info["edits"]] == ["系→"]  # 没采用的那个建议还在（蓝色「采用」）
+    assert review.apply_edits(cur, info["undo"]) == base.replace("我们", "咱们")
+    out = review.unadopt_suggestion(project, "0007_d8ade5_0015")
+    assert out["text"] == base.replace("我们", "咱们")  # 只撤销采用过的两处，老师的「咱们」还在
+    out = review.adopt_suggestion(project, "0007_d8ade5_0015")
+    assert out["text"] == alt.replace("我们", "咱们")
+
+
+def test_adopting_the_unsure_part_of_a_mixed_row(tmp_path):
+    project, base, sure, alt = _mixed_row(tmp_path)
+    out = review.adopt_suggestion(project, "0007_d8ade5_0015")
+    assert out["text"] == alt.replace("我们", "咱们")
+    out = review.unadopt_suggestion(project, "0007_d8ade5_0015")
+    assert out["text"] == base.replace("我们", "咱们")
+
+
+def test_safe_apply_refuses_results_it_cannot_explain():
+    """采用 / 撤销一处一处对位置时，结果必须「改回去又能改回来」：配错位置的结果（关系系带词）一律不用。"""
+    base = "定语从具的关系带词我们也用"
+    sure = "定语从句的关系代词我们也用"
+    alt = "定语从句的关代词我们也用"
+    cur = "定语从句的关系代词咱们也用"
+    assert review.safe_apply(cur, [(7, 8, "系带")], alt, base) in ("", "定语从具的关系带词咱们也用")
+    assert review.safe_apply(cur, [(7, 8, "系带")], [alt, sure], base) == "定语从具的关系带词咱们也用"
+
+
+@need_both
+def test_fixed_text_is_stored_in_the_same_form_as_typed_text(tmp_path):
+    """随机操作找到的：一键校正把「艾子，」改成「as，」（全角逗号），老师点「采用」存进去的却是「as,」（表格里的文字都这样整理）：
+    整句对不上，采用 / 撤销只能一处一处对位置。现在改出来的、记下的整句都和老师自己改、点「采用」存的一模一样。"""
+    t = "接下来我们就学习一下另外一个关键代词，艾子，这个关系代词相对来说比较特殊。"
+    cfg, project = _voice(tmp_path, [t], ids=["q_0006"])
+    wf.run_transcript_fix(cfg, "校正声音")
+    rec, cur = _cur(project, "q_0006")
+    assert "as," in cur and "关系代词" in cur and cur == review.clean_transcript(cur)
+    assert rec["suspect"]["direct_alt"] == cur
+    for _ in range(2):  # 撤销、采用来回点：每次都是整句换，文字只有两种
+        out = review.unadopt_suggestion(project, "q_0006")
+        assert out["text"] == t == _cur(project, "q_0006")[1]
+        out = review.adopt_suggestion(project, "q_0006")
+        assert out["text"] == _cur(project, "q_0006")[1] == rec["suspect"]["alt"]
+    review.unadopt_suggestion(project, "q_0006")
+    wf.run_transcript_fix(cfg, "校正声音")  # 撤销过的不再改回来
+    assert _cur(project, "q_0006")[1] == t
+
+
+def test_parse_mother_lines_are_tidied_like_the_table():
+    assert tf.parse_mother("a.txt", "使用which，比如说\n关系代词that，不要省略") == [
+        ("", "使用which,比如说"), ("", "关系代词that,不要省略")]
+
+
+def test_adopt_after_teacher_typed_one_of_the_fixes_gives_the_whole_suggestion():
+    """随机操作找到的（修第一版时）：老师自己已经打了建议里的一处（问 → when），再点「采用」只改了一部分。
+    三方合并：两边同一处改得一样算一处，别的照样采用。"""
+    base = "那我们就需要使用跟时间有关的关系副词问。"
+    sure = "那我单单就需要使用跟时间有关的关系副词when。"
+    alt = "那我单单就as需要使用跟时间有关的关系副词when。"
+    cur = base.replace("问", "when")
+    assert review.merge3(base, alt, cur) == alt
+    assert review.safe_apply(cur, [], [base, sure], alt) == alt
+    assert review.safe_apply(cur, [], [sure, alt], base) == base  # 撤销：回到查错字时的样子
+
+
+def test_three_way_merge_refuses_when_both_sides_touch_the_same_place():
+    src, a, b = "关代词我们", "关系带词我们", "关系代词咱们"  # 两边都在「关」后面加了字：不知道先后
+    assert review.merge3(src, a, b) == ""
+    assert review.merge3("那我们就先来", "那我来", "那咱们就先来") == "那咱来"  # 只是挨着：照样合

@@ -43,6 +43,7 @@ from typing import Any, Callable, Dict, Iterable, List, NamedTuple, Optional, Se
 
 from voicetwin.data import proofcheck as pc
 from voicetwin.utils.log import get_logger
+from voicetwin.utils.textutil import clean_transcript
 
 try:  # 停止按钮
     from voicetwin.utils.progress import check_cancel as _check_cancel
@@ -138,7 +139,8 @@ def _utf16_like(head: bytes) -> bool:
 
 def parse_mother(name: str, text: str) -> List[Tuple[str, str]]:
     """一个母本文件 → [(句子 id, 文字)]。txt 一行一句（没有 id）；transcripts.csv 用 id 和 text 两列，
-    老师删除的句子不要；声音分身自己的 tsv（id<TAB>文字，# 开头是说明）。表格格式坏了的 csv 当 txt 一行一行读。"""
+    老师删除的句子不要；声音分身自己的 tsv（id<TAB>文字，# 开头是说明）。表格格式坏了的 csv 当 txt 一行一行读。
+    每一句都整理成和校对表一样的写法（clean_transcript：英文后面的逗号是半角的「,」等），比较时才对得上。"""
     suffix = Path(str(name)).suffix.lower()
     text = str(text or "").replace("\x00", "")
     out: List[Tuple[str, str]] = []
@@ -154,7 +156,7 @@ def parse_mother(name: str, text: str) -> List[Tuple[str, str]]:
                     low = {str(k or "").strip().lower(): (v or "") for k, v in row.items()}
                     if str(low.get("drop_reason", "")).strip() == "老师删除":
                         continue
-                    line = " ".join(str(low.get("text", "")).split())
+                    line = clean_transcript(str(low.get("text", "")))
                     if line:
                         out.append((str(low.get("id", "")).strip(), line))
                 return out
@@ -167,12 +169,12 @@ def parse_mother(name: str, text: str) -> List[Tuple[str, str]]:
             rid, _, line = ln.partition("\t")
             if not _:
                 rid, line = "", rid
-            line = " ".join(line.split())
+            line = clean_transcript(line)
             if line:
                 out.append((rid.strip(), line))
         return out
     for ln in text.splitlines():
-        line = " ".join(ln.split())
+        line = clean_transcript(ln)
         if line:
             out.append(("", line))
     return out
@@ -1027,14 +1029,16 @@ def _tidy(text: str) -> str:
 
 
 def _apply(text: str, edits: Sequence[Tuple[int, int, str]]) -> str:
-    """从后往前改；重叠的跳过。改过的才整理空格（没改的原样返回）。"""
+    """从后往前改；重叠的跳过。改过的才整理（没改的原样返回）：整理成和校对表一样的写法（clean_transcript），
+    和老师自己改、点「采用」存进去的文字一模一样——不然「艾子，→ as，」存成全角逗号，老师一点「采用」又变成半角，
+    整句对不上（随机操作脚本发现的）。"""
     out, left = text, len(text) + 1
     for s, e, rep in sorted(edits, key=lambda x: (x[0], x[1]), reverse=True):
         if not (0 <= s <= e <= len(text)) or e > left or (e == left and s == e):
             continue
         out = out[:s] + rep + out[e:]
         left = s
-    return _tidy(out) if out != text else out
+    return clean_transcript(_tidy(out)) if out != text else out
 
 
 def _token_chars(text: str) -> Set[int]:
@@ -1363,6 +1367,7 @@ def _clean_uploaded(lines: List[Tuple[str, str]], row_table: Dict[str, Sequence[
             if builtin_by_id.get(rid) is None or _similarity(text, builtin_by_id[rid]) >= ROW_MIN_SIMILAR:
                 for wrong, right, _why in row_table[rid]:
                     text = text.replace(wrong, right)
+                text = clean_transcript(text)
         if cleaner is not None:
             fixes = cleaner.list_fixes(text)
             if fixes:
@@ -1484,6 +1489,7 @@ def _rebase(rec: Dict[str, Any], sus: Dict[str, Any], cur: str, old_undo: Sequen
         if not (0 <= s <= e <= len(cur)) or e > left:
             return sus
         out, left = out[:s] + rep + out[e:], s
+    out = clean_transcript(out)
     if not out or out == cur:
         return sus
     inv = [(j1, j2, i1, i2) for i1, i2, j1, j2 in _review._equal_blocks(out, cur)]

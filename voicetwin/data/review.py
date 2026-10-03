@@ -21,7 +21,7 @@ import json
 import threading
 import time
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple, Union
 
 from voicetwin.utils.textutil import clean_transcript, detect_lang
 
@@ -306,6 +306,7 @@ def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
     undo: List[Edit] = []
     adopted = False
     reasons = [str(x) for x in (sus.get("reasons") or []) if x]
+    st = known_states(rec) if sus else {}
     if sus:
         base = suspect_base(rec)
         ops = _opcodes(base, cur) if base != cur else [("equal", 0, len(base), 0, len(cur))]
@@ -325,7 +326,8 @@ def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
                 edits.append((m[0], m[1], rep))
         # 一键校正只自动采用「文字校正」检查过、有把握的建议：有 sure_alt 时只按它（只用有把握的改出来的那一句）；
         # 没经过文字校正的（自动查错字原来的建议）、整句都换掉的一律算没把握
-        if sus.get("src") == "transcript" and alt and not whole_sentence_suggestion(sus, base):
+        vetted = sus.get("src") == "transcript" and bool(alt) and not whole_sentence_suggestion(sus, base)
+        if vetted:
             if "sure_alt" in sus:
                 for s, e, rep in suggestion_edits(base, str(sus.get("sure_alt") or base)):
                     m = None if touched(ops, s, e) else map_range(blocks, s, e)
@@ -341,10 +343,28 @@ def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
                 m = None if touched(ops2, s, e, strict=True) else map_range(blocks2, s, e)
                 if m is not None:
                     undo.append((m[0], m[1], rep))
+        mid = middle_state(st, cur) if alt and alt != base else None
+        if mid:
+            # 现在的文字是从中间的整句（直接改好 / 有把握的改好以后）改出来的：从那一句算还没采用的、采用过的，
+            # 不从两头算——挨着的两个建议（一个采用了、一个没采用）从两头算会连成一处，撤销时把字改乱（「关系系带词」）
+            ops3 = _opcodes(st[mid], cur) if st[mid] != cur else [("equal", 0, len(cur), 0, len(cur))]
+            blocks3 = [(i1, i2, j1, j2) for tag, i1, i2, j1, j2 in ops3 if tag == "equal"]
+
+            def _mapped(dst: str, strict: bool = False) -> List[Edit]:
+                out: List[Edit] = []
+                for s, e, rep in suggestion_edits(st[mid], dst):
+                    m = None if touched(ops3, s, e, strict=strict) else map_range(blocks3, s, e)
+                    if m is not None:
+                        out.append((m[0], m[1], rep))
+                return out
+
+            edits = _mapped(alt)
+            undo = _mapped(base, strict=True)
+            if vetted:
+                sure = _mapped(st["sure"]) if mid == "direct" and st.get("sure") not in (None, st[mid]) else []
         adopted = bool(undo) and not edits
     red = _merge(red, len(cur))
     to_alt = to_base = None  # 现在的文字正好是记下的某个整句：采用 / 撤销以后会变成的整句
-    st = known_states(rec) if sus else {}
     if st:
         if cur != st["alt"] and cur in (st["base"], st.get("direct"), st.get("sure")):
             to_alt = st["alt"]
@@ -518,7 +538,9 @@ def is_rejected(pairs: Any, text: str, s: int, e: int, rep: str) -> bool:
     bad = {(str(p[0]), str(p[1])) for p in pairs if isinstance(p, (list, tuple)) and len(p) == 2}
     if any(pc in bad for pc in change_pieces(text[s:e], rep)):
         return True
-    return any(pc in bad for pc in change_pieces(text, text[:s] + rep + text[e:]))
+    new = text[:s] + rep + text[e:]
+    # 存进表格的文字都整理过（英文后面的逗号变半角等），撤销时记下的也是整理过的：两种都比
+    return any(pc in bad for pc in change_pieces(text, new) + change_pieces(text, clean_transcript(new)))
 
 
 def _undo_pieces(text: str, undo: Sequence[Edit]) -> List[List[str]]:
@@ -565,7 +587,8 @@ def _forget_rejects(project: Any, clip_id: str, text: str, edits: Sequence[Edit]
     if not data.get(clip_id):
         return
     used = {(a, b) for s, e, rep in edits if 0 <= s <= e <= len(text)
-            for a, b in change_pieces(text[s:e], rep) + change_pieces(text, text[:s] + rep + text[e:])}
+            for a, b in change_pieces(text[s:e], rep) + change_pieces(text, text[:s] + rep + text[e:])
+            + change_pieces(text, clean_transcript(text[:s] + rep + text[e:]))}
     keep = [p for p in data[clip_id] if (p[0], p[1]) not in used]
     if keep != data[clip_id]:
         data[clip_id] = keep
@@ -578,29 +601,84 @@ def _within(cur: str, new: str, allowed: Sequence[Tuple[str, str]]) -> bool:
     return all(pc in ok for pc in change_pieces(cur, new))
 
 
-def _merge_onto(src: str, dst: str, other: str) -> str:
+def _merge_onto(src: str, dst: str, other: str, strict: bool = False) -> str:
     """把 src → other 的改动（老师自己改的别处）搬到 dst 上：dst 里那几个地方和 src 一样时才搬。"""
     blocks = _equal_blocks(src, dst)
     ops = _opcodes(src, dst)
     edits: List[Edit] = []
     for s, e, rep in suggestion_edits(src, other):
-        m = None if touched(ops, s, e) else map_range(blocks, s, e)
+        m = None if touched(ops, s, e, strict=strict) else map_range(blocks, s, e)
         if m is None:
             return ""
         edits.append((m[0], m[1], rep))
     return apply_edits(dst, edits) if edits else dst
 
 
-def safe_apply(cur: str, edits: Sequence[Edit], src: str, dst: str) -> str:
-    """一处一处地改（文字不是记下的整句时）：把 src → dst 的建议用到 cur 上。改完检查一遍：cur → 结果的每一处改动
-    都必须是建议本身的改动、而且老师自己改的别处都还在；不行就换个办法（把老师改的别处搬到 dst 上）再查一遍；
-    还不行返回 ""（不改，不能把文字改坏——检查时发现过「了、宾语、宾语」）。"""
-    allowed = change_pieces(src, dst)
-    theirs = change_pieces(src, cur)
-    for cand in (apply_edits(cur, edits) if edits else cur, _merge_onto(src, dst, cur)):
-        if cand and cand != cur and _within(cur, cand, allowed) and _within(dst, cand, theirs):
+def _clash(a: Edit, b: Edit) -> bool:
+    """两处改动（位置按同一句算）碰到一起：重叠；或者一边是插入、正好插在另一边改的地方里面或者两头（不知道先后）；
+    两个插入在同一个地方。两处改动只是首尾挨着（都不是插入）不算。"""
+    (s1, e1, _r1), (s2, e2, _r2) = a, b
+    if s1 == e1 and s2 == e2:
+        return s1 == s2
+    if s1 == e1:
+        return s2 <= s1 <= e2
+    if s2 == e2:
+        return s1 <= s2 <= e1
+    return s1 < e2 and s2 < e1
+
+
+def merge3(src: str, a: str, b: str) -> str:
+    """src → a 和 src → b 两边的改动合起来（三方合并，位置都按 src 算）：两边同一处改得一模一样算一处；
+    有碰到一起的就返回 ""（不知道该怎么合，不猜）。"""
+    ea, eb = suggestion_edits(src, a), suggestion_edits(src, b)
+    out = list(ea)
+    for ed in eb:
+        if ed in ea:
+            continue
+        if any(_clash(ed, f) for f in ea):
+            return ""
+        out.append(ed)
+    return apply_edits(src, out) if out else src
+
+
+def safe_apply(cur: str, edits: Sequence[Edit], src: Union[str, Sequence[str]], dst: str) -> str:
+    """文字不是记下的整句时（老师又改过别处）采用 / 撤销：把建议（src → dst）用到 cur 上。src 可以给几个记下的整句
+    （现在的文字可能是从其中哪一句改出来的），离现在的文字最近的先试。
+
+    办法：三方合并——老师改的（src → cur）和建议（src → dst）都按 src 的位置合起来；两边碰到一起就不合（不猜）。
+    合不了再试一处一处改（edits），改完检查三条：cur → 结果的每一处都是建议本身的改动；老师改的别处都还在；
+    把结果再改回去（dst → src）又正好是 cur。都不行返回 ""（不改，不能把文字改坏——检查时发现过「了、宾语、宾语」
+    「关系系带词」）。"""
+    srcs = [src] if isinstance(src, str) else list(src)
+    srcs = sorted(dict.fromkeys(x for x in srcs if x and x != dst), key=lambda x: len(change_pieces(x, cur)))
+    for x in srcs:
+        cand = merge3(x, dst, cur)
+        if (cand and cand != cur and _within(cur, cand, change_pieces(x, dst))
+                and _within(dst, cand, change_pieces(x, cur))):
             return cand
+    cand = apply_edits(cur, edits) if edits else ""
+    if cand and cand != cur:
+        for x in srcs:
+            if (_within(cur, cand, change_pieces(x, dst)) and _within(dst, cand, change_pieces(x, cur))
+                    and _merge_onto(dst, x, cand, strict=True) == cur):
+                return cand
     return ""
+
+
+def middle_state(st: Dict[str, str], cur: str) -> Optional[str]:
+    """现在的文字是不是从中间的整句（direct 直接改好以后 / sure 有把握的改好以后）改出来的：比查错字时（base）和
+    都改好以后（alt）都近（改动少）时，返回 "direct" / "sure"；否则 None（按两头算）。"""
+    if not st or st.get("alt") == st.get("base"):
+        return None
+    ends = min(len(change_pieces(st["base"], cur)), len(change_pieces(st["alt"], cur)))
+    best, dist = None, ends
+    for k in ("direct", "sure"):
+        x = st.get(k)
+        if x is not None and x not in (st["base"], st["alt"]):
+            d = len(change_pieces(x, cur))
+            if d < dist:
+                best, dist = k, d
+    return best
 
 
 def known_states(rec: Dict[str, Any]) -> Dict[str, str]:
@@ -620,6 +698,19 @@ def known_states(rec: Dict[str, Any]) -> Dict[str, str]:
     return out
 
 
+_ORDER = ("base", "direct", "sure", "alt")
+
+
+def _states_before(st: Dict[str, str], key: str) -> List[str]:
+    """记下的整句里排在 key 前面的（采用时，现在的文字可能是从这些改出来的）。"""
+    return [st[k] for k in _ORDER[:_ORDER.index(key)] if st.get(k) is not None]
+
+
+def _states_after(st: Dict[str, str], key: str) -> List[str]:
+    """记下的整句里排在 key 后面的（撤销时，现在的文字可能是从这些改出来的）。"""
+    return [st[k] for k in _ORDER[_ORDER.index(key) + 1:] if st.get(k) is not None]
+
+
 def adopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
     """「✅ 采用建议」：把还没采用的建议改进这一行的文字（存进草稿，红灯；保存以后变绿灯）。"""
     with _LOCK:
@@ -636,7 +727,7 @@ def adopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
             changes = describe_states(rec, vals["text"], new, limit=6)
         else:
             st = known_states(rec)
-            new = safe_apply(vals["text"], info["edits"], st["base"], st["alt"]) if st else ""
+            new = safe_apply(vals["text"], info["edits"], _states_before(st, "alt"), st["alt"]) if st else ""
             changes = describe_change(vals["text"], new, limit=6) if new else ""
             if not new:
                 raise ValueError("这一行你改过别的地方，程序没法确定建议该放在哪里，所以没有改（免得把字改乱）。"
@@ -645,7 +736,7 @@ def adopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
             raise ValueError("采用建议以后文字是空的，没有改。请听一听录音，双击「文字」自己改")
         _forget_rejects(project, clip_id, vals["text"], info["edits"])
         out = set_draft(project, clip_id, text=new)
-        out.update(old_text=vals["text"], text=new, changes=changes)
+        out.update(old_text=vals["text"], text=out["values"]["text"], changes=changes)
         return out
 
 
@@ -666,7 +757,7 @@ def unadopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
             changes = describe_states(rec, new, vals["text"], limit=6)
         else:
             st = known_states(rec)
-            new = safe_apply(vals["text"], info["undo"], st["alt"], st["base"]) if st else ""
+            new = safe_apply(vals["text"], info["undo"], _states_after(st, "base"), st["base"]) if st else ""
             if not new:
                 raise ValueError("这一行你改过别的地方，程序没法确定该撤销哪几个字，所以没有改（免得把字改乱）。"
                                  "请双击「文字」自己改回去")
@@ -676,7 +767,7 @@ def unadopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
             raise ValueError("撤销以后文字是空的，没有改")
         _remember_rejects(project, clip_id, pairs)  # 再点一键校正时不再改回来
         out = set_draft(project, clip_id, text=new)
-        out.update(old_text=vals["text"], text=new, changes=changes)
+        out.update(old_text=vals["text"], text=out["values"]["text"], changes=changes)
         return out
 
 
@@ -710,10 +801,14 @@ def adopt_all_suggestions(project: Any) -> Dict[str, Any]:
                     and not is_rejected(rejected.get(rid), vals["text"], 0, len(vals["text"]), target)):
                 new = target  # 整句换成「有把握的都改好以后」的样子（不会配错位置）
             elif todo and target:
-                # 一处一处改，改完检查；不确定就不改（这一行留给老师）
-                new = safe_apply(vals["text"], todo, st["base"], target) or vals["text"]
+                # 三方合并 / 一处一处改，改完检查；不确定就不改（这一行留给老师）
+                new = safe_apply(vals["text"], todo, _states_before(st, "sure"), target) or vals["text"]
             else:
                 new = vals["text"]
+            new = clean_transcript(new) if new else new
+            bad = {(str(a), str(b)) for a, b in (rejected.get(rid) or []) if isinstance(a, str) and isinstance(b, str)}
+            if bad and new != vals["text"] and any(pc in bad for pc in change_pieces(vals["text"], new)):
+                new = vals["text"]  # 里面有老师撤销过的改法：这一行不动
             after = analyze(rec, new) if new else info
             if after["edits"]:
                 unsure += 1  # 采用了有把握的以后还剩下建议：没把握的，留给老师
