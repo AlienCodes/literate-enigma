@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import csv
+import io
 import json
 import re
+import time
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
@@ -15,7 +17,7 @@ from voicetwin.utils.log import get_logger
 log = get_logger("project")
 
 MANIFEST_FIELDS_CSV = ["id", "keep", "split", "lang", "duration", "text", "drop_reason", "audio"]
-_WARNED_EMPTY: set = set()  # 已经说过「manifest.jsonl 是空的」的声音（每个只说一次）
+_WARNED_EMPTY: set = set()  # 已经说过「manifest.jsonl 空了 / 坏了 / 不见了」的声音（每个只说一次）
 
 
 def _safe_voice_name(name: str) -> str:
@@ -46,6 +48,7 @@ class Project:
         self.manifest_path = self.root / "manifest.jsonl"
         self.csv_path = self.root / "transcripts.csv"
         self.csv_snapshot_path = self.root / "transcripts.exported.json"
+        self.manifest_lost_path = self.root / "manifest.lost.json"  # 读的时候发现 manifest 丢了：写 CSV 以前先另存
         self.sources_path = self.root / "sources.json"
         self.references_path = self.root / "references.json"
         self.profile_path = self.root / "profile.json"
@@ -105,6 +108,7 @@ class Project:
     # ------------------------------------------------------------------ manifest
     def load_manifest(self, only_kept: bool = False, split: Optional[str] = None) -> List[Dict[str, Any]]:
         if not self.manifest_path.exists():
+            self._note_lost_manifest("不见了")  # transcripts.csv 里还有句子时才算（新建的声音两个都没有）
             return []
         from voicetwin.utils import atomic
 
@@ -126,19 +130,42 @@ class Project:
         if bad:  # 坏了的行（写到一半断电）：跳过、留一份副本，别的照常用（以前整个校对表打不开、保存 / 确认一直失败）
             log.warning(f"校对表 manifest.jsonl 有 {bad} 行坏了，跳过（留了一份 manifest.jsonl.bad）")
             atomic.keep_bad_copy(self.manifest_path)
+            self._note_lost_manifest(f"有 {bad} 行坏了")
         elif not records:
-            self._warn_empty_manifest()
+            self._note_lost_manifest("是空的")
         if only_kept:  # 校对表里删除的一定不算（delete_clip 也会把 keep 设成 False，这里再保险一次）
             records = [r for r in records if r.get("keep", True) and not r.get("deleted")]
         if split:
             records = [r for r in records if r.get("split", "train") == split]
         return records
 
-    def _warn_empty_manifest(self) -> None:
-        """manifest.jsonl 在、却是空的，切好的片段还在：多半是保存的时候断电了（以前一声不吭，网页只说「还没有片段」）。
-        每个声音只在黑色窗口 / 记录里说一次（这个函数一直被调用）。"""
+    def _note_lost_manifest(self, why: str) -> None:
+        """manifest.jsonl 空了 / 坏了 / 不见了：多半是保存的时候断电了（以前一声不吭，网页只说「还没有片段」）。
+        transcripts.csv 里还有句子（上次保存的文字，常常是最后一份）：记下来（manifest.lost.json），下一次写 transcripts.csv
+        以前一定先另存一份（_keep_old_csv）——照着网页说的再点「开始准备素材」，视频可能重新切一遍，片段编号和原来一模一样，
+        只比编号、比文字都不一定看得出来少了什么（例如老师只删了几句）。
+        黑色窗口 / 记录里每个声音只说一次（这个函数一直被调用）。"""
+        noted = False
+        try:
+            noted = self.manifest_lost_path.exists()
+            if not noted and self.csv_path.exists() and self._csv_texts() != {}:  # 有句子，或者有内容却读不出来
+                from voicetwin.utils import atomic
+
+                atomic.write_text(self.manifest_lost_path, json.dumps(
+                    {"why": f"manifest.jsonl {why}", "time": time.strftime("%Y-%m-%d %H:%M:%S")}, ensure_ascii=False))
+                noted = True
+        except OSError as exc:  # 记不下来：只靠写的时候比句子和文字（_keep_old_csv 的另外两条）
+            log.warning(f"没能记下「校对表 manifest.jsonl {why}」（{exc}）")
         key = str(self.manifest_path)
         if key in _WARNED_EMPTY:
+            return
+        if noted:
+            _WARNED_EMPTY.add(key)
+            log.warning(f"校对表 manifest.jsonl {why}：多半是保存的时候电脑断电或死机了。上次保存的文字在 {self.csv_path.name} "
+                        f"里还有一份：下次写 {self.csv_path.name} 以前，程序会先把它另存成「transcripts_备份_日期_时间.csv」"
+                        "（在这个声音的文件夹里，原来改好的文字在里面）")
+            return
+        if why == "不见了":
             return
         try:
             has_clips = any(self.clips_dir.glob("*.wav"))
@@ -146,8 +173,7 @@ class Project:
             has_clips = False
         if has_clips:
             _WARNED_EMPTY.add(key)
-            log.warning(f"校对表 manifest.jsonl 是空的，可是切好的片段还在（{self.clips_dir}）：多半是保存的时候电脑断电或死机了。"
-                        f"上次保存的文字在 {self.csv_path.name} 里还有一份，程序不会再用空的校对表把它冲掉（会先另存一份备份）")
+            log.warning(f"校对表 manifest.jsonl {why}，可是切好的片段还在（{self.clips_dir}）：多半是保存的时候电脑断电或死机了")
 
     def save_manifest(self, records: Iterable[Dict[str, Any]]) -> None:
         self.root.mkdir(parents=True, exist_ok=True)
@@ -192,37 +218,109 @@ class Project:
             atomic.write_text(self.csv_snapshot_path, json.dumps(snap, ensure_ascii=False))
         except OSError:
             pass
+        try:  # 发现 manifest 丢了以后的第一次已经写完（要另存的上面已经另存了）
+            self.manifest_lost_path.unlink()
+        except OSError:
+            pass
         return self.csv_path
 
     def _keep_old_csv(self, records: List[Dict[str, Any]]) -> Optional[Path]:
-        """这次要写的校对表比上次写的少了句子：正常情况下句子只会多不会少（删除也只是标成紫色），少了多半是 manifest.jsonl
-        坏了 / 空了（保存的时候断电）。先把上次的 transcripts.csv 另存一份「transcripts_备份_时间.csv」，再写新的——
-        以前照着网页说的再点「开始准备素材」，最后一份改好的文字也被空表冲掉了。返回备份的位置（没备份返回 None）。"""
-        import shutil
-        import time
+        """写 transcripts.csv 以前：里面有这次要写的表里没有的东西，先把它另存一份「transcripts_备份_日期_时间.csv」再写——
+        manifest.jsonl 断电坏了以后，它常常是最后一份老师改好的文字（以前照着网页说的再点「开始准备素材」，它也被冲掉了）。
+        下面任何一条就另存：
+        1. 读校对表的时候发现 manifest.jsonl 空了 / 坏了 / 不见了（manifest.lost.json，_note_lost_manifest 记的）；
+        2. 上次写的句子这次少了（正常只会多不会少，删除也只是标成紫色）；
+        3. 上次写的一句有字，这次换成了别的字，这一条却没有被人改过（没有 text_edited）：程序自己从来不改有字的句子（识别只填
+           没字的），多半是 manifest 丢了以后视频重新切了一遍——片段编号和原来一模一样，只比编号看不出来，字幕 / 识别的字会把
+           老师改好的字冲掉；
+        4. 上次写了什么读不出来（见下）。
+        「上次写的」看 transcripts.exported.json；它坏了 / 没有（和 manifest.jsonl 同一次保存写的，断电时常常一起坏）就直接读
+        transcripts.csv。transcripts.csv 本身是空的 / 一堆 0 就没有什么可留的；和已有的一份备份一模一样也不再另存（例如被 Excel
+        开着、这次又没写成）。另存不了就报错（OSError），这次不写 transcripts.csv。返回备份的位置（不用另存返回 None）。"""
+        from voicetwin.utils import atomic
 
-        if not self.csv_path.exists():
+        try:
+            data = self.csv_path.read_bytes()
+        except OSError:
             return None
+        if not data.strip(b"\x00 \r\n\t"):
+            return None
+        why = []
+        if self.manifest_lost_path.exists():
+            why.append("读校对表的时候发现 manifest.jsonl 空了 / 坏了 / 不见了")
         snap = self.read_json(self.csv_snapshot_path, None)
-        if not isinstance(snap, dict) or not snap:
+        if isinstance(snap, dict):
+            last: Optional[Dict[str, str]] = {str(k): str(v[0] if isinstance(v, list) and v else "") for k, v in snap.items()}
+        else:
+            last = self._csv_texts(data)
+        if last is None:
+            why.append("上次写的内容读不出来")
+        else:
+            now = {str(r.get("id")): r for r in records}
+            lost = sum(1 for k in last if k not in now)
+            if lost:
+                why.append(f"这次比上次少了 {lost} 句")
+            changed = sum(1 for k, t in last.items() if k in now and t.strip() and not now[k].get("text_edited")
+                          and str(now[k].get("text", "") or "") != t)
+            if changed:
+                why.append(f"有 {changed} 句的字要换成没人改过的字（多半是视频重新切了一遍）")
+        if not why:
             return None
-        ids = {str(r.get("id")) for r in records}
-        lost = sum(1 for k in snap if k not in ids)
-        if not lost:
-            return None
-        dest = self.root / f"transcripts_备份_{time.strftime('%Y%m%d_%H%M%S')}.csv"
+        for old in self.root.glob("transcripts_备份_*.csv"):  # 一模一样的已经有了
+            try:
+                if old.stat().st_size == len(data) and old.read_bytes() == data:
+                    return old
+            except OSError:
+                continue
+        stamp = time.strftime("%Y%m%d_%H%M%S")
+        dest = self.root / f"transcripts_备份_{stamp}.csv"
         k = 2
         while dest.exists():
-            dest = self.root / f"transcripts_备份_{time.strftime('%Y%m%d_%H%M%S')}_{k}.csv"
+            dest = self.root / f"transcripts_备份_{stamp}_{k}.csv"
             k += 1
+        tmp = atomic.tmp_for(dest)
         try:
-            shutil.copy2(self.csv_path, dest)
+            tmp.write_bytes(data)
+            atomic.finish(tmp, dest)
         except OSError as exc:
-            log.warning(f"没能另存 transcripts.csv 的备份（{exc}）")
-            return None
-        log.warning(f"这次的校对表比上次少了 {lost} 句（多半是 manifest.jsonl 坏了 / 空了）：上次的 transcripts.csv 另存成了 "
-                    f"{dest.name}，里面有原来改好的文字")
+            try:
+                tmp.unlink()
+            except OSError:
+                pass
+            # 另存不了就先不写 transcripts.csv：写了，上次保存的文字就一份都没有了（校对表 manifest.jsonl 已经存好了，
+            # 下次保存时再试）
+            log.warning(f"没能另存 transcripts.csv 的备份（{exc}），这次先不写 transcripts.csv，免得上次保存的文字一份都不剩")
+            raise
+        log.warning(f"{'；'.join(why)}：上次的 transcripts.csv 另存成了 {dest.name}（在 {self.root}），里面是上次保存的文字"
+                    "（包括改好的）。需要的话用 Excel / WPS 打开它，把文字抄回网页上的校对表")
         return dest
+
+    def _csv_texts(self, data: Optional[bytes] = None) -> Optional[Dict[str, str]]:
+        """transcripts.csv 里的句子（编号 → 文字）。没有 / 空的 / 一堆 0 / 只有表头 → {}；有内容却读不出来（断电留下的乱码、
+        Excel 另存成了别的样子、表头被改了）→ None。"""
+        if data is None:
+            try:
+                data = self.csv_path.read_bytes()
+            except FileNotFoundError:
+                return {}
+        if not data.strip(b"\x00 \r\n\t"):
+            return {}
+        for enc in ("utf-8-sig", "gb18030"):  # Excel「另存为」CSV 默认是 GBK
+            try:
+                text = data.decode(enc)
+                break
+            except UnicodeDecodeError:
+                continue
+        else:
+            return None
+        try:
+            reader = csv.DictReader(io.StringIO(text, newline=""))
+            rows = list(reader)
+        except csv.Error:
+            return None
+        if "id" not in (reader.fieldnames or []):
+            return None
+        return {str(r.get("id") or "").strip(): str(r.get("text") or "") for r in rows if str(r.get("id") or "").strip()}
 
     def import_csv(self) -> Dict[str, int]:
         """读回校对表，把修改（文字、keep、语言）同步到 manifest。
