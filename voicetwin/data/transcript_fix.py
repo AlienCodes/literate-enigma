@@ -247,38 +247,58 @@ def load_transcripts(project: Any) -> Tuple[List[Tuple[str, str]], List[str]]:
     return lines, names
 
 
-#: 「📝 一键全部文字校正」只能用一次（老师 10-03 的要求）：用过以后在声音文件夹里记一笔，按钮变灰；
-#: 10 秒内把按钮右边的三个小圆点都点一下才能再用一次（解锁 = 去掉这一笔）
+#: 「📝 一键全部文字校正」每批素材只能用一次（老师 10-03 的要求）：用过以后在声音文件夹里记下这次处理过的句子（id），
+#: 按钮变灰；以后加了新的素材、识别出新的句子，按钮再亮起来，只改新加的那些句子
 USED_FILE = "textfix_used.json"
 
 
-def textfix_used(project: Any) -> bool:
-    """这个声音的「一键全部文字校正」是不是已经用过（按钮该是灰色的）。文件坏了当作用过（宁可多锁一次，不重复改）。"""
+def _all_ids(project: Any) -> List[str]:
+    return [str(r.get("id")) for r in project.load_manifest() if r.get("id")]
+
+
+def textfix_new_ids(project: Any) -> List[str]:
+    """还没用过「一键全部文字校正」的句子（没删除的）：空的 = 这批素材已经用过了，按钮是灰色的。
+    记录坏了：当作现在的句子都用过了（宁可不改，也不重复改），并且重新记一份，以后加的新素材照样认得出来。"""
     path = Path(project.root) / USED_FILE
+    live = [str(r.get("id")) for r in project.load_manifest() if r.get("id") and not r.get("deleted")]
     if not path.exists():
-        return False
+        return live
     try:
         import json
 
         data = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return True
-    return not isinstance(data, dict) or bool(data.get("used", True))
+        done = {str(x) for x in data["ids"]} if isinstance(data, dict) and isinstance(data.get("ids"), list) else None
+    except (OSError, ValueError, TypeError):
+        done = None
+    if done is None:
+        log.warning("「一键全部文字校正」的记录读不了，当作现在的句子都已经用过（以后加的新素材照样能用）")
+        mark_textfix_used(project, _all_ids(project))
+        return []
+    return [x for x in live if x not in done]
 
 
-def set_textfix_used(project: Any, used: bool) -> None:
-    """记下用过了（used=True）/ 解锁、可以再用一次（used=False）。"""
+def textfix_used(project: Any) -> bool:
+    """这批素材（现在所有没删除的句子）是不是都已经用过「一键全部文字校正」了（按钮该是灰色的）。"""
+    return not textfix_new_ids(project)
+
+
+def mark_textfix_used(project: Any, ids: Iterable[str]) -> None:
+    """记下这些句子用过「一键全部文字校正」了（和以前记下的合在一起）。"""
+    import json
+
     path = Path(project.root) / USED_FILE
-    if used:
-        import json
+    done: Set[str] = set()
+    try:
+        old = json.loads(path.read_text(encoding="utf-8"))
+        if isinstance(old, dict) and isinstance(old.get("ids"), list):
+            done = {str(x) for x in old["ids"]}
+    except (OSError, ValueError, TypeError):
+        pass
+    done |= {str(x) for x in ids}
+    from voicetwin.utils import atomic
 
-        path.write_text(json.dumps({"used": True, "at": time.strftime("%Y-%m-%d %H:%M:%S")}, ensure_ascii=False),
-                        encoding="utf-8")
-    else:
-        try:
-            path.unlink()
-        except FileNotFoundError:
-            pass
+    atomic.write_text(path, json.dumps({"used": True, "at": time.strftime("%Y-%m-%d %H:%M:%S"), "ids": sorted(done)},
+                                       ensure_ascii=False))
 
 
 def transcript_info(project: Any) -> Dict[str, Any]:
@@ -1579,11 +1599,13 @@ def _program_states(rec: Dict[str, Any], sus: Dict[str, Any]) -> Set[str]:
 
 def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
                           lines: Optional[Sequence[Tuple[str, str]]] = None, use_builtin: bool = True,
-                          names: Optional[Sequence[str]] = None, use_row_fixes: bool = True) -> Dict[str, Any]:
+                          names: Optional[Sequence[str]] = None, use_row_fixes: bool = True,
+                          only: Optional[Iterable[str]] = None) -> Dict[str, Any]:
     """📝 文字校正：以标准库（老师的母本 + 语法术语 + 对照表）为标准检查这个声音的校对表。
 
     直接改的存成没保存的修改（草稿），建议和原因写进「可能有错」列（record["suspect"]）。
-    lines：老师上传的母本（不给就读声音文件夹里存的）；use_builtin：用不用程序自带的母本（测试时可以关掉）。"""
+    lines：老师上传的母本（不给就读声音文件夹里存的）；use_builtin：用不用程序自带的母本（测试时可以关掉）。
+    only：只检查这些句子（id），别的句子一点都不动（一键全部文字校正每批素材只能用一次：以后只改新加的句子）。"""
     from voicetwin.data import review as _review
     from voicetwin.data.lexicon_fix import Lexicon, builtin_info, has_jieba
 
@@ -1614,8 +1636,9 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
     todo = []
     dismissed = 0
     dismissed_ids: Set[str] = set()
+    only_ids = None if only is None else {str(x) for x in only}
     for r in records:
-        if r.get("deleted"):
+        if r.get("deleted") or (only_ids is not None and str(r.get("id")) not in only_ids):
             continue
         entry = draft.get(r["id"])
         vals = _review.current_values(r, entry)

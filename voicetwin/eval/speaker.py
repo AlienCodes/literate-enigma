@@ -720,9 +720,9 @@ def calibrate(project, encoder: SpeakerEncoder, cen: np.ndarray, used_ids: Seque
     entry.update({"source": source, "sig": sig})
     cache[encoder.name] = entry
     try:
-        tmp = cache_path.with_suffix(".json.tmp")
-        tmp.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
-        tmp.replace(cache_path)
+        from voicetwin.utils import atomic
+
+        atomic.write_text(cache_path, json.dumps(cache, ensure_ascii=False, indent=1))
     except OSError:
         pass
     return entry

@@ -80,10 +80,9 @@ class Project:
     def write_json(path: Path, data: Any) -> None:
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
-        tmp = path.with_suffix(path.suffix + ".tmp")
-        with open(tmp, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-        tmp.replace(path)
+        from voicetwin.utils import atomic
+
+        atomic.write_text(path, json.dumps(data, ensure_ascii=False, indent=2))
 
     # ------------------------------------------------------------------ manifest
     def load_manifest(self, only_kept: bool = False, split: Optional[str] = None) -> List[Dict[str, Any]]:
@@ -103,11 +102,9 @@ class Project:
 
     def save_manifest(self, records: Iterable[Dict[str, Any]]) -> None:
         self.root.mkdir(parents=True, exist_ok=True)
-        tmp = self.manifest_path.with_suffix(".jsonl.tmp")
-        with open(tmp, "w", encoding="utf-8") as f:
-            for r in records:
-                f.write(json.dumps(r, ensure_ascii=False) + "\n")
-        tmp.replace(self.manifest_path)
+        from voicetwin.utils import atomic
+
+        atomic.write_text(self.manifest_path, "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in records))
 
     def export_csv(self, records: Optional[List[Dict[str, Any]]] = None) -> Path:
         """导出校对表（用 Excel/WPS 打开，改错字、把 keep 改成 0 可删掉片段）。"""

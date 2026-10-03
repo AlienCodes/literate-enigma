@@ -23,6 +23,7 @@ import time
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple, Union
 
+from voicetwin.utils import atomic
 from voicetwin.utils.textutil import clean_transcript, detect_lang
 
 DRAFT_FILE = "review_draft.json"
@@ -64,9 +65,7 @@ def save_draft(project: Any, draft: Dict[str, Dict[str, Any]]) -> None:
             pass
         return
     p.parent.mkdir(parents=True, exist_ok=True)
-    tmp = p.with_suffix(".json.tmp")
-    tmp.write_text(json.dumps(draft, ensure_ascii=False, indent=1), encoding="utf-8")
-    tmp.replace(p)
+    atomic.write_text(p, json.dumps(draft, ensure_ascii=False, indent=1))
 
 
 def saved_values(rec: Dict[str, Any]) -> Dict[str, Any]:
@@ -510,9 +509,7 @@ def _save_rejected(project: Any, data: Dict[str, List[List[str]]]) -> None:
         except OSError:
             pass
         return
-    tmp = p.with_suffix(".json.tmp")
-    tmp.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
-    tmp.replace(p)
+    atomic.write_text(p, json.dumps(data, ensure_ascii=False, indent=1))
 
 
 _UNIT = re.compile(r"[A-Za-z0-9']+|\S")
@@ -861,13 +858,15 @@ def unadopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
         return out
 
 
-def adopt_all_suggestions(project: Any) -> Dict[str, Any]:
+def adopt_all_suggestions(project: Any, only: Optional[Iterable[str]] = None) -> Dict[str, Any]:
     """「一键全部文字校正」的第二步：所有有把握的修改建议一次全部采用（和一行一行点「采用」一样，存成草稿、红灯）。
 
     删除的行、不保留（不当训练素材）的行不动；只标红、没有建议的地方没法自动改（不知道该改成什么），留着红色；
     没把握的建议（分量不够、另一个引擎整句听得都不一样）也不自动采用，留着红色，老师听了录音自己点这一行的「采用」。
     返回 {"rows": 改了几条, "changes": 改了几处, "no_suggestion": 只标红没有建议的有几条,
-          "unsure": 有建议但没把握、没有自动采用的有几条, "examples": [...]}。"""
+          "unsure": 有建议但没把握、没有自动采用的有几条, "examples": [...]}。
+    only：只管这些句子（id），别的句子不动（一键全部文字校正每批素材只能用一次：以后只改新加的句子）。"""
+    only_ids = None if only is None else {str(x) for x in only}
     with _LOCK:
         records = project.load_manifest()
         draft = load_draft(project)
@@ -875,7 +874,7 @@ def adopt_all_suggestions(project: Any) -> Dict[str, Any]:
         rows = changes = no_sug = unsure = 0
         examples: List[str] = []
         for rec in records:
-            if rec.get("deleted"):
+            if rec.get("deleted") or (only_ids is not None and str(rec.get("id")) not in only_ids):
                 continue
             rid = rec.get("id")
             vals = current_values(rec, draft.get(rid))
@@ -1078,9 +1077,7 @@ def save_confirmed(project: Any, records: Sequence[Dict[str, Any]]) -> Dict[str,
     data = {"time": time.strftime("%Y-%m-%d %H:%M:%S"), "signature": material_signature(records),
             "counts": material_counts(records)}
     p = confirm_path(project)
-    tmp = p.with_suffix(".json.tmp")
-    tmp.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
-    tmp.replace(p)
+    atomic.write_text(p, json.dumps(data, ensure_ascii=False, indent=1))
     return data
 
 
@@ -1190,9 +1187,7 @@ def save_find(project: Any, query: Any, whole_word: bool, index: int = 0, fresh:
             ids.append(rid)
     data = {"q": q, "word": word, "i": max(0, int(index)), "ids": ids}
     p = Path(project.root) / FIND_FILE
-    tmp = p.with_suffix(".json.tmp")
-    tmp.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
-    tmp.replace(p)
+    atomic.write_text(p, json.dumps(data, ensure_ascii=False))
     return data
 
 

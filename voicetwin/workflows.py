@@ -572,9 +572,9 @@ def run_proofcheck(cfg: Config, voice: str, progress: Optional[ProgressFn] = Non
     return res
 
 
-TEXTFIX_ONCE_MSG = ("「📝 一键全部文字校正」每个声音只能用一次，这个声音已经用过了（所以按钮是灰色的）。"
-                    "改好的地方都在下面的表格里，还没保存的请点「保存修改」。"
-                    "真的要再用一次：10 秒内把按钮右边的三个小圆点都点一下，按钮就能再点一次。")
+TEXTFIX_ONCE_MSG = ("这批素材已经用过「📝 一键全部文字校正」了：每批素材只能用一次，所以按钮是灰色的。"
+                    "改好的地方都在下面的表格里，还没保存的请点「保存修改」；还要改的，请用每一行「修改建议」里的按钮，"
+                    "或者双击「文字」自己改。以后加了新的素材、识别完，按钮会再亮起来（只改新加的句子）。")
 
 
 def run_transcript_fix(cfg: Config, voice: str, files: Optional[Sequence[Any]] = None,
@@ -585,30 +585,35 @@ def run_transcript_fix(cfg: Config, voice: str, files: Optional[Sequence[Any]] =
     改的都存成没保存的修改（红灯），老师点「保存修改」才生效。
 
     files：这次上传的母本（txt / transcripts.csv，替换上次上传的）；不给时用上次存的（没有也行，程序自带母本）。
-    once=True（网页上的按钮）：每个声音只能用一次——用过了就不做（ValueError），做完记下「用过了」
-    （老师的要求：用一次按钮就变灰；10 秒内点完按钮旁边的三个小圆点才能再用一次，见 unlock_textfix）。"""
+    once=True（网页上的按钮）：每批素材只能用一次（老师的要求）——只改还没用过的句子（新加的素材），别的句子一点不动；
+    都用过了就不做（ValueError）；做完记下这些句子用过了，按钮变灰。"""
     from voicetwin.data import transcript_fix
 
     project = open_project(cfg, voice, must_exist=True)
-    if once and transcript_fix.textfix_used(project):
-        raise ValueError(TEXTFIX_ONCE_MSG)
+    only = None
+    if once:
+        only = transcript_fix.textfix_new_ids(project)
+        if not only:
+            raise ValueError(TEXTFIX_ONCE_MSG)
     if files:
         info = transcript_fix.save_transcripts(project, files)
         _report(progress, 0.01, f"已保存逐字稿：{'、'.join(info['files'])}（共 {info['chars']} 字）")
-    res = dict(transcript_fix.check_with_transcript(project, progress=_sub(progress, 0.0, 0.95)) or {})
+    res = dict(transcript_fix.check_with_transcript(project, progress=_sub(progress, 0.0, 0.95), only=only) or {})
     if adopt_all:  # 一键全部文字校正：剩下的有把握的修改建议（标准库的、自动查错字的）也一次全部采用
         from voicetwin.data import review
 
         _report(progress, 0.96, "把有把握的修改建议一次全部采用……")
-        res["adopted"] = review.adopt_all_suggestions(project)
+        res["adopted"] = review.adopt_all_suggestions(project, only=only)
         _report(progress, 1.0, f"校正完了：一共改了 {res.get('fixes', 0) + res['adopted']['changes']} 处")
     if once:  # 做完才记（中途出错 / 停止的不算用过，可以再点）；在后台任务里记，网页关掉了也记得上
-        transcript_fix.set_textfix_used(project, True)
+        transcript_fix.mark_textfix_used(project, only or [])
+        res["only"] = len(only or [])
     return res
 
 
 def textfix_used(cfg: Config, voice: str) -> bool:
-    """这个声音的「一键全部文字校正」用过没有（用过了按钮是灰色的）；声音还不存在时 False。"""
+    """这个声音现在的素材是不是都用过「一键全部文字校正」了（用过了按钮是灰色的；加了新素材又变成 False）；
+    声音还不存在时 False。"""
     from voicetwin.data import transcript_fix
 
     try:
@@ -616,18 +621,6 @@ def textfix_used(cfg: Config, voice: str) -> bool:
     except (ValueError, RuntimeError, OSError):
         return False
     return transcript_fix.textfix_used(project)
-
-
-def unlock_textfix(cfg: Config, voice: str) -> bool:
-    """10 秒内点完了按钮旁边的三个小圆点：「一键全部文字校正」可以再用一次。返回 True = 解锁了。"""
-    from voicetwin.data import transcript_fix
-
-    try:
-        project = open_project(cfg, voice, must_exist=True)
-    except (ValueError, RuntimeError, OSError):
-        return False
-    transcript_fix.set_textfix_used(project, False)
-    return True
 
 
 def transcript_info(cfg: Config, voice: str) -> Dict[str, Any]:
@@ -930,9 +923,9 @@ def choose_variant(cfg: Config, voice: str, report_path: str, name: str) -> Dict
     report["final"] = v.get("name")
     if v.get("pct") is not None:  # 整篇百分比跟着最终版本走（和生成时的规则一样）
         report["overall_pct"] = v.get("pct")
-    tmp = rp.with_suffix(rp.suffix + ".tmp")
-    tmp.write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
-    tmp.replace(rp)
+    from voicetwin.utils import atomic
+
+    atomic.write_text(rp, json.dumps(report, ensure_ascii=False, indent=1))
     log.info(f"最终版本改成「{v.get('name')}」：{dst}")
     return {"final": v.get("name"), "audio": str(dst), "variants": variants, "report": str(rp)}
 

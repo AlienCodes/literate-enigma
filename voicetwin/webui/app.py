@@ -82,11 +82,10 @@ GEN_BTN, GEN_BUSY = "生成", "⏳ 正在生成……"
 PROOF_BTN, PROOF_BUSY = "🔍 自动查找可能的错字", "⏳ 正在查找……"
 TEXTFIX_BTN, TEXTFIX_BUSY = "📝 一键全部文字校正", "⏳ 正在校正……"
 DLTXT_BTN = "⬇️ 下载改好的文字（txt）"
-#: 「一键全部文字校正」只能用一次（老师 10-03 的要求）：用过以后按钮变灰；按钮右边三个小圆点，10 秒内三个都点一下才能再用一次
-DOT_LABEL, DOT_WINDOW = "●", 10.0
-TEXTFIX_LOCKED_INFO = ("🔒 **这个按钮每个声音只能用一次，已经用过了（灰色）。** "
-                       "要再用一次：10 秒内把按钮右边的三个小圆点都点一下（点过的会变蓝），按钮就能再点一次。")
-TEXTFIX_UNLOCKED_MSG = "🔓 已经解锁：「📝 一键全部文字校正」可以再用一次（用完又会变灰）。"
+#: 「一键全部文字校正」每批素材只能用一次（老师 10-03 的要求）：用过以后按钮变灰；加了新的素材、识别完以后再亮（只改新加的句子）
+TEXTFIX_LOCKED_INFO = ("🔒 **这批素材已经用过了，每批素材只能用一次（所以按钮是灰色的）。** "
+                       "还要改的，请用每一行「修改建议」里的按钮，或者双击「文字」自己改。"
+                       "以后加了新的素材、识别完，按钮会再亮起来（只改新加的句子）。")
 TEXTFIX_HELP = ("**📝 一键全部文字校正**：以你的**母本标准库**为准（你修缮过的讲课母本 = 你所有的说话习惯，"
                 "+ 所有的英语语法术语 + 「错的写法 → 正确写法」对照表：借词 → 介词、艾子 → as……，程序里已经带着），"
                 "点一下，所有能确定该怎么改的地方**一次全部改好**（包括「修改建议」那一列有把握的建议）。"
@@ -224,10 +223,6 @@ SCRIPT_SUB_EXTS = (".srt", ".vtt")
 # 第二条：空的 Markdown 在任务运行期间会被撑高 96 像素（.min），进度条下面会空出一大块；vt-md 的不撑高。
 APP_CSS = """
 .wrap.default.hidden,.wrap.center.hidden{display:none!important}
-/* 「一键全部文字校正」右边的三个小圆点（10 秒内都点一下才能再用一次） */
-#vt-tr-row{align-items:center;flex-wrap:nowrap;gap:4px}
-.vt-dot{flex:0 0 auto!important;min-width:20px!important;max-width:20px!important;width:20px!important;height:20px!important;
-  padding:0!important;border-radius:50%!important;font-size:9px!important;line-height:20px!important}
 .vt-md .min{min-height:0!important}
 /* gradio 的标题是 flex 不换行：允许换行，手机上模型型号自动换到第二行 */
 .vt-header h1{margin-bottom:2px;flex-wrap:wrap;align-items:center;gap:4px 12px}
@@ -1571,7 +1566,9 @@ def _parse_keep(v: Any) -> Optional[bool]:
 
 def _write_csv_atomic(path: Path, rows: List[Dict[str, Any]], fields: Sequence[str]) -> None:
     """先写临时文件再替换：写到一半出错也不会留下半个文件。被 Excel 打开时会抛 PermissionError。"""
-    tmp = path.with_name(path.name + ".tmp")
+    from voicetwin.utils import atomic
+
+    tmp = atomic.tmp_for(path)  # 每个线程各用各的临时文件（同时写也不会互相抢走）
     with open(tmp, "w", encoding="utf-8-sig", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(fields))
         w.writeheader()
@@ -2189,7 +2186,7 @@ ATTACH_MISSED_MD = "刚才那个任务已经做完了，页面上已经换成最
 
 
 def _textfix_once(cfg: Config, voice: str, **kwargs: Any) -> Dict[str, Any]:
-    """网页上的「一键全部文字校正」：只能用一次（做完在后台记下「用过了」，网页关掉了也记得上）。"""
+    """网页上的「一键全部文字校正」：每批素材只能用一次，只改还没用过的句子（做完在后台记下，网页关掉了也记得上）。"""
     return wf.run_transcript_fix(cfg, voice, once=True, **kwargs)
 
 
@@ -3206,62 +3203,8 @@ class WebUI:
             return False
 
     def textfix_btn(self, voice: Any) -> Dict[str, Any]:
-        """「一键全部文字校正」按钮：这个声音用过了就是灰色（点不了），没用过可以点。"""
+        """「一键全部文字校正」按钮：这批素材用过了就是灰色（点不了）；没用过、加了新素材可以点。"""
         return _upd(value=TEXTFIX_BTN, interactive=not self._textfix_used(_voice_name(voice)))
-
-    @staticmethod
-    def _dots(state: Dict[int, float]) -> Tuple[Any, Any, Any]:
-        """三个小圆点的样子：点过的（10 秒内）变蓝。"""
-        return tuple(_upd(value=DOT_LABEL, variant="primary" if k in state else "secondary") for k in range(3))
-
-    @staticmethod
-    def _dot_state(state: Any, now: float) -> Dict[int, float]:
-        """10 秒内点过的圆点 {第几个: 什么时候点的}（超过 10 秒的不算）。"""
-        out: Dict[int, float] = {}
-        for k, t in (state.items() if isinstance(state, dict) else []):
-            try:
-                k, t = int(k), float(t)
-            except (TypeError, ValueError):
-                continue
-            if 0 <= k < 3 and 0 <= now - t <= DOT_WINDOW:
-                out[k] = t
-        return out
-
-    def on_dot(self, k: int, voice: Any, state: Any) -> Tuple[Any, ...]:
-        """点了按钮右边的第 k 个小圆点：10 秒内三个都点过了，「一键全部文字校正」就解锁（可以再用一次）。
-        返回 (圆点 1, 圆点 2, 圆点 3, 按钮, 按钮下面的说明, 记录)。"""
-        now = time.time()
-        st = self._dot_state(state, now)
-        st[int(k)] = now
-        v = _voice_name(voice)
-        if len(st) == 3:
-            if v and wf.unlock_textfix(self.cfg, v):
-                log.info(f"「一键全部文字校正」解锁了（{v}）：10 秒内点完了三个小圆点")
-                info = TEXTFIX_UNLOCKED_MSG + "\n\n" + self.textfix_info(v)
-                return self._dots({}) + (self.textfix_btn(v), info, {})
-            return self._dots({}) + (_upd(), _upd(), {})
-        return self._dots(st) + (_upd(), _upd(), st)
-
-    def on_dot_expire(self, k: int, state: Any, wait: bool = True) -> Dict[str, Any]:
-        """点了第 k 个圆点、10 秒内没点完三个：时间到了把这个圆点变回原来的颜色（接在 on_dot 后面运行）。
-        已经解锁了（记录清空了）的不动。"""
-        st = self._dot_state(state, time.time())
-        if int(k) not in st:
-            return _upd()
-        if wait:
-            time.sleep(max(0.0, st[int(k)] + DOT_WINDOW + 0.3 - time.time()))
-        return _upd(value=DOT_LABEL, variant="secondary")
-
-    def dot_handlers(self, k: int) -> Tuple[Callable[..., Any], Callable[..., Any]]:
-        """第 k 个圆点的两个事件函数（gradio 要有名字的函数，不能用 functools.partial）。"""
-        def click(voice: Any, state: Any) -> Tuple[Any, ...]:
-            return self.on_dot(k, voice, state)
-
-        def expire(state: Any) -> Dict[str, Any]:
-            return self.on_dot_expire(k, state)
-
-        click.__name__, expire.__name__ = f"on_dot_{k}", f"on_dot_expire_{k}"
-        return click, expire
 
     @staticmethod
     def _textfix_md(r: Dict[str, Any]) -> str:
@@ -3332,7 +3275,7 @@ class WebUI:
             yield self._o(O, proof_bar=self._notice(err or NEED_PREPARE), **idle)
             return
         attach = self._attaching("textfix", v)
-        if not attach and self._textfix_used(v):  # 只能用一次（按钮本来是灰的；旧网页上还能点时也不做）
+        if not attach and self._textfix_used(v):  # 每批素材只能用一次（按钮本来是灰的；旧网页上还能点时也不做）
             yield self._o(O, proof_bar=self._notice(wf.TEXTFIX_ONCE_MSG), tr_info=self.textfix_info(v), **idle)
             return
         if not attach:
@@ -3371,7 +3314,7 @@ class WebUI:
             else:
                 md = self._final_md(st, "一键全部文字校正", v)
             # 表格不在这里刷新（和查错字一样）：接在后面的 refresh_clips 读的是那时的表格，没保存的修改会留着；
-            # 做完了按钮变灰（只能用一次），出错 / 停止的还能再点
+            # 做完了按钮变灰（每批素材只能用一次），出错 / 停止的还能再点
             yield self._o(O, proof_bar=st.get("bar", ""), proof_md=md, prep_log=text,
                           clips_count=_clips_count_md(self.cfg, v), tr_info=self.textfix_info(v),
                           tr_btn=self.textfix_btn(v))
@@ -4103,12 +4046,7 @@ class WebUI:
                                                 file_count="multiple", file_types=[".txt", ".csv"], scale=3,
                                                 elem_id="vt-tr-files")
                         with gr.Column(scale=2, min_width=220):
-                            with gr.Row(elem_id="vt-tr-row"):
-                                c["tr_btn"] = gr.Button(TEXTFIX_BTN, variant="primary", elem_id="vt-tr-btn", scale=8)
-                                for k in range(3):  # 10 秒内三个都点一下：「一键全部文字校正」可以再用一次
-                                    c[f"tr_dot{k}"] = gr.Button(DOT_LABEL, size="sm", min_width=20, scale=0,
-                                                                elem_classes="vt-dot", elem_id=f"vt-tr-dot{k}")
-                            c["tr_dots"] = gr.State({})
+                            c["tr_btn"] = gr.Button(TEXTFIX_BTN, variant="primary", elem_id="vt-tr-btn")
                             c["dl_txt_btn"] = gr.Button(DLTXT_BTN, elem_id="vt-dl-txt-btn")
                             c["tr_info"] = gr.Markdown(elem_classes="vt-md vt-tr-info")
                     c["dl_txt_md"] = gr.Markdown(elem_classes="vt-md")
@@ -4363,7 +4301,9 @@ class WebUI:
             c["prep_btn"].click(_settled(self.do_prepare), prep_in, outs(self.PREP_OUT), **heavy).then(
                 _safe("载入片段", 3, 0)(self.after_prepare_clips), [c["voice"], c["only_sus"], c["clips"], c["clips_base"]],
                 clip_outs + [c["clips_base"]], **quick).then(
-                self.after_task, None, after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick)
+                self.after_task, None, after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick).then(
+                self.textfix_btn, c["voice"], c["tr_btn"], **quick).then(  # 加了新素材：一键全部文字校正又能用一次
+                self.textfix_info, c["voice"], c["tr_info"], **quick)
             c["prep_next"].click(lambda: gr.Tabs(selected="train"), None, tabs, **quick)
             load_clips.click(_safe("载入片段", 2, 0)(self.load_clips), [c["voice"], c["only_sus"]], clip_outs, **quick)
             c["only_sus"].change(_safe("载入片段", 2, 0)(self.refresh_clips), [c["voice"], c["only_sus"], c["clips"]],
@@ -4415,14 +4355,8 @@ class WebUI:
                                   outs(self.DLTXT_OUT), **quick).then(None, None, None, js=AUTO_DOWNLOAD_JS, **quick)
             app.load(self.textfix_info, c["voice"], c["tr_info"], **quick)
             c["voice"].change(self.textfix_info, c["voice"], c["tr_info"], **quick)
-            app.load(self.textfix_btn, c["voice"], c["tr_btn"], **quick)  # 用过了就是灰色（每个声音只能用一次）
+            app.load(self.textfix_btn, c["voice"], c["tr_btn"], **quick)  # 用过了就是灰色（每批素材只能用一次）
             c["voice"].change(self.textfix_btn, c["voice"], c["tr_btn"], **quick)
-            dots = [c[f"tr_dot{k}"] for k in range(3)]
-            for k in range(3):
-                on_click, on_expire = self.dot_handlers(k)
-                c[f"tr_dot{k}"].click(on_click, [c["voice"], c["tr_dots"]],
-                                      dots + [c["tr_btn"], c["tr_info"], c["tr_dots"]], **quick).then(
-                    on_expire, c["tr_dots"], c[f"tr_dot{k}"], **quick)
             c["voice"].change(lambda: ("", _upd(value=None, visible=False)), None, outs(self.DLTXT_OUT), **quick)
 
             # ②
