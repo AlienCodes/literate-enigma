@@ -6,6 +6,8 @@
 - 单独生成的请求和以前一个字段、一个数都不差（_payload）；
 - 拿真实的 api_v2.py（两个版本，只把模型换成假的）跑：一次请求拿到 4 个不同的版本、显存不够减半、
   减到 1 个还不够时先让出显存再试一次、「语速 1.0001」自检没通过时只有语速 1.0 的句子一个一个生成、切不开时改成一个一个生成；
+- 不开引擎也能查的：一个一个生成的原因写的是真正的原因（自检里显存不够 / 自检出错没做完 / 自检没通过）、
+  只有真的让出了显存才记 gpu_releases、自检通过的日志只写量出来的数、两次运行程序写进同一个文件夹不会覆盖文件；
 - 识别校验模型让出显卡（CERChecker.release_gpu）。
 """
 
@@ -13,6 +15,7 @@ import csv
 import io
 import json
 import logging
+import math
 import os
 import socket
 import sys
@@ -373,7 +376,7 @@ def test_oom_at_one_releases_gpu_then_fatal(prepared, tmp_path, quick, monkeypat
     monkeypatch.setenv("FAKE_GSV_MAX_BATCH", "0")  # 一个也生成不了
     b, root, ref = _backend(prepared, tmp_path, api_src)
     calls = []
-    b.release_gpu_callback = lambda: calls.append(1)
+    b.release_gpu_callback = lambda: calls.append(1) or True  # 和 CERChecker.release_gpu 一样：卸掉了模型回 True
     try:
         b.start()
         with pytest.raises(RuntimeError) as ei:
@@ -386,7 +389,7 @@ def test_oom_at_one_releases_gpu_then_fatal(prepared, tmp_path, quick, monkeypat
         assert st["oom_backoffs"] == 2 and st["gpu_releases"] == 1 and b._max_batch == 1
         msgs = vt_log.messages()
         assert "显存不够：每次同时生成的数量从 2 减到 1，接着试（不会停下）" in msgs
-        assert any(m.startswith("显存不够：一次只生成一个也不够。先让出显存") for m in msgs)
+        assert "显存不够：一次只生成一个也不够。已经让出了一部分显存，再试一次……" in msgs
         assert not list((tmp_path / "out").glob("*.wav"))
     finally:
         b.stop()
@@ -406,10 +409,12 @@ def test_oom_in_self_check_switches_to_singles_once(prepared, tmp_path, quick, m
         msgs = vt_log.messages()
         assert "显存不够：同时生成 2 个也不够，改成一次生成一个（不会停下）" in msgs
         assert any(m.startswith("「语速 1.0001」自检没做成") for m in msgs)
+        # 记下的原因是真正的原因（显存不够），不是「自检没通过」（自检根本没做完）
+        assert b.batch_stats["single_reasons"] == {"显存不够，已经改成一次生成一个": 1}
         n = len(_runs(root))
         assert len(b.synthesize_many(_req(ref, seed=2), 2, tmp_path / "out")) == 2
         assert [r["batch_size"] for r in _runs(root)[n:]] == [1, 1]  # 没有再自检
-        assert "显存不够，已经改成一次生成一个" in b.batch_stats["single_reasons"]
+        assert b.batch_stats["single_reasons"] == {"显存不够，已经改成一次生成一个": 2}
     finally:
         b.stop()
 
@@ -430,6 +435,7 @@ def test_broken_speed_trick_only_affects_speed_one(prepared, tmp_path, quick, mo
         assert [(r["batch_size"], r["speed_factor"], r["seed"], r["fragment_interval"]) for r in singles] == [
             (1, 1.0, 5 + k * SEED_STEP, 0.3) for k in range(3)]
         assert any(m.startswith("自检没通过（长度差了") for m in vt_log.messages())
+        assert st["single_reasons"] == {"「语速 1.0001」自检没通过（语速正好 1.0 的句子）": 1}
         # 语速不是 1.0：照样同时生成（不用 1.0001 的办法）
         n = len(runs)
         out2 = b.synthesize_many(_req(ref, speed=0.9), 3, tmp_path / "out")
@@ -493,6 +499,202 @@ def test_simple_fake_api_batches_and_halves(prepared, tmp_path, quick, monkeypat
         assert not np.array_equal(a, c)
     finally:
         b.stop()
+
+
+# ---------------------------------------------------------------------------- 不开引擎：记下的原因、日志、文件名都是真的
+_OOM = "torch.OutOfMemoryError: CUDA out of memory."
+
+
+def _tone(sec, sr=32000, hz=200.0):
+    x = (np.sin(2 * np.pi * hz * np.arange(int(sec * sr)) / sr) * 8000).astype(np.int16)
+    x[x == 0] = 1
+    return x
+
+
+def _offline(prepared, tmp_path, answer):
+    """不开推理服务的 GPT-SoVITS 后端：请求交给 answer(payload) 回答（回 WAV 字节或抛出错误），单独生成写一段声音。"""
+    b = _bare_backend(prepared, tmp_path)
+    b._alive = lambda: True
+    b._batch_version = lambda: "v2ProPlus"
+    b._tts_answer = answer
+    seeds = []
+
+    def synth(req, out_path):
+        seeds.append(req.seed)
+        Path(out_path).write_bytes(_wav(_tone(1.0), 32000))
+        return Path(out_path)
+
+    b.synthesize = synth
+    return b, seeds
+
+
+def _bare_req(tmp_path, speed=1.0, seed=7):
+    return _req((tmp_path / "ref.wav", "参考", "zh"), speed=speed, seed=seed)
+
+
+def test_single_reason_tells_what_really_happened_in_the_self_check(prepared, tmp_path, vt_log):
+    """自检没做完（出错了）时，记下的原因不能写成「自检没通过」：显存不够就写显存不够，别的错误写「没做成」和原因。"""
+    tone = _wav(_tone(2.0), 32000)
+
+    def oom_at_two(p):  # 一次一个没问题，同时生成 2 个显存就不够
+        if p["batch_size"] > 1:
+            raise _answer_error("GPT-SoVITS 合成失败：" + _OOM, _OOM)
+        return tone
+
+    b, seeds = _offline(prepared, tmp_path, oom_at_two)
+    assert len(b.synthesize_many(_bare_req(tmp_path), 3, tmp_path / "o")) == 3 and len(seeds) == 3
+    assert b._max_batch == 1 and b._speed_trick is None and b.batch_stats["speed_trick"] is None
+    assert b.batch_stats["single_reasons"] == {"显存不够，已经改成一次生成一个": 1}
+
+    def broken(p):  # 语速 1.0001 的请求出了别的错
+        if p["speed_factor"] != 1.0:
+            raise _answer_error("GPT-SoVITS 合成失败：ValueError: boom", "ValueError: boom")
+        return tone
+
+    b, seeds = _offline(prepared, tmp_path, broken)
+    assert len(b.synthesize_many(_bare_req(tmp_path), 2, tmp_path / "o")) == 2
+    assert b._speed_trick is None and b._max_batch is None
+    assert b.batch_stats["single_reasons"] == {
+        "「语速 1.0001」自检没做成（自检时出错：GPT-SoVITS 合成失败：ValueError: boom）": 1}
+
+    def longer(p):  # 自检真的做完了、没通过（1.0001 长了 5%）
+        return _wav(_tone(2.0 if p["speed_factor"] == 1.0 else 2.1), 32000)
+
+    b, seeds = _offline(prepared, tmp_path, longer)
+    assert len(b.synthesize_many(_bare_req(tmp_path), 2, tmp_path / "o")) == 2 and b._speed_trick is False
+    assert b.batch_stats["single_reasons"] == {"「语速 1.0001」自检没通过（语速正好 1.0 的句子）": 1}
+
+
+def test_gpu_release_is_counted_only_when_something_was_released(prepared, tmp_path, vt_log):
+    """一次一个也显存不够：只有回调真的让出了显存才记 gpu_releases、日志才说让出了；不管让没让出，都再试一次。"""
+    from voicetwin.eval import metrics
+
+    b = _bare_backend(prepared, tmp_path)
+    b._alive = lambda: True
+    tries = []
+
+    def synth(req, out_path):
+        tries.append(req.seed)
+        raise _answer_error("GPT-SoVITS 合成失败：" + _OOM, _OOM)
+
+    def boom():
+        raise RuntimeError("driver")
+
+    b.synthesize = synth
+    head = "显存不够：一次只生成一个也不够。"
+    cases = [  # (回调, 到这里一共记了几次让出显存, 日志)
+        (None, 0, head + "再试一次……"),
+        (lambda: True, 1, head + "已经让出了一部分显存，再试一次……"),
+        (lambda: False, 1, head + "没有能让出的显存，再试一次……"),
+        (metrics.CERChecker("auto").release_gpu, 1, head + "没有能让出的显存，再试一次……"),  # 识别模型还没加载过
+        (boom, 1, head + "没能让出显存（driver），再试一次……"),
+    ]
+    for cb, releases, msg in cases:
+        b.release_gpu_callback = cb
+        tries.clear()
+        vt_log.records.clear()
+        with pytest.raises(RuntimeError) as ei:
+            b.synthesize_many(_bare_req(tmp_path, speed=0.9), 1, tmp_path / "o")
+        assert getattr(ei.value, "oom", False) and len(tries) == 2  # 再试一次，还不行就照常报「显存不够」
+        assert b.batch_stats["gpu_releases"] == releases, msg
+        assert msg in vt_log.messages()
+        if cb is None:
+            assert not any("让出" in m for m in vt_log.messages())
+
+
+def test_self_check_pass_log_only_says_what_was_measured(prepared, tmp_path, vt_log):
+    """自检通过的日志只写量出来的（长度差、波形相关系数、2 个版本能分开），不说「一样」、不说没查过的「单独解码」。"""
+    rng = np.random.default_rng(5)
+    sr = 32000
+    a = _tone(3.0)
+    t = np.arange(int(len(a) * 1.0089))  # 长 0.89%、加了一点噪声：相关系数大约 0.992
+    b_ = (np.sin(2 * np.pi * 200 * t / sr) * 8000 + rng.standard_normal(len(t)) * 720).astype(np.int16)
+
+    def answer(p):
+        if p["batch_size"] == 2:
+            return _wav(_join([_frag(rng, 2, sr), _frag(rng, 2, sr)], int(0.5 * sr)), sr)
+        return _wav(a if p["speed_factor"] == 1.0 else b_, sr)
+
+    b, _seeds = _offline(prepared, tmp_path, answer)
+    assert b._speed_trick_ok(_bare_req(tmp_path)) is True and b.batch_stats["speed_trick"] is True
+    r = float(np.corrcoef(a.astype(np.float64), b_[:len(a)].astype(np.float64))[0, 1])
+    assert 0.99 <= r < 0.995
+    msg = [x for x in vt_log.messages() if x.startswith("自检通过")]
+    assert msg == ["自检通过：语速写成 1.0001 和 1.0 生成的声音几乎一样（长度差 0.88%、波形相关系数 "
+                   f"{math.floor(r * 1000) / 1000:.3f}），同时生成的 2 个版本也能按数字静音分开——可以同时生成好几个版本"]
+    assert "单独解码" not in msg[0] and "和 1.0 一样" not in msg[0]
+
+
+_TWO_RUNS = r'''
+import io, sys
+from pathlib import Path
+
+import numpy as np
+import soundfile as sf
+
+from voicetwin.backends.base import Backend, SynthRequest
+from voicetwin.backends.gptsovits import GPTSoVITSBackend, _new_batch_stats
+
+out, run = Path(sys.argv[1]), sys.argv[2]
+
+
+def write(req, path):
+    Path(path).write_text(run + ":" + str(req.seed), encoding="utf-8")
+    return Path(path)
+
+
+class Rec(Backend):
+    name = "rec"
+
+    def __init__(self):
+        pass
+
+    def synthesize(self, req, out_path):
+        return write(req, out_path)
+
+
+def answer(payload):
+    sr, k = 32000, payload["text"].count("\n") + 1
+    tone = (np.sin(np.arange(sr) / 5.0) * 8000).astype(np.int16)
+    tone[tone == 0] = 1
+    x = np.concatenate([np.concatenate([tone + int(run), np.zeros(sr // 2, np.int16)]) for _ in range(k)])
+    buf = io.BytesIO()
+    sf.write(buf, x, sr, format="WAV", subtype="PCM_16")
+    return buf.getvalue()
+
+
+g = GPTSoVITSBackend.__new__(GPTSoVITSBackend)
+g.batch_stats, g.last_many, g._max_batch, g.release_gpu_callback = _new_batch_stats(), {}, None, None
+g._alive = lambda: True
+g._single_reason = lambda req, n: ""
+g._payload = lambda req, **kw: {"text_lang": "zh"}
+g._tts_answer = answer
+g.synthesize = write
+req = SynthRequest("我们今天学习关系代词。", "zh", out / "r.wav", "r", "zh", seed=1)
+Rec().synthesize_many(req, 2, out)
+g._many_singles(req, 2, out)
+g.synthesize_many(req, 2, out)
+assert g.last_many["mode"] == "batch", g.last_many
+'''
+
+
+def test_many_file_names_do_not_repeat_across_runs(tmp_path):
+    """两次运行程序（两个进程）往同一个文件夹写：通用的一个一个生成、GPT-SoVITS 一个一个生成、同时生成，都不覆盖上次的文件。"""
+    import subprocess
+
+    out = tmp_path / "same"
+    out.mkdir()
+    env = dict(os.environ, PYTHONPATH=os.pathsep.join(p for p in (str(ROOT), os.environ.get("PYTHONPATH", "")) if p))
+    seen = {}
+    for run in ("1", "2"):
+        res = subprocess.run([sys.executable, "-c", _TWO_RUNS, str(out), run], env=env, capture_output=True,
+                             text=True, timeout=120)
+        assert res.returncode == 0, res.stderr[-2000:]
+        assert {n: (out / n).read_bytes() for n in seen} == seen  # 上次写的文件一个字节都没变
+        new = {p.name: p.read_bytes() for p in out.glob("*.wav") if p.name not in seen}
+        assert len(new) == 6, sorted(new)  # 每次 2 + 2 + 2 个新文件
+        seen.update(new)
+    assert len(list(out.glob("*.wav"))) == 12
 
 
 # ---------------------------------------------------------------------------- 识别校验模型让出显卡

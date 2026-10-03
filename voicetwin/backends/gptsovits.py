@@ -35,7 +35,6 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 import yaml
 
 from voicetwin.backends.base import (
-    _MANY_IDS,
     OOM_PATTERN,
     SEED_STEP,
     Backend,
@@ -48,6 +47,7 @@ from voicetwin.backends.base import (
     check_cancel,
     gpu_memory_gb,
     kill_process_tree,
+    many_prefix,
     resolve_python,
 )
 from voicetwin.backends.worker import subprocess_env
@@ -2022,6 +2022,11 @@ class GPTSoVITSBackend(Backend):
         if ver not in BATCH_VERSIONS:
             return f"{ver} 模型只能一个一个生成"
         if _speed_of(req) == 1.0 and not self._speed_trick_ok(req):
+            # 按自检之后的情况说真正的原因：自检里显存不够（已经改成一次一个）、自检出错没做完、自检做完了没通过
+            if self._max_batch is not None and self._max_batch <= 1:
+                return "显存不够，已经改成一次生成一个"
+            if self._speed_trick is None:
+                return f"「语速 1.0001」自检没做成（{self.batch_stats['speed_trick_reason']}）"
             return "「语速 1.0001」自检没通过（语速正好 1.0 的句子）"
         return ""
 
@@ -2034,27 +2039,28 @@ class GPTSoVITSBackend(Backend):
         row["pieces"] += int(pieces)
         row["seconds"] = round(row["seconds"] + float(seconds), 3)
 
-    def _speed_trick_once(self, req: SynthRequest, seed: int) -> Tuple[bool, str]:
-        """用一个随机种子自检一次：返回 (通过没有, 没通过的原因)。"""
+    def _speed_trick_once(self, req: SynthRequest, seed: int) -> Tuple[bool, str, Dict[str, float]]:
+        """用一个随机种子自检一次：返回 (通过没有, 没通过的原因, 量出来的数 {"len_diff": 长度差, "r": 波形相关系数})。"""
         import numpy as np
 
         base = dataclasses.replace(req, seed=int(seed))
         xa, sra = _read_int16(self._tts_answer(self._payload(base, speed=1.0)))
         xb, srb = _read_int16(self._tts_answer(self._payload(base, speed=BATCH_SPEED)))
         if sra != srb:
-            return False, f"采样率不一样（{sra} / {srb}）"
+            return False, f"采样率不一样（{sra} / {srb}）", {}
         la, lb = len(xa), len(xb)
         diff = abs(la - lb) / float(max(la, lb, 1))
         if diff > SPEED_TRICK_MAX_LEN_DIFF:
-            return False, f"长度差了 {diff:.1%}"
+            return False, f"长度差了 {diff:.1%}", {"len_diff": diff}
         m = min(la, lb)
         a, b = xa[:m].astype(np.float64), xb[:m].astype(np.float64)
         r = float(np.corrcoef(a, b)[0, 1]) if m > 1 and a.std() > 0 and b.std() > 0 else float("nan")
+        measured = {"len_diff": diff, "r": r}
         if not (r >= SPEED_TRICK_MIN_R):  # nan 也算没通过
-            return False, f"波形的相关系数只有 {r:.3f}"
+            return False, f"波形的相关系数只有 {r:.3f}", measured
         text2 = _batch_text(req.text, self._payload(req)["text_lang"], 2)
         if text2 is None:
-            return False, "这句话不能同时生成，没法检查能不能切开"
+            return False, "这句话不能同时生成，没法检查能不能切开", measured
         payload = self._payload(base, batch=2, interval=BATCH_INTERVAL, speed=BATCH_SPEED)
         payload["text"] = text2
         try:
@@ -2066,11 +2072,11 @@ class GPTSoVITSBackend(Backend):
             raise
         pieces, _sr, why = _split_wav(data, 2, BATCH_INTERVAL)
         if pieces is None:
-            return False, f"同时生成的 2 个版本分不开（{why}）"
-        return True, ""
+            return False, f"同时生成的 2 个版本分不开（{why}）", measured
+        return True, "", measured
 
     def _speed_trick_ok(self, req: SynthRequest) -> bool:
-        """语速正好 1.0 的句子能不能同时生成：自检「语速写成 1.0001」在这次启动的引擎上是不是和 1.0 一样。
+        """语速正好 1.0 的句子能不能同时生成：自检「语速写成 1.0001」在这次启动的引擎上是不是和 1.0 几乎一样。
 
         同一个随机种子、同一条参考录音各生成一次（1.0 和 1.0001），长度差不超过 1%、波形相关系数至少 0.99，
         再同时生成 2 个版本、要能切开，才算通过；最多换 2 个随机种子（显卡计算有一点点随机的出入），有一个通过就算通过。
@@ -2081,9 +2087,10 @@ class GPTSoVITSBackend(Backend):
         reasons: List[str] = []
         errored = False
         ok = False
+        measured: Dict[str, float] = {}
         for j in range(SPEED_TRICK_SEEDS):
             try:
-                ok, why = self._speed_trick_once(req, int(req.seed) + j * SEED_STEP)
+                ok, why, measured = self._speed_trick_once(req, int(req.seed) + j * SEED_STEP)
             except Exception as exc:  # 停止按钮（TaskCancelled）不是 Exception，照常传出去
                 reasons.append("自检时出错：" + str(exc).split("\n", 1)[0][:200])
                 errored = True
@@ -2096,7 +2103,10 @@ class GPTSoVITSBackend(Backend):
         self.batch_stats["speed_trick_reason"] = "" if ok else reason
         if ok:
             self._speed_trick = True
-            log.info("自检通过：语速写成 1.0001 时，引擎每个版本单独解码，声音和 1.0 一样——可以同时生成好几个版本")
+            # 只写量出来的：相关系数往下舍（0.9996 写 0.999，不会写成 1.000 让人以为完全一样）
+            r_shown = math.floor(measured["r"] * 1000) / 1000
+            log.info(f"自检通过：语速写成 1.0001 和 1.0 生成的声音几乎一样（长度差 {measured['len_diff']:.2%}、"
+                     f"波形相关系数 {r_shown:.3f}），同时生成的 2 个版本也能按数字静音分开——可以同时生成好几个版本")
         elif errored:
             log.info(f"「语速 1.0001」自检没做成（{reason}）：这次语速正好 1.0 的句子先一个一个生成，下次再查")
         else:
@@ -2158,10 +2168,10 @@ class GPTSoVITSBackend(Backend):
                 self.batch_stats["split_fallbacks"] += 1
                 self.batch_stats["split_reason"] = why
                 return self._many_singles(req, b, out_dir)
-            call = next(_MANY_IDS)
+            prefix = many_prefix(out_dir)
             out: List[Tuple[Path, int]] = []
             for k, piece in enumerate(pieces):
-                path = out_dir / f"many{call}_b{b}_r{k}.wav"
+                path = out_dir / f"{prefix}_b{b}_r{k}.wav"
                 sf.write(str(path), piece, sr, subtype="PCM_16")
                 out.append((path, k))
             self.last_many = {"mode": "batch", "batch": b, "seed": int(req.seed), "speed": send}
@@ -2170,14 +2180,14 @@ class GPTSoVITSBackend(Backend):
 
     def _many_singles(self, req: SynthRequest, n: int, out_dir: Path) -> List[Tuple[Path, int]]:
         """一个一个生成 n 个版本（第 k 个用随机种子 seed + k × SEED_STEP）。"""
-        call = next(_MANY_IDS)
+        prefix = many_prefix(out_dir)
         out: List[Tuple[Path, int]] = []
         seeds: List[int] = []
         for k in range(max(1, int(n))):
             check_cancel()
             one = dataclasses.replace(req, seed=int(req.seed) + k * SEED_STEP)
             t0 = time.monotonic()
-            path = self._synthesize_freeing_gpu(one, out_dir / f"many{call}_r{k}.wav")
+            path = self._synthesize_freeing_gpu(one, out_dir / f"{prefix}_r{k}.wav")
             self._count(1, time.monotonic() - t0, 1)
             out.append((path, k))
             seeds.append(one.seed)
@@ -2185,21 +2195,28 @@ class GPTSoVITSBackend(Backend):
         return out
 
     def _synthesize_freeing_gpu(self, req: SynthRequest, out_path: Path) -> Path:
-        """单独生成一个；显存不够时先调用 release_gpu_callback 让出显存，再试一次，还不行就照常报错。"""
+        """单独生成一个；显存不够时先调用 release_gpu_callback 让出显存，再试一次，还不行就照常报错。
+
+        回调返回真值（比如 CERChecker.release_gpu 卸掉了模型）才算让出了显存、记进 gpu_releases；
+        日志按实际发生的写（让出了 / 没有能让出的 / 出错了）。不管让没让出都再试一次，还不行才报错。"""
         try:
             return self.synthesize(req, out_path)
         except RuntimeError as exc:
             if not getattr(exc, "oom", False):
                 raise
             cb = self.release_gpu_callback
-            log.info("显存不够：一次只生成一个也不够。"
-                     + ("先让出显存（识别校验模型改到处理器上运行），" if cb is not None else "") + "再试一次……")
-            self.batch_stats["gpu_releases"] += 1
+            note = ""
             if cb is not None:
                 try:
-                    cb()
+                    released = bool(cb())
                 except Exception as e2:  # 让不出来也接着试
-                    log.debug(f"让出显存时出错：{e2}")
+                    released = False
+                    note = f"没能让出显存（{(str(e2).splitlines() or [type(e2).__name__])[0][:200]}），"
+                else:
+                    note = "已经让出了一部分显存，" if released else "没有能让出的显存，"
+                if released:
+                    self.batch_stats["gpu_releases"] += 1
+            log.info("显存不够：一次只生成一个也不够。" + note + "再试一次……")
         return self.synthesize(req, out_path)
 
     def _api_new_text(self, pos: int) -> str:
