@@ -2894,8 +2894,11 @@ class WebUI:
                 md = ATTACH_MISSED_MD
             else:
                 md = _summary_md(st.get("value") or {}) if ok else self._final_md(st, "素材准备", v)
+            # 还没确认训练素材（或者加了新素材、改过）：点了开始训练会被拦下，所以不能说「可以去训练了」，
+            # 「去「② 训练模型」 →」按钮也先不显示（老师照着「下一步」先在下面的校对表里确认）
+            blocked = bool(ok and wf.training_blocker_for(self.cfg, v))
             if ok and not self._missed(attach, st):
-                if wf.training_blocker_for(self.cfg, v):  # 还没确认训练素材（或者加了新素材、改过）：不能说「可以去训练了」
+                if blocked:
                     _info("✅ 素材准备好了：请把校对表看一遍、改好，再点最下面的「✅ 确认训练素材」，然后去「② 训练模型」")
                     md += ("\n\n👉 **下一步**：把下面的校对表看一遍、改好，点最下面绿色的「✅ 确认训练素材」"
                            "（加了新素材以后也要再确认一次），然后再去「② 训练模型」点「开始训练」。")
@@ -2903,8 +2906,8 @@ class WebUI:
                     _info("✅ 素材准备完成！可以去「② 训练模型」了")
             yield self._o(O, prep_bar=st.get("bar", ""), prep_log=text, prep_md=md,
                           voice=_upd(choices=_voices(self.cfg), value=v), clips_count=_clips_count_md(self.cfg, v),
-                          voice_status=_voice_status_md(self.cfg, v), prep_next=_btn(PREP_NEXT, visible=ok),
-                          clips_base=base, **idle)
+                          voice_status=_voice_status_md(self.cfg, v),
+                          prep_next=_btn(PREP_NEXT, visible=ok and not blocked), clips_base=base, **idle)
 
     def after_prepare_clips(self, voice: Any, only_sus: Any = False, table: Any = None, base: Any = None
                             ) -> Tuple[Any, Any, Any]:

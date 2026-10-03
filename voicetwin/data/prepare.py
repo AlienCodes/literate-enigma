@@ -153,13 +153,20 @@ GENERATED_DIRS = ("raw", "clips", "references", "exports", "models", "outputs", 
 
 def _own_dirs(project: Project, cfg: Dict[str, Any]) -> List[Any]:
     """声音分身自己生成的文件夹（每个声音的 clips / raw / references / outputs …，不含上传的 uploads）、
-    GPT-SoVITS 文件夹：里面的音频不是素材。"""
+    工作文件夹里 __ 开头的程序文件夹（网页的临时文件 __gradio_cache 等）、GPT-SoVITS 文件夹：里面的音频不是素材。"""
     dirs: List[Any] = []
     ws = Path(project.root).parent
+    me = Path(project.root).name.lower()
     try:
         for vdir in ws.iterdir() if ws.exists() else []:
-            if vdir.is_dir():
-                dirs += [vdir / name for name in GENERATED_DIRS]
+            if not vdir.is_dir():
+                continue
+            if vdir.name.startswith("__") and vdir.name.lower() != me:
+                # 程序自己的文件夹（声音库里也不显示，见 workflows._voice_dirs）：__gradio_cache 里是 gradio 发给网页的
+                # 每个文件的副本（老师点了听的片段、生成的讲课……），老师填的文件夹包含工作文件夹时不能当成新素材
+                dirs.append(vdir)
+                continue
+            dirs += [vdir / name for name in GENERATED_DIRS]
     except OSError:
         pass
     try:

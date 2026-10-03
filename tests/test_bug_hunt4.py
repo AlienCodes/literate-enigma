@@ -386,7 +386,8 @@ def test_review_events_refresh_the_voice_status(tmp_path):
 
 # ---------------------------------------------------------------------------- appB#5 准备完说「可以去训练了」
 def test_prepare_done_points_to_confirm_before_training(tmp_path, lecture_dir, monkeypatch):
-    """准备素材做完：还没确认训练素材时不能说「可以去「② 训练模型」了」（点了开始训练会被拦下），要说先确认；
+    """准备素材做完：还没确认训练素材时不能说「可以去「② 训练模型」了」（点了开始训练会被拦下），要说先确认，
+    「去「② 训练模型」 →」按钮也不显示（复核时发现：提示说先确认，下面却是一个显眼的去训练按钮）；
     确认以后又加了新素材，拦下的原因里要说「加了新素材」（以前只说改了文字、删除……老师没做过这些）。"""
     from conftest import make_cfg, make_lecture
 
@@ -396,23 +397,29 @@ def test_prepare_done_points_to_confirm_before_training(tmp_path, lecture_dir, m
     monkeypatch.setattr(A, "_info", lambda m: toasts.append(m))
     cfg = make_cfg(tmp_path / "ws")
     ui = A.WebUI(cfg)
-    last = dict(zip(ui.PREP_OUT, list(ui.do_prepare("g1", None, str(lecture_dir), "none", "auto", "off", False))[-1]))
+
+    def prepare(folder):
+        return dict(zip(ui.PREP_OUT, list(ui.do_prepare("g1", None, str(folder), "none", "auto", "off", False))[-1]))
+
+    last = prepare(lecture_dir)
     assert last["prep_md"].startswith("### ✅ 素材准备好了") and "确认训练素材" in last["prep_md"]
     assert toasts and not any("可以去「② 训练模型」了" in t for t in toasts) and "确认训练素材" in toasts[-1]
+    assert last["prep_next"]["visible"] is False
     wf.review_confirm(cfg, "g1")
     more = tmp_path / "more"
     make_lecture(more / "第2课.wav", repeats=1, seed=5)
     toasts.clear()
-    list(ui.do_prepare("g1", None, str(more), "none", "auto", "off", False))
-    assert "确认训练素材" in toasts[-1]
+    last = prepare(more)
+    assert "确认训练素材" in toasts[-1] and last["prep_next"]["visible"] is False
     why = wf.training_blocker_for(cfg, "g1")
     assert "加了新素材" in why and explain(RuntimeError(why)).key == "confirm_stale"  # 中文说明照样认得出
     assert "加了新素材" in A._clips_count_md(cfg, "g1")
-    # 确认好了再准备（什么都没加）：照旧说可以去训练
+    # 确认好了再准备（什么都没加）：照旧说可以去训练，按钮也照旧显示
     wf.review_confirm(cfg, "g1")
     toasts.clear()
-    list(ui.do_prepare("g1", None, str(more), "none", "auto", "off", False))
+    last = prepare(more)
     assert "可以去「② 训练模型」了" in toasts[-1]
+    assert last["prep_next"]["visible"] is True and last["prep_next"]["value"] == A.PREP_NEXT
 
 
 # ---------------------------------------------------------------------------- appB#7 「像你本人 X%（每句的平均）」
@@ -449,6 +456,13 @@ def test_build_passes_the_working_cleanup_setting(tmp_path):
     assert tuple(app.delete_cache) == A.GRADIO_DELETE_CACHE
 
 
+def _no_gradio_temp_env(monkeypatch):
+    """测试开始时没有 GRADIO_TEMP_DIR；测试里 launcher 设的那个，测试完也去掉（先 setenv 再 delenv，monkeypatch 才记得
+    「原来没有」；只 delenv(raising=False) 的话，原来没有时什么都不记，launcher 设的值会留给后面的测试）。"""
+    monkeypatch.setenv("GRADIO_TEMP_DIR", "unused")
+    monkeypatch.delenv("GRADIO_TEMP_DIR")
+
+
 def test_launcher_puts_gradio_files_in_the_workspace_and_cleans_old_ones(tmp_path, monkeypatch):
     """关掉黑色窗口（点 ×）时 gradio 自己的清理不会运行：临时文件改放在工作文件夹里的 __gradio_cache（不放 C 盘的
     %TEMP%），每次启动时删掉一天以前的；声音库里不显示这个文件夹；已经设了 GRADIO_TEMP_DIR 的照旧。"""
@@ -456,7 +470,7 @@ def test_launcher_puts_gradio_files_in_the_workspace_and_cleans_old_ones(tmp_pat
 
     from voicetwin.webui import launcher
 
-    monkeypatch.delenv("GRADIO_TEMP_DIR", raising=False)
+    _no_gradio_temp_env(monkeypatch)
     cfg = make_cfg(tmp_path / "ws")
     cache = Path(launcher._use_workspace_cache(cfg))
     assert cache == tmp_path / "ws" / launcher.GRADIO_CACHE_DIR and os.environ["GRADIO_TEMP_DIR"] == str(cache)
@@ -469,3 +483,43 @@ def test_launcher_puts_gradio_files_in_the_workspace_and_cleans_old_ones(tmp_pat
     assert not old.exists() and not old.parent.exists() and cache.exists()  # 空了的子文件夹也删，本身留着
     monkeypatch.setenv("GRADIO_TEMP_DIR", str(tmp_path / "mine"))
     assert launcher._use_workspace_cache(cfg) is None and os.environ["GRADIO_TEMP_DIR"] == str(tmp_path / "mine")
+
+
+# ---------------------------------------------------------------------------- 复核时发现：__gradio_cache 里的副本被当成新素材
+def test_gradio_cache_copies_are_not_picked_up_as_new_material(tmp_path, monkeypatch):
+    """gradio 的临时文件改放进工作文件夹（__gradio_cache）以后：老师点了听的片段、生成的讲课，gradio 都在那里复制一份
+    （<临时文件夹>/<hash>/<原来的名字>）。老师在「文件夹路径」里填了包含工作文件夹的上一层时，这些副本不能当成新素材
+    （以前就遇到过 20 条变成 68 条；合成的声音拿去训练更不行）。老师自己的视频、uploads 里上传的视频照样找得到。"""
+    from conftest import make_cfg
+
+    from voicetwin.data import prepare as prep
+    from voicetwin.webui import launcher
+
+    _no_gradio_temp_env(monkeypatch)
+    cfg = make_cfg(tmp_path / "ws")
+    project = wf.Project(cfg, "我的声音").ensure()
+    cache = Path(launcher._use_workspace_cache(cfg))
+    for k, (sub, name) in enumerate((("clips", "c_0001.wav"), ("outputs", "讲课_完美.wav"))):
+        src = project.root / sub / name
+        src.write_bytes(b"RIFF" + bytes([k + 1]) * 3000)
+        copy = cache / (f"{k}" * 40) / name
+        copy.parent.mkdir()
+        shutil.copy2(src, copy)
+    up = project.root / "uploads" / "上传的课.mp4"
+    up.parent.mkdir()
+    up.write_bytes(b"\3" * 4000)
+    lecture = tmp_path / "讲课视频" / "第1课.wav"
+    lecture.parent.mkdir()
+    lecture.write_bytes(b"RIFF" + b"\4" * 4000)
+    base = tmp_path.resolve()
+
+    def found(proj):
+        return sorted(p.relative_to(base).as_posix()
+                      for p in prep.discover_sources([str(tmp_path)], exclude=prep._own_dirs(proj, cfg)))
+
+    assert found(project) == ["ws/我的声音/uploads/上传的课.mp4", "讲课视频/第1课.wav"]
+    # 声音的名字正好也是 __ 开头（声音库里不显示，但做得出来）：它自己上传的视频照样是素材，gradio 的副本照样不是
+    odd = wf.Project(cfg, "__试试").ensure()
+    (odd.root / "uploads").mkdir()
+    (odd.root / "uploads" / "课.mp4").write_bytes(b"\5" * 4000)
+    assert found(odd) == ["ws/__试试/uploads/课.mp4", "ws/我的声音/uploads/上传的课.mp4", "讲课视频/第1课.wav"]

@@ -107,7 +107,9 @@ def test_prepare_through_the_page(tmp_path, lecture_dir):
     count, clips, _ = after.fn("网页声音", False, None, last["clips_base"])
     assert clips and clips[0][0] == 1 and "用来训练的句子" in count
     assert "还没训练" in last["voice_status"]
-    assert last["prep_next"]["visible"] is True
+    # 第一次准备完还没确认训练素材（点开始训练会被拦下）：「去「② 训练模型」 →」先不显示，
+    # 确认好了再准备时才显示（test_bug_hunt4.py::test_prepare_done_points_to_confirm_before_training）
+    assert last["prep_next"]["visible"] is False
     # 页面再点一次：已经处理过的文件不会重做（同一个文件夹）
     assert wf.Project(app_ui.cfg, "网页声音").exists
     shutil.rmtree(wf.Project(app_ui.cfg, "网页声音").root, ignore_errors=True)
