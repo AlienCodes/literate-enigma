@@ -19,6 +19,7 @@
 
 from __future__ import annotations
 
+import dataclasses
 import hashlib
 import json
 import math
@@ -34,6 +35,9 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 import yaml
 
 from voicetwin.backends.base import (
+    _MANY_IDS,
+    OOM_PATTERN,
+    SEED_STEP,
     Backend,
     ProgressFn,
     Stage,
@@ -204,6 +208,106 @@ RUN_STAMP = "voicetwin_run_started"
 KEEP_OLD_RUNS = 2
 USER_KEYS = ("batch_size", "sovits_epochs", "gpt_epochs", "sovits_save_every", "gpt_save_every", "if_dpo")
 
+# ---------------------------------------------------------------- 一次请求同时生成同一句话的好几个版本（「一模一样」档）
+# 做法：同一句话复制 n 份、用换行隔开，text_split_method=cut0、batch_size=n。官方 TTS.py（@ abe9843）按换行切成 n 段，
+# 一批一起生成（每一行各自抽样，所以是 n 个不同的版本），每段后面补 fragment_interval 秒的数字静音
+# （audio_postprocess），程序再按这些静音把 n 个版本切开。
+#: 每个版本后面补的数字静音（秒）
+BATCH_INTERVAL = 0.5
+#: 语速正好是 1.0 时改成发这个数。TTS.py 在 speed_factor == 1.0 时把整批的语义拼在一起、一次解码，再按估算的位置切开
+#: （版本之间互相影响，和单独生成的不一样）；不是 1.0 时每段单独解码，和单独生成时完全一样。
+#: 1.0001 时长度不变：models.py 里新长度是 int(L / 1.0001) + 1，L 在 1~9999 帧时都正好等于 L（算过，见
+#: research/一模一样/scripts/sim_batch_copies_结果.txt）。同样长度的线性插值应该就是原样，但开发机没有 torch、没有实测，
+#: 所以每次启动引擎先自检（_speed_trick_ok），没通过就不用这个办法。
+BATCH_SPEED = 1.0001
+#: 文字超过这么多个字就不同时生成（单独生成）
+BATCH_MAX_CHARS = 400
+#: 能同时生成的模型版本（V3 / V4 用另一套声码器的做法，一个一个生成）
+BATCH_VERSIONS = ("v2", "v2Pro", "v2ProPlus")
+#: 切开后每个版本至少多长（秒）；切开后每个版本后面补多长的数字静音（秒，和单独生成时引擎补的 0.3 秒一样）
+BATCH_MIN_PIECE = 0.3
+BATCH_PAD = 0.3
+#: 「语速 1.0001」自检：长度最多差多少、波形相关系数至少多少、最多换几个随机种子试
+SPEED_TRICK_MAX_LEN_DIFF = 0.01
+SPEED_TRICK_MIN_R = 0.99
+SPEED_TRICK_SEEDS = 2
+
+# 下面照抄官方切分文字的规则（GPT_SoVITS/TTS_infer_pack/TextPreprocessor.py 的 replace_consecutive_punctuation、
+# pre_seg_text、merge_short_text_in_array、get_first，text_segmentation_method.py 的 splits、punctuation、cut0），
+# 用来提前算出一次请求会被切成几段。老师的 1004 句素材复制 4 份，全部正好切成 4 段（sim_batch_copies_结果.txt）。
+_GSV_SPLITS = frozenset({"，", "。", "？", "！", ",", ".", "?", "!", "~", ":", "：", "—", "…"})
+_GSV_SEG_PUNCT = frozenset({"!", "?", "…", ",", ".", "-", " "})       # text_segmentation_method.punctuation（cut0 用）
+_GSV_TP_PUNCT = "".join(re.escape(x) for x in ("!", "?", "…", ",", ".", "-"))   # TextPreprocessor.punctuation
+_GSV_CONSECUTIVE = re.compile(f"([{_GSV_TP_PUNCT}])([{_GSV_TP_PUNCT}])+")
+_GSV_FIRST = re.compile("[" + "".join(re.escape(x) for x in sorted(_GSV_SPLITS)) + "]")
+_GSV_MERGE_SHORT = 5    # pre_seg_text 里 merge_short_text_in_array(_texts, 5)
+
+
+def _gsv_first(text: str) -> str:
+    """get_first：第一个标点之前的部分。"""
+    return _GSV_FIRST.split(text)[0].strip()
+
+
+def _gsv_merge_short(texts: List[str], threshold: int) -> List[str]:
+    """merge_short_text_in_array：太短（不到 threshold 个字）的段和后面的合在一起。"""
+    if len(texts) < 2:
+        return texts
+    result: List[str] = []
+    text = ""
+    for ele in texts:
+        text += ele
+        if len(text) >= threshold:
+            result.append(text)
+            text = ""
+    if text:
+        if not result:
+            result.append(text)
+        else:
+            result[-1] += text
+    return result
+
+
+def _gsv_pre_seg(text: str, lang: str) -> List[str]:
+    """官方 TextPreprocessor.preprocess 用 cut0 时实际会合成的那几段文字（split_big_text 只管超过 510 个字的段，这里用不到）。"""
+    text = _GSV_CONSECUTIVE.sub(r"\1", text)          # replace_consecutive_punctuation
+    text = text.strip("\n")
+    if not text:
+        return []
+    if text[0] not in _GSV_SPLITS and len(_gsv_first(text)) < 4:
+        text = ("。" if lang != "en" else ".") + text
+    if set(text).issubset(_GSV_SEG_PUNCT):            # cut0：只有标点时变成 "/n"
+        text = "/n"
+    while "\n\n" in text:
+        text = text.replace("\n\n", "\n")
+    parts = [t for t in text.split("\n") if t not in (" ", "")]    # filter_text
+    out: List[str] = []
+    for t in _gsv_merge_short(parts, _GSV_MERGE_SHORT):
+        if not t.strip() or not re.sub(r"\W+", "", t):
+            continue
+        if t[-1] not in _GSV_SPLITS:
+            t += "。" if lang != "en" else "."
+        out.append(t)
+    return out
+
+
+def _batch_text(text: str, lang: str, n: int) -> Optional[str]:
+    """同时生成 n 个版本时发给引擎的文字：同一句话复制 n 份、用换行隔开；每份开头先加上单独生成时引擎自己会加的
+    「。」/「.」（pre_seg_text：第一个标点前不到 4 个字时加），这样每一段都和单独生成时一模一样。
+
+    按官方规则算出来不是正好 n 段、每段都和单独生成的那一段一样（例如「好的。」这种很短的句子会被合并），
+    或者文字里有换行、超过 BATCH_MAX_CHARS 个字时，返回 None（只能一个一个生成）。lang 是发给引擎的 text_lang。"""
+    n = int(n)
+    if n < 2 or not text or "\n" in text or len(text) > BATCH_MAX_CHARS:
+        return None
+    one = text
+    if one[0] not in _GSV_SPLITS and len(_gsv_first(_GSV_CONSECUTIVE.sub(r"\1", one))) < 4:
+        one = ("。" if lang != "en" else ".") + one
+    single = _gsv_pre_seg(text, lang)
+    batched = "\n".join([one] * n)
+    if len(single) != 1 or _gsv_pre_seg(batched, lang) != single * n:
+        return None
+    return batched
+
 
 def _api_reason(r: Any) -> str:
     """api_v2 出错时回答里的真正原因（JSON 的 Exception / message），不是 JSON 就用原文。"""
@@ -276,6 +380,82 @@ def _last_exception(text: str) -> str:
 
     found = exception_counts(text)
     return found[-1][0] if found else ""
+
+
+def _read_int16(data: bytes) -> Tuple["Any", int]:
+    """WAV 内容 → (int16 数组, 采样率)，先修好半精度溢出的「咔哒」声。读不了时抛异常。"""
+    import io
+
+    import soundfile as sf
+
+    x, sr = sf.read(io.BytesIO(_fix_int16_wrap(data)), dtype="int16", always_2d=False)
+    return x, int(sr)
+
+
+def _split_wav(data: bytes, n: int, interval: float = BATCH_INTERVAL) -> Tuple[Optional[List["Any"]], int, str]:
+    """把一次请求同时生成的 n 个版本按它们后面的数字静音切开：返回 (n 段 int16 数组, 采样率, 切不开的原因)。
+
+    规则很严：至少 round(0.6 × interval × 采样率) 个连着的 0 才算版本之间的静音（V3 / V4 的 48 kHz 输出里，
+    引擎按 32 kHz 算的静音也够长）；必须正好 n 段，最后一段静音到文件结尾（差 1 个采样点以内）；每个版本至少
+    BATCH_MIN_PIECE 秒、而且有声音。每段后面补 BATCH_PAD 秒的 0（和单独生成时一样）。不符合就返回 (None, 采样率, 原因)，
+    调用的地方改成一个一个生成。"""
+    import numpy as np
+
+    try:
+        x, sr = _read_int16(data)
+    except Exception as exc:
+        return None, 0, f"读不了引擎回的声音（{type(exc).__name__}）"
+    if getattr(x, "ndim", 0) != 1 or not sr:
+        return None, sr, "引擎回的不是单声道的声音"
+    need = max(1, int(round(0.6 * float(interval) * sr)))
+    z = np.concatenate([[False], x == 0, [False]]).astype(np.int8)
+    d = np.diff(z)
+    starts, ends = np.flatnonzero(d == 1), np.flatnonzero(d == -1)
+    long_ = (ends - starts) >= need
+    runs = list(zip(starts[long_].tolist(), ends[long_].tolist()))
+    if len(runs) != int(n):
+        return None, sr, f"找到 {len(runs)} 段长的静音，应该是 {int(n)} 段"
+    if len(x) - runs[-1][1] > 1:
+        return None, sr, "最后一段静音没有到结尾"
+    pad = np.zeros(int(round(BATCH_PAD * sr)), dtype=np.int16)
+    out: List[Any] = []
+    prev = 0
+    for i, (a, b) in enumerate(runs):
+        piece = x[prev:a]
+        if len(piece) < BATCH_MIN_PIECE * sr:
+            return None, sr, f"第 {i + 1} 个版本太短（{len(piece) / sr:.2f} 秒）"
+        if not piece.any():
+            return None, sr, f"第 {i + 1} 个版本没有声音"
+        out.append(np.concatenate([piece.astype(np.int16), pad]))
+        prev = b
+    return out, sr, ""
+
+
+def _split_fragments(data: bytes, n: int, interval: float = BATCH_INTERVAL) -> Optional[List["Any"]]:
+    """_split_wav 只要切好的 n 段（切不开时是 None）。"""
+    return _split_wav(data, n, interval)[0]
+
+
+def _speed_of(req: SynthRequest) -> float:
+    """请求里的语速（不合理的数当 1.0），限制在 api_v2 能用的 0.25~4.0 之间。"""
+    speed = float(req.speed or 1.0)
+    if not math.isfinite(speed) or speed <= 0:
+        speed = 1.0
+    return max(0.25, min(4.0, speed))
+
+
+def _answer_error(text: str, reason: str) -> RuntimeError:
+    """合成失败的报错（和以前一样是 RuntimeError）；oom=True 表示引擎说的原因是显存不够（只看这一次的原因，
+    不看记录里以前的报错）。"""
+    err = RuntimeError(text)
+    err.oom = bool(reason and OOM_PATTERN.search(reason))  # type: ignore[attr-defined]
+    return err
+
+
+def _new_batch_stats() -> Dict[str, Any]:
+    """同时生成好几个版本的实测记录（写进报告用）。"""
+    return {"requests": 0, "pieces": 0, "by_batch": {}, "oom_backoffs": 0, "split_fallbacks": 0, "split_reason": "",
+            "gpu_releases": 0, "single_reasons": {}, "speed_trick": None, "speed_trick_reason": "", "max_batch": None}
 
 
 def _json_has(r: Any, key: str) -> bool:
@@ -712,6 +892,7 @@ class GPTSoVITSBackend(Backend):
     supports_training = True
     supports_speed = True
     supports_aux_refs = True
+    supports_batch = True
     train_stages: List[Stage] = [
         (0.00, "检查显卡、整理训练素材"),
         (0.05, "处理文字"),
@@ -751,6 +932,15 @@ class GPTSoVITSBackend(Backend):
         self._http = None
         self._log_fh = None
         self._warned_pretrained = False
+        #: 「语速 1.0001」自检的结果（None = 这次启动引擎以后还没查过；每次启动新的引擎都重新查）
+        self._speed_trick: Optional[bool] = None
+        #: 显存不够时实测出来的、最多同时生成几个（None = 还没遇到过显存不够）
+        self._max_batch: Optional[int] = None
+        #: 同时生成好几个版本的实测记录（请求数、拿到几个版本、每种数量用了几秒、显存不够减半几次、切不开几次……）
+        self.batch_stats: Dict[str, Any] = _new_batch_stats()
+        #: 最近一次 synthesize_many 实际怎么生成的：{"mode": "batch", "batch", "seed", "speed"} 或
+        #: {"mode": "single", "seeds", "speed"}（以后按同一个请求只改语速再生成一次时要用）
+        self.last_many: Dict[str, Any] = {}
 
     # ================================================================ 路径与检查
     def p(self, rel: str) -> Path:
@@ -1608,6 +1798,9 @@ class GPTSoVITSBackend(Backend):
         except Exception:
             pass
         creationflags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+        self._speed_trick = None  # 新启动的引擎：「语速 1.0001」重新自检
+        self.batch_stats["speed_trick"] = None
+        self.batch_stats["speed_trick_reason"] = ""
         self._rotate_api_log(log_path)
         self._log_fh = open(log_path, "a", encoding="utf-8")
         try:  # 分隔线：出错时只看这一次启动的记录
@@ -1726,17 +1919,17 @@ class GPTSoVITSBackend(Backend):
     def _server_died(self) -> bool:
         return self.proc is not None and self.proc.poll() is not None
 
-    def synthesize(self, req: SynthRequest, out_path: Path) -> Path:
-        if not self._alive():
-            self.start()
+    def _payload(self, req: SynthRequest, *, batch: int = 1, interval: float = 0.3,
+                 speed: Optional[float] = None) -> Dict[str, Any]:
+        """发给 api_v2 POST /tts 的请求。用默认值（batch=1、interval=0.3、speed=None 按 req 的语速）就是 synthesize
+        一直发的那一份，一个字段、一个数都不变；同时生成好几个版本时只有 batch_size、fragment_interval
+        （版本之间的数字静音）和 speed_factor 不一样（文字由调用的地方换成复制好的几份）。"""
         icfg = self.bcfg.get("infer", {}) or {}
         # 语速：speed_factor 在模型内部控制时长（SoVITS 解码前把内容特征序列按 1/speed 插值拉长或缩短，
         # 再由声码器生成波形，见 GPT_SoVITS/module/models.py 的 TextEncoder.forward），音高和音色不变；
         # 官方代码里对整段音频做 atempo 变速的写法已经注释掉了（TTS.py）。所以这里不对生成的音频做任何重采样或变速。
-        speed = float(req.speed or 1.0)
-        if not math.isfinite(speed) or speed <= 0:
-            speed = 1.0
-        payload = {
+        speed_factor = _speed_of(req) if speed is None else max(0.25, min(4.0, float(speed)))
+        return {
             "text": req.text,
             "text_lang": "en" if req.lang == "en" else "zh",
             "ref_audio_path": str(Path(req.ref_audio).resolve()),
@@ -1747,9 +1940,9 @@ class GPTSoVITSBackend(Backend):
             "top_p": float(req.top_p if req.top_p is not None else icfg.get("top_p", 1.0)),
             "temperature": float(req.temperature if req.temperature is not None else icfg.get("temperature", 1.0)),
             "text_split_method": "cut0",   # 已按句切好，不再二次切分，保留模型自己的句内停顿
-            "batch_size": 1,
-            "speed_factor": max(0.25, min(4.0, speed)),
-            "fragment_interval": 0.3,
+            "batch_size": int(batch),
+            "speed_factor": speed_factor,
+            "fragment_interval": float(interval),
             "seed": int(req.seed),
             "media_type": "wav",
             "streaming_mode": False,
@@ -1758,6 +1951,20 @@ class GPTSoVITSBackend(Backend):
             "sample_steps": int(icfg.get("sample_steps", 32)),
             "super_sampling": False,
         }
+
+    def synthesize(self, req: SynthRequest, out_path: Path) -> Path:
+        if not self._alive():
+            self.start()
+        data = self._tts_answer(self._payload(req))
+        out_path = Path(out_path)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_bytes(data)
+        return out_path
+
+    def _tts_answer(self, payload: Dict[str, Any]) -> bytes:
+        """发一次 POST /tts，返回引擎回的 WAV（已经修好半精度溢出的「咔哒」声）。
+
+        失败时抛出 RuntimeError，第一行是「GPT-SoVITS 合成失败：原因」；属性 oom=True 表示这次的原因是显存不够。"""
         import requests
 
         try:
@@ -1780,22 +1987,220 @@ class GPTSoVITSBackend(Backend):
         assert r is not None
         if r.status_code != 200:
             # api_v2 合成出错时返回 {"message": "tts failed", "Exception": "真正的原因"}
-            text = f"GPT-SoVITS 合成失败：{_api_reason(r)}"
+            reason = _api_reason(r)
+            text = f"GPT-SoVITS 合成失败：{reason}"
             if self._server_died():
                 text += "\n推理服务已经退出了。\n" + self._api_report(20)
-            raise RuntimeError(text)
+            raise _answer_error(text, reason)
         silent = _silent_answer(r.content)
         if silent:
             # 真实的 TTS.run 出错时（比如显存不够）不报错：打印 Traceback，然后回 200 + 1 秒 16 kHz 的静音
             # （GPT_SoVITS/TTS_infer_pack/TTS.py @ abe9843 第 1516~1518 行）。模拟版回的是 400，所以以前没发现。
             reason = _last_exception(self._api_new_text(log_pos))
-            raise RuntimeError("GPT-SoVITS 合成失败：" + (reason or f"引擎回了一段{silent}，记录里没有报错"
-                                                         "（可能是这句话里没有它能读出来的字）")
-                               + "\n" + self._api_report(20))
-        out_path = Path(out_path)
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        out_path.write_bytes(_fix_int16_wrap(r.content))
-        return out_path
+            raise _answer_error("GPT-SoVITS 合成失败：" + (reason or f"引擎回了一段{silent}，记录里没有报错"
+                                                          "（可能是这句话里没有它能读出来的字）")
+                                + "\n" + self._api_report(20), reason)
+        return _fix_int16_wrap(r.content)
+
+    # ================================================================ 一次请求同时生成好几个版本
+    def _batch_version(self) -> str:
+        """现在用的 SoVITS 模型是哪个版本：从正在用的模型文件读（自动挑选时是正在试的那个）；
+        读不出来（别处的服务、不认识的文件）时按设置里的版本。"""
+        w = self._weights_to_use()
+        ver = detect_sovits_version(w["sovits"], self.root).get("version") if w.get("sovits") else None
+        return str(ver or self.version)
+
+    def _single_reason(self, req: SynthRequest, n: int) -> str:
+        """要 n 个版本时，为什么只能一个一个生成（中文原因）；能同时生成时返回空字符串。"""
+        if n <= 1:
+            return "只要一个版本"
+        if self._max_batch is not None and self._max_batch <= 1:
+            return "显存不够，已经改成一次生成一个"
+        if _batch_text(req.text, self._payload(req)["text_lang"], 2) is None:
+            return "这句话不能同时生成（很短的句子会被引擎合在一起读、有换行或者太长）"
+        ver = self._batch_version()
+        if ver not in BATCH_VERSIONS:
+            return f"{ver} 模型只能一个一个生成"
+        if _speed_of(req) == 1.0 and not self._speed_trick_ok(req):
+            return "「语速 1.0001」自检没通过（语速正好 1.0 的句子）"
+        return ""
+
+    def _count(self, batch: int, seconds: float, pieces: int) -> None:
+        st = self.batch_stats
+        st["requests"] += 1
+        st["pieces"] += int(pieces)
+        row = st["by_batch"].setdefault(str(int(batch)), {"requests": 0, "pieces": 0, "seconds": 0.0})
+        row["requests"] += 1
+        row["pieces"] += int(pieces)
+        row["seconds"] = round(row["seconds"] + float(seconds), 3)
+
+    def _speed_trick_once(self, req: SynthRequest, seed: int) -> Tuple[bool, str]:
+        """用一个随机种子自检一次：返回 (通过没有, 没通过的原因)。"""
+        import numpy as np
+
+        base = dataclasses.replace(req, seed=int(seed))
+        xa, sra = _read_int16(self._tts_answer(self._payload(base, speed=1.0)))
+        xb, srb = _read_int16(self._tts_answer(self._payload(base, speed=BATCH_SPEED)))
+        if sra != srb:
+            return False, f"采样率不一样（{sra} / {srb}）"
+        la, lb = len(xa), len(xb)
+        diff = abs(la - lb) / float(max(la, lb, 1))
+        if diff > SPEED_TRICK_MAX_LEN_DIFF:
+            return False, f"长度差了 {diff:.1%}"
+        m = min(la, lb)
+        a, b = xa[:m].astype(np.float64), xb[:m].astype(np.float64)
+        r = float(np.corrcoef(a, b)[0, 1]) if m > 1 and a.std() > 0 and b.std() > 0 else float("nan")
+        if not (r >= SPEED_TRICK_MIN_R):  # nan 也算没通过
+            return False, f"波形的相关系数只有 {r:.3f}"
+        text2 = _batch_text(req.text, self._payload(req)["text_lang"], 2)
+        if text2 is None:
+            return False, "这句话不能同时生成，没法检查能不能切开"
+        payload = self._payload(base, batch=2, interval=BATCH_INTERVAL, speed=BATCH_SPEED)
+        payload["text"] = text2
+        try:
+            data = self._tts_answer(payload)
+        except RuntimeError as exc:
+            if getattr(exc, "oom", False):  # 同时生成 2 个显存都不够：以后一个一个生成，不用每句都再查
+                self._max_batch = self.batch_stats["max_batch"] = 1
+                log.info("显存不够：同时生成 2 个也不够，改成一次生成一个（不会停下）")
+            raise
+        pieces, _sr, why = _split_wav(data, 2, BATCH_INTERVAL)
+        if pieces is None:
+            return False, f"同时生成的 2 个版本分不开（{why}）"
+        return True, ""
+
+    def _speed_trick_ok(self, req: SynthRequest) -> bool:
+        """语速正好 1.0 的句子能不能同时生成：自检「语速写成 1.0001」在这次启动的引擎上是不是和 1.0 一样。
+
+        同一个随机种子、同一条参考录音各生成一次（1.0 和 1.0001），长度差不超过 1%、波形相关系数至少 0.99，
+        再同时生成 2 个版本、要能切开，才算通过；最多换 2 个随机种子（显卡计算有一点点随机的出入），有一个通过就算通过。
+        每次启动引擎只查一次（start() 时清掉）；自检时出错（比如显存不够）不换种子再试，这次先按没通过算、下次再查。
+        没通过只影响语速正好 1.0 的句子（改成一个一个生成，结果的标准一样，只是更慢）。"""
+        if self._speed_trick is not None:
+            return self._speed_trick
+        reasons: List[str] = []
+        errored = False
+        ok = False
+        for j in range(SPEED_TRICK_SEEDS):
+            try:
+                ok, why = self._speed_trick_once(req, int(req.seed) + j * SEED_STEP)
+            except Exception as exc:  # 停止按钮（TaskCancelled）不是 Exception，照常传出去
+                reasons.append("自检时出错：" + str(exc).split("\n", 1)[0][:200])
+                errored = True
+                break
+            if ok:
+                break
+            reasons.append(why)
+        reason = "；".join(dict.fromkeys(reasons))
+        self.batch_stats["speed_trick"] = ok if not errored else None
+        self.batch_stats["speed_trick_reason"] = "" if ok else reason
+        if ok:
+            self._speed_trick = True
+            log.info("自检通过：语速写成 1.0001 时，引擎每个版本单独解码，声音和 1.0 一样——可以同时生成好几个版本")
+        elif errored:
+            log.info(f"「语速 1.0001」自检没做成（{reason}）：这次语速正好 1.0 的句子先一个一个生成，下次再查")
+        else:
+            self._speed_trick = False
+            log.info(f"自检没通过（{reason}）：语速正好 1.0 的句子改成一个一个生成（结果的标准一样，只是更慢）")
+        return ok
+
+    def synthesize_many(self, req: SynthRequest, n: int, out_dir: Path) -> List[Tuple[Path, int]]:
+        """同一句话要 n 个版本，写进 out_dir，返回 [(文件, 第几个)]。
+
+        能同时生成时只发一次请求：同一句话复制 n 份、用换行隔开，batch_size = n、fragment_interval = 0.5、
+        语速 1.0 时发 1.0001（见 BATCH_SPEED），再按每个版本后面的数字静音切开，每个后面补 0.3 秒的 0。
+        这些情况一个一个生成（第 k 个用随机种子 seed + k × SEED_STEP，请求和 synthesize 的完全一样）：
+        只要 1 个；按官方规则算，文字不能正好切成 n 段、每段和单独生成时一样；模型不是 v2 / v2Pro / v2ProPlus；
+        语速正好 1.0 而这次启动的引擎没通过「1.0001」自检。
+        显存不够：同时生成的数量减半再试（记下来，以后都不超过它），所以拿到的个数可能比 n 少；减到 1 个还不够，
+        先调用 release_gpu_callback 让出显存、再试一次，还不行就和 synthesize 一样报错。
+        切不开（段数不对等）：说明原因，改成一个一个生成。"""
+        n = max(1, int(n))
+        out_dir = Path(out_dir)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        if not self._alive():
+            self.start()
+        why = self._single_reason(req, n)
+        if why:
+            if n > 1:
+                d = self.batch_stats["single_reasons"]
+                d[why] = d.get(why, 0) + 1
+            return self._many_singles(req, n, out_dir)
+        import soundfile as sf
+
+        b = min(n, self._max_batch or n)
+        speed = _speed_of(req)
+        send = BATCH_SPEED if speed == 1.0 else speed
+        lang = self._payload(req)["text_lang"]
+        while b > 1:
+            check_cancel()
+            text = _batch_text(req.text, lang, b)
+            if text is None:  # 上面已经按 2 份检查过；段数不受份数影响，这里只是保险
+                return self._many_singles(req, b, out_dir)
+            payload = self._payload(req, batch=b, interval=BATCH_INTERVAL, speed=send)
+            payload["text"] = text
+            t0 = time.monotonic()
+            try:
+                data = self._tts_answer(payload)
+            except RuntimeError as exc:
+                if not getattr(exc, "oom", False):
+                    raise
+                half = b // 2
+                log.info(f"显存不够：每次同时生成的数量从 {b} 减到 {half}，接着试（不会停下）")
+                self.batch_stats["oom_backoffs"] += 1
+                self._max_batch = self.batch_stats["max_batch"] = half
+                b = half
+                continue
+            pieces, sr, why = _split_wav(data, b, BATCH_INTERVAL)
+            self._count(b, time.monotonic() - t0, len(pieces) if pieces else 0)
+            if pieces is None:
+                log.info(f"这次没能把同时生成的几个版本分开（原因：{why}），改成一个一个生成")
+                self.batch_stats["split_fallbacks"] += 1
+                self.batch_stats["split_reason"] = why
+                return self._many_singles(req, b, out_dir)
+            call = next(_MANY_IDS)
+            out: List[Tuple[Path, int]] = []
+            for k, piece in enumerate(pieces):
+                path = out_dir / f"many{call}_b{b}_r{k}.wav"
+                sf.write(str(path), piece, sr, subtype="PCM_16")
+                out.append((path, k))
+            self.last_many = {"mode": "batch", "batch": b, "seed": int(req.seed), "speed": send}
+            return out
+        return self._many_singles(req, 1, out_dir)
+
+    def _many_singles(self, req: SynthRequest, n: int, out_dir: Path) -> List[Tuple[Path, int]]:
+        """一个一个生成 n 个版本（第 k 个用随机种子 seed + k × SEED_STEP）。"""
+        call = next(_MANY_IDS)
+        out: List[Tuple[Path, int]] = []
+        seeds: List[int] = []
+        for k in range(max(1, int(n))):
+            check_cancel()
+            one = dataclasses.replace(req, seed=int(req.seed) + k * SEED_STEP)
+            t0 = time.monotonic()
+            path = self._synthesize_freeing_gpu(one, out_dir / f"many{call}_r{k}.wav")
+            self._count(1, time.monotonic() - t0, 1)
+            out.append((path, k))
+            seeds.append(one.seed)
+        self.last_many = {"mode": "single", "seeds": seeds, "speed": _speed_of(req)}
+        return out
+
+    def _synthesize_freeing_gpu(self, req: SynthRequest, out_path: Path) -> Path:
+        """单独生成一个；显存不够时先调用 release_gpu_callback 让出显存，再试一次，还不行就照常报错。"""
+        try:
+            return self.synthesize(req, out_path)
+        except RuntimeError as exc:
+            if not getattr(exc, "oom", False):
+                raise
+            cb = self.release_gpu_callback
+            log.info("显存不够：一次只生成一个也不够。"
+                     + ("先让出显存（识别校验模型改到处理器上运行），" if cb is not None else "") + "再试一次……")
+            self.batch_stats["gpu_releases"] += 1
+            if cb is not None:
+                try:
+                    cb()
+                except Exception as e2:  # 让不出来也接着试
+                    log.debug(f"让出显存时出错：{e2}")
+        return self.synthesize(req, out_path)
 
     def _api_new_text(self, pos: int) -> str:
         """引擎记录从 pos（字节）之后新写的内容。"""
