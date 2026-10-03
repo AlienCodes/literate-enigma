@@ -1226,7 +1226,8 @@ def export_text(project: Any) -> Dict[str, Any]:
     """「⬇️ 下载改好的文字（txt）」：把「文字」列现在的文字（含没保存的修改）按表格的顺序存成 txt，一行一句。
 
     删除的（紫色）行不要；没有文字的行跳过。存在 ``workspace/<声音>/改好的文字/``（只留最近 20 个），
-    记事本能直接打开（UTF-8 带 BOM、Windows 换行）；下次可以当逐字稿上传，做「文字校正」。
+    记事本能直接打开（UTF-8 带 BOM、Windows 换行）；可以给别的声音当母本上传（同一个声音里这些句子就是表格自己的文字，
+    一句话不能拿来证明它自己没错，上传了用不上）。
     返回 {"path", "lines", "unsaved", "deleted"}：unsaved = 其中还没保存的修改有几条（提醒老师点保存）。"""
     with _LOCK:
         records = project.load_manifest()

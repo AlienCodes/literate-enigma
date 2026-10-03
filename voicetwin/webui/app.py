@@ -96,7 +96,8 @@ TEXTFIX_HELP = ("**📝 一键全部文字校正**：以你的**母本标准库*
                 "改过的字照旧：「文字」列**绿色**、「可能有错」列**蓝色**；没把握的、只标红没有建议的地方还是**红色**，"
                 "请听录音：建议对就点那一行的蓝色的「采用」，不对就自己改。"
                 "只想改某一行：点那一行「修改建议」里的小按钮。改好以后点「**保存修改**」确认文字，要训练时再点「✅ 确认训练素材」。"
-                "有新的讲稿或改好的文字（txt 或 transcripts.csv），可以在下面上传，一起当母本用（可选）。"
+                "有这批录音的讲稿、或者别的声音改好的文字（txt 或 transcripts.csv），可以在下面上传，一起当母本用（可选；"
+                "这个声音自己下载的「改好的文字」不用再上传：那就是表格里的句子，证明不了它们自己没错）。"
                 "**每批素材只能用一次**：用完按钮变灰；以后加了新的素材、识别完（或者恢复了删除的句子），按钮会再亮起来，"
                 "只改这些还没改过的句子。"
                 "用之前你自己改过的字，它不会动。")
@@ -3265,7 +3266,17 @@ class WebUI:
             return text
         if up.get("files"):
             names = "、".join(up["files"][:3]) + (f" 等 {len(up['files'])} 个文件" if len(up["files"]) > 3 else "")
-            text += f"另外上传过：{_md_text(names)}（{up.get('chars', 0)} 个字 / 词），也一起用。"
+            text += f"另外上传过：{_md_text(names)}"
+            same = _int(up.get("same_lines"))
+            if not _int(up.get("chars")):  # 都和校对表一模一样（这个声音自己下载的文字）：用不上，如实说
+                text += ("。里面的句子和校对表里的一模一样（就是这个声音自己的文字），一句话不能拿来证明它自己没错，"
+                         "所以用不上（可以给别的声音当母本用）。")
+            elif up.get("too_long"):
+                text += (f"（{_int(up.get('chars'))} 个字 / 词），太长了：只用前面大约 {_int(up.get('room'))} 个，"
+                         "后面的用不上。请只上传和这批录音有关的讲稿。")
+            else:
+                text += f"（{_int(up.get('chars'))} 个字 / 词），也一起用" + (
+                    f"（其中 {same} 句和校对表里的一模一样，那几句不用）。" if same else "。")
         return text
 
     def _textfix_used(self, voice: str) -> bool:
@@ -3323,8 +3334,18 @@ class WebUI:
                      f"对照表 {_int(r.get('corrections'))} 条"
                      + (f"；另外从母本里统计出你常说的词 {habits} 个" if habits else ""))
         files = r.get("files") or []
-        if files:
+        if files:  # 只写真的用上了的（以前不管用没用上都写）
             parts.append(f"另外用了你上传的：{_md_text('、'.join(files[:3]))}{' 等' if len(files) > 3 else ''}")
+        cut = r.get("files_cut") or []
+        if r.get("truncated") and cut:
+            what = "、".join(f"{x}（{'只用了前面一部分' if x in files else '一点都没用上'}）" for x in cut[:3])
+            parts.append(f"⚠️ 你上传的母本太长，只用了前面大约 {_int(r.get('room'))} 个字 / 词："
+                         f"{_md_text(what)}{' 等' if len(cut) > 3 else ''}。请只上传和这批录音有关的讲稿")
+        same = r.get("files_same") or []
+        if same:
+            parts.append(f"你上传的 {_md_text('、'.join(same[:3]))}{' 等' if len(same) > 3 else ''} 里的句子和校对表"
+                         "（或者程序自带的母本）里的一模一样，这次没有用上：一句话不能拿来证明它自己没错"
+                         "（这种文字可以给别的声音当母本用）")
         if _int(r.get("cleared")):
             parts.append(f"原来自动查错字标红、母本证明没错的 {_int(r.get('cleared'))} 条，红色已经去掉")
         if _int(r.get("dismissed")):
@@ -3384,8 +3405,9 @@ class WebUI:
                                                                    ([files] if files else []))]
             paths = [x for x in paths if x]
             try:
-                if paths:  # 先存好（不是 txt / csv、没有文字时直接说明，不算出错、不生成问题报告）
-                    transcript_fix.save_transcripts(project, paths)
+                if paths:  # 先存好（不是 txt / csv、没有文字、太长、全是这个声音自己的文字时直接说明，不算出错、
+                    # 不生成问题报告，也不用掉这批素材的一次）
+                    transcript_fix.save_transcripts(project, paths, refuse_useless=True)
             except ValueError as exc:
                 yield self._o(O, proof_bar=self._notice(str(exc)), tr_info=self.textfix_info(v), **idle)
                 return
@@ -3433,8 +3455,8 @@ class WebUI:
         md = (f"⬇️ 已经把 **{res['lines']}** 句改好的文字存成 txt（一行一句，按表格的顺序"
               + (f"；紫色删除的 {res['deleted']} 句不在里面" if res.get("deleted") else "")
               + f"），浏览器会自动下载。电脑上也存了一份：`{path}`"
-              "\n\n这份文字可以自己留着、发给别人看；以后加了新的素材、「📝 一键全部文字校正」的按钮亮起来的时候，"
-              "也可以把它当母本上传（「上传更多母本」那里）一起用。")
+              "\n\n这份文字可以自己留着、发给别人看，也可以给**别的声音**当母本上传。"
+              "这个声音自己不用再上传它：这些句子就是表格里的句子，一句话不能拿来证明它自己没错，上传了也不会多改什么。")
         if res.get("unsaved"):
             md += (f"\n\n🔴 其中 **{res['unsaved']}** 条修改还没保存（文件里是改过的样子）：记得点下面的「保存修改」，"
                    "不然训练时不会用这些修改。")
@@ -4151,7 +4173,7 @@ class WebUI:
                     c["proof_bar"] = gr.HTML("", elem_classes="vt-bar-box")
                     c["proof_md"] = gr.Markdown(elem_classes="vt-md")
                     # 文字校正（v18.5，老师的要求）：上传自己的逐字稿，按读音和前后文比对，结果覆盖「可能有错」列；
-                    # 下载改好的文字：「文字」列现在的文字存成 txt（下次可以当逐字稿上传）
+                    # 下载改好的文字：「文字」列现在的文字存成 txt（可以给别的声音当母本；同一个声音上传了用不上）
                     gr.Markdown(TEXTFIX_HELP, elem_classes="vt-md vt-textfix-help")
                     with gr.Row(equal_height=False):
                         c["tr_files"] = gr.File(label="📄 上传更多母本（可选：txt 或 transcripts.csv，可以选好几个；"

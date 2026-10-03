@@ -320,7 +320,7 @@ def test_export_text(tmp_path):
     assert lines == ["第一句改好了", "第四句改了还没保存"]
     assert res["lines"] == 2 and res["unsaved"] == 1 and res["deleted"] == 1
     assert Path(res["path"]).parent.name == review.EXPORT_DIR and "校正声音" in Path(res["path"]).name
-    # 下载的文件可以直接当母本上传
+    # 下载的文件可以直接当母本上传（给别的声音用）
     assert tf.parse_mother(Path(res["path"]).name, tf.read_text_file(res["path"]))[0] == ("", "第一句改好了")
 
 
@@ -1696,3 +1696,84 @@ def test_webui_button_turns_gray_after_use_and_lights_again_for_new_material(tmp
     _add_rows(project, [("n1", "这里的借词后面要接宾语。")])
     assert ui.textfix_btn("校正声音")["interactive"] is True  # 加了新素材：又能用一次
     assert "只能用一次" not in ui.textfix_info("校正声音")
+
+
+# ---------------------------------------------------------------------------- 第四轮找 bug：上传母本的说明要如实
+@need_both
+def test_reuploading_this_voices_own_text_is_refused_and_never_reported_as_used(tmp_path):
+    """第四轮找 bug：下载的「改好的文字」（或者这个声音自己的 transcripts.csv）再当母本上传：每一句都和表格里的一样，
+    全部不用（这是对的：一句话不能证明它自己没错），可页面上说「另外用了你上传的」「也一起用」，下载的说明还叫老师这么做；
+    还把上次上传的有用的讲稿换掉了、用掉了这批素材唯一的一次。现在：网页上不存、不开始，说明为什么；说明里不再这么建议。"""
+    pytest.importorskip("gradio")
+    from voicetwin.webui import app as A
+
+    cfg, project = _voice(tmp_path, ["我们先来看艾子引导的定语从句。", "这个句子完全没有错误，我们继续往下看。"])
+    script = tmp_path / "讲稿.txt"
+    script.write_text("我们先来复习一下关系代词which的用法，它可以指物。\n", encoding="utf-8")
+    ui = A.WebUI(cfg)
+    O = ui.TEXTFIX_OUT
+    list(ui.do_textfix("校正声音", [str(script)]))  # 第一批：上传这批录音的讲稿
+    assert tf.load_transcripts(project)[1] == ["讲稿.txt"]
+    dl = dict(zip(ui.DLTXT_OUT, ui.do_download_text("校正声音")))
+    assert "当母本上传（「上传更多母本」那里）一起用" not in dl["dl_txt_md"] and "别的声音" in dl["dl_txt_md"]
+    assert "别的声音" in A.TEXTFIX_HELP
+    path = dl["dl_txt_file"]["value"]
+    _add_rows(project, [("n1", "我们先来复习一下关系代词威驰的用法，它可以指物。")])  # 新素材：按钮又亮了
+    out = dict(zip(O, list(ui.do_textfix("校正声音", [path]))[-1]))
+    assert "一模一样" in out["proof_bar"] and "还能用" in out["proof_bar"]
+    assert ui.textfix_btn("校正声音")["interactive"] is True  # 这批素材的一次没用掉
+    assert tf.load_transcripts(project)[1] == ["讲稿.txt"]  # 上次上传的讲稿还在
+    list(ui.do_textfix("校正声音"))  # 不上传、照常点：上次的讲稿照样用上
+    assert "which" in _cur(project, "n1")[1]
+    # 用旧版本存进去的、全是这个声音自己的文字：按钮下面不说「也一起用」，结果里不说「用了」
+    tf.save_transcripts(project, [path])
+    info = ui.textfix_info("校正声音")
+    assert "也一起用" not in info and "用不上" in info
+    res = tf.check_with_transcript(project, only=[])
+    assert res["files"] == [] and res["files_same"] and "另外用了你上传的" not in A.WebUI._textfix_md(res)
+    assert "没有用上" in A.WebUI._textfix_md(res)
+
+
+@need_both
+def test_too_long_upload_is_refused_and_truncation_is_shown(tmp_path, monkeypatch):
+    """第四轮找 bug：上传的文字太长（程序自带的母本加上去超过上限）时只用前面的，后面的文件一点没用上，
+    页面上却说都用了，这批素材的一次也用掉了；表格里每做一个操作都把上传的文字整个重新读一遍。"""
+    pytest.importorskip("gradio")
+    from voicetwin.webui import app as A
+
+    monkeypatch.setattr(tf, "MAX_TOKENS", tf._builtin_tokens() + 40)  # 上传的最多能用 40 个字 / 词
+    cfg, project = _voice(tmp_path, ["我们先来复习一下关系代词威驰的用法，它可以指物。"])
+    a = tmp_path / "a_别的课的讲稿.txt"
+    a.write_text("今天我们讲一讲状语从句的几种用法，大家先把课本翻到第三十页。\n"
+                 "状语从句可以表示时间、地点、原因、条件和让步，我们一个一个来看。\n", encoding="utf-8")
+    b = tmp_path / "b_这节课的讲稿.txt"
+    b.write_text("我们先来复习一下关系代词which的用法，它可以指物。\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="最多只能用 40 个"):
+        tf.save_transcripts(project, [str(a), str(b)])
+    assert tf.load_transcripts(project)[1] == []
+    ui = A.WebUI(cfg)
+    out = dict(zip(ui.TEXTFIX_OUT, list(ui.do_textfix("校正声音", [str(a), str(b)]))[-1]))
+    assert "最多只能用" in out["proof_bar"] and ui.textfix_btn("校正声音")["interactive"] is True
+    # 旧版本存进去的太长的母本：如实说只用了前面的、哪个文件没用上
+    folder = tf.transcript_dir(project)
+    folder.mkdir(parents=True, exist_ok=True)
+    for f in (a, b):
+        (folder / f.name).write_text(f.read_text(encoding="utf-8"), encoding="utf-8")
+    assert "太长了" in ui.textfix_info("校正声音") and "也一起用" not in ui.textfix_info("校正声音")
+    res = tf.check_with_transcript(project)
+    md = A.WebUI._textfix_md(res)
+    assert res["truncated"] and res["files"] == ["a_别的课的讲稿.txt"] and res["files_cut"] == ["b_这节课的讲稿.txt"]
+    assert "⚠️ 你上传的母本太长" in md and "b\\_这节课的讲稿.txt" in md
+
+
+def test_upload_info_does_not_reread_unchanged_files(tmp_path, monkeypatch):
+    """按钮下面的说明每次刷新都要算：上传的文件没变就不再读、不再数（以前大文件每次要好几秒）。"""
+    cfg, project = _voice(tmp_path, ["这个句子完全没有错误，我们继续往下看。"])
+    f = tmp_path / "讲稿.txt"
+    f.write_text("今天我们讲一讲状语从句的几种用法，大家先把课本翻到第三十页。\n", encoding="utf-8")
+    tf.save_transcripts(project, [str(f)])
+    calls = []
+    real = tf.parse_mother
+    monkeypatch.setattr(tf, "parse_mother", lambda *a, **k: calls.append(1) or real(*a, **k))
+    first = tf.transcript_info(project)
+    assert tf.transcript_info(project) == first and len(calls) <= 1 and first["chars"] > 10
