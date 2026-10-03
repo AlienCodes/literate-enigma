@@ -257,6 +257,75 @@ function Show-ExistingVoices {
     }
 }
 
+function Get-ShortcutFolder {
+    # 桌面上「声音分身 VoiceTwin」图标原来打开的文件夹（没有 / 读不出来返回 ""）
+    try {
+        $desktop = [Environment]::GetFolderPath("Desktop")
+        $lnkPath = Join-Path $desktop "声音分身 VoiceTwin.lnk"
+        if (-not (Test-Path -LiteralPath $lnkPath)) { return "" }
+        # 中文文件名直接交给 WScript.Shell，在非中文系统上可能读不了：先复制成英文名再读
+        $tmp = Join-Path ([System.IO.Path]::GetTempPath()) "VoiceTwin-old-shortcut.lnk"
+        Copy-Item -LiteralPath $lnkPath -Destination $tmp -Force
+        $shell = New-Object -ComObject WScript.Shell
+        $dir = "$($shell.CreateShortcut($tmp).WorkingDirectory)"
+        Remove-Item -LiteralPath $tmp -Force -ErrorAction SilentlyContinue
+        return $dir.Trim()
+    } catch { return "" }
+}
+function Get-VoiceNames([string]$root) {
+    $ws = Join-Path $root "workspace"
+    if (-not (Test-Path -LiteralPath $ws)) { return @() }
+    return @(Get-ChildItem -LiteralPath $ws -Directory -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -notlike "__*" -and (Test-Path -LiteralPath (Join-Path $_.FullName "manifest.jsonl")) } |
+        ForEach-Object { $_.Name })
+}
+function Check-OtherInstall {
+    # 升级时解压到了新的文件夹（不是原来装的地方）：装好以后打开的是空的声音分身，老师会以为以前的声音都没了
+    $old = Get-ShortcutFolder
+    if (-not $old) { return }
+    try {
+        $same = ([IO.Path]::GetFullPath($old).TrimEnd('\') -ieq [IO.Path]::GetFullPath($Here).TrimEnd('\'))
+    } catch { return }
+    if ($same) { return }
+    $oldVoices = @(Get-VoiceNames $old)
+    if ($oldVoices.Count -eq 0) { return }
+    if (@(Get-VoiceNames $Here).Count -gt 0) { return }
+    $parent = Split-Path -Parent $old
+    Write-Host ""
+    Write-Host "⚠️ 你以前装的声音分身在 $old ，你的声音（$($oldVoices.Count) 个：$($oldVoices -join '、')）都在那里。" -ForegroundColor Yellow
+    Write-Host "   这次的压缩包解压到了 $Here （是一个新的文件夹），在这里装好以后会看不到你以前的声音。" -ForegroundColor Yellow
+    Write-Host "   请这样做：关掉这个窗口 → 把下载的压缩包重新解压，位置填 $parent ，提示有同名文件时选「替换」→ 双击 $old\install_windows.bat" -ForegroundColor Yellow
+    $ans = Ask "一定要装到这个新文件夹的话，输入 Y 再按回车继续；直接按回车 = 退出" ""
+    if ($ans -notmatch $YesPattern) { Write-Host "已退出安装（什么都没有改）。"; Pause-End; exit 1 }
+}
+function Test-VoiceTwinRunning {
+    # 声音分身是不是正开着（网页在 7860~7869 端口）：升级时旧的黑色窗口要先关掉
+    foreach ($port in 7860..7869) {
+        try {
+            $req = [System.Net.WebRequest]::Create("http://127.0.0.1:$port/config")
+            $req.Proxy = $null
+            $req.Timeout = 1500
+            $resp = $req.GetResponse()
+            $reader = New-Object System.IO.StreamReader($resp.GetResponseStream(), [Text.Encoding]::UTF8)
+            $body = $reader.ReadToEnd()
+            $reader.Close(); $resp.Close()
+            if ($body -match "声音分身") { return $true }
+        } catch {}
+    }
+    return $false
+}
+function Wait-OldClosed {
+    if (-not (Test-VoiceTwinRunning)) { return }
+    Write-Host ""
+    Write-Host "⚠️ 声音分身现在还开着（另一个黑色窗口）。升级前请先把它关掉（点那个黑色窗口右上角的 ×），不然装好以后打开的还是旧版本。" -ForegroundColor Yellow
+    for ($i = 0; $i -lt 5; $i++) {
+        $ans = Ask "关好以后按回车继续（输入 Y 再按回车 = 不管它，直接继续）" "Y"
+        if ($ans -match $YesPattern) { return }
+        if (-not (Test-VoiceTwinRunning)) { Write-Host "好的，已经关掉了。" -ForegroundColor Green; return }
+        Write-Host "还开着：请找到那个黑色窗口，点右上角的 ×。" -ForegroundColor Yellow
+    }
+}
+
 Write-Host "=============================================" -ForegroundColor Green
 Write-Host "   VoiceTwin 声音分身 安装程序" -ForegroundColor Green
 Write-Host "=============================================" -ForegroundColor Green
@@ -269,6 +338,8 @@ if (Test-NonAsciiOrSpace $Here) {
     Write-Host "提示：安装路径里有中文或空格，个别组件可能出问题。建议放到类似 D:\VoiceTwin 的路径。" -ForegroundColor Yellow
 }
 Show-ExistingVoices
+Check-OtherInstall
+Wait-OldClosed
 
 if (-not $Mode) {
     Write-Host ""

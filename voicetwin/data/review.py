@@ -7,7 +7,7 @@
 - **红色 = 可能有错**：查错字时标出来的位置；那个地方被改过以后就不再标红（改过的地方变蓝）。
 - **修改建议**：查错字时第二个识别引擎给的建议（``suspect.alt``），拆成一处一处的改动；
   点一下就把还没改的那几处改好（只改建议的地方，老师自己改过的地方不动）。
-- **删除**：不是真的删文件，这一行在表格里变成灰色、不再用来训练；「⋯ 选项」里点「↩️ 撤销删除」就回来。
+- **删除**：不是真的删文件，这一行在表格里变成紫色、不再用来训练；「⋯ 选项」里点「↩️ 撤销删除」就回来。
 
 位置说明：``suspect`` 里的 spans / alt 是针对查错字那一刻的文字（``suspect["text"]``，没有这个键时 = 现在保存的文字）。
 文字改过以后，用逐字对比把这些位置换算到新文字上。
@@ -995,7 +995,7 @@ def save_rows(project: Any, ids: Optional[Iterable[str]] = None) -> Dict[str, An
         saved: List[str] = []
         for rec in records:
             rid = rec.get("id")
-            if rid not in want or rec.get("deleted"):  # 删除（灰色）的行不保存，撤销删除以后还能接着改
+            if rid not in want or rec.get("deleted"):  # 删除（紫色）的行不保存，撤销删除以后还能接着改
                 continue
             vals = draft[rid]
             touched = False

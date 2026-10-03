@@ -31,7 +31,7 @@ denoise = ["noisereduce>=3.0"]
 # 精准声纹打分（"像你本人"百分比）：模型是 ONNX 格式，用 onnxruntime 在 CPU 上运行
 sv = ["onnxruntime>=1.14"]
 separate = ["demucs>=4.0"]
-webui = ["gradio>=4.0"]
+webui = ["gradio>=4.0", "pypinyin", "jieba"]  # 「一键全部文字校正」要用拼音 / 分词（GPT-SoVITS 整合包里本来就有）
 docx = ["python-docx>=1.0"]
 dev = ["pytest>=7", "fastapi", "uvicorn", "python-multipart", "pypinyin", "jieba"]  # tests/test_gsv_real_api.py 运行真实的 GPT-SoVITS api_v2.py（整合包里是 fastapi[standard]，带 python-multipart）；文字校正要用 pypinyin、jieba（整合包里都有）
 

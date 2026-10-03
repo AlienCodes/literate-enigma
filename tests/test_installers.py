@@ -174,3 +174,58 @@ def test_windows_launcher_runs_installer_without_windows_terminal(tmp_path):
         out = subprocess.run(["cmd", "/c", "install_windows.bat"], cwd=str(tmp_path), env=dict(base, **extra),
                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=120).stdout.decode("utf-8", "replace")
         assert "DUMMY-INSTALLER-RAN" in out, out
+
+
+def _ps_functions(text: str, names) -> str:
+    """从 install_windows.ps1 里取出几个函数（从 function 那一行到下一个顶格的 }）。"""
+    lines = text.split("\r\n")
+    out = []
+    for name in names:
+        start = next(i for i, ln in enumerate(lines) if ln.startswith(f"function {name}"))
+        if lines[start].rstrip().endswith("}"):
+            out.append(lines[start])
+            continue
+        end = next(i for i in range(start + 1, len(lines)) if lines[i] == "}")
+        out += lines[start:end + 1]
+    return "\r\n".join(out)
+
+
+def test_windows_installer_warns_when_unpacked_to_a_new_folder(tmp_path):
+    """升级时解压到了新的文件夹（快速上手以前写「位置填 D:\\」，老师实际装在 D:\\VoiceTwin-Windows-v18.2 里）：
+    装好以后打开的是空的声音分身，老师会以为以前的声音都没了。安装程序要说明、默认退出。"""
+    import shutil
+    import subprocess
+
+    import pytest
+
+    text = (ROOT / "install_windows.ps1").read_bytes()[3:].decode("utf-8")
+    assert "Check-OtherInstall\r\nWait-OldClosed\r\n" in text  # 选安装方式以前就检查
+    pwsh = shutil.which("pwsh")
+    if not pwsh:
+        pytest.skip("没有 PowerShell 7（pwsh）")
+    old = tmp_path / "VoiceTwin-Windows-v18.2" / "VoiceTwin"
+    (old / "workspace" / "我的声音").mkdir(parents=True)
+    (old / "workspace" / "我的声音" / "manifest.jsonl").write_text("{}\n", encoding="utf-8")
+    new = tmp_path / "VoiceTwin"
+    new.mkdir()
+    desk = tmp_path / "Desktop"
+    desk.mkdir()
+    (desk / "声音分身 VoiceTwin.lnk").write_text(str(old), encoding="utf-8")
+    fake = '''
+class FakeLnk { [string]$WorkingDirectory = ""; FakeLnk([string]$p) { $this.WorkingDirectory = (Get-Content -LiteralPath $p -Raw).Trim() } }
+class FakeShell { [object] CreateShortcut([string]$p) { return [FakeLnk]::new($p) } }
+function New-Object { param([string]$ComObject) if ($ComObject -eq "WScript.Shell") { return [FakeShell]::new() }; throw "unexpected" }
+'''
+    funcs = _ps_functions(text, ["Pause-End", "Ask", "Get-ShortcutFolder", "Get-VoiceNames", "Check-OtherInstall"])
+    funcs = funcs.replace('[Environment]::GetFolderPath("Desktop")', f"'{desk}'")
+    for here, want_exit in ((new, True), (old, False)):
+        script = "\r\n".join([fake, "$NoPause = $true", "$YesPattern = '^\\s*([yY]|是)'", funcs, f"$Here = '{here}'",
+                              "Check-OtherInstall", 'Write-Host "CONTINUED"'])
+        ps1 = tmp_path / "t.ps1"
+        ps1.write_bytes(b"\xef\xbb\xbf" + script.encode("utf-8"))
+        out = subprocess.run([pwsh, "-NoProfile", "-File", str(ps1)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                             timeout=120).stdout.decode("utf-8", "replace")
+        if want_exit:
+            assert "你以前装的声音分身在" in out and "我的声音" in out and "CONTINUED" not in out, out
+        else:
+            assert "CONTINUED" in out and "你以前装的声音分身在" not in out, out

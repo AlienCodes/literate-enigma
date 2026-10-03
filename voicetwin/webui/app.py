@@ -131,6 +131,7 @@ LOG_ACCORDION = "详细过程（出问题时可以复制给帮你的人）"
 ADV_LABEL = "高级设置（一般不用改）"
 
 INTRO_TITLE = f"# 🎙️ {APP_TITLE}" + (f" v{APP_TITLE_VERSION}" if APP_TITLE_VERSION else "")
+PAGE_TITLE = APP_TITLE + (f" v{APP_TITLE_VERSION}" if APP_TITLE_VERSION else "")  # 浏览器标签页上的标题
 INTRO_SUB = "用你自己的讲课视频/录音，复刻你的**音色、语气和节奏**（中文 + 英文）。按 ① → ② → ③ 的顺序操作就行。"
 MODEL_PENDING = "正在读取模型型号……"
 
@@ -208,7 +209,9 @@ SYNTH_BACKENDS = [("GPT-SoVITS（推荐，用你训练的模型）", "gptsovits"
                   ("IndexTTS（不用训练）", "indextts")]
 DUMMY_BACKEND = ("测试引擎（不是你的声音）", "dummy")
 DPO_CHOICES = [("自动（推荐）", "auto"), ("开", "on"), ("关", "off")]
-FORMAT_CHOICES = [("WAV（音质最好，剪映/后期用）", "wav"), ("MP3（文件小，方便发微信、上传）", "mp3")]
+#: MP3 是有损压缩：句子之间的静音里会有极小的压缩杂讯（大约 -90 dB，听不见，但不是绝对的 0）——老师要绝对静音，如实写明
+FORMAT_CHOICES = [("WAV（音质最好，句子之间绝对静音；剪映/后期用）", "wav"),
+                  ("MP3（文件小，方便发微信、上传；压缩会在停顿里留下听不见的极小杂讯，要绝对静音请选 WAV）", "mp3")]
 
 # 质量档位的中文名和说明只在 synth/engine.py 里写一份（网页、命令行、报告用的是同一套名字）
 QUALITY_CHOICES: List[Tuple[str, str]] = wf.quality_choices()
@@ -227,7 +230,18 @@ SCRIPT_SUB_EXTS = (".srt", ".vtt")
 # 第一条：show_progress="hidden" 的事件（长任务）运行时，gradio 4.24 仍会在每个输出上加一圈闪烁的橙色边框
 # 和一块空白（StatusTracker 的 "wrap default hidden generating"）。我们有自己的进度条，所以把它整个隐藏。
 # 第二条：空的 Markdown 在任务运行期间会被撑高 96 像素（.min），进度条下面会空出一大块；vt-md 的不撑高。
+#: 放进网页 <head> 的小脚本：gradio 按浏览器语言选界面文字，这里告诉它是中文（gradio 4.24 实测：英文系统的浏览器里
+#: 「Drop File Here / Click to Upload / Built with Gradio」变成「将文件拖放到此处 / 点击上传 / 使用 Gradio 构建」）
+CHINESE_LOCALE_HEAD = ('<script>try{Object.defineProperty(navigator,"language",{get:function(){return "zh-CN"}});'
+                       'Object.defineProperty(navigator,"languages",{get:function(){return ["zh-CN","zh"]}});}'
+                       'catch(e){}</script>')
+
 APP_CSS = """
+/* 右上角弹出提示的标题：gradio 写的是英文 Info / Warning / Error（换成中文） */
+.toast-title.info, .toast-title.warning, .toast-title.error { font-size: 0 !important; }
+.toast-title.info::after { content: "提示"; font-size: var(--text-lg); }
+.toast-title.warning::after { content: "注意"; font-size: var(--text-lg); }
+.toast-title.error::after { content: "出错了"; font-size: var(--text-lg); }
 .wrap.default.hidden,.wrap.center.hidden{display:none!important}
 .vt-md .min{min-height:0!important}
 /* gradio 的标题是 flex 不换行：允许换行，手机上模型型号自动换到第二行 */
@@ -1749,8 +1763,11 @@ def _select_done_md(info: Dict[str, Any]) -> str:
     speed = info.get("speed") or {}
     calibrated = any(abs((_num(v) or 1.0) - 1.0) > 1e-6 for v in speed.values()) if isinstance(speed, dict) else False
     parts = [x for x in (label, f"版本 {best}" if best else "") if x]
-    return ("### ✅ 已重新挑好最像你的模型" + (f"（{_md_text('，'.join(parts))}）" if parts else "")
-            + f"；语速：{'已校准' if calibrated else '和你本人一致，不用调'}")
+    md = ("### ✅ 已重新挑好最像你的模型" + (f"（{_md_text('，'.join(parts))}）" if parts else "")
+          + f"；语速：{'已校准' if calibrated else '和你本人一致，不用调'}")
+    if info.get("material_note"):
+        md += "\n\n> " + _md_text(info["material_note"])
+    return md
 
 
 # ============================================================================ ③ 生成结果
@@ -2001,7 +2018,16 @@ def _output_path(project: Any, name: str, fmt: str, fallback: str) -> Path:
 
     stem = safe_name((name or "").strip() or fallback or "讲课音频", 30)
     fmt = fmt if fmt in ("wav", "mp3") else "wav"
-    return Path(project.outputs_dir) / f"{stem}_{_time_suffix()}.{fmt}"
+    out_dir = Path(project.outputs_dir)
+    base = f"{stem}_{_time_suffix()}"
+    # 同一分钟里又生成一次（换了格式、重做几句）：名字后面加 _2、_3……，不覆盖、不删掉刚才那份（音频、字幕、报告都是）
+    name, k = base, 2
+    try:
+        while any(out_dir.glob(glob.escape(name) + ".*")) or any(out_dir.glob(glob.escape(name) + "_*.*")):
+            name, k = f"{base}_{k}", k + 1
+    except OSError:
+        pass
+    return out_dir / f"{name}.{fmt}"
 
 
 def _time_suffix(t: Optional[float] = None) -> str:
@@ -3036,7 +3062,11 @@ class WebUI:
             return "没有需要保存的修改（表格里没有 🔴 红灯的行）。"
         ch = res.get("changed") or {}
         head = f"✅ {one}已保存" if one else f"✅ 已保存 {len(res['saved'])} 条"
-        md = f"{head}：改了 {ch.get('text', 0)} 处文字、{ch.get('keep', 0)} 处「保留」、{ch.get('lang', 0)} 处语言（这几行现在是 🟢）"
+        # 只说真的改了的（「保留」那一列 v18.1 起就没有了；数的是句子，不是「处」）
+        parts = [f"{n} 条的{what}" for n, what in ((_int(ch.get("text")), "文字"), (_int(ch.get("lang")), "语言")) if n]
+        if _int(ch.get("keep")):
+            parts.append(f"{_int(ch.get('keep'))} 条改成了要用 / 不用")
+        md = f"{head}：" + (f"改了 {'、'.join(parts)}" if parts else "和保存过的一样") + "（这几行现在是 🟢）"
         if res.get("csv_locked"):
             md += ("\n\n⚠️ transcripts.csv 正被 Excel/WPS 打开，那个文件这次没能同步（程序里已经保存好了）。"
                    "关掉 Excel/WPS 后再点一次「保存修改」就会同步。")
@@ -3074,7 +3104,7 @@ class WebUI:
             if guard:
                 return guard, _upd(), _upd()
         if rec.get("deleted") and action not in ("restore", "delete"):
-            return self._review_outputs(v, only_sus, f"{which}已经删除了（灰色 = 不用来训练）。要改它，请先在「⋯ 选项」里点"
+            return self._review_outputs(v, only_sus, f"{which}已经删除了（紫色 = 不用来训练）。要改它，请先在「⋯ 选项」里点"
                                                      "「↩️ 撤销删除」。")
         vals = _review.current_values(rec, _review.load_draft(project).get(cid))
         msg = ""
@@ -3125,7 +3155,15 @@ class WebUI:
                     _info(f"🗑️ 已删除{which}（变紫色了，可以撤销）")
                 else:
                     wf.review_restore(self.cfg, v, cid)
-                    msg = f"↩️ 已撤销删除，{which}回来了（不再是紫色），又算训练素材了：{_md_text(str(rec.get('text', ''))[:30])}"
+                    now = {r["id"]: r for r in wf.Project(self.cfg, v).load_manifest()}.get(cid) or rec
+                    words = _md_text(str(now.get("text", "") or "")[:30])
+                    if _review.is_material(now):
+                        msg = f"↩️ 已撤销删除，{which}回来了（不再是紫色），又算训练素材了" + (f"：{words}" if words else "。")
+                    else:  # 回来了，但还是灰色（没有文字、程序判断不能用）：不能说「又算训练素材了」
+                        why = "还没有文字" if not str(now.get("text") or "").strip() else "程序判断这一句不能用"
+                        msg = (f"↩️ 已撤销删除，{which}回来了（不再是紫色），但{why}，还是灰色、不用来训练"
+                               + ("：可以在「⋯ 选项」里点「✅ 这一条也要用」。" if str(now.get("text") or "").strip()
+                                  else "：可以双击「文字」把这一句打上去。"))
                     _info(f"↩️ {which}回来了")
             except Exception as exc:  # noqa: BLE001 - 表格照样刷新，说明写在表格上方
                 log.error(f"校对表「{action}」出错：{exc}", exc_info=True)
@@ -4014,8 +4052,16 @@ class WebUI:
         cfg = self.cfg
         c = self.c
         css = PROGRESS_CSS + (getattr(_gpu, "GPU_CSS", "") if _gpu is not None else "") + APP_CSS
-        blocks_kw: Dict[str, Any] = dict(title=APP_TITLE, analytics_enabled=False, css=css, delete_cache=(86400, 86400))
+        # 浏览器标签页上的标题也显示 v18（老师的永久要求：网页标题永远是「声音分身 VoiceTwin v18」）
+        blocks_kw: Dict[str, Any] = dict(title=PAGE_TITLE, analytics_enabled=False, css=css, delete_cache=(86400, 86400))
         blocks_kw["js"] = page_js()
+        try:  # 老师的 Windows 是英文版：浏览器语言是英文时 gradio 自带的字（Drop File Here……）也显示成中文
+            import inspect
+
+            if "head" in inspect.signature(gr.Blocks.__init__).parameters:
+                blocks_kw["head"] = CHINESE_LOCALE_HEAD
+        except (TypeError, ValueError):
+            pass
         heavy = dict(show_progress="hidden", concurrency_limit=None)
         quick = dict(show_progress="hidden")
 
@@ -4037,6 +4083,9 @@ class WebUI:
         with gr.Blocks(**blocks_kw) as app:
             # -------------------------------------------------------- 顶部
             c["header"] = gr.Markdown(INTRO, elem_classes="vt-header")
+            # 真正的版本号藏在网页里（标题永远是 v18）：再双击图标时，launcher 用它分辨开着的是不是旧版本
+            gr.HTML(f'<span data-vt-version="{html.escape(APP_VERSION, quote=True)}"></span>', visible=False,
+                    elem_id="vt-version")
             with gr.Row(equal_height=True):
                 with gr.Column(scale=8, min_width=240):
                     c["gpu_badge"] = gr.HTML(_gpu_pending())

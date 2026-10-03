@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import socket
 import sys
 import tempfile
@@ -24,6 +25,13 @@ ALREADY_RUNNING_MSG = "声音分身已经在运行了（在另一个黑色窗口
 ALREADY_RUNNING_REMOTE_MSG = "声音分身已经在运行了（在另一个黑色窗口里），网页地址：{url}。这个窗口可以关掉。"
 STARTING_ELSEWHERE_MSG = ("声音分身正在另一个黑色窗口里启动（刚才可能连着双击了两次图标）。"
                           "请不要关掉那个窗口，这里等它启动好就帮你打开网页……")
+#: 升级以后旧版本还开着（老师没关旧的黑色窗口）：不能打开旧网页（看不到新功能，以为升级失败）
+OLD_RUNNING_MSG = ("另一个黑色窗口里还开着旧版本的声音分身（{old}），新版本 {new} 没法同时打开。\n"
+                   "请把那个旧的黑色窗口关掉（点它右上角的 ×）。关掉以后这里会自动接着启动新版本，不用再双击图标。")
+#: 等老师关掉旧版本最多等多久（秒）；等不到就说明怎么办
+OLD_WAIT_SECONDS = 1800.0
+#: 网页里藏着的版本号（launcher 用它分辨开着的是不是这个版本）
+VERSION_ELEM_ID = "vt-version"
 #: 另一个窗口正在启动时最多等多久（第一次启动、电脑慢时要 30 秒以上）
 STARTUP_WAIT_SECONDS = 180.0
 #: 端口突然被占（几乎都是同时启动了两个）时，再找几秒已经在运行的那个
@@ -97,6 +105,21 @@ def _existing_instance(url: str, timeout: float = 2.0) -> bool:
         return APP_TITLE_MARK in str((data or {}).get("title", ""))
     except Exception:
         return False
+
+
+def _instance_version(url: str, timeout: float = 2.0) -> str:
+    """开着的声音分身网页是哪个版本（网页里藏着的 vt-version）；旧版本没有这个，返回 ""。"""
+    try:
+        with _opener().open(url.rstrip("/") + "/config", timeout=timeout) as resp:
+            data: Any = json.loads(resp.read(5_000_000).decode("utf-8", errors="replace"))
+        for comp in (data or {}).get("components") or []:
+            props = comp.get("props") if isinstance(comp, dict) else None
+            if isinstance(props, dict) and props.get("elem_id") == VERSION_ELEM_ID:
+                m = re.search(r"data-vt-version=\"([^\"]+)\"", str(props.get("value") or ""))
+                return m.group(1) if m else ""
+    except Exception:
+        return ""
+    return ""
 
 
 def _port_listening(host: str, port: int, timeout: float = 0.3) -> bool:
@@ -287,8 +310,20 @@ def launch(cfg: Any, host: str = "127.0.0.1", port: int = 7860, share: bool = Fa
 
     existing = _find_existing(host, port)
     if existing:
-        _open_existing(existing, local)
-        return
+        from voicetwin import __version__
+
+        old = _instance_version(existing)
+        if old == __version__:
+            _open_existing(existing, local)
+            return
+        # 开着的是别的版本（升级以后旧的黑色窗口没关）：等老师关掉它，再启动这个版本
+        _say(OLD_RUNNING_MSG.format(old=f"v{old}" if old else "旧版本", new=f"v{__version__}"))
+        deadline = time.time() + OLD_WAIT_SECONDS
+        while _find_existing(host, port):
+            if time.time() >= deadline:
+                raise RuntimeError("旧版本的声音分身一直开着。请关掉所有黑色窗口，再双击一次桌面上的「声音分身」图标。")
+            time.sleep(2.0)
+        _say("旧版本已经关掉了，正在启动新版本……")
 
     # 第一个窗口要先建好网页（10~30 秒）才会占住端口；这段时间里再双击一次图标，不能再启动一个
     lock = _acquire_instance_lock(port)

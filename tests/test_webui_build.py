@@ -43,7 +43,9 @@ def _streaming(app):
 def test_build_app_local_and_remote(tmp_path):
     cfg = _cfg(tmp_path)
     app = build_app(cfg)
-    assert app.title == "声音分身 VoiceTwin"
+    assert app.title == "声音分身 VoiceTwin v18"  # 浏览器标签页上也是 v18（老师的永久要求）
+    vers = [c for c in app.get_config_file()["components"] if (c.get("props") or {}).get("elem_id") == "vt-version"]
+    assert vers and A.APP_VERSION in vers[0]["props"]["value"]  # launcher 用它分辨开着的是不是旧版本
     conf = app.get_config_file()
     assert ".vt-prog" in (conf.get("css") or "") and ".vt-gpu" in (conf.get("css") or "")
     assert build_app(cfg, local=False) is not None

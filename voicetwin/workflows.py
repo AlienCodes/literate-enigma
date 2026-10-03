@@ -849,8 +849,9 @@ def _check_material_before_training(project: Project) -> None:
     records = project.load_manifest()
     material = train_records(project, include_val=True)
     val = sum(1 for r in material if r.get("split") == "val")
-    edited = sum(1 for r in material if r.get("text_edited")
-                 or (r.get("orig_text") is not None and r.get("orig_text") != r.get("text")))
+    # 真正进训练的（不算「考试题」）、现在的文字和最初识别的不一样的（改了又改回去的不算）
+    edited = sum(1 for r in material if r.get("split", "train") == "train"
+                 and r.get("orig_text") is not None and r.get("orig_text") != r.get("text"))
     deleted = sum(1 for r in records if r.get("deleted"))
     log.info(f"这次训练用校对表里保存好的文字：{len(material) - val} 条训练、{val} 条当「考试题」"
              + (f"；其中 {edited} 条是你改过文字的，按改好的文字训练" if edited else "")
@@ -882,8 +883,11 @@ def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, item
         if note:
             log.warning(note)
         try:  # 引擎在 select_and_calibrate 里"启动合成引擎"那一步才启动，进度条上能看到
-            return select_and_calibrate(cfg, project, backend, max_items=int(items or DEFAULT_ITEMS), use_asr=use_asr,
-                                        progress=progress)
+            res = select_and_calibrate(cfg, project, backend, max_items=int(items or DEFAULT_ITEMS), use_asr=use_asr,
+                                       progress=progress)
+            if note and isinstance(res, dict):
+                res["material_note"] = note  # 结果里也说（以前只在「详细过程」里）
+            return res
         finally:
             backend.stop()
 
@@ -944,6 +948,8 @@ def run_narrate(cfg: Config, voice: str, source: str, out: Optional[str] = None,
         try:
             narrator = Narrator(cfg, project, backend, quality=quality, candidates=candidates, speed=speed,
                                 reference=reference, asr_check=asr_check, progress=progress, variants=variants)
+            if note:  # 「训练以后校对表又改过」也写进生成结果的提醒里（以前只在折起来的「详细过程」里）
+                narrator.warnings.append(note)
             return narrator.narrate(src_path if is_file else source, out_path, redo=redo, subtitles=subtitles)
         finally:
             if own_backend:
@@ -1485,6 +1491,8 @@ def _doctor(cfg: Config) -> List[Dict[str, Any]]:
         ("funasr", "funasr（中文识别、查错字，可选）", False, True),
         ("resemblyzer", "resemblyzer（声纹打分）", False, False), ("gradio", "gradio（网页界面）", False, False),
         ("noisereduce", "noisereduce（降噪、「完美」档的去杂音版本，可选）", False, True),
+        ("pypinyin", "pypinyin（一键全部文字校正：按读音找错字）", False, False),
+        ("jieba", "jieba（一键全部文字校正：分词）", False, False),
         ("demucs", "demucs（去背景音乐，可选）", False, True),
     ):
         try:
@@ -1492,7 +1500,9 @@ def _doctor(cfg: Config) -> List[Dict[str, Any]]:
             add(label, True, getattr(m, "__version__", "已安装"), optional)
         except Exception:
             hint = "（必需）" if required else ("（重新双击 install_windows.bat 安装一次就会装上）"
-                                              if mod == "noisereduce" else "")
+                                              if mod == "noisereduce" else
+                                              "（重新双击 install_windows.bat、选 1 装进 GPT-SoVITS 整合包就有）"
+                                              if mod in ("pypinyin", "jieba") else "")
             add(label, False if required else None, "未安装" + hint, optional)
     gpu = _gpu_row()
     if gpu is not None:

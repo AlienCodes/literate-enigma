@@ -131,7 +131,7 @@ CASES = [
     (RuntimeError("没有可用于评估的片段"), "not_prepared", "还没有准备素材"),
     (RuntimeError("没有可用于训练的片段，请先运行素材准备并检查 transcripts.csv。"), "no_clips", "没有可以用来训练的句子"),
     (FileNotFoundError("没有找到任何视频或音频文件。支持：.mp4 .wav"), "no_media", "没找到视频或录音"),
-    (ValueError("讲稿里没有可以朗读的内容"), "empty_script", "讲稿是空的"),
+    (ValueError("讲稿里没有可以朗读的内容"), "empty_script", "讲稿里没有可以朗读的内容"),
     (RuntimeError("连接不上 GPT-SoVITS 服务 http://10.0.0.2:9880，请先启动 api_v2.py"), "external_api", "连不上"),
     # 外层包装：找不到根本原因时
     (RuntimeError("gsv_s1_train 失败（退出码 1）。最后的日志：\nepoch 3\nsaving"), "step_failed",

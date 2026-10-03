@@ -172,7 +172,7 @@ def _logs_dir_for(voice: str) -> Optional[str]:
 
 
 #: 这些不是程序出错，是「还差一步」（没保存、没确认训练素材）：页面上已经说清楚怎么办，不生成问题报告
-NO_REPORT_KEYS = frozenset({"unsaved_edits", "not_confirmed", "confirm_stale"})
+NO_REPORT_KEYS = frozenset({"unsaved_edits", "not_confirmed", "confirm_stale", "empty_script"})
 
 
 def _problem_report(task: "_Task", exc: BaseException, friendly: Any) -> None:

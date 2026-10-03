@@ -307,6 +307,10 @@ class _Cand:
     k: int
 
 
+#: 按字幕时间轴配音时，句子之间至少留的绝对静音（秒）：逗号处 / 句子之间
+TIMED_MIN_CLAUSE_GAP = 0.08
+TIMED_MIN_GAP = 0.15
+
 class Narrator:
     def __init__(self, cfg: Dict[str, Any], project: Project, backend: Backend, quality: Optional[str] = None,
                  candidates: Optional[int] = None, speed: Union[str, float, None] = None, reference: str = "",
@@ -1131,7 +1135,7 @@ class Narrator:
             n = len(resample(r.wav, r.sr, sr)) if r.sr != sr else len(r.wav)
             if timed and r.segment.cue_start is not None:
                 start = r.segment.cue_start
-                if start < cursor - 0.02:
+                if start < cursor:  # 不能和上一句叠在一起（以前允许往回 20 毫秒：两句重叠、字幕时间也重叠）
                     if start + 0.5 < cursor:
                         self.warnings.append(f"第 {i + 1} 句比字幕时间轴晚了 {cursor - start:.1f} 秒（上一句太长）")
                     start = cursor
@@ -1140,7 +1144,8 @@ class Narrator:
             r.start, r.end = start, start + n / sr
             layout.append((start, n))
             if timed:
-                cursor = r.end + (0.08 if r.segment.pause_after == "clause" else 0.0)
+                # 句子之间至少留一点绝对静音（以前字幕挨着时两句之间一点停顿都没有）
+                cursor = r.end + (TIMED_MIN_CLAUSE_GAP if r.segment.pause_after == "clause" else TIMED_MIN_GAP)
             else:
                 pause = self._pause(r.segment, i)
                 if not isinstance(r.segment.pause_after, (int, float)):
@@ -1176,13 +1181,18 @@ class Narrator:
             audio = normalize_lufs(audio, sr, target, ceiling_db=-1.0)  # 只乘一个系数：0 还是 0
         fmt = (out_path.suffix.lower().lstrip(".") or self.scfg.get("output_format", "wav"))
         wav_path = out_path.with_suffix(".wav")
-        save_audio(wav_path, audio, sr)
-        log.info(f"输出响度 {measure_lufs(audio, sr):.1f} LUFS，时长 {len(audio) / sr:.1f} 秒")
-        if fmt in ("mp3", "m4a", "flac"):
-            final = encode(wav_path, out_path.with_suffix("." + fmt))
-            wav_path.unlink(missing_ok=True)
-            return final
-        return wav_path
+        # 先写到一个只有这次用的临时文件：要 MP3 时不会碰到旁边同名的 WAV（以前同一分钟里先生成 WAV、
+        # 再生成 MP3，刚听过的 WAV 被删掉了）；写到一半出错也不会留下半个文件
+        tmp = atomic.tmp_for(wav_path).with_suffix(".wav")
+        try:
+            save_audio(tmp, audio, sr)
+            log.info(f"输出响度 {measure_lufs(audio, sr):.1f} LUFS，时长 {len(audio) / sr:.1f} 秒")
+            if fmt in ("mp3", "m4a", "flac"):
+                return encode(tmp, out_path.with_suffix("." + fmt))
+            atomic.finish(tmp, wav_path)
+            return wav_path
+        finally:
+            tmp.unlink(missing_ok=True)
 
     def _write_srt(self, results: List[SegmentResult], path: Path) -> Path:
         from voicetwin.data.subtitles import Cue, write_srt

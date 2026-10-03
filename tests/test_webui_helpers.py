@@ -165,7 +165,7 @@ def test_do_save_round_trip_and_guards(prepared, tmp_path, monkeypatch):
     # 硬盘上的校对表还没变（只存在草稿里）
     assert {r["id"]: r for r in project.load_manifest()}[b]["text"] == recs[1]["text"]
     md, count_md, table = ui.do_save(name)
-    assert md.startswith("✅ 已保存 2 条：改了 1 处文字、0 处「保留」、1 处语言") and "{" not in md
+    assert md.startswith("✅ 已保存 2 条：改了 1 条的文字、1 条的语言") and "{" not in md and "保留" not in md
     saved = {r["id"]: r for r in project.load_manifest()}
     assert saved[a]["lang"] != lang_before and saved[b]["text"].endswith("改")
     assert A.LIGHT_SAVED in table[0][st] and A.LIGHT_SAVED in table[1][st]  # 保存了：绿灯
