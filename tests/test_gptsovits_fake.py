@@ -741,6 +741,71 @@ def test_archive_keeps_selected_model_usable(prepared, tmp_path, no_users_pth):
     assert not list((root / "SoVITS_weights_v2ProPlus").glob(first["exp_name"] + "_e*"))
 
 
+@needs_fake_python
+def test_two_stopped_retrains_keep_the_selected_model(prepared, tmp_path, monkeypatch, no_users_pth):
+    """A 训练好并选中；B（改了错字）练完音色、在 GPT 那一步停了；C（又改了错字）也停了。
+    B 的音色模型和 A 的文件名一模一样：以前 C 开始时按文件名改 models.json，把已经指向 A 的备份的路径也改成了 B 的，
+    生成时悄悄用「B 的音色 + A 的语气」这对从来没挑过的组合，A 所在的备份也不再受保护。"""
+    cfg, project, _ = prepared
+    gcfg, root, p2 = _small_train_cfg(project, tmp_path, "GSV-repoint")
+    confirm_material(gcfg, project.voice)
+    wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    entry = p2.load_models()["gptsovits"]
+    for path in entry["sovits"] + entry["gpt"]:  # 给 A 的模型文件做个记号，好和 B 的同名文件分开
+        with open(path, "ab") as f:
+            f.write(b"MODEL_A")
+
+    def stop_in_gpt(self, *a, **k):
+        raise TaskCancelled("已按你的要求停止")
+
+    monkeypatch.setattr(GPTSoVITSBackend, "_train_gpt", stop_in_gpt)
+    rec = next(r for r in p2.load_manifest() if r.get("keep", True) and r.get("split", "train") == "train")
+    for suffix in ("改一", "改二"):  # B、C：都是改了错字、练完音色就停了
+        time.sleep(0.05)
+        p2.set_clip_text(rec["id"], rec["text"] + suffix)
+        confirm_material(gcfg, project.voice)
+        with pytest.raises(TaskCancelled):
+            wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    entry = p2.load_models()["gptsovits"]
+    sel = entry["selected"]
+    for path in [sel["sovits"], sel["gpt"]] + entry["sovits"] + entry["gpt"]:
+        assert Path(path).read_bytes().endswith(b"MODEL_A"), path
+    assert Path(sel["sovits"]).parents[1] == Path(sel["gpt"]).parents[1]  # 同一次训练的备份
+    w = get_backend("gptsovits", gcfg, p2)._current_weights()
+    assert Path(w["sovits"]).read_bytes().endswith(b"MODEL_A") and Path(w["gpt"]).read_bytes().endswith(b"MODEL_A")
+
+
+def test_backups_are_found_by_place_not_by_name_after_moving(prepared, tmp_path):
+    """整合包移动 / 换过电脑以后：备份（old_runs）里的模型按它在整合包里的相对位置找；模型文件夹里同名的文件是
+    另一次训练的，不能拿来顶替。重新训练挪模型时，记着旧位置的路径照样跟着改，指向备份的不动。"""
+    cfg, project, _ = prepared
+    ws = _copy_project(project, tmp_path / "ws")
+    root = build_fake_root(tmp_path / "GSV-loc")
+    gcfg = make_cfg(ws, backends={"gptsovits": {"root": str(root), "python": sys.executable}})
+    p2 = wf.open_project(gcfg, project.voice, must_exist=True)
+    b = get_backend("gptsovits", gcfg, p2)
+    exp = b.exp_name
+    name = f"{exp}_e4_s56.pth"
+    main = root / "SoVITS_weights_v2ProPlus" / name
+    backup = root / "logs" / exp / "old_runs" / "20261003_120000" / "SoVITS_weights_v2ProPlus" / name
+    for f, tag in ((main, b"new"), (backup, b"old")):
+        f.parent.mkdir(parents=True, exist_ok=True)
+        f.write_bytes(tag)
+    old = "D:\\GPT-SoVITS-old"
+    old_main = f"{old}\\SoVITS_weights_v2ProPlus\\{name}"
+    old_backup = f"{old}\\logs\\{exp}\\old_runs\\20261003_120000\\SoVITS_weights_v2ProPlus\\{name}"
+    assert b._locate_weight(old_backup) == backup
+    assert b._locate_weight(old_backup.replace("20261003_120000", "20250101_000000")) is None  # 不拿同名的顶替
+    assert b._locate_weight(old_main) == main
+    p2.update_models("gptsovits", {"sovits": [old_main, old_backup], "gpt": [],
+                                   "selected": {"id": "s4-g4", "sovits": old_backup, "gpt": ""}})
+    dest = b._archive_old_run(root / "logs" / exp)
+    entry = p2.load_models()["gptsovits"]
+    assert entry["sovits"][0] == str(dest / "SoVITS_weights_v2ProPlus" / name)
+    assert entry["sovits"][1] == old_backup and entry["selected"]["sovits"] == old_backup
+    assert b._locate_weight(entry["selected"]["sovits"]).read_bytes() == b"old"
+
+
 def _small_train_cfg(project, tmp_path, name):
     ws = _copy_project(project, tmp_path / "ws")
     root = build_fake_root(tmp_path / name)

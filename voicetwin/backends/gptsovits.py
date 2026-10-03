@@ -298,6 +298,21 @@ def _free_port(preferred: int) -> int:
     return preferred
 
 
+def _norm_path(path: str) -> str:
+    """比较路径用：统一分隔符、去掉多余的「./」；Windows 上不分大小写。"""
+    return os.path.normcase(os.path.normpath(str(path)))
+
+
+def _path_tail(path: str) -> str:
+    """路径的最后两段「所在文件夹/文件名」（例如 SoVITS_weights_v2ProPlus/xxx.pth），Windows 和 Linux 的写法都认。"""
+    return "/".join(str(path).replace("\\", "/").rstrip("/").split("/")[-2:])
+
+
+def _in_old_runs(path: str) -> bool:
+    """这个模型文件是不是在重新训练前挪进去的备份文件夹（logs/<实验名>/old_runs/<时间>/…）里。"""
+    return "old_runs" in str(path).replace("\\", "/").split("/")
+
+
 def _remove_parts(opt_dir: Path, *patterns: str) -> None:
     """删掉上次留下的分块结果（2-name2text-0.txt、6-name2semantic-0.tsv）。
 
@@ -1055,17 +1070,30 @@ class GPTSoVITSBackend(Backend):
         return out
 
     def _repoint_models(self, moved: Dict[str, str]) -> None:
-        """旧模型文件挪进 old_runs 以后，models.json 里记的路径跟着改：重新训练中途停下时，原来选中的模型照样能用。"""
+        """旧模型文件挪进 old_runs 以后，models.json 里记的路径跟着改：重新训练中途停下时，原来选中的模型照样能用。
+
+        moved：{挪走以前的完整路径: 挪到的新位置}。只改指向这些文件的路径。以前按文件名对：只改错字再训练时，
+        新旧模型的文件名一模一样，已经指向更早一次备份（old_runs 里另一个同名文件）的路径也被改掉，
+        选中的模型悄悄换成了另一次（没挑选过、可能没练完的）训练的。"""
         if not moved:
             return
         models = self.project.load_models()
         entry = models.get(self.name)
         if not entry:
             return
+        by_src = {_norm_path(src): dst for src, dst in moved.items()}
+        by_tail = {_path_tail(src): dst for src, dst in moved.items()}
 
         def fix(path: Any) -> Any:
-            name = str(path or "").replace("\\", "/").rsplit("/", 1)[-1]
-            return moved.get(name, path)
+            text = str(path or "")
+            if not text:
+                return path
+            if _norm_path(text) in by_src:
+                return by_src[_norm_path(text)]
+            if _in_old_runs(text) or self._locate_weight(text) is not None:
+                return path  # 指向别的备份、或者别处还找得到的文件：不是这次挪走的，不动
+            # 整合包移动 / 换过电脑：记的是旧位置的模型文件夹，按「文件夹/文件名」对上这次挪走的文件
+            return by_tail.get(_path_tail(text), path)
 
         for key in ("sovits", "gpt"):
             if isinstance(entry.get(key), list):
@@ -1115,7 +1143,7 @@ class GPTSoVITSBackend(Backend):
             try:
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.move(str(f), str(target))
-                moved_weights[f.name] = str(target)
+                moved_weights[str(f)] = str(target)
                 moved = True
             except Exception as exc:
                 log.warning(f"备份旧的模型文件 {f.name} 没成功（{exc}），这次训练可能会覆盖它")
@@ -1378,7 +1406,10 @@ class GPTSoVITSBackend(Backend):
         return _pick_run(sovits, since), _pick_run(gpt, since)
 
     def _locate_weight(self, path: str) -> Optional[Path]:
-        """models.json 里记的是绝对路径；整合包被移动 / 换了电脑后，按文件名到当前 root 里重新找。"""
+        """models.json 里记的是绝对路径；整合包被移动 / 换了电脑后，到当前 root 里重新找。
+
+        平常的模型按文件名到两个模型文件夹里找。挪进备份（logs/<实验名>/old_runs/<时间>/…）的模型按它在整合包里的
+        相对位置找，不按文件名找：模型文件夹里同名的文件是另一次训练的（只改错字时文件名一模一样），不能拿来顶替。"""
         if not path:
             return None
         p = Path(path)
@@ -1386,9 +1417,18 @@ class GPTSoVITSBackend(Backend):
             return p
         if self.root is None:
             return None
-        name = path.replace("\\", "/").rsplit("/", 1)[-1]
+        parts = [x for x in str(path).replace("\\", "/").split("/") if x]
+        if not parts:
+            return None
+        if _in_old_runs(path):
+            for i, part in enumerate(parts[:-1]):
+                if part == "logs":
+                    cand = self.root.joinpath(*parts[i:])
+                    if cand.exists():
+                        return cand
+            return None
         for d in (f"SoVITS_weights_{self.version}", f"GPT_weights_{self.version}"):
-            cand = self.p(d) / name
+            cand = self.p(d) / parts[-1]
             if cand.exists():
                 return cand
         return None
