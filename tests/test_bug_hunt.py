@@ -8,6 +8,12 @@ import pytest
 
 from voicetwin import workflows as wf
 from voicetwin.data import review
+from voicetwin.data.lexicon_fix import has_jieba
+from voicetwin.data.transcript_fix import has_pinyin
+
+# 网页上的「一键全部文字校正」（once=True）没有拼音 / 分词工具时先说明、不开始（不白用掉这批素材唯一的一次）：
+# 用到它的测试要这两个工具（整合包里都有）；没有工具时的说明另外有测试
+need_tools = pytest.mark.skipif(not (has_pinyin() and has_jieba()), reason="没有装 pypinyin / jieba（整合包里有）")
 
 
 def _copy_voice(prepared, tmp_path, name=None):
@@ -125,6 +131,7 @@ def test_text_typed_into_a_row_without_recognized_text_is_never_changed(tmp_path
         assert review.analyze(rec, cur)["blue"] == [(0, len(typed))]  # 整句都是老师打的（蓝色）
 
 
+@need_tools
 def test_rows_not_processed_by_the_one_click_are_not_marked_used(tmp_path):
     """还没识别出文字的句子：一键校正没处理它，却记成「用过了」——识别完以后按钮一直是灰的、这句永远不改。"""
     from conftest import make_cfg
@@ -158,6 +165,7 @@ def test_rows_not_processed_by_the_one_click_are_not_marked_used(tmp_path):
     assert not wf.textfix_ever_used(cfg, "没有的声音")
 
 
+@need_tools
 def test_auto_check_after_new_material_keeps_old_fixes(tmp_path):
     """加了新素材、准备素材自动查一遍错字：以前改好、保存过的行「已采用」的按钮没了，还建议把改好的字改回去（系 → 键）。"""
     from conftest import make_cfg
@@ -458,6 +466,7 @@ def _shown(project, rid):
     return rec, review.analyze(rec, review.current_values(rec, review.load_draft(project).get(rid))["text"])
 
 
+@need_tools
 def test_auto_check_merges_with_one_click_results(tmp_path):
     """🔍 自动查找（加新素材时也自动查）以前把一键校正的结果冲掉：没采用的建议没了、母本证明没错的标红又回来了、
     新查出来的藏在 suspect_auto 里看不到——一键校正的按钮又是灰的，找不回来。"""
@@ -620,6 +629,7 @@ def test_one_click_refuses_without_pinyin_tools(tmp_path, monkeypatch):
         wf.run_transcript_fix(cfg, "查错", once=True)
 
 
+@need_tools
 def test_one_click_texts_tell_why_and_what(tmp_path):
     """按钮灰的时候说明为什么（还没有能校正的句子 / 用过了）；第二批起写「检查了新加的 N 条」；
     下载 txt 的提示不叫老师去点灰色的按钮，路径不多出反斜杠。"""

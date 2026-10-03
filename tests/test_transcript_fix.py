@@ -1573,6 +1573,7 @@ def test_one_click_once_per_batch_of_material(tmp_path):
     assert not wf.textfix_used(cfg, "还没有的声音")
 
 
+@need_both
 def test_failed_one_click_does_not_count_as_used(tmp_path, monkeypatch):
     cfg, project = _voice(tmp_path, ["我们先来看艾子引导的定语从句。"])
 
@@ -1585,6 +1586,7 @@ def test_failed_one_click_does_not_count_as_used(tmp_path, monkeypatch):
     assert not wf.textfix_used(cfg, "校正声音")  # 出错的不算用过，可以再点
 
 
+@need_both
 def test_deleted_new_rows_do_not_light_the_button_again(tmp_path):
     cfg, project = _voice(tmp_path, ["我们先来看艾子引导的定语从句。"])
     wf.run_transcript_fix(cfg, "校正声音", once=True)
@@ -1615,6 +1617,7 @@ def test_one_click_never_touches_what_the_teacher_already_changed(tmp_path):
     assert "接词" in cur and "as" in cur and "定语从句" in cur
 
 
+@need_both
 def test_webui_button_turns_gray_after_use_and_lights_again_for_new_material(tmp_path):
     pytest.importorskip("gradio")
     from voicetwin.webui import app as A
