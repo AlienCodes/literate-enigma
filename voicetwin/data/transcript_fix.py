@@ -290,16 +290,23 @@ def textfix_ever_used(project: Any) -> bool:
 def textfix_new_ids(project: Any) -> List[str]:
     """还没用过「一键全部文字校正」、现在能处理的句子：空的 = 按钮是灰色的。
     记录坏了：当作现在的句子都用过了（宁可不改，也不重复改），并且重新记一份，以后加的新素材照样认得出来。"""
+    import json
+
+    from voicetwin.utils import atomic
+
     path = Path(project.root) / USED_FILE
     live = _eligible_ids(project)
-    if not path.exists():
-        return live
     try:
-        import json
-
-        data = json.loads(path.read_text(encoding="utf-8"))
+        text = atomic.read_text(path)
+    except FileNotFoundError:
+        return live
+    except OSError as exc:  # 一直读不了：当作都用过（按钮灰的），不重写记录（不能把以前的记录冲掉）
+        log.warning(f"「一键全部文字校正」的记录现在读不了（{exc}），这次当作都用过")
+        return []
+    try:
+        data = json.loads(text)
         done = {str(x) for x in data["ids"]} if isinstance(data, dict) and isinstance(data.get("ids"), list) else None
-    except (OSError, ValueError, TypeError):
+    except (ValueError, TypeError):
         done = None
     if done is None:
         log.warning("「一键全部文字校正」的记录读不了，当作现在的句子都已经用过（以后加的新素材照样能用）")
@@ -317,14 +324,18 @@ def mark_textfix_used(project: Any, ids: Iterable[str]) -> None:
     """记下这些句子用过「一键全部文字校正」了（和以前记下的合在一起）。"""
     import json
 
+    from voicetwin.utils import atomic
+
     path = Path(project.root) / USED_FILE
     done: Set[str] = set()
     try:
-        old = json.loads(path.read_text(encoding="utf-8"))
+        old = json.loads(atomic.read_text(path))  # 一时读不了等一会儿；一直读不了就报错，不能把以前的记录冲掉
         if isinstance(old, dict) and isinstance(old.get("ids"), list):
             done = {str(x) for x in old["ids"]}
-    except (OSError, ValueError, TypeError):
+    except FileNotFoundError:
         pass
+    except (ValueError, TypeError):  # 坏了：留一份副本，从这次开始重新记
+        atomic.keep_bad_copy(path)
     done |= {str(x) for x in ids}
     from voicetwin.utils import atomic
 
@@ -1154,7 +1165,7 @@ def props_to_fixes(cur: str, res: ClipResult, lex: Any = None) -> List[Any]:
 
     只给建议的再筛一遍（母本里有很多相似的句子，对齐到别的句子上容易误报）：标准库里的词（「及物动词」）不动；
     只差一个字的不提示；「英文被写成汉字」的那几个字本来就是常用的词（「它」「那么」「短语」）不提示。"""
-    from voicetwin.data.lexicon_fix import COMMON_FREQ, Fix, word_freq
+    from voicetwin.data.lexicon_fix import Fix
 
     clip = tokens(cur)
     out = []

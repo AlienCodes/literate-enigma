@@ -38,7 +38,16 @@ MEDIA_EXTS = VIDEO_EXTS | AUDIO_EXTS
 ProgressFn = Callable[[float, str], None]
 
 
-def discover_sources(inputs: Iterable[str]) -> List[Path]:
+def discover_sources(inputs: Iterable[str], exclude: Iterable[Any] = ()) -> List[Path]:
+    """找出要处理的视频 / 录音。exclude：不要的文件夹（声音分身自己的工作区、GPT-SoVITS 文件夹）——老师填的文件夹
+    正好包含它们时，不能把程序自己切好的片段、生成的音频当成新素材（检查时发现 20 条变成 68 条）。"""
+    skip = []
+    for d in exclude:
+        try:
+            if d:
+                skip.append(Path(d).expanduser().resolve())
+        except OSError:
+            continue
     files: List[Path] = []
     for item in inputs:
         p = Path(item).expanduser()
@@ -51,12 +60,115 @@ def discover_sources(inputs: Iterable[str]) -> List[Path]:
         else:
             log.warning(f"路径不存在：{p}")
     seen, unique = set(), []
+    skipped = 0
     for f in files:
-        key = str(f.resolve())
-        if key not in seen:
-            seen.add(key)
-            unique.append(f.resolve())
+        rf = f.resolve()
+        key = str(rf)
+        if key in seen:
+            continue
+        seen.add(key)
+        if any(rf == d or d in rf.parents for d in skip):
+            skipped += 1
+            continue
+        unique.append(rf)
+    if skipped:
+        log.warning(f"跳过了 {skipped} 个声音分身 / GPT-SoVITS 自己的文件（切好的片段、生成的音频等），它们不是新素材")
     return unique
+
+
+def content_key(path: Path) -> str:
+    """按内容认文件（文件名 + 大小 + 开头和结尾各 1 MB 的指纹）：同一个视频换了盘符、换了文件夹也认得出来。"""
+    import hashlib
+
+    st = path.stat()
+    h = hashlib.sha1()
+    with open(path, "rb") as f:
+        h.update(f.read(1 << 20))
+        if st.st_size > (2 << 20):
+            f.seek(-(1 << 20), 2)
+            h.update(f.read(1 << 20))
+    return f"{path.name.lower()}|{st.st_size}|{h.hexdigest()[:16]}"
+
+
+def load_sources(project: Project, records: Iterable[Dict[str, Any]]) -> Dict[str, Any]:
+    """处理过哪些视频（sources.json）。坏了（写到一半断电）：留一份 .bad，按校对表里已经有的片段重建——
+    不能当成都没处理过（不然所有视频再处理一遍，同一段话在训练里出现两次）。"""
+    import json
+
+    from voicetwin.utils import atomic
+
+    p = project.sources_path
+    try:
+        data = json.loads(atomic.read_text(p))
+    except FileNotFoundError:
+        return {}
+    except ValueError:
+        data = None
+    if isinstance(data, dict):
+        return data
+    atomic.keep_bad_copy(p)
+    log.warning("sources.json 坏了：按校对表里已经有的片段重建（这些视频不再重复处理）")
+    out: Dict[str, Any] = {}
+    for r in records:
+        sid = str(r.get("source") or "")
+        if sid:
+            out.setdefault(sid, {"done": True, "rebuilt": True, "file": ""})
+    return out
+
+
+def already_done(sources_db: Dict[str, Any], path: Path) -> bool:
+    """这个视频处理过没有：同一个位置；或者内容一样（换了盘符 / 文件夹）；或者旧版本记下的（没有内容指纹）
+    同名、同样大小的文件，原来的位置已经找不到了（多半就是搬了地方）。"""
+    if (sources_db.get(source_id(path)) or {}).get("done"):
+        return True
+    try:
+        key = content_key(path)
+        size = path.stat().st_size
+    except OSError:
+        key, size = "", -1
+    for sid, info in sources_db.items():
+        if not isinstance(info, dict) or not info.get("done"):
+            continue
+        if key and info.get("key") == key:
+            return True
+        old = str(info.get("file") or "")
+        if info.get("key") or not old or Path(old).name.lower() != path.name.lower():
+            continue
+        # 旧版本的记录：编号里有「原来的位置 + 文件大小」的指纹 → 大小一样才算同一个视频（同名的另一个视频不会被跳过）
+        if size < 0 or not str(sid).endswith("_" + short_hash(old, size, n=6)):
+            continue
+        try:
+            moved = not Path(old).exists()
+        except OSError:
+            moved = True
+        if moved:
+            return True
+    return False
+
+
+#: 每个声音文件夹里程序自己生成的子文件夹（切好的片段、参考音频、生成的音频……）：里面的音频不是新素材。
+#: 不包括 uploads（网页上传的视频就存在那里）
+GENERATED_DIRS = ("raw", "clips", "references", "exports", "models", "outputs", "cache", "logs")
+
+
+def _own_dirs(project: Project, cfg: Dict[str, Any]) -> List[Any]:
+    """声音分身自己生成的文件夹（每个声音的 clips / raw / references / outputs …，不含上传的 uploads）、
+    GPT-SoVITS 文件夹：里面的音频不是素材。"""
+    dirs: List[Any] = []
+    ws = Path(project.root).parent
+    try:
+        for vdir in ws.iterdir() if ws.exists() else []:
+            if vdir.is_dir():
+                dirs += [vdir / name for name in GENERATED_DIRS]
+    except OSError:
+        pass
+    try:
+        from voicetwin.eval.speaker import gsv_root_from_cfg
+
+        dirs.append(gsv_root_from_cfg(cfg))
+    except Exception:  # noqa: BLE001
+        pass
+    return dirs
 
 
 def source_id(path: Path) -> str:
@@ -372,16 +484,16 @@ def prepare(project: Project, inputs: Iterable[str], cfg: Dict[str, Any], progre
     project.ensure()
     setup_logging(log_file=project.logs_dir / "prepare.log")
     t0 = time.time()
-    sources_db: Dict[str, Any] = project.read_json(project.sources_path, {}) or {}
     records: Dict[str, Dict[str, Any]] = {r["id"]: r for r in project.load_manifest()}
+    sources_db: Dict[str, Any] = load_sources(project, records.values())
     had_records = bool(records)
-    files = discover_sources(inputs)
+    files = discover_sources(inputs, exclude=_own_dirs(project, cfg))
     if not files and not records:
         raise FileNotFoundError("没有找到任何视频或音频文件。支持：" + " ".join(sorted(MEDIA_EXTS)))
     sr = int(pcfg.get("sample_rate", 44100))
 
     # 0) 只处理新文件（之前处理过的跳过；上次失败的会重试）
-    new = [f for f in files if not sources_db.get(source_id(f), {}).get("done")]
+    new = [f for f in files if not already_done(sources_db, f)]
     done_before = len(files) - len(new)
     head = f"找到 {len(files)} 个视频/录音"
     if done_before:
@@ -430,7 +542,11 @@ def prepare(project: Project, inputs: Iterable[str], cfg: Dict[str, Any], progre
         for r in new_recs:
             records[r["id"]] = r
         wav_dur = sum(r["duration"] for r in new_recs)
-        sources_db[sid] = {"file": str(media), "clean": project.relpath(clean), "segments": len(new_recs),
+        try:
+            ckey = content_key(media)
+        except OSError:
+            ckey = ""
+        sources_db[sid] = {"file": str(media), "key": ckey, "clean": project.relpath(clean), "segments": len(new_recs),
                            "speech_seconds": round(wav_dur, 1), "done": True,
                            **{k2: (round(v, 2) if isinstance(v, float) else v) for k2, v in info.items()}}
         project.write_json(project.sources_path, sources_db)
@@ -485,8 +601,15 @@ def prepare(project: Project, inputs: Iterable[str], cfg: Dict[str, Any], progre
     project.save_manifest(recs)
     _progress(progress, 0.90, "挑选最具代表性的参考音频……")
     refs = select_references(project, recs, pcfg, cleanup=True)  # 准备素材时不会有生成在跑：旧的参考音频可以删
-    project.export_csv(recs)
+    csv_locked = False
+    try:
+        project.export_csv(recs)
+    except PermissionError:  # transcripts.csv 正被 Excel / WPS 打开：素材已经准备好了（manifest 保存了），只是表格没能更新
+        csv_locked = True
     summary = summarize(project, recs, refs)
+    if csv_locked:
+        summary["warnings"].insert(0, "transcripts.csv 正被 Excel / WPS 打开，这次没能更新它（素材已经准备好了，网页上的校对表"
+                                      "是最新的）。关掉 Excel 以后在网页上点一次「保存修改」就会更新")
     summary["elapsed_min"] = round((time.time() - t0) / 60.0, 1)
     summary["files_total"] = len(files)
     summary["files_new"] = n_new - len(skipped_files)

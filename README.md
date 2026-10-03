@@ -235,6 +235,7 @@ voicetwin doctor                                    # 检查环境（显卡、�
 voicetwin prepare -v 我的声音 -i D:/讲课视频 E:/录音   # 准备素材（可多个文件/文件夹）
 voicetwin prepare -v 我的声音 -i D:/讲课视频 --asr funasr   # 纯中文课用阿里 FunASR 识别
 voicetwin review  -v 我的声音                        # 用 Excel 改完 transcripts.csv 后同步
+voicetwin confirm -v 我的声音                        # 确认训练素材（训练前必须做）
 voicetwin train   -v 我的声音                        # 训练 + 自动挑最佳模型 + 语速校准
 voicetwin select  -v 我的声音 --asr                  # 单独重新挑模型（带识别校验）
 voicetwin narrate -v 我的声音 第3课.md -q perfect     # 讲稿 → 音频 + 字幕 + 报告（质量：fast/balanced/best/max/perfect）

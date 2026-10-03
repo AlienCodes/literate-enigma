@@ -2,6 +2,7 @@
 
 import csv
 import json
+import shutil
 
 from voicetwin import workflows as wf
 from voicetwin.backends.base import get_backend
@@ -25,8 +26,12 @@ def test_prepare_summary(prepared):
     assert 0.3 < prof["pauses"]["sentence"] < 1.2
 
 
-def test_review_roundtrip(prepared):
-    cfg, project, _ = prepared
+def test_review_roundtrip(prepared, tmp_path):
+    # 在副本上改（共用的 prepared 素材改了以后，后面的测试「确认训练素材」的记录就对不上了）
+    _, shared, _ = prepared
+    shutil.copytree(shared.root, tmp_path / "ws" / shared.voice)
+    cfg = make_cfg(tmp_path / "ws")
+    project = wf.open_project(cfg, shared.voice, must_exist=True)
     rows = list(csv.DictReader(open(project.csv_path, encoding="utf-8-sig")))
     target = next(r for r in rows if r["keep"] == "1" and r["split"] == "train")
     target["keep"] = "0"

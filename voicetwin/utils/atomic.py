@@ -55,3 +55,32 @@ def write_text(path: Path, text: str, encoding: str = "utf-8") -> None:
             pass
         raise
     finish(tmp, path)
+
+
+def read_text(path: Path, encoding: str = "utf-8") -> str:
+    """读整个文件；Windows 上一眨眼的占用（杀毒软件、OneDrive 正在看这个文件）等一会儿再读。
+    文件不存在照样抛 FileNotFoundError；一直读不了才把错误报出去（不能当成「没有」，不然下次保存会把里面的东西冲掉）。
+    写到一半断电、正好断在一个汉字中间：读不出的那几个字节换成「�」（不报错），交给调用的地方当坏行 / 坏文件处理。"""
+    for wait in RETRY_WAITS + [None]:
+        try:
+            return Path(path).read_text(encoding=encoding, errors="replace")
+        except FileNotFoundError:
+            raise
+        except PermissionError:
+            if wait is None:
+                raise
+            time.sleep(wait)
+    raise OSError(f"读不了 {path}")  # pragma: no cover - 上面的循环一定会返回或抛出
+
+
+def keep_bad_copy(path: Path) -> None:
+    """文件坏了（读出来不是完整的内容）：先留一份「.bad」副本（只留第一次的），方便以后找回，再当作没有。"""
+    path = Path(path)
+    bad = path.with_name(path.name + ".bad")
+    try:
+        if path.exists() and not bad.exists():
+            import shutil
+
+            shutil.copy2(path, bad)
+    except OSError:
+        pass

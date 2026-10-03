@@ -214,3 +214,30 @@ def test_find_bar_wiring(tmp_path):
         assert d["outputs"] == want and d["trigger_mode"] == mode and fn.concurrency_id == "vt-find", comp
     js = A.page_js()
     assert "#vt-find-all" in js and "window.confirm" in js and "scrollToFind" in js
+
+
+def test_review_table_actions_queue_and_refresh(tmp_path):
+    """10-03 找 bug：表格里的操作、保存修改、确认训练素材同时改校对表会互相冲掉 → 一个接一个处理；表格里连着点的
+    每一下都要排队（默认 once 会丢掉：删除一行的 3 秒里改的字不见了）；长任务做完刷新页面顶部的「当前声音状态」；
+    准备素材 / 一键校正做完按现在选的声音刷新「一键全部文字校正」按钮（加了新素材又能用一次）。"""
+    ui = A.WebUI(_cfg(tmp_path))
+    app = ui.build()
+    conf = app.get_config_file()
+    deps = conf["dependencies"]
+
+    def fn_of(d):
+        return app.fns[deps.index(d)]
+
+    for comp, mode in (("clip_action_btn", "multiple"), ("confirm_btn", "once")):
+        (d,) = _dep(app, ui, comp, "click")
+        assert d["trigger_mode"] == mode and fn_of(d).concurrency_id == "vt-review", comp
+    saves = [d for d in deps if fn_of(d).concurrency_id == "vt-review"]
+    assert len(saves) >= 3  # 表格操作 + 保存修改 + 确认训练素材
+    status_id = ui.c["voice_status"]._id
+    after = [d for d, f in zip(deps, app.fns) if getattr(f.fn, "__name__", "") == "after_task"]
+    assert after and all(status_id in d["outputs"] for d in after)
+    out = ui.after_task("")
+    assert len(out) == len(after[0]["outputs"])
+    btn_id = ui.c["tr_btn"]._id
+    refresh = [d for d, f in zip(deps, app.fns) if getattr(f.fn, "__name__", "") == "textfix_btn"]
+    assert len(refresh) >= 4 and all(d["outputs"] == [btn_id] for d in refresh)  # 打开网页、换声音、准备素材后、一键校正后

@@ -24,11 +24,13 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple, Union
 
 from voicetwin.utils import atomic
+from voicetwin.utils.log import get_logger
 from voicetwin.utils.textutil import clean_transcript, detect_lang
 
 DRAFT_FILE = "review_draft.json"
 DELETED_REASON = "老师删除"
 _LOCK = threading.RLock()
+log = get_logger("review")
 
 Range = Tuple[int, int]
 Edit = Tuple[int, int, str]
@@ -39,13 +41,29 @@ def draft_path(project: Any) -> Path:
     return Path(project.root) / DRAFT_FILE
 
 
+def _read_side_json(p: Path, what: str) -> Any:
+    """读校对表旁边的小文件（没保存的修改、撤销记录）：没有 → None；坏了 → 留一份 .bad 副本、当作没有；
+    一时读不了（Windows 上被杀毒软件 / OneDrive 占着）等一会儿再读，一直读不了就报错说明——不能当成「没有」，
+    不然下一次保存会只剩这一条，别的都冲掉了。"""
+    try:
+        text = atomic.read_text(p)
+    except FileNotFoundError:
+        return None
+    except OSError as exc:
+        raise OSError(f"「{what}」的文件（{p.name}）现在读不了（可能正被杀毒软件或 OneDrive 占用）：{exc}。"
+                      "请等几秒再点一次；修改都还在，不会丢。") from exc
+    try:
+        return json.loads(text)
+    except ValueError:
+        log.warning(f"「{what}」的文件（{p}）坏了，留了一份 {p.name}.bad，当作没有")
+        atomic.keep_bad_copy(p)
+        return None
+
+
 def load_draft(project: Any) -> Dict[str, Dict[str, Any]]:
     """{片段 id: {"text": ..., "keep": True/False, "lang": "zh"/"en"}}；文件坏了当作没有草稿。"""
     p = draft_path(project)
-    try:
-        data = json.loads(p.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return {}
+    data = _read_side_json(p, "没保存的修改")
     if not isinstance(data, dict):
         return {}
     out: Dict[str, Dict[str, Any]] = {}
@@ -489,11 +507,9 @@ def rejected_path(project: Any) -> Path:
 
 
 def load_rejected(project: Any) -> Dict[str, List[List[str]]]:
-    """老师撤销过的改法（单独一个文件，查错字 / 准备素材写校对表时不会把它冲掉）；文件坏了当作没有。"""
-    try:
-        data = json.loads(rejected_path(project).read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return {}
+    """老师撤销过的改法（单独一个文件，查错字 / 准备素材写校对表时不会把它冲掉）；文件坏了当作没有（留一份 .bad）；
+    一时读不了等一会儿再读，一直读不了报错（不能当成没有，不然撤销记录会被冲掉）。"""
+    data = _read_side_json(rejected_path(project), "撤销记录")
     if not isinstance(data, dict):
         return {}
     out: Dict[str, List[List[str]]] = {}

@@ -42,6 +42,7 @@ from voicetwin.eval.speaker import (
 from voicetwin.project import Project
 from voicetwin.style.profile import pause_range, pause_seconds
 from voicetwin.synth.script import ScriptSegment, parse_script
+from voicetwin.utils import atomic
 from voicetwin.utils.audio import (
     auto_silence_threshold,
     fade,
@@ -655,7 +656,7 @@ class Narrator:
             status = "⚠️" if (hints or issues) else "✅"
         meta = dict(meta, score=score, hint="；".join(hints), status=status, flagged=bool(hints or issues), judge=sig)
         try:
-            plan.meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
+            atomic.write_text(plan.meta_path, json.dumps(meta, ensure_ascii=False, indent=1))
         except OSError:
             pass
         return meta
@@ -663,7 +664,10 @@ class Narrator:
     def synthesize_segment(self, seg: ScriptSegment, force: bool = False) -> SegmentResult:
         plan = self._plan(seg)
         if plan.cached and not force:
-            return self._load_cached(seg, plan)
+            try:
+                return self._load_cached(seg, plan)
+            except Exception as exc:  # noqa: BLE001 - 缓存坏了（写到一半关了窗口、断电）：重新生成这一句，不能一直失败
+                log.warning(f"第 {seg.index + 1} 句的缓存读不了（{exc}），重新生成")
         self._ensure_started()
         ref, aux, speed, key = plan.ref, plan.aux, plan.speed, plan.key
         seed0 = self.base_seed + seg.index * 7919
@@ -801,7 +805,9 @@ class Narrator:
                               "eliminated": bool(filt and c.score.pct is not None and c.score.pct < self.min_pct),
                               "chosen": c is best})
         cand_info.sort(key=lambda d: (d["pct"] is None, -(d["pct"] or 0.0), -(d["total"] or 0.0)))
-        save_audio(plan.wav_path, best.wav, best.sr)
+        tmp_wav = atomic.tmp_for(plan.wav_path).with_suffix(".wav")  # 先写临时文件再换上去：不会留下半个缓存
+        save_audio(tmp_wav, best.wav, best.sr)
+        atomic.finish(tmp_wav, plan.wav_path)
         # 重新生成（--redo / 只重新生成第几句）会写到同一个缓存文件：旁边旧的「去杂音」版本是旧句子做的，必须删掉，
         # 否则长度刚好一样时版本 B 里还是旧的那句
         for old in plan.wav_path.parent.glob(plan.wav_path.stem + ".dn*.wav"):
@@ -811,7 +817,7 @@ class Narrator:
                 "candidates": cand_info, "model": self.backend.model_id(), "quality": self.quality,
                 "tries": state["tried"], "met": met, "hint": "；".join(hints), "status": status, "flagged": flagged,
                 "judge": self._judge_sig(), "created": time.strftime("%Y-%m-%d %H:%M:%S")}
-        plan.meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
+        atomic.write_text(plan.meta_path, json.dumps(meta, ensure_ascii=False, indent=1))  # 最后写：有它才算缓存好了
         return SegmentResult(seg, best.wav, best.sr, score, ref["id"], False, best.seed, cand_info, path=plan.wav_path,
                              pct=pct, status=status, hint=meta["hint"], flagged=flagged, tries=state["tried"], met=met)
 

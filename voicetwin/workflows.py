@@ -383,7 +383,7 @@ def _clean_input(p: Any) -> str:
 def _precheck_prepare(cfg: Config, voice: str, inputs: List[str], overrides: Optional[Dict[str, Any]]) -> List[str]:
     """开始前先检查（几秒钟）：文件夹在不在、识别组件装没装、硬盘空间。返回要提醒的话。"""
     from voicetwin.data.asr import engine_importable
-    from voicetwin.data.prepare import discover_sources, source_id
+    from voicetwin.data.prepare import discover_sources
     from voicetwin.data.subtitles import find_sidecar_subtitle
 
     for p in inputs:
@@ -391,12 +391,14 @@ def _precheck_prepare(cfg: Config, voice: str, inputs: List[str], overrides: Opt
             raise FileNotFoundError(f"找不到文件夹：{p}。请在文件夹窗口顶部的地址栏复制路径，再粘贴过来")
     eff = _effective_cfg(cfg, overrides)
     project = Project(cfg, voice)
-    sources_db = project.read_json(project.sources_path, {}) or {}
-    files = discover_sources(inputs)
+    from voicetwin.data.prepare import _own_dirs, already_done, load_sources
+
+    sources_db = load_sources(project, project.load_manifest())
+    files = discover_sources(inputs, exclude=_own_dirs(project, eff))
     new = []
     for f in files:
         try:
-            if not (sources_db.get(source_id(f)) or {}).get("done"):
+            if not already_done(sources_db, f):
                 new.append(f)
         except OSError:
             continue
@@ -797,10 +799,11 @@ def training_blocker(project: Project) -> str:
     records = project.load_manifest()
     conf = review.load_confirmed(project)
     if not conf:
-        return "还没有确认训练素材，这次没有开始训练（必须先在校对表下面点「✅ 确认训练素材」）。"
+        return ("还没有确认训练素材，这次没有开始训练（必须先在校对表下面点「✅ 确认训练素材」；"
+                "用命令行的话运行 voicetwin confirm）。")
     if conf.get("signature") != review.material_signature(records):
         return ("确认训练素材以后，校对表又改过（改了文字、删除或撤销删除了句子），这次没有开始训练"
-                f"（上次确认是 {str(conf.get('time') or '')[5:16]}）。")
+                f"（上次确认是 {str(conf.get('time') or '')[5:16]}；用命令行的话再运行一次 voicetwin confirm）。")
     return ""
 
 
@@ -902,8 +905,8 @@ def run_narrate(cfg: Config, voice: str, source: str, out: Optional[str] = None,
     with keep_awake():
         project = open_project(cfg, voice, must_exist=True)
         fmt = cfg.get("synth", {}).get("output_format", "wav")
-        src_path = Path(source.strip()) if len(source) < 1024 and "\n" not in source.strip() else None
-        is_file = bool(src_path is not None and src_path.suffix and src_path.exists() and src_path.is_file())
+        src_path = _script_file(source)
+        is_file = src_path is not None
         if is_file:
             stem = src_path.stem
         else:
@@ -921,6 +924,22 @@ def run_narrate(cfg: Config, voice: str, source: str, out: Optional[str] = None,
         finally:
             if own_backend:
                 backend.stop()
+
+
+def _script_file(source: str) -> Optional[Path]:
+    """讲稿框里填的是文件路径（.txt / .docx）就返回路径，否则（是讲稿文字）返回 None。
+
+    一行很长、里面有「.」的讲稿（比如「Python 3.9」、英文句子）不能当路径去问硬盘：
+    Linux / Mac 上会报「文件名太长」（OSError），以前老师会看到「安装路径太长」之类不相干的提示。
+    """
+    text = source.strip()
+    if not text or len(text) >= 1024 or "\n" in text:
+        return None
+    try:
+        path = Path(text)
+        return path if path.suffix and path.is_file() else None
+    except (OSError, ValueError):
+        return None
 
 
 def narration_table(segments: Sequence[Dict[str, Any]]) -> Tuple[List[str], List[List[Any]]]:
@@ -1341,6 +1360,7 @@ def run_auto(cfg: Config, voice: str, inputs: Iterable[str], backend_name: Optio
 
     with keep_awake():
         result: Dict[str, Any] = {"prepare": run_prepare(cfg, voice, inputs, _sub(progress, 0.0, 0.25))}
+        review_confirm(cfg, voice)  # 全自动：没有人工校对这一步，准备好的素材直接确认（不然训练不会开始）
         project = open_project(cfg, voice, must_exist=True)
         backend = get_backend(backend_name or cfg.get("backend"), cfg, project)
         if backend.supports_training and not skip_train:

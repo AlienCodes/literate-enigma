@@ -239,13 +239,21 @@ def _join(a: str, b: str) -> str:
     return a + ("" if count_cjk(a[-1:]) or count_cjk(b[:1]) else " ") + b
 
 
+def _is_script_file(source: str) -> bool:
+    """是讲稿文件的路径（不是讲稿文字）。问硬盘出错（一行太长等）就当文字。"""
+    if len(source) >= 1024 or "\n" in source:
+        return False
+    try:
+        return Path(source).suffix.lower() in SCRIPT_EXTS and Path(source).exists()
+    except (OSError, ValueError):
+        return False
+
+
 # ----------------------------------------------------------------------------- 主函数
 def parse_script(source: Union[str, Path], lexicon: Sequence[Tuple[str, str]] = (), max_units_zh: int = 50,
                  max_units_en: int = 45, min_units: int = 6, skip_code_blocks: bool = True) -> List[ScriptSegment]:
     cues = None
-    if isinstance(source, Path) or (isinstance(source, str) and len(source) < 1024 and "\n" not in source
-                                    and Path(source).suffix.lower() in SCRIPT_EXTS
-                                    and Path(source).exists()):
+    if isinstance(source, Path) or (isinstance(source, str) and _is_script_file(source)):
         text, cues = read_script_file(Path(source))
     else:
         text = str(source)
