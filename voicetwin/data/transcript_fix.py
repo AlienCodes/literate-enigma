@@ -247,6 +247,40 @@ def load_transcripts(project: Any) -> Tuple[List[Tuple[str, str]], List[str]]:
     return lines, names
 
 
+#: 「📝 一键全部文字校正」只能用一次（老师 10-03 的要求）：用过以后在声音文件夹里记一笔，按钮变灰；
+#: 10 秒内把按钮右边的三个小圆点都点一下才能再用一次（解锁 = 去掉这一笔）
+USED_FILE = "textfix_used.json"
+
+
+def textfix_used(project: Any) -> bool:
+    """这个声音的「一键全部文字校正」是不是已经用过（按钮该是灰色的）。文件坏了当作用过（宁可多锁一次，不重复改）。"""
+    path = Path(project.root) / USED_FILE
+    if not path.exists():
+        return False
+    try:
+        import json
+
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return True
+    return not isinstance(data, dict) or bool(data.get("used", True))
+
+
+def set_textfix_used(project: Any, used: bool) -> None:
+    """记下用过了（used=True）/ 解锁、可以再用一次（used=False）。"""
+    path = Path(project.root) / USED_FILE
+    if used:
+        import json
+
+        path.write_text(json.dumps({"used": True, "at": time.strftime("%Y-%m-%d %H:%M:%S")}, ensure_ascii=False),
+                        encoding="utf-8")
+    else:
+        try:
+            path.unlink()
+        except FileNotFoundError:
+            pass
+
+
 def transcript_info(project: Any) -> Dict[str, Any]:
     lines, names = load_transcripts(project)
     return {"files": names, "chars": _useful_chars(" ".join(x for _, x in lines)) if lines else 0,

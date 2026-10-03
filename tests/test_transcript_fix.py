@@ -1531,3 +1531,85 @@ def test_safe_apply_result_is_always_on_the_shortest_path():
     """采用 / 撤销的结果必须在「现在的文字 → 目标」的最短路上：多改、改错地方都不行。"""
     assert review.safe_apply("我们来看那个句子。", [(3, 4, "")], ["我们来看看这个句子。"], "我们来看这个句子。") == ""
     assert review.safe_apply("我们来看看那个句子。", [(3, 3, "看")], ["我们来看这个句子。"], "我们来看看这个句子。") == ""
+
+
+# ---------------------------------------------------------------------------- 一键全部文字校正只能用一次（老师 10-03 的要求）
+def test_one_click_can_be_used_only_once_until_unlocked(tmp_path):
+    """网页上的按钮（once=True）：每个声音只能用一次；解锁以后可以再用一次；测试 / 命令行（once=False）不受影响。"""
+    cfg, project = _voice(tmp_path, ["我们先来看艾子引导的定语从句。"])
+    assert not wf.textfix_used(cfg, "校正声音")
+    wf.run_transcript_fix(cfg, "校正声音", once=True)
+    assert wf.textfix_used(cfg, "校正声音")
+    with pytest.raises(ValueError, match="只能用一次"):
+        wf.run_transcript_fix(cfg, "校正声音", once=True)
+    wf.run_transcript_fix(cfg, "校正声音")  # 不是按钮（once=False）：照样能做
+    assert wf.unlock_textfix(cfg, "校正声音") and not wf.textfix_used(cfg, "校正声音")
+    wf.run_transcript_fix(cfg, "校正声音", once=True)  # 解锁以后再用一次，用完又锁上
+    assert wf.textfix_used(cfg, "校正声音")
+    assert not wf.textfix_used(cfg, "还没有的声音") and not wf.unlock_textfix(cfg, "还没有的声音")
+
+
+def test_failed_one_click_does_not_count_as_used(tmp_path, monkeypatch):
+    cfg, project = _voice(tmp_path, ["我们先来看艾子引导的定语从句。"])
+
+    def boom(*a, **kw):
+        raise RuntimeError("中途出错")
+
+    monkeypatch.setattr(tf, "check_with_transcript", boom)
+    with pytest.raises(RuntimeError):
+        wf.run_transcript_fix(cfg, "校正声音", once=True)
+    assert not wf.textfix_used(cfg, "校正声音")  # 出错的不算用过，可以再点
+
+
+def test_broken_used_file_counts_as_used(tmp_path):
+    cfg, project = _voice(tmp_path, ["我们先来看艾子引导的定语从句。"])
+    (project.root / tf.USED_FILE).write_text("{坏了", encoding="utf-8")
+    assert wf.textfix_used(cfg, "校正声音")  # 宁可多锁一次，不重复改
+    wf.unlock_textfix(cfg, "校正声音")
+    assert not wf.textfix_used(cfg, "校正声音")
+
+
+def test_webui_button_turns_gray_and_three_dots_unlock_it(tmp_path):
+    pytest.importorskip("gradio")
+    from voicetwin.webui import app as A
+
+    cfg, project = _voice(tmp_path, ["我们先来看艾子引导的定语从句。"])
+    ui = A.WebUI(cfg)
+    O = ui.TEXTFIX_OUT
+    assert ui.textfix_btn("校正声音")["interactive"] is True
+    outs = list(ui.do_textfix("校正声音"))
+    last = dict(zip(O, outs[-1]))
+    assert last["tr_btn"]["interactive"] is False  # 用完变灰
+    assert "只能用一次" in last["tr_info"] and "三个小圆点" in last["tr_info"]
+    assert ui.textfix_btn("校正声音")["interactive"] is False  # 刷新网页 / 换声音回来也是灰的
+    # 灰的时候（旧网页上还能点）也不会再做一次
+    draft_before = review.load_draft(project)
+    outs = list(ui.do_textfix("校正声音"))
+    again = dict(zip(O, outs[-1]))
+    assert "只能用一次" in again["proof_bar"] and again["tr_btn"]["interactive"] is False
+    assert review.load_draft(project) == draft_before
+    # 只点了两个、第三个超过 10 秒才点：不解锁
+    import time as _t
+
+    now = _t.time()
+    r = ui.on_dot(2, "校正声音", {0: now - 11, 1: now - 10.5})
+    assert r[3]["__type__"] == "update" and "interactive" not in r[3] and r[5] == {2: r[5][2]}
+    assert wf.textfix_used(cfg, "校正声音")
+    # 10 秒内三个都点：解锁，按钮能点，圆点变回原样
+    st = {}
+    for k in (1, 0):
+        r = ui.on_dot(k, "校正声音", st)
+        st = r[5]
+        assert r[k]["variant"] == "primary" and wf.textfix_used(cfg, "校正声音")
+    r = ui.on_dot(2, "校正声音", st)
+    assert r[3]["interactive"] is True and r[5] == {} and all(d["variant"] == "secondary" for d in r[:3])
+    assert "已经解锁" in r[4] and not wf.textfix_used(cfg, "校正声音")
+    # 同一个圆点点三次不算
+    wf.run_transcript_fix(cfg, "校正声音", once=True)
+    st = {}
+    for _ in range(3):
+        st = ui.on_dot(0, "校正声音", st)[5]
+    assert wf.textfix_used(cfg, "校正声音")
+    # 时间到了圆点变回原来的颜色；已经解锁（记录清空）的不动
+    assert ui.on_dot_expire(0, {0: _t.time()}, wait=False)["variant"] == "secondary"
+    assert ui.on_dot_expire(0, {}, wait=False) == A._upd()

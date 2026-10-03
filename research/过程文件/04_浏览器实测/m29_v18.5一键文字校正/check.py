@@ -5,7 +5,9 @@
    改过的字「文字」列绿色、「可能有错」列蓝色，红灯（没保存）；
 3. 「⬇️ 下载改好的文字（txt）」浏览器自动下载，里面是改好的文字；
 4. 保存修改 → 确认训练素材 → 训练页不再提醒，训练用的是改好的字；
-5. 上传一个 txt 母本，再点一次也能用。截图放在 shots/。"""
+5. 按钮只能用一次（老师 10-03 的要求）：用过以后变灰、刷新网页也是灰的；右边三个小圆点，10 秒内没点完三个还是灰的，
+   10 秒内三个都点了才能再用一次；
+6. 上传一个 txt 母本，解锁以后再点一次也能用，用完又变灰。截图放在 shots/。"""
 import csv
 import json
 import sys
@@ -79,6 +81,16 @@ def main():
         md = wait_text(page, "body", ["一键全部文字校正完成", "没有完成"], 300)
         took = time.time() - t0
         check("一键全部文字校正走完", "一键全部文字校正完成" in md and "没有完成" not in md, f"{took:.0f} 秒")
+        time.sleep(1)
+        info = text_of(page, ".vt-tr-info")
+        check("用过一次以后按钮变灰（点不了），按钮下面写着只能用一次、怎么再用", btn.is_disabled() and "只能用一次" in info
+              and "三个小圆点" in info, info[:60])
+        dots = page.locator(".vt-dot")
+        bb = btn.bounding_box()
+        dboxes = [dots.nth(k).bounding_box() for k in range(dots.count())]
+        check("按钮右边有三个小圆点", len(dboxes) == 3 and all(b and b["width"] <= 30 and b["height"] <= 30
+                                                          and b["x"] >= bb["x"] + bb["width"] - 2 for b in dboxes),
+              str([(round(b["x"]), round(b["width"])) for b in dboxes if b]))
         d = draft()
         exact = sum(1 for i in NEED if i in d and d[i]["text"] == CLEAN[i])
         check("需要改的 123 句全部改得和逐句修缮一样（存成没保存的修改）", exact == len(NEED) == 123, f"{exact}/{len(NEED)}")
@@ -149,7 +161,34 @@ def main():
         check("训练用的文字是改好的（训练列表里没有「借词」「定语从剧」）",
               "借词" not in listing and "定语从剧" not in listing and "介词" in listing)
 
-        # ④ 上传一个 txt 母本，再点一次
+        # ④ 只能用一次：刷新网页还是灰的；10 秒内没点完三个小圆点不解锁；10 秒内三个都点了才能再用一次
+        page.reload()
+        page.wait_for_selector("#vt-tr-btn", timeout=60000)
+        time.sleep(3)
+        btn = page.locator("#vt-tr-btn")
+        dots = page.locator(".vt-dot")
+        check("刷新网页以后按钮还是灰的", btn.is_disabled())
+        dots.nth(0).click()
+        time.sleep(0.8)
+        dots.nth(1).click()
+        time.sleep(0.8)
+        lit = page.evaluate("() => [...document.querySelectorAll('.vt-dot')].map(b => b.className.includes('primary'))")
+        check("点过的小圆点变蓝", lit[:2] == [True, True] and not lit[2], str(lit))
+        time.sleep(11)
+        dots.nth(2).click()
+        time.sleep(2)
+        check("10 秒内没点完三个：按钮还是灰的", btn.is_disabled())
+        for k in range(3):
+            dots.nth(k).click()
+            time.sleep(0.6)
+        t0 = time.time()
+        while btn.is_disabled() and time.time() - t0 < 10:
+            time.sleep(0.3)
+        info = text_of(page, ".vt-tr-info")
+        check("10 秒内三个小圆点都点了：按钮又能点了（可以再用一次）", not btn.is_disabled() and "已经解锁" in info, info[:40])
+        page.screenshot(path=str(SHOTS / "04_unlocked.png"))
+
+        # ⑤ 上传一个 txt 母本，再点一次
         page.get_by_role("tab", name="① 准备素材").click()
         time.sleep(1)
         txt = WORK / "新讲稿.txt"
@@ -159,12 +198,14 @@ def main():
         btn.click()
         md = wait_text(page, "body", ["一键全部文字校正完成", "没有完成"], 300)
         info = wait_text(page, ".vt-tr-info", ["新讲稿.txt"], 20)
-        check("上传 txt 母本以后再点一次也能用，按钮下面写着上传的文件", "新讲稿.txt" in info and "没有完成" not in md, info[-60:])
+        check("解锁以后上传 txt 母本再点一次也能用，按钮下面写着上传的文件", "新讲稿.txt" in info and "没有完成" not in md, info[-60:])
         check("改好、保存过的句子不会再被改（这次没有新的没保存的修改）", not draft(), str(list(draft())[:3]))
+        time.sleep(1)
+        check("再用一次以后按钮又变灰了", btn.is_disabled())
         page.screenshot(path=str(SHOTS / "05_uploaded.png"))
         # 快速上手用的截图（docs/manual/images/03c_textfix.png）：说明 + 上传框 + 两个按钮 + 标准库那行字
         boxes = [page.locator(sel).first.bounding_box() for sel in
-                 (".vt-textfix-help", "#vt-tr-files", "#vt-tr-btn", ".vt-tr-info")]
+                 (".vt-textfix-help", "#vt-tr-files", "#vt-tr-row", ".vt-tr-info")]
         boxes = [b for b in boxes if b]
         if boxes:
             x0, y0 = min(b["x"] for b in boxes) - 8, min(b["y"] for b in boxes) - 8

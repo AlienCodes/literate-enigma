@@ -572,16 +572,26 @@ def run_proofcheck(cfg: Config, voice: str, progress: Optional[ProgressFn] = Non
     return res
 
 
+TEXTFIX_ONCE_MSG = ("「📝 一键全部文字校正」每个声音只能用一次，这个声音已经用过了（所以按钮是灰色的）。"
+                    "改好的地方都在下面的表格里，还没保存的请点「保存修改」。"
+                    "真的要再用一次：10 秒内把按钮右边的三个小圆点都点一下，按钮就能再点一次。")
+
+
 def run_transcript_fix(cfg: Config, voice: str, files: Optional[Sequence[Any]] = None,
-                       progress: Optional[ProgressFn] = None, adopt_all: bool = True) -> Dict[str, Any]:
+                       progress: Optional[ProgressFn] = None, adopt_all: bool = True,
+                       once: bool = False) -> Dict[str, Any]:
     """📝 一键全部文字校正（v18.5）：以母本标准库为准检查校对表的文字，确定的错直接改好；
     adopt_all=True 时再把有把握的修改建议一次全部采用（没把握的留着红色，老师听录音自己点那一行的「采用」）。
     改的都存成没保存的修改（红灯），老师点「保存修改」才生效。
 
-    files：这次上传的母本（txt / transcripts.csv，替换上次上传的）；不给时用上次存的（没有也行，程序自带母本）。"""
+    files：这次上传的母本（txt / transcripts.csv，替换上次上传的）；不给时用上次存的（没有也行，程序自带母本）。
+    once=True（网页上的按钮）：每个声音只能用一次——用过了就不做（ValueError），做完记下「用过了」
+    （老师的要求：用一次按钮就变灰；10 秒内点完按钮旁边的三个小圆点才能再用一次，见 unlock_textfix）。"""
     from voicetwin.data import transcript_fix
 
     project = open_project(cfg, voice, must_exist=True)
+    if once and transcript_fix.textfix_used(project):
+        raise ValueError(TEXTFIX_ONCE_MSG)
     if files:
         info = transcript_fix.save_transcripts(project, files)
         _report(progress, 0.01, f"已保存逐字稿：{'、'.join(info['files'])}（共 {info['chars']} 字）")
@@ -592,7 +602,32 @@ def run_transcript_fix(cfg: Config, voice: str, files: Optional[Sequence[Any]] =
         _report(progress, 0.96, "把有把握的修改建议一次全部采用……")
         res["adopted"] = review.adopt_all_suggestions(project)
         _report(progress, 1.0, f"校正完了：一共改了 {res.get('fixes', 0) + res['adopted']['changes']} 处")
+    if once:  # 做完才记（中途出错 / 停止的不算用过，可以再点）；在后台任务里记，网页关掉了也记得上
+        transcript_fix.set_textfix_used(project, True)
     return res
+
+
+def textfix_used(cfg: Config, voice: str) -> bool:
+    """这个声音的「一键全部文字校正」用过没有（用过了按钮是灰色的）；声音还不存在时 False。"""
+    from voicetwin.data import transcript_fix
+
+    try:
+        project = open_project(cfg, voice, must_exist=True)
+    except (ValueError, RuntimeError, OSError):
+        return False
+    return transcript_fix.textfix_used(project)
+
+
+def unlock_textfix(cfg: Config, voice: str) -> bool:
+    """10 秒内点完了按钮旁边的三个小圆点：「一键全部文字校正」可以再用一次。返回 True = 解锁了。"""
+    from voicetwin.data import transcript_fix
+
+    try:
+        project = open_project(cfg, voice, must_exist=True)
+    except (ValueError, RuntimeError, OSError):
+        return False
+    transcript_fix.set_textfix_used(project, False)
+    return True
 
 
 def transcript_info(cfg: Config, voice: str) -> Dict[str, Any]:
