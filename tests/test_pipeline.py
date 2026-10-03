@@ -853,6 +853,8 @@ def test_cer_counts_percent_and_time_as_spoken():
     assert cer_details("这个考点大约占了30%的分数。", "这个考点大约占了百分之三十的分数")[1] == 0
     assert cer_details("正确率是95%。", "正确率是百分之九十五")[1] == 0
     assert cer_details("正确率是95％。", "正确率是95%")[1] == 0  # 全角百分号、Whisper 写的数字
+    assert cer_details("大约三十%的同学", "大约百分之三十的同学")[1] == 0  # 汉字数字加百分号
+    assert cer_details("这个考点大约占了百分之三十的分数。", "这个考点大约占了30%的分数")[1] == 0  # 讲稿写汉字、识别写数字
     assert cer_details("这个考点大约占了30%的分数。", "这个考点大约占了三十的分数")[1] == 1  # 漏了「百分之」
     assert cer_details("上课时间是10:30。", "上课时间是十点半")[1] == 0
     assert cer_details("上课时间是10:35。", "上课时间是十点三十五分")[1] == 0
@@ -948,32 +950,38 @@ def _asr_setup(monkeypatch, fail_from=10 ** 9, unavailable=False):
 
 def test_asr_failing_mid_run_is_told_and_unchecked_sentences_are_checked_later(prepared, tmp_path, monkeypatch):
     """识别校验中途出错（显存不够）时关掉它接着生成：以前结果还说这几句「达到了完美的严格标准」（严格标准里有错字率），
-    没检查的句子还当成检查过的存起来，下次识别校验好了也不再检查。中途关掉以后，后面以前检查过的句子照样直接用。"""
+    没检查的句子还当成检查过的存起来，下次识别校验好了也不再检查。中途关掉以后，后面以前检查过的句子照样直接用；
+    关掉以后才开始生成的句子（第四句）也一样算没检查过。"""
     cfg, project, _ = prepared
     _use_judge(monkeypatch, FakeJudge([99.5]))
     monkeypatch.setattr("voicetwin.eval.metrics.Scorer.in_normal_range", lambda self, s, lang, speed=1.0: True)
-    s1, s2, s3 = _uniq("识别校验第一句"), _uniq("识别校验第二句"), _uniq("识别校验第三句")
+    s1, s2, s3, s4 = (_uniq("识别校验第一句"), _uniq("识别校验第二句"), _uniq("识别校验第三句"),
+                      _uniq("识别校验第四句"))
+    text = s1 + s2 + s3 + s4
     _asr_setup(monkeypatch)
     wf.run_narrate(cfg, project.voice, s3, out=str(tmp_path / "s3.wav"), quality="perfect", variants=False)
     _asr_setup(monkeypatch, fail_from=5)  # 第一句试 4 个都检查了，第二句第 1 个就出错
-    res = wf.run_narrate(cfg, project.voice, s1 + s2 + s3, out=str(tmp_path / "a.wav"), quality="perfect",
-                         variants=False)
+    res = wf.run_narrate(cfg, project.voice, text, out=str(tmp_path / "a.wav"), quality="perfect", variants=False)
     segs = res.segments
-    assert [s["cached"] for s in segs] == [False, False, True]  # 第三句以前检查过：关掉以后照样直接用
-    assert segs[0]["met"] is True and segs[1]["met"] is None and segs[1]["asr_checked"] is False
+    assert [s["cached"] for s in segs] == [False, False, True, False]  # 第三句以前检查过：关掉以后照样直接用
+    assert segs[0]["met"] is True and segs[2]["met"] is True and "asr_checked" not in segs[2]
+    for s in (segs[1], segs[3]):  # 出错的那一句、关掉以后才生成的那一句：都没检查漏字错字
+        assert s["met"] is None and s["asr_checked"] is False
     told = [w for w in res.warnings if "识别校验出错了" in w]
     assert len(told) == 1 and not told[0].startswith("第") and "第 2 句起" in told[0]
     assert any("1 句达到了「完美」的严格标准" in n for n in res.notes)
-    assert any("其中 1 句没有做识别校验" in n and "第 2 句" in n for n in res.notes)
+    assert any("其中 2 句没有做识别校验" in n and "第 2、4 句" in n for n in res.notes)
     report = json.loads(res.report_path.read_text(encoding="utf-8"))
-    assert report["segments"][1]["asr_checked"] is False
-    # 下次识别校验好了：没检查过的第二句重新生成并检查，其它两句直接用
+    assert [s.get("asr_checked") for s in report["segments"]] == [None, False, None, False]
+    # 下次识别校验好了：没检查过的第二、四句重新生成并检查，其它两句直接用
     _asr_setup(monkeypatch)
-    res2 = wf.run_narrate(cfg, project.voice, s1 + s2 + s3, out=str(tmp_path / "b.wav"), quality="perfect",
-                          variants=False)
-    assert [s["cached"] for s in res2.segments] == [True, False, True]
-    assert res2.segments[1]["met"] is True and "asr_checked" not in res2.segments[1]
+    res2 = wf.run_narrate(cfg, project.voice, text, out=str(tmp_path / "b.wav"), quality="perfect", variants=False)
+    assert [s["cached"] for s in res2.segments] == [True, False, True, False]
+    assert all(s["met"] is True and "asr_checked" not in s for s in res2.segments)
     assert not any("识别校验" in w for w in res2.warnings)
+    # 再下一次：全部直接用
+    res3 = wf.run_narrate(cfg, project.voice, text, out=str(tmp_path / "c.wav"), quality="perfect", variants=False)
+    assert all(s["cached"] for s in res3.segments)
 
 
 def test_asr_model_that_cannot_load_is_told(prepared, tmp_path, monkeypatch):
@@ -1034,7 +1042,7 @@ def test_rescoring_cached_sentences_keeps_their_warnings(prepared, tmp_path, mon
 
     first = run("1.wav")
     hints = [s["hint"] for s in first.segments]
-    assert hints[0].startswith("可能有读错的字（识别为：这个温度低于零读）") and hints[1] == eng.TARGET_MISS_SIM
+    assert hints[0].startswith("可能有读错的字（识别为：这个温度低于零读）") and hints[1] == "这一句可能不够像，建议重新生成或改写"
     assert first.flagged == [1, 2]
     judge.sig = "b"  # 打分标准变了，分数还是 89%（低于 92% 的目标）
     second = run("2.wav")
@@ -1048,7 +1056,7 @@ def test_rescoring_cached_sentences_keeps_their_warnings(prepared, tmp_path, mon
     assert third.flagged == [1] and [s["met"] for s in third.segments] == [False, True]
     judge.sig, judge.pcts = "d", [70.0]  # 低于 85%：照旧提示
     fourth = run("4.wav")
-    low = eng.LOW_PCT_HINT.format(min_pct=85.0)
+    low = "低于 85%，建议重新生成或改写这一句"
     assert fourth.segments[1]["hint"] == low and fourth.segments[0]["hint"] == low + "；" + hints[0]
 
 

@@ -235,7 +235,7 @@ def tts_normalize(text: str) -> str:
     text = text.replace("——", "，").replace("--", "，")
     text = re.sub(r"(?<=\d)\s*[~～]\s*(?=\d)", "到" if count_cjk(text) else " to ", text)
     text = text.replace("~", " ").replace("～", " ")
-    text = re.sub(r"[\[\]{}【】<>《》]", " ", text)
+    text = re.sub(r"[\[\]{}【】［］<>《》]", " ", text)  # 全角的［］也去掉（以前原样发给合成引擎）
     text = re.sub(r"\s+", " ", text).strip()
     text = re.sub(r"\s+(?=[，。！？；：,.!?;:])", "", text)
     return ensure_final_punct(text, detect_lang(text)) if text else text
@@ -306,6 +306,19 @@ def _hard_units(text: str) -> List[str]:
     return units
 
 
+def _char_split(text: str, max_units: int) -> List[str]:
+    """一个字一个字数，到上限就切（硬切的最后一道保险：保证每段都不超过上限）。"""
+    out, cur = [], ""
+    for ch in text:
+        if cur.strip() and syllable_count(cur + ch) > max_units:
+            out.append(cur.strip())
+            cur = ""
+        cur += ch
+    if cur.strip():
+        out.append(cur.strip())
+    return out
+
+
 def _hard_split(text: str, max_units: int) -> List[str]:
     """一个分句仍然太长、中间又没有逗号（很少见，多半是从语音转文字工具里复制来的、用空格代替逗号的讲稿）：硬切。
 
@@ -347,12 +360,16 @@ def _hard_split(text: str, max_units: int) -> List[str]:
                     out.append("".join(cur).strip())
                     cur = []
                 cur_n = sum(syllable_count(x) for x in cur)
+                if cur and cur_n + n > limit:  # 空格后面剩下的加上这一个还是太长：剩下的也单独成一段
+                    out.append("".join(cur).strip())
+                    cur, cur_n = [], 0
             if cur or not u.isspace():
                 cur.append(u)
                 cur_n += n
         if cur:
             out.append("".join(cur).strip())
-        out = [o for o in out if o]
+        # 保险：英文单词和数字连着写、拆成字母以后音节的算法不一样……个别段还是超过上限时，这一段按字切（以前的办法）
+        out = [p for o in out if o for p in (_char_split(o, max_units) if syllable_count(o) > max_units else [o])]
     for i in range(len(out) - 1):  # 不是最后一段：补逗号（不补句号）
         if out[i] and out[i][-1] not in CLAUSE_CHARS + SENT_END_CHARS + ".,":
             out[i] += "，" if count_cjk(out[i]) else ","

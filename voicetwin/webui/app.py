@@ -4253,7 +4253,7 @@ class WebUI:
                 # ---------------------------------------------------- ③ 生成
                 with gr.Tab("③ 生成讲课音频", id="gen") as gen_tab:
                     c["gen_warn"] = gr.Markdown(elem_classes="vt-md")
-                    gr.Markdown("粘贴讲稿或上传讲稿文件。空一行 = 段落停顿；`[停顿=1.5]` 指定停顿秒数。"
+                    gr.Markdown("粘贴讲稿或上传讲稿文件。空一行 = 段落停顿；`[停顿=1.5]` 指定停顿秒数（中文输入法打出来的【停顿=1.5】也可以）。"
                                 "多音字、术语读音可在 `workspace/声音名/lexicon.txt` 里纠正。")
                     with gr.Row():
                         with gr.Column(scale=3):

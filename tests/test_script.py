@@ -198,6 +198,8 @@ def test_unrecognized_pause_mark_is_kept_and_reported():
     segs = parse_script("【暂停一下】我们休息一会儿再继续讲。")
     assert segs[0].display.startswith("【暂停一下】") and segs[0].extra["unread_mark"] == "【暂停一下】"
     assert "unread_mark" not in parse_script("第一句话讲完了呢。[停顿=2]第二句话开始了。")[1].extra
+    full = parse_script("［停顿一下］我们休息一会儿再继续讲。")[0]
+    assert full.extra["unread_mark"] == "［停顿一下］" and "［" not in full.text  # 全角方括号不再原样发给合成引擎
 
 
 def test_pause_at_the_very_start_is_kept():
@@ -314,3 +316,21 @@ def test_docx_upload_message_tells_about_tables_and_empty_files(tmp_path):
     empty = _docx_lesson(tmp_path / "空的.docx", [], before="", after="")
     t3, _, hint3, _ = ui.on_script_upload(str(empty), "")
     assert isinstance(t3, dict) and "value" not in t3 and "没有读到文字" in hint3 and "放进上面的讲稿框" not in hint3
+
+
+def test_hard_split_pieces_never_exceed_the_limit():
+    """硬切出来的每一段都不能超过上限（太长的一段合成引擎可能读乱）；英文单词和数字连着写时以前个别段会超过。"""
+    import random
+
+    from voicetwin.synth.script import _hard_split
+
+    rng = random.Random(1)
+    words = ["我们", "一起", "来看", "这个", "句子", "先行词", "the", "beautiful", "interesting", "book", "特别", "注意",
+             " ", "3.14159", "2024年", "Python3", "https://example.com/abc"]
+    for _ in range(400):
+        s = "".join(rng.choice(words) for _ in range(rng.randint(10, 80)))
+        for mx in (20, 30, 50):
+            pieces = _hard_split(s, mx)
+            assert all(syllable_count(p) <= mx for p in pieces), (s, mx, pieces)
+            body = [p[:-1] if i < len(pieces) - 1 and p.endswith(("，", ",")) else p for i, p in enumerate(pieces)]
+            assert "".join(body).replace(" ", "") == s.replace(" ", "")  # 一个字都不丢

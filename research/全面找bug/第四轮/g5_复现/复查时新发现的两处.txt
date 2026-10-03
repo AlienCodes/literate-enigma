@@ -1,0 +1,16 @@
+复查第一次的提交（da40b84）时新发现的两处，两个测试都在 da40b84 上失败、修好以后通过。
+
+1. test_asr_failing_mid_run_is_told_and_unchecked_sentences_are_checked_later（改成 4 句：第 2 句起识别校验出错）
+   da40b84 上的输出：
+     本次生成：共 4 句（新生成 3 句），平均每句试了 4.0 次；2 句达到了「完美」的严格标准。
+     其中 1 句没有做识别校验（识别校验出错了，没检查漏字错字）：第 2 句，请自己听一遍。
+   关掉以后才生成的第 4 句没检查漏字错字，却算「达到了严格标准」，缓存里也没有 asr_checked: false（下次不会重新检查）。
+   原因：asr_planned = self.use_asr 是这一句开始时的值，关掉以后就是 False。
+   修好以后：1 句达到了严格标准；其中 2 句没有做识别校验：第 2、4 句；下次识别校验好了只重做第 2、4 句。
+
+2. test_hard_split_pieces_never_exceed_the_limit（400 个随机拼起来的长句 × 上限 20 / 30 / 50）
+   da40b84 上：随机 3000 句里 17 次有段超过上限，例如上限 20 时
+     '注意https://example.com/abc/definterestinginterestingbeautifulbeautiful，' 23 个音节
+     'beautiful一起3.14159the3.141592024，' 22 个音节
+   原因：英文单词和数字连着写时拆成字母以后，音节的算法和整个词不一样；在空格处切开以后，剩下的加上下一个词还是太长。
+   修好以后：0 次超过上限，一个字都不丢。

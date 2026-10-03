@@ -63,7 +63,7 @@ _PCT = "\ue001"  # 百分数的占位符：30% 和读出来的「百分之三十
 _NUM_CHARS = "0-9零〇一二两三四五六七八九十百千万亿点."
 #: 合成引擎（GPT-SoVITS 的中文前端）把 30% 读成「百分之三十」，Paraformer 也这样写；Whisper 有时写 30%
 _PCT_SPOKEN_RE = re.compile(f"百分之[{_NUM_CHARS}]+")
-_PCT_WRITTEN_RE = re.compile(r"\d+(?:\.\d+)?\s*%")
+_PCT_WRITTEN_RE = re.compile(r"(?:\d+(?:\.\d+)?|[零〇一二两三四五六七八九十百千万亿]+(?:点[零〇一二两三四五六七八九]+)?)\s*%")
 #: 时刻 10:30（和 GPT-SoVITS 的 zh_normalization/chronology.py 同一个写法）：读成「十点半」「十点三十五分」
 _TIME_RE = re.compile(r"(?<!\d)([01]?\d|2[0-3]):([0-5]\d)(?::([0-5]\d))?(?!\d)")
 _HALF_HOUR_RE = re.compile("(?<=[0-9零〇一二两三四五六七八九十])点半")

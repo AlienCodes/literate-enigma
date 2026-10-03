@@ -931,7 +931,9 @@ class Narrator:
         lo, hi = self._gen_range
         expected = (self.min_candidates if self.quality == "identical" else 8) if self.adaptive else self.n_candidates
         mult = self._speed_multiplier()
-        asr_planned = self.use_asr  # 这一句开始时要做识别校验（中途出错会关掉）
+        # 这次生成要做识别校验（按开始时的设置：前面的句子识别校验出错、关掉了以后，后面的句子也算「该检查却没检查」，
+        # 不能说达到了严格标准，也不能当成检查过的存进缓存）
+        asr_planned = bool(getattr(self, "_asr_requested", self.use_asr))
         lang = send_lang(seg.text, seg.lang)  # 打分、查错字按真正发给引擎的语言（有汉字就是 zh）
         ref_audio = self.project.abspath(ref["path"])
         aux_paths = [self.project.abspath(a["path"]) for a in aux]
