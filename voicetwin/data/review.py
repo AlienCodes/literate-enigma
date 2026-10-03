@@ -223,13 +223,6 @@ def whole_sentence_suggestion(sus: Dict[str, Any], base: str) -> bool:
     return difflib.SequenceMatcher(None, base, alt, autojunk=False).ratio() < WHOLE_SENTENCE_RATIO
 
 
-def _overlap(s: int, e: int, us: int, ue: int) -> bool:
-    """两段位置有没有重叠（插入的位置挨着也算）。"""
-    if s == e or us == ue:
-        return us <= e and s <= ue
-    return s < ue and us < e
-
-
 def suspect_base(rec: Dict[str, Any]) -> str:
     sus = rec.get("suspect") if isinstance(rec.get("suspect"), dict) else {}
     return str(sus.get("text") or rec.get("text", "") or "")
@@ -316,21 +309,20 @@ def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
             if m is not None and m[1] > m[0]:
                 red.append(m)
         alt = str(sus.get("alt") or "")
-        unsure: List[Range] = []
-        for span in sus.get("unsure") or []:
-            try:
-                unsure.append((int(span[0]), int(span[1])))
-            except (TypeError, ValueError, IndexError):
-                continue
-        # 一键校正只自动采用「文字校正」检查过、有把握的建议；没经过文字校正的（自动查错字原来的建议）一律算没把握
-        vetted = sus.get("src") == "transcript"
-        whole = bool(alt) and whole_sentence_suggestion(sus, base)
         for s, e, rep in suggestion_edits(base, alt):
             m = None if touched(ops, s, e) else map_range(blocks, s, e)
             if m is not None:
                 edits.append((m[0], m[1], rep))
-                if vetted and not whole and not any(_overlap(s, e, us, ue) for us, ue in unsure):
-                    sure.append((m[0], m[1], rep))
+        # 一键校正只自动采用「文字校正」检查过、有把握的建议：有 sure_alt 时只按它（只用有把握的改出来的那一句）；
+        # 没经过文字校正的（自动查错字原来的建议）、整句都换掉的一律算没把握
+        if sus.get("src") == "transcript" and alt and not whole_sentence_suggestion(sus, base):
+            if "sure_alt" in sus:
+                for s, e, rep in suggestion_edits(base, str(sus.get("sure_alt") or base)):
+                    m = None if touched(ops, s, e) else map_range(blocks, s, e)
+                    if m is not None:
+                        sure.append((m[0], m[1], rep))
+            else:
+                sure = list(edits)
         if alt and alt != base and cur != base:  # 建议的地方现在是不是就是建议的写法（= 采用过）
             ops2 = _opcodes(alt, cur) if alt != cur else [("equal", 0, len(alt), 0, len(cur))]
             blocks2 = [(i1, i2, j1, j2) for tag, i1, i2, j1, j2 in ops2 if tag == "equal"]
@@ -386,6 +378,77 @@ def describe_edits(text: str, edits: Sequence[Edit], limit: int = 3, flip: bool 
     return "；".join(parts)
 
 
+# ============================================================================ 老师撤销过的改法（不再自动改回来）
+REJECTED_KEY = "fix_rejected"  # record 里：[[错的写法和前后几个字, 改好的写法和前后几个字], ...]
+_REJECT_PAD = 3
+
+
+def _reject_pairs(text: str, undo: Sequence[Edit]) -> List[List[str]]:
+    """撤销的那几处（undo 是撤销时怎么改回去，位置按现在的文字算）→ 记下「程序想改成的样子」和「老师要的样子」（带前后几个字）。"""
+    out = []
+    for s, e, rep in undo:
+        a, b = max(0, s - _REJECT_PAD), min(len(text), e + _REJECT_PAD)
+        wanted = text[a:s] + rep + text[e:b]  # 撤销以后（老师要的）
+        proposed = text[a:b]  # 程序改成的
+        if wanted != proposed:
+            out.append([wanted, proposed])
+    return out
+
+
+def is_rejected(rec: Dict[str, Any], text: str, s: int, e: int, rep: str) -> bool:
+    """在 text 的 [s, e) 换成 rep，是不是老师撤销过的改法（撤销过就不再自动改回来，也不再建议）。"""
+    pairs = rec.get(REJECTED_KEY) if isinstance(rec.get(REJECTED_KEY), list) else []
+    if not pairs or not (0 <= s <= e <= len(text)):
+        return False
+    new = text[:s] + rep + text[e:]
+    blocks = [(i1, i2, j1, j2) for tag, i1, i2, j1, j2 in _opcodes(text, new) if tag != "equal"]
+    if not blocks:
+        return False
+    c1, c2 = min(b[0] for b in blocks), max(b[1] for b in blocks)  # 真正改到的那几个字
+    for pair in pairs:
+        try:
+            wanted, proposed = str(pair[0]), str(pair[1])
+        except (TypeError, IndexError):
+            continue
+        if not wanted:
+            continue
+        k = text.find(wanted, max(0, c2 - len(wanted)))
+        while 0 <= k <= c1:
+            if k + len(wanted) >= c2 and new[k:k + len(proposed)] == proposed:
+                return True
+            k = text.find(wanted, k + 1)
+    return False
+
+
+def _remember_rejects(project: Any, clip_id: str, text: str, undo: Sequence[Edit]) -> None:
+    pairs = _reject_pairs(text, undo)
+    if not pairs:
+        return
+    records = project.load_manifest()
+    for rec in records:
+        if rec.get("id") == clip_id:
+            old = [p for p in (rec.get(REJECTED_KEY) or []) if isinstance(p, list)]
+            rec[REJECTED_KEY] = (old + [p for p in pairs if p not in old])[-50:]
+            project.save_manifest(records)
+            return
+
+
+def _forget_rejects(project: Any, clip_id: str, text: str, edits: Sequence[Edit]) -> None:
+    """老师自己点「采用」：这些改法不再算撤销过的。"""
+    records = project.load_manifest()
+    for rec in records:
+        if rec.get("id") == clip_id and rec.get(REJECTED_KEY):
+            keep = [p for p in rec[REJECTED_KEY] if not any(is_rejected({REJECTED_KEY: [p]}, text, s, e, r)
+                                                            for s, e, r in edits)]
+            if keep != rec[REJECTED_KEY]:
+                if keep:
+                    rec[REJECTED_KEY] = keep
+                else:
+                    rec.pop(REJECTED_KEY, None)
+                project.save_manifest(records)
+            return
+
+
 def adopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
     """「✅ 采用建议」：把还没采用的建议改进这一行的文字（存进草稿，红灯；保存以后变绿灯）。"""
     with _LOCK:
@@ -400,6 +463,7 @@ def adopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
         new = apply_edits(vals["text"], info["edits"])
         if not new:
             raise ValueError("采用建议以后文字是空的，没有改。请听一听录音，双击「文字」自己改")
+        _forget_rejects(project, clip_id, vals["text"], info["edits"])
         out = set_draft(project, clip_id, text=new)
         out.update(old_text=vals["text"], text=new, changes=describe_edits(vals["text"], info["edits"], limit=6))
         return out
@@ -419,6 +483,7 @@ def unadopt_suggestion(project: Any, clip_id: str) -> Dict[str, Any]:
         new = apply_edits(vals["text"], info["undo"])
         if not new:
             raise ValueError("撤销以后文字是空的，没有改")
+        _remember_rejects(project, clip_id, vals["text"], info["undo"])  # 再点一键校正时不再改回来
         out = set_draft(project, clip_id, text=new)
         out.update(old_text=vals["text"], text=new, changes=describe_adopted(vals["text"], info["undo"], limit=6))
         return out
@@ -444,14 +509,14 @@ def adopt_all_suggestions(project: Any) -> Dict[str, Any]:
             if not vals["keep"]:
                 continue
             info = analyze(rec, vals["text"])
-            todo = info["sure"]
-            if len(todo) < len(info["edits"]):
-                unsure += 1
+            todo = [ed for ed in info["sure"] if not is_rejected(rec, vals["text"], *ed)]
+            new = apply_edits(vals["text"], todo) if todo else vals["text"]
+            if info["edits"] and (not new or analyze(rec, new)["edits"]):
+                unsure += 1  # 采用了有把握的以后还剩下建议：没把握的，留给老师
             if not todo:
                 if info["red"] and not info["edits"]:
                     no_sug += 1
                 continue
-            new = apply_edits(vals["text"], todo)
             if not new or new == vals["text"]:
                 continue
             if len(examples) < 6:

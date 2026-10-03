@@ -350,7 +350,7 @@ def test_adopt_all_suggestions(tmp_path):
     recs[3]["suspect"] = {"spans": [[0, 2]], "alt": "周日我们一起去公园散步", "reasons": ["自动的"], "score": 0.6}
     # 文字校正标了「没把握」的建议：也不自动采用
     recs[4]["suspect"] = {"spans": [[5, 7]], "alt": "小明昨天说介词后面接名词", "reasons": ["没把握"], "score": 0.6,
-                          "text": texts[4], "src": "transcript", "unsure": [[5, 7]]}
+                          "text": texts[4], "src": "transcript", "sure_alt": texts[4]}
     recs[5]["keep"] = False  # 不当训练素材的行不动
     recs[5]["suspect"] = {"spans": [[7, 9]], "alt": "不当训练素材的as", "reasons": ["文字校正的"], "score": 0.7,
                           "text": texts[5], "src": "transcript"}
@@ -636,3 +636,186 @@ def test_clip_count_after_one_click_only_counts_rows_still_wrong(tmp_path):
     project.save_manifest(recs)
     wf.run_transcript_fix(cfg, "校正声音")
     assert "**1** 条可能有错" in _clips_count_md(cfg, "校正声音")  # 只剩没把握的那一条
+
+
+# ---------------------------------------------------------------------------- 第二次独立检查发现的问题（每个都有一个测试）
+@need_both
+def test_mother_txt_without_ids_never_reverts_saved_fixes(tmp_path):
+    """问题 1（重要）：上传没有 id 的 txt 母本（老师修缮以前的文字）：保存以后再点，把改好的「介词」「as」对齐改回了
+    「借词」「艾子」，再点又改过来，来回跳。"""
+    texts = ["第二种情况就是关系代词that不能和借词一起提前到定语从句的句首", "我们先来看艾子引导的这个定语从句的例子"]
+    cfg, project = _voice(tmp_path, texts)
+    up = tmp_path / "旧讲稿.txt"
+    up.write_text("\n".join(texts), encoding="utf-8")
+    wf.run_transcript_fix(cfg, "校正声音", files=[str(up)])
+    fixed = {k: v["text"] for k, v in review.load_draft(project).items()}
+    assert "介词" in fixed["c000"] and "as" in fixed["c001"]
+    review.save_rows(project)
+    for _ in range(3):
+        res = wf.run_transcript_fix(cfg, "校正声音")
+        assert review.load_draft(project) == {} and res["fixes"] == 0 and res["adopted"]["changes"] == 0
+    assert {r["id"]: r["text"] for r in project.load_manifest()} == fixed
+
+
+@need_both
+def test_mother_txt_never_overrides_the_teachers_own_edit(tmp_path):
+    """问题 1（续）：下载的「改好的文字」txt 当母本上传；老师后来自己改了一句（小明 → 晓明）并保存，一键又改回去了。"""
+    texts = ["小明今天下午去公园里面散步了", "我们今天来学习一下定语从句的基本用法", "这个句子里面的先行词就是这个人"]
+    cfg, project = _voice(tmp_path, texts)
+    out = review.export_text(project)
+    review.set_draft(project, "c000", text="晓明今天下午去公园里面散步了")
+    review.save_rows(project)
+    res = wf.run_transcript_fix(cfg, "校正声音", files=[out["path"]])
+    assert review.load_draft(project) == {} and res["fixes"] == 0
+    rec, cur = _cur(project, "c000")
+    assert cur == "晓明今天下午去公园里面散步了" and review.analyze(rec, cur)["edits"] == []
+
+
+@need_both
+def test_unsure_insertion_next_to_the_same_character_is_not_adopted(tmp_path):
+    """问题 2：没把握的「补上一个字」挨着一样的字（看 → 看看），两次比对的位置差一个字，一键校正把它采用了。"""
+    cfg, project = _voice(tmp_path, ["我们一起来看这个从剧的结构", "我们一起来看这个句子的结构"])
+    recs = project.load_manifest()
+    for k, t in enumerate(["我们一起来看看这个从剧的结构", "我们一起来看看这个句子的结构"]):
+        recs[k]["suspect"] = {"spans": [[5, 7]], "alt": t, "reasons": ["另一个引擎"], "score": 0.6}
+    project.save_manifest(recs)
+    res = wf.run_transcript_fix(cfg, "校正声音")
+    draft = review.load_draft(project)
+    assert draft["c000"]["text"] == "我们一起来看这个从句的结构" and "c001" not in draft
+    assert res["adopted"]["changes"] == 0 and res["adopted"]["unsure"] == 2
+
+
+@need_both
+def test_partly_similar_same_id_row_is_only_an_unsure_suggestion(tmp_path):
+    """问题 3：上传的 csv 里同一个 id 的句子只有点像（切的位置不一样），一键校正把录音里没有的话补了进去。"""
+    cfg, project = _voice(tmp_path, ["那么到底什么是定语从句呢"], ids=["x_0031"])
+    up = tmp_path / "transcripts.csv"
+    up.write_text("id,text\nx_0031,我们今天来学习定语从句那么到底什么是定语从句呢\n", encoding="utf-8")
+    res = wf.run_transcript_fix(cfg, "校正声音", files=[str(up)])
+    assert review.load_draft(project) == {} and res["adopted"]["unsure"] == 1
+    rec, cur = _cur(project, "x_0031")
+    assert review.analyze(rec, cur)["edits"]  # 建议还在，老师听了录音可以自己采用
+
+
+@need_both
+def test_row_with_fix_and_unsure_suggestion_keeps_an_undo_button(tmp_path):
+    """问题 4：一行里有直接改好的（介词）和没把握的建议（理化）：只显示蓝色「采用」，改好的撤销不了。"""
+    pytest.importorskip("gradio")
+    from voicetwin.webui.app import _suggest_cell
+
+    cfg, project = _voice(tmp_path, ["小明昨天说借词后面接名词，今天李华同学回答得很好"])
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[15, 17]], "alt": "小明昨天说借词后面接名词，今天理化同学回答得很好",
+                          "reasons": ["另一个引擎"], "score": 0.6}
+    project.save_manifest(recs)
+    wf.run_transcript_fix(cfg, "校正声音")
+    for saved in (False, True):
+        rec, cur = _cur(project, "c000")
+        info = review.analyze(rec, cur)
+        html = _suggest_cell(info)
+        assert "vt-sug-blue" in html and "vt-sug-red" in html, html  # 两个按钮都有
+        review.unadopt_suggestion(project, "c000")
+        assert "借词" in _cur(project, "c000")[1] and "李华" in _cur(project, "c000")[1]
+        review.adopt_suggestion(project, "c000")
+        assert "理化" in _cur(project, "c000")[1]  # 蓝色的「采用」照样能用
+        review.discard_draft(project)
+        if not saved:
+            wf.run_transcript_fix(cfg, "校正声音")
+            review.save_rows(project)
+
+
+@need_both
+def test_teachers_undo_is_remembered(tmp_path):
+    """问题 5：老师点红色按钮撤销了（主句 → 主剧），再点一键校正又改回去；保存以后也一样。"""
+    cfg, project = _voice(tmp_path, ["他说这个主剧的结构很完整", "这个主剧的结构也很完整"])
+    wf.run_transcript_fix(cfg, "校正声音")
+    assert _cur(project, "c000")[1] == "他说这个主句的结构很完整"
+    review.unadopt_suggestion(project, "c000")
+    for _ in range(2):
+        wf.run_transcript_fix(cfg, "校正声音")
+        assert _cur(project, "c000")[1] == "他说这个主剧的结构很完整"  # 不再改回来
+        assert _cur(project, "c001")[1] == "这个主句的结构也很完整"  # 别的句子照常改
+        review.save_rows(project)
+    rec, cur = _cur(project, "c000")
+    assert review.analyze(rec, cur)["edits"] == []  # 也不再建议
+
+
+@pytest.mark.parametrize("kind", ["zip", "nul"])
+def test_binary_or_broken_csv_upload_says_why(tmp_path, kind):
+    """问题 6：Excel 表格改名成 .csv、里面有 0 字节的文件：以前直接报英文错误，现在说明原因。"""
+    import zipfile
+
+    cfg, project = _voice(tmp_path, ["我们先来看这个定语从句的例子"])
+    f = tmp_path / "transcripts.csv"
+    if kind == "zip":
+        with zipfile.ZipFile(f, "w") as zf:
+            zf.writestr("xl/sharedStrings.xml", "<sst>" + "我们先来看这个定语从句的例子" * 50 + "</sst>")
+        with pytest.raises(ValueError, match="不是文字文件"):
+            tf.save_transcripts(project, [str(f)])
+    else:
+        f.write_text("id,text\nc000,我们先来看这个定语从句的例子吧\n", encoding="utf-32")
+        assert tf.save_transcripts(project, [str(f)])["files"] == ["transcripts.csv"]
+        g = tmp_path / "t2.csv"
+        g.write_bytes("id,text\nc000,我们先来看这个\x00定语从句的例子吧\n".encode("utf-8"))
+        assert tf.parse_mother("t2.csv", g.read_text(encoding="utf-8")) == [("c000", "我们先来看这个定语从句的例子吧")]
+
+
+def test_dismiss_with_unsaved_edit_then_auto_check_does_not_flag_again(tmp_path, monkeypatch):
+    """问题 7：表格里显示没保存的修改时点「这句没错」，再点「自动查找可能的错字」，这一句又被标红。"""
+    from voicetwin.data import proofcheck as pc
+
+    cfg, project = _voice(tmp_path, ["今天我们讲一下定语从句的基本用法", "下面我们来看第二个例子"])
+    monkeypatch.setattr(pc, "build_suspect", lambda text, *a, **k: {"spans": [[0, 2]], "alt": "", "reasons": ["自动"],
+                                                                     "score": 0.6})
+    pc.find_suspects(project, cfg)
+    review.set_draft(project, "c000", text="今天我们讲一下定语从句的用法")
+    pc.dismiss_suspect(project, "c000")
+    pc.find_suspects(project, cfg)
+    assert not {r["id"]: r for r in project.load_manifest()}["c000"].get("suspect")
+
+
+@need_both
+def test_undo_covers_earlier_adoption_when_teacher_also_edited_elsewhere(tmp_path):
+    """问题 8：以前采用过建议（周末 → 周日）、老师又在别处自己加了字：再点一键校正以后，以前采用的撤销不了。"""
+    cfg, project = _voice(tmp_path, ["周末我们一起去公园散步，小明昨天说借词后面接名词"])
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[0, 2]], "alt": "周日我们一起去公园散步，小明昨天说借词后面接名词",
+                          "reasons": ["另一个引擎"], "score": 0.6}
+    project.save_manifest(recs)
+    review.adopt_suggestion(project, "c000")
+    review.set_draft(project, "c000", text="周日我们一起去公园散步，小明昨天说借词后面接名词好的")  # 老师自己加的
+    wf.run_transcript_fix(cfg, "校正声音")
+    rec, cur = _cur(project, "c000")
+    assert cur == "周日我们一起去公园散步，小明昨天说介词后面接名词好的"
+    assert len(review.analyze(rec, cur)["undo"]) == 2
+    review.unadopt_suggestion(project, "c000")
+    assert _cur(project, "c000")[1] == "周末我们一起去公园散步，小明昨天说借词后面接名词好的"  # 老师加的字还在
+
+
+@need_both
+def test_auto_check_between_one_click_and_save_keeps_undo(tmp_path, monkeypatch):
+    """问题 9：一键校正以后、保存以前点「自动查找可能的错字」：改好的行撤销不了了，再点一键校正也回不来。"""
+    from voicetwin.data import proofcheck as pc
+
+    cfg, project = _voice(tmp_path, ["小明昨天说借词后面接名词", "我们先来看艾子引导的定语从句。"])
+    wf.run_transcript_fix(cfg, "校正声音")
+    monkeypatch.setattr(pc, "build_suspect", lambda text, *a, **k: (
+        {"spans": [[0, 2]], "alt": "", "reasons": ["自动"], "score": 0.6} if "小明" in text else None))
+    pc.find_suspects(project, cfg)
+    for _ in range(2):
+        for cid in ("c000", "c001"):
+            rec, cur = _cur(project, cid)
+            assert review.analyze(rec, cur)["undo"], cid
+        wf.run_transcript_fix(cfg, "校正声音")
+    rec, cur = _cur(project, "c000")
+    assert [cur[s:e] for s, e in review.analyze(rec, cur)["red"]] == ["小明"]  # 这次查到的标红也在
+
+
+def test_result_message_wording():
+    """问题 10：没有自动改、但还有要听的句子时，标题不能写「没有需要改的地方」；按钮叫「采用」。"""
+    pytest.importorskip("gradio")
+    from voicetwin.webui.app import WebUI
+
+    md = WebUI._textfix_md({"checked": 2, "adopted": {"unsure": 2}})
+    assert "没有需要改的地方" not in md and "听一听" in md and "「采用」" in md and "✓ 采用" not in md
+    assert "没有需要改的地方" in WebUI._textfix_md({"checked": 2, "adopted": {}})

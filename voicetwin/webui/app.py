@@ -86,7 +86,7 @@ TEXTFIX_HELP = ("**📝 一键全部文字校正**：以你的**母本标准库*
                 "+ 所有的英语语法术语 + 「错的写法 → 正确写法」对照表：借词 → 介词、艾子 → as……，程序里已经带着），"
                 "点一下，所有能确定该怎么改的地方**一次全部改好**（包括「修改建议」那一列有把握的建议）。"
                 "改过的字照旧：「文字」列**绿色**、「可能有错」列**蓝色**；没把握的、只标红没有建议的地方还是**红色**，"
-                "请听录音：建议对就点那一行的「✓ 采用」，不对就自己改。"
+                "请听录音：建议对就点那一行的蓝色的「采用」，不对就自己改。"
                 "只想改某一行：点那一行「修改建议」里的小按钮。改好以后点「**保存修改**」确认文字，要训练时再点「✅ 确认训练素材」。"
                 "有新的讲稿或改好的文字（txt 或 transcripts.csv），可以在下面上传，一起当母本用（可选）。")
 #: 「下载改好的文字」：文件准备好以后，自动点一下下载链接（gradio 的文件框里那个链接）
@@ -1346,8 +1346,13 @@ def _suggest_cell(info: Dict[str, Any]) -> str:
     text = str(info.get("text") or "")
     if info.get("edits"):
         what = _review.describe_edits(text, info["edits"], limit=2)
-        return (f'<span class="vt-sug-btn vt-sug-blue" title="点一下：按建议改好">采用</span>'
-                f'<span class="vt-sug-text">{_cell_esc(what)}</span>')
+        out = (f'<span class="vt-sug-btn vt-sug-blue" title="点一下：按建议改好">采用</span>'
+               f'<span class="vt-sug-text">{_cell_esc(what)}</span>')
+        if info.get("undo"):  # 一部分已经改好了（一键校正改的）、一部分还没采用：已经改好的也要能撤销
+            done = _review.describe_adopted(text, info["undo"], limit=2)
+            out += (f'<br><span class="vt-sug-btn vt-sug-red" title="这些已经改好了；点一下撤销">已采用</span>'
+                    f'<span class="vt-sug-text">{_cell_esc(done)}</span>')
+        return out
     if info.get("adopted"):
         what = _review.describe_adopted(text, info.get("undo") or [], limit=2)
         return (f'<span class="vt-sug-btn vt-sug-red" title="建议已经生效；再点一下可以撤销">已采用</span>'
@@ -3181,8 +3186,11 @@ class WebUI:
         adopted, ad_rows, no_sug = _int(ad.get("changes")), _int(ad.get("rows")), _int(ad.get("no_suggestion"))
         found = _int(r.get("found"))
         total = fixes + adopted
+        left = _int(ad.get("unsure")) + no_sug
         if total:
             md = f"### ✅ 一键全部文字校正完成：检查了 {checked} 条，**一共改了 {total} 处**"
+        elif left:
+            md = f"### ✅ 一键全部文字校正完成：检查了 {checked} 条，没有能自动改的地方（有 {left} 条要你听一听录音）"
         else:
             md = f"### ✅ 一键全部文字校正完成：检查了 {checked} 条，没有需要改的地方"
         parts = []
@@ -3195,7 +3203,7 @@ class WebUI:
         unsure = _int(ad.get("unsure"))
         if unsure:
             parts.append(f"还有 **{unsure}** 条有修改建议、但程序没有把握（可能对也可能不对），**没有自动改**，还是红色："
-                         "勾上「只看可能有错的」，点那一行听一听录音，建议对的话点这一行的「✓ 采用」，不对就双击「文字」自己改")
+                         "勾上「只看可能有错的」，点那一行听一听录音，建议对的话点这一行的蓝色的「采用」，不对就双击「文字」自己改")
         if no_sug:
             parts.append(f"还有 **{no_sug}** 条只标红、没有建议（程序不知道该改成什么）：勾上「只看可能有错的」，"
                          "点那一行听一听录音，双击「文字」自己改")

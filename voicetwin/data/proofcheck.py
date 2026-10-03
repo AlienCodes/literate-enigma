@@ -1630,6 +1630,12 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
     frequent = _frequent_caps(records)
     vocab = voice_vocab(records)
     runner = _EngineRunner(project, cfg, chain, progress)
+    try:  # 表格里没保存的修改（「这句没错」按显示的文字记；一键校正改好、还没保存的行要能撤销）
+        from voicetwin.data import review as _review
+
+        draft = _review.load_draft(project)
+    except Exception:  # noqa: BLE001
+        _review, draft = None, {}
     used: Dict[str, int] = {}
     errors, flagged, checked, dismissed = 0, 0, 0, 0
     err_samples: List[str] = []
@@ -1644,8 +1650,10 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
             lang = str(rec.get("lang") or "")
             heur_kw = {"known_terms": known, "frequent": frequent, "lang": lang}
             eng = ""
-            if rec.get("suspect_ok") and rec.get("suspect_ok") == text:
-                sus = None  # 用户确认过这句没错（文字也没再改过）
+            entry = draft.get(rec.get("id")) if draft else None
+            shown = str(_review.current_values(rec, entry)["text"] or "") if (_review and entry) else text
+            if rec.get("suspect_ok") and rec.get("suspect_ok") in (text, shown):
+                sus = None  # 用户确认过这句没错（文字也没再改过；表格里显示的那句也算）
                 dismissed += 1
             else:
                 try:
@@ -1665,12 +1673,25 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
                     except Exception:  # noqa: BLE001
                         sus = None
                 used[eng] = used.get(eng, 0) + 1
-            if sus:
-                rec["suspect"] = sus
-                flagged += 1
+            old = rec.get("suspect") if isinstance(rec.get("suspect"), dict) else None
+            if (old and entry and _review is not None and _review.is_dirty(rec, entry)
+                    and _review.analyze(rec, shown)["undo"]):
+                # 这一行有没保存、还能撤销的修改（一键校正改好的、点过「采用」的）：表格上的标记留着（不然撤销不了），
+                # 这次查的结果存起来，下次点「📝 一键全部文字校正」时用
+                if old.get("src") == "transcript":
+                    if sus:
+                        rec["suspect_auto"] = dict(sus, text=text)
+                    else:
+                        rec.pop("suspect_auto", None)
+                if sus:
+                    flagged += 1
             else:
-                rec.pop("suspect", None)
-            rec.pop("suspect_auto", None)  # 重新自动查过：以前「文字校正」时存的旧结果不要了
+                if sus:
+                    rec["suspect"] = sus
+                    flagged += 1
+                else:
+                    rec.pop("suspect", None)
+                rec.pop("suspect_auto", None)  # 重新自动查过：以前「文字校正」时存的旧结果不要了
             checked += 1
             _report(progress, i / n, f"已检查 {i} / {n} 条，其中 {flagged} 条可能有错")
             if i % SAVE_EVERY == 0 and i < n:

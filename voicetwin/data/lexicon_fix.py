@@ -311,6 +311,22 @@ class Lexicon:
         return int(self.counts.get(w, 0))
 
     # -------------------------------------------------------------- 找错
+    def list_fixes(self, text: str) -> List[Fix]:
+        """只按对照表、而且能确定是一个完整的词时直接改的（用来先把老师上传的母本里的识别错改掉）。"""
+        text = str(text or "")
+        bounds = word_bounds(text)
+        if bounds is None or not text.strip():
+            return []
+        out: List[Fix] = []
+        for wrong, right in self.corrections.items():
+            k = text.find(wrong)
+            while k >= 0:
+                e = k + len(wrong)
+                if self._ok_place(text, k, e, bounds, wrong):
+                    out.append(Fix(k, e, pc._pad(text, k, e, right), "list", True, 0.9, ""))
+                k = text.find(wrong, k + 1)
+        return resolve(out)
+
     def find(self, text: str) -> List[Fix]:
         text = str(text or "")
         if not text.strip():

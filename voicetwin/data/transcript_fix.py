@@ -88,6 +88,8 @@ def read_text_file(path: Any) -> str:
     raw = Path(path).read_bytes()
     if raw.startswith(b"\xef\xbb\xbf"):
         return raw[3:].decode("utf-8", errors="replace")
+    if raw.startswith((b"\xff\xfe\x00\x00", b"\x00\x00\xfe\xff")):
+        return raw.decode("utf-32", errors="replace")
     if raw.startswith((b"\xff\xfe", b"\xfe\xff")):
         return raw.decode("utf-16", errors="replace")
     head = raw[:4000]
@@ -118,26 +120,46 @@ def _file_name(p: Any) -> str:
     return str(getattr(p, "name", p) or "")
 
 
+def _looks_binary(raw: bytes) -> bool:
+    """不是文字文件：压缩包（Excel / WPS 的 .xlsx、Word 的 .docx 都是）、旧的 .xls / .doc、里面有很多 0 字节的。"""
+    head = raw[:4000]
+    if head.startswith((b"PK\x03\x04", b"\xd0\xcf\x11\xe0")):
+        return True
+    if head.startswith((b"\xff\xfe", b"\xfe\xff", b"\x00\x00\xfe\xff")):
+        return False  # UTF-16 / UTF-32：本来就有很多 0 字节
+    return bool(head) and head.count(b"\x00") > len(head) // 4 and not _utf16_like(head)
+
+
+def _utf16_like(head: bytes) -> bool:
+    """没有 BOM 的 UTF-16：每两个字节里有一个 0（英文、标点多的时候）。"""
+    even, odd = head[0::2].count(0), head[1::2].count(0)
+    return max(even, odd) > len(head) // 4 and min(even, odd) < len(head) // 20
+
+
 def parse_mother(name: str, text: str) -> List[Tuple[str, str]]:
     """一个母本文件 → [(句子 id, 文字)]。txt 一行一句（没有 id）；transcripts.csv 用 id 和 text 两列，
-    老师删除的句子不要；声音分身自己的 tsv（id<TAB>文字，# 开头是说明）。"""
+    老师删除的句子不要；声音分身自己的 tsv（id<TAB>文字，# 开头是说明）。表格格式坏了的 csv 当 txt 一行一行读。"""
     suffix = Path(str(name)).suffix.lower()
+    text = str(text or "").replace("\x00", "")
     out: List[Tuple[str, str]] = []
     if suffix == ".csv":
         import csv
         import io
 
-        reader = csv.DictReader(io.StringIO(text.lstrip("\ufeff")))
-        fields = [str(f or "").strip().lower() for f in (reader.fieldnames or [])]
-        if "text" in fields:
-            for row in reader:
-                low = {str(k or "").strip().lower(): (v or "") for k, v in row.items()}
-                if str(low.get("drop_reason", "")).strip() == "老师删除":
-                    continue
-                line = " ".join(str(low.get("text", "")).split())
-                if line:
-                    out.append((str(low.get("id", "")).strip(), line))
-            return out
+        try:
+            reader = csv.DictReader(io.StringIO(text.lstrip("\ufeff")))
+            fields = [str(f or "").strip().lower() for f in (reader.fieldnames or [])]
+            if "text" in fields:
+                for row in reader:
+                    low = {str(k or "").strip().lower(): (v or "") for k, v in row.items()}
+                    if str(low.get("drop_reason", "")).strip() == "老师删除":
+                        continue
+                    line = " ".join(str(low.get("text", "")).split())
+                    if line:
+                        out.append((str(low.get("id", "")).strip(), line))
+                return out
+        except csv.Error:
+            out = []
     if suffix == ".tsv":
         for ln in text.splitlines():
             if not ln.strip() or ln.lstrip().startswith("#"):
@@ -170,11 +192,16 @@ def save_transcripts(project: Any, paths: Iterable[Any]) -> Dict[str, Any]:
             bad.append(f"「{src.name}」不是 txt 或 csv 文件")
             continue
         try:
+            if _looks_binary(src.read_bytes()[:4000]):
+                bad.append(f"「{src.name}」不是文字文件（可能是 Excel / WPS 表格或 Word 文档改了名字；表格请用"
+                           "「另存为」选「CSV UTF-8」，Word 请「另存为」纯文本 .txt）")
+                continue
             text = read_text_file(src)
-        except OSError as exc:
+            parsed = parse_mother(src.name, text)
+        except (OSError, ValueError) as exc:
             bad.append(f"「{src.name}」读不出来（{exc}）")
             continue
-        if _useful_chars(" ".join(x for _, x in parse_mother(src.name, text))) < MIN_CHARS:
+        if _useful_chars(" ".join(x for _, x in parsed)) < MIN_CHARS:
             bad.append(f"「{src.name}」里几乎没有文字")
             continue
         items.append((src.name, text))
@@ -213,7 +240,7 @@ def load_transcripts(project: Any) -> Tuple[List[Tuple[str, str]], List[str]]:
         try:
             lines += parse_mother(p.name, read_text_file(p))
             names.append(p.name)
-        except OSError:
+        except (OSError, ValueError):  # 读不了的文件跳过，不影响别的
             continue
     return lines, names
 
@@ -1059,6 +1086,10 @@ def _auto_edit_sure(cur: str, s: int, e: int, rep: str, lex: Any = None) -> bool
     return sounds_like_english([t.tone for t in ot], [t.key for t in nt]) and not lex.has_common_word(old)
 
 
+def _same_place(ed: Tuple[int, int, str], span: Sequence[int]) -> bool:
+    return ed[0] == span[0] and ed[1] == span[1]
+
+
 def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: Optional[Dict[str, Any]],
                     rec: Dict[str, Any], ref_text: str = "", lex: Any = None,
                     allow_unchanged: bool = False) -> Tuple[Optional[Dict[str, Any]], str, List[Tuple[int, int, str]]]:
@@ -1067,8 +1098,8 @@ def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: O
     返回 (新的 suspect 或 None, 发生了什么, 要直接改的地方 [(开始, 结束, 改成)])。
     发生了什么：fixed = 有直接改好的；found = 只有建议；cleared = 原来标红、母本证明没错，去掉了；
     kept_auto = 只剩自动检查的标红（去掉了一部分）；unchanged_auto = 原样保留；none = 没有标红。
-    没把握的建议（分量不够、整句换掉的、标准库证明不了的自动查错字建议）记在 suspect["unsure"]（位置按
-    suspect["text"] 算）：这一行的「采用」照样能用，但「一键全部文字校正」不自动采用，留着红色让老师听录音决定。
+    没把握的建议（分量不够、整句换掉的、标准库证明不了的自动查错字建议）：suspect["sure_alt"] 是只用有把握的改出来的
+    那一句；这一行的「采用」照样全部能用，但「一键全部文字校正」只按 sure_alt 改，没把握的留着红色让老师听录音决定。
     allow_unchanged=True：自动检查的结果原样保留时直接返回 auto（默认重新写一份，位置按现在的文字算，
     这样每一处建议有没有把握都记下了）。"""
     from voicetwin.data import review as _review
@@ -1117,7 +1148,8 @@ def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: O
         weights.append(w)
     edits_keep = [ed for ed in a_edits if not _is_confirmed(ed[0], ed[1], confirmed, tokchars)
                   and all(ed[1] <= s or e <= ed[0] for s, e, _ in t_edits)
-                  and any(not (ed[1] <= rs or re_ <= ed[0]) or ed[0] == ed[1] for rs, re_ in red_keep)]
+                  and any(not (ed[1] <= rs or re_ <= ed[0]) or ed[0] == ed[1] for rs, re_ in red_keep)
+                  and not _review.is_rejected(rec, cur, *ed)]  # 老师撤销过的不再建议
     auto_left = bool(red_keep or edits_keep)
     if not fixes:
         if not auto:
@@ -1139,7 +1171,10 @@ def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: O
                            "reasons": _limit_reasons(reasons), "score": round(_noisy_or(weights), 3),
                            "text": cur, "src": "transcript"}
     if unsure and sus["alt"]:
-        sus["unsure"] = sorted(unsure)
+        # 只用有把握的改出来的那一句（一键校正只按它改）：不能靠位置判断哪一处没把握——同样的字挨着时
+        # （看看、我们我们）两次比对的位置会差一个字，没把握的「补上 / 删掉」就混进来了（检查时发现的）
+        sure_edits = [ed for ed in edits if not any(_same_place(ed, u) for u in unsure)]
+        sus["sure_alt"] = _apply(cur, sure_edits) if sure_edits else cur
     if ref_text and fixes:
         sus["ref"] = ref_text
     what = "fixed" if direct else ("found" if fixes else "kept_auto")
@@ -1237,7 +1272,8 @@ def _same_id_fixes(cur: str, mother: str, edited: bool) -> List[Any]:
         if not rep and e <= s:
             continue
         rep = pc._pad(cur, s, e, rep)
-        out.append(Fix(s, e, rep, "same_row", ratio >= SAME_ID_DIRECT, 0.85,
+        direct = ratio >= SAME_ID_DIRECT  # 只有点像的：可能是切的位置不一样（录音里没有这几个字），没把握
+        out.append(Fix(s, e, rep, "same_row", direct, 0.85 if direct else 0.6,
                        f"母本里这一句是「{_q(rep.strip() or '（没有）')}」（现在是「{_q(cur[s:e] or '（没有）')}」）"))
     return out
 
@@ -1249,53 +1285,86 @@ def _text_edited(rec: Dict[str, Any]) -> bool:
 
 
 def _clean_uploaded(lines: List[Tuple[str, str]], row_table: Dict[str, Sequence[Tuple[str, str, str]]],
-                    builtin_by_id: Dict[str, str]) -> List[Tuple[str, str]]:
-    """老师上传的母本：同一个 id 的句子先按逐句修缮记录改好（老师上传的可能是修缮以前的 transcripts.csv，
-    里面还有「借词」）；改好以后和程序自带的一模一样的就不重复用了。"""
+                    builtin_by_id: Dict[str, str], cleaner: Any = None) -> List[Tuple[str, str]]:
+    """老师上传的母本：先把里面的识别错改掉（老师上传的可能是修缮以前的 transcripts.csv 或者 txt，里面还有「借词」）——
+    同一个 id 的句子按逐句修缮记录改，所有的句子按对照表改；改好以后和程序自带的一模一样的就不重复用了。
+    不改的话，母本里旧的错写法会把已经改好的句子又「对齐」改回去（检查时发现的）。"""
     out: List[Tuple[str, str]] = []
     for rid, text in lines:
         if rid and rid in row_table:
             if builtin_by_id.get(rid) is None or _similarity(text, builtin_by_id[rid]) >= ROW_MIN_SIMILAR:
                 for wrong, right, _why in row_table[rid]:
                     text = text.replace(wrong, right)
+        if cleaner is not None:
+            fixes = cleaner.list_fixes(text)
+            if fixes:
+                text = _apply(text, [(f.start, f.end, f.rep) for f in fixes])
         if rid and builtin_by_id.get(rid) == text:
             continue
         out.append((rid, text))
     return out
 
 
-def _rebase(rec: Dict[str, Any], sus: Dict[str, Any], cur: str, old_undo: Sequence[Tuple[int, int, str]]) -> Dict[str, Any]:
-    """这一行以前采用过建议（还能撤销），这次又有新的：新的结果改成按采用以前的文字记，
-    这样以前采用的和这次改的都能用这一行的红色按钮撤销。换算不过去、或者换算以后显示的不一样，就不换（只能撤销这次的）。"""
+def _changed_chars(rec: Dict[str, Any], cur: str) -> Set[int]:
+    """现在的文字里和最初识别的不一样的字（老师改过的、上次一键校正改好的）的位置；删掉的地方记两边的位置。"""
     from voicetwin.data import review as _review
 
-    base = _review.suspect_base(rec)
-    if not base or base == cur:
-        return sus
+    orig = _review.original_text(rec)
+    out: Set[int] = set()
+    if not orig or orig == cur:
+        return out
+    for tag, i1, i2, j1, j2 in _review._opcodes(orig, cur):
+        if tag == "equal":
+            continue
+        if j2 > j1:
+            out.update(range(j1, j2))
+        else:
+            out.update({j1 - 1, j1})
+    return out
+
+
+def _protect(fixes: Sequence[Any], cur: str, changed: Set[int], lex: Any) -> List[Any]:
+    """和母本对齐找出来的改法再把一道关：
+    - 碰到已经改过的字（老师改的、上次改好的）不动——母本里旧的写法不能把它改回去；
+    - 改完以后标准库马上又会说有错的（改成了「借词」这种），不改。"""
+    out = []
+    for f in fixes:
+        if f.kind == "align":
+            span = range(f.start, max(f.end, f.start + 1))
+            if any(k in changed for k in span) or (f.start == f.end and f.start - 1 in changed):
+                continue
+            if lex is not None:
+                new = _apply(cur, [(f.start, f.end, f.rep)])
+                e2 = f.start + len(f.rep)
+                if any(g.start < max(e2, f.start + 1) and f.start < max(g.end, g.start + 1) for g in lex.find(new)):
+                    continue
+        out.append(f)
+    return out
+
+
+def _rebase(rec: Dict[str, Any], sus: Dict[str, Any], cur: str, old_undo: Sequence[Tuple[int, int, str]]) -> Dict[str, Any]:
+    """这一行以前采用过建议（还能撤销），这次又有新的：新的结果改成按「把以前采用的撤销以后」的文字记，
+    这样以前采用的和这次改的都能用这一行的红色按钮撤销（老师自己改的别处两边一样，不会被撤销）。
+    换算不过去、或者换算以后显示的不一样，就不换（只能撤销这次的）。"""
+    from voicetwin.data import review as _review
+
     out, left = cur, len(cur) + 1
     for s, e, rep in sorted(old_undo, key=lambda x: (x[0], x[1]), reverse=True):
         if not (0 <= s <= e <= len(cur)) or e > left:
             return sus
         out, left = out[:s] + rep + out[e:], s
-    if out != base:  # 除了采用的建议，老师还自己改过别的地方：不换（免得撤销时连老师自己改的也改回去）
+    if not out or out == cur:
         return sus
-    inv = [(j1, j2, i1, i2) for i1, i2, j1, j2 in _review._equal_blocks(base, cur)]
-
-    def remap(spans: Any) -> Optional[List[List[int]]]:
-        res = []
-        for sp in spans or []:
-            m = _review.map_range(inv, int(sp[0]), int(sp[1]))
-            if m is None:
-                return None
-            res.append([m[0], m[1]])
-        return res
-
-    spans, unsure = remap(sus.get("spans")), remap(sus.get("unsure"))
-    if spans is None or unsure is None:
-        return sus
-    cand = dict(sus, text=base, spans=spans)
-    if unsure:
-        cand["unsure"] = unsure
+    inv = [(j1, j2, i1, i2) for i1, i2, j1, j2 in _review._equal_blocks(out, cur)]
+    spans = []
+    for sp in sus.get("spans") or []:
+        m = _review.map_range(inv, int(sp[0]), int(sp[1]))
+        if m is None:
+            return sus
+        spans.append([m[0], m[1]])
+    cand = dict(sus, text=out, spans=spans)
+    if not cand.get("alt"):  # 这次没有新的建议：「建议的样子」就是现在的文字（以前采用的才能撤销）
+        cand["alt"] = cur
     a = _review.analyze(dict(rec, suspect=sus), cur)
     b = _review.analyze(dict(rec, suspect=cand), cur)
     if (a["red"], a["edits"], a["sure"]) != (b["red"], b["edits"], b["sure"]):
@@ -1319,7 +1388,7 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
     builtin = list(builtin_mother()) if use_builtin else []
     row_table = dict(builtin_fixes()) if (use_builtin and use_row_fixes) else {}
     builtin_by_id = {rid: x for rid, x in builtin if rid}
-    lines = _clean_uploaded(list(lines or []), row_table, builtin_by_id)
+    lines = _clean_uploaded(list(lines or []), row_table, builtin_by_id, Lexicon.build([]) if lines else None)
     all_lines = builtin + lines
     _report(progress, 0.02, "正在读母本和语法术语……")
     ref = Reference(all_lines) if all_lines else None
@@ -1343,16 +1412,19 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
         if r.get("suspect_ok") and r.get("suspect_ok") == cur:
             dismissed += 1
             continue
-        todo.append((r["id"], cur, _review.is_dirty(r, entry) or _text_edited(r)))
+        todo.append((r, cur, _review.is_dirty(r, entry) or _text_edited(r)))
     results: Dict[str, Tuple[str, List[Any], ClipResult]] = {}
     n = len(todo)
-    for i, (rid, cur, edited) in enumerate(todo, 1):
+    for i, (r, cur, edited) in enumerate(todo, 1):
         _check_cancel()
+        rid = r["id"]
         res = check_text(cur, ref, exclude_id=rid) if ref is not None else ClipResult([], set(), False, "")
         fixes = (_row_fixes(rid, cur, row_table, builtin_by_id.get(rid)) + lex.find(cur)
-                 + props_to_fixes(cur, res, lex))
+                 + _protect(props_to_fixes(cur, res, lex), cur, _changed_chars(r, cur), lex))
         if rid in by_id:
             fixes += _same_id_fixes(cur, by_id[rid], edited)
+        # 老师撤销过的改法（点过红色按钮）：不再改回来，也不再建议
+        fixes = [f for f in fixes if not _review.is_rejected(r, cur, f.start, f.end, f.rep)]
         results[rid] = (cur, fixes, res)
         if i % 20 == 0 or i == n:
             _report(progress, 0.15 + 0.8 * i / max(n, 1), f"已检查 {i} / {n} 条")
@@ -1393,7 +1465,7 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
             else:
                 r["suspect"] = sus
                 stats["flagged"] += 1
-                if sus.get("unsure") and sus.get("src") == "transcript":
+                if "sure_alt" in sus and sus.get("src") == "transcript":
                     stats["unsure"] += 1
             if direct:
                 new = _apply(cur, direct)
