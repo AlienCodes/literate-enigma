@@ -50,7 +50,7 @@ from voicetwin.backends.worker import subprocess_env
 from voicetwin.utils.winsys import kill_with_parent
 from voicetwin.utils.log import get_logger
 from voicetwin.utils.logtail import RUN_MARKER, condense, diagnose_gsv_api, last_run, read_text
-from voicetwin.utils.textutil import short_hash
+from voicetwin.utils.textutil import send_lang, short_hash
 
 log = get_logger("gptsovits")
 
@@ -1509,10 +1509,14 @@ class GPTSoVITSBackend(Backend):
             recs = train_records(self.project)
             if not recs:
                 return ""
-            # 和 export_gptsovits 写文件时一样：文本方式写入，Windows 上换行是 \r\n
-            data = gptsovits_list_text(self.project, self.exp_name, recs).replace("\n", os.linesep).encode("utf-8")
-            if hashlib.sha1(data + self.version.encode()).hexdigest() == want:
-                return ""
+            # 和 export_gptsovits 写文件时一样：文本方式写入，Windows 上换行是 \r\n。
+            # 也按以前的句末标点规则（末尾补「。」）算一遍：以前训练的模型用的就是那样的列表，
+            # 只是导出规则改进了、老师什么都没改时，不能说「校对表改过」
+            for legacy in (False, True):
+                data = gptsovits_list_text(self.project, self.exp_name, recs, legacy_punct=legacy)
+                data = data.replace("\n", os.linesep).encode("utf-8")
+                if hashlib.sha1(data + self.version.encode()).hexdigest() == want:
+                    return ""
         except Exception:
             return ""
         return ("⚠️ 校对表在上次训练以后改过（改了文字、删除或恢复了句子），现在的模型还是用改之前的素材训练的。"
@@ -1736,13 +1740,15 @@ class GPTSoVITSBackend(Backend):
         speed = float(req.speed or 1.0)
         if not math.isfinite(speed) or speed <= 0:
             speed = 1.0
+        # 语言：句子里只要有汉字就按 zh 发（zh 模式中英混读；以前英文单词多的句子被判成 en，
+        # GPT-SoVITS 的 en 模式会把里面的汉字整个丢掉）。参考音频的文字也一样
         payload = {
             "text": req.text,
-            "text_lang": "en" if req.lang == "en" else "zh",
+            "text_lang": send_lang(req.text, req.lang),
             "ref_audio_path": str(Path(req.ref_audio).resolve()),
             "aux_ref_audio_paths": [str(Path(p).resolve()) for p in req.aux_refs],
             "prompt_text": req.ref_text,
-            "prompt_lang": "en" if req.ref_lang == "en" else "zh",
+            "prompt_lang": send_lang(req.ref_text, req.ref_lang),
             "top_k": int(req.top_k if req.top_k is not None else icfg.get("top_k", 15)),
             "top_p": float(req.top_p if req.top_p is not None else icfg.get("top_p", 1.0)),
             "temperature": float(req.temperature if req.temperature is not None else icfg.get("temperature", 1.0)),

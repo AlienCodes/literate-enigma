@@ -475,15 +475,16 @@ def test_redo_clears_stale_denoised_cache(prepared, tmp_path, monkeypatch):
 
 def test_quality_tiers_and_labels(prepared):
     cfg, project, _ = prepared
-    assert [v for _, v in eng.quality_choices()] == ["fast", "balanced", "best", "max", "perfect"]
+    assert [v for _, v in eng.quality_choices()] == ["fast", "balanced", "best", "max", "perfect", "identical"]
     assert eng.QUALITY_LABELS["max"].startswith("极致（") and eng.QUALITY_LABELS["perfect"].startswith("完美：每句最多试 20 次")
     assert set(eng.QUALITY_HELP) == set(eng.QUALITY_ORDER)
     assert eng.resolve_quality("完美") == "perfect" and eng.resolve_quality(eng.QUALITY_LABELS["max"]) == "max"
-    assert eng.resolve_quality(["best"]) == "best" and eng.resolve_quality("不知道") == "balanced"
-    assert eng.recommended_quality("high")[0] == "perfect" and eng.recommended_quality("mid")[0] == "perfect"
-    assert eng.recommended_quality("low")[0] == "max" and eng.recommended_quality("none")[0] == "balanced"
-    assert eng.resolve_quality("auto", tier="low") == "max"
-    assert wf.recommended_quality("mid")[0] == "perfect" and "慢" in wf.recommended_quality("mid")[1]
+    # 默认（auto、不认识的写法、任何显卡）从 10-03 起是「一模一样」（以前按显卡选 完美 / 极致 / 均衡）
+    assert eng.resolve_quality(["best"]) == "best" and eng.resolve_quality("不知道") == "identical"
+    for tier in ("high", "mid", "low", "none"):
+        assert eng.recommended_quality(tier)[0] == "identical"
+        assert eng.resolve_quality("auto", tier=tier) == "identical"
+    assert wf.recommended_quality("mid")[0] == "identical" and "慢" in wf.recommended_quality("mid")[1]
     assert [v for _, v in wf.quality_choices()] == list(eng.QUALITY_ORDER) and "note" in wf.quality_help()
     backend = get_backend("dummy", cfg, project)
     low = Narrator(cfg, project, backend, quality="max", tier="low")

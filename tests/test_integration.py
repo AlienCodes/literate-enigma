@@ -56,12 +56,12 @@ def test_quality_names_are_one_source():
     assert A.QUALITY_SHORT["balanced"] == "均衡"
     labels = dict((v, k) for k, v in A.QUALITY_CHOICES)
     assert labels["perfect"].startswith("完美：每句最多试 20 次") and "句子之间完全静音" in labels["perfect"]
-    assert "最慢" not in labels["max"]  # 「完美」比「极致」更慢
+    assert "最慢" not in labels["max"] and "最慢" not in labels["perfect"]  # 「一模一样」比「极致」「完美」更慢
     for _, value in A.QUALITY_CHOICES:  # 每个标签都能被认回来（命令行、配置里写中文也行）
         assert eng.resolve_quality(labels[value]) == value
-    # 没有显卡时的说明也用同一个名字（浏览器里实测发现过旧名字「标准」）
+    # 没有显卡时的说明也用同一套名字（浏览器里实测发现过旧名字「标准」）：默认「一模一样」，着急可以改选「均衡」
     q, note = A._recommended_quality({"ok": False, "level": "error", "total_gb": None})
-    assert q == "balanced" and "「均衡」" in note and "标准" not in note
+    assert q == "identical" and "「一模一样」" in note and "「均衡」" in note and "标准" not in note
 
 
 def test_stages_follow_selected_quality(prepared):

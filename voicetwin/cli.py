@@ -68,7 +68,41 @@ def _parse_redo(value: str) -> List[int]:
     return sorted(out)
 
 
-QUALITY_CHOICES = ["fast", "balanced", "best", "max", "perfect"]
+#: 和 synth/engine.py 的 QUALITY_ORDER 一样（测试会核对）。这里不 import 引擎：voicetwin -h、init-config 要很快
+QUALITY_CHOICES = ["fast", "balanced", "best", "max", "perfect", "identical"]
+QUALITY_HELP = ("质量档位：fast 快速 | balanced 均衡 | best 最好 | max 极致 | perfect 完美 | identical 一模一样（默认）"
+                "（越往后越慢，但每句更稳、更像你；也可以写中文名，例如 -q 一模一样。"
+                "不写就看 config.yaml 的 synth.quality，那里写 auto 或没写就是一模一样）")
+
+
+def _quality_arg(value: str) -> str:
+    """-q 的值：英文名、中文名（一模一样）、auto 都认；认不出时用中文说明可以写什么。"""
+    from voicetwin.synth.engine import match_quality
+
+    key = match_quality(value)
+    if key is None:
+        raise argparse.ArgumentTypeError(f"不认识的质量档位「{value}」。可选：{'/'.join(QUALITY_CHOICES)}（一模一样），"
+                                         "也可以写中文名，例如 -q 一模一样")
+    return key
+
+
+def _config_quality_notes(cfg: Any) -> List[str]:
+    """命令行没写 -q 时，config.yaml 里的 synth.quality 要不要提醒一句（只写真的会发生的事）。"""
+    from voicetwin.synth.engine import AUTO_QUALITY, DEFAULT_QUALITY, QUALITY_SHORT, match_quality
+
+    if cfg.get("_legacy_quality"):
+        return [f"设置文件 config.yaml 里的「quality: {cfg['_legacy_quality']}」是旧版本（v0.1.0～v0.1.3）自动写进去的默认值，"
+                "不是你自己改的，所以这次按默认的「一模一样」生成。想一直用别的档位：把那一行改成那个档位，"
+                "并删掉后面 # 开头的旧说明；或者在命令后面加 -q（例如 -q balanced）"]
+    raw = cfg.get_path("synth.quality", "auto")
+    text = str(raw if raw is not None else "").strip()
+    key = match_quality(raw)
+    # 认不出的写法：引擎会说明并用「一模一样」；写的就是「一模一样」：和默认一样，不用提醒（否则会叫老师把它改成 auto）
+    if text.lower() in AUTO_QUALITY or key is None or key == DEFAULT_QUALITY:
+        return []
+    name = text if text == QUALITY_SHORT.get(key) else f"{text}（{QUALITY_SHORT.get(key, key)}）"
+    return [f"设置文件 config.yaml 里写了质量「{name}」，这次按它生成；想用默认的「一模一样」，"
+            "把那一行改成 quality: auto，或者加 -q identical"]
 # 这些命令不会长时间运行，不需要关闭黑色窗口的「快速编辑」
 NO_QUICK_EDIT_COMMANDS = ("init-config", "doctor")
 
@@ -147,10 +181,9 @@ def build_parser() -> argparse.ArgumentParser:
         backend_arg(p)
         p.add_argument("text" if name == "say" else "script", help="要说的文字" if name == "say" else "讲稿文件路径")
         p.add_argument("-o", "--output", help="输出文件（.wav 或 .mp3），默认保存到 workspace/声音名/outputs/")
-        p.add_argument("-q", "--quality", choices=QUALITY_CHOICES,
-                       help="质量档位：fast 快速 | balanced 均衡 | best 最好 | max 极致 | perfect 完美"
-                            "（越往后越慢，但每句更稳、更像你；默认看 config.yaml）")
-        p.add_argument("-n", "--candidates", type=int, help="每句生成几个候选（覆盖质量档位）")
+        p.add_argument("-q", "--quality", type=_quality_arg, metavar="档位", help=QUALITY_HELP)
+        p.add_argument("-n", "--candidates", type=int,
+                       help="每句生成几个候选（覆盖质量档位；「一模一样」档是每句最多试几个）")
         speed_group = p.add_mutually_exclusive_group()
         speed_group.add_argument("--speed", type=float, help="语速倍数（默认 1.0 = 和你本人一样；1.2 = 快 20%%）")
         speed_group.add_argument("--faster", type=float, metavar="百分比", help="比你原声快多少（例如 --faster 20 = 快 20%%）")
@@ -567,6 +600,9 @@ def main(argv: Optional[List[str]] = None) -> None:
             if args.command == "narrate" and not Path(source).exists():
                 raise FileNotFoundError(f"找不到讲稿文件：{source}")
             redo = _parse_redo(getattr(args, "redo", ""))
+            if args.quality is None:  # 没写 -q：按 config.yaml，旧版本写进去的默认值 / 手动写的档位都说一声
+                for line in _config_quality_notes(cfg):
+                    print(f"ℹ️ {line}")
             progress = _cli_progress("narrate", cfg, "生成音频", args.backend, quality=args.quality)
             res = wf.run_narrate(cfg, args.voice, source, out=args.output, backend_name=args.backend,
                                  quality=args.quality, candidates=args.candidates, speed=_speed_arg(args),
@@ -582,6 +618,8 @@ def main(argv: Optional[List[str]] = None) -> None:
             project = wf.open_project(cfg, args.voice, must_exist=True)
             _print_json(evaluate_file(cfg, project, Path(args.audio), args.text))
         elif args.command == "auto":
+            for line in _config_quality_notes(cfg):  # 最后生成试听时用 config.yaml 的质量
+                print(f"ℹ️ {line}")
             progress = _cli_progress("", cfg, "全自动处理")
             result = wf.run_auto(cfg, args.voice, args.input, args.backend, skip_train=args.skip_train,
                                  progress=progress)

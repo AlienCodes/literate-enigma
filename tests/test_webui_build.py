@@ -83,7 +83,8 @@ def test_dummy_engine_only_offered_in_test_config(tmp_path):
     ui2 = A.WebUI(_cfg(tmp_path / "b"))  # 测试配置里 backend = dummy
     ui2.build()
     assert "dummy" in [v for _, v in ui2.c["s_backend"].choices]
-    assert [v for _, v in ui2.c["quality"].choices] == ["fast", "balanced", "best", "max", "perfect"]
+    assert [v for _, v in ui2.c["quality"].choices] == ["fast", "balanced", "best", "max", "perfect", "identical"]
+    assert ui2.c["quality"].value == "identical"  # 网页每次打开都先选好「一模一样」
     assert ui2.c["speed"].minimum == -30 and ui2.c["speed"].maximum == 30 and ui2.c["speed"].value == 0
 
 

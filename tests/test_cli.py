@@ -48,7 +48,7 @@ def test_parser_commands():
     assert args.command == "narrate" and args.quality == "best" and args.redo == "2"
     args = ap.parse_args(["prepare", "-v", "x", "-i", "a", "b", "--asr", "funasr"])
     assert args.input == ["a", "b"] and args.asr == "funasr"
-    for q in ("max", "perfect"):
+    for q in ("max", "perfect", "identical"):
         assert ap.parse_args(["say", "-v", "x", "你好", "-q", q]).quality == q
     assert ap.parse_args(["download-models", "--check"]).check is True
     assert ap.parse_args(["select", "-v", "x"]).items is None  # 默认交给 run_select 自己决定

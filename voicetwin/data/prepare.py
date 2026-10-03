@@ -21,7 +21,7 @@ from voicetwin.style.prosody import rate_stats
 from voicetwin.utils.audio import clip_ratio, estimate_snr, load_audio, save_audio
 from voicetwin.utils.ffmpeg import extract_audio
 from voicetwin.utils.log import get_logger, setup_logging
-from voicetwin.utils.textutil import detect_lang, ends_sentence, safe_name, short_hash, syllable_count
+from voicetwin.utils.textutil import detect_lang, en_words, ends_sentence, safe_name, short_hash, syllable_count
 
 log = get_logger("prepare")
 
@@ -640,7 +640,14 @@ def summarize(project: Project, records: List[Dict[str, Any]], refs: List[Dict[s
     if 0 < by_lang.get("en", 0) / 60.0 < 5:
         warnings.append("英文素材不足 5 分钟：英文会带一点「中文腔」。如果要做英文课，建议加入英文讲课录音。")
     if not by_lang.get("en"):
-        warnings.append("素材里没有英文。模型仍能说英文，但口音/语气不一定像你；有英文课录音的话请一起加入。")
+        # 中文句子里夹着的英文（例如「首先，as这个关系代词……」）如实数出来，不能说「没有英文」
+        mixed = [r for r in kept if r.get("lang") == "zh" and en_words(r.get("text") or "")]
+        if mixed:
+            n_words = sum(len(en_words(r.get("text") or "")) for r in mixed)
+            warnings.append(f"素材里有 {len(mixed)} 句夹着英文（共 {n_words} 个英文单词），没有纯英文的句子。"
+                            "模型仍能说英文，但整句英文的口音/语气不一定像你；有英文课录音的话请一起加入。")
+        else:
+            warnings.append("素材里没有英文。模型仍能说英文，但口音/语气不一定像你；有英文课录音的话请一起加入。")
     return {
         "voice": project.voice,
         "clips_total": len(records),

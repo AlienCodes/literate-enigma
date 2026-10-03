@@ -35,6 +35,15 @@ def detect_lang(text: str) -> str:
     return "zh" if cjk >= max(1, 0.2 * words) else "en"
 
 
+def send_lang(text: str, lang: str) -> str:
+    """真正交给 GPT-SoVITS 的语言（text_lang / prompt_lang）：只要有一个汉字就用 zh。
+
+    detect_lang 在英文单词很多时会判成 en（例如「比如 This is a very long English example……」），
+    可 GPT-SoVITS 的 en 模式会把整句交给英文的读音程序，里面的汉字全被丢掉、根本读不出来；
+    zh 模式本来就支持中英混读（中文按中文读、英文按英文读）。没有汉字时才按原来的语言。"""
+    return "zh" if count_cjk(text or "") > 0 else ("en" if lang == "en" else "zh")
+
+
 _VOWEL_GROUP = re.compile(r"[aeiouy]+")
 
 
@@ -136,6 +145,24 @@ def ensure_final_punct(text: str, lang: str) -> str:
     if t[-1] in SENT_END_CHARS + CLAUSE_CHARS + ".":
         return t
     return t + ("。" if lang == "zh" else ".")
+
+
+#: 句末的引号、括号：看句子有没有结束时跳过它们（「他说：“好的。”」已经有句号了）
+_CLOSERS = "”\"'’）)」』"
+
+
+def ensure_final_punct_train(text: str, lang: str) -> str:
+    """训练列表（train.list）用：末尾没有标点的片段补「，」（英文补 ","），不补「。」。
+
+    这些片段多半是在一句话中间切开的（老师的 1004 句素材里实测有 40 句；另外 72 句末尾是逗号，本来就不补），
+    声音还要接着往下说；以前补「。」等于告诉模型「这里是句末、语调要落下来」，学到的语气不对。已经有标点的保持不变。"""
+    t = (text or "").strip()
+    if not t:
+        return t
+    body = t.rstrip(_CLOSERS) or t
+    if body[-1] in SENT_END_CHARS + CLAUSE_CHARS + ".,":
+        return t
+    return t + ("，" if lang == "zh" else ",")
 
 
 def clean_transcript(text: str) -> str:

@@ -702,7 +702,7 @@ def test_failed_retrain_keeps_the_old_material_warning(tmp_path):
     orig_tr, orig_txt = ex.train_records, ex.gptsovits_list_text
     try:
         ex.train_records = lambda project: [{"id": "c0"}]
-        ex.gptsovits_list_text = lambda project, speaker, recs: "new"
+        ex.gptsovits_list_text = lambda project, speaker, recs, **kw: "new"  # kw：legacy_punct（以前的句末标点规则）
         note = g.GPTSoVITSBackend.trained_material_note(b)
     finally:
         ex.train_records, ex.gptsovits_list_text = orig_tr, orig_txt

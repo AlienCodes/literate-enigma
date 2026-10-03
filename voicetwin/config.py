@@ -5,12 +5,17 @@ from __future__ import annotations
 import copy
 import json
 import os
+import re
 from pathlib import Path
 from typing import Any, Dict, Optional, Tuple
 
 import yaml
 
 DEFAULT_CONFIG_PATH = Path(__file__).with_name("default_config.yaml")
+#: v0.1.0～v0.1.3 的默认配置（提交 27a539a / 5b46851）原样写进每个人 config.yaml 的那一行（安装程序会保留旧的 config.yaml）：
+#:   quality: balanced           # fast（每句 1 个候选）| balanced（3 个）| best（5 个并用识别校验）
+#: 这是当时自动写的默认值，不是老师自己选的，当作 auto（= 默认的「一模一样」）。自己改过的（后面的说明不一样）照常按写的来。
+LEGACY_QUALITY_RE = re.compile(r"^[ \t]+quality:[ \t]*balanced[ \t]+#[ \t]*fast（每句 1 个候选）", re.M)
 
 
 def deep_merge(base: Dict[str, Any], override: Dict[str, Any]) -> Dict[str, Any]:
@@ -113,14 +118,22 @@ def load_config(path: Optional[str] = None, overrides: Optional[Dict[str, Any]] 
             from voicetwin.utils.log import get_logger
 
             get_logger("config").warning(f"{user_path.name} 不是 UTF-8 编码，已按 GBK 读取")
-        cfg = deep_merge(cfg, parse_user_yaml(text, user_path))
+        user = parse_user_yaml(text, user_path)
+        cfg = deep_merge(cfg, user)
         base_dir = user_path.parent.resolve()
+        synth = user.get("synth")
+        legacy = bool(LEGACY_QUALITY_RE.search(text)) and isinstance(synth, dict) and synth.get("quality") == "balanced"
     else:
         base_dir = Path.cwd().resolve()
+        legacy = False
+    if legacy and isinstance(cfg.get("synth"), dict):
+        cfg["synth"]["quality"] = "auto"
     if overrides:
         cfg = deep_merge(cfg, overrides)
     config = Config(cfg)
     config["_base_dir"] = str(base_dir)
+    if legacy and config.get_path("synth.quality") == "auto":
+        config["_legacy_quality"] = "balanced"  # 命令行据此说明一句（见 cli._config_quality_notes）
     return config
 
 
