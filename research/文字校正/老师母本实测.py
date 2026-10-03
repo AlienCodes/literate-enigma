@@ -60,12 +60,16 @@ def run(use_row_fixes):
     for o in ORIG:
         if o["id"] not in draft:
             continue
-        for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(None, o["text"], draft[o["id"]]["text"]).get_opcodes():
+        # 表格里的文字都整理过：英文后面的逗号是半角（「which,」），原文是全角（「位置，」）——比的时候逗号不分全角半角，
+        # 不然「位置，→ which,」会被算成多改了一个逗号（10-03 全面找 bug 时发现：改出来的整句和修缮好的一模一样）
+        a_txt, b_txt = o["text"].replace("，", ","), draft[o["id"]]["text"].replace("，", ",")
+        for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(None, a_txt, b_txt).get_opcodes():
             if tag == "equal":
                 continue
-            seg = o["text"][i1:i2]
-            if not any(a.find(seg) >= 0 or seg.find(a) >= 0 for a, _b in by_id.get(o["id"], [])):
-                wrong.append(f"{o['id']}：「{seg}」→「{draft[o['id']]['text'][j1:j2]}」")
+            seg = a_txt[i1:i2]
+            if not any(a.replace("，", ",").find(seg) >= 0 or seg.find(a.replace("，", ",")) >= 0
+                       for a, _b in by_id.get(o["id"], [])):
+                wrong.append(f"{o['id']}：「{seg}」→「{b_txt[j1:j2]}」")
     sugg = [r for r in p.recs if r.get("suspect") and r["id"] not in draft]
     return res, secs, len(need), exact, found, wrong, sugg
 

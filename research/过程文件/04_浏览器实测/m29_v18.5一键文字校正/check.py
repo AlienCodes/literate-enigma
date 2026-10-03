@@ -59,7 +59,8 @@ def draft():
 def main():
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path="/opt/pw-browsers/chromium")
-        ctx = browser.new_context(viewport={"width": 1366, "height": 900}, accept_downloads=True)
+        # 老师的 Windows 是英文版：浏览器语言用英文，网页上 gradio 自带的字也要是中文
+        ctx = browser.new_context(viewport={"width": 1366, "height": 900}, accept_downloads=True, locale="en-US")
         page = ctx.new_page()
         errors = []
         page.on("pageerror", lambda e: errors.append(str(e)))
@@ -68,6 +69,15 @@ def main():
         time.sleep(2)
         title = page.evaluate("() => document.querySelector('.vt-header h1').innerText")
         check("网页标题仍是 v18", "VoiceTwin v18" in title and "18.5" not in title, title)
+        check("浏览器标签页上也是「声音分身 VoiceTwin v18」", page.title() == "声音分身 VoiceTwin v18", page.title())
+        body = text_of(page, "body")
+        check("英文系统的浏览器里 gradio 自带的字也是中文（没有 Drop File Here）",
+              "Drop File Here" not in body and "Click to Upload" not in body and "点击上传" in body)
+        import urllib.request
+
+        conf = json.loads(urllib.request.urlopen(URL.rstrip("/") + "/config", timeout=10).read().decode("utf-8"))
+        vers = [c for c in conf.get("components", []) if (c.get("props") or {}).get("elem_id") == "vt-version"]
+        check("网页里藏着真正的版本号（升级时分辨旧版本还开着）", bool(vers) and "18.5" in vers[0]["props"]["value"])
         btn = page.locator("#vt-tr-btn")
         check("「📝 一键全部文字校正」按钮在", btn.is_visible() and "一键全部文字校正" in btn.inner_text())
         info = wait_text(page, ".vt-tr-info", ["标准库"], 20)
@@ -86,6 +96,11 @@ def main():
         check("用过一次以后按钮变灰（点不了），按钮下面写着每批素材只能用一次", btn.is_disabled() and "每批素材只能用一次" in info,
               info[:60])
         check("没有三个小圆点（老师改了主意：不要解锁）", page.locator(".vt-dot").count() == 0)
+        check("用过以后「上传更多母本」也是灰的（上传了也不会用）", "点击上传" not in text_of(page, "#vt-tr-files"),
+              text_of(page, "#vt-tr-files")[:40])
+        toast = page.evaluate("() => { const t = document.querySelector('.toast-title'); "
+                              "return t ? getComputedStyle(t, '::after').content : ''; }")
+        check("右上角提示的标题是中文（不是 Info）", "提示" in toast, toast)
         d = draft()
         exact = sum(1 for i in NEED if i in d and d[i]["text"] == CLEAN[i])
         check("需要改的 123 句全部改得和逐句修缮一样（存成没保存的修改）", exact == len(NEED) == 123, f"{exact}/{len(NEED)}")
