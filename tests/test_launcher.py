@@ -219,6 +219,7 @@ def test_launch_uses_build_app_local_and_free_port(fake_env, capsys):
         blocker.close()
     out = capsys.readouterr().out
     assert calls == [("local", True)]
+    assert fake_env.cache_cfgs == [{"x": 1}]  # 建网页之前：gradio 的临时文件改放工作文件夹、清掉旧的（第四轮 g1）
     assert app.queued
     kw = app.launch_kwargs
     assert kw["server_port"] == base + 1 and kw["server_name"] == "127.0.0.1"
