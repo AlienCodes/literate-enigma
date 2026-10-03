@@ -1,6 +1,7 @@
 """v18.5 真实浏览器（gradio 4.24、和整合包同版本的 Python 3.9 + pypinyin + jieba）里点一遍「一键全部文字校正」：
 1. 按钮和标准库说明在「检查完了」那里；
-2. 点一次：老师修缮前的 1004 句里需要改的 123 句全部改好（和逐句修缮一样），自动查错字的建议也一起采用；
+2. 点一次：老师修缮前的 1004 句里需要改的 123 句全部改好（和逐句修缮一样）；标准库能证明的自动查错字建议
+   （威驰 → which）一起采用，证明不了的（多一个「到」）不自动采用、还是红色有建议，结果说明里写着「没有把握」；
    改过的字「文字」列绿色、「可能有错」列蓝色，红灯（没保存）；
 3. 「⬇️ 下载改好的文字（txt）」浏览器自动下载，里面是改好的文字；
 4. 保存修改 → 确认训练素材 → 训练页不再提醒，训练用的是改好的字；
@@ -82,7 +83,18 @@ def main():
         exact = sum(1 for i in NEED if i in d and d[i]["text"] == CLEAN[i])
         check("需要改的 123 句全部改得和逐句修缮一样（存成没保存的修改）", exact == len(NEED) == 123, f"{exact}/{len(NEED)}")
         extra = [i for i in d if i not in NEED]
-        check("自动查错字的建议也一起采用了（只多了那一句）", extra == [list(ORIG)[2]], str(extra[:3]))
+        vetted = [i for i in extra if "威驰" not in d[i]["text"] and d[i]["text"] == ORIG[i]]
+        check("标准库能证明的自动查错字建议一起采用了（威驰 → which，只多了那一句）", len(extra) == 1 and vetted == extra,
+              str([(i, d[i]["text"][:30]) for i in extra[:3]]))
+        rec2 = {json.loads(ln)["id"]: json.loads(ln) for ln in
+                (VOICE / "manifest.jsonl").read_text(encoding="utf-8").splitlines() if ln.strip()}[list(ORIG)[2]]
+        sys.path.insert(0, str(REPO))
+        from voicetwin.data import review as _rv
+
+        info2 = _rv.analyze(rec2, rec2["text"])
+        check("证明不了的建议（多一个「到」）没有自动采用：还是红色、有建议，结果说明写着没有把握",
+              list(ORIG)[2] not in d and info2["edits"] and not info2["sure"] and "没有把握" in md,
+              str(info2["edits"]))
         summary = [ln for ln in md.splitlines() if "一共改了" in ln or "直接改好" in ln or "全部采用" in ln]
         check("结果说明写着改了多少处、下一步点保存修改", bool(summary) and "保存修改" in md and "确认训练素材" in md,
               " / ".join(summary[:3]))

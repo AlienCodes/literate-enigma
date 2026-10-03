@@ -388,3 +388,237 @@ def test_one_click_full_correction_then_save_and_confirm(tmp_path):
 
     listing = gptsovits_list_text(wf.Project(cfg, "校正声音"), "校正声音")
     assert "介词" in listing and "借词" not in listing and "艾子" not in listing
+
+
+# ---------------------------------------------------------------------------- 发布前检查发现的问题（每个都有一个测试）
+def _cur(project, rid):
+    rec = {r["id"]: r for r in project.load_manifest()}[rid]
+    return rec, review.current_values(rec, review.load_draft(project).get(rid))["text"]
+
+
+@need_both
+@pytest.mark.parametrize("text,span,alt,fixed", [
+    ("小明昨天说借词后面接名词", [5, 7], "小明昨天说接词后面接名词", "小明昨天说介词后面接名词"),
+    ("周末我们看艾子去公园散步", [5, 7], "周末我们看爱子去公园散步", "周末我们看as去公园散步"),
+])
+def test_save_then_click_again_never_reverts_the_fix(tmp_path, text, span, alt, fixed):
+    """问题 1：自动查错字的结果没记下是按哪段文字算的 → 保存修改以后再点一次，把改好的字又改成了自动检查的错建议。"""
+    cfg, project = _voice(tmp_path, [text])
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [span], "alt": alt, "reasons": ["另一个引擎"], "score": 0.6}
+    project.save_manifest(recs)
+    wf.run_transcript_fix(cfg, "校正声音")
+    assert review.load_draft(project)["c000"]["text"] == fixed
+    review.save_rows(project)
+    res = wf.run_transcript_fix(cfg, "校正声音")
+    assert review.load_draft(project) == {} and res["fixes"] == 0 and res["adopted"]["changes"] == 0
+    rec, cur = _cur(project, "c000")
+    assert cur == fixed and review.analyze(rec, cur)["edits"] == []
+
+
+@need_both
+def test_red_marks_stay_on_the_right_words_after_save(tmp_path):
+    """问题 1（续）：保存以后再点，没改的红字还标在原来的词上（以前标到了「接冰」上）。"""
+    text = "小明说这是一个不纠动词，后面不能接冰鱼"
+    i = text.index("冰鱼")
+    cfg, project = _voice(tmp_path, [text])
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[i, i + 2]], "alt": "", "reasons": ["冰鱼可能有错"], "score": 0.6}
+    project.save_manifest(recs)
+    wf.run_transcript_fix(cfg, "校正声音")
+    review.save_rows(project)
+    wf.run_transcript_fix(cfg, "校正声音")
+    rec, cur = _cur(project, "c000")
+    assert "不及物动词" in cur and [cur[s:e] for s, e in review.analyze(rec, cur)["red"]] == ["冰鱼"]
+
+
+@need_both
+def test_uploaded_csv_never_overrides_the_teachers_later_edits(tmp_path):
+    """问题 2：老师上传的 transcripts.csv 里同一个 id 的句子，把老师后来自己改过的（保存的、没保存的）改回去了。"""
+    texts = ["今天我们学习一下定语从句的用法", "下面我们来看第二个例子"]
+    cfg, project = _voice(tmp_path, texts)
+    up = tmp_path / "transcripts.csv"
+    up.write_text("id,text,drop_reason\nc000,今天我们学习一下定语从句的用法,\nc001,下面我们来看第二个例子,\n",
+                  encoding="utf-8")
+    wf.run_transcript_fix(cfg, "校正声音", files=[str(up)])
+    review.set_draft(project, "c000", text="今天我们复习一下定语从句的用法")  # 老师听了录音自己改的
+    review.save_rows(project)
+    wf.run_transcript_fix(cfg, "校正声音")  # 保存过的：不改回去
+    assert review.load_draft(project) == {}
+    review.set_draft(project, "c001", text="下面我们来看第三个例子")  # 没保存的：也不改回去、不给改回去的建议
+    res = wf.run_transcript_fix(cfg, "校正声音")
+    assert review.load_draft(project)["c001"]["text"] == "下面我们来看第三个例子"
+    assert res["adopted"]["changes"] == 0
+    rec, cur = _cur(project, "c001")
+    assert review.analyze(rec, cur)["edits"] == []
+
+
+@need_both
+def test_uploaded_csv_same_id_insert_and_delete_positions(tmp_path):
+    """问题 9：按上传的同一句补字时补在句号后面了；删词以后留下两个空格。"""
+    cfg, project = _voice(tmp_path, ["我们来看一下这个句子。", "我们 really 来看一下这个例子", "完全不一样的一句话"],
+                          ids=["a1", "a2", "a3"])
+    lines = [("a1", "我们来看一下这个句子吧。"), ("a2", "我们来看一下这个例子"), ("a3", "今天讲定语从句的先行词")]
+    tf.check_with_transcript(project, lines=lines, use_builtin=False)
+    draft = review.load_draft(project)
+    assert draft["a1"]["text"] == "我们来看一下这个句子吧。"
+    assert draft["a2"]["text"] == "我们来看一下这个例子"
+    assert "a3" not in draft  # 同一个 id 但完全不像：不是同一句，不用
+
+
+@need_both
+def test_english_is_not_replaced_by_a_chinese_word_that_does_not_sound_like_it(tmp_path):
+    """问题 3：「who在定语从句中」被对到母本里「词在……」上，一键校正把 who 改成了「词」。"""
+    texts = ["那接下来我们看一下最后一个关系副词why的用法。", "我们需要把这个定语从句中的which换成 that。",
+             "who在定语从句中，能够做的句子成分主要有两个。", "那这个特殊的先行词就是way。",
+             "好，那接下来我们看一下关系副词why。", "那我们需要把这个句子中的 as换成 that。", "这个先行词就是way，当way做先行词的时候"]
+    cfg, project = _voice(tmp_path, texts)
+    res = wf.run_transcript_fix(cfg, "校正声音")
+    assert review.load_draft(project) == {} and res["adopted"]["changes"] == 0
+
+
+@need_both
+def test_one_click_does_not_adopt_unvetted_auto_guesses_and_never_learns_them(tmp_path):
+    """问题 3 / 4：另一个识别引擎的猜测（李华 → 理化）不自动采用；老师自己采用、保存以后，也不会学去改别的句子。"""
+    texts = ["今天李华同学回答得很好", "李华同学请你来读一下这个句子", "我们请李华来回答"]
+    cfg, project = _voice(tmp_path, texts)
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[2, 4]], "alt": "今天理化同学回答得很好", "reasons": ["另一个引擎"], "score": 0.6}
+    project.save_manifest(recs)
+    res = wf.run_transcript_fix(cfg, "校正声音")
+    assert review.load_draft(project) == {} and res["adopted"]["unsure"] == 1
+    rec, cur = _cur(project, "c000")
+    info = review.analyze(rec, cur)
+    assert [cur[s:e] for s, e in info["red"]] == ["李华"] and info["edits"] and not info["sure"]  # 还是红色、有建议
+    review.adopt_suggestion(project, "c000")  # 老师听了录音，自己点「采用」
+    review.save_rows(project)
+    wf.run_transcript_fix(cfg, "校正声音")
+    assert review.load_draft(project) == {}  # 别的句子里的「李华」不会被改成「理化」
+
+
+@need_both
+def test_one_click_adopts_vetted_auto_suggestion_english_written_as_chinese(tmp_path):
+    """标准库能证明的自动查错字建议（不是常用词的汉字、读音像英文：艾子 → as）照样一起采用。"""
+    cfg, project = _voice(tmp_path, ["周末我们去看威驰引导的句子"])
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[6, 8]], "alt": "周末我们去看which引导的句子", "reasons": ["另一个引擎"], "score": 0.6}
+    project.save_manifest(recs)
+    res = wf.run_transcript_fix(cfg, "校正声音")  # 「威驰」不在对照表里：是靠核对自动查错字的建议改的
+    assert review.load_draft(project)["c000"]["text"] == "周末我们去看which引导的句子"
+    assert res["fixes"] == 0 and res["adopted"]["changes"] == 1
+    assert tf._auto_edit_sure("看艾子的", 1, 3, "as", lf.Lexicon.build([]))
+    assert not tf._auto_edit_sure("我爱你", 1, 2, "I", lf.Lexicon.build([]))  # 「爱」是常用字：不知道是不是英文
+
+
+@need_both
+def test_whole_sentence_auto_suggestion_is_not_adopted(tmp_path):
+    cfg, project = _voice(tmp_path, ["今天天气很好我们去公园"])
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[0, 11]], "alt": "金田天奇恨好喔们取攻原", "score": 0.7,
+                          "reasons": ["两次识别的结果差别很大，整句可能都不对"]}
+    project.save_manifest(recs)
+    res = wf.run_transcript_fix(cfg, "校正声音")
+    assert review.load_draft(project) == {} and res["adopted"]["unsure"] == 1
+
+
+@need_both
+def test_adopted_suggestions_can_still_be_undone_after_clicking_again(tmp_path):
+    """问题 5：以前采用过的建议（红色按钮，可以撤销）再点一次一键校正以后撤销不了了，还被算成「母本证明没错」。"""
+    texts = ["周末我们一起去公园散步", "周末我们一起去公园散步", "小明昨天说借词后面接名词"]
+    cfg, project = _voice(tmp_path, texts)
+    recs = project.load_manifest()
+    recs[0]["suspect"] = {"spans": [[0, 2]], "alt": "周日我们一起去公园散步", "reasons": ["自动"], "score": 0.6}
+    recs[1]["suspect"] = {"spans": [[0, 2]], "alt": "周日我们一起去公园散步", "reasons": ["自动"], "score": 0.6}
+    recs[2]["suspect"] = {"spans": [[0, 2]], "alt": "小名昨天说借词后面接名词", "reasons": ["自动"], "score": 0.6}
+    project.save_manifest(recs)
+    for cid in ("c000", "c001", "c002"):
+        review.adopt_suggestion(project, cid)
+    review.save_rows(project, ["c001"])
+    res = tf.check_with_transcript(project)
+    assert res["cleared"] == 0 and res["kept_undo"] == 2
+    for cid in ("c000", "c001"):
+        rec, cur = _cur(project, cid)
+        assert cur.startswith("周日") and review.analyze(rec, cur)["adopted"]
+    rec, cur = _cur(project, "c002")
+    info = review.analyze(rec, cur)
+    assert cur == "小名昨天说介词后面接名词" and info["adopted"] and len(info["undo"]) == 2  # 两处都能撤销
+    review.unadopt_suggestion(project, "c002")
+    assert review.load_draft(project).get("c002") is None  # 全部撤销：回到保存的样子
+    review.unadopt_suggestion(project, "c000")
+    assert review.load_draft(project).get("c000") is None
+
+
+@need_both
+def test_second_click_keeps_undo_for_unsaved_direct_fixes(tmp_path):
+    cfg, project = _voice(tmp_path, ["小明昨天说借词后面接名词", "我们先来看艾子引导的定语从句。"])
+    wf.run_transcript_fix(cfg, "校正声音")
+    wf.run_transcript_fix(cfg, "校正声音")
+    for cid in ("c000", "c001"):
+        rec, cur = _cur(project, cid)
+        assert review.analyze(rec, cur)["adopted"], cid
+    review.unadopt_suggestion(project, "c001")
+    assert "艾子" in _cur(project, "c001")[1]
+
+
+@need_pinyin
+@pytest.mark.parametrize("text", ["他是一位语文老师。", "凭借词汇量取胜。", "这里用陷阱词汇考你。", "叙述词语要准确。",
+                                  "这个主剧情很精彩。", "关于代词的用法我们下次讲", "每一位语言学家都知道"])
+def test_without_jieba_nothing_is_changed_directly(tmp_path, monkeypatch, text):
+    """问题 6：没有 jieba（判断不了完整的词）时，对照表直接改出了「凭介词汇」「一谓语文」。"""
+    monkeypatch.setattr(lf, "_tokenizer", lambda: None)
+    cfg, project = _voice(tmp_path, [text])
+    res = wf.run_transcript_fix(cfg, "校正声音")
+    assert review.load_draft(project) == {} and res["fixes"] == 0 and res["adopted"]["changes"] == 0
+
+
+@need_both
+@pytest.mark.parametrize("text", ["他会说壮语，也会说普通话", "他的原籍是山东", "关于代词的用法我们下次讲",
+                                  "这个词兼名词和动词两种词性", "这是两个陷阱词，考试要小心", "如果我们把关系代词位置还原"])
+def test_real_words_are_never_changed_directly(tmp_path, text):
+    """问题 7：本身是词的（壮语 → 状语）和正常的说法（关于代词、兼名词、陷阱词）不直接改。"""
+    cfg, project = _voice(tmp_path, [text])
+    res = wf.run_transcript_fix(cfg, "校正声音", adopt_all=False)
+    assert res["fixes"] == 0 and review.load_draft(project) == {}
+    review.adopt_all_suggestions(project)
+    assert review.load_draft(project) == {}  # 一键也不自动采用（没把握的建议还在，可以一行一行采用）
+
+
+@need_both
+def test_dismissed_row_with_unsaved_edit_is_left_alone(tmp_path):
+    """问题 8：表格里显示没保存的修改时点「这句没错」，一键校正还是改了这一句。"""
+    from voicetwin.data.proofcheck import dismiss_suspect
+
+    cfg, project = _voice(tmp_path, ["关于带词的用法下节课讲"])
+    review.set_draft(project, "c000", text="关于代词的用法下节课讲")
+    dismiss_suspect(project, "c000")
+    res = tf.check_with_transcript(project)
+    assert res["dismissed"] == 1 and review.load_draft(project)["c000"]["text"] == "关于代词的用法下节课讲"
+
+
+@need_both
+def test_row_fixes_only_for_the_same_sentence(tmp_path):
+    """逐句修缮记录按 id 改：新的录音碰巧是同一个 id、但句子不一样时不改。"""
+    rid, (wrong, right, _why) = next(iter(tf.builtin_fixes().items()))[0], next(iter(tf.builtin_fixes().values()))[0]
+    cfg, project = _voice(tmp_path, [f"这是另外一句新的话，里面也有{wrong}这几个字，但不是同一句"], ids=[rid])
+    tf.check_with_transcript(project)
+    assert rid not in review.load_draft(project)
+
+
+def test_teacher_uploads_her_raw_transcripts_csv_again(tmp_path):
+    """老师又上传了修缮以前的 transcripts.csv（同样的 id，里面还有「借词」）：结果和不上传一样，
+    需要改的 123 句全对、多改 0 句；保存以后再点一次什么都不改。"""
+    orig = list(csv.DictReader(open(MOTHER_DIR / "母本_原文.csv", encoding="utf-8-sig")))
+    clean = {r["id"]: r["text"] for r in csv.DictReader(open(MOTHER_DIR / "母本_修缮后.csv", encoding="utf-8-sig"))}
+    cfg = make_cfg(tmp_path / "ws")
+    project = wf.Project(cfg, "老师").ensure()
+    project.save_manifest([{"id": r["id"], "path": f"clips/{r['id']}.wav", "text": r["text"], "lang": "zh",
+                            "duration": 3.0, "keep": r["keep"] == "1", "deleted": r["drop_reason"] == "老师删除",
+                            "split": "train"} for r in orig])
+    res = wf.run_transcript_fix(cfg, "老师", files=[str(MOTHER_DIR / "母本_原文.csv")])
+    draft = review.load_draft(project)
+    need = {r["id"] for r in orig if r["text"] != clean[r["id"]] and r["drop_reason"] != "老师删除"}
+    assert set(draft) == need and all(draft[i]["text"] == clean[i] for i in need)
+    assert res["adopted"]["changes"] == 0
+    review.save_rows(project)
+    res2 = wf.run_transcript_fix(cfg, "老师")
+    assert review.load_draft(project) == {} and res2["fixes"] == 0 and res2["adopted"]["changes"] == 0

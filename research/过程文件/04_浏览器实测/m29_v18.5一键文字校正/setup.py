@@ -1,5 +1,8 @@
 """v18.5 浏览器实测的准备：用老师修缮前的 1004 句（research/文字校正/老师的母本/母本_原文.csv）建一个声音，
-每句配一段 4 秒的合成声音（能点开试听，「确认训练素材」重新统计时也算能用）；第 3 句放一条「自动查错字」的建议，看一键校正会不会一起采用。"""
+每句配一段 4 秒的合成声音（能点开试听，「确认训练素材」重新统计时也算能用）；放两条「自动查错字」的建议：
+- 第 3 句：多一个「到」（两个引擎听得不一样的中文，标准库证明不了）→ 一键校正不自动采用，还是红色、有建议；
+- 后面一句本来就对、有 which 的句子：把 which 写成「威驰」，自动查错字建议改回 which（读音像英文、不是常用词，
+  标准库能证明）→ 一键校正一起采用。"""
 import csv
 import sys
 from pathlib import Path
@@ -44,6 +47,16 @@ for i, r in enumerate(rows):
     recs.append(rec)
 recs[2]["suspect"] = {"spans": [[0, 2]], "alt": "其次" + recs[2]["text"][2:].replace("最常见", "最常见到"), "reasons": ["测试用的自动查错字建议"],
                       "score": 0.7}
+clean = {r["id"]: r["text"] for r in csv.DictReader(open(REPO / "research/文字校正/老师的母本/母本_修缮后.csv",
+                                                           encoding="utf-8-sig"))}
+k = next(i for i, r in enumerate(recs) if i > 3 and r["text"] == clean[r["id"]] and r.get("keep") and not r.get("deleted")
+         and r["text"].count("which") == 1 and "威驰" not in r["text"])
+at = recs[k]["text"].index("which")
+good = recs[k]["text"]
+recs[k]["text"] = good[:at] + "威驰" + good[at + 5:]
+recs[k]["suspect"] = {"spans": [[at, at + 2]], "alt": good, "reasons": ["测试用的自动查错字建议（另一个引擎听到 which）"],
+                      "score": 0.7}
+print("威驰 →", recs[k]["id"])
 project.save_manifest(recs)
 project.export_csv(recs)
 print("ok", len(recs))
