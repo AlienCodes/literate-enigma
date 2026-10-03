@@ -1345,16 +1345,19 @@ def _suggest_cell(info: Dict[str, Any]) -> str:
     只有「可能有错」那一列有内容的行才有（调用的地方保证）。"""
     text = str(info.get("text") or "")
     if info.get("edits"):
-        what = _review.describe_edits(text, info["edits"], limit=2)
+        what = (_review.describe_states(info["rec"], text, info["to_alt"], limit=2) if info.get("to_alt")
+                else _review.describe_edits(text, info["edits"], limit=2))
         out = (f'<span class="vt-sug-btn vt-sug-blue" title="点一下：按建议改好">采用</span>'
                f'<span class="vt-sug-text">{_cell_esc(what)}</span>')
         if info.get("undo"):  # 一部分已经改好了（一键校正改的）、一部分还没采用：已经改好的也要能撤销
-            done = _review.describe_adopted(text, info["undo"], limit=2)
+            done = (_review.describe_states(info["rec"], info["to_base"], text, limit=2) if info.get("to_base")
+                    else _review.describe_adopted(text, info["undo"], limit=2))
             out += (f'<br><span class="vt-sug-btn vt-sug-red" title="这些已经改好了；点一下撤销">已采用</span>'
                     f'<span class="vt-sug-text">{_cell_esc(done)}</span>')
         return out
     if info.get("adopted"):
-        what = _review.describe_adopted(text, info.get("undo") or [], limit=2)
+        what = (_review.describe_states(info["rec"], info["to_base"], text, limit=2) if info.get("to_base")
+                else _review.describe_adopted(text, info.get("undo") or [], limit=2))
         return (f'<span class="vt-sug-btn vt-sug-red" title="建议已经生效；再点一下可以撤销">已采用</span>'
                 f'<span class="vt-sug-text">{_cell_esc(what)}</span>')
     if info.get("red"):

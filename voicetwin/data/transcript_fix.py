@@ -1092,10 +1092,33 @@ def _auto_edit_sure(cur: str, s: int, e: int, rep: str, lex: Any = None) -> bool
     old, new = cur[s:e].strip(), str(rep or "").strip()
     if not old or not new or lex is None:
         return False
+    from voicetwin.data.lexicon_fix import word_bounds
+
+    bounds = word_bounds(cur)  # 必须刚好是完整的词（「结构」里的「构」不算）
+    if bounds is None or s not in bounds or e not in bounds:
+        return False
     ot, nt = tokens(old), tokens(new)
     if not ot or not nt or {t.kind for t in ot} != {"han"} or {t.kind for t in nt} != {"lat"} or len(nt) > 2:
         return False
     return sounds_like_english([t.tone for t in ot], [t.key for t in nt]) and not lex.has_common_word(old)
+
+
+def _core_fix(cur: str, f: Any) -> Any:
+    """一处改法去掉前后没变的字（「关键代词 → 关系代词」只算「键 → 系」），免得把旁边别的标记也盖住。"""
+    a, b = cur[f.start:f.end], str(f.rep)
+    if not a or not b or a == b:
+        return f
+    p = 0
+    while p < len(a) and p < len(b) and a[p] == b[p]:
+        p += 1
+    q = 0
+    while q < len(a) - p and q < len(b) - p and a[len(a) - 1 - q] == b[len(b) - 1 - q]:
+        q += 1
+    if p == 0 and q == 0:
+        return f
+    from dataclasses import replace as _replace
+
+    return _replace(f, start=f.start + p, end=f.end - q, rep=b[p:len(b) - q])
 
 
 def _same_place(ed: Tuple[int, int, str], span: Sequence[int]) -> bool:
@@ -1119,7 +1142,7 @@ def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: O
     from voicetwin.data import review as _review
     from voicetwin.data.lexicon_fix import resolve
 
-    fixes = resolve(list(fixes))
+    fixes = [_core_fix(cur, f) for f in resolve(list(fixes))]  # 只算真正改到的字（前后没变的字不算）
     a_red: List[Tuple[int, int]] = []
     a_edits: List[Tuple[int, int, str]] = []
     a_reasons: List[str] = []
@@ -1137,7 +1160,8 @@ def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: O
     tokchars = _token_chars(cur)
     fixed_chars = {k for f in fixes for k in range(f.start, f.end)}
     red_keep = [sp for sp in a_red if not _is_confirmed(sp[0], sp[1], confirmed, tokchars)
-                and not all(k in fixed_chars for k in range(sp[0], sp[1]) if k in tokchars)]
+                and not all(k in fixed_chars for k in range(sp[0], sp[1]) if k in tokchars)
+                and not (changed and _touches_changed(sp[0], sp[1], changed))]  # 老师自己改的字不标红
     t_edits: List[Tuple[int, int, str]] = []
     direct: List[Tuple[int, int, str]] = []
     spans: List[List[int]] = []
@@ -1190,6 +1214,8 @@ def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: O
         # （看看、我们我们）两次比对的位置会差一个字，没把握的「补上 / 删掉」就混进来了（检查时发现的）
         sure_edits = [ed for ed in edits if not any(_same_place(ed, u) for u in unsure)]
         sus["sure_alt"] = _apply(cur, sure_edits) if sure_edits else cur
+    if direct:  # 直接改好以后的整句（采用 / 撤销时整句换，不用对位置）
+        sus["direct_alt"] = _apply(cur, direct)
     if ref_text and fixes:
         sus["ref"] = ref_text
     what = "fixed" if direct else ("found" if fixes else "kept_auto")
@@ -1293,6 +1319,19 @@ def _same_id_fixes(cur: str, mother: str, edited: bool) -> List[Any]:
     return out
 
 
+def _row_texts(project: Any) -> Set[str]:
+    """校对表里每一句现在的（含没保存的修改）、保存的、最初识别的文字。"""
+    from voicetwin.data import review as _review
+
+    draft = _review.load_draft(project)
+    out: Set[str] = set()
+    for r in project.load_manifest():
+        for x in (_review.current_values(r, draft.get(r.get("id")))["text"], r.get("text"), _review.original_text(r)):
+            if x:
+                out.add(_norm_line(str(x)))
+    return out
+
+
 def _text_edited(rec: Dict[str, Any]) -> bool:
     """这一句的文字老师已经改过、保存了（和最初识别的不一样）。"""
     orig = rec.get("orig_text")
@@ -1365,20 +1404,49 @@ def _protect(fixes: Sequence[Any], cur: str, changed: Tuple[Set[int], Set[int]],
     return out
 
 
-def _drop_rejected(rec: Dict[str, Any], sus: Dict[str, Any], rejected: Any) -> Dict[str, Any]:
+def _applied_in(base: str, cur: str, s: int, e: int, rep: str) -> bool:
+    """查错字时文字（base）的 [s, e) 换成 rep 这一处，现在的文字里是不是已经改成这样了。"""
+    from voicetwin.data import review as _review
+
+    blocks = _review._equal_blocks(base, cur)
+    js, je = _review.map_range(blocks, s, s), _review.map_range(blocks, e, e)
+    return js is not None and je is not None and js[0] <= je[0] and cur[js[0]:je[0]] == rep
+
+
+def _same_result(rec: Dict[str, Any], old: Dict[str, Any], new: Dict[str, Any], cur: str) -> bool:
+    """这次查出来的（new，按现在的文字算）和原来的标记（old）是不是一回事：现在的文字正好是原来记下的某个整句
+    （直接改好以后 / 有把握的改好以后 / 都改好以后），建议改成的整句一样、有把握的整句一样、标红的地方一样。
+    用整句比，不一处一处对位置（同样的字挨着时会配错）。"""
+    from voicetwin.data import review as _review
+
+    st = _review.known_states(dict(rec, suspect=old))
+    if not st or cur == st["base"] or cur not in (st["alt"], st.get("direct"), st.get("sure")):
+        return False
+    new_alt = str(new.get("alt") or "") or cur
+    new_sure = (str(new.get("sure_alt") or "") or new_alt) if "sure_alt" in new else new_alt
+    if new_alt != st["alt"] or new_sure != st.get("sure", st["alt"]):
+        return False
+    a = _review.analyze(dict(rec, suspect=new), cur)["red"]
+    b = _review.analyze(dict(rec, suspect=old), cur)["red"]
+    return a == b
+
+
+def _drop_rejected(rec: Dict[str, Any], sus: Dict[str, Any], rejected: Any, cur: Optional[str] = None) -> Dict[str, Any]:
     """留着的旧标记里，老师撤销过的建议（点了红色按钮、自己改回去、撤销这一行的修改）去掉：不再显示成「采用」，
-    那几个字也不再标红；别的（还能撤销的、还没采用的）照旧。"""
+    那几个字也不再标红；别的（还能撤销的、还没采用的）照旧。同样的改法有两处、只撤销了一处时，还改着的那一处留着。"""
     from voicetwin.data import review as _review
 
     if not rejected or not isinstance(sus, dict):
         return sus
     base = _review.suspect_base(dict(rec, suspect=sus))
     edits = _review.suggestion_edits(base, str(sus.get("alt") or ""))
-    bad = [ed for ed in edits if _review.is_rejected(rejected, base, *ed)]
+    bad = [ed for ed in edits if _review.is_rejected(rejected, base, *ed)
+           and not (cur is not None and _applied_in(base, cur, *ed))]
     if not bad:
         return sus
     keep = [ed for ed in edits if ed not in bad]
     out = dict(sus, alt=_review.apply_edits(base, keep) if keep else "")
+    out.pop("direct_alt", None)
     if "sure_alt" in sus:
         sure = [ed for ed in _review.suggestion_edits(base, str(sus.get("sure_alt") or base))
                 if not _review.is_rejected(rejected, base, *ed)]
@@ -1437,7 +1505,12 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
     builtin = list(builtin_mother()) if use_builtin else []
     row_table = dict(builtin_fixes()) if (use_builtin and use_row_fixes) else {}
     builtin_by_id = {rid: x for rid, x in builtin if rid}
-    lines = _clean_uploaded(list(lines or []), row_table, builtin_by_id, Lexicon.build([]) if lines else None)
+    # 老师上传的母本里和校对表某一句（现在的 / 保存的 / 最初识别的样子）一模一样的行：就是那一句自己（比如下载的
+    # 「改好的文字」），什么也证明不了，不用（不然没检查过的句子会「自己证明自己没错」，自动查错字的标红被去掉）
+    selves = _row_texts(project)
+    lines = [(rid, x) for rid, x in (lines or []) if _norm_line(x) not in selves]
+    lines = _clean_uploaded(lines, row_table, builtin_by_id, Lexicon.build([]) if lines else None)
+    lines = [(rid, x) for rid, x in lines if _norm_line(x) not in selves]
     all_lines = builtin + lines
     _report(progress, 0.02, "正在读母本和语法术语……")
     ref = Reference(all_lines, own_from=len(builtin)) if all_lines else None
@@ -1514,9 +1587,14 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
             if sus is None and old_undo:
                 # 这一行以前采用过的建议（按钮是红的，可以撤销）：没有新的问题也留着，不然撤销不了；
                 # 里面老师已经撤销（改回去）的建议去掉，不再显示成「采用」
-                sus, what = _drop_rejected(r, old, rejected.get(r["id"])), "kept_undo"
+                sus, what = _drop_rejected(r, old, rejected.get(r["id"]), cur), "kept_undo"
             elif sus is not None and old_undo and sus.get("src") == "transcript":
-                sus = _rebase(r, sus, cur, old_undo)
+                reb = _rebase(r, sus, cur, old_undo)
+                if reb is sus and _same_result(r, old, sus, cur):
+                    # 换算不过去，但这次查出来的和原来的标记是一回事（建议改成的整句一样、标红一样）：留着原来的
+                    # （再点一次一键校正、老师什么都没做，「已采用」的红色按钮不能没了）
+                    reb = _drop_rejected(r, old, rejected.get(r["id"]), cur)
+                sus = reb
             stats[what] += 1
             stats["aligned"] += int(res.aligned)
             if sus is not None and sus.get("src") == "transcript" and auto:
