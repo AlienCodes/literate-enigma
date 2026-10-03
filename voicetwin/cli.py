@@ -130,6 +130,12 @@ def build_parser() -> argparse.ArgumentParser:
         p.add_argument("-b", "--backend", choices=["gptsovits", "qwen3tts", "indextts", "dummy"],
                        help="合成引擎（默认看 config.yaml 的 backend）")
 
+    def mode_arg(p: argparse.ArgumentParser, helptext: str = "") -> None:
+        p.add_argument("--mode", choices=["identical", "standard"], default=None,
+                       help=helptext or ("训练方式（GPT-SoVITS）：identical = 「一模一样」（默认：练得更久、多存版本、"
+                                         "第 4 轮以后存下的每个版本都试一遍再挑）；standard = 标准（和以前一样的训练量，快很多）。"
+                                         "不写时看 config.yaml 的 backends.gptsovits.train.mode"))
+
     p = sub.add_parser("init-config", help="在当前目录生成可编辑的 config.yaml")
     p.add_argument("--gptsovits-root", help="GPT-SoVITS（或整合包）所在目录")
     p.add_argument("--workspace", help="数据存放目录（默认 ./workspace）")
@@ -167,10 +173,13 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--dpo", choices=["auto", "on", "off"], default="auto",
                    help="GPT-SoVITS 的 DPO（实验功能）：auto = 不开（默认；没有可靠证据说明它能让声音更像），on = 手动打开")
     p.add_argument("--no-select", action="store_true", help="训练后不自动挑选模型")
+    mode_arg(p)
 
     p = sub.add_parser("select", help="用验证集自动挑选最像你的模型，并校准语速")
     voice_arg(p)
     backend_arg(p)
+    mode_arg(p, "挑选方式：identical = 第 4 轮以后存下的每个版本都试（很慢）；standard = 从早到晚均匀挑几个（快很多）。"
+                "不写时按现在的模型是怎么练的（以前的版本练的算 standard）")
     p.add_argument("--items", type=int, default=None, help="用多少条验证句（默认自动）")
     p.add_argument("--asr", dest="asr", action="store_true", default=None, help="同时用识别模型检查错字")
     p.add_argument("--no-asr", dest="asr", action="store_false")
@@ -205,6 +214,7 @@ def build_parser() -> argparse.ArgumentParser:
     backend_arg(p)
     p.add_argument("-i", "--input", nargs="+", required=True, help="视频/音频文件或文件夹")
     p.add_argument("--skip-train", action="store_true", help="不训练，只用零样本克隆")
+    mode_arg(p)
 
     p = sub.add_parser("mux", help="把生成的讲解音频放进视频（替换原音轨）")
     p.add_argument("--video", required=True)
@@ -580,10 +590,18 @@ def main(argv: Optional[List[str]] = None) -> None:
         elif args.command == "train":
             opts = {"sovits_epochs": args.sovits_epochs, "gpt_epochs": args.gpt_epochs, "batch_size": args.batch_size,
                     "epochs": args.epochs, "if_dpo": {"on": True, "off": False}.get(str(args.dpo or "auto"))}
-            progress = _cli_progress("train", cfg, "训练模型", args.backend, select=not args.no_select)
-            info = wf.run_train(cfg, args.voice, args.backend, progress=progress, select=not args.no_select, **opts)
+            progress = _cli_progress("train", cfg, "训练模型", args.backend, select=not args.no_select, mode=args.mode)
+            info = wf.run_train(cfg, args.voice, args.backend, progress=progress, select=not args.no_select,
+                                mode=args.mode, **opts)
             _finish(progress)
-            print(f"训练完成（用时 {info.get('train_minutes')} 分钟）。默认模型：{(info.get('selected') or {}).get('id')}")
+            if (info.get("params") or {}).get("run_state") == "skip":  # 这次没训练：不能说「训练完成（用时 0.0 分钟）」
+                print(f"素材没变，这次不用重新训练（用的是上次训练好的模型）。默认模型：{(info.get('selected') or {}).get('id')}")
+            else:
+                print(f"训练完成（用时 {info.get('train_minutes')} 分钟）。默认模型：{(info.get('selected') or {}).get('id')}")
+            for line in list((info.get("params") or {}).get("report") or []) + [
+                    (info.get("selection") or {}).get("previous_note")]:
+                if line:
+                    print(f"  {line}")
             if info.get("selection_error"):
                 print(f"⚠️ 训练成功了，但自动挑选模型没有完成：{info['selection_error']}\n"
                       f"   可以稍后运行：voicetwin select -v {args.voice}")
@@ -592,7 +610,7 @@ def main(argv: Optional[List[str]] = None) -> None:
             if args.items is not None:
                 kw["items"] = args.items
             progress = _cli_progress("select", cfg, "挑选最佳模型", args.backend)
-            info = wf.run_select(cfg, args.voice, args.backend, progress=progress, **kw)
+            info = wf.run_select(cfg, args.voice, args.backend, progress=progress, mode=args.mode, **kw)
             _finish(progress)
             _print_json({"best": info["selection"]["best"], "speed": info["speed"]})
         elif args.command in ("say", "narrate"):
@@ -622,7 +640,7 @@ def main(argv: Optional[List[str]] = None) -> None:
                 print(f"ℹ️ {line}")
             progress = _cli_progress("", cfg, "全自动处理")
             result = wf.run_auto(cfg, args.voice, args.input, args.backend, skip_train=args.skip_train,
-                                 progress=progress)
+                                 progress=progress, mode=args.mode)
             _finish(progress)
             _print_summary(result["prepare"])
             print(f"\n✅ 全部完成！试听：{result['demo']}")

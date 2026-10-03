@@ -42,7 +42,7 @@ voicetwin = "voicetwin.cli:main"
 include = ["voicetwin*"]
 
 [tool.setuptools.package-data]
-voicetwin = ["backends/workers/*.py", "default_config.yaml", "eval/sv_cohort.npz", "data/lexicon/*"]
+voicetwin = ["backends/workers/*.py", "backends/gsv_scripts/*.py", "default_config.yaml", "eval/sv_cohort.npz", "data/lexicon/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
