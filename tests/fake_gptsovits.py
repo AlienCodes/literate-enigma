@@ -26,6 +26,15 @@
 - FAKE_GSV_HANG=1：s2 训练一直不结束（并开一个子进程），用来测试「停止」会结束整个进程树。
 - FAKE_GSV_API_DELAY=秒：推理服务启动前先等一会儿（模拟加载模型）。
 - 合成的文字里有「【测试显存不够】」时，api 和真的一样：记录里打印 Traceback，回 200 + 1 秒静音。
+- FAKE_GSV_MAX_BATCH=N：合成请求的 batch_size 大于 N 时，和真的显存不够一样：记录里打印「CUDA out of memory」的
+  Traceback，回 200 + 1 秒 16 kHz 的静音。
+- FAKE_GSV_SPEED_TRICK_BROKEN=1：语速不是 1.0 时声音长 5%（模拟「语速写成 1.0001」在某个版本上和 1.0 不一样）。
+- FAKE_GSV_INNER_ZERO=1：每一段声音中间都有 0.4 秒的数字静音（模拟同时生成的几个版本切不开）。
+
+一次请求同时生成好几个版本（文字里有换行，「一模一样」档）：和真的 pre_seg_text 一样按换行切开（不到 5 个字的段和后面的
+合在一起），每段一个不同音高的正弦波（150 + 10 × ((seed + 第几段) % 7) Hz，长短按这一段的字数、模型轮数和语速算），
+每段后面补 fragment_interval 秒的 0（TTS.py 的 audio_postprocess）。没有换行（一次一个）时和以前完全一样（150 Hz）。
+两个推理服务都把每次合成请求记下来（真实 api_v2 的在 _real_api_calls.jsonl，模拟版的在 _fake_api_calls.jsonl）。
 """
 
 import json
@@ -216,25 +225,81 @@ cfg = yaml.safe_load(open(args.c, encoding="utf8"))["custom"]
 state = {"gpt": cfg["t2s_weights_path"], "sovits": cfg["vits_weights_path"], "calls": 0}
 time.sleep(float(os.environ.get("FAKE_GSV_API_DELAY", "0") or 0))  # 真实的服务加载模型要几十秒
 
-def make_wav(text, speed, gpt_path):
-    sr = 32000
+def _epoch(gpt_path):
+    return int(gpt_path.rsplit("-e", 1)[-1].split(".")[0]) if "-e" in gpt_path else 1
+
+def _dur(text, speed, gpt_path):
     # 时长与文字长度成正比；不同 GPT 权重读得快慢不同（模拟不同 epoch 的差异）
-    epoch = int(gpt_path.rsplit("-e", 1)[-1].split(".")[0]) if "-e" in gpt_path else 1
-    dur = max(0.5, len(text) * (0.2 + 0.01 * epoch) / max(speed, 0.1))
-    n = int(dur * sr)
+    dur = max(0.5, len(text) * (0.2 + 0.01 * _epoch(gpt_path)) / max(speed, 0.1))
+    if speed != 1.0 and os.environ.get("FAKE_GSV_SPEED_TRICK_BROKEN"):
+        dur *= 1.05
+    return dur
+
+def _inner_zero(n, sr):
+    if not os.environ.get("FAKE_GSV_INNER_ZERO"):
+        return (0, 0)
+    return (n // 2, n // 2 + int(0.4 * sr))
+
+def _wav_bytes(frames, sr):
     buf = io.BytesIO()
     with wave.open(buf, "wb") as w:
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr)
-        pad = int(0.2 * sr)
-        frames = bytearray()
-        for i in range(n + 2 * pad):
-            v = 0.0
-            if pad <= i < n + pad:
-                t = i / sr
-                v = 0.3 * math.sin(2 * math.pi * 150 * t) * (0.6 + 0.4 * math.sin(2 * math.pi * 4 * t))
-            frames += struct.pack("<h", int(v * 32767))
         w.writeframes(bytes(frames))
     return buf.getvalue()
+
+def make_wav(text, speed, gpt_path):
+    sr = 32000
+    n = int(_dur(text, speed, gpt_path) * sr)
+    pad = int(0.2 * sr)
+    z0, z1 = _inner_zero(n, sr)
+    frames = bytearray()
+    for i in range(n + 2 * pad):
+        v = 0.0
+        if pad <= i < n + pad and not (z0 <= i - pad < z1):
+            t = i / sr
+            v = 0.3 * math.sin(2 * math.pi * 150 * t) * (0.6 + 0.4 * math.sin(2 * math.pi * 4 * t))
+        frames += struct.pack("<h", int(v * 32767))
+    return _wav_bytes(frames, sr)
+
+def split_rows(text):
+    """按换行切开：空行去掉，不到 5 个字的段和后面的合在一起（真实的 pre_seg_text + merge_short_text_in_array）。"""
+    parts = [t for t in text.strip("\\n").split("\\n") if t not in ("", " ")]
+    rows, cur = [], ""
+    for t in parts:
+        cur += t
+        if len(cur) >= 5:
+            rows.append(cur); cur = ""
+    if cur:
+        if rows: rows[-1] += cur
+        else: rows.append(cur)
+    return rows or [text]
+
+def make_rows(rows, speed, gpt_path, seed, interval):
+    """同时生成的几段：每段一个不同音高的正弦波，后面补 interval 秒的 0（开头不加空白，和 TTS.py 一样）。"""
+    sr = 32000
+    frames = bytearray()
+    for k, row in enumerate(rows):
+        n = int(_dur(row, speed, gpt_path) * sr)
+        f = 150 + 10 * ((seed + k) % 7)
+        z0, z1 = _inner_zero(n, sr)
+        for i in range(n):
+            v = 0.0
+            if not (z0 <= i < z1):
+                t = i / sr
+                v = 0.3 * math.sin(2 * math.pi * f * t) * (0.6 + 0.4 * math.sin(2 * math.pi * 4 * t))
+            frames += struct.pack("<h", int(v * 32767))
+        frames += b"\\x00\\x00" * int(sr * interval)
+    return _wav_bytes(frames, sr)
+
+def silent_oom(handler, detail):
+    # 真实的 TTS.run 出错时不报错（TTS.py @ abe9843 第 1516~1518 行）：打印 Traceback，回 200 + 1 秒 16 kHz 静音
+    print("Traceback (most recent call last):\\n"
+          '  File "GPT_SoVITS/TTS_infer_pack/TTS.py", line 1300, in run\\n'
+          "    pred_semantic_list, idx_list = self.t2s_model.model.infer_panel(\\n"
+          "torch.OutOfMemoryError: CUDA out of memory. " + detail, flush=True)
+    data = _wav_bytes(b"\\x00\\x00" * 16000, 16000)
+    handler.send_response(200); handler.send_header("Content-Type", "audio/wav")
+    handler.send_header("Content-Length", str(len(data))); handler.end_headers(); handler.wfile.write(data)
 
 class H(BaseHTTPRequestHandler):
     def log_message(self, *a): pass
@@ -274,19 +339,21 @@ class H(BaseHTTPRequestHandler):
         if not os.path.exists(req["ref_audio_path"]):
             return self._json(400, {"message": "ref missing"})
         assert req["text_split_method"] == "cut0"
+        with open("_fake_api_calls.jsonl", "a", encoding="utf-8") as fh:
+            fh.write(json.dumps({"kind": "run", "req": req}, ensure_ascii=False) + "\\n")
         if "【测试显存不够】" in req["text"]:
-            # 真实的 TTS.run 出错时不报错（TTS.py @ abe9843 第 1516~1518 行）：打印 Traceback，回 200 + 1 秒 16 kHz 静音
-            print("Traceback (most recent call last):\\n"
-                  '  File "GPT_SoVITS/TTS_infer_pack/TTS.py", line 1300, in run\\n'
-                  "    pred_semantic_list, idx_list = self.t2s_model.model.infer_panel(\\n"
-                  "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.00 GiB", flush=True)
-            buf = io.BytesIO()
-            with wave.open(buf, "wb") as w:
-                w.setnchannels(1); w.setsampwidth(2); w.setframerate(16000); w.writeframes(b"\\x00\\x00" * 16000)
-            data = buf.getvalue()
-            self.send_response(200); self.send_header("Content-Type", "audio/wav")
-            self.send_header("Content-Length", str(len(data))); self.end_headers(); self.wfile.write(data); return
-        data = make_wav(req["text"], float(req.get("speed_factor", 1.0)), state["gpt"])
+            return silent_oom(self, "Tried to allocate 1.00 GiB")
+        bs = int(req.get("batch_size", 1) or 1)
+        limit = os.environ.get("FAKE_GSV_MAX_BATCH")
+        if limit not in (None, "") and bs > int(limit):
+            return silent_oom(self, f"Tried to allocate 2.00 GiB (batch_size {bs})")
+        speed = float(req.get("speed_factor", 1.0))
+        if "\\n" in req["text"]:
+            seed = int(req.get("seed", -1) if req.get("seed") is not None else -1)
+            data = make_rows(split_rows(req["text"]), speed, state["gpt"], seed,
+                             float(req.get("fragment_interval", 0.3) or 0))
+        else:
+            data = make_wav(req["text"], speed, state["gpt"])
         self.send_response(200); self.send_header("Content-Type", "audio/wav")
         self.send_header("Content-Length", str(len(data))); self.end_headers(); self.wfile.write(data)
 
@@ -324,6 +391,25 @@ CALLS = os.path.join(os.getcwd(), "_real_api_calls.jsonl")
 def _record(kind, **data):
     with open(CALLS, "a", encoding="utf-8") as fh:
         fh.write(json.dumps(dict(kind=kind, **data), ensure_ascii=False) + "\\n")
+
+def _rows(text):
+    """同时生成好几个版本时按换行切开（真实的 pre_seg_text：空行去掉，不到 5 个字的段和后面的合在一起）；
+    没有换行就是整句一段（和以前一样）。"""
+    if "\\n" not in text:
+        return [text]
+    parts = [t for t in text.strip("\\n").split("\\n") if t not in ("", " ")]
+    rows, cur = [], ""
+    for t in parts:
+        cur += t
+        if len(cur) >= 5:
+            rows.append(cur)
+            cur = ""
+    if cur:
+        if rows:
+            rows[-1] += cur
+        else:
+            rows.append(cur)
+    return rows or [text]
 
 class TTS_Config:
     v1_languages = ["auto", "en", "zh", "ja", "all_zh", "all_ja"]
@@ -380,17 +466,32 @@ class TTS:
         try:
             if "【测试显存不够】" in text:
                 raise RuntimeError("CUDA out of memory. Tried to allocate 1.00 GiB")
+            bs = int(inputs.get("batch_size", 1) or 1)
+            limit = os.environ.get("FAKE_GSV_MAX_BATCH")
+            if limit not in (None, "") and bs > int(limit):  # 测试开关：同时生成太多个时显存不够
+                raise RuntimeError(f"CUDA out of memory. Tried to allocate 2.00 GiB (batch_size {bs})")
             sr = 32000
             import re
             m = re.search(r"-e(\\d+)\\.ckpt$", self.t2s)
             epoch = int(m.group(1)) if m else 1
             speed = float(inputs.get("speed_factor", 1.0) or 1.0)
-            dur = max(0.5, len(text) * (0.2 + 0.01 * epoch) / max(speed, 0.1))
-            t = np.arange(int(dur * sr)) / sr
-            wav = 0.3 * np.sin(2 * np.pi * 150 * t) * (0.6 + 0.4 * np.sin(2 * np.pi * 4 * t))
-            # TTS.py 的 audio_postprocess：开头不加空白，后面补 fragment_interval 秒的 0，最后转成 int16
+            seed = int(inputs.get("seed", -1) if inputs.get("seed") is not None else -1)
+            rows = _rows(text)
+            # TTS.py 的 audio_postprocess：开头不加空白，每段后面补 fragment_interval 秒的 0，最后转成 int16
             tail = np.zeros(int(sr * float(inputs.get("fragment_interval", 0.3) or 0)))
-            audio = np.concatenate([wav, tail])
+            parts = []
+            for k, row in enumerate(rows):
+                dur = max(0.5, len(row) * (0.2 + 0.01 * epoch) / max(speed, 0.1))
+                if speed != 1.0 and os.environ.get("FAKE_GSV_SPEED_TRICK_BROKEN"):
+                    dur *= 1.05
+                t = np.arange(int(dur * sr)) / sr
+                f = 150.0 if len(rows) == 1 else 150.0 + 10 * ((seed + k) % 7)  # 一次一个时和以前一样
+                wav = 0.3 * np.sin(2 * np.pi * f * t) * (0.6 + 0.4 * np.sin(2 * np.pi * 4 * t))
+                if os.environ.get("FAKE_GSV_INNER_ZERO"):
+                    mid = len(wav) // 2
+                    wav[mid:mid + int(0.4 * sr)] = 0
+                parts += [wav, tail]
+            audio = np.concatenate(parts)
             yield sr, (audio * 32768).clip(-32768, 32767).astype(np.int16)
         except Exception as e:  # TTS.py 第 1516~1518 行：不报错，打印 Traceback，回 1 秒 16 kHz 的静音
             import traceback

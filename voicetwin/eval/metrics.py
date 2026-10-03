@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+import gc
 import importlib.util
 import math
 import os
 import re
+import sys
 import threading
 import unicodedata
 from dataclasses import asdict, dataclass, field
@@ -134,6 +136,10 @@ class CERChecker:
         self._para_failed = False
         self.available = True
         self._lock = threading.Lock()
+        #: 识别时拿着它：release_gpu 不会在识别到一半时把模型卸掉
+        self._use_lock = threading.Lock()
+        #: release_gpu 以后为 True：以后再加载都在处理器上（Whisper 用 int8）
+        self._gpu_released = False
 
     # ------------------------------------------------------------------ 选模型
     def whisper_model(self) -> str:
@@ -169,7 +175,10 @@ class CERChecker:
                 from voicetwin.data.asr import Transcriber
 
                 name = self.whisper_model()
-                compute = "int8_float16" if name.startswith("large") else "auto"
+                if self._gpu_released:  # 为了给合成引擎腾显存，改到处理器上
+                    compute = "int8"
+                else:
+                    compute = "int8_float16" if name.startswith("large") else "auto"
                 model = Transcriber({"engine": "faster-whisper", "model": name, "device": self.device,
                                      "compute_type": compute, "beam_size": 1,
                                      "initial_prompt_zh": "以下是普通话的句子，使用简体中文和标点符号。"})
@@ -221,6 +230,31 @@ class CERChecker:
                 self._para = None
                 return False
 
+    def release_gpu(self) -> bool:
+        """显存不够时给合成引擎让出显卡：卸掉已经加载的识别校验模型（Whisper、Paraformer），以后要用时在处理器上
+        重新加载（Whisper 用 int8；会慢一点），再清空 PyTorch 的显存缓存。返回有没有卸掉模型。
+
+        faster-whisper 的模型不能直接搬到处理器上，所以是卸掉、要用时重新加载。正在识别的那一句先做完再卸。
+        永远不抛异常（没装 torch 也行）。"""
+        released = False
+        try:
+            with self._use_lock:
+                with self._lock:
+                    released = self._model is not None or self._para is not None
+                    self._model = None
+                    self._para = None
+                    self._gpu_released = True
+                    self.device = "cpu"
+            gc.collect()
+            torch = sys.modules.get("torch")  # 这个程序里没用过 torch，就没有它的显存缓存要清
+            if torch is not None and torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        except Exception as exc:
+            log.debug(f"让出显存时出错：{exc}")
+        if released:
+            log.info("为了给合成引擎腾出显存，识别校验模型改到处理器上运行（会慢一点）")
+        return released
+
     # ------------------------------------------------------------------ 识别
     def _paraformer_text(self, wav16: np.ndarray) -> str:
         from voicetwin.utils.textutil import clean_transcript, to_simplified
@@ -231,6 +265,10 @@ class CERChecker:
 
     def check(self, wav: np.ndarray, sr: int, text: str, lang: str) -> Optional[Dict[str, Any]]:
         wav16 = resample(wav, sr, 16000)
+        with self._use_lock:
+            return self._check16(wav16, text, lang)
+
+    def _check16(self, wav16: np.ndarray, text: str, lang: str) -> Optional[Dict[str, Any]]:
         hyp: Optional[str] = None
         engine = ""
         if self.wants_paraformer(lang, text) and self._load_paraformer():

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import dataclasses
+import itertools
 import math
 import os
 import re
@@ -10,6 +12,7 @@ import subprocess
 import sys
 import threading
 import time
+import uuid
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
@@ -45,6 +48,24 @@ CANCEL_POLL_SECONDS = 1.0
 LOG_EVERY_SECONDS = 15.0
 #: 失败时报错里带多少行日志尾巴
 TAIL_LINES = 30
+#: 一次要好几个版本、一个一个生成时，第 k 个用的随机种子是 seed + k × SEED_STEP
+#: （和生成引擎里每个候选之间相差的数一样；一个大质数，和每句之间相差的 7919 错开，不会撞上别的句子的种子）
+SEED_STEP = 104729
+#: synthesize_many 写的文件名 = 这次运行程序随机取的一串字 + 这次运行里的流水号。
+#: 流水号每次运行都从 1 数起，只靠它的话，下次运行写进同一个文件夹会覆盖上次的文件，所以前面加上这串字
+_MANY_RUN = uuid.uuid4().hex[:8]
+_MANY_IDS = itertools.count(1)
+
+
+def many_prefix(out_dir: Path) -> str:
+    """synthesize_many 这一次调用写的文件名开头（后面接 _r0.wav、_b4_r0.wav……）。
+
+    同一个文件夹里多次调用、哪怕是不同次运行程序写进去的，也不会重名、互相覆盖：
+    万一文件夹里已经有这个开头的文件（几乎不会发生），就换下一个流水号。"""
+    while True:
+        prefix = f"many{_MANY_RUN}-{next(_MANY_IDS)}"
+        if not any(Path(out_dir).glob(prefix + "_*")):
+            return prefix
 
 
 @dataclass
@@ -148,6 +169,11 @@ class Backend:
     supports_training = False
     supports_speed = False           # 引擎本身能否调语速（不能的话由 ffmpeg atempo 变速不变调后处理）
     supports_aux_refs = False
+    #: 一次请求能不能同时生成同一句话的好几个版本（synthesize_many 真的「同时」生成，而不是一个一个来）
+    supports_batch = False
+    #: 显存不够、一次只生成一个也不够时，先调用它让出显存（由生成引擎登记，例如把识别校验模型从显卡上拿下来），
+    #: 再试一次；它返回真值表示真的让出了显存（CERChecker.release_gpu 卸掉了模型时返回 True）；None 表示没有登记
+    release_gpu_callback: Optional[Callable[[], Any]] = None
     #: 训练的各个步骤（在这个引擎自己的 0~1 进度里的起点, 中文步骤名），从小到大
     train_stages: List[Stage] = [(0.0, "训练模型")]
 
@@ -179,6 +205,22 @@ class Backend:
     # ------------------------------------------------------------------ 合成
     def synthesize(self, req: SynthRequest, out_path: Path) -> Path:
         raise NotImplementedError
+
+    def synthesize_many(self, req: SynthRequest, n: int, out_dir: Path) -> List[Tuple[Path, int]]:
+        """同一句话要 n 个版本，写进 out_dir，返回 [(文件, 第几个)]，第几个从 0 数起。
+
+        这里是通用的做法：一个一个生成，第 k 个用随机种子 seed + k × SEED_STEP。
+        能在一次请求里同时生成好几个的引擎（supports_batch）自己实现；那时返回的个数可能比 n 少
+        （比如显存不够、自动减少了同时生成的数量），调用的地方按实际拿到的个数算。"""
+        out_dir = Path(out_dir)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        prefix = many_prefix(out_dir)
+        out: List[Tuple[Path, int]] = []
+        for k in range(max(1, int(n))):
+            check_cancel()
+            one = dataclasses.replace(req, seed=int(req.seed) + k * SEED_STEP)
+            out.append((Path(self.synthesize(one, out_dir / f"{prefix}_r{k}.wav")), k))
+        return out
 
     def model_id(self) -> str:
         """当前使用的模型标识（参与缓存键，换模型后缓存自动失效）。"""
