@@ -279,7 +279,7 @@ def apply_text_edit(rec: Dict[str, Any], text: str) -> None:
     from voicetwin.utils.textutil import detect_lang, syllable_count
 
     old = str(rec.get("text", "") or "")
-    if old and text != old:
+    if text != old:  # 最初没有识别出文字（old 是空的）也记下：老师自己打的字要认得出来（标蓝、一键校正不动）
         rec.setdefault("orig_text", old)
     rec["text"] = text
     rec["lang"] = detect_lang(text)

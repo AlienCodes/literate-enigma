@@ -182,16 +182,50 @@ def _clip_stats(project: Project, rec: Dict[str, Any]) -> None:
 
 
 def _embedding_cache(project: Project, encoder_name: str) -> Dict[str, np.ndarray]:
+    """声纹缓存（只是为了快）：读不了（写到一半断电、硬盘满了留下的半个文件）就当没有，重新算，不能让保存 / 确认一直失败。"""
     path = project.cache_dir / f"emb_{encoder_name}.npz"
-    if path.exists():
+    if not path.exists():
+        return {}
+    try:
         with np.load(path) as data:
             return {k: data[k] for k in data.files}
-    return {}
+    except Exception as exc:  # noqa: BLE001 - BadZipFile / ValueError / OSError / EOFError 都一样处理
+        log.warning(f"声纹缓存读不了（{exc}），重新计算")
+        return {}
 
 
 def _save_embedding_cache(project: Project, encoder_name: str, cache: Dict[str, np.ndarray]) -> None:
+    """先写临时文件再换上去：硬盘满了 / 两个保存同时写，也不会留下半个文件。"""
+    from voicetwin.utils import atomic
+
     project.cache_dir.mkdir(parents=True, exist_ok=True)
-    np.savez(project.cache_dir / f"emb_{encoder_name}.npz", **cache)
+    path = project.cache_dir / f"emb_{encoder_name}.npz"
+    tmp = atomic.tmp_for(path).with_suffix(".npz")
+    try:
+        np.savez(tmp, **cache)
+    except BaseException:
+        try:
+            tmp.unlink()
+        except OSError:
+            pass
+        raise
+    atomic.finish(tmp, path)
+
+
+def _save_npy(path: Path, arr: np.ndarray) -> None:
+    """先写临时文件再换上去（同上）。"""
+    from voicetwin.utils import atomic
+
+    tmp = atomic.tmp_for(path).with_suffix(".npy")
+    try:
+        np.save(tmp, arr)
+    except BaseException:
+        try:
+            tmp.unlink()
+        except OSError:
+            pass
+        raise
+    atomic.finish(tmp, path)
 
 
 def apply_filters(project: Project, records: List[Dict[str, Any]], pcfg: Dict[str, Any], cfg: Dict[str, Any],
@@ -279,7 +313,7 @@ def apply_filters(project: Project, records: List[Dict[str, Any]], pcfg: Dict[st
                     r["speaker_sim"] = round(cosine(cache[r["id"]], cen), 4)
                     if encoder.reliable and r["speaker_sim"] < thr:
                         r["drop_reason"] = "声音不像本人（可能是别人说话）"
-                np.save(project.root / f"speaker_centroid.{encoder.name}.npy", cen)
+                _save_npy(project.root / f"speaker_centroid.{encoder.name}.npy", cen)
 
     for r in records:
         if r.get("deleted"):  # 老师在校对表里删除的：一直不用（可以在校对表下面恢复）
@@ -450,7 +484,7 @@ def prepare(project: Project, inputs: Iterable[str], cfg: Dict[str, Any], progre
     assign_splits(recs, int(pcfg.get("validation_count", 20)))
     project.save_manifest(recs)
     _progress(progress, 0.90, "挑选最具代表性的参考音频……")
-    refs = select_references(project, recs, pcfg)
+    refs = select_references(project, recs, pcfg, cleanup=True)  # 准备素材时不会有生成在跑：旧的参考音频可以删
     project.export_csv(recs)
     summary = summarize(project, recs, refs)
     summary["elapsed_min"] = round((time.time() - t0) / 60.0, 1)

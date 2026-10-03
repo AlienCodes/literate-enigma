@@ -419,7 +419,9 @@ REVIEW_JS_TEMPLATE = r"""() => {
     payload.seq = seq + '-' + Date.now();
     box.value = JSON.stringify(payload);
     box.dispatchEvent(new Event('input', {bubbles: true}));
-    setTimeout(() => btn.click(), 60);
+    // 马上（等网页把输入框的值收好就点，0 毫秒）：老师改完字紧接着点「保存修改 / 确认训练素材」时，改的字先送到，
+    // 后台按顺序一个一个处理（以前等 60 毫秒，快一点的点击会让保存先到、改的字没保存上）
+    setTimeout(() => btn.click(), 0);
   }
 
   // ------------------------------------------------------------------ 编辑框
@@ -594,6 +596,10 @@ REVIEW_JS_TEMPLATE = r"""() => {
   }
 
   // ------------------------------------------------------------------ 事件（挂在 document 上：表格重画以后照样有效）
+  // 编辑框开着时，按到编辑框外面的任何地方（例如「保存修改」按钮）：先把改的字交上去（按下去的那一刻，比按钮的点击早）
+  document.addEventListener('pointerdown', (ev) => {
+    if (editor && !editor.box.contains(ev.target)) closeEditor(!!editor.ta.value.trim());
+  }, true);
   document.addEventListener('dblclick', (ev) => {
     const td = ev.target && ev.target.closest ? ev.target.closest('#vt-clips td') : null;
     if (!td) return;
@@ -2637,11 +2643,13 @@ class WebUI:
     def refresh_gpu(self) -> str:
         return _gpu_badge(_gpu_status(refresh=True))
 
-    def after_task(self) -> Tuple[Any, ...]:
-        """每个长任务结束后：刷新显卡状态、声音库；页面顶部只在还有任务在做时显示提示。"""
+    def after_task(self, voice: Any = None) -> Tuple[Any, ...]:
+        """每个长任务结束后：刷新显卡状态、声音库、页面顶部「当前声音状态」（刷新网页后接上看进度的任务做完时，
+        状态不会一直停在「正在…」）；页面顶部只在还有任务在做时显示提示。"""
         info = current_task()
         banner = task_banner_md() if info and info.get("running") else ""
-        return (_gpu_badge(_gpu_status(refresh=True)), _upd(value=banner, visible=bool(banner))) + self.library()
+        return ((_gpu_badge(_gpu_status(refresh=True)), _upd(value=banner, visible=bool(banner))) + self.library()
+                + (_voice_status_md(self.cfg, voice),))
 
     # ------------------------------------------------------------------ 停止按钮
     @staticmethod
@@ -3179,7 +3187,12 @@ class WebUI:
         if not v:
             return text
         if self._textfix_used(v):
-            text = TEXTFIX_LOCKED_INFO + "\n\n" + text
+            try:
+                ever = wf.textfix_ever_used(self.cfg, v)
+            except Exception:  # noqa: BLE001
+                ever = True
+            if ever:  # 用过了：说明为什么是灰色的；没用过、只是还没有能处理的句子（还没识别出文字）时不这么说
+                text = TEXTFIX_LOCKED_INFO + "\n\n" + text
         try:
             up = wf.transcript_info(self.cfg, v)
         except Exception as exc:  # noqa: BLE001
@@ -4254,7 +4267,7 @@ class WebUI:
                     log_box("doc_log", 10)
 
             # ======================================================== 事件
-            after_outs = [c["gpu_badge"], c["task_banner"]] + outs(self.LIB_OUT)
+            after_outs = [c["gpu_badge"], c["task_banner"]] + outs(self.LIB_OUT) + [c["voice_status"]]
             voice_outs = outs(self.VOICE_OUT)
 
             def gen_warn(voice: Any, backend: Any) -> str:
@@ -4296,7 +4309,7 @@ class WebUI:
             c["prep_btn"].click(_settled(self.do_prepare), prep_in, outs(self.PREP_OUT), **heavy).then(
                 _safe("载入片段", 3, 0)(self.after_prepare_clips), [c["voice"], c["only_sus"], c["clips"], c["clips_base"]],
                 clip_outs + [c["clips_base"]], **quick).then(
-                self.after_task, None, after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick).then(
+                self.after_task, c["voice"], after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick).then(
                 self.textfix_btn, c["voice"], c["tr_btn"], **quick).then(  # 加了新素材：一键全部文字校正又能用一次
                 self.textfix_info, c["voice"], c["tr_info"], **quick)
             c["prep_next"].click(lambda: gr.Tabs(selected="train"), None, tabs, **quick)
@@ -4315,12 +4328,16 @@ class WebUI:
             c["clips"].select(clip_pick, [c["voice"], c["clips"]], [c["clip_audio"], c["clip_diff"], c["sel_clip"]],
                               **quick)
             review_outs = [c["clip_msg"], c["clips_count"], c["clips"]]
+            # 表格里的操作、保存修改、确认训练素材一个接一个处理（不同时改校对表）；表格里连着点的每一下都排队处理，
+            # 不会因为上一下还没做完就被丢掉（gradio 默认 trigger_mode="once" 会丢：删除一行要 3 秒，这时改的字会不见）
+            rq = dict(quick, concurrency_id="vt-review")
             c["clip_action_btn"].click(_safe("校对表", len(review_outs), 0)(self.do_clip_action),
-                                       [c["voice"], c["clip_action"], c["only_sus"]], review_outs, **quick)
+                                       [c["voice"], c["clip_action"], c["only_sus"]], review_outs,
+                                       trigger_mode="multiple", **rq)
             save_clips.click(_safe("保存修改", 3, 0)(self.do_save), [c["voice"], c["clips"], c["only_sus"]],
-                             [c["review_md"], c["clips_count"], c["clips"]], **quick)
+                             [c["review_md"], c["clips_count"], c["clips"]], **rq)
             c["confirm_btn"].click(_safe("确认训练素材", 3, 0)(self.do_confirm), [c["voice"], c["only_sus"]],
-                                   [c["review_md"], c["clips_count"], c["clips"]], **quick)
+                                   [c["review_md"], c["clips_count"], c["clips"]], **rq)
             find_outs = outs(self.FIND_OUT)
             # 查找的按钮一个接一个处理（不会同时改查找的记录）；上一处 / 下一处连点几下就走几处（像 Word）
             fq = dict(quick, concurrency_id="vt-find")
@@ -4340,11 +4357,13 @@ class WebUI:
             c["proof_btn"].click(_settled(self.do_proofcheck), [c["voice"], c["only_sus"]], outs(self.PROOF_OUT),
                                  **heavy).then(
                 _safe("载入片段", 2, 0)(self.refresh_clips), [c["voice"], c["only_sus"], c["clips"]], clip_outs, **quick).then(
-                self.after_task, None, after_outs, **quick)
+                self.after_task, c["voice"], after_outs, **quick)
             c["tr_btn"].click(_settled(self.do_textfix), [c["voice"], c["tr_files"], c["only_sus"]],
                               outs(self.TEXTFIX_OUT), **heavy).then(
+                self.textfix_btn, c["voice"], c["tr_btn"], **quick).then(  # 期间换了声音：按现在选的声音显示
+                self.textfix_info, c["voice"], c["tr_info"], **quick).then(
                 _safe("载入片段", 2, 0)(self.refresh_clips), [c["voice"], c["only_sus"], c["clips"]], clip_outs, **quick).then(
-                self.after_task, None, after_outs, **quick)
+                self.after_task, c["voice"], after_outs, **quick)
             # 下载：先在电脑上存好 txt，再让浏览器自动点一下下载链接（没自动下载时老师可以自己点文件名）
             c["dl_txt_btn"].click(_safe("下载改好的文字", 2, 0)(self.do_download_text), c["voice"],
                                   outs(self.DLTXT_OUT), **quick).then(None, None, None, js=AUTO_DOWNLOAD_JS, **quick)
@@ -4357,11 +4376,11 @@ class WebUI:
             # ②
             train_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["q_ep"], c["bs"], c["dpo"]]
             c["train_btn"].click(_settled(self.do_train), train_in, outs(self.TRAIN_OUT), **heavy).then(
-                self.after_task, None, after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick).then(
+                self.after_task, c["voice"], after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick).then(
                 self.model_header, c["voice"], c["header"], **quick)
             c["select_btn"].click(_settled(self.do_select), [c["voice"], c["t_backend"]], outs(self.TRAIN_OUT),
                                   **heavy).then(
-                self.after_task, None, after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick).then(
+                self.after_task, c["voice"], after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick).then(
                 self.model_header, c["voice"], c["header"], **quick)
             c["train_next"].click(lambda: gr.Tabs(selected="gen"), None, tabs, **quick)
             # 打开「② 训练模型」页、换引擎、改高级设置时，重新预览这次会怎么训练（只读文件和 nvidia-smi，很快）
@@ -4387,7 +4406,7 @@ class WebUI:
             gen_in = [c["voice"], c["script"], c["script_file"], c["s_backend"], c["quality"], c["speed"], c["ref"], c["redo"],
                       c["out_name"], c["out_fmt"]]
             c["gen_btn"].click(_settled(self.do_generate), gen_in, outs(self.GEN_OUT), **heavy).then(
-                self.after_task, None, after_outs, **quick)
+                self.after_task, c["voice"], after_outs, **quick)
             c["speed_try"].click(_settled(self.do_speed_preview), [c["voice"], c["script"], c["speed"], c["s_backend"]],
                                  outs(self.SPEED_OUT), **heavy)
             c["var_choice"].input(_safe("切换版本", 3, 2)(self.on_choose_variant), [c["voice"], c["gen_state"], c["var_choice"]],
@@ -4417,10 +4436,10 @@ class WebUI:
 
             # ⑤
             c["vf_btn"].click(_settled(self.do_verify), [c["voice"], c["vf_orig"], c["vf_gen"], c["gen_state"]],
-                              outs(self.VERIFY_OUT), **heavy).then(self.after_task, None, after_outs, **quick)
+                              outs(self.VERIFY_OUT), **heavy).then(self.after_task, c["voice"], after_outs, **quick)
             c["bt_btn"].click(_settled(self.do_blind), [c["voice"], c["bt_n"], c["quality"]], outs(self.BLIND_OUT),
                               **heavy).then(
-                self.after_task, None, after_outs, **quick).then(self.blind_tests, c["voice"], c["bt_old"], **quick)
+                self.after_task, c["voice"], after_outs, **quick).then(self.blind_tests, c["voice"], c["bt_old"], **quick)
             c["bt_submit"].click(_safe("提交答案", len(self.BLIND_SUBMIT_OUT), 0)(self.on_blind_submit),
                                  [c["bt_state"]] + [c[f"bt_pick_{i}"] for i in range(MAX_BLIND)],
                                  outs(self.BLIND_SUBMIT_OUT), **quick)
@@ -4436,7 +4455,7 @@ class WebUI:
             env_tab.select(_safe("环境检查", 5, 0)(lambda: self.run_doctor(False)), None, doc_outs)
             doc_btn.click(_safe("环境检查", 5, 0)(lambda: self.run_doctor(True)), None, doc_outs)
             c["dl_btn"].click(_settled(self.do_download), None, outs(self.DL_OUT), **heavy).then(
-                self.after_task, None, after_outs, **quick)
+                self.after_task, c["voice"], after_outs, **quick)
         return app
 
 

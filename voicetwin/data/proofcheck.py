@@ -1598,6 +1598,37 @@ def _is_srt_text(rec: Dict[str, Any]) -> bool:
     return rec.get("seg_mode") == "srt" and not rec.get("asr_done")
 
 
+def _protect_changed(rec: Dict[str, Any], text: str, sus: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+    """自动查错字的结果里，碰到已经改过的字（和最初识别的不一样：老师自己改的、一键校正改好的）的标红和建议去掉：
+    另一个识别引擎还是听成原来的错字时，不能把改好的字标红、更不能建议改回去（检查时发现「系 → 键」「句呀 → 剧」）。"""
+    if not sus:
+        return sus
+    try:
+        from voicetwin.data import review as _review
+        from voicetwin.data.transcript_fix import _changed_chars, _touches_changed
+
+        changed = _changed_chars(rec, text)
+        if not changed[0] and not changed[1]:
+            return sus
+        spans = []
+        for sp in sus.get("spans") or []:
+            try:
+                a, b = int(sp[0]), int(sp[1])
+            except (TypeError, ValueError, IndexError):
+                continue
+            if not _touches_changed(a, b, changed):
+                spans.append([a, b])
+        edits = [ed for ed in _review.suggestion_edits(text, str(sus.get("alt") or ""))
+                 if not _touches_changed(ed[0], ed[1], changed)]
+        alt = _review.apply_edits(text, edits) if edits else ""
+        if not spans and not edits:
+            return None
+        return dict(sus, spans=spans, alt=alt if alt and alt != text else "")
+    except Exception as exc:  # noqa: BLE001 - 保护失败也不能让查错字失败：原样返回
+        log.warning(f"⚠️ 查错字：去掉改过的字上的标红时出错（{_why(exc)}）", exc_info=exc)
+        return sus
+
+
 def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None, only_kept: bool = True,
                   limit: Optional[int] = None) -> Dict[str, Any]:
     """逐段查找可能的错字，结果写进 manifest（record["suspect"]），返回
@@ -1673,10 +1704,12 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
                     except Exception:  # noqa: BLE001
                         sus = None
                 used[eng] = used.get(eng, 0) + 1
+            sus = _protect_changed(rec, text, sus)  # 改过的字（老师改的、一键校正改好的）不标红、不建议改回去
             old = rec.get("suspect") if isinstance(rec.get("suspect"), dict) else None
-            if (old and entry and _review is not None and _review.is_dirty(rec, entry)
-                    and _review.analyze(rec, shown)["undo"]):
-                # 这一行有没保存、还能撤销的修改（一键校正改好的、点过「采用」的）：表格上的标记留着（不然撤销不了），
+            if (old and _review is not None and _review.analyze(rec, shown)["undo"]
+                    and ((entry and _review.is_dirty(rec, entry)) or old.get("src") == "transcript")):
+                # 这一行有还能撤销的修改（一键校正改好的——保存了也算、点过「采用」还没保存的）：表格上的标记留着
+                # （不然「已采用」的按钮没了、撤销不了；加了新素材以后准备素材会自动查一遍，以前改好的行不能被冲掉）；），
                 # 这次查的结果存起来，下次点「📝 一键全部文字校正」时用
                 if old.get("src") == "transcript":
                     if sus:

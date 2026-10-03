@@ -458,6 +458,18 @@ def run_prepare(cfg: Config, voice: str, inputs: Iterable[str], progress: Option
     return summary
 
 
+#: apply_review 重新统计时算出来、写进校对表的东西（别的字段都是老师 / 别的功能改的，合并时不碰）
+REVIEW_DERIVED = ("voiced", "pauses", "syllables", "rate", "snr", "clip_ratio", "_stats_text", "drop_reason",
+                  "speaker_sim", "keep", "split")
+#: 会影响上面这些的东西：期间变了就要重新算
+REVIEW_INPUTS = ("id", "text", "lang", "deleted", "manual_keep", "duration", "path", "asr", "forced_cuts", "source",
+                 "start")
+
+
+def _same_review_inputs(a: List[Dict[str, Any]], b: List[Dict[str, Any]]) -> bool:
+    return len(a) == len(b) and all(all(x.get(k) == y.get(k) for k in REVIEW_INPUTS) for x, y in zip(a, b))
+
+
 def apply_review(cfg: Config, voice: str, read_csv: bool = True) -> Dict[str, Any]:
     """读回你在 transcripts.csv 里的修改，重新统计、过滤、挑参考音频。
 
@@ -467,17 +479,40 @@ def apply_review(cfg: Config, voice: str, read_csv: bool = True) -> Dict[str, An
     from voicetwin.data.references import select_references
     from voicetwin.style.profile import build_profile
 
+    import copy
+
+    from voicetwin.data import review as _review
+
     project = open_project(cfg, voice, must_exist=True)
     changed = project.import_csv() if read_csv else {"text": 0, "keep": 0, "lang": 0}
-    records = project.load_manifest()
-    for r in records:
-        if r.get("_stats_text") != r.get("text"):
-            _clip_stats(project, r)
-            r["_stats_text"] = r.get("text")
     pcfg = cfg.get("prepare", {})
-    apply_filters(project, records, pcfg, cfg)
-    assign_splits(records, int(pcfg.get("validation_count", 20)))
-    project.save_manifest(records)
+
+    def derive(records: List[Dict[str, Any]]) -> None:
+        for r in records:
+            if r.get("_stats_text") != r.get("text"):
+                _clip_stats(project, r)
+                r["_stats_text"] = r.get("text")
+        apply_filters(project, records, pcfg, cfg)
+        assign_splits(records, int(pcfg.get("validation_count", 20)))
+
+    # 慢的部分（读音频、算声纹）不占着校对表的锁，算在一份拷贝上；写回时拿着锁重新读一遍，只把这次算出来的
+    # 东西合进去——期间老师保存的另一行、删除、「这句没错」、一键校正都留着（以前整个写回旧的那份，会把它们冲掉）
+    before = project.load_manifest()
+    snapshot = copy.deepcopy(before)
+    derive(snapshot)
+    with _review._LOCK:
+        fresh = project.load_manifest()
+        if _same_review_inputs(before, fresh):
+            for r, b, d in zip(fresh, before, snapshot):
+                for k in REVIEW_DERIVED:
+                    if k in d:
+                        r[k] = d[k]
+                    elif k in b:
+                        r.pop(k, None)
+        else:
+            derive(fresh)  # 期间改了会影响统计的东西（文字、删除、要不要用）：拿着锁重新算一遍（很少见）
+        records = fresh
+        project.save_manifest(records)
     refs = select_references(project, records, pcfg)
     csv_locked = False
     try:
@@ -525,13 +560,14 @@ def review_confirm(cfg: Config, voice: str) -> Dict[str, Any]:
     project = open_project(cfg, voice, must_exist=True)
     saved = review.save_rows(project)
     summary = apply_review(cfg, voice, read_csv=False)
-    records = project.load_manifest()
-    counts = review.material_counts(records)
-    out = {"saved": saved["saved"], "changed": saved["changed"], "summary": summary, "counts": counts,
-           "csv_locked": bool(saved.get("csv_locked") or summary.get("csv_locked")), "confirmed": False}
-    if counts["material"] > 0:
-        out["confirmed"] = True
-        out["time"] = review.save_confirmed(project, records)["time"]
+    with review._LOCK:  # 记下的「确认了哪些句子」和这一刻的校对表一致（期间别的按钮改了也不会错开）
+        records = project.load_manifest()
+        counts = review.material_counts(records)
+        out = {"saved": saved["saved"], "changed": saved["changed"], "summary": summary, "counts": counts,
+               "csv_locked": bool(saved.get("csv_locked") or summary.get("csv_locked")), "confirmed": False}
+        if counts["material"] > 0:
+            out["confirmed"] = True
+            out["time"] = review.save_confirmed(project, records)["time"]
     return out
 
 
@@ -591,10 +627,14 @@ def run_transcript_fix(cfg: Config, voice: str, files: Optional[Sequence[Any]] =
 
     project = open_project(cfg, voice, must_exist=True)
     only = None
+    batch: List[str] = []
     if once:
         only = transcript_fix.textfix_new_ids(project)
         if not only:
             raise ValueError(TEXTFIX_ONCE_MSG)
+        eligible = set(only)
+        # 这批素材里不处理、但也算「用过」的：删除的、标了「不用」的（以后恢复 / 改成要用不算新素材）
+        batch = [x for x in transcript_fix.textfix_batch_ids(project) if x not in eligible]
     if files:
         info = transcript_fix.save_transcripts(project, files)
         _report(progress, 0.01, f"已保存逐字稿：{'、'.join(info['files'])}（共 {info['chars']} 字）")
@@ -605,10 +645,22 @@ def run_transcript_fix(cfg: Config, voice: str, files: Optional[Sequence[Any]] =
         _report(progress, 0.96, "把有把握的修改建议一次全部采用……")
         res["adopted"] = review.adopt_all_suggestions(project, only=only)
         _report(progress, 1.0, f"校正完了：一共改了 {res.get('fixes', 0) + res['adopted']['changes']} 处")
-    if once:  # 做完才记（中途出错 / 停止的不算用过，可以再点）；在后台任务里记，网页关掉了也记得上
-        transcript_fix.mark_textfix_used(project, only or [])
+    if once:  # 做完才记（中途出错 / 停止的不算用过，可以再点）；在后台任务里记，网页关掉了也记得上；
+        # 只记真的处理过的句子（检查期间老师又改了的那句这次没处理，下次还能用）
+        transcript_fix.mark_textfix_used(project, list(res.get("handled") or []) + batch)
         res["only"] = len(only or [])
     return res
+
+
+def textfix_ever_used(cfg: Config, voice: str) -> bool:
+    """这个声音用过「一键全部文字校正」没有（按钮下面「已经用过了」的说明只在用过以后才显示）。"""
+    from voicetwin.data import transcript_fix
+
+    try:
+        project = open_project(cfg, voice, must_exist=True)
+    except (ValueError, RuntimeError, OSError):
+        return False
+    return transcript_fix.textfix_ever_used(project)
 
 
 def textfix_used(cfg: Config, voice: str) -> bool:
@@ -770,7 +822,8 @@ def _check_material_before_training(project: Project) -> None:
     records = project.load_manifest()
     material = train_records(project, include_val=True)
     val = sum(1 for r in material if r.get("split") == "val")
-    edited = sum(1 for r in material if r.get("text_edited") or r.get("orig_text"))
+    edited = sum(1 for r in material if r.get("text_edited")
+                 or (r.get("orig_text") is not None and r.get("orig_text") != r.get("text")))
     deleted = sum(1 for r in records if r.get("deleted"))
     log.info(f"这次训练用校对表里保存好的文字：{len(material) - val} 条训练、{val} 条当「考试题」"
              + (f"；其中 {edited} 条是你改过文字的，按改好的文字训练" if edited else "")

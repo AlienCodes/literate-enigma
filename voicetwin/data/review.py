@@ -237,8 +237,11 @@ def suspect_base(rec: Dict[str, Any]) -> str:
 
 
 def original_text(rec: Dict[str, Any]) -> str:
-    """最初识别出来的文字（老师第一次改之前）。"""
-    return str(rec.get("orig_text") or rec.get("text", "") or "")
+    """最初识别出来的文字（老师第一次改之前）。识别时没有文字、老师自己打上去的：最初的就是空的（""）。"""
+    orig = rec.get("orig_text")
+    if orig is not None:
+        return str(orig)
+    return str(rec.get("text", "") or "")
 
 
 def _word_char(ch: str) -> bool:
@@ -288,7 +291,7 @@ def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
     orig = original_text(rec)
     blue: List[Range] = []
     deleted: List[Tuple[int, str]] = []
-    if orig and cur != orig:
+    if cur != orig:  # 最初没有文字、老师自己打上去的：整句都是改过的（蓝色）
         for tag, i1, i2, j1, j2 in _opcodes(orig, cur):
             if tag in ("replace", "insert") and j2 > j1:
                 while j1 > 0 and _word_char(cur[j1 - 1]) and _word_char(cur[j1]):  # 英文按整个单词变蓝

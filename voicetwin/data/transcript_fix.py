@@ -256,11 +256,42 @@ def _all_ids(project: Any) -> List[str]:
     return [str(r.get("id")) for r in project.load_manifest() if r.get("id")]
 
 
+def _eligible_ids(project: Any) -> List[str]:
+    """「一键全部文字校正」能处理的句子：没删除、要用（不是「不用」）、已经有文字（按表格里显示的，含没保存的修改）。
+    还没识别出文字、标了「不用」的句子不算——等识别完 / 改成要用以后才算新素材。"""
+    from voicetwin.data import review as _review
+
+    draft = _review.load_draft(project)
+    out = []
+    for r in project.load_manifest():
+        if not r.get("id") or r.get("deleted"):
+            continue
+        vals = _review.current_values(r, draft.get(r["id"]))
+        if vals["keep"] and str(vals["text"] or "").strip():
+            out.append(str(r["id"]))
+    return out
+
+
+def textfix_batch_ids(project: Any) -> List[str]:
+    """用一键全部文字校正时算「这批素材」的句子：已经有文字的（删除的、标了「不用」的也算——以后恢复、改成要用，
+    不算新素材，按钮不会因此又亮）。还没识别出文字的不算：识别完以后才是新素材。"""
+    from voicetwin.data import review as _review
+
+    draft = _review.load_draft(project)
+    return [str(r["id"]) for r in project.load_manifest()
+            if r.get("id") and str(_review.current_values(r, draft.get(r["id"]))["text"] or "").strip()]
+
+
+def textfix_ever_used(project: Any) -> bool:
+    """这个声音用过「一键全部文字校正」没有（有记录）。"""
+    return (Path(project.root) / USED_FILE).exists()
+
+
 def textfix_new_ids(project: Any) -> List[str]:
-    """还没用过「一键全部文字校正」的句子（没删除的）：空的 = 这批素材已经用过了，按钮是灰色的。
+    """还没用过「一键全部文字校正」、现在能处理的句子：空的 = 按钮是灰色的。
     记录坏了：当作现在的句子都用过了（宁可不改，也不重复改），并且重新记一份，以后加的新素材照样认得出来。"""
     path = Path(project.root) / USED_FILE
-    live = [str(r.get("id")) for r in project.load_manifest() if r.get("id") and not r.get("deleted")]
+    live = _eligible_ids(project)
     if not path.exists():
         return live
     try:
@@ -1439,8 +1470,10 @@ def _changed_chars(rec: Dict[str, Any], cur: str) -> Tuple[Set[int], Set[int]]:
     orig = _review.original_text(rec)
     chars: Set[int] = set()
     points: Set[int] = set()
-    if not orig or orig == cur:
+    if orig == cur:
         return chars, points
+    if not orig:  # 最初没有识别出文字，整句都是老师自己打的：一个字都不动
+        return set(range(len(cur))), points
     for tag, i1, i2, j1, j2 in _review._opcodes(orig, cur):
         if tag == "equal":
             continue
@@ -1675,6 +1708,7 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
         draft = _review.load_draft(project)
         rejected_now = _review.load_rejected(project)  # 检查期间老师可能又撤销了：按现在的算
         changed_draft = False
+        handled: List[str] = [str(x) for x in dismissed_ids]  # 这次真的处理过的句子（「这句没错」的也算）
         for r in records:
             if r.get("id") in dismissed_ids:  # 「这句没错」：以前留下的标红、建议都去掉（不然一键会采用旧建议）
                 vals = _review.current_values(r, draft.get(r["id"]))
@@ -1688,8 +1722,9 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
             cur, fixes, res, changed = item
             entry = draft.get(r["id"])
             vals = _review.current_values(r, entry)
-            if str(vals["text"] or "") != cur:  # 检查期间改过（一般不会：检查时不能改表格）
+            if str(vals["text"] or "") != cur:  # 检查期间改过（这一句这次没处理，下次还能用一键校正）
                 continue
+            handled.append(str(r["id"]))
             old = r.get("suspect") if isinstance(r.get("suspect"), dict) else None
             auto = auto_suspect(r)
             if auto:  # 自动查错字的结果是按当时保存的文字算的：记下那段文字，保存修改以后位置也换算得对
@@ -1758,7 +1793,8 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
            "chars": len(ref) if ref else 0, "files": list(names or []), "builtin_lines": len(builtin),
            "terms": len(lex.vocab), "builtin_terms": info["terms"], "corrections": len(lex.corrections),
            "unsure": stats["unsure"], "kept_undo": stats["kept_undo"], "pinyin": has_pinyin(), "jieba": has_jieba(),
-           "truncated": bool(ref.truncated) if ref else False, "examples": examples, "seconds": secs}
+           "truncated": bool(ref.truncated) if ref else False, "examples": examples, "seconds": secs,
+           "handled": handled}
     log.info(f"文字校正完成：检查了 {n} 条，直接改好 {out['fixes']} 处（{out['fixed_rows']} 条，存成没保存的修改），"
              f"另外 {out['found']} 条标红给了建议；{out['cleared']} 条原来的标红被母本证明没错、已去掉，"
              f"保留自动检查标红 {out['kept_auto']} 条；用时 {secs} 秒。")
