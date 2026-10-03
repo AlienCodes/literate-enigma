@@ -541,6 +541,23 @@ def test_repeat_mark_goes_away_after_deleting_the_repeat(tmp_path):
     assert not _shown(project, "c000")[1]["red"]
 
 
+@pytest.mark.parametrize("text,fixed", [
+    ("I have a sister I have a sister who is a doctor.", "I have a sister who is a doctor."),
+    ("翻译成英文就是I have a sister I have a sister who is a doctor。", "翻译成英文就是I have a sister who is a doctor。"),
+    ("we need the the the answer here", "we need the the answer here"),
+])
+def test_english_repeat_mark_goes_away_after_deleting_one_copy(tmp_path, text, fixed):
+    """第四轮找 bug：英文例句说了两遍（一遍和一遍之间隔着空格），老师删掉一遍以后还标着「「I have a si…」连着重复了 2 遍」。"""
+    cfg, project = _voice(tmp_path, [text])
+    _auto_check(project, cfg, {})
+    assert _shown(project, "c000")[1]["red"]
+    review.set_draft(project, "c000", text=fixed)
+    assert not _shown(project, "c000")[1]["red"]
+    review.save_rows(project)
+    _, info = _shown(project, "c000")
+    assert not info["red"] and not info["active"]
+
+
 def test_manual_language_survives_edits_and_needs_reconfirm(tmp_path):
     """老师手动选的「英文」：以前改一个字就悄悄变回「中文」、保存时说「0 处语言」；确认训练素材以后改语言也不用重新确认。"""
     from voicetwin.data import review as rv

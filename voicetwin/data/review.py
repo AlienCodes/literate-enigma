@@ -234,20 +234,25 @@ def touched(ops: Sequence[Tuple[str, int, int, int, int]], s: int, e: int, stric
 
 def _repeat_run(text: str, s: int, e: int) -> Optional[Range]:
     """[s, e) 是不是「连着重复」的后面几遍（查错字标的是重复出来的那几遍，不是第一遍）：是的话返回整串重复的范围
-    （包括第一遍），不是返回 None。"""
-    n = e - s
-    for size in range(1, n + 1):
-        if n % size or s - size < 0:
+    （包括第一遍），不是返回 None。
+
+    英文一遍和一遍之间隔着空格（「I have a sister I have a sister」），查错字标的是从第二遍的第一个词开始、不带前面的空格；
+    以前要求一遍紧挨着一遍，英文永远认不出来，删掉一遍以后「重复了 2 遍」还标着。现在中间可以隔着空格，英文按整个单词认。"""
+    seg = text[s:e]
+    for size in range(1, len(seg) + 1):
+        unit = seg[:size]
+        if not unit.strip() or unit != unit.strip():
             continue
-        unit = text[s:s + size]
-        if not unit.strip() or text[s - size:s] != unit or text[s:e] != unit * (n // size):
+        u = re.escape(unit)
+        if not re.fullmatch(rf"{u}(?:\s*{u})*", seg):
             continue
-        a, b = s - size, e
-        while a - size >= 0 and text[a - size:a] == unit:
-            a -= size
-        while text[b:b + size] == unit:
-            b += size
-        return a, b
+        before = r"(?<![A-Za-z0-9'])" if unit[0].isascii() and unit[0].isalnum() else ""
+        after = r"(?![A-Za-z0-9'])" if unit[-1].isascii() and unit[-1].isalnum() else ""
+        m = re.search(rf"{before}(?:{u}\s*)+\Z", text[:s])
+        if not m:
+            continue
+        m2 = re.match(rf"(?:\s*{u}{after})+", text[e:])
+        return m.start(), e + (m2.end() if m2 else 0)
     return None
 
 

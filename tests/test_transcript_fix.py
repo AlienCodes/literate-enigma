@@ -574,9 +574,12 @@ def test_without_jieba_nothing_is_changed_directly(tmp_path, monkeypatch, text):
 
 @need_both
 @pytest.mark.parametrize("text", ["他会说壮语，也会说普通话", "他的原籍是山东", "关于代词的用法我们下次讲",
-                                  "这个词兼名词和动词两种词性", "这是两个陷阱词，考试要小心", "如果我们把关系代词位置还原"])
+                                  "这个词兼名词和动词两种词性", "这是两个陷阱词，考试要小心", "如果我们把关系代词位置还原",
+                                  "接下来我们进行词的辨析，看看这两个词有什么区别。", "我们要对每个单词进行词的分类。",
+                                  "这个是系统词库里面的词。"])
 def test_real_words_are_never_changed_directly(tmp_path, text):
-    """问题 7：本身是词的（壮语 → 状语）和正常的说法（关于代词、兼名词、陷阱词）不直接改。"""
+    """问题 7：本身是词的（壮语 → 状语）和正常的说法（关于代词、兼名词、陷阱词）不直接改。
+    第四轮找 bug：对照表里的「进行词 => 先行词」把「我们进行词的辨析」改成「我们先行词的辨析」（「系统词」同样），去掉了。"""
     cfg, project = _voice(tmp_path, [text])
     res = wf.run_transcript_fix(cfg, "校正声音", adopt_all=False)
     assert res["fixes"] == 0 and review.load_draft(project) == {}

@@ -136,6 +136,17 @@ def test_heuristics_repeated_phrases_mark_the_repeat_not_the_first():
     assert pc.build_suspect("大家注意一下，大家注意一下。") is None
 
 
+def test_phrases_that_differ_only_in_a_number_are_not_repeats():
+    """第四轮找 bug：「第一种情况第二种情况」「三月三号三月四号」以前标红，说「「第一种情况」连着重复了 2 遍」。"""
+    for t in ("那么第一种情况第二种情况我们分别来看", "三月三号三月四号我们考试", "第一个例句第二个例句都是定语从句",
+              "第一个空第二个空第三个空都填介词", "第三种用法，第四种用法"):
+        assert _hits(t) == [], t
+        assert pc.build_suspect(t) is None, t
+    # 真的重复照样标（数字一样，写法不一样也算）
+    assert _hits("第一种情况第一种情况我们分别来看") == [("第一种情况", "repeat", pc.W_REPEAT_LONG)]
+    assert _hits("第1种情况第一种情况我们分别来看") == [("第一种情况", "repeat", pc.W_REPEAT_LONG)]
+
+
 # ---------------------------------------------------------------------------- 两个引擎对比
 def test_spacing_only_difference_is_ignored_but_heuristic_still_flags():
     text = "我们今天讲VFIXED的用法，这个函数很常用。"

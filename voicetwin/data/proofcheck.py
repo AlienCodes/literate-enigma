@@ -905,6 +905,10 @@ def _repeats(text: str) -> List[_Ev]:
     """同一个字 / 词 / 短语连着重复（"我们来看一下我们来看一下"）。标的是重复出来的那几遍，不是第一遍。"""
     toks = tokenize(text)
     keys = _keys(toks)
+    # 比较是不是同样的几个字时，数字要看值（「第一种情况第二种情况」「三月三号三月四号」不是重复）；
+    # 下面判断够不够标红照旧用 keys（数字都是 "#"）
+    same = [k if k != "#" else "#" + str(t.val if t.val is not None else text[t.start:t.end])
+            for k, t in zip(keys, toks)]
     out: List[_Ev] = []
     i, n = 0, len(keys)
     while i < n:
@@ -913,8 +917,9 @@ def _repeats(text: str) -> List[_Ev]:
             if i + 2 * size > n:
                 break
             unit = keys[i:i + size]
+            cmp = same[i:i + size]
             k = 1
-            while keys[i + k * size:i + (k + 1) * size] == unit:
+            while same[i + k * size:i + (k + 1) * size] == cmp:
                 k += 1
             if k < 2:
                 continue
