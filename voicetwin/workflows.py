@@ -423,6 +423,39 @@ def _precheck_prepare(cfg: Config, voice: str, inputs: List[str], overrides: Opt
     return notes
 
 
+#: 校对表保存 / 确认时顺便更新「一模一样」档的说话习惯（twin_profile.json）：只在要新量的录音不多时做。
+#: 第一次（还一条都没量过）要把全部录音量一遍，留到素材准备、「重新分析说话风格」、生成「一模一样」时再做，
+#: 保存 / 确认不会因此变慢；量过以后改文字只要重新对齐标点（声音特征有缓存）
+TWIN_REVIEW_MAX_NEW_CLIPS = 60
+TWIN_REVIEW_MAX_NEW_SOURCE_MB = 50.0
+
+
+def _update_twin_profile(project: Project, review: bool = False) -> None:
+    """「一模一样」档用的说话习惯（停顿、音调、语速……）：素材变了才重算，没变时几乎不花时间。
+    出错不影响别的功能（只在黑色窗口 / 详细过程里记一条提醒，生成「一模一样」时会再试）。停止按钮照常有效。"""
+    try:
+        from voicetwin.style.twin_profile import build_twin_profile
+
+        if review:
+            build_twin_profile(project, max_new_clips=TWIN_REVIEW_MAX_NEW_CLIPS,
+                               max_new_source_mb=TWIN_REVIEW_MAX_NEW_SOURCE_MB)
+        else:
+            build_twin_profile(project)
+    except Exception as exc:  # noqa: BLE001 - 只是「一模一样」档要用的统计，不能让素材准备 / 保存失败
+        log.warning(f"⚠️ 测量你的说话习惯（「一模一样」档要用的停顿、音调、语速）这次没有完成（{_explain_title(exc)}）。"
+                    "不影响别的功能；生成「一模一样」时会再量一次", exc_info=exc)
+
+
+def _prune_bank_files(project: Project) -> None:
+    """素材准备时：删掉「一模一样」参考录音库里已经不能用的音频（这时不会有生成在跑）。出错不影响素材准备。"""
+    try:
+        from voicetwin.data.references import prune_bank_files
+
+        prune_bank_files(project, project.load_manifest())
+    except Exception as exc:  # noqa: BLE001
+        log.debug(f"清理参考录音库的旧音频时出错：{exc}")
+
+
 def run_prepare(cfg: Config, voice: str, inputs: Iterable[str], progress: Optional[ProgressFn] = None,
                 overrides: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     from voicetwin.data.prepare import prepare
@@ -441,6 +474,8 @@ def run_prepare(cfg: Config, voice: str, inputs: Iterable[str], progress: Option
         if summary["clips_kept"]:
             _report(progress, PROOFCHECK_PREPARE_END if do_proof else 0.95, "分析你的说话风格（语速、停顿、音高）……")
             summary["profile"] = build_profile(project)
+            _update_twin_profile(project)
+            _prune_bank_files(project)
         if do_proof and summary["clips_kept"]:
             _report(progress, PROOFCHECK_START, "查找可能的错字" + (f"（{reason}）" if reason else "") + "……")
             try:
@@ -529,6 +564,8 @@ def apply_review(cfg: Config, voice: str, read_csv: bool = True) -> Dict[str, An
     except RuntimeError as exc:  # 一条能用的都没有（比如文字还没识别出来）：校对表的删除 / 保存照样要成功
         no_material = str(exc)
         log.warning(f"⚠️ 重新统计时没法分析说话风格：{exc}")
+    else:
+        _update_twin_profile(project, review=True)
     summary = summarize(project, records, refs)
     summary["changed"] = changed
     if no_material:
@@ -745,7 +782,10 @@ def apply_suggestion(cfg: Config, voice: str, clip_id: str) -> Dict[str, Any]:
 def run_analyze(cfg: Config, voice: str) -> Dict[str, Any]:
     from voicetwin.style.profile import build_profile
 
-    return build_profile(open_project(cfg, voice, must_exist=True))
+    project = open_project(cfg, voice, must_exist=True)
+    profile = build_profile(project)
+    _update_twin_profile(project)
+    return profile
 
 
 # ---------------------------------------------------------------------------- 训练 / 挑选

@@ -108,7 +108,13 @@ def auto_silence_threshold(wav: np.ndarray, sr: int, floor_db: float = -65.0) ->
 
     底噪用很低的分位数（3%）估计，这样即使音频首尾静音很短也不会把轻声部分误判成底噪。
     """
-    db = frame_rms_db(wav, sr)
+    return silence_threshold_from_db(frame_rms_db(wav, sr), floor_db)
+
+
+def silence_threshold_from_db(db: np.ndarray, floor_db: float = -65.0) -> float:
+    """auto_silence_threshold 的计算部分：已经有逐帧电平（10 ms 一帧、40 ms 窗）时直接用
+    （很长的整段录音分块读、分块算电平，不用整个读进内存）。"""
+    db = np.asarray(db)
     db = db[db > -100]
     if db.size == 0:
         return -40.0
@@ -136,28 +142,49 @@ def _fill_short_gaps(mask: np.ndarray, max_gap: int) -> np.ndarray:
     return out
 
 
+def mask_runs(mask: np.ndarray, min_frames: int = 1) -> List[Tuple[int, int]]:
+    """mask 里连续为 True 的段 [(起始帧, 结束帧（不含）), ...]，只留长度 ≥ min_frames 的。"""
+    m = np.asarray(mask, dtype=bool)
+    if m.size == 0:
+        return []
+    edges = np.diff(np.concatenate([[0], m.astype(np.int8), [0]]))
+    starts = np.flatnonzero(edges == 1)
+    ends = np.flatnonzero(edges == -1)
+    keep = (ends - starts) >= max(1, int(min_frames))
+    return [(int(a), int(b)) for a, b in zip(starts[keep], ends[keep])]
+
+
 def silent_runs(wav: np.ndarray, sr: int, threshold_db: Optional[float] = None, hop_ms: float = 10.0,
-                min_run_ms: float = 150.0) -> List[Tuple[float, float]]:
-    """返回所有长度 ≥ min_run_ms 的静音区间 [(start_sec, end_sec), ...]。"""
+                min_run_ms: float = 120.0) -> List[Tuple[float, float]]:
+    """返回所有长度 ≥ min_run_ms 的静音区间 [(start_sec, end_sec), ...]（包括文件开头和结尾的静音）。
+
+    10 ms 一帧、40 ms 窗、自动静音阈值——和切片时量停顿用的是同一个方法；「一模一样」档量你本人的停顿
+    （twin_profile）和量生成结果的停顿都用它，两边才能直接比。"""
     if threshold_db is None:
         threshold_db = auto_silence_threshold(wav, sr)
     db = frame_rms_db(wav, sr, hop_ms=hop_ms)
-    silent = db < threshold_db
     hop_s = hop_ms / 1000.0
-    runs = []
-    i, n = 0, len(silent)
     min_frames = max(1, int(round(min_run_ms / hop_ms)))
-    while i < n:
-        if silent[i]:
-            j = i
-            while j < n and silent[j]:
-                j += 1
-            if j - i >= min_frames:
-                runs.append((i * hop_s, min(j * hop_s, len(wav) / sr)))
-            i = j
-        else:
-            i += 1
-    return runs
+    total = len(wav) / sr if sr else 0.0
+    return [(i * hop_s, min(j * hop_s, total)) for i, j in mask_runs(db < threshold_db, min_frames)]
+
+
+def speech_runs(wav: np.ndarray, sr: int, threshold_db: Optional[float] = None, hop_ms: float = 10.0,
+                min_gap_ms: float = 120.0) -> List[Tuple[float, float]]:
+    """有声音的区间 [(start_sec, end_sec), ...]：被 ≥ min_gap_ms 的静音隔开的每一段（比这短的停顿算在声音里）。
+    整段都是静音时返回 []。"""
+    if wav.size == 0:
+        return []
+    total = len(wav) / sr
+    out: List[Tuple[float, float]] = []
+    cursor = 0.0
+    for s, e in silent_runs(wav, sr, threshold_db=threshold_db, hop_ms=hop_ms, min_run_ms=min_gap_ms):
+        if s > cursor + 1e-9:
+            out.append((cursor, s))
+        cursor = max(cursor, e)
+    if total > cursor + 1e-9:
+        out.append((cursor, total))
+    return out
 
 
 def trim_silence(wav: np.ndarray, sr: int, threshold_db: Optional[float] = None, pad_ms: float = 60.0
