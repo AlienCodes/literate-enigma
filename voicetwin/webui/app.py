@@ -90,8 +90,11 @@ TEXTFIX_LOCKED_INFO = ("🔒 **这批素材已经用过了，每批素材只能�
 #: 按钮是灰的、但还没用过：现在没有能处理的句子（还没识别出文字 / 都删除了 / 都标了不用）
 TEXTFIX_NOTHING_INFO = ("⏸️ **现在还没有能校正的句子**（还没识别出文字，或者句子都删除了、都标了不用），所以按钮是灰色的。"
                         "先在上面点「开始准备素材」把文字识别完，按钮就会亮起来。")
-TEXTFIX_HELP = ("**📝 一键全部文字校正**：以你的**母本标准库**为准（你修缮过的讲课母本 = 你所有的说话习惯，"
-                "+ 所有的英语语法术语 + 「错的写法 → 正确写法」对照表：借词 → 介词、艾子 → as……，程序里已经带着），"
+TEXTFIX_HELP = ("**📝 一键全部文字校正**：**母本最优先**。每一句先去你的**母本**（你修缮过的讲课文字 = 你所有的说话习惯，"
+                "程序里已经带着）里找差不多或者一模一样的那一句——按内容找，重新准备过素材、换了文件夹、句子切的位置不一样也找得到；"
+                "找到了，**和母本不一样的地方就是识别错了，一律按母本改**（定于从句 → 定语从句）。母本里没有的句子，"
+                "才用所有的英语语法术语和「错的写法 → 正确写法」对照表（借词 → 介词、艾子 → as……），再用另一个识别引擎的建议"
+                "（和母本矛盾的建议不要）。"
                 "点一下，所有能确定该怎么改的地方**一次全部改好**（包括「修改建议」那一列有把握的建议）。"
                 "改过的字照旧：「文字」列**绿色**、「可能有错」列**蓝色**；没把握的、只标红没有建议的地方还是**红色**，"
                 "请听录音：建议对就点那一行的蓝色的「采用」，不对就自己改。"
@@ -100,7 +103,7 @@ TEXTFIX_HELP = ("**📝 一键全部文字校正**：以你的**母本标准库*
                 "这个声音自己下载的「改好的文字」不用再上传：那就是表格里的句子，证明不了它们自己没错）。"
                 "**每批素材只能用一次**：用完按钮变灰；以后加了新的素材、识别完（或者恢复了删除的句子），按钮会再亮起来，"
                 "只改这些还没改过的句子。"
-                "用之前你自己改过的字，它不会动。")
+                "用之前你自己改过的字，它不会动（和母本不一样时，点那一行会看到一句说明）。")
 #: 「下载改好的文字」：文件准备好以后，自动点一下下载链接（gradio 的文件框里那个链接）
 AUTO_DOWNLOAD_JS = """() => { setTimeout(() => {
   const a = document.querySelector('#vt-dl-txt a[download]') || document.querySelector('#vt-dl-txt a[href]');
@@ -118,7 +121,9 @@ REVIEW_HELP = ("### ✍️ 校对文字（可选，但能明显提升效果）\n
                "- **改错字：双击「文字」那一格**（或者「⋯ 选项」→「修改文字」），会打开一个会自动换行的框，整句话都看得见；"
                "改好按**回车**（或点别的地方）。你改过、新打上去的字是**绿色**。\n"
                "- **「修改建议」里的蓝色小按钮**：点一下就按建议自动改好，按钮**变红 = 建议已经生效**，改过的字在旁边那一列"
-               "变成**蓝色**；再点一下红色按钮可以撤销。只有「可能有错」那一列有内容的行才有这个按钮。\n"
+               "变成**蓝色**；再点一下红色按钮可以撤销。只有「可能有错」那一列有内容的行才有这个按钮。"
+               "写着「**按母本：**」的建议是按你的母本改的（母本里有差不多的句子，和母本不一样的地方就是识别错了），"
+               "排在最前面；母本里没有的句子，才是另一个识别引擎或语法术语的猜测。\n"
                "- **最右边「⋯ 选项」**：保存这一行、删除这一行（会再问一次；删除以后这里变成「撤销删除」）、修改文字、听一听、"
                "撤销这一行的修改、这句没错（不再标红）。\n"
                "- **删除的行整行变紫色 = 不再算训练素材**；删错了在「⋯ 选项」里点「↩️ 撤销删除」，紫色消失、又算训练素材。"
@@ -1302,14 +1307,28 @@ def _render_marked(text: str, spans: Any) -> str:
     return "".join(out)
 
 
-def _render_diff(text: str, alt: str, spans: Any = None, transcript: bool = False) -> str:
+def _mother_note_html(rec: Dict[str, Any], text: str) -> str:
+    """一键校正 / 自动查错字时记下的说明：母本里这里不一样，但你自己改过（或者撤销过这个改法），程序没有动。
+    只在文字还是那时候的样子时显示（又改过就不显示，免得说的是旧的）。"""
+    note = rec.get("mother_note") if isinstance(rec.get("mother_note"), dict) else {}
+    if not note or str(note.get("text") or "") != str(text or ""):
+        return ""
+    items = [str(x) for x in (note.get("notes") or []) if x]
+    if not items:
+        return ""
+    return ('<div class="vt-diff-row vt-diff-reason">ℹ️ 和母本不一样、程序没有动的地方：'
+            + html.escape("；".join(items[:3])) + "</div>")
+
+
+def _render_diff(text: str, alt: str, spans: Any = None, transcript: bool = False, mother: bool = False) -> str:
     """两次识别结果对比（优先用 U8 的 proofcheck.render_diff_html；没有建议时把可疑的字标红）。
-    transcript=True：建议来自老师的母本标准库（文字校正），第二行写「按母本改成」。"""
+    transcript=True：建议经过了文字校正（和母本对照过），第二行写「建议改成」；mother=True：建议全是按母本的，
+    写「按母本改成」（母本优先以后自动查错字的结果也和母本对照过，母本里没有的句子的建议不能说成是母本的）。"""
     try:
         from voicetwin.data.proofcheck import render_diff_html
 
         if transcript:
-            return str(render_diff_html(text, alt, spans, label_b="按母本改成"))
+            return str(render_diff_html(text, alt, spans, label_b="按母本改成" if mother else "建议改成"))
         return str(render_diff_html(text, alt, spans))
     except ImportError:
         pass
@@ -1375,6 +1394,35 @@ def _colored_html(info: Dict[str, Any]) -> str:
     return "".join(out)
 
 
+def _mother_alt(info: Dict[str, Any]) -> str:
+    rec = info.get("rec") or {}
+    sus = rec.get("suspect") if isinstance(rec.get("suspect"), dict) else {}
+    return str(sus.get("mother_alt") or "")
+
+
+def _mother_label_todo(info: Dict[str, Any], what: str) -> str:
+    """还没采用的建议里按母本的（母本优先）：写成「按母本：……」，排在最前面；后面是另一个识别引擎 / 规则的建议。
+    只在现在的文字就是查错字时的样子时分（老师改过别处时分不清，照原来的说法）。"""
+    mother = _mother_alt(info)
+    rec = info.get("rec") or {}
+    text = str(info.get("text") or "")
+    if not mother or mother == text or text != _review.suspect_base(rec):
+        return what
+    full = info.get("to_alt") or _review.apply_edits(text, info.get("edits") or [])
+    if full == mother:
+        return "按母本：" + what
+    if not _review._on_path(text, mother, full):
+        return what
+    rest = _review.describe_change(mother, full, limit=1)
+    return "按母本：" + _review.describe_change(text, mother, limit=2) + (f"；另外：{rest}" if rest else "")
+
+
+def _mother_label_done(info: Dict[str, Any], what: str) -> str:
+    """已经采用的（一键校正按母本直接改好的、点过「采用」的）正好是按母本改的：写成「按母本：……」。"""
+    mother = _mother_alt(info)
+    return "按母本：" + what if mother and mother == str(info.get("text") or "") and what else what
+
+
 def _suggest_cell(info: Dict[str, Any]) -> str:
     """「修改建议」这一列（老师要求的样子）：蓝色小按钮 = 还没用这条建议，点一下就按建议改好、按钮变红；
     红色 = 建议已经生效（那几个字已经改掉，左边变蓝），再点一下可以撤销、变回蓝色。
@@ -1383,19 +1431,20 @@ def _suggest_cell(info: Dict[str, Any]) -> str:
     if info.get("edits"):
         what = (_review.describe_states(info["rec"], text, info["to_alt"], limit=2) if info.get("to_alt")
                 else _review.describe_edits(text, info["edits"], limit=2))
+        what = _mother_label_todo(info, what)
         out = (f'<span class="vt-sug-btn vt-sug-blue" title="点一下：按建议改好">采用</span>'
                f'<span class="vt-sug-text">{_cell_esc(what)}</span>')
         if info.get("undo"):  # 一部分已经改好了（一键校正改的）、一部分还没采用：已经改好的也要能撤销
             done = (_review.describe_states(info["rec"], info["to_base"], text, limit=2) if info.get("to_base")
                     else _review.describe_adopted(text, info["undo"], limit=2))
             out += (f'<br><span class="vt-sug-btn vt-sug-red" title="这些已经改好了；点一下撤销">已采用</span>'
-                    f'<span class="vt-sug-text">{_cell_esc(done)}</span>')
+                    f'<span class="vt-sug-text">{_cell_esc(_mother_label_done(info, done))}</span>')
         return out
     if info.get("adopted"):
         what = (_review.describe_states(info["rec"], info["to_base"], text, limit=2) if info.get("to_base")
                 else _review.describe_adopted(text, info.get("undo") or [], limit=2))
         return (f'<span class="vt-sug-btn vt-sug-red" title="建议已经生效；再点一下可以撤销">已采用</span>'
-                f'<span class="vt-sug-text">{_cell_esc(what)}</span>')
+                f'<span class="vt-sug-text">{_cell_esc(_mother_label_done(info, what))}</span>')
     if info.get("red"):
         return '<span class="vt-sug-none">没有建议，请听录音后双击「文字」修改</span>'
     return ""
@@ -2832,8 +2881,9 @@ class WebUI:
         audio = _upd(value=str(project.abspath(rec["path"])), label=f"试听：第 {no} 条　{text[:24]}", visible=True)
         sus = rec.get("suspect") if isinstance(rec.get("suspect"), dict) else {}
         info = _review.analyze(rec, text)
+        note = _mother_note_html(rec, text)  # 和母本不一样、但老师自己改过 / 撤销过的地方（程序没有动）
         if not sus or not (info["active"] or info["adopted"]):
-            return audio, "", cid
+            return audio, (f'<div class="vt-diff">{note}</div>' if note else ""), cid
         reasons = "；".join(info["reasons"])
         alt = _review.apply_edits(text, info["edits"]) if info["edits"] else ""
         from_tr = sus.get("src") == "transcript"
@@ -2843,7 +2893,8 @@ class WebUI:
                        f'{html.escape(str(sus["ref"]))}</div>')
         panel = ('<div class="vt-diff">' + (f'<div class="vt-diff-reason">⚠️ 可能有错：{html.escape(reasons)}</div>'
                                              if reasons else "")
-                 + _render_diff(text, alt, info["red"], from_tr) + ref_row + "</div>")
+                 + _render_diff(text, alt, info["red"], from_tr, mother=bool(alt) and alt == _mother_alt(info))
+                 + ref_row + note + "</div>")
         return audio, panel, cid
 
     def _review_outputs(self, voice: str, only_sus: Any, msg: str) -> Tuple[Any, ...]:
@@ -3317,7 +3368,11 @@ class WebUI:
             md = f"### ✅ 一键全部文字校正完成：{what}，没有需要改的地方"
         parts = []
         if fixes:
-            parts.append(f"按母本标准库直接改好 **{fixes}** 处（{_int(r.get('fixed_rows'))} 条）")
+            parts.append(f"直接改好 **{fixes}** 处（{_int(r.get('fixed_rows'))} 条）"
+                         + (f"，其中按母本改的 **{_int(r.get('mother_fixes'))}** 处" if _int(r.get("mother_fixes")) else ""))
+        if _int(r.get("mother_rows")):  # 母本优先：先按内容在母本里找这一句
+            parts.append(f"母本最优先：在你的母本里找到了差不多（或者一模一样）的句子 **{_int(r.get('mother_rows'))}** 条"
+                         "（按内容找的，片段编号变了、切的位置不一样也找得到），和母本不一样的地方都按母本改")
         if adopted:
             parts.append(f"「修改建议」里有把握的也一起采用了：**{adopted}** 处（{ad_rows} 条）")
         elif found and not ad:
@@ -4221,7 +4276,8 @@ class WebUI:
                                                visible=False)
                     c["clip_diff"] = gr.HTML("")
                     gr.Markdown("标红只是提醒「可能有错」，不一定真错；也可能有个别错字没被发现。"
-                                "「修改建议」来自另一个识别引擎或你的母本标准库，大多数是对的，但不能保证百分之百对：点了以后改过的字会变成蓝色，"
+                                "「修改建议」先按你的母本（写着「按母本」：母本里有差不多的句子）；母本里没有的句子才用另一个识别引擎或语法术语的猜测，"
+                                "大多数是对的，但不能保证百分之百对：点了以后改过的字会变成蓝色，"
                                 "请看一眼对不对（不对就双击「文字」再改，或者在「⋯ 选项」里撤销）。",
                                 elem_classes="vt-honest")
                     save_clips = gr.Button("保存修改", variant="primary")

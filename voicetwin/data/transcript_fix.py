@@ -1898,7 +1898,9 @@ def _mother_notes(cur: str, mfixes: Sequence[Any], changed: Tuple[Set[int], Set[
 
     out: List[str] = []
     for f in mfixes:
-        now, want = cur[f.start:f.end] or "（没有）", str(f.rep).strip() or "（没有）"
+        # 带上前后各两个字，看得出是哪里（只写「绍」看不懂）：「和介绍词一」/「和介词一」
+        left, right = cur[max(0, f.start - 2):f.start], cur[f.end:f.end + 2]
+        now, want = left + cur[f.start:f.end] + right, left + str(f.rep) + right
         if _touches_changed(f.start, f.end, changed):
             out.append(f"母本里这里是「{_q(want)}」，你自己改成了「{_q(now)}」：程序没有动（你的修改为准；"
                        "如果是打错了，请双击「文字」改成母本的写法）")
@@ -2067,6 +2069,7 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
                 sus = reb
             stats[what] += 1
             stats["aligned"] += int(res.aligned or bool(covered))
+            stats["mother_rows"] += int(bool(covered))  # 母本里找到了差不多的句子（按内容）
             if sus is not None and sus.get("src") == "transcript" and auto:
                 r["suspect_auto"] = auto
             else:
@@ -2090,6 +2093,7 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
                         draft[r["id"]] = nv
                     changed_draft = True
                     stats["fixes"] += len(direct)
+                    stats["mother_fixes"] += sum(1 for f in fixes if f.direct and f.kind.startswith("mother"))
                     # 例子按整句比（和表格里的说法一样）：以前按改动的那几个字说，英文被切开（「Caesa → 's scisso」）、
                     # 汉字没有前后文（「到 → 道」）；现在是「Tony Caesars → Tony's scissors」「报到 → 报道」
                     for it in _review._change_items(cur, new):
@@ -2124,9 +2128,11 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
            "room": upload_room(), "builtin_lines": len(builtin),
            "terms": len(lex.vocab), "builtin_terms": info["terms"], "corrections": len(lex.corrections),
            "unsure": stats["unsure"], "kept_undo": stats["kept_undo"], "pinyin": has_pinyin(), "jieba": has_jieba(),
+           "mother_rows": stats["mother_rows"], "mother_fixes": stats["mother_fixes"],
            "truncated": bool(ref.truncated) if ref else False, "examples": examples, "seconds": secs,
            "handled": handled}
-    log.info(f"文字校正完成：检查了 {n} 条，直接改好 {out['fixes']} 处（{out['fixed_rows']} 条，存成没保存的修改），"
+    log.info(f"文字校正完成：检查了 {n} 条，母本里找到了差不多的句子 {out['mother_rows']} 条（母本优先）；"
+             f"直接改好 {out['fixes']} 处（{out['fixed_rows']} 条，存成没保存的修改，其中按母本 {out['mother_fixes']} 处），"
              f"另外 {out['found']} 条标红给了建议；{out['cleared']} 条原来的标红被母本证明没错、已去掉，"
              f"保留自动检查标红 {out['kept_auto']} 条；用时 {secs} 秒。")
     _report(progress, 1.0, f"检查完了：直接改好 {out['fixes']} 处，另外 {out['found']} 条给了建议")
