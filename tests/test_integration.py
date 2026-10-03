@@ -264,7 +264,10 @@ def test_error_advice_names_real_ui_labels():
     from voicetwin.errors import explain
 
     f = explain(RuntimeError("没有可用于训练的片段，请先运行素材准备并检查 transcripts.csv。"))
-    assert "「保留」改成「是」" in f.advice  # 校对表的「保留」列填 是/否
+    # 「保留」那一列 v18.1 起就没有了：说现在表格里真有的（紫色 = 删除的、灰色 = 不能用的、⋯ 选项里的两个按钮）
+    assert "保留" not in f.advice and "↩️ 撤销删除" in f.advice and "✅ 这一条也要用" in f.advice
+    src = (Path(A.__file__)).read_text(encoding="utf-8")
+    assert "↩️ 撤销删除" in src and "✅ 这一条也要用" in src and "✅ 确认训练素材" in src
     f = explain(RuntimeError("GPT-SoVITS 环境有问题：\n- 配置了外部 api_url 时无法自动训练"))
     assert f.key == "gsv_env" and "「检查环境」" not in f.advice and "🩺 环境检查" in f.advice
     f = explain(RuntimeError("CUDA out of memory. Tried to allocate 2.00 GiB"))

@@ -26,7 +26,9 @@ jobs:
         if: failure()
         shell: python
         run: |
+          import sys
           import xml.etree.ElementTree as ET
+          sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # Windows 的控制台是 cp1252：中文会让这一步自己出错
           try:
               root = ET.parse("junit.xml").getroot()
           except Exception as exc:
