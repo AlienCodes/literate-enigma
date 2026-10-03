@@ -3266,18 +3266,37 @@ class WebUI:
             return text
         if up.get("files"):
             names = "、".join(up["files"][:3]) + (f" 等 {len(up['files'])} 个文件" if len(up["files"]) > 3 else "")
-            text += f"另外上传过：{_md_text(names)}"
-            same = _int(up.get("same_lines"))
-            if not _int(up.get("chars")):  # 都和校对表一模一样（这个声音自己下载的文字）：用不上，如实说
-                text += ("。里面的句子和校对表里的一模一样（就是这个声音自己的文字），一句话不能拿来证明它自己没错，"
-                         "所以用不上（可以给别的声音当母本用）。")
-            elif up.get("too_long"):
-                text += (f"（{_int(up.get('chars'))} 个字 / 词），太长了：只用前面大约 {_int(up.get('room'))} 个，"
-                         "后面的用不上。请只上传和这批录音有关的讲稿。")
-            else:
-                text += f"（{_int(up.get('chars'))} 个字 / 词），也一起用" + (
-                    f"（其中 {same} 句和校对表里的一模一样，那几句不用）。" if same else "。")
+            text += f"另外上传过：{_md_text(names)}" + self._upload_note(up)
         return text
+
+    @staticmethod
+    def _upload_note(up: Dict[str, Any]) -> str:
+        """「另外上传过：……」后面的话：下次真的拿来用多少，别的句子为什么不用（分开说，都要是真的：
+        刚拿它改好的句子不能说成「这个声音自己的文字」，程序里本来就有的不能说「也一起用」）。"""
+        chars, own, used = _int(up.get("chars")), _int(up.get("own_lines")), _int(up.get("used_lines"))
+        known, same = _int(up.get("known_lines")), _int(up.get("same_lines"))
+        notes = []
+        if used:
+            notes.append(f"{used} 句已经拿来改好了表格里对应的句子（现在和表格里一模一样）")
+        if own:
+            notes.append(f"{own} 句上传的时候就和校对表里的一模一样（这个声音自己的文字，证明不了它自己没错）")
+        if same:
+            notes.append(f"{same} 句和校对表里现在的句子一模一样")
+        if known:
+            notes.append(f"{known} 句程序里已经带着了（你的母本标准库）")
+        if not chars:
+            if own and not (used or same or known):  # 都是这个声音自己下载的文字
+                return ("。里面的句子和校对表里的一模一样（就是这个声音自己的文字），一句话不能拿来证明它自己没错，"
+                        "所以用不上（可以给别的声音当母本用）。")
+            if known and not (used or same or own):  # 老师原来的 transcripts.csv
+                return "。里面的句子程序里已经带着了（就是你的母本标准库，每个声音都会用），不用再上传。"
+            if used and not (same or own or known):  # 刚用它改好了表格
+                return "。里面的句子已经拿来改好了表格里对应的句子（现在和表格里一模一样），没有别的要比的了。"
+            return "。里面的句子：" + "；".join(notes) + "。没有别的要比的了。" if notes else "。"
+        if up.get("too_long"):
+            return (f"（{chars} 个字 / 词），太长了：只用前面大约 {_int(up.get('room'))} 个，"
+                    "后面的用不上。请只上传和这批录音有关的讲稿。")
+        return f"（{chars} 个字 / 词），也一起用" + ("；另外" + "，".join(notes) + "，这几句不用再比。" if notes else "。")
 
     def _textfix_used(self, voice: str) -> bool:
         try:
@@ -3341,11 +3360,18 @@ class WebUI:
             what = "、".join(f"{x}（{'只用了前面一部分' if x in files else '一点都没用上'}）" for x in cut[:3])
             parts.append(f"⚠️ 你上传的母本太长，只用了前面大约 {_int(r.get('room'))} 个字 / 词："
                          f"{_md_text(what)}{' 等' if len(cut) > 3 else ''}。请只上传和这批录音有关的讲稿")
-        same = r.get("files_same") or []
+        def _names(xs: List[str]) -> str:
+            return f"{_md_text('、'.join(xs[:3]))}{' 等' if len(xs) > 3 else ''}"
+
+        same, known, both = r.get("files_same") or [], r.get("files_known") or [], r.get("files_both") or []
         if same:
-            parts.append(f"你上传的 {_md_text('、'.join(same[:3]))}{' 等' if len(same) > 3 else ''} 里的句子和校对表"
-                         "（或者程序自带的母本）里的一模一样，这次没有用上：一句话不能拿来证明它自己没错"
+            parts.append(f"你上传的 {_names(same)} 里的句子和校对表里的一模一样，这次没有用上：一句话不能拿来证明它自己没错"
                          "（这种文字可以给别的声音当母本用）")
+        if known:  # 老师原来的 transcripts.csv：程序里本来就带着（修缮过的那一份照样用了），不是「这个声音自己的文字」
+            parts.append(f"你上传的 {_names(known)} 里的句子程序里已经带着了（就是你的母本标准库，每个声音都会用），不用再上传")
+        if both:
+            parts.append(f"你上传的 {_names(both)} 里的句子有的和校对表里的一模一样（证明不了它自己没错），"
+                         "有的程序里已经带着了（你的母本标准库），这次没有用上")
         if _int(r.get("cleared")):
             parts.append(f"原来自动查错字标红、母本证明没错的 {_int(r.get('cleared'))} 条，红色已经去掉")
         if _int(r.get("dismissed")):

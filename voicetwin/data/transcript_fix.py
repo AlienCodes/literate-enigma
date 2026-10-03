@@ -185,8 +185,9 @@ def save_transcripts(project: Any, paths: Iterable[Any], refuse_useless: bool = 
 
     txt、transcripts.csv 都行。读出来没有文字的、不是这两种的：说明原因（ValueError），一个都不存。
     太长的（程序自带的母本加上去超过 MAX_TOKENS，后面的用不上）也不存，说明原因（以前悄悄只用前面的，页面上还说都用了）。
-    refuse_useless=True（网页上的按钮）：上传的句子全都和校对表（或程序自带的母本）一模一样（这个声音自己下载的文字、
-    自己的 transcripts.csv）时也不存——用不上，还会把上次上传的有用的母本换掉（这批素材的一键校正也还没用掉）。"""
+    refuse_useless=True（网页上的按钮）：上传的句子一句都用不上（和校对表一模一样：这个声音自己下载的文字、自己的
+    transcripts.csv；或者程序自带的母本里已经有：老师原来的 transcripts.csv）时也不存——用不上，还会把上次上传的有用的
+    母本换掉（这批素材的一键校正也还没用掉）。存好以后记下每一句当时用不用（UPLOAD_META，按钮下面的说明用）。"""
     items: List[Tuple[str, str, List[Tuple[str, str]]]] = []
     bad: List[str] = []
     for p in paths or []:
@@ -215,26 +216,33 @@ def save_transcripts(project: Any, paths: Iterable[Any], refuse_useless: bool = 
                          "transcripts.csv（Word 文档可以先「另存为」纯文本 .txt）。")
     if not items:
         raise ValueError("没有收到母本文件，请先选好文件再点「📝 一键全部文字校正」。")
-    selves = _row_texts(project)
-    kept = [(name, [(rid, x) for rid, x in parsed if _norm_line(x) not in selves]) for name, _t, parsed in items]
-    chars, room = sum(_useful_chars(x) for _, fl in kept for _rid, x in fl), upload_room()
+    selves, norms = _row_texts(project), _builtin_norms()
+    # 太长：先粗算（和校对表、程序自带的母本一模一样的句子不算），不用把每一句改一遍
+    chars = sum(_useful_chars(x) for _n, _t, parsed in items for _rid, x in parsed
+                if _norm_line(x) not in selves and _norm_line(x) not in norms)
+    room = upload_room()
     if chars > room:
-        raise ValueError(f"母本没有存上：这次上传的文字一共 {chars} 个字 / 词（和校对表一模一样的句子不算），"
+        raise ValueError(f"母本没有存上：这次上传的文字一共 {chars} 个字 / 词（和校对表、程序自带的母本一模一样的句子不算），"
                          f"最多只能用 {room} 个——多出来的部分用不上。请只上传和这批录音有关的讲稿，少选几个文件再试。"
                          "这次什么都没改，上次上传的母本还在，这批素材的「📝 一键全部文字校正」也还能用。")
-    if refuse_useless and not _any_usable([x for _, fl in kept for x in fl], selves):
-        names = "、".join(f"「{name}」" for name, _t, _p in items)
-        raise ValueError(f"母本没有存上：{names}里的句子和校对表（或者程序自带的母本）里的一模一样——这是这个声音自己的文字"
-                         "（比如「⬇️ 下载改好的文字」存的 txt、这个声音的 transcripts.csv）。一句话不能拿来证明它自己没错，"
-                         "所以用不上（它可以给别的声音当母本用）。这次什么都没改，上次上传的母本还在，"
-                         "这批素材的「📝 一键全部文字校正」也还能用；要上传的话，请选这批录音的讲稿。")
+    # 每一句用不用（和一键校正的算法一样）；存的时候记下来——以后一键校正拿它改好了表格里的句子，那几句也和表格一模一样了，
+    # 不能再说成「这个声音自己的文字」
+    marks = [_line_marks(parsed) for _n, _t, parsed in items]
+    kinds = [[_line_kind(x, c, kn, selves) for (_rid, x), (c, kn) in zip(parsed, mk)]
+             for (_n, _t, parsed), mk in zip(items, marks)]
+    if refuse_useless and not any(k == "use" for ks in kinds for k in ks):
+        flat = [k for ks in kinds for k in ks]
+        raise ValueError(_useless_upload_msg("、".join(f"「{name}」" for name, _t, _p in items),
+                                             flat.count("self"), flat.count("known")))
     folder = transcript_dir(project)
     if folder.exists():
         shutil.rmtree(folder, ignore_errors=True)
     folder.mkdir(parents=True, exist_ok=True)
     _parse_file.cache_clear()
+    _file_marks.cache_clear()
     used: Set[str] = set()
-    for name, text, _parsed in items:
+    meta: Dict[str, Any] = {}
+    for (name, text, parsed), mk, ks in zip(items, marks, kinds):
         stem = re.sub(r'[\\/:*?"<>|]+', "_", Path(name).stem).strip() or "母本"
         suffix = Path(name).suffix.lower()
         out, k = f"{stem}{suffix}", 2
@@ -242,6 +250,24 @@ def save_transcripts(project: Any, paths: Iterable[Any], refuse_useless: bool = 
             out, k = f"{stem}_{k}{suffix}", k + 1
         used.add(out.lower())
         (folder / out).write_text(text.replace("\r\n", "\n"), encoding="utf-8")
+        try:  # 存好的文件读出来的句子和上面算的一样，才记下（以后按句子的位置对）
+            st = (folder / out).stat()
+            if [(rid, x) for rid, x, _n in _parse_file(str(folder / out), st.st_size, st.st_mtime_ns)] == list(parsed):
+                meta[out] = {"size": st.st_size, "mtime_ns": st.st_mtime_ns,
+                             "self": [i for i, kd in enumerate(ks) if kd == "self"],
+                             "known": [i for i, (_c, kn) in enumerate(mk) if kn],
+                             "cleaned": {str(i): c for i, ((_rid, x), (c, kn)) in enumerate(zip(parsed, mk))
+                                         if not kn and c != x}}
+        except (OSError, ValueError):
+            pass
+    try:
+        import json
+
+        from voicetwin.utils import atomic
+
+        atomic.write_text(folder / UPLOAD_META, json.dumps({"sig": _builtin_sig(), "files": meta}, ensure_ascii=False))
+    except OSError as exc:  # 记不下来：按钮下面的说明照旧能算（只是分不清「自己的文字」和「已经拿来改好的」）
+        log.warning(f"记不下上传母本的情况：{exc}")
     info = transcript_info(project)
     log.info(f"已保存母本：{'、'.join(info['files'])}（共 {info['chars']} 字）")
     return info
@@ -255,16 +281,27 @@ def _parse_file(path: str, size: int, mtime_ns: int) -> Tuple[Tuple[str, str, in
     return tuple((rid, x, _useful_chars(x)) for rid, x in parse_mother(p.name, read_text_file(p)))
 
 
-def load_transcript_files(project: Any) -> List[Tuple[str, List[Tuple[str, str, int]]]]:
-    """老师上传的母本，按文件：[(文件名, [(句子 id, 文字, 字 / 词数), ...])]（按文件名排序）。读不了的文件跳过。"""
+def _saved_upload_files(project: Any) -> List[Tuple[str, Path, int, int]]:
+    """声音文件夹里存好的母本文件：[(文件名, 路径, 大小, 修改时间)]（按文件名排序）。"""
     folder = transcript_dir(project)
     if not folder.is_dir():
         return []
-    out: List[Tuple[str, List[Tuple[str, str, int]]]] = []
+    out: List[Tuple[str, Path, int, int]] = []
     for p in sorted(p for p in folder.iterdir() if p.is_file() and p.suffix.lower() in TEXT_SUFFIXES):
         try:
             st = p.stat()
-            out.append((p.name, list(_parse_file(str(p), st.st_size, st.st_mtime_ns))))
+        except OSError:
+            continue
+        out.append((p.name, p, st.st_size, st.st_mtime_ns))
+    return out
+
+
+def load_transcript_files(project: Any) -> List[Tuple[str, List[Tuple[str, str, int]]]]:
+    """老师上传的母本，按文件：[(文件名, [(句子 id, 文字, 字 / 词数), ...])]（按文件名排序）。读不了的文件跳过。"""
+    out: List[Tuple[str, List[Tuple[str, str, int]]]] = []
+    for name, p, size, mtime in _saved_upload_files(project):
+        try:
+            out.append((name, list(_parse_file(str(p), size, mtime))))
         except (OSError, ValueError):  # 读不了的文件跳过，不影响别的
             continue
     return out
@@ -377,24 +414,55 @@ def mark_textfix_used(project: Any, ids: Iterable[str]) -> None:
                                        ensure_ascii=False))
 
 
+UPLOAD_META = "_upload_info.json"  # 存上传的母本时记下的：每个文件里哪些句子当时和校对表一模一样、哪些程序自带的母本里已经有
+
+
 def transcript_info(project: Any) -> Dict[str, Any]:
-    """存好的母本：files 文件名；chars 用得上的字 / 词数（和校对表里某一句一模一样的不算：那是这一句自己，证明不了什么）；
-    lines / same_lines 一共几句、其中几句和校对表一模一样；files_same 全都一模一样的文件；
-    room 最多能用多少个字 / 词（程序自带的母本占了一部分）；too_long 超过了（只用前面的）。"""
-    files = load_transcript_files(project)
-    selves = _row_texts(project) if files else set()
-    chars = lines = same = 0
+    """存好的母本：files 文件名；chars 下次真的拿来用的字 / 词数；lines 一共几句，其中
+    own_lines 存的时候就和校对表某一句一模一样（这个声音自己的文字，证明不了它自己没错）、
+    used_lines 已经拿来改好了表格里对应的句子（存的时候不一样，现在一模一样了）、
+    known_lines 程序自带的母本里已经有（不用再上传）、same_lines 和校对表现在的句子一模一样（旧版本存的，说不准是哪一种）；
+    files_same / files_known 一句都用不上的文件（和校对表一模一样的 / 程序里已经有的）；
+    room 最多能用多少个字 / 词（程序自带的母本占了一部分）；too_long 超过了（只用前面的）。
+    以前只要和校对表现在的句子一样就说「这个声音自己的文字，用不上」，一键校正刚拿它改好的句子也这么说（检查时发现的）。"""
+    saved = _saved_upload_files(project)
+    meta = _read_upload_meta(project) if saved else {}
+    selves = _row_texts(project) if saved else set()
+    names: List[str] = []
     files_same: List[str] = []
-    for name, fl in files:
-        usable = [n for _rid, x, n in fl if _norm_line(x) not in selves]
-        lines += len(fl)
-        same += len(fl) - len(usable)
-        chars += sum(usable)
-        if fl and not usable:
-            files_same.append(name)
+    files_known: List[str] = []
+    total: Counter = Counter()
+    for name, path, size, mtime in saved:
+        try:
+            fl = _parse_file(str(path), size, mtime)
+            m = meta.get(name)
+            if isinstance(m, dict) and m.get("size") == size and m.get("mtime_ns") == mtime:
+                known = {int(i) for i in m.get("known") or []}
+                was_self: Optional[Set[int]] = {int(i) for i in m.get("self") or []}
+                cleaned = {str(k): str(v) for k, v in (m.get("cleaned") or {}).items()}
+                marks = [(cleaned.get(str(i), x), i in known) for i, (_rid, x, _n) in enumerate(fl)]
+            else:  # 旧版本存的（没有记下）：现在算；和校对表一模一样的说不准是存的时候就一样、还是后来拿它改好的
+                marks, was_self = list(_file_marks(str(path), size, mtime)), None
+        except (OSError, ValueError, TypeError):  # 读不了的文件跳过（一键校正也不用它）
+            continue
+        names.append(name)
+        here: Counter = Counter()
+        for i, ((_rid, x, n), (c, kn)) in enumerate(zip(fl, marks)):
+            kind = _line_kind(x, c, kn, selves)
+            if kind == "self":
+                kind = "same" if was_self is None else ("own" if i in was_self else "used")
+            here[kind] += 1
+            if kind == "use":
+                here["chars"] += n
+        if fl and not here["use"]:
+            (files_known if here["known"] == len(fl) else files_same).append(name)
+        total.update(here)
     room = upload_room()
-    return {"files": [name for name, _fl in files], "chars": chars, "lines": lines, "same_lines": same,
-            "files_same": files_same, "room": room, "too_long": chars > room, "builtin": len(builtin_mother())}
+    chars = total["chars"]
+    return {"files": names, "chars": chars, "lines": sum(total[k] for k in ("use", "own", "used", "known", "same")),
+            "own_lines": total["own"], "used_lines": total["used"], "known_lines": total["known"],
+            "same_lines": total["same"], "files_same": files_same, "files_known": files_known,
+            "room": room, "too_long": chars > room, "builtin": len(builtin_mother())}
 
 
 def upload_room() -> int:
@@ -407,26 +475,82 @@ def _builtin_tokens() -> int:
     return _useful_chars("\n".join(x for _, x in builtin_mother()))
 
 
-def _any_usable(lines: Sequence[Tuple[str, str]], selves: Set[str]) -> bool:
-    """上传的句子里有没有一句真的用得上（见 _filter_upload）；找到一句就不再往下看（大文件也快）。"""
+@lru_cache(maxsize=1)
+def _builtin_norms() -> frozenset:
+    """程序自带的母本里的每一句（整理过空格）：上传的句子和其中一句一模一样时，程序里本来就有，不用再拿来比。"""
+    return frozenset(_norm_line(x) for _, x in builtin_mother())
+
+
+def _builtin_sig() -> str:
+    """程序自带的标准库是哪一版（换了版本，上传时记下的「程序里已经有」要重新算）。"""
+    from voicetwin import __version__
+    from voicetwin.data.lexicon_fix import builtin_info
+
+    info = builtin_info()
+    return f"{__version__}|{len(builtin_mother())}|{len(builtin_fixes())}|{info['corrections']}"
+
+
+def _line_marks(lines: Sequence[Tuple[str, str]]) -> List[Tuple[str, bool]]:
+    """上传的每一句：按对照表、逐句修缮记录改掉识别错以后的文字（和一键校正用的一样，见 _clean_uploaded），
+    程序自带的母本里是不是已经有这一句（有就不用再拿来比）。"""
     from voicetwin.data.lexicon_fix import Lexicon
 
-    todo = [(rid, x) for rid, x in (lines or []) if _norm_line(x) not in selves]
-    if not todo:
-        return False
+    if not lines:
+        return []
     builtin = builtin_mother()
-    row_table, by_id, cleaner = dict(builtin_fixes()), {rid: x for rid, x in builtin if rid}, Lexicon.build([])
-    return any(_filter_upload([line], selves, row_table, by_id, cleaner) for line in todo)
+    row_table, by_id, norms = dict(builtin_fixes()), {rid: x for rid, x in builtin if rid}, set(_builtin_norms())
+    cleaner = Lexicon.build([])
+    out: List[Tuple[str, bool]] = []
+    for rid, x in lines:
+        c = _clean_uploaded([(rid, x)], row_table, by_id, cleaner, norms)
+        out.append((c[0][1], False) if c else (x, True))
+    return out
 
 
-def _filter_upload(lines: Sequence[Tuple[str, str]], selves: Set[str], row_table: Dict[str, Any],
-                   builtin_by_id: Dict[str, str], cleaner: Any) -> List[Tuple[str, str]]:
-    """老师上传的母本里真正拿来用的句子：和校对表某一句（现在的 / 保存的 / 最初识别的样子）一模一样的不用（就是那一句自己，
-    比如下载的「改好的文字」，什么也证明不了，不然没检查过的句子会「自己证明自己没错」）；先按对照表、逐句修缮记录改掉里面的
-    识别错，改完和程序自带的一模一样的、和校对表某一句一模一样的也不用。"""
-    out = [(rid, x) for rid, x in (lines or []) if _norm_line(x) not in selves]
-    out = _clean_uploaded(out, row_table, builtin_by_id, cleaner) if out else []
-    return [(rid, x) for rid, x in out if _norm_line(x) not in selves]
+def _line_kind(raw: str, cleaned: str, known: bool, selves: Set[str]) -> str:
+    """一句上传的母本用不用（和一键校正的顺序一样）：self = 和校对表某一句（现在的 / 保存的 / 最初识别的样子）一模一样，
+    就是那一句自己，证明不了什么；known = 程序自带的母本里已经有；use = 拿来用。"""
+    if _norm_line(raw) in selves:
+        return "self"
+    if known:
+        return "known"
+    if _norm_line(cleaned) in selves:
+        return "self"
+    return "use"
+
+
+@lru_cache(maxsize=16)
+def _file_marks(path: str, size: int, mtime_ns: int) -> Tuple[Tuple[str, bool], ...]:
+    """存好的一个母本文件每一句的 _line_marks（旧版本存的、没有记下的才用）；文件没变就不再算。"""
+    return tuple(_line_marks([(rid, x) for rid, x, _n in _parse_file(path, size, mtime_ns)]))
+
+
+def _read_upload_meta(project: Any) -> Dict[str, Any]:
+    """存母本时记下的（UPLOAD_META）：{文件名: {size, mtime_ns, self, known, cleaned}}；没有、读不了、标准库换了版本都返回空的。"""
+    import json
+
+    from voicetwin.utils import atomic
+
+    try:
+        data = json.loads(atomic.read_text(transcript_dir(project) / UPLOAD_META))
+    except (OSError, ValueError):
+        return {}
+    files = data.get("files") if isinstance(data, dict) and data.get("sig") == _builtin_sig() else None
+    return files if isinstance(files, dict) else {}
+
+
+def _useless_upload_msg(names: str, own: int, known: int) -> str:
+    """上传的句子一句都用不上时（网页上不存、不开始）的说明：分开说「这个声音自己的文字」和「程序里已经有的」。"""
+    keep = ("这次什么都没改，上次上传的母本还在，这批素材的「📝 一键全部文字校正」也还能用；"
+            "要上传的话，请选这批录音的讲稿。")
+    if own and not known:
+        return (f"母本没有存上：{names}里的句子和校对表里的一模一样——这是这个声音自己的文字"
+                "（比如「⬇️ 下载改好的文字」存的 txt、这个声音的 transcripts.csv）。一句话不能拿来证明它自己没错，"
+                "所以用不上（它可以给别的声音当母本用）。" + keep)
+    if known and not own:
+        return (f"母本没有存上：{names}里的句子程序里已经带着了（就是你的母本标准库，每个声音都会用），不用再上传。" + keep)
+    return (f"母本没有存上：{names}里有 {own} 句和校对表里的一模一样（这个声音自己的文字，一句话不能拿来证明它自己没错），"
+            f"另外 {known} 句程序里已经带着了（你的母本标准库，每个声音都会用），所以都用不上。" + keep)
 
 
 BUILTIN_MOTHER = Path(__file__).resolve().parent / "lexicon" / "core_corpus.tsv"
@@ -729,6 +853,9 @@ class Reference:
         # 老师上传的（没修缮过的）从第几个字 / 词开始
         firsts = [line_span[li][0] for li in line_span if vetted_lines is not None and li >= vetted_lines]
         self.unvetted_from = min(firsts) if firsts else len(self.toks)
+        # 修缮过的那部分（程序自带的母本标准库）单独记一份：上传的文字和识别的文字不一样时，看标准库站在哪一边（_vetted_support）
+        self.joined_vetted = (self.joined if self.unvetted_from >= len(self.toks)
+                              else "\x1f" + "\x1f".join(self.keys[:self.unvetted_from]) + "\x1f")
 
     def __len__(self) -> int:
         return len(self.toks)
@@ -739,6 +866,10 @@ class Reference:
 
     def count(self, keys: Sequence[str]) -> int:
         return self.joined.count("\x1f" + "\x1f".join(keys) + "\x1f") if keys else 0
+
+    def count_vetted(self, keys: Sequence[str]) -> int:
+        """这几个字 / 词（按写法）在修缮过的那部分（程序自带的母本标准库）里连着出现过几次。"""
+        return self.joined_vetted.count("\x1f" + "\x1f".join(keys) + "\x1f") if keys else 0
 
     def ids_of(self, toks: Sequence[Tk]) -> List[int]:
         """识别文字的模糊读音换成逐字稿用的编号；逐字稿里没有的读音给一个不会对上的编号。"""
@@ -784,7 +915,7 @@ class Prop:
     locs: Set[int] = field(default_factory=set)
     ref: Tuple[int, int] = (0, 0)
     strong: bool = False  # 整句几乎一样、前后都对得上：按母本直接改
-    unvetted: bool = False  # 只对上了老师上传的母本（没修缮过）的单个字：不直接改，读音很像的只给没把握的建议
+    unvetted: bool = False  # 只对上了老师上传的母本（没修缮过），标准库又证明不了：不直接改，给一个按母本写的建议
 
 
 def _rep_text(ref: Reference, j1: int, j2: int, kind: str) -> str:
@@ -917,8 +1048,12 @@ def _style_pair(a: str, b: str) -> bool:
 
 STRONG_COVERAGE = 0.85  # 整句这么多字都对得上，并且不一样的地方前后各有 ≥ 2 个一样的字：按母本直接改
 _STRONG_KINDS = ("near", "same", "cjk_en", "en_cjk", "en")
-_UNVETTED_KINDS = ("near", "same")  # 只对上老师上传的母本时不直接改的（单个汉字）
-UNVETTED_WEIGHT = 0.6  # 这种只给没把握的建议（一键校正不自动采用，老师听录音决定）
+#: 只对上老师上传的母本（没修缮过）时，要程序自带的母本标准库也站在上传的那一边才直接改的几种：汉字的别字、英文拼写、
+#: 「汉字被写成了英文」（which → 威驰：别的识别软件的文字常把老师说的英文写成汉字）；「英文被写成了汉字」
+#: （威驰 → which）照旧直接改：上传的文字打错字也打不成英文
+_UNVETTED_KINDS = ("near", "same", "en", "en_cjk")
+UNVETTED_WEIGHT = 0.6  # 标准库证明不了的：只给没把握的建议（一键校正不自动采用，老师听录音决定）
+SUPPORT_RATIO = 3  # 标准库里上传的写法出现过、并且比现在的写法多这么多倍以上，才算标准库也站在上传的那一边
 
 
 def _strong(al: "_Align", kind: str, i1: int, i2: int, j1: int, j2: int) -> bool:
@@ -926,6 +1061,36 @@ def _strong(al: "_Align", kind: str, i1: int, i2: int, j1: int, j2: int) -> bool
         return False
     left, right, at_start, at_end = al.ctx(i1, i2, j1, j2)
     return (left >= 2 or at_start) and (right >= 2 or at_end) and left + right >= 2
+
+
+def _vetted_support(clip: "_Clip", ref: Reference, p: "Prop") -> Tuple[int, int]:
+    """程序自带的（修缮过的）母本标准库里：现在的写法、上传的母本里的写法各出现过几次。
+
+    汉字带上前后挨着的汉字一起数（单说「在」「再」「练习」「联系」，两种写法平时都说，证明不了什么）：先看左右各带一个字，
+    再看只带左边、只带右边的，哪一种有一边出现过就按哪一种算；英文按整个词数。都没出现过返回 (0, 0)。"""
+    cur, new = list(clip.keys[p.i1:p.i2]), list(ref.keys[p.ref[0]:p.ref[1]])
+    if not cur or not new:
+        return 0, 0
+    if p.kind in ("en", "en_cjk"):
+        return ref.count_vetted(cur), ref.count_vetted(new)
+    toks = clip.toks
+    left = (toks[p.i1 - 1].key if p.i1 > 0 and toks[p.i1 - 1].kind == "han" and toks[p.i1 - 1].end == toks[p.i1].start
+            else "")
+    right = (toks[p.i2].key if p.i2 < len(toks) and toks[p.i2].kind == "han" and toks[p.i2].start == toks[p.i2 - 1].end
+             else "")
+    ctxs = ([([left], [right])] if left and right else []) + ([([left], [])] if left else []) + (
+        [([], [right])] if right else [])
+    for a, b in ctxs:
+        ca, cb = ref.count_vetted(a + cur + b), ref.count_vetted(a + new + b)
+        if ca or cb:
+            return ca, cb
+    return 0, 0
+
+
+def _upload_reason(reason: str, cur_count: int) -> str:
+    """只对上了老师上传的母本、标准库证明不了的建议：说清楚是上传的母本里这么写，也说清楚为什么没直接改。"""
+    why = "程序自带的母本里是现在这种写法" if cur_count else "它没有修缮过"
+    return f"{reason.replace('母本里', '你上传的母本里', 1)}；也可能是上传的文字打错了（{why}）"
 
 
 def _absent_around(clip: _Clip, ref: Reference, i1: int, i2: int) -> bool:
@@ -1166,21 +1331,25 @@ def check_text(text: str, ref: Reference, exclude_id: str = "", exclude_texts: I
             else:
                 props = []
             for p in props:
-                if p.strong and p.kind in _UNVETTED_KINDS and p.i2 - p.i1 == 1 and p.ref[0] >= ref.unvetted_from:
-                    # 只对上了老师上传的母本（没修缮过）：读音一样 / 很像的单个字，说不准是识别错了还是上传的文字打错了
-                    # （拼音输入法打的讲稿常有「主雨」「过去试」），不直接改（以前把对的字直接改成了上传文字里的错字）
-                    p.strong, p.unvetted = False, True
+                if p.strong and p.kind in _UNVETTED_KINDS and p.ref[0] >= ref.unvetted_from:
+                    # 只对上了老师上传的母本（没修缮过）：说不准是识别错了还是上传的文字打错了（拼音输入法打的讲稿常有
+                    # 「主雨」「过去试」「联系」，别的识别软件的文字也有错），以前直接把对的字改成了上传文字里的错字。
+                    # 母本优先：程序自带的母本标准库也是上传的这种写法（带着前后的字数），照旧直接改；
+                    # 证明不了的，按上传的母本给一个没把握的建议（一定给老师看，不悄悄丢掉），老师听录音决定
+                    ca, cb = _vetted_support(clip, ref, p)
+                    if not (cb > 0 and cb > ca * SUPPORT_RATIO):
+                        p.strong, p.unvetted, p.reason = False, True, _upload_reason(p.reason, ca)
                 key = (p.i1, p.i2, p.rep)
                 old = found.get(key)
                 if old is None:
                     found[key] = p
                 else:
                     old.locs |= p.locs
-                    if p.weight > old.weight:
+                    if (p.strong, p.weight) > (old.strong, old.weight):  # 能直接改的那一处的说法优先
                         old.weight, old.mode, old.reason, old.need, old.ref = p.weight, p.mode, p.reason, p.need, p.ref
                     old.need = min(old.need, p.need)
                     old.strong = old.strong or p.strong
-                    old.unvetted = old.unvetted or p.unvetted
+                    old.unvetted = (old.unvetted or p.unvetted) and not old.strong
     props = []
     for p in found.values():
         if len(p.locs) < p.need:
@@ -1259,27 +1428,26 @@ def props_to_fixes(cur: str, res: ClipResult, lex: Any = None) -> List[Any]:
     """和母本对齐找出来的（Prop）→ 统一的改法（lexicon_fix.Fix）。整句几乎一样的直接改，别的只给建议。
 
     只给建议的再筛一遍（母本里有很多相似的句子，对齐到别的句子上容易误报）：标准库里的词（「及物动词」）不动；
-    只差一个字的不提示；「英文被写成汉字」的那几个字本来就是常用的词（「它」「那么」「短语」）不提示。"""
+    只差一个字的不提示；「英文被写成汉字」的那几个字本来就是常用的词（「它」「那么」「短语」）不提示。
+    只对上了老师上传的母本（整句几乎一样）、标准库又证明不了的（unvetted）不筛：母本优先，上传的母本里的写法一定给老师看
+    （以前读音一样的单个字悄悄丢掉了），只是没把握（一键校正不自动采用，老师听录音决定）。"""
     from voicetwin.data.lexicon_fix import Fix
 
     clip = tokens(cur)
     out = []
     for p in res.props:
         s, e = clip[p.i1].start, clip[p.i2 - 1].end
-        weight, reason = p.weight, p.reason
-        if not p.strong:
+        weight = p.weight
+        if p.unvetted and not p.strong:
+            weight = min(weight, UNVETTED_WEIGHT)
+        elif not p.strong:
             if lex is not None and lex.inside_vocab(cur, s, e):
                 continue
             if p.kind in ("near", "same") and p.i2 - p.i1 == 1:
-                if not (p.unvetted and p.kind == "near"):
-                    continue
-                # 只对上了老师上传的母本、读音很像（声调不一样，影响训练）的单个字：给一个没把握的建议，老师听录音决定；
-                # 读音一样的（不影响训练）不提示
-                weight = min(weight, UNVETTED_WEIGHT)
-                reason = reason.replace("母本里", "你上传的母本里", 1)
+                continue
             if p.kind == "cjk_en" and lex is not None and lex.has_common_word(cur[s:e]):
                 continue
-        out.append(Fix(s, e, pc._pad(cur, s, e, p.rep), "align", bool(p.strong), weight, reason))
+        out.append(Fix(s, e, pc._pad(cur, s, e, p.rep), "align", bool(p.strong), weight, p.reason))
     return out
 
 
@@ -1557,9 +1725,11 @@ def _text_edited(rec: Dict[str, Any]) -> bool:
 
 
 def _clean_uploaded(lines: List[Tuple[str, str]], row_table: Dict[str, Sequence[Tuple[str, str, str]]],
-                    builtin_by_id: Dict[str, str], cleaner: Any = None) -> List[Tuple[str, str]]:
+                    builtin_by_id: Dict[str, str], cleaner: Any = None,
+                    builtin_norms: Optional[Set[str]] = None) -> List[Tuple[str, str]]:
     """老师上传的母本：先把里面的识别错改掉（老师上传的可能是修缮以前的 transcripts.csv 或者 txt，里面还有「借词」）——
-    同一个 id 的句子按逐句修缮记录改，所有的句子按对照表改；改好以后和程序自带的一模一样的就不重复用了。
+    同一个 id 的句子按逐句修缮记录改，所有的句子按对照表改；改好以后和程序自带的一模一样的就不重复用了
+    （同一个 id 的；给了 builtin_norms 时，和程序自带的任何一句一模一样的也不用：程序里本来就有，修缮过的那一份照样拿来比）。
     不改的话，母本里旧的错写法会把已经改好的句子又「对齐」改回去（检查时发现的）。"""
     out: List[Tuple[str, str]] = []
     for rid, text in lines:
@@ -1568,11 +1738,12 @@ def _clean_uploaded(lines: List[Tuple[str, str]], row_table: Dict[str, Sequence[
                 for wrong, right, _why in row_table[rid]:
                     text = text.replace(wrong, right)
                 text = clean_transcript(text)
-        if cleaner is not None:
+        # 对照表左边的写法一个都没有的句子不用分词（结果一样，大文件快很多）
+        if cleaner is not None and any(w in text for w in cleaner.corrections):
             fixes = cleaner.list_fixes(text)
             if fixes:
                 text = _apply(text, [(f.start, f.end, f.rep) for f in fixes])
-        if rid and builtin_by_id.get(rid) == text:
+        if (rid and builtin_by_id.get(rid) == text) or (builtin_norms and _norm_line(text) in builtin_norms):
             continue
         out.append((rid, text))
     return out
@@ -1772,13 +1943,26 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
     builtin_by_id = {rid: x for rid, x in builtin if rid}
     # 老师上传的母本里和校对表某一句（现在的 / 保存的 / 最初识别的样子）一模一样的行：就是那一句自己（比如下载的
     # 「改好的文字」），什么也证明不了，不用（不然没检查过的句子会「自己证明自己没错」，自动查错字的标红被去掉）
+    # 先按对照表、逐句修缮记录改掉里面的识别错；改好以后程序自带的母本里已经有的句子也不用（程序里本来就有、修缮过的那份照样用）
     selves = _row_texts(project)
     cleaner = Lexicon.build([]) if any(fl for _n, fl in per_file) else None
-    lines, file_of = [], []
+    norms = set(_builtin_norms()) if use_builtin else set()
+    lines: List[Tuple[str, str]] = []
+    file_of: List[int] = []
+    kinds_of: List[Counter] = []
     for k, (_name, fl) in enumerate(per_file):
-        fl = _filter_upload(fl, selves, row_table, builtin_by_id, cleaner)
-        lines += fl
-        file_of += [k] * len(fl)
+        here: Counter = Counter()
+        for rid, x in fl:  # 顺序和 _line_kind 一样（按钮下面的说明按它数）
+            if _norm_line(x) in selves:
+                kind, c = "self", []
+            else:
+                c = _clean_uploaded([(rid, x)], row_table, builtin_by_id, cleaner, norms)
+                kind = "known" if not c else ("self" if _norm_line(c[0][1]) in selves else "use")
+            here[kind] += 1
+            if kind == "use":
+                lines.append(c[0])
+                file_of.append(k)
+        kinds_of.append(here)
     all_lines = builtin + lines
     _report(progress, 0.02, "正在读母本和语法术语……")
     ref = Reference(all_lines, own_from=len(builtin), vetted_lines=len(builtin)) if all_lines else None
@@ -1917,7 +2101,7 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
             _review.save_draft(project, draft)
     # 上传的文件哪些真的用上了（以前不管用没用上都说「另外用了你上传的」）：一句都没用上的（和校对表一模一样）、
     # 太长被截掉的（只用了前面的），页面上分开说
-    files_used, files_cut, files_same = list(names or []), [], []
+    files_used, files_cut, files_same, files_known, files_both = list(names or []), [], [], [], []
     if by_file:
         files_used = []
         last = ref.last_line if ref is not None else -1
@@ -1925,8 +2109,9 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
         for k, (name, fl) in enumerate(per_file):
             idx = [len(builtin) + i for i, f in enumerate(file_of) if f == k]
             if not idx:
-                if fl:
-                    files_same.append(name)
+                if fl:  # 一句都没用上：和校对表一模一样的 / 程序自带的母本里已经有的 / 两种都有，页面上说的原因不一样
+                    known = kinds_of[k]["known"]
+                    (files_known if known == len(fl) else files_both if known else files_same).append(name)
                 continue
             if not truncated or min(idx) <= last:
                 files_used.append(name)
@@ -1938,6 +2123,7 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
            "found": stats["found"], "aligned": stats["aligned"], "cleared": stats["cleared"],
            "kept_auto": stats["kept_auto"] + stats["unchanged_auto"], "dismissed": dismissed,
            "chars": len(ref) if ref else 0, "files": files_used, "files_cut": files_cut, "files_same": files_same,
+           "files_known": files_known, "files_both": files_both,
            "room": upload_room(), "builtin_lines": len(builtin),
            "terms": len(lex.vocab), "builtin_terms": info["terms"], "corrections": len(lex.corrections),
            "unsure": stats["unsure"], "kept_undo": stats["kept_undo"], "pinyin": has_pinyin(), "jieba": has_jieba(),

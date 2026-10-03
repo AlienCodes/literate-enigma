@@ -1,4 +1,5 @@
-# textfix#2：大上传的保存 / 每次刷新说明用时（g2 修改后）
+# textfix#2：大上传的保存 / 每次刷新说明用时（g2 修改后；复查时修正：每行去掉换行符，不然「（第k遍）」单独成一行，
+# 剩下的句子和程序自带的母本一模一样，现在会算成「程序里已经有」，测不到大文件）
 import sys
 from pathlib import Path
 
@@ -10,7 +11,7 @@ from conftest import make_cfg
 from pathlib import Path
 from voicetwin import workflows as wf
 from voicetwin.data import transcript_fix as tf
-lines = [r.split("\t")[-1] for r in open(str(ROOT) + "/voicetwin/data/lexicon/core_corpus.tsv", encoding="utf-8") if r.strip() and not r.startswith("#")]
+lines = [r.rstrip("\n").split("\t")[-1] for r in open(str(ROOT) + "/voicetwin/data/lexicon/core_corpus.tsv", encoding="utf-8") if r.strip() and not r.startswith("#")]
 with tempfile.TemporaryDirectory() as d:
     cfg = make_cfg(Path(d) / "ws")
     project = wf.Project(cfg, "v").ensure()

@@ -575,16 +575,27 @@ def test_without_jieba_nothing_is_changed_directly(tmp_path, monkeypatch, text):
 @need_both
 @pytest.mark.parametrize("text", ["他会说壮语，也会说普通话", "他的原籍是山东", "关于代词的用法我们下次讲",
                                   "这个词兼名词和动词两种词性", "这是两个陷阱词，考试要小心", "如果我们把关系代词位置还原",
-                                  "接下来我们进行词的辨析，看看这两个词有什么区别。", "我们要对每个单词进行词的分类。",
-                                  "这个是系统词库里面的词。"])
+                                  "接下来我们进行词的辨析，看看这两个词有什么区别。", "我们要对每个单词进行词的分类。"])
 def test_real_words_are_never_changed_directly(tmp_path, text):
     """问题 7：本身是词的（壮语 → 状语）和正常的说法（关于代词、兼名词、陷阱词）不直接改。
-    第四轮找 bug：对照表里的「进行词 => 先行词」把「我们进行词的辨析」改成「我们先行词的辨析」（「系统词」同样），去掉了。"""
+    第四轮找 bug：对照表里的「进行词 => 先行词」把「我们进行词的辨析」改成「我们先行词的辨析」，去掉了。"""
     cfg, project = _voice(tmp_path, [text])
     res = wf.run_transcript_fix(cfg, "校正声音", adopt_all=False)
     assert res["fixes"] == 0 and review.load_draft(project) == {}
     review.adopt_all_suggestions(project)
     assert review.load_draft(project) == {}  # 一键也不自动采用（没把握的建议还在，可以一行一行采用）
+
+
+@need_both
+def test_linking_verb_heard_as_system_word_is_still_fixed(tmp_path):
+    """第四轮找 bug 复查：修「进行词」时把对照表里的「系统词 => 系动词」也去掉了。它没有改错过（「系统词库」分词是
+    「系统 / 词库」，本来就不改）；老师母本里「系统词」只是「系动词」听错了，去掉以后这种错就改不好了。放回去。"""
+    rows = ["be动词是一个系统词，后面要接表语。", "我们来看系统词和实义动词的区别。", "这个是系统词库里面的词。"]
+    cfg, project = _voice(tmp_path, rows)
+    wf.run_transcript_fix(cfg, "校正声音", adopt_all=False)
+    assert _cur(project, "c000")[1] == "be动词是一个系动词，后面要接表语。"
+    assert _cur(project, "c001")[1] == "我们来看系动词和实义动词的区别。"
+    assert _cur(project, "c002")[1] == rows[2]
 
 
 @need_both
@@ -827,40 +838,86 @@ def test_result_message_wording():
 
 @need_both
 def test_typos_in_an_uploaded_script_never_overwrite_correct_text(tmp_path):
-    """第四轮找 bug：老师上传自己用拼音输入法打的讲稿（或者别的识别软件的文字），里面有同音错字（过去试、主雨、同位于、度、在）。
+    """第四轮找 bug：老师上传自己用拼音输入法打的讲稿（或者别的识别软件的文字），里面有错字（过去试、主雨、同位于、度、在）。
     校对表里本来对的字被直接改成了这些错字，还写「已按标准库改好」；标准库的术语（过去式、宾语）也被改坏。
-    现在：只对上上传文字（没修缮过）的单个字不直接改，读音很像的只给没把握的建议；把关的标准库只用程序自带的母本。"""
+    复查：两个字的词（练习 → 联系、意义 → 异议、时候 → 事后）、英文拼写（which → wich、sentence → sentense）还是直接改。
+    现在：只对上上传的文字（没修缮过）、程序自带的母本标准库又证明不了的，不直接改，按上传的母本给没把握的建议
+    （母本优先：一定给老师看，老师听录音决定）；改完标准库马上说有错的（过去试、彬鱼）不改。"""
     rows = ["这个句子的谓语动词是过去式，所以我们要注意时态的变化。", "好，我们一起来读一下这个句子，注意它的语调和停顿。",
             "我们再来看一个同位语从句的例子，它和定语从句不一样。", "这个动名词在句子里面作主语，后面的动词要用单数。",
-            "我们来看一下宾语从句，它在句子里面作宾语。"]
+            "我们来看一下宾语从句，它在句子里面作宾语。", "好，下面我们来做一下练习，大家把书翻到第三十页。",
+            "这个句子的意义很重要，我们要好好理解它的用法。", "这个时候我们要注意，后面的动词要用过去式。",
+            "所以这里要用关系代词which,不能用that。",
+            "This is the sentence which I like very much, and we will read it again and again in class today."]
     typed = ["这个句子的谓语动词是过去试，所以我们要注意时态的变化。", "好，我们一起来度一下这个句子，注意它的语调和停顿。",
              "我们在来看一个同位于从句的例子，它和定语从句不一样。", "这个动名词在句子里面作主雨，后面的动词要用单数。",
-             "我们来看一下彬鱼从句，它在句子里面作宾语。"]
+             "我们来看一下彬鱼从句，它在句子里面作宾语。", "好，下面我们来做一下联系，大家把书翻到第三十页。",
+             "这个句子的异议很重要，我们要好好理解它的用法。", "这个事后我们要注意，后面的动词要用过去式。",
+             "所以这里要用关系代词wich,不能用that。",
+             "This is the sentense which I like very much, and we will read it again and again in class today."]
     cfg, project = _voice(tmp_path, rows)
     up = tmp_path / "讲稿.txt"
     up.write_text("\n".join(typed) + "\n", encoding="utf-8")
     res = wf.run_transcript_fix(cfg, "校正声音", once=True, files=[str(up)])
     assert res["fixes"] == 0 and res["adopted"]["changes"] == 0 and review.load_draft(project) == {}
-    rec, cur = _cur(project, "c001")
-    info = review.analyze(rec, cur)
-    assert cur == rows[1] and info["edits"] == [(7, 8, "度")] and not info["sure"]  # 只是没把握的建议，老师听录音决定
-    assert any("你上传的母本" in r for r in info["reasons"])
+    for k, row in enumerate(rows):
+        assert _cur(project, f"c{k:03d}")[1] == row, row  # 一个字都没改
+    want = {"c001": ["度"], "c002": ["在", "于"], "c003": ["雨"], "c005": ["联系"], "c006": ["异议"], "c007": ["事后"],
+            "c008": ["wich"], "c009": ["sentense"]}
+    for rid, reps in want.items():  # 上传的母本里的写法给老师看：没把握的建议，说清楚是上传的文字、也可能是它打错了
+        rec, cur = _cur(project, rid)
+        info = review.analyze(rec, cur)
+        assert [e[2].strip(" ,") for e in info["edits"]] == reps and not info["sure"], (rid, info)
+        assert any("你上传的母本" in r and "也可能是上传的文字打错了" in r for r in info["reasons"]), info["reasons"]
+    for rid in ("c000", "c004"):  # 过去式 → 过去试、宾语 → 彬鱼：标准库马上会说写错了，不建议
+        rec, cur = _cur(project, rid)
+        assert not review.analyze(rec, cur)["edits"], rid
 
 
 @need_both
 def test_correct_uploaded_script_still_fixes_recognition_errors(tmp_path):
-    """上传的讲稿是对的：英文被写成汉字（威驰 → which）照样直接改；读音很像的单个字给建议（老师点「采用」就改好）。"""
-    rows = ["我们先来复习一下关系代词威驰的用法，它可以指物。", "好，我们一起来度一下这个句子，注意它的语调和停顿。"]
-    script = ["我们先来复习一下关系代词which的用法，它可以指物。", "好，我们一起来读一下这个句子，注意它的语调和停顿。"]
+    """上传的讲稿是对的：英文被写成汉字（威驰 → which）照样直接改；程序自带的母本标准库也这么说的（「读一下」「再来看」）
+    直接改（母本优先）；标准库里没有的（公园）按上传的母本给建议，老师点「采用」就改好。"""
+    rows = ["我们先来复习一下关系代词威驰的用法，它可以指物。", "好，我们一起来度一下这个句子，注意它的语调和停顿。",
+            "周末我们一起去公圆里面散散步，顺便复习一下单词。"]
+    script = ["我们先来复习一下关系代词which的用法，它可以指物。", "好，我们一起来读一下这个句子，注意它的语调和停顿。",
+              "周末我们一起去公园里面散散步，顺便复习一下单词。"]
     cfg, project = _voice(tmp_path, rows)
     up = tmp_path / "讲稿.txt"
     up.write_text("\n".join(script) + "\n", encoding="utf-8")
     wf.run_transcript_fix(cfg, "校正声音", once=True, files=[str(up)])
-    assert _cur(project, "c000")[1] == script[0]
-    rec, cur = _cur(project, "c001")
-    assert cur == rows[1] and review.analyze(rec, cur)["edits"] == [(7, 8, "读")]
-    review.adopt_suggestion(project, "c001")
-    assert _cur(project, "c001")[1] == script[1]
+    assert _cur(project, "c000")[1] == script[0] and _cur(project, "c001")[1] == script[1]
+    rec, cur = _cur(project, "c002")
+    assert cur == rows[2] and review.analyze(rec, cur)["edits"] == [(8, 9, "园")]
+    review.adopt_suggestion(project, "c002")
+    assert _cur(project, "c002")[1] == script[2]
+
+
+@need_both
+def test_uploaded_master_wording_is_never_dropped(tmp_path):
+    """第四轮找 bug 复查（老师 10-03：自动检查错字的底层逻辑也要以母本为主，母本是最优先级）：上一次修的时候，只对上
+    上传的母本、读音一样的单个字整个丢掉了——母本里明明是「再」，表格里的「在」不改、不标红、也不建议；🔍 合并时也一样。
+    现在：程序自带的母本标准库也这么说的直接改；标准库里没有的也一定给一个按母本写的建议。"""
+    rows = ["我们在来看一个例子，这个例子比较简单。", "那么我们现在在来看第二个句子，它是一个定语从句。",
+            "周末我们一起去公圆里面散散步，顺便复习一下单词。"]
+    script = ["我们再来看一个例子，这个例子比较简单。", "那么我们现在再来看第二个句子，它是一个定语从句。",
+              "周末我们一起去公园里面散散步，顺便复习一下单词。"]
+    cfg, project = _voice(tmp_path, rows)
+    up = tmp_path / "讲稿.txt"
+    up.write_text("\n".join(script) + "\n", encoding="utf-8")
+    wf.run_transcript_fix(cfg, "校正声音", once=True, files=[str(up)])
+    assert _cur(project, "c000")[1] == script[0] and _cur(project, "c001")[1] == script[1]
+    rec, cur = _cur(project, "c002")
+    info = review.analyze(rec, cur)
+    assert info["edits"] == [(8, 9, "园")] and any("你上传的母本里的「园」" in r for r in info["reasons"])
+    # 🔍 自动查错字以后合并（merge_only，从头算）：母本里的写法照样在
+    recs = project.load_manifest()
+    for r in recs:
+        r.pop("suspect", None)
+    project.save_manifest(recs)
+    tf.check_with_transcript(project, merge_only=True, only=["c002"])
+    rec, cur = _cur(project, "c002")
+    assert review.analyze(rec, cur)["edits"] == [(8, 9, "园")]
 
 
 @need_both
@@ -1777,3 +1834,61 @@ def test_upload_info_does_not_reread_unchanged_files(tmp_path, monkeypatch):
     monkeypatch.setattr(tf, "parse_mother", lambda *a, **k: calls.append(1) or real(*a, **k))
     first = tf.transcript_info(project)
     assert tf.transcript_info(project) == first and len(calls) <= 1 and first["chars"] > 10
+
+
+@need_both
+def test_upload_info_after_the_one_click_used_it_is_true(tmp_path):
+    """第四轮找 bug 复查：一键校正刚拿上传的讲稿改好了表格里的句子，按钮下面马上说「里面的句子和校对表里的一模一样
+    （就是这个声音自己的文字）……所以用不上」——表格和它一样，正是因为刚拿它改好的。现在按存的时候记下的分开说。"""
+    pytest.importorskip("gradio")
+    from voicetwin.webui import app as A
+
+    rows = ["我们先来复习一下关系代词威驰的用法，它可以指物。", "我们先来看艾子引导的定语从句，它比较特殊。"]
+    fixed = ["我们先来复习一下关系代词which的用法，它可以指物。", "我们先来看as引导的定语从句，它比较特殊。"]
+    other = "今天我们讲一讲状语从句的几种用法，大家先把课本翻到第三十页。"
+    for sub, lines in (("part", fixed + [other]), ("all", fixed)):
+        cfg, project = _voice(tmp_path / sub, rows)
+        up = tmp_path / sub / "这节课的讲稿.txt"
+        up.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        ui = A.WebUI(cfg)
+        out = dict(zip(ui.TEXTFIX_OUT, list(ui.do_textfix("校正声音", [str(up)]))[-1]))
+        assert "另外用了你上传的" in str(out["proof_md"])
+        assert [_cur(project, f"c{k:03d}")[1] for k in range(2)] == fixed
+        info = str(out["tr_info"])
+        assert "用不上" not in info and "自己的文字" not in info, info
+        if sub == "part":  # 还有没用过的句子：照样一起用，拿来改好的那 2 句如实说
+            assert "也一起用" in info and "2 句已经拿来改好了表格里对应的句子" in info, info
+        else:
+            assert "也一起用" not in info and "已经拿来改好了表格里对应的句子" in info, info
+    # 旧版本存的（没有记下存的时候的样子）：分不清是哪一种，只说和表格里现在的一模一样
+    (tf.transcript_dir(project) / tf.UPLOAD_META).unlink()
+    info = ui.textfix_info("校正声音")
+    assert "和校对表里现在的句子一模一样" in info and "自己的文字" not in info and "也一起用" not in info, info
+
+
+@need_both
+def test_uploading_the_builtin_mother_again_is_explained_truthfully(tmp_path):
+    """第四轮找 bug 复查：新的声音上传老师原来的 transcripts.csv（程序里本来就带着的母本）：说明写的是「这是这个声音自己的
+    文字……它可以给别的声音当母本用」，都不对；存进去以后按钮下面还说「也一起用」。"""
+    import shutil
+
+    pytest.importorskip("gradio")
+    from voicetwin.webui import app as A
+
+    cfg, project = _voice(tmp_path, ["今天我们来讲一讲非限定性定语从句里面的关系代词艾子。", "这个句子完全没有错误，我们继续往下看。"])
+    up = tmp_path / "transcripts.csv"
+    shutil.copy(MOTHER_DIR / "母本_原文.csv", up)
+    txt = tmp_path / "母本.txt"  # 没有 id 的也一样（和程序自带的某一句一模一样）
+    txt.write_text("\n".join(x for _rid, x in tf.builtin_mother()[:50]) + "\n", encoding="utf-8")
+    ui = A.WebUI(cfg)
+    for f in (up, txt):
+        bar = str(dict(zip(ui.TEXTFIX_OUT, list(ui.do_textfix("校正声音", [str(f)]))[-1]))["proof_bar"])
+        assert "程序里已经带着了" in bar and "自己的文字" not in bar and "别的声音" not in bar, bar
+        assert tf.load_transcripts(project)[1] == [] and ui.textfix_btn("校正声音")["interactive"] is True
+    tf.save_transcripts(project, [str(up)])  # 命令行 / 旧版本照样存
+    info = ui.textfix_info("校正声音")
+    assert "程序里已经带着了" in info and "也一起用" not in info, info
+    res = tf.check_with_transcript(project, only=[])
+    md = A.WebUI._textfix_md(res)
+    assert res["files_known"] == ["transcripts.csv"] and not res["files_same"] and not res["files"]
+    assert "程序里已经带着了" in md and "证明它自己没错" not in md and "另外用了你上传的" not in md, md
