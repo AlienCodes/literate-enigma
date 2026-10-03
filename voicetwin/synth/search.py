@@ -141,33 +141,46 @@ def _kind_eff(seg: Any) -> str:
     return "statement" if getattr(seg, "pause_after", "") == "clause" else (getattr(seg, "kind", "") or "statement")
 
 
-def match_score(entry: Dict[str, Any], seg: Any, prior: Dict[str, float], para_initial: bool = False) -> float:
-    """这条录音当这句话的参考合不合适（设计方案 §1.5 第 2 条）。"""
+def _seg_features(seg: Any, para_initial: bool = False) -> Tuple[int, float, str, bool]:
     from voicetwin.style.twin_profile import en_share
 
-    syl_seg = syllable_count(seg.text)
+    return syllable_count(seg.text), en_share(seg.text), _kind_eff(seg), bool(para_initial)
+
+
+def match_score(entry: Dict[str, Any], seg: Any, prior: Dict[str, float], para_initial: bool = False,
+                feats: Optional[Tuple[int, float, str, bool]] = None) -> float:
+    """这条录音当这句话的参考合不合适（设计方案 §1.5 第 2 条）。feats：这句话的特征（挑很多条时先算好）。"""
+    syl_seg, en_seg, kind_eff, para = feats if feats is not None else _seg_features(seg, para_initial)
     syl_ref = int(entry.get("syllables") or syllable_count(entry.get("text", "")))
     en_ref = float(entry.get("en_ratio") or 0.0)
-    m = 1.2 * float(entry.get("kind", "statement") == _kind_eff(seg))
+    m = 1.2 * float(entry.get("kind", "statement") == kind_eff)
     m -= 1.0 * abs(math.log((syl_ref + 1.0) / (syl_seg + 1.0)))
-    m -= 1.5 * abs(en_ref - en_share(seg.text))
-    m += 0.3 * float(bool(entry.get("para_initial")) == bool(para_initial))
+    m -= 1.5 * abs(en_ref - en_seg)
+    m += 0.3 * float(bool(entry.get("para_initial")) == para)
     m += 1.0 * float(prior.get(entry["id"], 0.0))
     m -= 0.3 * float(float(entry.get("max_pause") or 0.0) > 0.9)
     return m
+
+
+def _norm_text(entry: Dict[str, Any]) -> str:
+    """录音文字去标点、转简体以后的样子（比较「是不是同一句话」用；算一次记在这条录音上）。"""
+    got = entry.get("_norm")
+    if got is None or entry.get("_norm_of") != entry.get("text"):
+        got = normalize_for_cer(entry.get("text", ""))
+        entry["_norm"], entry["_norm_of"] = got, entry.get("text")
+    return got
 
 
 def shortlist_refs(seg: Any, bank: Sequence[Dict[str, Any]], prior: Dict[str, float], R: int,
                    forced: Optional[Dict[str, Any]] = None, para_initial: bool = False) -> List[Dict[str, Any]]:
     """给这句话挑 R 条参考录音：最合适的；再挑一条别的视频里的（不比第一名差 1.0 以上）；再按顺序往下挑。
     这句话里英文占 15% 以上时，至少有一条参考里英文也占 15% 以上（有的话）。老师自己指定的参考优先（只用它）。"""
-    from voicetwin.style.twin_profile import en_share
-
     if forced is not None:
         return [forced]
     norm = normalize_for_cer(seg.text)
-    scored = sorted(((match_score(e, seg, prior, para_initial), e) for e in bank
-                     if normalize_for_cer(e.get("text", "")) != norm), key=lambda p: (-p[0], str(p[1]["id"])))
+    feats = _seg_features(seg, para_initial)
+    scored = sorted(((match_score(e, seg, prior, feats=feats), e) for e in bank if _norm_text(e) != norm),
+                    key=lambda p: (-p[0], str(p[1]["id"])))
     if not scored:
         return []
     R = max(1, int(R))
@@ -183,7 +196,7 @@ def shortlist_refs(seg: Any, bank: Sequence[Dict[str, Any]], prior: Dict[str, fl
             break
         if e not in picks:
             picks.append(e)
-    if en_share(seg.text) >= 0.15 and not any(float(e.get("en_ratio") or 0.0) >= 0.15 for e in picks):
+    if feats[1] >= 0.15 and not any(float(e.get("en_ratio") or 0.0) >= 0.15 for e in picks):
         en = next((e for _, e in scored if float(e.get("en_ratio") or 0.0) >= 0.15), None)
         if en is not None:
             picks[-1] = en
