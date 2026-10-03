@@ -1956,7 +1956,7 @@ class Narrator:
 
         lines = []
         if fresh:
-            avg = float(np.mean([r.tries for r in fresh]))
+            avg = round(float(np.mean([r.tries for r in fresh])), 2)  # 和报告里的 tries_avg 同一个数
             lines.append(f"本次生成：共 {len(results)} 句（新生成 {len(fresh)} 句），平均每句试了 {avg:.1f} 个版本"
                          f"（最多 {self.max_candidates} 个）；{nums.get('met_count', 0)} 句达到了「一模一样」的严格标准"
                          "（错字检查通过、像你本人不低于你自己录音的常见水平、语速音调在你平时的范围里）。")
