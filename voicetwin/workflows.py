@@ -47,9 +47,13 @@ STAGES_PREPARE: List[Stage] = [(0.00, "整理要处理的文件"), (0.02, "提�
                                (0.95, "分析你的说话风格")]
 STAGES_SELECT: List[Stage] = [(0.00, "加载打分模型"), (0.05, "启动合成引擎"), (0.10, "逐个试听每个模型，挑最像你的")]
 STAGES_NARRATE: List[Stage] = [(0.00, "启动合成引擎"), (0.03, "逐句生成"), (0.95, "拼接音频、生成字幕")]
-#: 「完美」档多一步：做「去杂音」版本并比较
+#: 「完美」档多一步：做「去杂音」版本并比较（「一模一样」见下面 STAGES_NARRATE_IDENTICAL）
 STAGES_NARRATE_VARIANTS: List[Stage] = [(0.00, "启动合成引擎"), (0.03, "逐句生成"), (0.90, "拼接音频、生成字幕"),
                                         (0.93, "做「去杂音」版本并比较哪个更像你")]
+#: 「一模一样」档（默认）：先准备（打分模型、你的说话习惯），最后按你的停顿和音量拼接、做两个版本（和 engine.narrate 的进度对齐）
+STAGES_NARRATE_IDENTICAL: List[Stage] = [(0.00, "启动合成引擎"), (0.02, "准备「一模一样」"), (0.08, "逐句生成"),
+                                         (0.88, "整篇再挑一遍、按你的停顿和音量拼接"), (0.92, "做「去杂音」版本并比较"),
+                                         (0.99, "写字幕和报告")]
 STAGES_DOWNLOAD: List[Stage] = [(0.0, "下载模型文件")]
 STAGES_PROOFCHECK: List[Stage] = [(0.00, "准备识别引擎"), (0.02, "逐条检查文字，标出可能的错字")]
 STAGES_TEXTFIX: List[Stage] = [(0.00, "读母本和语法术语"), (0.15, "一句一句检查")]
@@ -164,7 +168,7 @@ def task_stages(kind: str, cfg: Optional[Config] = None, backend_name: Optional[
     """给进度条用的阶段表：[(开始的进度, 中文步骤名), ...]，从小到大。
 
     kind：prepare | train | select | narrate（= generate）| download | proofcheck | textfix | blind_test | verify。
-    narrate 请把网页上选的 quality 一起传进来（「完美」档多一步）；prepare 可以传 overrides / proofcheck。
+    narrate 请把网页上选的 quality 一起传进来（「完美」「一模一样」档多几步）；prepare 可以传 overrides / proofcheck。
     """
     kind = (kind or "").strip().lower()
     if kind == "prepare":
@@ -177,6 +181,8 @@ def task_stages(kind: str, cfg: Optional[Config] = None, backend_name: Optional[
 
         q = resolve_quality(quality if quality not in (None, "") else
                             ((cfg or {}).get("synth", {}) or {}).get("quality", "auto"))
+        if q == "identical":
+            return list(STAGES_NARRATE_IDENTICAL)
         return list(STAGES_NARRATE_VARIANTS if QUALITY_PRESETS[q].get("variants") else STAGES_NARRATE)
     if kind == "download":
         return list(STAGES_DOWNLOAD)
@@ -900,11 +906,11 @@ def default_output(project: Project, stem: str, fmt: str) -> Path:
     return project.outputs_dir / f"{safe_name(stem, 30)}_{time.strftime('%Y%m%d_%H%M%S')}.{fmt}"
 
 
-def recommended_quality(tier: Optional[str] = None) -> Tuple[str, str]:
-    """网页「质量」的默认值和一句说明（按显卡：≥8GB → 完美；更小 → 极致；没有能用的显卡 → 均衡）。"""
+def recommended_quality(tier: Optional[str] = None, size: Optional[str] = None) -> Tuple[str, str]:
+    """网页「质量」的默认值和一句说明：任何显卡都是「一模一样」，说明按显卡写（size 例如「显存 12 GB」）。"""
     from voicetwin.synth.engine import recommended_quality as _rec
 
-    return _rec(tier)
+    return _rec(tier, size=size)
 
 
 def quality_choices() -> List[Tuple[str, str]]:
@@ -999,7 +1005,7 @@ def _variant_match(variants: List[Dict[str, Any]], name: str) -> Optional[Dict[s
 
 
 def choose_variant(cfg: Config, voice: str, report_path: str, name: str) -> Dict[str, Any]:
-    """「完美」档的两个版本里，选一个作为最终版本：把它复制成 <名字>.wav，并在报告里记下 final。"""
+    """「完美」「一模一样」档的两个版本里，选一个作为最终版本：把它复制成 <名字>.wav，并在报告里记下 final。"""
     open_project(cfg, voice, must_exist=True)
     rp = Path(str(report_path))
     if not rp.exists():
@@ -1286,12 +1292,12 @@ def grade_blind_test(test_dir: str, answers: Any) -> Dict[str, Any]:
         verdict = f"听众基本分辨不出（正确率 {acc:.0%}，和瞎猜的 50% 差不多）"
     elif acc <= 0.80:
         verdict = f"有时能分辨（正确率 {acc:.0%}）"
-        tips = ["看看哪几段最容易被听出来，是语气、停顿还是个别字不像", "用「完美」档重新生成那几句"]
+        tips = ["看看哪几段最容易被听出来，是语气、停顿还是个别字不像", "用「一模一样」档（默认）重新生成那几句"]
     else:
         verdict = f"容易分辨（正确率 {acc:.0%}）"
         tips = ["多加一些干净的讲课录音（1~3 小时最好），重新准备素材和训练",
                 "在「① 准备素材」的校对表里把文字校对一遍（错字会让模型学歪）",
-                "生成时用「完美」档", "看看哪几段最容易被听出来，是语气、停顿还是个别字不像"]
+                "生成时用「一模一样」档（默认）", "看看哪几段最容易被听出来，是语气、停顿还是个别字不像"]
     if answered and answered < 6:
         verdict += "（题目太少，结果只能参考）"
     return {"items": rows, "answered": answered, "correct": correct, "total": len(items),

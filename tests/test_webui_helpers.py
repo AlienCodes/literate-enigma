@@ -388,19 +388,22 @@ def test_speed_slider_mapping(value, factor, text):
 
 def test_quality_choices_and_recommendation():
     values = [v for _, v in A.QUALITY_CHOICES]
-    assert values == ["fast", "balanced", "best", "max", "perfect"]
+    assert values == ["fast", "balanced", "best", "max", "perfect", "identical"]
     labels = dict((v, k) for k, v in A.QUALITY_CHOICES)
-    assert labels["max"] == "极致（很慢，更稳更像，建议显存 ≥ 8GB）"  # 不写「最慢」：「完美」比它更慢
-    assert labels["perfect"].startswith("完美：每句最多试 20 次")
+    assert labels["max"] == "极致（很慢，更稳更像，建议显存 ≥ 8GB）"  # 不写「最慢」：「一模一样」比它更慢
+    assert labels["perfect"].startswith("完美：每句最多试 20 次") and "最慢" not in labels["perfect"]
+    assert labels["identical"].startswith("一模一样（默认）")
     mid = {"ok": True, "level": "ok", "total_gb": 11.94, "nominal_gb": 12.0}
     high = {"ok": True, "level": "ok", "total_gb": 23.6}
     low = {"ok": True, "level": "warn", "total_gb": 5.8}
     bad = {"ok": False, "level": "error", "total_gb": None}
-    assert A._recommended_quality(mid)[0] == "perfect" and "显存 12 GB" in A._recommended_quality(mid)[1]
-    assert A._recommended_quality(high)[0] == "perfect"
-    assert A._recommended_quality(low)[0] == "max"
+    # 任何显卡都先选好「一模一样」（老师 10-03 的要求）；说明里写检测到的显存，显存小 / 没有 N 卡时说清楚会很慢
+    assert A._recommended_quality(mid)[0] == "identical" and "显存 12 GB" in A._recommended_quality(mid)[1]
+    assert A._recommended_quality(high)[0] == "identical"
+    q, note = A._recommended_quality(low)
+    assert q == "identical" and "显存 6 GB" in note and "显存偏小" in note and "「均衡」" in note
     q, note = A._recommended_quality(bad)
-    assert q == "balanced" and "很慢" in note
+    assert q == "identical" and "非常慢" in note and "「均衡」" in note
 
 
 # ---------------------------------------------------------------------------- 后台任务的工作函数

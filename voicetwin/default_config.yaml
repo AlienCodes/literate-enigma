@@ -118,16 +118,19 @@ backends:
 # 3. 合成（生成讲课音频）
 # ---------------------------------------------------------------------
 synth:
-  # 质量档位（档位越高越慢，但结果更稳定、更像你；只是让出错更少、挑得更准，不会超过模型训练出来的水平）：
-  #   auto      按显卡自动选：显存 ≥ 8GB → perfect；更小 → max；没有能用的 N 卡 → balanced
+  # 质量档位（越往下越慢；只是让出错更少、挑得更准，不会超过模型训练出来的水平，也做不到百分之百一样）：
+  #   auto      默认 = identical「一模一样」（任何显卡都一样）
   #   fast      快速：每句只生成 1 次，最快；偶尔会有读错或不太像的句子
   #   balanced  均衡：每句生成 3 次，自动挑最像你的
   #   best      最好：每句生成 5 次，并用语音识别检查漏字、错字
   #   max       极致：每句生成 8 次（显存 <8GB 时 6 次）、识别校验一直开着、错字门槛更严，不够像的自动重做
   #   perfect   完美：每句 4 次一批地试，达到严格标准（错字率 ≤5%、像你本人 ≥99%、语速音高在你平时的范围内）就停，
-  #             最多 20 次；挑长短最接近的参考音频；同时输出「未去杂音」「去杂音」两个版本并推荐更像你的那个（最慢）
-  quality: auto
-  candidates: auto            # 每句生成几个候选再自动挑最像的；auto 跟随 quality（完美档是每批几个）
+  #             最多 20 次；挑长短最接近的参考音频；同时输出「未去杂音」「去杂音」两个版本并推荐更像你的那个（很慢）
+  #   identical 一模一样：每句至少试几十个版本（按显卡，见下面 tiers.identical），达到严格标准并且再试也不更好时才停；
+  #             同时输出「未去杂音」「去杂音」两个版本（最慢）
+  # 网页每次打开都先选好「一模一样」（网页不看这一项）；命令行没写 -q 时按这一项，写了别的档位会提示一句。
+  quality: auto               # auto（默认）= identical「一模一样」；fast | balanced | best | max | perfect | identical
+  candidates: auto            # 每句生成几个候选再自动挑最像的；auto 跟随 quality（完美档是每批几个，一模一样档是每句最多几个）
   max_units_zh: 50            # 每段最多多少个音节（汉字），太长会拆开合成
   max_units_en: 45            # 英文每段最多多少个音节
   min_units: 6                # 太短的句子会和下一句合并，避免一两个字单独合成不自然
@@ -142,16 +145,35 @@ synth:
   output_format: wav          # wav | mp3（mp3 压缩后静音处可能有极小的杂讯；要绝对静音请用 wav）
   subtitles: true             # 同时输出 .srt 字幕
   skip_code_blocks: true      # Markdown 讲稿里的 ``` 代码块不朗读
-  asr_check: auto             # auto: quality=best/max/perfect 时开启；用识别模型检查有没有漏字/多字
+  asr_check: auto             # auto: quality=best/max/perfect/identical 时开启；用识别模型检查有没有漏字/多字
   asr_check_model: auto       # auto: 中文优先用整合包自带的 Paraformer（更准）；否则显存 ≥8GB 用 large-v3-turbo，更小用 small
   cer_retry_threshold: 0.15   # 均衡/最好：漏字/错字率超过它就重新生成（极致/完美有自己更严的门槛，见下面 tiers）
   max_retries: 2              # 均衡/最好：最多重做几轮
   min_wrong_chars: 2          # 只错 1 个字（多半是识别误差）不算读错，避免短句被反复重做
   # 各档位的细节都可以单独改，例如：
-  # tiers:
   #   max:     { candidates: 8, retry_rounds: 3, retry_candidates: 3, cer_retry_threshold: 0.10, aux_refs: 3 }
   #   perfect: { candidates: 4, max_candidates: 20, target_pct: 99, cer_target: 0.05, cer_retry_threshold: 0.08 }
-  tiers: {}
+  tiers:
+    identical:                # 「一模一样」的细节，一般不用改（都写 auto 就行）
+      batch: auto             # 显卡一次同时生成几个版本：显存 ≥16GB 12 / 8GB 档 8 / 更小 2 / 没有 N 卡 1；按实测速度自动调整，显存不够自动减半
+      min_candidates: auto    # 每句至少试几个：40 / 小显存 16 / 没有 N 卡 6
+      max_candidates: auto    # 每句最多试几个：64 / 32 / 12（命令行 -n 也是改这个）
+      refs_per_sentence: auto # 每句用几条参考录音：3 / 2 / 2
+      aux_options: [3, 0]
+      plateau: 8              # 最近 8 个版本……
+      plateau_eps: 0.02       # ……最高分涨不到 0.02，就算「再试也不更好」
+      full_score_top: 12
+      store_top_k: 6
+      cer_target: { strong: 0.03, weak: 0.06 }
+      cer_retry_threshold: { strong: 0.08, weak: 0.12 }
+      search_target: p50      # 继续找的目标：你自己录音的中位水平（不受 similarity.target_pct 影响）
+      pass_target: p25        # 算「达标」：不低于你自己录音的常见水平（下四分位）
+      refine_tempo: true
+      continuity: true
+      pipeline: auto          # 没有 N 卡时自动关闭
+      speed_trick: auto       # 自检通过才用
+      judge_device: auto      # 有 CUDA 版 onnxruntime 且结果一致、显存够时用显卡打分，否则用处理器
+      two_checkpoints: true
   score:                      # 给候选打分的权重：相似度为主，其它只做扣分
     speaker: 2.0              # "像你本人（%）"的权重
     cer: 1.0                  # 错字率权重（读错太多的候选会先被淘汰，这里只管细微差别）
@@ -169,7 +191,7 @@ similarity:
   device: auto                # 旧的 ERes2NetV2 用：auto | cuda | cpu（精准声纹打分固定用 CPU，不和 GPT-SoVITS 抢显存）
   min_pct: 85                 # 低于这个百分比的候选直接淘汰；整句都达不到时保留最好的一个并标红提醒
   filter: auto                # auto: 有可靠的声纹模型时才淘汰 | on | off
-  target_pct: 99              # 「完美」档的目标：达到就提前停止
+  target_pct: 99              # 「完美」档的目标：达到就提前停止（「一模一样」不看它，见 synth.tiers.identical）
 
 # 素材准备时剔除"不是你本人"的片段用的声纹模型：auto 会依次尝试 resemblyzer → speechbrain → 简易 MFCC。
 # 写成具体名字（例如 resemblyzer）时，"像你本人（%）"也只用这一个模型打分。

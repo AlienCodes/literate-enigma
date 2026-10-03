@@ -106,7 +106,8 @@ AUTO_DOWNLOAD_JS = """() => { setTimeout(() => {
   if (a) a.click();
 }, 400); return []; }"""  # gradio 4.24 要求网页脚本返回一个列表（没有输出就是空列表），否则报错、后面的点击都没反应
 DL_BTN, DL_BUSY = "⬇️ 下载缺少的模型", "⏳ 正在下载……"
-SPEED_BTN, SPEED_BUSY = "▶ 试听语速", "⏳ 正在生成试听……"
+#: 试听语速永远用「快速」档（只听快慢，几秒钟就好），按钮上写清楚，免得以为是「一模一样」的效果
+SPEED_BTN, SPEED_BUSY = "▶ 试听（快速，只听语速）", "⏳ 正在生成试听……"
 VERIFY_BTN, VERIFY_BUSY = "开始鉴别", "⏳ 正在鉴别……"
 BLIND_BTN, BLIND_BUSY = "生成盲听测试", "⏳ 正在生成盲听测试……"
 
@@ -217,9 +218,12 @@ FORMAT_CHOICES = [("WAV（音质最好，句子之间绝对静音；剪映/后�
 # 质量档位的中文名和说明只在 synth/engine.py 里写一份（网页、命令行、报告用的是同一套名字）
 QUALITY_CHOICES: List[Tuple[str, str]] = wf.quality_choices()
 QUALITY_SHORT: Dict[str, str] = dict(_engine.QUALITY_SHORT)
-QUALITY_NOTE = ("越往下越慢，但每句会多试几次、自动挑最像你的，结果更稳定。不会 100% 一模一样："
-                "素材的质量和数量、认真校对文字，对像不像影响最大。")
-TIER_QUALITY = {"high": "perfect", "mid": "perfect", "low": "max", "none": "balanced"}
+QUALITY_NOTE = _engine.QUALITY_NOTE
+#: 打开网页时默认选的质量：任何显卡都是「一模一样」（老师的要求：除非自己换，一直用最高档）。
+#: 网页从来不读 config.yaml 里的 synth.quality：以前手动改过的旧值不会悄悄把她降档
+TIER_QUALITY = {t: "identical" for t in ("high", "mid", "low", "none")}
+#: 盲听测试下面的说明
+BLIND_QUALITY_NOTE = "盲听测试用的是「③ 生成讲课音频」里选的质量档位；选「一模一样」时会比较慢。"
 
 SPEED_LABEL = "语速（← 往左更快　·　中间 0 = 和你原声一样　·　往右更慢 →）"
 SPEED_NOTE = "语速调得越极端（超过 ±20%），越可能不自然；建议在 −15～+15 之间。"
@@ -957,7 +961,7 @@ def _text_in(value: Any) -> str:
 
 
 def _stages(cfg: Config, kind: str, backend: Optional[str] = None, **kw: Any) -> Optional[List[Tuple[float, str]]]:
-    """每种任务分哪几步（wf.task_stages）。生成要把选的质量传进来（quality=，「完美」档多一步），
+    """每种任务分哪几步（wf.task_stages）。生成要把选的质量传进来（quality=，「完美」「一模一样」档多几步），
     素材准备要传 overrides=（会不会自动查错字）。出错时返回 None（进度条照样能用，只是不显示第几步）。"""
     try:
         return list(wf.task_stages(kind, cfg, backend, **kw))
@@ -1060,20 +1064,15 @@ def _vram_tier(status: Optional[Dict[str, Any]]) -> str:
 
 
 def _recommended_quality(status: Optional[Dict[str, Any]]) -> Tuple[str, str]:
-    """按显卡推荐默认质量：高/中档 → 完美；小显存 → 极致；没有能用的 N 卡 → 均衡。返回 (值, 一句说明)。"""
+    """打开网页时默认的质量：任何显卡都先选好「一模一样」；说明按显卡写（显存是检测出来的，
+    显存小、没有 N 卡时说清楚会很慢、可以改选「均衡」）。返回 (值, 一句说明)。"""
     tier = _vram_tier(status)
-    q = TIER_QUALITY.get(tier, "balanced")
+    q = TIER_QUALITY.get(tier, "identical")
     gb = None
     if status:
         gb = _num(status.get("nominal_gb")) or _num(status.get("total_gb"))
     size = f"显存 {gb:.0f} GB" if gb else "你的显卡"
-    if tier == "none":
-        note = (f"没检测到能用的 N 卡（NVIDIA 显卡），已先选「{QUALITY_SHORT[q]}」。用 CPU 生成会很慢，"
-                "「极致」「完美」会更慢。")
-    elif tier == "low":
-        note = f"已按你的显卡自动选好「{QUALITY_SHORT[q]}」（{size}，显存偏小，「完美」会非常慢）。"
-    else:
-        note = f"已按你的显卡自动选好「{QUALITY_SHORT[q]}」（{size}）。"
+    _, note = _engine.recommended_quality(tier, size=size)
     return q, note
 
 
@@ -1890,7 +1889,7 @@ def _gen_summary_md(res: Any, redo: Optional[Sequence[int]] = None) -> str:
     if others:
         md.append("\n".join(f"> ⚠️ {_md_text(w)}" for w in others[:10])
                   + (f"\n>\n> 还有 {len(others) - 10} 条" if len(others) > 10 else ""))
-    # 生成引擎的小结：平均每句试了几次、几句达到了「完美」的严格标准……（整篇百分比、要注意的句子上面已经说了）
+    # 生成引擎的小结：平均每句试了几次、几句达到了「完美」「一模一样」的严格标准……（整篇百分比、要注意的句子上面已经说了）
     notes = [str(n) for n in (getattr(res, "notes", None) or [])
              if str(n).strip() and not str(n).startswith(("整篇像你本人", "需要注意的句子", "没有需要特别注意"))]
     if notes:
@@ -1941,7 +1940,7 @@ def _variant_title(v: Dict[str, Any], i: int) -> str:
 
 
 def _variants_md(vs: Sequence[Dict[str, Any]]) -> str:
-    """「完美」质量的两个版本：分数、推荐哪个。"""
+    """「完美」「一模一样」质量的两个版本：分数、推荐哪个。"""
     if len(vs) < 2:
         return ""
     lines = ["#### 🎧 这次做了两个版本，听一听，选你更喜欢的"]
@@ -2425,7 +2424,7 @@ def _blind_verdict(acc: float) -> str:
     if acc <= 0.80:
         return "🙂 有时能分辨出来。"
     return ("🤔 比较容易分辨出来。可以试试：多加一些讲课素材、认真校对文字、"
-            "用「完美」质量重新生成。")
+            "用「一模一样」质量（默认）重新生成。")
 
 
 def _blind_result_md(choices: Sequence[Any], answers: Dict[int, bool]) -> str:
@@ -3642,7 +3641,7 @@ class WebUI:
             return
         fmt = str(out_fmt or self.cfg.get_path("synth.output_format", "wav") or "wav")
         out = _output_path(project, str(out_name or ""), fmt, stem)
-        q = str(quality or "balanced")
+        q = str(quality or "identical")  # 没选（网页刚打开还没收到显卡检查的结果）：用默认的「一模一样」
         factor = _speed_factor(speed)
         log.info(f"质量 {q}（{QUALITY_SHORT.get(q, q)}），语速系数 {factor}")
         stream = stream_task("generate", "生成讲课音频", v, _attach_missed if attach else wf.run_narrate, self.cfg, v, source,
@@ -3694,7 +3693,7 @@ class WebUI:
         vs = st.get("variants") or []
         chosen = next((x for x in vs if str(x.get("name")) == str(name)), None)
         if not v or chosen is None:
-            return _upd(), _upd(), "请先生成一次（「完美」质量会做两个版本）。"
+            return _upd(), _upd(), "请先生成一次（「完美」「一模一样」质量会做两个版本）。"
         try:  # 已经是最终版本就什么都不做（gradio 4.24：这组控件刚显示出来时也会触发一次 input，实测）
             current = json.loads(Path(str(st.get("report", ""))).read_text(encoding="utf-8")).get("final")
         except Exception:
@@ -3741,7 +3740,7 @@ class WebUI:
         return _upd(value=str(out), label=label, visible=True)
 
     def do_speed_preview(self, voice: Any, text: Any, speed: Any, backend: Any) -> Iterator[Tuple[Any, ...]]:
-        """「▶ 试听语速」：用最快的质量读一句话，先听听语速合不合适。"""
+        """「▶ 试听（快速，只听语速）」：用最快的质量读一句话，先听听语速合不合适。"""
         O = self.SPEED_OUT
         idle = dict(speed_try=self._idle_btn(SPEED_BTN), gen_btn=self._idle_btn(GEN_BTN), gen_stop=self._stop_hidden())
         v = _voice_name(voice)
@@ -3916,7 +3915,7 @@ class WebUI:
             return
         count = max(2, min(MAX_BLIND // 2, _int(n, 10) or 10))
         stream = stream_task("blind", "生成盲听测试", v, _attach_missed if attach else _blind_job, self.cfg, v, count,
-                             str(quality or "balanced"),
+                             str(quality or "identical"),
                              stages=_stages(self.cfg, "blind"), note=NOTE)
         for text, st in stream:
             if st.get("busy"):
@@ -4252,7 +4251,7 @@ class WebUI:
                                 c["out_fmt"] = gr.Radio(FORMAT_CHOICES, value=fmt_default if fmt_default in ("wav", "mp3") else "wav",
                                                         label="保存格式", scale=2)
                         with gr.Column(scale=2):
-                            c["quality"] = gr.Radio(QUALITY_CHOICES, value="balanced", label="质量")
+                            c["quality"] = gr.Radio(QUALITY_CHOICES, value="identical", label="质量")
                             c["quality_note"] = gr.Markdown(QUALITY_NOTE, elem_classes="vt-honest")
                             c["speed"] = gr.Slider(-30, 30, value=0, step=1, label=SPEED_LABEL)
                             c["speed_text"] = gr.Markdown(f"**{_speed_text(0)}**　<small>{SPEED_NOTE}</small>")
@@ -4324,7 +4323,8 @@ class WebUI:
                     has_blind = callable(getattr(wf, "build_blind_test", None))
                     gr.Markdown("### 👂 观众盲听测试\n电脑从你的真实录音里挑几句，再用你的模型读同样的句子，"
                                 "打乱顺序编上号。让听众逐段选「真人」还是「生成」，看大家能不能分辨出来。"
-                                + ("（会用到显卡，大约几分钟）" if has_blind else "\n\n（这个版本还没有装上这个功能。）"))
+                                + (f"（会用到显卡）\n\n{BLIND_QUALITY_NOTE}" if has_blind
+                                   else "\n\n（这个版本还没有装上这个功能。）"))
                     with gr.Row(visible=has_blind):
                         c["bt_n"] = gr.Slider(2, MAX_BLIND // 2, value=min(10, MAX_BLIND // 2), step=1,
                                               label="用几句话（真人和生成的各这么多段）")
