@@ -96,15 +96,16 @@ QUALITY_HELP = {
 }
 QUALITY_NOTE = ("越往下越慢。默认是「一模一样」：它是努力的方向，不是保证——任何声音克隆都做不到百分之百一样，"
                 "也不会超过模型训练出来的水平。素材的质量和数量、认真校对文字，对像不像影响最大。")
-#: 打开网页时「质量」下面的说明（按显卡；{size} 是检测到的显存，例如「显存 12 GB」，检测不到写「你的显卡」）
+#: 打开网页时「质量」下面的说明（按显卡；{size} 是检测到的显存，例如「显存 12 GB」，检测不到写「你的显卡」；
+#: {cap} 是这种显卡每句最多试几个，从 QUALITY_PRESETS["identical"] 里取，改了参数说明也跟着变）
 QUALITY_TIER_NOTES = {
     "high": "已选好「一模一样」（{size}）。每句会试很多个版本，所以很慢；第一次用一个新训练的模型时，还要先做一次准备。"
             "生成时会按实际速度告诉你还要多久。",
     "mid": "已选好「一模一样」（{size}）。每句会试很多个版本，所以很慢；第一次用一个新训练的模型时，还要先做一次准备。"
            "生成时会按实际速度告诉你还要多久。",
-    "low": "已选好「一模一样」（{size}，显存偏小）：每句最多试 32 个版本，会很慢，但不会因为显存不够而停下"
+    "low": "已选好「一模一样」（{size}，显存偏小）：每句最多试 {cap} 个版本，会很慢，但不会因为显存不够而停下"
            "（会自动少生成一些再接着试）。着急的话可以改选「均衡」。",
-    "none": "没检测到能用的 N 卡（NVIDIA 显卡），仍然先选好「一模一样」：用处理器生成会非常慢，每句最多试 12 个版本。"
+    "none": "没检测到能用的 N 卡（NVIDIA 显卡），仍然先选好「一模一样」：用处理器生成会非常慢，每句最多试 {cap} 个版本。"
             "着急的话可以改选「均衡」。",
 }
 
@@ -159,9 +160,9 @@ def _vram_tier() -> str:
 def recommended_quality(tier: Optional[str] = None, size: Optional[str] = None) -> Tuple[str, str]:
     """默认档位和一句说明：任何显卡都是「一模一样」，说明按显卡写（显存小、没有 N 卡时会很慢，可以改选「均衡」）。
     size 是检测到的显存（例如「显存 12 GB」），网页传进来；不传写「你的显卡」。"""
-    tier = tier or _vram_tier()
-    note = QUALITY_TIER_NOTES.get(tier, QUALITY_TIER_NOTES["none"])
-    return DEFAULT_QUALITY, note.format(size=size or "你的显卡")
+    tier = tier if tier in QUALITY_TIER_NOTES else (_vram_tier() if not tier else "none")
+    cap = _per_tier(QUALITY_PRESETS[DEFAULT_QUALITY].get("max_candidates"), tier, 12)
+    return DEFAULT_QUALITY, QUALITY_TIER_NOTES[tier].format(size=size or "你的显卡", cap=cap)
 
 
 def quality_choices() -> List[Tuple[str, str]]:
