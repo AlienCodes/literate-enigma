@@ -59,12 +59,36 @@ def _pinyin_fn() -> Optional[Callable[[str], List[str]]]:
 
 
 _NUM = "\ue000"  # 数字串的占位符（不会被当成标点去掉）
+_PCT = "\ue001"  # 百分数的占位符：30% 和读出来的「百分之三十」一样
+_NUM_CHARS = "0-9零〇一二两三四五六七八九十百千万亿点."
+#: 合成引擎（GPT-SoVITS 的中文前端）把 30% 读成「百分之三十」，Paraformer 也这样写；Whisper 有时写 30%
+_PCT_SPOKEN_RE = re.compile(f"百分之[{_NUM_CHARS}]+")
+_PCT_WRITTEN_RE = re.compile(r"\d+(?:\.\d+)?\s*%")
+#: 时刻 10:30（和 GPT-SoVITS 的 zh_normalization/chronology.py 同一个写法）：读成「十点半」「十点三十五分」
+_TIME_RE = re.compile(r"(?<!\d)([01]?\d|2[0-3]):([0-5]\d)(?::([0-5]\d))?(?!\d)")
+_HALF_HOUR_RE = re.compile("(?<=[0-9零〇一二两三四五六七八九十])点半")
+
+
+def _time_words(m: "re.Match[str]") -> str:
+    """10:30 → 10点30分、10:00 → 10点（和合成引擎读出来的说法对得上：十点半 → 十点三十分）。"""
+    out = f"{m.group(1)}点"
+    if m.group(2).lstrip("0"):
+        out += f"{m.group(2)}分"
+    if m.group(3) and m.group(3).lstrip("0"):
+        out += f"{m.group(3)}秒"
+    return out
 
 
 def _normalize(text: str) -> str:
-    """去标点、转简体、小写；数字串（2024 / 二零二四）统一成一个占位符，漏读数字也能算出来。"""
+    """去标点、转简体、小写；数字串（2024 / 二零二四）统一成一个占位符，漏读数字也能算出来。
+    百分数（30% / 百分之三十）统一成另一个占位符：以前「百分之三十」算成 3 个错字，读对了的句子被重做 20 次还标成读错；
+    读的时候漏了「百分之」（只读「三十」）仍然算错。时刻 10:30 和「十点半」「十点三十分」也算一样。"""
     text = unicodedata.normalize("NFKC", text or "")
     text = to_simplified(text).lower()
+    text = _TIME_RE.sub(_time_words, text)
+    text = _HALF_HOUR_RE.sub("点三十分", text)
+    text = _PCT_SPOKEN_RE.sub(_PCT, text)
+    text = _PCT_WRITTEN_RE.sub(_PCT, text)
     text = NUM_RUN_RE.sub(_NUM, text)
     return ALL_PUNCT_RE.sub("", text)
 
@@ -101,7 +125,8 @@ def cer_details(reference: str, hypothesis: str, lang: str = "zh", use_pinyin: b
     """返回 (错字率, 错了几个字, 一共几个字)。
 
     中文在装了 pypinyin（GPT-SoVITS 整合包里有）时按不带声调的拼音比较：识别模型把「他/她」「在/再」听混
-    不算合成读错——合成是按读音来的。没有 pypinyin 时按字比较。数字串统一处理（2024 = 二零二四）。
+    不算合成读错——合成是按读音来的。没有 pypinyin 时按字比较。数字串统一处理（2024 = 二零二四、30% = 百分之三十、
+    10:30 = 十点半）。
     """
     pinyin = _pinyin_fn() if (use_pinyin and lang == "zh") else None
     ref = _units(reference, pinyin)

@@ -175,3 +175,142 @@ def test_set_clip_text_when_csv_locked_by_excel(tmp_path, monkeypatch):
     assert rec["text"] == "今天我们讲函数。" and rec.get("csv_locked") is True
     saved = {r["id"]: r for r in project.load_manifest()}["a"]
     assert saved["text"] == "今天我们讲函数。" and not analyze(saved)["active"] and "csv_locked" not in saved
+
+
+# ============================================================================ 第四轮找 bug（g5：讲稿解析）
+@pytest.mark.parametrize("mark", ["【停顿=2】", "[停顿＝2]", "［停顿=2］", "【停顿2秒】", "【 停顿 = ２ 】", "[停顿=2秒钟]"])
+def test_pause_mark_typed_with_chinese_input_method(mark):
+    """中文输入法下打 [ ] 会变成【 】、等号数字也可能是全角的：以前认不出来，没有停顿，「停顿=2」还被读出来、显示在字幕里。"""
+    segs = parse_script(f"第一句话讲完了呢。{mark}第二句话开始了。")
+    assert [s.text for s in segs] == ["第一句话讲完了呢。", "第二句话开始了。"]
+    assert segs[0].pause_after == 2.0 and "停顿" not in segs[1].display
+    assert not any(s.extra.get("unread_mark") for s in segs)
+
+
+def test_pause_mark_without_seconds_and_in_minutes():
+    segs = parse_script("第一句话讲完了呢。【停顿】第二句话开始了。")
+    assert segs[0].pause_after == "paragraph" and segs[1].text == "第二句话开始了。"
+    assert parse_script("先想一想这道题怎么做。[停顿=1分钟]好，我们来看答案吧。")[0].pause_after == 60.0
+
+
+def test_unrecognized_pause_mark_is_kept_and_reported():
+    """统一以后还认不出来的（【暂停一下】这种小标题、写错的单位）原样保留，并记下来（生成时提醒老师会被读出来）。"""
+    segs = parse_script("【暂停一下】我们休息一会儿再继续讲。")
+    assert segs[0].display.startswith("【暂停一下】") and segs[0].extra["unread_mark"] == "【暂停一下】"
+    assert "unread_mark" not in parse_script("第一句话讲完了呢。[停顿=2]第二句话开始了。")[1].extra
+
+
+def test_pause_at_the_very_start_is_kept():
+    """讲稿最前面的 [停顿=3]：以前直接丢掉（第一句前面没有句子可以挂）。"""
+    segs = parse_script("[停顿=3]第一句话在这里讲。")
+    assert segs[0].extra.get("pause_before") == 3.0
+    assert parse_script("【停顿=2.5】第一句话在这里讲。第二句话在这里讲。")[0].extra.get("pause_before") == 2.5
+    assert "pause_before" not in parse_script("第一句话在这里讲。")[0].extra
+    assert parse_script("第一句话在这里讲。[停顿=3]")[-1].pause_after == 3.0  # 结尾的本来就留着
+
+
+LONG_NO_COMMA = "今天我们要讲的内容是英语考试里面经常出现的各种各样的陷阱和常见错误以及怎么避免它们的方法还有一些别的东西"
+
+
+def test_hard_split_never_adds_a_full_stop_in_the_middle():
+    """一个分句太长又没有逗号时硬切：以前每段末尾补「。」（语调落下来、像一句话说完了），现在补「，」，最后一段才是句号。"""
+    segs = parse_script(LONG_NO_COMMA)
+    assert len(segs) >= 2 and all(syllable_count(s.text) <= 50 for s in segs)
+    assert all(s.text.endswith("，") and s.pause_after == "clause" for s in segs[:-1])
+    assert segs[-1].text.endswith("。") and "".join(s.text for s in segs).replace("，", "").rstrip("。") == LONG_NO_COMMA
+    assert min(syllable_count(s.text) for s in segs) >= 10  # 长短差不多，不会剩下「东西。」两个字单独合成
+
+
+def test_hard_split_cuts_at_spaces_and_keeps_english_words_whole():
+    from voicetwin.synth.script import _hard_split
+
+    spaced = ("我们先来看一下第一个例句 然后我们一起来分析它的结构和用法 最后再做几道练习题巩固一下今天学的内容 "
+              "然后我们一起来分析它的结构和用法")
+    pieces = _hard_split(spaced, 50)
+    assert len(pieces) >= 2 and all(syllable_count(p) <= 50 for p in pieces)
+    words = spaced.split()
+    for p in pieces:  # 在空格处切开：每段都是完整的几截，没有从「一起」中间切开
+        assert p.rstrip("，").replace(" ", "") in {"".join(words[i:j]) for i in range(len(words))
+                                                    for j in range(i + 1, len(words) + 1)}
+    mixed = "一" * 48 + "beautiful" + "二" * 10
+    pieces = _hard_split(mixed, 50)
+    assert all(syllable_count(p) <= 50 for p in pieces)
+    assert any("beautiful" in p for p in pieces)  # 以前切成「beautif」「ul」
+    assert _hard_split("one two three four five six seven eight nine ten eleven twelve", 6)[0].endswith(",")
+
+
+@pytest.mark.skipif(not __import__("voicetwin.data.lexicon_fix", fromlist=["has_jieba"]).has_jieba(),
+                    reason="没有装 jieba（整合包里有）")
+def test_hard_split_cuts_between_words_with_jieba():
+    from voicetwin.synth.script import _hard_split
+
+    text = "这个句子里的先行词非常重要我们在做题的时候所以要特别注意它的用法和位置还有它前面的介词以及后面的从句结构"
+    for n in (20, 25, 30, 35):
+        pieces = [p.rstrip("，") for p in _hard_split(text, n)]
+        assert "".join(pieces) == text
+        joints = [pieces[i][-1] + pieces[i + 1][0] for i in range(len(pieces) - 1)]
+        assert not any(j in ("特别", "注意", "用法", "位置", "句子", "重要") for j in joints), (n, pieces)
+
+
+def _docx_lesson(path, rows, before="第三课 定语从句", after="下课。"):
+    docx = pytest.importorskip("docx")
+    d = docx.Document()
+    if before:
+        d.add_paragraph(before)
+    if rows:
+        t = d.add_table(rows=len(rows), cols=len(rows[0]))
+        for i, row in enumerate(rows):
+            for j, val in enumerate(row):
+                t.cell(i, j).text = val
+    if after:
+        d.add_paragraph(after)
+    d.save(str(path))
+    return path
+
+
+def test_docx_tables_are_read_in_order(tmp_path):
+    """教案常常写在 Word 表格里（教学环节 | 讲解内容）：以前只读表格外面的段落，表格里讲课的字全丢了。"""
+    p = _docx_lesson(tmp_path / "教案.docx", [["教学环节", "讲解内容"], ["导入", "同学们好，今天我们学习定语从句。"],
+                                             ["讲解", "先看一个例句：The book which I bought is new."]])
+    text, cues = read_script_file(p)
+    assert cues is None
+    lines = text.split("\n\n")
+    assert lines[0] == "第三课 定语从句" and lines[-1] == "下课。"
+    assert text.index("同学们好") < text.index("The book which I bought") < text.index("下课")
+    assert "导入\n同学们好，今天我们学习定语从句。" in lines  # 表格一行一段，格子之间换行
+    from voicetwin.synth.script import docx_info
+
+    assert docx_info(p) == {"tables": 1, "textboxes": 0}
+
+
+def test_docx_merged_cells_are_read_once(tmp_path):
+    docx = pytest.importorskip("docx")
+    d = docx.Document()
+    t = d.add_table(rows=2, cols=2)
+    t.cell(0, 0).text = "导入"
+    t.cell(0, 1).text = "同学们好。"
+    t.cell(1, 1).text = "今天学习定语从句。"
+    t.cell(0, 0).merge(t.cell(1, 0))      # 竖着合并
+    row = d.add_table(rows=1, cols=2)
+    row.cell(0, 0).text = "横着合并的一格。"
+    row.cell(0, 0).merge(row.cell(0, 1))  # 横着合并
+    d.save(str(tmp_path / "合并.docx"))
+    text, _ = read_script_file(tmp_path / "合并.docx")
+    assert text.count("导入") == 1 and text.count("横着合并的一格。") == 1 and "今天学习定语从句。" in text
+
+
+def test_docx_upload_message_tells_about_tables_and_empty_files(tmp_path):
+    from conftest import make_cfg
+    from voicetwin.webui import app as A
+
+    ui = A.WebUI(make_cfg(tmp_path))
+    p = _docx_lesson(tmp_path / "教案.docx", [["导入", "同学们好，今天我们学习定语从句。"]])
+    text, f, hint, _ = ui.on_script_upload(str(p), "")
+    assert "同学们好" in text and f is None and "放进上面的讲稿框" in hint and "表格" in hint
+    plain = _docx_lesson(tmp_path / "普通.docx", [], before="大家好。", after="")
+    _, _, hint2, _ = ui.on_script_upload(str(plain), "")
+    assert "表格" not in hint2
+    # 什么都没读到：讲稿框里原来的字不清掉，也不说「已放进讲稿框」
+    empty = _docx_lesson(tmp_path / "空的.docx", [], before="", after="")
+    t3, _, hint3, _ = ui.on_script_upload(str(empty), "")
+    assert isinstance(t3, dict) and "value" not in t3 and "没有读到文字" in hint3 and "放进上面的讲稿框" not in hint3

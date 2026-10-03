@@ -4,18 +4,23 @@
     空一行                     → 段落停顿（按你本人的段落停顿习惯）
     [停顿] / [pause]           → 段落停顿
     [停顿=1.5] / [停顿 2秒]    → 指定停顿秒数（[pause=1.5s]、<break time="800ms"/> 也可以）
+中文输入法打出来的【停顿=2】【停顿】［停顿＝２］也认（括号、等号、数字是全角的也行）；
+写在讲稿最前面 / 最后面的停顿秒数，加在开头 / 结尾的静音上（比自带的留白短时用自带的）。
 Markdown 的标题、列表、加粗、链接会被自动清理；``` 代码块默认不朗读。
 """
 
 from __future__ import annotations
 
+import math
 import re
+import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import List, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
 
 from voicetwin.utils.textutil import (
     CLAUSE_CHARS,
+    SENT_END_CHARS,
     count_cjk,
     detect_lang,
     ensure_final_punct,
@@ -24,10 +29,16 @@ from voicetwin.utils.textutil import (
 )
 
 PAUSE_RE = re.compile(
-    r"\[(?:停顿|暂停|pause|break)(?:\s*[=:：]?\s*(\d+(?:\.\d+)?)\s*(ms|毫秒|s|秒)?)?\s*\]"
+    r"\[(?:停顿|暂停|pause|break)(?:\s*[=:：]?\s*(\d+(?:\.\d+)?)\s*(ms|毫秒|s|秒钟|秒|分钟|min)?)?\s*\]"
     r"|<break\s+time\s*=\s*[\"']?(\d+(?:\.\d+)?)\s*(ms|s)?[\"']?\s*/?>",
     re.IGNORECASE,
 )
+#: 中文输入法下打 [ ] 会变成【 】（微软拼音、搜狗默认都这样），等号、数字也可能是全角的：
+#: 【停顿=2】【停顿】［停顿＝２］[停顿＝2] 先统一成 [停顿=2] 再认。括号里最多 20 个字、不跨行，
+#: 统一以后认不出来的（例如【暂停一下】这种小标题）原样不动
+_PAUSE_LOOSE_RE = re.compile(r"[\[【［]\s*((?:停顿|暂停|pause|break)[^\]】］\n]{0,20}?)\s*[\]】］]", re.IGNORECASE)
+#: 统一以后还剩下的、括号里写着停顿的标记（例如【停顿一下】【停顿=2分半】）：会被当成文字读出来，要提醒老师
+_UNREAD_MARK_RE = re.compile(r"[\[【［]\s*(?:停顿|暂停)[^\]】］\n]{0,20}[\]】］]")
 ABBREVIATIONS = {"mr", "mrs", "ms", "dr", "prof", "sr", "jr", "st", "vs", "etc", "e.g", "i.e", "no", "fig", "eq",
                  "approx", "dept", "inc", "ltd", "co", "u.s", "a.m", "p.m"}
 EMOJI_RE = re.compile("[\U0001F300-\U0001FAFF\U00002600-\U000027BF\U0001F000-\U0001F2FF]+")
@@ -81,7 +92,7 @@ def read_script_file(path: Path) -> Tuple[str, Optional[list]]:
             doc = docx.Document(str(path))
         except Exception as exc:  # 改了扩展名的 .doc / 损坏的文件
             raise RuntimeError(UNSUPPORTED_MSG) from exc
-        return "\n\n".join(p.text for p in doc.paragraphs if p.text.strip()), None
+        return "\n\n".join(_docx_blocks(doc)), None
     raw = path.read_bytes()
     text = None
     for enc in ("utf-8-sig", "utf-16") if raw[:2] in (b"\xff\xfe", b"\xfe\xff") else ("utf-8-sig", "gb18030"):
@@ -95,6 +106,76 @@ def read_script_file(path: Path) -> Tuple[str, Optional[list]]:
     if _looks_binary(text):
         raise RuntimeError(UNSUPPORTED_MSG)
     return text, None
+
+
+def _w(tag: str) -> str:
+    return "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}" + tag
+
+
+def _docx_blocks(doc: Any) -> List[str]:
+    """Word 讲稿按文档里的顺序读出来：正文的段落一段一段；表格一行一段（同一行的格子、格子里的几段之间换行，
+    每个格子算一句）。以前只读 doc.paragraphs，表格里的字全丢了（教案常常写在「教学环节 | 讲解内容」的表格里）。
+    合并的格子只读一次；表格里套的表格、内容控件里的段落也读。文本框里的字还是读不到（见 docx_info）。"""
+    from docx.text.paragraph import Paragraph  # type: ignore
+
+    def para_text(p_el: Any) -> str:
+        try:
+            return Paragraph(p_el, doc).text.strip()
+        except Exception:
+            return "".join(t.text or "" for t in p_el.iter(_w("t"))).strip()
+
+    def cell_lines(tc: Any) -> List[str]:
+        out: List[str] = []
+        for child in tc.iterchildren():
+            if child.tag == _w("p"):
+                t = para_text(child)
+                if t:
+                    out.append(t)
+            elif child.tag == _w("tbl"):
+                out += table_rows(child)
+            elif child.tag == _w("sdt"):
+                content = child.find(_w("sdtContent"))
+                if content is not None:
+                    out += cell_lines(content)
+        return out
+
+    def table_rows(tbl: Any) -> List[str]:
+        rows: List[str] = []
+        for tr in tbl.iterchildren(_w("tr")):
+            parts: List[str] = []
+            for tc in tr.iterchildren(_w("tc")):
+                vmerge = tc.find(f"{_w('tcPr')}/{_w('vMerge')}")
+                if vmerge is not None and vmerge.get(_w("val")) in (None, "continue"):
+                    continue  # 竖着合并的格子：内容在最上面那一格，已经读过了
+                parts += cell_lines(tc)
+            if parts:
+                rows.append("\n".join(parts))
+        return rows
+
+    blocks: List[str] = []
+    for child in doc.element.body.iterchildren():
+        if child.tag == _w("p"):
+            t = para_text(child)
+            if t:
+                blocks.append(t)
+        elif child.tag == _w("tbl"):
+            blocks += table_rows(child)
+        elif child.tag == _w("sdt"):
+            content = child.find(_w("sdtContent"))
+            if content is not None:
+                blocks += cell_lines(content)
+    return blocks
+
+
+def docx_info(path: Path) -> Dict[str, int]:
+    """Word 文件里有几个表格、几个文本框（上传讲稿时告诉老师：表格读进来了；文本框里的字读不到）。读不了时都是 0。"""
+    try:
+        import docx  # type: ignore
+
+        body = docx.Document(str(path)).element.body
+        return {"tables": len(body.findall(".//" + _w("tbl"))), "textboxes": len(body.findall(".//" + _w("txbxContent")))}
+    except Exception:
+        return {"tables": 0, "textboxes": 0}
 
 
 # ----------------------------------------------------------------------------- 清理
@@ -129,6 +210,16 @@ def clean_markdown(text: str, skip_code_blocks: bool = True) -> str:
     text = re.sub(r"`([^`]*)`", r"\1", text)
     text = EMOJI_RE.sub("", text)
     return text
+
+
+def _normalize_pause_marks(text: str) -> str:
+    """【停顿=2】【停顿】［停顿＝２］→ [停顿=2] / [停顿]（统一以后认不出来的保持原样）。"""
+
+    def fix(m: "re.Match[str]") -> str:
+        cand = "[" + unicodedata.normalize("NFKC", m.group(1)).strip() + "]"
+        return cand if PAUSE_RE.fullmatch(cand) else m.group(0)
+
+    return _PAUSE_LOOSE_RE.sub(fix, text)
 
 
 def apply_lexicon(text: str, lexicon: Sequence[Tuple[str, str]]) -> str:
@@ -193,8 +284,35 @@ def _split_clauses(sentence: str) -> List[str]:
     return [p.strip() for p in parts if p.strip()]
 
 
+#: 硬切时不能从中间切开的一段：英文单词 / 数字（连同里面的 ' . + # -）、一串空白、其它（中文和标点）
+_HARD_TOKEN_RE = re.compile(r"[A-Za-z0-9'’.+#\-]+|\s+|[^A-Za-z0-9'’.+#\-\s]+")
+
+
+def _hard_units(text: str) -> List[str]:
+    """中文分句硬切用的最小单位：英文单词、数字整个算一个；中文有 jieba（整合包里有）时按词，没有时按字。"""
+    from voicetwin.data.lexicon_fix import word_bounds
+
+    units: List[str] = []
+    for tok in _HARD_TOKEN_RE.findall(text):
+        if tok.isspace() or not count_cjk(tok) or re.match(r"[A-Za-z0-9]", tok):
+            units.append(tok)
+            continue
+        bounds = word_bounds(tok) if len(tok) > 1 else None
+        if not bounds:
+            units.extend(tok)
+            continue
+        cuts = sorted(b for b in bounds if 0 <= b <= len(tok))
+        units.extend(tok[a:b] for a, b in zip(cuts, cuts[1:]) if b > a)
+    return units
+
+
 def _hard_split(text: str, max_units: int) -> List[str]:
-    """一个分句仍然太长（很少见）：英文按单词、中文按字数硬切。"""
+    """一个分句仍然太长、中间又没有逗号（很少见，多半是从语音转文字工具里复制来的、用空格代替逗号的讲稿）：硬切。
+
+    英文按单词切；中文切成长短差不多的几段：优先在空格处切（空格前面已经有一半长），不然在词和词之间切（有 jieba 时），
+    英文单词、数字不切开。
+    除了最后一段，每段末尾补一个逗号：以前补的是句号（tts_normalize 补「。」），一个词被切成两半（「特。」「别注意」），
+    中间还停一下、语调也落下来。"""
     if count_cjk(text) == 0:
         words, out, cur = text.split(), [], []
         for w in words:
@@ -204,15 +322,40 @@ def _hard_split(text: str, max_units: int) -> List[str]:
             cur.append(w)
         if cur:
             out.append(" ".join(cur))
-        return out
-    out, cur = [], ""
-    for ch in text:
-        if syllable_count(cur + ch) > max_units and cur:
-            out.append(cur)
-            cur = ""
-        cur += ch
-    if cur:
-        out.append(cur)
+    else:
+        out, cur, cur_n = [], [], 0
+        # 切成长短差不多的几段（以前每段塞满 50 个字，最后剩下「东西。」两个字单独合成）
+        total = syllable_count(text)
+        limit = max(1, math.ceil(total / max(1, math.ceil(total / max(1, max_units)))))
+        units: List[str] = []
+        for u in _hard_units(text):
+            # 一个单位本身就太长（很长的英文单词、jieba 认成一个词的长串）：只好按字切
+            units.extend(list(u) if syllable_count(u) > limit else [u])
+        for u in units:
+            n = syllable_count(u)
+            if cur and cur_n + n > limit:
+                # 优先在空格处切：空格前面这一段已经有一半长
+                at, acc = None, 0
+                for j, x in enumerate(cur):
+                    acc += syllable_count(x)
+                    if j > 0 and x.isspace() and acc >= limit / 2:
+                        at = j
+                if at is not None:
+                    out.append("".join(cur[:at]).strip())
+                    cur = cur[at + 1:]
+                else:
+                    out.append("".join(cur).strip())
+                    cur = []
+                cur_n = sum(syllable_count(x) for x in cur)
+            if cur or not u.isspace():
+                cur.append(u)
+                cur_n += n
+        if cur:
+            out.append("".join(cur).strip())
+        out = [o for o in out if o]
+    for i in range(len(out) - 1):  # 不是最后一段：补逗号（不补句号）
+        if out[i] and out[i][-1] not in CLAUSE_CHARS + SENT_END_CHARS + ".,":
+            out[i] += "，" if count_cjk(out[i]) else ","
     return out
 
 
@@ -260,7 +403,7 @@ def parse_script(source: Union[str, Path], lexicon: Sequence[Tuple[str, str]] = 
     if cues is not None:
         return _segments_from_cues(cues, lexicon, max_units_zh, max_units_en)
 
-    text = clean_markdown(text, skip_code_blocks)
+    text = _normalize_pause_marks(clean_markdown(text, skip_code_blocks))
     # 把停顿标记替换成独立占位行
     tokens: List[Union[str, float]] = []
     pos = 0
@@ -268,7 +411,8 @@ def parse_script(source: Union[str, Path], lexicon: Sequence[Tuple[str, str]] = 
         tokens.append(text[pos:m.start()])
         num, unit = (m.group(1), m.group(2)) if m.group(1) or m.group(0).startswith("[") else (m.group(3), m.group(4))
         if num:
-            sec = float(num) / (1000.0 if unit and unit.lower() in ("ms", "毫秒") else 1.0)
+            u = (unit or "").lower()
+            sec = float(num) / 1000.0 if u in ("ms", "毫秒") else float(num) * (60.0 if u in ("分钟", "min") else 1.0)
             tokens.append(sec)
         else:
             tokens.append(-1.0)  # 段落停顿
@@ -277,10 +421,13 @@ def parse_script(source: Union[str, Path], lexicon: Sequence[Tuple[str, str]] = 
 
     segments: List[ScriptSegment] = []
     para_idx = 0
+    lead = 0.0  # 写在第一句前面的停顿秒数（开头多留的静音）
     for tok in tokens:
         if isinstance(tok, float):
             if segments:
                 segments[-1].pause_after = "paragraph" if tok < 0 else tok
+            elif tok >= 0:
+                lead = tok  # 讲稿最前面的 [停顿=3]：以前直接丢掉了，开头还是只有 0.35 秒
             continue
         paragraphs = re.split(r"\n\s*\n", tok)
         for p_i, para in enumerate(paragraphs):
@@ -323,8 +470,13 @@ def parse_script(source: Union[str, Path], lexicon: Sequence[Tuple[str, str]] = 
             para_idx += 1
     if segments and segments[-1].pause_after == "paragraph":
         segments[-1].pause_after = 0.0
+    if segments and lead > 0:
+        segments[0].extra["pause_before"] = lead  # 拼接时第一句前面留这么久（engine._layout）
     for i, s in enumerate(segments):
         s.index = i
+        bad = _UNREAD_MARK_RE.search(s.display)
+        if bad:
+            s.extra["unread_mark"] = bad.group(0)  # 没认出来的停顿标记：会被读出来，生成时提醒老师
     return segments
 
 

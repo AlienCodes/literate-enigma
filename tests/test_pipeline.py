@@ -842,3 +842,267 @@ def test_stop_button_interrupts_narration(prepared, tmp_path):
             wf.run_narrate(cfg, project.voice, _uniq("点了停止"), out=str(tmp_path / "s.wav"), quality="fast")
     finally:
         progress.clear_cancel()
+
+
+# ============================================================================ 第四轮找 bug（g5：生成）
+def test_cer_counts_percent_and_time_as_spoken():
+    """合成引擎把 30% 读成「百分之三十」、10:30 读成「十点半」，Paraformer 也这样写：以前算成 3 个 / 1 个错字，
+    读对了的句子在「完美」档被重做 20 次还标成读错；漏读「百分之」（只读「三十」）以前反而算 0 个错字。"""
+    from voicetwin.eval.metrics import cer_details
+
+    assert cer_details("这个考点大约占了30%的分数。", "这个考点大约占了百分之三十的分数")[1] == 0
+    assert cer_details("正确率是95%。", "正确率是百分之九十五")[1] == 0
+    assert cer_details("正确率是95％。", "正确率是95%")[1] == 0  # 全角百分号、Whisper 写的数字
+    assert cer_details("这个考点大约占了30%的分数。", "这个考点大约占了三十的分数")[1] == 1  # 漏了「百分之」
+    assert cer_details("上课时间是10:30。", "上课时间是十点半")[1] == 0
+    assert cer_details("上课时间是10:35。", "上课时间是十点三十五分")[1] == 0
+    assert cer_details("上课时间是10:00。", "上课时间是十点")[1] == 0
+    assert cer_details("上课时间是十点半。", "上课时间是十点半")[1] == 0
+    assert cer_details("2024年的课", "二零二四年的课")[1] == 0  # 原来的数字规则不变
+    assert cer_details("我们今天讲十个函数", "我们今天讲个函数")[1] == 1
+
+
+class _SpyPayloads:
+    def __init__(self, monkeypatch):
+        from voicetwin.backends.dummy import DummyBackend
+
+        self.texts = []
+        orig = DummyBackend.build_payload
+
+        def spy(backend, req, out_path):
+            self.texts.append(req.text)
+            return orig(backend, req, out_path)
+
+        monkeypatch.setattr(DummyBackend, "build_payload", spy)
+
+
+def test_chinese_input_pause_mark_gives_exact_silence_and_is_not_spoken(prepared, tmp_path, monkeypatch):
+    cfg, project, _ = prepared
+    spy = _SpyPayloads(monkeypatch)
+    a, b = _uniq("第一句话讲完了呢"), _uniq("第二句话开始了")
+    res = wf.run_narrate(cfg, project.voice, f"{a}【停顿=2】{b}", out=str(tmp_path / "p.wav"), quality="fast")
+    assert [s["text"] for s in res.segments] == [a, b]
+    assert not any("停顿" in t for t in spy.texts)  # 以前「停顿=2」被读出来
+    assert abs((res.segments[1]["start"] - res.segments[0]["end"]) - 2.0) < 0.002
+    _gaps_are_zero(res.audio_path, res.segments)
+    # 认不出来的停顿标记：会被读出来，告诉老师（不以「第 N 句：」开头，网页的小结才会显示）
+    res2 = wf.run_narrate(cfg, project.voice, "【停顿一下】" + _uniq("我们休息一会儿再继续讲"),
+                          out=str(tmp_path / "p2.wav"), quality="fast")
+    msgs = [w for w in res2.warnings if "【停顿一下】" in w]
+    assert len(msgs) == 1 and "[停顿=2]" in msgs[0] and not msgs[0].startswith("第")
+
+
+def test_pause_at_start_and_end_of_script_is_exact_silence(prepared, tmp_path):
+    """讲稿最前面 / 最后面的 [停顿=3]：以前开头还是 0.35 秒、结尾还是 0.4 秒（给视频配音时要先停 3 秒）。"""
+    cfg, project, _ = prepared
+    text = _uniq("开头结尾停顿测试的这一句话")
+    plain = wf.run_narrate(cfg, project.voice, text, out=str(tmp_path / "plain.wav"), quality="fast")
+    lead = wf.run_narrate(cfg, project.voice, "[停顿=3]" + text, out=str(tmp_path / "lead.wav"), quality="fast")
+    tail = wf.run_narrate(cfg, project.voice, text + "【停顿=3】", out=str(tmp_path / "tail.wav"), quality="fast")
+    w0, sr = load_audio(plain.audio_path)
+    assert abs(plain.segments[0]["start"] - eng.LEAD_IN) < 1e-6
+    assert abs(len(w0) / sr - plain.segments[-1]["end"] - eng.LEAD_OUT) < 0.01
+    w1, sr = load_audio(lead.audio_path)
+    assert abs(lead.segments[0]["start"] - 3.0) < 1e-6 and np.all(w1[: int(2.99 * sr)] == 0.0)
+    w2, sr = load_audio(tail.audio_path)
+    end = int(round(tail.segments[-1]["end"] * sr)) + int(0.002 * sr)
+    assert len(w2) / sr - tail.segments[-1]["end"] >= 2.995 and np.all(w2[end:] == 0.0)  # 报告里的时间保留 3 位小数
+    for res in (lead, tail):
+        _gaps_are_zero(res.audio_path, res.segments)
+
+
+class _AsrChecker:
+    """识别校验：第 fail_from 次起出错（显存不够），或者 unavailable 时识别模型加载不了（返回 None）。"""
+
+    calls = 0
+    fail_from = 10 ** 9
+    unavailable = False
+    hyp = None
+
+    def __init__(self, *a, **k):
+        self.available = True
+
+    def check(self, wav, sr, text, lang):
+        if type(self).unavailable:
+            self.available = False
+            return None
+        type(self).calls += 1
+        if type(self).calls >= type(self).fail_from:
+            raise RuntimeError("CUDA failed with error out of memory")
+        return {"cer": 0.0, "hyp": text, "errors": 0, "units": 10, "engine": "fake", "strong": False}
+
+    def strong(self, lang, text=""):
+        return False
+
+    def wants_paraformer(self, lang, text=""):
+        return False
+
+    def _load(self):
+        return True
+
+
+def _asr_setup(monkeypatch, fail_from=10 ** 9, unavailable=False):
+    _AsrChecker.calls, _AsrChecker.fail_from, _AsrChecker.unavailable = 0, fail_from, unavailable
+    monkeypatch.setattr(eng, "CERChecker", _AsrChecker)
+
+
+def test_asr_failing_mid_run_is_told_and_unchecked_sentences_are_checked_later(prepared, tmp_path, monkeypatch):
+    """识别校验中途出错（显存不够）时关掉它接着生成：以前结果还说这几句「达到了完美的严格标准」（严格标准里有错字率），
+    没检查的句子还当成检查过的存起来，下次识别校验好了也不再检查。中途关掉以后，后面以前检查过的句子照样直接用。"""
+    cfg, project, _ = prepared
+    _use_judge(monkeypatch, FakeJudge([99.5]))
+    monkeypatch.setattr("voicetwin.eval.metrics.Scorer.in_normal_range", lambda self, s, lang, speed=1.0: True)
+    s1, s2, s3 = _uniq("识别校验第一句"), _uniq("识别校验第二句"), _uniq("识别校验第三句")
+    _asr_setup(monkeypatch)
+    wf.run_narrate(cfg, project.voice, s3, out=str(tmp_path / "s3.wav"), quality="perfect", variants=False)
+    _asr_setup(monkeypatch, fail_from=5)  # 第一句试 4 个都检查了，第二句第 1 个就出错
+    res = wf.run_narrate(cfg, project.voice, s1 + s2 + s3, out=str(tmp_path / "a.wav"), quality="perfect",
+                         variants=False)
+    segs = res.segments
+    assert [s["cached"] for s in segs] == [False, False, True]  # 第三句以前检查过：关掉以后照样直接用
+    assert segs[0]["met"] is True and segs[1]["met"] is None and segs[1]["asr_checked"] is False
+    told = [w for w in res.warnings if "识别校验出错了" in w]
+    assert len(told) == 1 and not told[0].startswith("第") and "第 2 句起" in told[0]
+    assert any("1 句达到了「完美」的严格标准" in n for n in res.notes)
+    assert any("其中 1 句没有做识别校验" in n and "第 2 句" in n for n in res.notes)
+    report = json.loads(res.report_path.read_text(encoding="utf-8"))
+    assert report["segments"][1]["asr_checked"] is False
+    # 下次识别校验好了：没检查过的第二句重新生成并检查，其它两句直接用
+    _asr_setup(monkeypatch)
+    res2 = wf.run_narrate(cfg, project.voice, s1 + s2 + s3, out=str(tmp_path / "b.wav"), quality="perfect",
+                          variants=False)
+    assert [s["cached"] for s in res2.segments] == [True, False, True]
+    assert res2.segments[1]["met"] is True and "asr_checked" not in res2.segments[1]
+    assert not any("识别校验" in w for w in res2.warnings)
+
+
+def test_asr_model_that_cannot_load_is_told(prepared, tmp_path, monkeypatch):
+    """识别模型加载不了（例如下载不下来）：以前每句都「达到了严格标准」、都当成检查过的存起来。"""
+    cfg, project, _ = prepared
+    _use_judge(monkeypatch, FakeJudge([99.5]))
+    monkeypatch.setattr("voicetwin.eval.metrics.Scorer.in_normal_range", lambda self, s, lang, speed=1.0: True)
+    text = _uniq("模型加载不了第一句") + _uniq("模型加载不了第二句")
+    _asr_setup(monkeypatch, unavailable=True)
+    res = wf.run_narrate(cfg, project.voice, text, out=str(tmp_path / "a.wav"), quality="perfect", variants=False)
+    assert [s["met"] for s in res.segments] == [None, None]
+    assert any("识别校验的模型没加载成功" in w for w in res.warnings)
+    assert any("0 句达到了「完美」的严格标准" in n for n in res.notes)
+    assert any("其中 2 句没有做识别校验" in n for n in res.notes)
+    # 还是加载不了：只重试第一句（发现还是不行），第二句直接用，不会每次全部重做
+    res2 = wf.run_narrate(cfg, project.voice, text, out=str(tmp_path / "b.wav"), quality="perfect", variants=False)
+    assert [s["cached"] for s in res2.segments] == [False, True] and [s["met"] for s in res2.segments] == [None, None]
+    _asr_setup(monkeypatch)  # 能用了：两句都重新生成并检查
+    res3 = wf.run_narrate(cfg, project.voice, text, out=str(tmp_path / "c.wav"), quality="perfect", variants=False)
+    assert [s["cached"] for s in res3.segments] == [False, False] and [s["met"] for s in res3.segments] == [True, True]
+
+
+class _SigJudge(FakeJudge):
+    """会变的打分标准（校对表删了 / 恢复了片段、加了素材，校准就变了）；你自己录音的下四分位是 92%。"""
+
+    sig = "a"
+
+    def signature(self):
+        return self.sig
+
+    def natural_range(self):
+        return {"p10": 80.0, "p25": 92.0, "p50": 100.0, "p90": 110.0}
+
+
+class _MisreadChecker(_AsrChecker):
+    def check(self, wav, sr, text, lang):
+        if "温度" in text:  # 识别出来的字里正好有「低于」
+            return {"cer": 0.3, "hyp": "这个温度低于零读", "errors": 4, "units": 12, "engine": "fake", "strong": False}
+        return {"cer": 0.0, "hyp": text, "errors": 0, "units": 10, "engine": "fake", "strong": False}
+
+
+def test_rescoring_cached_sentences_keeps_their_warnings(prepared, tmp_path, monkeypatch):
+    """以前生成好的句子重新打分（打分标准变了）：以前按「低于」「不够像」几个字删提示，不够像（低于「完美」的目标）
+    和识别出来的字里有「低于」的读错提示都没了，句子变成 ✅、从「需要注意的句子」里消失。"""
+    cfg, project, _ = prepared
+    judge = _SigJudge([89.0])
+    _use_judge(monkeypatch, judge)
+    monkeypatch.setattr(eng, "CERChecker", _MisreadChecker)
+    monkeypatch.setattr("voicetwin.eval.metrics.Scorer.in_normal_range", lambda self, s, lang, speed=1.0: True)
+    base = dict(cfg.data) if hasattr(cfg, "data") else dict(cfg)
+    small = {**base, "synth": {**(base.get("synth") or {}), "tiers": {"perfect": {"max_candidates": 4}}}}
+    backend = get_backend("dummy", cfg, project)
+    text = _uniq("这个温度低于零度的时候水会结冰") + _uniq("第二句话的声音还不够像")
+
+    def run(name):
+        n = eng.Narrator(small, project, backend, quality="perfect", tier="high", variants=False)
+        return n.narrate(text, tmp_path / name)
+
+    first = run("1.wav")
+    hints = [s["hint"] for s in first.segments]
+    assert hints[0].startswith("可能有读错的字（识别为：这个温度低于零读）") and hints[1] == eng.TARGET_MISS_SIM
+    assert first.flagged == [1, 2]
+    judge.sig = "b"  # 打分标准变了，分数还是 89%（低于 92% 的目标）
+    second = run("2.wav")
+    assert all(s["cached"] for s in second.segments)
+    assert [s["hint"] for s in second.segments] == hints and second.flagged == [1, 2]
+    assert [s["met"] for s in second.segments] == [False, False]
+    assert all(s["status"] == "⚠️" for s in second.segments)
+    judge.sig, judge.pcts = "c", [95.0]  # 新标准下够像了：只有「不够像」的提示去掉，读错字的提示还在
+    third = run("3.wav")
+    assert third.segments[0]["hint"] == hints[0] and third.segments[1]["hint"] == ""
+    assert third.flagged == [1] and [s["met"] for s in third.segments] == [False, True]
+    judge.sig, judge.pcts = "d", [70.0]  # 低于 85%：照旧提示
+    fourth = run("4.wav")
+    low = eng.LOW_PCT_HINT.format(min_pct=85.0)
+    assert fourth.segments[1]["hint"] == low and fourth.segments[0]["hint"] == low + "；" + hints[0]
+
+
+def test_unknown_reference_id_is_told_and_works_like_blank(prepared):
+    """「指定参考音频编号」写了认不出来的（例如「3」）：以前悄悄自动挑，「完美」档还因此不挑长短最接近的参考。"""
+    cfg, project, _ = prepared
+    backend = get_backend("dummy", cfg, project)
+    refs = project.load_references()
+    blank = eng.Narrator(cfg, project, backend, quality="perfect", tier="high")
+    seg = blank._segments("代码很简洁。")[0]
+    for bad in ("3", "第3条参考", "references/不存在.wav"):
+        n = eng.Narrator(cfg, project, backend, quality="perfect", tier="high", reference=bad)
+        assert n.reference == "" and n._ref_for(seg)["id"] == blank._ref_for(seg)["id"]
+        assert len(n.warnings) == 1 and f"「{bad}」" in n.warnings[0] and "references.json" in n.warnings[0]
+        assert not n.warnings[0].startswith("第")
+    want = next(r for r in refs if r["id"] != blank._ref_for(seg)["id"])
+    for ok in (want["id"], want["path"], Path(want["path"]).name, want["text"]):
+        n = eng.Narrator(cfg, project, backend, quality="perfect", tier="high", reference=ok)
+        assert n.reference == want["id"] and n._ref_for(seg)["id"] == want["id"] and n.warnings == []
+
+
+@pytest.mark.parametrize("text, chinese", [
+    ("好，Do you have any brothers or sisters at home?", "好"),
+    ("好。Do you have any brothers or sisters at home?", "好"),  # 单独一句「好。」会并到下一句
+    ("比如 I have a sister who is a doctor and she lives in Beijing.", "比如"),
+])
+def test_one_character_chinese_lead_in_is_sent_to_the_engine_as_zh(prepared, tmp_path, monkeypatch, text, chinese):
+    """一两个汉字开头、后面一长句英文：分句时判成 en（汉字少于英文单词的 1/5），以前按 text_lang=en 发给 GPT-SoVITS，
+    它的 en 模式把汉字整个丢掉、读不出来。「一模一样」第 1 步（send_lang）以后，只要有汉字就按 zh 发（zh 模式中英混读）。"""
+    import io
+
+    import soundfile as sf
+
+    from voicetwin.backends.gptsovits import GPTSoVITSBackend
+    from voicetwin.backends.workers.dummy_worker import synth_speech
+
+    cfg, project, _ = prepared
+    segs = eng.Narrator(cfg, project, get_backend("dummy", cfg, project), quality="fast")._segments(text)
+    assert len(segs) == 1 and chinese in segs[0].text and segs[0].lang == "en"  # 分句还是判成 en（挑英文参考、英文语速）
+    buf = io.BytesIO()
+    sf.write(buf, synth_speech("Do you have any brothers", sr=32000, seed=3), 32000, format="WAV", subtype="PCM_16")
+    sent = []
+
+    class Session:
+        def post(self, url, json=None, timeout=None):
+            sent.append(json)
+            return types.SimpleNamespace(status_code=200, content=buf.getvalue(), text="")
+
+    b = GPTSoVITSBackend(cfg, project)
+    monkeypatch.setattr(b, "_alive", lambda: True)
+    monkeypatch.setattr(b, "_session", lambda: Session())
+    monkeypatch.setattr(b, "start", lambda: None)
+    monkeypatch.setattr(b, "model_id", lambda: "fake-gsv")
+    n = eng.Narrator(cfg, project, b, quality="fast", tier="high")
+    res = n.synthesize_segment(segs[0], force=True)
+    assert res.wav.size and sent
+    assert all(p["text_lang"] == "zh" and chinese in p["text"] and p["text"] == segs[0].text for p in sent)

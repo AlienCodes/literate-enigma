@@ -3594,7 +3594,23 @@ class WebUI:
                     pass
                 return (_upd(), _upd(), f"❌ 读不了这个文件：{_md_text(title)}。Word 文件请另存为 .docx 或 .txt 再上传。",
                         _upd())
-            return (text, None, f"已把「{_md_text(p.name)}」的内容放进上面的讲稿框，可以直接修改。", name_upd)
+            info = {"tables": 0, "textboxes": 0}
+            if ext == ".docx":
+                from voicetwin.synth.script import docx_info
+
+                info = docx_info(p)
+            if not str(text or "").strip():
+                # 什么都没读到：讲稿框里原来的字不要清掉，也不能说「已放进讲稿框」
+                why = "（字都在文本框里，读不出来）" if info["textboxes"] else "（可能都在图片里，或者文件是空的）"
+                return (_upd(), None, f"⚠️ 「{_md_text(p.name)}」里没有读到文字{why}。请打开这个文件，"
+                        "把要读的文字复制下来，粘贴到上面的讲稿框里。", _upd())
+            msg = f"已把「{_md_text(p.name)}」的内容放进上面的讲稿框，可以直接修改。"
+            if info["tables"]:
+                msg += ("表格里的字也按顺序放进去了（表格的每一行是一段）：表头、「导入」这种小标题如果不想读出来，"
+                        "请在讲稿框里删掉。")
+            if info["textboxes"]:
+                msg += "⚠️ 文件里有文本框，文本框里的字读不出来：需要的话请打开文件复制，粘贴到讲稿框里。"
+            return (text, None, msg, name_upd)
         if ext in SCRIPT_SUB_EXTS:
             return (_upd(), _upd(), f"已载入字幕文件「{_md_text(p.name)}」：会按字幕的时间轴生成（适合给视频配音）。"
                     "要改用上面的文字，请点文件右上角的 × 删除它。", name_upd)
