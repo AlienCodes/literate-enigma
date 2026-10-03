@@ -147,6 +147,15 @@ def test_phrases_that_differ_only_in_a_number_are_not_repeats():
     assert _hits("第1种情况第一种情况我们分别来看") == [("第一种情况", "repeat", pc.W_REPEAT_LONG)]
 
 
+def test_reason_positions_are_only_used_while_checking():
+    """查错字时带上每条原因的位置（去掉标红 / 建议时说明也跟着去掉），存进校对表的和以前一模一样（原因太多照样截短）。"""
+    t = "我们看第三页、第五页、第七页、第九页、第十一页、第十三页、第十五页和第十七页的练习"
+    o = "我们看第四页、第六页、第八页、第十页、第十二页、第十四页、第十六页和第十八页的练习"
+    plain = pc.build_suspect(t, o, engine=pc.ENGINE_FUNASR)
+    assert plain["reasons"][-1].startswith("……还有")
+    assert pc._finish_reasons(pc.build_suspect(t, o, engine=pc.ENGINE_FUNASR, with_pos=True)) == plain
+
+
 # ---------------------------------------------------------------------------- 两个引擎对比
 def test_spacing_only_difference_is_ignored_but_heuristic_still_flags():
     text = "我们今天讲VFIXED的用法，这个函数很常用。"

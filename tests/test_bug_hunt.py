@@ -482,6 +482,43 @@ def test_auto_check_merges_with_one_click_results(tmp_path):
     assert review.load_draft(project)["c000"]["text"] == "这个主句的结构也很完整"
 
 
+@need_tools
+@pytest.mark.parametrize("when", ["checking", "merging"])
+def test_stopped_auto_check_keeps_the_one_click_results(tmp_path, when):
+    """第四轮找 bug：🔍（或者准备素材里的自动查错字）查到一半点了「停止」：一键校正已经核对过、去掉了的标红和错的建议
+    （最 → 很）又回来了，一键校正的按钮是灰的，只能再从头 🔍 一遍。现在停止时这些行放回一键校正的结果。"""
+    import unittest.mock as um
+
+    from voicetwin.data import proofcheck as pc
+    from voicetwin.utils import progress as pg
+
+    cfg, project = _voice(tmp_path, ["它最经常用在定语从句里面", "这个句子完全没有错误我们继续", "我们来看下一个例子好不好"])
+    heard = {"c000": "它很经常用在定语从句里面"}
+    _auto_check(project, cfg, heard)
+    assert _shown(project, "c000")[1]["edits"] == [(1, 2, "很")]
+    txt = tmp_path / "讲稿.txt"
+    txt.write_text("它最经常用在定语从句里面，大家要记住。\n", encoding="utf-8")
+    wf.run_transcript_fix(cfg, "查错", once=True, files=[str(txt)])  # 母本证明「最」没错：标红和建议去掉
+    _, info = _shown(project, "c000")
+    assert not info["red"] and not info["edits"] and wf.textfix_used(cfg, "查错")
+
+    class FakeRunner(pc._EngineRunner):
+        def recognize(self, rec, lang):
+            return heard.get(rec["id"], rec["text"]), None, pc.ENGINE_FUNASR
+
+    def prog(_f, msg):  # 第 2 条查完 / 开始合在一起的时候点「停止」
+        if msg.startswith("已检查 2 /" if when == "checking" else "和「一键全部文字校正」"):
+            pg.request_cancel()
+
+    try:
+        with um.patch.object(pc, "_EngineRunner", FakeRunner), pytest.raises(pg.TaskCancelled):
+            pc.find_suspects(project, cfg, progress=prog)
+    finally:
+        pg.clear_cancel()
+    _, info = _shown(project, "c000")
+    assert not info["red"] and not info["edits"]  # 还是一键校正核对过的样子
+
+
 def test_auto_check_does_not_suggest_what_the_teacher_undid(tmp_path):
     """老师点过「采用」又撤销的改法（王 → 黄）：以前再点 🔍 又建议回来。"""
     cfg, project = _voice(tmp_path, ["今天王芳同学回答得很好"])
@@ -556,6 +593,32 @@ def test_english_repeat_mark_goes_away_after_deleting_one_copy(tmp_path, text, f
     review.save_rows(project)
     _, info = _shown(project, "c000")
     assert not info["red"] and not info["active"]
+
+
+@pytest.mark.parametrize("how", ["rejected", "typed"])
+def test_reasons_of_dropped_suggestions_are_not_shown_after_auto_check(tmp_path, how):
+    """第四轮找 bug：老师撤销过「王 → 黄」（或者自己改成了「汪」），再 🔍 以后「王」不标红、也不建议「黄」了，
+    可说明里还写着「另一个识别引擎听到的是「黄」」，像是还想改。"""
+    t = "今天王芳同学回答得很好"
+    cfg, project = _voice(tmp_path, [t])
+    heard = {"c000": "今天黄芳同学回答得很早"}
+    _auto_check(project, cfg, heard)
+    assert len(_shown(project, "c000")[1]["reasons"]) == 2
+    if how == "rejected":
+        review._save_rejected(project, {"c000": [["王", "黄"]]})
+    else:
+        review.set_draft(project, "c000", text=t.replace("王", "汪"))
+        review.save_rows(project)
+    _auto_check(project, cfg, heard)
+    rec, info = _shown(project, "c000")
+    assert [e[2] for e in info["edits"]] == ["早"]
+    assert info["reasons"] == ["另一个识别引擎听到的是「早」"]
+    assert pc_keys_ok(rec["suspect"])
+
+
+def pc_keys_ok(sus):
+    """存进校对表的标记和以前一样（原因的位置只在查错字的过程中用）。"""
+    return set(sus) == {"spans", "alt", "reasons", "score"}
 
 
 def test_manual_language_survives_edits_and_needs_reconfirm(tmp_path):
