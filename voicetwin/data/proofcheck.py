@@ -1898,18 +1898,20 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
                     rec.pop("suspect_auto", None)
                 remerge.append(str(rec.get("id")))
             elif undo:
-                # 这一行有还能撤销的修改（点过「采用」的建议，保存了也算）：标记留着，不然「已采用」的按钮没了、撤销不了
+                # 这一行有还能撤销的修改（点过「采用」的建议，保存了也算）：标记留着，不然「已采用」的按钮没了、撤销不了；
+                # 别的地方照样和母本对照（母本优先）
                 rec.pop("suspect_auto", None)
+                remerge.append(str(rec.get("id")))
             else:
                 if sus:
                     rec["suspect"] = sus
                 else:
                     rec.pop("suspect", None)
                 rec.pop("suspect_auto", None)  # 重新自动查过：以前「文字校正」时存的旧结果不要了
-                if str(rec.get("id")) in oneclick:
-                    # 一键校正处理过、但没留下标记的行（没找到要改的、或者标红被母本证明没错去掉了）：
-                    # 新查出来的也要拿母本再核对一遍（不然母本证明没错的标红又回来了）
-                    remerge.append(str(rec.get("id")))
+                # 母本优先（老师 10-04 的要求：「自动检查错字……底层逻辑也是要以母本为主」）：每一句都先和母本对照，
+                # 母本里有这一句的，建议就是母本的写法，和母本矛盾的另一个引擎的建议不要；母本里没有的部分才用这次查的结果。
+                # 以前只有一键校正处理过的行才对照，没点一键校正以前的建议都不看母本
+                remerge.append(str(rec.get("id")))
             checked += 1
             _report(progress, i / n, f"已检查 {i} / {n} 条")
             if i % SAVE_EVERY == 0 and i < n:
@@ -1926,13 +1928,13 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
         runner.close()
     project.save_manifest(records)
     if remerge and _tf is not None:
-        _report(progress, 1.0, f"和「一键全部文字校正」的结果合在一起（{len(remerge)} 条）……")
+        _report(progress, 1.0, f"和你的母本对照（母本优先，{len(remerge)} 条）……")
         merged = False
         try:
             _tf.check_with_transcript(project, only=remerge, merge_only=True)
             merged = True
         except Exception as exc:  # noqa: BLE001 - 合不上：这些行放回原来的标记（一键校正的结果）；停止照常传出去
-            log.warning(f"⚠️ 查错字：和一键全部文字校正的结果合在一起时出错（{_why(exc)}）", exc_info=exc)
+            log.warning(f"⚠️ 查错字：和母本对照（和一键全部文字校正的结果合在一起）时出错（{_why(exc)}）", exc_info=exc)
         finally:
             if not merged:  # 合的时候点了停止 / 出错：没核对过的结果不能留在表格上
                 try:

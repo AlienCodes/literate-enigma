@@ -171,17 +171,18 @@ class Fix:
     start: int
     end: int
     rep: str
-    kind: str  # list / learned / term / habit / same_row / align
+    kind: str  # mother / mother_upload（母本优先）/ list / learned / term / habit / same_row / align
     direct: bool
     weight: float
     reason: str
 
 
-PRIORITY = {"same_row": 6, "list": 5, "learned": 4, "align": 3, "term": 2, "habit": 1}
+PRIORITY = {"mother": 8, "mother_upload": 7, "same_row": 6, "list": 5, "learned": 4, "align": 3, "term": 2, "habit": 1}
 
 
 def resolve(fixes: Sequence[Fix]) -> List[Fix]:
-    """同一个地方好几种改法：直接改的优先，再按来源（同一句的母本 > 对照表 > 以前改过的 > 对齐 > 术语）、长的优先。"""
+    """同一个地方好几种改法：直接改的优先，再按来源（母本里对上的那一句 > 同一句的修缮记录 > 对照表 > 以前改过的 > 对齐 >
+    术语）、长的优先。"""
     order = sorted(fixes, key=lambda f: (-int(f.direct), -PRIORITY.get(f.kind, 0), -(f.end - f.start), f.start))
     kept: List[Fix] = []
     for f in order:

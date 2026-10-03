@@ -507,7 +507,7 @@ def test_stopped_auto_check_keeps_the_one_click_results(tmp_path, when):
             return heard.get(rec["id"], rec["text"]), None, pc.ENGINE_FUNASR
 
     def prog(_f, msg):  # 第 2 条查完 / 开始合在一起的时候点「停止」
-        if msg.startswith("已检查 2 /" if when == "checking" else "和「一键全部文字校正」"):
+        if msg.startswith("已检查 2 /" if when == "checking" else "和你的母本对照"):
             pg.request_cancel()
 
     try:
@@ -617,8 +617,11 @@ def test_reasons_of_dropped_suggestions_are_not_shown_after_auto_check(tmp_path,
 
 
 def pc_keys_ok(sus):
-    """存进校对表的标记和以前一样（原因的位置只在查错字的过程中用）。"""
-    return set(sus) == {"spans", "alt", "reasons", "score"}
+    """存进校对表的标记里没有原因的位置（只在查错字的过程中用）。母本优先以后每一句查完都和母本对照，
+    存的是对照以后的标记（多了 text / src 这些，和一键校正的一样）。"""
+    from voicetwin.data import proofcheck as pc
+
+    return pc.REASON_POS not in sus and {"spans", "alt", "reasons", "score"} <= set(sus)
 
 
 def test_manual_language_survives_edits_and_needs_reconfirm(tmp_path):
