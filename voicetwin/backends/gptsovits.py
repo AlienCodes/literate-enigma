@@ -2999,6 +2999,23 @@ class GPTSoVITSBackend(Backend):
         info["configured"] = self.version
         return info
 
+    def model_name_info(self) -> Dict[str, Any]:
+        """这一刻生成实际用的模型叫什么（生成的文件名最后的「_模型名」、文件里面的注释、报告用）：
+        读正在用的 SoVITS 模型文件（自动挑选 / 两个模型都留着时是正在用的那个，不是设置里写的），
+        和网页顶上的模型型号是同一个检测函数（detect_sovits_version）；读不出来时 name 是 None（文件名写「模型未知」，不猜）。
+        files 里是 SoVITS 和 GPT 两个模型文件的名字和指纹（整个文件的 sha256 前 16 位）。"""
+        from voicetwin.backends.base import file_fingerprint, model_label
+
+        w = self._weights_to_use()
+        sov, gpt = str(w.get("sovits") or ""), str(w.get("gpt") or "")
+        if not sov:
+            return {"name": None, "version": None, "how": "用的是别处的 GPT-SoVITS 服务，读不到模型文件", "files": []}
+        det = detect_sovits_version(sov, self.root)
+        files = [{"kind": kind, "file": Path(path).name, "fingerprint": file_fingerprint(path)}
+                 for kind, path in (("SoVITS", sov), ("GPT", gpt)) if path]
+        return {"name": model_label(det.get("version")), "version": det.get("version"), "lora": bool(det.get("lora")),
+                "how": str(det.get("how") or ""), "files": files}
+
     def checkpoints(self, max_sovits: Optional[int] = None, max_gpt: Optional[int] = None,
                     all: bool = False) -> List[Dict[str, Any]]:  # noqa: A002 - 设计方案里就叫 all
         """自动挑选要试的模型组合：SoVITS 默认 4 个 × GPT 3 个，从早到晚均匀挑（最后一轮一定在内）。

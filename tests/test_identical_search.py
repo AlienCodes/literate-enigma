@@ -1086,16 +1086,18 @@ def test_tempo_refinement_real_api_request_differs_only_in_speed(prepared, tmp_p
 
 # ============================================================================ 给老师看的字、进度
 def test_texts_describe_what_p5_built():
-    """说明写上这一步做好了的（每句几条参考、几种设置、引擎自检通过时同时生成好几个、三个声纹模型、中英文分开查错字），
-    没做好的（整篇按你的停顿和音量拼接、整篇再挑一遍：第 6 步；新模型先准备：第 8 步）和没实测的（用满显卡）不写。"""
+    """说明写上这一步做好了的（每句几条参考、几种设置、引擎自检通过时同时生成好几个、三个声纹模型、中英文分开查错字；
+    第 6 步做好以后：整篇再挑一遍、按你本人的停顿长短和音量拼接），没做好的（新模型先准备：第 8 步）和没实测的
+    （用满显卡）不写。"""
     help_ = eng.QUALITY_HELP["identical"]
-    for ph in ("换几条", "几种生成设置", "同时生成好几个版本", "三个模型", "中英文分开", "自检通过"):
+    for ph in ("换几条", "几种生成设置", "同时生成好几个版本", "三个模型", "中英文分开", "自检通过",
+               "整篇再挑一遍", "按你本人的停顿长短和音量拼接"):
         assert ph in help_, ph
     label = eng.QUALITY_LABELS["identical"]
-    assert "换几条" in label and "几十" not in label
+    assert "换几条" in label and "几十" not in label and "整篇按你的停顿和音量拼接" in label
     assert "减少同时生成的个数" in eng.recommended_quality("low")[1]
     for t in (label, help_, *eng.QUALITY_TIER_NOTES.values()):
-        for ph in ("用满显卡", "整篇再挑一遍", "按你本人的停顿长短和音量拼接", "先做一次准备", "不会因为显存不够而停下"):
+        for ph in ("用满显卡", "先做一次准备", "不会因为显存不够而停下"):
             assert ph not in t, (ph, t)
 
 

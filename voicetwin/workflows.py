@@ -50,10 +50,10 @@ STAGES_NARRATE: List[Stage] = [(0.00, "启动合成引擎"), (0.03, "逐句生�
 #: 「完美」档多一步：做「去杂音」版本并比较（「一模一样」见下面 STAGES_NARRATE_IDENTICAL）
 STAGES_NARRATE_VARIANTS: List[Stage] = [(0.00, "启动合成引擎"), (0.03, "逐句生成"), (0.90, "拼接音频、生成字幕"),
                                         (0.93, "做「去杂音」版本并比较哪个更像你")]
-#: 「一模一样」档（默认）：先准备（加载打分和查错字的模型），最后按你的停顿拼接、调整音量、做两个版本
-#: （和 engine.narrate 的进度对齐）。0.88 这一步只写现在真的会做的事：设计方案里的「整篇再挑一遍」等第 6 步做好了再改名
+#: 「一模一样」档（默认）：先准备（加载打分和查错字的模型），最后整篇再挑一遍、按你的停顿和音量拼接、做两个版本
+#: （和 engine.narrate 的进度对齐，设计方案 §2 P2）
 STAGES_NARRATE_IDENTICAL: List[Stage] = [(0.00, "启动合成引擎"), (0.02, "准备「一模一样」"), (0.08, "逐句生成"),
-                                         (0.88, "按你的停顿拼接、调整音量"), (0.92, "做「去杂音」版本并比较"),
+                                         (0.88, "整篇再挑一遍、按你的停顿和音量拼接"), (0.92, "做「去杂音」版本并比较"),
                                          (0.99, "写字幕和报告")]
 STAGES_DOWNLOAD: List[Stage] = [(0.0, "下载模型文件")]
 STAGES_PROOFCHECK: List[Stage] = [(0.00, "准备识别引擎"), (0.02, "逐条检查文字，标出可能的错字")]
@@ -1073,9 +1073,29 @@ def _previous_model_result(project: Project, backend: str, res: Any) -> None:
 
 # ---------------------------------------------------------------------------- 合成
 def default_output(project: Project, stem: str, fmt: str) -> Path:
-    from voicetwin.utils.textutil import safe_name
+    """命令行没写 -o 时的输出文件：<讲稿名>_<年月日_时分秒>.<格式>（名字只留汉字、字母、数字、下划线）；
+    真正写的文件名最后还会加上实际用的模型名，例如 …_V4.wav（engine.narrate 写文件那一刻定）。"""
+    from voicetwin.utils.textutil import file_stem
 
-    return project.outputs_dir / f"{safe_name(stem, 30)}_{time.strftime('%Y%m%d_%H%M%S')}.{fmt}"
+    return project.outputs_dir / f"{file_stem(stem, 30)}_{time.strftime('%Y%m%d_%H%M%S')}.{fmt}"
+
+
+def narration_reports(folder: Any) -> List[Path]:
+    """这个声音生成过的报告，新的在前：「<名字>_<模型名>.json」（以前的版本叫「<名字>.report.json」，也认）。
+    别的 .json（盲听测试的答案等）不算：里面没有逐句结果（segments）。"""
+    out: List[Tuple[float, Path]] = []
+    try:
+        files = list(Path(str(folder)).glob("*.json"))
+    except OSError:
+        return []
+    for p in files:
+        try:
+            data = json.loads(p.read_text(encoding="utf-8"))
+            if isinstance(data, dict) and isinstance(data.get("segments"), list) and "audio" in data:
+                out.append((p.stat().st_mtime, p))
+        except Exception:  # noqa: BLE001 - 读不了的不算
+            continue
+    return [p for _, p in sorted(out, key=lambda x: x[0], reverse=True)]
 
 
 def recommended_quality(tier: Optional[str] = None, size: Optional[str] = None,
@@ -1264,7 +1284,8 @@ def preview_speed(cfg: Config, voice: str, text: str = "", value: Any = 0, backe
     sentence = _first_sentence(cfg, project, text)
     speed = slider_to_speed(value)
     v = int(round((1.0 - speed) * 100))
-    tag = "原速" if v == 0 else (f"快{-v}%" if v < 0 else f"慢{v}%")
+    # 文件名只用汉字、字母、数字、下划线（老师的规定）：「快10%」写成「快百分之10」
+    tag = "原速" if v == 0 else (f"快百分之{-v}" if v < 0 else f"慢百分之{v}")
     out = project.outputs_dir / f"试听语速_{tag}.wav"
     return run_narrate(cfg, voice, sentence, out=str(out), backend_name=backend_name, quality="fast", speed=speed,
                        subtitles=False, progress=progress, backend=backend, variants=False)
@@ -1272,18 +1293,25 @@ def preview_speed(cfg: Config, voice: str, text: str = "", value: Any = 0, backe
 
 # ---------------------------------------------------------------------------- 鉴别：盲听测试
 _REAL, _GEN = "真人", "生成"
-#: 答案文件放在测试文件夹「旁边」，不放在里面：老师会把整个文件夹发给听众
-BLIND_ANSWER_SUFFIX = "_答案（只给老师看，不要发给听众）.json"
+#: 答案文件放在测试文件夹「旁边」，不放在里面：老师会把整个文件夹发给听众。
+#: 文件名只用汉字、字母、数字、下划线（老师 10-03 的规定）；以前的名字带括号和逗号（OLD_BLIND_ANSWER_SUFFIX），也认
+BLIND_ANSWER_SUFFIX = "_答案_只给老师看_不要发给听众.json"
+OLD_BLIND_ANSWER_SUFFIX = "_答案（只给老师看，不要发给听众）.json"
 
 
 def blind_answer_path(test_dir: Any) -> Path:
-    """盲听测试的答案文件：<文件夹名>_答案（只给老师看，不要发给听众）.json，和文件夹放在一起。
-    以前的版本把 答案.json 放在文件夹里面，也认。"""
+    """盲听测试的答案文件：<文件夹名>_答案_只给老师看_不要发给听众.json，和文件夹放在一起。
+    以前的版本叫 <文件夹名>_答案（只给老师看，不要发给听众）.json、更早的把 答案.json 放在文件夹里面，都认。"""
     d = Path(str(test_dir))
     side = d.with_name(d.name + BLIND_ANSWER_SUFFIX)
-    if side.exists() or not (d / "答案.json").exists():
+    if side.exists():
         return side
-    return d / "答案.json"
+    old = d.with_name(d.name + OLD_BLIND_ANSWER_SUFFIX)
+    if old.exists():
+        return old
+    if (d / "答案.json").exists():
+        return d / "答案.json"
+    return side
 
 
 def list_blind_tests(cfg: Config, voice: str) -> List[Dict[str, Any]]:
@@ -1489,7 +1517,7 @@ def verify_defaults(cfg: Config, voice: str, max_clips: int = 20) -> Dict[str, L
     originals = [str(project.abspath(r["path"])) for r in project.load_manifest(only_kept=True)
                  if r.get("split") == "val"][:10]
     generated: List[str] = []
-    reports = sorted(project.outputs_dir.glob("*.report.json"), key=lambda p: p.stat().st_mtime, reverse=True)
+    reports = narration_reports(project.outputs_dir)
     if reports:
         try:
             rep = json.loads(reports[0].read_text(encoding="utf-8"))

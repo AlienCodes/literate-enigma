@@ -226,6 +226,9 @@ TRAIN_MODE_INFO = ("「重新挑选最佳模型」也按这里选的方式比：
 #: 「重新挑选最佳模型」进度条上的「要多久」（没有实测，只说快慢；标准的分钟数标明是估计）
 SELECT_HINT = {"identical": "把第 4 轮以后存下的每个版本都试一遍，比较慢，可以先去做别的事",
                "standard": "大约 5~15 分钟（估计）"}
+#: 「保存的文件名」：老师的规定——生成的文件名只用汉字、英文字母、数字和下划线，最后自动加上实际用的模型名
+OUT_NAME_LABEL = ("保存的文件名（可以不填；只保留汉字、字母、数字，别的符号会换成「_」；"
+                  "最后会自动加上这次实际用的模型名，例如「第3课_10月05日09点30分_V4.wav」）")
 #: MP3 是有损压缩：句子之间的静音里会有极小的压缩杂讯（大约 -90 dB，听不见，但不是绝对的 0）——老师要绝对静音，如实写明
 FORMAT_CHOICES = [("WAV（音质最好，句子之间绝对静音；剪映/后期用）", "wav"),
                   ("MP3（文件小，方便发微信、上传；压缩会在停顿里留下听不见的极小杂讯，要绝对静音请选 WAV）", "mp3")]
@@ -1946,7 +1949,7 @@ def _gen_summary_md(res: Any, redo: Optional[Sequence[int]] = None) -> str:
 
 
 def _report_field(res: Any, key: str) -> Any:
-    """读这次生成报告（*.report.json）里的一个字段；读不到时返回 None。"""
+    """读这次生成报告（<名字>_<模型名>.json）里的一个字段；读不到时返回 None。"""
     path = getattr(res, "report_path", None)
     try:
         if path and Path(str(path)).exists():
@@ -2060,13 +2063,18 @@ def _first_sentence(text: str, limit: int = 40) -> str:
 
 
 def _output_path(project: Any, name: str, fmt: str, fallback: str) -> Path:
-    from voicetwin.utils.textutil import safe_name
+    """这次生成的文件名（还没加模型名）：<名字>_<10月05日09点30分>.<格式>。名字只留汉字、英文字母、数字和下划线
+    （老师的规定：点、空格、括号、横杠等都换成「_」，例如「第1.2课」→「第1_2课」）。真正写的文件名最后还会加上
+    实际用的模型名（engine.narrate 写文件那一刻按每一句实际用的模型定）：第3课_10月05日09点30分_V4.wav、
+    …_未去杂音_V4.wav、字幕 …_V4.srt、报告 …_V4.json。"""
+    from voicetwin.utils.textutil import file_stem
 
-    stem = safe_name((name or "").strip() or fallback or "讲课音频", 30)
+    stem = file_stem((name or "").strip() or fallback or "讲课音频", 30)
     fmt = fmt if fmt in ("wav", "mp3") else "wav"
     out_dir = Path(project.outputs_dir)
     base = f"{stem}_{_time_suffix()}"
-    # 同一分钟里又生成一次（换了格式、重做几句）：名字后面加 _2、_3……，不覆盖、不删掉刚才那份（音频、字幕、报告都是）
+    # 同一分钟里又生成一次（换了格式、重做几句）：名字后面加 _2、_3……（加在模型名前面：…_2_V4.wav，模型名永远在最后），
+    # 不覆盖、不删掉刚才那份（音频、字幕、报告都是）
     name, k = base, 2
     try:
         while any(out_dir.glob(glob.escape(name) + ".*")) or any(out_dir.glob(glob.escape(name) + "_*.*")):
@@ -2221,7 +2229,7 @@ def _download_job(cfg: Config, progress: Optional[Callable[[float, str], None]] 
 
 
 def _latest_report(project: Any) -> Dict[str, Any]:
-    reports = sorted(Path(project.outputs_dir).glob("*.report.json"), key=lambda p: p.stat().st_mtime, reverse=True)
+    reports = wf.narration_reports(project.outputs_dir)  # 「<名字>_<模型名>.json」，以前的「*.report.json」也认
     for p in reports:
         try:
             data = json.loads(p.read_text(encoding="utf-8"))
@@ -4323,7 +4331,7 @@ class WebUI:
                                                        file_types=list(SCRIPT_TEXT_EXTS + SCRIPT_SUB_EXTS))
                             c["script_hint"] = gr.Markdown(elem_classes="vt-md")
                             with gr.Row():
-                                c["out_name"] = gr.Textbox(label="保存的文件名（可以不填）", placeholder="例如：第3课 牛顿第二定律",
+                                c["out_name"] = gr.Textbox(label=OUT_NAME_LABEL, placeholder="例如：第3课 牛顿第二定律",
                                                            scale=2)
                                 fmt_default = str(cfg.get_path("synth.output_format", "wav") or "wav")
                                 c["out_fmt"] = gr.Radio(FORMAT_CHOICES, value=fmt_default if fmt_default in ("wav", "mp3") else "wav",

@@ -5,6 +5,7 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -27,6 +28,12 @@ class IndexTTSBackend(WorkerBackend):
 
     def model_id(self) -> str:
         return f"indextts-{self.version}-{short_hash(str(self.bcfg.get('model_dir')), n=6)}"
+
+    def model_name_info(self) -> Dict[str, Any]:
+        """文件名里的模型名：IndexTTS 2.5 写成「IndexTTS25」（老师定的：不放点、不放空格），IndexTTS 2 写成「IndexTTS2」。"""
+        digits = re.sub(r"[^0-9A-Za-z]", "", self.version)
+        return {"name": f"IndexTTS{digits}", "how": f"设置里的 IndexTTS 版本 {self.version}（不训练，没有模型文件要检测）",
+                "files": []}
 
     def check(self) -> List[str]:
         if not self.root or not (self.root / "indextts").exists():

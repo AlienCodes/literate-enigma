@@ -748,7 +748,7 @@ def test_every_streaming_button_is_settled():
 
 
 def test_generate_with_dummy_backend(prepared, tmp_path):
-    """用测试引擎完整跑一次「生成」：进度条、结果表从 1 开始、重做框清空、下载列表里没有 report.json。"""
+    """用测试引擎完整跑一次「生成」：进度条、结果表从 1 开始、重做框清空、下载列表里没有报告（.json）。"""
     cfg, name = _copy_voice(prepared, tmp_path)
     ui = A.WebUI(cfg)
     outs = list(ui.do_generate(name, "大家好，欢迎来到今天的课程。\n\n我们开始上课吧。", None, "dummy", "fast", -10,
@@ -759,9 +759,11 @@ def test_generate_with_dummy_backend(prepared, tmp_path):
     assert last["redo"] == "" and last["gen_btn"]["interactive"] is True and last["gen_stop"]["visible"] is False
     assert last["gen_md"].startswith("### ✅ 生成好了")
     assert [r[0] for r in last["gen_table"]] == list(range(1, len(last["gen_table"]) + 1))
-    assert all(not f.endswith(".report.json") for f in last["out_files"])
+    assert all(not f.endswith(".json") for f in last["out_files"])
     audio = Path(last["out_audio"]["value"])
     assert audio.exists() and audio.name.startswith("第1课_")
+    # 文件名最后是实际用的模型名（测试引擎写 dummy），结果说明里写的就是这个真实的文件名
+    assert audio.name.endswith("_dummy.wav") and audio.name in last["gen_md"]
     if len(outs) > 1:
         assert outs[0][ui.GEN_OUT.index("gen_btn")]["interactive"] is False
         assert _is_update(outs[0][ui.GEN_OUT.index("out_audio")])  # 运行中不清掉上一次的结果

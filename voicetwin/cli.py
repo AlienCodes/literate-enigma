@@ -189,7 +189,9 @@ def build_parser() -> argparse.ArgumentParser:
         voice_arg(p)
         backend_arg(p)
         p.add_argument("text" if name == "say" else "script", help="要说的文字" if name == "say" else "讲稿文件路径")
-        p.add_argument("-o", "--output", help="输出文件（.wav 或 .mp3），默认保存到 workspace/声音名/outputs/")
+        p.add_argument("-o", "--output", help="输出文件（.wav 或 .mp3），默认保存到 workspace/声音名/outputs/；"
+                                                   "文件名只保留汉字、字母、数字和下划线，最后会自动加上实际用的模型名"
+                                                   "（例如 第3课_V4.wav；字幕、报告同名）")
         p.add_argument("-q", "--quality", type=_quality_arg, metavar="档位", help=QUALITY_HELP)
         p.add_argument("-n", "--candidates", type=int,
                        help="每句生成几个候选（覆盖质量档位；「一模一样」档是每句最多试几个）")

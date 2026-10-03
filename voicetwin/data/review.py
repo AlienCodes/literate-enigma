@@ -1242,7 +1242,10 @@ def export_text(project: Any) -> Dict[str, Any]:
         raise ValueError("校对表里还没有文字，没有可以下载的。请先点上面的「开始准备素材」。")
     folder = Path(project.root) / EXPORT_DIR
     folder.mkdir(parents=True, exist_ok=True)
-    safe = re.sub(r'[\\/:*?"<>|\s]+', "_", str(getattr(project, "voice", "") or "声音")).strip("_") or "声音"
+    # 文件名只用汉字、英文字母、数字、下划线（老师 10-03 的规定）：声音名里的点、空格、括号、横杠等都换成「_」
+    from voicetwin.utils.textutil import file_stem
+
+    safe = file_stem(getattr(project, "voice", "") or "声音", 30, "声音")
     path = folder / f"改好的文字_{safe}_{time.strftime('%Y%m%d_%H%M%S')}.txt"
     k = 2
     while path.exists():

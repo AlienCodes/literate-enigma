@@ -163,6 +163,45 @@ def _step_name(log_name: str, label: str) -> str:
     return STEP_NAMES.get(log_name, log_name)
 
 
+#: 文件名里的模型名找不到 / 检测不出来时写这个（老师的规定：绝不猜）
+MODEL_UNKNOWN = "模型未知"
+_FP_CACHE: Dict[Tuple[str, int, int], str] = {}
+
+
+def model_label(version: Any) -> Optional[str]:
+    """检测出来的模型版本 → 文件名、网页、报告里统一的写法（老师定的）：v4 → V4、v5 → V5（「v + 一个数字」写成大写 V），
+    v2ProPlus、v2Pro 照原样；只留英文字母和数字（不放点、空格）。没有版本（检测不出来）返回 None。"""
+    v = str(version or "").strip()
+    if not v:
+        return None
+    m = re.fullmatch(r"[vV](\d+)", v)
+    if m:
+        return f"V{m.group(1)}"
+    v = re.sub(r"[^A-Za-z0-9]", "", v)
+    return v or None
+
+
+def file_fingerprint(path: Any) -> str:
+    """模型文件的指纹：整个文件内容的 sha256 前 16 位（写进报告：以后能核对生成时用的到底是哪个文件）。
+    同一个文件（路径、大小、修改时间都一样）只算一次；读不了时是空字符串。"""
+    import hashlib
+
+    try:
+        p = Path(str(path))
+        st = p.stat()
+        key = (str(p), int(st.st_size), int(st.st_mtime_ns))
+        got = _FP_CACHE.get(key)
+        if got is None:
+            h = hashlib.sha256()
+            with open(p, "rb") as fh:
+                for block in iter(lambda: fh.read(1 << 20), b""):
+                    h.update(block)
+            got = _FP_CACHE[key] = h.hexdigest()[:16]
+        return got
+    except (OSError, ValueError):
+        return ""
+
+
 class Backend:
     name = "base"
     display_name = "base"
@@ -176,6 +215,9 @@ class Backend:
     release_gpu_callback: Optional[Callable[[], Any]] = None
     #: 训练的各个步骤（在这个引擎自己的 0~1 进度里的起点, 中文步骤名），从小到大
     train_stages: List[Stage] = [(0.0, "训练模型")]
+    #: 生成的文件名最后写的「_模型名」（不需要训练、没有模型文件可以检测的引擎写自己的名字；None = 检测不出来）。
+    #: GPT-SoVITS 不看这个：按每句实际用的模型文件检测（gptsovits.model_name_info）
+    file_model_name: Optional[str] = None
 
     def __init__(self, cfg: Config, project: Project):
         self.cfg = cfg
@@ -225,6 +267,14 @@ class Backend:
     def model_id(self) -> str:
         """当前使用的模型标识（参与缓存键，换模型后缓存自动失效）。"""
         return self.name
+
+    def model_name_info(self) -> Dict[str, Any]:
+        """这一刻生成实际用的模型叫什么（生成的文件名最后的「_模型名」、文件里面的注释、报告都用它）：
+        {"name": "V4" / None（检测不出来）, "how": 依据（中文）, "files": [{"kind", "file", "fingerprint"}]}。
+        通用的引擎没有模型文件可以检测：写引擎自己的名字（file_model_name）；没有名字就是 None（文件名写「模型未知」）。"""
+        name = self.file_model_name
+        return {"name": name, "how": "引擎名（这个引擎没有要检测的模型文件）" if name else "这个引擎读不出模型名",
+                "files": []}
 
     # ------------------------------------------------------------------ 训练 / 检查点
     def check(self) -> List[str]:

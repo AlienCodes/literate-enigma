@@ -370,9 +370,9 @@ def test_narrate_stage_table_for_identical():
     assert wf.task_stages("narrate", cfg, quality="fast") == wf.STAGES_NARRATE
     st = wf.STAGES_NARRATE_IDENTICAL
     assert [f for f, _ in st] == sorted(f for f, _ in st) and st[0] == (0.0, "启动合成引擎")
-    # 时间点和设计方案 §2 P2 一样；0.88 这一步的名字只写现在真的会做的事（「整篇再挑一遍」等第 6 步做好了再改）
+    # 时间点和名字都和设计方案 §2 P2 一样（第 6 步做好了「整篇再挑一遍」，0.88 换回设计的名字）
     assert st == [(0.00, "启动合成引擎"), (0.02, "准备「一模一样」"), (0.08, "逐句生成"),
-                  (0.88, "按你的停顿拼接、调整音量"), (0.92, "做「去杂音」版本并比较"), (0.99, "写字幕和报告")]
+                  (0.88, "整篇再挑一遍、按你的停顿和音量拼接"), (0.92, "做「去杂音」版本并比较"), (0.99, "写字幕和报告")]
 
 
 def test_title_version_stays_18():

@@ -54,12 +54,32 @@ def load_audio_bytes(data: bytes) -> Tuple[np.ndarray, int]:
     return to_mono(np.asarray(wav)), int(sr)
 
 
-def save_audio(path: PathLike, wav: np.ndarray, sr: int, subtype: str = "PCM_16") -> Path:
+def save_audio(path: PathLike, wav: np.ndarray, sr: int, subtype: str = "PCM_16",
+               comment: Optional[str] = None) -> Path:
+    """写音频。comment：写进文件里面的注释（WAV 的 LIST/INFO ICMT，libsndfile 写的；改了文件名也能查到用的是哪个模型）。"""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     wav = np.clip(np.asarray(wav, dtype=np.float32), -1.0, 1.0)
-    sf.write(str(path), wav, int(sr), subtype=subtype)
+    if not comment:
+        sf.write(str(path), wav, int(sr), subtype=subtype)
+        return path
+    fmt = "WAV" if path.suffix.lower() == ".wav" else None
+    with sf.SoundFile(str(path), "w", int(sr), 1, subtype=subtype, format=fmt) as f:
+        try:
+            f.comment = str(comment)
+        except Exception:  # noqa: BLE001 - 这种格式写不了注释：照样写声音
+            pass
+        f.write(wav)
     return path
+
+
+def audio_comment(path: PathLike) -> str:
+    """读文件里面的注释（save_audio 写的）；没有或读不了是空字符串。"""
+    try:
+        with sf.SoundFile(str(path)) as f:
+            return str(f.comment or "")
+    except Exception:  # noqa: BLE001
+        return ""
 
 
 def duration_of(path: PathLike) -> float:
@@ -103,25 +123,51 @@ def estimate_snr(wav: np.ndarray, sr: int) -> float:
     return float(speech - noise)
 
 
-def auto_silence_threshold(wav: np.ndarray, sr: int, floor_db: float = -65.0) -> float:
+def auto_silence_threshold(wav: np.ndarray, sr: int, floor_db: float = -65.0, drop_db: float = 30.0,
+                           noise_db: float = 6.0) -> float:
     """自动静音阈值：以语音电平为基准（-30 dB），底噪较高时抬高到底噪之上 6 dB。
 
     底噪用很低的分位数（3%）估计，这样即使音频首尾静音很短也不会把轻声部分误判成底噪。
+    drop_db / noise_db：「一模一样」档切首尾时用 45 / 12（比语音低 45 dB、比底噪高 12 dB），见 engine.trim_edges；
+    不传时和以前一模一样。
     """
-    return silence_threshold_from_db(frame_rms_db(wav, sr), floor_db)
+    return silence_threshold_from_db(frame_rms_db(wav, sr), floor_db, drop_db, noise_db)
 
 
-def silence_threshold_from_db(db: np.ndarray, floor_db: float = -65.0) -> float:
-    """auto_silence_threshold 的计算部分：已经有逐帧电平（10 ms 一帧、40 ms 窗）时直接用
-    （很长的整段录音分块读、分块算电平，不用整个读进内存）。"""
+def speech_noise_db(db: np.ndarray) -> Optional[Tuple[float, float]]:
+    """逐帧电平里的 (底噪 = 3% 分位, 语音 = 95% 分位)；全是数字静音（-100 dB）时 None。"""
     db = np.asarray(db)
     db = db[db > -100]
     if db.size == 0:
+        return None
+    return float(np.percentile(db, 3)), float(np.percentile(db, 95))
+
+
+def silence_threshold_from_db(db: np.ndarray, floor_db: float = -65.0, drop_db: float = 30.0,
+                              noise_db: float = 6.0) -> float:
+    """auto_silence_threshold 的计算部分：已经有逐帧电平（10 ms 一帧、40 ms 窗）时直接用
+    （很长的整段录音分块读、分块算电平，不用整个读进内存）。
+    阈值 = max(语音 − drop_db, 底噪 + noise_db, floor_db)，最高到 语音 − 15 dB。"""
+    levels = speech_noise_db(db)
+    if levels is None:
         return -40.0
-    noise = float(np.percentile(db, 3))
-    speech = float(np.percentile(db, 95))
-    thr = max(speech - 30.0, noise + 6.0, floor_db)
+    noise, speech = levels
+    thr = max(speech - float(drop_db), noise + float(noise_db), float(floor_db))
     return float(min(thr, speech - 15.0))
+
+
+def speech_level_db(wav: np.ndarray, sr: int) -> Optional[float]:
+    """说话时的响度（dBFS）：自动静音阈值以上的帧（10 ms 一帧、40 ms 窗）按能量平均。
+    和 twin_profile 量你本人每段录音的 level_db 是同一个算法（「一模一样」拼接时按它调每句的音量）。没有声音时 None。"""
+    wav = np.asarray(wav, dtype=np.float32)
+    if wav.size < int(0.1 * sr):
+        return None
+    db = frame_rms_db(wav, sr)
+    thr = silence_threshold_from_db(db)
+    sdb = db[db >= thr].astype(np.float64)
+    if sdb.size == 0 or not np.any(db > -100):
+        return None
+    return float(10.0 * np.log10(np.mean(10.0 ** (sdb / 10.0)) + EPS))
 
 
 def _fill_short_gaps(mask: np.ndarray, max_gap: int) -> np.ndarray:
