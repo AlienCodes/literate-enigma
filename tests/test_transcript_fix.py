@@ -1428,3 +1428,106 @@ def test_second_click_with_nothing_changed_keeps_the_same_suggestions(tmp_path):
     review.unadopt_suggestion(project, "22222222222_56d51b_0058")  # 撤销记录变了：重新算，撤销的不再改回来
     wf.run_transcript_fix(cfg, "校正声音")
     assert "从据" in _cur(project, "22222222222_56d51b_0058")[1]
+
+
+# ---------------------------------------------------------------------------- 第六次独立检查发现的问题（每个都有一个测试）
+def _set_suspect(project, rid, sus):
+    recs = project.load_manifest()
+    for r in recs:
+        if r["id"] == rid:
+            r["suspect"] = sus
+    project.save_manifest(recs)
+
+
+def test_no_false_undo_button_in_a_run_of_the_same_character(tmp_path):
+    """问题 1：另一个引擎听成「看看」（建议补上「看」），老师没有采用，只改了后面的「这 → 那」：表格上多出一个红色的
+    「已采用：补上『看』」，点了把老师原来的「看」删掉了。"""
+    base = "我们来看这个句子。"
+    cfg, project = _voice(tmp_path, [base], ids=["c000"])
+    _set_suspect(project, "c000", {"spans": [[3, 4]], "alt": "我们来看看这个句子。", "reasons": ["另一个引擎"], "score": 0.6})
+    review.set_draft(project, "c000", text="我们来看那个句子。")
+    rec, cur = _cur(project, "c000")
+    info = review.analyze(rec, cur)
+    assert info["undo"] == [] and [rep for _s, _e, rep in info["edits"]] == ["看"]
+    with pytest.raises(ValueError):
+        review.unadopt_suggestion(project, "c000")
+    assert review.adopt_suggestion(project, "c000")["text"] == "我们来看看那个句子。"
+
+
+def test_adopted_double_character_is_not_offered_again(tmp_path):
+    """问题 1（采用的一面）：采用了「看 → 看看」，又改了旁边的字：又出来「补上『看』」，点了变成「看看看」。"""
+    base = "我们来看这个句子。"
+    cfg, project = _voice(tmp_path, [base], ids=["c000"])
+    _set_suspect(project, "c000", {"spans": [[3, 4]], "alt": "我们来看看这个句子。", "reasons": ["另一个引擎"], "score": 0.6})
+    review.adopt_suggestion(project, "c000")
+    review.set_draft(project, "c000", text="我们来看看那个句子。")
+    rec, cur = _cur(project, "c000")
+    info = review.analyze(rec, cur)
+    assert info["edits"] == [] and info["undo"]
+    assert review.unadopt_suggestion(project, "c000")["text"] == "我们来看那个句子。"
+
+
+def test_undo_takes_back_everything_the_program_changed(tmp_path):
+    """问题 2：老师采用以后自己又改了一处一样的改法（带替 → 代替）：红色撤销只撤了一半（程序改的「带 → 代」留着）。"""
+    base = "定语从具的关系带词可以带替先行词。"
+    direct = base.replace("从具", "从句")
+    alt = direct.replace("关系带词", "关系代词")
+    cfg, project = _voice(tmp_path, [base], ids=["c000"])
+    _set_suspect(project, "c000", {"spans": [[3, 4], [7, 8]], "alt": alt, "direct_alt": direct, "text": base,
+                                   "src": "transcript", "reasons": ["x"], "score": 0.9})
+    review.set_draft(project, "c000", text=direct)
+    out = review.adopt_suggestion(project, "c000")
+    review.set_draft(project, "c000", text=out["text"].replace("带替", "代替"))
+    assert review.unadopt_suggestion(project, "c000")["text"] == base.replace("带替", "代替")
+
+
+def test_undo_with_a_teacher_change_equal_to_an_unsure_one(tmp_path):
+    """问题 2：老师自己补了一个「的」，没把握的建议也补了一个「的」：撤销时那个「的」留着。"""
+    base = "在这个句子里面定语从具的关系带词也使用了which。"
+    direct = base.replace("从具", "从句")
+    sure = direct.replace("关系带词", "关系代词")
+    alt = sure.replace("也使用", "也的使用")
+    cfg, project = _voice(tmp_path, [base], ids=["c000"])
+    _set_suspect(project, "c000", {"spans": [[9, 10], [13, 14], [16, 17]], "alt": alt, "sure_alt": sure,
+                                   "direct_alt": direct, "text": base, "src": "transcript", "reasons": ["x"], "score": 0.9})
+    out = review.adopt_suggestion(project, "c000")
+    review.set_draft(project, "c000", text=out["text"].replace("在这个", "在这个的"))
+    assert review.unadopt_suggestion(project, "c000")["text"] == base.replace("在这个", "在这个的")
+
+
+@need_both
+@pytest.mark.parametrize("how", ["button", "row", "type_half"])
+def test_undo_of_two_touching_fixes_is_remembered(tmp_path, how):
+    """问题 3：挨着的两处改法（艾子借词 → as介词）撤销时记成了一处，下次分开改就认不出来，又改回去了。"""
+    t = "我们来看一下艾子借词的用法和例句。"
+    cfg, project = _voice(tmp_path, [t], ids=["c000"])
+    wf.run_transcript_fix(cfg, "校正声音")
+    cur = _cur(project, "c000")[1]
+    assert "as介词" in cur
+    if how == "button":
+        review.unadopt_suggestion(project, "c000")
+    elif how == "row":
+        review.discard_draft(project, "c000")
+    else:
+        review.set_draft(project, "c000", text=cur.replace("as介词", "艾子介词"))  # 只改回一处
+    before = _cur(project, "c000")[1]
+    wf.run_transcript_fix(cfg, "校正声音")
+    assert _cur(project, "c000")[1] == before
+
+
+def test_red_mark_next_to_a_teacher_change_stays(tmp_path):
+    """问题 4：老师把「威驰」后面的「的」改成「这个」：威驰 → which 的标红和建议都没了（修第一版时把挨着的改动算成碰到了）。"""
+    base = "这里的关系代词威驰的用法和that不一样。"
+    cfg, project = _voice(tmp_path, [base], ids=["c000"])
+    _set_suspect(project, "c000", {"spans": [[7, 9]], "alt": base.replace("威驰", "which"), "reasons": ["另一个引擎"],
+                                   "score": 0.6})
+    review.set_draft(project, "c000", text=base.replace("威驰的", "威驰这个"))
+    rec, cur = _cur(project, "c000")
+    info = review.analyze(rec, cur)
+    assert [cur[s:e] for s, e in info["red"]] == ["威驰"] and [rep for _s, _e, rep in info["edits"]] == ["which"]
+
+
+def test_safe_apply_result_is_always_on_the_shortest_path():
+    """采用 / 撤销的结果必须在「现在的文字 → 目标」的最短路上：多改、改错地方都不行。"""
+    assert review.safe_apply("我们来看那个句子。", [(3, 4, "")], ["我们来看看这个句子。"], "我们来看这个句子。") == ""
+    assert review.safe_apply("我们来看看那个句子。", [(3, 3, "看")], ["我们来看这个句子。"], "我们来看看这个句子。") == ""

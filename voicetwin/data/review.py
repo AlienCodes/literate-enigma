@@ -192,7 +192,7 @@ def touched(ops: Sequence[Tuple[str, int, int, int, int]], s: int, e: int, stric
     """旧文字的 [s, e) 有没有被改到。挨着边的插入也算改到（查错字时"这里漏了字"标的是缺字位置两边的字）；
     s == e（建议在这里插入）时，这个位置上或者两边有改动都算。strict：插入的位置只有正好在改动中间、
     或者那里也插入了东西才算（换算「撤销」用）。"""
-    for tag, i1, i2, j1, j2 in ops:
+    for tag, i1, i2, _j1, _j2 in ops:
         if tag == "equal":
             continue
         if i1 == i2:
@@ -202,10 +202,6 @@ def touched(ops: Sequence[Tuple[str, int, int, int, int]], s: int, e: int, stric
             if (i1 < s < i2) if strict else (i1 <= s <= i2):
                 return True
         elif i1 < e and s < i2:
-            return True
-        elif not strict and tag == "replace" and j2 - j1 > i2 - i1 and (e == i1 or s == i2):
-            # 换成更长的字 = 换 + 插入，插入在哪一头不知道：挨着两头也算改到（和插入一样）。不然同一个改动
-            # difflib 有时分成「换 + 插入」、有时合成一个「换」，结果就不一样（随机操作发现：连点两次红字又冒出来）
             return True
     return False
 
@@ -367,6 +363,16 @@ def analyze(rec: Dict[str, Any], text: Optional[str] = None) -> Dict[str, Any]:
             if vetted:
                 sure = _mapped(st["sure"]) if mid == "direct" and st.get("sure") not in (None, st[mid]) else []
         adopted = bool(undo) and not edits
+    if st and cur not in st.values():
+        # 文字不是记下的整句（老师改过）：同样的字挨着时（看看、我们我们）一处一处对位置会对错——按钮上显示的改法
+        # 改完以后离它该去的整句（采用 → 都改好，撤销 → 查错字时）反而更远的，不是真的，不显示（不然点了会把老师的字删掉）
+        edits = _toward(cur, edits, st["alt"])
+        sure = _toward(cur, sure, st.get("sure", st["alt"]))
+        undo = _toward(cur, undo, st["base"])
+    if undo:
+        # 采用过的「补上……」（撤销 = 删掉补上的字）：查错字时标在缺字两边的红字也不再标（采用了就是解决了）
+        ins = [(s, e) for s, e, rep in undo if e > s and not rep]
+        red = [r for r in red if not any(r[0] <= e and s <= r[1] for s, e in ins)]
     red = _merge(red, len(cur))
     to_alt = to_base = None  # 现在的文字正好是记下的某个整句：采用 / 撤销以后会变成的整句
     if st:
@@ -540,11 +546,10 @@ def is_rejected(pairs: Any, text: str, s: int, e: int, rep: str) -> bool:
     if not pairs or not (0 <= s <= e <= len(text)):
         return False
     bad = {(str(p[0]), str(p[1])) for p in pairs if isinstance(p, (list, tuple)) and len(p) == 2}
-    if any(pc in bad for pc in change_pieces(text[s:e], rep)):
-        return True
     new = text[:s] + rep + text[e:]
     # 存进表格的文字都整理过（英文后面的逗号变半角等），撤销时记下的也是整理过的：两种都比
-    return any(pc in bad for pc in change_pieces(text, new) + change_pieces(text, clean_transcript(new)))
+    found = change_pieces(text[s:e], rep) + change_pieces(text, new) + change_pieces(text, clean_transcript(new))
+    return any(pc in bad or any(_part_of(pc, x) for x in bad) for pc in found)
 
 
 def _undo_pieces(text: str, undo: Sequence[Edit]) -> List[List[str]]:
@@ -572,7 +577,15 @@ def reverted_pieces(rec: Dict[str, Any], old: str, new: str) -> List[List[str]]:
     if not orig or orig == old:
         return []
     undone = set(change_pieces(old, new))
-    return [[a, b] for a, b in change_pieces(orig, old) if (b, a) in undone]
+    out: List[List[str]] = []
+    for a, b in change_pieces(orig, old):
+        if (b, a) in undone:
+            out.append([a, b])
+            continue
+        for y, x in undone:  # 只改回了挨着的两处里的一处（as介词 → 艾子介词）
+            if _part_of((x, y), (a, b)) and [x, y] not in out:
+                out.append([x, y])
+    return out
 
 
 def _remember_rejects(project: Any, clip_id: str, pairs: Sequence[Sequence[str]]) -> None:
@@ -597,6 +610,43 @@ def _forget_rejects(project: Any, clip_id: str, text: str, edits: Sequence[Edit]
     if keep != data[clip_id]:
         data[clip_id] = keep
         _save_rejected(project, data)
+
+
+def unit_dist(a: str, b: str) -> int:
+    """两句话差多少（按单位逐个比的编辑距离：一个英文单词、一个汉字、一个标点算一个，空格不算；同样的改动有几处算几处）。"""
+    from voicetwin.utils.textutil import edit_distance
+
+    return edit_distance(_UNIT.findall(a or ""), _UNIT.findall(b or ""))
+
+
+def _toward(cur: str, edits: Sequence[Edit], target: str) -> List[Edit]:
+    """只留下改完以后离 target 更近的那几处（一处一处单独试）。"""
+    if not edits:
+        return []
+    d = unit_dist(cur, target)
+    return [ed for ed in edits if unit_dist(apply_edits(cur, [ed]), target) < d]
+
+
+def _on_path(cur: str, cand: str, dst: str) -> bool:
+    """cand 在 cur → dst 的最短路上：cur 到 cand、cand 到 dst 加起来正好是 cur 到 dst——没有多改、没有改错地方
+    （同样的字挨着时配错位置、同一处改两遍都会多出步数：「看看看」「关系系带词」）。"""
+    return unit_dist(cur, cand) + unit_dist(cand, dst) == unit_dist(cur, dst)
+
+
+def _part_of(piece: Sequence[str], big: Sequence[str]) -> bool:
+    """(原来的, 改成的) 是一处更大的改动开头或者结尾的那一部分（两边一起对上，剩下的也是改动）：挨着的两处改动
+    （艾子借词 → as介词）撤销时记成了一处「艾 子 借 → as 介」，以后单独的「艾子 → as」「借 → 介」也要认得出来。"""
+    a, b = str(piece[0]).split(), str(piece[1]).split()
+    big_a, big_b = str(big[0]).split(), str(big[1]).split()
+    if not a or not b or (len(a) >= len(big_a) and len(b) >= len(big_b)):
+        return False
+    if a == big_a[:len(a)] and b == big_b[:len(b)]:
+        rest = (big_a[len(a):], big_b[len(b):])
+    elif a == big_a[len(big_a) - len(a):] and b == big_b[len(big_b) - len(b):]:
+        rest = (big_a[:len(big_a) - len(a)], big_b[:len(big_b) - len(b)])
+    else:
+        return False
+    return bool(rest[0]) and bool(rest[1]) and rest[0] != rest[1]
 
 
 def _within(cur: str, new: str, allowed: Sequence[Tuple[str, str]]) -> bool:
@@ -658,31 +708,45 @@ def _merge_part(src: str, dst: str, cur: str) -> Tuple[str, str]:
 
 def safe_apply(cur: str, edits: Sequence[Edit], src: Union[str, Sequence[str]], dst: str) -> str:
     """文字不是记下的整句时（老师又改过别处）采用 / 撤销：把建议（src → dst）用到 cur 上。src 可以给几个记下的整句
-    （现在的文字可能是从其中哪一句改出来的），离现在的文字最近的先试。
+    （现在的文字可能是从其中哪一句改出来的），离现在的文字最近的先试；一样近的几句结果必须一样（不然拿不准，不改）。
 
     1. 三方合并：老师改的（src → cur）和建议（src → dst）都按 src 的位置合起来，同一处改得一样算一处；
     2. 合不了就试一处一处改（edits），改完要「改回去又正好是 cur」；
     3. 还不行：建议里和老师改的碰到一起的那几处不改（表格上本来也不显示），别的照样合。
-    每一步都检查：cur → 结果的每一处都是建议本身的改动、老师改的别处都还在。都不行返回 ""（不改，不能把文字改坏——
-    检查时发现过「了、宾语、宾语」「关系系带词」）。"""
+    每一步都检查：cur → 结果的每一处都是建议本身的改动、老师改的别处都还在、结果在 cur → dst 的最短路上（没有多改、
+    没有改错地方）。都不行返回 ""（不改，不能把文字改坏——检查时发现过「了、宾语、宾语」「关系系带词」「看看看」）。"""
     srcs = [src] if isinstance(src, str) else list(src)
-    srcs = sorted(dict.fromkeys(x for x in srcs if x and x != dst), key=lambda x: len(change_pieces(x, cur)))
-    for x in srcs:
-        cand = merge3(x, dst, cur)
-        if (cand and cand != cur and _within(cur, cand, change_pieces(x, dst))
-                and _within(dst, cand, change_pieces(x, cur))):
+    srcs = list(dict.fromkeys(x for x in srcs if x and x != dst))
+    if not srcs:
+        return ""
+    dist = {x: unit_dist(x, cur) for x in srcs}
+    best = min(dist.values())
+    outs = {_safe_apply1(cur, edits, x, dst) for x in srcs if dist[x] == best} - {""}
+    if len(outs) == 1:
+        return outs.pop()
+    if outs:
+        return ""  # 一样近的几句改出来的不一样：拿不准是从哪一句改出来的，不改
+    for x in sorted((x for x in srcs if dist[x] > best), key=lambda x: dist[x]):
+        cand = _safe_apply1(cur, edits, x, dst)
+        if cand:
             return cand
+    return ""
+
+
+def _safe_apply1(cur: str, edits: Sequence[Edit], x: str, dst: str) -> str:
+    """safe_apply 的一句：假定现在的文字是从 x 改出来的。"""
+    allowed, theirs = change_pieces(x, dst), change_pieces(x, cur)
+    cand = merge3(x, dst, cur)
+    if cand and cand != cur and _within(cur, cand, allowed) and _within(dst, cand, theirs) and _on_path(cur, cand, dst):
+        return cand
     cand = apply_edits(cur, edits) if edits else ""
-    if cand and cand != cur:
-        for x in srcs:
-            if (_within(cur, cand, change_pieces(x, dst)) and _within(dst, cand, change_pieces(x, cur))
-                    and _merge_onto(dst, x, cand, strict=True) == cur):
-                return cand
-    for x in srcs:
-        cand, part = _merge_part(x, dst, cur)
-        if (cand and cand != cur and _within(cur, cand, change_pieces(x, dst))
-                and _within(part, cand, change_pieces(x, cur))):
-            return cand
+    if (cand and cand != cur and _within(cur, cand, allowed) and _within(dst, cand, theirs)
+            and _merge_onto(dst, x, cand, strict=True) == cur and _on_path(cur, cand, dst)):
+        return cand
+    cand, part = _merge_part(x, dst, cur)
+    if (cand and cand != cur and _within(cur, cand, allowed) and _within(part, cand, theirs)
+            and _on_path(cur, cand, dst)):
+        return cand
     return ""
 
 
@@ -694,9 +758,14 @@ def middle_state(st: Dict[str, str], cur: str) -> Optional[str]:
     mids = [k for k in ("direct", "sure") if st.get(k) is not None and st[k] not in (st["base"], st["alt"])]
     if not mids:
         return None  # 没有中间的整句（大多数行）：不用比
-    best, dist = None, min(len(change_pieces(st["base"], cur)), len(change_pieces(st["alt"], cur)))
     for k in mids:
-        d = len(change_pieces(st[k], cur))
+        if cur == st[k]:
+            return k
+    if cur in (st["base"], st["alt"]):
+        return None
+    best, dist = None, min(unit_dist(st["base"], cur), unit_dist(st["alt"], cur))
+    for k in mids:
+        d = unit_dist(st[k], cur)
         if d < dist:
             best, dist = k, d
     return best
@@ -828,7 +897,8 @@ def adopt_all_suggestions(project: Any) -> Dict[str, Any]:
                 new = vals["text"]
             new = clean_transcript(new) if new else new
             bad = {(str(a), str(b)) for a, b in (rejected.get(rid) or []) if isinstance(a, str) and isinstance(b, str)}
-            if bad and new != vals["text"] and any(pc in bad for pc in change_pieces(vals["text"], new)):
+            if bad and new != vals["text"] and any(pc in bad or any(_part_of(pc, x) for x in bad)
+                                                   for pc in change_pieces(vals["text"], new)):
                 new = vals["text"]  # 里面有老师撤销过的改法：这一行不动
             after = analyze(rec, new) if new else info
             if after["edits"]:
