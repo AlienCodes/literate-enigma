@@ -4,7 +4,7 @@
 1. 每句话生成多个候选（不同随机种子），用"像你本人（%）"（几个声纹模型校准后的平均）、
    识别错字率、语速/音高偏差打分；低于 85% 的候选直接淘汰，剩下的里面相似度为主挑最像的；
 2. 错字太多（漏字/多字/读错）或者都不够像时自动重做；「完美」档会一批一批地试，直到达到严格标准或试满 20 次；
-   「一模一样」档（默认）每句至少试几十个（按显卡），达到严格标准并且再试也不更好时才停；
+   「一模一样」档（默认）每句至少 / 最多试几个按显卡分档，挑出来的那个达到严格标准、并且再试也不更好时才停；
 3. 疑问句用你的疑问语气参考音频，陈述句用陈述参考（「完美」档还会挑长短最接近的参考）；
 4. 句间/段间停顿按你本人的停顿习惯（含自然波动），停顿和开头结尾都是绝对的数字静音（全是 0），没有任何底噪；
 5. 每句首尾的非语音会被切掉并淡入淡出，句子边上不留杂音；
@@ -78,8 +78,10 @@ QUALITY_LABELS = {
     "best": "最好（每句做 5 遍，并检查漏字错字）",
     "max": "极致（很慢，更稳更像，建议显存 ≥ 8GB）",
     "perfect": "完美：每句最多试 20 次、严格检查漏字错字，同时做「未去杂音 / 去杂音」两个版本让你选，句子之间完全静音（很慢）",
-    "identical": "一模一样（默认）：用尽各种办法接近你本人——每句试几十个版本、用满显卡，整篇按你的停顿和音量拼接，"
-                 "句子之间完全静音（最慢）",
+    # 只写现在真的会做的事（不要乱写）：设计方案 §4.1 里「用满显卡」「整篇按你的音量拼接」这些说法，
+    # 等后面几步（一次同时生成好几个、整篇再挑一遍……）做好了再写上（tests/test_identical_tier.py 会核对）
+    "identical": "一模一样（默认）：每句试很多个版本、严格检查漏字错字，挑最像你的；"
+                 "同时做「未去杂音 / 去杂音」两个版本，句子之间完全静音（最慢）",
 }
 QUALITY_SHORT = {"fast": "快速", "balanced": "均衡", "best": "最好", "max": "极致", "perfect": "完美",
                  "identical": "一模一样"}
@@ -90,21 +92,19 @@ QUALITY_HELP = {
     "best": "最好：每句生成 5 次，并用语音识别检查漏字、错字；更慢，但更稳。",
     "max": "极致：每句生成 8 次并严格检查漏字错字，不够像的自动重做；时间大约是「均衡」的 3～5 倍。",
     "perfect": "完美：每句最多试 20 次、严格检查漏字错字，同时做「未去杂音 / 去杂音」两个版本让你选，句子之间完全静音（很慢）。",
-    "identical": "一模一样：每句换几条最合适的你的录音当参考，试多种生成设置，显卡一次同时生成好几个版本，一共试几十个；"
-                 "用三个声纹模型、中英文分开的错字检查和你本人的语速、音调一起挑最像你的。整篇再按你本人的停顿长短和音量拼接，"
-                 "句子之间是完全的数字静音，同时给出「未去杂音 / 去杂音」两个版本。最慢。这是努力的方向，不能保证百分之百一样。",
+    "identical": "一模一样：每句试很多个版本（显卡越好试得越多），换着用几种生成设置；用声纹打分、错字检查和你本人的语速、"
+                 "音调一起挑最像你的，达到严格标准、并且再试也不更好时才停。停顿按你本人的习惯，句子之间是完全的数字静音，"
+                 "同时给出「未去杂音 / 去杂音」两个版本。最慢。这是努力的方向，不能保证百分之百一样。",
 }
 QUALITY_NOTE = ("越往下越慢。默认是「一模一样」：它是努力的方向，不是保证——任何声音克隆都做不到百分之百一样，"
                 "也不会超过模型训练出来的水平。素材的质量和数量、认真校对文字，对像不像影响最大。")
 #: 打开网页时「质量」下面的说明（按显卡；{size} 是检测到的显存，例如「显存 12 GB」，检测不到写「你的显卡」；
-#: {cap} 是这种显卡每句最多试几个，从 QUALITY_PRESETS["identical"] 里取，改了参数说明也跟着变）
+#: {cap} 是这种显卡每句最多试几个，和真正生成时一样：自带的值合并 config.yaml 的 synth.tiers.identical，见 identical_limits）。
+#: 「显存不够也不停下」「新模型第一次先做一次准备」等设计方案 §4.2 的说法，等那几步做好了再写上
 QUALITY_TIER_NOTES = {
-    "high": "已选好「一模一样」（{size}）。每句会试很多个版本，所以很慢；第一次用一个新训练的模型时，还要先做一次准备。"
-            "生成时会按实际速度告诉你还要多久。",
-    "mid": "已选好「一模一样」（{size}）。每句会试很多个版本，所以很慢；第一次用一个新训练的模型时，还要先做一次准备。"
-           "生成时会按实际速度告诉你还要多久。",
-    "low": "已选好「一模一样」（{size}，显存偏小）：每句最多试 {cap} 个版本，会很慢，但不会因为显存不够而停下"
-           "（会自动少生成一些再接着试）。着急的话可以改选「均衡」。",
+    "high": "已选好「一模一样」（{size}）。每句会试很多个版本，所以很慢；生成时会按实际速度告诉你还要多久。",
+    "mid": "已选好「一模一样」（{size}）。每句会试很多个版本，所以很慢；生成时会按实际速度告诉你还要多久。",
+    "low": "已选好「一模一样」（{size}，显存偏小）：每句最多试 {cap} 个版本，会很慢。着急的话可以改选「均衡」。",
     "none": "没检测到能用的 N 卡（NVIDIA 显卡），仍然先选好「一模一样」：用处理器生成会非常慢，每句最多试 {cap} 个版本。"
             "着急的话可以改选「均衡」。",
 }
@@ -157,11 +157,14 @@ def _vram_tier() -> str:
         return "none"
 
 
-def recommended_quality(tier: Optional[str] = None, size: Optional[str] = None) -> Tuple[str, str]:
+def recommended_quality(tier: Optional[str] = None, size: Optional[str] = None,
+                        cfg: Optional[Dict[str, Any]] = None) -> Tuple[str, str]:
     """默认档位和一句说明：任何显卡都是「一模一样」，说明按显卡写（显存小、没有 N 卡时会很慢，可以改选「均衡」）。
-    size 是检测到的显存（例如「显存 12 GB」），网页传进来；不传写「你的显卡」。"""
+    size 是检测到的显存（例如「显存 12 GB」），网页传进来；不传写「你的显卡」。
+    cfg 是读进来的设置：说明里「每句最多试几个」和真正生成时一样（config.yaml 改了 synth.tiers.identical 就跟着变）。"""
     tier = tier if tier in QUALITY_TIER_NOTES else (_vram_tier() if not tier else "none")
-    cap = _per_tier(QUALITY_PRESETS[DEFAULT_QUALITY].get("max_candidates"), tier, 12)
+    scfg = (cfg.get("synth") if cfg is not None else None) or {}
+    cap = identical_limits(tier_preset(DEFAULT_QUALITY, scfg), tier)[2]
     return DEFAULT_QUALITY, QUALITY_TIER_NOTES[tier].format(size=size or "你的显卡", cap=cap)
 
 
@@ -211,6 +214,40 @@ def _per_tier(value: Any, tier: str, default: int) -> int:
     except (TypeError, ValueError):
         return int(default)
     return v if v > 0 else int(default)
+
+
+def tier_preset(quality: str, scfg: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    """档位的参数 = 自带的值，再盖上 config.yaml 的 synth.tiers.<档位>（写 auto / 没写的不算）。
+    两边都是表的（按显卡分档的 {high, mid, low, none}、错字门槛的 {strong, weak}）只换写了的那几项：
+    只写了一种显卡时，其它显卡还是自带的值，不会掉到兜底的数字。Narrator 和网页上的说明都用它。"""
+    preset = dict(QUALITY_PRESETS[quality])
+    tiers_cfg = (scfg or {}).get("tiers") or {}
+    user = tiers_cfg.get(quality) if isinstance(tiers_cfg, dict) else None
+    for key, val in (user.items() if isinstance(user, dict) else ()):
+        if val in (None, "auto"):
+            continue
+        base = preset.get(key)
+        if isinstance(base, dict) and isinstance(val, dict):
+            val = {**base, **{k: v for k, v in val.items() if v not in (None, "auto", "")}}
+        preset[key] = val
+    return preset
+
+
+def identical_limits(preset: Dict[str, Any], tier: str, candidates: Any = None) -> Tuple[int, int, int, int]:
+    """「一模一样」按显卡取出来的 (每批几个, 每句至少试几个, 每句最多试几个, 每句几条参考录音)。
+    写错的值（不是正数）用这种显卡自带的值；candidates 是命令行明确写的 -n：每句最多试几个（至少试的个数跟着变小）。"""
+    base = QUALITY_PRESETS["identical"]
+
+    def get(key: str) -> int:
+        return _per_tier(preset.get(key), tier, _per_tier(base[key], tier, 1))
+
+    cap = get("max_candidates")
+    if candidates not in (None, "auto", 0, "0", ""):
+        try:
+            cap = max(1, int(candidates))
+        except (TypeError, ValueError):
+            pass
+    return max(1, min(get("batch"), cap)), max(1, min(get("min_candidates"), cap)), cap, get("refs_per_sentence")
 
 
 def trim_edges(wav: np.ndarray, sr: int, pad_ms: float = 30.0) -> np.ndarray:
@@ -385,8 +422,9 @@ class Narrator:
         self.quality = resolve_quality(quality if quality not in (None, "") else self.scfg.get("quality", "auto"),
                                        tier=tier)
         tiers_cfg = self.scfg.get("tiers") or {}
-        preset = dict(QUALITY_PRESETS[self.quality])
-        preset.update({k: v for k, v in (tiers_cfg.get(self.quality) or {}).items() if v not in (None, "auto")})
+        qcfg = tiers_cfg.get(self.quality) if isinstance(tiers_cfg, dict) else None
+        qcfg = qcfg if isinstance(qcfg, dict) else {}
+        preset = tier_preset(self.quality, self.scfg)
         if self.quality in ("balanced", "best"):  # 老配置里的全局项只管这两档
             if self.scfg.get("cer_retry_threshold") not in (None, "auto"):
                 thr = float(self.scfg["cer_retry_threshold"])
@@ -417,7 +455,7 @@ class Narrator:
         self.pass_target: Any = None
         self.plateau, self.plateau_eps = 0, 0.0  # 「一模一样」：最近几个版本的最高分涨不到多少就算「再试也不更好」
         if self.quality == "identical":
-            self._init_identical(preset, cand_cfg)
+            self._init_identical(preset, candidates)
         asr_cfg = asr_check if asr_check is not None else self.scfg.get("asr_check", "auto")
         if preset.get("force_asr") and asr_cfg is not False:
             self.use_asr = True
@@ -445,7 +483,7 @@ class Narrator:
         # 都没写（或写 auto）才用档位自带的 99。
         # 「一模一样」不看 similarity.target_pct（每个人的 config.yaml 里都抄着 99）：它的目标是相对你自己真实录音的水平，
         # 只认 synth.tiers.identical.search_target / pass_target（见 _sim_target）；没有精准声纹打分时和「完美」一样用 99
-        tier_target = (tiers_cfg.get(self.quality) or {}).get("target_pct")
+        tier_target = qcfg.get("target_pct")
         if self.quality == "identical":
             target: Any = 99
         elif tier_target not in (None, "auto", ""):
@@ -459,31 +497,30 @@ class Narrator:
         except (TypeError, ValueError):
             self.target_pct = 99.0
 
-    def _init_identical(self, preset: Dict[str, Any], cand_cfg: Any) -> None:
-        """「一模一样」：每批几个、每句至少 / 最多试几个、几条参考录音都按显卡分档（-n 是每句最多试几个）。"""
+    def _init_identical(self, preset: Dict[str, Any], candidates: Any) -> None:
+        """「一模一样」：每批几个、每句至少 / 最多试几个、几条参考录音都按显卡分档（见 identical_limits）。
+        只有命令行明确写的 -n 改每句最多试几个。config.yaml 里的 synth.candidates 是给其它档位的：以前为「均衡」「完美」
+        手改过的值不能悄悄把「一模一样」限制成每句只试几个（网页的「生成」从来不传 -n），用不上时说一声。"""
         tier = self.tier
-        cap = _per_tier(preset.get("max_candidates"), tier, 12)
-        min_c = _per_tier(preset.get("min_candidates"), tier, cap)
-        if cand_cfg not in (None, "auto", 0, "0"):  # 命令行 -n / synth.candidates：每句最多试几个
-            try:
-                cap = max(1, int(cand_cfg))
-            except (TypeError, ValueError):
-                pass
-        self.max_candidates = cap
-        self.min_candidates = max(1, min(min_c, cap))
-        self.n_candidates = max(1, min(_per_tier(preset.get("batch"), tier, 1), cap))
-        self.R = _per_tier(preset.get("refs_per_sentence"), tier, 1)
+        self.n_candidates, self.min_candidates, self.max_candidates, self.R = identical_limits(preset, tier, candidates)
+        cap = self.max_candidates
         self.search_target = preset.get("search_target", "p50")
         self.pass_target = preset.get("pass_target", "p25")
         self.plateau = max(0, int(preset.get("plateau", 0) or 0))
         self.plateau_eps = float(preset.get("plateau_eps", 0.0) or 0.0)
+        n0 = len(self.notes)
         if tier == "low":
             self.notes.append(f"显存较小，已减少每句试的版本数（每句至少 {self.min_candidates} 个、最多 {cap} 个）")
         elif tier == "none":
             self.notes.append(f"没有检测到能用的 N 卡（NVIDIA 显卡），用处理器生成：每句至少试 {self.min_candidates} 个、"
                               f"最多 {cap} 个版本，会非常慢；着急的话可以改选「均衡」")
-        if self.notes:
-            log.info(self.notes[-1])
+        old = self.scfg.get("candidates", "auto")
+        if candidates is None and old not in (None, "auto", 0, "0", ""):
+            self.notes.append(f"设置文件 config.yaml 里的「candidates: {old}」不管「一模一样」（这次每句至少试 "
+                              f"{self.min_candidates} 个、最多 {cap} 个）；要限制「一模一样」每句最多试几个，"
+                              "改 synth.tiers.identical.max_candidates，或者命令行加 -n")
+        for line in self.notes[n0:]:
+            log.info(line)
 
     # ------------------------------------------------------------------ 显卡档位
     @property
@@ -618,6 +655,12 @@ class Narrator:
             # 英文单词多、以前按 en 发给引擎的中文句子（里面的汉字被丢掉了）：现在按 zh 发，旧缓存不能再用。
             # 只有这种句子的缓存键变了，其它句子一个字节都不变，以前生成好的照常直接用
             parts.append(lang_eff)
+        ref_lang = ref.get("lang")
+        prompt_lang = send_lang(ref.get("text", ""), ref_lang)
+        if prompt_lang != ("en" if ref_lang == "en" else "zh"):
+            # 参考音频也一样：标成 en、文字里却有汉字时，prompt_lang 以前发 en（参考文字里的汉字被丢掉），现在发 zh，
+            # 发给引擎的请求变了，旧缓存不能再用；只有用这种参考的句子缓存键变了
+            parts.append(f"prompt_lang={prompt_lang}")
         key = short_hash(*parts, n=16)
         wav_path, meta_path = self._cache_paths(key)
         return _Plan(ref, aux, speed, key, wav_path, meta_path)
@@ -891,10 +934,11 @@ class Narrator:
                     attempt(b, k, sampling, msg)
                     best_hist.append(max((c.score.total for c in cands), default=float("-inf")))
                 if identical:
-                    # 「一模一样」：至少试满 min_candidates 个、有版本达到继续找的目标（你自己录音的中位水平），
-                    # 并且最近 plateau 个版本的最高分涨不到 plateau_eps（再试也不更好）才停；最多试 cap 个。
+                    # 「一模一样」：至少试满 min_candidates 个、挑出来的那个（和最后真正用的一样挑）达到继续找的目标
+                    # （你自己录音的中位水平），并且最近 plateau 个版本的最高分涨不到 plateau_eps（再试也不更好）才停；
+                    # 最多试 cap 个。不能看「有没有哪个版本到过目标」：那个版本综合分不高、最后不会被选上（设计方案 §1.7）。
                     # 试过的还不到 plateau 个（没有 N 卡时至少试 6 个）就看已经试过的这几个
-                    reached = reached or any(self._meets_targets(c, seg, "search") for c in cands)
+                    reached = bool(cands) and self._meets_targets(self._select(cands, lang, seg)[0], seg, "search")
                     w = min(self.plateau, len(best_hist) - 1)
                     flat = self.plateau <= 0 or w <= 0 or best_hist[-1] - best_hist[-1 - w] < self.plateau_eps
                     if reached and flat and state["tried"] >= self.min_candidates:

@@ -88,7 +88,7 @@ def _quality_arg(value: str) -> str:
 
 def _config_quality_notes(cfg: Any) -> List[str]:
     """命令行没写 -q 时，config.yaml 里的 synth.quality 要不要提醒一句（只写真的会发生的事）。"""
-    from voicetwin.synth.engine import AUTO_QUALITY, QUALITY_SHORT, match_quality
+    from voicetwin.synth.engine import AUTO_QUALITY, DEFAULT_QUALITY, QUALITY_SHORT, match_quality
 
     if cfg.get("_legacy_quality"):
         return [f"设置文件 config.yaml 里的「quality: {cfg['_legacy_quality']}」是旧版本（v0.1.0～v0.1.3）自动写进去的默认值，"
@@ -97,7 +97,8 @@ def _config_quality_notes(cfg: Any) -> List[str]:
     raw = cfg.get_path("synth.quality", "auto")
     text = str(raw if raw is not None else "").strip()
     key = match_quality(raw)
-    if text.lower() in AUTO_QUALITY or key is None:  # 认不出的写法：引擎会说明并用「一模一样」
+    # 认不出的写法：引擎会说明并用「一模一样」；写的就是「一模一样」：和默认一样，不用提醒（否则会叫老师把它改成 auto）
+    if text.lower() in AUTO_QUALITY or key is None or key == DEFAULT_QUALITY:
         return []
     name = text if text == QUALITY_SHORT.get(key) else f"{text}（{QUALITY_SHORT.get(key, key)}）"
     return [f"设置文件 config.yaml 里写了质量「{name}」，这次按它生成；想用默认的「一模一样」，"

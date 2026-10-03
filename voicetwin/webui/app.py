@@ -1063,16 +1063,17 @@ def _vram_tier(status: Optional[Dict[str, Any]]) -> str:
         return "none"
 
 
-def _recommended_quality(status: Optional[Dict[str, Any]]) -> Tuple[str, str]:
+def _recommended_quality(status: Optional[Dict[str, Any]], cfg: Optional[Dict[str, Any]] = None) -> Tuple[str, str]:
     """打开网页时默认的质量：任何显卡都先选好「一模一样」；说明按显卡写（显存是检测出来的，
-    显存小、没有 N 卡时说清楚会很慢、可以改选「均衡」）。返回 (值, 一句说明)。"""
+    显存小、没有 N 卡时说清楚会很慢、可以改选「均衡」；每句最多试几个按 cfg 里的设置，和真正生成时一样）。
+    返回 (值, 一句说明)。"""
     tier = _vram_tier(status)
     q = TIER_QUALITY.get(tier, "identical")
     gb = None
     if status:
         gb = _num(status.get("nominal_gb")) or _num(status.get("total_gb"))
     size = f"显存 {gb:.0f} GB" if gb else "你的显卡"
-    _, note = _engine.recommended_quality(tier, size=size)
+    _, note = _engine.recommended_quality(tier, size=size, cfg=cfg)
     return q, note
 
 
@@ -2677,7 +2678,7 @@ class WebUI:
     def on_load_gpu(self) -> Tuple[Any, Any, Any]:
         """打开网页时检查显卡，并按显卡推荐默认的生成质量。"""
         status = _gpu_status(refresh=False)
-        q, note = _recommended_quality(status)
+        q, note = _recommended_quality(status, self.cfg)
         return _gpu_badge(status), _upd(value=q), f"{QUALITY_NOTE}\n\n{note}"
 
     def model_header(self, voice: Any) -> str:

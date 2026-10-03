@@ -323,7 +323,8 @@ def test_recommended_quality_is_identical_on_every_tier():
         assert q == "identical" and "一模一样" in note
         notes[tier] = note
         assert wf.recommended_quality(tier)[0] == "identical"
-    assert notes["high"] == notes["mid"] and "很慢" in notes["mid"] and "先做一次准备" in notes["mid"]
+    # 只写现在真的会做的事：「新模型第一次先做一次准备」「显存不够也不停下」等后面几步做好了再写（见 UNBUILT_PHRASES）
+    assert notes["high"] == notes["mid"] and "很慢" in notes["mid"] and "按实际速度告诉你还要多久" in notes["mid"]
     assert "32 个版本" in notes["low"] and "显存偏小" in notes["low"] and "「均衡」" in notes["low"]
     assert "12 个版本" in notes["none"] and "N 卡" in notes["none"] and "「均衡」" in notes["none"]
     assert eng.recommended_quality("mid", size="显存 12 GB")[1].startswith("已选好「一模一样」（显存 12 GB）。")
@@ -368,8 +369,9 @@ def test_narrate_stage_table_for_identical():
     assert wf.task_stages("narrate", cfg, quality="fast") == wf.STAGES_NARRATE
     st = wf.STAGES_NARRATE_IDENTICAL
     assert [f for f, _ in st] == sorted(f for f, _ in st) and st[0] == (0.0, "启动合成引擎")
+    # 时间点和设计方案 §2 P2 一样；0.88 这一步的名字只写现在真的会做的事（「整篇再挑一遍」等第 6 步做好了再改）
     assert st == [(0.00, "启动合成引擎"), (0.02, "准备「一模一样」"), (0.08, "逐句生成"),
-                  (0.88, "整篇再挑一遍、按你的停顿和音量拼接"), (0.92, "做「去杂音」版本并比较"), (0.99, "写字幕和报告")]
+                  (0.88, "按你的停顿拼接、调整音量"), (0.92, "做「去杂音」版本并比较"), (0.99, "写字幕和报告")]
 
 
 def test_title_version_stays_18():
@@ -613,7 +615,8 @@ class _Checker:
 
 
 def _scripted(monkeypatch, totals, pct=100.0, pct_raw=None, natural=None, tier="none"):
-    """每个候选的分数按顺序给（用完后一直是最后一个）；「像你本人」固定。没有 N 卡：每批 1 个、至少 6 个、最多 12 个。"""
+    """每个候选的分数按顺序给（用完后一直是最后一个）；「像你本人」固定，或者和综合分一起按 (综合分, 没封顶的百分比) 给。
+    没有 N 卡：每批 1 个、至少 6 个、最多 12 个。"""
     from voicetwin.eval import metrics
 
     monkeypatch.setattr(eng, "_vram_tier", lambda: tier)
@@ -624,7 +627,11 @@ def _scripted(monkeypatch, totals, pct=100.0, pct_raw=None, natural=None, tier="
     def score(self, wav, sr, text, lang, speed=1.0, use_asr=True, check_pauses=True):
         t = totals[min(state["i"], len(totals) - 1)]
         state["i"] += 1
-        return metrics.Score(total=float(t), pct=pct, pct_raw=pct_raw, cer=0.0, errors=0, rate=4.0, speaker_sim=0.8)
+        p, raw = pct, pct_raw
+        if isinstance(t, tuple):  # (综合分, 没封顶的「像你本人」)：每个候选的分数不一样
+            t, raw = t
+            p = min(float(raw), 100.0)
+        return metrics.Score(total=float(t), pct=p, pct_raw=raw, cer=0.0, errors=0, rate=4.0, speaker_sim=0.8)
 
     monkeypatch.setattr(metrics.Scorer, "score", score)
     monkeypatch.setattr(metrics.Scorer, "in_normal_range", lambda self, s, lang, speed=1.0: True)
@@ -723,3 +730,280 @@ def test_identical_two_versions_and_absolute_silence(prepared, tmp_path, monkeyp
     assert any(abs(f - 0.92) < 1e-9 and "去杂音" in m for f, m in rec)
     report = json.loads(res.report_path.read_text(encoding="utf-8"))
     assert report["quality"] == "identical" and report["quality_label"] == eng.QUALITY_LABELS["identical"]
+
+
+# ============================================================================ 检查意见的回归测试（第 1、2 步）
+def test_config_candidates_does_not_cap_identical(prepared, tmp_path, monkeypatch):
+    """config.yaml 里手改过的 synth.candidates（以前给「均衡」「完美」用的）不能悄悄把「一模一样」限制成每句只试几个：
+    只有命令行明确写的 -n 才改「一模一样」每句最多试几个；网页的「生成」不传 -n。"""
+    cfg, project = _key_project(tmp_path)
+    c3 = {**cfg, "synth": dict(cfg["synth"], candidates=3)}
+    n = eng.Narrator(c3, project, _KeyBackend(), quality="identical", tier="high")
+    assert (n.n_candidates, n.min_candidates, n.max_candidates) == (12, 40, 64)
+    assert any("candidates: 3" in x and "不管「一模一样」" in x and "每句至少试 40 个、最多 64 个" in x for x in n.notes)
+    p = eng.Narrator(c3, project, _KeyBackend(), quality="perfect", tier="high")  # 其它档位照旧：完美是每批几个
+    assert (p.n_candidates, p.max_candidates) == (3, 20) and p.notes == []
+    n3 = eng.Narrator(c3, project, _KeyBackend(), quality="identical", tier="high", candidates=3)  # 命令行 -n 3
+    assert (n3.n_candidates, n3.min_candidates, n3.max_candidates) == (3, 3, 3)
+    assert not any("candidates" in x for x in n3.notes)
+    assert eng.Narrator(cfg, project, _KeyBackend(), quality="identical", tier="high").notes == []  # auto：不提
+    # 和网页的「生成」一样整篇走一遍（不传 candidates；没有 N 卡：至少 6 个）
+    _scripted(monkeypatch, [1.0])
+    _, proj, _ = prepared
+    c_ws = make_cfg(proj.root.parent, synth={"candidates": 3})
+    res = wf.run_narrate(c_ws, proj.voice, _uniq("一模一样不受旧的候选数限制"), out=str(tmp_path / "c3.wav"),
+                         variants=False, quality="identical")
+    assert res.segments[0]["tries"] == 6 and any("不管「一模一样」" in x for x in res.notes)
+
+
+def test_partial_per_gpu_dict_keeps_the_other_gpus(tmp_path):
+    """synth.tiers.identical 里按显卡分档的值只写了一种显卡：其它显卡用自带的值（不是兜底的 12 / 1），
+    也不会拿 mid 的值顶替别的显卡。写错的值（不是数）同样用这种显卡自带的值。"""
+    cfg, project = _key_project(tmp_path)
+    tiers = {"identical": {"max_candidates": {"high": 100}, "batch": {"high": 16}, "min_candidates": {"none": "auto"}}}
+    c = {**cfg, "synth": dict(cfg["synth"], tiers=tiers)}
+    want = {"high": (16, 40, 100), "mid": (8, 40, 64), "low": (2, 16, 32), "none": (1, 6, 12)}
+    for tier, w in want.items():
+        n = eng.Narrator(c, project, _KeyBackend(), quality="identical", tier=tier)
+        assert (n.n_candidates, n.min_candidates, n.max_candidates) == w, tier
+    bad = {"identical": {"max_candidates": {"low": "很多"}, "batch": "abc", "min_candidates": {"low": -3}}}
+    n = eng.Narrator({**cfg, "synth": dict(cfg["synth"], tiers=bad)}, project, _KeyBackend(), quality="identical",
+                     tier="low")
+    assert (n.n_candidates, n.min_candidates, n.max_candidates) == (2, 16, 32)
+    # 同样的道理：「完美」的错字门槛只写了一半，另一半用档位自带的（不是代码里的兜底值）
+    half = {"perfect": {"cer_target": {"strong": 0.02}}}
+    p = eng.Narrator({**cfg, "synth": dict(cfg["synth"], tiers=half)}, project, _KeyBackend(), quality="perfect",
+                     tier="high")
+    assert p.preset["cer_target"] == {"strong": 0.02, "weak": 0.08}
+    assert eng.QUALITY_PRESETS["perfect"]["cer_target"] == {"strong": 0.05, "weak": 0.08}  # 自带的值没被改掉
+
+
+def _feature_flags():
+    """说明里的说法 → 那个功能在代码里有没有了。后面几步做完以后（见设计方案 §2 P4～P8），对应的说法才可以写回去。"""
+    import importlib.util
+
+    from voicetwin.backends.base import Backend
+    from voicetwin.eval.metrics import CERChecker
+    from voicetwin.synth import select
+
+    batch = hasattr(Backend, "synthesize_many")  # 第 4 步：一次请求同时生成好几个、显存不够自动减半
+    return {
+        "batch": batch,
+        "oom": batch and not eng._is_fatal(RuntimeError("CUDA out of memory. Tried to allocate 20.00 MiB")),
+        "multi_ref": importlib.util.find_spec("voicetwin.synth.search") is not None,  # 第 5 步：每句几条参考
+        "mixed_cer": hasattr(CERChecker, "check_mixed"),                               # 第 5 步：中英文分开查错字
+        "continuity": hasattr(eng.Narrator, "_continuity"),                            # 第 6 步：整篇再挑一遍
+        "prepare": hasattr(select, "prepare_identical"),                               # 第 8 步：新模型先准备
+    }
+
+
+#: 每个功能对应的说法：功能没做好之前，给老师看的字里不能有
+UNBUILT_PHRASES = {
+    "batch": ("同时生成", "用满显卡", "一次生成好几个"),
+    "oom": ("不会因为显存不够而停下", "显存不够自动减半", "少生成一些再接着试"),
+    "multi_ref": ("换几条", "几条最合适", "每句用几条参考录音："),
+    "mixed_cer": ("中英文分开",),
+    "continuity": ("整篇再挑一遍", "整篇按你的停顿和音量"),
+    "prepare": ("先做一次准备",),
+}
+
+
+def test_texts_only_describe_what_the_code_does(tmp_path):
+    """「一模一样」的说明只写现在真的会做的事（老师的规定：不要乱写）：显存不够现在还是会停下（显存不够是
+    「重试也没用」的错误），一次请求只生成一个版本，每句一条参考……这些功能做好之前，说明里不能先写上。"""
+    from voicetwin.webui import app as A
+
+    flags = _feature_flags()
+    assert eng._is_fatal(RuntimeError("torch.OutOfMemoryError: CUDA out of memory")) or flags["oom"]
+    cfg, project = _key_project(tmp_path)
+    texts = [eng.QUALITY_LABELS["identical"], eng.QUALITY_HELP["identical"], eng.QUALITY_NOTE, A.BLIND_QUALITY_NOTE]
+    texts += list(eng.QUALITY_TIER_NOTES.values())
+    texts += [eng.recommended_quality(t, size="显存 6 GB")[1] for t in ("high", "mid", "low", "none")]
+    texts += [name for _, name in wf.STAGES_NARRATE_IDENTICAL]
+    for tier in ("high", "mid", "low", "none"):
+        texts += eng.Narrator(cfg, project, _KeyBackend(), quality="identical", tier=tier).notes
+    yaml_text = (Path(eng.__file__).resolve().parents[1] / "default_config.yaml").read_text(encoding="utf-8")
+    texts.append(yaml_text.split("\nsynth:", 1)[1].split("\n  score:", 1)[0])  # 设置文件里「合成」这一段的说明
+    for key, phrases in UNBUILT_PHRASES.items():
+        if flags[key]:
+            continue
+        for t in texts:
+            for ph in phrases:
+                assert ph not in t, (key, ph, t)
+    # 单选框上的字每台电脑都一样：没有 N 卡时每句最多 12 个，不能写「几十个」（同一页下面的说明写着 12 个）
+    assert "几十" not in eng.QUALITY_LABELS["identical"]
+
+
+def test_identical_stop_rule_looks_at_the_best_version(prepared, tmp_path, monkeypatch):
+    """停下的条件看的是「挑出来的那个」有没有达到继续找的目标（设计方案 §1.7 (i)），不是随便哪个版本到过：
+    第 1 个版本 101% 但综合分低，之后的综合分都更高、只有 95%（低于你自己录音的中位水平 100%）——要试满。"""
+    natural = {"p10": 80.0, "p25": 90.0, "p50": 100.0, "p90": 110.0}
+    _scripted(monkeypatch, [(1.0, 101.0), (2.0, 95.0)], natural=natural)
+    res, rec = _narrate(prepared, tmp_path, "一模一样看挑出来的那个", quality="identical")
+    seg = res.segments[0]
+    assert seg["tries"] == 12 and seg["pct"] == 95.0 and seg["met"] is True  # 95% 不低于下四分位 90%：算达标
+    # 只有第 1 个试完时挑出来的（101%）到了目标；第 2 个以后挑出来的是 95% 的，不能一直说「已经达到标准」
+    reached = [m for _, m in rec if "已经达到标准" in m]
+    assert reached and all("（第 2 个）" in m for m in reached)
+    # 挑出来的那个到了目标：照样至少试满 6 个、再试也不更好就停
+    _scripted(monkeypatch, [(1.0, 95.0), (2.0, 101.0)], natural=natural)
+    res2, _ = _narrate(prepared, tmp_path, "一模一样挑出来的到了目标", quality="identical")
+    assert res2.segments[0]["tries"] == 10 and res2.segments[0]["met"] is True
+
+
+def test_page_note_cap_follows_config(tmp_path, monkeypatch):
+    """打开网页时说明里的「每句最多试几个」和真正生成时一样：config.yaml 改了 synth.tiers.identical.max_candidates
+    就跟着变；synth.candidates 不管「一模一样」，说明里也不跟它变。"""
+    from voicetwin.webui import app as A
+
+    cfg = make_cfg(tmp_path / "ws", synth={"candidates": 3, "tiers": {"identical": {
+        "max_candidates": {"high": 30, "mid": 30, "low": 10, "none": 4}}}})
+    project = Project(cfg, "说明")
+    project.root.mkdir(parents=True, exist_ok=True)
+    project.references_path.write_text(json.dumps(_REFS, ensure_ascii=False), encoding="utf-8")
+    for tier in ("low", "none"):
+        cap = eng.Narrator(cfg, project, _KeyBackend(), tier=tier).max_candidates
+        assert cap == {"low": 10, "none": 4}[tier]
+        assert f"每句最多试 {cap} 个版本" in eng.recommended_quality(tier, cfg=cfg)[1]
+        assert f"每句最多试 {cap} 个版本" in wf.recommended_quality(tier, cfg=cfg)[1]
+    assert "每句最多试 32 个版本" in eng.recommended_quality("low")[1]  # 不传设置：自带的值
+    ui = A.WebUI(cfg)
+    monkeypatch.setattr(A, "_gpu_status", lambda refresh=False: {"ok": True, "level": "warn", "total_gb": 5.8})
+    _, radio, md = ui.on_load_gpu()
+    assert radio["value"] == "identical" and "每句最多试 10 个版本" in md and "32 个" not in md
+
+
+@pytest.mark.parametrize("value", ["identical", "一模一样", "一模一样（默认）"])
+def test_cli_no_note_when_config_already_says_identical(tmp_path, monkeypatch, capsys, value):
+    """config.yaml 里写的就是「一模一样」：不用提醒（以前会说「想用默认的「一模一样」，把那一行改成 auto」，自相矛盾）。"""
+    from voicetwin import cli
+
+    seen = _run_cli_say(tmp_path, monkeypatch, f"synth:\n  quality: {value}\n")
+    assert seen["quality"] is None and "config.yaml" not in capsys.readouterr().out
+    cfg = load_config(str(tmp_path / "config.yaml"))
+    assert cli._config_quality_notes(cfg) == []
+    _run_cli_say(tmp_path, monkeypatch, "synth:\n  quality: perfect\n")  # 别的档位照样提醒
+    assert "这次按它生成" in capsys.readouterr().out
+
+
+#: 只有一条参考音频的两个声音（和 research/一模一样/scripts/golden_cache_keys.py 的 REF_SETS 一样）
+_REF_SETS = {
+    "mixed": [{"id": "r_en_mix", "path": "references/f.wav", "lang": "en", "kind": "statement",
+               "text": "比如 This is a very long English example sentence used to show it."}],
+    "plain": [{"id": "r_en_plain", "path": "references/g.wav", "lang": "en", "kind": "statement",
+               "text": "Next, let's look at a slightly more complex example."}],
+}
+_REF_SEGS = [("We can add a condition at the end of the expression.", "en", "statement"),
+             ("今天我们来学习列表推导式。", "zh", "statement")]
+#: 改之前的旧代码（e02dd2f）算出来的：参考文字没有汉字的，缓存键一个字节都不能变
+GOLDEN_REF_KEYS = {
+    "plain/fast/high/0": "bc124b5a91e55bbc", "plain/fast/high/1": "7aad1ad01b6b2a7d",
+    "plain/fast/low/0": "bc124b5a91e55bbc", "plain/fast/low/1": "7aad1ad01b6b2a7d",
+    "plain/balanced/high/0": "8d1a9965ea9beaf3", "plain/balanced/high/1": "a328234fcae1d9d2",
+    "plain/balanced/low/0": "8d1a9965ea9beaf3", "plain/balanced/low/1": "a328234fcae1d9d2",
+    "plain/best/high/0": "baf86850b417f562", "plain/best/high/1": "c48e083c2149e171",
+    "plain/best/low/0": "baf86850b417f562", "plain/best/low/1": "c48e083c2149e171",
+    "plain/max/high/0": "ef77a2b4f8fe5c9e", "plain/max/high/1": "ca4e3127b1a5fe83",
+    "plain/max/low/0": "f85498ef8e433c00", "plain/max/low/1": "b0a60007a54b9884",
+    "plain/perfect/high/0": "c081216b6e2d6f49", "plain/perfect/high/1": "1064efdc35b68d53",
+    "plain/perfect/low/0": "b05be9299da0226b", "plain/perfect/low/1": "11530eef45b872bd",
+}
+#: 参考音频标成 en、文字里有汉字：以前 prompt_lang 发 en（参考文字里的汉字被丢掉），现在发 zh——旧缓存不能再用
+OLD_BUGGY_REF_KEYS = {
+    "mixed/fast/high/0": "53aeca9d3686da4c", "mixed/fast/high/1": "3eb70c3803de3178",
+    "mixed/fast/low/0": "53aeca9d3686da4c", "mixed/fast/low/1": "3eb70c3803de3178",
+    "mixed/balanced/high/0": "ee86a741942f1f3e", "mixed/balanced/high/1": "1b14d320964cee34",
+    "mixed/balanced/low/0": "ee86a741942f1f3e", "mixed/balanced/low/1": "1b14d320964cee34",
+    "mixed/best/high/0": "2bcd4d7f18ec67d8", "mixed/best/high/1": "50573c59943fa628",
+    "mixed/best/low/0": "2bcd4d7f18ec67d8", "mixed/best/low/1": "50573c59943fa628",
+    "mixed/max/high/0": "e12d7628ffc4c0a6", "mixed/max/high/1": "8117cd48246c4e5c",
+    "mixed/max/low/0": "0dc8463b35cfa367", "mixed/max/low/1": "bfc3d3989d96ea17",
+    "mixed/perfect/high/0": "f97d6295a789f60d", "mixed/perfect/high/1": "97169c43083b638a",
+    "mixed/perfect/low/0": "025882fe0f43bf65", "mixed/perfect/low/1": "d7993dc5f26ac71c",
+}
+
+
+def test_cache_key_changes_when_the_reference_language_sent_changes(tmp_path):
+    """参考音频标成 en、文字里却有汉字：prompt_lang 现在发 zh（以前发 en），发给引擎的请求变了，缓存键也要变，
+    不能再拿以前（参考文字里的汉字被丢掉时）生成的句子；参考文字没有汉字的，缓存键和改之前一个字节都不差。"""
+    cfg = make_cfg(tmp_path / "ws")
+    keys = {}
+    for name, refs in _REF_SETS.items():
+        project = Project(cfg, "参考" + name)
+        project.root.mkdir(parents=True, exist_ok=True)
+        project.references_path.write_text(json.dumps(refs, ensure_ascii=False), encoding="utf-8")
+        for q in ("fast", "balanced", "best", "max", "perfect"):
+            for tier in ("high", "low"):
+                n = eng.Narrator(cfg, project, _KeyBackend(), quality=q, tier=tier)
+                for i, (text, lang, kind) in enumerate(_REF_SEGS):
+                    seg = ScriptSegment(text=text, display=text, lang=lang, kind=kind, index=i)
+                    keys[f"{name}/{q}/{tier}/{i}"] = n._plan(seg).key
+    for k, v in GOLDEN_REF_KEYS.items():
+        assert keys[k] == v, k
+    for k, v in OLD_BUGGY_REF_KEYS.items():
+        assert keys[k] != v, k
+
+
+class _LangChecker(_Checker):
+    seen: list = []
+
+    def check(self, wav, sr, text, lang):
+        _LangChecker.seen.append(lang)
+        return super().check(wav, sr, text, lang)
+
+
+@pytest.mark.parametrize("quality", ["best", "identical"])
+def test_attempt_scores_and_checks_with_the_language_sent(prepared, monkeypatch, quality):
+    """被判成 en、里面有汉字的句子：按真正发给引擎的语言（zh）打分、查错字、比错字门槛（以前按 en：
+    英文的语速标准、英文的识别模型）。"""
+    from voicetwin.backends.base import get_backend
+    from voicetwin.eval import metrics
+
+    cfg, project, _ = prepared
+    _LangChecker.seen = []
+    seen = {"score": [], "thr": [], "cer_ok": []}
+    monkeypatch.setattr(eng, "_vram_tier", lambda: "none")
+    monkeypatch.setattr(eng, "CERChecker", _LangChecker)
+    monkeypatch.setattr(eng.SimilarityJudge, "for_project", classmethod(lambda cls, cfg, project, **k: _Judge()))
+    real_score, real_thr, real_cer_ok = metrics.Scorer.score, eng.Narrator._thr, eng.Narrator._cer_ok
+
+    def score(self, wav, sr, text, lang, *a, **k):
+        seen["score"].append(lang)
+        return real_score(self, wav, sr, text, lang, *a, **k)
+
+    def thr(self, key, lang, default, c=None):
+        seen["thr"].append(lang)
+        return real_thr(self, key, lang, default, c)
+
+    def cer_ok(self, c, lang, thr=None):
+        seen["cer_ok"].append(lang)
+        return real_cer_ok(self, c, lang, thr)
+
+    monkeypatch.setattr(metrics.Scorer, "score", score)
+    monkeypatch.setattr(eng.Narrator, "_thr", thr)
+    monkeypatch.setattr(eng.Narrator, "_cer_ok", cer_ok)
+    n = eng.Narrator(cfg, project, get_backend("dummy", cfg, project), quality=quality)
+    seg = ScriptSegment(text=MIXED, display=MIXED, lang="en", kind="statement", index=0)
+    res = n.synthesize_segment(seg, force=True)
+    assert res.tries >= 5
+    assert seen["score"] and set(seen["score"]) == {"zh"}           # 打分（语速标准等）
+    assert _LangChecker.seen and set(_LangChecker.seen) == {"zh"}   # 查错字
+    assert seen["cer_ok"] and set(seen["cer_ok"]) == {"zh"}         # 挑选时比错字门槛
+    assert set(seen["thr"]) <= {"zh"}
+
+
+def test_docs_name_the_current_default_and_button():
+    """快速上手、README、Windows 教程、环境检查：默认是「一模一样」（不再写「完美」是默认、是最慢的），
+    试听按钮叫「▶ 试听（快速，只听语速）」。"""
+    root = Path(eng.__file__).resolve().parents[2]
+    for name in ("快速上手.md", "README.md", "docs/Windows详细使用教程.md"):
+        text = (root / name).read_text(encoding="utf-8")
+        assert "试听语速**" not in text and "▶ 试听语速" not in text, name
+        for line in text.splitlines():
+            if "完美" in line and ("默认" in line or "最慢" in line):
+                assert "一模一样" in line, (name, line)
+    quick = (root / "快速上手.md").read_text(encoding="utf-8")
+    assert "▶ 试听（快速，只听语速）" in quick and "默认就是「一模一样」" in quick
+    rows = {r["item"]: r for r in wf.doctor(make_cfg(Path(".")))}
+    label = next(k for k in rows if k.startswith("noisereduce"))
+    assert "「一模一样」" in label and "「完美」" in label

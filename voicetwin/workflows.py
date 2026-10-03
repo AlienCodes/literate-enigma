@@ -50,9 +50,10 @@ STAGES_NARRATE: List[Stage] = [(0.00, "启动合成引擎"), (0.03, "逐句生�
 #: 「完美」档多一步：做「去杂音」版本并比较（「一模一样」见下面 STAGES_NARRATE_IDENTICAL）
 STAGES_NARRATE_VARIANTS: List[Stage] = [(0.00, "启动合成引擎"), (0.03, "逐句生成"), (0.90, "拼接音频、生成字幕"),
                                         (0.93, "做「去杂音」版本并比较哪个更像你")]
-#: 「一模一样」档（默认）：先准备（打分模型、你的说话习惯），最后按你的停顿和音量拼接、做两个版本（和 engine.narrate 的进度对齐）
+#: 「一模一样」档（默认）：先准备（加载打分和查错字的模型），最后按你的停顿拼接、调整音量、做两个版本
+#: （和 engine.narrate 的进度对齐）。0.88 这一步只写现在真的会做的事：设计方案里的「整篇再挑一遍」等第 6 步做好了再改名
 STAGES_NARRATE_IDENTICAL: List[Stage] = [(0.00, "启动合成引擎"), (0.02, "准备「一模一样」"), (0.08, "逐句生成"),
-                                         (0.88, "整篇再挑一遍、按你的停顿和音量拼接"), (0.92, "做「去杂音」版本并比较"),
+                                         (0.88, "按你的停顿拼接、调整音量"), (0.92, "做「去杂音」版本并比较"),
                                          (0.99, "写字幕和报告")]
 STAGES_DOWNLOAD: List[Stage] = [(0.0, "下载模型文件")]
 STAGES_PROOFCHECK: List[Stage] = [(0.00, "准备识别引擎"), (0.02, "逐条检查文字，标出可能的错字")]
@@ -906,11 +907,13 @@ def default_output(project: Project, stem: str, fmt: str) -> Path:
     return project.outputs_dir / f"{safe_name(stem, 30)}_{time.strftime('%Y%m%d_%H%M%S')}.{fmt}"
 
 
-def recommended_quality(tier: Optional[str] = None, size: Optional[str] = None) -> Tuple[str, str]:
-    """网页「质量」的默认值和一句说明：任何显卡都是「一模一样」，说明按显卡写（size 例如「显存 12 GB」）。"""
+def recommended_quality(tier: Optional[str] = None, size: Optional[str] = None,
+                        cfg: Optional[Config] = None) -> Tuple[str, str]:
+    """网页「质量」的默认值和一句说明：任何显卡都是「一模一样」，说明按显卡写（size 例如「显存 12 GB」）；
+    传了 cfg 时，说明里「每句最多试几个」按 config.yaml 的 synth.tiers.identical（和真正生成时一样）。"""
     from voicetwin.synth.engine import recommended_quality as _rec
 
-    return _rec(tier, size=size)
+    return _rec(tier, size=size, cfg=cfg)
 
 
 def quality_choices() -> List[Tuple[str, str]]:
@@ -1497,7 +1500,7 @@ def _doctor(cfg: Config) -> List[Dict[str, Any]]:
         ("faster_whisper", "faster-whisper（语音识别）", False, False),
         ("funasr", "funasr（中文识别、查错字，可选）", False, True),
         ("resemblyzer", "resemblyzer（声纹打分）", False, False), ("gradio", "gradio（网页界面）", False, False),
-        ("noisereduce", "noisereduce（降噪、「完美」档的去杂音版本，可选）", False, True),
+        ("noisereduce", "noisereduce（降噪、「一模一样」「完美」档的去杂音版本，可选）", False, True),
         ("pypinyin", "pypinyin（一键全部文字校正：按读音找错字）", False, False),
         ("jieba", "jieba（一键全部文字校正：分词）", False, False),
         ("demucs", "demucs（去背景音乐，可选）", False, True),
