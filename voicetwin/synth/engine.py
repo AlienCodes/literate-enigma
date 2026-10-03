@@ -722,9 +722,10 @@ class Narrator:
         from voicetwin.synth import search as S
 
         twin = None
+        lo = self._gen_range[0]
         try:
             if report:
-                self._progress(0.02, "准备「一模一样」：测量你的说话习惯（停顿、音调、语速）……")
+                self._progress(min(0.02, lo), "准备「一模一样」：测量你的说话习惯（停顿、音调、语速）……")
             twin = build_twin_profile(self.project)
         except Exception as exc:  # noqa: BLE001 - 停止按钮不是 Exception，照常传出去
             log.warning(f"你本人的说话习惯这次没量出来（{exc}），语速按以前的方式比")
@@ -737,7 +738,7 @@ class Narrator:
             bank = load_reference_bank(self.project)
             if bank is None or not bank.get("judge_models"):
                 if report:
-                    self._progress(0.05, "准备「一模一样」：整理参考录音……")
+                    self._progress(min(0.05, lo), "准备「一模一样」：整理参考录音……")
                 build_reference_bank(self.project, records)
                 bank = load_reference_bank(self.project)
         except Exception as exc:  # noqa: BLE001
@@ -1326,8 +1327,9 @@ class Narrator:
         plans = [self._plan(s) for s in segments]
         need_engine = any(i in redo_set or not p.cached for i, p in enumerate(plans))
         if need_engine and not self._started:
-            self._ensure_started(0.06 if identical else 0.0)
-            self._progress(0.07 if identical else 0.02, "加载打分模型（第一次使用会先下载）……")
+            # 「一模一样」的进度和阶段表对齐（0.02 准备、0.08 逐句生成）；盲听测试等别的地方用时不超过开始生成的位置
+            self._ensure_started(min(0.06, lo) if identical else 0.0)
+            self._progress(min(0.07, lo) if identical else 0.02, "加载打分模型（第一次使用会先下载）……")
             self._warm_up(segments)
             if identical:
                 self._judge_device()
