@@ -38,6 +38,27 @@ def test_failed_replace_leaves_no_temp_file(tmp_path, monkeypatch):
         raise PermissionError("被别的程序打开了")
 
     monkeypatch.setattr(os, "replace", boom)
+    monkeypatch.setattr(atomic, "RETRY_WAITS", [0.0, 0.0])
     with pytest.raises(PermissionError):
         atomic.write_text(tmp_path / "a.json", "{}")
     assert not list(tmp_path.iterdir())
+
+
+def test_replace_waits_when_windows_says_the_file_is_busy(tmp_path, monkeypatch):
+    """Windows 上正式文件这一刻正被别的线程读 / 换时，换文件会被拒绝一下：等一会儿再试就好。"""
+    import os
+
+    real = os.replace
+    calls = []
+
+    def flaky(a, b):
+        calls.append(1)
+        if len(calls) < 3:
+            raise PermissionError(13, "另一个程序正在使用此文件")
+        return real(a, b)
+
+    monkeypatch.setattr(os, "replace", flaky)
+    monkeypatch.setattr(atomic, "RETRY_WAITS", [0.0] * 5)
+    atomic.write_text(tmp_path / "a.json", '{"ok": 1}')
+    assert (tmp_path / "a.json").read_text(encoding="utf-8") == '{"ok": 1}' and len(calls) == 3
+    assert not list(tmp_path.glob("*.tmp"))

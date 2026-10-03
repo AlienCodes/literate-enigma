@@ -1576,14 +1576,7 @@ def _write_csv_atomic(path: Path, rows: List[Dict[str, Any]], fields: Sequence[s
         w.writeheader()
         for row in rows:
             w.writerow(row)
-    try:
-        os.replace(tmp, path)
-    except BaseException:
-        try:
-            tmp.unlink()
-        except OSError:
-            pass
-        raise
+    atomic.finish(tmp, path)  # Windows 上一眨眼的占用会等一会儿再试；一直被 Excel 打开着才报 PermissionError
 
 
 # ============================================================================ ① 摘要
