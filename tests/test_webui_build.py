@@ -207,6 +207,8 @@ def test_find_bar_wiring(tmp_path):
     want = [ids[k] for k in A.WebUI.FIND_OUT]
     assert ids["find_q"] < ids["clips"] and ids["find_status"] < ids["clips"]
     assert ui.c["find_q"].elem_id == "vt-find-q" and ui.c["find_repall"].elem_id == "vt-find-all"
+    # 老师 10-03 要求的例子：借词（识别错的）→ 介词（正确的）
+    assert ui.c["find_q"].label == "🔍 查找（例如：借词）" and ui.c["find_r"].label == "替换成（例如：介词）"
     for comp, event, mode in (("find_btn", "click", "once"), ("find_q", "submit", "once"),
                               ("find_prev", "click", "multiple"), ("find_next", "click", "multiple"),
                               ("find_rep1", "click", "once"), ("find_repall", "click", "once"),

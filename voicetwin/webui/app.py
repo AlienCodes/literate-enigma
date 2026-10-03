@@ -4170,9 +4170,9 @@ class WebUI:
                     # 查找 / 替换（像 Word）：表格只列出找到的句子；替换以后存成没保存的修改（红灯），保存才生效
                     with gr.Group(elem_classes="vt-find-bar"):
                         with gr.Row():
-                            c["find_q"] = gr.Textbox(label="🔍 查找（例如：艾子）", scale=3, max_lines=1,
+                            c["find_q"] = gr.Textbox(label="🔍 查找（例如：借词）", scale=3, max_lines=1,
                                                      elem_id="vt-find-q")
-                            c["find_r"] = gr.Textbox(label="替换成（例如：as）", scale=3, max_lines=1,
+                            c["find_r"] = gr.Textbox(label="替换成（例如：介词）", scale=3, max_lines=1,
                                                      elem_id="vt-find-r")
                             c["find_word"] = gr.Checkbox(label="英文只找整个单词（找 as 不会找到 has）", value=True,
                                                          scale=2)
