@@ -1104,6 +1104,8 @@ def test_tempo_refinement_real_api_request_differs_only_in_speed(prepared, tmp_p
     p2 = wf.open_project(gcfg, project.voice, must_exist=True)
     b = get_backend("gptsovits", gcfg, p2)
     try:
+        # 共用的测试声音里可能有别的测试挑模型时存下的语速校准（例如 1.25）：这里只看「语速偏了再发一次」，从 1.0 开始
+        monkeypatch.setattr(eng.Narrator, "_speed_for", lambda self, lang: 1.0)
         n = eng.Narrator(gcfg, p2, b, quality="identical", tier="low")
         n._scorer = FakeScorer(totals=[2.0, 1.0], ratio=1.1)
         n._judge = None

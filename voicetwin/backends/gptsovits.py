@@ -594,6 +594,15 @@ def _in_old_runs(path: str) -> bool:
     return "old_runs" in str(path).replace("\\", "/").split("/")
 
 
+def _forget_features(opt_dir: Path) -> None:
+    """处理文字 / 提取语义一句都没做成：删掉开始时记下的素材指纹（voicetwin_list.sha1）。不删的话下次训练会以为
+    「这份素材已经处理过、上次已经练够了」，直接跳过训练（原因修好了也不会重新处理）。"""
+    try:
+        (opt_dir / "voicetwin_list.sha1").unlink(missing_ok=True)
+    except OSError as exc:  # 删不掉：下次照样按「素材有变化」以外的情况判断，至少说一声
+        log.warning(f"删不掉训练记录里的素材指纹 voicetwin_list.sha1（{exc}）：下次训练前请先把它删掉，不然可能不会重新处理文字")
+
+
 def _remove_parts(opt_dir: Path, *patterns: str, quiet: bool = False) -> None:
     """删掉上次留下的分块结果（2-name2text-0.txt、6-name2semantic-0.tsv）。
 
@@ -2294,6 +2303,7 @@ class GPTSoVITSBackend(Backend):
             # 和 1A 一样：脚本逐句 try/except，一句都没做成也退出 0。只有表头的列表拿去训练，
             # 要白白练完音色、到 GPT 那一步才出错，所以这里就停下说清楚
             if not got:
+                _forget_features(opt_dir)
                 raise RuntimeError("1C 提取语义没有产出，请查看日志 logs/gsv_1c_semantic.log")
         return {"opt_dir": opt_dir, "frontend": frontend, "en_phones": int(en.get("en_phones") or 0),
                 "en_lines": int(en.get("en_lines") or 0)}
@@ -2401,6 +2411,7 @@ class GPTSoVITSBackend(Backend):
                         progress, (lo, hi), label="处理文字", parse=_line_counter(n, "处理文字"))
         lines = self._merge_parts(opt_dir, "2-name2text-{}.txt", parts, "2-name2text.txt")
         if not "".join(lines).strip():
+            _forget_features(opt_dir)
             raise RuntimeError("1A 文本处理没有产出，请查看日志 logs/gsv_1a_text.log")
         return "official", {}
 
