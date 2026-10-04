@@ -633,12 +633,13 @@ class Narrator:
 
     def _speed_for(self, lang: str) -> float:
         """最终传给引擎的语速 = 自动校准系数 × 用户倍数（由模型自己控制时长，不改音高音色）。
-        「一模一样」：挑模型时按「一模一样」的方式校准过（models.json 里的 identical.speed）就用它。"""
+        「一模一样」：挑模型时按「一模一样」的方式校准过（models.json 里的 identical.speed）就用它；小校准只写量到了的语言，
+        没写的语言照旧用挑模型时实测的语速（不当成没测过的 1.0）。"""
         cal = self.backend.speed_calibration()
         if self.quality == "identical":
             own = (self._identical_ctx().get("block") or {}).get("speed")
             if isinstance(own, dict) and own:
-                cal = own
+                cal = {**(cal or {}), **own}
         val = float(cal.get(lang, cal.get("zh", 1.0)) or 1.0) * self._speed_multiplier()
         return float(min(2.0, max(0.5, val)))
 

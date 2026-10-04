@@ -347,8 +347,9 @@ def evaluate_file(cfg: Dict[str, Any], project: Project, audio: Path, text: str 
 
 
 # ============================================================================ 「一模一样」：深度挑选（设计方案 §1.3、§1.4、§2 P8）
-#: 存在 cache/select_deep/ 里的每次请求的结果的格式；改了打分的算法就加 1（以前存下的作废、重新试）
-DEEP_VERSION = 1
+#: 存在 cache/select_deep/ 里的每次请求的结果的格式；改了打分的算法就加 1（以前存下的作废、重新试）。
+#: 2：缓存键里分第几步（第三步另外量排序权重校准要用的东西）、每条记下实际查没查错字；没生成出来的不存
+DEEP_VERSION = 2
 #: models.json 里 identical 这一块的格式
 IDENTICAL_VERSION = 1
 #: 种子：1234 + 第几句 × 7919 + 第几条参考 × 104729（每次挑选都一样，比较才公平，也能接着上次没做完的往下做）
@@ -592,6 +593,7 @@ class _Job:
     sampling: Dict[str, Any]
     n: int
     seed: int
+    asr: bool = False            # 发这个请求时查不查错字（识别校验能用、没出过错）：缓存键里有它，存的结果也要是这样量的
     key: str = ""
 
     @property
@@ -762,6 +764,12 @@ class _DeepSelect:
         it.aux = {str(r["id"]): S.aux_set(r, pool, self.prior, n_aux) for r in refs}
 
     # ------------------------------------------------------------------ 请求
+    @staticmethod
+    def _stage_tag(stage: str) -> str:
+        """缓存键里的「哪一步」：第一、二步量的东西一样（共用存下的结果）；第三步另外量音调起伏 / 频谱（排序权重的校准
+        要用）、试听参考录音不量音调走向，所以分开存（不然第三步会直接用前两步存下的、少量了几样东西的结果）。"""
+        return stage if stage in ("C", "AU") else "S"
+
     def _key(self, job: _Job) -> str:
         from voicetwin.utils.textutil import short_hash
 
@@ -769,8 +777,8 @@ class _DeepSelect:
         return short_hash(DEEP_VERSION, _weights_sig(self.backend, job.ckpt), job.item.key, job.item.text, job.item.lang,
                           job.seed, str(r.get("id")), str(r.get("text") or ""), r.get("trim"),
                           [str(a.get("id")) for a in job.aux], sorted(job.sampling.items()), job.n, 1.0,
-                          self.judge_sig, self.twin_sig, self.weights_version,
-                          self.checker is not None and not self.asr_failed, n=20)
+                          self.judge_sig, self.twin_sig, self.weights_version, bool(job.asr),
+                          self._stage_tag(job.stage), n=20)
 
     def job(self, stage: str, ckpt: Optional[Dict[str, Any]], it: _Item, ref_j: int, n: int,
             ref: Optional[Dict[str, Any]] = None, aux: Optional[List[Dict[str, Any]]] = None) -> _Job:
@@ -779,20 +787,29 @@ class _DeepSelect:
             aux = it.aux.get(str(ref["id"])) or []
         seed = SEED_BASE + it.index * ITEM_SEED_STEP + ref_j * REF_SEED_STEP
         j = _Job(stage=stage, ckpt=ckpt, item=it, ref=ref, ref_j=ref_j, aux=list(aux), sampling=dict(self.sampling),
-                 n=max(1, int(n)), seed=int(seed))
+                 n=max(1, int(n)), seed=int(seed), asr=bool(self.checker is not None and not self.asr_failed))
         j.key = self._key(j)
         return j
 
     def _cache_path(self, key: str) -> Path:
         return self.cache_dir / key[:2] / f"{key}.json"
 
-    def _cache_get(self, key: str) -> Optional[Dict[str, Any]]:
+    def _cache_get(self, key: str, asr: bool) -> Optional[Dict[str, Any]]:
+        """存下的结果：格式对、真的生成出来了、查没查错字和现在要的一样才用。"""
         path = self._cache_path(key)
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, ValueError):
             return None
-        return data if isinstance(data, dict) and data.get("version") == DEEP_VERSION else None
+        if not isinstance(data, dict) or data.get("version") != DEEP_VERSION or not data.get("rows"):
+            return None
+        return data if data.get("asr") is bool(asr) else None
+
+    def _cacheable(self, job: _Job, rec: Dict[str, Any]) -> bool:
+        """能不能存下来下次接着用：没生成出来的（超时、连接断了、模型加载失败……）不存——下次再点「重新挑选」时重新试；
+        每个版本都要按这个请求的缓存键的方式量（识别校验中途出错以后量的没有错字率，不能存在「查错字」的键下面）。"""
+        rows = rec.get("rows") or []
+        return bool(rows) and all(bool((r.get("m") or {}).get("asr")) is bool(job.asr) for r in rows)
 
     def _cache_put(self, key: str, rec: Dict[str, Any]) -> None:
         from voicetwin.utils import atomic
@@ -886,6 +903,7 @@ class _DeepSelect:
             log.warning(f"⚠️ 识别校验出错了（{_first_line(exc)}），这次只按声纹和节奏挑选（所有模型都不算错字率）")
             self.asr_failed = True
             sc.cer_checker = None
+            use_asr = False
             s = sc.full(wav, sr, it.text, it.lang_eff, 1.0, prepared=prepared, use_asr=False)
         embs = dict((prepared or {}).get("embs") or {}) if isinstance(prepared, dict) else {}
         seconds = prepared.get("seconds") if isinstance(prepared, dict) else None
@@ -893,7 +911,8 @@ class _DeepSelect:
         m: Dict[str, Any] = {"total": s.total, "timbre": sc.timbre_term(s), "pct": s.pct, "pct_raw": s.pct_raw,
                              "spread": s.spread, "sim": s.speaker_sim, "cer": s.cer, "errors": s.errors,
                              "checker": s.checker, "voiced": s.voiced, "expected": s.expected, "dur_dev": s.dur_dev,
-                             "silent": "几乎没有声音" in (s.issues or []), "raws": raws, "seconds": seconds}
+                             "silent": "几乎没有声音" in (s.issues or []), "raws": raws, "seconds": seconds,
+                             "asr": bool(use_asr)}
         if it.real is not None:
             gen = embs if embs else self.sim.embed(wav, sr)
             m["to_real"] = self.sim.compare(gen, it.real["emb"], seconds)["to_real"]
@@ -914,7 +933,8 @@ class _DeepSelect:
         return _jsonable(m)
 
     def run_jobs(self, jobs: List[_Job], lo: float, hi: float, label: str) -> Dict[str, Dict[str, Any]]:
-        """按顺序发这些请求（以前做过的直接用存下的结果），生成线程发请求、主线程同时给上一个打分。"""
+        """按顺序发这些请求（以前做过的直接用存下的结果），生成线程发请求、主线程同时给上一个打分。
+        没生成出来的、查错字中途出错以后量的不存（见 _cacheable），这次照样用。"""
         from voicetwin.synth.search import _Producer
 
         recs: Dict[str, Dict[str, Any]] = {}
@@ -924,7 +944,7 @@ class _DeepSelect:
             if j.key in seen:
                 continue
             seen.add(j.key)
-            hit = self._cache_get(j.key)
+            hit = self._cache_get(j.key, j.asr)
             if hit is not None:
                 recs[j.key] = hit
             else:
@@ -956,7 +976,8 @@ class _DeepSelect:
                     else:
                         out = self._work(j)
                     rec = self._absorb(j, out)
-                    self._cache_put(j.key, rec)
+                    if self._cacheable(j, rec):
+                        self._cache_put(j.key, dict(rec, asr=bool(j.asr)))
                     recs[j.key] = rec
                 self._p(lo + (hi - lo) * (i + 1) / n, f"{label}……{i + 1}/{n}")
         finally:
@@ -1137,6 +1158,7 @@ class _DeepSelect:
             med = float(np.median(vals))
             info["median"][lang] = round(med, 4)
             speed[lang] = round(float(np.clip(med, *SPEED_CLIP)), 3) if abs(med - 1.0) > SPEED_DEADBAND else 1.0
+        info["applied"] = dict(speed)  # 生成时实际用的倍速（没测出来的语言是 1.0 = 不调）
         return speed, info
 
     def calibration(self, results: List[Dict[str, Any]]) -> Dict[str, Any]:
@@ -1194,8 +1216,11 @@ class _DeepSelect:
         recs = self.run_jobs([j for _, _, j in jobs], lo, hi, label)
         truth: Dict[str, List[float]] = {}
         for ref, it, j in jobs:
-            best = FAIL_S
-            for m in self.rows(recs.get(j.key)):
+            rows = self.rows(recs.get(j.key))
+            if not rows:  # 请求没成功（超时、引擎出错……）：不是这条参考的分数，不算（下次再试）
+                continue
+            best = FAIL_S  # 生成出来了、但几乎没声音：这条参考配这句真的不行，按最差算
+            for m in rows:
                 if m.get("silent"):
                     continue
                 v = float(m.get("to_real") or 0.0)
@@ -1209,8 +1234,13 @@ class _DeepSelect:
         prior = {k: round(float(np.mean(v)), 5) for k, v in truth.items() if v}
         from voicetwin.utils.textutil import short_hash
 
-        return {"prior": prior, "version": "aud-" + short_hash(sorted(prior.items()), n=10) if prior else "",
-                "n_refs": len(refs), "n_items": len(items), "requests": len(jobs)}
+        out = {"prior": prior, "version": "aud-" + short_hash(sorted(prior.items()), n=10) if prior else "",
+               "n_refs": len(prior), "n_items": len(items), "requests": len(jobs)}
+        if jobs and not prior:  # 一句都没生成出来：没有先验（生成时按原来的方法挑参考），如实说
+            out.update(prior=None, failed=True, skipped="试听的时候一句都没生成出来")
+        elif len(prior) < len(refs):
+            out["unmeasured_refs"] = len(refs) - len(prior)
+        return out
 
 
 # ---------------------------------------------------------------------------- 排名
@@ -1392,7 +1422,7 @@ def select_deep(cfg: Dict[str, Any], project: Project, backend: Backend, progres
              "weights": cal.get("weights") or {}, "weights_version": cal.get("version") or "default",
              "calibration": {k: cal.get(k) for k in ("gain", "adopted", "loo", "default_score", "n_groups", "n_items", "why")},
              "ref_prior": aud.get("prior"), "ref_prior_version": aud.get("version") or "",
-             "audition": {k: aud.get(k) for k in ("n_refs", "n_items", "requests", "skipped")},
+             "audition": {k: aud.get(k) for k in ("n_refs", "n_items", "requests", "skipped", "failed", "unmeasured_refs")},
              "bank_sig": sel.bank_sig, "model_ids": [_weights_sig(backend, c) for c in ckpts],
              "items": {"val": sum(1 for i in sel.items if i.kind == "val"), "test": sum(1 for i in sel.items if i.kind == "test")},
              "seeds": {"base": SEED_BASE, "item_step": ITEM_SEED_STEP, "ref_step": REF_SEED_STEP},
@@ -1411,7 +1441,8 @@ def select_deep(cfg: Dict[str, Any], project: Project, backend: Backend, progres
         "ci_p": rk["ci_p"], "notes": rk["notes"], "four_ok": rk["four_ok"], "stages": stages,
         "lang_weights": rk["weights"], "lang_weights_source": rk["weights_source"], "lang_shares": sel.shares.get("shares"),
         "lang_calibration_notes": LG.calibration_notes(sel.calib, {i.group for i in sel.items}),
-        "speed_info": speed_info, "weights_note": _cal_note(cal), "audition": block["audition"],
+        "speed_info": speed_info, "weights_note": _cal_note(cal), "weights_plain": _cal_plain(cal),
+        "audition": block["audition"],
         "requests": dict(sel.stats)}
     selection["lines"] = deep_summary_lines(selection)
     info: Dict[str, Any] = {"speed": speed, "selection": selection, "identical": block}
@@ -1429,9 +1460,17 @@ def select_deep(cfg: Dict[str, Any], project: Project, backend: Backend, progres
 
 
 def _cal_note(cal: Dict[str, Any]) -> str:
+    """排序权重校准的说明（带数，日志、models.json 用）。"""
     from voicetwin.synth import calibrate_rank
 
     return calibrate_rank.describe(cal)
+
+
+def _cal_plain(cal: Dict[str, Any]) -> str:
+    """排序权重校准给老师看的一句话（不写内部的参数）。"""
+    from voicetwin.synth import calibrate_rank
+
+    return calibrate_rank.plain(cal)
 
 
 def _save_report(project: Project, sel: "_DeepSelect", results: List[Dict[str, Any]], rk: Dict[str, Any]) -> None:
@@ -1496,12 +1535,19 @@ def deep_summary_lines(selection: Dict[str, Any]) -> List[str]:
                      "（声纹相似度、读错字、长短、音调）排。")
     lines += [str(x) for x in selection.get("notes") or []]
     two = selection.get("two") or []
+    # 两个都留着：现在生成只用第 1 名（用第 2 名生成的那一步还没做），照实说，不叫老师去比两个模型
+    keep_note = "两个都记下了；现在生成只用第 1 名（用第 2 名生成的功能还没做好），生成以后请用耳朵听一听。"
     if len(two) == 2 and selection.get("tradeoff"):
         names = "」「".join(LG.GROUP_LABELS.get(g, g) for g in selection["tradeoff"])
-        lines.append(f"第 1、2 名各有长处：第 2 名「{names}」明显更像（超出误差范围），第 1 名综合总评分更高；"
-                     "两个都留着，现在生成用第 1 名，请用耳朵听听两个的差别。")
+        lines.append(f"第 1、2 名各有长处：第 2 名「{names}」明显更像（超出误差范围），第 1 名综合总评分更高；" + keep_note)
     elif len(two) == 2:
-        lines.append("第 1、2 名的差别在误差范围内（分不出来）：两个都留着，现在生成用第 1 名，请用耳朵听听两个的差别。")
+        lines.append("第 1、2 名的差别在误差范围内（分不出来）：" + keep_note)
+    few = [(g, int((((res[0].get("four") or {}).get("groups") or {}).get(g) or {}).get("n_measured") or 0))
+           for g in LG.few_groups(res[0].get("four"))] if res else []
+    if few:
+        names = "、".join(f"「{LG.GROUP_LABELS.get(g, g)}」只有 {n} 句" for g, n in few)
+        lines.append(f"{names}，太少：{'这一类' if len(few) == 1 else '这几类'}分不出两个模型谁更好，"
+                     "排名次时只算进综合总评分。")
     lines += [str(x) for x in selection.get("lang_calibration_notes") or []]
     w = selection.get("lang_weights") or {}
     if w:
@@ -1509,12 +1555,9 @@ def deep_summary_lines(selection: Dict[str, Any]) -> List[str]:
     if any(int((((r.get("four") or {}).get("groups") or {}).get(g) or {}).get("n") or 0) > 0
            for r in res[:1] for g in ("mixed", "en")):
         lines.append(LG.EN_NOTE + "。")
-    sp = selection.get("speed_info") or {}
-    n_zh = int((sp.get("n_items") or {}).get("zh") or 0)
-    if sp and n_zh < SPEED_MIN_ITEMS:
-        lines.append(f"没参加训练的录音只有 {n_zh} 句能比语速（不到 {SPEED_MIN_ITEMS} 句），语速先不调。")
-    if selection.get("weights_note"):
-        lines.append(str(selection["weights_note"]) + "。")
+    lines += speed_lines(selection.get("speed_info"))
+    if selection.get("weights_plain"):
+        lines.append(str(selection["weights_plain"]) + "。")
     aud = selection.get("audition") or {}
     if aud.get("skipped"):
         lines.append(f"没有试听参考录音（{aud['skipped']}），生成时按原来的方法挑参考录音。")
@@ -1523,6 +1566,43 @@ def deep_summary_lines(selection: Dict[str, Any]) -> List[str]:
                      "生成时优先用实测更像的参考录音。")
     lines.append(BIAS_LINE)
     return lines
+
+
+SPEED_LANG_NAMES = {"zh": "中文", "en": "英文"}
+
+
+def speed_lines(speed_info: Any) -> List[str]:
+    """语速重新校准给老师看的几行：每种语言（没参加训练的录音里有的）各一行——量到了写实测的快慢和生成时用的倍速，
+    句子不够（不到 8 句）写「这次没测，语速先不调」。没有挑选的语速信息时不写。"""
+    if not isinstance(speed_info, dict) or not speed_info:
+        return []
+    n_items = {str(k): int(v or 0) for k, v in (speed_info.get("n_items") or {}).items()}
+    med = speed_info.get("median") or {}
+    applied = speed_info.get("applied") or {}
+    if not n_items:
+        return ["语速：没参加训练的录音里没有能比语速的句子，这次没测，语速先不调。"]
+    out = []
+    for lang in sorted(n_items, key=lambda k: (k != "zh", k)):
+        name, n, m = SPEED_LANG_NAMES.get(lang, lang), n_items[lang], _num(med.get(lang))
+        if m is None:
+            out.append(f"语速（{name}）：没参加训练的录音只有 {n} 句能比（不到 {SPEED_MIN_ITEMS} 句，量不准），"
+                       "这次没测，语速先不调。")
+            continue
+        v = _num(applied.get(lang))
+        if v is None:  # 以前存的没记实际用的倍速：按同样的规则算
+            v = round(float(np.clip(m, *SPEED_CLIP)), 3) if abs(m - 1.0) > SPEED_DEADBAND else 1.0
+        if abs(m - 1.0) < 0.005:
+            head = f"语速（实测，{name} {n} 句）：模型读得和你本人一样快"
+        else:
+            head = f"语速（实测，{name} {n} 句）：模型读得比你本人{'慢' if m > 1 else '快'} {abs(m - 1.0) * 100:.0f}%"
+        if abs(v - 1.0) < 1e-9:
+            out.append(head + (f"，差不到 {SPEED_DEADBAND * 100:.0f}%" if abs(m - 1.0) >= 0.005 else "") + "，不用调。")
+        elif abs(v - m) > 0.005:  # 超出能调的范围：只调到头
+            out.append(head + f"，生成时按 {v:g} 倍速读（最多只能调到这么多，"
+                              f"还会比你本人{'慢' if m > 1 else '快'}一点）。")
+        else:
+            out.append(head + f"，生成时按 {v:g} 倍速读，和你本人一样快。")
+    return out
 
 
 # ---------------------------------------------------------------------------- 准备「一模一样」（生成前）
@@ -1604,7 +1684,8 @@ def _mini_calibration(cfg: Dict[str, Any], project: Project, backend: Backend, s
                       p: Callable[[float, str], None], judge: Any = None, checker: Any = None,
                       use_asr: Optional[bool] = None) -> Dict[str, Any]:
     """选定的模型 × 没参加训练的录音（不加检查用的句子）按第三步的方式试一遍 → 语速、排序权重、试听参考录音。
-    只写 models.json 的 identical（不改选定的模型、挑选结果和别的档位用的语速）。"""
+    只写 models.json 的 identical（不改选定的模型、挑选结果和别的档位用的语速）。一句都没生成出来（试一遍、试听都算）
+    时报错、不写（prepare_identical 记下原因，下次生成时再试）；语速只写量到了的语言。"""
     sel = _DeepSelect(cfg, project, backend, lambda f, m: p(f, m), use_asr=use_asr, judge=judge, checker=checker)
     sel.load(with_tests=False, lo=0.30, hi=0.32, bank_msg="准备「一模一样」：", group_calib=False)
     block: Dict[str, Any] = {"version": IDENTICAL_VERSION, "run_stamp": run_stamp(project, backend),
@@ -1623,16 +1704,25 @@ def _mini_calibration(cfg: Dict[str, Any], project: Project, backend: Backend, s
     backend.start()
     results = sel.final([sel_ck], 0.33, 0.70, "准备「一模一样」（这个模型只做一次）：用没参加训练的录音试一遍这个模型")
     r = results[0]
+    if r["n_items"] and r["failed"] >= r["n_items"]:  # 什么都没量到：不能记成做完了（不然以后再也不做），下次生成时再试
+        raise RuntimeError(f"用选定的模型试 {r['n_items']} 句没参加训练的录音，一句都没生成出来（请看引擎日志）")
     speed, speed_info = sel.speed(r)
+    # 只写量到了的语言（没参加训练的录音至少 8 句）：没量到的不写，生成时照旧用挑模型时实测的语速（不改成没测过的 1.0）
+    speed = {lang: v for lang, v in speed.items() if lang in (speed_info.get("median") or {})}
+    speed_info = dict(speed_info, applied=dict(speed))
     cal = sel.calibration(results)
     aud = sel.audition(sel_ck, 0.70, 0.99, "准备「一模一样」：用没参加训练的录音试听参考录音")
+    if aud.get("failed"):
+        raise RuntimeError("试听参考录音时一句都没生成出来（请看引擎日志）")
     block.update(speed=speed, speed_info=speed_info, weights=cal.get("weights") or {},
                  weights_version=cal.get("version") or "default",
                  calibration={k: cal.get(k) for k in ("gain", "adopted", "loo", "default_score", "n_groups", "n_items", "why")},
                  ref_prior=aud.get("prior"), ref_prior_version=aud.get("version") or "",
-                 audition={k: aud.get(k) for k in ("n_refs", "n_items", "requests", "skipped")}, bank_sig=sel.bank_sig,
+                 audition={k: aud.get(k) for k in ("n_refs", "n_items", "requests", "skipped", "failed", "unmeasured_refs")},
+                 bank_sig=sel.bank_sig,
                  items={"val": len(sel.items), "test": 0},
                  result={k: v for k, v in r.items() if k not in ("ckpt", "per_item")})
     project.update_models(backend.name, {"identical": block})
-    log.info(f"准备「一模一样」：小校准做完了（语速 {speed}；{_cal_note(cal)}）")
+    sp_text = f"语速 {speed}" if speed else f"语速没测（没参加训练的录音不到 {SPEED_MIN_ITEMS} 句），照旧用挑模型时的语速"
+    log.info(f"准备「一模一样」：小校准做完了（{sp_text}；{_cal_note(cal)}）")
     return block

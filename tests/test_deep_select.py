@@ -290,7 +290,9 @@ def test_stages_pick_the_designed_best(deep_run):
     assert b.loads[-1] == (b.sov[8], b.gpt[6])  # 最后换成挑出来的那个
     lines = s["lines"]
     assert lines[0] == "挑选结果（实测，10 句：没参加训练的录音 8 句、检查用的句子 2 句）："
-    assert lines[1].startswith("第 1 名 s8-g6：中英夹在一起 100.0% ± 0.0（") and "错字率（没测出来）" in lines[1]
+    # 每类只有 5 句（8 句录音 + 2 句检查用的句子）：只写平均、不写误差范围
+    assert lines[1].startswith("第 1 名 s8-g6：中英夹在一起 100.0%（只有 5 句，太少，量不出误差范围）｜纯中文 100.0%（只有 5 句")
+    assert "错字率（没测出来）" in lines[1]
     assert sel.BIAS_LINE in lines and LG.EN_NOTE + "。" in lines
 
 
@@ -350,6 +352,9 @@ def test_bootstrap_tie_keeps_two_checkpoints(tmp_path, fast):
     assert block["tie"] is True and len(block["ckpts"]) == 2
     assert {c["id"] for c in block["ckpts"]} == {"s8-g6", "s10-g6"}
     assert info["selection"]["two"] and any("分不出来" in x for x in info["selection"]["lines"])
+    # 用第 2 名生成的那一步还没做：照实说，不叫老师去比两个模型（她没法用第 2 名生成）
+    line = next(x for x in info["selection"]["lines"] if "分不出来" in x)
+    assert "现在生成只用第 1 名（用第 2 名生成的功能还没做好）" in line and "两个的差别" not in line
 
 
 def test_speed_needs_eight_val_items(tmp_path, fast):
@@ -357,11 +362,13 @@ def test_speed_needs_eight_val_items(tmp_path, fast):
     b = FakeQualityBackend(project, sovits=(8,), gpt=(6,), ratio=1.2)
     info = _run(cfg, project, b)
     assert info["speed"]["zh"] == pytest.approx(1.2, abs=0.02) and info["identical"]["speed"] == info["speed"]
+    assert f"语速（实测，中文 8 句）：模型读得比你本人慢 20%，生成时按 {info['speed']['zh']:g} 倍速读，和你本人一样快。" \
+        in info["selection"]["lines"]
     cfg2, project2 = _project(tmp_path / "few", n_val=5)
     b2 = FakeQualityBackend(project2, sovits=(8,), gpt=(6,), ratio=1.2)
     info2 = _run(cfg2, project2, b2)
     assert info2["speed"] == {"zh": 1.0} and info2["identical"]["speed"] == {"zh": 1.0}
-    assert any("不到 8 句），语速先不调" in x for x in info2["selection"]["lines"])
+    assert "语速（中文）：没参加训练的录音只有 5 句能比（不到 8 句，量不准），这次没测，语速先不调。" in info2["selection"]["lines"]
 
 
 def test_previous_selected_stays_selected_when_it_ranks_first(tmp_path, fast):
@@ -504,7 +511,9 @@ def test_select_deep_error_falls_back_to_the_standard_selection(gsv_project, mon
     res = wf.run_select(cfg, project.voice, "gptsovits", mode="identical")
     assert seen == ["deep", ("standard", False)]
     assert "测试：深度挑选出错了" in res["selection_error"] and res["fallback"] == "standard"
-    assert any("「一模一样」的挑选这次没成功" in m for m in vt_log.messages)
+    warn = next(m for m in vt_log.messages if "「一模一样」的挑选这次没成功" in m)
+    # 标准的挑法也可能出错（例如引擎起不来）：不许诺「保证一定有挑好的模型」
+    assert "改用标准的挑法（从早到晚均匀挑几个版本比）再挑一次" in warn and "保证" not in warn
     assert Path(res["selection_error_report"]).exists()
     from voicetwin.webui import app as A
 
@@ -825,7 +834,7 @@ def test_within_interval_difference_is_a_tie():
     lines = sel.deep_summary_lines({"results": [rk["order"][0], rk["order"][1]], "val_items": 20, "test_items": 0,
                                     "two": ["A", "B"], "tie": True, "tradeoff": [], "four_ok": True,
                                     "lang_weights": rk["weights"], "lang_weights_source": "material"})
-    assert any("差别在误差范围内（分不出来）：两个都留着" in x for x in lines)
+    assert any("差别在误差范围内（分不出来）：两个都记下了；现在生成只用第 1 名" in x for x in lines)
     assert any(x.startswith("综合总评分按你素材里各类句子实际说话时间的比例算：中英夹在一起 56%、纯中文 44%") for x in lines)
 
 
@@ -843,15 +852,20 @@ def test_cer_gates_the_first_place():
 
 
 def test_four_scores_display_text():
-    items = ([{"key": f"m{k}", "group": "mixed", "pct": 90.0 + k % 3, "w": 2.0} for k in range(6)]
-             + [{"key": f"z{k}", "group": "zh", "pct": 95.0, "w": 2.0} for k in range(4)])
+    items = ([{"key": f"m{k}", "group": "mixed", "pct": 90.0 + k % 3, "w": 2.0} for k in range(9)]
+             + [{"key": f"z{k}", "group": "zh", "pct": 95.0, "w": 2.0} for k in range(8)])
     sc = LG.group_scores(items, {"mixed": 0.56, "zh": 0.44})
     text = LG.four_scores_text(sc)
     m, z = sc["groups"]["mixed"], sc["groups"]["zh"]
-    assert text == (f"中英夹在一起 {m['mean']:.1f}% ± {m['pm']:.1f}（6 句）｜纯中文 95.0% ± 0.0（4 句）｜"
+    assert text == (f"中英夹在一起 {m['mean']:.1f}% ± {m['pm']:.1f}（9 句）｜纯中文 95.0% ± 0.0（8 句）｜"
                     f"纯英文 —（没有这类句子）｜综合总评分 {sc['composite']['mean']:.1f}% ± {sc['composite']['pm']:.1f}")
     assert LG.has_english(sc)
-    assert not LG.has_english(LG.group_scores(items[6:], {"zh": 1.0}))
+    assert not LG.has_english(LG.group_scores(items[9:], {"zh": 1.0}))
+    # 一类不到 8 句：只写量到的平均，不写误差范围（句子太少，重新抽样量出来的范围不可信）
+    few = LG.group_scores(items + [{"key": "e0", "group": "en", "pct": 95.0, "w": 2.0}], {"mixed": 0.5, "zh": 0.4, "en": 0.1})
+    assert few["groups"]["en"]["few"] is True and few["groups"]["en"]["pm"] is None and few["groups"]["en"]["lo"] is None
+    assert "｜纯英文 95.0%（只有 1 句，太少，量不出误差范围）｜" in LG.four_scores_text(few)
+    assert LG.few_groups(few) == ["en"] and LG.few_groups(sc) == []
 
 
 def test_no_unmeasured_numbers():
@@ -904,6 +918,8 @@ def test_web_select_result_shows_the_measured_table(deep_run):
     md = A._select_done_md(info)
     assert "综合总评分 100.0%" in md and "挑选结果（实测，10 句" in md and "第 1 名 s8-g6：" in md
     assert "中英夹在一起" in md and sel.BIAS_LINE in md and "V4" not in md
+    # 8 句录音量到了语速（和本人一样快）：实测的，才能说「一致」
+    assert md.splitlines()[0].endswith("；语速：实测和你本人一致，不用调")
     # 训练完自动挑选的结果也显示
     tmd = A._train_done_md({"train_minutes": 3.0, "selection": info, "selected": info["selected"]}, show_plan=False)
     assert "第 1 名 s8-g6：" in tmd and "综合总评分 100.0%" in tmd
@@ -969,3 +985,332 @@ def test_paired_bootstrap():
     x = rng.normal(0, 1, 40)
     p = sel._paired_bootstrap(x, x + rng.normal(0, 0.01, 40))
     assert 0.0 < p < 1.0 and sel._paired_bootstrap(x, x + 0.0) == 0.0
+
+
+# ============================================================================ 审查后的修改（两位审查员的意见，都先写了测试、改之前都失败）
+class _AsrChecker:
+    """假的识别校验：g6（音高偏 4 Hz）读错很多（错字率 0.3），别的都读对；第 fail_at 次调用时出错一次（之后照常）。"""
+
+    def __init__(self, fail_at=None):
+        self.n = 0
+        self.fail_at = fail_at
+
+    def check_mixed(self, wav, sr, text):
+        self.n += 1
+        if self.fail_at is not None and self.n == self.fail_at:
+            raise RuntimeError("模拟：识别模型显存不够")
+        cer = 0.3 if abs(_dominant(wav, sr) - BASE_F - 4.0) < 1.0 else 0.0
+        return {"cer": cer, "errors": 5 if cer else 0, "engine": "paraformer", "hyp": text}
+
+    def check(self, wav, sr, text, lang):
+        return self.check_mixed(wav, sr, text)
+
+
+def test_results_scored_after_the_asr_failure_are_not_reused_as_checked(tmp_path, fast):
+    """识别校验中途出错以后量的版本没有错字率：不能存在「查错字」的缓存键下面；下次（识别正常）要重新量，
+    名次和一开始就正常时一样（读错多的 g6 排最后）。"""
+    def stage_a(info):
+        return [r["id"] for r in info["selection"]["stages"]["A"]]
+
+    cfg0, p0 = _project(tmp_path / "clean")
+    clean = sel.select_deep(cfg0, p0, FakeQualityBackend(p0), use_asr=None, judge=_judge(), checker=_AsrChecker())
+    assert stage_a(clean)[-1] == "s6-g6"
+    cfg, project = _project(tmp_path / "poison")
+    first = sel.select_deep(cfg, project, FakeQualityBackend(project), use_asr=None, judge=_judge(),
+                            checker=_AsrChecker(fail_at=41))   # 第 41 次识别 = 第一步刚轮到 g6
+    assert first["selection"]["asr_check"] is False
+    b2 = FakeQualityBackend(project)
+    second = sel.select_deep(cfg, project, b2, use_asr=None, judge=_judge(), checker=_AsrChecker())
+    assert second["selection"]["asr_check"] is True
+    assert stage_a(second) == stage_a(clean)
+    assert {c[2] for c in b2.calls if c[2].startswith("s6-")} >= {"s6-g6"}   # 出错以后量的那些重新试了
+    # 每条存下的结果都记着实际查没查错字，和里面每个版本量的一样（出错以后的请求存在「不查错字」的键下面）
+    recs = [json.loads(f.read_text(encoding="utf-8")) for f in (project.cache_dir / "select_deep").glob("*/*.json")]
+    assert recs and all(all(row["m"]["asr"] is r["asr"] for row in r["rows"]) for r in recs)
+    assert {r["asr"] for r in recs} == {True, False}
+
+
+def test_failed_requests_are_retried_on_the_next_selection(tmp_path, fast):
+    """一次请求没生成出来（超时、连接断了……不算「重试也没用」的错误）不存：引擎好了再点「重新挑选」时重新试，
+    不会永远按最差算。"""
+    cfg, project = _project(tmp_path)
+    val = [r["text"] for r in project.load_manifest() if r["split"] == "val"]
+
+    class Flaky(FakeQualityBackend):
+        def synthesize_many(self, req, n, out_dir):
+            if ((self.cur or {}).get("id", "current"), req.text) in self.fail:
+                self.calls.append((dataclasses.replace(req), int(n), (self.cur or {}).get("id")))
+                raise RuntimeError("Read timed out. (read timeout=600)")
+            return super().synthesize_many(req, n, out_dir)
+
+    b1 = Flaky(project, sovits=(8, 10), gpt=(6, 7), fail={("s8-g6", t) for t in val[:2]})
+    assert _run(cfg, project, b1)["selection"]["best"] == "s8-g7"
+    b2 = Flaky(project, sovits=(8, 10), gpt=(6, 7))
+    second = _run(cfg, project, b2)
+    s = second["selection"]
+    assert s["best"] == "s8-g6" and next(r for r in s["results"] if r["id"] == "s8-g6")["failed"] == 0
+    assert {c[2] for c in b2.calls} == {"s8-g6"}   # 别的模型都用存下的结果；s8-g6 重新试了上次失败的两句（和试听）
+    assert {c[0].text for c in b2.calls} >= set(val[:2])
+    # 这次加载失败的模型也不存：下次再试（别的模型用存下的结果）
+    cfg3, project3 = _project(tmp_path / "broken")
+    b3 = Flaky(project3, sovits=(8, 10), gpt=(6, 7))
+    loads = b3.use_checkpoint
+
+    def broken(ck):
+        if ck["id"] == "s10-g7":
+            raise RuntimeError("模拟：模型文件读不了")
+        loads(ck)
+
+    b3.use_checkpoint = broken
+    _run(cfg3, project3, b3)
+    assert "s10-g7" not in {c[2] for c in b3.calls}
+    b4 = Flaky(project3, sovits=(8, 10), gpt=(6, 7))
+    _run(cfg3, project3, b4)
+    assert {c[2] for c in b4.calls} == {"s10-g7"}
+
+
+def test_mini_calibration_that_measured_nothing_is_retried_next_time(tmp_path, fast, vt_log):
+    """生成前的小校准一句都没生成出来：不记成做完了（下次生成时再试），也不把挑模型时实测的语速盖成没测过的 1.0。"""
+    cfg, project = _project(tmp_path, n_val=8)
+
+    class Down(FakeQualityBackend):
+        def synthesize_many(self, req, n, out_dir):
+            self.calls.append((req, n, "x"))
+            raise RuntimeError("Read timed out. (read timeout=600)")
+
+    b = Down(project, sovits=(8, 10), gpt=(6, 7))
+    _old_model(project, b)
+    project.update_models("gptsovits", {"speed": {"zh": 1.12}})
+    got = sel.prepare_identical(cfg, project, b, judge=_judge(), use_asr=False)
+    entry = project.load_models()["gptsovits"]
+    assert got["mini"] is False and "identical" not in entry and entry["speed"] == {"zh": 1.12}
+    assert sel.identical_stale(project, b)
+    assert any("小校准这次没做成" in m and "一句都没生成出来" in m for m in vt_log.messages)
+    # 引擎好了：下次生成前再做（上次失败的请求没有存，重新试）
+    ok = FakeQualityBackend(project, sovits=(8, 10), gpt=(6, 7), ratio=1.1)
+    got2 = sel.prepare_identical(cfg, project, ok, judge=_judge(), use_asr=False)
+    block = project.load_models()["gptsovits"]["identical"]
+    assert got2["mini"] is True and ok.calls and block["speed"]["zh"] == pytest.approx(1.1, abs=0.02)
+    assert block["ref_prior"] and min(block["ref_prior"].values()) > sel.FAIL_S
+
+
+def test_mini_calibration_keeps_the_measured_speed_when_it_cannot_measure(tmp_path, fast, monkeypatch):
+    """没参加训练的录音不到 8 句：小校准量不了语速，identical.speed 不写（不是 1.0），「一模一样」生成时照旧用挑模型时
+    实测的语速（和别的档位一样），不会比「均衡」慢 15%。"""
+    from voicetwin.synth import engine as eng
+
+    monkeypatch.setattr(eng, "_vram_tier", lambda: "none")
+    cfg, project = _project(tmp_path, n_val=5)
+    b = FakeQualityBackend(project, sovits=(8,), gpt=(6,), ratio=1.15)
+    _old_model(project, b)
+    project.update_models("gptsovits", {"speed": {"zh": 1.15}})
+    b.speed_calibration = lambda: project.load_models()["gptsovits"].get("speed", {})
+    got = sel.prepare_identical(cfg, project, b, judge=_judge(), use_asr=False)
+    block = project.load_models()["gptsovits"]["identical"]
+    assert got["mini"] is True and block["speed"] == {} and block["speed_info"]["n_items"] == {"zh": 5}
+    n = eng.Narrator(cfg, project, b, quality="identical", tier="none", asr_check=False)
+    assert n._speed_for("zh") == pytest.approx(1.15)
+
+
+def test_audition_prior_leaves_out_references_that_were_never_measured(tmp_path, fast):
+    """试听时某一条参考的请求全都没成功（不是这条参考的分数）：它不进先验（不给它 −3），别的照常。"""
+    cfg, project = _project(tmp_path, n_val=8, n_train=12, sources=3)
+
+    class OneBad(FakeQualityBackend):
+        bad = None
+
+        def synthesize_many(self, req, n, out_dir):
+            stem = Path(str(req.ref_audio)).stem
+            self.bad = self.bad or stem   # 第一条参考的请求全都失败
+            if stem == self.bad:
+                raise RuntimeError("Read timed out. (read timeout=600)")
+            return super().synthesize_many(req, n, out_dir)
+
+    b = OneBad(project, sovits=(8,), gpt=(6,))
+    project.update_models("gptsovits", {"selected": b.checkpoints()[0]})
+    res = sel.audition_references(cfg, project, b, sim=sel._Sim(cfg, project, judge=_judge()), use_asr=False)
+    assert b.bad and b.bad not in res["prior"] and len(res["prior"]) == 8 and res["unmeasured_refs"] == 1
+    assert min(res["prior"].values()) > sel.FAIL_S and res["n_refs"] == 8
+
+
+def test_small_group_does_not_block_first_place():
+    """只有 1 句纯英文：两个模型差 0.5% 不能算「明显更差（超出误差范围）」，综合总评分更高的照样排第一；
+    显示时不写「± 0.0」。"""
+    rng = np.random.default_rng(11)
+    base_m, base_z = rng.uniform(88, 96, 20), rng.uniform(88, 96, 20)
+    pa, pb, groups = [], [], []
+    for i in range(20):
+        pa += [float(base_m[i] + 0.5 + rng.normal(0, 2.0)), float(base_z[i] + 0.5 + rng.normal(0, 2.0))]
+        pb += [float(base_m[i]), float(base_z[i])]
+        groups += ["mixed", "zh"]
+    a = _res("A", pa + [95.0], groups + ["en"], w=[2.0] * 41)
+    b = _res("B", pb + [95.5], groups + ["en"], w=[2.0] * 41)
+    for r in (a, b):  # 纯英文也算进综合总评分（素材里有一点）
+        r["four"] = LG.group_scores([{"key": k, "group": v["group"], "pct": v["pct"], "w": v["w"]}
+                                     for k, v in r["per_item"].items()], {"mixed": 0.5, "zh": 0.45, "en": 0.05})
+    assert a["four"]["composite"]["mean"] > b["four"]["composite"]["mean"]
+    rk = sel.rank_results([a, b])
+    assert rk["first"]["id"] == "A" and not rk["notes"]
+    cmp = LG.paired_compare([{"key": k, "group": v["group"], "pct": v["pct"], "w": v["w"]} for k, v in b["per_item"].items()],
+                            [{"key": k, "group": v["group"], "pct": v["pct"], "w": v["w"]} for k, v in a["per_item"].items()],
+                            rk["weights"])
+    assert cmp["groups"]["en"]["few"] is True and cmp["groups"]["en"]["clear"] is None and cmp["groups"]["en"]["n"] == 1
+    text = LG.four_scores_text(a["four"])
+    assert "纯英文 95.0%（只有 1 句，太少，量不出误差范围）" in text and "± 0.0（1 句）" not in text
+    lines = sel.deep_summary_lines({"results": [a, b], "val_items": 41, "test_items": 0, "four_ok": True})
+    assert "「纯英文」只有 1 句，太少：这一类分不出两个模型谁更好，排名次时只算进综合总评分。" in lines
+
+
+def test_stage_c_does_not_reuse_screen_records(tmp_path, fast, monkeypatch):
+    """第三步每句 4 个 = 2 条参考 × 2 个，和第一、二步每句 2 个一样：第三步也要自己量（排序权重校准要用音调起伏 / 频谱），
+    不能拿第一、二步存下的结果。第一、二步之间照样共用。"""
+    from voicetwin.eval.identical_judge import IdenticalScorer
+
+    monkeypatch.setattr(IdenticalScorer, "_shape", lambda self, wav, sr, text: (1.5, 2.5))
+    seen = {}
+    orig = sel._DeepSelect.calibration
+
+    def spy(self, results):
+        rows = [m for r in results for v in r["per_item"].values() if v["kind"] == "val" for m in v["rows"]]
+        seen["miss"], seen["tot"] = sum(1 for m in rows if m.get("prosody_z") is None), len(rows)
+        return orig(self, results)
+
+    monkeypatch.setattr(sel._DeepSelect, "calibration", spy)
+    final = sel._DeepSelect.final
+    cfg, project = _project(tmp_path)
+    b = FakeQualityBackend(project, final=4)
+
+    def mark(self, *a, **k):
+        b.c0 = len(b.calls)
+        return final(self, *a, **k)
+
+    monkeypatch.setattr(sel._DeepSelect, "final", mark)
+    _run(cfg, project, b)
+    assert seen["tot"] > 0 and seen["miss"] == 0
+    # 第一步和第二步都有 s6-g6（第二步 = 第一步最好的语气模型 × 每个音色模型）：第二步用第一步存下的，不再生成
+    assert sum(1 for c in b.calls[:b.c0] if c[2] == "s6-g6") == 10
+
+
+class _LenMember:
+    """声纹分数只跟长短有关的假模型（和 JudgeMember 一样：短句子按同样长度的你自己的录音的标准）：
+    6 秒以上 1.0，2.5 秒 0.85。"""
+    name = "m"
+    calib = {"p50": 1.0}
+
+    @staticmethod
+    def curve(seconds):
+        return float(np.interp(seconds, [2.5, 6.0], [0.85, 1.0]))
+
+    def pct_raw(self, emb, seconds=None):
+        return 100.0 * float(emb[0]) / (self.curve(seconds) if seconds is not None else 1.0)
+
+
+class _LenJudge:
+    members = [_LenMember()]
+    models = ["m"]
+
+    def embed_with_seconds(self, wav, sr):
+        secs = len(wav) / sr
+        return {"m": np.array([_LenMember.curve(secs)])}, secs
+
+    def signature(self):
+        return "len-judge"
+
+
+def test_group_calibration_uses_the_same_short_clip_standard_as_generated_sentences(tmp_path):
+    """两组只是录音长短不一样（和中文英文无关）：按组校准不能把长短当成「这类句子天生分数低」。你自己的录音按给生成的
+    句子打分一样的算法正好是 100%，一个 90% 像你的生成句子还是 90%。"""
+    cfg = make_cfg(tmp_path / "ws")
+    project = Project(cfg, "长短")
+    project.root.mkdir(parents=True, exist_ok=True)
+    project.clips_dir.mkdir(parents=True, exist_ok=True)
+    recs = []
+    for k in range(12):
+        for g, text, dur in (("mixed", MIXED_TEXTS[0], 2.5), ("zh", ZH_TEXTS[0], 6.0)):
+            path = project.clips_dir / f"{g}{k:02d}.wav"
+            sf.write(str(path), (0.1 * np.ones(int(dur * SR))).astype(np.float32), SR)
+            recs.append({"id": f"{g}{k:02d}", "path": project.relpath(path), "text": text, "lang": "zh", "split": "train",
+                         "keep": True, "duration": dur, "voiced": dur})
+    project.save_manifest(recs)
+    cal = LG.build_group_calibration(project, _LenJudge())
+    assert cal["groups"]["mixed"]["factors"]["m"] == pytest.approx(1.0, abs=1e-6)
+    assert cal["groups"]["mixed"]["median_pct"]["m"] == pytest.approx(100.0, abs=0.01)
+    m = _LenMember()
+    assert LG.calibrated_raw({"m": m.pct_raw(np.array([m.curve(2.5)]), 2.5)}, "mixed", cal) == pytest.approx(100.0)
+    assert LG.calibrated_pct({"m": m.pct_raw(np.array([0.9]), 6.0)}, "mixed", cal) == pytest.approx(90.0)
+    # 人声秒数存在声纹缓存里：再算一次（换了标准等）直接用，结果一样
+    (project.cache_dir / LG.CALIB_FILE).unlink()
+    assert LG.build_group_calibration(project, _LenJudge())["groups"] == cal["groups"]
+
+
+def test_speed_lines_are_per_language():
+    """没参加训练的录音是英文时：英文的语速量到了、调了，不能说「只有 0 句能比语速……语速先不调」。"""
+    lines = sel.deep_summary_lines({"results": [], "val_items": 20, "test_items": 24, "four_ok": True,
+                                    "speed_info": {"n_items": {"en": 20}, "median": {"en": 1.1}}})
+    assert not any("只有 0 句" in x for x in lines)
+    assert "语速（实测，英文 20 句）：模型读得比你本人慢 10%，生成时按 1.1 倍速读，和你本人一样快。" in lines
+    two = sel.speed_lines({"n_items": {"zh": 12, "en": 3}, "median": {"zh": 0.98}, "applied": {"zh": 1.0, "en": 1.0}})
+    assert two == ["语速（实测，中文 12 句）：模型读得比你本人快 2%，差不到 3%，不用调。",
+                   "语速（英文）：没参加训练的录音只有 3 句能比（不到 8 句，量不准），这次没测，语速先不调。"]
+    assert sel.speed_lines({"n_items": {"zh": 9}, "median": {"zh": 1.4}, "applied": {"zh": 1.25}}) == [
+        "语速（实测，中文 9 句）：模型读得比你本人慢 40%，生成时按 1.25 倍速读（最多只能调到这么多，还会比你本人慢一点）。"]
+    assert sel.speed_lines(None) == []
+
+
+def test_status_line_and_result_screens_call_the_deep_score_the_same(deep_run):
+    """「一模一样」的挑选里的分数是综合总评分：页面顶部的状态、训练完、重新挑选完都叫「综合总评分」，不叫「像你本人」。"""
+    from voicetwin.webui import app as A
+
+    cfg, project, _, info = deep_run
+    entry = project.load_models()["gptsovits"]
+    assert A._best_selection(entry) == ("s8-g6", "综合总评分 100.0%")
+    status = A._voice_status_md(cfg, project.voice)
+    assert "自动挑选：综合总评分 100.0%" in status and "像你本人" not in status
+    # 标准的挑法照旧叫「像你本人」
+    assert A._best_selection({"selection": {"best": "a", "results": [{"id": "a", "pct": 91.0}]}}) == ("a", "像你本人 91.0%")
+
+
+def test_result_screens_do_not_claim_an_unmeasured_speed(tmp_path, fast):
+    """没参加训练的录音不到 8 句时语速没量：结果页不能说「和你本人一致」「调得和你本人一样」。"""
+    from voicetwin.webui import app as A
+
+    cfg, project = _project(tmp_path, n_val=4)
+    b = FakeQualityBackend(project, sovits=(8, 10), gpt=(6, 7), ratio=1.15)
+    info = _run(cfg, project, b)
+    head = A._select_done_md(info).splitlines()[0]
+    assert head.endswith("；语速：这次没测（没参加训练的录音不到 8 句，量不准），先按正常速度") and "一致" not in head
+    tmd = A._train_done_md({"train_minutes": 3.0, "selection": info, "selected": info["selected"]}, show_plan=False)
+    assert "调得和你本人一样" not in tmd and "语速这次没测（没参加训练的录音不到 8 句，量不准），先按正常速度生成" in tmd
+    # 量到了、调了：照实说
+    cfg2, project2 = _project(tmp_path / "ok", n_val=8)
+    info2 = _run(cfg2, project2, FakeQualityBackend(project2, sovits=(8,), gpt=(6,), ratio=1.15))
+    assert A._select_done_md(info2).splitlines()[0].endswith("；语速：已按实测校准")
+    assert "并按实测校准了语速" in A._train_done_md(
+        {"train_minutes": 3.0, "selection": info2, "selected": info2["selected"]}, show_plan=False)
+    # 标准的挑法没量到语速（speed 是空的）：也不说「一致」
+    assert A._select_done_md({"speed": {}, "selection": {"best": "a", "results": []}}).endswith("；语速：这次没测出来，先按正常速度")
+
+
+def test_ranking_weight_note_for_the_teacher_has_no_jargon():
+    """排序权重的校准给老师看的那句话不写「留一句法」「+0.083」「p90」这些内部的东西（带数的说明只进日志和 models.json）。"""
+    import re
+
+    planted = {"rate": 0.8, "pros": 0.3, "ltas": 0.04, "cap": "none"}
+    adopted = CR.calibrate(_cands(np.random.default_rng(7), 30, planted), cap_value=110.0)
+    kept = CR.calibrate(_cands(np.random.default_rng(1), 60, CR.DEFAULTS, noise=True), cap_value=110.0)
+    few = CR.calibrate({}, cap_value=None)
+    assert adopted["adopted"] and "留一句法" in CR.describe(adopted)
+    for res in (adopted, kept, few):
+        text = CR.plain(res)
+        assert text and not re.search(r"\d", text) and "留一句法" not in text and "p90" not in text
+    assert "已经按你的录音调整过" in CR.plain(adopted) and "照旧" in CR.plain(kept) and "录音不够" in CR.plain(few)
+    lines = sel.deep_summary_lines({"results": [], "val_items": 20, "test_items": 0, "four_ok": True,
+                                    "weights_note": CR.describe(adopted), "weights_plain": CR.plain(adopted)})
+    assert CR.plain(adopted) + "。" in lines and not any("留一句法" in x for x in lines)
+
+
+def test_deep_selection_stores_the_plain_weights_sentence(deep_run):
+    _, _, _, info = deep_run
+    s = info["selection"]
+    assert s["weights_plain"] and s["weights_plain"] + "。" in s["lines"]
+    assert not any("留一句法" in x or "排序权重" in x for x in s["lines"])

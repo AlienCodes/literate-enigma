@@ -1034,8 +1034,9 @@ def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, item
                mode: Optional[str] = None) -> Dict[str, Any]:
     """挑最像你的模型。mode = identical（「一模一样」）：select_deep 分三步把第 4 轮以后存下的每个版本都试一遍
     （checkpoints(all=True)），按四项评分排名，再校准语速、排序权重、试听参考录音；standard：从早到晚均匀挑 4 × 3 个。
-    两种都把原来用的模型一起比较。「一模一样」的挑选出错（停止按钮除外）时自动改用标准的挑法，保证一定有挑好的模型，
-    原因写进结果的 selection_error、日志和问题报告。
+    两种都把原来用的模型一起比较。「一模一样」的挑选出错（停止按钮除外）时自动改用标准的挑法再挑一次（设计方案：
+    显存不够之类的错误，标准的挑法一个一个生成，可能就能挑成），原因写进结果的 selection_error、日志和问题报告；
+    标准的挑法也出错时照常报错。
     不传 mode（命令行 select / auto --skip-train 没写 --mode）：按现在的模型是怎么练的（trained_mode；以前的版本练的算标准）
     ——标准练的模型不会突然变成每个版本都试。网页上按「训练方式」选的传进来。"""
     from voicetwin.backends.base import get_backend
@@ -1067,8 +1068,8 @@ def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, item
                     res = select_deep(cfg, project, backend, progress=tracked, max_items=n_items, use_asr=use_asr)
                 except Exception as exc:  # 停止按钮（TaskCancelled）是 BaseException，照常传出去
                     reason = _explain_title(exc)
-                    log.warning(f"⚠️ 「一模一样」的挑选这次没成功（{reason}），改用标准的挑法（从早到晚均匀挑几个版本比），"
-                                "保证一定有挑好的模型", exc_info=exc)
+                    log.warning(f"⚠️ 「一模一样」的挑选这次没成功（{reason}），改用标准的挑法（从早到晚均匀挑几个版本比）"
+                                "再挑一次", exc_info=exc)
                     from voicetwin.report import report_failure
 
                     path = report_failure(exc, what="按「一模一样」的方式挑选最像你的模型", voice=voice,

@@ -316,7 +316,7 @@ def test_train_and_select_done_md():
     assert "没成功" in err and "重新挑选最佳模型" in err
     sel = A._select_done_md({"speed": {"zh": 1.0}, "selection": {"best": "s4-g10", "results": []}})
     assert "s4-g10" in sel and "和你本人一致，不用调" in sel
-    assert "已校准" in A._select_done_md({"speed": {"zh": 1.08}, "selection": {"best": "x"}})
+    assert "已按实测校准" in A._select_done_md({"speed": {"zh": 1.08}, "selection": {"best": "x"}})
     log_text = "21:00:01 | 开始训练\n21:00:02 | 显存 12 GB → batch 8；素材 85 分钟 → SoVITS 16 轮、GPT 25 轮；每 2 轮保存一次\n"
     assert A._plan_line(log_text).startswith("显存 12 GB")
     assert A._plan_line("21:00 | 训练音色：第 3/12 轮（45%）") == ""

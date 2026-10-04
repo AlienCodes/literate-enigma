@@ -1113,7 +1113,8 @@ def _material_stats(project: Any) -> Tuple[float, int]:
 
 
 def _best_selection(entry: Dict[str, Any]) -> Tuple[str, str]:
-    """一个引擎的 models.json 条目 → (最佳版本编号, 像不像的说明)。"""
+    """一个引擎的 models.json 条目 → (最佳版本编号, 像不像的说明)。「一模一样」的挑选（method = deep）里的分数是
+    四项评分的综合总评分（每类句子按你自己同一类录音校准），所有地方都叫「综合总评分」，不和「像你本人」混用。"""
     sel = entry.get("selection") or {}
     if isinstance(sel.get("selection"), dict):  # run_train 返回值里套了一层
         sel = sel["selection"]
@@ -1123,7 +1124,7 @@ def _best_selection(entry: Dict[str, Any]) -> Tuple[str, str]:
         if str(r.get("id")) == best:
             pct = _pct_of(r)
             if pct is not None:
-                label = f"像你本人 {pct:.1f}%"
+                label = f"{'综合总评分' if sel.get('method') == 'deep' else '像你本人'} {pct:.1f}%"
             elif r.get("speaker_sim") is not None:
                 label = _label_for_sim(_num(r.get("speaker_sim")))
             break
@@ -1788,12 +1789,9 @@ def _train_done_md(info: Dict[str, Any], plan: str = "", show_plan: bool = True)
     else:
         sel = _selection_info(info)
         best, label = _best_selection({"selection": sel.get("selection"), "selected": info.get("selected")})
-        if isinstance(sel.get("selection"), dict) and sel["selection"].get("method") == "deep" \
-                and label.startswith("像你本人 "):
-            label = "综合总评分 " + label[len("像你本人 "):]  # 「一模一样」的挑选：四项评分里的综合总评分
         if sel.get("selection"):
             md = (f"{head}\n\n已经自动挑出最像你的版本" + (f"（{_md_text(label)}）" if label else "")
-                  + "，并把语速调得和你本人一样。\n\n👉 下一步：去「③ 生成讲课音频」。")
+                  + _md_text(_speed_phrase(sel, train=True)) + "\n\n👉 下一步：去「③ 生成讲课音频」。")
         else:
             md = f"{head}\n\n现在用的是最后一轮的模型。\n\n👉 下一步：去「③ 生成讲课音频」。"
         if best:
@@ -1836,16 +1834,33 @@ def _fallback_md(info: Any) -> str:
     return md
 
 
+def _speed_phrase(info: Dict[str, Any], train: bool = False) -> str:
+    """挑选结果里语速那半句：只写量到的（「一模一样」的挑选没参加训练的录音不到 8 句时不量；标准的挑法没量到时 speed 是空的）。
+    train=True：训练完的说明（「已经自动挑出最像你的版本（…）」后面接的）；否则是「重新挑选」标题后面的「；语速：…」。"""
+    speed = info.get("speed") if isinstance(info.get("speed"), dict) else {}
+    sel = info.get("selection") if isinstance(info.get("selection"), dict) else {}
+    sp = sel.get("speed_info") if isinstance(sel.get("speed_info"), dict) else None
+    if sp is not None:  # 「一模一样」的挑选：按每种语言量没量到
+        measured = [k for k in (sp.get("median") or {})]
+        changed = [k for k in measured if abs((_num(speed.get(k)) or 1.0) - 1.0) > 1e-6]
+    else:  # 标准的挑法：speed 里只有量到了的语言
+        measured = list(speed)
+        changed = [k for k in measured if abs((_num(speed.get(k)) or 1.0) - 1.0) > 1e-6]
+    if changed:
+        return "，并按实测校准了语速。" if train else "；语速：已按实测校准"
+    if measured:
+        return "；语速实测和你本人一致，不用调。" if train else "；语速：实测和你本人一致，不用调"
+    if sp is not None:
+        return ("；语速这次没测（没参加训练的录音不到 8 句，量不准），先按正常速度生成。" if train
+                else "；语速：这次没测（没参加训练的录音不到 8 句，量不准），先按正常速度")
+    return "；语速这次没测出来，先按正常速度生成。" if train else "；语速：这次没测出来，先按正常速度"
+
+
 def _select_done_md(info: Dict[str, Any]) -> str:
     best, label = _best_selection({"selection": info.get("selection"), "selected": info.get("selected")})
-    speed = info.get("speed") or {}
-    calibrated = any(abs((_num(v) or 1.0) - 1.0) > 1e-6 for v in speed.values()) if isinstance(speed, dict) else False
-    deep = isinstance(info.get("selection"), dict) and info["selection"].get("method") == "deep"
-    if deep and label.startswith("像你本人 "):
-        label = "综合总评分 " + label[len("像你本人 "):]
     parts = [x for x in (label, f"版本 {best}" if best else "") if x]
     md = ("### ✅ 已重新挑好最像你的模型" + (f"（{_md_text('，'.join(parts))}）" if parts else "")
-          + f"；语速：{'已校准' if calibrated else '和你本人一致，不用调'}")
+          + _md_text(_speed_phrase(info)))
     fb = _fallback_md(info)
     if fb:
         md += "\n\n" + fb

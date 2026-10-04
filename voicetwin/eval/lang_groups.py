@@ -10,11 +10,13 @@
    训练的，同一个人说英文、夹英文的句子分数本来就低一些；不分组校准，这两类句子会被冤枉地打低。
    校准用你全部能用的真实录音（不只是没参加训练的那 20 句；拿来算「平均声纹」的那些片段不用——它们本来就是尺子的一部分，
    自己给自己打分会偏高）。某一组不到 8 句时用总体的标准，并写明「这一组你的录音太少，按总体标准算」。
-   换算：每个声纹模型的分数 × (总体的 100% − 0%) / (这一组的中位数 − 0%)，再几个模型取平均（和原来一样），
-   最后限制在 0~100（和原来显示的「像你本人 %」一样）。整句长度的句子，这样算出来正好就是「和你同一类录音的中位数比」；
-   短句子照旧按短句标准缩放。
+   换算：你自己这一组的每段录音先按给生成的句子打分时**完全一样**的算法打分（每个声纹模型没封顶的「像你本人」，
+   短的录音也按同样长度的短句标准——不然一组录音只是比较短，也会被当成「这类句子天生分数低」放大），这一组的中位数
+   就是这一组的「100%」：每个模型的系数 = 100 / 这一组的中位数；生成的句子每个模型的分数 × 系数，再几个模型取平均
+   （和原来一样），最后限制在 0~100（和原来显示的「像你本人 %」一样）。
 3. 每组分数 = 这一组每句「像你本人 %」按人声时长加权的平均（长句子信息多、更可靠），同时给出 95% 误差范围
-   （对句子重新抽样 2000 次）和句数。
+   （对句子重新抽样 2000 次）和句数。一组不到 8 句时只写平均、不写误差范围（句子太少，重新抽样量出来的范围太窄、不可信），
+   比两个模型时这一组也不算「明显更好 / 更差」（只算进综合总评分）。
 4. 综合总评分 = 各组分数按你讲课里各组真实所占的时间比例加权（挑模型时按你全部素材实测的比例；没有的组不算、比例重新分配）；
    误差范围一起算（每次重新抽样时各组一起抽）。
 5. 和读错检查分开：这四项都只是「像不像」，读没读错单独显示。
@@ -48,9 +50,16 @@ MIN_GROUP_CLIPS = 8
 #: 误差范围：对句子重新抽样多少次、用哪个种子（固定的种子：同样的数据每次算出来一样）
 N_BOOT = 2000
 BOOT_SEED = 1234
+#: 一组（或者两个模型比的时候共同的句子）少于这么多句时不写误差范围、不算「明显」：句子太少时重新抽样量出来的范围太窄
+#: （实测：两个模型其实一样好时，1 句 100%、5 句 18%、8 句 10.5% 会被说成「明显不一样」，
+#: research/一模一样/scripts/p8_boot_small_n.py），和按组校准的最少句数一样
+MIN_INTERVAL_N = 8
 CALIB_FILE = "lang_calib.json"          # 在 cache/ 里：按组校准的结果
 CALIB_EMB_FILE = "lang_calib_emb.npz"   # 在 cache/ 里：参考录音库里没有的那些录音的声纹（按片段 id + 文件大小 + 修改时间）
-CALIB_VERSION = 1
+#: 2 = 你自己的录音按给生成的句子打分时一样的算法（同样的短句标准）校准；声纹缓存里另记人声秒数
+CALIB_VERSION = 2
+#: 声纹缓存里这段录音的人声秒数（声纹模型做人声检测以后的长度，−1 = 量不出来）
+SECONDS_KEY = "__seconds__"
 
 
 # ============================================================================ 1. 分组
@@ -155,14 +164,6 @@ def _ruler(m: Any) -> Optional[Tuple[str, float, float]]:
     return None
 
 
-def _member_score(m: Any, emb: np.ndarray, kind: str) -> float:
-    if kind == "asnorm":
-        return float(m.norm_score(emb))
-    from voicetwin.eval.speaker import cosine
-
-    return float(cosine(emb, m.centroid))
-
-
 def _centroid_ids(project: Any, members: Sequence[Any]) -> List[str]:
     """拿来算「平均声纹」的那些片段（speaker_centroid.<模型>.judge.json 里记的）：它们自己给自己打分会偏高，按组校准时不用。"""
     ids: set = set()
@@ -182,10 +183,19 @@ def _file_key(project: Any, rec: Dict[str, Any]) -> str:
     return str(fk(project.abspath(rec["path"])) or "-")
 
 
+def _secs(value: Any) -> Optional[float]:
+    """缓存里记的人声秒数（−1 = 量不出来 → None）。"""
+    arr = np.asarray(value, dtype=np.float64).reshape(-1)
+    v = _num(arr[0]) if arr.size else None
+    return v if v is not None and v >= 0 else None
+
+
 def _clip_embeddings(project: Any, judge: Any, recs: Sequence[Dict[str, Any]],
-                     progress: Optional[Callable[[float, str], None]] = None) -> Dict[str, Dict[str, np.ndarray]]:
-    """每段录音每个声纹模型的声纹。参考录音库已经算过的直接用（cache/bank_emb.npz），别的算一次存在
-    cache/lang_calib_emb.npz（按片段 id + 文件大小 + 修改时间，文件变了就重新算）。"""
+                     progress: Optional[Callable[[float, str], None]] = None
+                     ) -> Dict[str, Tuple[Dict[str, np.ndarray], Optional[float]]]:
+    """每段录音每个声纹模型的声纹 + 人声几秒（声纹模型做人声检测以后的长度，和给生成的句子打分时用的一样：
+    短句子的「100%」标准按它定；量不出来是 None）。参考录音库已经算过的直接用（cache/bank_emb.npz，人声秒数也记在里面），
+    别的算一次存在 cache/lang_calib_emb.npz（按片段 id + 文件大小 + 修改时间，文件变了就重新算）。"""
     from voicetwin.data.references import _done_tag, _load_bank_emb
     from voicetwin.utils.audio import load_audio
 
@@ -210,35 +220,46 @@ def _clip_embeddings(project: Any, judge: Any, recs: Sequence[Dict[str, Any]],
             log.debug(f"按组校准的声纹缓存读不了（{exc}），重新计算")
             own = {}
     keep: Dict[str, np.ndarray] = {}
-    out: Dict[str, Dict[str, np.ndarray]] = {}
+    out: Dict[str, Tuple[Dict[str, np.ndarray], Optional[float]]] = {}
     fresh = 0
     todo = []
     for r in recs:
         base = f"{r['id']}|{_file_key(project, r)}"
-        for cache in (bank_cache, own):
-            if f"{base}|{tag}" in cache:
-                got = {m: cache[f"{base}|{m}"] for m in models if f"{base}|{m}" in cache}
-                if got:
-                    out[str(r["id"])] = got
-                    if cache is own:
-                        keep.update({f"{base}|{m}": v for m, v in got.items()})
-                        keep[f"{base}|{tag}"] = own[f"{base}|{tag}"]
-                    break
+        got: Dict[str, np.ndarray] = {}
+        secs: Optional[float] = None
+        if f"{base}|{tag}" in bank_cache:  # 参考录音库：完成标记里记的就是人声秒数
+            got = {m: bank_cache[f"{base}|{m}"] for m in models if f"{base}|{m}" in bank_cache}
+            secs = _secs(bank_cache[f"{base}|{tag}"])
+        # 自己的缓存：以前的版本存的没有人声秒数，不用（重新算）
+        if not got and f"{base}|{tag}" in own and f"{base}|{SECONDS_KEY}" in own:
+            got = {m: own[f"{base}|{m}"] for m in models if f"{base}|{m}" in own}
+            secs = _secs(own[f"{base}|{SECONDS_KEY}"])
+            if got:
+                keep.update({f"{base}|{m}": v for m, v in got.items()})
+                keep[f"{base}|{tag}"] = own[f"{base}|{tag}"]
+                keep[f"{base}|{SECONDS_KEY}"] = own[f"{base}|{SECONDS_KEY}"]
+        if got:
+            out[str(r["id"])] = (got, secs)
         else:
             todo.append((r, base))
     for k, (r, base) in enumerate(todo):
         check_cancel()
         try:
             wav, sr = load_audio(project.abspath(r["path"]))
-            got = judge.embed(wav, sr)
+            if hasattr(judge, "embed_with_seconds"):
+                got, secs = judge.embed_with_seconds(wav, sr)
+            else:  # 别的打分器（没有人声检测）：用素材准备时量的人声时长
+                got, secs = judge.embed(wav, sr), _num(r.get("voiced"))
         except Exception as exc:  # noqa: BLE001 - 个别录音读不了：这一段不算
             log.debug(f"按组校准时跳过 {r.get('id')}：{exc}")
             continue
         if not got:
             continue
-        out[str(r["id"])] = {m: np.asarray(v, dtype=np.float32) for m, v in got.items()}
+        secs = float(secs) if secs is not None and math.isfinite(float(secs)) and float(secs) >= 0 else None
+        out[str(r["id"])] = ({m: np.asarray(v, dtype=np.float32) for m, v in got.items()}, secs)
         keep.update({f"{base}|{m}": np.asarray(v, dtype=np.float32) for m, v in got.items()})
         keep[f"{base}|{tag}"] = np.asarray([1.0])
+        keep[f"{base}|{SECONDS_KEY}"] = np.asarray([secs if secs is not None else -1.0], dtype=np.float64)
         fresh += 1
         if progress is not None and (k % 10 == 0 or k == len(todo) - 1):
             try:
@@ -261,8 +282,9 @@ def _clip_embeddings(project: Any, judge: Any, recs: Sequence[Dict[str, Any]],
 def build_group_calibration(project: Any, judge: Any, records: Optional[Sequence[Dict[str, Any]]] = None,
                             progress: Optional[Callable[[float, str], None]] = None) -> Dict[str, Any]:
     """按组校准（见本文件开头第 2 条）。返回并缓存（cache/lang_calib.json，素材、打分标准都没变时直接用）：
-    {"ok", "groups": {组: {"n", "calibrated", "factors": {模型: 系数}, "median_pct": {模型: 这一组你的录音按总体标准是
-    多少 %}, "note"}}, "excluded_centroid", "n_clips", "sig"}。没有能用的声纹模型时 ok = False（四项都量不出来）。"""
+    {"ok", "groups": {组: {"n", "calibrated", "factors": {模型: 系数}, "median_pct": {模型: 这一组你的录音按总体标准、
+    和给生成的句子打分一样的算法（同样的短句标准）是多少 %}, "note"}}, "excluded_centroid", "n_clips", "sig"}。
+    没有能用的声纹模型时 ok = False（四项都量不出来）。"""
     members = list(getattr(judge, "members", []) or []) if judge is not None else []
     rulers = {m.name: _ruler(m) for m in members}
     if not members or not any(rulers.values()):
@@ -288,19 +310,21 @@ def build_group_calibration(project: Any, judge: Any, records: Optional[Sequence
     scores: Dict[str, Dict[str, List[float]]] = {g: {} for g in GROUP_ORDER}
     counts = {g: 0 for g in GROUP_ORDER}
     for r in usable:
-        got = embs.get(str(r["id"]))
+        got, secs = embs.get(str(r["id"])) or ({}, None)
         if not got:
             continue
         g = text_group(r.get("text"))
         counts[g] += 1
         for m in members:
-            ruler = rulers.get(m.name)
-            if ruler is None or m.name not in got:
+            if rulers.get(m.name) is None or m.name not in got:
                 continue
-            try:
-                scores[g].setdefault(m.name, []).append(_member_score(m, got[m.name], ruler[0]))
+            try:  # 和给生成的句子打分一样：没封顶的「像你本人」，短的录音按同样长度的短句标准
+                raw = m.pct_raw(got[m.name], secs)
             except Exception as exc:  # noqa: BLE001
                 log.debug(f"按组校准时 {m.name} 打不了分：{exc}")
+                continue
+            if raw is not None and math.isfinite(float(raw)):
+                scores[g].setdefault(m.name, []).append(float(raw))
     groups: Dict[str, Any] = {}
     for g in GROUP_ORDER:
         n = counts[g]
@@ -313,17 +337,15 @@ def build_group_calibration(project: Any, judge: Any, records: Optional[Sequence
         else:
             factors, med_pct, bad = {}, {}, []
             for m in members:
-                ruler = rulers.get(m.name)
                 vals = scores[g].get(m.name) or []
-                if ruler is None or len(vals) < MIN_GROUP_CLIPS:
+                if rulers.get(m.name) is None or len(vals) < MIN_GROUP_CLIPS:
                     continue
-                _, zero, full = ruler
                 med = float(np.median(vals))
-                med_pct[m.name] = round(100.0 * (med - zero) / (full - zero), 2)
-                if med - zero <= 0.05 * (full - zero):  # 这一组你自己的录音几乎不像你（量得不对）：不按它校准
+                med_pct[m.name] = round(med, 2)
+                if med <= 5.0:  # 这一组你自己的录音几乎不像你（量得不对）：不按它校准
                     bad.append(m.name)
                     continue
-                factors[m.name] = round((full - zero) / (med - zero), 6)
+                factors[m.name] = round(100.0 / med, 6)
             entry["median_pct"] = med_pct
             if factors and not bad:
                 entry.update(calibrated=True, factors=factors)
@@ -400,9 +422,11 @@ def group_scores(items: Sequence[Dict[str, Any]], shares: Optional[Dict[str, flo
                  n_boot: int = N_BOOT, seed: int = BOOT_SEED) -> Dict[str, Any]:
     """四项评分。items：每句 {"key", "group", "pct"（按组校准的「像你本人 %」，生成失败算 0，量不出来是 None）, "w"（人声秒数）}。
     shares：综合总评分里各组的比例（你素材里各组实际说话时间的比例；没有时按这些句子的时长）。
-    返回 {"groups": {组: {"label", "n", "n_measured", "status": ok/unmeasured/none, "mean", "lo", "hi", "pm"}},
+    返回 {"groups": {组: {"label", "n", "n_measured", "status": ok/unmeasured/none, "mean", "lo", "hi", "pm", "few"}},
     "composite": {"mean", "lo", "hi", "pm", "weights", "weights_source", "status"}, "n_boot", "seed"}。
-    误差范围 = 对句子重新抽样 n_boot 次的 2.5% ~ 97.5%；pm 是均值到两头里远的那一边（保守）。"""
+    误差范围 = 对句子重新抽样 n_boot 次的 2.5% ~ 97.5%；pm 是均值到两头里远的那一边（保守）。
+    一组量到的不到 MIN_INTERVAL_N 句：few = True，只有平均，lo / hi / pm 是 None（句子太少，量不出可信的误差范围）；
+    这一组照样算进综合总评分。"""
     rng = np.random.default_rng(int(seed))
     groups: Dict[str, Any] = {}
     boots: Dict[str, np.ndarray] = {}
@@ -419,9 +443,12 @@ def group_scores(items: Sequence[Dict[str, Any]], shares: Optional[Dict[str, flo
         else:
             mean = _weighted(x, w)
             bm = _weighted(x, w, _boot_idx(rng, x.size, n_boot))
-            lo, hi = (float(v) for v in np.percentile(bm, [2.5, 97.5]))
-            entry.update(status="ok", mean=round(mean, 2), lo=round(lo, 2), hi=round(hi, 2),
-                         pm=round(max(mean - lo, hi - mean), 2))
+            entry.update(status="ok", mean=round(mean, 2), few=bool(x.size < MIN_INTERVAL_N))
+            if x.size >= MIN_INTERVAL_N:
+                lo, hi = (float(v) for v in np.percentile(bm, [2.5, 97.5]))
+                entry.update(lo=round(lo, 2), hi=round(hi, 2), pm=round(max(mean - lo, hi - mean), 2))
+            else:
+                entry.update(lo=None, hi=None, pm=None)
             boots[g], means[g], item_w[g] = bm, mean, float(w.sum())
         groups[g] = entry
     weights, src = composite_weights(shares, boots.keys(), fallback=item_w)
@@ -441,8 +468,9 @@ def group_scores(items: Sequence[Dict[str, Any]], shares: Optional[Dict[str, flo
 def paired_compare(items_a: Sequence[Dict[str, Any]], items_b: Sequence[Dict[str, Any]],
                    weights: Dict[str, float], n_boot: int = N_BOOT, seed: int = BOOT_SEED) -> Dict[str, Any]:
     """两个模型在同样的句子上比（成对：每次重新抽样时两个模型抽到的是同样的句子）。
-    返回每组和综合总评分的「A − B」：{"diff", "lo", "hi", "clear": "a"（A 明显更像）/ "b" / None（分不出来）}，
-    以及 p_a = 重新抽样里 A 的综合总评分更高的比例。"""
+    返回每组和综合总评分的「A − B」：{"diff", "lo", "hi", "n", "few", "clear": "a"（A 明显更像）/ "b" / None（分不出来）}，
+    以及 p_a = 重新抽样里 A 的综合总评分更高的比例。一组共同的句子不到 MIN_INTERVAL_N 句（few）时这一组的 clear 总是
+    None：句子太少，分不出谁明显更好（只算进综合总评分）。"""
     rng = np.random.default_rng(int(seed))
     out: Dict[str, Any] = {"groups": {}}
     comp_a, comp_b = None, None
@@ -462,8 +490,9 @@ def paired_compare(items_a: Sequence[Dict[str, Any]], items_b: Sequence[Dict[str
         d = ba - bb
         lo, hi = (float(v) for v in np.percentile(d, [2.5, 97.5]))
         diff = _weighted(a, w) - _weighted(b, w)
+        few = len(common) < MIN_INTERVAL_N
         out["groups"][g] = {"diff": round(diff, 3), "lo": round(lo, 3), "hi": round(hi, 3), "n": len(common),
-                            "clear": "a" if lo > 0 else ("b" if hi < 0 else None)}
+                            "few": few, "clear": None if few else ("a" if lo > 0 else ("b" if hi < 0 else None))}
         if g in weights:
             comp_a = (0 if comp_a is None else comp_a) + weights[g] * ba
             comp_b = (0 if comp_b is None else comp_b) + weights[g] * bb
@@ -478,13 +507,17 @@ def paired_compare(items_a: Sequence[Dict[str, Any]], items_b: Sequence[Dict[str
 
 # ============================================================================ 6. 显示
 def _fmt(label: str, entry: Dict[str, Any], count: bool = True) -> str:
-    """一项：「中英夹在一起 97.1% ± 2.3（28 句）」/「纯英文 —（没有这类句子）」/「纯中文（没测出来）」。"""
+    """一项：「中英夹在一起 97.1% ± 2.3（28 句）」/「纯英文 95.0%（只有 1 句，太少，量不出误差范围）」/
+    「纯英文 —（没有这类句子）」/「纯中文（没测出来）」。"""
     if entry.get("status") == "none":
         return f"{label} {NO_ITEMS}"
     if entry.get("status") != "ok" or entry.get("mean") is None:
         return f"{label}{NOT_MEASURED}"
-    text = f"{label} {float(entry['mean']):.1f}% ± {float(entry.get('pm') or 0.0):.1f}"
-    return text + (f"（{int(entry.get('n_measured') or 0)} 句）" if count else "")
+    n = int(entry.get("n_measured") or 0)
+    if entry.get("pm") is None:  # 句子太少：只写量到的平均，不写误差范围
+        return f"{label} {float(entry['mean']):.1f}%" + (f"（只有 {n} 句，太少，量不出误差范围）" if count else "")
+    text = f"{label} {float(entry['mean']):.1f}% ± {float(entry['pm']):.1f}"
+    return text + (f"（{n} 句）" if count else "")
 
 
 def four_scores_text(scores: Optional[Dict[str, Any]]) -> str:
@@ -494,6 +527,12 @@ def four_scores_text(scores: Optional[Dict[str, Any]]) -> str:
     parts = [_fmt(GROUP_LABELS[g], groups.get(g) or ({"status": "none"} if scores else {})) for g in GROUP_ORDER]
     parts.append(_fmt(COMPOSITE_LABEL, (scores or {}).get("composite") or {}, count=False))
     return "｜".join(parts)
+
+
+def few_groups(scores: Optional[Dict[str, Any]]) -> List[str]:
+    """量到了、但句子太少（不到 MIN_INTERVAL_N 句）的组：比两个模型时这几组不算「明显更好 / 更差」。"""
+    groups = (scores or {}).get("groups") or {}
+    return [g for g in GROUP_ORDER if (groups.get(g) or {}).get("status") == "ok" and (groups.get(g) or {}).get("few")]
 
 
 def has_english(scores: Optional[Dict[str, Any]]) -> bool:

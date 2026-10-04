@@ -39,6 +39,8 @@ MIN_CANDS = 3
 N_BOOT = 2000
 BOOT_SEED = 1234
 SURE_PCT = 1.0
+#: 能比的句子不够时的原因（plain() 认它）
+TOO_FEW = "能比的句子不够（至少要 2 句，每句至少 3 个版本）"
 
 
 def _num(x: Any) -> Optional[float]:
@@ -148,7 +150,7 @@ def calibrate(cands_by_group: Dict[Any, Sequence[Dict[str, Any]]], cap_value: Op
                            "default_score": None, "n_groups": len(rows), "n_items": len(set(items)),
                            "grid": len(table), "min_gain": min_gain}
     if not rows or len(set(items)) < 2:
-        out["why"] = "能比的句子不够（至少要 2 句，每句至少 3 个版本）"
+        out["why"] = TOO_FEW
         return out
     S = np.vstack(rows)
     item_arr = np.asarray(items)
@@ -186,8 +188,22 @@ def _argmax(scores: np.ndarray, default_idx: int) -> int:
     return int(np.flatnonzero(scores >= best - 1e-12)[0])
 
 
+def plain(result: Dict[str, Any]) -> str:
+    """给老师看的一句话（挑选结果里显示）：只说结果是什么、对她意味着什么，不写内部的参数和统计的说法
+    （那些写在 describe() 里，进日志和 models.json）。"""
+    if not result:
+        return ""
+    if result.get("adopted"):
+        return "生成时从几个版本里挑一个的方法，已经按你的录音调整过（用你的录音实测，比原来的方法挑得更准）"
+    if str(result.get("why") or "") == TOO_FEW:
+        return "生成时从几个版本里挑一个的方法照旧（这次能拿来试的录音不够，没法按你的录音调整；不影响使用）"
+    if result.get("why") or result.get("gain") is None:
+        return "生成时从几个版本里挑一个的方法照旧（这次没能按你的录音调整，原因写在「详细过程」里；不影响使用）"
+    return "生成时从几个版本里挑一个的方法照旧（按你的录音试过，调整以后没有明显更好）"
+
+
 def describe(result: Dict[str, Any]) -> str:
-    """一句中文说明（日志、记录用）。只写实测的数。"""
+    """一句中文说明（日志、记录用；给老师看的是 plain()）。只写实测的数。"""
     if not result:
         return ""
     if result.get("why"):
