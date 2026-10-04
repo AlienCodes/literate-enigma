@@ -24,7 +24,7 @@ def clean_tail(w, report=None):
         if len(rr)<2: break
         (a0,b0),(a,b)=rr[-2],rr[-1]
         gap=(a-b0)*WIN/SR; dur=(b-a)*WIN/SR; c=centroid(w[a*WIN:b*WIN])
-        if gap>=0.05 and dur<0.05 and (b-a)>0 and env_db(w)[a:b].max()<peak-25:
+        if gap>=0.25 and dur<0.05 and (b-a)>0 and env_db(w)[a:b].max()<peak-25:
             if report is not None: report.append((round(dur,2),round(c)))
             w=w[:b0*WIN]
         else: break
