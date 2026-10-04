@@ -2084,11 +2084,7 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
             if direct and not merge_only:
                 new = _apply(cur, direct)
                 if new.strip() and new != cur:
-                    nv = {"text": new, "keep": vals["keep"], "lang": _review.lang_after_edit(cur, vals["lang"], new)}
-                    if nv == _review.saved_values(r):
-                        draft.pop(r["id"], None)
-                    else:
-                        draft[r["id"]] = nv
+                    _review.put_text(draft, r, new)  # 只记下改了文字（「保留」、语言没动过的继续跟着保存过的走）
                     changed_draft = True
                     stats["fixes"] += len(direct)
                     # 例子按整句比（和表格里的说法一样）：以前按改动的那几个字说，英文被切开（「Caesa → 's scisso」）、

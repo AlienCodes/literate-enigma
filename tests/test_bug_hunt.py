@@ -798,3 +798,82 @@ def test_empty_script_is_not_a_program_fault():
 
     f = explain(ValueError("讲稿里没有可以朗读的内容"))
     assert f.key in tasks.NO_REPORT_KEYS and "代码" in f.advice
+
+
+# ---------------------------------------------------------------------------- 第四轮找 bug（g3：确认训练素材）
+def _v1_confirm(project):
+    """v18.2 ~ v18.4 存的确认记录：签名里没有语言，也没有 sig_version。"""
+    import json
+
+    recs = project.load_manifest()
+    review.confirm_path(project).write_text(json.dumps({"time": "2026-09-30 10:00:00",
+                                                        "signature": review.material_signature(recs, 1),
+                                                        "counts": review.material_counts(recs)}), encoding="utf-8")
+
+
+def test_old_confirmation_is_upgraded_so_a_language_change_counts(tmp_path):
+    """v18.4 确认过，升级以后只把一句的语言从中文改成英文、保存：以前旧记录一直按旧算法（没有语言）比，照样能开始训练，
+    表格上方还写「✅ 已确认」。现在旧记录还对得上时原样换成新算法（升级不用重新确认），之后改语言要重新确认。"""
+    import json
+
+    cfg, project = _voice(tmp_path, ["Next, let's look at the 定语 clause example.", "第二句话。"])
+    _v1_confirm(project)
+    assert not wf.training_blocker(project)  # 升级以后不用重新确认
+    conf = json.loads(review.confirm_path(project).read_text(encoding="utf-8"))
+    assert conf["sig_version"] == review.SIGNATURE_VERSION and conf["time"] == "2026-09-30 10:00:00"
+    review.set_draft(project, "c000", lang="en")
+    assert review.save_rows(project)["changed"]["lang"] == 1
+    assert "又改过" in wf.training_blocker(project)
+    # 没打开过校对表、第一个读到确认记录的就是「保存修改」：保存之前先换好
+    cfg, project = _voice(tmp_path / "b", ["Next, let's look at the 定语 clause example.", "第二句话。"])
+    _v1_confirm(project)
+    review.set_draft(project, "c000", lang="en")
+    review.save_rows(project)
+    assert "又改过" in wf.training_blocker(project)
+    # 在 Excel 里改的语言（读回 transcripts.csv）也一样
+    cfg, project = _voice(tmp_path / "c", ["Next, let's look at the 定语 clause example.", "第二句话。"])
+    project.export_csv()
+    _v1_confirm(project)
+    text = project.csv_path.read_text(encoding="utf-8-sig").replace(",zh,", ",en,", 1)
+    project.csv_path.write_text(text, encoding="utf-8-sig")
+    assert project.import_csv()["lang"] == 1
+    assert "又改过" in wf.training_blocker(project)
+    # 确认以后在旧版本里就改过（已经对不上）：不换，照样要求重新确认
+    cfg, project = _voice(tmp_path / "d", ["第一句话。", "第二句话。"])
+    _v1_confirm(project)
+    recs = project.load_manifest()
+    recs[0]["text"] = "第一句话改了。"
+    project.save_manifest(recs)
+    assert "又改过" in wf.training_blocker(project)
+    assert "sig_version" not in json.loads(review.confirm_path(project).read_text(encoding="utf-8"))
+
+
+def test_confirm_keeps_the_undo_of_a_replace_made_while_confirming(tmp_path):
+    """点了「✅ 确认训练素材」（重新统计音频要几秒，页面没有进度），这期间又点了「全部替换」：以前确认做完把这次替换的
+    撤销记录也删了，「↩️ 撤销刚才的替换」说没有可以撤销的；确认前做的替换照样删（不能再把确认好的字改回去）。"""
+    import unittest.mock as um
+
+    from voicetwin.webui import app as A
+
+    cfg, project = _voice(tmp_path, ["我们先来看借词后面接宾语的情况。", "我们再看一个例子。"])
+    review.replace_matches(project, "借词", "介词")  # 确认以前做的替换
+
+    def slow_apply(cfg_, voice_, read_csv=True):
+        review.replace_matches(project, "我们", "咱们")  # 确认还没做完，老师点了「全部替换」
+        return {}
+
+    with um.patch.object(wf, "apply_review", slow_apply):
+        res = wf.review_confirm(cfg, "查错")
+    assert res["confirmed"] and res["unsaved"] == 2
+    assert review.has_undo(project) and review.undo_replace(project) == {"rows": 2, "kept": 0}
+    assert review.unsaved_count(project) == 0 and "介词" in project.load_manifest()[0]["text"]
+    # 网页上说清楚：确认的是改之前的样子
+    with um.patch.object(wf, "apply_review", slow_apply):
+        md = A.WebUI(cfg).do_confirm("查错")[0]
+    assert "又改了 2 句" in md and "撤销刚才的替换" in md
+    # 确认期间没有新的替换：照样删（确认以后不能再把确认好的字改回去）
+    review.save_rows(project)
+    review.replace_matches(project, "咱们", "我们")
+    with um.patch.object(wf, "apply_review", lambda *a, **k: {}):
+        assert wf.review_confirm(cfg, "查错")["unsaved"] == 0
+    assert not review.has_undo(project)

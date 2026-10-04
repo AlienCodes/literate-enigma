@@ -660,17 +660,22 @@ def review_confirm(cfg: Config, voice: str) -> Dict[str, Any]:
     from voicetwin.data import review
 
     project = open_project(cfg, voice, must_exist=True)
-    saved = review.save_rows(project)
+    with review._LOCK:  # 保存的这一刻有哪次替换的撤销记录（重新统计要几秒，这期间老师还能点「全部替换」）
+        undo_before = review.undo_stamp(project)
+        saved = review.save_rows(project)
     summary = apply_review(cfg, voice, read_csv=False)
     with review._LOCK:  # 记下的「确认了哪些句子」和这一刻的校对表一致（期间别的按钮改了也不会错开）
         records = project.load_manifest()
         counts = review.material_counts(records)
         out = {"saved": saved["saved"], "changed": saved["changed"], "summary": summary, "counts": counts,
-               "csv_locked": bool(saved.get("csv_locked") or summary.get("csv_locked")), "confirmed": False}
+               "csv_locked": bool(saved.get("csv_locked") or summary.get("csv_locked")), "confirmed": False,
+               "unsaved": review.unsaved_count(project)}  # 确认期间又改的（替换），还没保存
         if counts["material"] > 0:
             out["confirmed"] = True
             out["time"] = review.save_confirmed(project, records)["time"]
-            review.clear_undo(project)  # 确认以后「撤销刚才的替换」不能再把确认好的字改回去
+            if review.undo_stamp(project) == undo_before:
+                # 确认以后「撤销刚才的替换」不能再把确认好的字改回去；确认期间才做的替换（只改了没保存的草稿）留着能撤销
+                review.clear_undo(project)
     return out
 
 
@@ -984,7 +989,7 @@ def training_blocker(project: Project) -> str:
         return ("还没有确认训练素材，这次没有开始训练（必须先在校对表下面点「✅ 确认训练素材」；"
                 "用命令行的话运行 voicetwin confirm）。")
     if not review.confirmed_matches(conf, records):
-        return ("确认训练素材以后，校对表又改过（加了新素材、改了文字、删除或撤销删除了句子），这次没有开始训练"
+        return ("确认训练素材以后，校对表又改过（加了新素材、改了文字或语言、删除或撤销删除了句子），这次没有开始训练"
                 f"（上次确认是 {str(conf.get('time') or '')[5:16]}；用命令行的话再运行一次 voicetwin confirm）。")
     return ""
 

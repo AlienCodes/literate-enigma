@@ -62,6 +62,8 @@ DEFAULT_VOICE = "我的声音"
 
 NEED_VOICE = "请先在页面最上面的「声音名称」里选择或填写声音（例如：我的声音）。"
 NEED_PREPARE = "这个声音还没有准备素材，请先完成「① 准备素材」。"
+#: 替换完被表格的统一写法改回原样时的说明（clean_transcript：英文后面的标点半角、汉字后面全角）
+SAME_PUNCT_NOTE = "表格会自动统一标点的写法，英文后面用半角（, ? ! : ;），汉字后面用全角（，？！：；）"
 
 if os.name == "nt":
     NOTE = "运行期间电脑不会自动睡眠；可以去做别的事，但不要关闭黑色窗口。"
@@ -3226,6 +3228,9 @@ class WebUI:
         rid, start, _end = matches[i]
         order = {r["id"]: k for k, r in enumerate(project.load_manifest())}
         res = _review.replace_matches(project, q, repl, bool(word), target=(rid, start))
+        if not res["count"] and res.get("same"):
+            _review.save_find(project, q, bool(word), (i + 1) % len(matches))  # 跳到下一处（不然一直停在这一处）
+            return self._find_out(v, only_sus, f"这一处换完和原来一样，没有换：{SAME_PUNCT_NOTE}。已经跳到下一处。")
         if not res["count"]:
             msg = "这一处换完以后这句话就空了，没有换（不想要这一句请用「⋯ 选项」删除）。" if res["skipped"] else "没有换。"
             return self._find_out(v, only_sus, msg)
@@ -3251,15 +3256,20 @@ class WebUI:
             return self._find_out(v, only_sus, "请在「查找」框里输入要找的字。")
         project = wf.Project(self.cfg, v)
         res = _review.replace_matches(project, q, r, bool(word))
+        same = _int(res.get("same"))
         if not res["count"]:
             _review.save_find(project, q, bool(word), 0)
             extra = f"（{res['skipped']} 句换完会变成空的，没有换）" if res["skipped"] else ""
+            if same:  # 找到了，可是换完被表格统一的写法改回原样：说清楚为什么没换（以前说换好了，其实什么都没变）
+                return self._find_out(v, only_sus, f"没有换：{same} 句换完和原来一样（{SAME_PUNCT_NOTE}）{extra}。")
             return self._find_out(v, only_sus, "没有可以替换的地方" + extra + "。")
         what = f"换成「{html.escape(r)}」" if r.strip() else "删掉了"
         msg = (f"✅ 已经把 <b>{res['count']}</b> 处「{html.escape(q)}」{what}（{res['rows']} 句，🔴 没保存）。"
                "记得点下面的「保存修改」；换错了点「↩️ 撤销刚才的替换」。")
         if res["skipped"]:
             msg += f"（另有 {res['skipped']} 句换完会变成空的，没有换。）"
+        if same:
+            msg += f"（另有 {same} 句换完和原来一样，没有换：{SAME_PUNCT_NOTE}。）"
         _review.save_find(project, q, bool(word), 0, extra=res["ids"])  # 表格接着列出换好的句子（改过的字绿色）
         return self._find_out(v, only_sus, msg)
 
@@ -3311,6 +3321,10 @@ class WebUI:
             md = "### ⚠️ 现在一条能用来训练的句子都没有，所以没有确认。"
         if res.get("saved"):
             md += f"\n\n（先帮你保存了 {len(res['saved'])} 条没保存的修改。）"
+        if res.get("confirmed") and _int(res.get("unsaved")):
+            md += (f"\n\n⚠️ 确认的时候（程序在重新统计）又改了 {_int(res['unsaved'])} 句（🔴 还没保存）：这次确认的是改之前的样子。"
+                   "要用改过的，请点「保存修改」，再点一次「✅ 确认训练素材」"
+                   + ("；不要的话可以点「↩️ 撤销刚才的替换」。" if _review.has_undo(project) else "。"))
         note = _no_text_note(c, project.load_manifest())
         if note:
             md += "\n\n" + note
