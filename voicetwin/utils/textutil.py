@@ -221,8 +221,13 @@ def decode_text_bytes(raw: bytes) -> str:
         pass
     loose = raw.decode("utf-8", errors="replace")
     bad = loose.count("\ufffd")
-    if bad <= 0.05 * sum(1 for ch in loose if ord(ch) > 127):
-        return loose  # UTF-8 的文件只坏了几个字节：照 UTF-8 读（整个当成 GBK 读会全变成乱码）
+    good = [ch for ch in loose if ord(ch) > 127 and ch != "\ufffd"]
+    wide = sum(1 for ch in good if ord(ch) >= 0x800)  # 按 UTF-8 读对了的三字节字：汉字、中文标点、英文的弯引号 ’ “ ”
+    if bad <= 0.05 * (bad + len(good)) or 2 * bad <= wide:
+        # UTF-8 的文件只坏了几个字节：照 UTF-8 读，只坏那一两个字（整个当成 GBK 读会全变成乱码）。英文字幕里不是英文字母的
+        # 只有几个弯引号，坏一个就占两三成，不能因此当成 GBK 读（会读出汉字、吃掉后面的字母），所以也看读对了的三字节字。
+        # GBK 的文字照 UTF-8 读时，读坏的比读对的三字节字多得多（实测见 research/全面找bug/第四轮/g4_脚本/decode_rule.py）
+        return loose
     try:
         return raw.decode("gb18030")
     except UnicodeDecodeError:

@@ -131,23 +131,43 @@ def _segments(info: Dict[str, Any]) -> int:
         return 0
 
 
-def already_done(sources_db: Dict[str, Any], path: Path, with_rows: Optional[Set[str]] = None) -> bool:
-    """这个视频处理过没有：同一个位置；或者内容一样（换了盘符 / 文件夹、改了名字）；或者旧版本记下的（没有内容指纹）
-    同名、同样大小的文件，原来的位置已经找不到了（多半就是搬了地方）。
+def sidecar_fingerprint(media: Path) -> str:
+    """同名字幕的内容指纹（大小 + 开头结尾的指纹，不看名字）；没有同名字幕时是 "none"。记进 sources.json：一段也没切出来的视频，
+    换了同名字幕（或者加上、删掉字幕）以后要重新处理。字幕一时打不开（被别的程序占着）时报 OSError。"""
+    sub = find_sidecar_subtitle(media)
+    return "none" if sub is None else (content_fingerprint(content_key(sub)) or "none")
 
-    with_rows：校对表里有片段的视频编号（不给就不看校对表）。校对表里已经有这个位置的视频的片段 → 处理过
-    （写完校对表、还没记进 sources.json 就断电了：不能再切一遍，老师改过的字会被冲掉）；sources.json 记了「切出 N 段」、
-    校对表里却一段都没有（以前的版本先记「处理过」、写校对表失败留下的）→ 不算处理过，再切一遍补上。"""
+
+def _done_entry(sources_db: Dict[str, Any], path: Path, with_rows: Optional[Set[str]] = None) -> Optional[Dict[str, Any]]:
+    """already_done 的实现：处理过时返回 sources.json 里认出它的那条记录（校对表里有它的片段、sources.json 没记时是 {}），
+    没处理过返回 None。"""
+    sub_fp: List[str] = []
+
+    def same_sidecar(info: Dict[str, Any]) -> bool:
+        if not sub_fp:
+            try:
+                sub_fp.append(sidecar_fingerprint(path))
+            except OSError:
+                sub_fp.append("")
+        return bool(sub_fp[0]) and info.get("sub") == sub_fp[0]
+
     def done(sid: str, info: Any) -> bool:
         if not isinstance(info, dict) or not info.get("done"):
             return False
-        return with_rows is None or sid in with_rows or _segments(info) <= 0
+        if with_rows is not None and sid in with_rows:
+            return True
+        if _segments(info) > 0:
+            return with_rows is None
+        # 一段也没切出来：同名字幕没变才算处理过（真的静音的文件再处理一遍也没用）。字幕换了（以前和视频对不上、
+        # 是乱码）、加上或删掉了，或者是以前的版本记的（没记字幕指纹，例如 UTF-16 字幕一条都读不出的那些）→ 再处理一次
+        return same_sidecar(info)
 
     sid0 = source_id(path)
     if with_rows is not None and sid0 in with_rows:
-        return True
-    if done(sid0, sources_db.get(sid0)):
-        return True
+        return {}
+    info0 = sources_db.get(sid0)
+    if done(sid0, info0):
+        return info0
     try:
         key = content_key(path)
         size = path.stat().st_size
@@ -158,7 +178,7 @@ def already_done(sources_db: Dict[str, Any], path: Path, with_rows: Optional[Set
         if not done(sid, info):
             continue
         if fp and content_fingerprint(info.get("key")) == fp:
-            return True
+            return info
         old = str(info.get("file") or "")
         if info.get("key") or not old or Path(old).name.lower() != path.name.lower():
             continue
@@ -170,8 +190,19 @@ def already_done(sources_db: Dict[str, Any], path: Path, with_rows: Optional[Set
         except OSError:
             moved = True
         if moved:
-            return True
-    return False
+            return info
+    return None
+
+
+def already_done(sources_db: Dict[str, Any], path: Path, with_rows: Optional[Set[str]] = None) -> bool:
+    """这个视频处理过没有：同一个位置；或者内容一样（换了盘符 / 文件夹、改了名字）；或者旧版本记下的（没有内容指纹）
+    同名、同样大小的文件，原来的位置已经找不到了（多半就是搬了地方）。
+
+    with_rows：校对表里有片段的视频编号（不给就不看校对表）。校对表里已经有这个位置的视频的片段 → 处理过
+    （写完校对表、还没记进 sources.json 就断电了：不能再切一遍，老师改过的字会被冲掉）；sources.json 记了「切出 N 段」、
+    校对表里却一段都没有（以前的版本先记「处理过」、写校对表失败留下的）→ 不算处理过，再切一遍补上。
+    记的是「一段也没切出来」：同名字幕没变才算处理过（换了字幕会重新处理，见 sidecar_fingerprint）。"""
+    return _done_entry(sources_db, path, with_rows) is not None
 
 
 #: 每个声音文件夹里程序自己生成的子文件夹（切好的片段、参考音频、生成的音频……）：里面的音频不是新素材。
@@ -180,21 +211,25 @@ GENERATED_DIRS = ("raw", "clips", "references", "exports", "models", "outputs", 
 
 
 def pending_sources(project: Project, files: Iterable[Path], sources_db: Dict[str, Any],
-                    records: Iterable[Dict[str, Any]]) -> Tuple[List[Path], int]:
+                    records: Iterable[Dict[str, Any]], empty: Optional[List[Path]] = None) -> Tuple[List[Path], int]:
     """这次要处理的文件，返回 (要处理的文件, 重复的个数)。处理过的跳过（already_done）；同一个视频这次出现了好几份
     （网页上传了、旁边又填了它所在的文件夹；文件夹里有备份、「副本」、改了名字的）只处理一份——以前每一份都切一遍，
     同一句话训练两次，还可能一份当训练、一份当考试。留下的那份：有同名字幕的优先，再是文件夹里的原件（不是 uploads 里的），
-    再不行就是先找到的那个。文件一时读不了（OSError）的照常算新的：处理时会说明原因、跳过、下次再试。"""
+    再不行就是先找到的那个。文件一时读不了（OSError）的照常算新的：处理时会说明原因、跳过、下次再试。
+    empty：给了就把「以前处理过、一段也没切出来、这次也没变」而跳过的文件放进去（结果里再提醒一次怎么办）。"""
     with_rows = {str(r.get("source") or "") for r in records}
     with_rows.discard("")
     uploads = (Path(project.root) / "uploads").resolve()
     cand: List[Path] = []
     for f in files:
         try:
-            if already_done(sources_db, f, with_rows):
-                continue
+            hit = _done_entry(sources_db, f, with_rows)
         except OSError:
-            pass
+            hit = None
+        if hit is not None:
+            if empty is not None and hit.get("sub") and _segments(hit) <= 0:  # 按「字幕没变」认出来的 0 段记录
+                empty.append(f)
+            continue
         cand.append(f)
     groups: Dict[str, List[Path]] = {}
     for f in cand:
@@ -452,8 +487,9 @@ def apply_filters(project: Project, records: List[Dict[str, Any]], pcfg: Dict[st
         if clipped > float(fcfg.get("max_clip_ratio", 0.002)):
             return "有爆音"
         # 老师改过、保存了的文字：识别引擎的把握（置信度、像不像语音）说的是原来识别出来的字，不再算数——不然改对了也一直
-        # 不用来训练，表格里灰色、还不写原因。改回原来识别的字时照旧算
-        human = bool(r.get("text_edited")) and str(text) != str(r.get("orig_text", text) or "")
+        # 不用来训练，表格里灰色、还不写原因。改回原来识别的字时照旧算。没有 orig_text 的是 v18 改的（那时还不记最初识别的
+        # 文字，只有文字真的改了才记 text_edited）：也算改过
+        human = bool(r.get("text_edited")) and ("orig_text" not in r or str(text) != str(r.get("orig_text") or ""))
         asr = {} if human else (r.get("asr") or {})
         if asr.get("avg_logprob") is not None and asr["avg_logprob"] < float(fcfg.get("min_avg_logprob", -1.0)):
             return "识别置信度低"
@@ -613,7 +649,8 @@ def prepare(project: Project, inputs: Iterable[str], cfg: Dict[str, Any], progre
 
     # 0) 只处理新文件（之前处理过的跳过；上次失败的会重试；同一个视频出现好几份只处理一份）
     _remember_sources_with_rows(project, files, sources_db, records.values())
-    new, dup = pending_sources(project, files, sources_db, records.values())
+    still_empty: List[Path] = []
+    new, dup = pending_sources(project, files, sources_db, records.values(), empty=still_empty)
     done_before = len(files) - len(new) - dup
     head = f"找到 {len(files)} 个视频/录音"
     if done_before or dup:
@@ -682,8 +719,12 @@ def prepare(project: Project, inputs: Iterable[str], cfg: Dict[str, Any], progre
             ckey = content_key(media)
         except OSError:
             ckey = ""
-        sources_db[sid] = {"file": str(media), "key": ckey, "clean": project.relpath(clean), "segments": len(new_recs),
-                           "speech_seconds": round(wav_dur, 1), "done": True,
+        try:  # 同名字幕的指纹：一段也没切出来时，换了字幕会重新处理（字幕和视频对不上、是乱码的那些）
+            sub_fp = sidecar_fingerprint(media)
+        except OSError:
+            sub_fp = ""
+        sources_db[sid] = {"file": str(media), "key": ckey, "sub": sub_fp, "clean": project.relpath(clean),
+                           "segments": len(new_recs), "speech_seconds": round(wav_dur, 1), "done": True,
                            **{k2: (round(v, 2) if isinstance(v, float) else v) for k2, v in info.items()}}
         # 先写校对表、再记「处理过」：写校对表失败（硬盘满了、被同步软件占着）时，下次会重新切这个视频
         # （以前先记了「处理过」，它的片段永远不在校对表里）
@@ -759,7 +800,16 @@ def prepare(project: Project, inputs: Iterable[str], cfg: Dict[str, Any], progre
         if len(empty_files) > 5:
             names += f"等 {len(empty_files)} 个文件"
         summary["warnings"].insert(0, f"{names}里没有找到能用的说话声音，一段也没切出来（可能没录上声音、文件太短，"
-                                      "或者同名字幕和视频对不上）。请打开听一下，换成能听到你讲课声音的文件再准备一次")
+                                      "或者同名字幕和视频对不上）。请打开听一下：没录上声音的，换成能听到你讲课声音的文件再准备一次；"
+                                      "如果是同名字幕和视频对不上，把同名字幕换成对的（或者删掉）再点「开始准备素材」，"
+                                      "会重新处理这个视频")
+    if still_empty:
+        names = "、".join(f"「{f.name}」" for f in still_empty[:5])
+        if len(still_empty) > 5:
+            names += f"等 {len(still_empty)} 个文件"
+        summary["warnings"].insert(0, f"{names}以前处理过，一段也没切出来，这次文件和同名字幕都没变，没有再处理。"
+                                      "如果是同名字幕和视频对不上，把同名字幕换成对的（或者删掉）再点「开始准备素材」，"
+                                      "会重新处理；没录上声音的，换成能听到你讲课声音的文件")
     if dup:
         summary["warnings"].insert(0, f"有 {dup} 个文件和别的文件是同一个视频（上传的和文件夹里的是同一个，或者是备份、"
                                       "改了名字的），只处理了一次，同一段话不会训练两次")

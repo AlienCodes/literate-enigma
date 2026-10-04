@@ -152,6 +152,77 @@ def test_file_without_any_speech_is_reported(tmp_path, lecture_dir):
     assert any("第2课.wav" in w and "没有找到" in w for w in res["warnings"])
 
 
+def test_english_utf8_subtitle_with_one_broken_byte_stays_english(tmp_path):
+    """英文字幕（UTF-8）里坏了一个字节：不是英文字母的只有几个弯引号 ’，坏一个就占两三成，第一次修的时候整个当成 GBK 读，
+    读出「we鈥ll」「It鈥檚」「don鈥檛」：英文训练文字里冒出汉字，后面的 s、t 也被吃掉。现在照 UTF-8 读，只坏那一个字。"""
+    from voicetwin.data.subtitles import parse_subtitles
+
+    lines = ["Today we’ll look at relative clauses.", "It’s used for things that don’t have a finished time.",
+             "Let’s see an example: The book is mine."]
+    srt = "".join(f"{k}\n00:00:0{2 * k},000 --> 00:00:0{2 * k + 1},500\n{t}\n\n" for k, t in enumerate(lines, 1))
+    raw = srt.encode("utf-8")
+    cut = raw.index("’".encode("utf-8")) + 2
+    p = tmp_path / "Lesson 1.srt"
+    p.write_bytes(raw[:cut] + raw[cut + 1:])  # 第一个 ’ 的最后一个字节没了
+    texts = [c.text for c in parse_subtitles(p)]
+    assert not any("一" <= ch <= "鿿" for t in texts for ch in t), texts
+    assert texts[1:] == lines[1:]
+    assert texts[0].startswith("Today we") and texts[0].endswith("ll look at relative clauses.")
+
+
+def _shift_srt_hours(text):
+    """字幕时间都往后挪一个小时（像是另一个视频的字幕，和这个视频对不上）。"""
+    import re
+
+    return re.sub(r"(?m)(^|--> )00:", r"\g<1>01:", text)
+
+
+def test_zero_clip_video_is_prepared_again_after_fixing_subtitle(prepared, tmp_path, lecture_dir):
+    """同名字幕是另一个视频的（时间对不上），一段也没切出来：以前记成「处理过」，老师把字幕换成对的再准备，还是 0 段、
+    什么都不说（改名字也没用，改了名字也认得出是同一个视频）。现在换了字幕就重新处理；没换就再提醒一次怎么办。"""
+    n_single = len(prepared[1].load_manifest())
+    cfg = _cfg(tmp_path)
+    folder = _lecture_copy(lecture_dir, tmp_path / "讲课")
+    srt = folder / "第1课.srt"
+    good = srt.read_text(encoding="utf-8")
+    srt.write_text(_shift_srt_hours(good), encoding="utf-8")
+    res = wf.run_prepare(cfg, "对不上", [str(folder)])
+    assert len(_rows(cfg, "对不上")) == 0
+    assert any("第1课.wav" in w and "字幕换成对的" in w for w in res["warnings"])
+
+    res = wf.run_prepare(cfg, "对不上", [str(folder)])  # 什么都没换：不再处理，但要说清楚为什么、怎么办
+    assert res["files_new"] == 0 and len(_rows(cfg, "对不上")) == 0
+    assert any("第1课.wav" in w and "以前处理过" in w and "字幕换成对的" in w for w in res["warnings"])
+
+    srt.write_text(good, encoding="utf-8")  # 换成对的字幕
+    res = wf.run_prepare(cfg, "对不上", [str(folder)])
+    rows = _rows(cfg, "对不上")
+    assert res["files_new"] == 1 and len(rows) == n_single and all(r["text"] for r in rows)
+    res = wf.run_prepare(cfg, "对不上", [str(folder)])  # 切好了以后再准备：不再切一遍
+    assert res["files_new"] == 0 and len(_rows(cfg, "对不上")) == n_single
+
+
+def test_zero_clip_video_left_by_an_older_version_is_prepared_again(prepared, tmp_path, lecture_dir):
+    """以前的版本读不了「Unicode」（UTF-16）字幕，这个视频 0 段、记成处理过（sources.json 里没有字幕指纹）：
+    修好以后再准备，还是 0 段，改名字也没用。现在这样的记录再处理一次。"""
+    from voicetwin.data.prepare import content_key, source_id
+
+    n_single = len(prepared[1].load_manifest())
+    cfg = _cfg(tmp_path)
+    folder = _lecture_copy(lecture_dir, tmp_path / "讲课")
+    srt = folder / "第1课.srt"
+    srt.write_bytes(srt.read_text(encoding="utf-8").encode("utf-16"))
+    media = (folder / "第1课.wav").resolve()
+    project = wf.Project(cfg, "旧版本")
+    project.ensure()
+    project.write_json(project.sources_path, {source_id(media): {  # 以前的版本写的样子
+        "file": str(media), "key": content_key(media), "clean": "raw/x.wav", "segments": 0, "speech_seconds": 0.0,
+        "done": True}})
+    res = wf.run_prepare(cfg, "旧版本", [str(folder)])
+    rows = _rows(cfg, "旧版本")
+    assert res["files_new"] == 1 and len(rows) == n_single and all(r["text"] for r in rows)
+
+
 # ---------------------------------------------------------------------------- pipeline#4 改了名字的视频
 def test_renamed_video_is_not_cut_again(tmp_path, lecture_dir):
     """处理过的 0006.mp4 改名成「第6课 定语从句.mp4」（或者重新下载成「0006 (1).mp4」再上传）：以前当成新视频再切一遍，
@@ -193,6 +264,23 @@ def test_corrected_low_confidence_clip_is_used_for_training(prepared, tmp_path):
     review.set_draft(project, a["id"], text=wrong_a)  # 改回识别出来的字
     wf.review_save(cfg, v)
     assert {r["id"]: r for r in project.load_manifest()}[a["id"]]["drop_reason"] == "识别置信度低"
+
+
+def test_text_corrected_in_v18_without_orig_text_is_used_for_training(prepared, tmp_path):
+    """v18 改过的文字只记了 text_edited、没有 orig_text（orig_text 是后来才加的）：第一次修的时候把没有 orig_text 当成
+    「没改过」，老师在 v18 改对的句子还按旧文字的识别置信度丢掉。以前的版本只有文字真的改了才记 text_edited。"""
+    cfg, v, project = _copy_voice(prepared, tmp_path)
+    recs = project.load_manifest()
+    a = next(r for r in recs if r["text"] == "首先我们看一个最简单的例子。" and r["keep"])
+    b = next(r for r in recs if r["text"] == "区别在于我们需要同时给出键和值。" and r["keep"])
+    for r, asr in ((a, {"avg_logprob": -1.35, "no_speech_prob": 0.1}), (b, {"avg_logprob": -0.3, "no_speech_prob": 0.75})):
+        r.update(text_edited=True, asr={"engine": "faster-whisper", **asr})
+        r.pop("orig_text", None)
+    project.save_manifest(recs)
+    wf.apply_review(cfg, v, read_csv=False)
+    got = {r["id"]: r for r in project.load_manifest()}
+    assert got[a["id"]]["keep"] and got[a["id"]]["drop_reason"] == ""
+    assert got[b["id"]]["keep"] and got[b["id"]]["drop_reason"] == ""
 
 
 # ---------------------------------------------------------------------------- pipeline#6 爆音过滤永远不起作用
