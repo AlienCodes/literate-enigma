@@ -453,6 +453,25 @@ def fake_demucs(tmp_path, monkeypatch):
     sys.modules.pop("demucs", None)
 
 
+def _pid_alive(pid):
+    if os.name == "nt":  # Windows 上 os.kill(pid, 0) 会直接结束进程，不能用来检查（和 test_gptsovits_fake 一样用 tasklist）
+        import subprocess
+
+        out = subprocess.run(["tasklist", "/FI", f"PID eq {pid}", "/NH"], stdout=subprocess.PIPE,
+                             stderr=subprocess.DEVNULL).stdout.decode(errors="replace")
+        return str(pid) in out.split()
+    if Path("/proc/self").exists():
+        try:  # 僵尸进程（已经结束、还没被回收）不算活着
+            return Path(f"/proc/{pid}/stat").read_text().split(")")[-1].split()[0] != "Z"
+        except OSError:
+            return False
+    try:
+        os.kill(pid, 0)
+        return True
+    except OSError:
+        return False
+
+
 def test_stop_ends_demucs_right_away(tmp_path, fake_demucs, monkeypatch):
     """去背景音乐（Demucs，一两个小时的视频要二三十分钟）的时候点「停止」：以前要等 Demucs 做完才停；临时文件夹也留着。"""
     from voicetwin.data import enhance
@@ -490,8 +509,7 @@ def test_stop_ends_demucs_right_away(tmp_path, fake_demucs, monkeypatch):
     assert not th.is_alive()
     assert isinstance(out.get("exc"), TaskCancelled) and out["t"] - t0 < 5
     pid = int(pid_file.read_text())
-    with pytest.raises(OSError):
-        os.kill(pid, 0)
+    assert not _pid_alive(pid)
     assert not list(work.glob("demucs_*"))
 
 

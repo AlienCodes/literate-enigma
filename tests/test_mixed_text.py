@@ -123,7 +123,8 @@ def _write_list(path: Path, lines=LINES) -> Path:
 def _run_runner(root: Path, lst: Path, opt: Path, i_part: int = 0, all_parts: int = 1, **extra):
     env = dict(os.environ, inp_text=str(lst), opt_dir=str(opt), i_part=str(i_part), all_parts=str(all_parts),
                version="v2ProPlus", is_half="True", exp_name="vt", VOICETWIN_TEXT_DRYRUN="1",
-               PYTHONPATH=os.pathsep.join([str(root), str(root / "GPT_SoVITS")]), **extra)
+               PYTHONPATH=os.pathsep.join([str(root), str(root / "GPT_SoVITS")]),
+               PYTHONIOENCODING="utf-8", **extra)  # 和程序一样（worker.subprocess_env）：Windows 的英文控制台是 cp1252
     return subprocess.run([sys.executable, "-s", str(gsv.MIXED_SCRIPT)], cwd=str(root), env=env, stdout=subprocess.PIPE,
                           stderr=subprocess.STDOUT, timeout=120)
 
