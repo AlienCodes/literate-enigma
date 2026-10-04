@@ -1231,7 +1231,9 @@ class GPTSoVITSBackend(Backend):
                 _remove_parts(opt_dir, part.name, quiet=True)
                 raise RuntimeError("1A 文本处理没有产出，请查看日志 logs/gsv_1a_text.log")
             path_text.write_text("\n".join(lines) + "\n", encoding="utf-8")
-            part.unlink(missing_ok=True)
+            # 合并好了，分块文件留着也没关系（下次跳过 1A；素材变化、重跑 1A 之前都会再删，删不掉时那里会说清楚）。
+            # 杀毒软件刚好在检查这个新写的文件时删不掉，不能因此停下训练，还显示成「Excel 打开了 transcripts.csv」
+            _remove_parts(opt_dir, part.name, quiet=True)
 
         # 1B：HuBERT 特征 + 32k 音频（+ v2Pro 声纹）。脚本不打印进度，数它写出的文件。
         self.step(progress, 0.12, "提取声音特征（比较慢，素材多时要十几分钟）")
@@ -1263,7 +1265,7 @@ class GPTSoVITSBackend(Backend):
                 _remove_parts(opt_dir, part.name, quiet=True)
                 raise RuntimeError("1C 提取语义没有产出，请查看日志 logs/gsv_1c_semantic.log")
             path_sem.write_text("\n".join(["item_name\tsemantic_audio"] + got) + "\n", encoding="utf-8")
-            part.unlink(missing_ok=True)
+            _remove_parts(opt_dir, part.name, quiet=True)  # 和 1A 一样：删不掉就算了，下次重跑 1C 之前还会再删
         return opt_dir
 
     def _s2_config_template(self) -> str:

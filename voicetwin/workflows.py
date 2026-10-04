@@ -945,6 +945,16 @@ def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, item
             if note and isinstance(res, dict):
                 res["material_note"] = note  # 结果里也说（以前只在「详细过程」里）
             return res
+        except Exception as exc:  # 停止按钮的 TaskCancelled 是 BaseException，不经过这里
+            # 挑选用的是「② 训练模型」里选的引擎。可选引擎没装好时，报错说明默认指到 ③（生成、试听都在那里），
+            # 老师照着在 ③ 换了，再点「重新挑选」还是一样的错：补一句，让说明指到 ② 去换
+            from voicetwin.errors import TRAIN_TAB_ENGINE, explain
+
+            if explain(exc).key == "optional_engine_missing":
+                # 报错文字本身就说清楚了的（一般都是）：不再挂上原来的，技术细节里不重复两遍
+                own = explain(str(exc)).key == "optional_engine_missing"
+                raise RuntimeError(f"{exc}\n（{TRAIN_TAB_ENGINE}）") from (None if own else exc)
+            raise
         finally:
             backend.stop()
 

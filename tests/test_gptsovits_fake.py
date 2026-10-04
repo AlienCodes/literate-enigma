@@ -943,6 +943,33 @@ def test_locked_leftover_part_file_stops_with_clear_message(tmp_path, monkeypatc
 
 
 @needs_fake_python
+def test_part_file_locked_after_merge_does_not_stop_training(prepared, tmp_path, monkeypatch, no_users_pth):
+    """1A / 1C 做完、合并好以后删分块文件时，杀毒软件刚好在检查这个新写的文件（WinError 32）：以前直接停下训练，
+    还显示成「Excel 打开了 transcripts.csv」。合并好的结果已经写好了，分块文件留着也没关系（下次跳过这一步；
+    素材变化、重跑这一步之前都会再删，删不掉时那里会说清楚），所以要接着训练。"""
+    cfg, project, _ = prepared
+    gcfg, root, p2 = _small_train_cfg(project, tmp_path, "GSV-lockok")
+    confirm_material(gcfg, project.voice)
+    real_unlink = Path.unlink
+    tried = []
+
+    def locked(self, *a, **k):
+        # 只锁脚本刚写出来的分块文件（开始以前它们还不存在，所以「开始前先删」那一步碰不到）
+        if self.name in ("2-name2text-0.txt", "6-name2semantic-0.tsv") and self.exists():
+            tried.append(self.name)
+            raise PermissionError(13, "[WinError 32] 另一个程序正在使用此文件，进程无法访问。", str(self))
+        return real_unlink(self, *a, **k)
+
+    monkeypatch.setattr(Path, "unlink", locked)
+    info = wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    assert sorted(set(tried)) == ["2-name2text-0.txt", "6-name2semantic-0.tsv"]  # 真的碰到了删不掉
+    assert info["sovits"] and info["gpt"]
+    opt_dir = root / "logs" / info["exp_name"]
+    assert len((opt_dir / "2-name2text.txt").read_text(encoding="utf-8").strip().splitlines()) >= 2
+    assert len((opt_dir / "6-name2semantic.tsv").read_text(encoding="utf-8").strip().splitlines()) >= 2
+
+
+@needs_fake_python
 def test_empty_semantic_step_stops_before_training(prepared, tmp_path, monkeypatch, no_users_pth):
     """1C（提取语义）一句都没做成：以前只写一个表头就接着训练（白白练十几分钟音色，最后 GPT 那一步才出错），
     现在马上说清楚；原因修好以后再点「开始训练」就正常。"""

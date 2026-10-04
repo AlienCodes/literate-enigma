@@ -381,10 +381,21 @@ def _fill_engine(ctx: _Ctx) -> Dict[str, str]:
     return {"engine": m.group(1) + " " if m else "合成引擎"}
 
 
+#: 「重新挑选最佳模型」用的是 ② 里选的引擎（workflows.run_select 会把这句补在报错后面）。
+#: 其他用到可选引擎的按钮（生成、试听语速）都在 ③，用的是 ③ 里选的引擎
+TRAIN_TAB_ENGINE = "「重新挑选最佳模型」用的是「② 训练模型」的「高级设置」里选的引擎"
+
+
 def _fill_optional_engine(ctx: _Ctx) -> Dict[str, str]:
     # 「IndexTTS 是可选引擎，这台电脑没有装好……」：引擎名就在命中的那一行开头
     m = re.search(r"(Qwen3-TTS|IndexTTS)\s*$", ctx.text[:ctx.match.start()], re.I)
-    return {"engine": m.group(1) + " " if m else "这个引擎"}
+    values = {"engine": m.group(1) + " " if m else "这个引擎"}
+    # 要说到老师真正选这个引擎的地方：以前一律说「到 ③ 换，再点生成」，点「重新挑选」时照着做也没用（② 里还是它）
+    if TRAIN_TAB_ENGINE in ctx.text:
+        values.update(where="「② 训练模型」的「高级设置」", again="「重新挑选最佳模型」")
+    else:
+        values.update(where="「③ 生成讲课音频」的「高级设置（一般不用改）」", again="刚才那个按钮")
+    return values
 
 
 def _fill_voice(ctx: _Ctx) -> Dict[str, str]:
@@ -412,8 +423,8 @@ _RULES: List[_Rule] = [
           "不然就到「② 训练模型」重新训练一次。"),
     _Rule("optional_engine_missing", r"是可选引擎，这台电脑没有装好",
           "{engine}没有装好，用不了",
-          "这是可选的引擎，不装也行：到「③ 生成讲课音频」的「高级设置（一般不用改）」里，把引擎换回「GPT-SoVITS」，"
-          "再点一次「生成」。确实想用它，请帮你的人按下面技术细节里的说明安装。",
+          "这是可选的引擎，不装也行：到{where}里，把引擎换回「GPT-SoVITS」，"
+          "再点一次{again}。确实想用它，请帮你的人按下面技术细节里的说明安装。",
           fill=_fill_optional_engine),
     _Rule("stale_part_locked", r"上次训练留下的临时文件删不掉",
           "上次训练留下的临时文件删不掉",
