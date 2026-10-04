@@ -43,6 +43,58 @@ def _quiet_gradio_env() -> None:
     os.environ["GRADIO_ANALYTICS_ENABLED"] = "False"
 
 
+#: gradio 的临时文件（发给网页播放 / 下载的音频、上传的视频）放在工作文件夹里的这个文件夹（名字以 __ 开头，声音库里不显示）
+GRADIO_CACHE_DIR = "__gradio_cache"
+#: 每次启动时删掉多久以前的临时文件（秒）
+GRADIO_CACHE_MAX_AGE = 86400.0
+
+
+def _use_workspace_cache(cfg: Any) -> Optional[str]:
+    """gradio 发给网页的每个文件（播放、下载的音频）、上传的视频，都会在它的临时文件夹里复制一份。默认在 C 盘的
+    %TEMP%\\gradio；老师关掉黑色窗口（点 ×）时 gradio 自己的清理不会运行，它定时的清理在 gradio 4.24 里也从来不删
+    （见 app.GRADIO_DELETE_CACHE），一直越积越多。改放到工作文件夹里的 __gradio_cache，每次启动时删掉一天以前的。
+    已经设了 GRADIO_TEMP_DIR 的照旧用那里（也不去清理）；共用的 %TEMP%\\gradio 不动（GPT-SoVITS 自己的网页也用它）。
+    必须在建网页之前调用。返回用的文件夹（没改时返回 None）。"""
+    if os.environ.get("GRADIO_TEMP_DIR"):
+        return None
+    try:
+        from voicetwin.config import resolve_path
+
+        ws = resolve_path(cfg, cfg.get("workspace", "./workspace"))
+        if ws is None:
+            return None
+        cache = ws / GRADIO_CACHE_DIR
+        cache.mkdir(parents=True, exist_ok=True)
+    except Exception:  # noqa: BLE001 - 建不了就还用 gradio 默认的地方，不影响启动
+        return None
+    os.environ["GRADIO_TEMP_DIR"] = str(cache)
+    _clean_old_files(str(cache), GRADIO_CACHE_MAX_AGE)
+    return str(cache)
+
+
+def _clean_old_files(folder: str, max_age: float, now: Optional[float] = None) -> int:
+    """删掉文件夹里 max_age 秒以前的文件和空了的子文件夹，返回删了几个文件。删不掉的（Windows 上正被占用）下次再删。
+    时间按「修改时间、放进来的时间」里晚的那个算（gradio 复制文件时保留原来的修改时间，刚复制的旧视频不能算旧的）。"""
+    now = time.time() if now is None else now
+    removed = 0
+    for root, _dirs, files in os.walk(folder, topdown=False):
+        for name in files:
+            path = os.path.join(root, name)
+            try:
+                st = os.lstat(path)
+                if now - max(st.st_mtime, st.st_ctime) > max_age:
+                    os.remove(path)
+                    removed += 1
+            except OSError:
+                pass
+        if os.path.normpath(root) != os.path.normpath(folder):
+            try:
+                os.rmdir(root)  # 只有空的才删得掉
+            except OSError:
+                pass
+    return removed
+
+
 def _split_hosts(value: str) -> List[str]:
     return [h.strip() for h in (value or "").split(",") if h.strip()]
 
@@ -348,6 +400,7 @@ def launch(cfg: Any, host: str = "127.0.0.1", port: int = 7860, share: bool = Fa
         url = _url(host, p)
         _say(banner(url))
 
+        _use_workspace_cache(cfg)  # 这个窗口真的要启动网页了（不是去打开已经开着的那个）：临时文件放工作文件夹、清掉旧的
         app = _build(cfg, local)
         app.queue()
         try:

@@ -984,7 +984,7 @@ def training_blocker(project: Project) -> str:
         return ("还没有确认训练素材，这次没有开始训练（必须先在校对表下面点「✅ 确认训练素材」；"
                 "用命令行的话运行 voicetwin confirm）。")
     if not review.confirmed_matches(conf, records):
-        return ("确认训练素材以后，校对表又改过（改了文字、删除或撤销删除了句子），这次没有开始训练"
+        return ("确认训练素材以后，校对表又改过（加了新素材、改了文字、删除或撤销删除了句子），这次没有开始训练"
                 f"（上次确认是 {str(conf.get('time') or '')[5:16]}；用命令行的话再运行一次 voicetwin confirm）。")
     return ""
 
