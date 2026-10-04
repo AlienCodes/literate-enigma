@@ -57,11 +57,13 @@ def _uniq(text: str) -> str:
     return text + "编号" + "".join(str(int(c, 16) % 10) for c in uuid.uuid4().hex[:6]) + "。"
 
 
-def _fake_noisereduce(monkeypatch):
+def _fake_noisereduce(monkeypatch, scale=0.97):
+    """假的 noisereduce：小于 0.002 的部分削掉（波形真的变了，像去掉了底噪），再乘 scale（真的去杂音也会让说话的声音变小）。"""
     nr = types.ModuleType("noisereduce")
 
     def reduce_noise(y, sr, y_noise=None, stationary=False, prop_decrease=1.0, **kw):
-        return (np.asarray(y, dtype=np.float32) * 0.97).astype(np.float32)
+        y = np.asarray(y, dtype=np.float32)
+        return (np.sign(y) * np.maximum(np.abs(y) - 0.002, 0.0) * scale).astype(np.float32)
 
     nr.reduce_noise = reduce_noise
     monkeypatch.setitem(sys.modules, "noisereduce", nr)
@@ -340,7 +342,7 @@ _TWIN_DELTAS = {"deltas": {"sentence": {"f0_med_st": {"mean": 0.0, "sd": 1.0, "n
 
 
 def _dp_setup(tmp_path, monkeypatch, table):
-    """table：每句 [(种子, 音高 Hz, 综合分, 错字率), ...]，第一个是现在用的。"""
+    """table：每句 [(种子, 音高 Hz, 综合分, 错字率[, 提示列表]), ...]，第一个是现在用的。"""
     n, _ = _narrator(tmp_path, tier="none", scorer=FakeScorer())
     n._identical["twin"] = dict(_TWIN_DELTAS)
     f0 = {}
@@ -351,13 +353,14 @@ def _dp_setup(tmp_path, monkeypatch, table):
                             index=i, pause_after="sentence")
         plan = n._plan(seg)
         cands = []
-        for seed, hz, total, cer in rows:
+        for seed, hz, total, cer, *issues in rows:
             f0[seed] = hz
             wav = _tone(seed, seg.text, 1.0)
             c = S.SearchCand(wav=wav, sr=SR, arm=S.Arm("r1", 0, 0), seed=seed, req_seed=seed, row=0, req_no=0, req_n=1,
                              speed=1.0, model="fake-model")
             c.awav, c.empty = n._analysis_pair(wav, SR)
-            c.score = Score(total=total, cer=cer, errors=0 if cer == 0 else 5, rate=4.0, stage="full", checker="fake")
+            c.score = Score(total=total, cer=cer, errors=0 if cer == 0 else 5, rate=4.0, stage="full", checker="fake",
+                            issues=list(issues[0]) if issues else [])
             cands.append(c)
         S.store_candidates(S.store_dir(n.project.cache_dir, plan.pool_key), cands, 6)
         cur = cands[0]
@@ -665,3 +668,224 @@ def test_fake_gptsovits_names_follow_the_weights_actually_used(prepared, tmp_pat
     assert res3.audio_path.name == "第5课_模型未知.wav"
     for name in _all_names(out):
         assert TEACHER_FILE_RE.match(name), name
+
+
+# ============================================================================ 审查后的修改（P6 两位审查员的意见）
+def _continuous(seed, hiss=0.0, sr=SR):
+    """连着说、中间没有停顿的一句（真的 TTS 句子里没有数字静音）；hiss：加的白噪声（标准差）。"""
+    w = synth_speech("今天我们来学习这个例子大家注意听", sr=sr, seed=seed, noise=0.0)
+    if hiss:
+        w = w + np.random.default_rng(seed).normal(0, hiss, w.size).astype(np.float32)
+    return eng.trim_edges(w.astype(np.float32), sr)
+
+
+def test_speech_floor_measures_noise_not_quiet_speech(tmp_path, monkeypatch):
+    """审查意见 1：句子里停顿不到一成时，以前量到的是轻声的字（干净的句子也有 −28 dBFS，当成有底噪去杂音，
+    「两个版本完全一样」几乎不会出现）。现在量的是底噪：干净的连着说的句子 ≤ −60 dBFS，加了 −50 dB 嘶嘶声的量出约 −50。"""
+    _fake_noisereduce(monkeypatch)
+    for sr in (16000, 32000):
+        for seed in (1, 3, 5):
+            assert eng.Narrator._speech_floor_db(_continuous(seed, sr=sr), sr) <= eng.DENOISE_FLOOR_DB
+            hiss = eng.Narrator._speech_floor_db(_continuous(seed, hiss=0.003, sr=sr), sr)  # 0.003 = −50.5 dBFS
+            assert abs(hiss - 20 * np.log10(0.003)) <= 2.0, hiss
+    # 句子里有停顿时和以前的量法一样：停顿里是数字静音的量不出底噪，停顿里有 −50 dB 底噪的量出约 −50
+    assert eng.Narrator._speech_floor_db(_with_pause(1), SR) <= -90.0
+    assert abs(eng.Narrator._speech_floor_db(_with_pause(3, hiss=0.003), SR) - 20 * np.log10(0.003)) <= 2.0
+    # 两句干净的连着说的句子：B 和 A 完全一样，如实说；有一句带嘶嘶声：只给这一句去杂音
+    n, _ = _narrator(tmp_path, tier="none", scorer=_ConstScorer())
+    results = _results([_continuous(1), _continuous(3)])
+    layout = n._layout(results)
+    audio_a = n._render(layout, [(r.wav, SR) for r in results], SR)
+    variants, audio = n._make_variants(results, layout, audio_a, SR, 1.0)
+    assert variants[1]["same_as_raw"] is True and np.array_equal(audio["未去杂音"], audio["去杂音"])
+    assert "两个版本完全一样（每句里都量不出底噪，不需要去杂音）。" in n.notes
+    n.notes.clear()
+    results = _results([_continuous(1), _with_pause(3, hiss=0.003)])
+    layout = n._layout(results)
+    audio_a = n._render(layout, [(r.wav, SR) for r in results], SR)
+    variants, audio = n._make_variants(results, layout, audio_a, SR, 1.0)
+    assert variants[1]["denoised_sentences"] == [2] and not variants[1].get("same_as_raw")
+
+
+def _level_setup(tmp_path, monkeypatch, scale):
+    _fake_noisereduce(monkeypatch, scale=scale)
+    n, _ = _narrator(tmp_path, tier="none", scorer=_ConstScorer())
+    n.profile = {"loudness": {"source_lufs": -20.0}}
+    n._identical["twin"] = {"loudness": {"sd": 1.3, "p05": -2.3, "p95": 1.2, "n": 30}}
+    wavs = [_with_pause(1), _with_pause(3, hiss=0.003), _with_pause(5, hiss=0.003)]
+    results = _results(wavs)
+    layout = n._layout(results)
+    gains, _ = n._levels(results, layout, SR)
+    audio_a = n._render(layout, [(w, SR) for w in wavs], SR, gains)
+    return n, results, layout, gains, audio_a
+
+
+def test_denoised_version_keeps_each_sentence_at_the_raw_level(tmp_path, monkeypatch):
+    """审查意见 2：去杂音会让说话的声音变小（实测 2~5 dB），以前 B 照搬 A 每句的音量系数、写文件时也不再调，
+    B 比你原来的响度低好几 dB（两个版本比的时候 B 吃亏）。现在去过杂音的句子各自调回 A 里这一句的响度，
+    没去杂音的句子和 A 一模一样；B 的整篇响度和目标差 0.5 dB 以内，实测写进版本记录。"""
+    n, results, layout, gains, audio_a = _level_setup(tmp_path, monkeypatch, scale=0.6)  # 去杂音后小 4.4 dB
+    variants, audio = n._make_variants(results, layout, audio_a, SR, 1.0, gains)
+    a, b = audio["未去杂音"], audio["去杂音"]
+    assert abs(measure_lufs(a, SR) - (-20.0)) <= 0.5
+    assert abs(measure_lufs(b, SR) - (-20.0)) <= 0.5, measure_lufs(b, SR)
+    for k, (s, m) in enumerate(layout):
+        i = int(round(s * SR))
+        la, lb = speech_level_db(a[i:i + m], SR), speech_level_db(b[i:i + m], SR)
+        assert abs(la - lb) <= 0.3, (k, la, lb)
+    (s0, n0) = layout[0]
+    i0 = int(round(s0 * SR))
+    assert np.array_equal(a[i0:i0 + n0], b[i0:i0 + n0])   # 没去杂音的那一句：和 A 一模一样
+    assert np.count_nonzero(a == 0.0) <= np.count_nonzero(b == 0.0)  # 停顿里还是 0（只乘系数）
+    vb = next(v for v in variants if v["name"] == "去杂音")
+    assert vb["denoised_sentences"] == [2, 3]
+    assert vb["lufs"] == round(measure_lufs(b, SR), 2) and variants[0]["lufs"] == round(measure_lufs(a, SR), 2)
+    assert set(vb["loudness"]["restored_db"]) == {2, 3} and all(v > 3.0 for v in vb["loudness"]["restored_db"].values())
+
+
+def test_report_levels_describe_the_delivered_version(prepared, tmp_path, monkeypatch):
+    """审查意见 2（报告）：最后用的是 B 时，报告里每句的音量、句子之间的音量差、最后的响度都按 B（老师拿到的那个文件）量。"""
+    cfg, project, _ = prepared
+    _fake_noisereduce(monkeypatch, scale=0.6)
+    monkeypatch.setattr(eng, "_vram_tier", lambda: "none")
+    orig = eng.Narrator._version_score
+
+    def prefer_b(self, wavs, results, sr, mult, rng=(0.0, 0.0), label="", reuse=None):
+        score, pct, rows = orig(self, wavs, results, sr, mult, rng, label, reuse)
+        return (score + 0.5 if label.startswith("给「去杂音」") else score), pct, rows
+
+    monkeypatch.setattr(eng.Narrator, "_version_score", prefer_b)
+    script = _uniq("音量报告第一句，先停一下再说") + _uniq("音量报告第二句，也停一下") + _uniq("第三句，最后一句")
+    res = wf.run_narrate(cfg, project.voice, script, out=str(tmp_path / "音量.wav"), candidates=2)
+    rep = json.loads(res.report_path.read_text(encoding="utf-8"))
+    assert rep["final"] == "去杂音" and rep["variants"][1]["denoised_sentences"]
+    wav, sr = load_audio(res.audio_path)
+    loud = rep["loudness"]
+    for s, lv in zip(rep["segments"], loud["levels_db"]):
+        got = speech_level_db(wav[int(round(s["start"] * sr)):int(round(s["end"] * sr))], sr)
+        assert abs(got - lv) <= 0.3, (s["index"], got, lv)
+    assert loud["version"] == "去杂音"
+    assert abs(loud["final_lufs"] - measure_lufs(wav, sr)) <= 0.1
+    if not loud["peak_lowered"]:
+        assert abs(measure_lufs(wav, sr) - loud["target_lufs"]) <= 0.5
+    line = next(x for x in rep["notes"] if x.startswith("句子之间的音量差（实测）"))
+    assert f"这次 ±{loud['this_sd']:.1f} dB" in line
+
+
+def test_viterbi_swap_replaces_that_sentence_warnings(tmp_path, monkeypatch):
+    """审查意见 3：整篇再挑一遍换了一句以后，提示里还是换掉的那个版本的（识别结果、语速提示），换上的版本的提示没有。"""
+    up4 = 150.0 * 2 ** (4 / 12)
+    n, results, _ = _dp_setup(tmp_path, monkeypatch, [
+        [(11, 150.0, 1.0, 0.0)],
+        [(21, up4, 1.00, 0.0, ["语速偏快（换掉的版本）"]), (22, 151.0, 0.99, 0.0, ["句尾有一点杂音（换上的版本）"])],
+        [(31, 150.0, 1.0, 0.0, ["第三句自己的提示"])]])
+    results[1].hint = "可能有读错的字（识别为：换掉的版本的识别结果），建议重新生成或改写这一句"
+    by_index = {r.segment.index: r for r in results}
+    monkeypatch.setattr(n, "_load_identical", lambda report=False: n._identical)
+    monkeypatch.setattr(n, "synthesize_segment", lambda seg, force=False: by_index[seg.index])
+    got = n.synthesize_all([r.segment for r in results])
+    assert "第 2 句：语速偏快（换掉的版本）" in n.warnings and any("换掉的版本的识别结果" in w for w in n.warnings)
+    info = n._continuity(got)
+    assert info["changed"] == 1 and got[1].seed == 22
+    want = [f"第 2 句：{x}" for x in got[1].score.get("issues") or []] + ([f"第 2 句：{got[1].hint}"] if got[1].hint else [])
+    assert [w for w in n.warnings if w.startswith("第 2 句：")] == want
+    assert not any("换掉的版本" in w for w in n.warnings)
+    # 顺序还是按句子：第 2 句的在第 3 句的前面
+    assert n.warnings.index("第 2 句：句尾有一点杂音（换上的版本）") < n.warnings.index("第 3 句：第三句自己的提示")
+
+
+def test_identical_versions_never_say_one_sounds_more_like_you(tmp_path, monkeypatch, capsys):
+    """审查意见 4：两个版本一模一样时（每句都量不出底噪），引擎、网页、命令行都不能说 A「更像你的原声」、B「去掉了杂音」；
+    分数一样（B 只给几句去了杂音）时也不说「更像」，说「分数一样，按规定用没处理过的」；只去了几句的写明是哪几句。"""
+    from voicetwin.cli import _print_narration
+    from voicetwin.webui import app as A
+
+    _fake_noisereduce(monkeypatch)
+    n, _ = _narrator(tmp_path, tier="none", scorer=_ConstScorer())
+    results = _results([_with_pause(1), _with_pause(7)])
+    layout = n._layout(results)
+    audio_a = n._render(layout, [(r.wav, SR) for r in results], SR)
+    variants, _ = n._make_variants(results, layout, audio_a, SR, 1.0)
+    assert variants[1]["same_as_raw"] is True
+    assert not any("更像你的原声" in x for x in n.notes)
+    for i, v in enumerate(variants):
+        v["path"] = f"/x/{i}.wav"
+    md = A._variants_md(variants)
+    assert "更像你的原声" not in md and "去掉了轻微的杂音" not in md and "⭐" not in md
+    assert "两个版本完全一样（每句里都量不出底噪，不需要去杂音），用哪个都一样" in md
+    res = types.SimpleNamespace(audio_path="课.wav", duration=3.0, srt_path=None, report_path="课.json", warnings=[],
+                                flagged=[], variants=variants)
+    _print_narration(res, True)
+    out = capsys.readouterr().out
+    assert "更像你的原声" not in out and "⭐" not in out
+    assert "两个版本完全一样（每句里都量不出底噪，不需要去杂音），用哪个都一样" in out
+    # 分数一样、B 只给第 2 句去了杂音：不说「更像」，写明只去了第 2 句
+    n.notes.clear()
+    results = _results([_with_pause(1), _with_pause(3, hiss=0.003), _with_pause(5)])
+    layout = n._layout(results)
+    audio_a = n._render(layout, [(r.wav, SR) for r in results], SR)
+    variants, _ = n._make_variants(results, layout, audio_a, SR, 1.0)
+    line = next(x for x in n.notes if x.startswith("⭐ 推荐"))
+    assert "更像你的原声" not in line and "分数一样" in line and "没处理过" in line
+    for i, v in enumerate(variants):
+        v["path"] = f"/x/{i}.wav"
+    md = A._variants_md(variants)
+    assert "更像你的原声" not in md and "B 只给第 2 句去掉了轻微的杂音" in md and "别的句子两个版本一模一样" in md
+    _print_narration(types.SimpleNamespace(**dict(vars(res), variants=variants)), True)
+    out = capsys.readouterr().out
+    assert "更像你的原声" not in out and "分数一样" in out
+    # 「完美」档以前的说法不变：分数高的那个「更像你的原声」
+    old = [{"name": "未去杂音", "path": "/a.wav", "score": 0.912, "recommended": True},
+           {"name": "去杂音", "path": "/b.wav", "score": 0.905, "recommended": False}]
+    assert "⭐ 推荐：版本 A，更像你的原声（相似度高 0.007）" in A._variants_md(old)
+    assert "只是 B 去掉了轻微的杂音" in A._variants_md(old)
+
+
+def test_unknown_model_name_says_why_and_what_to_do(prepared, tmp_path, monkeypatch):
+    """审查意见 5：文件名写「模型未知」时要告诉老师为什么、怎么办（以前只有报告里写着原因）。"""
+    from voicetwin.webui import app as A
+
+    cfg, project, _ = prepared
+    monkeypatch.setattr(eng.Narrator, "_model_info",
+                        lambda self: {"name": None, "how": "不认识的版本标记 b'zz'（可能是更新的 GPT-SoVITS 版本）",
+                                      "files": []})
+    res = wf.run_narrate(cfg, project.voice, _uniq("模型未知的提示"), out=str(tmp_path / "未知.wav"), quality="fast")
+    assert res.audio_path.name == "未知_模型未知.wav"
+    warn = [w for w in res.warnings if "模型未知" in w]
+    assert len(warn) == 1
+    assert "不认识的版本标记" in warn[0] and "声音照常生成好了" in warn[0] and "重新挑选最佳模型" in warn[0]
+    assert A._md_text(warn[0]) in A._gen_summary_md(res)  # 网页的结果说明里也有（Markdown 转义过）
+    rep = json.loads(res.report_path.read_text(encoding="utf-8"))
+    assert warn[0] in rep["warnings"]
+    # 读得出模型名时没有这条
+    monkeypatch.undo()
+    ok = wf.run_narrate(cfg, project.voice, _uniq("模型名读得出来"), out=str(tmp_path / "已知.wav"), quality="fast")
+    assert not any("模型未知" in w for w in ok.warnings)
+
+
+def test_timed_identical_progress_does_not_claim_pause_fitting(prepared, tmp_path, monkeypatch):
+    """审查意见 6：按字幕时间轴配音时停顿不改（每句放在字幕的时间上），进度里不能说「按你本人的停顿长短……再量一遍停顿」。"""
+    cfg, project, _ = prepared
+    monkeypatch.setattr(eng, "_vram_tier", lambda: "none")
+    tag = uuid.uuid4().hex[:6]
+    segs = [ScriptSegment(text=f"字幕第{k}句{tag}。", display=f"字幕第{k}句{tag}。", lang="zh", index=k,
+                          cue_start=1.0 + 4.0 * k, cue_end=3.0 + 4.0 * k) for k in range(3)]
+    rec = []
+    backend = get_backend("dummy", cfg, project)
+    try:
+        n = eng.Narrator(cfg, project, backend, quality="identical", candidates=2, variants=False, tier="none",
+                         progress=lambda f, m: rec.append(m))
+        res = n.narrate(segs, tmp_path / "字幕.wav")
+    finally:
+        backend.stop()
+    assert [round(s["start"], 2) for s in res.segments] == [1.0, 5.0, 9.0]
+    assert "按你本人的停顿长短和音量拼接，再量一遍停顿……" not in rec
+    assert "按字幕的时间放好每一句，按你本人句子之间的音量差调音量……" in rec
+    rep = json.loads(res.report_path.read_text(encoding="utf-8"))
+    assert rep["pauses"]["fit_passes"] == 0
+
+
+def test_readme_names_the_report_file_correctly():
+    """审查意见 7：报告现在叫「<名字>_<模型名>.json」，README 不能再说 xxx.report.json。"""
+    readme = (Path(__file__).resolve().parents[1] / "README.md").read_text(encoding="utf-8")
+    assert ".report.json" not in readme and "_模型名.json" in readme

@@ -1989,19 +1989,37 @@ def _variant_title(v: Dict[str, Any], i: int) -> str:
     return f"版本 {_variant_letter(v, i)}：{v.get('name') or ''}" + (f"（{score}）" if score else "")
 
 
+def _denoised_note(vs: Sequence[Dict[str, Any]]) -> str:
+    """两个版本差在哪：「一模一样」只给量得出底噪的句子去杂音（版本记录里有 denoised_sentences），写明是哪几句。"""
+    vb = next((v for v in vs if str(v.get("name") or "") == "去杂音"), None) or {}
+    ds = [int(x) for x in (vb.get("denoised_sentences") or []) if isinstance(x, (int, float))]
+    total = _num(vb.get("sentences"))
+    if not ds:
+        return "只是 B 去掉了轻微的杂音。"
+    if total is not None and len(ds) >= total:
+        return "只是 B 每一句都去掉了轻微的杂音。"
+    nums = "、".join(str(x) for x in ds[:20]) + ("……（完整的列表在报告里）" if len(ds) > 20 else "")
+    return f"区别只在：B 只给第 {nums} 句去掉了轻微的杂音（别的句子两个版本一模一样）。"
+
+
 def _variants_md(vs: Sequence[Dict[str, Any]]) -> str:
-    """「完美」「一模一样」质量的两个版本：分数、推荐哪个。"""
+    """「完美」「一模一样」质量的两个版本：分数、推荐哪个。两个版本完全一样时（每句都量不出底噪）只说一样，
+    不说哪个「更像」；分数几乎一样时也不说「更像你的原声」。"""
     if len(vs) < 2:
         return ""
-    lines = ["#### 🎧 这次做了两个版本，听一听，选你更喜欢的"]
-    for i, v in enumerate(vs):
-        star = "　⭐ 推荐：更像你的原声" if v.get("recommended") else ""
-        lines.append(f"{i + 1}. **{_md_text(_variant_title(v, i))}**{star}")
+    same = next((v for v in vs if v.get("same_as_raw")), None)
+    if same is not None:
+        why = str(same.get("same_reason") or "每句里都量不出底噪，不需要去杂音")
+        lines = ["#### 🎧 这次的两个版本完全一样"]
+        lines += [f"{i + 1}. **{_md_text(_variant_title(v, i))}**" for i, v in enumerate(vs)]
+        lines.append(f"\n两个版本完全一样（{_md_text(why)}），用哪个都一样。")
+        lines.append(f"\n<small>{HONEST_SIM}</small>")
+        return "\n".join(lines)
     rec_i = next((i for i, v in enumerate(vs) if v.get("recommended")), None)
+    gap, tie = "", False
     if rec_i is not None:
         rec = vs[rec_i]
         other = [v for j, v in enumerate(vs) if j != rec_i]
-        gap = ""
         pr, po = _pct_of(rec), _pct_of(other[0]) if other else None
         sr, so = _num(rec.get("score")), _num(other[0].get("score")) if other else None
         if pr is not None and po is not None and pr - po >= 0.05:
@@ -2014,9 +2032,17 @@ def _variants_md(vs: Sequence[Dict[str, Any]]) -> str:
             # 百分比一样时按综合得分推荐（声纹为主，再看语速、音高和你本人差多少）
             gap = f"（百分比差不多，综合得分高 {abs(sr - so):.3f}）" if pr is not None else f"（相似度高 {abs(sr - so):.3f}）"
         elif pr is not None or sr is not None:
-            gap = "（两个版本几乎一样像，听哪个顺耳就用哪个）"
-        lines.append(f"\n⭐ 推荐：版本 {_variant_letter(rec, rec_i)}，更像你的原声{gap}")
-    lines.append(f"\n<small>两个版本的文字、停顿和字幕完全一样，只是 B 去掉了轻微的杂音。{HONEST_SIM}</small>")
+            # 几乎一样像：不说「更像你的原声」；分数完全一样时推荐的是没处理过的 A（规定）
+            tie = True
+            rule = "，分数一样时按规定用没处理过的 A" if sr == so and str(rec.get("name") or "") == "未去杂音" else ""
+            gap = f"（两个版本几乎一样像{rule}，听哪个顺耳就用哪个）"
+    lines = ["#### 🎧 这次做了两个版本，听一听，选你更喜欢的"]
+    for i, v in enumerate(vs):
+        star = ("　⭐ 推荐" if tie else "　⭐ 推荐：更像你的原声") if v.get("recommended") else ""
+        lines.append(f"{i + 1}. **{_md_text(_variant_title(v, i))}**{star}")
+    if rec_i is not None:
+        lines.append(f"\n⭐ 推荐：版本 {_variant_letter(vs[rec_i], rec_i)}{'' if tie else '，更像你的原声'}{gap}")
+    lines.append(f"\n<small>两个版本的文字、停顿和字幕完全一样，{_denoised_note(vs)}{HONEST_SIM}</small>")
     return "\n".join(lines)
 
 

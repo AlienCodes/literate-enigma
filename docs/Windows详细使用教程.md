@@ -355,7 +355,7 @@ GPT-SoVITS 是目前最成熟的开源声音克隆工具，VoiceTwin 用它来�
 在 `D:\VoiceTwin` 文件夹的地址栏输入 `cmd` 回车，然后运行（换成你自己的文件路径）：
 
 ```
-voicetwin.bat mux --video D:\课程\第3课画面.mp4 --audio D:\VoiceTwin\workspace\我的声音\outputs\第3课.wav -o D:\课程\第3课成品.mp4
+voicetwin.bat mux --video D:\课程\第3课画面.mp4 --audio D:\VoiceTwin\workspace\我的声音\outputs\第3课_v2ProPlus.wav -o D:\课程\第3课成品.mp4
 ```
 
 ### 给已有视频按字幕时间轴重新配音

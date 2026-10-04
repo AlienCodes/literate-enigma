@@ -199,6 +199,41 @@ def speech_level_db(wav: np.ndarray, sr: int) -> Optional[float]:
     return float(10.0 * np.log10(np.mean(10.0 ** (sdb / 10.0)) + EPS))
 
 
+#: 噪声在每个频率上的功率是指数分布：p10 = −ln(0.9) × 平均功率（除以它才是平均功率，和逐帧电平的刻度一样）
+_P10_OF_MEAN = float(-np.log(0.9))
+
+
+def speech_noise_floor_db(wav: np.ndarray, sr: int, min_frames: int = 5) -> Optional[float]:
+    """一句话说话部分的底噪（dBFS，和逐帧电平同一个刻度：标准差 σ 的白噪声量出来是 20·log10(σ)）。
+
+    只看有声音的那一段（第一个到最后一个比自动静音阈值响的帧，10 ms 一帧、40 ms 窗），切成约 32 毫秒一帧
+    （一半重叠，汉宁窗），**每个频率**取所有帧里的 p10（换算成平均功率），再取所有频率的中位数，乘上频率个数就是底噪的
+    总功率（噪声估计里常用的「最小统计」）。说话的声音任何时候只占一部分频率：一个频率上总有一成以上的帧没有声音，
+    这个频率的 p10 就是底噪；一直被占着的只有音高附近几个频率，中位数不受它们影响。
+    以前直接取逐帧电平的 p10：句子里停顿不到一成时量到的是轻声的字（干净的、连着说的句子也有 −28 dBFS，被当成有底噪）。
+    句子里有停顿时两种量法差不多（停顿里就是底噪）。底噪不是白噪声、低频多时会量低一些（粉红噪声约低 7 dB）。
+    整句都量不出声音、或者有声音的那一段不到 min_frames 帧时返回 None。"""
+    wav = np.asarray(wav, dtype=np.float32)
+    if wav.size < int(0.1 * sr):
+        return None
+    db = frame_rms_db(wav, sr)
+    idx = np.flatnonzero(db >= silence_threshold_from_db(db))
+    if idx.size == 0 or not np.any(db > -100):
+        return None
+    hop10 = max(1, int(round(sr * 0.01)))
+    x = wav[idx[0] * hop10:min(wav.size, (idx[-1] + 1) * hop10)].astype(np.float64)
+    n = 1 << int(np.ceil(np.log2(max(0.032 * sr, 16.0))))
+    h = n // 2
+    n_frames = 1 + (x.size - n) // h if x.size >= n else 0
+    if n_frames < max(1, int(min_frames)):
+        return None
+    win = np.hanning(n)
+    frames = x[np.arange(n_frames)[:, None] * h + np.arange(n)[None, :]] * win
+    power = np.abs(np.fft.rfft(frames, axis=1)[:, 1:-1]) ** 2   # 不要直流和最高的那个频率
+    floor = np.percentile(power, 10, axis=0) / _P10_OF_MEAN
+    return float(10.0 * np.log10(float(np.median(floor)) / float(np.sum(win ** 2)) + EPS))
+
+
 def _fill_short_gaps(mask: np.ndarray, max_gap: int) -> np.ndarray:
     """把 mask 中长度 <= max_gap 的 False 空洞填成 True（两侧都为 True 时）。"""
     out = mask.copy()

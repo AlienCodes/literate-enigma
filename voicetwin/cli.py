@@ -707,12 +707,21 @@ def _print_narration(res: Any, is_narrate: bool) -> None:
         print(f"   整篇像你本人 {float(overall):.1f}%（100% = 和你自己的真实录音一样像；声纹模型自动打分，最终以耳朵为准）")
     variants = [v for v in (getattr(res, "variants", None) or []) if isinstance(v, dict)]
     if variants:
+        # 两个版本完全一样（每句都量不出底噪）时不说哪个「更像」；分数一样时如实说按规定用没处理过的
+        same = next((v for v in variants if v.get("same_as_raw")), None)
+        scores = [v.get("score") for v in variants if isinstance(v.get("score"), (int, float))]
+        tie = len(variants) == 2 and len(scores) == 2 and scores[0] == scores[1]
         print(f"   共 {len(variants)} 个版本（{res.audio_path} 是现在用的那个）：")
         for i, v in enumerate(variants, 1):
             label = chr(ord("A") + i - 1) if i <= 26 else str(i)
             score = _variant_score_text(v)
-            star = "  ⭐ 推荐：更像你的原声" if v.get("recommended") else ""
+            star = ""
+            if v.get("recommended") and same is None:
+                star = "  ⭐ 推荐（两个版本分数一样，按规定用没处理过的这个）" if tie else "  ⭐ 推荐：更像你的原声"
             print(f"   版本 {label}：{v.get('name', '')}  {v.get('path', '')}" + (f"（{score}）" if score else "") + star)
+        if same is not None:
+            why = same.get("same_reason") or "每句里都量不出底噪，不需要去杂音"
+            print(f"   两个版本完全一样（{why}），用哪个都一样。")
     if res.srt_path:
         print(f"   字幕：{res.srt_path}")
     print(f"   报告：{res.report_path}")

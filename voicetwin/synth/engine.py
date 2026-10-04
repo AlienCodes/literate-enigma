@@ -64,6 +64,7 @@ from voicetwin.utils.audio import (
     silent_runs,
     speech_level_db,
     speech_noise_db,
+    speech_noise_floor_db,
 )
 from voicetwin.utils.ffmpeg import encode
 from voicetwin.utils.log import get_logger
@@ -487,7 +488,8 @@ PARA_U = (0.85, 0.97)
 FIT_STEP = 0.15
 FIT_MIN_GAP = 0.08
 FIT_PASSES = 2
-#: 一句话里说话部分的底噪（有声音的那一段里逐帧电平的 p10）高于这个才做去杂音；不高于时 B 版本这一句和 A 一模一样
+#: 一句话里说话部分的底噪（有声音的那一段里每个频率的 p10 的中位数，见 utils.audio.speech_noise_floor_db）高于这个
+#: 才做去杂音；不高于时 B 版本这一句和 A 一模一样
 DENOISE_FLOOR_DB = -60.0
 #: 每句音量调好以后，哪一句的最高点超过 −1 dBFS 就把这一句单独调低（不用限幅器，不整篇压）
 PEAK_CEILING_DB = -1.0
@@ -1523,6 +1525,7 @@ class Narrator:
         lo, hi = self._gen_range
         identical = self.quality == "identical"
         self._redo_set = set(redo_set)
+        self._seg_warn: Dict[int, List[str]] = {}  # 每句写进 self.warnings 的提示（第几句 → 提示）
         if identical:
             # 「一模一样」先准备（素材没变时几乎不花时间）：参考录音库的指纹在缓存键里，要先知道哪些句子已经生成过
             self._para_first = {s.index for k, s in enumerate(segments)
@@ -1566,13 +1569,34 @@ class Narrator:
             if identical and not res.cached:
                 fresh_s.append(time.monotonic() - t_seg)
                 self._eta(fresh_s, sum(1 for j in todo if j > i), lo + (hi - lo) * (i + 1) / max(n, 1))
-            for issue in res.score.get("issues") or []:
-                self.warnings.append(f"第 {i + 1} 句：{issue}")
-            if res.hint:
-                self.warnings.append(f"第 {i + 1} 句：{res.hint}")
+            self._seg_warn[i] = self._segment_warnings(i, res)  # 整篇再挑一遍换了这一句时按换上的版本重写
+            self.warnings.extend(self._seg_warn[i])
         if identical:
             self._search_report = self._finish_search_report(results, fresh_s)
         return results
+
+    @staticmethod
+    def _segment_warnings(i: int, res: SegmentResult) -> List[str]:
+        """第 i 句（从 0 开始）给老师的提示：这一句的问题（语速、停顿……）和建议（读错的字、不够像……）。"""
+        out = [f"第 {i + 1} 句：{issue}" for issue in res.score.get("issues") or []]
+        if res.hint:
+            out.append(f"第 {i + 1} 句：{res.hint}")
+        return out
+
+    def _replace_segment_warnings(self, i: int, res: SegmentResult) -> None:
+        """整篇再挑一遍把第 i 句换成了另一个版本：去掉换掉的版本的提示（识别结果、语速……），换成换上的版本的，
+        放回原来的位置（按句子的顺序）。不是 synthesize_all 写的提示（没记过）时不动。"""
+        book = getattr(self, "_seg_warn", None)
+        if book is None:
+            return
+        for w in book.get(i, []):
+            if w in self.warnings:
+                self.warnings.remove(w)
+        new = self._segment_warnings(i, res)
+        later = [self.warnings.index(w) for j, ws in book.items() if j > i for w in ws if w in self.warnings]
+        pos = min(later) if later else len(self.warnings)
+        self.warnings[pos:pos] = new
+        book[i] = new
 
     def _stop_gpu_sampler(self) -> None:
         if getattr(self, "_gpu", None) is not None:
@@ -1745,7 +1769,9 @@ class Narrator:
             self._progress(self._gen_range[1] + 0.001, "整篇再挑一遍，让前后句子衔接自然……")
             assembly["continuity"] = self._continuity(results, free=getattr(self, "_redo_set", None) or None)
         if identical:
-            self._progress(self._gen_range[1] + 0.005, "按你本人的停顿长短和音量拼接，再量一遍停顿……")
+            # 按字幕时间轴配音时每句放在字幕的时间上，停顿不改（也不再量），只调每句的音量
+            self._progress(self._gen_range[1] + 0.005, "按字幕的时间放好每一句，按你本人句子之间的音量差调音量……"
+                           if timed else "按你本人的停顿长短和音量拼接，再量一遍停顿……")
         else:
             self._progress(self._gen_range[1], "拼接音频、调整音量、生成字幕……")
         layout = self._layout(results)
@@ -1762,6 +1788,7 @@ class Narrator:
         variants: List[Dict[str, Any]] = []
         final_name = ""
         audio_by_name: Dict[str, np.ndarray] = {VARIANT_RAW: audio_a}
+        self._variant_mix = {}
         if variants_on:
             self._progress(0.92 if identical else 0.93, "做「去杂音」版本，并比较哪个版本更像你……")
             variants, audio_by_name = self._make_variants(results, layout, audio_a, sr, mult, gains)
@@ -1776,6 +1803,11 @@ class Narrator:
 
         def target(*parts: str, ext_: str = ext) -> Path:
             return out_dir / ("_".join([stem, *parts, tag]) + ext_)
+
+        unknown = self._unknown_model_warning(results, tag, target(ext_=".json").name)
+        if unknown:
+            self.warnings.append(unknown)
+            log.warning(unknown)
 
         out_dir.mkdir(parents=True, exist_ok=True)
         loud = not identical  # 「一模一样」每句的音量已经调好（_levels），不再整篇调
@@ -1807,7 +1839,11 @@ class Narrator:
         flagged = sorted(s["index"] for s in seg_report if s.get("flagged"))
         nums: Dict[str, Any] = {}
         if identical:
-            nums = self._assembly_numbers(results, layout, audio_main, sr, gains, assembly)
+            # 报告里每句的音量、句子之间的音量差按最后用的那个版本量（老师拿到的就是这个文件）
+            mix = self._variant_mix.get(final_name) or {}
+            nums = self._assembly_numbers(results, layout, audio_main, sr, mix.get("gains", gains), assembly,
+                                          wavs=mix.get("wavs"), version=final_name or VARIANT_RAW,
+                                          version_loudness=mix.get("loudness"))
         notes = list(self.notes) + self._summary_lines(results, flagged, overall, nums=nums or None)
         for line in notes:
             log.info(line)
@@ -1838,6 +1874,23 @@ class Narrator:
 
     def say(self, text: str, out_path: Union[str, Path]) -> NarrationResult:
         return self.narrate(text, out_path, subtitles=False)
+
+    @staticmethod
+    def _unknown_model_warning(results: Sequence[SegmentResult], tag: str, report_name: str) -> str:
+        """文件名最后写了「模型未知」时给老师的提示：为什么（每一句记下的检测依据）、声音能不能用、怎么办。
+        读得出模型名时返回空字符串。"""
+        from voicetwin.backends.base import MODEL_UNKNOWN
+
+        if MODEL_UNKNOWN not in tag.split("和"):
+            return ""
+        bad = [r for r in results if model_tag([r.model or {}]) == MODEL_UNKNOWN]
+        hows = [h for h in dict.fromkeys(str((r.model or {}).get("how") or "").strip() for r in bad) if h]
+        who = ("程序读不出这次用的是哪个模型" if len(bad) == len(results)
+               else f"有 {len(bad)} 句程序读不出用的是哪个模型")
+        why = "；".join(hows) if hows else "没有记下原因"
+        return (f"生成的文件名最后写的是「{tag}」：{who}（{why}），程序不会乱猜。声音照常生成好了，可以正常使用。"
+                "想让文件名写上模型名：去「② 训练模型」点一次「重新挑选最佳模型」（命令行：voicetwin select）再生成；"
+                f"还是写「{MODEL_UNKNOWN}」的话，把这次的报告（{report_name}）发给帮你的人，里面记着原因。")
 
     @staticmethod
     def _file_comment(tag: str, used: Sequence[Dict[str, Any]]) -> str:
@@ -1875,10 +1928,14 @@ class Narrator:
         return out
 
     def _assembly_numbers(self, results: List[SegmentResult], layout: List[Tuple[float, int]], audio: np.ndarray,
-                          sr: int, gains: Optional[List[float]], assembly: Dict[str, Any]) -> Dict[str, Any]:
+                          sr: int, gains: Optional[List[float]], assembly: Dict[str, Any],
+                          wavs: Optional[List[np.ndarray]] = None, version: str = VARIANT_RAW,
+                          version_loudness: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """「一模一样」报告和小结里的实测数字（小结里的每个数都从这里来，也都写进报告）：
         停顿（用量你本人停顿的同一个方法量最后的音频）、句子之间的音量差（每句调好音量以后再量）、最后的响度、
-        新生成几句 / 几句达标。量不出来的是 null（小结写「没测出来」）。"""
+        新生成几句 / 几句达标。量不出来的是 null（小结写「没测出来」）。
+        audio / wavs / gains 是最后用的那个版本的（version；「去杂音」版本的每句声音和系数和 A 不一样，
+        version_loudness 是它调回响度的记录）：报告和小结说的是老师拿到的那个文件。"""
         twin = (self._identical_ctx() or {}).get("twin") or {}
         tp = twin.get("pauses") or {}
         kinds = list(getattr(self, "_pause_kinds", []) or [])
@@ -1905,9 +1962,19 @@ class Narrator:
                   "measured": gaps, "errors": errors,
                   "fit_passes": int((assembly.get("fit") or {}).get("passes") or 0)}
         loud = dict(assembly.get("loudness") or {})
+        loud["version"] = version
+        if version_loudness:  # 最后用的是「去杂音」版本：每句的系数按它的写，调回响度、单独调低的也写上
+            loud["raw_gains_db"] = loud.get("gains_db")
+            loud["gains_db"] = version_loudness.get("gains_db")
+            loud["denoise_restored_db"] = version_loudness.get("restored_db")
+            lowered = set(loud.get("peak_lowered") or []) | set(version_loudness.get("peak_lowered") or [])
+            loud["peak_lowered"] = sorted(lowered)
         levels = []
         for k, r in enumerate(results):
-            w = resample(r.wav, r.sr, sr) if r.sr != sr else r.wav
+            if wavs is not None and k < len(wavs):
+                w = wavs[k]
+            else:
+                w = resample(r.wav, r.sr, sr) if r.sr != sr else r.wav
             g = gains[k] if gains is not None and k < len(gains) else 1.0
             levels.append(speech_level_db(np.asarray(w, dtype=np.float32) * np.float32(g), sr))
         lv = np.asarray([v for v in levels if v is not None], dtype=np.float64)
@@ -2062,26 +2129,31 @@ class Narrator:
     def _make_variants(self, results: List[SegmentResult], layout: List[Tuple[float, int]], audio_a: np.ndarray,
                        sr: int, mult: float, gains: Optional[List[float]] = None
                        ) -> Tuple[List[Dict[str, Any]], Dict[str, np.ndarray]]:
+        """两个版本：A 未去杂音、B 去杂音，同一套时间（文字、停顿、字幕完全一样），按同一个标准打分、推荐分数高的
+        （一样高时推荐没处理过的 A）。「一模一样」另外：
+        - 只给说话部分量得出底噪（> −60 dBFS）的句子去杂音，别的句子 B 里和 A 一模一样；去杂音其实没改动的句子
+          （句子里找不到能当噪声样本的停顿，denoise_light 原样返回）也不算去过；一句都没改时两个版本完全一样，如实说；
+        - 去过杂音的句子各自调回 A 里这一句说话时的响度（_match_levels）：B 不会因为去杂音变小声，比较时不吃亏；
+        - 每个版本最后的响度是实测的（lufs），每个版本用的每句音量系数记在 self._variant_mix（报告按最后用的那个版本写）。"""
         wavs_a = [resample(r.wav, r.sr, sr) for r in results]
         n = len(results)
         identical = self.quality == "identical"
         score_a, pct_a, rows_a = self._version_score(wavs_a, results, sr, mult, (0.93, 0.95), "给「未去杂音」版本打分")
         variants = [{"name": VARIANT_RAW, "label": "版本 A：未去杂音", "score": score_a, "pct": pct_a}]
         audio_by_name = {VARIANT_RAW: audio_a}
+        self._variant_mix: Dict[str, Dict[str, Any]] = {VARIANT_RAW: {"wavs": wavs_a, "gains": gains}}
         wavs_b: List[np.ndarray] = []
         noisy: List[int] = list(range(n))
+        changed: List[int] = list(range(n))
+        floors: List[Optional[float]] = []
+        same_why = ""
         if identical:
             # 「一模一样」：只给说话部分量得出底噪（底噪 > −60 dBFS）的句子去杂音，别的句子 B 版本里和 A 一模一样
             floors = [self._speech_floor_db(w, sr) for w in wavs_a]
             noisy = [i for i, f in enumerate(floors) if f is not None and f > DENOISE_FLOOR_DB]
-        if identical and not noisy:
-            variants.append({"name": VARIANT_DENOISED, "label": "版本 B：去杂音", "score": score_a, "pct": pct_a,
-                             "same_as_raw": True, "denoised_sentences": []})
-            audio_by_name[VARIANT_DENOISED] = audio_a
-            msg = "两个版本完全一样（每句里都量不出底噪，不需要去杂音）。"
-            self.notes.append(msg)
-            log.info(msg)
-        else:
+            if not noisy:
+                same_why = "每句里都量不出底噪，不需要去杂音"
+        if not same_why:
             for k, (r, w) in enumerate(zip(results, wavs_a), 1):
                 _check_cancel()
                 self._step(0.95, 0.97, k, n, "去杂音")
@@ -2093,52 +2165,101 @@ class Narrator:
                     wavs_b = []
                     break
                 wavs_b.append(dn)
-            if wavs_b:
-                audio_b = self._render(layout, [(w, sr) for w in wavs_b], sr, gains)
-                reuse = {i: rows_a[i] for i in range(n) if i not in noisy} if identical else None
-                score_b, pct_b, _ = self._version_score(wavs_b, results, sr, mult, (0.97, 0.99), "给「去杂音」版本打分",
-                                                        reuse=reuse)
-                entry = {"name": VARIANT_DENOISED, "label": "版本 B：去杂音", "score": score_b, "pct": pct_b}
-                if identical:
-                    entry["denoised_sentences"] = [i + 1 for i in noisy]
-                variants.append(entry)
-                audio_by_name[VARIANT_DENOISED] = audio_b
-            else:
-                msg = ("没有安装 noisereduce，这次只生成了「未去杂音」一个版本（想要「去杂音」版本，"
-                       "请重新双击 install_windows.bat 安装一次，安装程序会自动装上它）")
-                self.warnings.append(msg)
-                self.notes.append(msg)
-                log.warning(msg)
+            if wavs_b and identical:
+                changed = [i for i in noisy if not np.array_equal(wavs_b[i], wavs_a[i])]
+                if not changed:
+                    nums = "、".join(str(i + 1) for i in noisy[:20]) + ("……" if len(noisy) > 20 else "")
+                    same_why = (f"第 {nums} 句量得出底噪，但句子里没有能拿来当噪声样本的停顿，没有去杂音："
+                                "宁可不去，也不伤音色")
+        floors_db = [None if f is None else round(float(f), 1) for f in floors]
+        if same_why:
+            variants.append({"name": VARIANT_DENOISED, "label": "版本 B：去杂音", "score": score_a, "pct": pct_a,
+                             "same_as_raw": True, "same_reason": same_why, "denoised_sentences": [],
+                             "speech_floor_db": floors_db})
+            audio_by_name[VARIANT_DENOISED] = audio_a
+            self._variant_mix[VARIANT_DENOISED] = self._variant_mix[VARIANT_RAW]
+            msg = f"两个版本完全一样（{same_why}）。"
+            self.notes.append(msg)
+            log.info(msg)
+        elif wavs_b:
+            gains_b, match = (self._match_levels(wavs_a, wavs_b, gains, changed, sr) if identical
+                              else (gains, None))
+            audio_b = self._render(layout, [(w, sr) for w in wavs_b], sr, gains_b)
+            reuse = {i: rows_a[i] for i in range(n) if i not in changed} if identical else None
+            score_b, pct_b, _ = self._version_score(wavs_b, results, sr, mult, (0.97, 0.99), "给「去杂音」版本打分",
+                                                    reuse=reuse)
+            entry = {"name": VARIANT_DENOISED, "label": "版本 B：去杂音", "score": score_b, "pct": pct_b}
+            if identical:
+                entry.update({"denoised_sentences": [i + 1 for i in changed], "sentences": n,
+                              "speech_floor_db": floors_db, "loudness": match})
+            variants.append(entry)
+            audio_by_name[VARIANT_DENOISED] = audio_b
+            self._variant_mix[VARIANT_DENOISED] = {"wavs": wavs_b, "gains": gains_b, "loudness": match}
+        else:
+            msg = ("没有安装 noisereduce，这次只生成了「未去杂音」一个版本（想要「去杂音」版本，"
+                   "请重新双击 install_windows.bat 安装一次，安装程序会自动装上它）")
+            self.warnings.append(msg)
+            self.notes.append(msg)
+            log.warning(msg)
+        if identical:  # 每个版本最后的响度（「一模一样」写文件时不再整篇调，这就是文件的响度）
+            for v in variants:
+                v["lufs"] = round(float(measure_lufs(audio_by_name[v["name"]], sr)), 2)
         best = max(variants, key=lambda v: (v["score"], v["name"] == VARIANT_RAW))  # 一样高时用没处理过的
         for rank, v in enumerate(sorted(variants, key=lambda v: (-v["score"], v["name"] != VARIANT_RAW)), 1):
             v["rank"] = rank
         for v in variants:
             v["recommended"] = v is best
-        if len(variants) > 1:
+        if len(variants) > 1 and not any(v.get("same_as_raw") for v in variants):
+            # 两个版本完全一样时上面已经说了，不说哪个「更像」；分数一样时如实说按规定用没处理过的
             other = next(v for v in variants if v is not best)
-            if best.get("pct") is not None and other.get("pct") is not None:
-                gap = float(best["pct"]) - float(other["pct"])
-                detail = f"像你本人 {best['pct']:.1f}%，另一个版本 {other['pct']:.1f}%，相差 {gap:.1f}%；"
+            if best["score"] == other["score"]:
+                line = (f"⭐ 推荐：{best['label']}（两个版本分数一样，综合分都是 {best['score']:.3f}；"
+                        "分数一样时按规定用没处理过的 A）")
             else:
-                detail = ""
-            line = (f"⭐ 推荐：{best['label']}，更像你的原声（{detail}"
-                    f"综合分 {best['score']:.3f} 对 {other['score']:.3f}）")
+                if best.get("pct") is not None and other.get("pct") is not None:
+                    gap = float(best["pct"]) - float(other["pct"])
+                    detail = f"像你本人 {best['pct']:.1f}%，另一个版本 {other['pct']:.1f}%，相差 {gap:.1f}%；"
+                else:
+                    detail = ""
+                line = (f"⭐ 推荐：{best['label']}，更像你的原声（{detail}"
+                        f"综合分 {best['score']:.3f} 对 {other['score']:.3f}）")
             self.notes.append(line)  # 最后和小结一起写进日志
         return variants, audio_by_name
 
+    def _match_levels(self, wavs_a: List[np.ndarray], wavs_b: List[np.ndarray], gains: Optional[List[float]],
+                      changed: Sequence[int], sr: int) -> Tuple[Optional[List[float]], Optional[Dict[str, Any]]]:
+        """「去杂音」版本每句的音量系数：去杂音会让说话的声音变小（去掉噪声，也伤到一点声音；开发机上用合成的声音实测小 2~5 dB），
+        以前 B 照搬 A 的系数、写文件时也不再整篇调，B 就比你原来的响度低好几 dB（审查意见）。
+        现在去过杂音的句子各自调回 A 里这一句说话时的响度（同一个算法 speech_level_db），没去杂音的句子系数不变
+        （和 A 一模一样）；调完最高点超过 −1 dBFS 的这一句单独调低（不用限幅器，不整篇压）。只乘系数：0 还是 0。
+        设置里关掉了音量调整（gains 是 None）时不调。返回 (B 每句的系数, 记录)。"""
+        if gains is None:
+            return None, None
+        gain_db = [20.0 * math.log10(max(float(g), 1e-12)) for g in gains]
+        restored: Dict[int, float] = {}
+        lowered: List[int] = []
+        for i in changed:
+            la, lb = speech_level_db(wavs_a[i], sr), speech_level_db(wavs_b[i], sr)
+            if la is not None and lb is not None:
+                gain_db[i] += la - lb
+                restored[i + 1] = round(la - lb, 2)
+            w = wavs_b[i]
+            peak = float(np.max(np.abs(w))) if w.size else 0.0
+            if peak > 0 and 20.0 * math.log10(peak) + gain_db[i] > PEAK_CEILING_DB:
+                gain_db[i] = PEAK_CEILING_DB - 20.0 * math.log10(peak)
+                lowered.append(i + 1)
+        out = list(gains)  # 没去杂音的句子用 A 原来的系数（一个比特都不差）
+        for i in changed:
+            out[i] = 10.0 ** (gain_db[i] / 20.0)
+        info = {"restored_db": restored, "gains_db": [round(g, 2) for g in gain_db], "peak_lowered": lowered}
+        return out, info
+
     @staticmethod
     def _speech_floor_db(wav: np.ndarray, sr: int) -> Optional[float]:
-        """一句话里说话部分的底噪（dBFS）：从第一个到最后一个有声音的帧（10 ms 一帧、40 ms 窗、自动静音阈值）之间，
-        逐帧电平的 p10（句内停顿里有没有底噪）。整句都量不出声音时 None。"""
-        wav = np.asarray(wav, dtype=np.float32)
-        if wav.size < int(0.1 * sr):
-            return None
-        db = frame_rms_db(wav, sr)
-        thr = auto_silence_threshold(wav, sr)
-        idx = np.flatnonzero(db >= thr)
-        if idx.size == 0:
-            return None
-        return float(np.percentile(db[idx[0]:idx[-1] + 1], 10))
+        """一句话里说话部分的底噪（dBFS）：有声音的那一段里，每个频率取所有帧的 p10、再取所有频率的中位数
+        （utils.audio.speech_noise_floor_db）。以前取逐帧电平的 p10：句子里停顿不到一成时量到的是轻声的字，
+        干净的句子也被当成有底噪去杂音（审查意见）。整句都量不出声音时 None（当成量不出底噪）。"""
+        return speech_noise_floor_db(wav, sr)
 
     def _denoised(self, r: SegmentResult, wav: np.ndarray, sr: int) -> Optional[np.ndarray]:
         """这一句的去杂音版本（缓存在这句旁边，下次不用重算）。没有 noisereduce 时返回 None。
@@ -2324,6 +2445,7 @@ class Narrator:
                 continue
             try:
                 results[i] = self._dp_swap(results[i], plans[i], st, states[i])
+                self._replace_segment_warnings(i, results[i])  # 提示也换成换上的版本的
                 changed += 1
             except Exception as exc:  # noqa: BLE001 - 换不成（留下的声音读不了）：照旧用原来的
                 log.warning(f"整篇再挑一遍：第 {i + 1} 句换版本没成功（{exc}），照旧用原来的")
