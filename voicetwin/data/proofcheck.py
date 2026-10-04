@@ -905,6 +905,10 @@ def _repeats(text: str) -> List[_Ev]:
     """同一个字 / 词 / 短语连着重复（"我们来看一下我们来看一下"）。标的是重复出来的那几遍，不是第一遍。"""
     toks = tokenize(text)
     keys = _keys(toks)
+    # 比较是不是同样的几个字时，数字要看值（「第一种情况第二种情况」「三月三号三月四号」不是重复）；
+    # 下面判断够不够标红照旧用 keys（数字都是 "#"）
+    same = [k if k != "#" else "#" + str(t.val if t.val is not None else text[t.start:t.end])
+            for k, t in zip(keys, toks)]
     out: List[_Ev] = []
     i, n = 0, len(keys)
     while i < n:
@@ -913,8 +917,9 @@ def _repeats(text: str) -> List[_Ev]:
             if i + 2 * size > n:
                 break
             unit = keys[i:i + size]
+            cmp = same[i:i + size]
             k = 1
-            while keys[i + k * size:i + (k + 1) * size] == unit:
+            while same[i + k * size:i + (k + 1) * size] == cmp:
                 k += 1
             if k < 2:
                 continue
@@ -1027,26 +1032,77 @@ def _overlaps(a: _Ev, b: _Ev) -> bool:
     return a.start < b.end and b.start < a.end
 
 
-def _reasons(evs: Sequence[_Ev]) -> List[str]:
-    order = sorted(evs, key=lambda x: (0 if x.kind in ("total", "silent") else 1, x.start, -x.weight))
-    out: List[str] = []
-    for x in order:
-        if x.reason and x.reason not in out:
-            out.append(x.reason)
+#: build_suspect(with_pos=True)：每条原因是哪几处证据说的（[[开始, 结束], ...]，按 text 的位置）。查错字以后去掉了
+#: 一些标红 / 建议（改过的字、老师撤销过的改法）时，说明里对应的那几条也要去掉（以前还写着「另一个识别引擎听到的是「黄」」）。
+#: 只在查错字的过程中用，存进校对表以前去掉（_finish_reasons）
+REASON_POS = "reason_pos"
+
+
+def _limit_reasons(out: List[str]) -> List[str]:
     if len(out) > MAX_REASONS:
         rest = len(out) - (MAX_REASONS - 1)
         out = out[:MAX_REASONS - 1] + [f"……还有 {rest} 处"]
     return out
 
 
+def _reasons_pos(evs: Sequence[_Ev]) -> Tuple[List[str], List[List[List[int]]]]:
+    """原因（同样的只写一次，没有截短）和每条原因的位置。"""
+    order = sorted(evs, key=lambda x: (0 if x.kind in ("total", "silent") else 1, x.start, -x.weight))
+    out: List[str] = []
+    pos: List[List[List[int]]] = []
+    for x in order:
+        if not x.reason:
+            continue
+        if x.reason in out:
+            pos[out.index(x.reason)].append([x.start, x.end])
+        else:
+            out.append(x.reason)
+            pos.append([[x.start, x.end]])
+    return out, pos
+
+
+def _reasons(evs: Sequence[_Ev]) -> List[str]:
+    return _limit_reasons(_reasons_pos(evs)[0])
+
+
+def _keep_reasons(sus: Dict[str, Any], spans: Sequence[Sequence[int]],
+                  edits: Sequence[Tuple[int, int, str]]) -> Dict[str, Any]:
+    """去掉了一些标红 / 建议以后：说明里只留碰到还留着的标红或建议的那几条（整句的说明碰到什么都算）。
+    没有位置的（旧版本存的）、一条都对不上的：原样不动。返回要更新的字段。"""
+    pos = sus.get(REASON_POS)
+    reasons = list(sus.get("reasons") or [])
+    if not isinstance(pos, list) or len(pos) != len(reasons):
+        return {}
+    live = [(int(a), int(b)) for a, b in spans] + [(int(s), max(int(e), int(s) + 1)) for s, e, _r in edits]
+    keep_r: List[str] = []
+    keep_p: List[Any] = []
+    for r, ps in zip(reasons, pos):
+        if any(s < b and a < max(e, s + 1) for s, e in ps for a, b in live):
+            keep_r.append(r)
+            keep_p.append(ps)
+    if not keep_r:
+        return {}
+    return {"reasons": keep_r, REASON_POS: keep_p}
+
+
+def _finish_reasons(sus: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+    """存进校对表以前：去掉原因的位置，原因太多时截短（「……还有 N 处」）。"""
+    if not sus or REASON_POS not in sus:
+        return sus
+    out = {k: v for k, v in sus.items() if k != REASON_POS}
+    out["reasons"] = _limit_reasons(list(out.get("reasons") or []))
+    return out
+
+
 def build_suspect(text: str, other: Optional[str] = None, words: Any = None, *, engine: str = "",
                   known_terms: Iterable[str] = (), frequent: Iterable[str] = (), lang: str = "",
                   srt: bool = False, avg_logprob: Optional[float] = None,
-                  vocab: AbstractSet[str] = frozenset()) -> Optional[Dict[str, Any]]:
+                  vocab: AbstractSet[str] = frozenset(), with_pos: bool = False) -> Optional[Dict[str, Any]]:
     """把所有证据合起来，返回 record["suspect"]（没问题时返回 None）。
 
     other：第二个引擎听到的文字（None = 没有第二个引擎 / 这段没用它；"" = 它什么都没听到）。
     words：faster-whisper 的逐词结果（含 probability），可以为空。
+    with_pos=True（查错字的过程中用）：另外带上每条原因的位置（REASON_POS），原因先不截短；存以前用 _finish_reasons。
     """
     text = str(text or "")
     if not text.strip():
@@ -1089,6 +1145,9 @@ def build_suspect(text: str, other: Optional[str] = None, words: Any = None, *, 
         edits = [x.edit for x in ev if x.edit is not None and (
             x.splice == "yes" or (x.splice == "if_heur" and any(_overlaps(x, h) for h in latin_heur)))]
         alt = _apply_edits(text, edits) if edits else ""
+    if with_pos:
+        reasons, pos = _reasons_pos(shown)
+        return {"spans": spans, "alt": alt, "reasons": reasons, "score": round(score, 3), REASON_POS: pos}
     return {"spans": spans, "alt": alt, "reasons": _reasons(shown), "score": round(score, 3)}
 
 
@@ -1647,7 +1706,7 @@ def _protect_changed(rec: Dict[str, Any], text: str, sus: Optional[Dict[str, Any
         alt = _review.apply_edits(text, edits) if edits else ""
         if not spans and not edits:
             return None
-        return dict(sus, spans=spans, alt=alt if alt and alt != text else "")
+        return dict(sus, spans=spans, alt=alt if alt and alt != text else "", **_keep_reasons(sus, spans, edits))
     except Exception as exc:  # noqa: BLE001 - 保护失败也不能让查错字失败：原样返回
         log.warning(f"⚠️ 查错字：去掉改过的字上的标红时出错（{_why(exc)}）", exc_info=exc)
         return sus
@@ -1677,10 +1736,36 @@ def _drop_rejected_auto(rec: Dict[str, Any], text: str, sus: Optional[Dict[str, 
         alt = _review.apply_edits(text, keep) if keep else ""
         if not spans and not keep:
             return None
-        return dict(sus, spans=spans, alt=alt if alt and alt != text else "")
+        return dict(sus, spans=spans, alt=alt if alt and alt != text else "", **_keep_reasons(sus, spans, keep))
     except Exception as exc:  # noqa: BLE001 - 去不掉也不能让查错字失败：原样返回
         log.warning(f"⚠️ 查错字：去掉撤销过的改法时出错（{_why(exc)}）", exc_info=exc)
         return sus
+
+
+_MARK_KEYS = ("suspect", "suspect_auto")
+
+
+def _marks(rec: Dict[str, Any]) -> Dict[str, Any]:
+    """一行现在的标记（标红 / 建议、一键校正时存的自动查错字结果）的副本。"""
+    import copy
+
+    return {k: copy.deepcopy(rec[k]) for k in _MARK_KEYS if k in rec}
+
+
+def _with_marks(records: List[Dict[str, Any]], prev: Dict[str, Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """records 的副本：prev 里的行换回记下的标记（别的行原样）。"""
+    if not prev:
+        return records
+    out = []
+    for rec in records:
+        old = prev.get(str(rec.get("id")))
+        if old is None:
+            out.append(rec)
+            continue
+        rec = {k: v for k, v in rec.items() if k not in _MARK_KEYS}
+        rec.update(_marks(old))
+        out.append(rec)
+    return out
 
 
 def _count_flagged(project: Any, ids: Set[str]) -> int:
@@ -1751,6 +1836,7 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
     except Exception:  # noqa: BLE001
         _tf, oneclick = None, set()
     remerge: List[str] = []
+    prev: Dict[str, Dict[str, Any]] = {}  # 要合在一起的行原来的标记（停止 / 合不上时放回去）
     used: Dict[str, int] = {}
     errors, flagged, checked, dismissed = 0, 0, 0, 0
     err_samples: List[str] = []
@@ -1780,7 +1866,7 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
                     other, words, eng = runner.recognize(rec, lang)
                     asr = rec.get("asr") if isinstance(rec.get("asr"), dict) else {}
                     sus = build_suspect(text, other, words, engine=eng, srt=_is_srt_text(rec),
-                                        avg_logprob=asr.get("avg_logprob"), **heur_kw)
+                                        avg_logprob=asr.get("avg_logprob"), with_pos=True, **heur_kw)
                 except Exception as exc:  # noqa: BLE001 - 一段出错不影响别的段；停止按钮（TaskCancelled）照常传出去
                     errors += 1
                     eng = ""
@@ -1789,14 +1875,19 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
                         log.warning(f"⚠️ 查错字：片段 {rec.get('id')} 出错（{_why(exc)}），这一段只用规则检查",
                                     exc_info=exc)
                     try:
-                        sus = build_suspect(text, None, None, **heur_kw)
+                        sus = build_suspect(text, None, None, with_pos=True, **heur_kw)
                     except Exception:  # noqa: BLE001
                         sus = None
                 used[eng] = used.get(eng, 0) + 1
             sus = _protect_changed(rec, text, sus)  # 改过的字（老师改的、一键校正改好的）不标红、不建议改回去
             sus = _drop_rejected_auto(rec, text, sus, rejected.get(rec.get("id")))  # 老师撤销过的改法不再建议
+            sus = _finish_reasons(sus)  # 说明里去掉的那几处的原因也去掉了；存以前去掉原因的位置
             old = rec.get("suspect") if isinstance(rec.get("suspect"), dict) else None
             undo = bool(old and _review is not None and _review.analyze(rec, shown)["undo"])
+            if (old and old.get("src") == "transcript") or (not undo and str(rec.get("id")) in oneclick):
+                # 要和一键校正的结果合在一起的行：先记下现在的标记。中途停止 / 出错（合不上）时放回去，
+                # 不能留着这次没核对过的结果（以前母本证明没错的标红、错的建议又回来了，按钮是灰的）
+                prev.setdefault(str(rec.get("id")), _marks(rec))
             if old and old.get("src") == "transcript":
                 # 一键校正的结果（保存了也算）：表格上的标记留着，这次查的结果当「自动查错字的结果」存起来，
                 # 查完以后和一键校正的结果合在一起（以前直接换掉：没采用的建议没了、母本证明没错的标红又回来了，
@@ -1822,23 +1913,32 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
             checked += 1
             _report(progress, i / n, f"已检查 {i} / {n} 条")
             if i % SAVE_EVERY == 0 and i < n:
-                project.save_manifest(records)
+                # 中途存的：要合在一起的行存原来的标记（这时窗口关了 / 电脑断电，也不会留下没核对过的结果）
+                project.save_manifest(_with_marks(records, prev))
                 runner.save()
         finished = True
     finally:
-        if not finished:  # 停止或出了意外：已经查完的部分先存下来
+        if not finished:  # 停止或出了意外：已经查完的部分先存下来（要和一键校正合在一起的行放回原来的标记）
             try:
-                project.save_manifest(records)
+                project.save_manifest(_with_marks(records, prev))
             except Exception as exc:  # noqa: BLE001
                 log.warning(f"⚠️ 查错字：保存已检查的结果失败（{_why(exc)}）", exc_info=exc)
         runner.close()
     project.save_manifest(records)
     if remerge and _tf is not None:
         _report(progress, 1.0, f"和「一键全部文字校正」的结果合在一起（{len(remerge)} 条）……")
+        merged = False
         try:
             _tf.check_with_transcript(project, only=remerge, merge_only=True)
-        except Exception as exc:  # noqa: BLE001 - 合不上：自动查错字的结果已经存好了，一键校正的标记也还在（停止照常传出去）
+            merged = True
+        except Exception as exc:  # noqa: BLE001 - 合不上：这些行放回原来的标记（一键校正的结果）；停止照常传出去
             log.warning(f"⚠️ 查错字：和一键全部文字校正的结果合在一起时出错（{_why(exc)}）", exc_info=exc)
+        finally:
+            if not merged:  # 合的时候点了停止 / 出错：没核对过的结果不能留在表格上
+                try:
+                    project.save_manifest(_with_marks(records, prev))
+                except Exception as exc:  # noqa: BLE001
+                    log.warning(f"⚠️ 查错字：放回一键校正的标记失败（{_why(exc)}）", exc_info=exc)
     flagged = _count_flagged(project, {str(r.get("id")) for r in todo})
 
     real = {k: v for k, v in used.items() if k}

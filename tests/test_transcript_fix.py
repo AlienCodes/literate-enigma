@@ -320,7 +320,7 @@ def test_export_text(tmp_path):
     assert lines == ["第一句改好了", "第四句改了还没保存"]
     assert res["lines"] == 2 and res["unsaved"] == 1 and res["deleted"] == 1
     assert Path(res["path"]).parent.name == review.EXPORT_DIR and "校正声音" in Path(res["path"]).name
-    # 下载的文件可以直接当母本上传
+    # 下载的文件可以直接当母本上传（给别的声音用）
     assert tf.parse_mother(Path(res["path"]).name, tf.read_text_file(res["path"]))[0] == ("", "第一句改好了")
 
 
@@ -574,14 +574,28 @@ def test_without_jieba_nothing_is_changed_directly(tmp_path, monkeypatch, text):
 
 @need_both
 @pytest.mark.parametrize("text", ["他会说壮语，也会说普通话", "他的原籍是山东", "关于代词的用法我们下次讲",
-                                  "这个词兼名词和动词两种词性", "这是两个陷阱词，考试要小心", "如果我们把关系代词位置还原"])
+                                  "这个词兼名词和动词两种词性", "这是两个陷阱词，考试要小心", "如果我们把关系代词位置还原",
+                                  "接下来我们进行词的辨析，看看这两个词有什么区别。", "我们要对每个单词进行词的分类。"])
 def test_real_words_are_never_changed_directly(tmp_path, text):
-    """问题 7：本身是词的（壮语 → 状语）和正常的说法（关于代词、兼名词、陷阱词）不直接改。"""
+    """问题 7：本身是词的（壮语 → 状语）和正常的说法（关于代词、兼名词、陷阱词）不直接改。
+    第四轮找 bug：对照表里的「进行词 => 先行词」把「我们进行词的辨析」改成「我们先行词的辨析」，去掉了。"""
     cfg, project = _voice(tmp_path, [text])
     res = wf.run_transcript_fix(cfg, "校正声音", adopt_all=False)
     assert res["fixes"] == 0 and review.load_draft(project) == {}
     review.adopt_all_suggestions(project)
     assert review.load_draft(project) == {}  # 一键也不自动采用（没把握的建议还在，可以一行一行采用）
+
+
+@need_both
+def test_linking_verb_heard_as_system_word_is_still_fixed(tmp_path):
+    """第四轮找 bug 复查：修「进行词」时把对照表里的「系统词 => 系动词」也去掉了。它没有改错过（「系统词库」分词是
+    「系统 / 词库」，本来就不改）；老师母本里「系统词」只是「系动词」听错了，去掉以后这种错就改不好了。放回去。"""
+    rows = ["be动词是一个系统词，后面要接表语。", "我们来看系统词和实义动词的区别。", "这个是系统词库里面的词。"]
+    cfg, project = _voice(tmp_path, rows)
+    wf.run_transcript_fix(cfg, "校正声音", adopt_all=False)
+    assert _cur(project, "c000")[1] == "be动词是一个系动词，后面要接表语。"
+    assert _cur(project, "c001")[1] == "我们来看系动词和实义动词的区别。"
+    assert _cur(project, "c002")[1] == rows[2]
 
 
 @need_both
@@ -820,6 +834,106 @@ def test_result_message_wording():
     md = WebUI._textfix_md({"checked": 2, "adopted": {"unsure": 2}})
     assert "没有需要改的地方" not in md and "听一听" in md and "「采用」" in md and "✓ 采用" not in md
     assert "没有需要改的地方" in WebUI._textfix_md({"checked": 2, "adopted": {}})
+
+
+@need_both
+def test_typos_in_an_uploaded_script_never_overwrite_correct_text(tmp_path):
+    """第四轮找 bug：老师上传自己用拼音输入法打的讲稿（或者别的识别软件的文字），里面有错字（过去试、主雨、同位于、度、在）。
+    校对表里本来对的字被直接改成了这些错字，还写「已按标准库改好」；标准库的术语（过去式、宾语）也被改坏。
+    复查：两个字的词（练习 → 联系、意义 → 异议、时候 → 事后）、英文拼写（which → wich、sentence → sentense）还是直接改。
+    现在：只对上上传的文字（没修缮过）、程序自带的母本标准库又证明不了的，不直接改，按上传的母本给没把握的建议
+    （母本优先：一定给老师看，老师听录音决定）；改完标准库马上说有错的（过去试、彬鱼）不改。"""
+    rows = ["这个句子的谓语动词是过去式，所以我们要注意时态的变化。", "好，我们一起来读一下这个句子，注意它的语调和停顿。",
+            "我们再来看一个同位语从句的例子，它和定语从句不一样。", "这个动名词在句子里面作主语，后面的动词要用单数。",
+            "我们来看一下宾语从句，它在句子里面作宾语。", "好，下面我们来做一下练习，大家把书翻到第三十页。",
+            "这个句子的意义很重要，我们要好好理解它的用法。", "这个时候我们要注意，后面的动词要用过去式。",
+            "所以这里要用关系代词which,不能用that。",
+            "This is the sentence which I like very much, and we will read it again and again in class today."]
+    typed = ["这个句子的谓语动词是过去试，所以我们要注意时态的变化。", "好，我们一起来度一下这个句子，注意它的语调和停顿。",
+             "我们在来看一个同位于从句的例子，它和定语从句不一样。", "这个动名词在句子里面作主雨，后面的动词要用单数。",
+             "我们来看一下彬鱼从句，它在句子里面作宾语。", "好，下面我们来做一下联系，大家把书翻到第三十页。",
+             "这个句子的异议很重要，我们要好好理解它的用法。", "这个事后我们要注意，后面的动词要用过去式。",
+             "所以这里要用关系代词wich,不能用that。",
+             "This is the sentense which I like very much, and we will read it again and again in class today."]
+    cfg, project = _voice(tmp_path, rows)
+    up = tmp_path / "讲稿.txt"
+    up.write_text("\n".join(typed) + "\n", encoding="utf-8")
+    res = wf.run_transcript_fix(cfg, "校正声音", once=True, files=[str(up)])
+    assert res["fixes"] == 0 and res["adopted"]["changes"] == 0 and review.load_draft(project) == {}
+    for k, row in enumerate(rows):
+        assert _cur(project, f"c{k:03d}")[1] == row, row  # 一个字都没改
+    want = {"c001": ["度"], "c002": ["在", "于"], "c003": ["雨"], "c005": ["联系"], "c006": ["异议"], "c007": ["事后"],
+            "c008": ["wich"], "c009": ["sentense"]}
+    for rid, reps in want.items():  # 上传的母本里的写法给老师看：没把握的建议，说清楚是上传的文字、也可能是它打错了
+        rec, cur = _cur(project, rid)
+        info = review.analyze(rec, cur)
+        assert [e[2].strip(" ,") for e in info["edits"]] == reps and not info["sure"], (rid, info)
+        assert any("你上传的母本" in r and "也可能是上传的文字打错了" in r for r in info["reasons"]), info["reasons"]
+    for rid in ("c000", "c004"):  # 过去式 → 过去试、宾语 → 彬鱼：标准库马上会说写错了，不建议
+        rec, cur = _cur(project, rid)
+        assert not review.analyze(rec, cur)["edits"], rid
+
+
+@need_both
+def test_correct_uploaded_script_still_fixes_recognition_errors(tmp_path):
+    """上传的讲稿是对的：英文被写成汉字（威驰 → which）照样直接改；程序自带的母本标准库也这么说的（「读一下」「再来看」）
+    直接改（母本优先）；标准库里没有的（公园）按上传的母本给建议，老师点「采用」就改好。"""
+    rows = ["我们先来复习一下关系代词威驰的用法，它可以指物。", "好，我们一起来度一下这个句子，注意它的语调和停顿。",
+            "周末我们一起去公圆里面散散步，顺便复习一下单词。"]
+    script = ["我们先来复习一下关系代词which的用法，它可以指物。", "好，我们一起来读一下这个句子，注意它的语调和停顿。",
+              "周末我们一起去公园里面散散步，顺便复习一下单词。"]
+    cfg, project = _voice(tmp_path, rows)
+    up = tmp_path / "讲稿.txt"
+    up.write_text("\n".join(script) + "\n", encoding="utf-8")
+    wf.run_transcript_fix(cfg, "校正声音", once=True, files=[str(up)])
+    assert _cur(project, "c000")[1] == script[0] and _cur(project, "c001")[1] == script[1]
+    rec, cur = _cur(project, "c002")
+    assert cur == rows[2] and review.analyze(rec, cur)["edits"] == [(8, 9, "园")]
+    review.adopt_suggestion(project, "c002")
+    assert _cur(project, "c002")[1] == script[2]
+
+
+@need_both
+def test_uploaded_master_wording_is_never_dropped(tmp_path):
+    """第四轮找 bug 复查（老师 10-03：自动检查错字的底层逻辑也要以母本为主，母本是最优先级）：上一次修的时候，只对上
+    上传的母本、读音一样的单个字整个丢掉了——母本里明明是「再」，表格里的「在」不改、不标红、也不建议；🔍 合并时也一样。
+    现在：程序自带的母本标准库也这么说的直接改；标准库里没有的也一定给一个按母本写的建议。"""
+    rows = ["我们在来看一个例子，这个例子比较简单。", "那么我们现在在来看第二个句子，它是一个定语从句。",
+            "周末我们一起去公圆里面散散步，顺便复习一下单词。"]
+    script = ["我们再来看一个例子，这个例子比较简单。", "那么我们现在再来看第二个句子，它是一个定语从句。",
+              "周末我们一起去公园里面散散步，顺便复习一下单词。"]
+    cfg, project = _voice(tmp_path, rows)
+    up = tmp_path / "讲稿.txt"
+    up.write_text("\n".join(script) + "\n", encoding="utf-8")
+    wf.run_transcript_fix(cfg, "校正声音", once=True, files=[str(up)])
+    assert _cur(project, "c000")[1] == script[0] and _cur(project, "c001")[1] == script[1]
+    rec, cur = _cur(project, "c002")
+    info = review.analyze(rec, cur)
+    assert info["edits"] == [(8, 9, "园")] and any("你上传的母本里的「园」" in r for r in info["reasons"])
+    # 🔍 自动查错字以后合并（merge_only，从头算）：母本里的写法照样在
+    recs = project.load_manifest()
+    for r in recs:
+        r.pop("suspect", None)
+    project.save_manifest(recs)
+    tf.check_with_transcript(project, merge_only=True, only=["c002"])
+    rec, cur = _cur(project, "c002")
+    assert review.analyze(rec, cur)["edits"] == [(8, 9, "园")]
+
+
+@need_both
+def test_result_examples_keep_whole_words(tmp_path):
+    """第四轮找 bug：结果里的「例如：」按改动的那几个字说，英文被切开（「Caesa → 's scisso」）、汉字没有前后文（「到 → 道」）。"""
+    pytest.importorskip("gradio")
+    from voicetwin.webui.app import WebUI
+
+    ids = ["0006_9498bb_0031", "0006_9498bb_0037", "0006_9498bb_0043", "0006_9498bb_0072", "0006_9498bb_0104",
+           "0007_d8ade5_0073"]
+    rows = {r["id"]: r["text"] for r in csv.DictReader(open(MOTHER_DIR / "母本_原文.csv", encoding="utf-8-sig"))}
+    cfg, project = _voice(tmp_path, [rows[i] for i in ids], ids=ids)
+    res = wf.run_transcript_fix(cfg, "校正声音", once=True)
+    line = [ln for ln in WebUI._textfix_md(res).splitlines() if ln.startswith("例如")][0]
+    assert "Tony Caesars → Tony's scissors" in line and "报到 → 报道" in line and "原形 → 原型" in line, line
+    assert "Caesa →" not in line and "；到 → 道" not in line and "例如：到 → 道" not in line
 
 
 # ---------------------------------------------------------------------------- 第三次独立检查发现的问题（每个都有一个测试）
@@ -1639,3 +1753,142 @@ def test_webui_button_turns_gray_after_use_and_lights_again_for_new_material(tmp
     _add_rows(project, [("n1", "这里的借词后面要接宾语。")])
     assert ui.textfix_btn("校正声音")["interactive"] is True  # 加了新素材：又能用一次
     assert "只能用一次" not in ui.textfix_info("校正声音")
+
+
+# ---------------------------------------------------------------------------- 第四轮找 bug：上传母本的说明要如实
+@need_both
+def test_reuploading_this_voices_own_text_is_refused_and_never_reported_as_used(tmp_path):
+    """第四轮找 bug：下载的「改好的文字」（或者这个声音自己的 transcripts.csv）再当母本上传：每一句都和表格里的一样，
+    全部不用（这是对的：一句话不能证明它自己没错），可页面上说「另外用了你上传的」「也一起用」，下载的说明还叫老师这么做；
+    还把上次上传的有用的讲稿换掉了、用掉了这批素材唯一的一次。现在：网页上不存、不开始，说明为什么；说明里不再这么建议。"""
+    pytest.importorskip("gradio")
+    from voicetwin.webui import app as A
+
+    cfg, project = _voice(tmp_path, ["我们先来看艾子引导的定语从句。", "这个句子完全没有错误，我们继续往下看。"])
+    script = tmp_path / "讲稿.txt"
+    script.write_text("我们先来复习一下关系代词which的用法，它可以指物。\n", encoding="utf-8")
+    ui = A.WebUI(cfg)
+    O = ui.TEXTFIX_OUT
+    list(ui.do_textfix("校正声音", [str(script)]))  # 第一批：上传这批录音的讲稿
+    assert tf.load_transcripts(project)[1] == ["讲稿.txt"]
+    dl = dict(zip(ui.DLTXT_OUT, ui.do_download_text("校正声音")))
+    assert "当母本上传（「上传更多母本」那里）一起用" not in dl["dl_txt_md"] and "别的声音" in dl["dl_txt_md"]
+    assert "别的声音" in A.TEXTFIX_HELP
+    path = dl["dl_txt_file"]["value"]
+    _add_rows(project, [("n1", "我们先来复习一下关系代词威驰的用法，它可以指物。")])  # 新素材：按钮又亮了
+    out = dict(zip(O, list(ui.do_textfix("校正声音", [path]))[-1]))
+    assert "一模一样" in out["proof_bar"] and "还能用" in out["proof_bar"]
+    assert ui.textfix_btn("校正声音")["interactive"] is True  # 这批素材的一次没用掉
+    assert tf.load_transcripts(project)[1] == ["讲稿.txt"]  # 上次上传的讲稿还在
+    list(ui.do_textfix("校正声音"))  # 不上传、照常点：上次的讲稿照样用上
+    assert "which" in _cur(project, "n1")[1]
+    # 用旧版本存进去的、全是这个声音自己的文字：按钮下面不说「也一起用」，结果里不说「用了」
+    tf.save_transcripts(project, [path])
+    info = ui.textfix_info("校正声音")
+    assert "也一起用" not in info and "用不上" in info
+    res = tf.check_with_transcript(project, only=[])
+    assert res["files"] == [] and res["files_same"] and "另外用了你上传的" not in A.WebUI._textfix_md(res)
+    assert "没有用上" in A.WebUI._textfix_md(res)
+
+
+@need_both
+def test_too_long_upload_is_refused_and_truncation_is_shown(tmp_path, monkeypatch):
+    """第四轮找 bug：上传的文字太长（程序自带的母本加上去超过上限）时只用前面的，后面的文件一点没用上，
+    页面上却说都用了，这批素材的一次也用掉了；表格里每做一个操作都把上传的文字整个重新读一遍。"""
+    pytest.importorskip("gradio")
+    from voicetwin.webui import app as A
+
+    monkeypatch.setattr(tf, "MAX_TOKENS", tf._builtin_tokens() + 40)  # 上传的最多能用 40 个字 / 词
+    cfg, project = _voice(tmp_path, ["我们先来复习一下关系代词威驰的用法，它可以指物。"])
+    a = tmp_path / "a_别的课的讲稿.txt"
+    a.write_text("今天我们讲一讲状语从句的几种用法，大家先把课本翻到第三十页。\n"
+                 "状语从句可以表示时间、地点、原因、条件和让步，我们一个一个来看。\n", encoding="utf-8")
+    b = tmp_path / "b_这节课的讲稿.txt"
+    b.write_text("我们先来复习一下关系代词which的用法，它可以指物。\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="最多只能用 40 个"):
+        tf.save_transcripts(project, [str(a), str(b)])
+    assert tf.load_transcripts(project)[1] == []
+    ui = A.WebUI(cfg)
+    out = dict(zip(ui.TEXTFIX_OUT, list(ui.do_textfix("校正声音", [str(a), str(b)]))[-1]))
+    assert "最多只能用" in out["proof_bar"] and ui.textfix_btn("校正声音")["interactive"] is True
+    # 旧版本存进去的太长的母本：如实说只用了前面的、哪个文件没用上
+    folder = tf.transcript_dir(project)
+    folder.mkdir(parents=True, exist_ok=True)
+    for f in (a, b):
+        (folder / f.name).write_text(f.read_text(encoding="utf-8"), encoding="utf-8")
+    assert "太长了" in ui.textfix_info("校正声音") and "也一起用" not in ui.textfix_info("校正声音")
+    res = tf.check_with_transcript(project)
+    md = A.WebUI._textfix_md(res)
+    assert res["truncated"] and res["files"] == ["a_别的课的讲稿.txt"] and res["files_cut"] == ["b_这节课的讲稿.txt"]
+    assert "⚠️ 你上传的母本太长" in md and "b\\_这节课的讲稿.txt" in md
+
+
+def test_upload_info_does_not_reread_unchanged_files(tmp_path, monkeypatch):
+    """按钮下面的说明每次刷新都要算：上传的文件没变就不再读、不再数（以前大文件每次要好几秒）。"""
+    cfg, project = _voice(tmp_path, ["这个句子完全没有错误，我们继续往下看。"])
+    f = tmp_path / "讲稿.txt"
+    f.write_text("今天我们讲一讲状语从句的几种用法，大家先把课本翻到第三十页。\n", encoding="utf-8")
+    tf.save_transcripts(project, [str(f)])
+    calls = []
+    real = tf.parse_mother
+    monkeypatch.setattr(tf, "parse_mother", lambda *a, **k: calls.append(1) or real(*a, **k))
+    first = tf.transcript_info(project)
+    assert tf.transcript_info(project) == first and len(calls) <= 1 and first["chars"] > 10
+
+
+@need_both
+def test_upload_info_after_the_one_click_used_it_is_true(tmp_path):
+    """第四轮找 bug 复查：一键校正刚拿上传的讲稿改好了表格里的句子，按钮下面马上说「里面的句子和校对表里的一模一样
+    （就是这个声音自己的文字）……所以用不上」——表格和它一样，正是因为刚拿它改好的。现在按存的时候记下的分开说。"""
+    pytest.importorskip("gradio")
+    from voicetwin.webui import app as A
+
+    rows = ["我们先来复习一下关系代词威驰的用法，它可以指物。", "我们先来看艾子引导的定语从句，它比较特殊。"]
+    fixed = ["我们先来复习一下关系代词which的用法，它可以指物。", "我们先来看as引导的定语从句，它比较特殊。"]
+    other = "今天我们讲一讲状语从句的几种用法，大家先把课本翻到第三十页。"
+    for sub, lines in (("part", fixed + [other]), ("all", fixed)):
+        cfg, project = _voice(tmp_path / sub, rows)
+        up = tmp_path / sub / "这节课的讲稿.txt"
+        up.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        ui = A.WebUI(cfg)
+        out = dict(zip(ui.TEXTFIX_OUT, list(ui.do_textfix("校正声音", [str(up)]))[-1]))
+        assert "另外用了你上传的" in str(out["proof_md"])
+        assert [_cur(project, f"c{k:03d}")[1] for k in range(2)] == fixed
+        info = str(out["tr_info"])
+        assert "用不上" not in info and "自己的文字" not in info, info
+        if sub == "part":  # 还有没用过的句子：照样一起用，拿来改好的那 2 句如实说
+            assert "也一起用" in info and "2 句已经拿来改好了表格里对应的句子" in info, info
+        else:
+            assert "也一起用" not in info and "已经拿来改好了表格里对应的句子" in info, info
+    # 旧版本存的（没有记下存的时候的样子）：分不清是哪一种，只说和表格里现在的一模一样
+    (tf.transcript_dir(project) / tf.UPLOAD_META).unlink()
+    info = ui.textfix_info("校正声音")
+    assert "和校对表里现在的句子一模一样" in info and "自己的文字" not in info and "也一起用" not in info, info
+
+
+@need_both
+def test_uploading_the_builtin_mother_again_is_explained_truthfully(tmp_path):
+    """第四轮找 bug 复查：新的声音上传老师原来的 transcripts.csv（程序里本来就带着的母本）：说明写的是「这是这个声音自己的
+    文字……它可以给别的声音当母本用」，都不对；存进去以后按钮下面还说「也一起用」。"""
+    import shutil
+
+    pytest.importorskip("gradio")
+    from voicetwin.webui import app as A
+
+    cfg, project = _voice(tmp_path, ["今天我们来讲一讲非限定性定语从句里面的关系代词艾子。", "这个句子完全没有错误，我们继续往下看。"])
+    up = tmp_path / "transcripts.csv"
+    shutil.copy(MOTHER_DIR / "母本_原文.csv", up)
+    txt = tmp_path / "母本.txt"  # 没有 id 的也一样（和程序自带的某一句一模一样）
+    txt.write_text("\n".join(x for _rid, x in tf.builtin_mother()[:50]) + "\n", encoding="utf-8")
+    ui = A.WebUI(cfg)
+    for f in (up, txt):
+        bar = str(dict(zip(ui.TEXTFIX_OUT, list(ui.do_textfix("校正声音", [str(f)]))[-1]))["proof_bar"])
+        assert "程序里已经带着了" in bar and "自己的文字" not in bar and "别的声音" not in bar, bar
+        assert tf.load_transcripts(project)[1] == [] and ui.textfix_btn("校正声音")["interactive"] is True
+    tf.save_transcripts(project, [str(up)])  # 命令行 / 旧版本照样存
+    info = ui.textfix_info("校正声音")
+    assert "程序里已经带着了" in info and "也一起用" not in info, info
+    res = tf.check_with_transcript(project, only=[])
+    md = A.WebUI._textfix_md(res)
+    assert res["files_known"] == ["transcripts.csv"] and not res["files_same"] and not res["files"]
+    assert "程序里已经带着了" in md and "证明它自己没错" not in md and "另外用了你上传的" not in md, md

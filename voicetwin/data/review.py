@@ -234,20 +234,25 @@ def touched(ops: Sequence[Tuple[str, int, int, int, int]], s: int, e: int, stric
 
 def _repeat_run(text: str, s: int, e: int) -> Optional[Range]:
     """[s, e) 是不是「连着重复」的后面几遍（查错字标的是重复出来的那几遍，不是第一遍）：是的话返回整串重复的范围
-    （包括第一遍），不是返回 None。"""
-    n = e - s
-    for size in range(1, n + 1):
-        if n % size or s - size < 0:
+    （包括第一遍），不是返回 None。
+
+    英文一遍和一遍之间隔着空格（「I have a sister I have a sister」），查错字标的是从第二遍的第一个词开始、不带前面的空格；
+    以前要求一遍紧挨着一遍，英文永远认不出来，删掉一遍以后「重复了 2 遍」还标着。现在中间可以隔着空格，英文按整个单词认。"""
+    seg = text[s:e]
+    for size in range(1, len(seg) + 1):
+        unit = seg[:size]
+        if not unit.strip() or unit != unit.strip():
             continue
-        unit = text[s:s + size]
-        if not unit.strip() or text[s - size:s] != unit or text[s:e] != unit * (n // size):
+        u = re.escape(unit)
+        if not re.fullmatch(rf"{u}(?:\s*{u})*", seg):
             continue
-        a, b = s - size, e
-        while a - size >= 0 and text[a - size:a] == unit:
-            a -= size
-        while text[b:b + size] == unit:
-            b += size
-        return a, b
+        before = r"(?<![A-Za-z0-9'])" if unit[0].isascii() and unit[0].isalnum() else ""
+        after = r"(?![A-Za-z0-9'])" if unit[-1].isascii() and unit[-1].isalnum() else ""
+        m = re.search(rf"{before}(?:{u}\s*)+\Z", text[:s])
+        if not m:
+            continue
+        m2 = re.match(rf"(?:\s*{u}{after})+", text[e:])
+        return m.start(), e + (m2.end() if m2 else 0)
     return None
 
 
@@ -1017,8 +1022,9 @@ def adopt_all_suggestions(project: Any, only: Optional[Iterable[str]] = None) ->
                 no_sug += 1  # 还有标红、没有建议的地方
             if not todo or not new or new == vals["text"]:
                 continue
-            if len(examples) < 6:
-                examples.append(describe_edits(vals["text"], todo, limit=1))
+            for it in _change_items(vals["text"], new):  # 按整句比：英文整个单词、汉字带上所在的词（不说「借 → 介」）
+                if len(examples) < 6:
+                    examples.append(it)
             nv = dict(vals, text=new, lang=lang_after_edit(vals["text"], vals["lang"], new))
             if nv == saved_values(rec):
                 draft.pop(rid, None)
@@ -1220,7 +1226,8 @@ def export_text(project: Any) -> Dict[str, Any]:
     """「⬇️ 下载改好的文字（txt）」：把「文字」列现在的文字（含没保存的修改）按表格的顺序存成 txt，一行一句。
 
     删除的（紫色）行不要；没有文字的行跳过。存在 ``workspace/<声音>/改好的文字/``（只留最近 20 个），
-    记事本能直接打开（UTF-8 带 BOM、Windows 换行）；下次可以当逐字稿上传，做「文字校正」。
+    记事本能直接打开（UTF-8 带 BOM、Windows 换行）；可以给别的声音当母本上传（同一个声音里这些句子就是表格自己的文字，
+    一句话不能拿来证明它自己没错，上传了用不上）。
     返回 {"path", "lines", "unsaved", "deleted"}：unsaved = 其中还没保存的修改有几条（提醒老师点保存）。"""
     with _LOCK:
         records = project.load_manifest()

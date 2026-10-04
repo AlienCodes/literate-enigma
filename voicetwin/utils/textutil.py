@@ -165,24 +165,39 @@ def ensure_final_punct_train(text: str, lang: str) -> str:
     return t + ("，" if lang == "zh" else ",")
 
 
+#: 中文的省略号「……」「‥」：NFKC 会把它们变成英文的点（…… → ......），后面再把紧跟汉字的第一个点改成「。」，
+#: 就成了「。.....」（老师打的字被改坏、训练也学成句号）。有中文时先换成用不到的占位字符，整理完再换回来
+_KEEP_PUNCT = {"…": "", "‥": ""}
+#: 中文的右括号、引号、书名号：后面的标点也是中文语境（「（定语从句），」以前变成「（定语从句）,」）
+_ZH_CLOSE = "）」』”’》】"
+_HALF_TO_FULL = str.maketrans(",?!;:", "，？！；：")
+
+
 def clean_transcript(text: str) -> str:
-    text = unicodedata.normalize("NFKC", text or "")
+    text = text or ""
+    keep = bool(count_cjk(text)) and not any(v in text for v in _KEEP_PUNCT.values())
+    if keep:
+        for k, v in _KEEP_PUNCT.items():
+            text = text.replace(k, v)
+    text = unicodedata.normalize("NFKC", text)
     text = text.replace("\n", " ").replace("|", " ")
     text = re.sub(r"\s+", " ", text).strip()
     # NFKC 会把中文全角标点转成半角，这里把中文语境下的常用标点转回来
     if count_cjk(text):
-        text = re.sub(r"(?<=[一-鿿]),", "，", text)
-        text = re.sub(r"(?<=[一-鿿])\?", "？", text)
-        text = re.sub(r"(?<=[一-鿿])!", "！", text)
-        text = re.sub(r"(?<=[一-鿿]);", "；", text)
-        text = re.sub(r"(?<=[一-鿿]):", "：", text)
-        text = re.sub(r"(?<=[一-鿿])\.(?!\d)", "。", text)
-        text = re.sub(r"\s+(?=[一-鿿，。！？；：])", "", text)
-        text = re.sub(r"(?<=[一-鿿，。！？；：])\s+(?=[一-鿿])", "", text)
-        # 括号里有中文、或紧跟在中文后面时，还原为全角括号（字幕更美观）
+        # 括号里有中文、或紧跟在中文后面时，还原为全角括号（字幕更美观）；先做这一步，后面「）」后面的标点才认得出
         text = re.sub(r"\(([^()]*)\)", lambda m: f"（{m.group(1)}）"
                       if count_cjk(m.group(1)) or count_cjk(m.string[max(0, m.start() - 1):m.start()])
                       else m.group(0), text)
+        # 连着好几个标点整串转回去（以前只转第一个：「！！」变成「！!」、「？！」变成「？!」）
+        text = re.sub(rf"(?<=[一-鿿{_ZH_CLOSE}])[,?!;:]+", lambda m: m.group().translate(_HALF_TO_FULL), text)
+        # 英文的「...」跟在中文后面：换成中文的「……」（不能把第一个点改成「。」）
+        text = re.sub(rf"(?<=[一-鿿，。！？；：{_ZH_CLOSE}])\.{{2,}}", "……", text)
+        text = re.sub(rf"(?<=[一-鿿{_ZH_CLOSE}])\.(?!\d)", "。", text)
+        text = re.sub(r"\s+(?=[一-鿿，。！？；：…])", "", text)
+        text = re.sub(r"(?<=[一-鿿，。！？；：…])\s+(?=[一-鿿])", "", text)
+    if keep:
+        for k, v in _KEEP_PUNCT.items():
+            text = text.replace(v, k)
     return text
 
 
