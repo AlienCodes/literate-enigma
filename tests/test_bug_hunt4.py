@@ -18,6 +18,11 @@ from voicetwin.data import review
 from voicetwin.webui import app as A
 
 
+
+def _fns(app):
+    """gradio 4.24 的 app.fns 是列表，4.44（v18.7 起 IndexTTS 环境里用的）是 {编号: 函数} 字典；按事件的顺序返回列表。"""
+    return list(app.fns.values()) if isinstance(app.fns, dict) else list(app.fns)
+
 def _voice(tmp_path, texts, name="g1"):
     """一个只有校对表的声音（不用真的切录音）。"""
     from conftest import make_cfg
@@ -379,7 +384,7 @@ def test_review_events_refresh_the_voice_status(tmp_path):
         comp = ui.c[name]._id if name in ui.c else None
         starts = [i for i, d in enumerate(deps) if comp is not None and [comp, "click"] in [list(t) for t in d["targets"]]]
         if name == "save_clips":  # 「保存修改」不在 self.c 里：按处理函数找
-            starts = [i for i, f in enumerate(app.fns) if getattr(getattr(f.fn, "__wrapped__", f.fn), "__name__", "") == "do_save"]
+            starts = [i for i, f in enumerate(_fns(app)) if getattr(getattr(f.fn, "__wrapped__", f.fn), "__name__", "") == "do_save"]
         assert starts, name
         assert any(status in deps[k]["outputs"] for k in chain(starts[0])), name
 

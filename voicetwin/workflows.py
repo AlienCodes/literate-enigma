@@ -1099,9 +1099,9 @@ def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, item
             # 老师照着在 ③ 换了，再点「重新挑选」还是一样的错：补一句，让说明指到 ② 去换
             from voicetwin.errors import TRAIN_TAB_ENGINE, explain
 
-            if explain(exc).key == "optional_engine_missing":
+            if explain(exc).key == "engine_missing":
                 # 报错文字本身就说清楚了的（一般都是）：不再挂上原来的，技术细节里不重复两遍
-                own = explain(str(exc)).key == "optional_engine_missing"
+                own = explain(str(exc)).key == "engine_missing"
                 raise RuntimeError(f"{exc}\n（{TRAIN_TAB_ENGINE}）") from (None if own else exc)
             raise
         finally:

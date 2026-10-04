@@ -18,6 +18,11 @@ from voicetwin.webui import app as A  # noqa: E402
 from voicetwin.webui.app import build_app  # noqa: E402
 
 
+
+def _fns(app):
+    """gradio 4.24 的 app.fns 是列表，4.44（v18.7 起 IndexTTS 环境里用的）是 {编号: 函数} 字典；按事件的顺序返回列表。"""
+    return list(app.fns.values()) if isinstance(app.fns, dict) else list(app.fns)
+
 def _cfg(tmp_path, **extra):
     from conftest import make_cfg
 
@@ -37,7 +42,7 @@ def _blank(component):
 
 
 def _streaming(app):
-    return [f for f in app.fns if f.fn is not None and inspect.isgeneratorfunction(f.fn)]
+    return [f for f in _fns(app) if f.fn is not None and inspect.isgeneratorfunction(f.fn)]
 
 
 def test_build_app_local_and_remote(tmp_path):
@@ -68,7 +73,7 @@ def test_heavy_events_hide_overlay_and_have_no_queue_limit(tmp_path):
     conf = app.get_config_file()
     deps = conf["dependencies"]
     streaming_ids = {id(f.fn) for f in _streaming(app)}
-    heavy = [(d, f) for d, f in zip(deps, app.fns) if id(f.fn) in streaming_ids]
+    heavy = [(d, f) for d, f in zip(deps, _fns(app)) if id(f.fn) in streaming_ids]
     assert heavy
     for d, f in heavy:
         assert d.get("show_progress") == "hidden", f.name
@@ -92,7 +97,7 @@ def test_prepare_through_the_page(tmp_path, lecture_dir):
     """在 4.24 下点「开始准备素材」：按钮变灰、进度条走到绿色、片段表和状态卡刷新。"""
     app_ui = A.WebUI(_cfg(tmp_path))
     app = app_ui.build()
-    f = next(f for f in app.fns if getattr(f.fn, "__name__", "") == "do_prepare")
+    f = next(f for f in _fns(app) if getattr(f.fn, "__name__", "") == "do_prepare")
     outs = list(f.fn("网页声音", None, str(lecture_dir), "none", "auto", "off", False))
     assert all(len(o) == len(f.outputs) for o in outs)
     names = app_ui.PREP_OUT
@@ -103,7 +108,7 @@ def test_prepare_through_the_page(tmp_path, lecture_dir):
     assert last["prep_btn"]["interactive"] is True and last["prep_stop"]["visible"] is False
     assert last["prep_md"].startswith("### ✅ 素材准备好了") and "{" not in last["prep_md"]
     # 表格由接在后面的 after_prepare_clips 刷新
-    after = next(f for f in app.fns if getattr(getattr(f.fn, "__wrapped__", f.fn), "__name__", "") == "after_prepare_clips")
+    after = next(f for f in _fns(app) if getattr(getattr(f.fn, "__wrapped__", f.fn), "__name__", "") == "after_prepare_clips")
     count, clips, _ = after.fn("网页声音", False, None, last["clips_base"])
     assert clips and clips[0][0] == 1 and "用来训练的句子" in count
     assert "还没训练" in last["voice_status"]
@@ -119,7 +124,7 @@ def test_select_handlers_accept_gradio_event_data(prepared):
     cfg, project, _ = prepared
     ui = A.WebUI(cfg)
     app = ui.build()
-    clip_fn = next(f for f in app.fns if getattr(f.fn, "__name__", "") == "clip_pick")
+    clip_fn = next(f for f in _fns(app) if getattr(f.fn, "__name__", "") == "clip_pick")
     rows = A._clips_table(cfg, project.voice)
     tc, idc = A.CLIP_HEADERS.index(A.COL_TEXT), A.CLIP_HEADERS.index(A.COL_ID)
     evt = gr.SelectData(None, {"index": [1, tc], "value": rows[1][tc], "selected": True})
@@ -217,7 +222,7 @@ def test_find_bar_wiring(tmp_path):
                               ("find_rep1", "click", "once"), ("find_repall", "click", "once"),
                               ("find_undo", "click", "once"), ("find_close", "click", "once")):
         (d,) = _dep(app, ui, comp, event)
-        fn = app.fns[app.get_config_file()["dependencies"].index(d)]
+        fn = _fns(app)[app.get_config_file()["dependencies"].index(d)]
         assert d["outputs"] == want and d["trigger_mode"] == mode and fn.concurrency_id == "vt-find", comp
     js = A.page_js()
     assert "#vt-find-all" in js and "window.confirm" in js and "scrollToFind" in js
@@ -233,7 +238,7 @@ def test_review_table_actions_queue_and_refresh(tmp_path):
     deps = conf["dependencies"]
 
     def fn_of(d):
-        return app.fns[deps.index(d)]
+        return _fns(app)[deps.index(d)]
 
     for comp, mode in (("clip_action_btn", "multiple"), ("confirm_btn", "once")):
         (d,) = _dep(app, ui, comp, "click")
@@ -241,11 +246,11 @@ def test_review_table_actions_queue_and_refresh(tmp_path):
     saves = [d for d in deps if fn_of(d).concurrency_id == "vt-review"]
     assert len(saves) >= 3  # 表格操作 + 保存修改 + 确认训练素材
     status_id = ui.c["voice_status"]._id
-    after = [d for d, f in zip(deps, app.fns) if getattr(f.fn, "__name__", "") == "after_task"]
+    after = [d for d, f in zip(deps, _fns(app)) if getattr(f.fn, "__name__", "") == "after_task"]
     assert after and all(status_id in d["outputs"] for d in after)
     out = ui.after_task("")
     assert len(out) == len(after[0]["outputs"])
     want = [ui.c[k]._id for k in ("tr_btn", "tr_files", "tr_info")]
-    refresh = [d for d, f in zip(deps, app.fns) if getattr(f.fn, "__name__", "") == "textfix_state"]
+    refresh = [d for d, f in zip(deps, _fns(app)) if getattr(f.fn, "__name__", "") == "textfix_state"]
     # 打开网页、换声音、准备素材后、一键校正后、表格操作 / 保存 / 确认以后
     assert len(refresh) >= 7 and all(d["outputs"] == want for d in refresh)
