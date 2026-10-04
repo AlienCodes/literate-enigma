@@ -9,7 +9,7 @@ def uniq(row):
         seen.append(c._tc); out.append(c)
     return out
 def runs(c):
-    return [(r.text,bool(r.bold)) for p in c.paragraphs for r in p.runs]
+    return [(r.text.replace('\u2005',''),bool(r.bold)) for p in c.paragraphs for r in p.runs]
 def segs(path):
     d=Document(path); res=[]
     for el in d.element.body.iterchildren():

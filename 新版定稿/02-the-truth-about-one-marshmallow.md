@@ -6,7 +6,7 @@ Picture a **nursery school** on Stanford's **campus** in the late 1960s and earl
 
 **Follow-ups** made the test **legendary**. A 1990 study in Developmental Psychology found that, as **adolescents**, longer waiters tended to **attain** higher scores on the SAT, a US college-entrance exam. A **trivial** **snack** became an **emblem** of **virtue**, and **restraint** at four was **glorified** as a **predictor** of **destiny**.
 
-Yet the **foundation** was **precarious**. Only a few dozen children entered the SAT analysis, **predominantly** the sons and daughters of Stanford **faculty** and **postgraduate** students. Such a **homogeneous**, **privileged** group could **scarcely** represent **ordinary** families, and **prosperous** homes may **foster** patience and academic success alike.
+Yet the **foundation** was **precarious**. Only **a few dozen** children entered the SAT analysis, **predominantly** the sons and daughters of Stanford **faculty** and **postgraduate** students. Such a **homogeneous**, **privileged** group could **scarcely** represent **ordinary** families, and **prosperous** homes may **foster** patience and academic success alike.
 
 A study published in Psychological Science in May 2018 ran a **conceptual** **replication**: the same idea, a new sample, **modified** methods. More than 900 **youngsters** from **diverse** backgrounds were **assessed** at four and a half and again at 15. The raw **link** was **roughly** half as strong as the original finding. **Adjusting for** family background and early **cognitive** ability shrank it by about two thirds, leaving most estimates **statistically** **insignificant**.
 
@@ -16,9 +16,9 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 
 想象一下一所**幼儿园**(nursery school)，位于斯坦福大学**校园**(campus)里，时间是20世纪60年代末至70年代初。一个大约四五岁的孩子**独自**(in solitude)坐在一份零食前，面对一桩**直截了当的**(blunt)**交易**(bargain)：现在就吃，或者**抵挡**(resist)**诱惑**(temptation)约15分钟，就能**挣得**(earn)两份。**冲动的**(Impulsive)孩子往往**立刻**(instantly)**缴械投降**(surrender)；**意志坚定的**(resolute)孩子则坚持到底。
 
-**后续研究**(Follow-ups)让这项测验变得**家喻户晓**(legendary)。1990年《发展心理学》上的一项研究发现，到了**青少年**(adolescents)时期，等得更久的孩子往往在SAT中**取得**(attain)更高分数，即美国的大学入学考试。一份**微不足道的**(trivial)**零食**(snack)成了**美德**(virtue)的**象征**(emblem)，而四岁时的**克制**(restraint)被**美化**(glorified)为**命运**(destiny)的**预测指标**(predictor)。
+**后续研究**(Follow-ups)让这项测验**名声大噪**(legendary)（被传为经典）。1990年《发展心理学》上的一项研究发现，到了**青少年**(adolescents)时期，等得更久的孩子往往在SAT中**取得**(attain)更高分数，即美国的大学入学考试。一份**微不足道的**(trivial)**零食**(snack)成了**美德**(virtue)的**象征**(emblem)，而四岁时的**克制**(restraint)被**美化**(glorified)为**命运**(destiny)的**预测指标**(predictor)。
 
-然而，这种**根据**(foundation)（该研究结论的根基）**并不牢靠**(precarious)（站不住脚）。只有几十个孩子进入了SAT分析，**主要**(predominantly)是斯坦福**教师**(faculty)（全体教员）和**研究生**(postgraduate)的子女。如此**同质的**(homogeneous)、**优越的**(privileged)群体**很难**(scarcely)代表**普通的**(ordinary)家庭，而且**富裕的**(prosperous)家庭可能同时**培养出**(foster)耐心与学业成就。
+然而，这种**根据**(foundation)（该研究结论的根基）**并不牢靠**(precarious)（站不住脚）。只有**几十个**(a few dozen)孩子进入了SAT分析，**主要**(predominantly)是斯坦福**教师**(faculty)（全体教员）和**研究生**(postgraduate)的子女。如此**同质的**(homogeneous)、**优越的**(privileged)群体**很难**(scarcely)代表**普通的**(ordinary)家庭，而且**富裕的**(prosperous)家庭可能同时**培养出**(foster)耐心与学业成就。
 
 2018年5月发表于《心理科学》的一项研究做了一次**概念性的**(conceptual)**重复验证**(replication)：同样的思路，新的样本，**调整过的**(modified)方法。900多名来自**多种不同的**(diverse)背景的**少年儿童**(youngsters)在四岁半时接受**评估**(assessed)，15岁时再测一次。这个原始的（未经调整的）**关联**(link)（相关性）强度是**大约**(roughly)原研究结果的一半。在**校正**(Adjusting for)家庭背景和早期**认知**(cognitive)能力之后，这一相关缩小了约三分之二，使得大多数估计值在**统计上**(statistically)**不显著**(insignificant)。（前文的 The raw link / 原始的关联）
 
@@ -40,7 +40,7 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 | instantly | 本文：立刻；adv. 立即，马上（be instantly recognisable） | 1 |
 | resolute | 本文：意志坚定的；adj. 坚决的，意志坚定的（a resolute refusal；resolute in doing） | 1 |
 | Follow-ups | 本文：后续研究；n. (follow-up) 后续研究，追踪（a follow-up study/visit） | 2 |
-| legendary | 本文：家喻户晓；adj. 传奇的，非常著名的（a legendary figure/performance） | 2 |
+| legendary | 本文：名声大噪；adj. 传奇的，非常著名的（a legendary figure/performance） | 2 |
 | adolescents | 本文：青少年；n. (adolescent) 青少年（troubled adolescents）；adj. 青春期的 | 2 |
 | attain | 本文：取得；v. 获得，达到（attain a goal/level/success） | 2 |
 | trivial | 本文：微不足道的；adj. 微不足道的，琐碎的（a trivial matter/detail） | 2 |
@@ -53,6 +53,7 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 | destiny | 本文：命运；n. 命运，天命（control one's own destiny） | 2 |
 | foundation | 本文：根据；n. 基础，根基（lay the foundation(s) for；without foundation 毫无根据）；基金会 | 3 |
 | precarious | 本文：并不牢靠；adj. 不稳固的，岌岌可危的（a precarious position/balance） | 3 |
+| a few dozen | 本文：几十个；phr. 几十个（a few dozen people） | 3 |
 | predominantly | 本文：主要；adv. 主要地，占多数地（a predominantly female/rural group） | 3 |
 | faculty | 本文：教师；n. （大学）教师，全体教员（faculty members/staff）；能力，官能（mental faculties） | 3 |
 | postgraduate | 本文：研究生；adj./n. 研究生（的）（a postgraduate student/course） | 3 |

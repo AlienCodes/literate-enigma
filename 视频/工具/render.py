@@ -154,7 +154,21 @@ def _segs_zh(t,colors):
         m=re.match(r'\*\*([^*]+)\*\*\(([^)]*)\)$',p)
         if m: out.append((m.group(1),colors.get(m.group(2).lower())))
         elif p: out.append((p,None))
+    # 重点词中文两侧留小间隙（标点旁、格子边缘不加）
+    PUN='，。、：；！？（）《》“”‘’,.;:!?()… '
+    res=[]
+    for i,(tx,c) in enumerate(out):
+        if c is not None:
+            if res and res[-1][0] and res[-1][0][-1] not in PUN and tx[0] not in PUN: res.append((KSP,None))
+            res.append((tx,c))
+            if i+1<len(out) and out[i+1][0] and out[i+1][0][0] not in PUN and tx[-1] not in PUN: res.append((KSP,None))
+        else: res.append((tx,c))
+    out=[]
+    for tx,c in res:
+        if tx==KSP and out and out[-1][0].endswith(KSP): continue
+        out.append((tx,c))
     return out
+KSP='\u2005'
 def _pair_cols(pairs,colors,ef,zf,gapx):
     cols=[]
     for en,zh in pairs:
