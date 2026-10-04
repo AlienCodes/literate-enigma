@@ -1999,6 +1999,7 @@ def _mother_first(cur: str, rid: str, ref: Optional[Reference], selves: Sequence
     pieces：给了就把每一处改法和它属于的那一处整的改动记进去（写说明用：「一声 → 医生」拆成两处，说明按整的写）。
     老师自己改过的字一律不动（_protect）。对上的是老师上传的母本（没修缮过，可能有打字的同音错字「主雨」）时：
     读音一样的单个字只给没把握的建议，读音不像的不按它改，改完以后标准库马上又会说错的不改（_protect）。"""
+    from voicetwin.data import mother_first as mf
     from voicetwin.data.lexicon_fix import Fix
 
     if ref is None or not len(ref):
@@ -2010,8 +2011,6 @@ def _mother_first(cur: str, rid: str, ref: Optional[Reference], selves: Sequence
     covered: List[Tuple[int, int]] = []
     snippet = ""
     used = 0
-    from voicetwin.data import mother_first as mf
-
     for seg, proof in zip(segs, same_batch):
         if seg.ambiguous:  # 母本里好几处一样像、写法又不一样：分不出是哪一处，这一段不按母本改
             continue

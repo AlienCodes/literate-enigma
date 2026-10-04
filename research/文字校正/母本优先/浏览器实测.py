@@ -2,13 +2,15 @@
 
 两步（工作文件夹随便给一个临时的，跑完自己删掉）：
 1. 准备：PYTHONPATH=. /tmp/gsv39/bin/python research/文字校正/母本优先/浏览器实测.py setup <工作文件夹>
-   用老师修缮以前的句子建一个声音：40 句和母本不一样 + 20 句对的，片段 id 全换掉（像重新准备过素材）；
-   其中一句老师自己改过（和母本不一样）；然后跑一次「自动查错字」（第二个识别引擎是假的，把一句对的「定语」听成「定于」）。
+   用老师修缮以前的句子建一个声音：同一批素材按原来的顺序 314 句（其中 40 句和母本不一样），片段 id 全换掉（像重新准备过素材）；
+   其中一句老师自己改过（和母本不一样）；后面接一段「新讲的课」（另一个视频：母本里没有的话中间夹着和母本只差一个词的句子，
+   第二轮检查加的）；然后跑一次「自动查错字」（第二个识别引擎是假的，把一句对的「定语」听成「定于」）。
 2. 打开网页（同一个 Python 跑 voicetwin.webui.launcher，工作文件夹里有 config.yaml），再：
    PYTHONPATH=. /tmp/gsv39/bin/python research/文字校正/母本优先/浏览器实测.py check <网址> <工作文件夹>
 检查：说明里写着「母本最优先」；还没点一键校正，「修改建议」那一列就有「按母本：」；和母本矛盾的「定语 → 定于」没有出现；
 点一行看得到「按母本改成」「母本里的原句」；老师自己改过的那一行看得到「和母本不一样、程序没有动的地方」；
-点「📝 一键全部文字校正」以后结果里写着在母本里找到了几句，40 句全部改得和母本一模一样、对的 20 句一个字都没动；网页没有脚本错误。
+点「📝 一键全部文字校正」以后结果里写着在母本里找到了几句，40 句全部改得和母本一模一样、对的句子一个字都没动；网页没有脚本错误。
+第二轮加的：新讲的课里和母本只差一个词的句子，「修改建议」写「按母本（没把握，请听录音）」，一键校正以后一个字都没动。
 """
 
 import csv
@@ -24,13 +26,27 @@ D = ROOT / "research" / "文字校正" / "老师的母本"
 VOICE = "我的声音"
 
 
+#: 新讲的课：母本里没有的话，中间夹着和母本只差一个词的句子（第二轮检查）
+NEW_LECTURE = ["今天我们来学习一下名词性从句里面的主语从句。", "在状语从句中， as主要被翻译为正如。",
+               "主语从句就是在整个复合句当中充当主语的那个从句。",
+               "而which在定语从句中，如果去做宾语这个句子成分的话，那么它可以被省略。",
+               "好，下面我们做几道选择题来巩固一下刚才讲的内容。",
+               "首先，as这个关系代词，它最经常出现在限定性定语从句中，经常会作为限定定语从句的引导词而出现。"]
+NEAR = (1, 3, 5)  # 上面和母本只差一个词的几句
+
+
 def rows():
+    """同一批素材按原来的顺序，一直到有 40 句和母本不一样（第二轮：读音不像听错的地方要靠前后的句子证明是同一批录音）。"""
     orig = list(csv.DictReader(open(D / "母本_原文.csv", encoding="utf-8-sig")))
     clean = {r["id"]: r["text"] for r in csv.DictReader(open(D / "母本_修缮后.csv", encoding="utf-8-sig"))}
     ok = [(r["text"], clean[r["id"]]) for r in orig if r["keep"] == "1" and r["drop_reason"] != "老师删除"]
-    diff = [x for x in ok if x[0] != x[1]][:40]
-    same = [x for x in ok if x[0] == x[1] and "定语" in x[0]][:20]
-    return diff, same
+    out, n = [], 0
+    for t, c in ok:
+        out.append((t, c))
+        n += int(t != c)
+        if n >= 40:
+            break
+    return out
 
 
 def setup(work: Path):
@@ -50,26 +66,30 @@ def setup(work: Path):
 
     cfg = load_config()
     project = wf.Project(cfg, VOICE).ensure()
-    diff, same = rows()
+    batch = rows()
     sr = 16000
     tt = np.arange(int(3.0 * sr)) / sr
     wav = (0.1 * np.sin(2 * np.pi * 150 * tt) * (0.5 - 0.5 * np.cos(2 * np.pi * 3 * tt))).astype(np.float32)
     recs, truth = [], {}
-    for k, (t, c) in enumerate(diff + same):
+    items = [(t, c, "第1课") for t, c in batch] + [(t, t, "新课") for t in NEW_LECTURE]
+    for k, (t, c, src) in enumerate(items):
         rid = f"0300_beefee_{k:04d}"
         sf.write(str(project.clips_dir / f"{rid}.wav"), wav, sr)
         recs.append({"id": rid, "path": f"clips/{rid}.wav", "text": t, "lang": "zh", "duration": 3.0, "voiced": 2.5,
-                     "keep": True, "split": "train", "asr_done": True, "source": "第1课"})
+                     "keep": True, "split": "train", "asr_done": True, "source": src})
         truth[rid] = c
     project.save_manifest(recs)
     project.export_csv(recs)
+    diff_ids = [recs[k]["id"] for k, (t, c) in enumerate(batch) if t != c]
+    near_ids = [recs[len(batch) + k]["id"] for k in NEAR]
     # 老师自己改过的一句：把母本里的「介词」打成了「介绍词」（这一句另外还有别的识别错）
-    k = next(i for i, (t, c) in enumerate(diff) if "借词" in t and t.count("借词") == 1)
+    k = next(i for i, (t, c) in enumerate(batch) if t != c and "借词" in t and t.count("借词") == 1)
     rid_typed = recs[k]["id"]
     review.set_draft(project, rid_typed, text=recs[k]["text"].replace("借词", "介绍词"))
     # 第二个识别引擎把一句对的「定语」听成「定于」（和母本矛盾）
-    rid_wrong = recs[len(diff)]["id"]
-    heard = {rid_wrong: recs[len(diff)]["text"].replace("定语", "定于", 1)}
+    kw = next(i for i, (t, c) in enumerate(batch) if t == c and "定语" in t)
+    rid_wrong = recs[kw]["id"]
+    heard = {rid_wrong: recs[kw]["text"].replace("定语", "定于", 1)}
 
     class FakeRunner(pc._EngineRunner):
         def recognize(self, rec, lang):
@@ -78,7 +98,7 @@ def setup(work: Path):
     with um.patch.object(pc, "_EngineRunner", FakeRunner):
         pc.find_suspects(project, cfg)
     (work / "truth.json").write_text(json.dumps({"truth": truth, "typed": rid_typed, "wrong": rid_wrong,
-                                                 "diff": [r["id"] for r in recs[:len(diff)]]},
+                                                 "diff": diff_ids, "near": near_ids},
                                                 ensure_ascii=False), encoding="utf-8")
     print("ok", len(recs), rid_typed, rid_wrong)
 
@@ -161,6 +181,9 @@ def run_check(url: str, work: Path):
         check("还没点一键校正，和母本不一样的 40 句「修改建议」那一列都有「按母本：」的建议（老师改过的那句除外）",
               n_m >= len(info["diff"]) - 1, f"{n_m} / {len(info['diff'])} 句；整张表看到 {len(rows_seen)} 行")
         check("和母本矛盾的「定语 → 定于」没有出现", not any("→ 定于" in x for x in sug.values()))
+        n_u = sum(1 for rid in info["near"] if "按母本（没把握，请听录音）" in sug.get(rid, ""))
+        check("新讲的课里和母本只差一个词的句子：「修改建议」写「按母本（没把握，请听录音）」", n_u == len(info["near"]),
+              f"{n_u} / {len(info['near'])} 句")
         panel = click_row(page, info["diff"][0])
         check("点一行看得到「按母本改成」和「母本里的原句」", "按母本改成" in panel and "母本里的原句" in panel, panel[:80])
         panel = click_row(page, info["typed"])
@@ -184,9 +207,14 @@ def run_check(url: str, work: Path):
         wrong = [rid for rid in info["diff"] if rid != info["typed"]
                  and clean_transcript(draft.get(rid, {}).get("text", manifest[rid]["text"])) != clean_transcript(info["truth"][rid])]
         check("和母本不一样的句子全部改得和母本一模一样（老师自己改过的那句除外）", not wrong, f"不一样的 {len(wrong)} 句")
-        same_changed = [rid for rid in info["truth"] if rid not in info["diff"] and rid in draft]
+        same_changed = [rid for rid in info["truth"] if rid not in info["diff"] and rid not in info["near"] and rid in draft]
         check("对的句子一个字都没动", not same_changed, f"{len(same_changed)} 句")
+        near_changed = [rid for rid in info["near"] if rid in draft]
+        check("新讲的课里和母本只差一个词的句子一个字都没动", not near_changed, f"{len(near_changed)} 句")
         check("老师自己打的「介绍词」没被改", "介绍词" in draft.get(info["typed"], {}).get("text", ""))
+        panel = click_row(page, info["typed"])  # 第二轮：一键校正改了这一行别的字以后，说明照样看得到
+        check("一键校正以后，老师改过的那一行照样看得到「和母本不一样、程序没有动的地方」",
+              "和母本不一样、程序没有动的地方" in panel and "介绍词" in panel, panel[-120:])
         page.screenshot(path=str(work / "母本优先_一键校正以后.png"), full_page=False)
         check("网页没有脚本错误", not errors, "; ".join(errors[:3]))
         browser.close()
