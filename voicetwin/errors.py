@@ -76,6 +76,7 @@ _SEARCH_LIMIT = 20000
 FATAL_KEYS = frozenset({
     "stopped", "gpu_oom", "disk", "torch_cpu", "gpu_arch", "driver", "gsv_missing", "models_missing",
     "api_start", "api_mismatch", "module", "import_version", "dll", "speaker_model", "ffmpeg_missing",
+    "optional_engine_missing",
 })
 
 _CJK = re.compile(r"[\u4e00-\u9fff]")
@@ -380,6 +381,23 @@ def _fill_engine(ctx: _Ctx) -> Dict[str, str]:
     return {"engine": m.group(1) + " " if m else "合成引擎"}
 
 
+#: 「重新挑选最佳模型」用的是 ② 里选的引擎（workflows.run_select 会把这句补在报错后面）。
+#: 其他用到可选引擎的按钮（生成、试听语速）都在 ③，用的是 ③ 里选的引擎
+TRAIN_TAB_ENGINE = "「重新挑选最佳模型」用的是「② 训练模型」的「高级设置」里选的引擎"
+
+
+def _fill_optional_engine(ctx: _Ctx) -> Dict[str, str]:
+    # 「IndexTTS 是可选引擎，这台电脑没有装好……」：引擎名就在命中的那一行开头
+    m = re.search(r"(Qwen3-TTS|IndexTTS)\s*$", ctx.text[:ctx.match.start()], re.I)
+    values = {"engine": m.group(1) + " " if m else "这个引擎"}
+    # 要说到老师真正选这个引擎的地方：以前一律说「到 ③ 换，再点生成」，点「重新挑选」时照着做也没用（② 里还是它）
+    if TRAIN_TAB_ENGINE in ctx.text:
+        values.update(where="「② 训练模型」的「高级设置」", again="「重新挑选最佳模型」")
+    else:
+        values.update(where="「③ 生成讲课音频」的「高级设置（一般不用改）」", again="刚才那个按钮")
+    return values
+
+
 def _fill_voice(ctx: _Ctx) -> Dict[str, str]:
     m = re.search(r"还没有名为「([^」\n]{1,60})」的声音", ctx.text)
     return {"voice": f"「{m.group(1)}」这个声音" if m else "这个声音"}
@@ -396,6 +414,23 @@ _NET_EXCLUDE = r"127\.0\.0\.1|localhost"
 
 # 顺序很重要：越具体、越像「根本原因」的越靠前；wrapper=True 的是外层包装，放最后。
 _RULES: List[_Rule] = [
+    # ---- 声音分身自己查出来、已经说清楚原因的（排在最前面：技术细节里的英文报错不能把它盖过去）
+    _Rule("trained_missing", r"找不到训练好的模型文件.*没有可以挑选的模型",
+          "找不到训练好的模型，所以没有开始挑选",
+          "训练好的模型文件可能被移动或删除了（例如换了新的 GPT-SoVITS 整合包、删掉了旧的，或者被杀毒软件删掉了）。"
+          "用官方底模挑选没有意义，还会把语速校准改乱，所以没有挑。"
+          "如果只是把整合包挪了地方，请重新双击 install_windows.bat，输入整合包现在的位置；"
+          "不然就到「② 训练模型」重新训练一次。"),
+    _Rule("optional_engine_missing", r"是可选引擎，这台电脑没有装好",
+          "{engine}没有装好，用不了",
+          "这是可选的引擎，不装也行：到{where}里，把引擎换回「GPT-SoVITS」，"
+          "再点一次{again}。确实想用它，请帮你的人按下面技术细节里的说明安装。",
+          fill=_fill_optional_engine),
+    _Rule("stale_part_locked", r"上次训练留下的临时文件删不掉",
+          "上次训练留下的临时文件删不掉",
+          "这个文件不删掉的话，GPT-SoVITS 会直接用上次的旧结果，所以没有接着训练。可能是杀毒软件正在检查它，"
+          "或者别的程序打开着它：等一两分钟、关掉别的程序（或者重启电脑）以后，再点一次「开始训练」。"),
+
     # ---- 用户自己停下的
     _Rule("stopped", r"\bTaskCancelled\b|\bKeyboardInterrupt\b",
           "已停止",
@@ -673,6 +708,11 @@ _RULES: List[_Rule] = [
           "GPT-SoVITS「处理文字」这一步没有结果",
           "先到「① 准备素材」看看校对表里是不是有文字；再到「🩺 环境检查」页看看模型是不是齐全。"
           "还不行就把 logs 文件夹里的 gsv_1a_text.log 发给帮你的人。",
+          wrapper=True),
+    _Rule("semantic_step_empty", r"1C 提取语义没有产出",
+          "GPT-SoVITS「提取语义」这一步没有结果",
+          "可能是显存不够，或者前面「提取声音特征」那一步没做成。" + _GPU_FREE + "，再点一次「开始训练」；"
+          "还不行就到「🩺 环境检查」页看看模型是不是齐全，再把 logs 文件夹里的 gsv_1c_semantic.log 发给帮你的人。",
           wrapper=True),
     _Rule("train_no_output", r"训练结束但没有找到权重文件|微调结束但没有找到",
           "训练结束了，但是没有得到模型",

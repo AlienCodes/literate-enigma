@@ -1048,6 +1048,11 @@ def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, item
         note = getattr(backend, "trained_material_note", lambda: "")()
         if note:
             log.warning(note)
+        missing = getattr(backend, "missing_model_files", lambda: [])()
+        if missing and not backend.checkpoints():
+            # 训练过，但训练好的模型文件一个都找不到了：接着挑只能试官方底模，白等几分钟，
+            # 还会把原来模型的语速校准换成底模的，所以先停下说清楚
+            raise RuntimeError(f"找不到训练好的模型文件（{'、'.join(missing)}），没有可以挑选的模型，这次没有开始挑选")
         has_modes = hasattr(backend, "train_stages_for")
         how = (train_mode(cfg, mode) if mode not in (None, "") else trained_mode(project, backend.name)) if has_modes else ""
         if how:
@@ -1088,6 +1093,16 @@ def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, item
                 res["material_note"] = note  # 结果里也说（以前只在「详细过程」里）
             _previous_model_result(project, backend.name, res)
             return res
+        except Exception as exc:  # 停止按钮的 TaskCancelled 是 BaseException，不经过这里
+            # 挑选用的是「② 训练模型」里选的引擎。可选引擎没装好时，报错说明默认指到 ③（生成、试听都在那里），
+            # 老师照着在 ③ 换了，再点「重新挑选」还是一样的错：补一句，让说明指到 ② 去换
+            from voicetwin.errors import TRAIN_TAB_ENGINE, explain
+
+            if explain(exc).key == "optional_engine_missing":
+                # 报错文字本身就说清楚了的（一般都是）：不再挂上原来的，技术细节里不重复两遍
+                own = explain(str(exc)).key == "optional_engine_missing"
+                raise RuntimeError(f"{exc}\n（{TRAIN_TAB_ENGINE}）") from (None if own else exc)
+            raise
         finally:
             backend.stop()
 
@@ -1191,6 +1206,9 @@ def run_narrate(cfg: Config, voice: str, source: str, out: Optional[str] = None,
                                 reference=reference, asr_check=asr_check, progress=progress, variants=variants)
             if note:  # 「训练以后校对表又改过」也写进生成结果的提醒里（以前只在折起来的「详细过程」里）
                 narrator.warnings.append(note)
+            missing = getattr(backend, "missing_model_note", lambda: "")()
+            if missing:  # 训练好的模型文件找不到了、这次用的是底模：也写进生成结果（详细过程里引擎启动时会说一次）
+                narrator.warnings.append(missing)
             return narrator.narrate(src_path if is_file else source, out_path, redo=redo, subtitles=subtitles)
         finally:
             if own_backend:

@@ -550,13 +550,18 @@ def _json_has(r: Any, key: str) -> bool:
 
 
 def _free_port(preferred: int) -> int:
+    """从 preferred 开始找一个没有程序占着的本机端口。
+
+    用独占方式绑定来查（和网页启动器一样）：Windows 上别的程序（例如整合包自带的 api.py，默认监听 0.0.0.0:9880）
+    占着端口时，普通绑定 127.0.0.1 照样成功，以前会把推理服务开在这个端口上，等它加载模型时连上的是别人的程序
+    （对不上话、白等一分钟，结束时还会把人家的程序关掉）。不再加连接测试：Windows 上每试一个关着的端口要等 2 秒。"""
+    from voicetwin.utils.net import exclusive_bind_ok
+
     for port in [preferred] + list(range(preferred + 1, preferred + 50)):
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            try:
-                s.bind(("127.0.0.1", port))
-                return port
-            except OSError:
-                continue
+        if port > 65535:
+            break
+        if exclusive_bind_ok("127.0.0.1", port):
+            return port
     return preferred
 
 
@@ -572,6 +577,40 @@ def _clip_signature(names: List[str], wav_dir: Path) -> str:
         except OSError:
             rows.append(f"{name}|missing")
     return hashlib.sha1("\n".join(rows).encode("utf-8")).hexdigest()
+
+
+def _norm_path(path: str) -> str:
+    """比较路径用：统一分隔符、去掉多余的「./」；Windows 上不分大小写。"""
+    return os.path.normcase(os.path.normpath(str(path)))
+
+
+def _path_tail(path: str) -> str:
+    """路径的最后两段「所在文件夹/文件名」（例如 SoVITS_weights_v2ProPlus/xxx.pth），Windows 和 Linux 的写法都认。"""
+    return "/".join(str(path).replace("\\", "/").rstrip("/").split("/")[-2:])
+
+
+def _in_old_runs(path: str) -> bool:
+    """这个模型文件是不是在重新训练前挪进去的备份文件夹（logs/<实验名>/old_runs/<时间>/…）里。"""
+    return "old_runs" in str(path).replace("\\", "/").split("/")
+
+
+def _remove_parts(opt_dir: Path, *patterns: str, quiet: bool = False) -> None:
+    """删掉上次留下的分块结果（2-name2text-0.txt、6-name2semantic-0.tsv）。
+
+    GPT-SoVITS 的 1-get-text.py / 3-get-semantic.py 看到分块文件已经在了，就什么都不做（直接用旧的）：
+    上次一句都没处理成（只写了一个换行）、或者素材改过以后，就会一直用到旧的结果（以前一次失败以后每次训练都报同样的错）。
+    删不掉（被杀毒软件或别的程序占着）就停下说清楚，不能悄悄用旧的；quiet=True 时删不掉就算了（马上要报别的错）。"""
+    for pattern in patterns:
+        for f in opt_dir.glob(pattern):
+            try:
+                f.unlink()
+            except FileNotFoundError:
+                continue
+            except OSError as exc:
+                if quiet:
+                    continue
+                raise RuntimeError(f"上次训练留下的临时文件删不掉：{f}（{exc}）。不删掉的话 GPT-SoVITS 会直接用上次的旧结果。"
+                                   "请关掉可能打开着它的程序（或者重启电脑）后，再点一次「开始训练」。") from exc
 
 
 def _exp_name(voice: str) -> str:
@@ -2009,17 +2048,30 @@ class GPTSoVITSBackend(Backend):
         return out
 
     def _repoint_models(self, moved: Dict[str, str]) -> None:
-        """旧模型文件挪进 old_runs 以后，models.json 里记的路径跟着改：重新训练中途停下时，原来选中的模型照样能用。"""
+        """旧模型文件挪进 old_runs 以后，models.json 里记的路径跟着改：重新训练中途停下时，原来选中的模型照样能用。
+
+        moved：{挪走以前的完整路径: 挪到的新位置}。只改指向这些文件的路径。以前按文件名对：只改错字再训练时，
+        新旧模型的文件名一模一样，已经指向更早一次备份（old_runs 里另一个同名文件）的路径也被改掉，
+        选中的模型悄悄换成了另一次（没挑选过、可能没练完的）训练的。"""
         if not moved:
             return
         models = self.project.load_models()
         entry = models.get(self.name)
         if not entry:
             return
+        by_src = {_norm_path(src): dst for src, dst in moved.items()}
+        by_tail = {_path_tail(src): dst for src, dst in moved.items()}
 
         def fix(path: Any) -> Any:
-            name = str(path or "").replace("\\", "/").rsplit("/", 1)[-1]
-            return moved.get(name, path)
+            text = str(path or "")
+            if not text:
+                return path
+            if _norm_path(text) in by_src:
+                return by_src[_norm_path(text)]
+            if _in_old_runs(text) or self._locate_weight(text) is not None:
+                return path  # 指向别的备份、或者别处还找得到的文件：不是这次挪走的，不动
+            # 整合包移动 / 换过电脑：记的是旧位置的模型文件夹，按「文件夹/文件名」对上这次挪走的文件
+            return by_tail.get(_path_tail(text), path)
 
         for key in ("sovits", "gpt"):
             if isinstance(entry.get(key), list):
@@ -2069,7 +2121,7 @@ class GPTSoVITSBackend(Backend):
             try:
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.move(str(f), str(target))
-                moved_weights[f.name] = str(target)
+                moved_weights[str(f)] = str(target)
                 moved = True
             except Exception as exc:
                 log.warning(f"备份旧的模型文件 {f.name} 没成功（{exc}），这次训练可能会覆盖它")
@@ -2091,13 +2143,16 @@ class GPTSoVITSBackend(Backend):
             # 下次挑选时要一起比较的原来的模型（previous_selected，挑选做完以前）也不删
             entry = self.project.load_models().get(self.name) or {}
             sel = entry.get("selected") or {}
-            in_use = [str(sel.get(k) or "") for k in ("sovits", "gpt") if sel.get(k)]
+            keep = [str(sel.get(k) or "") for k in ("sovits", "gpt") if sel.get(k)]
             prev = entry.get("previous_selected") or {}
             if isinstance(prev, dict) and prev.get("pending"):
-                in_use += [str(prev.get(k) or "") for k in ("sovits", "gpt") if prev.get(k)]
+                keep += [str(prev.get(k) or "") for k in ("sovits", "gpt") if prev.get(k)]
+            # 按实际找到的文件比（整合包移动过时 models.json 里记的还是旧位置，直接比路径文字会对不上、把它删掉）
+            in_use = [self._locate_weight(k) for k in keep]
+            in_use_dirs = [set(f.resolve().parents) for f in in_use if f is not None]
             runs = sorted((p for p in old_root.iterdir() if p.is_dir()), key=lambda p: p.stat().st_mtime)
             for p in runs[:-KEEP_OLD_RUNS]:
-                if any(u.startswith(str(p)) for u in in_use):
+                if any(p.resolve() in dirs for dirs in in_use_dirs):
                     continue
                 shutil.rmtree(p, ignore_errors=True)
         except OSError:
@@ -2176,8 +2231,7 @@ class GPTSoVITSBackend(Backend):
                     shutil.rmtree(target, ignore_errors=True)
                 elif target.exists():
                     target.unlink()
-            for f in list(opt_dir.glob("2-name2text-*.txt")) + list(opt_dir.glob("6-name2semantic-*.tsv")):
-                f.unlink(missing_ok=True)
+            _remove_parts(opt_dir, "2-name2text-*.txt", "6-name2semantic-*.tsv")
             archived = self._archive_old_run(opt_dir)
             what = "训练设置改了" if settings_only else "检测到素材有变化"
             if archived is not None:
@@ -2229,14 +2283,18 @@ class GPTSoVITSBackend(Backend):
         path_sem = opt_dir / "6-name2semantic.tsv"
         if not path_sem.exists() or path_sem.stat().st_size < 31:
             self.step(progress, pos["semantic"], "提取语义（大约 1~3 分钟）")
-            for f in opt_dir.glob("6-name2semantic-*.tsv"):
-                f.unlink(missing_ok=True)
+            # 官方 3-get-semantic.py 看到分块结果已经在了就什么都不做（直接用旧的），所以先删；删不掉就停下说清楚
+            _remove_parts(opt_dir, "6-name2semantic-*.tsv")
             env_1c = self.env({**base, "pretrained_s2G": str(self.p(PRETRAINED_SOVITS[self.version])),
                                "s2config_path": self._s2_config_template()})
             self._run_parts([self.python, "-s", "GPT_SoVITS/prepare_datasets/3-get-semantic.py"], env_1c, parts,
                             "gsv_1c_semantic", progress, (pos["semantic"], pos["probe"]), label="提取语义")
-            self._merge_parts(opt_dir, "6-name2semantic-{}.tsv", parts, "6-name2semantic.tsv",
-                              header="item_name\tsemantic_audio")
+            got = self._merge_parts(opt_dir, "6-name2semantic-{}.tsv", parts, "6-name2semantic.tsv",
+                                    header="item_name\tsemantic_audio")
+            # 和 1A 一样：脚本逐句 try/except，一句都没做成也退出 0。只有表头的列表拿去训练，
+            # 要白白练完音色、到 GPT 那一步才出错，所以这里就停下说清楚
+            if not got:
+                raise RuntimeError("1C 提取语义没有产出，请查看日志 logs/gsv_1c_semantic.log")
         return {"opt_dir": opt_dir, "frontend": frontend, "en_phones": int(en.get("en_phones") or 0),
                 "en_lines": int(en.get("en_lines") or 0)}
 
@@ -2297,22 +2355,26 @@ class GPTSoVITSBackend(Backend):
     @staticmethod
     def _merge_parts(opt_dir: Path, pattern: str, parts: int, out_name: str, header: Optional[str] = None) -> List[str]:
         """把每一路写的结果（pattern.format(i)）按顺序合成 out_name，删掉每一路的文件；返回合并后的行（不含表头）。
-        一行都没有、又没有表头时不写 out_name（下次会重新做）。"""
+        一行都没有时不写 out_name（下次会重新做；调用的地方报「没有产出」）。
+
+        每一路的文件删不掉就算了（杀毒软件刚好在检查这个新写的文件）：合并好的结果已经写好了，不能因此停下训练，
+        还显示成「Excel 打开了 transcripts.csv」。留着也没关系：下次跳过这一步；素材变化、重跑这一步之前都会再删，
+        那时还删不掉会说清楚（_remove_parts）。一行都没有时也一样删（下次开始前还会再删一次）。"""
         lines: List[str] = []
         for i in range(max(1, int(parts))):
             part = opt_dir / pattern.format(i)
             if part.exists():
                 lines += [ln for ln in part.read_text(encoding="utf-8").strip("\n").split("\n") if ln.strip()]
-                part.unlink()
-        if lines or header:
+                _remove_parts(opt_dir, part.name, quiet=True)
+        if lines:
             (opt_dir / out_name).write_text("\n".join(([header] if header else []) + lines) + "\n", encoding="utf-8")
         return lines
 
     @staticmethod
     def _clear_text_outputs(opt_dir: Path) -> None:
-        """处理文字之前：删掉上次（或者没做完的）处理文字的结果，免得官方脚本看到旧文件就跳过、或者 BERT 特征和音素对不上。"""
-        for f in opt_dir.glob("2-name2text*.txt"):
-            f.unlink(missing_ok=True)
+        """处理文字之前：删掉上次（或者没做完的）处理文字的结果，免得官方脚本看到旧文件就跳过、或者 BERT 特征和音素对不上。
+        删不掉（被杀毒软件或别的程序占着）就停下说清楚（_remove_parts），不能悄悄让 GPT-SoVITS 接着用旧的。"""
+        _remove_parts(opt_dir, "2-name2text*.txt")
         shutil.rmtree(opt_dir / "3-bert", ignore_errors=True)
 
     # ---------------------------------------------------------------- 处理文字：中英文一起（失败退回官方的方法）
@@ -2361,8 +2423,7 @@ class GPTSoVITSBackend(Backend):
                 return None
             return counter(line)
 
-        for f in out_dir.glob("2-name2text-*.txt"):
-            f.unlink(missing_ok=True)
+        _remove_parts(out_dir, "2-name2text-*.txt")
         try:
             self._run_parts([self.python, "-s", str(MIXED_SCRIPT)], env, parts, "gsv_1a_text", progress, prange,
                             label="处理文字", parse=parse, retry=False)
@@ -2973,7 +3034,10 @@ class GPTSoVITSBackend(Backend):
         return _pick_run(sovits, since), _pick_run(gpt, since)
 
     def _locate_weight(self, path: str) -> Optional[Path]:
-        """models.json 里记的是绝对路径；整合包被移动 / 换了电脑后，按文件名到当前 root 里重新找。"""
+        """models.json 里记的是绝对路径；整合包被移动 / 换了电脑后，到当前 root 里重新找。
+
+        平常的模型按文件名到两个模型文件夹里找。挪进备份（logs/<实验名>/old_runs/<时间>/…）的模型按它在整合包里的
+        相对位置找，不按文件名找：模型文件夹里同名的文件是另一次训练的（只改错字时文件名一模一样），不能拿来顶替。"""
         if not path:
             return None
         p = Path(path)
@@ -2981,9 +3045,18 @@ class GPTSoVITSBackend(Backend):
             return p
         if self.root is None:
             return None
-        name = path.replace("\\", "/").rsplit("/", 1)[-1]
+        parts = [x for x in str(path).replace("\\", "/").split("/") if x]
+        if not parts:
+            return None
+        if _in_old_runs(path):
+            for i, part in enumerate(parts[:-1]):
+                if part == "logs":
+                    cand = self.root.joinpath(*parts[i:])
+                    if cand.exists():
+                        return cand
+            return None
         for d in (f"SoVITS_weights_{self.version}", f"GPT_weights_{self.version}"):
-            cand = self.p(d) / name
+            cand = self.p(d) / parts[-1]
             if cand.exists():
                 return cand
         return None
@@ -3074,9 +3147,34 @@ class GPTSoVITSBackend(Backend):
             return {"sovits": "", "gpt": "", "id": "external"}
         if not self._warned_pretrained:  # 每句话都会问一次模型，警告只说一次
             self._warned_pretrained = True
-            log.warning("还没有训练好的 GPT-SoVITS 模型，暂时使用官方底模做零样本克隆（像度会明显低于训练后）")
+            # 训练过、只是文件找不到了时不能说「还没有训练好」：说清楚是哪个文件、怎么办
+            log.warning(self.missing_model_note() or
+                        "还没有训练好的 GPT-SoVITS 模型，暂时使用官方底模做零样本克隆（像度会明显低于训练后）")
         return {"sovits": str(self.p(PRETRAINED_SOVITS[self.version])), "gpt": str(self.p(PRETRAINED_GPT[self.version])),
                 "id": "pretrained"}
+
+    def missing_model_files(self) -> List[str]:
+        """训练过（models.json 里有选中的模型），但训练好的模型文件找不到了：返回找不到的文件名；没训练过、文件都在时返回空列表。"""
+        if self.root is None or self.external_url:
+            return []
+        sel = self.selected_checkpoint()
+        if not sel:
+            return []
+        return [str(sel.get(k) or "").replace("\\", "/").rsplit("/", 1)[-1] or label
+                for k, label in (("sovits", "SoVITS 模型"), ("gpt", "GPT 模型"))
+                if self._locate_weight(str(sel.get(k) or "")) is None]
+
+    def missing_model_note(self) -> str:
+        """训练好的模型文件找不到了时返回一句提醒（找不到哪个文件、怎么办）；没训练过、文件都在时返回空字符串。
+
+        这时生成只能先用官方底模（真实的 api_v2 找不到文件时也会悄悄改用底模），声音会明显不像，
+        所以生成结果里也要写上，不能只在折起来的「详细过程」里。"""
+        missing = self.missing_model_files()
+        if not missing:
+            return ""
+        return (f"找不到训练好的模型文件（{'、'.join(missing)}），这次只能用官方底模，声音会明显不像你。"
+                "可能被移动或删除了（例如换了新的 GPT-SoVITS 整合包、删掉了旧的，或者被杀毒软件删掉了）："
+                "到「② 训练模型」点「重新挑选最佳模型」（还有别的训练好的模型时会换上它），还不行就重新训练一次。")
 
     def model_id(self) -> str:
         """当前用的模型的标识（生成的缓存按它区分）。除了路径，还算上文件的大小和修改时间：
@@ -3231,7 +3329,8 @@ class GPTSoVITSBackend(Backend):
     def start(self) -> None:
         # 只接着用「自己开的、还活着的」服务，或者 config.yaml 里指定的外部服务（api_url）。
         # 端口上别的程序开的 api_v2（例如以前没关掉的）不接手：它的显卡设置不一定对，结束时也关不掉它。
-        # 这时 _free_port 会换一个空闲端口，自己开一个。（v18.2 及以前因为检查方式不对，这条路从来没走到过。）
+        # 这时 _free_port 会换一个空闲端口，自己开一个。（v18.2 及以前因为检查方式不对，这条路从来没走到过；
+        # Windows 上别的程序监听 0.0.0.0 时，要用独占方式绑定才查得出端口被占，见 _free_port。）
         own = self.proc is not None and self.proc.poll() is None
         if (own or self.external_url) and self._alive():
             self._ensure_weights()

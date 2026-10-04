@@ -324,9 +324,19 @@ def test_select_skips_a_broken_checkpoint(prepared, tmp_path, quick, monkeypatch
         return [bad] + good
 
     monkeypatch.setattr(GPTSoVITSBackend, "checkpoints", with_broken)
-    sel = wf.run_select(gcfg, project.voice, "gptsovits")
+    # 标准的挑法：坏了的模型直接跳过，结果里没有它
+    sel = wf.run_select(gcfg, project.voice, "gptsovits", mode="standard")
     ids = [r["id"] for r in sel["selection"]["results"]]
     assert "坏了的" not in ids and ids and sel["selected"]["id"] != "坏了的"
+    # 「一模一样」的挑法（默认的训练方式练的模型，不传 mode 时就按它挑）：设计上坏了的模型按最差算——结果里照实写
+    # 每句都没能生成、排在最后；挑选照样做完（不改用标准的挑法），也不会选上它
+    sel = wf.run_select(gcfg, project.voice, "gptsovits")
+    res = sel["selection"]
+    assert res["method"] == "deep" and "fallback" not in sel and "selection_error" not in sel
+    bad = next(r for r in res["results"] if r["id"] == "坏了的")
+    assert bad["n_items"] > 0 and bad["failed"] == bad["n_items"] and res["ranking"][-1] == "坏了的"
+    assert sel["selected"]["id"] != "坏了的" and res["best"] != "坏了的"
+    assert any("坏了的" in line and "没能生成" in line for line in res["lines"])
 
 
 def test_does_not_take_over_a_server_it_did_not_start(prepared, tmp_path, quick):
