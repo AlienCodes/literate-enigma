@@ -76,7 +76,7 @@ _SEARCH_LIMIT = 20000
 FATAL_KEYS = frozenset({
     "stopped", "gpu_oom", "disk", "torch_cpu", "gpu_arch", "driver", "gsv_missing", "models_missing",
     "api_start", "api_mismatch", "module", "import_version", "dll", "speaker_model", "ffmpeg_missing",
-    "optional_engine_missing",
+    "engine_missing",
 })
 
 _CJK = re.compile(r"[\u4e00-\u9fff]")
@@ -127,8 +127,8 @@ _COMPONENTS = {
     "pyyaml": "读取设置文件（PyYAML）",
     "imageio_ffmpeg": "ffmpeg（处理视频和音频）",
     "voicetwin": "声音分身本身",
-    "qwen_tts": "Qwen3-TTS（可选引擎）",
-    "indextts": "IndexTTS（可选引擎）",
+    "qwen_tts": "Qwen3-TTS",
+    "indextts": "IndexTTS25 合成引擎",
 }
 for _m in ("numpy", "scipy", "soundfile", "librosa", "pyloudnorm", "numba", "llvmlite", "audioread", "soxr",
            "requests", "urllib3", "huggingface_hub", "tqdm"):
@@ -361,8 +361,8 @@ def _fill_module(ctx: _Ctx) -> Dict[str, str]:
         tip = "也可以先把「视频有背景音乐」的勾去掉。"
     elif "Word" in comp:
         tip = "也可以直接把讲稿文字复制粘贴到「讲稿」框里。"
-    elif norm in ("qwen_tts", "indextts"):
-        tip = "这是可选的引擎，不装也行：把引擎换回「GPT-SoVITS」就可以。"
+    elif norm == "indextts":
+        tip = "IndexTTS25 是生成声音用的引擎：重新双击 install_windows.bat 就会装好它。"
     return {"what": f"「{comp}」组件" if comp else "组件", "advice": _REINSTALL + tip}
 
 
@@ -387,8 +387,8 @@ TRAIN_TAB_ENGINE = "「重新挑选最佳模型」用的是「② 训练模型�
 
 
 def _fill_optional_engine(ctx: _Ctx) -> Dict[str, str]:
-    # 「IndexTTS 是可选引擎，这台电脑没有装好……」：引擎名就在命中的那一行开头
-    m = re.search(r"(Qwen3-TTS|IndexTTS)\s*$", ctx.text[:ctx.match.start()], re.I)
+    # 「IndexTTS25 没有装好，所以还不能生成……」：引擎名就在命中的那一行开头
+    m = re.search(r"(Qwen3-TTS|IndexTTS\d*)\s*$", ctx.text[:ctx.match.start()], re.I)
     values = {"engine": m.group(1) + " " if m else "这个引擎"}
     # 要说到老师真正选这个引擎的地方：以前一律说「到 ③ 换，再点生成」，点「重新挑选」时照着做也没用（② 里还是它）
     if TRAIN_TAB_ENGINE in ctx.text:
@@ -421,10 +421,10 @@ _RULES: List[_Rule] = [
           "用官方底模挑选没有意义，还会把语速校准改乱，所以没有挑。"
           "如果只是把整合包挪了地方，请重新双击 install_windows.bat，输入整合包现在的位置；"
           "不然就到「② 训练模型」重新训练一次。"),
-    _Rule("optional_engine_missing", r"是可选引擎，这台电脑没有装好",
-          "{engine}没有装好，用不了",
-          "这是可选的引擎，不装也行：到{where}里，把引擎换回「GPT-SoVITS」，"
-          "再点一次{again}。确实想用它，请帮你的人按下面技术细节里的说明安装。",
+    _Rule("engine_missing", r"没有装好，所以还不能生成",
+          "{engine}没有装好，还不能生成",
+          "请重新双击 install_windows.bat 安装一次：缺的程序和模型会自动补上（要联网；模型比较大，要等一会儿）。"
+          "装完再点一次{again}。缺的是什么写在下面的技术细节里。",
           fill=_fill_optional_engine),
     _Rule("stale_part_locked", r"上次训练留下的临时文件删不掉",
           "上次训练留下的临时文件删不掉",

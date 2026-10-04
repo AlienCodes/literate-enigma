@@ -159,10 +159,10 @@ def test_training_plan_preview_is_quick(prepared, tmp_path, monkeypatch):
     assert wf.training_plan(cfg, name, "indextts") == ""
 
 
-def test_optional_engine_not_installed_says_so(prepared, tmp_path, monkeypatch):
-    """「高级设置」里能选 IndexTTS（不用训练），但一般电脑上没装：以前直接启动，报「找不到文件或文件夹：index-tts，
-    检查路径有没有写对……」（老师根本没填过路径；Windows 上还是一句没翻译的「目录名称无效」）。
-    现在先查装好没有，说清楚这是可选引擎、把引擎换回 GPT-SoVITS 就行。"""
+def test_indextts_not_installed_says_so(prepared, tmp_path, monkeypatch):
+    """v18.7 起 IndexTTS25 是唯一的引擎。没装好时以前直接启动，报「找不到文件或文件夹：index-tts，检查路径有没有写对……」
+    （老师根本没填过路径）；后来说「可选引擎、换回 GPT-SoVITS」（现在没有别的引擎了）。
+    现在先查装好没有：说清楚还不能生成、重新双击 install_windows.bat 就会补上，技术细节里写缺什么。"""
     from voicetwin.backends import worker as W
     from voicetwin.errors import explain
 
@@ -175,39 +175,9 @@ def test_optional_engine_not_installed_says_so(prepared, tmp_path, monkeypatch):
                        quality="fast")
     assert not started  # 没装好就不去启动
     f = explain(ei.value)
-    assert f.key == "optional_engine_missing" and f.title.startswith("IndexTTS")
-    assert "GPT-SoVITS" in f.advice and "高级设置" in f.advice and "路径" not in f.advice
-    assert "找不到 index-tts 仓库" in f.detail  # 技术细节里留着具体缺什么，给帮忙的人看
-    assert "「③ 生成讲课音频」" in f.advice and "②" not in f.advice  # 生成用的是 ③ 里选的引擎
-
-
-def test_optional_engine_not_installed_on_reselect_points_to_train_tab(prepared, tmp_path, monkeypatch):
-    """「② 训练模型」的「高级设置」里也能选 Qwen3-TTS，「重新挑选最佳模型」用的是 ② 里选的引擎。
-    没装好时以前一律说「到 ③ 生成讲课音频的高级设置里换回 GPT-SoVITS，再点一次生成」：老师照着做了，
-    ② 里还是 Qwen3-TTS，再点「重新挑选」还是一样的错。现在要说到 ② 去换、再点「重新挑选最佳模型」。"""
-    from voicetwin.backends import base as B
-    from voicetwin.backends import worker as W
-    from voicetwin.errors import explain
-
-    cfg, name = _copy_voice(prepared, tmp_path)
-    cfg = make_cfg(Path(cfg["workspace"]), backends={"qwen3tts": {"python": sys.executable}})
-    monkeypatch.setattr(B, "python_has_module", lambda *a, **k: False)  # 不管测试环境里装没装，都当没装
-    started = []
-    monkeypatch.setattr(W.WorkerClient, "start", lambda self: started.append(self))
-    with pytest.raises(RuntimeError) as ei:
-        wf.run_select(cfg, name, "qwen3tts")
-    assert not started
-    f = explain(ei.value)
-    assert f.key == "optional_engine_missing" and f.title.startswith("Qwen3-TTS")
-    assert "「② 训练模型」" in f.advice and "「重新挑选最佳模型」" in f.advice and "GPT-SoVITS" in f.advice
-    assert "③" not in f.advice and "「生成」" not in f.advice
-    assert f.detail.count("是可选引擎，这台电脑没有装好") == 1  # 技术细节里不重复两遍
-    assert "qwen-tts" in f.detail  # 具体缺什么还在，给帮忙的人看
-
-    # 网页上点「重新挑选最佳模型」看到的也是这样
-    ui = A.WebUI(cfg)
-    page = "\n".join(str(x) for x in list(ui.do_select(name, "qwen3tts"))[-1] if isinstance(x, str))
-    assert "挑选模型没有完成" in page and "「② 训练模型」" in page and "再点一次「生成」" not in page
+    assert f.key == "engine_missing" and f.title.startswith("IndexTTS25")
+    assert "install_windows.bat" in f.advice and "GPT-SoVITS" not in f.advice and "路径" not in f.advice
+    assert "找不到 IndexTTS 程序" in f.detail  # 技术细节里留着具体缺什么，给帮忙的人看
 
 
 def test_plan_line_from_training_log():

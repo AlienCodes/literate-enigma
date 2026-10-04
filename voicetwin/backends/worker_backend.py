@@ -37,12 +37,11 @@ class WorkerBackend(Backend):
         check_cancel()  # 点了「停止」就不要再花几分钟加载模型
         if self.client is None:
             if not self._checked:
-                # 先查装好没有：IndexTTS / Qwen3-TTS 是可选引擎，一般电脑上没有装。以前不查就直接启动，
-                # 报的是「找不到文件或文件夹：index-tts，检查路径有没有写对」，老师根本没填过路径，不知道怎么办
+                # 先查装好没有。以前不查就直接启动，报的是「找不到文件或文件夹：index-tts，检查路径有没有写对」，
+                # 老师根本没填过路径，不知道怎么办；现在每一条写清楚缺什么、怎么办（v18.7 起 IndexTTS 是唯一的引擎）
                 problems = self.check()
                 if problems:
-                    raise RuntimeError(f"{self.display_name} 是可选引擎，这台电脑没有装好，所以用不了。"
-                                       "把「高级设置」里的引擎换回「GPT-SoVITS」就可以。\n- " + "\n- ".join(problems))
+                    raise RuntimeError(f"{self.display_name} 没有装好，所以还不能生成。\n- " + "\n- ".join(problems))
                 self._checked = True
             self.client = WorkerClient(
                 self.worker_command(), cwd=self.worker_cwd(), env=self.worker_env(),

@@ -514,8 +514,12 @@ class Backend:
 def resolve_python(configured: Optional[str], root: Optional[Path], cfg: Config) -> str:
     """找到引擎自己的 Python 解释器。"""
     if configured and configured != "auto":
-        p = resolve_path(cfg, configured)
-        if p and p.exists():
+        raw = Path(os.path.expanduser(str(configured)))
+        if not raw.is_absolute():
+            raw = Path(cfg.get("_base_dir", ".")) / raw
+        # 不解开符号链接：Linux 上 venv 里的 python 是指向系统 Python 的链接，解开以后就不是这个环境了（找不到装在里面的包）
+        p = Path(os.path.abspath(raw))
+        if p.exists():
             return str(p)
         return str(configured)  # 可能是 PATH 里的命令，如 "python"
     if root:
