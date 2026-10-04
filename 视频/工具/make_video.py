@@ -5,8 +5,8 @@ from clean import clean_tail,SR
 import render as R
 import title2 as T2
 TTS='../tts'
-k=Kokoro(f'{TTS}/kokoro-v1.0.onnx',f'{TTS}/voices-v1.0.bin'); V=np.load(f'{TTS}/voice_mf.npy')
-AF=open(f'{TTS}/AF.txt').read().strip(); FF=imageio_ffmpeg.get_ffmpeg_exe(); SPEED=0.92
+k=Kokoro(f'{TTS}/kokoro-v1.0.onnx',f'{TTS}/voices-v1.0.bin'); V=np.load(f'{TTS}/voice_mb.npy')
+AF=open(f'{TTS}/AF.txt').read().strip(); FF=imageio_ffmpeg.get_ffmpeg_exe(); SPEED=0.95
 T=dict(BG_TOP=(14,36,30),BG_BOT=(20,48,40),FG_EN=(240,247,242),FG_ZH=(170,196,182),DIM=(110,140,125),
    PAL=[(251,191,36),(56,189,248),(244,114,182),(190,242,100),(196,181,253),(251,146,60),(94,234,212),(252,165,165)])
 for a,b in T.items(): setattr(R,a,b)
@@ -78,6 +78,6 @@ def build(js,out):
         f.write(f"file '{os.path.abspath(files[-1][0])}'\n")
     sf.write(f'{work}/a.wav',A,SR)
     subprocess.run([FF,'-y','-loglevel','error','-f','concat','-safe','0','-i',f'{work}/list.txt','-i',f'{work}/a.wav',
-        '-af',AF,'-c:v','libx264','-tune','stillimage','-pix_fmt','yuv420p','-r','30','-c:a','aac','-b:a','192k','-shortest','-movflags','+faststart',out],check=True)
+        '-af',AF,'-c:v','libx264','-tune','stillimage','-pix_fmt','yuv420p','-r','30','-c:a','aac','-b:a','256k','-shortest','-movflags','+faststart',out],check=True)
     print(out,round(total,1),'s',len(files),'screens')
 if __name__=='__main__': build(sys.argv[1],sys.argv[2])

@@ -20,69 +20,69 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 
 然而，这种**根据**(foundation)（该研究结论的根基）**并不牢靠**(precarious)（站不住脚）。只有几十个孩子进入了SAT分析，**主要**(predominantly)是斯坦福**教师**(faculty)（全体教员）和**研究生**(postgraduate)的子女。如此**同质的**(homogeneous)、**优越的**(privileged)群体**很难**(scarcely)代表**普通的**(ordinary)家庭，而且**富裕的**(prosperous)家庭可能同时**培养出**(foster)耐心与学业成就。
 
-2018年5月发表于《心理科学》的一项研究做了一次**概念性的**(conceptual)**重复验证**(replication)：同样的思路，新的样本，**调整过的**(modified)方法。900多名来自**多种不同的**(diverse)背景的**少年儿童**(youngsters)在四岁半时接受**评估**(assessed)，15岁时再测一次。未经校正的**相关**(link)强度**大约**(roughly)只有原研究结果的一半。在**校正**(Adjusting for)家庭背景和早期**认知**(cognitive)能力之后，这一相关缩小了约三分之二，使得大多数估计值在**统计上**(statistically)**不显著**(insignificant)。（前文的 The raw link / 未经校正的相关）
+2018年5月发表于《心理科学》的一项研究做了一次**概念性的**(conceptual)**重复验证**(replication)：同样的思路，新的样本，**调整过的**(modified)方法。900多名来自**多种不同的**(diverse)背景的**少年儿童**(youngsters)在四岁半时接受**评估**(assessed)，15岁时再测一次。这个原始的（未经调整的）**关联**(link)（相关性）强度是**大约**(roughly)原研究结果的一半。在**校正**(Adjusting for)家庭背景和早期**认知**(cognitive)能力之后，这一相关缩小了约三分之二，使得大多数估计值在**统计上**(statistically)**不显著**(insignificant)。（前文的 The raw link / 原始的关联）
 
 这项测验并非**毫无价值**(worthless)；它或许仍能**反映**(reflect)某些**实质性的**(substantive)东西。2013年1月发表于《认知》的研究补充了（一些）**背景**(context)：刚被成年人**辜负**(betrayed)信任的孩子，等待的时间**明显**(markedly)短于与守信的成年人相处的**同龄人**(peers)。孩子能**坚持**(perseveres)多久，部分取决于身边的大人看起来有多**可信**(trustworthy)。
 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
-| nursery school | 本文：幼儿园；本文：幼儿园；n. 幼儿园，托儿所（nursery school；a day nursery）；育婴室 | 1 |
-| campus | 本文：校园；本文：校园；n. 校园（on campus；a university campus） | 1 |
-| in solitude | 本文：独自；本文：独自；n. 独处，孤独（in solitude；peace and solitude） | 1 |
-| blunt | 本文：直截了当的；本文：直截了当的；adj. 直截了当的，生硬的（a blunt question/refusal）；钝的 | 1 |
-| bargain | 本文：交易；本文：交易；n. 交易，协议（strike/make a bargain）；便宜货；v. 讨价还价 | 1 |
-| resist | 本文：抵挡；本文：抵挡；v. 抵制，抵挡（resist temptation/pressure；can't resist doing） | 1 |
-| temptation | 本文：诱惑；本文：诱惑；n. 诱惑（resist/give in to temptation） | 1 |
-| earn | 本文：挣得；本文：挣得；v. 挣得，赢得（earn money/respect/a reward） | 1 |
-| Impulsive | 本文：冲动的；本文：冲动的；adj. 冲动的（impulsive behaviour/buying） | 1 |
-| surrender | 本文：缴械投降；本文：缴械投降；v. 投降，屈服（surrender to temptation/the enemy）；n. 投降 | 1 |
-| instantly | 本文：立刻；本文：立刻；adv. 立即，马上（be instantly recognisable） | 1 |
-| resolute | 本文：意志坚定的；本文：意志坚定的；adj. 坚决的，意志坚定的（a resolute refusal；resolute in doing） | 1 |
-| Follow-ups | 本文：后续研究；本文：后续研究；n. (follow-up) 后续研究，追踪（a follow-up study/visit） | 2 |
-| legendary | 本文：家喻户晓；本文：家喻户晓；adj. 传奇的，非常著名的（a legendary figure/performance） | 2 |
-| adolescents | 本文：青少年；本文：青少年；n. (adolescent) 青少年（troubled adolescents）；adj. 青春期的 | 2 |
-| attain | 本文：取得；本文：取得；v. 获得，达到（attain a goal/level/success） | 2 |
-| trivial | 本文：微不足道的；本文：微不足道的；adj. 微不足道的，琐碎的（a trivial matter/detail） | 2 |
-| snack | 本文：零食；本文：零食；n. 零食，小吃（a light snack；snack food）；v. 吃零食 | 2 |
-| emblem | 本文：象征；本文：象征；n. 象征，标志（an emblem of power/peace） | 2 |
-| virtue | 本文：美德；本文：美德；n. 美德；优点（a moral virtue；by virtue of 凭借） | 2 |
-| restraint | 本文：克制；本文：克制；n. 克制，约束（show/exercise restraint；without restraint） | 2 |
-| glorified | 本文：美化；本文：美化；v. (glorify) 美化，颂扬（glorify war/violence）；glorified adj. 美其名曰的 | 2 |
-| predictor | 本文：预测指标；本文：预测指标；n. 预测指标，预测因素（a strong/reliable predictor of） | 2 |
-| destiny | 本文：命运；本文：命运；n. 命运，天命（control one's own destiny） | 2 |
-| foundation | 本文：根据；本文：根据；n. 基础，根基（lay the foundation(s) for；without foundation 毫无根据）；基金会 | 3 |
-| precarious | 本文：并不牢靠；本文：并不牢靠；adj. 不稳固的，岌岌可危的（a precarious position/balance） | 3 |
-| predominantly | 本文：主要；本文：主要；adv. 主要地，占多数地（a predominantly female/rural group） | 3 |
-| faculty | 本文：教师；本文：教师；n. （大学）教师，全体教员（faculty members/staff）；能力，官能（mental faculties） | 3 |
-| postgraduate | 本文：研究生；本文：研究生；adj./n. 研究生（的）（a postgraduate student/course） | 3 |
-| homogeneous | 本文：同质的；本文：同质的；adj. 同质的，同类的（a homogeneous group/population） | 3 |
-| privileged | 本文：优越的；本文：优越的；adj. 有特权的，优越的（a privileged background/few） | 3 |
-| scarcely | 本文：很难；本文：很难；adv. 几乎不，很难（can scarcely believe；scarcely…when 一……就） | 3 |
-| ordinary | 本文：普通的；本文：普通的；adj. 普通的，平常的（ordinary people/life；out of the ordinary 不寻常） | 3 |
-| prosperous | 本文：富裕的；本文：富裕的；adj. 富裕的，繁荣的（a prosperous family/economy） | 3 |
-| foster | 本文：培养出；本文：培养出；v. 培养，促进（foster talent/understanding）；收养；adj. 寄养的 | 3 |
-| conceptual | 本文：概念性的；本文：概念性的；adj. 概念上的（a conceptual framework/replication） | 4 |
-| replication | 本文：重复验证；本文：重复验证；n. 复制，（研究）重复验证（replication of results/a study） | 4 |
-| modified | 本文：调整过的；本文：调整过的；v. (modify) 修改，调整（modify a plan/method）；adj. 改良的（genetically modified） | 4 |
-| youngsters | 本文：少年儿童；本文：少年儿童；n. (youngster) 少年儿童，年轻人（local youngsters） | 4 |
-| diverse | 本文：多种不同的；本文：多种不同的；adj. 多样的，形形色色的（a diverse population/range of；diverse backgrounds） | 4 |
-| assessed | 本文：评估；本文：评估；v. (assess) 评估，评定（assess the impact/a student） | 4 |
-| link | 本文：相关；n. 联系，关联（a link between A and B） | 4 |
-| roughly | 本文：大约；adv. 大约，粗略地（roughly half） | 4 |
-| Adjusting for | 本文：校正；本文：校正；v. (adjust) 调整；（统计）校正（adjust for inflation/age；adjust to 适应） | 4 |
-| cognitive | 本文：认知；本文：认知；adj. 认知的（cognitive ability/development/skills） | 4 |
-| statistically | 本文：统计上；本文：统计上；adv. 统计上（statistically significant/reliable） | 4 |
-| insignificant | 本文：不显著；本文：不显著；adj. 不显著的；微不足道的（statistically insignificant；an insignificant amount） | 4 |
-| worthless | 本文：毫无价值；本文：毫无价值；adj. 毫无价值的（completely/virtually worthless） | 5 |
-| reflect | 本文：反映；本文：反映；v. 反映，体现（reflect reality/a trend）；反射；reflect on 思考 | 5 |
-| substantive | 本文：实质性的；本文：实质性的；adj. 实质性的，真实的（substantive changes/issues） | 5 |
-| context | 本文：背景；本文：背景；n. 背景，来龙去脉；语境（in context；in the context of） | 5 |
-| betrayed | 本文：辜负；本文：辜负；v. (betray) 背叛，辜负（betray sb's trust 辜负信任；betray a secret 泄露秘密） | 5 |
-| markedly | 本文：明显；本文：明显；adv. 明显地，显著地（differ markedly；markedly better/less） | 5 |
-| peers | 本文：同龄人；本文：同龄人；n. (peer) 同龄人，同辈（peer pressure；compared with one's peers） | 5 |
-| perseveres | 本文：坚持；本文：坚持；v. (persevere) 坚持不懈（persevere in/with sth） | 5 |
-| trustworthy | 本文：可信；本文：可信；adj. 值得信赖的，可靠的（a trustworthy friend/source） | 5 |
+| nursery school | 本文：幼儿园；本文：幼儿园；本文：幼儿园；n. 幼儿园，托儿所（nursery school；a day nursery）；育婴室 | 1 |
+| campus | 本文：校园；本文：校园；本文：校园；n. 校园（on campus；a university campus） | 1 |
+| in solitude | 本文：独自；本文：独自；本文：独自；n. 独处，孤独（in solitude；peace and solitude） | 1 |
+| blunt | 本文：直截了当的；本文：直截了当的；本文：直截了当的；adj. 直截了当的，生硬的（a blunt question/refusal）；钝的 | 1 |
+| bargain | 本文：交易；本文：交易；本文：交易；n. 交易，协议（strike/make a bargain）；便宜货；v. 讨价还价 | 1 |
+| resist | 本文：抵挡；本文：抵挡；本文：抵挡；v. 抵制，抵挡（resist temptation/pressure；can't resist doing） | 1 |
+| temptation | 本文：诱惑；本文：诱惑；本文：诱惑；n. 诱惑（resist/give in to temptation） | 1 |
+| earn | 本文：挣得；本文：挣得；本文：挣得；v. 挣得，赢得（earn money/respect/a reward） | 1 |
+| Impulsive | 本文：冲动的；本文：冲动的；本文：冲动的；adj. 冲动的（impulsive behaviour/buying） | 1 |
+| surrender | 本文：缴械投降；本文：缴械投降；本文：缴械投降；v. 投降，屈服（surrender to temptation/the enemy）；n. 投降 | 1 |
+| instantly | 本文：立刻；本文：立刻；本文：立刻；adv. 立即，马上（be instantly recognisable） | 1 |
+| resolute | 本文：意志坚定的；本文：意志坚定的；本文：意志坚定的；adj. 坚决的，意志坚定的（a resolute refusal；resolute in doing） | 1 |
+| Follow-ups | 本文：后续研究；本文：后续研究；本文：后续研究；n. (follow-up) 后续研究，追踪（a follow-up study/visit） | 2 |
+| legendary | 本文：家喻户晓；本文：家喻户晓；本文：家喻户晓；adj. 传奇的，非常著名的（a legendary figure/performance） | 2 |
+| adolescents | 本文：青少年；本文：青少年；本文：青少年；n. (adolescent) 青少年（troubled adolescents）；adj. 青春期的 | 2 |
+| attain | 本文：取得；本文：取得；本文：取得；v. 获得，达到（attain a goal/level/success） | 2 |
+| trivial | 本文：微不足道的；本文：微不足道的；本文：微不足道的；adj. 微不足道的，琐碎的（a trivial matter/detail） | 2 |
+| snack | 本文：零食；本文：零食；本文：零食；n. 零食，小吃（a light snack；snack food）；v. 吃零食 | 2 |
+| emblem | 本文：象征；本文：象征；本文：象征；n. 象征，标志（an emblem of power/peace） | 2 |
+| virtue | 本文：美德；本文：美德；本文：美德；n. 美德；优点（a moral virtue；by virtue of 凭借） | 2 |
+| restraint | 本文：克制；本文：克制；本文：克制；n. 克制，约束（show/exercise restraint；without restraint） | 2 |
+| glorified | 本文：美化；本文：美化；本文：美化；v. (glorify) 美化，颂扬（glorify war/violence）；glorified adj. 美其名曰的 | 2 |
+| predictor | 本文：预测指标；本文：预测指标；本文：预测指标；n. 预测指标，预测因素（a strong/reliable predictor of） | 2 |
+| destiny | 本文：命运；本文：命运；本文：命运；n. 命运，天命（control one's own destiny） | 2 |
+| foundation | 本文：根据；本文：根据；本文：根据；n. 基础，根基（lay the foundation(s) for；without foundation 毫无根据）；基金会 | 3 |
+| precarious | 本文：并不牢靠；本文：并不牢靠；本文：并不牢靠；adj. 不稳固的，岌岌可危的（a precarious position/balance） | 3 |
+| predominantly | 本文：主要；本文：主要；本文：主要；adv. 主要地，占多数地（a predominantly female/rural group） | 3 |
+| faculty | 本文：教师；本文：教师；本文：教师；n. （大学）教师，全体教员（faculty members/staff）；能力，官能（mental faculties） | 3 |
+| postgraduate | 本文：研究生；本文：研究生；本文：研究生；adj./n. 研究生（的）（a postgraduate student/course） | 3 |
+| homogeneous | 本文：同质的；本文：同质的；本文：同质的；adj. 同质的，同类的（a homogeneous group/population） | 3 |
+| privileged | 本文：优越的；本文：优越的；本文：优越的；adj. 有特权的，优越的（a privileged background/few） | 3 |
+| scarcely | 本文：很难；本文：很难；本文：很难；adv. 几乎不，很难（can scarcely believe；scarcely…when 一……就） | 3 |
+| ordinary | 本文：普通的；本文：普通的；本文：普通的；adj. 普通的，平常的（ordinary people/life；out of the ordinary 不寻常） | 3 |
+| prosperous | 本文：富裕的；本文：富裕的；本文：富裕的；adj. 富裕的，繁荣的（a prosperous family/economy） | 3 |
+| foster | 本文：培养出；本文：培养出；本文：培养出；v. 培养，促进（foster talent/understanding）；收养；adj. 寄养的 | 3 |
+| conceptual | 本文：概念性的；本文：概念性的；本文：概念性的；adj. 概念上的（a conceptual framework/replication） | 4 |
+| replication | 本文：重复验证；本文：重复验证；本文：重复验证；n. 复制，（研究）重复验证（replication of results/a study） | 4 |
+| modified | 本文：调整过的；本文：调整过的；本文：调整过的；v. (modify) 修改，调整（modify a plan/method）；adj. 改良的（genetically modified） | 4 |
+| youngsters | 本文：少年儿童；本文：少年儿童；本文：少年儿童；n. (youngster) 少年儿童，年轻人（local youngsters） | 4 |
+| diverse | 本文：多种不同的；本文：多种不同的；本文：多种不同的；adj. 多样的，形形色色的（a diverse population/range of；diverse backgrounds） | 4 |
+| assessed | 本文：评估；本文：评估；本文：评估；v. (assess) 评估，评定（assess the impact/a student） | 4 |
+| link | 本文：关联；本文：相关；n. 联系，关联（a link between A and B） | 4 |
+| roughly | 本文：大约；本文：大约；adv. 大约，粗略地（roughly half） | 4 |
+| Adjusting for | 本文：校正；本文：校正；本文：校正；v. (adjust) 调整；（统计）校正（adjust for inflation/age；adjust to 适应） | 4 |
+| cognitive | 本文：认知；本文：认知；本文：认知；adj. 认知的（cognitive ability/development/skills） | 4 |
+| statistically | 本文：统计上；本文：统计上；本文：统计上；adv. 统计上（statistically significant/reliable） | 4 |
+| insignificant | 本文：不显著；本文：不显著；本文：不显著；adj. 不显著的；微不足道的（statistically insignificant；an insignificant amount） | 4 |
+| worthless | 本文：毫无价值；本文：毫无价值；本文：毫无价值；adj. 毫无价值的（completely/virtually worthless） | 5 |
+| reflect | 本文：反映；本文：反映；本文：反映；v. 反映，体现（reflect reality/a trend）；反射；reflect on 思考 | 5 |
+| substantive | 本文：实质性的；本文：实质性的；本文：实质性的；adj. 实质性的，真实的（substantive changes/issues） | 5 |
+| context | 本文：背景；本文：背景；本文：背景；n. 背景，来龙去脉；语境（in context；in the context of） | 5 |
+| betrayed | 本文：辜负；本文：辜负；本文：辜负；v. (betray) 背叛，辜负（betray sb's trust 辜负信任；betray a secret 泄露秘密） | 5 |
+| markedly | 本文：明显；本文：明显；本文：明显；adv. 明显地，显著地（differ markedly；markedly better/less） | 5 |
+| peers | 本文：同龄人；本文：同龄人；本文：同龄人；n. (peer) 同龄人，同辈（peer pressure；compared with one's peers） | 5 |
+| perseveres | 本文：坚持；本文：坚持；本文：坚持；v. (persevere) 坚持不懈（persevere in/with sth） | 5 |
+| trustworthy | 本文：可信；本文：可信；本文：可信；adj. 值得信赖的，可靠的（a trustworthy friend/source） | 5 |
 
 ## 史实与来源
 - 【T1/T2】20世纪60年代末至70年代初，斯坦福校园内幼儿园；约四五岁（文献口径3.5–5.5岁）；一份零食即吃，或独自等约15分钟（部分版本至20分钟）得两份。原实验零食不止棉花糖一种，正文写 one treat，不写"总是棉花糖"。属跨年时段，不标月。https://en.wikipedia.org/wiki/Stanford_marshmallow_experiment ；https://www.simplypsychology.org/?p=11458
