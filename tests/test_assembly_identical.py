@@ -781,7 +781,7 @@ def test_viterbi_swap_replaces_that_sentence_warnings(tmp_path, monkeypatch):
         [(31, 150.0, 1.0, 0.0, ["第三句自己的提示"])]])
     results[1].hint = "可能有读错的字（识别为：换掉的版本的识别结果），建议重新生成或改写这一句"
     by_index = {r.segment.index: r for r in results}
-    monkeypatch.setattr(n, "_load_identical", lambda report=False: n._identical)
+    monkeypatch.setattr(n, "_load_identical", lambda report=False, quiet=False: n._identical)
     monkeypatch.setattr(n, "synthesize_segment", lambda seg, force=False: by_index[seg.index])
     got = n.synthesize_all([r.segment for r in results])
     assert "第 2 句：语速偏快（换掉的版本）" in n.warnings and any("换掉的版本的识别结果" in w for w in n.warnings)
