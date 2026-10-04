@@ -78,6 +78,13 @@ class IdenticalScorer(Scorer):
                  weights: Optional[Dict[str, float]] = None, cer_checker: Any = None, judge: Any = None,
                  twin: Optional[Dict[str, Any]] = None, rank_weights: Optional[Dict[str, Any]] = None):
         super().__init__(profile, centroid, encoder, weights, cer_checker, judge=judge)
+        self._base_rate = float(self.w.get("rate", 0.4))
+        self.configure(twin, rank_weights)
+
+    def configure(self, twin: Optional[Dict[str, Any]] = None, rank_weights: Optional[Dict[str, Any]] = None) -> None:
+        """换你本人的说话习惯和排序权重（「准备「一模一样」」重新校准以后，不用重新加载声纹和识别模型）。
+        rank_weights（models.json 的 identical.weights，P8 用你的录音校准的）：pros 音调起伏、ltas 频谱形状、
+        rate 时长偏差（不写就用 synth.score 里的）、cap（p90 = 像你本人封顶在你自己录音的 p90；none = 不封顶）。"""
         self.twin = twin if isinstance(twin, dict) else {}
         dm = self.twin.get("duration_model")
         self.duration_model = dm if isinstance(dm, dict) else None
@@ -88,6 +95,9 @@ class IdenticalScorer(Scorer):
             if k in rw and _num(v) is not None:
                 rw[k] = float(v)
         self.rank_w = rw
+        rate = _num((rank_weights or {}).get("rate"))
+        self.w["rate"] = float(rate) if rate is not None and rate >= 0 else self._base_rate
+        self.cap_mode = "none" if str((rank_weights or {}).get("cap") or "").strip().lower() == "none" else "p90"
         self.use_judge(self.judge)
 
     def use_judge(self, judge: Any) -> None:
@@ -99,7 +109,8 @@ class IdenticalScorer(Scorer):
         except Exception:  # noqa: BLE001 - 量不出来就当没有
             self.natural = None
         self.precise = bool(self.judge is not None and getattr(self.judge, "precise", False) and self.natural)
-        self.cap = _num((self.natural or {}).get("p90")) if self.precise else None
+        capped = self.precise and getattr(self, "cap_mode", "p90") != "none"
+        self.cap = _num((self.natural or {}).get("p90")) if capped else None
         members = list(getattr(self.judge, "members", []) or []) if self.judge is not None else []
         finder = getattr(self.judge, "member", None)
         qm = finder(QUICK_MEMBER) if callable(finder) else None
@@ -207,7 +218,8 @@ class IdenticalScorer(Scorer):
         total = 0.0
         if q_pct is not None:
             cap = None
-            if self.precise and self.quick_member is not None and hasattr(self.quick_member, "natural_pct"):
+            if (self.precise and self.cap_mode != "none" and self.quick_member is not None
+                    and hasattr(self.quick_member, "natural_pct")):
                 cap = self.quick_member.natural_pct("g90")
             val = min(float(q_pct), cap) if cap is not None else float(np.clip(q_pct, -50.0, 150.0))
             total += self.w["speaker"] * val / 100.0

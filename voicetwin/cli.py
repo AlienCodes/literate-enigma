@@ -320,6 +320,19 @@ class _ConsoleProgress:
                 pass
 
 
+def _selection_lines(info: Any) -> List[str]:
+    """挑选结果给人看的几行：「一模一样」的挑选出错改用了标准挑法的说明、四项评分的名次表（都是实测的）。"""
+    if not isinstance(info, dict):
+        return []
+    lines: List[str] = []
+    if info.get("selection_error"):
+        lines.append(f"⚠️ 按「一模一样」的方式挑选这次没成功（{info['selection_error']}），已经自动改用标准的挑法挑好了模型")
+    sel = info.get("selection") if isinstance(info.get("selection"), dict) else {}
+    if sel.get("method") == "deep":
+        lines += [str(x) for x in sel.get("lines") or []]
+    return lines
+
+
 def _cli_progress(kind: str, cfg: Any, title: str, backend: Optional[str] = None, select: bool = True,
                   **stage_kw: Any) -> Any:
     """给命令行的长任务做一个进度回调：返回的对象可以当 progress(frac, msg) 用，并有 finish(ok)。
@@ -600,8 +613,9 @@ def main(argv: Optional[List[str]] = None) -> None:
                 print(f"素材没变，这次不用重新训练（用的是上次训练好的模型）。默认模型：{(info.get('selected') or {}).get('id')}")
             else:
                 print(f"训练完成（用时 {info.get('train_minutes')} 分钟）。默认模型：{(info.get('selected') or {}).get('id')}")
-            for line in list((info.get("params") or {}).get("report") or []) + [
-                    (info.get("selection") or {}).get("previous_note")]:
+            sel_info = info.get("selection") or {}
+            for line in list((info.get("params") or {}).get("report") or []) + _selection_lines(sel_info) + [
+                    sel_info.get("previous_note")]:
                 if line:
                     print(f"  {line}")
             if info.get("selection_error"):
@@ -611,10 +625,13 @@ def main(argv: Optional[List[str]] = None) -> None:
             kw: Dict[str, Any] = {"use_asr": args.asr}
             if args.items is not None:
                 kw["items"] = args.items
-            progress = _cli_progress("select", cfg, "挑选最佳模型", args.backend)
+            progress = _cli_progress("select", cfg, "挑选最佳模型", args.backend, mode=args.mode)
             info = wf.run_select(cfg, args.voice, args.backend, progress=progress, mode=args.mode, **kw)
             _finish(progress)
             _print_json({"best": info["selection"]["best"], "speed": info["speed"]})
+            for line in _selection_lines(info) + [info.get("previous_note")]:
+                if line:
+                    print(f"  {line}")
         elif args.command in ("say", "narrate"):
             source = args.text if args.command == "say" else args.script
             if args.command == "narrate" and not Path(source).exists():

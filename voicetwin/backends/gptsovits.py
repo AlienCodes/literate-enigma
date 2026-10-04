@@ -716,7 +716,7 @@ def plan_training(n_clips: int, minutes: float, total_gb: Optional[float] = None
                   user: Optional[Dict[str, Any]] = None, mode: str = "standard", probe_batch: Any = None,
                   deep: Optional[Dict[str, Any]] = None, will_probe: bool = False, n_val: Optional[int] = None,
                   en_lines: Optional[int] = None, mixed_text: bool = False,
-                  batch_source: str = "probe") -> Dict[str, Any]:
+                  batch_source: str = "probe", n_test: Optional[int] = None) -> Dict[str, Any]:
     """根据显存和素材，算出这次的训练设置，并写一行中文说明（summary）。纯计算，不碰显卡和文件。
 
     user 里不是「自动」的值优先（来自高级设置 / config.yaml / 命令行）。
@@ -725,8 +725,8 @@ def plan_training(n_clips: int, minutes: float, total_gb: Optional[float] = None
     每 max(1, round(2·r)) 轮存一个，语气 min(50, ⌈20·r⌉) 轮、每 max(1, round(r)) 轮存一个——每批多于 4 条时模型更新的
     次数和每批 4 条时一样；每批不到 4 条时轮数和每批 4 条时一样（不会比「标准」练得少）；最后一轮一定存下来。
     deep 可以改每批 4 条时的轮数和保存间隔（config.yaml 的 deep_sovits_epochs 等）。standard 的结果和以前完全一样。
-    will_probe / n_val / en_lines / mixed_text / batch_source 只影响说明里的话（会不会先实测、挑选用几句录音、
-    几句夹着英文、probe_batch 是实测的 "probe" 还是接着练时沿用上次的 "previous"）。"""
+    will_probe / n_val / n_test / en_lines / mixed_text / batch_source 只影响说明里的话（会不会先实测、挑选用几句录音和
+    几句检查用的句子、几句夹着英文、probe_batch 是实测的 "probe" 还是接着练时沿用上次的 "previous"）。"""
     user = dict(user or {})
     mode = mode if mode in TRAIN_MODES else "standard"
     n_clips = max(0, int(n_clips or 0))
@@ -971,8 +971,11 @@ def _plan_deep(v: Dict[str, Any]) -> Dict[str, Any]:
     if v.get("mixed_text"):
         en = v.get("en_lines")
         parts.append("中文和英文都参加训练" + (f"（素材里有 {en} 句夹着英文）" if en else ""))
-    n_val = v.get("n_val")
-    if n_val:
+    n_val, n_test = v.get("n_val"), v.get("n_test")
+    if n_val and n_test:
+        parts.append(f"训练完用你没参加训练的 {n_val} 句录音和 {n_test} 句检查用的句子，把第 4 轮以后存下的每个版本都试一遍，"
+                     "挑最像你的")
+    elif n_val:
         parts.append(f"训练完用你没参加训练的 {n_val} 句录音把第 4 轮以后存下的每个版本都试一遍，挑最像你的")
     else:
         parts.append("训练完把第 4 轮以后存下的每个版本都试一遍，挑最像你的")
@@ -1734,13 +1737,17 @@ class GPTSoVITSBackend(Backend):
 
     def _plan_context(self) -> Dict[str, Any]:
         """说明里要用的实测数字：挑选用几句没参加训练的录音、几句夹着英文。读不了就不说。"""
-        out: Dict[str, Any] = {"n_val": None, "en_lines": None}
+        out: Dict[str, Any] = {"n_val": None, "en_lines": None, "n_test": None}
         try:
             from voicetwin.data.audit import material_audit
             from voicetwin.data.exporters import validation_items
-            from voicetwin.synth.select import DEFAULT_ITEMS
+            from voicetwin.synth.probe_texts import TEST_TEXTS
+            from voicetwin.synth.select import DEFAULT_ITEMS, TEST_TEXTS_N
 
             out["n_val"] = len(validation_items(self.project, limit=DEFAULT_ITEMS)) or None
+            if out["n_val"]:  # 「一模一样」的挑选（select_deep）另外加的检查用的句子（config.yaml 的 select_test_texts）
+                out["n_test"] = max(0, min(len(TEST_TEXTS), _to_int(self._tcfg().get("select_test_texts"),
+                                                                    TEST_TEXTS_N))) or None
             out["en_lines"] = material_audit(self.project).get("en_lines")
         except Exception as exc:
             log.debug(f"读训练说明要用的数字没成功：{exc}")

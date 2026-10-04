@@ -419,7 +419,9 @@ def test_train_flow_with_fake_gptsovits(prepared, tmp_path, monkeypatch):
     root = build_fake_root(tmp_path / "GPT-SoVITS")
     gcfg = make_cfg(project.root.parent, backend="gptsovits", backends={"gptsovits": {
         "root": str(root), "python": sys.executable, "port": 19890, "startup_timeout": 60, "is_half": True,
-        "train": {"sovits_epochs": 8, "gpt_epochs": 10, "batch_size": 2, "sovits_save_every": 4, "gpt_save_every": 5},
+        # 「一模一样」的挑选（第 8 步）另外加检查用的句子：这里只看进度，少用几句（假引擎逐个样本合成长句子很慢）
+        "train": {"sovits_epochs": 8, "gpt_epochs": 10, "batch_size": 2, "sovits_save_every": 4, "gpt_save_every": 5,
+                  "select_test_texts": 1, "select_final_candidates": 2},
     }})
     rec = Rec()
     confirm_material(gcfg, project.voice)
