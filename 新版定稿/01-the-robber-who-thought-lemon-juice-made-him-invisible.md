@@ -2,15 +2,15 @@
 # ZH: 以为柠檬汁能隐身的劫匪
 
 ## 英文
-On 6 January 1995, McArthur Wheeler and an **accomplice** **raided** two Pittsburgh-area banks at gunpoint **in broad daylight**, without **disguise**. Their only **camouflage** was lemon juice, **rubbed on** in the **earnest** **conviction** that it would **render** them **invisible** to cameras.
+On 6 January 1995, McArthur Wheeler and an **accomplice** **raided** two Pittsburgh-area banks at gunpoint **in broad daylight**, without **disguise**. Their only **camouflage** was lemon juice, **rubbed on** in the **earnest** **conviction** that it would **render** them invisible to cameras.
 
-The **rationale** had a **kernel** of truth. Lemon juice is a **time-honoured** **invisible** **ink**, and Wheeler made an **inventive** **leap** from paper to skin. His Polaroid **self-portrait** came out **devoid of** its subject, a result he took as **conclusive**.
+The **rationale** had a **kernel** of truth. Lemon juice is a **time-honoured** invisible **ink**, and Wheeler made an **inventive** **leap** from paper to skin. His Polaroid **self-portrait** came out **devoid of** its subject, a result he took as **conclusive**.
 
 The security cameras **begged to differ**. On 19 April the eleven o'clock news showed **viewers** the **damning** images, and Wheeler was arrested shortly after midnight. **Confronted with** the tapes, he protested in **sheer** **disbelief** that he had worn the juice.
 
 Reading about the case, the Cornell psychologist David Dunning **pondered** a **disquieting** **proposition**. Perhaps **incompetence** can **cloak** itself, **robbing** people of the **discernment** to notice their **deficiencies**.
 
-For a 1999 paper, Dunning and his student Justin Kruger **quizzed** Cornell **undergraduates** on humour, grammar and **logical** reasoning. The bottom quarter of **scorers** averaged the 12th percentile but **generously** placed themselves near the 62nd, whereas **high achievers** showed **undue** **modesty**. The **unskilled**, the authors argued, bear a **dual** burden, since **appraisal** **calls for** the same skills as **execution**.
+For a 1999 paper, Dunning and his student Justin Kruger **quizzed** Cornell **undergraduates** on humour, grammar and **logical** reasoning. The bottom quarter of **scorers** averaged the 12th percentile but **generously** placed themselves near the 62nd, whereas high **achievers** showed **undue** **modesty**. The **unskilled**, the authors argued, bear a **dual** burden, since **appraisal** **calls for** the same skills as **execution**.
 
 **Detractors** traced part of the Dunning-Kruger **disparity** to regression to the mean, a statistical **mirage** the paper **partially** acknowledged. Studies designed to avoid it still find a smaller but **tangible** effect. In 2023 the pair **garnered** the Grawemeyer psychology award.
 
@@ -18,15 +18,15 @@ For a 1999 paper, Dunning and his student Justin Kruger **quizzed** Cornell **un
 
 ## 中文
 
-1995年1月6日，麦克阿瑟·惠勒和一名**同伙**(accomplice)持枪**抢劫了**(raided)匹兹堡地区的两家银行，**光天化日之下**(in broad daylight)，不加**乔装**(disguise)。他们唯一的**伪装**(camouflage)是柠檬汁，**涂抹**(rubbed on)在身上，怀着**真心实意的**(earnest)**信念**(conviction)，认为它能**使**(render)他们在镜头前**隐形**(invisible)。（另译：对此深信不疑）（render：使……处于某种状态）
+1995年1月6日，麦克阿瑟·惠勒和一名**同伙**(accomplice)持枪**抢劫了**(raided)匹兹堡地区的两家银行，**光天化日之下**(in broad daylight)，不加**乔装**(disguise)。他们唯一的**伪装**(camouflage)是柠檬汁，**涂抹**(rubbed on)在身上，怀着**真心实意的**(earnest)**信念**(conviction)，认为它能**使**(render)他们在镜头前隐形。（另译：对此深信不疑）（render：使……处于某种状态）
 
-这套**逻辑**(rationale)倒也有几分真实的**内核**(kernel)。柠檬汁是一种**由来已久的**(time-honoured)**隐形**(invisible)**墨水**(ink)，惠勒则做了一次**富有创意的**(inventive)**跳跃**(leap)，从纸面跳到了皮肤上。（用柠檬汁在纸上写字，干后看不见，加热才显出字迹）他的宝丽来**自拍照**(self-portrait)洗出来后，**完全没有**(devoid of)照片的拍摄对象（他本人），这个结果，他当成了**确凿的**(conclusive)证据。（他用这个相机拍了一张自拍，实际上没拍到，但他以为是他自己涂了柠檬水，隐身了。）
+这套**逻辑**(rationale)倒也有几分真实的**内核**(kernel)。柠檬汁是一种**由来已久的**(time-honoured)隐形**墨水**(ink)，惠勒则做了一次**富有创意的**(inventive)**跳跃**(leap)，从纸面跳到了皮肤上。（用柠檬汁在纸上写字，干后看不见，加热才显出字迹）他的宝丽来**自拍照**(self-portrait)洗出来后，**完全没有**(devoid of)照片的拍摄对象（他本人），这个结果，他当成了**确凿的**(conclusive)证据。（他用这个相机拍了一张自拍，实际上没拍到，但他以为是他自己涂了柠檬水，隐身了。）
 
 监控摄像头可**不敢苟同**(begged to differ)。4月19日，11点新闻向**观众**(viewers)播出了那些**足以定罪的**(damning)画面，午夜刚过不久，惠勒就被捕了。**面对**(Confronted with)这些录像，他坚决表示**完全**(sheer)**不相信**(disbelief)，说自己明明抹了柠檬汁。
 
 读到这个案子时，康奈尔大学心理学家戴维·邓宁**仔细思考了**(pondered)一个**令人不安的**(disquieting)**观点**(proposition)。也许，**无能**(incompetence)（这种东西）会**掩藏住**(cloak)它自己，**剥夺**(robbing)人们的**识别能力**(discernment)，去注意到他们自身的**不足**(deficiencies)。
 
-为了1999年的一篇论文，邓宁和他的学生贾斯汀·克鲁格**测试了**(quizzed)康奈尔的**本科生**(undergraduates)，考察了（关于）幽默、语法和**逻辑**(logical)推理的能力。垫底的四分之一**答题者**(scorers)，平均只处在（倒数）第12百分位，却**大方地**(generously)（高估自己）把自己估在第62百分位附近，而**成绩优异者**(high achievers)却表现出**过分的**(undue)**谦虚**(modesty)。**能力不足的**(unskilled)人，两位作者认为，背负着**双重**(dual)负担，因为**评估**(appraisal)（自我评估）**需要**(calls for)相同的技能，与**执行**(execution)（所需）的一样。
+为了1999年的一篇论文，邓宁和他的学生贾斯汀·克鲁格**测试了**(quizzed)康奈尔的**本科生**(undergraduates)，考察了（关于）幽默、语法和**逻辑**(logical)推理的能力。垫底的四分之一**答题者**(scorers)，平均只处在（倒数）第12百分位，却**大方地**(generously)（高估自己）把自己估在第62百分位附近，而**成绩优异者**(achievers)却表现出**过分的**(undue)**谦虚**(modesty)。**能力不足的**(unskilled)人，两位作者认为，背负着**双重**(dual)负担，因为**评估**(appraisal)（自我评估）**需要**(calls for)相同的技能，与**执行**(execution)（所需）的一样。
 
 **批评者**(Detractors)查明部分邓宁-克鲁格**差异**(disparity)，源于均值回归，一种统计学的**假象**(mirage)，该论文（即前文1999年邓宁-克鲁格论文）也曾**部分**(partially)承认过。（trace A to B：追溯 A 的来源到 B、查明 A 源于 B）专为避开这一问题而设计的研究仍发现了一个较小但**切实存在的**(tangible)效应。2023年，两人**赢得了**(garnered)格文美尔心理学奖。
 
@@ -44,7 +44,6 @@ For a 1999 paper, Dunning and his student Justin Kruger **quizzed** Cornell **un
 | earnest | 本文：真心实意的；adj. 认真的，真诚的（an earnest young man；in earnest） | 1 |
 | conviction | 本文：信念；n. 坚定的信念；定罪（a firm conviction；a previous conviction） | 1 |
 | render | 本文：使；v. 使变成，使成为（render sb speechless；render a building unsafe） | 1 |
-| invisible | 本文：隐形；adj. 看不见的，隐形的（invisible to the naked eye；invisible ink） | 1 |
 | rationale | 本文：逻辑；n. 理由，基本原理（the rationale behind a decision） | 2 |
 | kernel | 本文：内核；n. 核心，要点；果仁（a kernel of truth） | 2 |
 | time-honoured | 本文：由来已久的；adj. 由来已久的（a time-honoured tradition） | 2 |
@@ -73,7 +72,7 @@ For a 1999 paper, Dunning and his student Justin Kruger **quizzed** Cornell **un
 | logical | 本文：逻辑；adj. 逻辑的，合乎逻辑的（logical reasoning） | 5 |
 | scorers | 本文：答题者；n. (scorer) 得分者（top scorers） | 5 |
 | generously | 本文：大方地；adv. 慷慨地，大方地（give generously） | 5 |
-| high achievers | 本文：成绩优异者；n. (achiever) 有成就者，成绩优异者（high achievers） | 5 |
+| achievers | 本文：成绩优异者 | 5 |
 | undue | 本文：过分的；adj. 过分的，不适当的（undue pressure/influence） | 5 |
 | modesty | 本文：谦虚；n. 谦虚（false modesty） | 5 |
 | unskilled | 本文：能力不足的；adj. 不熟练的，无技能的（unskilled workers） | 5 |

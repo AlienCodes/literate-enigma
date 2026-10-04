@@ -27,5 +27,32 @@ for line in t.split('## 速查表',1)[1].split('\n'):
 if re.search(r'\n {1,}\*\*',en): bad.append('D1 文章英文出现异常断行')
 for f in [f'{ROOT}/视频/视频/{no}.mp4',f'{ROOT}/视频/对照文本/{no}-文本.docx']:
     if not os.path.exists(f): bad.append(f'缺文件: {os.path.relpath(f,ROOT)}')
+
+# 撞词提醒（踩坑总表 T12）：本篇重点词（含短语里的实词）若在其他篇加粗过（同根），列出供核对
+STOP={'the','and','for','with','into','from','that','this','have','been','about','over','under','after','before','out','off','its','his','her','their'}
+def stem(w):
+    w=w.lower()
+    for suf in ('ingly','edly','ness','ment','ings','ing','ied','ies','ed','es','ly','s'):
+        if w.endswith(suf) and len(w)-len(suf)>=4: return w[:-len(suf)]
+    return w
+others={}
+for f in glob.glob(f'{ROOT}/新版定稿/[0-9][0-9]-*.md'):
+    n=os.path.basename(f)[:2]
+    if n==no: continue
+    e=open(f).read().split('## 英文',1)[1].split('## 中文',1)[0]
+    for b in re.findall(r'\*\*([^*]+)\*\*',e):
+        for w in re.findall(r"[A-Za-z]+",b):
+            if len(w)>=3 and w.lower() not in STOP: others.setdefault(stem(w),set()).add(n)
+import subprocess
+base=subprocess.run(['git','-C',ROOT,'show','fc50170:'+os.path.relpath(md,ROOT)],capture_output=True,text=True).stdout
+orig={b.lower() for b in re.findall(r'\*\*([^*]+)\*\*',base.split('## 中文')[0])}
+warn=[]
+for s in d['sentences']:
+    for c in s['chunks']:
+        for b in re.findall(r'\*\*([^*]+)\*\*',c['en']):
+            if b.lower() in orig: continue
+            for w in re.findall(r"[A-Za-z]+",b):
+                if len(w)>=3 and w.lower() not in STOP and stem(w) in others: warn.append(f'{b}（{w}）也在第 {"、".join(sorted(others[stem(w)]))} 篇加粗')
+bad+=['T12 新加重点词撞词（按规则应去掉并提醒用户）: '+x for x in sorted(set(warn))]
 print('\n'.join(bad) if bad else f'第{no}篇：全部检查通过')
 sys.exit(1 if bad else 0)
