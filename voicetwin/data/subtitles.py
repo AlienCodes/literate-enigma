@@ -14,7 +14,7 @@ from typing import List, Optional, Sequence
 import numpy as np
 
 from voicetwin.utils.audio import frame_rms_db
-from voicetwin.utils.textutil import clean_transcript, count_cjk, ends_sentence
+from voicetwin.utils.textutil import clean_transcript, count_cjk, decode_text_bytes, ends_sentence
 
 TIME_RE = re.compile(
     r"(?:(\d+):)?(\d{1,2}):(\d{1,2})[,.](\d{1,3})\s*-->\s*(?:(\d+):)?(\d{1,2}):(\d{1,2})[,.](\d{1,3})"
@@ -34,8 +34,9 @@ def _to_sec(h: Optional[str], m: str, s: str, ms: str) -> float:
 
 
 def parse_subtitles(path: Path) -> List[Cue]:
-    raw = Path(path).read_text(encoding="utf-8-sig", errors="replace")
-    return parse_subtitle_text(raw)
+    """读 .srt / .vtt。记事本另存为 ANSI（GBK）、「Unicode」（UTF-16）的字幕也能读（以前只按 UTF-8 读：
+    GBK 的中文全变成乱码，UTF-16 的一条都读不出来）。"""
+    return parse_subtitle_text(decode_text_bytes(Path(path).read_bytes()))
 
 
 def parse_subtitle_text(raw: str) -> List[Cue]:

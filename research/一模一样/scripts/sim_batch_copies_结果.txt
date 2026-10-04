@@ -1,0 +1,12 @@
+lines 1004: batched==4x single 1004, mismatch 0, skipped 0
+  short '好的。': single=['。好的。'] batched_n=2
+  short '对。': single=['。对。'] batched_n=2
+  short 'Yes.': single=['.Yes.'] batched_n=4
+  short '我们来看。': single=['我们来看。'] batched_n=4
+  short "OK, let's go.": single=[".OK, let's go."] batched_n=4
+speed 1.0001: frame counts changed for L in 1..9999: [] count 0
+Traceback (most recent call last):
+  File "/home/user/literate-enigma/research/一模一样/scripts/sim_batch_copies.py", line 76, in <module>
+    import torch, torch.nn.functional as F
+ModuleNotFoundError: No module named 'torch'
+（最后一项「F.interpolate 同样长度 = 原样」需要 torch；开发机的两套环境都没装 torch，这一项没跑出来。前面的结果是 10-03 在整合包同版本的 Python 3.9 上跑的。）

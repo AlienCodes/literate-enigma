@@ -46,16 +46,27 @@ STAGES_PREPARE: List[Stage] = [(0.00, "整理要处理的文件"), (0.02, "提�
                                (0.74, "分析语速和停顿"), (0.80, "检查是不是你本人的声音"), (0.90, "挑选参考音频、保存结果"),
                                (0.95, "分析你的说话风格")]
 STAGES_SELECT: List[Stage] = [(0.00, "加载打分模型"), (0.05, "启动合成引擎"), (0.10, "逐个试听每个模型，挑最像你的")]
+#: 「一模一样」的挑选（select_deep）分三步，再试听参考录音、校准打分（和 select_deep 报的进度对齐）
+STAGES_SELECT_IDENTICAL: List[Stage] = [(0.00, "加载打分模型、整理参考录音"), (0.05, "挑选：先比语气模型"),
+                                        (0.34, "挑选：再比音色模型"), (0.60, "挑选：最后几组按「一模一样」的方式比"),
+                                        (0.87, "试听参考录音、校准打分")]
 STAGES_NARRATE: List[Stage] = [(0.00, "启动合成引擎"), (0.03, "逐句生成"), (0.95, "拼接音频、生成字幕")]
-#: 「完美」档多一步：做「去杂音」版本并比较
+#: 「完美」档多一步：做「去杂音」版本并比较（「一模一样」见下面 STAGES_NARRATE_IDENTICAL）
 STAGES_NARRATE_VARIANTS: List[Stage] = [(0.00, "启动合成引擎"), (0.03, "逐句生成"), (0.90, "拼接音频、生成字幕"),
                                         (0.93, "做「去杂音」版本并比较哪个更像你")]
+#: 「一模一样」档（默认）：先准备（加载打分和查错字的模型），最后整篇再挑一遍、按你的停顿和音量拼接、做两个版本
+#: （和 engine.narrate 的进度对齐，设计方案 §2 P2）
+STAGES_NARRATE_IDENTICAL: List[Stage] = [(0.00, "启动合成引擎"), (0.02, "准备「一模一样」"), (0.08, "逐句生成"),
+                                         (0.88, "整篇再挑一遍、按你的停顿和音量拼接"), (0.92, "做「去杂音」版本并比较"),
+                                         (0.99, "写字幕和报告")]
 STAGES_DOWNLOAD: List[Stage] = [(0.0, "下载模型文件")]
 STAGES_PROOFCHECK: List[Stage] = [(0.00, "准备识别引擎"), (0.02, "逐条检查文字，标出可能的错字")]
 STAGES_TEXTFIX: List[Stage] = [(0.00, "读母本和语法术语"), (0.15, "一句一句检查")]
 STAGES_BLIND_TEST: List[Stage] = [(0.00, "挑选你的真实录音"), (0.05, "用同样的文字生成"), (0.90, "统一音量、打乱顺序、保存")]
 STAGES_VERIFY: List[Stage] = [(0.00, "加载声纹模型"), (0.10, "逐个打分")]
 TRAIN_SELECT_SPLIT = 0.88
+#: 「一模一样」训练：挑选要把第 4 轮以后存下的每个版本都试一遍，占的时间多，训练只占前 62%
+TRAIN_SELECT_SPLIT_IDENTICAL = 0.62
 PROOFCHECK_PREPARE_END = 0.85     # 要查错字时，prepare() 的 0.95 压缩到这里
 PROOFCHECK_START = 0.87
 PROOFCHECK_END = 0.99
@@ -158,25 +169,66 @@ def proofcheck_plan(cfg: Config, overrides: Optional[Dict[str, Any]] = None) -> 
     return bool(second), str(engine or ""), str(reason or "")
 
 
+def train_mode(cfg: Optional[Config], mode: Any = None) -> str:
+    """训练方式：本次指定的优先，没指定看 config.yaml 的 backends.gptsovits.train.mode（auto = 「一模一样」）。"""
+    from voicetwin.backends.gptsovits import resolve_train_mode
+
+    if mode in (None, ""):
+        try:
+            mode = (((cfg or {}).get("backends", {}) or {}).get("gptsovits", {}) or {}).get("train", {}).get("mode")
+        except AttributeError:
+            mode = None
+    return resolve_train_mode(mode)
+
+
+def trained_mode(project: Project, backend: str) -> str:
+    """现在的模型是用哪种训练方式练的（models.json 里记的）；以前的版本练的（没记）算「标准」。"""
+    try:
+        params = (project.load_models().get(backend) or {}).get("params") or {}
+    except Exception:
+        params = {}
+    return "identical" if params.get("mode") == "identical" else "standard"
+
+
+#: 「重新挑选最佳模型」开始时的一句话（两种挑法差很多，先说清楚）
+SELECT_HOW = {
+    "identical": "挑选方式：「一模一样」——把第 4 轮以后存下的每个版本都试一遍，比较慢（存下的版本越多越久），可以先去做别的事。"
+                 "分三步：先比语气模型、再比音色模型，最后最好的几组按「一模一样」生成的方式比；用你没参加训练的录音和"
+                 "检查用的句子，按「中英夹在一起 / 纯中文 / 纯英文 / 综合总评分」四项实测打分",
+    "standard": "挑选方式：标准——从早到晚均匀挑几个版本比（大约 5~15 分钟，估计）",
+}
+
+
+def train_select_split(mode: Any = None) -> float:
+    """训练 + 自动挑选时，训练占整个进度条的多少（后面是挑选）。"""
+    return TRAIN_SELECT_SPLIT_IDENTICAL if str(mode) == "identical" else TRAIN_SELECT_SPLIT
+
+
 def task_stages(kind: str, cfg: Optional[Config] = None, backend_name: Optional[str] = None, select: bool = True,
                 quality: Optional[str] = None, proofcheck: Optional[bool] = None,
-                overrides: Optional[Dict[str, Any]] = None) -> List[Stage]:
+                overrides: Optional[Dict[str, Any]] = None, mode: Optional[str] = None) -> List[Stage]:
     """给进度条用的阶段表：[(开始的进度, 中文步骤名), ...]，从小到大。
 
     kind：prepare | train | select | narrate（= generate）| download | proofcheck | textfix | blind_test | verify。
-    narrate 请把网页上选的 quality 一起传进来（「完美」档多一步）；prepare 可以传 overrides / proofcheck。
+    narrate 请把网页上选的 quality 一起传进来（「完美」「一模一样」档多几步）；prepare 可以传 overrides / proofcheck；
+    train 可以传训练方式 mode（不传按 config.yaml，auto = 「一模一样」）。
     """
     kind = (kind or "").strip().lower()
     if kind == "prepare":
         plan = proofcheck if proofcheck is not None else (proofcheck_plan(cfg, overrides)[0] if cfg is not None else False)
         return list(STAGES_PREPARE_PROOFCHECK if plan else STAGES_PREPARE)
     if kind == "select":
-        return list(STAGES_SELECT)
+        # 只有明确说了按「一模一样」挑（网页按「训练方式」传进来）才是三步的表；没说时 run_select 按模型是怎么练的定，
+        # 这里不知道是哪个声音，用标准的表
+        return list(STAGES_SELECT_IDENTICAL if mode not in (None, "") and train_mode(cfg, mode) == "identical"
+                    else STAGES_SELECT)
     if kind in ("narrate", "generate", "say"):
         from voicetwin.synth.engine import QUALITY_PRESETS, resolve_quality
 
         q = resolve_quality(quality if quality not in (None, "") else
                             ((cfg or {}).get("synth", {}) or {}).get("quality", "auto"))
+        if q == "identical":
+            return list(STAGES_NARRATE_IDENTICAL)
         return list(STAGES_NARRATE_VARIANTS if QUALITY_PRESETS[q].get("variants") else STAGES_NARRATE)
     if kind == "download":
         return list(STAGES_DOWNLOAD)
@@ -190,13 +242,20 @@ def task_stages(kind: str, cfg: Optional[Config] = None, backend_name: Optional[
         return list(STAGES_VERIFY)
     if kind == "train":
         name = str(backend_name or (cfg or {}).get("backend") or "gptsovits").lower()
+        split = TRAIN_SELECT_SPLIT
         try:
-            stages = list(getattr(_backend_class(name), "train_stages", None) or [(0.0, "训练模型")])
+            cls = _backend_class(name)
+            if hasattr(cls, "train_stages_for"):  # GPT-SoVITS：两种训练方式的步骤不一样
+                m = train_mode(cfg, mode)
+                stages = list(cls.train_stages_for(m))
+                split = train_select_split(m)
+            else:
+                stages = list(getattr(cls, "train_stages", None) or [(0.0, "训练模型")])
         except Exception:
             stages = [(0.0, "训练模型")]
         stages = sorted((float(f), str(n)) for f, n in stages)
         if select:
-            return [(round(f * TRAIN_SELECT_SPLIT, 4), n) for f, n in stages] + [(TRAIN_SELECT_SPLIT, "自动挑选最像你的模型")]
+            return [(round(f * split, 4), n) for f, n in stages] + [(split, "自动挑选最像你的模型")]
         return stages
     return []
 
@@ -383,29 +442,24 @@ def _clean_input(p: Any) -> str:
 def _precheck_prepare(cfg: Config, voice: str, inputs: List[str], overrides: Optional[Dict[str, Any]]) -> List[str]:
     """开始前先检查（几秒钟）：文件夹在不在、识别组件装没装、硬盘空间。返回要提醒的话。"""
     from voicetwin.data.asr import engine_importable
-    from voicetwin.data.prepare import discover_sources
-    from voicetwin.data.subtitles import find_sidecar_subtitle
+    from voicetwin.data.prepare import discover_sources, usable_sidecar
 
     for p in inputs:
         if not Path(p).expanduser().exists():
             raise FileNotFoundError(f"找不到文件夹：{p}。请在文件夹窗口顶部的地址栏复制路径，再粘贴过来")
     eff = _effective_cfg(cfg, overrides)
     project = Project(cfg, voice)
-    from voicetwin.data.prepare import _own_dirs, already_done, load_sources
+    from voicetwin.data.prepare import _own_dirs, load_sources, pending_sources
 
-    sources_db = load_sources(project, project.load_manifest())
+    records = project.load_manifest()
+    sources_db = load_sources(project, records)
     files = discover_sources(inputs, exclude=_own_dirs(project, eff))
-    new = []
-    for f in files:
-        try:
-            if not already_done(sources_db, f):
-                new.append(f)
-        except OSError:
-            continue
-    pending = [r for r in project.load_manifest() if not r.get("text") and not r.get("asr_done")]
+    new, _ = pending_sources(project, files, sources_db, records)  # 同一个视频的几份只算一份（硬盘空间也只算一份）
+    pending = [r for r in records if not r.get("text") and not r.get("asr_done")]
     engine = str(eff.get_path("prepare.asr.engine", "faster-whisper") or "faster-whisper").lower()
     seg_mode = str(eff.get_path("prepare.segmentation", "auto") or "auto").lower()
-    need_asr = bool(pending) or any(not (seg_mode in ("auto", "srt") and find_sidecar_subtitle(f)) for f in new)
+    # 同名字幕读不出内容的视频要靠语音识别（会改用静音切分 + 识别）
+    need_asr = bool(pending) or any(not (seg_mode in ("auto", "srt") and usable_sidecar(f)) for f in new)
     if need_asr and engine != "none" and not engine_importable(engine):
         raise RuntimeError("语音识别组件没装好，请重新双击 install_windows.bat 安装一次")
     notes: List[str] = []
@@ -421,6 +475,43 @@ def _precheck_prepare(cfg: Config, voice: str, inputs: List[str], overrides: Opt
     except OSError:
         pass
     return notes
+
+
+#: 校对表保存 / 确认时顺便更新「一模一样」档的说话习惯（twin_profile.json）：只在要新量的录音不多时做。
+#: 第一次（还一条都没量过）要把全部录音量一遍，留到素材准备、「重新分析说话风格」、生成「一模一样」时再做，
+#: 保存 / 确认不会因此变慢；量过以后改文字只要重新对齐标点（声音特征有缓存）。开发机实测每段约 55 毫秒、
+#: 改一句文字后重算 13 毫秒（research/一模一样/scripts/time_twin_profile_结果.txt）：60 段约 3 秒
+TWIN_REVIEW_MAX_NEW_CLIPS = 60
+TWIN_REVIEW_MAX_NEW_SOURCE_MB = 50.0
+#: 同一个声音的说话习惯正在别处量（比如「重新分析说话风格」第一次把全部录音量一遍，按上面的实测估计 1004 段约一分钟）时，
+#: 保存最多等这么多秒，等不到这次先不更新（保存不会卡住；下次更新时按新的文字重算）。另一个保存的更新（只重新对齐标点）等得到
+TWIN_REVIEW_LOCK_WAIT = 2.0
+
+
+def _update_twin_profile(project: Project, review: bool = False) -> None:
+    """「一模一样」档用的说话习惯（停顿、音调、语速……）：素材变了才重算，没变时几乎不花时间。
+    出错不影响别的功能（只在黑色窗口 / 详细过程里记一条提醒，生成「一模一样」时会再试）。停止按钮照常有效。"""
+    try:
+        from voicetwin.style.twin_profile import build_twin_profile
+
+        if review:
+            build_twin_profile(project, max_new_clips=TWIN_REVIEW_MAX_NEW_CLIPS,
+                               max_new_source_mb=TWIN_REVIEW_MAX_NEW_SOURCE_MB, lock_wait=TWIN_REVIEW_LOCK_WAIT)
+        else:
+            build_twin_profile(project)
+    except Exception as exc:  # noqa: BLE001 - 只是「一模一样」档要用的统计，不能让素材准备 / 保存失败
+        log.warning(f"⚠️ 测量你的说话习惯（「一模一样」档要用的停顿、音调、语速）这次没有完成（{_explain_title(exc)}）。"
+                    "不影响别的功能；生成「一模一样」时会再量一次", exc_info=exc)
+
+
+def _prune_bank_files(project: Project) -> None:
+    """素材准备时：删掉「一模一样」参考录音库里已经不能用的音频（这时不会有生成在跑）。出错不影响素材准备。"""
+    try:
+        from voicetwin.data.references import prune_bank_files
+
+        prune_bank_files(project, project.load_manifest())
+    except Exception as exc:  # noqa: BLE001
+        log.debug(f"清理参考录音库的旧音频时出错：{exc}")
 
 
 def run_prepare(cfg: Config, voice: str, inputs: Iterable[str], progress: Optional[ProgressFn] = None,
@@ -441,6 +532,8 @@ def run_prepare(cfg: Config, voice: str, inputs: Iterable[str], progress: Option
         if summary["clips_kept"]:
             _report(progress, PROOFCHECK_PREPARE_END if do_proof else 0.95, "分析你的说话风格（语速、停顿、音高）……")
             summary["profile"] = build_profile(project)
+            _update_twin_profile(project)
+            _prune_bank_files(project)
         if do_proof and summary["clips_kept"]:
             _report(progress, PROOFCHECK_START, "查找可能的错字" + (f"（{reason}）" if reason else "") + "……")
             try:
@@ -529,6 +622,8 @@ def apply_review(cfg: Config, voice: str, read_csv: bool = True) -> Dict[str, An
     except RuntimeError as exc:  # 一条能用的都没有（比如文字还没识别出来）：校对表的删除 / 保存照样要成功
         no_material = str(exc)
         log.warning(f"⚠️ 重新统计时没法分析说话风格：{exc}")
+    else:
+        _update_twin_profile(project, review=True)
     summary = summarize(project, records, refs)
     summary["changed"] = changed
     if no_material:
@@ -560,17 +655,22 @@ def review_confirm(cfg: Config, voice: str) -> Dict[str, Any]:
     from voicetwin.data import review
 
     project = open_project(cfg, voice, must_exist=True)
-    saved = review.save_rows(project)
+    with review._LOCK:  # 保存的这一刻有哪次替换的撤销记录（重新统计要几秒，这期间老师还能点「全部替换」）
+        undo_before = review.undo_stamp(project)
+        saved = review.save_rows(project)
     summary = apply_review(cfg, voice, read_csv=False)
     with review._LOCK:  # 记下的「确认了哪些句子」和这一刻的校对表一致（期间别的按钮改了也不会错开）
         records = project.load_manifest()
         counts = review.material_counts(records)
         out = {"saved": saved["saved"], "changed": saved["changed"], "summary": summary, "counts": counts,
-               "csv_locked": bool(saved.get("csv_locked") or summary.get("csv_locked")), "confirmed": False}
+               "csv_locked": bool(saved.get("csv_locked") or summary.get("csv_locked")), "confirmed": False,
+               "unsaved": review.unsaved_count(project)}  # 确认期间又改的（替换），还没保存
         if counts["material"] > 0:
             out["confirmed"] = True
             out["time"] = review.save_confirmed(project, records)["time"]
-            review.clear_undo(project)  # 确认以后「撤销刚才的替换」不能再把确认好的字改回去
+            if review.undo_stamp(project) == undo_before:
+                # 确认以后「撤销刚才的替换」不能再把确认好的字改回去；确认期间才做的替换（只改了没保存的草稿）留着能撤销
+                review.clear_undo(project)
     return out
 
 
@@ -613,8 +713,9 @@ def run_proofcheck(cfg: Config, voice: str, progress: Optional[ProgressFn] = Non
 
 TEXTFIX_ONCE_MSG = ("这批素材已经用过「📝 一键全部文字校正」了：每批素材只能用一次，所以按钮是灰色的。"
                     "改好的地方都在下面的表格里，还没保存的请点「保存修改」；还要改的，请用每一行「修改建议」里的按钮，"
-                    "或者双击「文字」自己改。以后加了新的素材、识别完（或者恢复了删除的句子），按钮会再亮起来"
-                    "（只改这些还没改过的句子）。")
+                    "或者双击「文字」自己改。刚升级的话，先点一次「🔍 自动查找可能的错字」：每一句都会先和母本对照，"
+                    "写着「按母本：」的建议点那一行的「采用」就改好了（不算用掉一次）。"
+                    "以后加了新的素材、识别完（或者恢复了删除的句子），按钮会再亮起来（只改这些还没改过的句子）。")
 
 
 TEXTFIX_NEED_TOOLS_MSG = ("这台电脑上的声音分身没有找到拼音 / 分词工具（pypinyin、jieba），一键全部文字校正只能改很少的一部分。"
@@ -745,7 +846,10 @@ def apply_suggestion(cfg: Config, voice: str, clip_id: str) -> Dict[str, Any]:
 def run_analyze(cfg: Config, voice: str) -> Dict[str, Any]:
     from voicetwin.style.profile import build_profile
 
-    return build_profile(open_project(cfg, voice, must_exist=True))
+    project = open_project(cfg, voice, must_exist=True)
+    profile = build_profile(project)
+    _update_twin_profile(project)
+    return profile
 
 
 # ---------------------------------------------------------------------------- 训练 / 挑选
@@ -773,7 +877,10 @@ def download_models(cfg: Config, source: str = "auto", progress: Optional[Progre
 
 
 def run_train(cfg: Config, voice: str, backend_name: Optional[str] = None, progress: Optional[ProgressFn] = None,
-              select: bool = True, **opts: Any) -> Dict[str, Any]:
+              select: bool = True, mode: Optional[str] = None, **opts: Any) -> Dict[str, Any]:
+    """训练（+ 自动挑选）。mode：训练方式 identical（「一模一样」）/ standard，不传按 config.yaml（auto = identical）；
+    只有 GPT-SoVITS 有两种训练方式。训练实际用了几分钟（train_minutes）记进 models.json 的 params（素材没变、
+    这次没重新训练时不改上次记的）。"""
     from voicetwin.backends.base import get_backend
 
     with keep_awake():
@@ -782,17 +889,33 @@ def run_train(cfg: Config, voice: str, backend_name: Optional[str] = None, progr
         if not backend.supports_training:
             raise RuntimeError(f"{backend.display_name} 不需要训练（零样本克隆），可以直接合成")
         _check_material_before_training(project)
+        has_modes = hasattr(backend, "train_stages_for")
+        m = train_mode(cfg, mode)
+        split = train_select_split(m) if has_modes else TRAIN_SELECT_SPLIT
+        if has_modes:
+            opts["mode"] = m
         t0 = time.time()
-        info = backend.train(progress=_sub(progress, 0.0, TRAIN_SELECT_SPLIT) if select else progress, **opts)
+        info = backend.train(progress=_sub(progress, 0.0, split) if select else progress, **opts)
         info["train_minutes"] = round((time.time() - t0) / 60.0, 1)
+        params = info.get("params") if isinstance(info.get("params"), dict) else None
+        trained = params is not None and params.get("run_state") != "skip"
+        if trained:
+            params["train_minutes"] = info["train_minutes"]
+            try:
+                project.update_models(backend.name, {"params": params})
+            except Exception as exc:  # noqa: BLE001 - 记不下用时不影响训练结果
+                log.debug(f"记下训练用时没成功：{exc}")
         if select:
-            _report(progress, TRAIN_SELECT_SPLIT, "训练完成，开始自动挑选最像你的模型（大约 5~15 分钟）")
+            # 有两种训练方式的引擎：怎么挑、快慢由 run_select 开头那句说（SELECT_HOW），这里不重复
+            _report(progress, split, "训练完成，开始自动挑选最像你的模型" + ("" if has_modes else "（大约 5~15 分钟，估计）"))
             t_select = time.time()
             try:
-                selection = run_select(cfg, voice, backend.name, progress=_sub(progress, TRAIN_SELECT_SPLIT, 1.0))
+                selection = run_select(cfg, voice, backend.name, progress=_sub(progress, split, 1.0),
+                                       mode=m if has_modes else None)
                 info["selection"] = selection
                 if selection.get("selected"):
                     info["selected"] = selection["selected"]
+                info["select_minutes"] = round((time.time() - t_select) / 60.0, 1)
             except Exception as exc:  # 训练已经成功了：不能显示成失败（停止按钮的 TaskCancelled 照常传出去）
                 reason = _explain_title(exc)
                 log.warning(f"⚠️ 训练已经成功完成并保存了，只是「自动挑选最像你的模型」这一步没成功（{reason}）。"
@@ -805,8 +928,43 @@ def run_train(cfg: Config, voice: str, backend_name: Optional[str] = None, progr
                                       since=t_select)
                 if path is not None:
                     info["selection_error_report"] = str(path)
+        # 「训练方式」后面显示的「上次实测用时」（每种方式各记一份）：只记从头完整练过的一次——接着上次练、
+        # 接着没练完的只做了一部分，记下来会让下次从头练看起来快很多
+        if has_modes and trained and params.get("run_state") == "fresh":
+            _record_train_minutes(project, backend.name, m, info)
         _report(progress, 1.0, "训练完成")
     return info
+
+
+def _record_train_minutes(project: Project, backend: str, mode: str, info: Dict[str, Any]) -> None:
+    try:
+        entry = project.load_models().get(backend) or {}
+        by_mode = dict(entry.get("timing_by_mode") or {})
+        t = {"train_minutes": info.get("train_minutes"), "at": time.strftime("%Y-%m-%d %H:%M")}
+        if info.get("select_minutes") is not None:
+            t["select_minutes"] = info["select_minutes"]
+        by_mode[mode] = t
+        project.update_models(backend, {"timing_by_mode": by_mode})
+    except Exception as exc:  # noqa: BLE001
+        log.debug(f"记下训练用时没成功：{exc}")
+
+
+def measured_train_minutes(cfg: Config, voice: str, backend_name: Optional[str] = None) -> Dict[str, Dict[str, Any]]:
+    """这台电脑上每种训练方式上次从头完整练一次实测用了多久：{"identical": {"train_minutes", "select_minutes"}, ...}
+    （没从头练过的没有；接着上次练的只做了一部分，不算）。"""
+    try:
+        project = Project(cfg, voice)
+        if not project.exists:
+            return {}
+        entry = project.load_models().get(str(backend_name or cfg.get("backend") or "gptsovits")) or {}
+        out = {k: v for k, v in (entry.get("timing_by_mode") or {}).items() if isinstance(v, dict)}
+        params = entry.get("params") or {}
+        if (not out and params.get("mode") in ("identical", "standard") and params.get("train_minutes") is not None
+                and params.get("run_state") in (None, "fresh")):
+            out[params["mode"]] = {"train_minutes": params["train_minutes"]}
+        return out
+    except Exception:
+        return {}
 
 
 def training_blocker(project: Project) -> str:
@@ -827,7 +985,7 @@ def training_blocker(project: Project) -> str:
         return ("还没有确认训练素材，这次没有开始训练（必须先在校对表下面点「✅ 确认训练素材」；"
                 "用命令行的话运行 voicetwin confirm）。")
     if not review.confirmed_matches(conf, records):
-        return ("确认训练素材以后，校对表又改过（改了文字、删除或撤销删除了句子），这次没有开始训练"
+        return ("确认训练素材以后，校对表又改过（加了新素材、改了文字或语言、删除或撤销删除了句子），这次没有开始训练"
                 f"（上次确认是 {str(conf.get('time') or '')[5:16]}；用命令行的话再运行一次 voicetwin confirm）。")
     return ""
 
@@ -873,9 +1031,17 @@ def material_changed_note(cfg: Config, voice: str, backend_name: Optional[str] =
 
 
 def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, items: Optional[int] = None,
-               use_asr: Optional[bool] = None, progress: Optional[ProgressFn] = None) -> Dict[str, Any]:
+               use_asr: Optional[bool] = None, progress: Optional[ProgressFn] = None,
+               mode: Optional[str] = None) -> Dict[str, Any]:
+    """挑最像你的模型。mode = identical（「一模一样」）：select_deep 分三步把第 4 轮以后存下的每个版本都试一遍
+    （checkpoints(all=True)），按四项评分排名，再校准语速、排序权重、试听参考录音；standard：从早到晚均匀挑 4 × 3 个。
+    两种都把原来用的模型一起比较。「一模一样」的挑选出错（停止按钮除外）时自动改用标准的挑法再挑一次（设计方案：
+    显存不够之类的错误，标准的挑法一个一个生成，可能就能挑成），原因写进结果的 selection_error、日志和问题报告；
+    标准的挑法也出错时照常报错。
+    不传 mode（命令行 select / auto --skip-train 没写 --mode）：按现在的模型是怎么练的（trained_mode；以前的版本练的算标准）
+    ——标准练的模型不会突然变成每个版本都试。网页上按「训练方式」选的传进来。"""
     from voicetwin.backends.base import get_backend
-    from voicetwin.synth.select import DEFAULT_ITEMS, select_and_calibrate
+    from voicetwin.synth.select import DEFAULT_ITEMS, select_and_calibrate, select_deep
 
     with keep_awake():
         project = open_project(cfg, voice, must_exist=True)
@@ -883,28 +1049,118 @@ def run_select(cfg: Config, voice: str, backend_name: Optional[str] = None, item
         note = getattr(backend, "trained_material_note", lambda: "")()
         if note:
             log.warning(note)
-        try:  # 引擎在 select_and_calibrate 里"启动合成引擎"那一步才启动，进度条上能看到
-            res = select_and_calibrate(cfg, project, backend, max_items=int(items or DEFAULT_ITEMS), use_asr=use_asr,
-                                       progress=progress)
+        missing = getattr(backend, "missing_model_files", lambda: [])()
+        if missing and not backend.checkpoints():
+            # 训练过，但训练好的模型文件一个都找不到了：接着挑只能试官方底模，白等几分钟，
+            # 还会把原来模型的语速校准换成底模的，所以先停下说清楚
+            raise RuntimeError(f"找不到训练好的模型文件（{'、'.join(missing)}），没有可以挑选的模型，这次没有开始挑选")
+        has_modes = hasattr(backend, "train_stages_for")
+        how = (train_mode(cfg, mode) if mode not in (None, "") else trained_mode(project, backend.name)) if has_modes else ""
+        if how:
+            _report(progress, 0.0, SELECT_HOW[how])
+        n_items = int(items or DEFAULT_ITEMS)
+        last = [0.0]
+
+        def tracked(frac: float, msg: str = "") -> None:
+            last[0] = max(last[0], float(frac))
+            if progress is not None:
+                progress(frac, msg)
+
+        try:  # 引擎在挑选里"启动合成引擎"那一步才启动，进度条上能看到
+            res: Dict[str, Any]
+            if how == "identical":
+                t0 = time.time()
+                try:
+                    res = select_deep(cfg, project, backend, progress=tracked, max_items=n_items, use_asr=use_asr)
+                except Exception as exc:  # 停止按钮（TaskCancelled）是 BaseException，照常传出去
+                    reason = _explain_title(exc)
+                    log.warning(f"⚠️ 「一模一样」的挑选这次没成功（{reason}），改用标准的挑法（从早到晚均匀挑几个版本比）"
+                                "再挑一次", exc_info=exc)
+                    from voicetwin.report import report_failure
+
+                    path = report_failure(exc, what="按「一模一样」的方式挑选最像你的模型", voice=voice,
+                                          logs_dir=project.logs_dir, since=t0)
+                    res = select_and_calibrate(cfg, project, backend, max_items=n_items, use_asr=use_asr,
+                                               progress=_sub(progress, min(last[0], 0.95), 1.0), all_checkpoints=False)
+                    res["selection_error"] = reason
+                    res["selection_error_detail"] = repr(exc)[:500]
+                    res["fallback"] = "standard"
+                    if path is not None:
+                        res["selection_error_report"] = str(path)
+            else:
+                res = select_and_calibrate(cfg, project, backend, max_items=n_items, use_asr=use_asr,
+                                           progress=progress, all_checkpoints=False)
             if note and isinstance(res, dict):
                 res["material_note"] = note  # 结果里也说（以前只在「详细过程」里）
+            _previous_model_result(project, backend.name, res)
             return res
+        except Exception as exc:  # 停止按钮的 TaskCancelled 是 BaseException，不经过这里
+            # 挑选用的是「② 训练模型」里选的引擎。可选引擎没装好时，报错说明默认指到 ③（生成、试听都在那里），
+            # 老师照着在 ③ 换了，再点「重新挑选」还是一样的错：补一句，让说明指到 ② 去换
+            from voicetwin.errors import TRAIN_TAB_ENGINE, explain
+
+            if explain(exc).key == "optional_engine_missing":
+                # 报错文字本身就说清楚了的（一般都是）：不再挂上原来的，技术细节里不重复两遍
+                own = explain(str(exc)).key == "optional_engine_missing"
+                raise RuntimeError(f"{exc}\n（{TRAIN_TAB_ENGINE}）") from (None if own else exc)
+            raise
         finally:
             backend.stop()
 
 
+def _previous_model_result(project: Project, backend: str, res: Any) -> None:
+    """挑选做完：原来用的模型（previous_selected）也参加了比较的话，结果里写它排第几（实测）；
+    它的备份从此不再特别保留（pending = False）。"""
+    if not isinstance(res, dict):
+        return
+    entry = project.load_models().get(backend) or {}
+    prev = entry.get("previous_selected")
+    if not isinstance(prev, dict) or not prev.get("pending"):
+        return
+    ranking = list((res.get("selection") or {}).get("ranking") or [])
+    rank = next((i + 1 for i, cid in enumerate(ranking) if str(cid).startswith("prev-")), None)
+    if rank is not None:
+        res["previous_rank"] = rank
+        res["previous_note"] = ("新模型实测没有比原来的好，继续用原来的模型。" if rank == 1
+                                else f"你原来的模型也参加了比较：排第 {rank} 名。")
+        log.info(res["previous_note"])
+    project.update_models(backend, {"previous_selected": dict(prev, pending=False, rank=rank)})
+
+
 # ---------------------------------------------------------------------------- 合成
 def default_output(project: Project, stem: str, fmt: str) -> Path:
-    from voicetwin.utils.textutil import safe_name
+    """命令行没写 -o 时的输出文件：<讲稿名>_<年月日_时分秒>.<格式>（名字只留汉字、字母、数字、下划线）；
+    真正写的文件名最后还会加上实际用的模型名，例如 …_V4.wav（engine.narrate 写文件那一刻定）。"""
+    from voicetwin.utils.textutil import file_stem
 
-    return project.outputs_dir / f"{safe_name(stem, 30)}_{time.strftime('%Y%m%d_%H%M%S')}.{fmt}"
+    return project.outputs_dir / f"{file_stem(stem, 30)}_{time.strftime('%Y%m%d_%H%M%S')}.{fmt}"
 
 
-def recommended_quality(tier: Optional[str] = None) -> Tuple[str, str]:
-    """网页「质量」的默认值和一句说明（按显卡：≥8GB → 完美；更小 → 极致；没有能用的显卡 → 均衡）。"""
+def narration_reports(folder: Any) -> List[Path]:
+    """这个声音生成过的报告，新的在前：「<名字>_<模型名>.json」（以前的版本叫「<名字>.report.json」，也认）。
+    别的 .json（盲听测试的答案等）不算：里面没有逐句结果（segments）。"""
+    out: List[Tuple[float, Path]] = []
+    try:
+        files = list(Path(str(folder)).glob("*.json"))
+    except OSError:
+        return []
+    for p in files:
+        try:
+            data = json.loads(p.read_text(encoding="utf-8"))
+            if isinstance(data, dict) and isinstance(data.get("segments"), list) and "audio" in data:
+                out.append((p.stat().st_mtime, p))
+        except Exception:  # noqa: BLE001 - 读不了的不算
+            continue
+    return [p for _, p in sorted(out, key=lambda x: x[0], reverse=True)]
+
+
+def recommended_quality(tier: Optional[str] = None, size: Optional[str] = None,
+                        cfg: Optional[Config] = None) -> Tuple[str, str]:
+    """网页「质量」的默认值和一句说明：任何显卡都是「一模一样」，说明按显卡写（size 例如「显存 12 GB」）；
+    传了 cfg 时，说明里「每句最多试几个」按 config.yaml 的 synth.tiers.identical（和真正生成时一样）。"""
     from voicetwin.synth.engine import recommended_quality as _rec
 
-    return _rec(tier)
+    return _rec(tier, size=size, cfg=cfg)
 
 
 def quality_choices() -> List[Tuple[str, str]]:
@@ -951,6 +1207,9 @@ def run_narrate(cfg: Config, voice: str, source: str, out: Optional[str] = None,
                                 reference=reference, asr_check=asr_check, progress=progress, variants=variants)
             if note:  # 「训练以后校对表又改过」也写进生成结果的提醒里（以前只在折起来的「详细过程」里）
                 narrator.warnings.append(note)
+            missing = getattr(backend, "missing_model_note", lambda: "")()
+            if missing:  # 训练好的模型文件找不到了、这次用的是底模：也写进生成结果（详细过程里引擎启动时会说一次）
+                narrator.warnings.append(missing)
             return narrator.narrate(src_path if is_file else source, out_path, redo=redo, subtitles=subtitles)
         finally:
             if own_backend:
@@ -999,7 +1258,7 @@ def _variant_match(variants: List[Dict[str, Any]], name: str) -> Optional[Dict[s
 
 
 def choose_variant(cfg: Config, voice: str, report_path: str, name: str) -> Dict[str, Any]:
-    """「完美」档的两个版本里，选一个作为最终版本：把它复制成 <名字>.wav，并在报告里记下 final。"""
+    """「完美」「一模一样」档的两个版本里，选一个作为最终版本：把它复制成 <名字>.wav，并在报告里记下 final。"""
     open_project(cfg, voice, must_exist=True)
     rp = Path(str(report_path))
     if not rp.exists():
@@ -1084,7 +1343,8 @@ def preview_speed(cfg: Config, voice: str, text: str = "", value: Any = 0, backe
     sentence = _first_sentence(cfg, project, text)
     speed = slider_to_speed(value)
     v = int(round((1.0 - speed) * 100))
-    tag = "原速" if v == 0 else (f"快{-v}%" if v < 0 else f"慢{v}%")
+    # 文件名只用汉字、字母、数字、下划线（老师的规定）：「快10%」写成「快百分之10」
+    tag = "原速" if v == 0 else (f"快百分之{-v}" if v < 0 else f"慢百分之{v}")
     out = project.outputs_dir / f"试听语速_{tag}.wav"
     return run_narrate(cfg, voice, sentence, out=str(out), backend_name=backend_name, quality="fast", speed=speed,
                        subtitles=False, progress=progress, backend=backend, variants=False)
@@ -1092,18 +1352,25 @@ def preview_speed(cfg: Config, voice: str, text: str = "", value: Any = 0, backe
 
 # ---------------------------------------------------------------------------- 鉴别：盲听测试
 _REAL, _GEN = "真人", "生成"
-#: 答案文件放在测试文件夹「旁边」，不放在里面：老师会把整个文件夹发给听众
-BLIND_ANSWER_SUFFIX = "_答案（只给老师看，不要发给听众）.json"
+#: 答案文件放在测试文件夹「旁边」，不放在里面：老师会把整个文件夹发给听众。
+#: 文件名只用汉字、字母、数字、下划线（老师 10-03 的规定）；以前的名字带括号和逗号（OLD_BLIND_ANSWER_SUFFIX），也认
+BLIND_ANSWER_SUFFIX = "_答案_只给老师看_不要发给听众.json"
+OLD_BLIND_ANSWER_SUFFIX = "_答案（只给老师看，不要发给听众）.json"
 
 
 def blind_answer_path(test_dir: Any) -> Path:
-    """盲听测试的答案文件：<文件夹名>_答案（只给老师看，不要发给听众）.json，和文件夹放在一起。
-    以前的版本把 答案.json 放在文件夹里面，也认。"""
+    """盲听测试的答案文件：<文件夹名>_答案_只给老师看_不要发给听众.json，和文件夹放在一起。
+    以前的版本叫 <文件夹名>_答案（只给老师看，不要发给听众）.json、更早的把 答案.json 放在文件夹里面，都认。"""
     d = Path(str(test_dir))
     side = d.with_name(d.name + BLIND_ANSWER_SUFFIX)
-    if side.exists() or not (d / "答案.json").exists():
+    if side.exists():
         return side
-    return d / "答案.json"
+    old = d.with_name(d.name + OLD_BLIND_ANSWER_SUFFIX)
+    if old.exists():
+        return old
+    if (d / "答案.json").exists():
+        return d / "答案.json"
+    return side
 
 
 def list_blind_tests(cfg: Config, voice: str) -> List[Dict[str, Any]]:
@@ -1186,6 +1453,9 @@ def build_blind_test(cfg: Config, voice: str, n: int = 10, quality: Optional[str
         try:
             narrator = Narrator(cfg, project, backend, quality=quality, variants=False)
             narrator.refs = [r for r in narrator.refs if r["id"] not in real_ids] or narrator.refs
+            # 「一模一样」从参考录音库挑参考（库里有训练集的录音，验证集不够时盲听测试也用训练集的）：也不能用它们
+            narrator.exclude_refs = set(real_ids)
+            narrator._identical = None
             for k, rec in enumerate(pool):
                 _check_cancel()
                 lo = 0.05 + 0.85 * k / len(pool)
@@ -1286,12 +1556,12 @@ def grade_blind_test(test_dir: str, answers: Any) -> Dict[str, Any]:
         verdict = f"听众基本分辨不出（正确率 {acc:.0%}，和瞎猜的 50% 差不多）"
     elif acc <= 0.80:
         verdict = f"有时能分辨（正确率 {acc:.0%}）"
-        tips = ["看看哪几段最容易被听出来，是语气、停顿还是个别字不像", "用「完美」档重新生成那几句"]
+        tips = ["看看哪几段最容易被听出来，是语气、停顿还是个别字不像", "用「一模一样」档（默认）重新生成那几句"]
     else:
         verdict = f"容易分辨（正确率 {acc:.0%}）"
         tips = ["多加一些干净的讲课录音（1~3 小时最好），重新准备素材和训练",
                 "在「① 准备素材」的校对表里把文字校对一遍（错字会让模型学歪）",
-                "生成时用「完美」档", "看看哪几段最容易被听出来，是语气、停顿还是个别字不像"]
+                "生成时用「一模一样」档（默认）", "看看哪几段最容易被听出来，是语气、停顿还是个别字不像"]
     if answered and answered < 6:
         verdict += "（题目太少，结果只能参考）"
     return {"items": rows, "answered": answered, "correct": correct, "total": len(items),
@@ -1306,7 +1576,7 @@ def verify_defaults(cfg: Config, voice: str, max_clips: int = 20) -> Dict[str, L
     originals = [str(project.abspath(r["path"])) for r in project.load_manifest(only_kept=True)
                  if r.get("split") == "val"][:10]
     generated: List[str] = []
-    reports = sorted(project.outputs_dir.glob("*.report.json"), key=lambda p: p.stat().st_mtime, reverse=True)
+    reports = narration_reports(project.outputs_dir)
     if reports:
         try:
             rep = json.loads(reports[0].read_text(encoding="utf-8"))
@@ -1385,8 +1655,9 @@ def _calib_source(judge: Any) -> str:
 
 # ---------------------------------------------------------------------------- 一条龙
 def run_auto(cfg: Config, voice: str, inputs: Iterable[str], backend_name: Optional[str] = None,
-             skip_train: bool = False, progress: Optional[ProgressFn] = None) -> Dict[str, Any]:
-    """一条龙：素材准备 → 风格分析 → 训练 → 挑最佳模型 → 生成试听。"""
+             skip_train: bool = False, progress: Optional[ProgressFn] = None,
+             mode: Optional[str] = None) -> Dict[str, Any]:
+    """一条龙：素材准备 → 风格分析 → 训练 → 挑最佳模型 → 生成试听。mode：训练方式（不传按 config.yaml）。"""
     from voicetwin.backends.base import get_backend
 
     with keep_awake():
@@ -1395,9 +1666,9 @@ def run_auto(cfg: Config, voice: str, inputs: Iterable[str], backend_name: Optio
         project = open_project(cfg, voice, must_exist=True)
         backend = get_backend(backend_name or cfg.get("backend"), cfg, project)
         if backend.supports_training and not skip_train:
-            result["train"] = run_train(cfg, voice, backend.name, _sub(progress, 0.25, 0.9), select=True)
+            result["train"] = run_train(cfg, voice, backend.name, _sub(progress, 0.25, 0.9), select=True, mode=mode)
         else:
-            result["selection"] = run_select(cfg, voice, backend.name, progress=_sub(progress, 0.25, 0.9))
+            result["selection"] = run_select(cfg, voice, backend.name, progress=_sub(progress, 0.25, 0.9), mode=mode)
         demo = []
         refs = project.load_references()
         if any(r["lang"] == "zh" for r in refs):
@@ -1491,7 +1762,7 @@ def _doctor(cfg: Config) -> List[Dict[str, Any]]:
         ("faster_whisper", "faster-whisper（语音识别）", False, False),
         ("funasr", "funasr（中文识别、查错字，可选）", False, True),
         ("resemblyzer", "resemblyzer（声纹打分）", False, False), ("gradio", "gradio（网页界面）", False, False),
-        ("noisereduce", "noisereduce（降噪、「完美」档的去杂音版本，可选）", False, True),
+        ("noisereduce", "noisereduce（降噪、「一模一样」「完美」档的去杂音版本，可选）", False, True),
         ("pypinyin", "pypinyin（一键全部文字校正：按读音找错字）", False, False),
         ("jieba", "jieba（一键全部文字校正：分词）", False, False),
         ("demucs", "demucs（去背景音乐，可选）", False, True),
@@ -1621,10 +1892,11 @@ def quick_check(cfg: Config) -> List[str]:
 
 
 def training_plan(cfg: Config, voice: str, backend_name: Optional[str] = None, **opts: Any) -> str:
-    """训练前预览：电脑会怎么自动选训练设置（一行中文，例如「显存 12 GB → 每批 6 条；素材 85 分钟 → …」）。
+    """训练前预览：电脑会怎么自动选训练设置（第一行是训练计划，例如「显存 12 GB → 每批 6 条；素材 85 分钟 → …」；
+    后面每行一句：这次会从头练 / 接着练 / 不重新练，素材检查里实际有的情况——都是按现在的文件算出来的）。
 
     只读文件和 nvidia-smi，不训练、不启动 GPT-SoVITS 的 Python（读不到显卡时就按「没有显卡」说）。
-    声音还没准备素材、或者引擎不需要训练时返回 ''。opts 和 run_train 的一样（None / "auto" = 自动）。"""
+    声音还没准备素材、或者引擎不需要训练时返回 ''。opts 和 run_train 的一样（None / "auto" = 自动；mode = 训练方式）。"""
     from voicetwin.backends.base import get_backend
 
     project = Project(cfg, voice)
@@ -1636,10 +1908,18 @@ def training_plan(cfg: Config, voice: str, backend_name: Optional[str] = None, *
     fn = getattr(backend, "training_plan", None)
     if fn is None:
         return ""
+    if hasattr(backend, "train_stages_for"):
+        opts["mode"] = train_mode(cfg, opts.get("mode"))
+    else:
+        opts.pop("mode", None)
     try:
         plan = fn(quick=True, **opts)
     except TypeError:
         plan = fn(**opts)
     if isinstance(plan, str):
         return plan.strip()
-    return str((plan or {}).get("summary") or "").strip()
+    lines = [str((plan or {}).get("summary") or "").strip()]
+    if lines[0]:
+        lines += [str(x).strip() for x in [(plan or {}).get("state_note")] + list((plan or {}).get("audit_lines") or [])
+                  if str(x or "").strip()]
+    return "\n".join(x for x in lines if x)

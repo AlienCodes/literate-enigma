@@ -482,6 +482,43 @@ def test_auto_check_merges_with_one_click_results(tmp_path):
     assert review.load_draft(project)["c000"]["text"] == "这个主句的结构也很完整"
 
 
+@need_tools
+@pytest.mark.parametrize("when", ["checking", "merging"])
+def test_stopped_auto_check_keeps_the_one_click_results(tmp_path, when):
+    """第四轮找 bug：🔍（或者准备素材里的自动查错字）查到一半点了「停止」：一键校正已经核对过、去掉了的标红和错的建议
+    （最 → 很）又回来了，一键校正的按钮是灰的，只能再从头 🔍 一遍。现在停止时这些行放回一键校正的结果。"""
+    import unittest.mock as um
+
+    from voicetwin.data import proofcheck as pc
+    from voicetwin.utils import progress as pg
+
+    cfg, project = _voice(tmp_path, ["它最经常用在定语从句里面", "这个句子完全没有错误我们继续", "我们来看下一个例子好不好"])
+    heard = {"c000": "它很经常用在定语从句里面"}
+    _auto_check(project, cfg, heard)
+    assert _shown(project, "c000")[1]["edits"] == [(1, 2, "很")]
+    txt = tmp_path / "讲稿.txt"
+    txt.write_text("它最经常用在定语从句里面，大家要记住。\n", encoding="utf-8")
+    wf.run_transcript_fix(cfg, "查错", once=True, files=[str(txt)])  # 母本证明「最」没错：标红和建议去掉
+    _, info = _shown(project, "c000")
+    assert not info["red"] and not info["edits"] and wf.textfix_used(cfg, "查错")
+
+    class FakeRunner(pc._EngineRunner):
+        def recognize(self, rec, lang):
+            return heard.get(rec["id"], rec["text"]), None, pc.ENGINE_FUNASR
+
+    def prog(_f, msg):  # 第 2 条查完 / 开始合在一起的时候点「停止」
+        if msg.startswith("已检查 2 /" if when == "checking" else "和你的母本对照"):
+            pg.request_cancel()
+
+    try:
+        with um.patch.object(pc, "_EngineRunner", FakeRunner), pytest.raises(pg.TaskCancelled):
+            pc.find_suspects(project, cfg, progress=prog)
+    finally:
+        pg.clear_cancel()
+    _, info = _shown(project, "c000")
+    assert not info["red"] and not info["edits"]  # 还是一键校正核对过的样子
+
+
 def test_auto_check_does_not_suggest_what_the_teacher_undid(tmp_path):
     """老师点过「采用」又撤销的改法（王 → 黄）：以前再点 🔍 又建议回来。"""
     cfg, project = _voice(tmp_path, ["今天王芳同学回答得很好"])
@@ -539,6 +576,52 @@ def test_repeat_mark_goes_away_after_deleting_the_repeat(tmp_path):
     assert not _shown(project, "c000")[1]["red"]
     review.save_rows(project)
     assert not _shown(project, "c000")[1]["red"]
+
+
+@pytest.mark.parametrize("text,fixed", [
+    ("I have a sister I have a sister who is a doctor.", "I have a sister who is a doctor."),
+    ("翻译成英文就是I have a sister I have a sister who is a doctor。", "翻译成英文就是I have a sister who is a doctor。"),
+    ("we need the the the answer here", "we need the the answer here"),
+])
+def test_english_repeat_mark_goes_away_after_deleting_one_copy(tmp_path, text, fixed):
+    """第四轮找 bug：英文例句说了两遍（一遍和一遍之间隔着空格），老师删掉一遍以后还标着「「I have a si…」连着重复了 2 遍」。"""
+    cfg, project = _voice(tmp_path, [text])
+    _auto_check(project, cfg, {})
+    assert _shown(project, "c000")[1]["red"]
+    review.set_draft(project, "c000", text=fixed)
+    assert not _shown(project, "c000")[1]["red"]
+    review.save_rows(project)
+    _, info = _shown(project, "c000")
+    assert not info["red"] and not info["active"]
+
+
+@pytest.mark.parametrize("how", ["rejected", "typed"])
+def test_reasons_of_dropped_suggestions_are_not_shown_after_auto_check(tmp_path, how):
+    """第四轮找 bug：老师撤销过「王 → 黄」（或者自己改成了「汪」），再 🔍 以后「王」不标红、也不建议「黄」了，
+    可说明里还写着「另一个识别引擎听到的是「黄」」，像是还想改。"""
+    t = "今天王芳同学回答得很好"
+    cfg, project = _voice(tmp_path, [t])
+    heard = {"c000": "今天黄芳同学回答得很早"}
+    _auto_check(project, cfg, heard)
+    assert len(_shown(project, "c000")[1]["reasons"]) == 2
+    if how == "rejected":
+        review._save_rejected(project, {"c000": [["王", "黄"]]})
+    else:
+        review.set_draft(project, "c000", text=t.replace("王", "汪"))
+        review.save_rows(project)
+    _auto_check(project, cfg, heard)
+    rec, info = _shown(project, "c000")
+    assert [e[2] for e in info["edits"]] == ["早"]
+    assert info["reasons"] == ["另一个识别引擎听到的是「早」"]
+    assert pc_keys_ok(rec["suspect"])
+
+
+def pc_keys_ok(sus):
+    """存进校对表的标记里没有原因的位置（只在查错字的过程中用）。母本优先以后每一句查完都和母本对照，
+    存的是对照以后的标记（多了 text / src 这些，和一键校正的一样）。"""
+    from voicetwin.data import proofcheck as pc
+
+    return pc.REASON_POS not in sus and {"spans", "alt", "reasons", "score"} <= set(sus)
 
 
 def test_manual_language_survives_edits_and_needs_reconfirm(tmp_path):
@@ -673,11 +756,13 @@ def test_mp3_does_not_delete_the_wav_and_names_do_not_clash(prepared, tmp_path):
 
     cfg, v, project = _copy_voice(prepared, tmp_path)
     a = A._output_path(project, "第3课", "wav", "x")
-    wf.run_narrate(cfg, v, "第一句话在这里。", out=str(a), quality="fast")
+    first = wf.run_narrate(cfg, v, "第一句话在这里。", out=str(a), quality="fast")
     b = A._output_path(project, "第3课", "mp3", "x")
     assert b.stem != a.stem
-    wf.run_narrate(cfg, v, "第一句话在这里。", out=str(a.with_suffix(".mp3")), quality="fast")
-    assert a.exists() and a.with_suffix(".mp3").exists()
+    second = wf.run_narrate(cfg, v, "第一句话在这里。", out=str(a.with_suffix(".mp3")), quality="fast")
+    # 文件名最后是实际用的模型名（测试引擎写 dummy）：同名的 WAV 和 MP3 都在，谁也没删掉谁
+    assert first.audio_path.name == a.stem + "_dummy.wav" and second.audio_path.name == a.stem + "_dummy.mp3"
+    assert first.audio_path.exists() and second.audio_path.exists()
 
 
 def test_failed_retrain_keeps_the_old_material_warning(tmp_path):
@@ -702,7 +787,7 @@ def test_failed_retrain_keeps_the_old_material_warning(tmp_path):
     orig_tr, orig_txt = ex.train_records, ex.gptsovits_list_text
     try:
         ex.train_records = lambda project: [{"id": "c0"}]
-        ex.gptsovits_list_text = lambda project, speaker, recs: "new"
+        ex.gptsovits_list_text = lambda project, speaker, recs, **kw: "new"  # kw：legacy_punct（以前的句末标点规则）
         note = g.GPTSoVITSBackend.trained_material_note(b)
     finally:
         ex.train_records, ex.gptsovits_list_text = orig_tr, orig_txt
@@ -716,3 +801,82 @@ def test_empty_script_is_not_a_program_fault():
 
     f = explain(ValueError("讲稿里没有可以朗读的内容"))
     assert f.key in tasks.NO_REPORT_KEYS and "代码" in f.advice
+
+
+# ---------------------------------------------------------------------------- 第四轮找 bug（g3：确认训练素材）
+def _v1_confirm(project):
+    """v18.2 ~ v18.4 存的确认记录：签名里没有语言，也没有 sig_version。"""
+    import json
+
+    recs = project.load_manifest()
+    review.confirm_path(project).write_text(json.dumps({"time": "2026-09-30 10:00:00",
+                                                        "signature": review.material_signature(recs, 1),
+                                                        "counts": review.material_counts(recs)}), encoding="utf-8")
+
+
+def test_old_confirmation_is_upgraded_so_a_language_change_counts(tmp_path):
+    """v18.4 确认过，升级以后只把一句的语言从中文改成英文、保存：以前旧记录一直按旧算法（没有语言）比，照样能开始训练，
+    表格上方还写「✅ 已确认」。现在旧记录还对得上时原样换成新算法（升级不用重新确认），之后改语言要重新确认。"""
+    import json
+
+    cfg, project = _voice(tmp_path, ["Next, let's look at the 定语 clause example.", "第二句话。"])
+    _v1_confirm(project)
+    assert not wf.training_blocker(project)  # 升级以后不用重新确认
+    conf = json.loads(review.confirm_path(project).read_text(encoding="utf-8"))
+    assert conf["sig_version"] == review.SIGNATURE_VERSION and conf["time"] == "2026-09-30 10:00:00"
+    review.set_draft(project, "c000", lang="en")
+    assert review.save_rows(project)["changed"]["lang"] == 1
+    assert "又改过" in wf.training_blocker(project)
+    # 没打开过校对表、第一个读到确认记录的就是「保存修改」：保存之前先换好
+    cfg, project = _voice(tmp_path / "b", ["Next, let's look at the 定语 clause example.", "第二句话。"])
+    _v1_confirm(project)
+    review.set_draft(project, "c000", lang="en")
+    review.save_rows(project)
+    assert "又改过" in wf.training_blocker(project)
+    # 在 Excel 里改的语言（读回 transcripts.csv）也一样
+    cfg, project = _voice(tmp_path / "c", ["Next, let's look at the 定语 clause example.", "第二句话。"])
+    project.export_csv()
+    _v1_confirm(project)
+    text = project.csv_path.read_text(encoding="utf-8-sig").replace(",zh,", ",en,", 1)
+    project.csv_path.write_text(text, encoding="utf-8-sig")
+    assert project.import_csv()["lang"] == 1
+    assert "又改过" in wf.training_blocker(project)
+    # 确认以后在旧版本里就改过（已经对不上）：不换，照样要求重新确认
+    cfg, project = _voice(tmp_path / "d", ["第一句话。", "第二句话。"])
+    _v1_confirm(project)
+    recs = project.load_manifest()
+    recs[0]["text"] = "第一句话改了。"
+    project.save_manifest(recs)
+    assert "又改过" in wf.training_blocker(project)
+    assert "sig_version" not in json.loads(review.confirm_path(project).read_text(encoding="utf-8"))
+
+
+def test_confirm_keeps_the_undo_of_a_replace_made_while_confirming(tmp_path):
+    """点了「✅ 确认训练素材」（重新统计音频要几秒，页面没有进度），这期间又点了「全部替换」：以前确认做完把这次替换的
+    撤销记录也删了，「↩️ 撤销刚才的替换」说没有可以撤销的；确认前做的替换照样删（不能再把确认好的字改回去）。"""
+    import unittest.mock as um
+
+    from voicetwin.webui import app as A
+
+    cfg, project = _voice(tmp_path, ["我们先来看借词后面接宾语的情况。", "我们再看一个例子。"])
+    review.replace_matches(project, "借词", "介词")  # 确认以前做的替换
+
+    def slow_apply(cfg_, voice_, read_csv=True):
+        review.replace_matches(project, "我们", "咱们")  # 确认还没做完，老师点了「全部替换」
+        return {}
+
+    with um.patch.object(wf, "apply_review", slow_apply):
+        res = wf.review_confirm(cfg, "查错")
+    assert res["confirmed"] and res["unsaved"] == 2
+    assert review.has_undo(project) and review.undo_replace(project) == {"rows": 2, "kept": 0}
+    assert review.unsaved_count(project) == 0 and "介词" in project.load_manifest()[0]["text"]
+    # 网页上说清楚：确认的是改之前的样子
+    with um.patch.object(wf, "apply_review", slow_apply):
+        md = A.WebUI(cfg).do_confirm("查错")[0]
+    assert "又改了 2 句" in md and "撤销刚才的替换" in md
+    # 确认期间没有新的替换：照样删（确认以后不能再把确认好的字改回去）
+    review.save_rows(project)
+    review.replace_matches(project, "咱们", "我们")
+    with um.patch.object(wf, "apply_review", lambda *a, **k: {}):
+        assert wf.review_confirm(cfg, "查错")["unsaved"] == 0
+    assert not review.has_undo(project)

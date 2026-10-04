@@ -141,14 +141,24 @@ def test_only_saved_corrected_text_is_used_and_deleted_clips_never(env):
         assert r["text"] == manifest[r["id"]]["text"], r["id"]
     # 5d. 挑选模型时 GPT-SoVITS 实际收到的请求：不用删除的音频当参考、不读删除的那句考试题、参考文字是改好的
     assert runs
-    # 参考音频是从片段剪出来的副本（references/<片段 id>.wav）：按文件名对回片段
+    # 参考音频是从片段剪出来的副本（references/<片段 id>.wav，或者参考录音库 references/bank/<片段 id>.wav）：
+    # 按文件名对回片段。「一模一样」的挑选（默认的训练方式）从参考录音库里挑参考（每句 2 条、试听参考录音时更多），
+    # 不只是 references.json 里那几条；库里只有用来训练的、没删除的、文字保存好的片段（bank_eligible）
+    from voicetwin.data.references import bank_eligible, load_reference_bank
+
     def clip_of(path: str) -> str:
         return Path(path).stem
 
+    bank = {str(e["id"]): e for e in (load_reference_bank(project) or {}).get("entries") or []}
+    assert not {d_ref, d_val} & set(bank)
+    allowed = {r["id"] for r in refs2} | {rid for rid, e in bank.items()
+                                         if rid in manifest and bank_eligible(manifest[rid])
+                                         and e.get("text") == manifest[rid]["text"]}
     for req in runs:
         rid = clip_of(req["ref_audio_path"])
-        assert rid in {r["id"] for r in refs2} and rid not in (d_ref, d_val)
-        assert not {clip_of(x) for x in req.get("aux_ref_audio_paths") or []} & {d_ref, d_val}
+        assert rid in allowed and rid not in (d_ref, d_val), rid
+        aux = {clip_of(x) for x in req.get("aux_ref_audio_paths") or []}
+        assert aux <= allowed and not aux & {d_ref, d_val}, aux
         assert req["prompt_text"] == manifest[rid]["text"]
         assert req["text"] != manifest[d_val]["text"]
     # 5e. 刚训练完：不需要提醒

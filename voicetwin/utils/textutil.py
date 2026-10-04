@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import re
 import unicodedata
-from typing import List
+from typing import Any, List
 
 CJK_RE = re.compile(r"[㐀-䶿一-鿿豈-﫿]")
 EN_WORD_RE = re.compile(r"[A-Za-z]+(?:'[A-Za-z]+)?")
@@ -33,6 +33,15 @@ def detect_lang(text: str) -> str:
     if cjk == 0:
         return "en"
     return "zh" if cjk >= max(1, 0.2 * words) else "en"
+
+
+def send_lang(text: str, lang: str) -> str:
+    """真正交给 GPT-SoVITS 的语言（text_lang / prompt_lang）：只要有一个汉字就用 zh。
+
+    detect_lang 在英文单词很多时会判成 en（例如「比如 This is a very long English example……」），
+    可 GPT-SoVITS 的 en 模式会把整句交给英文的读音程序，里面的汉字全被丢掉、根本读不出来；
+    zh 模式本来就支持中英混读（中文按中文读、英文按英文读）。没有汉字时才按原来的语言。"""
+    return "zh" if count_cjk(text or "") > 0 else ("en" if lang == "en" else "zh")
 
 
 _VOWEL_GROUP = re.compile(r"[aeiouy]+")
@@ -138,24 +147,57 @@ def ensure_final_punct(text: str, lang: str) -> str:
     return t + ("。" if lang == "zh" else ".")
 
 
+#: 句末的引号、括号：看句子有没有结束时跳过它们（「他说：“好的。”」已经有句号了）
+_CLOSERS = "”\"'’）)」』"
+
+
+def ensure_final_punct_train(text: str, lang: str) -> str:
+    """训练列表（train.list）用：末尾没有标点的片段补「，」（英文补 ","），不补「。」。
+
+    这些片段多半是在一句话中间切开的（老师的 1004 句素材里实测有 40 句；另外 72 句末尾是逗号，本来就不补），
+    声音还要接着往下说；以前补「。」等于告诉模型「这里是句末、语调要落下来」，学到的语气不对。已经有标点的保持不变。"""
+    t = (text or "").strip()
+    if not t:
+        return t
+    body = t.rstrip(_CLOSERS) or t
+    if body[-1] in SENT_END_CHARS + CLAUSE_CHARS + ".,":
+        return t
+    return t + ("，" if lang == "zh" else ",")
+
+
+#: 中文的省略号「……」「‥」：NFKC 会把它们变成英文的点（…… → ......），后面再把紧跟汉字的第一个点改成「。」，
+#: 就成了「。.....」（老师打的字被改坏、训练也学成句号）。有中文时先换成用不到的占位字符，整理完再换回来
+_KEEP_PUNCT = {"…": "", "‥": ""}
+#: 中文的右括号、引号、书名号：后面的标点也是中文语境（「（定语从句），」以前变成「（定语从句）,」）
+_ZH_CLOSE = "）」』”’》】"
+_HALF_TO_FULL = str.maketrans(",?!;:", "，？！；：")
+
+
 def clean_transcript(text: str) -> str:
-    text = unicodedata.normalize("NFKC", text or "")
+    text = text or ""
+    keep = bool(count_cjk(text)) and not any(v in text for v in _KEEP_PUNCT.values())
+    if keep:
+        for k, v in _KEEP_PUNCT.items():
+            text = text.replace(k, v)
+    text = unicodedata.normalize("NFKC", text)
     text = text.replace("\n", " ").replace("|", " ")
     text = re.sub(r"\s+", " ", text).strip()
     # NFKC 会把中文全角标点转成半角，这里把中文语境下的常用标点转回来
     if count_cjk(text):
-        text = re.sub(r"(?<=[一-鿿]),", "，", text)
-        text = re.sub(r"(?<=[一-鿿])\?", "？", text)
-        text = re.sub(r"(?<=[一-鿿])!", "！", text)
-        text = re.sub(r"(?<=[一-鿿]);", "；", text)
-        text = re.sub(r"(?<=[一-鿿]):", "：", text)
-        text = re.sub(r"(?<=[一-鿿])\.(?!\d)", "。", text)
-        text = re.sub(r"\s+(?=[一-鿿，。！？；：])", "", text)
-        text = re.sub(r"(?<=[一-鿿，。！？；：])\s+(?=[一-鿿])", "", text)
-        # 括号里有中文、或紧跟在中文后面时，还原为全角括号（字幕更美观）
+        # 括号里有中文、或紧跟在中文后面时，还原为全角括号（字幕更美观）；先做这一步，后面「）」后面的标点才认得出
         text = re.sub(r"\(([^()]*)\)", lambda m: f"（{m.group(1)}）"
                       if count_cjk(m.group(1)) or count_cjk(m.string[max(0, m.start() - 1):m.start()])
                       else m.group(0), text)
+        # 连着好几个标点整串转回去（以前只转第一个：「！！」变成「！!」、「？！」变成「？!」）
+        text = re.sub(rf"(?<=[一-鿿{_ZH_CLOSE}])[,?!;:]+", lambda m: m.group().translate(_HALF_TO_FULL), text)
+        # 英文的「...」跟在中文后面：换成中文的「……」（不能把第一个点改成「。」）
+        text = re.sub(rf"(?<=[一-鿿，。！？；：{_ZH_CLOSE}])\.{{2,}}", "……", text)
+        text = re.sub(rf"(?<=[一-鿿{_ZH_CLOSE}])\.(?!\d)", "。", text)
+        text = re.sub(r"\s+(?=[一-鿿，。！？；：…])", "", text)
+        text = re.sub(r"(?<=[一-鿿，。！？；：…])\s+(?=[一-鿿])", "", text)
+    if keep:
+        for k, v in _KEEP_PUNCT.items():
+            text = text.replace(v, k)
     return text
 
 
@@ -164,9 +206,59 @@ def safe_name(text: str, max_len: int = 40) -> str:
     return base
 
 
+#: 生成给老师的文件（音频、字幕、报告、下载的改好的文字、问题报告……）的名字只能是这样（老师 10-03 定的）：
+#: 汉字、英文字母、数字、下划线，最后才是扩展名前那一个点。程序内部的缓存文件不管
+TEACHER_FILE_RE = re.compile(r"^[一-鿿A-Za-z0-9_]+\.(wav|mp3|srt|json|txt)$")
+
+
+def file_stem(text: Any, max_len: int = 30, fallback: str = "讲课音频") -> str:
+    """生成给老师的文件名（不含扩展名）：只留汉字、英文字母、数字和下划线，别的（点、空格、括号、横杠、各种标点……）
+    一律换成「_」（「第1.2课」→「第1_2课」，「第3课 牛顿第二定律」→「第3课_牛顿第二定律」）；全角的字母数字先换成半角；
+    连着的几个只留一个「_」，开头结尾的去掉；太长截短；什么都不剩时用 fallback。"""
+    s = unicodedata.normalize("NFKC", str(text if text is not None else ""))
+    s = re.sub(r"[^一-鿿A-Za-z0-9_]+", "_", s)
+    s = re.sub(r"_+", "_", s).strip("_")[:max(1, int(max_len))].strip("_")
+    return s or fallback
+
+
 def short_hash(*parts: object, n: int = 10) -> str:
     h = hashlib.sha1()
     for p in parts:
         h.update(repr(p).encode("utf-8"))
         h.update(b"\x00")
     return h.hexdigest()[:n]
+
+
+def decode_text_bytes(raw: bytes) -> str:
+    """老师的文字文件（txt、字幕）解码：记事本存的 UTF-8（带不带 BOM）、「Unicode」（UTF-16，带不带 BOM）、
+    ANSI（中文 Windows 上是 GBK）都能读。先按 UTF-8 严格解码，所以 UTF-8 的文件和以前读出来一模一样。"""
+    if raw.startswith(b"\xef\xbb\xbf"):
+        return raw[3:].decode("utf-8", errors="replace")
+    if raw.startswith((b"\xff\xfe\x00\x00", b"\x00\x00\xfe\xff")):
+        return raw.decode("utf-32", errors="replace")
+    if raw.startswith((b"\xff\xfe", b"\xfe\xff")):
+        return raw.decode("utf-16", errors="replace")
+    head = raw[:4000]
+    if head and head.count(b"\x00") > len(head) // 4:  # 没有 BOM 的 UTF-16
+        for enc in ("utf-16-le", "utf-16-be"):
+            try:
+                return raw.decode(enc)
+            except UnicodeDecodeError:
+                continue
+    try:
+        return raw.decode("utf-8")
+    except UnicodeDecodeError:
+        pass
+    loose = raw.decode("utf-8", errors="replace")
+    bad = loose.count("\ufffd")
+    good = [ch for ch in loose if ord(ch) > 127 and ch != "\ufffd"]
+    wide = sum(1 for ch in good if ord(ch) >= 0x800)  # 按 UTF-8 读对了的三字节字：汉字、中文标点、英文的弯引号 ’ “ ”
+    if bad <= 0.05 * (bad + len(good)) or 2 * bad <= wide:
+        # UTF-8 的文件只坏了几个字节：照 UTF-8 读，只坏那一两个字（整个当成 GBK 读会全变成乱码）。英文字幕里不是英文字母的
+        # 只有几个弯引号，坏一个就占两三成，不能因此当成 GBK 读（会读出汉字、吃掉后面的字母），所以也看读对了的三字节字。
+        # GBK 的文字照 UTF-8 读时，读坏的比读对的三字节字多得多（实测见 research/全面找bug/第四轮/g4_脚本/decode_rule.py）
+        return loose
+    try:
+        return raw.decode("gb18030")
+    except UnicodeDecodeError:
+        return loose

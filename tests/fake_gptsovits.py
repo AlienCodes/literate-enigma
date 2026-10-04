@@ -25,7 +25,28 @@
 - FAKE_GSV_CLIP_SLEEP=秒：1B / 声纹每条素材睡多久（默认 0.01），用来观察「数文件」的进度。
 - FAKE_GSV_HANG=1：s2 训练一直不结束（并开一个子进程），用来测试「停止」会结束整个进程树。
 - FAKE_GSV_API_DELAY=秒：推理服务启动前先等一会儿（模拟加载模型）。
+- FAKE_GSV_TEXT_FAIL=1 / FAKE_GSV_SEMANTIC_FAIL=1：1A / 1C 每一句都出错（和真的一样只打印、照样退出 0，留下空的分块结果）。
 - 合成的文字里有「【测试显存不够】」时，api 和真的一样：记录里打印 Traceback，回 200 + 1 秒静音。
+- FAKE_GSV_MAX_BATCH=N：合成请求的 batch_size 大于 N 时，和真的显存不够一样：记录里打印「CUDA out of memory」的
+  Traceback，回 200 + 1 秒 16 kHz 的静音。
+- FAKE_GSV_SPEED_TRICK_BROKEN=1：语速不是 1.0 时声音长 5%（模拟「语速写成 1.0001」在某个版本上和 1.0 不一样）。
+- FAKE_GSV_INNER_ZERO=1：每一段声音中间都有 0.4 秒的数字静音（模拟同时生成的几个版本切不开）。
+- FAKE_GSV_SLOW_ABOVE=N：s2/s1 训练一步一步地练（每步 0.01 秒，每 log_interval 步打印一次）；每批数量大于 N 时每步慢
+  bs 倍（每秒练的条数不再增加），用来测「实测显卡一次能练几条」。
+- FAKE_GSV_EPOCH_SLEEP=秒：s2/s1 每练完一轮睡多久（测训练中途的检查，例如硬盘空间）。
+- FAKE_GSV_S2_DROP=K / FAKE_GSV_S1_DROP=K：和真的训练程序一样打印有 K 条没参加训练
+  （s2：「Zero duration for …」「skipped_phone: 0 , skipped_dur: K」「total left: …」；
+  s1：「deleted K audios who's phoneme/sec are bigger than 25 or smaller than 3」）。
+- 处理文字的几个替身（GPT_SoVITS/text/LangSegmenter.py、cleaner.py，测 VoiceTwin 自己的 1A 用）：
+  FAKE_GSV_LANGSEG_RAISE=1 时 LangSegmenter 每句都出错；FAKE_GSV_LANGSEG_DROP=1 时中文段丢最后一个字（自检要发现）；
+  FAKE_GSV_CLEANER_RAISE=1 时 clean_text 出错。
+- FAKE_GSV_FAIL_PART_ONCE=i：1B（声音特征）第 i 路第一次运行时出错退出（测「单独把这一路再做一次」）。
+1A / 1B / 声纹 / 1C 都和真的一样只处理 inp_text 里第 i_part、i_part + all_parts…… 行（分几路同时做）。
+
+一次请求同时生成好几个版本（文字里有换行，「一模一样」档）：和真的 pre_seg_text 一样按换行切开（不到 5 个字的段和后面的
+合在一起），每段一个不同音高的正弦波（150 + 10 × ((seed + 第几段) % 7) Hz，长短按这一段的字数、模型轮数和语速算），
+每段后面补 fragment_interval 秒的 0（TTS.py 的 audio_postprocess）。没有换行（一次一个）时和以前完全一样（150 Hz）。
+两个推理服务都把每次合成请求记下来（真实 api_v2 的在 _real_api_calls.jsonl，模拟版的在 _fake_api_calls.jsonl）。
 """
 
 import json
@@ -39,8 +60,10 @@ def need(*keys):
     if missing:
         print("missing env", missing); sys.exit(3)
 def clip_names():
+    """inp_text 里这一路要处理的素材（真实的 1B / 声纹 / 1C：lines[int(i_part)::int(all_parts)]）。"""
     lines = open(os.environ["inp_text"], encoding="utf8").read().strip("\\n").split("\\n")
-    return [os.path.basename(l.split("|")[0]) for l in lines if l.strip()]
+    part = lines[int(os.environ.get("i_part", "0"))::int(os.environ.get("all_parts", "1"))]
+    return [os.path.basename(l.split("|")[0]) for l in part if l.strip()]
 '''
 
 GET_TEXT = COMMON + '''
@@ -50,15 +73,22 @@ assert os.path.isdir(os.environ["bert_pretrained_dir"])
 # GPT-SoVITS 依赖 PYTHONPATH 里有 GPT_SoVITS 目录
 assert any(p.endswith("GPT_SoVITS") for p in os.environ["PYTHONPATH"].split(os.pathsep))
 opt = os.environ["opt_dir"]; os.makedirs(opt, exist_ok=True)
+txt_path = f"{opt}/2-name2text-{os.environ['i_part']}.txt"
+if os.path.exists(txt_path):  # 真实脚本 1-get-text.py:46-47：分块结果已经在了，就什么都不做（直接用旧的）
+    sys.exit(0)
 lines = open(os.environ["inp_text"], encoding="utf8").read().strip("\\n").split("\\n")
 out = []
-for line in lines:
+for line in lines[int(os.environ["i_part"])::int(os.environ["all_parts"])]:  # 真实脚本也这样分几路
     wav, spk, lang, text = line.split("|")
     assert lang in ("zh", "en"), lang
     assert os.path.exists(os.path.join(os.environ["inp_wav_dir"], wav)), wav
     print(os.path.basename(wav))  # 真实脚本 1-get-text.py:91 就是这样逐条打印文件名
+    if os.environ.get("FAKE_GSV_TEXT_FAIL"):  # 真实脚本逐句 try/except：每句都出错时只打印 Traceback，照样退出 0
+        print(wav, text, "Traceback (most recent call last):\\nRuntimeError: fake per-line failure")
+        continue
     out.append(f"{wav}\\tph\\t1\\t{text}")
-open(f"{opt}/2-name2text-{os.environ['i_part']}.txt", "w", encoding="utf8").write("\\n".join(out))
+with open(txt_path, "w", encoding="utf8") as f:  # 真实脚本 1-get-text.py:142-143（一句都没做成时写进去的是一个换行）
+    f.write("\\n".join(out) + "\\n")
 '''
 
 GET_HUBERT = COMMON + '''
@@ -67,6 +97,10 @@ opt = os.environ["opt_dir"]
 for d in ("4-cnhubert", "5-wav32k"):
     os.makedirs(f"{opt}/{d}", exist_ok=True)
 sleep = float(os.environ.get("FAKE_GSV_CLIP_SLEEP", "0.01"))
+marker = f"{opt}/fake_failed_part_{os.environ['i_part']}"
+if os.environ.get("FAKE_GSV_FAIL_PART_ONCE") == os.environ["i_part"] and not os.path.exists(marker):
+    open(marker, "w").write("x")  # 这一路第一次出错（测「单独把这一路再做一次」）
+    print("RuntimeError: fake part failed", flush=True); sys.exit(1)
 for name in clip_names():
     hubert_path = f"{opt}/4-cnhubert/{name}.pt"
     if os.path.exists(hubert_path):  # 真实脚本也会跳过已经提取过的
@@ -92,12 +126,17 @@ for name in clip_names():
 '''
 
 GET_SEMANTIC = COMMON + '''
-need("inp_text", "exp_name", "opt_dir", "pretrained_s2G", "s2config_path", "i_part")
+need("inp_text", "exp_name", "opt_dir", "pretrained_s2G", "s2config_path", "i_part", "all_parts")
 assert os.path.exists(os.environ["pretrained_s2G"])
 assert os.path.exists(os.environ["s2config_path"])
 opt = os.environ["opt_dir"]
-names = [l.split("\\t")[0] for l in open(f"{opt}/2-name2text.txt", encoding="utf8").read().strip().split("\\n")]
-open(f"{opt}/6-name2semantic-{os.environ['i_part']}.tsv", "w", encoding="utf8").write("\\n".join(f"{n}\\t1 2 3" for n in names))
+semantic_path = f"{opt}/6-name2semantic-{os.environ['i_part']}.tsv"
+if os.path.exists(semantic_path):  # 真实脚本 3-get-semantic.py:58-59：分块结果已经在了，就什么都不做
+    sys.exit(0)
+names = clip_names()  # 真实的 3-get-semantic.py 也是读 inp_text（只看声音，不看文字）
+if os.environ.get("FAKE_GSV_SEMANTIC_FAIL"):  # 真实脚本也是逐句 try/except：每句都出错时写进去的是空文件，退出 0
+    names = []
+open(semantic_path, "w", encoding="utf8").write("\\n".join(f"{n}\\t1 2 3" for n in names))
 '''
 
 OOM = '''
@@ -109,6 +148,17 @@ def maybe_oom(bs):
         print(f"torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.00 GiB (GPU 0; 11.99 GiB total "
               f"capacity; 9.80 GiB already allocated; batch {bs})", flush=True)
         sys.exit(1)
+
+def step_seconds(bs):
+    \"\"\"FAKE_GSV_SLOW_ABOVE：一步一步练时每步多久（每批不超过 N 条：每步 0.01 秒，每秒练的条数随每批数量增加；
+    超过 N 条：每步慢 bs 倍，每秒练的条数不再增加——模拟显存满了、Windows 借用内存以后变慢）。\"\"\"
+    limit = os.environ.get("FAKE_GSV_SLOW_ABOVE")
+    if not limit:
+        return None
+    return 0.01 if bs <= int(limit) else 0.01 * bs
+
+def epoch_sleep():
+    time.sleep(float(os.environ.get("FAKE_GSV_EPOCH_SLEEP", "0") or 0))
 '''
 
 S2_TRAIN = '''
@@ -124,7 +174,18 @@ assert os.path.isdir(exp_dir + "/4-cnhubert") and os.path.isdir(exp_dir + "/5-wa
 name = cfg["name"]
 def info(msg):  # utils.py: logging.basicConfig(stream=sys.stdout, level=INFO) → 「INFO:<logger名>:<消息>」
     print(f"INFO:{os.path.basename(exp_dir)}:{msg}", flush=True)
-n_items = len(open(exp_dir + "/2-name2text.txt", encoding="utf8").read().strip().split("\\n"))
+names = [l.split("\\t")[0] for l in open(exp_dir + "/2-name2text.txt", encoding="utf8").read().strip().split("\\n")
+         if len(l.split("\\t")) == 4]
+# module/data_utils.py：少于 100 条时整份重复几遍；打印 phoneme_data_len / wav_data_len / skipped / total left
+reps = max(2, int(100 / len(names))) if len(names) < 100 else 1
+drop = min(len(names), int(os.environ.get("FAKE_GSV_S2_DROP", "0") or 0))
+print("phoneme_data_len:", len(names), flush=True)
+print("wav_data_len:", len(names) * reps, flush=True)
+for n in names[:drop]:
+    print(f"Zero duration for {exp_dir}/5-wav32k/{n}, skipping...", flush=True)
+print("skipped_phone: ", 0, ", skipped_dur: ", drop * reps, flush=True)
+n_items = (len(names) - drop) * reps
+print("total left: ", n_items, flush=True)
 steps_per_epoch = max(1, math.ceil(n_items / t["batch_size"]))
 ckpt_dir = f"{exp_dir}/logs_s2_{cfg['model']['version']}"
 latest = os.path.join(ckpt_dir, "G_233333333333.pth")
@@ -146,10 +207,21 @@ print("start training from epoch %s" % epoch_str, flush=True)
 weights_ok = os.path.isdir(cfg["save_weight_dir"])
 if not weights_ok:
     print("saving ckpt failed: [Errno 2] No such file or directory: %r" % cfg["save_weight_dir"], flush=True)
+slow = step_seconds(t["batch_size"])
+log_interval = int(t.get("log_interval", 100) or 100)
+global_step = (epoch_str - 1) * steps_per_epoch
 for e in range(epoch_str, t["epochs"] + 1):
-    info("Train Epoch: {} [{:.0f}%]".format(e, 0.0))
-    info("Train Epoch: {} [{:.0f}%]".format(e, 50.0))
-    global_step = e * steps_per_epoch
+    if slow is None:
+        info("Train Epoch: {} [{:.0f}%]".format(e, 0.0))
+        info("Train Epoch: {} [{:.0f}%]".format(e, 50.0))
+        global_step = e * steps_per_epoch
+    else:  # 一步一步练：和真的一样每 log_interval 步打印两行（进度 + 损失，最后两个数是 global_step 和学习率）
+        for b in range(steps_per_epoch):
+            time.sleep(slow)
+            if global_step % log_interval == 0:
+                info("Train Epoch: {} [{:.0f}%]".format(e, 100.0 * b / steps_per_epoch))
+                info([2.5, 2.1, 6.3, 20.1, 1.9, 1.1, global_step, 0.0001])
+            global_step += 1
     if e % t["save_every_epoch"] == 0:  # s2_train.py:514
         if t.get("if_save_latest"):
             os.makedirs(ckpt_dir, exist_ok=True)
@@ -162,11 +234,12 @@ for e in range(epoch_str, t["epochs"] + 1):
             open(f"{cfg['save_weight_dir']}/{ck}.pth", "wb").write(head + b"x" * 62)
             info("saving ckpt %s_e%s:%s" % (name, e, "Success."))
     info("====> Epoch: {}".format(e))
+    epoch_sleep()
 print("training done", flush=True)
 '''
 
 S1_TRAIN = '''
-import os, re, sys, yaml
+import math, os, re, sys, time, yaml
 ''' + OOM + '''
 cfg = yaml.safe_load(open(sys.argv[sys.argv.index("--config_file") + 1], encoding="utf8"))
 t = cfg["train"]
@@ -174,6 +247,16 @@ assert os.path.exists(cfg["pretrained_s1"])
 assert os.path.exists(cfg["train_semantic_path"]) and os.path.exists(cfg["train_phoneme_path"])
 assert os.environ.get("hz") == "25hz"
 assert isinstance(t["if_dpo"], bool)
+if "data" in cfg and "num_workers" in cfg["data"]:
+    assert isinstance(cfg["data"]["num_workers"], int) and cfg["data"]["num_workers"] >= 0
+# AR/data/dataset.py：打印读到几条、删掉几条（音素 / 秒不在 3~25 之间、太长）、最后用几条（少于 100 条时重复几遍）
+sem = [l for l in open(cfg["train_semantic_path"], encoding="utf8").read().strip().split("\\n")[1:] if l.strip()]
+drop = min(len(sem), int(os.environ.get("FAKE_GSV_S1_DROP", "0") or 0))
+print("semantic_data_len:", len(sem), flush=True)
+left = len(sem) - drop
+if drop:
+    print(f"deleted {drop} audios who's phoneme/sec are bigger than 25 or smaller than 3", flush=True)
+print("dataset.__len__():", left * (max(2, int(100 / left)) if 0 < left < 100 else 1), flush=True)
 ckpt_dir = os.path.join(cfg["output_dir"], "ckpt")
 os.makedirs(ckpt_dir, exist_ok=True)
 start = 0
@@ -187,10 +270,18 @@ maybe_oom(t["batch_size"])
 if not os.path.isdir(t["half_weights_save_dir"]):
     print("FileNotFoundError: [Errno 2] No such file or directory: %r" % t["half_weights_save_dir"], flush=True)
     sys.exit(1)
+slow = step_seconds(t["batch_size"])
+per_epoch = max(1, math.ceil(max(1, left) / t["batch_size"]))
 for e in range(start, t["epochs"]):
     # Lightning 的进度条写到 stderr，用 \\r 刷新同一行
-    sys.stderr.write(f"Epoch {e}:  50%|█████     | 1/2 [00:00<00:00]\\r")
-    sys.stderr.write(f"Epoch {e}: 100%|██████████| 2/2 [00:01<00:00]\\r")
+    if slow is None:
+        sys.stderr.write(f"Epoch {e}:  50%|█████     | 1/2 [00:00<00:00]\\r")
+        sys.stderr.write(f"Epoch {e}: 100%|██████████| 2/2 [00:01<00:00]\\r")
+    else:
+        for n in range(1, per_epoch + 1):
+            time.sleep(slow)
+            sys.stderr.write(f"Epoch {e}: {int(100 * n / per_epoch):3d}%|█████     | {n}/{per_epoch} [00:00<00:00]\\r")
+            sys.stderr.flush()
     sys.stderr.flush()
     if (e + 1) % t["save_every_n_epoch"] == 0:  # s1_train.py:50
         if t.get("if_save_latest"):
@@ -199,6 +290,7 @@ for e in range(start, t["epochs"]):
         open(os.path.join(ckpt_dir, f"epoch={e}-step={(e + 1) * 2}.ckpt"), "w").write("x")
         if t.get("if_save_every_weights"):
             open(f"{t['half_weights_save_dir']}/{t['exp_name']}-e{e + 1}.ckpt", "wb").write(b"x" * 64)
+    epoch_sleep()
 sys.stderr.write("\\n")
 '''
 
@@ -216,25 +308,84 @@ cfg = yaml.safe_load(open(args.c, encoding="utf8"))["custom"]
 state = {"gpt": cfg["t2s_weights_path"], "sovits": cfg["vits_weights_path"], "calls": 0}
 time.sleep(float(os.environ.get("FAKE_GSV_API_DELAY", "0") or 0))  # 真实的服务加载模型要几十秒
 
-def make_wav(text, speed, gpt_path):
-    sr = 32000
+def _epoch(gpt_path):
+    # 只看文件名（底模 s1v3.ckpt 没有轮数；文件夹名里有「-e」时也不能读错，例如 literate-enigma）
+    tail = os.path.basename(gpt_path).rsplit("-e", 1)
+    num = tail[-1].split(".")[0]
+    return int(num) if len(tail) == 2 and num.isdigit() else 1
+
+def _dur(text, speed, gpt_path):
     # 时长与文字长度成正比；不同 GPT 权重读得快慢不同（模拟不同 epoch 的差异）
-    epoch = int(gpt_path.rsplit("-e", 1)[-1].split(".")[0]) if "-e" in gpt_path else 1
-    dur = max(0.5, len(text) * (0.2 + 0.01 * epoch) / max(speed, 0.1))
-    n = int(dur * sr)
+    dur = max(0.5, len(text) * (0.2 + 0.01 * _epoch(gpt_path)) / max(speed, 0.1))
+    if speed != 1.0 and os.environ.get("FAKE_GSV_SPEED_TRICK_BROKEN"):
+        dur *= 1.05
+    return dur
+
+def _inner_zero(n, sr):
+    if not os.environ.get("FAKE_GSV_INNER_ZERO"):
+        return (0, 0)
+    return (n // 2, n // 2 + int(0.4 * sr))
+
+def _wav_bytes(frames, sr):
     buf = io.BytesIO()
     with wave.open(buf, "wb") as w:
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr)
-        pad = int(0.2 * sr)
-        frames = bytearray()
-        for i in range(n + 2 * pad):
-            v = 0.0
-            if pad <= i < n + pad:
-                t = i / sr
-                v = 0.3 * math.sin(2 * math.pi * 150 * t) * (0.6 + 0.4 * math.sin(2 * math.pi * 4 * t))
-            frames += struct.pack("<h", int(v * 32767))
         w.writeframes(bytes(frames))
     return buf.getvalue()
+
+def make_wav(text, speed, gpt_path):
+    sr = 32000
+    n = int(_dur(text, speed, gpt_path) * sr)
+    pad = int(0.2 * sr)
+    z0, z1 = _inner_zero(n, sr)
+    frames = bytearray()
+    for i in range(n + 2 * pad):
+        v = 0.0
+        if pad <= i < n + pad and not (z0 <= i - pad < z1):
+            t = i / sr
+            v = 0.3 * math.sin(2 * math.pi * 150 * t) * (0.6 + 0.4 * math.sin(2 * math.pi * 4 * t))
+        frames += struct.pack("<h", int(v * 32767))
+    return _wav_bytes(frames, sr)
+
+def split_rows(text):
+    """按换行切开：空行去掉，不到 5 个字的段和后面的合在一起（真实的 pre_seg_text + merge_short_text_in_array）。"""
+    parts = [t for t in text.strip("\\n").split("\\n") if t not in ("", " ")]
+    rows, cur = [], ""
+    for t in parts:
+        cur += t
+        if len(cur) >= 5:
+            rows.append(cur); cur = ""
+    if cur:
+        if rows: rows[-1] += cur
+        else: rows.append(cur)
+    return rows or [text]
+
+def make_rows(rows, speed, gpt_path, seed, interval):
+    """同时生成的几段：每段一个不同音高的正弦波，后面补 interval 秒的 0（开头不加空白，和 TTS.py 一样）。"""
+    sr = 32000
+    frames = bytearray()
+    for k, row in enumerate(rows):
+        n = int(_dur(row, speed, gpt_path) * sr)
+        f = 150 + 10 * ((seed + k) % 7)
+        z0, z1 = _inner_zero(n, sr)
+        for i in range(n):
+            v = 0.0
+            if not (z0 <= i < z1):
+                t = i / sr
+                v = 0.3 * math.sin(2 * math.pi * f * t) * (0.6 + 0.4 * math.sin(2 * math.pi * 4 * t))
+            frames += struct.pack("<h", int(v * 32767))
+        frames += b"\\x00\\x00" * int(sr * interval)
+    return _wav_bytes(frames, sr)
+
+def silent_oom(handler, detail):
+    # 真实的 TTS.run 出错时不报错（TTS.py @ abe9843 第 1516~1518 行）：打印 Traceback，回 200 + 1 秒 16 kHz 静音
+    print("Traceback (most recent call last):\\n"
+          '  File "GPT_SoVITS/TTS_infer_pack/TTS.py", line 1300, in run\\n'
+          "    pred_semantic_list, idx_list = self.t2s_model.model.infer_panel(\\n"
+          "torch.OutOfMemoryError: CUDA out of memory. " + detail, flush=True)
+    data = _wav_bytes(b"\\x00\\x00" * 16000, 16000)
+    handler.send_response(200); handler.send_header("Content-Type", "audio/wav")
+    handler.send_header("Content-Length", str(len(data))); handler.end_headers(); handler.wfile.write(data)
 
 class H(BaseHTTPRequestHandler):
     def log_message(self, *a): pass
@@ -274,19 +425,21 @@ class H(BaseHTTPRequestHandler):
         if not os.path.exists(req["ref_audio_path"]):
             return self._json(400, {"message": "ref missing"})
         assert req["text_split_method"] == "cut0"
+        with open("_fake_api_calls.jsonl", "a", encoding="utf-8") as fh:
+            fh.write(json.dumps({"kind": "run", "req": req}, ensure_ascii=False) + "\\n")
         if "【测试显存不够】" in req["text"]:
-            # 真实的 TTS.run 出错时不报错（TTS.py @ abe9843 第 1516~1518 行）：打印 Traceback，回 200 + 1 秒 16 kHz 静音
-            print("Traceback (most recent call last):\\n"
-                  '  File "GPT_SoVITS/TTS_infer_pack/TTS.py", line 1300, in run\\n'
-                  "    pred_semantic_list, idx_list = self.t2s_model.model.infer_panel(\\n"
-                  "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.00 GiB", flush=True)
-            buf = io.BytesIO()
-            with wave.open(buf, "wb") as w:
-                w.setnchannels(1); w.setsampwidth(2); w.setframerate(16000); w.writeframes(b"\\x00\\x00" * 16000)
-            data = buf.getvalue()
-            self.send_response(200); self.send_header("Content-Type", "audio/wav")
-            self.send_header("Content-Length", str(len(data))); self.end_headers(); self.wfile.write(data); return
-        data = make_wav(req["text"], float(req.get("speed_factor", 1.0)), state["gpt"])
+            return silent_oom(self, "Tried to allocate 1.00 GiB")
+        bs = int(req.get("batch_size", 1) or 1)
+        limit = os.environ.get("FAKE_GSV_MAX_BATCH")
+        if limit not in (None, "") and bs > int(limit):
+            return silent_oom(self, f"Tried to allocate 2.00 GiB (batch_size {bs})")
+        speed = float(req.get("speed_factor", 1.0))
+        if "\\n" in req["text"]:
+            seed = int(req.get("seed", -1) if req.get("seed") is not None else -1)
+            data = make_rows(split_rows(req["text"]), speed, state["gpt"], seed,
+                             float(req.get("fragment_interval", 0.3) or 0))
+        else:
+            data = make_wav(req["text"], speed, state["gpt"])
         self.send_response(200); self.send_header("Content-Type", "audio/wav")
         self.send_header("Content-Length", str(len(data))); self.end_headers(); self.wfile.write(data)
 
@@ -324,6 +477,25 @@ CALLS = os.path.join(os.getcwd(), "_real_api_calls.jsonl")
 def _record(kind, **data):
     with open(CALLS, "a", encoding="utf-8") as fh:
         fh.write(json.dumps(dict(kind=kind, **data), ensure_ascii=False) + "\\n")
+
+def _rows(text):
+    """同时生成好几个版本时按换行切开（真实的 pre_seg_text：空行去掉，不到 5 个字的段和后面的合在一起）；
+    没有换行就是整句一段（和以前一样）。"""
+    if "\\n" not in text:
+        return [text]
+    parts = [t for t in text.strip("\\n").split("\\n") if t not in ("", " ")]
+    rows, cur = [], ""
+    for t in parts:
+        cur += t
+        if len(cur) >= 5:
+            rows.append(cur)
+            cur = ""
+    if cur:
+        if rows:
+            rows[-1] += cur
+        else:
+            rows.append(cur)
+    return rows or [text]
 
 class TTS_Config:
     v1_languages = ["auto", "en", "zh", "ja", "all_zh", "all_ja"]
@@ -380,17 +552,32 @@ class TTS:
         try:
             if "【测试显存不够】" in text:
                 raise RuntimeError("CUDA out of memory. Tried to allocate 1.00 GiB")
+            bs = int(inputs.get("batch_size", 1) or 1)
+            limit = os.environ.get("FAKE_GSV_MAX_BATCH")
+            if limit not in (None, "") and bs > int(limit):  # 测试开关：同时生成太多个时显存不够
+                raise RuntimeError(f"CUDA out of memory. Tried to allocate 2.00 GiB (batch_size {bs})")
             sr = 32000
             import re
             m = re.search(r"-e(\\d+)\\.ckpt$", self.t2s)
             epoch = int(m.group(1)) if m else 1
             speed = float(inputs.get("speed_factor", 1.0) or 1.0)
-            dur = max(0.5, len(text) * (0.2 + 0.01 * epoch) / max(speed, 0.1))
-            t = np.arange(int(dur * sr)) / sr
-            wav = 0.3 * np.sin(2 * np.pi * 150 * t) * (0.6 + 0.4 * np.sin(2 * np.pi * 4 * t))
-            # TTS.py 的 audio_postprocess：开头不加空白，后面补 fragment_interval 秒的 0，最后转成 int16
+            seed = int(inputs.get("seed", -1) if inputs.get("seed") is not None else -1)
+            rows = _rows(text)
+            # TTS.py 的 audio_postprocess：开头不加空白，每段后面补 fragment_interval 秒的 0，最后转成 int16
             tail = np.zeros(int(sr * float(inputs.get("fragment_interval", 0.3) or 0)))
-            audio = np.concatenate([wav, tail])
+            parts = []
+            for k, row in enumerate(rows):
+                dur = max(0.5, len(row) * (0.2 + 0.01 * epoch) / max(speed, 0.1))
+                if speed != 1.0 and os.environ.get("FAKE_GSV_SPEED_TRICK_BROKEN"):
+                    dur *= 1.05
+                t = np.arange(int(dur * sr)) / sr
+                f = 150.0 if len(rows) == 1 else 150.0 + 10 * ((seed + k) % 7)  # 一次一个时和以前一样
+                wav = 0.3 * np.sin(2 * np.pi * f * t) * (0.6 + 0.4 * np.sin(2 * np.pi * 4 * t))
+                if os.environ.get("FAKE_GSV_INNER_ZERO"):
+                    mid = len(wav) // 2
+                    wav[mid:mid + int(0.4 * sr)] = 0
+                parts += [wav, tail]
+            audio = np.concatenate(parts)
             yield sr, (audio * 32768).clip(-32768, 32767).astype(np.int16)
         except Exception as e:  # TTS.py 第 1516~1518 行：不报错，打印 Traceback，回 1 秒 16 kHz 的静音
             import traceback
@@ -399,13 +586,68 @@ class TTS:
 ''',
 }
 
+#: 处理文字用的几个模块（GPT_SoVITS/text/…）的替身：VoiceTwin 自己的 1A（gsv_scripts/get_text_mixed.py）
+#: 用 VOICETWIN_TEXT_DRYRUN=1 运行时只要这两个。行为照着真的写，但很简单：
+#: - LangSegmenter.getTexts：连着的英文字母（中间可以有空格、'）是 en，连着的数字是 digit，别的是 zh；
+#: - clean_text(text, "zh")：和 chinese2 一样先删掉英文字母，数字变汉字，每个汉字 2 个音素（小写，不像英文音素），
+#:   标点 1 个；clean_text(text, "en")：每个英文单词 2 个英文音素（例如 TH AH0），不到 4 个音素时前面加「,」（和真的一样）。
+TEXT_STUBS = {
+    "GPT_SoVITS/text/__init__.py": "",
+    "GPT_SoVITS/text/LangSegmenter.py": """
+import os, re
+
+class LangSegmenter:
+    @staticmethod
+    def getTexts(text, default_lang=""):
+        if os.environ.get("FAKE_GSV_LANGSEG_RAISE"):
+            raise RuntimeError("fake LangSegmenter failed")
+        out = []
+        for m in re.finditer(r"[A-Za-z]+(?:[ ']+[A-Za-z]+)*|[0-9]+|[^A-Za-z0-9]+", text):
+            seg = m.group(0)
+            lang = "en" if seg[0].isascii() and seg[0].isalpha() else ("digit" if seg.isdigit() else "zh")
+            if os.environ.get("FAKE_GSV_LANGSEG_DROP") and lang == "zh":
+                seg = seg[:-1]  # 模拟版本不一样的 LangSegmenter 丢字：自检应该发现
+            out.append({"lang": lang, "text": seg})
+        return out
+""",
+    "GPT_SoVITS/text/cleaner.py": """
+import os, re
+
+DIGITS = "零一二三四五六七八九"
+PUNCT = {"，": ",", "。": ".", "？": "?", "！": "!", "、": ",", "：": ",", "；": ","}
+
+def clean_text(text, language, version=None):
+    if os.environ.get("FAKE_GSV_CLEANER_RAISE"):
+        raise RuntimeError("fake cleaner failed")
+    if language == "zh":
+        t = "".join(DIGITS[int(c)] if c.isdigit() else PUNCT.get(c, c) for c in text)
+        norm = "".join(c for c in t if re.match(r"[一-龥]", c) or c in ",.?!-…")
+        phones, word2ph = [], []
+        for c in norm:
+            if c in ",.?!-…":
+                phones.append(c)
+                word2ph.append(1)
+            else:
+                phones += ["c%d" % (ord(c) % 7), "a%d" % (ord(c) % 5 + 1)]
+                word2ph.append(2)
+        return phones, word2ph, norm
+    norm = text.strip()
+    phones = []
+    for tok in re.findall(r"[A-Za-z']+|[,.?!]", norm):
+        phones += [","] if tok in ",.?!" else [tok[0].upper() + "H", "AH0"]
+    if len(phones) < 4:
+        phones = [","] + phones
+    return phones, None, norm
+""",
+}
+
 #: 真实的模型文件都有几百 MB；这里写 2 KB，刚好超过「小于 1 KB 算没下载完」的门槛
 FAKE_WEIGHT = b"x" * 2048
 
 
-def build_fake_root(root: Path, version: str = "v2ProPlus", real_api=False) -> Path:
+def build_fake_root(root: Path, version: str = "v2ProPlus", real_api=False, text_stubs: bool = True) -> Path:
     """real_api=True（或者某个真实 api_v2.py 的路径）：推理服务用真实的 api_v2.py（只有模型是假的），
-    用来保证程序和真的 GPT-SoVITS 对得上。"""
+    用来保证程序和真的 GPT-SoVITS 对得上。text_stubs：放处理文字的替身模块（见 TEXT_STUBS）。"""
     root = Path(root)
     real_src = (REAL_API_V2 if real_api is True else Path(real_api)) if real_api else None
     files = {
@@ -417,6 +659,8 @@ def build_fake_root(root: Path, version: str = "v2ProPlus", real_api=False) -> P
         "GPT_SoVITS/s2_train.py": S2_TRAIN,
         "GPT_SoVITS/s1_train.py": S1_TRAIN,
     }
+    if text_stubs:
+        files.update(TEXT_STUBS)
     if real_api:
         files.update(REAL_API_STUBS)
     for rel, content in files.items():

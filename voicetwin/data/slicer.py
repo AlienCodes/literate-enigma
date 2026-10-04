@@ -79,7 +79,10 @@ def find_segments(
     target_min: float = 3.0,
     target_max: float = 9.0,
     join_gap: float = 0.5,
+    max_merge_gap: float = 1.2,
 ) -> List[Segment]:
+    """max_merge_gap：比这更长的停顿两边永远不合并成一段（「好。」说完写板书 7 秒再说下一句：以前合成一段 11 秒、
+    中间 7 秒底噪的训练片段，模型会学到句子中间长时间停顿）。太短的那段自己成一段（不到 min_duration 的以后算「太短」）。"""
     if wav.size == 0:
         return []
     if threshold_db is None:
@@ -119,17 +122,20 @@ def find_segments(
         cur_dur = (cur[-1][1] - cur_start) * hop_s
         cand_dur = (reg[1] - cur_start) * hop_s
         gap = reg[2] if reg[2] is not None else 0.0
-        if (cur_dur < target_min and cand_dur <= max_duration) or (gap <= join_gap and cand_dur <= target_max):
+        if (cur_dur < target_min and cand_dur <= max_duration and gap <= max_merge_gap) or \
+                (gap <= join_gap and cand_dur <= target_max):
             cur.append(reg)
         else:
             groups.append(cur)
             cur = [reg]
     groups.append(cur)
-    # 太短的尾巴并入前一组（只要合并后不超长）
+    # 太短的尾巴并入前一组（只要合并后不超长、中间的停顿不太长）
     merged: List[List[Tuple[int, int, Optional[float], Optional[float]]]] = []
     for grp in groups:
         dur = (grp[-1][1] - grp[0][0]) * hop_s
-        if merged and dur < target_min and (grp[-1][1] - merged[-1][0][0]) * hop_s <= max_duration:
+        gap_before = grp[0][2] if grp[0][2] is not None else 0.0
+        if merged and dur < target_min and gap_before <= max_merge_gap \
+                and (grp[-1][1] - merged[-1][0][0]) * hop_s <= max_duration:
             merged[-1].extend(grp)
         else:
             merged.append(grp)

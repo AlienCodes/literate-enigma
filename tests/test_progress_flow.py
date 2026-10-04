@@ -377,10 +377,14 @@ def test_selection_failure_does_not_fail_training(prepared, monkeypatch):
 
 def test_train_stages_table():
     gcfg = make_cfg(Path("."), backend="gptsovits")
-    stages = wf.task_stages("train", gcfg, "gptsovits")
-    assert [f for f, _ in stages] == sorted(f for f, _ in stages)
-    assert stages[-1] == (wf.TRAIN_SELECT_SPLIT, "自动挑选最像你的模型")
-    assert all(f <= wf.TRAIN_SELECT_SPLIT for f, _ in stages)
+    for mode, split in (("standard", wf.TRAIN_SELECT_SPLIT), ("identical", wf.TRAIN_SELECT_SPLIT_IDENTICAL),
+                        (None, wf.TRAIN_SELECT_SPLIT_IDENTICAL)):  # 不写训练方式 = config.yaml 的 auto = 「一模一样」
+        stages = wf.task_stages("train", gcfg, "gptsovits", mode=mode)
+        assert [f for f, _ in stages] == sorted(f for f, _ in stages)
+        assert stages[-1] == (split, "自动挑选最像你的模型")
+        assert all(f <= split for f, _ in stages)
+    assert ("实测显卡一次能练几条" in [n for _, n in wf.task_stages("train", gcfg, "gptsovits", mode="identical")])
+    assert ("实测显卡一次能练几条" not in [n for _, n in wf.task_stages("train", gcfg, "gptsovits", mode="standard")])
     no_sel = wf.task_stages("train", gcfg, "gptsovits", select=False)
     assert no_sel and no_sel[-1][1] != "自动挑选最像你的模型"
     assert wf.task_stages("select", gcfg) == wf.STAGES_SELECT
@@ -415,14 +419,19 @@ def test_train_flow_with_fake_gptsovits(prepared, tmp_path, monkeypatch):
     root = build_fake_root(tmp_path / "GPT-SoVITS")
     gcfg = make_cfg(project.root.parent, backend="gptsovits", backends={"gptsovits": {
         "root": str(root), "python": sys.executable, "port": 19890, "startup_timeout": 60, "is_half": True,
-        "train": {"sovits_epochs": 8, "gpt_epochs": 10, "batch_size": 2, "sovits_save_every": 4, "gpt_save_every": 5},
+        # 「一模一样」的挑选（第 8 步）另外加检查用的句子：这里只看进度，少用几句（假引擎逐个样本合成长句子很慢）
+        "train": {"sovits_epochs": 8, "gpt_epochs": 10, "batch_size": 2, "sovits_save_every": 4, "gpt_save_every": 5,
+                  "select_test_texts": 1, "select_final_candidates": 2},
     }})
     rec = Rec()
     confirm_material(gcfg, project.voice)
     info = wf.run_train(gcfg, project.voice, "gptsovits", select=True, progress=rec)
     rec.assert_monotonic()
     assert rec.fracs[-1] == 1.0
-    assert any(0.88 <= f <= 1.0 and "挑选" in m for f, m in rec.calls)
+    # 默认「一模一样」：训练占前 62%，后面是挑选（第 4 轮以后存下的每个版本都试）
+    split = wf.TRAIN_SELECT_SPLIT_IDENTICAL
+    assert any(split <= f <= 1.0 and "挑选" in m for f, m in rec.calls)
+    assert all(f <= split + 1e-9 for f, m in rec.calls if m.startswith("训练音色") or m.startswith("训练语气"))
     assert any("切换到模型" in m for m in rec.msgs)
     assert "selection" in info
 

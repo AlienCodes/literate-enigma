@@ -62,6 +62,8 @@ DEFAULT_VOICE = "我的声音"
 
 NEED_VOICE = "请先在页面最上面的「声音名称」里选择或填写声音（例如：我的声音）。"
 NEED_PREPARE = "这个声音还没有准备素材，请先完成「① 准备素材」。"
+#: 替换完被表格的统一写法改回原样时的说明（clean_transcript：英文后面的标点半角、汉字后面全角）
+SAME_PUNCT_NOTE = "表格会自动统一标点的写法，英文后面用半角（, ? ! : ;），汉字后面用全角（，？！：；）"
 
 if os.name == "nt":
     NOTE = "运行期间电脑不会自动睡眠；可以去做别的事，但不要关闭黑色窗口。"
@@ -85,28 +87,52 @@ DLTXT_BTN = "⬇️ 下载改好的文字（txt）"
 #: 「一键全部文字校正」每批素材只能用一次（老师 10-03 的要求）：用过以后按钮变灰；加了新的素材、识别完以后再亮（只改还没改过的句子）
 TEXTFIX_LOCKED_INFO = ("🔒 **这批素材已经用过了，每批素材只能用一次（所以按钮是灰色的）。** "
                        "还要改的，请用每一行「修改建议」里的按钮，或者双击「文字」自己改。"
+                       "**刚升级的话，先点一次上面的「🔍 自动查找可能的错字」**：每一句都会先和母本对照"
+                       "（以前的版本按片段编号找母本，编号变了就有些句子没按母本改），写着「**按母本：**」的建议就是母本的写法，"
+                       "点那一行的「采用」就改好了（不算用掉一次）。"
                        "以后加了新的素材、识别完（或者恢复了删除的句子、把灰色的句子改成要用），按钮会再亮起来，"
                        "只改这些还没改过的句子；上传母本也要等那时候再用（所以上传框现在是灰的）。")
 #: 按钮是灰的、但还没用过：现在没有能处理的句子（还没识别出文字 / 都删除了 / 都标了不用）
 TEXTFIX_NOTHING_INFO = ("⏸️ **现在还没有能校正的句子**（还没识别出文字，或者句子都删除了、都标了不用），所以按钮是灰色的。"
                         "先在上面点「开始准备素材」把文字识别完，按钮就会亮起来。")
-TEXTFIX_HELP = ("**📝 一键全部文字校正**：以你的**母本标准库**为准（你修缮过的讲课母本 = 你所有的说话习惯，"
-                "+ 所有的英语语法术语 + 「错的写法 → 正确写法」对照表：借词 → 介词、艾子 → as……，程序里已经带着），"
+#: 同上，但没有文字是因为视频没有字幕、准备素材时又选了「不识别（只用字幕）」：再点「开始准备素材」也不会识别
+TEXTFIX_NO_ENGINE_INFO = ("⏸️ **现在还没有能校正的句子**，所以按钮是灰色的：没有同名字幕（.srt）的视频，上次「开始准备素材」时"
+                          "「识别文字用哪个引擎」选的是「不识别（只用字幕）」，所以那些句子没有文字。在「开始准备素材」上面的「高级设置」里"
+                          "把识别引擎改成「通用（中英文都行，推荐）」，再点一次「开始准备素材」，识别完按钮就会亮起来。")
+TEXTFIX_HELP = ("**📝 一键全部文字校正**：**母本最优先**。每一句先去你的**母本**（你修缮过的讲课文字 = 你所有的说话习惯，"
+                "程序里已经带着）里找差不多或者一模一样的那一句——按内容找，重新准备过素材、换了文件夹、句子切的位置不一样也找得到；"
+                "找到了、又看得出是**同一批录音**（前后的句子也和母本里前后的句子对得上），"
+                "**和母本不一样的地方就是识别错了，一律按母本改**（定于从句 → 定语从句）。"
+                "新讲的课里和母本只差一两个词的句子（比如这次讲的是「状语从句」）：读音像听错的地方照样按母本改，"
+                "读音不像的**不自动改**，「修改建议」里写「按母本（没把握，请听录音）」，你听一听再决定。母本里没有的句子，"
+                "才用所有的英语语法术语和「错的写法 → 正确写法」对照表（借词 → 介词、艾子 → as……），再用另一个识别引擎的建议"
+                "（和母本矛盾的建议不要）。"
                 "点一下，所有能确定该怎么改的地方**一次全部改好**（包括「修改建议」那一列有把握的建议）。"
                 "改过的字照旧：「文字」列**绿色**、「可能有错」列**蓝色**；没把握的、只标红没有建议的地方还是**红色**，"
                 "请听录音：建议对就点那一行的蓝色的「采用」，不对就自己改。"
                 "只想改某一行：点那一行「修改建议」里的小按钮。改好以后点「**保存修改**」确认文字，要训练时再点「✅ 确认训练素材」。"
-                "有新的讲稿或改好的文字（txt 或 transcripts.csv），可以在下面上传，一起当母本用（可选）。"
+                "有这批录音的讲稿、或者别的声音改好的文字（txt 或 transcripts.csv），可以在下面上传，一起当母本用（可选；"
+                "上传的文字程序都当成没修缮过的（可能是讲稿），只在读音像识别错的地方按它改，讲的时候换的说法、页码不会被改成"
+                "讲稿上的；只有程序里带着的、你修缮过的母本说了算；"
+                "这个声音自己下载的「改好的文字」不用再上传：那就是表格里的句子，证明不了它们自己没错）。"
                 "**每批素材只能用一次**：用完按钮变灰；以后加了新的素材、识别完（或者恢复了删除的句子），按钮会再亮起来，"
                 "只改这些还没改过的句子。"
-                "用之前你自己改过的字，它不会动。")
+                "用之前你自己改过的字，它不会动（和母本不一样时，点那一行会看到一句说明）。")
 #: 「下载改好的文字」：文件准备好以后，自动点一下下载链接（gradio 的文件框里那个链接）
 AUTO_DOWNLOAD_JS = """() => { setTimeout(() => {
   const a = document.querySelector('#vt-dl-txt a[download]') || document.querySelector('#vt-dl-txt a[href]');
   if (a) a.click();
 }, 400); return []; }"""  # gradio 4.24 要求网页脚本返回一个列表（没有输出就是空列表），否则报错、后面的点击都没反应
+#: gradio 发给网页的文件（播放 / 下载的音频、上传的视频）多久清理一次、清理多久以前的（秒）：每小时，20 小时以前的
+GRADIO_DELETE_CACHE = (3600, 72000)
+#: 按校对表的隐藏按钮时先运行（网页上）：按点的顺序取出这一次的操作（见 REVIEW_JS 的 outbox），不会两次都读到后一个
+CLIP_TAKE_JS = ("(voice, payload, only) => { let p = payload; try { if (window.__vtTake) p = window.__vtTake(payload); }"
+                " catch (e) {} return [voice, p, only]; }")
+#: 校对表的一个操作做完以后（接在隐藏按钮的事件后面）：程序没改、表格没重画时，把变成 ⏳ 的「采用」按钮放回原样（见 REVIEW_JS）
+SUG_DONE_JS = "() => { try { if (window.__vtSugDone) window.__vtSugDone(); } catch (e) {} return []; }"
 DL_BTN, DL_BUSY = "⬇️ 下载缺少的模型", "⏳ 正在下载……"
-SPEED_BTN, SPEED_BUSY = "▶ 试听语速", "⏳ 正在生成试听……"
+#: 试听语速永远用「快速」档（只听快慢，几秒钟就好），按钮上写清楚，免得以为是「一模一样」的效果
+SPEED_BTN, SPEED_BUSY = "▶ 试听（快速，只听语速）", "⏳ 正在生成试听……"
 VERIFY_BTN, VERIFY_BUSY = "开始鉴别", "⏳ 正在鉴别……"
 BLIND_BTN, BLIND_BUSY = "生成盲听测试", "⏳ 正在生成盲听测试……"
 
@@ -116,7 +142,10 @@ REVIEW_HELP = ("### ✍️ 校对文字（可选，但能明显提升效果）\n
                "- **改错字：双击「文字」那一格**（或者「⋯ 选项」→「修改文字」），会打开一个会自动换行的框，整句话都看得见；"
                "改好按**回车**（或点别的地方）。你改过、新打上去的字是**绿色**。\n"
                "- **「修改建议」里的蓝色小按钮**：点一下就按建议自动改好，按钮**变红 = 建议已经生效**，改过的字在旁边那一列"
-               "变成**蓝色**；再点一下红色按钮可以撤销。只有「可能有错」那一列有内容的行才有这个按钮。\n"
+               "变成**蓝色**；再点一下红色按钮可以撤销。只有「可能有错」那一列有内容的行才有这个按钮。"
+               "写着「**按母本：**」的建议是按你的母本改的（母本里有差不多的句子，和母本不一样的地方就是识别错了），"
+               "排在最前面；写着「**按母本（没把握，请听录音）**」的，是和母本只差一两个词、读音又不像听错的地方"
+               "（可能是新讲的课换了说法），请听一听再决定；母本里没有的句子，才是另一个识别引擎或语法术语的猜测。\n"
                "- **最右边「⋯ 选项」**：保存这一行、删除这一行（会再问一次；删除以后这里变成「撤销删除」）、修改文字、听一听、"
                "撤销这一行的修改、这句没错（不再标红）。\n"
                "- **删除的行整行变紫色 = 不再算训练素材**；删错了在「⋯ 选项」里点「↩️ 撤销删除」，紫色消失、又算训练素材。"
@@ -210,6 +239,25 @@ SYNTH_BACKENDS = [("GPT-SoVITS（推荐，用你训练的模型）", "gptsovits"
                   ("IndexTTS（不用训练）", "indextts")]
 DUMMY_BACKEND = ("测试引擎（不是你的声音）", "dummy")
 DPO_CHOICES = [("自动（推荐）", "auto"), ("开", "on"), ("关", "off")]
+#: 「② 训练模型」的「训练方式」（GPT-SoVITS）。每次打开网页都先选好「一模一样」（和生成页的质量一样，不读 config.yaml）
+TRAIN_MODE_LABELS: Dict[str, str] = {
+    "identical": "一模一样（默认）：练得更久、多存版本，再用你没参加训练的录音把第 4 轮以后存下的每个版本都试一遍，挑最像你的（很慢）",
+    "standard": "标准：和以前一样的训练量，训练完挑一次（快很多）",
+}
+TRAIN_MODE_CHOICES: List[Tuple[str, str]] = [(TRAIN_MODE_LABELS[k], k) for k in ("identical", "standard")]
+TRAIN_INTRO = ("直接点「开始训练」就行。默认用「一模一样」的方式训练：练得更久、多存几个版本，再用你没参加训练的录音"
+               "把第 4 轮以后存下的每个版本都试一遍，挑出最像你的。第一次会很慢（估计要几个小时）；"
+               "从头完整练完一次以后，这里会显示你电脑上实际用的时间。训练时可以去做别的事，但不要关闭黑色窗口。")
+#: 「训练方式」下面的小字：它也决定「重新挑选最佳模型」怎么比（两种挑法用的时间差很多）
+TRAIN_MODE_INFO = ("「重新挑选最佳模型」也按这里选的方式比：一模一样 = 把第 4 轮以后存下的每个版本都试一遍（比较慢）；"
+                   "标准 = 从早到晚均匀挑几个版本比（快很多）。")
+#: 「重新挑选最佳模型」进度条上的「要多久」（没有实测，只说快慢；标准的分钟数标明是估计）
+SELECT_HINT = {"identical": "把第 4 轮以后存下的每个版本都试一遍（先比语气模型、再比音色模型，最后几组按「一模一样」的方式比），"
+                            "比较慢，可以先去做别的事",
+               "standard": "大约 5~15 分钟（估计）"}
+#: 「保存的文件名」：老师的规定——生成的文件名只用汉字、英文字母、数字和下划线，最后自动加上实际用的模型名
+OUT_NAME_LABEL = ("保存的文件名（可以不填；只保留汉字、字母、数字，别的符号会换成「_」；"
+                  "最后会自动加上这次实际用的模型名，例如「第3课_10月05日09点30分_v2ProPlus.wav」）")
 #: MP3 是有损压缩：句子之间的静音里会有极小的压缩杂讯（大约 -90 dB，听不见，但不是绝对的 0）——老师要绝对静音，如实写明
 FORMAT_CHOICES = [("WAV（音质最好，句子之间绝对静音；剪映/后期用）", "wav"),
                   ("MP3（文件小，方便发微信、上传；压缩会在停顿里留下听不见的极小杂讯，要绝对静音请选 WAV）", "mp3")]
@@ -217,9 +265,12 @@ FORMAT_CHOICES = [("WAV（音质最好，句子之间绝对静音；剪映/后�
 # 质量档位的中文名和说明只在 synth/engine.py 里写一份（网页、命令行、报告用的是同一套名字）
 QUALITY_CHOICES: List[Tuple[str, str]] = wf.quality_choices()
 QUALITY_SHORT: Dict[str, str] = dict(_engine.QUALITY_SHORT)
-QUALITY_NOTE = ("越往下越慢，但每句会多试几次、自动挑最像你的，结果更稳定。不会 100% 一模一样："
-                "素材的质量和数量、认真校对文字，对像不像影响最大。")
-TIER_QUALITY = {"high": "perfect", "mid": "perfect", "low": "max", "none": "balanced"}
+QUALITY_NOTE = _engine.QUALITY_NOTE
+#: 打开网页时默认选的质量：任何显卡都是「一模一样」（老师的要求：除非自己换，一直用最高档）。
+#: 网页从来不读 config.yaml 里的 synth.quality：以前手动改过的旧值不会悄悄把她降档
+TIER_QUALITY = {t: "identical" for t in ("high", "mid", "low", "none")}
+#: 盲听测试下面的说明
+BLIND_QUALITY_NOTE = "盲听测试用的是「③ 生成讲课音频」里选的质量档位；选「一模一样」时会比较慢。"
 
 SPEED_LABEL = "语速（← 往左更快　·　中间 0 = 和你原声一样　·　往右更慢 →）"
 SPEED_NOTE = "语速调得越极端（超过 ±20%），越可能不自然；建议在 −15～+15 之间。"
@@ -294,6 +345,18 @@ APP_CSS = """
   color:#9ca3af!important}
 #vt-clips tbody tr:has(.vt-mark-unused) td *,#vt-clips tbody tr.vt-row-unused td *{color:#9ca3af!important;
   background:transparent!important;border-color:#d1d5db!important}
+/* 灰色的行里也要看得见：查找时找到的字（黄色）、现在这一处（橙色），「采用 / 已采用」按钮的蓝色 / 红色
+   （比上面那条多一个 class，所以优先；不用 :not() 改上面那条——那样会盖过「行号不显示」那条）。正在处理的 ⏳ 不在这里面 */
+#vt-clips tbody tr:has(.vt-mark-unused) td .vt-find,#vt-clips tbody tr.vt-row-unused td .vt-find{
+  background:#fde047!important;color:#111827!important}
+#vt-clips tbody tr:has(.vt-mark-unused) td .vt-find-cur,#vt-clips tbody tr.vt-row-unused td .vt-find-cur{
+  background:#f97316!important;color:#fff!important}
+#vt-clips tbody tr:has(.vt-mark-unused) td .vt-sug-blue:not(.vt-sug-busy),
+#vt-clips tbody tr.vt-row-unused td .vt-sug-blue:not(.vt-sug-busy){background:#2563eb!important;color:#fff!important;
+  border-color:#1d4ed8!important}
+#vt-clips tbody tr:has(.vt-mark-unused) td .vt-sug-red:not(.vt-sug-busy),
+#vt-clips tbody tr.vt-row-unused td .vt-sug-red:not(.vt-sug-busy){background:#dc2626!important;color:#fff!important;
+  border-color:#b91c1c!important}
 .dark #vt-clips tbody tr:has(.vt-mark-del) td,.dark #vt-clips tbody tr.vt-row-del td{background:#4c1d95!important}
 .dark #vt-clips tbody tr:has(.vt-mark-del) td *,.dark #vt-clips tbody tr.vt-row-del td *{color:#e9d5ff!important}
 .dark #vt-clips tbody tr:has(.vt-mark-unused) td,.dark #vt-clips tbody tr.vt-row-unused td{background:#374151!important}
@@ -375,6 +438,15 @@ REVIEW_JS_TEMPLATE = r"""() => {
     };
   } catch (e) {}
   let seq = 0, editor = null, menu = null, lastAdopt = {id: '', t: 0};
+  // 每送出一个操作记一笔（后台按顺序一个一个处理，做完的顺序也一样）：点「采用 / 已采用」时记下那个变成 ⏳ 的按钮
+  const pending = [];
+  // 还没交给后台的操作，按点的顺序排着。gradio 4.24 正在刷新网页（上一个操作的结果刚回来）时，按钮的点击会等刷新完
+  // 才去读隐藏输入框里的字：两个操作挨得很近时（改完字马上点另一行的「采用」），读到的都是后一个，前一个（改的字）就丢了。
+  // 所以每次点击由 __vtTake 按顺序取走自己的那一个（隐藏按钮的事件先运行 CLIP_TAKE_JS）
+  const outbox = [];
+  window.__vtTake = function (fallback) {
+    return outbox.length ? outbox.shift() : fallback;
+  };
 
   function el(tag, cls, text) {
     const x = document.createElement(tag);
@@ -427,21 +499,37 @@ REVIEW_JS_TEMPLATE = r"""() => {
   function clearSel() {
     try { window.getSelection().removeAllRanges(); } catch (e) {}
   }
-  function send(payload) {
+  function send(payload, busy) {
     const box = document.querySelector('#vt-clip-action textarea, #vt-clip-action input');
     const btn = document.querySelector('#vt-clip-action-btn');
     if (!box || !btn) {
       alert('网页还没准备好，请按 F5 刷新网页后再试一次。');
+      if (busy) { busy.el.classList.remove('vt-sug-busy'); busy.el.textContent = busy.label; }
       return;
     }
+    pending.push(busy || null);
     seq += 1;
     payload.seq = seq + '-' + Date.now();
     box.value = JSON.stringify(payload);
+    outbox.push(box.value);
     box.dispatchEvent(new Event('input', {bubbles: true}));
     // 马上（等网页把输入框的值收好就点，0 毫秒）：老师改完字紧接着点「保存修改 / 确认训练素材」时，改的字先送到，
     // 后台按顺序一个一个处理（以前等 60 毫秒，快一点的点击会让保存先到、改的字没保存上）
     setTimeout(() => btn.click(), 0);
   }
+  // 校对表的一个操作做完了（不管成功没有，接在隐藏按钮的事件后面调用）：改成功的，表格重画时按钮早就换成新的了；
+  // 程序没改（拿不准不改、文件一时读不了）时表格和原来一模一样，gradio 不重画，⏳ 会一直留着、点了也没反应
+  // （提示里说「再点一次」却点不了）——这里把那个按钮放回原样。等一会儿再看：表格重画以后旧按钮已经不在网页上了
+  window.__vtSugDone = function () {
+    const p = pending.shift();
+    if (!p) return;
+    setTimeout(() => {
+      if (p.el.isConnected && p.el.classList.contains('vt-sug-busy')) {
+        p.el.classList.remove('vt-sug-busy');
+        p.el.textContent = p.label;
+      }
+    }, 300);
+  };
 
   // ------------------------------------------------------------------ 编辑框
   function fit() {
@@ -471,9 +559,14 @@ REVIEW_JS_TEMPLATE = r"""() => {
     if (!editor) return;
     const e = editor;
     editor = null;
-    const val = e.ta.value.replace(/\s*[\r\n]+\s*/g, ' ').trim();
+    const val = flat(e.ta.value);
     e.box.remove();
-    if (commit && val && val !== e.orig) send({action: 'edit', id: e.id, no: e.no, text: val});
+    // orig = 打开编辑框时这一句的样子：这期间这一句被别的操作改过（采用、一键校正……），程序就不存这次的修改，
+    // 免得把刚改好的字又改回去（还会被当成「老师不要这个改法」记下来）
+    if (commit && val && val !== e.orig) send({action: 'edit', id: e.id, no: e.no, text: val, orig: e.orig});
+  }
+  function flat(s) {
+    return String(s || '').replace(/\s*[\r\n]+\s*/g, ' ').trim();
   }
   function tryCommit() {
     if (!editor) return;
@@ -502,7 +595,7 @@ REVIEW_JS_TEMPLATE = r"""() => {
     bar.append(hint, cancel, ok);
     box.append(ta, bar);
     document.body.appendChild(box);
-    editor = {box: box, ta: ta, hint: hint, td: td, id: info.id, no: info.no, orig: ta.value, minH: 48};
+    editor = {box: box, ta: ta, hint: hint, td: td, id: info.id, no: info.no, orig: flat(ta.value), minH: 48};
     placeEditor();
     ta.focus();
     ta.setSelectionRange(ta.value.length, ta.value.length);
@@ -657,9 +750,10 @@ REVIEW_JS_TEMPLATE = r"""() => {
       if (lastAdopt.id === info.id && now - lastAdopt.t < 600) return;
       lastAdopt = {id: info.id, t: now};
       const undo = sug.classList.contains('vt-sug-red');
+      const label = sug.textContent;
       sug.textContent = '⏳';
       sug.classList.add('vt-sug-busy');
-      send({action: undo ? 'unadopt' : 'adopt', id: info.id, no: info.no});
+      send({action: undo ? 'unadopt' : 'adopt', id: info.id, no: info.no}, {el: sug, label: label});
     } else if (info.col === C.menu) {
       openMenu(td, info);
     }
@@ -957,7 +1051,7 @@ def _text_in(value: Any) -> str:
 
 
 def _stages(cfg: Config, kind: str, backend: Optional[str] = None, **kw: Any) -> Optional[List[Tuple[float, str]]]:
-    """每种任务分哪几步（wf.task_stages）。生成要把选的质量传进来（quality=，「完美」档多一步），
+    """每种任务分哪几步（wf.task_stages）。生成要把选的质量传进来（quality=，「完美」「一模一样」档多几步），
     素材准备要传 overrides=（会不会自动查错字）。出错时返回 None（进度条照样能用，只是不显示第几步）。"""
     try:
         return list(wf.task_stages(kind, cfg, backend, **kw))
@@ -1059,21 +1153,17 @@ def _vram_tier(status: Optional[Dict[str, Any]]) -> str:
         return "none"
 
 
-def _recommended_quality(status: Optional[Dict[str, Any]]) -> Tuple[str, str]:
-    """按显卡推荐默认质量：高/中档 → 完美；小显存 → 极致；没有能用的 N 卡 → 均衡。返回 (值, 一句说明)。"""
+def _recommended_quality(status: Optional[Dict[str, Any]], cfg: Optional[Dict[str, Any]] = None) -> Tuple[str, str]:
+    """打开网页时默认的质量：任何显卡都先选好「一模一样」；说明按显卡写（显存是检测出来的，
+    显存小、没有 N 卡时说清楚会很慢、可以改选「均衡」；每句最多试几个按 cfg 里的设置，和真正生成时一样）。
+    返回 (值, 一句说明)。"""
     tier = _vram_tier(status)
-    q = TIER_QUALITY.get(tier, "balanced")
+    q = TIER_QUALITY.get(tier, "identical")
     gb = None
     if status:
         gb = _num(status.get("nominal_gb")) or _num(status.get("total_gb"))
     size = f"显存 {gb:.0f} GB" if gb else "你的显卡"
-    if tier == "none":
-        note = (f"没检测到能用的 N 卡（NVIDIA 显卡），已先选「{QUALITY_SHORT[q]}」。用 CPU 生成会很慢，"
-                "「极致」「完美」会更慢。")
-    elif tier == "low":
-        note = f"已按你的显卡自动选好「{QUALITY_SHORT[q]}」（{size}，显存偏小，「完美」会非常慢）。"
-    else:
-        note = f"已按你的显卡自动选好「{QUALITY_SHORT[q]}」（{size}）。"
+    _, note = _engine.recommended_quality(tier, size=size, cfg=cfg)
     return q, note
 
 
@@ -1097,7 +1187,8 @@ def _material_stats(project: Any) -> Tuple[float, int]:
 
 
 def _best_selection(entry: Dict[str, Any]) -> Tuple[str, str]:
-    """一个引擎的 models.json 条目 → (最佳版本编号, 像不像的说明)。"""
+    """一个引擎的 models.json 条目 → (最佳版本编号, 像不像的说明)。「一模一样」的挑选（method = deep）里的分数是
+    四项评分的综合总评分（每类句子按你自己同一类录音校准），所有地方都叫「综合总评分」，不和「像你本人」混用。"""
     sel = entry.get("selection") or {}
     if isinstance(sel.get("selection"), dict):  # run_train 返回值里套了一层
         sel = sel["selection"]
@@ -1107,7 +1198,7 @@ def _best_selection(entry: Dict[str, Any]) -> Tuple[str, str]:
         if str(r.get("id")) == best:
             pct = _pct_of(r)
             if pct is not None:
-                label = f"像你本人 {pct:.1f}%"
+                label = f"{'综合总评分' if sel.get('method') == 'deep' else '像你本人'} {pct:.1f}%"
             elif r.get("speaker_sim") is not None:
                 label = _label_for_sim(_num(r.get("speaker_sim")))
             break
@@ -1263,6 +1354,15 @@ def _cell_esc(s: str) -> str:
     return "".join(_MD_ESC.get(c) or ("&#%d;" % ord(c) if c in _HTML_CHARS else c) for c in str(s))
 
 
+def _edit_key(text: Any) -> str:
+    """比较「打开编辑框时网页上的句子」和「现在存着的句子」用：网页上显示出来的字和存的字会差在空格、换行、全角半角上
+    （显示时连续的空格合成一个、开头结尾的空格不显示；「还没有识别出文字」的提示在编辑框里是空的），
+    所以两边都按表格的写法整理（clean_transcript），再去掉所有空白以后再比。"""
+    from voicetwin.utils.textutil import clean_transcript
+
+    return re.sub(r"\s+", "", clean_transcript(str(text or "")))
+
+
 def _merge_spans(spans: Any, n: int) -> List[Tuple[int, int]]:
     out: List[Tuple[int, int]] = []
     for sp in spans or []:
@@ -1301,14 +1401,28 @@ def _render_marked(text: str, spans: Any) -> str:
     return "".join(out)
 
 
-def _render_diff(text: str, alt: str, spans: Any = None, transcript: bool = False) -> str:
+def _mother_note_html(rec: Dict[str, Any], text: str) -> str:
+    """一键校正 / 自动查错字时记下的说明：母本里这里不一样，但你自己改过（或者撤销过这个改法），程序没有动。
+    只在文字还是那时候的样子时显示（又改过就不显示，免得说的是旧的）。"""
+    note = rec.get("mother_note") if isinstance(rec.get("mother_note"), dict) else {}
+    if not note or str(note.get("text") or "") != str(text or ""):
+        return ""
+    items = [str(x) for x in (note.get("notes") or []) if x]
+    if not items:
+        return ""
+    return ('<div class="vt-diff-row vt-diff-reason">ℹ️ 和母本不一样、程序没有动的地方：'
+            + html.escape("；".join(items[:3])) + "</div>")
+
+
+def _render_diff(text: str, alt: str, spans: Any = None, transcript: bool = False, mother: bool = False) -> str:
     """两次识别结果对比（优先用 U8 的 proofcheck.render_diff_html；没有建议时把可疑的字标红）。
-    transcript=True：建议来自老师的母本标准库（文字校正），第二行写「按母本改成」。"""
+    transcript=True：建议经过了文字校正（和母本对照过），第二行写「建议改成」；mother=True：建议全是按母本的，
+    写「按母本改成」（母本优先以后自动查错字的结果也和母本对照过，母本里没有的句子的建议不能说成是母本的）。"""
     try:
         from voicetwin.data.proofcheck import render_diff_html
 
         if transcript:
-            return str(render_diff_html(text, alt, spans, label_b="按母本改成"))
+            return str(render_diff_html(text, alt, spans, label_b="按母本改成" if mother else "建议改成"))
         return str(render_diff_html(text, alt, spans))
     except ImportError:
         pass
@@ -1374,6 +1488,38 @@ def _colored_html(info: Dict[str, Any]) -> str:
     return "".join(out)
 
 
+def _mother_alt(info: Dict[str, Any]) -> str:
+    rec = info.get("rec") or {}
+    sus = rec.get("suspect") if isinstance(rec.get("suspect"), dict) else {}
+    return str(sus.get("mother_alt") or "")
+
+
+def _mother_label_todo(info: Dict[str, Any], what: str) -> str:
+    """还没采用的建议里按母本的（母本优先）：写成「按母本：……」，排在最前面；后面是另一个识别引擎 / 规则的建议。
+    只在现在的文字就是查错字时的样子时分（老师改过别处时分不清，照原来的说法）。"""
+    mother = _mother_alt(info)
+    rec = info.get("rec") or {}
+    text = str(info.get("text") or "")
+    if not mother or mother == text or text != _review.suspect_base(rec):
+        return what
+    full = info.get("to_alt") or _review.apply_edits(text, info.get("edits") or [])
+    sus = rec.get("suspect") if isinstance(rec.get("suspect"), dict) else {}
+    # 里面有没把握的按母本的改法（没有同一批录音的证据、读音不像听错：可能是新讲的课换了说法）：写清楚要听录音
+    label = "按母本（没把握，请听录音）：" if sus.get("mother_unsure") else "按母本："
+    if full == mother:
+        return label + what
+    if not _review._on_path(text, mother, full):
+        return what
+    rest = _review.describe_change(mother, full, limit=1)
+    return label + _review.describe_change(text, mother, limit=2) + (f"；另外：{rest}" if rest else "")
+
+
+def _mother_label_done(info: Dict[str, Any], what: str) -> str:
+    """已经采用的（一键校正按母本直接改好的、点过「采用」的）正好是按母本改的：写成「按母本：……」。"""
+    mother = _mother_alt(info)
+    return "按母本：" + what if mother and mother == str(info.get("text") or "") and what else what
+
+
 def _suggest_cell(info: Dict[str, Any]) -> str:
     """「修改建议」这一列（老师要求的样子）：蓝色小按钮 = 还没用这条建议，点一下就按建议改好、按钮变红；
     红色 = 建议已经生效（那几个字已经改掉，左边变蓝），再点一下可以撤销、变回蓝色。
@@ -1382,19 +1528,20 @@ def _suggest_cell(info: Dict[str, Any]) -> str:
     if info.get("edits"):
         what = (_review.describe_states(info["rec"], text, info["to_alt"], limit=2) if info.get("to_alt")
                 else _review.describe_edits(text, info["edits"], limit=2))
+        what = _mother_label_todo(info, what)
         out = (f'<span class="vt-sug-btn vt-sug-blue" title="点一下：按建议改好">采用</span>'
                f'<span class="vt-sug-text">{_cell_esc(what)}</span>')
         if info.get("undo"):  # 一部分已经改好了（一键校正改的）、一部分还没采用：已经改好的也要能撤销
             done = (_review.describe_states(info["rec"], info["to_base"], text, limit=2) if info.get("to_base")
                     else _review.describe_adopted(text, info["undo"], limit=2))
             out += (f'<br><span class="vt-sug-btn vt-sug-red" title="这些已经改好了；点一下撤销">已采用</span>'
-                    f'<span class="vt-sug-text">{_cell_esc(done)}</span>')
+                    f'<span class="vt-sug-text">{_cell_esc(_mother_label_done(info, done))}</span>')
         return out
     if info.get("adopted"):
         what = (_review.describe_states(info["rec"], info["to_base"], text, limit=2) if info.get("to_base")
                 else _review.describe_adopted(text, info.get("undo") or [], limit=2))
         return (f'<span class="vt-sug-btn vt-sug-red" title="建议已经生效；再点一下可以撤销">已采用</span>'
-                f'<span class="vt-sug-text">{_cell_esc(what)}</span>')
+                f'<span class="vt-sug-text">{_cell_esc(_mother_label_done(info, what))}</span>')
     if info.get("red"):
         return '<span class="vt-sug-none">没有建议，请听录音后双击「文字」修改</span>'
     return ""
@@ -1508,14 +1655,28 @@ def _material_formula(c: Dict[str, Any]) -> str:
     return f"{c['total']} − " + " − ".join(terms) + f" = **{c['material']}** 条"
 
 
-def _no_text_note(c: Dict[str, Any]) -> str:
-    """没有文字的片段：说清楚为什么、怎么办。"""
+def _no_text_note(c: Dict[str, Any], records: Optional[Sequence[Dict[str, Any]]] = None) -> str:
+    """没有文字的片段：说清楚为什么、怎么办。records：校对表的每一条（用来认出「没有字幕、又选了不识别」的片段）。"""
     if not c["no_text"]:
         return ""
-    if c["pending"]:
-        return (f"⚠️ **有 {c['pending']} 条还没有识别出文字**（表格里写着「还没有识别出文字」，它们不能用来训练）：上次「开始准备素材」的"
-                "「识别文字」这一步没有做完（可能中途点了停止，或者出错了）。**请再点一次上面的「开始准备素材」**，"
-                "会接着把文字识别完（已经切好的片段不用重做，不用重新上传）。")
+    # 素材准备时「识别文字用哪个引擎」选的是「不识别（只用字幕）」、视频又没有同名字幕：再点「开始准备素材」也还是不识别，
+    # 不能说成「中途停下了，再点一次就好」（prepare.py 给这些片段记了 no_asr）
+    no_engine = sum(1 for r in records or () if r.get("no_asr") and not r.get("deleted") and not r.get("asr_done")
+                    and not str(r.get("text") or "").strip())
+    pending = max(0, int(c["pending"]) - no_engine)
+    notes = []
+    if no_engine:
+        notes.append(f"⚠️ **有 {no_engine} 条没有文字**（表格里写着「还没有识别出文字」，它们不能用来训练）：这些片段来自没有同名字幕"
+                     "（.srt）的视频，而上次「开始准备素材」时「识别文字用哪个引擎」选的是「不识别（只用字幕）」，所以程序没有识别它们的文字"
+                     "（再点一次也还是不识别）。要让程序识别：打开「开始准备素材」上面的「高级设置」，把识别引擎改成"
+                     "「通用（中英文都行，推荐）」，再点一次「开始准备素材」（已经切好的片段不用重做，不用重新上传）。"
+                     "不想要这些句子也没关系，别的句子照样能训练；也可以双击「文字」自己打上去。")
+    if pending:
+        notes.append(f"⚠️ **有 {pending} 条还没有识别出文字**（表格里写着「还没有识别出文字」，它们不能用来训练）：上次「开始准备素材」的"
+                     "「识别文字」这一步没有做完（可能中途点了停止，或者出错了）。**请再点一次上面的「开始准备素材」**，"
+                     "会接着把文字识别完（已经切好的片段不用重做，不用重新上传）。")
+    if notes:
+        return "\n\n".join(notes)
     return (f"ℹ️ 有 {c['no_text']} 条识别引擎没听出文字（可能是音乐、咳嗽、杂音），不会用来训练；"
             "确实是你在说话的，可以双击「文字」自己打上去。")
 
@@ -1566,7 +1727,7 @@ def _clips_count_md(cfg: Config, voice: Any) -> str:
         elif _review.confirmed_matches(conf, records):
             text += (f"\n\n✅ **训练素材已确认**（{when}）：行号是**橙色**的句子用来训练，没有行号的不用。")
         else:
-            text += (f"\n\n⚠️ 确认（{when}）以后又改过（删除、撤销删除、保存了修改或改了语言），行号已经按现在的样子显示；"
+            text += (f"\n\n⚠️ 确认（{when}）以后又改过（加了新素材、删除、撤销删除、保存了修改或改了语言），行号已经按现在的样子显示；"
                      "改好了请再点一次最下面的「✅ 确认训练素材」。")
     else:
         text += "\n\n改好以后点最下面的「✅ 确认训练素材」：用来训练的句子行号会变成**橙色**，不用的不显示行号。"
@@ -1577,7 +1738,7 @@ def _clips_count_md(cfg: Config, voice: Any) -> str:
         text += (f"\n\n🔍 **正在查找「{_md_text(find['q'])}」**：现在有 {len(matches)} 处"
                  f"（{len({m[0] for m in matches})} 句），表格里只列出这次找到过的 {seen} 句"
                  "（查找时「只看可能有错的」先不管）；点「✖ 关闭查找」看全部。")
-    note = _no_text_note(c)
+    note = _no_text_note(c, records)
     if note:
         text += "\n\n" + note
     return text + ("\n\n" + _pending_note(unsaved) if unsaved else "")
@@ -1726,10 +1887,35 @@ PLAN_DEFAULT = ("🧠 不用自己调参数：电脑会根据你的显卡（显�
                 "训练完自动挑出最像你的那一版。具体方案开始训练后会显示在这里。")
 
 
+def _minutes_text(t: Dict[str, Any]) -> str:
+    """实测用时：「训练 32 分钟、挑选 15 分钟」（只写量到的）。"""
+    bits = []
+    for key, name in (("train_minutes", "训练"), ("select_minutes", "挑选")):
+        v = _num(t.get(key))
+        if v is not None:
+            bits.append(f"{name}不到 1 分钟" if v < 1 else f"{name} {v:g} 分钟")
+    return "、".join(bits)
+
+
+def _train_report_md(info: Any) -> str:
+    """训练完实测的几句话（实际参加训练的条数、英文、显卡、用时）和原来的模型排第几，每句一行。"""
+    if not isinstance(info, dict):
+        return ""
+    params = info.get("params") if isinstance(info.get("params"), dict) else {}
+    lines = [str(x) for x in (params.get("report") or []) if str(x or "").strip()]
+    sel = info.get("selection") if isinstance(info.get("selection"), dict) else info
+    if isinstance(sel, dict) and sel.get("previous_note"):
+        lines.append(str(sel["previous_note"]))
+    return "\n".join(f"- {_md_text(x)}" for x in lines)
+
+
 def _train_done_md(info: Dict[str, Any], plan: str = "", show_plan: bool = True) -> str:
     """训练完成的说明。show_plan=False：训练页上方已经单独显示了训练方案，这里不再重复。"""
     mins = _num(info.get("train_minutes")) if isinstance(info, dict) else None
-    if mins is None:
+    skipped = isinstance(info, dict) and (info.get("params") or {}).get("run_state") == "skip"
+    if skipped:
+        head = "### ✅ 素材没变，这次不用重新训练"
+    elif mins is None:
         head = "### ✅ 训练完成"
     elif mins < 1:  # 素材没变、接着上次练完的：几秒钟就结束了
         head = "### ✅ 训练完成（用时不到 1 分钟）"
@@ -1749,23 +1935,84 @@ def _train_done_md(info: Dict[str, Any], plan: str = "", show_plan: bool = True)
         best, label = _best_selection({"selection": sel.get("selection"), "selected": info.get("selected")})
         if sel.get("selection"):
             md = (f"{head}\n\n已经自动挑出最像你的版本" + (f"（{_md_text(label)}）" if label else "")
-                  + "，并把语速调得和你本人一样。\n\n👉 下一步：去「③ 生成讲课音频」。")
+                  + _md_text(_speed_phrase(sel, train=True)) + "\n\n👉 下一步：去「③ 生成讲课音频」。")
         else:
             md = f"{head}\n\n现在用的是最后一轮的模型。\n\n👉 下一步：去「③ 生成讲课音频」。"
         if best:
             md += f"\n\n<small>版本编号：{_md_text(best)}</small>"
+    report = _train_report_md(info)
+    if report:
+        md += "\n\n" + report
+    sel_info = info.get("selection") if isinstance(info, dict) else None
+    if not err and isinstance(sel_info, dict):
+        extra = [x for x in (_fallback_md(sel_info), _deep_lines_md(sel_info.get("selection"))) if x]
+        if extra:
+            md += "\n\n" + "\n\n".join(extra)
     if plan_md:
         md += "\n\n" + plan_md
     return md
 
 
+def _deep_lines_md(sel: Any) -> str:
+    """「一模一样」挑选（select_deep）的实测结果：前 5 名的四项评分（中英夹在一起 / 纯中文 / 纯英文 / 综合总评分）和错字率、
+    分不出来 / 各有长处、为什么不能排第一、按句子种类校准的说明……每句一行（文字由 synth/select.py 的 deep_summary_lines 写，
+    都是实测的数，量不出来写「（没测出来）」）。标准的挑选没有这些，返回空字符串。"""
+    if not isinstance(sel, dict) or sel.get("method") != "deep":
+        return ""
+    lines = [str(x) for x in (sel.get("lines") or []) if str(x or "").strip()]
+    if not lines:
+        return ""
+    head, rest = lines[0], lines[1:]
+    return f"**{_md_text(head)}**\n\n" + "\n".join(f"- {_md_text(x)}" for x in rest)
+
+
+def _fallback_md(info: Any) -> str:
+    """「一模一样」的挑选出错、自动改用了标准的挑法时的说明（挑选结果照样能用）。"""
+    if not isinstance(info, dict) or not info.get("selection_error"):
+        return ""
+    md = (f"⚠️ 按「一模一样」的方式挑选这次没成功（{_md_text(info['selection_error'])}），已经自动改用标准的挑法"
+          "（从早到晚均匀挑几个版本比）挑好了模型，可以正常生成；以后可以再点「重新挑选最佳模型」试试。")
+    if info.get("selection_error_report"):
+        md += ("\n\n📋 已自动生成问题报告（也显示在下面的「详细过程」里），需要帮忙时把这个文件发给帮你的人：`"
+               + str(info["selection_error_report"]).replace("`", "'") + "`")
+    return md
+
+
+def _speed_phrase(info: Dict[str, Any], train: bool = False) -> str:
+    """挑选结果里语速那半句：只写量到的（「一模一样」的挑选没参加训练的录音不到 8 句时不量；标准的挑法没量到时 speed 是空的）。
+    train=True：训练完的说明（「已经自动挑出最像你的版本（…）」后面接的）；否则是「重新挑选」标题后面的「；语速：…」。"""
+    speed = info.get("speed") if isinstance(info.get("speed"), dict) else {}
+    sel = info.get("selection") if isinstance(info.get("selection"), dict) else {}
+    sp = sel.get("speed_info") if isinstance(sel.get("speed_info"), dict) else None
+    if sp is not None:  # 「一模一样」的挑选：按每种语言量没量到
+        measured = [k for k in (sp.get("median") or {})]
+        changed = [k for k in measured if abs((_num(speed.get(k)) or 1.0) - 1.0) > 1e-6]
+    else:  # 标准的挑法：speed 里只有量到了的语言
+        measured = list(speed)
+        changed = [k for k in measured if abs((_num(speed.get(k)) or 1.0) - 1.0) > 1e-6]
+    if changed:
+        return "，并按实测校准了语速。" if train else "；语速：已按实测校准"
+    if measured:
+        return "；语速实测和你本人一致，不用调。" if train else "；语速：实测和你本人一致，不用调"
+    if sp is not None:
+        return ("；语速这次没测（没参加训练的录音不到 8 句，量不准），先按正常速度生成。" if train
+                else "；语速：这次没测（没参加训练的录音不到 8 句，量不准），先按正常速度")
+    return "；语速这次没测出来，先按正常速度生成。" if train else "；语速：这次没测出来，先按正常速度"
+
+
 def _select_done_md(info: Dict[str, Any]) -> str:
     best, label = _best_selection({"selection": info.get("selection"), "selected": info.get("selected")})
-    speed = info.get("speed") or {}
-    calibrated = any(abs((_num(v) or 1.0) - 1.0) > 1e-6 for v in speed.values()) if isinstance(speed, dict) else False
     parts = [x for x in (label, f"版本 {best}" if best else "") if x]
     md = ("### ✅ 已重新挑好最像你的模型" + (f"（{_md_text('，'.join(parts))}）" if parts else "")
-          + f"；语速：{'已校准' if calibrated else '和你本人一致，不用调'}")
+          + _md_text(_speed_phrase(info)))
+    fb = _fallback_md(info)
+    if fb:
+        md += "\n\n" + fb
+    table = _deep_lines_md(info.get("selection"))
+    if table:
+        md += "\n\n" + table
+    if info.get("previous_note"):
+        md += "\n\n" + _md_text(info["previous_note"])
     if info.get("material_note"):
         md += "\n\n> " + _md_text(info["material_note"])
     return md
@@ -1871,7 +2118,14 @@ def _gen_summary_md(res: Any, redo: Optional[Sequence[int]] = None) -> str:
     mean = _mean_pct(res)
     sims = [x for x in (_num(s.get("speaker_sim")) for s in segs) if x is not None]
     if mean is not None:
-        md.append(f"整体听起来：像你本人 **{mean:.1f}%**（每句的平均）")
+        # 写清楚这个数是怎么算的（规定 7：显示的数字要和说的一样）：生成引擎给的是整篇的分数（按每句的长短算，
+        # 两个版本时是最终用的那个版本整篇打的分），不是表格里各句的简单平均；只有没有整篇分数时才是各句的平均
+        if any(_num(getattr(res, k, None)) is not None for k in ("pct", "mean_pct", "overall_pct")):
+            how = ("最终用的那个版本整篇打的分" if len(_variants(res)) >= 2
+                   else "整篇的分数：按每句的长短算，长的句子算得多，所以和下面表格里各句的简单平均不完全一样")
+        else:
+            how = "每句的平均"
+        md.append(f"整体听起来：像你本人 **{mean:.1f}%**（{how}）")
         if _report_field(res, "similarity_filter") is False:
             md.append(MFCC_NOTE)
     elif sims:
@@ -1890,18 +2144,19 @@ def _gen_summary_md(res: Any, redo: Optional[Sequence[int]] = None) -> str:
     if others:
         md.append("\n".join(f"> ⚠️ {_md_text(w)}" for w in others[:10])
                   + (f"\n>\n> 还有 {len(others) - 10} 条" if len(others) > 10 else ""))
-    # 生成引擎的小结：平均每句试了几次、几句达到了「完美」的严格标准……（整篇百分比、要注意的句子上面已经说了）
+    # 生成引擎的小结：平均每句试了几次、几句达到了「完美」「一模一样」的严格标准……（整篇百分比、要注意的句子上面已经说了）
     notes = [str(n) for n in (getattr(res, "notes", None) or [])
              if str(n).strip() and not str(n).startswith(("整篇像你本人", "需要注意的句子", "没有需要特别注意"))]
     if notes:
-        md.append("<small>" + "<br>".join(_md_text(n) for n in notes[:6]) + "</small>")
+        # 「一模一样」的小结多几行实测（停顿、音量差、每句几秒）：最多显示 10 行
+        md.append("<small>" + "<br>".join(_md_text(n) for n in notes[:10]) + "</small>")
     if mean is not None or sims:
         md.append(f"<small>{HONEST_SIM}{PCT_HELP if mean is not None else ''}</small>")
     return "\n\n".join(md)
 
 
 def _report_field(res: Any, key: str) -> Any:
-    """读这次生成报告（*.report.json）里的一个字段；读不到时返回 None。"""
+    """读这次生成报告（<名字>_<模型名>.json）里的一个字段；读不到时返回 None。"""
     path = getattr(res, "report_path", None)
     try:
         if path and Path(str(path)).exists():
@@ -1940,19 +2195,37 @@ def _variant_title(v: Dict[str, Any], i: int) -> str:
     return f"版本 {_variant_letter(v, i)}：{v.get('name') or ''}" + (f"（{score}）" if score else "")
 
 
+def _denoised_note(vs: Sequence[Dict[str, Any]]) -> str:
+    """两个版本差在哪：「一模一样」只给量得出底噪的句子去杂音（版本记录里有 denoised_sentences），写明是哪几句。"""
+    vb = next((v for v in vs if str(v.get("name") or "") == "去杂音"), None) or {}
+    ds = [int(x) for x in (vb.get("denoised_sentences") or []) if isinstance(x, (int, float))]
+    total = _num(vb.get("sentences"))
+    if not ds:
+        return "只是 B 去掉了轻微的杂音。"
+    if total is not None and len(ds) >= total:
+        return "只是 B 每一句都去掉了轻微的杂音。"
+    nums = "、".join(str(x) for x in ds[:20]) + ("……（完整的列表在报告里）" if len(ds) > 20 else "")
+    return f"区别只在：B 只给第 {nums} 句去掉了轻微的杂音（别的句子两个版本一模一样）。"
+
+
 def _variants_md(vs: Sequence[Dict[str, Any]]) -> str:
-    """「完美」质量的两个版本：分数、推荐哪个。"""
+    """「完美」「一模一样」质量的两个版本：分数、推荐哪个。两个版本完全一样时（每句都量不出底噪）只说一样，
+    不说哪个「更像」；分数几乎一样时也不说「更像你的原声」。"""
     if len(vs) < 2:
         return ""
-    lines = ["#### 🎧 这次做了两个版本，听一听，选你更喜欢的"]
-    for i, v in enumerate(vs):
-        star = "　⭐ 推荐：更像你的原声" if v.get("recommended") else ""
-        lines.append(f"{i + 1}. **{_md_text(_variant_title(v, i))}**{star}")
+    same = next((v for v in vs if v.get("same_as_raw")), None)
+    if same is not None:
+        why = str(same.get("same_reason") or "每句里都量不出底噪，不需要去杂音")
+        lines = ["#### 🎧 这次的两个版本完全一样"]
+        lines += [f"{i + 1}. **{_md_text(_variant_title(v, i))}**" for i, v in enumerate(vs)]
+        lines.append(f"\n两个版本完全一样（{_md_text(why)}），用哪个都一样。")
+        lines.append(f"\n<small>{HONEST_SIM}</small>")
+        return "\n".join(lines)
     rec_i = next((i for i, v in enumerate(vs) if v.get("recommended")), None)
+    gap, tie = "", False
     if rec_i is not None:
         rec = vs[rec_i]
         other = [v for j, v in enumerate(vs) if j != rec_i]
-        gap = ""
         pr, po = _pct_of(rec), _pct_of(other[0]) if other else None
         sr, so = _num(rec.get("score")), _num(other[0].get("score")) if other else None
         if pr is not None and po is not None and pr - po >= 0.05:
@@ -1965,9 +2238,17 @@ def _variants_md(vs: Sequence[Dict[str, Any]]) -> str:
             # 百分比一样时按综合得分推荐（声纹为主，再看语速、音高和你本人差多少）
             gap = f"（百分比差不多，综合得分高 {abs(sr - so):.3f}）" if pr is not None else f"（相似度高 {abs(sr - so):.3f}）"
         elif pr is not None or sr is not None:
-            gap = "（两个版本几乎一样像，听哪个顺耳就用哪个）"
-        lines.append(f"\n⭐ 推荐：版本 {_variant_letter(rec, rec_i)}，更像你的原声{gap}")
-    lines.append(f"\n<small>两个版本的文字、停顿和字幕完全一样，只是 B 去掉了轻微的杂音。{HONEST_SIM}</small>")
+            # 几乎一样像：不说「更像你的原声」；分数完全一样时推荐的是没处理过的 A（规定）
+            tie = True
+            rule = "，分数一样时按规定用没处理过的 A" if sr == so and str(rec.get("name") or "") == "未去杂音" else ""
+            gap = f"（两个版本几乎一样像{rule}，听哪个顺耳就用哪个）"
+    lines = ["#### 🎧 这次做了两个版本，听一听，选你更喜欢的"]
+    for i, v in enumerate(vs):
+        star = ("　⭐ 推荐" if tie else "　⭐ 推荐：更像你的原声") if v.get("recommended") else ""
+        lines.append(f"{i + 1}. **{_md_text(_variant_title(v, i))}**{star}")
+    if rec_i is not None:
+        lines.append(f"\n⭐ 推荐：版本 {_variant_letter(vs[rec_i], rec_i)}{'' if tie else '，更像你的原声'}{gap}")
+    lines.append(f"\n<small>两个版本的文字、停顿和字幕完全一样，{_denoised_note(vs)}{HONEST_SIM}</small>")
     return "\n".join(lines)
 
 
@@ -2015,13 +2296,18 @@ def _first_sentence(text: str, limit: int = 40) -> str:
 
 
 def _output_path(project: Any, name: str, fmt: str, fallback: str) -> Path:
-    from voicetwin.utils.textutil import safe_name
+    """这次生成的文件名（还没加模型名）：<名字>_<10月05日09点30分>.<格式>。名字只留汉字、英文字母、数字和下划线
+    （老师的规定：点、空格、括号、横杠等都换成「_」，例如「第1.2课」→「第1_2课」）。真正写的文件名最后还会加上
+    实际用的模型名（engine.narrate 写文件那一刻按每一句实际用的模型定）：第3课_10月05日09点30分_V4.wav、
+    …_未去杂音_V4.wav、字幕 …_V4.srt、报告 …_V4.json。"""
+    from voicetwin.utils.textutil import file_stem
 
-    stem = safe_name((name or "").strip() or fallback or "讲课音频", 30)
+    stem = file_stem((name or "").strip() or fallback or "讲课音频", 30)
     fmt = fmt if fmt in ("wav", "mp3") else "wav"
     out_dir = Path(project.outputs_dir)
     base = f"{stem}_{_time_suffix()}"
-    # 同一分钟里又生成一次（换了格式、重做几句）：名字后面加 _2、_3……，不覆盖、不删掉刚才那份（音频、字幕、报告都是）
+    # 同一分钟里又生成一次（换了格式、重做几句）：名字后面加 _2、_3……（加在模型名前面：…_2_V4.wav，模型名永远在最后），
+    # 不覆盖、不删掉刚才那份（音频、字幕、报告都是）
     name, k = base, 2
     try:
         while any(out_dir.glob(glob.escape(name) + ".*")) or any(out_dir.glob(glob.escape(name) + "_*.*")):
@@ -2151,17 +2437,39 @@ def _prepare_job(cfg: Config, voice: str, upload_paths: Sequence[str], folder: s
         for k, raw in enumerate(upload_paths, 1):
             src = Path(raw)
             dst = updir / src.name
+            if not src.is_file():
+                # 网页上的上传框还显示着以前传的文件，但 gradio 的临时文件已经没了（网页服务重启过、临时文件被清理）：
+                # 上次已经放进 uploads 的那一份照样用（以前会先把它删掉，再复制失败，素材准备整个停下）
+                if dst.is_file():
+                    log.info(f"上传的临时文件已经没有了，用上次放进 uploads 的那一份：{src.name}")
+                    if progress:
+                        progress(0.02 * k / n, f"整理上传的文件 {k}/{n}：{src.name}")
+                    continue
+                raise RuntimeError(f"上传的文件「{src.name}」已经找不到了（网页服务重启过，上传的临时文件被清掉了），"
+                                   "这次没有开始准备素材。请点上传框右上角的 × 清空，再重新上传这个文件；"
+                                   "或者不用上传，在旁边「或者填写电脑上的文件夹路径」那一格里填它所在的文件夹。")
             try:
-                same = dst.exists() and dst.stat().st_size == src.stat().st_size
+                same = dst.is_file() and dst.stat().st_size == src.stat().st_size
             except OSError:
                 same = False
             if not same:
-                if dst.exists():
-                    dst.unlink()
+                # 先放进一个临时的名字（.part 不算视频，程序不会拿去处理），放好了再换上去：中途出错（硬盘满了、
+                # 文件读不了）时，uploads 里原来的那一份还在
+                part = updir / f".{src.name}.part"
                 try:
-                    os.link(str(src), str(dst))
-                except OSError:
-                    shutil.copyfile(str(src), str(dst))
+                    if part.exists():
+                        part.unlink()
+                    try:
+                        os.link(str(src), str(part))
+                    except OSError:
+                        shutil.copyfile(str(src), str(part))
+                    os.replace(str(part), str(dst))
+                finally:
+                    try:
+                        if part.exists():
+                            part.unlink()
+                    except OSError:
+                        pass
             if progress:
                 progress(0.02 * k / n, f"整理上传的文件 {k}/{n}：{src.name}")
         inputs.append(str(updir))
@@ -2176,7 +2484,7 @@ def _download_job(cfg: Config, progress: Optional[Callable[[float, str], None]] 
 
 
 def _latest_report(project: Any) -> Dict[str, Any]:
-    reports = sorted(Path(project.outputs_dir).glob("*.report.json"), key=lambda p: p.stat().st_mtime, reverse=True)
+    reports = wf.narration_reports(project.outputs_dir)  # 「<名字>_<模型名>.json」，以前的「*.report.json」也认
     for p in reports:
         try:
             data = json.loads(p.read_text(encoding="utf-8"))
@@ -2425,7 +2733,7 @@ def _blind_verdict(acc: float) -> str:
     if acc <= 0.80:
         return "🙂 有时能分辨出来。"
     return ("🤔 比较容易分辨出来。可以试试：多加一些讲课素材、认真校对文字、"
-            "用「完美」质量重新生成。")
+            "用「一模一样」质量（默认）重新生成。")
 
 
 def _blind_result_md(choices: Sequence[Any], answers: Dict[int, bool]) -> str:
@@ -2678,7 +2986,7 @@ class WebUI:
     def on_load_gpu(self) -> Tuple[Any, Any, Any]:
         """打开网页时检查显卡，并按显卡推荐默认的生成质量。"""
         status = _gpu_status(refresh=False)
-        q, note = _recommended_quality(status)
+        q, note = _recommended_quality(status, self.cfg)
         return _gpu_badge(status), _upd(value=q), f"{QUALITY_NOTE}\n\n{note}"
 
     def model_header(self, voice: Any) -> str:
@@ -2691,6 +2999,14 @@ class WebUI:
 
     def refresh_gpu(self) -> str:
         return _gpu_badge(_gpu_status(refresh=True))
+
+    def voice_status(self, voice: Any = None) -> Any:
+        """页面顶部「当前声音状态」这一行（校对表的操作、保存、确认、替换以后也刷新它）。一时读不了就先不动它。"""
+        try:
+            return _voice_status_md(self.cfg, voice)
+        except Exception as exc:  # noqa: BLE001 - 只是刷新一行状态
+            log.warning(f"刷新「当前声音状态」出错：{exc}")
+            return _upd()
 
     def after_task(self, voice: Any = None) -> Tuple[Any, ...]:
         """每个长任务结束后：刷新显卡状态、声音库、页面顶部「当前声音状态」（刷新网页后接上看进度的任务做完时，
@@ -2780,12 +3096,20 @@ class WebUI:
                 md = ATTACH_MISSED_MD
             else:
                 md = _summary_md(st.get("value") or {}) if ok else self._final_md(st, "素材准备", v)
+            # 还没确认训练素材（或者加了新素材、改过）：点了开始训练会被拦下，所以不能说「可以去训练了」，
+            # 「去「② 训练模型」 →」按钮也先不显示（老师照着「下一步」先在下面的校对表里确认）
+            blocked = bool(ok and wf.training_blocker_for(self.cfg, v))
             if ok and not self._missed(attach, st):
-                _info("✅ 素材准备完成！可以去「② 训练模型」了")
+                if blocked:
+                    _info("✅ 素材准备好了：请把校对表看一遍、改好，再点最下面的「✅ 确认训练素材」，然后去「② 训练模型」")
+                    md += ("\n\n👉 **下一步**：把下面的校对表看一遍、改好，点最下面绿色的「✅ 确认训练素材」"
+                           "（加了新素材以后也要再确认一次），然后再去「② 训练模型」点「开始训练」。")
+                else:
+                    _info("✅ 素材准备完成！可以去「② 训练模型」了")
             yield self._o(O, prep_bar=st.get("bar", ""), prep_log=text, prep_md=md,
                           voice=_upd(choices=_voices(self.cfg), value=v), clips_count=_clips_count_md(self.cfg, v),
-                          voice_status=_voice_status_md(self.cfg, v), prep_next=_btn(PREP_NEXT, visible=ok),
-                          clips_base=base, **idle)
+                          voice_status=_voice_status_md(self.cfg, v),
+                          prep_next=_btn(PREP_NEXT, visible=ok and not blocked), clips_base=base, **idle)
 
     def after_prepare_clips(self, voice: Any, only_sus: Any = False, table: Any = None, base: Any = None
                             ) -> Tuple[Any, Any, Any]:
@@ -2831,8 +3155,9 @@ class WebUI:
         audio = _upd(value=str(project.abspath(rec["path"])), label=f"试听：第 {no} 条　{text[:24]}", visible=True)
         sus = rec.get("suspect") if isinstance(rec.get("suspect"), dict) else {}
         info = _review.analyze(rec, text)
+        note = _mother_note_html(rec, text)  # 和母本不一样、但老师自己改过 / 撤销过的地方（程序没有动）
         if not sus or not (info["active"] or info["adopted"]):
-            return audio, "", cid
+            return audio, (f'<div class="vt-diff">{note}</div>' if note else ""), cid
         reasons = "；".join(info["reasons"])
         alt = _review.apply_edits(text, info["edits"]) if info["edits"] else ""
         from_tr = sus.get("src") == "transcript"
@@ -2842,7 +3167,8 @@ class WebUI:
                        f'{html.escape(str(sus["ref"]))}</div>')
         panel = ('<div class="vt-diff">' + (f'<div class="vt-diff-reason">⚠️ 可能有错：{html.escape(reasons)}</div>'
                                              if reasons else "")
-                 + _render_diff(text, alt, info["red"], from_tr) + ref_row + "</div>")
+                 + _render_diff(text, alt, info["red"], from_tr, mother=bool(alt) and alt == _mother_alt(info))
+                 + ref_row + note + "</div>")
         return audio, panel, cid
 
     def _review_outputs(self, voice: str, only_sus: Any, msg: str) -> Tuple[Any, ...]:
@@ -2965,6 +3291,9 @@ class WebUI:
         rid, start, _end = matches[i]
         order = {r["id"]: k for k, r in enumerate(project.load_manifest())}
         res = _review.replace_matches(project, q, repl, bool(word), target=(rid, start))
+        if not res["count"] and res.get("same"):
+            _review.save_find(project, q, bool(word), (i + 1) % len(matches))  # 跳到下一处（不然一直停在这一处）
+            return self._find_out(v, only_sus, f"这一处换完和原来一样，没有换：{SAME_PUNCT_NOTE}。已经跳到下一处。")
         if not res["count"]:
             msg = "这一处换完以后这句话就空了，没有换（不想要这一句请用「⋯ 选项」删除）。" if res["skipped"] else "没有换。"
             return self._find_out(v, only_sus, msg)
@@ -2990,15 +3319,20 @@ class WebUI:
             return self._find_out(v, only_sus, "请在「查找」框里输入要找的字。")
         project = wf.Project(self.cfg, v)
         res = _review.replace_matches(project, q, r, bool(word))
+        same = _int(res.get("same"))
         if not res["count"]:
             _review.save_find(project, q, bool(word), 0)
             extra = f"（{res['skipped']} 句换完会变成空的，没有换）" if res["skipped"] else ""
+            if same:  # 找到了，可是换完被表格统一的写法改回原样：说清楚为什么没换（以前说换好了，其实什么都没变）
+                return self._find_out(v, only_sus, f"没有换：{same} 句换完和原来一样（{SAME_PUNCT_NOTE}）{extra}。")
             return self._find_out(v, only_sus, "没有可以替换的地方" + extra + "。")
         what = f"换成「{html.escape(r)}」" if r.strip() else "删掉了"
         msg = (f"✅ 已经把 <b>{res['count']}</b> 处「{html.escape(q)}」{what}（{res['rows']} 句，🔴 没保存）。"
                "记得点下面的「保存修改」；换错了点「↩️ 撤销刚才的替换」。")
         if res["skipped"]:
             msg += f"（另有 {res['skipped']} 句换完会变成空的，没有换。）"
+        if same:
+            msg += f"（另有 {same} 句换完和原来一样，没有换：{SAME_PUNCT_NOTE}。）"
         _review.save_find(project, q, bool(word), 0, extra=res["ids"])  # 表格接着列出换好的句子（改过的字绿色）
         return self._find_out(v, only_sus, msg)
 
@@ -3050,7 +3384,11 @@ class WebUI:
             md = "### ⚠️ 现在一条能用来训练的句子都没有，所以没有确认。"
         if res.get("saved"):
             md += f"\n\n（先帮你保存了 {len(res['saved'])} 条没保存的修改。）"
-        note = _no_text_note(c)
+        if res.get("confirmed") and _int(res.get("unsaved")):
+            md += (f"\n\n⚠️ 确认的时候（程序在重新统计）又改了 {_int(res['unsaved'])} 句（🔴 还没保存）：这次确认的是改之前的样子。"
+                   "要用改过的，请点「保存修改」，再点一次「✅ 确认训练素材」"
+                   + ("；不要的话可以点「↩️ 撤销刚才的替换」。" if _review.has_undo(project) else "。"))
+        note = _no_text_note(c, project.load_manifest())
         if note:
             md += "\n\n" + note
         if res.get("csv_locked"):
@@ -3074,6 +3412,56 @@ class WebUI:
         if res.get("summary"):
             md += "\n\n" + _summary_md(res["summary"])
         return md
+
+    #: 校对表里只改草稿（没保存的修改）的操作
+    _DRAFT_ACTIONS = ("edit", "use", "keep", "lang", "adopt", "unadopt", "revert")
+
+    def _draft_action(self, project: Any, rec: Dict[str, Any], action: str, data: Dict[str, Any], which: str) -> str:
+        """校对表里只改草稿的操作：改文字、灰色的行改成要用、切换保留（旧）、切换语言、采用 / 撤销建议、撤销这一行的修改。
+        返回给老师看的说明；程序有意不改时 raise ValueError（里面是给老师看的原因）。"""
+        cid = rec["id"]
+        vals = _review.current_values(rec, _review.load_draft(project).get(cid))
+        if action == "edit":
+            text = str(data.get("text") or "")
+            orig = data.get("orig")  # 打开编辑框时这一句的样子（升级前打开的旧网页送来的没有这一项：照旧直接存）
+            with _review._LOCK:  # 比较和写进草稿要一起做：中间不能插进「采用」「一键校正」
+                now_rec = {r["id"]: r for r in project.load_manifest()}.get(cid) or rec
+                now = _review.current_values(now_rec, _review.load_draft(project).get(cid))["text"]
+                # 编辑框开着的时候这一句被改过了（采用、一键校正、替换、另一个网页）：不存，免得把刚改好的字整句改回去，
+                # 还被当成「老师自己打字改回去了」记进撤销记录（以后不再建议）。老师打的正好就是现在的样子时不算
+                stale = orig is not None and _edit_key(now) != _edit_key(orig) and _edit_key(text) != _edit_key(now)
+                res = None if stale else _review.set_draft(project, cid, text=text)
+            if res is None:
+                return (f"⚠️ {which}在你打开编辑框以后被改过了（比如刚点的「采用」、「📝 一键全部文字校正」、替换，"
+                        "或者另一个网页里改的），你这次改的**没有存上**，免得把刚改好的字又改回去。"
+                        "表格里现在是改过以后的句子：请再双击「文字」，在新的句子上改。"
+                        f"\n\n你刚才打的是：{_md_text(text)}")
+            return (f"✏️ {which}改好了（🔴 没保存）：{_md_text(res['values']['text'])}" if res["dirty"]
+                    else f"{which}和保存过的一样，不用保存。")
+        if action == "use":
+            if not str(vals["text"] or "").strip():
+                return (f"{which}还没有文字，不能用来训练：先双击「文字」把这句话打上去"
+                        "（或者再点一次「开始准备素材」让程序识别），再保存。")
+            res = _review.set_draft(project, cid, keep=True)
+            return f"✅ {which}改成要用了（🔴 没保存，保存以后用来训练）。" if res["dirty"] else f"{which}本来就要用。"
+        if action == "keep":
+            res = _review.set_draft(project, cid, keep=not vals["keep"])
+            return f"{which}的「保留」改成了「{'是' if res['values']['keep'] else '否'}」" + ("（🔴 没保存）" if res["dirty"] else "")
+        if action == "lang":
+            res = _review.set_draft(project, cid, lang="en" if vals["lang"] == "zh" else "zh")
+            return (f"{which}的语言改成了「{_LANG_NAMES.get(res['values']['lang'], res['values']['lang'])}」"
+                    + ("（🔴 没保存）" if res["dirty"] else ""))
+        if action == "adopt":
+            res = _review.adopt_suggestion(project, cid)
+            _info(f"✅ {which}已按建议改好，记得保存")
+            return (f"✅ {which}已按建议改好（{_md_text(res.get('changes') or '')}）：按钮变红 = 建议已经生效，改过的字是蓝色；"
+                    "现在是 🔴 没保存。")
+        if action == "unadopt":
+            res = _review.unadopt_suggestion(project, cid)
+            _info(f"↩️ {which}已撤销建议")
+            return f"↩️ {which}已撤销建议（{_md_text(res.get('changes') or '')}），按钮变回蓝色。"
+        n = _review.discard_draft(project, cid)  # revert
+        return f"↩️ {which}已撤销修改，回到保存过的样子。" if n else f"{which}没有要撤销的修改。"
 
     def do_clip_action(self, voice: Any, payload: Any, only_sus: Any = False) -> Tuple[Any, ...]:
         """校对表里的操作（网页脚本把 {"action", "id", ...} 放进隐藏的输入框，再按隐藏的按钮）：
@@ -3107,39 +3495,28 @@ class WebUI:
         if rec.get("deleted") and action not in ("restore", "delete"):
             return self._review_outputs(v, only_sus, f"{which}已经删除了（紫色 = 不用来训练）。要改它，请先在「⋯ 选项」里点"
                                                      "「↩️ 撤销删除」。")
-        vals = _review.current_values(rec, _review.load_draft(project).get(cid))
+        if action in self._DRAFT_ACTIONS:
+            try:
+                msg = self._draft_action(project, rec, action, data, which)
+            except (ValueError, KeyError) as exc:
+                # 程序有意不改（拿不准就不改、已经没有建议了、文字是空的……）：不是出错，说明原因就行（不写 ❌、不写技术细节）；
+                # 表格照样重画（另一个网页、一键校正刚改过的，按现在的样子显示）
+                why = str(exc.args[0]) if exc.args else str(exc)
+                log.info(f"校对表「{action}」没有改：{why}")
+                msg = f"⚠️ {which}没有改：{_md_text(why)}"
+            except OSError as exc:  # 文件一时读写不了（被杀毒软件 / OneDrive 占着）：说明写在表格上方，能画表格就照样画
+                log.warning(f"校对表「{action}」出错：{exc}", exc_info=True)
+                if exc.__cause__ is not None and re.search(r"[\u4e00-\u9fff]", str(exc)):
+                    msg = f"⚠️ {which}没有改：{_md_text(str(exc))}"  # 程序自己写好的中文说明（例如「请等几秒再点一次」）
+                else:
+                    msg = _friendly(exc, "校对表")
+                try:
+                    return self._review_outputs(v, only_sus, msg)
+                except OSError:
+                    return msg, _upd(), _upd()
+            return self._review_outputs(v, only_sus, msg)
         msg = ""
-        if action == "edit":
-            text = str(data.get("text") or "")
-            res = _review.set_draft(project, cid, text=text)
-            msg = (f"✏️ {which}改好了（🔴 没保存）：{_md_text(res['values']['text'])}" if res["dirty"]
-                   else f"{which}和保存过的一样，不用保存。")
-        elif action == "use":
-            if not str(vals["text"] or "").strip():
-                return self._review_outputs(v, only_sus, f"{which}还没有文字，不能用来训练：先双击「文字」把这句话打上去"
-                                                         "（或者再点一次「开始准备素材」让程序识别），再保存。")
-            res = _review.set_draft(project, cid, keep=True)
-            msg = f"✅ {which}改成要用了（🔴 没保存，保存以后用来训练）。" if res["dirty"] else f"{which}本来就要用。"
-        elif action == "keep":
-            res = _review.set_draft(project, cid, keep=not vals["keep"])
-            msg = f"{which}的「保留」改成了「{'是' if res['values']['keep'] else '否'}」" + ("（🔴 没保存）" if res["dirty"] else "")
-        elif action == "lang":
-            res = _review.set_draft(project, cid, lang="en" if vals["lang"] == "zh" else "zh")
-            msg = (f"{which}的语言改成了「{_LANG_NAMES.get(res['values']['lang'], res['values']['lang'])}」"
-                   + ("（🔴 没保存）" if res["dirty"] else ""))
-        elif action == "adopt":
-            res = _review.adopt_suggestion(project, cid)
-            msg = (f"✅ {which}已按建议改好（{_md_text(res.get('changes') or '')}）：按钮变红 = 建议已经生效，改过的字是蓝色；"
-                   "现在是 🔴 没保存。")
-            _info(f"✅ {which}已按建议改好，记得保存")
-        elif action == "unadopt":
-            res = _review.unadopt_suggestion(project, cid)
-            msg = f"↩️ {which}已撤销建议（{_md_text(res.get('changes') or '')}），按钮变回蓝色。"
-            _info(f"↩️ {which}已撤销建议")
-        elif action == "revert":
-            n = _review.discard_draft(project, cid)
-            msg = f"↩️ {which}已撤销修改，回到保存过的样子。" if n else f"{which}没有要撤销的修改。"
-        elif action in ("save_row", "delete", "restore"):
+        if action in ("save_row", "delete", "restore"):
             # 这三个马上写进校对表、再重新统计。重新统计出了问题（例如一条能用的都没有）也照样刷新表格：
             # 删除 / 撤销删除本身已经保存好了，不能让老师看到报错却以为没删掉（v18.1 老师遇到过）
             try:
@@ -3233,6 +3610,14 @@ class WebUI:
             yield self._o(O, proof_bar=st.get("bar", ""), proof_md=md, prep_log=text,
                           clips_count=_clips_count_md(self.cfg, v), **idle)
 
+    def _has_no_asr(self, voice: str) -> bool:
+        """有没有「没有字幕、准备素材时又选了不识别」而没有文字的片段（prepare.py 记的 no_asr）。"""
+        try:
+            return any(r.get("no_asr") and not r.get("deleted") and not str(r.get("text") or "").strip()
+                       for r in wf.Project(self.cfg, voice).load_manifest())
+        except Exception:  # noqa: BLE001 - 只是挑哪一句说明
+            return False
+
     def textfix_info(self, voice: Any) -> str:
         """「文字校正」按钮下面的小字：标准库里有什么（自带的母本、术语、对照表）、上传过哪些母本。"""
         try:
@@ -3252,7 +3637,8 @@ class WebUI:
         except Exception:  # noqa: BLE001
             ever = True
         if self._textfix_used(v):  # 按钮是灰的：说明为什么
-            text = (TEXTFIX_LOCKED_INFO if ever else TEXTFIX_NOTHING_INFO) + "\n\n" + text
+            text = (TEXTFIX_LOCKED_INFO if ever else
+                    TEXTFIX_NO_ENGINE_INFO if self._has_no_asr(v) else TEXTFIX_NOTHING_INFO) + "\n\n" + text
         elif ever:  # 用过、又亮了：说明这次只改哪些
             n = len(wf.textfix_new_ids(self.cfg, v))
             if n:
@@ -3265,8 +3651,37 @@ class WebUI:
             return text
         if up.get("files"):
             names = "、".join(up["files"][:3]) + (f" 等 {len(up['files'])} 个文件" if len(up["files"]) > 3 else "")
-            text += f"另外上传过：{_md_text(names)}（{up.get('chars', 0)} 个字 / 词），也一起用。"
+            text += f"另外上传过：{_md_text(names)}" + self._upload_note(up)
         return text
+
+    @staticmethod
+    def _upload_note(up: Dict[str, Any]) -> str:
+        """「另外上传过：……」后面的话：下次真的拿来用多少，别的句子为什么不用（分开说，都要是真的：
+        刚拿它改好的句子不能说成「这个声音自己的文字」，程序里本来就有的不能说「也一起用」）。"""
+        chars, own, used = _int(up.get("chars")), _int(up.get("own_lines")), _int(up.get("used_lines"))
+        known, same = _int(up.get("known_lines")), _int(up.get("same_lines"))
+        notes = []
+        if used:
+            notes.append(f"{used} 句已经拿来改好了表格里对应的句子（现在和表格里一模一样）")
+        if own:
+            notes.append(f"{own} 句上传的时候就和校对表里的一模一样（这个声音自己的文字，证明不了它自己没错）")
+        if same:
+            notes.append(f"{same} 句和校对表里现在的句子一模一样")
+        if known:
+            notes.append(f"{known} 句程序里已经带着了（你的母本标准库）")
+        if not chars:
+            if own and not (used or same or known):  # 都是这个声音自己下载的文字
+                return ("。里面的句子和校对表里的一模一样（就是这个声音自己的文字），一句话不能拿来证明它自己没错，"
+                        "所以用不上（可以给别的声音当母本用）。")
+            if known and not (used or same or own):  # 老师原来的 transcripts.csv
+                return "。里面的句子程序里已经带着了（就是你的母本标准库，每个声音都会用），不用再上传。"
+            if used and not (same or own or known):  # 刚用它改好了表格
+                return "。里面的句子已经拿来改好了表格里对应的句子（现在和表格里一模一样），没有别的要比的了。"
+            return "。里面的句子：" + "；".join(notes) + "。没有别的要比的了。" if notes else "。"
+        if up.get("too_long"):
+            return (f"（{chars} 个字 / 词），太长了：只用前面大约 {_int(up.get('room'))} 个，"
+                    "后面的用不上。请只上传和这批录音有关的讲稿。")
+        return f"（{chars} 个字 / 词），也一起用" + ("；另外" + "，".join(notes) + "，这几句不用再比。" if notes else "。")
 
     def _textfix_used(self, voice: str) -> bool:
         try:
@@ -3306,7 +3721,11 @@ class WebUI:
             md = f"### ✅ 一键全部文字校正完成：{what}，没有需要改的地方"
         parts = []
         if fixes:
-            parts.append(f"按母本标准库直接改好 **{fixes}** 处（{_int(r.get('fixed_rows'))} 条）")
+            parts.append(f"直接改好 **{fixes}** 处（{_int(r.get('fixed_rows'))} 条）"
+                         + (f"，其中按母本改的 **{_int(r.get('mother_fixes'))}** 处" if _int(r.get("mother_fixes")) else ""))
+        if _int(r.get("mother_rows")):  # 母本优先：先按内容在母本里找这一句
+            parts.append(f"母本最优先：在你的母本里找到了差不多（或者一模一样）的句子 **{_int(r.get('mother_rows'))}** 条"
+                         "（按内容找的，片段编号变了、切的位置不一样也找得到），和母本不一样的地方都按母本改")
         if adopted:
             parts.append(f"「修改建议」里有把握的也一起采用了：**{adopted}** 处（{ad_rows} 条）")
         elif found and not ad:
@@ -3323,8 +3742,25 @@ class WebUI:
                      f"对照表 {_int(r.get('corrections'))} 条"
                      + (f"；另外从母本里统计出你常说的词 {habits} 个" if habits else ""))
         files = r.get("files") or []
-        if files:
+        if files:  # 只写真的用上了的（以前不管用没用上都写）
             parts.append(f"另外用了你上传的：{_md_text('、'.join(files[:3]))}{' 等' if len(files) > 3 else ''}")
+        cut = r.get("files_cut") or []
+        if r.get("truncated") and cut:
+            what = "、".join(f"{x}（{'只用了前面一部分' if x in files else '一点都没用上'}）" for x in cut[:3])
+            parts.append(f"⚠️ 你上传的母本太长，只用了前面大约 {_int(r.get('room'))} 个字 / 词："
+                         f"{_md_text(what)}{' 等' if len(cut) > 3 else ''}。请只上传和这批录音有关的讲稿")
+        def _names(xs: List[str]) -> str:
+            return f"{_md_text('、'.join(xs[:3]))}{' 等' if len(xs) > 3 else ''}"
+
+        same, known, both = r.get("files_same") or [], r.get("files_known") or [], r.get("files_both") or []
+        if same:
+            parts.append(f"你上传的 {_names(same)} 里的句子和校对表里的一模一样，这次没有用上：一句话不能拿来证明它自己没错"
+                         "（这种文字可以给别的声音当母本用）")
+        if known:  # 老师原来的 transcripts.csv：程序里本来就带着（修缮过的那一份照样用了），不是「这个声音自己的文字」
+            parts.append(f"你上传的 {_names(known)} 里的句子程序里已经带着了（就是你的母本标准库，每个声音都会用），不用再上传")
+        if both:
+            parts.append(f"你上传的 {_names(both)} 里的句子有的和校对表里的一模一样（证明不了它自己没错），"
+                         "有的程序里已经带着了（你的母本标准库），这次没有用上")
         if _int(r.get("cleared")):
             parts.append(f"原来自动查错字标红、母本证明没错的 {_int(r.get('cleared'))} 条，红色已经去掉")
         if _int(r.get("dismissed")):
@@ -3384,8 +3820,9 @@ class WebUI:
                                                                    ([files] if files else []))]
             paths = [x for x in paths if x]
             try:
-                if paths:  # 先存好（不是 txt / csv、没有文字时直接说明，不算出错、不生成问题报告）
-                    transcript_fix.save_transcripts(project, paths)
+                if paths:  # 先存好（不是 txt / csv、没有文字、太长、全是这个声音自己的文字时直接说明，不算出错、
+                    # 不生成问题报告，也不用掉这批素材的一次）
+                    transcript_fix.save_transcripts(project, paths, refuse_useless=True)
             except ValueError as exc:
                 yield self._o(O, proof_bar=self._notice(str(exc)), tr_info=self.textfix_info(v), **idle)
                 return
@@ -3429,12 +3866,15 @@ class WebUI:
             res = wf.export_review_text(self.cfg, v)
         except (ValueError, RuntimeError) as exc:
             return self._o(O, dl_txt_md="⚠️ " + _md_text(exc), dl_txt_file=hidden)
+        except Exception as exc:  # noqa: BLE001 - 文件一时读写不了等：上次的文件也要藏起来，不然浏览器会自动下载那份旧的
+            log.error(f"「下载改好的文字」出错：{exc}", exc_info=True)
+            return self._o(O, dl_txt_md=_friendly(exc, "下载改好的文字"), dl_txt_file=hidden)
         path = str(res["path"]).replace("`", "'")  # 代码格式里原样显示（不加转义的反斜杠，路径才对）
         md = (f"⬇️ 已经把 **{res['lines']}** 句改好的文字存成 txt（一行一句，按表格的顺序"
               + (f"；紫色删除的 {res['deleted']} 句不在里面" if res.get("deleted") else "")
               + f"），浏览器会自动下载。电脑上也存了一份：`{path}`"
-              "\n\n这份文字可以自己留着、发给别人看；以后加了新的素材、「📝 一键全部文字校正」的按钮亮起来的时候，"
-              "也可以把它当母本上传（「上传更多母本」那里）一起用。")
+              "\n\n这份文字可以自己留着、发给别人看，也可以给**别的声音**当母本上传。"
+              "这个声音自己不用再上传它：这些句子就是表格里的句子，一句话不能拿来证明它自己没错，上传了也不会多改什么。")
         if res.get("unsaved"):
             md += (f"\n\n🔴 其中 **{res['unsaved']}** 条修改还没保存（文件里是改过的样子）：记得点下面的「保存修改」，"
                    "不然训练时不会用这些修改。")
@@ -3442,8 +3882,9 @@ class WebUI:
 
     # ------------------------------------------------------------------ ② 训练
     def train_plan_preview(self, voice: Any, backend: Any = None, s_ep: Any = 0, g_ep: Any = 0, bs: Any = 0,
-                           dpo: Any = "auto") -> str:
-        """训练前就显示电脑会怎么自动选参数（wf.training_plan：看显卡和素材，只读文件和 nvidia-smi，很快）。"""
+                           dpo: Any = "auto", mode: Any = "identical") -> str:
+        """训练前就显示电脑会怎么自动选参数（wf.training_plan：看显卡和素材，只读文件和 nvidia-smi，很快）；
+        下面一行一句：这次会从头练 / 接着练 / 不重新练，素材检查里实际有的情况（都是按现在的文件算出来的）。"""
         v = _voice_name(voice)
         if v:
             note = wf.material_changed_note(self.cfg, v, str(backend or self.default_train))
@@ -3459,10 +3900,12 @@ class WebUI:
                     head = "⚠️ " + _md_text(why) + "\n\n" + head
             try:
                 text = wf.training_plan(self.cfg, v, str(backend or self.default_train),
-                                        **self._train_opts(s_ep, g_ep, 0, bs, dpo))
+                                        **self._train_opts(s_ep, g_ep, 0, bs, dpo, mode))
                 if text:
-                    return (head + "🧠 **电脑会自动这样训练**：" + _md_text(_strip_plan(text))
-                            + "（想自己改，可以打开下面的「高级设置」）")
+                    first, *rest = text.split("\n")
+                    more = "".join(f"\n- {_md_text(x)}" for x in rest if x.strip())
+                    return (head + "🧠 **电脑会自动这样训练**：" + _md_text(_strip_plan(first))
+                            + "（想自己改，可以打开下面的「高级设置」）" + ("\n" + more if more else ""))
             except Exception as exc:
                 log.debug(f"training_plan 出错：{exc}")
             if head:
@@ -3513,15 +3956,17 @@ class WebUI:
                     text = "⚠️ " + why
                 yield self._o(O, train_bar=self._notice(text), train_log=text, **idle)
                 return
+        mode = wf.train_mode(self.cfg, opts.get("mode"))
         if kind == "train":
             stream = stream_task("train", "训练模型", v, _attach_missed if attach else wf.run_train, self.cfg, v, backend,
-                                 stages=_stages(self.cfg, "train", backend),
-                                 hint="训练通常要 30~90 分钟（素材越多越久），可以先去做别的事", note=NOTE, **opts)
+                                 stages=_stages(self.cfg, "train", backend, mode=mode),
+                                 hint=self._train_hint(v, backend, mode), note=NOTE, **opts)
             what, busy = "训练", TRAIN_BUSY
         else:
             stream = stream_task("select", "重新挑选最佳模型", v, _attach_missed if attach else wf.run_select, self.cfg, v,
-                                 backend,
-                                 stages=_stages(self.cfg, "select"), note=NOTE)
+                                 backend, stages=_stages(self.cfg, "select", mode=mode), hint=SELECT_HINT.get(mode, ""),
+                                 note=NOTE,
+                                 mode=mode)
             what, busy = "挑选模型", SELECT_BUSY
         plan = ""
         stop_once = _StopOnce()
@@ -3555,20 +4000,49 @@ class WebUI:
                           train_plan=final_plan or _upd(), **idle)
 
     @staticmethod
-    def _train_opts(s_ep: Any, g_ep: Any, q_ep: Any, bs: Any, dpo: Any = "auto") -> Dict[str, Any]:
-        """高级设置 → 训练选项（0 / 空 = 自动，交给引擎按显卡和素材决定）。"""
+    def _train_opts(s_ep: Any, g_ep: Any, q_ep: Any, bs: Any, dpo: Any = "auto", mode: Any = "identical") -> Dict[str, Any]:
+        """高级设置 → 训练选项（0 / 空 = 自动，交给引擎按显卡和素材决定）；mode 是「训练方式」（网页上默认「一模一样」）。"""
         opts: Dict[str, Any] = {"sovits_epochs": _int(s_ep) or None, "gpt_epochs": _int(g_ep) or None,
                                 "epochs": _int(q_ep) or None, "batch_size": _int(bs) or None}
         d = str(dpo or "auto").strip().lower()
         opts["if_dpo"] = True if d == "on" else (False if d == "off" else None)
+        opts["mode"] = "standard" if str(mode or "").strip() == "standard" else "identical"
         return opts
 
-    def do_train(self, voice: Any, backend: Any, s_ep: Any, g_ep: Any, q_ep: Any, bs: Any,
-                 dpo: Any = "auto") -> Iterator[Tuple[Any, ...]]:
-        yield from self._train_common("train", voice, backend, self._train_opts(s_ep, g_ep, q_ep, bs, dpo))
+    def _train_hint(self, voice: str, backend: str, mode: str) -> str:
+        """进度条上「要多久」：这台电脑上次实测的（训练 + 挑选）；没测过时只说估计。"""
+        t = wf.measured_train_minutes(self.cfg, voice, backend).get(mode) or {}
+        if t.get("train_minutes") is not None:
+            return "上次实测：" + _minutes_text(t) + "，可以先去做别的事"
+        if mode == "identical":
+            return "第一次会很慢（估计要几个小时），可以先去做别的事"
+        return "训练通常要 30~90 分钟（估计，素材越多越久），可以先去做别的事"
 
-    def do_select(self, voice: Any, backend: Any) -> Iterator[Tuple[Any, ...]]:
-        yield from self._train_common("select", voice, backend, {})
+    def train_mode_choices(self, voice: Any, backend: Any = None) -> List[Tuple[str, str]]:
+        """「训练方式」的两个选项；做完过一次的那种方式后面写上次实测用了多久。"""
+        v = _voice_name(voice)
+        times = wf.measured_train_minutes(self.cfg, v, str(backend or self.default_train)) if v else {}
+        out = []
+        for label, key in TRAIN_MODE_CHOICES:
+            t = times.get(key) or {}
+            out.append((label + (f"（上次实测：{_minutes_text(t)}）" if t.get("train_minutes") is not None else ""), key))
+        return out
+
+    def on_load_train_mode(self, voice: Any) -> Any:
+        """打开（刷新）网页时：「训练方式」先选好「一模一样」（和生成页的质量一样）。"""
+        return _upd(choices=self.train_mode_choices(voice), value="identical")
+
+    def refresh_train_mode(self, voice: Any, backend: Any = None) -> Any:
+        """换声音 / 训练完：选项后面的实测用时跟着更新，选中的不变。"""
+        return _upd(choices=self.train_mode_choices(voice, backend))
+
+    def do_train(self, voice: Any, backend: Any, s_ep: Any, g_ep: Any, q_ep: Any, bs: Any,
+                 dpo: Any = "auto", mode: Any = "identical") -> Iterator[Tuple[Any, ...]]:
+        yield from self._train_common("train", voice, backend, self._train_opts(s_ep, g_ep, q_ep, bs, dpo, mode))
+
+    def do_select(self, voice: Any, backend: Any, mode: Any = "identical") -> Iterator[Tuple[Any, ...]]:
+        yield from self._train_common("select", voice, backend,
+                                      {"mode": "standard" if str(mode or "").strip() == "standard" else "identical"})
 
     # ------------------------------------------------------------------ ③ 生成
     def on_script_upload(self, f: Any, current_name: Any = "") -> Tuple[Any, Any, Any, Any]:
@@ -3594,7 +4068,23 @@ class WebUI:
                     pass
                 return (_upd(), _upd(), f"❌ 读不了这个文件：{_md_text(title)}。Word 文件请另存为 .docx 或 .txt 再上传。",
                         _upd())
-            return (text, None, f"已把「{_md_text(p.name)}」的内容放进上面的讲稿框，可以直接修改。", name_upd)
+            info = {"tables": 0, "textboxes": 0}
+            if ext == ".docx":
+                from voicetwin.synth.script import docx_info
+
+                info = docx_info(p)
+            if not str(text or "").strip():
+                # 什么都没读到：讲稿框里原来的字不要清掉，也不能说「已放进讲稿框」
+                why = "（字都在文本框里，读不出来）" if info["textboxes"] else "（可能都在图片里，或者文件是空的）"
+                return (_upd(), None, f"⚠️ 「{_md_text(p.name)}」里没有读到文字{why}。请打开这个文件，"
+                        "把要读的文字复制下来，粘贴到上面的讲稿框里。", _upd())
+            msg = f"已把「{_md_text(p.name)}」的内容放进上面的讲稿框，可以直接修改。"
+            if info["tables"]:
+                msg += ("表格里的字也按顺序放进去了（表格的每一行是一段）：表头、「导入」这种小标题如果不想读出来，"
+                        "请在讲稿框里删掉。")
+            if info["textboxes"]:
+                msg += "⚠️ 文件里有文本框，文本框里的字读不出来：需要的话请打开文件复制，粘贴到讲稿框里。"
+            return (text, None, msg, name_upd)
         if ext in SCRIPT_SUB_EXTS:
             return (_upd(), _upd(), f"已载入字幕文件「{_md_text(p.name)}」：会按字幕的时间轴生成（适合给视频配音）。"
                     "要改用上面的文字，请点文件右上角的 × 删除它。", name_upd)
@@ -3642,7 +4132,7 @@ class WebUI:
             return
         fmt = str(out_fmt or self.cfg.get_path("synth.output_format", "wav") or "wav")
         out = _output_path(project, str(out_name or ""), fmt, stem)
-        q = str(quality or "balanced")
+        q = str(quality or "identical")  # 没选（网页刚打开还没收到显卡检查的结果）：用默认的「一模一样」
         factor = _speed_factor(speed)
         log.info(f"质量 {q}（{QUALITY_SHORT.get(q, q)}），语速系数 {factor}")
         stream = stream_task("generate", "生成讲课音频", v, _attach_missed if attach else wf.run_narrate, self.cfg, v, source,
@@ -3694,7 +4184,7 @@ class WebUI:
         vs = st.get("variants") or []
         chosen = next((x for x in vs if str(x.get("name")) == str(name)), None)
         if not v or chosen is None:
-            return _upd(), _upd(), "请先生成一次（「完美」质量会做两个版本）。"
+            return _upd(), _upd(), "请先生成一次（「完美」「一模一样」质量会做两个版本）。"
         try:  # 已经是最终版本就什么都不做（gradio 4.24：这组控件刚显示出来时也会触发一次 input，实测）
             current = json.loads(Path(str(st.get("report", ""))).read_text(encoding="utf-8")).get("final")
         except Exception:
@@ -3741,7 +4231,7 @@ class WebUI:
         return _upd(value=str(out), label=label, visible=True)
 
     def do_speed_preview(self, voice: Any, text: Any, speed: Any, backend: Any) -> Iterator[Tuple[Any, ...]]:
-        """「▶ 试听语速」：用最快的质量读一句话，先听听语速合不合适。"""
+        """「▶ 试听（快速，只听语速）」：用最快的质量读一句话，先听听语速合不合适。"""
         O = self.SPEED_OUT
         idle = dict(speed_try=self._idle_btn(SPEED_BTN), gen_btn=self._idle_btn(GEN_BTN), gen_stop=self._stop_hidden())
         v = _voice_name(voice)
@@ -3916,7 +4406,7 @@ class WebUI:
             return
         count = max(2, min(MAX_BLIND // 2, _int(n, 10) or 10))
         stream = stream_task("blind", "生成盲听测试", v, _attach_missed if attach else _blind_job, self.cfg, v, count,
-                             str(quality or "balanced"),
+                             str(quality or "identical"),
                              stages=_stages(self.cfg, "blind"), note=NOTE)
         for text, st in stream:
             if st.get("busy"):
@@ -4054,7 +4544,11 @@ class WebUI:
         c = self.c
         css = PROGRESS_CSS + (getattr(_gpu, "GPU_CSS", "") if _gpu is not None else "") + APP_CSS
         # 浏览器标签页上的标题也显示 v18（老师的永久要求：网页标题永远是「声音分身 VoiceTwin v18」）
-        blocks_kw: Dict[str, Any] = dict(title=PAGE_TITLE, analytics_enabled=False, css=css, delete_cache=(86400, 86400))
+        # delete_cache：每小时检查一次，删掉 20 小时以前发给网页的文件。gradio 4.24 比较「多久以前」时只看不满一天的那部分
+        # （timedelta.seconds），以前写的 (86400, 86400) 永远不会成立、什么都不删；所以「多久」一定要少于一天。
+        # 关掉黑色窗口时 gradio 自己的清理不会运行，下次启动时由 launcher 清理（见 launcher._use_workspace_cache）
+        blocks_kw: Dict[str, Any] = dict(title=PAGE_TITLE, analytics_enabled=False, css=css,
+                                         delete_cache=GRADIO_DELETE_CACHE)
         blocks_kw["js"] = page_js()
         try:  # 老师的 Windows 是英文版：浏览器语言是英文时 gradio 自带的字（Drop File Here……）也显示成中文
             import inspect
@@ -4122,7 +4616,7 @@ class WebUI:
                     with gr.Row():
                         c["files"] = gr.File(label="上传视频/音频/字幕（可多选）", file_count="multiple", file_types=file_types)
                         c["folder"] = gr.Textbox(label="或者填写电脑上的文件夹路径（推荐）", placeholder=r"例如 D:\讲课视频",
-                                                 info="视频很大（几个 GB）时，建议直接填文件夹路径，不用上传，更快，也不占 C 盘。")
+                                                 info="视频很大（几个 GB）时，建议直接填文件夹路径，不用上传，更快，也不用再复制一份占硬盘。")
                     c["separate"] = gr.Checkbox(label="视频有背景音乐（去除背景音乐，会慢一些）", value=False)
                     with gr.Accordion(ADV_LABEL, open=False):
                         with gr.Row():
@@ -4151,7 +4645,7 @@ class WebUI:
                     c["proof_bar"] = gr.HTML("", elem_classes="vt-bar-box")
                     c["proof_md"] = gr.Markdown(elem_classes="vt-md")
                     # 文字校正（v18.5，老师的要求）：上传自己的逐字稿，按读音和前后文比对，结果覆盖「可能有错」列；
-                    # 下载改好的文字：「文字」列现在的文字存成 txt（下次可以当逐字稿上传）
+                    # 下载改好的文字：「文字」列现在的文字存成 txt（可以给别的声音当母本；同一个声音上传了用不上）
                     gr.Markdown(TEXTFIX_HELP, elem_classes="vt-md vt-textfix-help")
                     with gr.Row(equal_height=False):
                         c["tr_files"] = gr.File(label="📄 上传更多母本（可选：txt 或 transcripts.csv，可以选好几个；"
@@ -4170,9 +4664,9 @@ class WebUI:
                     # 查找 / 替换（像 Word）：表格只列出找到的句子；替换以后存成没保存的修改（红灯），保存才生效
                     with gr.Group(elem_classes="vt-find-bar"):
                         with gr.Row():
-                            c["find_q"] = gr.Textbox(label="🔍 查找（例如：艾子）", scale=3, max_lines=1,
+                            c["find_q"] = gr.Textbox(label="🔍 查找（例如：借词）", scale=3, max_lines=1,
                                                      elem_id="vt-find-q")
-                            c["find_r"] = gr.Textbox(label="替换成（例如：as）", scale=3, max_lines=1,
+                            c["find_r"] = gr.Textbox(label="替换成（例如：介词）", scale=3, max_lines=1,
                                                      elem_id="vt-find-r")
                             c["find_word"] = gr.Checkbox(label="英文只找整个单词（找 as 不会找到 has）", value=True,
                                                          scale=2)
@@ -4199,7 +4693,8 @@ class WebUI:
                                                visible=False)
                     c["clip_diff"] = gr.HTML("")
                     gr.Markdown("标红只是提醒「可能有错」，不一定真错；也可能有个别错字没被发现。"
-                                "「修改建议」来自另一个识别引擎或你的母本标准库，大多数是对的，但不能保证百分之百对：点了以后改过的字会变成蓝色，"
+                                "「修改建议」先按你的母本（写着「按母本」：母本里有差不多的句子）；母本里没有的句子才用另一个识别引擎或语法术语的猜测，"
+                                "大多数是对的，但不能保证百分之百对：点了以后改过的字会变成蓝色，"
                                 "请看一眼对不对（不对就双击「文字」再改，或者在「⋯ 选项」里撤销）。",
                                 elem_classes="vt-honest")
                     save_clips = gr.Button("保存修改", variant="primary")
@@ -4208,9 +4703,8 @@ class WebUI:
 
                 # ---------------------------------------------------- ② 训练
                 with gr.Tab("② 训练模型", id="train") as train_tab:
-                    gr.Markdown("直接点「开始训练」就行，电脑会自动完成（素材越多越久，通常 30~90 分钟）。"
-                                "训练时可以去做别的事，但不要关闭黑色窗口。训练结束后会自动挑出最像你的模型，"
-                                "并把语速调得和你本人一样。")
+                    gr.Markdown(TRAIN_INTRO)
+                    c["train_mode"] = gr.Radio(TRAIN_MODE_CHOICES, value="identical", label="训练方式", info=TRAIN_MODE_INFO)
                     c["train_plan"] = gr.Markdown(PLAN_DEFAULT, elem_classes="vt-md")
                     with gr.Row():
                         c["train_btn"] = gr.Button(TRAIN_BTN, variant="primary", scale=3)
@@ -4237,7 +4731,7 @@ class WebUI:
                 # ---------------------------------------------------- ③ 生成
                 with gr.Tab("③ 生成讲课音频", id="gen") as gen_tab:
                     c["gen_warn"] = gr.Markdown(elem_classes="vt-md")
-                    gr.Markdown("粘贴讲稿或上传讲稿文件。空一行 = 段落停顿；`[停顿=1.5]` 指定停顿秒数。"
+                    gr.Markdown("粘贴讲稿或上传讲稿文件。空一行 = 段落停顿；`[停顿=1.5]` 指定停顿秒数（中文输入法打出来的【停顿=1.5】也可以）。"
                                 "多音字、术语读音可在 `workspace/声音名/lexicon.txt` 里纠正。")
                     with gr.Row():
                         with gr.Column(scale=3):
@@ -4246,13 +4740,13 @@ class WebUI:
                                                        file_types=list(SCRIPT_TEXT_EXTS + SCRIPT_SUB_EXTS))
                             c["script_hint"] = gr.Markdown(elem_classes="vt-md")
                             with gr.Row():
-                                c["out_name"] = gr.Textbox(label="保存的文件名（可以不填）", placeholder="例如：第3课 牛顿第二定律",
+                                c["out_name"] = gr.Textbox(label=OUT_NAME_LABEL, placeholder="例如：第3课 牛顿第二定律",
                                                            scale=2)
                                 fmt_default = str(cfg.get_path("synth.output_format", "wav") or "wav")
                                 c["out_fmt"] = gr.Radio(FORMAT_CHOICES, value=fmt_default if fmt_default in ("wav", "mp3") else "wav",
                                                         label="保存格式", scale=2)
                         with gr.Column(scale=2):
-                            c["quality"] = gr.Radio(QUALITY_CHOICES, value="balanced", label="质量")
+                            c["quality"] = gr.Radio(QUALITY_CHOICES, value="identical", label="质量")
                             c["quality_note"] = gr.Markdown(QUALITY_NOTE, elem_classes="vt-honest")
                             c["speed"] = gr.Slider(-30, 30, value=0, step=1, label=SPEED_LABEL)
                             c["speed_text"] = gr.Markdown(f"**{_speed_text(0)}**　<small>{SPEED_NOTE}</small>")
@@ -4324,7 +4818,8 @@ class WebUI:
                     has_blind = callable(getattr(wf, "build_blind_test", None))
                     gr.Markdown("### 👂 观众盲听测试\n电脑从你的真实录音里挑几句，再用你的模型读同样的句子，"
                                 "打乱顺序编上号。让听众逐段选「真人」还是「生成」，看大家能不能分辨出来。"
-                                + ("（会用到显卡，大约几分钟）" if has_blind else "\n\n（这个版本还没有装上这个功能。）"))
+                                + (f"（会用到显卡）\n\n{BLIND_QUALITY_NOTE}" if has_blind
+                                   else "\n\n（这个版本还没有装上这个功能。）"))
                     with gr.Row(visible=has_blind):
                         c["bt_n"] = gr.Slider(2, MAX_BLIND // 2, value=min(10, MAX_BLIND // 2), step=1,
                                               label="用几句话（真人和生成的各这么多段）")
@@ -4396,8 +4891,11 @@ class WebUI:
                 self.library, None, outs(self.LIB_OUT), **quick)
             c["voice"].change(_safe("读取声音", len(voice_outs), 0)(self.on_voice_change),
                               [c["voice"], c["only_sus"], c["s_backend"]], voice_outs, **quick)
-            plan_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["bs"], c["dpo"]]
+            plan_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["bs"], c["dpo"], c["train_mode"]]
             c["voice"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
+            # 「训练方式」：每次打开网页都先选好「一模一样」；换声音时选项后面的实测用时跟着变
+            app.load(self.on_load_train_mode, c["voice"], c["train_mode"], **quick)
+            c["voice"].change(self.refresh_train_mode, [c["voice"], c["t_backend"]], c["train_mode"], **quick)
 
             def lib_pick(table: Any, evt: gr.SelectData) -> Tuple[Any, Any]:
                 try:
@@ -4437,15 +4935,19 @@ class WebUI:
             # 不会因为上一下还没做完就被丢掉（gradio 默认 trigger_mode="once" 会丢：删除一行要 3 秒，这时改的字会不见）
             rq = dict(quick, concurrency_id="vt-review")
             # 删除 / 撤销删除 / 改成要用以后，「一键全部文字校正」能处理的句子变了：按钮、上传框、说明跟着刷新
-            c["clip_action_btn"].click(_safe("校对表", len(review_outs), 0)(self.do_clip_action),
-                                       [c["voice"], c["clip_action"], c["only_sus"]], review_outs,
-                                       trigger_mode="multiple", **rq).then(self.textfix_state, c["voice"], tf_outs, **quick)
+            # 页面顶部的「当前声音状态」也跟着刷新：确认 / 保存 / 删除以后，下一步该点哪里变了（不然一直说「去确认」或「去训练」）
+            status_md = self.voice_status
+            act = c["clip_action_btn"].click(_safe("校对表", len(review_outs), 0)(self.do_clip_action),
+                                             [c["voice"], c["clip_action"], c["only_sus"]], review_outs,
+                                             trigger_mode="multiple", js=CLIP_TAKE_JS, **rq)
+            act.then(self.textfix_state, c["voice"], tf_outs, **quick).then(status_md, c["voice"], c["voice_status"], **quick)
+            act.then(None, None, None, js=SUG_DONE_JS, **quick)  # 程序没改、表格没重画时，⏳ 的「采用」按钮放回原样
             save_clips.click(_safe("保存修改", 3, 0)(self.do_save), [c["voice"], c["clips"], c["only_sus"]],
                              [c["review_md"], c["clips_count"], c["clips"]], **rq).then(
-                self.textfix_state, c["voice"], tf_outs, **quick)
+                self.textfix_state, c["voice"], tf_outs, **quick).then(status_md, c["voice"], c["voice_status"], **quick)
             c["confirm_btn"].click(_safe("确认训练素材", 3, 0)(self.do_confirm), [c["voice"], c["only_sus"]],
                                    [c["review_md"], c["clips_count"], c["clips"]], **rq).then(
-                self.textfix_state, c["voice"], tf_outs, **quick)
+                self.textfix_state, c["voice"], tf_outs, **quick).then(status_md, c["voice"], c["voice_status"], **quick)
             find_outs = outs(self.FIND_OUT)
             # 查找的按钮一个接一个处理（不会同时改查找的记录）；上一处 / 下一处连点几下就走几处（像 Word）
             fq = dict(quick, concurrency_id="vt-find")
@@ -4458,9 +4960,12 @@ class WebUI:
                                  find_outs, **fq_multi)
             c["find_next"].click(_safe("查找", 4, 0)(lambda v, o: self.do_find_move(v, 1, o)), [c["voice"], c["only_sus"]],
                                  find_outs, **fq_multi)
-            c["find_rep1"].click(_safe("替换", 4, 0)(self.do_replace_one), rep_in, find_outs, **fq)
-            c["find_repall"].click(_safe("全部替换", 4, 0)(self.do_replace_all), rep_in, find_outs, **fq)
-            c["find_undo"].click(_safe("撤销替换", 4, 0)(self.do_undo_replace), [c["voice"], c["only_sus"]], find_outs, **fq)
+            c["find_rep1"].click(_safe("替换", 4, 0)(self.do_replace_one), rep_in, find_outs, **fq).then(
+                status_md, c["voice"], c["voice_status"], **quick)  # 替换以后有没保存的修改：顶部的下一步跟着变
+            c["find_repall"].click(_safe("全部替换", 4, 0)(self.do_replace_all), rep_in, find_outs, **fq).then(
+                status_md, c["voice"], c["voice_status"], **quick)
+            c["find_undo"].click(_safe("撤销替换", 4, 0)(self.do_undo_replace), [c["voice"], c["only_sus"]], find_outs,
+                                 **fq).then(status_md, c["voice"], c["voice_status"], **quick)
             c["find_close"].click(_safe("关闭查找", 4, 0)(self.do_find_close), [c["voice"], c["only_sus"]], find_outs, **fq)
             c["proof_btn"].click(_settled(self.do_proofcheck), [c["voice"], c["only_sus"]], outs(self.PROOF_OUT),
                                  **heavy).then(
@@ -4479,14 +4984,16 @@ class WebUI:
             c["voice"].change(lambda: ("", _upd(value=None, visible=False)), None, outs(self.DLTXT_OUT), **quick)
 
             # ②
-            train_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["q_ep"], c["bs"], c["dpo"]]
+            train_in = [c["voice"], c["t_backend"], c["s_ep"], c["g_ep"], c["q_ep"], c["bs"], c["dpo"], c["train_mode"]]
             c["train_btn"].click(_settled(self.do_train), train_in, outs(self.TRAIN_OUT), **heavy).then(
                 self.after_task, c["voice"], after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick).then(
-                self.model_header, c["voice"], c["header"], **quick)
-            c["select_btn"].click(_settled(self.do_select), [c["voice"], c["t_backend"]], outs(self.TRAIN_OUT),
-                                  **heavy).then(
+                self.model_header, c["voice"], c["header"], **quick).then(
+                self.refresh_train_mode, [c["voice"], c["t_backend"]], c["train_mode"], **quick)
+            c["select_btn"].click(_settled(self.do_select), [c["voice"], c["t_backend"], c["train_mode"]],
+                                  outs(self.TRAIN_OUT), **heavy).then(
                 self.after_task, c["voice"], after_outs, **quick).then(gen_warn, [c["voice"], c["s_backend"]], c["gen_warn"], **quick).then(
-                self.model_header, c["voice"], c["header"], **quick)
+                self.model_header, c["voice"], c["header"], **quick).then(
+                self.refresh_train_mode, [c["voice"], c["t_backend"]], c["train_mode"], **quick)
             c["train_next"].click(lambda: gr.Tabs(selected="gen"), None, tabs, **quick)
             # 打开「② 训练模型」页、换引擎、改高级设置时，重新预览这次会怎么训练（只读文件和 nvidia-smi，很快）
             train_tab.select(self.train_plan_preview, plan_in, c["train_plan"], **quick)
@@ -4494,6 +5001,7 @@ class WebUI:
             train_tab.select(self.refresh_train_bar, [c["voice"], c["train_bar"]], c["train_bar"], **quick)
             c["t_backend"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
             c["dpo"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
+            c["train_mode"].change(self.train_plan_preview, plan_in, c["train_plan"], **quick)
             for name in ("s_ep", "g_ep", "bs"):
                 # 数字框每按一个键就触发一次；默认的 trigger_mode="once" 会把预览还没算完时按的键丢掉
                 # （打「12」只预览到「1」）。always_last：算完后再按最后的值算一次。

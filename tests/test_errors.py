@@ -314,6 +314,28 @@ def test_gpu_status_message_from_doctor_is_driver_problem():
     assert explain(RuntimeError(msg)).key == "driver"
 
 
+def test_own_clear_messages_are_not_covered_by_technical_details():
+    """声音分身自己查出来的原因（可选引擎没装、训练好的模型找不到）排在最前面：
+    技术细节里的「modelscope download」「pip install」不能把它说成「下载识别模型失败」「缺少组件」。"""
+    idx = explain(RuntimeError("IndexTTS 是可选引擎，这台电脑没有装好，所以用不了。把「高级设置」里的引擎换回「GPT-SoVITS」就可以。\n"
+                               "- 缺少 IndexTTS 模型：D:/index-tts/checkpoints/config.yaml（modelscope download --model "
+                               "IndexTeam/IndexTTS-2.5 --local_dir D:/index-tts/checkpoints）"))
+    assert idx.key == "optional_engine_missing" and idx.title == "IndexTTS 没有装好，用不了"
+    assert "GPT-SoVITS" in idx.advice and "modelscope" in idx.detail
+    qw = explain(RuntimeError("Qwen3-TTS 是可选引擎，这台电脑没有装好，所以用不了。把「高级设置」里的引擎换回「GPT-SoVITS」就可以。\n"
+                              "- Python 环境 C:\\py\\python.exe 里没有安装 qwen-tts（pip install -U qwen-tts）"))
+    assert qw.key == "optional_engine_missing" and qw.title.startswith("Qwen3-TTS") and is_fatal(qw)
+    # 说到老师选这个引擎的地方：生成、试听在 ③；「重新挑选最佳模型」用的是 ② 里选的（run_select 补上那一句）
+    assert "「③ 生成讲课音频」" in qw.advice and "刚才那个按钮" in qw.advice and "②" not in qw.advice
+    from voicetwin.errors import TRAIN_TAB_ENGINE
+
+    sel = explain(RuntimeError(f"{qw.detail}\n（{TRAIN_TAB_ENGINE}）"))
+    assert sel.key == "optional_engine_missing" and sel.title == qw.title
+    assert "「② 训练模型」" in sel.advice and "「重新挑选最佳模型」" in sel.advice and "③" not in sel.advice
+    tm = explain(RuntimeError("找不到训练好的模型文件（vt_a_e8_s80.pth、vt_a-e15.ckpt），没有可以挑选的模型，这次没有开始挑选"))
+    assert tm.key == "trained_missing" and "重新训练" in tm.advice
+
+
 def test_fatal_keys_are_real_rules():
     from voicetwin.errors import _RULE_KEYS
 

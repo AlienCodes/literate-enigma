@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+import gc
 import importlib.util
 import math
 import os
 import re
+import sys
 import threading
 import unicodedata
 from dataclasses import asdict, dataclass, field
@@ -18,7 +20,7 @@ from voicetwin.style.profile import target_rate
 from voicetwin.style.prosody import f0_stats
 from voicetwin.utils.audio import clip_ratio, resample, speech_activity
 from voicetwin.utils.log import get_logger
-from voicetwin.utils.textutil import ALL_PUNCT_RE, CJK_RE, NUM_RUN_RE, syllable_count, to_simplified
+from voicetwin.utils.textutil import ALL_PUNCT_RE, CJK_RE, EN_WORD_RE, NUM_RUN_RE, syllable_count, to_simplified
 
 log = get_logger("metrics")
 ProgressFn = Callable[[float, str], None]
@@ -59,12 +61,36 @@ def _pinyin_fn() -> Optional[Callable[[str], List[str]]]:
 
 
 _NUM = "\ue000"  # 数字串的占位符（不会被当成标点去掉）
+_PCT = "\ue001"  # 百分数的占位符：30% 和读出来的「百分之三十」一样
+_NUM_CHARS = "0-9零〇一二两三四五六七八九十百千万亿点."
+#: 合成引擎（GPT-SoVITS 的中文前端）把 30% 读成「百分之三十」，Paraformer 也这样写；Whisper 有时写 30%
+_PCT_SPOKEN_RE = re.compile(f"百分之[{_NUM_CHARS}]+")
+_PCT_WRITTEN_RE = re.compile(r"(?:\d+(?:\.\d+)?|[零〇一二两三四五六七八九十百千万亿]+(?:点[零〇一二两三四五六七八九]+)?)\s*%")
+#: 时刻 10:30（和 GPT-SoVITS 的 zh_normalization/chronology.py 同一个写法）：读成「十点半」「十点三十五分」
+_TIME_RE = re.compile(r"(?<!\d)([01]?\d|2[0-3]):([0-5]\d)(?::([0-5]\d))?(?!\d)")
+_HALF_HOUR_RE = re.compile("(?<=[0-9零〇一二两三四五六七八九十])点半")
+
+
+def _time_words(m: "re.Match[str]") -> str:
+    """10:30 → 10点30分、10:00 → 10点（和合成引擎读出来的说法对得上：十点半 → 十点三十分）。"""
+    out = f"{m.group(1)}点"
+    if m.group(2).lstrip("0"):
+        out += f"{m.group(2)}分"
+    if m.group(3) and m.group(3).lstrip("0"):
+        out += f"{m.group(3)}秒"
+    return out
 
 
 def _normalize(text: str) -> str:
-    """去标点、转简体、小写；数字串（2024 / 二零二四）统一成一个占位符，漏读数字也能算出来。"""
+    """去标点、转简体、小写；数字串（2024 / 二零二四）统一成一个占位符，漏读数字也能算出来。
+    百分数（30% / 百分之三十）统一成另一个占位符：以前「百分之三十」算成 3 个错字，读对了的句子被重做 20 次还标成读错；
+    读的时候漏了「百分之」（只读「三十」）仍然算错。时刻 10:30 和「十点半」「十点三十分」也算一样。"""
     text = unicodedata.normalize("NFKC", text or "")
     text = to_simplified(text).lower()
+    text = _TIME_RE.sub(_time_words, text)
+    text = _HALF_HOUR_RE.sub("点三十分", text)
+    text = _PCT_SPOKEN_RE.sub(_PCT, text)
+    text = _PCT_WRITTEN_RE.sub(_PCT, text)
     text = NUM_RUN_RE.sub(_NUM, text)
     return ALL_PUNCT_RE.sub("", text)
 
@@ -97,13 +123,90 @@ def _seq_distance(a: List[str], b: List[str]) -> int:
     return prev[-1]
 
 
+def _cjk_units(text: str, pinyin: Optional[Callable[[str], List[str]]]) -> List[str]:
+    """只要汉字（不带声调的拼音；没有 pypinyin 时就是汉字本身）：中英文分开查错字时，中文那一半用它比。"""
+    norm = to_simplified(unicodedata.normalize("NFKC", text or ""))
+    out: List[str] = []
+    for ch in norm:
+        if CJK_RE.match(ch):
+            py = pinyin(ch) if pinyin is not None else None
+            out.append(py[0] if py else ch)
+    return out
+
+
+def _lcs_len(a: List[str], b: List[str]) -> int:
+    """两个序列的最长公共子序列有多长（原文里有几个字按顺序读出来了；多读的不算）。"""
+    if not a or not b:
+        return 0
+    prev = [0] * (len(b) + 1)
+    for ca in a:
+        cur = [0]
+        for j, cb in enumerate(b, 1):
+            cur.append(prev[j - 1] + 1 if ca == cb else max(prev[j], cur[j - 1]))
+        prev = cur
+    return prev[-1]
+
+
+_CJK_SPACE_RE = re.compile(r"\s+(?=[㐀-䶿一-鿿豈-﫿])|(?<=[㐀-䶿一-鿿豈-﫿])\s+")
+_LATIN_NUM = re.compile(r"[a-z0-9]")
+
+
+def _light_norm(text: str) -> str:
+    """只统一写法（全角半角、繁简、大小写），汉字旁边的空格去掉（「关系副词 when」=「关系副词when」）。"""
+    text = to_simplified(unicodedata.normalize("NFKC", text or "")).lower()
+    return _CJK_SPACE_RE.sub("", text)
+
+
+def _word_re(word: str) -> "re.Pattern[str]":
+    """找 word：英文开头 / 结尾的地方要是完整的单词（as 不算 has、was、class 里的 as）。"""
+    head = r"(?<![a-z0-9])" if _LATIN_NUM.match(word[:1]) else ""
+    tail = r"(?![a-z0-9])" if _LATIN_NUM.match(word[-1:]) else ""
+    return re.compile(head + re.escape(word) + tail)
+
+
+def _mother_table() -> Dict[str, str]:
+    try:
+        from voicetwin.data.lexicon_fix import builtin_corrections
+
+        return builtin_corrections()
+    except Exception:  # 读不到对照表：照旧比（不影响生成）
+        return {}
+
+
+def mother_fix_hyp(reference: str, hypothesis: str, table: Optional[Dict[str, str]] = None) -> str:
+    """母本优先：识别出来的文字先按母本标准库的对照表（data/lexicon/corrections.txt，「艾子 => as」「电影从句 => 定语从句」
+    这种识别引擎常写错的写法）改成母本的写法，再和讲稿比。
+
+    讲稿是标准：只有讲稿在这里写的正是母本的写法（讲稿里有 as）时才改，改的个数也不超过讲稿里有的个数——
+    讲稿里没有 as、或者识别出来多了一个「艾子」（真的多读了一遍），照样算错。以前不看对照表，as 读对了、识别校验
+    写成「艾子」就算 2 个错字，「完美」档把读对的句子重做 20 次，还标成「可能有读错的字」。"""
+    table = _mother_table() if table is None else table
+    if not table or not hypothesis:
+        return hypothesis
+    ref, hyp = _light_norm(reference), _light_norm(hypothesis)
+    changed = False
+    for wrong, right in sorted(table.items(), key=lambda kv: -len(kv[0])):
+        wrong, right = _light_norm(wrong), _light_norm(right)
+        if not wrong or not right or wrong not in hyp:
+            continue
+        pat_right = _word_re(right)
+        need = len(pat_right.findall(ref)) - len(pat_right.findall(hyp))
+        if need <= 0:
+            continue
+        hyp, n = _word_re(wrong).subn(right, hyp, count=need)
+        changed = changed or n > 0
+    return hyp if changed else hypothesis
+
+
 def cer_details(reference: str, hypothesis: str, lang: str = "zh", use_pinyin: bool = True) -> Tuple[float, int, int]:
     """返回 (错字率, 错了几个字, 一共几个字)。
 
     中文在装了 pypinyin（GPT-SoVITS 整合包里有）时按不带声调的拼音比较：识别模型把「他/她」「在/再」听混
-    不算合成读错——合成是按读音来的。没有 pypinyin 时按字比较。数字串统一处理（2024 = 二零二四）。
+    不算合成读错——合成是按读音来的。没有 pypinyin 时按字比较。数字串统一处理（2024 = 二零二四、30% = 百分之三十、
+    10:30 = 十点半）。母本优先：识别结果先按母本标准库的对照表改（讲稿写 as、识别写「艾子」不算错，见 mother_fix_hyp）。
     """
     pinyin = _pinyin_fn() if (use_pinyin and lang == "zh") else None
+    hypothesis = mother_fix_hyp(reference, hypothesis)
     ref = _units(reference, pinyin)
     hyp = _units(hypothesis, pinyin)
     if not ref:
@@ -134,6 +237,10 @@ class CERChecker:
         self._para_failed = False
         self.available = True
         self._lock = threading.Lock()
+        #: 识别时拿着它：release_gpu 不会在识别到一半时把模型卸掉
+        self._use_lock = threading.Lock()
+        #: release_gpu 以后为 True：以后再加载都在处理器上（Whisper 用 int8）
+        self._gpu_released = False
 
     # ------------------------------------------------------------------ 选模型
     def whisper_model(self) -> str:
@@ -169,7 +276,10 @@ class CERChecker:
                 from voicetwin.data.asr import Transcriber
 
                 name = self.whisper_model()
-                compute = "int8_float16" if name.startswith("large") else "auto"
+                if self._gpu_released:  # 为了给合成引擎腾显存，改到处理器上
+                    compute = "int8"
+                else:
+                    compute = "int8_float16" if name.startswith("large") else "auto"
                 model = Transcriber({"engine": "faster-whisper", "model": name, "device": self.device,
                                      "compute_type": compute, "beam_size": 1,
                                      "initial_prompt_zh": "以下是普通话的句子，使用简体中文和标点符号。"})
@@ -221,6 +331,31 @@ class CERChecker:
                 self._para = None
                 return False
 
+    def release_gpu(self) -> bool:
+        """显存不够时给合成引擎让出显卡：卸掉已经加载的识别校验模型（Whisper、Paraformer），以后要用时在处理器上
+        重新加载（Whisper 用 int8；会慢一点），再清空 PyTorch 的显存缓存。返回有没有卸掉模型。
+
+        faster-whisper 的模型不能直接搬到处理器上，所以是卸掉、要用时重新加载。正在识别的那一句先做完再卸。
+        永远不抛异常（没装 torch 也行）。"""
+        released = False
+        try:
+            with self._use_lock:
+                with self._lock:
+                    released = self._model is not None or self._para is not None
+                    self._model = None
+                    self._para = None
+                    self._gpu_released = True
+                    self.device = "cpu"
+            gc.collect()
+            torch = sys.modules.get("torch")  # 这个程序里没用过 torch，就没有它的显存缓存要清
+            if torch is not None and torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        except Exception as exc:
+            log.debug(f"让出显存时出错：{exc}")
+        if released:
+            log.info("为了给合成引擎腾出显存，识别校验模型改到处理器上运行（会慢一点）")
+        return released
+
     # ------------------------------------------------------------------ 识别
     def _paraformer_text(self, wav16: np.ndarray) -> str:
         from voicetwin.utils.textutil import clean_transcript, to_simplified
@@ -231,6 +366,10 @@ class CERChecker:
 
     def check(self, wav: np.ndarray, sr: int, text: str, lang: str) -> Optional[Dict[str, Any]]:
         wav16 = resample(wav, sr, 16000)
+        with self._use_lock:
+            return self._check16(wav16, text, lang)
+
+    def _check16(self, wav16: np.ndarray, text: str, lang: str) -> Optional[Dict[str, Any]]:
         hyp: Optional[str] = None
         engine = ""
         if self.wants_paraformer(lang, text) and self._load_paraformer():
@@ -249,8 +388,57 @@ class CERChecker:
         return {"cer": rate, "hyp": hyp, "errors": errors, "units": units, "engine": engine,
                 "strong": engine_is_strong(engine)}
 
+    # ------------------------------------------------------------------ 「一模一样」：中英文分开查
+    def mixed_available(self) -> bool:
+        """中英文夹着的句子能不能分开查：要有 funasr（Paraformer）而且没失败过、识别模型是 auto 或 paraformer。"""
+        return (self.model_name in ("auto", "paraformer") and not self._para_failed and self.available
+                and _has_module("funasr"))
+
+    def check_mixed(self, wav: np.ndarray, sr: int, text: str) -> Optional[Dict[str, Any]]:
+        """「一模一样」查错字：纯中文按中文查，纯英文按英文查（和 check 一样）；中文里夹着英文时分开查——
+        汉字用 Paraformer（中文最准，但拼不出英文），英文单词用 Whisper（现在用的那个模型，language="zh"，
+        不把原文当提示），只算漏读和读错（识别多出来的字不算错：Paraformer 会把 Python 写成「派森」）。
+        错了几个 = (原文汉字个数 − 两边汉字的最长公共子序列) + (原文英文单词个数 − 两边英文单词的最长公共子序列)，
+        错字率 = 错了几个 / (汉字个数 + 英文单词个数)；引擎记作 paraformer+whisper，算「准」的。
+        没有 funasr 时和以前一样（check）。"""
+        has_cjk = bool(CJK_RE.search(text or ""))
+        words = [w.lower() for w in EN_WORD_RE.findall(text or "")]
+        if not has_cjk:
+            return self.check(wav, sr, text, "en" if words else "zh")
+        if not words or not self.mixed_available():
+            return self.check(wav, sr, text, "zh")
+        wav16 = resample(wav, sr, 16000)
+        with self._use_lock:
+            if not self._load_paraformer():
+                return self._check16(wav16, text, "zh")
+            try:
+                hyp_cjk = self._paraformer_text(wav16)
+            except Exception as exc:
+                log.warning(f"Paraformer 识别失败（{exc}），这一句改用 Whisper")
+                return self._check16(wav16, text, "zh")
+            if not self._load():
+                return None
+            hyp_all = self._model.transcribe(wav16, language="zh").text
+        pinyin = _pinyin_fn()
+        ref_units = _cjk_units(text, pinyin)
+        hyp_units = _cjk_units(hyp_cjk, pinyin)
+        hyp_words = [w.lower() for w in EN_WORD_RE.findall(hyp_all or "")]
+        err_cjk = len(ref_units) - _lcs_len(ref_units, hyp_units)
+        err_en = len(words) - _lcs_len(words, hyp_words)
+        n = len(ref_units) + len(words)
+        errors = err_cjk + err_en
+        shown = hyp_cjk + (f"（英文：{' '.join(hyp_words)}）" if hyp_words else "")
+        return {"cer": errors / n if n else 0.0, "hyp": shown, "errors": errors, "units": n,
+                "engine": "paraformer+whisper", "strong": True, "errors_cjk": err_cjk, "errors_en": err_en,
+                "hyp_en": hyp_all}
+
 
 # ============================================================================ 打分
+#: 只有「一模一样」打分时才有的几项：没有值时 to_dict 不写（别的档位存下来的分数和以前一样）
+IDENTICAL_SCORE_FIELDS = ("lcb", "spread", "voiced", "expected", "dur_dev", "dur_z", "prosody_z", "ltas_d", "stage",
+                          "arm", "model")
+
+
 @dataclass
 class Score:
     total: float
@@ -269,11 +457,25 @@ class Score:
     errors: Optional[int] = None                       # 识别出来错了几个字
     f0: Optional[float] = None                         # 音高中位数（Hz）
     checker: str = ""
+    # 下面几项只有「一模一样」打分时才有（eval/identical_judge.py）；以前存下来的分数里没有，from_dict 照样读得进来
+    lcb: Optional[float] = None                        # 几个声纹模型一起的保守分数：平均 − 0.5 × 模型之间的差别
+    spread: Optional[float] = None                     # 几个声纹模型之间差多少（标准差，百分点）
+    voiced: Optional[float] = None                     # 说话的时长（秒，不含停顿）
+    expected: Optional[float] = None                   # 按你本人的语速，这句话应该说多少秒（没测出来是 None）
+    dur_dev: Optional[float] = None                    # |ln(说话时长 / 应该说的时长)|
+    dur_z: Optional[float] = None                      # 时长偏差是你自己平时波动的几倍（±2 以内算正常）
+    prosody_z: Optional[float] = None                  # 音调起伏和你平时差多少（权重默认 0，只有校准过才用）
+    ltas_d: Optional[float] = None                     # 频谱形状和你平时差多少（权重默认 0，只记录）
+    stage: str = ""                                    # quick（只用一个声纹模型快速打分）/ full（完整打分）
+    arm: str = ""                                      # 用的是哪种组合（参考录音、生成设置）
+    model: str = ""                                    # 用的是哪个模型
 
     def to_dict(self) -> Dict[str, Any]:
         d = asdict(self)
         out: Dict[str, Any] = {}
         for k, v in d.items():
+            if k in IDENTICAL_SCORE_FIELDS and v in (None, ""):
+                continue  # 别的档位存下来的分数和以前一个字节都不差
             if isinstance(v, float):
                 out[k] = round(v, 4)
             elif isinstance(v, dict):

@@ -1,0 +1,33 @@
+「同一批录音的证据」怎么定（2026-10-04 00:48；现在用的 WINDOW = 2、LINES = 2）
+
+每一格：需要证据的句子（有读音不像听错的改动）有几句 / 其中有证据的几句。
+同一批讲课（diff = 和母本不一样、same = 本来对的）要全部有证据；新讲的课（near、spoken、new）越少越好。
+
+## 情况 A
+- 前后看 1 个片段、母本里最多隔 1 句：diff 42/42，near 59/0，reteach_swap 4/4，spoken 21/0
+- 前后看 1 个片段、母本里最多隔 2 句：diff 42/42，near 59/0，reteach_swap 4/4，spoken 21/0
+- 前后看 2 个片段、母本里最多隔 2 句：diff 42/42，near 59/0，reteach_swap 4/4，spoken 21/0  ← 现在用的
+- 前后看 3 个片段、母本里最多隔 2 句：diff 42/42，near 59/0，reteach_swap 4/4，spoken 21/0
+- 前后看 3 个片段、母本里最多隔 3 句：diff 42/42，near 59/0，reteach_swap 4/4，spoken 21/0
+- 前后看 3 个片段、母本里最多隔 5 句：diff 42/42，near 59/2，reteach_swap 4/4，spoken 21/2
+- 前后看 5 个片段、母本里最多隔 5 句：diff 42/42，near 59/6，reteach_swap 4/4，spoken 21/2
+
+## 情况 B
+- 前后看 1 个片段、母本里最多隔 1 句：diff 42/42，near 59/0，reteach_swap 4/4，spoken 21/0
+- 前后看 1 个片段、母本里最多隔 2 句：diff 42/42，near 59/0，reteach_swap 4/4，spoken 21/0
+- 前后看 2 个片段、母本里最多隔 2 句：diff 42/42，near 59/0，reteach_swap 4/4，spoken 21/0  ← 现在用的
+- 前后看 3 个片段、母本里最多隔 2 句：diff 42/42，near 59/0，reteach_swap 4/4，spoken 21/0
+- 前后看 3 个片段、母本里最多隔 3 句：diff 42/42，near 59/0，reteach_swap 4/4，spoken 21/0
+- 前后看 3 个片段、母本里最多隔 5 句：diff 42/42，near 59/2，reteach_swap 4/4，spoken 21/2
+- 前后看 5 个片段、母本里最多隔 5 句：diff 42/42，near 59/6，reteach_swap 4/4，spoken 21/2
+
+## 情况 C
+- 前后看 1 个片段、母本里最多隔 1 句：diff 42/42，near 59/0，reteach_swap 4/4，spoken 21/0
+- 前后看 1 个片段、母本里最多隔 2 句：diff 42/42，near 59/0，reteach_swap 4/4，spoken 21/0
+- 前后看 2 个片段、母本里最多隔 2 句：diff 42/42，near 59/0，reteach_swap 4/4，spoken 21/0  ← 现在用的
+- 前后看 3 个片段、母本里最多隔 2 句：diff 42/42，near 59/0，reteach_swap 4/4，spoken 21/0
+- 前后看 3 个片段、母本里最多隔 3 句：diff 42/42，near 59/0，reteach_swap 4/4，spoken 21/0
+- 前后看 3 个片段、母本里最多隔 5 句：diff 42/42，near 59/2，reteach_swap 4/4，spoken 21/2
+- 前后看 5 个片段、母本里最多隔 5 句：diff 42/42，near 59/6，reteach_swap 4/4，spoken 21/2
+
+用时 10.8 秒

@@ -29,11 +29,11 @@ def _copy_voice(prepared, tmp_path):
 
 
 def test_version_is_shown_in_page_header():
-    """老师的永久要求：网页标题永远显示「v18」，版本号（18.5……）只在黑色窗口、发布页、下载的文件名里。"""
-    assert voicetwin.__version__ == "18.5"
-    assert A.APP_TITLE_VERSION == "18" and "# 🎙️ 声音分身 VoiceTwin v18 " in A.INTRO and "18.5" not in A.INTRO
+    """老师的永久要求：网页标题永远显示「v18」，版本号（18.6……）只在黑色窗口、发布页、下载的文件名里。"""
+    assert voicetwin.__version__ == "18.6"
+    assert A.APP_TITLE_VERSION == "18" and "# 🎙️ 声音分身 VoiceTwin v18 " in A.INTRO and "18.6" not in A.INTRO
     text = (Path(__file__).resolve().parents[1] / "pyproject.toml").read_text(encoding="utf-8")
-    assert 'version = "18.5"' in text
+    assert 'version = "18.6"' in text
     src = (Path(__file__).resolve().parents[1] / "voicetwin" / "webui" / "app.py").read_text(encoding="utf-8")
     assert '\nAPP_TITLE_VERSION = "18"\n' in src  # 写死的，不跟着版本号变
     # 发布说明和《快速上手》不能说「网页标题显示新版本号」：新版本号写在黑色窗口里
@@ -43,10 +43,10 @@ def test_version_is_shown_in_page_header():
     spec = importlib.util.spec_from_file_location("bwr", root / "scripts" / "build_windows_release.py")
     bwr = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(bwr)
-    notes = bwr.release_notes("18.5", "VoiceTwin-Windows-v18.5.zip")
-    assert "「声音分身 VoiceTwin v18.5 正在启动」就对了" in notes and "标题显示 v18.5" not in notes
+    notes = bwr.release_notes("18.6", "VoiceTwin-Windows-v18.6.zip")
+    assert "「声音分身 VoiceTwin v18.6 正在启动」就对了" in notes and "标题显示 v18.6" not in notes
     quick = (root / "快速上手.md").read_text(encoding="utf-8")
-    assert "网页标题里显示新版本号" not in quick and "网页标题永远显示 v18" in quick
+    assert "网页标题里显示新版本号" not in quick  # 一页纸的快速上手不提标题（老师 10-04：越简单越好）
 
 
 def test_quality_names_are_one_source():
@@ -56,12 +56,12 @@ def test_quality_names_are_one_source():
     assert A.QUALITY_SHORT["balanced"] == "均衡"
     labels = dict((v, k) for k, v in A.QUALITY_CHOICES)
     assert labels["perfect"].startswith("完美：每句最多试 20 次") and "句子之间完全静音" in labels["perfect"]
-    assert "最慢" not in labels["max"]  # 「完美」比「极致」更慢
+    assert "最慢" not in labels["max"] and "最慢" not in labels["perfect"]  # 「一模一样」比「极致」「完美」更慢
     for _, value in A.QUALITY_CHOICES:  # 每个标签都能被认回来（命令行、配置里写中文也行）
         assert eng.resolve_quality(labels[value]) == value
-    # 没有显卡时的说明也用同一个名字（浏览器里实测发现过旧名字「标准」）
+    # 没有显卡时的说明也用同一套名字（浏览器里实测发现过旧名字「标准」）：默认「一模一样」，着急可以改选「均衡」
     q, note = A._recommended_quality({"ok": False, "level": "error", "total_gb": None})
-    assert q == "balanced" and "「均衡」" in note and "标准" not in note
+    assert q == "identical" and "「一模一样」" in note and "「均衡」" in note and "标准" not in note
 
 
 def test_stages_follow_selected_quality(prepared):
@@ -143,9 +143,12 @@ def test_training_plan_preview_is_quick(prepared, tmp_path, monkeypatch):
     monkeypatch.setattr(G, "gpu_memory_gb", slow)
     monkeypatch.setattr(gpu, "gpu_status", lambda refresh=False: {"ok": True, "level": "ok", "total_gb": 11.99,
                                                                   "free_gb": 11.2, "source": "test"})
-    md = ui.train_plan_preview(name, "gptsovits")
+    md = ui.train_plan_preview(name, "gptsovits", 0, 0, 0, "auto", "standard")  # 训练方式选「标准」
     assert md.startswith("🧠 **电脑会自动这样训练**：显存 12 GB → 每批") and "训练计划：" not in md
     assert "不开 DPO" in md and "高级设置" in md
+    deep = ui.train_plan_preview(name, "gptsovits")  # 默认「一模一样」：先实测显卡一次能练几条
+    assert deep.startswith("🧠 **电脑会自动这样训练**：「一模一样」训练——显存 12 GB → 先实测一次能练几条")
+    assert "训练计划：" not in deep and "不开 DPO" in deep
     md2 = ui.train_plan_preview(name, "gptsovits", 0, 0, 2, "on")
     assert "每批 2 条（你指定的）" in md2 and "开启 DPO（你指定的" in md2
     monkeypatch.setattr(gpu, "gpu_status", lambda refresh=False: {"ok": False, "level": "error", "total_gb": None})
@@ -154,6 +157,57 @@ def test_training_plan_preview_is_quick(prepared, tmp_path, monkeypatch):
     # 新声音（还没准备素材）、或者引擎不需要训练：显示默认说明
     assert ui.train_plan_preview("还没有的声音", "gptsovits") == A.PLAN_DEFAULT
     assert wf.training_plan(cfg, name, "indextts") == ""
+
+
+def test_optional_engine_not_installed_says_so(prepared, tmp_path, monkeypatch):
+    """「高级设置」里能选 IndexTTS（不用训练），但一般电脑上没装：以前直接启动，报「找不到文件或文件夹：index-tts，
+    检查路径有没有写对……」（老师根本没填过路径；Windows 上还是一句没翻译的「目录名称无效」）。
+    现在先查装好没有，说清楚这是可选引擎、把引擎换回 GPT-SoVITS 就行。"""
+    from voicetwin.backends import worker as W
+    from voicetwin.errors import explain
+
+    cfg, name = _copy_voice(prepared, tmp_path)
+    cfg = make_cfg(Path(cfg["workspace"]), backends={"indextts": {"root": str(tmp_path / "没有装的 index-tts")}})
+    started = []
+    monkeypatch.setattr(W.WorkerClient, "start", lambda self: started.append(self))
+    with pytest.raises(RuntimeError) as ei:
+        wf.run_narrate(cfg, name, "大家好，这是一句话。", out=str(tmp_path / "x.wav"), backend_name="indextts",
+                       quality="fast")
+    assert not started  # 没装好就不去启动
+    f = explain(ei.value)
+    assert f.key == "optional_engine_missing" and f.title.startswith("IndexTTS")
+    assert "GPT-SoVITS" in f.advice and "高级设置" in f.advice and "路径" not in f.advice
+    assert "找不到 index-tts 仓库" in f.detail  # 技术细节里留着具体缺什么，给帮忙的人看
+    assert "「③ 生成讲课音频」" in f.advice and "②" not in f.advice  # 生成用的是 ③ 里选的引擎
+
+
+def test_optional_engine_not_installed_on_reselect_points_to_train_tab(prepared, tmp_path, monkeypatch):
+    """「② 训练模型」的「高级设置」里也能选 Qwen3-TTS，「重新挑选最佳模型」用的是 ② 里选的引擎。
+    没装好时以前一律说「到 ③ 生成讲课音频的高级设置里换回 GPT-SoVITS，再点一次生成」：老师照着做了，
+    ② 里还是 Qwen3-TTS，再点「重新挑选」还是一样的错。现在要说到 ② 去换、再点「重新挑选最佳模型」。"""
+    from voicetwin.backends import base as B
+    from voicetwin.backends import worker as W
+    from voicetwin.errors import explain
+
+    cfg, name = _copy_voice(prepared, tmp_path)
+    cfg = make_cfg(Path(cfg["workspace"]), backends={"qwen3tts": {"python": sys.executable}})
+    monkeypatch.setattr(B, "python_has_module", lambda *a, **k: False)  # 不管测试环境里装没装，都当没装
+    started = []
+    monkeypatch.setattr(W.WorkerClient, "start", lambda self: started.append(self))
+    with pytest.raises(RuntimeError) as ei:
+        wf.run_select(cfg, name, "qwen3tts")
+    assert not started
+    f = explain(ei.value)
+    assert f.key == "optional_engine_missing" and f.title.startswith("Qwen3-TTS")
+    assert "「② 训练模型」" in f.advice and "「重新挑选最佳模型」" in f.advice and "GPT-SoVITS" in f.advice
+    assert "③" not in f.advice and "「生成」" not in f.advice
+    assert f.detail.count("是可选引擎，这台电脑没有装好") == 1  # 技术细节里不重复两遍
+    assert "qwen-tts" in f.detail  # 具体缺什么还在，给帮忙的人看
+
+    # 网页上点「重新挑选最佳模型」看到的也是这样
+    ui = A.WebUI(cfg)
+    page = "\n".join(str(x) for x in list(ui.do_select(name, "qwen3tts"))[-1] if isinstance(x, str))
+    assert "挑选模型没有完成" in page and "「② 训练模型」" in page and "再点一次「生成」" not in page
 
 
 def test_plan_line_from_training_log():

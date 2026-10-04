@@ -6,7 +6,7 @@ import shutil
 import subprocess
 from functools import lru_cache
 from pathlib import Path
-from typing import List, Optional, Sequence
+from typing import Dict, List, Optional, Sequence
 
 import numpy as np
 
@@ -69,10 +69,12 @@ def decode_to_array(src: Path, sample_rate: Optional[int] = None, mono: bool = T
     return wav, sr
 
 
-def encode(src_wav: Path, dst: Path, bitrate: str = "192k") -> Path:
-    """wav 转 mp3/m4a 等（按目标扩展名决定编码器）。"""
+def encode(src_wav: Path, dst: Path, bitrate: str = "192k", metadata: Optional[Dict[str, str]] = None,
+           fmt: Optional[str] = None) -> Path:
+    """wav 转 mp3/m4a 等（按目标扩展名决定编码器；dst 是临时文件名时用 fmt 指定 mp3 / m4a / flac）。
+    metadata：写进文件的标签（例如 {"comment": "模型：V4"}，MP3 写成 ID3 的注释）。"""
     dst = Path(dst)
-    ext = dst.suffix.lower()
+    ext = "." + fmt.lower().lstrip(".") if fmt else dst.suffix.lower()
     args = ["-y", "-i", str(src_wav)]
     if ext == ".mp3":
         args += ["-c:a", "libmp3lame", "-b:a", bitrate]
@@ -80,9 +82,27 @@ def encode(src_wav: Path, dst: Path, bitrate: str = "192k") -> Path:
         args += ["-c:a", "aac", "-b:a", bitrate]
     elif ext == ".flac":
         args += ["-c:a", "flac"]
+    for key, val in (metadata or {}).items():
+        args += ["-metadata", f"{key}={val}"]
+    if fmt:
+        args += ["-f", {".mp3": "mp3", ".m4a": "ipod", ".aac": "adts", ".flac": "flac"}.get(ext, ext.lstrip("."))]
     args.append(str(dst))
     _run(args)
     return dst
+
+
+def read_tags(path: Path) -> Dict[str, str]:
+    """读音频文件里的标签（ffmpeg 的 ffmetadata 格式）：{"comment": …, …}；读不了是空的。"""
+    try:
+        raw = _run(["-i", str(path), "-f", "ffmetadata", "pipe:1"], capture_stdout=True)
+    except Exception:  # noqa: BLE001
+        return {}
+    out: Dict[str, str] = {}
+    for line in raw.decode("utf-8", errors="replace").splitlines():
+        if "=" in line and not line.startswith((";", "[")):
+            k, v = line.split("=", 1)
+            out[k.strip().lower()] = v.strip()
+    return out
 
 
 def atempo(src_wav: Path, dst_wav: Path, tempo: float) -> Path:

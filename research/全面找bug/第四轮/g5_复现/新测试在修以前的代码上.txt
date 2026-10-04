@@ -1,0 +1,53 @@
+tests/test_script.py:185: AssertionError: assert ['第一句话讲完了呢。', '停顿=2 第二句话开始了。'] == ['第一句话讲完了呢。', '第二句话开始了。']
+tests/test_script.py:185: AssertionError: assert ['第一句话讲完了呢。', '停顿＝2 第二句话开始了。'] == ['第一句话讲完了呢。', '第二句话开始了。']
+tests/test_script.py:185: AssertionError: assert ['第一句话讲完了呢。',...顿=2］第二句话开始了。'] == ['第一句话讲完了呢。', '第二句话开始了。']
+tests/test_script.py:185: AssertionError: assert ['第一句话讲完了呢。', '停顿2秒 第二句话开始了。'] == ['第一句话讲完了呢。', '第二句话开始了。']
+tests/test_script.py:185: AssertionError: assert ['第一句话讲完了呢。',...= ２ 第二句话开始了。'] == ['第一句话讲完了呢。', '第二句话开始了。']
+tests/test_script.py:185: AssertionError: assert ['第一句话讲完了呢。',...2秒钟 第二句话开始了。'] == ['第一句话讲完了呢。', '第二句话开始了。']
+tests/test_script.py:192: AssertionError: assert ('sentence' == 'paragraph'
+tests/test_script.py:199: KeyError: 'unread_mark'
+tests/test_script.py:208: AssertionError: assert None == 3.0
+tests/test_script.py:221: assert False
+tests/test_script.py:235: AssertionError: assert '我们先来看一下第一个例句然后我们一起来分析它的结构和用法最后再做几道练习题巩固一下今天学的内容然后我' in {'我们先来看一下第一个例
+tests/test_script.py:254: AssertionError: (25, ['这个句子里的先行词非常重要我们在做题的时候所以要特', '别注意它的用法和位置还有它前面的介词以及后面的从句', '结构'])
+tests/test_script.py:281: ValueError: substring not found
+tests/test_script.py:301: AssertionError: assert (0 == 1)
+tests/test_script.py:311: AssertionError: assert ('同学们好' in '第三课 定语从句\n\n下课。')
+tests/test_pipeline.py:853: assert 3 == 0
+tests/test_pipeline.py:884: AssertionError: assert ['第一句话讲完了呢编号0...开始了编号943333。'] == ['第一句话讲完了呢编号0...开始了编号943333。']
+tests/test_pipeline.py:906: assert (2.65 < 1e-06)
+tests/test_pipeline.py:962: assert [False, False, False] == [False, False, True]
+tests/test_pipeline.py:987: assert [True, True] == [None, None]
+tests/test_pipeline.py:1042: AssertionError: assert (['', ''] == ['可能有读错的字（识别为...够像，建议重新生成或改写']
+tests/test_pipeline.py:1064: AssertionError: assert ('3' == ''
+PASSED tests/test_script.py::test_markdown_pauses_and_lexicon
+PASSED tests/test_pipeline.py::test_pauses_and_edges_are_absolute_silence
+PASSED tests/test_pipeline.py::test_perfect_writes_two_versions_with_silent_pauses
+PASSED tests/test_pipeline.py::test_speed_is_applied_inside_the_model_and_pauses_scale
+PASSED tests/test_pipeline.py::test_explicit_pause_is_not_scaled_by_speed
+PASSED tests/test_pipeline.py::test_one_character_chinese_lead_in_is_sent_to_the_engine_as_zh[\u597d\uff0cDo you have any brothers or sisters at home?-\u597d]
+PASSED tests/test_pipeline.py::test_one_character_chinese_lead_in_is_sent_to_the_engine_as_zh[\u597d\u3002Do you have any brothers or sisters at home?-\u597d]
+PASSED tests/test_pipeline.py::test_one_character_chinese_lead_in_is_sent_to_the_engine_as_zh[\u6bd4\u5982 I have a sister who is a doctor and she lives in Beijing.-\u6bd4\u5982]
+FAILED tests/test_script.py::test_pause_mark_typed_with_chinese_input_method[\u3010\u505c\u987f=2\u3011]
+FAILED tests/test_script.py::test_pause_mark_typed_with_chinese_input_method[[\u505c\u987f\uff1d2]]
+FAILED tests/test_script.py::test_pause_mark_typed_with_chinese_input_method[\uff3b\u505c\u987f=2\uff3d]
+FAILED tests/test_script.py::test_pause_mark_typed_with_chinese_input_method[\u3010\u505c\u987f2\u79d2\u3011]
+FAILED tests/test_script.py::test_pause_mark_typed_with_chinese_input_method[\u3010 \u505c\u987f = \uff12 \u3011]
+FAILED tests/test_script.py::test_pause_mark_typed_with_chinese_input_method[[\u505c\u987f=2\u79d2\u949f]]
+FAILED tests/test_script.py::test_pause_mark_without_seconds_and_in_minutes
+FAILED tests/test_script.py::test_unrecognized_pause_mark_is_kept_and_reported
+FAILED tests/test_script.py::test_pause_at_the_very_start_is_kept - Assertion...
+FAILED tests/test_script.py::test_hard_split_never_adds_a_full_stop_in_the_middle
+FAILED tests/test_script.py::test_hard_split_cuts_at_spaces_and_keeps_english_words_whole
+FAILED tests/test_script.py::test_hard_split_cuts_between_words_with_jieba - ...
+FAILED tests/test_script.py::test_docx_tables_are_read_in_order - ValueError:...
+FAILED tests/test_script.py::test_docx_merged_cells_are_read_once - Assertion...
+FAILED tests/test_script.py::test_docx_upload_message_tells_about_tables_and_empty_files
+FAILED tests/test_pipeline.py::test_cer_counts_percent_and_time_as_spoken - a...
+FAILED tests/test_pipeline.py::test_chinese_input_pause_mark_gives_exact_silence_and_is_not_spoken
+FAILED tests/test_pipeline.py::test_pause_at_start_and_end_of_script_is_exact_silence
+FAILED tests/test_pipeline.py::test_asr_failing_mid_run_is_told_and_unchecked_sentences_are_checked_later
+FAILED tests/test_pipeline.py::test_asr_model_that_cannot_load_is_told - asse...
+FAILED tests/test_pipeline.py::test_rescoring_cached_sentences_keeps_their_warnings
+FAILED tests/test_pipeline.py::test_unknown_reference_id_is_told_and_works_like_blank
+22 failed, 8 passed, 58 deselected, 1 warning in 20.19s

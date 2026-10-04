@@ -48,7 +48,7 @@ def test_parser_commands():
     assert args.command == "narrate" and args.quality == "best" and args.redo == "2"
     args = ap.parse_args(["prepare", "-v", "x", "-i", "a", "b", "--asr", "funasr"])
     assert args.input == ["a", "b"] and args.asr == "funasr"
-    for q in ("max", "perfect"):
+    for q in ("max", "perfect", "identical"):
         assert ap.parse_args(["say", "-v", "x", "你好", "-q", q]).quality == q
     assert ap.parse_args(["download-models", "--check"]).check is True
     assert ap.parse_args(["select", "-v", "x"]).items is None  # 默认交给 run_select 自己决定
@@ -340,12 +340,13 @@ def test_cli_redo_numbers_match_report_index(prepared, tmp_path, monkeypatch, ca
     monkeypatch.chdir(tmp_path)
     base = ["-c", str(conf), "narrate", "-v", project.voice, str(script), "-q", "fast"]
     main(base + ["-o", str(tmp_path / "a.wav")])
-    first = json.loads((tmp_path / "a.report.json").read_text(encoding="utf-8"))["segments"]
+    # 报告和音频同名、最后是实际用的模型名（测试引擎写「dummy」）：a_dummy.json
+    first = json.loads((tmp_path / "a_dummy.json").read_text(encoding="utf-8"))["segments"]
     assert [s["index"] for s in first] == list(range(1, len(first) + 1))  # 显示的编号从 1 开始
     assert len(first) >= 3
     # 用户在结果表里看到第 2 句不好 → --redo 2 → 只有 # 为 2 的那句重新生成
     main(base + ["-o", str(tmp_path / "b.wav"), "--redo", "第2句"])
-    second = json.loads((tmp_path / "b.report.json").read_text(encoding="utf-8"))["segments"]
+    second = json.loads((tmp_path / "b_dummy.json").read_text(encoding="utf-8"))["segments"]
     regenerated = [s["index"] for s in second if not s["cached"]]
     assert regenerated == [2]
     capsys.readouterr()

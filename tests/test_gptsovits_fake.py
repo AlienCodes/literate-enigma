@@ -143,8 +143,9 @@ def test_train_select_and_narrate(prepared, tmp_path, monkeypatch, no_users_pth,
     rec = Rec()
     # 高级设置里明确指定的保存间隔要照办
     confirm_material(gcfg, project.voice)
+    # 这个测试看的是「标准」训练方式的进度和步骤（和以前一样）；「一模一样」的在 test_deep_training.py
     info = wf.run_train(gcfg, project.voice, "gptsovits", select=True, progress=rec, sovits_save_every=4,
-                        gpt_save_every=5)
+                        gpt_save_every=5, mode="standard")
 
     backend = get_backend("gptsovits", gcfg, project)
     exp = backend.exp_name
@@ -272,6 +273,62 @@ def test_pretrained_warning_only_once(prepared, tmp_path, vt_log):
         backend.model_id()
     warnings = [m for m in vt_log.messages(logging.WARNING) if "还没有训练好的 GPT-SoVITS 模型" in m]
     assert len(warnings) == 1
+
+
+def test_missing_trained_model_is_told_not_hidden(prepared, tmp_path, vt_log):
+    """训练过、选好了模型，但模型文件找不到了（换了整合包、删掉了旧的，或者被杀毒软件删了）：
+    生成只能退回底模（这是有意的，顶部也会提醒），但不能说「还没有训练好」；说清楚是哪个文件、怎么办。
+    「重新挑选」这时没有可以挑的模型：以前白白拿底模挑几分钟，还把原来模型的语速校准换成底模的。"""
+    cfg, project, _ = prepared
+    ws = _copy_project(project, tmp_path / "ws")
+    root = build_fake_root(tmp_path / "GSV-gone")
+    gcfg = make_cfg(ws, backends={"gptsovits": {"root": str(root), "python": sys.executable}})
+    p2 = wf.open_project(gcfg, project.voice, must_exist=True)
+    backend = get_backend("gptsovits", gcfg, p2)
+    exp = backend.exp_name
+    sov, gpt = f"D:\\GPT-SoVITS-old\\SoVITS_weights_v2ProPlus\\{exp}_e8_s80.pth", f"D:\\GPT-SoVITS-old\\GPT_weights_v2ProPlus\\{exp}-e15.ckpt"
+    p2.update_models("gptsovits", {"sovits": [sov], "gpt": [gpt], "speed": {"zh": 1.1},
+                                   "selected": {"id": "s8-g15", "sovits": sov, "gpt": gpt}})
+    assert backend._current_weights()["id"] == "pretrained"  # 生成照样能用（底模），这是原来的设计
+    warns = vt_log.messages(logging.WARNING)
+    assert not any("还没有训练好" in m for m in warns)
+    assert any("找不到训练好的模型文件" in m and f"{exp}_e8_s80.pth" in m and "重新挑选最佳模型" in m for m in warns)
+    assert backend.missing_model_files() == [f"{exp}_e8_s80.pth", f"{exp}-e15.ckpt"]
+    assert "找不到训练好的模型文件" in backend.missing_model_note()
+    with pytest.raises(RuntimeError, match="没有可以挑选的模型") as ei:
+        wf.run_select(gcfg, project.voice, "gptsovits")
+    from voicetwin.errors import explain
+
+    f = explain(ei.value)
+    assert f.key == "trained_missing" and "install_windows.bat" in f.advice and "重新训练" in f.advice
+    assert p2.load_models()["gptsovits"]["speed"] == {"zh": 1.1}  # 原来的语速校准没被改掉
+    # 文件找回来了（例如重新填好整合包的位置）：不再提醒
+    for name in (f"SoVITS_weights_v2ProPlus/{exp}_e8_s80.pth", f"GPT_weights_v2ProPlus/{exp}-e15.ckpt"):
+        (root / name).parent.mkdir(parents=True, exist_ok=True)
+        (root / name).write_bytes(b"0")
+    assert backend.missing_model_note() == "" and backend._current_weights()["id"] == "s8-g15"
+    # 从来没训练过：还是原来的说法，也不算「找不到」
+    p2.models_path.unlink()
+    fresh = get_backend("gptsovits", gcfg, p2)
+    assert fresh.missing_model_note() == "" and fresh._current_weights()["id"] == "pretrained"
+    assert any("还没有训练好的 GPT-SoVITS 模型" in m for m in vt_log.messages(logging.WARNING))
+
+
+@needs_fake_python
+def test_narrate_with_missing_trained_model_warns_in_result(prepared, tmp_path, no_users_pth):
+    """生成时训练好的模型文件找不到了：照样用底模生成完，但生成结果的提醒里要写清楚（以前只有折起来的详细过程里一句
+    「还没有训练好」，而且是错的）。"""
+    cfg, project, _ = prepared
+    gcfg, root, p2 = _small_train_cfg(project, tmp_path, "GSV-narrate-gone", port=19893, startup_timeout=60)
+    confirm_material(gcfg, project.voice)
+    wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    sel = p2.load_models()["gptsovits"]["selected"]
+    for k in ("sovits", "gpt"):
+        Path(sel[k]).unlink()
+    res = wf.run_narrate(gcfg, project.voice, "大家好，这是一句话。", out=str(tmp_path / "gone.wav"),
+                         backend_name="gptsovits", quality="fast")
+    assert res.audio_path.exists()
+    assert any("找不到训练好的模型文件" in w and Path(sel["sovits"]).name in w for w in res.warnings), res.warnings
 
 
 # ---------------------------------------------------------------------------- 日志 → 进度
@@ -548,10 +605,13 @@ def test_training_plan_preview(prepared, tmp_path, no_users_pth):
     cfg, project, _ = prepared
     root = build_fake_root(tmp_path / "GSV-plan")
     b = get_backend("gptsovits", _gcfg(project, root, 19881), project)
-    plan = b.training_plan()
+    plan = b.training_plan(mode="standard")
     assert plan["summary"].startswith("训练计划：显存 12 GB")
     assert plan["n_clips"] > 0 and plan["minutes"] > 0 and plan["noisy"] is False
     assert b.training_plan(batch_size=1)["batch_size"] == 1
+    # 默认是「一模一样」：先实测显卡一次能练几条
+    deep = b.training_plan()
+    assert deep["summary"].startswith("训练计划：「一模一样」训练——显存 12 GB → 先实测一次能练几条")
 
 
 def test_material_noise_from_sources(prepared, tmp_path):
@@ -598,7 +658,8 @@ def test_checkpoints_spread_early_to_late(prepared, tmp_path):
 
 # ---------------------------------------------------------------------------- 显存不够自动重试
 @needs_fake_python
-def test_oom_retry_halves_batch_once(prepared, tmp_path, monkeypatch, no_users_pth, vt_log):
+def test_oom_ladder_steps_down_one_at_a_time(prepared, tmp_path, monkeypatch, no_users_pth, vt_log):
+    """显存不够：每批减 1 条接着练（以前是减半、只试一次）。4 条不够 → 3 条还不够 → 2 条。"""
     cfg, project, _ = prepared
     ws = _copy_project(project, tmp_path / "ws")
     root = build_fake_root(tmp_path / "GSV-oom")
@@ -608,11 +669,14 @@ def test_oom_retry_halves_batch_once(prepared, tmp_path, monkeypatch, no_users_p
     monkeypatch.setenv("FAKE_GSV_OOM_ABOVE", "2")
     rec = Rec()
     confirm_material(gcfg, project.voice)
-    info = wf.run_train(gcfg, project.voice, "gptsovits", select=False, progress=rec)
+    info = wf.run_train(gcfg, project.voice, "gptsovits", select=False, progress=rec, mode="standard")
     params = info["params"]
     assert params["oom_retry"] is True and params["batch_size_used"] == 2 and params["gpt_batch_size_used"] == 2
-    warn = [m for m in vt_log.messages(logging.WARNING) if "显存不够：自动把每批数量从 4 减到 2" in m]
-    assert len(warn) == 2 and warn[0].startswith("训练音色（SoVITS）") and warn[1].startswith("训练语气和节奏（GPT）")
+    warn = [m for m in vt_log.messages(logging.WARNING) if "显存不够：每批从" in m]
+    assert warn == ["训练音色（SoVITS）：显存不够：每批从 4 条减到 3 条，接着练（已经练好的部分会接着用）",
+                    "训练音色（SoVITS）：显存不够：每批从 3 条减到 2 条，接着练（已经练好的部分会接着用）",
+                    "训练语气和节奏（GPT）：显存不够：每批从 4 条减到 3 条，接着练（已经练好的部分会接着用）",
+                    "训练语气和节奏（GPT）：显存不够：每批从 3 条减到 2 条，接着练（已经练好的部分会接着用）"]
     assert len(info["sovits"]) == 4 and len(info["gpt"]) == 4  # 4 轮：每轮都存
     fracs = [f for f, _ in rec.train_part()]
     assert fracs == sorted(fracs)
@@ -679,13 +743,17 @@ def test_retrain_after_material_change_starts_fresh(prepared, tmp_path, no_users
     for path in second["sovits"] + second["gpt"]:
         assert Path(path).stat().st_mtime >= started - 2
     assert set(second["sovits"]).isdisjoint(first["sovits"])   # 步数不同 → 新文件名；旧文件不混进来
-    assert len(second["sovits"]) == 4 and len(second["gpt"]) == 4
+    # 默认「一模一样」：每批 2 条时保存间隔按每批 4 条算——音色每 2 轮存一个（第 2、4 轮），语气每轮存一个
+    assert len(second["sovits"]) == 2 and len(second["gpt"]) == 4
     # 旧素材的模型文件还在硬盘上（挪进了 old_runs，以前选中的模型不会突然消失），只是不再参加挑选
     for path in first["sovits"] + first["gpt"]:
         sub = Path(path).parent.name
         assert (old_runs[0] / sub / Path(path).name).exists()
     b = get_backend("gptsovits", gcfg, p2)
-    assert {c["sovits"] for c in b.checkpoints()} <= set(second["sovits"])
+    assert {c["sovits"] for c in b.checkpoints() if not c.get("previous")} <= set(second["sovits"])
+    # 原来用的模型（挪进了 old_runs）也参加下次的挑选：新模型实测不比它好，就继续用它
+    (prev,) = [c for c in b.checkpoints() if c.get("previous")]
+    assert prev["sovits"].startswith(str(old_runs[0])) and prev["id"].startswith("prev-")
 
 
 @needs_fake_python
@@ -741,7 +809,259 @@ def test_archive_keeps_selected_model_usable(prepared, tmp_path, no_users_pth):
     assert not list((root / "SoVITS_weights_v2ProPlus").glob(first["exp_name"] + "_e*"))
 
 
+@needs_fake_python
+def test_two_stopped_retrains_keep_the_selected_model(prepared, tmp_path, monkeypatch, no_users_pth):
+    """A 训练好并选中；B（改了错字）练完音色、在 GPT 那一步停了；C（又改了错字）也停了。
+    B 的音色模型和 A 的文件名一模一样：以前 C 开始时按文件名改 models.json，把已经指向 A 的备份的路径也改成了 B 的，
+    生成时悄悄用「B 的音色 + A 的语气」这对从来没挑过的组合，A 所在的备份也不再受保护。"""
+    cfg, project, _ = prepared
+    gcfg, root, p2 = _small_train_cfg(project, tmp_path, "GSV-repoint")
+    confirm_material(gcfg, project.voice)
+    wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    entry = p2.load_models()["gptsovits"]
+    for path in entry["sovits"] + entry["gpt"]:  # 给 A 的模型文件做个记号，好和 B 的同名文件分开
+        with open(path, "ab") as f:
+            f.write(b"MODEL_A")
+
+    def stop_in_gpt(self, *a, **k):
+        raise TaskCancelled("已按你的要求停止")
+
+    monkeypatch.setattr(GPTSoVITSBackend, "_train_gpt", stop_in_gpt)
+    rec = next(r for r in p2.load_manifest() if r.get("keep", True) and r.get("split", "train") == "train")
+    for suffix in ("改一", "改二"):  # B、C：都是改了错字、练完音色就停了
+        time.sleep(0.05)
+        p2.set_clip_text(rec["id"], rec["text"] + suffix)
+        confirm_material(gcfg, project.voice)
+        with pytest.raises(TaskCancelled):
+            wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    entry = p2.load_models()["gptsovits"]
+    sel = entry["selected"]
+    for path in [sel["sovits"], sel["gpt"]] + entry["sovits"] + entry["gpt"]:
+        assert Path(path).read_bytes().endswith(b"MODEL_A"), path
+    assert Path(sel["sovits"]).parents[1] == Path(sel["gpt"]).parents[1]  # 同一次训练的备份
+    w = get_backend("gptsovits", gcfg, p2)._current_weights()
+    assert Path(w["sovits"]).read_bytes().endswith(b"MODEL_A") and Path(w["gpt"]).read_bytes().endswith(b"MODEL_A")
+
+
+def test_backups_are_found_by_place_not_by_name_after_moving(prepared, tmp_path):
+    """整合包移动 / 换过电脑以后：备份（old_runs）里的模型按它在整合包里的相对位置找；模型文件夹里同名的文件是
+    另一次训练的，不能拿来顶替。重新训练挪模型时，记着旧位置的路径照样跟着改，指向备份的不动。"""
+    cfg, project, _ = prepared
+    ws = _copy_project(project, tmp_path / "ws")
+    root = build_fake_root(tmp_path / "GSV-loc")
+    gcfg = make_cfg(ws, backends={"gptsovits": {"root": str(root), "python": sys.executable}})
+    p2 = wf.open_project(gcfg, project.voice, must_exist=True)
+    b = get_backend("gptsovits", gcfg, p2)
+    exp = b.exp_name
+    name = f"{exp}_e4_s56.pth"
+    main = root / "SoVITS_weights_v2ProPlus" / name
+    backup = root / "logs" / exp / "old_runs" / "20261003_120000" / "SoVITS_weights_v2ProPlus" / name
+    for f, tag in ((main, b"new"), (backup, b"old")):
+        f.parent.mkdir(parents=True, exist_ok=True)
+        f.write_bytes(tag)
+    old = "D:\\GPT-SoVITS-old"
+    old_main = f"{old}\\SoVITS_weights_v2ProPlus\\{name}"
+    old_backup = f"{old}\\logs\\{exp}\\old_runs\\20261003_120000\\SoVITS_weights_v2ProPlus\\{name}"
+    assert b._locate_weight(old_backup) == backup
+    assert b._locate_weight(old_backup.replace("20261003_120000", "20250101_000000")) is None  # 不拿同名的顶替
+    assert b._locate_weight(old_main) == main
+    p2.update_models("gptsovits", {"sovits": [old_main, old_backup], "gpt": [],
+                                   "selected": {"id": "s4-g4", "sovits": old_backup, "gpt": ""}})
+    # 更早的备份最多留 2 次：选中的模型所在的那次（models.json 里记的还是旧位置）不能被当成没用的删掉
+    old_root = root / "logs" / exp / "old_runs"
+    for i, run in enumerate(("20261003_120000", "20261003_130000", "20261003_140000")):
+        (old_root / run / "x").mkdir(parents=True, exist_ok=True)
+        os.utime(old_root / run, (1_700_000_000 + i * 100, 1_700_000_000 + i * 100))
+    dest = b._archive_old_run(root / "logs" / exp)
+    entry = p2.load_models()["gptsovits"]
+    assert entry["sovits"][0] == str(dest / "SoVITS_weights_v2ProPlus" / name)
+    assert entry["sovits"][1] == old_backup and entry["selected"]["sovits"] == old_backup
+    assert not (old_root / "20261003_130000").exists()  # 没在用的旧备份照样清理
+    assert b._locate_weight(entry["selected"]["sovits"]).read_bytes() == b"old"
+
+
+def _small_train_cfg(project, tmp_path, name, **gsv_extra):
+    ws = _copy_project(project, tmp_path / "ws")
+    root = build_fake_root(tmp_path / name)
+    gcfg = make_cfg(ws, backend="gptsovits", backends={"gptsovits": dict({
+        "root": str(root), "python": sys.executable, "train": {"sovits_epochs": 4, "gpt_epochs": 4, "batch_size": 2}},
+        **gsv_extra)})
+    return gcfg, root, wf.open_project(gcfg, project.voice, must_exist=True)
+
+
+@needs_fake_python
+def test_empty_text_step_does_not_block_later_training(prepared, tmp_path, monkeypatch, no_users_pth):
+    """1A（处理文字）一句都没做成（例如 G2PW 模型缺了又下载不了、显存被别的程序占满）：GPT-SoVITS 的脚本照样退出 0，
+    留下一个只有换行的 2-name2text-0.txt。真实脚本看到这个文件就什么都不做——以前这个文件一直留着，
+    原因修好了、改了素材再训练，也一直报「1A 文本处理没有产出」，只能去整合包里删隐藏的文件。"""
+    cfg, project, _ = prepared
+    gcfg, root, p2 = _small_train_cfg(project, tmp_path, "GSV-1a")
+    confirm_material(gcfg, project.voice)
+    monkeypatch.setenv("FAKE_GSV_TEXT_FAIL", "1")
+    with pytest.raises(RuntimeError, match="1A 文本处理没有产出"):
+        wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    monkeypatch.delenv("FAKE_GSV_TEXT_FAIL")
+    info = wf.run_train(gcfg, project.voice, "gptsovits", select=False)  # 原因修好了：这次要真的重新处理文字
+    opt_dir = root / "logs" / info["exp_name"]
+    assert len((opt_dir / "2-name2text.txt").read_text(encoding="utf-8").strip().splitlines()) >= 2
+    assert not list(opt_dir.glob("2-name2text-*.txt")) and not list(opt_dir.glob("6-name2semantic-*.tsv"))
+    assert info["sovits"] and info["gpt"]
+
+
+@needs_fake_python
+def test_leftover_part_files_are_not_reused_after_material_change(prepared, tmp_path, no_users_pth):
+    """上次处理完、还没来得及合并就停了（或者杀毒软件占着删不掉），留下了旧素材的分块结果：
+    改了素材再训练，不能悄悄用旧的文字 / 语义（真实脚本看到分块文件在就直接跳过）。"""
+    cfg, project, _ = prepared
+    gcfg, root, p2 = _small_train_cfg(project, tmp_path, "GSV-parts")
+    confirm_material(gcfg, project.voice)
+    first = wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    opt_dir = root / "logs" / first["exp_name"]
+    (opt_dir / "2-name2text-0.txt").write_text("old.wav\tph\t1\t旧素材的文字\n", encoding="utf-8")
+    (opt_dir / "6-name2semantic-0.tsv").write_text("old.wav\t9 9 9\n", encoding="utf-8")
+    time.sleep(0.05)
+    rec = next(r for r in p2.load_manifest() if r.get("keep", True) and r.get("split", "train") == "train")
+    p2.set_clip_text(rec["id"], rec["text"] + "改好了")
+    confirm_material(gcfg, project.voice)
+    wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    text = (opt_dir / "2-name2text.txt").read_text(encoding="utf-8")
+    assert "旧素材的文字" not in text and rec["text"] + "改好了" in text
+    assert "old.wav" not in (opt_dir / "6-name2semantic.tsv").read_text(encoding="utf-8")
+
+
+def test_locked_leftover_part_file_stops_with_clear_message(tmp_path, monkeypatch):
+    """上次留下的分块结果删不掉（杀毒软件正在检查、别的程序打开着）：不能悄悄让 GPT-SoVITS 接着用旧的，
+    停下说清楚；页面上不能显示成「Excel 打开了 transcripts.csv」那种不相干的说法。"""
+    from voicetwin.errors import explain
+
+    part = tmp_path / "2-name2text-0.txt"
+    part.write_text("old.wav\tph\t1\t旧文字\n", encoding="utf-8")
+    real_unlink = Path.unlink
+
+    def locked(self, *a, **k):
+        if self.name == part.name:
+            raise PermissionError(13, "[WinError 32] 另一个程序正在使用此文件，进程无法访问。", str(self))
+        return real_unlink(self, *a, **k)
+
+    monkeypatch.setattr(Path, "unlink", locked)
+    with pytest.raises(RuntimeError, match="临时文件删不掉") as ei:
+        gsv._remove_parts(tmp_path, "2-name2text-*.txt")
+    f = explain(ei.value)
+    assert f.key == "stale_part_locked" and "开始训练" in f.advice and "transcripts.csv" not in f.advice
+    gsv._remove_parts(tmp_path, "2-name2text-*.txt", quiet=True)  # 马上要报别的错时：删不掉就算了，不另外报错
+    monkeypatch.setattr(Path, "unlink", real_unlink)
+    gsv._remove_parts(tmp_path, "2-name2text-*.txt", "6-name2semantic-*.tsv")
+    assert not part.exists()
+
+
+@needs_fake_python
+def test_part_file_locked_after_merge_does_not_stop_training(prepared, tmp_path, monkeypatch, no_users_pth):
+    """1A / 1C 做完、合并好以后删分块文件时，杀毒软件刚好在检查这个新写的文件（WinError 32）：以前直接停下训练，
+    还显示成「Excel 打开了 transcripts.csv」。合并好的结果已经写好了，分块文件留着也没关系（下次跳过这一步；
+    素材变化、重跑这一步之前都会再删，删不掉时那里会说清楚），所以要接着训练。"""
+    cfg, project, _ = prepared
+    gcfg, root, p2 = _small_train_cfg(project, tmp_path, "GSV-lockok")
+    confirm_material(gcfg, project.voice)
+    real_unlink = Path.unlink
+    tried = []
+
+    def locked(self, *a, **k):
+        # 只锁脚本刚写出来的分块文件（开始以前它们还不存在，所以「开始前先删」那一步碰不到）
+        if self.name in ("2-name2text-0.txt", "6-name2semantic-0.tsv") and self.exists():
+            tried.append(self.name)
+            raise PermissionError(13, "[WinError 32] 另一个程序正在使用此文件，进程无法访问。", str(self))
+        return real_unlink(self, *a, **k)
+
+    monkeypatch.setattr(Path, "unlink", locked)
+    info = wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    assert sorted(set(tried)) == ["2-name2text-0.txt", "6-name2semantic-0.tsv"]  # 真的碰到了删不掉
+    assert info["sovits"] and info["gpt"]
+    opt_dir = root / "logs" / info["exp_name"]
+    assert len((opt_dir / "2-name2text.txt").read_text(encoding="utf-8").strip().splitlines()) >= 2
+    assert len((opt_dir / "6-name2semantic.tsv").read_text(encoding="utf-8").strip().splitlines()) >= 2
+
+
+@needs_fake_python
+def test_empty_semantic_step_stops_before_training(prepared, tmp_path, monkeypatch, no_users_pth):
+    """1C（提取语义）一句都没做成：以前只写一个表头就接着训练（白白练十几分钟音色，最后 GPT 那一步才出错），
+    现在马上说清楚；原因修好以后再点「开始训练」就正常。"""
+    cfg, project, _ = prepared
+    gcfg, root, p2 = _small_train_cfg(project, tmp_path, "GSV-1c")
+    confirm_material(gcfg, project.voice)
+    (p2.logs_dir / "gsv_s2_train.log").unlink(missing_ok=True)  # 复制来的声音里可能有别的测试留下的
+    monkeypatch.setenv("FAKE_GSV_SEMANTIC_FAIL", "1")
+    with pytest.raises(RuntimeError, match="1C 提取语义没有产出") as ei:
+        wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    from voicetwin.errors import explain
+
+    assert explain(ei.value).key == "semantic_step_empty"
+    assert not (p2.logs_dir / "gsv_s2_train.log").exists()  # 没有接着去训练
+    monkeypatch.delenv("FAKE_GSV_SEMANTIC_FAIL")
+    info = wf.run_train(gcfg, project.voice, "gptsovits", select=False)
+    opt_dir = root / "logs" / info["exp_name"]
+    assert len((opt_dir / "6-name2semantic.tsv").read_text(encoding="utf-8").strip().splitlines()) >= 2
+
+
 # ---------------------------------------------------------------------------- 推理服务
+class _WindowsBindSocket:
+    """模拟 Windows 的绑定规则：别的程序监听 0.0.0.0:BUSY 时，普通方式绑定 127.0.0.1:BUSY 照样成功，
+    只有独占方式（SO_EXCLUSIVEADDRUSE）绑定才会失败。Linux 上普通绑定本来就失败，所以只能这样模拟。"""
+
+    BUSY = 9880
+    EXCL = -5  # Windows 上 SO_EXCLUSIVEADDRUSE 的值（~SO_REUSEADDR）
+
+    def __init__(self, *a, **k):
+        self.excl = False
+
+    def setsockopt(self, level, opt, value):
+        if opt == self.EXCL:
+            self.excl = bool(value)
+
+    def bind(self, addr):
+        if addr[1] == self.BUSY and self.excl:
+            raise OSError(10048, "通常每个套接字地址只允许使用一次")
+
+    def close(self):
+        pass
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+
+def test_free_port_skips_port_taken_on_windows(monkeypatch):
+    """Windows：整合包自带的 api.py 默认监听 0.0.0.0:9880。以前普通绑定 127.0.0.1:9880 成功，就把推理服务开在 9880 上，
+    加载模型时连上的是 api.py（对不上话、白等一分钟，结束时还把它关掉）。现在和网页启动器一样用独占方式检查，换到 9881。"""
+    import socket
+
+    from voicetwin.webui import launcher
+
+    monkeypatch.setattr(socket, "SO_EXCLUSIVEADDRUSE", _WindowsBindSocket.EXCL, raising=False)
+    monkeypatch.setattr(socket, "socket", _WindowsBindSocket)
+    assert gsv._free_port(9880) == 9881
+    assert gsv._free_port(9870) == 9870
+    assert launcher._bind_ok("127.0.0.1", 9880) is False and launcher._bind_ok("localhost", 9881) is True
+
+
+def test_free_port_real_socket_skips_listening_port():
+    """真的有程序在听的端口不选（这台电脑的系统规则下）。"""
+    import socket
+
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as srv:
+        for busy in range(19950, 20450, 10):  # 后面要留出空闲端口可选，不用系统随机给的（可能贴着 65535）
+            try:
+                srv.bind(("127.0.0.1", busy))
+                break
+            except OSError:
+                continue
+        srv.listen(1)
+        busy = srv.getsockname()[1]
+        got = gsv._free_port(busy)
+        assert got != busy and busy < got < busy + 50
+
+
 def _ref(project):
     refs = project.load_references()
     r = refs[0]

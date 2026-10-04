@@ -72,7 +72,7 @@ KIND_BUTTONS = {
     "select": "重新挑选最佳模型",
     "generate": "生成",
     "narrate": "生成",
-    "speed": "▶ 试听语速",
+    "speed": "▶ 试听（快速，只听语速）",
     "verify": "开始鉴别",
     "blind": "生成盲听测试",
     "download": "⬇️ 下载缺少的模型",

@@ -83,7 +83,8 @@ def test_dummy_engine_only_offered_in_test_config(tmp_path):
     ui2 = A.WebUI(_cfg(tmp_path / "b"))  # 测试配置里 backend = dummy
     ui2.build()
     assert "dummy" in [v for _, v in ui2.c["s_backend"].choices]
-    assert [v for _, v in ui2.c["quality"].choices] == ["fast", "balanced", "best", "max", "perfect"]
+    assert [v for _, v in ui2.c["quality"].choices] == ["fast", "balanced", "best", "max", "perfect", "identical"]
+    assert ui2.c["quality"].value == "identical"  # 网页每次打开都先选好「一模一样」
     assert ui2.c["speed"].minimum == -30 and ui2.c["speed"].maximum == 30 and ui2.c["speed"].value == 0
 
 
@@ -106,7 +107,9 @@ def test_prepare_through_the_page(tmp_path, lecture_dir):
     count, clips, _ = after.fn("网页声音", False, None, last["clips_base"])
     assert clips and clips[0][0] == 1 and "用来训练的句子" in count
     assert "还没训练" in last["voice_status"]
-    assert last["prep_next"]["visible"] is True
+    # 第一次准备完还没确认训练素材（点开始训练会被拦下）：「去「② 训练模型」 →」先不显示，
+    # 确认好了再准备时才显示（test_bug_hunt4.py::test_prepare_done_points_to_confirm_before_training）
+    assert last["prep_next"]["visible"] is False
     # 页面再点一次：已经处理过的文件不会重做（同一个文件夹）
     assert wf.Project(app_ui.cfg, "网页声音").exists
     shutil.rmtree(wf.Project(app_ui.cfg, "网页声音").root, ignore_errors=True)
@@ -207,6 +210,8 @@ def test_find_bar_wiring(tmp_path):
     want = [ids[k] for k in A.WebUI.FIND_OUT]
     assert ids["find_q"] < ids["clips"] and ids["find_status"] < ids["clips"]
     assert ui.c["find_q"].elem_id == "vt-find-q" and ui.c["find_repall"].elem_id == "vt-find-all"
+    # 老师 10-03 要求的例子：借词（识别错的）→ 介词（正确的）
+    assert ui.c["find_q"].label == "🔍 查找（例如：借词）" and ui.c["find_r"].label == "替换成（例如：介词）"
     for comp, event, mode in (("find_btn", "click", "once"), ("find_q", "submit", "once"),
                               ("find_prev", "click", "multiple"), ("find_next", "click", "multiple"),
                               ("find_rep1", "click", "once"), ("find_repall", "click", "once"),

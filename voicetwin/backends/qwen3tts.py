@@ -46,6 +46,7 @@ def _speaker_name(voice: str) -> str:
 class Qwen3TTSBackend(WorkerBackend):
     name = "qwen3tts"
     display_name = "Qwen3-TTS"
+    file_model_name = "Qwen3TTS"        # 文件名里不放横杠（老师的规定：只用字母、数字、汉字、下划线）
     supports_training = True
     supports_speed = False
     train_stages: List[Stage] = [(0.0, "准备"), (0.05, "提取音频编码"), (0.15, "微调训练")]

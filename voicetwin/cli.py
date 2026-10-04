@@ -68,7 +68,41 @@ def _parse_redo(value: str) -> List[int]:
     return sorted(out)
 
 
-QUALITY_CHOICES = ["fast", "balanced", "best", "max", "perfect"]
+#: 和 synth/engine.py 的 QUALITY_ORDER 一样（测试会核对）。这里不 import 引擎：voicetwin -h、init-config 要很快
+QUALITY_CHOICES = ["fast", "balanced", "best", "max", "perfect", "identical"]
+QUALITY_HELP = ("质量档位：fast 快速 | balanced 均衡 | best 最好 | max 极致 | perfect 完美 | identical 一模一样（默认）"
+                "（越往后越慢，但每句更稳、更像你；也可以写中文名，例如 -q 一模一样。"
+                "不写就看 config.yaml 的 synth.quality，那里写 auto 或没写就是一模一样）")
+
+
+def _quality_arg(value: str) -> str:
+    """-q 的值：英文名、中文名（一模一样）、auto 都认；认不出时用中文说明可以写什么。"""
+    from voicetwin.synth.engine import match_quality
+
+    key = match_quality(value)
+    if key is None:
+        raise argparse.ArgumentTypeError(f"不认识的质量档位「{value}」。可选：{'/'.join(QUALITY_CHOICES)}（一模一样），"
+                                         "也可以写中文名，例如 -q 一模一样")
+    return key
+
+
+def _config_quality_notes(cfg: Any) -> List[str]:
+    """命令行没写 -q 时，config.yaml 里的 synth.quality 要不要提醒一句（只写真的会发生的事）。"""
+    from voicetwin.synth.engine import AUTO_QUALITY, DEFAULT_QUALITY, QUALITY_SHORT, match_quality
+
+    if cfg.get("_legacy_quality"):
+        return [f"设置文件 config.yaml 里的「quality: {cfg['_legacy_quality']}」是旧版本（v0.1.0～v0.1.3）自动写进去的默认值，"
+                "不是你自己改的，所以这次按默认的「一模一样」生成。想一直用别的档位：把那一行改成那个档位，"
+                "并删掉后面 # 开头的旧说明；或者在命令后面加 -q（例如 -q balanced）"]
+    raw = cfg.get_path("synth.quality", "auto")
+    text = str(raw if raw is not None else "").strip()
+    key = match_quality(raw)
+    # 认不出的写法：引擎会说明并用「一模一样」；写的就是「一模一样」：和默认一样，不用提醒（否则会叫老师把它改成 auto）
+    if text.lower() in AUTO_QUALITY or key is None or key == DEFAULT_QUALITY:
+        return []
+    name = text if text == QUALITY_SHORT.get(key) else f"{text}（{QUALITY_SHORT.get(key, key)}）"
+    return [f"设置文件 config.yaml 里写了质量「{name}」，这次按它生成；想用默认的「一模一样」，"
+            "把那一行改成 quality: auto，或者加 -q identical"]
 # 这些命令不会长时间运行，不需要关闭黑色窗口的「快速编辑」
 NO_QUICK_EDIT_COMMANDS = ("init-config", "doctor")
 
@@ -95,6 +129,12 @@ def build_parser() -> argparse.ArgumentParser:
     def backend_arg(p: argparse.ArgumentParser) -> None:
         p.add_argument("-b", "--backend", choices=["gptsovits", "qwen3tts", "indextts", "dummy"],
                        help="合成引擎（默认看 config.yaml 的 backend）")
+
+    def mode_arg(p: argparse.ArgumentParser, helptext: str = "") -> None:
+        p.add_argument("--mode", choices=["identical", "standard"], default=None,
+                       help=helptext or ("训练方式（GPT-SoVITS）：identical = 「一模一样」（默认：练得更久、多存版本、"
+                                         "第 4 轮以后存下的每个版本都试一遍再挑）；standard = 标准（和以前一样的训练量，快很多）。"
+                                         "不写时看 config.yaml 的 backends.gptsovits.train.mode"))
 
     p = sub.add_parser("init-config", help="在当前目录生成可编辑的 config.yaml")
     p.add_argument("--gptsovits-root", help="GPT-SoVITS（或整合包）所在目录")
@@ -133,10 +173,13 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--dpo", choices=["auto", "on", "off"], default="auto",
                    help="GPT-SoVITS 的 DPO（实验功能）：auto = 不开（默认；没有可靠证据说明它能让声音更像），on = 手动打开")
     p.add_argument("--no-select", action="store_true", help="训练后不自动挑选模型")
+    mode_arg(p)
 
     p = sub.add_parser("select", help="用验证集自动挑选最像你的模型，并校准语速")
     voice_arg(p)
     backend_arg(p)
+    mode_arg(p, "挑选方式：identical = 第 4 轮以后存下的每个版本都试（很慢）；standard = 从早到晚均匀挑几个（快很多）。"
+                "不写时按现在的模型是怎么练的（以前的版本练的算 standard）")
     p.add_argument("--items", type=int, default=None, help="用多少条验证句（默认自动）")
     p.add_argument("--asr", dest="asr", action="store_true", default=None, help="同时用识别模型检查错字")
     p.add_argument("--no-asr", dest="asr", action="store_false")
@@ -146,11 +189,12 @@ def build_parser() -> argparse.ArgumentParser:
         voice_arg(p)
         backend_arg(p)
         p.add_argument("text" if name == "say" else "script", help="要说的文字" if name == "say" else "讲稿文件路径")
-        p.add_argument("-o", "--output", help="输出文件（.wav 或 .mp3），默认保存到 workspace/声音名/outputs/")
-        p.add_argument("-q", "--quality", choices=QUALITY_CHOICES,
-                       help="质量档位：fast 快速 | balanced 均衡 | best 最好 | max 极致 | perfect 完美"
-                            "（越往后越慢，但每句更稳、更像你；默认看 config.yaml）")
-        p.add_argument("-n", "--candidates", type=int, help="每句生成几个候选（覆盖质量档位）")
+        p.add_argument("-o", "--output", help="输出文件（.wav 或 .mp3），默认保存到 workspace/声音名/outputs/；"
+                                                   "文件名只保留汉字、字母、数字和下划线，最后会自动加上实际用的模型名"
+                                                   "（例如 第3课_V4.wav；字幕、报告同名）")
+        p.add_argument("-q", "--quality", type=_quality_arg, metavar="档位", help=QUALITY_HELP)
+        p.add_argument("-n", "--candidates", type=int,
+                       help="每句生成几个候选（覆盖质量档位；「一模一样」档是每句最多试几个）")
         speed_group = p.add_mutually_exclusive_group()
         speed_group.add_argument("--speed", type=float, help="语速倍数（默认 1.0 = 和你本人一样；1.2 = 快 20%%）")
         speed_group.add_argument("--faster", type=float, metavar="百分比", help="比你原声快多少（例如 --faster 20 = 快 20%%）")
@@ -172,6 +216,7 @@ def build_parser() -> argparse.ArgumentParser:
     backend_arg(p)
     p.add_argument("-i", "--input", nargs="+", required=True, help="视频/音频文件或文件夹")
     p.add_argument("--skip-train", action="store_true", help="不训练，只用零样本克隆")
+    mode_arg(p)
 
     p = sub.add_parser("mux", help="把生成的讲解音频放进视频（替换原音轨）")
     p.add_argument("--video", required=True)
@@ -273,6 +318,19 @@ class _ConsoleProgress:
                 self.print_fn(f"✅ {self.title}完成，用时 {_fmt_secs(self.clock() - self.t0)}")
             except Exception:
                 pass
+
+
+def _selection_lines(info: Any) -> List[str]:
+    """挑选结果给人看的几行：「一模一样」的挑选出错改用了标准挑法的说明、四项评分的名次表（都是实测的）。"""
+    if not isinstance(info, dict):
+        return []
+    lines: List[str] = []
+    if info.get("selection_error"):
+        lines.append(f"⚠️ 按「一模一样」的方式挑选这次没成功（{info['selection_error']}），已经自动改用标准的挑法挑好了模型")
+    sel = info.get("selection") if isinstance(info.get("selection"), dict) else {}
+    if sel.get("method") == "deep":
+        lines += [str(x) for x in sel.get("lines") or []]
+    return lines
 
 
 def _cli_progress(kind: str, cfg: Any, title: str, backend: Optional[str] = None, select: bool = True,
@@ -547,10 +605,19 @@ def main(argv: Optional[List[str]] = None) -> None:
         elif args.command == "train":
             opts = {"sovits_epochs": args.sovits_epochs, "gpt_epochs": args.gpt_epochs, "batch_size": args.batch_size,
                     "epochs": args.epochs, "if_dpo": {"on": True, "off": False}.get(str(args.dpo or "auto"))}
-            progress = _cli_progress("train", cfg, "训练模型", args.backend, select=not args.no_select)
-            info = wf.run_train(cfg, args.voice, args.backend, progress=progress, select=not args.no_select, **opts)
+            progress = _cli_progress("train", cfg, "训练模型", args.backend, select=not args.no_select, mode=args.mode)
+            info = wf.run_train(cfg, args.voice, args.backend, progress=progress, select=not args.no_select,
+                                mode=args.mode, **opts)
             _finish(progress)
-            print(f"训练完成（用时 {info.get('train_minutes')} 分钟）。默认模型：{(info.get('selected') or {}).get('id')}")
+            if (info.get("params") or {}).get("run_state") == "skip":  # 这次没训练：不能说「训练完成（用时 0.0 分钟）」
+                print(f"素材没变，这次不用重新训练（用的是上次训练好的模型）。默认模型：{(info.get('selected') or {}).get('id')}")
+            else:
+                print(f"训练完成（用时 {info.get('train_minutes')} 分钟）。默认模型：{(info.get('selected') or {}).get('id')}")
+            sel_info = info.get("selection") or {}
+            for line in list((info.get("params") or {}).get("report") or []) + _selection_lines(sel_info) + [
+                    sel_info.get("previous_note")]:
+                if line:
+                    print(f"  {line}")
             if info.get("selection_error"):
                 print(f"⚠️ 训练成功了，但自动挑选模型没有完成：{info['selection_error']}\n"
                       f"   可以稍后运行：voicetwin select -v {args.voice}")
@@ -558,15 +625,21 @@ def main(argv: Optional[List[str]] = None) -> None:
             kw: Dict[str, Any] = {"use_asr": args.asr}
             if args.items is not None:
                 kw["items"] = args.items
-            progress = _cli_progress("select", cfg, "挑选最佳模型", args.backend)
-            info = wf.run_select(cfg, args.voice, args.backend, progress=progress, **kw)
+            progress = _cli_progress("select", cfg, "挑选最佳模型", args.backend, mode=args.mode)
+            info = wf.run_select(cfg, args.voice, args.backend, progress=progress, mode=args.mode, **kw)
             _finish(progress)
             _print_json({"best": info["selection"]["best"], "speed": info["speed"]})
+            for line in _selection_lines(info) + [info.get("previous_note")]:
+                if line:
+                    print(f"  {line}")
         elif args.command in ("say", "narrate"):
             source = args.text if args.command == "say" else args.script
             if args.command == "narrate" and not Path(source).exists():
                 raise FileNotFoundError(f"找不到讲稿文件：{source}")
             redo = _parse_redo(getattr(args, "redo", ""))
+            if args.quality is None:  # 没写 -q：按 config.yaml，旧版本写进去的默认值 / 手动写的档位都说一声
+                for line in _config_quality_notes(cfg):
+                    print(f"ℹ️ {line}")
             progress = _cli_progress("narrate", cfg, "生成音频", args.backend, quality=args.quality)
             res = wf.run_narrate(cfg, args.voice, source, out=args.output, backend_name=args.backend,
                                  quality=args.quality, candidates=args.candidates, speed=_speed_arg(args),
@@ -582,9 +655,11 @@ def main(argv: Optional[List[str]] = None) -> None:
             project = wf.open_project(cfg, args.voice, must_exist=True)
             _print_json(evaluate_file(cfg, project, Path(args.audio), args.text))
         elif args.command == "auto":
+            for line in _config_quality_notes(cfg):  # 最后生成试听时用 config.yaml 的质量
+                print(f"ℹ️ {line}")
             progress = _cli_progress("", cfg, "全自动处理")
             result = wf.run_auto(cfg, args.voice, args.input, args.backend, skip_train=args.skip_train,
-                                 progress=progress)
+                                 progress=progress, mode=args.mode)
             _finish(progress)
             _print_summary(result["prepare"])
             print(f"\n✅ 全部完成！试听：{result['demo']}")
@@ -649,12 +724,21 @@ def _print_narration(res: Any, is_narrate: bool) -> None:
         print(f"   整篇像你本人 {float(overall):.1f}%（100% = 和你自己的真实录音一样像；声纹模型自动打分，最终以耳朵为准）")
     variants = [v for v in (getattr(res, "variants", None) or []) if isinstance(v, dict)]
     if variants:
+        # 两个版本完全一样（每句都量不出底噪）时不说哪个「更像」；分数一样时如实说按规定用没处理过的
+        same = next((v for v in variants if v.get("same_as_raw")), None)
+        scores = [v.get("score") for v in variants if isinstance(v.get("score"), (int, float))]
+        tie = len(variants) == 2 and len(scores) == 2 and scores[0] == scores[1]
         print(f"   共 {len(variants)} 个版本（{res.audio_path} 是现在用的那个）：")
         for i, v in enumerate(variants, 1):
             label = chr(ord("A") + i - 1) if i <= 26 else str(i)
             score = _variant_score_text(v)
-            star = "  ⭐ 推荐：更像你的原声" if v.get("recommended") else ""
+            star = ""
+            if v.get("recommended") and same is None:
+                star = "  ⭐ 推荐（两个版本分数一样，按规定用没处理过的这个）" if tie else "  ⭐ 推荐：更像你的原声"
             print(f"   版本 {label}：{v.get('name', '')}  {v.get('path', '')}" + (f"（{score}）" if score else "") + star)
+        if same is not None:
+            why = same.get("same_reason") or "每句里都量不出底噪，不需要去杂音"
+            print(f"   两个版本完全一样（{why}），用哪个都一样。")
     if res.srt_path:
         print(f"   字幕：{res.srt_path}")
     print(f"   报告：{res.report_path}")

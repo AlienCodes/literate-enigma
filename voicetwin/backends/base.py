@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import dataclasses
+import itertools
 import math
 import os
 import re
@@ -10,6 +12,7 @@ import subprocess
 import sys
 import threading
 import time
+import uuid
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
@@ -45,6 +48,24 @@ CANCEL_POLL_SECONDS = 1.0
 LOG_EVERY_SECONDS = 15.0
 #: 失败时报错里带多少行日志尾巴
 TAIL_LINES = 30
+#: 一次要好几个版本、一个一个生成时，第 k 个用的随机种子是 seed + k × SEED_STEP
+#: （和生成引擎里每个候选之间相差的数一样；一个大质数，和每句之间相差的 7919 错开，不会撞上别的句子的种子）
+SEED_STEP = 104729
+#: synthesize_many 写的文件名 = 这次运行程序随机取的一串字 + 这次运行里的流水号。
+#: 流水号每次运行都从 1 数起，只靠它的话，下次运行写进同一个文件夹会覆盖上次的文件，所以前面加上这串字
+_MANY_RUN = uuid.uuid4().hex[:8]
+_MANY_IDS = itertools.count(1)
+
+
+def many_prefix(out_dir: Path) -> str:
+    """synthesize_many 这一次调用写的文件名开头（后面接 _r0.wav、_b4_r0.wav……）。
+
+    同一个文件夹里多次调用、哪怕是不同次运行程序写进去的，也不会重名、互相覆盖：
+    万一文件夹里已经有这个开头的文件（几乎不会发生），就换下一个流水号。"""
+    while True:
+        prefix = f"many{_MANY_RUN}-{next(_MANY_IDS)}"
+        if not any(Path(out_dir).glob(prefix + "_*")):
+            return prefix
 
 
 @dataclass
@@ -142,14 +163,61 @@ def _step_name(log_name: str, label: str) -> str:
     return STEP_NAMES.get(log_name, log_name)
 
 
+#: 文件名里的模型名找不到 / 检测不出来时写这个（老师的规定：绝不猜）
+MODEL_UNKNOWN = "模型未知"
+_FP_CACHE: Dict[Tuple[str, int, int], str] = {}
+
+
+def model_label(version: Any) -> Optional[str]:
+    """检测出来的模型版本 → 文件名、网页、报告里统一的写法（老师定的）：v4 → V4、v5 → V5（「v + 一个数字」写成大写 V），
+    v2ProPlus、v2Pro 照原样；只留英文字母和数字（不放点、空格）。没有版本（检测不出来）返回 None。"""
+    v = str(version or "").strip()
+    if not v:
+        return None
+    m = re.fullmatch(r"[vV](\d+)", v)
+    if m:
+        return f"V{m.group(1)}"
+    v = re.sub(r"[^A-Za-z0-9]", "", v)
+    return v or None
+
+
+def file_fingerprint(path: Any) -> str:
+    """模型文件的指纹：整个文件内容的 sha256 前 16 位（写进报告：以后能核对生成时用的到底是哪个文件）。
+    同一个文件（路径、大小、修改时间都一样）只算一次；读不了时是空字符串。"""
+    import hashlib
+
+    try:
+        p = Path(str(path))
+        st = p.stat()
+        key = (str(p), int(st.st_size), int(st.st_mtime_ns))
+        got = _FP_CACHE.get(key)
+        if got is None:
+            h = hashlib.sha256()
+            with open(p, "rb") as fh:
+                for block in iter(lambda: fh.read(1 << 20), b""):
+                    h.update(block)
+            got = _FP_CACHE[key] = h.hexdigest()[:16]
+        return got
+    except (OSError, ValueError):
+        return ""
+
+
 class Backend:
     name = "base"
     display_name = "base"
     supports_training = False
     supports_speed = False           # 引擎本身能否调语速（不能的话由 ffmpeg atempo 变速不变调后处理）
     supports_aux_refs = False
+    #: 一次请求能不能同时生成同一句话的好几个版本（synthesize_many 真的「同时」生成，而不是一个一个来）
+    supports_batch = False
+    #: 显存不够、一次只生成一个也不够时，先调用它让出显存（由生成引擎登记，例如把识别校验模型从显卡上拿下来），
+    #: 再试一次；它返回真值表示真的让出了显存（CERChecker.release_gpu 卸掉了模型时返回 True）；None 表示没有登记
+    release_gpu_callback: Optional[Callable[[], Any]] = None
     #: 训练的各个步骤（在这个引擎自己的 0~1 进度里的起点, 中文步骤名），从小到大
     train_stages: List[Stage] = [(0.0, "训练模型")]
+    #: 生成的文件名最后写的「_模型名」（不需要训练、没有模型文件可以检测的引擎写自己的名字；None = 检测不出来）。
+    #: GPT-SoVITS 不看这个：按每句实际用的模型文件检测（gptsovits.model_name_info）
+    file_model_name: Optional[str] = None
 
     def __init__(self, cfg: Config, project: Project):
         self.cfg = cfg
@@ -180,9 +248,33 @@ class Backend:
     def synthesize(self, req: SynthRequest, out_path: Path) -> Path:
         raise NotImplementedError
 
+    def synthesize_many(self, req: SynthRequest, n: int, out_dir: Path) -> List[Tuple[Path, int]]:
+        """同一句话要 n 个版本，写进 out_dir，返回 [(文件, 第几个)]，第几个从 0 数起。
+
+        这里是通用的做法：一个一个生成，第 k 个用随机种子 seed + k × SEED_STEP。
+        能在一次请求里同时生成好几个的引擎（supports_batch）自己实现；那时返回的个数可能比 n 少
+        （比如显存不够、自动减少了同时生成的数量），调用的地方按实际拿到的个数算。"""
+        out_dir = Path(out_dir)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        prefix = many_prefix(out_dir)
+        out: List[Tuple[Path, int]] = []
+        for k in range(max(1, int(n))):
+            check_cancel()
+            one = dataclasses.replace(req, seed=int(req.seed) + k * SEED_STEP)
+            out.append((Path(self.synthesize(one, out_dir / f"{prefix}_r{k}.wav")), k))
+        return out
+
     def model_id(self) -> str:
         """当前使用的模型标识（参与缓存键，换模型后缓存自动失效）。"""
         return self.name
+
+    def model_name_info(self) -> Dict[str, Any]:
+        """这一刻生成实际用的模型叫什么（生成的文件名最后的「_模型名」、文件里面的注释、报告都用它）：
+        {"name": "V4" / None（检测不出来）, "how": 依据（中文）, "files": [{"kind", "file", "fingerprint"}]}。
+        通用的引擎没有模型文件可以检测：写引擎自己的名字（file_model_name）；没有名字就是 None（文件名写「模型未知」）。"""
+        name = self.file_model_name
+        return {"name": name, "how": "引擎名（这个引擎没有要检测的模型文件）" if name else "这个引擎读不出模型名",
+                "files": []}
 
     # ------------------------------------------------------------------ 训练 / 检查点
     def check(self) -> List[str]:
@@ -231,13 +323,17 @@ class Backend:
                    progress: Optional[ProgressFn] = None, progress_range: Tuple[float, float] = (0.0, 1.0),
                    parse_progress: Optional[Callable[[str], ParseResult]] = None, *, label: str = "",
                    poll_progress: Optional[Callable[[], Optional[Tuple[int, int]]]] = None,
-                   poll_interval: float = 2.0) -> None:
+                   poll_interval: float = 2.0, stop_when: Optional[Callable[[str], Any]] = None,
+                   on_poll: Optional[Callable[[], Any]] = None) -> Dict[str, Any]:
         """运行训练类子进程：输出完整写进 logs/<log_name>.log，主日志只写简短的中文进度。
 
         - parse_progress(line) 可以返回 None、0~1 的小数，或 (小数, 中文说明)。
         - poll_progress() 返回 (已完成, 总数)：后台每 poll_interval 秒数一次文件（脚本自己不打印进度时用）。
+        - stop_when(line) 返回真值、或 on_poll()（后台每 poll_interval 秒调用一次）返回 True：程序自己要它停下
+          （例如「实测显卡一次能练几条」练够了步数）。结束整个子进程树，正常返回（不算失败）。
         - 点了停止：结束整个子进程树，抛出 TaskCancelled。
         - 失败：抛出 TrainStepError，第一行是中文说明，后面带日志尾巴。
+        返回 {"stopped": 是不是程序自己让它停下的, "code": 退出码, "oom": 日志里有没有显存不够}。
         """
         check_cancel()
         log_path = self.project.logs_dir / f"{log_name}.log"
@@ -271,7 +367,15 @@ class Backend:
 
         done = threading.Event()
         cancelled = threading.Event()
+        stopped = threading.Event()
         threads: List[threading.Thread] = []
+        proc_box: List[Any] = []
+
+        def request_stop() -> None:
+            if not stopped.is_set():
+                stopped.set()
+                if proc_box:
+                    kill_process_tree(proc_box[0])
         creationflags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
         popen_extra: Dict[str, Any] = {} if os.name == "nt" else {"start_new_session": True}
         cmd_s = [str(c) for c in cmd]
@@ -282,6 +386,7 @@ class Backend:
             proc = subprocess.Popen(cmd_s, cwd=str(cwd) if cwd else None, env=env, stdout=subprocess.PIPE,
                                     stderr=subprocess.STDOUT, bufsize=0, creationflags=creationflags, **popen_extra)
             kill_with_parent(proc)  # 关掉声音分身时训练进程一起结束，不留在后台占显卡
+            proc_box.append(proc)
             finished = False
             try:
                 if _CANCEL is not None:
@@ -311,6 +416,17 @@ class Backend:
                                 pass
 
                     threads.append(threading.Thread(target=poll, name="vt-poll-progress", daemon=True))
+                if on_poll is not None:
+                    def poll_hook() -> None:
+                        while not done.wait(max(0.01, float(poll_interval))):
+                            try:
+                                if on_poll() is True:
+                                    request_stop()
+                                    return
+                            except BaseException:  # noqa: B036 - 后台线程什么都不能抛
+                                pass
+
+                    threads.append(threading.Thread(target=poll_hook, name="vt-on-poll", daemon=True))
                 for t in threads:
                     t.start()
                 assert proc.stdout is not None
@@ -332,6 +448,12 @@ class Backend:
                             tail.pop(0)
                         if not oom and OOM_PATTERN.search(line):
                             oom = True
+                        if stop_when is not None and not stopped.is_set():
+                            try:
+                                if stop_when(line):
+                                    request_stop()
+                            except Exception:
+                                pass
                         if parse_progress is None:
                             continue
                         try:
@@ -373,8 +495,11 @@ class Backend:
                     t.join(timeout=5)
         if cancelled.is_set():
             raise TaskCancelled("已按你的要求停止")
+        if stopped.is_set():  # 程序自己让它停下的：被结束的退出码不算失败
+            return {"stopped": True, "code": code, "oom": oom}
         if code != 0:
             raise self._step_error(log_name, step_name, code, tail, log_path, oom)
+        return {"stopped": False, "code": code, "oom": oom}
 
     @staticmethod
     def _step_error(log_name: str, step_name: str, code: int, tail: List[str], log_path: Path,
