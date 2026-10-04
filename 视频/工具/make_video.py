@@ -34,16 +34,30 @@ def build(js,out):
     for si,s in enumerate(d['sentences']):
         ch=s['chunks']; lead=P_LEAD+(P_PARA_EXTRA if prev_para is not None and s['para']!=prev_para else 0)
         prev_para=s['para']
-        for ci,c in enumerate(ch):
-            parts=[p for p in re.split(r'(?<=,)\s+',re.sub(r'\*\*','',c['en'])) if p.strip()]
-            segs=[]
-            for k2,p in enumerate(parts):
-                segs.append(say(p))
-                if k2<len(parts)-1: segs.append(sil(P_COMMA))
-            a=np.concatenate(segs); pre=lead if ci==0 else 0
-            post=P_CHUNK if ci<len(ch)-1 else P_HOLD
-            audio+=[sil(pre),a,sil(post)]
-            tl.append(((si,ci),pre+len(a)/SR+post))
+        # read the whole sentence naturally: pause only at punctuation (, ; :), not at line breaks
+        texts=[re.sub(r'\*\*','',c['en']).strip() for c in ch]
+        sent=' '.join(texts)
+        bounds=[];pos=0
+        for t in texts: bounds.append(pos); pos+=len(t)+1
+        pieces=[];p0=0
+        for mm in re.finditer(r'[,;:](?=\s)',sent):
+            pieces.append((p0,mm.end())); p0=mm.end()+1
+        pieces.append((p0,len(sent)))
+        clips=[];tmap=[];t=0.0
+        for k2,(x0,x1) in enumerate(pieces):
+            w=say(sent[x0:x1]); dur=len(w)/SR
+            tmap.append((x0,x1,t,t+dur)); clips.append(w); t+=dur
+            if k2<len(pieces)-1: clips.append(sil(P_COMMA)); t+=P_COMMA
+        def c2t(cpos):
+            for x0,x1,t0,t1 in tmap:
+                if cpos<=x1: return t0+(t1-t0)*max(0,cpos-x0)/max(1,x1-x0)
+            return t
+        a=np.concatenate(clips)
+        starts=[0.0]+[c2t(bounds[i]) for i in range(1,len(ch))]+[len(a)/SR]
+        audio+=[sil(lead),a,sil(P_HOLD)]
+        for ci in range(len(ch)):
+            dur=starts[ci+1]-starts[ci]+(lead if ci==0 else 0)+(P_HOLD if ci==len(ch)-1 else 0)
+            tl.append(((si,ci),dur))
     audio.append(sil(0.8)); tl[-1]=(tl[-1][0],tl[-1][1]+0.8)
     A=np.concatenate(audio); A=A/np.abs(A).max()*0.89
     total=sum(x for _,x in tl)
