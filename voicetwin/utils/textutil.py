@@ -227,3 +227,38 @@ def short_hash(*parts: object, n: int = 10) -> str:
         h.update(repr(p).encode("utf-8"))
         h.update(b"\x00")
     return h.hexdigest()[:n]
+
+
+def decode_text_bytes(raw: bytes) -> str:
+    """老师的文字文件（txt、字幕）解码：记事本存的 UTF-8（带不带 BOM）、「Unicode」（UTF-16，带不带 BOM）、
+    ANSI（中文 Windows 上是 GBK）都能读。先按 UTF-8 严格解码，所以 UTF-8 的文件和以前读出来一模一样。"""
+    if raw.startswith(b"\xef\xbb\xbf"):
+        return raw[3:].decode("utf-8", errors="replace")
+    if raw.startswith((b"\xff\xfe\x00\x00", b"\x00\x00\xfe\xff")):
+        return raw.decode("utf-32", errors="replace")
+    if raw.startswith((b"\xff\xfe", b"\xfe\xff")):
+        return raw.decode("utf-16", errors="replace")
+    head = raw[:4000]
+    if head and head.count(b"\x00") > len(head) // 4:  # 没有 BOM 的 UTF-16
+        for enc in ("utf-16-le", "utf-16-be"):
+            try:
+                return raw.decode(enc)
+            except UnicodeDecodeError:
+                continue
+    try:
+        return raw.decode("utf-8")
+    except UnicodeDecodeError:
+        pass
+    loose = raw.decode("utf-8", errors="replace")
+    bad = loose.count("\ufffd")
+    good = [ch for ch in loose if ord(ch) > 127 and ch != "\ufffd"]
+    wide = sum(1 for ch in good if ord(ch) >= 0x800)  # 按 UTF-8 读对了的三字节字：汉字、中文标点、英文的弯引号 ’ “ ”
+    if bad <= 0.05 * (bad + len(good)) or 2 * bad <= wide:
+        # UTF-8 的文件只坏了几个字节：照 UTF-8 读，只坏那一两个字（整个当成 GBK 读会全变成乱码）。英文字幕里不是英文字母的
+        # 只有几个弯引号，坏一个就占两三成，不能因此当成 GBK 读（会读出汉字、吃掉后面的字母），所以也看读对了的三字节字。
+        # GBK 的文字照 UTF-8 读时，读坏的比读对的三字节字多得多（实测见 research/全面找bug/第四轮/g4_脚本/decode_rule.py）
+        return loose
+    try:
+        return raw.decode("gb18030")
+    except UnicodeDecodeError:
+        return loose

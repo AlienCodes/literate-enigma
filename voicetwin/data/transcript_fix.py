@@ -86,26 +86,9 @@ AUTO_PREFIX = "自动检查："
 # ============================================================================ 读 txt、存逐字稿
 def read_text_file(path: Any) -> str:
     """读老师的 txt：记事本存的 UTF-8（带不带 BOM）、「Unicode」（UTF-16）、ANSI（GBK）都能读。"""
-    raw = Path(path).read_bytes()
-    if raw.startswith(b"\xef\xbb\xbf"):
-        return raw[3:].decode("utf-8", errors="replace")
-    if raw.startswith((b"\xff\xfe\x00\x00", b"\x00\x00\xfe\xff")):
-        return raw.decode("utf-32", errors="replace")
-    if raw.startswith((b"\xff\xfe", b"\xfe\xff")):
-        return raw.decode("utf-16", errors="replace")
-    head = raw[:4000]
-    if head and head.count(b"\x00") > len(head) // 4:  # 没有 BOM 的 UTF-16
-        for enc in ("utf-16-le", "utf-16-be"):
-            try:
-                return raw.decode(enc)
-            except UnicodeDecodeError:
-                continue
-    for enc in ("utf-8", "gb18030"):
-        try:
-            return raw.decode(enc)
-        except UnicodeDecodeError:
-            continue
-    return raw.decode("utf-8", errors="replace")
+    from voicetwin.utils.textutil import decode_text_bytes
+
+    return decode_text_bytes(Path(path).read_bytes())
 
 
 def transcript_dir(project: Any) -> Path:

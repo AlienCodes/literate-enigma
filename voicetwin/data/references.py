@@ -66,6 +66,18 @@ def _select_references(project: Project, records: List[Dict[str, Any]], pcfg: Di
         by_lang.setdefault(r["lang"], []).append(r)
     total = sum(len(v) for v in by_lang.values()) or 1
 
+    # 去掉首尾静音以后的长度要在 min_d-0.3 ~ max_d+0.3 秒（合成引擎要求参考音频 3~10 秒）：挑的时候就查，
+    # 不合格的换下一条（以前挑完才查，最好的那条疑问句太长就直接没有疑问句的参考，明明还有别的问句）
+    trimmed_cache: Dict[str, Any] = {}
+
+    def fits(r: Dict[str, Any]) -> bool:
+        if r["id"] not in trimmed_cache:
+            wav, sr = load_audio(project.abspath(r["path"]))
+            trimmed, _, _ = trim_silence(wav, sr, pad_ms=80)
+            dur = len(trimmed) / sr
+            trimmed_cache[r["id"]] = (trimmed, sr, dur) if min_d - 0.3 <= dur <= max_d + 0.3 else None
+        return trimmed_cache[r["id"]] is not None
+
     chosen: List[Dict[str, Any]] = []
     for lang, items in by_lang.items():
         med = float(np.median([r["rate"] for r in items]))
@@ -77,7 +89,7 @@ def _select_references(project: Project, records: List[Dict[str, Any]], pcfg: Di
         used_sources: Dict[str, int] = {}
         seen_texts: set = set()  # 同一句话（例如每节课都说的开场白）只选一次，让参考语气更多样
         for kind in ("question", "exclaim"):  # 各挑一条疑问句 / 感叹句
-            best = next((r for r in items if sentence_kind(r["text"]) == kind), None)
+            best = next((r for r in items if sentence_kind(r["text"]) == kind and fits(r)), None)
             if best is not None:
                 picked.append(best)
                 seen_texts.add(normalize_for_cer(best["text"]))
@@ -88,7 +100,7 @@ def _select_references(project: Project, records: List[Dict[str, Any]], pcfg: Di
             if used_sources.get(r.get("source", ""), 0) >= 2 and len(statements) > quota * 2:
                 continue
             key = normalize_for_cer(r["text"])
-            if key in seen_texts:
+            if key in seen_texts or not fits(r):
                 continue
             seen_texts.add(key)
             picked.append(r)
@@ -98,12 +110,9 @@ def _select_references(project: Project, records: List[Dict[str, Any]], pcfg: Di
     refs: List[Dict[str, Any]] = []
     project.refs_dir.mkdir(parents=True, exist_ok=True)
     for r in chosen:
-        wav, sr = load_audio(project.abspath(r["path"]))
-        trimmed, _, _ = trim_silence(wav, sr, pad_ms=80)
-        dur = len(trimmed) / sr
-        if not (min_d - 0.3 <= dur <= max_d + 0.3):
-            # 太长就从句中停顿处截短不可靠，直接跳过；太短也跳过
+        if not fits(r):  # 太长就从句中停顿处截短不可靠，直接跳过；太短也跳过（挑的时候已经查过）
             continue
+        trimmed, sr, dur = trimmed_cache[r["id"]]
         path = project.refs_dir / f"{r['id']}.wav"
         if not path.exists():  # 同一句的参考音频内容一样：已经有了就不重写（可能正被生成用着）
             from voicetwin.utils import atomic
