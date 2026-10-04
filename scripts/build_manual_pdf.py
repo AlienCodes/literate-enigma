@@ -3,7 +3,7 @@
 把 docs/manual/src/*.html 按文件名顺序拼成一个完整网页，自动生成目录（带页码和跳转链接），
 再用 Chromium 打印成 A4 PDF（带书签、页眉页脚），输出到 docs/声音分身VoiceTwin使用手册.pdf。
 
-加 --quickstart 时改为把根目录的《快速上手.md》打印成几页纸的 docs/快速上手.pdf。
+加 --quickstart 时改为把根目录的《快速上手.md》打印成一页纸的 docs/快速上手.pdf。
 
 用法（维护者在 Linux 上运行）：
     pip install playwright pypdf fonttools markdown-it-py mdit-py-plugins
@@ -258,7 +258,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--chromium", help="Chromium 可执行文件（默认用 Playwright 自带的）")
     ap.add_argument("--html-only", action="store_true", help="只生成 HTML，不打印 PDF")
-    ap.add_argument("--quickstart", action="store_true", help="生成几页纸的《快速上手》PDF（docs/快速上手.pdf）")
+    ap.add_argument("--quickstart", action="store_true", help="生成一页纸的《快速上手》PDF（docs/快速上手.pdf）")
     ap.add_argument("-o", "--output", default="")
     args = ap.parse_args()
 
