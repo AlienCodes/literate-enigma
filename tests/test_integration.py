@@ -29,11 +29,11 @@ def _copy_voice(prepared, tmp_path):
 
 
 def test_version_is_shown_in_page_header():
-    """老师的永久要求：网页标题永远显示「v18」，版本号（18.5……）只在黑色窗口、发布页、下载的文件名里。"""
-    assert voicetwin.__version__ == "18.5"
-    assert A.APP_TITLE_VERSION == "18" and "# 🎙️ 声音分身 VoiceTwin v18 " in A.INTRO and "18.5" not in A.INTRO
+    """老师的永久要求：网页标题永远显示「v18」，版本号（18.6……）只在黑色窗口、发布页、下载的文件名里。"""
+    assert voicetwin.__version__ == "18.6"
+    assert A.APP_TITLE_VERSION == "18" and "# 🎙️ 声音分身 VoiceTwin v18 " in A.INTRO and "18.6" not in A.INTRO
     text = (Path(__file__).resolve().parents[1] / "pyproject.toml").read_text(encoding="utf-8")
-    assert 'version = "18.5"' in text
+    assert 'version = "18.6"' in text
     src = (Path(__file__).resolve().parents[1] / "voicetwin" / "webui" / "app.py").read_text(encoding="utf-8")
     assert '\nAPP_TITLE_VERSION = "18"\n' in src  # 写死的，不跟着版本号变
     # 发布说明和《快速上手》不能说「网页标题显示新版本号」：新版本号写在黑色窗口里
@@ -43,8 +43,8 @@ def test_version_is_shown_in_page_header():
     spec = importlib.util.spec_from_file_location("bwr", root / "scripts" / "build_windows_release.py")
     bwr = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(bwr)
-    notes = bwr.release_notes("18.5", "VoiceTwin-Windows-v18.5.zip")
-    assert "「声音分身 VoiceTwin v18.5 正在启动」就对了" in notes and "标题显示 v18.5" not in notes
+    notes = bwr.release_notes("18.6", "VoiceTwin-Windows-v18.6.zip")
+    assert "「声音分身 VoiceTwin v18.6 正在启动」就对了" in notes and "标题显示 v18.6" not in notes
     quick = (root / "快速上手.md").read_text(encoding="utf-8")
     assert "网页标题里显示新版本号" not in quick  # 一页纸的快速上手不提标题（老师 10-04：越简单越好）
 
