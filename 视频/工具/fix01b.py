@@ -6,7 +6,7 @@ def k(en,zh):  # mark keyword: en has **x**, zh has **y** -> **y**(x)
     return [en,zh]
 def A(i,j,al,note=None):
     c=S[i]['chunks'][j]; c['align']=al
-    c['en']=' '.join(a for a,_ in al)
+    c['en']=' '.join(a for a,_ in al if a!='\n')
     if note: c['note']=note
     elif 'note' in c: del c['note']
 A(0,0,[["On 6 January 1995,","1995年1月6日，"],["McArthur Wheeler","麦克阿瑟·惠勒"],["and","和"],["an","一名"],["**accomplice**","**同伙**(accomplice)"]])

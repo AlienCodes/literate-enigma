@@ -2,15 +2,15 @@
 # ZH: 以为柠檬汁能隐身的劫匪
 
 ## 英文
-On 6 January 1995, McArthur Wheeler and an accomplice **raided** two Pittsburgh-area banks at gunpoint in broad **daylight**, without **disguise**. Their only **camouflage** was lemon juice, **rubbed** on in the **earnest** **conviction** that it would **render** them invisible to cameras.
+On 6 January 1995, McArthur Wheeler and an **accomplice** **raided** two Pittsburgh-area banks at gunpoint **in broad daylight**, without **disguise**. Their only **camouflage** was lemon juice, **rubbed on** in the **earnest** **conviction** that it would **render** them **invisible** to cameras.
 
-The **rationale** had a **kernel** of truth. Lemon juice is a **time-honoured** invisible ink, and Wheeler made an **inventive** **leap** from paper to skin. His Polaroid **self-portrait** came out **devoid** of its subject, a result he took as **conclusive**.
+The **rationale** had a **kernel** of truth. Lemon juice is a **time-honoured** **invisible** **ink**, and Wheeler made an **inventive** **leap** from paper to skin. His Polaroid **self-portrait** came out **devoid of** its subject, a result he took as **conclusive**.
 
-The security cameras **begged to differ**. On 19 April the eleven o'clock news showed **viewers** the **damning** images, and Wheeler was arrested shortly after midnight. **Confronted** with the tapes, he protested in **sheer** **disbelief** that he had worn the juice.
+The security cameras **begged to differ**. On 19 April the eleven o'clock news showed **viewers** the **damning** images, and Wheeler was arrested shortly after midnight. **Confronted with** the tapes, he protested in **sheer** **disbelief** that he had worn the juice.
 
 Reading about the case, the Cornell psychologist David Dunning **pondered** a **disquieting** **proposition**. Perhaps **incompetence** can **cloak** itself, **robbing** people of the **discernment** to notice their **deficiencies**.
 
-For a 1999 paper, Dunning and his student Justin Kruger **quizzed** Cornell **undergraduates** on humour, grammar and **logical** reasoning. The bottom quarter of **scorers** averaged the 12th percentile but **generously** placed themselves near the 62nd, whereas high **achievers** showed **undue** **modesty**. The **unskilled**, the authors argued, bear a **dual** burden, since **appraisal** calls for the same skills as **execution**.
+For a 1999 paper, Dunning and his student Justin Kruger **quizzed** Cornell **undergraduates** on humour, grammar and **logical** reasoning. The bottom quarter of **scorers** averaged the 12th percentile but **generously** placed themselves near the 62nd, whereas **high achievers** showed **undue** **modesty**. The **unskilled**, the authors argued, bear a **dual** burden, since **appraisal** **calls for** the same skills as **execution**.
 
 **Detractors** traced part of the Dunning-Kruger **disparity** to regression to the mean, a statistical **mirage** the paper **partially** acknowledged. Studies designed to avoid it still find a smaller but **tangible** effect. In 2023 the pair **garnered** the Grawemeyer psychology award.
 
@@ -18,75 +18,79 @@ For a 1999 paper, Dunning and his student Justin Kruger **quizzed** Cornell **un
 
 ## 中文
 
-1995年1月6日，麦克阿瑟·惠勒和一名同伙在**光天化日**(daylight)之下持枪**抢劫**(raided)了匹兹堡地区的两家银行，没有做任何**伪装**(disguise)。他们唯一的**掩护**(camouflage)是**涂抹**(rubbed)在脸上的柠檬汁，因为他们**真心实意**(earnest)地**深信**(conviction)，柠檬汁能把他们**变成**(render)摄像头拍不到的隐形人。
+1995年1月6日，麦克阿瑟·惠勒和一名**同伙**(accomplice)持枪**抢劫了**(raided)匹兹堡地区的两家银行，**光天化日之下**(in broad daylight)，不加**乔装**(disguise)。他们唯一的**伪装**(camouflage)是柠檬汁，**涂抹**(rubbed on)在身上，怀着**真心实意的**(earnest)**信念**(conviction)，认为它能**使**(render)他们在镜头前**隐形**(invisible)。（另译：对此深信不疑）（render：使……处于某种状态）
 
-这套**推理**(rationale)倒也有几分真实的**内核**(kernel)。柠檬汁是一种**由来已久**(time-honoured)的隐形墨水，惠勒做了一次**富于创意**(inventive)的**跳跃**(leap)，把它从纸上搬到了皮肤上。他那张宝丽来**自拍照**(self-portrait)洗出来**空空如也**(devoid)，不见本人，他便把这一结果当作**确凿无疑**(conclusive)的证明。
+这套**逻辑**(rationale)倒也有几分真实的**内核**(kernel)。柠檬汁是一种**由来已久的**(time-honoured)**隐形**(invisible)**墨水**(ink)，惠勒则做了一次**富有创意的**(inventive)**跳跃**(leap)，从纸面跳到了皮肤上。（用柠檬汁在纸上写字，干后看不见，加热才显出字迹）他的宝丽来**自拍照**(self-portrait)洗出来后，**完全没有**(devoid of)照片的拍摄对象（他本人），这个结果，他当成了**确凿的**(conclusive)证据。（他用这个相机拍了一张自拍，实际上没拍到，但他以为是他自己涂了柠檬水，隐身了。）
 
-监控摄像头却**不敢苟同**(begged to differ)。4月19日，晚间11点的新闻向**观众**(viewers)播出了那些**铁证如山**(damning)的画面，惠勒在午夜过后不久就被捕了。**面对**(confronted)录像，他**全然**(sheer)一副**难以置信**(disbelief)的样子，辩称自己明明抹了柠檬汁。
+监控摄像头可**不敢苟同**(begged to differ)。4月19日，11点新闻向**观众**(viewers)播出了那些**足以定罪的**(damning)画面，午夜刚过不久，惠勒就被捕了。**面对**(Confronted with)这些录像，他坚决表示**完全**(sheer)**不相信**(disbelief)，说自己明明抹了柠檬汁。
 
-读到这个案子，康奈尔大学心理学家戴维·邓宁**思索**(pondered)起一个**令人不安**(disquieting)的**命题**(proposition)。也许，**无能**(incompetence)会把自己**掩藏**(cloak)起来，**夺走**(robbing)人们察觉自身**不足**(deficiencies)的**辨别力**(discernment)。
+读到这个案子时，康奈尔大学心理学家戴维·邓宁**仔细思考了**(pondered)一个**令人不安的**(disquieting)**观点**(proposition)。也许，**无能**(incompetence)（这种东西）会**掩藏住**(cloak)它自己，**剥夺**(robbing)人们的**识别能力**(discernment)，去注意到他们自身的**不足**(deficiencies)。
 
-为了1999年发表的一篇论文，邓宁和他的学生贾斯汀·克鲁格就幽默、语法和**逻辑**(logical)推理**测试**(quizzed)了康奈尔的**本科生**(undergraduates)。排在最后四分之一的**得分者**(scorers)，平均只处在第12百分位，却**大方**(generously)地把自己估在第62百分位左右；而**佼佼者**(achievers)则表现出**过分**(undue)的**谦虚**(modesty)。两位作者认为，**能力不足**(unskilled)的人背负着**双重**(dual)负担，因为**评估**(appraisal)所需的技能，正是**执行**(execution)所需的技能。
+为了1999年的一篇论文，邓宁和他的学生贾斯汀·克鲁格**测试了**(quizzed)康奈尔的**本科生**(undergraduates)，考察了（关于）幽默、语法和**逻辑**(logical)推理的能力。垫底的四分之一**答题者**(scorers)，平均只处在（倒数）第12百分位，却**大方地**(generously)（高估自己）把自己估在第62百分位附近，而**成绩优异者**(high achievers)却表现出**过分的**(undue)**谦虚**(modesty)。**能力不足的**(unskilled)人，两位作者认为，背负着**双重**(dual)负担，因为**评估**(appraisal)（自我评估）**需要**(calls for)相同的技能，与**执行**(execution)（所需）的一样。
 
-**批评者**(detractors)把达克效应中的一部分**差距**(disparity)归因于向均值回归，这是一种统计上的**假象**(mirage)，这篇论文对此已有**部分**(partially)承认。专门设计来避开这一问题的研究，仍然发现了一个较小但**确实存在**(tangible)的效应。2023年，两人**获得**(garnered)了格文美尔心理学奖。
+**批评者**(Detractors)查明部分邓宁-克鲁格**差异**(disparity)，源于均值回归，一种统计学的**假象**(mirage)，该论文（即前文1999年邓宁-克鲁格论文）也曾**部分**(partially)承认过。（trace A to B：追溯 A 的来源到 B、查明 A 源于 B）专为避开这一问题而设计的研究仍发现了一个较小但**切实存在的**(tangible)效应。2023年，两人**赢得了**(garnered)格文美尔心理学奖。
 
-**平心而论**(in fairness)，惠勒在拿自己的**自由**(liberty)作**赌注**(staking)之前，的确**用实验**(empirically)检验过他的方法。漏拍了他的那台相机，恰恰是他对准自己的那一台。
+**平心而论**(In fairness)，惠勒确实**用实证的方法**(empirically)检验过他的这套办法，在他把自己的**自由**(liberty)**赌**(staking)在抢劫上之前。（stake A on B：把A赌在B上）那台没拍到他的相机，正是他转动（将镜头）对准自己的那一台。（那相机只是没有拍到他，他却以为自己隐形了，误以为是柠檬水的作用）
 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
-| raided | v. (raid) 突袭，抢劫（raid a bank；police raided the house） | 1 |
-| daylight | n. 白天，日光（in broad daylight） | 1 |
-| disguise | n. 伪装，乔装（in disguise） | 1 |
-| camouflage | n. 伪装，掩饰（use branches as camouflage） | 1 |
-| rubbed | v. (rub) 擦，涂抹（rub cream on one's skin） | 1 |
-| earnest | adj. 认真的，真诚的（an earnest young man；in earnest） | 1 |
-| conviction | n. 坚定的信念；定罪（a firm conviction；a previous conviction） | 1 |
-| render | v. 使变成，使成为（render sb speechless；render a building unsafe） | 1 |
-| rationale | n. 理由，基本原理（the rationale behind a decision） | 2 |
-| kernel | n. 核心，要点；果仁（a kernel of truth） | 2 |
-| time-honoured | adj. 由来已久的（a time-honoured tradition） | 2 |
-| inventive | adj. 富于创造力的（an inventive solution） | 2 |
-| leap | n. 跳跃；飞跃（a leap of faith/imagination） | 2 |
-| self-portrait | n. 自画像，自拍照（paint a self-portrait） | 2 |
-| devoid | adj. 完全没有的（devoid of meaning/emotion） | 2 |
-| conclusive | adj. 确凿的，决定性的（conclusive proof） | 2 |
-| begged to differ | phr. (beg to differ) 恕难苟同（I beg to differ） | 3 |
-| viewers | n. (viewer) 观众（television viewers） | 3 |
-| damning | adj. 证明有罪的，确凿的（damning evidence） | 3 |
-| confronted | v. (confront) 使面对，对质（be confronted with the evidence） | 3 |
-| sheer | adj. 完全的，十足的（sheer luck/madness） | 3 |
-| disbelief | n. 怀疑，不相信（stare in disbelief） | 3 |
-| pondered | v. (ponder) 思索，考虑（ponder a question） | 4 |
-| disquieting | adj. 令人不安的（a disquieting thought） | 4 |
-| proposition | n. 命题，主张；提议（a doubtful proposition；a business proposition） | 4 |
-| incompetence | n. 无能，不胜任（gross incompetence） | 4 |
-| cloak | v./n. 掩盖；斗篷（cloaked in secrecy） | 4 |
-| robbing | v. (rob of) 剥夺（rob sb of sleep/a chance） | 4 |
-| discernment | n. 辨别力，眼力（show discernment） | 4 |
-| deficiencies | n. (deficiency) 缺陷，不足（vitamin deficiency；deficiencies in the system） | 4 |
-| quizzed | v. (quiz) 测验，盘问（quiz sb about sth） | 5 |
-| undergraduates | n. (undergraduate) 本科生（first-year undergraduates） | 5 |
-| logical | adj. 逻辑的，合乎逻辑的（logical reasoning） | 5 |
-| scorers | n. (scorer) 得分者（top scorers） | 5 |
-| generously | adv. 慷慨地，大方地（give generously） | 5 |
-| achievers | n. (achiever) 有成就者，成绩优异者（high achievers） | 5 |
-| undue | adj. 过分的，不适当的（undue pressure/influence） | 5 |
-| modesty | n. 谦虚（false modesty） | 5 |
-| unskilled | adj. 不熟练的，无技能的（unskilled workers） | 5 |
-| dual | adj. 双重的（dual nationality/purpose） | 5 |
-| appraisal | n. 评估，评价（a performance appraisal） | 5 |
-| execution | n. 实施，执行；处决（the execution of a plan） | 5 |
-| detractors | n. (detractor) 贬低者，批评者（her detractors） | 6 |
-| disparity | n. 差距，悬殊（income disparity） | 6 |
-| mirage | n. 海市蜃楼；幻象，假象（a statistical mirage） | 6 |
-| partially | adv. 部分地（partially successful） | 6 |
-| tangible | adj. 实际的，确实存在的（tangible results/benefits） | 6 |
-| garnered | v. (garner) 获得，赢得（garner support/praise） | 6 |
-| in fairness | phr. 平心而论，说句公道话（in fairness to sb） | 7 |
-| empirically | adv. 以实证方式，凭经验（empirically tested） | 7 |
-| staking | v. (stake) 以……作赌注（stake one's reputation on sth） | 7 |
-| liberty | n. 自由（personal liberty） | 7 |
+| accomplice | 本文：同伙；n. 同伙，共犯（an accomplice to the crime） | 1 |
+| raided | 本文：抢劫了；v. (raid) 突袭，抢劫（raid a bank；police raided the house） | 1 |
+| in broad daylight | 本文：光天化日之下；n. 白天，日光（in broad daylight） | 1 |
+| disguise | 本文：乔装；n. 伪装，乔装（in disguise） | 1 |
+| camouflage | 本文：伪装；n. 伪装，掩饰（use branches as camouflage） | 1 |
+| rubbed on | 本文：涂抹；v. (rub) 擦，涂抹（rub cream on one's skin） | 1 |
+| earnest | 本文：真心实意的；adj. 认真的，真诚的（an earnest young man；in earnest） | 1 |
+| conviction | 本文：信念；n. 坚定的信念；定罪（a firm conviction；a previous conviction） | 1 |
+| render | 本文：使；v. 使变成，使成为（render sb speechless；render a building unsafe） | 1 |
+| invisible | 本文：隐形；adj. 看不见的，隐形的（invisible to the naked eye；invisible ink） | 1 |
+| rationale | 本文：逻辑；n. 理由，基本原理（the rationale behind a decision） | 2 |
+| kernel | 本文：内核；n. 核心，要点；果仁（a kernel of truth） | 2 |
+| time-honoured | 本文：由来已久的；adj. 由来已久的（a time-honoured tradition） | 2 |
+| ink | 本文：墨水；n. 墨水，油墨（write in ink） | 2 |
+| inventive | 本文：富有创意的；adj. 富于创造力的（an inventive solution） | 2 |
+| leap | 本文：跳跃；n. 跳跃；飞跃（a leap of faith/imagination） | 2 |
+| self-portrait | 本文：自拍照；n. 自画像，自拍照（paint a self-portrait） | 2 |
+| devoid of | 本文：完全没有；adj. 完全没有的（devoid of meaning/emotion） | 2 |
+| conclusive | 本文：确凿的；adj. 确凿的，决定性的（conclusive proof） | 2 |
+| begged to differ | 本文：不敢苟同；phr. (beg to differ) 恕难苟同（I beg to differ） | 3 |
+| viewers | 本文：观众；n. (viewer) 观众（television viewers） | 3 |
+| damning | 本文：足以定罪的；adj. 证明有罪的，确凿的（damning evidence） | 3 |
+| Confronted with | 本文：面对；v. (confront) 使面对，对质（be confronted with the evidence） | 3 |
+| sheer | 本文：完全；adj. 完全的，十足的（sheer luck/madness） | 3 |
+| disbelief | 本文：不相信；n. 怀疑，不相信（stare in disbelief） | 3 |
+| pondered | 本文：仔细思考了；v. (ponder) 思索，考虑（ponder a question） | 4 |
+| disquieting | 本文：令人不安的；adj. 令人不安的（a disquieting thought） | 4 |
+| proposition | 本文：观点；n. 命题，主张；提议（a doubtful proposition；a business proposition） | 4 |
+| incompetence | 本文：无能；n. 无能，不胜任（gross incompetence） | 4 |
+| cloak | 本文：掩藏住；v./n. 掩盖；斗篷（cloaked in secrecy） | 4 |
+| robbing | 本文：剥夺；v. (rob of) 剥夺（rob sb of sleep/a chance） | 4 |
+| discernment | 本文：识别能力；n. 辨别力，眼力（show discernment） | 4 |
+| deficiencies | 本文：不足；n. (deficiency) 缺陷，不足（vitamin deficiency；deficiencies in the system） | 4 |
+| quizzed | 本文：测试了；v. (quiz) 测验，盘问（quiz sb about sth） | 5 |
+| undergraduates | 本文：本科生；n. (undergraduate) 本科生（first-year undergraduates） | 5 |
+| logical | 本文：逻辑；adj. 逻辑的，合乎逻辑的（logical reasoning） | 5 |
+| scorers | 本文：答题者；n. (scorer) 得分者（top scorers） | 5 |
+| generously | 本文：大方地；adv. 慷慨地，大方地（give generously） | 5 |
+| high achievers | 本文：成绩优异者；n. (achiever) 有成就者，成绩优异者（high achievers） | 5 |
+| undue | 本文：过分的；adj. 过分的，不适当的（undue pressure/influence） | 5 |
+| modesty | 本文：谦虚；n. 谦虚（false modesty） | 5 |
+| unskilled | 本文：能力不足的；adj. 不熟练的，无技能的（unskilled workers） | 5 |
+| dual | 本文：双重；adj. 双重的（dual nationality/purpose） | 5 |
+| appraisal | 本文：评估；n. 评估，评价（a performance appraisal） | 5 |
+| calls for | 本文：需要；phr. (call for) 需要，要求（call for patience/skill） | 5 |
+| execution | 本文：执行；n. 实施，执行；处决（the execution of a plan） | 5 |
+| Detractors | 本文：批评者；n. (detractor) 贬低者，批评者（her detractors） | 6 |
+| disparity | 本文：差异；n. 差距，悬殊（income disparity） | 6 |
+| mirage | 本文：假象；n. 海市蜃楼；幻象，假象（a statistical mirage） | 6 |
+| partially | 本文：部分；adv. 部分地（partially successful） | 6 |
+| tangible | 本文：切实存在的；adj. 实际的，确实存在的（tangible results/benefits） | 6 |
+| garnered | 本文：赢得了；v. (garner) 获得，赢得（garner support/praise） | 6 |
+| In fairness | 本文：平心而论；phr. 平心而论，说句公道话（in fairness to sb） | 7 |
+| empirically | 本文：用实证的方法；adv. 以实证方式，凭经验（empirically tested） | 7 |
+| staking | 本文：赌；v. (stake) 以……作赌注（stake one's reputation on sth） | 7 |
+| liberty | 本文：自由；n. 自由（personal liberty） | 7 |
 
 ## 史实与来源
 - 【T1】1995年1月6日，麦克阿瑟·惠勒与同伙克利夫顿·厄尔·约翰逊在匹兹堡地区白天持枪、不加伪装抢劫两家银行；他们脸上抹了柠檬汁，相信这能让监控拍不到自己（柠檬汁可作隐形墨水）。同伙姓名正文不写。S1
