@@ -20,7 +20,7 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 
 然而，这种**根据**(foundation)（该研究结论的根基）**并不牢靠**(precarious)（站不住脚）。只有**几十个**(a few dozen)孩子进入了SAT分析，**主要**(predominantly)是斯坦福**教师**(faculty)（全体教员）和**研究生**(postgraduate)的子女。如此**同质的**(homogeneous)、**优越的**(privileged)群体**很难**(scarcely)代表**普通的**(ordinary)家庭，而且**富裕的**(prosperous)家庭可能同时**培养出**(foster)耐心与学业成就。
 
-2018年5月发表于《心理科学》的一项研究做了一次**概念性的**(conceptual)**重复验证**(replication)：同样的思路，新的样本，**调整过的**(modified)方法。900多名来自**多种不同的**(diverse)背景的**儿童或青少年**(youngsters)在四岁半时接受**评估**(assessed)，15岁时再测一次。这个原始的（不加任何干预的）**关联**(link)，其预测强度（准确度）**大约**(roughly)只有原研究结果的一半。在**校正**(Adjusting for)家庭背景和早期**认知**(cognitive)能力之后，这一相关缩小了约三分之二，使得大多数估计值在**统计上**(statistically)**不显著**(insignificant)。（前文的 The raw link / 原始的关联）
+2018年5月发表于《心理科学》的一项研究做了一次**概念性的**(conceptual)**重复验证**(replication)：同样的思路，新的样本，**调整过的**(modified)方法。900多名来自**多种不同的**(diverse)背景的**儿童或青少年**(youngsters)在四岁半时接受**评估**(assessed)，15岁时再测一次。这个原始的（不加任何干预的）**关联**(link)，其预测强度（准确度）**大约**(roughly)只有原研究结果的一半。**调整**(Adjusting for)家庭背景和早期**认知**(cognitive)能力（这些实验变量），缩小了这个原始关联（raw link）大约三分之二，使得大多数估计值在**统计上**(statistically)**不显著**(insignificant)。（即缩小了【等得更久】与【SAT分数更高】之间的相关性）
 
 这项测验并非**毫无价值**(worthless)；它或许仍能**反映**(reflect)某些**实质性的**(substantive)东西。2013年1月发表于《认知》的研究补充了（一些）**背景**(context)：刚被成年人**辜负**(betrayed)信任的孩子，等待的时间**明显**(markedly)短于与守信的成年人相处的**同龄人**(peers)。孩子能**坚持**(perseveres)多久，部分取决于身边的大人看起来有多**可信**(trustworthy)。
 
@@ -71,7 +71,7 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 | assessed | 本文：评估；v. (assess) 评估，评定（assess the impact/a student） | 4 |
 | link | 本文：关联；n. 联系，关联（a link between A and B） | 4 |
 | roughly | 本文：大约；adv. 大约，粗略地（roughly half） | 4 |
-| Adjusting for | 本文：校正；v. (adjust) 调整；（统计）校正（adjust for inflation/age；adjust to 适应） | 4 |
+| Adjusting for | 本文：调整；v. (adjust) 调整；（统计）校正（adjust for inflation/age；adjust to 适应） | 4 |
 | cognitive | 本文：认知；adj. 认知的（cognitive ability/development/skills） | 4 |
 | statistically | 本文：统计上；adv. 统计上（statistically significant/reliable） | 4 |
 | insignificant | 本文：不显著；adj. 不显著的；微不足道的（statistically insignificant；an insignificant amount） | 4 |
