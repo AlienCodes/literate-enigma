@@ -20,7 +20,7 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 
 然而，这种**根据**(foundation)（该研究结论的根基）**并不牢靠**(precarious)（站不住脚）。只有几十个孩子进入了SAT分析，**主要**(predominantly)是斯坦福**教师**(faculty)（全体教员）和**研究生**(postgraduate)的子女。如此**同质的**(homogeneous)、**优越的**(privileged)群体**几乎不**(scarcely)能代表**普通的**(ordinary)家庭，而且**富裕的**(prosperous)家庭可能同时**培养出**(foster)耐心与学业成就。
 
-2018年5月发表于《心理科学》的一项研究做了一次**概念性的**(conceptual)**重复验证**(replication)：同样的思路，新的样本，**调整过的**(modified)方法。900多名来自**多种不同的**(diverse)背景的**儿童或青少年**(youngsters)在四岁半时接受**评估**(assessed)，15岁时再测一次。这个原始的（不加任何干预的）**关联**(link)，其预测强度（准确度）大约只有原研究结果的一半。**调整**(Adjusting for)家庭背景和早期**认知**(cognitive)能力（这些实验变量），缩小了这个原始关联（raw link）大约三分之二，使得大多数估计值在**统计上**(statistically)**不显著**(insignificant)。（即缩小了【等得更久】与【SAT分数更高】之间的相关性）
+2018年5月发表于《心理科学》的一项研究做了一次**概念性的**(conceptual)（科研）**重复实验**(replication)：同样的思路，新的样本，**调整过的**(modified)方法。900多名来自**多种不同的**(diverse)背景的**儿童或青少年**(youngsters)在四岁半时接受**评估**(assessed)，15岁时再测一次。这个原始的（不加任何干预的）**关联**(link)，其预测强度（准确度）大约只有原研究结果的一半。**调整**(Adjusting for)家庭背景和早期**认知**(cognitive)能力（这些实验变量），缩小了这个原始关联（raw link）大约三分之二，使得大多数估计值在**统计上**(statistically)（完全）**微不足道**(insignificant)。（即缩小了【等得更久】与【SAT分数更高】之间的相关性）
 
 这项测验并非**毫无价值**(worthless)；它或许仍能**反映**(reflect)某些**实质性的**(substantive)东西。2013年1月发表于《认知》的研究补充了（一些）**背景**(context)：刚被成年人**辜负**(betrayed)信任的孩子，等待的时间**明显**(markedly)短于与守信的成年人相处的**同龄人**(peers)。孩子能**坚持**(perseveres)多久，部分**取决于**(depends)身边的大人看起来有多**可信**(trustworthy)。
 
@@ -59,12 +59,12 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 | postgraduate | 本文：研究生；adj./n. 研究生（的）（a postgraduate student/course） | 3 |
 | homogeneous | 本文：同质的；adj. 同质的，同类的（a homogeneous group/population） | 3 |
 | privileged | 本文：优越的；adj. 有特权的，优越的（a privileged background/few） | 3 |
-| scarcely | 本文：几乎不（could scarcely 几乎不能）；adv. 几乎不，很难（can scarcely believe；scarcely…when 一……就） | 3 |
+| scarcely | 本文：几乎不；adv. 几乎不，很难（can scarcely believe；scarcely…when 一……就） | 3 |
 | ordinary | 本文：普通的；adj. 普通的，平常的（ordinary people/life；out of the ordinary 不寻常） | 3 |
 | prosperous | 本文：富裕的；adj. 富裕的，繁荣的（a prosperous family/economy） | 3 |
 | foster | 本文：培养出；v. 培养，促进（foster talent/understanding）；收养；adj. 寄养的 | 3 |
 | conceptual | 本文：概念性的；adj. 概念上的（a conceptual framework/replication） | 4 |
-| replication | 本文：重复验证；n. 复制，（研究）重复验证（replication of results/a study） | 4 |
+| replication | 本文：重复实验；n. 复制，（研究）重复验证（replication of results/a study） | 4 |
 | modified | 本文：调整过的；v. (modify) 修改，调整（modify a plan/method）；adj. 改良的（genetically modified） | 4 |
 | youngsters | 本文：儿童或青少年；n. (youngster) 少年儿童，年轻人（local youngsters） | 4 |
 | diverse | 本文：多种不同的；adj. 多样的，形形色色的（a diverse population/range of；diverse backgrounds） | 4 |
@@ -73,7 +73,7 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 | Adjusting for | 本文：调整；v. (adjust) 调整；（统计）校正（adjust for inflation/age；adjust to 适应） | 4 |
 | cognitive | 本文：认知；adj. 认知的（cognitive ability/development/skills） | 4 |
 | statistically | 本文：统计上；adv. 统计上（statistically significant/reliable） | 4 |
-| insignificant | 本文：不显著；adj. 不显著的；微不足道的（statistically insignificant；an insignificant amount） | 4 |
+| insignificant | 本文：微不足道；adj. 不显著的；微不足道的（statistically insignificant；an insignificant amount） | 4 |
 | worthless | 本文：毫无价值；adj. 毫无价值的（completely/virtually worthless） | 5 |
 | reflect | 本文：反映；v. 反映，体现（reflect reality/a trend）；反射；reflect on 思考 | 5 |
 | substantive | 本文：实质性的；adj. 实质性的，真实的（substantive changes/issues） | 5 |

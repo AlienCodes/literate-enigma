@@ -72,7 +72,7 @@ For a 1999 paper, Dunning and his student Justin Kruger **quizzed** Cornell **un
 | logical | 本文：逻辑；adj. 逻辑的，合乎逻辑的（logical reasoning） | 5 |
 | scorers | 本文：答题者；n. (scorer) 得分者（top scorers） | 5 |
 | generously | 本文：大方地；adv. 慷慨地，大方地（give generously） | 5 |
-| achievers | 本文：成绩优异者 | 5 |
+| achievers | 本文：成绩优异者；n. (achiever) 有成就者，成绩优异者（high achievers） | 5 |
 | undue | 本文：过分的；adj. 过分的，不适当的（undue pressure/influence） | 5 |
 | modesty | 本文：谦虚；n. 谦虚（false modesty） | 5 |
 | unskilled | 本文：能力不足的；adj. 不熟练的，无技能的（unskilled workers） | 5 |
