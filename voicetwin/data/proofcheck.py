@@ -1085,12 +1085,28 @@ def _keep_reasons(sus: Dict[str, Any], spans: Sequence[Sequence[int]],
     return {"reasons": keep_r, REASON_POS: keep_p}
 
 
+#: 存进校对表的每条原因说的是哪几处（{原因: [[开始, 结束], ...]}，按 suspect["text"] / 保存的文字算）：和母本对照时，
+#: 原因说的地方都在母本对上的部分里（那里的建议已经去掉了）就把原因也去掉。按原因的文字记（不按顺序），
+#: 别的地方去掉 / 加了原因也对得上。以前只看原因里引用的字，「另一个识别引擎听到的是「于」」引用的是另一个引擎的字，
+#: 找不到位置，和母本矛盾的说明就留着了（第二轮检查的人发现的）
+REASON_AT = "reason_at"
+
+
 def _finish_reasons(sus: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
-    """存进校对表以前：去掉原因的位置，原因太多时截短（「……还有 N 处」）。"""
+    """存进校对表以前：原因的位置换成按原因记（REASON_AT），原因太多时截短（「……还有 N 处」，位置合在一起）。"""
     if not sus or REASON_POS not in sus:
         return sus
     out = {k: v for k, v in sus.items() if k != REASON_POS}
-    out["reasons"] = _limit_reasons(list(out.get("reasons") or []))
+    reasons = list(out.get("reasons") or [])
+    pos = sus.get(REASON_POS)
+    out["reasons"] = _limit_reasons(reasons)
+    if isinstance(pos, list) and len(pos) == len(reasons):
+        at: Dict[str, List[List[int]]] = {}
+        shown = out["reasons"]
+        for k, (r, ps) in enumerate(zip(reasons, pos)):
+            key = r if k < len(shown) - 1 or len(shown) == len(reasons) else shown[-1]
+            at.setdefault(key, []).extend([int(a), int(b)] for a, b in ps)
+        out[REASON_AT] = at
     return out
 
 

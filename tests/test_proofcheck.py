@@ -148,12 +148,17 @@ def test_phrases_that_differ_only_in_a_number_are_not_repeats():
 
 
 def test_reason_positions_are_only_used_while_checking():
-    """查错字时带上每条原因的位置（去掉标红 / 建议时说明也跟着去掉），存进校对表的和以前一模一样（原因太多照样截短）。"""
+    """查错字时带上每条原因的位置（去掉标红 / 建议时说明也跟着去掉），存进校对表的和以前一样（原因太多照样截短）。
+    母本优先第二轮：另外按原因记下位置（REASON_AT，「……还有 N 处」那一条是剩下的合在一起），和母本对照时
+    原因说的地方都在母本对上的部分里就去掉（另一个引擎的字在这一句里找不到，以前看引用的字去不掉）。"""
     t = "我们看第三页、第五页、第七页、第九页、第十一页、第十三页、第十五页和第十七页的练习"
     o = "我们看第四页、第六页、第八页、第十页、第十二页、第十四页、第十六页和第十八页的练习"
     plain = pc.build_suspect(t, o, engine=pc.ENGINE_FUNASR)
     assert plain["reasons"][-1].startswith("……还有")
-    assert pc._finish_reasons(pc.build_suspect(t, o, engine=pc.ENGINE_FUNASR, with_pos=True)) == plain
+    done = pc._finish_reasons(pc.build_suspect(t, o, engine=pc.ENGINE_FUNASR, with_pos=True))
+    at = done.pop(pc.REASON_AT)
+    assert done == plain and pc.REASON_POS not in done
+    assert set(at) == set(plain["reasons"]) and len(at[plain["reasons"][-1]]) > 1
 
 
 # ---------------------------------------------------------------------------- 两个引擎对比

@@ -22,14 +22,22 @@ id 只当提示（同一个 id 的那一句文字也对得上时优先用它）�
    MATCH_MIN 是在老师 1005 句母本上量出来的（research/文字校正/母本优先/分布.py）：把每一句当成「新的话」、
    从母本里拿掉它自己再找，看会不会被别的句子硬改；同一批句子（修缮前 → 修缮后）都要找得到。
 4. 找到的那一段里，读音一样写法不一样的字（定于 → 定语）、读音不一样的字（let → that、电影 → 定语）、多出来的字、
-   少了的字，都按母本改。
+   少了的字，都按母本改——前提是有证据说明这是同一批录音（transcript_fix._mother_first 和 _SameBatch：
+   同一个 id 的那一句、或者前后挨着的片段也对上母本里前后挨着的句子）；没有这种证据时（新讲的课用了母本里的说法），
+   只有读音像识别错的地方直接按母本改，读音不像的（定语从句 / 状语从句、可以 / 不可以、两个 / 三个、多的少的字）
+   只给「没把握」的建议（第二轮检查的人发现的，见 research/文字校正/母本优先/README.md 第 7 节）。
+5. 母本是一整串话，但录音里挨着的句子在母本里不一定挨着（不同的课连在一起、删掉的句子不在母本里）：
+   对上的范围不能靠两三个常说的字（「我们」「的时候」）跨进母本的上一句 / 下一句（_trim_lines），句子开头 / 结尾
+   没对上的字也不能算成母本上一句 / 下一句的字（_edge_anchor / _extend 只在同一句里找）。
+6. 母本里好几处字一模一样、只有标点不一样时，标点只改这几处都一样的（Segment.alts，按它们的交集改）。
 
 对外接口：find_segments(text, ref, hint_id, skips) -> (tokens, [Segment])、segment_edits(text, toks, ref, seg)、
-covered_ranges(toks, segs)
+segment_pieces（带上每一小处属于哪一处整的改动，写说明用）、covered_ranges(toks, segs)、line_no(ref, m)
 """
 
 from __future__ import annotations
 
+import bisect
 import difflib
 from dataclasses import dataclass, field
 from types import SimpleNamespace
@@ -54,6 +62,9 @@ EDGE_MAX = 3
 TIE_EPS = 0.02
 #: 找连着对上的几段时，中间每空一个字扣的分（对上一个字加 1 分）
 GAP_COST = 0.4
+#: 对上的范围跨过母本的句子边界时，边界外面那一小段至少要有这么多个字读音一模一样（两个字的「我们」「所以」到处都有，
+#: 不能靠它跨进母本的上一句 / 下一句；第二轮检查的人发现的）
+MIN_CROSS = 3
 
 
 @dataclass
@@ -71,6 +82,8 @@ class Segment:
     keys_equal: int = 0  # 写法也一模一样的字数（一样像时挑写法更像的）
     eq: int = 0  # 读音对上的字数
     q: float = 0.0  # 对整句（这一次要找的范围）来说有多像：读音对上的字数 ÷ max(整句的字数, 母本那一段的字数)
+    #: 母本里别的地方字也一模一样、差不多一样像（只有标点可能不一样）：标点只改这几处都一样的（segment_pieces）
+    alts: List["Segment"] = field(default_factory=list)
 
     @property
     def length(self) -> int:
@@ -87,6 +100,11 @@ def _near_han(x: tf.Tk, y: tf.Tk) -> bool:
     return bool((xi and xi == yi) or (xf and xf == yf))
 
 
+def _close_lat(x: tf.Tk, y: tf.Tk) -> bool:
+    """两个英文词拼法很像，或者读音代码一样（clouse / clause）。"""
+    return x.snd == y.snd or difflib.SequenceMatcher(None, x.key, y.key, autojunk=False).ratio() >= 0.75
+
+
 def _near_lat(x: tf.Tk, y: tf.Tk) -> bool:
     a, b = x.snd[3:], y.snd[3:]
     if not a or not b:
@@ -94,8 +112,10 @@ def _near_lat(x: tf.Tk, y: tf.Tk) -> bool:
     return a[0] == b[0] or difflib.SequenceMatcher(None, a, b, autojunk=False).ratio() >= 0.5
 
 
-def _plausible(xs: Sequence[tf.Tk], ys: Sequence[tf.Tk]) -> bool:
-    """句子开头 / 结尾这几个字（xs）是不是母本里挨着的那几个字（ys）被听错了：读音得像。"""
+def _plausible(xs: Sequence[tf.Tk], ys: Sequence[tf.Tk], strict: bool = False) -> bool:
+    """句子开头 / 结尾这几个字（xs）是不是母本里挨着的那几个字（ys）被听错了：读音得像。
+    strict=True（跨过母本句子边界的那一小段用）：汉字要模糊读音一样（不是只有声母或者韵母一样：
+    「今天 / 具体」声母一样，但不是听错），英文要拼法很像。"""
     if not xs or not ys:
         return False
     kx, ky = {t.kind for t in xs}, {t.kind for t in ys}
@@ -108,13 +128,45 @@ def _plausible(xs: Sequence[tf.Tk], ys: Sequence[tf.Tk]) -> bool:
     for x, y in zip(xs, ys):
         if x.kind != y.kind:
             return False
-        if x.kind == "han" and not _near_han(x, y):
+        if x.kind == "han" and not (x.fz == y.fz if strict else _near_han(x, y)):
             return False
-        if x.kind == "lat" and not _near_lat(x, y):
+        if x.kind == "lat" and not (_close_lat(x, y) if strict else _near_lat(x, y)):
             return False
         if x.kind == "other" and x.key != y.key:
             return False
     return True
+
+
+# ============================================================================ 母本里的一句一句
+def _line_table(ref: tf.Reference) -> Tuple[List[int], List[int]]:
+    """母本每一句第一个字的位置、最后一个字后面的位置（排好序）。母本的字是连着编号的，所以上一句的结尾就是下一句的开头。"""
+    got = getattr(ref, "_mf_lines", None)
+    if got is None:
+        got = (sorted(ref.line_firsts), sorted(ref.line_ends))
+        try:
+            ref._mf_lines = got
+        except AttributeError:
+            pass
+    return got
+
+
+def _line_start(ref: tf.Reference, m: int) -> int:
+    """母本第 m 个字 / 词所在的那一句从哪里开始。"""
+    firsts = _line_table(ref)[0]
+    k = bisect.bisect_right(firsts, m) - 1
+    return firsts[k] if k >= 0 else 0
+
+
+def _line_end(ref: tf.Reference, m: int) -> int:
+    """母本第 m 个字 / 词所在的那一句在哪里结束（最后一个字后面）。"""
+    ends = _line_table(ref)[1]
+    k = bisect.bisect_right(ends, m)
+    return ends[k] if k < len(ends) else len(ref)
+
+
+def line_no(ref: tf.Reference, m: int) -> int:
+    """母本第 m 个字 / 词在第几句（只算有字的句子，从 0 开始）：前后挨着的片段是不是对上母本里前后挨着的句子。"""
+    return max(0, bisect.bisect_right(_line_table(ref)[0], m) - 1)
 
 
 # ============================================================================ 在母本里找这一句
@@ -189,6 +241,120 @@ def _final_ops(fid: Sequence[int], ref: tf.Reference, r1: int, r2: int, m1: int,
     return [(tag, i1 + r1, i2 + r1, j1 + m1, j2 + m1) for tag, i1, i2, j1, j2 in sm.get_opcodes()]
 
 
+def _piece_weak(toks: Sequence[tf.Tk], ref: tf.Reference, ops: Sequence[Tuple[str, int, int, int, int]],
+                j_lo: int, j_hi: int, inner: int) -> bool:
+    """对上的范围跨过了母本的句子边界时，边界外面那一小段（母本的 [j_lo, j_hi)）是不是碰巧对上的：
+    读音对上的不到 MATCH_MIN，而且有读音不像听错的地方（多的 / 少的字、读音不像的字）。
+    inner：靠里的那个边界（正好在边界上、这一句多出来的字算在外面这一段：宁可不跨过去）。
+    例子：「……跟as完全不一样。今天我们」对上母本「……不一样。当我们使用……」——「今天」和「当」读音不像，
+    只是「我们」碰巧一样，不能把「今天」改成「当」（第二轮检查的人发现的）。"""
+    eq = row_n = 0
+    bad = False
+    for tag, i1, i2, j1, j2 in ops:
+        if tag == "delete":  # 这一句多出来的字（母本里没有；「呢、啊」也算：跨过去的那一小段要一模一样或者读音一样）
+            if j_lo < j1 < j_hi or j1 == inner:
+                row_n += i2 - i1
+                bad = True
+            continue
+        lo_, hi_ = max(j1, j_lo), min(j2, j_hi)
+        if hi_ <= lo_:
+            continue
+        if tag == "equal":
+            eq += hi_ - lo_
+            row_n += hi_ - lo_
+        elif tag == "replace":
+            row_n += i2 - i1
+            bad = bad or not _plausible(toks[i1:i2], ref.toks[j1:j2], strict=True)
+        else:  # insert：母本多出来的字
+            bad = True
+    if eq < MIN_CROSS:
+        return True  # 只有一两个字一样（「所以」「我们」）：碰巧的
+    return bad and eq < MATCH_MIN * max(row_n, j_hi - j_lo) - 1e-9
+
+
+def _row_at(ops: Sequence[Tuple[str, int, int, int, int]], cut: int, tail: bool) -> Optional[int]:
+    """母本的位置 cut（一句的边界）对应这一句的哪个位置。跨过边界的一处改动（replace）整个算在被切掉的那一头；
+    正好在边界上、这一句多出来的字也算在被切掉的那一头。tail=True：切掉后面（返回留下的结尾），否则切掉前面（返回留下的开头）。"""
+    if tail:
+        for tag, i1, i2, j1, j2 in ops:
+            if tag == "delete" and j1 == cut:
+                return i1
+            if j2 > cut:
+                return i1 + (cut - j1 if tag == "equal" and j1 < cut else 0)
+        return None
+    for tag, i1, i2, j1, j2 in reversed(ops):
+        if tag == "delete" and j1 == cut:
+            return i2
+        if j1 < cut:
+            return i2 - (j2 - cut if tag == "equal" and j2 > cut else 0)
+    return None
+
+
+def _trim_lines(toks: Sequence[tf.Tk], fid: Sequence[int], ref: tf.Reference, r1: int, r2: int, m1: int, m2: int
+                ) -> Optional[Tuple[int, int, int, int]]:
+    """对上的范围跨过母本的句子边界时，边界外面那一头是碰巧对上的（_piece_weak）就切掉：母本是一整串话，
+    但母本里的下一句不一定是录音里的下一句（不同的课连在一起、老师删掉的句子不在母本里）。
+    两句合成一个片段的（每一句都对得上）照样跨过去。"""
+    for _ in range(8):
+        if r2 - r1 < 2 or m2 - m1 < 2:
+            return None
+        ops = _final_ops(fid, ref, r1, r2, m1, m2)
+        cut = _line_start(ref, m2 - 1)
+        if m1 < cut and _piece_weak(toks, ref, ops, cut, m2, cut):
+            at = _row_at(ops, cut, tail=True)
+            if at is None:
+                return None
+            r2, m2 = at, cut
+            continue
+        cut = _line_end(ref, m1)
+        if cut < m2 and _piece_weak(toks, ref, ops, m1, cut, cut):
+            at = _row_at(ops, cut, tail=False)
+            if at is None:
+                return None
+            r1, m1 = at, cut
+            continue
+        break
+    if r2 - r1 < 2 or m2 - m1 < 2:
+        return None
+    return r1, r2, m1, m2
+
+
+def _snap(toks: Sequence[tf.Tk], ref: tf.Reference, lo: int, hi: int, r1: int, r2: int, m1: int, m2: int,
+          limit: Tuple[int, int]) -> Tuple[int, int, int, int]:
+    """这一句后面 / 前面还有别的话（母本里的一句和一句新的话在同一个片段里），母本那一句只差最后 / 最前面
+    1~EDGE_MAX 个字没对上：那几个字读音像，就算对上了（是那几个字被听错了），这样对上的正好是母本完整的一句。"""
+    end = min(limit[1], _line_end(ref, m2 - 1))
+    if r2 < hi and 0 < end - m2 <= EDGE_MAX + 1:
+        want = ref.toks[m2:end]
+        for take in (_edge_lengths(want) if end - m2 <= EDGE_MAX else []):
+            if r2 + take <= hi and _plausible(toks[r2:r2 + take], want):
+                r2, m2 = r2 + take, end
+                break
+        else:  # 母本那一句的最后一个字在这一句后面不远处（中间隔着听错 / 漏掉的几个字：vichy sleeping / which is sleeping）
+            for x in range(r2, min(hi, r2 + EDGE_MAX + 1)):
+                if fid_of(toks, ref, x) == ref.fid[end - 1] and abs((x - r2) - (end - 1 - m2)) <= 1:
+                    r2, m2 = x + 1, end
+                    break
+    start = max(limit[0], _line_start(ref, m1))
+    if r1 > lo and 0 < m1 - start <= EDGE_MAX + 1:
+        want = ref.toks[start:m1]
+        for take in (_edge_lengths(want) if m1 - start <= EDGE_MAX else []):
+            if r1 - take >= lo and _plausible(toks[r1 - take:r1], want):
+                r1, m1 = r1 - take, start
+                break
+        else:  # 「关系代which」/ 母本「关系代词which」：母本那一句的第一个字在前面不远处
+            for x in range(r1 - 1, max(lo - 1, r1 - EDGE_MAX - 2), -1):
+                if fid_of(toks, ref, x) == ref.fid[start] and abs((r1 - x - 1) - (m1 - start - 1)) <= 1:
+                    r1, m1 = x, start
+                    break
+    return r1, r2, m1, m2
+
+
+def fid_of(toks: Sequence[tf.Tk], ref: tf.Reference, k: int) -> int:
+    """这一句第 k 个字 / 词的读音编号（母本里没有的读音给 -1，不会和母本对上）。"""
+    return ref.ids.get(toks[k].fz, -1)
+
+
 def _in_window(toks: Sequence[tf.Tk], fid: Sequence[int], ref: tf.Reference, lo: int, hi: int,
                w0: int, w1: int) -> Optional[Segment]:
     """这一句的 lo ~ hi 和母本的 w0 ~ w1 这一段比：找出对上的范围，算相似度。"""
@@ -197,8 +363,19 @@ def _in_window(toks: Sequence[tf.Tk], fid: Sequence[int], ref: tf.Reference, lo:
     got = _chain(blocks, hi - lo)
     if got is None:
         return None
-    r1, r2, m1, m2 = _edge_anchor(fid, ref, lo, hi, *got, limit=(w0, w1))
-    r1, r2, m1, m2 = _extend(toks, ref, lo, hi, r1, r2, m1, m2, limit=(w0, w1))
+    got = _trim_lines(toks, fid, ref, *got)
+    if got is None:
+        return None
+    r1, r2, m1, m2 = got
+    # 句子开头 / 结尾没对上的字只在母本的同一句里找（不能算成母本上一句 / 下一句的字：「今天的」→「which we know,」）
+    lim = (max(w0, _line_start(ref, m1)), min(w1, _line_end(ref, m2 - 1)))
+    r1, r2, m1, m2 = _edge_anchor(fid, ref, lo, hi, r1, r2, m1, m2, limit=lim)
+    r1, r2, m1, m2 = _extend(toks, ref, lo, hi, r1, r2, m1, m2, limit=lim)
+    r1, r2, m1, m2 = _snap(toks, ref, lo, hi, r1, r2, m1, m2, limit=lim)
+    got = _trim_lines(toks, fid, ref, r1, r2, m1, m2)  # 补上开头 / 结尾以后再看一次（跨过去的那一头可能变弱了）
+    if got is None:
+        return None
+    r1, r2, m1, m2 = got
     ops = _final_ops(fid, ref, r1, r2, m1, m2)
     eq = sum(i2 - i1 for tag, i1, i2, _j1, _j2 in ops if tag == "equal")
     sim = eq / max(r2 - r1, m2 - m1, 1)
@@ -279,9 +456,14 @@ def _best(toks: Sequence[tf.Tk], fid: Sequence[int], ref: tf.Reference, lo: int,
     mine = tuple(toks[k].key for k in range(best.r1, best.r2))
     if any(_target(ref, s) != _target(ref, best) for s in rivals):
         same = [s for s in [best] + rivals if _target(ref, s) == mine]
-        if same:  # 其中一处和这一句一模一样：就是它，不用改
+        if same:  # 其中一处和这一句一模一样：就是它，不用改（字一样、标点不一样的几处一起看，见 segment_pieces）
+            same[0].alts = [s for s in same[1:] if not (s.m1 < same[0].m2 and same[0].m1 < s.m2)]
             return same[0]
         best.ambiguous = True  # 好几处一样像、写法又不一样：分不出是哪一处，不按它改
+        return best
+    # 母本里好几处字一模一样（只有标点可能不一样，比如「那就是that person。」和「就是that person」）：
+    # 分不出是哪一处，标点只改这几处都一样的（以前用最前面那一处的标点，把对的句子加上了句号）
+    best.alts = rivals
     return best
 
 
@@ -338,7 +520,25 @@ def find_segments(text: str, ref: Optional[tf.Reference], hint_id: str = "",
 # ============================================================================ 按母本改
 def segment_edits(text: str, toks: Sequence[tf.Tk], ref: tf.Reference, seg: Segment
                   ) -> List[Tuple[int, int, str]]:
-    """对上的这一段里和母本不一样的地方 → [(开始, 结束, 改成母本的写法)]（位置按这一句的文字算）。
+    """对上的这一段里和母本不一样的地方 → [(开始, 结束, 改成母本的写法)]（位置按这一句的文字算）。见 segment_pieces。"""
+    return [piece for piece, _whole in segment_pieces(text, toks, ref, seg)]
+
+
+def segment_pieces(text: str, toks: Sequence[tf.Tk], ref: tf.Reference, seg: Segment
+                   ) -> List[Tuple[Tuple[int, int, str], Tuple[int, int, str]]]:
+    """[(一小处改动, 它属于的那一处整的改动)]：一处整的改动（「一声 → 医生」）按读音拆成一小处一小处（「一 → 医」
+    「声 → 生」，老师自己改过的那个字不动、旁边的照样改）；写说明时按整的那一处写（不然会写出母本里没有的「医声」）。
+    母本里好几处字一模一样、只有标点不一样（seg.alts）：只要这几处都一样的改动（标点不一样的不改）。"""
+    out = _pieces(text, toks, ref, seg)
+    for alt in seg.alts:
+        theirs = {piece for piece, _whole in _pieces(text, toks, ref, alt)}
+        out = [x for x in out if x[0] in theirs]
+    return out
+
+
+def _pieces(text: str, toks: Sequence[tf.Tk], ref: tf.Reference, seg: Segment
+            ) -> List[Tuple[Tuple[int, int, str], Tuple[int, int, str]]]:
+    """对上的这一段里和母本不一样的地方（一小处一小处，带上整的那一处）。
     整段按字比（英文按整个单词），所以读音一样写法不一样的、读音不一样的、多的、少的、英文大小写、中间的标点
     都按母本；对上的正好是母本一句的开头 / 结尾、这一句也到头了时，句首 / 句末的标点也按母本（Where is quiet? /
     where it's quiet.）。只是写法整理（全角 / 半角逗号）不一样的不算。"""
@@ -351,10 +551,16 @@ def segment_edits(text: str, toks: Sequence[tf.Tk], ref: tf.Reference, seg: Segm
         rs, ms = 0, ref.line_chars[ref.line_of[seg.m1]][0]
     if seg.r2 == len(toks) and seg.m2 in ref.line_ends:
         re_, me = len(text), ref.line_chars[ref.line_of_end[seg.m2]][1]
+    elif seg.m2 in ref.line_ends and seg.r2 < len(toks):
+        # 母本的一句到头了、这一句后面还有别的话（母本的一句和一句新的话在同一个片段里）：母本这一句末尾有标点时
+        # 按母本（Where is quiet? → where it's quiet.）；母本末尾没有标点时不动（不把这一句里的逗号去掉）
+        end = ref.line_chars[ref.line_of_end[seg.m2]][1]
+        if ref.text[me:end].strip():
+            re_, me = toks[seg.r2].start, end
     a, b = text[rs:re_], ref.text[ms:me].replace("\n", "")
     if a == b:
         return []
-    out: List[Tuple[int, int, str]] = []
+    out: List[Tuple[Tuple[int, int, str], Tuple[int, int, str]]] = []
     base = clean_transcript(text)
     for s, e, rep in _review.suggestion_edits(a, b):
         s, e = s + rs, e + rs
@@ -362,7 +568,7 @@ def segment_edits(text: str, toks: Sequence[tf.Tk], ref: tf.Reference, seg: Segm
             rep2 = pc._pad(text, s2, e2, rep2)
             if clean_transcript(text[:s2] + rep2 + text[e2:]) == base:
                 continue  # 只是写法整理不一样（英文后面的逗号全角 / 半角）：不算
-            out.append((s2, e2, rep2))
+            out.append(((s2, e2, rep2), (s, e, rep)))
     return out
 
 
@@ -405,4 +611,5 @@ def covered_ranges(toks: Sequence[tf.Tk], segs: Sequence[Segment]) -> List[Tuple
     return [(toks[s.r1].start, toks[s.r2 - 1].end) for s in segs if s.r2 > s.r1]
 
 
-__all__ = ["MATCH_MIN", "MIN_TOKENS", "PART_MIN", "Segment", "find_segments", "segment_edits", "covered_ranges"]
+__all__ = ["MATCH_MIN", "MIN_TOKENS", "PART_MIN", "Segment", "find_segments", "segment_edits", "segment_pieces",
+           "covered_ranges", "line_no"]
