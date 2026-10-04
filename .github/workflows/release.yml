@@ -41,7 +41,7 @@ jobs:
           assets=(dist/*.zip)
           for pdf in dist/*.pdf; do
             case "$pdf" in
-              *QuickStart*) assets+=("$pdf#快速上手（几页纸，先看这个）") ;;
+              *QuickStart*) assets+=("$pdf#快速上手（一页纸，先看这个）") ;;
               *) assets+=("$pdf") ;;
             esac
           done
