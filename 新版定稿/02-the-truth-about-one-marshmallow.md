@@ -10,7 +10,7 @@ Yet the **foundation** was **precarious**. Only **a few dozen** children entered
 
 A study published in Psychological Science in May 2018 ran a **conceptual** **replication**: the same idea, a new sample, **modified** methods. More than 900 **youngsters** from **diverse** backgrounds were **assessed** at four and a half and again at 15. The raw **link** was **roughly** half as strong as the original finding. **Adjusting for** family background and early **cognitive** ability **shrank** it by about two thirds, leaving most estimates **statistically** **insignificant**.
 
-The test is not **worthless**; it may still **reflect** something **substantive**. Research published in Cognition in January 2013 adds **context**: children whose trust an adult had just **betrayed** waited **markedly** less than **peers** dealing with a reliable adult. How long a child **perseveres** depends partly on how **trustworthy** the adults around them seem.
+The test is not **worthless**; it may still **reflect** something **substantive**. Research published in Cognition in January 2013 adds **context**: children whose trust an adult had just **betrayed** waited **markedly** less than **peers** dealing with a reliable adult. How long a child **perseveres** **depends** partly on how **trustworthy** the adults around them seem.
 
 ## 中文
 
@@ -22,7 +22,7 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 
 2018年5月发表于《心理科学》的一项研究做了一次**概念性的**(conceptual)**重复验证**(replication)：同样的思路，新的样本，**调整过的**(modified)方法。900多名来自**多种不同的**(diverse)背景的**儿童或青少年**(youngsters)在四岁半时接受**评估**(assessed)，15岁时再测一次。这个原始的（不加任何干预的）**关联**(link)，其预测强度（准确度）**大约**(roughly)只有原研究结果的一半。**调整**(Adjusting for)家庭背景和早期**认知**(cognitive)能力（这些实验变量），**缩小了**(shrank)这个原始关联（raw link）大约三分之二，使得大多数估计值在**统计上**(statistically)**不显著**(insignificant)。（即缩小了【等得更久】与【SAT分数更高】之间的相关性）
 
-这项测验并非**毫无价值**(worthless)；它或许仍能**反映**(reflect)某些**实质性的**(substantive)东西。2013年1月发表于《认知》的研究补充了（一些）**背景**(context)：刚被成年人**辜负**(betrayed)信任的孩子，等待的时间**明显**(markedly)短于与守信的成年人相处的**同龄人**(peers)。孩子能**坚持**(perseveres)多久，部分取决于身边的大人看起来有多**可信**(trustworthy)。
+这项测验并非**毫无价值**(worthless)；它或许仍能**反映**(reflect)某些**实质性的**(substantive)东西。2013年1月发表于《认知》的研究补充了（一些）**背景**(context)：刚被成年人**辜负**(betrayed)信任的孩子，等待的时间**明显**(markedly)短于与守信的成年人相处的**同龄人**(peers)。孩子能**坚持**(perseveres)多久，部分**取决于**(depends)身边的大人看起来有多**可信**(trustworthy)。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -84,6 +84,7 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 | markedly | 本文：明显；adv. 明显地，显著地（differ markedly；markedly better/less） | 5 |
 | peers | 本文：同龄人；n. (peer) 同龄人，同辈（peer pressure；compared with one's peers） | 5 |
 | perseveres | 本文：坚持；v. (persevere) 坚持不懈（persevere in/with sth） | 5 |
+| depends | 本文：取决于；v. (depend on) 取决于，依赖（depend on the weather） | 5 |
 | trustworthy | 本文：可信；adj. 值得信赖的，可靠的（a trustworthy friend/source） | 5 |
 
 ## 史实与来源
