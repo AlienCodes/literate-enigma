@@ -833,6 +833,12 @@ class Reference:
             if li >= own_from:
                 self.text_ranges.setdefault(_norm_line(x), []).append(line_span[li])
         self.last_line = max(line_span) if line_span else -1  # 太长被截掉时：最后用到了第几行
+        # 每一句的第一个字 / 最后一个字后面在哪里（母本优先：只对上一部分时，那一部分必须正好是母本里完整的一句）
+        self.line_firsts: Set[int] = {a for a, _b in line_span.values()}
+        self.line_ends: Set[int] = {b for _a, b in line_span.values()}
+        self.line_of: Dict[int, int] = {a: li for li, (a, _b) in line_span.items()}  # 一句的第一个字 → 第几行
+        self.line_of_end: Dict[int, int] = {b: li for li, (_a, b) in line_span.items()}  # 一句的最后一个字后面 → 第几行
+        self.line_chars: List[Tuple[int, int]] = [(st, st + len(x)) for st, (_i, x) in zip(starts, lines)]
         # 老师上传的（没修缮过的）从第几个字 / 词开始
         firsts = [line_span[li][0] for li in line_span if vetted_lines is not None and li >= vetted_lines]
         self.unvetted_from = min(firsts) if firsts else len(self.toks)
@@ -1420,8 +1426,11 @@ def props_to_fixes(cur: str, res: ClipResult, lex: Any = None) -> List[Any]:
     out = []
     for p in res.props:
         s, e = clip[p.i1].start, clip[p.i2 - 1].end
-        weight = p.weight
+        weight, reason = p.weight, p.reason
         if p.unvetted and not p.strong:
+            # 只对上了老师上传的母本、标准库又证明不了的：给一个没把握的建议（一键校正不自动采用），老师听录音决定。
+            # 说明在 check_text 里已经写成「你上传的母本里……；也可能是上传的文字打错了」（_upload_reason），这里不再换一遍
+            # （合并 fix-mother 时两边都换，写成了「你上传的你上传的母本里」）
             weight = min(weight, UNVETTED_WEIGHT)
         elif not p.strong:
             if lex is not None and lex.inside_vocab(cur, s, e):
@@ -1430,8 +1439,22 @@ def props_to_fixes(cur: str, res: ClipResult, lex: Any = None) -> List[Any]:
                 continue
             if p.kind == "cjk_en" and lex is not None and lex.has_common_word(cur[s:e]):
                 continue
-        out.append(Fix(s, e, pc._pad(cur, s, e, p.rep), "align", bool(p.strong), weight, p.reason))
+            if p.kind == "cjk_en" and p.mode == "L" and _real_word(cur[s:e]):
+                # 只是局部对上（「在这个地方」+ whose）、那几个汉字本身是个正常的词（出错）：母本优先以后，局部对上
+                # 常说的话不算母本里有这一句，这种猜测不提示（以前把新内容里的「出错」猜成 whose）
+                continue
+        out.append(Fix(s, e, pc._pad(cur, s, e, p.rep), "align", bool(p.strong), weight, reason))
     return out
+
+
+LOCAL_EN_MAX_FREQ = 100  # 局部对上时「汉字可能是英文」：这几个汉字在 jieba 词典里这么常见（出错 156）就是正常的词，不提示
+
+
+def _real_word(piece: str) -> bool:
+    """这几个汉字是不是一个正常的词（jieba 词典里出现 ≥ LOCAL_EN_MAX_FREQ 次；艾子 3、威驰 0 不算）。没有 jieba 时不算。"""
+    from voicetwin.data.lexicon_fix import has_jieba, word_freq
+
+    return has_jieba() and word_freq(str(piece or "").strip()) >= LOCAL_EN_MAX_FREQ
 
 
 SURE_WEIGHT = 0.8  # 不是直接改的建议：分量这么大（或者另一个识别引擎也听成这样）才让「一键全部文字校正」自动采用
@@ -1491,10 +1514,82 @@ def _same_place(ed: Tuple[int, int, str], span: Sequence[int]) -> bool:
     return ed[0] == span[0] and ed[1] == span[1]
 
 
+def _in_covered(s: int, e: int, covered: Sequence[Tuple[int, int]]) -> bool:
+    """[s, e) 碰到母本对上的部分（补字的位置在里面或者正好在边上也算）。"""
+    if e <= s:
+        return any(a <= s <= b for a, b in covered)
+    return any(s < b and a < e for a, b in covered)
+
+
+def _outside(spans: Sequence[Sequence[int]], covered: Sequence[Tuple[int, int]]) -> List[Tuple[int, int]]:
+    """标红的地方去掉母本对上的部分（剩下的才是母本管不到的）。"""
+    out: List[Tuple[int, int]] = []
+    for sp in spans:
+        parts = [(int(sp[0]), int(sp[1]))]
+        for a, b in covered:
+            nxt = []
+            for x, y in parts:
+                if y <= a or b <= x:
+                    nxt.append((x, y))
+                    continue
+                if x < a:
+                    nxt.append((x, a))
+                if b < y:
+                    nxt.append((b, y))
+            parts = nxt
+        out += [(x, y) for x, y in parts if y > x]
+    return out
+
+
+_QUOTE = re.compile(r"「([^」]+)」")
+
+
+def _reason_places(auto: Optional[Dict[str, Any]], rec: Dict[str, Any], cur: str) -> Dict[str, List[Tuple[int, int]]]:
+    """自动查错字存下的每条原因说的是哪几处（proofcheck.REASON_AT），换算成现在的文字里的位置（换算不过去的不要）。"""
+    from voicetwin.data import review as _review
+
+    at = auto.get(pc.REASON_AT) if isinstance(auto, dict) else None
+    if not isinstance(at, dict) or not at:
+        return {}
+    base = _review.suspect_base(dict(rec, suspect=auto))
+    ops = _review._opcodes(base, cur) if base != cur else [("equal", 0, len(base), 0, len(cur))]
+    blocks = [(i1, i2, j1, j2) for tag, i1, i2, j1, j2 in ops if tag == "equal"]
+    out: Dict[str, List[Tuple[int, int]]] = {}
+    for reason, places in at.items():
+        got = []
+        for sp in places or []:
+            try:
+                m = _review.map_range(blocks, int(sp[0]), int(sp[1]))
+            except (TypeError, ValueError, IndexError):
+                m = None
+            if m is not None:
+                got.append((m[0], m[1]))
+        if got:
+            out[str(reason)] = got
+    return out
+
+
+def _reason_inside(reason: str, cur: str, covered: Sequence[Tuple[int, int]],
+                   places: Optional[Dict[str, List[Tuple[int, int]]]] = None) -> bool:
+    """自动查错字的一条说明讲的是不是母本对上的部分：那里的建议已经去掉了，说明也去掉
+    （不然说明里还写着和母本矛盾的「另一个引擎听成……」）。
+    有位置（places，按原因记的）：每一处都在母本对上的部分里才算。没有位置（以前的版本存的）：看说明里引用的这一句的字。"""
+    if places and reason in places:
+        return all(any(a <= s and max(e, s) <= b for a, b in covered) for s, e in places[reason])
+    hits = []
+    for q in _QUOTE.findall(str(reason or "")):
+        k = cur.find(q)
+        while k >= 0:
+            hits.append((k, k + len(q)))
+            k = cur.find(q, k + 1)
+    return bool(hits) and all(any(a <= s and e <= b for a, b in covered) for s, e in hits)
+
+
 def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: Optional[Dict[str, Any]],
                     rec: Dict[str, Any], ref_text: str = "", lex: Any = None,
                     allow_unchanged: bool = False, rejected: Any = None,
-                    changed: Optional[Tuple[Set[int], Set[int]]] = None
+                    changed: Optional[Tuple[Set[int], Set[int]]] = None,
+                    covered: Sequence[Tuple[int, int]] = ()
                     ) -> Tuple[Optional[Dict[str, Any]], str, List[Tuple[int, int, str]]]:
     """标准库 / 母本找出来的改法（fixes）和原来自动查错字的结果（auto）合起来。
 
@@ -1504,19 +1599,24 @@ def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: O
     没把握的建议（分量不够、整句换掉的、标准库证明不了的自动查错字建议）：suspect["sure_alt"] 是只用有把握的改出来的
     那一句；这一行的「采用」照样全部能用，但「一键全部文字校正」只按 sure_alt 改，没把握的留着红色让老师听录音决定。
     allow_unchanged=True：自动检查的结果原样保留时直接返回 auto（默认重新写一份，位置按现在的文字算，
-    这样每一处建议有没有把握都记下了）。"""
+    这样每一处建议有没有把握都记下了）。
+    covered：母本里对上的部分（母本优先，[开始, 结束)）：那里母本就是标准答案——自动查错字（另一个识别引擎、规则）在那里的
+    标红和建议都不要（和母本一样的已经在 fixes 里，和母本矛盾的是错的），说明里按母本的排在最前面。"""
     from voicetwin.data import review as _review
     from voicetwin.data.lexicon_fix import resolve
 
     fixes = [_core_fix(cur, f) for f in resolve(list(fixes))]  # 只算真正改到的字（前后没变的字不算）
+    fixes.sort(key=lambda f: (0 if f.kind.startswith("mother") else 1, f.start, f.end))  # 按母本的排在最前面
     a_red: List[Tuple[int, int]] = []
     a_edits: List[Tuple[int, int, str]] = []
+    heard: List[Tuple[int, int, str]] = []
     a_reasons: List[str] = []
     a_score = 0.0
     a_total = False
     if auto:
         info = _review.analyze(dict(rec, suspect=auto), cur)
         a_red, a_edits = list(info["red"]), list(info["edits"])
+        heard = list(a_edits)  # 另一个引擎的建议（母本对上的部分也算：和母本的改法一样时，算两边都这么听）
         a_total = _review.whole_sentence_suggestion(auto, _review.suspect_base(dict(rec, suspect=auto)))
         a_reasons = [r for r in info["reasons"] if r]
         try:
@@ -1524,6 +1624,12 @@ def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: O
         except (TypeError, ValueError):
             a_score = 0.6
     tokchars = _token_chars(cur)
+    if covered:  # 母本里对上的字：母本证明没错（要改的那几个字下面单独算）
+        confirmed = set(confirmed) | {k for a, b in covered for k in range(a, b) if k in tokchars}
+        a_red = _outside(a_red, covered)
+        a_edits = [ed for ed in a_edits if not _in_covered(ed[0], ed[1], covered)]
+        places = _reason_places(auto, rec, cur)
+        a_reasons = [r for r in a_reasons if not _reason_inside(r, cur, covered, places)]
     fixed_chars = {k for f in fixes for k in range(f.start, f.end)}
     # 老师撤销过的自动查错字建议：不再建议，那几个字也不再标红（和 🔍 自动查找一样）
     a_rej = [ed for ed in a_edits if _review.is_rejected(rejected, cur, *ed)] if rejected else []
@@ -1537,19 +1643,26 @@ def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: O
     reasons: List[str] = []
     weights: List[float] = []
     unsure: List[List[int]] = []
+    mother_unsure = False
     for f in fixes:
         w, reason = f.weight, f.reason
         if any(es == f.start and ee == f.end and [x.key for x in pc.tokenize(er)] ==
-               [x.key for x in pc.tokenize(f.rep)] for es, ee, er in a_edits):
+               [x.key for x in pc.tokenize(f.rep)] for es, ee, er in heard):
             w = min(0.95, w + AGREE_BONUS)
             reason += "（另一个识别引擎也听成这样）"
         t_edits.append((f.start, f.end, f.rep))
         if f.direct:
             direct.append((f.start, f.end, f.rep))
-            reason = "已按标准库改好：" + reason
+            if f.kind.startswith("mother"):  # 「按母本：……」→「已按母本改好：……」
+                reason = "已" + reason.replace("母本：", "母本改好：", 1)
+            else:
+                reason = "已按标准库改好：" + reason
         elif w < SURE_WEIGHT - 1e-9:
             unsure.append([f.start, f.end])
-            reason = "没把握（请听录音）：" + reason
+            if not reason.startswith("没把握"):
+                reason = "没把握（请听录音）：" + reason
+            if f.kind == "mother":
+                mother_unsure = True
         spans.append([f.start, max(f.end, f.start + 1)])
         reasons.append(reason)
         weights.append(w)
@@ -1564,7 +1677,7 @@ def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: O
             return None, "none", []
         if not auto_left:
             return None, "cleared", []
-        if allow_unchanged and len(red_keep) == len(a_red) and len(edits_keep) == len(a_edits):
+        if allow_unchanged and not covered and len(red_keep) == len(a_red) and len(edits_keep) == len(a_edits):
             return auto, "unchanged_auto", []
     if auto_left:
         spans += [list(sp) for sp in red_keep]
@@ -1585,6 +1698,13 @@ def merge_with_auto(cur: str, fixes: Sequence[Any], confirmed: Set[int], auto: O
         sus["sure_alt"] = _apply(cur, sure_edits) if sure_edits else cur
     if direct:  # 直接改好以后的整句（采用 / 撤销时整句换，不用对位置）
         sus["direct_alt"] = _apply(cur, direct)
+    # 只按母本改出来的整句：「修改建议」那一列按它分出哪些是「按母本：」的。只算程序自带的、修缮过的母本——老师上传的文字
+    # 里的写法（可能有错字）不写成「按母本：」，它的说明里写着「按你上传的母本」「也可能是上传的文字打错了」
+    mother = [(f.start, f.end, f.rep) for f in fixes if f.kind == "mother"]
+    if mother:
+        sus["mother_alt"] = _apply(cur, mother)
+        if mother_unsure:  # 里面有没把握的（没有同一批录音的证据、读音不像听错）：「修改建议」那一列写清楚
+            sus["mother_unsure"] = True
     if ref_text and fixes:
         sus["ref"] = ref_text
     what = "fixed" if direct else ("found" if fixes else "kept_auto")
@@ -1769,7 +1889,7 @@ def _protect(fixes: Sequence[Any], cur: str, changed: Tuple[Set[int], Set[int]],
     for f in fixes:
         if _touches_changed(f.start, f.end, changed):
             continue
-        if f.kind == "align":
+        if f.kind in ("align", "mother_upload"):  # 老师上传的母本（没修缮过）里可能有错字：标准库马上又会说错的不改
             if lex is not None:
                 new = _apply(cur, [(f.start, f.end, f.rep)])
                 e2 = f.start + len(f.rep)
@@ -1866,15 +1986,18 @@ def _rebase(rec: Dict[str, Any], sus: Dict[str, Any], cur: str, old_undo: Sequen
 
 
 def _global_fp(all_lines: Sequence[Tuple[str, str]], row_table: Dict[str, Any], lex: Any,
-               use_builtin: bool, use_row_fixes: bool) -> str:
-    """这次文字校正用的标准库（母本、按句子的修缮记录、对照表、术语、程序版本）的指纹。"""
+               use_builtin: bool, use_row_fixes: bool, merge_only: bool = False) -> str:
+    """这次文字校正用的标准库（母本、按句子的修缮记录、对照表、术语、程序版本、母本优先的做法）的指纹。
+    merge_only（自动查错字以后只合并、不改字）也算进去：一键校正再点时要重新算，按母本直接改。"""
     import hashlib
     import json
 
     from voicetwin import __version__
+    from voicetwin.data import mother_first as _mf
     from voicetwin.data.lexicon_fix import has_jieba
 
-    data = [__version__, use_builtin, use_row_fixes, has_pinyin(), has_jieba(), [list(x) for x in all_lines],
+    data = [__version__, MOTHER_FIRST_VERSION, _mf.MATCH_MIN, merge_only, use_builtin, use_row_fixes, has_pinyin(),
+            has_jieba(), [list(x) for x in all_lines],
             sorted((k, [list(v) for v in vs]) for k, vs in row_table.items()), sorted(lex.corrections.items()),
             sorted(lex.vocab)]
     return hashlib.sha1(json.dumps(data, ensure_ascii=False, default=str).encode("utf-8")).hexdigest()
@@ -1899,14 +2022,356 @@ def _program_states(rec: Dict[str, Any], sus: Dict[str, Any]) -> Set[str]:
     return {x for x in (st.get("direct") or st["base"], st.get("sure"), st["alt"]) if x}
 
 
+#: 母本优先的做法改了就加一（指纹里有它：老师再点一键校正 / 自动查错字时按新的做法重新算）
+#: 2：同一批录音的证据（_SameBatch）、跨母本句子边界、标点只改几处都一样的、说明按整的改动写（第二轮检查）
+MOTHER_FIRST_VERSION = 2
+MOTHER_WEIGHT = 0.95  # 按母本的改法：不是直接改的时候（自动查错字以后合并）也算有把握，一键校正会采用
+#: 没有「同一批录音」的证据、读音又不像听错的地方（新讲的课用了母本里的说法、只换了一个词）：只给没把握的建议。
+#: 另一个识别引擎也听成母本的样子时（+ AGREE_BONUS = 0.8）就算有把握——两个引擎里有一个听到的就是母本的说法
+MOTHER_UNSURE_WEIGHT = 0.65
+#: 否定的字、数字：读音像也不直接改（「为 / 未」「是 / 十」改了意思就变了）
+_NEG_CHARS = set("不没无非未别莫勿")
+_NUM_CHARS = set("零〇一二两三四五六七八九十百千万亿0123456789")
+
+
+def _mother_match(cur: str, rid: str, ref: Optional[Reference], selves: Sequence[str], own_line: bool = True
+                  ) -> Tuple[List[Tk], List[Any]]:
+    """这一句按内容在母本里对应的几段（mother_first.find_segments）。
+    不拿来比的：老师上传的母本里和这一句现在的 / 保存的 / 最初识别的文字一模一样的行（就是它自己，证明不了什么）。
+    own_line=False（实测里的「考试」：不用逐句修缮的结果）：同一个 id 的那一句也不拿来比、不当提示。"""
+    from voicetwin.data import mother_first as mf
+
+    if ref is None or not len(ref):
+        return [], []
+    skips: List[Tuple[int, int]] = []
+    for t in set(_norm_line(x) for x in selves if x):
+        skips += ref.text_ranges.get(t, [])
+    if not own_line:
+        skips += list(ref.id_ranges.get(rid, []))
+    return mf.find_segments(cur, ref, hint_id=rid if own_line else "", skips=skips)
+
+
+def _piece_kind(cur: str, s: int, e: int, rep: str) -> str:
+    """一小处按母本的改动是哪一种：punct = 字一样、只有标点 / 空格 / 英文大小写不一样；alike = 读音像识别错
+    （读音一样的字、汉字读音像英文、英文拼法很像），而且没有改否定的字、没有把一个数字改成另一个数字；
+    far = 别的（多的 / 少的字、读音不像的字：定语从句 / 状语从句、可以 / 不可以、两个 / 三个、let / that）。"""
+    old = cur[s:e]
+    a, b = tokens(old), tokens(rep)
+    if [t.key for t in a] == [t.key for t in b]:
+        return "punct"
+    if not a or not b:
+        return "far"
+    if {c for c in old if c in _NEG_CHARS} != {c for c in rep if c in _NEG_CHARS}:
+        return "far"
+    na, nb = [c for c in old if c in _NUM_CHARS], [c for c in rep if c in _NUM_CHARS]
+    if na and nb and na != nb:
+        return "far"
+    return "alike" if _sound_alike(old, rep) else "far"
+
+
+class _SameBatch:
+    """「同一批录音」的证据（母本优先，第二轮检查的人发现的问题）：
+
+    母本是老师修缮好的这批讲课的文字。同一批录音的片段，前后挨着的片段在母本里也对上前后挨着的句子（片段 id 变了、
+    切的位置不一样也一样）；新讲的课即使用了母本里的说法（「这个定语从句……」换成「这个状语从句……」），前后的句子
+    也对不上母本里挨着的句子。所以：
+    - 有证据（同一个 id 的那一句文字也对得上，或者前 / 后 WINDOW 个片段里有一个（同一个视频）对上母本里前后 LINES 句以内、
+      顺序也对的句子，或者同一个片段里的另一段对上母本挨着的句子）：母本说了算，和母本不一样的地方都按母本改；
+    - 没有证据：只有读音像识别错的地方按母本改，读音不像的只给没把握的建议，只是标点不一样的不动。
+    WINDOW / LINES 在老师的数据上量过（research/文字校正/母本优先/证据分析.py）：前后看 1~3 个片段、母本里最多隔 1~3 句，
+    同一批讲课里需要证据的 42 句全部有证据，新讲的课（换了一个词 / 换了说法的 80 句）一句都没有；隔 5 句时新讲的课里
+    有 4 句被当成同一批。取中间的 2 / 2（中间夹着一个对不上的片段、老师删掉的一句也找得到）。"""
+
+    WINDOW = 2  # 前后各看几个片段
+    LINES = 2  # 母本里最多隔几句（老师删掉的句子不在母本里、很短不用的片段对不上）
+
+    def __init__(self, records: Sequence[Dict[str, Any]], texts: Dict[str, str], ref: Optional[Reference],
+                 matcher: Callable[[Dict[str, Any]], Tuple[List[Tk], List[Any]]]):
+        self.order = [r for r in records if str(texts.get(str(r.get("id")), "") or "").strip()]
+        self.pos = {str(r.get("id")): k for k, r in enumerate(self.order)}
+        self.ref = ref
+        self.matcher = matcher
+
+    def _usable(self, seg: Any) -> bool:
+        return self.ref is not None and not seg.ambiguous and seg.m2 <= self.ref.unvetted_from
+
+    def _before(self, a: Any, b: Any) -> bool:
+        """母本里 a 那一段在 b 那一段前面不远处（同一句里也行，比如一句切成了两个片段）。"""
+        from voicetwin.data import mother_first as mf
+
+        if not (self._usable(a) and self._usable(b)):
+            return False
+        la, lb = mf.line_no(self.ref, a.m2 - 1), mf.line_no(self.ref, b.m1)
+        if not 0 <= lb - la <= self.LINES:
+            return False
+        return lb > la or a.m2 <= b.m1 + 1
+
+    def _neighbours(self, rid: str, step: int) -> List[List[Any]]:
+        k = self.pos.get(rid)
+        if k is None:
+            return []
+        me = str(self.order[k].get("source") or "")
+        out = []
+        j = k + step
+        while 0 <= j < len(self.order) and abs(j - k) <= self.WINDOW:
+            r = self.order[j]
+            src = str(r.get("source") or "")
+            if me and src and src != me:
+                break  # 另一个视频
+            segs = [g for g in self.matcher(r)[1] if self._usable(g)]
+            if segs:
+                out.append(segs)
+            j += step
+        return out
+
+    def evidence(self, rid: str, segs: Sequence[Any]) -> List[bool]:
+        out = []
+        prev: Optional[List[List[Any]]] = None
+        nxt: Optional[List[List[Any]]] = None
+        for i, seg in enumerate(segs):
+            ok = bool(seg.hint)
+            if not ok and i > 0:
+                ok = self._before(segs[i - 1], seg)
+            if not ok and i + 1 < len(segs):
+                ok = self._before(seg, segs[i + 1])
+            if not ok and i == 0:
+                prev = self._neighbours(rid, -1) if prev is None else prev
+                ok = any(self._before(p[-1], seg) for p in prev)
+            if not ok and i == len(segs) - 1:
+                nxt = self._neighbours(rid, 1) if nxt is None else nxt
+                ok = any(self._before(seg, n[0]) for n in nxt)
+            out.append(ok)
+        return out
+
+
+def _mother_first(cur: str, rid: str, ref: Optional[Reference], selves: Sequence[str], own_line: bool = True,
+                  match: Optional[Tuple[List[Tk], List[Any]]] = None, same_batch: Optional[Sequence[bool]] = None,
+                  pieces: Optional[List[Tuple[Tuple[int, int, str], Any]]] = None
+                  ) -> Tuple[List[Any], List[Tuple[int, int]], str, bool]:
+    """母本优先：这一句按内容在母本里找对应的那一段（_mother_match），和母本不一样的地方按母本改。
+    返回 (改法, 母本说了算的部分 [(开始, 结束)]（只算程序自带的、修缮过的母本）, 母本里的原句, 整句是不是都由它说了算)。
+
+    same_batch：每一段有没有「同一批录音」的证据（_SameBatch）；不给就只看 id 提示（单独调用时：测试、实测）。
+    有证据：母本说了算，和母本不一样的地方都直接按母本改（自动查错字时是有把握的建议）。
+    没有证据（可能是新讲的课用了母本里的说法）：读音像识别错的地方照样按母本改；读音不像的（多的 / 少的字、
+    定语从句 / 状语从句、可以 / 不可以、两个 / 三个）只给没把握的建议「按母本：……」，老师听录音决定；只是标点不一样的不动。
+    pieces：给了就把每一处改法和它属于的那一处整的改动记进去（写说明用：「一声 → 医生」拆成两处，说明按整的写）。
+    老师自己改过的字一律不动（_protect）。对上的是老师上传的母本（没修缮过，可能有打字的错字「主雨」「联系」「wich」）时：
+    读音不像的不按它改；汉字读音像英文的（瑞森 → reason）直接改；别的读音像的（同音字、两个字的词、英文拼写）只给没把握的
+    建议（第四轮 g2，和母本对齐那一步也找到时用它的），改完以后标准库马上又会说错的不改（_protect）。"""
+    from voicetwin.data import mother_first as mf
+    from voicetwin.data.lexicon_fix import Fix
+
+    if ref is None or not len(ref):
+        return [], [], "", False
+    toks, segs = match if match is not None else _mother_match(cur, rid, ref, selves, own_line)
+    if same_batch is None:
+        same_batch = [bool(g.hint) for g in segs]
+    out: List[Any] = []
+    covered: List[Tuple[int, int]] = []
+    snippet = ""
+    used = 0
+    for seg, proof in zip(segs, same_batch):
+        if seg.ambiguous:  # 母本里好几处一样像、写法又不一样：分不出是哪一处，这一段不按母本改
+            continue
+        upload = seg.m2 > ref.unvetted_from
+        if not snippet:
+            snippet = ref.snippet(seg.m1, seg.m2, pad=0, limit=120)
+        who = "按你上传的母本" if upload else "按母本"
+        holes: List[Tuple[int, int]] = []
+        seen: Set[Tuple[int, int, str]] = set()
+        for (s, e, rep), whole in mf.segment_pieces(cur, toks, ref, seg):
+            item = _edit_item(cur, s, e, rep)
+            if upload:
+                if not _sound_alike(cur[s:e], rep):
+                    # 老师上传的文字没修缮过，可能是讲课以前写的讲稿：讲的时候多说的「呢、那」、换的说法、页码不一样，
+                    # 读音不像识别错（实测：按讲稿改会把 7 / 45 句实际说的话改掉，见 research/文字校正/母本优先/讲稿实测.py）
+                    # → 这种地方不按上传的文字改，交给标准库和另一个识别引擎
+                    holes.append((s, e))
+                    continue
+                if {t.kind for t in tokens(cur[s:e])} == {"han"} and {t.kind for t in tokens(rep)} == {"lat"}:
+                    # 汉字读音像英文（瑞森 → reason、威驰 → which）：上传的文字打错字也打不成英文，直接改
+                    fix = Fix(s, e, rep, "mother_upload", True, MOTHER_WEIGHT, f"{who}：{item}")
+                else:
+                    # 别的读音像的（同音字、两个字的词「练习 / 联系」、英文拼写「which / wich」、英文写成汉字）：说不准是
+                    # 识别错了还是上传的文字打错了（第四轮 g2：上传的讲稿里的错字不能把对的字改掉）→ 只给没把握的建议，
+                    # 说清楚也可能是上传的文字打错了，一键校正不采用。和母本对齐（check_text）那一步也找到这一处时用它的
+                    # （程序自带的母本标准库也是上传的写法就直接改，见 check_with_transcript），没找到的也一定给老师看
+                    ws, we, wrep = whole
+                    if (ws, we) != (s, e) and _sound_alike(cur[ws:we], wrep):
+                        # 整的那一处读音也像（「练习 → 联系」）：按整的给一条建议（拆开给，标准库挡掉一半会只剩「练系」）
+                        if whole in seen:
+                            continue
+                        seen.add(whole)
+                        s, e, rep = ws, we, pc._pad(cur, ws, we, wrep)
+                        item = _edit_item(cur, s, e, rep)
+                    fix = Fix(s, e, rep, "mother_upload", False, UNVETTED_WEIGHT, _upload_reason(f"{who}：{item}", 0))
+            else:
+                kind = "alike" if proof else _piece_kind(cur, s, e, rep)
+                if proof or kind == "alike":
+                    fix = Fix(s, e, rep, "mother", True, MOTHER_WEIGHT, f"{who}：{item}")
+                elif kind == "punct":
+                    continue  # 没有同一批录音的证据、只是标点不一样：不动（录音里的停顿可能就是这样）
+                else:
+                    # 没有同一批录音的证据、读音也不像听错（新讲的课：「状语从句」不能改回母本的「定语从句」）：
+                    # 只给没把握的建议，老师听录音决定（第二轮检查的人发现的：以前直接改，意思都反了）
+                    fix = Fix(s, e, rep, "mother", False, MOTHER_UNSURE_WEIGHT,
+                              f"{who}：{item}（读音不像听错，可能是讲的时候换了说法）")
+            out.append(fix)
+            if pieces is not None:
+                pieces.append((whole, fix))
+        if not upload:
+            # 只有程序自带的、老师修缮过的母本才「说了算」：对上的部分别的办法都不用、和它矛盾的自动建议不要。
+            # 老师上传的（没修缮过、可能是讲稿）只当多一种改法：标准库（对照表、术语）照样查整句，自动查错字的结果照样留着
+            # （上传讲稿时的实测：上传的也「说了算」的话，对照表能改好的「猪语 → 主语」这种反而没改，31 句里少改对 3 句）
+            covered += _minus((toks[seg.r1].start, toks[seg.r2 - 1].end), holes)
+            used += seg.length
+    return out, covered, snippet, bool(toks) and used >= len(toks)
+
+
+def _sound_alike(old: str, new: str) -> bool:
+    """一处改动像不像识别错（读音一样 / 很像）：汉字读音（模糊音）一样、汉字读音像英文（艾子 / as）、英文拼法很像
+    （clouse / clause）、中文数字读音一样。多出来、少了的字，读音不一样的说法（高考 / 考试、三十六 / 三十五）都不算。"""
+    a, b = tokens(old), tokens(new)
+    if not a or not b:
+        return False
+    ka, kb = {t.kind for t in a}, {t.kind for t in b}
+    if ka == {"han"} and kb == {"lat"}:
+        return sounds_like_english([t.tone for t in a], [t.key for t in b])
+    if ka == {"lat"} and kb == {"han"}:
+        return sounds_like_english([t.tone for t in b], [t.key for t in a])
+    if len(a) != len(b):
+        return False
+    for x, y in zip(a, b):
+        if x.kind != y.kind:
+            return False
+        if x.kind == "han" and x.fz != y.fz:
+            return False
+        if x.kind == "lat" and difflib.SequenceMatcher(None, x.key, y.key, autojunk=False).ratio() < 0.75 \
+                and x.snd != y.snd:
+            return False
+        if x.kind == "num":
+            pa, pb = _num_pinyin(old[x.start:x.end]), _num_pinyin(new[y.start:y.end])
+            if not pa or not pb or [fuzzy(z) for z in pa] != [fuzzy(z) for z in pb]:
+                return False
+        if x.kind == "other" and x.key != y.key:
+            return False
+    return True
+
+
+def _minus(rng: Tuple[int, int], holes: Sequence[Tuple[int, int]]) -> List[Tuple[int, int]]:
+    """母本对上的范围去掉不按母本改的地方（剩下的才算母本管的）。"""
+    parts = [rng]
+    for s, e in holes:
+        nxt = []
+        for a, b in parts:
+            if e < a or b < s or (s == e and not (a < s < b)):
+                nxt.append((a, b))
+                continue
+            if a < s:
+                nxt.append((a, s))
+            if max(e, s) < b:
+                nxt.append((max(e, s), b))
+        parts = nxt
+    return [(a, b) for a, b in parts if b > a]
+
+
+def _edit_item(cur: str, s: int, e: int, rep: str) -> str:
+    """一处按母本的改法怎么说（和表格里一样带上所在的词：「定于从句 → 定语从句」、「补上「中」」）。"""
+    from voicetwin.data import review as _review
+
+    items = _review._change_items(cur, cur[:s] + rep + cur[e:])
+    if items:
+        return items[0]
+    return f"「{_q(cur[s:e] or '（没有）')}」→「{_q(rep or '（没有）')}」"
+
+
+def _shift_range(a: int, b: int, edits: Sequence[Tuple[int, int, str]]) -> Optional[Tuple[int, int]]:
+    """[a, b)（按改以前的文字算）改完以后在哪里。改动跨过这个范围的边界：算不出来，返回 None。"""
+    for s, e, rep in edits:
+        d = len(rep) - (e - s)
+        if e <= a and not (s == e == a):
+            a, b = a + d, b + d
+        elif s >= b and not (s == e == a):
+            continue
+        elif a <= s and e <= b:
+            b += d
+        else:
+            return None
+    return a, b
+
+
+def _mother_notes(text: str, direct: Sequence[Tuple[int, int, str]],
+                  items: Sequence[Tuple[Tuple[int, int, str], str]]) -> List[str]:
+    """按母本要改、但不改的地方的说明：老师自己改过的字（老师的修改为准）、老师撤销过的改法（老师的决定为准）。
+    items：[(整的那一处改动 (开始, 结束, 母本的写法)（按这次检查时的文字算）, changed / rejected)]；
+    text：说明对着的文字（一键校正直接改了别的地方时是改好以后的文字，direct 是那些改动）。
+    按整的那一处写、每一处只写一次（以前按拆开的一个字一个字写，写出了母本里没有的「医声」「一生」）。"""
+    out: List[str] = []
+    for (s, e, rep), why in items:
+        rng = _shift_range(s, e, direct)
+        if rng is None:
+            continue
+        a, b = rng
+        # 带上前后各两个字，看得出是哪里（只写「绍」看不懂）：「和介绍词一」/「和介词一」
+        left, right = text[max(0, a - 2):a], text[b:b + 2]
+        now, want = left + text[a:b] + right, left + str(rep) + right
+        if now == want:
+            continue
+        if why == "changed":
+            # 和最初识别的不一样的字：老师自己打的，或者老师以前采用、保存过的修改（分不清是哪一种，都算老师定的）
+            line = (f"母本里这里是「{_q(want)}」，现在是「{_q(now)}」（你改过这里，或者以前采用过别的修改）："
+                    "程序没有动（你的修改为准；如果是错的，请双击「文字」改成母本的写法）")
+        else:
+            line = f"母本里这里是「{_q(want)}」，这个改法你撤销过：程序没有再改（你的决定为准）"
+        if line not in out:
+            out.append(line)
+    return out
+
+
+def _note_items(pieces: Sequence[Tuple[Tuple[int, int, str], Any]], kept: Sequence[Any],
+                changed: Tuple[Set[int], Set[int]], rejected: Any, cur: str) -> List[Tuple[Tuple[int, int, str], str]]:
+    """按母本的改法里没用上的（老师改过的字、老师撤销过的）→ 它们属于的整的那一处改动和原因（每一处整的只记一次）。"""
+    from voicetwin.data import review as _review
+
+    alive = {id(f) for f in kept}
+    out: List[Tuple[Tuple[int, int, str], str]] = []
+    for whole, f in pieces:
+        if id(f) in alive:
+            continue
+        if _touches_changed(f.start, f.end, changed):
+            why = "changed"
+        elif _review.is_rejected(rejected, cur, f.start, f.end, f.rep):
+            why = "rejected"
+        else:
+            continue
+        if all(w != whole for w, _y in out):
+            out.append((whole, why))
+    return out
+
+
+def _set_note(r: Dict[str, Any], text: str, cur: str, direct: Sequence[Tuple[int, int, str]],
+              items: Optional[Sequence[Tuple[Tuple[int, int, str], str]]]) -> None:
+    """记下这一行的说明（_mother_notes）：只在文字还是 text 的时候显示（老师又改过就不显示，免得说的是旧的）。"""
+    notes = _mother_notes(text, direct, items or []) if items else []
+    if notes:
+        r["mother_note"] = {"text": text, "notes": notes}
+    else:
+        r.pop("mother_note", None)
+
+
 def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
                           lines: Optional[Sequence[Tuple[str, str]]] = None, use_builtin: bool = True,
                           names: Optional[Sequence[str]] = None, use_row_fixes: bool = True,
                           only: Optional[Iterable[str]] = None, merge_only: bool = False) -> Dict[str, Any]:
     """📝 文字校正：以标准库（老师的母本 + 语法术语 + 对照表）为标准检查这个声音的校对表。
 
+    母本优先（老师 10-04 的要求）：每一句先按内容在母本里找「差不多或者原模原样」的那一句（_mother_first，
+    不按片段 id：重新准备素材、换了文件夹以后 id 全变了；切的位置不一样也找得到），找到了母本就是标准答案，
+    和母本不一样的地方都按母本改；母本里没有的部分才用逐句修缮记录、对照表、术语、和别的句子对齐、另一个识别引擎。
     直接改的存成没保存的修改（草稿），建议和原因写进「可能有错」列（record["suspect"]）。
     lines：老师上传的母本（不给就读声音文件夹里存的）；use_builtin：用不用程序自带的母本（测试时可以关掉）。
+    use_row_fixes=False（实测的「考试」）：不用逐句修缮的结果——按 id 的修缮记录、母本里同一个 id 的那一句都不用。
     only：只检查这些句子（id），别的句子一点都不动（一键全部文字校正每批素材只能用一次：以后只改新加的句子）。
     merge_only=True：🔍 自动查找（加了新素材时准备素材也会自动查）以后，把新查出来的结果和一键校正的结果合在一起
     （以前一键校正的结果会被冲掉：建议没了、母本证明没错的标红又回来了），一个字都不改（标准库能确定的也只当建议），
@@ -1956,7 +2421,7 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
     # 「改完以后标准库马上又会说有错的不改」这一关就失效了，对的「过去式」被改成「过去试」（检查时发现的）
     guard = Lexicon.build([x for _, x in builtin]) if (lines and builtin) else lex
     by_id = {rid: x for rid, x in lines if rid}  # 老师上传的 transcripts.csv 里的句子（按 id）
-    gfp = _global_fp(all_lines, row_table, lex, use_builtin, use_row_fixes)
+    gfp = _global_fp(all_lines, row_table, lex, use_builtin, use_row_fixes, merge_only)
     _report(progress, 0.15, f"标准库：母本 {len(ref) if ref else 0} 个字 / 词，语法术语和常说的词 {len(lex.vocab)} 个，"
                             f"对照表 {len(lex.corrections)} 条，开始一句一句检查……")
     draft = _review.load_draft(project)
@@ -1978,26 +2443,65 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
             dismissed_ids.add(r["id"])
             continue
         todo.append((r, cur, _review.is_dirty(r, entry) or _text_edited(r)))
-    results: Dict[str, Tuple[str, List[Any], ClipResult, Tuple[Set[int], Set[int]]]] = {}
+    results: Dict[str, Tuple[str, List[Any], ClipResult, Tuple[Set[int], Set[int]], List[Tuple[int, int]]]] = {}
+    note_items: Dict[str, List[Tuple[Tuple[int, int, str], str]]] = {}
     n = len(todo)
+    # 母本优先（老师 10-04 的要求）：先按内容在母本里找每一句（不按 id：id 只当提示）
+    texts = {str(r.get("id")): str(_review.current_values(r, draft.get(r.get("id")))["text"] or "") for r in records}
+    matches: Dict[str, Tuple[List[Tk], List[Any]]] = {}
+
+    def matcher(rec: Dict[str, Any]) -> Tuple[List[Tk], List[Any]]:
+        rid_ = str(rec.get("id"))
+        if rid_ not in matches:
+            cur_ = texts.get(rid_, "")
+            matches[rid_] = _mother_match(cur_, rid_, ref, (cur_, str(rec.get("text") or ""), _review.original_text(rec)),
+                                          own_line=use_row_fixes)
+        return matches[rid_]
+
+    for i, (r, cur, _edited) in enumerate(todo, 1):
+        _check_cancel()
+        matches[str(r["id"])] = _mother_match(cur, r["id"], ref, (cur, str(r.get("text") or ""), _review.original_text(r)),
+                                              own_line=use_row_fixes)
+        if i % 20 == 0 or i == n:
+            _report(progress, 0.15 + 0.4 * i / max(n, 1), f"在母本里找：{i} / {n} 条")
+    # 同一批录音的证据：前后挨着的片段也对上母本里前后挨着的句子（新讲的课用了母本里的说法时，读音不像的地方不直接改）
+    batch = _SameBatch(records, texts, ref, matcher)
     for i, (r, cur, edited) in enumerate(todo, 1):
         _check_cancel()
         rid = r["id"]
         selves = (cur, str(r.get("text") or ""), _review.original_text(r))
-        res = (check_text(cur, ref, exclude_id=rid, exclude_texts=selves) if ref is not None
-               else ClipResult([], set(), False, ""))
-        fixes = _row_fixes(rid, cur, row_table, builtin_by_id.get(rid)) + lex.find(cur) + props_to_fixes(cur, res, lex)
-        if rid in by_id:
-            fixes += _same_id_fixes(cur, by_id[rid], edited)
         changed = _changed_chars(r, cur)
+        toks, segs = matches[str(rid)]
+        pieces: List[Tuple[Tuple[int, int, str], Any]] = []
+        mfixes, covered, snippet, full = _mother_first(cur, rid, ref, selves, own_line=use_row_fixes, match=(toks, segs),
+                                                       same_batch=batch.evidence(str(rid), segs), pieces=pieces)
+        if full:  # 整句都在母本里：母本说了算，别的办法（对照表、术语、和别的句子对齐）都不用
+            res = ClipResult([], set(), True, snippet)
+            fixes = list(mfixes)
+        else:  # 母本里没有的部分：再用标准库（对照表、术语）、和母本里别的句子对齐
+            res = (check_text(cur, ref, exclude_id=rid, exclude_texts=selves) if ref is not None
+                   else ClipResult([], set(), False, ""))
+            rest = _row_fixes(rid, cur, row_table, builtin_by_id.get(rid)) + lex.find(cur) + props_to_fixes(cur, res, lex)
+            if rid in by_id:
+                rest += _same_id_fixes(cur, by_id[rid], edited)
+            rest = [f for f in rest if not _in_covered(f.start, f.end, covered)]
+            # 只对上老师上传的母本、没把握的建议（_mother_first）：别的办法在这一处也有改法时用别的——和母本对齐（check_text）
+            # 那一步程序自带的母本标准库也是上传的写法就直接改，证明不了的给没把握的建议、说明写清楚是上传的文字（第四轮 g2）；
+            # （合并 fix-mother 时两条都留着：按来源这一条排在前面，「公圆 → 公园」的说明被换掉、「练习 → 联系」只剩半截）
+            fixes = [f for f in mfixes if f.kind != "mother_upload" or f.direct
+                     or not any(f.start < g.end and g.start < f.end for g in rest)] + rest
+            if snippet:
+                res = replace(res, ref_text=snippet)
         fixes = _protect(fixes, cur, changed, guard)
         # 老师撤销过的改法（点过红色按钮、自己改回去、撤销这一行的修改）：不再改回来，也不再建议
         fixes = [f for f in fixes if not _review.is_rejected(rejected.get(rid), cur, f.start, f.end, f.rep)]
+        # 按母本要改、但老师自己改过（或者撤销过）的地方：不动，记一句说明（点这一行时看得到；说明写好以后的文字，见下面）
+        note_items[rid] = _note_items(pieces, fixes, changed, rejected.get(rid), cur)
         if merge_only:  # 只合并结果：一个字都不改（能确定的也只当建议，老师自己决定）
             fixes = [replace(f, direct=False) if f.direct else f for f in fixes]
-        results[rid] = (cur, fixes, res, changed)
+        results[rid] = (cur, fixes, res, changed, covered)
         if i % 20 == 0 or i == n:
-            _report(progress, 0.15 + 0.8 * i / max(n, 1), f"已检查 {i} / {n} 条")
+            _report(progress, 0.55 + 0.4 * i / max(n, 1), f"已检查 {i} / {n} 条")
     stats: Counter = Counter()
     examples: List[str] = []
     with _review._LOCK:
@@ -2012,16 +2516,18 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
                 if r.get("suspect_ok") == vals["text"]:
                     r.pop("suspect", None)
                     r.pop("suspect_auto", None)
+                    r.pop("mother_note", None)
                 continue
             item = results.get(r.get("id"))
             if item is None:
                 continue
-            cur, fixes, res, changed = item
+            cur, fixes, res, changed, covered = item
             entry = draft.get(r["id"])
             vals = _review.current_values(r, entry)
             if str(vals["text"] or "") != cur:  # 检查期间改过（这一句这次没处理，下次还能用一键校正）
                 continue
             handled.append(str(r["id"]))
+            _set_note(r, cur, cur, [], note_items.get(r["id"]))
             old = r.get("suspect") if isinstance(r.get("suspect"), dict) else None
             auto = auto_suspect(r)
             if auto:  # 自动查错字的结果是按当时保存的文字算的：记下那段文字，保存修改以后位置也换算得对
@@ -2037,7 +2543,7 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
                 continue
             old_undo = _review.analyze(r, cur)["undo"] if old else []
             sus, what, direct = merge_with_auto(cur, fixes, res.confirmed_chars, auto, r, res.ref_text, lex,
-                                                rejected=rejected.get(r["id"]), changed=changed)
+                                                rejected=rejected.get(r["id"]), changed=changed, covered=covered)
             if sus is None and old_undo:
                 # 这一行以前采用过的建议（按钮是红的，可以撤销）：没有新的问题也留着，不然撤销不了；
                 # 里面老师已经撤销（改回去）的建议去掉，不再显示成「采用」
@@ -2050,7 +2556,8 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
                     reb = _drop_rejected(r, old, rejected.get(r["id"]), cur)
                 sus = reb
             stats[what] += 1
-            stats["aligned"] += int(res.aligned)
+            stats["aligned"] += int(res.aligned or bool(covered))
+            stats["mother_rows"] += int(bool(covered))  # 母本里找到了差不多的句子（按内容）
             if sus is not None and sus.get("src") == "transcript" and auto:
                 r["suspect_auto"] = auto
             else:
@@ -2067,9 +2574,13 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
             if direct and not merge_only:
                 new = _apply(cur, direct)
                 if new.strip() and new != cur:
+                    # 说明对着改好以后的文字（以前对着改以前的：一键校正一改别的字，说明就不显示了）
+                    _set_note(r, new, cur, direct, note_items.get(r["id"]))
                     _review.put_text(draft, r, new)  # 只记下改了文字（「保留」、语言没动过的继续跟着保存过的走）
                     changed_draft = True
                     stats["fixes"] += len(direct)
+                    # 「按母本 N 处」只算程序自带的、修缮过的母本（老师上传的文字不是「母本说了算」的那一份）
+                    stats["mother_fixes"] += sum(1 for f in fixes if f.direct and f.kind == "mother")
                     # 例子按整句比（和表格里的说法一样）：以前按改动的那几个字说，英文被切开（「Caesa → 's scisso」）、
                     # 汉字没有前后文（「到 → 道」）；现在是「Tony Caesars → Tony's scissors」「报到 → 报道」
                     for it in _review._change_items(cur, new):
@@ -2106,9 +2617,11 @@ def check_with_transcript(project: Any, progress: Optional[ProgressFn] = None,
            "room": upload_room(), "builtin_lines": len(builtin),
            "terms": len(lex.vocab), "builtin_terms": info["terms"], "corrections": len(lex.corrections),
            "unsure": stats["unsure"], "kept_undo": stats["kept_undo"], "pinyin": has_pinyin(), "jieba": has_jieba(),
+           "mother_rows": stats["mother_rows"], "mother_fixes": stats["mother_fixes"],
            "truncated": bool(ref.truncated) if ref else False, "examples": examples, "seconds": secs,
            "handled": handled}
-    log.info(f"文字校正完成：检查了 {n} 条，直接改好 {out['fixes']} 处（{out['fixed_rows']} 条，存成没保存的修改），"
+    log.info(f"文字校正完成：检查了 {n} 条，母本里找到了差不多的句子 {out['mother_rows']} 条（母本优先）；"
+             f"直接改好 {out['fixes']} 处（{out['fixed_rows']} 条，存成没保存的修改，其中按母本 {out['mother_fixes']} 处），"
              f"另外 {out['found']} 条标红给了建议；{out['cleared']} 条原来的标红被母本证明没错、已去掉，"
              f"保留自动检查标红 {out['kept_auto']} 条；用时 {secs} 秒。")
     _report(progress, 1.0, f"检查完了：直接改好 {out['fixes']} 处，另外 {out['found']} 条给了建议")

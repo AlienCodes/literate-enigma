@@ -1085,12 +1085,28 @@ def _keep_reasons(sus: Dict[str, Any], spans: Sequence[Sequence[int]],
     return {"reasons": keep_r, REASON_POS: keep_p}
 
 
+#: 存进校对表的每条原因说的是哪几处（{原因: [[开始, 结束], ...]}，按 suspect["text"] / 保存的文字算）：和母本对照时，
+#: 原因说的地方都在母本对上的部分里（那里的建议已经去掉了）就把原因也去掉。按原因的文字记（不按顺序），
+#: 别的地方去掉 / 加了原因也对得上。以前只看原因里引用的字，「另一个识别引擎听到的是「于」」引用的是另一个引擎的字，
+#: 找不到位置，和母本矛盾的说明就留着了（第二轮检查的人发现的）
+REASON_AT = "reason_at"
+
+
 def _finish_reasons(sus: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
-    """存进校对表以前：去掉原因的位置，原因太多时截短（「……还有 N 处」）。"""
+    """存进校对表以前：原因的位置换成按原因记（REASON_AT），原因太多时截短（「……还有 N 处」，位置合在一起）。"""
     if not sus or REASON_POS not in sus:
         return sus
     out = {k: v for k, v in sus.items() if k != REASON_POS}
-    out["reasons"] = _limit_reasons(list(out.get("reasons") or []))
+    reasons = list(out.get("reasons") or [])
+    pos = sus.get(REASON_POS)
+    out["reasons"] = _limit_reasons(reasons)
+    if isinstance(pos, list) and len(pos) == len(reasons):
+        at: Dict[str, List[List[int]]] = {}
+        shown = out["reasons"]
+        for k, (r, ps) in enumerate(zip(reasons, pos)):
+            key = r if k < len(shown) - 1 or len(shown) == len(reasons) else shown[-1]
+            at.setdefault(key, []).extend([int(a), int(b)] for a, b in ps)
+        out[REASON_AT] = at
     return out
 
 
@@ -1798,6 +1814,9 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
     - 每段都报告进度（"已检查 3 / 120 条……"），每 20 段存一次；点停止时先保存已经查完的部分再停。
     - 某一段出错只跳过那一段（改用规则检查），不会让整个任务失败。
     - 用户确认过"这句没错"（dismiss_suspect）且文字没再改过的片段，不再标红。
+    - 母本优先（老师 10-04 的要求）：查完以后每一句都先和母本对照（transcript_fix.check_with_transcript(merge_only=True)，
+      不改字）：母本里有这一句的，建议就是母本的写法（「按母本：」，排最前面），和母本矛盾的另一个引擎的建议、标红都不要；
+      母本里没有的部分才用这次查的结果。
     """
     t0 = time.time()
     records = project.load_manifest()
@@ -1858,6 +1877,7 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
                 dismissed += 1
                 rec.pop("suspect", None)
                 rec.pop("suspect_auto", None)
+                rec.pop("mother_note", None)
                 checked += 1
                 _report(progress, i / n, f"已检查 {i} / {n} 条")
                 continue
@@ -1898,18 +1918,20 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
                     rec.pop("suspect_auto", None)
                 remerge.append(str(rec.get("id")))
             elif undo:
-                # 这一行有还能撤销的修改（点过「采用」的建议，保存了也算）：标记留着，不然「已采用」的按钮没了、撤销不了
+                # 这一行有还能撤销的修改（点过「采用」的建议，保存了也算）：标记留着，不然「已采用」的按钮没了、撤销不了；
+                # 别的地方照样和母本对照（母本优先）
                 rec.pop("suspect_auto", None)
+                remerge.append(str(rec.get("id")))
             else:
                 if sus:
                     rec["suspect"] = sus
                 else:
                     rec.pop("suspect", None)
                 rec.pop("suspect_auto", None)  # 重新自动查过：以前「文字校正」时存的旧结果不要了
-                if str(rec.get("id")) in oneclick:
-                    # 一键校正处理过、但没留下标记的行（没找到要改的、或者标红被母本证明没错去掉了）：
-                    # 新查出来的也要拿母本再核对一遍（不然母本证明没错的标红又回来了）
-                    remerge.append(str(rec.get("id")))
+                # 母本优先（老师 10-04 的要求：「自动检查错字……底层逻辑也是要以母本为主」）：每一句都先和母本对照，
+                # 母本里有这一句的，建议就是母本的写法，和母本矛盾的另一个引擎的建议不要；母本里没有的部分才用这次查的结果。
+                # 以前只有一键校正处理过的行才对照，没点一键校正以前的建议都不看母本
+                remerge.append(str(rec.get("id")))
             checked += 1
             _report(progress, i / n, f"已检查 {i} / {n} 条")
             if i % SAVE_EVERY == 0 and i < n:
@@ -1926,13 +1948,13 @@ def find_suspects(project: Any, cfg: Any, progress: Optional[ProgressFn] = None,
         runner.close()
     project.save_manifest(records)
     if remerge and _tf is not None:
-        _report(progress, 1.0, f"和「一键全部文字校正」的结果合在一起（{len(remerge)} 条）……")
+        _report(progress, 1.0, f"和你的母本对照（母本优先，{len(remerge)} 条）……")
         merged = False
         try:
             _tf.check_with_transcript(project, only=remerge, merge_only=True)
             merged = True
         except Exception as exc:  # noqa: BLE001 - 合不上：这些行放回原来的标记（一键校正的结果）；停止照常传出去
-            log.warning(f"⚠️ 查错字：和一键全部文字校正的结果合在一起时出错（{_why(exc)}）", exc_info=exc)
+            log.warning(f"⚠️ 查错字：和母本对照（和一键全部文字校正的结果合在一起）时出错（{_why(exc)}）", exc_info=exc)
         finally:
             if not merged:  # 合的时候点了停止 / 出错：没核对过的结果不能留在表格上
                 try:

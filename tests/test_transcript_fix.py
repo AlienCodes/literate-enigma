@@ -234,7 +234,8 @@ def test_check_with_transcript_fixes_directly_as_unsaved_edits(tmp_path):
     recs = {r["id"]: r for r in project.load_manifest()}
     sus = recs["c000"]["suspect"]
     assert sus["src"] == "transcript" and sus["text"] == texts[0]
-    assert any(x.startswith("已按标准库改好：「借词」应该是「介词」") for x in sus["reasons"])
+    # 这一句母本里有（母本优先）：按母本改好，说明写「已按母本改好」
+    assert any(x.startswith("已按母本改好：") and "借词 → 介词" in x for x in sus["reasons"])
     info = review.analyze(recs["c000"], draft["c000"]["text"])
     assert info["adopted"] and not info["edits"]  # 「修改建议」是红色的「已采用」，可以撤销
     assert recs["c000"]["text"] == texts[0]  # 只是草稿：老师点「保存修改」才写进校对表
@@ -469,13 +470,22 @@ def test_uploaded_csv_same_id_insert_and_delete_positions(tmp_path):
 
 @need_both
 def test_english_is_not_replaced_by_a_chinese_word_that_does_not_sound_like_it(tmp_path):
-    """问题 3：「who在定语从句中」被对到母本里「词在……」上，一键校正把 who 改成了「词」。"""
+    """问题 3：「who在定语从句中」被对到母本里「词在……」上，一键校正把 who 改成了「词」。
+    母本优先以后（老师 10-04）：这几句是母本里的句子改了一两个词，母本里有「差不多的句子」，就按母本改——
+    改出来的一定是母本里那一句的原样（英文还是英文：who、why 不会变成汉字），别的不动。"""
     texts = ["那接下来我们看一下最后一个关系副词why的用法。", "我们需要把这个定语从句中的which换成 that。",
              "who在定语从句中，能够做的句子成分主要有两个。", "那这个特殊的先行词就是way。",
              "好，那接下来我们看一下关系副词why。", "那我们需要把这个句子中的 as换成 that。", "这个先行词就是way，当way做先行词的时候"]
     cfg, project = _voice(tmp_path, texts)
     res = wf.run_transcript_fix(cfg, "校正声音")
-    assert review.load_draft(project) == {} and res["adopted"]["changes"] == 0
+    mother = {x for _rid, x in tf.builtin_mother()}
+    draft = review.load_draft(project)
+    assert res["adopted"]["changes"] == 0
+    for k, t in enumerate(texts):
+        new = draft.get(f"c{k:03d}", {}).get("text", t)
+        assert new == t or any(new.rstrip("。") in x for x in mother), (t, new)  # 要么不动，要么是母本里那一句的原样
+        for w in ("who", "why", "way", "that"):
+            assert (w in t) == (w in new), (t, new)  # 英文词没有被换成汉字
 
 
 @need_both
@@ -702,7 +712,8 @@ def test_unsure_insertion_next_to_the_same_character_is_not_adopted(tmp_path):
 
 @need_both
 def test_partly_similar_same_id_row_is_only_an_unsure_suggestion(tmp_path):
-    """问题 3：上传的 csv 里同一个 id 的句子只有点像（切的位置不一样），一键校正把录音里没有的话补了进去。"""
+    """问题 3：上传的 csv 里同一个 id 的句子只有点像（切的位置不一样），一键校正把录音里没有的话补了进去。
+    （母本优先以后照旧：老师上传的文字不是「说了算」的母本，多出来的话不按它补，只给没把握的建议。）"""
     cfg, project = _voice(tmp_path, ["那么到底什么是定语从句呢"], ids=["x_0031"])
     up = tmp_path / "transcripts.csv"
     up.write_text("id,text\nx_0031,我们今天来学习定语从句那么到底什么是定语从句呢\n", encoding="utf-8")
@@ -1265,25 +1276,32 @@ def test_undo_replace_keeps_an_undo_made_after_the_replace(tmp_path):
 @pytest.mark.parametrize("case", ["adopted_then_undone", "real_error"])
 def test_uploading_the_downloaded_text_never_hides_real_errors(tmp_path, case):
     """问题 1：把下载的「改好的文字」当母本上传（网页上建议这么做）：没检查过的句子「自己证明自己没错」，
-    自动查错字的标红、「线性 → 先行」这种建议被去掉了。"""
+    自动查错字的标红、「线性 → 先行」这种建议被去掉了。
+    （母本优先以后：程序自带的母本里有的句子，母本本来就证明了哪些对；这里用母本里没有的新句子，
+    看上传的「它自己」还是证明不了它自己没错。）"""
     from voicetwin.data import proofcheck as pc  # noqa: F401
 
     if case == "adopted_then_undone":
-        t = "但是如果我们只是单独把关系带词which放在定语从句句首的话，那么这个which是可以直接被省略掉的。"
-        cfg, project = _voice(tmp_path, [t, "这个句子完全没有错误，我们继续往下看。"], ids=["0007_d8ade5_0026", "s_0002"])
+        t = "如果我们只把关系带词which单独放在句子的最前面，那会怎么样呢，大家想一想。"
+        cfg, project = _voice(tmp_path, [t, "这个句子完全没有错误，我们继续往下看。"], ids=["n_0026", "s_0002"])
         recs = project.load_manifest()
-        k = t.index("单独把")
-        recs[0]["suspect"] = {"spans": [[k, k + 3]], "alt": t[:k] + "单单把" + t[k + 3:], "reasons": ["另一个引擎"],
+        k = t.index("单独放")
+        recs[0]["suspect"] = {"spans": [[k, k + 3]], "alt": t[:k] + "单单放" + t[k + 3:], "reasons": ["另一个引擎"],
                               "score": 0.7}
         project.save_manifest(recs)
         wf.run_transcript_fix(cfg, "校正声音")
-        review.unadopt_suggestion(project, "0007_d8ade5_0026")
-        rid, want = "0007_d8ade5_0026", "单独把"
-    else:
-        t = "两者最主要的区别，就是当线性词是物的情况下，"
-        cfg, project = _voice(tmp_path, [t], ids=["0007_d8ade5_0004"])
+        review.unadopt_suggestion(project, "n_0026")
+        rid, want = "n_0026", "单独放"
+    else:  # 另一个引擎听得不一样的中文（详细 / 仔细）：不知道哪个对，一键不自动采用，标红和建议留着
+        t = "这个句子我们以后再详细地讲一讲。"
+        k = t.index("详细")
+        cfg, project = _voice(tmp_path, [t], ids=["n_0004"])
+        recs = project.load_manifest()
+        recs[0]["suspect"] = {"spans": [[k, k + 2]], "alt": t[:k] + "仔细" + t[k + 2:],
+                              "reasons": ["另一个识别引擎听到的是「仔细」"], "score": 0.6}
+        project.save_manifest(recs)
         wf.run_transcript_fix(cfg, "校正声音")
-        rid, want = "0007_d8ade5_0004", "线性"
+        rid, want = "n_0004", "详细"
     rec, cur = _cur(project, rid)
     assert want in [cur[s:e] for s, e in review.analyze(rec, cur)["red"]]
     out = review.export_text(project)
@@ -1296,39 +1314,45 @@ def test_uploading_the_downloaded_text_never_hides_real_errors(tmp_path, case):
 @need_both
 def test_mixed_row_adopt_and_undo_never_garble_the_text(tmp_path):
     """问题 2 / 3：一行里有直接改好的（斌与 → 宾语）和挨着的没把握的建议（像主语 → 了）：点蓝色「采用」变成了
-    「了、宾语、宾语」，红色撤销也撤不回去；再点一次一键校正，红色「已采用」没了。"""
+    「了、宾语、宾语」，红色撤销也撤不回去；再点一次一键校正，红色「已采用」没了。
+    （母本优先以后：母本里有的句子，和母本矛盾的「像主语 → 了」直接不要了；这里用母本里没有的新句子，
+    斌与 → 宾语 是对照表改的，「像主语 → 了」是另一个引擎的建议。）"""
     pytest.importorskip("gradio")
     from voicetwin.webui.app import _suggest_cell
 
-    t = "如果因为缺少类似于像主语、斌与或者是表语而无法构成一个完整的句子，"
-    cfg, project = _voice(tmp_path, [t], ids=["05_27d31c_0082"])  # 老师那一句的 id（自带母本里同一句不拿来比）
+    t = "假如缺少类似于像主语、斌与这样的成分，句子就不完整了，"
+    k = t.index("像主语")
+    cfg, project = _voice(tmp_path, [t], ids=["n_0082"])
     recs = project.load_manifest()
-    recs[0]["suspect"] = {"spans": [[9, 12]], "alt": t[:9] + "了" + t[12:], "reasons": ["另一个引擎听到「了」"], "score": 0.6}
+    recs[0]["suspect"] = {"spans": [[k, k + 3]], "alt": t[:k] + "了" + t[k + 3:], "reasons": ["另一个引擎听到「了」"],
+                          "score": 0.6}
     project.save_manifest(recs)
     for _ in range(2):  # 连点两次一键校正：结果一样，两个按钮都在，说明不乱
         wf.run_transcript_fix(cfg, "校正声音")
-        rec, cur = _cur(project, "05_27d31c_0082")
+        rec, cur = _cur(project, "n_0082")
         assert cur == t.replace("斌与", "宾语")
         html = _suggest_cell(review.analyze(rec, cur))
         assert "像主语 → 了" in html and "斌与 → 宾语" in html and "vt-sug-red" in html
-    out = review.adopt_suggestion(project, "05_27d31c_0082")
-    assert out["text"] == "如果因为缺少类似于了、宾语或者是表语而无法构成一个完整的句子，" and out["changes"] == "像主语 → 了"
-    out = review.unadopt_suggestion(project, "05_27d31c_0082")
+    out = review.adopt_suggestion(project, "n_0082")
+    assert out["text"] == "假如缺少类似于了、宾语这样的成分，句子就不完整了，" and out["changes"] == "像主语 → 了"
+    out = review.unadopt_suggestion(project, "n_0082")
     assert out["text"] == t and "斌与 → 宾语" in out["changes"]
 
 
 @need_both
 def test_two_clicks_in_a_row_give_the_same_result(tmp_path):
-    """问题 4：直接改好的那几个字里没变的字（关键代词 → 关系代词 里的「词」）上自动查错字的标红，第一次被盖住、第二次又冒出来。"""
-    t = "接下来我们学习一下关键代词that的使用方法。"
-    cfg, project = _voice(tmp_path, [t], ids=["0007_d8ade5_0067"])
+    """问题 4：直接改好的那几个字里没变的字（关键代词 → 关系代词 里的「词」）上自动查错字的标红，第一次被盖住、第二次又冒出来。
+    （母本优先以后用母本里没有的新句子：母本里有的句子，和母本矛盾的标红本来就不要了。）"""
+    t = "今天先简单复习一下关键代词that在从句里面的用法。"
+    k = t.index("代词") + 1
+    cfg, project = _voice(tmp_path, [t], ids=["n_0067"])
     recs = project.load_manifest()
-    recs[0]["suspect"] = {"spans": [[12, 13]], "alt": t[:12] + "那个" + t[12:], "reasons": ["另一个引擎"], "score": 0.6}
+    recs[0]["suspect"] = {"spans": [[k, k + 1]], "alt": t[:k] + "那个" + t[k:], "reasons": ["另一个引擎"], "score": 0.6}
     project.save_manifest(recs)
     seen = []
     for _ in range(2):
         res = wf.run_transcript_fix(cfg, "校正声音")
-        rec, cur = _cur(project, "0007_d8ade5_0067")
+        rec, cur = _cur(project, "n_0067")
         info = review.analyze(rec, cur)
         seen.append((cur, [cur[s:e] for s, e in info["red"]], len(info["edits"]), res["adopted"]["unsure"]))
     assert seen[0] == seen[1] and seen[0][1] == ["词"] and seen[0][3] == 1
@@ -1523,28 +1547,29 @@ def test_two_clicks_after_adopting_an_insertion_give_the_same_table(tmp_path):
 def test_second_click_with_nothing_changed_keeps_the_same_suggestions(tmp_path):
     """随机操作找到的：自动查错字建议在「从据」后面补上 which，第一次点一键校正（从据 → 从句）建议还在，
     第二次点（什么都没变）建议没了——第二次是从改好的文字算的，挨着改好的字的建议算得不一样。
-    现在：上次点完以后什么都没变（母本、自动查错字的结果、撤销记录、文字），结果原样留着。"""
-    t = "而且很明显，这个定于从据是属于这个宾语从句里面的一部分。"
+    现在：上次点完以后什么都没变（母本、自动查错字的结果、撤销记录、文字），结果原样留着。
+    （母本优先以后用母本里没有的新句子：母本里有的句子，和母本矛盾的建议本来就不要了。）"""
+    t = "很显然，这里的定语从据是属于前面那个宾语从句的。"
     k = t.index("是")
-    cfg, project = _voice(tmp_path, [t], ids=["22222222222_56d51b_0058"])
+    cfg, project = _voice(tmp_path, [t], ids=["n_0058"])
     recs = project.load_manifest()
     recs[0]["suspect"] = {"spans": [[k, k + 1]], "alt": t[:k] + "which" + t[k:], "reasons": ["自动"], "score": 0.6}
     project.save_manifest(recs)
     seen = []
     for _ in range(3):
         wf.run_transcript_fix(cfg, "校正声音")
-        rec, cur = _cur(project, "22222222222_56d51b_0058")
+        rec, cur = _cur(project, "n_0058")
         info = review.analyze(rec, cur)
         seen.append((cur, info["red"], info["edits"], info["undo"], rec["suspect"]))
     assert seen[0] == seen[1] == seen[2]
     assert "从句是" in seen[0][0] and [rep for _s, _e, rep in seen[0][2]] == ["which"]
     review.save_rows(project)  # 保存以后再点也一样
     wf.run_transcript_fix(cfg, "校正声音")
-    rec, cur = _cur(project, "22222222222_56d51b_0058")
+    rec, cur = _cur(project, "n_0058")
     assert review.analyze(rec, cur)["edits"] == seen[0][2]
-    review.unadopt_suggestion(project, "22222222222_56d51b_0058")  # 撤销记录变了：重新算，撤销的不再改回来
+    review.unadopt_suggestion(project, "n_0058")  # 撤销记录变了：重新算，撤销的不再改回来
     wf.run_transcript_fix(cfg, "校正声音")
-    assert "从据" in _cur(project, "22222222222_56d51b_0058")[1]
+    assert "从据" in _cur(project, "n_0058")[1]
 
 
 # ---------------------------------------------------------------------------- 第六次独立检查发现的问题（每个都有一个测试）
