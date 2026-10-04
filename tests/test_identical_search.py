@@ -898,6 +898,52 @@ def test_weights_change_reranks_without_starting_the_engine(tmp_path):
     assert b3.starts == 1 and b3.calls and not r3[0].cached
 
 
+class _AsrFailScorer(FakeScorer):
+    """识别校验一用就出错（例如识别模型显存不够）；不识别时和 FakeScorer 一样。"""
+
+    def full(self, wav, sr, text, lang, mult=1.0, prepared=None, use_asr=True, cer=None):
+        if use_asr and cer is None:
+            raise RuntimeError("CUDA failed with error out of memory")
+        return super().full(wav, sr, text, lang, mult, prepared=prepared, use_asr=use_asr, cer=cer)
+
+
+def test_identical_asr_failure_is_unchecked_and_rechecked_later(tmp_path):
+    """「一模一样」识别校验出错（第四轮找 bug g5 合并进「一模一样」）：搜索时关掉识别校验接着挑，但这一句不能说
+    达到了严格标准、不能当成检查过的存进缓存，只告诉老师一次，小结里列出来；下次识别校验能用时重新生成并检查——
+    不从留下的版本里重新挑（留下的也没检查过），排序权重变了（缓存键变了）时也一样。识别校验还是不能用时直接用。"""
+    n, b = _narrator(tmp_path, scorer=_AsrFailScorer(), use_asr=True)
+    assert n._asr_requested
+    seg = _seg()
+    res = n.synthesize_segment(seg)
+    meta = json.loads(n._plan(seg).meta_path.read_text(encoding="utf-8"))
+    assert res.unchecked and res.met is None and res.score.get("cer") is None
+    assert meta["asr_checked"] is False and meta["met"] is None and not n.use_asr
+    told = [w for w in n.warnings if "识别校验出错了" in w]
+    assert len(told) == 1 and "第 1 句起" in told[0] and not told[0].startswith("第")
+    lines = n._summary_lines([res], [], None, {"pauses": {}, "loudness": {}})
+    assert any("其中 1 句没有做识别校验" in x and "第 1 句" in x for x in lines)
+    # 识别校验还是不能用：直接用，不重新生成
+    n_off, b_off = _narrator(tmp_path, scorer=FakeScorer(), use_asr=False)
+    r_off = n_off.synthesize_segment(seg)
+    assert r_off.cached and r_off.unchecked and not b_off.calls
+    # 排序权重变了（缓存键变了、留下的版本还在）：留下的没检查过，识别校验又能用了——重新生成并检查，不重新挑
+    n_w, b_w = _narrator(tmp_path, scorer=FakeScorer(), use_asr=True)
+    n_w._identical["weights_version"] = "w2"
+    r_w = n_w.synthesize_segment(seg)
+    assert b_w.calls and not r_w.cached and not r_w.unchecked and r_w.met is True
+    assert json.loads(n_w._plan(seg).meta_path.read_text(encoding="utf-8"))["asr_checked"] is True
+    # 原来的缓存键：缓存里是没检查过的那个 → 重新生成并检查（不从留下的版本里重新挑）
+    n2, b2 = _narrator(tmp_path, scorer=FakeScorer(), use_asr=True)
+    r2 = n2.synthesize_segment(seg)
+    assert b2.calls and not r2.cached and not r2.unchecked and r2.met is True and r2.score["cer"] == 0.0
+    assert json.loads(n2._plan(seg).meta_path.read_text(encoding="utf-8"))["asr_checked"] is True
+    assert not any("识别校验" in w for w in n2.warnings)
+    # 再下一次：直接用
+    n3, b3 = _narrator(tmp_path, scorer=FakeScorer(), use_asr=True)
+    r3 = n3.synthesize_segment(seg)
+    assert r3.cached and not r3.unchecked and r3.met is True and not b3.calls
+
+
 def test_blind_test_never_uses_its_real_clips_as_references(prepared, tmp_path, monkeypatch):
     """盲听测试当「真人」播放的录音，不能拿来当生成那一段的参考（主参考、辅助参考都不行）：「一模一样」从参考录音库
     挑参考，以前只从 references.json 里去掉了它们（审查发现：验证集不够、要用训练集的录音时，它们还在库里能被挑上）。"""

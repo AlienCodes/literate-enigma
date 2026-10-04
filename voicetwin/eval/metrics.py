@@ -61,12 +61,36 @@ def _pinyin_fn() -> Optional[Callable[[str], List[str]]]:
 
 
 _NUM = "\ue000"  # 数字串的占位符（不会被当成标点去掉）
+_PCT = "\ue001"  # 百分数的占位符：30% 和读出来的「百分之三十」一样
+_NUM_CHARS = "0-9零〇一二两三四五六七八九十百千万亿点."
+#: 合成引擎（GPT-SoVITS 的中文前端）把 30% 读成「百分之三十」，Paraformer 也这样写；Whisper 有时写 30%
+_PCT_SPOKEN_RE = re.compile(f"百分之[{_NUM_CHARS}]+")
+_PCT_WRITTEN_RE = re.compile(r"(?:\d+(?:\.\d+)?|[零〇一二两三四五六七八九十百千万亿]+(?:点[零〇一二两三四五六七八九]+)?)\s*%")
+#: 时刻 10:30（和 GPT-SoVITS 的 zh_normalization/chronology.py 同一个写法）：读成「十点半」「十点三十五分」
+_TIME_RE = re.compile(r"(?<!\d)([01]?\d|2[0-3]):([0-5]\d)(?::([0-5]\d))?(?!\d)")
+_HALF_HOUR_RE = re.compile("(?<=[0-9零〇一二两三四五六七八九十])点半")
+
+
+def _time_words(m: "re.Match[str]") -> str:
+    """10:30 → 10点30分、10:00 → 10点（和合成引擎读出来的说法对得上：十点半 → 十点三十分）。"""
+    out = f"{m.group(1)}点"
+    if m.group(2).lstrip("0"):
+        out += f"{m.group(2)}分"
+    if m.group(3) and m.group(3).lstrip("0"):
+        out += f"{m.group(3)}秒"
+    return out
 
 
 def _normalize(text: str) -> str:
-    """去标点、转简体、小写；数字串（2024 / 二零二四）统一成一个占位符，漏读数字也能算出来。"""
+    """去标点、转简体、小写；数字串（2024 / 二零二四）统一成一个占位符，漏读数字也能算出来。
+    百分数（30% / 百分之三十）统一成另一个占位符：以前「百分之三十」算成 3 个错字，读对了的句子被重做 20 次还标成读错；
+    读的时候漏了「百分之」（只读「三十」）仍然算错。时刻 10:30 和「十点半」「十点三十分」也算一样。"""
     text = unicodedata.normalize("NFKC", text or "")
     text = to_simplified(text).lower()
+    text = _TIME_RE.sub(_time_words, text)
+    text = _HALF_HOUR_RE.sub("点三十分", text)
+    text = _PCT_SPOKEN_RE.sub(_PCT, text)
+    text = _PCT_WRITTEN_RE.sub(_PCT, text)
     text = NUM_RUN_RE.sub(_NUM, text)
     return ALL_PUNCT_RE.sub("", text)
 
@@ -123,13 +147,66 @@ def _lcs_len(a: List[str], b: List[str]) -> int:
     return prev[-1]
 
 
+_CJK_SPACE_RE = re.compile(r"\s+(?=[㐀-䶿一-鿿豈-﫿])|(?<=[㐀-䶿一-鿿豈-﫿])\s+")
+_LATIN_NUM = re.compile(r"[a-z0-9]")
+
+
+def _light_norm(text: str) -> str:
+    """只统一写法（全角半角、繁简、大小写），汉字旁边的空格去掉（「关系副词 when」=「关系副词when」）。"""
+    text = to_simplified(unicodedata.normalize("NFKC", text or "")).lower()
+    return _CJK_SPACE_RE.sub("", text)
+
+
+def _word_re(word: str) -> "re.Pattern[str]":
+    """找 word：英文开头 / 结尾的地方要是完整的单词（as 不算 has、was、class 里的 as）。"""
+    head = r"(?<![a-z0-9])" if _LATIN_NUM.match(word[:1]) else ""
+    tail = r"(?![a-z0-9])" if _LATIN_NUM.match(word[-1:]) else ""
+    return re.compile(head + re.escape(word) + tail)
+
+
+def _mother_table() -> Dict[str, str]:
+    try:
+        from voicetwin.data.lexicon_fix import builtin_corrections
+
+        return builtin_corrections()
+    except Exception:  # 读不到对照表：照旧比（不影响生成）
+        return {}
+
+
+def mother_fix_hyp(reference: str, hypothesis: str, table: Optional[Dict[str, str]] = None) -> str:
+    """母本优先：识别出来的文字先按母本标准库的对照表（data/lexicon/corrections.txt，「艾子 => as」「电影从句 => 定语从句」
+    这种识别引擎常写错的写法）改成母本的写法，再和讲稿比。
+
+    讲稿是标准：只有讲稿在这里写的正是母本的写法（讲稿里有 as）时才改，改的个数也不超过讲稿里有的个数——
+    讲稿里没有 as、或者识别出来多了一个「艾子」（真的多读了一遍），照样算错。以前不看对照表，as 读对了、识别校验
+    写成「艾子」就算 2 个错字，「完美」档把读对的句子重做 20 次，还标成「可能有读错的字」。"""
+    table = _mother_table() if table is None else table
+    if not table or not hypothesis:
+        return hypothesis
+    ref, hyp = _light_norm(reference), _light_norm(hypothesis)
+    changed = False
+    for wrong, right in sorted(table.items(), key=lambda kv: -len(kv[0])):
+        wrong, right = _light_norm(wrong), _light_norm(right)
+        if not wrong or not right or wrong not in hyp:
+            continue
+        pat_right = _word_re(right)
+        need = len(pat_right.findall(ref)) - len(pat_right.findall(hyp))
+        if need <= 0:
+            continue
+        hyp, n = _word_re(wrong).subn(right, hyp, count=need)
+        changed = changed or n > 0
+    return hyp if changed else hypothesis
+
+
 def cer_details(reference: str, hypothesis: str, lang: str = "zh", use_pinyin: bool = True) -> Tuple[float, int, int]:
     """返回 (错字率, 错了几个字, 一共几个字)。
 
     中文在装了 pypinyin（GPT-SoVITS 整合包里有）时按不带声调的拼音比较：识别模型把「他/她」「在/再」听混
-    不算合成读错——合成是按读音来的。没有 pypinyin 时按字比较。数字串统一处理（2024 = 二零二四）。
+    不算合成读错——合成是按读音来的。没有 pypinyin 时按字比较。数字串统一处理（2024 = 二零二四、30% = 百分之三十、
+    10:30 = 十点半）。母本优先：识别结果先按母本标准库的对照表改（讲稿写 as、识别写「艾子」不算错，见 mother_fix_hyp）。
     """
     pinyin = _pinyin_fn() if (use_pinyin and lang == "zh") else None
+    hypothesis = mother_fix_hyp(reference, hypothesis)
     ref = _units(reference, pinyin)
     hyp = _units(hypothesis, pinyin)
     if not ref:

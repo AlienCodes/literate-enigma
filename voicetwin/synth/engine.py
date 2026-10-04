@@ -387,6 +387,15 @@ def denoise_light(wav: np.ndarray, sr: int, strength: float = 0.5) -> Optional[n
 
 
 SHORT_HINT = "这一句很短（人声不到 2 秒），「像你本人」的分数只能粗略参考，请用耳朵听一下"
+#: 和「像你本人」有关的提示（以前生成好的句子重新打分时，只重算这几条；读错字、语速音调的提示原样留着）
+LOW_PCT_HINT = "低于 {min_pct:.0f}%，建议重新生成或改写这一句"
+TARGET_MISS_SIM = "这一句可能不够像，建议重新生成或改写"
+
+
+def _is_sim_hint(h: str) -> bool:
+    """这条提示是不是按「像你本人」的分数写的（精确比较，不按里面有没有「低于」「不够像」这几个字：
+    识别出来的文字里也可能有「低于」）。"""
+    return h in (SHORT_HINT, TARGET_MISS_SIM) or (h.startswith("低于 ") and h.endswith("%，建议重新生成或改写这一句"))
 
 
 def _is_short(score: Any) -> bool:
@@ -415,12 +424,13 @@ class SegmentResult:
     hint: str = ""                       # 给老师看的提示
     flagged: bool = False
     tries: int = 0                       # 这一句一共试了几次
-    met: Optional[bool] = None           # 「完美」「一模一样」档：有没有达到严格标准
+    met: Optional[bool] = None           # 「完美」「一模一样」档：有没有达到严格标准（没做识别校验时是 None）
     #: 这一句实际用的模型（生成时按正在用的模型文件检测的）：{"name": "V4" / None, "how", "files"}；
     #: 生成的文件名最后的「_模型名」按每一句的这个定（model_tag）
     model: Dict[str, Any] = field(default_factory=dict)
     #: 「一模一样」才有：用了哪种组合（arm）、每种组合试了几个（arms）、这一句的搜索记录（search）、整篇再挑一遍换没换（dp）
     extra: Dict[str, Any] = field(default_factory=dict)
+    unchecked: bool = False              # 要做识别校验、却没做成（识别校验出错了）：没检查漏字错字
 
 
 @dataclass
@@ -606,11 +616,15 @@ class Narrator:
         self.min_wrong = int(preset.get("min_wrong_chars", self.scfg.get("min_wrong_chars", 2)) or 0)
         self.want_variants = bool(preset.get("variants")) if variants is None else bool(variants)
         self.speed_opt = speed if speed is not None else self.scfg.get("speed", "auto")
-        self.reference = reference
         self.progress = progress
         self.profile = project.load_profile()
         self.refs = project.load_references()
         self.warnings: List[str] = []
+        self.reference = self._match_reference(reference)
+        #: 开始时要不要识别校验（缓存键用它）：中途识别校验出错、关掉了（self.use_asr 变成 False），
+        #: 后面的句子也照样找得到以前检查过的缓存
+        self._asr_requested = self.use_asr
+        self._asr_warned = False
         self._scorer: Optional[Scorer] = None
         self._judge: Optional[SimilarityJudge] = None
         self._checker: Optional[CERChecker] = None
@@ -648,6 +662,34 @@ class Narrator:
             self.target_pct = float(target) if float(target) > 0 else 99.0
         except (TypeError, ValueError):
             self.target_pct = 99.0
+
+    def _match_reference(self, reference: Any) -> str:
+        """网页「指定参考音频编号」/ 命令行 --ref：认得出的（编号、文件路径或文件名、参考音频的文字）换成编号；
+        认不出来的（例如写了「3」）以前悄悄当成没写、自动挑，「完美」「一模一样」还因此不挑长短最接近的参考，
+        现在说一声，并且完全按没写处理。"""
+        want = str(reference or "").strip()
+        if not want or not self.refs:
+            return ""
+        known = list(self.refs)
+        if self.quality == "identical":
+            # 「一模一样」先在参考录音库里找（search.find_forced）：库里的录音不一定在 references.json 里
+            try:
+                from voicetwin.data.references import load_reference_bank
+
+                known += [e for e in (load_reference_bank(self.project) or {}).get("entries") or []
+                          if isinstance(e, dict) and e.get("id")]
+            except Exception:  # noqa: BLE001 - 库读不了：只按 references.json 认
+                pass
+        for r in known:
+            path = str(r.get("path") or "").replace("\\", "/")
+            names = {str(r.get("id") or ""), path, Path(path).name, Path(path).stem, str(r.get("text") or "").strip()}
+            if want in names or want.replace("\\", "/") in names:
+                return str(r["id"])
+        msg = (f"没有找到编号为「{want}」的参考音频，这次已自动挑选。编号要从声音文件夹里的 references.json 复制"
+               "（像「第1课_ff836a_0027」这样），不能写第几条；不知道写什么就留空，程序会自动挑")
+        self.warnings.append(msg)
+        log.warning(msg)
+        return ""
 
     def _init_identical(self, preset: Dict[str, Any], candidates: Any) -> None:
         """「一模一样」：每批几个、每句至少 / 最多试几个、几条参考录音都按显卡分档（见 identical_limits）。
@@ -804,7 +846,8 @@ class Narrator:
                                                    p[0]))[1]
 
     def _tier_sig(self) -> List[Any]:
-        sig = [self.quality, self.n_candidates, self.max_candidates, self.use_asr, self.adaptive, self.min_wrong,
+        sig = [self.quality, self.n_candidates, self.max_candidates, getattr(self, "_asr_requested", self.use_asr),
+               self.adaptive, self.min_wrong,
                self.min_pct, self.filter_mode, self.target_pct,
                {k: self.preset.get(k) for k in ("cer_retry_threshold", "cer_target", "retry_rounds", "retry_candidates",
                                                 "early_after", "early_pct")}]
@@ -967,7 +1010,10 @@ class Narrator:
                           [(r["id"], r.get("text", ""), [a["id"] for a in aux_by_ref.get(str(r["id"])) or []])
                            for r in refs],
                           {k: self.preset.get(k) for k in keys}, self.search_target, self.pass_target, self.R,
-                          self.use_asr, self.min_wrong, self.min_pct, self.filter_mode, n=12)
+                          # 开始时要不要识别校验（和 _tier_sig 一样）：中途识别校验出错、关掉了，缓存键不变——
+                          # 后面的句子照样找得到以前检查过的缓存，没检查的这几句也存在同一个键下（下次重新生成并检查）
+                          getattr(self, "_asr_requested", self.use_asr), self.min_wrong, self.min_pct,
+                          self.filter_mode, n=12)
 
     def _plan_identical(self, seg: ScriptSegment) -> _Plan:
         """「一模一样」：这句话挑哪几条参考录音、每条配哪几条辅助参考、第 1 轮试哪些组合，以及缓存键：
@@ -1151,7 +1197,7 @@ class Narrator:
         """「完美」「一模一样」档没达标时，按真正没达到的那一项写提示。"""
         s = c.score
         if self.sim_filter and s.pct is not None and self._pct_value(s) < self._sim_target("pass"):
-            return "这一句可能不够像，建议重新生成或改写"
+            return TARGET_MISS_SIM
         lang = send_lang(seg.text, seg.lang)
         if s.cer is not None and not (s.cer <= self._thr("cer_target", lang, 0.05, c) or s.errors == 0):
             return "这一句可能有个别字读得不太准，建议重新生成或改写"
@@ -1159,7 +1205,7 @@ class Narrator:
             return "这一句的语速或音调和你平时不太一样，建议重新生成或改写"
         if self.quality == "identical" and s.dur_z is not None and abs(float(s.dur_z)) > 2.0:
             return "这一句的语速或音调和你平时不太一样，建议重新生成或改写"
-        return "这一句可能不够像，建议重新生成或改写"
+        return TARGET_MISS_SIM
 
     def _clearly_good(self, c: _Cand, seg: ScriptSegment) -> bool:
         s = c.score
@@ -1190,7 +1236,7 @@ class Narrator:
             if res is not None:
                 return res
         wav, sr = load_audio(plan.wav_path)
-        meta = self._rescore_cached(meta, wav, sr, plan)
+        meta = self._rescore_cached(meta, wav, sr, plan, seg)
         score = meta.get("score", {}) or {}
         ref_id = meta.get("ref") if identical and meta.get("ref") else plan.ref["id"]
         model = meta.get("model_info")
@@ -1202,7 +1248,8 @@ class Narrator:
         return SegmentResult(seg, wav, sr, score, ref_id, True, meta.get("seed", 0), meta.get("candidates", []),
                              path=plan.wav_path, pct=score.get("pct"), status=meta.get("status", ""),
                              hint=meta.get("hint", ""), flagged=bool(meta.get("flagged")), tries=int(meta.get("tries", 0)),
-                             met=meta.get("met"), model=dict(model), extra=extra)
+                             met=meta.get("met"), model=dict(model), extra=extra,
+                             unchecked=meta.get("asr_checked") is False)
 
     def _model_info(self) -> Dict[str, Any]:
         """这一刻实际用的模型（每句生成完马上记下：生成的文件名、文件里面的注释、报告都按它定）。
@@ -1213,6 +1260,20 @@ class Narrator:
         except Exception as exc:  # noqa: BLE001 - 读不出来就如实写「模型未知」
             info = {"name": None, "how": f"读模型文件出错（{str(exc)[:120]}）", "files": []}
         return dict(info or {"name": None, "how": "这个引擎读不出模型名", "files": []})
+
+    def _asr_usable(self) -> bool:
+        """现在能不能做识别校验（没出过错、识别模型没加载失败）。"""
+        return bool(self.use_asr) and bool(getattr(getattr(self, "_checker", None), "available", True))
+
+    def _asr_failed(self, seg: ScriptSegment, why: str) -> None:
+        """识别校验出错了 / 用不了：只告诉老师一次（不能以「第 N 句：」开头，网页的小结才会显示它）。"""
+        if getattr(self, "_asr_warned", False):
+            return
+        self._asr_warned = True
+        msg = (f"识别校验{why}，从第 {seg.index + 1} 句起，有的句子没有检查漏字错字（只按声纹、语速和停顿挑），"
+               "这些句子不算达到严格标准：请自己听一遍；识别校验正常以后再生成一次，没检查过的句子会自动重新生成并检查")
+        self.warnings.append(msg)
+        log.warning(msg)
 
     def _judge_sig(self) -> str:
         sig = getattr(self.judge, "signature", None)
@@ -1265,9 +1326,12 @@ class Narrator:
         """留下来的版本当时是按什么样的声音打的分（去首尾的设置）：不一样时不沿用存下来的声纹，重新算。"""
         return f"delivered|tail={self._tail_pad_ms()}|" + ",".join(f"{k}={v}" for k, v in sorted(ID_TRIM.items()))
 
-    def _rescore_cached(self, meta: Dict[str, Any], wav: np.ndarray, sr: int, plan: _Plan) -> Dict[str, Any]:
+    def _rescore_cached(self, meta: Dict[str, Any], wav: np.ndarray, sr: int, plan: _Plan,
+                        seg: Optional[ScriptSegment] = None) -> Dict[str, Any]:
         """以前生成好的句子：打分方式变了（例如升级到精准声纹打分、素材变了）时，只重新打"像你本人"这一项，
-        声音不用重新生成。新旧两种百分比的标准不一样，混在一起会误导。"""
+        声音不用重新生成。新旧两种百分比的标准不一样，混在一起会误导。
+        只重算和「像你本人」有关的提示（低于 85%、很短、「完美」「一模一样」不够像）和达没达标；
+        读错字、语速音调的提示原样留着（以前按「低于」「不够像」几个字删，读错字的提示也可能被删掉）。"""
         sig = self._judge_sig()
         if not sig or meta.get("judge") == sig:
             return meta
@@ -1281,14 +1345,22 @@ class Narrator:
             score[key] = res.get(key)
         if res.get("sim") is not None:
             score["speaker_sim"] = res.get("sim")
-        hints = [h for h in str(meta.get("hint") or "").split("；") if h and "不够像" not in h and "低于" not in h]
+        hints = [h for h in str(meta.get("hint") or "").split("；") if h and not _is_sim_hint(h)]
         score["speech_seconds"] = res.get("seconds")
         pct = score.get("pct")
         filt = self.sim_filter
         short = bool(res.get("short"))
-        hints = [h for h in hints if h != SHORT_HINT]
         if filt and pct is not None and pct < self.min_pct:
-            hints.insert(0, SHORT_HINT if short else f"低于 {self.min_pct:.0f}%，建议重新生成或改写这一句")
+            hints.insert(0, SHORT_HINT if short else LOW_PCT_HINT.format(min_pct=self.min_pct))
+        met = meta.get("met")
+        if seg is not None and getattr(self, "adaptive", False) and meta.get("quality") in (None, self.quality):
+            # 「完美」「一模一样」：用新的分数重新看达没达标（和生成时同一套判断；错字、语速这些存着的结果不变）
+            cand = _Cand(Score.from_dict(score), int(meta.get("seed") or 0), wav, sr, 0, 0)
+            met = self._meets_targets(cand, seg)
+            if not met and not hints:
+                hints.append(self._target_miss(cand, seg))
+            if met and meta.get("asr_checked") is False:
+                met = None  # 没做识别校验：不能说达到了严格标准
         issues = list(score.get("issues") or [])
         if filt and pct is not None:
             status = status_for_pct(pct, self.min_pct)
@@ -1298,7 +1370,8 @@ class Narrator:
                 status = "⚠️"
         else:
             status = "⚠️" if (hints or issues) else "✅"
-        meta = dict(meta, score=score, hint="；".join(hints), status=status, flagged=bool(hints or issues), judge=sig)
+        meta = dict(meta, score=score, hint="；".join(hints), status=status, flagged=bool(hints or issues), judge=sig,
+                    met=met)
         try:
             atomic.write_text(plan.meta_path, json.dumps(meta, ensure_ascii=False, indent=1))
         except OSError:
@@ -1307,13 +1380,20 @@ class Narrator:
 
     def synthesize_segment(self, seg: ScriptSegment, force: bool = False) -> SegmentResult:
         plan = self._plan(seg)
+        recheck = False
         if plan.cached and not force:
             try:
-                return self._load_cached(seg, plan)
+                cached = self._load_cached(seg, plan)
             except Exception as exc:  # noqa: BLE001 - 缓存坏了（写到一半关了窗口、断电）：重新生成这一句，不能一直失败
                 log.warning(f"第 {seg.index + 1} 句的缓存读不了（{exc}），重新生成")
+            else:
+                # 上次识别校验出错、没检查漏字错字的句子：这次识别校验能用，就重新生成并检查（以前当成检查过的一直直接用）
+                if not (cached.unchecked and self._asr_usable()):
+                    return cached
+                recheck = True
+                log.info(f"  第 {seg.index + 1} 句上次没做识别校验，这次重新生成并检查漏字错字")
         if self.quality == "identical":
-            return self._synthesize_identical(seg, plan, force)
+            return self._synthesize_identical(seg, plan, force, recheck=recheck)
         self._ensure_started()
         ref, aux, speed, key = plan.ref, plan.aux, plan.speed, plan.key
         seed0 = self.base_seed + seg.index * 7919
@@ -1327,6 +1407,9 @@ class Narrator:
         lo, hi = self._gen_range
         expected = 8 if self.adaptive else self.n_candidates
         mult = self._speed_multiplier()
+        # 这次生成要做识别校验（按开始时的设置：前面的句子识别校验出错、关掉了以后，后面的句子也算「该检查却没检查」，
+        # 不能说达到了严格标准，也不能当成检查过的存进缓存）
+        asr_planned = bool(getattr(self, "_asr_requested", self.use_asr))
         lang = send_lang(seg.text, seg.lang)  # 打分、查错字按真正发给引擎的语言（有汉字就是 zh）
         ref_audio = self.project.abspath(ref["path"])
         aux_paths = [self.project.abspath(a["path"]) for a in aux]
@@ -1362,11 +1445,16 @@ class Narrator:
             except Exception as exc:
                 if not self.use_asr:
                     raise
-                # 识别校验（查错字）只是帮着挑的：它出错（比如识别模型显存不够）时关掉它接着生成，不能让整篇停下
-                log.warning(f"⚠️ 识别校验出错了（{str(exc).splitlines()[0] if str(exc) else type(exc).__name__}），"
-                            "后面只按声纹、语速和停顿挑选")
+                # 识别校验（查错字）只是帮着挑的：它出错（比如识别模型显存不够）时关掉它接着生成，不能让整篇停下；
+                # 但要告诉老师，后面的句子没检查漏字错字，也不能算达到严格标准
+                why = str(exc).splitlines()[0] if str(exc) else type(exc).__name__
+                log.warning(f"⚠️ 识别校验出错了（{why}），后面只按声纹、语速和停顿挑选")
                 self.use_asr = False
+                self._asr_failed(seg, f"出错了（{_reason(exc)}）")
                 score = self.scorer.score(wav, sr, seg.text, lang, speed=mult, use_asr=False)
+            if self.use_asr and score.cer is None and not getattr(self._checker, "available", True):
+                # 识别模型没加载成功（比如下载不下来）：这一句没检查（有 Paraformer 的中文句子还照样检查）
+                self._asr_failed(seg, "的模型没加载成功")
             trimmed = trim_edges(wav, sr)
             if trimmed.size == 0:
                 return
@@ -1427,15 +1515,18 @@ class Narrator:
         best, survivors = self._select(cands, lang, seg)
         if self.adaptive:
             met = self._meets_targets(best, seg)
-        return self._finish_segment(seg, plan, best, cands, state["tried"], met)
+        return self._finish_segment(seg, plan, best, cands, state["tried"], met, asr_planned=asr_planned)
 
-    def _synthesize_identical(self, seg: ScriptSegment, plan: _Plan, force: bool) -> SegmentResult:
+    def _synthesize_identical(self, seg: ScriptSegment, plan: _Plan, force: bool, recheck: bool = False) -> SegmentResult:
         """「一模一样」：每句换几条参考录音、几种生成设置，一次请求同时生成好几个版本，分两步打分挑最像的
-        （synth/search.py）。force（重新生成）：以前留下来的几个版本也一起比，最好的不会变差。"""
-        if not force:
-            # 只是排序权重变了（缓存键跟着变了）：同样的设置以前留下的版本还在，按新权重重新排，不用再生成
+        （synth/search.py）。force（重新生成）：以前留下来的几个版本也一起比，最好的不会变差。
+        recheck：上次识别校验出错、这一句没检查漏字错字，这次识别校验能用——不从留下的版本里重新挑
+        （留下的也没检查过），重新生成并检查。"""
+        if not force and not recheck:
+            # 只是排序权重变了（缓存键跟着变了）：同样的设置以前留下的版本还在，按新权重重新排，不用再生成。
+            # 挑出来的没检查过漏字错字（当时识别校验出错了）、这次识别校验又能用时，照样重新生成并检查
             res = self._rerank(seg, plan)
-            if res is not None:
+            if res is not None and not (res.unchecked and self._asr_usable()):
                 return res
         if not self._started:
             # 整篇开始时以为这句只要从留下的版本里重新挑（没启动合成引擎），结果留下的版本读不了：这时才启动。
@@ -1449,23 +1540,34 @@ class Narrator:
     def _finish_segment(self, seg: ScriptSegment, plan: _Plan, best: Any, cands: Sequence[Any], tries: int,
                         met: Optional[bool], extra: Optional[Dict[str, Any]] = None, wav: Optional[np.ndarray] = None,
                         ref_id: Optional[str] = None, cached: bool = False,
-                        model_info: Optional[Dict[str, Any]] = None) -> SegmentResult:
+                        model_info: Optional[Dict[str, Any]] = None,
+                        asr_planned: Optional[bool] = None) -> SegmentResult:
         """挑好以后：写提示和状态、写这句的缓存（声音 + 记录）。所有档位共用（以前写在 synthesize_segment 里）。
         记录里多了这一句实际用的模型（model_name / model_info：生成完马上按正在用的模型文件检测；model_info 给了就用给的，
         例如整篇再挑一遍换成留下来的另一个版本时用原来记下的）。extra / wav / ref_id 只有「一模一样」才给：记录里多几项、
-        存的是去掉首尾的声音（打分用的是同样去掉首尾、两边补了静音的声音）、用的是哪条参考。"""
+        存的是去掉首尾的声音（打分用的是同样去掉首尾、两边补了静音的声音）、用的是哪条参考。
+        asr_planned：这一句要不要做识别校验（没给时按开始时的设置 _asr_requested：中途识别校验出错、关掉了，
+        也照样算「要做」）。要做、挑出来的这个却没有识别结果（识别校验中途出错 / 模型没加载成功；「一模一样」从留下的
+        版本里重新挑、整篇再挑一遍换上的版本当时没检查过）时：这一句算没检查漏字错字（unchecked），不算达到严格标准，
+        记录里写 asr_checked = False，下次识别校验能用时重新生成。"""
         ref = plan.ref
         lang = send_lang(seg.text, seg.lang)
         out_wav = best.wav if wav is None else wav
+        if asr_planned is None:
+            asr_planned = bool(getattr(self, "_asr_requested", self.use_asr))
+        # 要做识别校验、挑出来的这个却没检查成（识别校验中途出错 / 模型没加载成功）
+        unchecked = bool(asr_planned and best.score.cer is None)
         filt = self.sim_filter
         hints: List[str] = []
         short = _is_short(best.score)
         if filt and best.score.pct is not None and best.score.pct < self.min_pct:
-            hints.append(SHORT_HINT if short else f"低于 {self.min_pct:.0f}%，建议重新生成或改写这一句")
+            hints.append(SHORT_HINT if short else LOW_PCT_HINT.format(min_pct=self.min_pct))
         if self.use_asr and not self._cer_ok(best, lang):
             hints.append("可能有读错的字" + (f"（识别为：{best.score.hyp}）" if best.score.hyp else "") + "，建议重新生成或改写这一句")
         if self.adaptive and not met and not hints:
             hints.append(self._target_miss(best, seg))
+        if met and unchecked:
+            met = None  # 没检查漏字错字：不能说达到了严格标准（严格标准里有错字率）
         issues = list(best.score.issues)
         pct = best.score.pct
         if filt and pct is not None:
@@ -1503,23 +1605,33 @@ class Narrator:
                 "tries": tries, "met": met, "hint": "；".join(hints), "status": status, "flagged": flagged,
                 "judge": self._judge_sig(), "created": time.strftime("%Y-%m-%d %H:%M:%S"),
                 "model_name": model.get("name"), "model_info": model}
+        if asr_planned:
+            meta["asr_checked"] = not unchecked  # False：下次识别校验能用时重新生成这一句
         if extra:
             meta.update(extra)
         atomic.write_text(plan.meta_path, json.dumps(meta, ensure_ascii=False, indent=1))  # 最后写：有它才算缓存好了
         keep = {k: meta[k] for k in EXTRA_KEYS if k in meta}
         return SegmentResult(seg, out_wav, best.sr, score, rid, cached, best.seed, cand_info, path=plan.wav_path,
                              pct=pct, status=status, hint=meta["hint"], flagged=flagged, tries=tries, met=met,
-                             model=model, extra=keep)
+                             model=model, extra=keep, unchecked=unchecked)
 
     # ------------------------------------------------------------------ 整篇
     def _segments(self, source: Union[str, Path, Sequence[ScriptSegment]]) -> List[ScriptSegment]:
         if isinstance(source, (list, tuple)):
             return list(source)
-        return parse_script(
+        segments = parse_script(
             source, lexicon=self.project.load_lexicon(),
             max_units_zh=int(self.scfg.get("max_units_zh", 50)), max_units_en=int(self.scfg.get("max_units_en", 45)),
             min_units=int(self.scfg.get("min_units", 6)), skip_code_blocks=bool(self.scfg.get("skip_code_blocks", True)),
         )
+        for seg in segments:
+            mark = seg.extra.get("unread_mark")
+            if mark:  # 写了停顿、却认不出来（例如【停顿一下】）：会被当成文字读出来，要告诉老师
+                msg = (f"讲稿里的「{mark}」没认出来，会被当成文字读出来（第 {seg.index + 1} 句）。想停顿请写成 [停顿=2]"
+                       "（2 是停几秒，【停顿=2】也可以）；不想读出来就把它删掉")
+                self.warnings.append(msg)
+                log.warning(msg)
+        return segments
 
     def _desc(self) -> str:
         if self.quality == "identical":
@@ -1947,6 +2059,8 @@ class Narrator:
                 "pct": r.pct, "status": r.status, "hint": r.hint, "flagged": r.flagged, "tries": r.tries,
                 "met": r.met, "candidates": r.candidates, "model": (r.model or {}).get("name"),
             }
+            if r.unchecked:
+                entry["asr_checked"] = False  # 要做识别校验、却没做成
             if r.path is not None:
                 entry["clip"] = self.project.relpath(r.path)
             if self.quality == "identical":
@@ -2028,11 +2142,12 @@ class Narrator:
                 line = (f"本次生成：共 {len(results)} 句（新生成 {len(fresh)} 句），平均每句试了 {avg:.1f} 个版本"
                         f"（最多 {self.max_candidates} 个）")
             if self.adaptive:
-                met = sum(1 for r in fresh if r.met)
+                met = sum(1 for r in fresh if r.met is True)
                 line += f"；{met} 句达到了「{QUALITY_SHORT[self.quality]}」的严格标准"
             lines.append(line + "。")
         else:
             lines.append(f"本次生成：共 {len(results)} 句，全部用的是之前生成好的结果。")
+        lines += _unchecked_lines(results)
         if overall is None:
             overall = _weighted_pct(results)
         if overall is not None:
@@ -2059,6 +2174,7 @@ class Narrator:
                          "（错字检查通过、像你本人不低于你自己录音的常见水平、语速音调在你平时的范围里）。")
         else:
             lines.append(f"本次生成：共 {len(results)} 句，全部用的是之前生成好的结果。")
+        lines += _unchecked_lines(results)
         if overall is None:
             overall = _weighted_pct(results)
         if overall is not None:
@@ -2568,6 +2684,14 @@ class Narrator:
         timed = any(r.segment.cue_start is not None for r in results)
         mult = self._speed_multiplier()
         cursor = LEAD_IN
+        self._tail = LEAD_OUT
+        if not timed and results:
+            # 讲稿最前面 / 最后面写的 [停顿=3]：开头 / 结尾多留这么久的绝对静音（比自带的留白短时用自带的）。
+            # 以前开头的被丢掉、结尾的没用上，开头结尾一直是 0.35 / 0.4 秒
+            lead = _seconds(results[0].segment.extra.get("pause_before"))
+            tail = _seconds(results[-1].segment.pause_after)
+            cursor = max(LEAD_IN, lead or 0.0)
+            self._tail = max(LEAD_OUT, tail or 0.0)
         layout: List[Tuple[float, int]] = []
         self._pause_targets: List[Optional[float]] = []
         self._pause_kinds: List[str] = []
@@ -2707,8 +2831,9 @@ class Narrator:
     def _render(self, layout: List[Tuple[float, int]], pieces: List[Tuple[np.ndarray, int]], sr: int,
                 gains: Optional[Sequence[float]] = None) -> np.ndarray:
         """按排好的时间把每句放进一条全是 0 的音轨：停顿、开头、结尾都是绝对的数字静音。
+        结尾留多久是 _layout 算的（讲稿最后写了 [停顿=3] 就留 3 秒），两个版本用同一个。
         gains：每句乘一个固定的系数（「一模一样」调每句音量，只乘系数：0 还是 0）。"""
-        total = (max((start + n / sr for start, n in layout), default=0.0)) + LEAD_OUT
+        total = (max((start + n / sr for start, n in layout), default=0.0)) + float(getattr(self, "_tail", LEAD_OUT))
         out = np.zeros(int(total * sr) + 1, dtype=np.float32)
         for k, ((start, n), (wav, wsr)) in enumerate(zip(layout, pieces)):
             w = resample(wav, wsr, sr) if wsr != sr else np.asarray(wav, dtype=np.float32)
@@ -2769,6 +2894,24 @@ def _check_cancel_or_stop(narrator: Any) -> None:
     except BaseException:
         narrator._stop_gpu_sampler()
         raise
+
+
+def _unchecked_lines(results: Sequence[SegmentResult]) -> List[str]:
+    """小结里列出要做识别校验、却没做成的句子（所有档位共用；没有时是空的）。"""
+    unchecked = [r.segment.index + 1 for r in results if r.unchecked]
+    if not unchecked:
+        return []
+    return [f"其中 {len(unchecked)} 句没有做识别校验（识别校验出错了，没检查漏字错字）：第 "
+            + "、".join(str(n) for n in unchecked[:20]) + (" 等" if len(unchecked) > 20 else "")
+            + " 句，请自己听一遍。"]
+
+
+def _seconds(value: Any) -> Optional[float]:
+    """讲稿里写明的停顿秒数（数字才算；"sentence" / "paragraph" 这种按习惯的停顿、写错的值都返回 None）。"""
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    v = float(value)
+    return v if math.isfinite(v) and v >= 0 else None
 
 
 def _weighted_pct(results: List[SegmentResult]) -> Optional[float]:

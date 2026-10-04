@@ -966,6 +966,12 @@ class IdenticalSearch:
                                f"{self.seg.text[:30]}") from exc
         self.empty += 1
 
+    def _asr_failed(self, why: str) -> None:
+        """识别校验出错了 / 识别模型没加载成功：告诉老师一次（Narrator._asr_failed；测试里的假 Narrator 没有时不管）。"""
+        fn = getattr(self.n, "_asr_failed", None)
+        if callable(fn):
+            fn(self.seg, why)
+
     @staticmethod
     def _fatal(exc: BaseException) -> bool:
         from voicetwin.synth.engine import _is_fatal
@@ -1053,12 +1059,17 @@ class IdenticalSearch:
         except Exception as exc:
             if not n.use_asr:
                 raise
-            # 识别校验（查错字）只是帮着挑的：它出错（比如识别模型显存不够）时关掉它接着生成，不能让整篇停下
+            # 识别校验（查错字）只是帮着挑的：它出错（比如识别模型显存不够）时关掉它接着生成，不能让整篇停下；
+            # 但要告诉老师，后面的句子没检查漏字错字，也不能算达到严格标准（Narrator._finish_segment 记成 unchecked）
             log.warning(f"⚠️ 识别校验出错了（{str(exc).splitlines()[0] if str(exc) else type(exc).__name__}），"
                         "后面只按声纹、语速和停顿挑选")
             n.use_asr = False
+            self._asr_failed(f"出错了（{self._reason(exc)}）")
             c.score = self.scorer.full(wav, c.sr, self.seg.text, self.lang, self.mult, prepared=prepared,
                                        use_asr=False)
+        if n.use_asr and c.score.cer is None and not getattr(getattr(n, "_checker", None), "available", True):
+            # 识别模型没加载成功（比如下载不下来）：这个版本没检查（有 Paraformer 的中文句子还照样检查）
+            self._asr_failed("的模型没加载成功")
         c.score.arm = c.arm.label(self.plan.refs)
         c.score.model = c.model
         if isinstance(prepared, dict):
