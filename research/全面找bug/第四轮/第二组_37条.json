@@ -1,5 +1,5 @@
 {
- "说明": "第四轮找 bug 第二组 37 条（每条都由另一个检查者独立复现过）。老师 10-04 决定：和升级有关的 6 条不修（skip=true），其余 31 条全部修。",
+ "说明": "第四轮找 bug 第二组 37 条（每条都由另一个检查者独立复现过）。老师 10-04 决定：和升级有关的 6 条不修（skip=true），其余 31 条全部修。 老师又强调：凡是跟升级、旧版本有关的一律不管（每次升级后都从头开始）。windows#4 只修安装时 15 秒没有提示，不管旧版本正在忙的情况（partial）。",
  "groups": {
   "h1": [
    {
@@ -885,7 +885,8 @@
      "notes": "The Windows TCP behaviour was emulated (SYN dropped inside a private netns), not run on Windows; the ~2 s refusal comes from the project's own Windows CI note. One side effect seen in the first repro run: scenario D took 2.0 s only because port 7860 was still in TIME_WAIT from the test server in scenario C. In a fresh namespace it took 0.30 s, so this is not a launcher problem."
     },
     "id": "windows#4",
-    "skip": false
+    "skip": false,
+    "partial": "只修：检查时先显示一句提示、检查更快；不管「旧版本正在忙时当成已经关掉」（升级相关，老师说不用管）"
    },
    {
     "slice": "windows",
