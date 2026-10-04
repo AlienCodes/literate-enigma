@@ -4,7 +4,7 @@ d=json.load(open(js)); t=open(md).read()
 head,rest=t.split('## 英文',1); en_old,rest=rest.split('## 中文',1); zh_old,tail=rest.split('## 速查表',1)
 tbl_old,after=tail.split('\n## ',1)
 old_rows={}
-for r in re.findall(r'^\| (.+?) \| (.+?) \| (\d+) \|$',tbl_old,re.M): old_rows[r[0].lower()]=r[1]
+for r in re.findall(r'^\| (.+?) \| (.+?) \| (\d+) \|$',tbl_old,re.M): old_rows[r[0].lower()]=re.sub(r'^(本文：[^；|]*(；|$))+','',r[1])
 paras_en={};paras_zh={}
 for s in d['sentences']:
     en=' '.join(c['en'] for c in s['chunks'])

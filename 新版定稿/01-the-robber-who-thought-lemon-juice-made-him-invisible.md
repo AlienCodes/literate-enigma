@@ -35,62 +35,62 @@ For a 1999 paper, Dunning and his student Justin Kruger **quizzed** Cornell **un
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
-| accomplice | 本文：同伙；本文：同伙；n. 同伙，共犯（an accomplice to the crime） | 1 |
-| raided | 本文：抢劫了；本文：抢劫了；v. (raid) 突袭，抢劫（raid a bank；police raided the house） | 1 |
-| in broad daylight | 本文：光天化日之下；本文：光天化日之下；n. 白天，日光（in broad daylight） | 1 |
-| disguise | 本文：乔装；本文：乔装；n. 伪装，乔装（in disguise） | 1 |
-| camouflage | 本文：伪装；本文：伪装；n. 伪装，掩饰（use branches as camouflage） | 1 |
-| rubbed on | 本文：涂抹；本文：涂抹；v. (rub) 擦，涂抹（rub cream on one's skin） | 1 |
-| earnest | 本文：真心实意的；本文：真心实意的；adj. 认真的，真诚的（an earnest young man；in earnest） | 1 |
-| conviction | 本文：信念；本文：信念；n. 坚定的信念；定罪（a firm conviction；a previous conviction） | 1 |
-| render | 本文：使；本文：使；v. 使变成，使成为（render sb speechless；render a building unsafe） | 1 |
-| invisible | 本文：隐形；本文：隐形；adj. 看不见的，隐形的（invisible to the naked eye；invisible ink） | 1 |
-| rationale | 本文：逻辑；本文：逻辑；n. 理由，基本原理（the rationale behind a decision） | 2 |
-| kernel | 本文：内核；本文：内核；n. 核心，要点；果仁（a kernel of truth） | 2 |
-| time-honoured | 本文：由来已久的；本文：由来已久的；adj. 由来已久的（a time-honoured tradition） | 2 |
-| ink | 本文：墨水；本文：墨水；n. 墨水，油墨（write in ink） | 2 |
-| inventive | 本文：富有创意的；本文：富有创意的；adj. 富于创造力的（an inventive solution） | 2 |
-| leap | 本文：跳跃；本文：跳跃；n. 跳跃；飞跃（a leap of faith/imagination） | 2 |
-| self-portrait | 本文：自拍照；本文：自拍照；n. 自画像，自拍照（paint a self-portrait） | 2 |
-| devoid of | 本文：完全没有；本文：完全没有；adj. 完全没有的（devoid of meaning/emotion） | 2 |
-| conclusive | 本文：确凿的；本文：确凿的；adj. 确凿的，决定性的（conclusive proof） | 2 |
-| begged to differ | 本文：不敢苟同；本文：不敢苟同；phr. (beg to differ) 恕难苟同（I beg to differ） | 3 |
-| viewers | 本文：观众；本文：观众；n. (viewer) 观众（television viewers） | 3 |
-| damning | 本文：足以定罪的；本文：足以定罪的；adj. 证明有罪的，确凿的（damning evidence） | 3 |
-| Confronted with | 本文：面对；本文：面对；v. (confront) 使面对，对质（be confronted with the evidence） | 3 |
-| sheer | 本文：完全；本文：完全；adj. 完全的，十足的（sheer luck/madness） | 3 |
-| disbelief | 本文：不相信；本文：不相信；n. 怀疑，不相信（stare in disbelief） | 3 |
-| pondered | 本文：仔细思考了；本文：仔细思考了；v. (ponder) 思索，考虑（ponder a question） | 4 |
-| disquieting | 本文：令人不安的；本文：令人不安的；adj. 令人不安的（a disquieting thought） | 4 |
-| proposition | 本文：观点；本文：观点；n. 命题，主张；提议（a doubtful proposition；a business proposition） | 4 |
-| incompetence | 本文：无能；本文：无能；n. 无能，不胜任（gross incompetence） | 4 |
-| cloak | 本文：掩藏住；本文：掩藏住；v./n. 掩盖；斗篷（cloaked in secrecy） | 4 |
-| robbing | 本文：剥夺；本文：剥夺；v. (rob of) 剥夺（rob sb of sleep/a chance） | 4 |
-| discernment | 本文：识别能力；本文：识别能力；n. 辨别力，眼力（show discernment） | 4 |
-| deficiencies | 本文：不足；本文：不足；n. (deficiency) 缺陷，不足（vitamin deficiency；deficiencies in the system） | 4 |
-| quizzed | 本文：测试了；本文：测试了；v. (quiz) 测验，盘问（quiz sb about sth） | 5 |
-| undergraduates | 本文：本科生；本文：本科生；n. (undergraduate) 本科生（first-year undergraduates） | 5 |
-| logical | 本文：逻辑；本文：逻辑；adj. 逻辑的，合乎逻辑的（logical reasoning） | 5 |
-| scorers | 本文：答题者；本文：答题者；n. (scorer) 得分者（top scorers） | 5 |
-| generously | 本文：大方地；本文：大方地；adv. 慷慨地，大方地（give generously） | 5 |
-| high achievers | 本文：成绩优异者；本文：成绩优异者；n. (achiever) 有成就者，成绩优异者（high achievers） | 5 |
-| undue | 本文：过分的；本文：过分的；adj. 过分的，不适当的（undue pressure/influence） | 5 |
-| modesty | 本文：谦虚；本文：谦虚；n. 谦虚（false modesty） | 5 |
-| unskilled | 本文：能力不足的；本文：能力不足的；adj. 不熟练的，无技能的（unskilled workers） | 5 |
-| dual | 本文：双重；本文：双重；adj. 双重的（dual nationality/purpose） | 5 |
-| appraisal | 本文：评估；本文：评估；n. 评估，评价（a performance appraisal） | 5 |
-| calls for | 本文：需要；本文：需要；phr. (call for) 需要，要求（call for patience/skill） | 5 |
-| execution | 本文：执行；本文：执行；n. 实施，执行；处决（the execution of a plan） | 5 |
-| Detractors | 本文：批评者；本文：批评者；n. (detractor) 贬低者，批评者（her detractors） | 6 |
-| disparity | 本文：差异；本文：差异；n. 差距，悬殊（income disparity） | 6 |
-| mirage | 本文：假象；本文：假象；n. 海市蜃楼；幻象，假象（a statistical mirage） | 6 |
-| partially | 本文：部分；本文：部分；adv. 部分地（partially successful） | 6 |
-| tangible | 本文：切实存在的；本文：切实存在的；adj. 实际的，确实存在的（tangible results/benefits） | 6 |
-| garnered | 本文：赢得了；本文：赢得了；v. (garner) 获得，赢得（garner support/praise） | 6 |
-| In fairness | 本文：平心而论；本文：平心而论；phr. 平心而论，说句公道话（in fairness to sb） | 7 |
-| empirically | 本文：用实证的方法；本文：用实证的方法；adv. 以实证方式，凭经验（empirically tested） | 7 |
-| staking | 本文：赌；本文：赌；v. (stake) 以……作赌注（stake one's reputation on sth） | 7 |
-| liberty | 本文：自由；本文：自由；n. 自由（personal liberty） | 7 |
+| accomplice | 本文：同伙；n. 同伙，共犯（an accomplice to the crime） | 1 |
+| raided | 本文：抢劫了；v. (raid) 突袭，抢劫（raid a bank；police raided the house） | 1 |
+| in broad daylight | 本文：光天化日之下；n. 白天，日光（in broad daylight） | 1 |
+| disguise | 本文：乔装；n. 伪装，乔装（in disguise） | 1 |
+| camouflage | 本文：伪装；n. 伪装，掩饰（use branches as camouflage） | 1 |
+| rubbed on | 本文：涂抹；v. (rub) 擦，涂抹（rub cream on one's skin） | 1 |
+| earnest | 本文：真心实意的；adj. 认真的，真诚的（an earnest young man；in earnest） | 1 |
+| conviction | 本文：信念；n. 坚定的信念；定罪（a firm conviction；a previous conviction） | 1 |
+| render | 本文：使；v. 使变成，使成为（render sb speechless；render a building unsafe） | 1 |
+| invisible | 本文：隐形；adj. 看不见的，隐形的（invisible to the naked eye；invisible ink） | 1 |
+| rationale | 本文：逻辑；n. 理由，基本原理（the rationale behind a decision） | 2 |
+| kernel | 本文：内核；n. 核心，要点；果仁（a kernel of truth） | 2 |
+| time-honoured | 本文：由来已久的；adj. 由来已久的（a time-honoured tradition） | 2 |
+| ink | 本文：墨水；n. 墨水，油墨（write in ink） | 2 |
+| inventive | 本文：富有创意的；adj. 富于创造力的（an inventive solution） | 2 |
+| leap | 本文：跳跃；n. 跳跃；飞跃（a leap of faith/imagination） | 2 |
+| self-portrait | 本文：自拍照；n. 自画像，自拍照（paint a self-portrait） | 2 |
+| devoid of | 本文：完全没有；adj. 完全没有的（devoid of meaning/emotion） | 2 |
+| conclusive | 本文：确凿的；adj. 确凿的，决定性的（conclusive proof） | 2 |
+| begged to differ | 本文：不敢苟同；phr. (beg to differ) 恕难苟同（I beg to differ） | 3 |
+| viewers | 本文：观众；n. (viewer) 观众（television viewers） | 3 |
+| damning | 本文：足以定罪的；adj. 证明有罪的，确凿的（damning evidence） | 3 |
+| Confronted with | 本文：面对；v. (confront) 使面对，对质（be confronted with the evidence） | 3 |
+| sheer | 本文：完全；adj. 完全的，十足的（sheer luck/madness） | 3 |
+| disbelief | 本文：不相信；n. 怀疑，不相信（stare in disbelief） | 3 |
+| pondered | 本文：仔细思考了；v. (ponder) 思索，考虑（ponder a question） | 4 |
+| disquieting | 本文：令人不安的；adj. 令人不安的（a disquieting thought） | 4 |
+| proposition | 本文：观点；n. 命题，主张；提议（a doubtful proposition；a business proposition） | 4 |
+| incompetence | 本文：无能；n. 无能，不胜任（gross incompetence） | 4 |
+| cloak | 本文：掩藏住；v./n. 掩盖；斗篷（cloaked in secrecy） | 4 |
+| robbing | 本文：剥夺；v. (rob of) 剥夺（rob sb of sleep/a chance） | 4 |
+| discernment | 本文：识别能力；n. 辨别力，眼力（show discernment） | 4 |
+| deficiencies | 本文：不足；n. (deficiency) 缺陷，不足（vitamin deficiency；deficiencies in the system） | 4 |
+| quizzed | 本文：测试了；v. (quiz) 测验，盘问（quiz sb about sth） | 5 |
+| undergraduates | 本文：本科生；n. (undergraduate) 本科生（first-year undergraduates） | 5 |
+| logical | 本文：逻辑；adj. 逻辑的，合乎逻辑的（logical reasoning） | 5 |
+| scorers | 本文：答题者；n. (scorer) 得分者（top scorers） | 5 |
+| generously | 本文：大方地；adv. 慷慨地，大方地（give generously） | 5 |
+| high achievers | 本文：成绩优异者；n. (achiever) 有成就者，成绩优异者（high achievers） | 5 |
+| undue | 本文：过分的；adj. 过分的，不适当的（undue pressure/influence） | 5 |
+| modesty | 本文：谦虚；n. 谦虚（false modesty） | 5 |
+| unskilled | 本文：能力不足的；adj. 不熟练的，无技能的（unskilled workers） | 5 |
+| dual | 本文：双重；adj. 双重的（dual nationality/purpose） | 5 |
+| appraisal | 本文：评估；n. 评估，评价（a performance appraisal） | 5 |
+| calls for | 本文：需要；phr. (call for) 需要，要求（call for patience/skill） | 5 |
+| execution | 本文：执行；n. 实施，执行；处决（the execution of a plan） | 5 |
+| Detractors | 本文：批评者；n. (detractor) 贬低者，批评者（her detractors） | 6 |
+| disparity | 本文：差异；n. 差距，悬殊（income disparity） | 6 |
+| mirage | 本文：假象；n. 海市蜃楼；幻象，假象（a statistical mirage） | 6 |
+| partially | 本文：部分；adv. 部分地（partially successful） | 6 |
+| tangible | 本文：切实存在的；adj. 实际的，确实存在的（tangible results/benefits） | 6 |
+| garnered | 本文：赢得了；v. (garner) 获得，赢得（garner support/praise） | 6 |
+| In fairness | 本文：平心而论；phr. 平心而论，说句公道话（in fairness to sb） | 7 |
+| empirically | 本文：用实证的方法；adv. 以实证方式，凭经验（empirically tested） | 7 |
+| staking | 本文：赌；v. (stake) 以……作赌注（stake one's reputation on sth） | 7 |
+| liberty | 本文：自由；n. 自由（personal liberty） | 7 |
 
 ## 史实与来源
 - 【T1】1995年1月6日，麦克阿瑟·惠勒与同伙克利夫顿·厄尔·约翰逊在匹兹堡地区白天持枪、不加伪装抢劫两家银行；他们脸上抹了柠檬汁，相信这能让监控拍不到自己（柠檬汁可作隐形墨水）。同伙姓名正文不写。S1
