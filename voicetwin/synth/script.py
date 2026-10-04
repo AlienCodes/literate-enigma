@@ -15,6 +15,7 @@ import math
 import re
 import unicodedata
 from dataclasses import dataclass, field
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
 
@@ -307,91 +308,163 @@ def _hard_units(text: str) -> List[str]:
 
 
 def _char_split(text: str, max_units: int) -> List[str]:
-    """一个字一个字数，到上限就切（硬切的最后一道保险：保证每段都不超过上限）。"""
+    """一个字一个字数，到上限就切（硬切的最后一道保险：保证每段都不超过上限）。原样切开，空格留在前一段末尾。"""
     out, cur = [], ""
     for ch in text:
         if cur.strip() and syllable_count(cur + ch) > max_units:
-            out.append(cur.strip())
+            out.append(cur)
             cur = ""
         cur += ch
-    if cur.strip():
-        out.append(cur.strip())
+    if cur.strip() or not out:
+        out.append(cur)
+    else:
+        out[-1] += cur
     return out
+
+
+def _is_latin(unit: str) -> bool:
+    return bool(re.match(r"[A-Za-z0-9]", unit))
+
+
+#: 硬切时每个单位（词、字、英文单词）的音节数：同样的词反复出现，记下来不用每次重算
+_unit_syllables = lru_cache(maxsize=8192)(syllable_count)
+
+
+def _cut_point(cur: List[str], nxt: str, limit: int) -> int:
+    """cur 装满了、下一个单位是 nxt：挑切开的地方，返回 j（cur[:j] 成为前一段；空格留在前一段末尾，原样切开）。
+
+    1. 不挨着英文单词的空格（用空格代替逗号的讲稿），前面已经有一半长：在最后一个这样的空格处切；
+    2. 不然就在 nxt 前面切，可是不在两个英文单词（数字）中间切（以前会切成「which we，」「know……」，英文短语中间停一下）：
+       往前找最后一个不在英文中间、前面也有一半长的地方；
+    3. 都找不到：在 nxt 前面切。"""
+    seq = cur + [nxt]
+
+    def inside_en(j: int) -> bool:  # 切在 seq[j] 前面，是不是在两个英文单词（数字）中间
+        a = next((x for x in reversed(seq[:j]) if not x.isspace()), "")
+        b = next((x for x in seq[j:] if not x.isspace()), "")
+        return _is_latin(a[-1:]) and _is_latin(b[:1])
+
+    before = [0]  # before[j]：cur[:j] 有多少音节
+    for x in cur:
+        before.append(before[-1] + _unit_syllables(x))
+    for j in range(len(cur) - 1, 0, -1):
+        if (cur[j].isspace() and before[j] >= limit / 2 and not _is_latin(cur[j - 1][-1:])
+                and not _is_latin(seq[j + 1][:1])):
+            return j + 1
+    if not inside_en(len(cur)):
+        return len(cur)
+    for j in range(len(cur) - 1, 0, -1):
+        if not cur[j].isspace() and before[j] >= limit / 2 and not inside_en(j):
+            return j
+    return len(cur)
+
+
+def _fill_pieces(units: List[str], limit: int, max_units: int) -> List[str]:
+    """把单位一个一个装进段里，到 limit 就切；剩下的全部装得进一段（不超过 max_units）时不再切，
+    免得最后剩下「错误」两个字（以前剩下的这一点会被 chunk_sentence 并回前一段，补的逗号就落在一段中间）。"""
+    out: List[str] = []
+    cur: List[str] = []
+    cur_n = 0
+    rest = sum(_unit_syllables(u) for u in units)  # 从这一个起、后面还有多少音节
+    for u in units:
+        n = _unit_syllables(u)
+        if cur and cur_n + n > limit and cur_n + rest > max_units:
+            at = _cut_point(cur, u, limit)
+            out.append("".join(cur[:at]))
+            cur = cur[at:]
+            cur_n = sum(_unit_syllables(x) for x in cur)
+            if cur and cur_n + n > limit and cur_n + rest > max_units:  # 切开处后面剩下的加上这一个还是太长：剩下的也单独成一段
+                out.append("".join(cur))
+                cur, cur_n = [], 0
+        rest -= n
+        if not cur and u.isspace() and out:
+            out[-1] += u  # 段开头的空格留在前一段末尾
+        else:
+            cur.append(u)
+            cur_n += n
+    if cur:
+        out.append("".join(cur))
+    # 保险：英文单词和数字连着写、拆成字母以后音节的算法不一样……个别段还是超过上限时，这一段按字切（以前的办法）
+    return [p for o in out if o for p in (_char_split(o, max_units) if syllable_count(o) > max_units else [o])]
+
+
+def _hard_pieces(text: str, max_units: int) -> List[str]:
+    """硬切成几段，每段都不超过上限；原样切开（"".join(结果) == text，空格留在前一段末尾），不补逗号。
+
+    逗号由 chunk_sentence 在真的切开的地方补（_hard_split 是补好逗号的版本）：chunk_sentence 会把装得下的几段并成一段，
+    以前每段先补好「，」，并回去以后逗号就落在一段中间（「翻译成一个，形容词。」），合成时在那里停一下、字幕里也看得到。"""
+    if count_cjk(text) == 0:
+        out, cur = [], ""
+        for w in re.findall(r"\S+\s*|\s+", text):
+            if cur.strip() and syllable_count(cur + w) > max_units:
+                out.append(cur)
+                cur = ""
+            cur += w
+        if cur:
+            out.append(cur)
+        # 一个「单词」本身就超过上限（很长的一串数字、网址）：只好按字切
+        return [p for o in out for p in (_char_split(o, max_units) if syllable_count(o) > max_units else [o])]
+    # 中文分句切成长短差不多的几段（以前每段塞满 50 个字，最后剩下「东西。」两个字单独合成）
+    total = syllable_count(text)
+    k = max(1, math.ceil(total / max(1, max_units)))
+    hard = _hard_units(text)
+    best: Optional[List[str]] = None
+    for kk in range(k, k + 4):
+        limit = max(1, math.ceil(total / kk))
+        units: List[str] = []
+        for u in hard:
+            # 一个单位本身就太长（很长的英文单词、jieba 认成一个词的长串）：只好按字切
+            units.extend(list(u) if _unit_syllables(u) > limit else [u])
+        out = _fill_pieces(units, limit, max_units)
+        if len(out) <= kk:  # 按计划切成了 kk 段
+            return out
+        # 词的边界凑不出 kk 段（比如 49 + 49 + 剩下 2 个字）：多切一段再试，段数最少的留着
+        if best is None or len(out) < len(best):
+            best = out
+    return best or [text]
+
+
+def _add_cut_comma(text: str, piece: str) -> str:
+    """硬切开的地方补一个逗号（不补句号：以前补「。」，一个词被切成两半「特。」「别注意」，语调也落下来）。
+    piece 是切开处前面那一截：有汉字补「，」，全是英文补「,」。"""
+    text = text.rstrip()
+    if text and text[-1] not in CLAUSE_CHARS + SENT_END_CHARS + ".,":
+        text += "，" if count_cjk(piece) else ","
+    return text
 
 
 def _hard_split(text: str, max_units: int) -> List[str]:
     """一个分句仍然太长、中间又没有逗号（很少见，多半是从语音转文字工具里复制来的、用空格代替逗号的讲稿）：硬切。
 
-    英文按单词切；中文切成长短差不多的几段：优先在空格处切（空格前面已经有一半长），不然在词和词之间切（有 jieba 时），
-    英文单词、数字不切开。
-    除了最后一段，每段末尾补一个逗号：以前补的是句号（tts_normalize 补「。」），一个词被切成两半（「特。」「别注意」），
-    中间还停一下、语调也落下来。"""
-    if count_cjk(text) == 0:
-        words, out, cur = text.split(), [], []
-        for w in words:
-            if cur and syllable_count(" ".join(cur + [w])) > max_units:
-                out.append(" ".join(cur))
-                cur = []
-            cur.append(w)
-        if cur:
-            out.append(" ".join(cur))
-    else:
-        out, cur, cur_n = [], [], 0
-        # 切成长短差不多的几段（以前每段塞满 50 个字，最后剩下「东西。」两个字单独合成）
-        total = syllable_count(text)
-        limit = max(1, math.ceil(total / max(1, math.ceil(total / max(1, max_units)))))
-        units: List[str] = []
-        for u in _hard_units(text):
-            # 一个单位本身就太长（很长的英文单词、jieba 认成一个词的长串）：只好按字切
-            units.extend(list(u) if syllable_count(u) > limit else [u])
-        for u in units:
-            n = syllable_count(u)
-            if cur and cur_n + n > limit:
-                # 优先在空格处切：空格前面这一段已经有一半长
-                at, acc = None, 0
-                for j, x in enumerate(cur):
-                    acc += syllable_count(x)
-                    if j > 0 and x.isspace() and acc >= limit / 2:
-                        at = j
-                if at is not None:
-                    out.append("".join(cur[:at]).strip())
-                    cur = cur[at + 1:]
-                else:
-                    out.append("".join(cur).strip())
-                    cur = []
-                cur_n = sum(syllable_count(x) for x in cur)
-                if cur and cur_n + n > limit:  # 空格后面剩下的加上这一个还是太长：剩下的也单独成一段
-                    out.append("".join(cur).strip())
-                    cur, cur_n = [], 0
-            if cur or not u.isspace():
-                cur.append(u)
-                cur_n += n
-        if cur:
-            out.append("".join(cur).strip())
-        # 保险：英文单词和数字连着写、拆成字母以后音节的算法不一样……个别段还是超过上限时，这一段按字切（以前的办法）
-        out = [p for o in out if o for p in (_char_split(o, max_units) if syllable_count(o) > max_units else [o])]
-    for i in range(len(out) - 1):  # 不是最后一段：补逗号（不补句号）
-        if out[i] and out[i][-1] not in CLAUSE_CHARS + SENT_END_CHARS + ".,":
-            out[i] += "，" if count_cjk(out[i]) else ","
-    return out
+    英文按单词切；中文切成长短差不多的几段：优先在不挨着英文的空格处切（空格前面已经有一半长），不然在词和词之间切
+    （有 jieba 时），英文单词、数字不切开，也尽量不从两个英文单词中间切开；最后剩下的装得进一段就不再切。
+    除了最后一段，每段末尾补一个逗号。（chunk_sentence 用的是不补逗号的 _hard_pieces，只在真的切开的地方补逗号。）"""
+    out = [p.strip() for p in _hard_pieces(text, max_units)]
+    out = [p for p in out if p]
+    return [_add_cut_comma(p, p) if i < len(out) - 1 else p for i, p in enumerate(out)]
 
 
 def chunk_sentence(sentence: str, max_units: int) -> List[str]:
     if syllable_count(sentence) <= max_units:
         return [sentence]
     chunks: List[str] = []
-    cur = ""
+    cur, cut_tail = "", ""  # cut_tail：cur 的最后一截是硬切出来的、同一个分句后面还有（这里结束一段就要补逗号）
     for clause in _split_clauses(sentence):
-        pieces = [clause] if syllable_count(clause) <= max_units else _hard_split(clause, max_units)
-        for piece in pieces:
-            joiner = "" if (count_cjk(cur[-1:]) or count_cjk(piece[:1]) or not cur) else " "
+        pieces = [clause] if syllable_count(clause) <= max_units else [p for p in _hard_pieces(clause, max_units)
+                                                                       if p.strip()]
+        for k, piece in enumerate(pieces):
+            if cut_tail:  # 同一个分句硬切开的下一截：原样接上（没有在这里切，就不补逗号）
+                joiner = ""
+            else:
+                joiner = "" if (count_cjk(cur[-1:]) or count_cjk(piece[:1]) or not cur) else " "
             if cur and syllable_count(cur + joiner + piece) > max_units:
-                chunks.append(cur)
-                cur = piece
+                chunks.append(_add_cut_comma(cur, cut_tail) if cut_tail else cur)
+                cur = piece.lstrip()
             else:
                 cur = cur + joiner + piece if cur else piece
+            cut_tail = piece if k < len(pieces) - 1 else ""
     if cur:
-        chunks.append(cur)
+        chunks.append(cur.rstrip())
     return chunks
 
 

@@ -55,6 +55,7 @@ def test_srt_script(tmp_path):
 
 # ============================================================================ 讲稿文件、读音词典、校对表更宽容
 import csv  # noqa: E402
+import re  # noqa: E402
 
 import pytest
 
@@ -334,3 +335,87 @@ def test_hard_split_pieces_never_exceed_the_limit():
             assert all(syllable_count(p) <= mx for p in pieces), (s, mx, pieces)
             body = [p[:-1] if i < len(pieces) - 1 and p.endswith(("，", ",")) else p for i, p in enumerate(pieces)]
             assert "".join(body).replace(" ", "") == s.replace(" ", "")  # 一个字都不丢
+
+
+# ----------------------------------------------------------------------------- 第四轮找 bug（g5 复查：硬切补的逗号）
+def _mother_long_sentences():
+    """程序自带的母本：去掉标点（英文单词之间的空格留着），拼成 51–100 个音节、中间没有逗号的长句
+    （从语音转文字工具复制来的讲稿就是这样）。"""
+    from voicetwin.data.transcript_fix import builtin_mother
+
+    punct = re.compile(r"[，。！？、；：,.!?;:“”\"'‘’（）()《》〈〉【】\[\]…—\-]+")
+    out, cur = [], ""
+    for _, t in builtin_mother():
+        p = re.sub(r"(?<![A-Za-z0-9])\s+|\s+(?![A-Za-z0-9])", "", punct.sub(" ", t))
+        p = re.sub(r"\s+", " ", p).strip()
+        if not p:
+            continue
+        latin_join = cur[-1:].isascii() and cur[-1:].isalnum() and p[:1].isascii() and p[:1].isalnum()
+        cur = cur + (" " if latin_join else "") + p
+        n = syllable_count(cur)
+        if n > 100:
+            cur = ""
+        elif n > 50:
+            out.append(cur + "。")
+            cur = ""
+    return out
+
+
+def _inserted_commas(source, pieces):
+    """pieces 拼回去和 source 比（空格、全角空格不算）：只有不是最后一段的末尾可以多一个逗号（真的切开的地方）。
+    返回出问题的地方（多出来的逗号在一段中间、或者丢了字），没有问题返回空列表。"""
+    src, pos, bad = re.sub(r"\s", "", source), 0, []
+    for i, p in enumerate(pieces):
+        p = re.sub(r"\s", "", p)
+        if src.startswith(p, pos):
+            pos += len(p)
+        elif i < len(pieces) - 1 and p[-1:] in "，," and src.startswith(p[:-1], pos):
+            pos += len(p) - 1
+        else:
+            bad.append(p)
+            break
+    if not bad and pos != len(src):
+        bad.append(src[pos:])
+    return bad
+
+
+def test_hard_split_comma_only_where_the_sentence_is_really_cut():
+    """硬切补的「，」只能在真的切开的地方：以前硬切剩下「错误」两个字，chunk_sentence 又把它并回前一段，
+    补的逗号就落在一段中间（「……陷阱和常见，错误。」「翻译成一个，形容词。」），合成时在那里停一下、字幕里也看得到。
+    英文短语也不从中间切开（以前「which we，」「know……」）。"""
+    s = "今天我们要讲的内容是关于现在完成时和一般过去时的区别以及它们在实际考试当中经常出现的各种各样的陷阱和常见错误。"
+    segs = [x.display for x in parse_script(s)]
+    assert len(segs) == 2 and not _inserted_commas(s, segs), segs
+    assert all(syllable_count(d) >= 20 for d in segs)  # 长短差不多（54 个字切成 26 + 28 左右）
+    sents = _mother_long_sentences()
+    assert len(sents) > 100
+    problems, short, en_cut = [], [], []
+    for s in sents:
+        segs = [x.display for x in parse_script(s)]
+        assert all(syllable_count(d) <= 50 for d in segs), segs
+        if _inserted_commas(s, segs):
+            problems.append(" | ".join(segs))
+        if min(syllable_count(d) for d in segs) < 10:
+            short.append(" | ".join(segs))
+        if any(re.search(r"[A-Za-z0-9][，,]$", a) and re.match(r"[A-Za-z0-9]", b) for a, b in zip(segs, segs[1:])):
+            en_cut.append(" | ".join(segs))
+    assert not problems, (len(problems), problems[:3])
+    assert not short, (len(short), short[:3])
+    assert not en_cut, (len(en_cut), en_cut[:3])
+
+
+def test_chunk_sentence_never_puts_a_cut_comma_inside_a_chunk():
+    """随机拼的长句（有的分句有逗号、有的没有）× 3 种上限：每段都不超过上限；拼回去和原文一样，
+    只有真的切开的地方（不是最后一段的末尾）才多一个逗号。"""
+    import random
+
+    rng = random.Random(7)
+    words = ["我们", "一起", "来看", "这个", "句子", "先行词", "the", "beautiful", "interesting", "book", "特别", "注意",
+             " ", "3.14159", "2024年", "Python3", "错误", "形容词", "，"]
+    for _ in range(300):
+        s = "".join(rng.choice(words) for _ in range(rng.randint(10, 90))).strip(" ，") + "。"
+        s = re.sub(r"，[\s，]*", "，", s)
+        for mx in (20, 30, 50):
+            chunks = chunk_sentence(s, mx)
+            assert all(syllable_count(c) <= mx for c in chunks), (s, mx, chunks)
+            assert not _inserted_commas(s, chunks), (s, mx, chunks)

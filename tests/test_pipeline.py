@@ -1114,3 +1114,68 @@ def test_one_character_chinese_lead_in_is_sent_to_the_engine_as_zh(prepared, tmp
     res = n.synthesize_segment(segs[0], force=True)
     assert res.wav.size and sent
     assert all(p["text_lang"] == "zh" and chinese in p["text"] and p["text"] == segs[0].text for p in sent)
+
+
+# ---------------------------------------------------------------------------- 第四轮找 bug（g5 复查：错字率以母本为主）
+def test_cer_follows_the_mother_table():
+    """母本优先（老师：自动检查错字的底层逻辑要以母本为主）：识别引擎常写错的写法（母本标准库的对照表
+    data/lexicon/corrections.txt：「艾子 => as」「电影从句 => 定语从句」）先按母本改再和讲稿比。
+    以前讲稿写 as、Whisper 写「艾子」就算 2 个错字，「完美」档把读对的句子重做 20 次还标成「可能有读错的字」。
+    讲稿是标准：讲稿里没有母本的写法、或者识别出来多了一个，照样算错。"""
+    from voicetwin.eval.metrics import cer_details
+
+    assert cer_details("这里的as是介词。", "这里的艾子是介词")[1] == 0
+    assert cer_details("这里的AS是介词。", "这里的艾子是借词")[1] == 0  # 大小写、借词 → 介词（没有 pypinyin 时也不算错）
+    assert cer_details("as所引导的定语从句。", "艾子所引导的电影从句")[1] == 0
+    assert cer_details("然后用关系副词 when 引导。", "然后用关系副词问引导")[1] == 0  # 汉字旁边的空格不算
+    assert cer_details("这个词是先行词。", "这个词是现行词")[1] == 0
+    # 讲稿是标准：讲稿里没有 as（has 里的 as 不算）→ 不改，照样算错；多出来的「艾子」照样算错
+    assert cer_details("这里的has是动词。", "这里的艾子是动词")[1] > 0
+    assert cer_details("这里的as是介词。", "这里的艾子艾子是介词")[1] == 2
+    assert cer_details("我们今天讲十个函数", "我们今天讲个函数")[1] == 1  # 和母本无关的漏字照样算
+    from voicetwin.eval.metrics import mother_fix_hyp
+
+    assert mother_fix_hyp("凭借词汇量。", "凭借词汇量") == "凭借词汇量"  # 没有要改的：原样返回
+    assert mother_fix_hyp("这里的as是介词。", "这里的艾子是介词", table={}) == "这里的艾子是介词"
+
+
+class _AiziWhisper:
+    """真的识别校验（CERChecker.check → cer_details），只把 Whisper 换成：讲稿里的 as 写成「艾子」
+    （老师素材里 Whisper 常这样写，母本标准库的对照表里有「艾子 => as」）。"""
+
+    def __init__(self, owner):
+        self.owner = owner
+
+    def transcribe(self, wav, language=None):
+        import re as _re
+
+        heard = _re.sub(r"(?<![A-Za-z])as(?![A-Za-z])", "艾子", self.owner.last_text).rstrip("。")
+        assert heard != self.owner.last_text.rstrip("。")
+        return types.SimpleNamespace(text=heard)
+
+
+def test_perfect_tier_does_not_redo_as_read_correctly_but_recognized_as_aizi(prepared, tmp_path, monkeypatch):
+    """「完美」档：讲稿写 as、读对了，识别校验写成「艾子」——以前算 2 个错字，重做到试满还标「可能有读错的字」。"""
+    from voicetwin.eval import metrics
+
+    class Checker(metrics.CERChecker):
+        def check(self, wav, sr, text, lang):
+            self.last_text = text
+            return super().check(wav, sr, text, lang)
+
+        def wants_paraformer(self, lang, text=""):
+            return False
+
+        def _load(self):
+            self._model = _AiziWhisper(self)
+            return True
+
+    cfg, project, _ = prepared
+    _use_judge(monkeypatch, FakeJudge([99.5]))
+    monkeypatch.setattr("voicetwin.eval.metrics.Scorer.in_normal_range", lambda self, s, lang, speed=1.0: True)
+    monkeypatch.setattr(eng, "CERChecker", Checker)
+    res = wf.run_narrate(cfg, project.voice, _uniq("这里的as是一个介词我们要记住它的用法"), out=str(tmp_path / "a.wav"),
+                         quality="perfect", variants=False)
+    seg = res.segments[0]
+    assert seg["cer"] == 0.0 and seg["met"] is True and not seg["flagged"], seg
+    assert "读错" not in (seg.get("hint") or "") and seg["tries"] < 8
