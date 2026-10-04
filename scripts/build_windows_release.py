@@ -6,7 +6,7 @@
 压缩包内容：程序代码、Windows 安装脚本、README、docs/，以及由《快速上手.md》转换来的
 《使用教程（先看我）.html》——双击即可在浏览器里看图文版快速上手（截图已内嵌）。
 另外把快速上手的 PDF 复制到 dist/ 作为单独的 Release 附件（详细的长手册已经不再发布）：
-    docs/快速上手.pdf              → VoiceTwin-QuickStart-v<版本>.pdf（几页纸，先看这个）
+    docs/快速上手.pdf              → VoiceTwin-QuickStart-v<版本>.pdf（一页纸，先看这个）
 """
 
 from __future__ import annotations
@@ -247,7 +247,7 @@ def release_notes(version: str, zip_name: str) -> str:
 
 | 文件 | 是什么 |
 |---|---|
-| **`{quick_asset_name(version)}`** | **快速上手（几页纸，先看这个）** |
+| **`{quick_asset_name(version)}`** | **快速上手（一页纸，先看这个）** |
 | **`{zip_name}`** | 程序本体 |
 
 不需要下载 Source code。

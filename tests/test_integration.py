@@ -46,7 +46,7 @@ def test_version_is_shown_in_page_header():
     notes = bwr.release_notes("18.5", "VoiceTwin-Windows-v18.5.zip")
     assert "「声音分身 VoiceTwin v18.5 正在启动」就对了" in notes and "标题显示 v18.5" not in notes
     quick = (root / "快速上手.md").read_text(encoding="utf-8")
-    assert "网页标题里显示新版本号" not in quick and "网页标题永远显示 v18" in quick
+    assert "网页标题里显示新版本号" not in quick  # 一页纸的快速上手不提标题（老师 10-04：越简单越好）
 
 
 def test_quality_names_are_one_source():
