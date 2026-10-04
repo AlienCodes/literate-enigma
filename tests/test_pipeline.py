@@ -274,9 +274,10 @@ def test_perfect_writes_two_versions_with_silent_pauses(prepared, tmp_path, monk
     for v in res.variants:
         assert Path(v["path"]).exists() and isinstance(v["score"], float) and isinstance(v["recommended"], bool)
         _gaps_are_zero(v["path"], res.segments)
-    assert Path(res.variants[0]["path"]).name == "课_未去杂音.wav"
-    assert Path(res.variants[1]["path"]).name == "课_去杂音.wav"
-    assert res.audio_path.name == "课.wav"
+    # 文件名最后是实际用的模型名（测试引擎写「dummy」；老师 10-03 的规定，见 test_assembly_identical.py）
+    assert Path(res.variants[0]["path"]).name == "课_未去杂音_dummy.wav"
+    assert Path(res.variants[1]["path"]).name == "课_去杂音_dummy.wav"
+    assert res.audio_path.name == "课_dummy.wav"
     best = max(res.variants, key=lambda v: (v["score"], v["name"] == "未去杂音"))
     assert [v["name"] for v in res.variants if v["recommended"]] == [best["name"]]
     assert res.audio_path.read_bytes() == Path(best["path"]).read_bytes()
@@ -583,10 +584,10 @@ def test_speed_slider_mapping():
 def test_preview_speed(prepared):
     cfg, project, _ = prepared
     res = wf.preview_speed(cfg, project.voice, "试听语速用这一句。后面这句不会读到这里来的。", value=-10)
-    assert res.audio_path.exists() and res.audio_path.name == "试听语速_快10%.wav"
+    assert res.audio_path.exists() and res.audio_path.name == "试听语速_快百分之10_dummy.wav"  # 文件名里不放「%」
     assert [s["text"] for s in res.segments] == ["试听语速用这一句。"]
     res2 = wf.preview_speed(cfg, project.voice, "", value=0)
-    assert res2.audio_path.name == "试听语速_原速.wav" and res2.segments[0]["text"] == wf.DEFAULT_SAMPLE_ZH
+    assert res2.audio_path.name == "试听语速_原速_dummy.wav" and res2.segments[0]["text"] == wf.DEFAULT_SAMPLE_ZH
 
 
 def _fake_voice(cfg, name, trained=False, clips=True, models_backend="gptsovits"):

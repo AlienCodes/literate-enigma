@@ -299,6 +299,13 @@ class SearchCand:
     model: str = ""
     embs: Dict[str, np.ndarray] = field(default_factory=dict)
     speech_sec: Optional[float] = None  # 人声几秒（没舍入；和声纹一起存，重新打分时短句子的标准不变）
+    #: 打分用的声音：最后放进音频里的那一段（去首尾）两边补 0.3 秒数字静音（Narrator._analysis）；wav 还是引擎原样的（存下来用）
+    awav: Optional[np.ndarray] = field(default=None, repr=False)
+    empty: bool = False                 # 去首尾以后是空的（整段只有底噪）：不能拿来用
+
+    @property
+    def scored_wav(self) -> np.ndarray:
+        return self.awav if self.awav is not None else self.wav
 
     @property
     def round(self) -> int:
@@ -475,7 +482,7 @@ def store_candidates(folder: Path, cands: Sequence[SearchCand], k: int = 6, judg
                           "row": int(c.row), "req_no": int(c.req_no), "req_n": int(c.req_n), "speed": float(c.speed),
                           "mode": c.mode, "arm": c.arm.to_dict(), "score": c.score.to_dict(), "model": c.model,
                           "refined": bool(c.refined), "judge_sig": judge_sig, "embs": sorted(c.embs or {}),
-                          "speech_sec": c.speech_sec})
+                          "speech_sec": c.speech_sec, "f0_med": _f0_of(c), "empty": bool(c.empty)})
         if embs:
             np.savez(tmp / STORE_EMB, **embs)
         (tmp / STORE_FILE).write_text(json.dumps({"version": STORE_VERSION, "items": items, **(extra or {})},
@@ -488,6 +495,44 @@ def store_candidates(folder: Path, cands: Sequence[SearchCand], k: int = 6, judg
         log.debug(f"留下的版本存不了：{exc}")
         shutil.rmtree(tmp, ignore_errors=True)
         return 0
+
+
+def _f0_of(c: SearchCand) -> Optional[float]:
+    """这个版本（最后放进音频的那一段）的音高中位数（Hz）：整篇再挑一遍时比前后两句的音调变化用。
+    和量你本人录音的 f0_med_hz 是同一个算法；量不出来是 None（这一项不比）。"""
+    try:
+        from voicetwin.style.twin_profile import f0_median_hz
+
+        val = f0_median_hz(c.scored_wav, c.sr)
+    except Exception:  # noqa: BLE001
+        return None
+    return round(float(val), 3) if val else None
+
+
+def store_items(folder: Path) -> Tuple[List[Dict[str, Any]], Dict[str, Dict[str, np.ndarray]]]:
+    """只读存下来的版本的记录和声纹（不读声音，整篇再挑一遍时每句都要读、要快）：(items, {文件名: {模型: 声纹}})。"""
+    folder = Path(folder)
+    try:
+        data = json.loads((folder / STORE_FILE).read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return [], {}
+    if not isinstance(data, dict) or data.get("version") != STORE_VERSION:
+        return [], {}
+    items = [it for it in (data.get("items") or []) if isinstance(it, dict) and it.get("file")]
+    embs: Dict[str, Dict[str, np.ndarray]] = {}
+    if (folder / STORE_EMB).exists():
+        try:
+            with np.load(folder / STORE_EMB) as z:
+                for k in z.files:
+                    key, _, member = k.partition("|")
+                    embs.setdefault(key, {})[member] = np.asarray(z[k], dtype=np.float32)
+        except Exception:  # noqa: BLE001
+            embs = {}
+    out = {}
+    for it in items:
+        own = embs.get(Path(str(it["file"])).stem) or {}  # c3.flac 的声纹存成 c3|模型名
+        out[it["file"]] = {m: v for m, v in own.items() if m in (it.get("embs") or [])}
+    return items, out
 
 
 def has_stored(folder: Path) -> bool:
@@ -695,15 +740,13 @@ class IdenticalSearch:
                        keep=self.keep_order(best, full, self.left))
 
     def _best_nonempty(self) -> Optional[SearchCand]:
-        """挑出来的那个去掉首尾以后不能是空的（整段都是底噪）；是空的就换下一个。"""
-        from voicetwin.synth.engine import trim_edges
-
+        """挑出来的那个去掉首尾以后不能是空的（整段都是底噪）；是空的就换下一个。去首尾和最后放进音频时一样（Narrator._trim）。"""
         left = [c for c in self.pool if c.score is not None]
         while left:
             best = self.pick(left)
             if best is None:
                 return None
-            if trim_edges(best.wav, best.sr).size > 0:
+            if self.n._trim(best.wav, best.sr).size > 0:
                 self.left = left
                 return best
             left = [c for c in left if c is not best]
@@ -959,7 +1002,9 @@ class IdenticalSearch:
             c = SearchCand(wav=wav, sr=int(sr), arm=job.arm, seed=int(seed), req_seed=job.seed, row=int(row),
                            req_no=job.no, req_n=job.n, speed=job.speed, mode=str(out.get("mode") or "single"),
                            model=self.model)
-            c.quick = self.scorer.quick(wav, sr, self.seg.text, self.lang, self.mult)
+            # 打分用最后真正放进音频的那一段（去首尾、两边补 0.3 秒静音），不是引擎原样的声音（设计方案 §1.9 第 1 条）
+            c.awav, c.empty = self.n._analysis_pair(wav, int(sr))
+            c.quick = self.scorer.quick(c.awav, sr, self.seg.text, self.lang, self.mult)
             got.append(c)
         if job.refine_of is not None:
             return got
@@ -1001,8 +1046,9 @@ class IdenticalSearch:
     def _full(self, c: SearchCand, count: bool = True) -> None:
         n = self.n
         prepared = getattr(c.quick, "prepared", None)
+        wav = c.scored_wav
         try:
-            c.score = self.scorer.full(c.wav, c.sr, self.seg.text, self.lang, self.mult, prepared=prepared,
+            c.score = self.scorer.full(wav, c.sr, self.seg.text, self.lang, self.mult, prepared=prepared,
                                        use_asr=n.use_asr)
         except Exception as exc:
             if not n.use_asr:
@@ -1011,7 +1057,7 @@ class IdenticalSearch:
             log.warning(f"⚠️ 识别校验出错了（{str(exc).splitlines()[0] if str(exc) else type(exc).__name__}），"
                         "后面只按声纹、语速和停顿挑选")
             n.use_asr = False
-            c.score = self.scorer.full(c.wav, c.sr, self.seg.text, self.lang, self.mult, prepared=prepared,
+            c.score = self.scorer.full(wav, c.sr, self.seg.text, self.lang, self.mult, prepared=prepared,
                                        use_asr=False)
         c.score.arm = c.arm.label(self.plan.refs)
         c.score.model = c.model
@@ -1024,10 +1070,11 @@ class IdenticalSearch:
 
     # ------------------------------------------------------------------ 进度
     def _frac(self) -> float:
+        """这一句在整篇进度里走到哪了：按每句最多试几个算（设计方案 §2 P6：进度的分母是 max_candidates）。"""
         lo, hi = self.n._gen_range
         i, total_n = self.n._pos
         k = len(self.cands)
-        return lo + (hi - lo) * (i + min(0.95, k / max(self.min_c, 1))) / max(total_n, 1)
+        return lo + (hi - lo) * (i + min(0.95, k / max(self.max_c, 1))) / max(total_n, 1)
 
     def _note(self) -> None:
         i, total_n = self.n._pos
@@ -1114,8 +1161,12 @@ class IdenticalSearch:
         if not getattr(self, "seg", None) or self.seg is not seg:
             self._setup(seg, plan)
         sig_now = self.n._judge_sig()
+        folder = store_dir(self.n.project.cache_dir, plan.pool_key)
+        # 当时打分用的声音和现在一样（同样的去首尾设置）才沿用存下来的声纹；不一样（这一版以前存的、你本人的收音长度变了）
+        # 就按现在的去首尾重新算
+        same_audio = store_info(folder).get("scored_on") == self.n._scored_on()
         out: List[SearchCand] = []
-        for it in load_candidates(store_dir(self.n.project.cache_dir, plan.pool_key)):
+        for it in load_candidates(folder):
             try:
                 arm = Arm(**{k: v for k, v in (it.get("arm") or {}).items() if k in Arm.__dataclass_fields__})
             except TypeError:
@@ -1125,9 +1176,11 @@ class IdenticalSearch:
                            row=int(it.get("row", 0)), req_no=int(it.get("req_no", -1)), req_n=int(it.get("req_n", 1)),
                            speed=float(it.get("speed", plan.speed)), mode=str(it.get("mode") or "single"), stored=True,
                            refined=bool(it.get("refined")), model=str(it.get("model") or ""))
+            c.awav, c.empty = self.n._analysis_pair(wav, sr)
             prepare = getattr(self.scorer, "prepare", None)
-            prepared = prepare(wav, sr) if callable(prepare) else None
-            if isinstance(prepared, dict) and it.get("judge_sig") == sig_now and it.get("emb") and "speech_sec" in it:
+            prepared = prepare(c.awav, sr) if callable(prepare) else None
+            if (isinstance(prepared, dict) and same_audio and it.get("judge_sig") == sig_now and it.get("emb")
+                    and "speech_sec" in it):
                 # 打分标准没变：声纹沿用存下来的（不再做人声检测），人声几秒也沿用当时量的（短句子的标准按它定）；
                 # 没记人声几秒的（这一版以前存的）重新做一遍人声检测
                 prepared["embs"].update(it["emb"])
@@ -1136,7 +1189,7 @@ class IdenticalSearch:
             cer = None
             if s.get("cer") is not None:
                 cer = {"cer": s.get("cer"), "hyp": s.get("hyp"), "errors": s.get("errors"), "engine": s.get("checker")}
-            c.score = self.scorer.full(wav, sr, seg.text, self.lang, self.mult, prepared=prepared, use_asr=False,
+            c.score = self.scorer.full(c.awav, sr, seg.text, self.lang, self.mult, prepared=prepared, use_asr=False,
                                        cer=cer)
             c.score.arm = arm.label(plan.refs)
             c.score.model = c.model

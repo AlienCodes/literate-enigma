@@ -475,6 +475,18 @@ def acoustic_features(wav: np.ndarray, sr: int) -> Dict[str, Any]:
     return out
 
 
+def f0_median_hz(wav: np.ndarray, sr: int) -> Optional[float]:
+    """音高的中位数（Hz）：和 acoustic_features 里的 f0_med_hz 同一个算法（至少 10 帧有音高）；量不出来是 None。
+    「一模一样」整篇再挑一遍时，比前后两句的音调变化（和你本人前后两段录音的变化比）用它。"""
+    wav = np.nan_to_num(np.asarray(wav, dtype=np.float32))
+    if len(wav) < int(0.1 * sr):
+        return None
+    t, f0 = f0_frames(wav, sr)
+    ok = np.isfinite(f0) & (f0 > 0) & np.isfinite(t)
+    f0 = f0[ok].astype(np.float64)
+    return float(np.median(f0)) if f0.size >= 10 else None
+
+
 def clip_features(wav: np.ndarray, sr: int, text: str = "", f0_ref_hz: Optional[float] = None) -> Dict[str, Any]:
     """一段录音的特征：声音的（acoustic_features）+ 文字的（音节、英文比例、句型、语速）。
     f0_med_st：这一段的音高中位数比你整体的中位数（f0_ref_hz）高几个半音；没给 f0_ref_hz 时是 None。"""

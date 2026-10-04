@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import re
 import unicodedata
-from typing import List
+from typing import Any, List
 
 CJK_RE = re.compile(r"[㐀-䶿一-鿿豈-﫿]")
 EN_WORD_RE = re.compile(r"[A-Za-z]+(?:'[A-Za-z]+)?")
@@ -189,6 +189,21 @@ def clean_transcript(text: str) -> str:
 def safe_name(text: str, max_len: int = 40) -> str:
     base = re.sub(r"[^\w一-鿿-]+", "_", text).strip("_")[:max_len] or "item"
     return base
+
+
+#: 生成给老师的文件（音频、字幕、报告、下载的改好的文字、问题报告……）的名字只能是这样（老师 10-03 定的）：
+#: 汉字、英文字母、数字、下划线，最后才是扩展名前那一个点。程序内部的缓存文件不管
+TEACHER_FILE_RE = re.compile(r"^[一-鿿A-Za-z0-9_]+\.(wav|mp3|srt|json|txt)$")
+
+
+def file_stem(text: Any, max_len: int = 30, fallback: str = "讲课音频") -> str:
+    """生成给老师的文件名（不含扩展名）：只留汉字、英文字母、数字和下划线，别的（点、空格、括号、横杠、各种标点……）
+    一律换成「_」（「第1.2课」→「第1_2课」，「第3课 牛顿第二定律」→「第3课_牛顿第二定律」）；全角的字母数字先换成半角；
+    连着的几个只留一个「_」，开头结尾的去掉；太长截短；什么都不剩时用 fallback。"""
+    s = unicodedata.normalize("NFKC", str(text if text is not None else ""))
+    s = re.sub(r"[^一-鿿A-Za-z0-9_]+", "_", s)
+    s = re.sub(r"_+", "_", s).strip("_")[:max(1, int(max_len))].strip("_")
+    return s or fallback
 
 
 def short_hash(*parts: object, n: int = 10) -> str:

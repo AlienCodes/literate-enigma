@@ -14,6 +14,7 @@ class DummyBackend(WorkerBackend):
     name = "dummy"
     display_name = "测试引擎(dummy)"
     supports_speed = True
+    file_model_name = "dummy"           # 测试引擎生成的文件名最后是「_dummy」
 
     def worker_command(self) -> List[str]:
         return [sys.executable, str(WORKERS_DIR / "dummy_worker.py"), "--f0", str(self.bcfg.get("f0", 150)),

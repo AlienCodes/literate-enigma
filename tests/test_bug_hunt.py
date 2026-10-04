@@ -673,11 +673,13 @@ def test_mp3_does_not_delete_the_wav_and_names_do_not_clash(prepared, tmp_path):
 
     cfg, v, project = _copy_voice(prepared, tmp_path)
     a = A._output_path(project, "第3课", "wav", "x")
-    wf.run_narrate(cfg, v, "第一句话在这里。", out=str(a), quality="fast")
+    first = wf.run_narrate(cfg, v, "第一句话在这里。", out=str(a), quality="fast")
     b = A._output_path(project, "第3课", "mp3", "x")
     assert b.stem != a.stem
-    wf.run_narrate(cfg, v, "第一句话在这里。", out=str(a.with_suffix(".mp3")), quality="fast")
-    assert a.exists() and a.with_suffix(".mp3").exists()
+    second = wf.run_narrate(cfg, v, "第一句话在这里。", out=str(a.with_suffix(".mp3")), quality="fast")
+    # 文件名最后是实际用的模型名（测试引擎写 dummy）：同名的 WAV 和 MP3 都在，谁也没删掉谁
+    assert first.audio_path.name == a.stem + "_dummy.wav" and second.audio_path.name == a.stem + "_dummy.mp3"
+    assert first.audio_path.exists() and second.audio_path.exists()
 
 
 def test_failed_retrain_keeps_the_old_material_warning(tmp_path):

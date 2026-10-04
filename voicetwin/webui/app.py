@@ -226,6 +226,9 @@ TRAIN_MODE_INFO = ("「重新挑选最佳模型」也按这里选的方式比：
 #: 「重新挑选最佳模型」进度条上的「要多久」（没有实测，只说快慢；标准的分钟数标明是估计）
 SELECT_HINT = {"identical": "把第 4 轮以后存下的每个版本都试一遍，比较慢，可以先去做别的事",
                "standard": "大约 5~15 分钟（估计）"}
+#: 「保存的文件名」：老师的规定——生成的文件名只用汉字、英文字母、数字和下划线，最后自动加上实际用的模型名
+OUT_NAME_LABEL = ("保存的文件名（可以不填；只保留汉字、字母、数字，别的符号会换成「_」；"
+                  "最后会自动加上这次实际用的模型名，例如「第3课_10月05日09点30分_V4.wav」）")
 #: MP3 是有损压缩：句子之间的静音里会有极小的压缩杂讯（大约 -90 dB，听不见，但不是绝对的 0）——老师要绝对静音，如实写明
 FORMAT_CHOICES = [("WAV（音质最好，句子之间绝对静音；剪映/后期用）", "wav"),
                   ("MP3（文件小，方便发微信、上传；压缩会在停顿里留下听不见的极小杂讯，要绝对静音请选 WAV）", "mp3")]
@@ -1939,14 +1942,15 @@ def _gen_summary_md(res: Any, redo: Optional[Sequence[int]] = None) -> str:
     notes = [str(n) for n in (getattr(res, "notes", None) or [])
              if str(n).strip() and not str(n).startswith(("整篇像你本人", "需要注意的句子", "没有需要特别注意"))]
     if notes:
-        md.append("<small>" + "<br>".join(_md_text(n) for n in notes[:6]) + "</small>")
+        # 「一模一样」的小结多几行实测（停顿、音量差、每句几秒）：最多显示 10 行
+        md.append("<small>" + "<br>".join(_md_text(n) for n in notes[:10]) + "</small>")
     if mean is not None or sims:
         md.append(f"<small>{HONEST_SIM}{PCT_HELP if mean is not None else ''}</small>")
     return "\n\n".join(md)
 
 
 def _report_field(res: Any, key: str) -> Any:
-    """读这次生成报告（*.report.json）里的一个字段；读不到时返回 None。"""
+    """读这次生成报告（<名字>_<模型名>.json）里的一个字段；读不到时返回 None。"""
     path = getattr(res, "report_path", None)
     try:
         if path and Path(str(path)).exists():
@@ -1985,19 +1989,37 @@ def _variant_title(v: Dict[str, Any], i: int) -> str:
     return f"版本 {_variant_letter(v, i)}：{v.get('name') or ''}" + (f"（{score}）" if score else "")
 
 
+def _denoised_note(vs: Sequence[Dict[str, Any]]) -> str:
+    """两个版本差在哪：「一模一样」只给量得出底噪的句子去杂音（版本记录里有 denoised_sentences），写明是哪几句。"""
+    vb = next((v for v in vs if str(v.get("name") or "") == "去杂音"), None) or {}
+    ds = [int(x) for x in (vb.get("denoised_sentences") or []) if isinstance(x, (int, float))]
+    total = _num(vb.get("sentences"))
+    if not ds:
+        return "只是 B 去掉了轻微的杂音。"
+    if total is not None and len(ds) >= total:
+        return "只是 B 每一句都去掉了轻微的杂音。"
+    nums = "、".join(str(x) for x in ds[:20]) + ("……（完整的列表在报告里）" if len(ds) > 20 else "")
+    return f"区别只在：B 只给第 {nums} 句去掉了轻微的杂音（别的句子两个版本一模一样）。"
+
+
 def _variants_md(vs: Sequence[Dict[str, Any]]) -> str:
-    """「完美」「一模一样」质量的两个版本：分数、推荐哪个。"""
+    """「完美」「一模一样」质量的两个版本：分数、推荐哪个。两个版本完全一样时（每句都量不出底噪）只说一样，
+    不说哪个「更像」；分数几乎一样时也不说「更像你的原声」。"""
     if len(vs) < 2:
         return ""
-    lines = ["#### 🎧 这次做了两个版本，听一听，选你更喜欢的"]
-    for i, v in enumerate(vs):
-        star = "　⭐ 推荐：更像你的原声" if v.get("recommended") else ""
-        lines.append(f"{i + 1}. **{_md_text(_variant_title(v, i))}**{star}")
+    same = next((v for v in vs if v.get("same_as_raw")), None)
+    if same is not None:
+        why = str(same.get("same_reason") or "每句里都量不出底噪，不需要去杂音")
+        lines = ["#### 🎧 这次的两个版本完全一样"]
+        lines += [f"{i + 1}. **{_md_text(_variant_title(v, i))}**" for i, v in enumerate(vs)]
+        lines.append(f"\n两个版本完全一样（{_md_text(why)}），用哪个都一样。")
+        lines.append(f"\n<small>{HONEST_SIM}</small>")
+        return "\n".join(lines)
     rec_i = next((i for i, v in enumerate(vs) if v.get("recommended")), None)
+    gap, tie = "", False
     if rec_i is not None:
         rec = vs[rec_i]
         other = [v for j, v in enumerate(vs) if j != rec_i]
-        gap = ""
         pr, po = _pct_of(rec), _pct_of(other[0]) if other else None
         sr, so = _num(rec.get("score")), _num(other[0].get("score")) if other else None
         if pr is not None and po is not None and pr - po >= 0.05:
@@ -2010,9 +2032,17 @@ def _variants_md(vs: Sequence[Dict[str, Any]]) -> str:
             # 百分比一样时按综合得分推荐（声纹为主，再看语速、音高和你本人差多少）
             gap = f"（百分比差不多，综合得分高 {abs(sr - so):.3f}）" if pr is not None else f"（相似度高 {abs(sr - so):.3f}）"
         elif pr is not None or sr is not None:
-            gap = "（两个版本几乎一样像，听哪个顺耳就用哪个）"
-        lines.append(f"\n⭐ 推荐：版本 {_variant_letter(rec, rec_i)}，更像你的原声{gap}")
-    lines.append(f"\n<small>两个版本的文字、停顿和字幕完全一样，只是 B 去掉了轻微的杂音。{HONEST_SIM}</small>")
+            # 几乎一样像：不说「更像你的原声」；分数完全一样时推荐的是没处理过的 A（规定）
+            tie = True
+            rule = "，分数一样时按规定用没处理过的 A" if sr == so and str(rec.get("name") or "") == "未去杂音" else ""
+            gap = f"（两个版本几乎一样像{rule}，听哪个顺耳就用哪个）"
+    lines = ["#### 🎧 这次做了两个版本，听一听，选你更喜欢的"]
+    for i, v in enumerate(vs):
+        star = ("　⭐ 推荐" if tie else "　⭐ 推荐：更像你的原声") if v.get("recommended") else ""
+        lines.append(f"{i + 1}. **{_md_text(_variant_title(v, i))}**{star}")
+    if rec_i is not None:
+        lines.append(f"\n⭐ 推荐：版本 {_variant_letter(vs[rec_i], rec_i)}{'' if tie else '，更像你的原声'}{gap}")
+    lines.append(f"\n<small>两个版本的文字、停顿和字幕完全一样，{_denoised_note(vs)}{HONEST_SIM}</small>")
     return "\n".join(lines)
 
 
@@ -2060,13 +2090,18 @@ def _first_sentence(text: str, limit: int = 40) -> str:
 
 
 def _output_path(project: Any, name: str, fmt: str, fallback: str) -> Path:
-    from voicetwin.utils.textutil import safe_name
+    """这次生成的文件名（还没加模型名）：<名字>_<10月05日09点30分>.<格式>。名字只留汉字、英文字母、数字和下划线
+    （老师的规定：点、空格、括号、横杠等都换成「_」，例如「第1.2课」→「第1_2课」）。真正写的文件名最后还会加上
+    实际用的模型名（engine.narrate 写文件那一刻按每一句实际用的模型定）：第3课_10月05日09点30分_V4.wav、
+    …_未去杂音_V4.wav、字幕 …_V4.srt、报告 …_V4.json。"""
+    from voicetwin.utils.textutil import file_stem
 
-    stem = safe_name((name or "").strip() or fallback or "讲课音频", 30)
+    stem = file_stem((name or "").strip() or fallback or "讲课音频", 30)
     fmt = fmt if fmt in ("wav", "mp3") else "wav"
     out_dir = Path(project.outputs_dir)
     base = f"{stem}_{_time_suffix()}"
-    # 同一分钟里又生成一次（换了格式、重做几句）：名字后面加 _2、_3……，不覆盖、不删掉刚才那份（音频、字幕、报告都是）
+    # 同一分钟里又生成一次（换了格式、重做几句）：名字后面加 _2、_3……（加在模型名前面：…_2_V4.wav，模型名永远在最后），
+    # 不覆盖、不删掉刚才那份（音频、字幕、报告都是）
     name, k = base, 2
     try:
         while any(out_dir.glob(glob.escape(name) + ".*")) or any(out_dir.glob(glob.escape(name) + "_*.*")):
@@ -2221,7 +2256,7 @@ def _download_job(cfg: Config, progress: Optional[Callable[[float, str], None]] 
 
 
 def _latest_report(project: Any) -> Dict[str, Any]:
-    reports = sorted(Path(project.outputs_dir).glob("*.report.json"), key=lambda p: p.stat().st_mtime, reverse=True)
+    reports = wf.narration_reports(project.outputs_dir)  # 「<名字>_<模型名>.json」，以前的「*.report.json」也认
     for p in reports:
         try:
             data = json.loads(p.read_text(encoding="utf-8"))
@@ -4323,7 +4358,7 @@ class WebUI:
                                                        file_types=list(SCRIPT_TEXT_EXTS + SCRIPT_SUB_EXTS))
                             c["script_hint"] = gr.Markdown(elem_classes="vt-md")
                             with gr.Row():
-                                c["out_name"] = gr.Textbox(label="保存的文件名（可以不填）", placeholder="例如：第3课 牛顿第二定律",
+                                c["out_name"] = gr.Textbox(label=OUT_NAME_LABEL, placeholder="例如：第3课 牛顿第二定律",
                                                            scale=2)
                                 fmt_default = str(cfg.get_path("synth.output_format", "wav") or "wav")
                                 c["out_fmt"] = gr.Radio(FORMAT_CHOICES, value=fmt_default if fmt_default in ("wav", "mp3") else "wav",
