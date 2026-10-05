@@ -6,7 +6,7 @@ Picture a **nursery school** on Stanford's **campus** in the late 1960s and earl
 
 **Follow-ups** made the test **legendary**. A 1990 study in Developmental Psychology found that, as **adolescents**, longer waiters tended to **attain** higher scores on the SAT, a US college-entrance exam. A **trivial** **snack** became an **emblem** of **virtue**, and **restraint** at four was **glorified** as a **predictor** of **destiny**.
 
-Yet the **foundation** was **precarious**. Only **a few dozen** children entered the SAT analysis, **predominantly** the sons and daughters of Stanford **faculty** and **postgraduate** students. Such a **homogeneous**, **privileged** group could **scarcely** represent **ordinary** families, and **prosperous** homes may **foster** patience and academic success alike.
+Yet the **foundation** was **precarious**. Only **a few dozen** children entered the SAT analysis, **predominantly** the sons and daughters of Stanford **faculty** and **postgraduate** students. Such a **homogeneous**, **privileged** group could **scarcely** represent **ordinary** families, and **prosperous** homes may **foster** patience and academic success **alike**.
 
 A study published in Psychological Science in May 2018 ran a **conceptual** **replication**: the same idea, a new sample, **modified** methods. More than 900 **youngsters** from **diverse** backgrounds were **assessed** at four and a half and again at 15. The raw **link** was roughly half as strong as the original finding. **Adjusting for** family background and early **cognitive** ability shrank it by about two thirds, leaving most estimates **statistically** **insignificant**.
 
@@ -18,7 +18,7 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 
 **后续研究**(Follow-ups)让这项测验**名声大噪**(legendary)（被传为经典）。1990年《发展心理学》上的一项研究发现，到了**青少年**(adolescents)时期，等得更久的孩子往往在SAT中**取得**(attain)更高分数，（也就是）美国的高考（大学录取考试）。一份**微不足道的**(trivial)**零食**(snack)成了**美德**(virtue)的**象征**(emblem)，而四岁时的**克制**(restraint)被**美化**(glorified)为**命运**(destiny)的**预测指标**(predictor)。
 
-然而，这种**根据**(foundation)（该研究结论的根基）**并不牢靠**(precarious)（站不住脚）。只有**几十个**(a few dozen)孩子进入了SAT分析，**主要**(predominantly)是斯坦福**教师**(faculty)（全体教员）和**研究生**(postgraduate)的子女。如此**同质的**(homogeneous)、**优越的**(privileged)群体**几乎不**(scarcely)能代表**普通的**(ordinary)家庭，而且**富裕的**(prosperous)家庭可能同时**培养出**(foster)耐心与学业成就。
+然而，这种**根据**(foundation)（该研究结论的根基）**并不牢靠**(precarious)（站不住脚）。只有**几十个**(a few dozen)孩子进入了SAT分析，**主要**(predominantly)是斯坦福**教师**(faculty)（全体教员）和**研究生**(postgraduate)的子女。如此**同质的**(homogeneous)、**优越的**(privileged)群体**几乎不**(scarcely)能代表**普通的**(ordinary)家庭，而且**富裕的**(prosperous)家庭可能**既能培养**(foster)耐心也能促成学业成就（**二者兼顾**(alike)）。
 
 2018年5月发表于《心理科学》的一项研究做了一次**概念性的**(conceptual)（科研）**重复实验**(replication)：同样的思路，新的样本，**调整过的**(modified)方法。900多名来自**多种不同的**(diverse)背景的**儿童或青少年**(youngsters)在四岁半时接受**评估**(assessed)，15岁时再测一次。这个未经加工的**关联性**(link)，大约只有原来研究结果关联性强度的一半。（关联性：【面对棉花糖等得更久】与【SAT分数更高】之间有没有关系）**调整**(Adjusting for)家庭背景和早期**认知**(cognitive)能力（这些实验变量），缩小了关联性大约三分之二，使得大多数估计值在**统计上**(statistically)（完全）**微不足道**(insignificant)。（即缩小了【等得更久】与【SAT分数更高】之间的相关性：100% → 约 33%，下降了约 2/3）
 
@@ -63,7 +63,8 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 | scarcely | 本文：几乎不；adv. 几乎不，很难（can scarcely believe；scarcely…when 一……就） | 3 |
 | ordinary | 本文：普通的；adj. 普通的，平常的（ordinary people/life；out of the ordinary 不寻常） | 3 |
 | prosperous | 本文：富裕的；adj. 富裕的，繁荣的（a prosperous family/economy） | 3 |
-| foster | 本文：培养出；v. 培养，促进（foster talent/understanding）；收养；adj. 寄养的 | 3 |
+| foster | 本文：既能培养；v. 培养，促进（foster talent/understanding）；收养；adj. 寄养的 | 3 |
+| alike | 本文：二者兼顾；adv. 同样地，两者都（A and B alike） | 3 |
 | conceptual | 本文：概念性的；adj. 概念上的（a conceptual framework/replication） | 4 |
 | replication | 本文：重复实验；n. 复制，（研究）重复验证（replication of results/a study） | 4 |
 | modified | 本文：调整过的；v. (modify) 修改，调整（modify a plan/method）；adj. 改良的（genetically modified） | 4 |
