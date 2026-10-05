@@ -26,7 +26,7 @@ For a 1999 **paper**, Dunning and his student Justin Kruger **quizzed** Cornell 
 
 读到这个案子时，康奈尔大学心理学家戴维·邓宁**仔细思考了**(pondered)一个**令人不安的**(disquieting)**观点**(proposition)。也许，**无能**(incompetence)（这种东西）会**掩藏住**(cloak)它自己，**剥夺**(robbing)人们的**识别能力**(discernment)，去注意到他们自身的**不足**(deficiencies)。
 
-在1999年为了完成一篇**论文**(paper)，邓宁和他的学生贾斯汀·克鲁格**测试了**(quizzed)康奈尔的**本科生**(undergraduates)，关于（考察了）幽默、语法和**逻辑**(logical)推理的能力。垫底的四分之一**答题者**(scorers)，平均只处在（倒数）第12百分位，却**大方地**(generously)（高估自己）把自己估在第62百分位附近，而**成绩优异者**(achievers)却表现出**过分的**(undue)**谦虚**(modesty)。**能力不足的**(unskilled)人，两位作者认为，背负着**双重**(dual)负担，因为**评估**(appraisal)（自我评估）**需要**(calls for)相同的技能，与**执行**(execution)（所需）的一样。
+在1999年为了完成一篇**论文**(paper)，邓宁和他的学生贾斯汀·克鲁格**测试了**(quizzed)康奈尔的**本科生**(undergraduates)，（考察了）关于幽默、语法和**逻辑**(logical)推理的能力。垫底的四分之一**答题者**(scorers)，平均只处在（倒数）第12百分位，却**大方地**(generously)（高估自己）把自己估在第62百分位附近，而**成绩优异者**(achievers)却表现出**过分的**(undue)**谦虚**(modesty)。**能力不足的**(unskilled)人，两位作者认为，背负着**双重**(dual)负担，因为**评估**(appraisal)（自我评估）**需要**(calls for)相同的技能，与**执行**(execution)（所需）的一样。
 
 **批评者**(Detractors)查明部分邓宁-克鲁格**差异**(disparity)，源于均值回归，一种统计学的**假象**(mirage)，该论文（即前文1999年邓宁-克鲁格论文）也曾**部分**(partially)承认过。（trace A to B：追溯 A 的来源到 B、查明 A 源于 B）专为避开这一问题而设计的研究仍发现了一个较小但**切实存在的**(tangible)效应。2023年，两人**赢得了**(garnered)格文美尔心理学奖。
 

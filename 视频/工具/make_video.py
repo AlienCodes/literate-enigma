@@ -11,7 +11,7 @@ T=dict(BG_TOP=(14,36,30),BG_BOT=(20,48,40),FG_EN=(240,247,242),FG_ZH=(170,196,18
    PAL=[(251,191,36),(56,189,248),(244,114,182),(190,242,100),(196,181,253),(251,146,60),(94,234,212),(252,165,165)])
 for a,b in T.items(): setattr(R,a,b)
 
-P_CHUNK=0.6; P_COMMA=0.6; P_HOLD=0.7; P_LEAD=0.3; P_PARA_EXTRA=0.5; P_TITLE=1.2
+P_CHUNK=0.6; P_COMMA=0.6; P_HOLD=0.7; P_LEAD=0.3; P_PARA_EXTRA=0.5; P_TITLE=1.2; P_LIST=0.25  # 牛津逗号列举（A, B, and C）里的逗号：0.25 秒
 def say(t):
     w,_=k.create(re.sub(r'\*\*','',R.strip_gloss(t)),voice=V,speed=SPEED,lang='en-us'); return clean_tail(w)
 def sil(s): return np.zeros(int(round(s*SR)),np.float32)
@@ -40,15 +40,19 @@ def build(js,out):
         sent=' '.join(texts)
         bounds=[];pos=0
         for t in texts: bounds.append(pos); pos+=len(t)+1
-        pieces=[];p0=0
+        # 牛津逗号列举 A, B, and C / A, B, or C：列举内部的逗号只停 P_LIST
+        lst=set()
+        for ml in re.finditer(r"(?:[^,;:.!?]+, ){2,}(?:and|or) ",sent):
+            for mc in re.finditer(r',',ml.group(0)): lst.add(ml.start()+mc.start())
+        pieces=[];p0=0;gaps=[]
         for mm in re.finditer(r'[,;:](?=\s)',sent):
-            pieces.append((p0,mm.end())); p0=mm.end()+1
+            pieces.append((p0,mm.end())); p0=mm.end()+1; gaps.append(P_LIST if mm.start() in lst else P_COMMA)
         pieces.append((p0,len(sent)))
         clips=[];tmap=[];t=0.0
         for k2,(x0,x1) in enumerate(pieces):
             w=say(sent[x0:x1]); dur=len(w)/SR
             tmap.append((x0,x1,t,t+dur)); clips.append(w); t+=dur
-            if k2<len(pieces)-1: clips.append(sil(P_COMMA)); t+=P_COMMA
+            if k2<len(pieces)-1: clips.append(sil(gaps[k2])); t+=gaps[k2]
         def c2t(cpos):
             for x0,x1,t0,t1 in tmap:
                 if cpos<=x1: return t0+(t1-t0)*max(0,cpos-x0)/max(1,x1-x0)
