@@ -8,7 +8,7 @@ for r in re.findall(r'^\| (.+?) \| (.+?) \| (\d+) \|$',tbl_old,re.M): old_rows[r
 paras_en={};paras_zh={}
 for s in d['sentences']:
     en=' '.join(re.sub(r'\{\{.*?\}\}','',c['en']) for c in s['chunks'])
-    zh=''.join(c['zh'] for c in s['chunks'])
+    zh=''.join(re.sub(r'\{\{([^|{}]+)\|[^{}]+\}\}',r'\1',c['zh']).replace('\n','') for c in s['chunks'])  # 去掉格内换行、颜色说明标记
     notes=''.join(c['note'].replace('#Y','') for c in s['chunks'] if c.get('note'))
     paras_en.setdefault(s['para'],[]).append(en); paras_zh.setdefault(s['para'],[]).append(zh+notes)
 new_en='\n\n'.join(' '.join(v) for k,v in sorted(paras_en.items()))

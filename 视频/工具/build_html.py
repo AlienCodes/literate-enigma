@@ -82,17 +82,19 @@ def colors_for(texts):
             if w.lower() not in c: c[w.lower()]=PAL[i%8]; i+=1
     return c
 def en_html(s,c):
-    s=s.replace('{{','').replace('}}','')  # GLOSS 显示用注解
+    s=s.replace('{{=}}','').replace('{{','').replace('}}','')  # GLOSS 显示用注解；{{=}} 保持一行标记
     out=[]
     for part in re.split(r'(\*\*[^*]+\*\*)',s):
         if part.startswith('**'): w=part[2:-2]; out.append(f'<b style="color:{rgb(c.get(w.lower(),PAL[0]))}">{esc(w)}</b>')
         else: out.append(esc(part))
     return ''.join(out)
 def zh_html(s,c):
+    if '\n' in s: return '<br>'.join(zh_html(x,c) for x in s.split('\n'))  # 中文格内换行
     out=[]
-    for part in re.split(r'(\*\*[^*]+\*\*\([^)]*\))',s):
-        m=re.match(r'\*\*([^*]+)\*\*\(([^)]*)\)$',part)
+    for part in re.split(r'(\*\*[^*]+\*\*\([^)]*\)|\{\{[^|{}]+\|[^{}]+\}\})',s):
+        m=re.match(r'\*\*([^*]+)\*\*\(([^)]*)\)$',part); m2=re.match(r'\{\{([^|{}]+)\|([^{}]+)\}\}$',part)
         if m: out.append(f'<b style="color:{rgb(c.get(m.group(2).lower(),PAL[0]))}" title="{esc(m.group(2))}">{esc(m.group(1))}</b>')
+        elif m2: out.append(f'<span style="color:{rgb(c.get(m2.group(2).lower(),PAL[0]))}">{esc(m2.group(1))}</span>')  # 用重点词颜色的说明
         else: out.append(esc(part))
     return ''.join(out)
 def title_html(t,fx):

@@ -145,19 +145,25 @@ def frame_stack_fit(chunks,colors,header,progress,out,active=None,maxw=1760,maxh
 
 # ---------- interlinear (word-aligned) layout ----------
 def _segs_en(t,colors):
-    # {{…}} = 只显示不朗读的英文注解，颜色跟随前一个重点词
+    # {{…}} = 只显示不朗读的英文注解，颜色跟随前一个重点词；{{=}} = 这一格保持一行、不自动折行（不显示、不朗读）
     out=[]
     for p in re.split(r'(\*\*[^*]+\*\*|\{\{.*?\}\})',t):
         if p.startswith('**'): out.append((p[2:-2],colors.get(p[2:-2].lower())))
+        elif p=='{{=}}': continue
         elif p.startswith('{{'): out.append((p[2:-2],out[-1][1] if out else None))
         elif p: out.append((p,None))
     return out
 def strip_gloss(t): return re.sub(r'\{\{.*?\}\}','',t)
+# 中文标记：**词**(english) = 重点词；{{文字|english}} = 不是重点词、但用该重点词颜色显示的说明（如括号注释）；
+# 中文里的 "\n" = 同一格内换行（第二行起居中排在第一行正下方）。
+ZCOL=r'\{\{([^|{}]+)\|([^{}]+)\}\}'
+def strip_zh(t): return re.sub(ZCOL,r'\1',t).replace('\n','')
 def _segs_zh(t,colors):
     out=[]
-    for p in re.split(r'(\*\*[^*]+\*\*\([^)]*\))',t):
-        m=re.match(r'\*\*([^*]+)\*\*\(([^)]*)\)$',p)
+    for p in re.split(r'(\*\*[^*]+\*\*\([^)]*\)|\{\{[^|{}]+\|[^{}]+\}\})',t):
+        m=re.match(r'\*\*([^*]+)\*\*\(([^)]*)\)$',p); m2=re.match(ZCOL+'$',p)
         if m: out.append((m.group(1),colors.get(m.group(2).lower())))
+        elif m2: out.append((m2.group(1),colors.get(m2.group(2).lower())))
         elif p: out.append((p,None))
     # 重点词中文两侧留小间隙（标点旁、格子边缘不加）
     PUN='，。、：；！？（）《》“”‘’,.;:!?()… '
@@ -177,9 +183,10 @@ KSP='\u2005'
 def _pair_cols(pairs,colors,ef,zf,gapx):
     cols=[]
     for en,zh in pairs:
-        se=_segs_en(en,colors); sz=_segs_zh(zh or '',colors)
-        we=sum(ef.getlength(t) for t,_ in se); wz=sum(zf.getlength(t) for t,_ in sz)
-        cols.append(dict(se=se,sz=sz,we=we,wz=wz,w=max(we,wz)))
+        se=_segs_en(en,colors); zl=[_segs_zh(x,colors) for x in (zh or '').split('\n')]
+        sz=[s for l in zl for s in l]; wl=[sum(zf.getlength(t) for t,_ in l) for l in zl]
+        we=sum(ef.getlength(t) for t,_ in se); wz=max(wl)
+        cols.append(dict(se=se,sz=sz,zl=zl,wl=wl,nz=len(zl),we=we,wz=wz,w=max(we,wz),nowrap='{{=}}' in en))
     return cols
 def _wrap_cols(cols,maxw,gapx):
     g=_wrap_greedy(cols,maxw,gapx); g=[x for x in g if x]
@@ -193,7 +200,7 @@ def _wrap_cols(cols,maxw,gapx):
 def _wrap_greedy(cols,maxw,gapx):
     rows=[[]];w=0
     for c in cols:
-        if c['w']>maxw:
+        if c['w']>maxw and not c['nowrap']:
             if rows[-1]: rows.append([])
             rows[-1]=('block',c); rows.append([]); w=0; continue
         add=c['w']+(gapx if rows[-1] else 0)
@@ -226,8 +233,8 @@ def _measure(chunks,colors,notes,es,grps):
     lhE=int(es*1.18); lhZ=int(zs*1.5); rgap=int(es*0.25); cgap=int(es*0.5)
     def rh(r):
         if isinstance(r,tuple):
-            c=r[1]; ne=len(layout(c['se'],ef,MAXW2)); nz=len(layout(c['sz'],zf,MAXW2,cjk=True)); return ne*lhE+nz*lhZ
-        return lhE+lhZ
+            c=r[1]; ne=len(layout(c['se'],ef,MAXW2)); nz=sum(len(layout(l,zf,MAXW2,cjk=True)) for l in c['zl']); return ne*lhE+nz*lhZ
+        return lhE+max(c['nz'] for c in r)*lhZ
     lhN=int(zs*1.45)
     total=sum(sum(rh(r) for r in rs)+(len(rs)-1)*rgap+(lhN if notes[i] else 0) for i,rs in enumerate(rowsets))+cgap*(len(rowsets)-1)
     wide=max([sum(c['w'] for c in r)+gapx*(len(r)-1) for rs in rowsets for r in rs if not isinstance(r,tuple)]+[0])
@@ -251,7 +258,7 @@ def frame_interlinear(chunks,colors,header,progress,out,active=None,maxw=1840,ma
         for r in rows:
             if isinstance(r,tuple):
                 c=r[1]
-                el=layout([(t,col or FG_EN) for t,col in c['se']],ef,maxw); zl=layout([(t,col or FG_ZH) for t,col in c['sz']],zf,maxw,cjk=True)
+                el=layout([(t,col or FG_EN) for t,col in c['se']],ef,maxw); zl=[ln for l in c['zl'] for ln in layout([(t,col or FG_ZH) for t,col in l],zf,maxw,cjk=True)]
                 if not on:
                     el=[[(u,dim(cc) if cc else cc) for u,cc in ln] for ln in el]; zl=[[(u,dim(cc) if cc else cc) for u,cc in ln] for ln in zl]
                 y=draw_lines(d,el,ef,y,lhE); y=draw_lines(d,zl,zf,y,lhZ); y+=rgap; continue
@@ -260,11 +267,12 @@ def frame_interlinear(chunks,colors,header,progress,out,active=None,maxw=1840,ma
                 xx=x+(c['w']-c['we'])/2
                 for t,col in c['se']:
                     f=col or FG_EN; f=f if on else dim(f); d.text((xx,y),t,font=ef,fill=f); xx+=ef.getlength(t)
-                xx=x+(c['w']-c['wz'])/2
-                for t,col in c['sz']:
-                    f=col or FG_ZH; f=f if on else dim(f); d.text((xx,y+lhE),t,font=zf,fill=f); xx+=zf.getlength(t)
+                for k,(l,wl) in enumerate(zip(c['zl'],c['wl'])):
+                    xx=x+(c['w']-wl)/2
+                    for t,col in l:
+                        f=col or FG_ZH; f=f if on else dim(f); d.text((xx,y+lhE+k*lhZ),t,font=zf,fill=f); xx+=zf.getlength(t)
                 x+=c['w']+gapx
-            y+=lhE+lhZ+rgap
+            y+=lhE+max(c['nz'] for c in r)*lhZ+rgap
         if notes[i]:
             nf=ZH(int(zs*0.9),400); nc=FG_ZH if on else dim(FG_ZH)
             nt=notes[i]

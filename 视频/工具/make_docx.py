@@ -44,10 +44,12 @@ for s in d['sentences']:
       for al in segs:
         t=doc.add_table(rows=2,cols=len(al)); t.alignment=WD_TABLE_ALIGNMENT.CENTER; t.autofit=True; noborder(t)
         for j,(e,z) in enumerate(al):
-            for row,ss,size,dc in ((0,R._segs_en(e,colors),13,EN),(1,R._segs_zh(z,colors),10.5,ZH)):
+            for row,lines,size,dc in ((0,[R._segs_en(e,colors)],13,EN),(1,[R._segs_zh(x,colors) for x in z.split('\n')],10.5,ZH)):
                 p=t.cell(row,j).paragraphs[0]; p.alignment=WD_ALIGN_PARAGRAPH.CENTER
                 p.paragraph_format.space_after=Pt(0)
-                for tx,col in ss: run(p,tx,col or dc,size,bool(col))
+                for k,ss in enumerate(lines):
+                    if k: p.add_run().add_break()  # 中文格内换行
+                    for tx,col in ss: run(p,tx,col or dc,size,bool(col))
       if c.get('note'): para(c['note'].replace('#Y',''),(251,191,36) if c['note'].startswith('#Y') else ZH,10)
     doc.add_paragraph().paragraph_format.space_after=Pt(2)
 doc.save(sys.argv[2])

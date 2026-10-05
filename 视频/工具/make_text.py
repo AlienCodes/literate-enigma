@@ -12,6 +12,7 @@ rgb=lambda c:'rgb(%d,%d,%d)'%c
 def seg(ss,cls):
     return ''.join(f'<b style="color:{rgb(c)}">{html.escape(t)}</b>' if c else html.escape(t) for t,c in ss)
 def zhseg(z):
+    if '\n' in z: return '<br>'.join(zhseg(x) for x in z.split('\n'))  # 中文格内换行
     ss=R._segs_zh(z,colors); out=[]
     for k,(t,c) in enumerate(ss):
         out.append(f'<b class="kz" style="color:{rgb(c)}">{html.escape(t)}</b>' if c else html.escape(t))

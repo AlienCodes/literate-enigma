@@ -10,11 +10,11 @@ Yet Robin Warren, a **pathologist** at Royal Perth Hospital, had seen curved, **
 
 In 1983 **unimpressed** **assessors** at the Gastroenterological Society of Australia **relegated** the pair's paper to the bottom tenth of that year's **submissions**. **Efforts** to infect **swine** were **likewise** **in vain**. Marshall made himself the **guinea pig**.
 
-Within days Marshall was **vomiting**, his breath had a **disagreeable** **odour** and **weariness** set in. About ten days later an endoscopy **revealed** gastritis, an **inflammation** of the stomach's **mucous membrane** and a **precursor** to ulcers, **albeit** not an ulcer itself. The germ was cultured **directly** from his stomach.
+Within days Marshall was **vomiting**, his breath had a **disagreeable** **odour** and **weariness** **set in**. About ten days later an endoscopy **revealed** gastritis, an **inflammation** of the stomach's **mucous membrane** and a **precursor** to ulcers, **albeit** not an ulcer itself. The germ was cultured **directly** from his stomach.
 
 **Spurred on** by his **insistent** **spouse**, Marshall took **antibiotics**, which cleared the infection. Ulcers came to be treated with such **medication**.
 
-In 2005 Marshall and Warren shared the Nobel Prize in Physiology or Medicine for discovering Helicobacter pylori and its **role** in gastritis and peptic ulcer disease. Gastritis, the illness Marshall had **willingly** given himself, is named in the prize citation.
+In 2005 Marshall and Warren shared the Nobel Prize in Physiology or Medicine for discovering Helicobacter pylori and its **role** in gastritis and peptic ulcer disease. Gastritis, the illness Marshall had **willingly** given himself, is named in the **prize citation**.
 
 ## 中文
 
@@ -24,13 +24,13 @@ In 2005 Marshall and Warren shared the Nobel Prize in Physiology or Medicine for
 
 然而，皇家珀斯医院的**病理学家**(pathologist)罗宾·沃伦早已在**胃部的**(gastric)**活检样本**(biopsies)中看到过弯曲、**盘绕的**(coiled)细菌，这些样本取自胃炎病人。（活检：从病人身上取下一小块组织做检查）马歇尔开始与他**合作**(collaborate)。**培养**(culture)这种**病菌**(germ)的**尝试**(Attempts)**无一例外地**(invariably)**未能成功**(unsuccessful)，直到1982年复活节，当时培养皿**原封不动的**(undisturbed)在**培养箱**(incubator)里放了约五天。这些培养皿**通常**(ordinarily)两天后就会**被扔掉**(binned)。（after two：两天后）菌落**蓬勃生长**(blossomed)起来。这种微生物后来被命名为幽门螺杆菌。
 
-1983年，**未被留下深刻印象的**(unimpressed)（对此不当回事的）**评审员**(assessors)（审稿论文）在……的澳大利亚胃肠病学会，把两人的论文**贬入**(relegated)当年**投稿**(submissions)中最差的10%。（relegate A to B：把A降级到B；bottom tenth：排名最末的十分之一）让**猪**(swine)（专门用来实验）感染（这种细菌）的多番**努力**(Efforts)**同样**(likewise)**徒劳无功**(in vain)。马歇尔把自己当成了**小白鼠**(guinea pig)。（guinea pig 原指豚鼠，喻指实验对象）
+1983年，澳大利亚胃肠病学会那些**不以为然的**(unimpressed)**评审**(assessors)（对他们的研究没什么印象）（评审研究和论文），把两人的论文**贬入**(relegated)当年**投稿**(submissions)中最差的10%。（relegate A to B：把A降级到B；bottom tenth：排名最末的十分之一）让**猪**(swine)（专门用来实验）感染（这种细菌）的多番**努力**(Efforts)**同样**(likewise)**徒劳无功**(in vain)。马歇尔把自己当成了**小白鼠**(guinea pig)。（guinea pig 原指豚鼠，喻指实验对象）
 
-几天之内，马歇尔就**呕吐**(vomiting)起来，他呼出的气带着**难闻的**(disagreeable)**气味**(odour)，**疲倦感**(weariness)也出现了（不好的事到来且持续）。约十天后，胃镜检查**显示出**(revealed)胃炎，也就是胃**黏膜**(mucous membrane)的**炎症**(inflammation)，也是溃疡的**前兆**(precursor)，**尽管**(albeit)它本身还不是溃疡。这种病菌是**直接**(directly)从他胃里培养出来的。
+几天之内，马歇尔就**呕吐**(vomiting)起来，他呼出的气带着**难闻的**(disagreeable)**气味**(odour)，**疲倦感**(weariness)也**出现了**(set in)（不好的事到来且持续）。约十天后，胃镜检查**显示出**(revealed)胃炎，也就是胃**黏膜**(mucous membrane)的**炎症**(inflammation)，也是溃疡的**前兆**(precursor)，**尽管**(albeit)它本身还不是溃疡。这种病菌是**直接**(directly)从他胃里培养出来的。
 
-在态度**坚决的**(insistent)**妻子**(spouse)**催促**(Spurred on)下，马歇尔服用了**抗生素**(antibiotics)，清除了感染。（spur sb on：激励、催促某人）溃疡后来逐渐开始用这类**药物**(medication)来治疗。（come to do：逐渐开始做）
+被他态度**坚决的**(insistent)**妻子**(spouse)（不断）**催促**(Spurred on)，马歇尔（终于）服用了**抗生素**(antibiotics)，并且清除了感染。（spur sb on：激励、催促某人）溃疡后来逐渐开始用这类**药物**(medication)来治疗。（come to do：逐渐开始做）
 
-2005年，马歇尔与沃伦共同获得了诺贝尔生理学或医学奖，以表彰他们发现了幽门螺杆菌及其在胃炎和消化性溃疡中的**作用**(role)。胃炎——马歇尔当年**心甘情愿地**(willingly)让自己染上的病——被写进了奖项颁奖词（获奖评语）。（the illness … given himself 是 Gastritis 的同位语）（prize citation：颁奖时宣读的获奖理由）
+2005年，马歇尔与沃伦共同获得了诺贝尔生理学或医学奖，以表彰他们发现了幽门螺杆菌及其在胃炎和消化性溃疡中的**作用**(role)。胃炎——马歇尔当年**心甘情愿地**(willingly)让自己染上的病——被写进了**奖项颁奖词**(prize citation)（获奖评语）。（the illness … given himself 是 Gastritis 的同位语）（prize citation：颁奖时宣读的获奖理由）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -67,8 +67,8 @@ In 2005 Marshall and Warren shared the Nobel Prize in Physiology or Medicine for
 | ordinarily | 本文：通常；adv. 通常，平常（ordinarily quiet） | 3 |
 | binned | 本文：被扔掉；v. (bin) 扔掉（bin old papers） | 3 |
 | blossomed | 本文：蓬勃生长；v. (blossom) 开花；蓬勃发展（the friendship blossomed） | 3 |
-| unimpressed | 本文：未被留下深刻印象的；adj. 不以为然的，无好感的（be unimpressed by sth） | 4 |
-| assessors | 本文：评审员；n. (assessor) 评审员，评估员（independent assessors） | 4 |
+| unimpressed | 本文：不以为然的；adj. 不以为然的，无好感的（be unimpressed by sth） | 4 |
+| assessors | 本文：评审；n. (assessor) 评审员，评估员（independent assessors） | 4 |
 | relegated | 本文：贬入；v. (relegate) 降级，贬入（be relegated to a minor role） | 4 |
 | submissions | 本文：投稿；n. (submission) 提交的材料，投稿（the deadline for submissions） | 4 |
 | swine | 本文：猪；n. 猪（复数同形）（a herd of swine） | 4 |
@@ -80,6 +80,7 @@ In 2005 Marshall and Warren shared the Nobel Prize in Physiology or Medicine for
 | disagreeable | 本文：难闻的；adj. 令人不快的（a disagreeable smell） | 5 |
 | odour | 本文：气味；n. 气味（an unpleasant odour） | 5 |
 | weariness | 本文：疲倦感；n. 疲倦（a feeling of weariness） | 5 |
+| set in | 本文：出现了；phr. （坏天气、疾病、不好的情况）开始出现并持续（winter/panic/fatigue sets in） | 5 |
 | revealed | 本文：显示出；v. (reveal) 显示，揭示（tests revealed a problem） | 5 |
 | mucous membrane | 本文：黏膜；n. 黏膜（the mucous membrane of the nose） | 5 |
 | inflammation | 本文：炎症；n. 炎症（inflammation of the joints） | 5 |
@@ -93,6 +94,7 @@ In 2005 Marshall and Warren shared the Nobel Prize in Physiology or Medicine for
 | medication | 本文：药物；n. 药物（be on medication） | 6 |
 | role | 本文：作用；n. 作用；角色（play a key role in sth） | 7 |
 | willingly | 本文：心甘情愿地；adv. 心甘情愿地（willingly agree） | 7 |
+| prize citation | 本文：奖项颁奖词；n. 颁奖词，获奖评语（citation：嘉奖令；颁奖词；另有"引用、引文"义） | 7 |
 
 ## 史实与来源
 - 【T1】皇家珀斯医院病理学家罗宾·沃伦在胃炎患者的胃活检样本中看到弯曲的螺旋状细菌；年轻医生巴里·马歇尔加入研究。S1
