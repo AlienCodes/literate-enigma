@@ -4,7 +4,7 @@
 ## 英文
 In 1984 Barry Marshall, a 32-year-old doctor at Fremantle Hospital, drank a **brew** of beef **broth** into which the **microbial** growth of two Petri dishes had been **scraped**.
 
-The **prevalent** **doctrine** blamed **ulcers** on stress, **spicy** food and excess **acid** **secretion**. No **bacterium**, the **profession** **firmly** held, could **withstand** so **caustic** and **hostile** a **habitat**.
+The **prevalent** **doctrine** blamed **ulcers** on stress, **spicy** food, and excess **acid** **secretion**. No **bacterium**, the **profession** **firmly** held, could **withstand** so **caustic** and **hostile** a **habitat**.
 
 Yet Robin Warren, a **pathologist** at Royal Perth Hospital, had seen curved, **coiled** bacteria in **gastric** **biopsies** from patients with gastritis. Marshall began to **collaborate** with him. **Attempts** to **culture** the **germ** were **invariably** **unsuccessful** until Easter 1982, when plates sat **undisturbed** in the **incubator** for about five days. They were **ordinarily** **binned** after two. Colonies **blossomed**. The organism was later named Helicobacter pylori.
 
