@@ -6,6 +6,7 @@ import render as R
 import title2 as T2
 TTS='../tts'
 k=Kokoro(f'{TTS}/kokoro-v1.0.onnx',f'{TTS}/voices-v1.0.bin'); V=np.load(f'{TTS}/'+os.environ.get('VOICE','voice_mb.npy'))
+KT=Kokoro(f'{TTS}/kokoro-v1.0-timed.onnx',f'{TTS}/voices-v1.0.bin')  # 只用来取每个音的准确时间（定位标点），声音仍用上面的原模型
 AF=open(f'{TTS}/'+os.environ.get('AFFILE','AF.txt')).read().strip(); FF=imageio_ffmpeg.get_ffmpeg_exe(); SPEED=0.95
 T=dict(BG_TOP=(14,36,30),BG_BOT=(20,48,40),FG_EN=(240,247,242),FG_ZH=(170,196,182),DIM=(110,140,125),
    PAL=[(251,191,36),(56,189,248),(244,114,182),(190,242,100),(196,181,253),(251,146,60),(94,234,212),(252,165,165)])
@@ -27,16 +28,23 @@ def _quiet_runs(w,thr_db=-38,min_len=0.05):
             st=None
     return runs
 def sentence_audio(sent,pieces,gaps):
-    """整句一次合成；在每个逗号对应的自然停顿处，把停顿换成标准长度的静音。找不到停顿时退回到该处分开合成。"""
-    w=say(sent); dur=len(w)/SR; L=len(sent)
+    """整句一次合成（原模型，声音不变）；标点位置用带时长输出的同版模型精确定位（A9），在该处把停顿换成标准时长。"""
+    raw,_=k.create(sent,voice=V,speed=SPEED,lang='en-us'); w=clean_tail(raw)
+    tb,_,sp=KT.create_timed(sent,voice=V,speed=SPEED,lang='en-us',clause_pause=0,sentence_pause=0)
+    scale=len(raw)/len(tb)
+    marks=[x for x in sp if x.phoneme in ',;:']
+    if len(marks)!=len(pieces)-1: raise SystemExit(f'【停止】标点数对不上（A9）：{sent[:60]}')
+    pool=[]
+    for thr,ml in ((-38,0.03),(-32,0.02),(-26,0.015)):
+        pool+=_quiet_runs(w,thr,ml)
     cuts=[]
-    for k2 in range(len(pieces)-1):
-        exp=pieces[k2][1]/L*dur; cand=[]
-        for thr,ml in ((-38,0.05),(-34,0.04),(-30,0.03),(-26,0.025)):  # 由严到宽找模型的自然停顿
-            cand=[r for r in _quiet_runs(w,thr,ml) if abs((r[0]+r[1])/2/SR-exp)<0.7 and all(r[0]>=c[1] for c in cuts)]
-            if cand: break
-        if not cand: return _split_audio(sent,pieces,gaps)
-        cuts.append(min(cand,key=lambda r:abs((r[0]+r[1])/2/SR-exp)))
+    for m in marks:
+        tc=int(m.end*scale*SR)
+        near=[r for r in pool if r[1]>=tc-int(0.12*SR) and r[0]<=tc+int(0.25*SR) and (not cuts or r[0]>=cuts[-1][1])]
+        hit=[r for r in near if r[0]-int(0.03*SR)<=tc<=r[1]+int(0.03*SR)]
+        if hit: r=max(hit,key=lambda r:r[1]-r[0]); cuts.append((r[0],r[1]))        # 标点处模型自己的整段停顿，整段换成标准时长
+        elif near: r=min(near,key=lambda r:abs(r[0]-tc)); cuts.append((r[0],r[1]))
+        else: cuts.append((tc,tc))   # 模型在此处没有停顿：就在标点时刻插入（标点后、下一个词前）
     clips=[];tmap=[];t=0.0;prev=0
     for k2,(x0,x1) in enumerate(pieces):
         end=cuts[k2][0] if k2<len(cuts) else len(w)
