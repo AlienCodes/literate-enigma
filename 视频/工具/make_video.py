@@ -71,13 +71,13 @@ def build(js,out):
         if key[0]=='title':
             T2.frame_title2(no,d['title_en'],d['title_zh'],d.get('title_fx',{}).get('hl',[]),d.get('title_fx',{}).get('ghost',[]),fn)
         else:
-            si,ci=key; R.ES_FIXED=min(sizes[si],100); R.frame_interlinear([[tuple(p) for p in c['align']] for c in d['sentences'][si]['chunks']],colors,header,prog,fn,active=ci,notes=[c.get('note') for c in d['sentences'][si]['chunks']])
+            si,ci=key; R.ES_FIXED=min(sizes[si],100*R.S); R.frame_interlinear([[tuple(p) for p in c['align']] for c in d['sentences'][si]['chunks']],colors,header,prog,fn,active=ci,notes=[c.get('note') for c in d['sentences'][si]['chunks']])
         files.append((fn,dur)); t+=dur
     with open(f'{work}/list.txt','w') as f:
         for fn,dur in files: f.write(f"file '{os.path.abspath(fn)}'\nduration {dur:.3f}\n")
         f.write(f"file '{os.path.abspath(files[-1][0])}'\n")
     sf.write(f'{work}/a.wav',A,SR)
     subprocess.run([FF,'-y','-loglevel','error','-f','concat','-safe','0','-i',f'{work}/list.txt','-i',f'{work}/a.wav',
-        '-af',AF,'-c:v','libx264','-tune','stillimage','-pix_fmt','yuv420p','-r','30','-c:a','aac','-b:a','256k','-shortest','-movflags','+faststart',out],check=True)
+        '-af',AF,'-c:v','libx264','-tune','stillimage','-crf','16','-preset','slow','-pix_fmt','yuv420p','-r','30','-c:a','aac','-b:a','256k','-shortest','-movflags','+faststart',out],check=True)
     print(out,round(total,1),'s',len(files),'screens')
 if __name__=='__main__': build(sys.argv[1],sys.argv[2])

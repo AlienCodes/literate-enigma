@@ -1,7 +1,8 @@
 ES_FIXED=None; ZR=0.72
 import re
 from PIL import Image,ImageDraw,ImageFont
-W,H=1920,1080
+S=2  # 4K: 所有像素尺寸 ×2
+W,H=1920*S,1080*S
 F='fonts/'
 def font(path,size,wght=None):
     f=ImageFont.truetype(F+path,size)
@@ -96,7 +97,7 @@ def frame(en,zh,colors,header,progress,out):
     y=draw_lines(d,el,ef,y,80)
     d.line([(W/2-60,y+24),(W/2+60,y+24)],fill=(51,65,85),width=3)
     draw_lines(d,zl,zf,y+60,64)
-    d.rectangle([0,H-8,W*progress,H],fill=(56,189,248))
+    d.rectangle([0,H-8*S,W*progress,H],fill=(56,189,248))
     im.save(out)
 
 def dim(c,f=0.38,bg=(17,42,35)):
@@ -117,7 +118,7 @@ def frame_stack(chunks,colors,header,progress,out,active=None):
             el=[[(u,dim(c) if c else c) for u,c in ln] for ln in el]; zl=[[(u,dim(c) if c else c) for u,c in ln] for ln in zl]
         y=draw_lines(d,el,ef,y,68); y+=12
         y=draw_lines(d,zl,zf,y,52); y+=gap
-    d.rectangle([0,H-8,W*progress,H],fill=(94,234,212))
+    d.rectangle([0,H-8*S,W*progress,H],fill=(94,234,212))
     im.save(out)
 
 def frame_stack_fit(chunks,colors,header,progress,out,active=None,maxw=1760,maxh=860):
@@ -138,7 +139,7 @@ def frame_stack_fit(chunks,colors,header,progress,out,active=None,maxw=1760,maxh
             el=[[(u,dim(c) if c else c) for u,c in ln] for ln in el]; zl=[[(u,dim(c) if c else c) for u,c in ln] for ln in zl]
         y=draw_lines(d,el,ef,y,lhE); y+=inner
         y=draw_lines(d,zl,zf,y,lhZ); y+=gap
-    d.rectangle([0,H-8,W*progress,H],fill=(94,234,212))
+    d.rectangle([0,H-8*S,W*progress,H],fill=(94,234,212))
     im.save(out); return es
 
 # ---------- interlinear (word-aligned) layout ----------
@@ -204,10 +205,10 @@ def _rows(p,colors,ef,zf,gapx,maxw):
     for s in segs:
         if s: out+=[r for r in _wrap_cols(_pair_cols(s,colors,ef,zf,gapx),maxw,gapx) if r]
     return out
-LAYOUT_ES=68; MAXW2=1860; MAXH2=1020
+LAYOUT_ES=68*S; MAXW2=1860*S; MAXH2=1020*S
 def _grouping(chunks,colors):
     es=LAYOUT_ES; ef=EN(es,600); zf=ZH(int(es*ZR),500); gapx=int(es*0.36)
-    return [[('B' if isinstance(r,tuple) else len(r)) for r in _rows(p,colors,ef,zf,gapx,1840)] for p in chunks]
+    return [[('B' if isinstance(r,tuple) else len(r)) for r in _rows(p,colors,ef,zf,gapx,1840*S)] for p in chunks]
 def _locked(p,grp,colors,ef,zf,gapx):
     cols=_pair_cols([(a,b) for a,b in p if a!='\n'],colors,ef,zf,gapx)
     rows=[];i=0
@@ -230,7 +231,7 @@ def _measure(chunks,colors,notes,es,grps):
     return rowsets,total,wide,(zs,ef,zf,gapx,lhE,lhZ,rgap,cgap,lhN)
 def max_es(chunks,colors,notes=None):
     notes=notes or [None]*len(chunks); grps=_grouping(chunks,colors)
-    for es in range(130,30,-1):
+    for es in range(130*S,30,-1):
         _,t,w,_=_measure(chunks,colors,notes,es,grps)
         if t<=MAXH2 and w<=MAXW2: return es
     return 30
@@ -266,7 +267,7 @@ def frame_interlinear(chunks,colors,header,progress,out,active=None,maxw=1840,ma
             if nt.startswith('#Y'): nt=nt[2:]; nc=(251,191,36) if on else dim((251,191,36))
             d.text(((W-nf.getlength(nt))/2,y-rgap*0.3),nt,font=nf,fill=nc); y+=lhN
         y+=cgap-rgap
-    d.rectangle([0,H-8,W*progress,H],fill=(94,234,212))
+    d.rectangle([0,H-8*S,W*progress,H],fill=(94,234,212))
     im.save(out); return es
 def frame_title(no,en,zh,out):
     from PIL import ImageDraw
