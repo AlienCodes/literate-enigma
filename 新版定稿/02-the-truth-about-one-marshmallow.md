@@ -20,7 +20,7 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 
 然而，这种**根据**(foundation)（该研究结论的根基）**并不牢靠**(precarious)（站不住脚）。只有几十个孩子进入了SAT分析，**主要**(predominantly)是斯坦福**教师**(faculty)（全体教员）和**研究生**(postgraduate)的子女。如此**同质的**(homogeneous)、**优越的**(privileged)群体**几乎不**(scarcely)能代表**普通的**(ordinary)家庭，而且**富裕的**(prosperous)家庭可能同时**培养出**(foster)耐心与学业成就。
 
-2018年5月发表于《心理科学》的一项研究做了一次**概念性的**(conceptual)（科研）**重复实验**(replication)：同样的思路，新的样本，**调整过的**(modified)方法。900多名来自**多种不同的**(diverse)背景的**儿童或青少年**(youngsters)在四岁半时接受**评估**(assessed)，15岁时再测一次。这个原始的（不加任何干预的）**关联性**(link)，大约只有原来研究结果关联性强度的一半。**调整**(Adjusting for)家庭背景和早期**认知**(cognitive)能力（这些实验变量），缩小了关联性大约三分之二，使得大多数估计值在**统计上**(statistically)（完全）**微不足道**(insignificant)。（即缩小了【等得更久】与【SAT分数更高】之间的相关性：100% → 约 33%，下降了约 2/3）
+2018年5月发表于《心理科学》的一项研究做了一次**概念性的**(conceptual)（科研）**重复实验**(replication)：同样的思路，新的样本，**调整过的**(modified)方法。900多名来自**多种不同的**(diverse)背景的**儿童或青少年**(youngsters)在四岁半时接受**评估**(assessed)，15岁时再测一次。这个未经加工的**关联性**(link)，大约只有原来研究结果关联性强度的一半。（关联性：【面对棉花糖等得更久】与【SAT分数更高】之间有没有关系）**调整**(Adjusting for)家庭背景和早期**认知**(cognitive)能力（这些实验变量），缩小了关联性大约三分之二，使得大多数估计值在**统计上**(statistically)（完全）**微不足道**(insignificant)。（即缩小了【等得更久】与【SAT分数更高】之间的相关性：100% → 约 33%，下降了约 2/3）
 
 这项测验并非**毫无价值**(worthless)；它或许仍能**反映**(reflect)某些**实质性的**(substantive)东西。2013年1月发表于《认知》的研究补充了（一些）**背景**(context)：刚被成年人**辜负**(betrayed)信任的孩子，等待的时间**明显**(markedly)短于与守信的成年人相处的**同龄人**(peers)。孩子能**坚持**(perseveres)多久，部分**取决于**(depends on)身边的大人看起来有多**可信**(trustworthy)。
 
