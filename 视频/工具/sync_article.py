@@ -20,7 +20,10 @@ rows=[];seen=set()
 for s in d['sentences']:
     for c in s['chunks']:
         zmap={e.lower():z for z,e in re.findall(r'\*\*([^*]+)\*\*\(([^)]+)\)',c['zh'])}
-        for w in re.findall(r'\*\*([^*]+)\*\*',c['en']):
+        ens=re.findall(r'\*\*([^*]+)\*\*',c['en'])
+        keys=[e for _,e in re.findall(r'\*\*([^*]+)\*\*\(([^)]+)\)',c['zh'])]
+        for w in keys:
+            w=next((x for x in ens if x.lower()==w.lower()),w)
             if w.lower() in seen: continue
             seen.add(w.lower())
             old=old_rows.get(w.lower()) or next((v for k,v in old_rows.items() if k in w.lower().split() or w.lower().startswith(k)),'')

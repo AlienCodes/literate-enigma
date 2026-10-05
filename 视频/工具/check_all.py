@@ -17,7 +17,7 @@ for s in d['sentences']:
         if ''.join(b for _,b in c['align'])!=c['zh']: bad.append(f'D2 zh 与分组拼接不一致: {c["zh"][:30]}')
         marks={m.lower() for m in re.findall(r'\*\*[^*]+\*\*\(([^)]+)\)',c['zh'])}
         for w in re.findall(r'\*\*([^*]+)\*\*',c['en']):
-            if w.lower() not in marks: bad.append(f'D4 重点词缺中文标记: {w}')
+            if w.lower() not in marks and not any(w.lower() in m.split() for m in marks): bad.append(f'D4 重点词缺中文标记: {w}')
         if not c['zh'].strip() and c['en'].strip(): bad.append(f'空译文: {c["en"][:40]}')
     paras.setdefault(s['para'],[]).append(' '.join(c['en'] for c in s['chunks']))
 if strip(''.join(' '.join(v) for k,v in sorted(paras.items())))!=strip(en): bad.append('D3 英文与文章原文不一致')

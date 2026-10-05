@@ -88,8 +88,8 @@ For a 1999 paper, Dunning and his student Justin Kruger **quizzed** Cornell **un
 | garnered | 本文：赢得了；v. (garner) 获得，赢得（garner support/praise） | 6 |
 | In fairness | 本文：平心而论；phr. 平心而论，说句公道话（in fairness to sb） | 7 |
 | empirically | 本文：用实证的方法；adv. 以实证方式，凭经验（empirically tested） | 7 |
-| staking | 本文：赌；v. (stake) 以……作赌注（stake one's reputation on sth） | 7 |
 | liberty | 本文：自由；n. 自由（personal liberty） | 7 |
+| staking | 本文：赌；v. (stake) 以……作赌注（stake one's reputation on sth） | 7 |
 
 ## 史实与来源
 - 【T1】1995年1月6日，麦克阿瑟·惠勒与同伙克利夫顿·厄尔·约翰逊在匹兹堡地区白天持枪、不加伪装抢劫两家银行；他们脸上抹了柠檬汁，相信这能让监控拍不到自己（柠檬汁可作隐形墨水）。同伙姓名正文不写。S1

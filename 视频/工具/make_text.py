@@ -7,6 +7,7 @@ for s in d['sentences']:
     for c in s['chunks']:
         for w in re.findall(r'\*\*([^*]+)\*\*',c['en']):
             if w.lower() not in colors: colors[w.lower()]=PAL[i%len(PAL)];i+=1
+R.unify_colors(colors,d['sentences'])
 rgb=lambda c:'rgb(%d,%d,%d)'%c
 def seg(ss,cls):
     return ''.join(f'<b style="color:{rgb(c)}">{html.escape(t)}</b>' if c else html.escape(t) for t,c in ss)

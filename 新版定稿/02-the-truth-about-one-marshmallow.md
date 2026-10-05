@@ -10,7 +10,7 @@ Yet the **foundation** was **precarious**. Only a few dozen children entered the
 
 A study published in Psychological Science in May 2018 ran a **conceptual** **replication**: the same idea, a new sample, **modified** methods. More than 900 **youngsters** from **diverse** backgrounds were **assessed** at four and a half and again at 15. The raw **link** was roughly half as strong as the original finding. **Adjusting for** family background and early **cognitive** ability shrank it by about two thirds, leaving most estimates **statistically** **insignificant**.
 
-The test is not **worthless**; it may still **reflect** something **substantive**. Research published in Cognition in January 2013 adds **context**: children whose trust an adult had just **betrayed** waited **markedly** less than **peers** dealing with a reliable adult. How long a child **perseveres** **depends** partly on how **trustworthy** the adults around them seem.
+The test is not **worthless**; it may still **reflect** something **substantive**. Research published in Cognition in January 2013 adds **context**: children whose trust an adult had just **betrayed** waited **markedly** less than **peers** dealing with a reliable adult. How long a child **perseveres** **depends** partly **on** how **trustworthy** the adults around them seem.
 
 ## 中文
 
@@ -20,9 +20,9 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 
 然而，这种**根据**(foundation)（该研究结论的根基）**并不牢靠**(precarious)（站不住脚）。只有几十个孩子进入了SAT分析，**主要**(predominantly)是斯坦福**教师**(faculty)（全体教员）和**研究生**(postgraduate)的子女。如此**同质的**(homogeneous)、**优越的**(privileged)群体**几乎不**(scarcely)能代表**普通的**(ordinary)家庭，而且**富裕的**(prosperous)家庭可能同时**培养出**(foster)耐心与学业成就。
 
-2018年5月发表于《心理科学》的一项研究做了一次**概念性的**(conceptual)（科研）**重复实验**(replication)：同样的思路，新的样本，**调整过的**(modified)方法。900多名来自**多种不同的**(diverse)背景的**儿童或青少年**(youngsters)在四岁半时接受**评估**(assessed)，15岁时再测一次。这个原始的（不加任何干预的）**关联**(link)，其预测强度（准确度）大约只有原研究结果的一半。**调整**(Adjusting for)家庭背景和早期**认知**(cognitive)能力（这些实验变量），缩小了这个原始关联（raw link）大约三分之二，使得大多数估计值在**统计上**(statistically)（完全）**微不足道**(insignificant)。（即缩小了【等得更久】与【SAT分数更高】之间的相关性）
+2018年5月发表于《心理科学》的一项研究做了一次**概念性的**(conceptual)（科研）**重复实验**(replication)：同样的思路，新的样本，**调整过的**(modified)方法。900多名来自**多种不同的**(diverse)背景的**儿童或青少年**(youngsters)在四岁半时接受**评估**(assessed)，15岁时再测一次。这个原始的（不加任何干预的）**关联性**(link)，大约只有原来研究结果关联性强度的一半。**调整**(Adjusting for)家庭背景和早期**认知**(cognitive)能力（这些实验变量），缩小了关联性大约三分之二，使得大多数估计值在**统计上**(statistically)（完全）**微不足道**(insignificant)。（即缩小了【等得更久】与【SAT分数更高】之间的相关性：100% → 40%，下降了约 2/3）
 
-这项测验并非**毫无价值**(worthless)；它或许仍能**反映**(reflect)某些**实质性的**(substantive)东西。2013年1月发表于《认知》的研究补充了（一些）**背景**(context)：刚被成年人**辜负**(betrayed)信任的孩子，等待的时间**明显**(markedly)短于与守信的成年人相处的**同龄人**(peers)。孩子能**坚持**(perseveres)多久，部分**取决于**(depends)身边的大人看起来有多**可信**(trustworthy)。
+这项测验并非**毫无价值**(worthless)；它或许仍能**反映**(reflect)某些**实质性的**(substantive)东西。2013年1月发表于《认知》的研究补充了（一些）**背景**(context)：刚被成年人**辜负**(betrayed)信任的孩子，等待的时间**明显**(markedly)短于与守信的成年人相处的**同龄人**(peers)。孩子能**坚持**(perseveres)多久，部分**取决于**(depends on)身边的大人看起来有多**可信**(trustworthy)。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -36,8 +36,8 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 | temptation | 本文：诱惑；n. 诱惑（resist/give in to temptation） | 1 |
 | earn | 本文：挣得；v. 挣得，赢得（earn money/respect/a reward） | 1 |
 | Impulsive | 本文：冲动的；adj. 冲动的（impulsive behaviour/buying） | 1 |
-| surrender | 本文：缴械投降；v. 投降，屈服（surrender to temptation/the enemy）；n. 投降 | 1 |
 | instantly | 本文：立刻；adv. 立即，马上（be instantly recognisable） | 1 |
+| surrender | 本文：缴械投降；v. 投降，屈服（surrender to temptation/the enemy）；n. 投降 | 1 |
 | resolute | 本文：意志坚定的；adj. 坚决的，意志坚定的（a resolute refusal；resolute in doing） | 1 |
 | hold out | 本文：坚持抵抗，拒不妥协；phr. 坚持，不屈服（hold out against pressure）；维持，够用 | 1 |
 | Follow-ups | 本文：后续研究；n. (follow-up) 后续研究，追踪（a follow-up study/visit） | 2 |
@@ -46,12 +46,12 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 | attain | 本文：取得；v. 获得，达到（attain a goal/level/success） | 2 |
 | trivial | 本文：微不足道的；adj. 微不足道的，琐碎的（a trivial matter/detail） | 2 |
 | snack | 本文：零食；n. 零食，小吃（a light snack；snack food）；v. 吃零食 | 2 |
-| emblem | 本文：象征；n. 象征，标志（an emblem of power/peace） | 2 |
 | virtue | 本文：美德；n. 美德；优点（a moral virtue；by virtue of 凭借） | 2 |
+| emblem | 本文：象征；n. 象征，标志（an emblem of power/peace） | 2 |
 | restraint | 本文：克制；n. 克制，约束（show/exercise restraint；without restraint） | 2 |
 | glorified | 本文：美化；v. (glorify) 美化，颂扬（glorify war/violence）；glorified adj. 美其名曰的 | 2 |
-| predictor | 本文：预测指标；n. 预测指标，预测因素（a strong/reliable predictor of） | 2 |
 | destiny | 本文：命运；n. 命运，天命（control one's own destiny） | 2 |
+| predictor | 本文：预测指标；n. 预测指标，预测因素（a strong/reliable predictor of） | 2 |
 | foundation | 本文：根据；n. 基础，根基（lay the foundation(s) for；without foundation 毫无根据）；基金会 | 3 |
 | precarious | 本文：并不牢靠；adj. 不稳固的，岌岌可危的（a precarious position/balance） | 3 |
 | predominantly | 本文：主要；adv. 主要地，占多数地（a predominantly female/rural group） | 3 |
@@ -66,10 +66,10 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 | conceptual | 本文：概念性的；adj. 概念上的（a conceptual framework/replication） | 4 |
 | replication | 本文：重复实验；n. 复制，（研究）重复验证（replication of results/a study） | 4 |
 | modified | 本文：调整过的；v. (modify) 修改，调整（modify a plan/method）；adj. 改良的（genetically modified） | 4 |
-| youngsters | 本文：儿童或青少年；n. (youngster) 少年儿童，年轻人（local youngsters） | 4 |
 | diverse | 本文：多种不同的；adj. 多样的，形形色色的（a diverse population/range of；diverse backgrounds） | 4 |
+| youngsters | 本文：儿童或青少年；n. (youngster) 少年儿童，年轻人（local youngsters） | 4 |
 | assessed | 本文：评估；v. (assess) 评估，评定（assess the impact/a student） | 4 |
-| link | 本文：关联；n. 联系，关联（a link between A and B） | 4 |
+| link | 本文：关联性；n. 联系，关联（a link between A and B） | 4 |
 | Adjusting for | 本文：调整；v. (adjust) 调整；（统计）校正（adjust for inflation/age；adjust to 适应） | 4 |
 | cognitive | 本文：认知；adj. 认知的（cognitive ability/development/skills） | 4 |
 | statistically | 本文：统计上；adv. 统计上（statistically significant/reliable） | 4 |
@@ -82,7 +82,7 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 | markedly | 本文：明显；adv. 明显地，显著地（differ markedly；markedly better/less） | 5 |
 | peers | 本文：同龄人；n. (peer) 同龄人，同辈（peer pressure；compared with one's peers） | 5 |
 | perseveres | 本文：坚持；v. (persevere) 坚持不懈（persevere in/with sth） | 5 |
-| depends | 本文：取决于；v. (depend on) 取决于，依赖（depend on the weather） | 5 |
+| depends on | 本文：取决于；v. (depend on) 取决于，依赖（depend on the weather） | 5 |
 | trustworthy | 本文：可信；adj. 值得信赖的，可靠的（a trustworthy friend/source） | 5 |
 
 ## 史实与来源

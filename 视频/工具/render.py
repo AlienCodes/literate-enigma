@@ -1,7 +1,8 @@
 ES_FIXED=None; ZR=0.72
 import re
 from PIL import Image,ImageDraw,ImageFont
-S=2  # 4K: 所有像素尺寸 ×2
+import os
+S=int(os.environ.get("VIDEO_S","1"))  # 1=草稿1080p；定稿时 VIDEO_S=2 出 4K
 W,H=1920*S,1080*S
 F='fonts/'
 def font(path,size,wght=None):
@@ -293,3 +294,14 @@ def frame_title(no,en,zh,out):
     y+=40; d.rectangle([W/2-90,y,W/2+90,y+8],fill=AC); y+=48
     d.text(((W-zf.getlength(zh))/2,y),zh,font=zf,fill=AC)
     im.save(out)
+def unify_colors(colors,sentences):
+    """不连续的重点短语（如 **depends** partly **on** ↔ **取决于**(depends on)）：各部分用同一种颜色。"""
+    for s in sentences:
+        for c in s['chunks']:
+            ens=[w.lower() for w in re.findall(r'\*\*([^*]+)\*\*',c['en'])]
+            for k in re.findall(r'\*\*[^*]+\*\*\(([^)]+)\)',c['zh']):
+                k=k.lower(); parts=k.split()
+                if k in colors or len(parts)<2 or not all(p in ens for p in parts): continue
+                col=colors.get(parts[0]); colors[k]=col
+                for p in parts: colors[p]=col
+    return colors

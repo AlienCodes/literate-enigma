@@ -14,6 +14,7 @@ for s in d['sentences']:
     for c in s['chunks']:
         for w in re.findall(r'\*\*([^*]+)\*\*',c['en']):
             if w.lower() not in colors: colors[w.lower()]=PAL[i%8];i+=1
+R.unify_colors(colors,d['sentences'])
 doc=Document()
 sec=doc.sections[0]; sec.left_margin=sec.right_margin=Cm(1.5)
 bg=OxmlElement('w:background'); bg.set(qn('w:color'),BG); doc.element.insert(0,bg)

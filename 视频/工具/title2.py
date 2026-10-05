@@ -70,7 +70,7 @@ def frame_title2(no,en,zh,hl,ghost,out,variant=1):
                 for _ in range(260*S):
                     px=x+ww*0.45+random.random()*ww*0.75; py=y+es*0.15+random.random()*es*0.95
                     rr=(random.random()*4+1)*S; dd.ellipse([px-rr,py-rr,px+rr,py+rr],fill=int(60+120*random.random()))
-                im=Image.composite(Image.new('RGB',(W,H),(200,255,230)),im,ImageChops.multiply(dots,m.filter(ImageFilter.MaxFilter(15*S+1))))
+                im=Image.composite(Image.new('RGB',(W,H),(200,255,230)),im,ImageChops.multiply(dots,m.filter(ImageFilter.MaxFilter(15*S+(S+1)%2))))
             else:
                 ImageDraw.Draw(im).text((x,y),w,font=ef,fill=(248,250,246))
             x+=ww+ef.getlength(' ')

@@ -24,6 +24,7 @@ def build(js,out):
         for c in s['chunks']:
             for w in re.findall(r'\*\*([^*]+)\*\*',c['en']):
                 if w.lower() not in colors: colors[w.lower()]=R.PAL[i%len(R.PAL)]; i+=1
+    R.unify_colors(colors,d['sentences'])
     header=f"{no} · {d['title_en']}　{d['title_zh']}"
     segs=[]  # (image_key, duration) ; audio list
     audio=[sil(0.4)]; tl=[]  # (screen_id,active,dur)
