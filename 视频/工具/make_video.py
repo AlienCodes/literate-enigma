@@ -69,8 +69,10 @@ def build(js,out):
     for (key,dur) in tl:
         prog=min(1,(t+dur)/total)
         fn=f"{work}/{len(files):04d}.png"
-        if key[0]=='title':
-            T2.frame_title2(no,d['title_en'],d['title_zh'],d.get('title_fx',{}).get('hl',[]),d.get('title_fx',{}).get('ghost',[]),fn)
+        if key[0]=='title':  # 片头：约 1.5 秒入场动画（title_anim），最后一帧停住到片头结束
+            import title_anim as TA; fx=d.get('title_fx',{})
+            af=TA.render_frames(d['title_en'],d['title_zh'],fx.get('hl',[]),fx.get('ghost',[]),work)
+            files+=af[:-1]; t+=sum(x for _,x in af[:-1]); files.append((af[-1][0],dur-sum(x for _,x in af[:-1]))); t+=dur-sum(x for _,x in af[:-1]); continue
         else:
             si,ci=key; R.ES_FIXED=min(sizes[si],100*R.S); R.frame_interlinear([[tuple(p) for p in c['align']] for c in d['sentences'][si]['chunks']],colors,header,prog,fn,active=ci,notes=[c.get('note') for c in d['sentences'][si]['chunks']])
         files.append((fn,dur)); t+=dur
