@@ -10,7 +10,7 @@ The security cameras **begged to differ**. On 19 April the eleven o'clock news s
 
 Reading about the case, the Cornell psychologist David Dunning **pondered** a **disquieting** **proposition**. Perhaps **incompetence** can **cloak** itself, **robbing** people of the **discernment** to notice their **deficiencies**.
 
-For a 1999 **paper**, Dunning and his student Justin Kruger **quizzed** Cornell **undergraduates** on humour, grammar and **logical** reasoning. The bottom quarter of **scorers** averaged the 12th percentile but **generously** placed themselves near the 62nd, whereas high **achievers** showed **undue** **modesty**. The **unskilled**, the authors argued, bear a **dual** burden, since **appraisal** **calls for** the same skills as **execution**.
+For a 1999 **paper**, Dunning and his student Justin Kruger **quizzed** Cornell **undergraduates** on humour, grammar, and **logical** reasoning. The bottom quarter of **scorers** averaged the 12th percentile but **generously** placed themselves near the 62nd, whereas high **achievers** showed **undue** **modesty**. The **unskilled**, the authors argued, bear a **dual** burden, since **appraisal** **calls for** the same skills as **execution**.
 
 **Detractors** traced part of the Dunning-Kruger **disparity** to regression to the mean, a statistical **mirage** the paper **partially** acknowledged. Studies designed to avoid it still find a smaller but **tangible** effect. In 2023 the pair **garnered** the Grawemeyer psychology award.
 
