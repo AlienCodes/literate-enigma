@@ -50,7 +50,7 @@ def _split_audio(sent,pieces,gaps):
         w=say(sent[x0:x1]); d=len(w)/SR
         tmap.append((x0,x1,t,t+d)); clips.append(w); t+=d
         if k2<len(pieces)-1: clips.append(sil(gaps[k2])); t+=gaps[k2]
-    print('  [退回分段合成]',sent[:50])
+    raise SystemExit('【停止】找不到逗号处的自然停顿，不允许退回分段合成（A8）：'+sent[:60])
     return clips,tmap
 def build(js,out):
     d=json.load(open(js)); no=d['no']
