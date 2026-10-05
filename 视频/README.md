@@ -70,6 +70,6 @@
 1. 读 `踩坑总表.md` 与本标准。
 2. 生成逐词对照初稿 `脚本/NN.json`（按第01、02篇样式），运行 `check_all.py NN`。
 3. 生成 Word 初稿（`make_docx.py`）发给用户人工修正；用户发回后用 `read_docx2.py` 读回，只写回用户改动处。
-4. 用户逐句提的修改：改 json（按整个 chunk 改，改完打印整句核对）→ 生成 **1080p 草稿视频**、Word、HTML、PDF → `sync_article.py` 同步文章与速查表 → `build_html.py` 重建合集 → `check_all.py` → 推送两个仓库。
+4. 用户逐句提的修改：改 json（按整个 chunk 改，改完打印整句核对）→ 生成 **1080p 草稿视频**、Word、HTML、PDF → `sync_article.py` 同步文章与速查表 → `build_html.py` 重建合集 → **新加的重点词查撞词后写入词库 `词库/used_words.json`，并更新 `70篇重点词汇.xlsx`（`词库/build_xlsx.py`）** → `check_all.py` → 推送两个仓库。
 5. 用户确认定稿后：`VIDEO_S=2` 出 **4K 定稿视频**，推送并从云端核对。
 6. 本篇新踩的坑立即追加到 `踩坑总表.md`，修改过程记入 `制作记录/NN.md`。
