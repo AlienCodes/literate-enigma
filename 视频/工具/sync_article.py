@@ -7,7 +7,7 @@ old_rows={}
 for r in re.findall(r'^\| (.+?) \| (.+?) \| (\d+) \|$',tbl_old,re.M): old_rows[r[0].lower()]=re.sub(r'^(本文：[^；|]*(；|$))+','',r[1])
 paras_en={};paras_zh={}
 for s in d['sentences']:
-    en=' '.join(c['en'] for c in s['chunks'])
+    en=' '.join(re.sub(r'\{\{.*?\}\}','',c['en']) for c in s['chunks'])
     zh=''.join(c['zh'] for c in s['chunks'])
     notes=''.join(c['note'].replace('#Y','') for c in s['chunks'] if c.get('note'))
     paras_en.setdefault(s['para'],[]).append(en); paras_zh.setdefault(s['para'],[]).append(zh+notes)

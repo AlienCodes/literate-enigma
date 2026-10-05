@@ -145,11 +145,14 @@ def frame_stack_fit(chunks,colors,header,progress,out,active=None,maxw=1760,maxh
 
 # ---------- interlinear (word-aligned) layout ----------
 def _segs_en(t,colors):
+    # {{…}} = 只显示不朗读的英文注解，颜色跟随前一个重点词
     out=[]
-    for p in re.split(r'(\*\*[^*]+\*\*)',t):
+    for p in re.split(r'(\*\*[^*]+\*\*|\{\{.*?\}\})',t):
         if p.startswith('**'): out.append((p[2:-2],colors.get(p[2:-2].lower())))
+        elif p.startswith('{{'): out.append((p[2:-2],out[-1][1] if out else None))
         elif p: out.append((p,None))
     return out
+def strip_gloss(t): return re.sub(r'\{\{.*?\}\}','',t)
 def _segs_zh(t,colors):
     out=[]
     for p in re.split(r'(\*\*[^*]+\*\*\([^)]*\))',t):

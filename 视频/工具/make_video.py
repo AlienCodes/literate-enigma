@@ -13,7 +13,7 @@ for a,b in T.items(): setattr(R,a,b)
 
 P_CHUNK=0.6; P_COMMA=0.6; P_HOLD=0.7; P_LEAD=0.3; P_PARA_EXTRA=0.5; P_TITLE=1.2
 def say(t):
-    w,_=k.create(re.sub(r'\*\*','',t),voice=V,speed=SPEED,lang='en-us'); return clean_tail(w)
+    w,_=k.create(re.sub(r'\*\*','',R.strip_gloss(t)),voice=V,speed=SPEED,lang='en-us'); return clean_tail(w)
 def sil(s): return np.zeros(int(round(s*SR)),np.float32)
 def build(js,out):
     d=json.load(open(js)); no=d['no']
@@ -36,7 +36,7 @@ def build(js,out):
         ch=s['chunks']; lead=P_LEAD+(P_PARA_EXTRA if prev_para is not None and s['para']!=prev_para else 0)
         prev_para=s['para']
         # read the whole sentence naturally: pause only at punctuation (, ; :), not at line breaks
-        texts=[re.sub(r'\*\*','',c['en']).strip() for c in ch]
+        texts=[re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in ch]
         sent=' '.join(texts)
         bounds=[];pos=0
         for t in texts: bounds.append(pos); pos+=len(t)+1

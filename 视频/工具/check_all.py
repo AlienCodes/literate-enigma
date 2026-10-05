@@ -19,7 +19,7 @@ for s in d['sentences']:
         for w in re.findall(r'\*\*([^*]+)\*\*',c['en']):
             if w.lower() not in marks and not any(w.lower() in m.split() for m in marks): bad.append(f'D4 重点词缺中文标记: {w}')
         if not c['zh'].strip() and c['en'].strip(): bad.append(f'空译文: {c["en"][:40]}')
-    paras.setdefault(s['para'],[]).append(' '.join(c['en'] for c in s['chunks']))
+    paras.setdefault(s['para'],[]).append(' '.join(re.sub(r'\{\{.*?\}\}','',c['en']) for c in s['chunks']))
 if strip(''.join(' '.join(v) for k,v in sorted(paras.items())))!=strip(en): bad.append('D3 英文与文章原文不一致')
 if '\\n' in en or '\n \n' in en.strip(): pass
 for line in t.split('## 速查表',1)[1].split('\n'):

@@ -82,6 +82,7 @@ def colors_for(texts):
             if w.lower() not in c: c[w.lower()]=PAL[i%8]; i+=1
     return c
 def en_html(s,c):
+    s=s.replace('{{','').replace('}}','')  # GLOSS 显示用注解
     out=[]
     for part in re.split(r'(\*\*[^*]+\*\*)',s):
         if part.startswith('**'): w=part[2:-2]; out.append(f'<b style="color:{rgb(c.get(w.lower(),PAL[0]))}">{esc(w)}</b>')
