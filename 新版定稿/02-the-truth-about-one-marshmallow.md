@@ -16,7 +16,7 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 
 想象一下一所**幼儿园**(nursery school)，位于斯坦福大学**校园**(campus)里，时间是20世纪60年代末至70年代初。一个大约四五岁的孩子**独自**(in solitude)坐在一份零食前，面对一桩**直截了当的**(blunt)**交易**(bargain)：现在就吃，或者**抵挡**(resist)**诱惑**(temptation)约15分钟，就能**挣得**(earn)两份。**冲动的**(Impulsive)孩子往往**立刻**(instantly)**缴械投降**(surrender)；**意志坚定的**(resolute)孩子则**坚持抵抗，拒不妥协**(hold out)。
 
-**后续研究**(Follow-ups)让这项测验**名声大噪**(legendary)（被传为经典）。1990年《发展心理学》上的一项研究发现，到了**青少年**(adolescents)时期，等得更久的孩子往往在SAT中**取得**(attain)更高分数，即美国的大学入学考试。一份**微不足道的**(trivial)**零食**(snack)成了**美德**(virtue)的**象征**(emblem)，而四岁时的**克制**(restraint)被**美化**(glorified)为**命运**(destiny)的**预测指标**(predictor)。
+**后续研究**(Follow-ups)让这项测验**名声大噪**(legendary)（被传为经典）。1990年《发展心理学》上的一项研究发现，到了**青少年**(adolescents)时期，等得更久的孩子往往在SAT中**取得**(attain)更高分数，（也就是）美国的高考（大学录取考试）。一份**微不足道的**(trivial)**零食**(snack)成了**美德**(virtue)的**象征**(emblem)，而四岁时的**克制**(restraint)被**美化**(glorified)为**命运**(destiny)的**预测指标**(predictor)。
 
 然而，这种**根据**(foundation)（该研究结论的根基）**并不牢靠**(precarious)（站不住脚）。只有几十个孩子进入了SAT分析，**主要**(predominantly)是斯坦福**教师**(faculty)（全体教员）和**研究生**(postgraduate)的子女。如此**同质的**(homogeneous)、**优越的**(privileged)群体**几乎不**(scarcely)能代表**普通的**(ordinary)家庭，而且**富裕的**(prosperous)家庭可能同时**培养出**(foster)耐心与学业成就。
 
