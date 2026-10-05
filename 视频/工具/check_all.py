@@ -51,6 +51,7 @@ for s in d['sentences']:
     for c in s['chunks']:
         for b in re.findall(r'\*\*([^*]+)\*\*',c['en']):
             if b.lower() in orig: continue
+            if b.lower() in [x.lower() for x in d.get('allow_clash',[])]: continue  # 用户明确要求保留的撞词
             for w in re.findall(r"[A-Za-z]+",b):
                 if len(w)>=3 and w.lower() not in STOP and stem(w) in others: warn.append(f'{b}（{w}）也在第 {"、".join(sorted(others[stem(w)]))} 篇加粗')
 bad+=['T12 新加重点词撞词（按规则应去掉并提醒用户）: '+x for x in sorted(set(warn))]
