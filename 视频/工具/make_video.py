@@ -59,7 +59,7 @@ def build(js,out):
         for ci in range(len(ch)):
             dur=starts[ci+1]-starts[ci]+(lead if ci==0 else 0)+(P_HOLD if ci==len(ch)-1 else 0)
             tl.append(((si,ci),dur))
-    audio.append(sil(0.8)); tl[-1]=(tl[-1][0],tl[-1][1]+0.8)
+    END=2.0-P_HOLD; audio.append(sil(END)); tl[-1]=(tl[-1][0],tl[-1][1]+END)  # 片尾：读完后共停 2 秒
     A=np.concatenate(audio); A=A/np.abs(A).max()*0.89
     total=sum(x for _,x in tl)
     # render images: one uniform size = largest that fits every screen with locked layout
