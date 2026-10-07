@@ -27,30 +27,72 @@ def _quiet_runs(w,thr_db=-38,min_len=0.05):
             if (i-st)/SR>=min_len: runs.append((st,i))
             st=None
     return runs
+SIL_DB=-55   # 真正无声：比本句最响处低 55 dB 以上（模型停顿里的底噪约 -55～-75 dB；词尾 /s/ /f/ /z/ 只有 -25～-45 dB，绝不能删）
+AUD_DB=-45   # 能听见的声音：比最响处低不到 45 dB（用来量"实际听到的停顿"长度）
+def _env5(w):
+    n=int(0.005*SR); pk=np.abs(w).max()+1e-9; m=len(w)//n
+    return 20*np.log10(np.sqrt(np.mean(w[:m*n].reshape(m,n)**2,axis=1))/pk+1e-9)
+INNER_MAX=0.22; INNER_TO=0.18   # 没有标点的地方：模型自己停顿超过 0.22 s 的，压缩到 0.18 s（硬性条件：无标点处整句连读）
+def _cap_inner(seg):
+    """只压缩句中（非标点处）过长的无声段；只删听不见的部分（低于 -45 dB），两头各保留一半，不碰任何读音。"""
+    e=_env5(seg); F=int(0.005*SR); keep=[];prev=0;st=None
+    for f in range(len(e)+1):
+        q=f<len(e) and e[f]<AUD_DB
+        if q and st is None: st=f
+        if not q and st is not None:
+            if (f-st)*0.005>INNER_MAX and st>4 and f<len(e)-4:
+                h=int(INNER_TO/2/0.005)
+                keep.append(seg[prev:(st+h)*F]); prev=(f-h)*F
+            st=None
+    keep.append(seg[prev:])
+    return np.concatenate(keep)
 def sentence_audio(sent,pieces,gaps):
-    """整句一次合成（原模型，声音不变）；标点位置用带时长输出的同版模型精确定位（A9），在该处把停顿换成标准时长。"""
+    """整句一次合成（原模型，声音不变）。标点位置用带时长输出的同版模型精确定位（A9）；
+    在标点处只删除"真正无声"的部分（A10：绝不删词尾的 s/f/z 等弱音），再补静音，使实际听到的停顿 = 标准时长。"""
     raw,_=k.create(sent,voice=V,speed=SPEED,lang='en-us'); w=clean_tail(raw)
     tb,_,sp=KT.create_timed(sent,voice=V,speed=SPEED,lang='en-us',clause_pause=0,sentence_pause=0)
-    scale=len(raw)/len(tb)
-    marks=[x for x in sp if x.phoneme in ',;:']
-    if len(marks)!=len(pieces)-1: raise SystemExit(f'【停止】标点数对不上（A9）：{sent[:60]}')
-    pool=[]
-    for thr,ml in ((-38,0.03),(-32,0.02),(-26,0.015)):
-        pool+=_quiet_runs(w,thr,ml)
-    cuts=[]
-    for m in marks:
-        tc=int(m.end*scale*SR)
-        near=[r for r in pool if r[1]>=tc-int(0.12*SR) and r[0]<=tc+int(0.25*SR) and (not cuts or r[0]>=cuts[-1][1])]
-        hit=[r for r in near if r[0]-int(0.03*SR)<=tc<=r[1]+int(0.03*SR)]
-        if hit: r=max(hit,key=lambda r:r[1]-r[0]); cuts.append((r[0],r[1]))        # 标点处模型自己的整段停顿，整段换成标准时长
-        elif near: r=min(near,key=lambda r:abs(r[0]-tc)); cuts.append((r[0],r[1]))
-        else: cuts.append((tc,tc))   # 模型在此处没有停顿：就在标点时刻插入（标点后、下一个词前）
+    scale=len(raw)/len(tb); toks=list(sp)
+    idxs=[i for i,x in enumerate(toks) if x.phoneme in ',;:']
+    if len(idxs)!=len(pieces)-1: raise SystemExit(f'【停止】标点数对不上（A9）：{sent[:60]}')
+    e=_env5(w); F=int(0.005*SR); cuts=[]; M=2   # M：停顿两头各保留 2 帧（10 ms）
+    for gi,i in enumerate(idxs):
+        prv=next(x for x in reversed(toks[:i]) if x.phoneme.strip() and x.phoneme not in ',;:.!?')
+        nxt=next(x for x in toks[i+1:] if x.phoneme.strip() and x.phoneme not in ',;:.!?')
+        pe=int(prv.end*scale*SR)//F; ns=int(nxt.start*scale*SR)//F
+        # 带时长模型与原模型的局部时间有 0.05–0.1 s 偏差：在标点前后 0.25 s 内找"听不见的连续段"
+        lo=max(0,pe-50); hi=min(len(e)-1,ns+50)
+        if cuts: lo=max(lo,cuts[-1][1]//F+1)
+        runs=[];st=None
+        for f in range(lo,hi+1):
+            q=e[f]<AUD_DB
+            if q and st is None: st=f
+            if (not q or f==hi) and st is not None:
+                en=f if not q else f+1
+                if en-st>=3:
+                    floor=cuts[-1][1]//F+1 if cuts else 0
+                    while st-1>=floor and st>pe-120 and e[st-1]<AUD_DB: st-=1       # 停顿可能早于查找范围就开始：往前延伸到它真正的起点
+                    while en<len(e) and en<ns+120 and e[en]<AUD_DB: en+=1            # 同理往后延伸
+                    runs.append((st,en))
+                st=None
+        long=[r for r in runs if r[1]-r[0]>=16]                    # ≥80 ms：标点处的真停顿（词内塞音闭塞只有 30–60 ms）
+        mid=(pe+ns)/2
+        if long: r0,r1=max(long,key=lambda r:r[1]-r[0])
+        elif runs: r0,r1=min(runs,key=lambda r:abs((r[0]+r[1])/2-mid))
+        else: r0=r1=None
+        if r0 is not None:
+            ca,cb=(r0+M)*F,max(r0+M,r1-M)*F
+            keep=((ca-r0*F)+(r1*F-cb))/SR
+        else:                                                         # 两词之间完全连读：在最安静处插入，不删任何声音
+            f=min(range(max(lo,pe-20),min(hi,ns+20)+1),key=lambda f:e[f]); ca=cb=f*F; keep=0.0
+        if cb>ca and e[ca//F:cb//F].max()>=AUD_DB:
+            raise SystemExit(f'【停止】标点处要删的部分里有能听见的声音（A10 词尾被切）：{sent[:60]}')
+        cuts.append((ca,cb,max(0.03,gaps[gi]-keep)))
     clips=[];tmap=[];t=0.0;prev=0
     for k2,(x0,x1) in enumerate(pieces):
         end=cuts[k2][0] if k2<len(cuts) else len(w)
-        seg=w[prev:end]; d=len(seg)/SR
+        seg=_cap_inner(w[prev:end]); d=len(seg)/SR
         tmap.append((x0,x1,t,t+d)); clips.append(seg); t+=d
-        if k2<len(cuts): clips.append(sil(gaps[k2])); t+=gaps[k2]; prev=cuts[k2][1]
+        if k2<len(cuts): clips.append(sil(cuts[k2][2])); t+=cuts[k2][2]; prev=cuts[k2][1]
     return clips,tmap
 def _split_audio(sent,pieces,gaps):
     clips=[];tmap=[];t=0.0
@@ -87,7 +129,7 @@ def build(js,out):
         for t in texts: bounds.append(pos); pos+=len(t)+1
         # 牛津逗号列举 A, B, and C / A, B, or C：列举内部的逗号只停 P_LIST
         lst=set()
-        for ml in re.finditer(r"(?:[^,;:.!?]+, ){2,}(?:and|or) ",sent):
+        for ml in re.finditer(r"(?:\b[\w'-]+(?: [\w'-]+){0,4}, ){2,}(?:and|or) ",sent):  # 并列项每项不超过 5 个词
             for mc in re.finditer(r',',ml.group(0)): lst.add(ml.start()+mc.start())
         pieces=[];p0=0;gaps=[]
         for mm in re.finditer(r'[,;:](?=\s)',sent):
