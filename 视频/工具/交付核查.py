@@ -4,7 +4,7 @@
   python3 <工具目录>/交付核查.py NN 出片前     # 合成配音前：数字读法、标点停顿、句首句尾、无标点停顿
   python3 <工具目录>/交付核查.py NN 出片后     # 出片后：自动音频检查、独立复核（逐样本比对原始合成）、生成标点试听
 对应踩坑：A8 分段合成发闷、A9 停顿放错、A10/A10b 词尾被切、A11 数字读错、A12 连读处停顿越界、L13 换行。
-最高铁律（硬性条件第〇节）：出片前先查"踩坑对照记录"是否逐条写全；出片后先做核查程序自检（故意剪坏一份副本，必须全部抓到），自检不过 = 核查失灵，不得交付。"""
+最高铁律（硬性条件第〇节）：出片前先过《踩坑核查》（踩坑对照记录逐条写全、能用程序查的坑逐条查、换行比对）；出片后先做核查程序自检（故意剪坏一份副本，必须全部抓到），自检不过 = 核查失灵，不得交付。"""
 import sys, os, re, json, subprocess
 T = os.path.dirname(os.path.abspath(__file__)); no, stage = sys.argv[1].zfill(2), sys.argv[2]
 ok = True; out = []
@@ -25,17 +25,9 @@ if stage == '对照表':
     tab += [f"| {i} | {re.sub(r'[*`]', '', d).strip()[:40]} | 待填 | 待填 |" for i, d in rows]
     open(rec, 'w').write(txt.rstrip('\n') + '\n' + '\n'.join(tab) + '\n'); print(f'已生成 制作记录/{no}.md 的踩坑对照记录模板（{len(rows)} 条），逐条填完才能通过出片前核查'); sys.exit(0)
 elif stage == '出片前':
-    # 0 踩坑对照记录（最高铁律）：制作记录/NN.md 的"## 踩坑对照记录"表里，《踩坑总表》每一条都要有一行：
-    #   | 编号 | 坑（摘要） | 涉及 / 不涉及 | 怎么防的、核查结果 |   （模板用 `交付核查.py NN 对照表` 生成，"待填"不算填）
-    rec = f'{T}/../制作记录/{no}.md'; txt = open(rec).read() if os.path.exists(rec) else ''
-    ids = re.findall(r'^\| *([A-Z]\d+b?) *\|', open(f'{T}/../踩坑总表.md').read(), re.M)
-    sec = txt[txt.index('## 踩坑对照记录'):] if '## 踩坑对照记录' in txt else ''
-    rows = {m.group(1): [c.strip() for c in m.group(2).split('|')] for m in re.finditer(r'^\| *([A-Z]\d+b?) *\|(.*)\|\s*$', sec, re.M)}
-    miss = [i for i in ids if i not in rows]
-    blank = [i for i in ids if i in rows and not (len(rows[i]) >= 3 and rows[i][-2] in ('涉及', '不涉及') and rows[i][-1] not in ('', '待填'))]
-    step(f'踩坑对照记录（《踩坑总表》{len(ids)} 条逐条对照）', bool(sec) and not miss and not blank,
-         '' if sec and not miss and not blank else (f'制作记录/{no}.md 没有"## 踩坑对照记录"（先运行：交付核查.py {no} 对照表）' if not sec
-                                                    else f'缺的条目：{" ".join(miss) or "无"}；没填完的条目：{" ".join(blank) or "无"}'))
+    # 0 踩坑核查（最高铁律）：核查程序自检 + 踩坑对照记录逐条填完 + 能用程序查的坑逐条查 + 换行与用户看过的版本比对（L13）
+    c, o = run(['python3', f'{T}/踩坑核查.py', no, '出片'])
+    step('踩坑核查（核查程序自检、踩坑对照记录、逐条程序核查、换行比对）', c == 0, '' if c == 0 else '\n    '.join(o.strip().splitlines()))
     # 1 数字读法（A11）：列出全文所有数字及配音实际读法，供人工逐个核对；出现未处理的格式即不合格
     src = open('make_video.py').read(); exec(src[src.index('# 朗读用的数字读法'):src.index('def say(t):')])
     d = json.load(open(f'scripts/{no}.json'))

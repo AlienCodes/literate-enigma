@@ -4,7 +4,7 @@
 import json,re,sys,glob,os
 ROOT=os.path.abspath(os.path.join(os.path.dirname(__file__),'..','..'))
 no=sys.argv[1].zfill(2); bad=[]
-d=json.load(open(f'{ROOT}/视频/脚本/{no}.json'))
+d=json.load(open(sys.argv[2] if len(sys.argv)>2 else f'{ROOT}/视频/脚本/{no}.json'))   # 可指定脚本路径（踩坑核查用工作目录里的脚本）
 md=glob.glob(f'{ROOT}/新版定稿/{no}-*.md')[0]; t=open(md).read()
 en=t.split('## 英文',1)[1].split('## 中文',1)[0]
 strip=lambda x:re.sub(r'[\*\s]','',x)
