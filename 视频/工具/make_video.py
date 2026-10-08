@@ -74,6 +74,62 @@ def _cap_inner(seg):
             st=None
     keep.append(seg[prev:])
     return np.concatenate(keep)
+def _cap_spans(seg):
+    """与 _cap_inner 完全相同的判断，返回被压缩掉的段 [(a,b)]（seg 内的样本位置），用于高亮时间换算"""
+    e=_env5(seg); F=int(0.005*SR); out=[];st=None
+    for f in range(len(e)+1):
+        q=f<len(e) and e[f]<AUD_DB
+        if q and st is None: st=f
+        if not q and st is not None:
+            if (f-st)*0.005>INNER_MAX and st>4 and f<len(e)-4:
+                h=int(INNER_TO/2/0.005); out.append(((st+h)*F,(f-h)*F))
+            st=None
+    return out
+def _head_offset(raw,w):
+    """clean_tail 在句首裁掉了多少样本（w = raw[st:...]，开头 10 ms 有淡入，从第 10 ms 起逐样本相同）"""
+    raw=np.asarray(raw,np.float32); g=int(0.01*SR)+5
+    for i in np.where(raw==w[g])[0]-g:
+        if 0<=i and i+g+200<=len(raw) and np.array_equal(raw[i+g:i+g+200],w[g:g+200]): return int(i)
+    raise SystemExit('【停止】找不到句首裁剪位置（高亮时间无法换算，L14）')
+LAST={}
+_NOSOUND=set(' ,;:.!?"\'“”‘’()—–-…')
+def chunk_token_starts(texts,toks):
+    """每一块第一个音在带时长模型音素序列里的位置：逐块转成音素，与整句音素序列做序列比对（不按空格数词：模型会把 in the、to be 连成一组）"""
+    import difflib
+    full=''.join(x.phoneme for x in toks)
+    if full!=KT.tokenizer.phonemize(spoken(' '.join(texts)),'en-us'): raise SystemExit('【停止】带时长模型的音素与朗读文字对不上（L14）')
+    cat='';starts=[]
+    for t_ in texts:
+        p_=KT.tokenizer.phonemize(spoken(t_),'en-us').strip()
+        starts.append(len(cat)+(1 if cat else 0)); cat=(cat+' '+p_) if cat else p_
+    bl=[b_ for b_ in difflib.SequenceMatcher(None,cat,full,autojunk=False).get_matching_blocks() if b_.size>0]
+    out=[]
+    for i in starts:
+        j=next((b_.b+(i-b_.a) for b_ in bl if b_.a<=i<b_.a+b_.size),None)
+        if j is None: j=next((b_.b for b_ in bl if b_.a>i),len(full))
+        while j<len(full) and full[j] in _NOSOUND: j+=1
+        out.append(j)
+    if any(b2<=a2 for a2,b2 in zip(out,out[1:])): raise SystemExit('【停止】各块开头在音素序列里的位置不是递增的（L14）')
+    return out
+def chunk_times(texts):
+    """（L14）每一块开始读的时刻（秒，相对这一句配音的开头）：取这一块第一个音前面那个"空格"的开头（= 上一个词读完），
+    换到原始合成 → 减去句首裁剪 → 经过删停顿/补停顿/压缩长停顿换算到成片。
+    用空格开头而不是第一个音素的开头：带时长模型标的音素开头常常已经是元音，下一个词的辅音（/l/ /s/ /h/ /f/）其实在空格里就开始了，
+    按音素开头会推后 0.06–0.15 秒（01–04 共 8 处用实际声音核对：空格开头 7 处误差 ≤0.05 秒）。
+    标点处（逗号、分号、冒号后开始的块）不用这里的结果，出片程序从停顿结束处往后找真正开口的时刻（见 build）。"""
+    toks=LAST['toks']; js=chunk_token_starts(texts,toks); out=[]
+    for j in js[1:]:
+        i=j-1
+        while i>=0 and toks[i].phoneme in 'ˈˌ': i-=1
+        t_=toks[i].start if i>=0 and toks[i].phoneme==' ' else toks[j].start
+        p=int(round(t_*LAST['scale']*SR))-LAST['head']                  # 在 w 里的样本位置
+        tt=None
+        for k_,(a,b,t0,rm) in enumerate(LAST['segs']):
+            if p<a: tt=t0; break                                          # 落在被删的停顿里：从下一段开头算
+            if p<b:
+                q=p-a; q-=sum(min(q,y)-x for x,y in rm if x<q); tt=t0+q/SR; break
+        out.append(LAST['total'] if tt is None else tt)
+    return out
 # 人工用实际声音核实过的连读处插入点（A15）：scripts/NN.json 的"停顿插入点"：{"S7": {"1": 0.815}}（第几句：{第几个标点: 秒}，
 # 秒数是整句一次合成后的声音 w 里的位置），依据写在"核对确认.停顿位置"。出片和所有核查程序（都 exec 本文件）用同一份。
 import glob as _glob, json as _json
@@ -150,12 +206,15 @@ def sentence_audio(sent,pieces,gaps):
         if cb>ca and (e[ca//F:cb//F].max()>=PAUSE_DB or e[ca//F-M]>=AUD_DB or e[min(len(e)-1,cb//F+M-1)]>=AUD_DB):
             raise SystemExit(f'【停止】标点处要删的部分里有词的声音，或没有保住词尾/词头（A10）：{sent[:60]}')
         cuts.append((ca,cb,max(0.03,gaps[gi]-keep)))
-    clips=[];tmap=[];t=0.0;prev=0
+    clips=[];tmap=[];t=0.0;prev=0;segs=[]
     for k2,(x0,x1) in enumerate(pieces):
         end=cuts[k2][0] if k2<len(cuts) else len(w)
         seg=_cap_inner(w[prev:end]); d=len(seg)/SR
+        rm=_cap_spans(w[prev:end]); assert len(seg)==end-prev-sum(b-a for a,b in rm)
+        segs.append((prev,end,t,rm))
         tmap.append((x0,x1,t,t+d)); clips.append(seg); t+=d
         if k2<len(cuts): clips.append(sil(cuts[k2][2])); t+=cuts[k2][2]; prev=cuts[k2][1]
+    LAST.clear(); LAST.update(toks=toks,scale=scale,head=_head_offset(raw,w),segs=segs,total=t)
     return clips,tmap
 def _split_audio(sent,pieces,gaps):
     clips=[];tmap=[];t=0.0
@@ -201,12 +260,19 @@ def build(js,out):
         # 整句一次合成（2026-10-05 用户定：分段合成会让逗号后的开头发闷），再把模型在逗号处的自然停顿拉长到标准时长
         clips,tmap=sentence_audio(sent,pieces,gaps)
         t=sum(len(c) for c in clips)/SR
-        def c2t(cpos):
-            for x0,x1,t0,t1 in tmap:
-                if cpos<=x1: return t0+(t1-t0)*max(0,cpos-x0)/max(1,x1-x0)
-            return t
         a=np.concatenate(clips)
-        starts=[0.0]+[c2t(bounds[i]) for i in range(1,len(ch))]+[len(a)/SR]
+        # L14：每一块的高亮在这一块开始读时切换（原来按字母个数平均分，数字、长词处会提前或推后 1 秒多）
+        # 逗号、分号、冒号后开始的块：从停顿结束处往后找真正开口的时刻——第一个比本句最响 10 ms 低不到 30 dB 的 10 ms
+        # （停顿后常有 0.3–0.45 秒的吸气声，比最响处低 38 dB 以上，不算开口；01–04 共 48 处标定，与独立对齐相差 -0.03～+0.05 秒）；
+        # 其余块：上一个词读完（空格开头，chunk_times）
+        ct=chunk_times(texts); p0={x0:t0 for x0,x1,t0,t1 in tmap}
+        n10=int(0.01*SR); m10=len(a)//n10; db10=10*np.log10(np.mean(a[:m10*n10].reshape(m10,n10)**2,axis=1)+1e-20); thr=db10.max()-30
+        def speech_on(t):
+            f0=int(round(t/0.01)); g=next((x for x in range(f0,min(m10,f0+100)) if db10[x]>=thr),None)
+            if g is None: raise SystemExit(f'【停止】标点停顿后 1 秒内找不到开口（L14）：{sent[:60]}')
+            return g*0.01
+        starts=[0.0]+[speech_on(p0[bounds[ci]]) if bounds[ci] in p0 else ct[ci-1] for ci in range(1,len(ch))]+[len(a)/SR]
+        if any(y<=x for x,y in zip(starts,starts[1:])): raise SystemExit(f'【停止】高亮时间不是递增的（L14）：{sent[:60]}')
         audio+=[sil(lead),a,sil(P_HOLD)]
         for ci in range(len(ch)):
             dur=starts[ci+1]-starts[ci]+(lead if ci==0 else 0)+(P_HOLD if ci==len(ch)-1 else 0)

@@ -19,7 +19,9 @@ src = open('make_video.py').read().split("if __name__")[0]
 hook = "        cuts.append((ca,cb,max(0.03,gaps[gi]-keep)))\n"
 assert src.count(hook) == 1, '出片程序结构变了，核对程序需要同步更新'
 src = src.replace(hook, hook + "        _LOG.append((ca,cb))\n")
-src = src.replace("    clips=[];tmap=[];t=0.0;prev=0\n", "    _W.append(w)\n    clips=[];tmap=[];t=0.0;prev=0\n", 1)
+hook2 = "    clips=[];tmap=[];t=0.0;prev=0;segs=[]\n"
+assert src.count(hook2) == 1, '出片程序结构变了，核对程序需要同步更新'     # 两处挂钩都必须找到，找不到就停（曾因 L14 改动静默失效）
+src = src.replace(hook2, "    _W.append(w)\n" + hook2, 1)
 _LOG = []; _W = []
 exec(src)
 TOL = 0.030

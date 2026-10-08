@@ -2,8 +2,8 @@
 """每篇视频的交付核查（硬性条件：不通过不得交付）。在视频工作目录（含 make_video.py、scripts/、work_NN/）下运行：
   python3 <工具目录>/交付核查.py NN 对照表     # 开工第一步：生成"踩坑对照记录"模板，逐条填写
   python3 <工具目录>/交付核查.py NN 出片前     # 合成配音前：数字读法、标点停顿、句首句尾、无标点停顿
-  python3 <工具目录>/交付核查.py NN 出片后     # 出片后：自动音频检查、独立复核（逐样本比对原始合成）、生成标点试听
-对应踩坑：A8 分段合成发闷、A9 停顿放错、A10/A10b 词尾被切、A11 数字读错、A12 连读处停顿越界、L13 换行。
+  python3 <工具目录>/交付核查.py NN 出片后     # 出片后：自动音频检查、独立复核（逐样本比对原始合成）、高亮同步核对、生成标点试听
+对应踩坑：A8 分段合成发闷、A9 停顿放错、A10/A10b 词尾被切、A11 数字读错、A12 连读处停顿越界、L13 换行、L14 高亮没跟上朗读。
 最高铁律（硬性条件第〇节）：出片前先过《踩坑核查》（踩坑对照记录逐条写全、能用程序查的坑逐条查、换行比对）；出片后先做核查程序自检（故意剪坏一份副本，必须全部抓到），自检不过 = 核查失灵，不得交付。"""
 import sys, os, re, json, subprocess
 T = os.path.dirname(os.path.abspath(__file__)); no, stage = sys.argv[1].zfill(2), sys.argv[2]
@@ -131,6 +131,26 @@ elif stage == '出片后':
         if m and m.group(1) == 'lost' and last in okd: viol += f"\n    {last}：已用实际声音确认——{okd[last]}"
     good = c == 0 and not bad and extra == ['0'] and unconf == 0
     step(f'独立复核：{len(cuts)} 处改动，词尾/词头被切 = {len(bad)}，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = {edge}（未经实际声音确认的 {unconf}），多余声音 = {extra}', good, viol if good else (viol + '\n    ' + o[-800:]))
+    # 高亮同步（L14：读到哪一块，哪一块高亮）。先做核查程序自检（阳性对照）：在时间表副本里故意把两处切换挪动 0.4 秒
+    # （标点后的块提前、无标点处的块推后，各一处），高亮同步核对必须正好在这两处报出、其余不变；自检不过 = 核查失灵
+    ent = re.findall(r"file '([^']+)'\nduration ([\d.]+)", open(f'work_{no}/list.txt').read())
+    dj = json.load(open(f'scripts/{no}.json')); nch = sum(len(s['chunks']) for s in dj['sentences']); base = len(ent) - nch
+    cand = []; ix = base
+    for si, s in enumerate(dj['sentences'], 1):
+        if len(s['chunks']) > 1: cand.append((si, ix, bool(re.search(r'[,;:]$', re.sub(r'\*\*|\{\{.*?\}\}', '', s['chunks'][0]['en']).strip()))))
+        ix += len(s['chunks'])
+    pP = next((c for c in cand if c[2]), cand[0]); pN = next((c for c in cand if not c[2] and c[0] != pP[0]), cand[-1])
+    du = [float(x) for _, x in ent]
+    du[pP[1]] -= 0.4; du[pP[1] + 1] += 0.4; du[pN[1]] += 0.4; du[pN[1] + 1] -= 0.4
+    bad_list = f'work_{no}/list_自检.txt'
+    open(bad_list, 'w').write(''.join(f"file '{f}'\nduration {x:.3f}\n" for (f, _), x in zip(ent, du)) + f"file '{ent[-1][0]}'\n")
+    c, o = run(['python3', f'{T}/高亮同步核对.py', no], {'HL_LIST': bad_list, 'HL_ONLY': f'{pP[0]},{pN[0]}'})
+    got = set(re.findall(rf'^{no} (S\d+) BAD (第\d+块)', o, re.M)); want = {(f'S{pP[0]}', '第2块'), (f'S{pN[0]}', '第2块')}
+    step(f'高亮同步核对 自检：S{pP[0]} 第2块故意提前 0.4 秒、S{pN[0]} 第2块故意推后 0.4 秒，必须正好报出这两处', got == want,
+         f'报出：{sorted(got)}' + ('' if got == want else '\n    ' + o[-600:]))
+    c, o = run(['python3', f'{T}/高亮同步核对.py', no])
+    step('高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）',
+         c == 0 and '问题数 0' in o, '\n    '.join(l for l in o.splitlines() if 'BAD' in l or '核实' in l or '共核对' in l))
     # 标点试听（交用户逐处听）
     import imageio_ffmpeg
     FF = imageio_ffmpeg.get_ffmpeg_exe(); a, sr = sf.read(f'work_{no}/a.wav')
