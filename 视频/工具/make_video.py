@@ -14,8 +14,31 @@ for a,b in T.items(): setattr(R,a,b)
 
 P_CHUNK=0.6; P_COMMA=0.4; P_HOLD=0.7; P_LEAD=0.3; P_PARA_EXTRA=0.2; P_TITLE=0.6; P_FIRST=0.4;  # 标题读完停 0.6 秒 → 切到正文第一屏 → 再停 0.4 秒开读（共 1 秒）
 P_LIST=0.2  # 牛津逗号列举（A, B, and C）里的逗号：0.2 秒
+
+# 朗读用的数字读法（A11：配音模型把 1995 读成 "nineteen hundred ninety-five"、1960s 读成 "nineteen hundred sixty z"）
+_ONES='zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen'.split()
+_TENS='_ _ twenty thirty forty fifty sixty seventy eighty ninety'.split()
+_ORD={'one':'first','two':'second','three':'third','five':'fifth','eight':'eighth','nine':'ninth','twelve':'twelfth'}
+def _n2w(n):
+    if n<20: return _ONES[n]
+    return _TENS[n//10]+('' if n%10==0 else '-'+_ONES[n%10])
+def _ordinal(n):
+    w=_n2w(n); last=w.split('-')[-1]
+    o=_ORD.get(last, last[:-1]+'ieth' if last.endswith('y') else last+'th')
+    return '-'.join(w.split('-')[:-1]+[o])
+def _year(y):
+    hi,lo=divmod(y,100)
+    if lo==0: return _n2w(hi)+' hundred'
+    return _n2w(hi)+' '+('oh '+_ONES[lo] if lo<10 else _n2w(lo))
+_PL={'twenty':'twenties','thirty':'thirties','forty':'forties','fifty':'fifties','sixty':'sixties','seventy':'seventies','eighty':'eighties','ninety':'nineties'}
+_MONTHS='January|February|March|April|May|June|July|August|September|October|November|December'
+def spoken(t):
+    t=re.sub(r'\b(1[1-9])(\d)0s\b',lambda m:_n2w(int(m.group(1)))+' '+_PL[_TENS[int(m.group(2))]],t)          # 1960s → nineteen sixties
+    t=re.sub(r'\b([1-9]|[12]\d|3[01]) ('+_MONTHS+r')\b',lambda m:'the '+_ordinal(int(m.group(1)))+' of '+m.group(2),t)  # 6 January → the sixth of January
+    t=re.sub(r'(?<!\d,)(?<!\d)\b(1[1-9]\d\d)\b(?!,\d)(?!\d)',lambda m:_year(int(m.group(1))),t)                       # 1995 → nineteen ninety-five
+    return t
 def say(t):
-    w,_=k.create(re.sub(r'\*\*','',R.strip_gloss(t)),voice=V,speed=SPEED,lang='en-us'); return clean_tail(w)
+    w,_=k.create(spoken(re.sub(r'\*\*','',R.strip_gloss(t))),voice=V,speed=SPEED,lang='en-us'); return clean_tail(w)
 def sil(s): return np.zeros(int(round(s*SR)),np.float32)
 
 def _quiet_runs(w,thr_db=-38,min_len=0.05):
@@ -28,10 +51,12 @@ def _quiet_runs(w,thr_db=-38,min_len=0.05):
             st=None
     return runs
 SIL_DB=-55   # 真正无声：比本句最响处低 55 dB 以上（模型停顿里的底噪约 -55～-75 dB；词尾 /s/ /f/ /z/ 只有 -25～-45 dB，绝不能删）
-AUD_DB=-45   # 能听见的声音：比最响处低不到 45 dB（用来量"实际听到的停顿"长度）
+PAUSE_DB=-40  # 找停顿用：比本句最响帧低 40 dB 以上
+AUD_DB=-55   # 比本句最响帧低 55 dB 以内都算能听见（独立核对用 -45 dB 已能证明无损，这里再留 10 dB 余量）； 能听见的声音：比最响处低不到 45 dB（用来量"实际听到的停顿"长度）
 def _env5(w):
-    n=int(0.005*SR); pk=np.abs(w).max()+1e-9; m=len(w)//n
-    return 20*np.log10(np.sqrt(np.mean(w[:m*n].reshape(m,n)**2,axis=1))/pk+1e-9)
+    # 基准 = 本句最响的 5 ms 帧的平均响度（A10 复查：用单个采样峰值做基准会高约 10 dB，等于放宽门槛，词尾 /f/ /k/ 仍被切）
+    n=int(0.005*SR); m=len(w)//n; r=np.sqrt(np.mean(w[:m*n].reshape(m,n)**2,axis=1))
+    return 20*np.log10(r/(r.max()+1e-12)+1e-9)
 INNER_MAX=0.22; INNER_TO=0.18   # 没有标点的地方：模型自己停顿超过 0.22 s 的，压缩到 0.18 s（硬性条件：无标点处整句连读）
 def _cap_inner(seg):
     """只压缩句中（非标点处）过长的无声段；只删听不见的部分（低于 -45 dB），两头各保留一半，不碰任何读音。"""
@@ -49,8 +74,8 @@ def _cap_inner(seg):
 def sentence_audio(sent,pieces,gaps):
     """整句一次合成（原模型，声音不变）。标点位置用带时长输出的同版模型精确定位（A9）；
     在标点处只删除"真正无声"的部分（A10：绝不删词尾的 s/f/z 等弱音），再补静音，使实际听到的停顿 = 标准时长。"""
-    raw,_=k.create(sent,voice=V,speed=SPEED,lang='en-us'); w=clean_tail(raw)
-    tb,_,sp=KT.create_timed(sent,voice=V,speed=SPEED,lang='en-us',clause_pause=0,sentence_pause=0)
+    raw,_=k.create(spoken(sent),voice=V,speed=SPEED,lang='en-us'); w=clean_tail(raw)
+    tb,_,sp=KT.create_timed(spoken(sent),voice=V,speed=SPEED,lang='en-us',clause_pause=0,sentence_pause=0)
     scale=len(raw)/len(tb); toks=list(sp)
     idxs=[i for i,x in enumerate(toks) if x.phoneme in ',;:']
     if len(idxs)!=len(pieces)-1: raise SystemExit(f'【停止】标点数对不上（A9）：{sent[:60]}')
@@ -62,30 +87,41 @@ def sentence_audio(sent,pieces,gaps):
         # 带时长模型与原模型的局部时间有 0.05–0.1 s 偏差：在标点前后 0.25 s 内找"听不见的连续段"
         lo=max(0,pe-50); hi=min(len(e)-1,ns+50)
         if cuts: lo=max(lo,cuts[-1][1]//F+1)
+        # ① 找停顿：比最响帧低 40 dB 以上的连续段（含模型停顿里的底噪、换气声）
         runs=[];st=None
         for f in range(lo,hi+1):
-            q=e[f]<AUD_DB
+            q=e[f]<PAUSE_DB
             if q and st is None: st=f
             if (not q or f==hi) and st is not None:
                 en=f if not q else f+1
                 if en-st>=3:
                     floor=cuts[-1][1]//F+1 if cuts else 0
-                    while st-1>=floor and st>pe-120 and e[st-1]<AUD_DB: st-=1       # 停顿可能早于查找范围就开始：往前延伸到它真正的起点
-                    while en<len(e) and en<ns+120 and e[en]<AUD_DB: en+=1            # 同理往后延伸
-                    runs.append((st,en))
+                    while st-1>=floor and st>pe-120 and e[st-1]<PAUSE_DB: st-=1
+                    while en<len(e) and en<ns+120 and e[en]<PAUSE_DB: en+=1
+                    if en>=pe-30 and st<=ns+8: runs.append((st,en))   # 必须在逗号前后这两个词之间
                 st=None
-        long=[r for r in runs if r[1]-r[0]>=16]                    # ≥80 ms：标点处的真停顿（词内塞音闭塞只有 30–60 ms）
+        long=[r for r in runs if r[1]-r[0]>=16]
         mid=(pe+ns)/2
+        r0=r1=None
         if long: r0,r1=max(long,key=lambda r:r[1]-r[0])
         elif runs: r0,r1=min(runs,key=lambda r:abs((r[0]+r[1])/2-mid))
-        else: r0=r1=None
         if r0 is not None:
-            ca,cb=(r0+M)*F,max(r0+M,r1-M)*F
-            keep=((ca-r0*F)+(r1*F-cb))/SR
-        else:                                                         # 两词之间完全连读：在最安静处插入，不删任何声音
-            f=min(range(max(lo,pe-20),min(hi,ns+20)+1),key=lambda f:e[f]); ca=cb=f*F; keep=0.0
-        if cb>ca and e[ca//F:cb//F].max()>=AUD_DB:
-            raise SystemExit(f'【停止】标点处要删的部分里有能听见的声音（A10 词尾被切）：{sent[:60]}')
+            # ② 两头往里收：上一个词的尾音保留到它衰减到 -55 dB；下一个词从 -55 dB 处开始保留（A10）
+            a=r0
+            while a<r1 and e[a]>=AUD_DB: a+=1
+            b=r1
+            while b>a and e[b-1]>=AUD_DB: b-=1
+            if b-a>=2*M+1:
+                ca,cb=(a+M)*F,(b-M)*F
+                keep=((ca-a*F)+(b*F-cb))/SR          # 听到的停顿从尾音衰减到 -55 dB 起算（与核对口径一致）
+            else:
+                f=min(range(r0,r1),key=lambda f:e[f]); ca=cb=f*F; keep=max(0,b-a)*F/SR
+        else:                                                         # 两词之间完全连读：在逗号前后两词之间最安静处插入，不删任何声音
+            f=min(range(max(lo,pe-16),min(hi,ns+2)+1),key=lambda f:e[f]); ca=cb=f*F; keep=0.0
+        if r0 is not None and not (r0*F<=ca<=cb<=r1*F):
+            raise SystemExit(f'【停止】删除范围超出了停顿（A9/A10）："{sent[:60]}" 第{gi+1}个标点')
+        if cb>ca and (e[ca//F:cb//F].max()>=PAUSE_DB or e[ca//F-M]>=AUD_DB or e[min(len(e)-1,cb//F+M-1)]>=AUD_DB):
+            raise SystemExit(f'【停止】标点处要删的部分里有词的声音，或没有保住词尾/词头（A10）：{sent[:60]}')
         cuts.append((ca,cb,max(0.03,gaps[gi]-keep)))
     clips=[];tmap=[];t=0.0;prev=0
     for k2,(x0,x1) in enumerate(pieces):
