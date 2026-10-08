@@ -9,7 +9,8 @@
   ① 踩坑对照记录：制作记录/NN.md 里本阶段涉及的每一条（文本：T D W C G；出片：全部）都填了"涉及/不涉及"和怎么防的；
   ② 能用程序查的坑逐条查（下面每个检查都写明对应的踩坑编号）；
   ③ 需要逐个确认的（疑似缺牛津逗号、数字对不上）必须在 scripts/NN.json 的"核对确认"里逐条写明结论；
-  ④ 换行（L13）：与上次发给用户的版本（脚本/已发版本/NN.json）逐句比对，有变化必须在"换行变更已获同意"里写明用户原话。
+  ④ 换行（L13）：与上次发给用户的版本（脚本/已发版本/NN.json）逐句比对，有变化必须在"换行变更已获同意"里写明用户原话；
+  ⑤ 存视频的文件夹只存定稿（G7）：已定稿篇目的草稿、试听视频、旧版本必须删掉。
 新坑入表时，凡是能用程序查的，必须同时在这里加检查、在自检里加一个故意造坑的样本。"""
 import sys, os, re, json, glob, copy, subprocess
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T); ROOT = os.path.dirname(V)
@@ -243,6 +244,57 @@ def selftest():
     return fails
 
 
+VIDEO_EXT = ('.mp4', '.mov', '.m4v', '.webm', '.mkv', '.avi')
+
+
+def video_folders(root):
+    """G7（用户 2026-10-08）：存定稿视频的文件夹只存定稿版本，有瑕疵的旧版本、草稿及时删除。
+    最终版4K视频/：每篇一个"NN - 英文标题 - 中文标题.mp4"；视频/视频/：只有 NN.mp4，且与归档的定稿逐字节相同；
+    已定稿的篇目，视频/视频/草稿1080p/ 里的草稿和 视频/试听/ 里的试听视频必须删掉（没定稿的篇目在修改阶段可以暂存草稿）。"""
+    import hashlib
+    md5 = lambda p: hashlib.md5(open(p, 'rb').read()).hexdigest()
+    err = []; fin = {}
+    for p in sorted(glob.glob(f'{root}/最终版4K视频/*')):
+        b = os.path.basename(p)
+        if b == 'README.md': continue
+        m = re.match(r'(\d\d) - .+ - .+\.mp4$', b)
+        if not m: err.append(f'[G7] 最终版4K视频/ 里有不是定稿命名的文件：{b}'); continue
+        if m.group(1) in fin: err.append(f'[G7] 最终版4K视频/ 里第{m.group(1)}篇不止一个版本：{b}')
+        fin[m.group(1)] = p
+    for p in sorted(glob.glob(f'{root}/视频/视频/*')):
+        b = os.path.basename(p)
+        if os.path.isdir(p):
+            if b != '草稿1080p': err.append(f'[G7] 视频/视频/ 里有多余的文件夹：{b}')
+            continue
+        m = re.match(r'(\d\d)\.mp4$', b)
+        if not m: err.append(f'[G7] 视频/视频/ 里有不是定稿的文件：{b}')
+        elif m.group(1) not in fin: err.append(f'[G7] 视频/视频/{b} 没有归档到 最终版4K视频/（定稿后运行 归档定稿视频.py）')
+        elif md5(p) != md5(fin[m.group(1)]): err.append(f'[G7] 视频/视频/{b} 与 最终版4K视频/ 里的定稿不是同一个版本')
+    for p in sorted(glob.glob(f'{root}/视频/视频/草稿1080p/*')) + [q for q in sorted(glob.glob(f'{root}/视频/试听/*')) if q.lower().endswith(VIDEO_EXT)]:
+        m = re.match(r'(\d\d)', os.path.basename(p))
+        if m and m.group(1) in fin: err.append(f'[G7] 第{m.group(1)}篇已定稿，旧草稿/试听视频没删：{os.path.relpath(p, root)}')
+    return err
+
+
+def selftest_folders():
+    """G7 自检：临时目录里造一份"已定稿、草稿没删"的目录，必须报出；删干净的必须不报"""
+    import tempfile
+    fails = []
+    with tempfile.TemporaryDirectory() as r:
+        for q in ('最终版4K视频', '视频/视频/草稿1080p', '视频/试听'): os.makedirs(f'{r}/{q}')
+        for q in ('最终版4K视频/03 - A - 甲.mp4', '视频/视频/03.mp4'): open(f'{r}/{q}', 'wb').write(b'final')
+        if video_folders(r): fails.append(f'误报：只有定稿的目录被判不合格 {video_folders(r)}')
+        open(f'{r}/视频/视频/草稿1080p/03_1080p.mp4', 'wb').write(b'draft')
+        if not any('03_1080p' in x for x in video_folders(r)): fails.append('没抓到：已定稿篇目的草稿没删（G7）')
+        os.remove(f'{r}/视频/视频/草稿1080p/03_1080p.mp4'); open(f'{r}/视频/试听/03_试听.mp4', 'wb').write(b'x')
+        if not any('03_试听' in x for x in video_folders(r)): fails.append('没抓到：已定稿篇目的试听视频没删（G7）')
+        os.remove(f'{r}/视频/试听/03_试听.mp4'); open(f'{r}/视频/视频/03.mp4', 'wb').write(b'old')
+        if not any('不是同一个版本' in x for x in video_folders(r)): fails.append('没抓到：视频/视频/ 里留着旧版本（G7）')
+        open(f'{r}/视频/视频/03.mp4', 'wb').write(b'final'); open(f'{r}/最终版4K视频/03 - A - 乙.mp4', 'wb').write(b'final')
+        if not any('不止一个版本' in x for x in video_folders(r)): fails.append('没抓到：最终版4K视频/ 里同一篇有两个版本（G7）')
+    return fails
+
+
 def check_all_text(no, js):
     """check_all.py（D1–D4、撞词 T12、速查表 S2）；文本阶段视频文件还没有，不算"""
     r = subprocess.run(['python3', f'{T}/check_all.py', no, js], capture_output=True, text=True)
@@ -256,8 +308,10 @@ def main():
         for i, a, b in pit_rows():
             if i[0] in 'CG': print(f'  {i}  {a}\n       → {b}')
         print('铁律：教材零瑕疵；踩过的坑绝不再踩；不自己检查自己；改一处全部重查；先核查后交付（硬性条件第〇节）')
-        return 0
-    fails = selftest()
+        vf = selftest_folders() or video_folders(ROOT)
+        print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
+        return 1 if vf else 0
+    fails = selftest() + selftest_folders()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
@@ -265,7 +319,7 @@ def main():
     js = f'scripts/{no}.json' if os.path.exists(f'scripts/{no}.json') else f'{V}/脚本/{no}.json'
     d = json.load(open(js)); snap = f'{V}/脚本/已发版本/{no}.json'
     sent = json.load(open(snap)) if os.path.exists(snap) else None
-    err = record_gate(no, stage)
+    err = record_gate(no, stage) + video_folders(ROOT)
     e, conf, ref = text_checks(d, article_en(no), sent); err += e
     err += [f'[check_all] {x}' for x in check_all_text(no, os.path.abspath(js))]
     print(f'第{no}篇 {stage}阶段 踩坑核查（{js}）：')
