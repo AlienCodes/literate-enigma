@@ -9,6 +9,8 @@ For every text (title + sentences):
 Audible islands (5 ms frames within 45 dB of the sentence's peak frame RMS, merged if gap < 15 ms)
 are then scored: lost audible samples, altered frames, silence inserted inside the island, NCC.
 Also: everything in a.wav that is not a mapped raw sample must be digital zero (extra-content check).
+A10 edge check (硬性条件): wherever raw audio was removed, the 15 ms kept on each side must already be below -55 dB
+(the word tail had decayed / the next word had not started) and the removed part must stay below -40 dB.
 """
 import sys, json, numpy as np, soundfile as sf
 import os
@@ -17,6 +19,7 @@ W = os.environ.get('QC_DIR', S + '/qc_independent'); os.makedirs(W, exist_ok=Tru
 SR = 24000; FR = 120; BL = 240
 AUD = -45.0; SIG = -60.0; MERGE = 3
 TOL = 2.2 / 32768
+EDGE = -55.0; EDGE_W = 360; PAUSE_MAX = -40.0   # 硬性条件 A10：删除处两侧 15 ms 内必须已衰减到 -55 dB 以下；删掉的部分不得高于 -40 dB
 
 
 def frms(x, fr=FR):
@@ -68,6 +71,13 @@ def sliding_max_db(y, ref, win=FR):
     c = np.concatenate([[0], np.cumsum(y ** 2)])
     e = (c[win:] - c[:-win]) / win
     return float(db(np.sqrt(e[::24].max()), ref))
+
+
+def min_db(y, ref, win=FR):
+    """min 5 ms RMS over every 5 ms window (1-sample hop) fully inside y, in dB re ref"""
+    if len(y) < win: return 0.0
+    c = np.concatenate([[0], np.cumsum(y ** 2)])
+    return float(db(np.sqrt(max((c[win:] - c[:-win]).min() / win, 0)), ref))
 
 
 def word_of(lab, t0, t1, pad=0.0):
@@ -159,7 +169,13 @@ def audit(no, g=None, wav=None):
                 'post_db': float(db(np.sqrt(np.mean(post ** 2)) if len(post) else 0, ref)),
                 'pre_abs_last': float(abs(gx[k1 - 1])) if k1 > 0 else 0.0,
                 'post_abs_first': float(abs(gx[k2])) if k2 < N else 0.0,
+                'pre_min_db': min_db(gx[max(0, k1 - EDGE_W):k1], ref) if k2 > k1 else None,
+                'post_min_db': min_db(gx[k2:k2 + EDGE_W], ref) if k2 > k1 else None,
                 'words': word_of(lab, k1 / SR, k2 / SR, 0.05)})
+            e_ = edits[-1]
+            e_['edge_sides'] = [n for n, v in (('pre', k2 > k1 and e_['pre_min_db'] > EDGE), ('post', k2 > k1 and e_['post_min_db'] > EDGE),
+                                               ('lost', k2 > k1 and e_['lost_max_db'] > PAUSE_MAX)) if v]
+            e_['edge_bad'] = bool(e_['edge_sides'])
         offmap = np.full(N, np.nan)
         for k, s in enumerate(segs):
             lo_ = 0 if k == 0 else max(segs[k - 1][1], s[0]) if segs[k - 1][1] <= s[0] else s[0]
@@ -243,10 +259,13 @@ def fmt(no, rep):
             P(f"     edit raw {e['raw_k1']/SR:.4f}-{e['raw_k2']/SR:.4f} A {e['A_k1']/SR:.4f}-{e['A_k2']/SR:.4f} lost={e['lost_ms']:.1f}ms "
               f"(max {e['lost_max_db']:.1f} dB re rmsPk, {e['lost_max_db_spk']:.1f} re smpPk) shift={e['shift_ms']:+.1f}ms ins_nz={e['ins_nonzero']} "
               f"pre={e['pre_db']:.1f} post={e['post_db']:.1f} | {e['words']}")
+            if e['raw_k2'] > e['raw_k1']:
+                P(f"     edge pre_min={e['pre_min_db']:.1f} post_min={e['post_min_db']:.1f} lost_max={e['lost_max_db']:.1f} {'A10_VIOLATION(' + ','.join(e['edge_sides']) + ')' if e['edge_bad'] else 'ok'}")
         for r in tr['islands']:
             if not r['ok']:
                 P(f"     ISL{r['i']:>3} raw {r['raw_t0']:.3f}-{r['raw_t1']:.3f} A {r['A_t0']}-{r['A_t1']} dur={r['dur_ms']:.0f}ms ncc={r['ncc']:.5f} "
                   f"lost={r['lost_samples']} lostdb={r['lost_audible_db']} alt={r['alt_frames'][:6]} splits={r['n_splits']} | {r['words']}")
+    P('A10 edge violations (cut not inside -55 dB on both sides, or removed part above -40 dB): %d' % sum(e['edge_bad'] for tr in rep['texts'] for e in tr['edits']))
     P('extra non-zero runs not explained by raw copies: %d' % len(rep['extra_runs']))
     for e in rep['extra_runs'][:40]:
         P('   extra at %.4f s, %.1f ms, max %.6f' % e)
