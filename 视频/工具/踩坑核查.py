@@ -295,10 +295,12 @@ def selftest_folders():
     return fails
 
 
-def check_all_text(no, js):
-    """check_all.py（D1–D4、撞词 T12、速查表 S2）；文本阶段视频文件还没有，不算"""
+def check_all_text(no, js, stage='出片'):
+    """check_all.py（D1–D4、撞词 T12、速查表 S2）；视频文件出片后才有，不算；
+    文本阶段：本篇的对照文本正是 生成文本.py 接下来要生成的（生成后逐格读回核对），新篇第一次生成时还没有，不算"""
     r = subprocess.run(['python3', f'{T}/check_all.py', no, js], capture_output=True, text=True)
-    return [l for l in (r.stdout + r.stderr).splitlines() if l.strip() and '全部检查通过' not in l and not l.startswith('缺文件: 视频/视频/')]
+    skip = ('缺文件: 视频/视频/',) + ((f'缺文件: 视频/对照文本/{no}-文本',) if stage == '文本' else ())
+    return [l for l in (r.stdout + r.stderr).splitlines() if l.strip() and '全部检查通过' not in l and not l.startswith(skip)]
 
 
 def main():
@@ -321,7 +323,7 @@ def main():
     sent = json.load(open(snap)) if os.path.exists(snap) else None
     err = record_gate(no, stage) + video_folders(ROOT)
     e, conf, ref = text_checks(d, article_en(no), sent); err += e
-    err += [f'[check_all] {x}' for x in check_all_text(no, os.path.abspath(js))]
+    err += [f'[check_all] {x}' for x in check_all_text(no, os.path.abspath(js), stage)]
     print(f'第{no}篇 {stage}阶段 踩坑核查（{js}）：')
     if sent is None: print('  （还没有"已发版本"，这次不比对换行；生成文本.py 成功后会保存）')
     for x in err: print('  ✘ ' + x)
