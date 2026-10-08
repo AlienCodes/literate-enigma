@@ -19,7 +19,7 @@ subprocess.run(['/opt/pw-browsers/chromium', '--headless', '--no-sandbox', '--di
 # Word 逐格读回
 from read_docx2 import segs
 cells = [(e, ''.join(t for t, _ in z)) for k, v in segs(docx) if k == 'T' for e, z in v]
-want = [(re.sub(r'\*\*|\{\{.*?\}\}', '', a), re.sub(r'\*\*|\([A-Za-z \-]+\)', '', b))
+want = [(re.sub(r'\*\*|\{\{.*?\}\}', '', a), re.sub(r'\*\*|\([A-Za-z \-]+\)|\n', '', re.sub(r'\{\{([^|{}]+)\|[^{}]+\}\}', r'\1', b)))   # 颜色说明 {{文字|词}} 只取文字
         for s in d['sentences'] for c in s['chunks'] for a, b in c['align'] if a != '\n']
 ns = lambda x: re.sub(r'\s', '', x)
 if len(cells) != len(want): bad.append(f'Word 格数 {len(cells)} ≠ 脚本分组数 {len(want)}')

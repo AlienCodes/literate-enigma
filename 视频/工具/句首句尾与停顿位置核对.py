@@ -1,4 +1,4 @@
-# 全面核对（所有句子）：①句尾修剪掉的部分是否全是听不见的；②每个标点停顿前的那段文字，长度是否与单独朗读该段一致（防止停顿落在词中间）
+# 全面核对（所有句子）：句首、句尾修剪掉的部分是否全是听不见的。（停顿位置改由 停顿位置精确核对.py 负责）
 import re,json,sys
 sys.path.insert(0,".")
 exec(open('make_video.py').read().split("if __name__")[0])
@@ -21,16 +21,5 @@ for no in sys.argv[1:]:
         flag=(h>=AUD_DB) or (tl>=AUD_DB) or (fd>=-35)
         if flag: bad+=1
         print(f"{no} {'标题' if si==0 else 'S%d'%si} {'BAD' if flag else 'OK '} 句首删掉 {len(head)/SR:.2f}s 最响 {h:.0f}dB｜句尾删掉 {len(tail)/SR:.2f}s 最响 {tl:.0f}dB｜淡出段原响度 {fd:.0f}dB")
-        # ② 停顿位置
-        ms=list(re.finditer(r'[,;:](?=\s)',sent))
-        if si==0 or not ms: continue
-        pieces=[];p0=0
-        for mm in ms: pieces.append((p0,mm.end())); p0=mm.end()+1
-        pieces.append((p0,len(sent)))
-        clips,tm=sentence_audio(sent,pieces,[0.4]*len(ms))
-        for x0,x1,t0,t1 in tm[:-1]:
-            ref=len(say(sent[x0:x1]))/SR; r=(t1-t0)/ref
-            ok=0.75<r<1.15
-            if not ok: bad+=1
-            print(f"     {'OK ' if ok else 'BAD'} 停顿前「{sent[x0:x1][-24:]}」句中 {t1-t0:.2f}s / 单读 {ref:.2f}s = {r:.2f}")
+        # ② 停顿位置：改由 停顿位置精确核对.py 负责（逐帧对齐 + 前后两段段长比，A15/A16）
 print('问题数',bad)

@@ -39,9 +39,14 @@ elif stage == '出片前':
             rows.append(f"{m.group(0):>14}  →  {spoken(ctx)}")
             if re.search(r'\d+\.\d+|%|\$|£|€|\d+/\d+', m.group(0)): odd.append(m.group(0))
     step('数字读法清单（请人工逐个确认读法）', not odd, '\n    '.join(rows) + (f"\n    未处理的数字格式：{odd}" if odd else ''))
+    # 引号不停顿（A17）：带引号的句子，朗读文字里必须已经去掉引号
+    qbad = [x for x in texts if re.search(r'["“”‘’]|(?<![A-Za-z])\'|\'(?![A-Za-z])', x) and re.search(r'["“”‘]|(?<![A-Za-z])[\'’]|[\'’](?![A-Za-z])', spoken(x))]
+    qn = sum(1 for x in texts if re.search(r'["“”‘’]|(?<![A-Za-z])\'|\'(?![A-Za-z])', x))
+    step(f'引号不停顿（A17）：{qn} 句带引号，配音时都不读引号', not qbad, '\n    '.join(qbad))
     # 2–4 停顿与词尾
     c, o = run(['python3', f'{T}/标点停顿核对.py', no]); step('标点停顿核对（A9/A10：停顿时长、不切词）', '问题数 0' in o, '' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l or 'FAIL' in l))
-    c, o = run(['python3', f'{T}/句首句尾与停顿位置核对.py', no]); step('句首句尾与停顿位置核对', '问题数 0' in o, '' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l))
+    c, o = run(['python3', f'{T}/句首句尾与停顿位置核对.py', no]); step('句首句尾核对（修剪掉的只有听不见的部分）', '问题数 0' in o, '' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l))
+    c, o = run(['python3', f'{T}/停顿位置精确核对.py', no]); step('停顿位置核对（A9/A15：停顿正好落在标点处两个词之间）', '问题数 0' in o, '\n    '.join(l for l in o.splitlines() if 'BAD' in l or '插入' in l))
     c, o = run(['python3', f'{T}/无标点停顿核对.py', no])
     long = [l for l in o.splitlines() if re.search(r'停顿 (\d+\.\d+)s', l) and float(re.search(r'停顿 (\d+\.\d+)s', l).group(1)) > 0.22]
     step('无标点处停顿 ≤ 0.22 秒', not long, '\n    '.join(long))
@@ -113,8 +118,19 @@ elif stage == '出片后':
     cuts = re.findall(r'cut tail=([\d.]+)ms onset=([\d.]+)ms', o); bad = [x for x in cuts if float(x[0]) > 0 or float(x[1]) > 0]
     extra = re.findall(r'extra non-zero runs not explained by raw copies: (\d+)', o)
     edge = re.findall(r'A10 edge violations [^:]*: (\d+)', o); viol = '\n    '.join(l.strip() for l in o.splitlines() if 'A10_VIOLATION' in l)
-    good = c == 0 and not bad and extra == ['0'] and edge == ['0']
-    step(f'独立复核：{len(cuts)} 处改动，词尾/词头被切 = {len(bad)}，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = {edge}，多余声音 = {extra}', good, '' if good else (viol + '\n    ' + o[-800:]))
+    # 删掉的部分偏响（只有 lost 一项、两侧都干净）的，必须用实际声音确认是停顿中间的换气声/底噪，写进 核对确认.删除段（键带位置）；
+    # 两侧没衰减完（pre/post）的是切到词，不能确认放行（A10、A18）
+    okd = json.load(open(f'scripts/{no}.json')).get('核对确认', {}).get('删除段', {}); idx = None; last = None; unconf = 0
+    for l in o.splitlines():
+        m = re.match(r'\[\s*(-?\d+)\]', l)
+        if m: idx = int(m.group(1))
+        m = re.search(r'edit raw ([\d.]+)-([\d.]+)', l)
+        if m: last = f"{'标题' if idx == -1 else 'S%d' % (idx + 1)} raw {m.group(1)}-{m.group(2)}"
+        m = re.search(r'A10_VIOLATION\(([a-z,]*)\)', l)
+        if m and not (m.group(1) == 'lost' and last in okd): unconf += 1
+        if m and m.group(1) == 'lost' and last in okd: viol += f"\n    {last}：已用实际声音确认——{okd[last]}"
+    good = c == 0 and not bad and extra == ['0'] and unconf == 0
+    step(f'独立复核：{len(cuts)} 处改动，词尾/词头被切 = {len(bad)}，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = {edge}（未经实际声音确认的 {unconf}），多余声音 = {extra}', good, viol if good else (viol + '\n    ' + o[-800:]))
     # 标点试听（交用户逐处听）
     import imageio_ffmpeg
     FF = imageio_ffmpeg.get_ffmpeg_exe(); a, sr = sf.read(f'work_{no}/a.wav')

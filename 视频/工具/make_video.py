@@ -36,6 +36,9 @@ def spoken(t):
     t=re.sub(r'\b(1[1-9])(\d)0s\b',lambda m:_n2w(int(m.group(1)))+' '+_PL[_TENS[int(m.group(2))]],t)          # 1960s → nineteen sixties
     t=re.sub(r'\b([1-9]|[12]\d|3[01]) ('+_MONTHS+r')\b',lambda m:'the '+_ordinal(int(m.group(1)))+' of '+m.group(2),t)  # 6 January → the sixth of January
     t=re.sub(r'(?<!\d,)(?<!\d)\b(1[1-9]\d\d)\b(?!,\d)(?!\d)',lambda m:_year(int(m.group(1))),t)                       # 1995 → nineteen ninety-five
+    # 引号不停顿（2026-10-08 用户定）：配音时不读引号（模型读到引号会把前一个词拖长、顿一下），屏幕照常显示；
+    # 双引号一律去掉；单引号只去掉当引号用的（词中间的撇号 Stanford's、don't 保留）
+    t=re.sub(r'["“”‘]|(?<![A-Za-z])[\'’]|[\'’](?![A-Za-z])','',t)
     return t
 def say(t):
     w,_=k.create(spoken(re.sub(r'\*\*','',R.strip_gloss(t))),voice=V,speed=SPEED,lang='en-us'); return clean_tail(w)
@@ -71,6 +74,15 @@ def _cap_inner(seg):
             st=None
     keep.append(seg[prev:])
     return np.concatenate(keep)
+# 人工用实际声音核实过的连读处插入点（A15）：scripts/NN.json 的"停顿插入点"：{"S7": {"1": 0.815}}（第几句：{第几个标点: 秒}，
+# 秒数是整句一次合成后的声音 w 里的位置），依据写在"核对确认.停顿位置"。出片和所有核查程序（都 exec 本文件）用同一份。
+import glob as _glob, json as _json
+INSERT_AT={}
+for _p in sorted(_glob.glob('scripts/*.json')):
+    _d=_json.load(open(_p))
+    for _k,_v in _d.get('停顿插入点',{}).items():
+        _s=_d['sentences'][int(_k[1:])-1]
+        INSERT_AT[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks'])]={int(g):float(x) for g,x in _v.items()}
 def sentence_audio(sent,pieces,gaps):
     """整句一次合成（原模型，声音不变）。标点位置用带时长输出的同版模型精确定位（A9）；
     在标点处只删除"真正无声"的部分（A10：绝不删词尾的 s/f/z 等弱音），再补静音，使实际听到的停顿 = 标准时长。"""
@@ -101,11 +113,28 @@ def sentence_audio(sent,pieces,gaps):
                     if en>=pe-30 and st<=ns+8: runs.append((st,en))   # 必须在逗号前后这两个词之间
                 st=None
         long=[r for r in runs if r[1]-r[0]>=16]
-        mid=(pe+ns)/2
-        r0=r1=None
+        r0=r1=None; f=None
         if long: r0,r1=max(long,key=lambda r:r[1]-r[0])
-        elif runs: r0,r1=min(runs,key=lambda r:abs((r[0]+r[1])/2-mid))
-        if r0 is not None:
+        else:
+            # A15：没有长的自然停顿时，候选 = 短静音段 + 足够安静的低谷（与窗口最安静处相差不超过 6 dB），
+            # 选离"前一个词结尾 pe"最近的一个。不能按"窗口里最安静"或"离两词中点最近"选：下一个词里 /t/ 的闭塞
+            # 常常更安静（cabbies, i|ts），而带时长模型每次运行的时长略有不同，按中点选会时对时错（learned, it）。
+            win=list(range(max(lo,pe-16),min(hi,ns+2)+1)); deep=min(e[g] for g in win)
+            dips=[g for g in win if e[g]<=min(e[max(0,g-4):g+5]) and e[g]<=deep+6 and not any(s0<=g<s1 for s0,s1 in runs)]
+            cand=[(max(s0-pe,pe-(s1-1),0),0,(s0,s1)) for s0,s1 in runs]+[(abs(g-pe),1,g) for g in dips]
+            if cand:
+                best=min(cand,key=lambda c:(c[0],c[1]))
+                if best[1]==0: r0,r1=best[2]
+                else: f=best[2]
+            else: f=min(win,key=lambda g:e[g])
+        if r0 is None:                                                # 两词连读：在选中的低谷处插入，不删任何声音
+            ov=INSERT_AT.get(sent,{}).get(gi+1)
+            if ov is not None:                                        # 用实际声音核实过的插入点（A15），仍须是该标点附近的低谷
+                f=int(round(ov*SR/F))
+                if not (pe-60<=f<=ns+20) or e[f]>min(e[max(0,f-2):f+3]):
+                    raise SystemExit(f'【停止】人工核实的插入点不在该标点附近，或不是低谷（A15）：{sent[:60]} 第{gi+1}个标点')
+            ca=cb=f*F; keep=0.0
+        else:
             # ② 两头往里收：上一个词的尾音保留到它衰减到 -55 dB；下一个词从 -55 dB 处开始保留（A10）
             a=r0
             while a<r1 and e[a]>=AUD_DB: a+=1
@@ -116,8 +145,6 @@ def sentence_audio(sent,pieces,gaps):
                 keep=((ca-a*F)+(b*F-cb))/SR          # 听到的停顿从尾音衰减到 -55 dB 起算（与核对口径一致）
             else:
                 f=min(range(r0,r1),key=lambda f:e[f]); ca=cb=f*F; keep=max(0,b-a)*F/SR
-        else:                                                         # 两词之间完全连读：在逗号前后两词之间最安静处插入，不删任何声音
-            f=min(range(max(lo,pe-16),min(hi,ns+2)+1),key=lambda f:e[f]); ca=cb=f*F; keep=0.0
         if r0 is not None and not (r0*F<=ca<=cb<=r1*F):
             raise SystemExit(f'【停止】删除范围超出了停顿（A9/A10）："{sent[:60]}" 第{gi+1}个标点')
         if cb>ca and (e[ca//F:cb//F].max()>=PAUSE_DB or e[ca//F-M]>=AUD_DB or e[min(len(e)-1,cb//F+M-1)]>=AUD_DB):
