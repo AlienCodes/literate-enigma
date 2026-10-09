@@ -6,7 +6,7 @@
   核对确认.非人声（键 = a.wav 里的时段）：旧时段前后各 20 ms 在新 a.wav 里逐样本找到唯一的同一段 → 新键取 纯人声核对 在新配音里报出的那一处（位置差 ≤10 ms）；
   核对确认.删除段（键 = 原始合成里的区间，与 a.wav 位置无关）：原始合成不变，删掉的是同一段声音 → 只换指纹（复核仍逐处重算两侧是否干净）；
   核对确认.高亮（"开始读" = a.wav 里的时刻）：这一时刻前后各 20 ms 逐样本找到 → 时刻加上位移；
-  核对确认.响度骤降（键 = 成片里的时段）：同 非人声 的找法，新键按原来的写法（保留 1 位小数）加上位移；"低" 不变（核查时仍要求这次报的 ≤ 确认时 +0.3 dB）。"""
+  核对确认.响度骤降（键 = 成片里的时段）：同 非人声 的找法；新键取 audio_qc 在新配音（NN.mp4）上实际报出、与挪过去的时段重叠一半以上的那一处；"低" 不变（核查时仍要求这次报的 ≤ 确认时 +0.3 dB）。"""
 import sys, os, json, re, hashlib, importlib.util
 import numpy as np, soundfile as sf
 SR = 24000
@@ -73,13 +73,21 @@ for k, v in cf.get('高亮', {}).items():
         v['开始读'] = round(float(v['开始读']) + s, 4); v['配音指纹'] = fn; v['依据'] = v.get('依据', '') + note % s; moved += 1
         rows.append(f'高亮 {k} → {v["开始读"]}（位移 {s:+.3f} s）')
 # 响度骤降
-lq = cf.get('响度骤降', {}); out = {}
+lq = cf.get('响度骤降', {}); out = {}; QC = []
+if any(isinstance(v, dict) and v.get('配音指纹') == fo for v in lq.values()):
+    import subprocess
+    if not os.path.exists(f'{no}.mp4'): sys.exit(f'没有 {no}.mp4（先 AUDIO_ONLY=1 出声音），无法核对响度骤降的新时段')
+    QC = re.findall(r'([\d.]+)–([\d.]+)s 响度比全片低', subprocess.run(['python3', f'{T}/audio_qc.py', f'{no}.mp4'], capture_output=True, text=True).stdout)
 for k, v in lq.items():
     m = re.match(r'([\d.]+)–([\d.]+)s', k)
     if not (isinstance(v, dict) and v.get('配音指纹') == fo and m): out[k] = v; continue
     s = shift(float(m.group(1)), float(m.group(2)), 0.0)
     if s is None: rows.append(f'响度骤降 {k}：声音变了，不挪'); left += 1; out[k] = v; continue
-    nk = f'{float(m.group(1)) + s:.1f}–{float(m.group(2)) + s:.1f}s'; out[nk] = {**v, '配音指纹': fn, '依据': v.get('依据', '') + note % s}; moved += 1
+    # 新键取 audio_qc 在新配音上实际报出的时段（它按 0.1 秒的格子报，位移不是 0.1 秒的整数倍时边界会差一格；06 S16：106.4–107.0 挪 0.26 秒，报 106.7–107.2）
+    a0, a1 = float(m.group(1)) + s, float(m.group(2)) + s
+    hit = [(float(x), float(y)) for x, y in QC if min(a1, float(y)) - max(a0, float(x)) >= 0.5 * (a1 - a0)]
+    if len(hit) != 1: rows.append(f'响度骤降 {k}：挪到 {a0:.2f}–{a1:.2f}s，但新配音的自动音频检查在这里报了 {len(hit)} 处，不挪'); left += 1; out[k] = v; continue
+    nk = f'{hit[0][0]:.1f}–{hit[0][1]:.1f}s'; out[nk] = {**v, '配音指纹': fn, '依据': v.get('依据', '') + note % s}; moved += 1
     rows.append(f'响度骤降 {k} → {nk}（位移 {s:+.3f} s）')
 cf['响度骤降'] = out
 print('\n'.join(f'{no} {r}' for r in rows)); print(f'{no} 确认平移：挪了 {moved} 处，留给人核实 {left} 处（旧指纹 {fo} → 新指纹 {fn}）')
