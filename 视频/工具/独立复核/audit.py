@@ -191,6 +191,13 @@ def audit(no, g=None, wav=None):
         ok &= (tgt >= 0) & (tgt < len(A))
         recon = np.zeros(N); recon[ok] = A[tgt[ok]]
         explained[tgt[ok]] = True
+        # 相邻两段的匹配区重叠时（拼接点两侧是近零样本，两种偏移都在 TOL 内），offmap 只记后一段的偏移，
+        # 前一段那份拷贝会被误判成"多余声音"（第06篇 S1 过零点精确插入处的 2 个 1 LSB 样本）。
+        # 重叠区里逐样本核对：前一段偏移下与 raw 相差不超过 TOL 的，同样算已解释。
+        for k in range(1, len(segs)):
+            a0, a1, oa = segs[k - 1]; b0 = segs[k][0]
+            for n in range(max(0, b0), min(a1, N)):
+                if 0 <= n + oa < len(A) and abs(A[n + oa] - gx[n]) <= TOL: explained[n + oa] = True
         res = recon - gx
         # trailing/leading: where is the first/last sample of raw that actually exists in A (non-zero copy or faded)
         lead = gx[:segs[0][0]]; trail = gx[segs[-1][1]:]
