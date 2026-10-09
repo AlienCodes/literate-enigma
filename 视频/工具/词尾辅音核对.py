@@ -6,10 +6,11 @@
    配音模型在停顿前常常只闭塞、不除阻，“除阻”那一下重心只有 0.2–1 kHz，不是 t。）
   /d/ /b/ /ɡ/ 只列电平供参考（浊塞音靠声带振动和元音过渡，不判）。
 做法：exec 出片程序，逐句（含标题）取这一句最终的声音 out 和每个停顿在 out 里开始的位置；从停顿开始处（句末 = out 结尾）往回：
-  跳过听不见的帧 → 除阻 → 闭塞（比除阻最响低 ≥6 dB 的低谷）。往回 80 ms 内找不到闭塞 = 没有除阻 → 不合格。
+  跳过听不见的帧 → 除阻 → 闭塞（比除阻最响低 ≥6 dB 的低谷，且最低处 < -50 dB 的真正静音）。往回 80 ms 内找不到闭塞 = 没有除阻 → 不合格。
+  （/st/ /ft/ 结尾：除阻若被删，前面的擦音与元音之间只有小低谷、不是静音，不会被当成除阻。）
 用法（视频工作目录）：python3 词尾辅音核对.py NN [NN ...]       核对（出片前）
                      python3 词尾辅音核对.py NN --写入            不合格的 t/k 按出片程序的“词尾除阻”（_graft）算出位置写进 scripts/NN.json，重跑核对必须全过
-                     python3 词尾辅音核对.py NN --自检            阳性对照：把一处合格的除阻在 out 里换成静音、另一份压低 20 dB，两份都必须报出；原样不报
+                     python3 词尾辅音核对.py NN --自检            阳性对照：每一处合格的除阻逐个换成静音、压低 20 dB，每一次都必须报出；原样不报
 """
 import re, json, sys
 import numpy as np, scipy.signal as ss
@@ -43,8 +44,10 @@ def release(x, hp, P, ref):
             if L[r] < L[c]: c = r
             elif L[r] >= L[c] + 6: break
         r += 1
-    if c is None: return None
-    return float(L[q:c].max()), float(H[q:c].max()), (c - q) * 5, (P - c * F5, P - q * F5)
+    # 闭塞必须是真正的静音（< -50 dB）：04 自检查出，first, 的 /t/ 除阻被换成静音后，前面 /s/ 擦音与元音之间的小低谷（不是闭塞）
+    # 被当成了闭塞、/s/ 被当成了除阻，没报。01–07 所有合格处的闭塞最低都在 -58 dB 以下（多数是数字静音）。
+    if c is None or L[c] >= -50: return None
+    return float(L[q:c].max()), float(H[q:c].max()), (c - q) * 5, (P - c * F5, P - q * F5), float(L[c])
 
 
 def finals(toks):
@@ -89,7 +92,7 @@ def check(no, d, mutate=None):
             if ph not in 'tkpdbɡg': continue
             where = '句末' if g == len(fin) - 1 else f'第{g + 1}个标点'
             z = release(out, hp, starts[g], ref)
-            desc = '没有除阻' if z is None else f'除阻全频 {z[0]:.1f} dB、2 kHz 以上 {z[1]:.1f} dB、{z[2]} ms'
+            desc = '没有除阻' if z is None else f'除阻全频 {z[0]:.1f} dB、2 kHz 以上 {z[1]:.1f} dB、{z[2]} ms、闭塞最低 {z[4]:.1f} dB'
             if ph in 'dbɡg': info.append(f'{no} {lab} {where} {word}（浊塞音，不判）{desc}'); continue
             ok = z is not None and (z[1] >= TH_HF if ph in 'tk' else z[0] >= TH_P)
             line = f"{no} {lab} {where} {word} /{ph}/ {'OK ' if ok else 'BAD'} {desc}（门槛：{'2 kHz 以上 ≥ %.0f' % TH_HF if ph in 'tk' else '全频 ≥ %.0f' % TH_P} dB）"
@@ -150,26 +153,23 @@ def write_grafts(no, d, bad):
 if __name__ == '__main__':
     args = [a for a in sys.argv[1:] if not a.startswith('--')]
     if '--自检' in sys.argv:
-        no = args[0]; d = json.load(open(f'scripts/{no}.json'))
-        rows, bad, _ = check(no, d)
-        if bad: print(f'✘ 词尾辅音核对 自检：{no} 原样已有不合格，自检前提不成立'); sys.exit(1)
-        okrows = [r for r in rows if ' OK ' in r]
-        if not okrows: print(f'✘ 词尾辅音核对 自检：{no} 没有可用来自检的词尾清塞音'); sys.exit(1)
-        tgt = okrows[len(okrows) // 2].split(' ')[1:3]
-        def mk(gain):
-            def mut(lab, out, starts, fin):
-                if lab != tgt[0]: return out
-                g = len(fin) - 1 if tgt[1] == '句末' else int(re.search(r'\d+', tgt[1]).group()) - 1
-                m = len(out) // F5; ref = np.sqrt(np.mean(np.asarray(out[:m * F5], np.float64).reshape(m, F5) ** 2, axis=1)).max()
-                z = release(out, ss.sosfiltfilt(HP, np.asarray(out, np.float64)), starts[g], ref)
-                o = out.copy(); o[z[3][0]:z[3][1]] *= gain; return o
-            return mut
-        hits = []
-        for name, gain in (('换成静音', 0.0), ('压低 20 dB', 0.1)):
-            _, b2, _ = check(no, d, mk(gain))
-            hits.append((name, [x[4] for x in b2]))
-        ok = all(len(h) == 1 and h[0].split(' ')[1:3] == tgt for _, h in hits)
-        print(f"{'✔' if ok else '✘'} 词尾辅音核对 自检：{no} 原样全部合格；把 {tgt[0]} {tgt[1]} 的除阻" + '、'.join(f"{n}{'报出' if len(h) == 1 and h[0].split(' ')[1:3] == tgt else '没报准（%d 处）' % len(h)}" for n, h in hits))
+        # 阳性对照：每一处合格的词尾清塞音，逐个把除阻换成静音、压低 20 dB，每一处都必须报出（04 的 first, 曾漏报：/s/ 被当成除阻）
+        no = args[0]; d = json.load(open(f'scripts/{no}.json')); items = sentence_items(d); n_ok = 0; miss = []
+        for lab, text, out, starts, fin, cuts in items:
+            m = len(out) // F5; ref = np.sqrt(np.mean(np.asarray(out[:m * F5], np.float64).reshape(m, F5) ** 2, axis=1)).max()
+            hp = ss.sosfiltfilt(HP, np.asarray(out, np.float64))
+            for g, (word, ph) in enumerate(fin):
+                if ph not in 'tkp': continue
+                z = release(out, hp, starts[g], ref)
+                if z is None or not (z[1] >= TH_HF if ph in 'tk' else z[0] >= TH_P):
+                    print(f'✘ 词尾辅音核对 自检：{no} {lab} {word} 原样就不合格，自检前提不成立'); sys.exit(1)
+                n_ok += 1
+                for name, gain in (('换成静音', 0.0), ('压低 20 dB', 0.1)):
+                    o = out.copy(); o[z[3][0]:z[3][1]] *= gain
+                    z2 = release(o, ss.sosfiltfilt(HP, np.asarray(o, np.float64)), starts[g], ref)
+                    if z2 is not None and (z2[1] >= TH_HF if ph in 'tk' else z2[0] >= TH_P): miss.append(f'{lab} {word} {name}')
+        ok = n_ok > 0 and not miss
+        print(f"{'✔' if ok else '✘'} 词尾辅音核对 自检：{no} 原样 {n_ok} 处全部合格；逐处把除阻换成静音、压低 20 dB，共 {2 * n_ok} 次" + ('全部报出' if not miss else f'，没报出 {len(miss)} 次：' + '；'.join(miss)))
         sys.exit(0 if ok else 1)
     total = 0
     for no in args:
