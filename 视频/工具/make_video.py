@@ -55,7 +55,7 @@ def _quiet_runs(w,thr_db=-38,min_len=0.05):
     return runs
 SIL_DB=-55   # 真正无声：比本句最响处低 55 dB 以上（模型停顿里的底噪约 -55～-75 dB；词尾 /s/ /f/ /z/ 只有 -25～-45 dB，绝不能删）
 PAUSE_DB=-40  # 找停顿用：比本句最响帧低 40 dB 以上
-AUD_DB=-55   # 比本句最响帧低 55 dB 以内都算能听见（独立核对用 -45 dB 已能证明无损，这里再留 10 dB 余量）； 能听见的声音：比最响处低不到 45 dB（用来量"实际听到的停顿"长度）
+AUD_DB=-55   # 能听见 = 比本句最响 5 ms 帧低不到 55 dB（A13：判断听不听得见一律以 -55 dB 为准，不得另设“可闻线”）；用来保住词尾词头、量“实际听到的停顿”（词到词）
 def _env5(w):
     # 基准 = 本句最响的 5 ms 帧的平均响度（A10 复查：用单个采样峰值做基准会高约 10 dB，等于放宽门槛，词尾 /f/ /k/ 仍被切）
     n=int(0.005*SR); m=len(w)//n; r=np.sqrt(np.mean(w[:m*n].reshape(m,n)**2,axis=1))
@@ -77,8 +77,16 @@ def _purify(x):
         f_=g_
     if n_*F_<len(x) and q_[-1]: x[n_*F_:]=0
     return x
+def _edges(x):
+    """A20（句号、段落、标题、片尾的停顿也按词到词量）：返回能听见的部分 [hs, te)——从第一个到最后一个比本句最响 5 ms 帧低不到 55 dB 的帧。
+    两头听不见的部分（_purify 之后只剩数字静音和紧挨声音的 1 帧）都去掉，句与句之间插入的静音就正好等于停顿表的时长。
+    （原来两头各多出 0.02–0.08 秒听不见的部分，句号、段落停顿词到词实际是 1.05–1.10 / 1.25–1.30 秒。）"""
+    F_=int(0.005*SR); n_=len(x)//F_
+    r_=np.sqrt(np.mean(x[:n_*F_].reshape(n_,F_)**2,axis=1)); au=np.where(20*np.log10(r_/(r_.max()+1e-12)+1e-9)>=AUD_DB)[0]
+    if not len(au): raise SystemExit('【停止】这一段没有能听见的声音（A20）')
+    return int(au[0])*F_,int(au[-1]+1)*F_
 def _cap_inner(seg):
-    """只压缩句中（非标点处）过长的无声段；只删听不见的部分（低于 -45 dB），两头各保留一半，不碰任何读音。"""
+    """只压缩句中（非标点处）过长的无声段；只删听不见的部分（低于 -55 dB，AUD_DB），两头各保留一半，不碰任何读音。"""
     e=_env5(seg); F=int(0.005*SR); keep=[];prev=0;st=None
     for f in range(len(e)+1):
         q=f<len(e) and e[f]<AUD_DB
@@ -170,23 +178,28 @@ for _p in sorted(_glob.glob('scripts/*.json')):
         _s=_d['sentences'][int(_k[1:])-1]
         DEL_AT[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks'])]={int(g):x for g,x in _v.items()}
     for _k,_v in _d.get('非人声区间',{}).items():
+        if _k=='标题': NONVOICE['标题::'+_d['title_en']]=_v; continue          # 标题里的呼吸声（03 Bacteria · to）
         _s=_d['sentences'][int(_k[1:])-1]
         NONVOICE[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks'])]=_v
+def _nonvoice(w,ivs,label):
+    """非人声区间换成数字静音（长度不变）。守门：区间里不能有 ≥-30 dB 的声音；不紧贴词的一头，外侧紧挨着的 5 ms 必须 <-55 dB；
+    紧贴词尾/词头的一头必须在过零点（词本身不动）。"""
+    e0=_env5(w); F0=int(0.005*SR); rr0=np.sqrt(np.mean(w[:len(e0)*F0].reshape(len(e0),F0)**2,axis=1)).max()
+    lv0=lambda x:20*np.log10(np.sqrt(np.mean(x**2))/(rr0+1e-12)+1e-9)
+    w=w.copy()
+    for iv in ivs:
+        x0,x1=int(round(float(iv[0])*SR)),int(round(float(iv[1])*SR)); flag=iv[2] if len(iv)>2 else ''
+        if not (0<x0<x1<len(w)) or lv0(w[x0:x1])>-30 or e0[x0//F0:x1//F0].max()>=-30 \
+           or (flag not in ('紧贴词尾','紧贴两头') and lv0(w[x0-F0:x0])>=AUD_DB) or (flag not in ('紧贴词头','紧贴两头') and lv0(w[x1:x1+F0])>=AUD_DB) \
+           or (flag in ('紧贴词尾','紧贴两头') and w[x0-1]*w[x0]>0 and abs(w[x0])>1e-4) or (flag in ('紧贴词头','紧贴两头') and w[x1-1]*w[x1]>0 and abs(w[x1])>1e-4):
+            raise SystemExit(f'【停止】非人声区间不对（有词的声音、两头不够安静，或紧贴词尾/词头的一头不在过零点）：{label[:60]} {iv}')
+        w[x0:x1]=0
+    return w
 def sentence_audio(sent,pieces,gaps):
     """整句一次合成（原模型，声音不变）。标点位置用带时长输出的同版模型精确定位（A9）；
     在标点处只删除"真正无声"的部分（A10：绝不删词尾的 s/f/z 等弱音），再补静音，使实际听到的停顿 = 标准时长。"""
     raw,_=k.create(spoken(sent),voice=V,speed=SPEED,lang='en-us'); w=clean_tail(raw)
-    if sent in NONVOICE:
-        e0=_env5(w); F0=int(0.005*SR); rr0=np.sqrt(np.mean(w[:len(e0)*F0].reshape(len(e0),F0)**2,axis=1)).max()
-        lv0=lambda x:20*np.log10(np.sqrt(np.mean(x**2))/(rr0+1e-12)+1e-9)
-        w=w.copy()
-        for iv in NONVOICE[sent]:
-            x0,x1=int(round(float(iv[0])*SR)),int(round(float(iv[1])*SR)); flag=iv[2] if len(iv)>2 else ''
-            if not (0<x0<x1<len(w)) or lv0(w[x0:x1])>-30 or e0[x0//F0:x1//F0].max()>=-30 \
-               or (flag not in ('紧贴词尾','紧贴两头') and lv0(w[x0-F0:x0])>=AUD_DB) or (flag not in ('紧贴词头','紧贴两头') and lv0(w[x1:x1+F0])>=AUD_DB) \
-               or (flag in ('紧贴词尾','紧贴两头') and w[x0-1]*w[x0]>0 and abs(w[x0])>1e-4) or (flag in ('紧贴词头','紧贴两头') and w[x1-1]*w[x1]>0 and abs(w[x1])>1e-4):
-                raise SystemExit(f'【停止】非人声区间不对（有词的声音、两头不够安静，或紧贴词尾/词头的一头不在过零点）：{sent[:60]} {iv}')
-            w[x0:x1]=0
+    if sent in NONVOICE: w=_nonvoice(w,NONVOICE[sent],sent)
     tb,_,sp=KT.create_timed(spoken(sent),voice=V,speed=SPEED,lang='en-us',clause_pause=0,sentence_pause=0)
     scale=len(raw)/len(tb); toks=list(sp)
     idxs=[i for i,x in enumerate(toks) if x.phoneme in ',;:']
@@ -281,9 +294,14 @@ def sentence_audio(sent,pieces,gaps):
         segs.append((prev,end,t,rm))
         tmap.append((x0,x1,t,t+d)); clips.append(seg); t+=d
         if k2<len(cuts): clips.append(sil(cuts[k2][2])); t+=cuts[k2][2]; prev=cuts[k2][1]
-    LAST.clear(); LAST.update(toks=toks,scale=scale,head=_head_offset(raw,w),segs=segs,total=t,cuts=cuts)
-    ln=[len(c_) for c_ in clips]; pur=_purify(np.concatenate(clips)); clips=[]; p_=0
+    ln=[len(c_) for c_ in clips]; pur=_purify(np.concatenate(clips))
+    hs,te=_edges(pur); ln[0]-=hs; ln[-1]-=len(pur)-te                  # A20：句首句尾只留能听见的部分
+    if ln[0]<=0 or ln[-1]<=0: raise SystemExit(f'【停止】句首/句尾听不见的部分超过了第一段/最后一段（A20）：{sent[:60]}')
+    pur=pur[hs:te]; clips=[]; p_=0; sh=hs/SR
     for l_ in ln: clips.append(pur[p_:p_+l_]); p_+=l_
+    tmap=[(x0,x1,max(0.0,t0-sh),t1-sh) for x0,x1,t0,t1 in tmap]; tmap[-1]=tmap[-1][:3]+(len(pur)/SR,)
+    segs=[(a0,b0,t0-sh,rm) for a0,b0,t0,rm in segs]
+    LAST.clear(); LAST.update(toks=toks,scale=scale,head=_head_offset(raw,w),segs=segs,total=len(pur)/SR,cuts=cuts)
     return clips,tmap
 def _split_audio(sent,pieces,gaps):
     clips=[];tmap=[];t=0.0
@@ -293,6 +311,11 @@ def _split_audio(sent,pieces,gaps):
         if k2<len(pieces)-1: clips.append(sil(gaps[k2])); t+=gaps[k2]
     raise SystemExit('【停止】找不到逗号处的自然停顿，不允许退回分段合成（A8）：'+sent[:60])
     return clips,tmap
+def title_audio(title):
+    """标题：整句合成 → 非人声区间（脚本里键为"标题"）换成静音 → 无标点处的长停顿压缩到 0.18 秒（与句子同一条规则）→ 去底噪 → 只留能听见的部分（A20）"""
+    w=say(title)
+    if '标题::'+title in NONVOICE: w=_nonvoice(w,NONVOICE['标题::'+title],'标题 '+title)
+    w=_purify(_cap_inner(w)); return w[slice(*_edges(w))]
 def build(js,out):
     d=json.load(open(js)); no=d['no']
     work=f'work_{no}'; os.makedirs(work,exist_ok=True)
@@ -307,7 +330,7 @@ def build(js,out):
     segs=[]  # (image_key, duration) ; audio list
     audio=[sil(0.4)]; tl=[]  # (screen_id,active,dur)
     # title
-    ta=_purify(say(d['title_en']))
+    ta=title_audio(d['title_en'])
     tl.append((('title',None),0.4+len(ta)/SR+P_TITLE)); audio+=[ta,sil(P_TITLE)]
     prev_para=None
     for si,s in enumerate(d['sentences']):

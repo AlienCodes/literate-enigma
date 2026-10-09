@@ -2,7 +2,7 @@
 """每篇视频的交付核查（硬性条件：不通过不得交付）。在视频工作目录（含 make_video.py、scripts/、work_NN/）下运行：
   python3 <工具目录>/交付核查.py NN 对照表     # 开工第一步：生成"踩坑对照记录"模板，逐条填写
   python3 <工具目录>/交付核查.py NN 出片前     # 合成配音前：数字读法、标点停顿、句首句尾、无标点停顿
-  python3 <工具目录>/交付核查.py NN 出片后     # 出片后：自动音频检查、响度一致性（EBU R128 逐句）、纯人声核对、独立复核（逐样本比对原始合成）、高亮同步核对、生成标点试听
+  python3 <工具目录>/交付核查.py NN 出片后     # 出片后：自动音频检查、响度一致性（EBU R128 逐句）、纯人声核对、句间停顿核对（A20）、独立复核（逐样本比对原始合成）、高亮同步核对、生成标点试听
 对应踩坑：A8 分段合成发闷、A9 停顿放错、A10/A10b 词尾被切、A11 数字读错、A12 连读处停顿越界、L13 换行、L14 高亮没跟上朗读。
 最高铁律（硬性条件第〇节）：出片前先过《踩坑核查》（踩坑对照记录逐条写全、能用程序查的坑逐条查、换行比对）；出片后先做核查程序自检（故意剪坏一份副本，必须全部抓到），自检不过 = 核查失灵，不得交付。"""
 import sys, os, re, json, subprocess
@@ -74,8 +74,12 @@ elif stage == '出片后':
     c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4']); step('响度一致性（逐句与全片 ±2 LU、相邻两句 ≤2.5 LU）：' + o.strip().splitlines()[0], c == 0, '\n    '.join(o.strip().splitlines()[1:]))
     # 纯人声（用户 2026-10-09：“不要有任何的呼吸声 语气声……底噪也不要 就要绝对的纯人声”）：先自检（假呼吸声、假噗声必须抓到），再逐句核对
     c, o = run(['python3', f'{T}/纯人声核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '纯人声核对 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的纯人声核对不可信】\n    ' + o[-400:])
-    c, o = run(['python3', f'{T}/纯人声核对.py', no]); step('纯人声核对（呼吸声、噗声、底噪）：' + (o.strip().splitlines()[-1] if o.strip() else '没有输出'), c == 0 and '问题数 0' in o,
+    c, o = run(['python3', f'{T}/纯人声核对.py', no]); step('纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：' + (o.strip().splitlines()[-1] if o.strip() else '没有输出'), c == 0 and '问题数 0' in o,
          '\n    '.join(l for l in o.splitlines() if ' BAD ' in l or 'OK（' in l))
+    # A20：句号、段落、标题、片头片尾的停顿也按词到词量（停顿表）。先自检（加长、缩短、句首前放杂音，必须正好报出这三处），再核对
+    c, o = run(['python3', f'{T}/句间停顿核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '句间停顿核对 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的句间停顿核对不可信】\n    ' + o[-400:])
+    c, o = run(['python3', f'{T}/句间停顿核对.py', no]); step('句间停顿核对（A20：片头 0.4、标题后 1.0、句号 1.0、换段 1.2、片尾 2 秒，词到词 ±0.01 秒）：' + (o.strip().splitlines()[-1] if o.strip() else '没有输出'), c == 0 and '问题数 0' in o,
+         '\n    '.join(l for l in o.splitlines() if ' BAD ' in l or '分段数' in l))
     env = {'VIDEO_ROOT': os.path.abspath('..')}
     for sc in ('synth.py', 'labels.py'):
         c, o = run(['python3', f'{T}/独立复核/{sc}', no], env); 

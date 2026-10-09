@@ -13,7 +13,8 @@ for i in range(0, len(a) - n, n): spec += np.abs(np.fft.rfft(a[i:i + n] * np.han
 for hz in (4800, 9600):
     pk = spec[(f > hz - 15) & (f < hz + 15)].max(); side = np.median(spec[(f > hz - 300) & (f < hz + 300)])
     if 10 * np.log10(pk / side) > 12: bad.append(f'{hz} Hz 电流音突出 {10*np.log10(pk/side):.1f} dB')
-# 停顿：找所有静音段，最长不应超过片尾 2 秒，片中不应有 >1.6 秒的停顿（段间标准 1.2 秒）
+# 停顿：找所有静音段，最长不应超过片尾 2 秒，片中不应有 >1.6 秒的停顿（段间标准 1.2 秒）。这里的 -45 dB 只用来粗找“静音段”报超长停顿、分句量响度，
+# 不是“可闻线”：判断听不听得见、切哪里一律以 -55 dB 为准（A13）；停顿是否合标准由 标点停顿核对、句间停顿核对 按词到词量
 h = int(0.01 * sr); rms = np.array([np.sqrt(np.mean(a[i:i + h] ** 2)) for i in range(0, len(a) - h, h)])
 q = 20 * np.log10(rms / (rms.max() + 1e-9) + 1e-9) < -45; runs = []; st = None
 for i, v in enumerate(q):
