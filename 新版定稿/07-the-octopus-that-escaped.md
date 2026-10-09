@@ -2,7 +2,7 @@
 # ZH: 越狱的章鱼
 
 ## 英文
-One night in early 2016, after **keepers** at New Zealand's National Aquarium in Napier had left, an octopus named Inky **crept** through an **aperture** in the **mesh** **atop** its tank. The **fugitive** **presumably** dropped to the floor, crossed the room and **compressed** its **elastic** body into a drain, whose pipe **stretched** some 50 metres to the Pacific.
+One night in early 2016, after **keepers** at New Zealand's National Aquarium in Napier had left, an octopus named Inky **crept** through an **aperture** in the **mesh** **atop** its tank. The **fugitive** **presumably** dropped to the floor, crossed the room, and **compressed** its **elastic** body into a drain, whose pipe **stretched** some 50 metres to the Pacific.
 
 Staff **reconstructed** that route from the **slime** **residue** it **deposited**. Inky had **resided** in **captivity** since 2014, when a fisherman **retrieved** it from a crayfish **pot** off Napier. The **breakout** went **unreported** for about three months. Made public in April 2016, the story travelled the **globe**.
 
