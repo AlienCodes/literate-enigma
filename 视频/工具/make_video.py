@@ -60,7 +60,7 @@ def spoken(t):
     t=re.sub(r'["“”‘]|(?<![A-Za-z])[\'’]|[\'’](?![A-Za-z])','',t)
     return t
 def say(t):
-    w,_=k.create(spoken(re.sub(r'\*\*','',R.strip_gloss(t))),voice=V,speed=SPEED,lang='en-us'); return clean_tail(w)
+    w,_=k.create(spoken(re.sub(r'\*\*','',R.strip_gloss(t))),voice=V,speed=SPEED,lang='en-us'); c=clean_tail(w); return _keep_tail(w,c,_head_offset(w,c))
 def sil(s): return np.zeros(int(round(s*SR)),np.float32)
 
 def _quiet_runs(w,thr_db=-38,min_len=0.05):
@@ -190,7 +190,7 @@ for _p in sorted(_glob.glob('scripts/*.json')):
 #   之后停顿和句中空隙照常处理（标点处补成标准停顿，句中过长的压到 0.18 秒）。两头紧贴的 5 ms 都要低于 -55 dB；
 #   非人声与词尾/词头之间没有 -55 dB 低谷的，标"紧贴词尾"/"紧贴词头"/"紧贴两头"，那一头切在过零点（词本身不动），依据写进 核对确认.删除段。
 #   依据写在"核对确认.停顿删除"/"核对确认.删除段"。出片和所有核查程序（都 exec 本文件）用同一份。
-DEL_AT={}; NONVOICE={}
+DEL_AT={}; NONVOICE={}; GRAFT={}
 for _p in sorted(_glob.glob('scripts/*.json')):
     _d=_json.load(open(_p))
     for _k,_v in _d.get('停顿删除区间',{}).items():
@@ -200,6 +200,8 @@ for _p in sorted(_glob.glob('scripts/*.json')):
         if _k=='标题': NONVOICE['标题::'+_d['title_en']]=_v; continue          # 标题里的呼吸声（03 Bacteria · to）
         _s=_d['sentences'][int(_k[1:])-1]
         NONVOICE[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks'])]=_v
+    for _k,_v in _d.get('词尾除阻',{}).items():                     # A21（见 _graft）
+        GRAFT['标题::'+_d['title_en'] if _k=='标题' else ' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _d['sentences'][int(_k[1:])-1]['chunks'])]=_v
 def _nonvoice(w,ivs,label):
     """非人声区间换成数字静音（长度不变）。守门：区间里不能有 ≥-30 dB 的声音；不紧贴词的一头，外侧紧挨着的 5 ms 必须 <-55 dB；
     紧贴词尾/词头的一头必须在过零点（词本身不动）。"""
@@ -214,11 +216,85 @@ def _nonvoice(w,ivs,label):
             raise SystemExit(f'【停止】非人声区间不对（有词的声音、两头不够安静，或紧贴词尾/词头的一头不在过零点）：{label[:60]} {iv}')
         w[x0:x1]=0
     return w
+# A21 词尾除阻（2026-10-09 用户：“Date后面那个t都没有翻译。Intelligent后面那个特也没有翻译”）：配音模型在停顿前（, ; : 和句末）
+# 常把词尾 /t/ /k/ 读成不除阻——只闭塞，没有 t 那一下爆破送气（06 date, 的“除阻”-39 dB、重心 1 kHz，不是 t；intelligent. 只有 -49 dB，
+# 还被句尾修剪剪掉）。换音素写法（加 ʰ、h）整句重新合成，时好时坏，不可靠（制作记录 A21 有逐处测量）。
+# 办法：同一音色在句末清楚除阻的 /t/、/k/（供体：固定的一句话，合成结果有校验码）移植到弱的地方——从闭塞最低点之后起换成供体的爆破送气，
+# 响度 = 本句最响 5 ms 帧 -27 dB（01–07 里清楚的词尾 t 是 -21～-30 dB）。长度不变，句子其余部分逐样本不变，人工核实过的区间照样有效。
+# 位置写在 scripts/NN.json 的"词尾除阻"：{"S2": {"3": [4.0, "t"]}, "S3": {"句末": [7.1, "t"]}, "标题": {...}}——w 里的秒（精确到样本），
+# 由 词尾辅音核对.py --写入 用实际声音量出来（不凭感觉）；哪些要补也由它按门槛判定。出片和所有核查程序（都 exec 本文件）用同一份。
+DONOR={'t':("Bring a pipe, and then they left.",'ac4047d887b8'),'k':("Their brains began alike.",'b6329f1b0c07')}
+GRAFT_DB=-27
+def _release(e,pf,maxback=16):
+    """e：5 ms 帧电平（dB，相对本句最响帧）；pf：停顿开始（或最后一个能听见的帧之后）的帧号。往回：跳过听不见的帧 → 除阻 →
+    闭塞（比除阻最响低 ≥6 dB 的低谷，取最低点）→ 前面的音。返回 (除阻开始帧 = 闭塞最低帧的下一帧, 除阻结束帧, 除阻最响 dB)；
+    往回 80 ms 内一路升高、没有低谷 = 没有单独的除阻，返回 None"""
+    q=pf-1
+    while q>=0 and e[q]<AUD_DB: q-=1
+    if q<0: return None
+    pk=e[q]; c=None; r=q
+    while r>=0:
+        if c is None:
+            if e[r]>pk: pk=e[r]
+            elif e[r]<=pk-6: c=r
+            elif q-r>maxback: return None
+        else:
+            if e[r]<e[c]: c=r
+            elif e[r]>=e[c]+6: break
+        r-=1
+    return None if c is None else (c+1,q+1,float(pk))
+_DON={}
+def _donor(kind):
+    """供体的爆破送气（从闭塞最低点之后到最后一个能听见的帧），归一到最响 5 ms 帧 = 1"""
+    if kind not in _DON:
+        txt,md=DONOR[kind]; x,_=k.create(txt,voice=V,speed=SPEED,lang='en-us'); x=np.asarray(x,np.float32)
+        if _hl.md5(x.tobytes()).hexdigest()[:12]!=md: raise SystemExit(f'【停止】供体的合成变了（A21）：{txt}')
+        F_=int(0.005*SR); e=_env5(x); pf=int(np.where(e>=AUD_DB)[0][-1])+1; z=_release(e,pf)
+        if z is None: raise SystemExit(f'【停止】供体里找不到除阻（A21）：{txt}')
+        seg=x[z[0]*F_:z[1]*F_]; m_=len(seg)//F_
+        _DON[kind]=seg/np.sqrt(np.mean(seg[:m_*F_].reshape(m_,F_)**2,axis=1)).max()
+    return _DON[kind]
+def _graft(w,items,label):
+    """w 里每一处（秒，供体种类）起换成供体的爆破送气（两头各 2 ms 交叉淡化），响度 = 本句最响 5 ms 帧 GRAFT_DB。
+    守门：换掉的那一段原来不能有 ≥-30 dB 的帧（只能是弱除阻和停顿里的静音，不能碰到词）；紧挨着的前 5 ms 必须是闭塞（<-40 dB）。"""
+    F_=int(0.005*SR); e=_env5(w); rr=np.sqrt(np.mean(w[:len(e)*F_].reshape(len(e),F_)**2,axis=1)).max(); w=w.copy()
+    lv=lambda x:20*np.log10(np.sqrt(np.mean(x**2))/(rr+1e-12)+1e-12) if len(x) else -240.0
+    for g,(sec,kind) in items.items():
+        d=_donor(kind); p=int(round(float(sec)*SR)); n=len(d)
+        if p+n>len(w): w=np.concatenate([w,np.zeros(p+n-len(w),np.float32)])
+        seg=w[p:p+n]; m_=n//F_
+        if p<F_ or max(lv(seg[i*F_:(i+1)*F_]) for i in range(m_))>=-30 or lv(w[p-F_:p])>=-40:
+            raise SystemExit(f'【停止】词尾除阻的位置不对（换掉的部分有词的声音，或前面不是闭塞）（A21）：{label[:60]} {g} {sec}')
+        h=int(0.002*SR); r=np.ones(n,np.float32); r[:h]=np.linspace(0,1,h); r[-h:]=np.linspace(1,0,h)
+        w[p:p+n]=seg*(1-r)+(d*rr*10**(GRAFT_DB/20)).astype(np.float32)*r
+    return w
+def _keep_tail(raw,w,head):
+    """A21：clean_tail 的句尾（最后一个比峰值低 48 dB 的 10 ms 帧往后 80 ms，最后 50 ms 淡出）会剪掉、压低听得见的词尾（06 intelligent. 的 /t/）。
+    原始合成里，从 w 淡出开始处往后、与前面的声音相隔不到 150 ms 的能听见的帧（≥-55 dB，基准本句最响 5 ms 帧）都是词的一部分
+    （词尾塞音的闭塞最长 150 ms：01 effect. 的闭塞 110 ms 后才除阻）：w 接长到最后一个这样的帧，再加 5 ms（听不见）在这 5 ms 里淡出。
+    隔着 ≥150 ms 的（换气声等）不接。淡出段里没有能听见的帧的句子，w 不变。"""
+    F_=int(0.005*SR); x=np.asarray(raw,np.float32); m=len(x)//F_
+    e=20*np.log10(np.sqrt(np.mean(x[:m*F_].reshape(m,F_)**2,axis=1))/(np.sqrt(np.mean(x[:m*F_].reshape(m,F_)**2,axis=1)).max()+1e-12)+1e-12)
+    fs=(head+len(w)-int(0.05*SR))//F_                      # w 淡出开始处（raw 的帧号）
+    au=[f for f in range(fs,m) if e[f]>=AUD_DB]
+    if not au: return w
+    last=None; prev=max([f for f in range(max(0,fs-30),fs) if e[f]>=AUD_DB],default=fs)
+    for f in au:
+        if f-prev>30: break
+        last=prev=f
+    if last is None: return w
+    keep=head+len(w)-int(0.05*SR); end=(last+2)*F_
+    if end<=head+len(w)-int(0.05*SR): return w
+    out=np.concatenate([w[:len(w)-int(0.05*SR)],x[keep:end]]).astype(np.float32)
+    out[-F_:]*=np.linspace(1,0,F_)**2
+    return out
 def sentence_audio(sent,pieces,gaps):
     """整句一次合成（原模型，声音不变）。标点位置用带时长输出的同版模型精确定位（A9）；
     在标点处只删除"真正无声"的部分（A10：绝不删词尾的 s/f/z 等弱音），再补静音，使实际听到的停顿 = 标准时长。"""
     raw,_=k.create(spoken(sent),voice=V,speed=SPEED,lang='en-us'); w=clean_tail(raw)
+    w=_keep_tail(raw,w,_head_offset(raw,w))
     if sent in NONVOICE: w=_nonvoice(w,NONVOICE[sent],sent)
+    if sent in GRAFT: w=_graft(w,GRAFT[sent],sent)
     tb,_,sp=KT.create_timed(spoken(sent),voice=V,speed=SPEED,lang='en-us',clause_pause=0,sentence_pause=0)
     scale=len(raw)/len(tb); toks=list(sp)
     idxs=[i for i,x in enumerate(toks) if x.phoneme in ',;:']
@@ -290,6 +366,11 @@ def sentence_audio(sent,pieces,gaps):
             lv=lambda x:20*np.log10(np.sqrt(np.mean(x**2))/(rr+1e-12)+1e-9)   # 与 _env5 同一基准
         if dv is not None:   # A19：用实际声音核实过的删除区间
             ca,cb=int(round(float(dv[0])*SR)),int(round(float(dv[1])*SR))
+            gv=GRAFT.get(sent,{}).get(str(gi+1))
+            if gv is not None:                                        # A21：移植的除阻不能被删——删除从移植段结束处开始（只少删、不多删）
+                ge=int(round(float(gv[0])*SR))+len(_donor(gv[1]))
+                if ge>=cb: raise SystemExit(f'【停止】移植的除阻伸进了下一个词前面（A21）：{sent[:60]} 第{gi+1}个标点')
+                ca=max(ca,ge)
             if not (pe-120<=ca//F<cb//F<=ns+120) or e[ca//F:cb//F].max()>=-30 or lv(w[ca-F:ca])>=AUD_DB or lv(w[cb:cb+F])>=AUD_DB:
                 raise SystemExit(f'【停止】人工核实的停顿删除区间不在该标点处、删到了词的声音，或两头紧贴的 5 ms 不够安静（A10/A19）：{sent[:60]} 第{gi+1}个标点')
         if dv is not None:
@@ -334,6 +415,7 @@ def title_audio(title):
     """标题：整句合成 → 非人声区间（脚本里键为"标题"）换成静音 → 无标点处的长停顿压缩到 0.18 秒（与句子同一条规则）→ 去底噪 → 只留能听见的部分（A20）"""
     w=say(title)
     if '标题::'+title in NONVOICE: w=_nonvoice(w,NONVOICE['标题::'+title],'标题 '+title)
+    if '标题::'+title in GRAFT: w=_graft(w,GRAFT['标题::'+title],'标题 '+title)
     w=_purify(_cap_inner(w)); return w[slice(*_edges(w))]
 def build(js,out):
     d=json.load(open(js)); no=d['no']
