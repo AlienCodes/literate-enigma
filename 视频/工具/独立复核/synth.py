@@ -10,6 +10,14 @@ os.makedirs(OUT, exist_ok=True)
 sys.path.insert(0, S + '/tts')
 from kokoro_onnx import Kokoro
 _src=open(S+'/video/make_video.py').read(); exec(_src[_src.index('# 朗读用的数字读法'):_src.index('def say(t):')])  # 与成片相同的数字读法（A11）
+# A21 词尾除阻：脚本里写了"词尾除阻"的句子，标准答案（原始合成）在同一位置放进同一段供体（出片程序的 _graft，同一个函数）——
+# 复核把它当原始声音的一部分，其余部分照旧逐样本比对；移植本身（位置、强度）由 词尾辅音核对.py 把关。
+from clean import clean_tail, SR
+import hashlib as _hl
+SPEED = 0.95
+exec(_src[_src.index('SIL_DB=-55'):_src.index('def _purify(x):')])
+exec(_src[_src.index('def _head_offset(raw,w):'):_src.index('LAST={}')])
+exec(_src[_src.index('DONOR={'):_src.index('def sentence_audio(sent,pieces,gaps):')])
 
 
 def texts_for(no):
@@ -36,10 +44,19 @@ if __name__ == '__main__':
             idx = it[1]
             text = it[2]
             fn = f'{OUT}/{no}_{"T" if idx < 0 else "%02d" % idx}.npy'
-            if spoken(text)!=text or not os.path.exists(fn):
+            gr = d.get('词尾除阻', {}).get('标题' if idx < 0 else f'S{idx + 1}')
+            if gr: fn = fn[:-4] + '_词尾除阻.npy'                    # 每次重算（不与没有移植的版本混用）
+            if spoken(text)!=text or gr or not os.path.exists(fn):
                 a, sr = k.create(spoken(text), voice=V, speed=0.95, lang='en-us')
                 assert sr == 24000
-                np.save(fn, np.asarray(a, np.float32))
+                a = np.asarray(a, np.float32)
+                if gr:
+                    w0 = clean_tail(a); st = _head_offset(a, w0); wg = _graft(_keep_tail(a, w0, st), gr, text)
+                    end = max(len(a), st + max(int(round(float(sec) * SR)) + len(_donor(kd)) for sec, kd in gr.values()))
+                    a = np.concatenate([a, np.zeros(end - len(a), np.float32)])
+                    for sec, kd in gr.values():
+                        p0 = int(round(float(sec) * SR)); n0 = len(_donor(kd)); a[st + p0:st + p0 + n0] = wg[p0:p0 + n0]
+                np.save(fn, a)
             meta[no].append({'idx': idx, 'text': text, 'file': fn,
                              'para': it[3] if len(it) > 3 else None,
                              'chunks': it[4] if len(it) > 4 else [text]})

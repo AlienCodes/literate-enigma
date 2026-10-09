@@ -144,7 +144,12 @@ if __name__ == '__main__':
         sys.exit(0 if ok else 1)
     d = json.load(open(f'scripts/{no}.json')); fp = hashlib.md5(open(f'work_{no}/a.wav', 'rb').read()).hexdigest()[:12]
     conf = d.get('核对确认', {}).get('非人声', {}); bad = 0; rows = []
+    # A21：出片程序移植的词尾除阻（work_NN/词尾除阻.json，a.wav 里的时刻），整团落在移植段里的 = 供体的 /t/ /k/ 除阻本身，不是杂音
+    gr = json.load(open(f'work_{no}/词尾除阻.json')) if os.path.exists(f'work_{no}/词尾除阻.json') else []
     for f in scan(a):
+        g = next((x for x in gr if f[0] in ('孤立杂音', '噗声', '呼吸声') and x['开始'] - 0.005 <= f[1] and f[2] <= x['结束'] + 0.005), None)
+        if g:
+            rows.append(f"{no} OK（A21 移植的词尾除阻：{g['句']} {g['位置']}，{g['开始']:.3f}–{g['结束']:.3f}s）{f[0]} {key(f)} 最响 {f[3]:.1f} dB"); continue
         cf = conf.get(key(f)); ok = isinstance(cf, dict) and cf.get('配音指纹') == fp
         bad += not ok
         if f[0] in ('起音前过长', '收尾过长'):

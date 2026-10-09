@@ -255,7 +255,7 @@ def _donor(kind):
         _DON[kind]=seg/np.sqrt(np.mean(seg[:m_*F_].reshape(m_,F_)**2,axis=1)).max()
     return _DON[kind]
 def _graft(w,items,label):
-    """w 里每一处（秒，供体种类）起换成供体的爆破送气（两头各 2 ms 交叉淡化），响度 = 本句最响 5 ms 帧 GRAFT_DB。
+    """w 里每一处（秒，供体种类）起换成供体的爆破送气（两头各 2 ms 淡入淡出），响度 = 本句最响 5 ms 帧 GRAFT_DB。
     守门：换掉的那一段原来不能有 ≥-30 dB 的帧（只能是弱除阻和停顿里的静音，不能碰到词）；紧挨着的前 5 ms 必须是闭塞（<-40 dB）。"""
     F_=int(0.005*SR); e=_env5(w); rr=np.sqrt(np.mean(w[:len(e)*F_].reshape(len(e),F_)**2,axis=1)).max(); w=w.copy()
     lv=lambda x:20*np.log10(np.sqrt(np.mean(x**2))/(rr+1e-12)+1e-12) if len(x) else -240.0
@@ -266,7 +266,7 @@ def _graft(w,items,label):
         if p<F_ or max(lv(seg[i*F_:(i+1)*F_]) for i in range(m_))>=-30 or lv(w[p-F_:p])>=-40:
             raise SystemExit(f'【停止】词尾除阻的位置不对（换掉的部分有词的声音，或前面不是闭塞）（A21）：{label[:60]} {g} {sec}')
         h=int(0.002*SR); r=np.ones(n,np.float32); r[:h]=np.linspace(0,1,h); r[-h:]=np.linspace(1,0,h)
-        w[p:p+n]=seg*(1-r)+(d*rr*10**(GRAFT_DB/20)).astype(np.float32)*r
+        w[p:p+n]=(d*rr*10**(GRAFT_DB/20)).astype(np.float32)*r          # 整段换掉（两头 2 ms 从零淡入淡出；原来这里只有闭塞和停顿里的静音，不与原声混）
     return w
 def _keep_tail(raw,w,head):
     """A21：clean_tail 的句尾（最后一个比峰值低 48 dB 的 10 ms 帧往后 80 ms，最后 50 ms 淡出）会剪掉、压低听得见的词尾（06 intelligent. 的 /t/）。
@@ -285,7 +285,7 @@ def _keep_tail(raw,w,head):
     if last is None: return w
     keep=head+len(w)-int(0.05*SR); end=(last+2)*F_
     if end<=head+len(w)-int(0.05*SR): return w
-    out=np.concatenate([w[:len(w)-int(0.05*SR)],x[keep:end]]).astype(np.float32)
+    out=np.concatenate([w[:len(w)-int(0.05*SR)],x[keep:end],np.zeros(max(0,end-len(x)),np.float32)]).astype(np.float32)   # 原始合成在这里就结束了的补零（02 S12）
     out[-F_:]*=np.linspace(1,0,F_)**2
     return out
 def sentence_audio(sent,pieces,gaps):
@@ -401,7 +401,14 @@ def sentence_audio(sent,pieces,gaps):
     for l_ in ln: clips.append(pur[p_:p_+l_]); p_+=l_
     tmap=[(x0,x1,max(0.0,t0-sh),t1-sh) for x0,x1,t0,t1 in tmap]; tmap[-1]=tmap[-1][:3]+(len(pur)/SR,)
     segs=[(a0,b0,t0-sh,rm) for a0,b0,t0,rm in segs]
-    LAST.clear(); LAST.update(toks=toks,scale=scale,head=_head_offset(raw,w),segs=segs,total=len(pur)/SR,cuts=cuts)
+    gts=[]
+    for g_,(sec_,kind_) in GRAFT.get(sent,{}).items():                 # A21：移植段在这一句成片里的时刻（纯人声核对据此认出它，不当杂音）
+        p_=int(round(float(sec_)*SR)); n_=len(_donor(kind_))
+        for a0,b0,t0,rm in segs:
+            if a0<=p_<b0:
+                q_=p_-a0; q_-=sum(min(q_,y)-x for x,y in rm if x<q_); gts.append((g_,t0+q_/SR,t0+(q_+n_)/SR)); break
+        else: raise SystemExit(f'【停止】移植段不在保留的声音里（A21）：{sent[:60]} {g_}')
+    LAST.clear(); LAST.update(toks=toks,scale=scale,head=_head_offset(raw,w),segs=segs,total=len(pur)/SR,cuts=cuts,grafts=gts)
     return clips,tmap
 def _split_audio(sent,pieces,gaps):
     clips=[];tmap=[];t=0.0
@@ -433,7 +440,8 @@ def build(js,out):
     # title
     ta=title_audio(d['title_en'])
     tl.append((('title',None),0.4+len(ta)/SR+P_TITLE)); audio+=[ta,sil(P_TITLE)]
-    prev_para=None
+    prev_para=None; graft_times=[]
+    if '标题::'+d['title_en'] in GRAFT: raise SystemExit('【停止】标题的词尾除阻还没有接到 纯人声核对 的时刻表（A21），先补上')
     for si,s in enumerate(d['sentences']):
         ch=s['chunks']; lead=P_FIRST if si==0 else P_LEAD+(P_PARA_EXTRA if prev_para is not None and s['para']!=prev_para else 0)
         prev_para=s['para']
@@ -466,12 +474,15 @@ def build(js,out):
             return g*0.01
         starts=[0.0]+[speech_on(p0[bounds[ci]]) if bounds[ci] in p0 else ct[ci-1] for ci in range(1,len(ch))]+[len(a)/SR]
         if any(y<=x for x,y in zip(starts,starts[1:])): raise SystemExit(f'【停止】高亮时间不是递增的（L14）：{sent[:60]}')
+        t_at=sum(len(x_) for x_ in audio)/SR+lead
+        graft_times+=[{'句':f'S{si+1}','位置':('句末' if g_=='句末' else f'第{g_}个标点'),'开始':round(t_at+t0_,4),'结束':round(t_at+t1_,4)} for g_,t0_,t1_ in LAST['grafts']]
         audio+=[sil(lead),a,sil(P_HOLD)]
         for ci in range(len(ch)):
             dur=starts[ci+1]-starts[ci]+(lead if ci==0 else 0)+(P_HOLD if ci==len(ch)-1 else 0)
             tl.append(((si,ci),dur))
     END=2.0-P_HOLD; audio.append(sil(END)); tl[-1]=(tl[-1][0],tl[-1][1]+END)  # 片尾：读完后共停 2 秒
     A=np.concatenate(audio); A=A/np.abs(A).max()*0.89
+    json.dump(graft_times,open(f'{work}/词尾除阻.json','w'),ensure_ascii=False,indent=1)   # A21：移植段在 a.wav 里的时刻
     total=sum(x for _,x in tl)
     if os.environ.get('AUDIO_ONLY'):
         # 只出声音（用户 2026-10-09：“先不要做成视频，我们确定最后的定稿再做成视频”）：写配音 a.wav、时间表 list.txt
