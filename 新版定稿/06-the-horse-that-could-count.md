@@ -8,7 +8,7 @@ A **commission** of thirteen was formed to **investigate**. It included a **vete
 
 In 1907 the **psychologist** Oskar Pfungst tested the act **systematically**, altering one **variable** after another. He kept onlookers away, **rotated** **questioners**, fitted **blinders**, and sometimes used people **ignorant** of the answer. When Hans could see the questioner, he answered **correctly** 50 times in 56. With the questioner **invisible**, his **accuracy** fell to two in 35.
 
-The **cues** came from the questioners. Each would **lean** forward as tapping began, and **tension** rose as the taps neared the answer. At the right tap it eased, and the questioner would **straighten** or **jerk** the head upward. Every **gesture** and **motion** was **subconscious**, made **innocently** by people with no wish to **deceive**.
+The **cues** came from the questioners. Each would **lean** forward as tapping began, and **tension** rose as the taps neared the answer. At the right tap it eased, and the questioner would **straighten** or **jerk** the head upward. Every **gesture** and **motion** was **subconscious**, made **unwittingly** by people with no wish to **deceive**.
 
 **Double-blind** designs in **psychology** and animal **cognition** guard against the Clever Hans effect, a **phenomenon** of **bias** in which **expectancy** shapes **behavioural** results. In the laboratory, Pfungst took the animal's place and proved **sensitive** to the cues of **attentive** volunteers. Hans went, on his owner's death in June 1909, to a **jeweller** still convinced that such animals reasoned.
 
@@ -20,7 +20,7 @@ The **cues** came from the questioners. Each would **lean** forward as tapping b
 
 1907年，**心理学家**(psychologist)奥斯卡·普丰斯特对这一表演进行了**系统**(systematically)测试，逐一改变各个**变量**(variable)。他让围观者远离，**轮换**(rotated)**提问者**(questioners)，给马戴上**眼罩**(blinders)，有时还找对答案**一无所知**(ignorant)的人来提问。汉斯能看见提问者时，56次中**答对**(correctly)了50次；提问者**不在视线内**(invisible)时，它的**准确率**(accuracy)降到35次中仅对2次。
 
-**提示**(cues)来自提问者。敲击开始时，每个提问者都会**前倾**(lean)身体；敲击越接近答案，**紧张**(tension)就越强。敲到正确的那一下时，紧张随即缓解，提问者会**挺直**(straighten)身子，或把头向上**猛地一抬**(jerk)。每个**手势**(gesture)和**动作**(motion)都出于**下意识**(subconscious)，都是**无心**(innocently)做出的，做出这些动作的人并不想**欺骗**(deceive)。
+**提示**(cues)来自提问者。敲击开始时，每个提问者都会**前倾**(lean)身体；敲击越接近答案，**紧张**(tension)就越强。敲到正确的那一下时，紧张随即缓解，提问者会**挺直**(straighten)身子，或把头向上**猛地一抬**(jerk)。每个**手势**(gesture)和**动作**(motion)都出于**下意识**(subconscious)，都是**不知情地**(unwittingly)做出的，做出这些动作的人并不想**欺骗**(deceive)。
 
 **心理学**(psychology)和动物**认知**(cognition)研究中的**双盲**(double-blind)设计，正是为了防范"聪明汉斯效应"。这是一种**偏差**(bias)**现象**(phenomenon)，指**预期**(expectancy)会影响**行为**(behavioural)结果。在实验室里，普丰斯特亲自扮演马的角色，事实证明，他对**专注**(attentive)的志愿者发出的提示也很**敏感**(sensitive)。汉斯在主人于1909年6月去世后，转到一位**珠宝商**(jeweller)手中，此人仍坚信马具有推理能力。
 
@@ -65,7 +65,7 @@ The **cues** came from the questioners. Each would **lean** forward as tapping b
 | gesture | n. 手势，姿态（a friendly gesture；gesture of support） | 4 |
 | motion | n. 动作，运动（in slow motion；a sudden motion） | 4 |
 | subconscious | adj./n. 下意识的；潜意识（a subconscious desire） | 4 |
-| innocently | adv. 无心地，天真地（ask innocently） | 4 |
+| unwittingly | adv. 不知不觉地，不知情地，无意中（unwittingly reveal a secret；unwittingly become involved） | 4 |
 | deceive | v. 欺骗（deceive oneself；be deceived by appearances） | 4 |
 | double-blind | adj. 双盲的（a double-blind trial/study） | 5 |
 | psychology | n. 心理学；心理（child psychology；crowd psychology） | 5 |

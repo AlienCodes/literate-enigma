@@ -25,7 +25,7 @@ for s in d['sentences']:
     prev=s['para']; cs=[]
     for c in s['chunks']:
         cols=''.join('<br>' if e=='\n' else f'<span class="col"><span class="en">{seg(R._segs_en(e,colors),"")}</span><span class="zh">{zhseg(z)}</span></span>' for e,z in c['align'])
-        note=f'<div class="note">{html.escape(c["note"].replace("#Y",""))}</div>' if c.get('note') else ''
+        note=f'<div class="note">{html.escape(c["note"].replace("#Y","")).replace(chr(10),"<br>")}</div>' if c.get('note') else ''
         cs.append(f'<div class="chunk">{cols}{note}</div>')
     para.append('<div class="sent">'+''.join(cs)+'</div>')
 flush()

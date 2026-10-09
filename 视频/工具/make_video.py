@@ -130,7 +130,7 @@ def chunk_times(texts):
                 q=p-a; q-=sum(min(q,y)-x for x,y in rm if x<q); tt=t0+q/SR; break
         out.append(LAST['total'] if tt is None else tt)
     return out
-# 人工用实际声音核实过的连读处插入点（A15）：scripts/NN.json 的"停顿插入点"：{"S7": {"1": 0.815}}（第几句：{第几个标点: 秒}，
+# 人工用实际声音核实过的连读处插入点（A15）：scripts/NN.json 的"停顿插入点"：{"S7": {"1": 0.815}}（第几句：{第几个标点: 秒（可精确到样本，取两词交界处的过零点，避免咔哒声）}，
 # 秒数是整句一次合成后的声音 w 里的位置），依据写在"核对确认.停顿位置"。出片和所有核查程序（都 exec 本文件）用同一份。
 import glob as _glob, json as _json
 INSERT_AT={}
@@ -184,12 +184,13 @@ def sentence_audio(sent,pieces,gaps):
                 else: f=best[2]
             else: f=min(win,key=lambda g:e[g])
         if r0 is None:                                                # 两词连读：在选中的低谷处插入，不删任何声音
-            ov=INSERT_AT.get(sent,{}).get(gi+1)
-            if ov is not None:                                        # 用实际声音核实过的插入点（A15），仍须是该标点附近的低谷
-                f=int(round(ov*SR/F))
-                if not (pe-60<=f<=ns+20) or e[f]>min(e[max(0,f-2):f+3]):
-                    raise SystemExit(f'【停止】人工核实的插入点不在该标点附近，或不是低谷（A15）：{sent[:60]} 第{gi+1}个标点')
-            ca=cb=f*F; keep=0.0
+            ov=INSERT_AT.get(sent,{}).get(gi+1); cx=None
+            if ov is not None:                                        # 用实际声音核实过的插入点（A15）：精确到样本（可取两词交界处的过零点）
+                cx=int(round(ov*SR)); f=cx//F
+                # 必须在该标点附近；是低谷，或虽不是低谷但已很轻（≤ -24 dB，如 /n/→/h/ 的交界：/h/ 比 /n/ 更轻，没有低谷）
+                if not (pe-60<=f<=ns+20) or (e[f]>min(e[max(0,f-2):f+3]) and e[f]>-24):
+                    raise SystemExit(f'【停止】人工核实的插入点不在该标点附近，或落在响亮的声音上（A15）：{sent[:60]} 第{gi+1}个标点')
+            ca=cb=(cx if cx is not None else f*F); keep=0.0
         else:
             # ② 两头往里收：上一个词的尾音保留到它衰减到 -55 dB；下一个词从 -55 dB 处开始保留（A10）
             a=r0

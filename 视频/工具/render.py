@@ -236,9 +236,9 @@ def _measure(chunks,colors,notes,es,grps):
             c=r[1]; ne=len(layout(c['se'],ef,MAXW2)); nz=sum(len(layout(l,zf,MAXW2,cjk=True)) for l in c['zl']); return ne*lhE+nz*lhZ
         return lhE+max(c['nz'] for c in r)*lhZ
     lhN=int(zs*1.45)
-    total=sum(sum(rh(r) for r in rs)+(len(rs)-1)*rgap+(lhN if notes[i] else 0) for i,rs in enumerate(rowsets))+cgap*(len(rowsets)-1)
+    total=sum(sum(rh(r) for r in rs)+(len(rs)-1)*rgap+(lhN*len(notes[i].split('\n')) if notes[i] else 0) for i,rs in enumerate(rowsets))+cgap*(len(rowsets)-1)   # note 里的 \n = 用户要的多行说明，每行一行高
     wide=max([sum(c['w'] for c in r)+gapx*(len(r)-1) for rs in rowsets for r in rs if not isinstance(r,tuple)]+[0])
-    nf=ZH(int(zs*0.9),400); wide=max([wide]+[nf.getlength(n.replace('#Y','')) for n in notes if n])
+    nf=ZH(int(zs*0.9),400); wide=max([wide]+[nf.getlength(ln) for n in notes if n for ln in n.replace('#Y','').split('\n')])
     return rowsets,total,wide,(zs,ef,zf,gapx,lhE,lhZ,rgap,cgap,lhN)
 def max_es(chunks,colors,notes=None):
     notes=notes or [None]*len(chunks); grps=_grouping(chunks,colors)
@@ -277,7 +277,8 @@ def frame_interlinear(chunks,colors,header,progress,out,active=None,maxw=1840,ma
             nf=ZH(int(zs*0.9),400); nc=FG_ZH if on else dim(FG_ZH)
             nt=notes[i]
             if nt.startswith('#Y'): nt=nt[2:]; nc=(251,191,36) if on else dim((251,191,36))
-            d.text(((W-nf.getlength(nt))/2,y-rgap*0.3),nt,font=nf,fill=nc); y+=lhN
+            for ln in nt.split('\n'):
+                d.text(((W-nf.getlength(ln))/2,y-rgap*0.3),ln,font=nf,fill=nc); y+=lhN
         y+=cgap-rgap
     d.rectangle([0,H-8*S,W*progress,H],fill=(94,234,212))
     im.save(out); return es
