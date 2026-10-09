@@ -61,6 +61,22 @@ def _env5(w):
     n=int(0.005*SR); m=len(w)//n; r=np.sqrt(np.mean(w[:m*n].reshape(m,n)**2,axis=1))
     return 20*np.log10(r/(r.max()+1e-12)+1e-9)
 INNER_MAX=0.22; INNER_TO=0.18   # 没有标点的地方：模型自己停顿超过 0.22 s 的，压缩到 0.18 s（硬性条件：无标点处整句连读）
+def _purify(x):
+    """纯人声（用户 2026-10-09：“底噪也不要”）：低于本句最响 5 ms 帧 55 dB 的连续段（≥15 ms，或挨着插入的静音）换成数字静音；
+    挨着声音的一头各留 1 帧（5 ms），供核查确认词尾已衰减到 -55 dB、下一个词从 -55 dB 处开始。长度不变，时间轴不变。"""
+    x=x.copy(); F_=int(0.005*SR); n_=len(x)//F_
+    if n_==0: return x
+    r_=np.sqrt(np.mean(x[:n_*F_].reshape(n_,F_)**2,axis=1)); q_=20*np.log10(r_/(r_.max()+1e-12)+1e-9)<AUD_DB
+    f_=0
+    while f_<n_:
+        if not q_[f_]: f_+=1; continue
+        g_=f_
+        while g_<n_ and q_[g_]: g_+=1
+        a_=f_+(1 if f_>0 else 0); b_=g_-(1 if g_<n_ else 0)
+        if g_-f_>=3 and b_>a_: x[a_*F_:b_*F_]=0          # 插入的静音也算在这一段里，所以停顿两边留下的底噪一并清掉
+        f_=g_
+    if n_*F_<len(x) and q_[-1]: x[n_*F_:]=0
+    return x
 def _cap_inner(seg):
     """只压缩句中（非标点处）过长的无声段；只删听不见的部分（低于 -45 dB），两头各保留一半，不碰任何读音。"""
     e=_env5(seg); F=int(0.005*SR); keep=[];prev=0;st=None
@@ -139,10 +155,38 @@ for _p in sorted(_glob.glob('scripts/*.json')):
     for _k,_v in _d.get('停顿插入点',{}).items():
         _s=_d['sentences'][int(_k[1:])-1]
         INSERT_AT[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks'])]={int(g):float(x) for g,x in _v.items()}
+# A19：停顿后紧跟一段吸气声时，程序把吸气声当成下一个词的开头，"词到词"的停顿就比标准长（06：0.2 秒的列举逗号实际 0.53 秒）。
+# 用实际声音核实后写进 scripts/NN.json：
+#   "停顿删除区间"：{"S6": {"2": [起, 止]}}——这一处删掉 w 里 [起, 止) 秒（精确到样本，可越过吸气声；两头紧贴的 5 ms 必须低于 -55 dB，删掉的部分不能有词的声音）；
+# 用户 2026-10-09：“不要有任何的呼吸声 语气声……底噪也不要 就要绝对的纯人声”。
+#   "非人声区间"：{"S9": [[起, 止], [起, 止, "紧贴词尾"/"紧贴词头"]]}——w 里 [起, 止) 秒是呼吸声、噗声等非人声，先换成数字静音（长度不变），
+#   之后停顿和句中空隙照常处理（标点处补成标准停顿，句中过长的压到 0.18 秒）。两头紧贴的 5 ms 都要低于 -55 dB；
+#   非人声与词尾/词头之间没有 -55 dB 低谷的，标"紧贴词尾"/"紧贴词头"/"紧贴两头"，那一头切在过零点（词本身不动），依据写进 核对确认.删除段。
+#   依据写在"核对确认.停顿删除"/"核对确认.删除段"。出片和所有核查程序（都 exec 本文件）用同一份。
+DEL_AT={}; NONVOICE={}
+for _p in sorted(_glob.glob('scripts/*.json')):
+    _d=_json.load(open(_p))
+    for _k,_v in _d.get('停顿删除区间',{}).items():
+        _s=_d['sentences'][int(_k[1:])-1]
+        DEL_AT[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks'])]={int(g):x for g,x in _v.items()}
+    for _k,_v in _d.get('非人声区间',{}).items():
+        _s=_d['sentences'][int(_k[1:])-1]
+        NONVOICE[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks'])]=_v
 def sentence_audio(sent,pieces,gaps):
     """整句一次合成（原模型，声音不变）。标点位置用带时长输出的同版模型精确定位（A9）；
     在标点处只删除"真正无声"的部分（A10：绝不删词尾的 s/f/z 等弱音），再补静音，使实际听到的停顿 = 标准时长。"""
     raw,_=k.create(spoken(sent),voice=V,speed=SPEED,lang='en-us'); w=clean_tail(raw)
+    if sent in NONVOICE:
+        e0=_env5(w); F0=int(0.005*SR); rr0=np.sqrt(np.mean(w[:len(e0)*F0].reshape(len(e0),F0)**2,axis=1)).max()
+        lv0=lambda x:20*np.log10(np.sqrt(np.mean(x**2))/(rr0+1e-12)+1e-9)
+        w=w.copy()
+        for iv in NONVOICE[sent]:
+            x0,x1=int(round(float(iv[0])*SR)),int(round(float(iv[1])*SR)); flag=iv[2] if len(iv)>2 else ''
+            if not (0<x0<x1<len(w)) or lv0(w[x0:x1])>-30 or e0[x0//F0:x1//F0].max()>=-30 \
+               or (flag not in ('紧贴词尾','紧贴两头') and lv0(w[x0-F0:x0])>=AUD_DB) or (flag not in ('紧贴词头','紧贴两头') and lv0(w[x1:x1+F0])>=AUD_DB) \
+               or (flag in ('紧贴词尾','紧贴两头') and w[x0-1]*w[x0]>0 and abs(w[x0])>1e-4) or (flag in ('紧贴词头','紧贴两头') and w[x1-1]*w[x1]>0 and abs(w[x1])>1e-4):
+                raise SystemExit(f'【停止】非人声区间不对（有词的声音、两头不够安静，或紧贴词尾/词头的一头不在过零点）：{sent[:60]} {iv}')
+            w[x0:x1]=0
     tb,_,sp=KT.create_timed(spoken(sent),voice=V,speed=SPEED,lang='en-us',clause_pause=0,sentence_pause=0)
     scale=len(raw)/len(tb); toks=list(sp)
     idxs=[i for i,x in enumerate(toks) if x.phoneme in ',;:']
@@ -202,10 +246,32 @@ def sentence_audio(sent,pieces,gaps):
                 keep=((ca-a*F)+(b*F-cb))/SR          # 听到的停顿从尾音衰减到 -55 dB 起算（与核对口径一致）
             else:
                 f=min(range(r0,r1),key=lambda f:e[f]); ca=cb=f*F; keep=max(0,b-a)*F/SR
-        if r0 is not None and not (r0*F<=ca<=cb<=r1*F):
-            raise SystemExit(f'【停止】删除范围超出了停顿（A9/A10）："{sent[:60]}" 第{gi+1}个标点')
-        if cb>ca and (e[ca//F:cb//F].max()>=PAUSE_DB or e[ca//F-M]>=AUD_DB or e[min(len(e)-1,cb//F+M-1)]>=AUD_DB):
-            raise SystemExit(f'【停止】标点处要删的部分里有词的声音，或没有保住词尾/词头（A10）：{sent[:60]}')
+                ov=INSERT_AT.get(sent,{}).get(gi+1)
+                if ov is not None:                                    # 停顿太短、只插不删的这一种，也认人工核实的插入点（A19：06 S2 subtraction, 的 /n/ 余音）
+                    cx=int(round(ov*SR))
+                    if not (r0*F<=cx<=r1*F) or e[cx//F-1]>=PAUSE_DB:
+                        raise SystemExit(f'【停止】人工核实的插入点不在这一段短停顿里（A15/A19）：{sent[:60]} 第{gi+1}个标点')
+                    ca=cb=cx
+        dv=DEL_AT.get(sent,{}).get(gi+1)
+        if dv is not None:
+            rr=np.sqrt(np.mean(w[:len(e)*F].reshape(len(e),F)**2,axis=1)).max()
+            lv=lambda x:20*np.log10(np.sqrt(np.mean(x**2))/(rr+1e-12)+1e-9)   # 与 _env5 同一基准
+        if dv is not None:   # A19：用实际声音核实过的删除区间
+            ca,cb=int(round(float(dv[0])*SR)),int(round(float(dv[1])*SR))
+            if not (pe-120<=ca//F<cb//F<=ns+120) or e[ca//F:cb//F].max()>=-30 or lv(w[ca-F:ca])>=AUD_DB or lv(w[cb:cb+F])>=AUD_DB:
+                raise SystemExit(f'【停止】人工核实的停顿删除区间不在该标点处、删到了词的声音，或两头紧贴的 5 ms 不够安静（A10/A19）：{sent[:60]} 第{gi+1}个标点')
+        if dv is not None:
+            fa=(ca-1)//F
+            while fa>0 and e[fa-1]<AUD_DB: fa-=1
+            fb=cb//F
+            while fb<len(e) and e[fb]<AUD_DB: fb+=1
+            keep=((ca-fa*F)+(fb*F-cb))/SR
+            if gaps[gi]-keep<0.03: raise SystemExit(f'【停止】保留的部分已超过标准停顿，放不下静音（A19）：{sent[:60]} 第{gi+1}个标点')
+        else:
+            if r0 is not None and not (r0*F<=ca<=cb<=r1*F):
+                raise SystemExit(f'【停止】删除范围超出了停顿（A9/A10）："{sent[:60]}" 第{gi+1}个标点')
+            if cb>ca and (e[ca//F:cb//F].max()>=PAUSE_DB or e[ca//F-M]>=AUD_DB or e[min(len(e)-1,cb//F+M-1)]>=AUD_DB):
+                raise SystemExit(f'【停止】标点处要删的部分里有词的声音，或没有保住词尾/词头（A10）：{sent[:60]}')
         cuts.append((ca,cb,max(0.03,gaps[gi]-keep)))
     clips=[];tmap=[];t=0.0;prev=0;segs=[]
     for k2,(x0,x1) in enumerate(pieces):
@@ -215,7 +281,9 @@ def sentence_audio(sent,pieces,gaps):
         segs.append((prev,end,t,rm))
         tmap.append((x0,x1,t,t+d)); clips.append(seg); t+=d
         if k2<len(cuts): clips.append(sil(cuts[k2][2])); t+=cuts[k2][2]; prev=cuts[k2][1]
-    LAST.clear(); LAST.update(toks=toks,scale=scale,head=_head_offset(raw,w),segs=segs,total=t)
+    LAST.clear(); LAST.update(toks=toks,scale=scale,head=_head_offset(raw,w),segs=segs,total=t,cuts=cuts)
+    ln=[len(c_) for c_ in clips]; pur=_purify(np.concatenate(clips)); clips=[]; p_=0
+    for l_ in ln: clips.append(pur[p_:p_+l_]); p_+=l_
     return clips,tmap
 def _split_audio(sent,pieces,gaps):
     clips=[];tmap=[];t=0.0
@@ -239,7 +307,7 @@ def build(js,out):
     segs=[]  # (image_key, duration) ; audio list
     audio=[sil(0.4)]; tl=[]  # (screen_id,active,dur)
     # title
-    ta=say(d['title_en'])
+    ta=_purify(say(d['title_en']))
     tl.append((('title',None),0.4+len(ta)/SR+P_TITLE)); audio+=[ta,sil(P_TITLE)]
     prev_para=None
     for si,s in enumerate(d['sentences']):
@@ -281,6 +349,15 @@ def build(js,out):
     END=2.0-P_HOLD; audio.append(sil(END)); tl[-1]=(tl[-1][0],tl[-1][1]+END)  # 片尾：读完后共停 2 秒
     A=np.concatenate(audio); A=A/np.abs(A).max()*0.89
     total=sum(x for _,x in tl)
+    if os.environ.get('AUDIO_ONLY'):
+        # 只出声音（用户 2026-10-09：“先不要做成视频，我们确定最后的定稿再做成视频”）：写配音 a.wav、时间表 list.txt
+        # （片头一项 + 每块一项，时长与正式出片完全相同；图片位置留空），再用同一套后期 AF 做成只有声音的 out，供全部声音核查使用。不画任何画面
+        with open(f'{work}/list.txt','w') as f:
+            for (key,dur) in tl: f.write(f"file 'AUDIO_ONLY'\nduration {dur:.3f}\n")
+            f.write("file 'AUDIO_ONLY'\n")
+        sf.write(f'{work}/a.wav',A,SR)
+        subprocess.run([FF,'-y','-loglevel','error','-i',f'{work}/a.wav','-af',AF,'-c:a','aac','-b:a','256k','-movflags','+faststart',out],check=True)
+        print(out,round(total,1),'s','只出声音（没有画面）'); return
     # render images: one uniform size = largest that fits every screen with locked layout
     sizes=[R.max_es([[tuple(p) for p in c['align']] for c in s['chunks']],colors,[c.get('note') for c in s['chunks']]) for s in d['sentences']]
     print('sizes',sizes)

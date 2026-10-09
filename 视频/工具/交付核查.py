@@ -2,7 +2,7 @@
 """每篇视频的交付核查（硬性条件：不通过不得交付）。在视频工作目录（含 make_video.py、scripts/、work_NN/）下运行：
   python3 <工具目录>/交付核查.py NN 对照表     # 开工第一步：生成"踩坑对照记录"模板，逐条填写
   python3 <工具目录>/交付核查.py NN 出片前     # 合成配音前：数字读法、标点停顿、句首句尾、无标点停顿
-  python3 <工具目录>/交付核查.py NN 出片后     # 出片后：自动音频检查、响度一致性（EBU R128 逐句）、独立复核（逐样本比对原始合成）、高亮同步核对、生成标点试听
+  python3 <工具目录>/交付核查.py NN 出片后     # 出片后：自动音频检查、响度一致性（EBU R128 逐句）、纯人声核对、独立复核（逐样本比对原始合成）、高亮同步核对、生成标点试听
 对应踩坑：A8 分段合成发闷、A9 停顿放错、A10/A10b 词尾被切、A11 数字读错、A12 连读处停顿越界、L13 换行、L14 高亮没跟上朗读。
 最高铁律（硬性条件第〇节）：出片前先过《踩坑核查》（踩坑对照记录逐条写全、能用程序查的坑逐条查、换行比对）；出片后先做核查程序自检（故意剪坏一份副本，必须全部抓到），自检不过 = 核查失灵，不得交付。"""
 import sys, os, re, json, subprocess
@@ -44,7 +44,8 @@ elif stage == '出片前':
     qn = sum(1 for x in texts if re.search(r'["“”‘’]|(?<![A-Za-z])\'|\'(?![A-Za-z])', x))
     step(f'引号不停顿（A17）：{qn} 句带引号，配音时都不读引号', not qbad, '\n    '.join(qbad))
     # 2–4 停顿与词尾
-    c, o = run(['python3', f'{T}/标点停顿核对.py', no]); step('标点停顿核对（A9/A10：停顿时长、不切词）', '问题数 0' in o, '' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l or 'FAIL' in l))
+    c, o = run(['python3', f'{T}/标点停顿核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else 'A19 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的停顿核对不可信】\n    ' + o[-400:])
+    c, o = run(['python3', f'{T}/标点停顿核对.py', no]); step('标点停顿核对（A9/A10：停顿时长、不切词；A19：停顿后不留吸气声）', '问题数 0' in o, '' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l or 'FAIL' in l))
     c, o = run(['python3', f'{T}/句首句尾与停顿位置核对.py', no]); step('句首句尾核对（修剪掉的只有听不见的部分）', '问题数 0' in o, '' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l))
     c, o = run(['python3', f'{T}/停顿位置精确核对.py', no]); step('停顿位置核对（A9/A15：停顿正好落在标点处两个词之间）', '问题数 0' in o, '\n    '.join(l for l in o.splitlines() if 'BAD' in l or '插入' in l))
     c, o = run(['python3', f'{T}/无标点停顿核对.py', no])
@@ -52,20 +53,29 @@ elif stage == '出片前':
     step('无标点处停顿 ≤ 0.22 秒', not long, '\n    '.join(long))
 elif stage == '出片后':
     c, o = run(['python3', f'{T}/audio_qc.py', f'{no}.mp4'])
-    # 标出的"响度骤降"要剪成试听交用户确认。用户确认（或授权我判断）且用实际声音核实过的，写进 核对确认.响度骤降：
-    # {"108.7–109.3s": {"配音指纹": a.wav 的 md5 前 12 位, "句子": …, "依据": …, "用户授权": 用户原话}}；配音一变（指纹不同）确认就作废。只认这一类，削波、电流音、停顿超长不能确认放行
+    # 标出的"响度骤降"要剪成试听交用户确认。确认过、并用实际声音核实的，写进 核对确认.响度骤降：
+    # {"108.7–109.3s": {"配音指纹": a.wav 的 md5 前 12 位, "低": 6.0（确认时 audio_qc 报的 dB）, "句子": …, "依据": …, "用户原话": …}}。
+    # 放行条件：时段、配音指纹都对上，且这次报的 dB 不超过确认时 +0.3；配音一变（指纹不同）确认就作废。只认这一类：削波、电流音、停顿超长、
+    # 程序出错（返回非 0 却没有输出）一律不能放行
     import hashlib
     fpa = hashlib.md5(open(f'work_{no}/a.wav', 'rb').read()).hexdigest()[:12]
     okq = json.load(open(f'scripts/{no}.json')).get('核对确认', {}).get('响度骤降', {})
     qlines = [l.strip() for l in o.splitlines() if l.strip()] if c else []
-    qconf = [l for l in qlines if re.match(r'\d+\.\d–\d+\.\ds 响度比全片低', l) and okq.get(l.split(' ')[0], {}).get('配音指纹') == fpa]
+    def _qok(l):
+        m = re.match(r'(\d+\.\d–\d+\.\ds) 响度比全片低 ([\d.]+) dB', l); cf = okq.get(m.group(1), {}) if m else {}
+        return bool(m) and cf.get('配音指纹') == fpa and isinstance(cf.get('低'), (int, float)) and float(m.group(2)) <= cf['低'] + 0.3
+    qconf = [l for l in qlines if _qok(l)]
     qrest = [l for l in qlines if l not in qconf]
-    step('自动音频检查（削波、电流音、停顿超长、响度骤降）', c == 0 or not qrest,
-         '\n    '.join(qrest + [f"{l.split(' ')[0]} 已确认（配音指纹 {fpa}）：{okq[l.split(' ')[0]].get('句子', '')}" for l in qconf])
-         + ('\n    → 标出的位置必须剪成试听交用户确认' if qrest else ''))
+    step('自动音频检查（削波、电流音、停顿超长、响度骤降）', c == 0 or (bool(qconf) and not qrest),
+         (o.strip() if c == 0 else '\n    '.join(qrest + [f"{l}  → 已确认（配音指纹 {fpa}）：{okq[l.split(' ')[0]].get('句子', '')}" for l in qconf])
+          + ('' if qlines else f'audio_qc 返回 {c} 却没有输出（程序出错）')) + ('\n    → 标出的位置必须剪成试听交用户确认' if c and not (qconf and not qrest) else ''))
     # 响度一致性（用户 2026-10-09：从头到尾响度一致，不能这儿突然大、那儿突然小）：EBU R128 逐句综合响度。先自检（阳性对照）再核对
     c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4', '--自检']); step(o.strip().lstrip('✔✘ ') or '响度一致性核对 自检', c == 0, '' if c == 0 else '【核查程序失灵，下面的响度结果不可信，不得交付】')
     c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4']); step('响度一致性（逐句与全片 ±2 LU、相邻两句 ≤2.5 LU）：' + o.strip().splitlines()[0], c == 0, '\n    '.join(o.strip().splitlines()[1:]))
+    # 纯人声（用户 2026-10-09：“不要有任何的呼吸声 语气声……底噪也不要 就要绝对的纯人声”）：先自检（假呼吸声、假噗声必须抓到），再逐句核对
+    c, o = run(['python3', f'{T}/纯人声核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '纯人声核对 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的纯人声核对不可信】\n    ' + o[-400:])
+    c, o = run(['python3', f'{T}/纯人声核对.py', no]); step('纯人声核对（呼吸声、噗声、底噪）：' + (o.strip().splitlines()[-1] if o.strip() else '没有输出'), c == 0 and '问题数 0' in o,
+         '\n    '.join(l for l in o.splitlines() if ' BAD ' in l or 'OK（' in l))
     env = {'VIDEO_ROOT': os.path.abspath('..')}
     for sc in ('synth.py', 'labels.py'):
         c, o = run(['python3', f'{T}/独立复核/{sc}', no], env); 
@@ -128,20 +138,38 @@ elif stage == '出片后':
         step('核查程序自检：' + '、'.join(f'{n}{"抓到" if h else "没抓到"}' for n, h in res), allhit,
              '' if allhit else '【核查程序失灵，下面的独立复核结果不可信，不得交付】\n    ' + o[-800:])
     c, o = run(['python3', f'{T}/独立复核/audit.py', no], env)
-    cuts = re.findall(r'cut tail=([\d.]+)ms onset=([\d.]+)ms', o); bad = [x for x in cuts if float(x[0]) > 0 or float(x[1]) > 0]
+    cuts = re.findall(r'cut tail=([\d.]+)ms onset=([\d.]+)ms', o)
     extra = re.findall(r'extra non-zero runs not explained by raw copies: (\d+)', o)
     edge = re.findall(r'A10 edge violations [^:]*: (\d+)', o); viol = '\n    '.join(l.strip() for l in o.splitlines() if 'A10_VIOLATION' in l)
     # 删掉的部分偏响（只有 lost 一项、两侧都干净）的，必须用实际声音确认是停顿中间的换气声/底噪，写进 核对确认.删除段（键带位置）；
-    # 两侧没衰减完（pre/post）的是切到词，不能确认放行（A10、A18）
-    okd = json.load(open(f'scripts/{no}.json')).get('核对确认', {}).get('删除段', {}); idx = None; last = None; unconf = 0
+    # 两侧没衰减完（pre/post）、词尾/词头被切的，一律不能放行（A10、A18）——只有一种例外（用户 2026-10-09“就要绝对的纯人声”）：
+    # 呼吸声/噗声与词尾或词头之间没有 -55 dB 低谷，只能紧贴着词切掉（切在过零点、词本身不动）。这一处必须用实际声音核实，写进
+    # 核对确认.删除段：{"S17 raw a-b": {"类型": "紧贴词尾的非人声" / "紧贴词头的非人声" / "紧贴两头的非人声", "配音指纹": a.wav 的 md5 前 12 位, "依据": …}}。
+    # 紧贴词尾只放行 词尾被切(tail) 与 pre/lost；紧贴词头只放行 词头被切(onset) 与 post/lost；紧贴两头放行两边；配音一变（指纹不同）确认作废
+    import hashlib
+    fpd = hashlib.md5(open(f'work_{no}/a.wav', 'rb').read()).hexdigest()[:12]
+    okd = json.load(open(f'scripts/{no}.json')).get('核对确认', {}).get('删除段', {}); idx = None; last = None; unconf = 0; bad = []; pend = None
+    def _typ(key):
+        v = okd.get(key)
+        return v.get('类型') if isinstance(v, dict) and v.get('配音指纹') == fpd else None
     for l in o.splitlines():
         m = re.match(r'\[\s*(-?\d+)\]', l)
         if m: idx = int(m.group(1))
+        m = re.search(r'cut tail=([\d.]+)ms onset=([\d.]+)ms', l)
+        if m: pend = (float(m.group(1)), float(m.group(2)))
         m = re.search(r'edit raw ([\d.]+)-([\d.]+)', l)
-        if m: last = f"{'标题' if idx == -1 else 'S%d' % (idx + 1)} raw {m.group(1)}-{m.group(2)}"
+        if m:
+            last = f"{'标题' if idx == -1 else 'S%d' % (idx + 1)} raw {m.group(1)}-{m.group(2)}"; t = _typ(last)
+            if pend and (pend[0] > 0 or pend[1] > 0):
+                if (pend[0] > 0 and t not in ('紧贴词尾的非人声', '紧贴两头的非人声')) or (pend[1] > 0 and t not in ('紧贴词头的非人声', '紧贴两头的非人声')): bad.append((last, pend))
+                else: viol += f"\n    {last}：{t}（词尾/词头被切 {pend[0]:.0f}/{pend[1]:.0f} ms 是切掉的呼吸声/噗声），已用实际声音确认——{okd[last]['依据']}"
+            pend = None
         m = re.search(r'A10_VIOLATION\(([a-z,]*)\)', l)
-        if m and not (m.group(1) == 'lost' and last in okd): unconf += 1
-        if m and m.group(1) == 'lost' and last in okd: viol += f"\n    {last}：已用实际声音确认——{okd[last]}"
+        if m:
+            sides = set(m.group(1).split(',')); t = _typ(last)
+            allow = {'lost'} if (last in okd and not isinstance(okd[last], dict)) else {'pre', 'lost'} if t == '紧贴词尾的非人声' else {'post', 'lost'} if t == '紧贴词头的非人声' else {'pre', 'post', 'lost'} if t == '紧贴两头的非人声' else set()
+            if not sides <= allow: unconf += 1
+            elif sides == {'lost'} and not isinstance(okd.get(last), dict): viol += f"\n    {last}：已用实际声音确认——{okd[last]}"
     good = c == 0 and not bad and extra == ['0'] and unconf == 0
     step(f'独立复核：{len(cuts)} 处改动，词尾/词头被切 = {len(bad)}，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = {edge}（未经实际声音确认的 {unconf}），多余声音 = {extra}', good, viol if good else (viol + '\n    ' + o[-800:]))
     # 高亮同步（L14：读到哪一块，哪一块高亮）。先做核查程序自检（阳性对照）：在时间表副本里故意把两处切换挪动 0.4 秒
