@@ -7,6 +7,25 @@ import title2 as T2
 TTS='../tts'
 k=Kokoro(f'{TTS}/kokoro-v1.0.onnx',f'{TTS}/voices-v1.0.bin'); V=np.load(f'{TTS}/'+os.environ.get('VOICE','voice_mb.npy'))
 KT=Kokoro(f'{TTS}/kokoro-v1.0-timed.onnx',f'{TTS}/voices-v1.0.bin')  # 只用来取每个音的准确时间（定位标点），声音仍用上面的原模型
+# 合成缓存（2026-10-09，提速）：同一模型、同一音色、同一语速、同一段文字，合成结果逐样本相同（各篇配音指纹多次重做都一致），
+# 所以第一次合成后存进 ../tts/cache_tts/，以后直接读，出片和所有核查程序（都 exec 本文件）不再反复合成；声音与不缓存时逐样本相同。
+# 键里有模型文件（大小、修改时间）、音色数组的校验码、语速、语言、全部参数；任何一项变了就重新合成。独立复核（独立复核/synth.py）自己合成，不用这个缓存。
+import hashlib as _hl, pickle as _pk
+_CACHE=f'{TTS}/cache_tts'; os.makedirs(_CACHE,exist_ok=True)
+def _cached(obj,meth,model):
+    fn=getattr(obj,meth); mid=f'{model}:{os.path.getsize(model)}:{int(os.path.getmtime(model))}'
+    def g(text,voice,speed=1.0,lang='en-us',**kw):
+        vh=_hl.sha1(np.ascontiguousarray(voice).tobytes()).hexdigest() if not isinstance(voice,str) else voice
+        p=f"{_CACHE}/{_hl.sha1(repr((meth,mid,text,vh,float(speed),lang,sorted(kw.items()))).encode()).hexdigest()}.pkl"
+        if os.path.exists(p):
+            with open(p,'rb') as f: return _pk.load(f)
+        r=fn(text,voice=voice,speed=speed,lang=lang,**kw)
+        if meth=='create_timed': r=(r[0],r[1],list(r[2]))
+        q=f'{p}.{os.getpid()}'
+        with open(q,'wb') as f: _pk.dump(r,f)
+        os.replace(q,p); return r
+    return g
+k.create=_cached(k,'create',f'{TTS}/kokoro-v1.0.onnx'); KT.create_timed=_cached(KT,'create_timed',f'{TTS}/kokoro-v1.0-timed.onnx')
 AF=open(f'{TTS}/'+os.environ.get('AFFILE','AF.txt')).read().strip(); FF=imageio_ffmpeg.get_ffmpeg_exe(); SPEED=0.95
 T=dict(BG_TOP=(14,36,30),BG_BOT=(20,48,40),FG_EN=(240,247,242),FG_ZH=(170,196,182),DIM=(110,140,125),
    PAL=[(251,191,36),(56,189,248),(244,114,182),(190,242,100),(196,181,253),(251,146,60),(94,234,212),(252,165,165)])
