@@ -49,7 +49,9 @@ elif stage == '出片前':
     c, o = run(['python3', f'{T}/句首句尾与停顿位置核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '句首句尾核对 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的句首句尾核对不可信】\n    ' + o[-400:])
     c, o = run(['python3', f'{T}/句首句尾与停顿位置核对.py', no]); step('句首句尾核对（clean_tail 修剪掉的部分没有剪到词：基准本句最响 5 ms 帧；剪掉的能听见的声音不得与词相连，句尾不得剪掉能听见的声音）', '问题数 0' in o, '' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l))
     c, o = run(['python3', f'{T}/词尾辅音核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '词尾辅音核对 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的词尾辅音核对不可信】\n    ' + o[-400:])
-    c, o = run(['python3', f'{T}/词尾辅音核对.py', no]); step('词尾辅音核对（A21：停顿前和句末的词尾 t/k 听得清除阻，2 kHz 以上 ≥ -36 dB；/p/ 全频 ≥ -33 dB）', c == 0 and '问题数 0' in o, '' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l or '停止' in l or 'Error' in l) + '\n    → 先跑 词尾辅音核对.py NN --写入 自动补位置，再重跑')
+    c, o = run(['python3', f'{T}/词尾辅音核对.py', no]); wk = [l for l in o.splitlines() if '需试听' in l]
+    step('词尾辅音核对（A21：停顿前和句末的词尾 t/k 听得清除阻，2 kHz 以上 ≥ -36 dB；/p/ 全频 ≥ -33 dB）', c == 0 and '问题数 0' in o, ('' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l or '停止' in l or 'Error' in l) + '\n    → 先跑 词尾辅音核对.py NN --写入 自动补位置，再重跑')
+         + ('\n    '.join([''] + wk + ['→ 浊塞音偏弱处不判，但要剪成试听交用户确认（01 两处用户已确认）']) if wk else ''))
     c, o = run(['python3', f'{T}/停顿位置精确核对.py', no]); step('停顿位置核对（A9/A15：停顿正好落在标点处两个词之间）', '问题数 0' in o, '\n    '.join(l for l in o.splitlines() if 'BAD' in l or '插入' in l))
     c, o = run(['python3', f'{T}/无标点停顿核对.py', no])
     long = [l for l in o.splitlines() if re.search(r'停顿 (\d+\.\d+)s', l) and float(re.search(r'停顿 (\d+\.\d+)s', l).group(1)) > 0.22]

@@ -28,7 +28,7 @@ def frames_back(x, P, ref, n=60):
     return (20 * np.log10(r / ref + 1e-12))[::-1]
 
 
-def release(x, hp, P, ref):
+def release(x, hp, P, ref, deep=True):
     """返回 (全频最响, 2 kHz 以上最响, 时长 ms, 除阻在 x 里的样本范围) 或 None（没有除阻）"""
     L = frames_back(x, P, ref); H = frames_back(hp, P, ref)
     q = 0
@@ -46,7 +46,7 @@ def release(x, hp, P, ref):
         r += 1
     # 闭塞必须是真正的静音（< -50 dB）：04 自检查出，first, 的 /t/ 除阻被换成静音后，前面 /s/ 擦音与元音之间的小低谷（不是闭塞）
     # 被当成了闭塞、/s/ 被当成了除阻，没报。01–07 所有合格处的闭塞最低都在 -58 dB 以下（多数是数字静音）。
-    if c is None or L[c] >= -50: return None
+    if c is None or (deep and L[c] >= -50): return None     # 浊塞音（deep=False）的闭塞带声带振动，不是静音，只要求是低谷
     return float(L[q:c].max()), float(H[q:c].max()), (c - q) * 5, (P - c * F5, P - q * F5), float(L[c])
 
 
@@ -91,9 +91,11 @@ def check(no, d, mutate=None):
         for g, (word, ph) in enumerate(fin):
             if ph not in 'tkpdbɡg': continue
             where = '句末' if g == len(fin) - 1 else f'第{g + 1}个标点'
-            z = release(out, hp, starts[g], ref)
+            z = release(out, hp, starts[g], ref, deep=ph in 'tkp')
             desc = '没有除阻' if z is None else f'除阻全频 {z[0]:.1f} dB、2 kHz 以上 {z[1]:.1f} dB、{z[2]} ms、闭塞最低 {z[4]:.1f} dB'
-            if ph in 'dbɡg': info.append(f'{no} {lab} {where} {word}（浊塞音，不判）{desc}'); continue
+            if ph in 'dbɡg':
+                weak = z is None or z[0] < -40                      # 偏弱的（01 sixty-second, -43 dB、argued, 没有除阻）剪成试听交用户
+                info.append(f"{no} {lab} {where} {word}（浊塞音，不判）{desc}{'  ← 偏弱，需试听：剪成试听交用户确认' if weak else ''}"); continue
             ok = z is not None and (z[1] >= TH_HF if ph in 'tk' else z[0] >= TH_P)
             line = f"{no} {lab} {where} {word} /{ph}/ {'OK ' if ok else 'BAD'} {desc}（门槛：{'2 kHz 以上 ≥ %.0f' % TH_HF if ph in 'tk' else '全频 ≥ %.0f' % TH_P} dB）"
             rows.append(line)
