@@ -52,7 +52,17 @@ elif stage == '出片前':
     step('无标点处停顿 ≤ 0.22 秒', not long, '\n    '.join(long))
 elif stage == '出片后':
     c, o = run(['python3', f'{T}/audio_qc.py', f'{no}.mp4'])
-    step('自动音频检查（削波、电流音、停顿超长、响度骤降）', c == 0, o.strip() + ('\n    → 标出的位置必须剪成试听交用户确认' if c else ''))
+    # 标出的"响度骤降"要剪成试听交用户确认。用户确认（或授权我判断）且用实际声音核实过的，写进 核对确认.响度骤降：
+    # {"108.7–109.3s": {"配音指纹": a.wav 的 md5 前 12 位, "句子": …, "依据": …, "用户授权": 用户原话}}；配音一变（指纹不同）确认就作废。只认这一类，削波、电流音、停顿超长不能确认放行
+    import hashlib
+    fpa = hashlib.md5(open(f'work_{no}/a.wav', 'rb').read()).hexdigest()[:12]
+    okq = json.load(open(f'scripts/{no}.json')).get('核对确认', {}).get('响度骤降', {})
+    qlines = [l.strip() for l in o.splitlines() if l.strip()] if c else []
+    qconf = [l for l in qlines if re.match(r'\d+\.\d–\d+\.\ds 响度比全片低', l) and okq.get(l.split(' ')[0], {}).get('配音指纹') == fpa]
+    qrest = [l for l in qlines if l not in qconf]
+    step('自动音频检查（削波、电流音、停顿超长、响度骤降）', c == 0 or not qrest,
+         '\n    '.join(qrest + [f"{l.split(' ')[0]} 已确认（配音指纹 {fpa}）：{okq[l.split(' ')[0]].get('句子', '')}" for l in qconf])
+         + ('\n    → 标出的位置必须剪成试听交用户确认' if qrest else ''))
     # 响度一致性（用户 2026-10-09：从头到尾响度一致，不能这儿突然大、那儿突然小）：EBU R128 逐句综合响度。先自检（阳性对照）再核对
     c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4', '--自检']); step(o.strip().lstrip('✔✘ ') or '响度一致性核对 自检', c == 0, '' if c == 0 else '【核查程序失灵，下面的响度结果不可信，不得交付】')
     c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4']); step('响度一致性（逐句与全片 ±2 LU、相邻两句 ≤2.5 LU）：' + o.strip().splitlines()[0], c == 0, '\n    '.join(o.strip().splitlines()[1:]))
