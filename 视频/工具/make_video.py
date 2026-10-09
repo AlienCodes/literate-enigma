@@ -26,6 +26,22 @@ def _cached(obj,meth,model):
         os.replace(q,p); return r
     return g
 k.create=_cached(k,'create',f'{TTS}/kokoro-v1.0.onnx'); KT.create_timed=_cached(KT,'create_timed',f'{TTS}/kokoro-v1.0-timed.onnx')
+# A23 读音改正（2026-10-09 用户：07 的 Inky “读的有点生硬”）：配音模型的注音程序（espeak 拼读规则）把 Inky / inky 注成 ɪŋkˈaɪ（“因-凯”，
+# 重音在后），正确是 /ˈɪŋki/。这里列出注音程序读错的词：整句注音后把错的音标换成对的，再按音标合成；不含这些词的句子声音逐样本不变。
+# 出片和所有核查都经过 k.create / KT.create_timed，用的是同一串音标。新发现读错的词加在这里，并写进 踩坑总表 A23。
+PRON_FIX={'ɪŋkˈaɪ':'ˈɪŋki'}
+def phonemes_of(text):
+    ph=KT.tokenizer.phonemize(text,'en-us')
+    for a_,b_ in PRON_FIX.items(): ph=ph.replace(a_,b_)
+    return ph
+def _pron(fn):
+    def g(text,voice,speed=1.0,lang='en-us',**kw):
+        if not kw.get('is_phonemes'):
+            ph=KT.tokenizer.phonemize(text,'en-us')
+            if any(a_ in ph for a_ in PRON_FIX): return fn(phonemes_of(text),voice=voice,speed=speed,lang=lang,is_phonemes=True,**kw)
+        return fn(text,voice=voice,speed=speed,lang=lang,**kw)
+    return g
+k.create=_pron(k.create); KT.create_timed=_pron(KT.create_timed)
 AF=open(f'{TTS}/'+os.environ.get('AFFILE','AF.txt')).read().strip(); FF=imageio_ffmpeg.get_ffmpeg_exe(); SPEED=0.95
 T=dict(BG_TOP=(14,36,30),BG_BOT=(20,48,40),FG_EN=(240,247,242),FG_ZH=(170,196,182),DIM=(110,140,125),
    PAL=[(251,191,36),(56,189,248),(244,114,182),(190,242,100),(196,181,253),(251,146,60),(94,234,212),(252,165,165)])
@@ -140,10 +156,10 @@ def chunk_token_starts(texts,toks):
     """每一块第一个音在带时长模型音素序列里的位置：逐块转成音素，与整句音素序列做序列比对（不按空格数词：模型会把 in the、to be 连成一组）"""
     import difflib
     full=''.join(x.phoneme for x in toks)
-    if full!=KT.tokenizer.phonemize(spoken(' '.join(texts)),'en-us'): raise SystemExit('【停止】带时长模型的音素与朗读文字对不上（L14）')
+    if full!=phonemes_of(spoken(' '.join(texts))): raise SystemExit('【停止】带时长模型的音素与朗读文字对不上（L14）')
     cat='';starts=[]
     for t_ in texts:
-        p_=KT.tokenizer.phonemize(spoken(t_),'en-us').strip()
+        p_=phonemes_of(spoken(t_)).strip()
         starts.append(len(cat)+(1 if cat else 0)); cat=(cat+' '+p_) if cat else p_
     bl=[b_ for b_ in difflib.SequenceMatcher(None,cat,full,autojunk=False).get_matching_blocks() if b_.size>0]
     out=[]
@@ -386,6 +402,17 @@ def sentence_audio(sent,pieces,gaps):
             if cb>ca and (e[ca//F:cb//F].max()>=PAUSE_DB or e[ca//F-M]>=AUD_DB or e[min(len(e)-1,cb//F+M-1)]>=AUD_DB):
                 raise SystemExit(f'【停止】标点处要删的部分里有词的声音，或没有保住词尾/词头（A10）：{sent[:60]}')
         cuts.append((ca,cb,max(0.03,gaps[gi]-keep)))
+    # A22（用户 2026-10-09：“一定要过渡，非常自然，不要整的跟个机器人说的一样”）：说话人连读、只能在声音还响的地方插停顿时
+    # （插入点电平 ≥ -45 dB，如 07 Inky, | somewhere），前一个词用 XF_OUT 秒余弦渐弱收尾、后一个词用 XF_IN 秒渐强起音，像真人说完一个词声音自然落下，
+    # 不再在声音最响处一刀切断。
+    XF_OUT=float(os.environ.get('XF_OUT','0.06')); XF_IN=float(os.environ.get('XF_IN','0.015'))
+    if XF_OUT>0:
+        w=w.copy()
+        for ca_,cb_,_ in cuts:
+            if cb_==ca_ and 20*np.log10(np.sqrt(np.mean(w[max(0,ca_-F):ca_]**2))/(np.sqrt(np.mean(w[:len(e)*F].reshape(len(e),F)**2,axis=1)).max()+1e-12)+1e-12)>=-45:
+                no_=int(XF_OUT*SR); ni_=int(XF_IN*SR)
+                w[ca_-no_:ca_]*=(0.5+0.5*np.cos(np.linspace(0,np.pi,no_))).astype(np.float32)
+                w[ca_:ca_+ni_]*=(0.5-0.5*np.cos(np.linspace(0,np.pi,ni_))).astype(np.float32)
     clips=[];tmap=[];t=0.0;prev=0;segs=[]
     for k2,(x0,x1) in enumerate(pieces):
         end=cuts[k2][0] if k2<len(cuts) else len(w)
