@@ -70,13 +70,25 @@ elif stage == '出片后':
     fpa = hashlib.md5(open(f'work_{no}/a.wav', 'rb').read()).hexdigest()[:12]
     okq = json.load(open(f'scripts/{no}.json')).get('核对确认', {}).get('响度骤降', {})
     qlines = [l.strip() for l in o.splitlines() if l.strip()] if c else []
+    def _qkey(l):
+        """报出的时段对应的确认：键完全相同，或（整篇前面的句子变了、确认平移把位置挪过后，audio_qc 按 0.1 秒重新分段，时段边界会差一两格）
+        与已确认时段重叠一半以上的那一条；配音指纹必须对上（确认平移只在这一段声音逐样本相同时才换指纹）"""
+        m = re.match(r'(\d+\.\d)–(\d+\.\d)s 响度比全片低 ([\d.]+) dB', l)
+        if not m: return None
+        k0 = f'{m.group(1)}–{m.group(2)}s'
+        if k0 in okq: return k0
+        a, b = float(m.group(1)), float(m.group(2))
+        for k_ in okq:
+            q = re.match(r'(\d+\.\d)–(\d+\.\d)s$', k_)
+            if q and min(b, float(q.group(2))) - max(a, float(q.group(1))) >= 0.5 * min(b - a, float(q.group(2)) - float(q.group(1))): return k_
+        return None
     def _qok(l):
-        m = re.match(r'(\d+\.\d–\d+\.\ds) 响度比全片低 ([\d.]+) dB', l); cf = okq.get(m.group(1), {}) if m else {}
+        m = re.match(r'(\d+\.\d–\d+\.\ds) 响度比全片低 ([\d.]+) dB', l); k_ = _qkey(l); cf = okq.get(k_, {}) if k_ else {}
         return bool(m) and cf.get('配音指纹') == fpa and isinstance(cf.get('低'), (int, float)) and float(m.group(2)) <= cf['低'] + 0.3
     qconf = [l for l in qlines if _qok(l)]
     qrest = [l for l in qlines if l not in qconf]
     step('自动音频检查（削波、电流音、停顿超长、响度骤降）', c == 0 or (bool(qconf) and not qrest),
-         (o.strip() if c == 0 else '\n    '.join(qrest + [f"{l}  → 已确认（配音指纹 {fpa}）：{okq[l.split(' ')[0]].get('句子', '')}" for l in qconf])
+         (o.strip() if c == 0 else '\n    '.join(qrest + [f"{l}  → 已确认（配音指纹 {fpa}，确认时段 {_qkey(l)}）：{okq[_qkey(l)].get('句子', '')}" for l in qconf])
           + ('' if qlines else f'audio_qc 返回 {c} 却没有输出（程序出错）')) + ('\n    → 标出的位置必须剪成试听交用户确认' if c and not (qconf and not qrest) else ''))
     # 响度一致性（用户 2026-10-09：从头到尾响度一致，不能这儿突然大、那儿突然小）：EBU R128 逐句综合响度。先自检（阳性对照）再核对
     c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4', '--自检']); step(o.strip().lstrip('✔✘ ') or '响度一致性核对 自检', c == 0, '' if c == 0 else '【核查程序失灵，下面的响度结果不可信，不得交付】')
