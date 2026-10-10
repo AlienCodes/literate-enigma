@@ -6,7 +6,7 @@
 按 ≥0.7 秒的静音把成片切成一句一句（逗号停顿 0.4 秒不切，句号 1.0、段落 1.2 秒会切），每句按 ITU-R BS.1770
 的门限（绝对 -70 LUFS、相对 -10 LU）算这一句的综合响度，与全片综合响度比较。
 标准：每一句与全片相差不超过 ±2 LU；相邻两句相差不超过 2.5 LU。片头（前 SKIP 秒）不算。
-自检（阳性对照）：把中间一句调响 3 dB、另一句调轻 3 dB，必须正好报出这两句，其余不报；自检不过 = 核查失灵。
+自检（阳性对照）：把中间一句调到比全片响 3 LU、另一句调到比全片轻 3 LU（按这一句原来的响度算增益），必须正好报出这两句，其余不报；自检不过 = 核查失灵。
 """
 import sys, re, subprocess, tempfile, os, numpy as np
 try:
@@ -68,8 +68,11 @@ def selftest(src):
     a = pcm(src); I, segs, L, bad, _ = check(src, a)
     if bad or len(segs) < 6: return False, f'自检前提不成立：原片已有报警或句数太少（{len(segs)}）'
     i1, i2 = len(segs) // 3, 2 * len(segs) // 3
+    # 按这一句原来的响度算增益：把第 i1 句推到比全片响 3 LU、第 i2 句推到比全片轻 3 LU（2026-10-10 04：固定 ±3 dB 时，
+    # 第 11 句原本比全片响 1.1 LU，调轻 3 dB 后只差 1.9 LU、没超过 ±2，自检误判“失灵”——阳性对照必须保证造出来的坑真的越线）
+    if L[i1] is None or L[i2] is None: return False, '自检前提不成立：选中的句子没有响度'
     b = a.copy()
-    for (x, y), g in ((segs[i1], 3.0), (segs[i2], -3.0)):
+    for (x, y), g in ((segs[i1], I + 3.0 - L[i1]), (segs[i2], I - 3.0 - L[i2])):
         b[int(x * SR):int(y * SR)] *= 10 ** (g / 20)
     b = np.clip(b, -1, 1)
     with tempfile.TemporaryDirectory() as td:
@@ -78,7 +81,7 @@ def selftest(src):
         _, _, _, bad2, _ = check(w, b)
     got = sorted({k for k, _ in bad2 if '比全片' in _})
     want = [i1 + 1, i2 + 1]
-    return got == want, f'故意把第{want[0]}段调响 3 dB、第{want[1]}段调轻 3 dB，报出 {got}'
+    return got == want, f'故意把第{want[0]}段调到比全片响 3 LU、第{want[1]}段调到比全片轻 3 LU，报出 {got}'
 
 if __name__ == '__main__':
     src = sys.argv[1]
