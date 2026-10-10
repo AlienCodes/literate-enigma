@@ -29,7 +29,7 @@ if not os.path.exists(pdf) or os.path.getmtime(pdf) < t0: bad.append('PDF 没有
 else:
     import pymupdf
     txt = ''.join(p.get_text() for p in pymupdf.open(pdf))
-    if d['title_en'] not in txt or re.search(r"reached|ERR_|could not be found", txt): bad.append('PDF 内容不对（可能是浏览器错误页，W9）')
+    if d['title_en'] not in re.sub(r'\s+', ' ', txt) or re.search(r"reached|ERR_|could not be found", txt): bad.append('PDF 内容不对（可能是浏览器错误页，W9）')   # 标题长时 PDF 里会折行（08），比对前把换行当空格
 if bad: sys.exit('【不通过】\n' + '\n'.join(bad))
 dst = f'{T}/../对照文本'
 for f in [f'{dst}/{no}-文本.docx'] + glob.glob(f'{dst}/{no}-文本-*.docx'):
