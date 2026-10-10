@@ -34,7 +34,7 @@ In 1855 a government **inquiry** **declined to** **condemn** the pump, **contend
 | ravaged | 本文：肆虐；v. (ravage) 肆虐，严重破坏；蹂躏，毁坏 | 1 |
 | upwards of | 本文：超过/多于；短语. 超过，……以上（= more than） | 1 |
 | perished | 本文：丧生；v. (perish) 死亡，丧生（多指灾难、战争、疫病中成批死亡）；毁灭，消亡；（材料）老化，腐烂 | 1 |
-| attributed to | 本文：归因于；v. (attribute) 把……归因于（attribute A to B）；认为……是某人所作；n. 属性，特质 | 1 |
+| attributed to | 本文：把……归因于；v. (attribute) 把……归因于（attribute A to B）；认为……是某人所作；n. 属性，特质 | 1 |
 | epidemics | 本文：流行病；n. (epidemic) 流行病，疫病；（坏事的）盛行；adj. 流行性的 | 1 |
 | filth | 本文：污秽；n. 污秽，污物；下流话，淫秽内容 | 1 |
 | arising | 本文：产生；v. (arise) 产生，出现（arise from 由……引起）；起身，起床 | 1 |
@@ -60,9 +60,9 @@ In 1855 a government **inquiry** **declined to** **condemn** the pump, **contend
 | poison | 本文：毒素；n. 毒物，毒药；毒素（19世纪常指致病物质，文中即瘴气论所说空气中的致病毒素）；有害的东西；v. 毒害，下毒；污染 | 3 |
 | chart | 本文：绘制/记录；v. 绘制（地图、图表），用图表示；记录（变化、进展）；制订（计划）；n. 图表；排行榜 | 3 |
 | crucial | 本文：至关重要的/决定性的；adj. 关键的，至关重要的，决定性的 | 4 |
-| lay in | 本文：中；短语. (lie in 的过去式) 在于，存在于（The problem lies in… 问题在于……） | 4 |
+| lay in | 本文：在于……中；短语. (lie in 的过去式) 在于，存在于（The problem lies in… 问题在于……） | 4 |
 | exceptions | 本文：例外/个例；n. (exception) 例外，例外情况，个例（with the exception of 除……之外；make an exception 破例） | 4 |
-| Amid | 本文：期间内；prep. 在……之中，被……包围；在……期间（amid concerns 在一片担忧声中） | 4 |
+| Amid | 本文：在……期间内；prep. 在……之中，被……包围；在……期间（amid concerns 在一片担忧声中） | 4 |
 | surrounding | 本文：周围的；adj. 周围的，附近的；n. (surroundings) 环境；v. (surround) 包围，环绕 | 4 |
 | workhouse | 本文：济贫院；n.（英国旧时）济贫院（收容贫民的机构，被收容者要做工换取食宿） | 4 |
 | inmates | 本文：被收容者；n. (inmate) （济贫院、精神病院等机构的）被收容者；（监狱的）囚犯 | 4 |
@@ -85,7 +85,7 @@ In 1855 a government **inquiry** **declined to** **condemn** the pump, **contend
 | set out to | 本文：一心想；短语. set out to do something：带着明确的目标开始做某事，或者下定决心要去完成某事 | 6 |
 | refute | 本文：驳倒；v. 驳倒，驳斥，证明……错误（refute a claim/theory） | 6 |
 | succumb to | 本文：死于；短语. 屈服于，抵挡不住（succumb to temptation/pressure）；死于（疾病、伤势）（succumb to a disease） | 6 |
-| vindicating | 本文：正确的；v. (vindicate) 证明……正确，证明……无辜；为……辩护 | 6 |
+| vindicating | 本文：证明了……正确的；v. (vindicate) 证明……正确，证明……无辜；为……辩护 | 6 |
 
 ## 史实与来源
 - 词数说明：全文 274 词，超出 271 上限 3 词，为用户 2026-09-30 特批（开头写明具体月份）。
