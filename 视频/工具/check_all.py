@@ -33,14 +33,18 @@ STOP={'the','and','for','with','into','from','that','this','have','been','about'
 def stem(w):
     w=w.lower()
     for suf in ('ingly','edly','ness','ment','ings','ing','ied','ies','ed','es','ly','s'):
-        if w.endswith(suf) and len(w)-len(suf)>=4: return w[:-len(suf)]
+        if w.endswith(suf) and len(w)-len(suf)>=(3 if suf=='s' else 4): return w[:-len(suf)]   # 's' 留 3 个字母：dams→dam（09 dam 撞第47篇 dams，原来查不出）
     return w
+assert stem('dams')==stem('dam')=='dam' and stem('drought')=='drought'   # 自检：09 两处撞词都要能对上
 others={}
 for f in glob.glob(f'{ROOT}/新版定稿/[0-9][0-9]-*.md'):
     n=os.path.basename(f)[:2]
     if n==no: continue
+    js_=f'{ROOT}/视频/脚本/{n}.json'
+    ac_={x.lower() for x in json.load(open(js_)).get('allow_clash',[])} if os.path.exists(js_) else set()
     e=open(f).read().split('## 英文',1)[1].split('## 中文',1)[0]
     for b in re.findall(r'\*\*([^*]+)\*\*',e):
+        if b.lower() in ac_: continue   # 那一篇里用户已同意保留的撞词（如 08 set foot in、set out to），这一对两边都不再报（03 set in 原来被反过来报出）
         for w in re.findall(r"[A-Za-z]+",b):
             if len(w)>=3 and w.lower() not in STOP: others.setdefault(stem(w),set()).add(n)
 import subprocess
