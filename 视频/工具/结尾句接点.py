@@ -18,9 +18,11 @@ cut_ = puncts_[-1]; tail_ = sent_[cut_:].strip()
 F5 = int(0.005 * SR)
 
 
-def find(speed):
-    r_, _ = k.create(spoken(sent_), voice=V, speed=speed, lang='en-us'); r_ = np.asarray(r_, np.float32)
-    tb_, _, ts_ = KT.create_timed(spoken(sent_), voice=V, speed=speed, lang='en-us', clause_pause=0, sentence_pause=0); sc_ = len(r_) / len(tb_)
+ALONE = '--前段单独合成' in sys.argv     # 10 S17：前段（If so,）单独合成，so 才拖得长（见 make_video._ending_front）；接点在前段末尾的静音里
+def find(speed, front=False):
+    txt_ = _ending_front(sent_) if front and ALONE else sent_
+    r_, _ = k.create(spoken(txt_), voice=V, speed=speed, lang='en-us'); r_ = np.asarray(r_, np.float32)
+    tb_, _, ts_ = KT.create_timed(spoken(txt_), voice=V, speed=speed, lang='en-us', clause_pause=0, sentence_pause=0); sc_ = len(r_) / len(tb_)
     # 最后一个标点在带时长模型里的位置：按顺序数标点记号（, ; :），取最后一个
     pi_ = [i for i, t_ in enumerate(ts_) if t_.phoneme in (',', ';', ':')]
     if not pi_: sys.exit(f'带时长模型里找不到标点（语速 {speed}）')
@@ -48,16 +50,17 @@ def find(speed):
 why_ = []
 def pick(sp0, alts, nm):
     for sp in [sp0] + alts:
-        r = find(sp)
+        r = find(sp, nm == '前段')
         if r: 
             if sp != sp0: why_.append(f'{nm}标准语速 {sp0} 那一遍最后一个标点处连读（-55 dB 静音不足 15 ms），改用 {sp}')
             return sp, r
     sys.exit(f'{nm}在语速 {[sp0] + alts} 下最后一个标点后都找不到 ≥15 ms 的 -55 dB 静音，要人看')
 spF, (mF, nF, LF) = pick(spF, [0.88, 0.92, 0.86], '前段'); spS, (mS, nS, LS) = pick(spS, [0.80, 0.76], '最后一段')
-e_ = {'前段语速': spF, '最后一段语速': spS, '最后一段前停顿': gap_, '接点': [int(mF), int(mS)],
+e_ = {'前段语速': spF, '最后一段语速': spS, '最后一段前停顿': gap_, '接点': [int(mF), int(mS)], **({'前段单独合成': True} if ALONE else {}),
       '依据': f'全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 {spF}、最后一段“{tail_}” {spS}、前面停 {gap_} 秒。'
               f'接点由 结尾句接点.py 自动找：{spF} 那遍最后一个标点后最长静音（{nF} ms）的正中 {mF / SR:.3f} s，{spS} 那遍（{nS} ms）的正中 {mS / SR:.3f} s，'
-              f'所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）' + ('；' + '；'.join(why_) if why_ else '')}
+              f'所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）' + ('；' + '；'.join(why_) if why_ else '')
+              + ('；前段单独合成（“' + _ending_front(sent_) + '”单独一遍，so 自然拖长、音调落下；接点在这一遍末尾的静音里）' if ALONE else '')}
 print(f'第{no_}篇 S{si_}：“{sent_}”')
 print(f'  最后一段：“{tail_}”')
 print(f'  前段 {spF}：接点样本 {mF}（{mF / SR:.3f} 秒，所在静音 {nF} ms）；最后一段 {spS}：接点样本 {mS}（{mS / SR:.3f} 秒，所在静音 {nS} ms）')

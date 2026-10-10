@@ -366,12 +366,17 @@ def _ending_parts(sent,e):
     """结尾句的两遍合成与接点；接点所在的 5 ms 帧和两侧各一帧（共约 15 ms）必须低于 -55 dB（只在听不见的静音里接），否则停。
     2026-10-10 从“两侧各 10 ms”放宽到“两侧各 5 ms”：09 S18 “1934, more” 两种语速逗号后都连读，最长的 -55 dB 静音只有 15 ms；
     -55 dB 两侧各 5 ms 与删除段两头的标准相同（听不见）。01–08 的接点都满足原来的 10 ms，声音不变"""
-    rF,_=k.create(spoken(sent),voice=V,speed=float(e['前段语速']),lang='en-us'); rS,_=k.create(spoken(sent),voice=V,speed=float(e['最后一段语速']),lang='en-us')
+    rF,_=k.create(spoken(_ending_front(sent) if e.get('前段单独合成') else sent),voice=V,speed=float(e['前段语速']),lang='en-us'); rS,_=k.create(spoken(sent),voice=V,speed=float(e['最后一段语速']),lang='en-us')
     rF=np.asarray(rF,np.float32); rS=np.asarray(rS,np.float32); mF,mS=int(e['接点'][0]),int(e['接点'][1]); F_=int(0.005*SR)
     for r_,m_,nm_ in ((rF,mF,'前段'),(rS,mS,'最后一段')):
         e_=_env5(r_); seg_=e_[max(0,m_//F_-1):m_//F_+2]
         if not len(seg_) or seg_.max()>=-55: raise SystemExit(f'【停止】结尾句的接点不在静音里（{nm_}，样本 {m_}，所在帧和两侧各 5 ms 最响 {seg_.max() if len(seg_) else 0:.1f} dB）：{sent[:60]}')
     return rF,rS,mF,mS
+def _ending_front(sent):
+    """结尾句“前段单独合成”（2026-10-10 10 S17 用户：“这个if so它可以稍微拉长一些。就这个so这个音太短了……那种意味深长的语气……有点反讽”）：
+    前段（到最后一个句中标点为止，如“If so,”）单独合成——放在整句里合成时，前段语速从 0.86 调到 0.70，so 只从 360 ms 变到 380 ms（慢下来的时间都给了 If）；
+    单独合成时 so 是这一段的最后一个词，自然拖长、音调落下（0.80：so 的元音 470 ms，音高 175 → 100 Hz）。最后一段照旧取整句那一遍。不设就和原来完全一样，01–09 声音不变"""
+    return sent[:list(re.finditer(r'[,;:](?=\s)',sent))[-1].end()]
 def _ending_toks(sent,e):
     """结尾句每个音的时刻（接起来的声音里的秒）：接点前取前段那遍的，接点后取最后一段那遍的（平移过来）"""
     import types as _ty
@@ -380,6 +385,13 @@ def _ending_toks(sent,e):
         tb_,_,ts_=KT.create_timed(spoken(sent),voice=V,speed=float(e['整句语速']),lang='en-us',clause_pause=0,sentence_pause=0); sc_=len(r_)/len(tb_)
         return [_ty.SimpleNamespace(phoneme=t_.phoneme,start=t_.start*sc_,end=t_.end*sc_) for t_ in ts_]
     rF_,rS_,mF_,mS_=_ending_parts(sent,e); toks=[]
+    if e.get('前段单独合成'):   # 前段单独那一遍的音全要（带时长模型把末尾的逗号放在这一遍的最后，晚于接点，按时间切会丢，A9 拦下）；最后一段取整句那一遍最后一个句中标点之后的音
+        tb_,_,ts_=KT.create_timed(spoken(_ending_front(sent)),voice=V,speed=float(e['前段语速']),lang='en-us',clause_pause=0,sentence_pause=0); sc_=len(rF_)/len(tb_)
+        toks=[_ty.SimpleNamespace(phoneme=t_.phoneme,start=min(t_.start*sc_*SR,mF_)/SR,end=min(t_.end*sc_*SR,mF_)/SR) for t_ in ts_]
+        tb_,_,ts_=KT.create_timed(spoken(sent),voice=V,speed=float(e['最后一段语速']),lang='en-us',clause_pause=0,sentence_pause=0); sc_=len(rS_)/len(tb_); ts_=list(ts_)
+        pi_=max(i_ for i_,t_ in enumerate(ts_) if t_.phoneme in ',;:')
+        toks+=[_ty.SimpleNamespace(phoneme=t_.phoneme,start=(max(t_.start*sc_*SR,mS_)-mS_+mF_)/SR,end=(max(t_.end*sc_*SR,mS_)-mS_+mF_)/SR) for t_ in ts_[pi_+1:]]
+        return toks
     for sp_,r_,m_,first_ in ((float(e['前段语速']),rF_,mF_,True),(float(e['最后一段语速']),rS_,mS_,False)):
         tb_,_,ts_=KT.create_timed(spoken(sent),voice=V,speed=sp_,lang='en-us',clause_pause=0,sentence_pause=0); sc_=len(r_)/len(tb_)
         sh_=0 if first_ else mS_-mF_
