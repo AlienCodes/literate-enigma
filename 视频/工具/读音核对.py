@@ -246,6 +246,7 @@ def roman_left(no):
     return out
 
 
+_FIXJ = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '发音词典', '读音改正.json')))
 def selftest(no):
     """阳性对照：① 把本篇一个查词典合格的多音节实词的重音挪到别的音节（模拟 hippocampus 那种重音错），必须报出；
     ② 本篇用到读音改正表里的词时，关掉改正，必须报出（模拟 Inky 读错）。原样不得因这两步多报。"""
@@ -274,11 +275,12 @@ def selftest(no):
         res.append((f'把 {w} 的重音挪成 /{bad_ph}/', any(f'] {w} ' in l_ for l_ in got - base)))
     # ② 关掉读音改正
     used = [w for w in PRON_WORDS if re.search(r'(?<![A-Za-z])' + re.escape(w) + r'(?![A-Za-z])', text, flags=re.I)
-            and re.sub(r'\s', '', PRON_WORDS[w]) != re.sub(r'\s|[,;:.!?]', '', KT.tokenizer.phonemize(w, 'en-us'))]   # McArthur 只差一个空格，听不出，不拿来测
+            and re.sub(r'\s', '', PRON_WORDS[w]) != re.sub(r'\s|[,;:.!?]', '', KT.tokenizer.phonemize(w, 'en-us'))   # McArthur 只差一个空格，听不出，不拿来测
+            and not (w[0].islower() and str(_FIXJ.get(w, {}).get('判定', '')).startswith('可接受'))]   # 普通词的“可接受但改”（10 glazier：原读法词典也收）关掉改正本来就不算读错，不拿来测
     if used:
         keep = dict(PRON_WORDS); PRON_WORDS.clear()
         got = {line for _, line, bad in check(no) if bad}; PRON_WORDS.update(keep)
-        res.append((f'关掉读音改正（{"、".join(used)}）', all(any(f'] {w} ' in l_ for l_ in got - base) for w in used)))
+        res.append((f'关掉读音改正（{"、".join(used)}）', all(any(re.search(r'\] ' + re.escape(w) + r"(['’]s)? ", l_) for l_ in got - base) for w in used)))   # 文中只有所有格的（10 Uffizi's）也算
     # ③ 去掉一条多音词核对记录
     hk = next((k_ for k_ in HETCONF if k_.startswith(no + ' ')), None)
     if hk:
