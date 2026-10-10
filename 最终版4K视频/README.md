@@ -14,3 +14,4 @@
 | 07 | The Octopus That Escaped | 越狱的章鱼 | 10.8 MB |
 | 08 | The Doctor Who Solved the Cholera Mystery | 破解霍乱之谜的医生 | 12.1 MB |
 | 09 | The Great Emu War | 向鸸鹋宣战 | 12.1 MB |
+| 10 | The Stolen Smile | 被偷走的微笑 | 11.9 MB |
