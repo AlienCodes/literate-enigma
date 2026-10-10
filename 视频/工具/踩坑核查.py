@@ -516,7 +516,7 @@ def selftest_zhdup():
     elif not any('赏金' in x for x in zh_dup_checks(d)): fails.append('没抓到：两个重点词用了同一个中文（T26，09 payout/payments 赏金）')
     return fails
 # T27 画面说明里的自问的话（09 S18 我起草成“结局怎么理解：”，用户：“就只写结局两个字就行了……怎么理解这几个字儿？”）：note 和括号里只写内容
-META_RE = re.compile(r'怎么理解|如何理解|怎样理解|什么意思|怎么回事')
+META_RE = re.compile(r'怎么理解|如何理解|怎样理解|怎么看|什么意思|怎么回事|要知道|你知道|敲黑板|划重点|不难看出|显而易见|众所周知')   # 用户：“这种说法，让人一看感觉好像就你懂……以后这样的字儿不要再出现”（铁律）
 def meta_checks(d):
     out = []
     for i, s_ in enumerate(d['sentences'], 1):
