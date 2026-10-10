@@ -21,6 +21,11 @@ for line in open(f'{TD}/cmudict.dict', encoding='utf-8'):
 MG = json.load(open(f'{TD}/us_gold.json')); MS = json.load(open(f'{TD}/us_silver.json'))
 # 已核实读音表（全局，各篇共用）：{"Inky": {"标准读音": "ˈɪŋki", "可接受读音": [...], "判定": "...", "依据": "...", "来源": [url...]}}
 VERIFIED = json.load(open(f'{TD}/已核实读音.json')) if os.path.exists(f'{TD}/已核实读音.json') else {}
+# 多音词（A24，2026-10-10 用户：“多种读音的这个词，他们在这个语境中的读音必须得是绝对正确的”）：misaki 词典里按词性给不同读法的词
+# （read、live、record、used、learned、estimate……）。每一处都要按语境核对过、写进 多音词核对.json（键“篇 句 词”，记下当时整句音标），
+# 整句音标变了就要重新核对。虚词（that 等）只有弱读/重读之分，不算。
+HET = {k_.lower() for k_, v_ in MG.items() if isinstance(v_, dict) and any(t_ not in ('DEFAULT', None, 'None') and isinstance(x_, str) for t_, x_ in v_.items())}
+HETCONF = json.load(open(f'{TD}/多音词核对.json')) if os.path.exists(f'{TD}/多音词核对.json') else {}
 
 # ---- 音标 → 粗音位（只保留会听错的区别）----
 V_IPA = [('aɪ', 'AY'), ('aʊ', 'AW'), ('ɔɪ', 'OY'), ('eɪ', 'EY'), ('oʊ', 'OW'), ('əʊ', 'OW'), ('ɑː', 'AA'), ('ɔː', 'AO'), ('iː', 'IY'), ('uː', 'UW'),
@@ -165,6 +170,10 @@ def check(no):
         sp = spoken(re.sub(r'\*\*', '', R.strip_gloss(t)))
         ph_sent = re.sub(r'[ˈˌ\s]', '', phonemes_of(sp))
         ws = words_of(sp)
+        for w in dict.fromkeys(x for y in ws for x in y.split('-') if x.lower() in HET and x.lower() not in FUNC):   # 连字符词逐段查（02 college-entrance）
+            c_ = HETCONF.get(f'{no} {lab} {w}')
+            if not (isinstance(c_, dict) and c_.get('判定') == '正确' and c_.get('整句音标') == phonemes_of(sp)):
+                rows.append(('多音词', f"{no} {'待核实' if c_ is None else '整句读法变了，要重新核实'} [多音词] {w}  词典里按词性有几种读法：{MG.get(w) or MG.get(w.lower())}｜整句：/{phonemes_of(sp)}/｜出现在 {lab}", True))
         for i, w in enumerate(ws):
             ph = re.sub(r'[,;:.!?"“”]', '', phonemes_of(w)).strip()
             if w.lower() not in FUNC and re.sub(r'[ˈˌ\s]', '', ph) not in ph_sent:
@@ -250,6 +259,11 @@ def selftest(no):
         keep = dict(PRON_WORDS); PRON_WORDS.clear()
         got = {line for _, line, bad in check(no) if bad}; PRON_WORDS.update(keep)
         res.append((f'关掉读音改正（{"、".join(used)}）', all(any(f'] {w} ' in l_ for l_ in got - base) for w in used)))
+    # ③ 去掉一条多音词核对记录
+    hk = next((k_ for k_ in HETCONF if k_.startswith(no + ' ')), None)
+    if hk:
+        keep = HETCONF.pop(hk); got = {line for _, line, bad in check(no) if bad}; HETCONF[hk] = keep
+        res.append((f'去掉多音词核对记录（{hk}）', any(f'[多音词] {hk.split(" ", 2)[2]} ' in l_ for l_ in got - base)))
     ok = bool(res) and all(h for _, h in res)
     print(f"{'✔' if ok else '✘'} 读音核对 自检：{no} " + '；'.join(f"{n}{'报出' if h else '没报出'}" for n, h in res) if res else f'✘ 读音核对 自检：{no} 找不到可用来自检的词')
     return ok
@@ -265,9 +279,9 @@ if __name__ == '__main__':
     total = 0
     for no in [a for a in sys.argv[1:] if not a.startswith('--') and re.fullmatch(r'\d\d', a)]:
         rows = check(no)
-        order = {'不一致': 0, '词典里没有': 1, '专有名词': 2}
+        order = {'不一致': 0, '多音词': 1, '词典里没有': 2, '专有名词': 3}
         for cat, line, bad in sorted(rows, key=lambda r: order[r[0]]): print(line)
         n = sum(1 for r in rows if r[2]); total += n
-        print(f'{no} 读音核对 待核实 {n} 处（不一致 {sum(1 for r in rows if r[0] == "不一致" and r[2])}、词典里没有 {sum(1 for r in rows if r[0] == "词典里没有" and r[2])}、专有名词 {sum(1 for r in rows if r[0] == "专有名词" and r[2])}）')
+        print(f'{no} 读音核对 待核实 {n} 处（不一致 {sum(1 for r in rows if r[0] == "不一致" and r[2])}、词典里没有 {sum(1 for r in rows if r[0] == "词典里没有" and r[2])}、专有名词 {sum(1 for r in rows if r[0] == "专有名词" and r[2])}、多音词 {sum(1 for r in rows if r[0] == "多音词" and r[2])}）')
     print('问题数', total)
     sys.exit(1 if total else 0)
