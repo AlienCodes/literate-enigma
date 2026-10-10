@@ -240,6 +240,55 @@ def selftest_phrase():
     return fails
 
 
+# T23 中文意思只标了一部分（用户 2026-10-10 看 08 初稿：“Vindicate 他的意思是证明什么什么是对的……但是你在标注的时候只标注了一个，
+# 证明了后面那个对的却没有标注上……如果说要标注一个单词的意思，你标注全了，你不要说只标注一部分”）：
+# 速查表释义里写成“证明……正确”“把……归因于”“在……期间”这种被隔开的意思，中文里只标了其中一处（这个词只有一个 **…**(词) 标记），
+# 而标了的那一处正是这个意思的一半 → 报出。改法：两处都标同一个英文，如 反倒**证明了**(vindicating)斯诺是**正确的**(vindicating)；
+# 不是这个意思的（本句用的是别的义项），核实后写进 核对确认.中文意思："S17 vindicating": "理由"。
+def _zh_parts(defn):
+    out = []
+    for item in re.split(r'[；;，,]', re.sub(r'（[^）]*）|\([^)]*\)', '', defn)):
+        if '……' in item:
+            a, b = item.split('……', 1)
+            a = re.findall(r'[一-鿿]+$', a); b = re.findall(r'^[一-鿿]+', b)
+            if a and b: out.append((a[0][-4:], b[0][:4]))
+    return out
+
+
+def _overlap(x, y):
+    return any(x[i:i + 2] in y for i in range(len(x) - 1)) or (len(x) == 1 and x in y) or (len(y) == 1 and y in x)
+
+
+def meaning_checks(d, no):
+    """[T23] 返回待确认列表"""
+    sq = sq_table(no); ok = d.get('核对确认', {}).get('中文意思', {}); out = []
+    for i, s in enumerate(d['sentences'], 1):
+        zh = ''.join(c['zh'] for c in s['chunks'])
+        marks = re.findall(r'\*\*([^*]+)\*\*\(([^)]+)\)', zh)
+        for k in dict.fromkeys(m for _, m in marks):
+            got = [z for z, m in marks if m == k]
+            if len(got) != 1: continue
+            defn = sq.get(k.lower(), '') or sq.get(_lemma(k, sq), '')
+            for a, b in _zh_parts(defn):
+                if _overlap(got[0], a) or _overlap(got[0], b):
+                    key = f'S{i} {k}'
+                    if key not in ok: out.append(f'[T23] {key}：意思是“{a}……{b}”，中文只标了“{got[0]}”一处  ← 被隔开的意思两处都要标同一个英文（如 **证明了**(vindicating)……**正确的**(vindicating)）；不是这个义项的核实后写进 核对确认.中文意思')
+                    break
+    return out
+
+
+def selftest_meaning():
+    """T23 自检：08 S17 vindicating 现在只标了“证明了”一处，必须报出；补上“正确的”(vindicating) 后不报"""
+    fails = []; base = json.load(open(f'{V}/脚本/08.json'))
+    if not any('S17 vindicating' in x for x in meaning_checks(base, '08')): fails.append('没抓到：中文意思只标一部分（T23，08 S17 vindicating）')
+    d = copy.deepcopy(base)
+    for c in d['sentences'][16]['chunks']:
+        if '(vindicating)' in c['zh'] and '是对的' in c['zh']:
+            c['zh'] = c['zh'].replace('是对的', '是**正确的**(vindicating)'); c['align'] = [[a, z.replace('是对的', '是**正确的**(vindicating)')] for a, z in c['align']]
+    if any('S17 vindicating' in x for x in meaning_checks(d, '08')): fails.append('T23 误报：两处都标了仍报出（08 S17 vindicating）')
+    return fails
+
+
 def selftest():
     """核查程序自检：在已定稿的第03篇副本里逐一造坑，每一种都必须抓到；原稿不得误报"""
     base = json.load(open(f'{V}/脚本/03.json')); art = article_en('03')
@@ -407,7 +456,7 @@ def main():
         vf = selftest_folders() or video_folders(ROOT)
         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
         return 1 if vf else 0
-    fails = selftest() + selftest_folders() + selftest_phrase()
+    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_meaning()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
@@ -420,6 +469,7 @@ def main():
     # T22 只查以后新做的篇目（09 起）。用户 2026-10-10：“以后查就行，已经做完了，这几天不要再查了……刚刚做完这篇，你查啥？不用再查了，又浪费时间……以后每次都要（查）”
     # 已做完的 01–08 不回头查；08 只改用户点名的 S2 attributed … to（制作记录/08_待改清单.md）
     if int(no) >= 9: conf += phrase_checks(d, no)
+    if int(no) >= 9: conf += meaning_checks(d, no)                 # T23 同样只查以后新做的篇目（用户：“以后我们再去做的时候……防止再犯”）
     err += [f'[check_all] {x}' for x in check_all_text(no, os.path.abspath(js), stage)]
     print(f'第{no}篇 {stage}阶段 踩坑核查（{js}）：')
     if sent is None: print('  （还没有"已发版本"，这次不比对换行；生成文本.py 成功后会保存）')
