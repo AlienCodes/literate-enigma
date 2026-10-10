@@ -13,3 +13,4 @@
 | 06 | The Horse That Could Count | 会算术的马 | 11.8 MB |
 | 07 | The Octopus That Escaped | 越狱的章鱼 | 10.8 MB |
 | 08 | The Doctor Who Solved the Cholera Mystery | 破解霍乱之谜的医生 | 12.1 MB |
+| 09 | The Great Emu War | 向鸸鹋宣战 | 11.8 MB |
