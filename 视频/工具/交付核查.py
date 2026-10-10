@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """每篇视频的交付核查（硬性条件：不通过不得交付）。在视频工作目录（含 make_video.py、scripts/、work_NN/）下运行：
   python3 <工具目录>/交付核查.py NN 对照表     # 开工第一步：生成"踩坑对照记录"模板，逐条填写
-  python3 <工具目录>/交付核查.py NN 出片前     # 合成配音前：数字读法、标点停顿、句首句尾、词尾辅音（A21）、无标点停顿
+  python3 <工具目录>/交付核查.py NN 出片前     # 合成配音前：数字读法、读音（A23）、标点停顿、句首句尾、词尾辅音（A21）、无标点停顿
   python3 <工具目录>/交付核查.py NN 出片后     # 出片后：自动音频检查、响度一致性（EBU R128 逐句）、纯人声核对、句间停顿核对（A20）、独立复核（逐样本比对原始合成）、高亮同步核对、生成标点试听
 对应踩坑：A8 分段合成发闷、A9 停顿放错、A10/A10b 词尾被切、A21 词尾 t/k 听不见、A11 数字读错、A12 连读处停顿越界、L13 换行、L14 高亮没跟上朗读。
 最高铁律（硬性条件第〇节）：出片前先过《踩坑核查》（踩坑对照记录逐条写全、能用程序查的坑逐条查、换行比对）；出片后先做核查程序自检（故意剪坏一份副本，必须全部抓到），自检不过 = 核查失灵，不得交付。"""
@@ -48,6 +48,10 @@ elif stage == '出片前':
     c, o = run(['python3', f'{T}/标点停顿核对.py', no]); step('标点停顿核对（A9/A10：停顿时长、不切词；A19：停顿后不留吸气声）', '问题数 0' in o, '' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l or 'FAIL' in l))
     c, o = run(['python3', f'{T}/句首句尾与停顿位置核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '句首句尾核对 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的句首句尾核对不可信】\n    ' + o[-400:])
     c, o = run(['python3', f'{T}/句首句尾与停顿位置核对.py', no]); step('句首句尾核对（clean_tail 修剪掉的部分没有剪到词：基准本句最响 5 ms 帧；剪掉的能听见的声音不得与词相连，句尾不得剪掉能听见的声音）', '问题数 0' in o, '' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l))
+    # 读音（A23）：每个词与两本独立发音词典比对；对不上的、词典里没有的、所有专有名词，必须查证后写进 工具/发音词典/已核实读音.json（带来源）
+    c, o = run(['python3', f'{T}/读音核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '读音核对 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的读音核对不可信】\n    ' + o[-400:])
+    c, o = run(['python3', f'{T}/读音核对.py', no]); step('读音核对（A23：每个词的读音与独立发音词典一致；人名、地名、机构名、缩写逐个查证权威读音）', c == 0 and '问题数 0' in o,
+         '' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if '待核实' in l or 'BAD' in l or 'Error' in l) + '\n    → 逐个查权威来源，写进 工具/发音词典/已核实读音.json；配音读错的写进 读音改正.json 后重跑')
     c, o = run(['python3', f'{T}/词尾辅音核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '词尾辅音核对 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的词尾辅音核对不可信】\n    ' + o[-400:])
     c, o = run(['python3', f'{T}/词尾辅音核对.py', no]); wk = [l for l in o.splitlines() if '需试听' in l]
     step('词尾辅音核对（A21：停顿前和句末的词尾 t/k 听得清除阻，2 kHz 以上 ≥ -36 dB；/p/ 全频 ≥ -33 dB）', c == 0 and '问题数 0' in o, ('' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l or '停止' in l or 'Error' in l) + '\n    → 先跑 词尾辅音核对.py NN --写入 自动补位置，再重跑')

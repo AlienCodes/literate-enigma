@@ -26,19 +26,32 @@ def _cached(obj,meth,model):
         os.replace(q,p); return r
     return g
 k.create=_cached(k,'create',f'{TTS}/kokoro-v1.0.onnx'); KT.create_timed=_cached(KT,'create_timed',f'{TTS}/kokoro-v1.0-timed.onnx')
-# A23 读音改正（2026-10-09 用户：07 的 Inky “读的有点生硬”）：配音模型的注音程序（espeak 拼读规则）把 Inky / inky 注成 ɪŋkˈaɪ（“因-凯”，
-# 重音在后），正确是 /ˈɪŋki/。这里列出注音程序读错的词：整句注音后把错的音标换成对的，再按音标合成；不含这些词的句子声音逐样本不变。
-# 出片和所有核查都经过 k.create / KT.create_timed，用的是同一串音标。新发现读错的词加在这里，并写进 踩坑总表 A23。
-PRON_FIX={'ɪŋkˈaɪ':'ˈɪŋki'}
+# A23 读音改正（2026-10-09 用户：“每个单词的读音，尤其是这种额外的这种人名啊，或者是物名或者是机构名等等……一定得是正确的……
+# 我们是权威性的，这个教学性文章你读错了就完蛋了”）：配音模型的注音程序（espeak 拼读规则）会把词典里没有的词猜错（07 Inky 注成 ɪŋkˈaɪ，
+# 正确 /ˈɪŋki/）。读错的词按“词 → 正确音标”登记在 工具/发音词典/读音改正.json（由 读音核对.py 查证后写入，每条带来源）：
+# 整句注音后，把这个词被注出的音标换成正确音标再合成；每个登记的词在句中出现几次就必须换掉几次，换不到就停下（不许悄悄漏过）。
+# 不含这些词的句子，声音逐样本不变。出片、核查、带时长模型都经过 k.create / KT.create_timed，用的是同一串音标。
+_PRON_PATH=os.path.join(os.path.dirname(os.path.abspath(__file__)) if '__file__' in globals() else '.', '读音改正.json')
+for _cand in (_PRON_PATH,'读音改正.json','/home/user/postgraduate-vocabulary/视频/工具/发音词典/读音改正.json'):
+    if os.path.exists(_cand): PRON_WORDS={k_:v_['读音'] for k_,v_ in json.load(open(_cand)).items()}; break
+else: PRON_WORDS={'Inky':'ˈɪŋki'}
+def _stress_free_re(ph):
+    return ''.join(re.escape(ch)+'[ˈˌ]?' for ch in re.sub('[ˈˌ]','',ph)).replace(re.escape(' ')+'[ˈˌ]?',r'\s*')
+PRON_FIX={}
 def phonemes_of(text):
     ph=KT.tokenizer.phonemize(text,'en-us')
-    for a_,b_ in PRON_FIX.items(): ph=ph.replace(a_,b_)
+    for w_,good in PRON_WORDS.items():
+        n_=len(re.findall(r"(?<![A-Za-z])"+re.escape(w_)+r"(?![A-Za-z])",text,flags=re.I))
+        if not n_: continue
+        bad=re.sub(r'[,;:.!?]','',KT.tokenizer.phonemize(w_,'en-us')).strip(); PRON_FIX[bad]=good
+        if re.sub('[ˈˌ]','',bad)==re.sub('[ˈˌ]','',good) and bad==good: continue
+        ph,cnt=re.subn("(?<![^\\s,;:.!?])"+_stress_free_re(bad)+"(?=[\\s,;:.!?]|$)",good,ph)
+        if cnt!=n_: raise SystemExit(f'【停止】读音改正没有全部换到（A23）：{w_} 出现 {n_} 次，换了 {cnt} 次：{text[:60]}')
     return ph
 def _pron(fn):
     def g(text,voice,speed=1.0,lang='en-us',**kw):
-        if not kw.get('is_phonemes'):
-            ph=KT.tokenizer.phonemize(text,'en-us')
-            if any(a_ in ph for a_ in PRON_FIX): return fn(phonemes_of(text),voice=voice,speed=speed,lang=lang,is_phonemes=True,**kw)
+        if not kw.get('is_phonemes') and any(re.search(r"(?<![A-Za-z])"+re.escape(w_)+r"(?![A-Za-z])",text,flags=re.I) for w_ in PRON_WORDS):
+            return fn(phonemes_of(text),voice=voice,speed=speed,lang=lang,is_phonemes=True,**kw)
         return fn(text,voice=voice,speed=speed,lang=lang,**kw)
     return g
 k.create=_pron(k.create); KT.create_timed=_pron(KT.create_timed)
