@@ -146,6 +146,100 @@ def text_checks(d, art=None, sent=None):
     return err, conf, ref
 
 
+# T22 短语型用法只标了一个词（用户 2026-10-10 看 08 初稿：“这个地方 attributed to 肯定要把 to 也包含进去，也要标色。
+# 你记住以后……短语型的用法……就不止一个词，这种复合用法你不能只标一个词”；T14 depend on 的坑重犯）：
+# 重点词的固定搭配/短语动词/句型（速查表释义、note 里写的 attribute A to B、arise from、succumb to……，再加一张常用搭配兜底表），
+# 搭配里的介词/小品词就在同一分句里（往后 6 个词以内，不跨 , ; : .），却没有一起加粗 → 逐个报出。
+# 改法：连着的整体加粗（**arising from**）；被隔开的按 T14 两部分都加粗、中文括注写完整短语（**attributed** **epidemics** **to** / **归因于**(attributed to)）。
+# 介词只是普通介词短语开头、不构成固定用法的，核实后写进 核对确认.短语："S6 plunged … from": "理由"。
+PH_PREPS = 'to from as on in of with for into at by about out up off over upon onto against through away down back'.split()
+PH_SLOT = r"(?:A|B|C|sb|sth|sb's|sth's|one|one's|oneself|somebody|something|\.\.\.|…|……|doing|do)"
+PH_CORE = {'attribute':['to'],'ascribe':['to'],'stem':['from'],'arise':['from'],'result':['in','from'],'derive':['from'],'originate':['from'],
+ 'depend':['on','upon'],'rely':['on','upon'],'consist':['of'],'account':['for'],'refer':['to'],'interpret':['as'],'regard':['as'],'view':['as'],
+ 'succumb':['to'],'cope':['with'],'deal':['with'],'insist':['on'],'focus':['on'],'belong':['to'],'adapt':['to'],'respond':['to'],'object':['to'],
+ 'contribute':['to'],'lead':['to'],'prevent':['from'],'distinguish':['from'],'differ':['from'],'suffer':['from'],'benefit':['from'],'emerge':['from'],
+ 'compensate':['for'],'search':['for'],'apply':['to','for'],'subject':['to'],'expose':['to'],'confine':['to'],'convert':['into'],'transform':['into'],
+ 'translate':['into'],'divide':['into'],'turn':['into'],'blame':['on','for'],'accuse':['of'],'deprive':['of'],'rob':['of'],'remind':['of'],'consist':['of'],
+ 'dispose':['of'],'approve':['of'],'conform':['to'],'cling':['to'],'resort':['to'],'yield':['to'],'amount':['to'],'adhere':['to'],'commit':['to'],
+ 'devote':['to'],'dedicate':['to'],'specialize':['in'],'engage':['in'],'participate':['in'],'result':['in','from'],'persist':['in'],'invest':['in'],
+ 'comply':['with'],'interfere':['with'],'associate':['with'],'equip':['with'],'provide':['with','for'],'charge':['with'],'credit':['with'],
+ 'spur':['on'],'set':['in','out','off','up'],'hold':['out','on','back'],'rattle':['off'],'carry':['out','on'],'figure':['out'],'point':['out'],
+ 'call':['for','on','off'],'stand':['for','out'],'take':['over','on','up'],'give':['up','in'],'bring':['about','up'],'come':['up','across','about'],
+ 'pore':['over'],'dwell':['on'],'feed':['on'],'prey':['on'],'live':['on'],'border':['on'],'hinge':['on'],'impose':['on'],'capitalize':['on'],
+ 'aware':['of'],'capable':['of'],'devoid':['of'],'free':['from','of'],'prone':['to'],'subject':['to'],'immune':['to'],'akin':['to'],'vulnerable':['to'],
+ 'susceptible':['to'],'relevant':['to'],'similar':['to'],'familiar':['with'],'content':['with'],'compatible':['with'],'consistent':['with'],
+ 'responsible':['for'],'eligible':['for'],'famous':['for'],'known':['for','as'],'confronted':['with'],'confront':['with'],'adjust':['for','to'],'beg':['to'],
+}
+
+
+def sq_table(no):
+    """文章速查表：{词(小写): 释义}"""
+    md = glob.glob(f'{ROOT}/新版定稿/{no}-*.md')
+    if not md: return {}
+    t = open(md[0]).read(); t = t.split('## 速查表', 1)[1] if '## 速查表' in t else ''
+    out = {}
+    for l in re.split(r'\n## ', t)[0].splitlines():
+        c = [x.strip() for x in l.strip().strip('|').split('|')]
+        if len(c) >= 2 and c[0] not in ('词', '---', ''): out[c[0].lower()] = c[1]
+    return out
+
+
+def _lemma(w, sq):
+    m = re.match(r'\s*[a-z./ ]*\s*\(([A-Za-z][A-Za-z ]*?)(?: 的[^)]*)?\)', sq.get(w.lower(), ''))
+    if m: return m.group(1).split()[0].lower()
+    x = w.lower()
+    for suf, rep in (('ied', 'y'), ('ies', 'y'), ('ing', ''), ('ed', ''), ('es', ''), ('s', '')):
+        if x.endswith(suf) and len(x) - len(suf) >= 3: return x[:-len(suf)] + rep
+    return x
+
+
+def _ph_pats(text, lem, word):
+    return {m.group(3).lower() for m in re.finditer(r"\b(" + re.escape(lem) + r"\w*|" + re.escape(word.lower()) + r")\b((?:\s+" + PH_SLOT + r")*)\s+(" + '|'.join(PH_PREPS) + r")\b", text, re.I)}
+
+
+def phrase_checks(d, no):
+    """[T22] 返回待确认列表"""
+    sq = sq_table(no); ok = d.get('核对确认', {}).get('短语', {}); out = []
+    for i, s in enumerate(d['sentences'], 1):
+        en = ' '.join(c['en'] for c in s['chunks']); notes = ' '.join(c.get('note', '') for c in s['chunks'])
+        keys = [k.lower().split() for c in s['chunks'] for k in re.findall(r'\*\*[^*]+\*\*\(([^)]+)\)', c['zh'])]
+        toks = []
+        for m in re.finditer(r'\*\*([^*]+)\*\*|([^*\s]+)', re.sub(r'\{\{.*?\}\}', '', en)):
+            toks += [(w, True) for w in m.group(1).split()] if m.group(1) else [(m.group(2), False)]
+        for j, (w, b) in enumerate(toks):
+            wc = re.sub(r"[^\w'-]", '', w)
+            if not b or not wc: continue
+            lem = _lemma(wc, sq)
+            preps = _ph_pats(sq.get(wc.lower(), '') + ' ' + sq.get(lem, '') + ' ' + notes, lem, wc) | set(PH_CORE.get(lem, []))
+            for prep in sorted(preps):
+                for q in range(j + 1, min(len(toks), j + 7)):
+                    t, bb = toks[q]
+                    if re.sub(r"[^\w'-]", '', t).lower() == prep:
+                        if not bb and not any(prep in k and wc.lower() in k for k in keys):
+                            key = f'S{i} {wc} … {prep}'
+                            if key not in ok: out.append(f'[T22] {key}「{" ".join(x for x, _ in toks[j:q + 1])}」  ← 重点词的短语型用法只标了一个词？是固定搭配就整体加粗、同色（被隔开的按 T14），不是就核实后写进 核对确认.短语')
+                        break
+                    if re.search(r'[,;:.!?]$', t): break
+    return out
+
+
+def selftest_phrase():
+    """T22 自检：07 的 **stems from**、02 的 **depends** partly **on** 去掉介词的加粗，必须报出；原样不报这两处"""
+    fails = []
+    for no, si, en0, en1, k0, k1, key in (('07', 6, '**stems from**', '**stems** from', '(stems from)', '(stems)', 'stems … from'),
+                                          ('02', 15, '**depends** partly **on**', '**depends** partly on', '(depends on)', '(depends)', 'depends … on')):
+        base = json.load(open(f'{V}/脚本/{no}.json'))
+        if any(key in x for x in phrase_checks(base, no)): fails.append(f'T22 原稿误报：{no} {key}')
+        d = copy.deepcopy(base); hit = False
+        for c in d['sentences'][si]['chunks']:
+            if en0 in c['en']:
+                c['en'] = c['en'].replace(en0, en1); c['align'] = [[a.replace(en0, en1), z.replace(k0, k1)] for a, z in c['align']]
+                c['zh'] = c['zh'].replace(k0, k1); hit = True
+        if not hit: fails.append(f'T22 自检样本找不到：{no} S{si + 1} {en0}')
+        elif not any(key in x for x in phrase_checks(d, no)): fails.append(f'没抓到：短语只标一个词（T22，{no} {en1}）')
+    return fails
+
+
 def selftest():
     """核查程序自检：在已定稿的第03篇副本里逐一造坑，每一种都必须抓到；原稿不得误报"""
     base = json.load(open(f'{V}/脚本/03.json')); art = article_en('03')
@@ -313,7 +407,7 @@ def main():
         vf = selftest_folders() or video_folders(ROOT)
         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
         return 1 if vf else 0
-    fails = selftest() + selftest_folders()
+    fails = selftest() + selftest_folders() + selftest_phrase()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
@@ -323,6 +417,9 @@ def main():
     sent = json.load(open(snap)) if os.path.exists(snap) else None
     err = record_gate(no, stage) + video_folders(ROOT)
     e, conf, ref = text_checks(d, article_en(no), sent); err += e
+    # T22 只查以后新做的篇目（09 起）。用户 2026-10-10：“以后查就行，已经做完了，这几天不要再查了……刚刚做完这篇，你查啥？不用再查了，又浪费时间……以后每次都要（查）”
+    # 已做完的 01–08 不回头查；08 只改用户点名的 S2 attributed … to（制作记录/08_待改清单.md）
+    if int(no) >= 9: conf += phrase_checks(d, no)
     err += [f'[check_all] {x}' for x in check_all_text(no, os.path.abspath(js), stage)]
     print(f'第{no}篇 {stage}阶段 踩坑核查（{js}）：')
     if sent is None: print('  （还没有"已发版本"，这次不比对换行；生成文本.py 成功后会保存）')
