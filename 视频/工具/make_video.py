@@ -540,6 +540,21 @@ def sentence_audio(sent,pieces,gaps):
                 raise SystemExit(f'【停止】删除范围超出了停顿（A9/A10）："{sent[:60]}" 第{gi+1}个标点')
             if cb>ca and (e[ca//F:cb//F].max()>=PAUSE_DB or e[ca//F-M]>=AUD_DB or e[min(len(e)-1,cb//F+M-1)]>=AUD_DB):
                 raise SystemExit(f'【停止】标点处要删的部分里有词的声音，或没有保住词尾/词头（A10）：{sent[:60]}')
+        # A32（2026-10-10 10 S17 “If so, its”，用户：“so后面出了一个语气词卡顿了……跟你说过不止一次”）：结尾句两遍合成的接点
+        # 本来就在最后一个标点后两个词之间的静音里，程序却按带时长模型选了离 so 最近的低谷——its 的 /t/ 闭塞，0.7 秒停顿插进了 its 里
+        # （“If so, i……ts fame”）；我核实时把原始合成的秒当成了 w 的秒（差句首裁掉的 0.09 秒），写了错的确认。
+        # 结尾句最后一个标点的停顿必须包住接点：插入的挪到接点上（保留接点所在那段静音，听到的停顿照旧是标准时长），删除的没包住接点就停。
+        # 01–09 的结尾句都已包住接点（逐篇量过），声音不变。
+        if E_ and '接点' in E_ and gi==len(idxs)-1:
+            jw=int(E_['接点'][0])-_head_offset(raw,w)
+            if not (ca-F<=jw<=cb+F):
+                if cb>ca or dv is not None: raise SystemExit(f'【停止】结尾句最后一个标点的停顿没有包住接点（A32）：{sent[:60]}')
+                if e[jw//F]>=AUD_DB: raise SystemExit(f'【停止】结尾句的接点不在静音里（A32）：{sent[:60]}')
+                a_=jw//F
+                while a_>0 and e[a_-1]<AUD_DB: a_-=1
+                b_=jw//F
+                while b_<len(e) and e[b_]<AUD_DB: b_+=1
+                ca=cb=jw; keep=(b_-a_)*F/SR
         cuts.append((ca,cb,max(0.03,gaps[gi]-keep)))
     # A22（用户 2026-10-09：“一定要过渡，非常自然，不要整的跟个机器人说的一样”）：说话人连读、只能在声音还响的地方插停顿时
     # （插入点电平 ≥ -45 dB，如 07 Inky, | somewhere），前一个词用 XF_OUT 秒余弦渐弱收尾、后一个词用 XF_IN 秒渐强起音，像真人说完一个词声音自然落下，

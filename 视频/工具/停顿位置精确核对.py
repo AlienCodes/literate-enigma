@@ -79,6 +79,9 @@ for no in sys.argv[1:]:
         _LOG.clear(); _W.clear()
         _, tm = sentence_audio(sent, pieces, [0.4] * len(ms))
         w = _W[0]
+        # A32：结尾句最后一个标点的停顿必须包住两遍合成的接点（接点在两个词之间的静音里）。这一条不认 核对确认——
+        # 10 S17 就是我把原始合成的秒当成 w 的秒、写了错的确认，把程序报出的问题放过了
+        e_ = d.get('结尾句', {}).get(f'S{si}'); jw_ = int(e_['接点'][0]) - LAST['head'] if e_ and '接点' in e_ else None
         ratio = [(t1 - t0) / (len(say(sent[x0:x1])) / SR) for x0, x1, t0, t1 in tm]   # 每段：句中时长 ÷ 单独朗读时长
         tb, _, sp = KT.create_timed(spoken(sent), voice=V, speed=SPEED, lang='en-us', clause_pause=0, sentence_pause=0)
         mp, cost = dtw_map(logmel(np.asarray(tb, float)), logmel(np.asarray(w, float)))
@@ -105,6 +108,9 @@ for no in sys.argv[1:]:
                 ok = bool(conf); bad += not conf
             else:
                 bad += not ok and not conf
+            if jw_ is not None and gi == len(ms) - 1 and not (ca - 120 <= jw_ <= cb + 120):
+                rows.append(f'{no} S{si} BAD（A32：结尾句最后一个标点的停顿 {a:.3f}–{b:.3f}s 没有包住接点 {jw_ / SR:.4f}s（w 里的秒），停顿插进了词里；核对确认不能放行）')
+                bad += 1; ok = False; conf = None
             rows.append(f"{no} S{si} {('OK（已用实际声音核实）' if conf else 'OK ') if (ok or conf) else 'BAD（用实际声音核实后写进 核对确认.停顿位置：' + key + '）'} {kind} 「{word} | {nword}」 段长比 前 {rb:.2f} 后 {ra:.2f} ｜ 前词末音素起 {pe:.3f}s 后词开头 {ns:.3f}s ｜ 停顿 {a:.3f}–{b:.3f}s"
                         f"（离前词末音素起点 {1000 * (a - pe):+.0f} ms，离后词 {1000 * (ns - b):+.0f} ms）对齐代价 {cost:.2f}")
 print('\n'.join(rows)); print('问题数', bad)

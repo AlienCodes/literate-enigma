@@ -344,11 +344,16 @@ def frame_title(no,en,zh,out):
 def unify_colors(colors,sentences):
     """不连续的重点短语（如 **depends** partly **on** ↔ **取决于**(depends on)）：各部分用同一种颜色。"""
     for s in sentences:
+        # 整句一起看：被隔开的短语可以跨块（2026-10-10 10 S16 **elevated** 在第2块、**to** 在第3块，原来按块看，
+        # “把……抬高到了……的地位”一个字都没上色，to 还成了另一种颜色——草稿就是这样，我截图核对时才发现）
+        ens=[w.lower() for c in s['chunks'] for w in re.findall(r'\*\*([^*]+)\*\*',c['en'])]
         for c in s['chunks']:
-            ens=[w.lower() for w in re.findall(r'\*\*([^*]+)\*\*',c['en'])]
             for k in re.findall(r'\*\*[^*]+\*\*\(([^)]+)\)',c['zh']):
                 k=k.lower(); parts=k.split()
                 if k in colors or len(parts)<2 or not all(p in ens for p in parts): continue
                 col=colors.get(parts[0]); colors[k]=col
                 for p in parts: colors[p]=col
+    # 画面上标了颜色的中文意思（**…**(词)、词下说明 {{…|词}}）必须都找得到颜色，找不到就停（不能让重点词的意思变成白字上屏）
+    miss=sorted({k for s in sentences for c in s['chunks'] for k in re.findall(r'\*\*[^*]+\*\*\(([^)]+)\)',c['zh'])+[m[1] for m in re.findall(ZCOL,c['zh'])] if colors.get(k.lower()) is None})
+    if miss: raise SystemExit(f'【停止】画面上这些中文意思找不到颜色（英文里对应的词没有加粗，或短语的几部分不在同一句）：{miss}')
     return colors

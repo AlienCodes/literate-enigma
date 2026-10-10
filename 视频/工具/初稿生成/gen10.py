@@ -2,13 +2,15 @@ import json,re,glob,os
 # 第10篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-10-10 按现行做法：程序打底（英文、重点词与文章逐字核对），重点词中文沿用文章定稿（新版定稿/10）的意思（铁律），
 # 只按《翻译风格》调格式：作定语的形容词“的”、方式副词“地”、过去时的“了”放进粗体，阿拉伯数字照写（第17条），语序必须倒过来的整组。
+# 2026-10-10 用户看 1080p 草稿后的 11 条修改（制作记录/10_待改清单.md，问答定了第5、11条）已全部改进来。
 # 用户在 08、09 定下的规矩一并照做（09 用户 21 条修改的规律）：
 #   短语型用法整体标（T22，两个方向：stare at、in custody、at the invitation of、elevate … to），被隔开的中文意思每一处都标（T23：应……邀请、把……推上了）；
 #   不是重点词的过去时动词按语境译出“了”；同一篇不同重点词的中文不能一样（T26）。
 S=[
 (1,[[[("On Monday 21 August 1911,","1911年8月21日是星期一，")]],
     [[("when the Louvre was","卢浮宫"),("**customarily**","**照例**(customarily)"),("closed,","闭馆，")]],
-    [[("the Mona Lisa","《蒙娜丽莎》就在这一天"),("was","被人"),("**discreetly** **plucked** from its wall.","从墙上**悄悄地**(discreetly)**摘走了**(plucked)。")]]]),
+    [[("the Mona Lisa","《蒙娜丽莎》就在这一天"),("was","被人"),("**discreetly** **plucked** from its wall.","从墙上**小心低调地**(discreetly)**摘走了**(plucked)。")],
+     "（discreetly：表示并非不被别人看见，而是可能被别人看见了，\n但是并没有引起其他人的注意和警觉。）\n（大白天，一个穿着工作服的人，伪装成工作人员，像平时做保养一样，\n从容不迫、面无表情地把画摘下来，大摇大摆走出去，\n保安看见了也觉得“他在正常工作”。比如某些公司悄悄发布自己的产品。\n不仅仅是悄悄，而且整个过程要细致，生怕出错而引起其他人的注意。）\n（Pluck 的核心含义是：拔（毛、眉毛）、摘（花、果实）、拨（琴弦））\n（举重若轻的荒诞感：价值连城、被重重保护的世界第一名画，\n竟然像摘果子一样被轻而易举地“摘”了下来（plucked）。\n这就讽刺了当时卢浮宫安保的形同虚设。）"]]),
 (1,[[[("The **disappearance**","画作的**失踪**(disappearance)"),("went **unnoticed**","一直**无人察觉**(unnoticed)，")]],
     [[("until the next day,","直到第二天，")]],
     [[("when a painter arriving to **sketch**","一位前来**画素描**(sketch)的画家"),("found","发现，")],
@@ -17,11 +19,11 @@ S=[
 (1,[[[("**Custodians**","**管理人员**(Custodians)"),("**shuttered** the museum","把博物馆**关闭了**(shuttered)"),("for a week.","一周。")]]]),
 (2,[[[("When the museum **reopened**,","博物馆**重新开放**(reopened)后，")]],
     [[("**curious** **onlookers**","**好奇的**(curious)**围观者**(onlookers)"),("queued","排队前来，")]],
-    [[("to **stare at**","**凝视**(stare at)"),("the **vacant** space","那块**空荡荡的**(vacant)地方，")]],
+    [[("to **stare at**","**盯着看/凝视**(stare at)"),("the **vacant** space","那块**空着的**(vacant)地方，")]],
     [[("where the **masterpiece**","那幅**杰作**(masterpiece)"),("had hung.","原先就挂在那里。")],
      "（where…：引导定语从句，修饰 the vacant space）"]]),
 (2,[[[("On 7 September 1911","1911年9月7日，"),("the poet","诗人"),("Guillaume Apollinaire","纪尧姆·阿波利奈尔")]],
-    [[("was held **in custody**","被**拘押了**(in custody)"),("for about a week,","约一周，")]],
+    [[("was held **in custody**","被**拘押了**(in custody)\n{{（被拘留、在羁押中）|in custody}}"),("for about a week,","约一周，")]],
     [[("and Pablo Picasso","巴勃罗·毕加索也"),("was **interrogated**.","受到**审问**(interrogated)。")]]]),
 (2,[[[("Both","两人都"),("were cleared of","洗清了"),("**involvement**","**牵涉**(involvement)"),("in the **burglary**.","这起**盗窃案**(burglary)的嫌疑。")],
      "（be cleared of：洗清……的嫌疑）"]]),
@@ -29,11 +31,11 @@ S=[
     [[("an Italian who had **temporarily** worked at the Louvre as a glazier.","一个曾在卢浮宫**短期**(temporarily)做过玻璃工的意大利人。")],
      "（an Italian who…：同位语，说明 Peruggia）"]]),
 (3,[[[("Having **lurked** in a storeroom on Sunday,","星期天**潜伏**(lurked)在一间储藏室里之后，")]],
-    [[("he","他"),("**strode** out **unchallenged** in a workman's smock,","穿着一件工作罩衫**大步走了**(strode)出去，**无人盘问**(unchallenged)，")]],
+    [[("he","他"),("**strode** out **unchallenged** in a workman's smock,","穿着一件工作罩衫**大步走了**(strode)出去，**未受阻拦的，畅通无阻的**(unchallenged)，")]],
     [[("the painting","画就"),("**tucked**","**塞**(tucked)"),("**beneath** his clothes.","**在**(beneath)他的衣服**底下**(beneath)。")],
      "（Having lurked… = After he had lurked…：完成式分词，表示先发生；\nthe painting tucked… = the painting (being) tucked…：独立主格）"]]),
 (3,[[[("For more than two years","此后两年多，"),("it","这幅画"),("lay","一直"),("**stashed**","**藏匿**(stashed)")]],
-    [[("in a false-bottomed **trunk** in his Paris **lodgings**.","在他巴黎**住处**(lodgings)一只带夹层底的**箱子**(trunk)里。")],
+    [[("in a false-bottomed **trunk** in his Paris **lodgings**.","在他巴黎**住处**(lodgings)一只带夹层底的**大箱子**(trunk)里。")],
      "（lay：lie 的过去式；lie + 过去分词：一直处于……状态）"]]),
 (4,[[[("In December 1913","1913年12月，"),("Peruggia","佩鲁贾"),("**contacted**","**联系了**(contacted)")]],
     [[("Alfredo Geri, an art **dealer** in Florence.","佛罗伦萨的艺术品**商人**(dealer)阿尔弗雷多·杰里。")]]]),
@@ -41,19 +43,19 @@ S=[
     [[("Peruggia","佩鲁贾"),("was **apprehended** on 11 December 1913.","于1913年12月11日被**逮捕**(apprehended)。")]]]),
 (4,[[[("Citing","以"),("**patriotism**,","**爱国**(patriotism)为由，")]],
     [[("he said","他说"),("he wanted","自己想"),("it","把画"),("**repatriated**,","**送回祖国**(repatriated)；")]],
-    [[("**mistakenly** believing","（他）**误以为**(mistakenly)"),("Napoleon","拿破仑"),("had **looted**","**掠走了**(looted)"),("it.","这幅画。")],
+    [[("**mistakenly** believing","（他）**误以为**(mistakenly)"),("Napoleon","拿破仑"),("had **looted**","**掠夺了/掠走了**(looted)\n{{（尤指战争和|looted}}\n{{暴乱期间）|looted}}"),("it.","这幅画。")],
      "（Citing…：现在分词短语作伴随状语；want sth done：想让某物被……；\nmistakenly believing…：现在分词短语作原因状语）"]]),
 (4,[[[("In fact","事实上，"),("Leonardo da Vinci","列奥纳多·达·芬奇")]],
-    [[("had **accompanied** it to France **at the invitation of** King Francis I.","**应**(at the invitation of)国王弗朗索瓦一世的**邀请**(at the invitation of)，**随身带着**(accompanied)这幅画**去了**(accompanied)法国。")]]]),
+    [[("had **accompanied** it to France **at the invitation of** King Francis I.","**应**(at the invitation of)国王弗朗索瓦一世的**邀请**(at the invitation of)，**携/带着**(accompanied)这幅画去了法国。")]]]),
 (5,[[[("After **showings** in Italy,","在意大利**展出**(showings)之后，")]],
-    [[("the painting","这幅画"),("was **reinstated** in the Louvre on 4 January 1914.","于1914年1月4日**重回**(reinstated)卢浮宫。")]]]),
+    [[("the painting","这幅画"),("was **reinstated** in the Louvre on 4 January 1914.","于1914年1月4日在卢浮宫被**放回原处**(reinstated)。")]]]),
 (5,[[[("In June 1914","1914年6月，"),("a **tribunal**","**法庭**(tribunal)"),("**imposed**","**判处了**(imposed)（佩鲁贾）")]],
     [[("a **penalty** of a year and 15 days,","一年零15天的**刑罚**(penalty)，")]],
-    [[("but he","但他实际"),("was **imprisoned**","**坐牢**(imprisoned)"),("for about seven months.","约七个月。")]]]),
+    [[("but he","但他实际"),("was **imprisoned**","**坐牢**(imprisoned)"),("for about seven months.","大约才七个月。")]]]),
 (5,[[[("Many historians","许多史学家"),("argue","认为，")]],
-    [[("the **heist** **elevated** one **esteemed** **gem** among many","这幅画原本是众多**备受推崇的**(esteemed)**珍品**(gem)之一，这起**盗画案**(heist)**把**(elevated to)它")]],
-    [[("**to**","**推上了**(elevated to)"),("the world's most **renowned** painting.","世界最**著名的**(renowned)画作的位置。")],
-     "（argue 后面省略了 that；elevate A to B：把A提升到B的位置；\none … among many：众多……之一）"]]),
+    [[("the **heist** **elevated** one **esteemed** **gem** among many","这起**盗窃大案**(heist)**把**(elevated to)这幅众多画作中**备受推崇的**(esteemed)**珍品**(gem)")]],
+    [[("**to**","**抬高到了**(elevated to)"),("the world's most **renowned** painting.","世界最**著名的**(renowned)画作**的地位**(elevated to)。")],
+     "（argue 后面省略了 that；elevate A to B：把A抬高到B的地位；\none … among many：众多……之一）"]]),
 (5,[[[("If so,","若真如此，"),("its **fame**","它的**名气**(fame)"),("began with","始于"),("a **bare** wall.","一面**光秃秃的**(bare)墙。")]]]),
 ]
 # 审校后写进的确认（2026-10-10 三视角审校：踩坑核查 [T22] 报出的 6 处逐个核实，都不是短语型用法，同 09 parcels of、pleas for 的判法）

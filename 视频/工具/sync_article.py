@@ -38,10 +38,11 @@ new_zh='\n\n'.join(''.join(v) for k,v in sorted(paras_zh.items()))
 # keyword table in order of appearance
 rows=[];seen=set()
 for s in d['sentences']:
-    for c in s['chunks']:
-        zmap={}
+    zmap={}
+    for c in s['chunks']:   # 整句一起连：被隔开的意思可以跨块（10 S16 **把**(elevated to)……**抬高到了**……**的地位**，原来按块只连出“把”）
         for z,e in re.findall(r'\*\*([^*]+)\*\*\(([^)]+)\)',c['zh']):   # 被隔开的同一个意思（T23：证明了……正确的、把……比作）连起来，原来只留最后一段（08 vindicating 成了“正确的”）
             zmap[e.lower()]=zmap[e.lower()]+'……'+z if e.lower() in zmap else z
+    for c in s['chunks']:
         ens=re.findall(r'\*\*([^*]+)\*\*',c['en'])
         keys=[e for _,e in re.findall(r'\*\*([^*]+)\*\*\(([^)]+)\)',c['zh'])]
         for w in keys:
