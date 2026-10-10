@@ -430,6 +430,9 @@ def sentence_audio(sent,pieces,gaps):
         scale=len(raw)/len(tb); toks=list(sp)
     idxs=[i for i,x in enumerate(toks) if x.phoneme in ',;:']
     if len(idxs)!=len(pieces)-1: raise SystemExit(f'【停止】标点数对不上（A9）：{sent[:60]}')
+    for tab_,nm_ in ((INSERT_AT,'停顿插入点'),(DEL_AT,'停顿删除区间')):     # 2026-10-10 09 S6：把 guns, 数成第 7 个标点（实际第 6 个），设置被悄悄忽略
+        bad_=[g_ for g_ in tab_.get(sent,{}) if not 1<=g_<=len(idxs)]
+        if bad_: raise SystemExit(f'【停止】{nm_} 写的第 {bad_} 个标点超出这一句的标点数（{len(idxs)} 个，按 , ; : 从 1 数）：{sent[:60]}')
     e=_env5(w); F=int(0.005*SR); cuts=[]; M=2   # M：停顿两头各保留 2 帧（10 ms）
     for gi,i in enumerate(idxs):
         prv=next(x for x in reversed(toks[:i]) if x.phoneme.strip() and x.phoneme not in ',;:.!?')
