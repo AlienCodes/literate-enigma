@@ -373,6 +373,12 @@ def sentence_audio(sent,pieces,gaps):
                 if not (pe-60<=f<=ns+20) or (e[f]>min(e[max(0,f-2):f+3]) and e[f]>-24):
                     raise SystemExit(f'【停止】人工核实的插入点不在该标点附近，或落在响亮的声音上（A15）：{sent[:60]} 第{gi+1}个标点')
             ca=cb=(cx if cx is not None else f*F); keep=0.0
+            # A25（2026-10-10，07 S16 放慢后“Inky-s”）：下一个词以 s/z/ʃ 开头时，切口必须在这个擦音之前——
+            # 切口前 30 ms 的高频（>4 kHz）占比：元音约 0.1，/s/ 约 0.8；超过 0.4 说明 s 被留在了前一个词上
+            if nxt.phoneme in 'szʃ' and prv.phoneme not in 'szʃʒfθvð':
+                seg_=w[max(0,ca-int(0.03*SR)):ca]; sp_=np.abs(np.fft.rfft(seg_*np.hanning(len(seg_))))**2; fq_=np.fft.rfftfreq(len(seg_),1/SR)
+                if len(seg_) and np.sqrt(sp_[fq_>4000].sum()/(sp_.sum()+1e-20))>0.4:
+                    raise SystemExit(f'【停止】连读处的停顿插在了下一个词开头的 {nxt.phoneme} 后面，{nxt.phoneme} 被留在前一个词上（A25）：{sent[:60]} 第{gi+1}个标点')
         else:
             # ② 两头往里收：上一个词的尾音保留到它衰减到 -55 dB；下一个词从 -55 dB 处开始保留（A10）
             a=r0
