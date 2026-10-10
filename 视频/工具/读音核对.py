@@ -184,17 +184,20 @@ def check(no):
             if rs and ok and not proper: seen[k_] = (None, [lab]); continue
             why = '词典里没有' if not rs else ('不一致：' + '；'.join(sorted({same(tts, r[2])[1] for r in rs})) if not ok else '')
             cat = '专有名词' if proper else ('词典里没有' if not rs else '不一致')
-            c = conf.get(w) or VERIFIED.get(w) or VERIFIED.get(re.sub(r"['’]s$", '', w))
+            c = conf.get(w) or VERIFIED.get(w)
+            if c is None and VERIFIED.get(re.sub(r"['’]s$", '', w)): c = dict(VERIFIED[re.sub(r"['’]s$", '', w)], 原词=True)
             seen[k_] = ((cat, w, ph, why, rs, c), [lab])
     for (w, ph), (info, labs) in seen.items():
         if info is None: continue
         cat, w, ph, why, rs, c = info
         refstr = '；'.join(f'{s}: {v}' for s, v, _ in rs[:4]) or '（两本词典都没有）'
         okf = [c.get('标准读音', c.get('读音', ''))] + list(c.get('可接受读音', [])) if isinstance(c, dict) else []
-        if isinstance(c, dict) and re.search(r"['’]s$", w) and not c.get('读音'):          # 所有格：核实的是原词，配音读法去掉词尾 s/z 再比
+        if isinstance(c, dict) and c.get('原词'):          # 所有格：核实的是原词，配音读法去掉词尾 s/z 再比
             ph_cmp = re.sub(r'(ᵻ|ɪ)?[sz]$', '', ph)
         else: ph_cmp = ph
-        done = any(v and (re.sub(r'[ˈˌ\s]', '', v) == re.sub(r'[ˈˌ\s]', '', ph_cmp) or same(ipa_phones(ph_cmp), ipa_phones(v))[0]) for v in okf)
+        # 已核实的词：配音音标必须与核实的读法逐个符号一致（连重音号；只忽略空格）——配音读法有任何变化都要重新核实
+        #（宽松比对会放过次重读音节的元音错，如 03 Helicobacter 原来读 hˈɛlɪkˌɑːbæktɚ）
+        done = any(v and re.sub(r'\s', '', v) == re.sub(r'\s', '', ph_cmp) for v in okf)
         state = 'OK（已核实）' if done else ('BAD（已核实，但配音读法与核实的读音不一致，加进 PRON_FIX）' if isinstance(c, dict) else '待核实')
         rows.append((cat, f"{no} {state} [{cat}] {w}  配音读作 /{ph}/  {('｜' + why) if why else ''}｜词典：{refstr}｜出现在 {','.join(dict.fromkeys(labs))}", state != 'OK（已核实）'))
     return rows
@@ -241,7 +244,8 @@ def selftest(no):
         phonemes_of = fake; got = {line for _, line, bad in check(no) if bad}; phonemes_of = orig
         res.append((f'把 {w} 的重音挪成 /{bad_ph}/', any(f'] {w} ' in l_ for l_ in got - base)))
     # ② 关掉读音改正
-    used = [w for w in PRON_WORDS if re.search(r'(?<![A-Za-z])' + re.escape(w) + r'(?![A-Za-z])', text, flags=re.I)]
+    used = [w for w in PRON_WORDS if re.search(r'(?<![A-Za-z])' + re.escape(w) + r'(?![A-Za-z])', text, flags=re.I)
+            and re.sub(r'\s', '', PRON_WORDS[w]) != re.sub(r'\s|[,;:.!?]', '', KT.tokenizer.phonemize(w, 'en-us'))]   # McArthur 只差一个空格，听不出，不拿来测
     if used:
         keep = dict(PRON_WORDS); PRON_WORDS.clear()
         got = {line for _, line, bad in check(no) if bad}; PRON_WORDS.update(keep)

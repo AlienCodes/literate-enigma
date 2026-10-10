@@ -35,6 +35,9 @@ def texts_for(no):
 
 if __name__ == '__main__':
     k = Kokoro(S + '/tts/kokoro-v1.0.onnx', S + '/tts/voices-v1.0.bin')
+    # A23 读音改正：标准答案（原始合成）与成片用同一份读音改正表（读错的词按正确音标合成），复核其余部分照旧逐样本比对
+    KT = k; _a = _src.index('# A23 读音改正'); _b = _src.index('k.create=_pron(k.create)')
+    exec(_src[_a:_b] + 'k.create=_pron(k.create)\n')
     V = np.load(S + '/tts/voice_mb.npy')
     meta = {}
     for no in sys.argv[1:]:

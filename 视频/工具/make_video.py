@@ -36,7 +36,8 @@ for _cand in (_PRON_PATH,'读音改正.json','/home/user/postgraduate-vocabulary
     if os.path.exists(_cand): PRON_WORDS={k_:v_['读音'] for k_,v_ in json.load(open(_cand)).items()}; break
 else: PRON_WORDS={'Inky':'ˈɪŋki'}
 def _stress_free_re(ph):
-    return ''.join(re.escape(ch)+'[ˈˌ]?' for ch in re.sub('[ˈˌ]','',ph)).replace(re.escape(' ')+'[ˈˌ]?',r'\s*')
+    """不管重音号在哪（音标里每个符号前后都可能有，McArthur 的重音号在空格之后），都能对上这串音标"""
+    return ''.join(r'\s*' if ch==' ' else '[ˈˌ]?'+re.escape(ch) for ch in re.sub('[ˈˌ]','',ph))+'[ˈˌ]?'
 PRON_FIX={}
 def phonemes_of(text):
     ph=KT.tokenizer.phonemize(text,'en-us')
