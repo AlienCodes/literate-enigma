@@ -552,6 +552,27 @@ def selftest_ending():
     for b, why in ((b1, '没写结尾解说'), (b2, '标签对不上'), (b3, '最后一句没有说明')):
         if not ending_note_checks(b): fails.append(f'没抓到：{why}（T28）')
     return fails
+# L16 说明换行后行首是标点（2026-10-10 10 S17 历史背景：程序按字数自动折行，把“。”折到了第三行开头，截图时看出来）：说明（note）和词下说明的每一行都不许以标点开头
+_LSP = '，。、；：！？）」』”’,.;:!?)'
+def note_linestart_checks(d):
+    out = []
+    for si, s_ in enumerate(d['sentences'], 1):
+        for c in s_['chunks']:
+            for ln in (c.get('note') or '').split('\n')[1:]:
+                if ln and ln[0] in _LSP: out.append(f'[L16] S{si} 说明有一行以标点开头：“{ln[:20]}”（标点留在上一行末尾）')
+            for g in re.findall(r'\{\{([^|{}]+)\|', c['zh']):
+                if g and g[0] in _LSP: out.append(f'[L16] S{si} 词下说明有一行以标点开头：“{g[:20]}”')
+    return out
+def selftest_linestart():
+    """L16 自检（自带样本）：正常断行不报；把“。”折到下一行开头、词下说明以“，”开头都必须报出"""
+    ok_ = {'sentences': [{'chunks': [{'zh': '**拘押了**(in custody)\n{{（被拘留、在羁押中）|in custody}}', 'note': '（历史背景：……几个钉子（即 bare wall）。\n在画作失窃的两年里，……）'}]}]}
+    b1 = copy.deepcopy(ok_); b1['sentences'][0]['chunks'][0]['note'] = '（历史背景：……几个钉子（即 bare wall）\n。在画作失窃的两年里，……）'
+    b2 = copy.deepcopy(ok_); b2['sentences'][0]['chunks'][0]['zh'] = '**拘押了**(in custody)\n{{（被拘留|in custody}}\n{{，在羁押中）|in custody}}'
+    fails = []
+    if note_linestart_checks(ok_): fails.append('L16 误报：正常断行被报出')
+    if not note_linestart_checks(b1): fails.append('没抓到：说明一行以“。”开头（L16，10 S17）')
+    if not note_linestart_checks(b2): fails.append('没抓到：词下说明一行以“，”开头（L16）')
+    return fails
 def selftest_gloss():
     """T25 自检：08 定稿原样不报；去掉 S17 set out to 下面的说明，必须报出；待改清单逐条落实：已落实的不报，没落实的必须报出"""
     base = json.load(open(f'{V}/脚本/08.json')); fails = []
@@ -579,7 +600,7 @@ def main():
         vf = selftest_folders() or video_folders(ROOT)
         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
         return 1 if vf else 0
-    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending()
+    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
@@ -595,6 +616,7 @@ def main():
     if int(no) >= 9: conf += meaning_checks(d, no)                 # T23 同样只查以后新做的篇目（用户：“以后我们再去做的时候……防止再犯”）
     if int(no) >= 9: err += meta_checks(d)                          # T27 说明里不写自问的话（09 起）
     if int(no) >= 10: err += ending_note_checks(d)                  # T28 结尾要有一段解说（10 起）
+    err += note_linestart_checks(d)                                 # L16 说明行首不许是标点（01–10 全部扫过，没有）
     if int(no) >= 9: conf += zh_dup_checks(d)                      # T26 两个重点词同一个中文（09 起）
     err += user_gloss_checks(d, no)                                # T25 用户给的释义要上画面（有待改清单的篇目都查）
     err += [f'[check_all] {x}' for x in check_all_text(no, os.path.abspath(js), stage)]

@@ -18,11 +18,11 @@ After **showings** in Italy, the painting was **reinstated** in the Louvre on 4 
 
 博物馆**重新开放**(reopened)后，**好奇的**(curious)**围观者**(onlookers)排队前来，**盯着看/凝视**(stare at)那块**空着的**(vacant)地方，那幅**杰作**(masterpiece)原先就挂在那里。（where…：引导定语从句，修饰 the vacant space）1911年9月7日，诗人纪尧姆·阿波利奈尔被**拘押了**(in custody)（被拘留、在羁押中）约一周，巴勃罗·毕加索也受到**审问**(interrogated)。两人都洗清了**牵涉**(involvement)这起**盗窃案**(burglary)的嫌疑。（be cleared of：洗清……的嫌疑）
 
-**闯入者**(intruder)是文森佐·佩鲁贾，一个曾在卢浮宫**短期**(temporarily)做过玻璃工的意大利人。（an Italian who…：同位语，说明 Peruggia）星期天**潜伏**(lurked)在一间储藏室里之后，他穿着一件工作罩衫**大步走了**(strode)出去，**未受阻拦的，畅通无阻的**(unchallenged)，画就**塞**(tucked)**在**(beneath)他的衣服**底下**(beneath)。（Having lurked… = After he had lurked…：完成式分词，表示先发生；the painting tucked… = the painting (being) tucked…：独立主格）此后两年多，这幅画一直**藏匿**(stashed)在他巴黎**住处**(lodgings)一只带夹层底的**大箱子**(trunk)里。（lay：lie 的过去式；lie + 过去分词：一直处于……状态）
+**闯入者**(intruder)是文森佐·佩鲁贾，一个曾在卢浮宫**短期**(temporarily)做过玻璃工的意大利人。（an Italian who…：同位语，说明 Peruggia）星期天**潜伏**(lurked)在一间储藏室里之后，他穿着一件工作罩衫**大步走了**(strode)出去，**畅通无阻（的）/未受阻拦（的）**(unchallenged)，画就**塞**(tucked)**在**(beneath)他的衣服**底下**(beneath)。（Having lurked… = After he had lurked…：完成式分词，表示先发生；the painting tucked… = the painting (being) tucked…：独立主格）此后两年多，这幅画一直**藏匿**(stashed)在他巴黎**住处**(lodgings)一只带夹层底的**大箱子**(trunk)里。（lay：lie 的过去式；lie + 过去分词：一直处于……状态）
 
-1913年12月，佩鲁贾**联系了**(contacted)佛罗伦萨的艺术品**商人**(dealer)阿尔弗雷多·杰里。乌菲齐美术馆馆长在佩鲁贾下榻的旅馆**鉴定了**(authenticated)这幅画；佩鲁贾于1913年12月11日被**逮捕**(apprehended)。以**爱国**(patriotism)为由，他说自己想把画**送回祖国**(repatriated)；（他）**误以为**(mistakenly)拿破仑**掠夺了/掠走了**(looted)（尤指战争和暴乱期间）这幅画。（Citing…：现在分词短语作伴随状语；want sth done：想让某物被……；mistakenly believing…：现在分词短语作原因状语）事实上，列奥纳多·达·芬奇**应**(at the invitation of)国王弗朗索瓦一世的**邀请**(at the invitation of)，**携/带着**(accompanied)这幅画去了法国。
+1913年12月，佩鲁贾**联系了**(contacted)佛罗伦萨的艺术品**商人**(dealer)阿尔弗雷多·杰里。乌菲齐美术馆馆长在佩鲁贾下榻的旅馆**鉴定了**(authenticated)这幅画；佩鲁贾于1913年12月11日被**逮捕**(apprehended)。以**爱国**(patriotism)为由，他说自己想把画**送回祖国**(repatriated)；（他）**错误地**(mistakenly)（曲解意思）以为拿破仑**掠夺了/掠走了**(looted)（尤指战争和暴乱期间）这幅画。（Citing…：现在分词短语作伴随状语；want sth done：想让某物被……；mistakenly believing…：现在分词短语作原因状语）事实上，列奥纳多·达·芬奇**应**(at the invitation of)国王弗朗索瓦一世的**邀请**(at the invitation of)，**携/带着**(accompanied)这幅画去了法国。
 
-在意大利**展出**(showings)之后，这幅画于1914年1月4日在卢浮宫被**放回原处**(reinstated)。1914年6月，**法庭**(tribunal)**判处了**(imposed)（佩鲁贾）一年零15天的**刑罚**(penalty)，但他实际**坐牢**(imprisoned)大约才七个月。许多史学家认为，这起**盗窃大案**(heist)**把**(elevated to)这幅众多画作中**备受推崇的**(esteemed)**珍品**(gem)**抬高到了**(elevated to)世界最**著名的**(renowned)画作**的地位**(elevated to)。（argue 后面省略了 that；elevate A to B：把A抬高到B的地位；one … among many：众多……之一）若真如此，它的**名气**(fame)始于一面**光秃秃的**(bare)墙。
+在意大利**展出**(showings)之后，这幅画于1914年1月4日在卢浮宫被**放回原处**(reinstated)。1914年6月，**法庭**(tribunal)**判处了**(imposed)（佩鲁贾）一年零15天的**刑罚**(penalty)，但他实际**坐牢**(imprisoned)大约才七个月。许多史学家认为，这起**盗窃大案**(heist)**把**(elevated to)这幅众多画作中**备受推崇的**(esteemed)**珍品**(gem)**抬高到了**(elevated to)世界最**著名的**(renowned)画作**的地位**(elevated to)。（argue 后面省略了 that；elevate A to B：把A抬高到B的地位；one … among many：众多……之一）若真如此，它的**名气**(fame)始于一面**光秃秃的**(bare)墙。（历史背景：1911年《蒙娜丽莎》被盗后，卢浮宫原本挂画的那面墙上只剩下几个钉子（即 bare wall）。在画作失窃的两年里，无数人慕名来到卢浮宫，专门去看那面空荡荡的墙，这反而极大地激发了公众的好奇心，将其推上了“世界第一名画”的神坛。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -52,7 +52,7 @@ After **showings** in Italy, the painting was **reinstated** in the Louvre on 4 
 | temporarily | 本文：短期；adv. 暂时地，短期地（temporarily closed；be temporarily employed） | 3 |
 | lurked | 本文：潜伏；v. (lurk) 潜伏，埋伏（lurk in the shadows；danger lurking ahead） | 3 |
 | strode | 本文：大步走了；v. (stride) 大步走（stride across the room；stride off angrily） | 3 |
-| unchallenged | 本文：未受阻拦的，畅通无阻的；adj. 未受盘问的；未遭质疑的（go unchallenged；an unchallenged leader） | 3 |
+| unchallenged | 本文：畅通无阻（的）/未受阻拦（的）；adj. 未受盘问的；未遭质疑的（go unchallenged；an unchallenged leader） | 3 |
 | tucked | 本文：塞；v. (tuck) 塞，夹（tuck a shirt in；tucked under one's arm） | 3 |
 | beneath | 本文：在……底下；prep. 在……之下（beneath the surface；beneath a tree） | 3 |
 | stashed | 本文：藏匿；v. (stash) 藏匿，存放（stash money under the bed；stash sth away） | 3 |
@@ -64,7 +64,7 @@ After **showings** in Italy, the painting was **reinstated** in the Louvre on 4 
 | apprehended | 本文：逮捕；v. (apprehend) 逮捕，拘捕（正式用语）（apprehend a suspect） | 4 |
 | patriotism | 本文：爱国；n. 爱国主义，爱国心（a sense/spirit of patriotism） | 4 |
 | repatriated | 本文：送回祖国；v. (repatriate) 遣返；把（文物、资金等）送回本国（repatriate refugees/profits） | 4 |
-| mistakenly | 本文：误以为；adv. 错误地，误（mistakenly believe/think that…） | 4 |
+| mistakenly | 本文：错误地；（曲解意思）；adv. 错误地，误（mistakenly believe/think that…） | 4 |
 | looted | 本文：掠夺了/掠走了；（尤指战争和暴乱期间）；v. (loot) 掠夺，抢劫（looted shops；loot a city） | 4 |
 | at the invitation of | 本文：应……邀请；n. 邀请（at the invitation of；accept/decline an invitation） | 4 |
 | accompanied | 本文：携/带着；v. (accompany) 陪同，随……一起（accompany sb to the station；be accompanied by an adult） | 4 |

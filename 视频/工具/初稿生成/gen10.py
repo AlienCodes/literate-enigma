@@ -2,6 +2,7 @@ import json,re,glob,os
 # 第10篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-10-10 按现行做法：程序打底（英文、重点词与文章逐字核对），重点词中文沿用文章定稿（新版定稿/10）的意思（铁律），
 # 只按《翻译风格》调格式：作定语的形容词“的”、方式副词“地”、过去时的“了”放进粗体，阿拉伯数字照写（第17条），语序必须倒过来的整组。
+# 2026-10-10 用户看 4K 定稿后的第二轮（第12–15条）也已改进来。
 # 2026-10-10 用户看 1080p 草稿后的 11 条修改（制作记录/10_待改清单.md，问答定了第5、11条）已全部改进来。
 # 用户在 08、09 定下的规矩一并照做（09 用户 21 条修改的规律）：
 #   短语型用法整体标（T22，两个方向：stare at、in custody、at the invitation of、elevate … to），被隔开的中文意思每一处都标（T23：应……邀请、把……推上了）；
@@ -31,7 +32,7 @@ S=[
     [[("an Italian who had **temporarily** worked at the Louvre as a glazier.","一个曾在卢浮宫**短期**(temporarily)做过玻璃工的意大利人。")],
      "（an Italian who…：同位语，说明 Peruggia）"]]),
 (3,[[[("Having **lurked** in a storeroom on Sunday,","星期天**潜伏**(lurked)在一间储藏室里之后，")]],
-    [[("he","他"),("**strode** out **unchallenged** in a workman's smock,","穿着一件工作罩衫**大步走了**(strode)出去，**未受阻拦的，畅通无阻的**(unchallenged)，")]],
+    [[("he","他"),("**strode** out **unchallenged** in a workman's smock,","穿着一件工作罩衫**大步走了**(strode)出去，**畅通无阻（的）/未受阻拦（的）**(unchallenged)，")]],
     [[("the painting","画就"),("**tucked**","**塞**(tucked)"),("**beneath** his clothes.","**在**(beneath)他的衣服**底下**(beneath)。")],
      "（Having lurked… = After he had lurked…：完成式分词，表示先发生；\nthe painting tucked… = the painting (being) tucked…：独立主格）"]]),
 (3,[[[("For more than two years","此后两年多，"),("it","这幅画"),("lay","一直"),("**stashed**","**藏匿**(stashed)")]],
@@ -43,7 +44,7 @@ S=[
     [[("Peruggia","佩鲁贾"),("was **apprehended** on 11 December 1913.","于1913年12月11日被**逮捕**(apprehended)。")]]]),
 (4,[[[("Citing","以"),("**patriotism**,","**爱国**(patriotism)为由，")]],
     [[("he said","他说"),("he wanted","自己想"),("it","把画"),("**repatriated**,","**送回祖国**(repatriated)；")]],
-    [[("**mistakenly** believing","（他）**误以为**(mistakenly)"),("Napoleon","拿破仑"),("had **looted**","**掠夺了/掠走了**(looted)\n{{（尤指战争和|looted}}\n{{暴乱期间）|looted}}"),("it.","这幅画。")],
+    [[("**mistakenly**","（他）**错误地**(mistakenly)\n{{（曲解意思）|mistakenly}}"),("believing","以为"),("Napoleon","拿破仑"),("had **looted**","**掠夺了/掠走了**(looted)\n{{（尤指战争和|looted}}\n{{暴乱期间）|looted}}"),("it.","这幅画。")],
      "（Citing…：现在分词短语作伴随状语；want sth done：想让某物被……；\nmistakenly believing…：现在分词短语作原因状语）"]]),
 (4,[[[("In fact","事实上，"),("Leonardo da Vinci","列奥纳多·达·芬奇")]],
     [[("had **accompanied** it to France **at the invitation of** King Francis I.","**应**(at the invitation of)国王弗朗索瓦一世的**邀请**(at the invitation of)，**携/带着**(accompanied)这幅画去了法国。")]]]),
@@ -56,7 +57,8 @@ S=[
     [[("the **heist** **elevated** one **esteemed** **gem** among many","这起**盗窃大案**(heist)**把**(elevated to)这幅众多画作中**备受推崇的**(esteemed)**珍品**(gem)")]],
     [[("**to**","**抬高到了**(elevated to)"),("the world's most **renowned** painting.","世界最**著名的**(renowned)画作**的地位**(elevated to)。")],
      "（argue 后面省略了 that；elevate A to B：把A抬高到B的地位；\none … among many：众多……之一）"]]),
-(5,[[[("If so,","若真如此，"),("its **fame**","它的**名气**(fame)"),("began with","始于"),("a **bare** wall.","一面**光秃秃的**(bare)墙。")]]]),
+(5,[[[("If so,","若真如此，"),("its **fame**","它的**名气**(fame)"),("began with","始于"),("a **bare** wall.","一面**光秃秃的**(bare)墙。")],
+     "（历史背景：1911年《蒙娜丽莎》被盗后，\n卢浮宫原本挂画的那面墙上只剩下几个钉子（即 bare wall）。\n在画作失窃的两年里，无数人慕名来到卢浮宫，\n专门去看那面空荡荡的墙，这反而极大地激发了公众的好奇心，\n将其推上了“世界第一名画”的神坛。）"]]),
 ]
 # 审校后写进的确认（2026-10-10 三视角审校：踩坑核查 [T22] 报出的 6 处逐个核实，都不是短语型用法，同 09 parcels of、pleas for 的判法）
 CONF={"短语":{
@@ -66,7 +68,7 @@ CONF={"短语":{
  "S8 lurked … in":"in a storeroom 是普通地点状语，lurk 本身就是“潜伏”，不是短语型用法",
  "S13 accompanied … to":"to France 是普通的目的地，accompany 本身就是“陪同……去”，不是短语型用法",
  "S15 imprisoned … for":"for about seven months 是时长状语；速查表 be imprisoned for fraud 的 for 是“因……罪”，本句不是这个用法"}}
-out={"no":"10","title_en":"The Stolen Smile","title_zh":"被偷走的微笑","title_fx":{"hl":["Stolen","Smile"],"ghost":[]},"sentences":[],"核对确认":CONF}
+out={"no":"10","title_en":"The Stolen Smile","title_zh":"被偷走的微笑","title_fx":{"hl":["Stolen","Smile"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"历史背景"}   # T28 结尾解说（用户 2026-10-10 第14条）
 for p,chs in S:
     cs=[]
     for c in chs:
