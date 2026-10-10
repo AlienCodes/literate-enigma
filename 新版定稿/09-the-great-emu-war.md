@@ -6,7 +6,7 @@ Around Campion, Western Australia, most farmers were First World War **veterans*
 
 The farmers' **plight** took a military turn. **In desperation**, a **delegation** of ex-soldiers **aired** their **grievances** and asked the Defence Minister for **machine-guns**. He agreed, sending not a **battalion** but a **detachment**: Major Meredith, an **artillery** officer, with two soldiers, two Lewis guns, and 10,000 rounds of **ammunition**. The **offensive** began on 2 November 1932.
 
-At a dam, about a thousand birds approached an **ambush**, but a gun **jammed** after a dozen fell. The flocks broke **formation** into small, **agile** groups, frustrating each **tactical** plan, and a truck-mounted gun proved **futile**. Six days of **wasteful** firing spent 2,500 rounds on perhaps 50 to 200 birds, a **ludicrous** return. After **parliamentary** questions and press **ridicule**, an **embarrassing** **withdrawal** came on 8 November, though shooting restarted within days.
+At a dam, about a thousand birds approached an **ambush**, but a gun **jammed** after a dozen fell. The flocks broke **formation** into small, **agile** groups, **frustrating** each **tactical** plan, and a truck-mounted gun proved **futile**. Six days of **wasteful** firing spent 2,500 rounds on perhaps 50 to 200 birds, a **ludicrous** return. After **parliamentary** questions and press **ridicule**, an **embarrassing** **withdrawal** came on 8 November, though shooting restarted within days.
 
 Meredith was recalled on 10 December. His **memo**'s **inventory** counted 986 kills from 9,860 rounds, a **ratio** of ten **bullets** to one bird. He **likened** the **resilient** birds' **toughness** **to** the **armour** of tanks. Five weeks of **warfare** had barely dented the **hardy** flocks' **endurance**.
 
@@ -18,11 +18,11 @@ Later **pleas** for **reinforcements** were refused, and **intervention** **gave
 
 农民的**困境**(plight)由此走向了军事手段。**绝望之中**(In desperation)，一个由退伍士兵组成的**代表团**(delegation)**公开表达了**(aired)他们的**不满/委屈**(grievances)，请求国防部长提供**机枪**(machine-guns)。（air：作动词，公开说出；ask sb for sth：向某人要某物）部长同意了，但派出的不是**一个营**(battalion)，而是一支**小分队**(detachment)：梅雷迪思少校，一名**炮兵**(artillery)军官，带着两名士兵、两挺刘易斯机枪和1万发**弹药**(ammunition)。（sending…：现在分词短语作伴随状语；not A but B：不是A而是B；冒号后具体说明 detachment）**进攻**(offensive)于1932年11月2日展开。
 
-在一处水坝，约一千只鸟靠近了**埋伏/伏击范围**(ambush)，但打倒十来只后，一挺机枪就**卡壳了**(jammed)。鸟群打乱了（它们自己的）**队形**(formation)，（它们）分成了**灵活的**(agile)小群体，让每一个**战术**(tactical)计划都落了空；装在卡车上的机枪也**徒劳无功**(futile)。（frustrating…：现在分词短语作结果状语；prove + 形容词：结果是……）六天的**浪费的**(wasteful)射击打掉了2,500发，只打死大约50至200只鸟，这是一个**荒唐可笑的**(ludicrous)回报。（spend A on B：在B上花掉A；a ludicrous return：同位语，评价前面这件事）在**议会**(parliamentary)质询和报界**嘲笑/嘲讽**(ridicule)之后，一场**尴尬的**(embarrassing)**撤退**(withdrawal)发生在11月8日；不过没过几天，射击又重新开始了。
+在一处水坝，约一千只鸟靠近了**埋伏/伏击范围**(ambush)，但打倒十来只后，一挺机枪就**卡壳了**(jammed)。鸟群打乱了（它们自己的）**队形**(formation)，（它们）分成了**灵活的**(agile)小群体，**挫败了**(frustrating)每一个**战术**(tactical)计划；装在卡车上的机枪也**徒劳无功**(futile)。（frustrating…：现在分词短语作结果状语；prove + 形容词：结果是……）六天的**浪费的**(wasteful)射击花费了/消耗了2,500发，只打死大约50至200只鸟，这是一个**荒唐可笑的**(ludicrous)回报。（spend A on B：在B上花掉A；a ludicrous return：同位语，评价前面这件事）在**议会**(parliamentary)质询和报界**嘲笑/嘲讽**(ridicule)之后，一场**尴尬的**(embarrassing)**撤退**(withdrawal)发生在11月8日；不过没过几天，射击又重新开始了。
 
 梅雷迪思于12月10日被召回。他在**备忘录**(memo)里开列的**清单**(inventory)计数（显示），9,860发打死了986只，**比例**(ratio)是十发**子弹**(bullets)对一只鸟。（a ratio of A to B：A比B的比例；a ratio…：同位语，说明前面的数字）他**把**(likened to)这些**耐打的**(resilient)鸟的（（人或动物）对困境有承受力的，有复原力的）**坚韧**(toughness)**比作**(likened to)坦克的**装甲**(armour)。（liken A to B：把A比作B）五个星期的**战事**(warfare)几乎没有削弱这些**顽强的**(hardy)鸟群的**耐受力/抗造力**(endurance)。（dent：本义压出凹痕，这里指削弱）
 
-后来请求**增援**(reinforcements)的**恳求**(pleas)都遭到拒绝，**干预**(intervention)**转变为**(gave way to)（让步于）政府**批准**(sanctioned)的**悬赏**(bounty)。（give way to：转变为，让步于；sanctioned…：过去分词短语作后置定语，sanctioned = which was sanctioned，省略了 which was）这种按只计算的**赏金**(payout)（钱款支出）给了农民**补偿**(compensation)，也成为**彻底消灭**(extermination)鸸鹋的**激励**(incentive)。农民在1934年的六个月里领取了5.7万多笔（赏金）**支付**(payments)，是梅雷迪思那986只战果的五十七倍多。（claim：这里指申领；fifty-seven times + 名词：是……的五十七倍）
+后来请求**增援**(reinforcements)的**恳求**(pleas)都遭到拒绝，**干预**(intervention)**转变为**(gave way to)（让步于）政府**批准**(sanctioned)的**悬赏**(bounty)。（give way to：转变为，让步于；sanctioned…：过去分词短语作后置定语，sanctioned = which was sanctioned，省略了 which was）这种按只计算的**钱款支出**(payout)（赏金）给了农民**补偿**(compensation)，也成为**彻底消灭**(extermination)鸸鹋的**激励**(incentive)。农民在1934年的六个月里领取了5.7万多笔（赏金）**支付**(payments)，是梅雷迪思那986只战果的五十七倍多。（claim：这里指申领；fifty-seven times + 名词：是……的五十七倍）（结局怎么理解：军队打了五个星期，只打死986只；政府改成悬赏，让农民自己打、按只领赏金，1934年半年里就领了5.7万多笔，也就是打死了5.7万多只，是军队战果的五十七倍多。可见悬赏的效率远远高于出动军队：对农民是好结局，既拿到了补偿，又有了动力；对军队则是一场难堪的失败。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -54,6 +54,7 @@ Later **pleas** for **reinforcements** were refused, and **intervention** **gave
 | jammed | 本文：卡壳了；v. (jam) 卡住；塞满（the printer jammed；roads jammed with cars） | 3 |
 | formation | 本文：队形；n. 队形，编队；形成（fly in formation） | 3 |
 | agile | 本文：灵活的；adj. 敏捷的，灵活的（an agile climber/mind） | 3 |
+| frustrating | 本文：挫败了；v. (frustrate) 挫败，使落空；使沮丧（frustrate sb's plans/efforts） | 3 |
 | tactical | 本文：战术；adj. 战术的（a tactical error/advantage） | 3 |
 | futile | 本文：徒劳无功；adj. 徒劳的，无效的（a futile attempt） | 3 |
 | wasteful | 本文：浪费的；adj. 浪费的（wasteful spending） | 3 |
@@ -79,7 +80,7 @@ Later **pleas** for **reinforcements** were refused, and **intervention** **gave
 | gave way to | 本文：转变为（让步于）；短语. (give way to) 转变为，让步于；被……取代（give way to panic） | 5 |
 | sanctioned | 本文：批准；v. (sanction) 批准，认可；制裁（officially sanctioned；sanction the use of force） | 5 |
 | bounty | 本文：悬赏；n. 悬赏金，赏金（a bounty on sb's head） | 5 |
-| payout | 本文：赏金（钱款支出）；n. （一笔）支付款，赔付，赏金（an insurance payout；a lottery payout） | 5 |
+| payout | 本文：钱款支出（赏金）；n. （一笔）支付款，赔付，赏金（an insurance payout；a lottery payout） | 5 |
 | compensation | 本文：补偿；n. 补偿，赔偿（claim compensation for damage） | 5 |
 | extermination | 本文：彻底消灭；n. 灭绝，根除，彻底消灭（the extermination of pests） | 5 |
 | incentive | 本文：激励；n. 激励，动力（tax incentives；an incentive to work harder） | 5 |

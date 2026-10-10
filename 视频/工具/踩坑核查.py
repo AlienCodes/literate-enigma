@@ -484,12 +484,12 @@ def user_gloss_checks(d, no, txt=None):
         f = f'{V}/制作记录/{no}_待改清单.md'
         if not os.path.exists(f): return []
         txt = open(f).read()
-    zh = _gloss_norm(''.join(c['zh'] for s in d['sentences'] for c in s['chunks']))
+    zh = _gloss_norm(''.join(c['zh'] + c.get('note', '') for s in d['sentences'] for c in s['chunks']))   # note 也在画面上（09 S18 结局解读放在 note 里）
     out = []
     for m in re.finditer(r'(?:的意思是|下面要有)[：:]\s*([^。”\n]+)', txt):
         g = _gloss_norm(m.group(1))
         if len(g) >= 4 and g not in zh: out.append(f'[T25] 待改清单里用户给的释义“{m.group(1)[:40]}”没有出现在画面上（要在这个词的中文正下方加同色括号）')
-    zhs = [c['zh'] for s in d['sentences'] for c in s['chunks']]; ens = [c['en'] for s in d['sentences'] for c in s['chunks']]
+    zhs = [c['zh'] for s in d['sentences'] for c in s['chunks']] + [c.get('note', '') for s in d['sentences'] for c in s['chunks']]; ens = [c['en'] for s in d['sentences'] for c in s['chunks']]
     for k, x in re.findall(r'(画面上要有|英文要有|画面上不要有)[：:]\s*`([^`]+)`', txt):
         if any(x in t for t in (ens if k == '英文要有' else zhs)) == (k == '画面上不要有'):
             out.append(f'[T25] 待改清单里“{k}：{x[:40]}”没有落实（用户要改的地方漏改了）')

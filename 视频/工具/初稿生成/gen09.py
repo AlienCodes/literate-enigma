@@ -26,9 +26,9 @@ S=[
 (3,[[[("At a dam,","在一处水坝，"),("about a thousand birds","约一千只鸟"),("approached","靠近了"),("an **ambush**,","**埋伏/伏击范围**(ambush)，")]],
     [[("but","但"),("a gun **jammed** after a dozen fell.","打倒十来只后，一挺机枪就**卡壳了**(jammed)。")]]]),
 (3,[[[("The flocks","鸟群"),("broke","打乱了"),("**formation**","（它们自己的）**队形**(formation)，"),("into","（它们）分成了"),("small, **agile** groups,","**灵活的**(agile)小群体，")]],
-    [[("frustrating each **tactical** plan,","让每一个**战术**(tactical)计划都落了空；")]],
+    [[("**frustrating**","**挫败了**(frustrating)"),("each **tactical** plan,","每一个**战术**(tactical)计划；")]],
     [[("and a truck-mounted gun","装在卡车上的机枪"),("proved **futile**.","也**徒劳无功**(futile)。")],"（frustrating…：现在分词短语作结果状语；prove + 形容词：结果是……）"]]),
-(3,[[[("Six days of","六天的"),("**wasteful** firing","**浪费的**(wasteful)射击"),("spent","打掉了"),("2,500 rounds","2,500发，"),("on perhaps 50 to 200 birds,","只打死大约50至200只鸟，")]],
+(3,[[[("Six days of","六天的"),("**wasteful** firing","**浪费的**(wasteful)射击"),("spent","花费了/消耗了"),("2,500 rounds","2,500发，"),("on perhaps 50 to 200 birds,","只打死大约50至200只鸟，")]],
     [[("a **ludicrous** return.","这是一个**荒唐可笑的**(ludicrous)回报。")],"（spend A on B：在B上花掉A；\na ludicrous return：同位语，评价前面这件事）"]]),
 (3,[[[("After **parliamentary** questions","在**议会**(parliamentary)质询"),("and press **ridicule**,","和报界**嘲笑/嘲讽**(ridicule)之后，")]],
     [[("an **embarrassing** **withdrawal**","一场**尴尬的**(embarrassing)**撤退**(withdrawal)"),("came","发生在"),("on 8 November,","11月8日；")]],
@@ -41,10 +41,10 @@ S=[
 (5,[[[("Later","后来"),("**pleas** for **reinforcements**","请求**增援**(reinforcements)的**恳求**(pleas)"),("were refused,","都遭到拒绝，")]],
     [[("and **intervention**","**干预**(intervention)"),("**gave way to**","**转变为**(gave way to)（让步于）"),("a **bounty** **sanctioned** by the government.","政府**批准**(sanctioned)的**悬赏**(bounty)。")],
      "（give way to：转变为，让步于；\nsanctioned…：过去分词短语作后置定语，\nsanctioned = which was sanctioned，省略了 which was）"]]),
-(5,[[[("This **payout** per bird","这种按只计算的**赏金**(payout)（钱款支出）"),("gave farmers","给了农民"),("**compensation**","**补偿**(compensation)，")]],
+(5,[[[("This **payout** per bird","这种按只计算的**钱款支出**(payout)（赏金）"),("gave farmers","给了农民"),("**compensation**","**补偿**(compensation)，")]],
     [[("and an **incentive** for **extermination**.","也成为**彻底消灭**(extermination)鸸鹋的**激励**(incentive)。")]]]),
 (5,[[[("Farmers","农民"),("claimed over 57,000 **payments** in six months of 1934,","在1934年的六个月里领取了5.7万多笔（赏金）**支付**(payments)，")]],
-    [[("more than fifty-seven times Meredith's 986 kills.","是梅雷迪思那986只战果的五十七倍多。")],"（claim：这里指申领；fifty-seven times + 名词：是……的五十七倍）"]]),
+    [[("more than fifty-seven times Meredith's 986 kills.","是梅雷迪思那986只战果的五十七倍多。")],"（claim：这里指申领；fifty-seven times + 名词：是……的五十七倍）\n（结局怎么理解：军队打了五个星期，只打死986只；政府改成悬赏，\n让农民自己打、按只领赏金，1934年半年里就领了5.7万多笔，\n也就是打死了5.7万多只，是军队战果的五十七倍多。\n可见悬赏的效率远远高于出动军队：对农民是好结局，\n既拿到了补偿，又有了动力；对军队则是一场难堪的失败。）"]]),
 ]
 # 2026-10-10 两视角独立审校后我逐条判定（见 制作记录/09.md）：采纳细切分组、注释分行与改准、恢复文章原话（结成鸟群…蜂拥而至、他在备忘录里开列的清单、已有四分之一的人放弃了土地）、
 # 作定语的形容词带“的”（浪费的射击、荒唐可笑的回报）；涉及定稿用词的（parcels/farmland、payments、swarmed in、撤出/撤退、走向/转向、（军队）干预）只作建议交用户定。
