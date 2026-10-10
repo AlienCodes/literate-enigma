@@ -160,6 +160,7 @@ def text_checks(d, art=None, sent=None):
 # 改法：连着的整体加粗（**arising from**）；被隔开的按 T14 两部分都加粗、中文括注写完整短语（**attributed** **epidemics** **to** / **归因于**(attributed to)）。
 # 介词只是普通介词短语开头、不构成固定用法的，核实后写进 核对确认.短语："S6 plunged … from": "理由"。
 PH_PREPS = 'to from as on in of with for into at by about out up off over upon onto against through away down back'.split()
+PH_BACK = 'in on at by under with without within beyond'.split()   # 反方向：这些介词 + 名词重点词（in flocks、in desperation、on foot、by chance）
 PH_SLOT = r"(?:A|B|C|sb|sth|sb's|sth's|one|one's|oneself|somebody|something|\.\.\.|…|……|doing|do)"
 PH_CORE = {'attribute':['to'],'ascribe':['to'],'stem':['from'],'arise':['from'],'result':['in','from'],'derive':['from'],'originate':['from'],
  'depend':['on','upon'],'rely':['on','upon'],'consist':['of'],'account':['for'],'refer':['to'],'interpret':['as'],'regard':['as'],'view':['as'],
@@ -216,6 +217,13 @@ def phrase_checks(d, no):
         for j, (w, b) in enumerate(toks):
             wc = re.sub(r"[^\w'-]", '', w)
             if not b or not wc: continue
+            # 反方向：介词紧挨在名词重点词前面、中间没有冠词（09 S3 in **flocks**、S5 In **desperation**，用户 2026-10-10：“In desperation，作为整体，
+            # 作为一个整体。而不是单独desperation。”）——零冠词的“介词 + 名词”多是固定用法；名词看速查表词性（n.），速查表没有这一行也报
+            pv = re.sub(r"[^\w'-]", '', toks[j - 1][0]).lower() if j else ''
+            if pv in PH_BACK and not toks[j - 1][1] and re.match(r'(n\.|$)', sq.get(wc.lower(), '')):
+                key = f'S{i} {pv} … {wc}'
+                if key not in ok and not any(pv in k and wc.lower() in k for k in keys):
+                    out.append(f'[T22] {key}「{toks[j - 1][0]} {w}」  ← 介词 + 名词的固定用法（in flocks、in desperation）只标了名词？是就整体加粗、同色，中文意思标全（T23）；不是就核实后写进 核对确认.短语')
             lem = _lemma(wc, sq)
             preps = _ph_pats(sq.get(wc.lower(), '') + ' ' + sq.get(lem, '') + ' ' + notes, lem, wc) | set(PH_CORE.get(lem, []))
             for prep in sorted(preps):
@@ -244,6 +252,14 @@ def selftest_phrase():
                 c['zh'] = c['zh'].replace(k0, k1); hit = True
         if not hit: fails.append(f'T22 自检样本找不到：{no} S{si + 1} {en0}')
         elif not any(key in x for x in phrase_checks(d, no)): fails.append(f'没抓到：短语只标一个词（T22，{no} {en1}）')
+    # 反方向（介词 + 名词）：09 S5 造成只标 desperation 必须报出；整体标 In desperation 不报（不依赖 09 脚本现在改没改）
+    base = json.load(open(f'{V}/脚本/09.json'))
+    for en_, zh_, want in (('In **desperation**,', '**绝望**(desperation)之中，', True), ('**In desperation**,', '**绝望之中**(In desperation)，', False)):
+        d = copy.deepcopy(base); c = d['sentences'][4]['chunks'][0]
+        if 'desperation' not in c['en']: fails.append('T22 自检样本找不到：09 S5 desperation'); break
+        c['en'], c['zh'], c['align'] = en_, zh_, [[en_, zh_]]
+        got = any('S5 in … desperation' in x for x in phrase_checks(d, '09'))
+        if got != want: fails.append('没抓到：介词 + 名词只标名词（T22，09 In **desperation**）' if want else 'T22 误报：整体标的 **In desperation** 被报出')
     return fails
 
 
@@ -461,19 +477,31 @@ def check_all_text(no, js, stage='出片'):
 # 或者下定决心要去完成某事。……为什么下面的翻译为什么没有这个解说呢？”）：待改清单里用户原话中“……的意思是：……”“……下面要有：……”给出的释义，
 # 必须出现在画面的中文里（去掉标点、换行、颜色标记后比对）。
 def _gloss_norm(t): return re.sub(r'[\s，。、；：:,;.（）()“”"\'·…—\-]', '', re.sub(r'\{\{([^|{}]+)\|[^{}]+\}\}', r'\1', t))
-def user_gloss_checks(d, no):
-    f = f'{V}/制作记录/{no}_待改清单.md'
-    if not os.path.exists(f): return []
+# 待改清单逐条落实（09 起，用户 2026-10-10：“要改的东西，我们最后统一修改”）：每一条写明改完后的原文——
+# “画面上要有：`…`”“英文要有：`…`”“画面上不要有：`…`”（反引号里逐字照脚本写），出片前逐字比对脚本，漏改一条就停。
+def user_gloss_checks(d, no, txt=None):
+    if txt is None:
+        f = f'{V}/制作记录/{no}_待改清单.md'
+        if not os.path.exists(f): return []
+        txt = open(f).read()
     zh = _gloss_norm(''.join(c['zh'] for s in d['sentences'] for c in s['chunks']))
     out = []
-    for m in re.finditer(r'(?:的意思是|下面要有)[：:]\s*([^。”\n]+)', open(f).read()):
+    for m in re.finditer(r'(?:的意思是|下面要有)[：:]\s*([^。”\n]+)', txt):
         g = _gloss_norm(m.group(1))
         if len(g) >= 4 and g not in zh: out.append(f'[T25] 待改清单里用户给的释义“{m.group(1)[:40]}”没有出现在画面上（要在这个词的中文正下方加同色括号）')
+    zhs = [c['zh'] for s in d['sentences'] for c in s['chunks']]; ens = [c['en'] for s in d['sentences'] for c in s['chunks']]
+    for k, x in re.findall(r'(画面上要有|英文要有|画面上不要有)[：:]\s*`([^`]+)`', txt):
+        if any(x in t for t in (ens if k == '英文要有' else zhs)) == (k == '画面上不要有'):
+            out.append(f'[T25] 待改清单里“{k}：{x[:40]}”没有落实（用户要改的地方漏改了）')
     return sorted(set(out))
 def selftest_gloss():
-    """T25 自检：08 定稿原样不报；去掉 S17 set out to 下面的说明，必须报出"""
+    """T25 自检：08 定稿原样不报；去掉 S17 set out to 下面的说明，必须报出；待改清单逐条落实：已落实的不报，没落实的必须报出"""
     base = json.load(open(f'{V}/脚本/08.json')); fails = []
     if user_gloss_checks(base, '08'): fails.append('T25 误报：08 定稿原样被报出：' + '；'.join(user_gloss_checks(base, '08')))
+    ok_ = '画面上要有：`**丧生**(perished)。`\n英文要有：`**attributed** **epidemics** **to** miasma`\n画面上不要有：`**丧命**(perished)`'
+    if user_gloss_checks(base, '08', ok_): fails.append('T25 误报：08 已落实的改动被报出：' + '；'.join(user_gloss_checks(base, '08', ok_)))
+    for bad_ in ('画面上要有：`**丧命**(perished)`', '英文要有：`**attributed** epidemics`', '画面上不要有：`**丧生**(perished)`'):
+        if not user_gloss_checks(base, '08', bad_): fails.append(f'没抓到：待改清单的改动没落实（T25，{bad_}）')
     d = copy.deepcopy(base); hit = False
     for c in d['sentences'][16]['chunks']:
         if '带着明确的目标' in c['zh']:
