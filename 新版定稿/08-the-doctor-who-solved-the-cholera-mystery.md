@@ -25,7 +25,7 @@ In 1855 a government **inquiry** **declined to** **condemn** the pump, **contend
 
 **反过来**(Conversely)，汉普斯特德的一位**寡妇**(widow)已有几个月没**踏进过**(set foot in)苏豪，却让人把这口泵的水每天**用车运来**(carted)。（have sth done：让人做某事；set foot in：踏进）她死了，来探望她并喝了这水的**侄女**(niece)也死了。（as did…：倒装，= and so did a visiting niece）汉普斯特德**那时**(then)并没有霍乱。
 
-1855年，政府的**调查委员会**(inquiry)（官方调查程序；被任命进行调查的委员会）**拒绝**(declined to)（谢绝；婉言拒绝（觉得方式比较体面，礼貌））给这口泵**定罪**(condemn)，**坚称**(contending)泵水至多是**吸收了**(absorbed)**经空气传播的**(airborne)毒素。（contending…：现在分词短语作伴随状语，后面省略了 that；at most：充其量）**与此同时**(Meanwhile)，**心存怀疑的**(sceptical)副牧师（协助教区牧师的低级神职人员）亨利·怀特黑德**一心想**(set out to)**驳倒**(refute)斯诺，却发现喝泵水的人**死于**(succumb to)这种病的可能性远高于旁人，反倒**证明了**(vindicating)斯诺是**正确的**(vindicating)。（succumb to：本义屈服于，这里指死于某病；vindicating…：现在分词短语作结果状语）
+1855年，政府的**调查委员会**(inquiry)（官方调查程序；被任命进行调查的委员会）**拒绝**(declined to)（谢绝；婉言拒绝（方式比较体面，礼貌））给这口泵**定罪**(condemn)，**坚称**(contending)泵水至多是**吸收了**(absorbed)**经空气传播的**(airborne)毒素。（contending…：现在分词短语作伴随状语，后面省略了 that；at most：充其量）**与此同时**(Meanwhile)，**心存怀疑的**(sceptical)副牧师（协助教区牧师的低级神职人员）亨利·怀特黑德**一心想**(set out to)（带着明确的目标开始做某事，或者下定决心要去完成某事）**驳倒**(refute)斯诺，却发现喝泵水的人**死于**(succumb to)这种病的可能性远高于旁人，反倒**证明了**(vindicating)斯诺是**正确的**(vindicating)。（succumb to：本义屈服于，这里指死于某病；vindicating…：现在分词短语作结果状语）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -75,7 +75,7 @@ In 1855 a government **inquiry** **declined to** **condemn** the pump, **contend
 | niece | 本文：侄女；n. 侄女；外甥女（英文不分；原文未说明是哪一种，文中按习惯译「侄女」；nephew 侄子；外甥） | 5 |
 | then | 本文：那时；adv. 那时，当时；然后，接着；那么，因此 | 5 |
 | inquiry | 本文：调查委员会（官方调查程序；被任命进行调查的委员会）；n. 调查（委员会），调查研究；询问，查询 | 6 |
-| declined to | 本文：拒绝（谢绝；婉言拒绝（觉得方式比较体面，礼貌））；短语. decline to do sth 拒绝做某事；decline v. 婉拒，谢绝；下降，衰退；n. 下降，衰落 | 6 |
+| declined to | 本文：拒绝（谢绝；婉言拒绝（方式比较体面，礼貌））；短语. decline to do sth 拒绝做某事；decline v. 婉拒，谢绝；下降，衰退；n. 下降，衰落 | 6 |
 | condemn | 本文：定罪；v. 谴责；认定……有罪，判……刑（condemn sb to death）；（因不安全）宣布（建筑物、设施等）停用 | 6 |
 | contending | 本文：坚称；v. (contend) 坚称，坚持认为（contend that）；竞争，争夺（contend for）；应付（contend with） | 6 |
 | absorbed | 本文：吸收了；v. (absorb) 吸收（液体、气体等）；吸引……的注意力（be absorbed in 专心于）；吞并 | 6 |

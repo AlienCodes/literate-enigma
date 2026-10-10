@@ -21,9 +21,7 @@ for t in ts:
     if sk is None: print(f'{t:.3f}s 不在任何一句里'); continue
     if sk == 0: print(f'{t:.3f}s 在标题里（标题 w 秒 ≈ {(i - segs_a[0][0]) / SR:.3f}，未计句中压缩）'); continue
     s = d['sentences'][sk - 1]; sent = ' '.join(re.sub(r'\*\*', '', R.strip_gloss(c['en'])).strip() for c in s['chunks'])
-    lst = set()
-    for ml in re.finditer(r"(?:\b[\w'-]+(?: [\w'-]+){0,4}, ){2,}(?:and|or) ", sent):
-        for mc in re.finditer(r',', ml.group(0)): lst.add(ml.start() + mc.start())
+    lst = list_commas(sent)   # 列举逗号与出片程序同一个函数（make_video.list_commas）
     pieces = []; p0 = 0; gaps = []
     for mm in re.finditer(r'[,;:](?=\s)', sent): pieces.append((p0, mm.end())); p0 = mm.end() + 1; gaps.append(P_LIST if mm.start() in lst else P_COMMA)
     pieces.append((p0, len(sent)))

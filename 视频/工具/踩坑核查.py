@@ -84,7 +84,7 @@ def layout(d):
             for r in R._rows([tuple(p) for p in c['align']], colors, ef, zf, gapx, 1840 * R.S):
                 cols = [r[1]] if isinstance(r, tuple) else r
                 rows.append(('整格折行' if isinstance(r, tuple) else '行', ns(''.join(t for col in cols for t, _ in col['se'])), max(col['nz'] for col in cols)))
-            ss.append({'en': ns(strip_en(c['en'])), '标记': re.findall(r'\{\{[=/]\}\}', c['en']), '断行在': before, '画面各行': rows})
+            ss.append({'en': ns(strip_en(c['en'])), '标记': re.findall(r'\{\{(?:[=/]|一行)\}\}', c['en']), '断行在': before, '画面各行': rows})
         sig.append(ss)
     return sig
 
@@ -122,6 +122,13 @@ def text_checks(d, art=None, sent=None):
                 if num not in c['zh'] and num.replace(',', '') not in c['zh'].replace(',', ''):
                     key = f'{C} {num}'
                     if key not in num_ok: conf.append(f'[T16] {key}  ← 中文里没有这个数，读法/写法核对后写进 核对确认.数字')
+            # T24 用户口述（语音输入）多识别出来的词照抄进了画面（08 S16 用户口述“婉言拒绝(觉得方式比较体面，礼貌)”，“觉得”是语音输入多出来的，
+            # 我按 T10 照抄；用户：“这个地方为什么会有一个觉得呢？……没有觉得那两个字”）：括号说明、note 里出现这类词，核对用户本意后写进 核对确认.口述
+            segs = re.findall(r'（(?:[^（）]|（[^（）]*）)*）', c['zh']) + ([c['note']] if c.get('note') else [])
+            for seg in segs:
+                for m in re.finditer(r'觉得|嗯|呃|那个|就是说|然后呢|你知道', seg):
+                    key = f'{C} {m.group(0)}'
+                    if key not in d.get('核对确认', {}).get('口述', {}): conf.append(f'[T24] {key}  ← 用户口述（语音输入）里常多出来的词出现在括号说明或 note 里：{seg[:30]}，核对用户本意后改掉，或写进 核对确认.口述')
             # T19：第04篇初稿与 01–03 定稿写法不一致、经独立审校查出的几类（01–03 里从未出现或只出现过经用户认可的个例）
             if re.search(r'\*\*\([^)]*\)了', c['zh']): err.append(f'[T19了] {C} "了"要放进加粗里（如 **扫描了**(scanned)）：{c["zh"][:30]}')
             def ask(tag, what, hint):
@@ -307,6 +314,9 @@ def selftest():
         c = d['sentences'][si]['chunks'][ck]; c['en'] = c['en'].replace('food, and', 'food and')
         c['align'] = [[a.replace('food, and', 'food and'), z] for a, z in c['align']]
     mut('牛津逗号被去掉（T18）', 'T18', ox, art.replace('food, and', 'food and'))
+    def t24(d):
+        c = d['sentences'][2]['chunks'][0]; c['zh'] += '（觉得这样更体面）'; c['align'][-1] = [c['align'][-1][0], c['align'][-1][1] + '（觉得这样更体面）']
+    mut('括号说明里有语音输入多出来的“觉得”（T24）', 'T24', t24)
     mut('英文里混进换行标记（D1）', 'D1', lambda d: d['sentences'][0]['chunks'][0].__setitem__('en', d['sentences'][0]['chunks'][0]['en'] + '\n'))
     def d2(d): d['sentences'][1]['chunks'][0]['zh'] += '多'
     mut('zh 与分组拼接不一致（D2）', 'D2', d2)

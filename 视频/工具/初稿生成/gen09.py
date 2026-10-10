@@ -6,46 +6,48 @@ import json,re,glob
 # 后置定语的 note 写出省略了什么（用户 2026-10-10：“gathered = which was gathered，省略了 which was……让他们更好懂”）。
 S=[
 (1,[[[("Around Campion, Western Australia,","在西澳大利亚州坎皮恩一带，")]],
-    [[("most farmers","大多数农民"),("were","是"),("First World War **veterans**,","第一次世界大战的**退伍军人**(veterans)，")]],
-    [[("**settlers**","他们作为**定居者**(settlers)，"),("placed by a government scheme","由政府计划安置"),("on **marginal** **parcels** of **farmland**.","在**贫瘠的**(marginal)**小块土地**(parcels)上，以这些**农地**(farmland)为生。")],
-     "（settlers…：同位语，说明 veterans；\nplaced… = who were placed…，过去分词短语作后置定语，省略了 who were）"]]),
+    [[("most farmers","大多数农民"),("were","是"),("First World War","第一次世界大战的"),("**veterans**,","**退伍军人**(veterans)，")]],
+    [[("**settlers**","他们作为**定居者**(settlers)，"),("placed by a government scheme","由政府计划安置"),("on **marginal** **parcels**","在**贫瘠的**(marginal)**小块土地**(parcels)上，"),("of **farmland**.","以这些**农地**(farmland)为生。")],
+     "（settlers…：同位语，说明 veterans；placed…：过去分词短语作后置定语，\nplaced = who were placed，省略了 who were）"]]),
 (1,[[[("They","他们"),("were","是"),("**inexperienced** **growers**,","**缺乏经验的**(inexperienced)**种植者**(growers)，")]],
-    [[("and a quarter","已有四分之一的人"),("had already quit.","放弃了土地。")]]]),
+    [[("and a quarter had already quit.","已有四分之一的人放弃了土地。")]]]),
 (1,[[[("In 1932,","1932年，"),("after drought,","旱灾过后，")]],
-    [[("roughly 20,000 emus","约2万只鸸鹋"),("**swarmed** in from **arid** country","从**干旱**(arid)地区**蜂拥而至**(swarmed)，"),("in **flocks**","结成**鸟群**(flocks)，")]],
+    [[("roughly 20,000 emus","约2万只鸸鹋"),("**swarmed** in from **arid** country in **flocks**","结成**鸟群**(flocks)，从**干旱**(arid)地区**蜂拥而至**(swarmed)，")]],
     [[("and **trampled**","**践踏了**(trampled)"),("the wheat **crops**.","小麦**庄稼**(crops)。")]]]),
-(2,[[[("The farmers' **plight**","农民的**困境**(plight)"),("took a military turn.","由此走向了军事手段。")]]]),
+(2,[[[("The farmers'","农民的"),("**plight**","**困境**(plight)"),("took a military turn.","由此走向了军事手段。")]]]),
 (2,[[[("In **desperation**,","**绝望**(desperation)之中，")]],
-    [[("a **delegation** of ex-soldiers","一个由退伍士兵组成的**代表团**(delegation)"),("aired their **grievances**","陈述了**不满**(grievances)，")]],
-    [[("and asked the Defence Minister","请求国防部长"),("for **machine-guns**.","提供**机枪**(machine-guns)。")],"（air grievances：陈述不满；ask sb for sth：向某人要某物）"]]),
+    [[("a **delegation** of ex-soldiers","一个由退伍士兵组成的**代表团**(delegation)"),("aired","陈述了"),("their **grievances**","**不满**(grievances)，")]],
+    [[("and asked","请求"),("the Defence Minister","国防部长"),("for **machine-guns**.","提供**机枪**(machine-guns)。")],"（air：作动词，公开说出；ask sb for sth：向某人要某物）"]]),
 (2,[[[("He agreed,","部长同意了，"),("sending","但派出的"),("not a **battalion**","不是**整营兵力**(battalion)，"),("but a **detachment**:","而是一支**小分队**(detachment)：")]],
     [[("Major Meredith,","梅雷迪思少校，"),("an **artillery** officer,","一名**炮兵**(artillery)军官，")]],
-    [[("with two soldiers,","带着两名士兵、"),("two Lewis guns,","两挺刘易斯机枪"),("and 10,000 rounds of **ammunition**.","和1万发**弹药**(ammunition)。")],
-     "（sending…：现在分词短语作伴随状语；not A but B：不是A而是B；冒号后具体说明 detachment）"]]),
+    [[("with","带着"),("two soldiers,","两名士兵、"),("two Lewis guns,","两挺刘易斯机枪"),("and 10,000 rounds","和1万发"),("of **ammunition**.","**弹药**(ammunition)。")],
+     "（sending…：现在分词短语作伴随状语；not A but B：不是A而是B；\n冒号后具体说明 detachment）"]]),
 (2,[[[("The **offensive**","**攻势**(offensive)"),("began on 2 November 1932.","于1932年11月2日展开。")]]]),
-(3,[[[("At a dam,","在一处水坝，"),("about a thousand birds","约一千只鸟"),("approached an **ambush**,","走近**伏击圈**(ambush)，")]],
-    [[("but a gun **jammed** after a dozen fell.","但打倒十来只后，一挺机枪就**卡壳了**(jammed)。")]]]),
-(3,[[[("The flocks","鸟群"),("broke **formation**","打乱**队形**(formation)，"),("into small, **agile** groups,","分成**灵活的**(agile)小群，")]],
+(3,[[[("At a dam,","在一处水坝，"),("about a thousand birds","约一千只鸟"),("approached","走近"),("an **ambush**,","**伏击圈**(ambush)，")]],
+    [[("but","但"),("a gun **jammed** after a dozen fell.","打倒十来只后，一挺机枪就**卡壳了**(jammed)。")]]]),
+(3,[[[("The flocks","鸟群"),("broke","打乱"),("**formation**","**队形**(formation)，"),("into","分成"),("small, **agile** groups,","**灵活的**(agile)小群，")]],
     [[("frustrating each **tactical** plan,","让每一个**战术**(tactical)计划都落了空；")]],
     [[("and a truck-mounted gun","装在卡车上的机枪"),("proved **futile**.","也**徒劳无功**(futile)。")],"（frustrating…：现在分词短语作结果状语；prove + 形容词：结果是……）"]]),
-(3,[[[("Six days of **wasteful** firing","六天的**浪费**(wasteful)射击"),("spent 2,500 rounds","打掉了2,500发，"),("on perhaps 50 to 200 birds,","只打死大约50至200只鸟，")]],
-    [[("a **ludicrous** return.","这样的回报**荒唐可笑**(ludicrous)。")],"（spend A on B：在B上花掉A；a ludicrous return：同位语，评价前面这件事）"]]),
+(3,[[[("Six days of","六天的"),("**wasteful** firing","**浪费的**(wasteful)射击"),("spent","打掉了"),("2,500 rounds","2,500发，"),("on perhaps 50 to 200 birds,","只打死大约50至200只鸟，")]],
+    [[("a **ludicrous** return.","这是一个**荒唐可笑的**(ludicrous)回报。")],"（spend A on B：在B上花掉A；\na ludicrous return：同位语，评价前面这件事）"]]),
 (3,[[[("After **parliamentary** questions","在**议会**(parliamentary)质询"),("and press **ridicule**,","和报界**嘲讽**(ridicule)之后，")]],
-    [[("an **embarrassing** **withdrawal**","一场**尴尬的**(embarrassing)**撤出**(withdrawal)"),("came on 8 November,","发生在11月8日；")]],
+    [[("an **embarrassing** **withdrawal**","一场**尴尬的**(embarrassing)**撤出**(withdrawal)"),("came","发生在"),("on 8 November,","11月8日；")]],
     [[("though","不过"),("shooting restarted within days.","没过几天，射击又重新开始了。")]]]),
 (4,[[[("Meredith","梅雷迪思"),("was recalled on 10 December.","于12月10日被召回。")]]]),
-(4,[[[("His **memo**'s **inventory**","他**备忘录**(memo)里开列的**清单**(inventory)"),("counted 986 kills from 9,860 rounds,","显示，9,860发打死了986只，")]],
-    [[("a **ratio** of ten **bullets** to one bird.","**比例**(ratio)是十发**子弹**(bullets)对一只鸟。")],"（a ratio of A to B：A比B的比例；a ratio…：同位语，说明前面的数字）"]]),
-(4,[[[("He likened","他把"),("the **resilient** birds' **toughness**","这些**耐打的**(resilient)鸟的**坚韧**(toughness)"),("to the **armour** of tanks.","比作坦克的**装甲**(armour)。")],"（liken A to B：把A比作B）"]]),
-(4,[[[("Five weeks of **warfare**","五个星期的**战事**(warfare)"),("had barely dented","几乎没有削弱"),("the **hardy** flocks' **endurance**.","这些**顽强的**(hardy)鸟群的**耐力**(endurance)。")],"（dent：本义压出凹痕，这里指削弱）"]]),
-(5,[[[("Later **pleas** for **reinforcements**","后来请求**增援**(reinforcements)的**恳求**(pleas)"),("were refused,","都遭到拒绝，")]],
+(4,[[[("His **memo**'s","他在**备忘录**(memo)里开列的"),("**inventory**","**清单**(inventory)"),("counted","显示，"),("986 kills from 9,860 rounds,","9,860发打死了986只，")]],
+    [[("a **ratio**","**比例**(ratio)是"),("of ten **bullets**","十发**子弹**(bullets)"),("to one bird.","对一只鸟。")],"（a ratio of A to B：A比B的比例；\na ratio…：同位语，说明前面的数字）"]]),
+(4,[[[("He","他"),("likened","把"),("the **resilient** birds'","这些**耐打的**(resilient)鸟的"),("**toughness**","**坚韧**(toughness)"),("to","比作"),("the **armour** of tanks.","坦克的**装甲**(armour)。")],"（liken A to B：把A比作B）"]]),
+(4,[[[("Five weeks of","五个星期的"),("**warfare**","**战事**(warfare)"),("had barely","几乎没有"),("dented","削弱"),("the **hardy** flocks'","这些**顽强的**(hardy)鸟群的"),("**endurance**.","**耐力**(endurance)。")],"（dent：本义压出凹痕，这里指削弱）"]]),
+(5,[[[("Later","后来"),("**pleas** for **reinforcements**","请求**增援**(reinforcements)的**恳求**(pleas)"),("were refused,","都遭到拒绝，")]],
     [[("and **intervention**","**干预**(intervention)"),("gave way to","让位于"),("a **bounty** **sanctioned** by the government.","政府**批准**(sanctioned)的**悬赏**(bounty)。")],
-     "（give way to：让位于；sanctioned… = which was sanctioned…，过去分词短语作后置定语，省略了 which was）"]]),
+     "（give way to：让位于；\nsanctioned…：过去分词短语作后置定语，\nsanctioned = which was sanctioned，省略了 which was）"]]),
 (5,[[[("This **payout** per bird","这种按只计算的**赏款**(payout)"),("gave farmers","给了农民"),("**compensation**","**补偿**(compensation)，")]],
     [[("and an **incentive** for **extermination**.","也成为**灭除**(extermination)鸸鹋的**动力**(incentive)。")]]]),
 (5,[[[("Farmers","农民"),("claimed over 57,000 **payments** in six months of 1934,","在1934年的六个月里领取了5.7万多笔**赏金**(payments)，")]],
-    [[("more than fifty-seven times Meredith's 986 kills.","是梅雷迪思那986只战果的五十七倍多。")]]]),
+    [[("more than fifty-seven times Meredith's 986 kills.","是梅雷迪思那986只战果的五十七倍多。")],"（claim：这里指申领；fifty-seven times + 名词：是……的五十七倍）"]]),
 ]
+# 2026-10-10 两视角独立审校后我逐条判定（见 制作记录/09.md）：采纳细切分组、注释分行与改准、恢复文章原话（结成鸟群…蜂拥而至、他在备忘录里开列的清单、已有四分之一的人放弃了土地）、
+# 作定语的形容词带“的”（浪费的射击、荒唐可笑的回报）；涉及定稿用词的（parcels/farmland、payments、swarmed in、撤出/撤退、走向/转向、（军队）干预）只作建议交用户定。
 CONF={}
 out={"no":"09","title_en":"The Great Emu War","title_zh":"向鸸鹋宣战","title_fx":{"hl":["Emu","War"],"ghost":[]},"sentences":[],"核对确认":CONF}
 for p,chs in S:
@@ -56,6 +58,11 @@ for p,chs in S:
         if len(c)>1: d["note"]=c[1]
         cs.append(d)
     out["sentences"].append({"para":p,"chunks":cs})
+import os
+if os.path.exists("scripts/09.json"):                      # 保留后来写进脚本的核对确认、列举逗号、结尾句等（初稿程序只管句子）
+    old=json.load(open("scripts/09.json"))
+    for k_,v_ in old.items():
+        if k_ not in ("no","title_en","title_zh","title_fx","sentences"): out[k_]=v_
 json.dump(out,open("scripts/09.json","w"),ensure_ascii=False,indent=1)
 art=open(glob.glob("/home/user/postgraduate-vocabulary/新版定稿/09-*.md")[0]).read()
 eng=art.split("## 英文")[1].split("## 中文")[0].strip().split("\n\n")

@@ -33,9 +33,7 @@ for no in sys.argv[1:]:
         sent=' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in s['chunks'])
         ms=list(re.finditer(r'[,;:](?=\s)',sent))
         if not ms: continue
-        lst=set()
-        for ml in re.finditer(r"(?:\b[\w'-]+(?: [\w'-]+){0,4}, ){2,}(?:and|or) ",sent):
-            for mc in re.finditer(r',',ml.group(0)): lst.add(ml.start()+mc.start())
+        lst = list_commas(sent)   # 列举逗号与出片程序同一个函数（make_video.list_commas）
         pieces=[];p0=0;gaps=[]
         for mm in ms: pieces.append((p0,mm.end())); p0=mm.end()+1; gaps.append(P_LIST if mm.start() in lst else P_COMMA)
         pieces.append((p0,len(sent)))

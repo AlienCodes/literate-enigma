@@ -145,11 +145,13 @@ def frame_stack_fit(chunks,colors,header,progress,out,active=None,maxw=1760,maxh
 
 # ---------- interlinear (word-aligned) layout ----------
 def _segs_en(t,colors):
-    # {{…}} = 只显示不朗读的英文注解，颜色跟随前一个重点词；{{=}} = 这一格保持一行、不自动折行（不显示、不朗读）
+    # {{…}} = 只显示不朗读的英文注解，颜色跟随前一个重点词；{{=}} = 这一格保持一行、不自动折行（不显示、不朗读）；
+    # {{一行}} = 这一块（这一行的所有格子）整块排成一行、不折成两行（写在第一格英文开头；不显示、不朗读）。08 S17 用户要求
+    # “Henry Whitehead set out to refute Snow but found”保持一行，set out to 下面加了两行彩色说明后格子变宽，会被自动折成两行。
     out=[]
     for p in re.split(r'(\*\*[^*]+\*\*|\{\{.*?\}\})',t):
         if p.startswith('**'): out.append((p[2:-2],colors.get(p[2:-2].lower())))
-        elif p=='{{=}}': continue
+        elif p in ('{{=}}','{{一行}}'): continue
         elif p.startswith('{{'): out.append((p[2:-2],out[-1][1] if out else None))
         elif p: out.append((p,None))
     return out
@@ -214,6 +216,7 @@ def _rows(p,colors,ef,zf,gapx,maxw):
         else: segs[-1].append((a,b))
     out=[]
     for s in segs:
+        if s and any('{{一行}}' in a for a,_ in s): out.append(_pair_cols(s,colors,ef,zf,gapx)); continue   # 整块一行（字号由 max_es 缩到放得下）
         if s: out+=[r for r in _wrap_cols(_pair_cols(s,colors,ef,zf,gapx),maxw,gapx) if r]
     return out
 LAYOUT_ES=68*S; MAXW2=1860*S; MAXH2=1020*S

@@ -26,6 +26,14 @@ VERIFIED = json.load(open(f'{TD}/已核实读音.json')) if os.path.exists(f'{TD
 # 整句音标变了就要重新核对。虚词（that 等）只有弱读/重读之分，不算。
 HET = {k_.lower() for k_, v_ in MG.items() if isinstance(v_, dict) and any(t_ not in ('DEFAULT', None, 'None') and isinstance(x_, str) for t_, x_ in v_.items())}
 HETCONF = json.load(open(f'{TD}/多音词核对.json')) if os.path.exists(f'{TD}/多音词核对.json') else {}
+def het_key(x):
+    """多音词判定：词本身在 HET 里；或是 HET 里名词/动词同形词的 -s/-es 形式（records 作名词 REcords、作动词 reCORDS，同一拼写两种读法）。
+    -ed/-ing 形式只可能是动词，发音词典也只收一种读法，读错时逐词比对就会报出，不列（2026-10-10 09 查证：refused、recalled、restarted）"""
+    l = x.lower()
+    if l in HET: return l
+    for suf in ('es', 's'):
+        if l.endswith(suf) and len(l) - len(suf) >= 3 and l[:-len(suf)] in HET: return l[:-len(suf)]
+    return None
 
 # ---- 音标 → 粗音位（只保留会听错的区别）----
 V_IPA = [('aɪ', 'AY'), ('aʊ', 'AW'), ('ɔɪ', 'OY'), ('eɪ', 'EY'), ('oʊ', 'OW'), ('əʊ', 'OW'), ('ɑː', 'AA'), ('ɔː', 'AO'), ('iː', 'IY'), ('uː', 'UW'),
@@ -170,7 +178,7 @@ def check(no):
         sp = spoken(re.sub(r'\*\*', '', R.strip_gloss(t)))
         ph_sent = re.sub(r'[ˈˌ\s]', '', phonemes_of(sp))
         ws = words_of(sp)
-        for w in dict.fromkeys(x for y in ws for x in y.split('-') if x.lower() in HET and x.lower() not in FUNC):   # 连字符词逐段查（02 college-entrance）
+        for w in dict.fromkeys(x for y in ws for x in y.split('-') if het_key(x) and x.lower() not in FUNC):   # 连字符词逐段查（02 college-entrance）
             c_ = HETCONF.get(f'{no} {lab} {w}')
             if not (isinstance(c_, dict) and c_.get('判定') == '正确' and c_.get('整句音标') == phonemes_of(sp)):
                 rows.append(('多音词', f"{no} {'待核实' if c_ is None else '整句读法变了，要重新核实'} [多音词] {w}  词典里按词性有几种读法：{MG.get(w) or MG.get(w.lower())}｜整句：/{phonemes_of(sp)}/｜出现在 {lab}", True))

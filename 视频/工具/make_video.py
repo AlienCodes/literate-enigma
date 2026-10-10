@@ -56,7 +56,8 @@ def phonemes_of(text):
             if got_!=n_: raise SystemExit(f'【停止】读音改正没有全部换到（A23）：{w_} 出现 {n_} 次，整句里正确读音 {got_} 处：{text[:60]}')
             continue
         if re.sub('[ˈˌ]','',bad)==re.sub('[ˈˌ]','',good) and bad==good: continue
-        ph,cnt=re.subn("(?<![^\\s,;:.!?])"+_stress_free_re(bad)+"(?=[\\s,;:.!?]|$)",good,ph)
+        ph,cnt=re.subn("(?<![^\\s,;:.!?])"+_stress_free_re(bad)+"([sz]?)(?=[\\s,;:.!?]|$)",lambda m_:good+(('s' if good.rstrip('ˈˌː')[-1] in 'ptkfθ' else 'z') if m_.group(1) else ''),ph)
+        # ↑ 所有格（09 S18 Meredith's）：词后的 's 按改正后读音的最后一个音定清浊——清辅音 p t k f θ 后读 /s/，其余读 /z/（配音原来把 Meredith's 读成 …ɪθz）
         if cnt!=n_: raise SystemExit(f'【停止】读音改正没有全部换到（A23）：{w_} 出现 {n_} 次，换了 {cnt} 次：{text[:60]}')
     return ph
 def _pron(fn):
@@ -253,6 +254,25 @@ for _p in sorted(_glob.glob('scripts/*.json')):
     _d=_json.load(open(_p))
     for _k,_v in _d.get('结尾句',{}).items():
         ENDING[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _d['sentences'][int(_k[1:])-1]['chunks'])]=_v
+# 牛津逗号列举 A, B, and C / A, B, or C：列举内部的逗号只停 P_LIST（0.2 秒），其余逗号 P_COMMA（0.4 秒）。自动判定用下面的正则（并列项每项不超过 5 个词），
+# 会误判：09 S9 "into small, agile groups, frustrating each tactical plan, and a truck-mounted gun proved futile" 不是三项并列，却被整段判成列举。
+# 人工核实后写进 scripts/NN.json 的 "列举逗号"：{"S9": [1]}——这一句按 [,;:] 从 1 数，只有列出的那几个是列举逗号（[] = 没有），不再用正则。
+# 出片和所有核查程序（都 exec 本文件）用同一个函数 list_commas（2026-10-10 以前 6 个程序各写一份正则）。
+LIST_AT={}
+for _p in sorted(_glob.glob('scripts/*.json')):
+    _d=_json.load(open(_p))
+    for _k,_v in _d.get('列举逗号',{}).items():
+        LIST_AT[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _d['sentences'][int(_k[1:])-1]['chunks'])]={int(x) for x in _v}
+def list_commas(sent):
+    """sent 里列举内部逗号的字符位置集合"""
+    if sent in LIST_AT:
+        marks=[m.start() for m in re.finditer(r'[,;:](?=\s)',sent)]
+        if max(LIST_AT[sent],default=0)>len(marks): raise SystemExit(f'【停止】列举逗号写的位置超出这一句的标点数（{len(marks)} 个）：{sent[:60]}')
+        return {marks[i-1] for i in LIST_AT[sent]}
+    lst=set()
+    for ml in re.finditer(r"(?:\b[\w'-]+(?: [\w'-]+){0,4}, ){2,}(?:and|or) ",sent):
+        for mc in re.finditer(r',',ml.group(0)): lst.add(ml.start()+mc.start())
+    return lst
 def _nonvoice(w,ivs,label):
     """非人声区间换成数字静音（长度不变）。守门：区间里不能有 ≥-30 dB 的声音；不紧贴词的一头，外侧紧挨着的 5 ms 必须 <-55 dB；
     紧贴词尾/词头的一头必须在过零点（词本身不动）。"""
@@ -340,12 +360,14 @@ def _keep_tail(raw,w,head):
     out[-F_:]*=np.linspace(1,0,F_)**2
     return out
 def _ending_parts(sent,e):
-    """结尾句的两遍合成与接点；接点两侧各 10 ms 必须低于 -55 dB（只在听不见的静音里接），否则停"""
+    """结尾句的两遍合成与接点；接点所在的 5 ms 帧和两侧各一帧（共约 15 ms）必须低于 -55 dB（只在听不见的静音里接），否则停。
+    2026-10-10 从“两侧各 10 ms”放宽到“两侧各 5 ms”：09 S18 “1934, more” 两种语速逗号后都连读，最长的 -55 dB 静音只有 15 ms；
+    -55 dB 两侧各 5 ms 与删除段两头的标准相同（听不见）。01–08 的接点都满足原来的 10 ms，声音不变"""
     rF,_=k.create(spoken(sent),voice=V,speed=float(e['前段语速']),lang='en-us'); rS,_=k.create(spoken(sent),voice=V,speed=float(e['最后一段语速']),lang='en-us')
     rF=np.asarray(rF,np.float32); rS=np.asarray(rS,np.float32); mF,mS=int(e['接点'][0]),int(e['接点'][1]); F_=int(0.005*SR)
     for r_,m_,nm_ in ((rF,mF,'前段'),(rS,mS,'最后一段')):
-        e_=_env5(r_); seg_=e_[max(0,(m_-int(0.01*SR))//F_):(m_+int(0.01*SR))//F_+1]
-        if not len(seg_) or seg_.max()>=-55: raise SystemExit(f'【停止】结尾句的接点不在静音里（{nm_}，样本 {m_}，两侧 10 ms 最响 {seg_.max() if len(seg_) else 0:.1f} dB）：{sent[:60]}')
+        e_=_env5(r_); seg_=e_[max(0,m_//F_-1):m_//F_+2]
+        if not len(seg_) or seg_.max()>=-55: raise SystemExit(f'【停止】结尾句的接点不在静音里（{nm_}，样本 {m_}，所在帧和两侧各 5 ms 最响 {seg_.max() if len(seg_) else 0:.1f} dB）：{sent[:60]}')
     return rF,rS,mF,mS
 def _ending_toks(sent,e):
     """结尾句每个音的时刻（接起来的声音里的秒）：接点前取前段那遍的，接点后取最后一段那遍的（平移过来）"""
@@ -590,9 +612,7 @@ def build(js,out):
         bounds=[];pos=0
         for t in texts: bounds.append(pos); pos+=len(t)+1
         # 牛津逗号列举 A, B, and C / A, B, or C：列举内部的逗号只停 P_LIST
-        lst=set()
-        for ml in re.finditer(r"(?:\b[\w'-]+(?: [\w'-]+){0,4}, ){2,}(?:and|or) ",sent):  # 并列项每项不超过 5 个词
-            for mc in re.finditer(r',',ml.group(0)): lst.add(ml.start()+mc.start())
+        lst=list_commas(sent)   # 列举逗号（见 list_commas）
         pieces=[];p0=0;gaps=[]
         for mm in re.finditer(r'[,;:](?=\s)',sent):
             pieces.append((p0,mm.end())); p0=mm.end()+1; gaps.append(P_LIST if mm.start() in lst else P_COMMA)
