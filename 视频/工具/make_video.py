@@ -365,6 +365,30 @@ def _ending_raw(sent,e):
     if '整句语速' in e:                                                # 没有句中标点的结尾句：整句一个较慢的语速
         r_,_=k.create(spoken(sent),voice=V,speed=float(e['整句语速']),lang='en-us'); return np.asarray(r_,np.float32)
     rF,rS,mF,mS=_ending_parts(sent,e); return np.concatenate([rF[:mF],rS[mS:]])
+# A27 结尾句放慢不许丢音（2026-10-10 02 结尾句整句 0.80 倍速时，perseveres 词尾的 /z/ 没了，读成“a child persevere depends”；
+# 原速 0.95 时 /z/ 清楚）：结尾句的每一个 /s z ʃ ʒ/，在原速那遍里清楚（这个音前后 80 ms 内，5 ms 帧 4 kHz 以上能量占比 ≥0.5、电平 >-40 dB），
+# 在结尾句那遍里也必须清楚，否则程序停下（换一个保得住这个音的语速，写进 结尾句 并说明）。
+def _sib_strength(r_,toks_):
+    r_=np.asarray(r_,np.float32); F_=int(0.005*SR); W_=int(0.01*SR); n_=len(r_)//F_
+    rms_=np.sqrt(np.mean(r_[:n_*F_].reshape(n_,F_)**2,axis=1)); lv_=20*np.log10(rms_/(rms_.max()+1e-12)+1e-9)
+    f_=np.fft.rfftfreq(W_,1/SR); hw_=np.hanning(W_); out=[]
+    for t_ in toks_:
+        if t_.phoneme in 'szʃʒ':
+            best=0.0
+            for i_ in range(max(1,int((t_.start-0.08)*SR)//F_),min(n_,int((t_.end+0.08)*SR)//F_+1)):
+                x_=r_[i_*F_-60:i_*F_-60+W_]
+                if len(x_)<W_ or lv_[i_]<=-40: continue
+                X_=np.abs(np.fft.rfft(x_*hw_))**2; best=max(best,float(X_[f_>4000].sum()/(X_.sum()+1e-20)))
+            out.append((t_.phoneme,round(t_.start,2),best))
+    return out
+def _ending_sib_guard(sent,e,raw_e,toks_e):
+    import types as _ty
+    r0_,_=k.create(spoken(sent),voice=V,speed=SPEED,lang='en-us')
+    tb_,_,ts_=KT.create_timed(spoken(sent),voice=V,speed=SPEED,lang='en-us',clause_pause=0,sentence_pause=0); sc_=len(r0_)/len(tb_)
+    a_=_sib_strength(r0_,[_ty.SimpleNamespace(phoneme=t_.phoneme,start=t_.start*sc_,end=t_.end*sc_) for t_ in ts_]); b_=_sib_strength(raw_e,toks_e)
+    if len(a_)!=len(b_): raise SystemExit(f'【停止】结尾句的擦音个数对不上（A27，原速 {len(a_)} 个、结尾句 {len(b_)} 个）：{sent[:60]}')
+    lost=[(x_,y_) for x_,y_ in zip(a_,b_) if x_[2]>=0.5 and y_[2]<0.5]
+    if lost: raise SystemExit(f'【停止】结尾句放慢后丢了擦音（A27）：'+'；'.join(f'/{x_[0]}/ 原速 {x_[1]}s 强度 {x_[2]:.2f} → 结尾句 {y_[1]}s 强度 {y_[2]:.2f}' for x_,y_ in lost)+f'。换一个保得住这个音的语速：{sent[:60]}')
 def sentence_audio(sent,pieces,gaps):
     """整句一次合成（原模型，声音不变）。标点位置用带时长输出的同版模型精确定位（A9）；
     在标点处只删除"真正无声"的部分（A10：绝不删词尾的 s/f/z 等弱音），再补静音，使实际听到的停顿 = 标准时长。"""
@@ -378,6 +402,7 @@ def sentence_audio(sent,pieces,gaps):
     if sent in NONVOICE: w=_nonvoice(w,NONVOICE[sent],sent)
     if sent in GRAFT: w=_graft(w,GRAFT[sent],sent)
     if E_: toks=_ending_toks(sent,E_); scale=1.0                         # 每个音的时刻（接起来的声音里的秒）
+    if E_: _ending_sib_guard(sent,E_,raw,toks)                         # A27 结尾句放慢不许丢音
     else:
         tb,_,sp=KT.create_timed(spoken(sent),voice=V,speed=SPEED,lang='en-us',clause_pause=0,sentence_pause=0)
         scale=len(raw)/len(tb); toks=list(sp)
