@@ -472,9 +472,19 @@ def sentence_audio(sent,pieces,gaps):
                 ov=INSERT_AT.get(sent,{}).get(gi+1)
                 if ov is not None:                                    # 停顿太短、只插不删的这一种，也认人工核实的插入点（A19：06 S2 subtraction, 的 /n/ 余音）
                     cx=int(round(ov*SR))
-                    if not (r0*F<=cx<=r1*F) or e[cx//F-1]>=PAUSE_DB:
-                        raise SystemExit(f'【停止】人工核实的插入点不在这一段短停顿里（A15/A19）：{sent[:60]} 第{gi+1}个标点')
-                    ca=cb=cx
+                    if r0*F<=cx<=r1*F and e[cx//F-1]<PAUSE_DB: ca=cb=cx
+                    else:
+                        # A28（2026-10-10，04 S17 结尾句 learned, it：程序选中的“短停顿”其实是下一个词 it 的 /t/ 闭塞，停顿插进了 it 里，
+                        # 听成 learned it…… seems）：人工用实际声音核实的插入点不在程序选中的短停顿里时，说明程序选错了词缝——
+                        # 按人工核实的点插（两词连读、只插不删），守门条件与连读处的人工插入点相同（A15：在该标点附近；是低谷或已很轻）
+                        f_=cx//F
+                        if not (pe-60<=f_<=ns+20) or (e[f_]>min(e[max(0,f_-2):f_+3]) and e[f_]>-24):
+                            raise SystemExit(f'【停止】人工核实的插入点不在这一段短停顿里，也不在该标点附近的低谷（A15/A19/A28）：{sent[:60]} 第{gi+1}个标点')
+                        if nxt.phoneme in 'szʃ' and prv.phoneme not in 'szʃʒfθvð':   # A25 同样把关
+                            seg_=w[max(0,cx-int(0.03*SR)):cx]; sp_=np.abs(np.fft.rfft(seg_*np.hanning(len(seg_))))**2; fq_=np.fft.rfftfreq(len(seg_),1/SR)
+                            if len(seg_) and np.sqrt(sp_[fq_>4000].sum()/(sp_.sum()+1e-20))>0.4:
+                                raise SystemExit(f'【停止】连读处的停顿插在了下一个词开头的 {nxt.phoneme} 后面（A25）：{sent[:60]} 第{gi+1}个标点')
+                        ca=cb=cx; keep=0.0; r0=r1=None
         dv=DEL_AT.get(sent,{}).get(gi+1)
         if dv is not None:
             rr=np.sqrt(np.mean(w[:len(e)*F].reshape(len(e),F)**2,axis=1)).max()
