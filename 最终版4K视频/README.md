@@ -11,4 +11,4 @@
 | 03 | The Doctor Who Drank Bacteria to Win an Argument | 喝下细菌的医生 | 12.3 MB |
 | 04 | The Brain That Learned London | 被街道重塑的大脑 | 12.6 MB |
 | 06 | The Horse That Could Count | 会算术的马 | 11.8 MB |
-| 07 | The Octopus That Escaped | 越狱的章鱼 | 10.7 MB |
+| 07 | The Octopus That Escaped | 越狱的章鱼 | 10.8 MB |

@@ -40,18 +40,22 @@ if __name__ == '__main__':
     exec(_src[_a:_b] + 'k.create=_pron(k.create)\n')
     V = np.load(S + '/tts/voice_mb.npy')
     meta = {}
+    # A22 淡入淡出的位置：出片程序写在 work_NN/淡入淡出.json（原始合成里的样本位置：淡出起点、切点、淡入终点）
+    FADES = {no: (json.load(open(f'{S}/video/work_{no}/淡入淡出.json')) if os.path.exists(f'{S}/video/work_{no}/淡入淡出.json') else {}) for no in sys.argv[1:]}
     for no in sys.argv[1:]:
         d, items = texts_for(no)
         meta[no] = []
         for it in items:
             idx = it[1]
             text = it[2]
-            fn = f'{OUT}/{no}_{"T" if idx < 0 else "%02d" % idx}.npy'
             gr = d.get('词尾除阻', {}).get('标题' if idx < 0 else f'S{idx + 1}')
-            if gr: fn = fn[:-4] + '_词尾除阻.npy'                    # 每次重算（不与没有移植的版本混用）
-            if idx >= 0 and d.get('结尾句', {}).get(f'S{idx + 1}'): fn = fn[:-4] + '_结尾句.npy'
-            if spoken(text)!=text or gr or not os.path.exists(fn) or (idx >= 0 and d.get('结尾句', {}).get(f'S{idx + 1}')):
-                en_ = d.get('结尾句', {}).get(f'S{idx + 1}') if idx >= 0 else None
+            en_ = d.get('结尾句', {}).get(f'S{idx + 1}') if idx >= 0 else None
+            # 标准答案的缓存键 = 这一句实际合成用的全部输入（音标含读音改正、移植、结尾句参数）的指纹：
+            # 任何一项变了就重新合成（2026-10-10：07 S4 读音改正后仍用了旧读音的缓存，复核整篇对不上）
+            fd_ = FADES.get(no, {}).get(f'S{idx + 1}', []) if idx >= 0 else []
+            key_ = _hl.md5(repr((phonemes_of(spoken(text)), gr, en_, fd_, 0.95)).encode()).hexdigest()[:10]
+            fn = f'{OUT}/{no}_{"T" if idx < 0 else "%02d" % idx}_{key_}.npy'
+            if not os.path.exists(fn):
                 if en_: a, sr = _ending_raw(text, en_), 24000     # 结尾句：两遍合成在接点接起来（与出片同一个函数，接点两侧必须是静音）
                 else: a, sr = k.create(spoken(text), voice=V, speed=0.95, lang='en-us')
                 assert sr == 24000
@@ -62,6 +66,9 @@ if __name__ == '__main__':
                     a = np.concatenate([a, np.zeros(end - len(a), np.float32)])
                     for sec, kd in gr.values():
                         p0 = int(round(float(sec) * SR)); n0 = len(_donor(kd)); a[st + p0:st + p0 + n0] = wg[p0:p0 + n0]
+                for s0, c0, e0 in fd_:      # A22：连读处插停顿的淡出/淡入（与出片同一条曲线、同一位置；其余样本照旧逐样本比对）
+                    a[s0:c0] *= (0.5 + 0.5 * np.cos(np.linspace(0, np.pi, c0 - s0))).astype(np.float32)
+                    a[c0:e0] *= (0.5 - 0.5 * np.cos(np.linspace(0, np.pi, e0 - c0))).astype(np.float32)
                 np.save(fn, a)
             meta[no].append({'idx': idx, 'text': text, 'file': fn,
                              'para': it[3] if len(it) > 3 else None,
