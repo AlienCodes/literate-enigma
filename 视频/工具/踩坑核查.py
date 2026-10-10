@@ -494,6 +494,26 @@ def user_gloss_checks(d, no, txt=None):
         if any(x in t for t in (ens if k == '英文要有' else zhs)) == (k == '画面上不要有'):
             out.append(f'[T25] 待改清单里“{k}：{x[:40]}”没有落实（用户要改的地方漏改了）')
     return sorted(set(out))
+# T26 同一篇里两个不同的重点词用了同一个中文（09 用户把 payout 改成“赏金”，S18 payments 原来也是“赏金”）：学生分不清哪个是哪个，报出待确认；
+# 同一个词的不同形式（flock / flocks）、被隔开的同一个意思（**把**(likened to)…**比作**(likened to)）不算。确实要一样的写进 核对确认.中文重复：{"赏金": "理由"}。
+def zh_dup_checks(d):
+    ok = d.get('核对确认', {}).get('中文重复', {}); seen = {}
+    for s_ in d['sentences']:
+        for c in s_['chunks']:
+            for z, e in re.findall(r'\*\*([^*]+)\*\*\(([^)]+)\)', c['zh']): seen.setdefault(z, set()).add(e.lower())
+    return [f'[T26] 中文“{z}”同时是 {"、".join(sorted(es))} 的意思——两个不同的重点词用了同一个中文，学生分不清；换一个，确实要一样就写进 核对确认.中文重复'
+            for z, es in sorted(seen.items()) if len({re.sub(r'(ies|es|s|ed|ing)$', '', e) for e in es}) > 1 and z not in ok]
+def selftest_zhdup():
+    """T26 自检：09 原样不报；把 S17 payout 的中文改成和 S18 payments 一样的“赏金”，必须报出"""
+    base = json.load(open(f'{V}/脚本/09.json')); fails = []
+    if zh_dup_checks(base): fails.append('T26 误报：09 原样被报出：' + '；'.join(zh_dup_checks(base)))
+    d = copy.deepcopy(base); hit = False
+    for c in d['sentences'][16]['chunks']:
+        if '(payout)' in c['zh']:
+            c['zh'] = re.sub(r'\*\*[^*]+\*\*\(payout\)', '**赏金**(payout)', c['zh']); hit = True
+    if not hit: fails.append('T26 自检样本找不到：09 S17 payout')
+    elif not any('赏金' in x for x in zh_dup_checks(d)): fails.append('没抓到：两个重点词用了同一个中文（T26，09 payout/payments 赏金）')
+    return fails
 def selftest_gloss():
     """T25 自检：08 定稿原样不报；去掉 S17 set out to 下面的说明，必须报出；待改清单逐条落实：已落实的不报，没落实的必须报出"""
     base = json.load(open(f'{V}/脚本/08.json')); fails = []
@@ -521,7 +541,7 @@ def main():
         vf = selftest_folders() or video_folders(ROOT)
         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
         return 1 if vf else 0
-    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_meaning() + selftest_gloss()
+    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_meaning() + selftest_gloss() + selftest_zhdup()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
@@ -535,6 +555,7 @@ def main():
     # 已做完的 01–08 不回头查；08 只改用户点名的 S2 attributed … to（制作记录/08_待改清单.md）
     if int(no) >= 9: conf += phrase_checks(d, no)
     if int(no) >= 9: conf += meaning_checks(d, no)                 # T23 同样只查以后新做的篇目（用户：“以后我们再去做的时候……防止再犯”）
+    if int(no) >= 9: conf += zh_dup_checks(d)                      # T26 两个重点词同一个中文（09 起）
     err += user_gloss_checks(d, no)                                # T25 用户给的释义要上画面（有待改清单的篇目都查）
     err += [f'[check_all] {x}' for x in check_all_text(no, os.path.abspath(js), stage)]
     print(f'第{no}篇 {stage}阶段 踩坑核查（{js}）：')
