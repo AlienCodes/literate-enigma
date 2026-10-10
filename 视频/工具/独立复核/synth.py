@@ -49,8 +49,11 @@ if __name__ == '__main__':
             fn = f'{OUT}/{no}_{"T" if idx < 0 else "%02d" % idx}.npy'
             gr = d.get('词尾除阻', {}).get('标题' if idx < 0 else f'S{idx + 1}')
             if gr: fn = fn[:-4] + '_词尾除阻.npy'                    # 每次重算（不与没有移植的版本混用）
-            if spoken(text)!=text or gr or not os.path.exists(fn):
-                a, sr = k.create(spoken(text), voice=V, speed=0.95, lang='en-us')
+            if idx >= 0 and d.get('结尾句', {}).get(f'S{idx + 1}'): fn = fn[:-4] + '_结尾句.npy'
+            if spoken(text)!=text or gr or not os.path.exists(fn) or (idx >= 0 and d.get('结尾句', {}).get(f'S{idx + 1}')):
+                en_ = d.get('结尾句', {}).get(f'S{idx + 1}') if idx >= 0 else None
+                if en_: a, sr = _ending_raw(text, en_), 24000     # 结尾句：两遍合成在接点接起来（与出片同一个函数，接点两侧必须是静音）
+                else: a, sr = k.create(spoken(text), voice=V, speed=0.95, lang='en-us')
                 assert sr == 24000
                 a = np.asarray(a, np.float32)
                 if gr:

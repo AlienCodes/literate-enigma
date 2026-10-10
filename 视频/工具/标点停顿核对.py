@@ -41,6 +41,7 @@ for no in sys.argv[1:]:
         pieces.append((p0,len(sent)))
         try: clips,tm=sentence_audio(sent,pieces,gaps)
         except SystemExit as ex: print('FAIL',no,si,ex); bad+=1; continue
+        gaps=LAST.get('gaps',gaps)                                     # 这一句实际用的标准停顿（结尾句最后一段前是结尾的长度）
         out=np.concatenate(clips); e=_env5(out); F=int(0.005*SR)
         for k2 in range(len(ms)):
             t_sil0=tm[k2][3]; t_sil1=tm[k2+1][2]   # 插入静音的起止（秒）

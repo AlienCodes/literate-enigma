@@ -232,6 +232,16 @@ for _p in sorted(_glob.glob('scripts/*.json')):
         NONVOICE[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks'])]=_v
     for _k,_v in _d.get('词尾除阻',{}).items():                     # A21（见 _graft）
         GRAFT['标题::'+_d['title_en'] if _k=='标题' else ' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _d['sentences'][int(_k[1:])-1]['chunks'])]=_v
+# 结尾句（2026-10-10，用户听过试听后同意：“行，那就先把零七的这种4k最终视频做出来”）：全篇最后一句前段用较快语速、
+# 最后一段（最后一个标点之后）用较慢语速，最后一段前的停顿加长，读出结尾的感觉。同一句整句合成两遍，在最后一个标点后那段静音里的
+# “接点”（两遍里各一个样本位置，用实际声音核实过：两侧各 10 ms 都低于 -55 dB）接起来，当成这一句的原始合成；之后的处理
+# （非人声、移植、停顿、高亮、所有核查、独立复核）都把它当一次合成看待（都用 _ending_raw）。
+#   "结尾句"：{"S16": {"前段语速": 0.90, "最后一段语速": 0.78, "最后一段前停顿": 0.70, "接点": [前段样本, 最后一段样本]}}
+ENDING={}
+for _p in sorted(_glob.glob('scripts/*.json')):
+    _d=_json.load(open(_p))
+    for _k,_v in _d.get('结尾句',{}).items():
+        ENDING[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _d['sentences'][int(_k[1:])-1]['chunks'])]=_v
 def _nonvoice(w,ivs,label):
     """非人声区间换成数字静音（长度不变）。守门：区间里不能有 ≥-30 dB 的声音；不紧贴词的一头，外侧紧挨着的 5 ms 必须 <-55 dB；
     紧贴词尾/词头的一头必须在过零点（词本身不动）。"""
@@ -318,15 +328,41 @@ def _keep_tail(raw,w,head):
     out=np.concatenate([w[:len(w)-int(0.05*SR)],x[keep:end],np.zeros(max(0,end-len(x)),np.float32)]).astype(np.float32)   # 原始合成在这里就结束了的补零（02 S12）
     out[-F_:]*=np.linspace(1,0,F_)**2
     return out
+def _ending_parts(sent,e):
+    """结尾句的两遍合成与接点；接点两侧各 10 ms 必须低于 -55 dB（只在听不见的静音里接），否则停"""
+    rF,_=k.create(spoken(sent),voice=V,speed=float(e['前段语速']),lang='en-us'); rS,_=k.create(spoken(sent),voice=V,speed=float(e['最后一段语速']),lang='en-us')
+    rF=np.asarray(rF,np.float32); rS=np.asarray(rS,np.float32); mF,mS=int(e['接点'][0]),int(e['接点'][1]); F_=int(0.005*SR)
+    for r_,m_,nm_ in ((rF,mF,'前段'),(rS,mS,'最后一段')):
+        e_=_env5(r_); seg_=e_[max(0,(m_-int(0.01*SR))//F_):(m_+int(0.01*SR))//F_+1]
+        if not len(seg_) or seg_.max()>=-55: raise SystemExit(f'【停止】结尾句的接点不在静音里（{nm_}，样本 {m_}，两侧 10 ms 最响 {seg_.max() if len(seg_) else 0:.1f} dB）：{sent[:60]}')
+    return rF,rS,mF,mS
+def _ending_toks(sent,e):
+    """结尾句每个音的时刻（接起来的声音里的秒）：接点前取前段那遍的，接点后取最后一段那遍的（平移过来）"""
+    import types as _ty
+    rF_,rS_,mF_,mS_=_ending_parts(sent,e); toks=[]
+    for sp_,r_,m_,first_ in ((float(e['前段语速']),rF_,mF_,True),(float(e['最后一段语速']),rS_,mS_,False)):
+        tb_,_,ts_=KT.create_timed(spoken(sent),voice=V,speed=sp_,lang='en-us',clause_pause=0,sentence_pause=0); sc_=len(r_)/len(tb_)
+        sh_=0 if first_ else mS_-mF_
+        for t_ in ts_:
+            if (t_.start*sc_*SR<m_)==first_: toks.append(_ty.SimpleNamespace(phoneme=t_.phoneme,start=(t_.start*sc_*SR-sh_)/SR,end=(t_.end*sc_*SR-sh_)/SR))
+    return toks
+def _ending_raw(sent,e):
+    rF,rS,mF,mS=_ending_parts(sent,e); return np.concatenate([rF[:mF],rS[mS:]])
 def sentence_audio(sent,pieces,gaps):
     """整句一次合成（原模型，声音不变）。标点位置用带时长输出的同版模型精确定位（A9）；
     在标点处只删除"真正无声"的部分（A10：绝不删词尾的 s/f/z 等弱音），再补静音，使实际听到的停顿 = 标准时长。"""
-    raw,_=k.create(spoken(sent),voice=V,speed=SPEED,lang='en-us'); w=clean_tail(raw)
+    E_=ENDING.get(sent)
+    if E_:                                                            # 结尾句：两遍合成接起来，最后一段前的停顿用结尾的长度
+        raw=_ending_raw(sent,E_); gaps=list(gaps); gaps[-1]=float(E_['最后一段前停顿'])
+    else: raw,_=k.create(spoken(sent),voice=V,speed=SPEED,lang='en-us')
+    w=clean_tail(raw)
     w=_keep_tail(raw,w,_head_offset(raw,w))
     if sent in NONVOICE: w=_nonvoice(w,NONVOICE[sent],sent)
     if sent in GRAFT: w=_graft(w,GRAFT[sent],sent)
-    tb,_,sp=KT.create_timed(spoken(sent),voice=V,speed=SPEED,lang='en-us',clause_pause=0,sentence_pause=0)
-    scale=len(raw)/len(tb); toks=list(sp)
+    if E_: toks=_ending_toks(sent,E_); scale=1.0                         # 每个音的时刻（接起来的声音里的秒）
+    else:
+        tb,_,sp=KT.create_timed(spoken(sent),voice=V,speed=SPEED,lang='en-us',clause_pause=0,sentence_pause=0)
+        scale=len(raw)/len(tb); toks=list(sp)
     idxs=[i for i,x in enumerate(toks) if x.phoneme in ',;:']
     if len(idxs)!=len(pieces)-1: raise SystemExit(f'【停止】标点数对不上（A9）：{sent[:60]}')
     e=_env5(w); F=int(0.005*SR); cuts=[]; M=2   # M：停顿两头各保留 2 帧（10 ms）
@@ -455,7 +491,7 @@ def sentence_audio(sent,pieces,gaps):
             if a0<=p_<b0:
                 q_=p_-a0; q_-=sum(min(q_,y)-x for x,y in rm if x<q_); gts.append((g_,t0+q_/SR,t0+(q_+n_)/SR)); break
         else: raise SystemExit(f'【停止】移植段不在保留的声音里（A21）：{sent[:60]} {g_}')
-    LAST.clear(); LAST.update(toks=toks,scale=scale,head=_head_offset(raw,w),segs=segs,total=len(pur)/SR,cuts=cuts,grafts=gts)
+    LAST.clear(); LAST.update(toks=toks,scale=scale,head=_head_offset(raw,w),segs=segs,total=len(pur)/SR,cuts=cuts,grafts=gts,gaps=list(gaps))
     return clips,tmap
 def _split_audio(sent,pieces,gaps):
     clips=[];tmap=[];t=0.0

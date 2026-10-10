@@ -15,8 +15,11 @@ def spec(x):
 for q in range(0,len(args),3):
     si=int(args[q].lstrip('S')); t0=float(args[q+1]); t1=float(args[q+2])
     s=d['sentences'][si-1]; sent=' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in s['chunks'])
-    raw,_=k.create(spoken(sent),voice=V,speed=SPEED,lang='en-us'); w=clean_tail(raw); head=_head_offset(raw,w)
-    tb,_,sp=KT.create_timed(spoken(sent),voice=V,speed=SPEED,lang='en-us',clause_pause=0,sentence_pause=0); scale=len(raw)/len(tb)
+    if sent in ENDING: raw=_ending_raw(sent,ENDING[sent]); sp=_ending_toks(sent,ENDING[sent]); scale=1.0     # 结尾句：两遍接起来（与出片同一个函数）
+    else:
+        raw,_=k.create(spoken(sent),voice=V,speed=SPEED,lang='en-us')
+        tb,_,sp=KT.create_timed(spoken(sent),voice=V,speed=SPEED,lang='en-us',clause_pause=0,sentence_pause=0); scale=len(raw)/len(tb)
+    w=clean_tail(raw); head=_head_offset(raw,w)
     toks=[(x.phoneme,(x.start*scale*SR-head)/SR,(x.end*scale*SR-head)/SR) for x in sp]
     n=120; m=len(w)//n; ref=np.sqrt(np.mean(w[:m*n].reshape(m,n)**2,axis=1)).max()
     lv=lambda x:20*np.log10(np.sqrt(np.mean(x**2))/ref+1e-9) if len(x) else -99

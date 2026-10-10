@@ -23,7 +23,7 @@ def segs(a):
     for i, v in enumerate(z):
         if v and st is None: st = i
         if not v and st is not None:
-            if (i - st) / SR >= 0.6: runs.append((st, i))
+            if (i - st) / SR >= 0.85: runs.append((st, i))   # 句间静音 ≥1.0 秒、句中停顿最长 0.70 秒（07 结尾句，2026-10-10）：分界取 0.85
             st = None
     b = [0] + [r[1] for r in runs]; e = [r[0] for r in runs] + [len(a)]
     return [(x, y) for x, y in zip(b, e) if y > x and np.any(a[x:y] != 0)]

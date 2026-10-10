@@ -104,8 +104,8 @@ elif stage == '出片后':
     def lv(p0, p1, ref):   # [p0,p1) 内每个 5 ms 窗（逐样本滑动）的 dB，返回 (最小, 最大)
         e = (cs[p0 + F5:p1 + 1] - cs[p0:p1 - F5 + 1]) / F5; v = 10 * np.log10(np.maximum(e, 1e-20) / ref ** 2); return v.min(), v.max()
     z = np.concatenate([[0], (a == 0).astype(np.int8), [0]]); d = np.diff(z); zs = list(zip(np.where(d == 1)[0], np.where(d == -1)[0]))
-    big = [r for r in zs if (r[1] - r[0]) / sr >= 0.6]                                   # 句与句之间
-    zr = [r for r in zs if 0.1 <= (r[1] - r[0]) / sr <= 0.5 and r[0] / sr > 1.0]        # 句内标点停顿（插入的静音）
+    big = [r for r in zs if (r[1] - r[0]) / sr >= 0.85]                                   # 句与句之间
+    zr = [r for r in zs if 0.1 <= (r[1] - r[0]) / sr <= 0.8 and r[0] / sr > 1.0]        # 句内标点停顿（插入的静音）
     def sref(r):           # 本句最响 5 ms（逐样本滑动的最大值 ≥ 复核用的分帧最大值，故这里算出的电平只会偏低，判定偏保守）
         s0 = max([q[1] for q in big if q[1] <= r[0]] or [0]); s1 = min([q[0] for q in big if q[0] >= r[1]] or [len(a)])
         e = (cs[s0 + F5:s1 + 1] - cs[s0:s1 - F5 + 1]) / F5; return np.sqrt(e.max())

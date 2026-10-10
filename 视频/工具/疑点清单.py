@@ -7,7 +7,7 @@ import numpy as np, soundfile as sf
 sys.path.insert(0, '.')
 TOOLS = '/home/user/postgraduate-vocabulary/视频/工具'
 src = open('make_video.py').read().split("if __name__")[0]
-h1 = "    raw,_=k.create(spoken(sent),voice=V,speed=SPEED,lang='en-us'); w=clean_tail(raw)\n"
+h1 = "    w=clean_tail(raw)\n"   # 出片程序：raw 是这一句的原始合成（结尾句是两遍接起来的），下一行起处理
 assert src.count(h1) == 1, '出片程序结构变了'
 src = src.replace(h1, h1 + "    _W0.append(w.copy())\n")
 _W0 = []
