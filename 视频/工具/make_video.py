@@ -92,10 +92,13 @@ def _year(y):
     return _n2w(hi)+' '+('oh '+_ONES[lo] if lo<10 else _n2w(lo))
 _PL={'twenty':'twenties','thirty':'thirties','forty':'forties','fifty':'fifties','sixty':'sixties','seventy':'seventies','eighty':'eighties','ninety':'nineties'}
 _MONTHS='January|February|March|April|May|June|July|August|September|October|November|December'
+_ROMAN={'I':1,'II':2,'III':3,'IV':4,'V':5,'VI':6,'VII':7,'VIII':8,'IX':9,'X':10,'XI':11,'XII':12,'XIII':13,'XIV':14,'XV':15,'XVI':16}
 def spoken(t):
     t=re.sub(r'\b(1[1-9])(\d)0s\b',lambda m:_n2w(int(m.group(1)))+' '+_PL[_TENS[int(m.group(2))]],t)          # 1960s → nineteen sixties
     t=re.sub(r'\b([1-9]|[12]\d|3[01]) ('+_MONTHS+r')\b',lambda m:'the '+_ordinal(int(m.group(1)))+' of '+m.group(2),t)  # 6 January → the sixth of January
     t=re.sub(r'(?<!\d,)(?<!\d)\b(1[1-9]\d\d)\b(?!,\d)(?!\d)',lambda m:_year(int(m.group(1))),t)                       # 1995 → nineteen ninety-five
+    t=re.sub(r'\b((?:King|Queen|Pope|Emperor|Empress|Tsar|Czar|Pharaoh|Prince|Princess|Duke) [A-Z][a-z]+) (XVI|XV|XIV|XIII|XII|XI|X|IX|VIII|VII|VI|V|IV|III|II|I)\b',
+             lambda m:m.group(1)+' the '+_ordinal(_ROMAN[m.group(2)]),t)   # King Francis I → King Francis the First（10 S13：原来读成 Francis eye）
     # 引号不停顿（2026-10-08 用户定）：配音时不读引号（模型读到引号会把前一个词拖长、顿一下），屏幕照常显示；
     # 双引号一律去掉；单引号只去掉当引号用的（词中间的撇号 Stanford's、don't 保留）
     t=re.sub(r'["“”‘]|(?<![A-Za-z])[\'’]|[\'’](?![A-Za-z])','',t)

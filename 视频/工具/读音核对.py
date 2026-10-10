@@ -234,6 +234,18 @@ def export(no):
     return out
 
 
+# 罗马数字（10 S13 King Francis I 读成 Francis eye；spoken() 原来不转罗马数字，数字读法清单只认阿拉伯数字，读音核对把单独的 I 当虚词跳过——三处都漏）：
+# 朗读文字里“大写人名 + 罗马数字”还在，就报出（单独的 I 只在后面紧跟标点时算，避免把代词 I 当成罗马数字）
+ROMAN_RE = re.compile(r'\b([A-Z][a-z]+) ((?:XVI|XV|XIV|XIII|XII|XI|X|IX|VIII|VII|VI|V|IV|III|II)\b|I(?=[.,;:!?]|$))')
+def roman_left(no):
+    d = json.load(open(f'scripts/{no}.json')); out = []
+    for i, s_ in enumerate(d['sentences'], 1):
+        sp = spoken(re.sub(r'\*\*', '', R.strip_gloss(' '.join(c['en'] for c in s_['chunks']))))
+        for m in ROMAN_RE.finditer(sp):
+            out.append(('罗马数字', f'{no} 待核实 [罗马数字] S{i} “{m.group(0)}” 朗读文字里还是罗马数字，会读成字母（Francis I 读成 Francis eye）；要读成 the + 序数词，补 spoken() 的规则', True))
+    return out
+
+
 def selftest(no):
     """阳性对照：① 把本篇一个查词典合格的多音节实词的重音挪到别的音节（模拟 hippocampus 那种重音错），必须报出；
     ② 本篇用到读音改正表里的词时，关掉改正，必须报出（模拟 Inky 读错）。原样不得因这两步多报。"""
@@ -272,6 +284,8 @@ def selftest(no):
     if hk:
         keep = HETCONF.pop(hk); got = {line for _, line, bad in check(no) if bad}; HETCONF[hk] = keep
         res.append((f'去掉多音词核对记录（{hk}）', any(f'[多音词] {hk.split(" ", 2)[2]} ' in l_ for l_ in got - base)))
+    # ④ 罗马数字：没转的必须报出，spoken() 转过的不报
+    res.append(('“King Francis I.”没转成序数词', bool(ROMAN_RE.search('King Francis I.')) and not ROMAN_RE.search(spoken('King Francis I.')) and not ROMAN_RE.search(spoken('Then I went home, and I said so.'))))
     ok = bool(res) and all(h for _, h in res)
     print(f"{'✔' if ok else '✘'} 读音核对 自检：{no} " + '；'.join(f"{n}{'报出' if h else '没报出'}" for n, h in res) if res else f'✘ 读音核对 自检：{no} 找不到可用来自检的词')
     return ok
@@ -286,10 +300,10 @@ if __name__ == '__main__':
         json.dump(allr, open(sys.argv[sys.argv.index('--导出') + 1], 'w'), ensure_ascii=False, indent=1); print('导出', len(allr)); sys.exit(0)
     total = 0
     for no in [a for a in sys.argv[1:] if not a.startswith('--') and re.fullmatch(r'\d\d', a)]:
-        rows = check(no)
-        order = {'不一致': 0, '多音词': 1, '词典里没有': 2, '专有名词': 3}
+        rows = check(no) + roman_left(no)
+        order = {'罗马数字': 0, '不一致': 0, '多音词': 1, '词典里没有': 2, '专有名词': 3}
         for cat, line, bad in sorted(rows, key=lambda r: order[r[0]]): print(line)
         n = sum(1 for r in rows if r[2]); total += n
-        print(f'{no} 读音核对 待核实 {n} 处（不一致 {sum(1 for r in rows if r[0] == "不一致" and r[2])}、词典里没有 {sum(1 for r in rows if r[0] == "词典里没有" and r[2])}、专有名词 {sum(1 for r in rows if r[0] == "专有名词" and r[2])}、多音词 {sum(1 for r in rows if r[0] == "多音词" and r[2])}）')
+        print(f'{no} 读音核对 待核实 {n} 处（罗马数字 {sum(1 for r in rows if r[0] == "罗马数字" and r[2])}、不一致 {sum(1 for r in rows if r[0] == "不一致" and r[2])}、词典里没有 {sum(1 for r in rows if r[0] == "词典里没有" and r[2])}、专有名词 {sum(1 for r in rows if r[0] == "专有名词" and r[2])}、多音词 {sum(1 for r in rows if r[0] == "多音词" and r[2])}）')
     print('问题数', total)
     sys.exit(1 if total else 0)
