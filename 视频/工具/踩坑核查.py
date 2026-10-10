@@ -533,6 +533,25 @@ def selftest_meta():
     if meta_checks(ok_): fails.append('T27 误报：“结局：”被报出')
     if not meta_checks(bad_): fails.append('没抓到：说明里写了“怎么理解”（T27，09 S18）')
     return fails
+# T28 结尾解说（用户 2026-10-10 看 10 定稿：“这个结尾要有一个解说，要有一个解说。就最后最好我们之后每次这个结尾都要有一个解说，就特别的有意思。”）：
+# 10 起每篇最后一句的说明里要有一段解说（09 S18 “结局：……”、10 S17 “历史背景：……”），脚本里 "结尾解说" 写它的标签，画面上必须有“（标签：”，正文至少 30 个字
+def ending_note_checks(d):
+    lab = d.get('结尾解说'); notes = ''.join((c.get('note') or '') for c in d['sentences'][-1]['chunks'])
+    if not lab: return ['[T28] 结尾要有一段解说（用户 2026-10-10 定的规矩，10 起每篇）：最后一句的 note 里写“（标签：……）”，脚本里写 "结尾解说": "标签"']
+    if f'（{lab}：' not in notes: return [f'[T28] 结尾解说“{lab}”不在最后一句的说明里（要有“（{lab}：……）”）']
+    body = re.sub(r'[\s（）]', '', notes.split(f'（{lab}：', 1)[1].split('）\n（')[0])
+    return [] if len(body) >= 30 else [f'[T28] 结尾解说“{lab}”太短（{len(body)} 字），要把结尾讲清楚']
+def selftest_ending():
+    """T28 自检（自带样本）：有“（结局：……）”且写了 结尾解说 的不报；没写 结尾解说、标签对不上、最后一句没有说明的都必须报出"""
+    fails = []
+    ok_ = {'结尾解说': '结局', 'sentences': [{'chunks': [{'zh': '前一句。'}]}, {'chunks': [{'zh': '是梅雷迪思那986只战果的五十七倍多。', 'note': '（claim：这里指申领）\n（结局：军队打了五个星期，只打死986只；政府改成悬赏，\n让农民自己打、按只领赏金，1934年半年里就领了5.7万多笔。）'}]}]}
+    if ending_note_checks(ok_): fails.append('T28 误报：有结局解说的被报出')
+    b1 = copy.deepcopy(ok_); del b1['结尾解说']
+    b2 = copy.deepcopy(ok_); b2['结尾解说'] = '历史背景'
+    b3 = copy.deepcopy(ok_); b3['sentences'][-1]['chunks'][0].pop('note')
+    for b, why in ((b1, '没写结尾解说'), (b2, '标签对不上'), (b3, '最后一句没有说明')):
+        if not ending_note_checks(b): fails.append(f'没抓到：{why}（T28）')
+    return fails
 def selftest_gloss():
     """T25 自检：08 定稿原样不报；去掉 S17 set out to 下面的说明，必须报出；待改清单逐条落实：已落实的不报，没落实的必须报出"""
     base = json.load(open(f'{V}/脚本/08.json')); fails = []
@@ -560,7 +579,7 @@ def main():
         vf = selftest_folders() or video_folders(ROOT)
         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
         return 1 if vf else 0
-    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta()
+    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
@@ -575,6 +594,7 @@ def main():
     if int(no) >= 9: conf += phrase_checks(d, no)
     if int(no) >= 9: conf += meaning_checks(d, no)                 # T23 同样只查以后新做的篇目（用户：“以后我们再去做的时候……防止再犯”）
     if int(no) >= 9: err += meta_checks(d)                          # T27 说明里不写自问的话（09 起）
+    if int(no) >= 10: err += ending_note_checks(d)                  # T28 结尾要有一段解说（10 起）
     if int(no) >= 9: conf += zh_dup_checks(d)                      # T26 两个重点词同一个中文（09 起）
     err += user_gloss_checks(d, no)                                # T25 用户给的释义要上画面（有待改清单的篇目都查）
     err += [f'[check_all] {x}' for x in check_all_text(no, os.path.abspath(js), stage)]
