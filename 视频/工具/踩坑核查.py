@@ -457,6 +457,32 @@ def check_all_text(no, js, stage='出片'):
     return [l for l in (r.stdout + r.stderr).splitlines() if l.strip() and '全部检查通过' not in l and not l.startswith(skip)]
 
 
+# T25 用户给的释义只写进了速查表、画面上没有（08 S17 set out to；用户 2026-10-10：“set out to do something 的意思是：带着明确的目标开始做某事，
+# 或者下定决心要去完成某事。……为什么下面的翻译为什么没有这个解说呢？”）：待改清单里用户原话中“……的意思是：……”“……下面要有：……”给出的释义，
+# 必须出现在画面的中文里（去掉标点、换行、颜色标记后比对）。
+def _gloss_norm(t): return re.sub(r'[\s，。、；：:,;.（）()“”"\'·…—\-]', '', re.sub(r'\{\{([^|{}]+)\|[^{}]+\}\}', r'\1', t))
+def user_gloss_checks(d, no):
+    f = f'{V}/制作记录/{no}_待改清单.md'
+    if not os.path.exists(f): return []
+    zh = _gloss_norm(''.join(c['zh'] for s in d['sentences'] for c in s['chunks']))
+    out = []
+    for m in re.finditer(r'(?:的意思是|下面要有)[：:]\s*([^。”\n]+)', open(f).read()):
+        g = _gloss_norm(m.group(1))
+        if len(g) >= 4 and g not in zh: out.append(f'[T25] 待改清单里用户给的释义“{m.group(1)[:40]}”没有出现在画面上（要在这个词的中文正下方加同色括号）')
+    return sorted(set(out))
+def selftest_gloss():
+    """T25 自检：08 定稿原样不报；去掉 S17 set out to 下面的说明，必须报出"""
+    base = json.load(open(f'{V}/脚本/08.json')); fails = []
+    if user_gloss_checks(base, '08'): fails.append('T25 误报：08 定稿原样被报出：' + '；'.join(user_gloss_checks(base, '08')))
+    d = copy.deepcopy(base); hit = False
+    for c in d['sentences'][16]['chunks']:
+        if '带着明确的目标' in c['zh']:
+            c['zh'] = re.sub(r'\n\{\{[^{}]*\|set out to\}\}', '', c['zh']); hit = True
+    if not hit: fails.append('T25 自检样本找不到：08 S17 set out to 的说明')
+    elif not user_gloss_checks(d, '08'): fails.append('没抓到：用户给的释义没上画面（T25，08 S17 set out to）')
+    return fails
+
+
 def main():
     args = sys.argv[1:]
     if args and args[0] == '通用':
@@ -467,7 +493,7 @@ def main():
         vf = selftest_folders() or video_folders(ROOT)
         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
         return 1 if vf else 0
-    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_meaning()
+    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_meaning() + selftest_gloss()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
@@ -481,6 +507,7 @@ def main():
     # 已做完的 01–08 不回头查；08 只改用户点名的 S2 attributed … to（制作记录/08_待改清单.md）
     if int(no) >= 9: conf += phrase_checks(d, no)
     if int(no) >= 9: conf += meaning_checks(d, no)                 # T23 同样只查以后新做的篇目（用户：“以后我们再去做的时候……防止再犯”）
+    err += user_gloss_checks(d, no)                                # T25 用户给的释义要上画面（有待改清单的篇目都查）
     err += [f'[check_all] {x}' for x in check_all_text(no, os.path.abspath(js), stage)]
     print(f'第{no}篇 {stage}阶段 踩坑核查（{js}）：')
     if sent is None: print('  （还没有"已发版本"，这次不比对换行；生成文本.py 成功后会保存）')
