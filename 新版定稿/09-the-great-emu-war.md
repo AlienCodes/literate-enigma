@@ -22,7 +22,7 @@ Later **pleas** for **reinforcements** were refused, and **intervention** **gave
 
 梅雷迪思于12月10日被召回。他在**备忘录**(memo)里开列的**清单**(inventory)计数（显示），9,860发打死了986只，**比例**(ratio)是十发**子弹**(bullets)对一只鸟。（a ratio of A to B：A比B的比例；a ratio…：同位语，说明前面的数字）他**把**(likened to)这些**耐打的**(resilient)鸟的（（人或动物）对困境有承受力的，有复原力的）**坚韧**(toughness)**比作**(likened to)坦克的**装甲**(armour)。（liken A to B：把A比作B）五个星期的**战事**(warfare)几乎没有削弱这些**顽强的**(hardy)鸟群的**耐受力/抗造力**(endurance)。（dent：本义压出凹痕，这里指削弱）
 
-后来请求**增援**(reinforcements)的**恳求**(pleas)都遭到拒绝，**干预**(intervention)**转变为**(gave way to)（让步于）政府**批准**(sanctioned)的**悬赏**(bounty)。（give way to：转变为，让步于；sanctioned…：过去分词短语作后置定语，sanctioned = which was sanctioned，省略了 which was）这种按只计算的**钱款支出**(payout)（赏金）给了农民**补偿**(compensation)，也成为**彻底消灭**(extermination)鸸鹋的**激励**(incentive)。农民在1934年的六个月里领取了5.7万多笔（赏金）**支付**(payments)，是梅雷迪思那986只战果的五十七倍多。（claim：这里指申领；fifty-seven times + 名词：是……的五十七倍）（结局怎么理解：军队打了五个星期，只打死986只；政府改成悬赏，让农民自己打、按只领赏金，1934年半年里就领了5.7万多笔，也就是打死了5.7万多只，是军队战果的五十七倍多。可见悬赏的效率远远高于出动军队：对农民是好结局，既拿到了补偿，又有了动力；对军队则是一场难堪的失败。）
+后来请求**增援**(reinforcements)的**恳求**(pleas)都遭到拒绝，**干预**(intervention)**转变为**(gave way to)（让步于）政府**批准**(sanctioned)的**悬赏**(bounty)。（give way to：转变为，让步于；sanctioned…：过去分词短语作后置定语，sanctioned = which was sanctioned，省略了 which was）这种按只计算的**钱款支出**(payout)（赏金）给了农民**补偿**(compensation)，也成为**彻底消灭**(extermination)鸸鹋的**激励**(incentive)。农民在1934年的六个月里领取了5.7万多笔（赏金）**支付**(payments)，是梅雷迪思那986只战果的五十七倍多。（claim：这里指申领；fifty-seven times + 名词：是……的五十七倍）（结局：军队打了五个星期，只打死986只；政府改成悬赏，让农民自己打、按只领赏金，1934年半年里就领了5.7万多笔，也就是打死了5.7万多只，是军队战果的五十七倍多。可见悬赏的效率远远高于出动军队：对农民是好结局，既拿到了补偿，又有了动力；对军队则是一场难堪的失败。）
 
 ## 速查表
 | 词 | 释义 | 段 |

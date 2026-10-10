@@ -515,6 +515,24 @@ def selftest_zhdup():
     if hit < 2: fails.append('T26 自检样本找不到：09 S17 payout、S18 payments')
     elif not any('赏金' in x for x in zh_dup_checks(d)): fails.append('没抓到：两个重点词用了同一个中文（T26，09 payout/payments 赏金）')
     return fails
+# T27 画面说明里的自问的话（09 S18 我起草成“结局怎么理解：”，用户：“就只写结局两个字就行了……怎么理解这几个字儿？”）：note 和括号里只写内容
+META_RE = re.compile(r'怎么理解|如何理解|怎样理解|什么意思|怎么回事')
+def meta_checks(d):
+    out = []
+    for i, s_ in enumerate(d['sentences'], 1):
+        for c in s_['chunks']:
+            for t in [c.get('note', '')] + re.findall(r'（[^（）]*）', c['zh']):
+                m = META_RE.search(t)
+                if m: out.append(f'[T27] S{i} 说明里有“{m.group(0)}”（{t[:30]}）：画面上的说明只写内容，不写自问的话')
+    return out
+def selftest_meta():
+    """T27 自检（自带样本，不依赖哪一篇现在的写法）：用户定的“结局：……”不报；我原来写的“结局怎么理解：……”必须报出"""
+    fails = []
+    ok_ = {'sentences': [{'chunks': [{'zh': '是梅雷迪思那986只战果的五十七倍多。', 'note': '（claim：这里指申领）\n（结局：军队打了五个星期，只打死986只）'}]}]}
+    bad_ = copy.deepcopy(ok_); bad_['sentences'][0]['chunks'][0]['note'] = '（claim：这里指申领）\n（结局怎么理解：军队打了五个星期）'
+    if meta_checks(ok_): fails.append('T27 误报：“结局：”被报出')
+    if not meta_checks(bad_): fails.append('没抓到：说明里写了“怎么理解”（T27，09 S18）')
+    return fails
 def selftest_gloss():
     """T25 自检：08 定稿原样不报；去掉 S17 set out to 下面的说明，必须报出；待改清单逐条落实：已落实的不报，没落实的必须报出"""
     base = json.load(open(f'{V}/脚本/08.json')); fails = []
@@ -542,7 +560,7 @@ def main():
         vf = selftest_folders() or video_folders(ROOT)
         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
         return 1 if vf else 0
-    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_meaning() + selftest_gloss() + selftest_zhdup()
+    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
@@ -556,6 +574,7 @@ def main():
     # 已做完的 01–08 不回头查；08 只改用户点名的 S2 attributed … to（制作记录/08_待改清单.md）
     if int(no) >= 9: conf += phrase_checks(d, no)
     if int(no) >= 9: conf += meaning_checks(d, no)                 # T23 同样只查以后新做的篇目（用户：“以后我们再去做的时候……防止再犯”）
+    if int(no) >= 9: err += meta_checks(d)                          # T27 说明里不写自问的话（09 起）
     if int(no) >= 9: conf += zh_dup_checks(d)                      # T26 两个重点词同一个中文（09 起）
     err += user_gloss_checks(d, no)                                # T25 用户给的释义要上画面（有待改清单的篇目都查）
     err += [f'[check_all] {x}' for x in check_all_text(no, os.path.abspath(js), stage)]
