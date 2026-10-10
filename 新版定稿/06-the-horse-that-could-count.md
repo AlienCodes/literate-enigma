@@ -22,11 +22,7 @@ The **cues** came from the questioners. Each would **lean** forward as tapping b
 
 （看来）这些**提示**(cues)来自提问者。每个提问者都会在敲击开始时向前**倾身**(lean)，敲击越接近答案，**紧张感**(tension)就越强。（前一个 as：当……时；后一个 as：随着，译成“越……越……”）敲到正确的那一下时，紧张感就缓和下来，提问者会**挺直**(straighten)身子或者把头向上**猛地一抬**(jerk)。（straighten 此处不及物：挺直身子；the head 只是 jerk 的宾语）每一个**姿势**(gesture)和**动作**(motion)都是**下意识的**(subconscious)，是那些并不想**欺骗**(deceive)别人的人**毫不知情地**(unwittingly)做出的。（made… 是过去分词短语，补充说明这些动作；with no wish to do：并不想做……）
 
-**双盲**(Double-blind)设计在**心理学**(psychology)和动物**认知**(cognition)研究中用来防范聪明汉斯效应，这是一种**偏差**(bias)**现象**(phenomenon)，在这种现象中，**预期**(expectancy)会影响**行为**(behavioural)结果。（双盲：实验者和受试者都不知道分组或答案，以免无意中影响结果）（a phenomenon of bias 是 the Clever Hans effect 的同位语）在实验室里，普丰斯特代替了那匹马，结果证明，他对**专注的**(attentive)志愿者（无意中）的提示也很**敏感**(sensitive)。（prove + 形容词：结果证明是……；sensitive to：对……敏感）
-（揭示“聪明汉斯效应”的普遍性：
-这不仅仅是一匹马的故事，这是一个关于人类心理学实验的警示。
-人类在实验中，如果期望某个结果（expectancy），
-就会不知不觉地通过微表情影响实验结果（shapes behavioural results）。）汉斯在它的主人于1909年6月去世后，归了一位**珠宝商**(jeweller)，这位珠宝商仍然坚信这类动物会推理。（went … to：归……所有；on his owner's death 插在 went 和 to 之间）（still convinced that…：后置定语，修饰 jeweller）
+**双盲**(Double-blind)设计在**心理学**(psychology)和动物**认知**(cognition)研究中用来防范聪明汉斯效应，这是一种**偏差**(bias)**现象**(phenomenon)，在这种现象中，**预期**(expectancy)会影响**行为**(behavioural)结果。（双盲：实验者和受试者都不知道分组或答案，以免无意中影响结果）（a phenomenon of bias 是 the Clever Hans effect 的同位语）在实验室里，普丰斯特代替了那匹马，结果证明，他对**专注的**(attentive)志愿者（无意中）的提示也很**敏感**(sensitive)。（prove + 形容词：结果证明是……；sensitive to：对……敏感）（揭示“聪明汉斯效应”的普遍性：这不仅仅是一匹马的故事，这是一个关于人类心理学实验的警示。人类在实验中，如果期望某个结果（expectancy），就会不知不觉地通过微表情影响实验结果（shapes behavioural results）。）汉斯在它的主人于1909年6月去世后，归了一位**珠宝商**(jeweller)，这位珠宝商仍然坚信这类动物会推理。（went … to：归……所有；on his owner's death 插在 went 和 to 之间）（still convinced that…：后置定语，修饰 jeweller）
 
 ## 速查表
 | 词 | 释义 | 段 |

@@ -4,7 +4,10 @@
 只复制、不移动（视频/视频/NN.mp4 留在原处，核查程序要用）；复制后逐字节核对与定稿一致，并重写文件夹里的目录 README.md。
 只能归档已经确认是 4K 定稿的篇目：视频必须是 3840×2160。
 存视频的文件夹只存定稿（G7，用户 2026-10-08："之前那些有瑕疵的视频要及时删除，就只能存我们最后定稿的这个版本"）：
-归档后自动删掉这一篇的旧草稿（视频/视频/草稿1080p/NN_*）和试听视频（视频/试听/NN_*.mp4 等），最后用《踩坑核查》的 G7 检查全部文件夹。"""
+归档后自动删掉这一篇的旧草稿（视频/视频/草稿1080p/NN_*）和试听视频（视频/试听/NN_*.mp4 等），最后用《踩坑核查》的 G7 检查全部文件夹。
+铁律 G9（用户 2026-10-10：“一定一定一定要确定我们这个最终存的视频是我们做的这些视频，千万不要弄那些老的视频”）：
+归档完自动跑《定稿视频核对》——视频里每一屏、每一个样本的声音都要与现行定稿脚本重新生成的一致，镜像仓库逐字节相同；不通过返回 1。
+所以要在视频工作目录（含 make_video.py、render.py、fonts/）下运行：python3 <工具目录>/归档定稿视频.py NN"""
 import sys, os, re, json, glob, shutil, hashlib, subprocess
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T); ROOT = os.path.dirname(V)
 DST = f'{ROOT}/最终版4K视频'
@@ -18,6 +21,8 @@ def size_of(p):
     return re.search(r'Video: .*?, (\d+)x(\d+)', r).groups()
 
 
+if not all(os.path.exists(x) for x in ('make_video.py', 'render.py', 'fonts')):
+    sys.exit('【停止】请在视频工作目录（含 make_video.py、render.py、fonts/）下运行：归档后要做定稿视频核对（G9）')
 os.makedirs(DST, exist_ok=True)
 for no in [a.zfill(2) for a in sys.argv[1:]]:
     d = json.load(open(f'{V}/脚本/{no}.json')); src = f'{V}/视频/{no}.mp4'
@@ -43,4 +48,6 @@ print(f'共 {len(rows)} 篇，目录已写入 最终版4K视频/README.md')
 sys.path.insert(0, T); import importlib; K = importlib.import_module('踩坑核查')
 vf = K.video_folders(ROOT)
 print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
-sys.exit(1 if vf else 0)
+# G9：存的必须是最终版——逐屏、逐样本与现行定稿脚本比对（镜像仓库这时还没同步；同步推送后再跑 定稿视频核对.py --只查清点和镜像）
+g9 = subprocess.run(['python3', f'{T}/定稿视频核对.py', '--不查镜像'] + [a.zfill(2) for a in sys.argv[1:]]).returncode
+sys.exit(1 if vf or g9 else 0)

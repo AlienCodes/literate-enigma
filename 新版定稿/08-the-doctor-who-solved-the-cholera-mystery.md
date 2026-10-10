@@ -7,11 +7,11 @@ Finding little visible impurity, he **hesitated**, then **consulted** the death 
 
 In 1855 Edmund Parkes, a professor of **clinical medicine**, **interpreted** the **cluster** on that map as a **poison** **drifting** through the air. Yet a map could **chart** where people died, not what they drank.
 
-The **crucial** evidence, gathered in 1854, **lay in** **exceptions**. **Amid** the deaths in the **surrounding** streets, a workhouse with its own well lost **a mere** five of 535 **inmates**. More than 70 nearby brewery workers, with a beer **allowance** and their own well, escaped severe cholera.
+The **crucial** evidence, gathered in 1854, **lay in** **exceptions**. **Amid** the deaths in the **surrounding** streets, a **workhouse** with its own well lost **a mere** five of 535 **inmates**. More than 70 nearby brewery workers, with a beer **allowance** and their own well, escaped severe cholera.
 
-**Conversely**, a Hampstead **widow** who had not **set foot in** Soho for months had the pump's water **carted** to her daily. She died, as did a visiting **niece** who drank it. Hampstead then had no cholera.
+**Conversely**, a Hampstead **widow** who had not **set foot in** Soho for months had the pump's water **carted** to her daily. She died, as did a visiting **niece** who drank it. Hampstead **then** had no cholera.
 
-In 1855 a government **inquiry** **declined** to **condemn** the pump, **contending** its water had at most **absorbed** **airborne** poison. **Meanwhile**, the **sceptical** curate Henry Whitehead **set out to** **refute** Snow but found that those who drank from the pump were far more likely to **succumb to** the disease than others, **vindicating** him.
+In 1855 a government **inquiry** **declined to** **condemn** the pump, **contending** its water had at most **absorbed** **airborne** poison. **Meanwhile**, the **sceptical** curate Henry Whitehead **set out to** **refute** Snow but found that those who drank from the pump were far more likely to **succumb to** the disease than others, **vindicating** him.
 
 ## 中文
 
@@ -21,11 +21,11 @@ In 1855 a government **inquiry** **declined** to **condemn** the pump, **contend
 
 1855年，埃德蒙·帕克斯，一位**临床医学**(clinical medicine)教授，看到那张地图上死者扎堆，便把这种**聚集**(cluster)**解读**(interpreted)为空气中**飘散**(drifting)的**毒素**(poison)所致。（interpret A as B：把A解读为B；drifting…：现在分词短语作后置定语）可地图只能**绘制/记录**(chart)人死在哪里，绘制/记录不了他们喝了什么。
 
-**至关重要的/决定性的**(crucial)证据早在1854年就已收集到，就**在于**(lay in)那些**例外/个例**(exceptions)**中**(lay in)。（gathered…：过去分词短语作后置定语；lay：lie 的过去式，lie in 存在于）**在**(Amid)**周围的**(surrounding)街巷死者接连不断的**期间内**(Amid)，一所自有水井的济贫院（收容贫民的机构）里，535名**被收容者**(inmates)只死了**区区**(a mere)五人。（lose：失去某人，这里指有人死去；five of 535：535人中的五人）附近一家啤酒厂的70多名工人有啤酒**津贴**(allowance)，（免费的啤酒补贴）厂里也有自己的水井，都逃过了重症霍乱。
+**至关重要的/决定性的**(crucial)证据早在1854年就已收集到，就**在于**(lay in)那些**例外/个例**(exceptions)**中**(lay in)。（gathered…：过去分词短语作后置定语，gathered = which was gathered，省略了 which was；lay：lie 的过去式，lie in 存在于）**在**(Amid)**周围的**(surrounding)街巷死者接连不断的**期间内**(Amid)，一所自有水井的**济贫院**(workhouse)（收容贫民的机构）里，535名**被收容者**(inmates)只死了**区区**(a mere)五人。（lose：失去某人，这里指有人死去；five of 535：535人中的五人）附近一家啤酒厂的70多名工人有啤酒**津贴**(allowance)，（免费的啤酒补贴）厂里也有自己的水井，都逃过了重症霍乱。
 
-**反过来**(Conversely)，汉普斯特德的一位**寡妇**(widow)已有几个月没**踏进过**(set foot in)苏豪，却让人把这口泵的水每天**用车运来**(carted)。（have sth done：让人做某事；set foot in：踏进）她死了，来探望她并喝了这水的**侄女**(niece)也死了。（as did…：倒装，= and so did a visiting niece）汉普斯特德当时并没有霍乱。
+**反过来**(Conversely)，汉普斯特德的一位**寡妇**(widow)已有几个月没**踏进过**(set foot in)苏豪，却让人把这口泵的水每天**用车运来**(carted)。（have sth done：让人做某事；set foot in：踏进）她死了，来探望她并喝了这水的**侄女**(niece)也死了。（as did…：倒装，= and so did a visiting niece）汉普斯特德**那时**(then)并没有霍乱。
 
-1855年，政府的**调查委员会**(inquiry)（官方调查程序；被任命进行调查的委员会）**不肯**(declined)给这口泵**定罪**(condemn)，**坚称**(contending)泵水至多是**吸收了**(absorbed)**经空气传播的**(airborne)毒素。（contending…：现在分词短语作伴随状语，后面省略了 that；at most：充其量）**与此同时**(Meanwhile)，**心存怀疑的**(sceptical)副牧师（协助教区牧师的低级神职人员）亨利·怀特黑德**一心想**(set out to)**驳倒**(refute)斯诺，却发现喝泵水的人**死于**(succumb to)这种病的可能性远高于旁人，反倒**证明了**(vindicating)斯诺是**正确的**(vindicating)。（succumb to：本义屈服于，这里指死于某病；vindicating…：现在分词短语作结果状语）
+1855年，政府的**调查委员会**(inquiry)（官方调查程序；被任命进行调查的委员会）**拒绝**(declined to)（谢绝；婉言拒绝（觉得方式比较体面，礼貌））给这口泵**定罪**(condemn)，**坚称**(contending)泵水至多是**吸收了**(absorbed)**经空气传播的**(airborne)毒素。（contending…：现在分词短语作伴随状语，后面省略了 that；at most：充其量）**与此同时**(Meanwhile)，**心存怀疑的**(sceptical)副牧师（协助教区牧师的低级神职人员）亨利·怀特黑德**一心想**(set out to)**驳倒**(refute)斯诺，却发现喝泵水的人**死于**(succumb to)这种病的可能性远高于旁人，反倒**证明了**(vindicating)斯诺是**正确的**(vindicating)。（succumb to：本义屈服于，这里指死于某病；vindicating…：现在分词短语作结果状语）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -34,7 +34,7 @@ In 1855 a government **inquiry** **declined** to **condemn** the pump, **contend
 | ravaged | 本文：肆虐；v. (ravage) 肆虐，严重破坏；蹂躏，毁坏 | 1 |
 | upwards of | 本文：超过/多于；短语. 超过，……以上（= more than） | 1 |
 | perished | 本文：丧生；v. (perish) 死亡，丧生（多指灾难、战争、疫病中成批死亡）；毁灭，消亡；（材料）老化，腐烂 | 1 |
-| attributed to | 本文：把……归因于；v. (attribute) 把……归因于（attribute A to B）；认为……是某人所作；n. 属性，特质 | 1 |
+| attributed to | 本文：归因于；v. (attribute) 把……归因于（attribute A to B）；认为……是某人所作；n. 属性，特质 | 1 |
 | epidemics | 本文：流行病；n. (epidemic) 流行病，疫病；（坏事的）盛行；adj. 流行性的 | 1 |
 | filth | 本文：污秽；n. 污秽，污物；下流话，淫秽内容 | 1 |
 | arising | 本文：产生；v. (arise) 产生，出现（arise from 由……引起）；起身，起床 | 1 |
@@ -60,20 +60,22 @@ In 1855 a government **inquiry** **declined** to **condemn** the pump, **contend
 | poison | 本文：毒素；n. 毒物，毒药；毒素（19世纪常指致病物质，文中即瘴气论所说空气中的致病毒素）；有害的东西；v. 毒害，下毒；污染 | 3 |
 | chart | 本文：绘制/记录；v. 绘制（地图、图表），用图表示；记录（变化、进展）；制订（计划）；n. 图表；排行榜 | 3 |
 | crucial | 本文：至关重要的/决定性的；adj. 关键的，至关重要的，决定性的 | 4 |
-| lay in | 本文：在于……中；短语. (lie in 的过去式) 在于，存在于（The problem lies in… 问题在于……） | 4 |
+| lay in | 本文：中；短语. (lie in 的过去式) 在于，存在于（The problem lies in… 问题在于……） | 4 |
 | exceptions | 本文：例外/个例；n. (exception) 例外，例外情况，个例（with the exception of 除……之外；make an exception 破例） | 4 |
-| Amid | 本文：在……期间内；prep. 在……之中，被……包围；在……期间（amid concerns 在一片担忧声中） | 4 |
+| Amid | 本文：期间内；prep. 在……之中，被……包围；在……期间（amid concerns 在一片担忧声中） | 4 |
 | surrounding | 本文：周围的；adj. 周围的，附近的；n. (surroundings) 环境；v. (surround) 包围，环绕 | 4 |
+| workhouse | 本文：济贫院；n.（英国旧时）济贫院（收容贫民的机构，被收容者要做工换取食宿） | 4 |
 | inmates | 本文：被收容者；n. (inmate) （济贫院、精神病院等机构的）被收容者；（监狱的）囚犯 | 4 |
 | a mere | 本文：区区；短语. 仅仅，区区（mere adj. 仅仅的，只不过的） | 4 |
-| allowance | 本文：津贴；n. 配给量，定量；津贴，零用钱；make allowance(s) for 考虑到，体谅 | 4 |
+| allowance | 本文：津贴（免费的啤酒补贴）；n. 配给量，定量；津贴，零用钱；make allowance(s) for 考虑到，体谅 | 4 |
 | Conversely | 本文：反过来；adv. 反过来，相反地 | 5 |
 | widow | 本文：寡妇；n. 寡妇（widower 鳏夫；widowed adj. 丧偶的） | 5 |
-| set foot in | 本文：踏进（过）；短语. 踏进，踏足（某地）；常用否定 not set foot in 再没去过 | 5 |
+| set foot in | 本文：踏进过；短语. 踏进，踏足（某地）；常用否定 not set foot in 再没去过 | 5 |
 | carted | 本文：用车运来；v. (cart) 用车运送；（cart off/away）强行带走；n. 手推车，马车 | 5 |
 | niece | 本文：侄女；n. 侄女；外甥女（英文不分；原文未说明是哪一种，文中按习惯译「侄女」；nephew 侄子；外甥） | 5 |
+| then | 本文：那时；adv. 那时，当时；然后，接着；那么，因此 | 5 |
 | inquiry | 本文：调查委员会（官方调查程序；被任命进行调查的委员会）；n. 调查（委员会），调查研究；询问，查询 | 6 |
-| declined | 本文：不肯；v. (decline) 婉拒，不肯（decline to do sth）；下降，衰退；n. 下降，衰落 | 6 |
+| declined to | 本文：拒绝（谢绝；婉言拒绝（觉得方式比较体面，礼貌））；短语. decline to do sth 拒绝做某事；decline v. 婉拒，谢绝；下降，衰退；n. 下降，衰落 | 6 |
 | condemn | 本文：定罪；v. 谴责；认定……有罪，判……刑（condemn sb to death）；（因不安全）宣布（建筑物、设施等）停用 | 6 |
 | contending | 本文：坚称；v. (contend) 坚称，坚持认为（contend that）；竞争，争夺（contend for）；应付（contend with） | 6 |
 | absorbed | 本文：吸收了；v. (absorb) 吸收（液体、气体等）；吸引……的注意力（be absorbed in 专心于）；吞并 | 6 |
@@ -83,7 +85,7 @@ In 1855 a government **inquiry** **declined** to **condemn** the pump, **contend
 | set out to | 本文：一心想；短语. set out to do something：带着明确的目标开始做某事，或者下定决心要去完成某事 | 6 |
 | refute | 本文：驳倒；v. 驳倒，驳斥，证明……错误（refute a claim/theory） | 6 |
 | succumb to | 本文：死于；短语. 屈服于，抵挡不住（succumb to temptation/pressure）；死于（疾病、伤势）（succumb to a disease） | 6 |
-| vindicating | 本文：证明了……正确的；v. (vindicate) 证明……正确，证明……无辜；为……辩护 | 6 |
+| vindicating | 本文：正确的；v. (vindicate) 证明……正确，证明……无辜；为……辩护 | 6 |
 
 ## 史实与来源
 - 词数说明：全文 274 词，超出 271 上限 3 词，为用户 2026-09-30 特批（开头写明具体月份）。
