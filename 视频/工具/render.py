@@ -246,6 +246,20 @@ def max_es(chunks,colors,notes=None):
         _,t,w,_=_measure(chunks,colors,notes,es,grps)
         if t<=MAXH2 and w<=MAXW2: return es
     return 30
+def orphan_lines(chunks,colors,notes,es):
+    """L3 末行孤词（2026-10-10 08 S17：Henry Whitehead 并进下一行后字号从 62 升到 67，比较结构那一整组 were far more likely to
+    succumb to the disease than others, 太宽、整组折行，“others,” 被单独挤到下一行）：按出片同一套排版，找出整组折行后
+    最后一行只剩一个英文词的地方，返回 [(第几块, 最后一行的词)]。"""
+    notes=notes or [None]*len(chunks)
+    rowsets,_,_,(zs,ef,zf,*_)=_measure(chunks,colors,notes,es,_grouping(chunks,colors)); out=[]
+    for i,rows in enumerate(rowsets):
+        for r in rows:
+            if isinstance(r,tuple):
+                el=layout([(t,col or FG_EN) for t,col in r[1]['se']],ef,MAXW2)
+                if len(el)>1:
+                    last=''.join(u for u,_ in el[-1]).split()
+                    if len(last)==1: out.append((i+1,last[0]))
+    return out
 def _under_x(c,k,zf,x):
     """同一格里，第 k 行只有一个说明 {{（…）|key}}、上一行有重点词 **词**(key)：说明的中心对准这个词的中心（不超出这一格）。否则 None（照常居中）"""
     if k==0: return None

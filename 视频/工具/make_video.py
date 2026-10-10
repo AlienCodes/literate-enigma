@@ -637,6 +637,8 @@ def build(js,out):
     # render images: one uniform size = largest that fits every screen with locked layout
     sizes=[R.max_es([[tuple(p) for p in c['align']] for c in s['chunks']],colors,[c.get('note') for c in s['chunks']]) for s in d['sentences']]
     print('sizes',sizes)
+    orph=[(si+1,b,w_) for si,s in enumerate(d['sentences']) for b,w_ in R.orphan_lines([[tuple(p) for p in c['align']] for c in s['chunks']],colors,[c.get('note') for c in s['chunks']],min(sizes[si],100*R.S))]
+    if orph: raise SystemExit('【停止】整组折行后最后一行只剩一个词（L3）：'+'；'.join(f'S{a} 第{b}块末行“{c_}”' for a,b,c_ in orph)+'。这一组加 {{=}} 保持一行（字号自动缩到放得下），或经用户同意改分组')
     files=[]; t=0
     for (key,dur) in tl:
         prog=min(1,(t+dur)/total)

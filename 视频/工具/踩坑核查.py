@@ -278,14 +278,15 @@ def meaning_checks(d, no):
 
 
 def selftest_meaning():
-    """T23 自检：08 S17 vindicating 现在只标了“证明了”一处，必须报出；补上“正确的”(vindicating) 后不报"""
+    """T23 自检：08 S17 定稿两处都标了 vindicating（证明了……正确的），原样不报；去掉“正确的”的标记、只剩“证明了”一处，必须报出"""
     fails = []; base = json.load(open(f'{V}/脚本/08.json'))
-    if not any('S17 vindicating' in x for x in meaning_checks(base, '08')): fails.append('没抓到：中文意思只标一部分（T23，08 S17 vindicating）')
-    d = copy.deepcopy(base)
+    if any('S17 vindicating' in x for x in meaning_checks(base, '08')): fails.append('T23 误报：两处都标了仍报出（08 S17 vindicating）')
+    d = copy.deepcopy(base); hit = False
     for c in d['sentences'][16]['chunks']:
-        if '(vindicating)' in c['zh'] and '是对的' in c['zh']:
-            c['zh'] = c['zh'].replace('是对的', '是**正确的**(vindicating)'); c['align'] = [[a, z.replace('是对的', '是**正确的**(vindicating)')] for a, z in c['align']]
-    if any('S17 vindicating' in x for x in meaning_checks(d, '08')): fails.append('T23 误报：两处都标了仍报出（08 S17 vindicating）')
+        if '**正确的**(vindicating)' in c['zh']:
+            c['zh'] = c['zh'].replace('**正确的**(vindicating)', '正确的'); c['align'] = [[a, z.replace('**正确的**(vindicating)', '正确的')] for a, z in c['align']]; hit = True
+    if not hit: fails.append('T23 自检样本找不到：08 S17 **正确的**(vindicating)')
+    elif not any('S17 vindicating' in x for x in meaning_checks(d, '08')): fails.append('没抓到：中文意思只标一部分（T23，08 S17 vindicating）')
     return fails
 
 
