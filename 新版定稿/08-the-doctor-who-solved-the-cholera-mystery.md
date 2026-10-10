@@ -1,86 +1,89 @@
 # EN: The Doctor Who Solved the Cholera Mystery
 # ZH: 破解霍乱之谜的医生
 ## 英文
+In the first ten days of September 1854, cholera **ravaged** an **overcrowded** corner of London's Soho; **upwards of** 500 people **perished**. Most doctors **attributed** **epidemics** **to** miasma, **foul** air **arising** from **filth**. John Snow, a **physician** who had been **convinced** since 1849 that cholera's poison was **swallowed**, not **inhaled**, suspected the Broad Street pump.
 
-In the first ten days of September 1854, cholera **ravaged** an **overcrowded** corner of London's Soho; **upwards of** 500 people **perished**. Most doctors **attributed** **epidemics** to miasma, **foul** air **arising** from **filth**. John Snow, a **physician** who had been **convinced** since 1849 that cholera's poison was **swallowed**, not **inhaled**, suspected the Broad Street pump.
+Finding little visible impurity, he **hesitated**, then **consulted** the death **register** and questioned **bereaved** families. Most **victims** lived near the pump and drank from it. At his **urging**, **parish** officials removed the handle, but daily **fatal** attacks had already **plunged** from a **peak** of 143 to 12. He later mapped the deaths.
 
-Finding little visible impurity, he **hesitated**, then **consulted** the death **register** and questioned **bereaved** families. Most victims lived near the pump and drank from it. At his **urging**, **parish** officials removed the handle, but daily **fatal** attacks had already **plunged** from a **peak** of 143 to 12. He later mapped the deaths.
+In 1855 Edmund Parkes, a professor of **clinical medicine**, **interpreted** the **cluster** on that map as a **poison** **drifting** through the air. Yet a map could **chart** where people died, not what they drank.
 
-In 1855 Edmund Parkes, a professor of **clinical** medicine, **interpreted** the **cluster** on that map as a **poison** **drifting** through the air. Yet a map could **chart** where people died, not what they drank.
+The **crucial** evidence, gathered in 1854, **lay in** **exceptions**. **Amid** the deaths in the **surrounding** streets, a workhouse with its own well lost **a mere** five of 535 **inmates**. More than 70 nearby brewery workers, with a beer **allowance** and their own well, escaped severe cholera.
 
-The **crucial** evidence, gathered in 1854, lay in **exceptions**. **Amid** the deaths in the **surrounding** streets, a workhouse with its own well lost **a mere** five of 535 **inmates**. More than 70 nearby brewery workers, with a beer **allowance** and their own well, escaped severe cholera.
+**Conversely**, a Hampstead **widow** who had not **set foot in** Soho for months had the pump's water **carted** to her daily. She died, as did a visiting **niece** who drank it. Hampstead then had no cholera.
 
-**Conversely**, a Hampstead **widow** who had not set foot in Soho for months had the pump's water **carted** to her daily. She died, as did a visiting **niece** who drank it. Hampstead then had no cholera.
-
-In 1855 a government **inquiry** **declined** to **condemn** the pump, **contending** its water had at most **absorbed** **airborne** poison. **Meanwhile**, the **sceptical** curate Henry Whitehead set out to **refute** Snow but found that those who drank from the pump were far more likely to **succumb** to the disease than others, **vindicating** him.
+In 1855 a government **inquiry** **declined** to **condemn** the pump, **contending** its water had at most **absorbed** **airborne** poison. **Meanwhile**, the **sceptical** curate Henry Whitehead **set out to** **refute** Snow but found that those who drank from the pump were far more likely to **succumb to** the disease than others, **vindicating** him.
 
 ## 中文
 
-1854年9月上旬，霍乱在伦敦苏豪区一个**拥挤不堪**(overcrowded)的角落**肆虐**(ravaged)，**逾**(upwards of)五百人**丧命**(perished)。多数医生把**流行病**(epidemics)**归因于**(attributed)瘴气，即从**污秽**(filth)中**产生**(arising)的**污浊**(foul)空气。**内科医生**(physician)约翰·斯诺自1849年起就**确信**(convinced)霍乱的毒素是**吞**(swallowed)进去而非**吸**(inhaled)进去的，他怀疑问题出在宽街那口水泵上。
+1854年9月上旬，霍乱在伦敦苏豪区一个**拥挤不堪的**(overcrowded)角落**肆虐**(ravaged)；**超过/多于**(upwards of)500人**丧生**(perished)。多数医生**把**(attributed to)**流行病**(epidemics)**归因于**(attributed to)瘴气，也就是从**污秽**(filth)中**产生**(arising)的、**污浊的**(foul)空气。（attribute A to B：把A归因于B；foul air…：同位语，解释 miasma）约翰·斯诺，一位**内科医生**(physician)，自1849年起就**确信**(convinced)霍乱的毒素是**吞**(swallowed)进去的，而不是**吸**(inhaled)进去的，他怀疑问题出在宽街那口水泵上。
 
-他在泵水里没发现多少肉眼可见的杂质，一时**犹豫**(hesitated)，随后**查阅**(consulted)死亡**登记册**(register)，又去询问**痛失亲人**(bereaved)的家庭。死者大多住在这口泵附近，也喝过它的水。在他的**敦促**(urging)下，**教区**(parish)官员卸下了泵柄，可这时每天新发的**致死**(fatal)病例早已从143例的**峰值**(peak)**骤降**(plunged)到12例。他后来把死亡病例标在了地图上。
+在泵水里没发现多少肉眼可见的杂质，他一时**犹豫**(hesitated)，随后**查阅了**(consulted)死亡**登记册**(register)，又去询问**痛失亲人的**(bereaved)家庭。（Finding…：现在分词短语作状语，表示原因）**罹难者**(victims)大多住在这口泵附近，也喝过它的水。在他的**敦促**(urging)下，**教区**(parish)官员卸下了泵柄，可这时每天新发的**致死**(fatal)病例早已从143例的**峰值**(peak)**骤降**(plunged)到12例。（attack：疾病发作；plunge from A to B：从A骤降到B）他后来把死亡病例标在了地图上。
 
-1855年，**临床**(clinical)医学教授埃德蒙·帕克斯看到那张地图上死者扎堆，便把这种**聚集**(cluster)**解读**(interpreted)为空气中**飘散**(drifting)的**毒素**(poison)所致。可地图只能**标出**(chart)人死在哪里，标不出他们喝了什么。
+1855年，埃德蒙·帕克斯，一位**临床医学**(clinical medicine)教授，看到那张地图上死者扎堆，便把这种**聚集**(cluster)**解读**(interpreted)为空气中**飘散**(drifting)的**毒素**(poison)所致。（interpret A as B：把A解读为B；drifting…：现在分词短语作后置定语）可地图只能**绘制/记录**(chart)人死在哪里，绘制/记录不了他们喝了什么。
 
-**关键**(crucial)证据早在1854年就已收集到，就藏在那些**例外**(exceptions)里。在**周围**(surrounding)街巷死者接连不断**之际**(amid)，一所自有水井的济贫院（收容贫民的机构）里，535名**收容者**(inmates)只死了**区区**(a mere)五人。附近一家啤酒厂的七十多名工人有啤酒**配给**(allowance)，厂里也有自己的水井，结果都没有染上重症霍乱。
+**至关重要的/决定性的**(crucial)证据早在1854年就已收集到，就**在于**(lay in)那些**例外/个例**(exceptions)**中**(lay in)。（gathered…：过去分词短语作后置定语；lay：lie 的过去式，lie in 存在于）**在**(Amid)**周围的**(surrounding)街巷死者接连不断的**期间内**(Amid)，一所自有水井的济贫院（收容贫民的机构）里，535名**被收容者**(inmates)只死了**区区**(a mere)五人。（lose：失去某人，这里指有人死去；five of 535：535人中的五人）附近一家啤酒厂的70多名工人有啤酒**津贴**(allowance)，（免费的啤酒补贴）厂里也有自己的水井，都逃过了重症霍乱。
 
-**反过来**(conversely)，汉普斯特德的一位**寡妇**(widow)已有几个月没踏进过苏豪，却每天让人把这口泵的水**用车运来**(carted)。她死了，来探望她并喝了这水的**侄女**(niece)也死了。当时汉普斯特德并没有霍乱。
+**反过来**(Conversely)，汉普斯特德的一位**寡妇**(widow)已有几个月没**踏进过**(set foot in)苏豪，却让人把这口泵的水每天**用车运来**(carted)。（have sth done：让人做某事；set foot in：踏进）她死了，来探望她并喝了这水的**侄女**(niece)也死了。（as did…：倒装，= and so did a visiting niece）汉普斯特德当时并没有霍乱。
 
-1855年，政府的**调查**(inquiry)委员会**不肯**(declined)给这口泵**定罪**(condemn)，**坚称**(contending)泵水至多是**吸收**(absorbed)了**经空气传播的**(airborne)毒素。**与此同时**(meanwhile)，**心存怀疑**(sceptical)的副牧师（即协助教区牧师的低级神职人员）亨利·怀特黑德一心想**驳倒**(refute)斯诺，却发现喝泵水的人**死于**(succumb)这种病的可能性远高于旁人，反倒**证明了**(vindicating)斯诺是对的。
+1855年，政府的**调查委员会**(inquiry)（官方调查程序；被任命进行调查的委员会）**不肯**(declined)给这口泵**定罪**(condemn)，**坚称**(contending)泵水至多是**吸收了**(absorbed)**经空气传播的**(airborne)毒素。（contending…：现在分词短语作伴随状语，后面省略了 that；at most：充其量）**与此同时**(Meanwhile)，**心存怀疑的**(sceptical)副牧师（协助教区牧师的低级神职人员）亨利·怀特黑德**一心想**(set out to)**驳倒**(refute)斯诺，却发现喝泵水的人**死于**(succumb to)这种病的可能性远高于旁人，反倒**证明了**(vindicating)斯诺是**正确的**(vindicating)。（succumb to：本义屈服于，这里指死于某病；vindicating…：现在分词短语作结果状语）
 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
-| ravaged | v. (ravage) 肆虐，严重破坏；蹂躏，毁坏 | 1 |
-| overcrowded | adj. 过度拥挤的，人满为患的 | 1 |
-| upwards of | 短语. 超过，……以上（= more than） | 1 |
-| perished | v. (perish) 死亡，丧生（多指灾难、战争、疫病中成批死亡）；毁灭，消亡；（材料）老化，腐烂 | 1 |
-| attributed | v. (attribute) 把……归因于（attribute A to B）；认为……是某人所作；n. 属性，特质 | 1 |
-| epidemics | n. (epidemic) 流行病，疫病；（坏事的）盛行；adj. 流行性的 | 1 |
-| foul | adj. 污浊的，恶臭的；恶劣的，邪恶的；n./v.（体育）犯规 | 1 |
-| arising | v. (arise) 产生，出现（arise from 由……引起）；起身，起床 | 1 |
-| filth | n. 污秽，污物；下流话，淫秽内容 | 1 |
-| physician | n. 内科医生；医生（注意区别 physicist 物理学家） | 1 |
-| convinced | adj. 确信的，深信的（be convinced that/of）；v. (convince) 使确信，说服 | 1 |
-| swallowed | v. (swallow) 吞下，咽下；轻信（swallow a story）；忍受，压下（怒气等）；n. 燕子 | 1 |
-| inhaled | v. (inhale) 吸入，吸气（反义 exhale 呼出） | 1 |
-| hesitated | v. (hesitate) 犹豫，迟疑（hesitate to do sth 不敢贸然做某事） | 2 |
-| consulted | v. (consult) 查阅（资料）；咨询，请教；商量 | 2 |
-| register | n. 登记簿，名册；（语言学）语域；v. 登记，注册；（仪表）显示；流露（情绪） | 2 |
-| bereaved | adj. 失去亲人的，丧亲的（the bereaved 死者家属）；v. (bereave) 使丧失（亲人） | 2 |
-| urging | n. (urge 的动名词) 敦促，力劝（at sb's urging 在某人的敦促下，文中 at his urging）；urge v. 敦促；n. 强烈欲望，冲动 | 2 |
-| parish | n. 教区，堂区（英国最基层的宗教兼地方行政单位）；parish council 教区议会 | 2 |
-| fatal | adj. 致命的，致死的；灾难性的，毁灭性的（a fatal mistake） | 2 |
-| plunged | v. (plunge) 骤降，暴跌；（使）陷入（某种状态）；跳入，猛冲；n. 骤降 | 2 |
-| peak | n. 峰值，顶点；山峰；v. 达到顶峰；adj. 高峰的（peak hours） | 2 |
-| clinical | adj. 临床的（clinical trial 临床试验）；冷静客观的，冷漠的 | 3 |
-| interpreted | v. (interpret) 解读，理解（interpret A as B 把 A 理解为 B）；口译 | 3 |
-| cluster | n.（病例等的）聚集，群，簇；v. 聚集，扎堆 | 3 |
-| poison | n. 毒物，毒药；毒素（19世纪常指致病物质，文中即瘴气论所说空气中的致病毒素）；有害的东西；v. 毒害，下毒；污染 | 3 |
-| drifting | v. (drift) 飘散，漂流；逐渐转变，渐渐陷入；n. 趋势；大意 | 3 |
-| chart | v. 绘制（地图、图表），用图表示；记录（变化、进展）；制订（计划）；n. 图表；排行榜 | 3 |
-| crucial | adj. 关键的，至关重要的 | 4 |
-| exceptions | n. (exception) 例外，例外情况（with the exception of 除……之外；make an exception 破例） | 4 |
-| amid | prep. 在……之中，被……包围；在……期间（amid concerns 在一片担忧声中） | 4 |
-| surrounding | adj. 周围的，附近的；n. (surroundings) 环境；v. (surround) 包围，环绕 | 4 |
-| a mere | 短语. 仅仅，区区（mere adj. 仅仅的，只不过的） | 4 |
-| inmates | n. (inmate) （济贫院、精神病院等机构的）被收容者；（监狱的）囚犯 | 4 |
-| allowance | n. 配给量，定量；津贴，零用钱；make allowance(s) for 考虑到，体谅 | 4 |
-| conversely | adv. 反过来，相反地 | 5 |
-| widow | n. 寡妇（widower 鳏夫；widowed adj. 丧偶的） | 5 |
-| carted | v. (cart) 用车运送；（cart off/away）强行带走；n. 手推车，马车 | 5 |
-| niece | n. 侄女；外甥女（英文不分；原文未说明是哪一种，文中按习惯译「侄女」；nephew 侄子；外甥） | 5 |
-| inquiry | n. 调查（委员会），调查研究；询问，查询 | 6 |
-| declined | v. (decline) 婉拒，不肯（decline to do sth）；下降，衰退；n. 下降，衰落 | 6 |
-| condemn | v. 谴责；认定……有罪，判……刑（condemn sb to death）；（因不安全）宣布（建筑物、设施等）停用 | 6 |
-| contending | v. (contend) 坚称，坚持认为（contend that）；竞争，争夺（contend for）；应付（contend with） | 6 |
-| absorbed | v. (absorb) 吸收（液体、气体等）；吸引……的注意力（be absorbed in 专心于）；吞并 | 6 |
-| airborne | adj. 经空气传播的，空气中的（airborne disease）；（飞机）在飞行中的；空降的 | 6 |
-| meanwhile | adv. 与此同时；在此期间 | 6 |
-| sceptical | adj. (美式 skeptical) 怀疑的，不相信的（be sceptical of/about） | 6 |
-| refute | v. 驳倒，驳斥，证明……错误（refute a claim/theory） | 6 |
-| succumb | v. 屈服，抵挡不住（succumb to temptation/pressure）；死于（疾病、伤势）（succumb to a disease） | 6 |
-| vindicating | v. (vindicate) 证明……正确，证明……无辜；为……辩护 | 6 |
+| overcrowded | 本文：拥挤不堪的；adj. 过度拥挤的，人满为患的 | 1 |
+| ravaged | 本文：肆虐；v. (ravage) 肆虐，严重破坏；蹂躏，毁坏 | 1 |
+| upwards of | 本文：超过/多于；短语. 超过，……以上（= more than） | 1 |
+| perished | 本文：丧生；v. (perish) 死亡，丧生（多指灾难、战争、疫病中成批死亡）；毁灭，消亡；（材料）老化，腐烂 | 1 |
+| attributed to | 本文：把……归因于；v. (attribute) 把……归因于（attribute A to B）；认为……是某人所作；n. 属性，特质 | 1 |
+| epidemics | 本文：流行病；n. (epidemic) 流行病，疫病；（坏事的）盛行；adj. 流行性的 | 1 |
+| filth | 本文：污秽；n. 污秽，污物；下流话，淫秽内容 | 1 |
+| arising | 本文：产生；v. (arise) 产生，出现（arise from 由……引起）；起身，起床 | 1 |
+| foul | 本文：污浊的；adj. 污浊的，恶臭的；恶劣的，邪恶的；n./v.（体育）犯规 | 1 |
+| physician | 本文：内科医生；n. 内科医生；医生（注意区别 physicist 物理学家） | 1 |
+| convinced | 本文：确信；adj. 确信的，深信的（be convinced that/of）；v. (convince) 使确信，说服 | 1 |
+| swallowed | 本文：吞；v. (swallow) 吞下，咽下；轻信（swallow a story）；忍受，压下（怒气等）；n. 燕子 | 1 |
+| inhaled | 本文：吸；v. (inhale) 吸入，吸气（反义 exhale 呼出） | 1 |
+| hesitated | 本文：犹豫；v. (hesitate) 犹豫，迟疑（hesitate to do sth 不敢贸然做某事） | 2 |
+| consulted | 本文：查阅了；v. (consult) 查阅（资料）；咨询，请教；商量 | 2 |
+| register | 本文：登记册；n. 登记簿，名册；（语言学）语域；v. 登记，注册；（仪表）显示；流露（情绪） | 2 |
+| bereaved | 本文：痛失亲人的；adj. 失去亲人的，丧亲的（the bereaved 死者家属）；v. (bereave) 使丧失（亲人） | 2 |
+| victims | 本文：罹难者；n. (victim) 受害者，罹难者，（疾病、灾难的）遇难者；牺牲品（fall victim to 成为……的牺牲品） | 2 |
+| urging | 本文：敦促；n. (urge 的动名词) 敦促，力劝（at sb's urging 在某人的敦促下，文中 at his urging）；urge v. 敦促；n. 强烈欲望，冲动 | 2 |
+| parish | 本文：教区；n. 教区，堂区（英国最基层的宗教兼地方行政单位）；parish council 教区议会 | 2 |
+| fatal | 本文：致死；adj. 致命的，致死的；灾难性的，毁灭性的（a fatal mistake） | 2 |
+| peak | 本文：峰值；n. 峰值，顶点；山峰；v. 达到顶峰；adj. 高峰的（peak hours） | 2 |
+| plunged | 本文：骤降；v. (plunge) 骤降，暴跌；（使）陷入（某种状态）；跳入，猛冲；n. 骤降 | 2 |
+| clinical medicine | 本文：临床医学；短语. 临床医学（clinical adj. 临床的：clinical trial 临床试验；冷静客观的，冷漠的） | 3 |
+| cluster | 本文：聚集；n.（病例等的）聚集，群，簇；v. 聚集，扎堆 | 3 |
+| interpreted | 本文：解读；v. (interpret) 解读，理解（interpret A as B 把 A 理解为 B）；口译 | 3 |
+| drifting | 本文：飘散；v. (drift) 飘散，漂流；逐渐转变，渐渐陷入；n. 趋势；大意 | 3 |
+| poison | 本文：毒素；n. 毒物，毒药；毒素（19世纪常指致病物质，文中即瘴气论所说空气中的致病毒素）；有害的东西；v. 毒害，下毒；污染 | 3 |
+| chart | 本文：绘制/记录；v. 绘制（地图、图表），用图表示；记录（变化、进展）；制订（计划）；n. 图表；排行榜 | 3 |
+| crucial | 本文：至关重要的/决定性的；adj. 关键的，至关重要的，决定性的 | 4 |
+| lay in | 本文：在于……中；短语. (lie in 的过去式) 在于，存在于（The problem lies in… 问题在于……） | 4 |
+| exceptions | 本文：例外/个例；n. (exception) 例外，例外情况，个例（with the exception of 除……之外；make an exception 破例） | 4 |
+| Amid | 本文：在……期间内；prep. 在……之中，被……包围；在……期间（amid concerns 在一片担忧声中） | 4 |
+| surrounding | 本文：周围的；adj. 周围的，附近的；n. (surroundings) 环境；v. (surround) 包围，环绕 | 4 |
+| inmates | 本文：被收容者；n. (inmate) （济贫院、精神病院等机构的）被收容者；（监狱的）囚犯 | 4 |
+| a mere | 本文：区区；短语. 仅仅，区区（mere adj. 仅仅的，只不过的） | 4 |
+| allowance | 本文：津贴；n. 配给量，定量；津贴，零用钱；make allowance(s) for 考虑到，体谅 | 4 |
+| Conversely | 本文：反过来；adv. 反过来，相反地 | 5 |
+| widow | 本文：寡妇；n. 寡妇（widower 鳏夫；widowed adj. 丧偶的） | 5 |
+| set foot in | 本文：踏进（过）；短语. 踏进，踏足（某地）；常用否定 not set foot in 再没去过 | 5 |
+| carted | 本文：用车运来；v. (cart) 用车运送；（cart off/away）强行带走；n. 手推车，马车 | 5 |
+| niece | 本文：侄女；n. 侄女；外甥女（英文不分；原文未说明是哪一种，文中按习惯译「侄女」；nephew 侄子；外甥） | 5 |
+| inquiry | 本文：调查委员会（官方调查程序；被任命进行调查的委员会）；n. 调查（委员会），调查研究；询问，查询 | 6 |
+| declined | 本文：不肯；v. (decline) 婉拒，不肯（decline to do sth）；下降，衰退；n. 下降，衰落 | 6 |
+| condemn | 本文：定罪；v. 谴责；认定……有罪，判……刑（condemn sb to death）；（因不安全）宣布（建筑物、设施等）停用 | 6 |
+| contending | 本文：坚称；v. (contend) 坚称，坚持认为（contend that）；竞争，争夺（contend for）；应付（contend with） | 6 |
+| absorbed | 本文：吸收了；v. (absorb) 吸收（液体、气体等）；吸引……的注意力（be absorbed in 专心于）；吞并 | 6 |
+| airborne | 本文：经空气传播的；adj. 经空气传播的，空气中的（airborne disease）；（飞机）在飞行中的；空降的 | 6 |
+| Meanwhile | 本文：与此同时；adv. 与此同时；在此期间 | 6 |
+| sceptical | 本文：心存怀疑的；adj. (美式 skeptical) 怀疑的，不相信的（be sceptical of/about） | 6 |
+| set out to | 本文：一心想；短语. set out to do something：带着明确的目标开始做某事，或者下定决心要去完成某事 | 6 |
+| refute | 本文：驳倒；v. 驳倒，驳斥，证明……错误（refute a claim/theory） | 6 |
+| succumb to | 本文：死于；短语. 屈服于，抵挡不住（succumb to temptation/pressure）；死于（疾病、伤势）（succumb to a disease） | 6 |
+| vindicating | 本文：证明了……正确的；v. (vindicate) 证明……正确，证明……无辜；为……辩护 | 6 |
 
 ## 史实与来源
 - 词数说明：全文 274 词，超出 271 上限 3 词，为用户 2026-09-30 特批（开头写明具体月份）。
