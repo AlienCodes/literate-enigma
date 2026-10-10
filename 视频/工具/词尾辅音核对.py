@@ -143,7 +143,13 @@ def write_grafts(no, d, bad):
             on = fL + 1
             while on < len(e) and e[on] >= AUD_DB: on += 1
             on += 3
-        sec = round(on * F5 / SR, 6); gj.setdefault('标题' if lab == '标题' else lab, {})[('句末' if g == last else str(g + 1))] = [sec, ph]; n += 1
+        sec = round(on * F5 / SR, 6)
+        if g == last:
+            # 2026-10-10（10 S12 it.）：句末的移植点放在了句尾淡出（clean_tail 最后 50 ms；_keep_tail 接长的是最后 5 ms）开始之后，
+            # 淡出开始到移植点之间被淡出的那一帧夹在中间，与原始合成不同（独立复核报“多余声音”）。移植点最晚放在淡出开始处
+            fs_ = len(w) - (F5 if len(w) != len(clean_tail(raw)) else int(0.05 * SR))
+            if on * F5 > fs_: sec = round(fs_ / SR, 6); print(f'  {lab} 句末：移植点提前到句尾淡出开始处 {sec:.6f}s')
+        gj.setdefault('标题' if lab == '标题' else lab, {})[('句末' if g == last else str(g + 1))] = [sec, ph]; n += 1
         print(f'写入 {no} {lab} {"句末" if g == last else "第%d个标点" % (g + 1)} /{ph}/ 位置 w {sec:.6f}s（{"闭塞最低点之后" if deep else "没有真正的闭塞：词的声音衰减到 -55 dB 后再留 15 ms 闭塞"}）')
     if n:
         json.dump(d, open(f'scripts/{no}.json', 'w'), ensure_ascii=False, indent=1)

@@ -389,7 +389,9 @@ def _ending_toks(sent,e):
 def _ending_raw(sent,e):
     if '整句语速' in e:                                                # 没有句中标点的结尾句：整句一个较慢的语速
         r_,_=k.create(spoken(sent),voice=V,speed=float(e['整句语速']),lang='en-us'); return np.asarray(r_,np.float32)
-    rF,rS,mF,mS=_ending_parts(sent,e); return np.concatenate([rF[:mF],rS[mS:]])
+    rF,rS,mF,mS=_ending_parts(sent,e)
+    g_=10**(float(e.get('前段增益dB',0))/20)          # 10 S17 “If so,” 比全片响 4.7 LU：只给前段一个增益（接点在静音里，听不出接缝；不设就是 0 dB，01–09 声音不变）
+    return np.concatenate([rF[:mF]*g_,rS[mS:]])
 # A27 结尾句放慢不许丢音（2026-10-10 02 结尾句整句 0.80 倍速时，perseveres 词尾的 /z/ 没了，读成“a child persevere depends”；
 # 原速 0.95 时 /z/ 清楚）：结尾句的每一个 /s z ʃ ʒ/，在原速那遍里清楚（这个音前后 80 ms 内，5 ms 帧 4 kHz 以上能量占比 ≥0.5、电平 >-40 dB），
 # 在结尾句那遍里也必须清楚，否则程序停下（换一个保得住这个音的语速，写进 结尾句 并说明）。

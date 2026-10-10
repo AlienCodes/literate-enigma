@@ -92,7 +92,12 @@ def matches(A, gx, n0, n1, o):
 def audit(no, g=None, wav=None):
     A, sr = sf.read(wav or f'{S}/video/work_{no}/a.wav', dtype='float64'); assert sr == SR
     meta = json.load(open(f'{W}/gt/{no}_meta.json'))
-    labs = {l['idx']: l for l in json.load(open(f'{W}/gt/{no}_labels.json'))}
+    # 2026-10-10（10 S12 it.）：手动跑复核前没先跑 synth.py，标准答案还是改移植位置之前的，报出的“多余声音、错开 15 ms”是假的，白查了很久——
+    # 标准答案比脚本、连读淡入淡出表、读音改正表旧就停（交付核查每次先跑 synth.py；自检的临时目录里没有脚本，只比读音改正表）
+    mt_ = os.path.getmtime(f'{W}/gt/{no}_meta.json')
+    for f_ in (f'{S}/video/scripts/{no}.json', f'{S}/video/work_{no}/淡入淡出.json', '/home/user/postgraduate-vocabulary/视频/工具/发音词典/读音改正.json'):
+        if os.path.exists(f_) and os.path.getmtime(f_) > mt_: raise SystemExit(f'【停止】标准答案比 {f_} 旧，先跑 独立复核/synth.py {no}')
+    labs ={l['idx']: l for l in json.load(open(f'{W}/gt/{no}_labels.json'))}
     if g is None:
         g = 0.89 / max(np.abs(np.load(it['file'])).max() for it in meta)
     rep = {'no': no, 'g': g, 'texts': [], 'n_islands': 0}
