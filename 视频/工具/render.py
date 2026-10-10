@@ -186,7 +186,7 @@ def _pair_cols(pairs,colors,ef,zf,gapx):
         se=_segs_en(en,colors); zl=[_segs_zh(x,colors) for x in (zh or '').split('\n')]
         sz=[s for l in zl for s in l]; wl=[sum(zf.getlength(t) for t,_ in l) for l in zl]
         we=sum(ef.getlength(t) for t,_ in se); wz=max(wl)
-        cols.append(dict(se=se,sz=sz,zl=zl,wl=wl,nz=len(zl),we=we,wz=wz,w=max(we,wz),nowrap='{{=}}' in en))
+        cols.append(dict(se=se,sz=sz,zl=zl,wl=wl,nz=len(zl),we=we,wz=wz,w=max(we,wz),nowrap='{{=}}' in en,zr=(zh or '').split('\n')))
     return cols
 def _wrap_cols(cols,maxw,gapx):
     g=_wrap_greedy(cols,maxw,gapx); g=[x for x in g if x]
@@ -246,6 +246,22 @@ def max_es(chunks,colors,notes=None):
         _,t,w,_=_measure(chunks,colors,notes,es,grps)
         if t<=MAXH2 and w<=MAXW2: return es
     return 30
+def _under_x(c,k,zf,x):
+    """同一格里，第 k 行只有一个说明 {{（…）|key}}、上一行有重点词 **词**(key)：说明的中心对准这个词的中心（不超出这一格）。否则 None（照常居中）"""
+    if k==0: return None
+    m=re.fullmatch(ZCOL,c['zr'][k].strip())
+    if not m: return None
+    key=m.group(2).lower(); prev=c['zr'][k-1]; mk=None
+    for mm in re.finditer(r'\*\*([^*]+)\*\*\(([^)]*)\)',prev):
+        if mm.group(2).lower()==key: mk=mm.group(1); break
+    if mk is None: return None
+    segs=c['zl'][k-1]; x0=x+(c['w']-c['wl'][k-1])/2; acc=0.0; cx=None
+    for t,_ in segs:
+        if t==mk and cx is None: cx=x0+acc+zf.getlength(t)/2
+        acc+=zf.getlength(t)
+    if cx is None: return None
+    wl=c['wl'][k]
+    return min(max(cx-wl/2,x),x+c['w']-wl)
 def frame_interlinear(chunks,colors,header,progress,out,active=None,maxw=1840,maxh=940,notes=None):
     notes=notes or [None]*len(chunks)
     es=ES_FIXED or max_es(chunks,colors,notes)
@@ -269,6 +285,8 @@ def frame_interlinear(chunks,colors,header,progress,out,active=None,maxw=1840,ma
                     f=col or FG_EN; f=f if on else dim(f); d.text((xx,y),t,font=ef,fill=f); xx+=ef.getlength(t)
                 for k,(l,wl) in enumerate(zip(c['zl'],c['wl'])):
                     xx=x+(c['w']-wl)/2
+                    ux=_under_x(c,k,zf,x)                                      # 单独一行的说明：放在它所注的那个词正下方（07 S4 用户要求）
+                    if ux is not None: xx=ux
                     for t,col in l:
                         f=col or FG_ZH; f=f if on else dim(f); d.text((xx,y+lhE+k*lhZ),t,font=zf,fill=f); xx+=zf.getlength(t)
                 x+=c['w']+gapx
