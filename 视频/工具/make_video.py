@@ -237,6 +237,7 @@ for _p in sorted(_glob.glob('scripts/*.json')):
 # “接点”（两遍里各一个样本位置，用实际声音核实过：两侧各 10 ms 都低于 -55 dB）接起来，当成这一句的原始合成；之后的处理
 # （非人声、移植、停顿、高亮、所有核查、独立复核）都把它当一次合成看待（都用 _ending_raw）。
 #   "结尾句"：{"S16": {"前段语速": 0.90, "最后一段语速": 0.78, "最后一段前停顿": 0.70, "接点": [前段样本, 最后一段样本]}}
+#   最后一句没有句中标点（01、02）：{"S18": {"整句语速": 0.80}}——整句一个较慢的语速（与 07 试听 B 版的定义一致）
 ENDING={}
 for _p in sorted(_glob.glob('scripts/*.json')):
     _d=_json.load(open(_p))
@@ -339,6 +340,10 @@ def _ending_parts(sent,e):
 def _ending_toks(sent,e):
     """结尾句每个音的时刻（接起来的声音里的秒）：接点前取前段那遍的，接点后取最后一段那遍的（平移过来）"""
     import types as _ty
+    if '整句语速' in e:                                                # 没有句中标点的结尾句：整句一个较慢的语速，一次合成
+        r_,_=k.create(spoken(sent),voice=V,speed=float(e['整句语速']),lang='en-us')
+        tb_,_,ts_=KT.create_timed(spoken(sent),voice=V,speed=float(e['整句语速']),lang='en-us',clause_pause=0,sentence_pause=0); sc_=len(r_)/len(tb_)
+        return [_ty.SimpleNamespace(phoneme=t_.phoneme,start=t_.start*sc_,end=t_.end*sc_) for t_ in ts_]
     rF_,rS_,mF_,mS_=_ending_parts(sent,e); toks=[]
     for sp_,r_,m_,first_ in ((float(e['前段语速']),rF_,mF_,True),(float(e['最后一段语速']),rS_,mS_,False)):
         tb_,_,ts_=KT.create_timed(spoken(sent),voice=V,speed=sp_,lang='en-us',clause_pause=0,sentence_pause=0); sc_=len(r_)/len(tb_)
@@ -347,13 +352,16 @@ def _ending_toks(sent,e):
             if (t_.start*sc_*SR<m_)==first_: toks.append(_ty.SimpleNamespace(phoneme=t_.phoneme,start=(t_.start*sc_*SR-sh_)/SR,end=(t_.end*sc_*SR-sh_)/SR))
     return toks
 def _ending_raw(sent,e):
+    if '整句语速' in e:                                                # 没有句中标点的结尾句：整句一个较慢的语速
+        r_,_=k.create(spoken(sent),voice=V,speed=float(e['整句语速']),lang='en-us'); return np.asarray(r_,np.float32)
     rF,rS,mF,mS=_ending_parts(sent,e); return np.concatenate([rF[:mF],rS[mS:]])
 def sentence_audio(sent,pieces,gaps):
     """整句一次合成（原模型，声音不变）。标点位置用带时长输出的同版模型精确定位（A9）；
     在标点处只删除"真正无声"的部分（A10：绝不删词尾的 s/f/z 等弱音），再补静音，使实际听到的停顿 = 标准时长。"""
     E_=ENDING.get(sent)
     if E_:                                                            # 结尾句：两遍合成接起来，最后一段前的停顿用结尾的长度
-        raw=_ending_raw(sent,E_); gaps=list(gaps); gaps[-1]=float(E_['最后一段前停顿'])
+        raw=_ending_raw(sent,E_); gaps=list(gaps)
+        if gaps and '最后一段前停顿' in E_: gaps[-1]=float(E_['最后一段前停顿'])
     else: raw,_=k.create(spoken(sent),voice=V,speed=SPEED,lang='en-us')
     w=clean_tail(raw)
     w=_keep_tail(raw,w,_head_offset(raw,w))
