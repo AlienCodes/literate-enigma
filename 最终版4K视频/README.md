@@ -12,3 +12,4 @@
 | 04 | The Brain That Learned London | 被街道重塑的大脑 | 12.8 MB |
 | 06 | The Horse That Could Count | 会算术的马 | 11.8 MB |
 | 07 | The Octopus That Escaped | 越狱的章鱼 | 10.8 MB |
+| 08 | The Doctor Who Solved the Cholera Mystery | 破解霍乱之谜的医生 | 11.7 MB |
