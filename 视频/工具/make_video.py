@@ -33,8 +33,11 @@ k.create=_cached(k,'create',f'{TTS}/kokoro-v1.0.onnx'); KT.create_timed=_cached(
 # 不含这些词的句子，声音逐样本不变。出片、核查、带时长模型都经过 k.create / KT.create_timed，用的是同一串音标。
 _PRON_PATH=os.path.join(os.path.dirname(os.path.abspath(__file__)) if '__file__' in globals() else '.', '读音改正.json')
 for _cand in (_PRON_PATH,'读音改正.json','/home/user/postgraduate-vocabulary/视频/工具/发音词典/读音改正.json'):
-    if os.path.exists(_cand): PRON_WORDS={k_:v_['读音'] for k_,v_ in json.load(open(_cand)).items()}; break
-else: PRON_WORDS={'Inky':'ˈɪŋki'}
+    if os.path.exists(_cand):
+        _pj=json.load(open(_cand)); PRON_WORDS={k_:v_['读音'] for k_,v_ in _pj.items()}
+        PRON_EXTRA={k_:v_['语境错读'] for k_,v_ in _pj.items() if v_.get('语境错读')}   # 单读没错、连读时才读错的写法（08 cholera ravaged → kˈɑːlɚɹɚ）
+        break
+else: PRON_WORDS={'Inky':'ˈɪŋki'}; PRON_EXTRA={}
 def _stress_free_re(ph):
     """不管重音号在哪（音标里每个符号前后都可能有，McArthur 的重音号在空格之后），都能对上这串音标"""
     return ''.join(r'\s*' if ch==' ' else '[ˈˌ]?'+re.escape(ch) for ch in re.sub('[ˈˌ]','',ph))+'[ˈˌ]?'
@@ -45,6 +48,13 @@ def phonemes_of(text):
         n_=len(re.findall(r"(?<![A-Za-z])"+re.escape(w_)+r"(?![A-Za-z])",text,flags=re.I))
         if not n_: continue
         bad=re.sub(r'[,;:.!?]','',KT.tokenizer.phonemize(w_,'en-us')).strip(); PRON_FIX[bad]=good
+        if PRON_EXTRA.get(w_):                                          # 连读时另有错法的词：每种错法都换成正确读音，换完这个词每一处都必须是正确读音
+            B_="(?<![^\\s,;:.!?])"; E_="(?=[\\s,;:.!?]|$)"
+            for f_ in [bad]+list(PRON_EXTRA[w_]):
+                if f_!=good: ph=re.sub(B_+_stress_free_re(f_)+E_,good,ph)
+            got_=len(re.findall(B_+_stress_free_re(good)+"(?:z)?"+E_,ph))   # 所有格 cholera's 注成 …ɹəz，算正确读音
+            if got_!=n_: raise SystemExit(f'【停止】读音改正没有全部换到（A23）：{w_} 出现 {n_} 次，整句里正确读音 {got_} 处：{text[:60]}')
+            continue
         if re.sub('[ˈˌ]','',bad)==re.sub('[ˈˌ]','',good) and bad==good: continue
         ph,cnt=re.subn("(?<![^\\s,;:.!?])"+_stress_free_re(bad)+"(?=[\\s,;:.!?]|$)",good,ph)
         if cnt!=n_: raise SystemExit(f'【停止】读音改正没有全部换到（A23）：{w_} 出现 {n_} 次，换了 {cnt} 次：{text[:60]}')
