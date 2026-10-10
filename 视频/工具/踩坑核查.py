@@ -504,14 +504,15 @@ def zh_dup_checks(d):
     return [f'[T26] 中文“{z}”同时是 {"、".join(sorted(es))} 的意思——两个不同的重点词用了同一个中文，学生分不清；换一个，确实要一样就写进 核对确认.中文重复'
             for z, es in sorted(seen.items()) if len({re.sub(r'(ies|es|s|ed|ing)$', '', e) for e in es}) > 1 and z not in ok]
 def selftest_zhdup():
-    """T26 自检：09 原样不报；把 S17 payout 的中文改成和 S18 payments 一样的“赏金”，必须报出"""
+    """T26 自检：09 原样不报；把 S17 payout 和 S18 payments 的中文都改成“赏金”（09 草稿修改时出过的情况），必须报出——不依赖 09 现在的写法"""
     base = json.load(open(f'{V}/脚本/09.json')); fails = []
     if zh_dup_checks(base): fails.append('T26 误报：09 原样被报出：' + '；'.join(zh_dup_checks(base)))
-    d = copy.deepcopy(base); hit = False
-    for c in d['sentences'][16]['chunks']:
-        if '(payout)' in c['zh']:
-            c['zh'] = re.sub(r'\*\*[^*]+\*\*\(payout\)', '**赏金**(payout)', c['zh']); hit = True
-    if not hit: fails.append('T26 自检样本找不到：09 S17 payout')
+    d = copy.deepcopy(base); hit = 0
+    for s_ in d['sentences'][16:18]:
+        for c in s_['chunks']:
+            for k in ('payout', 'payments'):
+                if f'({k})' in c['zh']: c['zh'] = re.sub(r'\*\*[^*]+\*\*\(' + k + r'\)', f'**赏金**({k})', c['zh']); hit += 1
+    if hit < 2: fails.append('T26 自检样本找不到：09 S17 payout、S18 payments')
     elif not any('赏金' in x for x in zh_dup_checks(d)): fails.append('没抓到：两个重点词用了同一个中文（T26，09 payout/payments 赏金）')
     return fails
 def selftest_gloss():
