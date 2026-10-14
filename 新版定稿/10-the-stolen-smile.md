@@ -22,7 +22,7 @@ After **showings** in Italy, the painting was **reinstated** in the Louvre on 4 
 
 1913年12月，佩鲁贾**联系了**(contacted)佛罗伦萨的艺术品**商人**(dealer)阿尔弗雷多·杰里。乌菲齐美术馆馆长在佩鲁贾下榻的旅馆**鉴定了**(authenticated)这幅画；佩鲁贾于1913年12月11日被**逮捕**(apprehended)。以**爱国**(patriotism)为由，他说自己想把画**送回祖国**(repatriated)；（他）**错误地**(mistakenly)（曲解意思）以为拿破仑**掠夺了/掠走了**(looted)（尤指战争和暴乱期间）这幅画。（Citing…：现在分词短语作伴随状语；want sth done：想让某物被……；mistakenly believing…：现在分词短语作原因状语）事实上，列奥纳多·达·芬奇**应**(at the invitation of)国王弗朗索瓦一世的**邀请**(at the invitation of)，**携/带着**(accompanied)这幅画去了法国。
 
-在意大利**展出**(showings)之后，这幅画于1914年1月4日在卢浮宫被**放回原处**(reinstated)。1914年6月，**法庭**(tribunal)**判处了**(imposed)（佩鲁贾）一年零15天的**刑罚**(penalty)，但他实际**坐牢**(imprisoned)大约才七个月。许多史学家认为，这起**盗窃大案**(heist)**把**(elevated to)这幅众多画作中**备受推崇的**(esteemed)**珍品**(gem)**抬高到了**(elevated to)世界最**著名的**(renowned)画作**的地位**(elevated to)。（argue 后面省略了 that；elevate A to B：把A抬高到B的地位；one … among many：众多……之一）若真如此，它的**名气**(fame)始于一面**光秃秃的**(bare)墙。（历史背景：1911年《蒙娜丽莎》被盗后，卢浮宫原本挂画的那面墙上只剩下几个钉子（即 bare wall）。在画作失窃的两年里，无数人慕名来到卢浮宫，专门去看那面空荡荡的墙，这反而极大地激发了公众的好奇心，将其推上了“世界第一名画”的神坛。）
+在意大利**展出**(showings)之后，这幅画于1914年1月4日在卢浮宫被**放回原处**(reinstated)。1914年6月，**法庭**(tribunal)**判处了**(imposed)（佩鲁贾）一年零15天的**刑罚**(penalty)，但他实际**坐牢**(imprisoned)大约才七个月。许多史学家认为，这起**盗窃大案**(heist)**把**(elevated to)这幅众多画作中**备受推崇的**(esteemed)**珍品**(gem)**抬高到了**(elevated to)世界最**著名的**(renowned)画作**的地位**(elevated to)。（argue 后面省略了 that；elevate A to B：把A抬高到B的地位；one … among many：众多……之一）若真如此，它的**名气**(fame)（不过）始于一面**光秃秃的**(bare)墙。（历史背景：1911年《蒙娜丽莎》被盗后，卢浮宫原本挂画的那面墙上只剩下几个钉子（即 bare wall）。在画作失窃的两年里，无数人慕名来到卢浮宫，专门去看那面空荡荡的墙，这反而极大地激发了公众的好奇心，将其推上了“世界第一名画”的神坛。）
 
 ## 速查表
 | 词 | 释义 | 段 |
