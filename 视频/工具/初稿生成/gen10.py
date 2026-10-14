@@ -57,7 +57,7 @@ S=[
     [[("the **heist** **elevated** one **esteemed** **gem** among many","这起**盗窃大案**(heist)**把**(elevated to)这幅众多画作中**备受推崇的**(esteemed)**珍品**(gem)")]],
     [[("**to**","**抬高到了**(elevated to)"),("the world's most **renowned** painting.","世界最**著名的**(renowned)画作**的地位**(elevated to)。")],
      "（argue 后面省略了 that；elevate A to B：把A抬高到B的地位；\none … among many：众多……之一）"]]),
-(5,[[[("If so,","若真如此，"),("its **fame**","它的**名气**(fame)"),("began with","始于"),("a **bare** wall.","一面**光秃秃的**(bare)墙。")],
+(5,[[[("If so,","若真如此，"),("its **fame**","它的**名气**(fame)"),("began with","（不过）始于"),("a **bare** wall.","一面**光秃秃的**(bare)墙。")],
      "（历史背景：1911年《蒙娜丽莎》被盗后，\n卢浮宫原本挂画的那面墙上只剩下几个钉子（即 bare wall）。\n在画作失窃的两年里，无数人慕名来到卢浮宫，\n专门去看那面空荡荡的墙，这反而极大地激发了公众的好奇心，\n将其推上了“世界第一名画”的神坛。）"]]),
 ]
 # 审校后写进的确认（2026-10-10 三视角审校：踩坑核查 [T22] 报出的 6 处逐个核实，都不是短语型用法，同 09 parcels of、pleas for 的判法）
