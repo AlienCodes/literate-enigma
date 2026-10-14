@@ -81,7 +81,7 @@ for no in sys.argv[1:]:
         w = _W[0]
         # A32：结尾句最后一个标点的停顿必须包住两遍合成的接点（接点在两个词之间的静音里）。这一条不认 核对确认——
         # 10 S17 就是我把原始合成的秒当成 w 的秒、写了错的确认，把程序报出的问题放过了
-        e_ = d.get('结尾句', {}).get(f'S{si}'); jw_ = int(e_['接点'][0]) - LAST['head'] if e_ and '接点' in e_ else None
+        e_ = d.get('结尾句', {}).get(f'S{si}'); jw_ = _EJ.get(sent, int(e_['接点'][0])) - LAST['head'] if e_ and '接点' in e_ else None
         ratio = [(t1 - t0) / (len(say(sent[x0:x1])) / SR) for x0, x1, t0, t1 in tm]   # 每段：句中时长 ÷ 单独朗读时长
         tb, _, sp = KT.create_timed(spoken(sent), voice=V, speed=SPEED, lang='en-us', clause_pause=0, sentence_pause=0)
         mp, cost = dtw_map(logmel(np.asarray(tb, float)), logmel(np.asarray(w, float)))

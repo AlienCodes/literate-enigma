@@ -61,6 +61,10 @@ e_ = {'前段语速': spF, '最后一段语速': spS, '最后一段前停顿': g
               f'接点由 结尾句接点.py 自动找：{spF} 那遍最后一个标点后最长静音（{nF} ms）的正中 {mF / SR:.3f} s，{spS} 那遍（{nS} ms）的正中 {mS / SR:.3f} s，'
               f'所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）' + ('；' + '；'.join(why_) if why_ else '')
               + ('；前段单独合成（“' + _ending_front(sent_) + '”单独一遍，so 自然拖长、音调落下；接点在这一遍末尾的静音里）' if ALONE else '')}
+if '--写前段音调范围' in sys.argv:   # 前段音调要改的浊音段写死在脚本里（出片程序不现测，保证同一个脚本出的声音逐样本相同）
+    eo_ = d_['结尾句'][f'S{si_}']; rF_, _ = k.create(spoken(sent_), voice=V, speed=float(eo_['前段语速']), lang='en-us')
+    a_, b_ = _tone_span(np.asarray(rF_, np.float32), int(eo_['接点'][0])); eo_['前段音调']['范围'] = [round(a_, 3), round(b_, 3)]
+    json.dump(d_, open(js_, 'w'), ensure_ascii=False, indent=1); print(f'  前段音调 范围 {a_:.3f}–{b_:.3f} 秒，已写进 {js_}'); sys.exit(0)
 print(f'第{no_}篇 S{si_}：“{sent_}”')
 print(f'  最后一段：“{tail_}”')
 print(f'  前段 {spF}：接点样本 {mF}（{mF / SR:.3f} 秒，所在静音 {nF} ms）；最后一段 {spS}：接点样本 {mS}（{mS / SR:.3f} 秒，所在静音 {nS} ms）')

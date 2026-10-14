@@ -371,7 +371,49 @@ def _ending_parts(sent,e):
     for r_,m_,nm_ in ((rF,mF,'前段'),(rS,mS,'最后一段')):
         e_=_env5(r_); seg_=e_[max(0,m_//F_-1):m_//F_+2]
         if not len(seg_) or seg_.max()>=-55: raise SystemExit(f'【停止】结尾句的接点不在静音里（{nm_}，样本 {m_}，所在帧和两侧各 5 ms 最响 {seg_.max() if len(seg_) else 0:.1f} dB）：{sent[:60]}')
+    if e.get('前段音调') and not e.get('前段单独合成'):
+        # 2026-10-14 10 S17 用户：“我希望这个so有那种嘲讽的语气、意味深长的语气，有点像中文发音 拼音 三声 那种音调”：配音模型怎么写标点 so 都是一路降下去
+        # （逗号、问号、省略号、分号等 9 种实测，160 → 90 Hz，没有先降后升），只能改音调：整句那一遍里 so 的浊音段用 PSOLA 换成三声那样先降后升的曲线、按 拉长 放慢，
+        # 音色不变；只动这一个词，接点照样在静音里（跟着挪）。不设就和原来完全一样
+        if '范围' not in e['前段音调']: raise SystemExit(f'【停止】前段音调没有写 范围（要改的浊音段，秒）：先跑 结尾句接点.py NN --写前段音调范围（运行时现测会因为合成结果极小的差别前后差 10 ms，同一个脚本出的声音不一样，G9 逐样本核对过不了）：{sent[:60]}')
+        a_,b_=(float(x_) for x_ in e['前段音调']['范围'])
+        if not b_*SR<mF-F_: raise SystemExit(f'【停止】前段音调要改的这一段伸到了接点之后：{sent[:60]}')
+        rF2=_tone_shape(rF,a_,b_,e['前段音调']); mF=mF+(len(rF2)-len(rF)); rF=rF2
+        e_=_env5(rF); seg_=e_[max(0,mF//F_-1):mF//F_+2]
+        if not len(seg_) or seg_.max()>=-55: raise SystemExit(f'【停止】前段音调改完，接点不在静音里了：{sent[:60]}')
+    _EJ[sent]=mF                                                      # 实际接点（前段音调拉长后会往后挪；A32 守门和停顿位置核对都用它）
     return rF,rS,mF,mS
+_EJ={}
+def _tone_span(r,m):
+    """前段最后一个词（如 so）的浊音段：接点 m（标点后的静音）之前最后一段连续的浊音（Praat 测得到音高，中间断开不超过 25 ms）。
+    只看声音本身、不靠带时长模型（独立复核的标准答案用同一个函数，那边没有带时长模型）"""
+    import parselmouth
+    p_=parselmouth.Sound(np.asarray(r,np.float64),SR).to_pitch(time_step=0.01,pitch_floor=60,pitch_ceiling=350)
+    vs_=[t_ for t_ in np.arange(0.01,m/SR,0.01) if not np.isnan(p_.get_value_at_time(t_))]
+    if not vs_: raise SystemExit('【停止】前段音调：接点前找不到浊音段')
+    b_=a_=vs_[-1]
+    for t_ in reversed(vs_):
+        if a_-t_>0.025: break
+        a_=t_
+    return float(a_),float(b_)
+def _tone_shape(r,a,b,c):
+    """Praat 基频同步叠加（PSOLA）：只把 [a,b] 这一段的音高换成 曲线（相对位置 0–1 → Hz），并按 拉长 倍数放慢这一段；音色不变"""
+    import parselmouth; from parselmouth.praat import call
+    # Praat 重新合成时清音段的脉冲位置是随机的：同一个脚本两次出的声音不一样（10 S17 实测），G9 逐样本核对过不了——固定随机种子，用完恢复
+    parselmouth.praat.run('random_initializeWithSeedUnsafelyButPredictably (20261014)')
+    man=call(parselmouth.Sound(np.asarray(r,np.float64),SR),'To Manipulation',0.01,60,350)
+    pt=call(man,'Extract pitch tier'); call(pt,'Remove points between',a,b)
+    for rel,hz in c['曲线']: call(pt,'Add point',a+float(rel)*(b-a),float(hz))
+    call([pt,man],'Replace pitch tier')
+    k_=float(c.get('拉长',1.0))
+    if k_!=1.0:
+        dt=call(man,'Extract duration tier')
+        for x_,y_ in ((a-0.001,1.0),(a,k_),(b,k_),(b+0.001,1.0)): call(dt,'Add point',x_,y_)
+        call([dt,man],'Replace duration tier')
+    out=np.asarray(call(man,'Get resynthesis (overlap-add)').values[0],np.float32); parselmouth.praat.run('random_initializeSafelyAndUnpredictably ()')
+    # 只换 [a,b] 这一段（两头各 10 ms 交叉淡化），其余逐样本用原来的：Praat 重新合成会把一点能量抹进旁边很短的静音里（10 S17 接点那 20 ms 静音从 -60 抬到 -55 dB，守门拦下）
+    x_=int(0.01*SR); A_=int(round(a*SR)); B_=int(round(b*SR)); Bn_=B_+(len(out)-len(r)); f_=np.linspace(0,1,x_,dtype=np.float32); r=np.asarray(r,np.float32)
+    return np.concatenate([r[:A_-x_],r[A_-x_:A_]*(1-f_)+out[A_-x_:A_]*f_,out[A_:Bn_],out[Bn_:Bn_+x_]*(1-f_)+r[B_:B_+x_]*f_,r[B_+x_:]]).astype(np.float32)
 def _ending_front(sent):
     """结尾句“前段单独合成”（2026-10-10 10 S17 用户：“这个if so它可以稍微拉长一些。就这个so这个音太短了……那种意味深长的语气……有点反讽”）：
     前段（到最后一个句中标点为止，如“If so,”）单独合成——放在整句里合成时，前段语速从 0.86 调到 0.70，so 只从 360 ms 变到 380 ms（慢下来的时间都给了 If）；
@@ -392,11 +434,21 @@ def _ending_toks(sent,e):
         pi_=max(i_ for i_,t_ in enumerate(ts_) if t_.phoneme in ',;:')
         toks+=[_ty.SimpleNamespace(phoneme=t_.phoneme,start=(max(t_.start*sc_*SR,mS_)-mS_+mF_)/SR,end=(max(t_.end*sc_*SR,mS_)-mS_+mF_)/SR) for t_ in ts_[pi_+1:]]
         return toks
-    for sp_,r_,m_,first_ in ((float(e['前段语速']),rF_,mF_,True),(float(e['最后一段语速']),rS_,mS_,False)):
+    tone_=None
+    if e.get('前段音调'):   # 前段改过音调、拉长过：按原来那一遍的时间轴取音，再把 [a,b] 里的时刻按 拉长 换算、之后的整体往后挪
+        rF0_,_=k.create(spoken(sent),voice=V,speed=float(e['前段语速']),lang='en-us'); rF0_=np.asarray(rF0_,np.float32)
+        mF0_=int(e['接点'][0]); a_,b_=(float(x_) for x_ in e['前段音调']['范围']); k_=float(e['前段音调'].get('拉长',1.0))
+        tone_=(a_,b_,k_); rF_=rF0_
+        d_=(mF_-mF0_)/SR                                              # 改完以后前段实际多出来的长度
+        mv_=lambda t_: t_ if t_<a_ else (min(a_+(t_-a_)*k_,b_+d_) if t_<=b_ else t_+d_)
+    for sp_,r_,m_,first_ in ((float(e['前段语速']),rF_,(mF0_ if tone_ else mF_),True),(float(e['最后一段语速']),rS_,mS_,False)):
         tb_,_,ts_=KT.create_timed(spoken(sent),voice=V,speed=sp_,lang='en-us',clause_pause=0,sentence_pause=0); sc_=len(r_)/len(tb_)
         sh_=0 if first_ else mS_-mF_
         for t_ in ts_:
-            if (t_.start*sc_*SR<m_)==first_: toks.append(_ty.SimpleNamespace(phoneme=t_.phoneme,start=(t_.start*sc_*SR-sh_)/SR,end=(t_.end*sc_*SR-sh_)/SR))
+            if (t_.start*sc_*SR<m_)==first_:
+                s_,n_=(t_.start*sc_*SR-sh_)/SR,(t_.end*sc_*SR-sh_)/SR
+                if first_ and tone_: s_,n_=mv_(s_),mv_(n_)
+                toks.append(_ty.SimpleNamespace(phoneme=t_.phoneme,start=s_,end=n_))
     return toks
 def _ending_raw(sent,e):
     if '整句语速' in e:                                                # 没有句中标点的结尾句：整句一个较慢的语速
@@ -558,7 +610,7 @@ def sentence_audio(sent,pieces,gaps):
         # 结尾句最后一个标点的停顿必须包住接点：插入的挪到接点上（保留接点所在那段静音，听到的停顿照旧是标准时长），删除的没包住接点就停。
         # 01–09 的结尾句都已包住接点（逐篇量过），声音不变。
         if E_ and '接点' in E_ and gi==len(idxs)-1:
-            jw=int(E_['接点'][0])-_head_offset(raw,w)
+            jw=_EJ.get(sent,int(E_['接点'][0]))-_head_offset(raw,w)
             if not (ca-F<=jw<=cb+F):
                 if cb>ca or dv is not None: raise SystemExit(f'【停止】结尾句最后一个标点的停顿没有包住接点（A32）：{sent[:60]}')
                 if e[jw//F]>=AUD_DB: raise SystemExit(f'【停止】结尾句的接点不在静音里（A32）：{sent[:60]}')
