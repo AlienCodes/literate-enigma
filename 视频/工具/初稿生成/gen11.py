@@ -18,7 +18,7 @@ S=[
 (2,[[[("In game two, on 10 March,","第二局于3月10日进行，"),("AlphaGo's 37th move","AlphaGo 的第37手"),("was a shoulder hit,","是一记肩冲。")]],
     [[("a **tactic**","这种**招数/手段**(tactic)，是"),("placing a stone","将一枚棋子下在"),("**adjacent to** an opponent's on the **diagonal**.","**与**(adjacent to)对方棋子的**斜对角**(diagonal)**相邻**(adjacent to)的地方。")],
      "（shoulder hit：肩冲，围棋术语；\na tactic placing…：同位语，解释 shoulder hit，placing… 作后置定语）"]]),
-(2,[[[("On the **grid**'s fifth line,","在**网格**(grid)（方格构成的网状 - 指 棋盘）第五线上落子，"),("it","这"),("was hardly **orthodox**.","几乎不能算是**正统**(orthodox)下法。")]]]),
+(2,[[[("On the **grid**'s","在**网格**(grid)\n{{（方格构成的网状 - 指 棋盘）|grid}}"),("fifth line,","第五线上落子，"),("it","这"),("was hardly **orthodox**.","几乎不能算是**正统**(orthodox)下法。")]]]),
 (2,[[[("Commentators","解说员"),("found","觉得"),("the **unexpected** **placement**","这步**出人意料的**(unexpected)**落子**(placement)\n{{（把人或物放到合适位置）|placement}}"),("**bizarre**;","**十分怪异**(bizarre)；")]],
     [[("one","其中一人还"),("took it for a mistake.","以为是失误。")],
      "（find + 宾语 + 形容词：觉得……怎么样；take A for B：把A当成B）"]]),
@@ -32,7 +32,8 @@ S=[
 (3,[[[("AlphaGo had first","AlphaGo 起初先"),("learned to **imitate**","学会**模仿**(imitate)"),("strong **amateurs** online,","网上实力很强的**业余者**(amateurs)的下法，")]],
     [[("then","随后，"),("**sharpened** its play over tens of millions of **simulated** games against itself.","在数千万盘的自我对弈**模拟**(simulated)中，它**磨砺了**(sharpened)棋力。")]]]),
 (3,[[[("Lee","李世石"),("later","后来"),("**acknowledged**","**承认了**(acknowledged)"),("the stone's **originality** and beauty.","这一手的**独创性**(originality)和美感。")]]]),
-(4,[[[("The fourth game, on 13 March,","3月13日的第四局，"),("**reversed** the roles in **neat** **symmetry**.","以**巧妙的**(neat)**对称**(symmetry)，**互换了**(reversed)双方的角色。")]]]),
+(4,[[[("The fourth game, on 13 March,","3月13日的第四局，"),("**reversed** the roles in **neat** **symmetry**.","以**巧妙的**(neat)**对称**(symmetry)，**互换了**(reversed)双方的角色。")],
+     "（互换角色：之前（第二局）AlphaGo 是赢家、人类棋手是输家；\n现在（第四局）互换了，人类棋手是赢家、AlphaGo 是输家）"]]),
 (4,[[[("Lee's 78th move","李世石的第78手"),("**turned the tide**,","**扭转了局势**(turned the tide)，")]],
     [[("and many professionals","许多职业棋手"),("**heralded** it **as**","**把**(heralded as)它**誉为**(heralded as)"),("**divine**.","**神之一手**(divine)。")],
      "（herald A as B：把A誉为B；\ndivine：神的，神妙的，“神之一手”指围棋中绝妙的一手）"]]),
@@ -48,7 +49,7 @@ S=[
      "（Calling…：现在分词短语作伴随状语；call A B：称A为B；\nbe beyond sb：超出某人的能力）"]]),
 (5,[[[("Yet","然而，"),("his one win came from a stone","他唯一的一场胜局，却源自一着棋。")]],
     [[("whose odds, by DeepMind's figures,","根据 DeepMind 的数据，这手棋的胜率，")]],
-    [[("were as **slim** as those of AlphaGo's **audacious** shoulder hit.","和 AlphaGo 那次**大胆**(audacious)一样**极低/渺茫/非常微小**(slim)。")],
+    [[("were as **slim** as those of AlphaGo's **audacious** shoulder hit.","和 AlphaGo 那次**大胆的**(audacious)肩冲一样**极低/渺茫/非常微小**(slim)。")],
      "（whose…：定语从句，修饰 a stone；by DeepMind's figures：插入语；\nas slim as those of…：those = the odds）\n（结局：第二局，AlphaGo 下出了人类只有万分之一可能会下的第37手；\n第四局，李世石也下出了职业棋手只有万分之一可能找到的第78手，\n并靠它赢下了五局里唯一的一局。李世石退役时说人工智能无法击败，\n可他唯一的胜利，恰恰来自一手和 AlphaGo 的肩冲一样罕见、\n一样大胆的棋：人类赢机器，用的正是机器赢人类的方式。）"]]),
 ]
 CONF={"短语":{
