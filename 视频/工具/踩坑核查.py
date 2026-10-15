@@ -286,13 +286,13 @@ def selftest_idiom():
 # 英文这一句有的术语（脚本 "术语": {"shoulder hit": "肩冲"}）和拉丁字母专名（本篇中文里出现过的 AlphaGo、DeepMind），中文这一句也必须有。11 起查。
 def term_checks(d):
     out = []; allzh = ''.join(c['zh'] for s in d['sentences'] for c in s['chunks'])
-    names = {w for s in d['sentences'] for c in s['chunks'] for w in re.findall(r"[A-Z][A-Za-z]+", re.sub(r'\*\*|\{\{.*?\}\}', '', c['en'])) if w in allzh}
+    names = {w for s in d['sentences'] for c in s['chunks'] for w in re.findall(r"[A-Z][A-Za-z]+", re.sub(r'\*\*|\{\{.*?\}\}', '', c['en'])) if re.search(r'(?<![A-Za-z])' + w + r'(?![A-Za-z])', allzh)}   # 单独出现才算（AlphaGo 里的 Go 不算）
     for i, s in enumerate(d['sentences'], 1):
         en = re.sub(r'\*\*|\{\{.*?\}\}', '', ' '.join(c['en'] for c in s['chunks'])); zh = ''.join(c['zh'] for c in s['chunks'])
         for e, z in d.get('术语', {}).items():
             if re.search(r'\b' + re.escape(e) + r'\b', en, re.I) and z not in zh: out.append(f'[T30] S{i} 英文有 {e}，中文这一句没有“{z}”（漏译）')
         for w in names:
-            if re.search(r'\b' + w + r'\b', en) and w not in zh: out.append(f'[T30] S{i} 英文有 {w}，中文这一句没有（漏译）')
+            if re.search(r'\b' + w + r'\b', en) and not re.search(r'(?<![A-Za-z])' + w + r'(?![A-Za-z])', zh): out.append(f'[T30] S{i} 英文有 {w}，中文这一句没有（漏译）')
     return out
 def selftest_term():
     ok_ = {'术语': {'shoulder hit': '肩冲'}, 'sentences': [{'chunks': [{'en': "as those of AlphaGo's **audacious** shoulder hit.", 'zh': '和 AlphaGo 那次**大胆的**(audacious)肩冲一样'}]}]}
