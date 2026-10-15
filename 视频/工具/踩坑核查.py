@@ -238,6 +238,50 @@ def phrase_checks(d, no):
     return out
 
 
+# T22 习语（用户 2026-10-15 看 11 初稿：“turn the tide……你单独用一个 tide 不就是潮汐吗？不就是浪吗？但是你 turn the tide 很明显，
+# 它的意思绝对绝对是不太一样的，所以说你要把这个整体做出来”）：重点词在本文的意思不是速查表第一个意思（tide 本文“局势”，第一个意思“潮汐”），
+# 而速查表里这个词的搭配（turn the tide）就出现在本句、却没有整体加粗 → 报出。整体标后撞词也保留（allow_clash）。11 起查。
+def _idiom_re(ex, lem):
+    parts = []
+    for w in ex.split():
+        if w.lower() in ('be', 'sb', 'sth', "sb's", "sth's", "one's", 'one', '…', '...'): parts.append(None if w.lower() == 'be' else r"\S+"); continue
+        alts = [re.sub(r"[^A-Za-z'-]", '', a) for a in w.split('/')]
+        alts = [a for a in alts if a]
+        if not alts: continue
+        parts.append('(?:' + '|'.join((re.escape(lem) if a.lower().startswith(lem[:4]) else re.escape(a.rstrip('e'))) + r"\w*" for a in alts) + ')')
+    parts = [x for x in parts if x]
+    return re.compile(r"\b" + r"\s+".join(parts) + r"\b", re.I) if len(parts) >= 2 else None
+def idiom_checks(d, no):
+    sq = sq_table(no); ok = d.get('核对确认', {}).get('短语', {}); out = []
+    for i, s in enumerate(d['sentences'], 1):
+        en = ' '.join(c['en'] for c in s['chunks']); plain_ = re.sub(r'\*\*|\{\{.*?\}\}', '', en)
+        pairs = [(z, k) for c in s['chunks'] for z, k in re.findall(r'\*\*([^*]+)\*\*\(([^)]+)\)', c['zh'])]
+        keys = [k.lower().split() for _, k in pairs]
+        for z, k in pairs:
+            if ' ' in k: continue
+            m0 = re.match(r'\s*[a-z./ ]*\s*(?:\([^)]*\)\s*)?([^（，；]+)', sq.get(k.lower(), ''))
+            if not m0 or re.sub(r'[的地了]', '', z) in m0.group(1): continue        # 本文用的就是第一个意思（milestone 里程碑）不查
+            exs = re.findall(r'（([^）]*)）', sq.get(k.lower(), ''))
+            for ex in (x.strip() for e_ in exs for x in e_.split('；')):
+                r_ = _idiom_re(ex, _lemma(k, sq))
+                if not r_ or not re.search(r'\b' + re.escape(_lemma(k, sq)[:4]), ex, re.I): continue
+                m = r_.search(plain_)
+                if not m: continue
+                ws = [w.lower() for w in re.findall(r"[A-Za-z'-]+", m.group(0)) if w.lower() not in ('a', 'an', 'the')]
+                if any(all(any(w == x or w.startswith(x[:4]) for x in kk) for w in ws) for kk in keys): continue
+                key = f'S{i} {m.group(0)}'
+                if key not in ok: out.append(f'[T22习语] {key}  ← {k} 本文是“{z}”，不是第一个意思，靠速查表的搭配“{ex}”整体成义：整体加粗、中文标全（撞词也保留，写进 allow_clash）；不是就核实后写进 核对确认.短语')
+    return out
+def selftest_idiom():
+    """T22 习语自检（自带样本，用 11 的速查表）：turned the **tide** 必须报出；**turned the tide** 整体标的不报；本文用第一个意思的 reached a **milestone** 不报"""
+    fails = []
+    mk = lambda en, zh: {'sentences': [{'chunks': [{'en': en, 'zh': zh, 'align': [[en, zh]]}]}]}
+    if not idiom_checks(mk("Lee's 78th move turned the **tide**,", '李世石的第78手扭转了**局势**(tide)，'), '11'): fails.append('没抓到：习语只标一个词（T22，11 turned the **tide**）')
+    if idiom_checks(mk("Lee's 78th move **turned the tide**,", '李世石的第78手**扭转了局势**(turned the tide)，'), '11'): fails.append('T22 习语误报：整体标的 **turned the tide** 被报出')
+    if idiom_checks(mk("DeepMind's AlphaGo reached a **milestone**,", 'DeepMind 的 AlphaGo 达成了一个**里程碑**(milestone)，'), '11'): fails.append('T22 习语误报：用第一个意思的 reached a **milestone** 被报出')
+    return fails
+
+
 def selftest_phrase():
     """T22 自检：07 的 **stems from**、02 的 **depends** partly **on** 去掉介词的加粗，必须报出；原样不报这两处"""
     fails = []
@@ -600,7 +644,7 @@ def main():
         vf = selftest_folders() or video_folders(ROOT)
         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
         return 1 if vf else 0
-    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart()
+    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
@@ -613,6 +657,7 @@ def main():
     # T22 只查以后新做的篇目（09 起）。用户 2026-10-10：“以后查就行，已经做完了，这几天不要再查了……刚刚做完这篇，你查啥？不用再查了，又浪费时间……以后每次都要（查）”
     # 已做完的 01–08 不回头查；08 只改用户点名的 S2 attributed … to（制作记录/08_待改清单.md）
     if int(no) >= 9: conf += phrase_checks(d, no)
+    if int(no) >= 11: conf += idiom_checks(d, no)                  # T22 习语整体标（11 起，用户 2026-10-15 turn the tide）
     if int(no) >= 9: conf += meaning_checks(d, no)                 # T23 同样只查以后新做的篇目（用户：“以后我们再去做的时候……防止再犯”）
     if int(no) >= 9: err += meta_checks(d)                          # T27 说明里不写自问的话（09 起）
     if int(no) >= 10: err += ending_note_checks(d)                  # T28 结尾要有一段解说（10 起）
