@@ -661,6 +661,7 @@ def main():
     if int(no) >= 9: conf += meaning_checks(d, no)                 # T23 同样只查以后新做的篇目（用户：“以后我们再去做的时候……防止再犯”）
     if int(no) >= 9: err += meta_checks(d)                          # T27 说明里不写自问的话（09 起）
     if int(no) >= 10: err += ending_note_checks(d)                  # T28 结尾要有一段解说（10 起）
+    if int(no) >= 11 and '## 方法复盘' not in open(f'{V}/制作记录/{no}.md').read(): err.append(f'[T29] 制作记录/{no}.md 没有“## 方法复盘”：每做完一件事，写下费 token 的地方能不能用虹吸、改了什么（用户 2026-10-15 铁律）')
     err += note_linestart_checks(d)                                 # L16 说明行首不许是标点（01–10 全部扫过，没有）
     if int(no) >= 9: conf += zh_dup_checks(d)                      # T26 两个重点词同一个中文（09 起）
     err += user_gloss_checks(d, no)                                # T25 用户给的释义要上画面（有待改清单的篇目都查）
