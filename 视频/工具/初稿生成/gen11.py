@@ -60,7 +60,7 @@ CONF={"短语":{
  "口述":{"S6-2 觉得":"note 里“find + 宾语 + 形容词：觉得……怎么样”是句型说明本身，不是语音输入多出来的词"},
  "数字":{"S8-2 10,000":"one in 10,000 中文按习惯写“万分之一”（分数），读法 one in ten thousand","S13-2 10,000":"同 S8：about one in 10,000 → 约为万分之一"},
  "是的":{"S16-1 是**无法击败的**":"“是 + 无法击败的存在”是“是 + 定语 + 名词”（称A为B），不是“是……的”表语句式"}}
-out={"no":"11","title_en":"Move 37","title_zh":"第37手","title_fx":{"hl":["37"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","allow_clash":["turned the tide"],"高亮按实际开口":True}   # T28
+out={"no":"11","title_en":"Move 37","title_zh":"第37手","title_fx":{"hl":["37"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","allow_clash":["turned the tide"],"高亮按实际开口":True,"术语":{"shoulder hit":"肩冲"}}   # T28
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)

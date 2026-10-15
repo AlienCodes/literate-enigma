@@ -282,6 +282,28 @@ def selftest_idiom():
     return fails
 
 
+# T30 用户给的整句照抄时漏了英文的意思（11 S17 用户原话“那次大胆一样”漏了 shoulder hit 肩冲，我看出来却没提）：
+# 英文这一句有的术语（脚本 "术语": {"shoulder hit": "肩冲"}）和拉丁字母专名（本篇中文里出现过的 AlphaGo、DeepMind），中文这一句也必须有。11 起查。
+def term_checks(d):
+    out = []; allzh = ''.join(c['zh'] for s in d['sentences'] for c in s['chunks'])
+    names = {w for s in d['sentences'] for c in s['chunks'] for w in re.findall(r"[A-Z][A-Za-z]+", re.sub(r'\*\*|\{\{.*?\}\}', '', c['en'])) if w in allzh}
+    for i, s in enumerate(d['sentences'], 1):
+        en = re.sub(r'\*\*|\{\{.*?\}\}', '', ' '.join(c['en'] for c in s['chunks'])); zh = ''.join(c['zh'] for c in s['chunks'])
+        for e, z in d.get('术语', {}).items():
+            if re.search(r'\b' + re.escape(e) + r'\b', en, re.I) and z not in zh: out.append(f'[T30] S{i} 英文有 {e}，中文这一句没有“{z}”（漏译）')
+        for w in names:
+            if re.search(r'\b' + w + r'\b', en) and w not in zh: out.append(f'[T30] S{i} 英文有 {w}，中文这一句没有（漏译）')
+    return out
+def selftest_term():
+    ok_ = {'术语': {'shoulder hit': '肩冲'}, 'sentences': [{'chunks': [{'en': "as those of AlphaGo's **audacious** shoulder hit.", 'zh': '和 AlphaGo 那次**大胆的**(audacious)肩冲一样'}]}]}
+    b1 = copy.deepcopy(ok_); b1['sentences'][0]['chunks'][0]['zh'] = '和 AlphaGo 那次**大胆**(audacious)一样'
+    b2 = copy.deepcopy(ok_); b2['sentences'][0]['chunks'][0]['zh'] = '和那次**大胆的**(audacious)肩冲一样'; b2['sentences'].append({'chunks': [{'en': 'AlphaGo won.', 'zh': 'AlphaGo 赢了。'}]})
+    fails = []
+    if term_checks(ok_): fails.append('T30 误报：术语、专名都在的被报出')
+    if not term_checks(b1): fails.append('没抓到：漏了术语“肩冲”（T30，11 S17）')
+    if not term_checks(b2): fails.append('没抓到：漏了专名 AlphaGo（T30）')
+    return fails
+
 def selftest_phrase():
     """T22 自检：07 的 **stems from**、02 的 **depends** partly **on** 去掉介词的加粗，必须报出；原样不报这两处"""
     fails = []
@@ -646,7 +668,7 @@ def main():
         vf = selftest_folders() or video_folders(ROOT)
         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
         return 1 if vf else 0
-    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart()
+    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
@@ -659,7 +681,8 @@ def main():
     # T22 只查以后新做的篇目（09 起）。用户 2026-10-10：“以后查就行，已经做完了，这几天不要再查了……刚刚做完这篇，你查啥？不用再查了，又浪费时间……以后每次都要（查）”
     # 已做完的 01–08 不回头查；08 只改用户点名的 S2 attributed … to（制作记录/08_待改清单.md）
     if int(no) >= 9: conf += phrase_checks(d, no)
-    if int(no) >= 11: conf += idiom_checks(d, no)                  # T22 习语整体标（11 起，用户 2026-10-15 turn the tide）
+    if int(no) >= 11: conf += idiom_checks(d, no)
+    if int(no) >= 11: err += term_checks(d)                         # T30 英文有的术语/专名中文漏了（11 起）                  # T22 习语整体标（11 起，用户 2026-10-15 turn the tide）
     if int(no) >= 9: conf += meaning_checks(d, no)                 # T23 同样只查以后新做的篇目（用户：“以后我们再去做的时候……防止再犯”）
     if int(no) >= 9: err += meta_checks(d)                          # T27 说明里不写自问的话（09 起）
     if int(no) >= 10: err += ending_note_checks(d)                  # T28 结尾要有一段解说（10 起）
