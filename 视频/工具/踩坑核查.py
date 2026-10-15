@@ -533,7 +533,9 @@ def user_gloss_checks(d, no, txt=None):
     for m in re.finditer(r'(?:的意思是|下面要有)[：:]\s*([^。”\n]+)', txt):
         g = _gloss_norm(m.group(1))
         if len(g) >= 4 and g not in zh: out.append(f'[T25] 待改清单里用户给的释义“{m.group(1)[:40]}”没有出现在画面上（要在这个词的中文正下方加同色括号）')
-    zhs = [c['zh'] for s in d['sentences'] for c in s['chunks']] + [c.get('note', '') for s in d['sentences'] for c in s['chunks']]; ens = [c['en'] for s in d['sentences'] for c in s['chunks']]
+    zhs = [c['zh'] for s in d['sentences'] for c in s['chunks']] + [c.get('note', '') for s in d['sentences'] for c in s['chunks']]
+    zhs += [re.sub(r'\{\{([^|{}]+)\|[^{}]+\}\}', r'\1', re.sub(r'\*\*([^*]+)\*\*\([^)]+\)', r'\1', z)) for z in zhs]   # 去掉标记的纯文字也比（11“以巧妙的对称，互换了双方的角色”跨着重点词标记）
+    ens = [c['en'] for s in d['sentences'] for c in s['chunks']]
     for k, x in re.findall(r'(画面上要有|英文要有|画面上不要有)[：:]\s*`([^`]+)`', txt):
         if any(x in t for t in (ens if k == '英文要有' else zhs)) == (k == '画面上不要有'):
             out.append(f'[T25] 待改清单里“{k}：{x[:40]}”没有落实（用户要改的地方漏改了）')
