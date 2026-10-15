@@ -718,7 +718,16 @@ def build(js,out):
             f0=int(round(t/0.01)); g=next((x for x in range(f0,min(m10,f0+100)) if db10[x]>=thr),None)
             if g is None: raise SystemExit(f'【停止】标点停顿后 1 秒内找不到开口（L14）：{sent[:60]}')
             return g*0.01
-        starts=[0.0]+[speech_on(p0[bounds[ci]]) if bounds[ci] in p0 else ct[ci-1] for ci in range(1,len(ch))]+[len(a)/SR]
+        # 11 起（脚本 "高亮按实际开口": true）：不在标点后的块，时长模型给的时刻落在静音里（低于开口门槛）就往后找真正开口的时刻
+        # （11 S17 stone | whose：模型比实际早 0.24 秒，高亮在 stone 后的静音里就跳到下一块；01–10 不开，已归档的定稿视频不变，G9）
+        def word_on(t_):
+            if not d.get('高亮按实际开口'): return t_
+            f0=min(m10-1,int(round(t_/0.01)))
+            if db10[f0]<thr: return speech_on(t_)                         # 模型时刻落在静音里：往后找开口
+            for f in range(f0,min(m10-3,f0+35)):                             # 模型时刻还在上一个词里（11 S17 早 0.24 秒）：0.35 秒内有 ≥30 ms 静音（比最响低 50 dB）就从静音后的开口算
+                if all(db10[f+q]<thr-20 for q in range(3)): return speech_on(f*0.01)
+            return t_
+        starts=[0.0]+[speech_on(p0[bounds[ci]]) if bounds[ci] in p0 else word_on(ct[ci-1]) for ci in range(1,len(ch))]+[len(a)/SR]
         if any(y<=x for x,y in zip(starts,starts[1:])): raise SystemExit(f'【停止】高亮时间不是递增的（L14）：{sent[:60]}')
         t_at=sum(len(x_) for x_ in audio)/SR+lead
         if LAST.get('fades'): fade_rec[f'S{si+1}']=[list(map(int,f_)) for f_ in LAST['fades']]

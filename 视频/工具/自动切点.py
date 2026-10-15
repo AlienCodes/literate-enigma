@@ -13,11 +13,13 @@ WRITE = '--写入' in sys.argv; sys.argv = [a for a in sys.argv if a != '--写�
 src = open(f'{T}/疑点清单.py').read()
 exec(src.split("os.makedirs(outdir, exist_ok=True)")[0], globals())
 auto = {}; human = []
+ONLY = [x for x in os.environ.get('ONLY', '').split(',') if x]   # 只算这几句（人已用实际声音看过、放宽门槛时用），如 ONLY=S3,S14
 for n_, c in enumerate(cands, 1):
     i0 = int(round(c['t0'] * SR)); it = next((x for x in info if x['off'] <= i0 < x['off'] + x['n']), None)
     if it is None: human.append((n_, '标题', c['kind'], '标题里的疑点交人看')); continue
     tc0 = (i0 - it['off']) / SR; tc1 = (int(round(c['t1'] * SR)) - it['off']) / SR
     p0 = to_w(it, tc0); p1 = to_w(it, max(tc0, tc1 - 1 / SR))
+    if ONLY and f"S{it['si']}" not in ONLY: continue
     if p0 is None or p1 is None: human.append((n_, it['si'], c['kind'], '落在插入的静音里')); continue
     w = it['w0']; m = len(w) // F5; env = 20 * np.log10(np.sqrt(np.mean(w[:m * F5].reshape(m, F5) ** 2, axis=1)) + 1e-12); env -= env.max()
     k0, k1 = p0 // F5, min(m - 1, p1 // F5)
@@ -31,10 +33,10 @@ for n_, c in enumerate(cands, 1):
     loud = np.where(env >= -30)[0]; pl = loud[loud < L]; nl = loud[loud > Rr]
     # 贴着的一侧看实际声音，不看时长模型的词时间（11 S2 模型偏了 0.3 秒，把 DeepMind 前的吸气声当成贴着 fifteen）：
     # 紧挨着的 20 ms 像擦音（s ʃ f θ：重心 >3500 Hz、低频 < -10 dB、周期 < 0.3）→ 擦音和吸气分不开，交人看；
-    # 是元音、鼻音、浊音杠（有周期或低频）→ 从词往疑点方向逐 2.5 ms 看，“像呼吸”= 重心 >1800 Hz、低频 < -10 dB、周期 < 0.35，
-    # 词那边不像呼吸的一律算词、不删，切在第一个“像呼吸”的 2.5 ms 起点的过零点。
+    # 否则切在紧挨词的 40 ms 里最安静的 2.5 ms 的过零点（词的气声开口、收尾一点不碰）；要删的段里听得见的部分七成以上要“像呼吸”
+    # （重心 >1800 Hz、低频 < -10 dB、周期 < 0.35）。
     def feat(i): c_, lo_ = spec(w[max(0, i - 90):i + 150]); return c_, lo_, per(w[max(0, i - 210):i + 270])
-    def breathy(i): c_, lo_, p_ = feat(i); return c_ > 1800 and lo_ < -10 and p_ < 0.35
+    def breathy(i): c_, lo_, p_ = feat(i); return 1800 < c_ < 3800 and lo_ < -10 and p_ < 0.35   # 上限：f/s/ʃ 的摩擦重心 >4 kHz（11 S9 itself 的 /f/ 4.3–6 kHz 差点被当成呼吸删掉）
     def fric(i0, i1): fs = [feat(i) for i in range(i0, i1, 60)]; return np.mean([c_ > 3500 and lo_ < -10 and p_ < 0.3 for c_, lo_, p_ in fs]) >= 0.5
     def zc(i, step):
         while 0 < i < len(w) and not (w[i - 1] * w[i] <= 0): i += step
@@ -43,13 +45,13 @@ for n_, c in enumerate(cands, 1):
     if tr:
         j = nl[0] * F5
         if fric(j, j + int(0.02 * SR)): human.append((n_, it['si'], c['kind'], '右边贴着擦音（和吸气分不开）')); continue
-        while j - 60 > x0 and not breathy(j - 60): j -= 60
-        x1 = zc(j - 60 if breathy(j - 60) else j, -1)
+        a_ = max(x0, j - int(0.04 * SR)); b_ = min(range(a_, j - 59, 60), key=lambda i: np.sqrt(np.mean(w[i:i + 60] ** 2)))
+        x1 = zc(b_ + 30, -1)                                          # 现行做法：切在最深低谷的过零点（11 S4：按“像不像呼吸”切，切进了 a 的气声开口 10 ms，复核抓出）
     if tl:
         j = (pl[-1] + 1) * F5
         if fric(j - int(0.02 * SR), j): human.append((n_, it['si'], c['kind'], '左边贴着擦音（和吸气分不开）')); continue
-        while j + 60 < x1 and not breathy(j): j += 60
-        x0 = zc(j, 1)
+        b_ = min(range(j, min(x1, j + int(0.04 * SR)) - 59, 60), key=lambda i: np.sqrt(np.mean(w[i:i + 60] ** 2)))
+        x0 = zc(b_ + 30, 1)
     ref_ = np.sqrt(np.mean(w[:m * F5].reshape(m, F5) ** 2, axis=1)).max()
     aud = [i for i in range(x0, x1 - 60, 60) if 20 * np.log10(np.sqrt(np.mean(w[i:i + 60] ** 2)) / ref_ + 1e-9) > -50]
     # 词尾/词头很轻的擦音（itself 的 /f/、odds 的 /z/、sixteen 的 /s/）也在 -30 dB 以下、也“像呼吸”（A6 ink 的 /k/ 被切的同类坑）：
@@ -60,6 +62,9 @@ for n_, c in enumerate(cands, 1):
         human.append((n_, it['si'], c['kind'], '紧挨着后面的词、结尾像擦音（可能是词头 s/f/h）')); continue
     if not tl and pl.size and (x0 - (pl[-1] + 1) * F5) / SR < 0.15 and len(aud) * 60 / SR < 0.06:
         human.append((n_, it['si'], c['kind'], '紧跟在词后、听得见的不到 60 ms（可能是被闭塞隔开的词尾除阻）')); continue
+    cs_ = [feat(i)[0] for i in range(x0, x1 - 60, 60)]
+    if any(np.mean(cs_[q:q + 8]) > 4000 for q in range(0, max(1, len(cs_) - 7))):
+        human.append((n_, it['si'], c['kind'], '要删的段里有连续 20 ms 重心 >4 kHz（像 f/s/ʃ 擦音，可能是词的一部分）')); continue
     if x1 - x0 < 0.015 * SR: human.append((n_, it['si'], c['kind'], '像呼吸的部分不到 15 ms')); continue
     aud = [i for i in range(x0, x1 - 60, 60) if 20 * np.log10(np.sqrt(np.mean(w[i:i + 60] ** 2)) / ref_ + 1e-9) > -50]   # 只看听得见的（-50 dB 以上），快到静音的帧特征是乱的
     if aud and np.mean([breathy(i) for i in aud]) < float(os.environ.get('BREATH_FRAC', 0.7)): human.append((n_, it['si'], c['kind'], f'要删的段里听得见的部分像呼吸的不到七成（{np.mean([breathy(i) for i in aud]):.0%}）')); continue
