@@ -36,6 +36,12 @@ def stem(w):
         if w.endswith(suf) and len(w)-len(suf)>=(3 if suf=='s' else 4): return w[:-len(suf)]   # 's' 留 3 个字母：dams→dam（09 dam 撞第47篇 dams，原来查不出）
     return w
 assert stem('dams')==stem('dam')=='dam' and stem('drought')=='drought' and stem('frustration')==stem('frustrating')   # 自检：09 两处撞词都要能对上
+def ckey(b):
+    """撞词按整个重点词比：短语型重点词（trade journal、take first place）是一个整体，组成它的单个词在别篇加粗过不算撞车（用户 2026-10-16：“这是一个短语型词汇……这个不算撞车”）；单词照旧去词尾比（dams = dam）"""
+    ws=[w.lower() for w in re.findall(r"[A-Za-z]+",b)]
+    if len(ws)==1 and (len(ws[0])<3 or ws[0] in STOP): return None
+    return ' '.join(stem(w) for w in ws) or None
+assert ckey('trade journal')!=ckey('journal') and ckey('Dams')==ckey('dam') and ckey('set out to')==ckey('Set out to')   # 自检
 others={}
 for f in glob.glob(f'{ROOT}/新版定稿/[0-9][0-9]-*.md'):
     n=os.path.basename(f)[:2]
@@ -45,8 +51,8 @@ for f in glob.glob(f'{ROOT}/新版定稿/[0-9][0-9]-*.md'):
     e=open(f).read().split('## 英文',1)[1].split('## 中文',1)[0]
     for b in re.findall(r'\*\*([^*]+)\*\*',e):
         if b.lower() in ac_: continue   # 那一篇里用户已同意保留的撞词（如 08 set foot in、set out to），这一对两边都不再报（03 set in 原来被反过来报出）
-        for w in re.findall(r"[A-Za-z]+",b):
-            if len(w)>=3 and w.lower() not in STOP: others.setdefault(stem(w),set()).add(n)
+        k=ckey(b)
+        if k: others.setdefault(k,set()).add(n)
 import subprocess
 base=subprocess.run(['git','-C',ROOT,'show','fc50170:'+os.path.relpath(md,ROOT)],capture_output=True,text=True).stdout
 orig={b.lower() for b in re.findall(r'\*\*([^*]+)\*\*',base.split('## 中文')[0])}
@@ -56,8 +62,8 @@ for s in d['sentences']:
         for b in re.findall(r'\*\*([^*]+)\*\*',c['en']):
             if b.lower() in orig: continue
             if b.lower() in [x.lower() for x in d.get('allow_clash',[])]: continue  # 用户明确要求保留的撞词
-            for w in re.findall(r"[A-Za-z]+",b):
-                if len(w)>=3 and w.lower() not in STOP and stem(w) in others: warn.append(f'{b}（{w}）也在第 {"、".join(sorted(others[stem(w)]))} 篇加粗')
+            k=ckey(b)
+            if k in others: warn.append(f'{b} 也在第 {"、".join(sorted(others[k]))} 篇加粗')
 bad+=['T12 新加重点词撞词（按规则应去掉并提醒用户）: '+x for x in sorted(set(warn))]
 print('\n'.join(bad) if bad else f'第{no}篇：全部检查通过')
 sys.exit(1 if bad else 0)
