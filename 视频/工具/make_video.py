@@ -121,8 +121,14 @@ def _year(y):
 _PL={'twenty':'twenties','thirty':'thirties','forty':'forties','fifty':'fifties','sixty':'sixties','seventy':'seventies','eighty':'eighties','ninety':'nineties'}
 _MONTHS='January|February|March|April|May|June|July|August|September|October|November|December'
 _ROMAN={'I':1,'II':2,'III':3,'IV':4,'V':5,'VI':6,'VII':7,'VIII':8,'IX':9,'X':10,'XI':11,'XII':12,'XIII':13,'XIV':14,'XV':15,'XVI':16}
+def _int2w(n):
+    """0–999999 读成英文（美式，不加 and）"""
+    if n<100: return _n2w(n)
+    if n<1000: return _ONES[n//100]+' hundred'+('' if n%100==0 else ' '+_n2w(n%100))
+    return _int2w(n//1000)+' thousand'+('' if n%1000==0 else ' '+_int2w(n%1000))
 def spoken(t):
     t=re.sub(r'\b(1[0-2]|[1-9])[.:]([0-5]\d)([ap])m\b',lambda m:_n2w(int(m.group(1)))+('' if m.group(2)=='00' else ' oh '+_ONES[int(m.group(2))] if m.group(2)[0]=='0' else ' '+_n2w(int(m.group(2))))+' '+m.group(3).upper()+'M',t)  # 11.40pm → eleven forty PM（15：原来读成 eleven point four zero；小写 am 会读成 ɐm，大写 AM/PM 读成字母）
+    t=re.sub(r'(?<![\d.,])(\d{1,6})\.(\d+)(?![\d.])',lambda m:_int2w(int(m.group(1)))+' point '+' '.join(_ONES[int(c)] for c in m.group(2)),t)   # 264.4 → two hundred sixty-four point four（13；时间在上一行先转）
     t=re.sub(r'\b(1[1-9])(\d)0s\b',lambda m:_n2w(int(m.group(1)))+' '+_PL[_TENS[int(m.group(2))]],t)          # 1960s → nineteen sixties
     t=re.sub(r'\b([1-9]|[12]\d|3[01]) ('+_MONTHS+r')\b',lambda m:'the '+_ordinal(int(m.group(1)))+' of '+m.group(2),t)  # 6 January → the sixth of January
     t=re.sub(r'(?<!\d,)(?<!\d)\b(1[1-9]\d\d)\b(?!,\d)(?!\d)',lambda m:_year(int(m.group(1))),t)                       # 1995 → nineteen ninety-five
@@ -177,22 +183,9 @@ def _edges(x):
     r_=np.sqrt(np.mean(x[:n_*F_].reshape(n_,F_)**2,axis=1)); au=np.where(20*np.log10(r_/(r_.max()+1e-12)+1e-9)>=AUD_DB)[0]
     if not len(au): raise SystemExit('【停止】这一段没有能听见的声音（A20）')
     return int(au[0])*F_,int(au[-1]+1)*F_
-def _cap_inner(seg):
-    """只压缩句中（非标点处）过长的无声段；只删听不见的部分（低于 -55 dB，AUD_DB），两头各保留一半，不碰任何读音。"""
-    e=_env5(seg); F=int(0.005*SR); keep=[];prev=0;st=None
-    for f in range(len(e)+1):
-        q=f<len(e) and e[f]<AUD_DB
-        if q and st is None: st=f
-        if not q and st is not None:
-            if (f-st)*0.005>INNER_MAX and st>4 and f<len(e)-4:
-                h=int(INNER_TO/2/0.005)
-                keep.append(seg[prev:(st+h)*F]); prev=(f-h)*F
-            st=None
-    keep.append(seg[prev:])
-    return np.concatenate(keep)
-def _cap_spans(seg):
-    """与 _cap_inner 完全相同的判断，返回被压缩掉的段 [(a,b)]（seg 内的样本位置），用于高亮时间换算"""
-    e=_env5(seg); F=int(0.005*SR); out=[];st=None
+def _cap_runs(e):
+    """e：5 ms 帧电平（dB）。句中（非标点处）听不见的段长于 INNER_MAX 的，返回要删掉的中间部分 [(a,b)]（样本），两头各留 INNER_TO/2"""
+    F=int(0.005*SR); out=[];st=None
     for f in range(len(e)+1):
         q=f<len(e) and e[f]<AUD_DB
         if q and st is None: st=f
@@ -201,6 +194,33 @@ def _cap_spans(seg):
                 h=int(INNER_TO/2/0.005); out.append(((st+h)*F,(f-h)*F))
             st=None
     return out
+def _cut(seg,sp):
+    keep=[];prev=0
+    for a,b in sp: keep.append(seg[prev:a]); prev=b
+    keep.append(seg[prev:]); return np.concatenate(keep)
+def _cap_spans(seg,ref=None):
+    """压缩句中过长无声段时要删掉的段 [(a,b)]（seg 内的样本位置），用于压缩和高亮时间换算。
+    第一刀：基准是这一段最响的 5 ms 帧（原来的做法）。给了 ref（整句最响的 5 ms 帧）时补第二刀：第一刀之后按整句基准
+    （与去底噪 _purify、无标点停顿核对同一基准）还长于 INNER_MAX 的，再压到 INNER_TO。
+    （2026-10-16 13 S15 In 1997 | Guinness：按段基准两段听不见的部分之间隔着几帧 -55 dB 上下的余音，各自不到 0.22 秒没压缩；
+    去底噪按整句基准把余音清成静音，连成 0.225 秒，无标点停顿核对报超。第二刀只在核对会报超的地方动手，01–12 已定稿的声音不变。）"""
+    s1=_cap_runs(_env5(seg))
+    if ref is None: return s1
+    x=_cut(seg,s1); F_=int(0.005*SR); n_=len(x)//F_
+    e2=20*np.log10(np.sqrt(np.mean(np.asarray(x[:n_*F_],np.float64).reshape(n_,F_)**2,axis=1))/(ref+1e-12)+1e-9)
+    s2=_cap_runs(e2)
+    if not s2: return s1
+    xs=[]; rem=0
+    for a1,b1 in s1: xs.append((a1-rem,b1-a1)); rem+=b1-a1
+    mp=lambda p:p+sum(n for xp,n in xs if xp<p)
+    out=sorted(s1+[(mp(a),mp(b)) for a,b in s2]); mg=[list(out[0])]
+    for a,b in out[1:]:
+        if a<=mg[-1][1]: mg[-1][1]=max(mg[-1][1],b)
+        else: mg.append([a,b])
+    return [tuple(x_) for x_ in mg]
+def _cap_inner(seg,ref=None):
+    """只压缩句中（非标点处）过长的无声段；只删听不见的部分（低于 -55 dB，AUD_DB），两头各保留一半，不碰任何读音。"""
+    return _cut(seg,_cap_spans(seg,ref))
 def _head_offset(raw,w):
     """clean_tail 在句首裁掉了多少样本（w = raw[st:...]，开头 10 ms 有淡入，从第 10 ms 起逐样本相同）"""
     raw=np.asarray(raw,np.float32); g=int(0.01*SR)+5
@@ -282,7 +302,8 @@ for _p in sorted(_glob.glob('scripts/*.json')):
         NONVOICE[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks'])]=_v
     for _k,_v in _d.get('词尾除阻',{}).items():                     # A21（见 _graft）
         GRAFT['标题::'+_d['title_en'] if _k=='标题' else ' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _d['sentences'][int(_k[1:])-1]['chunks'])]=_v
-    for _k,_v in _d.get('除阻加强',{}).items():                     # A21 弱除阻加强（见 _boost）：{"S3": {"1": [a, b, 增益dB]}}，w 的秒
+    for _k,_v in _d.get('除阻加强',{}).items():                     # A21 弱除阻加强（见 _boost）：{"S3": {"1": [a, b, 增益dB]}}，w 的秒；标题键为"标题"
+        if _k=='标题': BOOST['标题::'+_d['title_en']]=_v; continue
         BOOST[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _d['sentences'][int(_k[1:])-1]['chunks'])]=_v
     for _k,_v in _d.get('停顿处除阻',{}).items():                   # A21 连读处补除阻（见 sentence_audio）：{"S10": {"1": [p, q, "t"]}}，w 的秒
         PGRAFT[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _d['sentences'][int(_k[1:])-1]['chunks'])]=_v
@@ -726,11 +747,12 @@ def sentence_audio(sent,pieces,gaps):
                 w[ca_:ca_+ni_]*=(0.5-0.5*np.cos(np.linspace(0,np.pi,ni_))).astype(np.float32)
                 fades_.append((ca_-no_,ca_,ca_+ni_))
         hd_=_head_offset(raw,w); fades_=[(a_+hd_,c_+hd_,b_+hd_) for a_,c_,b_ in fades_]   # 淡出起点、切点、淡入终点（原始合成里的样本位置；独立复核在标准答案同一位置做同样的淡入淡出）
+    RW_=np.sqrt(np.mean(np.asarray(w[:len(w)//F*F],np.float64).reshape(-1,F)**2,axis=1)).max()   # 整句最响 5 ms 帧（_capenv）
     clips=[];tmap=[];t=0.0;prev=0;segs=[];pgts=[]
     for k2,(x0,x1) in enumerate(pieces):
         end=cuts[k2][0] if k2<len(cuts) else len(w)
-        seg=_cap_inner(w[prev:end]); d=len(seg)/SR
-        rm=_cap_spans(w[prev:end]); assert len(seg)==end-prev-sum(b-a for a,b in rm)
+        seg=_cap_inner(w[prev:end],RW_); d=len(seg)/SR
+        rm=_cap_spans(w[prev:end],RW_); assert len(seg)==end-prev-sum(b-a for a,b in rm)
         if k2 in PDON:                                                # A21 连读处补除阻：供体接在这一段末尾、停顿之前
             pgts.append((PDON[k2][1],t+d,t+d+len(PDON[k2][0])/SR)); seg=np.concatenate([seg,PDON[k2][0]]); d=len(seg)/SR
         segs.append((prev,end,t,rm))
@@ -768,6 +790,7 @@ def title_audio(title):
     gr=[]
     if '标题::'+title in GRAFT:
         w=_graft(w,GRAFT['标题::'+title],'标题 '+title); gr=[(float(sec),float(sec)+len(_donor(kind))/SR) for sec,kind in GRAFT['标题::'+title].values()]
+    if '标题::'+title in BOOST: w=_boost(w,BOOST['标题::'+title],'标题 '+title)   # 13 片名 Sleep 的 /p/（A40）
     sp=sorted(_cap_spans(w)); wc=_purify(_cap_inner(w)); e0,e1=_edges(wc)
     mp=lambda s:(int(round(s*SR))-sum(b-a for a,b in sp if b<=int(round(s*SR)))-e0)/SR   # w 里的秒 → 标题声音里的秒（减去压缩掉的停顿和开头裁掉的）
     TITLE_GRAFT[:]=[(mp(a),mp(b)) for a,b in gr]                     # 12 片名 New Coke 句末 /k/：标题的移植段也记进时刻表（A21）

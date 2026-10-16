@@ -162,7 +162,6 @@ def write_grafts(no, d, bad):
     for lab, g, last, ph, line in bad:
         if g < 0: print('多余的移植，不能自动处理（删掉这条移植后重跑）：', line); continue
         if ph not in 'tkp': print('不能自动补（只有 t、k 有供体，p 用除阻加强）：', line); continue
-        if ph == 'p' and lab == '标题': print('标题的 /p/ 不能自动加强，交人听：', line); continue
         if lab == '标题' and g != last: print('标题句中标点，不能自动补，交人听：', line); continue
         text = d['title_en'] if lab == '标题' else ' '.join(re.sub(r'\*\*', '', R.strip_gloss(c['en'])).strip() for c in d['sentences'][int(lab[1:]) - 1]['chunks'])
         raw, _ = k.create(spoken(re.sub(r'\*\*', '', R.strip_gloss(text))), voice=V, speed=SPEED, lang='en-us'); raw = np.asarray(raw, np.float32)
@@ -212,6 +211,18 @@ def write_grafts(no, d, bad):
             while on < len(e) and e[on] >= AUD_DB: on += 1
             on += 3
         sec = round(on * F5 / SR, 6)
+        if g != last:
+            # 2026-10-16（13 S3 project, a voluntary endeavour,）：说话人把 project 的 /t/ 连到 a，找不到闭塞时上面的后备一路往后走过连读的
+            # “a voluntary endeavour”，把 /t/ 补到了 endeavour 后面（w 2.17，凭空多一个 t，守门没拦住：那里正好是静音）。
+            # 现在：供体放不进这个标点的停顿之前（插入点 / 删除段结束处之前、且不碰到 ≥ -30 dB 的帧），就改用“停顿处除阻”（A39）：
+            # 在插入点前 60 ms 内找最晚的 p（前 5 ms < -40 dB 的闭塞，[p, 插入点) 全 < -30 dB）；找不到就交人看，绝不往后写。
+            nd = len(_donor(ph)); lim_ = ca if cb == ca else cb
+            if on * F5 + nd > lim_ or any(e[f] >= -30 for f in range(on, min(len(e), (on * F5 + nd) // F5 + 1))):
+                pf = next((f for f in range(ca // F5 - 1, max(1, ca // F5 - 12), -1) if e[f - 1] < -40 and max(e[f:max(f + 1, ca // F5)]) < -30), None)
+                if pf is None or str(g + 1) in d.get('停顿插入点', {}).get(lab, {}):
+                    print('放不下、也找不到停顿处除阻的位置，交人看（逐段看声音找闭塞，写 停顿处除阻）：', line); continue
+                d.setdefault('停顿处除阻', {}).setdefault(lab, {})[str(g + 1)] = [round(pf * F5 / SR, 6), round(ca / SR, 6), ph]; n += 1
+                print(f'写入 {no} {lab} 第{g + 1}个标点 /{ph}/ 停顿处除阻 w {pf * F5 / SR:.3f}–{ca / SR:.3f}s（连读，供体放不进停顿之前）'); continue
         if g == last:
             # 2026-10-10（10 S12 it.）：句末的移植点放在了句尾淡出（clean_tail 最后 50 ms；_keep_tail 接长的是最后 5 ms）开始之后，
             # 淡出开始到移植点之间被淡出的那一帧夹在中间，与原始合成不同（独立复核报“多余声音”）。移植点最晚放在淡出开始处

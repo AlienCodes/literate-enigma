@@ -60,7 +60,7 @@ for n_, c in enumerate(cands, 1):
         human.append((n_, it['si'], c['kind'], '紧跟在词后、开头像擦音（可能是词尾 f/s/z）')); continue
     if aud and nl.size and (nl[0] * F5 - aud[-1] - 60) / SR < 0.2 and np.mean([feat(i)[0] for i in aud[-12:]]) > 3500:
         human.append((n_, it['si'], c['kind'], '紧挨着后面的词、结尾像擦音（可能是词头 s/f/h）')); continue
-    if not tl and pl.size and (x0 - (pl[-1] + 1) * F5) / SR < 0.15 and len(aud) * 60 / SR < 0.06:
+    if not tl and pl.size and (x0 - (pl[-1] + 1) * F5) / SR < 0.25 and len(aud) * 60 / SR < 0.06:   # 0.15→0.25（13 S4 intrigued. 的 /d/ 闭塞 160 ms 后才除阻，被当成杂音切掉）
         human.append((n_, it['si'], c['kind'], '紧跟在词后、听得见的不到 60 ms（可能是被闭塞隔开的词尾除阻）')); continue
     cs_ = [feat(i)[0] for i in range(x0, x1 - 60, 60)]
     if any(np.mean(cs_[q:q + 8]) > 4000 for q in range(0, max(1, len(cs_) - 7))):

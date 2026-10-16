@@ -50,7 +50,7 @@ if __name__ == '__main__':
             text = it[2]
             gr = d.get('词尾除阻', {}).get('标题' if idx < 0 else f'S{idx + 1}')
             pg = d.get('停顿处除阻', {}).get(f'S{idx + 1}') if idx >= 0 else None
-            bo = d.get('除阻加强', {}).get(f'S{idx + 1}') if idx >= 0 else None
+            bo = d.get('除阻加强', {}).get('标题' if idx < 0 else f'S{idx + 1}')
             en_ = d.get('结尾句', {}).get(f'S{idx + 1}') if idx >= 0 else None
             # 标准答案的缓存键 = 这一句实际合成用的全部输入（音标含读音改正、移植、结尾句参数）的指纹：
             # 任何一项变了就重新合成（2026-10-10：07 S4 读音改正后仍用了旧读音的缓存，复核整篇对不上）
