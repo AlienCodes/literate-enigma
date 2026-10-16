@@ -8,9 +8,9 @@ Taking it for a recent death, rescuers used a jackhammer that **ripped** **flesh
 
 In 2001, X-rays revealed a **flint** arrowhead **lodged** in his left shoulder, **unseen** by **examiners** a decade earlier. A **scanner** showed that the **puncture** had **ruptured** an artery, a **mortal** injury causing heavy **bleeding**, and left a large **clot**. Researchers believe he died within minutes. He was about 46.
 
-Another person, it is thought, killed him. From the wound's depth researchers **inferred** that an **archer** shot him from the **rear**, at about 30 metres. The **shooter** probably caught him **unawares**. A 2018 study found he had **dined** on dried ibex meat and fat, red **deer** and einkorn wheat, a **hearty**, **nourishing** meal reportedly **consumed** within two hours of his death.
+Another person, it is thought, killed him. From the wound's depth researchers **inferred** that an **archer** shot him from the **rear**, at about 30 metres. The **shooter** probably caught him **unawares**. A 2018 study found he had **dined** on dried ibex meat and fat, red **deer**, and einkorn wheat, a **hearty**, **nourishing** meal reportedly **consumed** within two hours of his death.
 
-**Curators** in Bolzano now keep Ötzi, whose 61 **tattoos** on joints and **spine** were perhaps an early form of **acupuncture**. The archer's **identity** is an **enigma**, and any **motive** is **conjecture**. Ötzi has a name, a last meal and a cause of death, while his **anonymous** **killer** has none.
+**Curators** in Bolzano now keep Ötzi, whose 61 **tattoos** on joints and **spine** were perhaps an early form of **acupuncture**. The archer's **identity** is an **enigma**, and any **motive** is **conjecture**. Ötzi has a name, a last meal, and a cause of death, while his **anonymous** **killer** has none.
 
 ## 中文
 

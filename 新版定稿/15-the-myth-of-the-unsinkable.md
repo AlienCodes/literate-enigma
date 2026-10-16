@@ -8,7 +8,7 @@ On 10 April 1912 the **opulent** **liner** Titanic left Southampton on her **mai
 
 Within radio range, the steamer Californian kept an **equally** **lawful** routine. Her **sole** **wireless** **operator**, Cyril Evans, was on the **payroll** of the Marconi company; when he slept, so did the radio. Around 11.30pm he switched off his set. **Hindsight** may call that **negligence**, yet no rule **obliged** him to stay **vigilant**, so the Titanic's **frantic** **distress** calls went **unheard** there.
 
-Between April and July 1912, inquiries in Washington and London heard **testimony** from **survivors** and the Californian's crew. That July, American **legislation** made **round-the-clock** radio watch **compulsory**. In January 1914 **delegates** of 13 nations signed the first Safety of Life at Sea **convention**, **stipulating** lifeboat seats for all, **continuous** radio watch and an ice **patrol**. The First World War **stalled** the **treaty**; the patrol went ahead **regardless**.
+Between April and July 1912, inquiries in Washington and London heard **testimony** from **survivors** and the Californian's crew. That July, American **legislation** made **round-the-clock** radio watch **compulsory**. In January 1914 **delegates** of 13 nations signed the first Safety of Life at Sea **convention**, **stipulating** lifeboat seats for all, **continuous** radio watch, and an ice **patrol**. The First World War **stalled** the **treaty**; the patrol went ahead **regardless**.
 
 The **doomed** liner sank within three hours. The **outdated** rules she sailed under had stayed **afloat** since 1894; it took her dead to **discredit** them.
 

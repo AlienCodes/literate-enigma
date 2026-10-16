@@ -16,3 +16,4 @@
 | 09 | The Great Emu War | 向鸸鹋宣战 | 12.1 MB |
 | 10 | The Stolen Smile | 被偷走的微笑 | 12.1 MB |
 | 11 | Move 37 | 第37手 | 11.5 MB |
+| 12 | The 79 Days of New Coke | 新可乐的 79 天 | 11.7 MB |

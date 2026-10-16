@@ -880,7 +880,11 @@ def build(js,out):
         print(out,round(total,1),'s','只出声音（没有画面）'); return
     # render images: one uniform size = largest that fits every screen with locked layout
     sizes=[R.max_es([[tuple(p) for p in c['align']] for c in s['chunks']],colors,[c.get('note') for c in s['chunks']]) for s in d['sentences']]
+    for k_,v_ in d.get('字号上限',{}).items(): sizes[int(k_[1:])-1]=min(sizes[int(k_[1:])-1],float(v_)*R.S)   # 12 S19：说明分行后字号变大、折行变了，保持用户看过的字号
     print('sizes',sizes)
+    if R.NOTE_RULE[0]:                                                  # L19：说明行不得比正文宽（12 起）
+        wn=[(si+1,x) for si,s in enumerate(d['sentences']) for x in R.wide_notes([[tuple(p) for p in c['align']] for c in s['chunks']],colors,[c.get('note') for c in s['chunks']],100)]
+        if wn: raise SystemExit('【停止】说明行比上面的英文正文宽（L19，用户 2026-10-16：“不要超过上面的那一行”），在标点处分行（字不改）：'+'；'.join(f'S{a} “{b[1][:24]}…” {b[2]}>{b[3]}' for a,b in wn))
     orph=[(si+1,b,w_) for si,s in enumerate(d['sentences']) for b,w_ in R.orphan_lines([[tuple(p) for p in c['align']] for c in s['chunks']],colors,[c.get('note') for c in s['chunks']],min(sizes[si],100*R.S))]
     if orph: raise SystemExit('【停止】整组折行后最后一行只剩一个词（L3）：'+'；'.join(f'S{a} 第{b}块末行“{c_}”' for a,b,c_ in orph)+'。这一组加 {{=}} 保持一行（字号自动缩到放得下），或经用户同意改分组')
     files=[]; t=0

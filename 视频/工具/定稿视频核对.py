@@ -83,6 +83,7 @@ def render_screens(d, outdir, only=None):
     header = f"{no} · {d['title_en']}　{d['title_zh']}"
     R.ES_FIXED = None
     sizes = [R.max_es([[tuple(p) for p in c['align']] for c in s['chunks']], colors, [c.get('note') for c in s['chunks']]) for s in d['sentences']]
+    for k_, v_ in d.get('字号上限', {}).items(): sizes[int(k_[1:]) - 1] = min(sizes[int(k_[1:]) - 1], float(v_) * R.S)   # 与出片程序同一条
     out = []
     if only is None:
         fx = d.get('title_fx', {})

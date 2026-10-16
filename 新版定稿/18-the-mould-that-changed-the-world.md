@@ -10,7 +10,7 @@ A decade later, in Oxford, Howard Florey, an Australian pathologist, **revived**
 
 In February 1941 Albert Alexander, an Oxford **constable** **gravely** ill with **infection**, **rallied** on penicillin. When the **scarce** supply ran out, he died in March: the **obstacle** was **quantity**. From July 1941 a government laboratory in Peoria, Illinois, **boosted** yields about tenfold with corn-steep liquor, a starch by-product; later a mouldy market **melon** **furnished** the laboratory with a more **prolific** strain. By D-Day in June 1944 **industrial** **fermentation** met **Allied** needs.
 
-In October 1945 Fleming, Florey and Chain shared the Nobel prize; Heatley was **overlooked**. **Fortune** put the mould in Fleming's dish; **tenacious** teams and years of **toil** **transformed** it into a **remedy**.
+In October 1945 Fleming, Florey, and Chain shared the Nobel prize; Heatley was **overlooked**. **Fortune** put the mould in Fleming's dish; **tenacious** teams and years of **toil** **transformed** it into a **remedy**.
 
 ## 中文
 
