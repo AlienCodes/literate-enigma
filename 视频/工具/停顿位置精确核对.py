@@ -19,7 +19,10 @@ src = open('make_video.py').read().split("if __name__")[0]
 hook = "        cuts.append((ca,cb,max(0.03,gaps[gi]-keep)))\n"
 assert src.count(hook) == 1, '出片程序结构变了，核对程序需要同步更新'
 src = src.replace(hook, hook + "        _LOG.append((ca,cb))\n")
-hook2 = "    clips=[];tmap=[];t=0.0;prev=0;segs=[]\n"
+hook3 = "cuts.append((p_,q_,"   # A21 连读处补除阻（停顿处除阻）那一支：停顿删 w[p:q)、供体接在停顿前（2026-10-16 加，漏记会让后面的标点对错位）
+assert src.count(hook3) == 1, '出片程序结构变了，核对程序需要同步更新'
+src = src.replace(hook3, "_LOG.append((p_,q_)); " + hook3)
+hook2 = "    clips=[];tmap=[];t=0.0;prev=0;segs=[];pgts=[]\n"
 assert src.count(hook2) == 1, '出片程序结构变了，核对程序需要同步更新'     # 两处挂钩都必须找到，找不到就停（曾因 L14 改动静默失效）
 src = src.replace(hook2, "    _W.append(w)\n" + hook2, 1)
 _LOG = []; _W = []
