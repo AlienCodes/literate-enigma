@@ -38,7 +38,7 @@ S=[
     [[("around muscle fibres in the legs and jaw,","围在腿部和颚部的肌肉纤维周围，")]],
     [[("a picture that **evokes** the strings of a **puppet**.","一幅**使人想起**(evokes)**木偶**(puppet)的提线的画面。")],
      "（a picture that…：同位语，概括前面描述的景象；\nthat 引导定语从句，修饰 picture）"]]),
-(4,[[[("Yet","不过，"),("the fungus","真菌"),("had not **infiltrated** the brain.","并没有**侵入**(infiltrated)大脑。")]]]),
+(4,[[[("Yet","不过，"),("the fungus","真菌"),("had not **infiltrated** the brain.","尚未**渗入**(infiltrated)大脑。")]]]),
 (5,[[[("A Planet Earth episode,","一集《地球脉动》，"),("with David Attenborough's **narration**,","配有戴维·阿滕伯勒的**解说**(narration)，")]],
     [[("showed one such ant.","展示过这样一只蚂蚁。")],
      "（with David Attenborough's narration：插入语，\n补充说明这一集）"]]),
