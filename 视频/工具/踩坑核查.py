@@ -688,6 +688,13 @@ def main():
     if int(no) >= 9: err += meta_checks(d)                          # T27 说明里不写自问的话（09 起）
     if int(no) >= 10: err += ending_note_checks(d)                  # T28 结尾要有一段解说（10 起）
     _rec = open(f'{V}/制作记录/{no}.md').read()
+    if int(no) >= 12:   # [L19] 铁律（用户 2026-10-16：“括号里面这些句子我说过不要超过正文的长度……把这个定为一个绝绝对要服从的规矩”）：说明行不得比这一句英文正文宽，文本阶段就挡住
+        sys.path.insert(0, T); import render as R_
+        _d = json.load(open(f'scripts/{no}.json')); R_.apply_script(_d)
+        for _si, _s in enumerate(_d['sentences'], 1):
+            _cl = {k: (1, 1, 1) for c in _s['chunks'] for k in re.findall(r'\*\*(.+?)\*\*', c['en'])}
+            for _gi, _ln, _w, _ew in R_.wide_notes([[tuple(p) for p in c['align']] for c in _s['chunks']], _cl, [c.get('note') for c in _s['chunks']], 100):
+                err.append(f'[L19] S{_si} 说明行比英文正文宽（{_w}>{_ew}）：{_ln[:30]}…——跑 python3 工具/说明分行.py {no} --写入 在标点处折成两行（字不改）')
     if int(no) >= 13 and not re.search(r'## 方法设计[\s\S]*?预计调用：\s*\S[\s\S]*?预计 token：\s*\S', _rec):
         err.append(f'[T31] 制作记录/{no}.md 没写“## 方法设计”（步骤、预计调用、预计 token、为什么有效）：用户 2026-10-16 铁律——动手前先设计并证明方法有效，规矩由程序执行，没写不能出片')
     if int(no) >= 11 and '## 方法复盘' not in open(f'{V}/制作记录/{no}.md').read(): err.append(f'[T29] 制作记录/{no}.md 没有“## 方法复盘”：每做完一件事，写下费 token 的地方能不能用虹吸、改了什么（用户 2026-10-15 铁律）')
