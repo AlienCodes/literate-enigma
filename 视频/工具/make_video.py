@@ -221,8 +221,15 @@ def chunk_times(texts):
 # 秒数是整句一次合成后的声音 w 里的位置），依据写在"核对确认.停顿位置"。出片和所有核查程序（都 exec 本文件）用同一份。
 import glob as _glob, json as _json
 INSERT_AT={}
+def _jl(p_):
+    """读脚本（几篇同时做时，别的篇可能正写到一半：解析失败就等 0.3 秒重试，最多 20 次）"""
+    import time as _t
+    for _ in range(20):
+        try: return _json.load(open(p_))
+        except _json.JSONDecodeError: _t.sleep(0.3)
+    return _json.load(open(p_))
 for _p in sorted(_glob.glob('scripts/*.json')):
-    _d=_json.load(open(_p))
+    _d=_jl(_p)
     for _k,_v in _d.get('停顿插入点',{}).items():
         _s=_d['sentences'][int(_k[1:])-1]
         INSERT_AT[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks'])]={int(g):float(x) for g,x in _v.items()}
@@ -236,7 +243,7 @@ for _p in sorted(_glob.glob('scripts/*.json')):
 #   依据写在"核对确认.停顿删除"/"核对确认.删除段"。出片和所有核查程序（都 exec 本文件）用同一份。
 DEL_AT={}; NONVOICE={}; GRAFT={}
 for _p in sorted(_glob.glob('scripts/*.json')):
-    _d=_json.load(open(_p))
+    _d=_jl(_p)
     for _k,_v in _d.get('停顿删除区间',{}).items():
         _s=_d['sentences'][int(_k[1:])-1]
         DEL_AT[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks'])]={int(g):x for g,x in _v.items()}
@@ -254,7 +261,7 @@ for _p in sorted(_glob.glob('scripts/*.json')):
 #   最后一句没有句中标点（01、02）：{"S18": {"整句语速": 0.80}}——整句一个较慢的语速（与 07 试听 B 版的定义一致）
 ENDING={}
 for _p in sorted(_glob.glob('scripts/*.json')):
-    _d=_json.load(open(_p))
+    _d=_jl(_p)
     for _k,_v in _d.get('结尾句',{}).items():
         ENDING[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _d['sentences'][int(_k[1:])-1]['chunks'])]=_v
 # 牛津逗号列举 A, B, and C / A, B, or C：列举内部的逗号只停 P_LIST（0.2 秒），其余逗号 P_COMMA（0.4 秒）。自动判定用下面的正则（并列项每项不超过 5 个词），
@@ -263,7 +270,7 @@ for _p in sorted(_glob.glob('scripts/*.json')):
 # 出片和所有核查程序（都 exec 本文件）用同一个函数 list_commas（2026-10-10 以前 6 个程序各写一份正则）。
 LIST_AT={}
 for _p in sorted(_glob.glob('scripts/*.json')):
-    _d=_json.load(open(_p))
+    _d=_jl(_p)
     for _k,_v in _d.get('列举逗号',{}).items():
         LIST_AT[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _d['sentences'][int(_k[1:])-1]['chunks'])]={int(x) for x in _v}
 def list_commas(sent):
