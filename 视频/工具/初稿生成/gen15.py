@@ -55,7 +55,7 @@ S=[
      "（she sailed under：省略了 that 的定语从句，修饰 rules；\nstay afloat：浮在水上，没有沉没；也指维持下去；\nit took A to do B：直到有了A才做成B；\nher dead：她船上的死者）\n（结局：泰坦尼克号合乎1894年的规则，\n救生艇却只够船上一半的人；\n加州人号的报务员按惯例关了电台，没听到她的求救呼叫。\n1,500多人遇难后，\n美国1912年7月立法规定电台全天候值守，\n1914年13国签署了第一部《海上人命安全公约》，\n冰情巡逻也开展了起来。\n按法律足够，\n到了海上却不足：过时的规则直到这场灾难才信誉扫地。）"]]),
 ]
 # 习语整体标（T22，用户 2026-10-15 turn the tide）：maiden voyage、distress calls 撞词也保留，写进 allow_clash。
-CONF={"牛津逗号":{"S13 April and July 1912, inquiries in Washington and":"不是并列：April and July、Washington and London 各只有两项，逗号前是时间状语"},
+CONF={"中文重复":{"把":"用户 2026-10-16 明确要求 dub 标“把……称为”、被隔开的两处都标（T23）；pegged to 的“把……与……挂钩”也是被隔开的“把”，两个“把”都只是框架词的一半，各自后半（称为／挂钩）不同，学生分得清"},"牛津逗号":{"S13 April and July 1912, inquiries in Washington and":"不是并列：April and July、Washington and London 各只有两项，逗号前是时间状语"},
  "短语":{"S13 testimony … from":"testimony from sb 里 from 引出证词的来源，testimony 本身就是“证词”，意思不靠 from 产生（同 10 involvement in 的判法）；hear testimony from 写进 note"},
  "中文意思":{"S15 delegates":"本句 delegates 是名词复数（13国的代表），用的是 n. 代表 这个义项，不是 v. 委派……为代表"}}
 out={"no":"15","title_en":"The Myth of the Unsinkable","title_zh":"永不沉没的神话","title_fx":{"hl":["Unsinkable"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","allow_clash":["trade journal","practically","maiden voyage","distress calls"],
