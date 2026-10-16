@@ -49,11 +49,13 @@ if __name__ == '__main__':
             idx = it[1]
             text = it[2]
             gr = d.get('词尾除阻', {}).get('标题' if idx < 0 else f'S{idx + 1}')
+            pg = d.get('停顿处除阻', {}).get(f'S{idx + 1}') if idx >= 0 else None
+            bo = d.get('除阻加强', {}).get(f'S{idx + 1}') if idx >= 0 else None
             en_ = d.get('结尾句', {}).get(f'S{idx + 1}') if idx >= 0 else None
             # 标准答案的缓存键 = 这一句实际合成用的全部输入（音标含读音改正、移植、结尾句参数）的指纹：
             # 任何一项变了就重新合成（2026-10-10：07 S4 读音改正后仍用了旧读音的缓存，复核整篇对不上）
             fd_ = FADES.get(no, {}).get(f'S{idx + 1}', []) if idx >= 0 else []
-            key_ = _hl.md5(repr((phonemes_of(spoken(text)), gr, en_, fd_, 0.95)).encode()).hexdigest()[:10]
+            key_ = _hl.md5(repr((phonemes_of(spoken(text)), gr, en_, fd_, 0.95) + ((pg,) if pg else ()) + ((('加强', bo),) if bo else ())).encode()).hexdigest()[:10]
             fn = f'{OUT}/{no}_{"T" if idx < 0 else "%02d" % idx}_{key_}.npy'
             if not os.path.exists(fn):
                 if en_: a, sr = _ending_raw(text, en_), 24000     # 结尾句：两遍合成在接点接起来（与出片同一个函数，接点两侧必须是静音）
@@ -66,9 +68,18 @@ if __name__ == '__main__':
                     a = np.concatenate([a, np.zeros(end - len(a), np.float32)])
                     for sec, kd in gr.values():
                         p0 = int(round(float(sec) * SR)); n0 = len(_donor(kd)); a[st + p0:st + p0 + n0] = wg[p0:p0 + n0]
+                if bo:      # A21 弱除阻加强：同一个函数（出片程序的 _boost），在原始合成的同一位置
+                    a0_ = np.asarray(_ending_raw(text, en_) if en_ else k.create(spoken(text), voice=V, speed=0.95, lang='en-us')[0], np.float32)
+                    a = _boost(a, bo, text, off=_head_offset(a0_, clean_tail(a0_)))
                 for s0, c0, e0 in fd_:      # A22：连读处插停顿的淡出/淡入（与出片同一条曲线、同一位置；其余样本照旧逐样本比对）
                     a[s0:c0] *= (0.5 + 0.5 * np.cos(np.linspace(0, np.pi, c0 - s0))).astype(np.float32)
                     a[c0:e0] *= (0.5 - 0.5 * np.cos(np.linspace(0, np.pi, e0 - c0))).astype(np.float32)
+                if pg:      # A21 连读处补除阻：原始合成里 w[p:q) 换成同一段供体（出片程序的 _pdonor，同一个函数）；停顿插在供体之后，复核照常认插入的静音
+                    a0 = np.asarray(_ending_raw(text, en_) if en_ else k.create(spoken(text), voice=V, speed=0.95, lang='en-us')[0], np.float32)
+                    w0 = clean_tail(a0); st = _head_offset(a0, w0); w0 = _keep_tail(a0, w0, st)
+                    for p_, q_, kd in sorted(pg.values(), key=lambda v: -float(v[0])):
+                        p0 = st + int(round(float(p_) * SR)); q0 = st + int(round(float(q_) * SR))
+                        a = np.concatenate([a[:p0], _pdonor(w0, kd), a[q0:]])
                 np.save(fn, a)
             meta[no].append({'idx': idx, 'text': text, 'file': fn,
                              'para': it[3] if len(it) > 3 else None,

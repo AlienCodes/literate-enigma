@@ -166,7 +166,7 @@ FUNC = set('a an the of to in on at by for and or but as is was be been were are
 
 def words_of(text):
     # 带数字的（12th、62nd、1990s）不在这里查——数字读法由 交付核查 的数字读法清单（A11）逐个核对
-    return [w for w in re.findall(r"[A-Za-z0-9]+(?:['’][A-Za-z]+)*(?:-[A-Za-z0-9]+)*", text) if not re.search(r'\d', w)]
+    return [w for w in re.findall(r"[A-Za-zÀ-ÖØ-öø-ÿ0-9]+(?:['’][A-Za-z]+)*(?:-[A-Za-zÀ-ÖØ-öø-ÿ0-9]+)*", text) if not re.search(r'\d', w)]
 
 
 def check(no):
@@ -186,7 +186,8 @@ def check(no):
             ph = re.sub(r'[,;:.!?"“”]', '', phonemes_of(w)).strip()
             if w.lower() not in FUNC and re.sub(r'[ˈˌ\s]', '', ph) not in ph_sent:
                 cv = conf.get(w) or VERIFIED.get(w)
-                if not (isinstance(cv, dict) and cv.get('整句读法已核实')):
+                hv = HETCONF.get(f'{no} {lab} {w}')   # 这一句的多音词核对记录（整句音标对得上）已核实了整句里的读法（13 S4 过去式 read）
+                if not (isinstance(cv, dict) and cv.get('整句读法已核实')) and not (isinstance(hv, dict) and hv.get('判定') == '正确' and hv.get('整句音标') == phonemes_of(sp)):
                     rows.append(('不一致', f"{no} 待核实 [不一致] {w}  单读 /{ph}/ 与整句里的读法不同（整句：/{phonemes_of(sp)}/）｜出现在 {lab}", True))
                 continue
             lw = re.sub(r"['’]s$", '', w).lower()
@@ -281,6 +282,12 @@ def selftest(no):
         keep = dict(PRON_WORDS); PRON_WORDS.clear()
         got = {line for _, line, bad in check(no) if bad}; PRON_WORDS.update(keep)
         res.append((f'关掉读音改正（{"、".join(used)}）', all(any(re.search(r'\] ' + re.escape(w) + r"(['’]s)? ", l_) for l_ in got - base) for w in used)))   # 文中只有所有格的（10 Uffizi's）也算
+    # ②b 关掉按语境读音（13 S4 过去式 read）：必须报出
+    usedc = [c_ for c_ in PRON_CTX if re.search(r'(?<![A-Za-z])' + re.escape(c_) + r'(?![A-Za-z])', re.sub(r'\*\*', '', R.strip_gloss(text)), flags=re.I)]   # 去掉粗体和中文说明再找（13 S4 是 **press coverage**）
+    if usedc:
+        keep = dict(PRON_CTX); PRON_CTX.clear()
+        got = {line for _, line, bad in check(no) if bad}; PRON_CTX.update(keep)
+        res.append((f'关掉按语境读音（{"、".join(usedc)}）', all(any(f'] {keep[c_]["词"]} ' in l_ for l_ in got - base) for c_ in usedc)))
     # ③ 去掉一条多音词核对记录
     hk = next((k_ for k_ in HETCONF if k_.startswith(no + ' ')), None)
     if hk:

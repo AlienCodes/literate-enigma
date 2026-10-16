@@ -11,6 +11,7 @@ if ! git diff --cached --quiet; then git commit -qm "$1$T"; fi
 git -c core.quotepath=off diff --name-status origin/main HEAD -- 视频 > /tmp/_chg.txt || true
 while IFS=$'\t' read -r st f g; do
   case $st in D) rm -f "$L/$f";; R*) rm -f "$L/$f"; f=$g; mkdir -p "$L/$(dirname "$f")"; cp "$P/$f" "$L/$f";; *) mkdir -p "$L/$(dirname "$f")"; cp "$P/$f" "$L/$f";; esac
+  [ -e "$L/$f" ] && chmod --reference="$P/$f" "$L/$f"   # 文件权限也一致（14：草稿声音.sh 一边 755 一边 644，两仓库比对不过）
 done < /tmp/_chg.txt
 git push -q origin main
 cp $P/CLAUDE.md $L/CLAUDE.md   # CLAUDE.md 以 postgraduate-vocabulary 为准（G11：定稿流水线用它覆盖工作分支，只改工作分支那份会被冲掉）

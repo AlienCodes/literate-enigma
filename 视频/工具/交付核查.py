@@ -37,7 +37,7 @@ elif stage == '出片前':
         for m in re.finditer(r"\S*\d\S*", x):
             ctx = x[max(0, m.start()-12):m.end()+12]
             rows.append(f"{m.group(0):>14}  →  {spoken(ctx)}")
-            if re.search(r'\d+\.\d+|%|\$|£|€|\d+/\d+', m.group(0)): odd.append(m.group(0))
+            if re.search(r'\d+\.\d+|%|\$|£|€|\d+/\d+', spoken(m.group(0))): odd.append(m.group(0))   # spoken() 已转成读法的（如 11.40pm）不算未处理
     step('数字读法清单（请人工逐个确认读法）', not odd, '\n    '.join(rows) + (f"\n    未处理的数字格式：{odd}" if odd else ''))
     # 引号不停顿（A17）：带引号的句子，朗读文字里必须已经去掉引号
     qbad = [x for x in texts if re.search(r'["“”‘’]|(?<![A-Za-z])\'|\'(?![A-Za-z])', x) and re.search(r'["“”‘]|(?<![A-Za-z])[\'’]|[\'’](?![A-Za-z])', spoken(x))]

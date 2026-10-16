@@ -38,10 +38,22 @@ for _cand in (_PRON_PATH,'读音改正.json','/home/user/postgraduate-vocabulary
         PRON_EXTRA={k_:v_['语境错读'] for k_,v_ in _pj.items() if v_.get('语境错读')}   # 单读没错、连读时才读错的写法（08 cholera ravaged → kˈɑːlɚɹɚ）
         break
 else: PRON_WORDS={'Inky':'ˈɪŋki'}; PRON_EXTRA={}
+# 按语境改读音（A24，13 S4 “read press coverage”是过去式，应读 /ɹˈɛd/，注音程序读成现在时 /ɹˈiːd/；读音改正表按词全局生效，别处的现在时 read 不能跟着改）：
+# 发音词典/按语境读音.json 键是原文里能确定词性的一段词组，值 {"词","读音","依据"}；整句注音里只把这个词换成正确音标。
+# 句中这个词出现的次数必须等于词组出现的次数（否则分不清换哪个），换到的处数也必须相等，否则停下。
+_CTX_PATH=next((p_ for p_ in (os.path.join(os.path.dirname(_cand),'按语境读音.json'),'/home/user/postgraduate-vocabulary/视频/工具/发音词典/按语境读音.json') if os.path.exists(p_)),None)
+PRON_CTX=json.load(open(_CTX_PATH)) if _CTX_PATH else {}
+def _ctx_hit(text): return any(re.search(r"(?<![A-Za-z])"+re.escape(c_)+r"(?![A-Za-z])",text,flags=re.I) for c_ in PRON_CTX)
 def _stress_free_re(ph):
     """不管重音号在哪（音标里每个符号前后都可能有，McArthur 的重音号在空格之后），都能对上这串音标"""
     return ''.join(r'\s*' if ch==' ' else '[ˈˌ]?'+re.escape(ch) for ch in re.sub('[ˈˌ]','',ph))+'[ˈˌ]?'
 PRON_FIX={}
+def _compound_of(text,m_):
+    """m_ 这一处若在连字符复合词里，返回整个复合词（小写），否则返回空串"""
+    a_,b_=m_.start(),m_.end()
+    while a_>0 and (text[a_-1].isalpha() or text[a_-1]=='-' and a_>1 and text[a_-2].isalpha()): a_-=1
+    while b_<len(text) and (text[b_].isalpha() or text[b_]=='-' and b_+1<len(text) and text[b_+1].isalpha()): b_+=1
+    w_=text[a_:b_]; return w_.lower() if '-' in w_ else ''
 def phonemes_of(text):
     ph=KT.tokenizer.phonemize(text,'en-us')
     for w_,good in PRON_WORDS.items():
@@ -56,13 +68,29 @@ def phonemes_of(text):
             if got_!=n_: raise SystemExit(f'【停止】读音改正没有全部换到（A23）：{w_} 出现 {n_} 次，整句里正确读音 {got_} 处：{text[:60]}')
             continue
         if re.sub('[ˈˌ]','',bad)==re.sub('[ˈˌ]','',good) and bad==good: continue
-        ph,cnt=re.subn("(?<![^\\s,;:.!?])"+_stress_free_re(bad)+"([sz]?)(?=[\\s,;:.!?]|$)",lambda m_:good+(('s' if good.rstrip('ˈˌː')[-1] in 'ptkfθ' else 'z') if m_.group(1) else ''),ph)
+        # 连字符复合词（16 Haber-Bosch）：注音程序把整个复合词注成一串（hˈeɪbɚbˈɑːʃ），换不到里面的单词；复合词本身登记在表里的由它自己那一条换，这里不算
+        _keys={k_.lower() for k_ in PRON_WORDS}
+        occ_=[m_ for m_ in re.finditer(r"(?<![A-Za-z])"+re.escape(w_)+r"(?![A-Za-z])",text,flags=re.I) if _compound_of(text,m_) in ('',w_.lower()) or _compound_of(text,m_) not in _keys]
+        n_=len(occ_); pos_=[bool(re.match(r"['’]s(?![A-Za-z])",text[m_.end():])) for m_ in occ_]; i_=[0]
+        def _sub(m_):
+            # 所有格：注音程序对不认识的全大写词会把 's 吞掉（16 BASF's、NASA's 注成 bˈæsf、nˈæsɐ）；原文是所有格的，补回 /s/ 或 /z/
+            j_=i_[0]; i_[0]+=1
+            return good+(('s' if good.rstrip('ˈˌː')[-1] in 'ptkfθ' else 'z') if (m_.group(1) or (j_<len(pos_) and pos_[j_])) else '')
+        ph,cnt=re.subn("(?<![^\\s,;:.!?])"+_stress_free_re(bad)+"([sz]?)(?=[\\s,;:.!?]|$)",_sub,ph)
         # ↑ 所有格（09 S18 Meredith's）：词后的 's 按改正后读音的最后一个音定清浊——清辅音 p t k f θ 后读 /s/，其余读 /z/（配音原来把 Meredith's 读成 …ɪθz）
         if cnt!=n_: raise SystemExit(f'【停止】读音改正没有全部换到（A23）：{w_} 出现 {n_} 次，换了 {cnt} 次：{text[:60]}')
+    for c_,v_ in PRON_CTX.items():
+        n_=len(re.findall(r"(?<![A-Za-z])"+re.escape(c_)+r"(?![A-Za-z])",text,flags=re.I))
+        if not n_: continue
+        w_=v_['词']; m_=len(re.findall(r"(?<![A-Za-z])"+re.escape(w_)+r"(?![A-Za-z])",text,flags=re.I))
+        if m_!=n_: raise SystemExit(f'【停止】按语境读音（A24）：{w_} 句中出现 {m_} 次，语境“{c_}”只有 {n_} 处，分不清换哪个：{text[:60]}')
+        B_="(?<![^\\s,;:.!?])"; E_="(?=[\\s,;:.!?]|$)"; bad=re.sub(r'[,;:.!?]','',KT.tokenizer.phonemize(w_,'en-us')).strip()
+        ok_=len(re.findall(B_+_stress_free_re(v_['读音'])+E_,ph)); ph,cnt=re.subn(B_+_stress_free_re(bad)+E_,v_['读音'],ph)
+        if cnt+ok_!=n_: raise SystemExit(f'【停止】按语境读音没有全部换到（A24）：{w_} 应换 {n_} 处，换了 {cnt} 处、原本就对 {ok_} 处：{text[:60]}')
     return ph
 def _pron(fn):
     def g(text,voice,speed=1.0,lang='en-us',**kw):
-        if not kw.get('is_phonemes') and any(re.search(r"(?<![A-Za-z])"+re.escape(w_)+r"(?![A-Za-z])",text,flags=re.I) for w_ in PRON_WORDS):
+        if not kw.get('is_phonemes') and (any(re.search(r"(?<![A-Za-z])"+re.escape(w_)+r"(?![A-Za-z])",text,flags=re.I) for w_ in PRON_WORDS) or _ctx_hit(text)):
             return fn(phonemes_of(text),voice=voice,speed=speed,lang=lang,is_phonemes=True,**kw)
         return fn(text,voice=voice,speed=speed,lang=lang,**kw)
     return g
@@ -94,6 +122,7 @@ _PL={'twenty':'twenties','thirty':'thirties','forty':'forties','fifty':'fifties'
 _MONTHS='January|February|March|April|May|June|July|August|September|October|November|December'
 _ROMAN={'I':1,'II':2,'III':3,'IV':4,'V':5,'VI':6,'VII':7,'VIII':8,'IX':9,'X':10,'XI':11,'XII':12,'XIII':13,'XIV':14,'XV':15,'XVI':16}
 def spoken(t):
+    t=re.sub(r'\b(1[0-2]|[1-9])[.:]([0-5]\d)([ap])m\b',lambda m:_n2w(int(m.group(1)))+('' if m.group(2)=='00' else ' oh '+_ONES[int(m.group(2))] if m.group(2)[0]=='0' else ' '+_n2w(int(m.group(2))))+' '+m.group(3).upper()+'M',t)  # 11.40pm → eleven forty PM（15：原来读成 eleven point four zero；小写 am 会读成 ɐm，大写 AM/PM 读成字母）
     t=re.sub(r'\b(1[1-9])(\d)0s\b',lambda m:_n2w(int(m.group(1)))+' '+_PL[_TENS[int(m.group(2))]],t)          # 1960s → nineteen sixties
     t=re.sub(r'\b([1-9]|[12]\d|3[01]) ('+_MONTHS+r')\b',lambda m:'the '+_ordinal(int(m.group(1)))+' of '+m.group(2),t)  # 6 January → the sixth of January
     t=re.sub(r'(?<!\d,)(?<!\d)\b(1[1-9]\d\d)\b(?!,\d)(?!\d)',lambda m:_year(int(m.group(1))),t)                       # 1995 → nineteen ninety-five
@@ -241,7 +270,7 @@ for _p in sorted(_glob.glob('scripts/*.json')):
 #   之后停顿和句中空隙照常处理（标点处补成标准停顿，句中过长的压到 0.18 秒）。两头紧贴的 5 ms 都要低于 -55 dB；
 #   非人声与词尾/词头之间没有 -55 dB 低谷的，标"紧贴词尾"/"紧贴词头"/"紧贴两头"，那一头切在过零点（词本身不动），依据写进 核对确认.删除段。
 #   依据写在"核对确认.停顿删除"/"核对确认.删除段"。出片和所有核查程序（都 exec 本文件）用同一份。
-DEL_AT={}; NONVOICE={}; GRAFT={}
+DEL_AT={}; NONVOICE={}; GRAFT={}; PGRAFT={}; BOOST={}
 for _p in sorted(_glob.glob('scripts/*.json')):
     _d=_jl(_p)
     for _k,_v in _d.get('停顿删除区间',{}).items():
@@ -253,6 +282,10 @@ for _p in sorted(_glob.glob('scripts/*.json')):
         NONVOICE[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks'])]=_v
     for _k,_v in _d.get('词尾除阻',{}).items():                     # A21（见 _graft）
         GRAFT['标题::'+_d['title_en'] if _k=='标题' else ' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _d['sentences'][int(_k[1:])-1]['chunks'])]=_v
+    for _k,_v in _d.get('除阻加强',{}).items():                     # A21 弱除阻加强（见 _boost）：{"S3": {"1": [a, b, 增益dB]}}，w 的秒
+        BOOST[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _d['sentences'][int(_k[1:])-1]['chunks'])]=_v
+    for _k,_v in _d.get('停顿处除阻',{}).items():                   # A21 连读处补除阻（见 sentence_audio）：{"S10": {"1": [p, q, "t"]}}，w 的秒
+        PGRAFT[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _d['sentences'][int(_k[1:])-1]['chunks'])]=_v
 # 结尾句（2026-10-10，用户听过试听后同意：“行，那就先把零七的这种4k最终视频做出来”）：全篇最后一句前段用较快语速、
 # 最后一段（最后一个标点之后）用较慢语速，最后一段前的停顿加长，读出结尾的感觉。同一句整句合成两遍，在最后一个标点后那段静音里的
 # “接点”（两遍里各一个样本位置，用实际声音核实过：两侧各 10 ms 都低于 -55 dB）接起来，当成这一句的原始合成；之后的处理
@@ -349,6 +382,24 @@ def _graft(w,items,label):
         h=int(0.002*SR); r=np.ones(n,np.float32); r[:h]=np.linspace(0,1,h); r[-h:]=np.linspace(1,0,h)
         w[p:p+n]=(d*rr*10**(GRAFT_DB/20)).astype(np.float32)*r          # 整段换掉（两头 2 ms 从零淡入淡出；原来这里只有闭塞和停顿里的静音，不与原声混）
     return w
+def _boost(w,items,label,off=0):
+    """A21 弱除阻加强（2026-10-16，20 S3 slope, 的 /p/：除阻在、只比门槛低 0.7 dB；这个配音停顿前的 /p/ 几乎从不清楚除阻，找不到供体）：
+    w[a:b) 乘一个增益（两头 2 ms 渐变），声音还是这个词自己的除阻。只许用在闭塞之后的短除阻上：前 5 ms 是闭塞（<-40 dB），
+    段长 ≤ 80 ms，段内最响 < -25 dB（不是元音），增益 0–6 dB；不合就停。off：独立复核在原始合成上做时的偏移（样本）。"""
+    F_=int(0.005*SR); e=_env5(w); rr=np.sqrt(np.mean(w[:len(e)*F_].reshape(len(e),F_)**2,axis=1)).max(); w=w.copy()
+    lv=lambda x:20*np.log10(np.sqrt(np.mean(x**2))/(rr+1e-12)+1e-12) if len(x) else -240.0
+    for g,(a,b,gdb) in items.items():
+        p=off+int(round(float(a)*SR)); q=off+int(round(float(b)*SR))
+        if not (0<float(gdb)<=6 and F_<=p<q<=p+int(0.08*SR) and lv(w[p-F_:p])<-40 and max(lv(w[x:min(x+F_,q)]) for x in range(p,q,F_))<-25):
+            raise SystemExit(f'【停止】除阻加强的位置或增益不对（前面不是闭塞、段太长、碰到元音或增益超过 6 dB）（A21）：{label[:60]} {g}')
+        G=10**(float(gdb)/20); h=int(0.002*SR); r=np.full(q-p,G,np.float32); r[:h]=np.linspace(1,G,h); r[-h:]=np.linspace(G,1,h)
+        w[p:q]*=r
+    return w
+def _pdonor(w,kind):
+    """连读处补除阻用的供体：与 _graft 同一段供体、同一响度（本句最响 5 ms 帧 GRAFT_DB）、两头 2 ms 淡入淡出"""
+    F_=int(0.005*SR); e=_env5(w); rr=np.sqrt(np.mean(w[:len(e)*F_].reshape(len(e),F_)**2,axis=1)).max()
+    d=_donor(kind); n=len(d); h=int(0.002*SR); r=np.ones(n,np.float32); r[:h]=np.linspace(0,1,h); r[-h:]=np.linspace(1,0,h)
+    return (d*rr*10**(GRAFT_DB/20)).astype(np.float32)*r
 def _keep_tail(raw,w,head):
     """A21：clean_tail 的句尾（最后一个比峰值低 48 dB 的 10 ms 帧往后 80 ms，最后 50 ms 淡出）会剪掉、压低听得见的词尾（06 intelligent. 的 /t/）。
     原始合成里，从 w 淡出开始处往后、与前面的声音相隔不到 150 ms 的能听见的帧（≥-55 dB，基准本句最响 5 ms 帧）都是词的一部分
@@ -499,6 +550,7 @@ def sentence_audio(sent,pieces,gaps):
     w=_keep_tail(raw,w,_head_offset(raw,w))
     if sent in NONVOICE: w=_nonvoice(w,NONVOICE[sent],sent)
     if sent in GRAFT: w=_graft(w,GRAFT[sent],sent)
+    if sent in BOOST: w=_boost(w,BOOST[sent],sent)
     if E_: toks=_ending_toks(sent,E_); scale=1.0                         # 每个音的时刻（接起来的声音里的秒）
     if E_: _ending_sib_guard(sent,E_,raw,toks)                         # A27 结尾句放慢不许丢音
     else:
@@ -509,11 +561,26 @@ def sentence_audio(sent,pieces,gaps):
     for tab_,nm_ in ((INSERT_AT,'停顿插入点'),(DEL_AT,'停顿删除区间')):     # 2026-10-10 09 S6：把 guns, 数成第 7 个标点（实际第 6 个），设置被悄悄忽略
         bad_=[g_ for g_ in tab_.get(sent,{}) if not 1<=g_<=len(idxs)]
         if bad_: raise SystemExit(f'【停止】{nm_} 写的第 {bad_} 个标点超出这一句的标点数（{len(idxs)} 个，按 , ; : 从 1 数）：{sent[:60]}')
-    e=_env5(w); F=int(0.005*SR); cuts=[]; M=2   # M：停顿两头各保留 2 帧（10 ms）
+    e=_env5(w); F=int(0.005*SR); cuts=[]; M=2; PDON={}   # M：停顿两头各保留 2 帧（10 ms）
     for gi,i in enumerate(idxs):
         prv=next(x for x in reversed(toks[:i]) if x.phoneme.strip() and x.phoneme not in ',;:.!?')
         nxt=next(x for x in toks[i+1:] if x.phoneme.strip() and x.phoneme not in ',;:.!?')
         pe=int(prv.end*scale*SR)//F; ns=int(nxt.start*scale*SR)//F
+        pg=PGRAFT.get(sent,{}).get(str(gi+1))
+        if pg is not None:
+            # A21 连读处补除阻（2026-10-16，18 S10 Lancet, a、S12 out, he、20 S11 thought, killed）：说话人把词尾 /t/ 直接连到下一个词，
+            # 闭塞之后没有地方放供体除阻（_graft 会盖到下一个词，守门停下）。做法：w[p:q)（闭塞之后的弱除阻和两词之间的缝）换成供体除阻，
+            # 标准停顿插在供体之后、下一个词之前（听到的是“词 + 闭塞 + 清楚的 t + 停顿 + 下一个词”）。守门与 _graft 相同：
+            # 换掉的部分不能有 ≥-30 dB 的帧（不碰到词），紧挨着的前 5 ms 必须是闭塞（<-40 dB）；不在该标点处、与别的设置冲突就停。
+            p_=int(round(float(pg[0])*SR)); q_=int(round(float(pg[1])*SR))
+            rr_=np.sqrt(np.mean(w[:len(e)*F].reshape(len(e),F)**2,axis=1)).max()
+            lv_=lambda x:20*np.log10(np.sqrt(np.mean(x**2))/(rr_+1e-12)+1e-12) if len(x) else -240.0
+            if (str(gi+1) in GRAFT.get(sent,{}) or gi+1 in DEL_AT.get(sent,{}) or gi+1 in INSERT_AT.get(sent,{}) or (E_ and gi==len(idxs)-1)
+                or not (F<=p_<q_ and pe-60<=p_//F and q_//F<=ns+20) or max(lv_(w[x:min(x+F,q_)]) for x in range(p_,q_,F))>=-30 or lv_(w[p_-F:p_])>=-40):
+                raise SystemExit(f'【停止】连读处补除阻的位置不对（换掉的部分有词的声音、前面不是闭塞、不在该标点处，或与别的设置冲突）（A21）：{sent[:60]} 第{gi+1}个标点')
+            fb_=q_//F
+            while fb_<len(e) and e[fb_]<AUD_DB: fb_+=1
+            cuts.append((p_,q_,max(0.03,gaps[gi]-max(0,fb_*F-q_)/SR))); PDON[gi]=(_pdonor(w,pg[2]),str(gi+1)); continue
         # 带时长模型与原模型的局部时间有 0.05–0.1 s 偏差：在标点前后 0.25 s 内找"听不见的连续段"
         lo=max(0,pe-50); hi=min(len(e)-1,ns+50)
         if cuts: lo=max(lo,cuts[-1][1]//F+1)
@@ -641,11 +708,13 @@ def sentence_audio(sent,pieces,gaps):
                 w[ca_:ca_+ni_]*=(0.5-0.5*np.cos(np.linspace(0,np.pi,ni_))).astype(np.float32)
                 fades_.append((ca_-no_,ca_,ca_+ni_))
         hd_=_head_offset(raw,w); fades_=[(a_+hd_,c_+hd_,b_+hd_) for a_,c_,b_ in fades_]   # 淡出起点、切点、淡入终点（原始合成里的样本位置；独立复核在标准答案同一位置做同样的淡入淡出）
-    clips=[];tmap=[];t=0.0;prev=0;segs=[]
+    clips=[];tmap=[];t=0.0;prev=0;segs=[];pgts=[]
     for k2,(x0,x1) in enumerate(pieces):
         end=cuts[k2][0] if k2<len(cuts) else len(w)
         seg=_cap_inner(w[prev:end]); d=len(seg)/SR
         rm=_cap_spans(w[prev:end]); assert len(seg)==end-prev-sum(b-a for a,b in rm)
+        if k2 in PDON:                                                # A21 连读处补除阻：供体接在这一段末尾、停顿之前
+            pgts.append((PDON[k2][1],t+d,t+d+len(PDON[k2][0])/SR)); seg=np.concatenate([seg,PDON[k2][0]]); d=len(seg)/SR
         segs.append((prev,end,t,rm))
         tmap.append((x0,x1,t,t+d)); clips.append(seg); t+=d
         if k2<len(cuts): clips.append(sil(cuts[k2][2])); t+=cuts[k2][2]; prev=cuts[k2][1]
@@ -663,6 +732,7 @@ def sentence_audio(sent,pieces,gaps):
             if a0<=p_<b0:
                 q_=p_-a0; q_-=sum(min(q_,y)-x for x,y in rm if x<q_); gts.append((g_,t0+q_/SR,t0+(q_+n_)/SR)); break
         else: raise SystemExit(f'【停止】移植段不在保留的声音里（A21）：{sent[:60]} {g_}')
+    gts+=[(g_,a_-sh,b_-sh) for g_,a_,b_ in pgts]
     LAST.clear(); LAST.update(toks=toks,scale=scale,head=_head_offset(raw,w),segs=segs,total=len(pur)/SR,cuts=cuts,grafts=gts,gaps=list(gaps),fades=fades_)
     return clips,tmap
 def _split_audio(sent,pieces,gaps):

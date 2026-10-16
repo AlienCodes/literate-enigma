@@ -50,6 +50,25 @@ def release(x, hp, P, ref, deep=True):
     return float(L[q:c].max()), float(H[q:c].max()), (c - q) * 5, (P - c * F5, P - q * F5), float(L[c])
 
 
+def centroid(x, a, b):
+    """x[a:b] 的声音重心（Hz）"""
+    seg = np.asarray(x[a:b], np.float64)
+    if len(seg) < 16: return 0
+    sp = np.abs(np.fft.rfft(seg * np.hanning(len(seg)))) ** 2; f = np.fft.rfftfreq(len(seg), 1 / SR)
+    return int((sp * f).sum() / (sp.sum() + 1e-20))
+
+
+# /t/ /k/ 的除阻是爆破送气：声音重心在高频、时长短。14 自检查出 puppet. 的 /t/ 除阻换成静音后，程序往回把 /ɪ/ 元音（重心 544 Hz、105 ms）
+# 连同前面 /p/ 的闭塞当成了除阻；19 collapsed. 换成静音后把 /s/ 擦音（120 ms）当成了除阻。01–20 共 82 处合格除阻实测：重心最低 1282 Hz，最长 100 ms。
+CEN_MIN = 1000; DUR_MAX = 110
+
+
+def judge(x, z, ph):
+    if z is None: return False
+    if ph in 'tk': return z[1] >= TH_HF and z[2] <= DUR_MAX and centroid(x, *z[3]) >= CEN_MIN
+    return z[0] >= TH_P
+
+
 def finals(toks):
     """每个 , ; : 前和句末的最后一个音素、所在的词"""
     res = []; marks = [i for i, x in enumerate(toks) if x.phoneme in ',;:'] + [len(toks)]
@@ -67,7 +86,8 @@ def sentence_items(d):
     items = []
     t = d['title_en']; tout = title_audio(t)
     _, _, tk = KT.create_timed(spoken(re.sub(r'\*\*', '', R.strip_gloss(t))), voice=V, speed=SPEED, lang='en-us', clause_pause=0, sentence_pause=0)
-    items.append(('标题', t, tout, [len(tout)], finals(list(tk)), []))
+    ft = finals(list(tk))   # 标题整句合成、句中标点处不插停顿，只知道句末位置（19 标题 Tulip Mania: …，原来按句中标点取位置越界崩溃）
+    items.append(('标题', t, tout, [None] * (len(ft) - 1) + [len(tout)], ft, []))
     for si, s in enumerate(d['sentences'], 1):
         sent = ' '.join(re.sub(r'\*\*', '', R.strip_gloss(c['en'])).strip() for c in s['chunks'])
         lst = list_commas(sent)   # 列举逗号与出片程序同一个函数（make_video.list_commas）
@@ -80,8 +100,38 @@ def sentence_items(d):
     return items
 
 
+def nograft_items(d):
+    """写了“词尾除阻”的句子（含标题）不移植时的 {标签: (out, starts)}——查多余的移植用"""
+    res = {}
+    for key in [k_ for k_ in list(GRAFT) if k_ == '标题::' + d['title_en'] or any(k_ == ' '.join(re.sub(r'\*\*', '', R.strip_gloss(c['en'])).strip() for c in s['chunks']) for s in d['sentences'])]:
+        keep = GRAFT.pop(key)
+        try:
+            if key.startswith('标题::'): o = title_audio(d['title_en']); res['标题'] = (o, [None] * 9 + [len(o)])
+            else:
+                si = next(i for i, s in enumerate(d['sentences'], 1) if key == ' '.join(re.sub(r'\*\*', '', R.strip_gloss(c['en'])).strip() for c in s['chunks']))
+                lst = list_commas(key); pieces = []; p0 = 0; gaps = []
+                for mm in re.finditer(r'[,;:](?=\s)', key): pieces.append((p0, mm.end())); p0 = mm.end() + 1; gaps.append(P_LIST if mm.start() in lst else P_COMMA)
+                pieces.append((p0, len(key)))
+                clips, _ = sentence_audio(key, pieces, gaps); o = np.concatenate(clips); ln = [len(c) for c in clips]
+                res[f'S{si}'] = (o, [sum(ln[:2 * g + 1]) for g in range(len(LAST['cuts']))] + [len(o)])
+        finally: GRAFT[key] = keep
+    return res
+
+
 def check(no, d, mutate=None):
     rows = []; bad = []; info = []
+    # 多余的移植（2026-10-16，14 S14 ant.：读音改了以后整句重新合成，原声已有清楚的 /t/，旧位置的移植又补了一个，听成两个 t）：
+    # 写了移植的那一处，不移植时原声的除阻已经合格 → 不合格（删掉这条移植，或用 --写入 重算）
+    if not mutate:
+        for lab, (o, st) in nograft_items(d).items():
+            ent = d.get('词尾除阻', {}).get(lab, {})
+            m = len(o) // F5; ref = np.sqrt(np.mean(np.asarray(o[:m * F5], np.float64).reshape(m, F5) ** 2, axis=1)).max()
+            hp = ss.sosfiltfilt(HP, np.asarray(o, np.float64))
+            for gk, (sec, ph) in ent.items():
+                P = st[-1] if gk == '句末' else (st[int(gk) - 1] if int(gk) - 1 < len(st) - 1 else None)
+                if P is not None and judge(o, release(o, hp, P, ref), ph):
+                    line = f"{no} {lab} {'句末' if gk == '句末' else '第' + gk + '个标点'} /{ph}/ BAD 多余的移植：不移植时原声的除阻已经合格（读音或合成改过、旧位置没删？会听成两个 {ph}）"
+                    rows.append(line); bad.append((lab, -1, -1, ph, line))
     for lab, text, out, starts, fin, cuts in sentence_items(d):
         if mutate: out = mutate(lab, out, starts, fin)
         m = len(out) // F5; ref = np.sqrt(np.mean(np.asarray(out[:m * F5], np.float64).reshape(m, F5) ** 2, axis=1)).max()
@@ -89,13 +139,18 @@ def check(no, d, mutate=None):
         for g, (word, ph) in enumerate(fin):
             if ph not in 'tkpdbɡg': continue
             where = '句末' if g == len(fin) - 1 else f'第{g + 1}个标点'
+            if starts[g] is None:
+                if ph in 'tkp':                                     # 标题句中标点前的清塞音：位置算不出，不放行，交人听
+                    line = f"{no} {lab} {where} {word} /{ph}/ BAD 标题句中标点前，程序定不了停顿位置，需人听"; rows.append(line); bad.append((lab, g, len(fin) - 1, ph, line))
+                continue
             z = release(out, hp, starts[g], ref, deep=ph in 'tkp')
             desc = '没有除阻' if z is None else f'除阻全频 {z[0]:.1f} dB、2 kHz 以上 {z[1]:.1f} dB、{z[2]} ms、闭塞最低 {z[4]:.1f} dB'
             if ph in 'dbɡg':
                 weak = z is None or z[0] < -40                      # 偏弱的（01 sixty-second, -43 dB、argued, 没有除阻）剪成试听交用户
                 info.append(f"{no} {lab} {where} {word}（浊塞音，不判）{desc}{'  ← 偏弱，需试听：剪成试听交用户确认' if weak else ''}"); continue
-            ok = z is not None and (z[1] >= TH_HF if ph in 'tk' else z[0] >= TH_P)
-            line = f"{no} {lab} {where} {word} /{ph}/ {'OK ' if ok else 'BAD'} {desc}（门槛：{'2 kHz 以上 ≥ %.0f' % TH_HF if ph in 'tk' else '全频 ≥ %.0f' % TH_P} dB）"
+            ok = judge(out, z, ph)
+            if z is not None and ph in 'tk': desc += f'、重心 {centroid(out, *z[3])} Hz'
+            line = f"{no} {lab} {where} {word} /{ph}/ {'OK ' if ok else 'BAD'} {desc}（门槛：{'2 kHz 以上 ≥ %.0f dB、≤ %d ms、重心 ≥ %d Hz' % (TH_HF, DUR_MAX, CEN_MIN) if ph in 'tk' else '全频 ≥ %.0f dB' % TH_P}）"
             rows.append(line)
             if not ok: bad.append((lab, g, len(fin) - 1, ph, line))
     return rows, bad, info
@@ -105,7 +160,10 @@ def write_grafts(no, d, bad):
     """不合格的 t/k：在 w（clean_tail + _keep_tail + 非人声区间之后、移植之前）里找闭塞最低点之后的位置，写进 scripts/NN.json 的"词尾除阻\""""
     gj = d.setdefault('词尾除阻', {}); n = 0
     for lab, g, last, ph, line in bad:
-        if ph not in 'tk': print('不能自动补（只有 t、k 有供体）：', line); continue
+        if g < 0: print('多余的移植，不能自动处理（删掉这条移植后重跑）：', line); continue
+        if ph not in 'tkp': print('不能自动补（只有 t、k 有供体，p 用除阻加强）：', line); continue
+        if ph == 'p' and lab == '标题': print('标题的 /p/ 不能自动加强，交人听：', line); continue
+        if lab == '标题' and g != last: print('标题句中标点，不能自动补，交人听：', line); continue
         text = d['title_en'] if lab == '标题' else ' '.join(re.sub(r'\*\*', '', R.strip_gloss(c['en'])).strip() for c in d['sentences'][int(lab[1:]) - 1]['chunks'])
         raw, _ = k.create(spoken(re.sub(r'\*\*', '', R.strip_gloss(text))), voice=V, speed=SPEED, lang='en-us'); raw = np.asarray(raw, np.float32)
         w = clean_tail(raw); w = _keep_tail(raw, w, _head_offset(raw, w))
@@ -135,9 +193,19 @@ def write_grafts(no, d, bad):
                 y = rel
                 while y < end_lim and e[y] >= -50: y += 1
                 if y - rel > 16: break
-                pos_c = c; deep = True
+                pos_c = c; deep = True; pos_r = (rel, y)
                 if y >= end_lim: break
                 f = y
+        if ph == 'p':
+            # /p/ 没有供体（这个配音停顿前的 /p/ 几乎从不清楚除阻）：原声闭塞之后有除阻、只是偏弱的，写“除阻加强”（make_video._boost），
+            # 增益 = 差多少补多少再多 3 dB（最多 6 dB）；20 S3 slope,（-33.7 dB）、19 S6 up.（-33.7 dB）
+            m_ = re.search(r'除阻全频 (-?[\d.]+) dB', line)
+            if not deep or not m_: print('不能自动补（/p/ 没有供体，原声闭塞之后也没有除阻）：', line); continue
+            gdb = min(6.0, round((TH_P - float(m_.group(1)) + 3) * 2) / 2)
+            if float(m_.group(1)) + gdb < TH_P + 1: print('不能自动补（/p/ 除阻太弱，加 6 dB 也不够）：', line); continue
+            ra, rb = pos_r[0], min(pos_r[1] + 2, pos_r[0] + 16)
+            d.setdefault('除阻加强', {}).setdefault(lab, {})['句末' if g == last else str(g + 1)] = [round(ra * F5 / SR, 6), round(rb * F5 / SR, 6), gdb]; n += 1
+            print(f'写入 {no} {lab} {"句末" if g == last else "第%d个标点" % (g + 1)} /p/ 除阻加强 w {ra * F5 / SR:.3f}–{rb * F5 / SR:.3f}s +{gdb} dB'); continue
         if deep: on = pos_c + 1
         else:
             on = fL + 1
@@ -165,15 +233,15 @@ if __name__ == '__main__':
             m = len(out) // F5; ref = np.sqrt(np.mean(np.asarray(out[:m * F5], np.float64).reshape(m, F5) ** 2, axis=1)).max()
             hp = ss.sosfiltfilt(HP, np.asarray(out, np.float64))
             for g, (word, ph) in enumerate(fin):
-                if ph not in 'tkp': continue
+                if ph not in 'tkp' or starts[g] is None: continue
                 z = release(out, hp, starts[g], ref)
-                if z is None or not (z[1] >= TH_HF if ph in 'tk' else z[0] >= TH_P):
+                if not judge(out, z, ph):
                     print(f'✘ 词尾辅音核对 自检：{no} {lab} {word} 原样就不合格，自检前提不成立'); sys.exit(1)
                 n_ok += 1
                 for name, gain in (('换成静音', 0.0), ('压低 20 dB', 0.1)):
                     o = out.copy(); o[z[3][0]:z[3][1]] *= gain
                     z2 = release(o, ss.sosfiltfilt(HP, np.asarray(o, np.float64)), starts[g], ref)
-                    if z2 is not None and (z2[1] >= TH_HF if ph in 'tk' else z2[0] >= TH_P): miss.append(f'{lab} {word} {name}')
+                    if judge(o, z2, ph): miss.append(f'{lab} {word} {name}')
         ok = n_ok > 0 and not miss
         print(f"{'✔' if ok else '✘'} 词尾辅音核对 自检：{no} 原样 {n_ok} 处全部合格；逐处把除阻换成静音、压低 20 dB，共 {2 * n_ok} 次" + ('全部报出' if not miss else f'，没报出 {len(miss)} 次：' + '；'.join(miss)))
         sys.exit(0 if ok else 1)
