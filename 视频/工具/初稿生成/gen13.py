@@ -13,7 +13,7 @@ S=[
     [[("**jolted** him **awake** whenever his **alertness** **waned**","每当他的**警觉**(alertness)**减弱**(waned)，就**让**(jolted awake)他**猛然清醒过来**(jolted awake)，")]],
     [[("and logged his **mood**.","并记录了他的**情绪**(mood)。")],
      "（jolt sb awake：使某人猛然清醒；whenever…：时间状语从句，每当……）"]]),
-(1,[[[("The project,","这个项目，"),("a **voluntary** **endeavour**,","一次**自愿的**(voluntary)**努力**(endeavour)，")]],
+(1,[[[("The project,","这个项目，"),("a **voluntary** **endeavour**,","一次**自愿的**(voluntary)**尝试**(endeavour)，")]],
     [[("went on to take first place.","继而夺得了第一名。")],
      "（a voluntary endeavour：同位语，补充说明 the project；\ngo on to do：后来接着做成……）"]]),
 (2,[[[("William Dement,","威廉·德门特，"),("a sleep researcher at Stanford,","斯坦福大学的睡眠研究者，")]],
