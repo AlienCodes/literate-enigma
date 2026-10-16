@@ -6,7 +6,7 @@ S=[
 (1,[[[("On 10 April 1912","1912年4月10日，"),("the **opulent** **liner** Titanic","**豪华的**(opulent)**邮轮**(liner)泰坦尼克号"),("left Southampton","离开了南安普敦，")]],
     [[("on her **maiden voyage**.","开始了她的**处女航**(maiden voyage)。")],
      "（maiden voyage：处女航，首航；英语常用 she/her 指船）"]]),
-(1,[[[("A 1911 trade journal","1911年，一家造船业刊物"),("had **dubbed** her and her sister ship","曾把她和她的姊妹船**称作**(dubbed)"),('"practically unsinkable".',"“几乎永不沉没”。")],
+(1,[[[("A 1911 **trade journal**","1911年，一家**行业期刊**(trade journal)"),("had **dubbed** her and her sister ship","**把**(dubbed)她和她的姊妹船**称为**(dubbed)"),('"**practically** **unsinkable**".',"“**几乎**(practically)**不会沉没的**(unsinkable)”。")],
      "（dub A B：把A称作B；sister ship：姊妹船）"]]),
 (1,[[[("At about 11.40pm on 14 April","4月14日晚约11时40分，"),("she **collided with** an **iceberg**;","她**和**(collided with)一座**冰山**(iceberg)**相撞了**(collided with)；")]],
     [[("by 2.20am","到次日凌晨2时20分，"),("she had **vanished** beneath the waves,","她已**消失**(vanished)在海面之下，")]],
@@ -58,7 +58,7 @@ S=[
 CONF={"牛津逗号":{"S13 April and July 1912, inquiries in Washington and":"不是并列：April and July、Washington and London 各只有两项，逗号前是时间状语"},
  "短语":{"S13 testimony … from":"testimony from sb 里 from 引出证词的来源，testimony 本身就是“证词”，意思不靠 from 产生（同 10 involvement in 的判法）；hear testimony from 写进 note"},
  "中文意思":{"S15 delegates":"本句 delegates 是名词复数（13国的代表），用的是 n. 代表 这个义项，不是 v. 委派……为代表"}}
-out={"no":"15","title_en":"The Myth of the Unsinkable","title_zh":"永不沉没的神话","title_fx":{"hl":["Unsinkable"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","allow_clash":["maiden voyage","distress calls"],
+out={"no":"15","title_en":"The Myth of the Unsinkable","title_zh":"永不沉没的神话","title_fx":{"hl":["Unsinkable"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","allow_clash":["trade journal","practically","maiden voyage","distress calls"],
      "高亮按实际开口":True,"高亮开口门槛":40,"术语":{"Titanic":"泰坦尼克号","Southampton":"南安普敦","Britain":"英国","Californian":"加州人号","Cyril Evans":"西里尔·埃文斯",
      "Marconi":"马可尼","Washington":"华盛顿","London":"伦敦","American":"美国","Safety of Life at Sea":"海上人命安全","First World War":"第一次世界大战"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
