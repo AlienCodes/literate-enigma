@@ -48,7 +48,7 @@ S=[
      "（may have done：对过去情况的推测，可能已经……）\n@bouts|（bout 一阵、一场、一回、一次发作\n@bouts|（通常指疾病、情绪或活动的阵发性发作，如 a bout of fever 一阵发烧））"]]),
 (5,[[[("In 1997","1997年，"),("Guinness World Records","吉尼斯世界纪录")]],
     [[("{{=}}**discontinued** monitoring such attempts because of the health **perils**,","因健康**风险**(perils)**停止了**(discontinued)监测此类尝试；")]],
-    [[("and others have since **alleged**","此后，其他人**声称/宣称**(alleged)"),("longer **stints** awake.","有过更长的**清醒时段**(stints)。")],
+    [[("and others have since **alleged**","此后，其他人**声称/宣称**(alleged)"),("longer **stints** awake.","有过更长的清醒**时段**(stints)。")],
      "（discontinue doing：停止做……；have since done：从那以后已经……；stints awake：清醒的时段）"]]),
 (5,[[[("In a 2017 interview","在2017年的一次采访中，"),("Gardner said","加德纳说")]],
     [[("severe **insomnia**","严重的**失眠**(insomnia)"),("had **tormented** him for about a decade,","**折磨了**(tormented)他约十年，")]],
