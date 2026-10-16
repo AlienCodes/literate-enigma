@@ -55,6 +55,7 @@ CONF={"短语":{"S1 engaged … by":"labourers engaged by the archaeologist：by
  "中文意思":{"S15 versus":"文章定稿译作“相比之下”（一个完整的词，不被隔开），沿用定稿（铁律），不拆成“与……相比”"}}
 out={"no":"17","title_en":"The Curse of the Pharaoh","title_zh":"法老的诅咒","title_fx":{"hl":["Curse","Pharaoh"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","allow_clash":["turned septic"],
      "高亮按实际开口":True,"高亮开口门槛":40,
+     "结尾句":{"S19":{"整句语速":0.8,"依据":"全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：最后一句没有句中标点，整句 0.80 倍速（01、02 的写法）"}},
      "术语":{"Valley of the Kings":"帝王谷","Howard Carter":"霍华德·卡特","Carnarvon":"卡纳冯","Carter":"卡特","Tutankhamun":"图坦卡蒙","The Times":"泰晤士报",
             "Marie Corelli":"玛丽·科雷利","Cairo":"开罗","England":"英国","British Medical Journal":"英国医学杂志","Egypt":"埃及","Westerners":"西方人"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
