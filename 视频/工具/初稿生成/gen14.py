@@ -4,7 +4,7 @@ import json,re,glob,os
 # 08–12 用户定下的规矩一开始就照做：过去时“了”、顺着英文语序排、代词译出（its→它的）、英文没有引号中文不加、结尾解说（T28）、术语不漏（T30）。
 S=[
 (1,[[[("Deep in a Thai **rainforest**,","在泰国**雨林**(rainforest)深处，")]],
-    [[("a **carpenter** ant","一只**木匠**(carpenter)蚁"),("breaks from","脱离了"),("its **colony**'s **column** in the **lofty** **canopy**.","它**蚁群**(colony)在**高耸**(lofty)**树冠**(canopy)上的**队列**(column)。")],
+    [[("a **carpenter** ant","一只**木匠**(carpenter)蚁"),("breaks from","脱离了"),("its **colony**'s **column** in the **lofty** **canopy**.","它**蚁群**(colony)在**高耸的**(lofty)**树冠**(canopy)上（前进的）**队列**(column)。")],
      "（break from：脱离（群体、队伍）；\nin the lofty canopy：后置定语，修饰 column）"]]),
 (1,[[[("**Swaying**","**摇摇晃晃**(Swaying)，"),("on **unsteady** legs,","腿脚**不稳**(unsteady)，")]],
     [[("it","它"),("**wanders** **downward**,","一路**向下**(downward)慢慢**游荡**(wanders)，"),("as if **intoxicated**,","像**喝醉了**(intoxicated)一样，"),("into **leafy** **undergrowth**.","钻进**枝叶茂密的**(leafy)**林下植被**(undergrowth)。")],
