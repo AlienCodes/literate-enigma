@@ -1,9 +1,11 @@
 """token 账本（2026-10-15 用户：“测量……从头到尾一整个环节，在哪个地方消耗的 token 量是最大的……值不值得”）。
 读本会话的全部记录（主对话、子代理、工作流），按 API 返回的用量统计，不输出原文（记录里有密钥）。
 折算：按价格比例把各类 token 折成“等效 token”：新输入 ×1、写缓存 ×1.25、读缓存 ×0.1、输出 ×5。
-用法：python3 token账本.py [会话目录]"""
+用法：python3 token账本.py [会话目录] [--从 2026-10-16T06:20]（只算这个时刻（UTC）以后的：每件事开工时记下时刻，做完算这件事花了多少，记进 制作记录/NN.md 的 token 记录）"""
 import json, glob, os, re, sys, collections
-D = sys.argv[1] if len(sys.argv) > 1 else glob.glob('/root/.claude/projects/*/*.jsonl')[0][:-6]
+A_ = [a for i, a in enumerate(sys.argv[1:], 1) if not a.startswith('--') and sys.argv[i - 1] != '--从']
+T0 = sys.argv[sys.argv.index('--从') + 1] if '--从' in sys.argv else ''
+D = A_[0] if A_ else max(glob.glob('/root/.claude/projects/*/*.jsonl'), key=os.path.getmtime)[:-6]
 W = dict(input_tokens=1, cache_creation_input_tokens=1.25, cache_read_input_tokens=0.1, output_tokens=5)
 eq = lambda u: sum(u.get(k, 0) or 0 for k in W for _ in [0]) and sum((u.get(k, 0) or 0) * w for k, w in W.items())
 def rows(f):
@@ -20,6 +22,7 @@ for f, kind in files:
     for l in open(f, errors='ignore'):
         try: j = json.loads(l)
         except Exception: continue
+        if T0 and (j.get('timestamp') or '') < T0: continue
         if main and (j.get('subtype') == 'compact_boundary' or j.get('isCompactSummary')):
             carry += live; live = []
         m = j.get('message') or {}

@@ -45,7 +45,7 @@ S=[
 (4,[[[("Gardner","加德纳"),("may have had such **momentary** **bouts**","可能经历过这种**短暂的**(momentary)**发作**(bouts)"),("without noticing.","而未曾察觉。")],
      "（may have done：对过去情况的推测，可能已经……）"]]),
 (5,[[[("In 1997","1997年，"),("Guinness World Records","吉尼斯世界纪录")]],
-    [[("**discontinued** monitoring such attempts because of the health **perils**,","因健康**风险**(perils)**停止了**(discontinued)监测此类尝试；")]],
+    [[("{{=}}**discontinued** monitoring such attempts because of the health **perils**,","因健康**风险**(perils)**停止了**(discontinued)监测此类尝试；")]],
     [[("and others have since **alleged**","此后，又有人**宣称**(alleged)"),("longer **stints** awake.","有过更长的**清醒期**(stints)。")],
      "（discontinue doing：停止做……；have since done：从那以后已经……；stints awake：清醒的时段）"]]),
 (5,[[[("In a 2017 interview","在2017年的一次采访中，"),("Gardner said","加德纳说")]],
