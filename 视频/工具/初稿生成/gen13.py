@@ -62,7 +62,7 @@ CONF={"牛津逗号":{"S11 4 hours, about 11 days and":"不是三项并列：abo
  "短语":{"S8 short-term memory":"short-term 本身就是“短期的，短时的”（速查表两个释义同义），short-term memory 是“短时 + 记忆”字面相加，memory 是普通名词，不是靠整体成义的习语；文章也只标 short-term"}}
 Q1="用户 2026-10-16：S1 中文照用户原话按用户的中文顺序——“1963年12月28日，圣迭戈一名17岁的高中科学爱好者兰迪·加德纳，为了参加一场地区性的 科学展，开始尝试 放弃 睡眠。”"
 out={"no":"13","title_en":"Eleven Days Without Sleep","title_zh":"十一天不睡觉的少年","title_fx":{"hl":["Eleven","Sleep"],"ghost":[]},"sentences":[],"核对确认":CONF,"换行变更已获同意":{"S1":Q1,"S15":"用户 2026-10-16：S15 那一屏英文保持一行（字号自动缩小一点，字一个不改）——“OK”"},"结尾解说":"结局",
-     "allow_clash":["pinned the blame on"],"高亮按实际开口":True,"高亮开口门槛":40,
+     "allow_clash":["pinned the blame on","take first place"],"高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Randy Gardner":"兰迪·加德纳","Gardner":"加德纳","William Dement":"威廉·德门特","John J. Ross":"约翰·J·罗斯","San Diego":"圣迭戈","Stanford":"斯坦福","Navy":"海军",
             "Guinness World Records":"吉尼斯世界纪录","microsleeps":"微睡眠","American football":"美式橄榄球"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
