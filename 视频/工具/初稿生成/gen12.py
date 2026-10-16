@@ -57,7 +57,7 @@ CONF={"短语":{"S3 by … palate":"judge by palate alone 里 by 只引出判断
  "数字":{"S5-1 200,000":"Nearly 200,000 → 近20万（中文万位写法，读法 two hundred thousand）"},
  "是的":{"S10-2 是**愤怒的**":"“几乎全是 + 愤怒的投诉”是“是 + 定语 + 名词”，不是“是……的”表语句式"}}
 out={"no":"12","title_en":"The 79 Days of New Coke","title_zh":"新可乐的 79 天","title_fx":{"hl":["79","Coke"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局",
-     "高亮按实际开口":True,"术语":{"Pepsi":"百事","Coca-Cola":"可口可乐","New Coke":"新可乐"}}
+     "高亮按实际开口":True,"高亮开口门槛":40,"术语":{"Pepsi":"百事","Coca-Cola":"可口可乐","New Coke":"新可乐"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)

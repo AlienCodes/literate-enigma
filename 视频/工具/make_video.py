@@ -670,8 +670,14 @@ def title_audio(title):
     """标题：整句合成 → 非人声区间（脚本里键为"标题"）换成静音 → 无标点处的长停顿压缩到 0.18 秒（与句子同一条规则）→ 去底噪 → 只留能听见的部分（A20）"""
     w=say(title)
     if '标题::'+title in NONVOICE: w=_nonvoice(w,NONVOICE['标题::'+title],'标题 '+title)
-    if '标题::'+title in GRAFT: w=_graft(w,GRAFT['标题::'+title],'标题 '+title)
-    w=_purify(_cap_inner(w)); return w[slice(*_edges(w))]
+    gr=[]
+    if '标题::'+title in GRAFT:
+        w=_graft(w,GRAFT['标题::'+title],'标题 '+title); gr=[(float(sec),float(sec)+len(_donor(kind))/SR) for sec,kind in GRAFT['标题::'+title].values()]
+    sp=sorted(_cap_spans(w)); wc=_purify(_cap_inner(w)); e0,e1=_edges(wc)
+    mp=lambda s:(int(round(s*SR))-sum(b-a for a,b in sp if b<=int(round(s*SR)))-e0)/SR   # w 里的秒 → 标题声音里的秒（减去压缩掉的停顿和开头裁掉的）
+    TITLE_GRAFT[:]=[(mp(a),mp(b)) for a,b in gr]                     # 12 片名 New Coke 句末 /k/：标题的移植段也记进时刻表（A21）
+    return wc[e0:e1]
+TITLE_GRAFT=[]
 def build(js,out):
     d=json.load(open(js)); no=d['no']
     R.apply_script(d)                                              # 画面相关的脚本设置（词下说明对齐等），与定稿视频核对同一个入口
@@ -690,7 +696,7 @@ def build(js,out):
     ta=title_audio(d['title_en'])
     tl.append((('title',None),0.4+len(ta)/SR+P_TITLE)); audio+=[ta,sil(P_TITLE)]
     prev_para=None; graft_times=[]; fade_rec={}
-    if '标题::'+d['title_en'] in GRAFT: raise SystemExit('【停止】标题的词尾除阻还没有接到 纯人声核对 的时刻表（A21），先补上')
+    graft_times+=[{'句':'标题','位置':'句末','开始':round(0.4+a_,4),'结束':round(0.4+b_,4)} for a_,b_ in TITLE_GRAFT]   # 标题从 0.4 秒开始
     for si,s in enumerate(d['sentences']):
         ch=s['chunks']; lead=P_FIRST if si==0 else P_LEAD+(P_PARA_EXTRA if prev_para is not None and s['para']!=prev_para else 0)
         prev_para=s['para']
@@ -714,7 +720,7 @@ def build(js,out):
         # （停顿后常有 0.3–0.45 秒的吸气声，比最响处低 38 dB 以上，不算开口；01–04 共 48 处标定，与独立对齐相差 -0.03～+0.05 秒）；
         # 其余块：上一个词读完（空格开头，chunk_times）
         ct=chunk_times(texts); p0={x0:t0 for x0,x1,t0,t1 in tmap}
-        n10=int(0.01*SR); m10=len(a)//n10; db10=10*np.log10(np.mean(a[:m10*n10].reshape(m10,n10)**2,axis=1)+1e-20); thr=db10.max()-30
+        n10=int(0.01*SR); m10=len(a)//n10; db10=10*np.log10(np.mean(a[:m10*n10].reshape(m10,n10)**2,axis=1)+1e-20); thr=db10.max()-d.get('高亮开口门槛',30)   # 12 起可设 40（吸气声已删净，逗号后很轻的 and 也算开口；01–11 不设，画面不变）
         def speech_on(t):
             f0=int(round(t/0.01)); g=next((x for x in range(f0,min(m10,f0+100)) if db10[x]>=thr),None)
             if g is None: raise SystemExit(f'【停止】标点停顿后 1 秒内找不到开口（L14）：{sent[:60]}')
@@ -729,8 +735,11 @@ def build(js,out):
                 if all(db10[f+q]<thr-20 for q in range(3)): return speech_on(f*0.01)
             return t_
         starts=[0.0]+[speech_on(p0[bounds[ci]]) if bounds[ci] in p0 else word_on(ct[ci-1]) for ci in range(1,len(ch))]+[len(a)/SR]
-        if any(y<=x for x,y in zip(starts,starts[1:])): raise SystemExit(f'【停止】高亮时间不是递增的（L14）：{sent[:60]}')
         t_at=sum(len(x_) for x_ in audio)/SR+lead
+        for ci_ in range(1,len(ch)):                                   # 脚本 "高亮开始"（12 起）：两种独立办法一致的开口时刻（成片秒，高亮对齐.py 写入）直接用
+            hv_=d.get('高亮开始',{}).get(f'S{si+1} 第{ci_+1}块')
+            if hv_ is not None: starts[ci_]=hv_-t_at
+        if any(y<=x for x,y in zip(starts,starts[1:])): raise SystemExit(f'【停止】高亮时间不是递增的（L14）：{sent[:60]}')
         if LAST.get('fades'): fade_rec[f'S{si+1}']=[list(map(int,f_)) for f_ in LAST['fades']]
         graft_times+=[{'句':f'S{si+1}','位置':('句末' if g_=='句末' else f'第{g_}个标点'),'开始':round(t_at+t0_,4),'结束':round(t_at+t1_,4)} for g_,t0_,t1_ in LAST['grafts']]
         audio+=[sil(lead),a,sil(P_HOLD)]
