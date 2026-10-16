@@ -16,12 +16,9 @@
 import sys, os, re, json, numpy as np
 sys.path.insert(0, '.')
 src = open('make_video.py').read().split("if __name__")[0]
-hook = "        cuts.append((ca,cb,max(0.03,gaps[gi]-keep)))\n"
+hook = "    XF_OUT=float(os.environ.get('XF_OUT','0.06'))"   # 每句所有标点的停顿都定完之后（各分支——删静音、插入、停顿处除阻、交界插入——都在 cuts 里）一次记下
 assert src.count(hook) == 1, '出片程序结构变了，核对程序需要同步更新'
-src = src.replace(hook, hook + "        _LOG.append((ca,cb))\n")
-hook3 = "cuts.append((p_,q_,"   # A21 连读处补除阻（停顿处除阻）那一支：停顿删 w[p:q)、供体接在停顿前（2026-10-16 加，漏记会让后面的标点对错位）
-assert src.count(hook3) == 1, '出片程序结构变了，核对程序需要同步更新'
-src = src.replace(hook3, "_LOG.append((p_,q_)); " + hook3)
+src = src.replace(hook, "    _LOG.extend([(c_[0],c_[1]) for c_ in cuts])\n" + hook)
 hook2 = "    clips=[];tmap=[];t=0.0;prev=0;segs=[];pgts=[]\n"
 assert src.count(hook2) == 1, '出片程序结构变了，核对程序需要同步更新'     # 两处挂钩都必须找到，找不到就停（曾因 L14 改动静默失效）
 src = src.replace(hook2, "    _W.append(w)\n" + hook2, 1)

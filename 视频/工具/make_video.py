@@ -261,7 +261,7 @@ for _p in sorted(_glob.glob('scripts/*.json')):
     _d=_jl(_p)
     for _k,_v in _d.get('停顿插入点',{}).items():
         _s=_d['sentences'][int(_k[1:])-1]
-        INSERT_AT[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks'])]={int(g):float(x) for g,x in _v.items()}
+        INSERT_AT[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks'])]={int(g):(x if isinstance(x,list) else float(x)) for g,x in _v.items()}   # [秒,"交界"]：两词无缝连读的交界（A42，见 sentence_audio）
 # A19：停顿后紧跟一段吸气声时，程序把吸气声当成下一个词的开头，"词到词"的停顿就比标准长（06：0.2 秒的列举逗号实际 0.53 秒）。
 # 用实际声音核实后写进 scripts/NN.json：
 #   "停顿删除区间"：{"S6": {"2": [起, 止]}}——这一处删掉 w 里 [起, 止) 秒（精确到样本，可越过吸气声；两头紧贴的 5 ms 必须低于 -55 dB，删掉的部分不能有词的声音）；
@@ -561,7 +561,7 @@ def sentence_audio(sent,pieces,gaps):
     for tab_,nm_ in ((INSERT_AT,'停顿插入点'),(DEL_AT,'停顿删除区间')):     # 2026-10-10 09 S6：把 guns, 数成第 7 个标点（实际第 6 个），设置被悄悄忽略
         bad_=[g_ for g_ in tab_.get(sent,{}) if not 1<=g_<=len(idxs)]
         if bad_: raise SystemExit(f'【停止】{nm_} 写的第 {bad_} 个标点超出这一句的标点数（{len(idxs)} 个，按 , ; : 从 1 数）：{sent[:60]}')
-    e=_env5(w); F=int(0.005*SR); cuts=[]; M=2; PDON={}   # M：停顿两头各保留 2 帧（10 ms）
+    e=_env5(w); F=int(0.005*SR); cuts=[]; M=2; PDON={}; JX=set()   # M：停顿两头各保留 2 帧（10 ms）；JX：交界插入的标点
     for gi,i in enumerate(idxs):
         prv=next(x for x in reversed(toks[:i]) if x.phoneme.strip() and x.phoneme not in ',;:.!?')
         nxt=next(x for x in toks[i+1:] if x.phoneme.strip() and x.phoneme not in ',;:.!?')
@@ -581,6 +581,16 @@ def sentence_audio(sent,pieces,gaps):
             fb_=q_//F
             while fb_<len(e) and e[fb_]<AUD_DB: fb_+=1
             cuts.append((p_,q_,max(0.03,gaps[gi]-max(0,fb_*F-q_)/SR))); PDON[gi]=(_pdonor(w,pg[2]),str(gi+1)); continue
+        ovj=INSERT_AT.get(sent,{}).get(gi+1)
+        if isinstance(ovj,list):
+            # A42 两词无缝连读的交界（2026-10-16，19 S2 petals, soared：/z/ 直接连 /s/，整段擦音没有低谷；S17 spread, and：/d/ 除阻直接连元音）：
+            # 交界处声音还响（约 -20 dB），自动规则找不到词缝——插进了 /z/ 里（/z/ 跑到 soared 前面），或删了 still 里 /s/ 与 /t/ 之间的闭塞（A32）。
+            # 用实际声音核实的交界点（值 [秒,"交界"]，w 的秒，写依据进 核对确认.停顿位置）：在这一点直接插入标准停顿、不删任何声音；
+            # 两头只用 8 ms 余弦渐变（A22 的 60 ms 渐弱会吃掉词尾的 /z/、/d/），听到的是“词尾辅音完整 + 停顿 + 下一个词”。
+            cx=int(round(float(ovj[0])*SR))
+            if ovj[1:]!=['交界'] or not (pe-60<=cx//F<=ns+20) or str(gi+1) in GRAFT.get(sent,{}) or gi+1 in DEL_AT.get(sent,{}) or (E_ and gi==len(idxs)-1):
+                raise SystemExit(f'【停止】交界插入点写法不对、不在该标点附近，或与别的设置冲突（A42）：{sent[:60]} 第{gi+1}个标点')
+            cuts.append((cx,cx,gaps[gi])); JX.add(len(cuts)-1); continue
         # 带时长模型与原模型的局部时间有 0.05–0.1 s 偏差：在标点前后 0.25 s 内找"听不见的连续段"
         lo=max(0,pe-50); hi=min(len(e)-1,ns+50)
         if cuts: lo=max(lo,cuts[-1][1]//F+1)
@@ -634,6 +644,9 @@ def sentence_audio(sent,pieces,gaps):
             while b>a and e[b-1]>=AUD_DB: b-=1
             if b-a>=2*M+1:
                 ca,cb=(a+M)*F,(b-M)*F
+                if INSERT_AT.get(sent,{}).get(gi+1) is not None and DEL_AT.get(sent,{}).get(gi+1) is None:
+                    # A42：这一支（删自然停顿）原来不看人工插入点，写了也被悄悄忽略（19 S17 spread, and：停顿删在 still 的 /s/ 与 /t/ 之间）
+                    raise SystemExit(f'【停止】人工插入点在“删自然停顿”这一支不起作用：程序选的停顿是 {ca/SR:.3f}–{cb/SR:.3f}s；若这里不是两词之间，改写成 [秒,"交界"]（A42）或 停顿删除区间：{sent[:60]} 第{gi+1}个标点')
                 keep=((ca-a*F)+(b*F-cb))/SR          # 听到的停顿从尾音衰减到 -55 dB 起算（与核对口径一致）
             else:
                 f=min(range(r0,r1),key=lambda f:e[f]); ca=cb=f*F; keep=max(0,b-a)*F/SR
@@ -701,7 +714,12 @@ def sentence_audio(sent,pieces,gaps):
     fades_=[]
     if XF_OUT>0:
         w=w.copy()
-        for ca_,cb_,_ in cuts:
+        for ci_,(ca_,cb_,_) in enumerate(cuts):
+            if ci_ in JX:                                             # A42 交界插入：两头 8 ms（见上）
+                no_=ni_=int(0.008*SR)
+                w[ca_-no_:ca_]*=(0.5+0.5*np.cos(np.linspace(0,np.pi,no_))).astype(np.float32)
+                w[ca_:ca_+ni_]*=(0.5-0.5*np.cos(np.linspace(0,np.pi,ni_))).astype(np.float32)
+                fades_.append((ca_-no_,ca_,ca_+ni_)); continue
             if cb_==ca_ and 20*np.log10(np.sqrt(np.mean(w[max(0,ca_-F):ca_]**2))/(np.sqrt(np.mean(w[:len(e)*F].reshape(len(e),F)**2,axis=1)).max()+1e-12)+1e-12)>=-45:
                 no_=int(XF_OUT*SR); ni_=int(XF_IN*SR)
                 w[ca_-no_:ca_]*=(0.5+0.5*np.cos(np.linspace(0,np.pi,no_))).astype(np.float32)
