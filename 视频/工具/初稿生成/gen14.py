@@ -26,7 +26,7 @@ S=[
      "（Ophiocordyceps unilateralis：同位语，即 the invader；\nbe fussy about：对……挑剔）"]]),
 (3,[[[("David Hughes and colleagues","戴维·休斯和同事"),("found","发现，")]],
     [[("the **bites**","这些**咬合点**(bites)"),("mostly on the **north-west** side of plants,","大多在植物的**西北**(north-west)侧，")]],
-    [[("where the air is **humid**","那里空气**潮湿**(humid)，"),("and the temperature suits the fungus.","温度也适合真菌。")],
+    [[("where the air is **humid**","那里空气**潮湿**(humid)，"),("and the temperature suits the fungus.","且温度适宜真菌。")],
      "（find A on B：发现A在B上；\nwhere…：非限制性定语从句，修饰 the north-west side of plants）"]]),
 (3,[[[("When researchers moved infected ants higher,","研究人员把受感染的蚂蚁移到更高处时，")]],
     [[("the fungus","真菌"),("grew **abnormally**.","长得很**反常**(abnormally)。")]]]),
