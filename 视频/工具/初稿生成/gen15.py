@@ -17,7 +17,7 @@ S=[
 (2,[[[("Yet the Titanic","然而泰坦尼克号"),("was **compliant with** the law.","**符合**(compliant with)法规。")],
      "（be compliant with：符合（规定、标准））"]]),
 (2,[[[("Under 1894 rules,","按照1894年的规则，"),("Britain's **maritime** **regulator**","英国的**海事**(maritime)**监管机构**(regulator)")]],
-    [[("**pegged** lifeboat numbers **to** **gross** tonnage (volume, not weight)","**把**(pegged to)救生艇数量**与**(pegged to)**总**(gross)吨位（衡量的是体积而非重量）**挂钩**(pegged to)，")]],
+    [[("**pegged** lifeboat numbers **to** **gross tonnage** (volume, not weight)","**把**(pegged to)救生艇数量**与**(pegged to)**总吨位**(gross tonnage)（衡量的是体积而非重量）**挂钩**(pegged to)，")]],
     [[("on a **scale**","依据的是一张按吨位分档的**等级表**(scale)，"),("that topped out at 16 boats","最高一档只要求配16艘，"),("for 10,000 tons or more.","适用于10,000吨及以上的船。")],
      "（peg A to B：把A与B挂钩；that…：定语从句，修饰 scale；\ntop out at：最高达到……）"]]),
 (2,[[[("At about 46,000 tons","她约有46,000吨，"),("she carried 20,","带了20艘，"),("**exceeding** the **requirement**.","**超出了**(exceeding)**要求**(requirement)。")],
