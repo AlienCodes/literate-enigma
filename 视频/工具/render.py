@@ -80,12 +80,29 @@ def layout(tokens,fnt,maxw,cjk=False):
             clean.append((u,c))
         out.append(clean)
     return out
+LINKS=[]
+def _link_under(d,units,fnt,y):
+    """脚本“连线”里的词组：在这一行里找到（忽略空白），从第一个字到最后一个字下面画一条线，颜色取两头的词色的平均"""
+    if not LINKS: return
+    cs=[];ix=[]
+    for k,(u,c,x) in enumerate(units):
+        for ch in u:
+            if not ch.isspace() and ch!='\x00': cs.append(ch); ix.append(k)
+    s=''.join(cs)
+    for ph in LINKS:
+        p=re.sub(r'\s','',ph); i=s.find(p)
+        if i<0: continue
+        a,b=ix[i],ix[i+len(p)-1]; ua,ca,xa=units[a]; ub,cb,xb=units[b]
+        x0=xa+uw(fnt,ua)-uw(fnt,ua.lstrip()); x1=xb+fnt.getlength(ub.rstrip())
+        col=tuple((p_+q_)//2 for p_,q_ in zip(ca,cb)) if ca and cb else (ca or cb)
+        yy=y+fnt.size*1.18; d.line([(x0,yy),(x1,yy)],fill=col,width=max(2,int(fnt.size*0.06)))
 def draw_lines(d,lines,fnt,y,lh,cx=W/2):
     for ln in lines:
-        tw=sum(uw(fnt,u) for u,_ in ln); x=cx-tw/2
+        tw=sum(uw(fnt,u) for u,_ in ln); x=cx-tw/2; units=[]
         for u,c in ln:
             if u!='\x00': d.text((x,y),u,font=fnt,fill=c)
-            x+=uw(fnt,u)
+            units.append((u,c,x)); x+=uw(fnt,u)
+        _link_under(d,units,fnt,y)
         y+=lh
     return y
 def frame(en,zh,colors,header,progress,out):
@@ -186,6 +203,7 @@ GLOSS_ANCHOR={}   # 词下说明对齐（11 起）：{说明文字: 对准重点
 def apply_script(d):
     """画面相关的脚本设置统一从这里读（出片程序和定稿视频核对都调它，两边画出来才一致；11 G9 核对没读到 词下说明对齐，S6 对不上）"""
     GLOSS_ANCHOR.clear(); GLOSS_ANCHOR.update(d.get('词下说明对齐', {}))
+    LINKS[:] = d.get('连线', [])   # 12 用户：emotional attachment 两词颜色各用各的，下面一条下划线连起来表示是一个整体（中文“情感依恋”同样）
 def _pair_cols(pairs,colors,ef,zf,gapx):
     cols=[]
     for en,zh in pairs:
@@ -246,7 +264,7 @@ def _measure(chunks,colors,notes,es,grps):
     lhN=int(zs*1.45)
     total=sum(sum(rh(r) for r in rs)+(len(rs)-1)*rgap+(lhN*len(notes[i].split('\n')) if notes[i] else 0) for i,rs in enumerate(rowsets))+cgap*(len(rowsets)-1)   # note 里的 \n = 用户要的多行说明，每行一行高
     wide=max([sum(c['w'] for c in r)+gapx*(len(r)-1) for rs in rowsets for r in rs if not isinstance(r,tuple)]+[0])
-    nf=ZH(int(zs*0.9),400); wide=max([wide]+[nf.getlength(ln) for n in notes if n for ln in n.replace('#Y','').split('\n')])
+    nf=ZH(int(zs*0.9),400); wide=max([wide]+[nf.getlength(ln.replace('（@','（')) for n in notes if n for ln in n.replace('#Y','').split('\n')])
     return rowsets,total,wide,(zs,ef,zf,gapx,lhE,lhZ,rgap,cgap,lhN)
 def max_es(chunks,colors,notes=None):
     notes=notes or [None]*len(chunks); grps=_grouping(chunks,colors)
@@ -320,7 +338,11 @@ def frame_interlinear(chunks,colors,header,progress,out,active=None,maxw=1840,ma
             nt=notes[i]
             if nt.startswith('#Y'): nt=nt[2:]; nc=(251,191,36) if on else dim((251,191,36))
             for ln in nt.split('\n'):
-                d.text(((W-nf.getlength(ln))/2,y-rgap*0.3),ln,font=nf,fill=nc); y+=lhN
+                lc=nc
+                if ln[1:2]=='@':                                       # 12 用户：说明行用对应重点词的颜色（“（@thorough …）”，@ 不显示）
+                    ln=ln[0]+ln[2:]; w_=ln[1:].split(' ')[0]; k_=next((c for c in (w_,w_.lower(),w_.capitalize()) if c in colors),None)
+                    if k_: lc=colors[k_] if on else dim(colors[k_])
+                d.text(((W-nf.getlength(ln))/2,y-rgap*0.3),ln,font=nf,fill=lc); y+=lhN
         y+=cgap-rgap
     d.rectangle([0,H-8*S,W*progress,H],fill=(94,234,212))
     im.save(out); return es
