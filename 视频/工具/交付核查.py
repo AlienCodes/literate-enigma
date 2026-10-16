@@ -61,6 +61,7 @@ elif stage == '出片前':
     long = [l for l in o.splitlines() if re.search(r'停顿 (\d+\.\d+)s', l) and float(re.search(r'停顿 (\d+\.\d+)s', l).group(1)) > 0.22]
     step('无标点处停顿 ≤ 0.22 秒', not long, '\n    '.join(long))
 elif stage == '出片后':
+    c, o = run(['python3', f'{T}/收工记录.py', no]); step('token 记录（T31：程序自动算这篇花了多少，写进制作记录）', c == 0, o.strip()[-200:])
     c, o = run(['python3', f'{T}/audio_qc.py', f'{no}.mp4'])
     # 标出的"响度骤降"要剪成试听交用户确认。确认过、并用实际声音核实的，写进 核对确认.响度骤降：
     # {"108.7–109.3s": {"配音指纹": a.wav 的 md5 前 12 位, "低": 6.0（确认时 audio_qc 报的 dB）, "句子": …, "依据": …, "用户原话": …}}。

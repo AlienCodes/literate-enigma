@@ -10,5 +10,5 @@ for l in open(f'{V}/踩坑总表.md'):
     m = re.match(r'\| (\w+) \| ([^|]{0,40})', l)
     if m and m.group(1) not in ('编号',) and re.match(r'[A-Z]\d', m.group(1)):
         rows.append(f'| {m.group(1)} | {m.group(2).strip()} | 涉及 | 按现行做法由程序把关（踩坑总表“拦住”），本篇核查通过 |')
-open(f, 'w').write(f'# 第{no}篇制作记录\n\n## 踩坑对照记录\n\n| 编号 | 坑（摘要） | 本篇是否涉及 | 怎么防的、核查结果 |\n|---|---|---|---|\n' + '\n'.join(rows) + '\n\n## 方法复盘\n')
+open(f, 'w').write(f'# 第{no}篇制作记录\n\n## 踩坑对照记录\n\n| 编号 | 坑（摘要） | 本篇是否涉及 | 怎么防的、核查结果 |\n|---|---|---|---|\n' + '\n'.join(rows) + '\n\n## 方法设计（T31：动手前写好；踩坑核查 [T31] 查，没写不能出片）\n- 步骤：\n- 每步谁做（程序/我）：\n- 预计调用：\n- 预计 token：\n- 为什么有效（跑通过的先例或先试一处）：\n\n## token 记录\n- 开工时刻：' + __import__('datetime').datetime.utcnow().strftime('%Y-%m-%dT%H:%M') + '（UTC）；收工跑 `python3 工具/收工记录.py ' + no + '` 自动算花了多少\n\n## 方法复盘\n')
 print(f'{f}：{len(rows)} 条')
