@@ -10,7 +10,7 @@ S=[
      "（dub A B：把A称作B；sister ship：姊妹船）"]]),
 (1,[[[("At about 11.40pm on 14 April","4月14日晚约11时40分，"),("she **collided with** an **iceberg**;","她**和**(collided with)一座**冰山**(iceberg)**相撞了**(collided with)；")]],
     [[("by 2.20am","到次日凌晨2时20分，"),("she had **vanished** beneath the waves,","她已**消失**(vanished)在海面之下，")]],
-    [[("and the **death toll**","**遇难人数**(death toll)"),("would **surpass** 1,500.","最终会**突破**(surpass)1,500。")],
+    [[("and the **death toll**","**遇难人数**(death toll)"),("would **surpass** 1,500.","最终会**超过**(surpass)1,500。")],
      "（collide with：与……相撞；would：过去将来时，表示后来的结果）"]]),
 (2,[[[("**Folklore**","**坊间流传的说法**(Folklore)"),("blames **arrogance**.","把灾难归咎于**傲慢**(arrogance)。")],
      "（blame A：把过错归咎于A）"]]),
