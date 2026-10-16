@@ -22,7 +22,7 @@ S=[
     [[("where foraging ants **tread**.","那里有觅食的蚂蚁**行走**(tread)。")],
      "（push from：从……长出；where…：非限制性定语从句，修饰 the ground below）"]]),
 (3,[[[("The **invader**,","这个**入侵者**(invader)，"),("Ophiocordyceps unilateralis,","也就是偏侧蛇虫草菌，")]],
-    [[("is **fussy** about **location**.","对**位置**(location)十分**挑剔**(fussy)。")],
+    [[("is **fussy** about **location**.","对**位置**(location)很**挑剔**(fussy)。")],
      "（Ophiocordyceps unilateralis：同位语，即 the invader；\nbe fussy about：对……挑剔）"]]),
 (3,[[[("David Hughes and colleagues","戴维·休斯和同事"),("found","发现，")]],
     [[("the **bites**","这些**咬合点**(bites)"),("mostly on the **north-west** side of plants,","大多在植物的**西北**(north-west)侧，")]],
