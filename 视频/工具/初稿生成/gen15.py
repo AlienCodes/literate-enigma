@@ -14,7 +14,7 @@ S=[
      "（collide with：与……相撞；would：过去将来时，表示后来的结果）"]]),
 (2,[[[("**Folklore**","**坊间流传的说法**(Folklore)"),("blames **arrogance**.","把灾难归咎于**傲慢**(arrogance)。")],
      "（blame A：把过错归咎于A）"]]),
-(2,[[[("Yet the Titanic","然而泰坦尼克号"),("was **compliant with** the law.","**合乎**(compliant with)法规。")],
+(2,[[[("Yet the Titanic","然而泰坦尼克号"),("was **compliant with** the law.","**符合**(compliant with)法规。")],
      "（be compliant with：符合（规定、标准））"]]),
 (2,[[[("Under 1894 rules,","按照1894年的规则，"),("Britain's **maritime** **regulator**","英国的**海事**(maritime)**监管机构**(regulator)")]],
     [[("**pegged** lifeboat numbers **to** **gross** tonnage (volume, not weight)","**把**(pegged to)救生艇数量**与**(pegged to)**总**(gross)吨位（衡量的是体积而非重量）**挂钩**(pegged to)，")]],
