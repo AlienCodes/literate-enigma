@@ -81,6 +81,9 @@ def layout(tokens,fnt,maxw,cjk=False):
         out.append(clean)
     return out
 LINKS=[]; NOTE_RULE=[False]
+def _nkey(w,colors):
+    """说明行用哪个重点词的颜色：原样、小写、首字母大写；都没有再找以它开头的重点词（13 用户写原形：@mount → mounted）"""
+    return next((c for c in (w,w.lower(),w.capitalize()) if c in colors),None) or (next((c for c in colors if c.lower().startswith(w.lower())),None) if w else None)
 def _note_txt(ln):
     """说明行实际显示的字：去掉 “@词|” 续行颜色标记和 “（@” 里的 @"""
     return re.sub(r'^@[^|（]*\|','',ln).replace('（@','（')
@@ -353,10 +356,10 @@ def frame_interlinear(chunks,colors,header,progress,out,active=None,maxw=1840,ma
             for ln in nt.split('\n'):
                 lc=nc
                 if ln.startswith('@') and '|' in ln:                   # 续行：“@extensive|可根据……” 用 extensive 的颜色
-                    w_,ln=ln[1:].split('|',1); k_=next((c for c in (w_,w_.lower(),w_.capitalize()) if c in colors),None)
+                    w_,ln=ln[1:].split('|',1); k_=_nkey(w_,colors)
                     if k_: lc=colors[k_] if on else dim(colors[k_])
                 elif ln[1:2]=='@':                                       # 12 用户：说明行用对应重点词的颜色（“（@thorough …）”，@ 不显示）
-                    ln=ln[0]+ln[2:]; w_=ln[1:].split(' ')[0]; k_=next((c for c in (w_,w_.lower(),w_.capitalize()) if c in colors),None)
+                    ln=ln[0]+ln[2:]; w_=ln[1:].split(' ')[0]; k_=_nkey(w_,colors)
                     if k_: lc=colors[k_] if on else dim(colors[k_])
                 d.text(((W-nf.getlength(ln))/2,y-rgap*0.3),ln,font=nf,fill=lc); y+=lhN
         y+=cgap-rgap
