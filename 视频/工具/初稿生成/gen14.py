@@ -50,7 +50,7 @@ S=[
     [[("into the **geological** record.","一直延伸到**地质**(geological)记录之中。")],
      "（roots run deep：根源深远；far + 比较级：……得多）"]]),
 (6,[[[("A 48-million-year-old **fossil** leaf","一片4800万年前的叶子**化石**(fossil)，"),("from Messel, in Germany,","出土于德国梅塞尔，")]],
-    [[("bears","上面留着"),("the same **characteristic** bite **scars**.","同样**典型的**(characteristic)咬合**疤痕**(scars)。")],
+    [[("bears","上面带有"),("the same **characteristic** bite **scars**.","同样**典型的**(characteristic)咬合**疤痕**(scars)。")],
      "（bear：带有（痕迹、标记）；\n48-million-year-old：复合形容词，4800万年前的）\n（结局：受感染的蚂蚁正午前后咬住叶脉，黄昏时死去，\n死后上颚仍咬着不放；两三天后，真菌从它头部长出，\n把孢子撒向下方觅食的蚂蚁经过的地面。\n真菌在肌肉周围织成网格，却没有侵入大脑。\n德国梅塞尔4800万年前的叶子化石上已有同样的咬痕，\n说明这类真菌由来已久。）"]]),
 ]
 CONF={"短语":{"S3 clenches … on":"on a major vein 是普通地点状语（咬在叶脉上），clench 本身就是“咬紧”，意思不靠 on 产生，不是短语型用法（同 10 lurked in 的判法）",
