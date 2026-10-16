@@ -879,13 +879,13 @@ def build(js,out):
         subprocess.run([FF,'-y','-loglevel','error','-i',f'{work}/a.wav','-af',AF,'-c:a','aac','-b:a','256k','-movflags','+faststart',out],check=True)
         print(out,round(total,1),'s','只出声音（没有画面）'); return
     # render images: one uniform size = largest that fits every screen with locked layout
-    sizes=[R.max_es([[tuple(p) for p in c['align']] for c in s['chunks']],colors,[c.get('note') for c in s['chunks']]) for s in d['sentences']]
+    sizes=[R.max_es([[tuple(p) for p in c['align']] for c in s['chunks']],R.sent_colors(colors,s),[c.get('note') for c in s['chunks']]) for s in d['sentences']]
     for k_,v_ in d.get('字号上限',{}).items(): sizes[int(k_[1:])-1]=min(sizes[int(k_[1:])-1],float(v_)*R.S)   # 12 S19：说明分行后字号变大、折行变了，保持用户看过的字号
     print('sizes',sizes)
     if R.NOTE_RULE[0]:                                                  # L19：说明行不得比正文宽（12 起）
-        wn=[(si+1,x) for si,s in enumerate(d['sentences']) for x in R.wide_notes([[tuple(p) for p in c['align']] for c in s['chunks']],colors,[c.get('note') for c in s['chunks']],100)]
+        wn=[(si+1,x) for si,s in enumerate(d['sentences']) for x in R.wide_notes([[tuple(p) for p in c['align']] for c in s['chunks']],R.sent_colors(colors,s),[c.get('note') for c in s['chunks']],100)]
         if wn: raise SystemExit('【停止】说明行比上面的英文正文宽（L19，用户 2026-10-16：“不要超过上面的那一行”），在标点处分行（字不改）：'+'；'.join(f'S{a} “{b[1][:24]}…” {b[2]}>{b[3]}' for a,b in wn))
-    orph=[(si+1,b,w_) for si,s in enumerate(d['sentences']) for b,w_ in R.orphan_lines([[tuple(p) for p in c['align']] for c in s['chunks']],colors,[c.get('note') for c in s['chunks']],min(sizes[si],100*R.S))]
+    orph=[(si+1,b,w_) for si,s in enumerate(d['sentences']) for b,w_ in R.orphan_lines([[tuple(p) for p in c['align']] for c in s['chunks']],R.sent_colors(colors,s),[c.get('note') for c in s['chunks']],min(sizes[si],100*R.S))]
     if orph: raise SystemExit('【停止】整组折行后最后一行只剩一个词（L3）：'+'；'.join(f'S{a} 第{b}块末行“{c_}”' for a,b,c_ in orph)+'。这一组加 {{=}} 保持一行（字号自动缩到放得下），或经用户同意改分组')
     files=[]; t=0
     for (key,dur) in tl:
@@ -896,7 +896,7 @@ def build(js,out):
             af=TA.render_frames(d['title_en'],d['title_zh'],fx.get('hl',[]),fx.get('ghost',[]),work)
             files+=af[:-1]; t+=sum(x for _,x in af[:-1]); files.append((af[-1][0],dur-sum(x for _,x in af[:-1]))); t+=dur-sum(x for _,x in af[:-1]); continue
         else:
-            si,ci=key; R.ES_FIXED=min(sizes[si],100*R.S); R.frame_interlinear([[tuple(p) for p in c['align']] for c in d['sentences'][si]['chunks']],colors,header,prog,fn,active=ci,notes=[c.get('note') for c in d['sentences'][si]['chunks']])
+            si,ci=key; R.ES_FIXED=min(sizes[si],100*R.S); R.frame_interlinear([[tuple(p) for p in c['align']] for c in d['sentences'][si]['chunks']],R.sent_colors(colors,d['sentences'][si]),header,prog,fn,active=ci,notes=[c.get('note') for c in d['sentences'][si]['chunks']])
         files.append((fn,dur)); t+=dur
     with open(f'{work}/list.txt','w') as f:
         for fn,dur in files: f.write(f"file '{os.path.abspath(fn)}'\nduration {dur:.3f}\n")

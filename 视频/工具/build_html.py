@@ -137,7 +137,7 @@ def build():
                 if prevp is not None and s['para']!=prevp: out.append('<section class="para">'+''.join(buf)+'</section>'); buf=[]
                 prevp=s['para']; cs=[]
                 for ch in s['chunks']:
-                    cols=''.join('<span class="br"></span>' if e=='\n' else f'<span class="col"><span class="en">{en_html(e,c)}</span><span class="zh">{zh_html(z,c)}</span></span>' for e,z in ch['align'])
+                    cols=''.join('<span class="br"></span>' if e=='\n' else f'<span class="col"><span class="en">{en_html(e,_R.sent_colors(c,s))}</span><span class="zh">{zh_html(z,_R.sent_colors(c,s))}</span></span>' for e,z in ch['align'])
                     n=ch.get('note'); nt=f'<div class="note{" y" if n and n.startswith("#Y") else ""}">{esc(n.replace("#Y",""))}</div>' if n else ''
                     cs.append(f'<div class="chunk">{cols}</div>{nt}')
                 buf.append('<div class="sent">'+''.join(cs)+'</div>')

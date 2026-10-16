@@ -82,7 +82,7 @@ def render_screens(d, outdir, only=None):
     R.apply_script(d)                                                 # 与出片程序同一个入口读画面设置（词下说明对齐等）
     header = f"{no} · {d['title_en']}　{d['title_zh']}"
     R.ES_FIXED = None
-    sizes = [R.max_es([[tuple(p) for p in c['align']] for c in s['chunks']], colors, [c.get('note') for c in s['chunks']]) for s in d['sentences']]
+    sizes = [R.max_es([[tuple(p) for p in c['align']] for c in s['chunks']], R.sent_colors(colors, s), [c.get('note') for c in s['chunks']]) for s in d['sentences']]
     for k_, v_ in d.get('字号上限', {}).items(): sizes[int(k_[1:]) - 1] = min(sizes[int(k_[1:]) - 1], float(v_) * R.S)   # 与出片程序同一条
     out = []
     if only is None:
@@ -94,7 +94,7 @@ def render_screens(d, outdir, only=None):
         for ci in range(len(s['chunks'])):
             fn = f'{outdir}/S{si + 1:02d}_{ci + 1:02d}.png'
             R.ES_FIXED = min(sizes[si], 100 * R.S)
-            R.frame_interlinear([[tuple(p) for p in c['align']] for c in s['chunks']], colors, header, 0, fn, active=ci,
+            R.frame_interlinear([[tuple(p) for p in c['align']] for c in s['chunks']], R.sent_colors(colors, s), header, 0, fn, active=ci,
                                 notes=[c.get('note') for c in s['chunks']])
             out.append((f'S{si + 1}-{ci + 1}', to_gray(fn)))
     return out

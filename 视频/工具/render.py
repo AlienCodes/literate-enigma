@@ -389,6 +389,17 @@ def frame_title(no,en,zh,out):
     y+=40; d.rectangle([W/2-90,y,W/2+90,y+8],fill=AC); y+=48
     d.text(((W-zf.getlength(zh))/2,y),zh,font=zf,fill=AC)
     im.save(out)
+def sent_colors(colors,s):
+    """这一句用的颜色：句里被隔开的短语（**pegged** … **to** ↔ (pegged to)），各部分按本句的短语取颜色。
+    colors 是全篇按英文单词共用的，同一个小词（to）属于两句里不同的短语时，后一个会把前一个覆盖（15 S6 pegged … to 的 to 成了别的颜色）；01–14 没有这种情况，结果不变。"""
+    ens=[w.lower() for c in s['chunks'] for w in re.findall(r'\*\*([^*]+)\*\*',c['en'])]; out=None
+    for c in s['chunks']:
+        for k in re.findall(r'\*\*[^*]+\*\*\(([^)]+)\)',c['zh']):
+            k=k.lower(); ps=k.split()
+            if len(ps)>1 and k in colors and all(p in ens for p in ps) and any(colors.get(p)!=colors[k] for p in ps):
+                out=out or dict(colors)
+                for p in ps: out[p]=colors[k]
+    return out or colors
 def unify_colors(colors,sentences):
     """不连续的重点短语（如 **depends** partly **on** ↔ **取决于**(depends on)）：各部分用同一种颜色。"""
     for s in sentences:

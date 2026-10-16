@@ -11,8 +11,8 @@ R.unify_colors(colors,d['sentences'])
 rgb=lambda c:'rgb(%d,%d,%d)'%c
 def seg(ss,cls):
     return ''.join(f'<b style="color:{rgb(c)}">{html.escape(t)}</b>' if c else html.escape(t) for t,c in ss)
-def zhseg(z):
-    if '\n' in z: return '<br>'.join(zhseg(x) for x in z.split('\n'))  # 中文格内换行
+def zhseg(z,colors=colors):
+    if '\n' in z: return '<br>'.join(zhseg(x,colors) for x in z.split('\n'))  # 中文格内换行
     ss=R._segs_zh(z,colors); out=[]
     for k,(t,c) in enumerate(ss):
         out.append(f'<b class="kz" style="color:{rgb(c)}">{html.escape(t)}</b>' if c else html.escape(t))
@@ -22,9 +22,9 @@ def flush():
     if para: body.append('<section class="para">'+''.join(para)+'</section>'); para.clear()
 for s in d['sentences']:
     if prev is not None and s['para']!=prev: flush()
-    prev=s['para']; cs=[]
+    prev=s['para']; cs=[]; sc=R.sent_colors(colors,s)
     for c in s['chunks']:
-        cols=''.join('<br>' if e=='\n' else f'<span class="col"><span class="en">{seg(R._segs_en(e,colors),"")}</span><span class="zh">{zhseg(z)}</span></span>' for e,z in c['align'])
+        cols=''.join('<br>' if e=='\n' else f'<span class="col"><span class="en">{seg(R._segs_en(e,sc),"")}</span><span class="zh">{zhseg(z,sc)}</span></span>' for e,z in c['align'])
         note=f'<div class="note">{html.escape(c["note"].replace("#Y","")).replace(chr(10),"<br>")}</div>' if c.get('note') else ''
         cs.append(f'<div class="chunk">{cols}{note}</div>')
     para.append('<div class="sent">'+''.join(cs)+'</div>')

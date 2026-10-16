@@ -44,7 +44,7 @@ for s in d['sentences']:
       for al in segs:
         t=doc.add_table(rows=2,cols=len(al)); t.alignment=WD_TABLE_ALIGNMENT.CENTER; t.autofit=True; noborder(t)
         for j,(e,z) in enumerate(al):
-            for row,lines,size,dc in ((0,[R._segs_en(e,colors)],13,EN),(1,[R._segs_zh(x,colors) for x in z.split('\n')],10.5,ZH)):
+            for row,lines,size,dc in ((0,[R._segs_en(e,R.sent_colors(colors,s))],13,EN),(1,[R._segs_zh(x,R.sent_colors(colors,s)) for x in z.split('\n')],10.5,ZH)):
                 p=t.cell(row,j).paragraphs[0]; p.alignment=WD_ALIGN_PARAGRAPH.CENTER
                 p.paragraph_format.space_after=Pt(0)
                 for k,ss in enumerate(lines):
