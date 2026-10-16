@@ -14,7 +14,7 @@ S=[
     [[("and logged his **mood**.","并记录了他的**情绪**(mood)。")],
      "（jolt sb awake：使某人猛然清醒；whenever…：时间状语从句，每当……）"]]),
 (1,[[[("The project,","这个项目，"),("a **voluntary** **endeavour**,","一次**自愿的**(voluntary)**尝试**(endeavour)，")]],
-    [[("went on to take first place.","继而夺得了第一名。")],
+    [[("went on to **take first place**.","继而**夺得了第一名**(take first place)。")],
      "（a voluntary endeavour：同位语，补充说明 the project；\ngo on to do：后来接着做成……）"]]),
 (2,[[[("William Dement,","威廉·德门特，"),("a sleep researcher at Stanford,","斯坦福大学的睡眠研究者，")]],
     [[("read press **coverage** of the attempt","读到了媒体对这次尝试的**报道**(coverage)，"),("and was **intrigued**.","并且**非常感兴趣**(intrigued)。")]]]),
