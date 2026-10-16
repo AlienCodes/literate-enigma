@@ -7,7 +7,7 @@ S=[
     [[("a **carpenter** ant","一只**木匠**(carpenter)蚁"),("breaks from","脱离了"),("its **colony**'s **column** in the **lofty** **canopy**.","它**蚁群**(colony)在**高耸的**(lofty)**树冠**(canopy)上（前进的）**队列**(column)。")],
      "（break from：脱离（群体、队伍）；\nin the lofty canopy：后置定语，修饰 column）"]]),
 (1,[[[("**Swaying**","**摇摇晃晃**(Swaying)，"),("on **unsteady** legs,","腿脚**不稳**(unsteady)，")]],
-    [[("it","它"),("**wanders** **downward**,","一路**向下**(downward)慢慢**游荡**(wanders)，"),("as if **intoxicated**,","像**喝醉了**(intoxicated)一样，"),("into **leafy** **undergrowth**.","钻进**枝叶茂密的**(leafy)**林下植被**(undergrowth)。")],
+    [[("it","它"),("**wanders** **downward**,","**向下**(downward)**游荡**(wanders)，"),("as if **intoxicated**,","像**喝醉了**(intoxicated)一样，"),("into **leafy** **undergrowth**.","进入**枝叶茂密的**(leafy)**林下植被**(undergrowth)。")],
      "（Swaying…：现在分词短语作伴随状语；\nas if intoxicated：as if 后省略了 it were）"]]),
 (1,[[[("Around **midday**","**正午**(midday)前后，"),("it **clenches** its **jaws**","它把自己的**上颚**(jaws)死死**咬紧**(clenches)")]],
     [[("on a major **vein** underneath a leaf,","在一片叶子下面的一条主**叶脉**(vein)上，"),("about 25 centimetres above the ground.","离地面约25厘米。")],
