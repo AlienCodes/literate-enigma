@@ -674,6 +674,7 @@ def title_audio(title):
     w=_purify(_cap_inner(w)); return w[slice(*_edges(w))]
 def build(js,out):
     d=json.load(open(js)); no=d['no']
+    R.apply_script(d)                                              # 画面相关的脚本设置（词下说明对齐等），与定稿视频核对同一个入口
     work=f'work_{no}'; os.makedirs(work,exist_ok=True)
     # colors
     colors={}; i=0

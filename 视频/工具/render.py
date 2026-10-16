@@ -182,12 +182,17 @@ def _segs_zh(t,colors):
         out.append((tx,c))
     return out
 KSP='\u2005'
+GLOSS_ANCHOR={}   # 词下说明对齐（11 起）：{说明文字: 对准重点词中心的那个字}；make_video 从各脚本 "词下说明对齐" 读进来。这种说明不计入格宽、可越过格子右边（右边那格这一行是空的）
+def apply_script(d):
+    """画面相关的脚本设置统一从这里读（出片程序和定稿视频核对都调它，两边画出来才一致；11 G9 核对没读到 词下说明对齐，S6 对不上）"""
+    GLOSS_ANCHOR.clear(); GLOSS_ANCHOR.update(d.get('词下说明对齐', {}))
 def _pair_cols(pairs,colors,ef,zf,gapx):
     cols=[]
     for en,zh in pairs:
         se=_segs_en(en,colors); zl=[_segs_zh(x,colors) for x in (zh or '').split('\n')]
         sz=[s for l in zl for s in l]; wl=[sum(zf.getlength(t) for t,_ in l) for l in zl]
-        we=sum(ef.getlength(t) for t,_ in se); wz=max(wl)
+        we=sum(ef.getlength(t) for t,_ in se); zr_=(zh or '').split('\n')
+        wz=max([w_ for w_,r_ in zip(wl,zr_) if not (re.fullmatch(ZCOL,r_.strip()) and re.fullmatch(ZCOL,r_.strip()).group(1) in GLOSS_ANCHOR)] or [0])
         cols.append(dict(se=se,sz=sz,zl=zl,wl=wl,nz=len(zl),we=we,wz=wz,w=max(we,wz),nowrap='{{=}}' in en,zr=(zh or '').split('\n')))
     return cols
 def _wrap_cols(cols,maxw,gapx):
@@ -278,6 +283,8 @@ def _under_x(c,k,zf,x):
         acc+=zf.getlength(t)
     if cx is None: return None
     wl=c['wl'][k]
+    a_=GLOSS_ANCHOR.get(m.group(1)); j_=''.join(t for t,_ in c['zl'][k])
+    if a_ and a_ in j_: return max(cx-zf.getlength(j_[:j_.index(a_)])-zf.getlength(a_)/2,x)   # 对准指定的字（11 S6：“人”对准“落子”）
     return min(max(cx-wl/2,x),x+c['w']-wl)
 def frame_interlinear(chunks,colors,header,progress,out,active=None,maxw=1840,maxh=940,notes=None):
     notes=notes or [None]*len(chunks)

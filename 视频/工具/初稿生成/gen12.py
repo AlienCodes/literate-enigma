@@ -1,0 +1,63 @@
+import json,re,glob,os
+# 第12篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-10-16 程序打底：英文、重点词与文章逐字核对，重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式（“的”“了”进粗体）。
+# 08–11 用户定下的规矩一开始就照做：过去时“了”、顺着英文语序排、代词译出（his→他的）、英文没有引号中文不加、结尾解说（T28）、术语不漏（T30）。
+S=[
+(1,[[[("Pepsi","百事可乐"),("had set up **booths** in shopping centres across the US,","曾在全美各地的购物中心设置了**摊位**(booths)，")]],
+    [[("inviting **shoppers**","邀请**购物者**(shoppers)"),("to **sip** two **unmarked** **beverages**","**啜饮**(sip)两种**未标品牌的**(unmarked)**饮料**(beverages)，")]],
+    [[("and state a **preference**.","并说出自己的**偏好**(preference)。")],
+     "（inviting…：现在分词短语，补充说明设摊位的做法；invite sb to do：邀请某人做……）"]]),
+(1,[[[("Figures varied by region,","各地数字不一，"),("but **tasters**","但**品尝者**(tasters)"),("generally","总体上"),("picked Pepsi more often.","更常选百事。")]]]),
+(1,[[[("Each stall,","每个摊点"),("letting **consumers**","让**消费者**(consumers)"),("judge by **palate** alone,","仅凭**味觉**(palate)作出判断，")]],
+    [[("doubled as **publicity**.","同时也成了一种**宣传**(publicity)。")],
+     "（letting…：现在分词短语作插入语，说明摊点的做法；double as：兼作，同时充当）"]]),
+(2,[[[("Coca-Cola's testing","可口可乐的测试"),("was **thorough** and **extensive**.","既**周密**(thorough)又**广泛**(extensive)。")]]]),
+(2,[[[("Nearly 200,000 blind taste tests","近20万次盲测"),("showed","显示，")]],
+    [[("a sweeter **formula**","一种更甜的**配方**(formula)"),("beating the original and Pepsi.","胜过原版可乐和百事可乐。")],
+     "（show sth doing：显示某物在……；the original：原版可乐）"]]),
+(2,[[[("On 23 April 1985","1985年4月23日，"),("the company announced","公司宣布，")]],
+    [[("it would replace its 99-year-old **syrup**,","将替换它那已有99年历史的**糖浆**(syrup)，")]],
+    [[("a year short of its **centenary**.","此时距**百年**(centenary)只差一年。")],
+     "（a year short of…：离……还差一年，补充说明前面整件事）"]]),
+(2,[[[("The public","公众"),("called the **soda** New Coke.","把这种**汽水**(soda)称为新可乐。")]]]),
+(2,[[[("Its **sweetness**","它的**甜味**(sweetness)"),("had given it a winning **flavour**,","让它拥有了能在盲测中胜出的**口味**(flavour)，")]],
+    [[("but","但"),("launching the **concoction**","推出这款**调制饮品**(concoction)"),("was a **wager**.","是一场**赌注**(wager)。")],
+     "（launching…：动名词短语作主语）"]]),
+(3,[[[("The **backlash**","这场**反弹**(backlash)"),("was a **grassroots** **outcry**.","是一次**草根的**(grassroots)**强烈抗议**(outcry)。")]]]),
+(3,[[[("Consumer **hotline** calls","消费者**热线**(hotline)的电话"),("rose from about 400 a day to about 1,500,","从每天约400个增加到了约1,500个，")]],
+    [[("almost all **furious** **complaints**.","几乎全是**愤怒的**(furious)**投诉**(complaints)。")],
+     "（rise from A to B：从A增加到B；almost all…：补充说明这些电话）"]]),
+(3,[[[("**Protest** groups","**示威**(Protest)团体"),("were **organised**,","**组织了**(organised)起来，")]],
+    [[("and some **faithful** drinkers","一些**忠实的**(faithful)饮用者"),("stocked up on the original.","囤积了原版可乐。")],
+     "（stock up on：大量储备，囤积）"]]),
+(3,[[[("In June 1985","1985年6月，"),("one protester, Gay Mullins,","一位抗议者盖伊·马林斯"),("filed a **lawsuit**","提起了**诉讼**(lawsuit)，")]],
+    [[("to keep New Coke out of packaging like the original's.","要求禁止新可乐使用与原版相似的包装。")],
+     "（keep A out of B：不让A用上B；the original's = the original's packaging）"]]),
+(3,[[[("Its **dismissal**","这起诉讼被**驳回**(dismissal)，"),("came a week later.","是在一周之后。")]]]),
+(4,[[[("Pepsi's chief executive","百事可乐首席执行官"),("gave his **employees** a day off,","给他的**员工**(employees)放了一天假，")]],
+    [[("treating the change","把这次改变"),("as Coke's **concession**.","看作可口可乐的**让步**(concession)。")],
+     "（treating…：现在分词短语作伴随状语；treat A as B：把A看作B）"]]),
+(4,[[[("After 79 days,","79天后，"),("on 11 July 1985,","1985年7月11日，")]],
+    [[("the original formula","原配方"),("was **relaunched** as Coca-Cola Classic.","以可口可乐经典之名**重新上市了**(relaunched)。")]]]),
+(4,[[[("The **U-turn**","这次**大转弯**(U-turn)"),("was a **vindication** for **loyalists**.","是对**拥趸**(loyalists)的一次**正名**(vindication)。")],
+     "（vindication：证明……是对的，这里指拥趸坚持原版可乐是对的）"]]),
+(4,[[[("ABC","ABC 电视台"),("**interrupted** a soap opera","**中断了**(interrupted)一部肥皂剧，"),("to **broadcast** the **comeback**,","**播出**(broadcast)可口可乐**回归**(comeback)的消息，")]],
+    [[("which led two network news **bulletins**.","这条消息还成了两大电视网新闻**简报**(bulletins)的头条。")],
+     "（which：非限制性定语从句，指这条消息；lead：在……中居首位，这里指成为头条）"]]),
+(5,[[[("Coca-Cola","可口可乐"),("had **misjudged**","**误判了**(misjudged)"),("what the tests measured.","这些测试衡量的是什么。")]]]),
+(5,[[[("They captured a **mouthful**,","测试捕捉到的只是**一小口**(mouthful)的味道，")]],
+    [[("not the **emotional** **attachment** that nearly a century of **familiarity** had built.","而不是近一个世纪的**熟悉**(familiarity)所建立起来的**情感**(emotional)**依恋**(attachment)。")],
+     "（that…：定语从句，修饰 attachment；nearly a century of familiarity：近一个世纪的熟悉）"]]),
+(5,[[[("To many,","对许多人来说，"),("the old taste","老味道"),("carried **nostalgia** and **heritage**.","承载着**怀旧**(nostalgia)与**传统**(heritage)。")]]]),
+(5,[[[("The tests","测试"),("had hidden the brand from every taster,","对每位品尝者都遮住了品牌，")]],
+    [[("so they could not **quantify**","所以它们无法**量化**(quantify)"),("what it meant to **fiercely** **loyal** drinkers.","品牌对那些**无比**(fiercely)**忠诚的**(loyal)饮用者意味着什么。")],
+     "（hide A from B：不让B看到A；what…：宾语从句）\n（结局：近20万次盲测证明新配方更好喝，\n可盲测遮住了品牌，测不出人们对老可乐近百年的感情；\n新可乐一推出就引来抗议和诉讼，\n79天后原配方以可口可乐经典之名回归。\n口味赢了，感情输了，可口可乐最后还是向忠实的饮用者让了步。）"]]),
+]
+CONF={"短语":{"S3 by … palate":"judge by palate alone 里 by 只引出判断的依据（凭……），palate 本身就是“味觉”，不是 by + 名词的固定用法"},
+ "数字":{"S5-1 200,000":"Nearly 200,000 → 近20万（中文万位写法，读法 two hundred thousand）"},
+ "是的":{"S10-2 是**愤怒的**":"“几乎全是 + 愤怒的投诉”是“是 + 定语 + 名词”，不是“是……的”表语句式"}}
+out={"no":"12","title_en":"The 79 Days of New Coke","title_zh":"新可乐的 79 天","title_fx":{"hl":["79","Coke"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局",
+     "高亮按实际开口":True,"术语":{"Pepsi":"百事","Coca-Cola":"可口可乐","New Coke":"新可乐"}}
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from 核对 import 生成并核对
+生成并核对(S, out)

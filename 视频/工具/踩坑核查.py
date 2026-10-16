@@ -251,8 +251,8 @@ def _idiom_re(ex, lem):
         parts.append('(?:' + '|'.join((re.escape(lem) if a.lower().startswith(lem[:4]) else re.escape(a.rstrip('e'))) + r"\w*" for a in alts) + ')')
     parts = [x for x in parts if x]
     return re.compile(r"\b" + r"\s+".join(parts) + r"\b", re.I) if len(parts) >= 2 else None
-def idiom_checks(d, no):
-    sq = sq_table(no); ok = d.get('核对确认', {}).get('短语', {}); out = []
+def idiom_checks(d, no, sq=None):
+    sq = sq if sq is not None else sq_table(no); ok = d.get('核对确认', {}).get('短语', {}); out = []
     for i, s in enumerate(d['sentences'], 1):
         en = ' '.join(c['en'] for c in s['chunks']); plain_ = re.sub(r'\*\*|\{\{.*?\}\}', '', en)
         pairs = [(z, k) for c in s['chunks'] for z, k in re.findall(r'\*\*([^*]+)\*\*\(([^)]+)\)', c['zh'])]
@@ -273,12 +273,13 @@ def idiom_checks(d, no):
                 if key not in ok: out.append(f'[T22习语] {key}  ← {k} 本文是“{z}”，不是第一个意思，靠速查表的搭配“{ex}”整体成义：整体加粗、中文标全（撞词也保留，写进 allow_clash）；不是就核实后写进 核对确认.短语')
     return out
 def selftest_idiom():
-    """T22 习语自检（自带样本，用 11 的速查表）：turned the **tide** 必须报出；**turned the tide** 整体标的不报；本文用第一个意思的 reached a **milestone** 不报"""
+    """T22 习语自检（自带样本和速查表样本，不依赖文章：11 定稿后速查表的 tide 已同步成 turned the tide）：turned the **tide** 必须报出；**turned the tide** 整体标的不报；本文用第一个意思的 reached a **milestone** 不报"""
     fails = []
+    SQ_ = {'tide': 'n. 潮汐；趋势，局势（turn the tide；the tide of public opinion）', 'milestone': 'n. 里程碑，重要事件（reach a milestone；a milestone in history）'}
     mk = lambda en, zh: {'sentences': [{'chunks': [{'en': en, 'zh': zh, 'align': [[en, zh]]}]}]}
-    if not idiom_checks(mk("Lee's 78th move turned the **tide**,", '李世石的第78手扭转了**局势**(tide)，'), '11'): fails.append('没抓到：习语只标一个词（T22，11 turned the **tide**）')
-    if idiom_checks(mk("Lee's 78th move **turned the tide**,", '李世石的第78手**扭转了局势**(turned the tide)，'), '11'): fails.append('T22 习语误报：整体标的 **turned the tide** 被报出')
-    if idiom_checks(mk("DeepMind's AlphaGo reached a **milestone**,", 'DeepMind 的 AlphaGo 达成了一个**里程碑**(milestone)，'), '11'): fails.append('T22 习语误报：用第一个意思的 reached a **milestone** 被报出')
+    if not idiom_checks(mk("Lee's 78th move turned the **tide**,", '李世石的第78手扭转了**局势**(tide)，'), '11', SQ_): fails.append('没抓到：习语只标一个词（T22，11 turned the **tide**）')
+    if idiom_checks(mk("Lee's 78th move **turned the tide**,", '李世石的第78手**扭转了局势**(turned the tide)，'), '11', SQ_): fails.append('T22 习语误报：整体标的 **turned the tide** 被报出')
+    if idiom_checks(mk("DeepMind's AlphaGo reached a **milestone**,", 'DeepMind 的 AlphaGo 达成了一个**里程碑**(milestone)，'), '11', SQ_): fails.append('T22 习语误报：用第一个意思的 reached a **milestone** 被报出')
     return fails
 
 

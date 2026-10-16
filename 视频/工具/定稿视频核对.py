@@ -79,6 +79,7 @@ def render_screens(d, outdir, only=None):
             for w in re.findall(r'\*\*([^*]+)\*\*', c['en']):
                 if w.lower() not in colors: colors[w.lower()] = R.PAL[i % len(R.PAL)]; i += 1
     R.unify_colors(colors, d['sentences'])
+    R.apply_script(d)                                                 # 与出片程序同一个入口读画面设置（词下说明对齐等）
     header = f"{no} · {d['title_en']}　{d['title_zh']}"
     R.ES_FIXED = None
     sizes = [R.max_es([[tuple(p) for p in c['align']] for c in s['chunks']], colors, [c.get('note') for c in s['chunks']]) for s in d['sentences']]

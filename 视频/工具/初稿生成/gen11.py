@@ -19,7 +19,7 @@ S=[
     [[("a **tactic**","这种**招数/手段**(tactic)，是"),("placing a stone","将一枚棋子下在"),("**adjacent to** an opponent's on the **diagonal**.","**与**(adjacent to)对方棋子的**斜对角**(diagonal)**相邻**(adjacent to)的地方。")],
      "（shoulder hit：肩冲，围棋术语；\na tactic placing…：同位语，解释 shoulder hit，placing… 作后置定语）"]]),
 (2,[[[("On the **grid**'s","在**网格**(grid)\n{{（方格构成的网状 - 指 棋盘）|grid}}"),("fifth line,","第五线上落子，"),("it","这"),("was hardly **orthodox**.","几乎不能算是**正统**(orthodox)下法。")]]]),
-(2,[[[("Commentators","解说员"),("found","觉得"),("the **unexpected** **placement**","这步**出人意料的**(unexpected)**落子**(placement)\n{{（把人或物放到合适位置）|placement}}"),("**bizarre**;","**十分怪异**(bizarre)；")]],
+(2,[[[("Commentators","解说员"),("found","觉得"),("the **unexpected** **placement**","这步**出乎意料的**(unexpected)**落子**(placement)\n{{（把人或物放到合适位置）|placement}}"),("**bizarre**;","**十分怪异**(bizarre)；")]],
     [[("one","其中一人还"),("took it for a mistake.","以为是失误。")],
      "（find + 宾语 + 形容词：觉得……怎么样；take A for B：把A当成B）"]]),
 (2,[[[("Lee","李世石"),("left the room,","离开了对局室，")]],
@@ -30,10 +30,10 @@ S=[
     [[("a **staggering** **rarity**.","**惊人的**(staggering)**罕见**(rarity)。")],
      "（put the odds of … at …：把……的概率估算为……；\na staggering rarity：同位语，补充说明这个概率）"]]),
 (3,[[[("AlphaGo had first","AlphaGo 起初先"),("learned to **imitate**","学会**模仿**(imitate)"),("strong **amateurs** online,","网上实力很强的**业余者**(amateurs)的下法，")]],
-    [[("then","随后，"),("**sharpened** its play over tens of millions of **simulated** games against itself.","在数千万盘的自我对弈**模拟**(simulated)中，它**磨砺了**(sharpened)棋力。")]]]),
+    [[("then","随后，"),("**sharpened** its play over tens of millions of **simulated** games against itself.","在经过了数千万盘自我对弈的**模拟**(simulated)比赛后，它**磨砺了**(sharpened)棋力。")]]]),
 (3,[[[("Lee","李世石"),("later","后来"),("**acknowledged**","**承认了**(acknowledged)"),("the stone's **originality** and beauty.","这一手的**独创性**(originality)和美感。")]]]),
 (4,[[[("The fourth game, on 13 March,","3月13日的第四局，"),("**reversed** the roles in **neat** **symmetry**.","以**巧妙的**(neat)**对称**(symmetry)，**互换了**(reversed)双方的角色。")],
-     "（互换角色：之前（第二局）AlphaGo 是赢家、人类棋手是输家；\n现在（第四局）互换了，人类棋手是赢家、AlphaGo 是输家）"]]),
+     "（互换角色：第二局 AlphaGo 靠万分之一的第37手赢了人类棋手；\n第四局反过来，人类棋手靠万分之一的第78手赢了 AlphaGo）"]]),
 (4,[[[("Lee's 78th move","李世石的第78手"),("**turned the tide**,","**扭转了局势**(turned the tide)，")]],
     [[("and many professionals","许多职业棋手"),("**heralded** it **as**","**把**(heralded as)它**誉为**(heralded as)"),("**divine**.","**神之一手**(divine)。")],
      "（herald A as B：把A誉为B；\ndivine：神的，神妙的，“神之一手”指围棋中绝妙的一手）"]]),
@@ -43,8 +43,8 @@ S=[
     [[("was","是"),("a **consolation** amid AlphaGo's **overwhelming** 4–1 victory.","AlphaGo 4比1**压倒性的**(overwhelming)胜利中的一点**安慰**(consolation)。")],
      "（amid：在……之中）\n（consolation：通常作名词，\n指失望、悲伤或遭受打击时得到的安慰和心理宽慰）"]]),
 (5,[[[("In November 2019","2019年11月，"),("Lee","李世石"),("**withdrew from** the professional **circuit**,","**退出了**(withdrew from)职业**巡回赛**(circuit)（退役），")]],
-    [[("a **farewell** he tied","他把这次**告别**(farewell)"),("to","归因于"),("AI's **unrivalled** **dominance**.","人工智能**无可匹敌的**(unrivalled)**统治地位**(dominance)。")],
-     "（a farewell he tied to…：同位语，说明前面整件事；\ntie A to B：把A和B联系起来，这里指把A归因于B）"]]),
+    [[("a **farewell** he tied","他把这次**告别**(farewell)"),("to","归咎于"),("AI's **unrivalled** **dominance**.","人工智能**无可匹敌的**(unrivalled)**统治地位**(dominance)。")],
+     "（a farewell he tied to…：同位语，说明前面整件事；\ntie A to B：把A和B联系起来，这里指把A归咎于B）"]]),
 (5,[[[("Calling AI an **invincible** **entity**,","称人工智能是**不可战胜的/无敌的**(invincible)**存在**(entity)，"),("he said","他说，"),("the **summit** was beyond him.","那个**顶峰**(summit)已非他所能企及。")],
      "（Calling…：现在分词短语作伴随状语；call A B：称A为B；\nbe beyond sb：超出某人的能力）"]]),
 (5,[[[("Yet","然而，"),("his one win came from a stone","他唯一的一场胜局，却源自一着棋。")]],
@@ -61,7 +61,7 @@ CONF={"短语":{
  "口述":{"S6-2 觉得":"note 里“find + 宾语 + 形容词：觉得……怎么样”是句型说明本身，不是语音输入多出来的词"},
  "数字":{"S8-2 10,000":"one in 10,000 中文按习惯写“万分之一”（分数），读法 one in ten thousand","S13-2 10,000":"同 S8：about one in 10,000 → 约为万分之一"},
  "是的":{"S16-1 是**无法击败的**":"“是 + 无法击败的存在”是“是 + 定语 + 名词”（称A为B），不是“是……的”表语句式"}}
-out={"no":"11","title_en":"Move 37","title_zh":"第37手","title_fx":{"hl":["37"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","allow_clash":["turned the tide"],"高亮按实际开口":True,"术语":{"shoulder hit":"肩冲"}}   # T28
+out={"no":"11","title_en":"Move 37","title_zh":"第37手","title_fx":{"hl":["37"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","allow_clash":["turned the tide"],"高亮按实际开口":True,"术语":{"shoulder hit":"肩冲"},"词下说明对齐":{"（把人或物放到合适位置）":"人"}}   # T28
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)

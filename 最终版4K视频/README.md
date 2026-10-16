@@ -15,4 +15,4 @@
 | 08 | The Doctor Who Solved the Cholera Mystery | 破解霍乱之谜的医生 | 12.1 MB |
 | 09 | The Great Emu War | 向鸸鹋宣战 | 12.1 MB |
 | 10 | The Stolen Smile | 被偷走的微笑 | 12.1 MB |
-| 11 | Move 37 | 第37手 | 11.4 MB |
+| 11 | Move 37 | 第37手 | 11.5 MB |

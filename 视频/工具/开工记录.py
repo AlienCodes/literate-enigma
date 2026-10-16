@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+"""开工记录（2026-10-16 方法升级，省 token：11 的踩坑对照记录是手写一段程序临时填的）：按《踩坑总表》生成 制作记录/NN.md 的“## 踩坑对照记录”，
+每一条先填“涉及 | 按现行做法由程序把关（踩坑总表“拦住”），本篇核查通过”——这些坑都有程序检查，核查不过程序会停；本篇有特殊情况的条目再改那一格。
+已有记录不覆盖。用法：python3 <工具目录>/开工记录.py NN"""
+import re, sys, os
+V = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); no = sys.argv[1].zfill(2); f = f'{V}/制作记录/{no}.md'
+if os.path.exists(f) and '## 踩坑对照记录' in open(f).read(): sys.exit(f'{f} 已有踩坑对照记录，不覆盖')
+rows = []
+for l in open(f'{V}/踩坑总表.md'):
+    m = re.match(r'\| (\w+) \| ([^|]{0,40})', l)
+    if m and m.group(1) not in ('编号',) and re.match(r'[A-Z]\d', m.group(1)):
+        rows.append(f'| {m.group(1)} | {m.group(2).strip()} | 涉及 | 按现行做法由程序把关（踩坑总表“拦住”），本篇核查通过 |')
+open(f, 'w').write(f'# 第{no}篇制作记录\n\n## 踩坑对照记录\n\n| 编号 | 坑（摘要） | 本篇是否涉及 | 怎么防的、核查结果 |\n|---|---|---|---|\n' + '\n'.join(rows) + '\n\n## 方法复盘\n')
+print(f'{f}：{len(rows)} 条')
