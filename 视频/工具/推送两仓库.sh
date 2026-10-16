@@ -5,16 +5,17 @@
 set -e
 P=/home/user/postgraduate-vocabulary; L=/home/user/literate-enigma; B=claude/adoring-hamilton-5qskmm
 T=$'\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01XbsiuYS9p9y2vNiB4h6ZZU'
-cd $P; git add -A 视频
+cd $P; git add -A 视频 CLAUDE.md
 if ! git diff --cached --quiet; then git commit -qm "$1$T"; fi
 git -c core.quotepath=off diff --name-status origin/main HEAD -- 视频 > /tmp/_chg.txt || true
 while IFS=$'\t' read -r st f g; do
   case $st in D) rm -f "$L/$f";; R*) rm -f "$L/$f"; f=$g; mkdir -p "$L/$(dirname "$f")"; cp "$P/$f" "$L/$f";; *) mkdir -p "$L/$(dirname "$f")"; cp "$P/$f" "$L/$f";; esac
 done < /tmp/_chg.txt
 git push -q origin main
+cp $P/CLAUDE.md $L/CLAUDE.md   # CLAUDE.md 以 postgraduate-vocabulary 为准（G11：定稿流水线用它覆盖工作分支，只改工作分支那份会被冲掉）
 cd $L; git add -A
 if ! git diff --cached --quiet; then git commit -qm "镜像：$1$T"; fi
 git push -q -u origin $B
 diff <(git -C $P ls-tree -r HEAD 视频 | awk '{print $3,$4}') <(git -C $L ls-tree -r HEAD 视频 | awk '{print $3,$4}') >/dev/null \
-  && [ -z "$(git -C $P status --short)" ] && [ -z "$(git -C $L status --short)" ] \
+  && cmp -s $P/CLAUDE.md $L/CLAUDE.md && [ -z "$(git -C $P status --short)" ] && [ -z "$(git -C $L status --short)" ] \
   && echo "两仓库已推送，视频/ 逐文件一致" || { echo "【停止】两仓库 视频/ 不一致或有没提交的改动"; exit 1; }
