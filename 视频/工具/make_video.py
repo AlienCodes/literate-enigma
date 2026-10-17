@@ -21,7 +21,8 @@ def _portable_mid(model):
     """可移植的模型标识（2026-10-17 搬到 GitHub 机器出片）：只认文件名 + 内容校验码，不含路径和修改时间——换机器、重新下载模型后缓存照样命中。"""
     side=f'{model}.sha256'
     if not os.path.exists(model) or os.environ.get('STRICT_CACHE'):   # GitHub 机器（严格缓存，不现合成）或没有的模型：用仓库里记的校验码（工具/环境/模型校验码.json）
-        return json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'环境','模型校验码.json')))[os.path.basename(model)]
+        jp=next(q for q in (os.path.join(os.path.dirname(os.path.abspath(__file__)),'环境','模型校验码.json'),'/home/user/postgraduate-vocabulary/视频/工具/环境/模型校验码.json') if os.path.exists(q))
+        return json.load(open(jp))[os.path.basename(model)]
     if os.path.exists(side) and os.path.getmtime(side)>=os.path.getmtime(model): return open(side).read().strip()
     h=_hl.sha256()
     with open(model,'rb') as f:

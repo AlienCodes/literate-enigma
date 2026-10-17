@@ -4,7 +4,7 @@
 set -e; R=$(cd "$1" && pwd); B=$2; V=$R/视频; mkdir -p $B/video/scripts $B/tts
 # 程序里有几处写死了本机路径：建同名路径指向仓库
 if [ ! -e /home/user/postgraduate-vocabulary ]; then sudo mkdir -p /home/user && sudo ln -s $R /home/user/postgraduate-vocabulary; fi
-cp $V/工具/make_video.py $V/工具/render.py $V/工具/title_anim.py $B/video/ ; cp -r $V/工具/fonts $B/video/fonts ; cp $V/脚本/*.json $B/video/scripts/
+cp $V/工具/make_video.py $V/工具/render.py $V/工具/title_anim.py $V/工具/title2.py $B/video/ ; cp $V/工具/clean.py $B/tts/ ; cp -r $V/工具/fonts $B/video/fonts ; cp $V/脚本/*.json $B/video/scripts/
 cp $V/工具/配音/* $B/tts/ ; mkdir -p $B/tts/cache_tts ; cp $V/配音缓存/*.pkl $B/tts/cache_tts/ 2>/dev/null || true
 # 官方模型：按地址下载、按校验码核对（自制的带时长模型不用，带时长结果全部来自缓存）
 U=https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0
