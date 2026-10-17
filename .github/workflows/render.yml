@@ -66,7 +66,7 @@ jobs:
           n=min(len(a),len(b)); d=np.abs(a[:n].astype(int)-b[:n].astype(int))
           print(f'声音：✘ 不同（{ha} / {hb}）长度 {len(a)}/{len(b)}，不同采样 {(d>0).sum()}，最大差 {d.max()}'); sys.exit(1)
           PY
-          else python3 $GITHUB_WORKSPACE/视频/工具/对比成片.py $NO.mp4 "$A"; fi
+          else python3 $GITHUB_WORKSPACE/视频/工具/对比成片.py $NO.mp4 "$A" | tee -a $GITHUB_STEP_SUMMARY; fi
       - uses: actions/upload-artifact@v4
         if: matrix.item.res != '声音重合成'
         with:
