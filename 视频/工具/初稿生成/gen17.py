@@ -18,7 +18,7 @@ S=[
      "（a monopoly…：同位语，概括前面的独家协议；\nleave sb starved of sth：让某人严重缺少某物）"]]),
 (2,[[[("Many","许多人"),("**resorted to** **speculation**","（只能）**诉诸于**(resorted to)**猜测**(speculation)，"),("or sought outside **commentators**.","或者是找外界的**评论员**(commentators)。")],
      "（resort to：不得已而采用，诉诸于）"]]),
-(2,[[[("In March 1923","1923年3月，"),("the best-selling novelist Marie Corelli","畅销小说家玛丽·科雷利"),("warned publicly","公开警告，")]],
+(2,[[[("In March 1923","1923年3月，"),("the **best-selling** novelist Marie Corelli","**畅销**(best-selling)小说家玛丽·科雷利"),("warned publicly","公开警告，")]],
     [[("that **dire** **punishment**","**可怕的**(dire)**惩罚**(punishment)"),("awaited","等待着"),("anyone who entered a sealed **tomb**.","任何进入封闭**陵墓**(tomb)的人。")],
      "（that…：宾语从句；who…：定语从句，修饰 anyone）"]]),
 (2,[[[("Within a **fortnight**,","不到**两星期**(fortnight)，"),("her words","她的话"),("would seem **uncanny**.","就会显得**出奇地应验**(uncanny)。")],
