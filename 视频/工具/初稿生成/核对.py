@@ -1,9 +1,11 @@
-import json,re,glob,os
+import sys, json,re,glob,os
 # 初稿共用部分（2026-10-15 方法升级，省 token）：genNN.py 只写 S（逐词对照）、CONF、out，最后一行调用 生成并核对(S, out)。
 # 生成 scripts/NN.json（合并旧脚本里后来写进的核对确认和其他键），核对英文与文章逐字一致、重点词一个不漏、align 一致、
 # 不同重点词中文不重复、重点词中文与文章定稿只差“的/地/了”进粗体（同 gen10 末尾，原样搬过来）。
 def 生成并核对(S, out):
     no = out["no"]
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")); import 重点词被去掉 as _QD
+    if _QD.提醒(no): print(_QD.提醒(no))   # 用户 2026-10-17：做这一篇时告诉用户哪些重点词被去掉了
     for p,chs in S:
         cs=[]
         for c in chs:

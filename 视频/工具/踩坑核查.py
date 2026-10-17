@@ -697,6 +697,9 @@ def main():
                 err.append(f'[L19] S{_si} 说明行比英文正文宽（{_w}>{_ew}）：{_ln[:30]}…——跑 python3 工具/说明分行.py {no} --写入 在标点处折成两行（字不改）')
     if int(no) >= 13 and not re.search(r'## 方法设计[\s\S]*?预计调用：\s*\S[\s\S]*?预计 token：\s*\S', _rec):
         err.append(f'[T31] 制作记录/{no}.md 没写“## 方法设计”（步骤、预计调用、预计 token、为什么有效）：用户 2026-10-16 铁律——动手前先设计并证明方法有效，规矩由程序执行，没写不能出片')
+    sys.path.insert(0, T); import 重点词被去掉 as _QD                   # [T32] 用户 2026-10-17：这一篇有重点词因撞词被去掉，做时必须先告诉用户
+    if _QD.记录(no) and not d.get('核对确认', {}).get('已告诉用户被去掉的重点词'):
+        err.append('[T32] 这一篇有重点词因撞词被去掉了，先把下面的话原样告诉用户，再在脚本写 核对确认.已告诉用户被去掉的重点词：\n' + _QD.提醒(no))
     if int(no) >= 11 and '## 方法复盘' not in open(f'{V}/制作记录/{no}.md').read(): err.append(f'[T29] 制作记录/{no}.md 没有“## 方法复盘”：每做完一件事，写下费 token 的地方能不能用虹吸、改了什么（用户 2026-10-15 铁律）')
     err += note_linestart_checks(d)                                 # L16 说明行首不许是标点（01–10 全部扫过，没有）
     if int(no) >= 9: conf += zh_dup_checks(d)                      # T26 两个重点词同一个中文（09 起）

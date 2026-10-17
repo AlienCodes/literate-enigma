@@ -6,7 +6,7 @@ set -e
 exec 9>/tmp/推送两仓库.lock; flock 9   # 几篇同时做时排队推送
 P=/home/user/postgraduate-vocabulary; L=/home/user/literate-enigma; B=claude/adoring-hamilton-5qskmm
 T=$'\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01XbsiuYS9p9y2vNiB4h6ZZU'
-cd $P; git add -A 视频 CLAUDE.md
+cd $P; git add -A 视频 CLAUDE.md 新版定稿   # 新版定稿：文章本身也会改（撞词去掉重点词等）
 if ! git diff --cached --quiet; then git commit -qm "$1$T"; fi
 git -c core.quotepath=off diff --name-status origin/main HEAD -- 视频 > /tmp/_chg.txt || true
 while IFS=$'\t' read -r st f g; do
