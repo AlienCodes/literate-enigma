@@ -3,9 +3,9 @@
 ## 英文
 On 10 April 1912 the **opulent** **liner** Titanic left Southampton on her **maiden voyage**. A 1911 **trade journal** had **dubbed** her and her sister ship "**practically** **unsinkable**". At about 11.40pm on 14 April she **collided with** an **iceberg**; by 2.20am she had **vanished** beneath the waves, and the **death toll** would **surpass** 1,500.
 
-**Folklore** blames **arrogance**. Yet the Titanic was **compliant with** the law. Under 1894 rules, Britain's **maritime** **regulator** **pegged** lifeboat numbers **to** **gross tonnage** (volume, not weight) on a **scale** that topped out at 16 boats for 10,000 tons or more. At about 46,000 tons she carried 20, **exceeding** the **requirement**. Their **capacity** was 1,178, **roughly** half the 2,200 aboard: **sufficient** in law, **inadequate** at sea.
+**Folklore** blames **arrogance**. Yet the Titanic was **compliant with** the law. Under 1894 rules, Britain's **maritime** **regulator** **pegged** lifeboat numbers **to** **gross tonnage** (volume, not weight) on a **scale** that **topped out at** 16 boats for 10,000 tons or more. At about 46,000 tons she carried 20, **exceeding** the **requirement**. Their **capacity** was 1,178, **roughly** half the 2,200 aboard: **sufficient** in law, **inadequate** at sea.
 
-Within radio range, the steamer Californian kept an **equally** **lawful** routine. Her **sole** **wireless** **operator**, Cyril Evans, was **on the payroll of** the Marconi company; when he slept, so did the radio. Around 11.30pm he switched off his set. **Hindsight** may call that **negligence**, yet no rule **obliged** him **to** stay **vigilant**, so the Titanic's **frantic** **distress calls** went **unheard** there.
+Within radio range, the steamer Californian kept an **equally** **lawful** routine. Her **sole** **wireless** **operator**, Cyril Evans, was **on the payroll of** the Marconi company; when he slept, so did the radio. Around 11.30pm he **switched off** his set. **Hindsight** may call that **negligence**, yet no rule **obliged** him **to** stay **vigilant**, so the Titanic's **frantic** **distress calls** went **unheard** there.
 
 Between April and July 1912, inquiries in Washington and London heard **testimony** from **survivors** and the Californian's crew. That July, American **legislation** made **round-the-clock** radio watch **compulsory**. In January 1914 **delegates** of 13 nations signed the first Safety of Life at Sea **convention**, **stipulating** lifeboat seats for all, **continuous** radio watch, and an ice **patrol**. The First World War **stalled** the **treaty**; the patrol went ahead **regardless**.
 
@@ -13,11 +13,11 @@ The **doomed** liner sank within three hours. The **outdated** rules she sailed 
 
 ## 中文
 
-1912年4月10日，**豪华的**(opulent)**邮轮**(liner)泰坦尼克号离开了南安普敦，开始了她的**处女航**(maiden voyage)。（maiden voyage：处女航，首航；英语常用 she/her 指船）1911年，一家**行业期刊**(trade journal)**把**(dubbed)她和她的姊妹船**称为**(dubbed)“**几乎**(practically)**不会沉没的**(unsinkable)”。（dub A B：把A称作B；sister ship：姊妹船）4月14日晚约11时40分，她**和**(collided with)一座**冰山**(iceberg)**相撞了**(collided with)；到次日凌晨2时20分，她已**消失**(vanished)在海面之下，**遇难人数**(death toll)最终会**超过**(surpass)1,500。（collide with：与……相撞；would：过去将来时，表示后来的结果）
+1912年4月10日，**豪华的**(opulent)**邮轮**(liner)泰坦尼克号离开了南安普敦，开始了她的**处女航**(maiden voyage)。（maiden voyage：处女航，首航；英语常用 she/her 指船）1911年，一家**行业期刊**(trade journal)**把**(dubbed)她和她的姊妹船**称为**(dubbed)“**几乎**(practically)**不会沉没的**(unsinkable)”。（dub A B：把A称作B；sister ship：姊妹船）4月14日晚约11时40分，她**和**(collided with)一座**冰山**(iceberg)**相撞了**(collided with)；到次日凌晨2时20分，她已**消失**(vanished)在海浪之下，**遇难人数**(death toll)最终将**超过**(surpass)1,500。（collide with：与……相撞；would：过去将来时，表示后来的结果）
 
-**坊间流传的说法**(Folklore)把灾难归咎于**傲慢**(arrogance)。（blame A：把过错归咎于A）然而泰坦尼克号**符合**(compliant with)法规。（be compliant with：符合（规定、标准））按照1894年的规则，英国的**海事**(maritime)**监管机构**(regulator)**把**(pegged to)救生艇数量**与**(pegged to)**总吨位**(gross tonnage)（体积，而非重量）**挂钩**(pegged to)，在一个**等级表**(scale)上/**等级体系**(scale)中，（其数量）最高达（只能）到16艘，针对10,000吨及以上（的船）。（peg A to B：把A与B挂钩；that…：定语从句，修饰 scale；top out at：最高达到……）她约有46,000吨，带了20艘，**超出了**(exceeding)**要求**(requirement)。（20 后面省略了 boats；exceeding…：现在分词短语，补充说明带了20艘的结果）它们的**容量**(capacity)是1,178人，**大约**(roughly)是船上2,200人的一半：按法律**足够**(sufficient)，到了海上却**不足**(inadequate)。（Their：指这20艘救生艇；half the 2,200 aboard：船上2,200人的一半，aboard 作后置定语；sufficient…, inadequate…：说明这样的容量）
+**坊间流传的说法**(Folklore)把灾难归咎于**傲慢**(arrogance)。（blame A：把过错归咎于A）然而泰坦尼克号**符合**(compliant with)法规。（be compliant with：符合（规定、标准））按照1894年的规则，英国的**海事**(maritime)**监管机构**(regulator)**把**(pegged to)救生艇数量**与**(pegged to)**总吨位**(gross tonnage)（体积，而非重量）**挂钩**(pegged to)，在一个**等级表**(scale)上/**等级体系**(scale)中，（其数量）**最高达**(topped out at)（只能）**到**(topped out at)16艘，针对10,000吨及以上（的船）。（peg A to B：把A与B挂钩；that…：定语从句，修饰 scale；top out at：最高达到……）她约有46,000吨，带了20艘，**超出了**(exceeding)**要求**(requirement)。（20 后面省略了 boats；exceeding…：现在分词短语，补充说明带了20艘的结果）它们的**容量**(capacity)是1,178人，**大约**(roughly)是船上2,200人的一半：按法律**足够**(sufficient)，到了海上却**不足**(inadequate)。（Their：指这20艘救生艇；half the 2,200 aboard：船上2,200人的一半，aboard 作后置定语；sufficient…, inadequate…：说明这样的容量）
 
-在无线电通讯范围内，加州人号轮船遵循的是一套**同样**(equally)**合法的**(lawful)值班惯例。（Within radio range：在泰坦尼克号的无线电通讯范围内；equally lawful：和泰坦尼克号一样合法）她**唯一的**(sole)**无线电**(wireless)**操作员**(operator)西里尔·埃文斯，**受雇于**(on the payroll of)马可尼公司；他一睡下，电台也一样睡了。（Her：指加州人号；Cyril Evans：同位语，说明报务员是谁；be on the payroll of：受雇于，领……的薪水；so did the radio：倒装，电台也一样）晚上11时30分左右，他关掉了他的电台。（switch off：关掉；set：这里指无线电收发报机）**事后看来**(Hindsight)，这或许可称为**疏忽**(negligence)，然而没有哪条规则**强制**(obliged to)他保持**警觉**(vigilant)，所以泰坦尼克号**发狂似的**(frantic)**求救呼叫**(distress calls)，在那里**无人听见**(unheard)。（call A B：把A称为B；oblige sb to do：责成某人做……；go unheard：没有被听到）
+在无线电通讯范围内，加州人号轮船遵循的是一套**同样**(equally)**合法的**(lawful)值班惯例。（Within radio range：在泰坦尼克号的无线电通讯范围内；equally lawful：和泰坦尼克号一样合法）（按照当时的规定，加州人号报务员下班睡觉，是完全合法的。他没有违规。泰坦尼克号没收到加州人号的冰情警告，加州人号没收到泰坦尼克的求救，错的不是船员，错的是这套没跟上时代（没要求全天候值守）的法律。）她**唯一的**(sole)**无线电**(wireless)**操作员**(operator)西里尔·埃文斯，**受雇于**(on the payroll of)马可尼公司；他一睡下，电台也一样睡了。（Her：指加州人号；Cyril Evans：同位语，说明报务员是谁；be on the payroll of：受雇于，领……的薪水；so did the radio：倒装，电台也一样）晚上11时30分左右，他**关掉了**(switched off)自己的设备。（switch off：关掉；set：这里指无线电收发报机）**事后看来**(Hindsight)，这或许可称为**疏忽**(negligence)，然而没有哪条规则**强制**(obliged to)他保持**警觉**(vigilant)，所以泰坦尼克号**发狂似的**(frantic)**求救呼叫**(distress calls)，在那里**无人听见**(unheard)。（call A B：把A称为B；oblige sb to do：责成某人做……；go unheard：没有被听到）
 
 1912年4月至7月，华盛顿和伦敦的调查听取了**幸存者**(survivors)以及加州人号船员的**证词**(testimony)。（hear testimony from…：听取……的证词）同年7月，美国的一项**立法**(legislation)将**全天候**(round-the-clock)无线电值守定为**强制性的**(compulsory)（义务）。（make A B：使A成为B，把A定为B）1914年1月，13国的**代表**(delegates)签署了第一部《海上人命安全**公约**(convention)》，**规定**(stipulating)救生艇座位要够所有人乘坐，电台要**不间断**(continuous)值守，还要开展冰情**巡逻**(patrol)。（stipulating…：现在分词短语，说明公约规定的内容；lifeboat seats for all：够所有人坐的救生艇座位）第一次世界大战让这项**条约**(treaty)**暂缓搁置了**(stalled)；然而冰情巡逻**不管怎样**(regardless)依然进行。（go ahead：开始进行，照计划进行）
 
@@ -46,6 +46,7 @@ The **doomed** liner sank within three hours. The **outdated** rules she sailed 
 | pegged to | 本文：把……与……挂钩；v. (peg) 将（价格、数额等）固定在某水平，使与……挂钩（peg A to B）；用木钉固定；n. 木钉，挂钩；衣夹 | 2 |
 | gross tonnage | 本文：总吨位；adj. 总的，毛的（gross income/weight；gross tonnage 总吨位）；严重的，恶劣的（gross negligence 重大过失）；（口）恶心的；v. 总收入为 | 2 |
 | scale | 本文：等级表……等级体系；n. 等级，级别，等级表（a pay scale 工资级别）；规模，范围（on a large scale）；比例（尺）；刻度；（鱼）鳞；v. 攀登（scale a wall）；scale back/down 缩减 | 2 |
+| topped out at | 本文：最高达……到 | 2 |
 | exceeding | 本文：超出了；v. (exceed) 超过，超出（数量、限度）（exceed the speed limit 超速）；越出（权限）（exceed one's authority）；excess n. | 2 |
 | requirement | 本文：要求；n. 要求，必备条件，规定（meet a requirement 达到要求）；需要，需求（energy requirements） | 2 |
 | capacity | 本文：容量；n. 容量，容积；（可容纳的）最大数量（seating capacity 座位数；at full capacity 满负荷）；能力（capacity for/to do）；身份，资格（in one's capacity as 以……身份） | 2 |
@@ -58,6 +59,7 @@ The **doomed** liner sank within three hours. The **outdated** rules she sailed 
 | wireless | 本文：无线电；adj. 无线的（wireless network）；n. （旧，英）无线电；无线电报（by wireless） | 3 |
 | operator | 本文：操作员；n. 操作员，（电话、无线电）接线员，报务员；经营者，运营公司（a tour operator 旅行社）；（口）精明圆滑的人 | 3 |
 | on the payroll of | 本文：受雇于；n. 工资名单，在职人员名单（on the payroll of 受雇于，领……的薪水）；工资总额 | 3 |
+| switched off | 本文：关掉了 | 3 |
 | Hindsight | 本文：事后看来；n. 后见之明，事后的认识（in hindsight / with hindsight 事后看来） | 3 |
 | negligence | 本文：疏忽；n. 疏忽，失职，过失（gross negligence 重大过失）；negligent adj.；neglect v./n. | 3 |
 | obliged to | 本文：强制；v. (oblige) 迫使，使负有义务（be obliged to do 不得不）；帮忙，施恩（I'm much obliged. 不胜感激）；obligation n. | 3 |
