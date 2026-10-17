@@ -40,7 +40,7 @@ S=[
 (4,[[[("Haber's wife, Clara Immerwahr,","哈伯的妻子克拉拉·伊梅瓦尔，")]],
     [[("Germany's first woman with a **doctoral** degree in chemistry,","是德国第一位获得化学**博士**(doctoral)学位的女性，")],
      "（Germany's first woman…：同位语，\n说明克拉拉的身份）"],
-    [[("voiced **objections to** his work.","她**对**(objections to)他的工作提出过**反对**(objections to)。")],
+    [[("voiced **objections to** his work.","她曾**对**(objections to)他的工作表达了**反对**(objections to)。")],
      "（objection to sth：对某事的反对）"]]),
 (4,[[[("On 2 May 1915,","1915年5月2日，"),("after **festivities** in his honour,","在为他致敬的**庆祝活动**(festivities)之后，")],
      "（in his honour：为了向他表示敬意，这里指为他庆功）"],
