@@ -23,6 +23,9 @@ jobs:
     if: needs.plan.outputs.items != '[]'
     runs-on: ubuntu-latest
     timeout-minutes: 120
+    defaults:
+      run:
+        shell: bash   # 带 pipefail：出片程序出错时，后面的 | tail 不会把错误盖住
     strategy:
       fail-fast: false
       matrix:
@@ -35,21 +38,39 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/work/tts/*.onnx
-          key: kokoro-v1.0-official
+          key: kokoro-models-v1.0-v1.1
       - run: bash 视频/工具/环境/准备机器.sh . ~/work
       - name: 出片
         working-directory: /home/runner/work/video
-        env: {STRICT_CACHE: '1'}
         run: |
-          NO=${{ matrix.item.no }}; [ "${{ matrix.item.res }}" = "4K" ] && export VIDEO_S=2
-          python3 make_video.py scripts/$NO.json $NO.mp4 | tail -3
+          NO=${{ matrix.item.no }}; RES="${{ matrix.item.res }}"
+          if [ "$RES" = "声音重合成" ]; then   # 检验：清空配音缓存从头合成，看 GitHub 机器合成的声音与存档是否逐采样相同
+            rm -f ../tts/cache_tts/*.pkl; AUDIO_ONLY=1 python3 make_video.py scripts/$NO.json $NO.mp4 | tail -1
+          else
+            export STRICT_CACHE=1; [ "$RES" = "4K" ] && export VIDEO_S=2
+            python3 make_video.py scripts/$NO.json $NO.mp4 | tail -3
+          fi
       - name: 与存档比对（有存档才比）
         working-directory: /home/runner/work/video
         run: |
-          NO=${{ matrix.item.no }}; A=$GITHUB_WORKSPACE/视频/视频/$NO.mp4; [ "${{ matrix.item.res }}" = "4K" ] || A=$GITHUB_WORKSPACE/视频/视频/草稿1080p/${NO}_1080p.mp4
-          if [ -f "$A" ]; then python3 $GITHUB_WORKSPACE/视频/工具/对比成片.py $NO.mp4 "$A"; else echo "没有存档，跳过比对"; fi
+          NO=${{ matrix.item.no }}; RES="${{ matrix.item.res }}"; A=$GITHUB_WORKSPACE/视频/视频/$NO.mp4
+          [ "$RES" = "1080" ] && A=$GITHUB_WORKSPACE/视频/视频/草稿1080p/${NO}_1080p.mp4
+          if [ ! -f "$A" ]; then echo "没有存档，跳过比对"; exit 0; fi
+          if [ "$RES" = "声音重合成" ]; then
+            python3 - $NO.mp4 "$A" <<'PY'
+          import sys,subprocess,hashlib,numpy as np,imageio_ffmpeg
+          FF=imageio_ffmpeg.get_ffmpeg_exe()
+          a,b=[np.frombuffer(subprocess.run([FF,'-loglevel','error','-i',f,'-vn','-f','s16le','-'],capture_output=True,check=True).stdout,np.int16) for f in sys.argv[1:3]]
+          ha,hb=[hashlib.md5(x.tobytes()).hexdigest()[:12] for x in (a,b)]
+          if ha==hb: print(f'声音：✔ GitHub 从头合成与存档逐采样相同（{ha}）'); sys.exit(0)
+          n=min(len(a),len(b)); d=np.abs(a[:n].astype(int)-b[:n].astype(int))
+          print(f'声音：✘ 不同（{ha} / {hb}）长度 {len(a)}/{len(b)}，不同采样 {(d>0).sum()}，最大差 {d.max()}'); sys.exit(1)
+          PY
+          else python3 $GITHUB_WORKSPACE/视频/工具/对比成片.py $NO.mp4 "$A"; fi
       - uses: actions/upload-artifact@v4
+        if: matrix.item.res != '声音重合成'
         with:
+          if-no-files-found: error
           name: ${{ matrix.item.no }}_${{ matrix.item.res }}
           path: /home/runner/work/video/${{ matrix.item.no }}.mp4
           retention-days: 30

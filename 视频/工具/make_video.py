@@ -7,7 +7,7 @@ import title2 as T2
 TTS='../tts'
 k=Kokoro(f'{TTS}/kokoro-v1.0.onnx',f'{TTS}/voices-v1.0.bin'); V=np.load(f'{TTS}/'+os.environ.get('VOICE','voice_mb.npy'))
 if os.path.exists(f'{TTS}/kokoro-v1.0-timed.onnx'): KT=Kokoro(f'{TTS}/kokoro-v1.0-timed.onnx',f'{TTS}/voices-v1.0.bin')
-else:   # GitHub 机器上没有这个自制的带时长模型（官方没有，只在本地）：注音器用官方模型的（同一个），带时长的结果全部来自缓存
+else:   # 没有带时长模型（kokoro-onnx 官方发布页 model-files-v1.1 的 kokoro-v1.0.onnx，改名而来；准备机器.sh 会下载）：注音器用出片模型的（同一个），带时长的结果全部来自缓存
     class _KT: pass
     KT=_KT(); KT.tokenizer=k.tokenizer
     def _no_timed(*a,**kw): raise SystemExit('【停止】没有带时长模型 kokoro-v1.0-timed.onnx，又缺这条缓存——先在本地出一遍，把缓存提交进 视频/配音缓存/')
