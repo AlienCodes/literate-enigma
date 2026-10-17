@@ -27,7 +27,7 @@ S=[
      "（Their：指这20艘救生艇；\nhalf the 2,200 aboard：船上2,200人的一半，\naboard 作后置定语；\nsufficient…, inadequate…：说明这样的容量）"]]),
 (3,[[[("Within radio range,","在无线电通讯范围内，"),("the steamer Californian","加州人号轮船")]],
     [[("kept an **equally** **lawful** routine.","遵循的是一套**同样**(equally)**合法的**(lawful)值班惯例。")],
-     "（Within radio range：在泰坦尼克号的无线电通讯范围内；\nequally lawful：和泰坦尼克号一样合法）"]]),
+     "（Within radio range：在泰坦尼克号的无线电通讯范围内；\nequally lawful：和泰坦尼克号一样合法）\n（按照当时的规定，加州人号报务员下班睡觉，是完全合法的。\n他没有违规。泰坦尼克号没收到加州人号的冰情警告，\n加州人号没收到泰坦尼克的求救，错的不是船员，\n错的是这套没跟上时代（没要求全天候值守）的法律。）"]]),
 (3,[[[("Her **sole** **wireless** **operator**,","她**唯一的**(sole)**无线电**(wireless)**操作员**(operator)"),("Cyril Evans,","西里尔·埃文斯，")]],
     [[("was **on the payroll of** the Marconi company;","**受雇于**(on the payroll of)马可尼公司；")]],
     [[("when he slept,","他一睡下，"),("so did the radio.","电台也一样睡了。")],
