@@ -43,3 +43,4 @@
 - 虹吸：长时间的出片交给 GitHub（2 分 44 秒出 4K，容器休眠不影响）；比对由程序逐采样、逐屏做，我只看结论行。
 - 改进已做：用到的缓存自动进仓库（不再靠手工收集）；GitHub 步骤带 pipefail，没出片就失败。
 - 下次改进：比对结论写进运行摘要（Step Summary），一次 API 调用就能读到，不用翻日志。
+- PR AlienCodes/literate-enigma#7 只作备份和 GitHub 出片用，不合并 master（master 是另一个项目 VoiceTwin，两边 CLAUDE.md、.gitignore 冲突不处理；用户 2026-10-17：“按照你认为最好的方式来”）。已写进 PR 标题、说明和 CLAUDE.md 第 3 条。
