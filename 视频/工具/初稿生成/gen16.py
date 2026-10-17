@@ -52,7 +52,7 @@ S=[
     [[("left Germany an **outcast**","作为一个**被驱逐的人**(outcast)离开了德国，"),("\n",""),("after Hitler's **regime** **seized** power,","在希特勒**政权**(regime)**夺取了**(seized)权力之后，")],
      "（an outcast：补充说明他离开时的身份；\nafter…：时间状语从句）"],
     [[("dying in Basel in 1934.","并于1934年死于巴塞尔。")],
-     "（dying…：现在分词短语作结果状语，补充说明后来的事）"]]),
+     "（dying…：现在分词短语作结果状语，\n补充说明后来的事）"]]),
 (5,[[[("His institute's **pesticide** research","他研究所的**杀虫剂**(pesticide)研究"),("had produced Zyklon.","曾催生了齐克隆。")]]]),
 (5,[[[("A later **variant**, Zyklon B,","后来的**变体**(variant)齐克隆B"),("was used in Nazi death camps,","被用于纳粹死亡营，")]],
     [[("where relatives of his died.","他的一些亲属就死在那里。")],
