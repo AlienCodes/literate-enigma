@@ -40,7 +40,7 @@ S=[
      "（in Egypt at the time：后置定语，修饰 Westerners）"]]),
 (4,[[[("The 25 **exposed to** the tomb","其中曾**接触**(exposed to)这座陵墓的25人，"),("died at an average age of 70,","平均死亡年龄为70岁，")]],
     [[("**versus** 75 for the rest,","**相比之下**(versus)其余的人为75岁；"),("a **margin** not statistically **significant**.","这一**差距**(margin)在统计上并不**显著**(significant)。")],
-     "（exposed to the tomb：过去分词短语作后置定语，修饰 The 25；\na margin…：同位语，概括前面的差距）"]]),
+     "（exposed to the tomb：过去分词短语作后置定语，\n修饰 The 25；\na margin…：同位语，概括前面的差距）"]]),
 (4,[[[("The **mortality** figures","这些**死亡**(mortality)数据"),("lent the **ominous** **rumour** no **credibility**.","无法让这则**不祥的**(ominous)**传言**(rumour)显得**可信**(credibility)。")],
      "（lend sth no credibility：不让某事显得可信）"]]),
 (5,[[[("Carnarvon's **untimely** **demise**","卡纳冯的**过早**(untimely)**离世**(demise)"),("had **fuelled** the tale,","**助长了**(fuelled)这个故事，"),("giving it **impetus**.","为它注入了**动力**(impetus)。")],
