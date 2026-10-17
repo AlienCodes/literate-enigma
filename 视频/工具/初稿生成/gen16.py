@@ -64,7 +64,7 @@ S=[
 ]
 CONF={"引号":{"S5-1 “”":"用户 2026-10-17 原话：“因“从空气中造面包”而广受赞誉”，引号照用户原话（T10）"},"牛津逗号":{"S2 bolted valves, nitrogen and":"不是三项并列：Behind its gleaming, bolted valves 是介词短语作状语，逗号后 nitrogen and hydrogen 是两项主语"},
  "短语":{"S2 beads … of":"beads of ammonia 里 of 只引出液珠的成分（同 beads of sweat），beads 本身就是“液珠”，意思不靠 of 产生（同 15 testimony … from 的判法）"}}
-out={"no":"16","title_en":"The Bread Made from Air","title_zh":"从空气中造面包","title_fx":{"hl":["Bread","Air"],"ghost":[]},"sentences":[],"核对确认":CONF,"换行变更已获同意":{"S15":"用户 2026-10-17：“对，用after，after，after之后引导的它作为第二行。”（S15 第2块英文在 after 前换行，中文按两行各自对齐）","S5":"用户 2026-10-17：“让人垂涎和这个梦寐以求的，然后上下排列，上下排列。”（coveted 单独一组，两个意思上下两行）"},"结尾解说":"结局","allow_clash":["nitrogen","proteins","wards off"],
+out={"no":"16","title_en":"The Bread Made from Air","title_zh":"从空气中造面包","title_fx":{"hl":["Bread","Air"],"ghost":[]},"sentences":[],"核对确认":CONF,"换行变更已获同意":{"S15":"用户 2026-10-17：“对，用after，after，after之后引导的它作为第二行。”（S15 第2块英文在 after 前换行，中文按两行各自对齐）","S5":"用户 2026-10-17：“让人垂涎和这个梦寐以求的，然后上下排列，上下排列。”（coveted 单独一组，两个意思上下两行）"},"结尾解说":"结局","allow_clash":["wards off"],
      "高亮按实际开口":True,"高亮开口门槛":40,"术语":{"BASF":"BASF","Fritz Haber":"弗里茨·哈伯","Karlsruhe":"卡尔斯鲁厄","Haber":"哈伯","Carl Bosch":"卡尔·博施","Oppau":"奥保",
      "Nobel Prize":"诺贝尔奖","Germany":"德国","British":"英国","Captain":"上尉","Ypres":"伊普尔","Allied":"协约国","Clara Immerwahr":"克拉拉·伊梅瓦尔","Eastern Front":"东线",
      "Jewish":"犹太","Hitler":"希特勒","Basel":"巴塞尔","Zyklon":"齐克隆","Nazi":"纳粹","DNA":"DNA","Haber-Bosch":"哈伯-博施",
