@@ -31,6 +31,11 @@ def _portable_mid(model):
     try: open(side,'w').write(r)
     except OSError: pass
     return r
+_REPO_CACHE='/home/user/postgraduate-vocabulary/视频/配音缓存'
+def _to_repo(p):   # 用到的每条缓存都复制进仓库（推送时进 GitHub）：别的机器现合成的声音与这里不逐采样相同（2026-10-17 GitHub 机器从头合成被 A21 守门拦下），缓存就是唯一的原版
+    if os.environ.get('STRICT_CACHE') or not os.path.isdir(_REPO_CACHE): return
+    d=os.path.join(_REPO_CACHE,os.path.basename(p))
+    if not os.path.exists(d): import shutil as _sh; _sh.copyfile(p,d)
 def _cached(obj,meth,model):
     fn=getattr(obj,meth); mid_old=f'{model}:{os.path.getsize(model)}:{int(os.path.getmtime(model))}' if os.path.exists(model) else ''; mid=_portable_mid(model)
     def g(text,voice,speed=1.0,lang='en-us',**kw):
@@ -41,13 +46,14 @@ def _cached(obj,meth,model):
             with open(os.environ['CACHE_LOG'],'a') as f: f.write(os.path.basename(p)+'\n')
         if not os.path.exists(p) and os.path.exists(po): import shutil as _sh; _sh.copyfile(po,p)   # 旧钥匙（含路径、修改时间）的缓存搬到新钥匙
         if os.path.exists(p):
+            _to_repo(p)
             with open(p,'rb') as f: return _pk.load(f)
         if os.environ.get('STRICT_CACHE'): raise SystemExit(f'【停止】严格缓存模式（GitHub 出片）缺配音缓存 {os.path.basename(p)}（{meth}：{text[:40]}…）：别的机器现合成声音可能差一点点，绝不现合成——先在本地出一遍，把缓存提交进 视频/配音缓存/')
         r=fn(text,voice=voice,speed=speed,lang=lang,**kw)
         if meth=='create_timed': r=(r[0],r[1],list(r[2]))
         q=f'{p}.{os.getpid()}'
         with open(q,'wb') as f: _pk.dump(r,f)
-        os.replace(q,p); return r
+        os.replace(q,p); _to_repo(p); return r
     return g
 k.create=_cached(k,'create',f'{TTS}/kokoro-v1.0.onnx'); KT.create_timed=_cached(KT,'create_timed',f'{TTS}/kokoro-v1.0-timed.onnx')
 # A23 读音改正（2026-10-09 用户：“每个单词的读音，尤其是这种额外的这种人名啊，或者是物名或者是机构名等等……一定得是正确的……

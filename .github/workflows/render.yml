@@ -44,7 +44,7 @@ jobs:
         working-directory: /home/runner/work/video
         run: |
           NO=${{ matrix.item.no }}; RES="${{ matrix.item.res }}"
-          if [ "$RES" = "声音重合成" ]; then   # 检验：清空配音缓存从头合成，看 GitHub 机器合成的声音与存档是否逐采样相同
+          if [ "$RES" = "声音重合成" ]; then   # 诊断：清空缓存从头合成（2026-10-17 结果：换机器合成不逐采样相同，A21 守门停；所以平时一律严格缓存）
             rm -f ../tts/cache_tts/*.pkl; AUDIO_ONLY=1 python3 make_video.py scripts/$NO.json $NO.mp4 | tail -1
           else
             export STRICT_CACHE=1; [ "$RES" = "4K" ] && export VIDEO_S=2
