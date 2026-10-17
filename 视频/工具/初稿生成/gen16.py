@@ -49,7 +49,7 @@ S=[
      "（leave for：动身前往）"]]),
 (5,[[[("**Prestige**","**声望**(Prestige)"),("offered no **sanctuary**.","没有提供（给他）**庇护**(sanctuary)。")]]]),
 (5,[[[("Of Jewish origin,","身为犹太裔，"),("Haber","哈伯")]],
-    [[("left Germany an **outcast**","作为一个**被驱逐的人**(outcast)离开了德国，"),("\n",""),("after Hitler's **regime** **seized** power,","在希特勒**政权**(regime)**夺取了**(seized)权力之后，")],
+    [[("left Germany an **outcast** {{换行}}after Hitler's **regime** **seized** power,","在希特勒**政权**(regime)**夺取了**(seized)权力之后，\n作为一个**被驱逐的人**(outcast)离开了德国，")],
      "（an outcast：补充说明他离开时的身份；\nafter…：时间状语从句）"],
     [[("dying in Basel in 1934.","并于1934年死于巴塞尔。")],
      "（dying…：现在分词短语作结果状语，\n补充说明后来的事）"]]),

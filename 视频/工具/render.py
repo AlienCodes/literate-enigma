@@ -55,10 +55,18 @@ def layout(tokens,fnt,maxw,cjk=False):
     units=[]
     for t,c in tokens:
         if t=='\x00': units.append(('\x00',None)); continue
+        if t=='\n': units.append(('\n',None)); continue
         parts=re.findall(r'\S+\s*|\s+',t) if not cjk else ([t] if c not in (None,FG_ZH) else re.findall(r'[A-Za-z0-9.\-]+|.',t))
         units+= [(p,c) for p in parts]
     lines=[[]];wcur=0
+    skip=False
     for u,c in units:
+        if u=='\n':                                     # {{换行}}：强制换行，去掉行尾空格、下一行开头空格
+            while lines[-1] and not lines[-1][-1][0].strip(): lines[-1].pop()
+            lines.append([]); wcur=0; skip=True; continue
+        if skip:
+            u=u.lstrip(); skip=False
+            if not u: continue
         w=uw(fnt,u)
         if u!='\x00' and wcur+w>maxw and lines[-1] and u.strip():
             lines.append([]);wcur=0
@@ -176,6 +184,7 @@ def _segs_en(t,colors):
     for p in re.split(r'(\*\*[^*]+\*\*|\{\{.*?\}\})',t):
         if p.startswith('**'): out.append((p[2:-2],colors.get(p[2:-2].lower())))
         elif p in ('{{=}}','{{一行}}'): continue
+        elif p=='{{换行}}': out.append(('\n',None))   # 16 S15 用户：英文在这里换行，中文按中文语序整组排在两行英文下面（不显示、不朗读）
         elif p.startswith('{{'): out.append((p[2:-2],out[-1][1] if out else None))
         elif p: out.append((p,None))
     return out
@@ -219,7 +228,7 @@ def _pair_cols(pairs,colors,ef,zf,gapx):
         sz=[s for l in zl for s in l]; wl=[sum(zf.getlength(t) for t,_ in l) for l in zl]
         we=sum(ef.getlength(t) for t,_ in se); zr_=(zh or '').split('\n')
         wz=max([w_ for w_,r_ in zip(wl,zr_) if not (re.fullmatch(ZCOL,r_.strip()) and re.fullmatch(ZCOL,r_.strip()).group(1) in GLOSS_ANCHOR)] or [0])
-        cols.append(dict(se=se,sz=sz,zl=zl,wl=wl,nz=len(zl),we=we,wz=wz,w=max(we,wz),nowrap='{{=}}' in en,zr=(zh or '').split('\n')))
+        cols.append(dict(se=se,sz=sz,zl=zl,wl=wl,nz=len(zl),we=we,wz=wz,w=max(we,wz),nowrap='{{=}}' in en,brk='{{换行}}' in en,zr=(zh or '').split('\n')))
     return cols
 def _wrap_cols(cols,maxw,gapx):
     g=_wrap_greedy(cols,maxw,gapx); g=[x for x in g if x]
@@ -233,7 +242,7 @@ def _wrap_cols(cols,maxw,gapx):
 def _wrap_greedy(cols,maxw,gapx):
     rows=[[]];w=0
     for c in cols:
-        if c['w']>maxw and not c['nowrap']:
+        if (c['w']>maxw or c.get('brk')) and not c['nowrap']:
             if rows[-1]: rows.append([])
             rows[-1]=('block',c); rows.append([]); w=0; continue
         add=c['w']+(gapx if rows[-1] else 0)
