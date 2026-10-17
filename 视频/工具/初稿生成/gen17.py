@@ -12,7 +12,7 @@ S=[
     [[("Carter","卡特"),("made a small hole in the sealed **doorway**","在封住的**门道**(doorway)上开了一个小孔，")]],
     [[("and glimpsed","并瞥见了"),("the **glittering** gold of the boy king Tutankhamun.","少年国王图坦卡蒙**闪闪发光的**(glittering)黄金。")],
      "（with + 名词 + beside him：with 复合结构作伴随状语，“在……的陪同下”）"]]),
-(1,[[[("The **spectacular** find","这一**惊人的**(spectacular)发现"),("**riveted** the world.","**牢牢吸引了**(riveted)全世界。")]]]),
+(1,[[[("The **spectacular** find","这一**惊人的/壮观的**(spectacular)发现，"),("**riveted** the world.","**牢牢吸引了**(riveted)全世界的**注意力**(riveted)。")]]]),
 (2,[[[("Carnarvon","卡纳冯"),("sold **exclusive** rights to The Times,","把**独家**(exclusive)报道权卖给了《泰晤士报》，")]],
     [[("a **monopoly**","这种**垄断**(monopoly)"),("that left **competing** reporters **starved of** news.","让**相互竞争的**(competing)其他记者**严重缺少**(starved of)新闻。")],
      "（a monopoly…：同位语，概括前面的独家协议；\nleave sb starved of sth：让某人严重缺少某物）"]]),
