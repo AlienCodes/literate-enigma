@@ -6,7 +6,7 @@ On 3 June 1952 Rosario Mazzeo released a Manx shearwater in Boston. It came by *
 
 The first **hints** of a compass were **celestial**. In the 1950s Kramer kept starlings **cooped** in cages and moved the apparent sun with mirrors. The **duped** birds **swivelled** to match, allowing for the sun's daily **arc**. In the 1960s Emlen **curtained** off stars in a planetarium's **vault**. His buntings steered by stars around the **pole-star**, the **axis** of the **nightly** **whirl**.
 
-In 1972 the Wiltschkos showed that **robins** read Earth's **magnetic** field by **inclination**, not **polarity**, unlike a **sailor**'s **needle**. In 1978 Schulten proposed a **light-triggered** reaction to **decode** the field. Proposed in 2000, cryptochrome, a **protein** in the **retina**, is now the **foremost** suspect. In 2021 robin cryptochrome proved more **finely** **tuned** in the laboratory than that of chickens or **pigeons**. Proof in a living bird is **awaited**.
+In 1972 the Wiltschkos showed that **robins** read Earth's **magnetic** field by **inclination**, not **polarity**, unlike a **sailor**'s **needle**. In 1978 Schulten proposed a **light-triggered** reaction to **decode** the field. Proposed in 2000, cryptochrome, a protein in the **retina**, is now the **foremost** suspect. In 2021 robin cryptochrome proved more **finely** **tuned** in the laboratory than that of chickens or **pigeons**. Proof in a living bird is **awaited**.
 
 In 2014 came an **eerie**, **man-made** twist. At Oldenburg University, robins in campus **huts** lost that sense. In huts **clad** in grounded aluminium, they **reclaimed** their **bearings**. Removing the grounding, or **piping** radio noise in, **bewildered** them again in double-blind tests. The **interference**, a **murmur** from everyday **appliances**, sat far below WHO safety limits.
 
@@ -18,7 +18,7 @@ How a **wanderer** knows where it is remains **unanswered**. The compass code is
 
 最初的罗盘**线索**(hints)来自**天上**(celestial)。20世纪50年代，克雷默把椋鸟**关进**(cooped)笼子里，再用镜子挪动太阳的视位置。**受骗**(duped)的鸟随之**转身**(swivelled)，而且会顾及太阳每天划过的**弧线**(arc)。20世纪60年代，埃姆伦在天文馆的**穹顶**(vault)上把星星一片片**遮住**(curtained)。他的靛蓝彩鹀依靠**北极星**(pole-star)周围的星星辨向，北极星正是星空**每夜**(nightly)都绕着**旋转**(whirl)的**轴心**(axis)。
 
-1972年，维尔奇科夫妇证明，**知更鸟**(robins)读取地球**磁场**(magnetic)时，看的是**倾角**(inclination)，而不是**极性**(polarity)，这一点和**水手**(sailor)的罗盘**指针**(needle)不同。1978年，舒尔滕提出，一种**由光触发**(light-triggered)的化学反应可以**解读**(decode)磁场。2000年，**视网膜**(retina)中的一种**蛋白质**(protein)隐花色素被提了出来，如今它是**头号**(foremost)嫌疑对象。2021年的实验室测试表明，知更鸟的隐花色素比鸡和**鸽子**(pigeons)的**调校**(tuned)得更**精细**(finely)。在活鸟身上的证据，仍**有待**(awaited)取得。
+1972年，维尔奇科夫妇证明，**知更鸟**(robins)读取地球**磁场**(magnetic)时，看的是**倾角**(inclination)，而不是**极性**(polarity)，这一点和**水手**(sailor)的罗盘**指针**(needle)不同。1978年，舒尔滕提出，一种**由光触发**(light-triggered)的化学反应可以**解读**(decode)磁场。2000年，**视网膜**(retina)中的一种蛋白质隐花色素被提了出来，如今它是**头号**(foremost)嫌疑对象。2021年的实验室测试表明，知更鸟的隐花色素比鸡和**鸽子**(pigeons)的**调校**(tuned)得更**精细**(finely)。在活鸟身上的证据，仍**有待**(awaited)取得。
 
 2014年，事情出现了一个**诡异**(eerie)的、**人为**(man-made)的转折。在奥尔登堡大学，校园**小木屋**(huts)里的知更鸟失去了这种感知。在**包覆**(clad)接地铝板的小屋里，它们**找回**(reclaimed)了**方向感**(bearings)。在双盲实验中，拆掉接地，或往屋里**灌入**(piping)无线电噪声，又让它们**晕头转向**(bewildered)。这种**干扰**(interference)只是日常**电器**(appliances)发出的一阵电磁**低语**(murmur)，强度远低于世卫组织的安全限值。
 
@@ -57,7 +57,6 @@ How a **wanderer** knows where it is remains **unanswered**. The compass code is
 | needle | n. 指针；针（a compass needle） | 3 |
 | light-triggered | adj. 由光触发的（a light-triggered reaction） | 3 |
 | decode | v. 解码，解读（decode a message） | 3 |
-| protein | n. 蛋白质（a high-protein diet） | 3 |
 | retina | n. 视网膜（damage to the retina） | 3 |
 | foremost | adj. 最重要的，首要的（the foremost expert；first and foremost） | 3 |
 | finely | adv. 精细地（finely balanced；finely chopped） | 3 |

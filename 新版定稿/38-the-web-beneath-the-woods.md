@@ -4,7 +4,7 @@
 
 One of ecology's most **romantic** ideas grew out of plastic bags. In a Canadian forest, researchers **enclosed** paper birch and Douglas fir seedlings in them, then **bathed** each species in carbon dioxide **laced** with a different **tracer**. Carbon **shuttled** both ways, **apparently** via **fungi** linking the trees' roots, yet the firs ran a **slight** **surplus**, larger in deeper **shade**.
 
-Most **terrestrial** plants **harbour** such fungi, whose **filaments** **forage** for water and **nutrients** including **nitrogen**, **swapping** them for plant sugars. One fungus can **knit** plants into a shared network. The journal Nature **unveiled** the study on 7 August 1997, its cover offering a **catchy** **coinage**: the "wood-wide web".
+Most **terrestrial** plants **harbour** such fungi, whose **filaments** **forage** for water and **nutrients** including nitrogen, **swapping** them for plant sugars. One fungus can **knit** plants into a shared network. The journal Nature **unveiled** the study on 7 August 1997, its cover offering a **catchy** **coinage**: the "wood-wide web".
 
 The **metaphor** proved **irresistible**. Between 2015 and 2021, a forester's **bestseller**, an **acclaimed** novel and an ecologist's **memoir** told readers that trees **converse**, warn one another and, as "mother trees", **nurture** their **kin**. Yet the 1997 trees were seedlings, not **elderly** mothers.
 
@@ -16,7 +16,7 @@ None of this **disproves** the networks' existence. In January 2025, defenders f
 
 生态学中最**浪漫**(romantic)的观念之一，萌生于塑料袋之中。研究人员在加拿大的一片森林里，把纸桦和花旗松的幼苗**罩**(enclosed)进袋里，再让两种幼苗分别**沐浴**(bathed)在**掺有**(laced)不同**示踪物**(tracer)的二氧化碳中。碳在两种树之间双向**穿梭**(shuttled)，**似乎**(apparently)是经由连接两者根系的**真菌**(fungi)；不过，花旗松最终出现了碳的**小幅**(slight)**盈余**(surplus)，而且所受**遮荫**(shade)越重，盈余越大。
 
-大多数**陆生**(terrestrial)植物身上都**栖居着**(harbour)这类真菌，它们的**菌丝**(filaments)四处**搜寻**(forage)水分和**氮**(nitrogen)等**养分**(nutrients)，再拿去**换取**(swapping)植物的糖分。单个真菌就能把多株植物**编织**(knit)进同一张共享网络。1997年8月7日，《自然》杂志**推出**(unveiled)了这项研究，当期封面还送上一个**响亮好记的**(catchy)**新造词**(coinage)——“林木万维网”（wood-wide web）。
+大多数**陆生**(terrestrial)植物身上都**栖居着**(harbour)这类真菌，它们的**菌丝**(filaments)四处**搜寻**(forage)水分和氮等**养分**(nutrients)，再拿去**换取**(swapping)植物的糖分。单个真菌就能把多株植物**编织**(knit)进同一张共享网络。1997年8月7日，《自然》杂志**推出**(unveiled)了这项研究，当期封面还送上一个**响亮好记的**(catchy)**新造词**(coinage)——“林木万维网”（wood-wide web）。
 
 结果，这个**比喻**(metaphor)**令人难以抗拒**(irresistible)。2015年至2021年间，一位护林人的**畅销书**(bestseller)、一部**广受赞誉的**(acclaimed)小说和一位生态学家的**回忆录**(memoir)都向读者讲述，树木会**交谈**(converse)，会互相示警，还会作为“母树”**照料**(nurture)自己的**亲族**(kin)。然而，1997年实验里的树都还是幼苗，并非**年迈的**(elderly)母亲。
 
@@ -43,7 +43,6 @@ None of this **disproves** the networks' existence. In January 2025, defenders f
 | filaments | n. (filament) （真菌的）菌丝（fungal filaments）；细丝；（灯泡的）灯丝 | 2 |
 | forage | v. 搜寻（食物、养分）（forage for food/nutrients/water）；n. 草料，饲料 | 2 |
 | nutrients | n. (nutrient) 养分，营养物（absorb nutrients；nutrients such as nitrogen and phosphorus） | 2 |
-| nitrogen | n. 氮，氮气（nitrogen fertiliser 氮肥；fix nitrogen 固氮） | 2 |
 | swapping | v. (swap) 用……换取，交换（swap A for B 用 A 换 B；swap places 交换位置）；n. 交换 | 2 |
 | knit | v. 编织（knit a sweater）；（使）紧密联结（knit A and B together；knit sth into a whole/network）；（断骨）愈合 | 2 |
 | unveiled | v. (unveil) 推出，公布，首次展示（unveil a plan/study/new model）；为……揭幕（unveil a statue） | 2 |
