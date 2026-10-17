@@ -28,7 +28,7 @@ S=[
 (3,[[[("Haber's **ambition**","哈伯的**雄心**(ambition)"),("had a **sinister** side.","也有**险恶的/邪恶的**(sinister)一面。")],
      "（@sinister 邪恶的、凶险的或不祥的，\n@sinister|形容人或动机时，常偏向“阴险、心怀恶意”。）"]]),
 (3,[[[("Ammonia","氨"),("**stocked** Germany's **arsenal** **with** nitrates for **munitions**","**用**(stocked with)（制造）**弹药**(munitions)所需的硝酸盐**充实了**(stocked with)德国的**军火库**(arsenal)，")],
-     "（stock A with B：用B充实A；nitrates for munitions：制造弹药所需的硝酸盐）"],
+     "（stock A with B：用B充实A；nitrates for munitions：制造弹药所需的硝酸盐）\n（氨能用来生产硝酸和硝酸盐，使德国的军火工业摆脱了对进口天然硝石的依赖。）"],
     [[("despite a British **blockade**,","尽管有英国**封锁**(blockade)，")]],
     [[("and Captain Haber","而哈伯上尉则"),("**marshalled** chemical warfare.","**组织调度了**(marshalled)化学战。")],
      "（@marshal 为某个目标组织并调动人、力量、资源或论据）"]]),
