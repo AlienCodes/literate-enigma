@@ -32,7 +32,7 @@ S=[
     [[("was **on the payroll of** the Marconi company;","**受雇于**(on the payroll of)马可尼公司；")]],
     [[("when he slept,","他一睡下，"),("so did the radio.","电台也一样睡了。")],
      "（Her：指加州人号；Cyril Evans：同位语，说明报务员是谁；\nbe on the payroll of：受雇于，领……的薪水；\nso did the radio：倒装，电台也一样）"]]),
-(3,[[[("Around 11.30pm","晚上11时30分左右，"),("he switched off his set.","他关掉了他的电台。")],
+(3,[[[("Around 11.30pm","晚上11时30分左右，"),("he **switched off** his set.","他**关掉了**(switched off)自己的设备。")],
      "（switch off：关掉；set：这里指无线电收发报机）"]]),
 (3,[[[("**Hindsight**","**事后看来**(Hindsight)，"),("may call that **negligence**,","这或许可称为**疏忽**(negligence)，")]],
     [[("yet no rule","然而没有哪条规则"),("**obliged** him **to** stay **vigilant**,","**强制**(obliged to)他保持**警觉**(vigilant)，")]],
