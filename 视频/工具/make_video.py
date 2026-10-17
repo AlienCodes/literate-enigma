@@ -6,19 +6,42 @@ import render as R
 import title2 as T2
 TTS='../tts'
 k=Kokoro(f'{TTS}/kokoro-v1.0.onnx',f'{TTS}/voices-v1.0.bin'); V=np.load(f'{TTS}/'+os.environ.get('VOICE','voice_mb.npy'))
-KT=Kokoro(f'{TTS}/kokoro-v1.0-timed.onnx',f'{TTS}/voices-v1.0.bin')  # 只用来取每个音的准确时间（定位标点），声音仍用上面的原模型
+if os.path.exists(f'{TTS}/kokoro-v1.0-timed.onnx'): KT=Kokoro(f'{TTS}/kokoro-v1.0-timed.onnx',f'{TTS}/voices-v1.0.bin')
+else:   # GitHub 机器上没有这个自制的带时长模型（官方没有，只在本地）：注音器用官方模型的（同一个），带时长的结果全部来自缓存
+    class _KT: pass
+    KT=_KT(); KT.tokenizer=k.tokenizer
+    def _no_timed(*a,**kw): raise SystemExit('【停止】没有带时长模型 kokoro-v1.0-timed.onnx，又缺这条缓存——先在本地出一遍，把缓存提交进 视频/配音缓存/')
+    KT.create_timed=_no_timed  # 只用来取每个音的准确时间（定位标点），声音仍用上面的原模型
 # 合成缓存（2026-10-09，提速）：同一模型、同一音色、同一语速、同一段文字，合成结果逐样本相同（各篇配音指纹多次重做都一致），
 # 所以第一次合成后存进 ../tts/cache_tts/，以后直接读，出片和所有核查程序（都 exec 本文件）不再反复合成；声音与不缓存时逐样本相同。
 # 键里有模型文件（大小、修改时间）、音色数组的校验码、语速、语言、全部参数；任何一项变了就重新合成。独立复核（独立复核/synth.py）自己合成，不用这个缓存。
 import hashlib as _hl, pickle as _pk
 _CACHE=f'{TTS}/cache_tts'; os.makedirs(_CACHE,exist_ok=True)
+def _portable_mid(model):
+    """可移植的模型标识（2026-10-17 搬到 GitHub 机器出片）：只认文件名 + 内容校验码，不含路径和修改时间——换机器、重新下载模型后缓存照样命中。"""
+    side=f'{model}.sha256'
+    if not os.path.exists(model) or os.environ.get('STRICT_CACHE'):   # GitHub 机器（严格缓存，不现合成）或没有的模型：用仓库里记的校验码（工具/环境/模型校验码.json）
+        return json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'环境','模型校验码.json')))[os.path.basename(model)]
+    if os.path.exists(side) and os.path.getmtime(side)>=os.path.getmtime(model): return open(side).read().strip()
+    h=_hl.sha256()
+    with open(model,'rb') as f:
+        for blk in iter(lambda: f.read(1<<20), b''): h.update(blk)
+    r=os.path.basename(model)+':'+h.hexdigest()[:16]
+    try: open(side,'w').write(r)
+    except OSError: pass
+    return r
 def _cached(obj,meth,model):
-    fn=getattr(obj,meth); mid=f'{model}:{os.path.getsize(model)}:{int(os.path.getmtime(model))}'
+    fn=getattr(obj,meth); mid_old=f'{model}:{os.path.getsize(model)}:{int(os.path.getmtime(model))}' if os.path.exists(model) else ''; mid=_portable_mid(model)
     def g(text,voice,speed=1.0,lang='en-us',**kw):
         vh=_hl.sha1(np.ascontiguousarray(voice).tobytes()).hexdigest() if not isinstance(voice,str) else voice
-        p=f"{_CACHE}/{_hl.sha1(repr((meth,mid,text,vh,float(speed),lang,sorted(kw.items()))).encode()).hexdigest()}.pkl"
+        key=lambda m: f"{_CACHE}/{_hl.sha1(repr((meth,m,text,vh,float(speed),lang,sorted(kw.items()))).encode()).hexdigest()}.pkl"
+        p=key(mid); po=key(mid_old)
+        if os.environ.get('CACHE_LOG'):
+            with open(os.environ['CACHE_LOG'],'a') as f: f.write(os.path.basename(p)+'\n')
+        if not os.path.exists(p) and os.path.exists(po): import shutil as _sh; _sh.copyfile(po,p)   # 旧钥匙（含路径、修改时间）的缓存搬到新钥匙
         if os.path.exists(p):
             with open(p,'rb') as f: return _pk.load(f)
+        if os.environ.get('STRICT_CACHE'): raise SystemExit(f'【停止】严格缓存模式（GitHub 出片）缺配音缓存 {os.path.basename(p)}（{meth}：{text[:40]}…）：别的机器现合成声音可能差一点点，绝不现合成——先在本地出一遍，把缓存提交进 视频/配音缓存/')
         r=fn(text,voice=voice,speed=speed,lang=lang,**kw)
         if meth=='create_timed': r=(r[0],r[1],list(r[2]))
         q=f'{p}.{os.getpid()}'

@@ -1,0 +1,55 @@
+# 出片搬到 GitHub 机器（2026-10-17）：推送 视频/批量/清单.txt 后，每篇一台机器——从仓库搭环境、只用仓库里的配音缓存拼装（不现合成）、
+# 出片；已有存档的，与存档逐采样、逐屏比对，不一致就失败。成片放进本次运行的下载区（Artifacts），不发布。
+name: render
+on:
+  push:
+    branches: ['claude/adoring-hamilton-5qskmm']
+    paths: ['视频/批量/清单.txt']
+  workflow_dispatch:
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      items: ${{ steps.p.outputs.items }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {sparse-checkout: '视频/批量', sparse-checkout-cone-mode: true}
+      - id: p
+        run: |
+          items=$(grep -vE '^\s*(#|$)' 视频/批量/清单.txt | awk '{printf "%s{\"no\":\"%s\",\"res\":\"%s\"}", (NR>1?",":""), $1, ($2==""?"4K":$2)}')
+          echo "items=[$items]" >> $GITHUB_OUTPUT; echo "清单：[$items]"
+  render:
+    needs: plan
+    if: needs.plan.outputs.items != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        item: ${{ fromJson(needs.plan.outputs.items) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q -r 视频/工具/环境/requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: ~/work/tts/*.onnx
+          key: kokoro-v1.0-official
+      - run: bash 视频/工具/环境/准备机器.sh . ~/work
+      - name: 出片
+        working-directory: /home/runner/work/video
+        env: {STRICT_CACHE: '1'}
+        run: |
+          NO=${{ matrix.item.no }}; [ "${{ matrix.item.res }}" = "4K" ] && export VIDEO_S=2
+          python3 make_video.py scripts/$NO.json $NO.mp4 | tail -3
+      - name: 与存档比对（有存档才比）
+        working-directory: /home/runner/work/video
+        run: |
+          NO=${{ matrix.item.no }}; A=$GITHUB_WORKSPACE/视频/视频/$NO.mp4; [ "${{ matrix.item.res }}" = "4K" ] || A=$GITHUB_WORKSPACE/视频/视频/草稿1080p/${NO}_1080p.mp4
+          if [ -f "$A" ]; then python3 $GITHUB_WORKSPACE/视频/工具/对比成片.py $NO.mp4 "$A"; else echo "没有存档，跳过比对"; fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.item.no }}_${{ matrix.item.res }}
+          path: /home/runner/work/video/${{ matrix.item.no }}.mp4
+          retention-days: 30
