@@ -30,6 +30,10 @@ for f in fs:
     if prev is None or (m ^ prev).mean() > 0.04: grp.append([])
     grp[-1].append(f); prev = m
 print(f'{len(grp) - 1} 句（第 0 屏是标题）')
+_n = os.path.basename(mp4)[:2]
+if os.path.exists(f'scripts/{_n}.json'):
+    import json as _j; _k = len(_j.load(open(f'scripts/{_n}.json'))['sentences'])
+    if _k != len(grp) - 1: print(f'【注意】画面分出 {len(grp) - 1} 句，脚本是 {_k} 句，句号对不上——改用 python3 抽屏.py {_n} 句号… 输出.png 按脚本画（定稿视频核对已保证视频每屏与脚本画的一致）')
 sel = [grp[i][-1] for i in ss if i < len(grp)]
 cols = 2 if len(sel) > 1 else 1; rows = (len(sel) + cols - 1) // cols
 T = Image.new('RGB', (960 * cols, 540 * rows))
