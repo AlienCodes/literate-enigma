@@ -15,7 +15,7 @@ S=[
     [[("the spores","孢子"),("probably **originated in** a laboratory downstairs,","很可能**起源于**(originated in)楼下的一间实验室，")]],
     [[("where a colleague **cultivated** moulds.","在那里有一位同事**培育了**(cultivated)霉菌。")],
      "（where：非限制性定语从句，指在那间实验室里；originate in：源自）"]]),
-(2,[[[("Fleming","弗莱明"),("called the mould's juice penicillin","把霉菌分泌的这种液体称为青霉素，"),("and published in June 1929.","并于1929年6月发表了论文。")],
+(2,[[[("Fleming","弗莱明"),("called the mould's juice **penicillin**","将这种霉菌（分泌的）汁液称为**青霉素**(penicillin)，"),("and published in June 1929.","并于1929年6月发表。")],
      "（call A B：把A称为B；published：这里指发表了研究论文）"]]),
 (2,[[[("Yet","然而，"),("the **crude** juice","这种**粗制的**(crude)液体"),("was **unstable**","性质**不稳定**(unstable)，")]],
     [[("and **stubbornly** hard to **purify**,","又**怎么也**(stubbornly)难以**提纯**(purify)；")],
