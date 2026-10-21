@@ -21,3 +21,4 @@
 | 14 | The Fungus That Turns Ants into Zombies | 让蚂蚁变僵尸的真菌 | 11.5 MB |
 | 15 | The Myth of the Unsinkable | 永不沉没的神话 | 12.6 MB |
 | 16 | The Bread Made from Air | 从空气中造面包 | 13.0 MB |
+| 17 | The Curse of the Pharaoh | 法老的诅咒 | 11.1 MB |
