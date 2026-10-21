@@ -7,7 +7,7 @@ S=[
 (1,[[[("In September 1928","1928年9月，"),("Alexander Fleming,","亚历山大·弗莱明，"),("a bacteriologist at St Mary's Hospital, London,","伦敦圣玛丽医院的细菌学家，")],
      "（a bacteriologist at…：同位语，说明弗莱明的身份）"],
     [[("returned from holiday","度假归来，"),("to find that","发现")]],
-    [[("a **stray** **mould**","一团**不知从哪儿飘来的**(stray)**霉菌**(mould)"),("had **contaminated** a dish of staphylococcus **bacteria**.","**污染了**(contaminated)一只培养葡萄球菌这种**细菌**(bacteria)的培养皿。")],
+    [[("a **stray** **mould**","一团**零星的/散落的**(stray)**霉菌**(mould)"),("had **contaminated** a dish of staphylococcus **bacteria**.","**污染了**(contaminated)一只培养葡萄球菌这种**细菌**(bacteria)的培养皿。")],
      "（to find that…：不定式作结果状语，回来后发现……；\na dish of…：一只培养……的培养皿）"]]),
 (1,[[[("Nothing grew around it.","它周围什么也没长。")]]]),
 (1,[[[("**Popular mythology**","**坊间传说**(Popular mythology)"),("blames an open window;","把它归咎于一扇敞开的窗户；")],
