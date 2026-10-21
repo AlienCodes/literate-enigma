@@ -12,7 +12,7 @@ S=[
 (1,[[[("Nothing grew around it.","它周围什么也没长。")]]]),
 (1,[[[("**Popular mythology**","**坊间传说**(Popular mythology)"),("blames an open window;","将其归咎于一扇敞开的窗户；")],
      "（blame an open window：把霉菌的来历归咎于一扇敞开的窗户）"],
-    [[("the spores","孢子"),("probably **originated in** a laboratory downstairs,","很可能**起源于**(originated in)楼下的一间实验室，")]],
+    [[("the **spores**","**孢子**(spores)"),("probably **originated in** a laboratory downstairs,","很可能**起源于**(originated in)楼下的一间实验室，")]],
     [[("where a colleague **cultivated** moulds.","在那里有一位同事**培育了**(cultivated)霉菌。")],
      "（where：非限制性定语从句，指在那间实验室里；originate in：源自）"]]),
 (2,[[[("Fleming","弗莱明"),("called the mould's juice **penicillin**","将这种霉菌（分泌的）汁液称为**青霉素**(penicillin)，"),("and published in June 1929.","并于1929年6月发表。")],
