@@ -14,7 +14,7 @@ Carnarvon's **untimely** **demise** had **fuelled** the tale, giving it **impetu
 
 ## 中文
 
-1922年11月4日，在帝王谷，考古学家霍华德·卡特**聘用**(engaged)的**工人**(labourers)，**发掘出了**(uncovered)一段**雕刻在**(carved into)岩石**上面**(carved into)的**阶梯**(staircase)。（engaged by…：过去分词短语作后置定语，修饰 labourers；carved into the rock 同样作后置定语，修饰 staircase）（@carved into the rock 文字、图案或符号被雕刻在石头表面并留下刻痕）11月26日，在他那**富有的**(wealthy)**赞助人**(sponsor)卡纳冯勋爵的陪同下，卡特在封住的**门道**(doorway)上开了一个小孔，并瞥见了少年国王图坦卡蒙**闪闪发光的**(glittering)黄金。（with + 名词 + beside him：with 复合结构作伴随状语，“在……的陪同下”）这一**惊人的/壮观的**(spectacular)发现，**牢牢吸引了**(riveted)全世界的**注意力**(riveted)。
+1922年11月4日，在帝王谷，考古学家霍华德·卡特**聘用**(engaged)的**工人**(labourers)，**发掘出了**(uncovered)一段**雕刻在**(carved into)岩石**上面**(carved into)的**阶梯**(staircase)。（@labourer 尤指户外的体力劳动者，劳工，工人）（engaged by…：过去分词短语作后置定语，修饰 labourers；carved into the rock 同样作后置定语，修饰 staircase）（@carved into the rock 文字、图案或符号被雕刻在石头表面并留下刻痕）11月26日，在他那**富有的**(wealthy)**赞助人**(sponsor)卡纳冯勋爵的陪同下，卡特在封住的**门道**(doorway)上开了一个小孔，并瞥见了少年国王图坦卡蒙**闪闪发光的**(glittering)黄金。（with + 名词 + beside him：with 复合结构作伴随状语，“在……的陪同下”）这一**惊人的/壮观的**(spectacular)发现，**牢牢吸引了**(riveted)全世界的**注意力**(riveted)。
 
 卡纳冯将**独家的**(exclusive)新闻报道权卖给了《泰晤士报》，这种**垄断**(monopoly)让**相互竞争的**(competing)其他记者**严重缺少**(starved of)新闻。（a monopoly…：同位语，概括前面的独家协议；leave sb starved of sth：让某人严重缺少某物）许多人（只能）**诉诸于**(resorted to)**猜测**(speculation)，或者是找外界的**评论员**(commentators)。（resort to：不得已而采用，诉诸于）1923年3月，**畅销**(best-selling)小说家玛丽·科雷利公开警告，**极其严重的**(dire)**惩罚**(punishment)等待着任何进入封闭**陵墓**(tomb)的人。（that…：宾语从句；who…：定语从句，修饰 anyone）（@dire 情况、后果或处境极其严重，糟糕到令人担忧，通常还带有强烈的紧迫感。）**两周**(fortnight)之内，她的话就会显得**诡异而又邪门**(uncanny)。（would：过去将来，从1923年3月看之后的事）（within + 时间段 = “在……（时间）之内”，通常指“不超过这个期限”。）（@uncanny = 诡异、邪门、让人心里发毛（牛津释义：奇怪且难以解释）。）
 

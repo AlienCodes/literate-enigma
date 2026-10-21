@@ -5,7 +5,8 @@ import json,re,glob,os
 #   短语型用法整体标（T22：carved into、resorted to、starved of、exposed to、turned septic）、结尾解说（T28）、术语不漏（T30）。
 S=[
 (1,[[[("On 4 November 1922,","1922年11月4日，"),("in the Valley of the Kings,","在帝王谷，")]],
-    [[("**labourers** **engaged** by the archaeologist Howard Carter","考古学家霍华德·卡特**聘用**(engaged)的**工人**(labourers)，")]],
+    [[("**labourers** **engaged** by the archaeologist Howard Carter","考古学家霍华德·卡特**聘用**(engaged)的**工人**(labourers)，")],
+     "（@labourer 尤指户外的体力劳动者，劳工，工人）"],
     [[("**uncovered**","**发掘出了**(uncovered)"),("a **staircase** **carved into** the rock.","一段**雕刻在**(carved into)岩石**上面**(carved into)的**阶梯**(staircase)。")],
      "（engaged by…：过去分词短语作后置定语，修饰 labourers；\ncarved into the rock 同样作后置定语，修饰 staircase）\n（@carved into the rock 文字、图案或符号被雕刻在石头表面并留下刻痕）"]]),
 (1,[[[("On 26 November,","11月26日，"),("with his **wealthy** **sponsor** Lord Carnarvon beside him,","在他那**富有的**(wealthy)**赞助人**(sponsor)卡纳冯勋爵的陪同下，")]],
