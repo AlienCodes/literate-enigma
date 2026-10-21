@@ -47,7 +47,7 @@ S=[
     [[("the **obstacle**","**障碍**(obstacle)"),("was **quantity**.","在于**数量**(quantity)。")]]]),
 (4,[[[("From July 1941","从1941年7月起，"),("a government laboratory in Peoria, Illinois,","伊利诺伊州皮奥里亚的一家政府实验室")],
      "（in Peoria, Illinois：介词短语作后置定语，修饰 laboratory）"],
-    [[("**boosted** yields about **tenfold**","把产量**提高了**(boosted)约**十倍**(tenfold)，"),("with corn-steep **liquor**,","靠的是**玉米浆**(liquor)，"),("a **starch** by-product;","一种**淀粉**(starch)生产的副产品；")],
+    [[("**boosted** yields about **tenfold**","把产量**提高了**(boosted)约**十倍**(tenfold)，"),("with **corn-steep liquor**,","靠的是**玉米浆**(corn-steep liquor)，"),("a **starch** by-product;","一种**淀粉**(starch)生产的副产品；")],
      "（with corn-steep liquor：介词短语表方式；\na starch by-product：同位语，补充说明玉米浆）"],
     [[("later","后来，"),("a **mouldy** market **melon**","市场上一只**发霉的**(mouldy)**甜瓜**(melon)"),("**furnished** the laboratory **with** a more **prolific** strain.","又**为**(furnished with)这家实验室**提供了**(furnished with)一株更**高产的**(prolific)菌株。")],
      "（furnish A with B：为A提供B）"]]),
@@ -56,7 +56,7 @@ S=[
 (5,[[[("In October 1945","1945年10月，"),("Fleming, Florey, and Chain","弗莱明、弗洛里和钱恩"),("shared the Nobel prize;","共同获得了诺贝尔奖；")]],
     [[("Heatley","希特利"),("was **overlooked**.","却**遭到忽视**(overlooked)。")]]]),
 (5,[[[("**Fortune**","**机缘**(Fortune)"),("put the mould in Fleming's dish;","把霉菌送进了弗莱明的培养皿；")]],
-    [[("**tenacious** teams","几支**锲而不舍的**(tenacious)团队"),("and years of **toil**","加上多年的**辛劳**(toil)，"),("**transformed** it **into** a **remedy**.","把它**转化成了**(transformed into)**良药**(remedy)。")],
+    [[("**tenacious** teams","几支**锲而不舍的/坚持不懈的**(tenacious)团队"),("and years of **toil**","加上多年的**辛劳/辛苦工作**(toil)，"),("**transformed** it **into** a **remedy**.","把它**转化成了**(transformed into)**良药**(remedy)。")],
      "（transform A into B：把A转化成B；years of toil：多年的辛劳）\n（结局：弗莱明发现了青霉素，可粗制的液体难以提纯，\n青霉素沉寂了约十年；\n牛津的弗洛里、钱恩和希特利把它提取出来，\n注射了青霉素的小鼠活了下来；\n皮奥里亚的实验室用玉米浆和发霉甜瓜里的菌株提高了产量，\n到诺曼底登陆时已能满足盟军的需求。\n1945年，弗莱明、弗洛里和钱恩共同获得诺贝尔奖，\n希特利却遭到忽视。）"]]),
 ]
 CONF={"牛津逗号":{"S5 stubbornly hard to purify, and he and":"不是三项并列：逗号后的 and 连接两个分句，he and the chemists 只有两项",
