@@ -19,7 +19,7 @@ S=[
      "（call A B：把A称为B；published：这里指发表了研究论文）"]]),
 (2,[[[("Yet","然而，"),("the **crude** juice","这种**粗糙的/未加工的**(crude)液体"),("was **unstable**","很**不稳定**(unstable)，")]],
     [[("and **stubbornly** hard to **purify**,","并且**极**(stubbornly)难**提纯**(purify)；")],
-     "（stubbornly hard to purify：怎么也难以提纯；\nhard to do：难以做……）"],
+     "（stubbornly hard to purify：怎么也/极其难以提纯；\nhard to do：难以做……）"],
     [[("and he and the chemists he enlisted","他和招募来的化学家"),("lacked the **expertise** to **refine** it.","都缺乏**精炼**(refine)它的**专业知识**(expertise)。")],
      "（he enlisted：定语从句，修饰 the chemists；\nto refine it：不定式作后置定语，修饰 expertise）"]]),
 (2,[[[("He used it **chiefly** to **isolate** other **microbes**,","他**主要**(chiefly)用它来**分离**(isolate)其他**微生物**(microbes)，")]],
