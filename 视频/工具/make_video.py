@@ -863,6 +863,10 @@ def build(js,out):
         clips,tmap=sentence_audio(sent,pieces,gaps)
         t=sum(len(c) for c in clips)/SR
         a=np.concatenate(clips)
+        _sg=float(d.get('句子增益dB',{}).get(f'S{si+1}',0))   # 2026-10-21 用户同意的例外：19 S5 短句比全片响 2.0 LU，只这一句整体调轻（≤1 dB，不改音色）
+        if _sg:
+            if abs(_sg)>1: raise SystemExit(f'【停止】句子增益dB 只许 ±1 dB 以内（S{si+1}：{_sg}）')
+            a=a*10**(_sg/20)
         # L14：每一块的高亮在这一块开始读时切换（原来按字母个数平均分，数字、长词处会提前或推后 1 秒多）
         # 逗号、分号、冒号后开始的块：从停顿结束处往后找真正开口的时刻——第一个比本句最响 10 ms 低不到 30 dB 的 10 ms
         # （停顿后常有 0.3–0.45 秒的吸气声，比最响处低 38 dB 以上，不算开口；01–04 共 48 处标定，与独立对齐相差 -0.03～+0.05 秒）；

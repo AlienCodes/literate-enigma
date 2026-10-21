@@ -55,7 +55,8 @@ if __name__ == '__main__':
             # 标准答案的缓存键 = 这一句实际合成用的全部输入（音标含读音改正、移植、结尾句参数）的指纹：
             # 任何一项变了就重新合成（2026-10-10：07 S4 读音改正后仍用了旧读音的缓存，复核整篇对不上）
             fd_ = FADES.get(no, {}).get(f'S{idx + 1}', []) if idx >= 0 else []
-            key_ = _hl.md5(repr((phonemes_of(spoken(text)), gr, en_, fd_, 0.95) + ((pg,) if pg else ()) + ((('加强', bo),) if bo else ())).encode()).hexdigest()[:10]
+            sg_ = float(d.get('句子增益dB', {}).get(f'S{idx + 1}', 0)) if idx >= 0 else 0.0   # 2026-10-21 单句增益（与出片同一个数，整句乘）
+            key_ = _hl.md5(repr((phonemes_of(spoken(text)), gr, en_, fd_, 0.95) + ((pg,) if pg else ()) + ((('加强', bo),) if bo else ()) + ((('增益', sg_),) if sg_ else ())).encode()).hexdigest()[:10]
             fn = f'{OUT}/{no}_{"T" if idx < 0 else "%02d" % idx}_{key_}.npy'
             if not os.path.exists(fn):
                 if en_: a, sr = _ending_raw(text, en_), 24000     # 结尾句：两遍合成在接点接起来（与出片同一个函数，接点两侧必须是静音）
@@ -80,6 +81,7 @@ if __name__ == '__main__':
                     for p_, q_, kd in sorted(pg.values(), key=lambda v: -float(v[0])):
                         p0 = st + int(round(float(p_) * SR)); q0 = st + int(round(float(q_) * SR))
                         a = np.concatenate([a[:p0], _pdonor(w0, kd), a[q0:]])
+                if sg_: a = a * np.float32(10 ** (sg_ / 20))
                 np.save(fn, a)
             meta[no].append({'idx': idx, 'text': text, 'file': fn,
                              'para': it[3] if len(it) > 3 else None,
