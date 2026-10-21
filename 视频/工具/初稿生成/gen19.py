@@ -28,11 +28,11 @@ S=[
      "（In his telling：照他的说法，后面三件事都是麦凯的说法；\nbe reduced to doing：沦落到……的地步）"]]),
 (3,[[[("His **vivid** account","他的描述**绘声绘色**(vivid)，"),("made tulip **mania**","从此郁金香**狂热**(mania)成了"),("**shorthand for** **bubbles**","**泡沫**(bubbles)的**代名词**(shorthand for)，")]],
     [[("fuelled by **reckless** buying.","专指由**不计后果的**(reckless)抢购吹大的泡沫。")],
-     "（make A B：使A成为B；shorthand for…：……的代名词，……的简称；\nfuelled by…：过去分词短语作后置定语，修饰 bubbles）"]]),
+     "（make A B：使A成为B；\nshorthand for…：……的代名词，……的简称；\nfuelled by…：过去分词短语作后置定语，修饰 bubbles）"]]),
 (4,[[[("Yet","然而，"),("the **archives**","**档案**(archives)"),("tell a smaller story.","讲述的故事要小得多。")]]]),
 (4,[[[("Mackay's story","麦凯的故事"),("**relied** largely **on**","所**依据**(relied on)的，大多是"),("**satirical** **pamphlets** of 1637","1637年的**讽刺**(satirical)**小册子**(pamphlets)，")]],
     [[("that **preached** **against** **greed**.","这些小册子意在**劝诫**(preached against)世人**戒除**(preached against)**贪婪**(greed)。")],
-     "（rely on：依靠，依据；that…：定语从句，修饰 pamphlets；\npreach against：劝诫勿……）"]]),
+     "（rely on：依靠，依据；\nthat…：定语从句，修饰 pamphlets；\npreach against：劝诫勿……）"]]),
 (4,[[[("Anne Goldgar, a **historian** at King's College London,","伦敦国王学院的**历史学家**(historian)安妮·戈德加")]],
     [[("**scoured** Dutch records","**遍查了**(scoured)荷兰的文献记录，"),("and counted only a few hundred traders,","只数出了几百名交易者，"),("mostly merchants and craftsmen.","大多是商人和工匠。")],
      "（a historian at King's College London：同位语，说明 Anne Goldgar；\nmostly merchants and craftsmen：补充说明这些交易者）"]]),
@@ -41,11 +41,11 @@ S=[
      "（caused by tulips：过去分词短语作后置定语，修饰 bankruptcy；\nno … harm to sth：对某物没有……损害）"]]),
 (4,[[[("Many buyers","许多买家"),("were later allowed","后来获准")]],
     [[("to **settle** their contracts by paying a small **fraction** of the price,","只付价格的**一小部分**(fraction)，就能**了结**(settle)他们的合同，"),("and few were ruined.","倾家荡产的人也寥寥无几。")],
-     "（be allowed to do：获准做……；by doing：通过……的方式；\nfew：很少的人，几乎没有人）"]]),
+     "（be allowed to do：获准做……；\nby doing：通过……的方式；\nfew：很少的人，几乎没有人）"]]),
 (5,[[[("The **boom**","这场**繁荣**(boom)"),("was real","确有其事，"),("but **fleeting**.","却**转瞬即逝**(fleeting)。")]]]),
 (5,[[[("What spread,","真正传开、"),("and still **circulates** nearly four centuries on,","在近四个世纪后仍在**流传**(circulates)的，"),("was the **moral**:","是其中的**寓意**(moral)——")]],
     [[("a **sermon** drawn from those pamphlets","一篇取材于那些小册子的**训诫**(sermon)，"),("and retold by Mackay as history.","被麦凯当作历史重新讲了一遍。")],
-     "（What spread…：主语从句；nearly four centuries on：近四个世纪之后；\na sermon…：同位语，说明 the moral；\ndrawn from… 和 retold by… 都是过去分词短语，修饰 sermon）\n"
+     "（What spread…：主语从句；\nnearly four centuries on：近四个世纪之后；\na sermon…：同位语，说明 the moral；\ndrawn from… 和 retold by… 都是过去分词短语，修饰 sermon）\n"
      "（结局：1637年2月初，郁金香价格暴跌，许多买家违约；\n后来许多买家只付价格的一小部分就了结了合同，\n倾家荡产的人寥寥无几，\n荷兰经济也没有受到可以衡量的损害。\n两个世纪后，麦凯把它写成举国上下的集体歇斯底里，\n郁金香狂热从此成了泡沫的代名词。\n泡沫确有其事，却转瞬即逝；\n流传近四个世纪的，\n是取材于讽刺小册子、劝诫贪婪的寓意。）"]]),
 ]
 CONF={"牛津逗号":{"S1 37, Dutch merchants and":"不是三项并列：In the winter of 1636–37 是时间状语，merchants and brokers 只有两项",
