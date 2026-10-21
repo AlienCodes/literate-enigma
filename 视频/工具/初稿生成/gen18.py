@@ -42,7 +42,7 @@ S=[
 (4,[[[("In February 1941","1941年2月，"),("Albert Alexander,","艾伯特·亚历山大，"),("an Oxford **constable**","一名牛津**警员**(constable)，")]],
     [[("**gravely ill** with **infection**,","因**感染**(infection)而**病情危重**(gravely ill)，"),("**rallied** on penicillin.","用上青霉素后**有所好转**(rallied)。")],
      "（gravely ill with infection：形容词短语，补充说明他的病情；\ngravely ill：病情危重；ill with：因……患病）"]]),
-(4,[[[("When the **scarce** supply ran out,","当**稀缺的**(scarce)（青霉素）供应耗尽后，"),("he died in March:","他于3月去世：")],
+(4,[[[("When the **scarce** supply **ran out**,","当**稀缺的**(scarce)（青霉素）供应**耗尽**(ran out)后，"),("he died in March:","他于3月去世：")],
      "（run out：用完，耗尽）"],
     [[("the **obstacle**","**障碍**(obstacle)"),("was **quantity**.","在于**数量**(quantity)。")]]]),
 (4,[[[("From July 1941","从1941年7月起，"),("a government laboratory in Peoria, Illinois,","伊利诺伊州皮奥里亚的一家政府实验室")],
