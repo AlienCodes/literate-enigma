@@ -43,7 +43,7 @@ S=[
     [[("to **settle** their contracts by paying **a** small **fraction** **of** the price,","只付价格的**一小部分**(a fraction of)，就能**结清**(settle)他们的合同，"),("and few were ruined.","倾家荡产的人也寥寥无几。")],
      "（be allowed to do：获准做……；\nsettle a contract：结清合同/了结合同；\nfew：很少的人，几乎没有人）"]]),
 (5,[[[("The **boom**","这场**繁荣**(boom)"),("was real","确有其事，"),("but **fleeting**.","却**转瞬即逝**(fleeting)。")]]]),
-(5,[[[("What spread,","真正传开、"),("and still **circulates** nearly four centuries on,","在近四个世纪后仍在**流传**(circulates)的，"),("was the **moral**:","是其中的**寓意**(moral)——")]],
+(5,[[[("What spread,","传播开来、"),("and still **circulates** nearly four centuries on,","并在近四个世纪后依然**流传**(circulates)的，"),("was the **moral**:","是这个**寓意**(moral)：")]],
     [[("a **sermon** drawn from those pamphlets","一篇取材于那些小册子的**训诫**(sermon)，"),("and retold by Mackay as history.","被麦凯当作历史重新讲了一遍。")],
      "（What spread…：主语从句；\nnearly four centuries on：近四个世纪之后；\na sermon…：同位语，说明 the moral；\ndrawn from… 和 retold by… 都是过去分词短语，修饰 sermon）\n"
      "（结局：1637年2月初，郁金香价格暴跌，许多买家违约；\n后来许多买家只付价格的一小部分就了结了合同，\n倾家荡产的人寥寥无几，\n荷兰经济也没有受到可以衡量的损害。\n两个世纪后，麦凯把它写成举国上下的集体歇斯底里，\n郁金香狂热从此成了泡沫的代名词。\n泡沫确有其事，却转瞬即逝；\n流传近四个世纪的，\n是取材于讽刺小册子、劝诫贪婪的寓意。）"]]),
