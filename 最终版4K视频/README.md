@@ -23,3 +23,4 @@
 | 16 | The Bread Made from Air | 从空气中造面包 | 13.0 MB |
 | 17 | The Curse of the Pharaoh | 法老的诅咒 | 11.2 MB |
 | 18 | The Mould That Changed the World | 改变人类命运的霉菌 | 13.3 MB |
+| 19 | Tulip Mania The Bubble and the Legend | 郁金香狂热：泡沫与传说 | 12.0 MB |
