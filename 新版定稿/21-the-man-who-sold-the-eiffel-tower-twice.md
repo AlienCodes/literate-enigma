@@ -2,7 +2,7 @@
 # ZH: 两次卖掉埃菲尔铁塔的骗子
 
 ## 英文
-In 1925 six **scrap-metal** **traders** met **secretly** at the Hôtel de Crillon in Paris. A deputy **director-general** of the Ministry of Posts and Telegraphs shared the **momentous** news, **confidentially**, that the Eiffel Tower was to be sold for scrap. He invited **tenders** and made each dealer **solemnly** **vow** **secrecy**, **ostensibly** to spare the public **indignation**.
+In 1925 six **scrap-metal** **traders** met secretly at the Hôtel de Crillon in Paris. A deputy **director-general** of the Ministry of Posts and Telegraphs shared the **momentous** news, **confidentially**, that the Eiffel Tower was to be sold for scrap. He invited **tenders** and made each dealer **solemnly** **vow** **secrecy**, **ostensibly** to spare the public **indignation**.
 
 The **pretext** was not **absurd**. Built for the 1889 World's Fair, the **monument** had **originally** been **destined** to come down after twenty years. The **high-ranking** deputy was Victor Lustig, a **crook** whose **ministerial** stationery was a **forgery**. He had read a newspaper article in which the authorities **lamented** the **hefty** cost of the tower's **upkeep**.
 
@@ -18,7 +18,7 @@ Of Lustig's two marks, the one who paid kept **mum** and the one who kept his mo
 
 ## 中文
 
-1925年，六名经营**废金属**(scrap-metal)的**商人**(traders)在巴黎的克里雍酒店**秘密**(secretly)会面。邮电部的一位副**总长**(director-general)向他们**私下**(confidentially)透露了一个**重大**(momentous)消息，埃菲尔铁塔将作为废铁出售。他请他们**投标**(tenders)，并让每位商人**郑重**(solemnly)地**发誓**(vow)要**保密**(secrecy)，**表面上**(ostensibly)是为了免得公众**愤慨**(indignation)。
+1925年，六名经营**废金属**(scrap-metal)的**商人**(traders)在巴黎的克里雍酒店秘密会面。邮电部的一位副**总长**(director-general)向他们**私下**(confidentially)透露了一个**重大**(momentous)消息，埃菲尔铁塔将作为废铁出售。他请他们**投标**(tenders)，并让每位商人**郑重**(solemnly)地**发誓**(vow)要**保密**(secrecy)，**表面上**(ostensibly)是为了免得公众**愤慨**(indignation)。
 
 这个**借口**(pretext)并不**荒唐**(absurd)。这座为1889年世博会而建的**纪念建筑**(monument)，**原本**(originally)就**注定**(destined)要在二十年后拆除。那位**位高权重**(high-ranking)的副总长正是维克多·卢斯蒂格，一个**骗子**(crook)，他那些**部门**(ministerial)信笺都是**伪造品**(forgery)。他读到过一篇报道，当局在文中**抱怨**(lamented)铁塔**高昂**(hefty)的**维护**(upkeep)费用。
 
@@ -37,7 +37,6 @@ Of Lustig's two marks, the one who paid kept **mum** and the one who kept his mo
 |---|---|---|
 | scrap-metal | n. (scrap metal) 废金属（a scrap-metal dealer；连字符用于定语） | 1 |
 | traders | n. (trader) 商人，交易者（market traders） | 1 |
-| secretly | adv. 秘密地（meet secretly） | 1 |
 | director-general | n. 总干事，总长（the director-general of the BBC） | 1 |
 | momentous | adj. 重大的（a momentous decision） | 1 |
 | confidentially | adv. 私下地，秘密地（speak confidentially） | 1 |

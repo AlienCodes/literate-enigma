@@ -24,4 +24,4 @@
 | 17 | The Curse of the Pharaoh | 法老的诅咒 | 11.2 MB |
 | 18 | The Mould That Changed the World | 改变人类命运的霉菌 | 13.3 MB |
 | 19 | Tulip Mania The Bubble and the Legend | 郁金香狂热：泡沫与传说 | 12.0 MB |
-| 20 | The 5,000-Year-Old Murder in the Ice | 冰里的五千年凶案 | 11.9 MB |
+| 20 | The 5,000-Year-Old Murder in the Ice | 冰里的五千年凶案 | 12.0 MB |

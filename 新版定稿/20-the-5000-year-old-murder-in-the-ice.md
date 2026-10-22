@@ -2,7 +2,7 @@
 # ZH: 冰里的五千年凶案
 
 ## 英文
-On 19 September 1991 two German **hikers** on a **trek** in the Ötztal Alps found a **corpse** by a **glacier**. It lay on a **ridge** at about 3,210 metres, on the border between Austria and Italy. The **assumption** was that a **modern-day** **climber** had died on an **alpine** **slope**, since glaciers sometimes yield frozen remains.
+On 19 September 1991 two German **hikers** on a **trek** in the Ötztal Alps found a **corpse** by a **glacier**. It lay on a **ridge** at about 3,210 metres, on the **border** between Austria and Italy. The **assumption** was that a **modern-day** **climber** had died on an **alpine** **slope**, since glaciers sometimes yield frozen remains.
 
 Taking it for a recent death, rescuers used a **jackhammer** that **ripped** **flesh** from his left **hip**. His **possessions** told another story: **leather** and grass clothing, a **copper** **axe**, a bow and arrows, all **prehistoric** **artefacts**. Known as Ötzi, the natural **mummy** was a man who lived about 5,300 years ago, between 3350 and 3105 BC.
 
@@ -14,7 +14,7 @@ Another person, **it is thought**, killed him. From the wound's depth researcher
 
 ## 中文
 
-1991年9月19日，两名德国**徒步者**(hikers)在奥茨塔尔阿尔卑斯山**远足**(trek)时，在一条**冰川**(glacier)旁发现了一具**尸体**(corpse)。（on a trek in…：介词短语作后置定语，修饰 hikers）它躺在一道**山脊**(ridge)上，海拔约3,210米，位于奥地利与意大利交界处。当时的**假设**(assumption)是，一名**现代**(modern-day)**登山者**(climber)死在了**高山的**(alpine)**山坡**(slope)上，因为冰川有时会产出冰冻的遗体。（that…：表语从句，说明 assumption 的内容）（since：因为，引出原因状语从句；yield：用来描述某块土地、某个矿层、或者某座冰川产出/交出了什么物品）
+1991年9月19日，两名德国**徒步者**(hikers)在奥茨塔尔阿尔卑斯山**远足**(trek)时，在一条**冰川**(glacier)旁发现了一具**尸体**(corpse)。（on a trek in…：介词短语作后置定语，修饰 hikers）它躺在一道**山脊**(ridge)上，海拔约3,210米，位于奥地利与意大利**交界处**(border)。当时的**假设**(assumption)是，一名**现代**(modern-day)**登山者**(climber)死在了**高山的**(alpine)**山坡**(slope)上，因为冰川有时会产出冰冻的遗体。（that…：表语从句，说明 assumption 的内容）（since：因为，引出原因状语从句）（yield 在考古与地质发现报道中，该词是标准术语，意为“产出/交出”。它精准描绘了冰川消融时将封存遗体“交还”地表的动态过程。）
 
 因为误以为死者刚死不久，救援人员使用**风钻**(jackhammer)（凿冰），（结果）风钻**撕下来/扯下了**(ripped)他左侧**髋骨**(hip)的**皮肉**(flesh)。（take A for B：把A误认为B；Taking…：现在分词短语作状语）（that…：定语从句，修饰 jackhammer）他的**随身物品**(possessions)却说明了另一回事：**皮革**(leather)和草编的衣物，一把**铜制**(copper)**斧子**(axe)，一张弓和几支箭，全是**史前**(prehistoric)**人工制品**(artefacts)。（tell another story：说明另一回事，与前面的判断不同）（all prehistoric artefacts：同位语，概括冒号后列出的这些东西）被称为奥茨的这具天然**木乃伊**(mummy)是一名男子，生活在约5,300年前，也就是公元前3350年至前3105年之间。（Known as Ötzi：过去分词短语，补充说明 the natural mummy）（who…：定语从句，修饰 a man；between…BC：补充说明具体年代）
 
@@ -32,6 +32,7 @@ Another person, **it is thought**, killed him. From the wound's depth researcher
 | glacier | 本文：冰川；n. 冰川（a retreating glacier） | 1 |
 | corpse | 本文：尸体；n. 尸体（identify a corpse） | 1 |
 | ridge | 本文：山脊；n. 山脊，脊状突起（walk along the ridge） | 1 |
+| border | 本文：交界处 | 1 |
 | assumption | 本文：假设；n. 假定，推测（a reasonable assumption；on the assumption that…） | 1 |
 | modern-day | 本文：现代；adj. 现代的，当今的（modern-day Britain；a modern-day hero） | 1 |
 | climber | 本文：登山者；n. 登山者（a rock climber） | 1 |
