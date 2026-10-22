@@ -43,7 +43,7 @@ S=[
     [[("that an **archer**","一名**弓箭手**(archer)"),("shot him from the **rear**, at about 30 metres.","从**背后**(rear)约30米处向他射了箭。")],
      "（infer A from B：根据B推断A，这里 From… 提到了句首；\nthat…：宾语从句）"]]),
 (4,[[[("The **shooter**","**射手**(shooter)"),("probably **caught** him **unawares**.","很可能**趁**(caught unawares)他**毫无防备时出手**(caught unawares)。")],
-     "（catch sb unawares：趁某人毫无防备时出手，冷不防地袭击某人）"]]),
+     "（catch sb unawares：趁某人毫无防备时出手，冷不防地袭击某人）\n（打了某人一个措手不及）"]]),
 (4,[[[("A 2018 study found","2018年的一项研究发现，"),("he had **dined on**","他最后一餐**享用**(dined on)的是")],
      "（dine on sth：吃某物，以某物为餐；he had dined on…：宾语从句，省略了 that）"],
     [[("dried ibex meat and fat,","干野山羊肉和脂肪、"),("**red deer**,","**马鹿**(red deer)肉"),("and einkorn wheat,","以及单粒小麦，")]],
