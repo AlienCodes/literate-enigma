@@ -4,7 +4,7 @@ import json,re,glob,os
 S=[
 (1,[[[("In 1925","1925年，"),("six **scrap-metal** **traders**","六名经营**废金属**(scrap-metal)的**商人**(traders)"),("met secretly at the Hôtel de Crillon in Paris.","在巴黎的克里雍酒店秘密会面了。")],
      "（at the Hôtel de Crillon in Paris：地点状语，中文提到动词前）"]]),
-(1,[[[("A **deputy** **director-general** of the Ministry of Posts and Telegraphs","邮电部的一位**副**(deputy)**总负责人**(director-general)"),("shared the **momentous** news, **confidentially**,","向他们**私下地**(confidentially)分享了一个**重大的**(momentous)消息，")],
+(1,[[[("A **deputy** **director-general** of the Ministry of Posts and Telegraphs","邮电部的一位**副的**(deputy)**总负责人**(director-general)"),("shared the **momentous** news, **confidentially**,","向他们**私下地**(confidentially)分享了一个**重大的**(momentous)消息，")],
      "（of the Ministry…：介词短语作后置定语；\nconfidentially：插入的副词，修饰 shared）"],
     [[("that the Eiffel Tower was to be sold for scrap.","埃菲尔铁塔将作为废铁出售。")],
      "（that…：同位语从句，说明 news 的内容；\nbe to be done：将要被……）"]]),
