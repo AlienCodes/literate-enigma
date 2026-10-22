@@ -10,7 +10,7 @@ S=[
      "（that…：同位语从句，说明 news 的内容；\nbe to be done：将要被……）"]]),
 (1,[[[("He invited **tenders**","他请他们**投标**(tenders)，"),("and made each dealer **solemnly** **vow** **secrecy**,","并让每位商人**郑重地**(solemnly)**发誓**(vow)要**保密**(secrecy)，")],
      "（make sb do：让某人做……；vow secrecy：发誓保密）"],
-    [[("**ostensibly** to spare the public **indignation**.","**表面上**(ostensibly)是为了免得公众**愤慨**(indignation)。")],
+    [[("**ostensibly** to spare the **public indignation**.","**表面上**(ostensibly)是为了避免引起**公愤**(public indignation)。")],
      "（to spare…：不定式表目的；spare sb sth：使某人免受……）"]]),
 (2,[[[("The **pretext**","这个**借口**(pretext)"),("was not **absurd**.","并不**荒唐**(absurd)。")]]]),
 (2,[[[("Built for the 1889 World's Fair,","这座为1889年世博会而建的"),("the **monument**","**纪念建筑**(monument)，")],
