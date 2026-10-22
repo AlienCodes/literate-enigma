@@ -61,6 +61,16 @@ elif stage == '出片前':
     long = [l for l in o.splitlines() if re.search(r'停顿 (\d+\.\d+)s', l) and float(re.search(r'停顿 (\d+\.\d+)s', l).group(1)) > 0.22]
     step('无标点处停顿 ≤ 0.22 秒', not long, '\n    '.join(long))
 elif stage == '出片后':
+    # G12 成片必须有画面（2026-10-22 第21篇：出片后又跑了 快速重建核查.sh，它用 AUDIO_ONLY 把同名 NN.mp4 覆盖成只有声音，
+    # 后面的核查只查声音，全部通过，只有声音的文件被存成草稿发给了用户）。有画面流、宽 ≥1920、画面与声音时长差 ≤0.5 秒，否则停
+    import imageio_ffmpeg as _iff
+    _o = subprocess.run([_iff.get_ffmpeg_exe(), '-hide_banner', '-i', f'{no}.mp4'], capture_output=True, text=True).stderr
+    _v = re.search(r'Stream #\S+.*Video: .*?(\d{3,5})x(\d{3,5})', _o)
+    _vd = subprocess.run([_iff.get_ffmpeg_exe(), '-v', 'error', '-i', f'{no}.mp4', '-map', '0:v:0', '-f', 'null', '-'], capture_output=True, text=True) if _v else None
+    _d = re.search(r'Duration: (\d+):(\d+):([\d.]+)', _o)
+    step('成片有画面（G12：有画面流、宽 ≥1920；只有声音的文件一律不得交付——快速重建核查.sh 会把 NN.mp4 覆盖成只有声音，出片要放在它之后）',
+         bool(_v) and int(_v.group(1)) >= 1920 and _vd is not None and _vd.returncode == 0,
+         ('' if _v else f'{no}.mp4 没有画面流（只有声音），重新 python3 make_video.py scripts/{no}.json {no}.mp4，之后不要再跑 快速重建核查.sh') + (f' 时长 {_d.group(0)}' if _d else ''))
     c, o = run(['python3', f'{T}/收工记录.py', no]); step('token 记录（T31：程序自动算这篇花了多少，写进制作记录）', c == 0, o.strip()[-200:])
     c, o = run(['python3', f'{T}/audio_qc.py', f'{no}.mp4'])
     # 标出的"响度骤降"要剪成试听交用户确认。确认过、并用实际声音核实的，写进 核对确认.响度骤降：
