@@ -39,7 +39,7 @@ S=[
      "（have the gall to do：竟厚着脸皮做……）"],
     [[("with an **encore** of his **script** for new dealers.","对新的一批商人**重演**(encore)他那套**剧本**(script)。")],
      "（an encore of…：……的重演）"]]),
-(5,[[[("This time","这一次，"),("the winner","那位中标者"),("grew **distrustful**","起了**疑心**(distrustful)，"),("and went to the police.","报了警。")]]]),
+(5,[[[("This time","这一次，"),("the winner","那位中标者"),("**grew distrustful**","**起了疑心**(grew distrustful)，"),("and went to the police.","报了警。")]]]),
 (5,[[[("The **affair**","这桩**事件**(affair)"),("made the papers,","上了报纸，"),("and Lustig made his **getaway**.","卢斯蒂格**逃之夭夭**(getaway)。")],
      "（make the papers：上报纸；\nmake one's getaway：逃走）"]]),
 (5,[[[("The much-repeated second sale","那个流传甚广的第二次出售，"),("is a **fairy tale**.","只是一个**童话**(fairy tale)。")]]]),
