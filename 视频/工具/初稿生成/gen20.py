@@ -11,7 +11,7 @@ S=[
 (1,[[[("The **assumption** was","当时的**假设**(assumption)是，"),("that a **modern-day** **climber**","一名**现代**(modern-day)**登山者**(climber)"),("had died on an **alpine** **slope**,","死在了**高山的**(alpine)**山坡**(slope)上，")],
      "（that…：表语从句，说明 assumption 的内容）"],
     [[("since glaciers sometimes yield frozen remains.","因为冰川有时会产出冰冻的遗体。")],
-     "（since：因为，引出原因状语从句；\nyield：用来描述某块土地、某个矿层、或者某座冰川产出/交出了什么物品）\n（它完美契合了“出产（天然产品）”和“让步”的词典释义。\n在地质学和考古学的英文报道中，用它来描述“某块土地、\n某个矿层或冰川产出/交出了什么物品”是极其标准的术语。）"]]),
+     "（since：因为，引出原因状语从句）\n（yield 在考古与地质发现报道中，该词是标准术语，意为“产出/交出”。\n它精准描绘了冰川消融时将封存遗体“交还”地表的动态过程。）"]]),
 (2,[[[("Taking it for a recent death,","因为误以为死者刚死不久，"),("rescuers used a **jackhammer**","救援人员使用**风钻**(jackhammer)（凿冰），")],
      "（take A for B：把A误认为B；\nTaking…：现在分词短语作状语）"],
     [[("that **ripped** **flesh** from his left **hip**.","（结果）风钻**撕下来/扯下了**(ripped)他左侧**髋骨**(hip)的**皮肉**(flesh)。")],
