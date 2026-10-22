@@ -46,7 +46,7 @@ S=[
 (5,[[[("The **much-repeated** second sale","那个**被反复提及的**(much-repeated)第二次出售，"),("is a **fairy tale**.","只是个**童话**(fairy tale)。")]]]),
 (6,[[[("Later arrested in the United States","后来，卢斯蒂格在美国被捕，"),("for making **fake** money,","因为制造**假**(fake)币，")],
      "（Later arrested…：过去分词短语作状语，主语是 Lustig）"],
-    [[("Lustig broke out of **detention**,","他从**拘留所**(detention)越狱，"),("was **recaptured** 27 days later","27天后又被**抓回**(recaptured)，"),("and served time on the **penal** island of Alcatraz.","在作为**监狱**(penal)岛的恶魔岛服刑。")],
+    [[("Lustig broke out of **detention**,","他在**关押**(detention)（期间）逃脱，"),("was **recaptured** 27 days later","27天后又被**抓回**(recaptured)，"),("and served time on the **penal** island of Alcatraz.","在作为**监狱**(penal)岛的恶魔岛服刑。")],
      "（broke out of、was recaptured、served time：三个并列谓语；\nbreak out of：从……逃出；serve time：服刑）"]]),
 (6,[[[("He died of pneumonia in 1947.","1947年，他死于肺炎。")]]]),
 (7,[[[("Of Lustig's two marks,","卢斯蒂格的两个下手对象中，"),("the one who paid","付了钱的那个"),("kept **mum**","**闭口不言**(mum)，")]],
