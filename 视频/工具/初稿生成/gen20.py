@@ -26,7 +26,7 @@ S=[
     [[("who lived about 5,300 years ago,","生活在约5,300年前，"),("between 3350 and 3105 BC.","也就是公元前3350年至前3105年之间。")],
      "（who…：定语从句，修饰 a man；between…BC：补充说明具体年代）"]]),
 (3,[[[("In 2001,","2001年，"),("X-rays revealed","X 光片显示，")]],
-    [[("a **flint** arrowhead **lodged** in his left shoulder,","他左肩里**嵌着**(lodged)一枚**燧石**(flint)箭头，")],
+    [[("a **flint** arrowhead **lodged** in his left shoulder,","一枚**燧石**(flint)箭头**被卡在了**(lodged)他的左肩里，")],
      "（lodged in…：过去分词短语作后置定语，修饰 arrowhead）"],
     [[("**unseen** **by** **examiners** a decade earlier.","却**未被**(unseen by)十年前的**检查人员**(examiners)**发现**(unseen by)。")],
      "（unseen by…：未被……发现/看见；过去分词短语，补充说明箭头；\na decade earlier：十年前）"]]),
