@@ -439,9 +439,10 @@ def _boost(w,items,label,off=0):
     段长 ≤ 80 ms，段内最响 < -25 dB（不是元音），增益 0–6 dB；不合就停。off：独立复核在原始合成上做时的偏移（样本）。"""
     F_=int(0.005*SR); e=_env5(w); rr=np.sqrt(np.mean(w[:len(e)*F_].reshape(len(e),F_)**2,axis=1)).max(); w=w.copy()
     lv=lambda x:20*np.log10(np.sqrt(np.mean(x**2))/(rr+1e-12)+1e-12) if len(x) else -240.0
-    for g,(a,b,gdb) in items.items():
+    for g,v in items.items():
+        a,b,gdb=v[:3]; cap=9.0 if len(v)>3 and '用户' in str(v[3]) else 6.0   # 第4项写明用户同意的，这一处上限 9 dB（21 S7 upkeep. 用户 2026-10-22 同意），其余一律 6 dB
         p=off+int(round(float(a)*SR)); q=off+int(round(float(b)*SR))
-        if not (0<float(gdb)<=6 and F_<=p<q<=p+int(0.08*SR) and lv(w[p-F_:p])<-40 and max(lv(w[x:min(x+F_,q)]) for x in range(p,q,F_))<-25):
+        if not (0<float(gdb)<=cap and F_<=p<q<=p+int(0.08*SR) and lv(w[p-F_:p])<-40 and max(lv(w[x:min(x+F_,q)]) for x in range(p,q,F_))<-25):
             raise SystemExit(f'【停止】除阻加强的位置或增益不对（前面不是闭塞、段太长、碰到元音或增益超过 6 dB）（A21）：{label[:60]} {g}')
         G=10**(float(gdb)/20); h=int(0.002*SR); r=np.full(q-p,G,np.float32); r[:h]=np.linspace(1,G,h); r[-h:]=np.linspace(G,1,h)
         w[p:q]*=r

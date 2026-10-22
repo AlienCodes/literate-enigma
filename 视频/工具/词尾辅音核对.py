@@ -200,10 +200,13 @@ def write_grafts(no, d, bad):
             # 增益 = 差多少补多少再多 3 dB（最多 6 dB）；20 S3 slope,（-33.7 dB）、19 S6 up.（-33.7 dB）
             m_ = re.search(r'除阻全频 (-?[\d.]+) dB', line)
             if not deep or not m_: print('不能自动补（/p/ 没有供体，原声闭塞之后也没有除阻）：', line); continue
-            gdb = min(6.0, round((TH_P - float(m_.group(1)) + 3) * 2) / 2)
-            if float(m_.group(1)) + gdb < TH_P + 1: print('不能自动补（/p/ 除阻太弱，加 6 dB 也不够）：', line); continue
+            pos_ = '句末' if g == last else str(g + 1)
+            ok8_ = d.get('核对确认', {}).get('除阻加强放宽', {}).get(f'{lab} {pos_}')   # 用户逐处同意的才放宽到 9 dB（21 S7 upkeep.，2026-10-22）
+            cap_ = 9.0 if ok8_ and '用户' in str(ok8_) else 6.0
+            gdb = min(cap_, round((TH_P - float(m_.group(1)) + 3) * 2) / 2)
+            if float(m_.group(1)) + gdb < TH_P + 1: print(f'不能自动补（/p/ 除阻太弱，加 {cap_:g} dB 也不够；用户逐处同意可在 核对确认.除阻加强放宽 写 "{lab} {pos_}"）：', line); continue
             ra, rb = pos_r[0], min(pos_r[1] + 2, pos_r[0] + 16)
-            d.setdefault('除阻加强', {}).setdefault(lab, {})['句末' if g == last else str(g + 1)] = [round(ra * F5 / SR, 6), round(rb * F5 / SR, 6), gdb]; n += 1
+            d.setdefault('除阻加强', {}).setdefault(lab, {})['句末' if g == last else str(g + 1)] = [round(ra * F5 / SR, 6), round(rb * F5 / SR, 6), gdb] + ([str(ok8_)] if gdb > 6 else []); n += 1
             print(f'写入 {no} {lab} {"句末" if g == last else "第%d个标点" % (g + 1)} /p/ 除阻加强 w {ra * F5 / SR:.3f}–{rb * F5 / SR:.3f}s +{gdb} dB'); continue
         if deep: on = pos_c + 1
         else:
