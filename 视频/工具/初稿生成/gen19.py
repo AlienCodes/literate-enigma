@@ -12,7 +12,7 @@ S=[
      "（with streaked petals：介词短语作插入语，说明碎色郁金香的样子）"]]),
 (2,[[[("In early February 1637,","1637年2月初，"),("at a sale in Haarlem, the **hub** of the trade,","在交易**中心**(hub)哈勒姆的一场交易会上，"),("no one would **bid**.","无人**出价**(bid)。")],
      "（the hub of the trade：同位语，说明 Haarlem；\nwould：表示过去的意愿，no one would bid 即没有人愿意出价）"]]),
-(2,[[[("Days later,","几天后，"),("at an **auction** in Alkmaar,","在阿尔克马尔的一场**拍卖会**(auction)上，"),("one bulb","一只球茎"),("still fetched 5,200 guilders,","仍卖出了5,200荷兰盾——")]],
+(2,[[[("Days later,","几天后，"),("at an **auction** in Alkmaar,","在阿尔克马尔的一场**拍卖会**(auction)上，"),("one bulb","一只球茎"),("still **fetched** 5,200 guilders,","仍**卖出了**(fetched)5,200荷兰盾——")]],
     [[("the Dutch **currency** of the day,","当时荷兰的**货币**(currency)——"),("more than a decade's **wages** for a skilled craftsman.","比一名熟练工匠十多年的**工钱**(wages)还多。")],
      "（fetch：卖得某个价钱；the Dutch currency of the day：同位语，说明 guilders；\nmore than…：同位语，换算这笔钱）"]]),
 (2,[[[("But","但"),("the **frenzy**","这股**狂潮**(frenzy)"),("was over.","已是强弩之末。")]]]),
