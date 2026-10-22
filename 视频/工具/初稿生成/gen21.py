@@ -18,7 +18,7 @@ S=[
     [[("had **originally** been **destined**","**原本**(originally)就**注定**(destined)"),("to **come down** after twenty years.","要在二十年后**拆除**(come down)。")],
      "（be destined to do：注定要……；come down：被拆除）"]]),
 (2,[[[("The **high-ranking** deputy","那位**位高权重的**(high-ranking)副总长"),("was Victor Lustig,","正是维克多·卢斯蒂格，")]],
-    [[("a **crook**","一个**骗子**(crook)，"),("whose **ministerial** stationery","他的那些**部长的**(ministerial)信笺"),("was a **forgery**.","都是**伪造品**(forgery)。")],
+    [[("a **crook**","一个**骗子**(crook)，"),("whose **ministerial** **stationery**","他的那些**部长的**(ministerial)**信笺**(stationery)"),("was a **forgery**.","都是**伪造品**(forgery)。")],
      "（a crook：同位语，说明 Victor Lustig；\nwhose…：定语从句，修饰 crook）"]]),
 (2,[[[("He had read a newspaper article","他曾读到过报纸上的一篇文章，"),("in which the authorities **lamented**","文中当局**哀叹**(lamented)")],
      "（in which…：定语从句，修饰 article）"],
