@@ -33,7 +33,7 @@ S=[
      "（leave for：动身前往）"]]),
 (4,[[[("**Fleeced**","被**骗走**(Fleeced)钱财，"),("and too **ashamed** to go to the police,","又实在太**丢人**(ashamed)、**没脸**(ashamed)去报警，")],
      "（Fleeced and too ashamed…：过去分词与形容词并列作状语；\ntoo…to…：太……而不能……；go to the police：报警）"],
-    [[("Poisson","普瓦松"),("swallowed the loss **quietly**.","只能**默默**(quietly)咽下这笔损失。")]]]),
+    [[("Poisson","普瓦松"),("swallowed the loss **quietly**.","只能**默默地**(quietly)咽下这笔损失。")]]]),
 (4,[[[("Not a **whisper** of the **deceit** appeared in print.","报纸上没有出现关于这场**骗局**(deceit)的半点**风声**(whisper)。")],
      "（Not a…：一点……都没有；in print：见报，在报刊上）"]]),
 (5,[[[("About a month later","大约一个月后，"),("Lustig **had the gall to** **reappear**","卢斯蒂格**厚颜无耻地去**(had the gall to)**再一次出现**(reappear)，")],
