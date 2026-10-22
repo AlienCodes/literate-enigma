@@ -15,7 +15,7 @@ S=[
 (2,[[[("The **pretext**","这个**借口**(pretext)"),("was not **absurd**.","并不**荒唐**(absurd)。")]]]),
 (2,[[[("Built for the 1889 World's Fair,","这座为1889年世博会而建的"),("the **monument**","**纪念建筑**(monument)，")],
      "（Built for…：过去分词短语，补充说明 the monument）"],
-    [[("had **originally** been **destined**","**原本**(originally)就**注定**(destined)"),("to come down after twenty years.","要在二十年后拆除。")],
+    [[("had **originally** been **destined**","**原本**(originally)就**注定**(destined)"),("to **come down** after twenty years.","要在二十年后**拆除**(come down)。")],
      "（be destined to do：注定要……；come down：被拆除）"]]),
 (2,[[[("The **high-ranking** deputy","那位**位高权重的**(high-ranking)副总长"),("was Victor Lustig,","正是维克多·卢斯蒂格，")]],
     [[("a **crook**","一个**骗子**(crook)，"),("whose **ministerial** stationery","他那些**部门的**(ministerial)信笺"),("was a **forgery**.","都是**伪造品**(forgery)。")],
