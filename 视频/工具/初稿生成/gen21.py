@@ -37,7 +37,7 @@ S=[
      "（Not a…：一点……都没有；in print：见报，在报刊上）"]]),
 (5,[[[("About a month later","大约一个月后，"),("Lustig **had the gall to** **reappear**","卢斯蒂格**厚颜无耻地去**(had the gall to)**再一次出现**(reappear)，")],
      "（have the gall to do：竟厚着脸皮做……）"],
-    [[("with an **encore** of his **script** for new dealers.","对另一批商人**重演**(encore)他那套**剧本**(script)。")],
+    [[("with an **encore** of his **script** for new dealers.","对新的一批商人**重演**(encore)他那套**剧本**(script)。")],
      "（an encore of…：……的重演）"]]),
 (5,[[[("This time","这一次，"),("the winner","那位中标者"),("grew **distrustful**","起了**疑心**(distrustful)，"),("and went to the police.","报了警。")]]]),
 (5,[[[("The **affair**","这桩**事件**(affair)"),("made the papers,","上了报纸，"),("and Lustig made his **getaway**.","卢斯蒂格**逃之夭夭**(getaway)。")],
