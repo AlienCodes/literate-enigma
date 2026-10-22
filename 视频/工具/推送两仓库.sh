@@ -8,12 +8,14 @@ P=/home/user/postgraduate-vocabulary; L=/home/user/literate-enigma; B=claude/ado
 T=$'\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01XbsiuYS9p9y2vNiB4h6ZZU'
 cd $P; git add -A 视频 CLAUDE.md 新版定稿   # 新版定稿：文章本身也会改（撞词去掉重点词等）
 if ! git diff --cached --quiet; then git commit -qm "$1$T"; fi
+git pull -q --no-rebase --no-edit origin main   # 2026-10-22：别的会话（每篇新开会话）可能先推了，先合并远端再算差异、再推
 git -c core.quotepath=off diff --name-status origin/main HEAD -- 视频 > /tmp/_chg.txt || true
 while IFS=$'\t' read -r st f g; do
   case $st in D) rm -f "$L/$f";; R*) rm -f "$L/$f"; f=$g; mkdir -p "$L/$(dirname "$f")"; cp "$P/$f" "$L/$f";; *) mkdir -p "$L/$(dirname "$f")"; cp "$P/$f" "$L/$f";; esac
   [ -e "$L/$f" ] && chmod --reference="$P/$f" "$L/$f"   # 文件权限也一致（14：草稿声音.sh 一边 755 一边 644，两仓库比对不过）
 done < /tmp/_chg.txt
 git push -q origin main
+(cd $L; git pull -q --no-rebase --no-edit origin $B)   # 镜像分支同样先合并别的会话推的
 cp $P/CLAUDE.md $L/CLAUDE.md   # CLAUDE.md 以 postgraduate-vocabulary 为准（G11：定稿流水线用它覆盖工作分支，只改工作分支那份会被冲掉）
 cd $L; git add -A
 if ! git diff --cached --quiet; then git commit -qm "镜像：$1$T"; fi
