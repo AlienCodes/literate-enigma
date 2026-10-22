@@ -58,7 +58,7 @@ CONF={"已告诉用户被去掉的重点词":"2026-10-22 已在会话中把 refl
  "短语":{"S10 angle … of":"angle of elevation 里 elevation 因撞词（第10篇）已去掉加粗；angle 本身就是“角度”（速查表释义），of elevation 写在 note",
   "S14 in … cost-cutting":"in 是普通介词（在……时），cost-cutting 本身就是“削减成本”（速查表释义），不是 in + 名词的固定用法"}}
 out={"no":"22","title_en":"The Building That Melted a Car","title_zh":"会烤化汽车的大楼","title_fx":{"hl":["Melted","Car"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局",
-     "高亮按实际开口":True,"高亮开口门槛":40,"结尾句":{"S末句号":{"整句语速":0.8}},
+     "高亮按实际开口":True,"高亮开口门槛":40,"结尾句":{"S19":{"整句语速":0.8,"依据":"全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：最后一句 The ballot was unanimous. 没有句中标点，整句 0.80 倍速（同 01 S18）"}},
      "术语":{"London":"伦敦","Jaguar":"捷豹","Martin Lindsay":"马丁·林赛","Eastcheap":"伊斯特奇普街","Rafael Viñoly":"拉斐尔·维诺利","Viñoly":"维诺利","Fenchurch Street":"芬丘奇街",
              "Celsius":"摄氏度","Walkie-Talkie":"对讲机","Walkie-Scorchie":"烤焦机","Vdara":"维达拉","Las Vegas":"拉斯维加斯","Building Design":"建筑设计","Carbuncle Cup":"烂疮杯","UK":"英国"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
