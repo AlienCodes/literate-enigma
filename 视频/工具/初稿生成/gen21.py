@@ -43,7 +43,7 @@ S=[
      "（distrustful of：怀疑…，对…不相信，认为…靠不住）\n（常与 of 连用，表示对……不信任或怀疑）"]]),
 (5,[[[("The **affair**","这桩**事件**(affair)"),("made the papers,","上了报纸，"),("and Lustig made his **getaway**.","卢斯蒂格**逃之夭夭**(getaway)。")],
      "（make the papers：上报纸；\nmake one's getaway：逃走）"]]),
-(5,[[[("The much-repeated second sale","那个流传甚广的第二次出售，"),("is a **fairy tale**.","只是一个**童话**(fairy tale)。")]]]),
+(5,[[[("The **much-repeated** second sale","那个**被反复提及的**(much-repeated)第二次出售，"),("is a **fairy tale**.","只是个**童话**(fairy tale)。")]]]),
 (6,[[[("Later arrested in the United States","后来，卢斯蒂格在美国"),("for making **fake** money,","因制造**假冒的**(fake)货币被捕，")],
      "（Later arrested…：过去分词短语作状语，主语是 Lustig）"],
     [[("Lustig broke out of **detention**,","他从**拘留所**(detention)越狱，"),("was **recaptured** 27 days later","27天后又被**抓回**(recaptured)，"),("and served time on the **penal** island of Alcatraz.","在作为**监狱**(penal)岛的恶魔岛服刑。")],
