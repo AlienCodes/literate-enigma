@@ -19,7 +19,7 @@ S=[
 (2,[[[("His **possessions**","他的**随身物品**(possessions)"),("told another story:","却说明了另一回事：")],
      "（tell another story：说明另一回事，与前面的判断不同）"],
     [[("**leather** and grass clothing,","**皮革**(leather)和草编的衣物，"),("a **copper** **axe**,","一把**铜制**(copper)**斧子**(axe)，"),("a bow and arrows,","一张弓和几支箭，")]],
-    [[("all **prehistoric** **artefacts**.","全是**史前**(prehistoric)**器物**(artefacts)。")],
+    [[("all **prehistoric** **artefacts**.","全是**史前**(prehistoric)**人工制品**(artefacts)。")],
      "（all prehistoric artefacts：同位语，\n概括冒号后列出的这些东西）"]]),
 (2,[[[("Known as Ötzi,","被称为奥茨的"),("the natural **mummy**","这具天然**木乃伊**(mummy)"),("was a man","是一名男子，")],
      "（Known as Ötzi：过去分词短语，补充说明 the natural mummy）"],
