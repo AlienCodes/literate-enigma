@@ -10,7 +10,7 @@ S=[
      "（still in the ground：后置定语，修饰 tulip bulbs；\na speculative business…：同位语，补充说明这种买卖）"]]),
 (1,[[[("Prices of prized \"broken\" tulips, with **streaked** **petals**,","名贵的“碎色”郁金香，有着**带条纹的**(streaked)**花瓣**(petals)，价格"),("**soared**.","一路**飙升/猛涨**(soared)。")],
      "（with streaked petals：介词短语作插入语，说明碎色郁金香的样子）"]]),
-(2,[[[("In early February 1637,","1637年2月初，"),("at a sale in Haarlem, the **hub** of the trade,","在郁金香交易的**中心**(hub)哈勒姆，一场交易会上"),("no one would **bid**.","无人**出价**(bid)。")],
+(2,[[[("In early February 1637,","1637年2月初，"),("at a sale in Haarlem, the **hub** of the trade,","在交易**中心**(hub)哈勒姆的一场交易会上，"),("no one would **bid**.","无人**出价**(bid)。")],
      "（the hub of the trade：同位语，说明 Haarlem；\nwould：表示过去的意愿，no one would bid 即没有人愿意出价）"]]),
 (2,[[[("Days later,","几天后，"),("at an **auction** in Alkmaar,","在阿尔克马尔的一场**拍卖会**(auction)上，"),("one bulb","一只球茎"),("still fetched 5,200 guilders,","仍卖出了5,200荷兰盾——")]],
     [[("the Dutch **currency** of the day,","当时荷兰的**货币**(currency)——"),("more than a decade's **wages** for a skilled craftsman.","比一名熟练工匠十多年的**工钱**(wages)还多。")],
