@@ -34,7 +34,7 @@ S=[
     [[("that **preached** **against** **greed**.","这些小册子**宣传反对**(preached against)**贪婪**(greed)。")],
      "（rely on：依靠，依据；\nthat…：定语从句，修饰 pamphlets）"]]),
 (4,[[[("Anne Goldgar, a **historian** at King's College London,","伦敦国王学院的**历史学家**(historian)安妮·戈德加")]],
-    [[("**scoured** Dutch records","**遍查了**(scoured)荷兰的文献记录，"),("and counted only a few hundred traders,","只数出了几百名交易者，"),("mostly merchants and craftsmen.","大多是商人和工匠。")],
+    [[("**scoured** Dutch records","**彻底搜遍了**(scoured)荷兰的文献记录，"),("and counted only a few hundred traders,","然而只数出了几百名交易者，"),("mostly merchants and craftsmen.","大多是商人和工匠。")],
      "（a historian at King's College London：同位语，说明 Anne Goldgar；\nmostly merchants and craftsmen：补充说明这些交易者）"]]),
 (4,[[[("She found no **bankruptcy** caused by tulips","她没有找到一桩因郁金香而起的**破产**(bankruptcy)，")]],
     [[("and no **measurable** **harm** to the **economy**.","也没有发现荷兰**经济**(economy)受到任何**可以衡量的**(measurable)**损害**(harm)。")],
