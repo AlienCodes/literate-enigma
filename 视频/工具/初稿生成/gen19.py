@@ -17,7 +17,7 @@ S=[
      "（fetch：卖得某个价钱；the Dutch currency of the day：同位语，说明 guilders；\nmore than…：同位语，换算这笔钱）"]]),
 (2,[[[("But","但是"),("the **frenzy**","这场**狂热**(frenzy)"),("was over.","已经结束了。")]]]),
 (2,[[[("Prices **collapsed**,","价格**暴跌**(collapsed)，"),("many buyers **defaulted**,","大量买家**违约**(defaulted)，"),("and **unsettled** contracts **piled up**.","**未结算的**(unsettled)合同**越积越多**(piled up)。")]]]),
-(2,[[[("Why the market turned so **swiftly**","市场为何转向得如此**迅速**(swiftly)，"),("is still **contested**.","至今仍**众说纷纭**(contested)。")],
+(2,[[[("Why the market turned so **swiftly**","市场为何转向得如此**迅速**(swiftly)，"),("is still **contested**.","至今仍**存在争议**(contested)。")],
      "（Why…swiftly：主语从句，作句子的主语）"]]),
 (3,[[[("Two centuries later,","两个世纪后，"),("Charles Mackay, a Scottish **journalist**,","苏格兰**记者**(journalist)查尔斯·麦凯")]],
     [[("**recounted** the **episode** in a book on popular delusions,","在一本论述大众错觉的书中**讲述了**(recounted)这段**往事**(episode)，")]],
