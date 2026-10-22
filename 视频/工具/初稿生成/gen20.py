@@ -54,7 +54,7 @@ S=[
 (5,[[[("The archer's **identity**","那名弓箭手的**身份**(identity)"),("is an **enigma**,","是个**谜团**(enigma)，")]],
     [[("and any **motive**","任何**动机**(motive)"),("is **conjecture**.","都只是**猜测**(conjecture)。")]]]),
 (5,[[[("Ötzi has a name,","奥茨有名字，"),("a last meal,","有最后一餐，"),("and a cause of death,","也有死因，")]],
-    [[("while his **anonymous** **killer**","而杀他的那个**无名**(anonymous)**凶手**(killer)"),("has none.","这些都没有。")],
+    [[("while his **anonymous** **killer**","而杀他的那个**不知姓名的**(anonymous)**凶手**(killer)"),("has none.","这些都没有。")],
      "（while：而，表对比；none：指名字、最后一餐和死因，一样也没有）\n（结局：1991年，两名德国徒步者在冰川旁发现了一具尸体，\n起初人们以为是现代登山者遇难；\n他的随身物品却显示，他生活在约5,300年前，\n这具木乃伊后来被称为奥茨。\n2001年，X 光片在他左肩里发现了一枚燧石箭头，\n箭伤撕裂了动脉，研究者认为他几分钟内就死了。\n那名弓箭手的身份至今是个谜，动机也只能猜测。）"]]),
 ]
 CONF={"牛津逗号":{"S5 a copper axe, a bow and":"不缺牛津逗号：冒号后三项 leather and grass clothing、a copper axe、a bow and arrows 用逗号连列，最后一项前没有 and；a bow and arrows 是一项（一张弓和几支箭）",
