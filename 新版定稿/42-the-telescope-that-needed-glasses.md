@@ -8,7 +8,7 @@ Its first **snapshots** came back **blurred** and **fuzzy**. In June 1990 NASA a
 
 The trouble began with **calibration**. A **lens** in the **assembly** that checked the mirror's shape had been **offset** by about 1.3 **millimetres**, so the mirror was ground to the wrong **curve**. A second, independent test by the contractor, Perkin-Elmer, gave a **divergent** result, but engineers and NASA managers judged it less **reliable** and left the **contradictory** reading **unexplored**.
 
-The mirror could not be repaired in orbit, so engineers **prescribed** **tailored** glasses. COSTAR, a **corrective** **cabinet** the size of a refrigerator, carried small mirrors on **adjustable** arms that **intercepted** the light and **compensated** for the **imperfect** mirror's **distortion** before the light reached the instruments. The mirror itself would stay **untouched**, and a new main camera was prepared.
+The mirror could not be repaired in orbit, so engineers **prescribed** **tailored** glasses. COSTAR, a **corrective** **cabinet** the size of a refrigerator, carried small mirrors on **adjustable** arms that **intercepted** the light and **compensated** for the **imperfect** mirror's distortion before the light reached the instruments. The mirror itself would stay **untouched**, and a new main camera was prepared.
 
 On 2 December 1993 Endeavour **ascended** with seven astronauts. After a **rendezvous**, they worked in **tandem** across five spacewalks, about 35 and a half hours of **exertion**, **installing** COSTAR and the new camera. The **imagery** turned **crisp**, Hubble's **vision** **renewed**. The mirror still carries that 2.2-micrometre flaw, and the light it **gathers** is corrected only after leaving it.
 
@@ -20,7 +20,7 @@ On 2 December 1993 Endeavour **ascended** with seven astronauts. After a **rende
 
 问题始于**校准**(calibration)。检测主镜形状的那套**组件**(assembly)中，一块**透镜**(lens)**错位**(offset)了约1.3**毫米**(millimetres)，主镜因此被磨成了错误的**曲面**(curve)。承包商珀金-埃尔默公司做的第二次独立测试给出了**不同**(divergent)的结果，但工程师和美国航天局的管理人员认为它不太**可靠**(reliable)，这一**相互矛盾**(contradictory)的读数也就**无人深究**(unexplored)。
 
-主镜无法在轨道上修复，于是工程师**开出**(prescribed)了一副**量身定制**(tailored)的眼镜。COSTAR 是一个冰箱大小的**矫正**(corrective)**箱体**(cabinet)，**可调节**(adjustable)的机械臂上装着小镜子，在光线到达仪器之前将光**截住**(intercepted)，**抵消**(compensated)**有缺陷**(imperfect)的主镜造成的**畸变**(distortion)。主镜本身将保持**原封不动**(untouched)，一台新的主相机也已准备就绪。
+主镜无法在轨道上修复，于是工程师**开出**(prescribed)了一副**量身定制**(tailored)的眼镜。COSTAR 是一个冰箱大小的**矫正**(corrective)**箱体**(cabinet)，**可调节**(adjustable)的机械臂上装着小镜子，在光线到达仪器之前将光**截住**(intercepted)，**抵消**(compensated)**有缺陷**(imperfect)的主镜造成的畸变。主镜本身将保持**原封不动**(untouched)，一台新的主相机也已准备就绪。
 
 1993年12月2日，"奋进号"载着七名宇航员**升空**(ascended)。完成**交会**(rendezvous)后，他们**协同**(tandem)进行了五次太空行走，**辛苦作业**(exertion)共约35个半小时，**安装**(installing)了 COSTAR 和新相机。**影像**(imagery)变得**清楚分明**(crisp)，哈勃的**视力**(vision)得以**恢复**(renewed)。主镜至今仍带着那2.2微米的缺陷，它**收集**(gathers)的光要离开镜面之后才得到矫正。
 
@@ -65,7 +65,6 @@ On 2 December 1993 Endeavour **ascended** with seven astronauts. After a **rende
 | intercepted | v. (intercept) 拦截，截住（intercept a pass/message） | 4 |
 | compensated | v. (compensate) 补偿，抵消（compensate for a loss/weakness） | 4 |
 | imperfect | adj. 有缺陷的，不完美的（an imperfect world/understanding） | 4 |
-| distortion | n. 变形，畸变；歪曲（image distortion；a distortion of the facts） | 4 |
 | untouched | adj. 原封未动的，未受影响的（leave food untouched） | 4 |
 | ascended | v. (ascend) 上升，登上（ascend a staircase；the plane ascended） | 5 |
 | rendezvous | n. （航天器）交会；约会（a secret rendezvous；orbital rendezvous） | 5 |
