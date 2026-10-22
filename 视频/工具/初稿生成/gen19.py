@@ -19,7 +19,7 @@ S=[
 (2,[[[("Prices **collapsed**,","价格**暴跌**(collapsed)，"),("many buyers **defaulted**,","大量买家**违约**(defaulted)，"),("and **unsettled** contracts **piled up**.","**未结算的**(unsettled)合同**越积越多**(piled up)。")]]]),
 (2,[[[("Why the market turned so **swiftly**","市场为何转向得如此**迅速**(swiftly)，"),("is still **contested**.","至今仍**存在争议**(contested)。")],
      "（Why…swiftly：主语从句，作句子的主语）"]]),
-(3,[[[("Two centuries later,","两个世纪后，"),("Charles Mackay, a Scottish **journalist**,","苏格兰**记者**(journalist)查尔斯·麦凯")]],
+(3,[[[("Two centuries later,","两个世纪后，"),("Charles Mackay, a Scottish **journalist**,","查尔斯·麦凯，一位苏格兰**记者**(journalist)，")]],
     [[("**recounted** the **episode** in a book on popular delusions,","在一本论述大众错觉的书中**讲述了**(recounted)这段**往事**(episode)，")]],
     [[("casting it as national **hysteria**.","把它写成一场举国上下的**集体歇斯底里**(hysteria)。")],
      "（a Scottish journalist：同位语，说明 Charles Mackay；\ncasting…：现在分词短语作伴随状语；cast A as B：把A描绘成B）"]]),
