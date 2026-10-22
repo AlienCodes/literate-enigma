@@ -18,7 +18,9 @@ def 生成并核对(S, out):
         old=json.load(open(f"scripts/{no}.json"))
         for k_,v_ in old.items():
             if k_ == "核对确认":
-                for kk,vv in v_.items(): out[k_].setdefault(kk,{}); out[k_][kk]={**vv,**out[k_][kk]}
+                for kk,vv in v_.items():
+                    if isinstance(vv,dict) and isinstance(out[k_].get(kk,{}),dict): out[k_][kk]={**vv,**out[k_].get(kk,{})}
+                    else: out[k_].setdefault(kk,vv)   # 字符串值的确认（已告诉用户被去掉的重点词）：程序里写的为准（21 重跑生成时这里报 TypeError）
             elif k_ not in ("no","title_en","title_zh","title_fx","sentences"): out[k_]=v_
     json.dump(out,open(f"scripts/{no}.json","w"),ensure_ascii=False,indent=1)
     art=open(glob.glob(f"/home/user/postgraduate-vocabulary/新版定稿/{no}-*.md")[0]).read()

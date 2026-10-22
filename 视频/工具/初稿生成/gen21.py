@@ -4,7 +4,7 @@ import json,re,glob,os
 S=[
 (1,[[[("In 1925","1925年，"),("six **scrap-metal** **traders**","六名经营**废金属**(scrap-metal)的**商人**(traders)"),("met secretly at the Hôtel de Crillon in Paris.","在巴黎的克里雍酒店秘密会面了。")],
      "（at the Hôtel de Crillon in Paris：地点状语，中文提到动词前）"]]),
-(1,[[[("A deputy **director-general** of the Ministry of Posts and Telegraphs","邮电部的一位副**总长**(director-general)"),("shared the **momentous** news, **confidentially**,","向他们**私下地**(confidentially)透露了一个**重大的**(momentous)消息，")],
+(1,[[[("A **deputy** **director-general** of the Ministry of Posts and Telegraphs","邮电部的一位**副**(deputy)**总负责人**(director-general)"),("shared the **momentous** news, **confidentially**,","向他们**私下地**(confidentially)分享了一个**重大的**(momentous)消息，")],
      "（of the Ministry…：介词短语作后置定语；\nconfidentially：插入的副词，修饰 shared）"],
     [[("that the Eiffel Tower was to be sold for scrap.","埃菲尔铁塔将作为废铁出售。")],
      "（that…：同位语从句，说明 news 的内容；\nbe to be done：将要被……）"]]),
@@ -52,7 +52,7 @@ S=[
     [[("and the one who kept his money","没付钱的那个"),("went to the police.","去报了警。")],
      "（Of…：在……之中；marks：行骗对象；keep mum：闭口不言）\n（结局：1925年，卢斯蒂格冒充邮电部副总长，\n把埃菲尔铁塔当作废铁卖给了普瓦松，还另收了一笔贿赂；\n普瓦松羞于报警，报纸上没有半点消息。\n约一个月后他故技重施，这次中标者起疑报警，他逃走了，\n流传的第二次出售并未成交。\n后来他在美国因伪造货币被捕，越狱后27天又被抓回，\n关进恶魔岛，1947年死于肺炎。）"]]),
 ]
-CONF={"已告诉用户被去掉的重点词":"2026-10-22 已在会话中把 secretly（与03 secretion 同根撞词，从21去掉）原样告诉用户，并说明69的 confidential 改回普通词","们":{"S2-1 **(director-general)向他们**":"们不在加粗里，是代词“他们”（指六名商人），沿用文章定稿“向他们私下透露”；被报出只因紧跟在 **总长**(director-general) 后面"},
+CONF={"已告诉用户被去掉的重点词":"2026-10-22 已在会话中把 secretly（与03 secretion 同根撞词，从21去掉）原样告诉用户，并说明69的 confidential 改回普通词","们":{"S2-1 **(director-general)向他们**":"们不在加粗里，是代词“他们”（指六名商人），沿用文章定稿“向他们私下分享”；被报出只因紧跟在 **总负责人**(director-general) 后面"},
  "短语":{"S2 director-general … of":"of the Ministry of Posts and Telegraphs 是普通后置定语（邮电部的），director-general 本身就是“总长”，不是短语型用法",
   "S5 destined … to":"to 是不定式符号（to come down），不是介词；destined 本身就是“注定的”，中文“注定要……”已把意思说全",
   "S8 impatient … to":"to 是不定式符号（to gain a foothold），不是介词；impatient 本身就是“急切的”，中文“迫不及待地想……”已说全",
