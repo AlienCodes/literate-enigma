@@ -37,7 +37,7 @@ S=[
      "（and left…：与 had ruptured 并列，主语都是 the puncture）"]]),
 (3,[[[("Researchers believe","研究者认为，"),("he died within minutes.","他在几分钟内就死了。")]]]),
 (3,[[[("He was about 46.","他死时约46岁。")]]]),
-(4,[[[("Another person, it is thought,","据认为，是另一个人"),("killed him.","杀死了他。")],
+(4,[[[("Another person, **it is thought**,","**据认为**(it is thought)，是另一个人"),("killed him.","杀死了他。")],
      "（it is thought：插入语，据认为）"]]),
 (4,[[[("From the wound's depth","根据伤口的深度，"),("researchers **inferred**","研究者**推断**(inferred)，")]],
     [[("that an **archer**","一名**弓箭手**(archer)"),("shot him from the **rear**, at about 30 metres.","从**背后**(rear)约30米处向他射了箭。")],
