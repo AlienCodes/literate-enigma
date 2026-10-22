@@ -23,7 +23,7 @@ S=[
 (2,[[[("He had read a newspaper article","他曾读到过报纸上的一篇文章，"),("in which the authorities **lamented**","文中当局**哀叹**(lamented)")],
      "（in which…：定语从句，修饰 article）"],
     [[("the **hefty** cost of the tower's **upkeep**.","铁塔**维护**(upkeep)费用**高昂**(hefty)。")]]]),
-(3,[[[("André Poisson,","安德烈·普瓦松，"),("a **businessman** **impatient** to gain a **foothold** in Paris,","一个**生意人**(businessman)，**迫不及待地**(impatient)想在巴黎拥有**一席之地**(foothold)，"),("won.","中标了。")],
+(3,[[[("André Poisson,","安德烈·普瓦松，"),("a **businessman** **impatient** to **gain a foothold** in Paris,","一个**生意人**(businessman)，**迫不及待地**(impatient)想在巴黎**拥有一席之地**(gain a foothold)，"),("won.","中标了。")],
      "（a businessman…：同位语，说明 André Poisson；\nimpatient to do：急于做……，形容词短语作后置定语；\ngain a foothold：站稳脚跟）"]]),
 (3,[[[("Lustig **intimated**","卢斯蒂格**暗示**(intimated)，"),("that his modest **civil-service** **remuneration**","他那份微薄的**公务员**(civil-service)**薪酬**(remuneration)"),("needed **supplementing**,","需要**补贴**(supplementing)，")],
      "（that…：宾语从句；need doing：需要被……，主动形式表被动）"],
