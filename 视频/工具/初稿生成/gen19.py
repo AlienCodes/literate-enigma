@@ -32,7 +32,7 @@ S=[
 (4,[[[("Yet","然而，"),("the **archives**","**档案**(archives)"),("tell a smaller story.","讲述的故事要小得多。")]]]),
 (4,[[[("Mackay's story","麦凯的故事"),("**relied** largely **on**","主要**依据了**(relied on)"),("**satirical** **pamphlets** of 1637","1637年的**讽刺**(satirical)**小册子**(pamphlets)，")]],
     [[("that **preached** **against** **greed**.","这些小册子**宣传反对**(preached against)**贪婪**(greed)。")],
-     "（rely on：依靠，依据；\nthat…：定语从句，修饰 pamphlets；\npreach against：劝诫勿……）"]]),
+     "（rely on：依靠，依据；\nthat…：定语从句，修饰 pamphlets；\npreach against：宣传反对……）"]]),
 (4,[[[("Anne Goldgar, a **historian** at King's College London,","伦敦国王学院的**历史学家**(historian)安妮·戈德加")]],
     [[("**scoured** Dutch records","**遍查了**(scoured)荷兰的文献记录，"),("and counted only a few hundred traders,","只数出了几百名交易者，"),("mostly merchants and craftsmen.","大多是商人和工匠。")],
      "（a historian at King's College London：同位语，说明 Anne Goldgar；\nmostly merchants and craftsmen：补充说明这些交易者）"]]),
