@@ -14,7 +14,7 @@ S=[
      "（since：因为，引出原因状语从句；\nyield：用来描述某块土地、某个矿层、或者某座冰川产出/交出了什么物品）"]]),
 (2,[[[("Taking it for a recent death,","因为误以为死者刚死不久，"),("rescuers used a **jackhammer**","救援人员使用**风钻**(jackhammer)（凿冰），")],
      "（take A for B：把A误认为B；\nTaking…：现在分词短语作状语）"],
-    [[("that **ripped** **flesh** from his left **hip**.","结果**撕下了**(ripped)他左侧**髋部**(hip)的**皮肉**(flesh)。")],
+    [[("that **ripped** **flesh** from his left **hip**.","（结果）风钻**撕下来/扯下了**(ripped)他左侧**髋骨**(hip)的**皮肉**(flesh)。")],
      "（that…：定语从句，修饰 jackhammer）"]]),
 (2,[[[("His **possessions**","他的**随身物品**(possessions)"),("told another story:","却说明了另一回事：")],
      "（tell another story：说明另一回事，与前面的判断不同）"],
