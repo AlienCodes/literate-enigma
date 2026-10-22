@@ -7,7 +7,7 @@ S=[
 (1,[[[("On 19 September 1991","1991年9月19日，"),("two German **hikers**","两名德国**徒步者**(hikers)"),("on a **trek** in the Ötztal Alps","在奥茨塔尔阿尔卑斯山**远足**(trek)时，")],
      "（on a trek in…：介词短语作后置定语，修饰 hikers）"],
     [[("found a **corpse** by a **glacier**.","在一条**冰川**(glacier)旁发现了一具**尸体**(corpse)。")]]]),
-(1,[[[("It lay on a **ridge**","它躺在一道**山脊**(ridge)上，"),("at about 3,210 metres,","海拔约3,210米，"),("on the border between Austria and Italy.","位于奥地利与意大利交界处。")]]]),
+(1,[[[("It lay on a **ridge**","它躺在一道**山脊**(ridge)上，"),("at about 3,210 metres,","海拔约3,210米，"),("on the **border** between Austria and Italy.","位于奥地利与意大利**交界处**(border)。")]]]),
 (1,[[[("The **assumption** was","当时的**假设**(assumption)是，"),("that a **modern-day** **climber**","一名**现代**(modern-day)**登山者**(climber)"),("had died on an **alpine** **slope**,","死在了**高山的**(alpine)**山坡**(slope)上，")],
      "（that…：表语从句，说明 assumption 的内容）"],
     [[("since glaciers sometimes yield frozen remains.","因为冰川有时会产出冰冻的遗体。")],
