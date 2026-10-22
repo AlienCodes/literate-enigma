@@ -27,7 +27,7 @@ S=[
      "（a businessman…：同位语，说明 André Poisson；\nimpatient to do：急于做……，形容词短语作后置定语；\ngain a foothold：站稳脚跟）"]]),
 (3,[[[("Lustig **intimated**","卢斯蒂格**暗示**(intimated)，"),("that his modest **civil-service** **remuneration**","他那份微薄的**公务员**(civil-service)**薪酬**(remuneration)"),("needed **supplementing**,","需要**补贴**(supplementing)，")],
      "（that…：宾语从句；need doing：需要被……，主动形式表被动）"],
-    [[("and Poisson paid an **additional** **bribe**.","普瓦松便**另外**(additional)付了一笔**贿赂**(bribe)。")]]]),
+    [[("and Poisson paid an **additional** **bribe**.","普瓦松然后付了一笔**额外的**(additional)**贿赂**(bribe)。")]]]),
 (3,[[[("Lustig left for Vienna with the **takings**.","卢斯蒂格带着这笔**进账**(takings)去了维也纳。")],
      "（leave for：动身前往）"]]),
 (4,[[[("**Fleeced**","被**骗走**(Fleeced)钱财、"),("and too **ashamed** to go to the police,","又**羞于**(ashamed)报警的")],
