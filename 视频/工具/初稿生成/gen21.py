@@ -35,7 +35,7 @@ S=[
     [[("Poisson","普瓦松"),("swallowed the loss **quietly**.","只能**默默**(quietly)咽下这笔损失。")]]]),
 (4,[[[("Not a **whisper** of the **deceit** appeared in print.","报纸上没有出现关于这场**骗局**(deceit)的半点**风声**(whisper)。")],
      "（Not a…：一点……都没有；in print：见报，在报刊上）"]]),
-(5,[[[("About a month later","大约一个月后，"),("Lustig had the **gall** to **reappear**","卢斯蒂格竟**厚着脸皮**(gall)又一次**露面**(reappear)，")],
+(5,[[[("About a month later","大约一个月后，"),("Lustig **had the gall to** **reappear**","卢斯蒂格**厚颜无耻地去**(had the gall to)**再一次出现**(reappear)，")],
      "（have the gall to do：竟厚着脸皮做……）"],
     [[("with an **encore** of his **script** for new dealers.","对另一批商人**重演**(encore)他那套**剧本**(script)。")],
      "（an encore of…：……的重演）"]]),
