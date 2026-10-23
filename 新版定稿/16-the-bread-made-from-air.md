@@ -46,10 +46,10 @@ BASF的卡尔·博施**扩大了**(scaled up)该方法的**规模**(scaled up)�
 | drip | 本文：滴落；v. 滴落（water dripping from the tap） | 1 |
 | pried from | 本文：从……撬出了；v. (pry) 撬开；费力获取（pry a lid off；pry information out of sb） | 1 |
 | nourishment | 本文：养分；n. 营养，养料（provide nourishment） | 1 |
-| scaled up | 本文：扩大了……规模 | 2 |
+| scaled up | 本文：扩大了……规模；短语. (scale up) 扩大……的规模（scale up production） | 2 |
 | gigantic | 本文：庞大的；adj. 巨大的，庞大的（a gigantic building/task） | 2 |
 | mass-produced | 本文：大批量生产；v. (mass-produce) 大批量生产（mass-produced cars） | 2 |
-| Hailed for | 本文：因……广受赞誉 | 2 |
+| Hailed for | 本文：因……广受赞誉；短语. (be hailed for) 因……受到称赞（be hailed for her courage） | 2 |
 | coveted | 本文：人人梦寐以求的……令人垂涎的；adj. 令人垂涎的（a coveted prize） | 2 |
 | Ploughed into | 本文：翻耕进；v. (plough) 犁，耕；把……翻进土里（plough a field；plough manure into the soil） | 2 |
 | stony | 本文：多石的；adj. 多石的；冷漠的（stony ground；a stony silence） | 2 |
@@ -85,9 +85,9 @@ BASF的卡尔·博施**扩大了**(scaled up)该方法的**规模**(scaled up)�
 | outcast | 本文：被驱逐的人；n. 被排斥者，被放逐者（a social outcast） | 5 |
 | pesticide | 本文：杀虫剂；n. 杀虫剂，农药（spray pesticide on crops） | 5 |
 | variant | 本文：变体；n. 变体，变种（a new variant of the virus） | 5 |
-| proteins | 本文：蛋白质 | 6 |
-| nitrogen | 本文：氮 | 6 |
-| passed through | 本文：经过了 | 6 |
+| proteins | 本文：蛋白质；n. (protein) 蛋白质（a diet rich in protein） | 6 |
+| nitrogen | 本文：氮；n. 氮，氮气（liquid nitrogen） | 6 |
+| passed through | 本文：经过了；短语. (pass through) 经过，穿过（pass through the town） | 6 |
 
 ## 史实与来源
 - 【T1】1909年7月，卡尔斯鲁厄，哈伯与助手向BASF代表演示桌面高压装置，用氮和氢合成氨（约185–200个大气压、约500–600摄氏度，加催化剂），液氨一滴滴流出；BASF工程师卡尔·博施负责放大，1913年秋奥保新厂开始量产（英文 gigantic plant 为描写）。液氨无色透明，英文作 transparent，中文"透明"。压力温度数值、博施1931年获诺贝尔奖正文不写。S1

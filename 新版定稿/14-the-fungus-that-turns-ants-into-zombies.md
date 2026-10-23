@@ -41,7 +41,7 @@ The real parasite's roots run far deeper, into the **geological** record. A 48-m
 | unsteady | 本文：不稳；adj. 不稳的（unsteady on one's feet） | 1 |
 | downward | 本文：向下；adv./adj. 向下（slope downward） | 1 |
 | wanders | 本文：游荡；v. (wander) 闲逛，游荡（wander around town） | 1 |
-| as if | 本文：好像 | 1 |
+| as if | 本文：好像；短语. 好像，仿佛（He acted as if nothing had happened） | 1 |
 | intoxicated | 本文：喝醉了；adj. 喝醉的；陶醉的（intoxicated drivers） | 1 |
 | leafy | 本文：枝叶茂密的；adj. 枝叶茂密的（a leafy suburb） | 1 |
 | undergrowth | 本文：林下植被；n. 林下灌丛（thick undergrowth） | 1 |

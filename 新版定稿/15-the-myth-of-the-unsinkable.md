@@ -29,10 +29,10 @@ The **doomed** liner sank within three hours. The **outdated** rules she sailed 
 | opulent | 本文：豪华的；adj. 豪华的，富丽堂皇的（an opulent hotel/lifestyle）；富裕的；opulence n. | 1 |
 | liner | 本文：邮轮；n. 大型客轮，邮轮（an ocean liner）；（定期）班轮；衬里，内衬（bin liner 垃圾袋） | 1 |
 | maiden voyage | 本文：处女航；adj. 首次的（maiden voyage 处女航；maiden speech 首次演说）；未婚的（maiden name 娘家姓）；n. （旧）少女，未婚女子 | 1 |
-| trade journal | 本文：行业期刊 | 1 |
+| trade journal | 本文：行业期刊；短语. 行业期刊，专业刊物（an article in a trade journal） | 1 |
 | dubbed | 本文：把……称为；v. (dub) 给……起绰号，把……称为（be dubbed "the Iron Lady"）；为（影片）配音；（英王）封……为爵士 | 1 |
-| practically | 本文：几乎 | 1 |
-| unsinkable | 本文：不会沉没的 | 1 |
+| practically | 本文：几乎；adv. 几乎，差不多；实际上（practically impossible） | 1 |
+| unsinkable | 本文：不会沉没的；adj. 不会沉没的（an unsinkable ship） | 1 |
 | collided with | 本文：和……相撞了；v. (collide) 碰撞，相撞（collide with）；（观点、利益）冲突，抵触；collision n. | 1 |
 | iceberg | 本文：冰山；n. 冰山（the tip of the iceberg 冰山一角，问题的表面） | 1 |
 | vanished | 本文：消失；v. (vanish) 突然消失，不见；灭绝，消亡（vanish without trace 消失得无影无踪） | 1 |
@@ -46,7 +46,7 @@ The **doomed** liner sank within three hours. The **outdated** rules she sailed 
 | pegged to | 本文：把……与……挂钩；v. (peg) 将（价格、数额等）固定在某水平，使与……挂钩（peg A to B）；用木钉固定；n. 木钉，挂钩；衣夹 | 2 |
 | gross tonnage | 本文：总吨位；adj. 总的，毛的（gross income/weight；gross tonnage 总吨位）；严重的，恶劣的（gross negligence 重大过失）；（口）恶心的；v. 总收入为 | 2 |
 | scale | 本文：等级表……等级体系；n. 等级，级别，等级表（a pay scale 工资级别）；规模，范围（on a large scale）；比例（尺）；刻度；（鱼）鳞；v. 攀登（scale a wall）；scale back/down 缩减 | 2 |
-| topped out at | 本文：最高达……到 | 2 |
+| topped out at | 本文：最高达……到；短语. (top out at) 最高达到，封顶于（prices topped out at $100） | 2 |
 | exceeding | 本文：超出了；v. (exceed) 超过，超出（数量、限度）（exceed the speed limit 超速）；越出（权限）（exceed one's authority）；excess n. | 2 |
 | requirement | 本文：要求；n. 要求，必备条件，规定（meet a requirement 达到要求）；需要，需求（energy requirements） | 2 |
 | capacity | 本文：容量；n. 容量，容积；（可容纳的）最大数量（seating capacity 座位数；at full capacity 满负荷）；能力（capacity for/to do）；身份，资格（in one's capacity as 以……身份） | 2 |
@@ -59,7 +59,7 @@ The **doomed** liner sank within three hours. The **outdated** rules she sailed 
 | wireless | 本文：无线电；adj. 无线的（wireless network）；n. （旧，英）无线电；无线电报（by wireless） | 3 |
 | operator | 本文：操作员；n. 操作员，（电话、无线电）接线员，报务员；经营者，运营公司（a tour operator 旅行社）；（口）精明圆滑的人 | 3 |
 | on the payroll of | 本文：受雇于；n. 工资名单，在职人员名单（on the payroll of 受雇于，领……的薪水）；工资总额 | 3 |
-| switched off | 本文：关掉了 | 3 |
+| switched off | 本文：关掉了；短语. (switch off) 关掉，切断（switch off the light） | 3 |
 | Hindsight | 本文：事后看来；n. 后见之明，事后的认识（in hindsight / with hindsight 事后看来） | 3 |
 | negligence | 本文：疏忽；n. 疏忽，失职，过失（gross negligence 重大过失）；negligent adj.；neglect v./n. | 3 |
 | obliged to | 本文：强制；v. (oblige) 迫使，使负有义务（be obliged to do 不得不）；帮忙，施恩（I'm much obliged. 不胜感激）；obligation n. | 3 |

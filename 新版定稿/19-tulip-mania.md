@@ -38,7 +38,7 @@ The **boom** was real but **fleeting**. What spread, and still **circulates** ne
 | hub | 本文：中心；n. 中心，枢纽（a transport/financial hub；the hub of activity）；（车轮的）轮毂 | 2 |
 | bid | 本文：出价；v. （拍卖中）出价，投标（bid for/on sth；bid £100 for…）；努力争取（bid for power）；n. 出价，投标；努力，尝试（in a bid to do sth 为了做某事） | 2 |
 | auction | 本文：拍卖会；n. 拍卖，拍卖会（sell sth at auction；put sth up for auction 将……拿去拍卖）；v. 拍卖（auction off）；auctioneer n. 拍卖人 | 2 |
-| fetched | 本文：卖出了 | 2 |
+| fetched | 本文：卖出了；v. (fetch) 卖得（某价钱）；去拿来（the painting fetched £1 million） | 2 |
 | currency | 本文：货币；n. 货币，通货（foreign currency 外币；a single currency）；流行，通用（gain currency 开始流行） | 2 |
 | wages | 本文：工钱；n. (wage) 工资，工钱（多指按周、按日计的报酬；a minimum wage 最低工资；wage increases）；v. 开展，进行（战争、运动）（wage war/a campaign） | 2 |
 | frenzy | 本文：狂热；n. 狂热，狂乱，一阵疯狂（a buying frenzy 抢购狂潮；in a frenzy of…；a media frenzy）；frenzied adj. | 2 |
@@ -49,7 +49,7 @@ The **boom** was real but **fleeting**. What spread, and still **circulates** ne
 | swiftly | 本文：迅速；adv. 迅速地，很快地（act/move swiftly）；swift adj. 迅速的，立即的（a swift response） | 2 |
 | contested | 本文：存在争议；adj. 有争议的（a hotly contested issue/claim）；v. (contest) 对……提出异议，争辩（contest a decision/will）；争夺，竞争（contest a seat）；n. 比赛，竞赛；争夺 | 2 |
 | journalist | 本文：记者；n. 新闻记者，新闻工作者（a freelance journalist）；journalism n. 新闻业 | 3 |
-| popular delusions | 本文：大众错觉/群体性妄想 | 3 |
+| popular delusions | 本文：大众错觉/群体性妄想；短语. 大众错觉，群体性妄想（Extraordinary Popular Delusions and the Madness of Crowds） | 3 |
 | recounted | 本文：讲述了；v. (recount) 讲述，叙述（recount a story/one's experiences）；另作 n./v. 重新计票（a recount of the votes）；比较 cast sth as… 把……描绘成 | 3 |
 | episode | 本文：事件；n. 一段经历，插曲，事件（a painful/sad episode）；（电视剧、连载的）一集（the final episode）；（疾病的）发作 | 3 |
 | hysteria | 本文：歇斯底里；n. 歇斯底里，（群体）狂热，过度激动（mass hysteria 集体歇斯底里）；癔症；hysterical adj. | 3 |
