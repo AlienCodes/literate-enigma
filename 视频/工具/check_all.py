@@ -32,10 +32,12 @@ for f in [f'{ROOT}/视频/视频/{no}.mp4',f'{ROOT}/视频/对照文本/{no}-文
 STOP={'the','and','for','with','into','from','that','this','have','been','about','over','under','after','before','out','off','its','his','her','their'}
 def stem(w):
     w=w.lower()
-    for suf in ('ingly','edly','ness','ment','ings','ing','ied','ies','ed','es','ly','ion','s'):   # 'ion'：frustration→frustrat，与 frustrating 对上（09 用户要加 frustrating，撞第40篇 frustration，原来查不出）
+    # 只去屈折词尾（时态、复数、三单）：用户 2026-10-23“他们并不是一个词，只是同根词……他们也不属于那种就是时态上的变化”——
+    # 同根不同词（circulation↔circulates、imprisonment↔imprisoned）不算撞车；同一个词的时态/复数变化（dam↔dams、settled↔settles）才算
+    for suf in ('ings','ing','ied','ies','ed','es','s'):
         if w.endswith(suf) and len(w)-len(suf)>=(3 if suf=='s' else 4): return w[:-len(suf)]   # 's' 留 3 个字母：dams→dam（09 dam 撞第47篇 dams，原来查不出）
     return w
-assert stem('dams')==stem('dam')=='dam' and stem('drought')=='drought' and stem('frustration')==stem('frustrating')   # 自检：09 两处撞词都要能对上
+assert stem('dams')==stem('dam')=='dam' and stem('drought')=='drought' and stem('settled')==stem('settles') and stem('circulation')!=stem('circulates') and stem('imprisonment')!=stem('imprisoned') and stem('contribution')!=stem('contributed')   # 自检：时态/复数算同一个词，同根不同词不算（用户 2026-10-23）
 def ckey(b):
     """撞词按整个重点词比：短语型重点词（trade journal、take first place）是一个整体，组成它的单个词在别篇加粗过不算撞车（用户 2026-10-16：“这是一个短语型词汇……这个不算撞车”）；单词照旧去词尾比（dams = dam）"""
     ws=[w.lower() for w in re.findall(r"[A-Za-z]+",b)]
