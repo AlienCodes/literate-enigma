@@ -25,11 +25,11 @@ S=[
      "（pose a question：提出问题）"]]),
 (3,[[[("He **proposed** a **practical** **substitute**,","他**建议**(proposed)用一种**切实可行的**(practical)**替代办法**(substitute)取而代之，"),("the imitation game,","即模仿游戏，"),("now **widely** called the Turing test.","如今**普遍**(widely)称为图灵测试。")],
      "（the imitation game：同位语，说明 substitute；\nnow widely called…：过去分词短语，补充说明）"]]),
-(3,[[[("An **interrogator**","一名**提问者**(interrogator)"),("exchanges typed messages with two **concealed** players,","通过打字，与两个**隐藏起来的**(concealed)参与者交流，"),("one human and one machine.","其中一个是人，一个是机器。")],
+(3,[[[("An **interrogator**","一名**审问者**(interrogator)"),("exchanges typed messages with two **concealed** players,","通过打字，与两个**隐藏起来的**(concealed)参与者交流，"),("one human and one machine.","其中一个是人，一个是机器。")],
      "（exchange messages with sb：与某人互通消息；\none human and one machine：同位语，说明 players）"]]),
-(3,[[[("If the interrogator cannot **consistently** **distinguish** them,","如果提问者无法**始终如一地**(consistently)**分辨**(distinguish)二者，"),("the machine passes.","机器就算通过测试。")],
+(3,[[[("If the interrogator cannot","如果审问者无法")]],[[("**consistently** **distinguish** them,","**始终如一地**(consistently)**区分出**(distinguish)二者，")]],[[("the machine passes.","机器就算通过测试。")],
      "（them：指人和机器两个参与者；\npass：通过测试）"]]),
-(4,[[[("His **exceptional** **wartime** **contribution**","他在**战时**(wartime)**卓越的**(exceptional)**贡献**(contribution)"),("did not protect him.","并没有护住他。")]]]),
+(4,[[[("His **exceptional** **wartime** **contribution**","他**杰出的**(exceptional)**战时**(wartime)**贡献**(contribution)，"),("did not protect him.","并没有保护到他。")]]]),
 (4,[[[("On 31 March 1952","1952年3月31日，"),("he was **convicted of** \"gross indecency\",","他被**判定犯有**(convicted of)“严重猥亵罪”，")],
      "（be convicted of：被判定犯有……罪）"],
     [[("the charge then used against gay men.","这是当时用来惩治男同性恋者的罪名。")],
@@ -55,7 +55,7 @@ CONF={"即":{"S4-2 即":"沿用文章定稿中文“即德国的加密机器”�
   "S6 operational … from":"from March 1940 是普通时间状语（从1940年3月起），operational 本身就是“运转中的”（文章定稿“投入运行”），不是短语型用法",
   "S1 a formidable intellect":"formidable、intellect 两个都是重点词，各自加粗、各自标中文（强大的 / 才智），文章定稿就是分开标的；formidable 的“强大的”是用户 2026-10-23 定的译法，意思不靠整体搭配产生",
   "S3 mathematical logic":"mathematical、logic 两个都是重点词，各自加粗、各自标中文（数理 / 逻辑），合起来正是“数理逻辑”，文章定稿就是分开标的，中文已标全"}}
-out={"no":"23","title_en":"The Man Who Gave Machines a Mind","title_zh":"为机器点燃思想的人","title_fx":{"hl":["Machines","Mind"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","换行变更已获同意":{"S5":"用户 2026-10-23 原话“这地方这个insight下面所对应的意思 改为 深刻见解(破解思路) 改成这个”——加了（破解思路）后中文一行放不下，句号被挤成单独一行，在“）”后折成两行（字不改，待改清单第6条）","S4":"用户 2026-10-23：“领导关于 海军恩尼格玛密码机 的工作”“按照我给的这个新的改……就最新的这个，最新的这个按照这个。”——第二屏拆回原来两组（换行回到草稿视频原样，待改清单第5条）"},
+out={"no":"23","title_en":"The Man Who Gave Machines a Mind","title_zh":"为机器点燃思想的人","title_fx":{"hl":["Machines","Mind"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","换行变更已获同意":{"S10":"用户 2026-10-23 原话：“这个地方分割一下，分割一下，分割成两行……总共是三行……最上面的一句分割成两行，从我刚刚给你的这个地方开始。”——If the interrogator cannot / consistently distinguish them, / the machine passes. 三组（待改清单第10条）","S5":"用户 2026-10-23 原话“这地方这个insight下面所对应的意思 改为 深刻见解(破解思路) 改成这个”——加了（破解思路）后中文一行放不下，句号被挤成单独一行，在“）”后折成两行（字不改，待改清单第6条）","S4":"用户 2026-10-23：“领导关于 海军恩尼格玛密码机 的工作”“按照我给的这个新的改……就最新的这个，最新的这个按照这个。”——第二屏拆回原来两组（换行回到草稿视频原样，待改清单第5条）"},
      "高亮按实际开口":True,"高亮开口门槛":40,"结尾句":{"S19":{"整句语速":0.8,"依据":"全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：最后一句 The country that prosecuted him put his face on its money. 没有句中标点，整句 0.80 倍速（同 01 S18）"}},
      "术语":{"Alan Turing":"艾伦·图灵","Turing":"图灵","Bletchley Park":"布莱切利园","Enigma":"恩尼格玛","Germany":"德国","Polish":"波兰","Britain":"英国","France":"法国",
              "Mind":"心灵","imitation game":"模仿游戏","Turing test":"图灵测试","cyanide":"氰化物","gross indecency":"严重猥亵罪","royal pardon":"皇室赦免","inquest":"死因调查","prime minister":"首相"}}
