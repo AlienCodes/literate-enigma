@@ -19,7 +19,7 @@ S=[
      "（them：指波兰数学家的 insights；\noperational from…：形容词短语插在 and 与谓语之间）"],
     [[("**automated** the **laborious** search for each day's **rotor** settings.","**自动化了**(automated)每天搜寻**转子**(rotor)设置这项**耗时费力的**(laborious)工作。")],
      "（automate：使……自动化；\nsearch for…：对……的搜寻）"]]),
-(3,[[[("In October 1950,","1950年10月，"),("writing in the philosophy journal Mind,","他在哲学期刊《心灵》（Mind）上撰文，")],
+(3,[[[("In October 1950,","1950年10月，"),("writing in the **philosophy** journal Mind,","他在**哲学**(philosophy)期刊《心灵》（Mind）上撰文，")],
      "（writing in…：现在分词短语作伴随状语）"],
     [[("he **posed** a **provocative** question:","**提出了**(posed)一个**发人深省的**(provocative)问题——"),("\"Can machines think?\"","“机器能思考吗？”")],
      "（pose a question：提出问题）"]]),
