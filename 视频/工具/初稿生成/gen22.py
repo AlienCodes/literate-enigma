@@ -46,14 +46,14 @@ S=[
      "（冒号后补充说明 fixture 的内容）"],
     [[("**horizontal** **aluminium** **fins**","那就是在外墙加装**水平的**(horizontal)**铝制**(aluminium)散光**鳍片**(fins)，"),("to **diffuse** the **brightness**,","来**散射**(diffuse)光线、减弱**亮度**(brightness)，"),("reportedly costing several million pounds.","据报道花费达数百万英镑。")],
      "（to diffuse…：不定式表目的；\nreportedly costing…：现在分词短语，补充说明花费）"]]),
-(5,[[[("In September 2015","2015年9月，"),("Building Design's critics","《建筑设计》杂志的评论家们"),("gave the **notorious** tower the Carbuncle Cup,","把这座**声名狼藉的**(notorious)大楼评为烂疮杯得主，")],
+(5,[[[("In September 2015","2015年9月，"),("Building Design's critics","《建筑设计》杂志的评论家们"),("gave the **notorious** tower the Carbuncle Cup,","将“烂疮杯”颁给了这座**声名狼藉的/臭名远扬的**(notorious)大楼，")],
      "（give sb sth：授予某人某物）"],
-    [[("a **trophy** for the UK's worst new building.","这一**奖杯**(trophy)颁给英国最糟糕的新建筑。")],
+    [[("a **trophy** for the UK's worst new building.","这是一个专门颁给英国最糟糕新建筑的**奖杯**(trophy)。")],
      "（a trophy…：同位语，说明 the Carbuncle Cup）"]]),
 (5,[[[("The **ballot**","这次**投票**(ballot)"),("was **unanimous**.","结果**全体一致**(unanimous)。")],
      "（结局：2013年9月，\n在建大楼的弯曲玻璃外墙，\n把阳光汇聚成光束，\n烤坏了对面的一辆捷豹车；\n开发商道歉、赔付修理费，\n暂停路边停车位，\n架起临时遮挡。\n2014年2月，\n宣布加装水平铝制鳍片，\n据报道花费数百万英镑。\n2015年9月，\n大楼被评为英国最糟糕的新建筑，\n获得烂疮杯。）"]]),
 ]
-CONF={"引号":{"S11-1 “”":"用户 2026-10-23 原话“报纸把对讲机大楼戏称为“烤焦机大楼””自带引号，照用户原话保留（待改清单第7条）"},"已告诉用户被去掉的重点词":"2026-10-22 已在会话中把 reflection（撞02）、elevation（撞10）从22去掉原样告诉用户，并说明42的 distortion 改回普通词",
+CONF={"引号":{"S18-1 “”":"用户 2026-10-23 原话“将“烂疮杯”颁给了这座……大楼”自带引号，照用户原话保留（待改清单第10条）","S11-1 “”":"用户 2026-10-23 原话“报纸把对讲机大楼戏称为“烤焦机大楼””自带引号，照用户原话保留（待改清单第7条）"},"已告诉用户被去掉的重点词":"2026-10-22 已在会话中把 reflection（撞02）、elevation（撞10）从22去掉原样告诉用户，并说明42的 distortion 改回普通词",
  "牛津逗号":{"S3 its wing mirror warped, its panels deformed and":"文章英文是英式写法，三项并列不用牛津逗号；英文正文与文章逐字一致，不改"},
  "短语":{"S14 in … cost-cutting":"in 是普通介词（在……时），cost-cutting 本身就是“削减成本”（速查表释义），不是 in + 名词的固定用法"}}
 out={"no":"22","title_en":"The Building That Melted a Car","title_zh":"会烤化汽车的大楼","title_fx":{"hl":["Melted","Car"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局",
