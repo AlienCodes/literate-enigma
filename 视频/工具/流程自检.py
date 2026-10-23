@@ -26,6 +26,15 @@ if not _G.旧了(_w, _p): fails.append('没抓到：工作目录脚本比仓库�
 open(_p, 'w').write('旧')
 if _G.旧了(_w, _p): fails.append('误报：工作稿与仓库一致（G19）')
 shutil.rmtree(_d, ignore_errors=True)
+import importlib.util as _iu   # 铁4：改了出片程序没全篇重查，必须算“欠着”
+_s = _iu.spec_from_file_location('_qp', f'{T}/全篇核查.py'); _d = tempfile.mkdtemp(); _st = f'{_d}/s.json'
+_src = open(f'{T}/全篇核查.py').read(); _ns = {'__file__': f'{T}/全篇核查.py', '__name__': '_qp'}
+exec(compile(_src.split("if sys.argv[1:2] == ['--欠着']")[0], '全篇核查', 'exec'), _ns)
+import json as _j; _j.dump({'程序指纹': 'x' * 16}, open(_st, 'w'))
+if not _ns['欠着'](_st): fails.append('没抓到：改了出片程序没全篇重查（铁4）')
+_j.dump({'程序指纹': _ns['程序指纹']()}, open(_st, 'w'))
+if _ns['欠着'](_st): fails.append('误报：全篇重查指纹一致却算欠着（铁4）')
+shutil.rmtree(_d, ignore_errors=True)
 td = tempfile.mkdtemp(); lk = open(f'{td}/.定稿流水线_99.lock', 'w'); fcntl.flock(lk, fcntl.LOCK_EX)
 r = subprocess.run(['bash', f'{T}/定稿流水线.sh', '99'], capture_output=True, text=True, cwd=td, timeout=60)
 if r.returncode == 0 or '已经有一条定稿流水线在跑' not in r.stdout + r.stderr: fails.append('没抓到：同一篇同时跑两条定稿流水线（G10）')

@@ -19,11 +19,11 @@
 | 12 | The 79 Days of New Coke | 新可乐的 79 天 | 11.6 MB |
 | 13 | Eleven Days Without Sleep | 十一天不睡觉的少年 | 13.3 MB |
 | 14 | The Fungus That Turns Ants into Zombies | 让蚂蚁变僵尸的真菌 | 11.5 MB |
-| 15 | The Myth of the Unsinkable | 永不沉没的神话 | 12.6 MB |
+| 15 | The Myth of the Unsinkable | 永不沉没的神话 | 12.5 MB |
 | 16 | The Bread Made from Air | 从空气中造面包 | 13.0 MB |
 | 17 | The Curse of the Pharaoh | 法老的诅咒 | 11.2 MB |
 | 18 | The Mould That Changed the World | 改变人类命运的霉菌 | 13.2 MB |
-| 19 | Tulip Mania The Bubble and the Legend | 郁金香狂热：泡沫与传说 | 12.0 MB |
+| 19 | Tulip Mania The Bubble and the Legend | 郁金香狂热：泡沫与传说 | 11.9 MB |
 | 20 | The 5,000-Year-Old Murder in the Ice | 冰里的五千年凶案 | 12.1 MB |
 | 21 | The Man Who Sold the Eiffel Tower Twice | 两次卖掉埃菲尔铁塔的骗子 | 11.1 MB |
 | 22 | The Building That Melted a Car | 会烤化汽车的大楼 | 10.6 MB |
