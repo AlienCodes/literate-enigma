@@ -36,7 +36,7 @@ S=[
      "（the charge…：同位语，说明 gross indecency；\nthen used against…：过去分词短语作后置定语，修饰 charge）"]]),
 (4,[[[("He **forfeited** his security **clearance**","他**被剥夺/丧失了**(forfeited)他的安全**许可**(clearance)，"),("and, to **avert** **imprisonment**,","并且为了**避免**(avert)**入狱**(imprisonment)，"),("**submitted to** **hormone** **injections**.","**被迫接受了**(submitted to)**激素**(hormone)**注射**(injections)。")],
      "（to avert…：不定式表目的，插在 and 与谓语之间；\nsubmit to：接受，服从）"]]),
-(4,[[[("He died of cyanide poisoning on 7 June 1954.","1954年6月7日，他死于氰化物中毒。")],
+(4,[[[("He died of **cyanide poisoning** on 7 June 1954.","1954年6月7日，他死于**氰化物中毒**(cyanide poisoning)。")],
      "（die of：死于……）"]]),
 (4,[[[("A **coroner**'s inquest","**验尸官**(coroner)的死因调查"),("ruled it **suicide**,","裁定为**自杀**(suicide)，"),("though some doubt it.","不过有人对此存疑。")],
      "（rule it suicide：裁定为自杀；\nthough…：让步状语从句）"]]),
