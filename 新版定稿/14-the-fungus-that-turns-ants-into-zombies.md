@@ -16,7 +16,7 @@ The real parasite's roots run far deeper, into the **geological** record. A 48-m
 
 ## 中文
 
-在泰国**雨林**(rainforest)深处，一只**木匠**(carpenter)蚁脱离了它**蚁群**(colony)在**高耸的**(lofty)**树冠**(canopy)上（前进的）**队列**(column)。（break from：脱离（群体、队伍）；in the lofty canopy：后置定语，修饰 column）**摇摇晃晃**(Swaying)，腿脚**不稳**(unsteady)，它**向下**(downward)**游荡**(wanders)，**好像**(as if)**喝醉了**(intoxicated)一样，进入**枝叶茂密的**(leafy)**林下植被**(undergrowth)。（Swaying…：现在分词短语作伴随状语；as if intoxicated：as if 后省略了 it were）**正午**(midday)前后，它将**双颚**(jaws)**紧咬**(clenches)在一片叶子下方的一条主**叶脉**(vein)上，离地面约25厘米。（clench A on B：把A咬紧在B上；underneath a leaf：后置定语，修饰 vein）
+在泰国**雨林**(rainforest)深处，一只**木匠**(carpenter)蚁脱离了它的蚁**群**(colony)**队列**(column)，在**高耸的**(lofty)**树冠**(canopy)上（前行）。（break from：脱离（群体、队伍）；in the lofty canopy：后置定语，修饰 column）**摇摇晃晃**(Swaying)，腿脚**不稳**(unsteady)，它**向下**(downward)**游荡**(wanders)，**好像**(as if)**喝醉了**(intoxicated)一样，进入**枝叶茂密的**(leafy)**林下植被**(undergrowth)。（Swaying…：现在分词短语作伴随状语；as if intoxicated：as if 后省略了 it were）**正午**(midday)前后，它将**双颚**(jaws)**紧咬**(clenches)在一片叶子下方的一条主**叶脉**(vein)上，离地面约25厘米。（clench A on B：把A咬紧在B上；underneath a leaf：后置定语，修饰 vein）
 
 到**黄昏**(dusk)时，这只昆虫已**无生命**(lifeless)，那一口却仍**牢牢地**(rigidly)咬着。（by + 时间：到……时；yet：却，表转折）一种真菌摧毁了它的颚部**肌肉**(muscles)，因此它们无法**松开**(loosen)。两三天后，一根**真菌**(fungal)菌柄从它头部顶出，将**具有传染性的**(infectious)孢子释放到下方的地面上，那里有觅食的蚂蚁**行走**(tread)。（push from：从……长出；where…：非限制性定语从句，修饰 the ground below）
 
@@ -33,10 +33,10 @@ The real parasite's roots run far deeper, into the **geological** record. A 48-m
 |---|---|---|
 | rainforest | 本文：雨林；n. 雨林（tropical rainforest） | 1 |
 | carpenter | 本文：木匠；n. 木匠（carpenter ant 木匠蚁；a skilled carpenter） | 1 |
-| colony | 本文：蚁群；n. （蚂蚁等的）群体；殖民地（an ant colony） | 1 |
+| colony | 本文：群；n. （蚂蚁等的）群体；殖民地（an ant colony） | 1 |
+| column | 本文：队列；n. 纵队，队列；柱子（a column of soldiers/ants） | 1 |
 | lofty | 本文：高耸的；adj. 高耸的；崇高的（lofty mountains；lofty ideals） | 1 |
 | canopy | 本文：树冠；n. 树冠层；顶篷（the forest canopy） | 1 |
-| column | 本文：队列；n. 纵队，队列；柱子（a column of soldiers/ants） | 1 |
 | Swaying | 本文：摇摇晃晃；v. (sway) 摇摆（trees swaying in the wind） | 1 |
 | unsteady | 本文：不稳；adj. 不稳的（unsteady on one's feet） | 1 |
 | downward | 本文：向下；adv./adj. 向下（slope downward） | 1 |
