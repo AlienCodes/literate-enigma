@@ -6,7 +6,7 @@ S=[
 (1,[[[("Pepsi","百事可乐"),("had set up **booths** in shopping centres across the US,","曾在全美各地的购物中心设置了**摊位**(booths)，")]],
     [[("inviting **shoppers**","邀请**购物者**(shoppers)"),("to **sip** two **unmarked** **beverages**","**啜饮**(sip)两种**未标品牌的**(unmarked)**饮料**(beverages)，\n{{（小口喝；抿）|sip}}")]],
     [[("and state a **preference**.","并说出自己的**偏好**(preference)。")],
-     "（inviting…：现在分词短语，补充说明设摊位的做法；\ninvite sb to do：邀请某人做……）"]]),
+     "（inviting…：现在分词短语，补充说明设摊位的做法；invite sb to do：邀请某人做……）"]]),
 (1,[[[("Figures varied by region,","虽然数据会因为地区不同而出现差异，"),("but **tasters**","但**品尝者**(tasters)"),("generally","总体上"),("picked Pepsi more often.","更常选百事。")]]]),
 (1,[[[("Each stall,","每个摊点"),("letting **consumers**","让**消费者**(consumers)"),("judge by **palate** alone,","仅凭**味觉**(palate)作出判断，")]],
     [[("doubled as **publicity**.","同时也成了一种**宣传**(publicity)。")],

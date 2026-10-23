@@ -58,7 +58,7 @@ Coca-Cola had **misjudged** what the tests measured. They captured a **mouthful*
 | faithful | 本文：忠实的；adj. 忠实的，忠诚的（a faithful friend；faithful supporters） | 3 |
 | lawsuit | 本文：诉讼；n. 诉讼（file/bring a lawsuit against sb） | 3 |
 | dismissal | 本文：驳回；n. （诉讼的）驳回；解雇（the dismissal of the case；unfair dismissal） | 3 |
-| chief executive | 本文：首席执行官；n. 首席执行官，总裁（the chief executive of a company） | 4 |
+| chief executive | 本文：首席执行官 | 4 |
 | employees | 本文：员工；n. (employee) 雇员，员工（full-time employees） | 4 |
 | concession | 本文：让步；n. 让步，妥协；特许权（make concessions to sb） | 4 |
 | relaunched | 本文：重新上市了；v. (relaunch) 重新推出，重新发行（relaunch a magazine/brand） | 4 |
