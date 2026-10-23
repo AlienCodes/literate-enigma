@@ -48,6 +48,8 @@ def 自检():
     造('速查表本文重复','S2',ft=lambda t:t.replace('## 速查表','## 速查表\n| x | 本文：a 本文：b |',1))
     造('速查表只有本文、缺词性','S4',ft=lambda t:t.replace('## 速查表','## 速查表\n| zzz | 本文：只有本文 | 1 |',1))
     if not (stem('dams')==stem('dam') and stem('circulation')!=stem('circulates')): fails.append('没抓到：撞词按屈折变化判（T12）')
+    _o=json.load(open(f'{os.path.dirname(os.path.abspath(__file__))}/原稿重点词.json'))
+    if len(_o)<20 or len(_o.get(os.path.relpath(glob.glob(f'{ROOT}/新版定稿/03-*.md')[0],ROOT),[]))<10: fails.append('原稿重点词.json 缺了或是空的：T12 会把原稿重点词误报成撞词（G18）')
     return fails
 if sys.argv[1:2]==['--自检']:
     no=None
@@ -90,8 +92,7 @@ for f in glob.glob(f'{ROOT}/新版定稿/[0-9][0-9]-*.md'):
         k=ckey(b)
         if k: others.setdefault(k,set()).add(n)
 import subprocess
-base=subprocess.run(['git','-C',ROOT,'show','fc50170:'+os.path.relpath(md,ROOT)],capture_output=True,text=True).stdout
-orig={b.lower() for b in re.findall(r'\*\*([^*]+)\*\*',base.split('## 中文')[0])}
+orig=set(json.load(open(f'{os.path.dirname(os.path.abspath(__file__))}/原稿重点词.json')).get(os.path.relpath(md,ROOT),[]))   # 原稿（提交 fc50170）的重点词，存成文件：新容器浅克隆没有这个提交，T12 曾因此误报撞词（2026-10-23 第20篇）
 warn=[]
 for s in d['sentences']:
     for c in s['chunks']:

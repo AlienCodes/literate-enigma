@@ -28,7 +28,7 @@ for top in TOPS:
     for rel, s in fs.items():
         d = os.path.join(dst, rel) if rel else dst
         if os.path.exists(d) and os.path.getsize(s) == os.path.getsize(d) and md5(s) == md5(d): continue
-        os.makedirs(os.path.dirname(d), exist_ok=True); tmp = d + '.part'
+        os.makedirs(os.path.dirname(d), exist_ok=True); tmp = d + f'.part{os.getpid()}'   # G17：每个进程自己的临时文件
         shutil.copyfile(s, tmp); os.replace(tmp, d); nc += 1; print('复制', os.path.relpath(d, L))
     for rel, d in fd.items():
         if rel not in fs:
