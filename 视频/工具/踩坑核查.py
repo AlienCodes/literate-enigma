@@ -612,11 +612,15 @@ def selftest_meta():
     return fails
 # T28 结尾解说（用户 2026-10-10 看 10 定稿：“这个结尾要有一个解说，要有一个解说。就最后最好我们之后每次这个结尾都要有一个解说，就特别的有意思。”）：
 # 10 起每篇最后一句的说明里要有一段解说（09 S18 “结局：……”、10 S17 “历史背景：……”），脚本里 "结尾解说" 写它的标签，画面上必须有“（标签：”，正文至少 30 个字
-def ending_note_checks(d):
+T32_起 = 21   # T32 结尾解说不写“结局”（用户 2026-10-23 看 23：“以后每次……最后一页要进行总结的时候，不要老是写上结局那两个字儿”）：21 起（还没定稿的）不许用“结局”标签，不带标签也行
+def ending_note_checks(d, no=None):
     lab = d.get('结尾解说'); notes = ''.join((c.get('note') or '') for c in d['sentences'][-1]['chunks'])
     nolab = d.get('结尾解说无标签特批', '')   # 22 用户 2026-10-23：“把那个结局两个字给去掉”——只认带用户原话、写明“特批”的；照样要有一段够长的解说
-    if nolab:
-        if not ('用户' in nolab and '特批' in nolab): return ['[T28] 结尾解说无标签特批 要写用户原话（含“用户”“特批”），否则照旧写“（标签：……）”']
+    新 = no is not None and int(no) >= T32_起
+    if 新 and (lab == '结局' or '（结局：' in notes):
+        return ['[T32] 结尾解说不写“结局”两个字（用户 2026-10-23：“以后每次……最后一页要进行总结的时候，不要老是写上结局那两个字儿”）：去掉“结局：”，脚本里删掉 "结尾解说"，正文照样要有']
+    if nolab or (新 and not lab):
+        if nolab and not ('用户' in nolab and '特批' in nolab): return ['[T28] 结尾解说无标签特批 要写用户原话（含“用户”“特批”），否则照旧写“（标签：……）”']
         blocks = re.findall(r'（([^（）]*)）', notes); body = re.sub(r'\s', '', blocks[-1]) if blocks else ''
         return [] if len(body) >= 30 else [f'[T28] 结尾解说（无标签特批）太短或没有（{len(body)} 字），要把结尾讲清楚']
     if not lab: return ['[T28] 结尾要有一段解说（用户 2026-10-10 定的规矩，10 起每篇）：最后一句的 note 里写“（标签：……）”，脚本里写 "结尾解说": "标签"']
@@ -635,6 +639,12 @@ def selftest_ending():
     b5 = copy.deepcopy(ok_); del b5['结尾解说']; b5['结尾解说无标签特批'] = '用户 2026-10-23 特批'; b5['sentences'][-1]['chunks'][-1]['note'] = '（claim：这里指申领）'   # 有特批但没有够长的解说
     ok2 = copy.deepcopy(ok_); del ok2['结尾解说']; ok2['结尾解说无标签特批'] = '用户 2026-10-23 特批'; ok2['sentences'][-1]['chunks'][-1]['note'] = ok_['sentences'][-1]['chunks'][-1]['note'].replace('（结局：', '（')
     if ending_note_checks(ok2): fails.append('T28 误报：用户特批无标签、解说够长的被报出')
+    if ending_note_checks(ok_, '12'): fails.append('T32 误报：已定稿篇目（21 以前）的“结局”被报出')
+    if not ending_note_checks(ok_, '23'): fails.append('没抓到：21 起结尾解说还写“结局”（T32）')
+    ok3 = copy.deepcopy(ok_); del ok3['结尾解说']; ok3['sentences'][-1]['chunks'][-1]['note'] = ok_['sentences'][-1]['chunks'][-1]['note'].replace('（结局：', '（')
+    if ending_note_checks(ok3, '23'): fails.append('T32 误报：21 起不带标签、解说够长的被报出')
+    b6 = copy.deepcopy(ok3); b6['sentences'][-1]['chunks'][-1]['note'] = '（claim：这里指申领）'
+    if not ending_note_checks(b6, '23'): fails.append('没抓到：21 起去掉标签后连解说也没了（T28/T32）')
     for b, why in ((b1, '没写结尾解说'), (b2, '标签对不上'), (b3, '最后一句没有说明'), (b4, '无标签特批没有用户原话'), (b5, '特批了但没有解说')):
         if not ending_note_checks(b): fails.append(f'没抓到：{why}（T28）')
     return fails
@@ -745,7 +755,7 @@ def main():
     if int(no) >= 11: err += term_checks(d)                         # T30 英文有的术语/专名中文漏了（11 起）                  # T22 习语整体标（11 起，用户 2026-10-15 turn the tide）
     if int(no) >= 9: conf += meaning_checks(d, no)                 # T23 同样只查以后新做的篇目（用户：“以后我们再去做的时候……防止再犯”）
     if int(no) >= 9: err += meta_checks(d)                          # T27 说明里不写自问的话（09 起）
-    if int(no) >= 10: err += ending_note_checks(d)                  # T28 结尾要有一段解说（10 起）
+    if int(no) >= 10: err += ending_note_checks(d, no)                  # T28 结尾要有一段解说（10 起）
     _rec = open(f'{V}/制作记录/{no}.md').read()
     if int(no) >= 12: err += l19_checks({**json.load(open(f'scripts/{no}.json')), '_no': no})   # [L19] 铁律（用户 2026-10-16，见 l19_checks）
     err += record_meta_checks(no, _rec)                             # [T31] 方法设计、[T29] 方法复盘（见 record_meta_checks）
