@@ -107,6 +107,15 @@ def 判(kind, d, 仓库=PV):
         if ch:
             return 拦('Stop', f'【守则3 收工闸门】还有 {len(ch)} 个改动没推送（如 {ch[0][3:][:60]}）：'
                      '先 bash 视频/工具/推送两仓库.sh "说明"（会先过规则执行核查），再收工。')
+        # 方法进化闸门（守则12/T29，用户 2026-10-23：“我们的方法一定要不断的进化……这次做完，你就下一步想……还有没有能够去进化的地方”）：
+        # 今天改过工具，《制作硬性标准与踩坑总结》的方法升级记录里就要有今天的一行（哪件手工活变成了程序、哪里还能更省）
+        今天 = datetime.datetime.utcnow().strftime('%Y-%m-%d')
+        改 = subprocess.run(['git', '-C', 仓库, 'log', f'--since={今天}T00:00:00+00:00', '--format=%h', '--', '视频/工具'], capture_output=True, text=True).stdout.split()
+        try: 记 = open(f'{仓库}/视频/制作硬性标准与踩坑总结.md').read().split('方法升级记录', 1)[1]
+        except Exception: 记 = ''
+        if 改 and f'- {今天}' not in 记:
+            return 拦('Stop', f'【方法进化闸门】今天改了 {len(改)} 次工具，《制作硬性标准与踩坑总结》“方法升级记录”里还没有今天（{今天}）的一行：'
+                     '写清哪件手工活变成了程序、哪个门改成了查用户看到的东西、下一步哪里还能更省，推送后再收工。')
         return None
     return None
 
