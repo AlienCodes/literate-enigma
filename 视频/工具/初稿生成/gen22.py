@@ -8,7 +8,7 @@ S=[
      "（leave sth somewhere：把某物停放在某处；\nopposite…：介词短语，补充说明位置）"]]),
 (1,[[[("He returned to find","他回来时发现，"),("its wing mirror **warped**,","车的后视镜已经**翘曲**(warped)，"),("its panels **deformed**","车身板**变形**(deformed)，"),("and its **badge** **distorted**.","并且**车标**(badge)也**扭曲了**(distorted)。")],
      "（returned to find…：不定式表结果，回来后发现……；\nfind sth done：发现某物处于……状态，三组并列）"]]),
-(1,[[[("The **glazed** **facade** above","上方那面**镶玻璃的**(glazed)**外墙**(facade)"),("was to blame.","是罪魁祸首。")],
+(1,[[[("The **glazed** **facade** above","上方那面**镶玻璃的**(glazed)**正面墙**(facade)"),("was to blame.","是罪魁祸首。")],
      "（be to blame：应负责任，是……的原因）"]]),
 (2,[[[("Rafael Viñoly","拉斐尔·维诺利"),("curved the south face of 20 Fenchurch Street inward,","把芬丘奇街20号的南立面设计成向内弯曲，")],
      "（curve sth inward：使……向内弯曲）"],
