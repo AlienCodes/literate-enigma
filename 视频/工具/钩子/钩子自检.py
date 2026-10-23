@@ -31,6 +31,10 @@ r = f'{tmp}/repo'; os.makedirs(f'{r}/视频')
 subprocess.run(['git', 'init', '-q', r]); open(f'{r}/视频/x.md', 'w').write('x')
 if not 拦了('收工', {}, 仓库=r): fails.append('没抓到：有没推送的改动就收工（守则3）')
 if 拦了('收工', {'stop_hook_active': True}, 仓库=r): fails.append('误拦：已经拦过一次又拦（会死循环）')
+_r3 = f'{tmp}/repo3'; os.makedirs(f'{_r3}/视频/工具'); subprocess.run(['git', 'init', '-q', _r3]); open(f'{_r3}/视频/工具/全篇重查通过.json', 'w').write('{}')
+subprocess.run(['git', '-C', _r3, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'add', '-A']); subprocess.run(['git', '-C', _r3, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'commit', '-qm', 'x', '--date=2000-01-01T00:00:00'], env={**os.environ, 'GIT_COMMITTER_DATE': '2000-01-01T00:00:00'})
+open(f'{_r3}/视频/工具/全篇重查通过.json', 'w').write('{"篇": {}}')   # 已跟踪的进度文件被改了（真实情形）
+if 拦了('收工', {}, 仓库=_r3): fails.append('误拦：全篇重查边查边记的进度文件')
 import datetime as _dt   # 方法进化闸门：今天改了工具、方法升级记录没写今天 → 拦；写了 → 放行
 q = f'{tmp}/repo2'; os.makedirs(f'{q}/视频/工具'); subprocess.run(['git', 'init', '-q', q])
 for k, v in (('user.name', '自检'), ('user.email', 'selftest@example.com')): subprocess.run(['git', '-C', q, 'config', k, v])
