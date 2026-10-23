@@ -97,6 +97,13 @@ if rr[ym][0] > 100 * R.S:
     ink = (np.abs(a[y0:y1 + 1, x0:x1 + 1] - np.array((20, 40, 32))).sum(2) < 60); iy = np.where(ink)[0]
     判('H3 色块里的字上下居中', len(iy) > 0 and abs((iy.min() + iy.max()) / 2 - (y1 - y0) / 2) <= 3 * R.S, f'{(iy.min() + iy.max()) / 2 if len(iy) else None} vs {(y1 - y0) / 2}')
 else: 判('H1–H3 片头色块', False, '画面里找不到色块')
+# D5/文24：{{…}} 注解只显示、不朗读（朗读前去掉，括号里的字不进配音）
+判('D5 注解只显示不朗读', R.strip_gloss('scraped {{(intensely)}} off the dish') == 'scraped  off the dish')
+# D6/文25：中文 \n 是格内换行（拼接时去掉），{{（说明）|词}} 用对应重点词的颜色显示
+sg6 = R._segs_zh('{{（刮下来）|scraped}}', {'scraped': (9, 9, 9)})
+判('D6 格内分行与彩色说明', R.strip_zh('第一行\n第二行{{（说明）|word}}') == '第一行第二行（说明）' and ('（刮下来）', (9, 9, 9)) in sg6)
+# 画1：画面 16:9（1920×1080，4K 时 ×2）
+im1 = Image.open(f'{td}/b.png'); 判('画1 画面 16:9', im1.size == (1920 * R.S, 1080 * R.S) and R.W * 9 == R.H * 16)
 shutil.rmtree(td)
 print('排版自检：' + (f'通过（{len(ok_)} 项：' + '、'.join(x.split(' ')[0] for x in ok_) + ' 造的错都报出、正例不误报）' if not fails else '失灵！' + '；'.join(fails)))
 sys.exit(1 if fails else 0)

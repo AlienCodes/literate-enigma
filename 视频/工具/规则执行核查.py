@@ -41,7 +41,7 @@ ENTRY = ['定稿流水线.sh', '交付核查.py', '生成文本.py', '推送两�
 # 每次运行都先做自检的程序（不需要别人带“自检”参数调用）
 ALWAYS_SELFTEST = {'踩坑核查.py', 'check_all.py', '规则执行核查.py', '交付核查.py'}   # 交付核查 出片后 每次先跑核查程序自检、高亮自检
 # 机器当场跑的自检（不依赖工作目录、几秒内完成）
-FAST = [['踩坑核查.py', '自检'], ['check_all.py', '--自检'], ['钩子/钩子自检.py'], ['排版自检.py']]
+FAST = [['踩坑核查.py', '自检'], ['check_all.py', '--自检'], ['钩子/钩子自检.py'], ['排版自检.py'], ['推送自检.py']]
 摘要 = lambda s: re.sub(r'\*\*|`', '', s).strip()[:60]
 # 要在工作目录（有模型、声音）里才能跑的慢自检：通过时写下所测程序的指纹（印章）；程序一改指纹对不上，就当“自检没跑”，提交、推送停
 STAMPED = {'出片守门自检.py': ('出片守门自检通过.json', ['make_video.py', 'render.py', '出片守门自检.py'])}
@@ -169,7 +169,7 @@ def 核查(std_text, claude_text, reg, files, settings=None, extra_tables=()):
         if re.search(r'^\| *[A-Z]\d+b? *\|', txt, re.M): glob_.append(f'出现第二份踩坑总表：{name}（总表只能有一份）')
     if settings is not None:
         need = [('SessionStart', '', '开工提醒.sh'), ('Stop', '', '闸门.py" 收工'), ('PreToolUse', 'Agent', '闸门.py" 子代理'),
-                ('PreToolUse', 'Workflow', '闸门.py" 子代理'), ('PreToolUse', 'SendUserFile', '闸门.py" 发文件'), ('PreToolUse', 'Bash', '闸门.py" 命令')]
+                ('PreToolUse', 'Workflow', '闸门.py" 子代理'), ('PreToolUse', 'SendUserFile', '闸门.py" 发文件'), ('PreToolUse', 'Bash', '闸门.py" 命令'), ('PostToolUse', 'SendUserFile', '闸门.py" 发文件后')]
         hk = settings.get('hooks', {})
         for ev, mt, cmd in need:
             if not any(mt in (x.get('matcher') or '') and any(cmd in (y.get('command') or '') for y in x.get('hooks', [])) for x in hk.get(ev, [])):

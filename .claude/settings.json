@@ -56,6 +56,17 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "SendUserFile",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/视频/工具/钩子/闸门.py\" 发文件后 || true"
+          }
+        ]
+      }
     ]
   }
 }

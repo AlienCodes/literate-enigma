@@ -6,6 +6,8 @@
                            并且必须是过了核查的那个文件（交付核查 出片后 / 生成文本 记下的文件指纹）
   python3 闸门.py 命令     PreToolUse(Bash)：不许用 --no-verify / -n 跳过提交前的规则执行核查，不许改 core.hooksPath
   python3 闸门.py 收工     Stop：postgraduate-vocabulary 里还有没推送的改动就不让收工（守则3）
+  python3 闸门.py 发文件后 PostToolUse(SendUserFile)：发了 Word 就提醒用户打印勾选“打印背景色”（W6）
+  命令闸门同时管部署（C1/C2/流16）：不部署、不公开发布、不推 master/gh-pages、不强推，除非命令里写明用户原话
 输入：钩子的 JSON（stdin）；输出：拦下时打印决定 JSON。"""
 import sys, os, json, re, hashlib, subprocess, datetime
 V = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -67,8 +69,21 @@ def 判(kind, d, 仓库=PV):
             if not re.match(r'git\b', s): continue
             if '--no-verify' in s or re.search(r'\bcommit\b.*\s-[a-zA-Z]*n[a-zA-Z]*(\s|$)', s):
                 return 拦('PreToolUse', '【规则执行闸门】不许用 --no-verify / -n 跳过 git 钩子（CLAUDE.md 第16条）。')
+            if re.search(r'\bpush\b', s) and (re.search(r'(^|[\s:+])(master|gh-pages)(\s|$)', s) or re.search(r'\s(-f|--force)(\s|$)|--force-with-lease', s)) and '【用户同意' not in c:
+                return 拦('PreToolUse', '【部署闸门】C1/C2/流16：不推 master、gh-pages，不强推（master 是另一个项目）；用户明确要求时，命令里写“# 【用户同意：原话】”再执行。')
             if 'core.hooksPath' in s:
                 return 拦('PreToolUse', '【规则执行闸门】不许改 core.hooksPath（提交前的规则执行核查靠它，开工提醒.sh 和 推送两仓库.sh 自动设好）。')
+        for s in segs:   # C1/C2/流16：没有用户明确同意，不部署、不公开发布
+            if re.search(r'^(npx\s+)?(vercel|netlify|surge|firebase\s+deploy|wrangler\s+(deploy|publish)|heroku)\b|^npm\s+publish|^twine\s+upload|^gh-pages\b', s) and '【用户同意' not in c:
+                return 拦('PreToolUse', '【部署闸门】C1/C2/流16：没有用户明确同意，不部署、不公开发布（默认只生成文件）。用户明确要求时，命令里写“# 【用户同意：原话】”再执行。')
+        m = re.search(r'【用户同意：([^】]{4,})】', c)
+        if m:
+            try: open(f'{V}/制作记录/用户同意记录.md', 'a').write(f'- {datetime.datetime.utcnow():%Y-%m-%dT%H:%M}（UTC）{m.group(1)} ← {c[:80]}\n')
+            except Exception: pass
+        return None
+    if kind == '发文件后':   # W6：发了 Word，提醒用户打印要勾选“打印背景色”（钩子把提醒放进我的上下文，不靠我记）
+        if any(str(f).lower().endswith('.docx') for f in (ti.get('files') or [])):
+            return {'hookSpecificOutput': {'hookEventName': 'PostToolUse', 'additionalContext': '【W6 提醒】刚发了 Word：回复里要提醒用户，打印时勾选“打印背景色”，否则浅色底色和彩色字印不出来。'}}
         return None
     if kind == '收工':
         if d.get('stop_hook_active'): return None
