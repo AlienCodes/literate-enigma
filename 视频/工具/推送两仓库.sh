@@ -10,12 +10,12 @@ cd $P; git add -A 视频 CLAUDE.md 新版定稿   # 新版定稿：文章本身�
 if ! git diff --cached --quiet; then git commit -qm "$1$T"; fi
 git pull -q --no-rebase --no-edit origin main   # 2026-10-22：别的会话（每篇新开会话）可能先推了，先合并远端再算差异、再推
 git -c core.quotepath=off diff --name-status origin/main HEAD -- 视频 > /tmp/_chg.txt || true
+(cd $L; git checkout -q -- 视频 2>/dev/null; git pull -q --no-rebase --no-edit origin $B)   # 镜像分支先合并别的会话推的，再拷贝（2026-10-23：先拷后合并会被挡住）
 while IFS=$'\t' read -r st f g; do
   case $st in D) rm -f "$L/$f";; R*) rm -f "$L/$f"; f=$g; mkdir -p "$L/$(dirname "$f")"; cp "$P/$f" "$L/$f";; *) mkdir -p "$L/$(dirname "$f")"; cp "$P/$f" "$L/$f";; esac
   [ -e "$L/$f" ] && chmod --reference="$P/$f" "$L/$f"   # 文件权限也一致（14：草稿声音.sh 一边 755 一边 644，两仓库比对不过）
 done < /tmp/_chg.txt
 git push -q origin main
-(cd $L; git pull -q --no-rebase --no-edit origin $B)   # 镜像分支同样先合并别的会话推的
 cp $P/CLAUDE.md $L/CLAUDE.md   # CLAUDE.md 以 postgraduate-vocabulary 为准（G11：定稿流水线用它覆盖工作分支，只改工作分支那份会被冲掉）
 cd $L; git add -A
 if ! git diff --cached --quiet; then git commit -qm "镜像：$1$T"; fi
