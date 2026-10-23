@@ -13,7 +13,7 @@ S=[
 (2,[[[("On 4 September 1939","1939年9月4日，"),("he joined the **classified** **codebreaking effort** at Bletchley Park,","他加入了布莱切利园的**保密的**(classified)**破译工作**(codebreaking effort)，")]],
     [[("leading work on **naval** Enigma,","领导关于**海军**(naval)恩尼格玛密码机的工作，"),("Germany's **encryption** machine.","即德国的**加密**(encryption)机器。")],
      "（leading…：现在分词短语作伴随状语；\nGermany's encryption machine：同位语，说明 Enigma）"]]),
-(2,[[[("Polish mathematicians","波兰数学家"),("had **deciphered** Enigma by late 1932","早在1932年底就已**破译了**(deciphered)恩尼格玛，"),("and shared their **insights** with Britain and France in July 1939.","并于1939年7月将他们的**深刻见解**(insights)（破解思路）告知了英国和法国。")],
+(2,[[[("Polish mathematicians","波兰数学家"),("had **deciphered** Enigma by late 1932","早在1932年底就已**破译了**(deciphered)恩尼格玛，"),("and shared their **insights** with Britain and France in July 1939.","并于1939年7月将他们的**深刻见解**(insights)（破解思路）\n告知了英国和法国。")],
      "（had deciphered：过去完成时，发生在1939年之前；\nshare A with B：把 A 告知 B）"]]),
 (2,[[[("His team's machines","他的团队研制的机器"),("**exploited** them","**利用了**(exploited)这些思路，"),("and, **operational** from March 1940,","并且从1940年3月起**投入运行**(operational)，")],
      "（them：指波兰数学家的 insights；\noperational from…：形容词短语插在 and 与谓语之间）"],
@@ -55,7 +55,7 @@ CONF={"即":{"S4-2 即":"沿用文章定稿中文“即德国的加密机器”�
   "S6 operational … from":"from March 1940 是普通时间状语（从1940年3月起），operational 本身就是“运转中的”（文章定稿“投入运行”），不是短语型用法",
   "S1 a formidable intellect":"formidable、intellect 两个都是重点词，各自加粗、各自标中文（强大的 / 才智），文章定稿就是分开标的；formidable 的“强大的”是用户 2026-10-23 定的译法，意思不靠整体搭配产生",
   "S3 mathematical logic":"mathematical、logic 两个都是重点词，各自加粗、各自标中文（数理 / 逻辑），合起来正是“数理逻辑”，文章定稿就是分开标的，中文已标全"}}
-out={"no":"23","title_en":"The Man Who Gave Machines a Mind","title_zh":"为机器点燃思想的人","title_fx":{"hl":["Machines","Mind"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","换行变更已获同意":{"S4":"用户 2026-10-23：“领导关于 海军恩尼格玛密码机 的工作”“按照我给的这个新的改……就最新的这个，最新的这个按照这个。”——第二屏拆回原来两组（换行回到草稿视频原样，待改清单第5条）"},
+out={"no":"23","title_en":"The Man Who Gave Machines a Mind","title_zh":"为机器点燃思想的人","title_fx":{"hl":["Machines","Mind"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","换行变更已获同意":{"S5":"用户 2026-10-23 原话“这地方这个insight下面所对应的意思 改为 深刻见解(破解思路) 改成这个”——加了（破解思路）后中文一行放不下，句号被挤成单独一行，在“）”后折成两行（字不改，待改清单第6条）","S4":"用户 2026-10-23：“领导关于 海军恩尼格玛密码机 的工作”“按照我给的这个新的改……就最新的这个，最新的这个按照这个。”——第二屏拆回原来两组（换行回到草稿视频原样，待改清单第5条）"},
      "高亮按实际开口":True,"高亮开口门槛":40,"结尾句":{"S19":{"整句语速":0.8,"依据":"全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：最后一句 The country that prosecuted him put his face on its money. 没有句中标点，整句 0.80 倍速（同 01 S18）"}},
      "术语":{"Alan Turing":"艾伦·图灵","Turing":"图灵","Bletchley Park":"布莱切利园","Enigma":"恩尼格玛","Germany":"德国","Polish":"波兰","Britain":"英国","France":"法国",
              "Mind":"心灵","imitation game":"模仿游戏","Turing test":"图灵测试","cyanide":"氰化物","gross indecency":"严重猥亵罪","royal pardon":"皇室赦免","inquest":"死因调查","prime minister":"首相"}}
