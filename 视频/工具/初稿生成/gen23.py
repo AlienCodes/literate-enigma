@@ -13,7 +13,7 @@ S=[
 (2,[[[("On 4 September 1939","1939年9月4日，"),("he joined the **classified** **codebreaking effort** at Bletchley Park,","他加入了布莱切利园的**保密的**(classified)**破译工作**(codebreaking effort)，")]],
     [[("leading work on **naval** Enigma,","领导关于**海军**(naval)恩尼格玛密码机的工作，"),("Germany's **encryption** machine.","即德国的**加密**(encryption)机器。")],
      "（leading…：现在分词短语作伴随状语；\nGermany's encryption machine：同位语，说明 Enigma）"]]),
-(2,[[[("Polish mathematicians","波兰数学家"),("had **deciphered** Enigma by late 1932","早在1932年底就已**破译了**(deciphered)恩尼格玛，"),("and shared their **insights** with Britain and France in July 1939.","并于1939年7月将他们的**破解思路**(insights)告知了英国和法国。")],
+(2,[[[("Polish mathematicians","波兰数学家"),("had **deciphered** Enigma by late 1932","早在1932年底就已**破译了**(deciphered)恩尼格玛，"),("and shared their **insights** with Britain and France in July 1939.","并于1939年7月将他们的**深刻见解**(insights)（破解思路）告知了英国和法国。")],
      "（had deciphered：过去完成时，发生在1939年之前；\nshare A with B：把 A 告知 B）"]]),
 (2,[[[("His team's machines","他的团队研制的机器"),("**exploited** them","**利用了**(exploited)这些思路，"),("and, **operational** from March 1940,","并且从1940年3月起**投入运行**(operational)，")],
      "（them：指波兰数学家的 insights；\noperational from…：形容词短语插在 and 与谓语之间）"],
