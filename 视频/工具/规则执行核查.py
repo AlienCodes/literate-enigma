@@ -132,6 +132,15 @@ def 自检会跑(files, reach):
     return out
 
 
+HUMAN = {('译文核查.py', '[逐句确认]'), ('踩坑核查.py', 'import 译文核查 as _YW'), ('踩坑核查.py', '只有人能判，要写明本篇具体怎么做的')}
+
+
+def 只靠人(reg, k):
+    """门全是“人来确认”（逐句确认、对照记录写明做法）的规矩"""
+    g, _ = 解析(reg, k)
+    return bool(g) and all(tuple(x) in HUMAN for x in g)
+
+
 def 解析(reg, rid, seen=()):
     e = reg.get(rid) or {}
     gates, tests = [tuple(x) for x in e.get('门', [])], [tuple(x) for x in e.get('自检', [])]
@@ -160,6 +169,8 @@ def 核查(std_text, claude_text, reg, files, settings=None, extra_tables=()):
         if reg[k].get('文') and not R[k].startswith(reg[k]['文']):   # 按位置编号的条文（标准、检查单）：中间插了一条，编号就对不上原来的内容
             per.setdefault(k, []).append(f'编号对应的条文变了（登记时是“{reg[k]["文"]}”，现在是“{R[k][:16]}”）：重新登记它的门和自检')
         gates, tests = 解析(reg, k)
+        if 只靠人(reg, k) and len(reg[k].get('为什么程序判不了', '')) < 10:   # 2026-10-23 T9 对齐粗细能量却被登记成“逐句确认”，12–23 篇越做越粗
+            per.setdefault(k, []).append('这条只靠人确认：写明“为什么程序判不了”；能用程序量的（数量、比例、模式）必须写成程序门')
         if not gates: per.setdefault(k, []).append('没有门')
         if not tests: per.setdefault(k, []).append('没有自检（故意造错、必须抓到的样本）')
         for prog, anc in gates:
@@ -267,6 +278,10 @@ def 机器自检():
     f6 = dict(files); f6[nobody] = 'fails.append("没抓到：自检造的")\n'
     r6 = json.loads(json.dumps(reg)); r6[k]['自检'] = [[nobody, '自检造的']]; r6[k].pop('同', None)
     bad('自检没人跑', reg_=r6, files_=f6, want='自检没人跑')
+    hk = next((x for x in reg if not x.startswith('_') and 只靠人(reg, x)), None)
+    if hk:
+        r10 = json.loads(json.dumps(reg)); r10[hk].pop('为什么程序判不了', None)
+        bad('只靠人确认、没写为什么程序判不了', reg_=r10, want='为什么程序判不了')
     bad('第二份总表', extra=[('踩坑总表.md', '| A1 | x | y | z |\n')], want='第二份')
     f9 = dict(files); hk_ = next((x for x in re.findall(r"src\.index\('([^']+)'", files.get('交付核查.py', ''))), None)
     if hk_: f9['make_video.py'] = files['make_video.py'].replace(hk_, hk_[:len(hk_) // 2] + '※自检改掉※' + hk_[len(hk_) // 2:])
@@ -317,7 +332,7 @@ def main():
     npit = len(R) - sum(n.values())
     if '--状态' in a:
         print(f'【规则执行机器】规矩 {len(R)} 条：已由程序执行 {len(R) - len(per)} 条，'
-              f'缺口 {len(per)} 条（只许减少，目标 0）' + (f'；基线外问题 {len(new) + len(gl)} 处，提交和推送会被拦住' if new or gl else ''))
+              f'缺口 {len(per)} 条（只许减少，目标 0）；只能靠人判的 {sum(只靠人(reg, k) for k in R)} 条：{" ".join(k for k in R if 只靠人(reg, k))}' + (f'；基线外问题 {len(new) + len(gl)} 处，提交和推送会被拦住' if new or gl else ''))
         return 0
     if '--清单' in a:
         for k in R:

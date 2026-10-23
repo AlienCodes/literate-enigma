@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """译文核查（规则执行机器，CLAUDE.md 第16条）：只有人能判的译文规矩，程序先把“可能有问题、必须有人核对”的地方逐个点名，
 核对结论写进脚本 核对确认 或 逐句确认，没核对就不放行（踩坑核查 调用，21 起；已定稿的篇目不回头查）。
+  [T9对齐]  对齐粗细以 01–03 为准：全篇平均每组超过 3 个英文词就停；5 个词以上的组逐个点名（用户 2026-10-23：“下面这个汉译尽量跟它所对应的这个英文最好对齐”）
   [T4方向]  before/after、增/减、多/少 这类方向词，中文对应那一格里没有同方向的字（05 S11 before 放在“之后才”上面）
   [T2词性]  速查表写 adj. 的重点词中文以“地”结尾、adv. 以“的”结尾、n. 以“地”结尾（earnest 译成“真心实意地”）
   [文10]    同一个英文重点词，全篇译法不一（抽象概念全篇统一用词）
@@ -87,6 +88,7 @@ def 改稿门(d, old, 清单):
             for what, a, b in (('中文', c0.get('zh'), c.get('zh')), ('说明', c0.get('note'), c.get('note'))):
                 a, b = 去标(a), 去标(b)
                 if a == b: continue
+                if sorted(a) == sorted(b) and '对齐' in 清单: continue   # 只按英文语序调了中文先后、字一个不变（T9 对齐，待改清单里有用户“对齐”原话）
                 for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes():
                     if tag == 'equal': continue
                     for seg in (b[j1:j2], a[i1:i2]):
@@ -95,6 +97,34 @@ def 改稿门(d, old, 清单):
                         if s_ not in q:
                             out.append(f'[T10改稿] S{i + 1} 第{k + 1}块{what}改了“{s_[:20]}”，待改清单（用户原话）里找不到——已发给用户的中文没有用户允许一律不改（铁13，守则4：说啥只改啥）')
                             break
+    return out
+
+
+def 词数(a): return len(re.findall(r"[A-Za-z0-9][\w'’-]*", re.sub(r'\{\{.*?\}\}|\*\*', '', a)))
+
+
+def 对齐(d, ok):
+    """[T9对齐] 用户 2026-10-23（22 S15）：“下面这个汉译尽量跟它所对应的这个英文最好对齐”；文6 对齐粗细以 01–03 为准（平均每组 1.75–2.67 个英文词）。
+    返回 (错误, 待确认)：全篇平均每组超过 3 个英文词就停；5 个词以上的组逐个点名，能拆就拆，确实是语序必须倒过来的写进 核对确认.对齐"""
+    g = [(i, k, a) for i, s in enumerate(d['sentences']) for k, c in enumerate(s['chunks']) for a, _ in c['align'] if a != '\n' and 词数(a) > 0]
+    if not g: return [], []
+    avg = sum(词数(a) for *_, a in g) / len(g); err, conf = [], []
+    if avg > 3.0: err.append(f'[T9对齐] 全篇平均每组 {avg:.2f} 个英文词，比 01–03 定稿（1.75–2.67）粗：中英语序一致的地方逐词或按意群拆开，每个中文放在它对应的英文正下方（用户 2026-10-23：“下面这个汉译尽量跟它所对应的这个英文最好对齐”）')
+    for i, k, a in g:
+        n = 词数(a); key = f'S{i + 1}-{k + 1} {re.sub(r"[*]", "", a)[:30]}'
+        if n >= 5 and key not in ok.get('对齐', {}):
+            conf.append(f'[T9对齐] {key}  ← 这一组 {n} 个英文词：能拆就拆到词或意群；确实是语序必须倒过来（后置定语、从句、of 结构、提前的介词短语、同位语）的，在 核对确认.对齐 写明原因')
+    return err, conf
+
+
+def 比较结构(d, ok):
+    """[T13] 比较、倍数结构（half as strong as、twice as、three times as、as … as）：01 S? “……的一半”单独放一格整句读不通。逐个点名核对整组处理、整句读得通"""
+    out = []
+    for i, s in enumerate(d['sentences']):
+        en = ' '.join(re.sub(r'\*\*|\{\{.*?\}\}', '', c['en']) for c in s['chunks'])
+        for m in re.finditer(r"\b(half|twice|(?:\w+) times) as \w+ as\b|\bas (?:\w+ ){1,2}as\b", en, re.I):
+            key = f'S{i + 1} {m.group(0)}'
+            if key not in ok.get('比较结构', {}): out.append(f'[T13] {key}  ← 比较、倍数结构：整组处理、整句读得通（“……的一半”不能单独放一格），核对后写进 核对确认.比较结构')
     return out
 
 
@@ -120,7 +150,8 @@ def 查(d, no, art):
         try: return json.load(open(p)) if j else open(p).read()
         except Exception: return {} if j else ''
     err = 改稿门(d, 读(f'{V}/脚本/已发版本/{no}.json', True), 读(f'{V}/制作记录/{no}_待改清单.md'))
-    conf = 方向(d, ok) + 词性(d, art, ok) + 同词异译(d, ok) + 排版指令(d, ok) + [x.replace(' NN ', f' {no} ') for x in 逐句(d, 读(f'{V}/制作记录/逐句确认/{no}.json', True))]
+    _ae, _ac = 对齐(d, ok); err += _ae
+    conf = _ac + 比较结构(d, ok) + 方向(d, ok) + 词性(d, art, ok) + 同词异译(d, ok) + 排版指令(d, ok) + [x.replace(' NN ', f' {no} ') for x in 逐句(d, 读(f'{V}/制作记录/逐句确认/{no}.json', True))]
     return err, conf
 
 
@@ -142,6 +173,18 @@ def 自检():
     if not 改稿门(new, old, '用户：这一句不用改'): fails.append('没抓到：没有用户原话就改了已发的中文（T10/铁13）')
     if 改稿门(new, old, '用户原话：“价格暴涨” 一路飙升 改为 暴涨'): fails.append('T10改稿 误报：用户原话里有的改动')
     if 改稿门(old, old, ''): fails.append('T10改稿 误报：没改')
+    re_ = copy.deepcopy(old); re_['sentences'][0]['chunks'][0]['zh'] = '一路飙升价格'
+    if 改稿门(re_, old, '用户原话：汉译尽量跟英文对齐'): fails.append('T10改稿 误报：只为对齐调了中文先后')
+    if not 改稿门(re_, old, '用户：这一句不用改'): fails.append('没抓到：没有用户原话就调了中文先后（T10）')
+    if not 比较结构({'sentences': [句(('half as strong as', '……的一半那么强'))]}, {}): fails.append('没抓到：比较、倍数结构（T13）')
+    if 比较结构({'sentences': [句(('as a child', '小时候'))]}, {}): fails.append('T13 误报：as a child')
+    细 = {'sentences': [句(('He', '他'), ('came', '来了'), ('before the war', '在战争之前'))]}
+    粗 = {'sentences': [句(('He came to the city before the war began', '他在战争开始前来到这座城市'))]}
+    if 对齐(细, {}) != ([], []): fails.append('T9对齐 误报：逐词对齐的句子')
+    e_, c_ = 对齐(粗, {})
+    if not e_: fails.append('没抓到：全篇对齐比 01–03 粗（T9/文6）')
+    if not c_: fails.append('没抓到：一组塞了 9 个英文词（T9/文6）')
+    if 对齐(粗, {'对齐': {c_[0].split('  ←')[0][len('[T9对齐] '):]: '整句语序倒装'}})[1]: fails.append('T9对齐 误报：写了原因的组')
     s = 句(('Prices soared', '价格一路飙升')); rec = {'S1': {'指纹': 指纹(s)}}
     if 逐句({'sentences': [s]}, rec): fails.append('逐句确认 误报：确认过、没改的句子')
     s2 = copy.deepcopy(s); s2['chunks'][0]['zh'] = '价格飙升'
@@ -151,5 +194,5 @@ def 自检():
 
 if __name__ == '__main__':
     if '--自检' in sys.argv:
-        f = 自检(); print('译文核查 自检：' + ('通过（方向词、词性、同词异译、排版指令、改稿门、逐句确认：错例全部报出，正例不误报）' if not f else '失灵！' + '；'.join(f)))
+        f = 自检(); print('译文核查 自检：' + ('通过（对齐粗细、方向词、词性、同词异译、排版指令、改稿门、逐句确认：错例全部报出，正例不误报）' if not f else '失灵！' + '；'.join(f)))
         sys.exit(1 if f else 0)
