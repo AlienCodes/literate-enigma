@@ -27,7 +27,7 @@ On 12 February 2014 a **permanent** **fixture** was announced: **horizontal** **
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
-| under construction | 本文：正在建设中的；正在建设中的，在建（a building under construction） | 1 |
+| under construction | 本文：正在建设中的；短语. 正在建设中的，在建（a building under construction） | 1 |
 | skyscraper | 本文：摩天大楼；n. 摩天大楼（a 50-storey skyscraper） | 1 |
 | saloon | 本文：轿车；n. （英）轿车；酒吧（a four-door saloon） | 1 |
 | pavement | 本文：人行道；n. （英）人行道（walk on the pavement） | 1 |

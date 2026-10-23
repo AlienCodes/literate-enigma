@@ -32,13 +32,13 @@ Another person, **it is thought**, killed him. From the wound's depth researcher
 | glacier | 本文：冰川；n. 冰川（a retreating glacier） | 1 |
 | corpse | 本文：尸体；n. 尸体（identify a corpse） | 1 |
 | ridge | 本文：山脊；n. 山脊，脊状突起（walk along the ridge） | 1 |
-| border | 本文：交界处 | 1 |
+| border | 本文：交界处；n. 边界，边境；交界处（the border between Austria and Italy） | 1 |
 | assumption | 本文：假设；n. 假定，推测（a reasonable assumption；on the assumption that…） | 1 |
 | modern-day | 本文：现代；adj. 现代的，当今的（modern-day Britain；a modern-day hero） | 1 |
 | climber | 本文：登山者；n. 登山者（a rock climber） | 1 |
 | alpine | 本文：高山的；adj. 高山的，阿尔卑斯山的（alpine plants/meadows） | 1 |
 | slope | 本文：山坡；n. 斜坡，山坡（a steep slope；ski slopes） | 1 |
-| jackhammer | 本文：风钻 | 2 |
+| jackhammer | 本文：风钻；n. 风钻，手提凿岩机（the noise of a jackhammer） | 2 |
 | ripped | 本文：撕下来/扯下了；v. (rip) 撕，扯；撕破（rip open a letter；rip one's shirt） | 2 |
 | hip | 本文：髋骨；n. 髋部，臀部（a hip replacement；hands on hips） | 2 |
 | flesh | 本文：皮肉；n. 肉，皮肉（flesh and blood；the flesh of a fruit） | 2 |
@@ -59,7 +59,7 @@ Another person, **it is thought**, killed him. From the wound's depth researcher
 | bleeding | 本文：出血；n. 出血（stop the bleeding；internal bleeding） | 3 |
 | mortal | 本文：致命；adj. 致命的；终将死亡的（a mortal wound；all men are mortal） | 3 |
 | clot | 本文：血块；n. 血块，凝块（a blood clot） | 3 |
-| it is thought | 本文：据认为 | 4 |
+| it is thought | 本文：据认为；短语. 据认为，人们认为（it is thought that …） | 4 |
 | inferred | 本文：推断；v. (infer) 推断（infer sth from the evidence） | 4 |
 | archer | 本文：弓箭手；n. 弓箭手（a skilled archer） | 4 |
 | rear | 本文：背后；n. 后部，背后（at the rear of the house；attack from the rear） | 4 |

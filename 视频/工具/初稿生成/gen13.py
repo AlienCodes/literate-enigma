@@ -45,7 +45,7 @@ S=[
     [[("**involuntary** **lapses into** sleep lasting a few seconds.","指**不由自主地**(involuntary)**陷入**(lapses into)持续几秒钟短暂睡眠的状态。")],
      "（which…：非限制性定语从句，指这篇论文；\ninvoluntary lapses into sleep…：同位语，解释 microsleeps；\nlasting…：现在分词短语作后置定语）\n@lapses into|（lapse into: 不知不觉地陷入（某种状态），\n@lapses into|尤指无意识的、非自愿的，或者是不太好的状态。）"]]),
 (4,[[[("Gardner","加德纳"),("may have had such **momentary** **bouts**","可能经历过这种**短暂的**(momentary)**发作**(bouts)"),("without noticing.","而未曾察觉。")],
-     "（may have done：对过去情况的推测，可能已经……）\n@bouts|（bout 一阵、一场、一回、一次发作\n@bouts|（通常指疾病、情绪或活动的阵发性发作，如 a bout of fever 一阵发烧））"]]),
+     "（may have done：对过去情况的推测，可能已经……）\n@bouts|（bout 一阵、一场、一回、一次发作\n@bouts|（通常指疾病、情绪或活动的阵发性发作，\n@bouts|如 a bout of fever 一阵发烧））"]]),
 (5,[[[("In 1997","1997年，"),("Guinness World Records","吉尼斯世界纪录")]],
     [[("{{=}}**discontinued** monitoring such attempts because of the health **perils**,","因健康**风险**(perils)**停止了**(discontinued)监测此类尝试；")]],
     [[("and others have since **alleged**","此后，其他人**声称/宣称**(alleged)"),("longer **stints** awake.","有过更长的清醒**时段**(stints)。")],

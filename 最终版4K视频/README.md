@@ -24,6 +24,6 @@
 | 17 | The Curse of the Pharaoh | 法老的诅咒 | 11.2 MB |
 | 18 | The Mould That Changed the World | 改变人类命运的霉菌 | 13.3 MB |
 | 19 | Tulip Mania The Bubble and the Legend | 郁金香狂热：泡沫与传说 | 12.0 MB |
-| 20 | The 5,000-Year-Old Murder in the Ice | 冰里的五千年凶案 | 12.0 MB |
+| 20 | The 5,000-Year-Old Murder in the Ice | 冰里的五千年凶案 | 12.1 MB |
 | 21 | The Man Who Sold the Eiffel Tower Twice | 两次卖掉埃菲尔铁塔的骗子 | 11.1 MB |
 | 22 | The Building That Melted a Car | 会烤化汽车的大楼 | 10.7 MB |
