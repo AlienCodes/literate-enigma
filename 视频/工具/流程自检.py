@@ -35,6 +35,11 @@ if not _ns['欠着'](_st): fails.append('没抓到：改了出片程序没全篇
 _j.dump({'程序指纹': _ns['程序指纹']()}, open(_st, 'w'))
 if _ns['欠着'](_st): fails.append('误报：全篇重查指纹一致却算欠着（铁4）')
 shutil.rmtree(_d, ignore_errors=True)
+import 补对照记录 as _B; _d = tempfile.mkdtemp(); _r = f'{_d}/99.md'   # 补对照记录：程序把关的坑自动补，只有人能判的（T7、G6……）不许补
+open(_r, 'w').write('# x\n## 踩坑对照记录\n| 编号 | 坑 | 涉及 | 做法 |\n| A1 | x | 涉及 | y |\n'); _B.补('99', _r); _x = open(_r).read()
+if '| A2 |' not in _x: fails.append('没抓到：程序把关的新坑没自动补进对照记录')
+if '| T7 |' in _x or '| G6 |' in _x: fails.append('误补：只有人能判的坑（T7/G6）被自动补成“程序把关”')
+shutil.rmtree(_d, ignore_errors=True)
 td = tempfile.mkdtemp(); lk = open(f'{td}/.定稿流水线_99.lock', 'w'); fcntl.flock(lk, fcntl.LOCK_EX)
 r = subprocess.run(['bash', f'{T}/定稿流水线.sh', '99'], capture_output=True, text=True, cwd=td, timeout=60)
 if r.returncode == 0 or '已经有一条定稿流水线在跑' not in r.stdout + r.stderr: fails.append('没抓到：同一篇同时跑两条定稿流水线（G10）')
