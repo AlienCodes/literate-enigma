@@ -712,7 +712,8 @@ def main():
         vf = selftest_folders() or video_folders(ROOT)
         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
         return 1 if vf else 0
-    fails = selftest() + selftest_l19() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart()
+    sys.path.insert(0, T); import 译文核查 as _YW
+    fails = selftest() + _YW.自检() + selftest_l19() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
@@ -722,6 +723,8 @@ def main():
     sent = json.load(open(snap)) if os.path.exists(snap) else None
     err = record_gate(no, stage) + video_folders(ROOT)
     e, conf, ref = text_checks(d, article_en(no), sent); err += e
+    sys.path.insert(0, T); import 译文核查 as _YW                       # 译文规矩（21 起）：方向词 T4、词性 T2、同词异译 文10、排版指令 W3、改稿门 T10、逐句确认
+    _md = glob.glob(f'{ROOT}/新版定稿/{no}-*.md'); _e, _c = _YW.查(d, no, open(_md[0]).read() if _md else ''); err += _e; conf += _c
     # T22 只查以后新做的篇目（09 起）。用户 2026-10-10：“以后查就行，已经做完了，这几天不要再查了……刚刚做完这篇，你查啥？不用再查了，又浪费时间……以后每次都要（查）”
     # 已做完的 01–08 不回头查；08 只改用户点名的 S2 attributed … to（制作记录/08_待改清单.md）
     if int(no) >= 9: conf += phrase_checks(d, no)
