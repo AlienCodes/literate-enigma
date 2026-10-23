@@ -2,11 +2,11 @@ import json,re,glob,os
 # 第23篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-10-23 程序打底：英文、重点词与文章逐字核对，重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式（“的”“地”“了”进粗体）。
 S=[
-(1,[[[("Born in June 1912, Alan Turing","艾伦·图灵生于1912年6月，"),("had a **formidable** **intellect** by his early twenties.","二十出头时，他已拥有**超群的**(formidable)**才智**(intellect)。")],
-     "（Born in…：过去分词短语作状语，说明出生时间；\nby…：到……时为止）"]]),
+(1,[[[("Born in June 1912, Alan Turing","艾伦·图灵生于1912年6月，"),("had a **formidable** **intellect** by his early twenties.","二十出头时，他已拥有**强大的**(formidable)**才智**(intellect)。")],
+     "（Born in…：过去分词短语作状语，说明出生时间；\nby…：到……时为止；\nformidable 常译为“强大的、令人敬畏的”，\n多指实力极强、规模宏大或难度极高，足以给人带来压迫感或让人难以应对）"]]),
 (1,[[[("In a paper read in November 1936,","在1936年11月宣读的一篇论文中，"),("he **outlined** a \"universal machine\":","他**勾勒了**(outlined)一种“通用机器”：")],
      "（read in…：过去分词短语作后置定语，修饰 paper）"],
-    [[("a **device** able to **execute** any **computation**,","一种能**执行**(execute)任何**计算**(computation)的**装置**(device)，"),("given the right instructions.","只要给出恰当的指令。")],
+    [[("a **device** able to **execute** any **computation**,","一种能**执行**(execute)任何**计算**(computation)的**装置**(device)，"),("given the right instructions.","只要给出正确的指令。")],
      "（冒号后是同位语，说明 universal machine；\nable to…：形容词短语作后置定语，修饰 device；\ngiven…：只要给出……，表条件）"]]),
 (1,[[[("That **abstract** **construct**,","这一**抽象的**(abstract)**构想**(construct)"),("rooted in **mathematical** **logic**,","植根于**数理**(mathematical)**逻辑**(logic)，"),("{{=}}became the **theoretical** **blueprint** of the modern computer.","后来成为了现代计算机的**理论**(theoretical)**蓝图**(blueprint)。")],
      "（rooted in…：过去分词短语，插入说明 construct；\nmathematical logic：数理逻辑）"]]),
@@ -53,7 +53,7 @@ CONF={"即":{"S4-2 即":"沿用文章定稿中文“即德国的加密机器”�
  "牛津逗号":{"S9 with two concealed players, one human and":"不是三项并列：one human and one machine 是两项，作同位语说明 players"},
  "短语":{"S3 blueprint … of":"of the modern computer 是普通的 of 结构（现代计算机的），blueprint 本身就是“蓝图”，不是短语型用法",
   "S6 operational … from":"from March 1940 是普通时间状语（从1940年3月起），operational 本身就是“运转中的”（文章定稿“投入运行”），不是短语型用法",
-  "S1 a formidable intellect":"formidable、intellect 两个都是重点词，各自加粗、各自标中文（超群的 / 才智），文章定稿就是分开标的；formidable 的“超群的”即速查表第一个意思“惊人的，了不起的”，意思不靠整体搭配产生",
+  "S1 a formidable intellect":"formidable、intellect 两个都是重点词，各自加粗、各自标中文（强大的 / 才智），文章定稿就是分开标的；formidable 的“强大的”是用户 2026-10-23 定的译法，意思不靠整体搭配产生",
   "S3 mathematical logic":"mathematical、logic 两个都是重点词，各自加粗、各自标中文（数理 / 逻辑），合起来正是“数理逻辑”，文章定稿就是分开标的，中文已标全"}}
 out={"no":"23","title_en":"The Man Who Gave Machines a Mind","title_zh":"为机器点燃思想的人","title_fx":{"hl":["Machines","Mind"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局",
      "高亮按实际开口":True,"高亮开口门槛":40,"结尾句":{"S19":{"整句语速":0.8,"依据":"全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：最后一句 The country that prosecuted him put his face on its money. 没有句中标点，整句 0.80 倍速（同 01 S18）"}},
