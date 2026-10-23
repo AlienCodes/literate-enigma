@@ -117,6 +117,64 @@ def 对齐(d, ok):
     return err, conf
 
 
+_K = re.compile(r'\*\*[^*]+\*\*')
+_ZK = re.compile(r'(\*\*[^*]+\*\*\([^)]*\))')
+_标点 = re.compile(r'^[\s，。、；：！？“”‘’（）《》…—\-,.;:!?()"\'·]*$')
+def 同序(a, b):
+    """一组里两个以上重点词，中文里重点词的先后和英文一样（倒装的不算）"""
+    ks = [x.lower() for x in _K.findall(a)]
+    zs = ['**' + x.split('**(')[1][:-1].lower() + '**' for x in _ZK.findall(b) if '**(' in x]
+    return len(ks) >= 2 and ks == zs
+def 拆(a, b):
+    """[T34] 把同序的多重点词组拆开：每个重点词带着它的中文单独一组；重点词之间的英文和中文一一对得上就单独一组，
+    没有中文的英文（a、the）跟着后面的重点词，标点跟着前面的。英文按空格切（拼回去一字不差），中文只切不改（D2）。不同序返回 None"""
+    if not 同序(a, b): return None
+    toks = re.sub(r'\{\{.*?\}\}', lambda m: m.group(0).replace(' ', '\0'), a).split(' ')
+    units, cur, depth = [], [], 0   # 英文：('K', 文) 重点词（可能跨几个空格）或 ('E', 文)
+    for tk in toks:
+        n = tk.count('**')
+        if depth or n:
+            cur.append(tk); depth = (depth + n) % 2
+            if not depth: units.append(['K', ' '.join(cur)]); cur = []
+        elif units and not re.search(r'[A-Za-z0-9]', tk.replace('\0', ' ')): units[-1][1] += ' ' + tk   # 纯标点跟前面
+        else: units.append(['E', tk])
+    E, K = [[]], []
+    for ty, x in units:
+        if ty == 'K': K.append(x); E.append([])
+        else: E[-1].append(x)
+    E = [' '.join(e).replace('\0', ' ') for e in E]; K = [k.replace('\0', ' ') for k in K]
+    C = _ZK.split(b); Z, C = C[1::2], C[0::2]
+    if len(K) != len(Z) or len(E) != len(C): return None
+    out, pre_e, pre_z = [], '', ''
+    def 单独(e, c):   # 稳妥才单独成组：英文 ≤2 个词、中文 ≤3 个字、不是“……的”（“的”结尾多半是后置定语提前，如 of the modern computer → 现代计算机的）
+        z = re.sub(r'[^\u4e00-\u9fff]', '', c)
+        return bool(e) and 0 < len(z) <= 3 and 词数(e) <= 2 and not z.endswith('的')
+    if 单独(E[0], C[0]): out.append([E[0], C[0]])
+    else: pre_e, pre_z = E[0], C[0]
+    for i in range(len(K)):
+        g = [(pre_e + ' ' + K[i]).strip(), pre_z + Z[i]]; pre_e = pre_z = ''
+        e, c = E[i + 1], C[i + 1]
+        if i < len(K) - 1 and 单独(e, c): out += [g, [e, c]]
+        elif i < len(K) - 1: g[1] += c; out.append(g); pre_e = e   # 中间拿不准的：中文跟前一个重点词，英文跟后一个
+        else: g[0] = (g[0] + ' ' + e).strip(); g[1] += c; out.append(g)
+    assert ' '.join(x for x, _ in out) == a and ''.join(y for _, y in out) == b, (a, b, out)
+    return out
+def 同序组(d, ok):
+    """[T34] 用户 2026-10-23 看 23：“这个避免它还是没有完美的对应到这个avert的下面……才智也没有非常精准的放到这个intellect的下面……立一道闸”。
+    一组里两个以上重点词、中文先后和英文一样 → 必须拆开，每个重点词的中文在它自己的英文正下方；倒装的（an emblem of virtue → 美德的象征）照旧整组。
+    例外只认用户同意：核对确认.同序 里这一组的说明含“用户”"""
+    err = []
+    for i, s in enumerate(d['sentences']):
+        for k, c in enumerate(s['chunks']):
+            for a, b in c['align']:
+                if a == '\n' or not 同序(a, b): continue
+                key = f'S{i + 1}-{k + 1} {re.sub(r"[*]", "", a)[:30]}'
+                if '用户' in ok.get('同序', {}).get(key, ''): continue
+                err.append(f'[T34] {key}  ← 两个以上重点词挤在一组、中文先后和英文一样：拆开，每个重点词的中文放在它自己的英文正下方。'
+                           f'自动拆（中文一字不改）：python3 工具/拆分组.py NN --写入')
+    return err
+
+
 def 比较结构(d, ok):
     """[T13] 比较、倍数结构（half as strong as、twice as、three times as、as … as）：01 S? “……的一半”单独放一格整句读不通。逐个点名核对整组处理、整句读得通"""
     out = []
@@ -145,13 +203,13 @@ def 逐句(d, rec):
 def 查(d, no, art):
     """踩坑核查 调用：返回 (错误, 待确认)"""
     ok = d.get('核对确认', {})
-    if 12 <= int(no) < 起始篇: return 对齐(d, ok)   # T9 对齐 12 起：用户 2026-10-23 选定 12–20、22 也按标准重新对齐、重出 4K
+    if 12 <= int(no) < 起始篇: _e, _c = 对齐(d, ok); return _e + 同序组(d, ok), _c   # T9 对齐 12 起：用户 2026-10-23 选定 12–20、22 也按标准重新对齐、重出 4K；T34 同序重点词必须拆开
     if int(no) < 起始篇: return [], []
     def 读(p, j=False):
         try: return json.load(open(p)) if j else open(p).read()
         except Exception: return {} if j else ''
     err = 改稿门(d, 读(f'{V}/脚本/已发版本/{no}.json', True), 读(f'{V}/制作记录/{no}_待改清单.md'))
-    _ae, _ac = 对齐(d, ok); err += _ae
+    _ae, _ac = 对齐(d, ok); err += _ae + 同序组(d, ok)
     conf = _ac + 比较结构(d, ok) + 方向(d, ok) + 词性(d, art, ok) + 同词异译(d, ok) + 排版指令(d, ok) + [x.replace(' NN ', f' {no} ') for x in 逐句(d, 读(f'{V}/制作记录/逐句确认/{no}.json', True))]
     return err, conf
 
@@ -186,6 +244,14 @@ def 自检():
     if not e_: fails.append('没抓到：全篇对齐比 01–03 粗（T9/文6）')
     if not c_: fails.append('没抓到：一组塞了 9 个英文词（T9/文6）')
     if 对齐(粗, {'对齐': {c_[0].split('  ←')[0][len('[T9对齐] '):]: '整句语序倒装'}})[1]: fails.append('T9对齐 误报：写了原因的组')
+    坏 = {'sentences': [句(('a **formidable** **intellect**', '**强大的**(formidable)**才智**(intellect)，'))]}
+    if not 同序组(坏, {}): fails.append('没抓到：两个重点词同序挤在一组（T34）')
+    if 同序组({'sentences': [句(('an **emblem** of **virtue**,', '**美德**(virtue)的**象征**(emblem)，'))]}, {}): fails.append('T34 误报：倒装的整组')
+    if 同序组(坏, {'同序': {'S1-1 a formidable intellect': '我觉得不用拆'}}) == []: fails.append('T34 放行了没有用户同意的例外')
+    if 拆('to **avert** **imprisonment**,', '为了**避免**(avert)**入狱**(imprisonment)，') != [['to', '为了'], ['**avert**', '**避免**(avert)'], ['**imprisonment**,', '**入狱**(imprisonment)，']]: fails.append('T34 自动拆错了：to avert imprisonment')
+    if 拆('a **formidable** **intellect**', '**强大的**(formidable)**才智**(intellect)，') != [['a **formidable**', '**强大的**(formidable)'], ['**intellect**', '**才智**(intellect)，']]: fails.append('T34 自动拆错了：a formidable intellect')
+    _拆后 = {'sentences': [句(*拆('a **formidable** **intellect**', '**强大的**(formidable)**才智**(intellect)，'))]}
+    if 同序组(_拆后, {}): fails.append('T34 拆完还报')
     s = 句(('Prices soared', '价格一路飙升')); rec = {'S1': {'指纹': 指纹(s)}}
     if 逐句({'sentences': [s]}, rec): fails.append('逐句确认 误报：确认过、没改的句子')
     s2 = copy.deepcopy(s); s2['chunks'][0]['zh'] = '价格飙升'
