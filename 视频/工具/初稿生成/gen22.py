@@ -24,7 +24,7 @@ S=[
      "（using…：现在分词短语表方式）"]]),
 (3,[[[("The **developers**","**开发商**(developers)"),("issued an **apology**","作出了**道歉**(apology)，"),("and **reimbursed** almost 1,000 pounds for repairs.","并**赔付了**(reimbursed)近1,000英镑的修理费。")],
      "（issue an apology：公开道歉；\nreimburse…for…：赔付……的费用）"]]),
-(3,[[[("Parking bays were suspended","路边停车位暂停使用，"),("and a **provisional** **barrier** was **erected**.","还**架起了**(erected)一道**临时**(provisional)性的**屏障**(barrier)。")]]]),
+(3,[[[("Parking bays were suspended","路边停车位暂停使用，"),("and a **provisional** **barrier** was **erected**.","并且一道**临时的**(provisional)**屏障**(barrier)被**搭建了起来**(erected)。")]]]),
 (3,[[[("The beam","这道光束"),("struck for about two hours a day, two to three weeks **annually**,","**每年**(annually)有两到三周、每天约两个小时照到街上，")],
      "（for…, …：两个时间状语并列）"],
     [[("because of the sun's **angle** of elevation.","这是受这一时节太阳的**角度**(angle)与高度影响。")],
