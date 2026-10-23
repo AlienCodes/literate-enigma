@@ -27,7 +27,7 @@ S=[
      "（the imitation game：同位语，说明 substitute；\nnow widely called…：过去分词短语，补充说明）"]]),
 (3,[[[("An **interrogator**","一名**审问者**(interrogator)"),("exchanges typed messages with two **concealed** players,","通过打字，与两个**隐藏起来的**(concealed)参与者交流，"),("one human and one machine.","其中一个是人，一个是机器。")],
      "（exchange messages with sb：与某人互通消息；\none human and one machine：同位语，说明 players）"]]),
-(3,[[[("If the interrogator cannot","如果审问者无法"),("**consistently** **distinguish** them,","**始终如一地**(consistently)**区分出**(distinguish)二者，"),("the machine passes.","机器就算通过测试。")],
+(3,[[[("If the interrogator cannot","如果审问者无法")]],[[("**consistently** **distinguish** them,","**始终如一地**(consistently)**区分出**(distinguish)二者，")]],[[("the machine passes.","机器就算通过测试。")],
      "（them：指人和机器两个参与者；\npass：通过测试）"]]),
 (4,[[[("His **exceptional** **wartime** **contribution**","他在**战时**(wartime)**卓越的**(exceptional)**贡献**(contribution)"),("did not protect him.","并没有护住他。")]]]),
 (4,[[[("On 31 March 1952","1952年3月31日，"),("he was **convicted of** \"gross indecency\",","他被**判定犯有**(convicted of)“严重猥亵罪”，")],
