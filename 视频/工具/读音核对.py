@@ -258,17 +258,19 @@ def selftest(no):
     orig = phonemes_of; res = []
     # ① 挪重音
     tgt = None
+    def _moved(ph):
+        b_ = ph.replace('ˈ', ''); vow = [m_.start() for m_ in re.finditer('[aeiouæɑɔəɛɪʊʌɚɜɐᵻ]', b_)]
+        first_v = vow[0]; idx = ph.index('ˈ')
+        return (b_[:first_v] + 'ˈ' + b_[first_v:]) if idx > first_v + 1 else (b_[:vow[-1]] + 'ˈ' + b_[vow[-1]:])
     for w in words_of(spoken(re.sub(r'\*\*', '', R.strip_gloss(text)))):
         if w.lower() in FUNC or len(w) < 7 or w[0].isupper() or '-' in w: continue
         ph = re.sub(r'[,;:.!?]', '', orig(w)).strip()
-        if ph.count('ˈ') == 1 and len([p_ for p_, s_ in ipa_phones(ph) if s_ >= 0]) >= 3 and any(same(ipa_phones(ph), r[2])[0] for r in refs(w)):
+        if ph.count('ˈ') == 1 and len([p_ for p_, s_ in ipa_phones(ph) if s_ >= 0]) >= 3 and any(same(ipa_phones(ph), r[2])[0] for r in refs(w)) \
+           and not any(same(ipa_phones(_moved(ph)), r[2])[0] for r in refs(w)):   # 23 formidable：挪成首音节重音仍是词典读法（CMU F AO1 R…），不能当坏样本
             tgt = (w, ph); break
     if tgt:
         w, ph = tgt; syl = re.findall(r'[ˈˌ]?[^ˈˌ]+', ph)
-        bad_ph = ph.replace('ˈ', '')
-        vow = [m_.start() for m_ in re.finditer('[aeiouæɑɔəɛɪʊʌɚɜɐᵻ]', bad_ph)]
-        first_v = vow[0]; idx = ph.index('ˈ')
-        bad_ph = (bad_ph[:first_v] + 'ˈ' + bad_ph[first_v:]) if idx > first_v + 1 else (bad_ph[:vow[-1]] + 'ˈ' + bad_ph[vow[-1]:])
+        bad_ph = _moved(ph)
         def fake(t, _w=w, _ph=ph, _bad=bad_ph):
             r = orig(t)
             return r.replace(_ph, _bad) if re.search(r'(?<![A-Za-z])' + re.escape(_w) + r'(?![A-Za-z])', t) else r
