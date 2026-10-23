@@ -34,7 +34,8 @@
 ✔ 成片有画面（G12：有画面流、宽 ≥1920；只有声音的文件一律不得交付——快速重建核查.sh 会把 NN.mp4 覆盖成只有声音，出片要放在它之后）
      时长 Duration: 00:02:25.42
 ✔ token 记录（T31：程序自动算这篇花了多少，写进制作记录）
-    %；Read（主对话） 2%；SendUserFile（主对话） 2%；ReadNotifications（主对话） 1%；Write（主对话） 1%；mcp｜拖带最多的单个结果： mcp__claude-code-remote__list_（23k 字×550 次）；Bash·Write method design （11k 字×683 次）；mcp__github__get_job_logs（
+    me.datetime.now(datetime.UTC).
+  line = f"{head} {datetime.datetime.utcnow():%Y-%m-%dT%H:%M}（UTC）：{tot.split('（')[0].replace('全部等效 token：', '等效 ')}；{calls.replace('调用次数与平均每次带的上下文： ', '')}｜{tl}｜{drag}"
 ✔ audio_qc 自检：削波、4800 Hz 电流音、片中停顿过长、一段变轻全部报出
 ✔ 自动音频检查（削波、电流音、停顿超长、响度骤降）
     16.mp4：音频自动检查通过（仍需人耳逐句试听）
