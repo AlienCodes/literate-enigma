@@ -82,6 +82,7 @@ for f in glob.glob(f'{ROOT}/新版定稿/[0-9][0-9]-*.md'):
     n=os.path.basename(f)[:2]
     if n==no: continue
     js_=f'{ROOT}/视频/脚本/{n}.json'
+    if not os.path.exists(js_): continue   # 还没做视频的篇目（如 33 草稿）不算：撞车由后做的那篇让（2026-10-23：33 的 doses 把已定稿的 18 dose 反报成新撞词）
     ac_={x.lower() for x in json.load(open(js_)).get('allow_clash',[])} if os.path.exists(js_) else set()
     e=open(f).read().split('## 英文',1)[1].split('## 中文',1)[0]
     for b in re.findall(r'\*\*([^*]+)\*\*',e):

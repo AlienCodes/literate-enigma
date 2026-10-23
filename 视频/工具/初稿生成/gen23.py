@@ -34,7 +34,7 @@ S=[
      "（be convicted of：被判定犯有……罪）"],
     [[("the charge then used against gay men.","这是当时用来惩治男同性恋者的罪名。")],
      "（the charge…：同位语，说明 gross indecency；\nthen used against…：过去分词短语作后置定语，修饰 charge）"]]),
-(4,[[[("He **forfeited** his security **clearance**","他**失去了**(forfeited)安全**许可**(clearance)，"),("and, to **avert** **imprisonment**,","为了**避免**(avert)**入狱**(imprisonment)，他还"),("**submitted to** **hormone** **injections**.","**接受了**(submitted to)**激素**(hormone)**注射**(injections)。")],
+(4,[[[("He **forfeited** his security **clearance**","他**被剥夺/丧失了**(forfeited)他的安全**许可**(clearance)，"),("and, to **avert** **imprisonment**,","并且为了**避免**(avert)**入狱**(imprisonment)，"),("**submitted to** **hormone** **injections**.","**被迫接受了**(submitted to)**激素**(hormone)**注射**(injections)。")],
      "（to avert…：不定式表目的，插在 and 与谓语之间；\nsubmit to：接受，服从）"]]),
 (4,[[[("He died of cyanide poisoning on 7 June 1954.","1954年6月7日，他死于氰化物中毒。")],
      "（die of：死于……）"]]),
