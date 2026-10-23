@@ -4,7 +4,7 @@
 ## 英文
 In 1925 six **scrap-metal** **traders** met secretly at the Hôtel de Crillon in Paris. A **deputy** **director-general** of the Ministry of Posts and Telegraphs shared the **momentous** news, **confidentially**, that the Eiffel Tower was to be sold for scrap. He invited **tenders** and made each dealer **solemnly** **vow** **secrecy**, **ostensibly** to spare the **public indignation**.
 
-The **pretext** was not **absurd**. Built for the 1889 World's Fair, the **monument** had **originally** been **destined** to **come down** after twenty years. The **high-ranking** deputy was Victor Lustig, a **crook** whose **ministerial** stationery was a **forgery**. He had read a newspaper article in which the authorities **lamented** the **hefty** cost of the tower's **upkeep**.
+The **pretext** was not **absurd**. Built for the 1889 World's Fair, the **monument** had **originally** been **destined** to **come down** after twenty years. The **high-ranking** deputy was Victor Lustig, a **crook** whose **ministerial** **stationery** was a **forgery**. He had read a newspaper article in which the authorities **lamented** the **hefty cost** of the tower's **upkeep**.
 
 André Poisson, a **businessman** **impatient** to **gain a foothold** in Paris, won. Lustig **intimated** that his modest **civil-service** **remuneration** needed **supplementing**, and Poisson paid an **additional** **bribe**. Lustig left for Vienna with the **takings**.
 
@@ -18,13 +18,13 @@ Of Lustig's two marks, the one who paid **kept mum** and the one who kept his mo
 
 ## 中文
 
-1925年，六名经营**废金属**(scrap-metal)的**商人**(traders)在巴黎的克里雍酒店秘密会面了。（at the Hôtel de Crillon in Paris：地点状语，中文提到动词前）邮电部的一位**副**(deputy)**总负责人**(director-general)向他们**私下地**(confidentially)分享了一个**重大的**(momentous)消息，埃菲尔铁塔将作为废铁出售。（of the Ministry…：介词短语作后置定语；confidentially：插入的副词，修饰 shared）（that…：同位语从句，说明 news 的内容；be to be done：将要被……）他请他们**投标**(tenders)，并让每位商人**郑重地**(solemnly)**发誓**(vow)要**保密**(secrecy)，**表面上**(ostensibly)是为了避免引起**公愤**(public indignation)。（make sb do：让某人做……；vow secrecy：发誓保密）（to spare…：不定式表目的；spare sb sth：使某人免受……）
+1925年，六名经营**废金属**(scrap-metal)的**商人**(traders)在巴黎的克里雍酒店秘密会面了。（at the Hôtel de Crillon in Paris：地点状语，中文提到动词前）邮电部的一位**副的**(deputy)**总负责人**(director-general)向他们**私下地**(confidentially)分享了一个**重大的**(momentous)消息，埃菲尔铁塔将作为废铁出售。（of the Ministry…：介词短语作后置定语；confidentially：插入的副词，修饰 shared）（that…：同位语从句，说明 news 的内容；be to be done：将要被……）他请他们**投标**(tenders)，并让每位商人**郑重地**(solemnly)**发誓**(vow)要**保密**(secrecy)，**表面上**(ostensibly)是为了避免引起**公愤**(public indignation)。（make sb do：让某人做……；vow secrecy：发誓保密）（to spare…：不定式表目的；spare sb sth：使某人免受……）
 
-这个**借口**(pretext)并不**荒唐**(absurd)。这座为1889年世博会而建的**纪念建筑**(monument)，**原本**(originally)就**注定**(destined)要在二十年后**拆除**(come down)。（Built for…：过去分词短语，补充说明 the monument）（be destined to do：注定要……；come down：被拆除）那位**位高权重的**(high-ranking)副总长正是维克多·卢斯蒂格，一个**骗子**(crook)，他的那些**部长的**(ministerial)信笺都是**伪造品**(forgery)。（a crook：同位语，说明 Victor Lustig；whose…：定语从句，修饰 crook）他曾读到过报纸上的一篇文章，文中当局**哀叹**(lamented)铁塔**维护**(upkeep)费用**高昂**(hefty)。（in which…：定语从句，修饰 article）
+这个**借口**(pretext)并不**荒唐**(absurd)。这座为1889年世博会而建的**纪念建筑**(monument)，**原本**(originally)就**注定**(destined)要在二十年后**拆除**(come down)。（Built for…：过去分词短语，补充说明 the monument）（be destined to do：注定要……；come down：被拆除）那位**位高权重的**(high-ranking)副总长正是维克多·卢斯蒂格，一个**骗子**(crook)，他的那些**部长的**(ministerial)**信笺**(stationery)都是**伪造品**(forgery)。（a crook：同位语，说明 Victor Lustig；whose…：定语从句，修饰 crook）他曾读到过报纸上的一篇文章，文中当局**哀叹**(lamented)铁塔**维护**(upkeep)的**高昂费用**(hefty cost)。（in which…：定语从句，修饰 article）（hefty：（数目，数量）相当大的）
 
 安德烈·普瓦松，一个**生意人**(businessman)，**迫不及待地**(impatient)想在巴黎**拥有一席之地**(gain a foothold)，中标了。（a businessman…：同位语，说明 André Poisson；impatient to do：急于做……，形容词短语作后置定语；gain a foothold：站稳脚跟）卢斯蒂格**暗示**(intimated)，他那份微薄的**公务员**(civil-service)**薪酬**(remuneration)需要**补贴**(supplementing)，普瓦松然后付了一笔**额外的**(additional)**贿赂**(bribe)。（that…：宾语从句；need doing：需要被……，主动形式表被动）卢斯蒂格带着这笔**进账**(takings)去了维也纳。（leave for：动身前往）
 
-被**骗走**(Fleeced)钱财，又实在太**丢人**(ashamed)、**没脸**(ashamed)去报警，普瓦松只能**默默**(quietly)咽下这笔损失。（Fleeced and too ashamed…：过去分词与形容词并列作状语；too…to…：太……而不能……；go to the police：报警）报纸上没有出现关于这场**骗局**(deceit)的半点**风声**(whisper)。（Not a…：一点……都没有；in print：见报，在报刊上）
+被**骗走**(Fleeced)钱财，又实在太**丢人**(ashamed)、**没脸**(ashamed)去报警，普瓦松只能**默默地**(quietly)咽下这笔损失。（Fleeced and too ashamed…：过去分词与形容词并列作状语；too…to…：太……而不能……；go to the police：报警）报纸上没有出现关于这场**骗局**(deceit)的半点**风声**(whisper)。（Not a…：一点……都没有；in print：见报，在报刊上）
 
 大约一个月后，卢斯蒂格**厚颜无耻地去**(had the gall to)**再一次出现**(reappear)，对新的一批商人**重演**(encore)他那套**剧本**(script)。（have the gall to do：竟厚着脸皮做……）（an encore of…：……的重演）这一次，那位中标者**起了疑心**(grew distrustful)，报了警。（distrustful of：怀疑…，对…不相信，认为…靠不住）（常与 of 连用，表示对……不信任或怀疑）这桩**事件**(affair)上了报纸，卢斯蒂格**逃之夭夭**(getaway)。（make the papers：上报纸；make one's getaway：逃走）那个**被反复提及的**(much-repeated)第二次出售，只是个**童话**(fairy tale)。
 
@@ -37,7 +37,7 @@ Of Lustig's two marks, the one who paid **kept mum** and the one who kept his mo
 |---|---|---|
 | scrap-metal | 本文：废金属；n. (scrap metal) 废金属（a scrap-metal dealer；连字符用于定语） | 1 |
 | traders | 本文：商人；n. (trader) 商人，交易者（market traders） | 1 |
-| deputy | 本文：副；adj. 副的（a deputy director 副主任） | 1 |
+| deputy | 本文：副的；adj. 副的（a deputy director 副主任） | 1 |
 | director-general | 本文：总负责人；n. 总负责人，总干事（the director-general of the BBC） | 1 |
 | confidentially | 本文：私下地；adv. 私下地，秘密地（speak confidentially） | 1 |
 | momentous | 本文：重大的；adj. 重大的（a momentous decision） | 1 |
@@ -56,10 +56,11 @@ Of Lustig's two marks, the one who paid **kept mum** and the one who kept his mo
 | high-ranking | 本文：位高权重的；adj. 高级的，位高的（a high-ranking official） | 2 |
 | crook | 本文：骗子；n. 骗子，坏蛋（a small-time crook） | 2 |
 | ministerial | 本文：部长的；adj. 部长的，部门的（ministerial duties） | 2 |
+| stationery | 本文：信笺；n. 信笺，信纸；文具（hotel stationery） | 2 |
 | forgery | 本文：伪造品；n. 伪造品；伪造（a clever forgery） | 2 |
 | lamented | 本文：哀叹；v. (lament) 哀叹，抱怨（lament the loss of sth） | 2 |
 | upkeep | 本文：维护；n. 维护（费）（the upkeep of a house） | 2 |
-| hefty | 本文：高昂；adj. 高额的，沉重的（a hefty fine/bill） | 2 |
+| hefty cost | 本文：高昂费用；高昂费用；hefty adj.（数目，数量）相当大的（a hefty bill） | 2 |
 | businessman | 本文：生意人；n. 商人，生意人（a successful businessman） | 3 |
 | impatient | 本文：迫不及待地；adj. 急切的，不耐烦的（impatient to begin） | 3 |
 | gain a foothold | 本文：拥有一席之地；获得立足点，拥有一席之地（gain a foothold in the market） | 3 |
@@ -72,7 +73,7 @@ Of Lustig's two marks, the one who paid **kept mum** and the one who kept his mo
 | takings | 本文：进账；n. 进账，收入（the day's takings） | 3 |
 | Fleeced | 本文：骗走；v. (fleece) 诈骗钱财（be fleeced by a con man） | 4 |
 | ashamed | 本文：丢人……没脸；adj. 羞愧的，丢人的，没脸（做某事）（ashamed of oneself） | 4 |
-| quietly | 本文：默默；adv. 默默地，悄悄地（quietly leave） | 4 |
+| quietly | 本文：默默地；adv. 默默地，悄悄地（quietly leave） | 4 |
 | deceit | 本文：骗局；n. 欺骗，骗局（lies and deceit） | 4 |
 | whisper | 本文：风声；n. 耳语；传闻，风声（a whisper of scandal） | 4 |
 | had the gall to | 本文：厚颜无耻地去 | 5 |

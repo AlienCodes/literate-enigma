@@ -10,7 +10,7 @@ In 1974 Art Fry, a colleague who had heard one of those talks, faced a small **a
 
 In 1977 the notes were test-marketed as Press 'n Peel in four American cities, where **purchasers** showed little **enthusiasm**. In 1978 3M's **marketers** staged a **blitz** in Boise, Idaho, and **dispensed** **complimentary** **packets** of notes to offices. More than 90 per cent of **respondents** who tried them said they would buy. After the **coolness** came a **turnaround**.
 
-On 6 April 1980 the **pads**, **rebranded** as Post-it Notes, went on sale **nationally** in the US, and Canada and Europe followed in 1981. The **stationery** **staple** owes its **signature** **canary** **tone** to an **unplanned** twist. The laboratory next door had only **leftover** yellow paper.
+On 6 April 1980 the **pads**, **rebranded** as Post-it Notes, went on sale **nationally** in the US, and Canada and Europe followed in 1981. The stationery **staple** owes its **signature** **canary** **tone** to an **unplanned** twist. The laboratory next door had only **leftover** yellow paper.
 
 ## 中文
 
@@ -22,7 +22,7 @@ On 6 April 1980 the **pads**, **rebranded** as Post-it Notes, went on sale **nat
 
 1977年，这种便条以"Press 'n Peel"之名在美国四个城市试销，**购买者**(purchasers)的**热情**(enthusiasm)不高。1978年，3M的**营销人员**(marketers)在爱达荷州博伊西发起一场**闪电攻势**(blitz)，向各办公室**分发**(dispensed)一**小包**(packets)一小包的**免费**(complimentary)便条。试用过的**受访者**(respondents)中，超过90%表示会购买。**冷遇**(coolness)之后，迎来了**转机**(turnaround)。
 
-1980年4月6日，这种**便笺本**(pads)**更名**(rebranded)为"便利贴"，在美国**全国**(nationally)上市；1981年，便利贴又进入加拿大和欧洲。这款**文具**(stationery)**必备品**(staple)那**标志性**(signature)的**金丝雀黄**(canary)**色调**(tone)，源于一次**计划外**(unplanned)的转折。隔壁实验室手头只有**剩下的**(leftover)黄纸。
+1980年4月6日，这种**便笺本**(pads)**更名**(rebranded)为"便利贴"，在美国**全国**(nationally)上市；1981年，便利贴又进入加拿大和欧洲。这款文具**必备品**(staple)那**标志性**(signature)的**金丝雀黄**(canary)**色调**(tone)，源于一次**计划外**(unplanned)的转折。隔壁实验室手头只有**剩下的**(leftover)黄纸。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -70,7 +70,6 @@ On 6 April 1980 the **pads**, **rebranded** as Post-it Notes, went on sale **nat
 | pads | n. (pad) 便笺本；垫子（a writing pad；knee pads） | 5 |
 | rebranded | v. (rebrand) 更换品牌名称（rebrand a company/product） | 5 |
 | nationally | adv. 全国地（nationally televised） | 5 |
-| stationery | n. 文具（office stationery） | 5 |
 | staple | n. 主要产品，必备品；订书钉（a staple of the diet） | 5 |
 | signature | adj./n. 标志性的；签名（a signature dish；sign one's signature） | 5 |
 | canary | n./adj. 金丝雀；金丝雀黄的，淡黄色的（canary yellow） | 5 |
