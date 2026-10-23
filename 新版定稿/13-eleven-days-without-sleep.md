@@ -20,7 +20,7 @@ In 1997 Guinness World Records **discontinued** monitoring such attempts because
 
 **后果**(consequences)很快便开始**不断加剧**(mounted)。（@mount “数量逐渐增加、@mount|程度不断加剧、不断累积（上升）”@mount|（例如：tension mounted 紧张局势加剧，@mount|costs mounted 成本不断攀升）。）加德纳变得**喜怒无常**(moody)，**注意力**(concentration)难以集中，他的**短时**(short-term)记忆也**受损了**(impaired)。（grow + 形容词：变得……；find + 宾语 + 过去分词：发现……处于某种状态）（@impaired 几乎是一个医疗和科研专属词汇。@impaired|它经常用来描述人的感官、认知或身体机能出现障碍：@impaired|hearing impaired = 听力受损 / 听障（绝对不能用 damaged 或 injured）@impaired|visually impaired = 视力受损 / 视障@impaired|cognitively impaired = 认知受损 / 认知障碍）他变得**多疑**(suspicious)，有时甚至**偏执/妄想性的**(paranoid)，还开始**出现幻觉**(hallucinate)。第四天，他**被**(gripped by)一种**妄想/错觉**(delusion)**攫住了**(gripped by)，以为自己是一名美式橄榄球职业球员。（be gripped by：被……攫住；that…：同位语从句，说明 delusion 的内容）
 
-加德纳于1964年1月8日结束了这场**令人疲惫的**(wearying)尝试，共历时264.4小时，约合11天零25分钟。随后他**酣畅地/深度地**(soundly)睡了约14小时，醒来时似乎**神清气爽/恢复精神的**(refreshed)。（@soundly 是专门用来表示这个睡眠非常的酣畅深度。）研究者们在1965年的一篇**学术**(scholarly)论文中**探究了/深入研究**(probed)这一案例，该论文有助于**凸显**(highlight)微睡眠——指**不由自主地**(involuntary)**陷入**(lapses into)持续几秒钟短暂睡眠的状态。（which…：非限制性定语从句，指这篇论文；involuntary lapses into sleep…：同位语，解释 microsleeps；lasting…：现在分词短语作后置定语）@lapses into|（lapse into: 不知不觉地陷入（某种状态），@lapses into|尤指无意识的、非自愿的，或者是不太好的状态。）加德纳可能经历过这种**短暂的**(momentary)**发作**(bouts)而未曾察觉。（may have done：对过去情况的推测，可能已经……）@bouts|（bout 一阵、一场、一回、一次发作@bouts|（通常指疾病、情绪或活动的阵发性发作，如 a bout of fever 一阵发烧））
+加德纳于1964年1月8日结束了这场**令人疲惫的**(wearying)尝试，共历时264.4小时，约合11天零25分钟。随后他**酣畅地/深度地**(soundly)睡了约14小时，醒来时似乎**神清气爽/恢复精神的**(refreshed)。（@soundly 是专门用来表示这个睡眠非常的酣畅深度。）研究者们在1965年的一篇**学术**(scholarly)论文中**探究了/深入研究**(probed)这一案例，该论文有助于**凸显**(highlight)微睡眠——指**不由自主地**(involuntary)**陷入**(lapses into)持续几秒钟短暂睡眠的状态。（which…：非限制性定语从句，指这篇论文；involuntary lapses into sleep…：同位语，解释 microsleeps；lasting…：现在分词短语作后置定语）@lapses into|（lapse into: 不知不觉地陷入（某种状态），@lapses into|尤指无意识的、非自愿的，或者是不太好的状态。）加德纳可能经历过这种**短暂的**(momentary)**发作**(bouts)而未曾察觉。（may have done：对过去情况的推测，可能已经……）@bouts|（bout 一阵、一场、一回、一次发作@bouts|（通常指疾病、情绪或活动的阵发性发作，@bouts|如 a bout of fever 一阵发烧））
 
 1997年，吉尼斯世界纪录因健康**风险**(perils)**停止了**(discontinued)监测此类尝试；此后，其他人**声称/宣称**(alleged)有过更长的清醒**时段**(stints)。（discontinue doing：停止做……；have since done：从那以后已经……；stints awake：清醒的时段）在2017年的一次采访中，加德纳说严重的**失眠**(insomnia)**折磨了**(tormented)他约十年，他本人**把**(pinned the blame on)它**归咎于**(pinned the blame on)这次实验。（pin the blame on…：把责任归到……身上，归咎于……；he himself：他本人，强调是他自己的看法）那个曾看似只要睡个长觉，就能**从**(bounce back from)**精疲力竭**(exhaustion)**中迅速恢复**(bounce back from)的少年，几十年后，却**几乎**(barely)连**打个盹**(doze off)都费劲。（who…：定语从句，修饰 the boy；bounce back from：从……中恢复过来；doze off：打盹/打瞌睡/凑合着短睡一下）（结局：17岁的加德纳为一场科学展尝试不睡觉，历时264.4小时，项目获得了第一名；他随后睡了约14小时，醒来时似乎神清气爽，可在2017年的采访中，他说严重的失眠折磨了他约十年，他本人把它归咎于这次实验。）
 
@@ -39,7 +39,7 @@ In 1997 Guinness World Records **discontinued** monitoring such attempts because
 | mood | 本文：情绪；n. 心情，情绪（in a good/bad mood；mood swings） | 1 |
 | voluntary | 本文：自愿的；adj. 自愿的；志愿的（voluntary work；on a voluntary basis） | 1 |
 | endeavour | 本文：尝试；n. 努力，尝试（a scientific endeavour；human endeavour） | 1 |
-| take first place | 本文：夺得了第一名 | 1 |
+| take first place | 本文：夺得了第一名；短语. 夺得第一名，名列第一（take first place in the competition） | 1 |
 | coverage | 本文：报道；n. 新闻报道；覆盖范围（media/live coverage；insurance coverage） | 2 |
 | intrigued | 本文：非常感兴趣；adj./v. (intrigue) 好奇的；激起好奇心（be intrigued by/to learn） | 2 |
 | assisted in | 本文：协助；v. (assist) 协助，帮助（assist sb with/in sth） | 2 |
@@ -59,7 +59,7 @@ In 1997 Guinness World Records **discontinued** monitoring such attempts because
 | impaired | 本文：受损了；adj./v. (impair) 受损的；损害（impaired hearing/vision；impair performance） | 3 |
 | suspicious | 本文：多疑；adj. 多疑的，可疑的（be suspicious of strangers；suspicious behaviour） | 3 |
 | paranoid | 本文：偏执/妄想性的；adj. 偏执的，多疑的（a paranoid fear；feel paranoid） | 3 |
-| hallucinate | 本文：出现幻觉 | 3 |
+| hallucinate | 本文：出现幻觉；v. 产生幻觉；（人工智能）编造不存在的信息（patients may hallucinate） | 3 |
 | gripped by | 本文：被……攫住了；v. (grip) 攫住，控制（be gripped by fear/panic） | 3 |
 | delusion | 本文：妄想/错觉；n. 错觉，妄想（delusions of grandeur；under the delusion that…） | 3 |
 | wearying | 本文：令人疲惫的；adj. 令人疲倦的（a long, wearying journey） | 4 |

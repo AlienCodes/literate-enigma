@@ -2,7 +2,7 @@
 # ZH: 两次卖掉埃菲尔铁塔的骗子
 
 ## 英文
-In 1925 six **scrap-metal** **traders** met secretly at the Hôtel de Crillon in Paris. A **deputy** **director-general** of the Ministry of Posts and Telegraphs shared the **momentous** news, **confidentially**, that the Eiffel Tower was to be sold for scrap. He invited **tenders** and made each dealer **solemnly** **vow** **secrecy**, **ostensibly** to spare the **public indignation**.
+In 1925 six **scrap-metal** **traders** met **secretly** at the Hôtel de Crillon in Paris. A **deputy** **director-general** of the Ministry of Posts and Telegraphs shared the **momentous** news, **confidentially**, that the Eiffel Tower was to be sold for scrap. He invited **tenders** and made each dealer **solemnly** **vow** **secrecy**, **ostensibly** to spare the **public indignation**.
 
 The **pretext** was not **absurd**. Built for the 1889 World's Fair, the **monument** had **originally** been **destined** to **come down** after twenty years. The **high-ranking** deputy was Victor Lustig, a **crook** whose **ministerial** **stationery** was a **forgery**. He had read a newspaper article in which the authorities **lamented** the **hefty cost** of the tower's **upkeep**.
 
@@ -18,7 +18,7 @@ Of Lustig's two marks, the one who paid **kept mum** and the one who kept his mo
 
 ## 中文
 
-1925年，六名经营**废金属**(scrap-metal)的**商人**(traders)在巴黎的克里雍酒店秘密会面了。（at the Hôtel de Crillon in Paris：地点状语，中文提到动词前）邮电部的一位**副的**(deputy)**总负责人**(director-general)向他们**私下地**(confidentially)分享了一个**重大的**(momentous)消息，埃菲尔铁塔将作为废铁出售。（of the Ministry…：介词短语作后置定语；confidentially：插入的副词，修饰 shared）（that…：同位语从句，说明 news 的内容；be to be done：将要被……）他请他们**投标**(tenders)，并让每位商人**郑重地**(solemnly)**发誓**(vow)要**保密**(secrecy)，**表面上**(ostensibly)是为了避免引起**公愤**(public indignation)。（make sb do：让某人做……；vow secrecy：发誓保密）（to spare…：不定式表目的；spare sb sth：使某人免受……）
+1925年，六名经营**废金属**(scrap-metal)的**商人**(traders)在巴黎的克里雍酒店**秘密**(secretly)会面了。（at the Hôtel de Crillon in Paris：地点状语，中文提到动词前）邮电部的一位**副的**(deputy)**总负责人**(director-general)向他们**私下地**(confidentially)分享了一个**重大的**(momentous)消息，埃菲尔铁塔将作为废铁出售。（of the Ministry…：介词短语作后置定语；confidentially：插入的副词，修饰 shared）（that…：同位语从句，说明 news 的内容；be to be done：将要被……）他请他们**投标**(tenders)，并让每位商人**郑重地**(solemnly)**发誓**(vow)要**保密**(secrecy)，**表面上**(ostensibly)是为了避免引起**公愤**(public indignation)。（make sb do：让某人做……；vow secrecy：发誓保密）（to spare…：不定式表目的；spare sb sth：使某人免受……）
 
 这个**借口**(pretext)并不**荒唐**(absurd)。这座为1889年世博会而建的**纪念建筑**(monument)，**原本**(originally)就**注定**(destined)要在二十年后**拆除**(come down)。（Built for…：过去分词短语，补充说明 the monument）（be destined to do：注定要……；come down：被拆除）那位**位高权重的**(high-ranking)副总长正是维克多·卢斯蒂格，一个**骗子**(crook)，他的那些**部长的**(ministerial)**信笺**(stationery)都是**伪造品**(forgery)。（a crook：同位语，说明 Victor Lustig；whose…：定语从句，修饰 crook）他曾读到过报纸上的一篇文章，文中当局**哀叹**(lamented)铁塔**维护**(upkeep)的**高昂费用**(hefty cost)。（in which…：定语从句，修饰 article）（hefty：（数目，数量）相当大的）
 
@@ -37,6 +37,7 @@ Of Lustig's two marks, the one who paid **kept mum** and the one who kept his mo
 |---|---|---|
 | scrap-metal | 本文：废金属；n. (scrap metal) 废金属（a scrap-metal dealer；连字符用于定语） | 1 |
 | traders | 本文：商人；n. (trader) 商人，交易者（market traders） | 1 |
+| secretly | adv. 秘密地（meet secretly） | 1 |
 | deputy | 本文：副的；adj. 副的（a deputy director 副主任） | 1 |
 | director-general | 本文：总负责人；n. 总负责人，总干事（the director-general of the BBC） | 1 |
 | confidentially | 本文：私下地；adv. 私下地，秘密地（speak confidentially） | 1 |
@@ -60,10 +61,10 @@ Of Lustig's two marks, the one who paid **kept mum** and the one who kept his mo
 | forgery | 本文：伪造品；n. 伪造品；伪造（a clever forgery） | 2 |
 | lamented | 本文：哀叹；v. (lament) 哀叹，抱怨（lament the loss of sth） | 2 |
 | upkeep | 本文：维护；n. 维护（费）（the upkeep of a house） | 2 |
-| hefty cost | 本文：高昂费用；高昂费用；hefty adj.（数目，数量）相当大的（a hefty bill） | 2 |
+| hefty cost | 本文：高昂费用；n. 高昂费用；hefty adj.（数目，数量）相当大的（a hefty bill） | 2 |
 | businessman | 本文：生意人；n. 商人，生意人（a successful businessman） | 3 |
 | impatient | 本文：迫不及待地；adj. 急切的，不耐烦的（impatient to begin） | 3 |
-| gain a foothold | 本文：拥有一席之地；获得立足点，拥有一席之地（gain a foothold in the market） | 3 |
+| gain a foothold | 本文：拥有一席之地；v. 获得立足点，拥有一席之地（gain a foothold in the market） | 3 |
 | intimated | 本文：暗示；v. (intimate) 暗示（intimate that…） | 3 |
 | civil-service | 本文：公务员；adj. 公务员的（a civil-service job） | 3 |
 | remuneration | 本文：薪酬；n. 报酬，薪酬（remuneration for work） | 3 |
@@ -76,11 +77,11 @@ Of Lustig's two marks, the one who paid **kept mum** and the one who kept his mo
 | quietly | 本文：默默地；adv. 默默地，悄悄地（quietly leave） | 4 |
 | deceit | 本文：骗局；n. 欺骗，骗局（lies and deceit） | 4 |
 | whisper | 本文：风声；n. 耳语；传闻，风声（a whisper of scandal） | 4 |
-| had the gall to | 本文：厚颜无耻地去 | 5 |
+| had the gall to | 本文：厚颜无耻地去；v. (have the gall to) 厚颜无耻地（做某事）（have the gall to ask for more） | 5 |
 | reappear | 本文：再一次出现；v. 再一次出现，再次出现（reappear after years） | 5 |
 | encore | 本文：重演；n. 加演，重演（play an encore） | 5 |
 | script | 本文：剧本；n. 剧本；文字（a film script） | 5 |
-| grew distrustful | 本文：起了疑心；(grow distrustful) 起了疑心，变得不信任（grow distrustful of sb） | 5 |
+| grew distrustful | 本文：起了疑心；v. (grow distrustful) 起了疑心，变得不信任（grow distrustful of sb） | 5 |
 | affair | 本文：事件；n. 事件；事情（a strange affair） | 5 |
 | getaway | 本文：逃之夭夭；n. 逃跑（make one's getaway） | 5 |
 | much-repeated | 本文：被反复提及的；adj. 被反复提及的，一再重复的（a much-repeated story） | 5 |
@@ -89,8 +90,8 @@ Of Lustig's two marks, the one who paid **kept mum** and the one who kept his mo
 | detention | 本文：关押；n. 拘留，关押（in police detention） | 6 |
 | recaptured | 本文：抓回；v. (recapture) 再次抓获（be recaptured after escaping） | 6 |
 | penal | 本文：刑罚；adj. 刑罚的，关押犯人的（a penal colony） | 6 |
-| served time | 本文：服刑；(serve time) 服刑（serve time in prison） | 6 |
-| kept mum | 本文：守口如瓶；(keep mum) 守口如瓶，闭口不言（keep mum about sth） | 7 |
+| served time | 本文：服刑；v. (serve time) 服刑（serve time in prison） | 6 |
+| kept mum | 本文：守口如瓶；v. (keep mum) 守口如瓶，闭口不言（keep mum about sth） | 7 |
 
 ## 史实与来源
 - 【T1】埃菲尔铁塔为1889年世博会而建，原计划二十年后（1909年）拆除；1925年卢斯蒂格读到一篇报道，当局抱怨铁塔维护费用高昂。"借口并不荒唐"是作者据此所下的判断，来源未直接这样说。S1

@@ -38,6 +38,8 @@ if 拦了('命令', {'tool_input': {'command': 'git push -q origin main'}}): fai
 if 拦了('命令', {'tool_input': {'command': "echo 'vercel deploy 是什么'"}}): fails.append('误拦：文字里提到部署')
 if not 拦了('命令', {'tool_input': {'command': "python3 -c \"from docx import Document; d=Document('用户改.docx')\""}}): fails.append('没抓到：不用 read_docx2 读用户改过的 Word（W2）')
 if 拦了('命令', {'tool_input': {'command': 'python3 read_docx2.py 用户改.docx'}}): fails.append('误拦：read_docx2')
+if not 拦了('命令', {'tool_input': {'command': 'while pgrep -f "定稿流水线.sh 12" >/dev/null; do sleep 20; done'}}): fails.append('没抓到：pgrep 认不出中文路径（G10）')
+if 拦了('命令', {'tool_input': {'command': 'pgrep -f make_video'}}): fails.append('误拦：pgrep 英文字')
 r6 = G.判('发文件后', {'tool_input': {'files': ['/x/a-文本.docx']}}); r6b = G.判('发文件后', {'tool_input': {'files': ['/x/a.mp4']}})
 if not (r6 and '打印背景色' in json.dumps(r6, ensure_ascii=False)) or r6b: fails.append('没抓到：发 Word 没提醒打印背景色（W6）')
 o = subprocess.run(['bash', os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '开工提醒.sh')], capture_output=True, text=True).stdout

@@ -23,6 +23,7 @@ exec 9>"$W/.定稿流水线_$no.lock"; flock -n 9 || { echo "【停止】第${no
 [ -f make_video.py ] && [ -f "scripts/$no.json" ] && [ -d fonts ] || stop "请在视频工作目录下运行（要有 make_video.py、scripts/$no.json、fonts/）"
 cmp -s make_video.py $T/make_video.py && cmp -s render.py $T/render.py || stop "工作目录里的 make_video.py / render.py 与仓库工具不一致，先同步（出片和核查必须用同一份程序）"
 
+python3 $T/工作稿核对.py $no || stop "工作目录的脚本是旧稿（G19）"
 step "⓪ 规则执行核查（守则16）"; python3 $T/规则执行核查.py > "$LOG/规则执行.log" 2>&1 || { tail -25 "$LOG/规则执行.log"; stop "规则执行核查不通过"; }
 step "① 出片前核查"; python3 $T/交付核查.py $no 出片前 > "$LOG/出片前.log" 2>&1 || { tail -25 "$LOG/出片前.log"; stop "出片前核查不通过"; }
 step "② 出 4K"; VIDEO_S=2 python3 make_video.py scripts/$no.json $no.mp4 > "$LOG/出片.log" 2>&1 || { tail -15 "$LOG/出片.log"; stop "出片失败"; }
@@ -41,8 +42,10 @@ MSG="第${no}篇 4K 定稿：出片前/出片后核查全部通过，替换旧�
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01XbsiuYS9p9y2vNiB4h6ZZU"
+exec 7>"${PUSH_LOCK:-/tmp/推送两仓库.lock}"; flock 7   # G17：提交、镜像同步、推送与 推送两仓库.sh 同一把锁排队（2026-10-23 两篇同时到这一步，镜像同步撞同一个 .part 文件）
 (cd $P && git add -A && { git diff --cached --quiet || git commit -q -m "$MSG"; } && push main) || stop "postgraduate-vocabulary 提交或推送失败"
 (cd $P && python3 视频/工具/镜像同步.py > "$LOG/镜像.log" 2>&1 && cp CLAUDE.md $L/CLAUDE.md && cp 新版定稿/*.md $L/新版定稿/) || stop "镜像同步失败"
 (cd $L && git add -A 视频 最终版4K视频 新版定稿 CLAUDE.md && { git diff --cached --quiet || git commit -q -m "镜像：$MSG"; } && push $BR) || stop "literate-enigma 提交或推送失败"
+flock -u 7
 python3 $T/定稿视频核对.py --只查清点和镜像 > "$LOG/镜像核对.log" 2>&1 || { tail -10 "$LOG/镜像核对.log"; stop "镜像核对不通过"; }
 tail -3 "$LOG/归档.log"; echo "第${no}篇 定稿流水线全部完成：最终版4K视频/ 已替换为这一版，两个仓库已推送，各处拷贝逐字节一致"

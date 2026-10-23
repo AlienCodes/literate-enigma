@@ -5,7 +5,7 @@ import json,re,glob,os
 S=[
 (1,[[[("On 10 April 1912","1912年4月10日，"),("the **opulent** **liner** Titanic","**豪华的**(opulent)**邮轮**(liner)泰坦尼克号"),("left Southampton","离开了南安普敦，")]],
     [[("on her **maiden voyage**.","开始了她的**处女航**(maiden voyage)。")],
-     "（maiden voyage：处女航，首航；英语常用 she/her 指船）"]]),
+     "（maiden voyage：处女航，首航；\n英语常用 she/her 指船）"]]),
 (1,[[[("A 1911 **trade journal**","1911年，一家**行业期刊**(trade journal)"),("had **dubbed** her and her sister ship","**把**(dubbed)她和她的姊妹船**称为**(dubbed)"),('"**practically** **unsinkable**".',"“**几乎**(practically)**不会沉没的**(unsinkable)”。")],
      "（dub A B：把A称作B；sister ship：姊妹船）"]]),
 (1,[[[("At about 11.40pm on 14 April","4月14日晚约11时40分，"),("she **collided with** an **iceberg**;","她**和**(collided with)一座**冰山**(iceberg)**相撞了**(collided with)；")]],

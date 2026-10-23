@@ -31,10 +31,10 @@ In October 1945 Fleming, Florey, and Chain shared the Nobel prize; Heatley was *
 | contaminated | 本文：污染了；v. (contaminate) 污染，弄脏（contaminate A with B；contaminated water/food）；（思想上）毒害；contamination n. | 1 |
 | bacteria | 本文：细菌；n. (bacterium 的复数) 细菌（bacteria multiply/grow 细菌繁殖） | 1 |
 | Popular mythology | 本文：坊间传说；n. 神话（总称）（Greek mythology）；（无根据的）流行说法（popular mythology 坊间传说）；myth n. | 1 |
-| spores | 本文：孢子 | 1 |
+| spores | 本文：孢子；n. (spore) 孢子（fungal spores） | 1 |
 | originated in | 本文：起源于；v. (originate) 起源，发源（originate in/from 源自）；创立，发起；origin n.；original adj. | 1 |
 | cultivated | 本文：培育了；v. (cultivate) 培养，培育（细菌、植物；多以人作主语：cultivate moulds）；耕作，种植（cultivate land）；培养（关系、品味）（cultivate a friendship）；adj. 有教养的 | 1 |
-| penicillin | 本文：青霉素 | 2 |
+| penicillin | 本文：青霉素；n. 青霉素，盘尼西林（a course of penicillin） | 2 |
 | crude | 本文：粗糙的/未加工的；adj. 天然的，未经加工的，粗制的（crude oil 原油）；粗糙的，简陋的（a crude method）；粗俗的；n. 原油 | 2 |
 | unstable | 本文：不稳定；adj. 不稳定的，易变的（unstable compound/government）；（情绪）反复无常的；stable adj.；instability n. | 2 |
 | stubbornly | 本文：极；adv. (stubborn) 顽固地，倔强地；（问题）难以改变地，始终（stubbornly high unemployment 居高不下的失业率） | 2 |
@@ -65,13 +65,13 @@ In October 1945 Fleming, Florey, and Chain shared the Nobel prize; Heatley was *
 | gravely ill | 本文：病情危重；adv. (grave) 严重地（gravely ill 病危；gravely concerned 深表关切）；严肃地，庄重地；grave adj. 严重的；n. 坟墓 | 4 |
 | rallied | 本文：有所好转；v. (rally) （病情、价格等）好转，回升（shares rallied）；集合，召集（rally support 争取支持）；重新振作；n. 集会；（价格）回升 | 4 |
 | scarce | 本文：稀缺的；adj. 稀少的，缺乏的，供不应求的（scarce resources；water is scarce）；scarcely adv. 几乎不；scarcity n. | 4 |
-| ran out | 本文：耗尽 | 4 |
+| ran out | 本文：耗尽；短语. (run out) 用完，耗尽（supplies ran out） | 4 |
 | obstacle | 本文：障碍；n. 障碍，阻碍（an obstacle to progress；overcome an obstacle） | 4 |
 | quantity | 本文：数量；n. 数量，数额（in large quantities 大量地）；大量；quality and quantity 质与量 | 4 |
 | boosted | 本文：提高了；v. (boost) 提高，增加（boost sales/the economy）；增强（boost confidence）；n. 提高，激励（a boost to） | 4 |
-| tenfold | 本文：十倍 | 4 |
-| corn-steep liquor | 本文：玉米浆 | 4 |
-| starch | 本文：淀粉 | 4 |
+| tenfold | 本文：十倍；adv. 十倍地；adj. 十倍的（increase tenfold） | 4 |
+| corn-steep liquor | 本文：玉米浆；短语. 玉米浆（浸泡玉米得到的副产品，可作微生物培养基）（corn-steep liquor was added to the medium） | 4 |
+| starch | 本文：淀粉；n. 淀粉（potato starch） | 4 |
 | mouldy | 本文：发霉的；n. 霉，霉菌（英；美作 mold）；模子，模具；类型，性格（break the mould 打破常规）；v. 塑造，浇铸（mould sb's character） | 4 |
 | melon | 本文：甜瓜；n. 瓜，甜瓜（watermelon 西瓜） | 4 |
 | furnished with | 本文：为……提供了；v. (furnish) 向……提供，供应（furnish sb/sth with sth）；为（房间）配备家具（a furnished flat 带家具的公寓）；furniture n. | 4 |
