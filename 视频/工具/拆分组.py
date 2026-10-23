@@ -11,11 +11,15 @@ no = sys.argv[1].zfill(2); p = f'scripts/{no}.json'; pp = f'{V}/脚本/{no}.json
 d = json.load(open(p)); 同步仓库 = os.path.exists(pp) and open(pp).read() == open(p).read()
 改, 句 = 0, set()
 for i, s in enumerate(d['sentences'], 1):
-    for c in s['chunks']:
+    for k, c in enumerate(s['chunks'], 1):
         new = []
         for a, b in c['align']:
             r = Y.拆(a, b) if a != '\n' else None
-            if r: 改 += 1; 句.add(i); print(f'S{i}  ' + ' ‖ '.join(f'{x}→{y}' for x, y in r))
+            if r:
+                改 += 1; 句.add(i); print(f'S{i}  ' + ' ‖ '.join(f'{x}→{y}' for x, y in r))
+                齐 = d.get('核对确认', {}).get('对齐', {}); 旧 = f'S{i}-{k} {re.sub(r"[*]", "", a)[:30]}'
+                if 旧 in 齐:   # 拆开后键变了：倒序原因挪到拆出来最长的那一组（2026-10-23 12/14/22 手工挪了三次，改成程序）
+                    长 = max(r, key=lambda z: len(z[0].split()))[0]; 齐[f'S{i}-{k} {re.sub(r"[*]", "", 长)[:30]}'] = 齐.pop(旧)
             new += r or [[a, b]]
         c['align'] = new
 print(f'第{no}篇：拆 {改} 组（{" ".join(f"S{i}" for i in sorted(句)) or "无"}）' + ('' if '--写入' in sys.argv or not 改 else '；看过没问题加 --写入'))
