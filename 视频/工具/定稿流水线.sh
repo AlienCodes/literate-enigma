@@ -46,7 +46,7 @@ Claude-Session: https://claude.ai/code/session_01XbsiuYS9p9y2vNiB4h6ZZU"
 exec 7>"${PUSH_LOCK:-/tmp/推送两仓库.lock}"; flock 7   # G17：提交、镜像同步、推送与 推送两仓库.sh 同一把锁排队（2026-10-23 两篇同时到这一步，镜像同步撞同一个 .part 文件）
 (cd $P && git add -A && { git diff --cached --quiet || git commit -q -m "$MSG"; } && push main) || stop "postgraduate-vocabulary 提交或推送失败"
 (cd $P && python3 视频/工具/镜像同步.py > "$LOG/镜像.log" 2>&1 && cp CLAUDE.md $L/CLAUDE.md && cp 新版定稿/*.md $L/新版定稿/) || stop "镜像同步失败"
-(cd $L && git add -A 视频 最终版4K视频 新版定稿 CLAUDE.md && { git diff --cached --quiet || git commit -q -m "镜像：$MSG"; } && push $BR) || stop "literate-enigma 提交或推送失败"
+(cd $L && { git symbolic-ref -q HEAD >/dev/null || git checkout -q -B $BR; } && git add -A 视频 最终版4K视频 新版定稿 CLAUDE.md && { git diff --cached --quiet || git commit -q -m "镜像：$MSG"; } && push $BR) || stop "literate-enigma 提交或推送失败"   # 2026-10-23 T34：新容器里 L 是游离 HEAD，推的是 95 个提交前的旧分支，九篇全停在这一步；现在先把分支挪到 HEAD
 flock -u 7
 python3 $T/定稿视频核对.py --只查清点和镜像 > "$LOG/镜像核对.log" 2>&1 || { tail -10 "$LOG/镜像核对.log"; stop "镜像核对不通过"; }
 tail -3 "$LOG/归档.log"; echo "第${no}篇 定稿流水线全部完成：最终版4K视频/ 已替换为这一版，两个仓库已推送，各处拷贝逐字节一致"

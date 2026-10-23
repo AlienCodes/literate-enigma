@@ -31,7 +31,8 @@ for f in q:
 PY2
 git push -q origin main || { git pull -q --no-rebase --no-edit origin main && git push -q origin main; }   # 别的会话刚推了：合并一次再推
 cp $P/CLAUDE.md $L/CLAUDE.md   # CLAUDE.md 以 postgraduate-vocabulary 为准（G11：定稿流水线用它覆盖工作分支，只改工作分支那份会被冲掉）
-cd $L; git add -A
+cd $L; git symbolic-ref -q HEAD >/dev/null || git checkout -q -B $B   # 新容器 L 可能是游离 HEAD：分支挪到 HEAD 再推（2026-10-23 T34 九篇因此停）
+git add -A
 if ! git diff --cached --quiet; then git commit -qm "镜像：$1$T"; fi
 git push -q -u origin $B || { git pull -q --no-rebase --no-edit origin $B && git push -q -u origin $B; }
 diff <(git -C $P ls-tree -r HEAD $D | awk '{print $3,$4}') <(git -C $L ls-tree -r HEAD $D | awk '{print $3,$4}') >/dev/null \
