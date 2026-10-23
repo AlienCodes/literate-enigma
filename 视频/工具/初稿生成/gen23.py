@@ -10,8 +10,8 @@ S=[
      "（冒号后是同位语，说明 universal machine；\nable to…：形容词短语作后置定语，修饰 device；\ngiven…：只要给出……，表条件）"]]),
 (1,[[[("That **abstract** **construct**,","这一**抽象的**(abstract)**构想**(construct)"),("**rooted in** **mathematical** **logic**,","**根源于**(rooted in)**数理**(mathematical)**逻辑**(logic)，"),("{{=}}became the **theoretical** **blueprint** of the modern computer.","后来成为了现代计算机的**理论**(theoretical)**蓝图**(blueprint)。")],
      "（rooted in…：过去分词短语，插入说明 construct；\nmathematical logic：数理逻辑）"]]),
-(2,[[[("On 4 September 1939","1939年9月4日，"),("he joined the **classified** codebreaking effort at Bletchley Park,","他加入了布莱切利园的**机密**(classified)破译工作，")]],
-    [[("leading work on **naval** Enigma,","主持破解**海军**(naval)恩尼格玛密码机，"),("Germany's **encryption** machine.","即德国的**加密**(encryption)机器。")],
+(2,[[[("On 4 September 1939","1939年9月4日，"),("he joined the **classified** **codebreaking effort** at Bletchley Park,","他加入了布莱切利园的**保密的**(classified)**破译工作**(codebreaking effort)，")]],
+    [[("leading work on **naval** Enigma, Germany's **encryption** machine.","领导关于德国**加密**(encryption)机器“**海军**(naval)恩尼格玛”的研究。")],
      "（leading…：现在分词短语作伴随状语；\nGermany's encryption machine：同位语，说明 Enigma）"]]),
 (2,[[[("Polish mathematicians","波兰数学家"),("had **deciphered** Enigma by late 1932","早在1932年底就已**破译了**(deciphered)恩尼格玛，"),("and shared their **insights** with Britain and France in July 1939.","并于1939年7月将他们的**破解思路**(insights)告知了英国和法国。")],
      "（had deciphered：过去完成时，发生在1939年之前；\nshare A with B：把 A 告知 B）"]]),
@@ -49,13 +49,13 @@ S=[
 (5,[[[("The country that **prosecuted** him","**起诉**(prosecuted)他的国家，"),("put his face on its money.","把他的头像印上了自己的钞票。")],
      "（结局：主持破解海军恩尼格玛、\n提出图灵测试的图灵，1952年被定罪，\n1954年死于氰化物中毒；2009年英国首相公开道歉，\n2013年他在身后获皇室赦免，\n2021年他的肖像印上了五十英镑钞票。）"]]),
 ]
-CONF={"即":{"S4-2 即":"沿用文章定稿中文“即德国的加密机器”，同位语说明 Enigma，用“即”简洁准确","S8-1 即":"沿用文章定稿中文“即模仿游戏”，同位语说明 substitute"},
+CONF={"引号":{"S4-2 “”":"用户 2026-10-23 原话“领导关于德国加密机器“海军恩尼格玛”的研究”自带引号，照用户原话保留（待改清单第4条）"},"即":{"S8-1 即":"沿用文章定稿中文“即模仿游戏”，同位语说明 substitute"},
  "牛津逗号":{"S9 with two concealed players, one human and":"不是三项并列：one human and one machine 是两项，作同位语说明 players"},
  "短语":{"S3 blueprint … of":"of the modern computer 是普通的 of 结构（现代计算机的），blueprint 本身就是“蓝图”，不是短语型用法",
   "S6 operational … from":"from March 1940 是普通时间状语（从1940年3月起），operational 本身就是“运转中的”（文章定稿“投入运行”），不是短语型用法",
   "S1 a formidable intellect":"formidable、intellect 两个都是重点词，各自加粗、各自标中文（强大的 / 才智），文章定稿就是分开标的；formidable 的“强大的”是用户 2026-10-23 定的译法，意思不靠整体搭配产生",
   "S3 mathematical logic":"mathematical、logic 两个都是重点词，各自加粗、各自标中文（数理 / 逻辑），合起来正是“数理逻辑”，文章定稿就是分开标的，中文已标全"}}
-out={"no":"23","title_en":"The Man Who Gave Machines a Mind","title_zh":"为机器点燃思想的人","title_fx":{"hl":["Machines","Mind"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局",
+out={"no":"23","title_en":"The Man Who Gave Machines a Mind","title_zh":"为机器点燃思想的人","title_fx":{"hl":["Machines","Mind"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","换行变更已获同意":{"S4":"用户 2026-10-23 给出整句译文“1939年9月4日，他加入了布莱切利园的保密的 破译工作，领导关于德国加密机器“海军恩尼格玛”的研究。”——第二屏按用户语序，leading work on naval Enigma 与 Germany's encryption machine 两组合成一组（待改清单第4条）"},
      "高亮按实际开口":True,"高亮开口门槛":40,"结尾句":{"S19":{"整句语速":0.8,"依据":"全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：最后一句 The country that prosecuted him put his face on its money. 没有句中标点，整句 0.80 倍速（同 01 S18）"}},
      "术语":{"Alan Turing":"艾伦·图灵","Turing":"图灵","Bletchley Park":"布莱切利园","Enigma":"恩尼格玛","Germany":"德国","Polish":"波兰","Britain":"英国","France":"法国",
              "Mind":"心灵","imitation game":"模仿游戏","Turing test":"图灵测试","cyanide":"氰化物","gross indecency":"严重猥亵罪","royal pardon":"皇室赦免","inquest":"死因调查","prime minister":"首相"}}
