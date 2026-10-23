@@ -126,6 +126,10 @@ def _pron(fn):
     return g
 k.create=_pron(k.create); KT.create_timed=_pron(KT.create_timed)
 AF=open(f'{TTS}/'+os.environ.get('AFFILE','AF.txt')).read().strip(); FF=imageio_ffmpeg.get_ffmpeg_exe(); SPEED=0.95
+if os.environ.get('VOICE') or os.environ.get('AFFILE'): raise SystemExit('【停止】音色和降噪写死（A3/A7）：出片时不许用环境变量 VOICE、AFFILE 换掉 voice_mb.npy、AF.txt')
+import hashlib as _hl_
+if _hl_.sha256(open(f'{TTS}/voice_mb.npy','rb').read()).hexdigest()[:16]!='1f97658bb5a4280c': raise SystemExit('【停止】音色文件 voice_mb.npy 被改过（A3：Michael 75% + Fenrir 25%，语速 0.95，写死）')
+if 'afftdn=nf=-40:nr=4' not in AF: raise SystemExit('【停止】降噪设置 AF.txt 被改过（A7：原声什么都不改，只加一道轻降噪 afftdn=nf=-40:nr=4）')
 T=dict(BG_TOP=(14,36,30),BG_BOT=(20,48,40),FG_EN=(240,247,242),FG_ZH=(170,196,182),DIM=(110,140,125),
    PAL=[(251,191,36),(56,189,248),(244,114,182),(190,242,100),(196,181,253),(251,146,60),(94,234,212),(252,165,165)])
 for a,b in T.items(): setattr(R,a,b)

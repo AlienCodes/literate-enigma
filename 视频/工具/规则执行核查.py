@@ -43,6 +43,15 @@ ALWAYS_SELFTEST = {'踩坑核查.py', 'check_all.py', '规则执行核查.py', '
 # 机器当场跑的自检（不依赖工作目录、几秒内完成）
 FAST = [['踩坑核查.py', '自检'], ['check_all.py', '--自检'], ['钩子/钩子自检.py']]
 摘要 = lambda s: re.sub(r'\*\*|`', '', s).strip()[:60]
+# 要在工作目录（有模型、声音）里才能跑的慢自检：通过时写下所测程序的指纹（印章）；程序一改指纹对不上，就当“自检没跑”，提交、推送停
+STAMPED = {'出片守门自检.py': ('出片守门自检通过.json', ['make_video.py', 'render.py', '出片守门自检.py'])}
+
+
+def 印章有效(p):
+    f, progs = STAMPED[p]
+    try: st = json.load(open(f'{T}/{f}'))
+    except Exception: return False
+    return all(st.get(x) == hashlib.sha256(open(f'{T}/{x}', 'rb').read()).hexdigest() for x in progs)
 
 
 def 坑行(text=None):
@@ -112,7 +121,7 @@ def 可达(files, entry=ENTRY):
 
 def 自检会跑(files, reach):
     """会被跑到自检的程序：每次运行先自检的，或流程里有“程序名 + 自检”同一行调用的，或机器当场跑的"""
-    out = set(ALWAYS_SELFTEST) | {f[0] for f in FAST}
+    out = set(ALWAYS_SELFTEST) | {f[0] for f in FAST} | {p for p in STAMPED if 印章有效(p)}
     for a in reach:
         for l in 有效行(files.get(a, '')):
             if '自检' in l:
@@ -155,6 +164,7 @@ def 核查(std_text, claude_text, reg, files, settings=None, extra_tables=()):
         for prog, anc in tests:
             if 查锚(k, prog, anc, '自检') and prog not in run:
                 per.setdefault(k, []).append(f'自检没人跑（流程里没有“{os.path.basename(prog)} 自检”的调用）：{prog}')
+    glob_ += 挂钩检查(files)
     for name, txt in extra_tables:
         if re.search(r'^\| *[A-Z]\d+b? *\|', txt, re.M): glob_.append(f'出现第二份踩坑总表：{name}（总表只能有一份）')
     if settings is not None:
@@ -173,6 +183,20 @@ def 核查(std_text, claude_text, reg, files, settings=None, extra_tables=()):
                     if cm.startswith('python3') and '|| true' not in cm:
                         glob_.append(f'钩子会锁死：钩子命令没有“程序缺失时放行”（|| true）：{cm[-50:]}')
     return per, glob_
+
+
+def 挂钩检查(files):
+    """A26/A42：核查程序靠出片程序（make_video.py、render.py）的原文挂钩（src.index/split/replace 的那一句），
+    出片程序一改、那一句没了，核查程序就会崩或悄悄失效。逐个查：每个挂钩的原文都必须还在出片程序里。"""
+    out = []
+    for f, t in files.items():
+        if f in ('make_video.py', 'render.py', '规则执行核查.py') or 'make_video.py' not in t: continue
+        tg = set(re.findall(r"open\([^)]*?([\w\u4e00-\u9fff]+\.py)", t))   # 它用 open() 读进来的那些程序
+        base = ''.join(files[g] for g in files if g != f and os.path.basename(g) in tg)
+        for l in 有效行(t):
+            for anc in re.findall(r"""(?:_?src|read\(\))\.(?:index|split|replace)\(\s*(['"])(.+?)\1""", l):
+                if anc[1] not in base: out.append(f'{f} 挂钩的出片程序原文没了：“{anc[1][:40]}”（A26/A42：改出片程序后核查程序要跟着改）')
+    return out
 
 
 def 读设置():
@@ -236,6 +260,9 @@ def 机器自检():
     r6 = json.loads(json.dumps(reg)); r6[k]['自检'] = [[nobody, '自检造的']]; r6[k].pop('同', None)
     bad('自检没人跑', reg_=r6, files_=f6, want='自检没人跑')
     bad('第二份总表', extra=[('踩坑总表.md', '| A1 | x | y | z |\n')], want='第二份')
+    f9 = dict(files); hk_ = next((x for x in re.findall(r"src\.index\('([^']+)'", files.get('交付核查.py', ''))), None)
+    if hk_: f9['make_video.py'] = files['make_video.py'].replace(hk_, hk_[:len(hk_) // 2] + '※自检改掉※' + hk_[len(hk_) // 2:])
+    if not hk_ or not any('挂钩' in g for g in 核查(std, cl, reg, f9)[1]): fails.append('没抓到：核查程序挂钩的出片程序原文被改掉（A26/A42）')
     st = 读设置()
     if st:
         s2 = json.loads(json.dumps(st))
@@ -255,7 +282,7 @@ def main():
     a = sys.argv[1:]
     if '--自检' in a:
         f = 机器自检()
-        print('规则执行机器自检：' + ('通过（新坑、新守则、新标准没登记，锚被删，程序不存在，没接进流程，没有自检，自检没人跑，第二份总表，钩子会锁死——造的错全部抓到）' if not f else '失灵！' + '；'.join(f)))
+        print('规则执行机器自检：' + ('通过（新坑、新守则、新标准没登记，锚被删，程序不存在，没接进流程，没有自检，自检没人跑，第二份总表，钩子会锁死，挂钩原文被改——造的错全部抓到）' if not f else '失灵！' + '；'.join(f)))
         return 1 if f else 0
     std, cl = open(STD).read(), open(f'{P}/CLAUDE.md').read()
     reg = json.load(open(REG)) if os.path.exists(REG) else {}
@@ -275,6 +302,8 @@ def main():
             more = sorted(base - set(json.loads(head.stdout)))
             if more: gl.append(f'缺口基线只许减少，这次多了：{" ".join(more)}（给它们配好门和自检，不许塞进基线）')
     except Exception: pass
+    for p in STAMPED:
+        if not 印章有效(p): gl.append(f'{STAMPED[p][1]} 改过、慢自检的印章对不上：在视频工作目录跑 python3 {os.path.relpath(T, P)}/{p}，通过后再提交（A26/A42：改出片程序后必须先过守门自检）')
     new = {k: v for k, v in per.items() if k not in base}
     n = {p: sum(1 for k in R if k.startswith(p)) for p in ('守则', '铁', '法', '音', '画', '文', '流')}
     npit = len(R) - sum(n.values())
