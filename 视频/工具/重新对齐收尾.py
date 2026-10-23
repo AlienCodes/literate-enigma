@@ -65,4 +65,7 @@ if int(no) >= Y.起始篇:
 r = subprocess.run(['python3', f'{T}/踩坑核查.py', no, '文本'], capture_output=True, text=True)
 print(f'第{no}篇：平均每组 {avg0:.2f} → {avg1:.2f} 个英文词；改了 {len(改句)} 句；换行同意 {" ".join(l13) or "无"}；对照记录补 {len(add)} 行')
 if r.returncode: 停('踩坑核查 文本 没过：\n' + '\n'.join(l for l in r.stdout.splitlines() if '✘' in l or '[' in l)[:800])
-print(f'踩坑核查 文本 全部通过——下一步：bash {T}/定稿流水线.sh {no}')
+import 踩坑核查 as _K
+_rg = _K.record_gate(no, '出片')   # 出片阶段要全部条目（文本阶段只查 T D W C G），17 篇曾因此在出 4K 前才停
+if _rg: 停('出片阶段的踩坑对照记录不全：' + '；'.join(_rg))
+print(f'踩坑核查 文本 全部通过、出片阶段对照记录齐全——下一步：bash {T}/定稿流水线.sh {no}')
