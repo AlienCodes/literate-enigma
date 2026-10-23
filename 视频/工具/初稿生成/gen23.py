@@ -8,7 +8,7 @@ S=[
      "（read in…：过去分词短语作后置定语，修饰 paper）"],
     [[("a **device** able to **execute** any **computation**,","一种能**执行**(execute)任何**计算**(computation)的**装置**(device)，"),("given the right instructions.","只要给出恰当的指令。")],
      "（冒号后是同位语，说明 universal machine；\nable to…：形容词短语作后置定语，修饰 device；\ngiven…：只要给出……，表条件）"]]),
-(1,[[[("That **abstract** **construct**,","这一**抽象的**(abstract)**构想**(construct)"),("rooted in **mathematical** **logic**,","植根于**数理**(mathematical)**逻辑**(logic)，"),("became the **theoretical** **blueprint** of the modern computer.","后来成为了现代计算机的**理论**(theoretical)**蓝图**(blueprint)。")],
+(1,[[[("That **abstract** **construct**,","这一**抽象的**(abstract)**构想**(construct)"),("rooted in **mathematical** **logic**,","植根于**数理**(mathematical)**逻辑**(logic)，"),("{{=}}became the **theoretical** **blueprint** of the modern computer.","后来成为了现代计算机的**理论**(theoretical)**蓝图**(blueprint)。")],
      "（rooted in…：过去分词短语，插入说明 construct；\nmathematical logic：数理逻辑）"]]),
 (2,[[[("On 4 September 1939","1939年9月4日，"),("he joined the **classified** codebreaking effort at Bletchley Park,","他加入了布莱切利园的**机密**(classified)破译工作，")]],
     [[("leading work on **naval** Enigma,","主持破解**海军**(naval)恩尼格玛密码机，"),("Germany's **encryption** machine.","即德国的**加密**(encryption)机器。")],
