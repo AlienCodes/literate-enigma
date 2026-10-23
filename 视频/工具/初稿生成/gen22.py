@@ -46,7 +46,7 @@ S=[
      "（冒号后补充说明 fixture 的内容）"],
     [[("**horizontal** **aluminium** **fins**","那就是在外墙加装**水平的**(horizontal)**铝制**(aluminium)散光**鳍片**(fins)，"),("to **diffuse** the **brightness**,","来**散射**(diffuse)光线、减弱**亮度**(brightness)，"),("reportedly costing several million pounds.","据报道花费达数百万英镑。")],
      "（to diffuse…：不定式表目的；\nreportedly costing…：现在分词短语，补充说明花费）"]]),
-(5,[[[("In September 2015","2015年9月，"),("Building Design's **critics**","《建筑设计》杂志的**评论家们**(critics)"),("gave the **notorious** tower the Carbuncle Cup,","将“烂疮杯”颁给了这座**声名狼藉的/臭名远扬的**(notorious)大楼，")],
+(5,[[[("In September 2015","2015年9月，"),("Building Design's **critics**","《建筑设计》杂志的**评论家**(critics)们"),("gave the **notorious** tower the Carbuncle Cup,","将“烂疮杯”颁给了这座**声名狼藉的/臭名远扬的**(notorious)大楼，")],
      "（give sb sth：授予某人某物）"],
     [[("a **trophy** for the UK's worst new building.","这是一个专门颁给英国最糟糕新建筑的**奖杯**(trophy)。")],
      "（a trophy…：同位语，说明 the Carbuncle Cup）"]]),
