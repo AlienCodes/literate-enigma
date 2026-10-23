@@ -4,7 +4,7 @@ import json,re,glob,os
 S=[
 (1,[[[("On 2 September 2013","2013年9月2日，"),("the news broke","一则新闻传开，"),("that a London **skyscraper** **under construction**","说伦敦一座**正在建设中的**(under construction)**摩天大楼**(skyscraper)"),("had damaged a Jaguar.","损坏了一辆捷豹车。")],
      "（that…：同位语从句，说明 news 的内容，被谓语 broke 隔开；\nunder construction：在建）"]]),
-(1,[[[("Martin Lindsay","马丁·林赛"),("had left the **saloon**","把这辆**轿车**(saloon)停在"),("by the **pavement** on Eastcheap,","伊斯特奇普街的**人行道**(pavement)边，"),("opposite the tower's **frontage**.","正对着这座高楼的**正面**(frontage)。")],
+(1,[[[("Martin Lindsay","马丁·林赛"),("had left the **saloon**","把这辆**轿车**(saloon)停在"),("by the **pavement** on Eastcheap,","伊斯特奇普街的**人行道**(pavement)旁边，"),("opposite the tower's **frontage**.","正对着这座高楼的**正面**(frontage)。")],
      "（leave sth somewhere：把某物停放在某处；\nopposite…：介词短语，补充说明位置）"]]),
 (1,[[[("He returned to find","他回来时发现，"),("its wing mirror **warped**,","车的后视镜已经**翘曲**(warped)，"),("its panels **deformed**","车身板**变形**(deformed)，"),("and its **badge** **distorted**.","并且**车标**(badge)也**扭曲了**(distorted)。")],
      "（returned to find…：不定式表结果，回来后发现……；\nfind sth done：发现某物处于……状态，三组并列）"]]),
