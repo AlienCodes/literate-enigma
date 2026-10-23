@@ -28,7 +28,7 @@ if re.search(r'\n {1,}\*\*',en): bad.append('D1 文章英文出现异常断行')
 for f in [f'{ROOT}/视频/视频/{no}.mp4',f'{ROOT}/视频/对照文本/{no}-文本.docx']:
     if not os.path.exists(f): bad.append(f'缺文件: {os.path.relpath(f,ROOT)}')
 
-# 撞词提醒（踩坑总表 T12）：本篇重点词（含短语里的实词）若在其他篇加粗过（同根），列出供核对
+# 撞词提醒（踩坑总表 T12）：本篇重点词（含短语里的实词）若在其他篇加粗过（同一个词的屈折变化；同根不同词不算，CLAUDE.md 第15条），列出供核对
 STOP={'the','and','for','with','into','from','that','this','have','been','about','over','under','after','before','out','off','its','his','her','their'}
 def stem(w):
     w=w.lower()
