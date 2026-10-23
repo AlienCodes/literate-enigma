@@ -36,5 +36,5 @@ git push -q -u origin $B
 diff <(git -C $P ls-tree -r HEAD 视频 | awk '{print $3,$4}') <(git -C $L ls-tree -r HEAD 视频 | awk '{print $3,$4}') >/dev/null \
   && cmp -s $P/CLAUDE.md $L/CLAUDE.md && [ -z "$(git -C $P status --short)" ] && [ -z "$(git -C $L status --short)" ] \
   && git -C $P fetch -q origin main && git -C $L fetch -q origin $B \
-  && [ "$(git -C $P rev-parse HEAD)" = "$(git -C $P rev-parse origin/main)" ] && [ "$(git -C $L rev-parse HEAD)" = "$(git -C $L rev-parse origin/$B)" ] \
-  && echo "两仓库已推送，视频/ 逐文件一致，云端与本地一致（G2）" || { echo "【停止】两仓库 视频/ 不一致、有没提交的改动，或云端与本地不一致（G2）"; exit 1; }
+  && git -C $P merge-base --is-ancestor HEAD origin/main && git -C $L merge-base --is-ancestor HEAD origin/$B \
+  && echo "两仓库已推送，视频/ 逐文件一致，云端已含这次提交（G2；别的会话紧接着推了也算对）" || { echo "【停止】两仓库 视频/ 不一致、有没提交的改动，或云端与本地不一致（G2）"; exit 1; }
