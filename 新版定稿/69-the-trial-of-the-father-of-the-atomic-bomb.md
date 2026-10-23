@@ -6,9 +6,9 @@ J. Robert Oppenheimer, born in New York on 22 April 1904, was an **accomplished*
 
 In the **pre-dawn** darkness of 16 July 1945, the first nuclear test **illuminated** the **desolate** New Mexico **landscape** with a blinding glare, its **explosive** force roughly 20 kilotons. On 6 and 9 August 1945 atomic **bombings** **devastated** Hiroshima and Nagasaki, where year-end **fatalities** numbered well over 100,000 and about 70,000 **respectively**.
 
-Oppenheimer left Los Alamos in October 1945 and from 1947 **presided** over Princeton's Institute for Advanced Study. In October 1949 the **advisory** committee he chaired, expressing **misgivings**, **unanimously** **counselled** against a crash programme for the **hydrogen** bomb, a **vastly** more **destructive** weapon. In December 1953 a **presidential** **directive** **severed** his access to confidential **documentation**.
+Oppenheimer left Los Alamos in October 1945 and from 1947 **presided** over Princeton's Institute for Advanced Study. In October 1949 the **advisory** committee he chaired, expressing **misgivings**, **unanimously** **counselled** against a crash programme for the **hydrogen** bomb, a **vastly** more **destructive** weapon. In December 1953 a **presidential** **directive** **severed** his access to **confidential** **documentation**.
 
-From 12 April to 6 May 1954 he was **cross-examined** at a security hearing, an **administrative** **proceeding**, not a criminal prosecution. On 29 June 1954 the Atomic Energy Commission voted 4 to 1 against letting him **regain** his clearance, two days before his **consultancy** contract was due to **expire**. The ruling did not find him **disloyal**, but **nonetheless** questioned his character and **associates**.
+From 12 April to 6 May 1954 he was **cross-examined** at a security hearing, an **administrative** **proceeding**, not a criminal **prosecution**. On 29 June 1954 the Atomic Energy Commission voted 4 to 1 against letting him **regain** his clearance, two days before his **consultancy** contract was due to **expire**. The ruling did not find him **disloyal**, but **nonetheless** questioned his character and **associates**.
 
 On 2 December 1963 President Johnson **bestowed** on him the Fermi Award, which Kennedy had **authorised** before his **assassination**. Oppenheimer died on 18 February 1967. In December 2022 the energy secretary **officially** **vacated** the 1954 **determination**, calling the process flawed and **contrary** to the commission's rules. The **stigma** of the **revocation** had **persisted** for fifty-five years beyond his **lifetime**.
 
@@ -18,9 +18,9 @@ J·罗伯特·奥本海默1904年4月22日生于纽约，是一位**卓有成就
 
 1945年7月16日**黎明前**(pre-dawn)的黑暗中，第一次核试验以刺眼的强光**照亮**(illuminated)了新墨西哥州**荒凉**(desolate)的**大地**(landscape)，其**爆炸**(explosive)威力约合2万吨TNT当量。1945年8月6日和9日，原子弹**轰炸**(bombings)**摧毁**(devastated)了广岛和长崎，到当年年底，两地的**死亡人数**(fatalities)**分别**(respectively)远超十万和约七万。
 
-1945年10月，奥本海默离开洛斯阿拉莫斯；从1947年起，他**执掌**(presided)普林斯顿高等研究院。1949年10月，他主持的**顾问**(advisory)委员会表达了**疑虑**(misgivings)，**一致**(unanimously)**建议**(counselled)不要推行**氢**(hydrogen)弹的仓促研制计划；氢弹的**毁灭性**(destructive)要**大得多**(vastly)。1953年12月，一道**总统**(presidential)**指令**(directive)**切断**(severed)了他接触机密**文件**(documentation)的途径。
+1945年10月，奥本海默离开洛斯阿拉莫斯；从1947年起，他**执掌**(presided)普林斯顿高等研究院。1949年10月，他主持的**顾问**(advisory)委员会表达了**疑虑**(misgivings)，**一致**(unanimously)**建议**(counselled)不要推行**氢**(hydrogen)弹的仓促研制计划；氢弹的**毁灭性**(destructive)要**大得多**(vastly)。1953年12月，一道**总统**(presidential)**指令**(directive)**切断**(severed)了他接触**机密**(confidential)**文件**(documentation)的途径。
 
-1954年4月12日至5月6日，他在一场安全听证会上接受**盘问**(cross-examined)。这场听证会属于**行政**(administrative)**程序**(proceeding)，而不是刑事起诉。1954年6月29日，原子能委员会以4比1投票，决定不让他**恢复**(regain)安全许可；两天之后，他的**咨询**(consultancy)合同就要**到期**(expire)。裁决没有认定他**不忠**(disloyal)，但**仍然**(nonetheless)质疑他的品格和**交往对象**(associates)。
+1954年4月12日至5月6日，他在一场安全听证会上接受**盘问**(cross-examined)。这场听证会属于**行政**(administrative)**程序**(proceeding)，而不是刑事**起诉**(prosecution)。1954年6月29日，原子能委员会以4比1投票，决定不让他**恢复**(regain)安全许可；两天之后，他的**咨询**(consultancy)合同就要**到期**(expire)。裁决没有认定他**不忠**(disloyal)，但**仍然**(nonetheless)质疑他的品格和**交往对象**(associates)。
 
 1963年12月2日，约翰逊总统**授予**(bestowed)他费米奖；肯尼迪在**遇刺**(assassination)前已**批准**(authorised)了这一奖项。奥本海默于1967年2月18日去世。2022年12月，能源部长**正式**(officially)**撤销**(vacated)了1954年的**裁定**(determination)，称当年的程序存在缺陷，**违背**(contrary)了委员会的规定。**吊销**(revocation)安全许可留下的**污名**(stigma)，在他的**一生**(lifetime)结束后又**延续**(persisted)了五十五年。
 
@@ -57,10 +57,12 @@ J·罗伯特·奥本海默1904年4月22日生于纽约，是一位**卓有成就
 | presidential | adj. 总统的（a presidential election/candidate） | 3 |
 | directive | n. 指令，指示（issue a directive；an EU directive） | 3 |
 | severed | v. (sever) 切断，断绝（sever ties/links with sb） | 3 |
+| confidential | adj. 机密的，保密的（confidential information/files） | 3 |
 | documentation | n. 文件，证明材料（supporting documentation；travel documentation） | 3 |
 | cross-examined | v. (cross-examine) 盘问，诘问（cross-examine a witness） | 4 |
 | administrative | adj. 行政的，管理的（administrative costs/staff） | 4 |
 | proceeding | n. 程序；（常复数）诉讼，会议记录（legal/disciplinary proceedings） | 4 |
+| prosecution | n. 起诉，检控；控方（face prosecution；the prosecution case） | 4 |
 | regain | v. 恢复，重新获得（regain consciousness/control/confidence） | 4 |
 | consultancy | n. 咨询（工作）；咨询公司（a management consultancy；consultancy work） | 4 |
 | expire | v. 到期，失效（a passport/contract/licence expires） | 4 |

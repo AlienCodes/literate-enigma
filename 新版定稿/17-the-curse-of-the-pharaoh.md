@@ -45,7 +45,7 @@ Carnarvon's **untimely** **demise** had **fuelled** the tale, giving it **impetu
 | resorted to | 本文：诉诸于；v. (resort to) 求助于，不得已而采用（resort to violence/force） | 2 |
 | speculation | 本文：猜测；n. 猜测，推测；投机（pure speculation；speculation about the future） | 2 |
 | commentators | 本文：评论员；n. (commentator) 评论员，评论家（political commentators） | 2 |
-| best-selling | 本文：畅销 | 2 |
+| best-selling | 本文：畅销；adj. 畅销的（a best-selling novel） | 2 |
 | dire | 本文：极其严重的；adj. 极其严重的，可怕的（dire consequences；in dire need） | 2 |
 | punishment | 本文：惩罚；n. 惩罚（capital punishment；as a punishment） | 2 |
 | tomb | 本文：陵墓；n. 坟墓，陵墓（an ancient tomb；the tomb of a king） | 2 |
