@@ -40,7 +40,7 @@ S=[
      "（die of：死于……）"]]),
 (4,[[[("A **coroner**'s inquest","**验尸官**(coroner)的死因调查"),("ruled it **suicide**,","裁定为**自杀**(suicide)，"),("though some doubt it.","不过有人对此存疑。")],
      "（rule it suicide：裁定为自杀；\nthough…：让步状语从句）"]]),
-(5,[[[("**Recognition**","**认可**(Recognition)"),("**lagged**.","**来得迟缓**(lagged)。")]]]),
+(5,[[[("**Recognition**","（对于图灵的）**认可**(Recognition)"),("**lagged**.","**滞后了**(lagged)。")]]]),
 (5,[[[("On 10 September 2009","2009年9月10日，"),("Britain's prime minister **publicly** **apologised**,","英国首相**公开**(publicly)**道歉了**(apologised)；")]],
     [[("and on 24 December 2013","2013年12月24日，"),("Turing was **posthumously** **granted** a royal pardon.","图灵在**身后**(posthumously)**获得了**(granted)皇室赦免。")],
      "（be granted sth：被授予某物，被动语态）"]]),
