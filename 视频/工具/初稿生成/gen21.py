@@ -2,7 +2,7 @@ import json,re,glob,os
 # 第21篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-10-22 程序打底：英文、重点词与文章逐字核对，重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式（“的”“地”“了”进粗体）。
 S=[
-(1,[[[("In 1925","1925年，"),("six **scrap-metal** **traders**","六名经营**废金属**(scrap-metal)的**商人**(traders)"),("met secretly at the Hôtel de Crillon in Paris.","在巴黎的克里雍酒店秘密会面了。")],
+(1,[[[("In 1925","1925年，"),("six **scrap-metal** **traders**","六名经营**废金属**(scrap-metal)的**商人**(traders)"),("met **secretly** at the Hôtel de Crillon in Paris.","在巴黎的克里雍酒店**秘密地**(secretly)会面了。")],
      "（at the Hôtel de Crillon in Paris：地点状语，中文提到动词前）"]]),
 (1,[[[("A **deputy** **director-general** of the Ministry of Posts and Telegraphs","邮电部的一位**副的**(deputy)**总负责人**(director-general)"),("shared the **momentous** news, **confidentially**,","向他们**私下地**(confidentially)分享了一个**重大的**(momentous)消息，")],
      "（of the Ministry…：介词短语作后置定语；\nconfidentially：插入的副词，修饰 shared）"],
