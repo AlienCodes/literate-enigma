@@ -28,11 +28,11 @@ for f,h in p.items():
 for f in q:
     if f not in p and os.path.exists(f'{L}/{f}'): os.remove(f'{L}/{f}')
 PY2
-git push -q origin main
+git push -q origin main || { git pull -q --no-rebase --no-edit origin main && git push -q origin main; }   # 别的会话刚推了：合并一次再推
 cp $P/CLAUDE.md $L/CLAUDE.md   # CLAUDE.md 以 postgraduate-vocabulary 为准（G11：定稿流水线用它覆盖工作分支，只改工作分支那份会被冲掉）
 cd $L; git add -A
 if ! git diff --cached --quiet; then git commit -qm "镜像：$1$T"; fi
-git push -q -u origin $B
+git push -q -u origin $B || { git pull -q --no-rebase --no-edit origin $B && git push -q -u origin $B; }
 diff <(git -C $P ls-tree -r HEAD 视频 | awk '{print $3,$4}') <(git -C $L ls-tree -r HEAD 视频 | awk '{print $3,$4}') >/dev/null \
   && cmp -s $P/CLAUDE.md $L/CLAUDE.md && [ -z "$(git -C $P status --short)" ] && [ -z "$(git -C $L status --short)" ] \
   && git -C $P fetch -q origin main && git -C $L fetch -q origin $B \
