@@ -12,7 +12,7 @@ S=[
      "（be to blame：应负责任，是……的原因）"]]),
 (2,[[[("Rafael Viñoly","拉斐尔·维诺利（在设计中）"),("curved the south face of 20 Fenchurch Street inward,","将芬丘奇街20号的南立面向内弯曲，")],
      "（curve sth inward：使……向内弯曲）"],
-    [[("enlarging the upper **storeys**,","扩大了上部**楼层**(storeys)，"),("where **tenants** pay a **premium**.","那里的**租户**(tenants)支付着**溢价**(premium)（更高的租金）。")],
+    [[("**enlarging** the upper **storeys**,","**扩大了**(enlarging)上部**楼层**(storeys)，"),("where **tenants** pay a **premium**.","那里的**租户**(tenants)支付着**溢价**(premium)（更高的租金）。")],
      "（enlarging…：现在分词短语表结果；\nwhere…：非限制性定语从句，修饰 storeys）"]]),
 (2,[[[("That **geometry**","这种**几何形状**(geometry)"),("acted like a **magnifying** glass,","就像一面**放大**(magnifying)镜，")],
      "（act like：起……的作用）"],
@@ -20,7 +20,7 @@ S=[
      "（focusing…：现在分词短语表结果；\nfocus A into B：把 A 汇聚成 B；\nup to…brighter…：形容词短语作后置定语，修饰 beam）"]]),
 (2,[[[("It was measured at about 110 degrees Celsius,","测得的温度约为110摄氏度，")],
      "（be measured at：测得为……）"],
-    [[("and a **reporter**","一名**记者**(reporter)还"),("fried an egg in a **pan** using the reflection.","在**平底锅**(pan)里利用反射光煎熟了一个鸡蛋。")],
+    [[("and a **reporter**","一名**记者**(reporter)还"),("fried an egg in a **pan** using the **reflection**.","在**平底锅**(pan)里利用**反射光**(reflection)煎熟了一个鸡蛋。")],
      "（using…：现在分词短语表方式）"]]),
 (3,[[[("The **developers**","**开发商**(developers)"),("issued an **apology**","作出了**道歉**(apology)，"),("and **reimbursed** almost 1,000 pounds for repairs.","并**赔付了**(reimbursed)近1,000英镑的修理费。")],
      "（issue an apology：公开道歉；\nreimburse…for…：赔付……的费用）"]]),
@@ -56,7 +56,7 @@ S=[
 CONF={"引号":{"S18-1 “”":"用户 2026-10-23 原话“将“烂疮杯”颁给了这座……大楼”自带引号，照用户原话保留（待改清单第10条）","S11-1 “”":"用户 2026-10-23 原话“报纸把对讲机大楼戏称为“烤焦机大楼””自带引号，照用户原话保留（待改清单第7条）"},"已告诉用户被去掉的重点词":"2026-10-22 已在会话中把 reflection（撞02）、elevation（撞10）从22去掉原样告诉用户，并说明42的 distortion 改回普通词",
  "牛津逗号":{"S3 its wing mirror warped, its panels deformed and":"文章英文是英式写法，三项并列不用牛津逗号；英文正文与文章逐字一致，不改"},
  "短语":{"S14 in … cost-cutting":"in 是普通介词（在……时），cost-cutting 本身就是“削减成本”（速查表释义），不是 in + 名词的固定用法"}}
-out={"no":"22","title_en":"The Building That Melted a Car","title_zh":"会烤化汽车的大楼","title_fx":{"hl":["Melted","Car"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局",
+out={"no":"22","title_en":"The Building That Melted a Car","title_zh":"会烤化汽车的大楼","title_fx":{"hl":["Melted","Car"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","allow_clash":["reflection","enlarging"],
      "高亮按实际开口":True,"高亮开口门槛":40,"结尾句":{"S19":{"整句语速":0.8,"依据":"全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：最后一句 The ballot was unanimous. 没有句中标点，整句 0.80 倍速（同 01 S18）"}},
      "术语":{"London":"伦敦","Jaguar":"捷豹","Martin Lindsay":"马丁·林赛","Eastcheap":"伊斯特奇普街","Rafael Viñoly":"拉斐尔·维诺利","Viñoly":"维诺利","Fenchurch Street":"芬丘奇街",
              "Celsius":"摄氏度","Walkie-Talkie":"对讲机","Walkie-Scorchie":"烤焦机","Vdara":"维达拉","Las Vegas":"拉斯维加斯","Building Design":"建筑设计","Carbuncle Cup":"烂疮杯","UK":"英国"}}
