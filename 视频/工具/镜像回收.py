@@ -16,6 +16,8 @@ hs = [h for h in g('log', '--format=%H', '--grep', key, f'origin/{B}').split() i
 got = []
 for h in reversed(hs):
     msg = g('log', '-1', '--format=%s', h).strip()
+    if msg.startswith('镜像：'):   # 主会话自己的 P→工作分支 镜像提交：不是别的会话的成果（它会删掉 P 里还没有的文件，照着收会把刚收回的删掉）
+        done.add(h); continue
     for line in g('diff-tree', '--no-commit-id', '-r', '--name-status', f'{h}^', h).splitlines():
         st, path = line.split('\t', 1)[0], line.split('\t')[-1]
         if not path.startswith(前缀): continue
