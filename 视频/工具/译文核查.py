@@ -144,8 +144,9 @@ def 逐句(d, rec):
 
 def 查(d, no, art):
     """踩坑核查 调用：返回 (错误, 待确认)"""
-    if int(no) < 起始篇: return [], []
     ok = d.get('核对确认', {})
+    if 12 <= int(no) < 起始篇: return 对齐(d, ok)   # T9 对齐 12 起：用户 2026-10-23 选定 12–20、22 也按标准重新对齐、重出 4K
+    if int(no) < 起始篇: return [], []
     def 读(p, j=False):
         try: return json.load(open(p)) if j else open(p).read()
         except Exception: return {} if j else ''
