@@ -17,7 +17,7 @@ try:
     for r in (P, L):
         git('config', 'user.name', '自检', cwd=r); git('config', 'user.email', 'selftest@example.com', cwd=r)
     写(f'{P}/视频/工具/规则执行核查.py', 'import sys; sys.exit(0)\n'); 写(f'{P}/视频/a.md', 'a\n'); 写(f'{P}/视频/中文名字.md', '中\n')
-    写(f'{P}/CLAUDE.md', '新守则\n'); 写(f'{P}/新版定稿/x.md', 'x\n')
+    写(f'{P}/CLAUDE.md', '新守则\n'); 写(f'{P}/新版定稿/x.md', 'x\n'); 写(f'{P}/最终版4K视频/y.mp4', 'v\n')
     git('add', '-A', cwd=P); git('commit', '-qm', 'init', cwd=P); git('push', '-q', '-u', 'origin', 'HEAD:main', cwd=P)
     git('checkout', '-q', '-b', 'tb', cwd=L); 写(f'{L}/视频/旧文件.md', 'old\n'); 写(f'{L}/CLAUDE.md', '旧守则\n')
     git('add', '-A', cwd=L); git('commit', '-qm', 'init', cwd=L); git('push', '-q', '-u', 'origin', 'tb', cwd=L)
@@ -31,6 +31,8 @@ try:
     lsp = git('ls-tree', '-r', '--name-only', 'HEAD', '视频', cwd=P).stdout.split(); lsl = git('ls-tree', '-r', '--name-only', 'HEAD', '视频', cwd=L).stdout.split()
     if r.returncode != 0 or '云端已含这次提交' not in o: fails.append(f'正常推送没通过：{o.strip()[-120:]}')
     if sorted(lsp) != sorted(lsl): fails.append('没抓到：两边 视频/ 文件不一致（守则3）')
+    _t = lambda r: git('ls-tree', '-r', 'HEAD', '最终版4K视频', '新版定稿', cwd=r).stdout
+    if not _t(P) or _t(P) != _t(L): fails.append('没抓到：最终版4K视频、新版定稿 没镜像过去（G20）')
     if '视频/旧文件.md' in lsl: fails.append('没抓到：镜像里多出来的旧文件没删')
     if '视频/中文名字.md' not in lsl: fails.append('没抓到：中文文件名没同步（G4）')
     if open(f'{L}/CLAUDE.md').read() != '新守则\n': fails.append('没抓到：CLAUDE.md 没以 postgraduate-vocabulary 为准（G11）')

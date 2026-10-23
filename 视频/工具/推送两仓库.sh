@@ -16,9 +16,10 @@ big=$(git diff --cached --name-only -z | xargs -0 -r du -b 2>/dev/null | awk '$1
 if ! git diff --cached --quiet; then git commit -qm "$1$T"; fi
 git pull -q --no-rebase --no-edit origin main   # 2026-10-22：别的会话（每篇新开会话）可能先推了，先合并远端再算差异、再推
 (cd $L; git checkout -q -- 视频 2>/dev/null; git pull -q --no-rebase --no-edit origin $B)   # 镜像分支先合并别的会话推的
+D='视频 最终版4K视频 新版定稿'   # G20：三个都镜像（只镜像 视频/ 时，定稿流水线 ⑥ 中断后用本脚本补推，镜像里的 4K 和文章一直是旧的）
 # 2026-10-23：按两边 git 指纹逐文件比对来拷（只拷“这次改动”会漏掉两个会话合并出来的文件）
-git -c core.quotepath=off ls-tree -r HEAD 视频 | awk -F'\t' '{split($1,a," "); print a[3]"\t"$2}' | sort -k2 > /tmp/_p.txt
-(cd $L; git -c core.quotepath=off ls-tree -r HEAD 视频 | awk -F'\t' '{split($1,a," "); print a[3]"\t"$2}' | sort -k2) > /tmp/_l.txt
+git -c core.quotepath=off ls-tree -r HEAD $D | awk -F'\t' '{split($1,a," "); print a[3]"\t"$2}' | sort -k2 > /tmp/_p.txt
+(cd $L; git -c core.quotepath=off ls-tree -r HEAD $D | awk -F'\t' '{split($1,a," "); print a[3]"\t"$2}' | sort -k2) > /tmp/_l.txt
 python3 - "$P" "$L" <<'PY2'
 import sys,shutil,os
 P,L=sys.argv[1:3]
@@ -33,7 +34,7 @@ cp $P/CLAUDE.md $L/CLAUDE.md   # CLAUDE.md 以 postgraduate-vocabulary 为准（
 cd $L; git add -A
 if ! git diff --cached --quiet; then git commit -qm "镜像：$1$T"; fi
 git push -q -u origin $B || { git pull -q --no-rebase --no-edit origin $B && git push -q -u origin $B; }
-diff <(git -C $P ls-tree -r HEAD 视频 | awk '{print $3,$4}') <(git -C $L ls-tree -r HEAD 视频 | awk '{print $3,$4}') >/dev/null \
+diff <(git -C $P ls-tree -r HEAD $D | awk '{print $3,$4}') <(git -C $L ls-tree -r HEAD $D | awk '{print $3,$4}') >/dev/null \
   && cmp -s $P/CLAUDE.md $L/CLAUDE.md && [ -z "$(git -C $P status --short)" ] && [ -z "$(git -C $L status --short)" ] \
   && git -C $P fetch -q origin main && git -C $L fetch -q origin $B \
   && git -C $P merge-base --is-ancestor HEAD origin/main && git -C $L merge-base --is-ancestor HEAD origin/$B \
