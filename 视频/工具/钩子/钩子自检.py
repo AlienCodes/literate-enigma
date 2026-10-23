@@ -23,6 +23,8 @@ if not 拦了('命令', {'tool_input': {'command': 'git commit --no-verify -m x'
 if not 拦了('命令', {'tool_input': {'command': 'git commit -n -m x'}}): fails.append('没抓到：-n 跳过提交前核查')
 if not 拦了('命令', {'tool_input': {'command': 'git config core.hooksPath /dev/null'}}): fails.append('没抓到：改 core.hooksPath')
 if 拦了('命令', {'tool_input': {'command': 'git commit -qm "x"'}}): fails.append('误拦：正常提交')
+if 拦了('命令', {'tool_input': {'command': 'git config core.hooksPath'}}): fails.append('误拦：只是读 core.hooksPath')
+if not 拦了('命令', {'tool_input': {'command': 'git config --unset core.hooksPath'}}): fails.append('没抓到：取消 core.hooksPath')
 if 拦了('命令', {'tool_input': {'command': "python3 - <<'EOF'\nx = 'git commit --no-verify'\nEOF"}}): fails.append('误拦：heredoc 里的文字（G15）')
 # 收工（守则3）
 r = f'{tmp}/repo'; os.makedirs(f'{r}/视频')
