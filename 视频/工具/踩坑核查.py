@@ -30,6 +30,9 @@ def pit_rows():
 def record_gate(no, stage):
     """① 踩坑对照记录：本阶段涉及的条目逐条填完"""
     rec = f'{V}/制作记录/{no}.md'
+    try:   # G21：查之前先把程序把关的新坑补进对照记录（只有人能判的不补）——流水线跑到一半加了新坑，① 和 ④ 都不会再白停（2026-10-23 停了四次）
+        import 补对照记录 as _BJ; _BJ.补(no)
+    except Exception: pass
     return record_gate_text(open(rec).read() if os.path.exists(rec) else '', no, stage)
 
 
