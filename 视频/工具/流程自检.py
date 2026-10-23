@@ -30,10 +30,10 @@ import importlib.util as _iu   # 铁4：改了出片程序没全篇重查，必�
 _s = _iu.spec_from_file_location('_qp', f'{T}/全篇核查.py'); _d = tempfile.mkdtemp(); _st = f'{_d}/s.json'
 _src = open(f'{T}/全篇核查.py').read(); _ns = {'__file__': f'{T}/全篇核查.py', '__name__': '_qp'}
 exec(compile(_src.split("if sys.argv[1:2] == ['--欠着']")[0], '全篇核查', 'exec'), _ns)
-import json as _j; _j.dump({'程序指纹': 'x' * 16}, open(_st, 'w'))
-if not _ns['欠着'](_st): fails.append('没抓到：改了出片程序没全篇重查（铁4）')
-_j.dump({'程序指纹': _ns['程序指纹']()}, open(_st, 'w'))
-if _ns['欠着'](_st): fails.append('误报：全篇重查指纹一致却算欠着（铁4）')
+import json as _j; _j.dump({'篇': {'01': 'x-1-1'}}, open(_st, 'w'))
+if not _ns['欠着'](_st, {'01': 'y-1-1'}): fails.append('没抓到：改了出片程序没全篇重查（铁4）')
+if _ns['欠着'](_st, {'01': 'x-1-1'}): fails.append('误报：全篇重查指纹一致却算欠着（铁4）')
+if _ns['欠着'](_st, {'01': 'x-1-1', '02': 'x-2-2'}) != ['02']: fails.append('没抓到：新出片的篇目没重查（铁4）')
 shutil.rmtree(_d, ignore_errors=True)
 import 补对照记录 as _B; _d = tempfile.mkdtemp(); _r = f'{_d}/99.md'   # 补对照记录：程序把关的坑自动补，只有人能判的（T7、G6……）不许补
 open(_r, 'w').write('# x\n## 踩坑对照记录\n| 编号 | 坑 | 涉及 | 做法 |\n| A1 | x | 涉及 | y |\n'); _B.补('99', _r); _x = open(_r).read()

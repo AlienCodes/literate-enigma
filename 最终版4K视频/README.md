@@ -27,4 +27,4 @@
 | 20 | The 5,000-Year-Old Murder in the Ice | 冰里的五千年凶案 | 12.1 MB |
 | 21 | The Man Who Sold the Eiffel Tower Twice | 两次卖掉埃菲尔铁塔的骗子 | 11.1 MB |
 | 22 | The Building That Melted a Car | 会烤化汽车的大楼 | 10.6 MB |
-| 23 | The Man Who Gave Machines a Mind | 为机器点燃思想的人 | 11.9 MB |
+| 23 | The Man Who Gave Machines a Mind | 为机器点燃思想的人 | 12.0 MB |

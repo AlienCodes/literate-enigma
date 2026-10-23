@@ -11,19 +11,35 @@ import hashlib, json, datetime
 STAMP = f'{T}/全篇重查通过.json'
 def 程序指纹(t=T):   # 铁4：出片程序、排版程序（配音处理、停顿规则都在 make_video.py 里）
     return hashlib.sha256(b''.join(open(f'{t}/{f}', 'rb').read() for f in ('make_video.py', 'render.py'))).hexdigest()[:16]
-def 欠着(stamp=STAMP, fp=None):
-    """出片/排版程序改过以后，还没把所有已出片的篇目重查一遍（铁4/音29/画21：改一处，全部重查）"""
-    try: return json.load(open(stamp)).get('程序指纹') != (fp or 程序指纹())
-    except Exception: return True
+def _sha(p): return hashlib.sha256(open(p, 'rb').read()).hexdigest()[:16]
+def 已出片():
+    P = os.path.dirname(V); out = {}
+    for f in sorted(os.listdir(f'{P}/最终版4K视频')):
+        if f.endswith('.mp4') and f[:2].isdigit(): out[f[:2]] = f'{P}/最终版4K视频/{f}'
+    return out
+def 键(no, mp4, fp=None):   # 程序 + 这一篇存的视频 + 现行脚本：三样都没变，上次的重查结论就还算数
+    return f'{fp or 程序指纹()}-{_sha(mp4)}-{_sha(f"{V}/脚本/{no}.json")}'
+def 欠着(stamp=STAMP, keys=None):
+    """还没用现行程序重查过的已出片篇目（铁4/音29/画21：改一处，全部重查）；按篇记，查一篇记一篇，中途停了不白查"""
+    if keys is None: fp = 程序指纹(); keys = {no: 键(no, p, fp) for no, p in 已出片().items()}
+    try: st = json.load(open(stamp)).get('篇', {})
+    except Exception: st = {}
+    return [no for no, k in sorted(keys.items()) if st.get(no) != k]
 if sys.argv[1:2] == ['--欠着']: sys.exit(0 if 欠着() else 1)
-if sys.argv[1:2] == ['--视频']:   # 铁4：用现行程序把每一篇存的视频逐屏、逐样本重查（定稿视频核对），全过才记指纹
-    P = os.path.dirname(V); fp = 程序指纹()
-    done = sorted({f[:2] for f in os.listdir(f'{P}/最终版4K视频') if f.endswith('.mp4') and f[:2].isdigit()})
-    r = subprocess.run(['python3', f'{T}/定稿视频核对.py', *done], capture_output=True, text=True)
-    print('\n'.join(l for l in r.stdout.splitlines() if l.startswith('第') or '✘' in l or '通过' in l)[-3000:])
-    if r.returncode: sys.exit(f'【欠着】全篇重查没过（铁4）：上面 ✘ 的篇目存的视频与现行程序、现行脚本出的不一致')
-    json.dump({'程序指纹': fp, '时间': f'{datetime.datetime.utcnow():%Y-%m-%dT%H:%M}（UTC）', '篇目': done}, open(STAMP, 'w'), ensure_ascii=False)
-    print(f'全篇重查通过（铁4）：{len(done)} 篇存的视频都与现行程序一致，指纹 {fp} 已记'); sys.exit(0)
+if sys.argv[1:2] == ['--视频']:   # 铁4：用现行程序把欠着的篇目逐屏、逐样本重查（定稿视频核对），一篇过了记一篇
+    fp = 程序指纹(); mp = 已出片(); todo = 欠着(); bad = []
+    try: st = json.load(open(STAMP))
+    except Exception: st = {}
+    st.setdefault('篇', {}); print(f'要重查 {len(todo)} 篇：{" ".join(todo) or "无"}', flush=True)
+    for no in todo:
+        r = subprocess.run(['python3', f'{T}/定稿视频核对.py', no], capture_output=True, text=True)
+        x = [l for l in r.stdout.splitlines() if '✘' in l][:3]
+        print(f'{no} ' + ('✔' if not r.returncode else '✘ ' + ' ｜ '.join(x)[:300]), flush=True)
+        if r.returncode: bad.append(no); continue
+        st['篇'][no] = 键(no, mp[no], fp); st['时间'] = f'{datetime.datetime.utcnow():%Y-%m-%dT%H:%M}（UTC）'
+        json.dump(st, open(STAMP, 'w'), ensure_ascii=False, indent=0)
+    if bad: sys.exit(f'【欠着】全篇重查没过（铁4）：{" ".join(bad)} 存的视频与现行程序、现行脚本出的不一致')
+    print(f'全篇重查通过（铁4）：已出片 {len(mp)} 篇都与现行程序一致'); sys.exit(0)
 import 工作稿核对 as _G
 for no in nos:
     if _G.旧了(f'scripts/{no}.json', f'{V}/脚本/{no}.json'): print(f'{no} ✘ 工作目录的脚本是旧稿（G19），先同步'); bad += 1; continue
