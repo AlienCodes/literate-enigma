@@ -663,6 +663,45 @@ def selftest_gloss():
     return fails
 
 
+def l19_checks(dd):
+    """[L19] 说明行不得比这一句英文正文最宽的一行宽（12 起；用户 2026-10-16：“括号里面这些句子我说过不要超过正文的长度……把这个定为一个绝绝对要服从的规矩”）"""
+    err = []; no = dd.get("_no", "NN")
+    sys.path.insert(0, T); import render as R_
+    _d = copy.deepcopy(dd); R_.apply_script(_d)
+    for _si, _s in enumerate(_d['sentences'], 1):
+        _cl = {k: (1, 1, 1) for c in _s['chunks'] for k in re.findall(r'\*\*(.+?)\*\*', c['en'])}
+        for _gi, _ln, _w, _ew in R_.wide_notes([[tuple(p) for p in c['align']] for c in _s['chunks']], _cl, [c.get('note') for c in _s['chunks']], 100):
+            err.append(f'[L19] S{_si} 说明行比英文正文宽（{_w}>{_ew}）：{_ln[:30]}…——跑 python3 工具/说明分行.py {no} --写入 在标点处折成两行（字不改）')
+    return err
+
+
+def record_meta_checks(no, _rec):
+    """[T31] 制作记录要写好“## 方法设计”（13 起）；[T29] 要有“## 方法复盘”（11 起）"""
+    err = []
+    if int(no) >= 13 and not re.search(r'## 方法设计[\s\S]*?预计调用：\s*\S[\s\S]*?预计 token：\s*\S', _rec):
+        err.append(f'[T31] 制作记录/{no}.md 没写“## 方法设计”（步骤、预计调用、预计 token、为什么有效）：用户 2026-10-16 铁律——动手前先设计并证明方法有效，规矩由程序执行，没写不能出片')
+    if int(no) >= 11 and '## 方法复盘' not in _rec: err.append(f'[T29] 制作记录/{no}.md 没有“## 方法复盘”：每做完一件事，写下费 token 的地方能不能用虹吸、改了什么（用户 2026-10-15 铁律）')
+    return err
+
+
+def selftest_l19():
+    """L19 自检：20 定稿原样不报；故意写一行很宽的说明，必须报出"""
+    base = json.load(open(f'{V}/脚本/20.json')); fails = []
+    if l19_checks(base): fails.append('L19 误报：20 定稿原样被报出')
+    d = copy.deepcopy(base); d['sentences'][1]['chunks'][0]['note'] = '这是一行故意写得很长很长很长的说明，' * 6
+    if not any(x.startswith('[L19]') for x in l19_checks(d)): fails.append('没抓到：说明行比英文正文宽（L19）')
+    return fails
+
+
+def selftest_record_meta():
+    """T29/T31 自检：写全的不报；去掉方法设计、方法复盘，必须分别报出"""
+    ok_ = '## 方法设计\n- 预计调用：10 次\n- 预计 token：100 万\n\n## 方法复盘\n- 无\n'; fails = []
+    if record_meta_checks('20', ok_): fails.append('T29/T31 误报：写全的制作记录被报出')
+    if not any(x.startswith('[T31]') for x in record_meta_checks('20', '## 方法复盘\n')): fails.append('没抓到：制作记录没写方法设计（T31）')
+    if not any(x.startswith('[T29]') for x in record_meta_checks('20', ok_.split('## 方法复盘')[0])): fails.append('没抓到：制作记录没写方法复盘（T29）')
+    return fails
+
+
 def main():
     args = sys.argv[1:]
     if args and args[0] == '通用':
@@ -673,7 +712,7 @@ def main():
         vf = selftest_folders() or video_folders(ROOT)
         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
         return 1 if vf else 0
-    fails = selftest() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart()
+    fails = selftest() + selftest_l19() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
@@ -692,19 +731,11 @@ def main():
     if int(no) >= 9: err += meta_checks(d)                          # T27 说明里不写自问的话（09 起）
     if int(no) >= 10: err += ending_note_checks(d)                  # T28 结尾要有一段解说（10 起）
     _rec = open(f'{V}/制作记录/{no}.md').read()
-    if int(no) >= 12:   # [L19] 铁律（用户 2026-10-16：“括号里面这些句子我说过不要超过正文的长度……把这个定为一个绝绝对要服从的规矩”）：说明行不得比这一句英文正文宽，文本阶段就挡住
-        sys.path.insert(0, T); import render as R_
-        _d = json.load(open(f'scripts/{no}.json')); R_.apply_script(_d)
-        for _si, _s in enumerate(_d['sentences'], 1):
-            _cl = {k: (1, 1, 1) for c in _s['chunks'] for k in re.findall(r'\*\*(.+?)\*\*', c['en'])}
-            for _gi, _ln, _w, _ew in R_.wide_notes([[tuple(p) for p in c['align']] for c in _s['chunks']], _cl, [c.get('note') for c in _s['chunks']], 100):
-                err.append(f'[L19] S{_si} 说明行比英文正文宽（{_w}>{_ew}）：{_ln[:30]}…——跑 python3 工具/说明分行.py {no} --写入 在标点处折成两行（字不改）')
-    if int(no) >= 13 and not re.search(r'## 方法设计[\s\S]*?预计调用：\s*\S[\s\S]*?预计 token：\s*\S', _rec):
-        err.append(f'[T31] 制作记录/{no}.md 没写“## 方法设计”（步骤、预计调用、预计 token、为什么有效）：用户 2026-10-16 铁律——动手前先设计并证明方法有效，规矩由程序执行，没写不能出片')
+    if int(no) >= 12: err += l19_checks({**json.load(open(f'scripts/{no}.json')), '_no': no})   # [L19] 铁律（用户 2026-10-16，见 l19_checks）
+    err += record_meta_checks(no, _rec)                             # [T31] 方法设计、[T29] 方法复盘（见 record_meta_checks）
     sys.path.insert(0, T); import 重点词被去掉 as _QD                   # [T32] 用户 2026-10-17：这一篇有重点词因撞词被去掉，做时必须先告诉用户
     if _QD.记录(no) and not d.get('核对确认', {}).get('已告诉用户被去掉的重点词'):
         err.append('[T32] 这一篇有重点词因撞词被去掉了，先把下面的话原样告诉用户，再在脚本写 核对确认.已告诉用户被去掉的重点词：\n' + _QD.提醒(no))
-    if int(no) >= 11 and '## 方法复盘' not in open(f'{V}/制作记录/{no}.md').read(): err.append(f'[T29] 制作记录/{no}.md 没有“## 方法复盘”：每做完一件事，写下费 token 的地方能不能用虹吸、改了什么（用户 2026-10-15 铁律）')
     err += note_linestart_checks(d)                                 # L16 说明行首不许是标点（01–10 全部扫过，没有）
     if int(no) >= 9: conf += zh_dup_checks(d)                      # T26 两个重点词同一个中文（09 起）
     err += user_gloss_checks(d, no)                                # T25 用户给的释义要上画面（有待改清单的篇目都查）

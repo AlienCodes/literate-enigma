@@ -29,6 +29,8 @@ r = f'{tmp}/repo'; os.makedirs(f'{r}/视频')
 subprocess.run(['git', 'init', '-q', r]); open(f'{r}/视频/x.md', 'w').write('x')
 if not 拦了('收工', {}, 仓库=r): fails.append('没抓到：有没推送的改动就收工（守则3）')
 if 拦了('收工', {'stop_hook_active': True}, 仓库=r): fails.append('误拦：已经拦过一次又拦（会死循环）')
+o = subprocess.run(['bash', os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '开工提醒.sh')], capture_output=True, text=True).stdout
+if '【开工必做' not in o or '【规则执行机器】' not in o: fails.append('没抓到：开工提醒没打印（守则1：开工必读、规则执行机器状态）')
 shutil.rmtree(tmp)
 print('钩子自检：' + ('通过（子代理、发文件、跳过核查、收工四道闸门造的违规全部拦下，正常的放行）' if not fails else '失灵！' + '；'.join(fails)))
 sys.exit(1 if fails else 0)
