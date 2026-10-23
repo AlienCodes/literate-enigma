@@ -2,7 +2,7 @@ import json,re,glob,os
 # 第22篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-10-22 程序打底：英文、重点词与文章逐字核对，重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式（“的”“地”“了”进粗体）。
 S=[
-(1,[[[("On 2 September 2013","2013年9月2日，"),("the news broke","一则新闻传开，"),("that a London **skyscraper** under construction","说伦敦一座在建的**摩天大楼**(skyscraper)"),("had damaged a Jaguar.","损坏了一辆捷豹车。")],
+(1,[[[("On 2 September 2013","2013年9月2日，"),("the news broke","一则新闻传开，"),("that a London **skyscraper** **under construction**","说伦敦一座**正在建设中的**(under construction)**摩天大楼**(skyscraper)"),("had damaged a Jaguar.","损坏了一辆捷豹车。")],
      "（that…：同位语从句，说明 news 的内容，被谓语 broke 隔开；\nunder construction：在建）"]]),
 (1,[[[("Martin Lindsay","马丁·林赛"),("had left the **saloon**","把这辆**轿车**(saloon)停在"),("by the **pavement** on Eastcheap,","伊斯特奇普街的**人行道**(pavement)边，"),("opposite the tower's **frontage**.","正对着这座高楼的**正面**(frontage)。")],
      "（leave sth somewhere：把某物停放在某处；\nopposite…：介词短语，补充说明位置）"]]),
