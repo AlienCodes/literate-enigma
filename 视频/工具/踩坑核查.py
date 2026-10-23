@@ -30,6 +30,9 @@ def pit_rows():
 def record_gate(no, stage):
     """① 踩坑对照记录：本阶段涉及的条目逐条填完"""
     rec = f'{V}/制作记录/{no}.md'
+    try:   # G21：查之前先把程序把关的新坑补进对照记录（只有人能判的不补）——流水线跑到一半加了新坑，① 和 ④ 都不会再白停（2026-10-23 停了四次）
+        import 补对照记录 as _BJ; _BJ.补(no)
+    except Exception: pass
     return record_gate_text(open(rec).read() if os.path.exists(rec) else '', no, stage)
 
 
@@ -766,6 +769,10 @@ def main():
     if int(no) >= 9: conf += zh_dup_checks(d)                      # T26 两个重点词同一个中文（09 起）
     err += user_gloss_checks(d, no)                                # T25 用户给的释义要上画面（有待改清单的篇目都查）
     err += [f'[check_all] {x}' for x in check_all_text(no, os.path.abspath(js), stage)]
+    try:   # G22：已定稿的篇目改了脚本，当场提醒必须重出 4K（不挡出片：定稿流水线自己就是在重出）
+        import 重查记录 as _RC; _m = _RC.定稿提醒(no, _RC.已出片(), _RC.欠着())
+        if _m: ref.insert(0, _m)
+    except Exception: pass
     print(f'第{no}篇 {stage}阶段 踩坑核查（{js}）：')
     if sent is None: print('  （还没有"已发版本"，这次不比对换行；生成文本.py 成功后会保存）')
     for x in err: print('  ✘ ' + x)

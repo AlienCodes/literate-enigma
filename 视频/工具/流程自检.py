@@ -40,6 +40,9 @@ open(_r, 'w').write('# x\n## 踩坑对照记录\n| 编号 | 坑 | 涉及 | 做�
 if '| A2 |' not in _x: fails.append('没抓到：程序把关的新坑没自动补进对照记录')
 if '| T7 |' in _x or '| G6 |' in _x: fails.append('误补：只有人能判的坑（T7/G6）被自动补成“程序把关”')
 shutil.rmtree(_d, ignore_errors=True)
+import 重查记录 as _RC   # G22：已定稿的篇目欠重出，踩坑核查当场提醒
+if not _RC.定稿提醒('21', {'21': 'x.mp4'}, ['21']): fails.append('没抓到：改了已定稿篇目的脚本没提醒重出 4K（G22）')
+if _RC.定稿提醒('23', {'21': 'x.mp4'}, ['21']) or _RC.定稿提醒('21', {'21': 'x.mp4'}, []): fails.append('误报：没定稿或已重查过的篇目也提醒（G22）')
 td = tempfile.mkdtemp(); lk = open(f'{td}/.定稿流水线_99.lock', 'w'); fcntl.flock(lk, fcntl.LOCK_EX)
 r = subprocess.run(['bash', f'{T}/定稿流水线.sh', '99'], capture_output=True, text=True, cwd=td, timeout=60)
 if r.returncode == 0 or '已经有一条定稿流水线在跑' not in r.stdout + r.stderr: fails.append('没抓到：同一篇同时跑两条定稿流水线（G10）')
