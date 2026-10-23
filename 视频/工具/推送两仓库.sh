@@ -9,12 +9,19 @@ T=$'\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session:
 cd $P; git add -A 视频 CLAUDE.md 新版定稿   # 新版定稿：文章本身也会改（撞词去掉重点词等）
 if ! git diff --cached --quiet; then git commit -qm "$1$T"; fi
 git pull -q --no-rebase --no-edit origin main   # 2026-10-22：别的会话（每篇新开会话）可能先推了，先合并远端再算差异、再推
-git -c core.quotepath=off diff --name-status origin/main HEAD -- 视频 > /tmp/_chg.txt || true
-(cd $L; git checkout -q -- 视频 2>/dev/null; git pull -q --no-rebase --no-edit origin $B)   # 镜像分支先合并别的会话推的，再拷贝（2026-10-23：先拷后合并会被挡住）
-while IFS=$'\t' read -r st f g; do
-  case $st in D) rm -f "$L/$f";; R*) rm -f "$L/$f"; f=$g; mkdir -p "$L/$(dirname "$f")"; cp "$P/$f" "$L/$f";; *) mkdir -p "$L/$(dirname "$f")"; cp "$P/$f" "$L/$f";; esac
-  [ -e "$L/$f" ] && chmod --reference="$P/$f" "$L/$f"   # 文件权限也一致（14：草稿声音.sh 一边 755 一边 644，两仓库比对不过）
-done < /tmp/_chg.txt
+(cd $L; git checkout -q -- 视频 2>/dev/null; git pull -q --no-rebase --no-edit origin $B)   # 镜像分支先合并别的会话推的
+# 2026-10-23：按两边 git 指纹逐文件比对来拷（只拷“这次改动”会漏掉两个会话合并出来的文件）
+git -c core.quotepath=off ls-tree -r HEAD 视频 | awk -F'\t' '{split($1,a," "); print a[3]"\t"$2}' | sort -k2 > /tmp/_p.txt
+(cd $L; git -c core.quotepath=off ls-tree -r HEAD 视频 | awk -F'\t' '{split($1,a," "); print a[3]"\t"$2}' | sort -k2) > /tmp/_l.txt
+python3 - "$P" "$L" <<'PY2'
+import sys,shutil,os
+P,L=sys.argv[1:3]
+p=dict(l.rstrip('\n').split('\t')[::-1] for l in open('/tmp/_p.txt')); q=dict(l.rstrip('\n').split('\t')[::-1] for l in open('/tmp/_l.txt'))
+for f,h in p.items():
+    if q.get(f)!=h: os.makedirs(os.path.dirname(f'{L}/{f}'),exist_ok=True); shutil.copy2(f'{P}/{f}',f'{L}/{f}')
+for f in q:
+    if f not in p and os.path.exists(f'{L}/{f}'): os.remove(f'{L}/{f}')
+PY2
 git push -q origin main
 cp $P/CLAUDE.md $L/CLAUDE.md   # CLAUDE.md 以 postgraduate-vocabulary 为准（G11：定稿流水线用它覆盖工作分支，只改工作分支那份会被冲掉）
 cd $L; git add -A
