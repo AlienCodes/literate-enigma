@@ -29,7 +29,7 @@ try:
     except OSError: pass   # 已经在真推送里：锁正被占着，同样的情形
     r = run(); o = r.stdout + r.stderr
     lsp = git('ls-tree', '-r', '--name-only', 'HEAD', '视频', cwd=P).stdout.split(); lsl = git('ls-tree', '-r', '--name-only', 'HEAD', '视频', cwd=L).stdout.split()
-    if r.returncode != 0 or '云端与本地一致' not in o: fails.append(f'正常推送没通过：{o.strip()[-120:]}')
+    if r.returncode != 0 or '云端已含这次提交' not in o: fails.append(f'正常推送没通过：{o.strip()[-120:]}')
     if sorted(lsp) != sorted(lsl): fails.append('没抓到：两边 视频/ 文件不一致（守则3）')
     if '视频/旧文件.md' in lsl: fails.append('没抓到：镜像里多出来的旧文件没删')
     if '视频/中文名字.md' not in lsl: fails.append('没抓到：中文文件名没同步（G4）')
