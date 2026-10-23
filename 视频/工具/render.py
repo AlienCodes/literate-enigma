@@ -216,10 +216,16 @@ def _segs_zh(t,colors):
     return out
 KSP='\u2005'
 GLOSS_ANCHOR={}   # 词下说明对齐（11 起）：{说明文字: 对准重点词中心的那个字}；make_video 从各脚本 "词下说明对齐" 读进来。这种说明不计入格宽、可越过格子右边（右边那格这一行是空的）
+NOTE_WIDE={}   # 英文正文 → 用户特批的说明宽度倍数（L19 例外，只能由 说明放宽特批 打开）
 def apply_script(d):
     """画面相关的脚本设置统一从这里读（出片程序和定稿视频核对都调它，两边画出来才一致；11 G9 核对没读到 词下说明对齐，S6 对不上）"""
     GLOSS_ANCHOR.clear(); GLOSS_ANCHOR.update(d.get('词下说明对齐', {}))
     LINKS[:] = d.get('连线', [])
+    NOTE_WIDE.clear()   # L19 特批放宽（22 用户 2026-10-23：“经过我的允许，我的特批了，你才可以放宽……可以稍微放宽点，但是不要过于宽”）：只认带用户原话、写明“特批”、倍数 ≤1.5 的句子
+    for k_, v_ in d.get('说明放宽特批', {}).items():
+        if not ('用户' in v_.get('依据', '') and '特批' in v_.get('依据', '') and 1 < float(v_.get('倍数', 0)) <= 1.5):
+            raise SystemExit(f'【停止】说明放宽特批 {k_} 不合规：依据要写用户原话（含“用户”“特批”），倍数在 1–1.5 之间（用户：“不要过于宽”）')
+        NOTE_WIDE[' '.join(p[0] for c in d['sentences'][int(k_[1:]) - 1]['chunks'] for p in c['align'])] = float(v_['倍数'])
     NOTE_RULE[0] = str(d.get('no', '0')).isdigit() and int(d.get('no', '0')) >= 12   # L19 只管 12 起（已定稿的 01–11 画面不变）   # 12 用户：emotional attachment 两词颜色各用各的，下面一条下划线连起来表示是一个整体（中文“情感依恋”同样）
 def _pair_cols(pairs,colors,ef,zf,gapx):
     cols=[]
@@ -287,6 +293,7 @@ def wide_notes(chunks,colors,notes,es):
     """L19（12 用户：说明“不要超过上面的那一行”）：每句的说明行不得比这一句英文正文最宽的一行宽。返回 [(第几组, 说明行, 说明宽, 正文宽)]"""
     rowsets,_,_,(zs,ef,zf,gapx,*_)=_measure(chunks,colors,notes,es,_grouping(chunks,colors)); nf=ZH(int(zs*0.9),400); out=[]
     ew=max([max(sum(uw(ef,u) for u,_ in ln) for ln in layout(r[1]['se'],ef,MAXW2)) if isinstance(r,tuple) else sum(c['we'] for c in r)+gapx*(len(r)-1) for rs in rowsets for r in rs]+[1])
+    ew*=NOTE_WIDE.get(' '.join(p[0] for ch in chunks for p in ch),1.0)   # 用户特批放宽的句子（apply_script 读 说明放宽特批）
     for i,n in enumerate(notes):
         for ln in (n or '').replace('#Y','').split('\n'):
             if ln and nf.getlength(_note_txt(ln))>ew+1: out.append((i,_note_txt(ln),round(nf.getlength(_note_txt(ln))),round(ew)))

@@ -4,7 +4,7 @@
 ## 英文
 J. Robert Oppenheimer, born in New York on 22 April 1904, was an **accomplished** physicist and **prominent** **lecturer** at Berkeley and Caltech. From April 1943 he **oversaw** a **secretive** weapons **installation** at Los Alamos, whose bombs were the **collaborative** **creation** of a **thousands-strong** **workforce**.
 
-In the **pre-dawn** darkness of 16 July 1945, the first nuclear test **illuminated** the **desolate** New Mexico **landscape** with a blinding **glare**, its **explosive** force roughly 20 kilotons. On 6 and 9 August 1945 atomic **bombings** **devastated** Hiroshima and Nagasaki, where year-end **fatalities** numbered well over 100,000 and about 70,000 **respectively**.
+In the **pre-dawn** darkness of 16 July 1945, the first nuclear test **illuminated** the **desolate** New Mexico **landscape** with a blinding glare, its **explosive** force roughly 20 kilotons. On 6 and 9 August 1945 atomic **bombings** **devastated** Hiroshima and Nagasaki, where year-end **fatalities** numbered well over 100,000 and about 70,000 **respectively**.
 
 Oppenheimer left Los Alamos in October 1945 and from 1947 **presided** over Princeton's Institute for Advanced Study. In October 1949 the **advisory** committee he chaired, expressing **misgivings**, **unanimously** **counselled** against a crash programme for the **hydrogen** bomb, a **vastly** more **destructive** weapon. In December 1953 a **presidential** **directive** **severed** his access to confidential **documentation**.
 
@@ -16,7 +16,7 @@ On 2 December 1963 President Johnson **bestowed** on him the Fermi Award, which 
 
 J·罗伯特·奥本海默1904年4月22日生于纽约，是一位**卓有成就**(accomplished)的物理学家，也是伯克利和加州理工学院的**知名**(prominent)**教师**(lecturer)。从1943年4月起，他**主管**(oversaw)洛斯阿拉莫斯的一处**秘密**(secretive)武器**设施**(installation)；这里的炸弹，是**数千人**(thousands-strong)的**员工队伍**(workforce)**协作**(collaborative)的**成果**(creation)。
 
-1945年7月16日**黎明前**(pre-dawn)的黑暗中，第一次核试验以刺眼的**强光**(glare)**照亮**(illuminated)了新墨西哥州**荒凉**(desolate)的**大地**(landscape)，其**爆炸**(explosive)威力约合2万吨TNT当量。1945年8月6日和9日，原子弹**轰炸**(bombings)**摧毁**(devastated)了广岛和长崎，到当年年底，两地的**死亡人数**(fatalities)**分别**(respectively)远超十万和约七万。
+1945年7月16日**黎明前**(pre-dawn)的黑暗中，第一次核试验以刺眼的强光**照亮**(illuminated)了新墨西哥州**荒凉**(desolate)的**大地**(landscape)，其**爆炸**(explosive)威力约合2万吨TNT当量。1945年8月6日和9日，原子弹**轰炸**(bombings)**摧毁**(devastated)了广岛和长崎，到当年年底，两地的**死亡人数**(fatalities)**分别**(respectively)远超十万和约七万。
 
 1945年10月，奥本海默离开洛斯阿拉莫斯；从1947年起，他**执掌**(presided)普林斯顿高等研究院。1949年10月，他主持的**顾问**(advisory)委员会表达了**疑虑**(misgivings)，**一致**(unanimously)**建议**(counselled)不要推行**氢**(hydrogen)弹的仓促研制计划；氢弹的**毁灭性**(destructive)要**大得多**(vastly)。1953年12月，一道**总统**(presidential)**指令**(directive)**切断**(severed)了他接触机密**文件**(documentation)的途径。
 
@@ -41,7 +41,6 @@ J·罗伯特·奥本海默1904年4月22日生于纽约，是一位**卓有成就
 | illuminated | v. (illuminate) 照亮；阐明（illuminate a building/a problem） | 2 |
 | desolate | adj. 荒凉的，荒无人烟的（a desolate moor/landscape） | 2 |
 | landscape | n. 风景，地貌（a rural landscape；the political landscape） | 2 |
-| glare | n. 强光，刺眼的光；怒视（the glare of headlights；in the full glare of publicity） | 2 |
 | explosive | adj./n. 爆炸的；炸药（explosive devices；plastic explosives） | 2 |
 | bombings | n. (bombing) 轰炸，爆炸事件（a series of bombings；carpet bombing） | 2 |
 | devastated | v. (devastate) 摧毁，毁坏（a city devastated by war/an earthquake） | 2 |

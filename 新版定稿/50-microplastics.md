@@ -8,7 +8,7 @@ Since then the **durable** **debris** has proved **ubiquitous**, turning up on *
 
 The search turned **inward**. In March 2022 a small Dutch study found plastic in the blood of about three-quarters of 22 healthy **donors**. In March 2024 a study in the New England Journal of Medicine linked plastic in the **fatty** **plaque** of neck **arteries** to a higher risk of heart attack, **stroke** or death. Its authors **cautioned** that **correlation** is not **causation**.
 
-The most **sensational** figures are the **shakiest**. In June 2019 a report for WWF, a **conservation** group, **reckoned** people might swallow a credit card's worth of plastic a week; **critics** call that an **overestimate**. Two months later the World Health Organization was **reassuring** but **tentative**: on limited evidence, microplastics in drinking water posed no **apparent** risk at current levels. In February 2025 a study in Nature Medicine reported plastic in brain **tissue** in an amount popularised as a **spoonful**; others **queried** its **methodology**.
+The most **sensational** figures are the **shakiest**. In June 2019 a report for WWF, a **conservation** group, **reckoned** people might swallow a credit card's worth of plastic a week; critics call that an **overestimate**. Two months later the World Health Organization was **reassuring** but **tentative**: on limited evidence, microplastics in drinking water posed no **apparent** risk at current levels. In February 2025 a study in Nature Medicine reported plastic in brain **tissue** in an amount popularised as a **spoonful**; others **queried** its **methodology**.
 
 **Detection** has outrun understanding; human studies remain small or **observational**. Harm is **plausible** but **unproven**, and until the **verdict** is in, better **measurement** may guide policy more safely than **panic**.
 
@@ -20,7 +20,7 @@ The most **sensational** figures are the **shakiest**. In June 2019 a report for
 
 人们的搜寻随后转向了**体内**(inward)。2022年3月，荷兰一项小规模研究检测了22名健康**献血者**(donors)的血液，约四分之三的人血中有塑料。2024年3月，《新英格兰医学杂志》上的一项研究发现，颈部**动脉**(arteries)的**脂肪性**(fatty)**斑块**(plaque)中含有塑料，与心脏病发作、**中风**(stroke)或死亡的风险升高有关。研究者**提醒**(cautioned)，**相关性**(correlation)并不等于**因果关系**(causation)。
 
-最**耸人听闻的**(sensational)数字，也最**站不住脚**(shakiest)。2019年6月，一份为**自然保护**(conservation)组织世界自然基金会（WWF）撰写的报告**估算**(reckoned)，人们每周可能吞下相当于一张信用卡的塑料；**批评者**(critics)则说这是**高估**(overestimate)。两个月后，世界卫生组织的结论**令人安心**(reassuring)，却只是**初步的**(tentative)：依据有限的证据，按目前的含量，饮用水中的微塑料并无**明显**(apparent)风险。2025年2月，医学期刊《自然·医学》上的一项研究报告在脑**组织**(tissue)中发现了塑料，其含量后来被传成脑中有**一勺**(spoonful)塑料；另有学者对它的**研究方法**(methodology)提出了**质疑**(queried)。
+最**耸人听闻的**(sensational)数字，也最**站不住脚**(shakiest)。2019年6月，一份为**自然保护**(conservation)组织世界自然基金会（WWF）撰写的报告**估算**(reckoned)，人们每周可能吞下相当于一张信用卡的塑料；批评者则说这是**高估**(overestimate)。两个月后，世界卫生组织的结论**令人安心**(reassuring)，却只是**初步的**(tentative)：依据有限的证据，按目前的含量，饮用水中的微塑料并无**明显**(apparent)风险。2025年2月，医学期刊《自然·医学》上的一项研究报告在脑**组织**(tissue)中发现了塑料，其含量后来被传成脑中有**一勺**(spoonful)塑料；另有学者对它的**研究方法**(methodology)提出了**质疑**(queried)。
 
 **检测**(Detection)走在了认识前面；针对人体的研究规模仍小，或只是**观察性的**(observational)。说它有害**合乎情理**(plausible)，却**尚未证实**(unproven)；在**定论**(verdict)出来之前，依据更好的**测量**(measurement)来制定政策，或许比被**恐慌**(panic)左右更稳妥。
 
@@ -62,7 +62,6 @@ The most **sensational** figures are the **shakiest**. In June 2019 a report for
 | shakiest | adj. (shaky 最高级) 不可靠的，站不住脚的（shaky evidence/argument）；摇晃的，不稳的；（身体）发抖的；shake v. | 4 |
 | conservation | n. （自然、文物的）保护（wildlife/nature conservation；a conservation group）；节约，节省（energy conservation）；（物理）守恒（the conservation of energy）；conserve v. | 4 |
 | reckoned | v. (reckon) 估算，测算（reckon sth at…；be reckoned to be…）；认为，料想（I reckon that…）；reckon with 对付，考虑到；reckon on 指望；reckoning n. 估算 | 4 |
-| critics | n. (critic) 批评者，反对者（critics of the plan）；评论家（a film/literary critic）；criticise v. 批评；criticism n. | 4 |
 | overestimate | n./v. 高估，估计过高（overestimate the cost/risk）；反义 underestimate 低估 | 4 |
 | reassuring | adj. 令人安心的，使人宽慰的（a reassuring smile/message；it is reassuring to know…）；reassure v. 使安心；reassurance n. | 4 |
 | tentative | adj. 初步的，试探性的，暂定的（a tentative conclusion/agreement）；犹豫的，不确定的（a tentative smile）；tentatively adv. | 4 |
