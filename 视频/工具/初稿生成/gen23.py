@@ -25,7 +25,7 @@ S=[
      "（pose a question：提出问题）"]]),
 (3,[[[("He **proposed** a **practical** **substitute**,","他**建议**(proposed)用一种**切实可行的**(practical)**替代办法**(substitute)取而代之，"),("the imitation game,","即模仿游戏，"),("now **widely** called the Turing test.","如今**普遍**(widely)称为图灵测试。")],
      "（the imitation game：同位语，说明 substitute；\nnow widely called…：过去分词短语，补充说明）"]]),
-(3,[[[("An **interrogator**","一名**提问者**(interrogator)"),("exchanges typed messages with two **concealed** players,","通过打字，与两个**隐藏起来的**(concealed)参与者交流，"),("one human and one machine.","其中一个是人，一个是机器。")],
+(3,[[[("An **interrogator**","一名**审问者**(interrogator)"),("exchanges typed messages with two **concealed** players,","通过打字，与两个**隐藏起来的**(concealed)参与者交流，"),("one human and one machine.","其中一个是人，一个是机器。")],
      "（exchange messages with sb：与某人互通消息；\none human and one machine：同位语，说明 players）"]]),
 (3,[[[("If the interrogator cannot **consistently** **distinguish** them,","如果提问者无法**始终如一地**(consistently)**分辨**(distinguish)二者，"),("the machine passes.","机器就算通过测试。")],
      "（them：指人和机器两个参与者；\npass：通过测试）"]]),
