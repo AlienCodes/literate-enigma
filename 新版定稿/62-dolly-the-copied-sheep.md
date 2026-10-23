@@ -8,7 +8,7 @@ Dolly is **popularly** called the first clone, a **misconception**. Her **predec
 
 The news **provoked** **uproar** and **apprehension** about the **ethics** of human cloning. In March 1997 Clinton **prohibited** federal funding for such experiments. In 1999 her telomeres, or **chromosome** tips, were reported **shortened** by about 20% for her age. That fed **anxiety**; some **speculated** she was ageing **prematurely**.
 
-Dolly was put down, aged six, on 14 February 2003, with **arthritis** and a **progressive** **lung** disease caused by a sheep **virus**. Indoor **confinement** probably **contributed**. In July 2016, 13 clones, four from her cell line, were ageing normally, without **hypertension** or **diabetes**. In November 2017, her **skeletal** X-rays showed ordinary arthritis, and fears of early onset were judged **unfounded**.
+Dolly was put down, aged six, on 14 February 2003, with **arthritis** and a **progressive** **lung** disease caused by a sheep **virus**. Indoor **confinement** probably contributed. In July 2016, 13 clones, four from her cell line, were ageing normally, without **hypertension** or **diabetes**. In November 2017, her **skeletal** X-rays showed ordinary arthritis, and fears of early onset were judged **unfounded**.
 
 She bore six lambs by natural **mating**; Bonnie, first of these **descendants**, arrived in April 1998. Since 2003 her **stuffed** body, now **famously** an **icon** and **memorial**, has been **encased** in the National Museum of Scotland. Behind glass, her white face **plainly** **testifies** to her Finn Dorset **ancestry**.
 
@@ -20,7 +20,7 @@ She bore six lambs by natural **mating**; Bonnie, first of these **descendants**
 
 这一消息**引发**(provoked)了**轩然大波**(uproar)，也让人们对人类克隆的**伦理**(ethics)问题深感**忧虑**(apprehension)。1997年3月，克林顿**禁止**(prohibited)联邦资金用于这类实验。1999年，有报道称她的端粒，即**染色体**(chromosome)末端，比同龄羊**缩短**(shortened)了约20%。这加剧了人们的**焦虑**(anxiety)，有人**推测**(speculated)她正在**过早**(prematurely)衰老。
 
-2003年2月14日，多莉被实施安乐死，时年六岁；她患有**关节炎**(arthritis)和一种由绵羊**病毒**(virus)引起的**进行性**(progressive)**肺部**(lung)疾病。**圈养**(confinement)在室内很可能是**原因之一**(contributed)。2016年7月，13只克隆羊正在正常衰老，其中4只来自与她相同的细胞系；它们没有**高血压**(hypertension)，也没有**糖尿病**(diabetes)。2017年11月，她的**骨骼**(skeletal)X光片显示出普通的关节炎，关节炎提早发病的担忧被判定为**毫无根据**(unfounded)。
+2003年2月14日，多莉被实施安乐死，时年六岁；她患有**关节炎**(arthritis)和一种由绵羊**病毒**(virus)引起的**进行性**(progressive)**肺部**(lung)疾病。**圈养**(confinement)在室内很可能是原因之一。2016年7月，13只克隆羊正在正常衰老，其中4只来自与她相同的细胞系；它们没有**高血压**(hypertension)，也没有**糖尿病**(diabetes)。2017年11月，她的**骨骼**(skeletal)X光片显示出普通的关节炎，关节炎提早发病的担忧被判定为**毫无根据**(unfounded)。
 
 她通过自然**交配**(mating)产下六只小羊；这些**后代**(descendants)中的第一只邦妮生于1998年4月。自2003年起，她的**填充标本**(stuffed)一直**封存**(encased)在苏格兰国家博物馆，如今已成为**出了名**(famously)的**标志**(icon)和**纪念物**(memorial)。隔着玻璃，她的白脸**清楚地**(plainly)**见证**(testifies)着她的芬兰多塞特**祖源**(ancestry)。
 
@@ -62,7 +62,6 @@ She bore six lambs by natural **mating**; Bonnie, first of these **descendants**
 | lung | n. 肺（lung cancer；fill one's lungs） | 4 |
 | virus | n. 病毒（a flu virus；catch a virus） | 4 |
 | confinement | n. 禁闭，限制在某处（solitary confinement；confinement to bed） | 4 |
-| contributed | v. (contribute) 促成，是……的原因之一（contribute to a problem） | 4 |
 | hypertension | n. 高血压（treat hypertension） | 4 |
 | diabetes | n. 糖尿病（type 2 diabetes） | 4 |
 | skeletal | adj. 骨骼的（skeletal remains；the skeletal system） | 4 |
