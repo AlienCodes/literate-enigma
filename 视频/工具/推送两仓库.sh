@@ -6,7 +6,11 @@ set -e
 exec 9>/tmp/推送两仓库.lock; flock 9   # 几篇同时做时排队推送
 P=/home/user/postgraduate-vocabulary; L=/home/user/literate-enigma; B=claude/adoring-hamilton-5qskmm
 T=$'\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01XbsiuYS9p9y2vNiB4h6ZZU'
-cd $P; git add -A 视频 CLAUDE.md 新版定稿   # 新版定稿：文章本身也会改（撞词去掉重点词等）
+cd $P
+# 规则执行机器（CLAUDE.md 第16条）：提交前先过；git 提交钩子也装上（新容器、别的会话同样生效）
+git -C $P config core.hooksPath 视频/工具/githooks; git -C $L config core.hooksPath 视频/工具/githooks 2>/dev/null
+python3 $P/视频/工具/规则执行核查.py || { echo "【停止】规则执行核查不通过，不推送（先给新规矩、新坑配好门和自检）"; exit 1; }
+git add -A 视频 CLAUDE.md 新版定稿   # 新版定稿：文章本身也会改（撞词去掉重点词等）
 if ! git diff --cached --quiet; then git commit -qm "$1$T"; fi
 git pull -q --no-rebase --no-edit origin main   # 2026-10-22：别的会话（每篇新开会话）可能先推了，先合并远端再算差异、再推
 (cd $L; git checkout -q -- 视频 2>/dev/null; git pull -q --no-rebase --no-edit origin $B)   # 镜像分支先合并别的会话推的

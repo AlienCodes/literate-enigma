@@ -3,29 +3,55 @@
 对应《踩坑总表》D1–D4、S2、T11 等可自动查的条目。全部通过才能交付。"""
 import json,re,sys,glob,os
 ROOT=os.path.abspath(os.path.join(os.path.dirname(__file__),'..','..'))
-no=sys.argv[1].zfill(2); bad=[]
-d=json.load(open(sys.argv[2] if len(sys.argv)>2 else f'{ROOT}/视频/脚本/{no}.json'))   # 可指定脚本路径（踩坑核查用工作目录里的脚本）
-md=glob.glob(f'{ROOT}/新版定稿/{no}-*.md')[0]; t=open(md).read()
-en=t.split('## 英文',1)[1].split('## 中文',1)[0]
 strip=lambda x:re.sub(r'[\*\s]','',x)
-paras={}
-for s in d['sentences']:
-    for c in s['chunks']:
-        if '\n' in c['en']: bad.append(f'D1 英文里混入换行标记: {c["en"][:40]}')
-        joined=' '.join(a for a,_ in c['align'] if a!='\n')
-        if strip(joined)!=strip(c['en']): bad.append(f'D2 align 与 en 不一致: {c["en"][:40]}')
-        if ''.join(b for _,b in c['align'])!=c['zh']: bad.append(f'D2 zh 与分组拼接不一致: {c["zh"][:30]}')
-        marks={m.lower() for m in re.findall(r'\*\*[^*]+\*\*\(([^)]+)\)',c['zh'])}
-        for w in re.findall(r'\*\*([^*]+)\*\*',c['en']):
-            if w.lower() not in marks and not any(w.lower() in m.split() for m in marks): bad.append(f'D4 重点词缺中文标记: {w}')
-        if not c['zh'].strip() and c['en'].strip(): bad.append(f'空译文: {c["en"][:40]}')
-    paras.setdefault(s['para'],[]).append(' '.join(re.sub(r'\{\{.*?\}\}','',c['en']) for c in s['chunks']))
-if strip(''.join(' '.join(v) for k,v in sorted(paras.items())))!=strip(en): bad.append('D3 英文与文章原文不一致')
-if '\\n' in en or '\n \n' in en.strip(): pass
-for line in t.split('## 速查表',1)[1].split('\n'):
-    if line.count('本文：')>1: bad.append(f'S2 速查表"本文："重复: {line[:50]}')
-if re.search(r'\n {1,}\*\*',en): bad.append('D1 文章英文出现异常断行')
-for f in [f'{ROOT}/视频/视频/{no}.mp4',f'{ROOT}/视频/对照文本/{no}-文本.docx']:
+def 查(d,t):
+    """D1–D4、S2：脚本 d 与文章原文 t 的一致性（自检直接调用）"""
+    bad=[]; en=t.split('## 英文',1)[1].split('## 中文',1)[0]; paras={}
+    for s in d['sentences']:
+        for c in s['chunks']:
+            if '\n' in c['en']: bad.append(f'D1 英文里混入换行标记: {c["en"][:40]}')
+            joined=' '.join(a for a,_ in c['align'] if a!='\n')
+            if strip(joined)!=strip(c['en']): bad.append(f'D2 align 与 en 不一致: {c["en"][:40]}')
+            if ''.join(b for _,b in c['align'])!=c['zh']: bad.append(f'D2 zh 与分组拼接不一致: {c["zh"][:30]}')
+            marks={m.lower() for m in re.findall(r'\*\*[^*]+\*\*\(([^)]+)\)',c['zh'])}
+            for w in re.findall(r'\*\*([^*]+)\*\*',c['en']):
+                if w.lower() not in marks and not any(w.lower() in m.split() for m in marks): bad.append(f'D4 重点词缺中文标记: {w}')
+            if not c['zh'].strip() and c['en'].strip(): bad.append(f'空译文: {c["en"][:40]}')
+        paras.setdefault(s['para'],[]).append(' '.join(re.sub(r'\{\{.*?\}\}','',c['en']) for c in s['chunks']))
+    if strip(''.join(' '.join(v) for k,v in sorted(paras.items())))!=strip(en): bad.append('D3 英文与文章原文不一致')
+    for line in t.split('## 速查表',1)[1].split('\n'):
+        if line.count('本文：')>1: bad.append(f'S2 速查表"本文："重复: {line[:50]}')
+    if re.search(r'\n {1,}\*\*',en): bad.append('D1 文章英文出现异常断行')
+    return bad
+def 自检():
+    """在第03篇（已定稿）副本里逐一造错，每一种都必须报出；原样不得误报"""
+    import copy
+    d0=json.load(open(f'{ROOT}/视频/脚本/03.json')); t0=open(glob.glob(f'{ROOT}/新版定稿/03-*.md')[0]).read(); fails=[]
+    if 查(d0,t0): fails.append('原样误报：'+'；'.join(查(d0,t0))[:80])
+    def 造(name,tag,fd=None,ft=None):
+        d=copy.deepcopy(d0); t=t0
+        if fd: fd(d)
+        if ft: t=ft(t)
+        if not any(x.startswith(tag) for x in 查(d,t)): fails.append(f'没抓到：{name}（{tag}）')
+    c0=lambda d:d['sentences'][1]['chunks'][0]
+    def d1(d): c0(d)['en']=c0(d)['en']+'\n'
+    def d2(d): c0(d)['zh']=c0(d)['zh']+'多'
+    def d4(d):
+        c=next(c for s in d['sentences'] for c in s['chunks'] if re.search(r'\*\*[^*]+\*\*\(',c['zh']))
+        c['zh']=re.sub(r'\*\*([^*]+)\*\*\([^)]+\)',r'\1',c['zh'],1); c['align']=[[a,re.sub(r'\*\*([^*]+)\*\*\([^)]+\)',r'\1',b,1)] for a,b in c['align']]
+    造('英文混入换行标记','D1',fd=d1); 造('中文与分组拼接不一致','D2',fd=d2); 造('重点词缺中文标记','D4',fd=d4)
+    造('英文与文章原文不一致','D3',ft=lambda t:t.replace('## 英文','## 英文\nExtra words here.',1))
+    造('速查表本文重复','S2',ft=lambda t:t.replace('## 速查表','## 速查表\n| x | 本文：a 本文：b |',1))
+    if not (stem('dams')==stem('dam') and stem('circulation')!=stem('circulates')): fails.append('没抓到：撞词按屈折变化判（T12）')
+    return fails
+if sys.argv[1:2]==['--自检']:
+    no=None
+else:
+    no=sys.argv[1].zfill(2)
+    d=json.load(open(sys.argv[2] if len(sys.argv)>2 else f'{ROOT}/视频/脚本/{no}.json'))   # 可指定脚本路径（踩坑核查用工作目录里的脚本）
+    md=glob.glob(f'{ROOT}/新版定稿/{no}-*.md')[0]; t=open(md).read()
+    bad=查(d,t)
+for f in ([f'{ROOT}/视频/视频/{no}.mp4',f'{ROOT}/视频/对照文本/{no}-文本.docx'] if no else []):
     if not os.path.exists(f): bad.append(f'缺文件: {os.path.relpath(f,ROOT)}')
 
 # 撞词提醒（踩坑总表 T12）：本篇重点词（含短语里的实词）若在其他篇加粗过（同一个词的屈折变化；同根不同词不算，CLAUDE.md 第15条），列出供核对
@@ -44,6 +70,8 @@ def ckey(b):
     if len(ws)==1 and (len(ws[0])<3 or ws[0] in STOP): return None
     return ' '.join(stem(w) for w in ws) or None
 assert ckey('trade journal')!=ckey('journal') and ckey('Dams')==ckey('dam') and ckey('set out to')==ckey('Set out to')   # 自检
+if no is None:
+    _f=自检(); print('check_all 自检：'+('通过（D1/D2/D3/D4/S2/T12 造出来的错全部报出，原样无误报）' if not _f else '失灵！'+'；'.join(_f))); sys.exit(1 if _f else 0)
 others={}
 for f in glob.glob(f'{ROOT}/新版定稿/[0-9][0-9]-*.md'):
     n=os.path.basename(f)[:2]

@@ -23,13 +23,8 @@ ns = lambda x: re.sub(r'[\*\s]', '', x)
 
 def pit_rows():
     """《踩坑总表》每一行：(编号, 出过的问题, 以后怎么防)"""
-    out = []
-    for line in open(f'{V}/踩坑总表.md').read().splitlines():
-        m = re.match(r'^\| *([A-Z]\d+b?) *\|(.*)\|\s*$', line)
-        if m:
-            cells = [c.strip() for c in m.group(2).split('|')]
-            out.append((m.group(1), cells[0], cells[-1] if len(cells) > 1 else ''))
-    return out
+    sys.path.insert(0, T); from 规则执行核查 import 坑行   # 总表只有一份：《制作硬性标准与踩坑总结》里的表（规则执行机器 ⑤）
+    return 坑行()
 
 
 def record_gate(no, stage):

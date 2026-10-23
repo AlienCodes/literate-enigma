@@ -9,6 +9,8 @@ no = sys.argv[1].zfill(2); js = os.path.abspath(f'scripts/{no}.json'); d = json.
 docx, html, pdf = (os.path.abspath(f'{no}-文本.{x}') for x in ('docx', 'html', 'pdf'))
 t0 = time.time(); bad = []
 # 最高铁律：先过踩坑核查（含核查程序自检、踩坑对照记录、换行比对），不通过不生成、不发
+_m = subprocess.run(['python3', f'{T}/规则执行核查.py'], capture_output=True, text=True)   # 守则16：规则执行机器先过
+if _m.returncode: sys.exit(_m.stdout.strip() + '\n【规则执行核查不通过，不生成、不发给用户】')
 r = subprocess.run(['python3', f'{T}/踩坑核查.py', no, '文本'], capture_output=True, text=True); print(r.stdout.strip())
 if r.returncode: sys.exit('【踩坑核查不通过，不生成、不发给用户】')
 subprocess.run(['python3', f'{T}/make_docx.py', js, docx], check=True)
@@ -41,4 +43,5 @@ if d.get('换行变更已获同意'):
     d.setdefault('换行变更记录', []).append({'日期': time.strftime('%Y-%m-%d'), **d.pop('换行变更已获同意')})
     json.dump(d, open(js, 'w'), ensure_ascii=False, indent=1)
 shutil.copy(js, f'{T}/../脚本/{no}.json'); os.makedirs(f'{T}/../脚本/已发版本', exist_ok=True); shutil.copy(js, f'{T}/../脚本/已发版本/{no}.json')
+sys.path.insert(0, f'{T}/钩子'); import 闸门; 闸门.记回执([docx, html, pdf] + [f'{dst}/{no}-文本.{x}' for x in ('docx', 'html', 'pdf')], f'生成文本 第{no}篇')   # 发文件闸门凭回执放行
 print(f'第{no}篇对照文本：Word {len(cells)} 格逐格一致，PDF {len(pymupdf.open(pdf))} 页，已拷进 视频/对照文本/')

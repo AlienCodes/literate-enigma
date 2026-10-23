@@ -1,0 +1,5 @@
+#!/bin/bash
+# 规则执行机器（CLAUDE.md 第16条）：每次提交前跑；不过就不许提交（不许用 --no-verify 绕过，命令闸门会拦）
+d=$(git rev-parse --show-toplevel)
+[ -f "$d/视频/工具/规则执行核查.py" ] || exit 0
+python3 "$d/视频/工具/规则执行核查.py" || { echo "【停止】规则执行核查不通过，不能提交（CLAUDE.md 第16条）"; exit 1; }

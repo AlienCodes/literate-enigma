@@ -6,7 +6,7 @@ import re, sys, os
 V = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); no = sys.argv[1].zfill(2); f = f'{V}/制作记录/{no}.md'
 if os.path.exists(f) and '## 踩坑对照记录' in open(f).read(): sys.exit(f'{f} 已有踩坑对照记录，不覆盖')
 rows = []
-for l in open(f'{V}/踩坑总表.md'):
+for l in open(f'{V}/制作硬性标准与踩坑总结.md'):   # 总表只有一份（规则执行机器 ⑤）
     m = re.match(r'\| (\w+) \| ([^|]{0,40})', l)
     if m and m.group(1) not in ('编号',) and re.match(r'[A-Z]\d', m.group(1)):
         rows.append(f'| {m.group(1)} | {m.group(2).strip()} | 涉及 | 按现行做法由程序把关（踩坑总表“拦住”），本篇核查通过 |')

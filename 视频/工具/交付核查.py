@@ -19,12 +19,13 @@ if stage == '对照表':
     # 生成"踩坑对照记录"模板，追加到 制作记录/NN.md；逐条填"涉及/不涉及"和"怎么防的、核查结果"
     rec = f'{T}/../制作记录/{no}.md'; txt = open(rec).read() if os.path.exists(rec) else f'# 第{no}篇制作记录\n'
     if '## 踩坑对照记录' in txt: sys.exit(f'制作记录/{no}.md 已有"## 踩坑对照记录"，不覆盖')
-    rows = re.findall(r'^\| *([A-Z]\d+b?) *\|([^|]*)\|', open(f'{T}/../踩坑总表.md').read(), re.M)
+    sys.path.insert(0, T); from 规则执行核查 import 坑行; rows = [(i, q) for i, q, _ in 坑行()]   # 总表只有一份（规则执行机器 ⑤）
     tab = ['', '## 踩坑对照记录', '', '> 开工前逐条重读《踩坑总表》后填写；交付前再对照一遍。第三列只写"涉及"或"不涉及"，第四列写怎么防的、核查结果。', '',
            '| 编号 | 坑（摘要） | 本篇是否涉及 | 怎么防的、核查结果 |', '|---|---|---|---|']
     tab += [f"| {i} | {re.sub(r'[*`]', '', d).strip()[:40]} | 待填 | 待填 |" for i, d in rows]
     open(rec, 'w').write(txt.rstrip('\n') + '\n' + '\n'.join(tab) + '\n'); print(f'已生成 制作记录/{no}.md 的踩坑对照记录模板（{len(rows)} 条），逐条填完才能通过出片前核查'); sys.exit(0)
 elif stage == '出片前':
+    c, o = run(['python3', f'{T}/规则执行核查.py']); step('规则执行核查（守则16：每条规矩都有门、接进流程、有自检，机器自检通过）', c == 0, '' if c == 0 else o.strip()[-600:])
     # 0 踩坑核查（最高铁律）：核查程序自检 + 踩坑对照记录逐条填完 + 能用程序查的坑逐条查 + 换行与用户看过的版本比对（L13）
     c, o = run(['python3', f'{T}/踩坑核查.py', no, '出片'])
     step('踩坑核查（核查程序自检、踩坑对照记录、逐条程序核查、换行比对）', c == 0, '' if c == 0 else '\n    '.join(o.strip().splitlines()))
@@ -61,6 +62,7 @@ elif stage == '出片前':
     long = [l for l in o.splitlines() if re.search(r'停顿 (\d+\.\d+)s', l) and float(re.search(r'停顿 (\d+\.\d+)s', l).group(1)) > 0.22]
     step('无标点处停顿 ≤ 0.22 秒', not long, '\n    '.join(long))
 elif stage == '出片后':
+    c, o = run(['python3', f'{T}/规则执行核查.py']); step('规则执行核查（守则16：每条规矩都有门、接进流程、有自检，机器自检通过）', c == 0, '' if c == 0 else o.strip()[-600:])
     # G12 成片必须有画面（2026-10-22 第21篇：出片后又跑了 快速重建核查.sh，它用 AUDIO_ONLY 把同名 NN.mp4 覆盖成只有声音，
     # 后面的核查只查声音，全部通过，只有声音的文件被存成草稿发给了用户）。有画面流、宽 ≥1920、画面与声音时长差 ≤0.5 秒，否则停
     import imageio_ffmpeg as _iff
@@ -244,5 +246,7 @@ elif stage == '出片后':
         sf.write(f'work_{no}/punct.wav', np.concatenate(parts), sr)
         subprocess.run([FF, '-v', 'error', '-y', '-i', f'work_{no}/punct.wav', '-c:a', 'libmp3lame', '-b:a', '192k', f'标点试听_{no}.mp3'], check=True)
     step(f'生成标点试听 标点试听_{no}.mp3（{len(runs)} 处，需交用户试听）', True)
+if ok and stage == '出片后':   # 发文件闸门凭这个回执放行（守则7/A25：只发过了核查的那个文件）
+    sys.path.insert(0, f'{T}/钩子'); import 闸门; 闸门.记回执([f'{no}.mp4', f'标点试听_{no}.mp3'], f'交付核查 出片后 第{no}篇')
 print(f'第{no}篇 {stage}核查：\n' + '\n'.join(out) + f"\n{'全部通过' if ok else '【不通过，不得交付】'}")
 sys.exit(0 if ok else 1)
