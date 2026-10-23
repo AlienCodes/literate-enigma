@@ -24,7 +24,7 @@ S=[
      "（using…：现在分词短语表方式）"]]),
 (3,[[[("The **developers**","**开发商**(developers)"),("issued an **apology**","作出了**道歉**(apology)，"),("and **reimbursed** almost 1,000 pounds for repairs.","并**赔付了**(reimbursed)近1,000英镑的修理费。")],
      "（issue an apology：公开道歉；\nreimburse…for…：赔付……的费用）"]]),
-(3,[[[("Parking bays were suspended","路边停车位暂停使用，"),("and a **provisional** **barrier** was **erected**.","并且一道**临时的**(provisional)**屏障**(barrier)被**搭建了起来**(erected)。")]]]),
+(3,[[[("Parking bays were **suspended**","路边停车位**暂停使用**(suspended)，"),("and a **provisional** **barrier** was **erected**.","并且一道**临时的**(provisional)**屏障**(barrier)被**搭建了起来**(erected)。")]]]),
 (3,[[[("The beam","这道光束"),("struck for about two hours a day, two to three weeks **annually**,","**每年**(annually)会照射两到三周、每天约照射两小时，")],
      "（for…, …：两个时间状语并列）"],
     [[("because of the sun's **angle of elevation**.","因为这是太阳的**仰角**(angle of elevation)。")],
@@ -56,7 +56,7 @@ S=[
 CONF={"引号":{"S18-1 “”":"用户 2026-10-23 原话“将“烂疮杯”颁给了这座……大楼”自带引号，照用户原话保留（待改清单第10条）","S11-1 “”":"用户 2026-10-23 原话“报纸把对讲机大楼戏称为“烤焦机大楼””自带引号，照用户原话保留（待改清单第7条）"},"已告诉用户被去掉的重点词":"2026-10-22 已在会话中把 reflection（撞02）、elevation（撞10）从22去掉原样告诉用户，并说明42的 distortion 改回普通词",
  "牛津逗号":{"S3 its wing mirror warped, its panels deformed and":"文章英文是英式写法，三项并列不用牛津逗号；英文正文与文章逐字一致，不改"},
  "短语":{"S14 in … cost-cutting":"in 是普通介词（在……时），cost-cutting 本身就是“削减成本”（速查表释义），不是 in + 名词的固定用法"}}
-out={"no":"22","title_en":"The Building That Melted a Car","title_zh":"会烤化汽车的大楼","title_fx":{"hl":["Melted","Car"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","allow_clash":["reflection","enlarging"],
+out={"no":"22","title_en":"The Building That Melted a Car","title_zh":"会烤化汽车的大楼","title_fx":{"hl":["Melted","Car"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","allow_clash":["reflection","enlarging","suspended"],
      "高亮按实际开口":True,"高亮开口门槛":40,"结尾句":{"S19":{"整句语速":0.8,"依据":"全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：最后一句 The ballot was unanimous. 没有句中标点，整句 0.80 倍速（同 01 S18）"}},
      "术语":{"London":"伦敦","Jaguar":"捷豹","Martin Lindsay":"马丁·林赛","Eastcheap":"伊斯特奇普街","Rafael Viñoly":"拉斐尔·维诺利","Viñoly":"维诺利","Fenchurch Street":"芬丘奇街",
              "Celsius":"摄氏度","Walkie-Talkie":"对讲机","Walkie-Scorchie":"烤焦机","Vdara":"维达拉","Las Vegas":"拉斯维加斯","Building Design":"建筑设计","Carbuncle Cup":"烂疮杯","UK":"英国"}}
