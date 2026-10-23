@@ -41,7 +41,7 @@ ENTRY = ['定稿流水线.sh', '交付核查.py', '生成文本.py', '推送两�
 # 每次运行都先做自检的程序（不需要别人带“自检”参数调用）
 ALWAYS_SELFTEST = {'踩坑核查.py', 'check_all.py', '规则执行核查.py', '交付核查.py'}   # 交付核查 出片后 每次先跑核查程序自检、高亮自检
 # 机器当场跑的自检（不依赖工作目录、几秒内完成）
-FAST = [['踩坑核查.py', '自检'], ['check_all.py', '--自检'], ['钩子/钩子自检.py'], ['排版自检.py'], ['推送自检.py'], ['译文核查.py', '--自检']]
+FAST = [['生成文本.py', '--自检'], ['同步自检.py'], ['流程自检.py'], ['踩坑核查.py', '自检'], ['check_all.py', '--自检'], ['钩子/钩子自检.py'], ['排版自检.py'], ['推送自检.py'], ['译文核查.py', '--自检']]
 摘要 = lambda s: re.sub(r'\*\*|`', '', s).strip()[:60]
 # 要在工作目录（有模型、声音）里才能跑的慢自检：通过时写下所测程序的指纹（印章）；程序一改指纹对不上，就当“自检没跑”，提交、推送停
 STAMPED = {'出片守门自检.py': ('出片守门自检通过.json', ['make_video.py', 'render.py', '出片守门自检.py'])}
@@ -80,6 +80,8 @@ def 规矩(std_text, claude_text):
         if line.startswith('### '): sub = line[4:].strip(); continue
         m = re.match(r'^(\d+)\. (.+)', line)
         if sec and m and (sec in ('铁', '法') or sub == '硬性标准'): add(f'{sec}{m.group(1)}', m.group(2))
+    if '## 附：交付前检查单' in std_text:   # 检查单每一项（单1、单2……）
+        for k, m in enumerate(re.finditer(r'^- \[ \] (.+)$', std_text.split('## 附：交付前检查单', 1)[1], re.M), 1): add(f'单{k}', m.group(1))
     if dup: R['__重复__'] = dup
     return R
 
@@ -155,6 +157,8 @@ def 核查(std_text, claude_text, reg, files, settings=None, extra_tables=()):
         return True
     for k in R:
         if k not in reg: continue
+        if reg[k].get('文') and not R[k].startswith(reg[k]['文']):   # 按位置编号的条文（标准、检查单）：中间插了一条，编号就对不上原来的内容
+            per.setdefault(k, []).append(f'编号对应的条文变了（登记时是“{reg[k]["文"]}”，现在是“{R[k][:16]}”）：重新登记它的门和自检')
         gates, tests = 解析(reg, k)
         if not gates: per.setdefault(k, []).append('没有门')
         if not tests: per.setdefault(k, []).append('没有自检（故意造错、必须抓到的样本）')
@@ -245,6 +249,10 @@ def 机器自检():
     bad('新守则没登记', cl_=cl.rstrip('\n') + '\n99. 自检造的守则\n', want='没登记')
     i = std.index('### 硬性标准'); j = std.index('\n1. ', i)
     bad('新标准没登记', std_=std[:j] + '\n98. 自检造的标准' + std[j:], want='没登记')
+    if '## 附：交付前检查单' in std:
+        i2 = std.index('## 附：交付前检查单'); j2 = std.index('\n- [ ] ', i2)
+        per9, _ = 核查(std[:j2] + '\n- [ ] 自检造的检查项' + std[j2:], cl, reg, files)
+        if not any(k.startswith('单') and any(('没登记' in m or '条文变了' in m) for m in v) for k, v in per9.items()): fails.append('没抓到：检查单新加一项没登记')
     r2 = json.loads(json.dumps(reg)); r2[k]['门'][0] = [prog, anc + '（自检改坏的锚）']
     bad('锚被删', reg_=r2, want='锚不在')
     r3 = json.loads(json.dumps(reg)); r3[k]['门'][0] = ['自检造的不存在.py', anc]
@@ -305,7 +313,7 @@ def main():
     for p in STAMPED:
         if not 印章有效(p): gl.append(f'{STAMPED[p][1]} 改过、慢自检的印章对不上：在视频工作目录跑 python3 {os.path.relpath(T, P)}/{p}，通过后再提交（A26/A42：改出片程序后必须先过守门自检）')
     new = {k: v for k, v in per.items() if k not in base}
-    n = {p: sum(1 for k in R if k.startswith(p)) for p in ('守则', '铁', '法', '音', '画', '文', '流')}
+    n = {p: sum(1 for k in R if k.startswith(p)) for p in ('守则', '铁', '法', '音', '画', '文', '流', '单')}
     npit = len(R) - sum(n.values())
     if '--状态' in a:
         print(f'【规则执行机器】规矩 {len(R)} 条：已由程序执行 {len(R) - len(per)} 条，'
@@ -327,8 +335,8 @@ def main():
         for k, v in list(new.items())[:30]: print(f'  ✘ {k}：{"；".join(v)[:220]}')
         if len(new) > 30: print(f'  ……还有 {len(new) - 30} 条（python3 {os.path.relpath(__file__, P)} 看全部）')
         return 1
-    print(f'规则执行核查：通过——规矩 {len(R)} 条（守则 {n["守则"]}、坑 {npit}、标准 {len(R) - npit - n["守则"]}），'
-          f'{len(R) - len(per)} 条门在、接进流程、有自检；缺口 {len(per)} 条在基线里（只许减少，目标 0）；机器自检通过')
+    print(f'规则执行核查：通过——规矩 {len(R)} 条（守则 {n["守则"]}、坑 {npit}、标准 {len(R) - npit - n["守则"] - n["单"]}、检查单 {n["单"]}），'
+          f'{len(R) - len(per)} 条门在、接进流程、有自检' + (f'；缺口 {len(per)} 条在基线里（只许减少，目标 0）' if per else '；缺口 0') + '；机器自检通过')
     return 0
 
 

@@ -3,7 +3,7 @@
 # → 提交 → 推送两边 → 用 git 记录的文件指纹比对两边 视频/ 逐文件一致（不再逐个读大视频，几秒完成）。
 # 用法：bash 视频/工具/推送两仓库.sh "提交说明"
 set -e
-exec 9>/tmp/推送两仓库.lock; flock 9   # 几篇同时做时排队推送
+exec 9>${PUSH_LOCK:-/tmp/推送两仓库.lock}; flock 9   # 几篇同时做时排队推送（推送自检用自己的锁，否则在推送里跑自检会自己等自己）
 P=${PUSH_P:-/home/user/postgraduate-vocabulary}; L=${PUSH_L:-/home/user/literate-enigma}; B=${PUSH_B:-claude/adoring-hamilton-5qskmm}   # PUSH_* 只给 推送自检.py 在假仓库里测用
 T=$'\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01XbsiuYS9p9y2vNiB4h6ZZU'
 cd $P

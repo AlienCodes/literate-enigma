@@ -1,6 +1,7 @@
 """音频交付前自动检查（对应踩坑总表 A1–A8 中能用程序查的部分）：python3 audio_qc.py NN.mp4
 人耳试听仍是必须步骤，本程序只防"已知的坑"再犯。"""
-import sys, subprocess, numpy as np, soundfile as sf, imageio_ffmpeg, tempfile, os
+import sys, subprocess, numpy as np, soundfile as sf, imageio_ffmpeg, tempfile, os, warnings
+warnings.filterwarnings('ignore')   # 造错时的空段均值警告不许混进结论行（交付核查取最后一行当步骤名）
 FF = imageio_ffmpeg.get_ffmpeg_exe()
 src = [x for x in sys.argv[1:] if not x.startswith('--')][0]; tmp = tempfile.mktemp(suffix='.wav')
 subprocess.run([FF, '-v', 'error', '-y', '-i', src, '-vn', '-ac', '1', '-ar', '48000', tmp], check=True)

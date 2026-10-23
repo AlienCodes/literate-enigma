@@ -22,6 +22,10 @@ def 查(d,t):
     for line in t.split('## 速查表',1)[1].split('\n'):
         if line.count('本文：')>1: bad.append(f'S2 速查表"本文："重复: {line[:50]}')
     if re.search(r'\n {1,}\*\*',en): bad.append('D1 文章英文出现异常断行')
+    for line in t.split('## 速查表',1)[1].split('\n## ',1)[0].split('\n'):   # S4：重点词速查表要有“本文义 + 词性 + 词义 + 例子”，不能只有“本文：”
+        m=re.match(r'^\|\s*([^|]+?)\s*\|\s*([^|]*)\|',line)
+        if m and '本文：' in m.group(2) and not re.search(r'本文：[^|]*?；\s*(adj|adv|n|v|vt|vi|phr|prep|conj|pron|num|det|abbr|int|interj|aux|modal|art|短语|习语|固定搭配)\.',m.group(2)):
+            bad.append(f'S4 速查表缺词性和词义（只有“本文：”）: {m.group(1)}')
     return bad
 def 自检():
     """在第03篇（已定稿）副本里逐一造错，每一种都必须报出；原样不得误报"""
@@ -42,6 +46,7 @@ def 自检():
     造('英文混入换行标记','D1',fd=d1); 造('中文与分组拼接不一致','D2',fd=d2); 造('重点词缺中文标记','D4',fd=d4)
     造('英文与文章原文不一致','D3',ft=lambda t:t.replace('## 英文','## 英文\nExtra words here.',1))
     造('速查表本文重复','S2',ft=lambda t:t.replace('## 速查表','## 速查表\n| x | 本文：a 本文：b |',1))
+    造('速查表只有本文、缺词性','S4',ft=lambda t:t.replace('## 速查表','## 速查表\n| zzz | 本文：只有本文 | 1 |',1))
     if not (stem('dams')==stem('dam') and stem('circulation')!=stem('circulates')): fails.append('没抓到：撞词按屈折变化判（T12）')
     return fails
 if sys.argv[1:2]==['--自检']:
@@ -71,7 +76,7 @@ def ckey(b):
     return ' '.join(stem(w) for w in ws) or None
 assert ckey('trade journal')!=ckey('journal') and ckey('Dams')==ckey('dam') and ckey('set out to')==ckey('Set out to')   # 自检
 if no is None:
-    _f=自检(); print('check_all 自检：'+('通过（D1/D2/D3/D4/S2/T12 造出来的错全部报出，原样无误报）' if not _f else '失灵！'+'；'.join(_f))); sys.exit(1 if _f else 0)
+    _f=自检(); print('check_all 自检：'+('通过（D1/D2/D3/D4/S2/S4/T12 造出来的错全部报出，原样无误报）' if not _f else '失灵！'+'；'.join(_f))); sys.exit(1 if _f else 0)
 others={}
 for f in glob.glob(f'{ROOT}/新版定稿/[0-9][0-9]-*.md'):
     n=os.path.basename(f)[:2]

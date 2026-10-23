@@ -3,7 +3,7 @@
   守则3/流12 推完两边都提交、推送；G2 云端与本地一致；G11 CLAUDE.md 以 postgraduate-vocabulary 为准拷到工作分支；
   G4 中文文件名照常同步；镜像里多出来的旧文件被删掉；
 造错：G1 塞进一个 101MB 的文件必须停；G3 要提交的路径不存在必须停（不许悄悄没提交还说“已推送”）。"""
-import os, sys, subprocess, tempfile, shutil
+import os, sys, subprocess, tempfile, shutil, fcntl
 T = os.path.dirname(os.path.abspath(__file__))
 G = ['git', '-c', 'user.name=自检', '-c', 'user.email=selftest@example.com', '-c', 'init.defaultBranch=main', '-c', 'core.quotepath=off']
 def git(*a, cwd=None): return subprocess.run(G + list(a), cwd=cwd, capture_output=True, text=True)
@@ -22,8 +22,11 @@ try:
     git('checkout', '-q', '-b', 'tb', cwd=L); 写(f'{L}/视频/旧文件.md', 'old\n'); 写(f'{L}/CLAUDE.md', '旧守则\n')
     git('add', '-A', cwd=L); git('commit', '-qm', 'init', cwd=L); git('push', '-q', '-u', 'origin', 'tb', cwd=L)
     写(f'{P}/视频/新文件.md', 'new\n')
-    env = {**os.environ, 'PUSH_P': P, 'PUSH_L': L, 'PUSH_B': 'tb'}
-    run = lambda: subprocess.run(['bash', f'{T}/推送两仓库.sh', '推送自检'], capture_output=True, text=True, env=env)
+    env = {**os.environ, 'PUSH_P': P, 'PUSH_L': L, 'PUSH_B': 'tb', 'PUSH_LOCK': f'{tmp}/推送.lock'}   # 自己的锁：在真推送里跑自检不会自己等自己
+    run = lambda: subprocess.run(['bash', f'{T}/推送两仓库.sh', '推送自检'], capture_output=True, text=True, env=env, timeout=120)
+    lk = open('/tmp/推送两仓库.lock', 'a')   # G16：占着真推送锁（等于在推送当中跑本自检），假仓库推送必须照样跑完、不许自己等自己
+    try: fcntl.flock(lk, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError: pass   # 已经在真推送里：锁正被占着，同样的情形
     r = run(); o = r.stdout + r.stderr
     lsp = git('ls-tree', '-r', '--name-only', 'HEAD', '视频', cwd=P).stdout.split(); lsl = git('ls-tree', '-r', '--name-only', 'HEAD', '视频', cwd=L).stdout.split()
     if r.returncode != 0 or '云端与本地一致' not in o: fails.append(f'正常推送没通过：{o.strip()[-120:]}')
@@ -42,6 +45,8 @@ try:
     git('rm', '-rq', '新版定稿', cwd=P); git('commit', '-qm', '去掉新版定稿', cwd=P); 写(f'{P}/视频/再一个.md', 'z\n')   # 这个路径从此不存在、也没被跟踪
     r = run(); o = r.stdout + r.stderr
     if r.returncode == 0 or '已推送' in o: fails.append('没抓到：要提交的路径不存在却说已推送（G3）')
+except subprocess.TimeoutExpired:
+    fails.append('没抓到：推送锁死锁（G16：在推送当中跑自检，自己等自己）')
 except Exception as e:
     fails.append(f'推送自检本身出错：{e}')
 finally:

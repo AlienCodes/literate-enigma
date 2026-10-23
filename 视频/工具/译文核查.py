@@ -44,7 +44,7 @@ def 方向(d, ok):
 def 词性(d, art, ok):
     pos = {}
     for l in (art or '').split('## 速查表', 1)[-1].splitlines():
-        m = re.match(r'\|\s*([^|]+?)\s*\|\s*(adj|adv|n|v|vt|vi)\.', l)
+        m = re.match(r'\|\s*([^|]+?)\s*\|\s*(?:本文：[^|]*?；\s*)?(adj|adv|n|v|vt|vi)\.', l)   # 速查表：“本文：…；词性. 释义”
         if m: pos[m.group(1).lower()] = m.group(2)
     out = []
     for i, s in enumerate(d['sentences']):
@@ -132,7 +132,7 @@ def 自检():
     if 方向(d, {}): fails.append('T4方向 误报：before → 之前')
     d2 = copy.deepcopy(d); d2['sentences'][0]['chunks'][0]['align'][1][1] = '之后才'
     if not 方向(d2, {}): fails.append('没抓到：before 放在“之后才”上面（T4/T20）')
-    art = '## 速查表\n| earnest | adj. 认真的 | 1 |\n'
+    art = '## 速查表\n| earnest | 本文：真心实意的；adj. 认真的，真诚的（an earnest wish） | 1 |\n'
     if not 词性({'sentences': [句(('in earnest', '**真心实意地**(earnest)'))]}, art, {}): fails.append('没抓到：adj. 译成“…地”（T2）')
     if 词性({'sentences': [句(('in earnest', '**真心实意的**(earnest)'))]}, art, {}): fails.append('T2词性 误报')
     if not 同词异译({'sentences': [句(('scan', '**扫描**(scan)')), 句(('scan', '**浏览**(scan)'))]}, {}): fails.append('没抓到：同一个重点词全篇译法不一（文10）')

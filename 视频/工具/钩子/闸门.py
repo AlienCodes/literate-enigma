@@ -73,6 +73,8 @@ def 判(kind, d, 仓库=PV):
                 return 拦('PreToolUse', '【部署闸门】C1/C2/流16：不推 master、gh-pages，不强推（master 是另一个项目）；用户明确要求时，命令里写“# 【用户同意：原话】”再执行。')
             if 'core.hooksPath' in s:
                 return 拦('PreToolUse', '【规则执行闸门】不许改 core.hooksPath（提交前的规则执行核查靠它，开工提醒.sh 和 推送两仓库.sh 自动设好）。')
+        if re.search(r'Document\(', c) and '.docx' in c and not re.search(r'read_docx2|make_docx|segs\(', c):
+            return 拦('PreToolUse', '【W2 闸门】读回用户改过的 Word 一律用 read_docx2.py（两行一组、单元格去重：Word 会把相邻小表格合并，直接读会大量重复）。')
         for s in segs:   # C1/C2/流16：没有用户明确同意，不部署、不公开发布
             if re.search(r'^(npx\s+)?(vercel|netlify|surge|firebase\s+deploy|wrangler\s+(deploy|publish)|heroku)\b|^npm\s+publish|^twine\s+upload|^gh-pages\b', s) and '【用户同意' not in c:
                 return 拦('PreToolUse', '【部署闸门】C1/C2/流16：没有用户明确同意，不部署、不公开发布（默认只生成文件）。用户明确要求时，命令里写“# 【用户同意：原话】”再执行。')
