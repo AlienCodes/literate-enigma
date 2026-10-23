@@ -42,7 +42,7 @@ S=[
 (4,[[[("In 2010","2010年，"),("the **infamous** **glare** from his curved, **reflective** Vdara hotel in Las Vegas","他那座位于拉斯维加斯、弯曲**反光的**(reflective)维达拉酒店反射出**臭名昭著的**(infamous)**强光**(glare)，")],
      "（from his…hotel：介词短语作后置定语，修饰 glare）"],
     [[("burned a guest's **scalp** by the pool.","在泳池边灼伤了一位客人的**头皮**(scalp)。")]]]),
-(5,[[[("On 12 February 2014","2014年2月12日，"),("a permanent **fixture** was announced:","一项永久性的**固定装置**(fixture)方案公布，")],
+(5,[[[("On 12 February 2014","2014年2月12日，"),("a **permanent** **fixture** was announced:","一项**永久性的**(permanent)**固定装置**(fixture)方案公布，")],
      "（冒号后补充说明 fixture 的内容）"],
     [[("**horizontal** **aluminium** **fins**","那就是在外墙加装**水平的**(horizontal)**铝制**(aluminium)散光**鳍片**(fins)，"),("to **diffuse** the **brightness**,","来**散射**(diffuse)光线、减弱**亮度**(brightness)，"),("reportedly costing several million pounds.","据报道花费达数百万英镑。")],
      "（to diffuse…：不定式表目的；\nreportedly costing…：现在分词短语，补充说明花费）"]]),
@@ -56,7 +56,7 @@ S=[
 CONF={"引号":{"S18-1 “”":"用户 2026-10-23 原话“将“烂疮杯”颁给了这座……大楼”自带引号，照用户原话保留（待改清单第10条）","S11-1 “”":"用户 2026-10-23 原话“报纸把对讲机大楼戏称为“烤焦机大楼””自带引号，照用户原话保留（待改清单第7条）"},"已告诉用户被去掉的重点词":"2026-10-22 已在会话中把 reflection（撞02）、elevation（撞10）从22去掉原样告诉用户，并说明42的 distortion 改回普通词",
  "牛津逗号":{"S3 its wing mirror warped, its panels deformed and":"文章英文是英式写法，三项并列不用牛津逗号；英文正文与文章逐字一致，不改"},
  "短语":{"S14 in … cost-cutting":"in 是普通介词（在……时），cost-cutting 本身就是“削减成本”（速查表释义），不是 in + 名词的固定用法"}}
-out={"no":"22","title_en":"The Building That Melted a Car","title_zh":"会烤化汽车的大楼","title_fx":{"hl":["Melted","Car"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说无标签特批":"用户 2026-10-23 特批：“把那个结局两个字给去掉。你至少说一下这个主人公是谁吧……你不能稍微让这个宽一些吗？”“经过我的允许，我的特批了，你才可以放宽……可以稍微放宽点，但是不要过于宽，就是你能够用非常简洁的字，包括主人公能够把整个事情说的非常的明亮”（第22篇结尾解说不写“结局：”）","说明放宽特批":{"S19":{"倍数":1.2,"依据":"用户 2026-10-23 特批：“把那个结局两个字给去掉。你至少说一下这个主人公是谁吧……你不能稍微让这个宽一些吗？”“经过我的允许，我的特批了，你才可以放宽……可以稍微放宽点，但是不要过于宽，就是你能够用非常简洁的字，包括主人公能够把整个事情说的非常的明亮”——结尾解说 7 行，最宽一行 1.19 倍英文宽，定 1.2 倍"}},"allow_clash":["reflection","enlarging","suspended","critics"],
+out={"no":"22","title_en":"The Building That Melted a Car","title_zh":"会烤化汽车的大楼","title_fx":{"hl":["Melted","Car"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说无标签特批":"用户 2026-10-23 特批：“把那个结局两个字给去掉。你至少说一下这个主人公是谁吧……你不能稍微让这个宽一些吗？”“经过我的允许，我的特批了，你才可以放宽……可以稍微放宽点，但是不要过于宽，就是你能够用非常简洁的字，包括主人公能够把整个事情说的非常的明亮”（第22篇结尾解说不写“结局：”）","说明放宽特批":{"S19":{"倍数":1.2,"依据":"用户 2026-10-23 特批：“把那个结局两个字给去掉。你至少说一下这个主人公是谁吧……你不能稍微让这个宽一些吗？”“经过我的允许，我的特批了，你才可以放宽……可以稍微放宽点，但是不要过于宽，就是你能够用非常简洁的字，包括主人公能够把整个事情说的非常的明亮”——结尾解说 7 行，最宽一行 1.19 倍英文宽，定 1.2 倍"}},"allow_clash":["reflection","enlarging","suspended","critics","permanent"],
      "高亮按实际开口":True,"高亮开口门槛":40,"结尾句":{"S19":{"整句语速":0.8,"依据":"全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：最后一句 The ballot was unanimous. 没有句中标点，整句 0.80 倍速（同 01 S18）"}},
      "术语":{"London":"伦敦","Jaguar":"捷豹","Martin Lindsay":"马丁·林赛","Eastcheap":"伊斯特奇普街","Rafael Viñoly":"拉斐尔·维诺利","Viñoly":"维诺利","Fenchurch Street":"芬丘奇街",
              "Celsius":"摄氏度","Walkie-Talkie":"对讲机","Walkie-Scorchie":"烤焦机","Vdara":"维达拉","Las Vegas":"拉斯维加斯","Building Design":"建筑设计","Carbuncle Cup":"烂疮杯","UK":"英国"}}
