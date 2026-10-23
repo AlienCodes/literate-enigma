@@ -22,7 +22,7 @@ S=[
      "（be measured at：测得为……）"],
     [[("and a **reporter**","一名**记者**(reporter)还"),("fried an egg in a **pan** using the reflection.","在**平底锅**(pan)里利用反射光煎熟了一个鸡蛋。")],
      "（using…：现在分词短语表方式）"]]),
-(3,[[[("The **developers**","**开发商**(developers)"),("issued an **apology**","公开**道歉**(apology)，"),("and **reimbursed** almost 1,000 pounds for repairs.","并**赔付了**(reimbursed)近1,000英镑的修理费。")],
+(3,[[[("The **developers**","**开发商**(developers)"),("issued an **apology**","作出了**道歉**(apology)，"),("and **reimbursed** almost 1,000 pounds for repairs.","并**赔付了**(reimbursed)近1,000英镑的修理费。")],
      "（issue an apology：公开道歉；\nreimburse…for…：赔付……的费用）"]]),
 (3,[[[("Parking bays were suspended","路边停车位暂停使用，"),("and a **provisional** **barrier** was **erected**.","还**架起了**(erected)一道**临时**(provisional)性的**屏障**(barrier)。")]]]),
 (3,[[[("The beam","这道光束"),("struck for about two hours a day, two to three weeks **annually**,","**每年**(annually)有两到三周、每天约两个小时照到街上，")],
