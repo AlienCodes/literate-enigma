@@ -37,7 +37,7 @@ S=[
      "（he said：插入语；\nbut not its intensity：省略句，\n= but he had not anticipated its intensity）"]]),
 (4,[[[("Sun louvres in the original design","据报道，原设计中的遮阳百叶"),("were reportedly removed in **cost-cutting**.","在**削减成本**(cost-cutting)时被删掉了。")],
      "（reportedly：据报道，插入的副词；\nin cost-cutting：在削减成本时）"]]),
-(4,[[[("Nor was this","这也不是"),("his first **architectural** **miscalculation**.","他第一次出现**建筑上的**(architectural)**失算**(miscalculation)。")],
+(4,[[[("Nor was this","这也不是"),("his first","他第一次"),("**architectural** **miscalculation**.","出现**建筑上的**(architectural)**失算**(miscalculation)。")],
      "（Nor 放句首：也不……，主谓倒装）"]]),
 (4,[[[("In 2010","2010年，"),("the **infamous** glare from his curved, **reflective** Vdara hotel in Las Vegas","他设计的拉斯维加斯维达拉酒店外墙弯曲、**反光**(reflective)，那**臭名昭著的**(infamous)强光")],
      "（from his…hotel：介词短语作后置定语，修饰 glare）"],
