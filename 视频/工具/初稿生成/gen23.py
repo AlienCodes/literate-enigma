@@ -42,7 +42,7 @@ S=[
      "（rule it suicide：裁定为自杀；\nthough…：让步状语从句）"]]),
 (5,[[[("**Recognition**","（对于图灵的）**认可**(Recognition)"),("**lagged**.","**滞后了**(lagged)。")]]]),
 (5,[[[("On 10 September 2009","2009年9月10日，"),("Britain's prime minister **publicly** **apologised**,","英国首相**公开**(publicly)**道歉了**(apologised)；")]],
-    [[("and on 24 December 2013","2013年12月24日，"),("Turing was **posthumously** **granted** a royal pardon.","图灵在**身后**(posthumously)**获得了**(granted)皇室赦免。")],
+    [[("and on 24 December 2013","2013年12月24日，"),("Turing **was** **posthumously** **granted** a royal **pardon**.","图灵在**死后**(posthumously)**被授予了**(was granted)皇室**赦免**(pardon)。")],
      "（be granted sth：被授予某物，被动语态）"]]),
 (5,[[[("On 23 June 2021,","2021年6月23日，"),("his birthday,","也就是他的生日，"),("a fifty-pound note bearing his **portrait**","印有他**肖像**(portrait)的五十英镑钞票"),("entered **circulation**.","开始**流通**(circulation)。")],
      "（his birthday：同位语，说明日期；\nbearing…：现在分词短语作后置定语，修饰 note；\nenter circulation：开始流通）"]]),
