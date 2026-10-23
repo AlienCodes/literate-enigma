@@ -39,7 +39,7 @@ S=[
      "（reportedly：据报道，插入的副词；\nin cost-cutting：在削减成本时）"]]),
 (4,[[[("Nor was this","这也不是"),("his first","他第一次"),("**architectural** **miscalculation**.","出现**建筑上的**(architectural)**失算**(miscalculation)。")],
      "（Nor 放句首：也不……，主谓倒装）"]]),
-(4,[[[("In 2010","2010年，"),("the **infamous** glare from his curved, **reflective** Vdara hotel in Las Vegas","他设计的拉斯维加斯维达拉酒店外墙弯曲、**反光**(reflective)，那**臭名昭著的**(infamous)强光")],
+(4,[[[("In 2010","2010年，"),("the **infamous** **glare** from his curved, **reflective** Vdara hotel in Las Vegas","他那座位于拉斯维加斯、弯曲**反光**(reflective)的维达拉酒店反射出**臭名昭著的**(infamous)**强光**(glare)，")],
      "（from his…hotel：介词短语作后置定语，修饰 glare）"],
     [[("burned a guest's **scalp** by the pool.","在泳池边灼伤了一位客人的**头皮**(scalp)。")]]]),
 (5,[[[("On 12 February 2014","2014年2月12日，"),("a permanent **fixture** was announced:","一项永久性的**固定装置**(fixture)方案公布，")],
