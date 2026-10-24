@@ -6,9 +6,9 @@ On 5 December 1914 Endurance **departed** South Georgia, a **remote** **whaling*
 
 The **stranded** men **endured** over five **gruelling** months on the ice. Their floe split on 9 April 1916; on 15 April their lifeboats reached Elephant Island, a **bleak**, **uninhabited** rock far from shipping lanes.
 
-On 24 April Shackleton and five others **embarked** in the James Caird, a **fragile** lifeboat, on a **perilous** **voyage** of some 1,300 kilometres. As **ferocious** **gales** **battered** the boat, Worsley **snatched** only four sights of the sun, **deducing** the rest by **dead reckoning** from course, speed and time **elapsed**. On 10 May they landed on South Georgia's **deserted** south coast.
+On 24 April Shackleton and five others **embarked** in the James Caird, a **fragile** lifeboat, on a **perilous** **voyage** of some 1,300 kilometres. As **ferocious** **gales** **battered** the boat, Worsley **snatched** only four sights of the sun, **deducing** the rest by **dead reckoning** from course, speed, and time **elapsed**. On 10 May they landed on South Georgia's **deserted** south coast.
 
-Shackleton, Worsley and Tom Crean **traversed** its **mountainous** **interior** in about 36 **exhausting** hours, reaching the Stromness whaling station on 20 May. Ice **repelled** three rescue attempts before the Yelcho, a Chilean **tug**, **evacuated** the 22 **marooned** men on 30 August. All 28 of Endurance's party survived their **ordeal**.
+Shackleton, Worsley, and Tom Crean **traversed** its **mountainous** **interior** in about 36 **exhausting** hours, reaching the Stromness whaling station on 20 May. Ice **repelled** three rescue attempts before the Yelcho, a Chilean **tug**, **evacuated** the 22 **marooned** men on 30 August. All 28 of Endurance's party survived their **ordeal**.
 
 On 5 March 2022 searchers **located** the **wreck** 3,008 metres down, **upright** and **intact**. She lay about four miles south of the spot Worsley recorded in November 1915, months before the voyage: a slight **discrepancy** for a **calculation** on **shifting** ice.
 
@@ -43,10 +43,13 @@ Legend **rightly** **salutes** Shackleton for his **charisma**. Yet both ends of
 | foundered | v. (founder) （船）沉没；（计划等）失败，垮掉；n. 创始人（由 found 创建 派生；与表示“沉没”的 founder 同形异义，二者来源不同） | 1 |
 | logged | v. (log) 把……记入日志，正式记录；伐木；log in/on 登录；n. 航海日志，记录；原木 | 1 |
 | stranded | adj. 被困的，搁浅的，进退两难的；v. (strand) 使滞留，使搁浅；n. （线、绳的）股，缕 | 2 |
+| floe | n. 浮冰（块）（ice floe 浮冰） | 2 |
+| lifeboats | n. (lifeboat) 救生艇，救生船 | 2 |
 | endured | v. (endure) 忍受，熬过；持续，持久（endure for centuries） | 2 |
 | gruelling | adj. （美式 grueling）累垮人的，极其艰苦的 | 2 |
 | bleak | adj. 荒凉的，阴冷的；（前景）暗淡的，无望的（a bleak future） | 2 |
 | uninhabited | adj. 无人居住的，荒无人烟的（inhabit v. 居住于） | 2 |
+| shipping lanes | 短语. 航线，海上航道；shipping n. 航运；lane n. 小路，车道，航道 | 2 |
 | embarked | v. (embark) 上船，登机；embark on/upon 开始，着手（新的事业、旅程） | 3 |
 | fragile | adj. 易碎的，脆弱的；（局势等）不稳固的（a fragile peace）；虚弱的 | 3 |
 | perilous | adj. 危险的，凶险的（peril n. 危险） | 3 |
@@ -55,15 +58,19 @@ Legend **rightly** **salutes** Shackleton for his **charisma**. Yet both ends of
 | ferocious | adj. 凶猛的，猛烈的；极度的（ferocious competition 激烈竞争） | 3 |
 | gales | n. (gale) 大风，强风；（笑声等的）一阵（gales of laughter） | 3 |
 | snatched | v. (snatch) 抓住（机会）抽空做；夺取，一把抓起；n. 片段 | 3 |
+| sights of the sun | 短语. 测日（航海术语：对太阳做观测以定船位，take a sight 测天体高度）；sight n. 视力，景象 | 3 |
 | deducing | v. (deduce) 推断，推论（deduce A from B）；deduction n. 推断；扣除 | 3 |
 | dead reckoning | 短语. 航位推算（法）：根据航向、航速和航行时间推算船位；reckoning n. 计算，估计；清算 | 3 |
-| elapsed | v. (elapse) （时间）流逝，过去；time elapsed 所经过的时间 | 3 |
+| course | n. 航向，路线；课程；过程，进程（in the course of 在……过程中） | 3 |
+| time elapsed | 短语. 经过的时间，所经过的时间；elapse v. （时间）流逝，过去 | 3 |
+| landed on | 短语. (land on) 登上（陆地、岛屿），降落在……上；land v. 着陆，登陆；n. 陆地 | 3 |
 | deserted | adj. 空无一人的，荒废的；被遗弃的；v. (desert) 抛弃，离弃；擅离职守 | 3 |
 | traversed | v. (traverse) 横越，穿过；（理论等）涉及，论及；n. 横越，穿越 | 4 |
 | mountainous | adj. 多山的，山峦起伏的；巨大的（mountainous waves） | 4 |
 | interior | n. 内部；（国家、岛屿的）内陆，腹地；adj. 内部的，室内的（interior design） | 4 |
 | exhausting | adj. 令人精疲力竭的；exhaust v. 使筋疲力尽；耗尽 | 4 |
 | repelled | v. (repel) 击退，逼退；排斥，驱除（repel insects）；使厌恶 | 4 |
+| rescue attempts | 短语. 救援行动，营救尝试；rescue v./n. 营救；attempt n./v. 尝试 | 4 |
 | tug | n. 拖船（= tugboat）；猛拉，拖拽；v. 用力拉，拽 | 4 |
 | evacuated | v. (evacuate) 撤离，疏散；排空（容器、肠道等） | 4 |
 | marooned | adj. 被困（在孤岛等处）的，孤立无援的；v. (maroon) 使困于荒岛；n./adj. 褐红色（的） | 4 |
@@ -72,6 +79,7 @@ Legend **rightly** **salutes** Shackleton for his **charisma**. Yet both ends of
 | wreck | n. 失事船只，残骸；（身心）垮掉的人；v. 毁坏，使失事；破坏（计划等） | 5 |
 | upright | adj. 直立的，竖直的；正直的，诚实的；adv. 直立地 | 5 |
 | intact | adj. 完好无损的，完整的 | 5 |
+| slight | adj. 轻微的，细小的；纤细的；v./n. 轻视，怠慢 | 5 |
 | discrepancy | n. 差异，不一致，出入（a discrepancy between A and B） | 5 |
 | calculation | n. 计算，计算结果；（利害的）盘算，算计 | 5 |
 | shifting | adj. 不断变化的，移动的，漂移的；v. (shift) 移动，转移；改变（看法等）；n. 转变；轮班 | 5 |
@@ -83,6 +91,7 @@ Legend **rightly** **salutes** Shackleton for his **charisma**. Yet both ends of
 | arithmetic | n. 算术，计算；（某事的）算计，得失估算；adj. 算术的 | 6 |
 | precision | n. 精确，准确；精密度；adj. 精密的（precision instruments） | 6 |
 | ashore | adv. 上岸，在岸上（go/come ashore） | 6 |
+| brought back | 短语. (bring back) 带回，送回；使恢复；使回想起 | 6 |
 
 ## 史实与来源
 - 1914年12月5日坚忍号离开南乔治亚岛格雷特维肯捕鲸站驶往南极；1915年1月被困于威德尔海浮冰（具体日期来源不一，只写到月）。Wikipedia「Imperial Trans-Antarctic Expedition」：https://en.wikipedia.org/wiki/Imperial_Trans-Antarctic_Expedition ；全文副本 https://github.com/Jemteddy/gaillacsec/blob/HEAD/AllenAIScience/Ressources/wiki_Imperial%20Trans-Antarctic%20Expedition.txt
