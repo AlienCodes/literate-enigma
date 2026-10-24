@@ -18,7 +18,8 @@ def 查(d,t):
                 if w.lower() not in marks and not any(w.lower() in m.split() for m in marks): bad.append(f'D4 重点词缺中文标记: {w}')
             if not c['zh'].strip() and c['en'].strip(): bad.append(f'空译文: {c["en"][:40]}')
         paras.setdefault(s['para'],[]).append(' '.join(re.sub(r'\{\{.*?\}\}','',c['en']) for c in s['chunks']))
-    if strip(''.join(' '.join(v) for k,v in sorted(paras.items())))!=strip(en): bad.append('D3 英文与文章原文不一致')
+    sys.path.insert(0,os.path.dirname(os.path.abspath(__file__))); import 破折号 as _PZ   # 例外：文章的破折号换成逗号/冒号/括号（T36）
+    if not _PZ.英文一致(' '.join(' '.join(v) for k,v in sorted(paras.items())),en): bad.append('D3 英文与文章原文不一致')
     for line in t.split('## 速查表',1)[1].split('\n'):
         if line.count('本文：')>1: bad.append(f'S2 速查表"本文："重复: {line[:50]}')
     if re.search(r'\n {1,}\*\*',en): bad.append('D1 文章英文出现异常断行')

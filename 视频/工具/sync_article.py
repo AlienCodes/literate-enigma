@@ -33,7 +33,8 @@ for s in d['sentences']:
     paras_en.setdefault(s['para'],[]).append(en); paras_zh.setdefault(s['para'],[]).append(zh+notes)
 new_en='\n\n'.join(' '.join(v) for k,v in sorted(paras_en.items()))
 strip=lambda x:re.sub(r'[\*\s]','',x)
-assert strip(new_en)==strip(en_old), 'English text changed!'
+import os; sys.path.insert(0,os.path.dirname(os.path.abspath(__file__))); import 破折号 as _PZ
+assert _PZ.英文一致(new_en,en_old), 'English text changed!'   # 唯一放宽：文章的破折号在脚本里换成了逗号/冒号/括号（T36，用户 2026-10-24），文章随之改成脚本的写法
 new_zh='\n\n'.join(''.join(v) for k,v in sorted(paras_zh.items()))
 # keyword table in order of appearance
 rows=[];seen=set()

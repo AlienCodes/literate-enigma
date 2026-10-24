@@ -324,9 +324,11 @@ for _p in sorted(_glob.glob('scripts/*.json')):
 #   之后停顿和句中空隙照常处理（标点处补成标准停顿，句中过长的压到 0.18 秒）。两头紧贴的 5 ms 都要低于 -55 dB；
 #   非人声与词尾/词头之间没有 -55 dB 低谷的，标"紧贴词尾"/"紧贴词头"/"紧贴两头"，那一头切在过零点（词本身不动），依据写进 核对确认.删除段。
 #   依据写在"核对确认.停顿删除"/"核对确认.删除段"。出片和所有核查程序（都 exec 本文件）用同一份。
-DEL_AT={}; NONVOICE={}; GRAFT={}; PGRAFT={}; BOOST={}
+DEL_AT={}; NONVOICE={}; GRAFT={}; PGRAFT={}; BOOST={}; VFP={}; SENT_FP={}; SENT_KEYS={}; VOIDED=[]
 for _p in sorted(_glob.glob('scripts/*.json')):
     _d=_jl(_p)
+    for _k,_v in _d.get('区间声音指纹',{}).items():                 # A45：写区间时这一句原始合成 w 的指纹（区间作废.py --记指纹 写）；读音、语速一改 w 就变，旧区间作废
+        VFP[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _d['sentences'][int(_k[1:])-1]['chunks'])]=_v
     for _k,_v in _d.get('停顿删除区间',{}).items():
         _s=_d['sentences'][int(_k[1:])-1]
         DEL_AT[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks'])]={int(g):x for g,x in _v.items()}
@@ -604,6 +606,12 @@ def sentence_audio(sent,pieces,gaps):
     else: raw,_=k.create(spoken(sent),voice=V,speed=SPEED,lang='en-us')
     w=clean_tail(raw)
     w=_keep_tail(raw,w,_head_offset(raw,w))
+    _fp=_hl.md5(np.ascontiguousarray(w).tobytes()).hexdigest()[:12]; SENT_FP[sent]=_fp
+    if sent in VFP and VFP[sent]!=_fp and any(sent in X for X in (NONVOICE,GRAFT,BOOST,PGRAFT,DEL_AT,INSERT_AT)):   # A45 改了读音/语速，这一句旧的区间、除阻全部作废
+        if os.environ.get('OLD_IV_VOID')=='1':
+            for X in (NONVOICE,GRAFT,BOOST,PGRAFT,DEL_AT,INSERT_AT): X.pop(sent,None)
+            VOIDED.append(sent)
+        else: raise SystemExit(f'【停止】这一句的声音变了（读音或语速改过），旧的非人声区间、词尾除阻、停顿删除都作废（A45）：{sent[:50]}。跑 草稿声音.sh，自动清掉旧区间、旧确认并重找')
     if sent in NONVOICE: w=_nonvoice(w,NONVOICE[sent],sent)
     if sent in GRAFT: w=_graft(w,GRAFT[sent],sent)
     if sent in BOOST: w=_boost(w,BOOST[sent],sent)
@@ -833,6 +841,10 @@ def title_audio(title):
 TITLE_GRAFT=[]
 def build(js,out):
     d=json.load(open(js)); no=d['no']
+    if str(no).isdigit() and int(no)>=24:                            # T36 破折号禁用（用户 2026-10-24：“以后我们坚决不可以使用破折号……一定一定一定要保证这个规矩绝对要跑起来”），24 起；单词内连字符不算
+        _pz=[(f'S{i}-{k}',f,m.group(0)) for i,s_ in enumerate(d['sentences'],1) for k,c_ in enumerate(s_['chunks'],1) for f in ('en','zh','note') for m in re.finditer(r'[—–―─⸺⸻﹘－]+|--|(?<=\s)-(?=\s)',c_.get(f) or '')]
+        _pz+=[('标题',f,m.group(0)) for f in ('title_en','title_zh') for m in re.finditer(r'[—–―─⸺⸻﹘－]+|--|(?<=\s)-(?=\s)',d.get(f,''))]
+        if _pz: raise SystemExit('【停止】画面或配音文字里有破折号（T36）：'+'；'.join(f'{a} {b}“{c}”' for a,b,c in _pz)+'。中文换成“，”“：”或括号（字义不改）；英文换成逗号、冒号或括号并同步文章')
     R.apply_script(d)                                              # 画面相关的脚本设置（词下说明对齐等），与定稿视频核对同一个入口
     work=f'work_{no}'; os.makedirs(work,exist_ok=True)
     # colors
@@ -855,7 +867,7 @@ def build(js,out):
         prev_para=s['para']
         # read the whole sentence naturally: pause only at punctuation (, ; :), not at line breaks
         texts=[re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in ch]
-        sent=' '.join(texts)
+        sent=' '.join(texts); SENT_KEYS[f'S{si+1}']=sent
         bounds=[];pos=0
         for t in texts: bounds.append(pos); pos+=len(t)+1
         # 牛津逗号列举 A, B, and C / A, B, or C：列举内部的逗号只停 P_LIST
@@ -906,7 +918,8 @@ def build(js,out):
     END=2.0-P_HOLD; audio.append(sil(END)); tl[-1]=(tl[-1][0],tl[-1][1]+END)  # 片尾：读完后共停 2 秒
     A=np.concatenate(audio); A=A/np.abs(A).max()*0.89
     json.dump(graft_times,open(f'{work}/词尾除阻.json','w'),ensure_ascii=False,indent=1)   # A21：移植段在 a.wav 里的时刻
-    json.dump(fade_rec,open(f'{work}/淡入淡出.json','w'),ensure_ascii=False,indent=1)   # A22：连读处插停顿的淡出/淡入在原始合成里的样本位置（独立复核用）
+    json.dump(fade_rec,open(f'{work}/淡入淡出.json','w'),ensure_ascii=False,indent=1)
+    json.dump({'指纹':{k:SENT_FP.get(v) for k,v in SENT_KEYS.items()},'作废':[k for k,v in SENT_KEYS.items() if v in VOIDED]},open(f'{work}/句子声音指纹.json','w'),ensure_ascii=False,indent=1)   # A45：区间作废.py 用   # A22：连读处插停顿的淡出/淡入在原始合成里的样本位置（独立复核用）
     total=sum(x for _,x in tl)
     if os.environ.get('AUDIO_ONLY'):
         # 只出声音（用户 2026-10-09：“先不要做成视频，我们确定最后的定稿再做成视频”）：写配音 a.wav、时间表 list.txt

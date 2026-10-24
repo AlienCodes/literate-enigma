@@ -50,5 +50,15 @@ td = tempfile.mkdtemp(); lk = open(f'{td}/.定稿流水线_99.lock', 'w'); fcntl
 r = subprocess.run(['bash', f'{T}/定稿流水线.sh', '99'], capture_output=True, text=True, cwd=td, timeout=60)
 if r.returncode == 0 or '已经有一条定稿流水线在跑' not in r.stdout + r.stderr: fails.append('没抓到：同一篇同时跑两条定稿流水线（G10）')
 lk.close(); shutil.rmtree(td, ignore_errors=True)
+# 24 草稿会话报的三个共用程序问题（2026-10-24）
+sys.path.insert(0, T); import 开工记录 as _KG   # G23 开工记录.py 已有的 NN.md 只追加、不覆盖
+_o = _KG.合成('# 第99篇制作记录\n\n## 方法设计\n- 交接：主对话写的方法设计\n', '99', ['| A1 | x | 涉及 | y |'], 'T')
+if '交接：主对话写的方法设计' not in _o or '| A1 |' not in _o or _o.count('## 方法设计') != 1: fails.append('没抓到：开工记录.py 覆盖了已有的 制作记录/NN.md、方法设计被清空（G23）')
+import 区间作废 as _QJ; fails += _QJ.自检()       # A45 改了读音/语速，旧区间、旧确认自动作废（出片程序那一半在 出片守门自检.py 的 A45）
+if 'OLD_IV_VOID=1' not in open(f'{T}/草稿声音.sh').read() or '区间作废.py $no --记指纹' not in open(f'{T}/草稿声音.sh').read(): fails.append('没抓到：草稿声音.sh 没接上 区间作废（A45）')
+sys.path.insert(0, f'{T}/初稿生成'); import 核对 as _HD   # T37 核对.py 多词重点词误报“缺”
+if _HD.缺的重点词(['**hinge on**', '**dead reckoning**'], ['hinge on', 'dead reckoning']): fails.append('T37 误报：多词重点词（hinge on、dead reckoning）整体在却报“缺”')
+if _HD.缺的重点词(['**dead reckoning**'], ['dead', 'reckoning']): fails.append('T37 误报：多词重点词每个词都加粗了却报“缺”')
+if _HD.缺的重点词(['**vast**', '**hinge on**'], ['hinge on']) != ['vast']: fails.append('没抓到：文章重点词在对照里真的缺了（T37）')
 print('流程自检：' + ('通过（占着锁再启动定稿流水线必停；步骤顺序被调换必报）' if not fails else '失灵！' + '；'.join(fails)))
 sys.exit(1 if fails else 0)

@@ -100,7 +100,11 @@ def layout(d):
     return sig
 
 
-def text_checks(d, art=None, sent=None):
+T18_起 = 24   # T18 堵漏（用户 2026-10-24：“不是说必须要有牛津逗号吗？……你为什么现在又来问我呢？”）：24 起 核对确认.牛津逗号 只认“不是三项并列：……”，写“英式/不改/保留”一律算错误
+T18_放行 = '不是三项并列'
+
+
+def text_checks(d, art=None, sent=None, no=None):
     """② ③ ④ 能用程序查的坑。返回 (错误, 待确认, 参考)；每条以 [编号] 开头"""
     err, conf, ref = [], [], []
     ok = d.get('核对确认', {}); ox_ok = ok.get('牛津逗号', {}); num_ok = ok.get('数字', {})
@@ -112,6 +116,8 @@ def text_checks(d, art=None, sent=None):
         for m in re.finditer(r"(?<![\w'-])([\w'-]+(?: [\w'-]+){0,3}), ([\w'-]+(?: [\w'-]+){0,3}) (and|or) ", en_sent):
             key = f'{S} {m.group(0).strip()}'
             if key not in ox_ok: conf.append(f'[T18] {key}  ← 是不是三项以上并列、缺牛津逗号？逐个确认后写进 核对确认.牛津逗号')
+            elif no is not None and int(no) >= T18_起 and (not str(ox_ok[key]).startswith(T18_放行) or '英式' in str(ox_ok[key])):
+                err.append(f'[T18] {key}  ← 三项并列一律加牛津逗号（and/or 前加逗号，脚本和文章英文同时改）；核对确认只认“不是三项并列：……”，现在写的是“{str(ox_ok[key])[:30]}”（写“英式/不改/保留”的不放行）')
         for k, c in enumerate(s['chunks']):
             C = f'{S}-{k + 1}'
             if '\n' in c['en']: err.append(f'[D1] {C} 英文里混入换行标记')
@@ -155,7 +161,8 @@ def text_checks(d, art=None, sent=None):
             for a in re.findall(r'（[^（）]*）', re.sub(r'\*\*[^*]+\*\*\([^)]+\)', '', c['zh'])):
                 ref.append(f'[T1] {C} 括号内容 {a}（若是原文没有的补充，需用户认可）')
         paras.setdefault(s['para'], []).append(' '.join(re.sub(r'\{\{.*?\}\}', '', c['en']) for c in s['chunks']))
-    if art is not None and ns(''.join(' '.join(v) for _, v in sorted(paras.items()))) != ns(art): err.append('[D3] 英文与文章原文不一致（英文一个字都不能改，牛津逗号除外且要同步到文章）')
+    sys.path.insert(0, T); import 破折号 as _PZ
+    if art is not None and not _PZ.英文一致(' '.join(' '.join(v) for _, v in sorted(paras.items())), art): err.append('[D3] 英文与文章原文不一致（英文一个字都不能改；例外只有牛津逗号、重点词换词、破折号换逗号/冒号/括号，且要同步到文章）')
     if sent is not None:
         a, b = layout(sent), layout(d); appr = d.get('换行变更已获同意', {})
         if len(a) != len(b): err.append(f'[L13] 句数变了（{len(a)} → {len(b)}），换行变更必须经用户同意')
@@ -408,6 +415,12 @@ def selftest():
         c = d['sentences'][si]['chunks'][ck]; c['en'] = c['en'].replace('food, and', 'food and')
         c['align'] = [[a.replace('food, and', 'food and'), z] for a, z in c['align']]
     mut('牛津逗号被去掉（T18）', 'T18', ox, art.replace('food, and', 'food and'))
+    d = copy.deepcopy(base); ox(d); key = next(x[6:].split('  ←')[0] for x in text_checks(d, art.replace('food, and', 'food and'), base)[1] if x.startswith('[T18]'))
+    d.setdefault('核对确认', {}).setdefault('牛津逗号', {})[key] = '文章英文是英式写法，三项并列不用牛津逗号；英文正文与文章逐字一致，不改'
+    if not any(x.startswith(f'[T18] {key} ') for x in text_checks(d, art.replace('food, and', 'food and'), base, '24')[0]): fails.append('没抓到：牛津逗号核对确认写“英式写法、不改”被放行（T18，24 起）')
+    if any(x.startswith('[T18]') for x in text_checks(d, art.replace('food, and', 'food and'), base, '03')[0]): fails.append('T18 误报：24 以前已定稿篇目的旧确认被报成错误')
+    d['核对确认']['牛津逗号'][key] = '不是三项并列：这里是两项'
+    if any(x.startswith(f'[T18] {key} ') for x in sum(text_checks(d, art.replace('food, and', 'food and'), base, '24')[:2], [])): fails.append('T18 误报：“不是三项并列：……”的确认被报出')
     def t24(d):
         c = d['sentences'][2]['chunks'][0]; c['zh'] += '（觉得这样更体面）'; c['align'][-1] = [c['align'][-1][0], c['align'][-1][1] + '（觉得这样更体面）']
     mut('括号说明里有语音输入多出来的“觉得”（T24）', 'T24', t24)
@@ -739,7 +752,7 @@ def main():
         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
         return 1 if vf else 0
     sys.path.insert(0, T); import 译文核查 as _YW
-    fails = selftest() + _YW.自检() + selftest_record_human() + selftest_l19() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart()
+    fails = selftest() + _YW.自检() + selftest_record_human() + selftest_l19() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart() + __import__('破折号').自检()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
@@ -748,7 +761,8 @@ def main():
     d = json.load(open(js)); snap = f'{V}/脚本/已发版本/{no}.json'
     sent = json.load(open(snap)) if os.path.exists(snap) else None
     err = record_gate(no, stage) + video_folders(ROOT)
-    e, conf, ref = text_checks(d, article_en(no), sent); err += e
+    e, conf, ref = text_checks(d, article_en(no), sent, no); err += e
+    sys.path.insert(0, T); import 破折号 as _PZ; err += _PZ.查(d, no)          # T36 破折号禁用（用户 2026-10-24，24 起）
     sys.path.insert(0, T); import 译文核查 as _YW                       # 译文规矩（21 起）：方向词 T4、词性 T2、同词异译 文10、排版指令 W3、改稿门 T10、逐句确认
     _md = glob.glob(f'{ROOT}/新版定稿/{no}-*.md'); _e, _c = _YW.查(d, no, open(_md[0]).read() if _md else ''); err += _e; conf += _c
     # T22 只查以后新做的篇目（09 起）。用户 2026-10-10：“以后查就行，已经做完了，这几天不要再查了……刚刚做完这篇，你查啥？不用再查了，又浪费时间……以后每次都要（查）”
