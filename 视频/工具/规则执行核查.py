@@ -45,13 +45,15 @@ FAST = [['生成文本.py', '--自检'], ['破折号.py', '--自检'], ['区间�
 摘要 = lambda s: re.sub(r'\*\*|`', '', s).strip()[:60]
 # 要在工作目录（有模型、声音）里才能跑的慢自检：通过时写下所测程序的指纹（印章）；程序一改指纹对不上，就当“自检没跑”，提交、推送停
 STAMPED = {'出片守门自检.py': ('出片守门自检通过.json', ['make_video.py', 'render.py', '出片守门自检.py'])}
+# 执行效应（CLAUDE.md 第19条）：端到端演练，被演练的程序或规矩一改，印章对不上，提交、推送、交付核查、定稿流水线一律停
+STAMPED['执行效应演练.py'] = ('执行效应演练通过.json', ['踩坑核查.py', '译文核查.py', '破折号.py', 'check_all.py', '读音核对.py', 'make_video.py', 'render.py', '执行效应演练.py', '规则执行表.json', '放行口子核查.py', '放行口子表.json', '用户同意记录.json'])
 
 
 def 印章有效(p):
     f, progs = STAMPED[p]
     try: st = json.load(open(f'{T}/{f}'))
     except Exception: return False
-    return all(st.get(x) == hashlib.sha256(open(f'{T}/{x}', 'rb').read()).hexdigest() for x in progs)
+    return all(st.get(x) == (hashlib.sha256(open(f'{T}/{x}', 'rb').read()).hexdigest() if os.path.exists(f'{T}/{x}') else '无') for x in progs)
 
 
 def 坑行(text=None):
