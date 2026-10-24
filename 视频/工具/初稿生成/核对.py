@@ -31,7 +31,7 @@ def 生成并核对(S, out):
                     else: out[k_].setdefault(kk,vv)   # 字符串值的确认（已告诉用户被去掉的重点词）：程序里写的为准（21 重跑生成时这里报 TypeError）
             elif k_ not in ("no","title_en","title_zh","title_fx","sentences"): out[k_]=v_
     json.dump(out,open(f"scripts/{no}.json","w"),ensure_ascii=False,indent=1)
-    art=open(glob.glob(f"/home/user/postgraduate-vocabulary/新版定稿/{no}-*.md")[0]).read()
+    art=open(glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "新版定稿", f"{no}-*.md"))[0]).read()   # 按本程序所在仓库找文章（演练镜像里读冻结拷贝）
     eng=art.split("## 英文")[1].split("## 中文")[0].strip().split("\n\n")
     ok=True; plain=lambda x:re.sub(r"\*\*","",x)
     for i,pp in enumerate(eng,1):

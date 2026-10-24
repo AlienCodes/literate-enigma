@@ -16,11 +16,11 @@ from concurrent.futures import ThreadPoolExecutor
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T)
 STAMP = f'{T}/执行效应演练通过.json'; GAPB = f'{T}/执行效应缺口基线.json'
 被演练 = ['钩子/闸门.py', '踩坑核查.py', '译文核查.py', '破折号.py', 'check_all.py', '读音核对.py', 'make_video.py', 'render.py', '执行效应演练.py', '规则执行表.json', '放行口子核查.py', '放行口子表.json', '同意记录追加.py',
-         '定稿流水线.sh', '归档定稿视频.py', '定稿视频核对.py', '工作稿核对.py', '补对照记录.py', '重查记录.py', '全篇核查.py', '开工提醒.sh', '开工记录.py', '初稿生成/核对.py', '规则执行核查.py', '排版自检.py', 'title2.py']
-指纹 = lambda p: hashlib.sha256(open(p, 'rb').read()).hexdigest() if os.path.exists(p) else '无'
+         '定稿流水线.sh', '归档定稿视频.py', '定稿视频核对.py', '工作稿核对.py', '补对照记录.py', '重查记录.py', '全篇核查.py', '开工提醒.sh', '开工记录.py', '初稿生成/核对.py', '规则执行核查.py', '排版自检.py', 'title2.py', '演练镜像.py', '演练样本/清单.json']
+sys.path.insert(0, T); import 演练镜像 as 镜
+from 演练镜像 import 指纹, 样, 读样, 块, _读, _改文, _改json, _rec, _改行, 仓库底稿, 镜像, _工具副本, 工作区, _git状态   # 冻结样本、镜像（与声音演练共用）
 
 
-def 块(d, si, k=0): return d['sentences'][si]['chunks'][k]
 def 改中文(c, old, new):
     c['zh'] = c['zh'].replace(old, new, 1); c['align'] = [[a, z.replace(old, new, 1)] for a, z in c['align']]
 def 加中文(c, t): c['zh'] += t; c['align'][-1] = [c['align'][-1][0], c['align'][-1][1] + t]
@@ -133,8 +133,6 @@ def _t23(d):
 # 在临时“仓库镜像”里跑真程序（镜像 = 仓库根的符号链接，只有要改的文件是副本；程序从镜像路径启动，V/ROOT 指向镜像，真仓库一个字不动）。
 # 25 还没有：用 24 的脚本、制作记录副本当 25（篇号设成 25，25 起才查的门就生效）。
 # (编号, 入口, 篇, 怎么造, 改法(files: {仓库相对路径: 文本}), 必须新报出的字样, 规矩)
-def _rec(no): return f'视频/制作记录/{no}.md'
-def _改行(f, no, i, v): f[_rec(no)] = re.sub(rf'^(\| *{i} *\|.*\| *(?:涉及|不涉及) *\|).*\|\s*$', lambda m: m.group(1) + f' {v} |', f[_rec(no)], count=1, flags=re.M)
 def _删节(f, no, h): t = f[_rec(no)]; i = t.index(h); j = t.find('\n## ', i + 1); f[_rec(no)] = t[:i] + (t[j + 1:] if j > 0 else '')
 def _括号包词(d):
     c = 首块(d, lambda c: re.search(r'\*\*[^*]+\*\*\([^)]+\)', c['zh'])); m = re.search(r'\*\*[^*]+\*\*\([^)]+\)', c['zh']); 改中文(c, m.group(0), f'（{m.group(0)}）')
@@ -145,14 +143,14 @@ def _镜像印章(f):
     """镜像里的演练印章按镜像里的文件重算（生成文本 先过规则执行核查；只为镜像里的前置门放行，真仓库的印章不动）"""
     k = '视频/工具/执行效应演练通过.json'; st = json.loads(_读(f, k) if not isinstance(f.get(k), bytes) else f[k].decode())
     for x in 被演练:
-        t = f.get(f'视频/工具/{x}'); t = t.encode() if isinstance(t, str) else t
-        st[x] = hashlib.sha256(t).hexdigest() if t is not None else '无'
+        t = f.get(f'视频/工具/{x}'); t = t.encode() if isinstance(t, str) else (None if isinstance(t, tuple) else t)
+        st[x] = hashlib.sha256(t).hexdigest() if t is not None else 指纹(f'{T}/{x}')   # 演练样本/ 在镜像里是链接：按真文件算
     import 同意记录追加 as TY; t = _读(f, '视频/工具/用户同意记录.json'); st['_同意记录前缀'] = TY.印(json.loads(t.decode() if isinstance(t, bytes) else t))
     f[k] = json.dumps(st, ensure_ascii=False)
     import 执行效应声音演练 as SY; k2 = '视频/工具/执行效应声音演练通过.json'   # 声音演练印章同样按镜像重算（镜像里只是前置门，真印章不动）
     st2 = {}
     for x in SY.声音被演练:
-        t = f.get(f'视频/工具/{x}'); t = t.encode() if isinstance(t, str) else t; st2[x] = hashlib.sha256(t).hexdigest() if t is not None else '无'
+        t = f.get(f'视频/工具/{x}'); t = t.encode() if isinstance(t, str) else (None if isinstance(t, tuple) else t); st2[x] = hashlib.sha256(t).hexdigest() if t is not None else 指纹(f'{T}/{x}')
     f[k2] = json.dumps(st2, ensure_ascii=False)
 def _变异(prog, old, new):
     def fn(f):
@@ -187,6 +185,7 @@ def _变异(prog, old, new):
     ('铁4改了出片程序要全篇重查', '欠着', '23', 'make_video.py 改一处（全篇重查记录都是通过的）', lambda f: f.__setitem__('视频/工具/make_video.py', f['视频/工具/make_video.py'] + b'\n# \xe6\xbc\x94\xe7\xbb\x83\xe6\x94\xb9\xe4\xb8\x80\xe5\xa4\x84\n'),
      lambda c, o, M: (c == 0, '全篇核查 --欠着 报欠着（流水线 ⑦ 全篇重查）' if c == 0 else '改了出片程序却不欠着'), ['铁4', '画21', '音29']),
     ('G14钩子会锁死', '规则核查', '24', '钩子命令去掉“|| true”', lambda f: f.__setitem__('.claude/settings.json', f['.claude/settings.json'].replace(' || true', '', 1)), '钩子会锁死', ['G14']),
+    ('G25演练读现稿', '演练入口', '24', '演练程序改回读工作目录的现稿 scripts/24.json', _变异('执行效应演练.py', '_A镜像 = ' + '[None]\n', '_A镜像 = ' + "[None]\n_读现稿 = lambda W: open(f'{W}/" + "scripts/24.json')\n"), '读了现稿', ['G25']),
     ('A26挂钩原文没了', '规则核查', '24', '出片程序里核查程序挂钩的那一句改掉', lambda f: _断挂钩(f), '挂钩的出片程序原文没了', ['A26']),
     ('守则1开工提醒', '开工提醒', '24', '新会话开工（真开工钩子）', None, lambda c, o, M: (any('【开工必做' in l for l in o), '开工钩子打印【开工必做】'), ['守则1']),
     ('G23开工记录不覆盖', '开工记录', '25', '主对话已写好方法设计后再跑 开工记录', None,
@@ -223,7 +222,7 @@ def _变异(prog, old, new):
     ('W1Word和脚本对不上', '生成文本', '23', 'make_docx 写进 Word 的字少一个', _变异('make_docx.py', 'r=p.add_run(t);', 'r=p.add_run(t[:-1] if len(t)>3 else t);'), 'Word 格不一致', ['W1']),
     ('W10读回不按同一函数', '生成文本', '23', '读回时英文不按 make_docx 的同一个函数（{{注解}} 原样比）', lambda f: (_改json(f, '视频/脚本/23.json', _加注解), _变异('生成文本.py', "''.join(x for x, _ in _R._segs_en(a, {}))", "(a if 1 else ''.join(x for x, _ in _R._segs_en(a, {})))")(f)), 'Word 格不一致', ['W10']),
     ('W7用户修正稿不覆盖', '生成文本', '23', '对照文本里有用户发回的修正稿 23-文本-用户修正.docx', lambda f: f.__setitem__('视频/对照文本/23-文本-用户修正.docx', b'USER-FIXED'),
-     lambda c, o, M: (c == 0 and open(f'{M}/视频/对照文本/23-文本-用户修正.docx', 'rb').read() == b'USER-FIXED' and open(f'{M}/视频/对照文本/23-文本.docx', 'rb').read() != open(f'{V}/对照文本/23-文本.docx', 'rb').read(),
+     lambda c, o, M: (c == 0 and open(f'{M}/视频/对照文本/23-文本-用户修正.docx', 'rb').read() == b'USER-FIXED' and open(f'{M}/视频/对照文本/23-文本.docx', 'rb').read() != 读样('视频/对照文本/23-文本.docx', True),
                       '用户修正稿原样、23-文本.docx 一起覆盖' if c == 0 else f'生成文本没跑通（退出码 {c}）：' + '；'.join(sorted(o))[-150:]), ['W7']),
 ]
 # 拆门自查（每种入口拆一道门，演练必须报“没挡住”）：(入口, 篇, 用哪一场, 拆门代码)
@@ -233,20 +232,15 @@ def _变异(prog, old, new):
         ('清点', '23', 'G9存的不是最终版', 'import hashlib;hashlib.sha256=lambda b=b\'\': hashlib.md5(b\'\')')]
 
 
-_文24 = os.path.relpath(__import__('glob').glob(f'{os.path.dirname(V)}/新版定稿/24-*.md')[0], os.path.dirname(V))
-def _读(f, k): return f[k] if k in f else open(f'{os.path.dirname(V)}/{k}').read()
-def _改文(f, k, old, new):
-    t = _读(f, k); assert old in t, old; f[k] = t.replace(old, new, 1)
-def _改json(f, k, fn):
-    o = json.loads(_读(f, k)); fn(o); f[k] = json.dumps(o, ensure_ascii=False, indent=1)
+_文24 = os.path.relpath(__import__('glob').glob(样('新版定稿/24-*.md'))[0], 镜.样本根)
 def _英文段(x):
     t = open(x).read(); return t.split('## 英文', 1)[1].split('## 中文', 1)[0]
 def _撞词(d):
     """24 里找一个别篇加粗过、24 原稿没加粗的词，加粗并补中文标记"""
-    P = os.path.dirname(V); import glob
-    other = {b.lower() for x in glob.glob(f'{P}/新版定稿/[0-9][0-9]-*.md') if not os.path.basename(x).startswith('24') and os.path.exists(f'{V}/脚本/{os.path.basename(x)[:2]}.json')
+    import glob
+    other = {b.lower() for x in glob.glob(样('新版定稿/[0-9][0-9]-*.md')) if not os.path.basename(x).startswith('24') and os.path.exists(样(f'视频/脚本/{os.path.basename(x)[:2]}.json'))
              for b in re.findall(r'\*\*([^*]+)\*\*', _英文段(x)) if ' ' not in b}
-    orig = {x.lower() for x in json.load(open(f'{T}/原稿重点词.json')).get(_文24, [])}
+    orig = {x.lower() for x in json.loads(读样('视频/工具/原稿重点词.json')).get(_文24, [])}
     for s in d['sentences']:
         for c in s['chunks']:
             for i, (a, z) in enumerate(c['align']):
@@ -270,54 +264,6 @@ def _断挂钩(f):
     raise KeyError('找不到挂钩的原文')
 
 
-def 仓库底稿(no, entry=''):
-    """镜像里要改的文件的底稿（篇号 25 用 24 的副本；G6/C3/C4 先填合格的固定格式，原样就不报这一格）"""
-    src = '24' if no == '25' else no
-    rec = open(f'{V}/制作记录/{src}.md').read()
-    f = {_rec(no): rec, f'视频/脚本/{no}.json': open(f'{V}/脚本/{src}.json').read()}
-    for i in ('G6', 'C3', 'C4'): _改行(f, no, i, '本篇无：演练底稿，用户没有提互相冲突的要求，没有插话，没有多版本设计稿')
-    f['.claude/settings.json'] = open('/home/user/literate-enigma/.claude/settings.json').read()   # 钩子配置（规则执行核查、开工钩子读 CLAUDE_PROJECT_DIR）
-    sys.path.insert(0, T); import 重查记录 as RC   # 底稿：全篇重查都算通过（现行程序、现行视频、现行脚本），注入的改动才会“欠着”
-    fp = RC.程序指纹(); f['视频/工具/全篇重查通过.json'] = json.dumps({'篇': {n: RC.键(n, p, fp) for n, p in RC.已出片().items()}}, ensure_ascii=False)
-    if entry == '生成文本':   # 生成文本 写 对照文本/、脚本/、已发版本/：这些做成副本；镜像里的程序与真仓库同一份，演练印章按镜像重算（只为让镜像里的前置门放行，真印章不动）
-        for x in ('docx', 'html', 'pdf'): f[f'视频/对照文本/{no}-文本.{x}'] = open(f'{V}/对照文本/{no}-文本.{x}', 'rb').read()
-        f[f'视频/脚本/已发版本/{no}.json'] = open(f'{V}/脚本/已发版本/{no}.json').read() if os.path.exists(f'{V}/脚本/已发版本/{no}.json') else f[f'视频/脚本/{no}.json']
-    if entry == '归档':   # 归档会写 README、删草稿/试听：这些目录做成真目录（里面是链接，删的只是链接）
-        f['最终版4K视频/README.md'] = open(f'{os.path.dirname(V)}/最终版4K视频/README.md').read(); f['视频/视频/草稿1080p/.演练'] = ''; f['视频/试听/.演练'] = ''
-    return _工具副本(f)
-
-
-def 镜像(M, files):
-    """M = 仓库镜像根：其余一律符号链接到真仓库，files 里的写成副本（父目录变成真目录）"""
-    P = os.path.dirname(V); shutil.rmtree(M, ignore_errors=True); os.makedirs(M); files = _工具副本(files)
-    real = {'/'.join(k.split('/')[:i]) for k in files for i in range(1, len(k.split('/')))}
-    def fill(rel):
-        for x in os.listdir(f'{P}/{rel}' if rel else P):
-            r = f'{rel}/{x}' if rel else x
-            if x in ('.git', '__pycache__') or r in files: continue
-            if r in real: os.makedirs(f'{M}/{r}'); fill(r)
-            else: os.symlink(f'{P}/{r}', f'{M}/{r}')
-    fill('')
-    for k, t in files.items():
-        os.makedirs(os.path.dirname(f'{M}/{k}'), exist_ok=True)
-        if isinstance(t, tuple): os.symlink(t[1], f'{M}/{k}')          # ('链接', 真文件)：只读的大文件（视频）
-        elif isinstance(t, bytes): open(f'{M}/{k}', 'wb').write(t)
-        else: open(f'{M}/{k}', 'w').write(t)
-    return M
-
-
-def _工具副本(files):
-    """镜像里的 视频/工具 整份复制（fonts、历史版本 只读，链接）：程序往自己目录写的（印章、缓存、补记录）都落在副本里，真仓库不动"""
-    out = dict(files)
-    for dp, dn, fn in os.walk(T):
-        dn[:] = [x for x in dn if x not in ('fonts', '历史版本', '__pycache__')]
-        for x in fn:
-            k = os.path.relpath(f'{dp}/{x}', os.path.dirname(V))
-            if k not in out: out[k] = open(f'{dp}/{x}', 'rb').read()
-    for x in ('fonts', '历史版本'): out.setdefault(f'视频/工具/{x}', ('链接', f'{T}/{x}'))
-    return out
-
-
 无原样 = {'归档', '流水线', '初稿', '生成文本'}   # 这些入口原样跑会真做事（归档写文件、流水线出 4K）：不跑原样，只认必须报出的字样
 def 仓库跑(entry, no, M, ws, 拆门=None):
     tool = f'{M}/视频/工具'; env = {**os.environ, 'CLAUDE_PROJECT_DIR': M}
@@ -330,6 +276,7 @@ def 仓库跑(entry, no, M, ws, 拆门=None):
     elif entry == '归档': cmd = py('归档定稿视频.py', no)
     elif entry == '清点': cmd = py('定稿视频核对.py', '--只查清点和镜像', no)
     elif entry == '规则核查': cmd = ['python3', f'{tool}/规则执行核查.py']
+    elif entry == '演练入口': cmd = ['python3', f'{tool}/执行效应演练.py', '--只过门']   # G25：演练开跑前查读现稿
     elif entry == '欠着': cmd = ['python3', f'{tool}/全篇核查.py', '--欠着']
     elif entry == '开工提醒': cmd = ['bash', f'{tool}/开工提醒.sh']
     elif entry == '开工记录': cmd = ['python3', f'{tool}/开工记录.py', no]
@@ -342,9 +289,6 @@ def 仓库跑(entry, no, M, ws, 拆门=None):
         pr.wait(); return (pr.returncode if '【演练掐断' not in out[-1] else 0), set(x for x in out if x)
     r = subprocess.run(cmd, capture_output=True, text=True, cwd=ws, timeout=900, env=env)
     return r.returncode, set(l.strip() for l in (r.stdout + r.stderr).splitlines() if l.strip())
-
-
-def _git状态(): return subprocess.run(['git', '-c', 'core.quotepath=off', 'status', '--porcelain'], cwd=os.path.dirname(V), capture_output=True, text=True).stdout
 
 
 def 仓库演练(W, root, 只=None):
@@ -411,40 +355,33 @@ def 跑钩子(kind, payload):
     return r.stdout + r.stderr
 
 
-def 工作区(W, root, sid, no, d, 改正=None):
-    ws = f'{root}/演练_{sid}'; shutil.rmtree(ws, ignore_errors=True); os.makedirs(f'{ws}/scripts')   # 与工作目录并排（出片程序按 ../tts 找模型）
-    for x in os.listdir(W):
-        if x == 'scripts' or x.startswith('work_') or x.endswith(('.mp4', '.mp3', '.wav', '.json')): continue
-        os.symlink(f'{W}/{x}', f'{ws}/{x}')
-    json.dump(d, open(f'{ws}/scripts/{no}.json', 'w'), ensure_ascii=False, indent=1)
-    if 改正 is not None: json.dump(改正, open(f'{ws}/读音改正.json', 'w'), ensure_ascii=False, indent=1)
-    return ws
-
-
 def 跑(entry, no, ws, 拆门=None):
+    TA = _A镜像[0]   # A 类也从冻结镜像跑：踩坑核查、读音核对 读到的制作记录、文章都是冻结拷贝
     if entry == '出片':
         if 拆门:   # 演练自查：拆掉一道门（真实入口，其余不变）
-            cmd = ['python3', '-c', f"import sys;sys.path.insert(0,{T!r});import 破折号;破折号.查=lambda d,no=None:[];import 踩坑核查;sys.argv=['踩坑核查.py',{no!r},'出片'];sys.exit(踩坑核查.main())"]
-        else: cmd = ['python3', f'{T}/踩坑核查.py', no, '出片']
-    else: cmd = ['python3', f'{T}/读音核对.py', no]
+            cmd = ['python3', '-c', f"import sys;sys.path.insert(0,{TA!r});import 破折号;破折号.查=lambda d,no=None:[];import 踩坑核查;sys.argv=['踩坑核查.py',{no!r},'出片'];sys.exit(踩坑核查.main())"]
+        else: cmd = ['python3', f'{TA}/踩坑核查.py', no, '出片']
+    else: cmd = ['python3', f'{TA}/读音核对.py', no]
     r = subprocess.run(cmd, capture_output=True, text=True, cwd=ws, timeout=600)
     return r.returncode, set(l.strip() for l in (r.stdout + r.stderr).splitlines() if l.strip())
 
 
+_A镜像 = [None]
 def 演练(W, 只=None):
     root = os.path.dirname(os.path.abspath(W))
+    _A镜像[0] = 镜像(f'{root}/演练_镜像_A', {}) + '/视频/工具'
     fix = json.load(open(f'{T}/发音词典/读音改正.json'))
     jobs, base = [], {}
     for sid, entry, no, how, fn, want, rules, *_ in 场景:
         if 只 and sid not in 只: continue
-        d0 = json.load(open(f'{W}/scripts/{no}.json'))
+        d0 = json.loads(读样(f'视频/脚本/{no}.json'))   # 冻结拷贝，不读工作目录的现稿
         if (entry, no) not in base: base[(entry, no)] = 工作区(W, root, f'原样_{entry}_{no}', no, d0, fix if entry == '读音' else None)
         d = copy.deepcopy(d0)
         try:
             if fn: fn(d)
         except Exception as e: jobs.append((sid, None, f'样本找不到：{e}')); continue
         jobs.append((sid, 工作区(W, root, sid, no, d, {k: v for k, v in fix.items() if k != 'Inky'} if sid == 'A23Inky' else (fix if entry == '读音' else None)), None))
-    jobs.append(('自查拆门', 工作区(W, root, '自查拆门', '24', (lambda d: (加中文(块(d, 1), '——'), d)[1])(json.load(open(f'{W}/scripts/24.json')))), None))
+    jobs.append(('自查拆门', 工作区(W, root, '自查拆门', '24', (lambda d: (加中文(块(d, 1), '——'), d)[1])(json.loads(读样('视频/脚本/24.json')))), None))
     with ThreadPoolExecutor(4) as ex:
         bo = dict(zip(base, ex.map(lambda k: 跑(k[0], k[1], base[k]), base)))
         def one(j):
@@ -466,6 +403,7 @@ def 演练(W, 只=None):
             if ok and mode != '拦': res.append((sid, True, ('提醒：' + want) if mode == '提醒' else '没有误拦')); continue
             res.append((sid, ok, ('拦下：' + want) if ok else f'没挡住：{o[:100]}'))
     res += 仓库演练(W, root, 只)
+    if 镜.查样本(): res.append(('冻结样本没被改', False, '；'.join(镜.查样本())))   # 演练里的程序写穿了冻结拷贝：先修镜像
     for x in os.listdir(root):
         if x.startswith('演练_'): (os.unlink if os.path.islink(f'{root}/{x}') else lambda p: shutil.rmtree(p, ignore_errors=True))(f'{root}/{x}')
     return res
@@ -519,7 +457,7 @@ def 写缺口清单():
     L += [f'- {k}：{(reg[k].get("文") or "")[:40]}' for k in g] or ['（无）']
     L += ['', '## 造不出端到端样本（逐条原因 + 替代办法）', '']
     L += [f'- **{k}**：原因：{reg[k]["演练说明"]["原因"]}；替代：{reg[k]["演练说明"]["替代"]}' for k in e] or ['（无）']
-    open(f'{V}/制作记录/执行效应缺口清单.md', 'w').write('\n'.join(L) + '\n')
+    open(os.path.join(V, '制作记录', '执行效应缺口清单.md'), 'w').write('\n'.join(L) + '\n')
 
 
 def 印章有效():
@@ -547,8 +485,9 @@ def main():
     if not os.path.exists('make_video.py') or not os.path.isdir('scripts'): sys.exit('【停止】请在视频工作目录（含 make_video.py、scripts/）下运行')
     for x in ('make_video.py', 'render.py'):
         if 指纹(x) != 指纹(f'{T}/{x}'): sys.exit(f'【停止】工作目录的 {x} 与仓库不一致，先拷过来再演练')
-    for no in sorted({s[2] for s in 场景} | {'24'}):
-        if 指纹(f'scripts/{no}.json') != 指纹(f'{V}/脚本/{no}.json'): sys.exit(f'【停止】工作目录的 scripts/{no}.json 与仓库不一致，先拷过来再演练（演练要用现行脚本）')
+    e = 镜.查读现稿() + 镜.查样本()   # 演练只读冻结拷贝（改稿会话改现稿，演练不受影响）
+    if e: sys.exit('【停止】' + '；'.join(e))
+    if '--只过门' in a: print('演练开跑前的门：通过（只读冻结拷贝）'); return 0
     only = [x for x in a if not x.startswith('--')]
     res = 演练(W, only)
     for sid, ok, msg in res: print(f"{'✔' if ok else '✘'} {sid}：{msg}")

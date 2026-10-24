@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """执行效应·声音演练（CLAUDE.md 第19条；执行效应补全 A 类）：声音核查的门，在真实流程里把坏声音挡下来才算数。
-做法：用现行脚本只出声音（AUDIO_ONLY，配音缓存命中几秒钟）做底稿；每一场拷一份，按历史事故的样子把声音弄坏一处
+做法：用冻结拷贝（工具/演练样本/）的脚本只出声音（AUDIO_ONLY，配音缓存命中几秒钟）做底稿；每一场拷一份，按历史事故的样子把声音弄坏一处
 （句子里硬塞一段静音、剪掉句尾辅音、一句突然变轻、句间塞呼吸声、削波、句首吃掉、时间表错开一块……），
 或把脚本改成事故的样子（数字、引号、多音词），然后在临时“仓库镜像”里真跑 交付核查.py NN 出片前/出片后（cwd = 这一场的工作目录），
 必须在对应的那一步新报出 ✘。只看比原样新多出来的 ✘，所以本篇原有的待改项不干扰。真仓库 git status 不许变。
@@ -11,12 +11,12 @@ import os, sys, json, re, shutil, subprocess, hashlib
 from concurrent.futures import ThreadPoolExecutor
 T = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, T)
 import numpy as np, soundfile as sf
-import 执行效应演练 as Y
+import 演练镜像 as Y   # 只依赖共用的镜像模块，不依赖主演练程序（主演练改了不连带声音重演）
 
 NO = '20'   # 最短的已定稿篇目之一（17 句），只出声音 8 秒
 STAMP = f'{T}/执行效应声音演练通过.json'
 声音被演练 = ['交付核查.py', '标点停顿核对.py', '句首句尾与停顿位置核对.py', '读音核对.py', '词尾辅音核对.py', '停顿位置精确核对.py', '无标点停顿核对.py',
-          'audio_qc.py', '响度一致性核对.py', '纯人声核对.py', '句间停顿核对.py', '高亮同步核对.py', 'make_video.py', '执行效应声音演练.py', '执行效应演练.py']   # 规则执行表 每次主演练都会改写“演练”字段，不盖进声音印章
+          'audio_qc.py', '响度一致性核对.py', '纯人声核对.py', '句间停顿核对.py', '高亮同步核对.py', 'make_video.py', '执行效应声音演练.py', '演练镜像.py', '演练样本/清单.json']   # 规则执行表 每次主演练都会改写“演练”字段，不盖进声音印章
 指纹 = Y.指纹
 
 
@@ -106,7 +106,8 @@ def 跑(M, ws, stage):
 
 def 演练(W, 只=None):
     root = os.path.dirname(os.path.abspath(W)); g0 = Y._git状态()
-    r = subprocess.run(['python3', 'make_video.py', f'scripts/{NO}.json', f'{NO}.mp4'], cwd=W, env={**os.environ, 'AUDIO_ONLY': '1'}, capture_output=True, text=True)
+    B = Y.工作区(W, root, '声底稿', NO, json.loads(Y.读样(f'视频/脚本/{NO}.json')))   # 底稿用冻结拷贝，不读工作目录的现稿
+    r = subprocess.run(['python3', 'make_video.py', f'scripts/{NO}.json', f'{NO}.mp4'], cwd=B, env={**os.environ, 'AUDIO_ONLY': '1'}, capture_output=True, text=True)
     if r.returncode: return [('只出声音底稿', False, r.stdout[-200:] + r.stderr[-200:])]
     def 场(sid, fs=None, fw=None, qc=None):
         """这一场的工作根：R/video（工作目录）、R/tts（模型，链接）、R/qc_independent（独立复核的合成，从原样那一场拷来）——
@@ -114,7 +115,7 @@ def 演练(W, 只=None):
         f = Y.仓库底稿(NO, '声音'); fs and fs(f)
         R = f'{root}/演练_声_{sid}'; shutil.rmtree(R, ignore_errors=True); os.makedirs(R); os.symlink(f'{root}/tts', f'{R}/tts')
         ws0 = Y.工作区(W, R, 'v', NO, json.loads(f[f'视频/脚本/{NO}.json'])); ws = f'{R}/video'; os.rename(ws0, ws)
-        shutil.copytree(f'{W}/work_{NO}', f'{ws}/work_{NO}'); shutil.copy(f'{W}/{NO}.mp4', f'{ws}/{NO}.mp4'); fw and fw(ws)
+        shutil.copytree(f'{B}/work_{NO}', f'{ws}/work_{NO}'); shutil.copy(f'{B}/{NO}.mp4', f'{ws}/{NO}.mp4'); fw and fw(ws)
         if qc and os.path.isdir(qc): shutil.copytree(qc, f'{R}/qc_independent', symlinks=True)
         return Y.镜像(f'{root}/演练_镜像_声_{sid}', f), ws
     todo = [s for s in 声音场景 if not 只 or s[0] in 只]
@@ -141,6 +142,7 @@ def 演练(W, 只=None):
         if l.startswith('?? ') and l not in g0 and '.pkl' in l:
             p = os.path.join(os.path.dirname(Y.V), l[3:].strip('"'))
             if os.path.exists(p) and '配音缓存' in p: os.remove(p)
+    if Y.查样本(): res.append(('冻结样本没被改', False, '；'.join(Y.查样本())))
     if Y._git状态() != g0: res.append(('真仓库没被碰', False, '声音演练改了真仓库（git status 变了）：镜像漏了写入的路径'))
     return res
 
@@ -156,7 +158,8 @@ def main():
     if not os.path.exists('make_video.py') or not os.path.isdir('scripts'): sys.exit('【停止】请在视频工作目录（含 make_video.py、scripts/）下运行')
     for x in ('make_video.py', 'render.py'):
         if 指纹(x) != 指纹(f'{T}/{x}'): sys.exit(f'【停止】工作目录的 {x} 与仓库不一致，先拷过来再演练')
-    if 指纹(f'scripts/{NO}.json') != 指纹(f'{Y.V}/脚本/{NO}.json'): sys.exit(f'【停止】工作目录的 scripts/{NO}.json 与仓库不一致')
+    e = Y.查读现稿() + Y.查样本()   # 演练只读冻结拷贝
+    if e: sys.exit('【停止】' + '；'.join(e))
     only = [x for x in a if not x.startswith('--')]
     res = 演练(os.getcwd(), only)
     for sid, ok, msg in res: print(f"{'✔' if ok else '✘'} {sid}：{msg}")
