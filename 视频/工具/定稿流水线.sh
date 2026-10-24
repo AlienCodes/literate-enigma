@@ -12,7 +12,7 @@
 #      再跑 定稿视频核对：视频里每一屏与现行定稿脚本重新画的一致、声音与现行脚本重新出的逐样本一致（G9）
 #   ⑥ 存核查记录；提交推送 postgraduate-vocabulary；镜像同步、提交推送 literate-enigma；定稿视频核对 --只查清点和镜像
 set -o pipefail
-no=$(printf '%02d' "$((10#$1))"); T=/home/user/postgraduate-vocabulary/视频/工具; P=/home/user/postgraduate-vocabulary; L=/home/user/literate-enigma
+no=$(printf '%02d' "$((10#$1))"); T=$(cd "$(dirname "$0")" && pwd); P=$(dirname "$(dirname "$T")"); L=/home/user/literate-enigma
 BR=claude/adoring-hamilton-5qskmm; W=$(pwd); LOG=$W/定稿流水线_$no; mkdir -p "$LOG"
 stop() { echo "【停止】$1（记录在 $LOG）"; exit 1; }
 [ -n "$OLD_IV_VOID" ] && stop "环境里带着 OLD_IV_VOID（跳过旧区间的草稿开关），定稿不许带：先 unset OLD_IV_VOID（A45 开关，G24）"

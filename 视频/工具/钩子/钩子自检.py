@@ -26,6 +26,8 @@ if 拦了('命令', {'tool_input': {'command': 'git commit -qm "x"'}}): fails.ap
 if 拦了('命令', {'tool_input': {'command': 'git config core.hooksPath'}}): fails.append('误拦：只是读 core.hooksPath')
 if not 拦了('命令', {'tool_input': {'command': 'git config --unset core.hooksPath'}}): fails.append('没抓到：取消 core.hooksPath')
 if 拦了('命令', {'tool_input': {'command': "python3 - <<'EOF'\nx = 'git commit --no-verify'\nEOF"}}): fails.append('误拦：heredoc 里的文字（G15）')
+if 拦了('命令', {'tool_input': {'command': "cat > /tmp/x.md <<'EOF'\ngit push -f origin master\nnpx vercel --prod\nEOF"}}): fails.append('误拦：heredoc 正文里以 git/vercel 开头的行（G15）')
+if not 拦了('命令', {'tool_input': {'command': "cat > /tmp/x.md <<'EOF'\nx\nEOF\ngit push -f origin master"}}): fails.append('没抓到：heredoc 结束后的强推（G15 去 heredoc 去多了）')
 # 收工（守则3）
 r = f'{tmp}/repo'; os.makedirs(f'{r}/视频')
 subprocess.run(['git', 'init', '-q', r]); open(f'{r}/视频/x.md', 'w').write('x')

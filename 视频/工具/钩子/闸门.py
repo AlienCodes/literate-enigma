@@ -63,7 +63,16 @@ def 判(kind, d, 仓库=PV):
     if kind == '命令':
         c = ti.get('command') or ''
         # 只看真正执行的 git 命令段（按行、; && || | 拆开，段首是 git），不看 heredoc、字符串里的字
-        segs = [s.strip() for l in c.splitlines() for s in re.split(r'&&|\|\||;|\|', l)]
+        def _去heredoc(c):   # G15（2026-10-24 执行效应演练查出）：heredoc 正文里以 git/vercel 开头的行也被当成命令拦了，先去掉 heredoc 正文
+            out, end = [], None
+            for l in c.splitlines():
+                if end is not None:
+                    if l.strip() == end: end = None
+                    continue
+                out.append(l); m = re.search(r'<<-?\s*[\'"]?([A-Za-z_]\w*)[\'"]?', l)
+                if m: end = m.group(1)
+            return '\n'.join(out)
+        segs = [s.strip() for l in _去heredoc(c).splitlines() for s in re.split(r'&&|\|\||;|\|', l)]
         for s in segs:
             s = re.sub(r'^(\(|cd\s+\S+\s*$|sudo\s+|env\s+\S+=\S+\s+)+', '', s)
             if not re.match(r'git\b', s): continue
