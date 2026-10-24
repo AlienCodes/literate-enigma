@@ -42,7 +42,7 @@ S=[
      "（冒号后是同位语，评价这一偏差；\nfor…：就……而言）"]]),
 (6,[[[("Legend","传说"),("**rightly**","**理所当然地**(rightly)"),("**salutes** Shackleton **for** his **charisma**.","**因**(salutes for)沙克尔顿的**超凡魅力**(charisma)而**称颂**(salutes for)他。")],
      "（salute sb for sth：因某事称颂某人；\ncharisma：一种能强烈吸引他人、让人心甘情愿追随的非凡个人魅力\n（领袖气质/感召力））"]]),
-(6,[[[("Yet","可"),("both ends of the story","这个故事的两头，"),("**hinge on**","都**取决于**(hinge on)"),("Worsley's","沃斯利"),("**meticulous**","**一丝不苟/十分细心的**(meticulous)"),("**arithmetic**.","**算术**(arithmetic)。")],
+(6,[[[("Yet","可"),("both ends of the story","这个故事的两头，"),("**hinge on**","都**取决于**(hinge on)"),("Worsley's","沃斯利"),("**meticulous**","**一丝不苟/十分细心的**(meticulous)"),("**arithmetic**.","**算数/计算**(arithmetic)。")],
      "（both ends：一头是小艇航行，一头是百年后找到残骸；\nhinge on：取决于；\nmeticulous 常被译为“一丝不苟”或“细致入微”。\n作为形容词，它专指做事极其严密，\n对微小的细节也要反复核对，力求把出错率降到最低。）"]]),
 (6,[[[("**Leadership**","**领导力**(Leadership)"),("held","让"),("28 men","28人"),("together.","始终抱成一团。")],
      "（hold…together：使……团结在一起）"]]),
