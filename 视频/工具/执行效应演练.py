@@ -136,6 +136,18 @@ def _t23(d):
 def _rec(no): return f'视频/制作记录/{no}.md'
 def _改行(f, no, i, v): f[_rec(no)] = re.sub(rf'^(\| *{i} *\|.*\| *(?:涉及|不涉及) *\|).*\|\s*$', lambda m: m.group(1) + f' {v} |', f[_rec(no)], count=1, flags=re.M)
 def _删节(f, no, h): t = f[_rec(no)]; i = t.index(h); j = t.find('\n## ', i + 1); f[_rec(no)] = t[:i] + (t[j + 1:] if j > 0 else '')
+def _括号包词(d):
+    c = 首块(d, lambda c: re.search(r'\*\*[^*]+\*\*\([^)]+\)', c['zh'])); m = re.search(r'\*\*[^*]+\*\*\([^)]+\)', c['zh']); 改中文(c, m.group(0), f'（{m.group(0)}）')
+def _加注解(d):
+    c = 块(d, 0); i = next(i for i, (a, z) in enumerate(c['align']) if a != '\n' and '**' not in a)
+    a = c['align'][i][0]; c['en'] = c['en'].replace(a, a + ' {{(演练注解)}}', 1); c['align'][i][0] = a + ' {{(演练注解)}}'
+def _镜像印章(f):
+    """镜像里的演练印章按镜像里的文件重算（生成文本 先过规则执行核查；只为镜像里的前置门放行，真仓库的印章不动）"""
+    k = '视频/工具/执行效应演练通过.json'; st = json.loads(_读(f, k) if not isinstance(f.get(k), bytes) else f[k].decode())
+    for x in 被演练:
+        t = f.get(f'视频/工具/{x}'); t = t.encode() if isinstance(t, str) else t
+        st[x] = hashlib.sha256(t).hexdigest() if t is not None else '无'
+    f[k] = json.dumps(st, ensure_ascii=False)
 def _变异(prog, old, new):
     def fn(f):
         k = f'视频/工具/{prog}'; t = f[k].decode() if isinstance(f[k], bytes) else f[k]
@@ -147,7 +159,7 @@ def _变异(prog, old, new):
     ('G6固定格式25', '踩坑出片', '25', '25 的 G6 写成套话以外的自由句子（不是“本篇无/本篇有”）', lambda f: _改行(f, '25', 'G6', '用户两次要求不冲突，没有需要问的'), '只认固定格式', ['G6', 'C3', 'C4']),
     ('C4固定格式25', '踩坑出片', '25', '25 的 C4 写“本篇有：合并改了”但没有用户原话', lambda f: _改行(f, '25', 'C4', '本篇有：两次插话合并成一次改了'), '只认固定格式', ['C4', 'C3']),
     ('G6套话', '踩坑出片', '25', '25 的 G6 用开工自动填的套话', lambda f: _改行(f, '25', 'G6', '按现行做法由程序把关（踩坑总表“拦住”），本篇核查通过'), '只有人能判', ['G6', 'C3', 'C4']),
-    ('法1对照没填完', '踩坑出片', '25', '25 踩坑对照记录 T1 一格写回“待填”', lambda f: _改行(f, '25', 'T1', '待填'), '没填完', ['法1']),
+    ('法1对照没填完', '踩坑出片', '25', '25 踩坑对照记录 T1 一格写回“待填”', lambda f: _改行(f, '25', 'T1', '待填'), '没填完', ['法1', '流3', '铁7']),
     ('守则13没写方法设计', '踩坑出片', '25', '25 制作记录删掉“## 方法设计”', lambda f: _删节(f, '25', '## 方法设计'), '[T31]', ['守则13', 'T31']),
     ('守则12没写方法复盘', '踩坑出片', '25', '25 制作记录删掉“## 方法复盘”', lambda f: _删节(f, '25', '## 方法复盘'), '[T29]', ['守则12', 'T29']),
     ('S2速查表本文重复', '踩坑出片', '24', '24 速查表 departed 一行写成两个“本文：”', lambda f: _改文(f, _文24, '| departed | v.', '| departed | 本文：离开；本文：出发；v.'), 'S2 速查表', ['S2']),
@@ -195,6 +207,16 @@ def _变异(prog, old, new):
         ('H2', 'title2.py', '色块不是圆角', 'radius=18 * S, fill=AC1', 'radius=0, fill=AC1', 'H2 色块是圆角长方形', ['H2']),
         ('H3', 'title2.py', '色块里的字往下偏', 'y + (ph - (bb[3] - bb[1])) / 2 - bb[1]), zh', 'y + (ph - (bb[3] - bb[1])) / 2 - bb[1] + 20 * S), zh', 'H3 色块里的字上下居中', ['H3']),
     ]],
+    ('G7定稿篇目草稿没删', '踩坑出片', '23', '已定稿的 23 还留着 1080p 草稿', lambda f: f.__setitem__('视频/视频/草稿1080p/23_1080p.mp4', ('链接', f'{V}/视频/草稿1080p/24_1080p.mp4')), '[G7]', ['G7']),
+    ('T6空译文', '踩坑出片', '23', '23 S4 一块中文清空', lambda f: _改json(f, '视频/脚本/23.json', lambda d: (块(d, 3).__setitem__('zh', ''), 块(d, 3).__setitem__('align', [[a, ''] for a, _ in 块(d, 3)['align']]))), '[T6]', ['T6']),
+    ('T1括号包重点词', '踩坑出片', '23', '23 第一个重点词的中文外面加括号（说明里包着重点词）', lambda f: _改json(f, '视频/脚本/23.json', _括号包词), 'T19括号含重点词', ['T1']),
+    # —— 对照文本（守则17 暂停出 Word/PDF；恢复出文本时这些门照样要挡）：镜像里真跑 生成文本.py（出 Word/HTML/PDF、逐格读回）
+    ('W5没生成PDF', '生成文本', '23', '浏览器转 PDF 失败（PDF 没有生成）', _变异('生成文本.py', "f'--print-to-pdf={pdf}'", "f'--print-to-pdf={pdf}.演练'"), 'PDF 没有生成', ['W5']),
+    ('W1Word和脚本对不上', '生成文本', '23', 'make_docx 写进 Word 的字少一个', _变异('make_docx.py', 'r=p.add_run(t);', 'r=p.add_run(t[:-1] if len(t)>3 else t);'), 'Word 格不一致', ['W1']),
+    ('W10读回不按同一函数', '生成文本', '23', '读回时英文不按 make_docx 的同一个函数（{{注解}} 原样比）', lambda f: (_改json(f, '视频/脚本/23.json', _加注解), _变异('生成文本.py', "''.join(x for x, _ in _R._segs_en(a, {}))", "(a if 1 else ''.join(x for x, _ in _R._segs_en(a, {})))")(f)), 'Word 格不一致', ['W10']),
+    ('W7用户修正稿不覆盖', '生成文本', '23', '对照文本里有用户发回的修正稿 23-文本-用户修正.docx', lambda f: f.__setitem__('视频/对照文本/23-文本-用户修正.docx', b'USER-FIXED'),
+     lambda c, o, M: (c == 0 and open(f'{M}/视频/对照文本/23-文本-用户修正.docx', 'rb').read() == b'USER-FIXED' and open(f'{M}/视频/对照文本/23-文本.docx', 'rb').read() != open(f'{V}/对照文本/23-文本.docx', 'rb').read(),
+                      '用户修正稿原样、23-文本.docx 一起覆盖' if c == 0 else f'生成文本没跑通（退出码 {c}）：' + '；'.join(sorted(o))[-150:]), ['W7']),
 ]
 # 拆门自查（每种入口拆一道门，演练必须报“没挡住”）：(入口, 篇, 用哪一场, 拆门代码)
 仓库拆门 = [('踩坑出片', '25', 'G6固定格式25', 'K.人判格式_起 = 999'),
@@ -249,6 +271,9 @@ def 仓库底稿(no, entry=''):
     f['.claude/settings.json'] = open('/home/user/literate-enigma/.claude/settings.json').read()   # 钩子配置（规则执行核查、开工钩子读 CLAUDE_PROJECT_DIR）
     sys.path.insert(0, T); import 重查记录 as RC   # 底稿：全篇重查都算通过（现行程序、现行视频、现行脚本），注入的改动才会“欠着”
     fp = RC.程序指纹(); f['视频/工具/全篇重查通过.json'] = json.dumps({'篇': {n: RC.键(n, p, fp) for n, p in RC.已出片().items()}}, ensure_ascii=False)
+    if entry == '生成文本':   # 生成文本 写 对照文本/、脚本/、已发版本/：这些做成副本；镜像里的程序与真仓库同一份，演练印章按镜像重算（只为让镜像里的前置门放行，真印章不动）
+        for x in ('docx', 'html', 'pdf'): f[f'视频/对照文本/{no}-文本.{x}'] = open(f'{V}/对照文本/{no}-文本.{x}', 'rb').read()
+        f[f'视频/脚本/已发版本/{no}.json'] = open(f'{V}/脚本/已发版本/{no}.json').read() if os.path.exists(f'{V}/脚本/已发版本/{no}.json') else f[f'视频/脚本/{no}.json']
     if entry == '归档':   # 归档会写 README、删草稿/试听：这些目录做成真目录（里面是链接，删的只是链接）
         f['最终版4K视频/README.md'] = open(f'{os.path.dirname(V)}/最终版4K视频/README.md').read(); f['视频/视频/草稿1080p/.演练'] = ''; f['视频/试听/.演练'] = ''
     return _工具副本(f)
@@ -285,7 +310,7 @@ def _工具副本(files):
     return out
 
 
-无原样 = {'归档', '流水线', '初稿'}   # 这些入口原样跑会真做事（归档写文件、流水线出 4K）：不跑原样，只认必须报出的字样
+无原样 = {'归档', '流水线', '初稿', '生成文本'}   # 这些入口原样跑会真做事（归档写文件、流水线出 4K）：不跑原样，只认必须报出的字样
 def 仓库跑(entry, no, M, ws, 拆门=None):
     tool = f'{M}/视频/工具'; env = {**os.environ, 'CLAUDE_PROJECT_DIR': M}
     py = lambda prog, *a: ['python3', '-c', f"import sys;sys.path.insert(0,{tool!r});sys.argv=[{prog!r}]+{list(a)!r};import runpy;{拆门};runpy.run_path({tool + '/' + prog!r},run_name='__main__')"] if 拆门 else ['python3', f'{tool}/{prog}', *a]
@@ -293,6 +318,7 @@ def 仓库跑(entry, no, M, ws, 拆门=None):
         cmd = ['python3', '-c', f"import sys;sys.path.insert(0,{tool!r});import 踩坑核查 as K;{拆门};sys.argv=['踩坑核查.py',{no!r},'出片'];sys.exit(K.main())"] if 拆门 else ['python3', f'{tool}/踩坑核查.py', no, '出片']
     elif entry == '踩坑文本': cmd = ['python3', f'{tool}/踩坑核查.py', no, '文本']
     elif entry == '排版': cmd = ['python3', f'{tool}/排版自检.py']
+    elif entry == '生成文本': cmd = ['python3', f'{tool}/生成文本.py', no]
     elif entry == '归档': cmd = py('归档定稿视频.py', no)
     elif entry == '清点': cmd = py('定稿视频核对.py', '--只查清点和镜像', no)
     elif entry == '规则核查': cmd = ['python3', f'{tool}/规则执行核查.py']
@@ -310,7 +336,7 @@ def 仓库跑(entry, no, M, ws, 拆门=None):
     return r.returncode, set(l.strip() for l in (r.stdout + r.stderr).splitlines() if l.strip())
 
 
-def _git状态(): return subprocess.run(['git', 'status', '--porcelain'], cwd=os.path.dirname(V), capture_output=True, text=True).stdout
+def _git状态(): return subprocess.run(['git', '-c', 'core.quotepath=off', 'status', '--porcelain'], cwd=os.path.dirname(V), capture_output=True, text=True).stdout
 
 
 def 仓库演练(W, root, 只=None):
@@ -324,6 +350,7 @@ def 仓库演练(W, root, 只=None):
         f = dict(f0)
         try: fn and fn(f)
         except Exception as e: jobs.append((sid, None, None, f'样本找不到：{e!r}')); continue
+        if entry == '生成文本': _镜像印章(f)
         ws = 工作区(W, root, f'仓库_{sid}', no, json.loads(f[f'视频/脚本/{no}.json']))
         if '工作稿' in f: open(f'{ws}/scripts/{no}.json', 'w').write(f.pop('工作稿'))   # 工作目录里的稿（G19：比仓库旧）
         jobs.append((sid, 镜像(f'{root}/演练_镜像_{sid}', f), ws, None))
@@ -451,18 +478,40 @@ def 覆盖():
                      '出片守门自检.py（隔离工作区真跑 make_video.py）': ['A44', 'A36']}.items():
         for r in rs: cov.setdefault(r, []).append(prog)
     cov.setdefault('守则19', []).append('执行效应演练 自查拆门（拆掉 T36 的门，演练必须报没挡住）')
+    import 执行效应声音演练 as SY   # 声音演练（单独盖印章，声音核查程序一改就要重演）
+    for sid, stage, how, fs, fw, want, rules in SY.声音场景:
+        for r in rules: cov.setdefault(r, []).append(f'执行效应声音演练 {sid}（交付核查 {stage}）')
     sys.path.insert(0, T); import 出片守门自检 as G
     for c in G.CASES:
         if c[5] is not None: cov.setdefault(c[0], []).append(f'出片守门自检 {c[0]}')
     reg = json.load(open(f'{T}/规则执行表.json'))
-    for k, v in reg.items():   # “同”：同一道门，演练了那道门就演练了它
-        if k not in cov and any(o in cov for o in v.get('同', [])): cov[k] = [f'同 {o}' for o in v.get('同', []) if o in cov]
+    while True:   # “同”：同一道门，演练了那道门就演练了它（同 可以连着：法2 同 音34 同 A19）
+        more = {k: [f'同 {o}' for o in v.get('同', []) if o in cov] for k, v in reg.items() if k not in cov and not k.startswith('_') and any(o in cov for o in v.get('同', []))}
+        if not more: break
+        cov.update(more)
     return cov
 
 
 def 缺口():
     reg = json.load(open(f'{T}/规则执行表.json')); cov = 覆盖()
-    return sorted(k for k in reg if not k.startswith('_') and k not in cov)
+    return sorted(k for k in reg if not k.startswith('_') and k not in cov and not reg[k].get('演练说明'))
+
+
+def 已说明():
+    """造不出端到端样本、逐条写了原因和替代办法的规矩（规则执行表 “演练说明”: {原因, 替代}）：单独列出，不算悄悄留着"""
+    reg = json.load(open(f'{T}/规则执行表.json')); cov = 覆盖()
+    return sorted(k for k in reg if not k.startswith('_') and k not in cov and reg[k].get('演练说明'))
+
+
+def 写缺口清单():
+    reg = json.load(open(f'{T}/规则执行表.json')); g, e = 缺口(), 已说明()
+    L = ['# 执行效应缺口清单（程序生成：python3 视频/工具/执行效应演练.py --缺口清单）', '',
+         f'规矩 {len([k for k in reg if not k.startswith("_")])} 条；还没有端到端演练样本的 {len(g)} 条（基线 执行效应缺口基线.json，只许减少，目标 0）；'
+         f'造不出端到端样本、已逐条说明原因和替代办法的 {len(e)} 条。', '', '## 还没有演练样本', '']
+    L += [f'- {k}：{(reg[k].get("文") or "")[:40]}' for k in g] or ['（无）']
+    L += ['', '## 造不出端到端样本（逐条原因 + 替代办法）', '']
+    L += [f'- **{k}**：原因：{reg[k]["演练说明"]["原因"]}；替代：{reg[k]["演练说明"]["替代"]}' for k in e] or ['（无）']
+    open(f'{V}/制作记录/执行效应缺口清单.md', 'w').write('\n'.join(L) + '\n')
 
 
 def 印章有效():
@@ -473,14 +522,18 @@ def 印章有效():
 
 def 状态():
     reg = json.load(open(f'{T}/规则执行表.json')); g = 缺口(); n = len([k for k in reg if not k.startswith('_')])
-    ok = 印章有效()
-    return f'执行效应：{n - len(g)} 条规矩有端到端演练样本、{len(g)} 条还没有（缺口基线只许减少）；最近一次演练' + ('全部挡住、印章有效' if ok else '【已过期或没通过：程序或规矩改过，在视频工作目录重跑 执行效应演练.py】')
+    ok = 印章有效(); e = 已说明()
+    import 执行效应声音演练 as SY; sok = SY.印章有效()
+    return (f'执行效应：{n - len(g) - len(e)} 条规矩有端到端演练样本、{len(g)} 条还没有（缺口基线只许减少）、{len(e)} 条造不出样本已逐条说明；最近一次演练'
+            + ('全部挡住、印章有效' if ok else '【已过期或没通过：程序或规矩改过，在视频工作目录重跑 执行效应演练.py】')
+            + ('；声音演练印章有效' if sok else '；【声音演练印章过期：在视频工作目录重跑 执行效应声音演练.py】'))
 
 
 def main():
     a = sys.argv[1:]
     if '--状态' in a: print(状态()); return 0
     if '--缺口' in a: print(' '.join(缺口())); return 0
+    if '--缺口清单' in a: 写缺口清单(); print(状态()); return 0
     W = os.getcwd()
     if not os.path.exists('make_video.py') or not os.path.isdir('scripts'): sys.exit('【停止】请在视频工作目录（含 make_video.py、scripts/）下运行')
     for x in ('make_video.py', 'render.py'):
@@ -497,6 +550,10 @@ def main():
     g = 缺口(); base = json.load(open(GAPB))['缺口'] if os.path.exists(GAPB) else None
     print(f'没有演练样本的规矩：{len(g)} 条' + (f'（基线 {base}）' if base is not None else ''))
     if base is not None and len(g) > base: bad.append(f'缺口变多（{len(g)} > 基线 {base}）：新规矩要同时加演练场景')
+    reg0 = json.load(open(f'{T}/规则执行表.json')); e = 已说明(); eb = json.load(open(GAPB)).get('已说明') if os.path.exists(GAPB) else None
+    thin = [k for k in e if len(str(reg0[k]['演练说明'].get('原因', ''))) < 20 or len(str(reg0[k]['演练说明'].get('替代', ''))) < 20]
+    if thin: bad.append(f'演练说明太空（原因、替代各至少 20 字）：{" ".join(thin)}')
+    if eb is not None and len(e) > eb: bad.append(f'“造不出样本”变多（{len(e)} > 基线 {eb}）：新规矩要加演练场景，不许往说明里推')
     if bad or only:
         print('执行效应演练：' + ('【没通过：' + '、'.join(bad) + '】' if bad else '部分演练通过（只跑了一部分，不盖印章）')); return 1 if bad else 0
     reg = json.load(open(f'{T}/规则执行表.json')); cov = 覆盖()   # 规则执行表每条记“演练”样本（程序按场景自动写，不手填）
@@ -506,7 +563,8 @@ def main():
         else: v.pop('演练', None)
     json.dump(reg, open(f'{T}/规则执行表.json', 'w'), ensure_ascii=False, indent=1)
     json.dump({**{x: 指纹(f'{T}/{x}') for x in 被演练}, '_挡住': [s for s, _, _ in res], '_有演练的规矩': len(cov)}, open(STAMP, 'w'), ensure_ascii=False, indent=1)
-    if base is None or len(g) < base: json.dump({'缺口': len(g), '说明': '没有端到端演练样本的规矩条数，只许减少，目标 0'}, open(GAPB, 'w'), ensure_ascii=False, indent=1)
+    if base is None or len(g) < base or eb is None or len(e) < eb:
+        json.dump({'缺口': len(g), '已说明': len(e), '说明': '缺口 = 没有端到端演练样本的规矩条数；已说明 = 造不出样本、逐条写了原因和替代的条数；两个都只许减少，缺口目标 0'}, open(GAPB, 'w'), ensure_ascii=False, indent=1)
     print(f'执行效应演练：通过（{len(res)} 场演练全部挡在对的编号上，拆掉的门被发现；印章已写）'); return 0
 
 
