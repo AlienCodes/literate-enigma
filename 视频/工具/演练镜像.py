@@ -112,6 +112,21 @@ def 工作区(W, root, sid, no, d, 改正=None):
 def _git状态(): return subprocess.run(['git', '-c', 'core.quotepath=off', 'status', '--porcelain'], cwd=P, capture_output=True, text=True).stdout
 
 
+# —— G29：演练合成的配音缓存要清干净。出片程序把用到的缓存拷进 make_video.py 写死的 _REPO_CACHE（postgraduate-vocabulary），
+#    从 literate-enigma 跑演练时只清了本仓库，那边留下一堆演练缓存（2026-10-24）。开跑前对两处拍快照，结束删掉新出现的
+def 缓存目录(t=T):
+    ds = {os.path.realpath(f'{os.path.dirname(t)}/配音缓存')}
+    m = re.search(r"^_REPO_CACHE='([^']+)'", open(f'{t}/make_video.py').read(), re.M)
+    if m: ds.add(os.path.realpath(m.group(1)))
+    return sorted(d for d in ds if os.path.isdir(d))
+def 缓存快照(ds=None): return {d: set(os.listdir(d)) for d in (缓存目录() if ds is None else ds)}
+def 新缓存(s0): return [f'{d}/{x}' for d, names in s0.items() for x in sorted(set(os.listdir(d)) - names)]
+def 清新缓存(s0):
+    for p in 新缓存(s0):
+        if p.endswith('.pkl'): os.remove(p)
+    return 新缓存(s0)
+
+
 # —— 门：演练程序一处读了现稿就停（执行效应演练、声音演练开跑前调；规则执行核查当场跑 --自检）
 _现稿 = [r'\{V\}/' + '(?:脚本|制作记录|对照文本)', r'\{Y\.V\}/' + '(?:脚本|制作记录|对照文本)', r'\{P\}/' + '新版定稿', r'dirname\(V\)\}/' + '新版定稿', r'\{W\}/' + 'scripts',
         r"(?:open|load|指纹)\(f?'" + 'scripts/', r'\{T\}/' + '(?:原稿重点词|初稿生成/gen)', 'postgraduate-vocabulary/' + '新版定稿']
@@ -143,6 +158,16 @@ def 自检():
         h = 指纹(样('视频/制作记录/24.md')); open(f'{M}/视频/制作记录/24.md', 'a').write('\n自检写入\n')   # 镜像里的程序往制作记录补行，不得改到冻结拷贝
         if 指纹(样('视频/制作记录/24.md')) != h: f.append('没抓到：镜像里写制作记录改到了冻结拷贝')
     finally: shutil.rmtree(root, ignore_errors=True)
+    c = tempfile.mkdtemp(prefix='演练缓存自检_')   # G29：两处缓存目录拍快照，演练新出的删掉、原有的留着；漏清必须报出
+    try:
+        a, b = f'{c}/literate', f'{c}/pv'; os.makedirs(a); os.makedirs(b); open(f'{a}/旧.pkl', 'w').write('x'); open(f'{b}/旧.pkl', 'w').write('x')
+        s0 = 缓存快照([a, b]); open(f'{b}/演练新.pkl', 'w').write('y')
+        if not 新缓存(s0): f.append('没抓到：演练在另一个仓库留下的配音缓存（G29）')
+        if 清新缓存(s0) or os.path.exists(f'{b}/演练新.pkl'): f.append('没清掉：演练在另一个仓库留下的配音缓存（G29）')
+        if not (os.path.exists(f'{a}/旧.pkl') and os.path.exists(f'{b}/旧.pkl')): f.append('误删：演练前就有的配音缓存（G29）')
+        m = re.search(r"^_REPO_CACHE='([^']+)'", open(f'{T}/make_video.py').read(), re.M)
+        if m and os.path.isdir(m.group(1)) and os.path.realpath(m.group(1)) not in 缓存目录(): f.append('没抓到：清缓存漏了出片程序写死的仓库（G29）')
+    finally: shutil.rmtree(c, ignore_errors=True)
     sys.path.insert(0, T); import 同意记录追加 as TY   # 追加一条同意记录，演练印章照样有效
     o = json.load(open(TY.F)); st = TY.印(o); o['记录'].append({k: '自检追加' for k in TY.字段})
     if TY.查(o, st): f.append('误报：追加一条同意记录，演练印章就失效')

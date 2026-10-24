@@ -130,6 +130,9 @@ def 自检():
     if 判('新类别XYZ', '随便', rec) is None: fails.append('没抓到：没登记的确认类别')
     if 定稿同意('24', rec): fails.append('没抓到：用户没说定稿就跑定稿流水线（画19/流7）')
     if not 定稿同意('24', rec + [{'篇': '24', '日期': '2026-10-24', '原话': '可以，定稿吧', '用于': '定稿 24'}]): fails.append('定稿门 误报：用户同意记录里有“定稿 24”')
+    _定 = {'篇': '24', '日期': '2026-10-24', '原话': '可以，定稿吧', '用于': '定稿 24'}; _撤 = {'篇': '24', '日期': '2026-10-24', '原话': '暂停，我先核查一下', '用于': '撤回 定稿 24'}
+    if 定稿同意('24', rec + [_定, _撤]): fails.append('没抓到：定稿后又撤回，照样跑定稿流水线（G28）')
+    if not 定稿同意('24', rec + [_定, _撤, dict(_定, 原话='好了，这回定稿')]): fails.append('定稿门 误报：撤回后用户又说定稿（G28）')
     if not 定稿同意('20', rec): fails.append('定稿门 误报：24 以前已定稿的篇目')
     if 查篇({'核对确认': {'牛津逗号': {'S1 a, b and': '英式写法，不改'}}}, '23', rec): fails.append('G24 误报：24 以前已定稿篇目被报出（只列不改）')
     if not 查篇({'核对确认': {'牛津逗号': {'S1 a, b and': '英式写法，不改'}}}, '24', rec): fails.append('没抓到：24 起的“英式写法、不改”（G24）')
@@ -147,7 +150,8 @@ def 自检():
 def 定稿同意(no, rec=None):
     rec = 同意() if rec is None else rec
     if not str(no).isdigit() or int(no) < 定稿_起: return True
-    return any(r.get('篇') == no and '定稿' in r.get('用于', '') and len(_ns(r.get('原话', ''))) >= 2 for r in rec)
+    rs = [r for r in rec if r.get('篇') == no and '定稿' in r.get('用于', '') and len(_ns(r.get('原话', ''))) >= 2]
+    return bool(rs) and '撤回' not in rs[-1].get('用于', '')   # G28：同一篇按记录先后，最后一条定稿类记录是“撤回”就停（24：14:17 定稿、14:18 撤回）
 
 
 def 体检(lo, hi):
@@ -173,7 +177,7 @@ def main():
         return 1 if f or nb else 0
     if a and a[0] == '--定稿':
         no = a[1].zfill(2); ok = 定稿同意(no)
-        print(f'第{no}篇 用户定稿原话：' + ('有' if ok else '【没有】用户试听确认后才算定稿：把用户说定稿的原话（逐字）记进 用户同意记录.json，用于写“定稿 ' + no + '”')); return 0 if ok else 1
+        print(f'第{no}篇 用户定稿原话：' + ('有' if ok else ('【已撤回】最后一条定稿类记录是撤回（G28），' if any(r.get('篇') == no and '撤回' in r.get('用于', '') for r in 同意()) else '【没有】') + '用户试听确认后才算定稿：把用户说定稿的原话（逐字）记进 用户同意记录.json，用于写“定稿 ' + no + '”')); return 0 if ok else 1
     if a and a[0] == '--体检':
         lo, hi = int(a[1]), int(a[2]); n_all, rows = 体检(lo, hi); nb = sum(1 for r in rows if r.startswith('- '))
         out = f'{V}/制作记录/放行口子体检.md'

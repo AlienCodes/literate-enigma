@@ -75,6 +75,8 @@ _挪1 = 改读法('f=min(range(r0,r1),key=lambda f:e[f]); ca=cb=f*F; keep=max(0,
 _挪2 = 改读法('            ca=cb=(cx if cx is not None else f*F); keep=0.0', '            ca=cb=(cx if cx is not None else f*F)+int(0.15*SR); keep=0.0')
 def 停顿挪进词里(ws): _挪1(ws); _挪2(ws)   # A9：插入的停顿（只插不删、连读处插入）落到后一个词里 150 毫秒
 剪词尾 = 改读法(_SA, 'fades=fades_)\n    clips=[np.concatenate([c[:-int(0.09*SR)],np.zeros(int(0.09*SR),c.dtype)]) for c in clips]\n    return clips,tmap')   # A21：停顿前、句末的词尾 90 毫秒剪掉
+def 旧视频配新脚本(ws):   # G26：出完片又改了脚本（重放 24 第三稿：出片失败，旧视频照样过了出片后核查）
+    p = f'{ws}/scripts/{NO}.json'; d = json.load(open(p)); d['title_zh'] += '（改）'; os.unlink(p); json.dump(d, open(p, 'w'), ensure_ascii=False, indent=1)
 def 加引号(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: _加英文(d, 'the "best" one', '那个“最好的”'))
 def 加多音(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: _加英文(d, 'as they read', '正如他们读到的'))  # A24/A35：read 按语境核对读音
 
@@ -94,6 +96,7 @@ def 加多音(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: _加英文
     ('A37时刻读法', '出片前', '时刻读法退回事故时（重放 15：11.40pm 读成 eleven point four zero）', None, 时刻退回, ['数字读法、引号自检'], ['A37']),
     ('A17引号', '出片前', '引号照读（读法退回）、S2 有带引号的 "best"', 加引号, 引号退回, ['数字读法、引号自检', '引号不停顿'], ['A17']),
     ('A24多音词', '出片前', 'S2 加 as they read（多音词没按语境核对）', 加多音, None, ['读音核对（A23'], ['A24', 'A35']),
+    ('G26旧视频配新脚本', '出片后', '出完片又改了脚本（视频还是旧的）', None, 旧视频配新脚本, ['视频是现行脚本、现行程序出的（G26'], ['G26']),
     ('G12只有声音', '出片后', '重放 21：NN.mp4 被只出声音覆盖（没有画面）', None, None, ['成片有画面（G12'], ['G12']),
 ]
 
@@ -105,7 +108,7 @@ def 跑(M, ws, stage):
 
 
 def 演练(W, 只=None):
-    root = os.path.dirname(os.path.abspath(W)); g0 = Y._git状态()
+    root = os.path.dirname(os.path.abspath(W)); g0 = Y._git状态(); c0 = Y.缓存快照()   # G29：两个仓库的配音缓存都拍快照
     B = Y.工作区(W, root, '声底稿', NO, json.loads(Y.读样(f'视频/脚本/{NO}.json')))   # 底稿用冻结拷贝，不读工作目录的现稿
     r = subprocess.run(['python3', 'make_video.py', f'scripts/{NO}.json', f'{NO}.mp4'], cwd=B, env={**os.environ, 'AUDIO_ONLY': '1'}, capture_output=True, text=True)
     if r.returncode: return [('只出声音底稿', False, r.stdout[-200:] + r.stderr[-200:])]
@@ -115,7 +118,7 @@ def 演练(W, 只=None):
         f = Y.仓库底稿(NO, '声音'); fs and fs(f)
         R = f'{root}/演练_声_{sid}'; shutil.rmtree(R, ignore_errors=True); os.makedirs(R); os.symlink(f'{root}/tts', f'{R}/tts')
         ws0 = Y.工作区(W, R, 'v', NO, json.loads(f[f'视频/脚本/{NO}.json'])); ws = f'{R}/video'; os.rename(ws0, ws)
-        shutil.copytree(f'{B}/work_{NO}', f'{ws}/work_{NO}'); shutil.copy(f'{B}/{NO}.mp4', f'{ws}/{NO}.mp4'); fw and fw(ws)
+        shutil.copytree(f'{B}/work_{NO}', f'{ws}/work_{NO}'); shutil.copy(f'{B}/{NO}.mp4', f'{ws}/{NO}.mp4'); shutil.copy(f'{B}/{NO}.mp4.指纹.json', f'{ws}/{NO}.mp4.指纹.json'); fw and fw(ws)
         if qc and os.path.isdir(qc): shutil.copytree(qc, f'{R}/qc_independent', symlinks=True)
         return Y.镜像(f'{root}/演练_镜像_声_{sid}', f), ws
     todo = [s for s in 声音场景 if not 只 or s[0] in 只]
@@ -138,10 +141,8 @@ def 演练(W, 只=None):
             res.append(('自查拆门_声音', not caught, '拆掉 无标点停顿 的门后演练报“没挡住”（演练能发现坏门）' if not caught else '拆掉门后演练还说挡住了：演练失灵'))
     for x in os.listdir(root):
         if x.startswith('演练_'): shutil.rmtree(f'{root}/{x}', ignore_errors=True)
-    for l in Y._git状态().splitlines():   # 演练里合成的新缓存（出片程序自动拷进 配音缓存/）不留：只删这次演练新出现、没提交的
-        if l.startswith('?? ') and l not in g0 and '.pkl' in l:
-            p = os.path.join(os.path.dirname(Y.V), l[3:].strip('"'))
-            if os.path.exists(p) and '配音缓存' in p: os.remove(p)
+    left = Y.清新缓存(c0)   # 演练里合成的新缓存（出片程序自动拷进 make_video 写死的仓库和本仓库的 配音缓存/）不留（G29）
+    if left: res.append(('G29演练缓存清干净', False, f'演练留下 {len(left)} 个文件没清掉：{left[0]}'))
     if Y.查样本(): res.append(('冻结样本没被改', False, '；'.join(Y.查样本())))
     if Y._git状态() != g0: res.append(('真仓库没被碰', False, '声音演练改了真仓库（git status 变了）：镜像漏了写入的路径'))
     return res
@@ -156,8 +157,8 @@ def 印章有效():
 def main():
     a = sys.argv[1:]
     if not os.path.exists('make_video.py') or not os.path.isdir('scripts'): sys.exit('【停止】请在视频工作目录（含 make_video.py、scripts/）下运行')
-    for x in ('make_video.py', 'render.py'):
-        if 指纹(x) != 指纹(f'{T}/{x}'): sys.exit(f'【停止】工作目录的 {x} 与仓库不一致，先拷过来再演练')
+    import 出片指纹 as _ZW   # G27：出片程序清单从 make_video 的 import 自动找全
+    if _ZW.核对工作目录('.', T): sys.exit('【停止】' + '；'.join(_ZW.核对工作目录('.', T)) + '：先 python3 出片指纹.py --拷 . 再演练')
     e = Y.查读现稿() + Y.查样本()   # 演练只读冻结拷贝
     if e: sys.exit('【停止】' + '；'.join(e))
     only = [x for x in a if not x.startswith('--')]

@@ -22,7 +22,7 @@ push() {  # 网络失败才重试（2、4、8、16 秒）
 # 同一篇只能有一条流水线在跑（2026-10-10 第09篇第二轮：一条用 & 启动、以为没起来又启动一条，两条同时写 09.mp4，声音坏了，出片后核查拦下；pgrep 认不出中文路径，没发现还有一条在跑）
 exec 9>"$W/.定稿流水线_$no.lock"; flock -n 9 || { echo "【停止】第${no}篇已经有一条定稿流水线在跑（$W/.定稿流水线_$no.lock 被占用），不能同时跑两条"; exit 1; }
 [ -f make_video.py ] && [ -f "scripts/$no.json" ] && [ -d fonts ] || stop "请在视频工作目录下运行（要有 make_video.py、scripts/$no.json、fonts/）"
-cmp -s make_video.py $T/make_video.py && cmp -s render.py $T/render.py || stop "工作目录里的 make_video.py / render.py 与仓库工具不一致，先同步（出片和核查必须用同一份程序）"
+python3 $T/出片指纹.py --核对工作目录 . || stop "工作目录的出片程序缺模块或与仓库工具不一致（G27：清单从 make_video 的 import 自动找全），先 python3 $T/出片指纹.py --拷 . 同步"
 
 python3 $T/放行口子核查.py --定稿 $no || stop "用户还没说定稿（画19/流7：用户试听确认后才算定稿；用户原话记进 用户同意记录.json，用于写“定稿 $no”）"
 python3 $T/工作稿核对.py $no || stop "工作目录的脚本是旧稿（G19）"
