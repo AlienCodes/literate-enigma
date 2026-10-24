@@ -28,6 +28,11 @@ def 查(d,t):
         if m and '本文：' in m.group(2) and not re.search(r'本文：[^|]*?；\s*(adj|adv|n|v|vt|vi|phr|prep|conj|pron|num|det|abbr|int|interj|aux|modal|art|短语|习语|固定搭配)\.',m.group(2)):
             bad.append(f'S4 速查表缺词性和词义（只有“本文：”）: {m.group(1)}')
     return bad
+DOCX_起 = 25   # 守则17（用户 2026-10-24：“以后先不要再去做word或者是PDF了……先只做视频即可”）：25 起没有对照文本 docx 不算缺；
+               # 用户要文本时 生成文本.py 出 Word 并逐格读回照查。24 以前照旧要求（G30：25 草稿出片前被“缺 docx”拦住）
+def 缺文件(no, root=ROOT):
+    fs = [f'{root}/视频/视频/{no}.mp4'] + ([f'{root}/视频/对照文本/{no}-文本.docx'] if int(no) < DOCX_起 else [])
+    return [f'缺文件: {os.path.relpath(f, root)}' for f in fs if not os.path.exists(f)]
 def 自检():
     """在第03篇（已定稿）副本里逐一造错，每一种都必须报出；原样不得误报"""
     import copy
@@ -51,6 +56,11 @@ def 自检():
     if not (stem('dams')==stem('dam') and stem('circulation')!=stem('circulates')): fails.append('没抓到：撞词按屈折变化判（T12）')
     _o=json.load(open(f'{os.path.dirname(os.path.abspath(__file__))}/原稿重点词.json'))
     if len(_o)<20 or len(_o.get(os.path.relpath(glob.glob(f'{ROOT}/新版定稿/03-*.md')[0],ROOT),[]))<10: fails.append('原稿重点词.json 缺了或是空的：T12 会把原稿重点词误报成撞词（G18）')
+    import tempfile, shutil as _sh   # G30：25 起没有 docx 不误停，23 缺 docx 仍停
+    _r = tempfile.mkdtemp(); os.makedirs(f'{_r}/视频/视频'); open(f'{_r}/视频/视频/25.mp4', 'w').close(); open(f'{_r}/视频/视频/23.mp4', 'w').close()
+    if 缺文件('25', _r): fails.append('误报：25 起守则17 不出 Word，没有 docx 也报缺（G30）')
+    if not any('23-文本.docx' in x for x in 缺文件('23', _r)): fails.append('没抓到：23 缺对照文本 docx（G30）')
+    _sh.rmtree(_r, ignore_errors=True)
     return fails
 if sys.argv[1:2]==['--自检']:
     no=None
@@ -59,8 +69,7 @@ else:
     d=json.load(open(sys.argv[2] if len(sys.argv)>2 else f'{ROOT}/视频/脚本/{no}.json'))   # 可指定脚本路径（踩坑核查用工作目录里的脚本）
     md=glob.glob(f'{ROOT}/新版定稿/{no}-*.md')[0]; t=open(md).read()
     bad=查(d,t)
-for f in ([f'{ROOT}/视频/视频/{no}.mp4',f'{ROOT}/视频/对照文本/{no}-文本.docx'] if no else []):
-    if not os.path.exists(f): bad.append(f'缺文件: {os.path.relpath(f,ROOT)}')
+if no: bad += 缺文件(no)   # G30：25 起不要求 docx（守则17）
 
 # 撞词提醒（踩坑总表 T12）：本篇重点词（含短语里的实词）若在其他篇加粗过（同一个词的屈折变化；同根不同词不算，CLAUDE.md 第15条），列出供核对
 STOP={'the','and','for','with','into','from','that','this','have','been','about','over','under','after','before','out','off','its','his','her','their'}
