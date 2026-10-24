@@ -89,6 +89,7 @@ Legend **rightly** **salutes** Shackleton for his **charisma**. Yet both ends of
 | hinge on | 短语. 取决于，以……为转移（= depend on）；hinge n. 铰链 | 6 |
 | meticulous | adj. 一丝不苟的，极其细致的 | 6 |
 | arithmetic | n. 算术，计算；（某事的）算计，得失估算；adj. 算术的 | 6 |
+| leadership | n. 领导力，领导才能；领导层，领导地位（under sb's leadership 在某人领导下） | 6 |
 | precision | n. 精确，准确；精密度；adj. 精密的（precision instruments） | 6 |
 | ashore | adv. 上岸，在岸上（go/come ashore） | 6 |
 | brought back | 短语. (bring back) 带回，送回；使恢复；使回想起 | 6 |

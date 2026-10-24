@@ -44,7 +44,7 @@ S=[
      "（salute sb for sth：因某事称颂某人；\ncharisma：一种能强烈吸引他人、让人心甘情愿追随的非凡个人魅力\n（领袖气质/感召力））"]]),
 (6,[[[("Yet","可"),("both ends of the story","这个故事的两头，"),("**hinge on**","都**取决于**(hinge on)"),("Worsley's","沃斯利"),("**meticulous**","**一丝不苟/十分细心的**(meticulous)"),("**arithmetic**.","**算术**(arithmetic)。")],
      "（both ends：一头是小艇航行，一头是百年后找到残骸；\nhinge on：取决于；\nmeticulous 常被译为“一丝不苟”或“细致入微”。\n作为形容词，它专指做事极其严密，\n对微小的细节也要反复核对，力求把出错率降到最低。）"]]),
-(6,[[[("Leadership","领导力"),("held","让"),("28 men","28人"),("together.","始终抱成一团。")],
+(6,[[[("**Leadership**","**领导力**(Leadership)"),("held","让"),("28 men","28人"),("together.","始终抱成一团。")],
      "（hold…together：使……团结在一起）"]]),
 (6,[[[("**Precision**","（沃斯利）**精确**(Precision)，"),("put six","将六人送"),("**ashore**","**上岸**(ashore)，"),("within reach of help","进入救援范围；")],
      "（within reach of…：在……够得着的范围内）"],
