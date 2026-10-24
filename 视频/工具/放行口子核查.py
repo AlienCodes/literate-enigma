@@ -84,7 +84,7 @@ def 扫码(files=None):
             r = os.path.relpath(f, T)
             if os.path.isfile(f) and r.endswith(('.py', '.sh')) and '历史版本' not in r and not re.search(r'gen\d+\.py$', r) and r != '放行口子核查.py':
                 files[r] = open(f, errors='ignore').read()
-    got = {'确认': {}, '特批字段': {}, '开关': {}, '起查': {}, '开关设置': {}}
+    got = {'确认': {}, '特批字段': {}, '开关': {}, '起查': {}, '开关设置': {}, '跳过': {}}
     add = lambda k, n, f: got[k].setdefault(n, set()).add(f)
     for f, t in files.items():
         for l in t.splitlines():
@@ -98,6 +98,8 @@ def 扫码(files=None):
                 if n_ in 表['开关设置_查']: add('开关设置', f'{n_}@{os.path.basename(f)}', f)
             for m in re.finditer(r"int\((?:no|[^()]*\(\s*['\"]no['\"][^()]*\))\)\s*>=\s*(\d+)", l): add('起查', f'{os.path.basename(f)}:{m.group(1)}', f)
             for m in re.finditer(r"^\s*([\w一-鿿]*起)\s*=\s*(\d+)", l): add('起查', f'{os.path.basename(f)}:{m.group(2)}', f)
+            # G32：按文件在不在跳过（2026-10-23 check_all 一行 `if not os.path.exists(js_): continue` 把没做视频的篇目悄悄跳过，“一律”的 T12 被缩小，没人发现）
+            for m in re.finditer(r"if not os\.path\.(?:exists|isfile)\(([^)]*)\)[^:]*:\s*continue", l): add('跳过', f'{os.path.basename(f)}:{m.group(1).strip()}', f)
     return got
 
 
@@ -137,9 +139,9 @@ def 自检():
     if 查篇({'核对确认': {'牛津逗号': {'S1 a, b and': '英式写法，不改'}}}, '23', rec): fails.append('G24 误报：24 以前已定稿篇目被报出（只列不改）')
     if not 查篇({'核对确认': {'牛津逗号': {'S1 a, b and': '英式写法，不改'}}}, '24', rec): fails.append('没抓到：24 起的“英式写法、不改”（G24）')
     # ④ 代码里新长出来的口子
-    fake = {'假程序.sh': 'export OLD_IV_VOID=1\n', '假程序.py': "ok = d.get('核对确认', {}).get('新口子类', {})\nif os.environ.get('SKIP_ALL'): pass\nif int(no) >= 99: x = 1\nif d.get('读音放宽特批') : pass\n"}
+    fake = {'假程序.sh': 'export OLD_IV_VOID=1\n', '假程序.py': "ok = d.get('核对确认', {}).get('新口子类', {})\nif os.environ.get('SKIP_ALL'): pass\nif int(no) >= 99: x = 1\nif d.get('读音放宽特批') : pass\nfor n in ns:\n    if not os.path.exists(js_): continue\n"}
     g = 扫码(fake); nb = 没登记(g)
-    for want in ('新口子类', 'SKIP_ALL', '假程序.py:99', '读音放宽特批', 'OLD_IV_VOID@假程序.sh'):
+    for want in ('新口子类', 'SKIP_ALL', '假程序.py:99', '读音放宽特批', 'OLD_IV_VOID@假程序.sh', '假程序.py:js_'):
         if not any(f'“{want}”' in x for x in nb): fails.append(f'没抓到：代码里没登记的新口子 {want}（G24）')
     return fails
 

@@ -180,6 +180,7 @@ def _变异(prog, old, new):
         + [{'篇': '24', '日期': '2026-10-24', '原话': '演练：最终版出来了吗，给我', '用于': '定稿 24', '来源': '演练'}, {'篇': '24', '日期': '2026-10-24', '原话': '演练：暂停，我先核查一下', '用于': '撤回 定稿 24', '来源': '演练'}])), '用户还没说定稿', ['G28']),
     ('G30不出Word不误停', '踩坑出片', '25', '25 没有对照文本 docx（守则17 只做视频）', None, lambda c, o, M: (not any('25-文本.docx' in l for l in o), '25 没有 docx 不报缺（守则17）' if not any('25-文本.docx' in l for l in o) else '误停：' + next(l for l in o if '25-文本.docx' in l)[:80]), ['G30', '守则17']),
     ('G30缺docx仍停23', '踩坑出片', '23', '已定稿的 23 对照文本 docx 没了', lambda f: f.__setitem__('视频/对照文本/23-文本.docx', ('链接', '/演练不存在/23-文本.docx')), '缺文件: 视频/对照文本/23-文本', ['G30']),
+    ('T12全篇撞车', '踩坑出片', '25', '25 新加一个只在没做视频的篇目里加粗过的词（撞车看整个70篇）', lambda f: _改json(f, '视频/脚本/25.json', _撞词全篇), 'T12 新加重点词撞词', ['G32']),
     ('G19工作稿是旧稿', '流水线', '23', '仓库 视频/脚本/23.json 被别的会话改了，工作目录还是旧稿', lambda f: (f.__setitem__('工作稿', f['视频/脚本/23.json']), _改json(f, '视频/脚本/23.json', lambda d: d.__setitem__('title_zh', d['title_zh'] + '（新）'))), '旧稿（G19）', ['G19']),
     ('画17规则核查在最前', '流水线', '23', '规则执行表一道门的锚改坏，流水线必须停在 ⓪、不进 ①', lambda f: _改json(f, '视频/工具/规则执行表.json', lambda r: r['T36'].__setitem__('门', [['破折号.py', '演练造的坏锚']])), '演练造的坏锚', ['画17']),
     ('G21程序把关的坑自动补', '踩坑出片', '25', '对照记录缺 T36 一行（程序把关的新坑）：必须自动补上、不停', lambda f: f.__setitem__(_rec('25'), re.sub(r'^\| *T36 *\|.*\n', '', f[_rec('25')], flags=re.M)),
@@ -253,6 +254,22 @@ def _撞词(d):
                         c['en'] = re.sub(rf'(?<![*A-Za-z]){w}(?![*A-Za-z])', f'**{w}**', c['en'], count=1); c['align'][i] = [re.sub(rf'(?<![*A-Za-z]){w}(?![*A-Za-z])', f'**{w}**', a, count=1), f'**{z}**({w})']
                         c['zh'] = ''.join(b for _, b in c['align']); return
     raise KeyError('24 里没有可撞的词')
+
+
+def _撞词全篇(d):
+    """T12 全篇（用户 2026-10-24：撞车检查看整个70篇）：25（24 的副本）里找一个只在没做视频的篇目加粗过的词，加粗并补中文标记"""
+    import glob
+    made = {b.lower() for x in glob.glob(样('新版定稿/[0-9][0-9]-*.md')) if os.path.exists(样(f'视频/脚本/{os.path.basename(x)[:2]}.json')) for b in re.findall(r'\*\*([^*]+)\*\*', _英文段(x))}
+    other = {b.lower() for x in glob.glob(样('新版定稿/[0-9][0-9]-*.md')) if not os.path.basename(x).startswith(('24', '25')) and not os.path.exists(样(f'视频/脚本/{os.path.basename(x)[:2]}.json'))
+             for b in re.findall(r'\*\*([^*]+)\*\*', _英文段(x)) if ' ' not in b} - made
+    for s in d['sentences']:
+        for c in s['chunks']:
+            for i, (a, z) in enumerate(c['align']):
+                for w in re.findall(r'(?<![*A-Za-z])([a-z]{6,})(?![*A-Za-z])', a):
+                    if w in other and z and '**' not in z:
+                        c['en'] = re.sub(rf'(?<![*A-Za-z]){w}(?![*A-Za-z])', f'**{w}**', c['en'], count=1); c['align'][i] = [re.sub(rf'(?<![*A-Za-z]){w}(?![*A-Za-z])', f'**{w}**', a, count=1), f'**{z}**({w})']
+                        c['zh'] = ''.join(b for _, b in c['align']); return
+    raise KeyError('25 里没有只在没做视频的篇目加粗过的词')
 
 
 def _断挂钩(f):
