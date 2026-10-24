@@ -15,6 +15,7 @@ set -o pipefail
 no=$(printf '%02d' "$((10#$1))"); T=/home/user/postgraduate-vocabulary/视频/工具; P=/home/user/postgraduate-vocabulary; L=/home/user/literate-enigma
 BR=claude/adoring-hamilton-5qskmm; W=$(pwd); LOG=$W/定稿流水线_$no; mkdir -p "$LOG"
 stop() { echo "【停止】$1（记录在 $LOG）"; exit 1; }
+[ -n "$OLD_IV_VOID" ] && stop "环境里带着 OLD_IV_VOID（跳过旧区间的草稿开关），定稿不许带：先 unset OLD_IV_VOID（A45 开关，G24）"
 step() { echo "== $(date +%H:%M:%S) $1"; }
 push() {  # 网络失败才重试（2、4、8、16 秒）
   for t in 0 2 4 8 16; do sleep $t; git pull -q --no-rebase --no-edit origin "$1"; git push -q -u origin "$1" && return 0; done; return 1; }   # 2026-10-22：别的会话可能先推了，先合并远端再推

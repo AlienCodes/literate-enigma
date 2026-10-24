@@ -7,6 +7,7 @@
 最高铁律（硬性条件第〇节）：出片前先过《踩坑核查》（踩坑对照记录逐条写全、能用程序查的坑逐条查、换行比对）；出片后先做核查程序自检（故意剪坏一份副本，必须全部抓到），自检不过 = 核查失灵，不得交付。"""
 import sys, os, re, json, subprocess
 T = os.path.dirname(os.path.abspath(__file__)); no, stage = sys.argv[1].zfill(2), sys.argv[2]
+if os.environ.get('OLD_IV_VOID'): sys.exit('【停止】环境里带着 OLD_IV_VOID（跳过旧区间的草稿开关），交付核查不许带：先 unset OLD_IV_VOID（A45 开关，G24）')
 ok = True; out = []
 def run(cmd, env=None):
     r = subprocess.run(cmd, capture_output=True, text=True, env={**os.environ, **(env or {})})

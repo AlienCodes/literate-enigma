@@ -33,7 +33,7 @@ def 有原话(text, rec=None):
     return False
 
 
-def 判(cat, val, rec=None, 规=None):
+def 判(cat, val, rec=None, 规=None, no=None):
     """一条确认/特批：合格返回 None，否则返回问题"""
     规 = 表['确认'] if 规 is None else 规
     sp = 规.get(cat)
@@ -44,7 +44,9 @@ def 判(cat, val, rec=None, 规=None):
         return '这是保留违规/放宽/特批，只认用户原话：结论里引“用户原话”，且这句话已记进 用户同意记录.json（AI 自己写的理由不算）'
     if sp.get('禁止') and re.search(sp['禁止'], text) and not backed:
         return f'结论违背规矩（命中“{re.search(sp["禁止"], text).group(0)}”）：{sp["规矩"]} 不许写例外，要例外先拿到用户原话'
-    if sp.get('允许') and not re.search(sp['允许'], text) and not backed:
+    allow = sp.get('允许')
+    if sp.get('起') and str(no).isdigit() and int(no) < sp['起']: allow = sp.get('旧允许', allow)   # 这一类收紧前的篇目按原来的格式体检
+    if allow and not re.search(allow, text) and not backed:
         return f'结论不合格式（只认：{sp["允许说明"]}）'
     return None
 
@@ -68,7 +70,7 @@ def 查篇(d, no, rec=None, 强制=False):
     if not 强制 and (not str(no).isdigit() or int(no) < 起): return []
     out = []
     for cat, k, v in 条目(d):
-        p = 判(cat, v, rec)
+        p = 判(cat, v, rec, no=no)
         if p: out.append(f'[口子] {cat} {str(k)[:40]}：{p}')
     return out
 
@@ -82,7 +84,7 @@ def 扫码(files=None):
             r = os.path.relpath(f, T)
             if os.path.isfile(f) and r.endswith(('.py', '.sh')) and '历史版本' not in r and not re.search(r'gen\d+\.py$', r) and r != '放行口子核查.py':
                 files[r] = open(f, errors='ignore').read()
-    got = {'确认': {}, '特批字段': {}, '开关': {}, '起查': {}}
+    got = {'确认': {}, '特批字段': {}, '开关': {}, '起查': {}, '开关设置': {}}
     add = lambda k, n, f: got[k].setdefault(n, set()).add(f)
     for f, t in files.items():
         for l in t.splitlines():
@@ -91,6 +93,9 @@ def 扫码(files=None):
             for m in re.finditer(r"\bask\('([^']+)'", l): add('确认', m.group(1), f)
             for m in re.finditer(r"['\"]([^'\"\s]{0,12}(?:特批|放宽|豁免|已获同意)[^'\"\s]{0,8})['\"]\s*(?:\)|\]|,\s*\{|,\s*''|in\b)", l): add('特批字段', m.group(1), f)
             for m in re.finditer(r"environ(?:\.get\(|\[)\s*['\"]([A-Za-z_一-鿿]+)['\"]", l): add('开关', m.group(1), f)
+            for m in re.finditer(r"(?:export\s+|\b)([A-Z][A-Z_]{2,})=1\b|['\"]([A-Z][A-Z_]{2,})['\"]\s*:\s*['\"]1['\"]", l):   # 谁在设开关（OLD_IV_VOID 只许 草稿声音.sh 设）
+                n_ = m.group(1) or m.group(2)
+                if n_ in 表['开关设置_查']: add('开关设置', f'{n_}@{os.path.basename(f)}', f)
             for m in re.finditer(r"int\((?:no|[^()]*\(\s*['\"]no['\"][^()]*\))\)\s*>=\s*(\d+)", l): add('起查', f'{os.path.basename(f)}:{m.group(1)}', f)
             for m in re.finditer(r"^\s*([\w一-鿿]*起)\s*=\s*(\d+)", l): add('起查', f'{os.path.basename(f)}:{m.group(2)}', f)
     return got
@@ -115,6 +120,9 @@ def 自检():
     for k in [k for k, sp in 表['特批字段'].items() if sp.get('数据字段')]:
         if 判(k, 'AI 觉得可以放宽一点', rec) is None: fails.append(f'没抓到：{k} 没有用户原话的特批被放行（G24）')
     if 判('牛津逗号', '文章英文是英式写法，三项并列不用牛津逗号；不改', rec) is None: fails.append('没抓到：牛津逗号“英式写法、不改”（T35 重放）')
+    if 判('短语', 'in 是普通介词', rec, no='24') is None: fails.append('没抓到：24 起短语确认没写“不是搭配：……”（T22）')
+    if 判('短语', 'in 是普通介词，不是固定搭配', rec, no='20'): fails.append('T22 误报：24 以前的短语确认按旧格式')
+    if 判('短语', '不是搭配：in 是普通介词“在……里”', rec, no='24'): fails.append('T22 误报：“不是搭配：……”被报出')
     if 判('牛津逗号', '不是三项并列：upright and intact 是两项', rec): fails.append('G24 误报：牛津逗号“不是三项并列：……”被报出')
     if 判('引号', '用户 2026-10-24：“这个地方可以不加，我同意”', rec): fails.append('G24 误报：引了用户同意记录里原话的例外被报出')
     if 判('引号', '用户 2026-10-24：“我编的一句话不在记录里”', rec) is None: fails.append('没抓到：引的“原话”不在用户同意记录里（AI 编的）')
@@ -126,9 +134,9 @@ def 自检():
     if 查篇({'核对确认': {'牛津逗号': {'S1 a, b and': '英式写法，不改'}}}, '23', rec): fails.append('G24 误报：24 以前已定稿篇目被报出（只列不改）')
     if not 查篇({'核对确认': {'牛津逗号': {'S1 a, b and': '英式写法，不改'}}}, '24', rec): fails.append('没抓到：24 起的“英式写法、不改”（G24）')
     # ④ 代码里新长出来的口子
-    fake = {'假程序.py': "ok = d.get('核对确认', {}).get('新口子类', {})\nif os.environ.get('SKIP_ALL'): pass\nif int(no) >= 99: x = 1\nif d.get('读音放宽特批') : pass\n"}
+    fake = {'假程序.sh': 'export OLD_IV_VOID=1\n', '假程序.py': "ok = d.get('核对确认', {}).get('新口子类', {})\nif os.environ.get('SKIP_ALL'): pass\nif int(no) >= 99: x = 1\nif d.get('读音放宽特批') : pass\n"}
     g = 扫码(fake); nb = 没登记(g)
-    for want in ('新口子类', 'SKIP_ALL', '假程序.py:99', '读音放宽特批'):
+    for want in ('新口子类', 'SKIP_ALL', '假程序.py:99', '读音放宽特批', 'OLD_IV_VOID@假程序.sh'):
         if not any(f'“{want}”' in x for x in nb): fails.append(f'没抓到：代码里没登记的新口子 {want}（G24）')
     return fails
 
@@ -148,7 +156,7 @@ def 体检(lo, hi):
         p = f'{V}/脚本/{n:02d}.json'
         if not os.path.exists(p): continue
         d = json.load(open(p)); items = 条目(d); n_all += len(items)
-        bad = [(c, k, 判(c, v, rec)) for c, k, v in items]; bad = [x for x in bad if x[2]]
+        bad = [(c, k, 判(c, v, rec, no=f'{n:02d}')) for c, k, v in items]; bad = [x for x in bad if x[2]]
         if bad:
             rows.append(f'\n## {n:02d}（{len(bad)} 条，共 {len(items)} 条确认）')
             rows += [f'- {c} `{str(k)[:50]}`：{p_}' for c, k, p_ in bad]

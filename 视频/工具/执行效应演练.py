@@ -15,7 +15,7 @@ import os, sys, json, copy, re, subprocess, hashlib, shutil
 from concurrent.futures import ThreadPoolExecutor
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T)
 STAMP = f'{T}/执行效应演练通过.json'; GAPB = f'{T}/执行效应缺口基线.json'
-被演练 = ['踩坑核查.py', '译文核查.py', '破折号.py', 'check_all.py', '读音核对.py', 'make_video.py', 'render.py', '执行效应演练.py', '规则执行表.json', '放行口子核查.py', '放行口子表.json', '用户同意记录.json']
+被演练 = ['钩子/闸门.py', '踩坑核查.py', '译文核查.py', '破折号.py', 'check_all.py', '读音核对.py', 'make_video.py', 'render.py', '执行效应演练.py', '规则执行表.json', '放行口子核查.py', '放行口子表.json', '用户同意记录.json']
 指纹 = lambda p: hashlib.sha256(open(p, 'rb').read()).hexdigest() if os.path.exists(p) else '无'
 
 
@@ -47,6 +47,42 @@ def _t16(d):
     c = 首块(d, lambda c: re.search(r'\d', re.sub(r'\*\*|\{\{.*?\}\}', '', c['en'])) and re.search(r'\d', c['zh']))
     n = re.findall(r'\d+', c['zh'])[0]; 改中文(c, n, '某')
 
+def _unbold_prep(d, si, k, w, p):
+    c = 块(d, si, k); 改英文(c, f'**{w} {p}**', f'**{w}** {p}'); 改中文(c, f'({w} {p})', f'({w})')
+def _depart(d):
+    c = 块(d, 0)
+    if '**for**' in c['en']: 改英文(c, '**for**', 'for')
+def _term(d):
+    c = 首块(d, lambda c: '艾伦·图灵' in c['zh']); 改中文(c, '艾伦·图灵', '他')
+def _zhdup(d):
+    ms = [(si, k, m) for si, s in enumerate(d['sentences']) for k, c in enumerate(s['chunks']) for m in re.finditer(r'\*\*([^*]+)\*\*\(([^)]+)\)', c['zh'])]
+    a = ms[0]; b = next(x for x in ms if x[0] != a[0] and x[2].group(2).lower() != a[2].group(2).lower())
+    改中文(块(d, b[0], b[1]), b[2].group(0), f'**{a[2].group(1)}**({b[2].group(2)})')
+def _l16(d):
+    c = 首块(d, lambda c: c.get('note')); c['note'] = c['note'][:-1] + '\n，补充一句）'
+def _gloss(d):
+    c = 首块(d, lambda c: '|set out to}}' in c['zh']); new = re.sub(r'\n\{\{[^{}]*\|set out to\}\}', '', c['zh'])
+    old = c['zh']; c['zh'] = new; c['align'] = [[a, re.sub(r'\n\{\{[^{}]*\|set out to\}\}', '', z)] for a, z in c['align']]
+def _dir(d):
+    c = 块(d, 0); c['en'] += ' before the war'; c['zh'] += '在战争之后才'; c['align'].append(['before the war', '在战争之后才'])
+def _adv(d):
+    c = 首块(d, lambda c: re.search(r'\*\*[^*]+的\*\*\(', c['zh'])); m = re.search(r'\*\*([^*]+)的\*\*\(', c['zh']); 改中文(c, m.group(0), f'**{m.group(1)}地**(')
+def _zh1(d):
+    c = 块(d, 3); m = re.search(r'[一-鿿](?![^*]*\*\*\()', re.sub(r'\*\*[^*]+\*\*\([^)]*\)', '', c['zh'])); 改中文(c, m.group(0), '某' if m.group(0) != '某' else '甲')
+def _merge(d, need_bold=True):
+    for s in d['sentences']:
+        for c in s['chunks']:
+            al = c['align']
+            for i in range(len(al) - 1):
+                if al[i][0] != '\n' and al[i + 1][0] != '\n' and (not need_bold or ('**' in al[i][1] and '**' in al[i + 1][1])):
+                    al[i] = [al[i][0] + ' ' + al[i + 1][0], al[i][1] + al[i + 1][1]]; del al[i + 1]; return
+def _coarse(d):
+    c = max((c for s in d['sentences'] for c in s['chunks']), key=lambda c: len(c['align']))
+    c['align'] = [[' '.join(a for a, _ in c['align'] if a != '\n'), ''.join(z for _, z in c['align'])]]
+def _t23(d):
+    c = 首块(d, lambda c: '**罪**(convicted of)' in c['zh']); 改中文(c, '**罪**(convicted of)', '罪')
+
+
 
 # (编号, 入口, 篇, 怎么造, 改法, 必须新报出的字样, 这一场演练证明的规矩)
 场景 = [
@@ -68,8 +104,44 @@ def _t16(d):
     ('G24特批无原话', '出片', '24', 'AI 自己写“说明放宽特批”（没有用户原话）', lambda d: d.__setitem__('说明放宽特批', {'S1': {'倍数': 1.2, '依据': 'AI 觉得这一句可以放宽一点'}}), '说明放宽特批', ['G24']),   # 排版程序（render.apply_script）先停，同样挡住
     ('G24非人声放宽', '出片', '24', '非人声确认写“放宽：听不出”', lambda d: d['核对确认'].setdefault('非人声', {}).__setitem__('99.00–99.10s', {'配音指纹': 'x', '依据': '放宽：听不出'}), '[口子]', ['G24']),
     ('G24引号无原话', '出片', '24', '括号含重点词的确认只写“沿用”，没有用户原话', lambda d: d['核对确认'].setdefault('括号含重点词', {}).__setitem__('S1-1 （**x**(y)）', '沿用原写法'), '[口子]', ['G24']),
+    ('T22拆短语', '出片', '23', '23 S3 **rooted in** 去掉 in 的加粗', lambda d: _unbold_prep(d, 2, 0, 'rooted', 'in'), '[T22]', ['T22', '守则8']),
+    ('T22depart重放', '出片', '24', '重放 24 S1 departed … for（用户看草稿才发现）：for 没加粗必须报出', _depart, 'S1 departed … for', ['T22', 'T14'], '不比原样'),
+    ('T23意思标一半', '出片', '23', '23 convicted of 的“罪”去掉标记（意思只标一半）', _t23, '[T23]', ['T23', '守则8']),
+    ('T30漏术语', '出片', '23', '23 中文把“艾伦·图灵”换成“他”', _term, '[T30]', ['T30']),
+    ('T26中文重复', '出片', '23', '23 两个不同重点词用同一个中文', _zhdup, '[T26]', ['T26']),
+    ('T19即', '出片', '23', '23 S2 正文加文言“即”', lambda d: 加中文(块(d, 1), '即此'), '[T19即]', ['T19']),
+    ('L16行首标点', '出片', '23', '23 说明换行后以“，”开头', _l16, '[L16]', ['L16']),
+    ('T25用户释义没上画面', '出片', '08', '08 S17 去掉用户给的 set out to 说明', _gloss, '[T25]', ['T25']),
+    ('T4方向反了', '出片', '23', '23 S1 before 放在“之后才”上', _dir, '[T4方向]', ['T4', 'T20']),
+    ('T2形容词译成地', '出片', '23', '23 形容词重点词“…的”改成“…地”', _adv, '[T2词性]', ['T2']),
+    ('W3排版指令', '出片', '23', '23 S2 译文里混进“（放到翻译的正下方）”', lambda d: 加中文(块(d, 1), '（放到翻译的正下方）'), '[W3]', ['W3']),
+    ('T10改稿无原话', '出片', '23', '23 S4 中文改一个字、没有用户原话', _zh1, '[T10改稿]', ['T10']),
+    ('逐句确认没重做', '出片', '23', '23 S4 改了中文没重新逐句确认', _zh1, '[逐句确认]', ['T3', 'T7', 'T8', 'T15', 'T21']),
+    ('T34同序挤一组', '出片', '23', '23 两个重点词合进一组', _merge, '[T34]', ['T34']),
+    ('T9对齐太粗', '出片', '23', '23 最长一块的所有组合成一组', _coarse, '[T9对齐]', ['T9']),
     ('A23Inky', '读音', '07', '重放 07 Inky 读成 ink-EYE：读音改正表去掉 Inky', None, 'Inky', ['A23', '守则6']),
 ]
+
+
+# 钩子入口（Claude 钩子 = 我自己每一个动作的真实入口）：(编号, 闸门种类, 工具调用, 必须出现的字样, 规矩)
+钩子场景 = [
+    ('C5派子代理', '子代理', {'tool_input': {'prompt': '帮我把这篇审校一遍'}}, '【T29 闸门】', ['C5', 'T29']),
+    ('A25一次发两个', '发文件', {'tool_input': {'files': ['a.mp4', 'b.mp4']}}, '【A25 闸门】', ['A25', 'W8', 'W9', '守则7']),
+    ('A25没过核查就发', '发文件', {'tool_input': {'files': ['/tmp/演练_没核查.mp4']}}, '没有核查通过的回执', ['A25', '守则7']),
+    ('G13跳过钩子', '命令', {'tool_input': {'command': 'git commit --no-verify -m x'}}, '【规则执行闸门】', ['G13', '守则16']),
+    ('G13改钩子路径', '命令', {'tool_input': {'command': 'git config core.hooksPath /dev/null'}}, 'core.hooksPath', ['G13']),
+    ('C1强推master', '命令', {'tool_input': {'command': 'git push -f origin master'}}, '【部署闸门】', ['C1', 'C2']),
+    ('C2部署', '命令', {'tool_input': {'command': 'npx vercel --prod'}}, '【部署闸门】', ['C1', 'C2']),
+    ('W2直接读Word', '命令', {'tool_input': {'command': "python3 -c \"from docx import Document; Document('用户.docx')\""}}, '【W2 闸门】', ['W2']),
+    ('G10中文pkill', '命令', {'tool_input': {'command': 'pkill -f 定稿流水线'}}, '【G10 闸门】', ['G10']),
+]
+
+
+def 跑钩子(kind, payload):
+    for f in payload.get('tool_input', {}).get('files', []):   # 闸门只查存在的文件：造一个没有回执的真文件
+        if f.startswith('/tmp/演练_'): open(f, 'wb').write(os.urandom(64))
+    r = subprocess.run(['python3', f'{T}/钩子/闸门.py', kind], input=json.dumps(payload, ensure_ascii=False), capture_output=True, text=True, timeout=60)
+    return r.stdout + r.stderr
 
 
 def 工作区(W, root, sid, no, d, 改正=None):
@@ -96,7 +168,7 @@ def 演练(W, 只=None):
     root = os.path.dirname(os.path.abspath(W))
     fix = json.load(open(f'{T}/发音词典/读音改正.json'))
     jobs, base = [], {}
-    for sid, entry, no, how, fn, want, rules in 场景:
+    for sid, entry, no, how, fn, want, rules, *_ in 场景:
         if 只 and sid not in 只: continue
         d0 = json.load(open(f'{W}/scripts/{no}.json'))
         if (entry, no) not in base: base[(entry, no)] = 工作区(W, root, f'原样_{entry}_{no}', no, d0, fix if entry == '读音' else None)
@@ -115,11 +187,15 @@ def 演练(W, 只=None):
                 c, o = 跑('出片', '24', ws, 拆门=True); new = o - bo.get(('出片', '24'), (0, set()))[1]
                 return sid, not any('[T36]' in l for l in new), '拆掉 T36 的门后，演练报“没挡住”（演练能发现坏门）' if not any('[T36]' in l for l in new) else '拆掉门后演练还说挡住了：演练失灵'
             s = next(x for x in 场景 if x[0] == sid); entry, no, want = s[1], s[2], s[5]
-            c, o = 跑(entry, no, ws); new = o - bo[(entry, no)][1]
+            c, o = 跑(entry, no, ws); new = o if len(s) > 7 and s[7] == '不比原样' else o - bo[(entry, no)][1]   # 重放真实事故：现行脚本里的漏网处本身就必须报出
             hit = [l for l in new if want in l]
             ok = c != 0 and bool(hit)
             return sid, ok, (hit[0][:90] if hit else f'没挡住（退出码 {c}，新报出 {len(new)} 行：{"；".join(sorted(new))[:120]}）')
         res = list(ex.map(one, jobs))
+        for sid, kind, payload, want, _ in 钩子场景:
+            if 只 and sid not in 只: continue
+            o = 跑钩子(kind, payload); ok = want in o and '"deny"' in o
+            res.append((sid, ok, ('拦下：' + want) if ok else f'没挡住：{o[:100]}'))
     for x in os.listdir(root):
         if x.startswith('演练_'): shutil.rmtree(f'{root}/{x}', ignore_errors=True)
     return res
@@ -128,8 +204,15 @@ def 演练(W, 只=None):
 def 覆盖():
     """{规矩: 演练样本}：本程序的场景 + 出片守门自检（make_video 入口）的每一项"""
     cov = {}
-    for sid, entry, no, how, fn, want, rules in 场景:
+    for sid, entry, no, how, fn, want, rules, *_ in 场景:
         for r in rules: cov.setdefault(r, []).append(f'执行效应演练 {sid}')
+    for sid, kind, payload, want, rules in 钩子场景:
+        for r in rules: cov.setdefault(r, []).append(f'执行效应演练 {sid}（钩子）')
+    # 已有的真入口自检（规则执行核查每次当场跑）：在临时仓库/临时副本里真跑那支程序、造错必须停
+    for prog, rs in {'推送自检.py（临时仓库真跑 推送两仓库.sh）': ['G1', 'G2', 'G3', 'G4', 'G11', '守则3', '流12'],
+                     '同步自检.py（临时副本真跑 sync_article.py）': ['S1', 'S3', 'S5'],
+                     '出片守门自检.py（隔离工作区真跑 make_video.py）': ['A44', 'A36']}.items():
+        for r in rs: cov.setdefault(r, []).append(prog)
     cov.setdefault('守则19', []).append('执行效应演练 自查拆门（拆掉 T36 的门，演练必须报没挡住）')
     sys.path.insert(0, T); import 出片守门自检 as G
     for c in G.CASES:

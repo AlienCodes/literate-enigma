@@ -231,12 +231,19 @@ def _lemma(w, sq):
 
 
 def _ph_pats(text, lem, word):
-    return {m.group(3).lower() for m in re.finditer(r"\b(" + re.escape(lem) + r"\w*|" + re.escape(word.lower()) + r")\b((?:\s+" + PH_SLOT + r")*)\s+(" + '|'.join(PH_PREPS) + r")\b", text, re.I)}
+    text = re.sub(r"\b(" + '|'.join(PH_PREPS) + r")((?:/(?:" + '|'.join(PH_PREPS) + r"))+)", lambda m: m.group(0).replace('/', ' / '), text)   # depart from/for：斜线后的介词也算（24 S1 depart … for 漏掉，T22 重犯）
+    alts = {p for m in re.finditer(r"\b(?:" + re.escape(lem) + r"\w*|" + re.escape(word.lower()) + r")\b\s+(" + '|'.join(PH_PREPS) + r")((?:\s+/\s+(?:" + '|'.join(PH_PREPS) + r"))+)", text, re.I) for p in re.findall(r"\w+", m.group(2).lower())}
+    return alts | {m.group(3).lower() for m in re.finditer(r"\b(" + re.escape(lem) + r"\w*|" + re.escape(word.lower()) + r")\b((?:\s+" + PH_SLOT + r")*)\s+(" + '|'.join(PH_PREPS) + r")\b", text, re.I)}
+
+
+T22宽_起 = 24   # 24 S1 departed South Georgia, a remote whaling outpost, for Antarctica 漏网（用户看草稿才发现）：24 起跨同位语逗号往后找（到 ; : . 为止、10 个词以内），
+PH_GEN = ['for', 'to', 'from', 'on', 'with', 'into', 'of']   # 并且动词重点词后面出现这些常见搭配介词一律列为待确认（结论只认“不是搭配：……”，放行口子核查管）
 
 
 def phrase_checks(d, no):
     """[T22] 返回待确认列表"""
     sq = sq_table(no); ok = d.get('核对确认', {}).get('短语', {}); out = []
+    wide = str(no).isdigit() and int(no) >= T22宽_起
     for i, s in enumerate(d['sentences'], 1):
         en = ' '.join(c['en'] for c in s['chunks']); notes = ' '.join(c.get('note', '') for c in s['chunks'])
         keys = [k.lower().split() for c in s['chunks'] for k in re.findall(r'\*\*[^*]+\*\*\(([^)]+)\)', c['zh'])]
@@ -255,15 +262,16 @@ def phrase_checks(d, no):
                     out.append(f'[T22] {key}「{toks[j - 1][0]} {w}」  ← 介词 + 名词的固定用法（in flocks、in desperation）只标了名词？是就整体加粗、同色，中文意思标全（T23）；不是就核实后写进 核对确认.短语')
             lem = _lemma(wc, sq)
             preps = _ph_pats(sq.get(wc.lower(), '') + ' ' + sq.get(lem, '') + ' ' + notes, lem, wc) | set(PH_CORE.get(lem, []))
+            if wide and re.match(r'\s*v\.', sq.get(wc.lower(), '')): preps |= set(PH_GEN)
             for prep in sorted(preps):
-                for q in range(j + 1, min(len(toks), j + 7)):
+                for q in range(j + 1, min(len(toks), j + (11 if wide else 7))):
                     t, bb = toks[q]
                     if re.sub(r"[^\w'-]", '', t).lower() == prep:
                         if not bb and not any(prep in k and wc.lower() in k for k in keys):
                             key = f'S{i} {wc} … {prep}'
                             if key not in ok: out.append(f'[T22] {key}「{" ".join(x for x, _ in toks[j:q + 1])}」  ← 重点词的短语型用法只标了一个词？是固定搭配就整体加粗、同色（被隔开的按 T14），不是就核实后写进 核对确认.短语')
                         break
-                    if re.search(r'[,;:.!?]$', t): break
+                    if re.search(r'[;:.!?]$' if wide else r'[,;:.!?]$', t): break
     return out
 
 
