@@ -36,6 +36,9 @@ def record_gate(no, stage):
     return record_gate_text(open(rec).read() if os.path.exists(rec) else '', no, stage)
 
 
+人判格式_起 = 25
+
+
 def record_gate_text(txt, no, stage):
     if '## 踩坑对照记录' not in txt:
         return [f'制作记录/{no}.md 没有"## 踩坑对照记录"（先运行：交付核查.py {no} 对照表，再逐条填写）']
@@ -47,6 +50,9 @@ def record_gate_text(txt, no, stage):
     err = []
     if miss: err.append(f'踩坑对照记录缺条目（《踩坑总表》新加的条目要补进去）：{" ".join(miss)}')
     if blank: err.append(f'踩坑对照记录没填完（{stage}阶段必须填）：{" ".join(blank)}')
+    if int(no) >= 人判格式_起:   # 规矩全面落实 三：G6/C3/C4 只认固定格式：“本篇无：……”或“本篇有：……”且引用户原话
+        bad = [i for i in ('G6', 'C3', 'C4') if i in rows and i in need and not (re.match(r'^本篇无[：:].{4,}', rows[i][-1]) or (re.match(r'^本篇有[：:]', rows[i][-1]) and re.search(r'“[^”]{4,}”', rows[i][-1])))]
+        if bad: err.append(f'踩坑对照记录：{" ".join(bad)} 只认固定格式（25 起）：“本篇无：具体说明”，或“本篇有：怎么做的，用户原话“……””')
     if int(no) >= 21:   # 只有人能判的坑（G6 不覆盖原稿、C3 两次要求冲突要问、C4 插话合并一次改）：要写明本篇具体怎么做的，不许用开工时自动填的套话
         tao = [i for i in ('G6', 'C3', 'C4') if i in rows and i in need and (len(rows[i][-1]) < 8 or '按现行做法由程序把关' in rows[i][-1])]
         if tao: err.append(f'踩坑对照记录：{" ".join(tao)} 只有人能判，要写明本篇具体怎么做的（不许用开工时自动填的套话）')
@@ -60,6 +66,11 @@ def selftest_record_human():
     fails = []
     if not any('只有人能判' in x for x in record_gate_text(rec('按现行做法由程序把关（踩坑总表“拦住”），本篇核查通过'), '21', '文本')): fails.append('没抓到：只有人能判的坑用了套话（G6/C3/C4）')
     if record_gate_text(rec('用户两次要求不冲突，没有需要问的'), '21', '文本'): fails.append('G6/C3/C4 误报：写明了具体做法')
+    def rec2(v): return '## 踩坑对照记录\n' + '\n'.join(f'| {i} | x | 涉及 | ' + (v if i in ('G6', 'C3', 'C4') else '本篇已逐条核对，具体做法见制作记录') + ' |' for i in ids)
+    if not any('只认固定格式' in x for x in record_gate_text(rec2('用户两次要求不冲突，没有需要问的'), '25', '文本')): fails.append('没抓到：25 起 G6/C3/C4 没按固定格式写（本篇无/本篇有）')
+    if not any('只认固定格式' in x for x in record_gate_text(rec2('本篇有：合并成一次改了'), '25', '文本')): fails.append('没抓到：25 起“本篇有”却没引用户原话')
+    if record_gate_text(rec2('本篇无：用户没有提互相冲突的要求，也没有插话'), '25', '文本'): fails.append('G6/C3/C4 误报：固定格式“本篇无：……”')
+    if record_gate_text(rec2('本篇有：两次插话合并成一次改，用户原话“这两处一起改”'), '25', '文本'): fails.append('G6/C3/C4 误报：固定格式“本篇有：……“原话””')
     return fails
 
 

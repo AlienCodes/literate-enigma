@@ -23,6 +23,7 @@ exec 9>"$W/.定稿流水线_$no.lock"; flock -n 9 || { echo "【停止】第${no
 [ -f make_video.py ] && [ -f "scripts/$no.json" ] && [ -d fonts ] || stop "请在视频工作目录下运行（要有 make_video.py、scripts/$no.json、fonts/）"
 cmp -s make_video.py $T/make_video.py && cmp -s render.py $T/render.py || stop "工作目录里的 make_video.py / render.py 与仓库工具不一致，先同步（出片和核查必须用同一份程序）"
 
+python3 $T/放行口子核查.py --定稿 $no || stop "用户还没说定稿（画19/流7：用户试听确认后才算定稿；用户原话记进 用户同意记录.json，用于写“定稿 $no”）"
 python3 $T/工作稿核对.py $no || stop "工作目录的脚本是旧稿（G19）"
 python3 $T/补对照记录.py $no > /dev/null || stop "补对照记录失败"   # 新加的、程序把关的坑自动补进对照记录；只有人能判的不补（缺了 ① 照样停）
 step "⓪ 规则执行核查（守则16）"; python3 $T/规则执行核查.py > "$LOG/规则执行.log" 2>&1 || { tail -25 "$LOG/规则执行.log"; stop "规则执行核查不通过"; }

@@ -335,7 +335,7 @@ def main():
     部分 = [k for k in R if reg.get(k, {}).get("部分靠人")]   # 门只管得了一部分的规矩，如实列出（2026-10-23 覆盖审查）
     if '--状态' in a:
         print(f'【规则执行机器】规矩 {len(R)} 条：已由程序执行 {len(R) - len(per)} 条，'
-              f'缺口 {len(per)} 条（只许减少，目标 0）；只能靠人判的 {sum(只靠人(reg, k) for k in R)} 条：{" ".join(k for k in R if 只靠人(reg, k))}；程序只管一部分、其余靠逐句确认或用户把关的 {len(部分)} 条：{" ".join(部分)}' + (f'；基线外问题 {len(new) + len(gl)} 处，提交和推送会被拦住' if new or gl else ''))
+              f'缺口 {len(per)} 条（只许减少，目标 0）；只能靠人判的 {sum(只靠人(reg, k) for k in R)} 条：{" ".join(k for k in R if 只靠人(reg, k))}；程序只管一部分、其余靠逐句确认或用户把关的 {len(部分)} 条：{" ".join(部分)}；判断靠人、但由程序逐条点名且只认固定格式的 {sum(1 for k in R if reg.get(k, {}).get("固定格式确认"))} 条' + (f'；基线外问题 {len(new) + len(gl)} 处，提交和推送会被拦住' if new or gl else ''))
         return 0
     if '--清单' in a:
         for k in R:

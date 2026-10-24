@@ -190,6 +190,31 @@ def 指纹(s):
     return hashlib.sha1(json.dumps([(c.get('en'), c.get('zh'), c.get('note'), c.get('align')) for c in s['chunks']], ensure_ascii=False).encode()).hexdigest()[:12]
 
 
+逐句格式_起 = 25   # 规矩全面落实 三（用户 2026-10-24：“做着做着你就……又去自由发挥了”）：逐句确认原来一句套话贴到每一句上；25 起改成逐项固定格式
+逐句项 = ['T1没加信息', 'T3词性', 'T6不生硬', 'T7通顺', 'T8看得懂', 'T21贴合语境']
+
+
+def 逐句格式(d, rec, no):
+    """每句的结论逐项写（项名：内容），每项至少 4 个字；T3词性 要点名这一句的重点词；最后一句另有 T33简述讲全；
+    不许两句一模一样（套话）；不许写例外、放宽、不改"""
+    if not str(no).isdigit() or int(no) < 逐句格式_起: return []
+    out, seen = [], {}
+    for i, s in enumerate(d['sentences']):
+        r = rec.get(f'S{i + 1}')
+        if not r or r.get('指纹') != 指纹(s): continue          # 没确认的由 [逐句确认] 报
+        t = str(r.get('结论', '')); items = 逐句项 + (['T33简述讲全'] if i == len(d['sentences']) - 1 else [])
+        labs = re.findall(r'(T\d+[一-鿿]+)：', t); parts = dict(zip(labs, re.split(r'T\d+[一-鿿]+：', t)[1:]))
+        miss = [x for x in items if len(re.sub(r'[\s，。；、]', '', parts.get(x, ''))) < 4]
+        if miss: out.append(f'[逐句格式] S{i + 1} 逐句确认缺项或太短：{"、".join(miss)}（25 起每项写“项名：本句具体核了什么”）')
+        keys = {w.lower() for c in s['chunks'] for w in re.findall(r'\*\*([^*]+)\*\*', c['en'])}
+        if keys and not any(k in parts.get('T3词性', '').lower() for k in keys): out.append(f'[逐句格式] S{i + 1} T3词性 没点名本句的重点词（{"、".join(sorted(keys))[:40]}）')
+        if re.search(r'例外|放宽|特批|不改|将就|先这样', t): out.append(f'[逐句格式] S{i + 1} 逐句确认里写了例外/放宽/不改：规矩不许写例外（G24）')
+        k = re.sub(r'S\d+', '', t)
+        if k in seen: out.append(f'[逐句格式] S{i + 1} 逐句确认和 {seen[k]} 一字不差（套话）：每句写本句具体核了什么')
+        else: seen[k] = f'S{i + 1}'
+    return out
+
+
 def 逐句(d, rec):
     out = []
     for i, s in enumerate(d['sentences']):
@@ -210,6 +235,7 @@ def 查(d, no, art):
         except Exception: return {} if j else ''
     err = 改稿门(d, 读(f'{V}/脚本/已发版本/{no}.json', True), 读(f'{V}/制作记录/{no}_待改清单.md'))
     _ae, _ac = 对齐(d, ok); err += _ae + 同序组(d, ok)
+    _ac = _ac + 逐句格式(d, 读(f'{V}/制作记录/逐句确认/{no}.json', True), no)
     conf = _ac + 比较结构(d, ok) + 方向(d, ok) + 词性(d, art, ok) + 同词异译(d, ok) + 排版指令(d, ok) + [x.replace(' NN ', f' {no} ') for x in 逐句(d, 读(f'{V}/制作记录/逐句确认/{no}.json', True))]
     return err, conf
 
@@ -228,6 +254,16 @@ def 自检():
     if not 同词异译({'sentences': [句(('scan', '**扫描**(scan)')), 句(('scan', '**浏览**(scan)'))]}, {}): fails.append('没抓到：同一个重点词全篇译法不一（文10）')
     if 同词异译({'sentences': [句(('scan', '**扫描**(scan)')), 句(('scan', '**扫描**(scan)'))]}, {}): fails.append('文10 误报')
     if not 排版指令({'sentences': [句(('it', '它（放到翻译的正下方）'))]}, {}): fails.append('没抓到：译文里的排版指令（W3）')
+    # 逐句格式（25 起，规矩全面落实 三）
+    zd = {'sentences': [句(('a **vast** plain', '一片**辽阔的**(vast)平原')), 句(('the **ice** held', '**冰**(ice)撑住了'))]}
+    good = lambda s, k, extra='': 'T1没加信息：只译了原文' + s + '。T3词性：' + k + ' 与速查表一致。T6不生硬：读着自然流畅。T7通顺：' + s + '整句通顺。T8看得懂：不需要背景知识。T21贴合语境：' + k + ' 贴合本句' + extra
+    rz = {'S1': {'指纹': 指纹(zd['sentences'][0]), '结论': good('平原', 'vast')}, 'S2': {'指纹': 指纹(zd['sentences'][1]), '结论': good('冰撑住', 'ice', '。T33简述讲全：从头到尾讲到了结局')}}
+    if 逐句格式(zd, rz, '25'): fails.append('逐句格式 误报：逐项写全的确认')
+    if 逐句格式(zd, {k: {**v, '结论': '2026-10-24 逐条核对：词性与速查表一致，中文通顺'} for k, v in rz.items()}, '25'): pass
+    else: fails.append('没抓到：逐句确认一句套话贴到每一句（逐句格式）')
+    if not 逐句格式(zd, {**rz, 'S1': {**rz['S1'], '结论': good('平原', 'plain')}}, '25'): fails.append('没抓到：T3词性 没点名本句重点词（逐句格式）')
+    if not 逐句格式(zd, {**rz, 'S2': {**rz['S2'], '结论': good('冰撑住', 'ice')}}, '25'): fails.append('没抓到：最后一句缺 T33简述讲全（逐句格式）')
+    if 逐句格式(zd, {k: {**v, '结论': '套话'} for k, v in rz.items()}, '24'): fails.append('逐句格式 误报：24 以前不查')
     old = {'sentences': [句(('Prices soared', '价格一路飙升'))]}; new = copy.deepcopy(old); new['sentences'][0]['chunks'][0]['zh'] = '价格暴涨'
     if not 改稿门(new, old, '用户：这一句不用改'): fails.append('没抓到：没有用户原话就改了已发的中文（T10/铁13）')
     if 改稿门(new, old, '用户原话：“价格暴涨” 一路飙升 改为 暴涨'): fails.append('T10改稿 误报：用户原话里有的改动')

@@ -120,6 +120,9 @@ def 自检():
     if 判('引号', '用户 2026-10-24：“我编的一句话不在记录里”', rec) is None: fails.append('没抓到：引的“原话”不在用户同意记录里（AI 编的）')
     if 判('非人声', {'配音指纹': 'c81ce56b1f49', '依据': '2026-10-09 实际声音（逐 5 ms 电平）'}, rec): fails.append('G24 误报：正常的非人声核实被报出')
     if 判('新类别XYZ', '随便', rec) is None: fails.append('没抓到：没登记的确认类别')
+    if 定稿同意('24', rec): fails.append('没抓到：用户没说定稿就跑定稿流水线（画19/流7）')
+    if not 定稿同意('24', rec + [{'篇': '24', '日期': '2026-10-24', '原话': '可以，定稿吧', '用于': '定稿 24'}]): fails.append('定稿门 误报：用户同意记录里有“定稿 24”')
+    if not 定稿同意('20', rec): fails.append('定稿门 误报：24 以前已定稿的篇目')
     if 查篇({'核对确认': {'牛津逗号': {'S1 a, b and': '英式写法，不改'}}}, '23', rec): fails.append('G24 误报：24 以前已定稿篇目被报出（只列不改）')
     if not 查篇({'核对确认': {'牛津逗号': {'S1 a, b and': '英式写法，不改'}}}, '24', rec): fails.append('没抓到：24 起的“英式写法、不改”（G24）')
     # ④ 代码里新长出来的口子
@@ -128,6 +131,15 @@ def 自检():
     for want in ('新口子类', 'SKIP_ALL', '假程序.py:99', '读音放宽特批'):
         if not any(f'“{want}”' in x for x in nb): fails.append(f'没抓到：代码里没登记的新口子 {want}（G24）')
     return fails
+
+
+定稿_起 = 24   # 画19/流7/单22：用户试听确认后才算定稿——定稿流水线先查 用户同意记录 里有这一篇“定稿”的用户原话（24 起）
+
+
+def 定稿同意(no, rec=None):
+    rec = 同意() if rec is None else rec
+    if not str(no).isdigit() or int(no) < 定稿_起: return True
+    return any(r.get('篇') == no and '定稿' in r.get('用于', '') and len(_ns(r.get('原话', ''))) >= 2 for r in rec)
 
 
 def 体检(lo, hi):
@@ -151,6 +163,9 @@ def main():
         for x in nb: print('  ✘ ' + x)
         if not nb: print(f'代码里的口子全部登记（确认 {len(表["确认"])} 类、特批字段 {len(表["特批字段"])}、开关 {len(表["开关"])}、起查 {len(表["起查"])}）')
         return 1 if f or nb else 0
+    if a and a[0] == '--定稿':
+        no = a[1].zfill(2); ok = 定稿同意(no)
+        print(f'第{no}篇 用户定稿原话：' + ('有' if ok else '【没有】用户试听确认后才算定稿：把用户说定稿的原话（逐字）记进 用户同意记录.json，用于写“定稿 ' + no + '”')); return 0 if ok else 1
     if a and a[0] == '--体检':
         lo, hi = int(a[1]), int(a[2]); n_all, rows = 体检(lo, hi); nb = sum(1 for r in rows if r.startswith('- '))
         out = f'{V}/制作记录/放行口子体检.md'
