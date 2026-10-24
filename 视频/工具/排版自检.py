@@ -88,13 +88,14 @@ def _run(r):   # 一行里最长的连续色块段 (长度, 起, 止)
 rr = [_run(box[y]) for y in range(box.shape[0])]; ym = int(np.argmax([r[0] for r in rr]))
 if rr[ym][0] > 100 * R.S:
     x0, x1 = rr[ym][1], rr[ym][2]; cxw = (x0 + x1) / 2; cx = int(cxw)
+    cxp = x0 + 30 * R.S   # 色块左边留白处（字到不了）量上下边界：在正中量会被字截断，H3 量不出字偏了（2026-10-24 执行效应演练查出）
     y0 = ym
-    while y0 > 0 and box[y0 - 1, cx]: y0 -= 1
+    while y0 > 0 and box[y0 - 1, cxp]: y0 -= 1
     y1 = ym
-    while y1 < box.shape[0] - 1 and box[y1 + 1, cx]: y1 += 1
+    while y1 < box.shape[0] - 1 and box[y1 + 1, cxp]: y1 += 1
     判('H1 片头色块水平居中', abs(cxw - T2.W / 2) <= 2 * R.S, f'{cxw} vs {T2.W / 2}')
     判('H2 色块是圆角长方形', not box[y0, x0] and not box[y1, x1] and box[y0, cx] and box[(y0 + y1) // 2, x0])
-    ink = (np.abs(a[y0:y1 + 1, x0:x1 + 1] - np.array((20, 40, 32))).sum(2) < 60); iy = np.where(ink)[0]
+    ink = (np.abs(a[y0:y1 + 1, x0 + 24 * R.S:x1 - 24 * R.S] - np.array((20, 40, 32))).sum(2) < 60); iy = np.where(ink)[0]   # 去掉圆角外的底色（四角会被当成字）
     判('H3 色块里的字上下居中', len(iy) > 0 and abs((iy.min() + iy.max()) / 2 - (y1 - y0) / 2) <= 3 * R.S, f'{(iy.min() + iy.max()) / 2 if len(iy) else None} vs {(y1 - y0) / 2}')
 else: 判('H1–H3 片头色块', False, '画面里找不到色块')
 # D5/文24：{{…}} 注解只显示、不朗读（朗读前去掉，括号里的字不进配音）

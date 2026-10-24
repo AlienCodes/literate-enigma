@@ -16,7 +16,7 @@ from concurrent.futures import ThreadPoolExecutor
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T)
 STAMP = f'{T}/执行效应演练通过.json'; GAPB = f'{T}/执行效应缺口基线.json'
 被演练 = ['钩子/闸门.py', '踩坑核查.py', '译文核查.py', '破折号.py', 'check_all.py', '读音核对.py', 'make_video.py', 'render.py', '执行效应演练.py', '规则执行表.json', '放行口子核查.py', '放行口子表.json', '用户同意记录.json',
-         '定稿流水线.sh', '归档定稿视频.py', '定稿视频核对.py', '工作稿核对.py', '补对照记录.py', '重查记录.py', '全篇核查.py', '开工提醒.sh', '开工记录.py', '初稿生成/核对.py', '规则执行核查.py']
+         '定稿流水线.sh', '归档定稿视频.py', '定稿视频核对.py', '工作稿核对.py', '补对照记录.py', '重查记录.py', '全篇核查.py', '开工提醒.sh', '开工记录.py', '初稿生成/核对.py', '规则执行核查.py', '排版自检.py', 'title2.py']
 指纹 = lambda p: hashlib.sha256(open(p, 'rb').read()).hexdigest() if os.path.exists(p) else '无'
 
 
@@ -136,6 +136,13 @@ def _t23(d):
 def _rec(no): return f'视频/制作记录/{no}.md'
 def _改行(f, no, i, v): f[_rec(no)] = re.sub(rf'^(\| *{i} *\|.*\| *(?:涉及|不涉及) *\|).*\|\s*$', lambda m: m.group(1) + f' {v} |', f[_rec(no)], count=1, flags=re.M)
 def _删节(f, no, h): t = f[_rec(no)]; i = t.index(h); j = t.find('\n## ', i + 1); f[_rec(no)] = t[:i] + (t[j + 1:] if j > 0 else '')
+def _变异(prog, old, new):
+    def fn(f):
+        k = f'视频/工具/{prog}'; t = f[k].decode() if isinstance(f[k], bytes) else f[k]
+        assert t.count(old) == 1, f'{prog} 里找不到（或不止一处）：{old[:40]}'; f[k] = t.replace(old, new).encode()
+    return fn
+
+
 仓库场景 = [
     ('G6固定格式25', '踩坑出片', '25', '25 的 G6 写成套话以外的自由句子（不是“本篇无/本篇有”）', lambda f: _改行(f, '25', 'G6', '用户两次要求不冲突，没有需要问的'), '只认固定格式', ['G6', 'C3', 'C4']),
     ('C4固定格式25', '踩坑出片', '25', '25 的 C4 写“本篇有：合并改了”但没有用户原话', lambda f: _改行(f, '25', 'C4', '本篇有：两次插话合并成一次改了'), '只认固定格式', ['C4', 'C3']),
@@ -167,10 +174,32 @@ def _删节(f, no, h): t = f[_rec(no)]; i = t.index(h); j = t.find('\n## ', i + 
     ('G23开工记录不覆盖', '开工记录', '25', '主对话已写好方法设计后再跑 开工记录', None,
      lambda c, o, M: (open(f'{M}/{_rec("25")}').read().startswith(仓库底稿('25')[_rec('25')].rstrip('\n')), '已有的制作记录原样保留、只追加'), ['G23']),
     ('T37多词重点词不误报', '初稿', '24', '重放 24：hinge on 等多词重点词，初稿核对不许报“缺”', None, lambda c, o, M: (c == 0 and not any('缺：' in l for l in o) and any('对照里都在' in l for l in o), '多词重点词不误报'), ['T37']),
+    # —— B 类：画面、片头（render.py、title2.py 的做法就是门）：镜像里把排版程序改坏一处（= 有人改程序改坏了画面），
+    #    真入口 排版自检.py（规则执行核查每次当场跑：提交、推送、交付核查、定稿流水线 ⓪ 都过它）必须报出那一条
+    *[(f'{k}排版程序改坏', '排版', '24', how, _变异(prog, old, new), f'没抓到：{want}', rules) for k, prog, how, old, new, want, rules in [
+        ('L1', 'render.py', '字号不再取放得下的最大号（固定一个小号）', 'for es in range(130*S,30,-1):', 'for es in [60*S]:', 'L1/L4 每屏字号铺满', ['L1']),
+        ('L4', 'render.py', '字号全片统一（不按句算）', 'for es in range(130*S,30,-1):', 'for es in [60*S]:', 'L4 字号按句算', ['L4']),
+        ('L5', 'render.py', '中文字号比例改成 0.8', 'ES_FIXED=None; ZR=0.72', 'ES_FIXED=None; ZR=0.8', 'L5 中文 = 英文 × 0.72', ['L5']),
+        ('L2', 'render.py', '一行放得下也拆行', "if u!='\\x00' and wcur+w>maxw and lines[-1] and u.strip():", "if u!='\\x00' and lines[-1] and u.strip():", 'L2 放得下不拆行', ['L2']),
+        ('L3', 'render.py', '末行孤词不再查', 'def orphan_lines(chunks,colors,notes,es):', 'def orphan_lines(chunks,colors,notes,es):\n    return []', 'L3 末行孤词查得出', ['L3']),
+        ('L6', 'render.py', '数字按单个数字拆', "parts=re.findall(r'\\S+\\s*|\\s+',t) if not cjk", "parts=re.findall(r'\\d\\s*|[^\\d\\s]+\\s*|\\s+',t) if not cjk", 'L6 数字不拆', ['L6']),
+        ('L7', 'render.py', '说明不计入字号', 'wide=max([wide]+[nf.getlength(_note_txt(ln))', 'wide=max([wide]+[0*nf.getlength(_note_txt(ln))', 'L7 说明计入字号', ['L7']),
+        ('L8', 'render.py', '正文页画上标题', '_grouping(chunks,colors))\n    im=bg(); d=ImageDraw.Draw(im)', "_grouping(chunks,colors))\n    im=bg(); d=ImageDraw.Draw(im); d.text((40,20),str(header),fill=(255,255,255),font=ZH(40*S,400))", 'L8 正文页不画标题', ['L8']),
+        ('L10', 'render.py', '另译不再用黄字', 'nc=(251,191,36) if on else dim((251,191,36))', 'nc=(200,200,200) if on else dim((200,200,200))', 'L10 另译黄字', ['L10']),
+        ('L11', 'render.py', '重点词中文两侧不留间隙', 'tx[0] not in PUN: res.append((KSP,None))', 'tx[0] not in PUN: pass', 'L11 重点词两侧间隙', ['L11']),
+        ('L15', 'render.py', '中文意思找不到颜色也不停', 'if miss: raise SystemExit(f\'【停止】画面上这些中文意思找不到颜色', 'if False: raise SystemExit(f\'【停止】画面上这些中文意思找不到颜色', 'L15 找不到颜色就停', ['L15']),
+        ('D5', 'render.py', '{{注解}} 也朗读', "def strip_gloss(t): return re.sub(r'\\{\\{.*?\\}\\}','',t)", 'def strip_gloss(t): return t', 'D5 注解只显示不朗读', ['D5']),
+        ('D6', 'render.py', '中文格内 \\n 不去掉', "def strip_zh(t): return re.sub(ZCOL,r'\\1',t).replace('\\n','')", "def strip_zh(t): return re.sub(ZCOL,r'\\1',t)", 'D6 格内分行与彩色说明', ['D6']),
+        ('画1', 'render.py', '画面改成 16:10', 'W,H=1920*S,1080*S', 'W,H=1920*S,1200*S', '画1 画面 16:9', ['画1']),
+        ('H1', 'title2.py', '片头色块往右偏', '[(W - zw) / 2 - pad, y, (W + zw) / 2 + pad, y + ph]', '[(W - zw) / 2 - pad + 300 * S, y, (W + zw) / 2 + pad + 300 * S, y + ph]', 'H1 片头色块水平居中', ['H1']),
+        ('H2', 'title2.py', '色块不是圆角', 'radius=18 * S, fill=AC1', 'radius=0, fill=AC1', 'H2 色块是圆角长方形', ['H2']),
+        ('H3', 'title2.py', '色块里的字往下偏', 'y + (ph - (bb[3] - bb[1])) / 2 - bb[1]), zh', 'y + (ph - (bb[3] - bb[1])) / 2 - bb[1] + 20 * S), zh', 'H3 色块里的字上下居中', ['H3']),
+    ]],
 ]
 # 拆门自查（每种入口拆一道门，演练必须报“没挡住”）：(入口, 篇, 用哪一场, 拆门代码)
 仓库拆门 = [('踩坑出片', '25', 'G6固定格式25', 'K.人判格式_起 = 999'),
         ('流水线', '24', '流7没说定稿就定稿', lambda f: f.__setitem__('视频/工具/放行口子核查.py', f['视频/工具/放行口子核查.py'].replace(b'def \xe5\xae\x9a\xe7\xa8\xbf\xe5\x90\x8c\xe6\x84\x8f(no, rec=None):', b'def \xe5\xae\x9a\xe7\xa8\xbf\xe5\x90\x8c\xe6\x84\x8f(no, rec=None):\n    return True'))),
+        ('排版', '24', 'L5排版程序改坏', lambda f: f.__setitem__('视频/工具/排版自检.py', f['视频/工具/排版自检.py'].replace('判(\'L5 中文 = 英文 × 0.72\', '.encode(), '判(\'L5 中文 = 英文 × 0.72\', True or '.encode()))),
         ('清点', '23', 'G9存的不是最终版', 'import hashlib;hashlib.sha256=lambda b=b\'\': hashlib.md5(b\'\')')]
 
 
@@ -263,6 +292,7 @@ def 仓库跑(entry, no, M, ws, 拆门=None):
     if entry == '踩坑出片':
         cmd = ['python3', '-c', f"import sys;sys.path.insert(0,{tool!r});import 踩坑核查 as K;{拆门};sys.argv=['踩坑核查.py',{no!r},'出片'];sys.exit(K.main())"] if 拆门 else ['python3', f'{tool}/踩坑核查.py', no, '出片']
     elif entry == '踩坑文本': cmd = ['python3', f'{tool}/踩坑核查.py', no, '文本']
+    elif entry == '排版': cmd = ['python3', f'{tool}/排版自检.py']
     elif entry == '归档': cmd = py('归档定稿视频.py', no)
     elif entry == '清点': cmd = py('定稿视频核对.py', '--只查清点和镜像', no)
     elif entry == '规则核查': cmd = ['python3', f'{tool}/规则执行核查.py']
