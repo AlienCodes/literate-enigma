@@ -5,8 +5,9 @@
 import os, json, hashlib
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T)
 STAMP = f'{T}/全篇重查通过.json'
-def 程序指纹(t=T):   # 铁4：出片程序、排版程序（配音处理、停顿规则都在 make_video.py 里）
-    return hashlib.sha256(b''.join(open(f'{t}/{f}', 'rb').read() for f in ('make_video.py', 'render.py'))).hexdigest()[:16]
+def 程序指纹(t=T):   # 铁4：出片程序、排版程序（配音处理、停顿规则都在 make_video.py 里）；G27：make_video 递归 import 的全部模块（对正量、片头等）
+    import sys; sys.path.insert(0, T); import 出片指纹 as Z
+    return hashlib.sha256(b''.join(open(p, 'rb').read() for _, p in sorted(Z.清单([t]).items()))).hexdigest()[:16]
 def _sha(p): return hashlib.sha256(open(p, 'rb').read()).hexdigest()[:16]
 def 已出片():
     P = os.path.dirname(V); out = {}

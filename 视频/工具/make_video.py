@@ -930,6 +930,7 @@ def build(js,out):
             f.write("file 'AUDIO_ONLY'\n")
         sf.write(f'{work}/a.wav',A,SR)
         subprocess.run([FF,'-y','-loglevel','error','-i',f'{work}/a.wav','-af',AF,'-c:a','aac','-b:a','256k','-movflags','+faststart',out],check=True)
+        import 出片指纹 as _ZW; _ZW.写(js,out,work)   # G26：记下这个视频是哪份脚本、配音、程序出的，交付核查 出片后 核对
         print(out,round(total,1),'s','只出声音（没有画面）'); return
     # render images: one uniform size = largest that fits every screen with locked layout
     sizes=[R.max_es([[tuple(p) for p in c['align']] for c in s['chunks']],R.sent_colors(colors,s),[c.get('note') for c in s['chunks']]) for s in d['sentences']]
@@ -960,5 +961,6 @@ def build(js,out):
     sf.write(f'{work}/a.wav',A,SR)
     subprocess.run([FF,'-y','-loglevel','error','-f','concat','-safe','0','-i',f'{work}/list.txt','-i',f'{work}/a.wav',
         '-af',AF,'-c:v','libx264','-tune','stillimage','-crf','16','-preset','slow','-pix_fmt','yuv420p','-r','30','-c:a','aac','-b:a','256k','-shortest','-movflags','+faststart',out],check=True)
+    import 出片指纹 as _ZW; _ZW.写(js,out,work)   # G26：记下这个视频是哪份脚本、配音、程序出的（出片中途失败就没有新指纹，旧视频过不了 出片后）
     print(out,round(total,1),'s',len(files),'screens')
 if __name__=='__main__': build(sys.argv[1],sys.argv[2])
