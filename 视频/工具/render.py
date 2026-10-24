@@ -226,6 +226,7 @@ def apply_script(d):
         if not ('用户' in v_.get('依据', '') and '特批' in v_.get('依据', '') and 1 < float(v_.get('倍数', 0)) <= 1.5):
             raise SystemExit(f'【停止】说明放宽特批 {k_} 不合规：依据要写用户原话（含“用户”“特批”），倍数在 1–1.5 之间（用户：“不要过于宽”）')
         NOTE_WIDE[' '.join(p[0] for c in d['sentences'][int(k_[1:]) - 1]['chunks'] for p in c['align'])] = float(v_['倍数'])
+    ALIGN_RULE[0] = str(d.get('no', '0')).isdigit() and int(d.get('no', '0')) >= ALIGN_FROM   # 重点词对正只管 24 起（01–23 定稿画面不变，G9）
     NOTE_RULE[0] = str(d.get('no', '0')).isdigit() and int(d.get('no', '0')) >= 12   # L19 只管 12 起（已定稿的 01–11 画面不变）   # 12 用户：emotional attachment 两词颜色各用各的，下面一条下划线连起来表示是一个整体（中文“情感依恋”同样）
 def _pair_cols(pairs,colors,ef,zf,gapx):
     cols=[]
@@ -234,7 +235,7 @@ def _pair_cols(pairs,colors,ef,zf,gapx):
         sz=[s for l in zl for s in l]; wl=[sum(zf.getlength(t) for t,_ in l) for l in zl]
         we=sum(ef.getlength(t) for t,_ in se); zr_=(zh or '').split('\n')
         wz=max([w_ for w_,r_ in zip(wl,zr_) if not (re.fullmatch(ZCOL,r_.strip()) and re.fullmatch(ZCOL,r_.strip()).group(1) in GLOSS_ANCHOR)] or [0])
-        cols.append(dict(se=se,sz=sz,zl=zl,wl=wl,nz=len(zl),we=we,wz=wz,w=max(we,wz),nowrap='{{=}}' in en,brk='{{换行}}' in en,zr=(zh or '').split('\n')))
+        cols.append(dict(se=se,sz=sz,zl=zl,wl=wl,nz=len(zl),we=we,wz=wz,w=max(we,wz),nowrap='{{=}}' in en,brk='{{换行}}' in en,zr=(zh or '').split('\n'),er=en))
     return cols
 def _wrap_cols(cols,maxw,gapx):
     g=_wrap_greedy(cols,maxw,gapx); g=[x for x in g if x]
@@ -318,7 +319,46 @@ def orphan_lines(chunks,colors,notes,es):
                     last=''.join(u for u,_ in el[-1]).split()
                     if len(last)==1: out.append((i+1,last[0]))
     return out
-def _under_x(c,k,zf,x):
+ALIGN_RULE=[False]; ALIGN_FROM=24
+def _key_spans(segs,fnt,x0,keys):
+    """一行字里每个重点词（按颜色）从最左到最右的范围：{颜色: [左, 右]}；keys = 这一行 ** ** 里的重点词原文"""
+    out={}; acc=x0
+    for t,col in segs:
+        w_=fnt.getlength(t)
+        if col is not None and t in keys:
+            b=out.setdefault(col,[acc,acc+w_]); b[0]=min(b[0],acc); b[1]=max(b[1],acc+w_)
+        acc+=w_
+    return out
+def _zh_keys(r): return set(re.findall(r'\*\*([^*]+)\*\*\(',r))
+def col_place(c,ef,zf,x,align=None):
+    """一格里英文起点和每行中文起点（出片程序与 对正量.py 共用）。默认（01–23）：都在格内居中。
+    重点词对正（24 起，用户 2026-10-24：“尽量让他放在这个就是正对着这个英文的底下，尽量尽可能在不影响这个整体布局的情况下”）：
+    格宽、换行、分组、字一个不动，只在本格内平移英文行和各行中文，让同色中文的中心尽量落在英文重点词中心的正下方
+    （总偏移最小；一样小时离原来居中最近）。说明行（词下说明）照旧跟着上一行的词走。"""
+    xe0=x+(c['w']-c['we'])/2; xz0=[x+(c['w']-wl)/2 for wl in c['wl']]
+    if not (ALIGN_RULE[0] if align is None else align): return xe0,xz0
+    ek=_key_spans(c['se'],ef,0,set(re.findall(r'\*\*([^*]+)\*\*',c.get('er','')))); 
+    lines=[]
+    for k,l in enumerate(c['zl']):
+        zk=_key_spans(l,zf,0,_zh_keys(c['zr'][k])); pr=[((ek[col][0]+ek[col][1])/2,(b[0]+b[1])/2) for col,b in zk.items() if col in ek]
+        if pr and c['w']-c['wl'][k]>=0 and not (k and re.fullmatch(ZCOL,c['zr'][k].strip())): lines.append((k,pr))
+    if not lines: return xe0,xz0
+    def best(xe):
+        cost=0.0; dev=abs(xe-xe0); pos={}
+        for k,pr in lines:
+            lo,hi=x,x+c['w']-c['wl'][k]; v=sorted(xe+ce-cz for ce,cz in pr); n=len(v)
+            z=min(max(xz0[k],v[(n-1)//2]),v[n//2]); z=min(max(z,lo),hi)
+            cost+=sum(abs(xe+ce-z-cz) for ce,cz in pr); dev+=abs(z-xz0[k]); pos[k]=z
+        return round(cost,1),round(dev,1),pos
+    lo,hi=x,x+c['w']-c['we']; cand={xe0,lo,hi}
+    for k,pr in lines:
+        for ce,cz in pr:
+            for z in (x,x+c['w']-c['wl'][k],xz0[k]): cand.add(z+cz-ce)
+    r_=min((best(min(max(e,lo),hi))+(min(max(e,lo),hi),) for e in cand),key=lambda t:(t[0],t[1]))
+    xz=list(xz0)
+    for k,z in r_[2].items(): xz[k]=z
+    return r_[3],xz
+def _under_x(c,k,zf,x,px=None):
     """同一格里，第 k 行只有一个说明 {{（…）|key}}、上一行有重点词 **词**(key)：说明的中心对准这个词的中心（不超出这一格）。否则 None（照常居中）"""
     if k==0: return None
     m=re.fullmatch(ZCOL,c['zr'][k].strip())
@@ -327,7 +367,7 @@ def _under_x(c,k,zf,x):
     for mm in re.finditer(r'\*\*([^*]+)\*\*\(([^)]*)\)',prev):
         if mm.group(2).lower()==key: mk=mm.group(1); break
     if mk is None: return None
-    segs=c['zl'][k-1]; x0=x+(c['w']-c['wl'][k-1])/2; acc=0.0; cx=None
+    segs=c['zl'][k-1]; x0=x+(c['w']-c['wl'][k-1])/2 if px is None else px; acc=0.0; cx=None
     for t,_ in segs:
         if t==mk and cx is None: cx=x0+acc+zf.getlength(t)/2
         acc+=zf.getlength(t)
@@ -354,12 +394,13 @@ def frame_interlinear(chunks,colors,header,progress,out,active=None,maxw=1840,ma
                 y=draw_lines(d,el,ef,y,lhE); y=draw_lines(d,zl,zf,y,lhZ); y+=rgap; continue
             tw=sum(c['w'] for c in r)+gapx*(len(r)-1); x=(W-tw)/2
             for c in r:
-                xx=x+(c['w']-c['we'])/2
+                xe,xz=col_place(c,ef,zf,x)
+                xx=xe
                 for t,col in c['se']:
                     f=col or FG_EN; f=f if on else dim(f); d.text((xx,y),t,font=ef,fill=f); xx+=ef.getlength(t)
                 for k,(l,wl) in enumerate(zip(c['zl'],c['wl'])):
-                    xx=x+(c['w']-wl)/2
-                    ux=_under_x(c,k,zf,x)                                      # 单独一行的说明：放在它所注的那个词正下方（07 S4 用户要求）
+                    xx=xz[k]
+                    ux=_under_x(c,k,zf,x,xz[k-1] if k else None)               # 单独一行的说明：放在它所注的那个词正下方（07 S4 用户要求）
                     if ux is not None: xx=ux
                     for t,col in l:
                         f=col or FG_ZH; f=f if on else dim(f); d.text((xx,y+lhE+k*lhZ),t,font=zf,fill=f); xx+=zf.getlength(t)

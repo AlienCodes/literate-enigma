@@ -938,6 +938,9 @@ def build(js,out):
     if R.NOTE_RULE[0]:                                                  # L19：说明行不得比正文宽（12 起）
         wn=[(si+1,x) for si,s in enumerate(d['sentences']) for x in R.wide_notes([[tuple(p) for p in c['align']] for c in s['chunks']],R.sent_colors(colors,s),[c.get('note') for c in s['chunks']],100)]
         if wn: raise SystemExit('【停止】说明行比上面的英文正文宽（L19，用户 2026-10-16：“不要超过上面的那一行”），在标点处分行（字不改）：'+'；'.join(f'S{a} “{b[1][:24]}…” {b[2]}>{b[3]}' for a,b in wn))
+    if str(d.get('no','0')).isdigit() and int(d['no'])>=24:              # L20：重点词对正（24 起，用户 2026-10-24）
+        sys.path.insert(0,os.path.dirname(os.path.abspath(R.__file__))); import 对正量 as _DZ; _e=_DZ.gate(d['no'],d); R.apply_script(d)
+        if _e: raise SystemExit('【停止】重点词中文没对正（L20，用户 2026-10-24：“尽量让他放在这个就是正对着这个英文的底下”）：'+'；'.join(_e[:5]))
     orph=[(si+1,b,w_) for si,s in enumerate(d['sentences']) for b,w_ in R.orphan_lines([[tuple(p) for p in c['align']] for c in s['chunks']],R.sent_colors(colors,s),[c.get('note') for c in s['chunks']],min(sizes[si],100*R.S))]
     if orph: raise SystemExit('【停止】整组折行后最后一行只剩一个词（L3）：'+'；'.join(f'S{a} 第{b}块末行“{c_}”' for a,b,c_ in orph)+'。这一组加 {{=}} 保持一行（字号自动缩到放得下），或经用户同意改分组')
     files=[]; t=0

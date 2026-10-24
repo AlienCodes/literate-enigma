@@ -751,6 +751,18 @@ def selftest_l19():
     return fails
 
 
+def selftest_l20():
+    """L20 自检：真实 24 不报；画法退回格内居中，必须报出"""
+    sys.path.insert(0, T); import 对正量 as _DZ; fails = []
+    d = json.load(open(f'{V}/脚本/24.json'))
+    if _DZ.gate('24', d): fails.append('L20 误报：24 原样被报出')
+    o = _DZ.R.col_place; _DZ.R.col_place = lambda c, ef, zf, x, align=None: o(c, ef, zf, x, False)
+    try:
+        if not _DZ.gate('24', d): fails.append('没抓到：重点词中文没对正（L20）')
+    finally: _DZ.R.col_place = o
+    return fails
+
+
 def selftest_record_meta():
     """T29/T31 自检：写全的不报；去掉方法设计、方法复盘，必须分别报出"""
     ok_ = '## 方法设计\n- 预计调用：10 次\n- 预计 token：100 万\n\n## 方法复盘\n- 无\n'; fails = []
@@ -771,7 +783,7 @@ def main():
         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
         return 1 if vf else 0
     sys.path.insert(0, T); import 译文核查 as _YW
-    fails = selftest() + _YW.自检() + selftest_record_human() + selftest_l19() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart() + __import__('破折号').自检()
+    fails = selftest() + _YW.自检() + selftest_record_human() + selftest_l19() + selftest_l20() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart() + __import__('破折号').自检()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
@@ -795,6 +807,8 @@ def main():
     if int(no) >= 10: err += ending_note_checks(d, no)                  # T28 结尾要有一段解说（10 起）
     _rec = open(f'{V}/制作记录/{no}.md').read()
     if int(no) >= 12: err += l19_checks({**json.load(open(f'scripts/{no}.json')), '_no': no})   # [L19] 铁律（用户 2026-10-16，见 l19_checks）
+    if int(no) >= 24:                                               # [L20] 重点词对正（用户 2026-10-24，24 起；对正量.py：做得到的必须正对，做不到的由程序给出几何原因）
+        sys.path.insert(0, T); import 对正量 as _DZ; err += [f'[L20] {x}' for x in _DZ.gate(no, json.load(open(f'scripts/{no}.json')))]
     err += record_meta_checks(no, _rec)                             # [T31] 方法设计、[T29] 方法复盘（见 record_meta_checks）
     sys.path.insert(0, T); import 重点词被去掉 as _QD                   # [T32] 用户 2026-10-17：这一篇有重点词因撞词被去掉，做时必须先告诉用户
     if _QD.记录(no) and not d.get('核对确认', {}).get('已告诉用户被去掉的重点词'):

@@ -105,6 +105,11 @@ sg6 = R._segs_zh('{{（刮下来）|scraped}}', {'scraped': (9, 9, 9)})
 判('D6 格内分行与彩色说明', R.strip_zh('第一行\n第二行{{（说明）|word}}') == '第一行第二行（说明）' and ('（刮下来）', (9, 9, 9)) in sg6)
 # 画1：画面 16:9（1920×1080，4K 时 ×2）
 im1 = Image.open(f'{td}/b.png'); 判('画1 画面 16:9', im1.size == (1920 * R.S, 1080 * R.S) and R.W * 9 == R.H * 16)
+# L20：重点词对正（24 起对正、做不到的程序给出几何原因）；01–23 照旧格内居中（G9）
+import 对正量 as _DZ
+判('L20 重点词对正', not _DZ.gate('24', _DZ.load('24')))
+_d23 = _DZ.load('23'); _a = [r['偏'] for r in _DZ.measure(_d23, None)[0]]; _b = [r['偏'] for r in _DZ.measure(_d23, False)[0]]
+判('L20 01–23 照旧居中', _a == _b and not R.ALIGN_RULE[0])
 shutil.rmtree(td)
 print('排版自检：' + (f'通过（{len(ok_)} 项：' + '、'.join(x.split(' ')[0] for x in ok_) + ' 造的错都报出、正例不误报）' if not fails else '失灵！' + '；'.join(fails)))
 sys.exit(1 if fails else 0)

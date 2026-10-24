@@ -209,6 +209,8 @@ def _变异(prog, old, new):
         ('D5', 'render.py', '{{注解}} 也朗读', "def strip_gloss(t): return re.sub(r'\\{\\{.*?\\}\\}','',t)", 'def strip_gloss(t): return t', 'D5 注解只显示不朗读', ['D5']),
         ('D6', 'render.py', '中文格内 \\n 不去掉', "def strip_zh(t): return re.sub(ZCOL,r'\\1',t).replace('\\n','')", "def strip_zh(t): return re.sub(ZCOL,r'\\1',t)", 'D6 格内分行与彩色说明', ['D6']),
         ('画1', 'render.py', '画面改成 16:10', 'W,H=1920*S,1080*S', 'W,H=1920*S,1200*S', '画1 画面 16:9', ['画1']),
+        ('L20', 'render.py', '重点词中文不再对正（退回格内居中）', '    if not (ALIGN_RULE[0] if align is None else align): return xe0,xz0', '    return xe0,xz0', 'L20 重点词对正', ['L20', '画22', '单28']),
+        ('L20旧篇', 'render.py', '对正排法开到 01–23（定稿画面变了）', 'ALIGN_RULE=[False]; ALIGN_FROM=24', 'ALIGN_RULE=[False]; ALIGN_FROM=1', 'L20 01–23 照旧居中', ['L20', '画22']),
         ('H1', 'title2.py', '片头色块往右偏', '[(W - zw) / 2 - pad, y, (W + zw) / 2 + pad, y + ph]', '[(W - zw) / 2 - pad + 300 * S, y, (W + zw) / 2 + pad + 300 * S, y + ph]', 'H1 片头色块水平居中', ['H1']),
         ('H2', 'title2.py', '色块不是圆角', 'radius=18 * S, fill=AC1', 'radius=0, fill=AC1', 'H2 色块是圆角长方形', ['H2']),
         ('H3', 'title2.py', '色块里的字往下偏', 'y + (ph - (bb[3] - bb[1])) / 2 - bb[1]), zh', 'y + (ph - (bb[3] - bb[1])) / 2 - bb[1] + 20 * S), zh', 'H3 色块里的字上下居中', ['H3']),
