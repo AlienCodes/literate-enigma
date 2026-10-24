@@ -99,8 +99,8 @@ if __name__ == '__main__':
     if '--门' in a:
         for no in [x for x in a if x != '--门']:
             e = gate(no)
-            if e: print('\n'.join(f'✘ [T37] {no} {x}' for x in e[:8])); raise SystemExit(f'【停止】{no} 重点词对正 {len(e)} 处不合格（T37）')
-            print(f'✔ [T37] {no} 重点词对正通过')
+            if e: print('\n'.join(f'✘ [L20] {no} {x}' for x in e[:8])); raise SystemExit(f'【停止】{no} 重点词对正 {len(e)} 处不合格（L20）')
+            print(f'✔ [L20] {no} 重点词对正通过')
         sys.exit()
     for no in a:
         d = load(no); r0, ng, kb = measure(d, False); r1, *_ = measure(d, True)
