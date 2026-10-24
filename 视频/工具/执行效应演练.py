@@ -123,6 +123,118 @@ def _t23(d):
 ]
 
 
+# 仓库入口（D 类：读仓库文件的门，如 制作记录/NN.md 的踩坑对照记录、25 起才查的固定格式）：
+# 在临时“仓库镜像”里跑真程序（镜像 = 仓库根的符号链接，只有要改的文件是副本；程序从镜像路径启动，V/ROOT 指向镜像，真仓库一个字不动）。
+# 25 还没有：用 24 的脚本、制作记录副本当 25（篇号设成 25，25 起才查的门就生效）。
+# (编号, 入口, 篇, 怎么造, 改法(files: {仓库相对路径: 文本}), 必须新报出的字样, 规矩)
+def _rec(no): return f'视频/制作记录/{no}.md'
+def _改行(f, no, i, v): f[_rec(no)] = re.sub(rf'^(\| *{i} *\|.*\| *(?:涉及|不涉及) *\|).*\|\s*$', lambda m: m.group(1) + f' {v} |', f[_rec(no)], count=1, flags=re.M)
+def _删节(f, no, h): t = f[_rec(no)]; i = t.index(h); j = t.find('\n## ', i + 1); f[_rec(no)] = t[:i] + (t[j + 1:] if j > 0 else '')
+仓库场景 = [
+    ('G6固定格式25', '踩坑出片', '25', '25 的 G6 写成套话以外的自由句子（不是“本篇无/本篇有”）', lambda f: _改行(f, '25', 'G6', '用户两次要求不冲突，没有需要问的'), '只认固定格式', ['G6', 'C3', 'C4']),
+    ('C4固定格式25', '踩坑出片', '25', '25 的 C4 写“本篇有：合并改了”但没有用户原话', lambda f: _改行(f, '25', 'C4', '本篇有：两次插话合并成一次改了'), '只认固定格式', ['C4', 'C3']),
+    ('G6套话', '踩坑出片', '25', '25 的 G6 用开工自动填的套话', lambda f: _改行(f, '25', 'G6', '按现行做法由程序把关（踩坑总表“拦住”），本篇核查通过'), '只有人能判', ['G6', 'C3', 'C4']),
+    ('法1对照没填完', '踩坑出片', '25', '25 踩坑对照记录 T1 一格写回“待填”', lambda f: _改行(f, '25', 'T1', '待填'), '没填完', ['法1']),
+    ('守则13没写方法设计', '踩坑出片', '25', '25 制作记录删掉“## 方法设计”', lambda f: _删节(f, '25', '## 方法设计'), '[T31]', ['守则13', 'T31']),
+    ('守则12没写方法复盘', '踩坑出片', '25', '25 制作记录删掉“## 方法复盘”', lambda f: _删节(f, '25', '## 方法复盘'), '[T29]', ['守则12', 'T29']),
+    ('S2速查表本文重复', '踩坑出片', '24', '24 速查表 departed 一行写成两个“本文：”', lambda f: _改文(f, _文24, '| departed | v.', '| departed | 本文：离开；本文：出发；v.'), 'S2 速查表', ['S2']),
+    ('S4速查表缺词性', '踩坑出片', '24', '24 速查表 remote 一行只剩“本文：”', lambda f: _改文(f, _文24, '| remote | adj. 偏远的', '| remote | 本文：偏远的 |x'), 'S4 速查表缺词性', ['S4']),
+    ('G18原稿重点词空', '踩坑出片', '24', '原稿重点词.json 没有本篇（重放 20 篇浅克隆）', lambda f: _改json(f, '视频/工具/原稿重点词.json', lambda o: o.pop(_文24)), 'G18 原稿重点词', ['G18']),
+    ('T11重点词漏标', '踩坑出片', '24', '24 一个重点词的中文去掉 (英文) 标记（check_all D4）', lambda f: _改json(f, '视频/脚本/24.json', _d4), '[check_all] D4', ['T11']),
+    ('T12新加撞词', '踩坑出片', '24', '24 把别篇加粗过的词也加粗（新加重点词撞词）', lambda f: _改json(f, '视频/脚本/24.json', _撞词), 'T12 新加重点词撞词', ['T12', 'T17']),
+]
+# 拆门自查（每种入口拆一道门，演练必须报“没挡住”）：(入口, 篇, 用哪一场, 拆门代码)
+仓库拆门 = [('踩坑出片', '25', 'G6固定格式25', 'K.人判格式_起 = 999')]
+
+
+_文24 = os.path.relpath(__import__('glob').glob(f'{os.path.dirname(V)}/新版定稿/24-*.md')[0], os.path.dirname(V))
+def _读(f, k): return f[k] if k in f else open(f'{os.path.dirname(V)}/{k}').read()
+def _改文(f, k, old, new):
+    t = _读(f, k); assert old in t, old; f[k] = t.replace(old, new, 1)
+def _改json(f, k, fn):
+    o = json.loads(_读(f, k)); fn(o); f[k] = json.dumps(o, ensure_ascii=False, indent=1)
+def _英文段(x):
+    t = open(x).read(); return t.split('## 英文', 1)[1].split('## 中文', 1)[0]
+def _撞词(d):
+    """24 里找一个别篇加粗过、24 原稿没加粗的词，加粗并补中文标记"""
+    P = os.path.dirname(V); import glob
+    other = {b.lower() for x in glob.glob(f'{P}/新版定稿/[0-9][0-9]-*.md') if not os.path.basename(x).startswith('24') and os.path.exists(f'{V}/脚本/{os.path.basename(x)[:2]}.json')
+             for b in re.findall(r'\*\*([^*]+)\*\*', _英文段(x)) if ' ' not in b}
+    orig = {x.lower() for x in json.load(open(f'{T}/原稿重点词.json')).get(_文24, [])}
+    for s in d['sentences']:
+        for c in s['chunks']:
+            for i, (a, z) in enumerate(c['align']):
+                for w in re.findall(r'(?<![*A-Za-z])([a-z]{6,})(?![*A-Za-z])', a):
+                    if w in other and w not in orig and z and '**' not in z:
+                        c['en'] = re.sub(rf'(?<![*A-Za-z]){w}(?![*A-Za-z])', f'**{w}**', c['en'], count=1); c['align'][i] = [re.sub(rf'(?<![*A-Za-z]){w}(?![*A-Za-z])', f'**{w}**', a, count=1), f'**{z}**({w})']
+                        c['zh'] = ''.join(b for _, b in c['align']); return
+    raise KeyError('24 里没有可撞的词')
+
+
+def 仓库底稿(no):
+    """镜像里要改的文件的底稿（篇号 25 用 24 的副本；G6/C3/C4 先填合格的固定格式，原样就不报这一格）"""
+    src = '24' if no == '25' else no
+    rec = open(f'{V}/制作记录/{src}.md').read()
+    f = {_rec(no): rec, f'视频/脚本/{no}.json': open(f'{V}/脚本/{src}.json').read()}
+    for i in ('G6', 'C3', 'C4'): _改行(f, no, i, '本篇无：演练底稿，用户没有提互相冲突的要求，没有插话，没有多版本设计稿')
+    return f
+
+
+def 镜像(M, files):
+    """M = 仓库镜像根：其余一律符号链接到真仓库，files 里的写成副本（父目录变成真目录）"""
+    P = os.path.dirname(V); shutil.rmtree(M, ignore_errors=True); os.makedirs(M)
+    real = {'/'.join(k.split('/')[:i]) for k in files for i in range(1, len(k.split('/')))}
+    def fill(rel):
+        for x in os.listdir(f'{P}/{rel}' if rel else P):
+            r = f'{rel}/{x}' if rel else x
+            if x == '.git' or r in files: continue
+            if r in real: os.makedirs(f'{M}/{r}'); fill(r)
+            else: os.symlink(f'{P}/{r}', f'{M}/{r}')
+    fill('')
+    for k, t in files.items(): os.makedirs(os.path.dirname(f'{M}/{k}'), exist_ok=True); open(f'{M}/{k}', 'w').write(t)
+    return M
+
+
+def 仓库跑(entry, no, M, ws, 拆门=None):
+    tool = f'{M}/视频/工具'
+    if entry == '踩坑出片':
+        cmd = ['python3', '-c', f"import sys;sys.path.insert(0,{tool!r});import 踩坑核查 as K;{拆门};sys.argv=['踩坑核查.py',{no!r},'出片'];sys.exit(K.main())"] if 拆门 else ['python3', f'{tool}/踩坑核查.py', no, '出片']
+    r = subprocess.run(cmd, capture_output=True, text=True, cwd=ws, timeout=900)
+    return r.returncode, set(l.strip() for l in (r.stdout + r.stderr).splitlines() if l.strip())
+
+
+def 仓库演练(W, root, 只=None):
+    todo = [s for s in 仓库场景 if not 只 or s[0] in 只]
+    if not todo: return []
+    base, jobs = {}, []
+    for sid, entry, no, how, fn, want, rules in todo:
+        f0 = 仓库底稿(no)
+        if (entry, no) not in base:
+            d = json.loads(f0[f'视频/脚本/{no}.json'])
+            base[(entry, no)] = (镜像(f'{root}/演练_镜像_原样_{entry}_{no}', f0), 工作区(W, root, f'原样仓库_{entry}_{no}', no, d))
+        f = dict(f0)
+        try: fn(f)
+        except Exception as e: jobs.append((sid, None, None, f'样本找不到：{e}')); continue
+        if f == f0: jobs.append((sid, None, None, '样本找不到：改法没改动任何文件')); continue
+        jobs.append((sid, 镜像(f'{root}/演练_镜像_{sid}', f), 工作区(W, root, f'仓库_{sid}', no, json.loads(f[f'视频/脚本/{no}.json'])), None))
+    with ThreadPoolExecutor(4) as ex:
+        bo = dict(zip(base, ex.map(lambda k: 仓库跑(k[0], k[1], *base[k]), base)))
+        def one(j):
+            sid, M, ws, err = j
+            if err: return sid, False, err
+            s = next(x for x in 仓库场景 if x[0] == sid); entry, no, want = s[1], s[2], s[5]
+            c, o = 仓库跑(entry, no, M, ws); hit = [l for l in o - bo[(entry, no)][1] if want in l]
+            return sid, c != 0 and bool(hit), (hit[0][:90] if hit else f'没挡住（退出码 {c}）')
+        res = list(ex.map(one, jobs))
+        for entry, no, sid, code in 仓库拆门:
+            if 只 and sid not in 只: continue
+            j = next((x for x in jobs if x[0] == sid and x[1]), None)
+            if not j: res.append((f'自查拆门_{entry}', False, '样本找不到')); continue
+            c, o = 仓库跑(entry, no, j[1], j[2], 拆门=code); caught = any(s[5] in l for s in 仓库场景 if s[0] == sid for l in o - bo[(entry, no)][1])
+            res.append((f'自查拆门_{entry}', not caught, f'拆掉门（{code}）后演练报“没挡住”（演练能发现坏门）' if not caught else '拆掉门后演练还说挡住了：演练失灵'))
+    return res
+
+
 # 钩子入口（Claude 钩子 = 我自己每一个动作的真实入口）：(编号, 闸门种类, 工具调用, 必须出现的字样, 规矩)
 钩子场景 = [
     ('C5派子代理', '子代理', {'tool_input': {'prompt': '帮我把这篇审校一遍'}}, '【T29 闸门】', ['C5', 'T29']),
@@ -196,8 +308,9 @@ def 演练(W, 只=None):
             if 只 and sid not in 只: continue
             o = 跑钩子(kind, payload); ok = want in o and '"deny"' in o
             res.append((sid, ok, ('拦下：' + want) if ok else f'没挡住：{o[:100]}'))
+    res += 仓库演练(W, root, 只)
     for x in os.listdir(root):
-        if x.startswith('演练_'): shutil.rmtree(f'{root}/{x}', ignore_errors=True)
+        if x.startswith('演练_'): (os.unlink if os.path.islink(f'{root}/{x}') else lambda p: shutil.rmtree(p, ignore_errors=True))(f'{root}/{x}')
     return res
 
 
@@ -208,6 +321,8 @@ def 覆盖():
         for r in rules: cov.setdefault(r, []).append(f'执行效应演练 {sid}')
     for sid, kind, payload, want, rules in 钩子场景:
         for r in rules: cov.setdefault(r, []).append(f'执行效应演练 {sid}（钩子）')
+    for sid, entry, no, how, fn, want, rules in 仓库场景:
+        for r in rules: cov.setdefault(r, []).append(f'执行效应演练 {sid}（仓库镜像）')
     # 已有的真入口自检（规则执行核查每次当场跑）：在临时仓库/临时副本里真跑那支程序、造错必须停
     for prog, rs in {'推送自检.py（临时仓库真跑 推送两仓库.sh）': ['G1', 'G2', 'G3', 'G4', 'G11', '守则3', '流12'],
                      '同步自检.py（临时副本真跑 sync_article.py）': ['S1', 'S3', 'S5'],

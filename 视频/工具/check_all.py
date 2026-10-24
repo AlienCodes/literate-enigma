@@ -93,7 +93,10 @@ for f in glob.glob(f'{ROOT}/新版定稿/[0-9][0-9]-*.md'):
         k=ckey(b)
         if k: others.setdefault(k,set()).add(n)
 import subprocess
-orig=set(json.load(open(f'{os.path.dirname(os.path.abspath(__file__))}/原稿重点词.json')).get(os.path.relpath(md,ROOT),[]))   # 原稿（提交 fc50170）的重点词，存成文件：新容器浅克隆没有这个提交，T12 曾因此误报撞词（2026-10-23 第20篇）
+_of=f'{os.path.dirname(os.path.abspath(__file__))}/原稿重点词.json'   # G18：缺了或没有本篇就停（新容器浅克隆没有原稿提交，原稿重点词会被误报成新撞词）
+_oj=json.load(open(_of)) if os.path.exists(_of) else {}
+if not _oj.get(os.path.relpath(md,ROOT)): bad.append(f'G18 原稿重点词.json 缺了或没有本篇（{os.path.relpath(md,ROOT)}）：撞词核查会把原稿重点词误报成新撞词')
+orig=set(_oj.get(os.path.relpath(md,ROOT),[]))  #   # 原稿（提交 fc50170）的重点词，存成文件：新容器浅克隆没有这个提交，T12 曾因此误报撞词（2026-10-23 第20篇）
 warn=[]
 for s in d['sentences']:
     for c in s['chunks']:
