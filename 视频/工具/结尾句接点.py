@@ -6,6 +6,25 @@
   --写入：把 结尾句 写进 scripts/NN.json（已有就覆盖这一句的设置）。"""
 import sys, os, re, json
 import numpy as np
+# G31（2026-10-24 25 草稿）：--写入 整句覆盖，把手写的“前段增益dB”（25 S17 -2.5 dB）冲掉了。只覆盖本程序算出的字段，别的原样保留；
+# 接点变了，前段音调的“范围”（按接点算的）作废，出片程序会停下要求重跑 --写前段音调范围
+算的 = ('前段语速', '最后一段语速', '最后一段前停顿', '接点', '前段单独合成', '依据')
+def 合并(old, e):
+    keep = {k: v for k, v in (old or {}).items() if k not in 算的}
+    if old and old.get('接点') != e['接点'] and isinstance(keep.get('前段音调'), dict) and '范围' in keep['前段音调']:
+        keep['前段音调'] = {k: v for k, v in keep['前段音调'].items() if k != '范围'}
+    return {**e, **keep}
+def 自检():
+    f = []; e = {'前段语速': 0.9, '最后一段语速': 0.78, '最后一段前停顿': 0.7, '接点': [100, 200], '依据': '新'}
+    old = {'前段语速': 0.88, '接点': [100, 200], '依据': '旧', '前段增益dB': -2.5, '前段单独合成': True, '前段音调': {'半音': -1, '范围': [0.1, 0.4]}}
+    m = 合并(old, e)
+    if m.get('前段增益dB') != -2.5: f.append('没抓到：重跑接点 --写入 把“前段增益dB”冲掉了（G31 重放 25 S17）')
+    if m.get('前段音调', {}).get('范围') != [0.1, 0.4]: f.append('接点没变却丢了前段音调范围')
+    if m['前段语速'] != 0.9 or m['依据'] != '新' or '前段单独合成' in m: f.append('本程序算的字段没按新算的覆盖')
+    if '范围' in 合并(old, dict(e, 接点=[150, 200]))['前段音调']: f.append('没抓到：接点变了，按旧接点算的前段音调范围还留着')
+    return ['结尾句接点 自检：' + x for x in f]
+if '--自检' in sys.argv:
+    e = 自检(); print('\n'.join(e) or '结尾句接点 自检通过（重跑 --写入 保留前段增益dB 等手写字段；接点变了作废前段音调范围）'); sys.exit(1 if e else 0)
 sys.path.insert(0, '.')
 exec(open('make_video.py').read().split("if __name__")[0])
 args = [a for a in sys.argv[1:] if not a.startswith('--')]; no_ = args[0].zfill(2)
@@ -70,5 +89,5 @@ print(f'  最后一段：“{tail_}”')
 print(f'  前段 {spF}：接点样本 {mF}（{mF / SR:.3f} 秒，所在静音 {nF} ms）；最后一段 {spS}：接点样本 {mS}（{mS / SR:.3f} 秒，所在静音 {nS} ms）')
 print('  结尾句 = ' + json.dumps({f'S{si_}': e_}, ensure_ascii=False))
 if '--写入' in sys.argv:
-    d_.setdefault('结尾句', {})[f'S{si_}'] = e_
+    d_.setdefault('结尾句', {})[f'S{si_}'] = 合并(d_.get('结尾句', {}).get(f'S{si_}'), e_)   # G31：手写的前段增益dB 等原样保留
     json.dump(d_, open(js_, 'w'), ensure_ascii=False, indent=1); print(f'  已写进 {js_}')
