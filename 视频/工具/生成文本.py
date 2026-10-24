@@ -43,6 +43,7 @@ if sys.argv[1:2] == ['--自检']:
     print('生成文本 自检：' + ('通过（Word 逐格读回、PDF 没生成、docx 一起覆盖且不碰用户稿：错例全部报出，正例不误报）' if not fails else '失灵！' + '；'.join(fails)))
     sys.exit(1 if fails else 0)
 no = sys.argv[1].zfill(2); js = os.path.abspath(f'scripts/{no}.json'); d = json.load(open(js))
+只核查 = '--只核查' in sys.argv   # 守则17（用户 2026-10-24：“以后先不要再去做word或者是PDF了……先只做视频即可”）：只过核查、存已发版本，不出 Word/HTML/PDF
 docx, html, pdf = (os.path.abspath(f'{no}-文本.{x}') for x in ('docx', 'html', 'pdf'))
 t0 = time.time(); bad = []
 # 最高铁律：先过踩坑核查（含核查程序自检、踩坑对照记录、换行比对），不通过不生成、不发
@@ -50,6 +51,12 @@ _m = subprocess.run(['python3', f'{T}/规则执行核查.py'], capture_output=Tr
 if _m.returncode: sys.exit(_m.stdout.strip() + '\n【规则执行核查不通过，不生成、不发给用户】')
 r = subprocess.run(['python3', f'{T}/踩坑核查.py', no, '文本'], capture_output=True, text=True); print(r.stdout.strip())
 if r.returncode: sys.exit('【踩坑核查不通过，不生成、不发给用户】')
+if 只核查:
+    if d.get('换行变更已获同意'):
+        d.setdefault('换行变更记录', []).append({'日期': time.strftime('%Y-%m-%d'), **d.pop('换行变更已获同意')})
+        json.dump(d, open(js, 'w'), ensure_ascii=False, indent=1)
+    shutil.copy(js, f'{T}/../脚本/{no}.json'); os.makedirs(f'{T}/../脚本/已发版本', exist_ok=True); shutil.copy(js, f'{T}/../脚本/已发版本/{no}.json')
+    sys.exit(print(f'第{no}篇：文本核查全部通过，脚本已存为已发版本（只核查：不出 Word/PDF，守则17）'))
 subprocess.run(['python3', f'{T}/make_docx.py', js, docx], check=True)
 subprocess.run(['python3', f'{T}/make_text.py', js, html], check=True)
 if os.path.exists(pdf): os.remove(pdf)

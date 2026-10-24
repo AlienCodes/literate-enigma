@@ -43,6 +43,9 @@ shutil.rmtree(_d, ignore_errors=True)
 import 重查记录 as _RC   # G22：已定稿的篇目欠重出，踩坑核查当场提醒
 if not _RC.定稿提醒('21', {'21': 'x.mp4'}, ['21']): fails.append('没抓到：改了已定稿篇目的脚本没提醒重出 4K（G22）')
 if _RC.定稿提醒('23', {'21': 'x.mp4'}, ['21']) or _RC.定稿提醒('21', {'21': 'x.mp4'}, []): fails.append('误报：没定稿或已重查过的篇目也提醒（G22）')
+_l = [l for l in src.splitlines() if '生成文本.py' in l and not l.lstrip().startswith('#')]   # 守则17：默认不出 Word/PDF
+if not _l or '--只核查' not in _l[0] or '要文本' not in _l[0]: fails.append('没抓到：定稿流水线默认还在出 Word/PDF（守则17）')
+if '只核查 = ' not in open(f'{T}/生成文本.py').read(): fails.append('没抓到：生成文本没有只核查用法（守则17）')
 td = tempfile.mkdtemp(); lk = open(f'{td}/.定稿流水线_99.lock', 'w'); fcntl.flock(lk, fcntl.LOCK_EX)
 r = subprocess.run(['bash', f'{T}/定稿流水线.sh', '99'], capture_output=True, text=True, cwd=td, timeout=60)
 if r.returncode == 0 or '已经有一条定稿流水线在跑' not in r.stdout + r.stderr: fails.append('没抓到：同一篇同时跑两条定稿流水线（G10）')

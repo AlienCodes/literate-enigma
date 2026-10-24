@@ -30,7 +30,7 @@ step "① 出片前核查"; python3 $T/交付核查.py $no 出片前 > "$LOG/出
 step "② 出 4K"; VIDEO_S=2 python3 make_video.py scripts/$no.json $no.mp4 > "$LOG/出片.log" 2>&1 || { tail -15 "$LOG/出片.log"; stop "出片失败"; }
 step "③ 出片后核查"; python3 $T/交付核查.py $no 出片后 > "$LOG/出片后.log" 2>&1 || { tail -25 "$LOG/出片后.log"; stop "出片后核查不通过"; }
 step "④ 对照文本、文章同步"
-python3 $T/生成文本.py $no > "$LOG/文本.log" 2>&1 || { tail -15 "$LOG/文本.log"; stop "对照文本生成或文本核查不通过"; }
+python3 $T/生成文本.py $no ${要文本:+--出文档} $([ -z "$要文本" ] && echo --只核查) > "$LOG/文本.log" 2>&1   # 守则17：默认只核查不出 Word/PDF；用户要文本时 要文本=1 || { tail -15 "$LOG/文本.log"; stop "对照文本生成或文本核查不通过"; }
 md=$(ls $P/新版定稿/$no-*.md 2>/dev/null | head -1); [ -n "$md" ] || stop "找不到文章 新版定稿/$no-*.md"
 (cd $P && python3 视频/工具/sync_article.py 视频/脚本/$no.json "$md") > "$LOG/文章同步.log" 2>&1 || stop "文章同步失败"
 step "⑤ 归档（替换旧视频 + 定稿视频核对）"
