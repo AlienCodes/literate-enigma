@@ -46,9 +46,9 @@ S=[
      "（both ends：一头是小艇航行，一头是百年后找到残骸；\nhinge on：取决于；\nmeticulous 常被译为“一丝不苟”或“细致入微”。\n作为形容词，它专指做事极其严密，\n对微小的细节也要反复核对，力求把出错率降到最低。）"]]),
 (6,[[[("**Leadership**","**领导力**(Leadership)"),("held","让"),("28 men","28人"),("together.","始终抱成一团。")],
      "（hold…together：使……团结在一起）"]]),
-(6,[[[("**Precision**","（沃斯利）**精确**(Precision)，"),("put six","将六人送"),("**ashore**","**上岸**(ashore)，"),("within reach of help","进入救援范围；")],
+(6,[[[("**Precision**","（沃斯利的）**精确**(Precision)，"),("put six","不仅将六人送"),("**ashore**","**上岸**(ashore)，"),("within reach of help","进入救援范围；")],
      "（within reach of…：在……够得着的范围内）"],
-    [[("and,","并在"),("a century on,","一个世纪后，"),("**brought** their ship **back** into view.","把他们的船**带回到**(brought back)世人的视野中。")],
+    [[("and,","并且在"),("a century on,","一个世纪后，"),("**brought** their ship **back** into view.","把他们的船**带回到**(brought back)世人的视野中。")],
      "（简述：1914年坚忍号驶往南极，被冰困住，\n1915年沉没，船长沃斯利记下了沉船位置；\n众人在冰上熬过五个多月，乘救生艇登上象岛；\n沙克尔顿等六人驾小艇闯过约1,300公里的险海，\n沃斯利只测了四次太阳，靠航位推算找到南乔治亚岛；\n三人翻山走到捕鲸站求救，8月30日象岛22人获救，\n28人全部生还；2022年，残骸在沃斯利\n所记位置以南约四英里处被找到。）"]]),
 ]
 CONF={"对齐":{
