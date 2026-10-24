@@ -763,6 +763,7 @@ def main():
     err = record_gate(no, stage) + video_folders(ROOT)
     e, conf, ref = text_checks(d, article_en(no), sent, no); err += e
     sys.path.insert(0, T); import 破折号 as _PZ; err += _PZ.查(d, no)          # T36 破折号禁用（用户 2026-10-24，24 起）
+    import 放行口子核查 as _KZ; err += _KZ.查篇(d, no)                  # G24 放行口子：确认的结论受白名单约束，例外只认用户原话（24 起）
     sys.path.insert(0, T); import 译文核查 as _YW                       # 译文规矩（21 起）：方向词 T4、词性 T2、同词异译 文10、排版指令 W3、改稿门 T10、逐句确认
     _md = glob.glob(f'{ROOT}/新版定稿/{no}-*.md'); _e, _c = _YW.查(d, no, open(_md[0]).read() if _md else ''); err += _e; conf += _c
     # T22 只查以后新做的篇目（09 起）。用户 2026-10-10：“以后查就行，已经做完了，这几天不要再查了……刚刚做完这篇，你查啥？不用再查了，又浪费时间……以后每次都要（查）”
