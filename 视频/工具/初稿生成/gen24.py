@@ -30,7 +30,7 @@ S=[
      "（its：指南乔治亚岛的）"],
     [[("in about 36","用了约36个"),("**exhausting** hours,","**令人精疲力竭的**(exhausting)小时，"),("reaching the Stromness whaling station on 20 May.","于5月20日抵达斯特罗姆内斯捕鲸站。")],
      "（reaching…：现在分词短语，表示结果）"]]),
-(4,[[[("Ice","浮冰"),("**repelled**","**逼退/击退**(repelled)"),("three **rescue attempts**","三次**救援行动**(rescue attempts)，")]],
+(4,[[[("Ice","浮冰"),("**repelled**","**逼退/击退了**(repelled)"),("three **rescue attempts**","三次**救援行动**(rescue attempts)，")]],
     [[("before the Yelcho,","直到8月30日，“耶乔号”，"),("a Chilean **tug**,","一艘智利的**拖船**(tug)，"),("**evacuated**","才**撤出了**(evacuated)"),("the 22 **marooned** men on 30 August.","**被困于荒岛的**(marooned)22人。")],
      "（before…：在……之前，这里译作“直到……才……”；\na Chilean tug：同位语，说明 Yelcho；\nmarooned：更强调被遗弃或与外界隔绝，\n常让人联想到荒岛、荒野或偏远地点）"]]),
 (4,[[[("All 28 of Endurance's party","坚忍号一行28人全部"),("survived","挺过了"),("their **ordeal**.","这场**磨难**(ordeal)。")]]]),
