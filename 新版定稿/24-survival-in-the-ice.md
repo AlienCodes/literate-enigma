@@ -90,6 +90,7 @@ Legend **rightly** **salutes** Shackleton for his **charisma**. Yet both ends of
 | meticulous | adj. 一丝不苟的，极其细致的 | 6 |
 | arithmetic | n. 算术，计算；（某事的）算计，得失估算；adj. 算术的 | 6 |
 | leadership | n. 领导力，领导才能；领导层，领导地位（under sb's leadership 在某人领导下） | 6 |
+| held together | 短语. (hold sb/sth together) 使……团结在一起，使……保持完整；hold v. 握住，持有；举行 | 6 |
 | precision | n. 精确，准确；精密度；adj. 精密的（precision instruments） | 6 |
 | ashore | adv. 上岸，在岸上（go/come ashore） | 6 |
 | brought back | 短语. (bring back) 带回，送回；使恢复；使回想起 | 6 |
