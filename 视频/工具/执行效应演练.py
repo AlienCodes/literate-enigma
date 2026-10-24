@@ -15,7 +15,7 @@ import os, sys, json, copy, re, subprocess, hashlib, shutil
 from concurrent.futures import ThreadPoolExecutor
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T)
 STAMP = f'{T}/执行效应演练通过.json'; GAPB = f'{T}/执行效应缺口基线.json'
-被演练 = ['钩子/闸门.py', '踩坑核查.py', '译文核查.py', '破折号.py', 'check_all.py', '读音核对.py', 'make_video.py', 'render.py', '执行效应演练.py', '规则执行表.json', '放行口子核查.py', '放行口子表.json', '用户同意记录.json',
+被演练 = ['钩子/闸门.py', '踩坑核查.py', '译文核查.py', '破折号.py', 'check_all.py', '读音核对.py', 'make_video.py', 'render.py', '执行效应演练.py', '规则执行表.json', '放行口子核查.py', '放行口子表.json', '同意记录追加.py',
          '定稿流水线.sh', '归档定稿视频.py', '定稿视频核对.py', '工作稿核对.py', '补对照记录.py', '重查记录.py', '全篇核查.py', '开工提醒.sh', '开工记录.py', '初稿生成/核对.py', '规则执行核查.py', '排版自检.py', 'title2.py']
 指纹 = lambda p: hashlib.sha256(open(p, 'rb').read()).hexdigest() if os.path.exists(p) else '无'
 
@@ -147,7 +147,13 @@ def _镜像印章(f):
     for x in 被演练:
         t = f.get(f'视频/工具/{x}'); t = t.encode() if isinstance(t, str) else t
         st[x] = hashlib.sha256(t).hexdigest() if t is not None else '无'
+    import 同意记录追加 as TY; t = _读(f, '视频/工具/用户同意记录.json'); st['_同意记录前缀'] = TY.印(json.loads(t.decode() if isinstance(t, bytes) else t))
     f[k] = json.dumps(st, ensure_ascii=False)
+    import 执行效应声音演练 as SY; k2 = '视频/工具/执行效应声音演练通过.json'   # 声音演练印章同样按镜像重算（镜像里只是前置门，真印章不动）
+    st2 = {}
+    for x in SY.声音被演练:
+        t = f.get(f'视频/工具/{x}'); t = t.encode() if isinstance(t, str) else t; st2[x] = hashlib.sha256(t).hexdigest() if t is not None else '无'
+    f[k2] = json.dumps(st2, ensure_ascii=False)
 def _变异(prog, old, new):
     def fn(f):
         k = f'视频/工具/{prog}'; t = f[k].decode() if isinstance(f[k], bytes) else f[k]
@@ -517,7 +523,8 @@ def 写缺口清单():
 def 印章有效():
     try: st = json.load(open(STAMP))
     except Exception: return False
-    return all(st.get(x) == 指纹(f'{T}/{x}') for x in 被演练)
+    import 同意记录追加 as TY   # 用户同意记录.json 不盖指纹，只许追加（主对话记用户原话不让印章失效）
+    return all(st.get(x) == 指纹(f'{T}/{x}') for x in 被演练) and not TY.查(st=st.get('_同意记录前缀'))
 
 
 def 状态():
@@ -562,7 +569,7 @@ def main():
         if k in cov: v['演练'] = cov[k]
         else: v.pop('演练', None)
     json.dump(reg, open(f'{T}/规则执行表.json', 'w'), ensure_ascii=False, indent=1)
-    json.dump({**{x: 指纹(f'{T}/{x}') for x in 被演练}, '_挡住': [s for s, _, _ in res], '_有演练的规矩': len(cov)}, open(STAMP, 'w'), ensure_ascii=False, indent=1)
+    import 同意记录追加 as TY; json.dump({**{x: 指纹(f'{T}/{x}') for x in 被演练}, '_同意记录前缀': TY.印(), '_挡住': [s for s, _, _ in res], '_有演练的规矩': len(cov)}, open(STAMP, 'w'), ensure_ascii=False, indent=1)
     if base is None or len(g) < base or eb is None or len(e) < eb:
         json.dump({'缺口': len(g), '已说明': len(e), '说明': '缺口 = 没有端到端演练样本的规矩条数；已说明 = 造不出样本、逐条写了原因和替代的条数；两个都只许减少，缺口目标 0'}, open(GAPB, 'w'), ensure_ascii=False, indent=1)
     print(f'执行效应演练：通过（{len(res)} 场演练全部挡在对的编号上，拆掉的门被发现；印章已写）'); return 0

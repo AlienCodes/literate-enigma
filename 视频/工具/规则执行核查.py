@@ -327,6 +327,7 @@ def main():
             more = sorted(base - set(json.loads(head.stdout)))
             if more: gl.append(f'缺口基线只许减少，这次多了：{" ".join(more)}（给它们配好门和自检，不许塞进基线）')
     except Exception: pass
+    import 同意记录追加 as _TY; gl += _TY.查() + _TY.自检()   # 用户同意记录只许追加（带自检）
     for p in STAMPED:
         if not 印章有效(p): gl.append(f'{STAMPED[p][1]} 改过、慢自检的印章对不上：在视频工作目录跑 python3 {os.path.relpath(T, P)}/{p}，通过后再提交（A26/A42：改出片程序后必须先过守门自检）')
     new = {k: v for k, v in per.items() if k not in base}
