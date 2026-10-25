@@ -62,7 +62,7 @@ def 自检():
     if not any('23-文本.docx' in x for x in 缺文件('23', _r)): fails.append('没抓到：23 缺对照文本 docx（G30）')
     _sh.rmtree(_r, ignore_errors=True)
     return fails
-if sys.argv[1:2] in (['--自检'],['--撞车清单']):
+if sys.argv[1:2] in (['--自检'],['--撞车清单'],['--写提醒']):
     no=None
 else:
     no=sys.argv[1].zfill(2)
@@ -81,7 +81,9 @@ def stem(w):   # 旧的粗略词干（只留给自检的兼容项，撞车判断
 # —— 撞车判断（T12、G32，用户 2026-10-23/24/25）：只有同一个词的时态、复数、三单才算撞车；同根不同词不算（CLAUDE.md 第15条）。
 #    2026-10-25 修：旧 stem 把 -ing/-ings/-ed 一律去掉，earn↔earnings、fleet↔fleeting、lodgings↔lodged 被误判成撞车，dose↔doses 反而漏掉。
 #    现在：-ing/-ings 形式当独立的词（fleeting、earnings、surroundings）；复数/三单/同一动词的两个时态才算撞车；
-#    程序拿不准的（-ing↔-ings 如 proceeding↔proceedings、原形↔-ed 如 lodge↔lodged、连字符 built in↔built-in）列“待用户判”，不自动当撞车也不自动放过
+#    程序拿不准的（-ing↔-ings 如 proceeding↔proceedings、连字符 built in↔built-in）；原形↔-ed 是同一个动词的时态，算撞车（第15条，2026-10-25 主对话核对）列“待用户判”，不自动当撞车也不自动放过
+def 旧键(b):
+    ws=词(b); return ' '.join(stem(w) for w in ws) if ws else None
 def 单CVC(s): return bool(re.search(r'[^aeiou][aeiou][^aeiouwxy]$', s)) and len(re.findall(r'[aeiouy]+', s))==1
 def 词基(w):
     w=w.lower(); b={w}
@@ -102,7 +104,6 @@ def _同(a, b):
     if a.endswith(('ing','ings')) or b.endswith(('ing','ings')): return None
     common=词基(a)&词基(b)
     if not common: return None
-    if (a in common and b.endswith('ed')) or (b in common and a.endswith('ed')): return '待判'      # lodge↔lodged（-ed 常是独立的形容词）
     return '撞车'
 def 词(b):
     ws=re.findall(r"[A-Za-z]+",b)
@@ -149,28 +150,73 @@ def 撞车(d, no, others, orig):
     new_only=int(no)<T12全篇_起; hit, ask = [], []
     ac_={x.lower() for x in d.get('allow_clash',[])}
     for b in dict.fromkeys(b for s in d['sentences'] for c in s['chunks'] for b in _加粗(c['en'])):
-        if b.lower() in ac_ or (new_only and b.lower() in orig): continue
+        if b.lower() in ac_ or b.lower() in orig: continue   # 原稿就有的重点词撞车：不去掉、不停，写进制作记录“## 撞车提醒”告诉用户（J，用户 2026-10-25）
         for n, o in others.get(ckey(b) or '', []):
-            v=同词(b, o)
+            v=同词(b, o) if not new_only else ('撞车' if 旧键(b) and 旧键(b)==旧键(o) else None)   # 01–24：沿用原先的判法（已定稿的结果不变，按新判法的列进撞车清单）
             if v=='撞车': hit.append(f'{b} 也在第 {n} 篇加粗（{o}）')
             elif v=='待判' and not new_only: ask.append(f'{b} ↔ 第 {n} 篇 {o}')
     return sorted(set(hit)), sorted(set(ask))
+_OJ=f'{os.path.dirname(os.path.abspath(__file__))}/原稿重点词.json'
+def 提醒项(n, root=ROOT):
+    """J（用户 2026-10-25：“这些撞车的词先记住先存着……真正等到我去做那一篇的时候，一定要在那一篇有一个机制提醒我……先不要把它去掉”）：
+    本篇原有的重点词（原稿就加粗的；没做视频的篇目全部算原有）和全部 70 篇比，撞车或待判的 [(词, 篇, 别篇的词, 判)]"""
+    ws=篇重点词(n, root); mds=glob.glob(f'{root}/新版定稿/{n}-*.md')
+    if os.path.exists(f'{root}/视频/脚本/{n}.json') and mds:
+        o=set(json.load(open(_OJ)).get(os.path.relpath(mds[0],root),[])) if os.path.exists(_OJ) else set(); ws=[w for w in ws if w.lower() in o]
+    oth=他篇(n, root, 全=True); out=[]
+    for b in ws:
+        for m,o2 in oth.get(ckey(b) or '',[]):
+            v=同词(b,o2)
+            if v: out.append((b,m,o2,v))
+    return out
+def 提醒节(n, root=ROOT):
+    it=提醒项(n, root)
+    L=['## 撞车提醒',f'（程序生成：python3 视频/工具/check_all.py --写提醒 {n}。用户 2026-10-25：撞车的词先留着、最后统一处理，做到这一篇时要告诉用户。发草稿时把这一节告诉用户。）','']
+    L+=[f'- {b}：第 {m} 篇也加粗（{o}）'+('，程序拿不准是不是同一个词，待用户判' if v=='待判' else '') for b,m,o,v in it] or ['- 本篇原有的重点词没有和别篇撞车']
+    return '\n'.join(L)+'\n'
+def 写提醒(n, root=ROOT):
+    p=f'{root}/视频/制作记录/{n}.md'; t=open(p).read() if os.path.exists(p) else ''; sec=提醒节(n, root)
+    if '## 撞车提醒' in t:
+        i=t.index('## 撞车提醒'); j=t.find('\n## ', i+1); t=t[:i]+sec+(t[j+1:] if j>0 else '')
+    else: t=t.rstrip('\n')+('\n\n' if t else '')+sec
+    open(p,'w').write(t); return 提醒项(n, root)
+def 查提醒(n, root=ROOT):
+    """门：本篇原有重点词有撞车，制作记录/NN.md 没有“## 撞车提醒”或漏了哪个词就停"""
+    it=提醒项(n, root)
+    if not it: return []
+    p=f'{root}/视频/制作记录/{n}.md'; t=open(p).read() if os.path.exists(p) else ''
+    if '## 撞车提醒' not in t: return [f'T12 撞车提醒没写进 制作记录/{n}.md（本篇原有重点词撞车 {len(it)} 处：先留着、要告诉用户）：python3 视频/工具/check_all.py --写提醒 {n}']
+    i=t.index('## 撞车提醒'); j=t.find('\n## ', i+1); s=t[i:j if j>0 else len(t)]
+    miss=sorted({b for b,m,o,v in it if not re.search(rf'(?<![A-Za-z]){re.escape(b)}(?![A-Za-z])', s)})
+    return [f'T12 撞车提醒漏了：{"、".join(miss)}（重跑 python3 视频/工具/check_all.py --写提醒 {n}）'] if miss else []
 def 自检T12():
     import tempfile, shutil as _sh; f=[]; r=tempfile.mkdtemp()
     for x, y, want in [('dose','doses','撞车'), ('slight','slight','撞车'), ('dam','dams','撞车'), ('settled','settles','撞车'), ('earn','earnings',None), ('fleet','fleeting',None),
                        ('circulation','circulates',None), ('lodgings','lodged',None), ('enterprising','enterprises',None), ('engravings','Engraved',None),
-                       ('scraped','scrapped',None), ('employees','employed',None), ('stopped','stop','待判'), ('walks','walked','撞车'), ('proceedings','proceeding','待判'), ('built in','built-in','待判'), ('trade journal','journal',None)]:
+                       ('scraped','scrapped',None), ('employees','employed',None), ('stopped','stop','撞车'), ('assess','assessed','撞车'), ('scale','scaled','撞车'), ('walks','walked','撞车'), ('proceedings','proceeding','待判'), ('built in','built-in','待判'), ('trade journal','journal',None)]:
         if 同词(x, y)!=want: f.append(f'撞车判断错：{x}↔{y} 判成 {同词(x, y)}，应为 {want}（T12/G32）')
     try:
         os.makedirs(f'{r}/新版定稿'); os.makedirs(f'{r}/视频/脚本')
         open(f'{r}/新版定稿/30-假.md','w').write('## 英文\nThe **glaciers** and **circulation** of water.\n## 中文\n')
         d25={'sentences':[{'chunks':[{'en':'Old **glacier** and **circulates**.'}]}]}
-        h25,_=撞车(d25,'25',他篇('25', r),{'glacier'}); h23,_=撞车(d25,'23',他篇('23', r),set())
-        if not any('glacier' in x for x in h25): f.append('没抓到：没做视频的第30篇加粗过的词，25 本篇重点词（原稿的也算）同一个词不报（T12 全篇）')
+        h25,_=撞车(d25,'25',他篇('25', r),set()); h23,_=撞车(d25,'23',他篇('23', r),set())
+        if not any('glacier' in x for x in h25): f.append('没抓到：没做视频的第30篇加粗过的词，25 我们新加同一个词不报（T12 全篇）')
         if any('circulates' in x for x in h25): f.append('误报：同根不同词（circulation↔circulates）算成撞车（T12）')
         if h23: f.append('误报：01–24 已定稿的回头查没做视频的篇目（只列撞车清单）')
+        os.makedirs(f'{r}/视频/制作记录'); open(f'{r}/新版定稿/26-本.md','w').write('## 英文\nA **glacier** here.\n## 中文\n'); open(f'{r}/视频/制作记录/26.md','w').write('# 26\n\n## 方法设计\nx\n')
+        if not 查提醒('26', r): f.append('没抓到：本篇原有重点词撞车，制作记录没有“## 撞车提醒”（J）')
+        open(f'{r}/视频/制作记录/26.md','a').write('\n## 撞车提醒\n- 别的词\n')
+        if not 查提醒('26', r): f.append('没抓到：撞车提醒漏了撞车的词（J）')
+        写提醒('26', r)
+        if 查提醒('26', r) or '## 方法设计' not in open(f'{r}/视频/制作记录/26.md').read(): f.append('误报：写了撞车提醒还报，或写提醒冲掉了制作记录别的节（J）')
+        h,_=撞车({'sentences':[{'chunks':[{'en':'A **glacier**.'}]}]},'26',他篇('26', r),{'glacier'})
+        if h: f.append('误报：原稿就有的重点词撞车被当成要去掉（J：先留着、只提醒）')
+        h16,_=撞车({'sentences':[{'chunks':[{'en':'**scaled**'}]}]},'16',{ckey('scale'):[('15','scale')]},set())
+        if h16: f.append('误报：01–24 已定稿篇目按新判法被拦（只列撞车清单，不改）')
     finally: _sh.rmtree(r, ignore_errors=True)
     return f
+if sys.argv[1:2]==['--写提醒']:
+    n=sys.argv[2].zfill(2); it=写提醒(n); print(f'第{n}篇 撞车提醒：{len(it)} 处，已写进 制作记录/{n}.md 的“## 撞车提醒”' + ''.join(f'\n  {b}：第 {m} 篇也加粗（{o}）' + ('，待用户判' if v=='待判' else '') for b,m,o,v in it)); sys.exit(0)
 if sys.argv[1:2]==['--撞车清单']:   # G32：70 篇所有重点词两两比，交用户看（01–24 已定稿的只列不改）
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); from 重查记录 import 已出片; 定=set(已出片())
     nos=sorted(os.path.basename(x)[:2] for x in glob.glob(f'{ROOT}/新版定稿/[0-9][0-9]-*.md'))
@@ -186,9 +232,17 @@ if sys.argv[1:2]==['--撞车清单']:   # G32：70 篇所有重点词两两比�
                 if n1==n2: continue
                 v=同词(b1,b2)
                 if v: res[v].append(f'- 第{n1}篇 {b1}{"（已定稿）" if n1 in 定 else ""} ↔ 第{n2}篇 {b2}{"（已定稿）" if n2 in 定 else ""}')
+    keep=[]
+    for n in nos:
+        js=f'{ROOT}/视频/脚本/{n}.json'
+        if not os.path.exists(js): continue
+        for w in json.load(open(js)).get('allow_clash',[]):
+            hits=[f'第{m}篇 {o}' for m,o in 他篇(n, 全=True).get(ckey(w) or '',[]) if 同词(w,o)]
+            keep.append(f'- 第{n}篇 {w}{"（已定稿）" if n in 定 else ""}：' + ('、'.join(hits) if hits else '（按现行判法已不撞）'))
     L=['# 撞车清单（程序生成：python3 视频/工具/check_all.py --撞车清单）','',
+       '先存着、最后统一处理（用户 2026-10-25：“这些撞车的词先记住先存着……真正等到我去做那一篇的时候……要告诉我……先不要把它去掉”）。做到第NN篇时，程序把本篇的写进 制作记录/NN.md 的“## 撞车提醒”。','',
        f'新版定稿 {len(nos)} 篇、{len(set(b.lower() for _,b in allw))} 个不同重点词（做了视频的按脚本，没做的按文章加粗；用户同意保留的 allow_clash 不算），两两比。只有同一个词的时态、复数、三单算撞车；同根不同词不算（CLAUDE.md 第15条）。',
-       '01–24 已定稿的只列不改（用户点名的除外）；25 起正在做的那一篇让（去掉本篇的标记、告诉用户）。','',f'## 撞车（{len(res["撞车"])} 组）','']+(sorted(res['撞车']) or ['（无）'])+['',f'## 待用户判（{len(res["待判"])} 组，程序拿不准：-ing↔-ings、原形↔-ed、连字符）','']+(sorted(res['待判']) or ['（无）'])
+       '01–24 已定稿的只列不改（用户点名的除外）；25 起正在做的那一篇让（去掉本篇的标记、告诉用户）。','',f'## 撞车（{len(res["撞车"])} 组）','']+(sorted(res['撞车']) or ['（无）'])+['',f'## 待用户判（{len(res["待判"])} 组，程序拿不准：-ing↔-ings、连字符）','']+(sorted(res['待判']) or ['（无）'])+['',f'## 用户同意先保留（allow_clash，{len(keep)} 个）','']+(keep or ['（无）'])
     open(f'{ROOT}/视频/制作记录/撞车清单.md','w').write('\n'.join(L)+'\n'); print(f'撞车清单：撞车 {len(res["撞车"])} 组、待用户判 {len(res["待判"])} 组，写进 制作记录/撞车清单.md'); sys.exit(0)
 if no is None:
     _f=自检()+自检T12(); print('check_all 自检：'+('通过（D1/D2/D3/D4/S2/S4/T12 造出来的错全部报出，原样无误报）' if not _f else '失灵！'+'；'.join(_f))); sys.exit(1 if _f else 0)
@@ -200,7 +254,8 @@ if not _oj.get(os.path.relpath(md,ROOT)): bad.append(f'G18 原稿重点词.json 
 orig=set(_oj.get(os.path.relpath(md,ROOT),[]))  #   # 原稿（提交 fc50170）的重点词，存成文件：新容器浅克隆没有这个提交，T12 曾因此误报撞词（2026-10-23 第20篇）
 warn, ask=撞车(d, no, others, orig)
 if int(no)<T12全篇_起: bad+=['T12 新加重点词撞词（按规则应去掉并提醒用户）: '+x for x in warn]
-else: bad+=['T12 撞车（25 起本篇所有重点词和全部 70 篇比；这一篇让：去掉本篇的标记、告诉用户）: '+x for x in warn]
-bad+=['T12 待用户判（程序拿不准是不是同一个词；用户判：保留就写进 allow_clash，算撞车就去掉本篇标记）: '+x for x in ask]
+else: bad+=['T12 撞车（25 起我们新加的重点词和全部 70 篇比，撞了一律不加；用户要加的告诉用户，用户说留就写 allow_clash）: '+x for x in warn]
+bad+=['T12 待用户判（我们新加的重点词，程序拿不准是不是同一个词；用户判：保留就写进 allow_clash，算撞车就去掉本篇标记）: '+x for x in ask]
+if int(no)>=T12全篇_起: bad+=查提醒(no)   # J：原稿就有的重点词撞车先留着，但必须写进 制作记录/NN.md 的“## 撞车提醒”告诉用户
 print('\n'.join(bad) if bad else f'第{no}篇：全部检查通过')
 sys.exit(1 if bad else 0)
