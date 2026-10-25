@@ -64,6 +64,11 @@ if __name__ == '__main__':
                 if not sr_: raise SystemExit(f'【停止】脚本写了分段增益dB，出片程序却没有记下分段位置（work_{no}/分段.json）：S{idx + 1}')
                 pr_ = [(r['原始'][0], r['原始'][1], float(pn_[str(r['段'])])) for r in sr_ if str(r['段']) in pn_]
                 if len(pr_) != len(pn_): raise SystemExit(f'【停止】分段增益dB 的段号在分段记录里找不到：S{idx + 1}')
+            sr2_ = SEGS.get(no, {}).get(f'S{idx + 1}') if idx >= 0 else None
+            if sr2_ and any('增益' in r for r in sr2_):   # G36 源头调平（26 起）：出片程序自动算的增益 + 脚本写的，记在分段.json 的“增益”里；有它就以它为准
+                pr_ = [(r['原始'][0], r['原始'][1], float(r['增益'])) for r in sr2_ if r.get('增益')]
+                if pn_ and any(abs(float(r.get('增益', 0)) - float(pn_.get(str(r['段']), 0))) > 1e-6 for r in sr2_) and not (str(d.get('no', no)).isdigit() and int(d.get('no', no)) >= 26):
+                    raise SystemExit(f'【停止】分段记录的增益与脚本 分段增益dB 对不上（26 前没有自动调平）：S{idx + 1}')
             key_ = _hl.md5(repr((phonemes_of(spoken(text)), gr, en_, fd_, 0.95) + ((pg,) if pg else ()) + ((('加强', bo),) if bo else ()) + ((('增益', sg_),) if sg_ else ()) + ((('分段增益', pr_),) if pr_ else ())).encode()).hexdigest()[:10]
             fn = f'{OUT}/{no}_{"T" if idx < 0 else "%02d" % idx}_{key_}.npy'
             if not os.path.exists(fn):

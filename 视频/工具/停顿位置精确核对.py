@@ -14,6 +14,19 @@
   所以每一处都必须用实际声音（逐 5 ms 响度与频谱）核实，写进 核对确认.停顿位置（键里带位置，位置一变核实作废）；
   自动规则选错的，用脚本里的"停顿插入点"指定核实过的位置（A15）。"""
 import sys, os, re, json, numpy as np
+# G40（主对话 2026-10-25：25 S8 “module, the crew's” 停顿插进 /k/ 的闭塞里，第一次就报了“离后词 -69 ms”，却被一条 AI 写的错误确认放过）：
+# 25 起，停顿结束在后词开头之后（离后词为负）的，核对确认.停顿位置 一律不收；只能用 停顿插入点 按实测交界修（该标点写了插入点才收确认）
+def 确认可收(no, 离后词ms, 有插入点):
+    return not (str(no).isdigit() and int(no) >= 25 and 离后词ms < 0 and not 有插入点)
+def 自检():
+    f = []
+    if 确认可收('25', -69, False): f.append('没抓到：25 离后词 -69 ms 写了确认、没用停顿插入点，确认照样收了（G40 重放 25 S8 module, the）')
+    if not 确认可收('25', -69, True): f.append('误报：用了停顿插入点按实测交界修，确认却不收')
+    if not 确认可收('25', 12, False): f.append('误报：离后词为正也不收确认')
+    if not 确认可收('24', -69, False): f.append('误报：24 以前的不回头查')
+    return f
+if sys.argv[1:2] == ['--自检']:
+    e = 自检(); print('\n'.join(e) or '停顿位置精确核对 自检通过（25 起离后词为负、没用插入点的确认不收；用了插入点、离后词为正、24 以前照收）'); sys.exit(1 if e else 0)
 sys.path.insert(0, '.')
 src = open('make_video.py').read().split("if __name__")[0]
 hook = "    XF_OUT=float(os.environ.get('XF_OUT','0.06'))"   # 每句所有标点的停顿都定完之后（各分支——删静音、插入、停顿处除阻、交界插入——都在 cuts 里）一次记下
@@ -104,6 +117,8 @@ for no in sys.argv[1:]:
             # 报警处必须用实际声音（逐 5 ms 响度与频谱）核实后写进 核对确认.停顿位置，键里带停顿位置（位置一变，核实作废）
             key = f'S{si} {word} / {nword} @{a:.3f}'
             conf = d.get('核对确认', {}).get('停顿位置', {}).get(key)
+            if conf and not 确认可收(no, 1000 * (ns - b), str(gi + 1) in d.get('停顿插入点', {}).get(f'S{si}', {})):   # G40
+                rows.append(f'{no} S{si} BAD（G40：停顿结束在后词开头之后 {1000 * (ns - b):+.0f} ms，核对确认不收；用 停顿插入点 按实测交界修）「{word} | {nword}」'); bad += 1; conf = None
             if kind == '插入':   # 程序插入的停顿（连读处）一律要用实际声音核实并记录，自动判定只作初筛（A15/A16）
                 ok = bool(conf); bad += not conf
             else:

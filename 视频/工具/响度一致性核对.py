@@ -117,6 +117,18 @@ def 句内自检(src, seg_json=None):
     ok = (nm, 1) in bad1 and bad1 - bad0 <= {(nm, 1), (nm, 2)}
     return ok, f'故意把 {nm} 第 2 段（{x:.1f}–{y:.1f}s）调 {g:+.1f} dB，{"报出" if (nm, 1) in bad1 else "没报出"}；多报 {sorted(bad1 - bad0 - {(nm, 1), (nm, 2)})}'
 
+# G40（主对话 2026-10-25：25 第一稿 cartridges 偏轻 8.5 dB，AI 写了一条 响度骤降 确认放过去）：音频门上的确认只认实测数据。
+# 25 起，响度骤降 确认只收不超过 01–24 用户听过认可的最深一处（20 的 7.1 dB）；更深的必须修（重合成、分段增益），确认不放行
+骤降确认上限 = 7.1
+def 骤降确认可收(no, 低):
+    return not (str(no).isdigit() and int(no) >= 25 and float(低) > 骤降确认上限)
+def 确认自检():
+    f = []
+    if 骤降确认可收('25', 8.5): f.append('没抓到：25 偏轻 8.5 dB 写了响度骤降确认，照样收了（G40 重放 25 cartridges）')
+    if not 骤降确认可收('25', 6.1): f.append('误报：25 偏轻 6.1 dB（在 01–24 认可范围内）的确认也不收')
+    if not 骤降确认可收('20', 8.5): f.append('误报：24 以前的不回头查')
+    return f
+
 def selftest(src):
     a = pcm(src); I, segs, L, bad, _ = check(src, a)
     if bad or len(segs) < 6: return False, f'自检前提不成立：原片已有报警或句数太少（{len(segs)}）'
@@ -138,6 +150,8 @@ def selftest(src):
 
 if __name__ == '__main__':
     src = sys.argv[1]
+    if src == '--确认自检':
+        e = 确认自检(); print('\n'.join(e) or f'响度骤降确认 自检通过（25 起超过 {骤降确认上限} dB 的确认不收；范围内、24 以前照收）'); sys.exit(1 if e else 0)
     sj = sys.argv[sys.argv.index('--分段') + 1] if '--分段' in sys.argv else None
     if '--句内清单' in sys.argv:   # 01–24 已定稿的不回头改（G36 25 起），列给用户看：python3 响度一致性核对.py 视频目录 --句内清单 > 制作记录/句内响度清单.md
         import glob

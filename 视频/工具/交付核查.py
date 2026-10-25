@@ -69,6 +69,10 @@ elif stage == '出片前':
     c, o = run(['python3', f'{T}/无标点停顿核对.py', no])
     long = [l for l in o.splitlines() if re.search(r'停顿 (\d+\.\d+)s', l) and float(re.search(r'停顿 (\d+\.\d+)s', l).group(1)) > 0.22]
     step('无标点处停顿 ≤ 0.22 秒', not long, '\n    '.join(long))
+    # G41 音频体检（用户 2026-10-25：“做音频这个环节，坚决不可以出任何问题，你要想方设法……把我们这个音频做好”）：能测的全测，超过 01–24 最差的就停（25 起）
+    if int(no) >= 25:
+        c, o = run(['python3', f'{T}/音频体检.py', '--自检', f'work_{no}/a.wav', no]); step(o.strip().lstrip('✔✘ ') or '音频体检 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的体检结果不可信】')
+        c, o = run(['python3', f'{T}/音频体检.py', f'work_{no}/a.wav', no]); step('音频体检（与 01–24 最差比）：' + (o.strip().splitlines() or ['没有输出'])[0], c == 0, '\n    '.join(o.strip().splitlines()[1:]))
 elif stage == '出片后':
     c, o = run(['python3', f'{T}/规则执行核查.py']); step('规则执行核查（守则16：每条规矩都有门、接进流程、有自检，机器自检通过）', c == 0, '' if c == 0 else o.strip()[-600:])
     # G26 视频必须是现行脚本、现行程序出的（2026-10-24 24 第三稿：出片报错失败后，09:18 的旧 24.mp4 照样“全部通过”）
@@ -118,7 +122,8 @@ elif stage == '出片后':
         return None
     def _qok(l):
         m = re.match(r'(\d+\.\d–\d+\.\ds) 响度比全片低 ([\d.]+) dB', l); k_ = _qkey(l); cf = okq.get(k_, {}) if k_ else {}
-        return bool(m) and cf.get('配音指纹') == fpa and isinstance(cf.get('低'), (int, float)) and float(m.group(2)) <= cf['低'] + 0.3
+        import 响度一致性核对 as _LQ   # G40：25 起超过 01–24 认可最深处的骤降，确认不收
+        return bool(m) and cf.get('配音指纹') == fpa and isinstance(cf.get('低'), (int, float)) and float(m.group(2)) <= cf['低'] + 0.3 and _LQ.骤降确认可收(no, m.group(2))
     qconf = [l for l in qlines if _qok(l)]
     qrest = [l for l in qlines if l not in qconf]
     step('自动音频检查（削波、电流音、停顿超长、响度骤降）', c == 0 or (bool(qconf) and not qrest),
@@ -136,6 +141,15 @@ elif stage == '出片后':
             c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4', '--句内', '--自检', '--分段', sj]); step(o.strip().lstrip('✔✘ ') or '句内分段响度 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的句内响度结果不可信，不得交付】')
             c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4', '--句内', '--分段', sj]); step('句内分段响度（相邻两段 ≤2.5 LU）：' + (o.strip().splitlines() or ['没有输出'])[0], c == 0,
                  '\n    '.join(o.strip().splitlines()[1:] + ([f'→ python3 {T}/句内响度.py {no} --写入（自动算分段增益dB），重出后再核'] if c else [])))
+    # G41 音频体检（用户 2026-10-25：“做音频这个环节，坚决不可以出任何问题，你要想方设法……把我们这个音频做好”）：能测的全测，超过 01–24 最差的就停（25 起）
+    if int(no) >= 25:
+        c, o = run(['python3', f'{T}/音频体检.py', '--自检', f'{no}.mp4', no]); step(o.strip().lstrip('✔✘ ') or '音频体检 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的体检结果不可信】')
+        c, o = run(['python3', f'{T}/音频体检.py', f'{no}.mp4', no]); step('音频体检（与 01–24 最差比）：' + (o.strip().splitlines() or ['没有输出'])[0], c == 0, '\n    '.join(o.strip().splitlines()[1:]))
+    # G42 机器复听（音频保障第 4 层）：离线语音识别把每一句转成文字，按读音（同一个注音程序）逐词和脚本比；漏词、多词、读错、吞音就停（25 起）
+    if int(no) >= 25:
+        c, o = run(['python3', f'{T}/机器复听.py', '--带自检', no]); ls_ = o.strip().splitlines() or ['没有输出']
+        step(ls_[0].lstrip('✔✘ '), c != 2, '' if c != 2 else '【核查程序失灵，下面的机器复听结果不可信】')
+        step('机器复听（逐词读音与脚本一致）：' + (ls_[1] if len(ls_) > 1 else '没有输出'), c == 0, '\n    '.join(ls_[2:]))
     # 纯人声（用户 2026-10-09：“不要有任何的呼吸声 语气声……底噪也不要 就要绝对的纯人声”）：先自检（假呼吸声、假噗声必须抓到），再逐句核对
     c, o = run(['python3', f'{T}/纯人声核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '纯人声核对 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的纯人声核对不可信】\n    ' + o[-400:])
     c, o = run(['python3', f'{T}/纯人声核对.py', no]); step('纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：' + (o.strip().splitlines()[-1] if o.strip() else '没有输出'), c == 0 and '问题数 0' in o,

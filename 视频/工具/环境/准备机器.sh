@@ -23,4 +23,15 @@ sys.exit(bad)
 PY2
 # 2026-10-23（13 重新对齐）：新容器缺 imageio_ffmpeg 等包，定稿流水线⓪就停；按固定版本装好
 python3 -c "import imageio_ffmpeg,kokoro_onnx,parselmouth,pyloudnorm,soundfile,scipy" 2>/dev/null || pip install -q -r $V/工具/环境/requirements.txt; python3 -c "import pymupdf,docx" 2>/dev/null || pip install -q pymupdf python-docx   # 生成文本.py（Word/PDF 读回核对）要用
+# 2026-10-25 机器复听（音频保障第 4 层）：离线语音识别 sherpa-onnx + whisper small.en（huggingface 被网络挡，GitHub release 通），下载到 ~/asr 并核对校验码
+python3 -c "import sherpa_onnx" 2>/dev/null || pip install -q sherpa-onnx==2.0.0 2>/dev/null || pip install -q --break-system-packages sherpa-onnx==2.0.0
+A=~/asr/sherpa-onnx-whisper-small.en; [ -f $A/small.en-encoder.int8.onnx ] || { mkdir -p ~/asr; curl -sSL --retry 3 https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-whisper-small.en.tar.bz2 | tar xj -C ~/asr; }
+python3 - "$A" "$V/工具/环境/模型校验码.json" <<'PY3'
+import sys,json,hashlib,os
+d,j=sys.argv[1],json.load(open(sys.argv[2])); bad=0
+for f in ('small.en-encoder.int8.onnx','small.en-decoder.int8.onnx'):
+    h=hashlib.sha256(open(os.path.join(d,f),'rb').read()).hexdigest()[:16]; want=j[f].split(':')[1]
+    print(f, h, '✔ 识别模型对' if h==want else '✘ 识别模型不对'); bad|=(h!=want)
+sys.exit(bad)
+PY3
 echo "机器准备好了：$B/video"
