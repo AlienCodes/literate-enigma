@@ -13,10 +13,11 @@ T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T)
 虚 = set(("a an the of to in on at by for from with into onto upon as and or but nor so yet if than that which who whom whose what when where why how "
          "this these those it its they them their there here he him his she her we us our you your i me my "
          "himself herself itself themselves myself ourselves yourself is are was were be been being am has have had do does did "
-         "will would shall should can could may might must not no up out off down over away back about around through").split())
+         "will would shall should can could may might must not no up out off down over away back about around through "
+         "more most very only just also even still such much many").split())   # 程度词不算实词
 数 = set("one two three four five six seven eight nine ten eleven twelve twenty thirty forty fifty sixty seventy eighty ninety hundred thousand million billion first second third half dozen".split())
 def 实词(en):
-    ws = re.findall(r"[A-Za-z][A-Za-z'’-]*", re.sub(r'\*\*[^*]+\*\*', ' ', en))
+    ws = re.findall(r"(?<![\w])[A-Za-z][A-Za-z'’-]*", re.sub(r'\*\*[^*]+\*\*', ' ', en))   # 1970s 的 s 不算词
     return [w for w in ws if w.lower() not in 虚 and w.lower() not in 数 and not w[0].isupper()]
 def 键(si, en): return f'S{si} ' + re.sub(r'\s+', ' ', en.replace('**', '')).strip(' ,.;:')
 def 多实词组(d):
@@ -51,7 +52,7 @@ def 自检():
     if 查(d3, '26'): f.append('误报：写了“对齐不了：原因”还报')
     d4 = json.loads(json.dumps(d)); d4['核对确认'] = {'合组': {'S1 something rolling downhill': '先不拆，以后再说'}}
     if not 查(d4, '26'): f.append('没抓到：合组确认不是“对齐不了：”开头也放行')
-    for en in ('came out', 'Apollo 13 crew', '**trade journal**', 'kept up', 'two days'):
+    for en in ('came out', 'Apollo 13 crew', '**trade journal**', 'kept up', 'two days', 'Before the late 1970s', 'more often'):
         if len(实词(en)) >= 2: f.append(f'误报：{en} 不该算多实词（小品词、专名、数字、重点词本身不算）')
     return ['逐词对齐 自检：' + x for x in f]
 if __name__ == '__main__':
