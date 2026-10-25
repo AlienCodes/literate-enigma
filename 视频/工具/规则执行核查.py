@@ -49,6 +49,33 @@ STAMPED = {'出片守门自检.py': ('出片守门自检通过.json', ['make_vid
 sys.path.insert(0, T); import 执行效应演练 as _YL; STAMPED['执行效应演练.py'] = ('执行效应演练通过.json', _YL.被演练); import 执行效应声音演练 as _SY; STAMPED['执行效应声音演练.py'] = ('执行效应声音演练通过.json', _SY.声音被演练)   # 被演练的程序清单只在演练程序里写一份
 
 
+# G44（主对话 2026-10-25：主会话容器没装视频环境，机器复听.py 顶层 from scipy… 让 --比较自检 起不来，规则执行核查 在那边整个失败）：
+# 当场跑的自检（FAST）顺着本仓库模块往下，顶层（不在 try 里、不在函数里）不许直接导入重库；重库只在真用声音/模型时才导入
+重库 = ('scipy', 'sherpa_onnx', 'kokoro_onnx', 'onnxruntime', 'librosa', 'torch')   # 主会话容器有 numpy、soundfile、imageio_ffmpeg（它那边规则执行核查通过过），缺的是 scipy 和配音、识别模型的库
+def 顶层重依赖(f, seen=None):
+    import ast
+    seen = set() if seen is None else seen
+    if f in seen or not os.path.exists(f): return []
+    seen.add(f); out = []
+    try: tree = ast.parse(open(f).read())
+    except SyntaxError: return []
+    for n in tree.body:
+        mods = [a.name for a in n.names] if isinstance(n, ast.Import) else ([n.module or ''] if isinstance(n, ast.ImportFrom) else [])
+        for m in mods:
+            top = m.split('.')[0]
+            if top in 重库: out.append(f'{os.path.basename(f)} 第 {n.lineno} 行顶层导入 {m}')
+            elif os.path.exists(os.path.join(os.path.dirname(f), top + '.py')): out += 顶层重依赖(os.path.join(os.path.dirname(f), top + '.py'), seen)
+    return out
+def 重依赖自检():
+    import tempfile
+    e = []
+    with tempfile.TemporaryDirectory() as td:
+        open(f'{td}/甲.py', 'w').write('import os\nimport 乙\n'); open(f'{td}/乙.py', 'w').write('from scipy.signal import resample_poly\n')
+        open(f'{td}/丙.py', 'w').write('try: import soundfile\nexcept ImportError: soundfile = None\ndef f():\n    import scipy\n')
+        if not 顶层重依赖(f'{td}/甲.py'): e.append('没抓到：自检程序经本地模块顶层导入 scipy（G44 重放 机器复听.py）')
+        if 顶层重依赖(f'{td}/丙.py'): e.append('误报：try 里、函数里导入的也报了')
+    return e
+
 def 印章有效(p):
     f, progs = STAMPED[p]
     try: st = json.load(open(f'{T}/{f}'))
@@ -234,8 +261,11 @@ def 当场自检(files):
     except Exception: c = {}
     if c.get('key') == key: return []
     bad = []
+    bad += [f'自检失灵：{x}' for x in 重依赖自检()]
     for cmd in FAST:
         if cmd[0] not in files: bad.append(f'当场自检的程序不存在：{cmd[0]}'); continue
+        hv = 顶层重依赖(f'{T}/{cmd[0]}')
+        if hv: bad.append(f'当场自检的程序顶层导入重库（G44：主会话容器没有视频环境，自检起不来）：{"；".join(hv)}，改成用到时才导入'); continue
         r = subprocess.run(['python3', f'{T}/{cmd[0]}', *cmd[1:]], capture_output=True, text=True, cwd=T)
         if r.returncode != 0:
             tail = (r.stdout + r.stderr).strip().splitlines()[-3:]
