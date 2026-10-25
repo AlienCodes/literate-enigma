@@ -2,7 +2,7 @@ import json,re,glob,os
 # 第26篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-10-25 程序打底：英文、重点词与文章逐字核对，重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式（“的”“地”“了”进粗体）。
 S=[
-(1,[[[("On a","在一辆"),("**rattling**","**哐当作响的**(rattling)"),("bus in Managua,","马那瓜公共汽车上，"),("deaf pupils","聋人学生们"),("kept up","一直进行着"),("a **brisk**,","一场**轻快的**(brisk)、"),("**voiceless**","**无声的**(voiceless)"),("**hubbub**","**热闹交谈**(hubbub)，"),("across the **aisle**,","隔着**过道**(aisle)，")],
+(1,[[[("On a","在一辆"),("**rattling**","**哐当作响的**(rattling)"),("bus in Managua,","马那瓜市的公车上，"),("deaf pupils","聋人学生们"),("kept up","一直进行着"),("a **brisk**,","一场**轻快的**(brisk)、"),("**voiceless**","**无声的**(voiceless)"),("**hubbub**","**喧闹**(hubbub)，"),("across the **aisle**,","隔着**过道**(aisle)，")],
      "（keep up：使持续，保持；hubbub：嘈杂声，喧闹，\n这里指无声的手语交谈热热闹闹）"],
     [[("**palms**","**手掌**(palms)"),("**fluttering**,","上下**翻飞**(fluttering)，"),("**wrists**","**手腕**(wrists)"),("**flicking**.","飞快地**舞动**(flicking)。")],
      "（palms fluttering, wrists flicking：两个独立主格结构，\n描写他们打手语时的样子）"]]),
