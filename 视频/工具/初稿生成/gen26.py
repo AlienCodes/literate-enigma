@@ -12,9 +12,9 @@ S=[
 (2,[[[("Most","大多数"),("deaf","聋"),("people","人"),("led","过着"),("**secluded**","**与世隔绝的**(secluded)"),("lives,","生活，")]],
     [[("sharing","共用"),("a **homemade**","**自制的**(homemade)"),("**repertoire**","**一整套/全部**(repertoire)"),("of gestures","手势，"),("with parents","在父母"),("and **siblings**.","和**兄弟姐妹**(siblings)之间。")],
      "（sharing…：现在分词短语作伴随状语；\nrepertoire：全部本领，全部节目，这里指全部手势）"]]),
-(2,[[[("In 1977","1977年，"),("a","一所"),("**special-education**","**特殊教育**(special-education)"),("centre","中心"),("opened","开办"),("in Managua's","于马那瓜的"),("San Judas","圣胡达斯"),("**district**","**区**(district)，"),("with 50","50名"),("deaf","聋哑"),("**pupils**.","**学生**(pupils)。")],
+(2,[[[("In 1977","1977年，"),("a","一所"),("**special-education**","**特殊教育**(special-education)"),("centre","中心"),("opened","开办"),("in Managua's","于马那瓜的"),("San Judas","圣胡达斯"),("**district**","**区**(district)，"),("with 50","共有50个"),("deaf","聋哑"),("**pupils**.","**学生**(pupils)。")],
      "（with 50 deaf pupils：介词短语作伴随状语，说明开办时的规模；\npupil：一般指高中以下的学生，大多用来指代小学生）"]]),
-(2,[[[("By 1983","到1983年，"),("the centre","这所中心"),("and a **vocational school** for **teenage** pupils","和一所面向**青少年**(teenage)学生的**职业学校**(vocational school)，"),("held more than 400.","共有超过400多个。")],
+(2,[[[("By 1983","到1983年，"),("the centre","这所中心"),("and a **vocational school** for **teenage** pupils","和一所面向**青少年**(teenage)学生的**职业学校**(vocational school)，"),("held more than 400.","共有超过400多个聋哑学生。")],
      "（for teenage pupils：介词短语作后置定语，修饰 school；\nhold：容纳，有）"]]),
 (3,[[[("The **curriculum**","**课程**(curriculum)"),("**hinged on**","**以**(hinged on)"),("**oral** Spanish","西班牙语**口语**(oral)"),("and **lipreading**,","和**唇读**(lipreading)**为中心**(hinged on)，")],
      "（hinge on…：取决于……，以……为中心）"],
@@ -51,7 +51,7 @@ S=[
      "（a framework…：同位语，概括前面整句；\nfound nowhere…：过去分词短语作后置定语，修饰 framework）"]]),
 (6,[[[("Linguists","语言学家"),("had a rare chance","难得有机会"),("to watch","看着"),("a language","一门语言"),("grow from **infancy**","从**婴儿期**(infancy)长"),("to **maturity**.","到**成熟期**(maturity)。")],
      "（grow from A to B：从 A 长到 B；watch sth do：看着……做）"]]),
-(6,[[[("Its **builders**","它的**建造者**(builders)"),("were not","不是"),("teachers","老师"),("or","或"),("experts","专家，"),("but","而是"),("deaf","聋哑人的"),("**playmates**","**玩伴们**(playmates)，"),("in playgrounds,","在操场、"),("streets,","街头"),("and buses.","和公共汽车上。")],
+(6,[[[("Its **builders**","它的**建造者**(builders)"),("were not","不是"),("teachers","老师"),("or","或"),("experts","专家，"),("but","而是"),("deaf","聋哑人的"),("**playmates**","**玩伴们**(playmates)，"),("in playgrounds,","他们在游乐场，"),("streets,","在街头，"),("and buses.","以及在巴士上。")],
      "（not A but B：不是 A 而是 B；\nin playgrounds…：介词短语作后置定语，修饰 playmates）\n（简述：1970年代末以前，尼加拉瓜没有聋人群体，聋人大多与世隔绝，\n只和家人用自家创造的手势交流。1977年，马那瓜开办了一所特殊教育中心，\n到1983年，它和一所青少年职业学校已有400多名聋生。学校只教西班牙语口语和唇读，\n学生们盯着嘴唇看也是徒劳；可在课间、街头和公共汽车上，\n他们把手势和自家手势混在一起，很快形成了一门连贯的、完全属于自己的语言。\n老师们看不懂，1986年教育部请来美国手语语言学家朱迪·凯格尔。研究发现，\n入学更小的孩子和后来的新生用语法手段更频繁、更统一，每一批年幼的手语者都让这门语言更复杂；\n最早的手语者把怎样运动、往哪里去熔成一个动作，后来的手语者把它拆成按顺序排列的片段。\n这门语言的建造者不是老师或专家，而是一起玩耍的聋人孩子。）"]]),
 ]
 CONF={"对齐":{
