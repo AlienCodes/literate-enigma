@@ -4,7 +4,7 @@ import json,re,glob,os
 S=[
 (1,[[[("On a","在一辆"),("**rattling**","**哐当作响的**(rattling)"),("bus in Managua,","马那瓜市的公车上，"),("deaf pupils","聋人学生们"),("kept up","一直进行着"),("a **brisk**,","一场**轻快的**(brisk)、"),("**voiceless**","**无声的**(voiceless)"),("**hubbub**","**喧闹**(hubbub)，"),("across the **aisle**,","隔着**过道**(aisle)，")],
      "（keep up：使持续，保持；hubbub：嘈杂声，喧闹，\n这里指无声的手语交谈热热闹闹）"],
-    [[("**palms**","**手掌**(palms)"),("**fluttering**,","上下**翻飞**(fluttering)，"),("**wrists**","**手腕**(wrists)"),("**flicking**.","飞快地**舞动**(flicking)。")],
+    [[("**palms**","**手掌**(palms)"),("**fluttering**,","**拍动着**(fluttering)，"),("**wrists**","**手腕**(wrists)"),("**flicking**.","**轻弹**(flicking)。")],
      "（palms fluttering, wrists flicking：两个独立主格结构，\n描写他们打手语时的样子）"]]),
 (1,[[[("Their teachers","他们的老师"),("could not follow a word.","一个字也看不懂。")],
      "（follow：看懂，跟得上；not…a word：一个字也不）"]]),

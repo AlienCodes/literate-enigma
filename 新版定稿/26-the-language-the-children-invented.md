@@ -16,7 +16,7 @@ Linguists had a rare chance to watch a language grow from **infancy** to **matur
 
 ## 中文
 
-马那瓜，一辆**哐当作响**(rattling)的公共汽车上，聋人学生们隔着**过道**(aisle)，**轻快**(brisk)地进行着一场**无声**(voiceless)的**喧闹**(hubbub)，**手掌**(palms)上下**翻飞**(fluttering)，**手腕**(wrists)飞快地**舞动**(flicking)。他们的老师一个字也看不懂。
+马那瓜，一辆**哐当作响**(rattling)的公共汽车上，聋人学生们隔着**过道**(aisle)，**轻快**(brisk)地进行着一场**无声**(voiceless)的**喧闹**(hubbub)，**手掌**(palms)**拍动着**(fluttering)，**手腕**(wrists)**轻弹**(flicking)。他们的老师一个字也看不懂。
 
 20世纪70年代末以前，尼加拉瓜没有聋人**群体**(community)。大多数聋人过着**与世隔绝**(secluded)的生活，只和父母、**兄弟姐妹**(siblings)共用一套**自家创造**(homemade)的手势**词汇**(repertoire)。1977年，马那瓜圣胡达斯区开办了一所特殊教育中心，招收了50名聋童。到1983年，这所中心和一所面向**青少年**(teenage)的**职业**(vocational)学校，已共有400多名聋生。
 
