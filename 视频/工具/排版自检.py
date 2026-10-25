@@ -110,6 +110,26 @@ import 对正量 as _DZ
 判('L20 重点词对正', not _DZ.gate('24', _DZ.load('24')))
 _d23 = _DZ.load('23'); _a = [r['偏'] for r in _DZ.measure(_d23, None)[0]]; _b = [r['偏'] for r in _DZ.measure(_d23, False)[0]]
 判('L20 01–23 照旧居中', _a == _b and not R.ALIGN_RULE[0])
+# G35 结尾简述整屏特批（25 用户 2026-10-25）：数值放宽仍 ≤1.5；“整屏”只给 25 起最后一句的简述；整屏折行字号不比现在小
+import json as _js
+_d24 = _js.load(open(f'{os.path.dirname(T)}/脚本/24.json')); _sp = {'依据': '用户 2026-10-25 特批：自检样本'}
+def _停(d):
+    try: R.apply_script(d); return False
+    except SystemExit: return True
+判('L19 放宽特批上限（无特批放宽仍停：倍数 2.0）', _停({**_d24, '说明放宽特批': {'S1': {**_sp, '倍数': 2.0}}}))
+判('G35 整屏只给 25 起最后一句的简述（24 用整屏必停）', _停({**_d24, '说明放宽特批': {f'S{len(_d24["sentences"])}': {**_sp, '倍数': '整屏'}}}))
+_d25 = {**_d24, 'no': '25'}
+判('G35 整屏不给中间的句子', _停({**_d25, '说明放宽特批': {'S1': {**_sp, '倍数': '整屏'}}}))
+_ok = not _停({**_d25, '说明放宽特批': {f'S{len(_d24["sentences"])}': {**_sp, '倍数': '整屏'}}}) if '（简述：' in (_d24['sentences'][-1]['chunks'][-1].get('note') or '') else True
+判('G35 整屏特批合规的放行', _ok)
+R.apply_script(_d24)
+_s = _d24['sentences'][-1]; _co = {k: (1, 1, 1) for c in _s['chunks'] for k in re.findall(r'\*\*(.+?)\*\*', c['en'])}
+_chs = [[tuple(q) for q in c['align']] for c in _s['chunks']]; _nt = [c.get('note') for c in _s['chunks']]
+if any(n and '（简述：' in n for n in _nt):
+    _e0 = min(R.max_es(_chs, _co, _nt), 100 * R.S); _e1 = R.简述整屏折行(_chs, _co, _nt)[0]
+    判('G35 简述整屏折行字号不比现在小', _e1 >= _e0, f'{_e0}→{_e1}')
+_long = '；'.join(f'第{i}段说明文字比较长一些' for i in range(12)); _nf = R.ZH(64, 400)
+判('G35 说明能折超过 6 行（长简述不静默放弃）', len(R.折成(_long, 10, _nf, sorted(R.断点(_long))) or []) == 10)
 shutil.rmtree(td)
 print('排版自检：' + (f'通过（{len(ok_)} 项：' + '、'.join(x.split(' ')[0] for x in ok_) + ' 造的错都报出、正例不误报）' if not fails else '失灵！' + '；'.join(fails)))
 sys.exit(1 if fails else 0)
