@@ -62,7 +62,7 @@ def 自检():
     if not any('23-文本.docx' in x for x in 缺文件('23', _r)): fails.append('没抓到：23 缺对照文本 docx（G30）')
     _sh.rmtree(_r, ignore_errors=True)
     return fails
-if sys.argv[1:2] in (['--自检'],['--撞车清单'],['--写提醒']):
+if sys.argv[1:2] in (['--自检'],['--撞车清单'],['--写提醒']):   # --写提醒 NN [--根 目录]（--根 只给 开工记录 自检用临时仓库）
     no=None
 else:
     no=sys.argv[1].zfill(2)
@@ -187,8 +187,9 @@ def 提醒节(n, root=ROOT):
     return '\n'.join(L)+'\n'
 def 写提醒(n, root=ROOT):
     p=f'{root}/视频/制作记录/{n}.md'; t=open(p).read() if os.path.exists(p) else ''; sec=提醒节(n, root)
-    if '## 撞车提醒' in t:
-        i=t.index('## 撞车提醒'); j=t.find('\n## ', i+1); t=t[:i]+sec+(t[j+1:] if j>0 else '')
+    m=re.search(r'^## 撞车提醒[^\n]*$', t, re.M)   # G46：只认行首整行标题（26 方法设计正文里引了“## 撞车提醒”，从那句冲到下一节）
+    if m:
+        i=m.start(); j=t.find('\n## ', m.end()); t=t[:i]+sec+(t[j+1:] if j>0 else '')
     else: t=t.rstrip('\n')+('\n\n' if t else '')+sec
     open(p,'w').write(t); return 提醒项(n, root)
 def 查提醒(n, root=ROOT):
@@ -196,8 +197,9 @@ def 查提醒(n, root=ROOT):
     it=提醒项(n, root)
     if not it: return []
     p=f'{root}/视频/制作记录/{n}.md'; t=open(p).read() if os.path.exists(p) else ''
-    if '## 撞车提醒' not in t: return [f'T12 撞车提醒没写进 制作记录/{n}.md（本篇原有重点词撞车 {len(it)} 处：先留着、要告诉用户）：python3 视频/工具/check_all.py --写提醒 {n}']
-    i=t.index('## 撞车提醒'); j=t.find('\n## ', i+1); s=t[i:j if j>0 else len(t)]
+    m_=re.search(r'^## 撞车提醒[^\n]*$', t, re.M)
+    if not m_: return [f'T12 撞车提醒没写进 制作记录/{n}.md（本篇原有重点词撞车 {len(it)} 处：先留着、要告诉用户）：python3 视频/工具/check_all.py --写提醒 {n}']
+    i=m_.start(); j=t.find('\n## ', m_.end()); s=t[i:j if j>0 else len(t)]
     miss=sorted({b for b,m,o,v in it if not re.search(rf'(?<![A-Za-z]){re.escape(b)}(?![A-Za-z])', s)})
     return [f'T12 撞车提醒漏了：{"、".join(miss)}（重跑 python3 视频/工具/check_all.py --写提醒 {n}）'] if miss else []
 def 自检T12():
@@ -231,7 +233,7 @@ def 自检T12():
     finally: _sh.rmtree(r, ignore_errors=True)
     return f
 if sys.argv[1:2]==['--写提醒']:
-    n=sys.argv[2].zfill(2); it=写提醒(n); print(f'第{n}篇 撞车提醒：{len(it)} 处，已写进 制作记录/{n}.md 的“## 撞车提醒”' + ''.join(f'\n  {b}：第 {m} 篇也加粗（{o}）' + ('，待用户判' if v=='待判' else '') for b,m,o,v in it)); sys.exit(0)
+    n=sys.argv[2].zfill(2); _rt=sys.argv[sys.argv.index('--根')+1] if '--根' in sys.argv else ROOT; it=写提醒(n, _rt); print(f'第{n}篇 撞车提醒：{len(it)} 处，已写进 制作记录/{n}.md 的“## 撞车提醒”' + ''.join(f'\n  {b}：第 {m} 篇也加粗（{o}）' + ('，待用户判' if v=='待判' else '') for b,m,o,v in it)); sys.exit(0)
 if sys.argv[1:2]==['--撞车清单']:   # G32：70 篇所有重点词两两比，交用户看（01–24 已定稿的只列不改）
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); from 重查记录 import 已出片; 定=set(已出片())
     nos=sorted(os.path.basename(x)[:2] for x in glob.glob(f'{ROOT}/新版定稿/[0-9][0-9]-*.md'))
