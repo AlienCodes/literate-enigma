@@ -24,7 +24,7 @@ S=[
      "（with a third man aboard：with 复合结构，说明原因；\naboard：“在（船、机、车）上”或“登乘”。\n多用于强调已置身于某种交通工具内部，或完成了登载的动作。）"]]),
 (3,[[[("The command module,","指令舱，"),("the crew's **capsule**,","即机组**太空舱**(capsule)，"),("used","用的是"),("square","方形的"),("**filter**","**过滤器**(filter)"),("**cartridges**;","**滤芯**(cartridges)；"),("Aquarius's","然而水瓶座号的"),("**sockets**","**插槽**(sockets)"),("were round.","却是圆的。")],
      "（一个极其致命的物理乌龙，直接引发了接下来最著名的太空救援行动。\n因为“方形的滤芯，插不进圆形的凹槽。”）"]]),
-(3,[[[("From plastic bags,","用飞船上现有的塑料袋、"),("**cardboard**,","**硬纸板**(cardboard)"),("and tape on board,","和胶带，"),("ground engineers","地面工程师"),("**devised**","**构思设计出**(devised)"),("an **adapter**,","一个**转接器**(adapter)，")],
+(3,[[[("From plastic bags,","用飞船上现有的塑料袋、"),("**cardboard**,","**硬纸板**(cardboard)"),("and **tape** on board,","和**胶带**(tape)，"),("ground engineers","地面工程师"),("**devised**","**构思设计出**(devised)"),("an **adapter**,","一个**转接器/转换插头**(adapter)，")],
      "（on board：在飞船上，修饰前面三样东西）"],
     [[("then","然后"),("**talked** the crew **through**","**一步步指导**(talked through)机组"),("**assembling** it.","把它**组装**(assembling)起来。")],
      "（talk sb through sth：一步步指导某人做某事）"]]),
