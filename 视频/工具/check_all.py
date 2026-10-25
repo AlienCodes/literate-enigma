@@ -109,16 +109,27 @@ def 词(b):
     ws=re.findall(r"[A-Za-z]+",b)
     if len(ws)==1 and (len(ws[0])<3 or ws[0].lower() in STOP): return None
     return ws or None
+虚词={'a','an','the','on','in','to','of','at','by','for','from','with','into','onto','upon','up','down','out','off','over','away','back','about','around','through','as'}
+def 实词(b):
+    """N（26 会话报，2026-10-25）：短语拆出实词比（去掉介词、小品词、冠词）：hinged on↔hinge on、in vain↔vain 都查得到；
+    多个实词的短语照旧按整体比（trade journal ≠ journal，用户 2026-10-16）"""
+    ws=re.findall(r"[A-Za-z]+",b); c=[w for w in ws if w.lower() not in 虚词]
+    if len(ws)==1: return 词(b)
+    return c or None
+def 原有(b, orig):
+    """原稿就有的重点词：原样在原稿重点词里，或按 T22 扩成短语（hinged → hinged on、vain → in vain：多出来的只是介词、小品词、冠词）"""
+    if b.lower() in orig: return True
+    c=实词(b); return bool(c) and ' '.join(c).lower() in orig
 def 同词(x, y):
-    """两个重点词：'撞车'（同一个词）、'待判'（程序拿不准）、None（不同的词）。短语按整体比，组成它的单词在别篇加粗过不算"""
-    a, b = 词(x), 词(y)
+    """两个重点词：'撞车'（同一个词）、'待判'（程序拿不准）、None（不同的词）。按实词比：短语对短语、短语对单词都查；多实词短语按整体"""
+    a, b = 实词(x), 实词(y)
     if not a or not b or len(a)!=len(b): return None
     r=[_同(p,q) for p,q in zip(a,b)]
     if None in r: return None
     if '待判' in r or ('-' in x)!=('-' in y): return '待判'   # built in↔built-in
     return '撞车'
-def ckey(b):   # 分组用（同组里再用 同词 判）：每个词的前 3 个字母
-    ws=词(b); return ' '.join(w.lower()[:3] for w in ws) if ws else None
+def ckey(b):   # 分组用（同组里再用 同词 判）：每个实词的前 3 个字母
+    ws=实词(b); return ' '.join(w.lower()[:3] for w in ws) if ws else None
 T12全篇_起 = 25   # T12（用户 2026-10-24：“这个撞车检查肯定要看整个70篇文章啊……以后撞车检查是为了检查70篇文章。不是说只看这个已经做完的文章”；
                   # 2026-10-25：“查撞车清单是70篇，全部都查给70篇……所有的重点词汇全部都查，不是说只查已经做完的”）：
                   # 25 起，本篇所有重点词和 新版定稿 全部篇目的所有重点词比（做了视频的按脚本，没做的按 md 加粗）；01–24 已定稿的照旧（只比新加的、做了视频的），不回头改，列进撞车清单
@@ -150,7 +161,7 @@ def 撞车(d, no, others, orig):
     new_only=int(no)<T12全篇_起; hit, ask = [], []
     ac_={x.lower() for x in d.get('allow_clash',[])}
     for b in dict.fromkeys(b for s in d['sentences'] for c in s['chunks'] for b in _加粗(c['en'])):
-        if b.lower() in ac_ or b.lower() in orig: continue   # 原稿就有的重点词撞车：不去掉、不停，写进制作记录“## 撞车提醒”告诉用户（J，用户 2026-10-25）
+        if b.lower() in ac_ or (原有(b, orig) if not new_only else b.lower() in orig): continue   # 原稿就有的重点词（含 T22 扩成的短语）撞车：不去掉、不停，写进制作记录“## 撞车提醒”告诉用户（J，用户 2026-10-25）
         for n, o in others.get(ckey(b) or '', []):
             v=同词(b, o) if not new_only else ('撞车' if 旧键(b) and 旧键(b)==旧键(o) else None)   # 01–24：沿用原先的判法（已定稿的结果不变，按新判法的列进撞车清单）
             if v=='撞车': hit.append(f'{b} 也在第 {n} 篇加粗（{o}）')
@@ -162,7 +173,7 @@ def 提醒项(n, root=ROOT):
     本篇原有的重点词（原稿就加粗的；没做视频的篇目全部算原有）和全部 70 篇比，撞车或待判的 [(词, 篇, 别篇的词, 判)]"""
     ws=篇重点词(n, root); mds=glob.glob(f'{root}/新版定稿/{n}-*.md')
     if os.path.exists(f'{root}/视频/脚本/{n}.json') and mds:
-        o=set(json.load(open(_OJ)).get(os.path.relpath(mds[0],root),[])) if os.path.exists(_OJ) else set(); ws=[w for w in ws if w.lower() in o]
+        o=set(json.load(open(_OJ)).get(os.path.relpath(mds[0],root),[])) if os.path.exists(_OJ) else set(); ws=[w for w in ws if 原有(w, o)]
     oth=他篇(n, root, 全=True); out=[]
     for b in ws:
         for m,o2 in oth.get(ckey(b) or '',[]):
@@ -193,7 +204,7 @@ def 自检T12():
     import tempfile, shutil as _sh; f=[]; r=tempfile.mkdtemp()
     for x, y, want in [('dose','doses','撞车'), ('slight','slight','撞车'), ('dam','dams','撞车'), ('settled','settles','撞车'), ('earn','earnings',None), ('fleet','fleeting',None),
                        ('circulation','circulates',None), ('lodgings','lodged',None), ('enterprising','enterprises',None), ('engravings','Engraved',None),
-                       ('scraped','scrapped',None), ('employees','employed',None), ('stopped','stop','撞车'), ('assess','assessed','撞车'), ('scale','scaled','撞车'), ('walks','walked','撞车'), ('proceedings','proceeding','待判'), ('built in','built-in','待判'), ('trade journal','journal',None)]:
+                       ('scraped','scrapped',None), ('employees','employed',None), ('stopped','stop','撞车'), ('assess','assessed','撞车'), ('scale','scaled','撞车'), ('walks','walked','撞车'), ('proceedings','proceeding','待判'), ('built in','built-in','待判'), ('trade journal','journal',None), ('hinged on','hinge on','撞车'), ('in vain','vain','撞车'), ('hinged on','hinged','撞车'), ('set foot in','set out to',None)]:
         if 同词(x, y)!=want: f.append(f'撞车判断错：{x}↔{y} 判成 {同词(x, y)}，应为 {want}（T12/G32）')
     try:
         os.makedirs(f'{r}/新版定稿'); os.makedirs(f'{r}/视频/脚本')
@@ -210,6 +221,10 @@ def 自检T12():
         写提醒('26', r)
         if 查提醒('26', r) or '## 方法设计' not in open(f'{r}/视频/制作记录/26.md').read(): f.append('误报：写了撞车提醒还报，或写提醒冲掉了制作记录别的节（J）')
         h,_=撞车({'sentences':[{'chunks':[{'en':'A **glacier**.'}]}]},'26',他篇('26', r),{'glacier'})
+        h2,_=撞车({'sentences':[{'chunks':[{'en':'It **glaciers on** them.'}]}]},'26',他篇('26', r),{'glaciers'})
+        if h2: f.append('没抓到：原稿重点词按 T22 扩成短语（glaciers → glaciers on）被当成我们新加的、要求不加（N）')
+        h3,_=撞车({'sentences':[{'chunks':[{'en':'It **glacier on** them.'}]}]},'26',他篇('26', r),set())
+        if not h3: f.append('没抓到：短语（glacier on）和别篇单词（glaciers）撞车漏报（N）')
         if h: f.append('误报：原稿就有的重点词撞车被当成要去掉（J：先留着、只提醒）')
         h16,_=撞车({'sentences':[{'chunks':[{'en':'**scaled**'}]}]},'16',{ckey('scale'):[('15','scale')]},set())
         if h16: f.append('误报：01–24 已定稿篇目按新判法被拦（只列撞车清单，不改）')

@@ -733,10 +733,12 @@ def l19_checks(dd):
     return err
 
 
+T31严_起 = 26   # G39：方法设计“预计调用”“预计 token”后面同一行要有内容（01–25 不回头查）
 def record_meta_checks(no, _rec):
     """[T31] 制作记录要写好“## 方法设计”（13 起）；[T29] 要有“## 方法复盘”（11 起）"""
     err = []
-    if int(no) >= 13 and not re.search(r'## 方法设计[\s\S]*?预计调用：\s*\S[\s\S]*?预计 token：\s*\S', _rec):
+    sp_ = r'[ \t]*' if int(no) >= T31严_起 else r'\s*'   # G39：\s 会跨行，空模板“- 预计调用：”下一行的“-”被当成内容（25.md 被整份换成空模板照样放行）；26 起只认同一行里的内容
+    if int(no) >= 13 and not re.search(r'## 方法设计[\s\S]*?预计调用：' + sp_ + r'\S[\s\S]*?预计 token：' + sp_ + r'\S', _rec):
         err.append(f'[T31] 制作记录/{no}.md 没写“## 方法设计”（步骤、预计调用、预计 token、为什么有效）：用户 2026-10-16 铁律——动手前先设计并证明方法有效，规矩由程序执行，没写不能出片')
     if int(no) >= 11 and '## 方法复盘' not in _rec: err.append(f'[T29] 制作记录/{no}.md 没有“## 方法复盘”：每做完一件事，写下费 token 的地方能不能用虹吸、改了什么（用户 2026-10-15 铁律）')
     return err
@@ -768,6 +770,9 @@ def selftest_record_meta():
     ok_ = '## 方法设计\n- 预计调用：10 次\n- 预计 token：100 万\n\n## 方法复盘\n- 无\n'; fails = []
     if record_meta_checks('20', ok_): fails.append('T29/T31 误报：写全的制作记录被报出')
     if not any(x.startswith('[T31]') for x in record_meta_checks('20', '## 方法复盘\n')): fails.append('没抓到：制作记录没写方法设计（T31）')
+    _空 = '## 方法设计（T31：动手前写好）\n- 步骤：\n- 每步谁做（程序/我）：\n- 预计调用：\n- 预计 token：\n- 为什么有效：\n\n## 方法复盘\n'
+    if not any(x.startswith('[T31]') for x in record_meta_checks('26', _空)): fails.append('没抓到：方法设计是空模板（预计调用、预计 token 后面没写，G39 重放 25.md）')
+    if record_meta_checks('26', _空.replace('预计调用：', '预计调用：50–70 次').replace('预计 token：', '预计 token：约 2M')): fails.append('G39 误报：方法设计写全了还报')
     if not any(x.startswith('[T29]') for x in record_meta_checks('20', ok_.split('## 方法复盘')[0])): fails.append('没抓到：制作记录没写方法复盘（T29）')
     return fails
 
