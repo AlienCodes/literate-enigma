@@ -15,7 +15,9 @@
 写进 核对确认.非人声：{"12.34–12.56s": {"配音指纹": a.wav 的 md5 前 12 位, "依据": …}}，配音一变确认作废。
 自检（阳性对照）：在副本的停顿静音里分别放进一段假呼吸声（0.15 秒、-42 dB、1–2.5 kHz 噪声）、一个假噗声（25 ms、90 Hz、-45 dB）、
 一个假咔哒声（10 ms、-38 dB 宽带噪声），再在一句开口前紧贴着放一段 0.15 秒、-45 dB 的假吸气声；每一处都必须被对应的那一项报出，别处不得多报。"""
-import sys, os, json, hashlib, numpy as np, soundfile as sf
+import sys, os, json, hashlib, numpy as np
+try: import soundfile as sf   # --确认自检 是纯数值，不要声音库（主会话容器没有）
+except ImportError: sf = None
 SR = 24000; F = 120
 
 def per(x):

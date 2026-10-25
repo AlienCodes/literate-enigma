@@ -5,8 +5,9 @@
 数字两边都去掉逗号和序数词尾（13th / 13）。读音对不上的词（漏词、多词、读错、吞音）列出来。
 用法（视频工作目录）：python3 机器复听.py NN [成片或 a.wav]；--自检 NN（把一句的一个词换成别的词的声音，必须报出这个词；原样不误报）
 """
-import os, sys, re, json, difflib, numpy as np, soundfile as sf
-from scipy.signal import resample_poly
+import os, sys, re, json, difflib, numpy as np
+try: import soundfile as sf; from scipy.signal import resample_poly   # 重依赖只有真听声音时才要；--比较自检 在只有标准库 + numpy 的容器（主会话）也能跑
+except ImportError: sf = resample_poly = None
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T)
 MD = os.path.expanduser('~/asr/sherpa-onnx-whisper-small.en')   # 准备机器.sh 下载到这里
 
@@ -17,10 +18,15 @@ def 识别器():
     return sherpa_onnx.OfflineRecognizer.from_whisper(encoder=p('small.en-encoder.int8.onnx'), decoder=p('small.en-decoder.int8.onnx'), tokens=p('small.en-tokens.txt'), num_threads=4)
 
 _tk = None
+_自检读音 = {"crew's": 'kɹuːz', 'cruise': 'kɹuːz', 'organised': 'ɔɹɡənaɪzd', 'organized': 'ɔɹɡənaɪzd', 'eleven': 'ɪlɛvən', '11': 'ɪlɛvən'}   # espeak 的读音（kokoro 注音实测）
 def 音标(w):
     global _tk
     if _tk is None:
-        from kokoro_onnx.tokenizer import Tokenizer; _tk = Tokenizer()
+        try: from kokoro_onnx.tokenizer import Tokenizer; _tk = Tokenizer()
+        except ImportError: _tk = False
+    if _tk is False:   # 没有注音程序的容器（主会话）：只为 --比较自检 用内置的几组读音，真听声音一定在有配音模型的工作目录
+        if sf is not None: raise SystemExit('【停止】有声音程序却没有 kokoro_onnx 注音程序：机器复听不能按读音比')
+        return _自检读音.get(w, w)
     x = re.sub(r'[ˈˌː\s]', '', _tk.phonemize(w, 'en-us'))
     return x.translate(str.maketrans({'ᵻ': 'ɪ', 'ɐ': 'ə', 'ɾ': 't'})).replace('ɚ', 'əɹ')   # 注音变体（eleven/11、organised/organized）归一
 
@@ -29,7 +35,7 @@ def 词(t):
     t = re.sub(r'(?<=\d),(?=\d{3})', '', t.lower())
     t = re.sub(rf'\b([1-9]|[12]\d|3[01]) ({_月})\b', r'the \1 of \2', t)   # 出片程序把 6 January 读成 the sixth of January（make_video spoken）
     t = re.sub(r'(\d+)(st|nd|rd|th)\b', r'\1', t)
-    return re.findall(r"[a-z0-9]+(?:'[a-z]+)?", t)
+    return re.findall(r"[^\W_]+(?:'[^\W_]+)?", t)   # 带变音符的专名（Ötztal）整词保留
 
 _核 = None
 def 已核实():
@@ -117,7 +123,38 @@ def 比较自检():
         if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
     return f
 
+def 分类(md):
+    """把 --清单 的结果分成两类（不重跑识别）：
+    识别器听不准：脚本里大写的专名；或两边音标只差元音（近音词，配音读音由读音核对把关）。
+    疑似真问题：漏词、多词；或脚本的音标 = 听到的音标 + 词尾辅音（词尾 -ed/-s/-t 没听到，可能被切或吞掉）；其余读音差别也算。"""
+    vow = set('aeiouæɑɒɔəɛɜɪʊʌyɐᵻɚː')
+    sys.path.insert(0, T); import 音频体检 as Q
+    out_r, out_q = [], []
+    for blk in re.split(r'\n(?=- \*\*\d\d\*\*)', open(md).read()):
+        m = re.match(r'- \*\*(\d\d)\*\*', blk)
+        if not m: continue
+        no = m.group(1); txt = Q.文本(no) or []
+        for sm_ in re.finditer(r'  - S(\d+)：(.+)', blk):
+            si = int(sm_.group(1)); ref = txt[si] if si < len(txt) else ''
+            for x, y in re.findall(r'脚本“([^”]*)” 听到“([^”]*)”', sm_.group(2)):
+                bad_ = x != '（多出）' and not all(re.search(rf"(?<![^\W_]){re.escape(w)}(?![^\W_])", ref, re.I) for w in x.split())   # 旧清单按 a–z 切词，Ötztal 成了 tztal
+                cap = bad_ or x != '（多出）' and all(re.search(rf"(?<!^)\b{re.escape(w)}\b", ref, re.I) and re.search(rf"\b{re.escape(w[0].upper() + w[1:])}", ref) for w in x.split())
+                px = ''.join(音标(w) for w in x.split()) if x != '（多出）' else ''; py = ''.join(音标(w) for w in y.split()) if y != '（没听到）' else ''
+                cons = lambda t: ''.join(c for c in t if c not in vow)
+                item = f'{no} S{si}：脚本“{x}” 听到“{y}”（音标 /{px}/ → /{py}/）'
+                if x == '（多出）' or y == '（没听到）': out_q.append(item + ' —— 漏词或多词'); continue
+                if px.startswith(py) and py and cons(px[len(py):]) == px[len(py):]: out_q.append(item + f' —— 词尾少了 /{px[len(py):]}/（可能被切或吞掉）'); continue
+                if cap: out_r.append(item + ' —— 专名（脚本里大写），识别器不认识'); continue
+                if cons(px) == cons(py): out_r.append(item + ' —— 只差元音，近音词'); continue
+                out_q.append(item + ' —— 读音不同')
+    return out_q, out_r
+
 if __name__ == '__main__':
+    if sys.argv[1:2] == ['--分类']:
+        q, r = 分类(sys.argv[2])
+        print('# 机器复听清单（01–24 已定稿：只列不改）\n\n由 `机器复听.py --分类` 把 `--清单` 的结果分成两类。用户只需听“疑似真问题”那几句。\n')
+        print(f'## 疑似真问题（{len(q)} 处，先听这些）\n'); print('\n'.join('- ' + x for x in q) or '（无）')
+        print(f'\n## 识别器听不准（{len(r)} 处）\n'); print('\n'.join('- ' + x for x in r) or '（无）'); sys.exit(0)
     if sys.argv[1:2] == ['--比较自检']:
         e = 比较自检(); print('\n'.join(e) or '机器复听 比较自检通过（序数、同音、注音变体、日期、千分位不报；漏词、读错必报）'); sys.exit(1 if e else 0)
     if sys.argv[1:2] == ['--清单']: 清单(sys.argv[2]); sys.exit(0)

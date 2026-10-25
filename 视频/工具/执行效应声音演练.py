@@ -17,7 +17,7 @@ NO = '20'   # 最短的已定稿篇目之一（17 句），只出声音 8 秒
 NO25 = '25'   # 25 起才查的门（G36 句内分段响度）：冻结样本里没有 25，用 20 的冻结脚本改号成 25 出声音（原样那一场同样改号，只比新多出的 ✘）
 STAMP = f'{T}/执行效应声音演练通过.json'
 声音被演练 = ['交付核查.py', '标点停顿核对.py', '句首句尾与停顿位置核对.py', '读音核对.py', '词尾辅音核对.py', '停顿位置精确核对.py', '无标点停顿核对.py',
-          'audio_qc.py', '响度一致性核对.py', '音频体检.py', '音频体检基准.json', '机器复听.py', '纯人声核对.py', '句间停顿核对.py', '高亮同步核对.py', 'make_video.py', '执行效应声音演练.py', '演练镜像.py', '演练样本/清单.json']   # 规则执行表 每次主演练都会改写“演练”字段，不盖进声音印章
+          'audio_qc.py', '响度一致性核对.py', '音频体检.py', '音频体检基准.json', '机器复听.py', '疑点清单.py', '自动切点.py', '草稿声音.sh', '纯人声核对.py', '句间停顿核对.py', '高亮同步核对.py', 'make_video.py', '执行效应声音演练.py', '演练镜像.py', '演练样本/清单.json']   # 规则执行表 每次主演练都会改写“演练”字段，不盖进声音印章
 指纹 = Y.指纹
 
 
@@ -123,7 +123,8 @@ def 跑(M, ws, stage, no=NO):
 
 def 演练(W, 只=None):
     root = os.path.dirname(os.path.abspath(W)); g0 = Y._git状态(); c0 = Y.缓存快照()   # G29：两个仓库的配音缓存都拍快照
-    todo = [s for s in 声音场景 if not 只 or s[0] in 只]; nos = sorted({(s[7] if len(s) > 7 else NO) for s in todo} | {NO})
+    todo = [s for s in 声音场景 if not 只 or s[0] in 只]; 通路 = not 只 or '通路_草稿声音26' in 只
+    nos = sorted({(s[7] if len(s) > 7 else NO) for s in todo} | {NO} | ({'26'} if 通路 else set()))
     def 稿(no):
         d = json.loads(Y.读样(f'视频/脚本/{NO}.json')); d['no'] = no
         if no != NO:   # 改号成 25：24 起破折号禁用（T36），20 的中文里有“——”，只换画面文字（中文、说明），配音不变
@@ -160,6 +161,11 @@ def 演练(W, 只=None):
             miss = [w for w in want if not any(w in l for l in new)]
             return sid, c != 0 and not miss, ('新报出：' + next(l for l in new if want[0] in l)[:80]) if not miss else f'没挡住：{miss}（退出码 {c}，新报出 {"；".join(sorted(new))[:150]}）'
         res = list(ex.map(one, todo))
+        if 通路:   # 真实流程走得通（主对话 2026-10-25：26 起源头调平后 疑点清单 重建对不上，草稿声音.sh 三轮全停；演练以前只验门会挡，没验好稿子能走通）
+            M, ws = 场('通路26', no='26')
+            r = subprocess.run(['bash', '/home/user/postgraduate-vocabulary/视频/工具/草稿声音.sh', '26'], cwd=ws, capture_output=True, text=True, errors='replace', timeout=1800, env={**os.environ, 'CLAUDE_PROJECT_DIR': M})
+            st = [l for l in (r.stdout + r.stderr).splitlines() if '停止' in l or 'Traceback' in l]
+            res.append(('通路_草稿声音26', not st, '26（冻结样本改号，26 起源头调平）从 草稿声音.sh 端到端走通，没有一处停' if not st else f'草稿声音.sh 停了：{st[0][:150]}'))
         if not 只 or '自查拆门_声音' in 只:   # 拆门自查：把 无标点停顿核对 的门拆掉（镜像里改程序），A4 那一场必须报“没挡住”
             s = next(x for x in 声音场景 if x[0] == 'A4句中硬停'); M, ws = 场('拆门', None, s[4], qc0(NO))
             p = f'{M}/视频/工具/交付核查.py'; t = open(p).read(); open(p, 'w').write(t.replace("step('无标点处停顿 ≤ 0.22 秒', not long,", "step('无标点处停顿 ≤ 0.22 秒', True,", 1))

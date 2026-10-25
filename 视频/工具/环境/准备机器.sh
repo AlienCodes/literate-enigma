@@ -29,9 +29,11 @@ A=~/asr/sherpa-onnx-whisper-small.en; [ -f $A/small.en-encoder.int8.onnx ] || { 
 python3 - "$A" "$V/工具/环境/模型校验码.json" <<'PY3'
 import sys,json,hashlib,os
 d,j=sys.argv[1],json.load(open(sys.argv[2])); bad=0
-for f in ('small.en-encoder.int8.onnx','small.en-decoder.int8.onnx'):
-    h=hashlib.sha256(open(os.path.join(d,f),'rb').read()).hexdigest()[:16]; want=j[f].split(':')[1]
+fs=('small.en-encoder.int8.onnx','small.en-decoder.int8.onnx'); hs={}
+for f in fs:
+    h=hashlib.sha256(open(os.path.join(d,f),'rb').read()).hexdigest()[:16]; want=j[f].split(':')[1]; hs[f]=h
     print(f, h, '✔ 识别模型对' if h==want else '✘ 识别模型不对'); bad|=(h!=want)
+if bad and all(hs[a]==j[b].split(':')[1] for a,b in (fs,fs[::-1])): print('✘ 是校验码表里 encoder、decoder 两项写反了（2026-10-25 出过一次），改 模型校验码.json')
 sys.exit(bad)
 PY3
 echo "机器准备好了：$B/video"
