@@ -107,7 +107,48 @@ def scan(a):
 
 def key(f): return f'{f[1]:.2f}–{f[2]:.2f}s'
 
+# G43（主对话 2026-10-25：25 S10 “17th | the” 两条 AI 写的确认说是“底噪、the 的起音”，实测是可闻吸气，被确认放过）：25 起非人声确认只认实测数据。
+# ① 确认里必须有“实测”（程序当场量的 最响dB、重心Hz、周期、低频dB，--写实测 自动填），和当场量的对不上就作废；
+# ② 实测像可闻吸气（呼吸声/噗声/孤立杂音，长 ≥60 ms，重心 1.8–3.8 kHz，低频 < -10 dB，周期 < 0.35，最响 ≥ -45 dB）的，确认一律不收，只能用 非人声区间 去掉
+#    （长 ≥60 ms：/p/ /t/ 的除阻也是这种频谱，但只有 10–20 ms，25 S13 upgraded 的 /p/ 除阻 20 ms）
+def 实测(f): return {'最响dB': round(float(f[3]), 1), '重心Hz': round(float(f[4])), '周期': round(float(f[5]), 2), '低频dB': round(float(f[6]), 1)}
+def 像吸气(f): return f[0] in ('呼吸声', '噗声', '孤立杂音') and f[2] - f[1] >= 0.06 and 1800 <= f[4] <= 3800 and f[6] < -10 and f[5] < 0.35 and f[3] >= -45
+def 确认可收(no, f, cf):
+    if not (str(no).isdigit() and int(no) >= 25): return True, ''
+    if 像吸气(f): return False, f'实测像可闻吸气（{实测(f)}），确认不收，用 非人声区间 去掉（G43）'
+    m = cf.get('实测') if isinstance(cf, dict) else None
+    if not isinstance(m, dict): return False, '确认里没有实测数据（G43：python3 纯人声核对.py NN --写实测）'
+    t = 实测(f)
+    if any(abs(float(m.get(k, 1e9)) - v) > tol for (k, v), tol in zip(t.items(), (1.0, 150, 0.05, 1.0))): return False, f'确认里的实测 {m} 与当场量的 {t} 对不上（G43）'
+    return True, ''
+def 确认自检():
+    e = []; b = ('呼吸声', 10.0, 10.12, -36.0, 2185.0, 0.21, -11.7)   # 25 S10 实测的那处可闻吸气
+    if 确认可收('25', b, {'实测': 实测(b)})[0]: e.append('没抓到：25 实测像可闻吸气（2185 Hz、低频 -11.7、周期 0.21），确认照样收了（G43 重放 25 S10）')
+    p_ = ('孤立杂音', 104.31, 104.33, -35.9, 2528.0, 0.22, -13.7)   # 25 S13 upgraded /p/ 除阻 20 ms
+    if not 确认可收('25', p_, {'实测': 实测(p_)})[0]: e.append('误报：20 ms 的 /p/ 除阻被当成吸气')
+    w = ('噗声', 6.30, 6.32, -42.2, 2959.0, 0.0, -2.2)
+    if 确认可收('25', w, {'依据': '是词头'})[0]: e.append('没抓到：只写判断、没有实测数据的确认照样收了')
+    if 确认可收('25', w, {'实测': {**实测(w), '最响dB': -30.0}})[0]: e.append('没抓到：确认里的实测和当场量的对不上')
+    if not 确认可收('24', b, {})[0]: e.append('误报：24 以前的不回头查')
+    return e
+
 if __name__ == '__main__':
+    if sys.argv[1:2] == ['--复查清单']:   # 01–24 已定稿：用成片声音按 G43 同一标准重量每条非人声确认，只列不改
+        import glob, subprocess, shutil
+        vdir = sys.argv[2]; print('# 声音确认复查清单（01–24 已定稿：非人声确认按 G43 同一标准用成片声音重量；只列不改，等用户统一处理）\n'); tot = 0; tb = 0
+        for f_ in sorted(glob.glob(os.path.join(vdir, '[0-2][0-9].mp4'))):
+            nn = os.path.basename(f_)[:2]; js = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '脚本', f'{nn}.json')
+            if int(nn) >= 25 or not os.path.exists(js): continue
+            cf_ = json.load(open(js)).get('核对确认', {}).get('非人声', {})
+            # 在视频工作目录跑：用现行出片程序只出声音（配音缓存命中，十几秒），按 a.wav 的时刻与确认一一对上（成片 AAC 解码后时刻对不上）
+            shutil.copy(js, f'scripts/{nn}.json'); subprocess.run(['python3', 'make_video.py', f'scripts/{nn}.json', f'{nn}.mp4'], env={**os.environ, 'AUDIO_ONLY': '1'}, capture_output=True, check=True)
+            a_, _ = sf.read(f'work_{nn}/a.wav'); a_ = np.asarray(a_, float); got = {key(x): x for x in scan(a_)}
+            br = [(k, got[k]) for k in cf_ if k in got and 像吸气(got[k])]; nodata = [k for k in cf_ if not (isinstance(cf_[k], dict) and cf_[k].get('实测'))]
+            tot += len(cf_); tb += len(br)
+            print(f'- **{nn}**：非人声确认 {len(cf_)} 条（对上 {sum(k in got for k in cf_)} 条；只有判断、没有实测数据 {len(nodata)} 条）；实测像可闻吸气 {len(br)} 条' + ''.join(f'\n  - {k} {x[0]}：{实测(x)}' for k, x in br))
+        print(f'\n共 {tot} 条确认，实测像可闻吸气的 {tb} 条（用现行出片程序重出的 a.wav 量，时刻与确认一一对上）。要改哪篇，用户说了再改（改了要重出 4K、过交付核查、重新归档，G9）。'); sys.exit(0)
+    if sys.argv[1:2] == ['--确认自检']:
+        e = 确认自检(); print('\n'.join(e) or '纯人声核对 确认自检通过（25 起像可闻吸气的确认不收、没有实测或实测对不上不收；/p/ 除阻、24 以前照收）'); sys.exit(1 if e else 0)
     no = sys.argv[1]; a, sr = sf.read(f'work_{no}/a.wav'); assert sr == SR; a = np.asarray(a, float)
     if '--自检' in sys.argv:
         base = {key(f) for f in scan(a)}; b = a.copy()
@@ -151,10 +192,15 @@ if __name__ == '__main__':
         if g:
             rows.append(f"{no} OK（A21 移植的词尾除阻：{g['句']} {g['位置']}，{g['开始']:.3f}–{g['结束']:.3f}s）{f[0]} {key(f)} 最响 {f[3]:.1f} dB"); continue
         cf = conf.get(key(f)); ok = isinstance(cf, dict) and cf.get('配音指纹') == fp
+        if ok and '--写实测' in sys.argv and isinstance(cf, dict) and not 像吸气(f): cf['实测'] = 实测(f); 写_ = True
+        if ok:
+            ok, why_ = 确认可收(no, f, cf)
+            if not ok: rows.append(f'{no} BAD（{why_}）{f[0]} {key(f)}')
         bad += not ok
         if f[0] in ('起音前过长', '收尾过长'):
             rows.append(f"{no} {'OK（已用实际声音核实是词的一部分）' if ok else 'BAD'} {f[0]} {key(f)} 长 {1000 * f[4]:.0f} ms（标准：起音前 <100 ms、收尾 <250 ms） 这一段最响 {f[3]:.1f} dB")
         else:
             rows.append(f"{no} {'OK（已用实际声音核实是词的一部分）' if ok else 'BAD'} {f[0]} {key(f)} 长 {1000 * (f[2] - f[1]):.0f} ms 最响 {f[3]:.1f} dB 重心 {f[4]:.0f} Hz 周期 {f[5]:.2f} 低频占比 {f[6]:.1f} dB")
+    if '--写实测' in sys.argv and globals().get('写_'): json.dump(d, open(f'scripts/{no}.json', 'w'), ensure_ascii=False, indent=1); print(f'{no} 已把当场量的实测写进 核对确认.非人声（像可闻吸气的不写）')
     print('\n'.join(rows)); print(f'{no} 纯人声核对（配音指纹 {fp}）问题数', bad)
     sys.exit(1 if bad else 0)

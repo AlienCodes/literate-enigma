@@ -32,6 +32,7 @@ for si, s in enumerate(d['sentences']):
     for mm in re.finditer(r'[,;:](?=\s)', sent): pieces.append((p0, mm.end())); p0 = mm.end() + 1; gaps.append(P_LIST if mm.start() in lst else P_COMMA)
     pieces.append((p0, len(sent)))
     _W0.clear(); clips, tmap = sentence_audio(sent, pieces, gaps); a = np.concatenate(clips)
+    clips, a, _, _ = 句增益(d, no, si, sent, pieces, gaps, clips, tmap, a)   # 与出片程序同一个函数：源头调平、分段增益dB、句子增益dB
     off = cur + len(sil(lead))
     info.append(dict(si=si + 1, sent=sent, off=off, n=len(a), tmap=tmap, segs=[tuple(x[:3]) + (list(x[3]),) for x in LAST['segs']],
                      cuts=LAST['cuts'], toks=[(x.phoneme, x.start, x.end) for x in LAST['toks']], scale=LAST['scale'], head=LAST['head'], w0=_W0[-1], out=a))

@@ -620,6 +620,25 @@ def _auto_level(clips,tmap,gaps,rounds=2):
                 if nv!=tot.get(k2+1,0.0): cur[2*k2]=cur[2*k2]*np.float32(f_); tot[k2+1]=nv; ch=True
         if not ch: break
     return {k:v for k,v in tot.items() if v}
+def 句增益(d,no,si,sent,pieces,gaps,clips,tmap,a):
+    """一句话拼好以后的全部增益（G36 源头调平 26 起、分段增益dB、句子增益dB），出片程序和 疑点清单/自动切点 的重建共用（25 会话 2026-10-25：重建漏了分段增益，疑点清单停）"""
+    _agn={}
+    if str(no).isdigit() and int(no)>=26 and len(pieces)>1:     # G36 源头调平（主对话 2026-10-25 “用巧劲”：拼接前就把句内各段调平，句内忽大忽小根本产生不出来）：26 起自动做
+        _agn=_auto_level(clips,tmap,gaps)
+        for k_,g_ in _agn.items(): clips[2*(k_-1)]=clips[2*(k_-1)]*np.float32(10**(g_/20))
+        if _agn: a=np.concatenate(clips)
+    _pgn=d.get('分段增益dB',{}).get(f'S{si+1}')   # 2026-10-25 句内分段增益（用户看 25 S2：“这块这个声音在这一块声响是不是变小了？”）：句内一段比相邻段轻/响，只给这一段乘一个增益
+    if _pgn:                                                    # 段 = 按 , ; : 切的第几段（从 1 数）；接点在标点停顿的静音里，只调音量、不改音色；句内响度.py --写入 自动算
+        if sent in PGRAFT: raise SystemExit(f'【停止】分段增益dB 不能和 停顿处除阻 用在同一句（独立复核的位置会错开）：S{si+1}')
+        for k_,g_ in _pgn.items():
+            if not (str(k_).isdigit() and 1<=int(k_)<=len(pieces)) or abs(float(g_))>6: raise SystemExit(f'【停止】分段增益dB 写法不对（段号按 , ; : 从 1 数，共 {len(pieces)} 段；增益 ±6 dB 以内）：S{si+1} {k_}:{g_}')
+            clips[2*(int(k_)-1)]=clips[2*(int(k_)-1)]*np.float32(10**(float(g_)/20))
+        a=np.concatenate(clips)
+    _sg=float(d.get('句子增益dB',{}).get(f'S{si+1}',0))   # 2026-10-21 用户同意的例外：19 S5 短句比全片响 2.0 LU，只这一句整体调轻（≤1 dB，不改音色）
+    if _sg:
+        if abs(_sg)>1: raise SystemExit(f'【停止】句子增益dB 只许 ±1 dB 以内（S{si+1}：{_sg}）')
+        a=a*10**(_sg/20)
+    return clips,a,_agn,_pgn
 def sentence_audio(sent,pieces,gaps):
     """整句一次合成（原模型，声音不变）。标点位置用带时长输出的同版模型精确定位（A9）；
     在标点处只删除"真正无声"的部分（A10：绝不删词尾的 s/f/z 等弱音），再补静音，使实际听到的停顿 = 标准时长。"""
@@ -905,25 +924,10 @@ def build(js,out):
         clips,tmap=sentence_audio(sent,pieces,gaps)
         t=sum(len(c) for c in clips)/SR
         a=np.concatenate(clips)
-        _agn={}
-        if str(no).isdigit() and int(no)>=26 and len(pieces)>1:     # G36 源头调平（主对话 2026-10-25 “用巧劲”：拼接前就把句内各段调平，句内忽大忽小根本产生不出来）：26 起自动做
-            _agn=_auto_level(clips,tmap,gaps)
-            for k_,g_ in _agn.items(): clips[2*(k_-1)]=clips[2*(k_-1)]*np.float32(10**(g_/20))
-            if _agn: a=np.concatenate(clips)
-        _pgn=d.get('分段增益dB',{}).get(f'S{si+1}')   # 2026-10-25 句内分段增益（用户看 25 S2：“这块这个声音在这一块声响是不是变小了？”）：句内一段比相邻段轻/响，只给这一段乘一个增益
-        if _pgn:                                                    # 段 = 按 , ; : 切的第几段（从 1 数）；接点在标点停顿的静音里，只调音量、不改音色；句内响度.py --写入 自动算
-            if sent in PGRAFT: raise SystemExit(f'【停止】分段增益dB 不能和 停顿处除阻 用在同一句（独立复核的位置会错开）：S{si+1}')
-            for k_,g_ in _pgn.items():
-                if not (str(k_).isdigit() and 1<=int(k_)<=len(pieces)) or abs(float(g_))>6: raise SystemExit(f'【停止】分段增益dB 写法不对（段号按 , ; : 从 1 数，共 {len(pieces)} 段；增益 ±6 dB 以内）：S{si+1} {k_}:{g_}')
-                clips[2*(int(k_)-1)]=clips[2*(int(k_)-1)]*np.float32(10**(float(g_)/20))
-            a=np.concatenate(clips)
+        clips,a,_agn,_pgn=句增益(d,no,si,sent,pieces,gaps,clips,tmap,a)
         _hd=LAST['head']; _ct=LAST['cuts']
         _gall={k2:_agn.get(k2+1,0.0)+float((_pgn or {}).get(str(k2+1),0)) for k2 in range(len(tmap))}
         seg_rec[f'S{si+1}']=[{'段':k2+1,'增益':round(_gall[k2],3),'原始':[_hd+(_ct[k2-1][1] if k2 else 0),_hd+(_ct[k2][0] if k2<len(_ct) else 10**9)],'停顿':(round(float(gaps[k2]),3) if k2<len(gaps) else None),'时刻':[t0_,t1_]} for k2,(_,_,t0_,t1_) in enumerate(tmap)]
-        _sg=float(d.get('句子增益dB',{}).get(f'S{si+1}',0))   # 2026-10-21 用户同意的例外：19 S5 短句比全片响 2.0 LU，只这一句整体调轻（≤1 dB，不改音色）
-        if _sg:
-            if abs(_sg)>1: raise SystemExit(f'【停止】句子增益dB 只许 ±1 dB 以内（S{si+1}：{_sg}）')
-            a=a*10**(_sg/20)
         # L14：每一块的高亮在这一块开始读时切换（原来按字母个数平均分，数字、长词处会提前或推后 1 秒多）
         # 逗号、分号、冒号后开始的块：从停顿结束处往后找真正开口的时刻——第一个比本句最响 10 ms 低不到 30 dB 的 10 ms
         # （停顿后常有 0.3–0.45 秒的吸气声，比最响处低 38 dB 以上，不算开口；01–04 共 48 处标定，与独立对齐相差 -0.03～+0.05 秒）；
