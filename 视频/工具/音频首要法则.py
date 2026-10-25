@@ -61,6 +61,10 @@ def 自检():
     if not ps: return ['自检前提不成立：踩坑总表里找不到音频坑']
     i0 = ps[0][0]; std2 = '\n'.join(l for l in std.splitlines() if not re.match(rf'^\| *{i0} *\|', l))
     if 去演练(生成(cl, std2)) == 去演练(生成(cl, std)): f.append(f'没抓到：踩坑总表删掉 {i0}，生成的首要法则没变（核对发现不了漏坑）')
+    global 演练
+    原 = 演练; 演练 = lambda i: ' ｜演练：（还没有演练场景）' if i == ps[0][0] else 原(i)
+    if '还没有演练场景' not in 生成(cl, std): f.append('没抓到：音频坑没有演练重放')
+    演练 = 原
     if 首要(cl.replace('0. **首要法则', '0. **别的', 1)) is not None: f.append('没抓到：CLAUDE.md 第一条不是首要法则')
     if '25 S2' not in 生成(cl, std) and not any('句内' in q or '句内' in x for _, q, x in ps): f.append('没抓到：25 S2 句内一段变小（G36）不在音频坑里')
     return f
@@ -77,4 +81,6 @@ if __name__ == '__main__':
         print('\n'.join(f'  {i} {短(q, 40)}' for i, q, _ in ps)); sys.exit(0)
     if not os.path.exists(OUT) or 去演练(open(OUT).read()) != 去演练(t):
         print('【停止】视频/音频首要法则.md 与 CLAUDE.md 首要法则、踩坑总表的音频坑、音频硬性标准对不上（漏了或改了没重新生成）：python3 视频/工具/音频首要法则.py --写入'); sys.exit(1)
-    print(f'音频首要法则 与踩坑总表、标准一致（{len(坑(open(STD).read()))} 个音频坑）')
+    缺 = [i for i, _, _ in 坑(open(STD).read()) if '还没有演练场景' in 演练(i)]
+    if 缺: print(f'【停止】这些音频坑还没有演练重放（主对话 2026-10-25：每个用户听出过的音频事故都要有一场演练或一道门重放它）：{缺}'); sys.exit(1)
+    print(f'音频首要法则 与踩坑总表、标准一致（{len(坑(open(STD).read()))} 个音频坑，每个都有演练重放）')
