@@ -128,6 +128,17 @@ _chs = [[tuple(q) for q in c['align']] for c in _s['chunks']]; _nt = [c.get('not
 if any(n and '（简述：' in n for n in _nt):
     _e0 = min(R.max_es(_chs, _co, _nt), 100 * R.S); _e1 = R.简述整屏折行(_chs, _co, _nt)[0]
     判('G35 简述整屏折行字号不比现在小', _e1 >= _e0, f'{_e0}→{_e1}')
+# G37 说明放右侧（25 用户 2026-10-25）：没有用户原话、24 以前用必停；放右侧且字号更大才用；简述照旧在下面
+_rs = {f'S{len(_d24["sentences"])}': {'块': [len(_d24['sentences'][-1]['chunks'])], '依据': '用户 2026-10-25：自检样本'}}
+判('G37 说明放右侧 24 以前用必停', _停({**_d24, '说明放右侧特批': _rs}))
+判('G37 说明放右侧没有用户原话必停', _停({**_d25, '说明放右侧特批': {k: {**v, '依据': 'AI 觉得放右边好看'} for k, v in _rs.items()}}))
+_gl = '（gloss：巧思；足智多谋；\n独创性。意思是哪怕条件特别烂、限制特别多，\n这人也能靠自己的小聪明想出办法。）\n'
+_nt2 = list(_nt); _nt2[-1] = _gl + (_nt[-1] or '')[(_nt[-1] or '').index('（简述：'):] if _nt[-1] and '（简述：' in _nt[-1] else _gl
+R.apply_script(_d24); _e0 = R.max_es(_chs, _co, _nt2)
+R.apply_script({**_d25, '说明放右侧特批': _rs}); _e1 = R.max_es(_chs, _co, _nt2); _u = R._右(_chs, _co, _nt2)
+判('G37 放右侧只在字号更大时才用', (_e1 > _e0 and _u) or (_e1 == _e0 and not _u), f'{_e0}→{_e1} 用={bool(_u)}')
+_a, _b = R._分右(_nt2[-1]); 判('G37 只有简述前的注释放右侧，简述照旧在下面', bool(_a) and (not _b or _b[0].startswith('（简述：')))
+R.apply_script(_d24)
 _long = '；'.join(f'第{i}段说明文字比较长一些' for i in range(12)); _nf = R.ZH(64, 400)
 判('G35 说明能折超过 6 行（长简述不静默放弃）', len(R.折成(_long, 10, _nf, sorted(R.断点(_long))) or []) == 10)
 shutil.rmtree(td)

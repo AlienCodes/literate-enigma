@@ -216,6 +216,7 @@ def _segs_zh(t,colors):
     return out
 KSP='\u2005'
 GLOSS_ANCHOR={}   # 词下说明对齐（11 起）：{说明文字: 对准重点词中心的那个字}；make_video 从各脚本 "词下说明对齐" 读进来。这种说明不计入格宽、可越过格子右边（右边那格这一行是空的）
+NOTE_RIGHT={}; _RIGHT_USE={}   # G37：句子英文 → {块（0 起）}：说明放在这一块正文的右侧（只由 说明放右侧特批 打开）
 NOTE_WIDE={}   # 英文正文 → 用户特批的说明宽度倍数（L19 例外，只能由 说明放宽特批 打开）
 def apply_script(d):
     """画面相关的脚本设置统一从这里读（出片程序和定稿视频核对都调它，两边画出来才一致；11 G9 核对没读到 词下说明对齐，S6 对不上）"""
@@ -230,6 +231,13 @@ def apply_script(d):
         elif not ('用户' in v_.get('依据', '') and '特批' in v_.get('依据', '') and 1 < float(v_.get('倍数', 0)) <= 1.5):
             raise SystemExit(f'【停止】说明放宽特批 {k_} 不合规：依据要写用户原话（含“用户”“特批”），倍数在 1–1.5 之间（用户：“不要过于宽”）')
         NOTE_WIDE[' '.join(p[0] for c in d['sentences'][int(k_[1:]) - 1]['chunks'] for p in c['align'])] = v_['倍数'] if v_['倍数'] == '整屏' else float(v_['倍数'])
+    NOTE_RIGHT.clear(); _RIGHT_USE.clear()   # G37（25 用户 2026-10-25：S17 ingenuity 说明放到正文右边，空间全部用上、字号再放大）：只认 25 起、依据带用户原话
+    for k_, v_ in d.get('说明放右侧特批', {}).items():
+        si_ = int(k_[1:]) - 1; bs_ = v_.get('块', []) if isinstance(v_, dict) else []
+        if not (isinstance(v_, dict) and '用户' in v_.get('依据', '') and str(d.get('no', '0')).isdigit() and int(d['no']) >= 25 and 0 <= si_ < len(d['sentences'])
+                and bs_ and all(isinstance(b, int) and 1 <= b <= len(d['sentences'][si_]['chunks']) and d['sentences'][si_]['chunks'][b - 1].get('note') for b in bs_)):
+            raise SystemExit(f'【停止】说明放右侧特批 {k_} 不合规：只给 25 起、“块”写第几块（那一块要有说明），依据写用户原话（含“用户”，原话记进 用户同意记录.json）（G37）')
+        NOTE_RIGHT[' '.join(p[0] for c in d['sentences'][si_]['chunks'] for p in c['align'])] = {b - 1 for b in bs_}
     ALIGN_RULE[0] = str(d.get('no', '0')).isdigit() and int(d.get('no', '0')) >= ALIGN_FROM   # 重点词对正只管 24 起（01–23 定稿画面不变，G9）
     NOTE_RULE[0] = str(d.get('no', '0')).isdigit() and int(d.get('no', '0')) >= 12   # L19 只管 12 起（已定稿的 01–11 画面不变）   # 12 用户：emotional attachment 两词颜色各用各的，下面一条下划线连起来表示是一个整体（中文“情感依恋”同样）
 def _pair_cols(pairs,colors,ef,zf,gapx):
@@ -281,7 +289,13 @@ def _locked(p,grp,colors,ef,zf,gapx):
         if g=='B': rows.append(('block',cols[i])); i+=1
         else: rows.append(cols[i:i+g]); i+=g
     return rows
-def _measure(chunks,colors,notes,es,grps):
+def _分右(n):
+    """G37：放右侧的说明只取“（简述：”之前的部分（25 S17 ingenuity 的注释）；简述照旧在正文下面铺满屏宽。返回 (右侧行, 下面行)"""
+    ls=n.split('\n'); k=next((j for j,l in enumerate(ls) if l.replace('#Y','').startswith('（简述：')),len(ls)); return ls[:k],ls[k:]
+def _rt(rowsets,notes,right):
+    return {i for i in right if i<len(notes) and notes[i] and _分右(notes[i])[0] and rowsets[i] and not any(isinstance(r,tuple) for r in rowsets[i])}
+def _measure(chunks,colors,notes,es,grps,right=None):
+    if right is None: right=_右(chunks,colors,notes)
     zs=int(es*ZR); ef=EN(es,600); zf=ZH(zs,500); gapx=int(es*0.36)
     rowsets=[_locked(p,g,colors,ef,zf,gapx) for p,g in zip(chunks,grps)]
     lhE=int(es*1.18); lhZ=int(zs*1.5); rgap=int(es*0.25); cgap=int(es*0.5)
@@ -292,7 +306,14 @@ def _measure(chunks,colors,notes,es,grps):
     lhN=int(zs*1.45)
     total=sum(sum(rh(r) for r in rs)+(len(rs)-1)*rgap+(lhN*len(notes[i].split('\n')) if notes[i] else 0) for i,rs in enumerate(rowsets))+cgap*(len(rowsets)-1)   # note 里的 \n = 用户要的多行说明，每行一行高
     wide=max([sum(c['w'] for c in r)+gapx*(len(r)-1) for rs in rowsets for r in rs if not isinstance(r,tuple)]+[0])
-    nf=ZH(int(zs*0.9),400); wide=max([wide]+[nf.getlength(_note_txt(ln)) for n in notes if n for ln in n.replace('#Y','').split('\n')])
+    nf=ZH(int(zs*0.9),400); rt=_rt(rowsets,notes,right)
+    if not rt: wide=max([wide]+[nf.getlength(_note_txt(ln)) for n in notes if n for ln in n.replace('#Y','').split('\n')])
+    else:   # G37：说明放右侧
+        def _rw(rs): return max(sum(c['w'] for c in r)+gapx*(len(r)-1) for r in rs)
+        def _nw(ls): return max(nf.getlength(_note_txt(ln.replace('#Y',''))) for ln in ls)
+        total=sum((max(sum(rh(r) for r in rs)+(len(rs)-1)*rgap,lhN*len(_分右(notes[i])[0]))+lhN*len(_分右(notes[i])[1]) if i in rt else sum(rh(r) for r in rs)+(len(rs)-1)*rgap+(lhN*len(notes[i].split('\n')) if notes[i] else 0)) for i,rs in enumerate(rowsets))+cgap*(len(rowsets)-1)
+        wide=max([sum(c['w'] for c in r)+gapx*(len(r)-1) for i,rs in enumerate(rowsets) if i not in rt for r in rs if not isinstance(r,tuple)]
+                 +[_rw(rowsets[i])+int(es*0.6)+_nw(_分右(notes[i])[0]) for i in rt]+[nf.getlength(_note_txt(ln)) for i,n in enumerate(notes) if n for ln in (_分右(n)[1] if i in rt else n.split('\n')) for ln in [ln.replace('#Y','')]]+[0])
     return rowsets,total,wide,(zs,ef,zf,gapx,lhE,lhZ,rgap,cgap,lhN)
 def wide_notes(chunks,colors,notes,es):
     """L19（12 用户：说明“不要超过上面的那一行”）：每句的说明行不得比这一句英文正文最宽的一行宽。返回 [(第几组, 说明行, 说明宽, 正文宽)]"""
@@ -300,9 +321,10 @@ def wide_notes(chunks,colors,notes,es):
     ew=max([max(sum(uw(ef,u) for u,_ in ln) for ln in layout(r[1]['se'],ef,MAXW2)) if isinstance(r,tuple) else sum(c['we'] for c in r)+gapx*(len(r)-1) for rs in rowsets for r in rs]+[1])
     mul=NOTE_WIDE.get(' '.join(p[0] for ch in chunks for p in ch),1.0)   # 用户特批放宽的句子（apply_script 读 说明放宽特批）
     zp=mul=='整屏'; ew*=(1.0 if zp else mul)   # G35：整屏特批的结尾简述（从“（简述：”那一行起）只受整屏宽限制（max_es 按屏宽缩字号），不比正文
+    rt=_rt(rowsets,notes,_右(chunks,colors,notes))
     for i,n in enumerate(notes):
         sk=False
-        for ln in (n or '').replace('#Y','').split('\n'):
+        for ln in ((n or '') if i not in rt else '\n'.join(_分右(n)[1])).replace('#Y','').split('\n'):   # G37：放在正文右侧的说明不在正文下面，L19 只管下面的
             if zp and ln.startswith('（简述：'): sk=True
             if sk: continue
             if ln and nf.getlength(_note_txt(ln))>ew+1: out.append((i,_note_txt(ln),round(nf.getlength(_note_txt(ln))),round(ew)))
@@ -348,12 +370,23 @@ def 简述整屏折行(chunks,colors,notes):
         nn=list(notes); nn[i]=head+'\n'.join(seg); es=min(max_es(chunks,colors,nn),100*S)
         if best is None or es>best[0]: best=(es,nn[i],k)
     return best
-def max_es(chunks,colors,notes=None):
-    notes=notes or [None]*len(chunks); grps=_grouping(chunks,colors)
+def _scan(chunks,colors,notes,grps,right):
     for es in range(130*S,30,-1):
-        _,t,w,_=_measure(chunks,colors,notes,es,grps)
+        _,t,w,_=_measure(chunks,colors,notes,es,grps,right)
         if t<=MAXH2 and w<=MAXW2: return es
     return 30
+def _右(chunks,colors,notes):
+    """G37：这一句实际放右侧的块（用户特批的块里，右侧排法整屏字号更大才用；同一脚本结果固定）"""
+    cand=NOTE_RIGHT.get(' '.join(p[0] for ch in chunks for p in ch))
+    if not cand: return frozenset()
+    nn=list(notes or [None]*len(chunks)); ck=(' '.join(p[0] for ch in chunks for p in ch),tuple(nn))
+    if ck not in _RIGHT_USE:
+        grps=_grouping(chunks,colors); a=_scan(chunks,colors,nn,grps,frozenset()); b=_scan(chunks,colors,nn,grps,frozenset(cand))
+        _RIGHT_USE[ck]=frozenset(cand) if b>a else frozenset()
+    return _RIGHT_USE[ck]
+def max_es(chunks,colors,notes=None):
+    notes=notes or [None]*len(chunks); grps=_grouping(chunks,colors)
+    return _scan(chunks,colors,notes,grps,_右(chunks,colors,notes))
 def orphan_lines(chunks,colors,notes,es):
     """L3 末行孤词（2026-10-10 08 S17：Henry Whitehead 并进下一行后字号从 62 升到 67，比较结构那一整组 were far more likely to
     succumb to the disease than others, 太宽、整组折行，“others,” 被单独挤到下一行）：按出片同一套排版，找出整组折行后
@@ -430,10 +463,15 @@ def frame_interlinear(chunks,colors,header,progress,out,active=None,maxw=1840,ma
     es=ES_FIXED or max_es(chunks,colors,notes)
     maxw=MAXW2
     rowsets,total,_,(zs,ef,zf,gapx,lhE,lhZ,rgap,cgap,lhN)=_measure(chunks,colors,notes,es,_grouping(chunks,colors))
+    rt=_rt(rowsets,notes,_右(chunks,colors,notes)); nf_=ZH(int(zs*0.9),400)
     im=bg(); d=ImageDraw.Draw(im)
     y=(H-total)/2
     for i,rows in enumerate(rowsets):
         on=(active is None or i==active)
+        if i in rt:   # G37：说明放右侧：正文、说明左右并排，整块水平居中，上下各自居中
+            h_=sum(lhE+max(c['nz'] for c in r)*lhZ for r in rows)+(len(rows)-1)*rgap; nr_=len(_分右(notes[i])[0]); nh_=lhN*nr_
+            rw_=max(sum(c['w'] for c in r)+gapx*(len(r)-1) for r in rows); nw_=max(nf_.getlength(_note_txt(ln.replace('#Y',''))) for ln in _分右(notes[i])[0])
+            M_=max(h_,nh_); x0_=(W-(rw_+int(es*0.6)+nw_))/2; top_=y; y=top_+(M_-h_)/2
         for r in rows:
             if isinstance(r,tuple):
                 c=r[1]
@@ -441,7 +479,7 @@ def frame_interlinear(chunks,colors,header,progress,out,active=None,maxw=1840,ma
                 if not on:
                     el=[[(u,dim(cc) if cc else cc) for u,cc in ln] for ln in el]; zl=[[(u,dim(cc) if cc else cc) for u,cc in ln] for ln in zl]
                 y=draw_lines(d,el,ef,y,lhE); y=draw_lines(d,zl,zf,y,lhZ); y+=rgap; continue
-            tw=sum(c['w'] for c in r)+gapx*(len(r)-1); x=(W-tw)/2
+            tw=sum(c['w'] for c in r)+gapx*(len(r)-1); x=(W-tw)/2 if i not in rt else x0_+(rw_-tw)/2
             for c in r:
                 xe,xz=col_place(c,ef,zf,x)
                 xx=xe
@@ -459,7 +497,9 @@ def frame_interlinear(chunks,colors,header,progress,out,active=None,maxw=1840,ma
             nf=ZH(int(zs*0.9),400); nc=FG_ZH if on else dim(FG_ZH)
             nt=notes[i]
             if nt.startswith('#Y'): nt=nt[2:]; nc=(251,191,36) if on else dim((251,191,36))
-            for ln in nt.split('\n'):
+            ny_=top_+(M_-nh_)/2 if i in rt else None
+            for li_,ln in enumerate(nt.split('\n')):
+                if i in rt and li_==nr_: y=top_+M_+rgap   # 右侧注释画完，简述接在正文和注释下面
                 lc=nc
                 if ln.startswith('@') and '|' in ln:                   # 续行：“@extensive|可根据……” 用 extensive 的颜色
                     w_,ln=ln[1:].split('|',1); k_=_nkey(w_,colors)
@@ -467,7 +507,9 @@ def frame_interlinear(chunks,colors,header,progress,out,active=None,maxw=1840,ma
                 elif ln[1:2]=='@':                                       # 12 用户：说明行用对应重点词的颜色（“（@thorough …）”，@ 不显示）
                     ln=ln[0]+ln[2:]; w_=ln[1:].split(' ')[0]; k_=_nkey(w_,colors)
                     if k_: lc=colors[k_] if on else dim(colors[k_])
+                if i in rt and li_<nr_: d.text((x0_+rw_+int(es*0.6),ny_),ln,font=nf,fill=lc); ny_+=lhN; continue
                 d.text(((W-nf.getlength(ln))/2,y-rgap*0.3),ln,font=nf,fill=lc); y+=lhN
+            if i in rt and nr_==len(nt.split('\n')): y=top_+M_+rgap
         y+=cgap-rgap
     d.rectangle([0,H-8*S,W*progress,H],fill=(94,234,212))
     im.save(out); return es
