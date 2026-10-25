@@ -105,7 +105,12 @@ def audit(no, g=None, wav=None):
     explained = np.zeros(len(A), bool)
     for it in meta:
         x = np.load(it['file']).astype(np.float64); gx = g * x; N = len(x)
-        isl, pk = islands(x); ref = pk * g; spk = np.abs(gx).max()
+        isl, pk = islands(x); spk = np.abs(gx).max()
+        if it.get('分段增益'):   # 2026-10-25 句内分段增益：切口电平的基准用去掉分段增益后的本句最响（切口本身的声音没变，判断与不加增益时一样）
+            xr = x.copy()
+            for p0_, p1_, gd_ in it['分段增益']: xr[p0_:min(p1_, N)] /= 10 ** (gd_ / 20)
+            pk = islands(xr)[1]
+        ref = pk * g; gl = g * xr if it.get('分段增益') else gx   # 切口、删掉部分的电平按去掉分段增益的声音量（增益只是整段乘一个数，切在哪里不变）
         lab = labs[it['idx']]
         br = frms(gx, BL); sig = db(br, ref) > SIG
         # anchor
@@ -147,14 +152,14 @@ def audit(no, g=None, wav=None):
             if k2 < k1:   # overlapping match region (quiet) -> put splice where both still match: choose k1=k2=mid
                 m = (k1 + k2) // 2; k1 = k2 = max(m, s2[0])
                 k1 = min(k1, e1[1]); k2 = k1
-            lost = gx[k1:k2]
+            lost = gl[k1:k2]
             ins = A[k1 + o1:k2 + o2] if k2 + o2 > k1 + o1 else np.zeros(0)
-            pre = gx[max(0, k1 - FR):k1]; post = gx[k2:k2 + FR]
+            pre = gl[max(0, k1 - FR):k1]; post = gl[k2:k2 + FR]
             thr = ref * 10 ** (AUD / 20); thr_s = spk * 10 ** (AUD / 20)
             def run_ms(seq_start, step, limit, th):
                 n = 0; pos_ = seq_start
                 while n < limit:
-                    fr_ = gx[pos_:pos_ + FR] if step > 0 else gx[max(0, pos_ - FR):pos_]
+                    fr_ = gl[pos_:pos_ + FR] if step > 0 else gl[max(0, pos_ - FR):pos_]
                     if len(fr_) == 0 or np.sqrt(np.mean(fr_ ** 2)) <= th: break
                     n += FR; pos_ += step * FR
                 return n / SR * 1000
@@ -162,8 +167,8 @@ def audit(no, g=None, wav=None):
             edits.append({
                 'tail_cut_ms': run_ms(k1, 1, lim, thr), 'onset_cut_ms': run_ms(k2, -1, lim, thr),
                 'tail_cut_ms_spk': run_ms(k1, 1, lim, thr_s), 'onset_cut_ms_spk': run_ms(k2, -1, lim, thr_s),
-                'first5_db': float(db(np.sqrt(np.mean(gx[k1:k1 + FR] ** 2)), ref)) if k2 > k1 else None,
-                'last5_db': float(db(np.sqrt(np.mean(gx[max(k1, k2 - FR):k2] ** 2)), ref)) if k2 > k1 else None,
+                'first5_db': float(db(np.sqrt(np.mean(gl[k1:k1 + FR] ** 2)), ref)) if k2 > k1 else None,
+                'last5_db': float(db(np.sqrt(np.mean(gl[max(k1, k2 - FR):k2] ** 2)), ref)) if k2 > k1 else None,
                 'raw_k1': k1, 'raw_k2': k2, 'A_k1': k1 + o1, 'A_k2': k2 + o2,
                 'lost_ms': (k2 - k1) / SR * 1000, 'shift_ms': (o2 - o1) / SR * 1000,
                 'ins_ms': max(0, (k2 + o2) - (k1 + o1)) / SR * 1000,
@@ -172,10 +177,10 @@ def audit(no, g=None, wav=None):
                 'lost_max_db_spk': sliding_max_db(lost, spk) if len(lost) else -200.0,
                 'pre_db': float(db(np.sqrt(np.mean(pre ** 2)) if len(pre) else 0, ref)),
                 'post_db': float(db(np.sqrt(np.mean(post ** 2)) if len(post) else 0, ref)),
-                'pre_abs_last': float(abs(gx[k1 - 1])) if k1 > 0 else 0.0,
-                'post_abs_first': float(abs(gx[k2])) if k2 < N else 0.0,
-                'pre_min_db': min_db(gx[max(0, k1 - EDGE_W):k1], ref) if k2 > k1 else None,
-                'post_min_db': min_db(gx[k2:k2 + EDGE_W], ref) if k2 > k1 else None,
+                'pre_abs_last': float(abs(gl[k1 - 1])) if k1 > 0 else 0.0,
+                'post_abs_first': float(abs(gl[k2])) if k2 < N else 0.0,
+                'pre_min_db': min_db(gl[max(0, k1 - EDGE_W):k1], ref) if k2 > k1 else None,
+                'post_min_db': min_db(gl[k2:k2 + EDGE_W], ref) if k2 > k1 else None,
                 'words': word_of(lab, k1 / SR, k2 / SR, 0.05)})
             e_ = edits[-1]
             e_['edge_sides'] = [n for n, v in (('pre', k2 > k1 and e_['pre_min_db'] > EDGE), ('post', k2 > k1 and e_['post_min_db'] > EDGE),

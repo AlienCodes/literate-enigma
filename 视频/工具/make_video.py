@@ -861,7 +861,7 @@ def build(js,out):
     # title
     ta=title_audio(d['title_en'])
     tl.append((('title',None),0.4+len(ta)/SR+P_TITLE)); audio+=[ta,sil(P_TITLE)]
-    prev_para=None; graft_times=[]; fade_rec={}
+    prev_para=None; graft_times=[]; fade_rec={}; seg_rec={}
     graft_times+=[{'句':'标题','位置':'句末','开始':round(0.4+a_,4),'结束':round(0.4+b_,4)} for a_,b_ in TITLE_GRAFT]   # 标题从 0.4 秒开始
     for si,s in enumerate(d['sentences']):
         ch=s['chunks']; lead=P_FIRST if si==0 else P_LEAD+(P_PARA_EXTRA if prev_para is not None and s['para']!=prev_para else 0)
@@ -881,6 +881,15 @@ def build(js,out):
         clips,tmap=sentence_audio(sent,pieces,gaps)
         t=sum(len(c) for c in clips)/SR
         a=np.concatenate(clips)
+        _pgn=d.get('分段增益dB',{}).get(f'S{si+1}')   # 2026-10-25 句内分段增益（用户看 25 S2：“这块这个声音在这一块声响是不是变小了？”）：句内一段比相邻段轻/响，只给这一段乘一个增益
+        if _pgn:                                                    # 段 = 按 , ; : 切的第几段（从 1 数）；接点在标点停顿的静音里，只调音量、不改音色；句内响度.py --写入 自动算
+            if sent in PGRAFT: raise SystemExit(f'【停止】分段增益dB 不能和 停顿处除阻 用在同一句（独立复核的位置会错开）：S{si+1}')
+            for k_,g_ in _pgn.items():
+                if not (str(k_).isdigit() and 1<=int(k_)<=len(pieces)) or abs(float(g_))>6: raise SystemExit(f'【停止】分段增益dB 写法不对（段号按 , ; : 从 1 数，共 {len(pieces)} 段；增益 ±6 dB 以内）：S{si+1} {k_}:{g_}')
+                clips[2*(int(k_)-1)]=clips[2*(int(k_)-1)]*np.float32(10**(float(g_)/20))
+            a=np.concatenate(clips)
+        _hd=LAST['head']; _ct=LAST['cuts']
+        seg_rec[f'S{si+1}']=[{'段':k2+1,'原始':[_hd+(_ct[k2-1][1] if k2 else 0),_hd+(_ct[k2][0] if k2<len(_ct) else 10**9)],'停顿':(round(float(gaps[k2]),3) if k2<len(gaps) else None),'时刻':[t0_,t1_]} for k2,(_,_,t0_,t1_) in enumerate(tmap)]
         _sg=float(d.get('句子增益dB',{}).get(f'S{si+1}',0))   # 2026-10-21 用户同意的例外：19 S5 短句比全片响 2.0 LU，只这一句整体调轻（≤1 dB，不改音色）
         if _sg:
             if abs(_sg)>1: raise SystemExit(f'【停止】句子增益dB 只许 ±1 dB 以内（S{si+1}：{_sg}）')
@@ -910,6 +919,7 @@ def build(js,out):
             hv_=d.get('高亮开始',{}).get(f'S{si+1} 第{ci_+1}块')
             if hv_ is not None: starts[ci_]=hv_-t_at
         if any(y<=x for x,y in zip(starts,starts[1:])): raise SystemExit(f'【停止】高亮时间不是递增的（L14）：{sent[:60]}')
+        for r_ in seg_rec[f'S{si+1}']: r_['时刻']=[round(t_at+r_['时刻'][0],4),round(t_at+r_['时刻'][1],4)]   # 成片（a.wav）里的秒
         if LAST.get('fades'): fade_rec[f'S{si+1}']=[list(map(int,f_)) for f_ in LAST['fades']]
         graft_times+=[{'句':f'S{si+1}','位置':('句末' if g_=='句末' else f'第{g_}个标点'),'开始':round(t_at+t0_,4),'结束':round(t_at+t1_,4)} for g_,t0_,t1_ in LAST['grafts']]
         audio+=[sil(lead),a,sil(P_HOLD)]
@@ -920,6 +930,7 @@ def build(js,out):
     A=np.concatenate(audio); A=A/np.abs(A).max()*0.89
     json.dump(graft_times,open(f'{work}/词尾除阻.json','w'),ensure_ascii=False,indent=1)   # A21：移植段在 a.wav 里的时刻
     json.dump(fade_rec,open(f'{work}/淡入淡出.json','w'),ensure_ascii=False,indent=1)
+    json.dump(seg_rec,open(f'{work}/分段.json','w'),ensure_ascii=False,indent=1)   # 句内每段：原始合成里的样本区间（独立复核按它乘分段增益）、后面的停顿、成片里的秒（句内响度.py 用）
     json.dump({'指纹':{k:SENT_FP.get(v) for k,v in SENT_KEYS.items()},'作废':[k for k,v in SENT_KEYS.items() if v in VOIDED]},open(f'{work}/句子声音指纹.json','w'),ensure_ascii=False,indent=1)   # A45：区间作废.py 用   # A22：连读处插停顿的淡出/淡入在原始合成里的样本位置（独立复核用）
     total=sum(x for _,x in tl)
     if os.environ.get('AUDIO_ONLY'):

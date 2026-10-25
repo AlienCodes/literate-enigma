@@ -451,7 +451,7 @@ def 覆盖():
         for r in rs: cov.setdefault(r, []).append(prog)
     cov.setdefault('守则19', []).append('执行效应演练 自查拆门（拆掉 T36 的门，演练必须报没挡住）')
     import 执行效应声音演练 as SY   # 声音演练（单独盖印章，声音核查程序一改就要重演）
-    for sid, stage, how, fs, fw, want, rules in SY.声音场景:
+    for sid, stage, how, fs, fw, want, rules, *_ in SY.声音场景:
         for r in rules: cov.setdefault(r, []).append(f'执行效应声音演练 {sid}（交付核查 {stage}）')
     sys.path.insert(0, T); import 出片守门自检 as G
     for c in G.CASES:

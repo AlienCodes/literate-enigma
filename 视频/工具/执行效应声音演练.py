@@ -14,6 +14,7 @@ import numpy as np, soundfile as sf
 import 演练镜像 as Y   # 只依赖共用的镜像模块，不依赖主演练程序（主演练改了不连带声音重演）
 
 NO = '20'   # 最短的已定稿篇目之一（17 句），只出声音 8 秒
+NO25 = '25'   # 25 起才查的门（G36 句内分段响度）：冻结样本里没有 25，用 20 的冻结脚本改号成 25 出声音（原样那一场同样改号，只比新多出的 ✘）
 STAMP = f'{T}/执行效应声音演练通过.json'
 声音被演练 = ['交付核查.py', '标点停顿核对.py', '句首句尾与停顿位置核对.py', '读音核对.py', '词尾辅音核对.py', '停顿位置精确核对.py', '无标点停顿核对.py',
           'audio_qc.py', '响度一致性核对.py', '纯人声核对.py', '句间停顿核对.py', '高亮同步核对.py', 'make_video.py', '执行效应声音演练.py', '演练镜像.py', '演练样本/清单.json']   # 规则执行表 每次主演练都会改写“演练”字段，不盖进声音印章
@@ -46,12 +47,18 @@ def 削波(a, sr):       # A2：削波、电子声（一段放大 8 倍削平）
     s, e = 段(a, sr)[0][1]; m = (s + e) // 2; r = slice(m, m + int(0.25 * sr)); a[r] = np.clip(a[r] * 8, -0.999, 0.999); return a
 def 吃句首(a, sr):     # A20/A1：句首被吃掉 0.4 秒（句间停顿变长、词头没了）
     s, e = 段(a, sr)[0][3]; a[s:s + int(0.4 * sr)] = 0; return a
-def 改声音(fn):
+def 改声音(fn, no=NO):
     def go(ws):
-        p = f'{ws}/work_{NO}/a.wav'; a, sr = sf.read(p); a = fn(a.copy(), sr); sf.write(p, a, sr)
+        p = f'{ws}/work_{no}/a.wav'; a, sr = sf.read(p); a = fn(a.copy(), sr); sf.write(p, a, sr)
         af = open(f'{os.path.dirname(ws)}/tts/AF.txt').read().strip()   # 与出片程序 AUDIO_ONLY 同一套后期，重新做只有声音的 NN.mp4
-        subprocess.run([__import__('imageio_ffmpeg').get_ffmpeg_exe(), '-y', '-loglevel', 'error', '-i', p, '-af', af, '-c:a', 'aac', '-b:a', '256k', '-movflags', '+faststart', f'{ws}/{NO}.mp4'], check=True)
+        subprocess.run([__import__('imageio_ffmpeg').get_ffmpeg_exe(), '-y', '-loglevel', 'error', '-i', p, '-af', af, '-c:a', 'aac', '-b:a', '256k', '-movflags', '+faststart', f'{ws}/{no}.mp4'], check=True)
     return go
+def 句内一段变轻(ws):   # G36：句内一段突然变小（重放 25 S2 “some 200,000 miles out,” 比前一段轻 3～5 LU，整句仍在 ±2 LU 内）
+    import 响度一致性核对 as Q
+    sj = f'{ws}/work_{NO25}/分段.json'; bad = {r[0] for r in Q.句内报(Q.句内(f'{ws}/{NO25}.mp4', seg_json=sj))}
+    rs = [r for r in Q.句内(f'{ws}/{NO25}.mp4', seg_json=sj) if r[1] == 1 and r[0] not in bad]
+    nm, _, _, (x, y), dv = rs[len(rs) // 2]; g = -(Q.IN_ADJ + 1.5) - dv
+    改声音(lambda a, sr: (a.__setitem__(slice(int(x * sr), int(y * sr)), a[int(x * sr):int(y * sr)] * 10 ** (g / 20)), a)[1], NO25)(ws)
 def 错开一块(ws):      # L14/L17：时间表里一块提前 0.4 秒（高亮没跟上朗读），总长不变
     p = f'{ws}/work_{NO}/list.txt'; t = open(p).read(); ds = re.findall(r'duration ([\d.]+)', t); i = len(ds) // 2
     ds[i], ds[i + 1] = f'{float(ds[i]) - 0.4:.3f}', f'{float(ds[i + 1]) + 0.4:.3f}'; it = iter(ds)
@@ -97,47 +104,60 @@ def 加多音(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: _加英文
     ('A17引号', '出片前', '引号照读（读法退回）、S2 有带引号的 "best"', 加引号, 引号退回, ['数字读法、引号自检', '引号不停顿'], ['A17']),
     ('A24多音词', '出片前', 'S2 加 as they read（多音词没按语境核对）', 加多音, None, ['读音核对（A23'], ['A24', 'A35']),
     ('G26旧视频配新脚本', '出片后', '出完片又改了脚本（视频还是旧的）', None, 旧视频配新脚本, ['视频是现行脚本、现行程序出的（G26'], ['G26']),
+    ('G36句内一段变轻', '出片后', '句内一段比前一段轻 4 LU（整句仍在 ±2 LU 内，重放 25 S2）', None, 句内一段变轻, ['句内分段响度（相邻两段'], ['G36'], NO25),
     ('G12只有声音', '出片后', '重放 21：NN.mp4 被只出声音覆盖（没有画面）', None, None, ['成片有画面（G12'], ['G12']),
 ]
 
 
-def 跑(M, ws, stage):
+def 跑(M, ws, stage, no=NO):
     env = {**os.environ, 'CLAUDE_PROJECT_DIR': M}
-    r = subprocess.run(['python3', f'{M}/视频/工具/交付核查.py', NO, stage], cwd=ws, capture_output=True, text=True, timeout=1800, env=env)
+    r = subprocess.run(['python3', f'{M}/视频/工具/交付核查.py', no, stage], cwd=ws, capture_output=True, text=True, timeout=1800, env=env)
     return r.returncode, {l.strip() for l in (r.stdout + r.stderr).splitlines() if l.strip().startswith('✘')}
 
 
 def 演练(W, 只=None):
     root = os.path.dirname(os.path.abspath(W)); g0 = Y._git状态(); c0 = Y.缓存快照()   # G29：两个仓库的配音缓存都拍快照
-    B = Y.工作区(W, root, '声底稿', NO, json.loads(Y.读样(f'视频/脚本/{NO}.json')))   # 底稿用冻结拷贝，不读工作目录的现稿
-    r = subprocess.run(['python3', 'make_video.py', f'scripts/{NO}.json', f'{NO}.mp4'], cwd=B, env={**os.environ, 'AUDIO_ONLY': '1'}, capture_output=True, text=True)
-    if r.returncode: return [('只出声音底稿', False, r.stdout[-200:] + r.stderr[-200:])]
-    def 场(sid, fs=None, fw=None, qc=None):
+    todo = [s for s in 声音场景 if not 只 or s[0] in 只]; nos = sorted({(s[7] if len(s) > 7 else NO) for s in todo} | {NO})
+    def 稿(no):
+        d = json.loads(Y.读样(f'视频/脚本/{NO}.json')); d['no'] = no
+        if no != NO:   # 改号成 25：24 起破折号禁用（T36），20 的中文里有“——”，只换画面文字（中文、说明），配音不变
+            for s_ in d['sentences']:
+                for c_ in s_['chunks']:
+                    for f_ in ('zh', 'note'):
+                        if c_.get(f_): c_[f_] = re.sub(r'[—–―─⸺⸻﹘－]+', '，', c_[f_])
+        return d
+    B = {}
+    for no in nos:
+        B[no] = Y.工作区(W, root, f'声底稿{no}', no, 稿(no))   # 底稿用冻结拷贝，不读工作目录的现稿
+        r = subprocess.run(['python3', 'make_video.py', f'scripts/{no}.json', f'{no}.mp4'], cwd=B[no], env={**os.environ, 'AUDIO_ONLY': '1'}, capture_output=True, text=True)
+        if r.returncode: return [(f'只出声音底稿{no}', False, r.stdout[-200:] + r.stderr[-200:])]
+    def 场(sid, fs=None, fw=None, qc=None, no=NO):
         """这一场的工作根：R/video（工作目录）、R/tts（模型，链接）、R/qc_independent（独立复核的合成，从原样那一场拷来）——
         独立复核按“工作根/video/work_NN”找声音，工作目录必须叫 video、和真实一样"""
         f = Y.仓库底稿(NO, '声音'); fs and fs(f)
+        if no != NO: f[f'视频/脚本/{no}.json'] = json.dumps(稿(no), ensure_ascii=False, indent=1)
         R = f'{root}/演练_声_{sid}'; shutil.rmtree(R, ignore_errors=True); os.makedirs(R); os.symlink(f'{root}/tts', f'{R}/tts')
-        ws0 = Y.工作区(W, R, 'v', NO, json.loads(f[f'视频/脚本/{NO}.json'])); ws = f'{R}/video'; os.rename(ws0, ws)
-        shutil.copytree(f'{B}/work_{NO}', f'{ws}/work_{NO}'); shutil.copy(f'{B}/{NO}.mp4', f'{ws}/{NO}.mp4'); shutil.copy(f'{B}/{NO}.mp4.指纹.json', f'{ws}/{NO}.mp4.指纹.json'); fw and fw(ws)
+        ws0 = Y.工作区(W, R, 'v', no, json.loads(f[f'视频/脚本/{no}.json'])); ws = f'{R}/video'; os.rename(ws0, ws)
+        shutil.copytree(f'{B[no]}/work_{no}', f'{ws}/work_{no}'); shutil.copy(f'{B[no]}/{no}.mp4', f'{ws}/{no}.mp4'); shutil.copy(f'{B[no]}/{no}.mp4.指纹.json', f'{ws}/{no}.mp4.指纹.json'); fw and fw(ws)
         if qc and os.path.isdir(qc): shutil.copytree(qc, f'{R}/qc_independent', symlinks=True)
         return Y.镜像(f'{root}/演练_镜像_声_{sid}', f), ws
-    todo = [s for s in 声音场景 if not 只 or s[0] in 只]
-    stages = sorted({s[1] for s in todo}); base = {st: 场(f'原样{st}') for st in stages}
-    qc0 = f'{root}/演练_声_原样出片后/qc_independent'   # 独立复核的合成只与脚本有关：原样那一场合成一次，各场拷过去
+    sn = lambda s: s[7] if len(s) > 7 else NO
+    stages = sorted({(s[1], sn(s)) for s in todo}); base = {k: 场(f'原样{k[0]}{k[1]}', no=k[1]) for k in stages}
+    qc0 = lambda no: f'{root}/演练_声_原样出片后{no}/qc_independent'   # 独立复核的合成只与脚本有关：原样那一场合成一次，各场拷过去
     with ThreadPoolExecutor(4) as ex:
-        bo = dict(zip(stages, ex.map(lambda st: 跑(*base[st], st), stages)))
+        bo = dict(zip(stages, ex.map(lambda k: 跑(*base[k], k[0], k[1]), stages)))
         def one(s):
-            sid, stage, how, fs, fw, want, rules = s
-            try: c, o = (跑(*场(sid, fs, fw, qc0 if not fs else None), stage) if (fs or fw) else bo[stage])
+            sid, stage, how, fs, fw, want, rules = s[:7]; no = sn(s); k = (stage, no)
+            try: c, o = (跑(*场(sid, fs, fw, qc0(no) if not fs else None, no), stage, no) if (fs or fw) else bo[k])
             except Exception as e: return sid, False, f'样本找不到：{e!r}'
-            new = o - bo[stage][1] if (fs or fw) else o
+            new = o - bo[k][1] if (fs or fw) else o
             miss = [w for w in want if not any(w in l for l in new)]
             return sid, c != 0 and not miss, ('新报出：' + next(l for l in new if want[0] in l)[:80]) if not miss else f'没挡住：{miss}（退出码 {c}，新报出 {"；".join(sorted(new))[:150]}）'
         res = list(ex.map(one, todo))
         if not 只 or '自查拆门_声音' in 只:   # 拆门自查：把 无标点停顿核对 的门拆掉（镜像里改程序），A4 那一场必须报“没挡住”
-            s = next(x for x in 声音场景 if x[0] == 'A4句中硬停'); M, ws = 场('拆门', None, s[4], qc0)
+            s = next(x for x in 声音场景 if x[0] == 'A4句中硬停'); M, ws = 场('拆门', None, s[4], qc0(NO))
             p = f'{M}/视频/工具/交付核查.py'; t = open(p).read(); open(p, 'w').write(t.replace("step('无标点处停顿 ≤ 0.22 秒', not long,", "step('无标点处停顿 ≤ 0.22 秒', True,", 1))
-            c, o = 跑(M, ws, s[1]); caught = any('无标点处停顿' in l for l in o - bo[s[1]][1])
+            c, o = 跑(M, ws, s[1]); caught = any('无标点处停顿' in l for l in o - bo[(s[1], NO)][1])
             res.append(('自查拆门_声音', not caught, '拆掉 无标点停顿 的门后演练报“没挡住”（演练能发现坏门）' if not caught else '拆掉门后演练还说挡住了：演练失灵'))
     for x in os.listdir(root):
         if x.startswith('演练_'): shutil.rmtree(f'{root}/{x}', ignore_errors=True)

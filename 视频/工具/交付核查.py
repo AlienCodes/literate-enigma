@@ -127,6 +127,15 @@ elif stage == '出片后':
     # 响度一致性（用户 2026-10-09：从头到尾响度一致，不能这儿突然大、那儿突然小）：EBU R128 逐句综合响度。先自检（阳性对照）再核对
     c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4', '--自检']); step(o.strip().lstrip('✔✘ ') or '响度一致性核对 自检', c == 0, '' if c == 0 else '【核查程序失灵，下面的响度结果不可信，不得交付】')
     c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4']); step('响度一致性（逐句与全片 ±2 LU、相邻两句 ≤2.5 LU）：' + o.strip().splitlines()[0], c == 0, '\n    '.join(o.strip().splitlines()[1:]))
+    # 句内分段响度（2026-10-25 用户看 25 S2：“这块这个声音在这一块声响是不是变小了？是不是没有统计起来？”）：整句在 ±2 LU 内，句内逗号前后两段差 3～5 LU。
+    # 25 起：先自检（把一段调到与前一段差 3.5 LU，必须报出、不多报），再按句内 ≥0.3 秒静音切段、相邻两段 ≤2.5 LU；01–24 不回头改，列在 制作记录/句内响度清单.md
+    if int(no) >= 25:
+        sj = f'work_{no}/分段.json'
+        if not os.path.exists(sj): step('句内分段响度', False, f'没有 {sj}（出片程序没记分段）：用现行出片程序重出')
+        else:
+            c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4', '--句内', '--自检', '--分段', sj]); step(o.strip().lstrip('✔✘ ') or '句内分段响度 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的句内响度结果不可信，不得交付】')
+            c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4', '--句内', '--分段', sj]); step('句内分段响度（相邻两段 ≤2.5 LU）：' + (o.strip().splitlines() or ['没有输出'])[0], c == 0,
+                 '\n    '.join(o.strip().splitlines()[1:] + ([f'→ python3 {T}/句内响度.py {no} --写入（自动算分段增益dB），重出后再核'] if c else [])))
     # 纯人声（用户 2026-10-09：“不要有任何的呼吸声 语气声……底噪也不要 就要绝对的纯人声”）：先自检（假呼吸声、假噗声必须抓到），再逐句核对
     c, o = run(['python3', f'{T}/纯人声核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '纯人声核对 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的纯人声核对不可信】\n    ' + o[-400:])
     c, o = run(['python3', f'{T}/纯人声核对.py', no]); step('纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：' + (o.strip().splitlines()[-1] if o.strip() else '没有输出'), c == 0 and '问题数 0' in o,

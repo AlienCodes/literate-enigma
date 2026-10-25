@@ -42,6 +42,7 @@ if __name__ == '__main__':
     meta = {}
     # A22 淡入淡出的位置：出片程序写在 work_NN/淡入淡出.json（原始合成里的样本位置：淡出起点、切点、淡入终点）
     FADES = {no: (json.load(open(f'{S}/video/work_{no}/淡入淡出.json')) if os.path.exists(f'{S}/video/work_{no}/淡入淡出.json') else {}) for no in sys.argv[1:]}
+    SEGS = {no: (json.load(open(f'{S}/video/work_{no}/分段.json')) if os.path.exists(f'{S}/video/work_{no}/分段.json') else {}) for no in sys.argv[1:]}
     for no in sys.argv[1:]:
         d, items = texts_for(no)
         meta[no] = []
@@ -56,7 +57,14 @@ if __name__ == '__main__':
             # 任何一项变了就重新合成（2026-10-10：07 S4 读音改正后仍用了旧读音的缓存，复核整篇对不上）
             fd_ = FADES.get(no, {}).get(f'S{idx + 1}', []) if idx >= 0 else []
             sg_ = float(d.get('句子增益dB', {}).get(f'S{idx + 1}', 0)) if idx >= 0 else 0.0   # 2026-10-21 单句增益（与出片同一个数，整句乘）
-            key_ = _hl.md5(repr((phonemes_of(spoken(text)), gr, en_, fd_, 0.95) + ((pg,) if pg else ()) + ((('加强', bo),) if bo else ()) + ((('增益', sg_),) if sg_ else ())).encode()).hexdigest()[:10]
+            pn_ = d.get('分段增益dB', {}).get(f'S{idx + 1}') if idx >= 0 else None   # 2026-10-25 句内分段增益：同一个数，乘在原始合成里出片程序记下的那一段（work_NN/分段.json）
+            pr_ = []
+            if pn_:
+                sr_ = SEGS.get(no, {}).get(f'S{idx + 1}')
+                if not sr_: raise SystemExit(f'【停止】脚本写了分段增益dB，出片程序却没有记下分段位置（work_{no}/分段.json）：S{idx + 1}')
+                pr_ = [(r['原始'][0], r['原始'][1], float(pn_[str(r['段'])])) for r in sr_ if str(r['段']) in pn_]
+                if len(pr_) != len(pn_): raise SystemExit(f'【停止】分段增益dB 的段号在分段记录里找不到：S{idx + 1}')
+            key_ = _hl.md5(repr((phonemes_of(spoken(text)), gr, en_, fd_, 0.95) + ((pg,) if pg else ()) + ((('加强', bo),) if bo else ()) + ((('增益', sg_),) if sg_ else ()) + ((('分段增益', pr_),) if pr_ else ())).encode()).hexdigest()[:10]
             fn = f'{OUT}/{no}_{"T" if idx < 0 else "%02d" % idx}_{key_}.npy'
             if not os.path.exists(fn):
                 if en_: a, sr = _ending_raw(text, en_), 24000     # 结尾句：两遍合成在接点接起来（与出片同一个函数，接点两侧必须是静音）
@@ -81,10 +89,11 @@ if __name__ == '__main__':
                     for p_, q_, kd in sorted(pg.values(), key=lambda v: -float(v[0])):
                         p0 = st + int(round(float(p_) * SR)); q0 = st + int(round(float(q_) * SR))
                         a = np.concatenate([a[:p0], _pdonor(w0, kd), a[q0:]])
+                for p0_, p1_, g_ in pr_: a[p0_:min(p1_, len(a))] *= np.float32(10 ** (g_ / 20))
                 if sg_: a = a * np.float32(10 ** (sg_ / 20))
                 np.save(fn, a)
             meta[no].append({'idx': idx, 'text': text, 'file': fn,
-                             'para': it[3] if len(it) > 3 else None,
+                             'para': it[3] if len(it) > 3 else None, '分段增益': pr_,
                              'chunks': it[4] if len(it) > 4 else [text]})
             print(no, idx, text[:70], flush=True)
         json.dump(meta[no], open(f'{OUT}/{no}_meta.json', 'w'), indent=1, ensure_ascii=False)

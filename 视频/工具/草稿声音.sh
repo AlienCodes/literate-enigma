@@ -10,7 +10,9 @@ ea=$(python3 -c "import json;e=list(json.load(open('scripts/$no.json')).get('结
 python3 $T/结尾句接点.py $no $ea --写入 2>&1 | grep -E "接点样本|停止|没有句中标点" | cut -c1-160
 for i in 1 2 3; do bash $T/快速重建核查.sh $no >/dev/null 2>&1; python3 $T/区间作废.py $no 2>&1 | grep -v "没有读音"; python3 $T/疑点清单.py $no >/dev/null 2>&1; python3 $T/自动切点.py $no --写入 2>&1 | grep -E "^$no 疑点|停止"; done
 python3 $T/词尾辅音核对.py $no --写入 2>&1 | grep -E "写入|问题数" | tail -3
+python3 $T/句内响度.py $no --写入 2>&1 | grep -E "写入|停止"   # 2026-10-25 句内分段响度：相邻两段差超过 2.5 LU 的，自动算分段增益dB 写进脚本，下面重建时生效
 bash $T/快速重建核查.sh $no 2>&1 | grep -E "问题数|停止|指纹"
+python3 $T/句内响度.py $no 2>&1 | grep -E "句子：|停止"
 python3 $T/区间作废.py $no --记指纹
 python3 $T/疑点清单.py $no >/dev/null 2>&1; python3 $T/确认按位置迁移.py $no
 python3 $T/自动切点.py $no 2>&1 | grep "人看" | cut -c1-120
