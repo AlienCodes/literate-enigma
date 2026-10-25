@@ -223,9 +223,13 @@ def apply_script(d):
     LINKS[:] = d.get('连线', [])
     NOTE_WIDE.clear()   # L19 特批放宽（22 用户 2026-10-23：“经过我的允许，我的特批了，你才可以放宽……可以稍微放宽点，但是不要过于宽”）：只认带用户原话、写明“特批”、倍数 ≤1.5 的句子
     for k_, v_ in d.get('说明放宽特批', {}).items():
-        if not ('用户' in v_.get('依据', '') and '特批' in v_.get('依据', '') and 1 < float(v_.get('倍数', 0)) <= 1.5):
+        if v_.get('倍数') == '整屏':   # G35（25 用户 2026-10-25 特批：“想方设法能够让整个屏幕的字体就是变得最大”）：结尾简述铺满屏宽，只认 25 起、最后一句、带“（简述：”、依据有用户原话
+            ok_ = ('用户' in v_.get('依据', '') and '特批' in v_.get('依据', '') and str(d.get('no', '0')).isdigit() and int(d['no']) >= 25
+                   and k_ == f"S{len(d['sentences'])}" and '（简述：' in (d['sentences'][-1]['chunks'][-1].get('note') or ''))
+            if not ok_: raise SystemExit(f'【停止】说明放宽特批 {k_} 整屏不合规：只给 25 起最后一句的结尾简述，依据要写用户原话（含“用户”“特批”）（G35）')
+        elif not ('用户' in v_.get('依据', '') and '特批' in v_.get('依据', '') and 1 < float(v_.get('倍数', 0)) <= 1.5):
             raise SystemExit(f'【停止】说明放宽特批 {k_} 不合规：依据要写用户原话（含“用户”“特批”），倍数在 1–1.5 之间（用户：“不要过于宽”）')
-        NOTE_WIDE[' '.join(p[0] for c in d['sentences'][int(k_[1:]) - 1]['chunks'] for p in c['align'])] = float(v_['倍数'])
+        NOTE_WIDE[' '.join(p[0] for c in d['sentences'][int(k_[1:]) - 1]['chunks'] for p in c['align'])] = v_['倍数'] if v_['倍数'] == '整屏' else float(v_['倍数'])
     ALIGN_RULE[0] = str(d.get('no', '0')).isdigit() and int(d.get('no', '0')) >= ALIGN_FROM   # 重点词对正只管 24 起（01–23 定稿画面不变，G9）
     NOTE_RULE[0] = str(d.get('no', '0')).isdigit() and int(d.get('no', '0')) >= 12   # L19 只管 12 起（已定稿的 01–11 画面不变）   # 12 用户：emotional attachment 两词颜色各用各的，下面一条下划线连起来表示是一个整体（中文“情感依恋”同样）
 def _pair_cols(pairs,colors,ef,zf,gapx):
@@ -294,11 +298,56 @@ def wide_notes(chunks,colors,notes,es):
     """L19（12 用户：说明“不要超过上面的那一行”）：每句的说明行不得比这一句英文正文最宽的一行宽。返回 [(第几组, 说明行, 说明宽, 正文宽)]"""
     rowsets,_,_,(zs,ef,zf,gapx,*_)=_measure(chunks,colors,notes,es,_grouping(chunks,colors)); nf=ZH(int(zs*0.9),400); out=[]
     ew=max([max(sum(uw(ef,u) for u,_ in ln) for ln in layout(r[1]['se'],ef,MAXW2)) if isinstance(r,tuple) else sum(c['we'] for c in r)+gapx*(len(r)-1) for rs in rowsets for r in rs]+[1])
-    ew*=NOTE_WIDE.get(' '.join(p[0] for ch in chunks for p in ch),1.0)   # 用户特批放宽的句子（apply_script 读 说明放宽特批）
+    mul=NOTE_WIDE.get(' '.join(p[0] for ch in chunks for p in ch),1.0)   # 用户特批放宽的句子（apply_script 读 说明放宽特批）
+    zp=mul=='整屏'; ew*=(1.0 if zp else mul)   # G35：整屏特批的结尾简述（从“（简述：”那一行起）只受整屏宽限制（max_es 按屏宽缩字号），不比正文
     for i,n in enumerate(notes):
+        sk=False
         for ln in (n or '').replace('#Y','').split('\n'):
+            if zp and ln.startswith('（简述：'): sk=True
+            if sk: continue
             if ln and nf.getlength(_note_txt(ln))>ew+1: out.append((i,_note_txt(ln),round(nf.getlength(_note_txt(ln))),round(ew)))
     return out
+NOTE_PRI={'；': 0, '，': 1, '。': 1, '！': 1, '、': 2, '：': 2}
+def 断点(t):
+    """说明可以折行的位置 {位置: 优先级}：标点后（下一行不以右括号、右引号开头）；句末补充说明的括号整体放到下一行（说明分行.py 同一套）"""
+    bp={i+1:NOTE_PRI[ch] for i,ch in enumerate(t[:-1]) if ch in NOTE_PRI and t[i+1] not in '）”'}
+    for i,ch in enumerate(t):
+        if ch=='（' and i>0:
+            dep=0
+            for j in range(i,len(t)):
+                dep+={'（':1,'）':-1}.get(t[j],0)
+                if dep==0: break
+            if re.fullmatch(r'[。）]*',t[j+1:]): bp[i]=1
+    return bp
+def 折成(t,k,nf,pos):
+    """把 t 在 pos（断点）处折成正好 k 行，让最宽的一行最窄；折不成返回 None（不限行数：说明分行 13 S6 以后长说明会超过 6 行）"""
+    P=[0]+sorted(x for x in pos if 0<x<len(t))+[len(t)]; n=len(P); W={}
+    def w(a,b):
+        if (a,b) not in W: W[(a,b)]=nf.getlength(t[P[a]:P[b]])
+        return W[(a,b)]
+    if k<1 or k>n-1: return None
+    INF=float('inf'); dp=[[INF]*n for _ in range(k+1)]; bk=[[0]*n for _ in range(k+1)]; dp[0][0]=0
+    for c in range(1,k+1):
+        for j in range(1,n):
+            for i in range(c-1,j):
+                if dp[c-1][i]<INF:
+                    v=max(dp[c-1][i],w(i,j))
+                    if v<dp[c][j]: dp[c][j]=v; bk[c][j]=i
+    if dp[k][n-1]==INF: return None
+    seg=[]; j=n-1
+    for c in range(k,0,-1): i=bk[c][j]; seg.append(t[P[i]:P[j]]); j=i
+    return seg[::-1]
+def 简述整屏折行(chunks,colors,notes):
+    """G35（25 用户 2026-10-25：“想方设法能够让整个屏幕的字体就是变得最大的这个方案”“以后一定要合理的安排，不要压缩成这个样子”）：
+    结尾简述（从“（简述：”起）试 1–24 行的均匀折法，取整屏字号最大的（同字号取行少的）。返回 (字号, 新说明, 行数)"""
+    i=next(i for i,n in enumerate(notes) if n and '（简述：' in n); n=notes[i]; a=n.index('（简述：'); head=n[:a]; t=n[a:].replace('\n','')
+    nf=ZH(int(int(100*ZR)*0.9),400); pos=sorted(断点(t)); best=None
+    for k in range(1,25):
+        seg=折成(t,k,nf,pos)
+        if not seg: continue
+        nn=list(notes); nn[i]=head+'\n'.join(seg); es=min(max_es(chunks,colors,nn),100*S)
+        if best is None or es>best[0]: best=(es,nn[i],k)
+    return best
 def max_es(chunks,colors,notes=None):
     notes=notes or [None]*len(chunks); grps=_grouping(chunks,colors)
     for es in range(130*S,30,-1):

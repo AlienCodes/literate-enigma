@@ -22,18 +22,30 @@ def split(raw, ew, nf):
                 if dep == 0: break
             if re.fullmatch(r'[。）]*', t[j + 1:]): bp[i] = 1
     pos = sorted(bp)
-    for k in range(1, min(len(pos), 5) + 1):       # 两行放不下（13 S6、S7 长说明）再试三行、四行……
+    for k in range(1, min(len(pos), 4) + 1):       # 两行放不下（13 S6、S7 长说明）再试三行、四行……
         for cut in itertools.combinations(pos, k):
             seg = [t[x:y] for x, y in zip((0,) + cut, cut + (len(t),))]; ws = [nf.getlength(x) for x in seg]
             if max(ws) > ew: continue
             key = (max(bp[c] for c in cut), k, sum(bp[c] for c in cut), max(ws) - min(ws))   # 先挑标点好的（分号优先），再挑行少的、断点总体好的，再挑均匀的
             if best is None or key < best[0]: best = (key, seg)
+    if best is None:   # G35：再长的说明也要折得开（原来最多 6 行，长简述找不到就静默放弃）：按最少行数、最宽一行最窄折
+        for k in range(len(pos) + 1):
+            s_ = R.折成(t, k + 1, nf, pos)
+            if s_ and max(nf.getlength(x) for x in s_) <= ew: best = (None, s_); break
     if best is None: return None
     seg = best[1]
     if pre: seg[0] = pre + seg[0][len('（' + m.group(2) + ' '):]
     elif m2: seg[0] = cont + seg[0]
     return [seg[0]] + [cont + x for x in seg[1:]]
-fix = []
+fix = []; miss = []
+if '--整屏' in sys.argv:   # G35：结尾简述按整屏字号最大自动折（说明放宽特批 SNN 倍数“整屏”）
+    s = d['sentences'][-1]; colors = {k: (1, 1, 1) for c in s['chunks'] for k in re.findall(r'\*\*(.+?)\*\*', c['en'])}
+    ch = [[tuple(q) for q in c['align']] for c in s['chunks']]; nt = [c.get('note') for c in s['chunks']]
+    es0 = min(R.max_es(ch, colors, nt), 100 * R.S); es, new, k = R.简述整屏折行(ch, colors, nt)
+    print(f'S{len(d["sentences"])} 结尾简述：现在字号 {es0}，整屏最大 {es}（简述折成 {k} 行）')
+    if '--写入' in sys.argv and new != nt[-1]:
+        s['chunks'][-1]['note'] = new; json.dump(d, open(p, 'w'), ensure_ascii=False, indent=1); print(f'  已写入 {p}（genNN.py 里的简述请同步）')
+    sys.exit(0)
 for si, s in enumerate(d['sentences'], 1):
     colors = {k: (1, 1, 1) for c in s['chunks'] for k in re.findall(r'\*\*(.+?)\*\*', c['en'])}
     ch = [[tuple(q) for q in c['align']] for c in s['chunks']]; nt = [c.get('note') for c in s['chunks']]
@@ -42,6 +54,7 @@ for si, s in enumerate(d['sentences'], 1):
         raw = next(x for x in nt[gi].split('\n') if R._note_txt(x) == ln); r = split(raw, ew, nf)
         print(f'S{si} 超宽 {wn}>{ew}：{ln[:40]}… → ' + (f'折成「' + '」/「'.join(R._note_txt(x) for x in r) + '」' if r else '找不到合适的标点，交人处理'))
         if r: fix.append((si, gi, raw, r))
+        else: miss.append(f'S{si}')
 if '--写入' in sys.argv and fix:
     g = f'{T}/初稿生成/gen{no}.py'; src = open(g).read()
     for si, gi, raw, r in fix:
@@ -49,4 +62,5 @@ if '--写入' in sys.argv and fix:
         if src.count(raw) == 1: src = src.replace(raw, '\\n'.join(r))
         else: print(f'  gen{no}.py 里找不到唯一的这一行，只改了脚本：{raw[:30]}')
     json.dump(d, open(p, 'w'), ensure_ascii=False, indent=1); open(g, 'w').write(src); print(f'已写入 {len(fix)} 处')
-print(f'{no} 说明分行：要折 {len(fix)} 处')
+print(f'{no} 说明分行：要折 {len(fix)} 处' + (f'；【停止】{len(miss)} 处找不到折法（{"、".join(miss)}），交人处理' if miss else ''))
+if miss: sys.exit(1)
