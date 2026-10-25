@@ -892,12 +892,10 @@ def build(js,out):
     R.apply_script(d)                                              # 画面相关的脚本设置（词下说明对齐等），与定稿视频核对同一个入口
     work=f'work_{no}'; os.makedirs(work,exist_ok=True)
     # colors
-    colors={}; i=0
-    for s in d['sentences']:
-        for c in s['chunks']:
-            for w in re.findall(r'\*\*([^*]+)\*\*',c['en']):
-                if w.lower() not in colors: colors[w.lower()]=R.PAL[i%len(R.PAL)]; i+=1
+    colors=R.分色(d)   # G49：26 起按色相挑（同屏相邻差 ≥60°）；01–25 照旧轮流
     R.unify_colors(colors,d['sentences'])
+    _cd=R.同屏色差(d,colors)
+    if _cd: raise SystemExit('【停止】同一屏的重点词颜色太像（G49，用户 2026-10-25：“ripen into 和rapidly他们的这个颜色太相似了”）：'+'；'.join(_cd[:5]))
     header=f"{no} · {d['title_en']}　{d['title_zh']}"
     segs=[]  # (image_key, duration) ; audio list
     audio=[sil(0.4)]; tl=[]  # (screen_id,active,dur)

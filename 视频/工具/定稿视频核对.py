@@ -73,11 +73,7 @@ def render_screens(d, outdir, only=None):
     """用定稿脚本 d 画出视频里的每一屏（与 make_video.build 同一套画法；进度条画成 0，比对时去掉）。
     返回 [(名字, 灰度图)]：片头动画每一帧（'片头 k'，最后一帧是完整片头）+ 每句每块高亮（'S句-块'）。only=句号集合时只画这几句"""
     os.makedirs(outdir, exist_ok=True); no = d['no']
-    colors = {}; i = 0                                         # 与 make_video.build 相同
-    for s in d['sentences']:
-        for c in s['chunks']:
-            for w in re.findall(r'\*\*([^*]+)\*\*', c['en']):
-                if w.lower() not in colors: colors[w.lower()] = R.PAL[i % len(R.PAL)]; i += 1
+    colors = R.分色(d)                                          # 与 make_video.build 相同（G49）
     R.unify_colors(colors, d['sentences'])
     R.apply_script(d)                                                 # 与出片程序同一个入口读画面设置（词下说明对齐等）
     header = f"{no} · {d['title_en']}　{d['title_zh']}"

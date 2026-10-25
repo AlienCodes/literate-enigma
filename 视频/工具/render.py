@@ -564,3 +564,73 @@ def unify_colors(colors,sentences):
     miss=sorted({k for s in sentences for c in s['chunks'] for k in re.findall(r'\*\*[^*]+\*\*\(([^)]+)\)',c['zh'])+[m[1] for m in re.findall(ZCOL,c['zh'])] if colors.get(k.lower()) is None})
     if miss: raise SystemExit(f'【停止】画面上这些中文意思找不到颜色（英文里对应的词没有加粗，或短语的几部分不在同一句）：{miss}')
     return colors
+# —— G49 同屏颜色分得开（用户 2026-10-25 看 26 S10：“ripen into 和rapidly他们的这个颜色太相似了，你换成换成不能这么相似的颜色。”）
+#    人眼看重点词主要分色相：ripened into 珊瑚红 0° 和 rapidly 琥珀黄 43° 相邻（CIEDE2000 色差 41，按色差算不小，但两个都是暖色，用户看着像）。
+#    26 起：同一屏相邻两个重点单元色相差 ≥60°，任意两个 ≥25°（一律，不许重复同色、不设口子；用户 2026-10-25：“以后一定要避免这种情况发生”）。
+#    01–25 照旧按全篇顺序轮流取色（定稿画面不变，G9），不合格的列 制作记录/颜色太像清单.md
+色相起=26; 相邻色相=60; 同屏色相=25
+# 26 起的色板：10 种颜色两两色相差 ≥26°（原 8 色里橙 27° 和琥珀 43° 分不开，换掉橙，加青柠 82°、黄绿 111°、品紫 292°），一屏最多 10 个单元都不用重复（门一律、不设口子）
+PAL26=[(248,113,113),(251,191,36),(190,242,100),(120,240,100),(74,222,128),(45,212,191),(56,189,248),(167,139,250),(232,121,249),(244,114,182)]
+import colorsys as _cs
+def _hue(c): return _cs.rgb_to_hsv(*[x/255 for x in c])[0]*360
+def _hd(a,b): d=abs(_hue(a)-_hue(b))%360; return min(d,360-d)
+def 句单元(s):
+    """这一屏的重点单元（按英文出现顺序）：被隔开的短语（中文标 **…**(a b)）算一个单元，其余每个加粗词一个单元。返回 [(单元键, [组成的词])]"""
+    ens=[w.lower() for c in s['chunks'] for w in re.findall(r'\*\*([^*]+)\*\*',c['en'])]; ph={}
+    for c in s['chunks']:
+        for k in re.findall(r'\*\*[^*]+\*\*\(([^)]+)\)',c['zh']):
+            ps=k.lower().split()
+            if len(ps)>1 and all(p in ens for p in ps):
+                for p in ps: ph.setdefault(p,k.lower())
+    out=[]; seen=set()
+    for w in ens:
+        u=ph.get(w,w)
+        if u in seen: continue
+        seen.add(u); out.append((u,u.split() if u in ph.values() else [w]))
+    return out
+def 分色(d):
+    """全篇重点词的颜色（unify_colors 之前）。01–25 照旧轮流取色；26 起按色相挑（相邻差最大、同屏差最大、用得少的优先）"""
+    colors={}
+    if not (str(d.get('no','0')).isdigit() and int(d['no'])>=色相起):
+        i=0
+        for s in d['sentences']:
+            for c in s['chunks']:
+                for w in re.findall(r'\*\*([^*]+)\*\*',c['en']):
+                    if w.lower() not in colors: colors[w.lower()]=PAL[i%len(PAL)]; i+=1
+        return colors
+    used={}
+    for s in d['sentences']:
+        us=句单元(s); got=[colors.get(u) or colors.get(ws[0]) for u,ws in us]
+        def ok(j,c,g):   # 放 c 在第 j 个单元：和已放的相邻 ≥60°、和同屏所有已放的 ≥25°（一律，不重复）
+            if any(0<=k<len(us) and g[k] is not None and _hd(c,g[k])<相邻色相 for k in (j-1,j+1)): return False
+            return all(g[k] is None or k==j or _hd(c,g[k])>=同屏色相 for k in range(len(us)))
+        def 排(j,g):   # 回溯：按“和已放的差得越大越好、用得少的优先”的顺序试
+            if j==len(us): return g
+            if g[j] is not None: return 排(j+1,g)
+            cs=sorted(PAL26,key=lambda c:(-min([_hd(c,x) for x in g if x is not None]+[360]),used.get(c,0),PAL26.index(c)))
+            for c in cs:
+                if ok(j,c,g):
+                    g2=list(g); g2[j]=c; r=排(j+1,g2)
+                    if r: return r
+            return None
+        res=排(0,list(got))
+        if res is None:   # 找不到（同屏单元超过 10 个、或前面句子定死的颜色冲突）：照贪心放，门会停下交人处理
+            res=list(got)
+            for j in range(len(us)):
+                if res[j] is None: res[j]=max(PAL26,key=lambda c:min([_hd(c,x) for x in res if x is not None]+[360]))
+        for (u,ws),c in zip(us,res):
+            if colors.get(u) is None and colors.get(ws[0]) is None: used[c]=used.get(c,0)+1
+            colors.setdefault(u,c)
+            for w in ws: colors.setdefault(w,c)
+    return colors
+def 同屏色差(d,colors):
+    """门（26 起）：每屏相邻两个重点单元色相差 ≥60°，任意两个 ≥25°（超过 7 个单元才许重复用色）。返回问题"""
+    if not (str(d.get('no','0')).isdigit() and int(d['no'])>=色相起): return []
+    out=[]
+    for si,s in enumerate(d['sentences'],1):
+        sc=sent_colors(colors,s); us=句单元(s); cs=[(u,sc.get(u) or sc.get(ws[0])) for u,ws in us]
+        for (a,ca),(b,cb) in zip(cs,cs[1:]):
+            if ca and cb and _hd(ca,cb)<相邻色相: out.append(f'S{si} 相邻的 {a}↔{b} 色相只差 {_hd(ca,cb):.0f}°（要 ≥{相邻色相}°）')
+        for (a,ca),(b,cb) in __import__('itertools').combinations(cs,2):
+            if ca and cb and _hd(ca,cb)<同屏色相: out.append(f'S{si} 同屏 {a}↔{b} 色相只差 {_hd(ca,cb):.0f}°（要 ≥{同屏色相}°）')
+    return sorted(set(out))
