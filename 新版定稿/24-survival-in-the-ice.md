@@ -9,7 +9,7 @@ On 24 April Shackleton and five others **embarked** **in** the James Caird, a **
 
 Shackleton, Worsley, and Tom Crean **traversed** its **mountainous** **interior** in about 36 **exhausting** hours, reaching the Stromness whaling station on 20 May. Ice **repelled** three **rescue attempts** before the Yelcho, a Chilean **tug**, **evacuated** the 22 **marooned** men on 30 August. All 28 of Endurance's party survived their **ordeal**.
 
-On 5 March 2022 searchers **located** the **wreck** 3,008 metres down, **upright** and **intact**. She lay about four miles south of the spot Worsley recorded in November 1915, months before the voyage: a **slight** **discrepancy** for a **calculation** on **shifting** ice.
+On 5 March 2022 searchers **located** the **wreck** 3,008 metres down, **upright** and **intact**. She lay about four miles south of the spot Worsley recorded in November 1915, months before the voyage: a slight **discrepancy** for a **calculation** on **shifting** ice.
 
 Legend **rightly** **salutes** Shackleton **for** his **charisma**. Yet both ends of the story **hinge on** Worsley's **meticulous** **arithmetic**. **Leadership** **held** 28 men **together**. **Precision** put six **ashore** within reach of help and, a century on, **brought** their ship **back** into view.
 
@@ -23,7 +23,7 @@ Legend **rightly** **salutes** Shackleton **for** his **charisma**. Yet both end
 
 沙克尔顿、沃斯利和汤姆·克林**横越了**(traversed)岛上**山峦重叠的**(mountainous)**腹地**(interior)，用了约36个**令人精疲力竭的**(exhausting)小时，于5月20日抵达斯特罗姆内斯捕鲸站。（its：指南乔治亚岛的）（reaching…：现在分词短语，表示结果）浮冰**逼退/击退了**(repelled)三次**救援行动**(rescue attempts)，直到8月30日，“耶乔号”，一艘智利的**拖船**(tug)，才**撤出了**(evacuated)22个**被困于荒岛的**(marooned)人。（before…：在……之前，这里译作“直到……才……”；a Chilean tug：同位语，说明 Yelcho；marooned：更强调被遗弃或与外界隔绝，常让人联想到荒岛、荒野或偏远地点）全部28个坚忍号的成员挺过了他们的这场**磨难**(ordeal)。
 
-2022年3月5日，搜寻队**找到了**(located)**残骸**(wreck)，位于3,008米深的海底，**直立**(upright)，并且**完好无损**(intact)。（3,008 metres down：在水下3,008米处；upright and intact：补充说明残骸的状态）它位于沃斯利所记位置以南约四英里处，那个位置记于1915年11月，是小艇出航前几个月测算的；只有一点**轻微的**(slight)**差异**(discrepancy)，对在**漂移的**(shifting)冰面上**计算**(calculation)出的位置来说，已属难得。（Worsley recorded…：定语从句，省略 that，修饰 spot；months before the voyage：补充说明 November 1915）（冒号后是同位语，评价这一偏差；for…：就……而言）
+2022年3月5日，搜寻队**找到了**(located)**残骸**(wreck)，位于3,008米深的海底，**直立**(upright)，并且**完好无损**(intact)。（3,008 metres down：在水下3,008米处；upright and intact：补充说明残骸的状态）它位于沃斯利所记位置以南约四英里处，那个位置记于1915年11月，是小艇出航前几个月测算的；只有一点轻微的**差异**(discrepancy)，对在**漂移的**(shifting)冰面上**计算**(calculation)出的位置来说，已属难得。（Worsley recorded…：定语从句，省略 that，修饰 spot；months before the voyage：补充说明 November 1915）（冒号后是同位语，评价这一偏差；for…：就……而言）
 
 传说**理所当然地**(rightly)**因**(salutes for)沙克尔顿的**超凡魅力**(charisma)而**称颂**(salutes for)他。（salute sb for sth：因某事称颂某人；charisma：一种能强烈吸引他人、让人心甘情愿追随的非凡个人魅力（领袖气质/感召力））可这个故事的两头，都**取决于**(hinge on)沃斯利**一丝不苟/十分细心的**(meticulous)**算数/计算**(arithmetic)。（both ends：一头是小艇航行，一头是百年后找到残骸；hinge on：取决于；meticulous 常被译为“一丝不苟”或“细致入微”。作为形容词，它专指做事极其严密，对微小的细节也要反复核对，力求把出错率降到最低。）**领导力**(Leadership)**让**(held together)28人始终**抱成一团**(held together)。（hold…together：使……团结在一起）（沃斯利的）**精确**(Precision)，不仅将六人送**上岸**(ashore)，进入救援范围；并且在一个世纪后，**把**(brought back)他们的船**带回到**(brought back)世人的视野中。（within reach of…：在……够得着的范围内）（简述：1914年坚忍号驶往南极，被冰困住，1915年沉没，船长沃斯利记下了沉船位置；众人在冰上熬过五个多月，乘救生艇登上象岛；沙克尔顿等六人驾小艇闯过约1,300公里的险海，沃斯利只测了四次太阳，靠航位推算找到南乔治亚岛；三人翻山走到捕鲸站求救，8月30日象岛22人获救，28人全部生还；2022年，残骸在沃斯利所记位置以南约四英里处被找到。）
 
@@ -79,7 +79,6 @@ Legend **rightly** **salutes** Shackleton **for** his **charisma**. Yet both end
 | wreck | 本文：残骸；n. 失事船只，残骸；（身心）垮掉的人；v. 毁坏，使失事；破坏（计划等） | 5 |
 | upright | 本文：直立；adj. 直立的，竖直的；正直的，诚实的；adv. 直立地 | 5 |
 | intact | 本文：完好无损；adj. 完好无损的，完整的 | 5 |
-| slight | 本文：轻微的；adj. 轻微的，细小的；纤细的；v./n. 轻视，怠慢 | 5 |
 | discrepancy | 本文：差异；n. 差异，不一致，出入（a discrepancy between A and B） | 5 |
 | shifting | 本文：漂移的；adj. 不断变化的，移动的，漂移的；v. (shift) 移动，转移；改变（看法等）；n. 转变；轮班 | 5 |
 | calculation | 本文：计算；n. 计算，计算结果；（利害的）盘算，算计 | 5 |
