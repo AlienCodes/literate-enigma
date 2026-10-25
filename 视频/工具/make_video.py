@@ -605,6 +605,16 @@ def _auto_level(clips,tmap,gaps,rounds=2):
         if gaps[k2-1]>=LQ.IN_GAP: gs.append([k2])
         else: gs[-1].append(k2)
     if len(gs)<2: return {}
+    # G51（2026-10-25 撞车会话的容器重查 26 声音差 -39.6 dB）：调平增益靠 ffmpeg 量响度，换机器量出的数差一点，碰到 0.5 dB 档的边界增益就翻档。
+    # 算过的增益按“调平前的声音 + 分段 + 停顿”的指纹存成 调平_<指纹>.json（和配音缓存一起进仓库），先读存的，不重算；严格缓存模式缺了就停
+    _k=_hl.sha1(b''.join(np.ascontiguousarray(c_,np.float32).tobytes() for c_ in clips)+repr((list(gaps),[(round(t[2],4),round(t[3],4)) for t in tmap])).encode()).hexdigest()
+    _fs=[f'{_CACHE}/调平_{_k}.json',os.path.join(_REPO_CACHE,f'调平_{_k}.json')]
+    if os.environ.get('CACHE_LOG'):
+        with open(os.environ['CACHE_LOG'],'a') as f_: f_.write(f'调平_{_k}.json\n')
+    for _f in _fs:
+        if os.path.exists(_f):
+            _r={int(a_):float(b_) for a_,b_ in json.load(open(_f)).items()}; _to_repo(_f); return _r
+    if os.environ.get('STRICT_CACHE'): raise SystemExit(f'【停止】严格缓存模式缺调平缓存 调平_{_k}.json（G51：别的机器重算的调平增益可能翻档，不逐样本相同）：先在出过这一篇的机器上推送 视频/配音缓存/')
     tot={}; cur=list(clips)
     for _ in range(rounds):
         x=np.concatenate([np.zeros(int(0.5*SR),np.float32)]+cur+[np.zeros(int(0.5*SR),np.float32)])
@@ -619,7 +629,9 @@ def _auto_level(clips,tmap,gaps,rounds=2):
                 nv=max(-6.0,min(6.0,tot.get(k2+1,0.0)+dl)); f_=10**((nv-tot.get(k2+1,0.0))/20)
                 if nv!=tot.get(k2+1,0.0): cur[2*k2]=cur[2*k2]*np.float32(f_); tot[k2+1]=nv; ch=True
         if not ch: break
-    return {k:v for k,v in tot.items() if v}
+    _r={k:v for k,v in tot.items() if v}
+    q_=f'{_fs[0]}.{os.getpid()}'; json.dump({str(a_):b_ for a_,b_ in _r.items()},open(q_,'w')); os.replace(q_,_fs[0]); _to_repo(_fs[0])
+    return _r
 def 句增益(d,no,si,sent,pieces,gaps,clips,tmap,a):
     """一句话拼好以后的全部增益（G36 源头调平 26 起、分段增益dB、句子增益dB），出片程序和 疑点清单/自动切点 的重建共用（25 会话 2026-10-25：重建漏了分段增益，疑点清单停）"""
     _agn={}

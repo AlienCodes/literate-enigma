@@ -6,7 +6,7 @@
 在视频工作目录下运行：python3 <工具目录>/出片守门自检.py
 全部通过 → 把 make_video.py、render.py 和本程序的指纹写进 工具/出片守门自检通过.json（规则执行机器核对：出片程序一改，
 指纹对不上，提交、推送一律停，直到重跑本自检通过）。"""
-import os, sys, json, copy, subprocess, hashlib, shutil, time
+import re, os, sys, json, copy, subprocess, hashlib, shutil, time
 T = os.path.dirname(os.path.abspath(__file__)); STAMP = f'{T}/出片守门自检通过.json'
 指纹 = lambda p: hashlib.sha256(open(p, 'rb').read()).hexdigest()
 
@@ -26,6 +26,7 @@ CASES = [   # (编号, 篇, 改法说明, 改法, 环境变量, 停止信息里�
     ('A30', '20', '停顿插入点写成第 99 个标点', lambda d: 改(d, ['停顿插入点', 'S1'], {'99': 1.0}), {}, '个标点超出'),
     ('音21', '20', '句子增益写 2 dB', lambda d: 改(d, ['句子增益dB'], {'S1': 2.0}), {}, '句子增益dB 只许'),
     ('G36', '20', '分段增益写 8 dB（超过 ±6）', lambda d: 改(d, ['分段增益dB'], {'S1': {'1': 8.0}}), {}, '分段增益dB 写法不对'),
+    ('G51', '20', '改号成 26（源头调平）、严格缓存模式、没有调平缓存', lambda d: (改(d, ['no'], '26'), [c_.__setitem__(f_, re.sub(r'[—–―─⸺⸻﹘－]+', '，', c_[f_])) for s_ in d['sentences'] for c_ in s_['chunks'] for f_ in ('zh', 'note') if c_.get(f_)]), {'STRICT_CACHE': '1'}, '缺调平缓存'),
     ('A3', '20', '环境变量换音色', lambda d: None, {'VOICE': 'voice_mf.npy'}, '（A3/A7）'),
     ('A7', '20', '环境变量换降噪', lambda d: None, {'AFFILE': 'AF.txt'}, '（A3/A7）'),
     ('A27', '02', '结尾句语速改回会丢 /z/ 的 0.80', lambda d: 改(d, ['结尾句', 'S16', '整句语速'], 0.80), {}, '（A27）'),

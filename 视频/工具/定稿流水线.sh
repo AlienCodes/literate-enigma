@@ -51,6 +51,7 @@ exec 7>"${PUSH_LOCK:-/tmp/推送两仓库.lock}"; flock 7   # G17：提交、镜
 (cd $L && { git symbolic-ref -q HEAD >/dev/null || git checkout -q -B $BR; } && git add -A 视频 最终版4K视频 新版定稿 CLAUDE.md && { git diff --cached --quiet || git commit -q -m "镜像：$MSG"; } && push $BR) || stop "literate-enigma 提交或推送失败"   # 2026-10-23 T34：新容器里 L 是游离 HEAD，推的是 95 个提交前的旧分支，九篇全停在这一步；现在先把分支挪到 HEAD
 flock -u 7
 python3 $T/定稿视频核对.py --只查清点和镜像 > "$LOG/镜像核对.log" 2>&1 || { tail -10 "$LOG/镜像核对.log"; stop "镜像核对不通过"; }
+python3 $T/缓存进仓库核对.py $no || stop "这一篇用到的配音缓存、调平缓存没全进仓库（G51：别的机器重出会不逐样本相同）"   # 推送后核对：严格缓存模式出声音，用到的缓存都在 git 里、已推送
 tail -3 "$LOG/归档.log"; echo "第${no}篇 定稿流水线全部完成：最终版4K视频/ 已替换为这一版，两个仓库已推送，各处拷贝逐字节一致"
 if [ -n "$QP_LATER" ]; then echo "（全篇重查留给排在后面的那条定稿流水线：没重查完一直算欠着，铁4）"; elif python3 $T/全篇核查.py --欠着; then   # 铁4：出片/排版程序改过，所有已出片的篇目都要重查（全过才记指纹；没过就一直欠着，收工闸门会拦）
   step "⑦ 出片程序改过：全篇重查（铁4，改一处，全部重查）"
