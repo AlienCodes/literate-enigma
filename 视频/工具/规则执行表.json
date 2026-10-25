@@ -5711,5 +5711,22 @@
   "演练": [
    "纯人声核对.py --确认自检（25 起像可闻吸气的非人声确认必拒、没有实测或实测对不上必拒；重放 25 S10；规则执行核查当场跑）"
   ]
+ },
+ "G48": {
+  "门": [
+   [
+    "check_all.py",
+    "if len(vx)>1 and len(vy)>1 and _小品(x)!=_小品(y): return None"
+   ]
+  ],
+  "自检": [
+   [
+    "check_all.py",
+    "('brought in','brought back',None)"
+   ]
+  ],
+  "演练": [
+   "check_all.py --自检（G48：短语对短语小品词不同不报 bring in↔bring back，hinge on↔hinged on 必报）"
+  ]
  }
 }

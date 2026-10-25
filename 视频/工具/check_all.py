@@ -116,6 +116,7 @@ def 实词(b):
     ws=re.findall(r"[A-Za-z]+",b); c=[w for w in ws if w.lower() not in 虚词]
     if len(ws)==1: return 词(b)
     return c or None
+def _小品(b): return [w.lower() for w in re.findall(r"[A-Za-z]+",b) if w.lower() in 虚词 and w.lower() not in ('a','an','the')]
 def 原有(b, orig):
     """原稿就有的重点词：原样在原稿重点词里，或按 T22 扩成短语（hinged → hinged on、vain → in vain：多出来的只是介词、小品词、冠词）"""
     if b.lower() in orig: return True
@@ -123,6 +124,8 @@ def 原有(b, orig):
 def 同词(x, y):
     """两个重点词：'撞车'（同一个词）、'待判'（程序拿不准）、None（不同的词）。按实词比：短语对短语、短语对单词都查；多实词短语按整体"""
     a, b = 实词(x), 实词(y)
+    vx, vy = (re.findall(r"[A-Za-z]+",s) for s in (x, y))
+    if len(vx)>1 and len(vy)>1 and _小品(x)!=_小品(y): return None   # G48（用户 2026-10-25：“这个根本就不算撞车，这完全是两个不同的短语啊”）：短语对短语，介词/小品词不同（bring in↔bring back）是两个词
     if not a or not b or len(a)!=len(b): return None
     r=[_同(p,q) for p,q in zip(a,b)]
     if None in r: return None
@@ -206,7 +209,7 @@ def 自检T12():
     import tempfile, shutil as _sh; f=[]; r=tempfile.mkdtemp()
     for x, y, want in [('dose','doses','撞车'), ('slight','slight','撞车'), ('dam','dams','撞车'), ('settled','settles','撞车'), ('earn','earnings',None), ('fleet','fleeting',None),
                        ('circulation','circulates',None), ('lodgings','lodged',None), ('enterprising','enterprises',None), ('engravings','Engraved',None),
-                       ('scraped','scrapped',None), ('employees','employed',None), ('stopped','stop','撞车'), ('assess','assessed','撞车'), ('scale','scaled','撞车'), ('walks','walked','撞车'), ('proceedings','proceeding','待判'), ('built in','built-in','待判'), ('trade journal','journal',None), ('hinged on','hinge on','撞车'), ('in vain','vain','撞车'), ('hinged on','hinged','撞车'), ('set foot in','set out to',None)]:
+                       ('scraped','scrapped',None), ('employees','employed',None), ('stopped','stop','撞车'), ('assess','assessed','撞车'), ('scale','scaled','撞车'), ('walks','walked','撞车'), ('proceedings','proceeding','待判'), ('built in','built-in','待判'), ('trade journal','journal',None), ('hinged on','hinge on','撞车'), ('in vain','vain','撞车'), ('hinged on','hinged','撞车'), ('set foot in','set out to',None), ('brought in','brought back',None), ('set out to','set in',None), ('hinged on','hinge on','撞车'), ('combed through','combed','撞车')]:
         if 同词(x, y)!=want: f.append(f'撞车判断错：{x}↔{y} 判成 {同词(x, y)}，应为 {want}（T12/G32）')
     try:
         os.makedirs(f'{r}/新版定稿'); os.makedirs(f'{r}/视频/脚本')
