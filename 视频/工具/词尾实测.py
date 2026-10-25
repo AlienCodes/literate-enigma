@@ -45,12 +45,23 @@ def main(md):
         gs = 词组(toks); ws = x.split(); tgt = [M.音标(w) for w in ws]
         ph = [re.sub(r'[ˈˌː]', '', ''.join(q[0] for q in g_)).translate(str.maketrans({'ᵻ': 'ɪ', 'ɐ': 'ə', 'ɾ': 't'})).replace('ɚ', 'əɹ') for g_ in gs]
         hit = next((i for i in range(len(ph) - len(tgt) + 1) if ph[i:i + len(tgt)] == tgt), None)
-        if hit is None: out_na.append(f'{l[2:]} → 在原始合成的音素里找不到这个词（数字、缩写、读音改正展开过），没量'); continue
+        if hit is None:
+            sr_ = json.load(open(f'work_{no}/分段.json')).get(f'S{si}', []) if os.path.exists(f'work_{no}/分段.json') else []
+            span = f'，这一句在定稿视频 {sr_[0]["时刻"][0]:.1f}–{sr_[-1]["时刻"][1]:.1f}s' if sr_ else ''
+            j_ = sent.lower().find(x.split()[0].lower())
+            if sr_ and j_ >= 0:   # 按所在停顿段、段内字母位置估这个词的时刻（误差约 ±0.5 秒）
+                pcs = re.split(r'(?<=[,;:])\s', sent); k_ = 0; c_ = 0
+                while k_ < len(pcs) - 1 and c_ + len(pcs[k_]) + 1 <= j_: c_ += len(pcs[k_]) + 1; k_ += 1
+                q_ = sr_[min(k_, len(sr_) - 1)]; f_ = (j_ - c_) / max(1, len(pcs[k_]))
+                span += f'，这个词约在 {q_["时刻"][0] + f_ * (q_["时刻"][1] - q_["时刻"][0]):.1f}s'
+            out_na.append(f'{l[2:]} → 在原始合成的音素里找不到这个词（数字、缩写、读音改正展开过），没量{span}'); continue
         grp = [q for g_ in gs[hit:hit + len(tgt)] for q in g_]
         a0, b0, tc = 量(r, sr, grp)
         rw, srw, tw = synth(x); gw = [q for g_ in 词组(tw) for q in g_]; nw = len(rw) // F
         refw = np.sqrt(np.mean(rw[:nw * F].reshape(nw, F) ** 2, axis=1)).max(); aw, bw, tcw = 量(rw, srw, gw)
-        t0 = f'句内 {a0 / sr:.2f}–{b0 / sr:.2f}s'
+        sr_ = json.load(open(f'work_{no}/分段.json')).get(f'S{si}', []) if os.path.exists(f'work_{no}/分段.json') else []
+        pc = next((q for q in sr_ if q['原始'][0] <= a0 < q['原始'][1]), None)
+        t0 = (f'定稿视频约 {pc["时刻"][0] + (a0 - pc["原始"][0]) / sr:.1f}s' if pc else f'句内 {a0 / sr:.2f}s')   # 段内按原始合成的位置推算（段内长停顿压缩过，误差 ≤0.2 秒）
         if '词尾少了' in why and tc and tcw:
             e1 = db(r[int(tc[0]):int(tc[1])], ref); e2 = db(rw[int(tcw[0]):int(tcw[1])], refw); d1 = (tc[1] - tc[0]) / sr * 1000; d2 = (tcw[1] - tcw[0]) / srw * 1000
             bad = e1 < -40 or d1 < 20   # 单独合成的词天然拖长，不能拿时长比；看这个辅音在句子里实际有没有声音

@@ -45,7 +45,7 @@ def 文本(no):
     js = f'{V}/脚本/{no}.json'
     if not no or not os.path.exists(js): return None
     d = json.load(open(js))
-    return [d['title_en']] + [' '.join(re.sub(r'\*\*', '', c['en']) for c in s_['chunks']) for s_ in d['sentences']]
+    return [d['title_en']] + [' '.join(re.sub(r'\{\{.*?\}\}|\*\*', '', c['en']) for c in s_['chunks']) for s_ in d['sentences']]
 
 def 指标(a, no=None):
     """{项: (值, 在哪一句)}"""

@@ -17,6 +17,24 @@
    写进 scripts/NN.json 的 核对确认.高亮："S7 第3块": {"开始读": 秒（a.wav 里的时刻）, "配音指纹": a.wav 的 md5 前 12 位, "依据": "……"}；
    配音一变（指纹不同）确认就作废。有确认的，高亮时刻与确认的时刻相差 ≤ LIMIT 才算合格。"""
 import sys, os, re, json, hashlib, numpy as np, soundfile as sf
+# G45（主对话 2026-10-25：音频门上 AI 写的“确认”就是漏洞）：25 起高亮确认写的“开始读”时刻，程序当场在 a.wav 里量：
+# 前 30 ms 安静（每 5 ms 都低于附近 ±2 秒最响 10 ms 的 -40 dB），之后 40 ms 内起声（有 5 ms 不低于 -30 dB），才算真开口；不是就不收
+def 是开口(A, sr, t):
+    F = int(0.005 * sr); i = int(round(t * sr)); w = A[max(0, i - 2 * sr):i + 2 * sr]
+    if len(w) < 2 * F or i < 6 * F: return False
+    n = len(w) // (2 * F); ref = np.sqrt(np.mean(w[:n * 2 * F].reshape(n, 2 * F) ** 2, axis=1)).max() + 1e-12
+    lv = lambda a, b: [20 * np.log10(np.sqrt(np.mean(A[x:x + F] ** 2)) / ref + 1e-12) for x in range(a, b, F)]
+    return max(lv(i - 6 * F, i)) < -40 and max(lv(i, i + 8 * F)) >= -30
+def 确认可收(no, A, sr, t): return not (str(no).isdigit() and int(no) >= 25) or 是开口(A, sr, t)
+def 确认自检():
+    sr = 24000; A = np.zeros(3 * sr); A[sr:2 * sr] = 0.3 * np.sin(np.arange(sr) * 2 * np.pi * 200 / sr); e = []
+    if not 确认可收('25', A, sr, 1.0): e.append('误报：真开口（静音后起声）的确认被拒')
+    if 确认可收('25', A, sr, 1.5): e.append('没抓到：确认写的“开始读”落在一个音的中间，照样收了')
+    if 确认可收('25', A, sr, 0.5): e.append('没抓到：确认写的“开始读”落在静音里，照样收了')
+    if not 确认可收('24', A, sr, 1.5): e.append('误报：24 以前的不回头查')
+    return e
+if sys.argv[1:2] == ['--确认自检']:
+    e = 确认自检(); print('\n'.join(e) or '高亮同步核对 确认自检通过（25 起“开始读”必须是真开口：落在音中间、静音里都不收）'); sys.exit(1 if e else 0)
 sys.path.insert(0, '.')
 src = open('make_video.py').read().split("if __name__")[0]
 exec(src)
@@ -100,7 +118,7 @@ for no in sys.argv[1:]:
             t_ = toks[i].start if not punct and i >= 0 and toks[i].phoneme == ' ' else toks[j].start
             ref['甲'] = a0 + mpa[min(len(mpa) - 1, int(round(t_ * 100)))] / 100
             key = f'S{si + 1} 第{ci + 1}块'; cf = conf.get(key)
-            cf = cf if cf and cf.get('配音指纹') == fp else None
+            cf = cf if cf and cf.get('配音指纹') == fp and 确认可收(no, A, sr, float(cf['开始读'])) else None   # G45：“开始读”必须是程序量得到的真开口
             auto_ok = all(abs(sw - v) <= LIMIT for v in ref.values())
             ok = auto_ok or (cf is not None and abs(sw - cf['开始读']) <= LIMIT)
             bad += not ok; n_ok += ok

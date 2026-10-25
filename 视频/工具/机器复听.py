@@ -63,7 +63,7 @@ def 听(no, src=None, rec=None, 改=None):
         x = a[int(v[0]['时刻'][0] * sr):int(v[-1]['时刻'][1] * sr)]
         x = resample_poly(x, 16000, sr).astype(np.float32) if sr != 16000 else x.astype(np.float32)
         s = rec.create_stream(); s.accept_waveform(16000, x); rec.decode_stream(s)
-        ref = ' '.join(re.sub(r'\*\*', '', c['en']) for c in d['sentences'][i]['chunks'])
+        ref = ' '.join(re.sub(r'\{\{.*?\}\}|\*\*', '', c['en']) for c in d['sentences'][i]['chunks'])
         res.append((k, s.result.text.strip(), 比(ref, s.result.text)))
     return res
 
@@ -91,7 +91,7 @@ def 带自检(no):
         i = max(range(len(v)), key=lambda j: v[j]['时刻'][1] - v[j]['时刻'][0]); t0, t1 = v[i]['时刻']; m = (t0 + t1) / 2
         x = a[int(v[0]['时刻'][0] * sr):int(v[-1]['时刻'][1] * sr)].copy(); o = int((m - v[0]['时刻'][0]) * sr); x[o - int(0.18 * sr):o + int(0.18 * sr)] = 0
         x = resample_poly(x, 16000, sr).astype(np.float32); s = rec.create_stream(); s.accept_waveform(16000, x); rec.decode_stream(s)
-        si = list(seg).index(k); ref = ' '.join(re.sub(r'\*\*', '', c['en']) for c in d['sentences'][si]['chunks'])
+        si = list(seg).index(k); ref = ' '.join(re.sub(r'\{\{.*?\}\}|\*\*', '', c['en']) for c in d['sentences'][si]['chunks'])
         if not 比(ref, s.result.text): f.append(f'没抓到：{k} 中间 0.36 秒声音被吞掉，机器复听没报')
     else: f.append('自检前提不成立：每一句都已有对不上的词')
     return r0, f
