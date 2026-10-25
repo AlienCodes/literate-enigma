@@ -18,15 +18,15 @@ Linguists had a rare chance to watch a language grow from **infancy** to **matur
 
 马那瓜，一辆**哐当作响**(rattling)的公共汽车上，聋人学生们隔着**过道**(aisle)，**轻快**(brisk)地进行着一场**无声**(voiceless)的**喧闹**(hubbub)，**手掌**(palms)**拍动着**(fluttering)，**手腕**(wrists)**轻弹**(flicking)。他们的老师一个字也看不懂。
 
-20世纪70年代末以前，尼加拉瓜没有聋人**群体**(community)。大多数聋人过着**与世隔绝**(secluded)的生活，只和父母、**兄弟姐妹**(siblings)共用一套**自家创造**(homemade)的手势**词汇**(repertoire)。1977年，马那瓜圣胡达斯区开办了一所特殊教育中心，招收了50名聋童。到1983年，这所中心和一所面向**青少年**(teenage)的**职业**(vocational)学校，已共有400多名聋生。
+20世纪70年代末以前，尼加拉瓜没有聋人**群体**(community)。大多数聋人过着**与世隔绝**(secluded)的生活，只和父母、**兄弟姐妹**(siblings)共用一套**自制**(homemade)的手势**一整套/全部**(repertoire)。1977年，马那瓜圣胡达斯区开办了一所特殊教育中心，招收了50名聋童。到1983年，这所中心和一所面向**青少年**(teenage)的**职业**(vocational)学校，已共有400多名聋生。
 
-**课程**(curriculum)全都**围绕**(hinged)西班牙语**口语**(oral)和**唇读**(lipreading)展开，老师们打手语时只比划**字母**(alphabet)。学生们盯着**嘴唇**(lips)看，却是**徒劳**(vain)，多数人始终没弄明白西班牙语的"词"是什么。在**课间**(recess)、街头和公共汽车上，他们把各种手势与自家手势**混合**(mingled)在一起。一堆**粗糙**(rough)的**大杂烩**(jumble)，**迅速**(rapidly)地**成熟**(ripened)为一门**连贯**(coherent)的、**完全**(entirely)属于他们自己的语言。
+**课程**(curriculum)全都**围绕**(hinged)西班牙语**口语**(oral)和**唇读**(lipreading)展开，老师们打手语时只比划**字母（表）**(alphabet)。学生们盯着**唇语**(lips)看，却是**徒劳**(vain)，多数人始终没弄明白西班牙语的"词"是什么。在**课间**(recess)、街头和公共汽车上，他们把各种手势与自家手势**混合**(mingled)在一起。一堆**粗糙**(rough)的**杂乱的东西**(jumble)，**迅速**(rapidly)地**成熟**(ripened)为一门**连贯**(coherent)的、**完全**(entirely)属于他们自己的语言。
 
-老师们觉得这种手语**无法理解**(unintelligible)。1986年6月，教育部请来了麻省理工学院的美国手语语言学家朱迪·凯格尔。2001年的一项研究发现，入学年龄更小的学生，以及后来入学的几批**新生**(intakes)，使用**语法**(grammatical)手段比他们的**前辈**(forerunners)更频繁，也更**统一**(uniformly)。每一批年幼的**手语者**(signers)加入，都让这门语言增添了**复杂性**(complexity)。
+老师们觉得这种手语**很难理解**(unintelligible)。1986年6月，教育部请来了麻省理工学院的美国手语语言学家朱迪·凯格尔。2001年的一项研究发现，入学年龄更小的学生，以及后来入学的几批**招收的几批**(intakes)，使用**语法**(grammatical)手段比他们的**前辈**(forerunners)更频繁，也更**统一**(uniformly)。每一批年幼的**手语者**(signers)加入，都让这门语言增添了**复杂性**(complexity)。
 
-在2004年的一项研究中，打手势的西班牙语使用者和最早一批手语者描述东西**滚下坡**(downhill)时，都把它怎样运动、往哪里去**熔接**(welding)成一个**不可分割**(undivided)的动作。后来的手语者则把它**拆解**(dismantled)成**离散**(discrete)的**片段**(segments)，按**线性**(linear)顺序排列，这种**结构**(framework)在他们周围的手势中**无处**(nowhere)可见。
+在2004年的一项研究中，打手势的西班牙语使用者和最早一批手语者描述东西**滚下坡**(downhill)时，都把它怎样运动、往哪里去**熔接**(welding)成一个**完整的/统一的**(undivided)的动作。后来的手语者则把它**拆解**(dismantled)成**离散**(discrete)的**片段**(segments)，按**线性**(linear)顺序排列，这种**框架/结构**(framework)在他们周围的手势中**无处**(nowhere)可见。
 
-语言学家难得有机会亲眼看着一门语言从**婴儿期**(infancy)长到**成熟期**(maturity)。它的**建造者**(builders)不是老师或专家，而是在操场、街头和公共汽车上一起玩耍的聋人**玩伴**(playmates)。
+语言学家难得有机会亲眼看着一门语言从**婴儿期**(infancy)长到**成熟期**(maturity)。它的**建造者**(builders)不是老师或专家，而是在操场、街头和公共汽车上一起玩耍的聋人**玩伴们**(playmates)。
 
 ## 速查表
 | 词 | 释义 | 段 |
