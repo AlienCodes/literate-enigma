@@ -36,7 +36,19 @@ def 自检():
     if not any('american sign language↔linguist' in x for x in R.同屏色差(s11, {'american sign language': (167, 139, 250) if False else (248, 113, 113), 'linguist': (251, 191, 36)})): f.append('没抓到：26 S11 American Sign Language（浅橙红）↔linguist（琥珀黄）相邻（G49 第二个样本）')
     s1 = {'no': '26', 'sentences': [{'chunks': [{'en': 'their **wrists** **flicking**', 'zh': '', 'align': []}]}]}
     if not any('wrists↔flicking' in x for x in R.同屏色差(s1, {'wrists': (248, 113, 113), 'flicking': (251, 191, 36)})): f.append('没抓到：26 S1 wrists↔flicking 相邻颜色太像（G49 第三个样本）')
+    f += 各算各的()
     return ['颜色核对 自检：' + x for x in f]
+def 各算各的(files=None):
+    """G50：工具目录里自己给重点词配色的程序（调 unify_colors 的）都要用出片程序的同一个分色 render.分色（抽屏 26 S10 画出旧配色，和成片不一致）"""
+    out = []
+    if files is None:
+        假 = 各算各的({'假抽屏.py': "colors={}\nfor w in ws: colors[w]=R.PAL[i%8]\nR.unify_colors(colors,d['sentences'])\n"})
+        if not 假: out.append('没抓到：造的“假抽屏.py 自己轮流取色”（G50 重放）')
+        files = {fn: open(f'{T}/{fn}', errors='ignore').read() for fn in sorted(os.listdir(T)) if fn.endswith('.py')}
+    for fn, t in files.items():
+        if fn in ('render.py', '颜色核对.py', '排版自检.py'): continue   # 排版自检 用自造的测试颜色，不给实际篇目配色
+        if 'unify_colors(' in t and not re.search(r'分色\(|颜色\(', t): out.append(f'没抓到：{fn} 自己算颜色，没用出片程序的分色（render.分色 / 颜色核对.颜色）（G50）')
+    return out
 if __name__ == '__main__':
     if '--自检' in sys.argv:
         e = 自检(); print('\n'.join(e) or '颜色核对 自检通过（26 S1、S10、S11 浅橙红↔琥珀黄相邻必停、同屏重复同色必停、新分色合格、10 个单元也分得开、01–25 不回头查）'); sys.exit(1 if e else 0)

@@ -18,12 +18,7 @@ def load(no):
     raise SystemExit(f'找不到脚本 {no}')
 
 def measure(d, align):
-    colors = {}; i = 0
-    for s in d['sentences']:
-        for c in s['chunks']:
-            for w in re.findall(r'\*\*([^*]+)\*\*', c['en']):
-                if w.lower() not in colors: colors[w.lower()] = R.PAL[i % len(R.PAL)]; i += 1
-    R.unify_colors(colors, d['sentences']); R.apply_script(d); R.ES_FIXED = None
+    colors = R.分色(d); R.unify_colors(colors, d['sentences']); R.apply_script(d); R.ES_FIXED = None   # G50：和出片程序同一个分色（render.分色）
     res = []; 不同格 = 0; 整块 = 0
     for si, s in enumerate(d['sentences']):
         ch = [[tuple(p) for p in c['align']] for c in s['chunks']]; sc = R.sent_colors(colors, s); notes = [c.get('note') for c in s['chunks']]

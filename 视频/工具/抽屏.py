@@ -7,12 +7,9 @@ mp4, *ss, out = sys.argv[1:]; ss = [int(x) for x in ss]
 if not mp4.endswith('.mp4'):   # 直接按脚本画（与出片同一套画法，定稿视频核对保证视频与它一致）：python3 抽屏.py NN 句号… 输出.png，按句号准确取屏，不靠画面分句（16 画面分句只分出 16 句，实际 18 句）
     import json, re
     sys.path.insert(0, '.'); import render as R
-    d = json.load(open(f'scripts/{mp4}.json')); R.apply_script(d); colors = {}; i = 0
-    for s_ in d['sentences']:
-        for c in s_['chunks']:
-            for w in re.findall(r'\*\*([^*]+)\*\*', c['en']):
-                if w.lower() not in colors: colors[w.lower()] = R.PAL[i % len(R.PAL)]; i += 1
-    R.unify_colors(colors, d['sentences']); d_ = tempfile.mkdtemp(); fs = []
+    d = json.load(open(f'scripts/{mp4}.json')); R.apply_script(d)
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import 颜色核对 as _YS; colors = _YS.颜色(d)   # G50：和出片程序同一个分色（26 起 PAL26 + 每屏回溯挑色）
+    d_ = tempfile.mkdtemp(); fs = []
     for n in ss:
         s_ = d['sentences'][n - 1]; sc = R.sent_colors(colors, s_); ch = [[tuple(p) for p in c['align']] for c in s_['chunks']]; nt = [c.get('note') for c in s_['chunks']]
         es = R.max_es(ch, sc, nt); cap = d.get('字号上限', {}).get(f'S{n}')

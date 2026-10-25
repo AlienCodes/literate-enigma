@@ -3,10 +3,12 @@ import render as R
 from make_video import T
 d=json.load(open(sys.argv[1])); PAL=T['PAL']
 colors={};i=0
-for s in d['sentences']:
-    for c in s['chunks']:
-        for w in re.findall(r'\*\*([^*]+)\*\*',c['en']):
-            if w.lower() not in colors: colors[w.lower()]=PAL[i%len(PAL)];i+=1
+if str(d.get('no','0')).isdigit() and int(d['no'])>=R.色相起: colors=R.分色(d)   # G50：26 起和视频同一个分色；25 以前照旧
+else:
+    for s in d['sentences']:
+        for c in s['chunks']:
+            for w in re.findall(r'\*\*([^*]+)\*\*',c['en']):
+                if w.lower() not in colors: colors[w.lower()]=PAL[i%len(PAL)];i+=1
 R.unify_colors(colors,d['sentences'])
 rgb=lambda c:'rgb(%d,%d,%d)'%c
 def seg(ss,cls):

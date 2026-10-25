@@ -10,10 +10,12 @@ PAL=[(251,191,36),(56,189,248),(244,114,182),(190,242,100),(196,181,253),(251,14
 BG='0E241E'; EN=(240,247,242); ZH=(170,196,182)
 d=json.load(open(sys.argv[1]))
 colors={};i=0
-for s in d['sentences']:
-    for c in s['chunks']:
-        for w in re.findall(r'\*\*([^*]+)\*\*',c['en']):
-            if w.lower() not in colors: colors[w.lower()]=PAL[i%8];i+=1
+if str(d.get('no','0')).isdigit() and int(d['no'])>=R.色相起: colors=R.分色(d)   # G50：26 起和视频同一个分色（同屏颜色分得开）；25 以前照旧，已出的文本不变
+else:
+    for s in d['sentences']:
+        for c in s['chunks']:
+            for w in re.findall(r'\*\*([^*]+)\*\*',c['en']):
+                if w.lower() not in colors: colors[w.lower()]=PAL[i%8];i+=1
 R.unify_colors(colors,d['sentences'])
 doc=Document()
 sec=doc.sections[0]; sec.left_margin=sec.right_margin=Cm(1.5)

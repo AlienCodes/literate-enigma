@@ -15,7 +15,7 @@ def 已出片():
         if f.endswith('.mp4') and f[:2].isdigit(): out[f[:2]] = f'{P}/最终版4K视频/{f}'
     return out
 def 键(no, mp4, fp=None):   # 程序 + 这一篇存的视频 + 现行脚本：三样都没变，上次的重查结论就还算数
-    return f'{fp or 程序指纹()}-{_sha(mp4)}-{_sha(f"{V}/脚本/{no}.json")}'
+    js = f"{V}/脚本/{no}.json"; return f'{fp or 程序指纹()}-{_sha(mp4)}-{_sha(js) if os.path.exists(js) else "无"}'   # 演练镜像里冻结样本没有新归档篇目的脚本：按“无”算（和 演练镜像.仓库底稿 一致）
 def 定稿提醒(no, 已, 欠):
     """G22：已有定稿 4K 的篇目，现行脚本或程序和存的视频对不上 → 提醒必须重出 4K（2026-10-23 我改了已定稿的 21 没重出，全篇重查才查出来）"""
     if no in 已 and no in 欠:
