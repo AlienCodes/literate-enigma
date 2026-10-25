@@ -8,7 +8,7 @@ S=[
      "（some：修饰数字，表示“大约”；out：（离地球）在远处）"],
     [[("in the **service module**,","发生在**服务舱段**(service module)里面，"),("home to","存储着"),("most of","大部分"),("the ship's","飞船的"),("oxygen and power.","氧气和电力。")],
      "（home to…：同位语，说明 the service module）"]]),
-(1,[[[("The **blast**","这股**爆炸气浪**(blast)"),("**crippled**","**严重毁坏**(crippled)"),("the **spacecraft**;","**宇宙飞船**(spacecraft)；"),("the landing","登月"),("was","被"),("**aborted**.","**终止了**(aborted)。")],
+(1,[[[("The **blast**","这股**爆炸气浪**(blast)"),("**crippled**","**严重毁坏了**(crippled)"),("the **spacecraft**;","**宇宙飞船**(spacecraft)；"),("the landing","登月"),("was","被"),("**aborted**.","**终止了**(aborted)。")],
      "（blast 侧重于描绘爆炸瞬间产生的物理冲击、\n震耳巨响以及摧毁效应；\n而 explosion 则更为中立，\n通常单纯指代“爆炸”这一客观事实。）"]]),
 (2,[[[("The **astronauts**","**宇航员**(astronauts)们"),("**took** **refuge** **in**","**躲进**(took refuge in)"),("the **lunar module**,","**登月舱**(lunar module)"),("Aquarius,","水瓶座号**避难**(took refuge in)，")],
      "（take refuge in…：躲进……避难；\nAquarius：同位语，说明 the lunar module）"],
