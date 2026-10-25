@@ -32,11 +32,11 @@ S=[
      "（splash down：“溅落”或“水面降落”。\n特指载人航天器或返回舱在重返大气层后，降落于海洋的特定过程。）"]]),
 (4,[[[("Yet","然而，"),("the **fault**","这个**缺陷**(fault)"),("had been **built in** on Earth.","早在地球上就被**内置了/埋下了**(built in)。")],
      "（build in：（建造时）使成为固有的一部分；\nfault：经常用来指代机器或者设备的故障和缺陷。）"]]),
-(4,[[[("A","一个"),("NASA","NASA的"),("review board","审查委员会"),("**traced**","**查明了**(traced to)"),("the **explosion**","这次**爆炸**(explosion)"),("**to** the tank's","**源自于**(traced to)（液氧）罐的"),("**thermostat**","**恒温器**(thermostat)"),("**switches**,","**开关**(switches)上，")],
-     "（trace A to B：追溯 A 的来源到 B、查明 A 源于 B）"],
+(4,[[[("A","一个"),("NASA","NASA的"),("**review board**","**审查委员会**(review board)"),("**traced**","**查明了**(traced to)"),("the **explosion**","这次**爆炸**(explosion)"),("**to** the tank's","**源自于**(traced to)（液氧）罐的"),("**thermostat**","**恒温器**(thermostat)"),("**switches**,","**开关**(switches)上，")],
+     "（trace A to B：追溯到 A 的来源为 B、查明 A 源于 B）"],
     [[("designed for","这些开关是按"),("the ship's 28-**volt** supply.","飞船的28**伏**(volt)电源设计的。")],
      "（designed for…：过去分词短语作后置定语，修饰 switches）"]]),
-(4,[[[("In 1965","在1965年，"),("the spacecraft's builder","飞船承建方"),("rewrote","就改写了"),("the **specification**","**技术规格**(specification)，"),("to let","允许"),("the **heaters**","**加热器**(heaters)"),("run on","使用"),("65-volt launch-site power;","发射场65伏的电源来运行；")],
+(4,[[[("In 1965","在1965年，"),("the spacecraft's","飞船"),("**builder**","**承建方**(builder)"),("**rewrote**","就**改写了**(rewrote)"),("the **specification**","**技术规格**(specification)，"),("to let","允许"),("the **heaters**","**加热器**(heaters)"),("run on","使用"),("65-volt launch-site power;","发射场65伏的电源来运行；")],
      "（to let…：不定式表目的；run on…：靠……运行；使用……电能/燃料来运行）"],
     [[("the switches","开关"),("were never **upgraded**,","却始终没有**升级**(upgraded)，"),("a **mismatch**","这处**不匹配**(mismatch)，"),("neither that **contractor**","无论是那家**承包商**(contractor)"),("nor NASA","还是NASA"),("**detected**.","都没有**发现**(detected)。")],
      "（a mismatch…：同位语，概括前一句；\nneither…detected：省略 which 的定语从句，修饰 mismatch；\nneither A nor B：A 和 B 都不）"]]),
@@ -73,7 +73,7 @@ CONF={"对齐":{
   "S17 oversight … on":"不是搭配：on the ground 是后置定语修饰 ingenuity（地面上的巧思），与 oversight 隔着整个谓语",
   "S17 salvaged … on":"不是搭配：on the ground 是后置定语修饰 ingenuity，与 salvaged 无关",
   "S17 by … ingenuity":"不是搭配：by 是普通介词“靠”，引出 salvaged 的方式（被动句里的施动方式），by ingenuity 不是像 in desperation 那样的固定短语"}}
-out={"no":"25","title_en":"Apollo 13: The Successful Failure","title_zh":"阿波罗13号：成功的失败","title_fx":{"hl":["Apollo","Failure"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","换行变更已获同意":{"S13":"用户原话“下面的小字：run on 补充上 使用....电能/燃料 来运行”","S14":"用户原话“下面加上小字 stubborn 难以去除的；难以排空的。表示污渍或者残留物难以去除或者排空。之前的那个删掉”"},"allow_clash":["launched","built in","switches","stubborn","unchecked"],
+out={"no":"25","title_en":"Apollo 13: The Successful Failure","title_zh":"阿波罗13号：成功的失败","title_fx":{"hl":["Apollo","Failure"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","换行变更已获同意":{"S13":"用户原话“下面的小字：run on 补充上 使用....电能/燃料 来运行”","S14":"用户原话“下面加上小字 stubborn 难以去除的；难以排空的。表示污渍或者残留物难以去除或者排空。之前的那个删掉”"},"allow_clash":["launched","builder","built in","switches","stubborn","unchecked"],
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"NASA":"NASA","Apollo":"阿波罗","Aquarius":"水瓶座号","Moon":"月球","Pacific":"太平洋"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
