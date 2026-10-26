@@ -348,9 +348,10 @@ for _p in sorted(_glob.glob('scripts/*.json')):
 #   之后停顿和句中空隙照常处理（标点处补成标准停顿，句中过长的压到 0.18 秒）。两头紧贴的 5 ms 都要低于 -55 dB；
 #   非人声与词尾/词头之间没有 -55 dB 低谷的，标"紧贴词尾"/"紧贴词头"/"紧贴两头"，那一头切在过零点（词本身不动），依据写进 核对确认.删除段。
 #   依据写在"核对确认.停顿删除"/"核对确认.删除段"。出片和所有核查程序（都 exec 本文件）用同一份。
-DEL_AT={}; NONVOICE={}; GRAFT={}; PGRAFT={}; BOOST={}; VFP={}; SENT_FP={}; SENT_KEYS={}; VOIDED=[]
+DEL_AT={}; NONVOICE={}; GRAFT={}; PGRAFT={}; BOOST={}; VFP={}; SENT_FP={}; SENT_KEYS={}; VOIDED=[]; SENT_NO={}
 for _p in sorted(_glob.glob('scripts/*.json')):
     _d=_jl(_p)
+    for _s in _d.get('sentences',[]): SENT_NO.setdefault(' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _s['chunks']),str(_d.get('no','')))
     for _k,_v in _d.get('区间声音指纹',{}).items():                 # A45：写区间时这一句原始合成 w 的指纹（区间作废.py --记指纹 写）；读音、语速一改 w 就变，旧区间作废
         VFP[' '.join(re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in _d['sentences'][int(_k[1:])-1]['chunks'])]=_v
     for _k,_v in _d.get('停顿删除区间',{}).items():
@@ -690,6 +691,31 @@ def _停顿候选(e,pe,ns,lo,hi,floor):
                 if en>=pe-30 and st<=ns+8: runs.append((st,en))   # 必须在逗号前后这两个词之间
             st=None
     return runs
+def _余音两头(e,a,b,gap=2):
+    """K27（27 S6 contamination, and：/n/ 衰减到 -55 dB 以下 5 ms 后又回升到 -43 dB 余音 20 ms，旧删法从第一个 -55 dB 帧起删、把余音切掉）：
+    衰减到 -55 dB 以下后 gap 帧（10 ms）内又能听见的，是这个词的余音：a 往后挪到余音衰减完；下一个词头同理（b 往前）。
+    隔得更远的（停顿里 -50～-55 dB 的底噪，27 S6 第 2 个逗号）照旧删"""
+    def 挪(x,step,lim):
+        while True:
+            fs=[x+step*k for k in range(gap+1)]
+            hit=next((f for f in fs if (a<=f<b if step>0 else a<=f<b) and e[f]>=AUD_DB),None)
+            if hit is None: return x
+            x=hit
+            while a<=x<b and e[x]>=AUD_DB: x+=step
+    a2=挪(a,1,b); b2=挪(b-1,-1,a)+1
+    return (a2,b2) if b2>a2 else (a,b)
+def 余音删法(sent):
+    n=SENT_NO.get(sent,''); return str(n).isdigit() and int(n)>=28
+def 余音自检():
+    """K27 余音删法：衰减后 10 ms 内回升的余音、词头前 10 ms 的弱起音必须留；停顿里隔得远的底噪照旧删"""
+    e=np.array([-20]*10+[-60]+[-43]*2+[-70]*41+[-20]*10,float)      # 27 S6：衰减后 5 ms 又回升 -43 dB 两帧
+    f=[]
+    if _余音两头(e,10,54)!=(13,54): f.append(f'余音被删：{_余音两头(e,10,54)}（应为 (13, 54)）')
+    e2=np.array([-20]*10+[-60]*5+[-53]*5+[-70]*34+[-20]*10,float)     # 27 S6 第 2 个逗号：隔 25 ms 的底噪照旧删
+    if _余音两头(e2,10,54)!=(10,54): f.append(f'停顿里的底噪被当成余音留下：{_余音两头(e2,10,54)}')
+    e3=np.array([-20]*10+[-70]*42+[-45]+[-60]+[-20]*10,float)          # 下一个词头前 5 ms 的弱起音留着
+    if _余音两头(e3,10,54)!=(10,52): f.append(f'词头弱起音被删：{_余音两头(e3,10,54)}（应为 (10, 52)）')
+    return f
 def sentence_audio(sent,pieces,gaps):
     """整句一次合成（原模型，声音不变）。标点位置用带时长输出的同版模型精确定位（A9）；
     在标点处只删除"真正无声"的部分（A10：绝不删词尾的 s/f/z 等弱音），再补静音，使实际听到的停顿 = 标准时长。"""
@@ -789,6 +815,7 @@ def sentence_audio(sent,pieces,gaps):
             while a<r1 and e[a]>=AUD_DB: a+=1
             b=r1
             while b>a and e[b-1]>=AUD_DB: b-=1
+            if 余音删法(sent): a,b=_余音两头(e,a,b)        # K27 28 起：中间回升的余音（能听见）不删，只删最长一段听不见的
             if b-a>=2*M+1:
                 ca,cb=(a+M)*F,(b-M)*F
                 if INSERT_AT.get(sent,{}).get(gi+1) is not None and DEL_AT.get(sent,{}).get(gi+1) is None:
