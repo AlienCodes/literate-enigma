@@ -84,3 +84,13 @@
 8. 过 规则执行核查、演练后 `推送两仓库.sh`，放锁。
 
 **预计**：约 60–80 次调用、1.5–2M 等效 token（大头是第 5 步注入 30 分钟和第 6 步演练，都是程序跑，会话只看结论行）；30 分钟没有看得见的成果就停报主会话。
+
+**第二阶段 2 追加：短虚词无缝漏读（主会话 2026-10-26 12:32 定，并进本阶段一起做；来源 G68 缺口，改门_句内响度 会话实测）**
+
+背景（实测，别再重试）：kokoro 每个音至少 1 帧 = 25 ms，正常的 “a” 就是 25 ms，漏读在时长上分不开；带时长模型（KT）与原模型局部时间差 0.05–0.1 s，按 KT 时刻量整词电平，01–27 有几十个短词比本句中位数低 30–48 dB（全是量进了停顿），不能作门。15 S15 “watch, and an ice patrol” 的 and（KT 量 -48.5 dB）用成片核实：small.en 听写 “watch and an ice patrol”、比() 0 处，逗号停顿后紧接约 160 ms -8～-19 dB 的话音，是对不准不是漏读。缺口只剩：配音模型无缝漏掉一个短虚词，whisper 凭上下文补回。
+
+步骤（接在上面第 5 步里做，约 +20–30 次调用、+0.5M 等效 token）：
+A. `注入查全.py` 加一类坑“虚词无缝漏读”：每句在原样声音上先用 parakeet 的逐词时刻（sherpa-onnx transducer 结果的 timestamps/tokens，按词拼）找第一个 a / an / the / it / and / of / to，整词 [起, 止) 切掉，接缝两边各 10 ms 交叉淡化（不留静音：静音类已由 无标点停顿核对 >0.22 s + 独立复核 挡）；找不到这些词的句子跳过并计数。
+B. 量 small.en / parakeet / 任一报就报 三种的查全（20–24、26 全部句子），写进本文件。
+C. 第三个识别器（不带语言模型补全）：sherpa-onnx NeMo CTC 英文模型贪心解码，候选 `https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-nemo-ctc-en-conformer-small.tar.bz2`（不行再试同目录 `sherpa-onnx-nemo-ctc-en-citrinet-512.tar.bz2`；先确认地址能下、记前 16 位校验码），`sherpa_onnx.OfflineRecognizer.from_nemo_ctc(model=…, tokens=…)`。同一批注入重跑：查全升、且 01–27 原样多出的误报能用比() 的通用规则消掉（不开确认口子、不按句白名单）才接进 机器复听 的“任一报就报”；否则不上，结论写进本文件和 G68 行。
+D. 上了的话：准备机器.sh 下载 + 模型校验码.json、--带自检 加“三路各自能抓到吞音”、声音演练加一场“只有 CTC 抓到的虚词漏读”、拆掉 CTC 一路演练必须发现；01–24 用新门只列清单。
