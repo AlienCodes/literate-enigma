@@ -1,0 +1,24 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+index c657e6d..332751d 100644
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -1,4 +1,5 @@
+-# CI 门（2026-10-26 改门_GitHub化 目标 1）：工作分支每次推送，在 GitHub 上跑 规则执行核查（含机器自检）。
++# CI 门（2026-10-26 改门_GitHub化 目标 1）：工作分支每次推送，在 GitHub 上跑 规则执行核查（含机器自检）；
++# G71：再跑 28 起各篇机制证据链（证据.py --全查）和机制闲置检查（证据.py --闲置）。
+ # 不挡推送本身；失败就在 PR #7 上标红，订阅了 PR #7 的会话会被唤醒。不下载视频（稀疏检出去掉 *.mp4）。
+ name: 门
+ on:
+@@ -26,5 +27,11 @@ jobs:
+         run: |
+           sudo mkdir -p /home/user && sudo ln -sfn $GITHUB_WORKSPACE /home/user/postgraduate-vocabulary && sudo ln -sfn $GITHUB_WORKSPACE /home/user/literate-enigma
+           set -o pipefail; python3 视频/工具/规则执行核查.py 2>&1 | tee /tmp/r.log | tail -30
++      - name: 28 起各篇机制证据链（G60/G71）
++        if: always()
++        run: set -o pipefail; python3 视频/工具/证据.py --全查 2>&1 | tee /tmp/z.log | tail -20
++      - name: 机制闲置检查（G71：连续两篇该用没用、建好后第一篇就没用上）
++        if: always()
++        run: set -o pipefail; python3 视频/工具/证据.py --闲置 2>&1 | tee /tmp/x.log | tail -20
+       - if: always()
+-        run: '{ echo "### 规则执行核查"; echo "\`\`\`"; grep -E "✘|【|通过" /tmp/r.log | tail -20; echo "\`\`\`"; } >> $GITHUB_STEP_SUMMARY'
++        run: '{ echo "### 规则执行核查"; echo "\`\`\`"; grep -E "✘|【|通过" /tmp/r.log | tail -20; cat /tmp/z.log /tmp/x.log 2>/dev/null | tail -20; echo "\`\`\`"; } >> $GITHUB_STEP_SUMMARY'
