@@ -75,6 +75,12 @@ def 听(no, src=None, rec=None, 改=None):
         res.append((k, s.result.text.strip(), 比(ref, s.result.text)))
     return res
 
+def 吞段(v):
+    """自检吞掉的那一截：这一句最长一段（停顿隔开）的中间七成，几个词连着没了。
+    只吞 0.36 秒，whisper 会靠上下文把短词补回来（27 S9 “near the most” 被补回，自检误判失灵，2026-10-26）"""
+    i = max(range(len(v)), key=lambda j: v[j]['时刻'][1] - v[j]['时刻'][0]); t0, t1 = v[i]['时刻']; L = t1 - t0
+    return t0 + 0.15 * L, t1 - 0.15 * L
+
 def 自检(no):
     """把某句中间一个词的声音换成静音（模拟吞音/漏词），必须报出；原样报出的不变"""
     rec = 识别器(); r0 = 听(no, rec=rec); bad0 = {k for k, _, b in r0 if b}
@@ -82,25 +88,24 @@ def 自检(no):
     if not ok: return ['自检前提不成立：每一句都已有对不上的词']
     k = ok[len(ok) // 2]
     def 吞(a, sr, seg):
-        v = seg[k]; i = max(range(len(v)), key=lambda j: v[j]['时刻'][1] - v[j]['时刻'][0]); t0, t1 = v[i]['时刻']; m = (t0 + t1) / 2
-        a = a.copy(); a[int((m - 0.18) * sr):int((m + 0.18) * sr)] = 0; return a
+        t0, t1 = 吞段(seg[k]); a = a.copy(); a[int(t0 * sr):int(t1 * sr)] = 0; return a
     r1 = 听(no, rec=rec, 改=吞); bad1 = {k_ for k_, _, b in r1 if b}
     f = []
-    if k not in bad1: f.append(f'没抓到：{k} 中间 0.36 秒声音被吞掉，机器复听没报')
+    if k not in bad1: f.append(f'没抓到：{k} 最长一段中间七成声音被吞掉，机器复听没报')
     if bad1 - bad0 - {k}: f.append(f'误报：没动的句子也报了 {sorted(bad1 - bad0 - {k})}')
     return f
 
 def 带自检(no):
-    """正式复听一遍；再把一句没问题的中间吞掉 0.36 秒，只重新识别这一句，必须报出（自检不过 = 核查失灵）"""
+    """正式复听一遍；再把一句没问题的中间吞掉最长一段的中间七成，只重新识别这一句，必须报出（自检不过 = 核查失灵）"""
     rec = 识别器(); r0 = 听(no, rec=rec); ok = [k for k, _, b in r0 if not b]; f = []
     if ok:
         k = ok[len(ok) // 2]; d = json.load(open(f'scripts/{no}.json')); seg = json.load(open(f'work_{no}/分段.json')); v = seg[k]
         a, sr = sf.read(f'work_{no}/a.wav'); a = a if a.ndim == 1 else a.mean(axis=1)
-        i = max(range(len(v)), key=lambda j: v[j]['时刻'][1] - v[j]['时刻'][0]); t0, t1 = v[i]['时刻']; m = (t0 + t1) / 2
-        x = a[int(v[0]['时刻'][0] * sr):int(v[-1]['时刻'][1] * sr)].copy(); o = int((m - v[0]['时刻'][0]) * sr); x[o - int(0.18 * sr):o + int(0.18 * sr)] = 0
+        t0, t1 = 吞段(v); b0 = v[0]['时刻'][0]
+        x = a[int(b0 * sr):int(v[-1]['时刻'][1] * sr)].copy(); x[int((t0 - b0) * sr):int((t1 - b0) * sr)] = 0
         x = resample_poly(x, 16000, sr).astype(np.float32); s = rec.create_stream(); s.accept_waveform(16000, x); rec.decode_stream(s)
         si = list(seg).index(k); ref = ' '.join(re.sub(r'\{\{.*?\}\}|\*\*', '', c['en']) for c in d['sentences'][si]['chunks'])
-        if not 比(ref, s.result.text): f.append(f'没抓到：{k} 中间 0.36 秒声音被吞掉，机器复听没报')
+        if not 比(ref, s.result.text): f.append(f'没抓到：{k} 最长一段中间七成声音被吞掉，机器复听没报')
     else: f.append('自检前提不成立：每一句都已有对不上的词')
     return r0, f
 
@@ -169,13 +174,13 @@ if __name__ == '__main__':
     if sys.argv[1:2] == ['--清单']: 清单(sys.argv[2]); sys.exit(0)
     if sys.argv[1:2] == ['--带自检']:
         r0, f = 带自检(sys.argv[2]); bad = [(k, b) for k, _, b in r0 if b]
-        print(('✘ 机器复听 自检：' + '；'.join(f)) if f else '✔ 机器复听 自检：吞掉一句中间 0.36 秒必报')
+        print(('✘ 机器复听 自检：' + '；'.join(f)) if f else '✔ 机器复听 自检：吞掉一句最长一段的中间七成必报')
         print(f'机器复听 {len(r0)} 句：读音对不上的 {len(bad)} 句')
         for k, b in bad: print(f'  {k}：' + '；'.join(f'脚本“{x}” 听到“{y}”' for x, y in b))
         sys.exit(2 if f else (1 if bad else 0))
     a_ = sys.argv[1:]
     if a_[0] == '--自检':
-        e = 自检(a_[1]); print(('✘ ' if e else '✔ ') + '机器复听 自检：' + ('；'.join(e) if e else '吞掉一句中间 0.36 秒必报、别的句子不误报')); sys.exit(1 if e else 0)
+        e = 自检(a_[1]); print(('✘ ' if e else '✔ ') + '机器复听 自检：' + ('；'.join(e) if e else '吞掉一句最长一段的中间七成必报、别的句子不误报')); sys.exit(1 if e else 0)
     res = 听(a_[0], a_[1] if len(a_) > 1 else None); bad = [(k, b) for k, _, b in res if b]
     print(f'机器复听 {len(res)} 句：读音对不上的 {len(bad)} 句')
     for k, b in bad: print(f'  {k}：' + '；'.join(f'脚本“{x}” 听到“{y}”' for x, y in b))
