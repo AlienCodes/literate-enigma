@@ -35,6 +35,7 @@ def 词(t):
     t = re.sub(r'(?<=\d),(?=\d{3})', '', t.lower())
     t = re.sub(rf'\b([1-9]|[12]\d|3[01]) ({_月})\b', r'the \1 of \2', t)   # 出片程序把 6 January 读成 the sixth of January（make_video spoken）
     t = re.sub(r'(\d+)(st|nd|rd|th)\b', r'\1', t)
+    t = re.sub(r'(\d)\s*%', r'\1 per cent', t); t = re.sub(r'\bpercent\b', 'per cent', t)   # G56（27 S14）：识别器写 40%，脚本 per cent
     return re.findall(r"[^\W_]+(?:'[^\W_]+)?", t)   # 带变音符的专名（Ötztal）整词保留
 
 _核 = None
@@ -42,6 +43,12 @@ def 已核实():
     global _核
     if _核 is None: _核 = {k.lower() for k, v in json.load(open(f'{T}/发音词典/已核实读音.json')).items() if v.get('判定') == '正确'}
     return _核
+def 拼写归一(t):
+    """英美拼写变体归成一种（kilometres/kilometers、colour/color、organise/organize、analyse/analyze、catalogue/catalog、travelled/traveled、defence/defense）"""
+    t = re.sub(r'(?<=[a-z])tre(s?)\b', r'ter\1', t); t = re.sub(r'(?<=[a-z])our(s|ed|ing|ful|ite|ites)?\b', r'or\1', t)
+    t = re.sub(r'(?<=[a-z])is(e|es|ed|ing|ation|ations)\b', r'iz\1', t); t = re.sub(r'(?<=[a-z])ys(e|es|ed|ing)\b', r'yz\1', t)
+    t = re.sub(r'(?<=[a-z])ogue(s?)\b', r'og\1', t); t = re.sub(r'(?<=[aeiou])ll(ed|ing|er|ers)\b', r'l\1', t); t = re.sub(r'(?<=[a-z])ence\b', 'ense', t)
+    return t
 def 比(ref, hyp):
     """读音对不上的 [(脚本里的词, 听到的词)]"""
     R, H = 词(ref), 词(hyp); pr = [音标(w) for w in R]; ph = [音标(w) for w in H]
@@ -49,6 +56,7 @@ def 比(ref, hyp):
     sm = difflib.SequenceMatcher(None, pr, ph, autojunk=False); out = []
     for op, a1, a2, b1, b2 in sm.get_opcodes():
         if op == 'equal': continue
+        if 拼写归一(' '.join(R[a1:a2])) == 拼写归一(' '.join(H[b1:b2])) and R[a1:a2]: continue   # G56（27 S4 kilometres/kilometers）：英美拼写变体是同一个词，两种读法词典都收
         if ''.join(pr[a1:a2]) == ''.join(ph[b1:b2]): continue   # 连写/拆写（switches / switch is 读音一样不算；every one / everyone）
         if op == 'replace' and all(w in 已核实() and w in 专名 for w in R[a1:a2]): continue   # A23 已对权威来源查过读音（读音核对 出片前把关）的专名（脚本里大写）：识别器不认识、听成别的不算；漏掉、多出照报
         out.append((' '.join(R[a1:a2]) or '（多出）', ' '.join(H[b1:b2]) or '（没听到）'))
@@ -116,7 +124,8 @@ def 清单(vdir):
 def 比较自检():
     """不用识别模型：比() 的归一规则。序数、同音、注音变体、日期展开不报；少一个词、读错一个词必报"""
     f = []
-    for r_, h_ in (('On April 13th', 'On April 13'), ("the crew's capsule", 'the cruise capsule'), ('organised eleven', 'organized 11'), ('On 6 January', 'On the 6 of January'), ('some 200,000 miles', 'some 200000 miles')):
+    for r_, h_ in (('some 3,000 kilometres away', 'some 3000 kilometers away'), ('about 40 per cent less', 'about 40% less'), ('the colour of', 'the color of'),
+                   ('On April 13th', 'On April 13'), ("the crew's capsule", 'the cruise capsule'), ('organised eleven', 'organized 11'), ('On 6 January', 'On the 6 of January'), ('some 200,000 miles', 'some 200000 miles')):
         if 比(r_, h_): f.append(f'误报：“{r_}”听成“{h_}”读音一样，却报了 {比(r_, h_)}')
     if 比('He met Windhandel there', 'He met Vinthehandel there') and 'windhandel' in 已核实(): f.append('误报：已核实读音的专名被识别器听错也报了')
     for r_, h_ in (('the cat sat on the mat', 'the cat on the mat'), ('the cabbies waited', 'the cabins waited'), ('He sat there', 'He set there')):
@@ -156,7 +165,7 @@ if __name__ == '__main__':
         print(f'## 疑似真问题（{len(q)} 处，先听这些）\n'); print('\n'.join('- ' + x for x in q) or '（无）')
         print(f'\n## 识别器听不准（{len(r)} 处）\n'); print('\n'.join('- ' + x for x in r) or '（无）'); sys.exit(0)
     if sys.argv[1:2] == ['--比较自检']:
-        e = 比较自检(); print('\n'.join(e) or '机器复听 比较自检通过（序数、同音、注音变体、日期、千分位不报；漏词、读错必报）'); sys.exit(1 if e else 0)
+        e = 比较自检(); print('\n'.join(e) or '机器复听 比较自检通过（序数、同音、注音变体、日期、千分位、%、英美拼写不报；漏词、读错必报）'); sys.exit(1 if e else 0)
     if sys.argv[1:2] == ['--清单']: 清单(sys.argv[2]); sys.exit(0)
     if sys.argv[1:2] == ['--带自检']:
         r0, f = 带自检(sys.argv[2]); bad = [(k, b) for k, _, b in r0 if b]

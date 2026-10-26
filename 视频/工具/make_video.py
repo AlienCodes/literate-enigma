@@ -119,8 +119,31 @@ def phonemes_of(text):
         ok_=len(re.findall(B_+_stress_free_re(v_['读音'])+E_,ph)); ph,cnt=re.subn(B_+_stress_free_re(bad)+E_,v_['读音'],ph)
         if cnt+ok_!=n_: raise SystemExit(f'【停止】按语境读音没有全部换到（A24）：{w_} 应换 {n_} 处，换了 {cnt} 处、原本就对 {ok_} 处：{text[:60]}')
     return ph
+# G57（2026-10-26 27 S12 “fewer nesting birds, and fewer species”）：配音把 birds 的 /z/ 直接连进 and，逗号处一点静音都没有（语速 0.88–1.0 都一样），
+# 停顿只能插在 /z/ 和 and 的交界，and 开头带浊擦音，识别器和单听都像 “than”。配音模型对分号会自己停一下（同一句 75 ms 静音），语气仍是“接着说”。
+# 脚本 "合成标点": {"S12": [["birds, and", "birds; and"]]}：只在合成这一句时把逗号换成分号交给配音模型；屏幕文字、停顿个数和长度都不变。只许 , ↔ ;
+SYNTH_PUNCT={}
+for _p_ in sorted(__import__('glob').glob('scripts/*.json')):
+    try: _d_=json.load(open(_p_))
+    except Exception: continue
+    for _k_,_v_ in _d_.get('合成标点',{}).items():
+        _s_=_d_['sentences'][int(_k_[1:])-1]; _disp_=' '.join(re.sub(r'\*\*','',re.sub(r'\{\{.*?\}\}','',c['en'])).strip() for c in _s_['chunks'])   # 与 R.strip_gloss 同一写法（独立复核没有 render）
+        for a_,b_ in _v_:
+            if re.sub(r'[,;]','',a_)!=re.sub(r'[,;]','',b_) or a_.count(',')+a_.count(';')!=b_.count(',')+b_.count(';'): raise SystemExit(f'【停止】合成标点只许把逗号换成分号（G57）：{_p_} {_k_} {a_} → {b_}')
+        SYNTH_PUNCT[(_p_,_k_)]=(_disp_,[tuple(x) for x in _v_])
+_SP_CACHE={}
+def _synth_punct(text):
+    for (p_,k_),(disp_,pairs_) in SYNTH_PUNCT.items():
+        if disp_ is None: continue
+        if (p_,k_) not in _SP_CACHE: _SP_CACHE[(p_,k_)]=spoken(disp_)
+        if text==_SP_CACHE[(p_,k_)] or (disp_ in globals().get('ENDING',{}) and text==spoken(_ending_front(disp_))):   # 独立复核只 exec 一部分，没有 ENDING 时按整句
+            for a_,b_ in pairs_:
+                if a_ not in text: raise SystemExit(f'【停止】合成标点写的“{a_}”不在这一句里（G57）：{disp_[:60]}')
+                text=text.replace(a_,b_,1)
+    return text
 def _pron(fn):
     def g(text,voice,speed=1.0,lang='en-us',**kw):
+        if not kw.get('is_phonemes') and SYNTH_PUNCT: text=_synth_punct(text)
         if not kw.get('is_phonemes') and (any(re.search(r"(?<![A-Za-z])"+re.escape(w_)+r"(?![A-Za-z])",text,flags=re.I) for w_ in PRON_WORDS) or _ctx_hit(text)):
             return fn(phonemes_of(text),voice=voice,speed=speed,lang=lang,is_phonemes=True,**kw)
         return fn(text,voice=voice,speed=speed,lang=lang,**kw)
@@ -268,7 +291,7 @@ def chunk_token_starts(texts,toks):
     """每一块第一个音在带时长模型音素序列里的位置：逐块转成音素，与整句音素序列做序列比对（不按空格数词：模型会把 in the、to be 连成一组）"""
     import difflib
     full=''.join(x.phoneme for x in toks)
-    if full!=phonemes_of(spoken(' '.join(texts))): raise SystemExit('【停止】带时长模型的音素与朗读文字对不上（L14）')
+    if full!=phonemes_of(_synth_punct(spoken(' '.join(texts)))): raise SystemExit('【停止】带时长模型的音素与朗读文字对不上（L14）')   # G57：合成标点（逗号换分号）按合成用的文字比
     cat='';starts=[]
     for t_ in texts:
         p_=phonemes_of(spoken(t_)).strip()

@@ -4,6 +4,7 @@
 cd "$(dirname "$0")/../.." || exit 1
 git pull -q 2>&1 | tail -1
 git -C /home/user/literate-enigma pull -q origin claude/adoring-hamilton-5qskmm 2>&1 | tail -1   # 规则执行核查读镜像的 .claude/settings.json，不拉会误报钩子没配上（2026-10-26 主会话踩过）
+python3 视频/工具/会话开工.py 主会话 --重读 2>&1 | grep -E '^\s*- \*\*|已记下|无新增' | cut -c1-160 | tail -6   # 开工必读更新了只读新增（G63），不读提交会被拒
 timeout 300 python3 视频/工具/规则执行核查.py 2>&1 | tail -1 | cut -c1-60
 python3 -c "import sys; sys.path.insert(0,'视频/工具'); import 重查记录 as R; print('欠查:', [n for n in R.欠着() if n in R.已出片()])" 2>&1 | tail -1
 if [ -n "$1" ]; then
