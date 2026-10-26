@@ -6,7 +6,8 @@
 import os, sys, subprocess, tempfile, shutil, fcntl
 T = os.path.dirname(os.path.abspath(__file__))
 G = ['git', '-c', 'user.name=自检', '-c', 'user.email=selftest@example.com', '-c', 'init.defaultBranch=main', '-c', 'core.quotepath=off']
-def git(*a, cwd=None): return subprocess.run(G + list(a), cwd=cwd, capture_output=True, text=True)
+ENV = {k: v for k, v in os.environ.items() if not k.startswith('GIT_')}   # 钩子里（尤其工作树）git 会传 GIT_DIR/GIT_INDEX_FILE：不去掉，假仓库的 init、checkout 会改到真仓库（2026-10-26 真仓库被设成 bare、多出 tb 分支）
+def git(*a, cwd=None): return subprocess.run(G + list(a), cwd=cwd, capture_output=True, text=True, env=ENV)
 def 写(p, s):
     os.makedirs(os.path.dirname(p), exist_ok=True); open(p, 'w').write(s)
 tmp = tempfile.mkdtemp(); fails = []
@@ -22,7 +23,7 @@ try:
     git('checkout', '-q', '-b', 'tb', cwd=L); 写(f'{L}/视频/旧文件.md', 'old\n'); 写(f'{L}/CLAUDE.md', '旧守则\n')
     git('add', '-A', cwd=L); git('commit', '-qm', 'init', cwd=L); git('push', '-q', '-u', 'origin', 'tb', cwd=L)
     写(f'{P}/视频/新文件.md', 'new\n')
-    env = {**os.environ, 'PUSH_P': P, 'PUSH_L': L, 'PUSH_B': 'tb', 'PUSH_LOCK': f'{tmp}/推送.lock'}   # 自己的锁：在真推送里跑自检不会自己等自己
+    env = {**ENV, 'PUSH_P': P, 'PUSH_L': L, 'PUSH_B': 'tb', 'PUSH_LOCK': f'{tmp}/推送.lock'}   # 自己的锁：在真推送里跑自检不会自己等自己
     run = lambda: subprocess.run(['bash', f'{T}/推送两仓库.sh', '推送自检'], capture_output=True, text=True, env=env, timeout=120)
     lk = open('/tmp/推送两仓库.lock', 'a')   # G16：占着真推送锁（等于在推送当中跑本自检），假仓库推送必须照样跑完、不许自己等自己
     try: fcntl.flock(lk, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -38,6 +39,14 @@ try:
     if open(f'{L}/CLAUDE.md').read() != '新守则\n': fails.append('没抓到：CLAUDE.md 没以 postgraduate-vocabulary 为准（G11）')
     if git('rev-parse', 'HEAD', cwd=P).stdout != git('rev-parse', 'main', cwd=f'{tmp}/P.git').stdout or \
        git('rev-parse', 'HEAD', cwd=L).stdout != git('rev-parse', 'tb', cwd=f'{tmp}/L.git').stdout: fails.append('没抓到：云端与本地不一致（G2）')
+    # G58：工作流（github-actions[bot]）写回镜像的印章要反向拷回主仓库；不是工作流写的，照旧以主仓库为准
+    写(f'{P}/视频/工具/全篇重查通过.json', '旧印章\n'); 写(f'{P}/视频/工具/执行效应演练通过.json', '主仓库\n'); run()
+    git('pull', '-q', 'origin', 'tb', cwd=L); 写(f'{L}/视频/工具/全篇重查通过.json', '工作流印章\n'); 写(f'{L}/视频/工具/执行效应演练通过.json', '有人乱改\n')
+    git('add', '视频/工具/全篇重查通过.json', cwd=L); subprocess.run(['git', '-c', 'user.name=github-actions[bot]', '-c', 'user.email=bot@example.com', 'commit', '-qm', '工作流', '--date', '2099-01-01T00:00:00'], cwd=L, env={**ENV, 'GIT_COMMITTER_DATE': '2099-01-01T00:00:00'})
+    git('add', '-A', cwd=L); git('commit', '-qm', '人改', cwd=L); git('push', '-q', 'origin', 'tb', cwd=L)
+    r = run(); o = r.stdout + r.stderr
+    if open(f'{P}/视频/工具/全篇重查通过.json').read() != '工作流印章\n' or open(f'{L}/视频/工具/全篇重查通过.json').read() != '工作流印章\n': fails.append(f'没抓到：工作流写回的印章没拷回主仓库（G58）{o.strip()[-100:]}')
+    if open(f'{L}/视频/工具/执行效应演练通过.json').read() != '主仓库\n': fails.append('没抓到：不是工作流写的改动没被主仓库覆盖（G58）')
     # G1：101MB 的文件必须停，不许推上去
     with open(f'{P}/视频/大文件.bin', 'wb') as f: f.truncate(101 * 1024 * 1024)
     r = run(); o = r.stdout + r.stderr
@@ -53,5 +62,5 @@ except Exception as e:
     fails.append(f'推送自检本身出错：{e}')
 finally:
     shutil.rmtree(tmp, ignore_errors=True)
-print('推送自检：' + ('通过（正常推送两边一致、云端一致、CLAUDE.md 以主仓库为准、中文文件名、删旧文件；101MB 文件和路径不存在都停下）' if not fails else '失灵！' + '；'.join(fails)))
+print('推送自检：' + ('通过（正常推送两边一致、云端一致、CLAUDE.md 以主仓库为准、中文文件名、删旧文件；工作流印章反向回写（G58）；101MB 文件和路径不存在都停下）' if not fails else '失灵！' + '；'.join(fails)))
 sys.exit(1 if fails else 0)
