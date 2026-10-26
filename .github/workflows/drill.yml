@@ -59,7 +59,8 @@ jobs:
             声音演练) python3 $T/执行效应声音演练.py 2>&1 | tee /tmp/out.log | tail -40 ;;
             主演练)   python3 $T/执行效应演练.py 2>&1 | tee /tmp/out.log | tail -40 ;;
             合成对照) python3 $GITHUB_WORKSPACE/视频/云端/合成对照.py ../tts 2>&1 | tee /tmp/out.log ;;
-            全篇重查) python3 $T/定稿视频核对.py --不查镜像 ${{ matrix.no }} 2>&1 | tee /tmp/out.log | tail -25 ;;
+            全篇重查) python3 $T/定稿视频核对.py --不查镜像 ${{ matrix.no }} 2>&1 | tee /tmp/out.log | tail -25 \
+                      && python3 -c "import sys; sys.path.insert(0,'$T'); from 重查记录 import 键,已出片; n='${{ matrix.no }}'; print(键(n, 已出片()[n]))" > /tmp/键_${{ matrix.no }}.txt ;;
           esac; rc=$?; echo $rc > /tmp/rc
           { echo "### ${{ needs.plan.outputs.job }} ${{ matrix.no }}：$([ $rc = 0 ] && echo ✔ || echo ✘)（$(( $(date +%s)-T0 )) 秒，$(nproc) 核）"; echo '```'; { grep -E '✘|✔|【|默认|单线程|机器' /tmp/out.log || true; } | tail -30; echo '```'; } >> $GITHUB_STEP_SUMMARY
           for f in $T/*通过.json; do git -C $GITHUB_WORKSPACE diff --quiet -- "$f" || cp "$f" /tmp/; done
@@ -83,4 +84,34 @@ jobs:
           put "$R/$N.结果.diff" /tmp/结果.diff && put "$R/$N.结果.txt" /tmp/结果.txt
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: '结果_${{ needs.plan.outputs.job }}_${{ matrix.no }}', path: "/tmp/out.log\n/tmp/*通过.json", retention-days: 14, if-no-files-found: ignore}
+        with: {name: '结果_${{ needs.plan.outputs.job }}_${{ matrix.no }}', path: "/tmp/out.log\n/tmp/*通过.json\n/tmp/键_*.txt", retention-days: 14, if-no-files-found: ignore}
+  # 全篇重查过了的篇：把重查键（程序指纹-存的视频-现行脚本，与沙盒 全篇核查.py --视频 同一个函数）并进 全篇重查通过.json 写回（G58 回写主仓库）
+  stamp:
+    needs: [plan, run]
+    if: always() && needs.plan.outputs.job == '全篇重查'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {sparse-checkout: '视频/工具', sparse-checkout-cone-mode: true}
+      - uses: actions/download-artifact@v4
+        with: {pattern: '结果_全篇重查_*', path: /tmp/a, merge-multiple: true}
+      - name: 盖章
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          python3 - <<'PY'
+          import json,glob,os,datetime,base64,subprocess,urllib.parse
+          f='视频/工具/全篇重查通过.json'; st=json.load(open(f)); st.setdefault('篇',{}); got=[]
+          for p in sorted(glob.glob('/tmp/a/键_*.txt')):
+              k=open(p).read().strip(); n=os.path.basename(p)[2:4]
+              if k: st['篇'][n]=k; got.append(n)
+          print('过了、记上：', ' '.join(got) or '无')
+          if not got: raise SystemExit(0)
+          st['时间']=f'{datetime.datetime.utcnow():%Y-%m-%dT%H:%M}（UTC，GitHub 运行 {os.environ["GITHUB_RUN_ID"]}）'
+          body=json.dumps(st,ensure_ascii=False,indent=0).encode()
+          repo=os.environ['GITHUB_REPOSITORY']; br=os.environ['GITHUB_REF_NAME']; u=f'repos/{repo}/contents/{urllib.parse.quote(f)}'
+          for _ in range(3):
+              g=subprocess.run(['gh','api',u+'?ref='+urllib.parse.quote(br)],capture_output=True,text=True); sha=json.loads(g.stdout)['sha']
+              r=subprocess.run(['gh','api','-X','PUT',u,'--input','-'],input=json.dumps({'message':f'工作流：全篇重查通过 {" ".join(got)}','content':base64.b64encode(body).decode(),'branch':br,'sha':sha}),capture_output=True,text=True)
+              if r.returncode==0: print('写回', f); break
+          else: raise SystemExit('写回失败 '+r.stderr[-200:])
+          PY
