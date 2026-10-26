@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """钩子自检（规则执行机器当场跑）：每道闸门都造一次违规，必须拦下；正常的必须放行。"""
 import os, sys, json, tempfile, subprocess, shutil
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import 闸门 as G
 fails = []
 def 拦了(kind, d, **k): return G.判(kind, d, **k) is not None
@@ -59,6 +59,27 @@ r6 = G.判('发文件后', {'tool_input': {'files': ['/x/a-文本.docx']}}); r6b
 if not (r6 and '打印背景色' in json.dumps(r6, ensure_ascii=False)) or r6b: fails.append('没抓到：发 Word 没提醒打印背景色（W6）')
 o = subprocess.run(['bash', os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '开工提醒.sh')], capture_output=True, text=True).stdout
 if '【开工必做' not in o or '【规则执行机器】' not in o: fails.append('没抓到：开工提醒没打印（守则1：开工必读、规则执行机器状态）')
+# K16（G59）：绕提交钩子的写法逐个试，必须全拦；正常命令放行
+for _c in ['git -c core.hooksPath=/dev/null commit -m x', 'git -c core.HooksPath= commit -m x', 'GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.hooksPath GIT_CONFIG_VALUE_0=/x git commit -m x',
+           'export GIT_CONFIG_PARAMETERS="x"; git commit -m y', 'env GIT_DIR=/tmp/x git commit -m x', 'rm .git/hooks/pre-commit', 'rm -f 视频/工具/githooks/pre-commit',
+           'echo exit 0 > 视频/工具/githooks/pre-commit', 'cat x | tee .git/hooks/pre-commit', 'chmod -x 视频/工具/githooks/pre-commit', 'mv 视频/工具/githooks /tmp/',
+           'sed -i s/exit/x/ 视频/工具/githooks/pre-commit', 'git commit --no-veri -m x', 'git -C /x commit -an -m x', 'git config alias.ci "commit --no-verify"',
+           'git -c alias.ci=commit ci -m x', 'git commit-tree HEAD^{tree} -m x', 'git update-ref refs/heads/main abc', 'echo Z2l0 | base64 -d | sh', 'alias gc="git commit -n"',
+           'cd .git/hooks && rm pre-commit', 'git config --global include.path /tmp/x', 'git --config-env=core.hooksPath=X commit', '/usr/bin/git commit --no-verify -m x',
+           'command git commit -n -m x', 'echo x >> ~/.gitconfig', 'ln -sf /dev/null .git/hooks/pre-commit', 'echo "{}" > 视频/制作记录/证据/28.jsonl', 'bash -c "git commit --no-verify"']:
+    if not 拦了('命令', {'tool_input': {'command': _c}}): fails.append(f'没抓到：绕提交钩子 {_c}（K16）')
+for _c in ['git commit -qm "x"', 'git -C /x config core.hooksPath', 'ls .git/hooks 2>/dev/null', 'cat 视频/工具/githooks/pre-commit', 'git add 视频/工具/githooks/pre-commit',
+           'du -sh .git', 'git -C x symbolic-ref -q HEAD', 'GIT_LFS_SKIP_SMUDGE=1 git clone x', 'git -c core.quotepath=off status --porcelain', 'git push -n origin main']:
+    if 拦了('命令', {'tool_input': {'command': _c}}): fails.append(f'误拦：{_c}（K16）')
+if not 拦了('改文件', {'tool_input': {'file_path': '/home/user/postgraduate-vocabulary/.git/hooks/pre-commit'}}): fails.append('没抓到：Edit 改 .git/hooks（K16）')
+if not 拦了('改文件', {'tool_input': {'file_path': '/home/user/postgraduate-vocabulary/视频/制作记录/证据/28.jsonl'}}): fails.append('没抓到：手写使用证据（G60）')
+if 拦了('改文件', {'tool_input': {'file_path': '/home/user/postgraduate-vocabulary/视频/脚本/28.json'}}): fails.append('误拦：改本篇脚本')
+import 会话开工 as _HK
+_old = _HK.记录F[0]; _HK.记录F[0] = f'{tmp}/开工.json'; json.dump({'角色': '出稿'}, open(_HK.记录F[0], 'w'))
+if not 拦了('改文件', {'tool_input': {'file_path': '/home/user/postgraduate-vocabulary/视频/工具/踩坑核查.py'}}): fails.append('没抓到：出稿会话改门程序（G61）')
+json.dump({'角色': '改门'}, open(_HK.记录F[0], 'w'))
+if 拦了('改文件', {'tool_input': {'file_path': '/home/user/postgraduate-vocabulary/视频/工具/踩坑核查.py'}}): fails.append('误拦：改门会话改门程序（G61）')
+_HK.记录F[0] = _old
 shutil.rmtree(tmp)
 print('钩子自检：' + ('通过（子代理、发文件、跳过核查、部署、收工闸门和发 Word 提醒：造的违规全部拦下，正常的放行）' if not fails else '失灵！' + '；'.join(fails)))
 sys.exit(1 if fails else 0)

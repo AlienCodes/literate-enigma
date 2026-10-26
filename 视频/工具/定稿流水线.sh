@@ -24,6 +24,7 @@ exec 9>"$W/.定稿流水线_$no.lock"; flock -n 9 || { echo "【停止】第${no
 [ -f make_video.py ] && [ -f "scripts/$no.json" ] && [ -d fonts ] || stop "请在视频工作目录下运行（要有 make_video.py、scripts/$no.json、fonts/）"
 python3 $T/出片指纹.py --核对工作目录 . || stop "工作目录的出片程序缺模块或与仓库工具不一致（G27：清单从 make_video 的 import 自动找全），先 python3 $T/出片指纹.py --拷 . 同步"
 
+python3 $T/证据.py --查 $no 定稿 || stop "本篇草稿的机制证据不全（G60：开工记录 → 文本门 → 草稿声音 → 出片前 → 出片后，少一步或顺序不对；按 视频/开工必读.md ⑤ 步骤表补跑）"
 python3 $T/放行口子核查.py --定稿 $no || stop "用户还没说定稿（画19/流7：用户试听确认后才算定稿；用户原话记进 用户同意记录.json，用于写“定稿 $no”）"
 python3 $T/工作稿核对.py $no || stop "工作目录的脚本是旧稿（G19）"
 python3 $T/补对照记录.py $no > /dev/null || stop "补对照记录失败"   # 新加的、程序把关的坑自动补进对照记录；只有人能判的不补（缺了 ① 照样停）
@@ -39,6 +40,7 @@ md=$(ls $P/新版定稿/$no-*.md 2>/dev/null | head -1); [ -n "$md" ] || stop "�
 step "⑤ 归档（替换旧视频 + 定稿视频核对）"
 cp $no.mp4 $P/视频/视频/$no.mp4 || stop "复制失败"
 python3 $T/归档定稿视频.py $no > "$LOG/归档.log" 2>&1 || { tail -15 "$LOG/归档.log"; stop "归档或定稿视频核对不通过"; }
+python3 $T/证据.py --记 $no 定稿 || stop "定稿证据没写进去（G60）"
 step "⑥ 存记录、推送两个仓库"
 cat "$LOG/出片前.log" "$LOG/出片后.log" > $P/视频/音频核对/交付核查_${no}_4K定稿.txt
 awk '/^① 清点/{f=1} f' "$LOG/归档.log" > $P/视频/音频核对/定稿视频核对_${no}.txt

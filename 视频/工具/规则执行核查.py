@@ -41,7 +41,7 @@ ENTRY = ['定稿流水线.sh', '交付核查.py', '生成文本.py', '推送两�
 # 每次运行都先做自检的程序（不需要别人带“自检”参数调用）
 ALWAYS_SELFTEST = {'踩坑核查.py', 'check_all.py', '规则执行核查.py', '交付核查.py'}   # 交付核查 出片后 每次先跑核查程序自检、高亮自检
 # 机器当场跑的自检（不依赖工作目录、几秒内完成）
-FAST = [['生成文本.py', '--自检'], ['破折号.py', '--自检'], ['区间作废.py', '--自检'], ['放行口子核查.py', '--自检'], ['同步自检.py'], ['流程自检.py'], ['踩坑核查.py', '自检'], ['check_all.py', '--自检'], ['钩子/钩子自检.py'], ['排版自检.py'], ['推送自检.py'], ['译文核查.py', '--自检'], ['演练镜像.py', '--自检'], ['出片指纹.py', '--自检'], ['结尾句接点.py', '--自检'], ['句内响度.py', '--自检'], ['开工记录.py', '--自检'], ['逐词对齐.py', '--自检'], ['停顿位置精确核对.py', '--自检'], ['响度一致性核对.py', '--确认自检'], ['音频首要法则.py', '--自检'], ['音频首要法则.py'], ['机器复听.py', '--比较自检'], ['纯人声核对.py', '--确认自检'], ['高亮同步核对.py', '--确认自检'], ['颜色核对.py', '--自检'], ['缓存进仓库核对.py', '--自检'], ['速查表.py'], ['报坑.py', '--自检'], ['开工必读.py', '--自检'], ['开工必读.py'], ['意思个数.py']]
+FAST = [['生成文本.py', '--自检'], ['破折号.py', '--自检'], ['区间作废.py', '--自检'], ['放行口子核查.py', '--自检'], ['同步自检.py'], ['流程自检.py'], ['踩坑核查.py', '自检'], ['check_all.py', '--自检'], ['钩子/钩子自检.py'], ['排版自检.py'], ['推送自检.py'], ['译文核查.py', '--自检'], ['演练镜像.py', '--自检'], ['出片指纹.py', '--自检'], ['结尾句接点.py', '--自检'], ['句内响度.py', '--自检'], ['开工记录.py', '--自检'], ['逐词对齐.py', '--自检'], ['停顿位置精确核对.py', '--自检'], ['响度一致性核对.py', '--确认自检'], ['音频首要法则.py', '--自检'], ['音频首要法则.py'], ['机器复听.py', '--比较自检'], ['纯人声核对.py', '--确认自检'], ['高亮同步核对.py', '--确认自检'], ['颜色核对.py', '--自检'], ['缓存进仓库核对.py', '--自检'], ['速查表.py'], ['报坑.py', '--自检'], ['开工必读.py', '--自检'], ['开工必读.py'], ['意思个数.py'], ['证据.py', '--自检'], ['证据.py'], ['会话开工.py', '--自检']]
 摘要 = lambda s: re.sub(r'\*\*|`', '', s).strip()[:60]
 # 要在工作目录（有模型、声音）里才能跑的慢自检：通过时写下所测程序的指纹（印章）；程序一改指纹对不上，就当“自检没跑”，提交、推送停
 STAMPED = {'出片守门自检.py': ('出片守门自检通过.json', ['make_video.py', 'render.py', '出片守门自检.py'])}
@@ -213,7 +213,7 @@ def 核查(std_text, claude_text, reg, files, settings=None, extra_tables=()):
         if re.search(r'^\| *[A-Z]\d+b? *\|', txt, re.M): glob_.append(f'出现第二份踩坑总表：{name}（总表只能有一份）')
     if settings is not None:
         need = [('SessionStart', '', '开工提醒.sh'), ('Stop', '', '闸门.py" 收工'), ('PreToolUse', 'Agent', '闸门.py" 子代理'),
-                ('PreToolUse', 'Workflow', '闸门.py" 子代理'), ('PreToolUse', 'SendUserFile', '闸门.py" 发文件'), ('PreToolUse', 'Bash', '闸门.py" 命令'), ('PostToolUse', 'SendUserFile', '闸门.py" 发文件后')]
+                ('PreToolUse', 'Workflow', '闸门.py" 子代理'), ('PreToolUse', 'SendUserFile', '闸门.py" 发文件'), ('PreToolUse', 'Bash', '闸门.py" 命令'), ('PreToolUse', 'Edit', '闸门.py" 改文件'), ('PreToolUse', 'Write', '闸门.py" 改文件'), ('PostToolUse', 'SendUserFile', '闸门.py" 发文件后')]
         hk = settings.get('hooks', {})
         for ev, mt, cmd in need:
             if not any(mt in (x.get('matcher') or '') and any(cmd in (y.get('command') or '') for y in x.get('hooks', [])) for x in hk.get(ev, [])):
@@ -358,6 +358,9 @@ def main():
             if more: gl.append(f'缺口基线只许减少，这次多了：{" ".join(more)}（给它们配好门和自检，不许塞进基线）')
     except Exception: pass
     import 同意记录追加 as _TY; gl += _TY.查() + _TY.自检()   # 用户同意记录只许追加（带自检）
+    import 开工必读 as _KBD   # G62：步骤表、机制清单、总纲跟着 草稿流程.md、定稿流水线.sh、机制清单.json 变；文件没重新生成就停（每次查，不只在当场自检里）
+    if not os.path.exists(_KBD.OUT) or open(_KBD.OUT).read() != _KBD.生成(*_KBD.现行()): gl.append('视频/开工必读.md 与现行规矩、步骤表对不上（草稿流程、定稿流水线、机制清单或规矩改了没重新生成）：python3 视频/工具/开工必读.py --写入（G62）')
+    import 证据 as _ZJ; gl += _ZJ.清单问题()   # G60：新机制（新调用的程序、新工作流）不进机制清单就停
     import 报坑 as _BK; _bh, _bl, _bw = _BK.判(std, _BK.读本地()); gl += _bh   # G54：撞号、总表新行没取号就停；超期没入表的这里只提示（定稿流水线 ⓪、推门程序时 --严 停）
     for _x in (_bl + _bw if '--状态' not in a else []): print('  提示（报坑登记，G54）：', _x[:120])
     for p in STAMPED:

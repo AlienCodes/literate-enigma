@@ -56,6 +56,7 @@ if 只核查:
         d.setdefault('换行变更记录', []).append({'日期': time.strftime('%Y-%m-%d'), **d.pop('换行变更已获同意')})
         json.dump(d, open(js, 'w'), ensure_ascii=False, indent=1)
     shutil.copy(js, f'{T}/../脚本/{no}.json'); os.makedirs(f'{T}/../脚本/已发版本', exist_ok=True); shutil.copy(js, f'{T}/../脚本/已发版本/{no}.json')
+    sys.path.insert(0, T); import 证据 as _ZJ; _ZJ.记(no, '文本门', 详情={'只核查': True})   # G60：文本门的使用证据
     sys.exit(print(f'第{no}篇：文本核查全部通过，脚本已存为已发版本（只核查：不出 Word/PDF，守则17）'))
 subprocess.run(['python3', f'{T}/make_docx.py', js, docx], check=True)
 subprocess.run(['python3', f'{T}/make_text.py', js, html], check=True)
@@ -76,5 +77,6 @@ if d.get('换行变更已获同意'):
     json.dump(d, open(js, 'w'), ensure_ascii=False, indent=1)
 shutil.copy(js, f'{T}/../脚本/{no}.json'); os.makedirs(f'{T}/../脚本/已发版本', exist_ok=True); shutil.copy(js, f'{T}/../脚本/已发版本/{no}.json')
 sys.path.insert(0, f'{T}/钩子'); import 闸门; 闸门.记回执([docx, html, pdf] + [f'{dst}/{no}-文本.{x}' for x in ('docx', 'html', 'pdf')], f'生成文本 第{no}篇')   # 发文件闸门凭回执放行
+sys.path.insert(0, T); import 证据 as _ZJ; _ZJ.记(no, '文本门', 详情={'只核查': False})   # G60：文本门的使用证据
 import pymupdf
 print(f'第{no}篇对照文本：Word {len(cells)} 格逐格一致，PDF {len(pymupdf.open(pdf))} 页，已拷进 视频/对照文本/')

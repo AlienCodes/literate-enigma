@@ -17,3 +17,4 @@ python3 $T/区间作废.py $no --记指纹
 python3 $T/疑点清单.py $no >/dev/null 2>&1; python3 $T/确认按位置迁移.py $no
 python3 $T/自动切点.py $no 2>&1 | grep "人看" | cut -c1-120
 python3 $T/读音核对.py $no 2>&1 | grep -E "待核实 \[|BAD|问题数" | cut -c1-170
+python3 $T/证据.py --记 $no 草稿声音   # G60：草稿声音的使用证据（只有从本入口调用才写得进）

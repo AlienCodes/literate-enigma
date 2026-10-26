@@ -11,7 +11,7 @@
 程序或规矩一改就要重演，不重演提交、推送、交付核查、定稿流水线一律停。没有演练样本的规矩算缺口，执行效应缺口基线.json 只许减少。
 在视频工作目录（含 make_video.py、scripts/）下运行：python3 <工具目录>/执行效应演练.py      全部演练
                                                     python3 <工具目录>/执行效应演练.py --状态  一行状态（开工提醒用）"""
-import os, sys, json, copy, re, subprocess, hashlib, shutil
+import os, sys, json, copy, re, subprocess, hashlib, shutil, tempfile
 from concurrent.futures import ThreadPoolExecutor
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T)
 STAMP = f'{T}/执行效应演练通过.json'; GAPB = f'{T}/执行效应缺口基线.json'
@@ -184,6 +184,9 @@ def _变异(prog, old, new):
     ('G30缺docx仍停23', '踩坑出片', '23', '已定稿的 23 对照文本 docx 没了', lambda f: f.__setitem__('视频/对照文本/23-文本.docx', ('链接', '/演练不存在/23-文本.docx')), '缺文件: 视频/对照文本/23-文本', ['G30']),
     ('T12全篇撞车', '踩坑出片', '25', '25 新加一个只在没做视频的篇目里加粗过的词（撞车看整个70篇）', lambda f: _改json(f, '视频/脚本/25.json', _撞词全篇), 'T12 撞车', ['G32', 'G33']),
     ('G54报坑超期', '流水线', '24', '坑登记里一条登记 30 小时前报的、还没进踩坑总表，跑定稿流水线', lambda f: _改json(f, '视频/制作记录/坑登记.json', lambda o: o['登记'].append({'号': 'K999', '时刻': (__import__('datetime').datetime.now(__import__('datetime').timezone.utc) - __import__('datetime').timedelta(hours=30)).strftime('%Y-%m-%dT%H:%MZ'), '会话': '演练', '现象': '演练造的超期没入表的坑'})), '演练造的超期没入表', ['G54']),
+    ('G60证据链不全', '流水线', '24', '24 一条机制证据都没有（证据起始篇改成 24 重放），跑定稿流水线', _变异('证据.py', '起 = 28', '起 = 24'), '机制证据不全', ['G60']),
+    ('G62步骤表没跟', '规则核查', '24', '草稿流程.md 加了一步、开工必读没重新生成', _变异('草稿流程.md', '\n## 禁止', '\n9. 演练造的新步骤 `python3 $T/x.py NN`\n\n## 禁止'), '与现行规矩', ['G62']),
+    ('G63没开工就提交', '会话开工查', '24', '本会话没跑 会话开工.py（没读开工必读），提交前检查', None, '本会话还没开工', ['G63']),
     ('G55做事对照没写', '踩坑出片', '25', '25 制作记录没有“## 做事对照记录”（开工必读的起始篇改成 25 重放）', _变异('开工必读.py', '起 = 28', '起 = 25'), '[开工必读] 制作记录/25.md 没有“## 做事对照记录”', ['G55', '文35']),
     ('文36三个意思', '踩坑出片', '25', '25 一个重点词的中文写成三个意思（意思个数的起始篇改成 25 重放）', lambda f: (_变异('意思个数.py', '起 = 27', '起 = 25')(f), _改json(f, '视频/脚本/25.json', _三义)), '[文36]', ['文36']),
     ('G19工作稿是旧稿', '流水线', '23', '仓库 视频/脚本/23.json 被别的会话改了，工作目录还是旧稿', lambda f: (f.__setitem__('工作稿', f['视频/脚本/23.json']), _改json(f, '视频/脚本/23.json', lambda d: d.__setitem__('title_zh', d['title_zh'] + '（新）'))), '旧稿（G19）', ['G19']),
@@ -292,7 +295,7 @@ def _断挂钩(f):
     raise KeyError('找不到挂钩的原文')
 
 
-无原样 = {'归档', '流水线', '初稿', '生成文本'}   # 这些入口原样跑会真做事（归档写文件、流水线出 4K）：不跑原样，只认必须报出的字样
+无原样 = {'归档', '流水线', '初稿', '生成文本', '会话开工查'}   # 这些入口原样跑会真做事（归档写文件、流水线出 4K）：不跑原样，只认必须报出的字样
 def 仓库跑(entry, no, M, ws, 拆门=None):
     tool = f'{M}/视频/工具'; env = {**os.environ, 'CLAUDE_PROJECT_DIR': M}
     py = lambda prog, *a: ['python3', '-c', f"import sys;sys.path.insert(0,{tool!r});sys.argv=[{prog!r}]+{list(a)!r};import runpy;{拆门};runpy.run_path({tool + '/' + prog!r},run_name='__main__')"] if 拆门 else ['python3', f'{tool}/{prog}', *a]
@@ -307,6 +310,7 @@ def 仓库跑(entry, no, M, ws, 拆门=None):
     elif entry == '演练入口': cmd = ['python3', f'{tool}/执行效应演练.py', '--只过门']   # G25：演练开跑前查读现稿
     elif entry == '欠着': cmd = ['python3', f'{tool}/全篇核查.py', '--欠着']
     elif entry == '开工提醒': cmd = ['bash', f'{tool}/开工提醒.sh']
+    elif entry == '会话开工查': cmd = ['python3', f'{tool}/会话开工.py', '--查']; env['HOME'] = tempfile.mkdtemp(prefix='演练_空HOME_')   # G63：空 HOME = 没开工的会话
     elif entry == '开工记录': cmd = ['python3', f'{tool}/开工记录.py', no]
     elif entry == '初稿': cmd = ['python3', f'{tool}/初稿生成/gen{no}.py']
     elif entry == '流水线':   # 真跑 定稿流水线.sh（镜像里），走到“① 出片前核查”就掐掉：前面的门该停没停 = 没挡住；后面的出 4K、归档、推送一步不做
@@ -372,14 +376,22 @@ def 仓库演练(W, root, 只=None):
     ('W2直接读Word', '命令', {'tool_input': {'command': "python3 -c \"from docx import Document; Document('用户.docx')\""}}, '【W2 闸门】', ['W2']),
     ('G10中文pkill', '命令', {'tool_input': {'command': 'pkill -f 定稿流水线'}}, '【G10 闸门】', ['G10']),
     ('W6发Word提醒背景色', '发文件后', {'tool_input': {'files': ['/tmp/演练_对照.docx']}}, '【W6 提醒】', ['W6'], '提醒'),   # 提醒进我的上下文，不拦
+    ('G59临时改钩子路径', '命令', {'tool_input': {'command': 'git -c core.hooksPath=/dev/null commit -qm x'}}, 'K16', ['G59']),
+    ('G59GIT环境变量', '命令', {'tool_input': {'command': 'GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.hooksPath GIT_CONFIG_VALUE_0=/dev/null git commit -qm x'}}, 'K16', ['G59']),
+    ('G59删钩子', '命令', {'tool_input': {'command': 'rm -f .git/hooks/pre-commit 视频/工具/githooks/pre-commit'}}, 'K16', ['G59']),
+    ('G60手写证据', '改文件', {'tool_input': {'file_path': '/home/user/postgraduate-vocabulary/视频/制作记录/证据/28.jsonl'}}, '【G60 证据闸门】', ['G60']),
+    ('G61出稿会话改门程序', '改文件', {'tool_input': {'file_path': '/home/user/postgraduate-vocabulary/视频/工具/踩坑核查.py'}, '_角色': '出稿'}, '【G61 会话角色闸门】', ['G61']),
     ('G15heredoc里的字不误拦', '命令', {'tool_input': {'command': "cat > /tmp/演练.md <<'EOF'\ngit push -f origin master\nnpx vercel --prod\nEOF"}}, '', ['G15'], '放行'),
 ]
 
 
 def 跑钩子(kind, payload):
+    payload = dict(payload); 角色 = payload.pop('_角色', None); env = dict(os.environ)
+    if 角色:   # G61：在临时 HOME 里记一个会话角色，从真实闸门入口跑
+        h = tempfile.mkdtemp(prefix='演练_角色_'); json.dump({'角色': 角色}, open(f'{h}/.会话开工.json', 'w')); env['HOME'] = h
     for f in payload.get('tool_input', {}).get('files', []):   # 闸门只查存在的文件：造一个没有回执的真文件
         if f.startswith('/tmp/演练_'): open(f, 'wb').write(os.urandom(64))
-    r = subprocess.run(['python3', f'{T}/钩子/闸门.py', kind], input=json.dumps(payload, ensure_ascii=False), capture_output=True, text=True, timeout=60)
+    r = subprocess.run(['python3', f'{T}/钩子/闸门.py', kind], input=json.dumps(payload, ensure_ascii=False), capture_output=True, text=True, timeout=60, env=env)
     return r.stdout + r.stderr
 
 

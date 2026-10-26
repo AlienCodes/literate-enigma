@@ -35,6 +35,44 @@ def 拦(事件, 理由):
     return {'hookSpecificOutput': {'hookEventName': 'PreToolUse', 'permissionDecision': 'deny', 'permissionDecisionReason': 理由}}
 
 
+# K16（G59，2026-10-26：上一个改门会话真的试过 git -c core.hooksPath=… 绕提交钩子，被平台审核拦下；不能靠外部兜底）：
+# 绕开提交前规则执行核查的写法一律拦：--no-verify 及其缩写、-c/--config-env/include 改 hooksPath、GIT_* 环境变量、
+# 改/删 .git/hooks、.git/config、githooks、~/.gitconfig、git 别名、不走钩子的底层提交（commit-tree、update-ref……）、解码后再执行
+_放行GIT变量 = re.compile(r'GIT_(AUTHOR|COMMITTER)_(NAME|EMAIL|DATE)|GIT_TERMINAL_PROMPT|GIT_PAGER|GIT_LFS_SKIP_SMUDGE|GIT_TRACE\w*|GIT_SSL_CAINFO|GIT_HTTP_LOW_SPEED_\w+')
+_护路径 = re.compile('(?:^|[\\s/"\'=:<>(])(?:\\.git(?:/(?:hooks|config|info)\\b|/?(?=[\\s"\';&|)]|$))|githooks\\b|\\.gitconfig\\b|制作记录/证据/)')
+_只读命令 = {'ls', 'cat', 'head', 'tail', 'grep', 'rg', 'wc', 'diff', 'stat', 'file', 'sha256sum', 'md5sum', 'readlink', 'realpath', 'du', 'test', '['}
+_只读git = {'log', 'diff', 'show', 'status', 'add', 'ls-files', 'blame', 'grep', 'cat-file', 'ls-tree', 'rev-parse', 'fetch', 'pull', 'push', 'commit', 'clone', 'stash', 'branch', 'remote'}
+
+
+def 绕钩子(c, segs):
+    """返回拦下的理由；不拦返回 None。c 是去掉 heredoc 正文后的命令，segs 是拆开的命令段。"""
+    if re.search(r'--no-v(?:e(?:r(?:i(?:f(?:y)?)?)?)?)?(?![\w-])', c):
+        return '不许用 --no-verify（或它的缩写）跳过 git 钩子'
+    low = c.lower()
+    读 = re.sub(r'\bgit\s+(?:-c\s+\S+\s+)?config\s+(?:--get\s+)?core\.hookspath\s*(?=$|[;&|)\n])', '', low)   # 只读 core.hooksPath 放行
+    if 'hookspath' in 读: return '不许设置、取消或临时改 core.hooksPath（含 git -c core.hooksPath=…）'
+    if re.search(r'\bgit\b', low) and re.search(r'--config-env|\binclude(?:if)?\.', low): return '不许用 --config-env、include/includeIf 改 git 配置（可以借此换掉钩子）'
+    for m in re.finditer(r'\b(GIT_[A-Z0-9_]+)', c):
+        if not _放行GIT变量.fullmatch(m.group(1)): return f'不许用 git 环境变量 {m.group(1)}（GIT_CONFIG_*、GIT_DIR 等能让提交绕开钩子）'
+    if re.search(r'\b(base64|xxd|openssl)\b[^\n;&]*\|\s*(?:(?:ba|z)?sh|python3?|perl)\b', c): return '不许把解码出来的文字当命令执行（看不出里面有没有绕钩子）'
+    for s in segs:
+        if not s: continue
+        w = re.sub(r'^(?:\(|\{|sudo\s+|env\s+(?:-\S+\s+)*|command\s+|exec\s+|nice\s+|time\s+|timeout\s+\S+\s+|\\)+', '', s)
+        first = (w.split() or [''])[0].rsplit('/', 1)[-1]
+        g = re.search(r'(?:^|[\s/\\])git\s+(?:-[Cc]\s+\S+\s+|--\S+\s+)*([\w-]+)', w)
+        sub = g.group(1) if g else ''
+        if sub in ('commit-tree', 'update-ref', 'fast-import', 'replace') or (sub == 'symbolic-ref' and not re.search(r'symbolic-ref\s+-q\s+HEAD\s*$', w)):
+            return f'不许用 git {sub}（底层命令做提交、改分支不走提交前钩子）'
+        if (sub == 'config' or re.search(r'\s-c\s*alias\.', w)) and re.search(r'\balias\.', w): return '不许定义 git 别名（别名可以藏 --no-verify、换钩子）'
+        if sub == 'commit' and re.search(r'\s-[a-zA-Z]*n[a-zA-Z]*(?=\s|$)', w): return '不许用 -n 跳过 git 钩子'
+        if re.match(r'alias\b', w) and re.search(r'\bgit\b', w): return '不许用 shell 别名包装 git'
+        if _护路径.search(' ' + w):
+            写 = re.search(r'>>?\s*\S*(?:\.git\b|githooks|\.gitconfig|证据/)', w)
+            ok = not 写 and ((first in _只读命令 and not re.search(r'\btee\b|-delete|-exec', w)) or (first == 'git' and sub in _只读git))
+            if not ok: return '不许改、删、移 .git/hooks、.git/config、githooks、~/.gitconfig、制作记录/证据（钩子和使用证据只能由正式程序改）'
+    return None
+
+
 def 判(kind, d, 仓库=PV):
     ti = d.get('tool_input') or {}
     if kind == '子代理':
@@ -73,6 +111,8 @@ def 判(kind, d, 仓库=PV):
                 if m: end = m.group(1)
             return '\n'.join(out)
         segs = [s.strip() for l in _去heredoc(c).splitlines() for s in re.split(r'&&|\|\||;|\|', l)]
+        why = 绕钩子(_去heredoc(c), segs)
+        if why: return 拦('PreToolUse', f'【规则执行闸门】K16：{why}（CLAUDE.md 第16条：提交前的规则执行核查绝不许绕过）。')
         for s in segs:
             s = re.sub(r'^(\(|cd\s+\S+\s*$|sudo\s+|env\s+\S+=\S+\s+)+', '', s)
             if not re.match(r'git\b', s): continue
@@ -94,6 +134,19 @@ def 判(kind, d, 仓库=PV):
         if m:
             try: open(f'{V}/制作记录/用户同意记录.md', 'a').write(f'- {datetime.datetime.utcnow():%Y-%m-%dT%H:%M}（UTC）{m.group(1)} ← {c[:80]}\n')
             except Exception: pass
+        return None
+    if kind == '改文件':   # K16/G60/G61：Edit、Write 也不许改钩子、git 配置、使用证据；出稿、改稿会话不许改门程序
+        p = os.path.abspath(str(ti.get('file_path') or ti.get('notebook_path') or ''))
+        if re.search(r'/\.git(/|$)|/\.gitconfig$', p):
+            return 拦('PreToolUse', '【规则执行闸门】K16：不许直接改 .git/ 下的文件或 ~/.gitconfig（提交钩子、git 配置只能由 开工提醒.sh、推送两仓库.sh 设）。')
+        if '/制作记录/证据/' in p:
+            return 拦('PreToolUse', '【G60 证据闸门】使用证据只能由正式入口（开工记录、生成文本、草稿声音.sh、交付核查、定稿流水线）写，不许手写。')
+        try:
+            sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))); import 会话开工 as _HK
+            r = _HK.读记录() or {}; rel = re.sub(r'^.*?/(?=(视频/工具/|\.github/|\.claude/))', '', p)
+            if r.get('角色') in ('出稿', '改稿') and _HK.门程序(rel):
+                return 拦('PreToolUse', f'【G61 会话角色闸门】本会话是“{r["角色"]}”会话，不许改门程序 {rel}（G25：程序不好写进 NN.md 方法复盘 + 报坑.py 登记，由改门会话改）。')
+        except Exception: pass
         return None
     if kind == '发文件后':   # W6：发了 Word，提醒用户打印要勾选“打印背景色”（钩子把提醒放进我的上下文，不靠我记）
         if any(str(f).lower().endswith('.docx') for f in (ti.get('files') or [])):

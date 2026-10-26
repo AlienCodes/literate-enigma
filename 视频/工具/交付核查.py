@@ -16,6 +16,9 @@ def step(name, passed, detail=''):
     global ok
     ok &= passed; out.append(f"{'✔' if passed else '✘'} {name}" + (f"\n    {detail}" if detail else ''))
 
+if stage in ('出片前', '出片后'):   # G60 机制使用核查：本篇前面每一步都由正式入口留下证据、顺序对（28 起）
+    sys.path.insert(0, T); import 证据 as _ZJ; _ze = _ZJ.查(no, stage)
+    step('机制使用核查（G60：前面每一步都由正式入口留下证据、顺序对；少一步按 开工必读 ⑤ 步骤表补跑）', not _ze, '\n    '.join(_ze))
 if stage == '对照表':
     # 生成"踩坑对照记录"模板，追加到 制作记录/NN.md；逐条填"涉及/不涉及"和"怎么防的、核查结果"
     rec = f'{T}/../制作记录/{no}.md'; txt = open(rec).read() if os.path.exists(rec) else f'# 第{no}篇制作记录\n'
@@ -292,5 +295,6 @@ elif stage == '出片后':
     step(f'生成标点试听 标点试听_{no}.mp3（{len(runs)} 处，需交用户试听）', True)
 if ok and stage == '出片后':   # 发文件闸门凭这个回执放行（守则7/A25：只发过了核查的那个文件）
     sys.path.insert(0, f'{T}/钩子'); import 闸门; 闸门.记回执([f'{no}.mp4', f'标点试听_{no}.mp3'], f'交付核查 出片后 第{no}篇')
+if ok and stage in ('出片前', '出片后'): _ZJ.记(no, stage)   # G60：这一步的使用证据（只有正式入口写得出对得上的指纹）
 print(f'第{no}篇 {stage}核查：\n' + '\n'.join(out) + f"\n{'全部通过' if ok else '【不通过，不得交付】'}")
 sys.exit(0 if ok else 1)
