@@ -9,6 +9,8 @@ echo "【开工必做（T31，程序提醒）】先读 CLAUDE.md 的 T29/T31、�
 # 规则执行机器（CLAUDE.md 第16条）：装上 git 提交钩子，打印机器状态
 for r in /home/user/postgraduate-vocabulary /home/user/literate-enigma; do [ -d $r/视频/工具/githooks ] && git -C $r config core.hooksPath 视频/工具/githooks; done
 python3 $P/工具/规则执行核查.py --状态 2>/dev/null
+python3 $P/工具/开工必读.py --要点 2>/dev/null   # G55：先读 视频/开工必读.md 再照它做
+python3 $P/工具/报坑.py --状态 2>/dev/null   # G54：待入表、超期的报坑登记
 python3 $P/工具/执行效应演练.py --状态 2>/dev/null   # 执行效应（CLAUDE.md 第19条）：开工先看演练是否全挡住，不全挡住先修门再干活
 python3 -c "import sys; sys.path.insert(0,'$P/工具'); import 重查记录 as R; q=[n for n in R.欠着() if n in R.已出片()]; print('【存的视频】欠重查或欠重出 4K（G9/G22）：'+(' '.join(q) if q else '无'))" 2>/dev/null
 exit 0

@@ -27,6 +27,9 @@ def 开工(V, no, 记当前=True, 根=None):
     if 记当前: open(f'{V}/制作记录/当前篇.txt', 'w').write(no); open(os.path.expanduser('~/.当前篇'), 'w').write(no)   # 本容器自己的当前篇优先（钩子先读它）   # 钩子据此每轮更新这篇的 token 记录（T31）
     import subprocess   # J（用户 2026-10-25）：开工就把本篇撞车提醒写进制作记录并打印，发草稿时告诉用户
     print(subprocess.run(['python3', f'{os.path.dirname(os.path.abspath(__file__))}/音频首要法则.py', '--要点'], capture_output=True, text=True).stdout.rstrip())   # 首要法则（CLAUDE.md 0.）
+    print(subprocess.run(['python3', f'{os.path.dirname(os.path.abspath(__file__))}/开工必读.py', '--要点'], capture_output=True, text=True).stdout.rstrip())   # G55：先读开工必读
+    import 开工必读 as _KB
+    if no.isdigit() and int(no) >= _KB.起 and 记当前: open(f, 'w').write(_KB.补(no, open(f).read())[0])   # 28 起：做事对照记录（只追加）
     out = subprocess.run(['python3', f'{os.path.dirname(os.path.abspath(__file__))}/check_all.py', '--写提醒', no] + (['--根', 根] if 根 else []), capture_output=True, text=True).stdout.strip()
     return f'{f}：{len(rows)} 条\n{out}', 0
 def 方法设计节(t):

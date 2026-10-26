@@ -11,6 +11,8 @@ cd $P
 git -C $P config core.hooksPath 视频/工具/githooks; git -C $L config core.hooksPath 视频/工具/githooks 2>/dev/null
 python3 $P/视频/工具/规则执行核查.py || { echo "【停止】规则执行核查不通过，不推送（先给新规矩、新坑配好门和自检）"; exit 1; }
 git add -A 视频 CLAUDE.md 新版定稿   # 新版定稿：文章本身也会改（撞词去掉重点词等）；路径不存在 git 会报错，set -e 当场停（G3：不许悄悄没提交）
+if git diff --cached --name-only | grep -qE '^视频/工具/.*\.(py|sh)$'; then   # G54：推门程序的会话先把超期没入表的坑收进总表
+  python3 $P/视频/工具/报坑.py --查 --严 || { echo "【停止】这次推送改了门程序，但有报坑登记超期还没进踩坑总表（G54）：先写进总表、配门"; git reset -q; exit 1; }; fi
 big=$(git diff --cached --name-only -z | xargs -0 -r du -b 2>/dev/null | awk '$1>95*1024*1024{print $2}')
 [ -z "$big" ] || { echo "【停止】有文件超过 GitHub 单个文件 100MB 上限（G1）：$big——先拆成几段（附 SHA256 和还原脚本）"; git reset -q; exit 1; }
 if ! git diff --cached --quiet; then git commit -qm "$1$T"; fi
