@@ -32,9 +32,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: '3.11'}
+        with: {python-version: '3.11', cache: pip, cache-dependency-path: 视频/工具/环境/requirements.txt}
       - uses: actions/cache@v4
         with: {path: '~/work/tts/*.onnx', key: kokoro-models-v1.0-v1.1}
+      - uses: actions/cache@v4   # 机器复听的识别模型（准备机器.sh 照样核对校验码）
+        with: {path: '~/asr', key: asr-whisper-small-en-v1}
       - name: 搭机器
         run: |
           sudo mkdir -p /home/user && sudo ln -sfn $GITHUB_WORKSPACE /home/user/postgraduate-vocabulary && sudo ln -sfn $GITHUB_WORKSPACE /home/user/literate-enigma
