@@ -22,7 +22,7 @@ S=[
      "（sign：打手语）"]]),
 (3,[[[("Pupils","学生们"),("studied","仔细观察着"),("**lips**","**唇语**(lips)，"),("**in vain**,","却是**徒劳无功**(in vain)，")],
      "（in vain：徒劳，白费力气）"],
-    [[("and most","多数人"),("failed to","没能"),("grasp","弄明白"),("what","什么是"),("a Spanish word was.","一个西班牙语单词。")],
+    [[("and most","多数人"),("failed to","没能"),("**grasp**","**弄明白/理解**(grasp)"),("what","什么是"),("a Spanish word was.","一个西班牙语单词。")],
      "（what a Spanish word was：宾语从句，作 grasp 的宾语）"]]),
 (3,[[[("**At recess**,","**在课间休息时**(At recess)，"),("in the street,","在街上，"),("and on the buses,","以及在公共汽车上，"),("they","他们"),("**mingled**","**混合了**(mingled with)"),("gestures","手势"),("**with**","**与**(mingled with)"),("home","自家"),("signs.","手势。")],
      "（mingle A with B：把 A 与 B 混合；\nhome signs：家庭手势，聋人在家里和家人自创的手势）"]]),
@@ -30,7 +30,7 @@ S=[
      "（ripen into…：逐渐成熟为……；jumble：杂乱的一堆）"],
     [[("a **coherent**","一门**连贯的**(coherent)"),("language","语言，"),("**entirely**","**完全**(entirely)"),("their own.","属于他们自己。")],
      "（entirely their own：后置定语，修饰 language）"]]),
-(4,[[[("The teachers","老师们"),("found it","发现它"),("**unintelligible**,","**很难理解**(unintelligible)，")],
+(4,[[[("The teachers","老师们"),("found","发现"),("it","这种手语"),("**unintelligible**,","**很难理解**(unintelligible)，")],
      "（find it + 形容词：认为它……）"],
     [[("and","并且"),("in June 1986","在1986年6月，"),("**the Ministry of Education**","**教育部**(the Ministry of Education)"),("**brought in**","**请来了**(brought in)"),("Judy Kegl,","朱迪·凯格尔，")]],
     [[("an","一位"),("**American Sign Language**","**美国手语**(American Sign Language)"),("**linguist**","**语言学家**(linguist)，"),("from","来自"),("**MIT**.","**麻省理工学院**(MIT)。")],
@@ -61,13 +61,13 @@ CONF={"对齐":{
  "们":{"S9-1 **(At recess)，在街上，以及在公共汽车上，他们**":"“们”是代词“他们”的一部分（they），不是给名词重点词 recess 加的复数“们”","S17-1 **玩伴们**":"playmates 是复数，用户 2026-10-25 原话“聋哑人的玩伴们”定的译文"},
  "合组":{"S2 could not follow a word":"对齐不了：not…a word 全否定，中文“一个字也看不懂”须把 a word 提前，语序倒过来","S12 pupils who arrived younger":"对齐不了：who arrived younger 是定语从句，中文“入学年龄更小的学生”定语提前，语序倒过来","S13 Each fresh wave":"对齐不了：中文量词“批”要紧跟“每一”，fresh 修饰 wave，中文“每一批新的”语序和英文不同","S15 found nowhere in the gestures around them":"对齐不了：in the gestures around them 在中文里提前（在他们周围的手势中无处可寻），放在后面不通顺","S16 had a rare chance":"对齐不了：中文“难得有机会”把 rare 提前作状语，逐词拆开（有难得的机会）就改了已发的中文"},
  "牛津逗号":{"S14 In a 2004 study, gesturing Spanish speakers and":"不是三项并列：In a 2004 study 是时间状语，并列的只有 gesturing Spanish speakers 和 the earliest signers 两项"},
- "短语":{"S4 repertoire … of":"不是搭配：of gestures 是普通的 of 结构（一套手势的全部），repertoire of 不是固定短语，repertoire 单独是重点词"},
+ "短语":{"S14 by … welding":"不是搭配：by 是普通介词“是通过”，引出方式，后面的 welding into（把……熔接成）已整体标，by welding 不是 in desperation 那样的固定短语","S15 in … linear":"不是搭配：in 是普通介词“按”，用户 2026-10-25 原话只要“linear order 线性顺序 整体”标重点词，in 不在其中","S4 repertoire … of":"不是搭配：of gestures 是普通的 of 结构（一套手势的全部），repertoire of 不是固定短语，repertoire 单独是重点词"},
  "同词异译":{"hinged on：为中心/以":"S7 hinge on“以……为中心”被“西班牙语口语和唇读”隔开，是同一个意思的两部分（T22/T23，用户 2026-10-25 原话“课程以西班牙语口语和唇读为中心”），不是两种译法",
   "rolling downhill：下坡/滚":"S14 rolling downhill“滚”“下坡”是同一个意思的两部分，按用户 2026-10-25 原话“rolling 就和滚对齐”拆开逐词对齐（T23），不是两种译法",
   "mingled with：与/混合了":"S9 mingle A with B“混合了……与”被“手势”隔开，是同一个意思的两部分（T22/T23），不是两种译法",
   "welding into：把/熔接成":"S14 weld A into B“把……熔接成”被“它怎样运动和往哪里去”隔开，是同一个意思的两部分（T22/T23），不是两种译法",
   "dismantled into：成/拆解":"S15 dismantle A into B“拆解……成”被“它”隔开，是同一个意思的两部分（T22/T23），不是两种译法"}}
-out={"no":"26","title_en":"The Language the Children Invented","title_zh":"孩子们发明的语言","title_fx":{"hl":["Language","Children"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["brought in"],"换行变更已获同意":{"S4": "用户原话“共用自制的一整套 手势 repertoire 意思对应 一整套 Gesture，gesture如果不是重点词汇的话，把它标注为重点词汇。”", "S12": "用户原话“以及后来招收的几批(学生)”", "S13": "用户原话“能能跟英文对齐的意思尽量对齐。就是说他有的这个哪怕没有标注的ok，就是能够跟上面的英文只要能对齐，尽量对齐，除非对齐不了， rolling downhill  整体标注为重点词汇。描述某个东西滚下坡  就比如说某个东西就要跟这个something对齐。 rolling 就和滚对齐。 啊，尽量大家都要按照这个方式来对齐。”", "S17": "用户原话“聋哑人的玩伴们”"},"说明放宽特批":{"S17":{"倍数":"整屏","依据":"用户 2026-10-25 原话（看 25 S17 简述截图，“以后以后一定要合理的安排”适用以后各篇）：“在这个地方，在这个地方的上下排的这个排的这个上下占占有的这个行数实在是太太多了，你把这个行分散一下，就是我们多占用一下这个两边这个横向的面积不要总是占占占据这个竖向的面积，ok，尽量横向的面积，我们把这个字体都扩大一些，你你这个样子完完全全排成一列，那导致我们这个上下这个字体压缩的特别小，ok。所以说排成这个横向横向的ok。我们这个横向两边这么多空间呢，为什么不用呢？以后以后一定要合理的安排，不要压缩成这个样子。这个地方特批一下，这个地方特批一下。”"}},
+out={"no":"26","title_en":"The Language the Children Invented","title_zh":"孩子们发明的语言","title_fx":{"hl":["Language","Children"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["brought in","grasp"],"换行变更已获同意":{"S4": "用户原话“共用自制的一整套 手势 repertoire 意思对应 一整套 Gesture，gesture如果不是重点词汇的话，把它标注为重点词汇。”", "S12": "用户原话“以及后来招收的几批(学生)”", "S13": "用户原话“能能跟英文对齐的意思尽量对齐。就是说他有的这个哪怕没有标注的ok，就是能够跟上面的英文只要能对齐，尽量对齐，除非对齐不了， rolling downhill  整体标注为重点词汇。描述某个东西滚下坡  就比如说某个东西就要跟这个something对齐。 rolling 就和滚对齐。 啊，尽量大家都要按照这个方式来对齐。”", "S17": "用户原话“聋哑人的玩伴们”"},"说明放宽特批":{"S17":{"倍数":"整屏","依据":"用户 2026-10-25 原话（看 25 S17 简述截图，“以后以后一定要合理的安排”适用以后各篇）：“在这个地方，在这个地方的上下排的这个排的这个上下占占有的这个行数实在是太太多了，你把这个行分散一下，就是我们多占用一下这个两边这个横向的面积不要总是占占占据这个竖向的面积，ok，尽量横向的面积，我们把这个字体都扩大一些，你你这个样子完完全全排成一列，那导致我们这个上下这个字体压缩的特别小，ok。所以说排成这个横向横向的ok。我们这个横向两边这么多空间呢，为什么不用呢？以后以后一定要合理的安排，不要压缩成这个样子。这个地方特批一下，这个地方特批一下。”"}},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Managua":"马那瓜","Nicaragua":"尼加拉瓜","San Judas":"圣胡达斯","Spanish":"西班牙语","Ministry of Education":"教育部","Judy Kegl":"朱迪·凯格尔","American Sign Language":"美国手语","MIT":"麻省理工学院"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

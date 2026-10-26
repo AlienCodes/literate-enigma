@@ -6,7 +6,7 @@ On a **rattling** bus in Managua, deaf pupils kept up a **brisk**, **voiceless**
 
 Before the late 1970s Nicaragua had no deaf **community**. Most deaf people led **secluded** lives, sharing a **homemade** **repertoire** of gestures with parents and **siblings**. In 1977 a **special-education** centre opened in Managua's San Judas **district** with 50 deaf **pupils**. By 1983 the centre and a **vocational school** for **teenage** pupils held more than 400.
 
-The **curriculum** **hinged on** **oral** Spanish and **lipreading**, and teachers signed only the **alphabet**. Pupils studied **lips** **in vain**, and most failed to grasp what a Spanish word was. **At recess**, in the street, and on the buses, they **mingled** gestures **with** home signs. A **rough** **jumble** **ripened** **rapidly** **into** a **coherent** language **entirely** their own.
+The **curriculum** **hinged on** **oral** Spanish and **lipreading**, and teachers signed only the **alphabet**. Pupils studied **lips** **in vain**, and most failed to **grasp** what a Spanish word was. **At recess**, in the street, and on the buses, they **mingled** gestures **with** home signs. A **rough** **jumble** **ripened** **rapidly** **into** a **coherent** language **entirely** their own.
 
 The teachers found it **unintelligible**, and in June 1986 **the Ministry of Education** **brought in** Judy Kegl, an **American Sign Language** **linguist** from **MIT**. A 2001 study found that pupils who arrived younger, and later **intakes**, used **grammatical** devices more often and more **uniformly** than their **forerunners**. Each fresh wave of young **signers** added **complexity**.
 
@@ -20,9 +20,9 @@ Linguists had a rare chance to watch a language grow from **infancy** to **matur
 
 1970年代末以前，尼加拉瓜没有聋人**群体**(community)。大多数聋人过着**与世隔绝的**(secluded)生活，共用**自制的**(homemade)**一整套/全部**(repertoire)手势，在父母和**兄弟姐妹**(siblings)之间。（sharing…：现在分词短语作伴随状语；repertoire：全部本领，全部节目，这里指全部手势）1977年，一所**特殊教育**(special-education)中心开办于马那瓜的圣胡达斯**区**(district)，共有50个聋哑**学生**(pupils)。（with 50 deaf pupils：介词短语作伴随状语，说明开办时的规模；pupil：一般指高中以下的学生，大多用来指代小学生）到1983年，这所中心和一所面向**青少年**(teenage)学生的**职业学校**(vocational school)，共有超过400多个聋哑学生。（for teenage pupils：介词短语作后置定语，修饰 school；hold：容纳，有）
 
-**课程**(curriculum)**以**(hinged on)西班牙语**口语**(oral)和**唇读**(lipreading)**为中心**(hinged on)，并且老师们只用手语比划**字母（表）**(alphabet)。（hinge on…：取决于……，以……为中心）（sign：打手语）学生们仔细观察着**唇语**(lips)，却是**徒劳无功**(in vain)，多数人没能弄明白什么是一个西班牙语单词。（in vain：徒劳，白费力气）（what a Spanish word was：宾语从句，作 grasp 的宾语）**在课间休息时**(At recess)，在街上，以及在公共汽车上，他们**混合了**(mingled with)手势**与**(mingled with)自家手势。（mingle A with B：把 A 与 B 混合；home signs：家庭手势，聋人在家里和家人自创的手势）一堆**粗糙的**(rough)**杂乱的东西**(jumble)**迅速地**(rapidly)**成熟为**(ripened into)一门**连贯的**(coherent)语言，**完全**(entirely)属于他们自己。（ripen into…：逐渐成熟为……；jumble：杂乱的一堆）（entirely their own：后置定语，修饰 language）
+**课程**(curriculum)**以**(hinged on)西班牙语**口语**(oral)和**唇读**(lipreading)**为中心**(hinged on)，并且老师们只用手语比划**字母（表）**(alphabet)。（hinge on…：取决于……，以……为中心）（sign：打手语）学生们仔细观察着**唇语**(lips)，却是**徒劳无功**(in vain)，多数人没能**弄明白/理解**(grasp)什么是一个西班牙语单词。（in vain：徒劳，白费力气）（what a Spanish word was：宾语从句，作 grasp 的宾语）**在课间休息时**(At recess)，在街上，以及在公共汽车上，他们**混合了**(mingled with)手势**与**(mingled with)自家手势。（mingle A with B：把 A 与 B 混合；home signs：家庭手势，聋人在家里和家人自创的手势）一堆**粗糙的**(rough)**杂乱的东西**(jumble)**迅速地**(rapidly)**成熟为**(ripened into)一门**连贯的**(coherent)语言，**完全**(entirely)属于他们自己。（ripen into…：逐渐成熟为……；jumble：杂乱的一堆）（entirely their own：后置定语，修饰 language）
 
-老师们发现它**很难理解**(unintelligible)，并且在1986年6月，**教育部**(the Ministry of Education)**请来了**(brought in)朱迪·凯格尔，一位**美国手语**(American Sign Language)**语言学家**(linguist)，来自**麻省理工学院**(MIT)。（find it + 形容词：认为它……）（an American Sign Language linguist…：同位语，说明 Judy Kegl）2001年的一项研究发现，入学年龄更小的学生，以及后来**招收的几批**(intakes)（学生），使用**语法**(grammatical)手段更频繁，也更**统一**(uniformly)，比起他们的**前辈**(forerunners)。（who arrived younger：定语从句，修饰 pupils；intake：（一批）新招收的人）（more often and more uniformly than…：比较结构，比……更频繁、更统一）每一批新的年幼**手语者**(signers)都为这门语言增添了**复杂性**(complexity)。（wave：一批，一拨（人）；fresh：新的）
+老师们发现这种手语**很难理解**(unintelligible)，并且在1986年6月，**教育部**(the Ministry of Education)**请来了**(brought in)朱迪·凯格尔，一位**美国手语**(American Sign Language)**语言学家**(linguist)，来自**麻省理工学院**(MIT)。（find it + 形容词：认为它……）（an American Sign Language linguist…：同位语，说明 Judy Kegl）2001年的一项研究发现，入学年龄更小的学生，以及后来**招收的几批**(intakes)（学生），使用**语法**(grammatical)手段更频繁，也更**统一**(uniformly)，比起他们的**前辈**(forerunners)。（who arrived younger：定语从句，修饰 pupils；intake：（一批）新招收的人）（more often and more uniformly than…：比较结构，比……更频繁、更统一）每一批新的年幼**手语者**(signers)都为这门语言增添了**复杂性**(complexity)。（wave：一批，一拨（人）；fresh：新的）
 
 在2004年的一项研究中，打手势的西班牙语使用者和最早一批手语者描述某个东西**滚**(rolling downhill)**下坡**(rolling downhill)是通过**把**(welding into)它怎样运动和往哪里去**熔接成**(welding into)一个**完整的/统一的**(undivided)动作。（weld A into B：把 A 熔接成 B；how it moved and where it went：两个宾语从句，作 weld 的宾语）后来的手语者把它**拆解**(dismantled into)**成**(dismantled into)**离散的**(discrete)**片段**(segments)，按**线性顺序**(linear order)排列，这种**框架/结构**(framework)在他们周围的手势中**无处**(nowhere)可寻。（dismantle A into B：把 A 拆解成 B）（a framework…：同位语，概括前面整句；found nowhere…：过去分词短语作后置定语，修饰 framework）
 
@@ -45,9 +45,9 @@ Linguists had a rare chance to watch a language grow from **infancy** to **matur
 | homemade | 本文：自制的；adj. 自制的（homemade bread） | 2 |
 | repertoire | 本文：一整套/全部；n. 全部本领；保留曲目（a wide repertoire of songs） | 2 |
 | siblings | 本文：兄弟姐妹；n. (sibling) 兄弟姐妹（sibling rivalry） | 2 |
-| special-education | 本文：特殊教育 | 2 |
-| district | 本文：区 | 2 |
-| pupils | 本文：学生 | 2 |
+| special-education | 本文：特殊教育；adj. 特殊教育的（special-education teachers；special education 特殊教育） | 2 |
+| district | 本文：区；n. 区，地区；行政区（a school district） | 2 |
+| pupils | 本文：学生；n. (pupil) 学生，多指中小学生（primary-school pupils） | 2 |
 | teenage | 本文：青少年；adj. 青少年的（teenage pupils） | 2 |
 | vocational school | 本文：职业学校；adj. 职业的（vocational training） | 2 |
 | curriculum | 本文：课程；n. 课程（the school curriculum） | 3 |
@@ -57,6 +57,7 @@ Linguists had a rare chance to watch a language grow from **infancy** to **matur
 | alphabet | 本文：字母（表）；n. 字母表（the Roman alphabet） | 3 |
 | lips | 本文：唇语；n. (lip) 嘴唇（read sb's lips） | 3 |
 | in vain | 本文：徒劳无功；n./adj. 徒劳（in vain）；徒劳的（a vain attempt） | 3 |
+| grasp | 本文：弄明白/理解；v. 理解，领会；抓住（grasp an idea；grasp sb's hand） | 3 |
 | At recess | 本文：在课间休息时；n. 课间休息；休会（at recess） | 3 |
 | mingled with | 本文：混合了……与；v. (mingle) 混合，混杂（fact mingled with fiction） | 3 |
 | rough | 本文：粗糙的；adj. 粗糙的，粗略的（a rough draft/idea） | 3 |
@@ -66,11 +67,11 @@ Linguists had a rare chance to watch a language grow from **infancy** to **matur
 | coherent | 本文：连贯的；adj. 连贯的，条理清楚的（a coherent argument） | 3 |
 | entirely | 本文：完全；adv. 完全地（entirely different） | 3 |
 | unintelligible | 本文：很难理解；adj. 难以理解的（unintelligible speech） | 4 |
-| the Ministry of Education | 本文：教育部 | 4 |
-| brought in | 本文：请来了 | 4 |
-| American Sign Language | 本文：美国手语 | 4 |
-| linguist | 本文：语言学家 | 4 |
-| MIT | 本文：麻省理工学院 | 4 |
+| the Ministry of Education | 本文：教育部；n. 教育部（ministry 政府的部） | 4 |
+| brought in | 本文：请来了；v. (bring in) 请来，引进（bring in experts） | 4 |
+| American Sign Language | 本文：美国手语；n. 美国手语（缩写 ASL） | 4 |
+| linguist | 本文：语言学家；n. 语言学家；通晓多种语言的人（a linguist at MIT） | 4 |
+| MIT | 本文：麻省理工学院；n. 麻省理工学院（Massachusetts Institute of Technology 的缩写） | 4 |
 | intakes | 本文：招收的几批；n. (intake) （一批）新生，招收人数（this year's intake of students） | 4 |
 | grammatical | 本文：语法；adj. 语法的（grammatical rules） | 4 |
 | uniformly | 本文：统一；adv. 一致地，统一地（uniformly high standards） | 4 |
