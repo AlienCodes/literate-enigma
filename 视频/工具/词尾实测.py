@@ -11,7 +11,7 @@ T = os.path.dirname(os.path.abspath(__file__))
 
 def main(md):
     import numpy as np
-    g = {'__name__': 'x'}; exec(open('make_video.py').read().split("if __name__")[0], g)
+    g = {'__name__': 'x', '__file__': os.path.abspath('make_video.py')}; exec(open('make_video.py').read().split("if __name__")[0], g)
     k, KT, V, SPEED, spoken, R = g['k'], g['KT'], g['V'], g['SPEED'], g['spoken'], g['R']
     sys.path.insert(0, T); import 机器复听 as M
     vow = set('aeiouæɑɒɔəɛɜɪʊʌyɐᵻɚ')

@@ -10,15 +10,28 @@ try: import soundfile as sf; from scipy.signal import resample_poly   # 重依�
 except ImportError: sf = resample_poly = None
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T)
 MD = os.path.expanduser('~/asr/sherpa-onnx-whisper-small.en')   # 准备机器.sh 下载到这里
+PD = os.path.expanduser('~/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8')
+路名 = ('small.en', 'parakeet')   # 2026-10-26 第二阶段 2（主会话定：查全优先）：任一路报就报，每一路各自打印；少一路就停，不许悄悄退回单识别器
 
 def 识别器():
+    """每一路一个离线识别器 {名: 识别器}。small.en（whisper，带语言模型补全）+ parakeet（NeMo TDT 0.6B int8）：
+    注入实测（改门_音频上GitHub.md 第二阶段）任一报就报，漏读、词中截断、句尾截断、咔哒、削波每类查全都比 small.en 单用高"""
     import sherpa_onnx
-    p = lambda x: os.path.join(MD, x)
-    if not os.path.exists(p('small.en-encoder.int8.onnx')): raise SystemExit(f'【停止】没有识别模型 {MD}：bash 准备机器.sh 会下载（GitHub release k2-fsa/sherpa-onnx asr-models/sherpa-onnx-whisper-small.en）')
-    return sherpa_onnx.OfflineRecognizer.from_whisper(encoder=p('small.en-encoder.int8.onnx'), decoder=p('small.en-decoder.int8.onnx'), tokens=p('small.en-tokens.txt'), num_threads=4)
+    p = lambda d, x: os.path.join(d, x)
+    for d, f, u in ((MD, 'small.en-encoder.int8.onnx', 'sherpa-onnx-whisper-small.en'), (PD, 'encoder.int8.onnx', 'sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8')):
+        if not os.path.exists(p(d, f)): raise SystemExit(f'【停止】没有识别模型 {d}：bash 准备机器.sh 会下载（GitHub release k2-fsa/sherpa-onnx asr-models/{u}）；机器复听每一路都要有，不许少一路')
+    return {'small.en': sherpa_onnx.OfflineRecognizer.from_whisper(encoder=p(MD, 'small.en-encoder.int8.onnx'), decoder=p(MD, 'small.en-decoder.int8.onnx'), tokens=p(MD, 'small.en-tokens.txt'), num_threads=4),
+            'parakeet': sherpa_onnx.OfflineRecognizer.from_transducer(encoder=p(PD, 'encoder.int8.onnx'), decoder=p(PD, 'decoder.int8.onnx'), joiner=p(PD, 'joiner.int8.onnx'), tokens=p(PD, 'tokens.txt'), model_type='nemo_transducer', num_threads=4)}
+
+def 转写(rec, x16):
+    s = rec.create_stream(); s.accept_waveform(16000, x16); rec.decode_stream(s); return s.result.text.strip()
+def 各路(recs, ref, x16):
+    """每一路听一遍：(听到的文字 {名: 文字}, 对不上的 [(脚本词, 听到词〔路名〕)])，任一路报就报"""
+    t = {n: 转写(r, x16) for n, r in recs.items()}
+    return t, [(a, f'{b}〔{n}〕') for n in recs for a, b in 比(ref, t[n])]
 
 _tk = None
-_自检读音 = {"crew's": 'kɹuːz', 'cruise': 'kɹuːz', 'organised': 'ɔɹɡənaɪzd', 'organized': 'ɔɹɡənaɪzd', 'eleven': 'ɪlɛvən', '11': 'ɪlɛvən'}   # espeak 的读音（kokoro 注音实测）
+_自检读音 = {"crew's": 'kɹuːz', 'cruise': 'kɹuːz', 'organised': 'ɔɹɡənaɪzd', 'organized': 'ɔɹɡənaɪzd', 'eleven': 'ɪlɛvən', '11': 'ɪlɛvən', 'walkie': 'wɔki', 'scorchy': 'skɔɹtʃi', 'scorchie': 'skɔɹki', 'fifty': 'fɪfti', '50': 'fɪfti'}   # espeak 的读音（kokoro 注音实测）
 def 音标(w):
     global _tk
     if _tk is None:
@@ -27,8 +40,7 @@ def 音标(w):
     if _tk is False:   # 没有注音程序的容器（主会话）：只为 --比较自检 用内置的几组读音，真听声音一定在有配音模型的工作目录
         if sf is not None: raise SystemExit('【停止】有声音程序却没有 kokoro_onnx 注音程序：机器复听不能按读音比')
         return _自检读音.get(w, w)
-    x = re.sub(r'[ˈˌː\s]', '', _tk.phonemize(w, 'en-us'))
-    return x.translate(str.maketrans({'ᵻ': 'ɪ', 'ɐ': 'ə', 'ɾ': 't'})).replace('ɚ', 'əɹ')   # 注音变体（eleven/11、organised/organized）归一
+    return 归一音标(_tk.phonemize(w, 'en-us'))   # 注音变体（eleven/11、organised/organized）归一
 
 _月 = 'january|february|march|april|may|june|july|august|september|october|november|december'
 def 词(t):
@@ -39,26 +51,55 @@ def 词(t):
     return re.findall(r"[^\W_]+(?:'[^\W_]+)?", t)   # 带变音符的专名（Ötztal）整词保留
 
 _核 = None
-def 已核实():
+def 已核实(专名=False):
     global _核
-    if _核 is None: _核 = {k.lower() for k, v in json.load(open(f'{T}/发音词典/已核实读音.json')).items() if v.get('判定') == '正确'}
-    return _核
+    if _核 is None:
+        # 对权威来源查过、读音核对把关的：正确、改正后正确（20 Ötztal）、可接受、配音读错已写进读音改正表
+        ok_ = lambda p_: str(p_).startswith(('正确', '改正后正确', '可接受')) or '已写进 读音改正' in str(p_)
+        j = {k: v for k, v in json.load(open(f'{T}/发音词典/已核实读音.json')).items() if ok_(v.get('判定'))}
+        _核 = ({k.lower() for k in j}, {k for k in j if k[:1].isupper()})   # 专名一侧按原样大小写（SAT 是专名，sat 不是）
+    return _核[1 if 专名 else 0]
+_改 = None
+def 改正读音():
+    """读音改正.json（与出片程序 phonemes_of 同一份表）：配音实际读的是改正后的读音。键小写 → 归一后的音标；连字符复合词键去掉连字符"""
+    global _改
+    if _改 is None:
+        _改 = {k.lower().replace('-', ''): 归一音标(v['读音']) for k, v in json.load(open(f'{T}/发音词典/读音改正.json')).items() if v.get('读音')}
+    return _改
+def 复合词(): return [k for k in json.load(open(f'{T}/发音词典/读音改正.json')) if '-' in k]
+def 归一音标(x):
+    x = re.sub(r'[ˈˌː\s]', '', x)
+    return x.translate(str.maketrans({'ᵻ': 'ɪ', 'ɐ': 'ə', 'ɾ': 't'})).replace('ɚ', 'əɹ')
 def 拼写归一(t):
     """英美拼写变体归成一种（kilometres/kilometers、colour/color、organise/organize、analyse/analyze、catalogue/catalog、travelled/traveled、defence/defense）"""
     t = re.sub(r'(?<=[a-z])tre(s?)\b', r'ter\1', t); t = re.sub(r'(?<=[a-z])our(s|ed|ing|ful|ite|ites)?\b', r'or\1', t)
     t = re.sub(r'(?<=[a-z])is(e|es|ed|ing|ation|ations)\b', r'iz\1', t); t = re.sub(r'(?<=[a-z])ys(e|es|ed|ing)\b', r'yz\1', t)
     t = re.sub(r'(?<=[a-z])ogue(s?)\b', r'og\1', t); t = re.sub(r'(?<=[aeiou])ll(ed|ing|er|ers)\b', r'l\1', t); t = re.sub(r'(?<=[a-z])ence\b', 'ense', t)
     return t
+_币 = {'£': ('pounds', 'pound'), '$': ('dollars', 'dollar'), '€': ('euros', 'euro')}
 def 比(ref, hyp):
-    """读音对不上的 [(脚本里的词, 听到的词)]"""
+    """读音对不上的 [(脚本里的词, 听到的词)]。听到的一侧有 £/$/€ + 数字（识别器把钱数写成符号，22 S8 £1,000、23 S18 £50 note）：
+    写成 数字 + pounds 或 pound 两种，取对不上少的那种（符号本身不分单复数）"""
+    m = re.search(r'([£$€])\s*(\d[\d,]*(?:\.\d+)?)', hyp)
+    if not m: return _比(ref, hyp)
+    vs = [_比(ref, re.sub(r'([£$€])\s*(\d[\d,]*(?:\.\d+)?)', lambda m_: f'{m_.group(2)} {_币[m_.group(1)][i]}', hyp)) for i in (0, 1)]
+    return min(vs, key=len)
+def _比(ref, hyp):
+    改 = 改正读音()
+    # 读音改正表里的连字符复合词（Walkie-Scorchie）在脚本一侧当一个词，按改正后的读音比
+    for k in 复合词():
+        ref = re.sub(r'(?i)(?<![^\W_])' + re.escape(k) + r'(?![^\W_])', lambda m_: m_.group(0).replace('-', ''), ref)
     R, H = 词(ref), 词(hyp); pr = [音标(w) for w in R]; ph = [音标(w) for w in H]
     专名 = {w.lower() for w in re.findall(r"(?<![.!?]\s)(?<!^)\b[A-Z][A-Za-z]+(?:'[a-z]+)?", ref)}
+    核专名 = {w.lower() for w in re.findall(r"[^\W_]+", ref) if w in 已核实(专名=True)}   # 脚本里原样大写、且已核实表里就是这样大写的词（句首也算）
     sm = difflib.SequenceMatcher(None, pr, ph, autojunk=False); out = []
     for op, a1, a2, b1, b2 in sm.get_opcodes():
         if op == 'equal': continue
         if 拼写归一(' '.join(R[a1:a2])) == 拼写归一(' '.join(H[b1:b2])) and R[a1:a2]: continue   # G56（27 S4 kilometres/kilometers）：英美拼写变体是同一个词，两种读法词典都收
         if ''.join(pr[a1:a2]) == ''.join(ph[b1:b2]): continue   # 连写/拆写（switches / switch is 读音一样不算；every one / everyone）
-        if op == 'replace' and all(w in 已核实() and w in 专名 for w in R[a1:a2]): continue   # A23 已对权威来源查过读音（读音核对 出片前把关）的专名（脚本里大写）：识别器不认识、听成别的不算；漏掉、多出照报
+        if R[a1:a2] and ''.join(R[a1:a2]) == ''.join(H[b1:b2]): continue   # 拼写连起来相同（脚本 walkiescorchie / 听到 walkie scorchie）
+        if R[a1:a2] and ''.join(改.get(w, pr[a1 + j]) for j, w in enumerate(R[a1:a2])) == ''.join(ph[b1:b2]): continue   # 读音改正表：配音读的是改正后的读音（22 S11 Walkie-Scorchie 听成 scorchy）
+        if op == 'replace' and all(w in 核专名 or w in 已核实() and w in 专名 for w in R[a1:a2]): continue   # 已核实表里大写开头的键（专名），句首也豁免（20 S17 Ötzi）   # A23 已对权威来源查过读音（读音核对 出片前把关）的专名（脚本里大写）：识别器不认识、听成别的不算；漏掉、多出照报
         out.append((' '.join(R[a1:a2]) or '（多出）', ' '.join(H[b1:b2]) or '（没听到）'))
     return out
 
@@ -70,9 +111,8 @@ def 听(no, src=None, rec=None, 改=None):
     for i, (k, v) in enumerate(seg.items()):
         x = a[int(v[0]['时刻'][0] * sr):int(v[-1]['时刻'][1] * sr)]
         x = resample_poly(x, 16000, sr).astype(np.float32) if sr != 16000 else x.astype(np.float32)
-        s = rec.create_stream(); s.accept_waveform(16000, x); rec.decode_stream(s)
         ref = ' '.join(re.sub(r'\{\{.*?\}\}|\*\*', '', c['en']) for c in d['sentences'][i]['chunks'])
-        res.append((k, s.result.text.strip(), 比(ref, s.result.text)))
+        t, b = 各路(rec, ref, x); res.append((k, t, b))
     return res
 
 def 吞段(v):
@@ -91,7 +131,8 @@ def 自检(no):
         t0, t1 = 吞段(seg[k]); a = a.copy(); a[int(t0 * sr):int(t1 * sr)] = 0; return a
     r1 = 听(no, rec=rec, 改=吞); bad1 = {k_ for k_, _, b in r1 if b}
     f = []
-    if k not in bad1: f.append(f'没抓到：{k} 最长一段中间七成声音被吞掉，机器复听没报')
+    for n in rec:
+        if not any(y.endswith(f'〔{n}〕') for k_, _, b in r1 if k_ == k for _, y in b): f.append(f'没抓到（{n} 这一路）：{k} 最长一段中间七成声音被吞掉，没报')
     if bad1 - bad0 - {k}: f.append(f'误报：没动的句子也报了 {sorted(bad1 - bad0 - {k})}')
     return f
 
@@ -103,9 +144,11 @@ def 带自检(no):
         a, sr = sf.read(f'work_{no}/a.wav'); a = a if a.ndim == 1 else a.mean(axis=1)
         t0, t1 = 吞段(v); b0 = v[0]['时刻'][0]
         x = a[int(b0 * sr):int(v[-1]['时刻'][1] * sr)].copy(); x[int((t0 - b0) * sr):int((t1 - b0) * sr)] = 0
-        x = resample_poly(x, 16000, sr).astype(np.float32); s = rec.create_stream(); s.accept_waveform(16000, x); rec.decode_stream(s)
+        x = resample_poly(x, 16000, sr).astype(np.float32)
         si = list(seg).index(k); ref = ' '.join(re.sub(r'\{\{.*?\}\}|\*\*', '', c['en']) for c in d['sentences'][si]['chunks'])
-        if not 比(ref, s.result.text): f.append(f'没抓到：{k} 最长一段中间七成声音被吞掉，机器复听没报')
+        t, b = 各路(rec, ref, x)
+        for n in rec:   # 每一路都必须各自抓到（任一路失灵 = 自检不过）
+            if not any(y.endswith(f'〔{n}〕') for _, y in b): f.append(f'没抓到（{n} 这一路）：{k} 最长一段中间七成声音被吞掉，没报（听到“{t[n]}”）')
     else: f.append('自检前提不成立：每一句都已有对不上的词')
     return r0, f
 
@@ -120,8 +163,7 @@ def 清单(vdir):
         if not txt or len(txt) != len(seg): print(f'- **{no}**：句数对不上（声音 {len(seg)} 段、脚本 {len(txt or [])} 句），没比'); continue
         bad = []
         for i, ((s0, e0), ref) in enumerate(zip(seg[1:], txt[1:]), 1):
-            x = resample_poly(a[s0:e0], 1, 3).astype(np.float32); st = rec.create_stream(); st.accept_waveform(16000, x); rec.decode_stream(st)
-            b = 比(ref, st.result.text)
+            x = resample_poly(a[s0:e0], 1, 3).astype(np.float32); _, b = 各路(rec, ref, x)
             if b: bad.append(f'S{i}：' + '；'.join(f'脚本“{x_}” 听到“{y_}”' for x_, y_ in b))
         n += len(bad); print(f'- **{no}**：{len(bad)} 句' + ''.join(f'\n  - {x}' for x in bad), flush=True)
     print(f'\n共 {n} 句。要改哪篇，用户说了再改（改了要重出 4K、过交付核查、重新归档，G9）。')
@@ -133,6 +175,11 @@ def 比较自检():
                    ('On April 13th', 'On April 13'), ("the crew's capsule", 'the cruise capsule'), ('organised eleven', 'organized 11'), ('On 6 January', 'On the 6 of January'), ('some 200,000 miles', 'some 200000 miles')):
         if 比(r_, h_): f.append(f'误报：“{r_}”听成“{h_}”读音一样，却报了 {比(r_, h_)}')
     if 比('He met Windhandel there', 'He met Vinthehandel there') and 'windhandel' in 已核实(): f.append('误报：已核实读音的专名被识别器听错也报了')
+    for r_, h_ in (('Ötzi was found in 1991', 'Erzi was found in 1991'), ('It sold as the Walkie-Scorchie in London', 'It sold as the walkie scorchy in London'),
+                   ('a fine of 1,000 pounds each', 'a fine of £1,000 each'), ('a fifty-pound note', 'a £50 note'), ('a trek in the Ötztal Alps', 'a trek in the Erzdal Alps')):   # 第二阶段 2 通用规则（20 S17、22 S11、22 S8、23 S18）
+        if 比(r_, h_): f.append(f'误报：“{r_}”听成“{h_}”（句首已核实专名 / 读音改正表 / 货币符号），却报了 {比(r_, h_)}')
+    for r_, h_ in (('He sat there', 'He set there'), ('a fine of 1,000 pounds each', 'a fine of £1,000'), ('Ötzi was found in 1991', 'was found in 1991')):   # 小写 sat 不因已核实表里有 SAT 豁免；货币归一后漏词、专名漏掉照报
+        if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
     for r_, h_ in (('the cat sat on the mat', 'the cat on the mat'), ('the cabbies waited', 'the cabins waited'), ('He sat there', 'He set there')):
         if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
     return f
@@ -151,6 +198,7 @@ def 分类(md):
         for sm_ in re.finditer(r'  - S(\d+)：(.+)', blk):
             si = int(sm_.group(1)); ref = txt[si] if si < len(txt) else ''
             for x, y in re.findall(r'脚本“([^”]*)” 听到“([^”]*)”', sm_.group(2)):
+                y = re.sub(r'〔[^〕]*〕$', '', y)   # 路名（small.en / parakeet）
                 bad_ = x != '（多出）' and not all(re.search(rf"(?<![^\W_]){re.escape(w)}(?![^\W_])", ref, re.I) for w in x.split())   # 旧清单按 a–z 切词，Ötztal 成了 tztal
                 cap = bad_ or x != '（多出）' and all(re.search(rf"(?<!^)\b{re.escape(w)}\b", ref, re.I) and re.search(rf"\b{re.escape(w[0].upper() + w[1:])}", ref) for w in x.split())
                 px = ''.join(音标(w) for w in x.split()) if x != '（多出）' else ''; py = ''.join(音标(w) for w in y.split()) if y != '（没听到）' else ''
@@ -170,11 +218,11 @@ if __name__ == '__main__':
         print(f'## 疑似真问题（{len(q)} 处，先听这些）\n'); print('\n'.join('- ' + x for x in q) or '（无）')
         print(f'\n## 识别器听不准（{len(r)} 处）\n'); print('\n'.join('- ' + x for x in r) or '（无）'); sys.exit(0)
     if sys.argv[1:2] == ['--比较自检']:
-        e = 比较自检(); print('\n'.join(e) or '机器复听 比较自检通过（序数、同音、注音变体、日期、千分位、%、英美拼写不报；漏词、读错必报）'); sys.exit(1 if e else 0)
+        e = 比较自检(); print('\n'.join(e) or '机器复听 比较自检通过（序数、同音、注音变体、日期、千分位、%、英美拼写、句首已核实专名、读音改正表、货币符号不报；漏词、读错必报）'); sys.exit(1 if e else 0)
     if sys.argv[1:2] == ['--清单']: 清单(sys.argv[2]); sys.exit(0)
     if sys.argv[1:2] == ['--带自检']:
         r0, f = 带自检(sys.argv[2]); bad = [(k, b) for k, _, b in r0 if b]
-        print(('✘ 机器复听 自检：' + '；'.join(f)) if f else '✔ 机器复听 自检：吞掉一句最长一段的中间七成必报')
+        print(('✘ 机器复听 自检：' + '；'.join(f)) if f else f'✔ 机器复听 自检：吞掉一句最长一段的中间七成，{"、".join(路名)} 每一路都报')
         print(f'机器复听 {len(r0)} 句：读音对不上的 {len(bad)} 句')
         for k, b in bad: print(f'  {k}：' + '；'.join(f'脚本“{x}” 听到“{y}”' for x, y in b))
         sys.exit(2 if f else (1 if bad else 0))

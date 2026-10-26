@@ -57,6 +57,10 @@ def 咔哒(a, sr):     # G41 音频体检：句子中间一个采样突跳（切
     s, e = 段(a, sr)[0][2]; p = (s + e) // 2; q = max(1, sr // 2000); a[p:p + q] = 0.95; a[p + q:p + 2 * q] = -0.95; return a   # 1 毫秒满幅爆音（单个采样的突跳经成片 AAC 编码会被抹平）
 def 吞词(a, sr):     # G42 机器复听：一句中间 0.36 秒声音没了（吞音、漏词），停顿、响度类的门都量不出“少了一个词”
     sg = 段(a, sr)[0]; s, e = sg[len(sg) // 2]; m = (s + e) // 2; a[m - int(0.18 * sr):m + int(0.18 * sr)] = 0; return a
+def 只有parakeet(ws):   # 第二阶段 2（任一报就报）：small.en 听不出、只有 parakeet 听得出的漏读（注入实测 2026-10-26：20 S8 最长一段中点 0.36 秒静音，
+    # small.en 照原文补回、parakeet 听成 “pun”）；声音演练的 25 = 20 的冻结脚本改号，声音逐样本相同
+    v = json.load(open(f'{ws}/work_{NO25}/分段.json'))['S8']; i = max(range(len(v)), key=lambda j: v[j]['时刻'][1] - v[j]['时刻'][0]); m = (v[i]['时刻'][0] + v[i]['时刻'][1]) / 2
+    改声音(lambda a, sr: (a.__setitem__(slice(int((m - .18) * sr), int((m + .18) * sr)), 0), a)[1], NO25)(ws)
 def 句内一段变轻(ws):   # G36：句内一段突然变小（重放 25 S2 “some 200,000 miles out,” 比前一段轻 3～5 LU，整句仍在 ±2 LU 内）
     import 响度一致性核对 as Q
     sj = f'{ws}/work_{NO25}/分段.json'; bad = {r[0] for r in Q.句内报(Q.句内(f'{ws}/{NO25}.mp4', seg_json=sj))}
@@ -111,6 +115,7 @@ def 加多音(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: _加英文
     ('G36句内一段变轻', '出片后', '句内一段比前一段轻 4 LU（整句仍在 ±2 LU 内，重放 25 S2）', None, 句内一段变轻, ['句内分段响度（相邻两段'], ['G36'], NO25),
     ('G41体检咔哒', '出片后', '句子中间一个采样突跳（咔哒声）', None, 改声音(咔哒, NO25), ['音频体检（与 01–24 最差比）'], ['G41'], NO25),
     ('G42机器复听吞词', '出片后', '一句中间 0.36 秒声音没了（吞音、漏词）', None, 改声音(吞词, NO25), ['机器复听（逐词读音与脚本一致）'], ['G42'], NO25),
+    ('G42只有parakeet抓到', '出片后', '20 S8 最长一段中点 0.36 秒没了（small.en 照原文补回，只有 parakeet 听出）', None, 只有parakeet, ['机器复听（逐词读音与脚本一致）'], ['G42', 'G75'], NO25),
     ('G12只有声音', '出片后', '重放 21：NN.mp4 被只出声音覆盖（没有画面）', None, None, ['成片有画面（G12'], ['G12']),
 ]
 
@@ -171,6 +176,14 @@ def 演练(W, 只=None):
             p = f'{M}/视频/工具/交付核查.py'; t = open(p).read(); open(p, 'w').write(t.replace("step('无标点处停顿 ≤ 0.22 秒', not long,", "step('无标点处停顿 ≤ 0.22 秒', True,", 1))
             c, o = 跑(M, ws, s[1]); caught = any('无标点处停顿' in l for l in o - bo[(s[1], NO)][1])
             res.append(('自查拆门_声音', not caught, '拆掉 无标点停顿 的门后演练报“没挡住”（演练能发现坏门）' if not caught else '拆掉门后演练还说挡住了：演练失灵'))
+        if not 只 or '自查拆门_parakeet' in 只:   # 把 机器复听 的 parakeet 一路拆掉（镜像里改程序，只留 small.en），只有 parakeet 抓得到的那一场必须报“没挡住”
+            s = next(x for x in 声音场景 if x[0] == 'G42只有parakeet抓到'); M, ws = 场('拆parakeet', None, s[4], qc0(NO25), NO25)
+            p = f'{M}/视频/工具/机器复听.py'; t = open(p).read(); a_ = "            'parakeet': sherpa_onnx.OfflineRecognizer.from_transducer("
+            if t.count(a_) != 1: res.append(('自查拆门_parakeet', False, '机器复听.py 里找不到 parakeet 那一路（锚变了，改演练）'))
+            else:
+                open(p, 'w').write(t.replace(a_, "            '_拆': sherpa_onnx.OfflineRecognizer.from_transducer(", 1).replace("    return {'small.en'", "    return {k_: v_ for k_, v_ in {'small.en'", 1).replace("model_type='nemo_transducer', num_threads=4)}", "model_type='nemo_transducer', num_threads=4)}.items() if k_ != '_拆'}", 1))
+                c, o = 跑(M, ws, s[1], NO25); caught = any('机器复听（逐词读音与脚本一致）' in l for l in o - bo[(s[1], NO25)][1])
+                res.append(('自查拆门_parakeet', not caught, '拆掉 parakeet 一路后，只有它能抓的那一场报“没挡住”（parakeet 一路在起作用、演练能发现）' if not caught else '拆掉 parakeet 一路后还说挡住了：要么 small.en 也抓得到（换样本），要么演练失灵'))
     for x in os.listdir(root):
         if x.startswith('演练_'): shutil.rmtree(f'{root}/{x}', ignore_errors=True)
     left = Y.清新缓存(c0)   # 演练里合成的新缓存（出片程序自动拷进 make_video 写死的仓库和本仓库的 配音缓存/）不留（G29）

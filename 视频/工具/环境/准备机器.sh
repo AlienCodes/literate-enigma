@@ -36,4 +36,14 @@ for f in fs:
 if bad and all(hs[a]==j[b].split(':')[1] for a,b in (fs,fs[::-1])): print('✘ 是校验码表里 encoder、decoder 两项写反了（2026-10-25 出过一次），改 模型校验码.json')
 sys.exit(bad)
 PY3
+# 2026-10-26 机器复听第二路 parakeet（NeMo TDT 0.6B int8，任一路报就报；改门_音频上GitHub.md 第二阶段 2），同样 GitHub release 下载、核对校验码
+P=~/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8; [ -f $P/encoder.int8.onnx ] || { mkdir -p ~/asr; curl -sSL --retry 3 https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8.tar.bz2 | tar xj -C ~/asr; }
+python3 - "$P" "$V/工具/环境/模型校验码.json" <<'PY4'
+import sys,json,hashlib,os
+d,j=sys.argv[1],json.load(open(sys.argv[2])); bad=0
+for f in ('encoder.int8.onnx','decoder.int8.onnx','joiner.int8.onnx','tokens.txt'):
+    h=hashlib.sha256(open(os.path.join(d,f),'rb').read()).hexdigest()[:16]; want=j['parakeet/'+f].split(':')[1]
+    print('parakeet/'+f, h, '✔ 识别模型对' if h==want else '✘ 识别模型不对'); bad|=(h!=want)
+sys.exit(bad)
+PY4
 echo "机器准备好了：$B/video"
