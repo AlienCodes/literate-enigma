@@ -1,0 +1,30 @@
+# CI 门（2026-10-26 改门_GitHub化 目标 1）：工作分支每次推送，在 GitHub 上跑 规则执行核查（含机器自检）。
+# 不挡推送本身；失败就在 PR #7 上标红，订阅了 PR #7 的会话会被唤醒。不下载视频（稀疏检出去掉 *.mp4）。
+name: 门
+on:
+  push:
+    branches: ['claude/adoring-hamilton-5qskmm']
+concurrency: {group: 'ci-${{ github.sha }}', cancel-in-progress: true}
+jobs:
+  rules:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run: {shell: bash}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !*.mp4
+            !*.mov
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip, cache-dependency-path: 视频/工具/环境/requirements.txt}
+      - run: pip install -q -r 视频/工具/环境/requirements.txt
+      - name: 规则执行核查
+        run: |
+          sudo mkdir -p /home/user && sudo ln -sfn $GITHUB_WORKSPACE /home/user/postgraduate-vocabulary && sudo ln -sfn $GITHUB_WORKSPACE /home/user/literate-enigma
+          set -o pipefail; python3 视频/工具/规则执行核查.py 2>&1 | tee /tmp/r.log | tail -30
+      - if: always()
+        run: '{ echo "### 规则执行核查"; echo "\`\`\`"; grep -E "✘|【|通过" /tmp/r.log | tail -20; echo "\`\`\`"; } >> $GITHUB_STEP_SUMMARY'
