@@ -47,6 +47,18 @@ try:
     r = run(); o = r.stdout + r.stderr
     if open(f'{P}/视频/工具/全篇重查通过.json').read() != '工作流印章\n' or open(f'{L}/视频/工具/全篇重查通过.json').read() != '工作流印章\n': fails.append(f'没抓到：工作流写回的印章没拷回主仓库（G58）{o.strip()[-100:]}')
     if open(f'{L}/视频/工具/执行效应演练通过.json').read() != '主仓库\n': fails.append('没抓到：不是工作流写的改动没被主仓库覆盖（G58）')
+    # G58 白名单：本次请求篇号的成片回写、删除照回写；工作流改了白名单外的文件必须停
+    写(f'{P}/视频/云端/演练请求.txt', '出片 20\n'); 写(f'{P}/视频/视频/草稿1080p/20_1080p.mp4', '旧草稿\n'); run()
+    git('pull', '-q', 'origin', 'tb', cwd=L); 写(f'{L}/视频/视频/20.mp4', '工作流出的片\n'); os.remove(f'{L}/视频/视频/草稿1080p/20_1080p.mp4')
+    bot = lambda m: subprocess.run(['git', '-c', 'user.name=github-actions[bot]', '-c', 'user.email=bot@example.com', 'commit', '-qm', m], cwd=L, env={**ENV, 'GIT_COMMITTER_DATE': '2099-01-02T00:00:00'})
+    git('add', '-A', cwd=L); bot('工作流出片'); git('push', '-q', 'origin', 'tb', cwd=L)
+    r = run(); o = r.stdout + r.stderr
+    if not os.path.exists(f'{P}/视频/视频/20.mp4') or open(f'{P}/视频/视频/20.mp4').read() != '工作流出的片\n': fails.append(f'没抓到：工作流出的本篇成片没回写主仓库（G58）{o.strip()[-100:]}')
+    if os.path.exists(f'{P}/视频/视频/草稿1080p/20_1080p.mp4'): fails.append('没抓到：工作流删掉的本篇旧草稿没在主仓库删掉（G58）')
+    git('pull', '-q', 'origin', 'tb', cwd=L); 写(f'{L}/视频/工具/越权.py', 'x\n'); git('add', '-A', cwd=L); bot('工作流越权'); git('push', '-q', 'origin', 'tb', cwd=L)
+    r = run(); o = r.stdout + r.stderr
+    if r.returncode == 0 or '白名单外' not in o or os.path.exists(f'{P}/视频/工具/越权.py'): fails.append(f'没抓到：工作流改了白名单外的文件没停（G58）{o.strip()[-100:]}')
+    git('reset', '-q', '--hard', 'HEAD~1', cwd=L); git('push', '-qf', 'origin', 'tb', cwd=L)   # 收拾掉越权提交，后面的造错照常跑
     # G1：101MB 的文件必须停，不许推上去
     with open(f'{P}/视频/大文件.bin', 'wb') as f: f.truncate(101 * 1024 * 1024)
     r = run(); o = r.stdout + r.stderr
@@ -62,5 +74,5 @@ except Exception as e:
     fails.append(f'推送自检本身出错：{e}')
 finally:
     shutil.rmtree(tmp, ignore_errors=True)
-print('推送自检：' + ('通过（正常推送两边一致、云端一致、CLAUDE.md 以主仓库为准、中文文件名、删旧文件；工作流印章反向回写（G58）；101MB 文件和路径不存在都停下）' if not fails else '失灵！' + '；'.join(fails)))
+print('推送自检：' + ('通过（正常推送两边一致、云端一致、CLAUDE.md 以主仓库为准、中文文件名、删旧文件；工作流结果反向回写、白名单外停（G58）；101MB 文件和路径不存在都停下）' if not fails else '失灵！' + '；'.join(fails)))
 sys.exit(1 if fails else 0)
