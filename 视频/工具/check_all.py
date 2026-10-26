@@ -23,10 +23,8 @@ def 查(d,t):
     for line in t.split('## 速查表',1)[1].split('\n'):
         if line.count('本文：')>1: bad.append(f'S2 速查表"本文："重复: {line[:50]}')
     if re.search(r'\n {1,}\*\*',en): bad.append('D1 文章英文出现异常断行')
-    for line in t.split('## 速查表',1)[1].split('\n## ',1)[0].split('\n'):   # S4：重点词速查表要有“本文义 + 词性 + 词义 + 例子”，不能只有“本文：”
-        m=re.match(r'^\|\s*([^|]+?)\s*\|\s*([^|]*)\|',line)
-        if m and '本文：' in m.group(2) and not re.search(r'本文：[^|]*?；\s*(adj|adv|n|v|vt|vi|phr|prep|conj|pron|num|det|abbr|int|interj|aux|modal|art|短语|习语|固定搭配)\.',m.group(2)):
-            bad.append(f'S4 速查表缺词性和词义（只有“本文：”）: {m.group(1)}')
+    import 速查表 as _SC   # S4：重点词速查表要有“本文义 + 词性 + 词义 + 例子”，不能只有“本文：”（G52：与 sync_article 共用同一个判断）
+    for w_ in _SC.缺词性(t): bad.append(f'S4 速查表缺词性和词义（只有“本文：”）: {w_}')
     return bad
 DOCX_起 = 25   # 守则17（用户 2026-10-24：“以后先不要再去做word或者是PDF了……先只做视频即可”）：25 起没有对照文本 docx 不算缺；
                # 用户要文本时 生成文本.py 出 Word 并逐格读回照查。24 以前照旧要求（G30：25 草稿出片前被“缺 docx”拦住）

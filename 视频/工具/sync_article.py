@@ -37,6 +37,8 @@ import os; sys.path.insert(0,os.path.dirname(os.path.abspath(__file__))); import
 assert _PZ.英文一致(new_en,en_old), 'English text changed!'   # 唯一放宽：文章的破折号在脚本里换成了逗号/冒号/括号（T36，用户 2026-10-24），文章随之改成脚本的写法
 new_zh='\n\n'.join(''.join(v) for k,v in sorted(paras_zh.items()))
 # keyword table in order of appearance
+import os; sys.path.insert(0,os.path.dirname(os.path.abspath(__file__))); import 速查表 as SC
+SC_D=SC.词典(os.path.dirname(os.path.dirname(os.path.abspath(md))))
 rows=[];seen=set()
 for s in d['sentences']:
     zmap={}
@@ -51,10 +53,13 @@ for s in d['sentences']:
             if w.lower() in seen: continue
             seen.add(w.lower())
             old=old_rows.get(w.lower()) or next((v for k,v in old_rows.items() if k in w.lower().split() or w.lower().startswith(k)),'')
+            if not old: old=SC_D.get(w.lower(),'')   # G52：新重点词没有旧行，从 70 篇文章速查表里同一个词的“词性. 词义”自动填
             pos=(re.match(r'^([a-z./]+\.)',old) or [None,''])[1] if old else ''
             z_=zmap.get(w.lower(),''); ob_=old_bw.get(w.lower(),'')
             if z_ and ob_.startswith(z_): z_=ob_          # 原来的“本文：”以现在的意思开头（后面跟着括号说明，如 08 inquiry），原样保留
             rows.append(f"| {w} | 本文：{z_}" + (f"；{old}" if old else '') + f" | {s['para']} |")
 tbl='| 词 | 释义 | 段 |\n|---|---|---|\n'+'\n'.join(rows)+'\n'
 out=head+'## 英文\n'+new_en+'\n\n## 中文\n\n'+new_zh+'\n\n## 速查表\n'+tbl+'\n## '+after
+miss=SC.缺词性(out)   # G52：写完当场查，缺词性和词义就停在定稿流水线 ④（不写文件、不进仓库），列出来让会话补
+if miss: print(f'【停止】速查表这些新重点词缺词性和词义，70 篇文章里也查不到，请在文章速查表里补全再跑：{miss}'); sys.exit(1)
 open(md,'w').write(out); print(len(rows),'rows')
