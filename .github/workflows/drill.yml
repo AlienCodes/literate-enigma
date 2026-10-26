@@ -63,7 +63,9 @@ jobs:
                   python3 make_video.py scripts/$N.json $N.mp4 2>&1 | tee /tmp/out.log | tail -3 && {
                   A=$(ls $GITHUB_WORKSPACE/最终版4K视频/$N\ *.mp4 2>/dev/null | head -1); h=$(sha256sum $N.mp4 | cut -c1-16)
                   echo "GitHub 出的 4K sha256 $h，$(stat -c%s $N.mp4) 字节" | tee -a /tmp/out.log
-                  if [ -n "$A" ]; then if cmp -s $N.mp4 "$A"; then echo "✔ 与存档 4K 逐字节相同" | tee -a /tmp/out.log; else echo "✘ 与存档 4K 不逐字节相同（存档 $(sha256sum "$A" | cut -c1-16)）" | tee -a /tmp/out.log; python3 $T/对比成片.py $N.mp4 "$A" 2>&1 | tail -6 | tee -a /tmp/out.log; false; fi; fi; } ;;
+                  if [ -n "$A" ]; then if cmp -s $N.mp4 "$A"; then echo "✔ 与存档 4K 逐字节相同" | tee -a /tmp/out.log; else echo "✘ 与存档 4K 不逐字节相同（存档 $(sha256sum "$A" | cut -c1-16)）" | tee -a /tmp/out.log; python3 $T/对比成片.py $N.mp4 "$A" 2>&1 | tail -6 | tee -a /tmp/out.log
+                    FF=$(python3 -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())")   # 查差在哪：逐路流数据指纹、文件头元数据
+                    for x in $N.mp4 "$A"; do echo "== $(basename "$x" | cut -c1-12)"; $FF -v error -i "$x" -map 0 -c copy -f streamhash -hash sha256 - | cut -c1-40; $FF -v error -i "$x" -f ffmetadata - | grep -v '^;'; cmp $N.mp4 "$A" | head -1; done 2>&1 | tee -a /tmp/out.log; false; fi; fi; } ;;
             合成对照) python3 $GITHUB_WORKSPACE/视频/云端/合成对照.py ../tts 2>&1 | tee /tmp/out.log ;;
             全篇重查) python3 $T/定稿视频核对.py --不查镜像 ${{ matrix.no }} 2>&1 | tee /tmp/out.log | tail -25 \
                       && python3 -c "import sys; sys.path.insert(0,'$T'); from 重查记录 import 键,已出片; n='${{ matrix.no }}'; print(键(n, 已出片()[n]))" > /tmp/键_${{ matrix.no }}.txt ;;
