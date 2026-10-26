@@ -37,7 +37,7 @@ jobs:
               job, rest = w[0], w[1:]; patch = next((x[3:] for x in rest if x.startswith('补丁=')), ''); nos = [x for x in rest if x.isdigit()]
               if job == '全篇重查' and not nos: nos = 全部
               rid = os.path.basename(f)[:-4]
-              for n in (nos if job in ('全篇重查', '出片') else ['0']): items.append({'req': rid, 'job': job, 'patch': patch, 'no': n})
+              for n in (nos if job in ('全篇重查', '出片', '单线程复现') else ['0']): items.append({'req': rid, 'job': job, 'patch': patch, 'no': n})
           print('新请求：', fs, '→', len(items), '个任务')
           o = open(os.environ['GITHUB_OUTPUT'], 'a'); o.write(f"items={json.dumps(items, ensure_ascii=False)}\n"); o.write(f"recheck={str(any(i['job'] == '全篇重查' for i in items)).lower()}\n")
           PY
@@ -81,20 +81,21 @@ jobs:
                   if [ -n "$A" ]; then if cmp -s $N.mp4 "$A"; then echo "✔ 与存档 4K 逐字节相同" | tee -a /tmp/out.log; else echo "✘ 与存档 4K 不逐字节相同（存档 $(sha256sum "$A" | cut -c1-16)）" | tee -a /tmp/out.log; python3 $T/对比成片.py $N.mp4 "$A" 2>&1 | tail -6 | tee -a /tmp/out.log
                     FF=$(python3 -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())")   # 查差在哪：逐路流数据指纹、文件头元数据
                     for x in $N.mp4 "$A"; do echo "== $(basename "$x" | cut -c1-12)"; $FF -v error -i "$x" -map 0 -c copy -f streamhash -hash sha256 - | cut -c1-40; $FF -v error -i "$x" -f ffmetadata - | grep -v '^;'; cmp $N.mp4 "$A" | head -1; done 2>&1 | tee -a /tmp/out.log; false; fi; fi; } ;;
+            单线程复现) python3 $GITHUB_WORKSPACE/视频/云端/单线程复现.py ../tts scripts/${{ matrix.it.no }}.json 2>&1 | grep -v 'W:onnx' | tee /tmp/out.log | tail -3 ;;
             合成对照) python3 $GITHUB_WORKSPACE/视频/云端/合成对照.py ../tts 2>&1 | tee /tmp/out.log ;;
             全篇重查) python3 $T/定稿视频核对.py --不查镜像 ${{ matrix.it.no }} 2>&1 | tee /tmp/out.log | tail -25 \
                       && python3 -c "import sys; sys.path.insert(0,'$T'); from 重查记录 import 键,已出片; n='${{ matrix.it.no }}'; print(键(n, 已出片()[n]))" > /tmp/键_${{ matrix.it.no }}.txt ;;
           esac; rc=$?; echo $rc > /tmp/rc
-          { echo "### ${{ matrix.it.job }} ${{ matrix.it.no }}：$([ $rc = 0 ] && echo ✔ || echo ✘)（$(( $(date +%s)-T0 )) 秒，$(nproc) 核）"; echo '```'; { grep -E '✘|✔|【|默认|单线程|机器' /tmp/out.log || true; } | tail -30; echo '```'; } >> $GITHUB_STEP_SUMMARY
+          { echo "### ${{ matrix.it.job }} ${{ matrix.it.no }}：$([ $rc = 0 ] && echo ✔ || echo ✘)（$(( $(date +%s)-T0 )) 秒，$(nproc) 核）"; echo '```'; { grep -E '✘|✔|【|默认|单线程|机器|^S[0-9]|^总' /tmp/out.log || true; } | tail -30; echo '```'; } >> $GITHUB_STEP_SUMMARY
           for f in $T/*通过.json; do git -C $GITHUB_WORKSPACE diff --quiet -- "$f" || cp "$f" /tmp/; done
           exit $rc
       - name: 写回结果（演练自己写的改动 = 结果补丁；会话拉回后与本地同样的程序改动一起正常提交）
         if: always() && matrix.it.patch != ''
         env: {GH_TOKEN: '${{ github.token }}'}
         run: |
-          P="${{ matrix.it.patch }}"; N=$(basename "$P" .diff); R=视频/云端/结果
+          P="${{ matrix.it.patch }}"; N="${{ matrix.it.req }}"; R=视频/云端/结果   # 结果按请求名（同一补丁跑几个任务不互相覆盖）
           git diff -- 视频 CLAUDE.md > /tmp/结果.diff; rc=$(cat /tmp/rc 2>/dev/null || echo 1)
-          { echo "补丁 $P sha256 $(sha256sum "$P" | cut -c1-16)"; echo "底版 ${{ github.sha }}"; echo "运行 ${{ github.run_id }}"; echo "退出码 $rc"; echo "结果补丁 $(wc -l < /tmp/结果.diff) 行"; grep -E '✘|【|通过' /tmp/out.log | tail -8 || true; } > /tmp/结果.txt
+          { echo "补丁 $P sha256 $(sha256sum "$P" | cut -c1-16)"; echo "底版 ${{ github.sha }}"; echo "运行 ${{ github.run_id }}"; echo "退出码 $rc"; echo "结果补丁 $(wc -l < /tmp/结果.diff) 行"; grep -E '✘|【|通过|^S[0-9]|^总' /tmp/out.log | tail -30 || true; } > /tmp/结果.txt
           put() { python3 - "$1" "$2" <<'PY'
           import sys,base64,json,subprocess,urllib.parse,os
           path,src=sys.argv[1:3]; repo=os.environ['GITHUB_REPOSITORY']; br=os.environ['GITHUB_REF_NAME']; u=f'repos/{repo}/contents/{urllib.parse.quote(path)}'
