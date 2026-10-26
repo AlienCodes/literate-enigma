@@ -1,0 +1,175 @@
+# 音频上 GitHub 评估（改门_音频上GitHub.md 第一阶段：只评估、不改门程序）。单独的实验工作流，不碰 drill.yml 的请求。
+# 触发：推送 .github/音频实验/请求.txt（每行一项：复听 / 打分 / 精度 / 流程）。结果写回 .github/音频实验/结果/。
+name: 音频实验
+on:
+  push:
+    branches: ['claude/adoring-hamilton-5qskmm']
+    paths: ['.github/音频实验/请求.txt']
+permissions: {contents: write}
+defaults:
+  run: {shell: bash}
+env:
+  PIP_DISABLE_PIP_VERSION_CHECK: '1'
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs: {req: '${{ steps.p.outputs.req }}'}
+    steps:
+      - uses: actions/checkout@v4
+        with: {sparse-checkout: .github}
+      - id: p
+        run: echo "req=$(grep -v '^#' .github/音频实验/请求.txt | tr '\n' ' ')" >> $GITHUB_OUTPUT
+  zhengli:   # 标准答案：合成读错版/改正版/漏词版
+    needs: plan
+    if: contains(needs.plan.outputs.req, '复听')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip, cache-dependency-path: 视频/工具/环境/requirements.txt}
+      - uses: actions/cache@v4
+        with: {path: '~/tts', key: lab-kokoro-v1}
+      - run: |
+          pip install -q -r 视频/工具/环境/requirements.txt
+          G=https://github.com/thewh1teagle/kokoro-onnx/releases/download; mkdir -p ~/tts
+          [ -f ~/tts/kokoro-v1.0.onnx ] || curl -sSL --retry 3 -o ~/tts/kokoro-v1.0.onnx $G/model-files-v1.0/kokoro-v1.0.onnx
+          [ -f ~/tts/voices-v1.0.bin ] || curl -sSL --retry 3 -o ~/tts/voices-v1.0.bin $G/model-files-v1.0/voices-v1.0.bin
+          sha256sum ~/tts/kokoro-v1.0.onnx | cut -c1-16; cp 视频/工具/voice_mb.npy ~/tts/
+          T0=$(date +%s); python3 .github/音频实验/实验.py 正例 ~/tts /tmp/正例; echo "合成正例 $(( $(date +%s)-T0 )) 秒"
+      - uses: actions/upload-artifact@v4
+        with: {name: 正例, path: /tmp/正例, retention-days: 7}
+  ting:
+    needs: zhengli
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        model: [sherpa-onnx-whisper-small.en, sherpa-onnx-whisper-medium.en, sherpa-onnx-whisper-turbo, sherpa-onnx-whisper-large-v3, sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8, 'fw:large-v3']
+        part: ['01,02,03,04,06', '07,08,09,10,11', '12,13,14,15,16', '17,18,19,20,21', '22,23,24,25,26', '正例0/3', '正例1/3', '正例2/3']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip, cache-dependency-path: 视频/工具/环境/requirements.txt}
+      - id: k
+        run: echo "k=$(echo '${{ matrix.model }}' | tr ':/' '__')" >> $GITHUB_OUTPUT
+      - uses: actions/cache@v4
+        with: {path: '~/asr', key: 'lab-asr-${{ steps.k.outputs.k }}'}
+      - uses: actions/cache@v4
+        with: {path: '~/.cache/huggingface', key: 'lab-hf-${{ steps.k.outputs.k }}'}
+      - uses: actions/download-artifact@v4
+        with: {name: 正例, path: /tmp/正例}
+      - name: 装
+        run: |
+          pip install -q -r 视频/工具/环境/requirements.txt sherpa-onnx==2.0.0 $([[ '${{ matrix.model }}' == fw:* ]] && echo faster-whisper)
+          M='${{ matrix.model }}'
+          if [[ $M != fw:* ]] && [ ! -d ~/asr/$M ]; then mkdir -p ~/asr; curl -sSL --retry 3 https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/$M.tar.bz2 | tar xj -C ~/asr; fi
+          ls ~/asr/$M 2>/dev/null | head
+      - name: 听
+        run: |
+          mkdir -p /tmp/out; P='${{ matrix.part }}'; export 正例=/tmp/正例
+          python3 .github/音频实验/实验.py 听 '${{ matrix.model }}' "$P" "/tmp/out/听_${{ steps.k.outputs.k }}_$(echo $P | tr ',/' '-_').json"
+      - uses: actions/upload-artifact@v4
+        with: {name: '听_${{ steps.k.outputs.k }}_${{ strategy.job-index }}', path: /tmp/out, retention-days: 7}
+  dafen:
+    needs: plan
+    if: contains(needs.plan.outputs.req, '打分')
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix: {part: ['01,02,03,04,06', '07,08,09,10,11', '12,13,14,15,16', '17,18,19,20,21', '22,23,24,25,26']}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip, cache-dependency-path: 视频/工具/环境/requirements.txt}
+      - run: |
+          pip install -q -r 视频/工具/环境/requirements.txt librosa torch torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
+          mkdir -p ~/dnsmos; for f in sig_bak_ovr.onnx model_v8.onnx; do curl -sSL --retry 3 -o ~/dnsmos/$f https://github.com/microsoft/DNS-Challenge/raw/master/DNSMOS/DNSMOS/$f; done; ls -la ~/dnsmos
+          mkdir -p /tmp/out; python3 .github/音频实验/实验.py 打分 '${{ matrix.part }}' "/tmp/out/打分_${{ strategy.job-index }}.json"
+      - uses: actions/upload-artifact@v4
+        with: {name: '打分_${{ strategy.job-index }}', path: /tmp/out, retention-days: 7}
+  jingdu:
+    needs: plan
+    if: contains(needs.plan.outputs.req, '精度')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip, cache-dependency-path: 视频/工具/环境/requirements.txt}
+      - run: |
+          pip install -q -r 视频/工具/环境/requirements.txt
+          G=https://github.com/thewh1teagle/kokoro-onnx/releases/download; mkdir -p ~/tts /tmp/out
+          for f in kokoro-v1.0.onnx kokoro-v1.0.fp16.onnx kokoro-v1.0.int8.onnx voices-v1.0.bin; do curl -sSL --retry 3 -o ~/tts/$f $G/model-files-v1.0/$f || true; done
+          ls -la ~/tts; cp 视频/工具/voice_mb.npy ~/tts/
+          python3 .github/音频实验/实验.py 精度 ~/tts /tmp/out/精度.json
+      - uses: actions/upload-artifact@v4
+        with: {name: 精度, path: /tmp/out, retention-days: 7}
+  liucheng:   # 整条声音流程在 GitHub 机器上跑（26：缓存齐的已定稿篇）
+    needs: plan
+    if: contains(needs.plan.outputs.req, '流程')
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip, cache-dependency-path: 视频/工具/环境/requirements.txt}
+      - uses: actions/cache@v4
+        with: {path: '~/work/tts/*.onnx', key: kokoro-models-v1.0-v1.1}
+      - uses: actions/cache@v4
+        with: {path: '~/asr', key: asr-whisper-small-en-v1}
+      - name: 搭机器
+        run: |
+          sudo mkdir -p /home/user && sudo ln -sfn $GITHUB_WORKSPACE /home/user/postgraduate-vocabulary && sudo ln -sfn $GITHUB_WORKSPACE /home/user/literate-enigma
+          git config --global user.name ci; git config --global user.email ci@example.com
+          sudo apt-get install -y -qq espeak-ng >/dev/null 2>&1 || true
+          T0=$(date +%s); bash 视频/工具/环境/准备机器.sh . ~/work | tail -3; echo "搭机器 $(( $(date +%s)-T0 )) 秒" | tee -a /tmp/流程.txt
+      - name: 跑
+        working-directory: /home/runner/work/video
+        run: |
+          T=$GITHUB_WORKSPACE/视频/工具; N=26; mkdir -p /tmp/out
+          s() { T0=$(date +%s); "$@" > /tmp/l.txt 2>&1; rc=$?; echo "== $* ：退出 $rc，$(( $(date +%s)-T0 )) 秒" | tee -a /tmp/流程.txt; tail -8 /tmp/l.txt | cut -c1-200 | tee -a /tmp/流程.txt; }
+          s bash $T/草稿声音.sh $N
+          s python3 $T/机器复听.py --带自检 $N
+          s python3 $T/读音核对.py $N
+          s python3 $T/交付核查.py $N 出片前
+          { echo "== 指纹"; sha256sum work_$N/a.wav work_$N/分段.json scripts/$N.json | cut -c1-16,66-; git -C $GITHUB_WORKSPACE diff --stat | tail -3; } | tee -a /tmp/流程.txt
+          cp work_$N/a.wav /tmp/out/a_$N.wav; cp /tmp/流程.txt /tmp/out/; cp scripts/$N.json /tmp/out/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 流程, path: /tmp/out, retention-days: 7}
+  huizong:
+    needs: [ting, dafen, jingdu, liucheng]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip, cache-dependency-path: 视频/工具/环境/requirements.txt}
+      - uses: actions/download-artifact@v4
+        with: {path: /tmp/a}
+      - name: 汇总并写回
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          pip install -q -r 视频/工具/环境/requirements.txt; D=.github/音频实验/结果; mkdir -p /tmp/w; R='${{ needs.plan.outputs.req }}'
+          ls /tmp/a | head -80
+          ls /tmp/a | grep -q '^听_' && python3 .github/音频实验/实验.py 汇总 /tmp/a > /tmp/w/机器复听.md 2>&1
+          ls /tmp/a | grep -q '^打分_' && python3 .github/音频实验/实验.py 打分汇总 /tmp/a > /tmp/w/打分.md 2>&1
+          [ -f /tmp/a/精度/精度.json ] && cp /tmp/a/精度/精度.json /tmp/w/
+          [ -d /tmp/a/流程 ] && cp /tmp/a/流程/流程.txt /tmp/a/流程/a_26.wav /tmp/w/ 2>/dev/null
+          python3 - <<'PY'
+          import json,glob,os
+          for pat,o in (('听_*/*.json','听全部.json'),('打分_*/*.json','打分全部.json')):
+              fs=glob.glob('/tmp/a/'+pat)
+              if fs: json.dump([json.load(open(f)) for f in fs],open('/tmp/w/'+o,'w'),ensure_ascii=False)
+          PY
+          ls -la /tmp/w; head -40 /tmp/w/机器复听.md 2>/dev/null; head -40 /tmp/w/打分.md 2>/dev/null
+          for f in /tmp/w/*; do python3 - "$D/$(basename $f)" "$f" <<'PY'
+          import sys,base64,json,subprocess,urllib.parse,os
+          path,src=sys.argv[1:3]; repo=os.environ['GITHUB_REPOSITORY']; br=os.environ['GITHUB_REF_NAME']; u=f'repos/{repo}/contents/{urllib.parse.quote(path)}'
+          g=subprocess.run(['gh','api',u+'?ref='+urllib.parse.quote(br)],capture_output=True,text=True); sha=json.loads(g.stdout).get('sha') if g.returncode==0 else None
+          body={'message':f'音频实验结果：{path}','content':base64.b64encode(open(src,'rb').read()).decode(),'branch':br}
+          if sha: body['sha']=sha
+          r=subprocess.run(['gh','api','-X','PUT',u,'--input','-'],input=json.dumps(body),capture_output=True,text=True); print(path,'写回' if r.returncode==0 else '失败 '+r.stderr[-200:])
+          PY
+          done
