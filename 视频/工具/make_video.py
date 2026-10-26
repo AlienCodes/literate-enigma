@@ -35,7 +35,8 @@ _REPO_CACHE='/home/user/postgraduate-vocabulary/视频/配音缓存'
 def _to_repo(p):   # 用到的每条缓存都复制进仓库（推送时进 GitHub）：别的机器现合成的声音与这里不逐采样相同（2026-10-17 GitHub 机器从头合成被 A21 守门拦下），缓存就是唯一的原版
     if os.environ.get('STRICT_CACHE') or not os.path.isdir(_REPO_CACHE): return
     d=os.path.join(_REPO_CACHE,os.path.basename(p))
-    if not os.path.exists(d): import shutil as _sh; _sh.copyfile(p,d)
+    if not os.path.exists(d):   # 先写临时名再改名（G53：推送两仓库正好碰上写了一半的缓存，提交进半个文件、G2 比对不一致）；临时名 .part 不进 git
+        import shutil as _sh; q_=f'{d}.{os.getpid()}.part'; _sh.copyfile(p,q_); os.replace(q_,d)
 def _cached(obj,meth,model):
     fn=getattr(obj,meth); mid_old=f'{model}:{os.path.getsize(model)}:{int(os.path.getmtime(model))}' if os.path.exists(model) else ''; mid=_portable_mid(model)
     def g(text,voice,speed=1.0,lang='en-us',**kw):
@@ -596,7 +597,7 @@ def _ending_sib_guard(sent,e,raw_e,toks_e):
     if len(a_)!=len(b_): raise SystemExit(f'【停止】结尾句的擦音个数对不上（A27，原速 {len(a_)} 个、结尾句 {len(b_)} 个）：{sent[:60]}')
     lost=[(x_,y_) for x_,y_ in zip(a_,b_) if x_[2]>=0.5 and y_[2]<0.5]
     if lost: raise SystemExit(f'【停止】结尾句放慢后丢了擦音（A27）：'+'；'.join(f'/{x_[0]}/ 原速 {x_[1]}s 强度 {x_[2]:.2f} → 结尾句 {y_[1]}s 强度 {y_[2]:.2f}' for x_,y_ in lost)+f'。换一个保得住这个音的语速：{sent[:60]}')
-def _auto_level(clips,tmap,gaps,rounds=2):
+def _auto_level(clips,tmap,gaps,no='',rounds=2):
     """G36 源头调平：句内按 ≥0.3 秒的停顿分组（列举逗号 0.2 秒不分，与交付核查的门同一切法），用同一个响度计（ffmpeg ebur128，BS.1770 门限）
     量每组响度，偏离各组中位数超过 1 LU 的组拉回中位数（0.5 dB 一档，±6 dB 以内）；量两轮。只调音量，接点在标点停顿的静音里。返回 {段号: dB}。"""
     import tempfile, 响度一致性核对 as LQ
@@ -606,8 +607,8 @@ def _auto_level(clips,tmap,gaps,rounds=2):
         else: gs[-1].append(k2)
     if len(gs)<2: return {}
     # G51（2026-10-25 撞车会话的容器重查 26 声音差 -39.6 dB）：调平增益靠 ffmpeg 量响度，换机器量出的数差一点，碰到 0.5 dB 档的边界增益就翻档。
-    # 算过的增益按“调平前的声音 + 分段 + 停顿”的指纹存成 调平_<指纹>.json（和配音缓存一起进仓库），先读存的，不重算；严格缓存模式缺了就停
-    _k=_hl.sha1(b''.join(np.ascontiguousarray(c_,np.float32).tobytes() for c_ in clips)+repr((list(gaps),[(round(t[2],4),round(t[3],4)) for t in tmap])).encode()).hexdigest()
+    # 算过的增益按“篇号 + 调平前的声音 + 分段 + 停顿”的指纹存成（篇号：演练、守门自检改号用的样本不会和真实篇目共用缓存） 调平_<指纹>.json（和配音缓存一起进仓库），先读存的，不重算；严格缓存模式缺了就停
+    _k=_hl.sha1(b''.join(np.ascontiguousarray(c_,np.float32).tobytes() for c_ in clips)+repr((str(no),list(gaps),[(round(t[2],4),round(t[3],4)) for t in tmap])).encode()).hexdigest()
     _fs=[f'{_CACHE}/调平_{_k}.json',os.path.join(_REPO_CACHE,f'调平_{_k}.json')]
     if os.environ.get('CACHE_LOG'):
         with open(os.environ['CACHE_LOG'],'a') as f_: f_.write(f'调平_{_k}.json\n')
@@ -636,7 +637,7 @@ def 句增益(d,no,si,sent,pieces,gaps,clips,tmap,a):
     """一句话拼好以后的全部增益（G36 源头调平 26 起、分段增益dB、句子增益dB），出片程序和 疑点清单/自动切点 的重建共用（25 会话 2026-10-25：重建漏了分段增益，疑点清单停）"""
     _agn={}
     if str(no).isdigit() and int(no)>=26 and len(pieces)>1:     # G36 源头调平（主对话 2026-10-25 “用巧劲”：拼接前就把句内各段调平，句内忽大忽小根本产生不出来）：26 起自动做
-        _agn=_auto_level(clips,tmap,gaps)
+        _agn=_auto_level(clips,tmap,gaps,no)
         for k_,g_ in _agn.items(): clips[2*(k_-1)]=clips[2*(k_-1)]*np.float32(10**(g_/20))
         if _agn: a=np.concatenate(clips)
     _pgn=d.get('分段增益dB',{}).get(f'S{si+1}')   # 2026-10-25 句内分段增益（用户看 25 S2：“这块这个声音在这一块声响是不是变小了？”）：句内一段比相邻段轻/响，只给这一段乘一个增益
@@ -651,6 +652,21 @@ def 句增益(d,no,si,sent,pieces,gaps,clips,tmap,a):
         if abs(_sg)>1: raise SystemExit(f'【停止】句子增益dB 只许 ±1 dB 以内（S{si+1}：{_sg}）')
         a=a*10**(_sg/20)
     return clips,a,_agn,_pgn
+def _停顿候选(e,pe,ns,lo,hi,floor):
+    """标点处的停顿候选：比本句最响帧低 PAUSE_DB 以上的连续段（含模型停顿里的底噪），往两头延伸，必须在逗号前后这两个词之间（帧号，5 ms 一帧）。
+    出片程序取其中 ≥16 帧最长的一段删成标准停顿；结尾句接点.py 用同一个函数，让接点落在出片程序要删的那段里（G53 27 S16）"""
+    runs=[];st=None
+    for f in range(lo,hi+1):
+        q=e[f]<PAUSE_DB
+        if q and st is None: st=f
+        if (not q or f==hi) and st is not None:
+            en=f if not q else f+1
+            if en-st>=3:
+                while st-1>=floor and st>pe-120 and e[st-1]<PAUSE_DB: st-=1
+                while en<len(e) and en<ns+120 and e[en]<PAUSE_DB: en+=1
+                if en>=pe-30 and st<=ns+8: runs.append((st,en))   # 必须在逗号前后这两个词之间
+            st=None
+    return runs
 def sentence_audio(sent,pieces,gaps):
     """整句一次合成（原模型，声音不变）。标点位置用带时长输出的同版模型精确定位（A9）；
     在标点处只删除"真正无声"的部分（A10：绝不删词尾的 s/f/z 等弱音），再补静音，使实际听到的停顿 = 标准时长。"""
@@ -714,18 +730,7 @@ def sentence_audio(sent,pieces,gaps):
         lo=max(0,pe-50); hi=min(len(e)-1,ns+50)
         if cuts: lo=max(lo,cuts[-1][1]//F+1)
         # ① 找停顿：比最响帧低 40 dB 以上的连续段（含模型停顿里的底噪、换气声）
-        runs=[];st=None
-        for f in range(lo,hi+1):
-            q=e[f]<PAUSE_DB
-            if q and st is None: st=f
-            if (not q or f==hi) and st is not None:
-                en=f if not q else f+1
-                if en-st>=3:
-                    floor=cuts[-1][1]//F+1 if cuts else 0
-                    while st-1>=floor and st>pe-120 and e[st-1]<PAUSE_DB: st-=1
-                    while en<len(e) and en<ns+120 and e[en]<PAUSE_DB: en+=1
-                    if en>=pe-30 and st<=ns+8: runs.append((st,en))   # 必须在逗号前后这两个词之间
-                st=None
+        runs=_停顿候选(e,pe,ns,lo,hi,cuts[-1][1]//F+1 if cuts else 0)   # 与 结尾句接点.py 同一个函数（G53）
         long=[r for r in runs if r[1]-r[0]>=16]
         r0=r1=None; f=None
         if long: r0,r1=max(long,key=lambda r:r[1]-r[0])
