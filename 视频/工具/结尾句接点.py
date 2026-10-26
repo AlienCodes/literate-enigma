@@ -23,8 +23,41 @@ def 自检():
     if m['前段语速'] != 0.9 or m['依据'] != '新' or '前段单独合成' in m: f.append('本程序算的字段没按新算的覆盖')
     if '范围' in 合并(old, dict(e, 接点=[150, 200]))['前段音调']: f.append('没抓到：接点变了，按旧接点算的前段音调范围还留着')
     return ['结尾句接点 自检：' + x for x in f]
+# G53（2026-10-26 27 S16 “…human departure, but…”）：时长模型把逗号前词尾估在 4.531 s，实际 4.09 s 就没声了；4.09–4.405 是 315 ms 静音、
+# 4.415–4.625 吸气（-38 dB）、4.67 起 but。窗口只从估的词尾往前 6 帧，只看到吸气后的 25 ms，接点定在吸气之后，出片程序删的却是吸气前的长静音（A32 停）。
+# 现在窗口起点 = 估的词尾往前，最后一个响帧（≥ -25 dB，吸气只有 -38）结束处，和原来的起点取早的那个：估得准时不变，估晚了才往前找
+LOUD = -25
+def 窗口起点(e, af):
+    L = next((i + 1 for i in range(min(af, len(e)) - 1, -1, -1) if e[i] >= LOUD), 0)
+    return max(0, min(af - 6, L))
+def 最长静音(e, lo, hi):
+    best, i = (0, None), lo
+    while i < hi:
+        if e[i] < -55:
+            j = i
+            while j < hi and e[j] < -55: j += 1
+            if j - i > best[0]: best = (j - i, i)
+            i = j
+        else: i += 1
+    return best
+def 选静音(e, af, hi, run=None):
+    """原窗口（估的词尾往前 6 帧起）里最长的 -55 dB 静音。run = 出片程序要删的那段停顿（make_video._停顿候选 里 ≥16 帧最长的）：
+    原来选的静音落在 run 里就照旧（01–26 的接点不变）；不在（27 S16：选到吸气后的 25 ms，出片程序删的是吸气前那段）就在 run 里找最长的 -55 dB 静音"""
+    n0, s0 = 最长静音(e, max(0, af - 6), hi)
+    if run is None or (s0 is not None and (n0 * 5 >= 80 or (run[0] <= s0 and s0 + n0 <= run[1]))): return n0, s0   # 原来选到的是 ≥80 ms 的真停顿，或就在要删的那段里：照旧
+    n1, s1 = 最长静音(e, run[0], run[1])
+    return (n1, s1) if s1 is not None else (n0, s0)
+def 窗口自检():
+    import numpy as np
+    f5 = lambda t: int(round(t / 0.005)); e = np.full(f5(5.0), -10.0)   # 27 S16：departure 到 4.09、静音到 4.405、吸气到 4.625、短静音到 4.67、but
+    e[f5(4.09):f5(4.405)] = -70; e[f5(4.415):f5(4.625)] = -38; e[f5(4.645):f5(4.67)] = -70; e[f5(4.405):f5(4.415)] = -50; e[f5(4.625):f5(4.645)] = -50
+    n, s0 = 选静音(e, f5(4.531), f5(4.67) + 6, (f5(4.09), f5(4.405))); f = []   # 出片程序删的是吸气前那段
+    if s0 is None or not (f5(4.09) <= s0 and s0 + n <= f5(4.405) + 1): f.append(f'没抓到：27 S16 接点应在吸气前 4.09–4.405 的长静音里，选到 {None if s0 is None else round(s0 * 0.005, 3)}（G53）')
+    e2 = np.full(f5(3.0), -10.0); e2[f5(1.8):f5(2.2)] = -70   # 估的词尾偏晚（2.0）、停顿是同一段静音：选法和原来一样
+    if 选静音(e2, f5(2.0), f5(2.2) + 6, (f5(1.8), f5(2.2))) != 最长静音(e2, f5(2.0) - 6, f5(2.2) + 6): f.append('误报：原来选的静音就在出片程序要删的那段里，也改了选法（01–26 的接点会跟着变）')
+    return f
 if '--自检' in sys.argv:
-    e = 自检(); print('\n'.join(e) or '结尾句接点 自检通过（重跑 --写入 保留前段增益dB 等手写字段；接点变了作废前段音调范围）'); sys.exit(1 if e else 0)
+    e = 自检() + ['结尾句接点 自检：' + x for x in 窗口自检()]; print('\n'.join(e) or '结尾句接点 自检通过（重跑 --写入 保留前段增益dB 等手写字段；接点变了作废前段音调范围）'); sys.exit(1 if e else 0)
 sys.path.insert(0, '.')
 exec(open('make_video.py').read().split("if __name__")[0])
 args = [a for a in sys.argv[1:] if not a.startswith('--')]; no_ = args[0].zfill(2)
@@ -37,7 +70,7 @@ cut_ = puncts_[-1]; tail_ = sent_[cut_:].strip()
 F5 = int(0.005 * SR)
 
 
-ALONE = '--前段单独合成' in sys.argv     # 10 S17：前段（If so,）单独合成，so 才拖得长（见 make_video._ending_front）；接点在前段末尾的静音里
+ALONE = '--前段单独合成' in sys.argv or bool(d_.get('结尾句', {}).get(f'S{si_}', {}).get('前段单独合成'))   # 草稿声音.sh 重跑不带参数，脚本里已有的不冲掉（27 会话报）     # 10 S17：前段（If so,）单独合成，so 才拖得长（见 make_video._ending_front）；接点在前段末尾的静音里
 def find(speed, front=False):
     txt_ = _ending_front(sent_) if front and ALONE else sent_
     r_, _ = k.create(spoken(txt_), voice=V, speed=speed, lang='en-us'); r_ = np.asarray(r_, np.float32)
@@ -48,17 +81,11 @@ def find(speed, front=False):
     p_ = ts_[pi_[-1]]; nxt_ = next((t_ for t_ in ts_[pi_[-1] + 1:] if t_.phoneme.strip() and t_.phoneme not in (',', ';', ':', '.')), None)
     a_ = int(ts_[pi_[-1] - 1].end * sc_ * SR) if pi_[-1] > 0 else int(p_.start * sc_ * SR)
     b_ = int(nxt_.start * sc_ * SR) if nxt_ else len(r_)
-    e_ = _env5(r_); lo_, hi_ = max(0, a_ // F5 - 6), min(len(e_), b_ // F5 + 6)
-    best_ = (0, None)
-    i_ = lo_
-    while i_ < hi_:
-        if e_[i_] < -55:
-            j_ = i_
-            while j_ < hi_ and e_[j_] < -55: j_ += 1
-            if j_ - i_ > best_[0]: best_ = (j_ - i_, i_)
-            i_ = j_
-        else: i_ += 1
-    n_, s_ = best_
+    e_ = _env5(r_); hi_ = min(len(e_), b_ // F5 + 6)
+    prv_ = next((t_ for t_ in reversed(ts_[:pi_[-1]]) if t_.phoneme.strip() and t_.phoneme not in ',;:.!?'), None)
+    pe_ = int(prv_.end * sc_ * SR) // F5 if prv_ else a_ // F5; ns_ = b_ // F5
+    lg_ = [r for r in _停顿候选(e_, pe_, ns_, max(0, pe_ - 50), min(len(e_) - 1, ns_ + 50), 0) if r[1] - r[0] >= 16]
+    n_, s_ = 选静音(e_, a_ // F5, hi_, max(lg_, key=lambda r: r[1] - r[0]) if lg_ else None)   # G53：接点落在出片程序要删的那段停顿里
     if n_ * 5 < 15: return None
     m_ = (s_ + n_ // 2) * F5 + F5 // 2
     seg_ = e_[max(0, m_ // F5 - 1):m_ // F5 + 2]
