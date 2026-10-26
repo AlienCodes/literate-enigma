@@ -6173,5 +6173,43 @@
   "演练": [
    "执行效应演练 G64自检指向真origin（仓库镜像）"
   ]
+ },
+ "G56": {
+  "门": [
+   [
+    "机器复听.py",
+    "if 拼写归一(' '.join(R[a1:a2])) == 拼写归一(' '.join(H[b1:b2]))"
+   ]
+  ],
+  "自检": [
+   [
+    "机器复听.py",
+    "'some 3,000 kilometres away', 'some 3000 kilometers away'"
+   ]
+  ],
+  "演练": [
+   "机器复听.py --比较自检（27 S4 kilometres/kilometers、S14 40%/per cent 必须不报，漏词读错照报；规则执行核查当场跑）"
+  ]
+ },
+ "G57": {
+  "门": [
+   [
+    "make_video.py",
+    "合成标点只许把逗号换成分号（G57）"
+   ],
+   [
+    "make_video.py",
+    "if not kw.get('is_phonemes') and SYNTH_PUNCT: text=_synth_punct(text)"
+   ]
+  ],
+  "自检": [
+   [
+    "出片守门自检.py",
+    "'G57', '20', '合成标点把字母也改了'"
+   ]
+  ],
+  "演练": [
+   "出片守门自检 G57"
+  ]
  }
 }

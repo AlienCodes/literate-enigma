@@ -69,7 +69,7 @@ if __name__ == '__main__':
                 pr_ = [(r['原始'][0], r['原始'][1], float(r['增益'])) for r in sr2_ if r.get('增益')]
                 if pn_ and any(abs(float(r.get('增益', 0)) - float(pn_.get(str(r['段']), 0))) > 1e-6 for r in sr2_) and not (str(d.get('no', no)).isdigit() and int(d.get('no', no)) >= 26):
                     raise SystemExit(f'【停止】分段记录的增益与脚本 分段增益dB 对不上（26 前没有自动调平）：S{idx + 1}')
-            key_ = _hl.md5(repr((phonemes_of(spoken(text)), gr, en_, fd_, 0.95) + ((pg,) if pg else ()) + ((('加强', bo),) if bo else ()) + ((('增益', sg_),) if sg_ else ()) + ((('分段增益', pr_),) if pr_ else ())).encode()).hexdigest()[:10]
+            key_ = _hl.md5(repr((phonemes_of(spoken(text)), gr, en_, fd_, 0.95) + ((pg,) if pg else ()) + ((('加强', bo),) if bo else ()) + ((('增益', sg_),) if sg_ else ()) + ((('分段增益', pr_),) if pr_ else ()) + ((('合成标点', d.get('合成标点', {}).get(f'S{idx + 1}')),) if idx >= 0 and d.get('合成标点', {}).get(f'S{idx + 1}') else ())).encode()).hexdigest()[:10]
             fn = f'{OUT}/{no}_{"T" if idx < 0 else "%02d" % idx}_{key_}.npy'
             if not os.path.exists(fn):
                 if en_: a, sr = _ending_raw(text, en_), 24000     # 结尾句：两遍合成在接点接起来（与出片同一个函数，接点两侧必须是静音）
