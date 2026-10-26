@@ -1,0 +1,510 @@
+diff --git "a/\350\247\206\351\242\221/\345\210\266\344\275\234\347\241\254\346\200\247\346\240\207\345\207\206\344\270\216\350\270\251\345\235\221\346\200\273\347\273\223.md" "b/\350\247\206\351\242\221/\345\210\266\344\275\234\347\241\254\346\200\247\346\240\207\345\207\206\344\270\216\350\270\251\345\235\221\346\200\273\347\273\223.md"
+index 114def5..1737e80 100644
+--- "a/\350\247\206\351\242\221/\345\210\266\344\275\234\347\241\254\346\200\247\346\240\207\345\207\206\344\270\216\350\270\251\345\235\221\346\200\273\347\273\223.md"
++++ "b/\350\247\206\351\242\221/\345\210\266\344\275\234\347\241\254\346\200\247\346\240\207\345\207\206\344\270\216\350\270\251\345\235\221\346\200\273\347\273\223.md"
+@@ -676,13 +676,14 @@
+ | G65 | 2026-10-26 用户：“这套方法一定要不停的去进化，进化进化和越来越完美……越来越能够就是省token……在耗费token量最少的情况下，能够做出比消耗token还要完美……的视频”“一定一定一定要就是不要浪费token……有的地方他用机器完完全全能起到甚至更好的效果，你在这个地方花token用人去做，反而就是浪费时间” | 方法每篇升级只靠方法复盘写建议，没有跨篇的进化表看趋势（26 比 25 贵，没有门逼着找原因、改程序）；每篇的 token 只记最后一个会话，22、24 后来的会话没记；同一改稿会话上下文滚到 50 万，每次调用贵一倍多（26 后半段实测） | `方法进化表.py`：每个会话每轮把本会话按篇的等效 token、调用、上下文、按步骤花费、手工重复（同一段内联脚本跑两次以上）写进 制作记录/方法进化/<会话>.json，老会话按 NN.md 收工行切段估算，每篇所有会话加总写 制作记录/方法进化表.md（含开工必读 ⑤ 步骤表每步预计/实测 token）；27 起 定稿流水线 ⓪ 和开下一篇（开工记录.py）比前三篇中位数，任何一项变差，方法复盘没有查得到的“进化落地：<提交号|G##|K##>”就停；出稿、改稿会话上下文超 40 万，草稿声音.sh 开头就停（先交接、开新改稿会话）；开工提醒第一屏打印进化趋势和 GitHub 工作流最近结果；机制清单“方法进化”证据 |
+ | G66 | 2026-10-26 几个改门会话同时改门程序：G58 白名单推送时与别的会话撞车（开工必读、执行效应演练通过.json 冲突），合并后的程序是两边的组合，两份印章都失效，只能在合并版上重演 30 分钟；补丁演练的印章也对不上 | 改门没有排队，谁都能同时改 | 改门锁（主会话 2026-10-26 定：从根上排队）：要改门程序（会话开工.py 的 门程序()）的会话先 `python3 视频/工具/报坑.py --锁 --任务 "改什么"`（和取号同一套原子推送，记会话、任务、时刻，2 小时过期可 --续锁，过期可抢）；别人持锁就取不到、排队等（订阅 PR #7，不轮询）；提交前钩子（会话开工.py --提交前）改了门程序但本会话没持锁就拒；推送两仓库.sh 推完自动放锁。拦住：报坑.py 锁问题()；报坑.py --自检 真跑两个会话同时取锁只一个取到、不是持锁人放不了、过期可抢、没持锁改门被拒；执行效应演练 G66 |
+ | G67 | 2026-10-26（K24）多会话同时用 drill.yml 丢请求：单一请求文件 视频/云端/演练请求.txt + 同一 concurrency 组只留最新一个排队，方法进化会话 09:19/09:20 两次补丁演练被后推的请求顶掉；主会话推送两仓库把镜像的请求文件盖回主仓库版本，又触发一次把它顶掉 | 请求只有一个文件、全局排队，镜像同步会改写请求 | 一个请求一个文件：新建 视频/云端/请求/<名字>.txt，drill.yml 只认这次推送新加的请求文件（改动、删除不触发），各请求各跑各的、不设全局排队；推送两仓库.sh 同步时镜像里别的会话的请求只增不删、拷回主仓库。拦住：推送两仓库.sh 回写请求段；推送自检 造“别的会话把请求放在镜像里、主仓库再推送”必须两边都留着（拆掉回写请求段自检报“没抓到”）|
+-| G68 | 2026-10-26 27 机器复听 --带自检 两次“没抓到 S9”（报坑 K25、K26）：自检只吞最长一段中点前后 0.36 秒（76.66–77.02s，是话音），whisper 靠上下文把 “near the most” 补回来，自检被语言模型骗过，27 声音本身没问题 | 自检吞的太短：一两个短词，识别器的语言模型能按上下文猜回来，测不出“漏词”这条路是不是通的 | 机器复听 自检、--带自检 改成吞这一句最长一段（停顿隔开）的中间七成（吞段()，几个词连着没了，语言模型补不回）；27、25 实测必报、原样不误报；交付核查 出片后每次跑。缺口：配音模型无缝漏掉一个短虚词、whisper 凭上下文补回，时长、按带时长模型量电平都做不了门（实测），并进 改门_音频上GitHub.md 第二阶段 2“短虚词无缝漏读”（注入查全 + NeMo CTC 第三识别器）做 |
++| G68 | 2026-10-26 27 机器复听 --带自检 两次“没抓到 S9”（报坑 K25、K26）：自检只吞最长一段中点前后 0.36 秒（76.66–77.02s，是话音），whisper 靠上下文把 “near the most” 补回来，自检被语言模型骗过，27 声音本身没问题 | 自检吞的太短：一两个短词，识别器的语言模型能按上下文猜回来，测不出“漏词”这条路是不是通的 | 机器复听 自检、--带自检 改成吞这一句最长一段（停顿隔开）的中间七成（吞段()，几个词连着没了，语言模型补不回）；27、25 实测必报、原样不误报；交付核查 出片后每次跑。缺口：配音模型无缝漏掉一个短虚词、whisper 凭上下文补回，时长、按带时长模型量电平都做不了门（实测），并进 改门_音频上GitHub.md 第二阶段 2“短虚词无缝漏读”（注入查全 + NeMo CTC 第三识别器）做；2026-10-26 短虚词无缝漏读（a/the/and… 整词切掉不留静音）注入：small.en 44/74、两路任一 47/73，whisper 补回的照样有；不带语言模型的 CTC 识别器误报太多不能上（见 G75），这类剩下的靠两路复听 + 用户听 |
+ | G69 | 2026-10-26 27 S6 contamination, and（报坑 K27）：/n/ 衰减到 -55 dB 以下 5 ms 后又回升到 -43 dB 的余音 20 ms，出片程序从第一个 -55 dB 帧起删停顿，余音被切 10 ms，独立复核报词尾被切；本篇只能用 停顿删除区间 绕开 | 删停顿只看“第一个听不见的帧”，没看后面紧跟着又回升的余音 | 28 起删标点停顿用 _余音两头()：衰减后 10 ms 内又能听见的算余音、下一个词头前 10 ms 内的弱起音算词头，都留着；停顿里隔得远的底噪照旧删（27 S6 实测删除起点 7.530→7.560，其余逗号不变）；余音删法核对.py --自检（规则执行核查当场跑，拆掉调用、换回旧删法必报）；01–27 声音不变 |
+ | G70 | 2026-10-26 27 S12（报坑 K28）：词头浊音确认（w 4.205–4.240，按 10 ms 一格量）和紧贴词头的非人声区间 4.01–4.206083 只重叠 1 ms，确认按位置迁移每次重建都当成“碰到删除区间”删掉，手工重写 3 次；“停顿删除”类确认没在放行口子表登记，依据只能写进 停顿位置 | 迁移用“有重叠就算碰到”，没算确认本身 10 ms 的量化；新确认类没登记 | 确认按位置迁移：重叠 >10 ms 才算碰到，确认整段在区间里、或盖住整个短区间照旧算；--自检 进规则执行核查当场跑；放行口子表登记 核对确认.停顿删除（白名单同 停顿位置） |
+ | G71 | 2026-10-26 用户：“一定要有一个确保执行机制，一定要有一个绝对的，绝对的确保执行机制，而且要严格执行……不要说好不容易费了这么多时间，费了这么多token，弄完之后到最后不用，那就等于白干了。” | 机制建好后没人查它到底用没用（反面教材：render.yml 建好十天没用）；证据链只在出片前、出片后、定稿查本篇，跨篇看不出哪个机制一直闲着；推送时 GitHub 只跑规则执行核查，不查证据链；没有一份报告说清每一步真跑了没有 | ① 机制闲置报警：`证据.py --闲置` 按各篇证据链（制作记录/证据/NN.jsonl）和 GitHub 运行记录（视频/云端/结果/）给机制清单每个机制（含每篇要跑的工作流）算“最近一次真用上”，连续两篇该用没用、或建好后第一篇就没用上：开工提醒第一屏标红、规则执行核查报出、开工记录.py 开下一篇停、定稿流水线 ⓪ 停，直到修好或经用户同意下线（机制清单写“下线”，只认用户同意记录）；② ci.yml 每次推送加跑 `证据.py --全查`（28 起各篇证据链）和 `--闲置`，红了挂在 PR #7；③ `方法进化表.py` 写表时 28 起每篇出“机制运行报告”（开工必读 ⑤ 36 步：证据在不在、在哪跑、token），同时写进 NN.md。拦住：证据.py 闲置自检（连续两篇没用、建好后第一篇没用、每篇工作流没跑、下线没有用户原话、全查漏手改，必须抓到；隔一篇又用上、正在做的篇不误报）；方法进化表 自检（报告缺步、token、只写一节）；演练 G71机制闲置（流水线入口） |
+ | G72 | 2026-10-26 改门 GitHub 化：onnxruntime 默认多线程合成在不同 CPU 上算出来不逐样本相同（沙盒 Xeon 2.1G 与 GitHub Xeon 8370C 同一句指纹不同），GitHub 上独立复核现场重合成对不上，声音演练 A13 那一场 GitHub 不过；也就是说沙盒丢了，新合成的声音换台机器就复现不了 | 合成没固定线程数 | 合成一律单线程（make_video.py 的 k、KT，独立复核 synth.py、labels.py：onnxruntime intra_op=1）：两台机器逐样本相同（合成对照.py 实测），音质不变（20 整篇单线程 vs 多线程：0.04% 采样差 1 LSB，体检 8 项、响度、机器复听结论全同）。已有缓存照用不动，配音缓存两道门（主会话 2026-10-26 定）：没有 .单线程 标记的条目必须在 视频/配音缓存/老条目指纹.json（单线程上线前全部 2166 条，含 A21 供体）里且指纹相符，新条目只能单线程合成并带 .单线程 标记（里面是指纹），否则出片程序、独立复核就停；独立复核对老条目用核过指纹的缓存当标准答案，新条目单线程现场重合成（真独立）。拦住：make_video.py _条目核对()；配音缓存核对.py --自检（改老条目、无标记新条目、标记不符都停）、--全部；执行效应演练 G72老条目被改、G72无标记新条目 |
+ | G73 | 2026-10-26（K32）报坑.py 原子写（取号、报坑、改门锁）推完后在本地暂存一份坑登记：下次 git pull 报“本地改动会被覆盖”中止，推送合并时坑登记冲突，规则执行核查还读到旧的本地那份（报“G58 没有取号”） | 原子写顺手改本地工作区 | 原子写只推远端、只 fetch，不碰本地工作区；读本地() 改读 origin/main（读不到才读本地文件）。拦住：报坑.py --自检 真跑取号后本地工作区必须干净、读得到刚取的号（拆掉修复，自检报“没抓到”）|
+ | G74 | 2026-10-26（K34）改门 GitHub 化会话 12:47 推了 GitHub 请求（G72 主演练、声音演练、复现 20）就收工等唤醒：GitHub 写回结果是 API 提交，不触发 PR 事件、没人唤醒，空等 2 小时 20 分，改门锁 14:30 过期 | 以为订阅 PR #7 就会被结果唤醒 | 推 GitHub 请求一律用 `python3 视频/工具/推请求.py <名字> "<任务行>"`（镜像工作分支新建请求文件、提交推送，记进本机请求账 ~/.云端请求.json，打印“必须 send_later”）；send_later 之后钩子（PostToolUse mcp__claude-code-remote__send_later → 闸门.py 已约唤醒）记下唤醒时刻；收工闸门见到最后一个请求之后没约唤醒就拦。拦住：闸门.py 收工 K34 段；执行效应演练 G74推请求没约唤醒（临时 HOME 放请求账，真跑收工闸门）|
++| G75 | 2026-10-26 改门 音频上GitHub 第二阶段：注入实测（20–24、26 每句造坑，small.en、parakeet 各听一遍）现行机器复听只用 small.en，漏读（中间 0.36 秒静音）只查出 60/101、词中截断 9/101，咔哒、削波 0；whisper 的语言模型按上下文把漏掉的词补回（20 S8 puncture 被吞，small.en 照原文写出，parakeet 听成 pun） | 单识别器、带语言模型补全，查全低；第二个识别器多出的误报全是比较程序的漏洞（句首专名、读音改正表、£ 符号），不是声音问题 | 机器复听.py 改成两路（small.en + parakeet，NeMo TDT 0.6B int8）任一路报就报，每一路各自打印〔路名〕；少一路的模型就停（不许悄悄退回单识别器）；--带自检 吞一句必须每一路各自都报（任一路失灵 = 退出 2）；比() 加三条通用规则：已核实表里大写开头的专名句首也豁免（20 S17 Ötzi，判定含“改正后正确”的 Ötztal 同样），脚本侧按读音改正表的改正后读音也算对（22 S11 Walkie-Scorchie），听到的 £/$/€ + 数字写成 pounds/pound 两种取对不上少的（22 S8、23 S18）；21 S17 recaptured 实测 /d/ 在（-29 dB、50 ms），是识别器听错，不写规则（01–24 只列）。不开确认口子、不按句白名单。准备机器.sh 下载 parakeet 并核对 模型校验码.json 四项；drill.yml 缓存键改名。门：交付核查 出片后 机器复听（逐词读音与脚本一致）；自检：机器复听 --带自检 每一路、--比较自检；演练：声音演练 G42只有parakeet抓到（20 S8 small.en 补回）+ 自查拆门_parakeet（拆掉 parakeet 一路必须没挡住）；注入查全（20–24、26 共 109 句，每类只在本组合原样不报的句子上算）small.en 单用 → 两路任一：漏读 60/108 → 66/107、词中截断 9 → 10、句尾截断 2 → 2、削波 0 → 1、虚词无缝漏读（parakeet 时刻整词切掉 + 10 ms 交叉淡化）44/74 → 47/73，每类不降；原样误报 2/109（21 S17 recaptured 实测 /d/ 在、22 S16 small.en 听成 guest scout，都在 01–24 只列）。第三识别器 NeMo CTC 贪心（conformer-small、citrinet-512）不上：查全更高（漏读 52/60、虚词漏读 29/35），但原样误报 49/109、51/109，近半是拼错的词（meres、excchgees、pils），通用规则消不掉 |
+ | C1 | 用户说“做网站”，其实只要一个 HTML 文件存档，我却去部署了 GitHub Pages | 总表没写原因 | “上线/公开”是什么意思没把握时，先问；默认只生成文件，不做任何公开发布（硬性条件 五.4）。拦住：人工步骤；`踩坑核查.py 通用` 逐条列出来提醒（不能自动判断）；每篇的踩坑对照记录里，这一条必须填写 |
+ | C2 | 没经确认就触发了部署 | 总表没写原因 | 对外公开、部署这类操作，必须先得到用户的明确同意（硬性条件 五.4）。拦住：同 C1 |
+ | C3 | 用户两次提的标准互相冲突（“字号统一”和“铺满屏幕”） | 总表没写原因 | 明确指出冲突，请用户选择，并把最终的选择记下来。拦住：人工步骤；`踩坑核查.py 通用` 列出来提醒；每篇的踩坑对照记录里，这一条必须填写 |
+diff --git "a/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\346\224\271\351\227\250_\351\237\263\351\242\221\344\270\212GitHub/\346\263\250\345\205\245\346\237\245\345\205\250.py" "b/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\346\224\271\351\227\250_\351\237\263\351\242\221\344\270\212GitHub/\346\263\250\345\205\245\346\237\245\345\205\250.py"
+index 6ba436d..12a71ba 100644
+--- "a/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\346\224\271\351\227\250_\351\237\263\351\242\221\344\270\212GitHub/\346\263\250\345\205\245\346\237\245\345\205\250.py"
++++ "b/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\346\224\271\351\227\250_\351\237\263\351\242\221\344\270\212GitHub/\346\263\250\345\205\245\346\237\245\345\205\250.py"
+@@ -3,16 +3,31 @@
+ 用法（视频工作目录，先 快速重建核查.sh NN 出 work_NN/a.wav、分段.json；parakeet 装在 ~/asr，见 改门_音频上GitHub.md 第二阶段 2 交接）：
+   python3 注入查全.py 输出.json 20 21 22 23 24 26        # 2026-10-26 实测约 30 分钟（沙盒 4 核）
+   python3 注入查全.py --统计 输出.json                    # 每类坑：small.en / parakeet / 两个都报 / 任一报 的查全，原样误报
++2026-10-26 第二阶段 2：加第三个识别器 ctc（NeMo CTC conformer-small 贪心，不带语言模型）、加一类坑“虚词漏读”（parakeet 逐词时刻找本句第一个
++a/an/the/it/and/of/to，整词切掉，接缝两边各 10 ms 交叉淡化，不留静音），结果里存每路听到的文字（--统计 现场按 机器复听.比 重判，比() 改了不用重听）。
+ 坑：词尾截断（每个逗号分行结尾 80 ms 静音）、句尾截断（句末 80 ms）、词中截断（最长分行中点 0.12 秒）、漏读（中点 0.36 秒）、咔哒（中点 +0.5）、削波（×4 削顶）。
+ 改门实施后：把 R 换成新 机器复听 的识别器组合，每类查全不得低于本文件 2026-10-26 记录的 small.en 单用。
+ """
+ import sys, json, re, numpy as np, glob, os
+ if sys.argv[1] == '--统计':
+-    r = json.load(open(sys.argv[2])); base = {(x['篇'], x['句']): x for x in r if x['坑'] == '原样'}
+-    print('原样误报', {n: sum(x[n] for x in base.values()) for n in ('small', 'parakeet')}, '两个都报', sum(x['small'] and x['parakeet'] for x in base.values()), '任一', sum(x['small'] or x['parakeet'] for x in base.values()), '/', len(base))
+-    for k in ['词尾截断', '句尾截断', '词中截断', '漏读', '咔哒', '削波']:
+-        xs = [x for x in r if x['坑'] == k and not base[(x['篇'], x['句'])]['small']]
+-        print(k, len(xs), 'small', sum(x['small'] for x in xs), 'parakeet', sum(x['parakeet'] for x in xs), '两个都报', sum(x['small'] and x['parakeet'] for x in xs), '任一', sum(x['small'] or x['parakeet'] for x in xs))
++    T='/home/user/postgraduate-vocabulary/视频/工具'; sys.path.insert(0,T); import 机器复听 as M
++    r = json.load(open(sys.argv[2])); N = [n for n in ('small', 'parakeet', 'ctc') if n in r[0]['听到']]
++    r = [x for x in r if '听到' in x] + [x for x in r if '听到' not in x]
++    for x in r:
++        if '听到' in x: x.update({n: bool(M.比(x['ref'], x['听到'][n])) for n in N})
++    base = {(x['篇'], x['句']): x for x in r if x['坑'] == '原样'}
++    组 = {'small': lambda x: x['small'], 'parakeet': lambda x: x['parakeet'], 's|p': lambda x: x['small'] or x['parakeet']}
++    if 'ctc' in N: 组.update({'ctc': lambda x: x['ctc'], 's|c': lambda x: x['small'] or x['ctc'], 's|p|c': lambda x: x['small'] or x['parakeet'] or x['ctc']})
++    print('| 坑 | 句数 | ' + ' | '.join(组) + ' |')
++    print(f'| 原样误报 | {len(base)} | ' + ' | '.join(str(sum(f(x) for x in base.values())) for f in 组.values()) + ' |')
++    for k in ['词尾截断', '句尾截断', '词中截断', '漏读', '咔哒', '削波', '虚词漏读']:
++        xs = [x for x in r if x['坑'] == k]   # 每种组合只在它原样不报的句子上算（查全 = 抓到 / 这些句数），原样就报的句子不算“抓到”
++        if xs: print(f'| {k} | {len(xs)} | ' + ' | '.join(f'{sum(f(x) for x in xs if not f(base[(x["篇"], x["句"])]))}/{sum(1 for x in xs if not f(base[(x["篇"], x["句"])]))}' for f in 组.values()) + ' |')
++    print('虚词漏读 跳过（句中没有这些词）', sum(1 for x in r if x['坑'] == '虚词漏读跳过'))
++    if '--误报' in sys.argv:
++        for x in base.values():
++            for n in N:
++                if x[n]: print(x['篇'], x['句'], n, M.比(x['ref'], x['听到'][n]))
+     sys.exit(0)
+ OUT, NOS = sys.argv[1], sys.argv[2:]
+ import soundfile as sf
+@@ -20,7 +35,19 @@ from scipy.signal import resample_poly
+ T='/home/user/postgraduate-vocabulary/视频/工具'; sys.path.insert(0,T); import 机器复听 as M, sherpa_onnx
+ A=os.path.expanduser('~/asr')
+ R={'small':M.识别器(),
+-   'parakeet':sherpa_onnx.OfflineRecognizer.from_transducer(encoder=f'{A}/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8/encoder.int8.onnx',decoder=f'{A}/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8/decoder.int8.onnx',joiner=f'{A}/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8/joiner.int8.onnx',tokens=f'{A}/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8/tokens.txt',model_type='nemo_transducer',num_threads=4)}
++   'parakeet':sherpa_onnx.OfflineRecognizer.from_transducer(encoder=f'{A}/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8/encoder.int8.onnx',decoder=f'{A}/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8/decoder.int8.onnx',joiner=f'{A}/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8/joiner.int8.onnx',tokens=f'{A}/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8/tokens.txt',model_type='nemo_transducer',num_threads=4),
++   'ctc':sherpa_onnx.OfflineRecognizer.from_nemo_ctc(model=f'{A}/sherpa-onnx-nemo-ctc-en-conformer-small/model.int8.onnx',tokens=f'{A}/sherpa-onnx-nemo-ctc-en-conformer-small/tokens.txt',num_threads=4)}
++虚词 = {'a', 'an', 'the', 'it', 'and', 'of', 'to'}
++def 虚词段(x, sr):
++    """parakeet 逐词时刻：本句第一个虚词的 [起, 止)（秒，相对本句开头）；没有返回 None"""
++    y = resample_poly(x, 16000, sr).astype(np.float32); s = R['parakeet'].create_stream(); s.accept_waveform(16000, y); R['parakeet'].decode_stream(s); res = s.result
++    ws = []   # [词, 起, 止]
++    for t, a_, d_ in zip(res.tokens, res.timestamps, res.durations):
++        if t.startswith(' ') or not ws: ws.append([t.strip().lower(), a_, a_ + d_])
++        else: ws[-1][0] += t; ws[-1][2] = a_ + d_
++    for i, (w, a_, b_) in enumerate(ws):
++        if w in 虚词: return a_, min(b_, ws[i + 1][1]) if i + 1 < len(ws) else b_
++    return None
+ def asr(r,x,sr):
+     x=resample_poly(x,16000,sr).astype(np.float32); s=r.create_stream(); s.accept_waveform(16000,x); r.decode_stream(s); return s.result.text
+ def 坑(x,sr,v,t0,k):
+@@ -33,14 +60,22 @@ def 坑(x,sr,v,t0,k):
+     if k=='漏读': x[m-int(.18*sr):m+int(.18*sr)]=0
+     if k=='咔哒': x[m]+=0.5
+     if k=='削波': x=np.clip(x*4,-1,1)/4
++    if k=='虚词漏读':
++        g=虚词段(x,sr)
++        if g is None: return None
++        i0,i1=int(g[0]*sr),int(g[1]*sr); f=int(.01*sr); w=np.linspace(0,1,f)
++        a_,b_=x[:i0],x[i1:]
++        if len(a_)<f or len(b_)<f: return None
++        x=np.concatenate([a_[:-f],a_[-f:]*(1-w)+b_[:f]*w,b_[f:]])
+     return x
+-K=['原样','词尾截断','句尾截断','词中截断','漏读','咔哒','削波']; out=[]
++K=['原样','词尾截断','句尾截断','词中截断','漏读','咔哒','削波','虚词漏读']; out=[]
+ for no in NOS:
+     d=json.load(open(f'scripts/{no}.json')); seg=json.load(open(f'work_{no}/分段.json')); a,sr=sf.read(f'work_{no}/a.wav'); a=a if a.ndim==1 else a.mean(1)
+     for i,(key,v) in enumerate(seg.items()):
+         t0,t1=v[0]['时刻'][0],v[-1]['时刻'][1]; x=a[int(t0*sr):int(t1*sr)]
+         ref=' '.join(re.sub(r'\{\{.*?\}\}|\*\*','',c['en']) for c in d['sentences'][i]['chunks'])
+         for k in K:
+-            y=坑(x,sr,v,t0,k); out.append({'篇':no,'句':key,'坑':k,**{n:bool(M.比(ref,asr(r,y,sr))) for n,r in R.items()}})
+-    print(no,len(out),flush=True)
+-json.dump(out,open(OUT,'w'),ensure_ascii=False)
++            y=坑(x,sr,v,t0,k)
++            if y is None: out.append({'篇':no,'句':key,'坑':k+'跳过'}); continue
++            out.append({'篇':no,'句':key,'坑':k,'ref':ref,'听到':{n:asr(r,y,sr) for n,r in R.items()}})
++    print(no,len(out),flush=True); json.dump(out,open(OUT,'w'),ensure_ascii=False)   # 每篇存一次
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\345\243\260\351\237\263\346\274\224\347\273\203.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\345\243\260\351\237\263\346\274\224\347\273\203.py"
+index 2b99bd4..29c946f 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\345\243\260\351\237\263\346\274\224\347\273\203.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\345\243\260\351\237\263\346\274\224\347\273\203.py"
+@@ -57,6 +57,10 @@ def 咔哒(a, sr):     # G41 音频体检：句子中间一个采样突跳（切
+     s, e = 段(a, sr)[0][2]; p = (s + e) // 2; q = max(1, sr // 2000); a[p:p + q] = 0.95; a[p + q:p + 2 * q] = -0.95; return a   # 1 毫秒满幅爆音（单个采样的突跳经成片 AAC 编码会被抹平）
+ def 吞词(a, sr):     # G42 机器复听：一句中间 0.36 秒声音没了（吞音、漏词），停顿、响度类的门都量不出“少了一个词”
+     sg = 段(a, sr)[0]; s, e = sg[len(sg) // 2]; m = (s + e) // 2; a[m - int(0.18 * sr):m + int(0.18 * sr)] = 0; return a
++def 只有parakeet(ws):   # 第二阶段 2（任一报就报）：small.en 听不出、只有 parakeet 听得出的漏读（注入实测 2026-10-26：20 S8 最长一段中点 0.36 秒静音，
++    # small.en 照原文补回、parakeet 听成 “pun”）；声音演练的 25 = 20 的冻结脚本改号，声音逐样本相同
++    v = json.load(open(f'{ws}/work_{NO25}/分段.json'))['S8']; i = max(range(len(v)), key=lambda j: v[j]['时刻'][1] - v[j]['时刻'][0]); m = (v[i]['时刻'][0] + v[i]['时刻'][1]) / 2
++    改声音(lambda a, sr: (a.__setitem__(slice(int((m - .18) * sr), int((m + .18) * sr)), 0), a)[1], NO25)(ws)
+ def 句内一段变轻(ws):   # G36：句内一段突然变小（重放 25 S2 “some 200,000 miles out,” 比前一段轻 3～5 LU，整句仍在 ±2 LU 内）
+     import 响度一致性核对 as Q
+     sj = f'{ws}/work_{NO25}/分段.json'; bad = {r[0] for r in Q.句内报(Q.句内(f'{ws}/{NO25}.mp4', seg_json=sj))}
+@@ -111,6 +115,7 @@ def 加多音(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: _加英文
+     ('G36句内一段变轻', '出片后', '句内一段比前一段轻 4 LU（整句仍在 ±2 LU 内，重放 25 S2）', None, 句内一段变轻, ['句内分段响度（相邻两段'], ['G36'], NO25),
+     ('G41体检咔哒', '出片后', '句子中间一个采样突跳（咔哒声）', None, 改声音(咔哒, NO25), ['音频体检（与 01–24 最差比）'], ['G41'], NO25),
+     ('G42机器复听吞词', '出片后', '一句中间 0.36 秒声音没了（吞音、漏词）', None, 改声音(吞词, NO25), ['机器复听（逐词读音与脚本一致）'], ['G42'], NO25),
++    ('G42只有parakeet抓到', '出片后', '20 S8 最长一段中点 0.36 秒没了（small.en 照原文补回，只有 parakeet 听出）', None, 只有parakeet, ['机器复听（逐词读音与脚本一致）'], ['G42', 'G75'], NO25),
+     ('G12只有声音', '出片后', '重放 21：NN.mp4 被只出声音覆盖（没有画面）', None, None, ['成片有画面（G12'], ['G12']),
+ ]
+ 
+@@ -171,6 +176,14 @@ def 演练(W, 只=None):
+             p = f'{M}/视频/工具/交付核查.py'; t = open(p).read(); open(p, 'w').write(t.replace("step('无标点处停顿 ≤ 0.22 秒', not long,", "step('无标点处停顿 ≤ 0.22 秒', True,", 1))
+             c, o = 跑(M, ws, s[1]); caught = any('无标点处停顿' in l for l in o - bo[(s[1], NO)][1])
+             res.append(('自查拆门_声音', not caught, '拆掉 无标点停顿 的门后演练报“没挡住”（演练能发现坏门）' if not caught else '拆掉门后演练还说挡住了：演练失灵'))
++        if not 只 or '自查拆门_parakeet' in 只:   # 把 机器复听 的 parakeet 一路拆掉（镜像里改程序，只留 small.en），只有 parakeet 抓得到的那一场必须报“没挡住”
++            s = next(x for x in 声音场景 if x[0] == 'G42只有parakeet抓到'); M, ws = 场('拆parakeet', None, s[4], qc0(NO25), NO25)
++            p = f'{M}/视频/工具/机器复听.py'; t = open(p).read(); a_ = "            'parakeet': sherpa_onnx.OfflineRecognizer.from_transducer("
++            if t.count(a_) != 1: res.append(('自查拆门_parakeet', False, '机器复听.py 里找不到 parakeet 那一路（锚变了，改演练）'))
++            else:
++                open(p, 'w').write(t.replace(a_, "            '_拆': sherpa_onnx.OfflineRecognizer.from_transducer(", 1).replace("    return {'small.en'", "    return {k_: v_ for k_, v_ in {'small.en'", 1).replace("model_type='nemo_transducer', num_threads=4)}", "model_type='nemo_transducer', num_threads=4)}.items() if k_ != '_拆'}", 1))
++                c, o = 跑(M, ws, s[1], NO25); caught = any('机器复听（逐词读音与脚本一致）' in l for l in o - bo[(s[1], NO25)][1])
++                res.append(('自查拆门_parakeet', not caught, '拆掉 parakeet 一路后，只有它能抓的那一场报“没挡住”（parakeet 一路在起作用、演练能发现）' if not caught else '拆掉 parakeet 一路后还说挡住了：要么 small.en 也抓得到（换样本），要么演练失灵'))
+     for x in os.listdir(root):
+         if x.startswith('演练_'): shutil.rmtree(f'{root}/{x}', ignore_errors=True)
+     left = Y.清新缓存(c0)   # 演练里合成的新缓存（出片程序自动拷进 make_video 写死的仓库和本仓库的 配音缓存/）不留（G29）
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\234\272\345\231\250\345\244\215\345\220\254.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\234\272\345\231\250\345\244\215\345\220\254.py"
+index 6fbc1ec..35610fd 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\234\272\345\231\250\345\244\215\345\220\254.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\234\272\345\231\250\345\244\215\345\220\254.py"
+@@ -10,15 +10,28 @@ try: import soundfile as sf; from scipy.signal import resample_poly   # 重依
+ except ImportError: sf = resample_poly = None
+ T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T)
+ MD = os.path.expanduser('~/asr/sherpa-onnx-whisper-small.en')   # 准备机器.sh 下载到这里
++PD = os.path.expanduser('~/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8')
++路名 = ('small.en', 'parakeet')   # 2026-10-26 第二阶段 2（主会话定：查全优先）：任一路报就报，每一路各自打印；少一路就停，不许悄悄退回单识别器
+ 
+ def 识别器():
++    """每一路一个离线识别器 {名: 识别器}。small.en（whisper，带语言模型补全）+ parakeet（NeMo TDT 0.6B int8）：
++    注入实测（改门_音频上GitHub.md 第二阶段）任一报就报，漏读、词中截断、句尾截断、咔哒、削波每类查全都比 small.en 单用高"""
+     import sherpa_onnx
+-    p = lambda x: os.path.join(MD, x)
+-    if not os.path.exists(p('small.en-encoder.int8.onnx')): raise SystemExit(f'【停止】没有识别模型 {MD}：bash 准备机器.sh 会下载（GitHub release k2-fsa/sherpa-onnx asr-models/sherpa-onnx-whisper-small.en）')
+-    return sherpa_onnx.OfflineRecognizer.from_whisper(encoder=p('small.en-encoder.int8.onnx'), decoder=p('small.en-decoder.int8.onnx'), tokens=p('small.en-tokens.txt'), num_threads=4)
++    p = lambda d, x: os.path.join(d, x)
++    for d, f, u in ((MD, 'small.en-encoder.int8.onnx', 'sherpa-onnx-whisper-small.en'), (PD, 'encoder.int8.onnx', 'sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8')):
++        if not os.path.exists(p(d, f)): raise SystemExit(f'【停止】没有识别模型 {d}：bash 准备机器.sh 会下载（GitHub release k2-fsa/sherpa-onnx asr-models/{u}）；机器复听每一路都要有，不许少一路')
++    return {'small.en': sherpa_onnx.OfflineRecognizer.from_whisper(encoder=p(MD, 'small.en-encoder.int8.onnx'), decoder=p(MD, 'small.en-decoder.int8.onnx'), tokens=p(MD, 'small.en-tokens.txt'), num_threads=4),
++            'parakeet': sherpa_onnx.OfflineRecognizer.from_transducer(encoder=p(PD, 'encoder.int8.onnx'), decoder=p(PD, 'decoder.int8.onnx'), joiner=p(PD, 'joiner.int8.onnx'), tokens=p(PD, 'tokens.txt'), model_type='nemo_transducer', num_threads=4)}
++
++def 转写(rec, x16):
++    s = rec.create_stream(); s.accept_waveform(16000, x16); rec.decode_stream(s); return s.result.text.strip()
++def 各路(recs, ref, x16):
++    """每一路听一遍：(听到的文字 {名: 文字}, 对不上的 [(脚本词, 听到词〔路名〕)])，任一路报就报"""
++    t = {n: 转写(r, x16) for n, r in recs.items()}
++    return t, [(a, f'{b}〔{n}〕') for n in recs for a, b in 比(ref, t[n])]
+ 
+ _tk = None
+-_自检读音 = {"crew's": 'kɹuːz', 'cruise': 'kɹuːz', 'organised': 'ɔɹɡənaɪzd', 'organized': 'ɔɹɡənaɪzd', 'eleven': 'ɪlɛvən', '11': 'ɪlɛvən'}   # espeak 的读音（kokoro 注音实测）
++_自检读音 = {"crew's": 'kɹuːz', 'cruise': 'kɹuːz', 'organised': 'ɔɹɡənaɪzd', 'organized': 'ɔɹɡənaɪzd', 'eleven': 'ɪlɛvən', '11': 'ɪlɛvən', 'walkie': 'wɔki', 'scorchy': 'skɔɹtʃi', 'scorchie': 'skɔɹki', 'fifty': 'fɪfti', '50': 'fɪfti'}   # espeak 的读音（kokoro 注音实测）
+ def 音标(w):
+     global _tk
+     if _tk is None:
+@@ -27,8 +40,7 @@ def 音标(w):
+     if _tk is False:   # 没有注音程序的容器（主会话）：只为 --比较自检 用内置的几组读音，真听声音一定在有配音模型的工作目录
+         if sf is not None: raise SystemExit('【停止】有声音程序却没有 kokoro_onnx 注音程序：机器复听不能按读音比')
+         return _自检读音.get(w, w)
+-    x = re.sub(r'[ˈˌː\s]', '', _tk.phonemize(w, 'en-us'))
+-    return x.translate(str.maketrans({'ᵻ': 'ɪ', 'ɐ': 'ə', 'ɾ': 't'})).replace('ɚ', 'əɹ')   # 注音变体（eleven/11、organised/organized）归一
++    return 归一音标(_tk.phonemize(w, 'en-us'))   # 注音变体（eleven/11、organised/organized）归一
+ 
+ _月 = 'january|february|march|april|may|june|july|august|september|october|november|december'
+ def 词(t):
+@@ -39,26 +51,55 @@ def 词(t):
+     return re.findall(r"[^\W_]+(?:'[^\W_]+)?", t)   # 带变音符的专名（Ötztal）整词保留
+ 
+ _核 = None
+-def 已核实():
++def 已核实(专名=False):
+     global _核
+-    if _核 is None: _核 = {k.lower() for k, v in json.load(open(f'{T}/发音词典/已核实读音.json')).items() if v.get('判定') == '正确'}
+-    return _核
++    if _核 is None:
++        # 对权威来源查过、读音核对把关的：正确、改正后正确（20 Ötztal）、可接受、配音读错已写进读音改正表
++        ok_ = lambda p_: str(p_).startswith(('正确', '改正后正确', '可接受')) or '已写进 读音改正' in str(p_)
++        j = {k: v for k, v in json.load(open(f'{T}/发音词典/已核实读音.json')).items() if ok_(v.get('判定'))}
++        _核 = ({k.lower() for k in j}, {k for k in j if k[:1].isupper()})   # 专名一侧按原样大小写（SAT 是专名，sat 不是）
++    return _核[1 if 专名 else 0]
++_改 = None
++def 改正读音():
++    """读音改正.json（与出片程序 phonemes_of 同一份表）：配音实际读的是改正后的读音。键小写 → 归一后的音标；连字符复合词键去掉连字符"""
++    global _改
++    if _改 is None:
++        _改 = {k.lower().replace('-', ''): 归一音标(v['读音']) for k, v in json.load(open(f'{T}/发音词典/读音改正.json')).items() if v.get('读音')}
++    return _改
++def 复合词(): return [k for k in json.load(open(f'{T}/发音词典/读音改正.json')) if '-' in k]
++def 归一音标(x):
++    x = re.sub(r'[ˈˌː\s]', '', x)
++    return x.translate(str.maketrans({'ᵻ': 'ɪ', 'ɐ': 'ə', 'ɾ': 't'})).replace('ɚ', 'əɹ')
+ def 拼写归一(t):
+     """英美拼写变体归成一种（kilometres/kilometers、colour/color、organise/organize、analyse/analyze、catalogue/catalog、travelled/traveled、defence/defense）"""
+     t = re.sub(r'(?<=[a-z])tre(s?)\b', r'ter\1', t); t = re.sub(r'(?<=[a-z])our(s|ed|ing|ful|ite|ites)?\b', r'or\1', t)
+     t = re.sub(r'(?<=[a-z])is(e|es|ed|ing|ation|ations)\b', r'iz\1', t); t = re.sub(r'(?<=[a-z])ys(e|es|ed|ing)\b', r'yz\1', t)
+     t = re.sub(r'(?<=[a-z])ogue(s?)\b', r'og\1', t); t = re.sub(r'(?<=[aeiou])ll(ed|ing|er|ers)\b', r'l\1', t); t = re.sub(r'(?<=[a-z])ence\b', 'ense', t)
+     return t
++_币 = {'£': ('pounds', 'pound'), '$': ('dollars', 'dollar'), '€': ('euros', 'euro')}
+ def 比(ref, hyp):
+-    """读音对不上的 [(脚本里的词, 听到的词)]"""
++    """读音对不上的 [(脚本里的词, 听到的词)]。听到的一侧有 £/$/€ + 数字（识别器把钱数写成符号，22 S8 £1,000、23 S18 £50 note）：
++    写成 数字 + pounds 或 pound 两种，取对不上少的那种（符号本身不分单复数）"""
++    m = re.search(r'([£$€])\s*(\d[\d,]*(?:\.\d+)?)', hyp)
++    if not m: return _比(ref, hyp)
++    vs = [_比(ref, re.sub(r'([£$€])\s*(\d[\d,]*(?:\.\d+)?)', lambda m_: f'{m_.group(2)} {_币[m_.group(1)][i]}', hyp)) for i in (0, 1)]
++    return min(vs, key=len)
++def _比(ref, hyp):
++    改 = 改正读音()
++    # 读音改正表里的连字符复合词（Walkie-Scorchie）在脚本一侧当一个词，按改正后的读音比
++    for k in 复合词():
++        ref = re.sub(r'(?i)(?<![^\W_])' + re.escape(k) + r'(?![^\W_])', lambda m_: m_.group(0).replace('-', ''), ref)
+     R, H = 词(ref), 词(hyp); pr = [音标(w) for w in R]; ph = [音标(w) for w in H]
+     专名 = {w.lower() for w in re.findall(r"(?<![.!?]\s)(?<!^)\b[A-Z][A-Za-z]+(?:'[a-z]+)?", ref)}
++    核专名 = {w.lower() for w in re.findall(r"[^\W_]+", ref) if w in 已核实(专名=True)}   # 脚本里原样大写、且已核实表里就是这样大写的词（句首也算）
+     sm = difflib.SequenceMatcher(None, pr, ph, autojunk=False); out = []
+     for op, a1, a2, b1, b2 in sm.get_opcodes():
+         if op == 'equal': continue
+         if 拼写归一(' '.join(R[a1:a2])) == 拼写归一(' '.join(H[b1:b2])) and R[a1:a2]: continue   # G56（27 S4 kilometres/kilometers）：英美拼写变体是同一个词，两种读法词典都收
+         if ''.join(pr[a1:a2]) == ''.join(ph[b1:b2]): continue   # 连写/拆写（switches / switch is 读音一样不算；every one / everyone）
+-        if op == 'replace' and all(w in 已核实() and w in 专名 for w in R[a1:a2]): continue   # A23 已对权威来源查过读音（读音核对 出片前把关）的专名（脚本里大写）：识别器不认识、听成别的不算；漏掉、多出照报
++        if R[a1:a2] and ''.join(R[a1:a2]) == ''.join(H[b1:b2]): continue   # 拼写连起来相同（脚本 walkiescorchie / 听到 walkie scorchie）
++        if R[a1:a2] and ''.join(改.get(w, pr[a1 + j]) for j, w in enumerate(R[a1:a2])) == ''.join(ph[b1:b2]): continue   # 读音改正表：配音读的是改正后的读音（22 S11 Walkie-Scorchie 听成 scorchy）
++        if op == 'replace' and all(w in 核专名 or w in 已核实() and w in 专名 for w in R[a1:a2]): continue   # 已核实表里大写开头的键（专名），句首也豁免（20 S17 Ötzi）   # A23 已对权威来源查过读音（读音核对 出片前把关）的专名（脚本里大写）：识别器不认识、听成别的不算；漏掉、多出照报
+         out.append((' '.join(R[a1:a2]) or '（多出）', ' '.join(H[b1:b2]) or '（没听到）'))
+     return out
+ 
+@@ -70,9 +111,8 @@ def 听(no, src=None, rec=None, 改=None):
+     for i, (k, v) in enumerate(seg.items()):
+         x = a[int(v[0]['时刻'][0] * sr):int(v[-1]['时刻'][1] * sr)]
+         x = resample_poly(x, 16000, sr).astype(np.float32) if sr != 16000 else x.astype(np.float32)
+-        s = rec.create_stream(); s.accept_waveform(16000, x); rec.decode_stream(s)
+         ref = ' '.join(re.sub(r'\{\{.*?\}\}|\*\*', '', c['en']) for c in d['sentences'][i]['chunks'])
+-        res.append((k, s.result.text.strip(), 比(ref, s.result.text)))
++        t, b = 各路(rec, ref, x); res.append((k, t, b))
+     return res
+ 
+ def 吞段(v):
+@@ -91,7 +131,8 @@ def 自检(no):
+         t0, t1 = 吞段(seg[k]); a = a.copy(); a[int(t0 * sr):int(t1 * sr)] = 0; return a
+     r1 = 听(no, rec=rec, 改=吞); bad1 = {k_ for k_, _, b in r1 if b}
+     f = []
+-    if k not in bad1: f.append(f'没抓到：{k} 最长一段中间七成声音被吞掉，机器复听没报')
++    for n in rec:
++        if not any(y.endswith(f'〔{n}〕') for k_, _, b in r1 if k_ == k for _, y in b): f.append(f'没抓到（{n} 这一路）：{k} 最长一段中间七成声音被吞掉，没报')
+     if bad1 - bad0 - {k}: f.append(f'误报：没动的句子也报了 {sorted(bad1 - bad0 - {k})}')
+     return f
+ 
+@@ -103,9 +144,11 @@ def 带自检(no):
+         a, sr = sf.read(f'work_{no}/a.wav'); a = a if a.ndim == 1 else a.mean(axis=1)
+         t0, t1 = 吞段(v); b0 = v[0]['时刻'][0]
+         x = a[int(b0 * sr):int(v[-1]['时刻'][1] * sr)].copy(); x[int((t0 - b0) * sr):int((t1 - b0) * sr)] = 0
+-        x = resample_poly(x, 16000, sr).astype(np.float32); s = rec.create_stream(); s.accept_waveform(16000, x); rec.decode_stream(s)
++        x = resample_poly(x, 16000, sr).astype(np.float32)
+         si = list(seg).index(k); ref = ' '.join(re.sub(r'\{\{.*?\}\}|\*\*', '', c['en']) for c in d['sentences'][si]['chunks'])
+-        if not 比(ref, s.result.text): f.append(f'没抓到：{k} 最长一段中间七成声音被吞掉，机器复听没报')
++        t, b = 各路(rec, ref, x)
++        for n in rec:   # 每一路都必须各自抓到（任一路失灵 = 自检不过）
++            if not any(y.endswith(f'〔{n}〕') for _, y in b): f.append(f'没抓到（{n} 这一路）：{k} 最长一段中间七成声音被吞掉，没报（听到“{t[n]}”）')
+     else: f.append('自检前提不成立：每一句都已有对不上的词')
+     return r0, f
+ 
+@@ -120,8 +163,7 @@ def 清单(vdir):
+         if not txt or len(txt) != len(seg): print(f'- **{no}**：句数对不上（声音 {len(seg)} 段、脚本 {len(txt or [])} 句），没比'); continue
+         bad = []
+         for i, ((s0, e0), ref) in enumerate(zip(seg[1:], txt[1:]), 1):
+-            x = resample_poly(a[s0:e0], 1, 3).astype(np.float32); st = rec.create_stream(); st.accept_waveform(16000, x); rec.decode_stream(st)
+-            b = 比(ref, st.result.text)
++            x = resample_poly(a[s0:e0], 1, 3).astype(np.float32); _, b = 各路(rec, ref, x)
+             if b: bad.append(f'S{i}：' + '；'.join(f'脚本“{x_}” 听到“{y_}”' for x_, y_ in b))
+         n += len(bad); print(f'- **{no}**：{len(bad)} 句' + ''.join(f'\n  - {x}' for x in bad), flush=True)
+     print(f'\n共 {n} 句。要改哪篇，用户说了再改（改了要重出 4K、过交付核查、重新归档，G9）。')
+@@ -133,6 +175,11 @@ def 比较自检():
+                    ('On April 13th', 'On April 13'), ("the crew's capsule", 'the cruise capsule'), ('organised eleven', 'organized 11'), ('On 6 January', 'On the 6 of January'), ('some 200,000 miles', 'some 200000 miles')):
+         if 比(r_, h_): f.append(f'误报：“{r_}”听成“{h_}”读音一样，却报了 {比(r_, h_)}')
+     if 比('He met Windhandel there', 'He met Vinthehandel there') and 'windhandel' in 已核实(): f.append('误报：已核实读音的专名被识别器听错也报了')
++    for r_, h_ in (('Ötzi was found in 1991', 'Erzi was found in 1991'), ('It sold as the Walkie-Scorchie in London', 'It sold as the walkie scorchy in London'),
++                   ('a fine of 1,000 pounds each', 'a fine of £1,000 each'), ('a fifty-pound note', 'a £50 note'), ('a trek in the Ötztal Alps', 'a trek in the Erzdal Alps')):   # 第二阶段 2 通用规则（20 S17、22 S11、22 S8、23 S18）
++        if 比(r_, h_): f.append(f'误报：“{r_}”听成“{h_}”（句首已核实专名 / 读音改正表 / 货币符号），却报了 {比(r_, h_)}')
++    for r_, h_ in (('He sat there', 'He set there'), ('a fine of 1,000 pounds each', 'a fine of £1,000'), ('Ötzi was found in 1991', 'was found in 1991')):   # 小写 sat 不因已核实表里有 SAT 豁免；货币归一后漏词、专名漏掉照报
++        if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
+     for r_, h_ in (('the cat sat on the mat', 'the cat on the mat'), ('the cabbies waited', 'the cabins waited'), ('He sat there', 'He set there')):
+         if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
+     return f
+@@ -151,6 +198,7 @@ def 分类(md):
+         for sm_ in re.finditer(r'  - S(\d+)：(.+)', blk):
+             si = int(sm_.group(1)); ref = txt[si] if si < len(txt) else ''
+             for x, y in re.findall(r'脚本“([^”]*)” 听到“([^”]*)”', sm_.group(2)):
++                y = re.sub(r'〔[^〕]*〕$', '', y)   # 路名（small.en / parakeet）
+                 bad_ = x != '（多出）' and not all(re.search(rf"(?<![^\W_]){re.escape(w)}(?![^\W_])", ref, re.I) for w in x.split())   # 旧清单按 a–z 切词，Ötztal 成了 tztal
+                 cap = bad_ or x != '（多出）' and all(re.search(rf"(?<!^)\b{re.escape(w)}\b", ref, re.I) and re.search(rf"\b{re.escape(w[0].upper() + w[1:])}", ref) for w in x.split())
+                 px = ''.join(音标(w) for w in x.split()) if x != '（多出）' else ''; py = ''.join(音标(w) for w in y.split()) if y != '（没听到）' else ''
+@@ -170,11 +218,11 @@ if __name__ == '__main__':
+         print(f'## 疑似真问题（{len(q)} 处，先听这些）\n'); print('\n'.join('- ' + x for x in q) or '（无）')
+         print(f'\n## 识别器听不准（{len(r)} 处）\n'); print('\n'.join('- ' + x for x in r) or '（无）'); sys.exit(0)
+     if sys.argv[1:2] == ['--比较自检']:
+-        e = 比较自检(); print('\n'.join(e) or '机器复听 比较自检通过（序数、同音、注音变体、日期、千分位、%、英美拼写不报；漏词、读错必报）'); sys.exit(1 if e else 0)
++        e = 比较自检(); print('\n'.join(e) or '机器复听 比较自检通过（序数、同音、注音变体、日期、千分位、%、英美拼写、句首已核实专名、读音改正表、货币符号不报；漏词、读错必报）'); sys.exit(1 if e else 0)
+     if sys.argv[1:2] == ['--清单']: 清单(sys.argv[2]); sys.exit(0)
+     if sys.argv[1:2] == ['--带自检']:
+         r0, f = 带自检(sys.argv[2]); bad = [(k, b) for k, _, b in r0 if b]
+-        print(('✘ 机器复听 自检：' + '；'.join(f)) if f else '✔ 机器复听 自检：吞掉一句最长一段的中间七成必报')
++        print(('✘ 机器复听 自检：' + '；'.join(f)) if f else f'✔ 机器复听 自检：吞掉一句最长一段的中间七成，{"、".join(路名)} 每一路都报')
+         print(f'机器复听 {len(r0)} 句：读音对不上的 {len(bad)} 句')
+         for k, b in bad: print(f'  {k}：' + '；'.join(f'脚本“{x}” 听到“{y}”' for x, y in b))
+         sys.exit(2 if f else (1 if bad else 0))
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\216\257\345\242\203/\345\207\206\345\244\207\346\234\272\345\231\250.sh" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\216\257\345\242\203/\345\207\206\345\244\207\346\234\272\345\231\250.sh"
+index 70acf00..7e09f3c 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\216\257\345\242\203/\345\207\206\345\244\207\346\234\272\345\231\250.sh"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\216\257\345\242\203/\345\207\206\345\244\207\346\234\272\345\231\250.sh"
+@@ -36,4 +36,14 @@ for f in fs:
+ if bad and all(hs[a]==j[b].split(':')[1] for a,b in (fs,fs[::-1])): print('✘ 是校验码表里 encoder、decoder 两项写反了（2026-10-25 出过一次），改 模型校验码.json')
+ sys.exit(bad)
+ PY3
++# 2026-10-26 机器复听第二路 parakeet（NeMo TDT 0.6B int8，任一路报就报；改门_音频上GitHub.md 第二阶段 2），同样 GitHub release 下载、核对校验码
++P=~/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8; [ -f $P/encoder.int8.onnx ] || { mkdir -p ~/asr; curl -sSL --retry 3 https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8.tar.bz2 | tar xj -C ~/asr; }
++python3 - "$P" "$V/工具/环境/模型校验码.json" <<'PY4'
++import sys,json,hashlib,os
++d,j=sys.argv[1],json.load(open(sys.argv[2])); bad=0
++for f in ('encoder.int8.onnx','decoder.int8.onnx','joiner.int8.onnx','tokens.txt'):
++    h=hashlib.sha256(open(os.path.join(d,f),'rb').read()).hexdigest()[:16]; want=j['parakeet/'+f].split(':')[1]
++    print('parakeet/'+f, h, '✔ 识别模型对' if h==want else '✘ 识别模型不对'); bad|=(h!=want)
++sys.exit(bad)
++PY4
+ echo "机器准备好了：$B/video"
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\216\257\345\242\203/\346\250\241\345\236\213\346\240\241\351\252\214\347\240\201.json" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\216\257\345\242\203/\346\250\241\345\236\213\346\240\241\351\252\214\347\240\201.json"
+index d877485..e5c5674 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\216\257\345\242\203/\346\250\241\345\236\213\346\240\241\351\252\214\347\240\201.json"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\216\257\345\242\203/\346\250\241\345\236\213\346\240\241\351\252\214\347\240\201.json"
+@@ -2,5 +2,9 @@
+  "kokoro-v1.0.onnx": "kokoro-v1.0.onnx:7d5df8ecf7d4b187",
+  "kokoro-v1.0-timed.onnx": "kokoro-v1.0-timed.onnx:beb0d1848dee9a49",
+  "small.en-encoder.int8.onnx": "small.en-encoder.int8.onnx:8bdac288f369aa94",
+- "small.en-decoder.int8.onnx": "small.en-decoder.int8.onnx:710ccf890e10f3fa"
+-}
+\ No newline at end of file
++ "small.en-decoder.int8.onnx": "small.en-decoder.int8.onnx:710ccf890e10f3fa",
++ "parakeet/encoder.int8.onnx": "encoder.int8.onnx:a32b12d17bbbc309",
++ "parakeet/decoder.int8.onnx": "decoder.int8.onnx:b6bb64963457237b",
++ "parakeet/joiner.int8.onnx": "joiner.int8.onnx:7946164367946e7f",
++ "parakeet/tokens.txt": "tokens.txt:ec182b70dd42113a"
++}
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json"
+index 5b1440f..9d39e83 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json"
+@@ -5663,11 +5663,12 @@
+   "自检": [
+    [
+     "机器复听.py",
+-    "没抓到：{k} 最长一段中间七成声音被吞掉"
++    "最长一段中间七成声音被吞掉，没报"
+    ]
+   ],
+   "演练": [
+-   "执行效应声音演练 G42机器复听吞词（交付核查 出片后）"
++   "执行效应声音演练 G42机器复听吞词（交付核查 出片后）",
++   "执行效应声音演练 G42只有parakeet抓到（交付核查 出片后）"
+   ]
+  },
+  "G47": {
+@@ -6309,7 +6310,7 @@
+   "自检": [
+    [
+     "机器复听.py",
+-    "没抓到：{k} 最长一段中间七成声音被吞掉"
++    "最长一段中间七成声音被吞掉，没报"
+    ]
+   ],
+   "演练": [
+@@ -6470,5 +6471,36 @@
+   "演练": [
+    "执行效应演练 G74推请求没约唤醒（钩子）"
+   ]
++ },
++ "G75": {
++  "门": [
++   [
++    "机器复听.py",
++    "路名 = ('small.en', 'parakeet')"
++   ],
++   [
++    "机器复听.py",
++    "def 各路(recs, ref, x16):"
++   ],
++   [
++    "交付核查.py",
++    "step('机器复听（逐词读音与脚本一致）：'"
++   ]
++  ],
++  "自检": [
++   [
++    "机器复听.py",
++    "没抓到（{n} 这一路）"
++   ],
++   [
++    "机器复听.py",
++    "('a trek in the Ötztal Alps', 'a trek in the Erzdal Alps')"
++   ]
++  ],
++  "演练": [
++   "执行效应声音演练 G42只有parakeet抓到（交付核查 出片后，small.en 补回、只有 parakeet 报）",
++   "执行效应声音演练 自查拆门_parakeet（拆掉 parakeet 一路必须报没挡住）",
++   "机器复听.py --比较自检（句首已核实专名 Ötzi/Ötztal、读音改正表 Walkie-Scorchie、£1,000/£50 不报；小写 sat 照报；规则执行核查当场跑）"
++  ]
+  }
+-}
+\ No newline at end of file
++}
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\257\215\345\260\276\345\256\236\346\265\213.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\257\215\345\260\276\345\256\236\346\265\213.py"
+index 7e8d15b..b1d9479 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\257\215\345\260\276\345\256\236\346\265\213.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\257\215\345\260\276\345\256\236\346\265\213.py"
+@@ -11,7 +11,7 @@ T = os.path.dirname(os.path.abspath(__file__))
+ 
+ def main(md):
+     import numpy as np
+-    g = {'__name__': 'x'}; exec(open('make_video.py').read().split("if __name__")[0], g)
++    g = {'__name__': 'x', '__file__': os.path.abspath('make_video.py')}; exec(open('make_video.py').read().split("if __name__")[0], g)
+     k, KT, V, SPEED, spoken, R = g['k'], g['KT'], g['V'], g['SPEED'], g['spoken'], g['R']
+     sys.path.insert(0, T); import 机器复听 as M
+     vow = set('aeiouæɑɒɔəɛɜɪʊʌyɐᵻɚ')
+diff --git "a/\350\247\206\351\242\221/\345\274\200\345\267\245\345\277\205\350\257\273.md" "b/\350\247\206\351\242\221/\345\274\200\345\267\245\345\277\205\350\257\273.md"
+index 95a7cf0..f3445d6 100644
+--- "a/\350\247\206\351\242\221/\345\274\200\345\267\245\345\277\205\350\257\273.md"
++++ "b/\350\247\206\351\242\221/\345\274\200\345\267\245\345\277\205\350\257\273.md"
+@@ -2,7 +2,7 @@
+ 
+ 用户 2026-10-26 原话：“一定要保证，一定要有一个机制，绝对的机制去保证我们踩过的这个坑，绝对不能再犯……每只要每次去开始做一个项目，都要有这么一个踩坑指南和别人要去做的事情指南，但就就是先先去读这些，先去读这些东西，然后再根据这些东西去做，ok。”
+ 
+-版本 a36d2303：坑 203 个、做法 184 条，其中人判 9 条。音频另见 视频/音频首要法则.md（首要法则）；每条全文见《制作硬性标准与踩坑总结》、CLAUDE.md。
++版本 662fce54：坑 204 个、做法 184 条，其中人判 9 条。音频另见 视频/音频首要法则.md（首要法则）；每条全文见《制作硬性标准与踩坑总结》、CLAUDE.md。
+ 28 起 开工记录 在 制作记录/NN.md 生成“## 做事对照记录”（记下读过的条目）；指南新加了条目，跑 `python3 视频/工具/开工必读.py --补 NN` 读新条目；人判的每条写“本篇：怎么做的”，没写踩坑核查就停。
+ 
+ ## ⓪ 五条总纲（每个会话开工第一件事：python3 视频/工具/会话开工.py <出稿|改稿|改门|主会话>，读完才能提交，G63）
+@@ -13,7 +13,7 @@
+ - ④ 严格按流程，不乱发挥：照 开工必读 ⑤ 步骤表一步一步用正式入口做，证据链少一步就停；觉得流程不好，写进方法复盘、报坑，由改门会话改程序（G60/G61）。
+ - ⑤ 方法进化：每做完一件事回头看哪里还能更省、更好，当场改成程序，记进方法升级记录；踩过的坑绝不再踩（守则2/12/13）。
+ 
+-## ① 踩坑指南（203 个坑：出过的问题 → 怎么防 → 哪道门挡）
++## ① 踩坑指南（204 个坑：出过的问题 → 怎么防 → 哪道门挡）
+ 
+ - **A1** 想去掉句尾的“电磁音”，结果误把 cameras 的 /z/ 尾音切掉了 → 句尾只去短于 0.05 秒、比本句最响处低 25 dB 以上（基准按 A10b，不用单个采样点的峰值）、且与语音有间隔的杂点（A6 又收紧为间隔 ≥0.25 秒），词尾辅音一律不能… ｜交付核查.py「句首句尾核对（clean_tail」；交付核查.py「独立复核：{len(cuts)} 处…」
+ - **A2** 背景有“电子声波音” → 后期用 AF 陷波去掉（保留在 B/F 方案里）。拦住它的是 audio_qc.py（出片后），每支视频都查 4800/9600 Hz 电流音 ｜交付核查.py「自动音频检查（削波、电流音」
+@@ -213,6 +213,7 @@
+ - **G72** 2026-10-26 改门 GitHub 化：onnxruntime 默认多线程合成在不同 CPU 上算出来不逐样本相同（沙盒 Xeon 2… → 合成一律单线程（make_video.py 的 k、KT，独立复核 synth.py、labels.py：onnxruntime intra_op=1）：两台机器逐样本相同（合成对… ｜make_video.py「def _条目核对(p):」；make_video.py「def _单线程会话(model):」
+ - **G73** 2026-10-26（K32）报坑.py 原子写（取号、报坑、改门锁）推完后在本地暂存一份坑登记：下次 git pull 报“本地改动会被覆… → 原子写只推远端、只 fetch，不碰本地工作区；读本地() 改读 origin/main（读不到才读本地文件）。拦住：报坑.py --自检 真跑取号后本地工作区必须干净、读得到刚取… ｜报坑.py「c, txt = git('show…」
+ - **G74** 2026-10-26（K34）改门 GitHub 化会话 12:47 推了 GitHub 请求（G72 主演练、声音演练、复现 20）就收工… → 推 GitHub 请求一律用 python3 视频/工具/推请求.py <名字> "<任务行>"（镜像工作分支新建请求文件、提交推送，记进本机请求账 ~/.云端请求.json，打印… ｜闸门.py「if last and a.get(…」；推请求.py「json.dump(d, open(…」
++- **G75** 2026-10-26 改门 音频上GitHub 第二阶段：注入实测（20–24、26 每句造坑，small.en、parakeet 各听一遍… → 机器复听.py 改成两路（small.en + parakeet，NeMo TDT 0.6B int8）任一路报就报，每一路各自打印〔路名〕；少一路的模型就停（不许悄悄退回单识别器… ｜机器复听.py「路名 = ('small.en', …」；机器复听.py「def 各路(recs, ref, …」
+ - **C1** 用户说“做网站”，其实只要一个 HTML 文件存档，我却去部署了 GitHub Pages → “上线/公开”是什么意思没把握时，先问；默认只生成文件，不做任何公开发布（硬性条件 五.4）。拦住：人工步骤；踩坑核查.py 通用 逐条列出来提醒（不能自动判断）；每篇的踩坑对照记… ｜闸门.py「【部署闸门】C1/C2/流16」
+ - **C2** 没经确认就触发了部署 → 对外公开、部署这类操作，必须先得到用户的明确同意（硬性条件 五.4）。拦住：同 C1 ｜闸门.py「【部署闸门】C1/C2/流16」
+ - **C3** 用户两次提的标准互相冲突（“字号统一”和“铺满屏幕”） → 明确指出冲突，请用户选择，并把最终的选择记下来。拦住：人工步骤；踩坑核查.py 通用 列出来提醒；每篇的踩坑对照记录里，这一条必须填写 ｜踩坑核查.py「只有人能判，要写明本篇具体怎么做的」；踩坑核查.py「只认固定格式（25 起）」
+diff --git "a/\350\247\206\351\242\221/\351\237\263\351\242\221\351\246\226\350\246\201\346\263\225\345\210\231.md" "b/\350\247\206\351\242\221/\351\237\263\351\242\221\351\246\226\350\246\201\346\263\225\345\210\231.md"
+index df664b2..c13f97d 100644
+--- "a/\350\247\206\351\242\221/\351\237\263\351\242\221\351\246\226\350\246\201\346\263\225\345\210\231.md"
++++ "b/\350\247\206\351\242\221/\351\237\263\351\242\221\351\246\226\350\246\201\346\263\225\345\210\231.md"
+@@ -44,7 +44,7 @@
+ 36. 停顿前、句末的词尾 t/k/p 必须听得清除阻。
+ 37. 读音必须正确，人名、地名、物名、机构名、缩写尤其要查证。
+ 
+-## ③ 踩过的音频坑（68 个；坑 → 现在由哪道门挡）
++## ③ 踩过的音频坑（69 个；坑 → 现在由哪道门挡）
+ 
+ - **A1** 想去掉句尾的“电磁音”，结果误把 cameras 的 /z/ 尾音切掉了 → 句尾只去短于 0.05 秒、比本句最响处低 25 dB 以上（基准按 A10b，不用单个采样点的峰值）、且与语音有间隔的杂点（A6 又收紧为间隔 ≥0.25 秒），词尾辅音一律不能… ｜演练：声音演练 A20句首被吃（交付核查 出片后）
+ - **A2** 背景有“电子声波音” → 后期用 AF 陷波去掉（保留在 B/F 方案里）。拦住它的是 audio_qc.py（出片后），每支视频都查 4800/9600 Hz 电流音 ｜演练：声音演练 A2句间呼吸声（交付核查 出片后）；声音演练 A2削波（交付核查 出片后）
+@@ -102,7 +102,7 @@
+ - **G36** 2026-10-25 25 草稿：用户看 S2 “some 200,000 miles out,”：“这块这个声音在这一块声响是不是变小了？… → 交付核查 出片后 25 起加“句内分段响度”：按句内 ≥0.3 秒静音切段（不看出片程序记的停顿），每段 BS.1770 门限响度，相邻两段 ≤2.5 LU，超了就停；先跑自检（把… ｜演练：声音演练 G36句内一段变轻（交付核查 出片后）；出片守门自检 G36
+ - **G40** 2026-10-25 25：S8 “module, the crew's” 停顿被插进 the 后面 /k/ 的闭塞里（读成“module … → 25 起只认实测数据：停顿位置精确核对 离后词为负（停顿结束在后词开头之后）的确认一律不收，只能用 停顿插入点 按实测交界修（该标点写了插入点才收）；响度骤降 确认只收不超过 01… ｜演练：停顿位置精确核对.py --自检 + 响度一致性核对.py --确认自检（25 起离后词为负没用插入点的停顿位置确认、超过 7.1 dB 的响度骤降确认必须不收；规则执行核查当场跑）
+ - **G41** 2026-10-25 用户（主对话）：“做音频这个环节，坚决不可以出任何问题，你要想方设法，想方设法想尽一切手段把我们这个音频做好”（25 … → 新程序 `音频体检.py`：能测的全测（削波、直流偏移、咔哒、齿音、句尾截断、句首突起、语速突变、音色突变；句内分段、整句响度由响度一致性核对另查），以 01–24 已定稿（用户听… ｜演练：声音演练 G41体检咔哒（交付核查 出片后）
+-- **G42** 2026-10-25 主对话（音频保障第 4 层）：“像用户一样从头听一遍”；用户听出的读错、吞音以前没有程序能听（停顿、响度、独立复核都只… → 新程序 `机器复听.py`：离线语音识别（sherpa-onnx 2.0 + whisper small.en，模型从 GitHub release 下载、准备机器.sh 装好并核… ｜演练：声音演练 G42机器复听吞词（交付核查 出片后）
++- **G42** 2026-10-25 主对话（音频保障第 4 层）：“像用户一样从头听一遍”；用户听出的读错、吞音以前没有程序能听（停顿、响度、独立复核都只… → 新程序 `机器复听.py`：离线语音识别（sherpa-onnx 2.0 + whisper small.en，模型从 GitHub release 下载、准备机器.sh 装好并核… ｜演练：声音演练 G42机器复听吞词（交付核查 出片后）；声音演练 G42只有parakeet抓到（交付核查 出片后）
+ - **G45** 2026-10-25 主对话：音频门上 AI 自己写的“确认”就是漏洞（25 S8 停顿位置、cartridges 响度骤降、S10 非人声… → 25 起高亮同步核对收确认前，程序在 a.wav 的那一刻当场量：前 30 ms 每 5 ms 都低于附近 ±2 秒最响的 -40 dB、之后 40 ms 内有 5 ms 不低于 … ｜演练：高亮同步核对.py --确认自检（25 起高亮确认的“开始读”落在音中间、静音里必拒；规则执行核查当场跑）
+ - **G51** 2026-10-25 撞车会话的容器里 全篇重查 26：画面一致，声音和“现行脚本重新出的”差 -39.6 dB（01–25 都一致，只有 … → make_video 把算过的调平增益按“篇号 + 调平前的声音 + 分段 + 停顿”的指纹存成 `配音缓存/调平_<指纹>.json`（篇号：演练、守门自检改号用的冻结样本不会和… ｜演练：出片守门自检 G51
+ - **G53** 2026-10-26 27 草稿：草稿声音.sh 第一次重建就停“结尾句最后一个标点的停顿没有包住接点（A32）S16 …human dep… → 出片程序找停顿的那段抽成 make_video._停顿候选()，结尾句接点.py 用同一个函数算出“出片程序要删哪段”：原来选的静音不到 80 ms 又不在那段里时，改在那段里找最… ｜演练：结尾句接点.py --自检（27 S16：估的词尾晚 0.4 秒、吸气前有长静音，接点必须落在出片程序要删的那段里；规则执行核查当场跑）
+@@ -113,6 +113,7 @@
+ - **G70** 2026-10-26 27 S12（报坑 K28）：词头浊音确认（w 4.205–4.240，按 10 ms 一格量）和紧贴词头的非人声区间… → 确认按位置迁移：重叠 >10 ms 才算碰到，确认整段在区间里、或盖住整个短区间照旧算；--自检 进规则执行核查当场跑；放行口子表登记 核对确认.停顿删除（白名单同 停顿位置） ｜演练：确认按位置迁移.py --自检（K28：27 S12 边上重叠 1 ms 必迁，整段在区间里、盖住短区间必不迁；规则执行核查当场跑）
+ - **G72** 2026-10-26 改门 GitHub 化：onnxruntime 默认多线程合成在不同 CPU 上算出来不逐样本相同（沙盒 Xeon 2… → 合成一律单线程（make_video.py 的 k、KT，独立复核 synth.py、labels.py：onnxruntime intra_op=1）：两台机器逐样本相同（合成对… ｜演练：主演练 G72老条目被改（仓库镜像）；主演练 G72无标记新条目（仓库镜像）
+ - **G74** 2026-10-26（K34）改门 GitHub 化会话 12:47 推了 GitHub 请求（G72 主演练、声音演练、复现 20）就收工… → 推 GitHub 请求一律用 `python3 视频/工具/推请求.py <名字> "<任务行>"`（镜像工作分支新建请求文件、提交推送，记进本机请求账 ~/.云端请求.json，… ｜演练：主演练 G74推请求没约唤醒（钩子）
++- **G75** 2026-10-26 改门 音频上GitHub 第二阶段：注入实测（20–24、26 每句造坑，small.en、parakeet 各听一遍… → 机器复听.py 改成两路（small.en + parakeet，NeMo TDT 0.6B int8）任一路报就报，每一路各自打印〔路名〕；少一路的模型就停（不许悄悄退回单识别器… ｜演练：声音演练 G42只有parakeet抓到（交付核查 出片后，small.en 补回、只有 parakeet 报）；声音演练 自查拆门_parakeet（拆掉 parakeet 一路必须报没挡住）；机器复听.py --比较自检（句首已核实专名 Ötzi/Ötztal、读音改正表 Walkie-Scorchie、£1,000/£50 不报；小写 sat 照报；规则执行核查当场跑）
+ - **C5** 2026-10-09 重做 01–04、06：只为去掉呼吸声这一类小改动，做了 5 个多小时。每改一处都把整篇配音重新合成一遍（5–10 分… → **方法要不断进化，资源只花在最该花的地方**：方法要“虹吸”，不要“拿勺子舀水”（用户的比喻）：①合成结果按“模型＋音色＋语速＋文字”存缓存（逐样本相同），重建一篇从 108 秒… ｜演练：主演练 C5派子代理（钩子）
+ 
+ ## ④ 做出最高质量音频的步骤（一步不过就停，修好再往下）
