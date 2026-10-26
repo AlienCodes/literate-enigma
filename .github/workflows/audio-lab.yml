@@ -77,7 +77,7 @@ jobs:
           ls ~/asr/$M 2>/dev/null | head
       - name: 听
         run: |
-          mkdir -p /tmp/out; P='${{ matrix.part }}'; export 正例=/tmp/正例
+          mkdir -p /tmp/out; P='${{ matrix.part }}'; export ZL=/tmp/正例
           python3 .github/音频实验/实验.py 听 '${{ matrix.model }}' "$P" "/tmp/out/听_${{ steps.k.outputs.k }}_$(echo $P | tr ',/' '-_').json"
       - uses: actions/upload-artifact@v4
         with: {name: '听_${{ steps.k.outputs.k }}_${{ strategy.job-index }}_${{ github.run_id }}', path: /tmp/out, retention-days: 7}

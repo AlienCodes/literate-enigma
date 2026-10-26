@@ -75,9 +75,9 @@ def 听(name, part, out):
     import 机器复听 as M
     rec = FW(name) if name.startswith('fw:') else 识别器(name); res = []; t0 = time.time(); dur = 0
     if part.startswith('正例'):
-        k, n = map(int, part[2:].split('/')); man = json.load(open(f'{os.environ["正例"]}/清单.json'))
+        k, n = map(int, part[2:].split('/')); man = json.load(open(f'{os.environ["ZL"]}/清单.json'))
         for m in man[k::n]:
-            a, sr = sf.read(f'{os.environ["正例"]}/{m["id"]}.wav'); x = resample_poly(a, 2, 3).astype(np.float32); dur += len(x) / 16000
+            a, sr = sf.read(f'{os.environ["ZL"]}/{m["id"]}.wav'); x = resample_poly(a, 2, 3).astype(np.float32); dur += len(x) / 16000
             h = 转写(rec, x); res.append({**m, 'hyp': h, '报': M.比(m['ref'], h)})
     else:
         import 音频体检 as Q
