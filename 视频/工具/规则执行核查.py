@@ -266,7 +266,7 @@ def 当场自检(files):
         if cmd[0] not in files: bad.append(f'当场自检的程序不存在：{cmd[0]}'); continue
         hv = 顶层重依赖(f'{T}/{cmd[0]}')
         if hv: bad.append(f'当场自检的程序顶层导入重库（G44：主会话容器没有视频环境，自检起不来）：{"；".join(hv)}，改成用到时才导入'); continue
-        r = subprocess.run(['python3', f'{T}/{cmd[0]}', *cmd[1:]], capture_output=True, text=True, cwd=T)
+        r = subprocess.run(['python3', f'{T}/{cmd[0]}', *cmd[1:]], capture_output=True, text=True, cwd=T, env={k: v for k, v in os.environ.items() if not k.startswith('GIT_')})   # K23：提交前钩子导出的 GIT_DIR 等不许传给自检（自检的临时仓库会落到真仓库、推到真远端）
         if r.returncode != 0:
             tail = (r.stdout + r.stderr).strip().splitlines()[-3:]
             bad.append(f'自检不通过：{" ".join(cmd)} → {" / ".join(tail)[:200]}')

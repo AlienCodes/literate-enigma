@@ -29,12 +29,17 @@ def 总表编号(std):
 def 号(x): m = re.match(r'([A-Z])(\d+)', x); return m.group(1), int(m.group(2))
 
 
+def 自检残留(r): return r.get('用途') == '自检' or r.get('会话') in ('会话A', '会话B', '会话C') or str(r.get('现象', '')).startswith('自检造的')
+
+
 def 判(std, d, now=None):
     """纯函数（自检用）：返回 (硬问题, 超期, 待入表)。硬问题 = 撞号、总表新行没取号；超期 = 过了宽限还没进总表"""
     now = now or 现在(); rows = 总表编号(std); hard, late, wait = [], [], []
     rs = [r['编号'] for r in d.get('预留', [])]
     for x in sorted({r for r in rs if rs.count(r) > 1}): hard.append(f'预留编号撞号：{x} 被取了两次（G54：取号要原子，推不上就重取）')
     for x in sorted({r for r in rows if rows.count(r) > 1}): hard.append(f'踩坑总表编号重复：{x}')
+    for r in d.get('预留', []) + d.get('登记', []):   # K23：自检造的预留、登记跑进了真登记（自检推到了真远端）
+        if 自检残留(r): hard.append(f'坑登记里有自检造的 {r.get("编号") or r.get("号")}（K23：自检推到了真远端）：python3 视频/工具/报坑.py --清自检')
     起 = d.get('起', {})
     for x in rows:
         p, n = 号(x)
@@ -55,12 +60,26 @@ def 读本地():
 
 
 def git(*a, repo=None, inp=None, env=None):
-    r = subprocess.run(['git', '-C', repo or P, *a], capture_output=True, text=True, input=inp, env={**os.environ, **(env or {})})
+    base = {k: v for k, v in os.environ.items() if not k.startswith('GIT_')}   # K23：提交前钩子里 git 导出 GIT_DIR/GIT_INDEX_FILE，继承了 -C 也落到真仓库
+    r = subprocess.run(['git', '-C', repo or P, *a], capture_output=True, text=True, input=inp, env={**base, **(env or {})})
     return r.returncode, r.stdout
+
+
+def 隔离查(repo, root):
+    """K23：自检用的仓库和它的 origin 必须都在自检的临时目录里，否则不推（2026-10-26 自检造的坑被推到了真远端 main）"""
+    rr = os.path.realpath(root) + os.sep; e = []
+    c, gd = git('rev-parse', '--absolute-git-dir', repo=repo)
+    if c or not os.path.realpath(gd.strip()).startswith(rr): e.append(f'仓库 {gd.strip()} 不在 {root} 里')
+    c, url = git('remote', 'get-url', 'origin', repo=repo)
+    if c or '://' in url or not os.path.realpath(url.strip()).startswith(rr): e.append(f'origin {url.strip()} 不在 {root} 里')
+    return e
 
 
 def 原子写(改, repo=None, 分支='main', 说明='报坑登记'):
     """把 改(远端坑登记) 的结果作为只改这一个文件的提交推到远端；别人刚推了就重读远端再来（这就是防撞号）"""
+    if repo and os.path.realpath(repo) != os.path.realpath(P):   # 自检等指定了别的仓库：只许推它自己目录里的假远端
+        e = 隔离查(repo, os.path.dirname(repo))
+        if e: raise SystemExit('【停止】自检指向真 origin（K23）：' + '；'.join(e))
     repo = repo or P
     for k in range(8):
         git('fetch', '-q', 'origin', 分支, repo=repo)
@@ -130,17 +149,25 @@ def 自检():
     d2 = json.loads(json.dumps(d)); d2['登记'][2]['时刻'] = '2026-10-23T06:00Z'
     if not any('K3' in x for x in 判(std, d2, now)[1]): fails.append('没抓到：改门中超过 72 小时')
     if not any('G54 没有取号' in x for x in 判(std + '| G54 | 自检造的没取号 | b | c |\n', d, now)[0]): fails.append('没抓到：总表新行没取号')
+    d4 = json.loads(json.dumps(d)); d4['预留'].append({'编号': 'G54', '会话': '会话A', '用途': '自检'})
+    if not any('自检造的' in x for x in 判(std, d4, now)[0]): fails.append('没抓到：自检造的预留进了真登记（K23）')
     d3 = json.loads(json.dumps(d)); d3['预留'].append({'编号': 'G53'})
     if not any('撞号' in x for x in 判(std, d3, now)[0]): fails.append('没抓到：预留撞号')
     if not any('重复' in x for x in 判(std + '| G53 | x | y | z |\n', d, now)[0]): fails.append('没抓到：总表编号重复')
     # 真跑取号：本地假远端，A 取号后 B（本地是旧的）再取，必须拿到下一个号，不许撞
-    tmp = tempfile.mkdtemp(); sh = lambda c: subprocess.run(c, shell=True, cwd=tmp, capture_output=True)
+    tmp = tempfile.mkdtemp(); _env = {k: v for k, v in os.environ.items() if not k.startswith('GIT_')}; sh = lambda c: subprocess.run(c, shell=True, cwd=tmp, capture_output=True, env=_env)
     sh('git init -q --bare r.git && git clone -q r.git a && git clone -q r.git b')
     for who in ('a',):
         os.makedirs(f'{tmp}/{who}/视频/制作记录'); open(f'{tmp}/{who}/{STDREL}', 'w').write(std)
         json.dump({**空(), '起': {'G': 53}, '预留': [{'编号': 'G53'}]}, open(f'{tmp}/{who}/{REL}', 'w'))
         sh(f'cd {who} && git add -A && git -c user.name=x -c user.email=x@x commit -qm i && git push -q origin HEAD:main')
     sh('cd b && git pull -q origin main')
+    sh('git clone -q r.git c && git -C c remote set-url origin ' + P)   # 造坑：自检仓库的 origin 指向真仓库，必须不推就停
+    try: 取('G', '会话C', '自检', repo=f'{tmp}/c'); fails.append('没抓到：自检指向真 origin 照样取号推送（K23）')
+    except SystemExit as e:
+        if '自检指向真 origin' not in str(e): fails.append(f'自检指向真 origin 停的理由不对：{e}')
+    iso = 隔离查(f'{tmp}/a', tmp)
+    if iso: fails.append('自检指向真 origin（K23）：' + '；'.join(iso)); subprocess.run(['rm', '-rf', tmp]); return fails
     try:
         x1 = 取('G', '会话A', '自检', repo=f'{tmp}/a'); x2 = 取('G', '会话B', '自检', repo=f'{tmp}/b')
         k1 = 报('自检造的坑', '会话B', repo=f'{tmp}/b'); k2 = 报('自检造的坑2', '会话A', repo=f'{tmp}/a')
@@ -159,6 +186,13 @@ def main():
     if '--自检' in a:
         f = 自检(); print('报坑登记自检：' + ('通过（超期没入表、改门超 72 小时、总表新行没取号、预留撞号、总表重号都抓到；两个会话先后取号不撞）' if not f else '失灵！' + '；'.join(f)))
         return 1 if f else 0
+    if '--清自检' in a:   # K23：原子清掉真登记里的自检残留（只改坑登记这一个文件）
+        n = [0]
+        def 改(d, std):
+            for k in ('预留', '登记'):
+                keep = [r for r in d.get(k, []) if not 自检残留(r)]; n[0] += len(d.get(k, [])) - len(keep); d[k] = keep
+            return d, n[0]
+        原子写(改, 说明='报坑登记：清掉自检推到真远端的预留和登记（K23）'); print(f'清掉自检残留 {n[0]} 条'); return 0
     if '--取号' in a:
         x = 取(opt('--取号'), 会话, opt('--用途'), opt('--登记') or None); print(f'取号：{x}（已推到远端预留；总表这一行写 {x}）'); return 0
     if '--查' in a or '--状态' in a:

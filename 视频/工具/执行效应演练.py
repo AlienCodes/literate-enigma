@@ -187,6 +187,7 @@ def _变异(prog, old, new):
     ('G60证据链不全', '流水线', '24', '24 一条机制证据都没有（证据起始篇改成 24 重放），跑定稿流水线', _变异('证据.py', '起 = 28', '起 = 24'), '机制证据不全', ['G60']),
     ('G62步骤表没跟', '规则核查', '24', '草稿流程.md 加了一步、开工必读没重新生成', _变异('草稿流程.md', '\n## 禁止', '\n9. 演练造的新步骤 `python3 $T/x.py NN`\n\n## 禁止'), '与现行规矩', ['G62']),
     ('G63没开工就提交', '会话开工查', '24', '本会话没跑 会话开工.py（没读开工必读），提交前检查', None, '本会话还没开工', ['G63']),
+    ('G64自检指向真origin', '报坑自检', '24', '报坑.py 取号自检的临时仓库 origin 被改成真仓库', _变异('报坑.py', "sh('git init -q --bare r.git && git clone -q r.git a && git clone -q r.git b')", "sh('git init -q --bare r.git && git clone -q r.git a && git clone -q r.git b && git -C a remote set-url origin /home/user/postgraduate-vocabulary')"), '自检指向真 origin', ['G64']),
     ('G55做事对照没写', '踩坑出片', '25', '25 制作记录没有“## 做事对照记录”（开工必读的起始篇改成 25 重放）', _变异('开工必读.py', '起 = 28', '起 = 25'), '[开工必读] 制作记录/25.md 没有“## 做事对照记录”', ['G55', '文35']),
     ('文36三个意思', '踩坑出片', '25', '25 一个重点词的中文写成三个意思（意思个数的起始篇改成 25 重放）', lambda f: (_变异('意思个数.py', '起 = 27', '起 = 25')(f), _改json(f, '视频/脚本/25.json', _三义)), '[文36]', ['文36']),
     ('G19工作稿是旧稿', '流水线', '23', '仓库 视频/脚本/23.json 被别的会话改了，工作目录还是旧稿', lambda f: (f.__setitem__('工作稿', f['视频/脚本/23.json']), _改json(f, '视频/脚本/23.json', lambda d: d.__setitem__('title_zh', d['title_zh'] + '（新）'))), '旧稿（G19）', ['G19']),
@@ -310,6 +311,7 @@ def 仓库跑(entry, no, M, ws, 拆门=None):
     elif entry == '演练入口': cmd = ['python3', f'{tool}/执行效应演练.py', '--只过门']   # G25：演练开跑前查读现稿
     elif entry == '欠着': cmd = ['python3', f'{tool}/全篇核查.py', '--欠着']
     elif entry == '开工提醒': cmd = ['bash', f'{tool}/开工提醒.sh']
+    elif entry == '报坑自检': cmd = ['python3', f'{tool}/报坑.py', '--自检']   # G64：自检只许碰假远端
     elif entry == '会话开工查': cmd = ['python3', f'{tool}/会话开工.py', '--查']; env['HOME'] = tempfile.mkdtemp(prefix='演练_空HOME_')   # G63：空 HOME = 没开工的会话
     elif entry == '开工记录': cmd = ['python3', f'{tool}/开工记录.py', no]
     elif entry == '初稿': cmd = ['python3', f'{tool}/初稿生成/gen{no}.py']
