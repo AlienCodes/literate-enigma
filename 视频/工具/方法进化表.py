@@ -178,7 +178,44 @@ def 写表(行=None):
         p = cmd.split()[0] if cmd != '—' else ''
         xs = [行[no]['按步骤'].get(p) for no in 有步[-3:] if 行[no]['按步骤'].get(p)] if p else []
         L.append(f'| {i} | {做} | {cmd} | {在} | {str(round(statistics.median(xs), 2)) + "M" if xs else "—"} | {str(xs[-1]) + "M" if xs else "—"} |')
+    sys.path.insert(0, T); import 证据 as ZJ   # G71：28 起每篇一节机制运行报告，同时写进 NN.md
+    for no in sorted({os.path.basename(x)[:2] for x in glob.glob(f'{ZJ.目录[0]}/[0-9][0-9].jsonl')}):
+        if int(no) < 报告起: continue
+        节 = 机制报告(no, 行, rows); L += [''] + [节[0].replace('## ', f'## 第{no}篇 ', 1)] + 节[1:]; 写报告进篇(no, 节)
     open(OUT, 'w').write('\n'.join(L) + '\n'); return OUT
+
+
+报告起 = 28   # G71：机制运行报告从 28 起（证据链从 28 起）
+
+
+def 机制报告(no, 行=None, rows=None, rs=None):
+    """G71 机制运行报告（用户 2026-10-26：“一定要确保这些所有的东西都能够执行起来……不要说好不容易费了这么多时间，费了这么多token，弄完之后到最后不用”）：
+    开工必读 ⑤ 每一步：证据在不在（证据/NN.jsonl）、在 GitHub 还是会话跑、用了多少 token"""
+    sys.path.insert(0, T); import 证据 as ZJ
+    if rows is None:
+        import 开工必读 as K; rows = K.步骤表(reg=json.load(open(f'{T}/规则执行表.json')))
+    rs = ZJ.读(no) if rs is None else rs; 步 = ((汇总() if 行 is None else 行).get(no) or {}).get('按步骤', {})
+    时 = {r['步']: r.get('时刻', '') for r in rs if r.get('结果') == '通过'}
+    L = []; 齐 = 缺 = 0
+    for i, (段, 做, cmd, 在, 证, g) in enumerate(rows, 1):
+        m = re.search(r'“(.+?)”', 证); p = cmd.split()[0] if cmd != '—' else ''
+        if not m: e = '—'
+        elif m.group(1) in 时: e = f'✔ {m.group(1)}（{时[m.group(1)][5:16]}）'; 齐 += 1
+        else: e = f'✘ 缺“{m.group(1)}”'; 缺 += 1
+        L.append(f'| {i} | {段} | {做} | {cmd} | {在} | {e} | {str(步[p]) + "M" if p in 步 else "—"} |')
+    return [f'## 机制运行报告（G71，程序写：开工必读 ⑤ 的 {len(rows)} 步，证据 = 制作记录/证据/{no}.jsonl）', '',
+            f'- 留证据的步骤：齐 {齐}、缺 {缺}' + ('（缺的按步骤表补跑，定稿流水线 ⓪ 查证据链）' if 缺 else '（全部真跑过）'), '',
+            '| 第几步 | 阶段 | 做什么 | 正式入口 | 在哪跑 | 证据 | token |', '|---|---|---|---|---|---|---|'] + L
+
+
+def 写报告进篇(no, 节, rec=REC):
+    f = f'{rec}/{no}.md'
+    if not os.path.exists(f): return False
+    txt = open(f).read(); t2 = re.sub(r'^## 机制运行报告（G71[^\n]*\n(?:\n|- [^\n]*\n|\|[^\n]*\n)*', '', txt, flags=re.M)
+    a = t2.find('\n## 方法复盘'); 块 = '\n'.join(节) + '\n\n'
+    t2 = (t2[:a + 1] + 块 + t2[a + 1:]) if a >= 0 else t2.rstrip('\n') + '\n\n' + 块
+    if t2 != txt: open(f, 'w').write(t2)
+    return True
 
 
 def 状态():
@@ -227,6 +264,13 @@ def 自检():
     if s['最后上下文'] != 500 or '草稿声音.sh' not in s['按步骤']: f.append('统计错：最后上下文或按步骤')
     if 上下文超(s, '改稿') is None: f.append('没抓到：改稿会话上下文 500k 超限')
     if 上下文超(s, '改门') is not None: f.append('误停：改门会话不按改稿的上下文限挡')
+    rows = [('二 声音', '跑 草稿声音.sh', '草稿声音.sh NN', '会话', '证据“草稿声音”', '—'), ('二 声音', '跑 交付核查.py', '交付核查.py NN 出片前', '会话', '证据“出片前”', '—'), ('〇', '搭目录', '—', '会话', '—', '—')]
+    节 = 机制报告('28', {'28': {'按步骤': {'草稿声音.sh': 1.5}}}, rows, [{'步': '草稿声音', '结果': '通过', '时刻': '2026-10-27T01:00:00Z'}])
+    t = '\n'.join(节)
+    if '✘ 缺“出片前”' not in t or '✔ 草稿声音' not in t or '1.5M' not in t or '齐 1、缺 1' not in t: f.append('机制运行报告没写对：缺的步骤、有的证据、按步骤 token')
+    open(f'{d}/28.md', 'w').write('## 方法设计\nx\n\n## 方法复盘\ny\n'); 写报告进篇('28', 节, d); 写报告进篇('28', 节, d)
+    t = open(f'{d}/28.md').read()
+    if t.count('## 机制运行报告') != 1 or t.find('## 机制运行报告') > t.find('## 方法复盘'): f.append('机制运行报告写进 NN.md 没只写一节、或没放在方法复盘前')
     return ['方法进化表 自检：' + x for x in f]
 
 

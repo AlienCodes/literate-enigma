@@ -62,6 +62,8 @@ if __name__ == '__main__':
     V = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); _no = sys.argv[1].zfill(2)
     import 方法进化表 as _JH; _e, _ = _JH.门(f'{int(_no) - 1:02d}')   # G65：上一篇变差没落地，不开下一篇
     if _e: print('\n'.join(_e)); sys.exit(1)
+    import 证据 as _ZJ0; _e = _ZJ0.闲置问题()   # G71：机制闲置（连续两篇该用没用、建好后第一篇就没用上），不开下一篇
+    if _e: print('\n'.join(['【停止】机制闲置报警（G71）：'] + _e)); sys.exit(1)
     msg, c = 开工(V, _no); print(msg)
     if c == 0:   # G60：开工的使用证据（撞车提醒、做事对照记录写了没有）
         import 证据 as _ZJ; _t = open(f'{V}/制作记录/{_no}.md').read() if os.path.exists(f'{V}/制作记录/{_no}.md') else ''

@@ -7,12 +7,16 @@
         手写、临时脚本、改过的入口写不出对得上的证据；证据文件被手改（号对不上、断链）就停。命令闸门拦 Bash 写证据目录。
   查：  交付核查 出片前 / 出片后、定稿流水线 开头按 机制清单.json 的“阶段”查本篇证据链：少一步、顺序不对、结果不是通过 → 停（28 起）。
   清单：规则执行核查 每次查 草稿声音.sh、定稿流水线.sh、交付核查.py 调的程序、.github/workflows 的工作流都在机制清单里（新机制不进清单就停）。
-用法：python3 证据.py --记 NN 步（只给 .sh 入口用，父进程必须是那个入口）| --查 NN 阶段 | --状态 NN | --自检"""
+用法：python3 证据.py --记 NN 步（只给 .sh 入口用，父进程必须是那个入口）| --查 NN 阶段 | --状态 NN | --自检
+  G71：--闲置 [--提醒]（机制连续两篇该用没用、或建好后第一篇就没用上 → 停）| --全查（28 起各篇证据链，ci.yml 每次推送跑）
+      “真用上”= 证据链里有那一步的通过行；每篇要跑的 GitHub 工作流 = 证据详情“工作流”或 视频/云端/结果/ 里有“工作流 X”和“篇 NN”两行"""
 import os, sys, json, re, hashlib, datetime, subprocess
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T); P = os.path.dirname(V)
 清单F = f'{T}/机制清单.json'
 目录 = [f'{V}/制作记录/证据']   # 自检换成临时目录
 起 = 28   # 27 已在做，不回头卡（和 开工必读 做事对照 同一起始篇）
+闲置从 = 28   # G71：机制闲置报警从哪篇起算（演练改它重放）
+云端结果 = [f'{V}/云端/结果']
 
 
 def 清单(): return json.load(open(清单F))
@@ -189,9 +193,88 @@ def 自检():
         if not any('工作流' in e for e in 清单问题(C, {}, ['drill-自检造的.yml'])): f.append('没抓到：新 GitHub 工作流没进机制清单')
         if not any('没有写证据' in e for e in 清单问题(C, {'草稿声音.sh': '# python3 $T/证据.py --记 $no 草稿声音'}, [])): f.append('没抓到：正式入口里写证据的那句被删掉（只剩注释）')
         if 清单问题(): f.append(f'现行清单不全：{清单问题()[:2]}')
+        f += [x.replace('证据 闲置自检：', '') for x in 闲置自检(C)]   # G71
     finally:
         目录[0] = old; shutil.rmtree(tmp, ignore_errors=True)
     return ['证据 自检：' + x for x in f]
+
+
+# —— G71 机制闲置报警（用户 2026-10-26：“一定要有一个确保执行机制，一定要有一个绝对的，绝对的确保执行机制，而且要严格执行”）
+def _已过(记录, 归档, 开了=()):
+    """该用机制的篇：归档了定稿视频、证据里有“定稿”，或者后面已经开了新篇（有证据或有 制作记录/NN.md）"""
+    ns = set(记录) | set(归档) | set(开了)
+    return sorted(n for n in ns if int(n) >= 闲置从 and (n in 归档 or any(r.get('步') == '定稿' for r in 记录.get(n, [])) or any(m > n for m in ns)))
+
+
+def _现场():
+    import glob
+    记录 = {os.path.basename(f)[:2]: 读(os.path.basename(f)[:2]) for f in glob.glob(f'{目录[0]}/[0-9][0-9].jsonl')}
+    归档 = {os.path.basename(f)[:2] for f in glob.glob(f'{V}/视频/[0-9][0-9].mp4')}
+    云 = '\n'.join(open(f).read() for f in glob.glob(f'{云端结果[0]}/*.结果.txt'))
+    开了 = {os.path.basename(f)[:2] for f in glob.glob(f'{V}/制作记录/[0-9][0-9].md')}
+    return 记录, 归档, 云, 开了
+
+
+def _下线(名, 同意=None):
+    if 同意 is None:
+        try: 同意 = json.load(open(f'{T}/用户同意记录.json')).get('记录', [])
+        except Exception: 同意 = []
+    return any('下线' in r.get('用于', '') and 名[:6] in r.get('用于', '') and r.get('来源') != '演练' for r in 同意)
+
+
+def 闲置(C=None, 记录=None, 归档=None, 云=None, 同意=None):
+    """返回 [(名, 最近一次真用上的篇或 None, 该用没用的篇列表, 红)]：每个机制（含每篇要跑的 GitHub 工作流）"""
+    C = C or 清单()
+    开了 = ()
+    if 记录 is None: 记录, 归档, 云, 开了 = _现场()
+    篇们 = _已过(记录, 归档 or set(), 开了); out = []
+    项 = [(m['名'], m.get('起', 0), m.get('下线'), lambda rs, n, m=m: any(r.get('步') == m['证据'] and r.get('结果') == '通过' and (not m.get('详情') or (r.get('详情') or {}).get(m['详情'])) for r in rs)) for m in C['机制']]
+    项 += [(f'GitHub 工作流 {w}', v.get('起', 0), v.get('下线'), lambda rs, n, w=w: any(w in ((r.get('详情') or {}).get('工作流') or []) for r in rs) or bool(re.search(rf'^工作流 {re.escape(w)}\b[\s\S]*?^篇 {n}\b|^篇 {n}\b[\s\S]*?^工作流 {re.escape(w)}\b', 云 or '', re.M)))
+           for w, v in C.get('工作流', {}).items() if v.get('每篇')]
+    for 名, 起篇, 下线, 用 in 项:
+        ns = [n for n in 篇们 if int(n) >= int(起篇 or 0)]
+        if not ns or (下线 and _下线(名, 同意)): continue
+        used = [n for n in ns if 用(记录.get(n, []), n)]; last = used[-1] if used else None
+        没 = [n for n in ns if not last or n > last]
+        out.append((名, last, 没, len(没) >= 2 or (len(没) >= 1 and not last)))
+    return out
+
+
+def 闲置问题(**k):
+    return [f'[G71] 机制“{名}”闲置：第{"、".join(没)}篇该用没用（最近一次真用上：{"第" + last + "篇" if last else "建好后一次都没用上"}）'
+            f'——查清是机制坏了（修好再开工）还是不该存在（用户同意后在机制清单写“下线”）' for 名, last, 没, 红 in 闲置(**k) if 红]
+
+
+def 全查(记录=None, C=None):
+    """28 起各篇证据链（ci.yml 每次推送跑）：每篇查到它已走到的最远一个阶段"""
+    C = C or 清单(); 记录 = 记录 if 记录 is not None else _现场()[0]; err = []
+    for n in sorted(记录):
+        rs = 记录[n]; 到 = [s for s in ('出片前', '出片后', '定稿') if any(r.get('步') == s for r in rs)]
+        err += 查(n, 到[-1] if 到 else '出片前', rs=rs, C=C) if 到 else [e for e in 查(n, '出片前', rs=rs, C=C) if '手改' in e or '不是正式入口' in e]
+    return err
+
+
+def 闲置自检(C=None):
+    C = C or 清单(); f = []
+    def rs(*ss): return [{'步': s, '结果': '通过', '详情': {m['详情']: True for m in C['机制'] if m['证据'] == s and m.get('详情')}} for s in ss]
+    全 = rs(*C['阶段']['定稿'], '定稿')
+    缺 = rs(*[s for s in C['阶段']['定稿'] if s != '草稿声音'], '定稿')
+    k = lambda **x: [p for p in 闲置问题(C=C, 同意=[], 云='', 归档=set(), **x)]
+    if k(记录={'90': 全, '91': 全}): f.append(f'误报：两篇机制全用上了被报闲置：{k(记录={"90": 全, "91": 全})[:1]}')
+    if not any('草稿声音' in p for p in k(记录={'90': 全, '91': 缺, '92': 缺})): f.append('没抓到：连续两篇没跑草稿声音')
+    if any('草稿声音' in p for p in k(记录={'90': 全, '91': 缺, '92': 全})): f.append('误报：只隔一篇没用、后面又用上了')
+    if not any('建好后一次都没用上' in p for p in k(记录={'90': 缺, '91': []})): f.append('没抓到：建好后第一篇就没用上')
+    if any('90' in p for p in k(记录={'90': rs('开工记录')})): f.append('误报：正在做的篇（没定稿、后面没开新篇）也算该用没用')
+    C2 = json.loads(json.dumps(C)); C2['工作流']['自检造的.yml'] = {'每篇': True}
+    if not any('自检造的.yml' in p for p in 闲置问题(C=C2, 记录={'90': 全, '91': 全}, 归档=set(), 云='', 同意=[])): f.append('没抓到：每篇要跑的 GitHub 工作流两篇都没跑')
+    if any('自检造的.yml' in p for p in 闲置问题(C=C2, 记录={'90': 全, '91': 全}, 归档=set(), 云='工作流 自检造的.yml\n篇 91\n', 同意=[])): f.append('误报：GitHub 运行记录里有第91篇')
+    C3 = json.loads(json.dumps(C)); next(m for m in C3['机制'] if m['证据'] == '草稿声音')['下线'] = True
+    名 = next(m['名'] for m in C3['机制'] if m['证据'] == '草稿声音')
+    if not any('草稿声音' in p for p in 闲置问题(C=C3, 记录={'90': 缺, '91': 缺}, 归档=set(), 云='', 同意=[])): f.append('没抓到：写了“下线”却没有用户原话')
+    if any('草稿声音' in p for p in 闲置问题(C=C3, 记录={'90': 缺, '91': 缺}, 归档=set(), 云='', 同意=[{'用于': f'下线 {名}', '来源': '用户消息'}])): f.append('误报：用户同意下线了还报')
+    坏 = [dict(r, 前='0', 本='x') for r in 全]
+    if not 全查(记录={'90': 坏}, C=C): f.append('没抓到：全查（ci.yml）漏了被手改的证据文件')
+    return ['证据 闲置自检：' + x for x in f]
 
 
 if __name__ == '__main__':
@@ -206,6 +289,18 @@ if __name__ == '__main__':
         no, 阶段 = a[a.index('--查') + 1].zfill(2), a[a.index('--查') + 2]; e = 查(no, 阶段)
         for x in e: print('  ✘', x)
         print(f'第{no}篇 {阶段} 机制证据：' + ('【不全，停】按 视频/开工必读.md ⑤ 步骤表补跑' if e else '齐全')); sys.exit(1 if e else 0)
+    if '--闲置' in a:   # G71：开工提醒第一屏、开工记录开下一篇、定稿流水线 ⓪、ci.yml 每次推送
+        e = 闲置问题()
+        if '--提醒' in a:
+            if e: print('\033[1;31m【机制闲置报警（G71）】' + '；'.join(e) + '\033[0m')
+            else: print('【机制闲置（G71）】' + ('；'.join(f'{名} 最近用上 第{last}篇' for 名, last, _, _ in 闲置() if last)[:200] or '28 起还没有做完的篇，没有闲置'))
+            sys.exit(0)
+        for x in e: print('  ✘', x)
+        print('机制闲置：' + ('【有闲置，停】' if e else '无')); sys.exit(1 if e else 0)
+    if '--全查' in a:
+        e = 全查()
+        for x in e: print('  ✘', x)
+        print('28 起各篇机制证据链：' + ('不全' if e else '齐全')); sys.exit(1 if e else 0)
     if '--状态' in a: print(状态(a[a.index('--状态') + 1].zfill(2))); sys.exit(0)
     e = 清单问题()
     for x in e: print('  ✘', x)

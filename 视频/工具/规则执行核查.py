@@ -363,6 +363,7 @@ def main():
     import 证据 as _ZJ; gl += _ZJ.清单问题()   # G60：新机制（新调用的程序、新工作流）不进机制清单就停
     import 报坑 as _BK; _bh, _bl, _bw = _BK.判(std, _BK.读本地()); gl += _bh   # G54：撞号、总表新行没取号就停；超期没入表的这里只提示（定稿流水线 ⓪、推门程序时 --严 停）
     for _x in (_bl + _bw if '--状态' not in a else []): print('  提示（报坑登记，G54）：', _x[:120])
+    for _x in _ZJ.闲置问题(): print('  ✘ 机制闲置（G71，开下一篇、定稿流水线 ⓪、ci.yml 停）：', _x[:160])   # 只报不挡提交：修机制、经用户同意下线都要提交
     for p in STAMPED:
         if not 印章有效(p): gl.append(f'{STAMPED[p][1]} 改过、慢自检的印章对不上：在视频工作目录跑 python3 {os.path.relpath(T, P)}/{p}，通过后再提交（A26/A42：改出片程序后必须先过守门自检）')
     new = {k: v for k, v in per.items() if k not in base}
