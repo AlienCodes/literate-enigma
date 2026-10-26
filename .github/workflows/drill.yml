@@ -51,7 +51,7 @@ jobs:
             合成对照) python3 $GITHUB_WORKSPACE/视频/云端/合成对照.py ../tts 2>&1 | tee /tmp/out.log ;;
             全篇重查) python3 $T/定稿视频核对.py --不查镜像 ${{ matrix.no }} 2>&1 | tee /tmp/out.log | tail -25 ;;
           esac; rc=$?
-          { echo "### ${{ needs.plan.outputs.job }} ${{ matrix.no }}：$([ $rc = 0 ] && echo ✔ || echo ✘)（$(( $(date +%s)-T0 )) 秒，$(nproc) 核）"; echo '```'; grep -E '✘|✔|【' /tmp/out.log | tail -30; echo '```'; } >> $GITHUB_STEP_SUMMARY
+          { echo "### ${{ needs.plan.outputs.job }} ${{ matrix.no }}：$([ $rc = 0 ] && echo ✔ || echo ✘)（$(( $(date +%s)-T0 )) 秒，$(nproc) 核）"; echo '```'; { grep -E '✘|✔|【|默认|单线程|机器' /tmp/out.log || true; } | tail -30; echo '```'; } >> $GITHUB_STEP_SUMMARY
           for f in $T/*通过.json; do git -C $GITHUB_WORKSPACE diff --quiet -- "$f" || cp "$f" /tmp/; done
           exit $rc
       - uses: actions/upload-artifact@v4
