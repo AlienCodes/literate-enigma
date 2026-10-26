@@ -46,6 +46,50 @@ if _RC.定稿提醒('23', {'21': 'x.mp4'}, ['21']) or _RC.定稿提醒('21', {'2
 _l = [l for l in src.splitlines() if '生成文本.py' in l and not l.lstrip().startswith('#')]   # 守则17：默认不出 Word/PDF
 if not _l or '--只核查' not in _l[0] or '要文本' not in _l[0]: fails.append('没抓到：定稿流水线默认还在出 Word/PDF（守则17）')
 if '只核查 = ' not in open(f'{T}/生成文本.py').read(): fails.append('没抓到：生成文本没有只核查用法（守则17）')
+# K37（25 定稿撞到）：定稿流水线 ④ 写 ${要文本:+--出文档}，bash 不认中文变量名直接 bad substitution，|| stop 又写在 # 注释后面，
+# 生成文本.py 没跑、失败也不停，文本门从 2026-10-24 起被静默跳过。两道静态查（全部 .sh）+ 真跑 ④ 那两行（假 生成文本.py 失败必须停、参数对）
+def sh毛病(txt):
+    """[(行号, 毛病)]：中文变量展开（$名 / ${名…}，bash 只认 ASCII 变量名）；注释吞掉 || / &&（# 后面还有 || {、&& {、|| stop）"""
+    out = []
+    for i, l in enumerate(txt.splitlines(), 1):
+        if l.lstrip().startswith('#'): continue
+        code = re.sub(r"'[^']*'|\"(?:[^\"\\]|\\.)*\"", lambda m: m.group(0) if '$' in m.group(0) else '""', l)
+        m = re.search(r'(?:^|\s);?#(?![!{])', code)
+        if re.search(r'\$\{?[#!]?[^\x00-\x7F]', code[:m.start()] if m else code): out.append((i, '中文变量展开（bash 只认 ASCII 变量名：${名} 是 bad substitution，$名 是字面量）'))
+        if m and re.search(r'(\|\||&&)\s*(\{|stop\b|exit\b)', code[m.end():]): out.append((i, '注释吞掉了后面的 || / &&（失败不停）'))
+    return out
+for _f in sorted(__import__('glob').glob(f'{T}/**/*.sh', recursive=True)):
+    if '演练样本' in _f: continue
+    for _i, _m in sh毛病(open(_f).read()): fails.append(f'{os.path.relpath(_f, T)} 第 {_i} 行：{_m}（K37）')
+for _bad in ('python3 x.py ${要文本:+--出文档} > a 2>&1', 'python3 x.py $([ -z "$要文本" ] && echo y)', 'python3 x.py > a 2>&1   # 注释 || { tail a; stop "x"; }'):
+    if not sh毛病(_bad): fails.append(f'没抓到：{_bad}（K37 重放）')
+for _ok in ('echo "第${no}篇"', 'exec 9>"${PUSH_LOCK:-/tmp/推送两仓库.lock}"; flock 9', 'x=1   # 说明：失败就 || 停'):
+    if sh毛病(_ok): fails.append(f'误报：{_ok} 被当成 K37 毛病')
+def 跑文本门(要文本, 退出码, txt=src):
+    """把 定稿流水线 ④ 生成文本那两行（YAOWENBEN= 和 python3 $T/生成文本.py）拿出来真跑：假 生成文本.py 记下参数、按 退出码 退出"""
+    ls_ = [l for l in txt.splitlines() if not l.lstrip().startswith('#') and ('生成文本.py' in l or l.startswith('YAOWENBEN='))]
+    d = tempfile.mkdtemp(); open(f'{d}/生成文本.py', 'w').write(f'import sys; open(sys.argv[0] + ".参数", "w").write(" ".join(sys.argv[1:])); sys.exit({退出码})\n')
+    sh = f'stop() {{ echo 【停止】$1; exit 1; }}\nno=99; T={d}; LOG={d}\n' + '\n'.join(ls_) + '\necho 走过了\n'
+    env = {k: v for k, v in os.environ.items() if k not in ('要文本', 'YAOWENBEN')}
+    if 要文本: env['要文本'] = '1'
+    r = subprocess.run(['bash', '-c', sh], capture_output=True, text=True, env=env, timeout=30)
+    a = open(f'{d}/生成文本.py.参数').read() if os.path.exists(f'{d}/生成文本.py.参数') else None; shutil.rmtree(d, ignore_errors=True)
+    return a, '【停止】' in r.stdout and '走过了' not in r.stdout, r.stderr.strip()
+_a, _st, _e = 跑文本门(False, 1)
+if _a is None: fails.append(f'定稿流水线 ④ 生成文本.py 根本没跑（K37）：{_e[:120]}')
+elif not _st: fails.append('定稿流水线 ④ 生成文本.py 失败了流水线没停（K37：|| stop 被注释吞掉？）')
+elif '--只核查' not in _a.split(): fails.append(f'定稿流水线 ④ 默认没带 --只核查（守则17）：参数“{_a}”')
+_a, _st, _e = 跑文本门(True, 0)
+if _a is None or '--出文档' not in _a.split() or _st: fails.append(f'定稿流水线 ④ env 要文本=1 没出文档或不该停：参数“{_a}”{_e[:80]}')
+def 有重建(txt):   # K36：新容器没有 work_NN/a.wav，① 音频体检 ffmpeg 254 崩；① 之前没有 a.wav 必须先只出声音重建
+    i = txt.find('[ -f "work_$no/a.wav" ] ||'); j = txt.find('step "① 出片前核查')
+    return 0 <= i < j and 'AUDIO_ONLY=1 python3 make_' in txt[i:j]   # 只出声音重建
+if not 有重建(src): fails.append('定稿流水线 ① 之前没有“没有 work_NN/a.wav 就只出声音重建”（K36）')
+if 有重建(src.replace('[ -f "work_$no/a.wav" ] ||', '')): fails.append('没抓到：拿掉 a.wav 重建那一行（K36 重放）')
+if subprocess.run(['python3', f'{T}/推请求.py', '--自检'], capture_output=True).returncode: fails.append('推请求.py --自检 不过（K35）')
+_旧 = 'python3 $T/生成文本.py $no ${要文本:+--出文档} $([ -z "$要文本" ] && echo --只核查) > "$LOG/文本.log" 2>&1   # 守则17 || { tail -15 "$LOG/文本.log"; stop "对照文本生成或文本核查不通过"; }'
+_a, _st, _e = 跑文本门(False, 1, _旧)
+if _a is not None and _st: fails.append('没抓到：K37 原样那一行（中文变量 + 注释吞 ||）重放，真跑没发现文本门没跑、不停')
 td = tempfile.mkdtemp(); lk = open(f'{td}/.定稿流水线_99.lock', 'w'); fcntl.flock(lk, fcntl.LOCK_EX)
 r = subprocess.run(['bash', f'{T}/定稿流水线.sh', '99'], capture_output=True, text=True, cwd=td, timeout=60)
 if r.returncode == 0 or '已经有一条定稿流水线在跑' not in r.stdout + r.stderr: fails.append('没抓到：同一篇同时跑两条定稿流水线（G10）')
@@ -60,5 +104,5 @@ sys.path.insert(0, f'{T}/初稿生成'); import 核对 as _HD   # T37 核对.py 
 if _HD.缺的重点词(['**hinge on**', '**dead reckoning**'], ['hinge on', 'dead reckoning']): fails.append('T37 误报：多词重点词（hinge on、dead reckoning）整体在却报“缺”')
 if _HD.缺的重点词(['**dead reckoning**'], ['dead', 'reckoning']): fails.append('T37 误报：多词重点词每个词都加粗了却报“缺”')
 if _HD.缺的重点词(['**vast**', '**hinge on**'], ['hinge on']) != ['vast']: fails.append('没抓到：文章重点词在对照里真的缺了（T37）')
-print('流程自检：' + ('通过（占着锁再启动定稿流水线必停；步骤顺序被调换必报）' if not fails else '失灵！' + '；'.join(fails)))
+print('流程自检：' + ('通过（占着锁再启动定稿流水线必停；步骤顺序被调换必报；④ 文本门真跑失败必停、.sh 中文变量和注释吞 || 必报（K37）；① 前没有 a.wav 先重建（K36）；本地慢印章过期不许推主演练补丁（K35））' if not fails else '失灵！' + '；'.join(fails)))
 sys.exit(1 if fails else 0)

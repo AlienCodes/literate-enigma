@@ -32,11 +32,13 @@ python3 $T/工作稿核对.py $no || stop "工作目录的脚本是旧稿（G19�
 python3 $T/补对照记录.py $no > /dev/null || stop "补对照记录失败"   # 新加的、程序把关的坑自动补进对照记录；只有人能判的不补（缺了 ① 照样停）
 python3 $T/报坑.py --查 --严 || stop "有报坑登记超期还没进踩坑总表（G54：坑一律进总表、配门、演练；python3 $T/报坑.py --状态 看是哪条）"
 step "⓪ 规则执行核查（守则16）"; python3 $T/规则执行核查.py > "$LOG/规则执行.log" 2>&1 || { tail -25 "$LOG/规则执行.log"; stop "规则执行核查不通过"; }
+[ -f "work_$no/a.wav" ] || { step "①前 重建声音（新容器没有 work_$no/a.wav，K36：只出声音，配音缓存命中）"; AUDIO_ONLY=1 python3 make_video.py scripts/$no.json $no.mp4 > "$LOG/重建声音.log" 2>&1 || { tail -15 "$LOG/重建声音.log"; stop "重建声音失败（K36）"; }; }
 step "① 出片前核查"; python3 $T/交付核查.py $no 出片前 > "$LOG/出片前.log" 2>&1 || { tail -25 "$LOG/出片前.log"; stop "出片前核查不通过"; }
 step "② 出 4K"; VIDEO_S=2 python3 make_video.py scripts/$no.json $no.mp4 > "$LOG/出片.log" 2>&1 || { tail -15 "$LOG/出片.log"; stop "出片失败"; }
 step "③ 出片后核查"; python3 $T/交付核查.py $no 出片后 > "$LOG/出片后.log" 2>&1 || { tail -25 "$LOG/出片后.log"; stop "出片后核查不通过"; }
 step "④ 对照文本、文章同步"
-python3 $T/生成文本.py $no ${要文本:+--出文档} $([ -z "$要文本" ] && echo --只核查) > "$LOG/文本.log" 2>&1   # 守则17：默认只核查不出 Word/PDF；用户要文本时 要文本=1 || { tail -15 "$LOG/文本.log"; stop "对照文本生成或文本核查不通过"; }
+YAOWENBEN="${YAOWENBEN:-$(printenv 要文本)}"   # K37：bash 不认中文变量名（${要文本:+…} 直接 bad substitution，文本门被静默跳过）；用户入口 env 要文本=1 照样认
+python3 $T/生成文本.py $no $([ -n "$YAOWENBEN" ] && echo --出文档 || echo --只核查) > "$LOG/文本.log" 2>&1 || { tail -15 "$LOG/文本.log"; stop "对照文本生成或文本核查不通过"; }   # 守则17：默认只核查不出 Word/PDF；用户要文本时 YAOWENBEN=1（或 env 要文本=1）
 md=$(ls $P/新版定稿/$no-*.md 2>/dev/null | head -1); [ -n "$md" ] || stop "找不到文章 新版定稿/$no-*.md"
 (cd $P && python3 视频/工具/sync_article.py 视频/脚本/$no.json "$md") > "$LOG/文章同步.log" 2>&1 || stop "文章同步失败"
 step "⑤ 归档（替换旧视频 + 定稿视频核对）"
