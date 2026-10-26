@@ -2,7 +2,7 @@ import json,re,glob,os
 # 第27篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-10-26 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；非重点词也逐词对齐（G47）；三项以上并列加牛津逗号（T35）。
 S=[
-(1,[[[("Chernobyl","切尔诺贝利"),("is **synonymous with** **disaster**,","是**灾难**(disaster)的**代名词**(synonymous with)，"),("yet","然而"),("it","这里"),("holds","生活着"),("a **startling** amount of","数量**惊人的**(startling)"),("**wildlife**.","**野生动物**(wildlife)。")],
+(1,[[[("Chernobyl","切尔诺贝利"),("is **synonymous with** **disaster**,","是**灾难**(disaster)的**代名词**(synonymous with)，"),("yet","然而"),("it","这里"),("holds","容纳着"),("a **startling** amount of","数量**惊人的**(startling)"),("**wildlife**.","**野生动物**(wildlife)。")],
      "（be synonymous with…：是……的代名词，等同于……；\na startling amount of：数量惊人的）"]]),
 (1,[[[("Early on 26 April 1986,","1986年4月26日凌晨，"),("one of its **reactors**","它的一座**反应堆**(reactors)"),("exploded","爆炸"),("in Soviet Ukraine,","于苏联乌克兰，")],
      "（one of its reactors：它的其中一座反应堆，its 指切尔诺贝利）"],
