@@ -55,8 +55,13 @@ def 判(std, d, now=None):
     return hard, late, wait
 
 
-def 读本地():
-    f = f'{P}/{REL}'
+def 读本地(repo=None):
+    """K32：优先读远端最新（origin/main，原子写推完就 fetch 过），本地工作区那份可能还没拉；读不到才用本地文件"""
+    c, txt = git('show', f'origin/main:{REL}', repo=repo)
+    if c == 0 and txt.strip():
+        try: return json.loads(txt)
+        except ValueError: pass
+    f = f'{repo or P}/{REL}'
     return json.load(open(f)) if os.path.exists(f) else 空()
 
 
@@ -99,9 +104,7 @@ def 原子写(改, repo=None, 分支='main', 说明='报坑登记'):
         c, cm = git('commit-tree', tree.strip(), '-p', base, '-m', 说明 + '\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>', repo=repo,
                     env={'GIT_AUTHOR_NAME': 'Claude', 'GIT_AUTHOR_EMAIL': 'noreply@anthropic.com', 'GIT_COMMITTER_NAME': 'Claude', 'GIT_COMMITTER_EMAIL': 'noreply@anthropic.com'})
         if git('push', '-q', 'origin', f'{cm.strip()}:refs/heads/{分支}', repo=repo)[0] == 0:
-            git('fetch', '-q', 'origin', 分支, repo=repo)
-            f = f'{repo}/{REL}'; os.makedirs(os.path.dirname(f), exist_ok=True)
-            open(f, 'w').write(json.dumps(out, ensure_ascii=False, indent=1) + '\n'); git('add', REL, repo=repo)   # 本地暂存同一内容：之后推送两仓库合并时两边相同、不冲突
+            git('fetch', '-q', 'origin', 分支, repo=repo)   # K32：不碰本地工作区（以前本地暂存一份，卡住 git pull、引起合并冲突）；读的人读 origin/main（读本地()）
             return ret
     raise SystemExit('【停止】推了 8 次都被别人抢先（网络或远端有问题），没有取到号；不许自己编号')
 
@@ -201,6 +204,8 @@ def 自检():
         x1 = 取('G', '会话A', '自检', repo=f'{tmp}/a'); x2 = 取('G', '会话B', '自检', repo=f'{tmp}/b')
         k1 = 报('自检造的坑', '会话B', repo=f'{tmp}/b'); k2 = 报('自检造的坑2', '会话A', repo=f'{tmp}/a')
         if (x1, x2) != ('G54', 'G55'): fails.append(f'没抓到：两个会话先后取号撞号（拿到 {x1} {x2}）')
+        if git('status', '--porcelain', repo=f'{tmp}/a')[1].strip(): fails.append('没抓到：取号后本地工作区留了改动（K32：卡住 git pull、引起合并冲突）')
+        if not any(r.get('编号') == x2 for r in 读本地(repo=f'{tmp}/a').get('预留', [])): fails.append('取号后读不到刚取的号（K32：读本地() 要读 origin/main）')
         if (k1, k2) != ('K1', 'K2'): fails.append(f'两个会话先后报坑登记号撞了（{k1} {k2}）')
     except SystemExit as e: fails.append(f'取号真跑失败：{e}')
     # G66 改门锁：A 取到后 B 必须取不到；B 放不了 A 的锁；A 放后 B 取到；过期的锁可以抢；没持锁改门被拒、持锁不拒

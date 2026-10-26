@@ -13,6 +13,10 @@ import sys, os, json, re, hashlib, subprocess, datetime
 V = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PV = '/home/user/postgraduate-vocabulary'
 回执目录 = os.path.expanduser('~/.核查回执')
+请求账 = os.path.expanduser('~/.云端请求.json')   # K34：推了 GitHub 请求（推请求.py 记）、约了唤醒（send_later 后钩子记）
+def _读账():
+    try: return json.load(open(请求账))
+    except Exception: return {}
 媒体 = ('.mp4', '.mp3', '.wav', '.m4a', '.docx', '.pdf', '.html')
 
 
@@ -148,12 +152,21 @@ def 判(kind, d, 仓库=PV):
                 return 拦('PreToolUse', f'【G61 会话角色闸门】本会话是“{r["角色"]}”会话，不许改门程序 {rel}（G25：程序不好写进 NN.md 方法复盘 + 报坑.py 登记，由改门会话改）。')
         except Exception: pass
         return None
+    if kind == '已约唤醒':   # K34：send_later 之后记下（PostToolUse），收工闸门据此放行
+        a = _读账(); a['唤醒'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+        try: json.dump(a, open(请求账, 'w'), ensure_ascii=False)
+        except OSError: pass
+        return None
     if kind == '发文件后':   # W6：发了 Word，提醒用户打印要勾选“打印背景色”（钩子把提醒放进我的上下文，不靠我记）
         if any(str(f).lower().endswith('.docx') for f in (ti.get('files') or [])):
             return {'hookSpecificOutput': {'hookEventName': 'PostToolUse', 'additionalContext': '【W6 提醒】刚发了 Word：回复里要提醒用户，打印时勾选“打印背景色”，否则浅色底色和彩色字印不出来。'}}
         return None
     if kind == '收工':
         if d.get('stop_hook_active'): return None
+        a = _读账(); rq = a.get('请求', []); last = max((r.get('时刻', '') for r in rq), default='')
+        if last and a.get('唤醒', '') < last:   # K34：GitHub 写回结果（API 提交）不触发 PR 事件、不会唤醒会话（2026-10-26 空等 2 小时 20 分、改门锁过期）
+            return 拦('Stop', f'【K34 云端请求闸门】推了 GitHub 请求（{rq[-1].get("名字", "")}，{last}）还没约唤醒：GitHub 写回结果不会唤醒会话。'
+                     '先用 send_later（claude-code-remote）约约 20 分钟后叫回自己，再收工。')
         if not os.path.isdir(仓库): return None
         r = subprocess.run(['git', '-c', 'core.quotepath=off', '-C', 仓库, 'status', '--porcelain', '--', '视频', 'CLAUDE.md', '新版定稿'],
                            capture_output=True, text=True).stdout

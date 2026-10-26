@@ -5,8 +5,12 @@ from clean import clean_tail,SR
 import render as R
 import title2 as T2
 TTS='../tts'
-k=Kokoro(f'{TTS}/kokoro-v1.0.onnx',f'{TTS}/voices-v1.0.bin'); V=np.load(f'{TTS}/'+os.environ.get('VOICE','voice_mb.npy'))
-if os.path.exists(f'{TTS}/kokoro-v1.0-timed.onnx'): KT=Kokoro(f'{TTS}/kokoro-v1.0-timed.onnx',f'{TTS}/voices-v1.0.bin')
+import onnxruntime as _ort
+def _单线程会话(model):   # 合成单线程（主会话 2026-10-26 定）：onnxruntime 默认多线程在不同 CPU 上算出来不逐样本相同；单线程跨机器逐样本相同（沙盒与 GitHub 实测），音质不变（20 整篇对比）
+    so=_ort.SessionOptions(); so.intra_op_num_threads=1; so.inter_op_num_threads=1
+    return Kokoro.from_session(_ort.InferenceSession(model,so,providers=['CPUExecutionProvider']),f'{TTS}/voices-v1.0.bin')
+k=_单线程会话(f'{TTS}/kokoro-v1.0.onnx'); V=np.load(f'{TTS}/'+os.environ.get('VOICE','voice_mb.npy'))
+if os.path.exists(f'{TTS}/kokoro-v1.0-timed.onnx'): KT=_单线程会话(f'{TTS}/kokoro-v1.0-timed.onnx')
 else:   # 没有带时长模型（kokoro-onnx 官方发布页 model-files-v1.1 的 kokoro-v1.0.onnx，改名而来；准备机器.sh 会下载）：注音器用出片模型的（同一个），带时长的结果全部来自缓存
     class _KT: pass
     KT=_KT(); KT.tokenizer=k.tokenizer
@@ -35,8 +39,18 @@ _REPO_CACHE='/home/user/postgraduate-vocabulary/视频/配音缓存'
 def _to_repo(p):   # 用到的每条缓存都复制进仓库（推送时进 GitHub）：别的机器现合成的声音与这里不逐采样相同（2026-10-17 GitHub 机器从头合成被 A21 守门拦下），缓存就是唯一的原版
     if os.environ.get('STRICT_CACHE') or not os.path.isdir(_REPO_CACHE): return
     d=os.path.join(_REPO_CACHE,os.path.basename(p))
+    if os.path.exists(p+'.单线程') and not os.path.exists(d+'.单线程'): import shutil as _sh; _sh.copyfile(p+'.单线程',d+'.单线程')
     if not os.path.exists(d):   # 先写临时名再改名（G53：推送两仓库正好碰上写了一半的缓存，提交进半个文件、G2 比对不一致）；临时名 .part 不进 git
         import shutil as _sh; q_=f'{d}.{os.getpid()}.part'; _sh.copyfile(p,q_); os.replace(q_,d)
+_OLDF=next((q for q in (os.path.join(_REPO_CACHE,'老条目指纹.json'),os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','配音缓存','老条目指纹.json')) if os.path.exists(q)),None)
+_OLD=json.load(open(_OLDF))['条目'] if _OLDF else {}
+def _条目核对(p):   # 配音缓存两道门（主会话 2026-10-26 定）：新条目必须带 .单线程 标记且指纹相符；没标记的必须是老条目清单里的、指纹相符（被改、被换、损坏、多线程悄悄合成的新条目 → 停）
+    b=os.path.basename(p); h=_hl.sha256(open(p,'rb').read()).hexdigest()[:16]
+    if os.path.exists(p+'.单线程'):
+        if open(p+'.单线程').read().strip()==h: return
+        raise SystemExit(f'【停止】配音缓存 {b} 与它的 .单线程 标记指纹不符（G72：缓存被改或损坏）')
+    if _OLD.get(b)==h: return
+    raise SystemExit(f'【停止】配音缓存 {b} '+('不在老条目指纹清单里、也没有 .单线程 标记（G72：新条目一律单线程合成并带标记）' if b not in _OLD else '与老条目指纹清单不符（G72：缓存被改、被换或损坏）'))
 def _cached(obj,meth,model):
     fn=getattr(obj,meth); mid_old=f'{model}:{os.path.getsize(model)}:{int(os.path.getmtime(model))}' if os.path.exists(model) else ''; mid=_portable_mid(model)
     def g(text,voice,speed=1.0,lang='en-us',**kw):
@@ -47,14 +61,14 @@ def _cached(obj,meth,model):
             with open(os.environ['CACHE_LOG'],'a') as f: f.write(os.path.basename(p)+'\n')
         if not os.path.exists(p) and os.path.exists(po): import shutil as _sh; _sh.copyfile(po,p)   # 旧钥匙（含路径、修改时间）的缓存搬到新钥匙
         if os.path.exists(p):
-            _to_repo(p)
+            _条目核对(p); _to_repo(p)
             with open(p,'rb') as f: return _pk.load(f)
         if os.environ.get('STRICT_CACHE'): raise SystemExit(f'【停止】严格缓存模式（GitHub 出片）缺配音缓存 {os.path.basename(p)}（{meth}：{text[:40]}…）：别的机器现合成声音可能差一点点，绝不现合成——先在本地出一遍，把缓存提交进 视频/配音缓存/')
         r=fn(text,voice=voice,speed=speed,lang=lang,**kw)
         if meth=='create_timed': r=(r[0],r[1],list(r[2]))
         q=f'{p}.{os.getpid()}'
         with open(q,'wb') as f: _pk.dump(r,f)
-        os.replace(q,p); _to_repo(p); return r
+        os.replace(q,p); open(p+'.单线程','w').write(_hl.sha256(open(p,'rb').read()).hexdigest()[:16]); _to_repo(p); return r
     return g
 k.create=_cached(k,'create',f'{TTS}/kokoro-v1.0.onnx'); KT.create_timed=_cached(KT,'create_timed',f'{TTS}/kokoro-v1.0-timed.onnx')
 # A23 读音改正（2026-10-09 用户：“每个单词的读音，尤其是这种额外的这种人名啊，或者是物名或者是机构名等等……一定得是正确的……

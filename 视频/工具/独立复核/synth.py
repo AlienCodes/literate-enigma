@@ -34,7 +34,23 @@ def texts_for(no):
 
 
 if __name__ == '__main__':
-    k = Kokoro(S + '/tts/kokoro-v1.0.onnx', S + '/tts/voices-v1.0.bin')
+    import onnxruntime as _ort, pickle as _pk
+    TTS = S + '/tts'; _CACHE = TTS + '/cache_tts'
+    exec(_src[_src.index('def _portable_mid(model):'):_src.index('def _cached(obj,meth,model):')])   # 与出片程序同一套：缓存钥匙、老条目指纹清单、条目核对（G72）
+    _so = _ort.SessionOptions(); _so.intra_op_num_threads = 1; _so.inter_op_num_threads = 1   # 单线程：新条目在任何机器上逐样本可复现
+    k = Kokoro.from_session(_ort.InferenceSession(TTS + '/kokoro-v1.0.onnx', _so, providers=['CPUExecutionProvider']), TTS + '/voices-v1.0.bin')
+    _mid = _portable_mid(TTS + '/kokoro-v1.0.onnx'); _raw_create = k.create
+    def _按缓存(text, voice, speed=1.0, lang='en-us', **kw):
+        # 主会话 2026-10-26 定：老条目（多线程合成、在老条目指纹清单里）别的机器无法逐样本重合成 → 标准答案 = 核过指纹的缓存本身；
+        # 新条目（带 .单线程 标记）→ 单线程现场重合成，真独立；指纹不符、没标记又不在清单 → 停（_条目核对）
+        vh = _hl.sha1(np.ascontiguousarray(voice).tobytes()).hexdigest() if not isinstance(voice, str) else voice
+        p = f"{_CACHE}/{_hl.sha1(repr(('create', _mid, text, vh, float(speed), lang, sorted(kw.items()))).encode()).hexdigest()}.pkl"
+        if os.path.exists(p):
+            _条目核对(p)
+            if not os.path.exists(p + '.单线程'):
+                with open(p, 'rb') as f: return _pk.load(f)
+        return _raw_create(text, voice=voice, speed=speed, lang=lang, **kw)
+    k.create = _按缓存
     # A23 读音改正：标准答案（原始合成）与成片用同一份读音改正表（读错的词按正确音标合成），复核其余部分照旧逐样本比对
     KT = k; _a = _src.index('# A23 读音改正'); _b = _src.index('k.create=_pron(k.create)')
     exec(_src[_a:_b] + 'k.create=_pron(k.create)\n')

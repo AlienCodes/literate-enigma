@@ -194,6 +194,9 @@ def _变异(prog, old, new):
     ('G65进化变差没落地', '流水线', '24', '24 制作记录加一个 99M、99999 次调用的收工行（比前三篇中位数贵得多），方法复盘没有进化落地（起始篇改成 24 重放），跑定稿流水线', lambda f: (_变异('方法进化表.py', '起 = 27 ', '起 = 24 ')(f), _加收工(f, '24')), '【G65 方法进化】', ['G65']),
     ('G71机制闲置', '流水线', '24', '闲置报警起始篇改成 24 重放：24–26 已做完、一条机制证据都没有（每个机制连续三篇该用没用），跑定稿流水线', _变异('证据.py', '闲置从 = 28', '闲置从 = 24'), '机制闲置', ['G71']),
     ('G63没开工就提交', '会话开工查', '24', '本会话没跑 会话开工.py（没读开工必读），提交前检查', None, '本会话还没开工', ['G63']),
+    ('G72老条目被改', '配音缓存自检', '24', '出片程序读缓存时不再核老条目指纹（老条目被改、被换也照用）', _变异('make_video.py', "    if _OLD.get(b)==h: return", "    return"), '没抓到：老条目被改', ['G72']),
+    ('G72无标记新条目', '配音缓存自检', '24', '出片程序读缓存时不再查 .单线程 标记（多线程悄悄合成的新条目也照用）', _变异('make_video.py', "    if os.path.exists(p+'.单线程'):\n        if open(p+'.单线程').read().strip()==h: return", "    if True:\n        return"), '没抓到：没有 .单线程 标记', ['G72']),
+    ('G73取号弄脏本地', '报坑自检', '24', '原子写推完又往本地工作区写一份坑登记并暂存（K32 的老毛病）', _变异('报坑.py', "            git('fetch', '-q', 'origin', 分支, repo=repo)   # K32", "            git('fetch', '-q', 'origin', 分支, repo=repo); open(f'{repo}/{REL}', 'w').write('{}'); git('add', REL, repo=repo)   # K32"), '没抓到：取号后本地工作区留了改动', ['G73']),
     ('G66没持锁改门', '报坑自检', '24', '改门锁的提交前检查被改成谁都放行（没持锁也能改门程序）', _变异('报坑.py', "    if 锁有效(L, now) and L['会话'] == 会话: return []", "    return []"), '没持锁的会话改门程序', ['G66']),
     ('G64自检指向真origin', '报坑自检', '24', '报坑.py 取号自检的临时仓库 origin 被改成真仓库', _变异('报坑.py', "sh('git init -q --bare r.git && git clone -q r.git a && git clone -q r.git b')", "sh('git init -q --bare r.git && git clone -q r.git a && git clone -q r.git b && git -C a remote set-url origin /home/user/postgraduate-vocabulary')"), '自检指向真 origin', ['G64']),
     ('G55做事对照没写', '踩坑出片', '25', '25 制作记录没有“## 做事对照记录”（开工必读的起始篇改成 25 重放）', _变异('开工必读.py', '起 = 28', '起 = 25'), '[开工必读] 制作记录/25.md 没有“## 做事对照记录”', ['G55', '文35']),
@@ -320,6 +323,7 @@ def 仓库跑(entry, no, M, ws, 拆门=None):
     elif entry == '欠着': cmd = ['python3', f'{tool}/全篇核查.py', '--欠着']
     elif entry == '开工提醒': cmd = ['bash', f'{tool}/开工提醒.sh']
     elif entry == '报坑自检': cmd = ['python3', f'{tool}/报坑.py', '--自检']   # G64：自检只许碰假远端
+    elif entry == '配音缓存自检': cmd = ['python3', f'{tool}/配音缓存核对.py', '--自检']   # G72：出片程序的缓存两道门
     elif entry == '会话开工查': cmd = ['python3', f'{tool}/会话开工.py', '--查']; env['HOME'] = tempfile.mkdtemp(prefix='演练_空HOME_')   # G63：空 HOME = 没开工的会话
     elif entry == '开工记录': cmd = ['python3', f'{tool}/开工记录.py', no]
     elif entry == '初稿': cmd = ['python3', f'{tool}/初稿生成/gen{no}.py']
@@ -391,12 +395,16 @@ def 仓库演练(W, root, 只=None):
     ('G59删钩子', '命令', {'tool_input': {'command': 'rm -f .git/hooks/pre-commit 视频/工具/githooks/pre-commit'}}, 'K16', ['G59']),
     ('G60手写证据', '改文件', {'tool_input': {'file_path': '/home/user/postgraduate-vocabulary/视频/制作记录/证据/28.jsonl'}}, '【G60 证据闸门】', ['G60']),
     ('G61出稿会话改门程序', '改文件', {'tool_input': {'file_path': '/home/user/postgraduate-vocabulary/视频/工具/踩坑核查.py'}, '_角色': '出稿'}, '【G61 会话角色闸门】', ['G61']),
+    ('G74推请求没约唤醒', '收工', {'_请求账': {'请求': [{'名字': '演练请求', '时刻': '2026-10-26T12:47:00Z'}]}}, '【K34 云端请求闸门】', ['G74']),
     ('G15heredoc里的字不误拦', '命令', {'tool_input': {'command': "cat > /tmp/演练.md <<'EOF'\ngit push -f origin master\nnpx vercel --prod\nEOF"}}, '', ['G15'], '放行'),
 ]
 
 
 def 跑钩子(kind, payload):
     payload = dict(payload); 角色 = payload.pop('_角色', None); env = dict(os.environ)
+    账 = payload.pop('_请求账', None)
+    if 账 is not None:   # G74：在临时 HOME 里放一份请求账（推了请求、没约唤醒），从真实收工闸门入口跑
+        h = tempfile.mkdtemp(prefix='演练_请求账_'); json.dump(账, open(f'{h}/.云端请求.json', 'w'), ensure_ascii=False); env['HOME'] = h
     if 角色:   # G61：在临时 HOME 里记一个会话角色，从真实闸门入口跑
         h = tempfile.mkdtemp(prefix='演练_角色_'); json.dump({'角色': 角色}, open(f'{h}/.会话开工.json', 'w')); env['HOME'] = h
     for f in payload.get('tool_input', {}).get('files', []):   # 闸门只查存在的文件：造一个没有回执的真文件
@@ -449,7 +457,8 @@ def 演练(W, 只=None):
         for sid, kind, payload, want, _, *mode in 钩子场景:
             if 只 and sid not in 只: continue
             o = 跑钩子(kind, payload); mode = mode[0] if mode else '拦'
-            ok = (want in o and '"deny"' in o) if mode == '拦' else (want in o and '"deny"' not in o)   # 提醒：要有提醒、不拦；放行：不许误拦
+            拦了 = '"deny"' in o or '"block"' in o   # G74：收工闸门（Stop）拦是 "block"，PreToolUse 拦是 "deny"
+            ok = (want in o and 拦了) if mode == '拦' else (want in o and not 拦了)   # 提醒：要有提醒、不拦；放行：不许误拦
             if ok and mode != '拦': res.append((sid, True, ('提醒：' + want) if mode == '提醒' else '没有误拦')); continue
             res.append((sid, ok, ('拦下：' + want) if ok else f'没挡住：{o[:100]}'))
     res += 仓库演练(W, root, 只)

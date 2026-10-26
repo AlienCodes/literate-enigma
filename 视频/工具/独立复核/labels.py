@@ -8,7 +8,8 @@ W = os.environ.get('QC_DIR', S + '/qc_independent'); os.makedirs(W, exist_ok=Tru
 from kokoro_onnx import Kokoro
 _src=open(S+'/video/make_video.py').read(); exec(_src[_src.index('# 朗读用的数字读法'):_src.index('def say(t):')])  # 与成片相同的数字读法
 V = np.load(S + '/tts/voice_mb.npy')
-KT = Kokoro(S + '/tts/kokoro-v1.0-timed.onnx', S + '/tts/voices-v1.0.bin')
+import onnxruntime as _ort; _so = _ort.SessionOptions(); _so.intra_op_num_threads = 1; _so.inter_op_num_threads = 1   # 单线程（跨机器逐样本可复现；只用于标注、不判过不过）
+KT = Kokoro.from_session(_ort.InferenceSession(S + '/tts/kokoro-v1.0-timed.onnx', _so, providers=['CPUExecutionProvider']), S + '/tts/voices-v1.0.bin')
 SKIP = set("ˈˌ ,.;:!?—…\"'()-“”")
 
 for no in sys.argv[1:]:
