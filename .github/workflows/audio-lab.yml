@@ -1,5 +1,5 @@
 # 音频上 GitHub 评估（改门_音频上GitHub.md 第一阶段：只评估、不改门程序）。单独的实验工作流，不碰 drill.yml 的请求。
-# 触发：推送 .github/音频实验/请求.txt（每行一项：复听 / 打分 / 精度 / 流程）。结果写回 .github/音频实验/结果/。
+# 触发：推送 .github/音频实验/请求.txt（每行一项：复听 / 打分 / 精度 / 流程）。小文本结果写回 视频/云端/结果/音频实验/（G58 白名单内，K30）；wav 等只进 Actions Artifacts，不进仓库。
 name: 音频实验
 on:
   push:
@@ -161,12 +161,12 @@ jobs:
       - name: 汇总并写回
         env: {GH_TOKEN: '${{ github.token }}'}
         run: |
-          pip install -q -r 视频/工具/环境/requirements.txt; D=.github/音频实验/结果; mkdir -p /tmp/w; R='${{ needs.plan.outputs.req }}'
+          pip install -q -r 视频/工具/环境/requirements.txt; D=视频/云端/结果/音频实验; mkdir -p /tmp/w; R='${{ needs.plan.outputs.req }}'
           ls /tmp/a | head -80
           ls /tmp/a | grep -q '^听_' && python3 -u .github/音频实验/实验.py 汇总 /tmp/a > /tmp/w/机器复听_${{ github.run_id }}.md 2>&1
           ls /tmp/a | grep -q '^打分_' && python3 -u .github/音频实验/实验.py 打分汇总 /tmp/a > /tmp/w/打分_${{ github.run_id }}.md 2>&1
           [ -f /tmp/a/精度/精度.json ] && cp /tmp/a/精度/精度.json /tmp/w/
-          [ -d /tmp/a/流程 ] && cp /tmp/a/流程/流程.txt /tmp/a/流程/a_26.wav /tmp/w/ 2>/dev/null
+          [ -d /tmp/a/流程 ] && cp /tmp/a/流程/流程.txt /tmp/w/ 2>/dev/null
           python3 - <<'PY'
           import json,glob,os
           for pat,o in (('听_*/*.json','听全部_${{ github.run_id }}.json'),('打分_*/*.json','打分全部_${{ github.run_id }}.json')):
@@ -174,7 +174,7 @@ jobs:
               if fs: json.dump([json.load(open(f)) for f in fs],open('/tmp/w/'+o,'w'),ensure_ascii=False)
           PY
           ls -la /tmp/w; head -60 /tmp/w/*.md || true
-          for f in /tmp/w/*; do python3 - "$D/$(basename $f)" "$f" <<'PY'
+          rm -f /tmp/w/*.wav; for f in /tmp/w/*; do python3 - "$D/$(basename $f)" "$f" <<'PY'
           import sys,base64,json,subprocess,urllib.parse,os
           path,src=sys.argv[1:3]; repo=os.environ['GITHUB_REPOSITORY']; br=os.environ['GITHUB_REF_NAME']; u=f'repos/{repo}/contents/{urllib.parse.quote(path)}'
           g=subprocess.run(['gh','api',u+'?ref='+urllib.parse.quote(br)],capture_output=True,text=True); sha=json.loads(g.stdout).get('sha') if g.returncode==0 else None
