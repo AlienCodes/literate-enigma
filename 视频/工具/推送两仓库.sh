@@ -25,17 +25,19 @@ python3 - "$P" "$L" <<'PYW' || exit 1
 import sys, os, re, subprocess, shutil, fnmatch
 P, L = sys.argv[1:3]; BOT = 'github-actions[bot]'
 g = lambda r, *a: subprocess.run(['git', '-c', 'core.quotepath=off', '-C', r, *a], capture_output=True, text=True).stdout
-nn = set()
-try:
-    for l in open(f'{L}/视频/云端/演练请求.txt'):
-        if l.strip() and not l.lstrip().startswith('#'):
-            w = l.split(); nn = {x for x in w[1:] if re.fullmatch(r'\d\d', x)} if w[0] in ('出片', '定稿', '草稿') else set(); break
-except FileNotFoundError: pass
+nn = set()   # 请求篇号：镜像里 视频/云端/请求/*.txt（一个请求一个文件）中 出片/定稿/草稿 请求写的篇号
+import glob
+for rf in glob.glob(f'{L}/视频/云端/请求/*.txt') + [f'{L}/视频/云端/演练请求.txt']:
+    try: w = next((l.split() for l in open(rf) if l.strip() and not l.lstrip().startswith('#')), [])
+    except FileNotFoundError: continue
+    if w and w[0] in ('出片', '定稿', '草稿'): nn |= {x for x in w[1:] if re.fullmatch(r'\d\d', x)}
 白 = ['视频/工具/执行效应演练通过.json', '视频/工具/执行效应声音演练通过.json', '视频/工具/全篇重查通过.json', '视频/云端/结果/*']
 for n in nn: 白 += [f'视频/视频/{n}.mp4', f'视频/视频/草稿1080p/{n}_*', f'最终版4K视频/{n} *', '最终版4K视频/README.md', f'新版定稿/{n}-*',
                     f'视频/制作记录/{n}.md', f'视频/制作记录/{n}_*', f'视频/制作记录/逐句确认/{n}.json', f'视频/制作记录/证据/{n}*',
                     f'视频/脚本/已发版本/{n}.json', f'视频/音频核对/*_{n}.txt', f'视频/音频核对/*_{n}_*.txt']
 ok = lambda f: any(fnmatch.fnmatchcase(f, w) for w in 白)
+for f in g(L, 'ls-files', '--', '视频/云端/请求/').splitlines():   # K24：会话直接放在镜像里的请求只增不删：拷回主仓库（之后两边一致，主仓库推过去不算“新加”、不会重跑）
+    if f and not os.path.exists(f'{P}/{f}'): os.makedirs(os.path.dirname(f'{P}/{f}'), exist_ok=True); shutil.copy2(f'{L}/{f}', f'{P}/{f}'); g(P, 'add', '--', f); print(f'回写请求（K24）：{f}')
 fs = {f for f in g(L, 'log', '-300', '--author=' + re.escape(BOT), '--name-only', '--format=').splitlines() if f}
 bad, n_ = [], 0
 for f in sorted(fs):
@@ -75,4 +77,4 @@ diff <(git -C $P ls-tree -r HEAD $D | awk '{print $3,$4}') <(git -C $L ls-tree -
   && cmp -s $P/CLAUDE.md $L/CLAUDE.md && [ -z "$(git -C $P status --short)" ] && [ -z "$(git -C $L status --short)" ] \
   && git -C $P fetch -q origin main && git -C $L fetch -q origin $B \
   && git -C $P merge-base --is-ancestor HEAD origin/main && git -C $L merge-base --is-ancestor HEAD origin/$B \
-  && echo "两仓库已推送，视频/ 逐文件一致，云端已含这次提交（G2；别的会话紧接着推了也算对）" || { echo "【停止】两仓库 视频/ 不一致、有没提交的改动，或云端与本地不一致（G2）"; exit 1; }
+  && echo "两仓库已推送，视频/ 逐文件一致，云端已含这次提交（G2；别的会话紧接着推了也算对）" && { [ -n "$PUSH_P" ] || python3 $P/视频/工具/报坑.py --放锁 --静默 2>/dev/null || true; } || { echo "【停止】两仓库 视频/ 不一致、有没提交的改动，或云端与本地不一致（G2）"; exit 1; }

@@ -114,7 +114,15 @@ def 提交前():
     repo = subprocess.run(['git', 'rev-parse', '--show-toplevel'], capture_output=True, text=True).stdout.strip()
     if not err and os.path.basename(repo) == 'postgraduate-vocabulary':   # 镜像仓库只是照抄 P，不另查
         staged = subprocess.run(['git', '-C', repo, '-c', 'core.quotepath=off', 'diff', '--cached', '--name-only'], capture_output=True, text=True).stdout.split('\n')
-        err += 角色问题(读记录()['角色'], [x for x in staged if x], _同远端(repo))
+        同 = _同远端(repo); err += 角色问题(读记录()['角色'], [x for x in staged if x], 同)
+        门 = [x for x in staged if x and 门程序(x) and not 同(x)]
+        if 门 and not err:   # G66 改门锁：改门程序的会话必须持锁（锁读远端最新的坑登记）
+            sys.path.insert(0, T); import 报坑 as K
+            subprocess.run(['git', '-C', repo, 'fetch', '-q', 'origin', 'main'], capture_output=True)
+            o = subprocess.run(['git', '-C', repo, 'show', 'origin/main:' + K.REL], capture_output=True, text=True)
+            try: L = json.loads(o.stdout).get('改门锁') or {}
+            except Exception: L = K.读本地().get('改门锁') or {}
+            err += K.锁问题(门, (读记录() or {}).get('会话', ''), L)
     for e in err: print(e)
     return 1 if err else 0
 

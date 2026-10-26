@@ -4,6 +4,7 @@
 
   报坑：python3 报坑.py "27 S16 现象（实测）" [--会话 ID]   → 当场原子写进远端 视频/制作记录/坑登记.json，打印登记号 K#
   取号：python3 报坑.py --取号 G [--登记 K#] [--会话 ID] [--用途 说明]
+  改门锁（G66）：python3 报坑.py --锁 --任务 "改什么" | --续锁 | --放锁 | --锁状态   （2 小时过期；改门程序没持锁，提交前钩子拒）
         → 原子取号：读远端+本地的总表、预留，取最大号+1，只把这一条预留提交推到远端 main，推不上（别人刚取）就重取
   关门：总表里写出这条登记的入表编号那一行，登记就算已入表（不用手改状态）。
   查：  python3 报坑.py --查 [--严]   （规则执行核查每次跑：撞号、总表新行没取号就停；超期没入表的只提示。
@@ -87,7 +88,9 @@ def 原子写(改, repo=None, 分支='main', 说明='报坑登记'):
         c, txt = git('show', f'{base}:{REL}', repo=repo)
         d = json.loads(txt) if c == 0 else 空()
         c, std = git('show', f'{base}:{STDREL}', repo=repo)
+        原 = json.dumps(d, ensure_ascii=False, sort_keys=True)
         out, ret = 改(d, std if c == 0 else '')
+        if json.dumps(out, ensure_ascii=False, sort_keys=True) == 原: return ret   # 没改（如锁被别人占着）：不推空提交
         idx = tempfile.mktemp(); e = {'GIT_INDEX_FILE': idx}
         git('read-tree', base, repo=repo, env=e)
         c, blob = git('hash-object', '-w', '--stdin', repo=repo, inp=json.dumps(out, ensure_ascii=False, indent=1) + '\n')
@@ -134,6 +137,32 @@ def 取(前缀, 会话, 用途='', 登记号=None, repo=None):
     return 原子写(改, repo, 说明=f'取号：{前缀}（{用途[:30]}）')
 
 
+锁时长 = datetime.timedelta(hours=2)
+def 本会话():
+    try: return json.load(open(os.path.expanduser('~/.会话开工.json'))).get('会话', '')
+    except Exception: return ''
+def 锁有效(L, now=None): return bool(L and L.get('会话') and 解时(L['到期']) > (now or 现在()))
+def 锁(动作, 会话, 任务='', repo=None, now=None):
+    """G66 改门锁（主会话 2026-10-26：从根上排队，同一时间只一个会话改门程序）：取/续/放，和取号同一套原子推送。
+    返回 (结果, 锁)：结果 = 取到 / 续上 / 占用 / 放了 / 没持锁"""
+    def 改(d, std):
+        t = now or 现在(); L = d.get('改门锁') or {}; 有 = 锁有效(L, t); 我 = 有 and L['会话'] == 会话
+        if 动作 in ('取', '续'):
+            if 有 and not 我: return d, ('占用', L)
+            d['改门锁'] = {'会话': 会话, '任务': 任务 or (L.get('任务', '') if 我 else ''), '取锁': L['取锁'] if 我 else 时刻(t), '到期': 时刻(t + 锁时长)}
+            return d, ('续上' if 我 else '取到', d['改门锁'])
+        if not 我: return d, ('没持锁', L)
+        d['改门锁'] = {}; return d, ('放了', L)
+    return 原子写(改, repo, 说明=f'改门锁：{动作}（{会话[-8:]}）')
+def 锁问题(staged_门, 会话, L, now=None):
+    """纯函数（提交前钩子、自检用）：改了门程序却没持锁 → 拒"""
+    if not staged_门: return []
+    if 锁有效(L, now) and L['会话'] == 会话: return []
+    who = f'现在由 {L["会话"][-8:]} 持锁（{L.get("任务", "")}，到期 {L["到期"]}）' if 锁有效(L, now) else '现在没人持锁'
+    return [f'【G66 改门锁】改了门程序（{"、".join(staged_门[:3])}{"……" if len(staged_门) > 3 else ""}）但本会话没持锁，{who}。'
+            '先 python3 视频/工具/报坑.py --锁 --任务 "改什么"（别人持锁就排队：订阅 PR #7，锁放开的提交会唤醒，不轮询）；推送两仓库后自动放锁']
+
+
 def 自检():
     fails = []; now = 解时('2026-10-27T12:00Z')
     std = '| G52 | a | b | c |\n| G53 | a | b | c |\n| A45 | a | b | c |\n'
@@ -174,6 +203,20 @@ def 自检():
         if (x1, x2) != ('G54', 'G55'): fails.append(f'没抓到：两个会话先后取号撞号（拿到 {x1} {x2}）')
         if (k1, k2) != ('K1', 'K2'): fails.append(f'两个会话先后报坑登记号撞了（{k1} {k2}）')
     except SystemExit as e: fails.append(f'取号真跑失败：{e}')
+    # G66 改门锁：A 取到后 B 必须取不到；B 放不了 A 的锁；A 放后 B 取到；过期的锁可以抢；没持锁改门被拒、持锁不拒
+    try:
+        r1 = 锁('取', '会话A', '自检', repo=f'{tmp}/a')[0]; r2 = 锁('取', '会话B', '自检', repo=f'{tmp}/b')[0]
+        r3 = 锁('放', '会话B', repo=f'{tmp}/b')[0]; r4 = 锁('放', '会话A', repo=f'{tmp}/a')[0]; r5 = 锁('取', '会话B', '自检', repo=f'{tmp}/b')[0]
+        r6 = 锁('取', '会话A', '自检', repo=f'{tmp}/a', now=现在() + datetime.timedelta(hours=3))[0]
+        if (r1, r2) != ('取到', '占用'): fails.append(f'没抓到：两个会话同时取锁都取到了（G66：{r1} {r2}）')
+        if r3 != '没持锁': fails.append('没抓到：不是持锁人也能放锁（G66）')
+        if (r4, r5) != ('放了', '取到'): fails.append(f'放锁后别人取不到（G66：{r4} {r5}）')
+        if r6 != '取到': fails.append(f'过期的锁抢不到（G66：{r6}）')
+    except SystemExit as e: fails.append(f'改门锁真跑失败：{e}')
+    L = {'会话': '会话A', '任务': 't', '取锁': '2026-10-27T11:00Z', '到期': '2026-10-27T13:00Z'}
+    if not 锁问题(['视频/工具/x.py'], '会话B', L, now): fails.append('没抓到：没持锁的会话改门程序（G66）')
+    if not 锁问题(['视频/工具/x.py'], '会话A', L, 解时('2026-10-27T14:00Z')): fails.append('没抓到：锁过期了照样改门（G66）')
+    if 锁问题(['视频/工具/x.py'], '会话A', L, now) or 锁问题([], '会话B', L, now): fails.append('误拦：持锁会话改门、或没改门程序（G66）')
     subprocess.run(['rm', '-rf', tmp])
     return fails
 
@@ -193,6 +236,16 @@ def main():
                 keep = [r for r in d.get(k, []) if not 自检残留(r)]; n[0] += len(d.get(k, [])) - len(keep); d[k] = keep
             return d, n[0]
         原子写(改, 说明='报坑登记：清掉自检推到真远端的预留和登记（K23）'); print(f'清掉自检残留 {n[0]} 条'); return 0
+    if '--锁' in a or '--续锁' in a or '--放锁' in a:
+        动作 = '取' if '--锁' in a else '续' if '--续锁' in a else '放'; 我 = opt('--会话') or 本会话()
+        if not 我: print('【停止】不知道本会话 ID：先 python3 视频/工具/会话开工.py 改门 --会话 session_… 或加 --会话'); return 1
+        r, L = 锁(动作, 我, opt('--任务'))
+        if '--静默' in a: return 0
+        print({'取到': f'改门锁：取到（到期 {L.get("到期")}）', '续上': f'改门锁：续上（到期 {L.get("到期")}）', '放了': '改门锁：已放开',
+               '没持锁': '改门锁：本会话没持锁，不用放', '占用': f'改门锁：被 {L.get("会话", "")[-8:]} 占着（{L.get("任务", "")}，到期 {L.get("到期")}）——排队：订阅 PR #7 等锁放开'}[r])
+        return 0 if r != '占用' else 1
+    if '--锁状态' in a:
+        L = 读本地().get('改门锁') or {}; print(f'改门锁：{L["会话"][-8:]} 持（{L.get("任务", "")}，到期 {L["到期"]}）' if 锁有效(L) else '改门锁：空'); return 0
     if '--取号' in a:
         x = 取(opt('--取号'), 会话, opt('--用途'), opt('--登记') or None); print(f'取号：{x}（已推到远端预留；总表这一行写 {x}）'); return 0
     if '--查' in a or '--状态' in a:
