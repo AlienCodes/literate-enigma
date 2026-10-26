@@ -29,4 +29,5 @@
 | 22 | The Building That Melted a Car | 会烤化汽车的大楼 | 10.7 MB |
 | 23 | The Man Who Gave Machines a Mind | 为机器点燃思想的人 | 12.0 MB |
 | 24 | Survival in the Ice The Legend of Endurance | 冰海求生：坚忍号传奇 | 13.0 MB |
+| 25 | Apollo 13 The Successful Failure | 阿波罗13号：成功的失败 | 12.5 MB |
 | 26 | The Language the Children Invented | 孩子们发明的语言 | 12.1 MB |
