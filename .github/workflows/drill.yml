@@ -49,6 +49,7 @@ jobs:
           sudo mkdir -p /home/user && sudo ln -sfn $GITHUB_WORKSPACE /home/user/postgraduate-vocabulary && sudo ln -sfn $GITHUB_WORKSPACE /home/user/literate-enigma
           git config --global user.name ci; git config --global user.email ci@example.com
           sudo apt-get install -y -qq espeak-ng >/dev/null 2>&1 || true
+          [ -e /opt/pw-browsers/chromium ] || { sudo mkdir -p /opt/pw-browsers && sudo ln -s "$(command -v google-chrome || command -v chromium)" /opt/pw-browsers/chromium; }   # 生成文本.py 出 PDF 用沙盒的路径
           T0=$(date +%s); bash 视频/工具/环境/准备机器.sh . ~/work | tail -4; echo "搭机器 $(( $(date +%s)-T0 )) 秒"
       - name: 跑
         working-directory: /home/runner/work/video
