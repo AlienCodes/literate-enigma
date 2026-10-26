@@ -131,7 +131,7 @@ def build():
         body=f'<article id="a{a["no"]}"><div class="hero"><div class="kick">考研英语精读 · No.{a["no"]}</div><h1>{title_html(a["title_en"],fx)}</h1><span class="tag">{esc(a["title_zh"])}</span></div>'
         if d:
             import sys as _s; _s.path.insert(0,os.path.dirname(__file__)); import render as _R
-            c=_R.分色(d) if str(d.get('no','0')).isdigit() and int(d['no'])>=_R.色相起 else colors_for([ch['en'] for s in d['sentences'] for ch in s['chunks']])   # G50：26 起和视频同一个分色
+            c=_R.分色(d) if str(d.get('no','0')).isdigit() and int(d['no'])>=_R.色相起 else colors_for([ch['en'] for s in d['sentences'] for ch in s['chunks']])   # G50：25 起和视频同一个分色
             _R.unify_colors(c,d['sentences'])
             out=[];prevp=None;buf=[]
             for s in d['sentences']:

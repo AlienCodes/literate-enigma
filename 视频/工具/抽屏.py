@@ -8,7 +8,7 @@ if not mp4.endswith('.mp4'):   # 直接按脚本画（与出片同一套画法�
     import json, re
     sys.path.insert(0, '.'); import render as R
     d = json.load(open(f'scripts/{mp4}.json')); R.apply_script(d)
-    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import 颜色核对 as _YS; colors = _YS.颜色(d)   # G50：和出片程序同一个分色（26 起 PAL26 + 每屏回溯挑色）
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import 颜色核对 as _YS; colors = _YS.颜色(d)   # G50：和出片程序同一个分色（25 起 PAL26 + 每屏回溯挑色）
     d_ = tempfile.mkdtemp(); fs = []
     for n in ss:
         s_ = d['sentences'][n - 1]; sc = R.sent_colors(colors, s_); ch = [[tuple(p) for p in c['align']] for c in s_['chunks']]; nt = [c.get('note') for c in s_['chunks']]

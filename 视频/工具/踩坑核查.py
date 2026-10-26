@@ -803,7 +803,7 @@ def main():
     sys.path.insert(0, T); import 破折号 as _PZ; err += _PZ.查(d, no)
     import 逐词对齐 as _ZD; err += _ZD.查(d, no)
     import 意思个数 as _YS; err += _YS.查(d, no)   # 文36（27 起）：重点词中文最多两个意思
-    import 颜色核对 as _YS; err += _YS.查(d, no)                       # G49 同屏重点词颜色分得开（用户 2026-10-25，26 起）                       # G47 非重点词也逐词对齐（用户 2026-10-25，26 起）          # T36 破折号禁用（用户 2026-10-24，24 起）
+    import 颜色核对 as _YS; err += _YS.查(d, no)                       # G49 同屏重点词颜色分得开（用户 2026-10-25，25 起：2026-10-26 起点移到 25）                       # G47 非重点词也逐词对齐（用户 2026-10-25，25 起：2026-10-26 起点移到 25）          # T36 破折号禁用（用户 2026-10-24，24 起）
     import 放行口子核查 as _KZ; err += _KZ.查篇(d, no)                  # G24 放行口子：确认的结论受白名单约束，例外只认用户原话（24 起）
     sys.path.insert(0, T); import 译文核查 as _YW                       # 译文规矩（21 起）：方向词 T4、词性 T2、同词异译 文10、排版指令 W3、改稿门 T10、逐句确认
     _md = glob.glob(f'{ROOT}/新版定稿/{no}-*.md'); _e, _c = _YW.查(d, no, open(_md[0]).read() if _md else ''); err += _e; conf += _c

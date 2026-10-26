@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """颜色核对（G49）：同一屏的重点词颜色要分得开（用户 2026-10-25 看 26 S10：“ripen into 和rapidly他们的这个颜色太相似了，你换成换成不能这么相似的颜色。”）。
-分色、门都在 render.py（分色 / 同屏色差，出片程序和定稿视频核对同一个入口）；这里给踩坑核查用的 查(d, no)、01–25 清单、造坑自检。
+分色、门都在 render.py（分色 / 同屏色差，出片程序和定稿视频核对同一个入口）；这里给踩坑核查用的 查(d, no)、01–24 清单、造坑自检。
 用法：python3 颜色核对.py --自检 | --清单"""
 import os, sys, json, re
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T); sys.path.insert(0, T)
@@ -8,10 +8,10 @@ import render as R
 def 颜色(d):
     c = R.分色(d); R.unify_colors(c, d['sentences']); return c
 def 查(d, no):
-    return [f'[G49] 同一屏重点词颜色太像：{x}（出片程序 26 起按色相自动挑色，仍不过的把这一屏的重点词顺序或单元交人处理）' for x in R.同屏色差(d, 颜色(d))] if str(no).isdigit() and int(no) >= R.色相起 else []
+    return [f'[G49] 同一屏重点词颜色太像：{x}（出片程序 25 起按色相自动挑色，仍不过的把这一屏的重点词顺序或单元交人处理）' for x in R.同屏色差(d, 颜色(d))] if str(no).isdigit() and int(no) >= R.色相起 else []
 def 清单():
     L = ['# 颜色太像清单（程序生成：python3 视频/工具/颜色核对.py --清单）', '',
-         '用户 2026-10-25：“ripen into 和rapidly他们的这个颜色太相似了”。26 起出片程序按色相挑色（同屏相邻差 ≥60°、任意两个 ≥25°）；01–25 照旧轮流取色、画面不改，这里列出按新门不过的屏，交用户看。', '']
+         '用户 2026-10-25：“ripen into 和rapidly他们的这个颜色太相似了”。25 起出片程序按色相挑色（2026-10-26 从 26 移到 25）（同屏相邻差 ≥60°、任意两个 ≥25°）；01–24 照旧轮流取色、画面不改，这里列出按新门不过的屏，交用户看。', '']
     tot = 0
     for p in sorted(__import__('glob').glob(f'{V}/脚本/[0-9][0-9].json')):
         n = os.path.basename(p)[:2]
@@ -27,7 +27,7 @@ def 自检():
     R.unify_colors(旧, d['sentences'])
     if not any('ripened into↔rapidly' in x for x in R.同屏色差(d, 旧)): f.append('没抓到：26 S10 ripened into（珊瑚红）↔rapidly（琥珀黄）相邻颜色太像（G49 重放）')
     if R.同屏色差(d, 颜色(d)): f.append(f'新分色还不合格：{R.同屏色差(d, 颜色(d))[:2]}')
-    if R.同屏色差(dict(d, no='25'), 旧): f.append('误报：01–25 不回头查')
+    if R.同屏色差(dict(d, no='24'), 旧): f.append('误报：01–24 不回头查')
     big = {'no': '26', 'sentences': [{'chunks': [{'en': ' '.join(f'**w{i}**' for i in range(10)), 'zh': '', 'align': []}]}]}
     if R.同屏色差(big, 颜色(big)): f.append('一屏 10 个单元，新色板应能全部分开（两两 ≥25°、不重复）')
     dup = {'no': '26', 'sentences': [{'chunks': [{'en': '**a1** x **b2** y **c3**', 'zh': '', 'align': []}]}]}
@@ -51,6 +51,6 @@ def 各算各的(files=None):
     return out
 if __name__ == '__main__':
     if '--自检' in sys.argv:
-        e = 自检(); print('\n'.join(e) or '颜色核对 自检通过（26 S1、S10、S11 浅橙红↔琥珀黄相邻必停、同屏重复同色必停、新分色合格、10 个单元也分得开、01–25 不回头查）'); sys.exit(1 if e else 0)
-    if '--清单' in sys.argv: print(f'颜色太像清单：01–25 共 {清单()} 屏，写进 制作记录/颜色太像清单.md'); sys.exit(0)
+        e = 自检(); print('\n'.join(e) or '颜色核对 自检通过（26 S1、S10、S11 浅橙红↔琥珀黄相邻必停、同屏重复同色必停、新分色合格、10 个单元也分得开、01–24 不回头查）'); sys.exit(1 if e else 0)
+    if '--清单' in sys.argv: print(f'颜色太像清单：01–24 共 {清单()} 屏，写进 制作记录/颜色太像清单.md'); sys.exit(0)
     print(__doc__)

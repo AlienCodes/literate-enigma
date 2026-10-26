@@ -973,7 +973,7 @@ def build(js,out):
     R.apply_script(d)                                              # 画面相关的脚本设置（词下说明对齐等），与定稿视频核对同一个入口
     work=f'work_{no}'; os.makedirs(work,exist_ok=True)
     # colors
-    colors=R.分色(d)   # G49：26 起按色相挑（同屏相邻差 ≥60°）；01–25 照旧轮流
+    colors=R.分色(d)   # G49：25 起按色相挑（同屏相邻差 ≥60°）；01–24 照旧轮流
     R.unify_colors(colors,d['sentences'])
     _cd=R.同屏色差(d,colors)
     if _cd: raise SystemExit('【停止】同一屏的重点词颜色太像（G49，用户 2026-10-25：“ripen into 和rapidly他们的这个颜色太相似了”）：'+'；'.join(_cd[:5]))

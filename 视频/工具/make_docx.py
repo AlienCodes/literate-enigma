@@ -10,7 +10,7 @@ PAL=[(251,191,36),(56,189,248),(244,114,182),(190,242,100),(196,181,253),(251,14
 BG='0E241E'; EN=(240,247,242); ZH=(170,196,182)
 d=json.load(open(sys.argv[1]))
 colors={};i=0
-if str(d.get('no','0')).isdigit() and int(d['no'])>=R.色相起: colors=R.分色(d)   # G50：26 起和视频同一个分色（同屏颜色分得开）；25 以前照旧，已出的文本不变
+if str(d.get('no','0')).isdigit() and int(d['no'])>=R.色相起: colors=R.分色(d)   # G50：25 起和视频同一个分色（同屏颜色分得开）；24 以前照旧，已出的文本不变
 else:
     for s in d['sentences']:
         for c in s['chunks']:
