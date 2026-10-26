@@ -1,0 +1,58 @@
+# 门演练搬到 GitHub 机器（2026-10-26 改门_GitHub化 目标 2/6）：公开仓库，标准机器不计分钟。
+# 触发：推送 视频/云端/演练请求.txt（第一行：声音演练 / 主演练 / 全篇重查 [篇号…]；workflow_dispatch 只认默认分支 master，那是别的项目不能动）。
+# 全篇重查每篇一台机器并行跑 定稿视频核对.py NN（逐屏、逐样本与存档比，过了就证明 GitHub 机器出的与沙盒逐样本一致）。
+# 同一时间只跑一个（concurrency），避免两个改门会话重盖印章。结果写进本次运行摘要；印章暂不回写（等 推送两仓库 反向同步做好）。
+name: 门演练
+on:
+  push:
+    branches: ['claude/adoring-hamilton-5qskmm']
+    paths: ['视频/云端/演练请求.txt']
+concurrency: {group: 门演练, cancel-in-progress: false}
+defaults:
+  run: {shell: bash}
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs: {items: '${{ steps.p.outputs.items }}', job: '${{ steps.p.outputs.job }}'}
+    steps:
+      - uses: actions/checkout@v4
+        with: {sparse-checkout: '视频/云端', sparse-checkout-cone-mode: true}
+      - id: p
+        run: |
+          read job ns < <(grep -vE '^\s*(#|$)' 视频/云端/演练请求.txt | head -1); echo "job=$job" >> $GITHUB_OUTPUT
+          if [ "$job" = 全篇重查 ]; then
+            [ -n "$ns" ] || ns="01 02 03 04 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26"
+          else ns=0; fi
+          echo "items=$(printf '%s\n' $ns | jq -R . | jq -sc .)" >> $GITHUB_OUTPUT
+  run:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy: {fail-fast: false, matrix: {no: '${{ fromJson(needs.plan.outputs.items) }}'}}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - uses: actions/cache@v4
+        with: {path: '~/work/tts/*.onnx', key: kokoro-models-v1.0-v1.1}
+      - name: 搭机器
+        run: |
+          sudo mkdir -p /home/user && sudo ln -sfn $GITHUB_WORKSPACE /home/user/postgraduate-vocabulary && sudo ln -sfn $GITHUB_WORKSPACE /home/user/literate-enigma
+          git config --global user.name ci; git config --global user.email ci@example.com
+          sudo apt-get install -y -qq espeak-ng >/dev/null 2>&1 || true
+          T0=$(date +%s); bash 视频/工具/环境/准备机器.sh . ~/work | tail -4; echo "搭机器 $(( $(date +%s)-T0 )) 秒"
+      - name: 跑
+        working-directory: /home/runner/work/video
+        run: |
+          T=$GITHUB_WORKSPACE/视频/工具; T0=$(date +%s); set -o pipefail
+          case "${{ needs.plan.outputs.job }}" in
+            声音演练) python3 $T/执行效应声音演练.py 2>&1 | tee /tmp/out.log | tail -40 ;;
+            主演练)   python3 $T/执行效应演练.py 2>&1 | tee /tmp/out.log | tail -40 ;;
+            全篇重查) python3 $T/定稿视频核对.py --不查镜像 ${{ matrix.no }} 2>&1 | tee /tmp/out.log | tail -25 ;;
+          esac; rc=$?
+          { echo "### ${{ needs.plan.outputs.job }} ${{ matrix.no }}：$([ $rc = 0 ] && echo ✔ || echo ✘)（$(( $(date +%s)-T0 )) 秒，$(nproc) 核）"; echo '```'; grep -E '✘|✔|【' /tmp/out.log | tail -30; echo '```'; } >> $GITHUB_STEP_SUMMARY
+          for f in $T/*通过.json; do git -C $GITHUB_WORKSPACE diff --quiet -- "$f" || cp "$f" /tmp/; done
+          exit $rc
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: '结果_${{ needs.plan.outputs.job }}_${{ matrix.no }}', path: "/tmp/out.log\n/tmp/*通过.json", retention-days: 14, if-no-files-found: ignore}
