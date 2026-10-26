@@ -82,7 +82,8 @@ def 听(name, part, out):
     else:
         import 音频体检 as Q
         for no in part.split(','):
-            f = glob.glob(f'{V}/视频/{no}.mp4')[0]; a = Q.读(f); seg = Q.句段(a); txt = 句子(no)
+            if not os.path.exists(f'{V}/视频/{no}.mp4'): print(no, '没有定稿视频，跳过'); continue
+            f = f'{V}/视频/{no}.mp4'; a = Q.读(f); seg = Q.句段(a); txt = 句子(no)
             if len(txt) != len(seg): print(no, '句数对不上'); continue
             for i, ((s0, e0), ref) in enumerate(zip(seg[1:], txt[1:]), 1):
                 x = resample_poly(a[s0:e0], 1, 3).astype(np.float32); dur += len(x) / 16000
@@ -99,8 +100,9 @@ def 中(r):
 
 def 汇总(d):
     by = {}
-    for f in glob.glob(f'{d}/**/听_*.json', recursive=True):
-        j = json.load(open(f)); m = by.setdefault(j['模型'], {'r': {}, '用时': 0, '声音秒': 0})
+    js = [json.load(open(f)) for f in glob.glob(f'{d}/**/听_*.json', recursive=True)] + [j for f in glob.glob(f'{d}/**/听全部*.json', recursive=True) for j in json.load(open(f))]
+    for j in js:
+        m = by.setdefault(j['模型'], {'r': {}, '用时': 0, '声音秒': 0})
         m['用时'] += j['用时']; m['声音秒'] += j['声音秒']
         for r in j['结果']: m['r'][(r['类'], r.get('id') or f"{r['篇']}_{r['句']}")] = r
     L = ['# 机器复听：各识别模型查准查全（标准答案：01–26 成片每句 = 用户认可不该报；读音改正表 86 处配音原读错 = 该报；漏一个词 = 该报）', '']
@@ -162,7 +164,8 @@ def 打分(part, out):
         return x
     res = []; t0 = time.time()
     for no in part.split(','):
-        a = Q.读(glob.glob(f'{V}/视频/{no}.mp4')[0]); seg = Q.句段(a)
+        if not os.path.exists(f'{V}/视频/{no}.mp4'): print(no, '没有定稿视频，跳过'); continue
+        a = Q.读(f'{V}/视频/{no}.mp4'); seg = Q.句段(a)
         for i, (s0, e0) in enumerate(seg[1:], 1):
             for k in ['原样'] + (['咔哒', '截断60ms', '电流音4800Hz', '发闷4k低通', '噪声-45dB', '削波+6dB'] if i % 3 == 1 else []):
                 x48 = a[s0:e0] if k == '原样' else 坑(a[s0:e0], k); x = resample_poly(x48, 1, 3).astype(np.float32)
@@ -171,7 +174,8 @@ def 打分(part, out):
     json.dump({'片': part, '用时': time.time() - t0, '结果': res}, open(out, 'w'), ensure_ascii=False)
 
 def 打分汇总(d):
-    rs = [r for f in glob.glob(f'{d}/**/打分_*.json', recursive=True) for r in json.load(open(f))['结果']]
+    js = [json.load(open(f)) for f in glob.glob(f'{d}/**/打分_*.json', recursive=True)] + [j for f in glob.glob(f'{d}/**/打分全部*.json', recursive=True) for j in json.load(open(f))]
+    rs = [r for j in js for r in j['结果']]
     base = [r for r in rs if r['坑'] == '原样']; L = ['# MOS 自动打分：01–26 成片每句基线，造坑副本能不能被打分抓到', '']
     for m in ('UTMOS', 'OVRL', 'SIG', 'BAK', 'P808'):
         v = np.array([r[m] for r in base]); lo = v.min()
