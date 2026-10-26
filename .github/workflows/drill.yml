@@ -53,8 +53,8 @@ jobs:
         with: {python-version: '3.11', cache: pip, cache-dependency-path: 视频/工具/环境/requirements.txt}
       - uses: actions/cache@v4
         with: {path: '~/work/tts/*.onnx', key: kokoro-models-v1.0-v1.1}
-      - uses: actions/cache@v4   # 机器复听的识别模型（准备机器.sh 照样核对校验码）
-        with: {path: '~/asr', key: asr-whisper-small-en-v1}
+      - uses: actions/cache@v4   # 机器复听的识别模型（small.en + parakeet）（准备机器.sh 照样核对校验码）
+        with: {path: '~/asr', key: asr-whisper-small-en-parakeet-v2}
       - name: 打补丁（改门会话的改动当数据提交在 视频/云端/待演练/，打在工作分支副本上演练，钩子一点不绕）
         if: matrix.it.patch != ''
         run: |
