@@ -1,6 +1,7 @@
 #!/bin/bash
 # SessionStart 钩子（T31）：每次开会话先把必做的事摆出来——不靠记忆。
 P=/home/user/postgraduate-vocabulary/视频; [ -d $P ] || P="$CLAUDE_PROJECT_DIR/视频"
+python3 $P/工具/方法进化表.py --状态 2>/dev/null   # G65：第一屏先看方法进化趋势和 GitHub 工作流最近结果
 python3 $P/工具/音频首要法则.py --要点 2>/dev/null   # 首要法则（CLAUDE.md 0.，用户 2026-10-25）：开工先读音频要求和全部音频坑
 no=$(cat ~/.当前篇 2>/dev/null || cat $P/制作记录/当前篇.txt 2>/dev/null)
 echo "【开工必做（T31，程序提醒）】先读 CLAUDE.md 的 T29/T31、视频/工具/草稿流程.md、视频/制作记录/草稿进度.md（只读要用的段落）；动手前在 制作记录/NN.md 写好“## 方法设计”（踩坑核查 [T31] 没写就停）；一次只做一篇，方法一出问题立刻停。"

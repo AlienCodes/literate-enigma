@@ -133,6 +133,11 @@ def _t23(d):
 # 在临时“仓库镜像”里跑真程序（镜像 = 仓库根的符号链接，只有要改的文件是副本；程序从镜像路径启动，V/ROOT 指向镜像，真仓库一个字不动）。
 # 25 还没有：用 24 的脚本、制作记录副本当 25（篇号设成 25，25 起才查的门就生效）。
 # (编号, 入口, 篇, 怎么造, 改法(files: {仓库相对路径: 文本}), 必须新报出的字样, 规矩)
+def _加收工(f, no):   # G65：制作记录加一个很贵的收工行
+    t = f[_rec(no)]; t = t.decode() if isinstance(t, bytes) else t
+    f[_rec(no)] = t.replace('## token 记录\n', '## token 记录\n- 收工 2026-10-24T00:00（UTC）：等效 99.0M；主对话 99999 次、平均 900k （演练）\n', 1)
+
+
 def _删节(f, no, h): t = f[_rec(no)]; i = t.index(h); j = t.find('\n## ', i + 1); f[_rec(no)] = t[:i] + (t[j + 1:] if j > 0 else '')
 def _三义(d):
     c = 首块(d, lambda c: re.search(r'\*\*[^*/]+\*\*\(', c.get('zh', '')) is not None); c['zh'] = re.sub(r'\*\*([^*/]+)\*\*\(', r'**\1/演练甲/演练乙**(', c['zh'], count=1)
@@ -186,6 +191,7 @@ def _变异(prog, old, new):
     ('G54报坑超期', '流水线', '24', '坑登记里一条登记 30 小时前报的、还没进踩坑总表，跑定稿流水线', lambda f: _改json(f, '视频/制作记录/坑登记.json', lambda o: o['登记'].append({'号': 'K999', '时刻': (__import__('datetime').datetime.now(__import__('datetime').timezone.utc) - __import__('datetime').timedelta(hours=30)).strftime('%Y-%m-%dT%H:%MZ'), '会话': '演练', '现象': '演练造的超期没入表的坑'})), '演练造的超期没入表', ['G54']),
     ('G60证据链不全', '流水线', '24', '24 一条机制证据都没有（证据起始篇改成 24 重放），跑定稿流水线', _变异('证据.py', '起 = 28', '起 = 24'), '机制证据不全', ['G60']),
     ('G62步骤表没跟', '规则核查', '24', '草稿流程.md 加了一步、开工必读没重新生成', _变异('草稿流程.md', '\n## 禁止', '\n9. 演练造的新步骤 `python3 $T/x.py NN`\n\n## 禁止'), '与现行规矩', ['G62']),
+    ('G65进化变差没落地', '流水线', '24', '24 制作记录加一个 99M、99999 次调用的收工行（比前三篇中位数贵得多），方法复盘没有进化落地（起始篇改成 24 重放），跑定稿流水线', lambda f: (_变异('方法进化表.py', '起 = 27 ', '起 = 24 ')(f), _加收工(f, '24')), '【G65 方法进化】', ['G65']),
     ('G63没开工就提交', '会话开工查', '24', '本会话没跑 会话开工.py（没读开工必读），提交前检查', None, '本会话还没开工', ['G63']),
     ('G66没持锁改门', '报坑自检', '24', '改门锁的提交前检查被改成谁都放行（没持锁也能改门程序）', _变异('报坑.py', "    if 锁有效(L, now) and L['会话'] == 会话: return []", "    return []"), '没持锁的会话改门程序', ['G66']),
     ('G64自检指向真origin', '报坑自检', '24', '报坑.py 取号自检的临时仓库 origin 被改成真仓库', _变异('报坑.py', "sh('git init -q --bare r.git && git clone -q r.git a && git clone -q r.git b')", "sh('git init -q --bare r.git && git clone -q r.git a && git clone -q r.git b && git -C a remote set-url origin /home/user/postgraduate-vocabulary')"), '自检指向真 origin', ['G64']),
