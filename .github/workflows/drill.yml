@@ -1,5 +1,5 @@
 # 门演练搬到 GitHub 机器（2026-10-26 改门_GitHub化 目标 2/6）：公开仓库，标准机器不计分钟。
-# 触发：推送 视频/云端/演练请求.txt（第一行：声音演练 / 主演练 / 全篇重查 [篇号…]；workflow_dispatch 只认默认分支 master，那是别的项目不能动）。
+# 触发：推送 视频/云端/演练请求.txt（第一行：声音演练 / 主演练 / 合成对照 / 全篇重查 [篇号…]；workflow_dispatch 只认默认分支 master，那是别的项目不能动）。
 # 全篇重查每篇一台机器并行跑 定稿视频核对.py NN（逐屏、逐样本与存档比，过了就证明 GitHub 机器出的与沙盒逐样本一致）。
 # 同一时间只跑一个（concurrency），避免两个改门会话重盖印章。结果写进本次运行摘要；印章暂不回写（等 推送两仓库 反向同步做好）。
 name: 门演练
@@ -48,6 +48,7 @@ jobs:
           case "${{ needs.plan.outputs.job }}" in
             声音演练) python3 $T/执行效应声音演练.py 2>&1 | tee /tmp/out.log | tail -40 ;;
             主演练)   python3 $T/执行效应演练.py 2>&1 | tee /tmp/out.log | tail -40 ;;
+            合成对照) python3 $GITHUB_WORKSPACE/视频/云端/合成对照.py ../tts 2>&1 | tee /tmp/out.log ;;
             全篇重查) python3 $T/定稿视频核对.py --不查镜像 ${{ matrix.no }} 2>&1 | tee /tmp/out.log | tail -25 ;;
           esac; rc=$?
           { echo "### ${{ needs.plan.outputs.job }} ${{ matrix.no }}：$([ $rc = 0 ] && echo ✔ || echo ✘)（$(( $(date +%s)-T0 )) 秒，$(nproc) 核）"; echo '```'; grep -E '✘|✔|【' /tmp/out.log | tail -30; echo '```'; } >> $GITHUB_STEP_SUMMARY
