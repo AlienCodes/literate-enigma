@@ -78,6 +78,23 @@ NASA把阿波罗13号称作“成功的失败”。这个**悖论**(paradox)名�
 | oversight | n. 疏忽，失察（an oversight on sb's part；through an oversight 因疏忽）；监督，监管（oversight of banks）；源自 oversee v. 监督；勿与 overlook v. 忽视 混淆 | 5 |
 | salvaged | v. (salvage) 挽救，挽回（salvage a mission/one's reputation）；（从事故、灾难中）抢救（财物）；n. 打捞，抢救（a salvage operation）；可回收利用的物资 | 5 |
 | ingenuity | n. 独创力，巧思，心灵手巧（human ingenuity；show great ingenuity）；ingenious adj. 巧妙的 | 5 |
+| launched | 本文：发射了；v. (launch) 发射（火箭、卫星等）；发起，推出（launch a satellite） | 1 |
+| crewed | 本文：载人的；adj. 载人的，有人驾驶的（a crewed mission） | 1 |
+| engine | 本文：发动机/引擎；n. 发动机，引擎（a rocket engine） | 2 |
+| swung | 本文：甩回了；v. (swing) 摆动；转向，绕行（swing around the Moon） | 2 |
+| tape | 本文：胶带；n. 胶带，带子；磁带（duct tape） | 3 |
+| talked through | 本文：一步步指导；v. (talk through) 一步步指导（某人做某事）；详细讨论（talk sb through a procedure） | 3 |
+| fault | 本文：缺陷；n. 缺陷，故障；过错（an electrical fault） | 4 |
+| built in | 本文：内置了/埋下了；v. (build in) 把……做进去，内置；使成为固有部分（build in a safety margin） | 4 |
+| review board | 本文：审查委员会；n. 审查委员会（an accident review board） | 4 |
+| switches | 本文：开关；n. (switch) 开关；转换（a light switch） | 4 |
+| builder | 本文：承建商；n. 建造者，承建商（a house builder） | 4 |
+| rewrote | 本文：改写了；v. (rewrite) 改写，重写（rewrite the rules） | 4 |
+| run on | 本文：使用……的电源来运行；v. (run on) 靠……运行，以……为动力（run on batteries） | 4 |
+| stubborn | 本文：难以排空的；adj. 顽固的，倔强的；难以去除的（a stubborn stain） | 4 |
+| heater | 本文：加热器；n. 加热器，取暖器（a water heater） | 4 |
+| unchecked | 本文：无人管控的；adj. 未受控制的，不受约束的；未经检查的（go unchecked） | 4 |
+| undone by | 本文：毁于；v. (be undone by) 被……毁掉，毁于（be undone by a small mistake） | 5 |
 
 ## 史实与来源
 - 【T1】1970年4月11日发射阿波罗13号，原定为第三次载人登月（阿波罗11、12号已登月，为通识）。NASA 历史摘要（被代理拦截，只核到检索摘要）：https://www.nasa.gov/mission/apollo-13/ ；Britannica：https://www.britannica.com/topic/Apollo-13 （只核到摘要）。
