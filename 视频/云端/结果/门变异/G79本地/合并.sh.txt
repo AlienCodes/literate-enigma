@@ -1,8 +1,0 @@
-#!/bin/bash
-S=/tmp/claude-0/-home-user-literate-enigma/cd66443a-7689-5200-87e2-69051ecf786f/scratchpad
-R=/home/user/literate-enigma/视频/云端/结果/门变异
-git -C /home/user/literate-enigma pull -q --no-rebase origin claude/adoring-hamilton-5qskmm
-cd /home/user/postgraduate-vocabulary/视频/工具
-python3 门变异.py --合并结果 $R/G79全量v4/*.json $R/G79补片v4c/*.json $R/G79补片v4d/*.json $S/本地_*.json 2>&1 | tail -3
-python3 门变异.py --查基线 | tail -1
-python3 -c "import sys;sys.path.insert(0,'.');import 门变异 as G;n=G.新门();print('没结果的门',len(n),n[:8])"
