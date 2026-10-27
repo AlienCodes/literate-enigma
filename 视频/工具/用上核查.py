@@ -107,6 +107,10 @@ def 该用没用():
 
 
 淘汰词 = re.compile(r'一次性|不再用|原型|留着备查')
+def 现行文档(vd):
+    """K53：视频/ 下全部现行 .md + 仓库 CLAUDE.md；历史记录（改门_*.md、淘汰清单）、踩坑总表（程序生成的开工必读）、已淘汰/、演练样本/ 不算"""
+    fs = glob.glob(f'{vd}/**/*.md', recursive=True) + glob.glob(f'{os.path.dirname(vd)}/CLAUDE.md')
+    return sorted(f for f in fs if not re.search(r'/(已淘汰|演练样本|历史版本)/|/改门_[^/]*\.md$|/(淘汰清单|制作硬性标准与踩坑总结|开工必读|音频首要法则)\.md$', f))
 def 淘汰(t=T, 清单=None):
     """P：{类: [(对象, 说明)]}。完全不用 = 登记“辅助”且自己写着一次性/不再用/原型/备查、没有正式入口走到、别的程序和演练都不引用；
     老做法冲突 = 草稿流程、主会话交接、改门_*.md 里点名的程序已经不存在；重复 = 两个程序内容一模一样，或 X_旧/X_old/X_vN 和现行 X 并存"""
@@ -119,9 +123,13 @@ def 淘汰(t=T, 清单=None):
         if any(os.path.basename(p) in 文[q] for q in progs if q != p): continue
         out['完全不用'].append((p, str(辅[p])[:60]))
     vd = os.path.dirname(t)
-    for d in sorted(glob.glob(f'{t}/草稿流程.md') + glob.glob(f'{vd}/制作记录/主会话交接.md') + glob.glob(f'{vd}/制作记录/改门_*.md')):
-        for x in sorted(set(re.findall(r'(?:视频/工具/|\$T/|工具/)([\w一-龥/]+\.(?:py|sh))', open(d).read()))):
+    淘名 = sorted({os.path.basename(f) for f in glob.glob(f'{t}/已淘汰/**/*', recursive=True) if f.endswith(('.py', '.sh'))})
+    for d in 现行文档(vd):   # K53：全部现行 .md；已淘汰的程序被当命令写（用/跑/python3/bash X.py），或带路径点名的程序已不存在
+        s_ = open(d, errors='ignore').read()
+        for x in sorted(set(re.findall(r'(?:视频/工具/|\$T/|工具/)([\w一-龥/]+\.(?:py|sh))', s_))):
             if 'NN' not in x and not os.path.exists(f'{t}/{x}'): out['老做法冲突'].append((os.path.relpath(d, vd), f'点名的 {x} 已不存在'))
+        for x in 淘名:
+            if re.search(r'(?:python3|bash|用|跑|执行|运行)\s*`?(?:[\w一-龥/$.]*/)?' + re.escape(x), s_): out['老做法冲突'].append((os.path.relpath(d, vd), f'把已淘汰的 {x} 当现行命令写'))
     h = {}
     for q in progs:
         if os.path.getsize(f'{t}/{q}') > 0: h.setdefault(hashlib.sha256(open(f'{t}/{q}', 'rb').read()).hexdigest(), []).append(q)
@@ -179,9 +187,12 @@ def 自检():
     tt = 淘汰(t, m)   # P：辅助里写着一次性/备查、没人引用 = 完全不用；文档点名不存在的程序 = 老做法冲突；同内容、X_旧 = 重复
     if '辅.py' not in [x for x, _ in tt['完全不用']]: f.append('没抓到：一次性小程序没人用（P 完全不用）')
     os.makedirs(f'{d}/视频/制作记录'); open(f'{d}/视频/制作记录/主会话交接.md', 'w').write('跑 python3 视频/工具/早没了.py\n')
+    os.makedirs(f'{t}/已淘汰'); open(f'{t}/已淘汰/老收尾.py', 'w').write(''); open(f'{d}/视频/某说明.md', 'w').write('重新对齐类的用 老收尾.py NN\n'); open(f'{d}/视频/历史.md', 'w').write('当时写回时用的脚本：老收尾.py\n')
     open(f'{t}/被调_旧.py', 'w').write('y=2\n'); open(f'{t}/抄的.py', 'w').write('x=1\n')
     tt = 淘汰(t, m)
     if not any('早没了.py' in w for _, w in tt['老做法冲突']): f.append('没抓到：文档点名的程序已不存在（P 老做法冲突）')
+    if not any(x == '某说明.md' and '老收尾.py' in w for x, w in tt['老做法冲突']): f.append('没抓到：现行文档把已淘汰的程序当命令写（K53 主会话交接 重新对齐收尾）')
+    if any(x == '历史.md' for x, _ in tt['老做法冲突']): f.append('误报：历史记录里提到已淘汰的程序（K53）')
     if not any('被调_旧.py' == x for x, _ in tt['重复']) or not any('抄的.py' in x for x, _ in tt['重复']): f.append(f'没抓到：旧版并存、内容一样（P 重复）：{tt["重复"]}')
     if any(x in [y for y, _ in tt['完全不用']] for x in ('被调.py', '入口.py', '手工.py')): f.append('误报：用着的程序当成完全不用（P）')
     os.remove(f'{t}/被调_旧.py'); os.remove(f'{t}/抄的.py')
