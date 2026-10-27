@@ -1,0 +1,50 @@
+[
+[
+"执行效应演练.py|2b0fa65c38|0",
+"执行效应演练.py",
+334,
+"if l.startswith('== ') and '⓪' not in l: pr.kill(); out.append('【演练掐断：流水线走到了 ⓪ 以后的步骤】'); break",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"执行效应演练.py|452680add7|0",
+"执行效应演练.py",
+462,
+"if ok and mode != '拦': res.append((sid, True, ('提醒：' + want) if mode == '提醒' else '没有误拦')); continue",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"执行效应演练.py|ca52b53ba3|0",
+"执行效应演练.py",
+575,
+"if not os.path.exists('make_video.py') or not os.path.isdir('scripts'): sys.exit('【停止】请在视频工作目录（含 make_video.py、scripts/）",
+"漏洞",
+""
+],
+[
+"执行效应演练.py|c8ccb02ed1|0",
+"执行效应演练.py",
+579,
+"if e: sys.exit('【停止】' + '；'.join(e))",
+"发现",
+"执行效应演练.py：✘ G25演练读现稿：没挡住（退出码 0，新报出：）"
+],
+[
+"执行效应演练.py|bf19243b32|0",
+"执行效应演练.py",
+593,
+"if thin: bad.append(f'演练说明太空（原因、替代各至少 20 字）：{\" \".join(thin)}')",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"执行效应演练.py|0de54afa8d|0",
+"执行效应演练.py",
+609,
+"if __name__ == '__main__':",
+"漏洞",
+""
+]
+]
