@@ -1,0 +1,18 @@
+[
+[
+"githooks/pre-commit|24465537a6|77",
+"githooks/pre-commit",
+5,
+"python3 \"$d/视频/工具/会话开工.py\" --提交前 || { echo \"【停止】会话开工/角色闸门不通过，不能提交（G61/G63）\"; exit 1; }",
+"发现",
+"流程自检.py：流程自检：失灵！githooks/pre-commit 第 5 行的门真跑停不下来（G79 死门）：python3 \"$d/视频/工具/会话开工.py\" --提交前 || { echo \"【停止】会话开工/角色闸门不通过，不能提交（G61/"
+],
+[
+"githooks/pre-commit|708cbc1859|77",
+"githooks/pre-commit",
+6,
+"python3 \"$d/视频/工具/规则执行核查.py\" || { echo \"【停止】规则执行核查不通过，不能提交（CLAUDE.md 第16条）\"; exit 1; }",
+"发现",
+"流程自检.py：流程自检：失灵！githooks/pre-commit 第 6 行的门真跑停不下来（G79 死门）：python3 \"$d/视频/工具/规则执行核查.py\" || { echo \"【停止】规则执行核查不通过，不能提交（CLAUDE.md 第"
+]
+]
