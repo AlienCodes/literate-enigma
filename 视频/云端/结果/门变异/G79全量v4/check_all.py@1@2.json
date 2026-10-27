@@ -1,0 +1,58 @@
+[
+[
+"check_all.py|7ef593e975|0",
+"check_all.py",
+12,
+"if '\\n' in c['en']: bad.append(f'D1 英文里混入换行标记: {c[\"en\"][:40]}')",
+"发现",
+"check_all.py：check_all 自检：失灵！没抓到：英文混入换行标记（D1）"
+],
+[
+"check_all.py|8778e62f5c|0",
+"check_all.py",
+15,
+"if ''.join(b for _,b in c['align'])!=c['zh']: bad.append(f'D2 zh 与分组拼接不一致: {c[\"zh\"][:30]}')",
+"发现",
+"check_all.py：check_all 自检：失灵！没抓到：中文与分组拼接不一致（D2）"
+],
+[
+"check_all.py|80ee8e63cc|0",
+"check_all.py",
+19,
+"if not c['zh'].strip() and c['en'].strip(): bad.append(f'空译文: {c[\"en\"][:40]}')",
+"漏洞",
+""
+],
+[
+"check_all.py|9d027f62cb|0",
+"check_all.py",
+24,
+"if line.count('本文：')>1: bad.append(f'S2 速查表\"本文：\"重复: {line[:50]}')",
+"发现",
+"check_all.py：check_all 自检：失灵！没抓到：速查表本文重复（S2）"
+],
+[
+"check_all.py|267cf86771|0",
+"check_all.py",
+70,
+"if no: bad += 缺文件(no)   # G30：25 起不要求 docx（守则17）",
+"发现",
+"执行效应演练.py：✔ T36破折号：✘ [T36] S2-1 zh 有破折号“——”：船**(vessel)。——  ← 用户 2026-10-24：“以后我们坚决不可以使用破折号”；中文按意思换成“，”“：”或括号"
+],
+[
+"check_all.py|00e973cb64|0",
+"check_all.py",
+182,
+"if v: out.append((b,m,o2,v))",
+"发现",
+"check_all.py：check_all 自检：失灵！没抓到：本篇原有重点词撞车，制作记录没有“## 撞车提醒”（J）；没抓到：撞车提醒漏了撞车的词（J）"
+],
+[
+"check_all.py|14821f5508|0",
+"check_all.py",
+277,
+"if int(no)>=T12全篇_起: bad+=查提醒(no)   # J：原稿就有的重点词撞车先留着，但必须写进 制作记录/NN.md 的“## 撞车提醒”告诉用户",
+"漏洞",
+""
+]
+]
