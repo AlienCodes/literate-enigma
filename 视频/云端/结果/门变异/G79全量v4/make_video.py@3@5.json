@@ -1,0 +1,90 @@
+[
+[
+"make_video.py|49e7e458e4|0",
+"make_video.py",
+113,
+"if got_!=n_: raise SystemExit(f'【停止】读音改正没有全部换到（A23）：{w_} 出现 {n_} 次，整句里正确读音 {got_} 处：{text[:60]}')",
+"漏洞",
+""
+],
+[
+"make_video.py|a6fc7bab11|0",
+"make_video.py",
+155,
+"if a_ not in text: raise SystemExit(f'【停止】合成标点写的“{a_}”不在这一句里（G57）：{disp_[:60]}')",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"make_video.py|6dcda231e0|0",
+"make_video.py",
+265,
+"if (f-st)*0.005>INNER_MAX and st>4 and f<len(e)-4:",
+"漏洞",
+""
+],
+[
+"make_video.py|578110f5de|0",
+"make_video.py",
+461,
+"if _hl.md5(x.tobytes()).hexdigest()[:12]!=md: raise SystemExit(f'【停止】供体的合成变了（A21）：{txt}')",
+"漏洞",
+""
+],
+[
+"make_video.py|c86b12ba90|0",
+"make_video.py",
+533,
+"if '范围' not in e['前段音调']: raise SystemExit(f'【停止】前段音调没有写 范围（要改的浊音段，秒）：先跑 结尾句接点.py NN --写前段音调范围（运行时现测会因为合成结果极小的差别前后差 10 m",
+"发现",
+"出片守门自检.py：✔ T36：第20篇 24 起中文里出现破折号 → 【停止】画面或配音文字里有破折号（T36）：S1-1 zh“——”；S14-2 zh“——”。中文换成“，”“：”或括号（字义不改）；英文换成逗号、冒号或括号并同步文章"
+],
+[
+"make_video.py|7a532b1d64|0",
+"make_video.py",
+637,
+"if lost: raise SystemExit(f'【停止】结尾句放慢后丢了擦音（A27）：'+'；'.join(f'/{x_[0]}/ 原速 {x_[1]}s 强度 {x_[2]:.2f} → 结尾句 {y_[1]}s 强度 {y_[",
+"发现",
+"出片守门自检.py：✔ T36：第20篇 24 起中文里出现破折号 → 【停止】画面或配音文字里有破折号（T36）：S1-1 zh“——”；S14-2 zh“——”。中文换成“，”“：”或括号（字义不改）；英文换成逗号、冒号或括号并同步文章"
+],
+[
+"make_video.py|d7f6064410|0",
+"make_video.py",
+758,
+"if len(idxs)!=len(pieces)-1: raise SystemExit(f'【停止】标点数对不上（A9）：{sent[:60]}')",
+"漏洞",
+""
+],
+[
+"make_video.py|4b92f82e18|0",
+"make_video.py",
+824,
+"if len(seg_) and np.sqrt(sp_[fq_>4000].sum()/(sp_.sum()+1e-20))>0.4:",
+"发现",
+"出片守门自检.py：✔ T36：第20篇 24 起中文里出现破折号 → 【停止】画面或配音文字里有破折号（T36）：S1-1 zh“——”；S14-2 zh“——”。中文换成“，”“：”或括号（字义不改）；英文换成逗号、冒号或括号并同步文章"
+],
+[
+"make_video.py|6ebb99c685|0",
+"make_video.py",
+868,
+"if not (pe-120<=ca//F<cb//F<=ns+120) or e[ca//F:cb//F].max()>=-30 or lv(w[ca-F:ca])>=AUD_DB or lv(w[cb:cb+F])>=AUD_DB:",
+"发现",
+"出片守门自检.py：✔ T36：第20篇 24 起中文里出现破折号 → 【停止】画面或配音文字里有破折号（T36）：S1-1 zh“——”；S14-2 zh“——”。中文换成“，”“：”或括号（字义不改）；英文换成逗号、冒号或括号并同步文章"
+],
+[
+"make_video.py|e7075f9b1e|0",
+"make_video.py",
+891,
+"if e[jw//F]>=AUD_DB: raise SystemExit(f'【停止】结尾句的接点不在静音里（A32）：{sent[:60]}')",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"make_video.py|0911e79771|0",
+"make_video.py",
+1018,
+"if g is None: raise SystemExit(f'【停止】标点停顿后 1 秒内找不到开口（L14）：{sent[:60]}')",
+"漏洞",
+""
+]
+]
