@@ -1,0 +1,90 @@
+[
+[
+"make_video.py|7a1dc20cb3|0",
+"make_video.py",
+131,
+"if m_!=n_: raise SystemExit(f'【停止】按语境读音（A24）：{w_} 句中出现 {m_} 次，语境“{c_}”只有 {n_} 处，分不清换哪个：{text[:60]}')",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"make_video.py|31110c9c74|0",
+"make_video.py",
+169,
+"if _hl_.sha256(open(f'{TTS}/voice_mb.npy','rb').read()).hexdigest()[:16]!='1f97658bb5a4280c': raise SystemExit('【停止】音色文件",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"make_video.py|2204060310|0",
+"make_video.py",
+320,
+"if any(b2<=a2 for a2,b2 in zip(out,out[1:])): raise SystemExit('【停止】各块开头在音素序列里的位置不是递增的（L14）')",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"make_video.py|64e0c8792e|0",
+"make_video.py",
+476,
+"if p<F_ or max(lv(seg[i*F_:(i+1)*F_]) for i in range(m_))>=-30 or lv(w[p-F_:p])>=-40:",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"make_video.py|931a09a8a0|0",
+"make_video.py",
+538,
+"if not len(seg_) or seg_.max()>=-55: raise SystemExit(f'【停止】前段音调改完，接点不在静音里了：{sent[:60]}')",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"make_video.py|3e902234dd|0",
+"make_video.py",
+683,
+"if sent in PGRAFT: raise SystemExit(f'【停止】分段增益dB 不能和 停顿处除阻 用在同一句（独立复核的位置会错开）：S{si+1}')",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"make_video.py|5a2879e396|0",
+"make_video.py",
+776,
+"if (str(gi+1) in GRAFT.get(sent,{}) or gi+1 in DEL_AT.get(sent,{}) or gi+1 in INSERT_AT.get(sent,{}) or (E_ and gi==len(",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"make_video.py|c0a3432479|0",
+"make_video.py",
+850,
+"if not (pe-60<=f_<=ns+20) or (e[f_]>min(e[max(0,f_-2):f_+3]) and e[f_]>-24):",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"make_video.py|c0c08d1f5e|0",
+"make_video.py",
+878,
+"if r0 is not None and not (r0*F<=ca<=cb<=r1*F):",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"make_video.py|59a2dfa4e4|0",
+"make_video.py",
+968,
+"if os.environ.get('OLD_IV_VOID') and not os.environ.get('AUDIO_ONLY'): raise SystemExit('【停止】OLD_IV_VOID（跳过旧区间）只许 草稿声音.s",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"make_video.py|56999047b6|0",
+"make_video.py",
+1065,
+"if wn: raise SystemExit('【停止】说明行比上面的英文正文宽（L19，用户 2026-10-16：“不要超过上面的那一行”），在标点处分行（字不改）：'+'；'.join(f'S{a} “{b[1][:24]}…” {",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+]
+]
