@@ -1,0 +1,18 @@
+[
+[
+"归档定稿视频.py|a716a8f873|0",
+"归档定稿视频.py",
+24,
+"if not all(os.path.exists(x) for x in ('make_video.py', 'render.py', 'fonts')):",
+"漏洞",
+""
+],
+[
+"归档定稿视频.py|dc087cb1c5|0",
+"归档定稿视频.py",
+29,
+"if size_of(src) != ('3840', '2160'): sys.exit(f'第{no}篇不是 4K 定稿视频，不归档')",
+"发现",
+"执行效应演练.py：✘ L12归档1080p：没挡住（退出码 1，新报出：File \"/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/shutil.py\", line 256, in copyfile；File \"/opt/hostedtoolcach）"
+]
+]
