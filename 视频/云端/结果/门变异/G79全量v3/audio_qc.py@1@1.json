@@ -1,0 +1,42 @@
+[
+[
+"audio_qc.py|0c2400111f|0",
+"audio_qc.py",
+14,
+"if np.abs(a).max() > 0.99: bad.append(f'削波：峰值 {np.abs(a).max():.3f}')",
+"待声音归属",
+"只有声音演练走到，覆盖图归属不到场景"
+],
+[
+"audio_qc.py|18158e4f4e|0",
+"audio_qc.py",
+20,
+"if 10 * np.log10(pk / side) > 12: bad.append(f'{hz} Hz 电流音突出 {10*np.log10(pk/side):.1f} dB')",
+"待声音归属",
+"只有声音演练走到，覆盖图归属不到场景"
+],
+[
+"audio_qc.py|589b59cc4b|0",
+"audio_qc.py",
+30,
+"if long: bad.append('片中停顿过长：' + ', '.join(f'{t:.1f}s 处 {d:.2f}s' for t, d in long))",
+"待声音归属",
+"只有声音演练走到，覆盖图归属不到场景"
+],
+[
+"audio_qc.py|26c42a63ce|0",
+"audio_qc.py",
+39,
+"if v < med - 6: bad.append(f'{x:.1f}–{y:.1f}s 响度比全片低 {med-v:.1f} dB（疑似发闷/变小，需试听）')",
+"待声音归属",
+"只有声音演练走到，覆盖图归属不到场景"
+],
+[
+"audio_qc.py|26c3362628|0",
+"audio_qc.py",
+43,
+"if '--自检' in sys.argv:",
+"待声音归属",
+"只有声音演练走到，覆盖图归属不到场景"
+]
+]
