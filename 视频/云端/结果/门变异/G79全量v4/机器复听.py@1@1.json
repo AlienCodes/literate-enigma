@@ -1,0 +1,50 @@
+[
+[
+"机器复听.py|4bfd2941ed|0",
+"机器复听.py",
+22,
+"if not os.path.exists(p(d, f)): raise SystemExit(f'【停止】没有识别模型 {d}：bash 准备机器.sh 会下载（GitHub release k2-fsa/sherpa-onnx asr",
+"漏洞",
+""
+],
+[
+"机器复听.py|2fe83af25d|0",
+"机器复听.py",
+41,
+"if sf is not None: raise SystemExit('【停止】有声音程序却没有 kokoro_onnx 注音程序：机器复听不能按读音比')",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"机器复听.py|fc17d0b4dd|0",
+"机器复听.py",
+167,
+"if b: bad.append(f'S{i}：' + '；'.join(f'脚本“{x_}” 听到“{y_}”' for x_, y_ in b))",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"机器复听.py|f343ed7c99|0",
+"机器复听.py",
+220,
+"if sys.argv[1:2] == ['--比较自检']:",
+"发现",
+"机器复听.py：FileNotFoundError: [Errno 2] No such file or directory: 'scripts/--比较自检.json'"
+],
+[
+"机器复听.py|a8fa756068|0",
+"机器复听.py",
+223,
+"if sys.argv[1:2] == ['--带自检']:",
+"漏洞",
+""
+],
+[
+"机器复听.py|6d43285298|0",
+"机器复听.py",
+230,
+"if a_[0] == '--自检':",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+]
+]
