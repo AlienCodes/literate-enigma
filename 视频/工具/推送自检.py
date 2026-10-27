@@ -71,6 +71,10 @@ try:
     if not os.path.exists(f'{L}/视频/云端/请求/别的会话-0920.txt') or not os.path.exists(f'{P}/视频/云端/请求/别的会话-0920.txt'): fails.append(f'没抓到：主仓库推送删了别的会话放在镜像里的请求（K24）{o.strip()[-80:]}')
     for x in ('待演练/交接.diff', '结果/门变异/本地/x.json'):
         if not os.path.exists(f'{L}/视频/云端/{x}') or not os.path.exists(f'{P}/视频/云端/{x}'): fails.append(f'没抓到：主仓库推送删了会话放在镜像里的 云端/{x}（K45/G87）')
+    # K48：主仓库改了文件但大小、修改时刻和镜像旧版一样（copy2 保留时刻），镜像必须照样提交
+    写(f'{P}/视频/同大小.json', 'aaaa\n'); os.utime(f'{P}/视频/同大小.json', (1700000000, 1700000000)); run()
+    写(f'{P}/视频/同大小.json', 'bbbb\n'); os.utime(f'{P}/视频/同大小.json', (1700000000, 1700000000)); git('rm', '-q', '--cached', '视频/同大小.json', cwd=P); r = run()   # 主仓库那边照真实情形：新内容进了提交; o = r.stdout + r.stderr
+    if git('show', 'HEAD:视频/同大小.json', cwd=L).stdout != 'bbbb\n': fails.append(f'没抓到：同大小、同修改时刻的改动镜像没提交（K48）{o.strip()[-80:]}')
     # G1：101MB 的文件必须停，不许推上去
     with open(f'{P}/视频/大文件.bin', 'wb') as f: f.truncate(101 * 1024 * 1024)
     r = run(); o = r.stdout + r.stderr
@@ -86,5 +90,5 @@ except Exception as e:
     fails.append(f'推送自检本身出错：{e}')
 finally:
     shutil.rmtree(tmp, ignore_errors=True)
-print('推送自检：' + ('通过（正常推送两边一致、云端一致、CLAUDE.md 以主仓库为准、中文文件名、删旧文件；工作流结果反向回写、白名单外停（G58）；别的会话的请求不删（K24）；镜像里的待演练补丁、本地结果不删（K45）；浅克隆边界提交不误停（K47）；101MB 文件和路径不存在都停下）' if not fails else '失灵！' + '；'.join(fails)))
+print('推送自检：' + ('通过（正常推送两边一致、云端一致、CLAUDE.md 以主仓库为准、中文文件名、删旧文件；工作流结果反向回写、白名单外停（G58）；别的会话的请求不删（K24）；镜像里的待演练补丁、本地结果不删（K45）；浅克隆边界提交不误停（K47）；同大小同时刻的改动照样镜像（K48）；101MB 文件和路径不存在都停下）' if not fails else '失灵！' + '；'.join(fails)))
 sys.exit(1 if fails else 0)

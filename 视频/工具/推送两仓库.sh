@@ -67,7 +67,7 @@ import sys,shutil,os
 P,L,TP,TL=sys.argv[1:5]
 p=dict(l.rstrip('\n').split('\t')[::-1] for l in open(TP)); q=dict(l.rstrip('\n').split('\t')[::-1] for l in open(TL))
 for f,h in p.items():
-    if q.get(f)!=h: os.makedirs(os.path.dirname(f'{L}/{f}'),exist_ok=True); shutil.copy2(f'{P}/{f}',f'{L}/{f}')
+    if q.get(f)!=h: os.makedirs(os.path.dirname(f'{L}/{f}'),exist_ok=True); shutil.copy(f'{P}/{f}',f'{L}/{f}')   # K48：不用 copy2，保留修改时刻、大小又一样时 git 按缓存当没改，镜像漏提交
 for f in q:
     if f not in p and os.path.exists(f'{L}/{f}'): os.remove(f'{L}/{f}')
 PY2
