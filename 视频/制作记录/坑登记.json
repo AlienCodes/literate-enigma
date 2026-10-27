@@ -447,6 +447,12 @@
    "时刻": "2026-10-27T21:50Z",
    "会话": "session_01BA1TPGnWLpWwhbhgKN5LR8",
    "现象": "改门 推送两仓库.sh G2 停：报坑.py --锁 原子提交直接推 origin/main，本地 main 没拉；推送两仓库 先提交再 pull 合并进 坑登记.json，镜像拷的是合并前那份，末尾两仓库一致核对停（实测 2026-10-27 21:5x，第二次推送就过）"
+  },
+  {
+   "号": "K64",
+   "时刻": "2026-10-27T21:52Z",
+   "会话": "session_0172bQRMtCLHjvbt37U31PJe",
+   "现象": "主会话 推送两仓库.sh 第9行、定稿流水线.sh 第56行 提交说明写死 Claude-Session: session_01XbsiuYS9p9y2vNiB4h6ZZU（24 号的旧会话），哪个会话推送都记成它：主会话按提交署名判断“27 在 01Xbsi 里改”判错（实测：1723a81e 主会话、9683ae5b 改门、b127ee39 27 会话 01VP2 署名全是 01Xbsi）；证据链、K57 按会话计不丝滑、协调查谁改了什么都不可信。应取当前会话：session_${CLAUDE_CODE_REMOTE_SESSION_ID#cse_}，自检：两个不同会话 ID 推出的署名必须不同"
   }
  ],
  "预留": [
