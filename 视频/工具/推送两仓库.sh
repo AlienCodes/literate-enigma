@@ -36,9 +36,13 @@ for n in nn: 白 += [f'视频/视频/{n}.mp4', f'视频/视频/草稿1080p/{n}_*
                     f'视频/制作记录/{n}.md', f'视频/制作记录/{n}_*', f'视频/制作记录/逐句确认/{n}.json', f'视频/制作记录/证据/{n}*',
                     f'视频/脚本/已发版本/{n}.json', f'视频/音频核对/*_{n}.txt', f'视频/音频核对/*_{n}_*.txt']
 ok = lambda f: any(fnmatch.fnmatchcase(f, w) for w in 白)
-for f in g(L, 'ls-files', '--', '视频/云端/请求/').splitlines():   # K24：会话直接放在镜像里的请求只增不删：拷回主仓库（之后两边一致，主仓库推过去不算“新加”、不会重跑）
+for f in g(L, 'ls-files', '--', '视频/云端/请求/', '视频/云端/待演练/', '视频/云端/结果/').splitlines():   # K45：待演练补丁、本地结果同样只增不删（2026-10-27 镜像同步抹掉了只在镜像的交接补丁）；K24：会话直接放在镜像里的请求只增不删：拷回主仓库（之后两边一致，主仓库推过去不算“新加”、不会重跑）
     if f and not os.path.exists(f'{P}/{f}'): os.makedirs(os.path.dirname(f'{P}/{f}'), exist_ok=True); shutil.copy2(f'{L}/{f}', f'{P}/{f}'); g(P, 'add', '--', f); print(f'回写请求（K24）：{f}')
-fs = {f for f in g(L, 'log', '-300', '--author=' + re.escape(BOT), '--name-only', '--format=').splitlines() if f}
+_浅 = set(open(f'{L}/.git/shallow').read().split()) if os.path.exists(f'{L}/.git/shallow') else set()   # K47：浅克隆的边界提交没有父提交，git log 把它当成“新加了全部文件”，误报白名单外
+fs, _cur = set(), ''
+for x in g(L, 'log', '-300', '--author=' + re.escape(BOT), '--name-only', '--format=@%H').splitlines():
+    if x.startswith('@'): _cur = x[1:]
+    elif x and _cur not in _浅: fs.add(x)
 bad, n_ = [], 0
 for f in sorted(fs):
     la = g(L, 'log', '-1', '--format=%an %ct', '--', f).rsplit(' ', 1); pt = int(g(P, 'log', '-1', '--format=%ct', '--', f).strip() or 0)

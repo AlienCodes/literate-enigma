@@ -95,6 +95,8 @@ def _工具副本(files):
         for x in fn:
             k = os.path.relpath(f'{dp}/{x}', P)
             if k not in out: out[k] = 读样(k, True) if k.startswith('视频/工具/') and os.path.isfile(样(k)) else open(f'{dp}/{x}', 'rb').read()
+    for k in ('视频/制作记录/门变异清单.md',):   # G79：机制文件不是样本，放在冻结的 制作记录 里也用现行的（否则演练里永远“还没有门变异清单”）
+        if k not in out and os.path.isfile(f'{P}/{k}'): out[k] = open(f'{P}/{k}', 'rb').read()
     for x in ('fonts', '历史版本', '演练样本'): out.setdefault(f'视频/工具/{x}', ('链接', f'{T}/{x}'))
     return out
 

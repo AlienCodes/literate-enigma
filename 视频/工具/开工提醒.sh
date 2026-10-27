@@ -2,6 +2,7 @@
 # SessionStart 钩子（T31）：每次开会话先把必做的事摆出来——不靠记忆。
 P=/home/user/postgraduate-vocabulary/视频; [ -d $P ] || P="$CLAUDE_PROJECT_DIR/视频"
 python3 $P/工具/方法进化表.py --状态 2>/dev/null   # G65：第一屏先看方法进化趋势和 GitHub 工作流最近结果
+python3 $P/工具/用上核查.py 2>/dev/null   # G83：开头先看所有程序、工作流、管执行的机制有没有用上（每次都查）
 python3 $P/工具/证据.py --闲置 --提醒 2>/dev/null   # G71：机制连续两篇该用没用（或建好后第一篇就没用上），第一屏标红
 python3 $P/工具/音频首要法则.py --要点 2>/dev/null   # 首要法则（CLAUDE.md 0.，用户 2026-10-25）：开工先读音频要求和全部音频坑
 no=$(cat ~/.当前篇 2>/dev/null || cat $P/制作记录/当前篇.txt 2>/dev/null)

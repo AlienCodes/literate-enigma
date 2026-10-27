@@ -11,7 +11,7 @@
         --严 = 定稿流水线 ⓪、推送两仓库改门程序时：超期没入表就停）
       python3 报坑.py --状态 / --自检
 超期：登记后 24 小时没进总表；写明“改门会话”的宽限 72 小时。"""
-import os, re, sys, json, subprocess, tempfile, datetime
+import shutil, os, re, sys, json, subprocess, tempfile, datetime
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T); P = os.path.dirname(V)
 REL = '视频/制作记录/坑登记.json'; STDREL = '视频/制作硬性标准与踩坑总结.md'
 宽限 = {'普通': 24, '改门': 72}
@@ -81,8 +81,13 @@ def 隔离查(repo, root):
     return e
 
 
+def 镜像仓库(repo):
+    """K29：镜像 literate-enigma 没有 main 分支，在那里跑会 fetch 失败 8 次后报成“被别人抢先”"""
+    c, url = git('remote', 'get-url', 'origin', repo=repo)
+    return c == 0 and re.search(r'literate-enigma(\.git)?/?$', url.strip(), re.I) is not None   # 只认仓库名结尾（scratchpad 路径 -home-user-literate-enigma 里也有这几个字，演练镜像误判，2026-10-27）
 def 原子写(改, repo=None, 分支='main', 说明='报坑登记'):
     """把 改(远端坑登记) 的结果作为只改这一个文件的提交推到远端；别人刚推了就重读远端再来（这就是防撞号）"""
+    if 镜像仓库(repo or P): raise SystemExit(f'【停止】这是镜像仓库 literate-enigma（{repo or P}），没有 main 分支（K29）：去 /home/user/postgraduate-vocabulary/视频 跑报坑、取号、取锁')
     if repo and os.path.realpath(repo) != os.path.realpath(P):   # 自检等指定了别的仓库：只许推它自己目录里的假远端
         e = 隔离查(repo, os.path.dirname(repo))
         if e: raise SystemExit('【停止】自检指向真 origin（K23）：' + '；'.join(e))
@@ -166,8 +171,18 @@ def 锁问题(staged_门, 会话, L, now=None):
             '先 python3 视频/工具/报坑.py --锁 --任务 "改什么"（别人持锁就排队：订阅 PR #7，锁放开的提交会唤醒，不轮询）；推送两仓库后自动放锁']
 
 
+def 自检_K29():
+    f = []; d = tempfile.mkdtemp(prefix='报坑自检K29_')
+    subprocess.run(['git', 'init', '-q', d]); subprocess.run(['git', '-C', d, 'remote', 'add', 'origin', 'https://github.com/AlienCodes/literate-enigma'])
+    if not 镜像仓库(d): f.append('没抓到：在镜像仓库 literate-enigma 里跑报坑（K29）')
+    try: 原子写(lambda d_, s_: (d_, None), d); f.append('没抓到：镜像仓库里原子写没停（K29）')
+    except SystemExit as e:
+        if 'K29' not in str(e): f.append(f'镜像仓库里停了但没说清原因（K29）：{e}')
+    subprocess.run(['git', '-C', d, 'remote', 'set-url', 'origin', 'https://github.com/alienalgorithm/postgraduate-vocabulary'])
+    if 镜像仓库(d): f.append('误报：主仓库被当成镜像（K29）')
+    shutil.rmtree(d, ignore_errors=True); return f
 def 自检():
-    fails = []; now = 解时('2026-10-27T12:00Z')
+    fails = 自检_K29(); now = 解时("2026-10-27T12:00Z")
     std = '| G52 | a | b | c |\n| G53 | a | b | c |\n| A45 | a | b | c |\n'
     d = {'起': {'G': 53}, '预留': [{'编号': 'G53'}], '登记': [
         {'号': 'K1', '时刻': '2026-10-26T06:00Z', '现象': '已入表的', '入表编号': 'G53'},
@@ -199,6 +214,7 @@ def 自检():
     except SystemExit as e:
         if '自检指向真 origin' not in str(e): fails.append(f'自检指向真 origin 停的理由不对：{e}')
     iso = 隔离查(f'{tmp}/a', tmp)
+    if not any('仓库' in x and '不在' in x for x in 隔离查(P, tmp)): fails.append('没抓到：自检用的仓库不在临时目录里（K23，G79 门变异）')
     if iso: fails.append('自检指向真 origin（K23）：' + '；'.join(iso)); subprocess.run(['rm', '-rf', tmp]); return fails
     try:
         x1 = 取('G', '会话A', '自检', repo=f'{tmp}/a'); x2 = 取('G', '会话B', '自检', repo=f'{tmp}/b')

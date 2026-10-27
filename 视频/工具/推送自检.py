@@ -59,10 +59,18 @@ try:
     r = run(); o = r.stdout + r.stderr
     if r.returncode == 0 or '白名单外' not in o or os.path.exists(f'{P}/视频/工具/越权.py'): fails.append(f'没抓到：工作流改了白名单外的文件没停（G58）{o.strip()[-100:]}')
     git('reset', '-q', '--hard', 'HEAD~1', cwd=L); git('push', '-qf', 'origin', 'tb', cwd=L)   # 收拾掉越权提交，后面的造错照常跑
+    # K47：浅克隆镜像的边界提交（工作流写的）没有父提交，不许被当成“改了全部文件”误停
+    git('pull', '-q', 'origin', 'tb', cwd=L); 写(f'{L}/视频/工具/边界.py', 'x\n'); git('add', '-A', cwd=L); bot('边界'); git('push', '-q', 'origin', 'tb', cwd=L)
+    open(f'{L}/.git/shallow', 'w').write(git('rev-parse', 'HEAD', cwd=L).stdout)
+    r = run(); o = r.stdout + r.stderr
+    if '白名单外' in o: fails.append(f'误停：浅克隆边界提交当成工作流改了全部文件（K47）{o.strip()[-100:]}')
+    os.remove(f'{L}/.git/shallow'); git('pull', '-q', 'origin', 'tb', cwd=L)
     # K24：别的会话直接放在镜像里的请求，主仓库推送不许删掉，要拷回主仓库
-    git('pull', '-q', 'origin', 'tb', cwd=L); 写(f'{L}/视频/云端/请求/别的会话-0920.txt', '声音演练\n'); git('add', '-A', cwd=L); git('commit', '-qm', '别的会话的请求', cwd=L); git('push', '-q', 'origin', 'tb', cwd=L)
+    git('pull', '-q', 'origin', 'tb', cwd=L); 写(f'{L}/视频/云端/请求/别的会话-0920.txt', '声音演练\n'); 写(f'{L}/视频/云端/待演练/交接.diff', 'd\n'); 写(f'{L}/视频/云端/结果/门变异/本地/x.json', '[]\n'); git('add', '-A', cwd=L); git('commit', '-qm', '别的会话的请求', cwd=L); git('push', '-q', 'origin', 'tb', cwd=L)
     写(f'{P}/视频/又一个.md', 'y\n'); r = run(); o = r.stdout + r.stderr
     if not os.path.exists(f'{L}/视频/云端/请求/别的会话-0920.txt') or not os.path.exists(f'{P}/视频/云端/请求/别的会话-0920.txt'): fails.append(f'没抓到：主仓库推送删了别的会话放在镜像里的请求（K24）{o.strip()[-80:]}')
+    for x in ('待演练/交接.diff', '结果/门变异/本地/x.json'):
+        if not os.path.exists(f'{L}/视频/云端/{x}') or not os.path.exists(f'{P}/视频/云端/{x}'): fails.append(f'没抓到：主仓库推送删了会话放在镜像里的 云端/{x}（K45/G87）')
     # G1：101MB 的文件必须停，不许推上去
     with open(f'{P}/视频/大文件.bin', 'wb') as f: f.truncate(101 * 1024 * 1024)
     r = run(); o = r.stdout + r.stderr
@@ -78,5 +86,5 @@ except Exception as e:
     fails.append(f'推送自检本身出错：{e}')
 finally:
     shutil.rmtree(tmp, ignore_errors=True)
-print('推送自检：' + ('通过（正常推送两边一致、云端一致、CLAUDE.md 以主仓库为准、中文文件名、删旧文件；工作流结果反向回写、白名单外停（G58）；别的会话的请求不删（K24）；101MB 文件和路径不存在都停下）' if not fails else '失灵！' + '；'.join(fails)))
+print('推送自检：' + ('通过（正常推送两边一致、云端一致、CLAUDE.md 以主仓库为准、中文文件名、删旧文件；工作流结果反向回写、白名单外停（G58）；别的会话的请求不删（K24）；镜像里的待演练补丁、本地结果不删（K45）；浅克隆边界提交不误停（K47）；101MB 文件和路径不存在都停下）' if not fails else '失灵！' + '；'.join(fails)))
 sys.exit(1 if fails else 0)

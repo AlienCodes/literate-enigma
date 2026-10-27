@@ -20,7 +20,14 @@ REC = f'{V}/制作记录'; 会话目录 = [f'{REC}/方法进化']; OUT = f'{REC}
 上下文限 = 400     # k：出稿、改稿会话超过就先交接（26 实测：调用到 500k 上下文时每次约 5.5 万等效，新会话约 2.3 万）
 不全 = {'22': '只记到第一稿会话', '24': '只记到第一稿会话'}   # 主会话 2026-10-26 查：这两篇后来的会话没记收工行，不进比较基线
 W = dict(input_tokens=1, cache_creation_input_tokens=1.25, cache_read_input_tokens=0.1, output_tokens=5)
-项 = [('等效', 'M', '等效 token'), ('调用', '', '调用'), ('平均上下文', 'k', '平均上下文'), ('手工重复', '', '手工重复')]
+项 = [('等效', 'M', '等效 token'), ('调用', '', '调用'), ('平均上下文', 'k', '平均上下文'), ('手工重复', '', '手工重复'), ('机制漏洞', '', '机制漏洞数')]
+# G79（用户 2026-10-27：“要一直不停的去发现……这套机制的问题和漏洞，然后不断的去进化和升级”）：每篇的机制漏洞 = 本篇登记的坑里程序毛病的条数；
+# 坑归篇：现象以“NN ”开头，或登记它的会话是这一篇的会话。程序毛病：门停了查出是程序的毛病、机制没挡住、流程卡住（不是稿子内容的问题）
+漏洞起 = 27   # 27 起进比较（之前的篇没有按会话记，不比）
+def 坑归篇(k, 会篇):
+    m = re.match(r'(\d\d)\s', k.get('现象', ''))
+    return m.group(1) if m else 会篇.get(k.get('会话'))
+def 是程序毛病(x): return bool(re.search(r'程序|门|自检|流水线|钩子|闸门|演练|工作流|脚本没|没挡住|卡住|误报|误拦|失灵|\.py|\.sh', x))
 _收工 = re.compile(r'^- (?:收工|进行中（每轮自动更新）) (\S+?)（UTC）：等效 ([\d.]+)M；主对话 (\d+) 次、平均 (\d+)k')
 
 
@@ -96,10 +103,13 @@ def 汇总(rec=REC, 目录=None):
         try: d = json.load(open(f))
         except Exception: continue
         if re.fullmatch(r'\d\d', str(d.get('篇', ''))): 篇.setdefault(d['篇'], {'会话': [], '改稿条数': 0, '报坑': 0})['会话'].append(d)
+    会篇 = {s.get('会话'): no for no, v in 篇.items() for s in v['会话'] if s.get('会话')}
     try:
         for k in json.load(open(f'{rec}/坑登记.json')).get('登记', []):
-            m = re.match(r'(\d\d)\s', k.get('现象', ''))
-            if m and m.group(1) in 篇: 篇[m.group(1)]['报坑'] += 1
+            no = 坑归篇(k, 会篇)
+            if no in 篇:
+                篇[no]['报坑'] += 1; 程 = 是程序毛病(k.get('现象', ''))
+                篇[no].setdefault('K', []).append(k['号'] + ('（程序）' if 程 else '（内容）')); 篇[no]['机制漏洞'] = 篇[no].get('机制漏洞', 0) + 程
     except Exception: pass
     行 = {}
     for no, v in 篇.items():
@@ -112,7 +122,8 @@ def 汇总(rec=REC, 目录=None):
         行[no] = {'等效': round(sum(s['等效'] for s in ss), 1), '调用': c, '平均上下文': round(sum(s['调用'] * s['平均上下文'] for s in ss) / c) if c else 0,
                  '会话数': len(ss), '估': any(s.get('估') for s in ss), '改稿条数': v['改稿条数'], '报坑': v['报坑'],
                  '手工重复': sum(len(s.get('手工重复') or []) for s in 新) if 新 else None, '按步骤': 步,
-                 '超限会话': [s['会话'] for s in 新 if s.get('最后上下文', 0) > 上下文限]}
+                 '超限会话': [s['会话'] for s in 新 if s.get('最后上下文', 0) > 上下文限],
+                 '机制漏洞': v.get('机制漏洞', 0) if no >= str(漏洞起) else None, 'K': v.get('K', [])}
     return 行
 
 
@@ -163,11 +174,11 @@ def 写表(行=None):
          '用户 2026-10-26：“这套方法一定要不停的去进化……越来越能够就是省token……在耗费token量最少的情况下，能够做出比消耗token还要完美……的视频”。'
          '每篇一行，所有会话（出稿、改稿、定稿）加总；“估”= 有老会话按收工行切段估算；手工重复 = 同一段内联脚本跑了两次以上（守则2：手工第二次就改成程序）。'
          f'从 {起} 起，定稿和开下一篇前和前三篇中位数比，任何一项变差就要“进化落地”。', '',
-         '| 篇 | 等效 token | 调用 | 平均上下文 | 会话 | 用户改稿条数 | 报坑 | 手工重复 | 比前三篇中位 |', '|---|---|---|---|---|---|---|---|---|']
+         '| 篇 | 等效 token | 调用 | 平均上下文 | 会话 | 用户改稿条数 | 报坑（机制漏洞=程序毛病） | 手工重复 | 比前三篇中位 |', '|---|---|---|---|---|---|---|---|---|']
     for no in ks:
         r = 行[no]; prev, b = 基线(行, no)
         cmp = '；'.join(f'{lab}{"↑" if r[k] > b[k] else "↓"}' for k, _, lab in 项[:3] if b.get(k)) if prev else '—'
-        L.append(f'| {no}{"（不全）" if no in 不全 else ""} | {r["等效"]}M{"（估）" if r["估"] else ""} | {r["调用"]} | {r["平均上下文"]}k | {r["会话数"]} | {r["改稿条数"]} | {r["报坑"]} | {"—" if r["手工重复"] is None else r["手工重复"]} | {cmp} |')
+        L.append(f'| {no}{"（不全）" if no in 不全 else ""} | {r["等效"]}M{"（估）" if r["估"] else ""} | {r["调用"]} | {r["平均上下文"]}k | {r["会话数"]} | {r["改稿条数"]} | {r["报坑"]}{f'（漏洞 {r["机制漏洞"]}）' if r.get("机制漏洞") is not None else ''} | {"—" if r["手工重复"] is None else r["手工重复"]} | {cmp} |')
     L += ['', '## 每步预计/实测 token（同一张 开工必读 ⑤ 步骤表；实测 = 最近一篇有按步骤记录的会话，预计 = 最近三篇中位数）', '',
           '| 第几步 | 做什么 | 正式入口 | 在哪做 | 预计 | 实测 |', '|---|---|---|---|---|---|']
     try:
@@ -181,7 +192,7 @@ def 写表(行=None):
     sys.path.insert(0, T); import 证据 as ZJ   # G71：28 起每篇一节机制运行报告，同时写进 NN.md
     for no in sorted({os.path.basename(x)[:2] for x in glob.glob(f'{ZJ.目录[0]}/[0-9][0-9].jsonl')}):
         if int(no) < 报告起: continue
-        节 = 机制报告(no, 行, rows); L += [''] + [节[0].replace('## ', f'## 第{no}篇 ', 1)] + 节[1:]; 写报告进篇(no, 节)
+        节 = 机制报告(no, 行, rows); L += [''] + [节[0].replace('## ', f'## 第{no}篇 ', 1)] + 节[1:]; 写报告进篇(no, 节); 写漏洞节(no, 行)
     open(OUT, 'w').write('\n'.join(L) + '\n'); return OUT
 
 
@@ -212,6 +223,24 @@ def 写报告进篇(no, 节, rec=REC):
     f = f'{rec}/{no}.md'
     if not os.path.exists(f): return False
     txt = open(f).read(); t2 = re.sub(r'^## 机制运行报告（G71[^\n]*\n(?:\n|- [^\n]*\n|\|[^\n]*\n)*', '', txt, flags=re.M)
+    a = t2.find('\n## 方法复盘'); 块 = '\n'.join(节) + '\n\n'
+    t2 = (t2[:a + 1] + 块 + t2[a + 1:]) if a >= 0 else t2.rstrip('\n') + '\n\n' + 块
+    if t2 != txt: open(f, 'w').write(t2)
+    return True
+
+
+def 漏洞节(no, 行, txt=''):
+    """G79 “## 机制漏洞”：程序填本篇登记的 K#、程序毛病条数、手工重复；“- 会话补：”由会话写（这次机制哪里没挡住、哪里不顺；没有写“无（依据：……）”），保留原文"""
+    r = 行.get(no) or {}; old = re.search(r'^- 会话补：[^\n]*$', re.search(r'^## 机制漏洞[\s\S]*?(?=^## |\Z)', txt, re.M).group(0), re.M) if '## 机制漏洞' in txt else None
+    ks = r.get('K', [])
+    return [f'## 机制漏洞（G79，程序写：本篇登记的坑 = 现象以“{no} ”开头或本篇会话登记的；踩坑核查 28 起没有“会话补”就停）',
+            f'- 程序填：本篇登记 {len(ks)} 条（{"、".join(ks) or "无"}）；机制漏洞（程序毛病）{r.get("机制漏洞") or 0} 条；手工重复 {r.get("手工重复") if r.get("手工重复") is not None else "—"} 次',
+            old.group(0) if old else '- 会话补：']
+def 写漏洞节(no, 行, rec=REC):
+    f = f'{rec}/{no}.md'
+    if not os.path.exists(f) or int(no) < 报告起: return False
+    txt = open(f).read(); 节 = 漏洞节(no, 行, txt)
+    t2 = re.sub(r'^## 机制漏洞（G79[^\n]*\n(?:- [^\n]*\n)*\n?', '', txt, flags=re.M)
     a = t2.find('\n## 方法复盘'); 块 = '\n'.join(节) + '\n\n'
     t2 = (t2[:a + 1] + 块 + t2[a + 1:]) if a >= 0 else t2.rstrip('\n') + '\n\n' + 块
     if t2 != txt: open(f, 'w').write(t2)
@@ -269,6 +298,13 @@ def 自检():
     t = '\n'.join(节)
     if '✘ 缺“出片前”' not in t or '✔ 草稿声音' not in t or '1.5M' not in t or '齐 1、缺 1' not in t: f.append('机制运行报告没写对：缺的步骤、有的证据、按步骤 token')
     open(f'{d}/28.md', 'w').write('## 方法设计\nx\n\n## 方法复盘\ny\n'); 写报告进篇('28', 节, d); 写报告进篇('28', 节, d)
+    # G79 机制漏洞：坑归篇（前缀/会话）、程序毛病分类、“## 机制漏洞”节写两次不重复、会话补原文保留
+    if 坑归篇({'现象': '28 S3 x'}, {}) != '28' or 坑归篇({'现象': '2026 改门', '会话': 's1'}, {'s1': '28'}) != '28' or 坑归篇({'现象': 'x', '会话': 's2'}, {}) is not None: f.append('坑归篇错（G79）')
+    if not 是程序毛病('定稿流水线 ④ 文本门静默跳过') or 是程序毛病('S5 hallmark 读成 hall-mark'): f.append('程序毛病分类错（G79）')
+    行2 = {'28': {'K': ['K1（程序）'], '机制漏洞': 1, '手工重复': 0}}
+    写漏洞节('28', 行2, d); t = open(f'{d}/28.md').read().replace('- 会话补：', '- 会话补：无（依据：门都挡住了）'); open(f'{d}/28.md', 'w').write(t); 写漏洞节('28', 行2, d)
+    t = open(f'{d}/28.md').read()
+    if t.count('## 机制漏洞') != 1 or '会话补：无（依据：门都挡住了）' not in t or 'K1（程序）' not in t or t.find('## 机制漏洞') > t.find('## 方法复盘'): f.append('“## 机制漏洞”节没写对（G79：重复、会话补被冲掉或位置不对）')
     t = open(f'{d}/28.md').read()
     if t.count('## 机制运行报告') != 1 or t.find('## 机制运行报告') > t.find('## 方法复盘'): f.append('机制运行报告写进 NN.md 没只写一节、或没放在方法复盘前')
     return ['方法进化表 自检：' + x for x in f]

@@ -9,6 +9,8 @@ def 拦了(kind, d, **k): return G.判(kind, d, **k) is not None
 if not 拦了('子代理', {'tool_name': 'Agent', 'tool_input': {'prompt': '审校全文'}}): fails.append('没抓到：没写理由就派子代理（T29）')
 # 发文件（A25）
 tmp = tempfile.mkdtemp(); G.回执目录 = f'{tmp}/回执'
+G.请求账 = f'{tmp}/云端请求.json'   # K38：自检用隔离的请求账，不读本会话真实的 ~/.云端请求.json（推了请求还没约唤醒时，模拟的正常收工被 K34 闸门误拦）
+if G.请求账.startswith(os.path.expanduser('~') + os.sep): fails.append('钩子自检读了真实的请求账（K38）')
 a, b = f'{tmp}/a.mp4', f'{tmp}/b.mp3'
 open(a, 'wb').write(b'video'); open(b, 'wb').write(b'audio')
 if not 拦了('发文件', {'tool_input': {'files': [a, b]}}): fails.append('没抓到：一次发两个声音视频（A25）')

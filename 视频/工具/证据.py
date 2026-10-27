@@ -125,7 +125,7 @@ def 清单问题(C=None, 入口文=None, 工作流=None):
         入口文 = {f: open(f'{T}/{f}').read() for f in ('草稿声音.sh', '定稿流水线.sh', '交付核查.py') if os.path.exists(f'{T}/{f}')}
     if 工作流 is None:
         工作流 = sorted({w for d in (f'{P}/.github/workflows', '/home/user/literate-enigma/.github/workflows') if os.path.isdir(d) for w in os.listdir(d)})   # 两个仓库的工作流
-    包含 = {os.path.basename(x) for m in C['机制'] for x in m.get('包含', [])}
+    包含 = {os.path.basename(x) for m in C['机制'] + C.get('管执行', []) for x in m.get('包含', [])}   # G83：管执行的机制也是登记过的
     err = []
     for f, t in 入口文.items():
         for p in sorted(程序名(t)):

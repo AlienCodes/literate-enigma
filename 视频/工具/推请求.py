@@ -3,7 +3,7 @@
 记进本机请求账（~/.云端请求.json），并提醒：GitHub 写回结果不会唤醒会话，推完必须 send_later 约 20 分钟叫回自己；
 没约唤醒，收工闸门（钩子/闸门.py 收工）就拦。格式见 视频/云端/请求/说明.md。
 用法：python3 视频/工具/推请求.py <名字> "<任务行>" ["# 注释"]    例：推请求.py G72主演练 "主演练 补丁=视频/云端/待演练/G72单线程.diff\""""
-import os, sys, json, subprocess, datetime
+import os, sys, json, subprocess, datetime, re, tempfile, shutil
 L = '/home/user/literate-enigma'; B = 'claude/adoring-hamilton-5qskmm'
 账 = os.path.expanduser('~/.云端请求.json')
 def g(*a): return subprocess.run(['git', '-C', L, *a], capture_output=True, text=True)
@@ -18,8 +18,20 @@ def 本地慢印章(行, 有效=None, 缺口数=None):
     import 执行效应演练 as Y   # 2026-10-26 K37v2：新规矩没登记演练覆盖，GitHub 主演练报“缺口变多”白跑一轮；本地几秒就查得出
     g = 缺口数 if 缺口数 is not None else len(Y.缺口()); b = json.load(open(Y.GAPB))['缺口'] if os.path.exists(Y.GAPB) else 0
     return f'执行效应演练缺口 {g} 条 > 基线 {b}：新规矩先在 执行效应演练.py 登记演练（python3 视频/工具/执行效应演练.py --状态 看），再做补丁推主演练' if g > b else ''
+def 补丁打不上(行, repo=L):
+    """K43：镜像工作分支被主会话同步过，旧补丁打不上，GitHub 上全部 job 两分钟就挂。推之前在拉过的工作分支上 git apply --check"""
+    m = re.search(r'补丁=(\S+)', 行)
+    if not m: return ''
+    p = m.group(1); r = subprocess.run(['git', '-C', repo, 'apply', '--check', p], capture_output=True, text=True)
+    return '' if r.returncode == 0 else f'补丁 {p} 在工作分支上打不上（K43：主仓库更新过，先合并最新 main 再重做补丁）：{(r.stderr or r.stdout).strip()[-150:]}'
 def 自检():
     f = []
+    d = tempfile.mkdtemp(prefix='推请求自检_'); sh = lambda c: subprocess.run(c, shell=True, cwd=d, capture_output=True)
+    sh('git init -q && printf "a\\nb\\n" > x.txt && git add x.txt && git -c user.name=t -c user.email=t@t commit -qm 0')
+    open(f'{d}/好.diff', 'w').write('--- a/x.txt\n+++ b/x.txt\n@@ -1,2 +1,2 @@\n a\n-b\n+c\n'); open(f'{d}/坏.diff', 'w').write('--- a/x.txt\n+++ b/x.txt\n@@ -1,2 +1,2 @@\n a\n-zzz\n+c\n')
+    if not 补丁打不上('门变异 x 补丁=坏.diff', d): f.append('没抓到：补丁在工作分支上打不上还让推（K43）')
+    if 补丁打不上('门变异 x 补丁=好.diff', d) or 补丁打不上('主演练', d): f.append('误报：补丁打得上或没有补丁也拦（K43）')
+    shutil.rmtree(d, ignore_errors=True)
     if not 本地慢印章('主演练 补丁=视频/云端/待演练/x.diff', lambda p: p == '执行效应演练.py'): f.append('没抓到：出片守门自检印章过期还让推带补丁的主演练（K35）')
     if not 本地慢印章('主演练 补丁=视频/云端/待演练/x.diff', lambda p: True, 缺口数=99): f.append('没抓到：演练缺口变多还让推带补丁的主演练')
     if 本地慢印章('主演练 补丁=视频/云端/待演练/x.diff', lambda p: p != '执行效应演练.py', 缺口数=0) or 本地慢印章('声音演练 补丁=x', lambda p: False): f.append('误报：印章有效或不是主演练也拦（K35）')
@@ -33,6 +45,8 @@ def main():
     if e: print('【停止】' + e); return 1
     f = f'视频/云端/请求/{名字}.txt'
     g('pull', '-q', '--no-rebase', '--no-edit', 'origin', B)
+    e = 补丁打不上(行)
+    if e: print('【停止】' + e); return 1
     if os.path.exists(f'{L}/{f}'): print(f'【停止】请求 {f} 已经有了（只认新加的文件）：换个名字'); return 1
     os.makedirs(f'{L}/视频/云端/请求', exist_ok=True)
     open(f'{L}/{f}', 'w').write((f'# {注}\n' if 注 else '') + 行 + '\n')

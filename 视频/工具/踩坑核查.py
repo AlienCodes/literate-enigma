@@ -477,6 +477,8 @@ def selftest():
     mut('擅自加换行（L13）', 'L13', lb)
     def lb2(d): d['sentences'][5]['chunks'][0]['en'] += '{{=}}'
     mut('擅自加"不换行"标记（L13）', 'L13', lb2)
+    _d = copy.deepcopy(base); _d['sentences'].pop()   # G79 门变异：拆了“句数变了”这道门没人发现
+    if not any(x.startswith('[L13] 句数变了') for x in text_checks(_d, art, base)[0]): fails.append('没抓到：句数变了（L13）')
     def d2e(d):
         c = d['sentences'][7]['chunks'][0]; c['align'][0][0] += ' extra'
     mut('align 英文与 en 不一致（D2）', 'D2', d2e)
@@ -574,6 +576,9 @@ def selftest_folders():
         if not any('不是同一个版本' in x for x in video_folders(r)): fails.append('没抓到：视频/视频/ 里留着旧版本（G7）')
         open(f'{r}/视频/视频/03.mp4', 'wb').write(b'final'); open(f'{r}/最终版4K视频/03 - A - 乙.mp4', 'wb').write(b'final')
         if not any('不止一个版本' in x for x in video_folders(r)): fails.append('没抓到：最终版4K视频/ 里同一篇有两个版本（G7）')
+        os.remove(f'{r}/最终版4K视频/03 - A - 乙.mp4'); open(f'{r}/视频/视频/笔记.txt', 'w').write('x'); os.makedirs(f'{r}/视频/视频/旧版')   # G79 门变异
+        if not any('不是定稿的文件' in x for x in video_folders(r)): fails.append('没抓到：视频/视频/ 里有不是定稿的文件（G7）')
+        if not any('多余的文件夹' in x for x in video_folders(r)): fails.append('没抓到：视频/视频/ 里有多余的文件夹（G7）')
     return fails
 
 
@@ -735,6 +740,7 @@ def l19_checks(dd):
     return err
 
 
+漏洞节_起 = 28   # G79 机制漏洞节从 28 起（之前做完的不回头补）
 T31严_起 = 26   # G39：方法设计“预计调用”“预计 token”后面同一行要有内容（01–25 不回头查）
 def record_meta_checks(no, _rec):
     """[T31] 制作记录要写好“## 方法设计”（13 起）；[T29] 要有“## 方法复盘”（11 起）"""
@@ -742,6 +748,10 @@ def record_meta_checks(no, _rec):
     sp_ = r'[ \t]*' if int(no) >= T31严_起 else r'\s*'   # G39：\s 会跨行，空模板“- 预计调用：”下一行的“-”被当成内容（25.md 被整份换成空模板照样放行）；26 起只认同一行里的内容
     if int(no) >= 13 and not re.search(r'## 方法设计[\s\S]*?预计调用：' + sp_ + r'\S[\s\S]*?预计 token：' + sp_ + r'\S', _rec):
         err.append(f'[T31] 制作记录/{no}.md 没写“## 方法设计”（步骤、预计调用、预计 token、为什么有效）：用户 2026-10-16 铁律——动手前先设计并证明方法有效，规矩由程序执行，没写不能出片')
+    if int(no) >= 漏洞节_起:   # G79（用户 2026-10-27：“要一直不停的去发现……这套机制的问题和漏洞”）：程序填本篇 K#，会话补这次机制哪里没挡住
+        m = re.search(r'^## 机制漏洞[^\n]*\n([\s\S]*?)(?=^## |\Z)', _rec, re.M); b = re.search(r'^- 会话补：[ \t]*(\S[^\n]*)$', m.group(1), re.M) if m else None
+        if not m: err.append(f'[G79] 制作记录/{no}.md 没有“## 机制漏洞”：python3 视频/工具/方法进化表.py --写入 生成，再写“- 会话补：这次机制哪里没挡住/哪里不顺”')
+        elif not b or (b.group(1).startswith('无') and '依据' not in b.group(1)): err.append(f'[G79] 制作记录/{no}.md “## 机制漏洞”的“- 会话补：”没写（这次机制哪里没挡住、哪里不顺；没有写“无（依据：……）”）')
     if int(no) >= 11 and '## 方法复盘' not in _rec: err.append(f'[T29] 制作记录/{no}.md 没有“## 方法复盘”：每做完一件事，写下费 token 的地方能不能用虹吸、改了什么（用户 2026-10-15 铁律）')
     return err
 
@@ -776,6 +786,12 @@ def selftest_record_meta():
     if not any(x.startswith('[T31]') for x in record_meta_checks('26', _空)): fails.append('没抓到：方法设计是空模板（预计调用、预计 token 后面没写，G39 重放 25.md）')
     if record_meta_checks('26', _空.replace('预计调用：', '预计调用：50–70 次').replace('预计 token：', '预计 token：约 2M')): fails.append('G39 误报：方法设计写全了还报')
     if not any(x.startswith('[T29]') for x in record_meta_checks('20', ok_.split('## 方法复盘')[0])): fails.append('没抓到：制作记录没写方法复盘（T29）')
+    _w = _空.replace('预计调用：', '预计调用：50 次').replace('预计 token：', '预计 token：2M')   # G79 机制漏洞节（28 起）
+    _j = '## 机制漏洞（G79）\n- 程序填：本篇登记 0 条\n- 会话补：{}\n\n'
+    if not any(x.startswith('[G79]') for x in record_meta_checks('28', _w)): fails.append('没抓到：28 没有“## 机制漏洞”（G79）')
+    for _b in ('', '无'):
+        if not any(x.startswith('[G79]') for x in record_meta_checks('28', _j.format(_b) + _w)): fails.append(f'没抓到：机制漏洞“会话补”写“{_b}”（G79）')
+    if record_meta_checks('28', _j.format('无（依据：门全挡住了）') + _w) or record_meta_checks('27', _w): fails.append('G79 误报：会话补写全了或 27 也报')
     return fails
 
 

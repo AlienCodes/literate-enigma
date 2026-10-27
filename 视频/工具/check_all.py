@@ -49,6 +49,10 @@ def 自检():
         c['zh']=re.sub(r'\*\*([^*]+)\*\*\([^)]+\)',r'\1',c['zh'],1); c['align']=[[a,re.sub(r'\*\*([^*]+)\*\*\([^)]+\)',r'\1',b,1)] for a,b in c['align']]
     造('英文混入换行标记','D1',fd=d1); 造('中文与分组拼接不一致','D2',fd=d2); 造('重点词缺中文标记','D4',fd=d4)
     造('英文与文章原文不一致','D3',ft=lambda t:t.replace('## 英文','## 英文\nExtra words here.',1))
+    def d2a(d): c0(d)['align'][0][0]=c0(d)['align'][0][0]+'x'   # G79 门变异：拆了 align≠en、空译文、文章异常断行 这三道门没人发现
+    def 空(d): c0(d)['zh']=''; c0(d)['align']=[[a,''] for a,_ in c0(d)['align']]
+    造('align 与 en 不一致','D2 align',fd=d2a); 造('空译文','空译文',fd=空)
+    造('文章英文异常断行','D1 文章英文',ft=lambda t:re.sub(r'(## 英文[^\n]*\n(?:\s*\n)*[^\n]+)', r'\1\n  **x**', t, count=1))
     造('速查表本文重复','S2',ft=lambda t:t.replace('## 速查表','## 速查表\n| x | 本文：a 本文：b |',1))
     造('速查表只有本文、缺词性','S4',ft=lambda t:t.replace('## 速查表','## 速查表\n| zzz | 本文：只有本文 | 1 |',1))
     if not (同词('dams','dam')=='撞车' and 同词('circulation','circulates') is None): fails.append('没抓到：撞词按屈折变化判（T12）')

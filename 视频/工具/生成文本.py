@@ -36,6 +36,8 @@ if sys.argv[1:2] == ['--自检']:
     if 读回核对(f'{td}/a.docx', d0)[0]: fails.append('Word 读回 误报：' + 读回核对(f'{td}/a.docx', d0)[0][0])
     d1 = copy.deepcopy(d0); c1 = d1['sentences'][1]['chunks'][0]; c1['align'][0][1] += '多'; c1['zh'] = ''.join(b for _, b in c1['align'])
     if not any('Word 格不一致' in x for x in 读回核对(f'{td}/a.docx', d1)[0]): fails.append('没抓到：Word 和脚本对不上（W1）')
+    d2 = copy.deepcopy(d0); d2['sentences'][1]['chunks'][0]['align'].append(['extra', '多一格'])   # G79 门变异：格数不对这道门没人发现
+    if not any('Word 格数' in x for x in 读回核对(f'{td}/a.docx', d2)[0]): fails.append('没抓到：Word 格数和脚本分组数对不上（W1）')
     if not PDF核对(f'{td}/没有.pdf', time.time(), 'x'): fails.append('没抓到：PDF 没有生成（W5/W8/W9）')
     for n_ in ('03-文本.docx', '03-文本-待修正.docx', '03-文本-用户改.docx'): open(f'{td}/{n_}', 'w').write('x')
     if [os.path.basename(x) for x in 要覆盖(td, '03')] != ['03-文本.docx', '03-文本-待修正.docx']: fails.append('没抓到：docx 没有一起覆盖，或覆盖了用户的修正稿（W7）')

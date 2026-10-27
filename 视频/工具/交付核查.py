@@ -30,6 +30,7 @@ if stage == '对照表':
     open(rec, 'w').write(txt.rstrip('\n') + '\n' + '\n'.join(tab) + '\n'); print(f'已生成 制作记录/{no}.md 的踩坑对照记录模板（{len(rows)} 条），逐条填完才能通过出片前核查'); sys.exit(0)
 elif stage == '出片前':
     c, o = run(['python3', f'{T}/规则执行核查.py']); step('规则执行核查（守则16：每条规矩都有门、接进流程、有自检，机器自检通过）', c == 0, '' if c == 0 else o.strip()[-600:])
+    c, o = run(['python3', f'{T}/用上核查.py', '--严']); step('用上核查（G83：每个程序、工作流、管执行的机制都用上，门变异按时跑、机制不闲置）', c == 0, '' if c == 0 else o.strip()[-600:])
     # 0 踩坑核查（最高铁律）：核查程序自检 + 踩坑对照记录逐条填完 + 能用程序查的坑逐条查 + 换行与用户看过的版本比对（L13）
     c, o = run(['python3', f'{T}/踩坑核查.py', no, '出片'])
     step('踩坑核查（核查程序自检、踩坑对照记录、逐条程序核查、换行比对）', c == 0, '' if c == 0 else '\n    '.join(o.strip().splitlines()))

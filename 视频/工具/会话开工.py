@@ -45,6 +45,7 @@ def 开工(角色, 会话='', 任务=''):
     if 角色 == '改门' and not (任务 and os.path.exists(任务 if os.path.isabs(任务) else f'{V}/{任务}')):
         sys.exit('【停止】改门会话要写 --任务 制作记录/改门_xxx.md（主会话交给你的改门文件；G25：出稿、改稿会话不改门）')
     打印总纲()
+    r = subprocess.run(['python3', f'{T}/用上核查.py'], capture_output=True, text=True); print(r.stdout.strip())   # G83：开头先打印用上报告，读完才记指纹
     r = subprocess.run(['python3', f'{T}/开工必读.py', '--要点'], capture_output=True, text=True); print(r.stdout.strip())
     t = open(必读F).read() if os.path.exists(必读F) else ''
     s = 节(t, '⑤')
@@ -132,6 +133,9 @@ def 自检():
     f = []; old = 记录F[0]; d = tempfile.mkdtemp(prefix='会话开工自检_'); 记录F[0] = f'{d}/r.json'
     try:
         if not 查开工(None): f.append('没抓到：没开工就提交')
+        try: 开工('乱写的角色'); f.append('没抓到：角色乱写也开了工（G79 门变异）')
+        except SystemExit as e:
+            if '角色只能是' not in str(e): f.append(f'角色乱写停错了地方：{e}')
         rec = {'角色': '出稿', '会话': 'x', '开工必读指纹': 'aaa'}
         if not 查开工(rec, 'bbb'): f.append('没抓到：开工必读更新了没重读')
         if 查开工(rec, 'aaa'): f.append('误报：读过现行开工必读')
