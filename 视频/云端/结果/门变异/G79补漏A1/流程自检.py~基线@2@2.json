@@ -1,0 +1,58 @@
+[
+[
+"流程自检.py|45376911de|0",
+"流程自检.py",
+21,
+"if 推送锁(src): fails.append('原样就报：' + 推送锁(src)[0])",
+"漏洞",
+""
+],
+[
+"流程自检.py|4cfaaa71d4|0",
+"流程自检.py",
+79,
+"if _a is None: fails.append(f'定稿流水线 ④ 生成文本.py 根本没跑（K37）：{_e[:120]}')",
+"漏洞",
+""
+],
+[
+"流程自检.py|b993be08d0|0",
+"流程自检.py",
+81,
+"elif '--只核查' not in _a.split(): fails.append(f'定稿流水线 ④ 默认没带 --只核查（守则17）：参数“{_a}”')",
+"漏洞",
+""
+],
+[
+"流程自检.py|26977fcb1b|0",
+"流程自检.py",
+95,
+"if subprocess.run(['/bin/bash', '-n', '-c', line], capture_output=True).returncode:",
+"漏洞",
+""
+],
+[
+"流程自检.py|d3a12a821d|0",
+"流程自检.py",
+143,
+"if '出片指纹.py --拷' not in _r.stdout + _r.stderr: fails.append('执行效应演练 工作目录的出片程序是旧的也开跑了（G27/G79 门变异）：' + (_r.stdout + _r.st",
+"漏洞",
+""
+],
+[
+"流程自检.py|b20290f75e|0",
+"流程自检.py",
+149,
+"if _r.returncode == 0 or '只能由正式入口' not in _r.stdout + _r.stderr: fails.append('证据.py --记 手写证据没停（G60/G79 门变异）')",
+"漏洞",
+""
+],
+[
+"流程自检.py|004608b715|0",
+"流程自检.py",
+155,
+"if not 有重建(src): fails.append('定稿流水线 ① 之前没有“没有 work_NN/a.wav 就只出声音重建”（K36）')",
+"漏洞",
+""
+]
+]
