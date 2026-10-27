@@ -1,0 +1,50 @@
+[
+[
+"check_all.py|d85494a0ad|0",
+"check_all.py",
+14,
+"if strip(joined)!=strip(c['en']): bad.append(f'D2 align 与 en 不一致: {c[\"en\"][:40]}')",
+"漏洞",
+""
+],
+[
+"check_all.py|b035c14729|0",
+"check_all.py",
+18,
+"if w.lower() not in marks and not any(w.lower() in m.split() for m in marks): bad.append(f'D4 重点词缺中文标记: {w}')",
+"发现",
+"check_all.py：check_all 自检：失灵！没抓到：重点词缺中文标记（D4）"
+],
+[
+"check_all.py|a00e661e7f|0",
+"check_all.py",
+22,
+"if not _PZ.英文一致(' '.join(' '.join(v) for k,v in sorted(paras.items())),en): bad.append('D3 英文与文章原文不一致')",
+"发现",
+"check_all.py：check_all 自检：失灵！没抓到：英文与文章原文不一致（D3）"
+],
+[
+"check_all.py|7d6592bbe7|0",
+"check_all.py",
+25,
+"if re.search(r'\\n {1,}\\*\\*',en): bad.append('D1 文章英文出现异常断行')",
+"漏洞",
+""
+],
+[
+"check_all.py|6de17d0475|0",
+"check_all.py",
+168,
+"if v=='撞车': hit.append(f'{b} 也在第 {n} 篇加粗（{o}）')",
+"发现",
+"check_all.py：check_all 自检：失灵！没抓到：没做视频的第30篇加粗过的词，25 我们新加同一个词不报（T12 全篇）；没抓到：短语（glacier on）和别篇单词（glaciers）撞车漏报（N）"
+],
+[
+"check_all.py|f950c3b679|0",
+"check_all.py",
+274,
+"if int(no)<T12全篇_起: bad+=['T12 新加重点词撞词（按规则应去掉并提醒用户）: '+x for x in warn]",
+"发现",
+"执行效应演练.py：✔ T36破折号：✘ [T36] S2-1 zh 有破折号“——”：船**(vessel)。——  ← 用户 2026-10-24：“以后我们坚决不可以使用破折号”；中文按意思换成“，”“：”或括号"
+]
+]
