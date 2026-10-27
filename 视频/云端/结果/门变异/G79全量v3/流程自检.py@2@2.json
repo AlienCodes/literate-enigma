@@ -1,0 +1,50 @@
+[
+[
+"流程自检.py|45376911de|0",
+"流程自检.py",
+21,
+"if 推送锁(src): fails.append('原样就报：' + 推送锁(src)[0])",
+"漏洞",
+""
+],
+[
+"流程自检.py|8cccd57733|0",
+"流程自检.py",
+58,
+"if re.search(r'\\$\\{?[#!]?[^\\x00-\\x7F]', code[:m.start()] if m else code): out.append((i, '中文变量展开（bash 只认 ASCII 变量名：${名} ",
+"发现",
+"流程自检.py：！没抓到：python3 x.py ${要文本:+--出文档} > a 2>&1（K37 重放）；没抓到：python3 x.py $([ -z \"$要文本\" ] && echo y)（K37 重放）"
+],
+[
+"流程自检.py|4cfaaa71d4|0",
+"流程自检.py",
+79,
+"if _a is None: fails.append(f'定稿流水线 ④ 生成文本.py 根本没跑（K37）：{_e[:120]}')",
+"漏洞",
+""
+],
+[
+"流程自检.py|b993be08d0|0",
+"流程自检.py",
+81,
+"elif '--只核查' not in _a.split(): fails.append(f'定稿流水线 ④ 默认没带 --只核查（守则17）：参数“{_a}”')",
+"漏洞",
+""
+],
+[
+"流程自检.py|26977fcb1b|0",
+"流程自检.py",
+95,
+"if subprocess.run(['/bin/bash', '-n', '-c', line], capture_output=True).returncode:",
+"漏洞",
+""
+],
+[
+"流程自检.py|004608b715|0",
+"流程自检.py",
+129,
+"if not 有重建(src): fails.append('定稿流水线 ① 之前没有“没有 work_NN/a.wav 就只出声音重建”（K36）')",
+"漏洞",
+""
+]
+]
