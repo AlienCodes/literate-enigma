@@ -1,0 +1,4870 @@
+diff --git "a/\350\247\206\351\242\221/\345\210\266\344\275\234\347\241\254\346\200\247\346\240\207\345\207\206\344\270\216\350\270\251\345\235\221\346\200\273\347\273\223.md" "b/\350\247\206\351\242\221/\345\210\266\344\275\234\347\241\254\346\200\247\346\240\207\345\207\206\344\270\216\350\270\251\345\235\221\346\200\273\347\273\223.md"
+index e505af4..77cbcd4 100644
+--- "a/\350\247\206\351\242\221/\345\210\266\344\275\234\347\241\254\346\200\247\346\240\207\345\207\206\344\270\216\350\270\251\345\235\221\346\200\273\347\273\223.md"
++++ "b/\350\247\206\351\242\221/\345\210\266\344\275\234\347\241\254\346\200\247\346\240\207\345\207\206\344\270\216\350\270\251\345\235\221\346\200\273\347\273\223.md"
+@@ -249,6 +249,7 @@
+ | A43 | 13 子代理报出：词尾辅音 --写入 在 project, a voluntary endeavour, 连读时把 /t/ 补到了 endeavour 后面（后备分支没边界）；自动切点把 intrigued. 闭塞 160 ms 后的 /d/ 除阻当杂音切掉（规则③按 0.15 秒）；264.4 被当成未处理数字；标题 Sleep 的 /p/ 没法加强；S15 句中停顿压缩按段基准、去底噪按整句基准，成片里留下 0.225 秒 | 程序边界和基准不一致 | --写入 放不下时自动改写停顿处除阻、找不到交人看，绝不往后写；自动切点规则③放宽到 0.25 秒；spoken() 读小数（two hundred sixty-four point four）；除阻加强支持标题；句中停顿压缩后按整句基准再补一刀（只在核对会报超处动手）。01–12、14–20 压缩回归 0 处变化。整句基准一刀切会改动已定稿的 01、02、06，已否决。拦住：词尾辅音核对、自动切点、make_video、交付核查 |
+ | A44 | 2026-10-23 写出片守门自检时，把改坏的脚本副本放在 /tmp 跑出片程序，八道守门“没停”——出片程序根本没读那份副本：它从工作目录 scripts/ 下所有脚本按句子原文读设置（停顿插入点、结尾句等），命令行给的脚本只管篇号和句子 | 不知道设置的来源是整个 scripts/ 目录 | 守门自检一律在并排的隔离工作区（../守门自检/）里跑：模型、字体、缓存链接回原工作目录，scripts/ 里只放这一份改坏的脚本；每一项都必须停在对应编号的守门上，原样必须完整出完。拦住：出片守门自检.py（隔离工作区；通过后记下出片程序指纹，出片程序一改就要重跑） |
+ | A45 | 2026-10-24 24 草稿：改了读音（读音改正.json）或语速后，这一句旧的非人声区间、词尾除阻还按原来的秒数用，不会自动作废 | 区间、除阻记的是原始合成 w 里的秒，w 变了没人知道 | 出片程序记下每句原始合成的指纹，脚本存写区间时的指纹（区间声音指纹）；对不上就停（A45）。草稿声音.sh 带 OLD_IV_VOID=1：跳过旧区间，`区间作废.py` 从脚本删掉这一句的旧区间、旧插入点和旧确认，再由 自动切点、词尾辅音核对 重找，最后记新指纹。拦住：`make_video.py` [A45]（`出片守门自检.py` 有停下、放行两个样本）；`区间作废.py` 自检 |
++| A46 | 2026-10-27（K55）改门 门变异：执行效应声音演练 原样那一场只当基线做差、本身不判对错。核查程序自己的自检在原样稿上失灵，会和造坑场一起 ✘、互相抵消：拆掉 audio_qc 削波门没人发现；20 改号 25 的原样稿上 句内分段响度 自检本身就不过（多报 S7），一直被掩盖 | 演练只看“比原样新多出来的 ✘”，原样自己的 ✘ 没人管；句内分段响度 自检原样按成片 AAC 量、造坑按 wav 量，瞬时响度差一点翻过 2.5 LU 门槛 | 声音演练加“原样自检”：没造坑的原样稿里核查程序自检（自检、失灵、没抓到）一个都不许 ✘（规则执行核查 那一步看程序改没改过，不算）；配“自查拆门_原样自检”（镜像里拆 audio_qc 削波门，必须报出）。句内自检 原样和造坑都先写成同样的 wav 再量 |
+ | L19 | 12 S4 extensive 的说明一行比上面的英文正文还宽（用户：“分成两行来表示，不要超过上面的那一行……作为一个规矩记录，以后要严格按照这个规矩来”） | 说明行只按画面总宽排，没和正文比 | **说明行不得比上面正文最宽的一行宽**，超了就在标点处分行（字不改）；要做成程序检查（出片时超了就停），改第12篇时一起加。2026-10-16 用户看 13 又强调一次（“以后记住这个标准”）。程序：出片程序 L19 守门（12 起，超了就停）；`工具/说明分行.py NN --写入` 自动在标点处折（优先“；”，字不改，脚本和 genNN 一起改）。拦住：make_video L19、说明分行.py |
+ | L20 | 用户 2026-10-24 原话（看 24 S13）：“尽可能的这个标颜色的这个这个这个英文词汇和它下面这个标颜色的这个中文的汉语意思所对应的汉语意思最好对齐一下。尽量就是尽量让他放在这个就是正对着这个英文的底下，尽量尽可能在不影响这个整体布局的情况下。”24 S13 的“残骸”在 wreck 右下方差 100 多像素，“完好无损”离 intact 也偏 | 每一格里英文和中文都各自居中，没管重点词上下对不对得上；T34 只管同序挤一组 | 24 起，出片程序在每一格内平移英文行和各行中文，让同色中文中心尽量落在英文重点词正下方（格宽、换行、分组、字一个不动）；做不到的（同格几个重点词牵制、格边顶住、中文语序倒过来）由程序证明“挪哪一行都更偏”才放行，不许人写理由（硬性标准 画22）。拦住：`踩坑核查.py` 文本阶段 [L20]、`make_video.py` 出片前停、`排版自检.py`（规则执行核查每次跑）的 L20 两项，`对正量.py --自检` 造坑；01–23 开关不开，画面与存的视频逐屏一致 |
+ 
+@@ -713,6 +714,7 @@
+ | G101 | 2026-10-26（K33）改门 G71：等锁空转时每轮收工 收工记录.py 都重写 制作记录/方法进化/<本会话>.json，守则3 收工闸门随即报“1 个改动没推送”，空等的每一轮都要推一次 | 收工闸门把每轮自动重写的本会话 token 记录也当成没推送的改动 | 钩子/闸门.py 收工：已推过的（只是修改）制作记录/方法进化/*.json 不拦，跟下一次真推送一起走；新的 token 记录从没推过照拦；钩子自检 两种都造 |
+ | G102 | 2026-10-27（K52）改门 L：会话开工 的开工必读指纹 ~/.会话开工.json 两个仓库共用一份；主仓库开工必读改过（未推）时，在镜像里提交（推请求）要 --重读 成镜像的版本，回主仓库提交又要 --重读，来回 4 次，推请求 两次提交失败 | 只记最后读的一个指纹 | 会话开工.py：--重读 把读过的指纹都记下（读过的指纹，最多 20 个），查开工 读过的任一版本都算；两个都没读过照停；会话开工 --自检 两种都造 |
+ | G103 | 2026-10-27（K53）改门 P：主会话核对发现 制作记录/主会话交接.md 还写着“重新对齐类的用 重新对齐收尾.py NN”（现行做法指令），程序已挪进 已淘汰/，用上核查 --淘汰 没报；工具/标定/README.md 还在讲已淘汰的标定程序怎么用 | 老做法冲突只扫三类文档、只认带 视频/工具/ 前缀的点名 | 用上核查 现行文档()：视频/ 下全部现行 .md + CLAUDE.md（改门_*.md、淘汰清单、踩坑总表和生成的开工必读、已淘汰/、演练样本/ 不算）；已淘汰的程序被当命令写（用/跑/python3/bash X.py）就报；用上核查 --自检 造“用 老收尾.py”必抓、历史记录提到不误报；交接那行改成说明、标定/README.md 挪进 已淘汰/ |
++| G104 | 2026-10-27（K54）改门 新容器 准备机器.sh：whisper 识别模型 tar.bz2 经代理下载被截断（tar Unexpected EOF），管道直接解压留下半截 encoder，重跑时 [ -f encoder ] 成立就跳过下载、只剩校验码失败 | curl 直接管道给 tar，下载不完整也解出一部分文件 | 准备机器.sh 取模型()：整个下到临时文件、解压成功才算，失败清掉半截目录（试两次）；流程自检 查 准备机器.sh 不许再有 curl \| tar 管道解压（带重放） |
+ | C1 | 用户说“做网站”，其实只要一个 HTML 文件存档，我却去部署了 GitHub Pages | 总表没写原因 | “上线/公开”是什么意思没把握时，先问；默认只生成文件，不做任何公开发布（硬性条件 五.4）。拦住：人工步骤；`踩坑核查.py 通用` 逐条列出来提醒（不能自动判断）；每篇的踩坑对照记录里，这一条必须填写 |
+ | C2 | 没经确认就触发了部署 | 总表没写原因 | 对外公开、部署这类操作，必须先得到用户的明确同意（硬性条件 五.4）。拦住：同 C1 |
+ | C3 | 用户两次提的标准互相冲突（“字号统一”和“铺满屏幕”） | 总表没写原因 | 明确指出冲突，请用户选择，并把最终的选择记下来。拦住：人工步骤；`踩坑核查.py 通用` 列出来提醒；每篇的踩坑对照记录里，这一条必须填写 |
+diff --git "a/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\346\224\271\351\227\250_\346\274\217\346\264\236\346\270\205\351\233\266\344\270\216GitHub\345\214\226.md" "b/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\346\224\271\351\227\250_\346\274\217\346\264\236\346\270\205\351\233\266\344\270\216GitHub\345\214\226.md"
+index 527cd49..3aa36e2 100644
+--- "a/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\346\224\271\351\227\250_\346\274\217\346\264\236\346\270\205\351\233\266\344\270\216GitHub\345\214\226.md"
++++ "b/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\346\224\271\351\227\250_\346\274\217\346\264\236\346\270\205\351\233\266\344\270\216GitHub\345\214\226.md"
+@@ -54,3 +54,23 @@
+ ## 用户定全做（2026-10-27 16:1x，用户原话：“Okokok那你就尽全力，那你就尽全力把这件事情做到绝对的完美，做到极致，做到最好，做到最好，做到最好，做到最好。全部做到最好，全部做到最好，我们一次性就把这个事情彻底解决，我们一次性就把这个事情彻底彻底彻底彻底解决。”）
+ 范围不减：阶段 B、追加 C/D/E、阶段 A 全部 130 道（含管检查程序本身的那约 40 道）都做到 0；照上面“省 token 做法”做。最后一个会话收尾时在 GitHub 跑一次全量验收（门变异全量 + 执行效应演练 + 声音演练 + 26 定稿重出逐屏逐样本核对 + 彩排），全过才算彻底解决，结果写进本文件末尾并报主会话。
+ - **K59**（主会话 17:1x 实测，并进追加 E）：推请求 同时发门变异全量和彩排，彩排 ⓪ 用上核查要求门变异已全量重跑，门变异还没回，第一次彩排必然不过（G79补漏A1 彩排 16:47 白跑）。要求：推请求 把彩排排在门变异全量回齐之后自动发（或彩排工作流等同一提交的门变异结果齐了再跑），不放宽用上核查；自检：同时发必须被拒或自动排队。报坑.py 不带 --会话 时自动填本会话 ID（K57 按会话计数要用）。
++
++## 交接：会话 01BA1T（2026-10-27 14:50–17:xx，阶段 A 第一批 音频门）
++**下一个会话的顺序（主会话定）：阶段 B → 追加 C、D、E → 阶段 A 其余批次。**
++
++已做（第一批，补丁 视频/云端/待演练/G79补漏A1.diff，GitHub 请求 G79补漏A1 门变异 27 片 / 声音演练 / 彩排 / 主演练）：
++- 声音演练“原样稿不判对错”（K55→A46）：原样那一场的核查程序自检一律不许 ✘（规则执行核查/印章那一行除外）+ 自查拆门_原样自检；随即揭出 20 改号 25 的 句内分段响度 自检本身就不过（原样按 AAC、造坑按 wav 量），已改成两边都写 wav 再量。
++- 出片守门自检：+8 个脚本造坑场景（非人声区间、词尾除阻、除阻被删、高亮开口、严格缓存、音色文件、降噪文件、单线程标记；tts 用私有副本，真 tts 不碰）+ 21 项进程内直测（读音改正 ×2、按语境读音 ×2、没声音、音素对齐、块序、供体 ×2、标点数、擦音个数、前段音调 ×2、自动删停顿 ×2、结尾句接点 ×2、颜色、L19、L20、L3；直测一律 STRICT_CACHE、画面三项在并排临时工作区出 25 的声音，门被拆就在片头动画处报错，不真出整片）。全量 80 秒通过。
++- 小程序补自检：区间作废（交付核查不许带 OLD_IV_VOID）、句内响度（没 分段.json 要停）、结尾句接点（句中标点/模型标点提成函数）、缓存进仓库核对（主流程提成 核对()，出声音/查 git 可换假）、机器复听（没识别模型、有声音没注音）、疑点清单（新 --自检，进 FAST）、声音演练（新 --自检：收尾三项、整场清点“少跑了哪一场”、开跑三道前提，进 FAST）；声音演练加“A21标题标点”一场（词尾辅音 143 行）。
++- 门变异.py：列门排除两类不是门的（按参数分派：a_ 名、和字符串列表比；只打印给人看的局部清单：局部列表、不返回、不停——只排除了 机器复听 --清单 一处），都有自检用例；`--门=` 本地只拆几道；文件名后缀 `~基线`（请求行 F~基线@i@n、`--分片表 --只基线`）只拆清单里没发现的门和新门；只有声音演练主程序走到的门，探测用整场声音演练。
++- 覆盖图：本地重跑“自检”“声”两份，与 GitHub G79覆盖v2 的“主”合并（门变异覆盖.json）。
++- K54→G104：准备机器.sh 取模型() 先下临时文件、解压成功才算；流程自检 查 curl | tar 管道。
++- FAST 末尾追加 疑点清单 --自检、执行效应声音演练 --自检（不打乱已有编号，覆盖图 F 号不变）。
++
++没做 / 留给后面：阶段 A ②–⑤（流程自检 14 道、踩坑核查 5、定稿视频核对 10、规则执行核查 4、证据 3、用上核查 4、执行效应演练 6、生成文本 4、会话开工 3、全篇核查 3、开工记录 2 等）；流程自检这类“查流程的程序”的门要在主演练里造坏流程来探。
++注意：响度一致性核对.py 是出片程序的一部分（make_video import），改了它 → 存的定稿视频欠重查（G22），推完要 GitHub `全篇重查`。
++- **结果（GitHub G79补漏A1，27 片）：基线 130 → 90**（清单 303 道：发现 213、漏洞 48、没人走到 29、未测 13）。make_video 本批门全部“发现”。
++- 第一批还剩的音频漏洞 12 道：停顿位置精确核对 3、词尾辅音核对 3、响度一致性核对 2、句间停顿 1、句首句尾 1、标点停顿 1（已加“A9标点停顿加长”一场，待 GitHub 验证）、执行效应声音演练 1。原因：这些“记不通过”（bad+=1、bad.append）只有造坑场景新报 ✘ 才能探到，现有场景没造到对应毛病；照“A9标点停顿加长”的做法各加一场（造对应的坏声音，期望那一步新报）。
++- 未测 13：彩排.sh 10（主仓库改过文字）、会话开工 2、规则执行核查 1 —— 下次全量分片带上。
++- **收尾没做完（下个会话先接）**：本会话全部改动在补丁 视频/云端/待演练/G79补漏A1v2.diff（已提交在镜像工作分支）；新会话 `git apply` 到主仓库 → 等 GitHub G79补漏A1v2彩排、G79补漏A1v2声音演练 结果（结果补丁带印章，拉回 apply）→ 推 `主演练 补丁=…v2.diff` → 三个印章齐了 推送两仓库.sh → GitHub `全篇重查`（响度一致性核对 改过，G22）。
++- token：本会话约等效（见 token账本 --从 2026-10-27T14:50）；不丝滑 2 次（K54 下载截断、彩排因“新门未跑门变异”停——顺序：先门变异合并、再彩排）。
+diff --git "a/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\351\227\250\345\217\230\345\274\202\346\270\205\345\215\225.md" "b/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\351\227\250\345\217\230\345\274\202\346\270\205\345\215\225.md"
+index 51cc27a..552a76b 100644
+--- "a/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\351\227\250\345\217\230\345\274\202\346\270\205\345\215\225.md"
++++ "b/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\351\227\250\345\217\230\345\274\202\346\270\205\345\215\225.md"
+@@ -1,59 +1,26 @@
+ # 门变异清单（门变异.py --合并结果 生成，不要手改；G79）
+ 
+-门 312 道：发现 182，待声音归属 7，没人走到 51，漏洞 72。漏洞 = 拆了没有任何探测报出；未测 = 还没有变异结果（算漏洞、进基线）；没人走到 = 没有任何自检、演练场景走到这道门；死门 = 门写在注释后面。
++门 303 道：发现 213，未测 13，没人走到 29，漏洞 48。漏洞 = 拆了没有任何探测报出；未测 = 还没有变异结果（算漏洞、进基线）；没人走到 = 没有任何自检、演练场景走到这道门；死门 = 门写在注释后面。
+ 
+ ## 漏洞（每个补一个演练场景或自检，补完重跑必须“发现”；基线只许减少）
+ 
+ | 门号 | 文件:行 | 这道门 | 结论 |
+ |---|---|---|---|
+-| audio_qc.py|0c2400111f|0 | audio_qc.py:14 | `if np.abs(a).max() > 0.99: bad.append(f'削波：峰值 {np.abs(a).max():.3f}')` | 漏洞 |
+-| audio_qc.py|18158e4f4e|0 | audio_qc.py:20 | `if 10 * np.log10(pk / side) > 12: bad.append(f'{hz} Hz 电流音突出 {10*np.log10(pk/sid` | 漏洞 |
+-| audio_qc.py|589b59cc4b|0 | audio_qc.py:30 | `if long: bad.append('片中停顿过长：' + ', '.join(f'{t:.1f}s 处 {d:.2f}s' for t, d in lon` | 漏洞 |
+ | check_all.py|14821f5508|0 | check_all.py:281 | `if int(no)>=T12全篇_起: bad+=查提醒(no)   # J：原稿就有的重点词撞车先留着，但必须写进 制作记录/NN.md 的“## 撞车提醒` | 漏洞 |
+-| make_video.py|78493eea0c|0 | make_video.py:49 | `if os.path.exists(p+'.单线程'):` | 漏洞 |
+-| make_video.py|ca6ca566b6|0 | make_video.py:66 | `if os.environ.get('STRICT_CACHE'): raise SystemExit(f'【停止】严格缓存模式（GitHub 出片）缺配音缓存` | 没人走到 |
+-| make_video.py|49e7e458e4|0 | make_video.py:113 | `if got_!=n_: raise SystemExit(f'【停止】读音改正没有全部换到（A23）：{w_} 出现 {n_} 次，整句里正确读音 {got_` | 漏洞 |
+-| make_video.py|0c4f3769d4|0 | make_video.py:126 | `if cnt!=n_: raise SystemExit(f'【停止】读音改正没有全部换到（A23）：{w_} 出现 {n_} 次，换了 {cnt} 次：{te` | 漏洞 |
+-| make_video.py|7a1dc20cb3|0 | make_video.py:131 | `if m_!=n_: raise SystemExit(f'【停止】按语境读音（A24）：{w_} 句中出现 {m_} 次，语境“{c_}”只有 {n_} 处，` | 没人走到 |
+-| make_video.py|7f9fbeb706|0 | make_video.py:134 | `if cnt+ok_!=n_: raise SystemExit(f'【停止】按语境读音没有全部换到（A24）：{w_} 应换 {n_} 处，换了 {cnt} ` | 没人走到 |
+-| make_video.py|31110c9c74|0 | make_video.py:169 | `if _hl_.sha256(open(f'{TTS}/voice_mb.npy','rb').read()).hexdigest()[:16]!='1f976` | 漏洞 |
+-| make_video.py|707db287dc|0 | make_video.py:170 | `if 'afftdn=nf=-40:nr=4' not in AF: raise SystemExit('【停止】降噪设置 AF.txt 被改过（A7：原声什么` | 漏洞 |
+-| make_video.py|72a405ad2c|0 | make_video.py:256 | `if not len(au): raise SystemExit('【停止】这一段没有能听见的声音（A20）')` | 漏洞 |
+-| make_video.py|fe9bf0069b|0 | make_video.py:308 | `if full!=phonemes_of(_synth_punct(spoken(' '.join(texts)))): raise SystemExit('【` | 漏洞 |
+-| make_video.py|2204060310|0 | make_video.py:320 | `if any(b2<=a2 for a2,b2 in zip(out,out[1:])): raise SystemExit('【停止】各块开头在音素序列里的位` | 漏洞 |
+-| make_video.py|e9050f9848|0 | make_video.py:423 | `if not (0<x0<x1<len(w)) or lv0(w[x0:x1])>-30 or e0[x0//F0:x1//F0].max()>=-30 \` | 漏洞 |
+-| make_video.py|578110f5de|0 | make_video.py:461 | `if _hl.md5(x.tobytes()).hexdigest()[:12]!=md: raise SystemExit(f'【停止】供体的合成变了（A21` | 漏洞 |
+-| make_video.py|10ec2a2bcb|0 | make_video.py:463 | `if z is None: raise SystemExit(f'【停止】供体里找不到除阻（A21）：{txt}')` | 漏洞 |
+-| make_video.py|64e0c8792e|0 | make_video.py:476 | `if p<F_ or max(lv(seg[i*F_:(i+1)*F_]) for i in range(m_))>=-30 or lv(w[p-F_:p])>` | 漏洞 |
+-| make_video.py|2b2ceb6a6a|0 | make_video.py:535 | `if not b_*SR<mF-F_: raise SystemExit(f'【停止】前段音调要改的这一段伸到了接点之后：{sent[:60]}')` | 没人走到 |
+-| make_video.py|931a09a8a0|0 | make_video.py:538 | `if not len(seg_) or seg_.max()>=-55: raise SystemExit(f'【停止】前段音调改完，接点不在静音里了：{sen` | 没人走到 |
+-| make_video.py|644770fadf|0 | make_video.py:635 | `if len(a_)!=len(b_): raise SystemExit(f'【停止】结尾句的擦音个数对不上（A27，原速 {len(a_)} 个、结尾句 {` | 漏洞 |
+-| make_video.py|d7f6064410|0 | make_video.py:758 | `if len(idxs)!=len(pieces)-1: raise SystemExit(f'【停止】标点数对不上（A9）：{sent[:60]}')` | 漏洞 |
+-| make_video.py|032486dbc0|0 | make_video.py:866 | `if ge>=cb: raise SystemExit(f'【停止】移植的除阻伸进了下一个词前面（A21）：{sent[:60]} 第{gi+1}个标点')` | 没人走到 |
+-| make_video.py|c0c08d1f5e|0 | make_video.py:878 | `if r0 is not None and not (r0*F<=ca<=cb<=r1*F):` | 漏洞 |
+-| make_video.py|04badaab10|0 | make_video.py:880 | `if cb>ca and (e[ca//F:cb//F].max()>=PAUSE_DB or e[ca//F-M]>=AUD_DB or e[min(len(` | 漏洞 |
+-| make_video.py|1cc69ea278|0 | make_video.py:890 | `if cb>ca or dv is not None: raise SystemExit(f'【停止】结尾句最后一个标点的停顿没有包住接点（A32）：{sent` | 没人走到 |
+-| make_video.py|e7075f9b1e|0 | make_video.py:891 | `if e[jw//F]>=AUD_DB: raise SystemExit(f'【停止】结尾句的接点不在静音里（A32）：{sent[:60]}')` | 没人走到 |
+-| make_video.py|090d57782e|0 | make_video.py:979 | `if _cd: raise SystemExit('【停止】同一屏的重点词颜色太像（G49，用户 2026-10-25：“ripen into 和rapidly` | 漏洞 |
+-| make_video.py|0911e79771|0 | make_video.py:1018 | `if g is None: raise SystemExit(f'【停止】标点停顿后 1 秒内找不到开口（L14）：{sent[:60]}')` | 漏洞 |
+-| make_video.py|56999047b6|0 | make_video.py:1065 | `if wn: raise SystemExit('【停止】说明行比上面的英文正文宽（L19，用户 2026-10-16：“不要超过上面的那一行”），在标点处分行` | 没人走到 |
+-| make_video.py|6d57756f38|0 | make_video.py:1068 | `if _e: raise SystemExit('【停止】重点词中文没对正（L20，用户 2026-10-24：“尽量让他放在这个就是正对着这个英文的底下”）：` | 没人走到 |
+-| make_video.py|a9ca4dba6a|0 | make_video.py:1070 | `if orph: raise SystemExit('【停止】整组折行后最后一行只剩一个词（L3）：'+'；'.join(f'S{a} 第{b}块末行“{c_}` | 没人走到 |
+-| 交付核查.py|2478031aec|0 | 交付核查.py:10 | `if os.environ.get('OLD_IV_VOID'): sys.exit('【停止】环境里带着 OLD_IV_VOID（跳过旧区间的草稿开关），交付` | 漏洞 |
+-| 会话开工.py|c6c6709c5a|0 | 会话开工.py:92 | `if not rec: sys.exit('【停止】还没开工：python3 视频/工具/会话开工.py <角色>')` | 没人走到 |
+-| 会话开工.py|d54a53f0a8|0 | 会话开工.py:146 | `if not err and os.path.basename(repo) == 'postgraduate-vocabulary':   # 镜像仓库只是照抄` | 没人走到 |
+-| 会话开工.py|0088ba3970|0 | 会话开工.py:150 | `if 门 and not err:   # G66 改门锁：改门程序的会话必须持锁（锁读远端最新的坑登记）` | 没人走到 |
++| 会话开工.py|df4a151a9a|0 | 会话开工.py:72 | `if 缺: sys.exit(f'【停止】环境缺包，自动装不上：{"、".join(缺)}（手工 pip install {" ".join(mods[m] f` | 未测 |
++| 会话开工.py|632258af08|0 | 会话开工.py:76 | `if not os.path.exists(ff): raise FileNotFoundError(ff)` | 未测 |
++| 会话开工.py|c6c6709c5a|0 | 会话开工.py:102 | `if not rec: sys.exit('【停止】还没开工：python3 视频/工具/会话开工.py <角色>')` | 没人走到 |
++| 会话开工.py|d54a53f0a8|0 | 会话开工.py:156 | `if not err and os.path.basename(repo) == 'postgraduate-vocabulary':   # 镜像仓库只是照抄` | 没人走到 |
++| 会话开工.py|0088ba3970|0 | 会话开工.py:160 | `if 门 and not err:   # G66 改门锁：改门程序的会话必须持锁（锁读远端最新的坑登记）` | 没人走到 |
+ | 停顿位置精确核对.py|c00e7a63b6|0 | 停顿位置精确核对.py:120 | `if conf and not 确认可收(no, 1000 * (ns - b), str(gi + 1) in d.get('停顿插入点', {}).get(` | 漏洞 |
+ | 停顿位置精确核对.py|3b8a8573ce|0 | 停顿位置精确核对.py:122 | `if kind == '插入':   # 程序插入的停顿（连读处）一律要用实际声音核实并记录，自动判定只作初筛（A15/A16）` | 漏洞 |
+ | 停顿位置精确核对.py|65ae5d7d61|0 | 停顿位置精确核对.py:126 | `if jw_ is not None and gi == len(ms) - 1 and not (ca - 120 <= jw_ <= cb + 120):` | 漏洞 |
+ | 全篇核查.py|04f6c132a0|0 | 全篇核查.py:23 | `if r.returncode: bad.append(no); continue` | 没人走到 |
+ | 全篇核查.py|dd56883bc7|0 | 全篇核查.py:27 | `if bad: sys.exit(f'【欠着】全篇重查没过（铁4）：{" ".join(bad)} 存的视频与现行程序、现行脚本出的不一致')` | 没人走到 |
+ | 全篇核查.py|3ad7e5d97c|0 | 全篇核查.py:31 | `if _G.旧了(f'scripts/{no}.json', f'{V}/脚本/{no}.json'): print(f'{no} ✘ 工作目录的脚本是旧稿（G` | 没人走到 |
+-| 句内响度.py|81c10b70b3|0 | 句内响度.py:65 | `if not os.path.exists(sj): raise SystemExit(f'【停止】没有 {sj}：先用现行出片程序出一次声音（快速重建核查.s` | 没人走到 |
+ | 句间停顿核对.py|4d521f20f6|0 | 句间停顿核对.py:61 | `if bad0 is None or bad0: print(f'✘ 句间停顿核对 自检：原样已有报警，自检前提不成立 {bad0}'); sys.exit(1` | 漏洞 |
+ | 句首句尾与停顿位置核对.py|327e851fdd|0 | 句首句尾与停顿位置核对.py:58 | `if flag: bad+=1` | 漏洞 |
+ | 响度一致性核对.py|317cd72f84|0 | 响度一致性核对.py:25 | `if not out: raise SystemExit('【停止】ebur128 没有输出瞬时响度，核查无法进行')` | 漏洞 |
+-| 响度一致性核对.py|d9be11f71e|0 | 响度一致性核对.py:60 | `if abs(v - I) > DEV: bad.append((k, f'第{k}段 {x:.1f}–{y:.1f}s 比全片{"响" if v > I el` | 漏洞 |
+ | 响度一致性核对.py|70e53527df|0 | 响度一致性核对.py:61 | `if k > 1 and L[k - 2] is not None and abs(v - L[k - 2]) > ADJ: bad.append((k, f'` | 漏洞 |
+ | 定稿视频核对.py|0ef80b1539|0 | 定稿视频核对.py:33 | `if not all(os.path.exists(f'{WORK}/{x}') for x in ('make_video.py', 'render.py',` | 漏洞 |
+ | 定稿视频核对.py|fad01340ec|0 | 定稿视频核对.py:51 | `if sorted(readme_nos) != sorted(nos): bad.append(f'[G9] 最终版4K视频/README.md 目录 {so` | 漏洞 |
+@@ -66,30 +33,29 @@
+ | 定稿视频核对.py|1f2986d762|0 | 定稿视频核对.py:183 | `elif sha(p) != h: bad.append(f'[G9] 镜像仓库里的 {os.path.relpath(p, MIRROR)} 与定稿不是同一个` | 漏洞 |
+ | 定稿视频核对.py|f48b343169|0 | 定稿视频核对.py:229 | `if no not in nos: bad.append(f'[G9] 第{no}篇不在 最终版4K视频/ 里'); print('   ✘', bad[-1]` | 漏洞 |
+ | 工作稿核对.py|266a771fd3|0 | 工作稿核对.py:14 | `if 旧了(f'scripts/{no}.json', f'{V}/脚本/{no}.json'):` | 没人走到 |
+-| 开工必读.py|73476668ee|0 | 开工必读.py:224 | `if not os.path.exists(OUT) or open(OUT).read() != t:` | 漏洞 |
++| 开工必读.py|73476668ee|0 | 开工必读.py:233 | `if not os.path.exists(OUT) or open(OUT).read() != t:` | 漏洞 |
+ | 开工记录.py|88bb6f9617|0 | 开工记录.py:64 | `if _e: print('\n'.join(_e)); sys.exit(1)` | 没人走到 |
+ | 开工记录.py|5548ae32ce|0 | 开工记录.py:66 | `if _e: print('\n'.join(['【停止】机制闲置报警（G71）：'] + _e)); sys.exit(1)` | 没人走到 |
+ | 归档定稿视频.py|a716a8f873|0 | 归档定稿视频.py:24 | `if not all(os.path.exists(x) for x in ('make_video.py', 'render.py', 'fonts')):` | 漏洞 |
+-| 执行效应声音演练.py|a7e6912d38|0 | 执行效应声音演练.py:169 | `if 通路:   # 真实流程走得通（主对话 2026-10-25：26 起源头调平后 疑点清单 重建对不上，草稿声音.sh 三轮全停；演练以前只验门会挡，没验` | 待声音归属 |
+-| 执行效应声音演练.py|6273f4bee4|0 | 执行效应声音演练.py:190 | `if left: res.append(('G29演练缓存清干净', False, f'演练留下 {len(left)} 个文件没清掉：{left[0]}'))` | 待声音归属 |
+-| 执行效应声音演练.py|8e0213724f|0 | 执行效应声音演练.py:191 | `if Y.查样本(): res.append(('冻结样本没被改', False, '；'.join(Y.查样本())))` | 待声音归属 |
+-| 执行效应声音演练.py|34dff4ea07|0 | 执行效应声音演练.py:192 | `if Y._git状态() != g0: res.append(('真仓库没被碰', False, '声音演练改了真仓库（git status 变了）：镜像漏了` | 待声音归属 |
+-| 执行效应声音演练.py|ca52b53ba3|0 | 执行效应声音演练.py:204 | `if not os.path.exists('make_video.py') or not os.path.isdir('scripts'): sys.exit` | 待声音归属 |
+-| 执行效应声音演练.py|490322bb5b|0 | 执行效应声音演练.py:206 | `if _ZW.核对工作目录('.', T): sys.exit('【停止】' + '；'.join(_ZW.核对工作目录('.', T)) + '：先 pyth` | 待声音归属 |
+-| 执行效应声音演练.py|c8ccb02ed1|0 | 执行效应声音演练.py:208 | `if e: sys.exit('【停止】' + '；'.join(e))` | 待声音归属 |
+-| 执行效应演练.py|2b0fa65c38|0 | 执行效应演练.py:334 | `if l.startswith('== ') and '⓪' not in l: pr.kill(); out.append('【演练掐断：流水线走到了 ⓪ 以` | 没人走到 |
+-| 执行效应演练.py|dc320935eb|0 | 执行效应演练.py:377 | `if _git状态() != g0: res.append(('真仓库没被碰', False, '演练改了真仓库（git status 变了）：镜像漏了写入的路` | 没人走到 |
+-| 执行效应演练.py|3b241b55cf|0 | 执行效应演练.py:465 | `if 镜.查样本(): res.append(('冻结样本没被改', False, '；'.join(镜.查样本())))   # 演练里的程序写穿了冻结拷贝：` | 没人走到 |
+-| 执行效应演练.py|d9116b10cf|0 | 执行效应演练.py:596 | `if base is not None and len(g) > base: bad.append(f'缺口变多（{len(g)} > 基线 {base}）：新` | 没人走到 |
+-| 执行效应演练.py|bf19243b32|0 | 执行效应演练.py:599 | `if thin: bad.append(f'演练说明太空（原因、替代各至少 20 字）：{" ".join(thin)}')` | 没人走到 |
+-| 执行效应演练.py|3c8c72f22a|0 | 执行效应演练.py:600 | `if eb is not None and len(e) > eb: bad.append(f'“造不出样本”变多（{len(e)} > 基线 {eb}）：新规` | 没人走到 |
+-| 报坑.py|d8783d18f9|0 | 报坑.py:262 | `if not 我: print('【停止】不知道本会话 ID：先 python3 视频/工具/会话开工.py 改门 --会话 session_… 或加 --会话` | 没人走到 |
++| 彩排.sh|156474f412|53 | 彩排.sh:10 | `[ -f make_video.py ] && [ -f "scripts/$no.json" ] ¦¦ stop "要在视频工作目录下跑（准备机器.sh 搭的` | 未测 |
++| 彩排.sh|cd5059f79b|73 | 彩排.sh:16 | `HOME=$H python3 $T/会话开工.py 出稿 > $LG/开工.log 2>&1 ¦¦ { tail -8 $LG/开工.log; stop "会` | 未测 |
++| 彩排.sh|2a094ac83e|30 | 彩排.sh:17 | `grep -q '【环境】缺' $LG/开工.log ¦¦ stop "卸掉的包会话开工没发现（K42 没重放到）"` | 未测 |
++| 彩排.sh|dfefb5ca96|43 | 彩排.sh:18 | `python3 -c "import soundfile, wordfreq" ¦¦ stop "会话开工 说装好了，包还是缺（K42/M）"` | 未测 |
++| 彩排.sh|c9feab6080|62 | 彩排.sh:21 | `python3 $T/流程自检.py > $LG/流程.log 2>&1 ¦¦ { tail -8 $LG/流程.log; stop "流程自检 不过（K37）` | 未测 |
++| 彩排.sh|ad681fd8cd|129 | 彩排.sh:25 | `CAIPAI=1 bash $T/定稿流水线.sh $no > $LG/流水线.log 2>&1 ¦¦ { tail -8 $LG/流水线.log; grep ` | 未测 |
++| 彩排.sh|1c966240d3|33 | 彩排.sh:26 | `grep -q '①前 重建声音' $LG/流水线.log ¦¦ stop "没走 ①前 重建声音（K36 没重放到）"` | 未测 |
++| 彩排.sh|786178700d|30 | 彩排.sh:27 | `grep -q '彩排到此' $LG/流水线.log ¦¦ stop "定稿流水线 没跑到 ④ 之后（彩排出口没到）"` | 未测 |
++| 彩排.sh|da6c09f5ef|56 | 彩排.sh:30 | `[ "$n" -eq 0 ] ¦¦ { cat "$V"/制作记录/丝滑/*.jsonl ¦ tail -5; stop "停下 $n 次（丝滑记录）"; }` | 未测 |
++| 彩排.sh|d7cd55a3c5|32 | 彩排.sh:32 | `python3 $T/规则执行核查.py --盖彩排印章 ¦¦ stop "印章没写上"` | 未测 |
++| 执行效应声音演练.py|ba2bdf0f3e|0 | 执行效应声音演练.py:258 | `if not only and 清点(res): res.append(('整场清点', False, f'全部演练少跑了：{清点(res)}'))` | 漏洞 |
++| 执行效应演练.py|2b0fa65c38|0 | 执行效应演练.py:338 | `if l.startswith('== ') and '⓪' not in l: pr.kill(); out.append('【演练掐断：流水线走到了 ⓪ 以` | 没人走到 |
++| 执行效应演练.py|dc320935eb|0 | 执行效应演练.py:381 | `if _git状态() != g0: res.append(('真仓库没被碰', False, '演练改了真仓库（git status 变了）：镜像漏了写入的路` | 没人走到 |
++| 执行效应演练.py|3b241b55cf|0 | 执行效应演练.py:469 | `if 镜.查样本(): res.append(('冻结样本没被改', False, '；'.join(镜.查样本())))   # 演练里的程序写穿了冻结拷贝：` | 没人走到 |
++| 执行效应演练.py|d9116b10cf|0 | 执行效应演练.py:608 | `if base is not None and len(g) > base: bad.append(f'缺口变多（{len(g)} > 基线 {base}）：新` | 没人走到 |
++| 执行效应演练.py|bf19243b32|0 | 执行效应演练.py:611 | `if thin: bad.append(f'演练说明太空（原因、替代各至少 20 字）：{" ".join(thin)}')` | 没人走到 |
++| 执行效应演练.py|3c8c72f22a|0 | 执行效应演练.py:612 | `if eb is not None and len(e) > eb: bad.append(f'“造不出样本”变多（{len(e)} > 基线 {eb}）：新规` | 没人走到 |
++| 报坑.py|d8783d18f9|0 | 报坑.py:276 | `if not 我: print('【停止】不知道本会话 ID：先 python3 视频/工具/会话开工.py 改门 --会话 session_… 或加 --会话` | 没人走到 |
+ | 收工记录.py|f027dd71dc|0 | 收工记录.py:11 | `if not m: sys.exit(f'【停止】{f} 没有“开工时刻：YYYY-MM-DDTHH:MM（UTC）”，先在“## token 记录”下补上（T` | 没人走到 |
+-| 机器复听.py|4bfd2941ed|0 | 机器复听.py:22 | `if not os.path.exists(p(d, f)): raise SystemExit(f'【停止】没有识别模型 {d}：bash 准备机器.sh 会` | 漏洞 |
+-| 机器复听.py|2fe83af25d|0 | 机器复听.py:41 | `if sf is not None: raise SystemExit('【停止】有声音程序却没有 kokoro_onnx 注音程序：机器复听不能按读音比')` | 没人走到 |
+-| 机器复听.py|fc17d0b4dd|0 | 机器复听.py:167 | `if b: bad.append(f'S{i}：' + '；'.join(f'脚本“{x_}” 听到“{y_}”' for x_, y_ in b))` | 没人走到 |
+-| 机器复听.py|a8fa756068|0 | 机器复听.py:223 | `if sys.argv[1:2] == ['--带自检']:` | 漏洞 |
+-| 机器复听.py|6d43285298|0 | 机器复听.py:230 | `if a_[0] == '--自检':` | 没人走到 |
+ | 标点停顿核对.py|fbe9f18d33|0 | 标点停顿核对.py:56 | `if not ok: bad+=1` | 漏洞 |
+ | 流程自检.py|87bb5ab6cc|0 | 流程自检.py:13 | `if 顺序(src): fails.append('原样就报：' + 顺序(src)[0])` | 漏洞 |
+ | 流程自检.py|45376911de|0 | 流程自检.py:21 | `if 推送锁(src): fails.append('原样就报：' + 推送锁(src)[0])` | 漏洞 |
+@@ -105,29 +71,24 @@
+ | 流程自检.py|b20290f75e|0 | 流程自检.py:149 | `if _r.returncode == 0 or '只能由正式入口' not in _r.stdout + _r.stderr: fails.append('证` | 漏洞 |
+ | 流程自检.py|8999f8401b|0 | 流程自检.py:151 | `if _r.returncode == 0 or '不覆盖' not in _r.stdout + _r.stderr: fails.append('交付核查 ` | 漏洞 |
+ | 流程自检.py|004608b715|0 | 流程自检.py:155 | `if not 有重建(src): fails.append('定稿流水线 ① 之前没有“没有 work_NN/a.wav 就只出声音重建”（K36）')` | 漏洞 |
++| 流程自检.py|69f917b1f3|0 | 流程自检.py:177 | `if 管道解压(open(f'{T}/环境/准备机器.sh').read()): fails.append(f'准备机器.sh 又用 curl 管道直接 tar` | 漏洞 |
+ | 生成文本.py|485877f4dd|0 | 生成文本.py:53 | `if _m.returncode: sys.exit(_m.stdout.strip() + '\n【规则执行核查不通过，不生成、不发给用户】')` | 没人走到 |
+ | 生成文本.py|446e45690e|0 | 生成文本.py:55 | `if r.returncode: sys.exit('【踩坑核查不通过，不生成、不发给用户】')` | 没人走到 |
+ | 生成文本.py|387aa5a27d|0 | 生成文本.py:56 | `if 只核查:` | 没人走到 |
+ | 生成文本.py|c7f57a4094|0 | 生成文本.py:72 | `if bad: sys.exit('【不通过】\n' + '\n'.join(bad))` | 没人走到 |
+-| 用上核查.py|a6ae082801|0 | 用上核查.py:71 | `if y not in wf: out.append((f'.github/workflows/{y}（{repo}）', '工作流没登记进 机制清单.json` | 漏洞 |
+-| 用上核查.py|14468413e4|0 | 用上核查.py:93 | `if not os.path.exists(MB.清单): out.append('门变异：还没有门变异清单（GitHub 全量跑一遍）')` | 漏洞 |
+-| 用上核查.py|d81b52656e|0 | 用上核查.py:98 | `if nw: out.append(f'门变异：清单记录以后 {len(nw)} 道 .py 门新加或改过，还没全量重跑（推请求.py 门变异）')` | 没人走到 |
+-| 用上核查.py|9522cacc77|0 | 用上核查.py:99 | `if age > 24: out.append(f'门变异：{age:.0f} 小时没全量跑（每天一次，推请求.py 门变异）')` | 没人走到 |
+-| 疑点清单.py|c374989fc6|0 | 疑点清单.py:42 | `if len(A) != len(B) or np.abs(A - B).max() > 2 / 32768: raise SystemExit(f'【停止】重` | 没人走到 |
+-| 疑点清单.py|054ad7aac8|0 | 疑点清单.py:100 | `if not (tl0 <= i0 < tl0 + len(title)): raise SystemExit(f'【停止】{c} 不在任何一句里')` | 没人走到 |
+-| 结尾句接点.py|d680939115|0 | 结尾句接点.py:68 | `if not puncts_: sys.exit(f'第{no_}篇最后一句没有句中标点：用 {{"整句语速": 0.80}}（01、02 的写法），不用接点'` | 没人走到 |
+-| 结尾句接点.py|602fa38dac|0 | 结尾句接点.py:80 | `if not pi_: sys.exit(f'带时长模型里找不到标点（语速 {speed}）')` | 没人走到 |
+-| 缓存进仓库核对.py|c3e0b6acb5|0 | 缓存进仓库核对.py:25 | `if r.returncode: print('【停止】严格缓存模式出不了声音（缓存不全，别的机器重出会不同）：' + (r.stdout + r.stderr` | 没人走到 |
+-| 缓存进仓库核对.py|304dd5af82|0 | 缓存进仓库核对.py:32 | `if a or b: print(f'【停止】第{no}篇用到的缓存没进仓库（G51）：不在 git 里 {len(a)} 条（如 {a[:3]}），没推送 {` | 没人走到 |
++| 用上核查.py|a6ae082801|0 | 用上核查.py:73 | `if y not in wf: out.append((f'.github/workflows/{y}（{repo}）', '工作流没登记进 机制清单.json` | 漏洞 |
++| 用上核查.py|14468413e4|0 | 用上核查.py:95 | `if not os.path.exists(MB.清单): out.append('门变异：还没有门变异清单（GitHub 全量跑一遍）')` | 漏洞 |
++| 用上核查.py|d81b52656e|0 | 用上核查.py:100 | `if nw: out.append(f'门变异：清单记录以后 {len(nw)} 道 .py 门新加或改过，还没全量重跑（推请求.py 门变异）')` | 没人走到 |
++| 用上核查.py|9522cacc77|0 | 用上核查.py:101 | `if age > 24: out.append(f'门变异：{age:.0f} 小时没全量跑（每天一次，推请求.py 门变异）')` | 没人走到 |
+ | 规则执行核查.py|5b19c714d6|0 | 规则执行核查.py:79 | `if top in 重库: out.append(f'{os.path.basename(f)} 第 {n.lineno} 行顶层导入 {m}')` | 没人走到 |
+ | 规则执行核查.py|fb8e760695|0 | 规则执行核查.py:255 | `if anc[1] not in base: out.append(f'{f} 挂钩的出片程序原文没了：“{anc[1][:40]}”（A26/A42：改出片程` | 漏洞 |
+-| 规则执行核查.py|01d5d8e0b4|0 | 规则执行核查.py:411 | `if not os.path.exists(_KBD.OUT) or open(_KBD.OUT).read() != _KBD.生成(*_KBD.现行()):` | 漏洞 |
+-| 规则执行核查.py|51e21e9129|0 | 规则执行核查.py:438 | `if new or gl:` | 漏洞 |
++| 规则执行核查.py|5c921d87e9|0 | 规则执行核查.py:307 | `if p == '彩排.sh' and not 印章有效(p): gl.append(f'门程序改过、GitHub 新容器彩排的印章对不上（L 丝滑主义）：py` | 未测 |
++| 规则执行核查.py|01d5d8e0b4|0 | 规则执行核查.py:427 | `if not os.path.exists(_KBD.OUT) or open(_KBD.OUT).read() != _KBD.生成(*_KBD.现行()):` | 漏洞 |
++| 规则执行核查.py|51e21e9129|0 | 规则执行核查.py:454 | `if new or gl:` | 漏洞 |
+ | 证据.py|560066b62d|0 | 证据.py:58 | `if 步 not in S: raise SystemExit(f'【停止】证据：没有这一步：{步}（机制清单.json 的“步骤”）')` | 漏洞 |
+ | 证据.py|76f0789372|0 | 证据.py:140 | `if t is None: err.append(f'[G60] 步骤“{s}”的正式入口 {e} 不存在'); continue` | 漏洞 |
+ | 证据.py|9dd899bf2e|0 | 证据.py:145 | `if m['证据'] not in C['步骤']: err.append(f'[G60] 机制“{m["名"]}”的证据步“{m["证据"]}”不在步骤里')` | 漏洞 |
+ | 词尾辅音核对.py|749430d169|0 | 词尾辅音核对.py:132 | `if P is not None and judge(o, release(o, hp, P, ref), ph):` | 漏洞 |
+-| 词尾辅音核对.py|f8a3e54994|0 | 词尾辅音核对.py:143 | `if ph in 'tkp':                                     # 标题句中标点前的清塞音：位置算不出，不放行，交人听` | 没人走到 |
+ | 词尾辅音核对.py|1ce8274460|0 | 词尾辅音核对.py:252 | `if not judge(out, z, ph):` | 漏洞 |
+ | 词尾辅音核对.py|8dfdf79df3|0 | 词尾辅音核对.py:266 | `if '--写入' in sys.argv and bad:` | 漏洞 |
+ | 踩坑核查.py|efdb08e5f7|0 | 踩坑核查.py:545 | `if not m: err.append(f'[G7] 最终版4K视频/ 里有不是定稿命名的文件：{b}'); continue` | 漏洞 |
+@@ -135,7 +96,6 @@
+ | 踩坑核查.py|a3df3ede6d|0 | 踩坑核查.py:753 | `if not m: err.append(f'[G79] 制作记录/{no}.md 没有“## 机制漏洞”：python3 视频/工具/方法进化表.py --写` | 漏洞 |
+ | 踩坑核查.py|05748d914c|0 | 踩坑核查.py:836 | `if int(no) >= 24:                                               # [L20] 重点词对正（用户` | 漏洞 |
+ | 踩坑核查.py|f8fce30a57|0 | 踩坑核查.py:840 | `if _QD.记录(no) and not d.get('核对确认', {}).get('已告诉用户被去掉的重点词'):` | 漏洞 |
+-| 音频体检.py|6d43285298|0 | 音频体检.py:128 | `if a_[0] == '--自检':` | 漏洞 |
+ 
+ ## 门全集（记录时的现行门；门改了、新加了，下次全量重跑）
+ 
+@@ -224,12 +184,10 @@ make_video.py|fe9bf0069b|0
+ 会话开工.py|c6c6709c5a|0
+ 会话开工.py|d54a53f0a8|0
+ 会话开工.py|df4a151a9a|0
+-停顿位置精确核对.py|14f9356b3f|0
+ 停顿位置精确核对.py|3b8a8573ce|0
+ 停顿位置精确核对.py|65ae5d7d61|0
+ 停顿位置精确核对.py|c00e7a63b6|0
+ 全篇核查.py|04f6c132a0|0
+-全篇核查.py|25db418e9f|0
+ 全篇核查.py|3ad7e5d97c|0
+ 全篇核查.py|dd56883bc7|0
+ 出片指纹.py|1fe51a17d6|0
+@@ -299,18 +257,19 @@ make_video.py|fe9bf0069b|0
+ 彩排.sh|156474f412|53
+ 彩排.sh|1c966240d3|33
+ 彩排.sh|2a094ac83e|30
+-彩排.sh|7582b8cccf|84
+ 彩排.sh|786178700d|30
++彩排.sh|ad681fd8cd|129
+ 彩排.sh|c9feab6080|62
+ 彩排.sh|cd5059f79b|73
+ 彩排.sh|d7cd55a3c5|32
+ 彩排.sh|da6c09f5ef|56
+ 彩排.sh|dfefb5ca96|43
+-执行效应声音演练.py|34dff4ea07|0
++执行效应声音演练.py|123a3b125c|0
+ 执行效应声音演练.py|490322bb5b|0
+ 执行效应声音演练.py|6273f4bee4|0
+-执行效应声音演练.py|8e0213724f|0
+ 执行效应声音演练.py|a7e6912d38|0
++执行效应声音演练.py|ba2bdf0f3e|0
++执行效应声音演练.py|becf6833e2|0
+ 执行效应声音演练.py|c8ccb02ed1|0
+ 执行效应声音演练.py|ca52b53ba3|0
+ 执行效应演练.py|2b0fa65c38|0
+@@ -337,10 +296,6 @@ make_video.py|fe9bf0069b|0
+ 方法进化表.py|c687e51333|0
+ 机器复听.py|2fe83af25d|0
+ 机器复听.py|4bfd2941ed|0
+-机器复听.py|6d43285298|0
+-机器复听.py|a8fa756068|0
+-机器复听.py|f343ed7c99|0
+-机器复听.py|fc17d0b4dd|0
+ 标点停顿核对.py|fbe9f18d33|0
+ 流程自检.py|004608b715|0
+ 流程自检.py|0e8f8f6291|0
+@@ -352,6 +307,7 @@ make_video.py|fe9bf0069b|0
+ 流程自检.py|4cfaaa71d4|0
+ 流程自检.py|62ebcb59a2|0
+ 流程自检.py|666f1f4026|0
++流程自检.py|69f917b1f3|0
+ 流程自检.py|81005ec34c|0
+ 流程自检.py|87bb5ab6cc|0
+ 流程自检.py|8999f8401b|0
+@@ -369,15 +325,12 @@ make_video.py|fe9bf0069b|0
+ 用上核查.py|9522cacc77|0
+ 用上核查.py|a6ae082801|0
+ 用上核查.py|d81b52656e|0
+-疑点清单.py|054ad7aac8|0
++疑点清单.py|8a45ad95c3|0
+ 疑点清单.py|c374989fc6|0
+-确认按位置迁移.py|14f9356b3f|0
+-纯人声核对.py|d0394d1d3c|0
+ 结尾句接点.py|602fa38dac|0
+ 结尾句接点.py|d680939115|0
+-缓存进仓库核对.py|14f9356b3f|0
+-缓存进仓库核对.py|304dd5af82|0
+-缓存进仓库核对.py|c3e0b6acb5|0
++缓存进仓库核对.py|b7f006da92|0
++缓存进仓库核对.py|eeed5bbfdb|0
+ 草稿声音.sh|c8d38c9ecc|29
+ 规则执行核查.py|01d5d8e0b4|0
+ 规则执行核查.py|51e21e9129|0
+@@ -448,8 +401,6 @@ make_video.py|fe9bf0069b|0
+ 踩坑核查.py|f34268fdbe|0
+ 踩坑核查.py|f69cc9424c|0
+ 踩坑核查.py|f8fce30a57|0
+-门变异.py|fdfd8826ac|0
+-音频体检.py|6d43285298|0
++门变异.py|852b7935bd|0
+ 音频体检.py|d7591fd4ca|0
+-高亮同步核对.py|d0394d1d3c|0
+ ```
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\207\272\347\211\207\345\256\210\351\227\250\350\207\252\346\243\200.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\207\272\347\211\207\345\256\210\351\227\250\350\207\252\346\243\200.py"
+index c043b42..aab16e9 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\207\272\347\211\207\345\256\210\351\227\250\350\207\252\346\243\200.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\207\272\347\211\207\345\256\210\351\227\250\350\207\252\346\243\200.py"
+@@ -43,10 +43,131 @@ CASES = [   # (编号, 篇, 改法说明, 改法, 环境变量, 停止信息里
+     ('A28', '04', 'S17 人工插入点挪进词里 0.35 秒', lambda d: 改(d, ['停顿插入点', 'S17', '1'], lambda v: v + 0.35), {}, 'A15'),
+     ('A42', '19', 'S2 交界插入点写法错', lambda d: 改(d, ['停顿插入点', 'S2', '2'], lambda v: [v[0], '交界错']), {}, '（A42）'),
+     ('A25', '07', '去掉 S16 放慢版在 /i/→/s/ 交界的人工插入点', lambda d: d['停顿插入点'].pop('S16'), {}, '（A25）'),
++    ('A20非人声区间', '20', 'S5 非人声区间挪进词里（G79 门变异）', lambda d: 改(d, ['非人声区间', 'S5'], [[1.0, 1.2, '']]), {}, '非人声区间不对'),
++    ('A21除阻位置', '20', 'S14 词尾除阻挪进词里（G79 门变异）', lambda d: 改(d, ['词尾除阻', 'S14', '1'], lambda v: [1.0, v[1]]), {}, '词尾除阻的位置不对'),
++    ('A21除阻被删', '20', 'S14 停顿删除区间截在移植的除阻里面（G79 门变异）', lambda d: 改(d, ['停顿删除区间', 'S14'], lambda v: {'1': [d['词尾除阻']['S14']['1'][0], d['词尾除阻']['S14']['1'][0] + 0.005]}), {}, '移植的除阻伸进了下一个词前面'),
++    ('L14开口', '20', '高亮开口门槛写成 -10（比最响处还响，找不到开口；G79 门变异）', lambda d: 改(d, ['高亮开口门槛'], -10), {}, '找不到开口'),
++    ('G72严格缓存', '20', '严格缓存模式下 S1 文字改了（要现合成；G79 门变异）', lambda d: d['sentences'][0]['chunks'][0].__setitem__('en', d['sentences'][0]['chunks'][0]['en'] + ' zq'), {'STRICT_CACHE': '1'}, '严格缓存模式'),
++    ('A3音色文件', '20', 'voice_mb.npy 被改了一个字节（G79 门变异）', lambda d: None, {'STRICT_CACHE': '1'}, '音色文件 voice_mb.npy 被改过', {'voice_mb.npy': lambda s, o: open(o, 'wb').write(open(s, 'rb').read()[:-1] + b'\x01')}),
++    ('A7降噪文件', '20', 'AF.txt 降噪改成 nf=-30（G79 门变异）', lambda d: None, {'STRICT_CACHE': '1'}, '降噪设置 AF.txt 被改过', {'AF.txt': lambda s, o: open(o, 'w').write(re.sub(r'afftdn=nf=-40', 'afftdn=nf=-30', open(s).read()))}),
++    ('G72单线程标记', '20', '配音缓存的 .单线程 标记指纹全写错（G79 门变异）', lambda d: None, {'STRICT_CACHE': '1'}, '标记指纹不符', {'cache_tts': lambda s, o: (os.makedirs(o), [os.symlink(f'{s}/{x}', f'{o}/{x}') for x in os.listdir(s) if not x.endswith('.单线程')], [open(f'{o}/{x}.单线程', 'w').write('0' * 16) for x in os.listdir(s) if x.endswith('.pkl')])}),
+     ('A32', '10', '结尾句接点挪出最后一个标点的停顿', lambda d: 改(d, ['结尾句', 'S17', '接点'], lambda v: [v[0] + 2400, v[1] + 2400]), {}, '结尾句的接点'),
+ ]
+ 
+ 
++def _换(obj, **kv):
++    """临时改对象属性（模块全局、实例方法），返回还原函数"""
++    old = {k: (k in vars(obj), getattr(obj, k, None)) for k in kv}
++    for k, v in kv.items(): setattr(obj, k, v)
++    def back():
++        for k, (had, v) in old.items():
++            if had: setattr(obj, k, v)
++            else: delattr(obj, k)
++    return back
++def _在(fn, *backs):
++    try: return fn()
++    finally:
++        for b in backs: b()
++def _假注音(MV, m):   # 注音程序在句子里注出了没登记过的写法（只认 m 里的词，其余一律 qqq）
++    return _换(MV.KT.tokenizer, phonemize=lambda t_, l_='en-us': m.get(t_, 'qqq'))
++def _读音(MV, words, extra, ctx, text, m):
++    return _在(lambda: MV.phonemes_of(text), _换(MV, PRON_WORDS=words, PRON_EXTRA=extra, PRON_CTX=ctx, PRON_FIX={}), _假注音(MV, m))
++def _块序(MV):
++    import difflib, types as ty
++    full = MV.phonemes_of(MV._synth_punct(MV.spoken('hello world'))); n = len(MV.phonemes_of(MV.spoken('hello')).strip()) + 1
++    class SM:
++        def __init__(s, *a, **k): pass
++        def get_matching_blocks(s): return [ty.SimpleNamespace(a=0, b=3, size=1), ty.SimpleNamespace(a=n, b=0, size=1)]
++    return _在(lambda: MV.chunk_token_starts(['hello', 'world'], [ty.SimpleNamespace(phoneme=full)]), _换(difflib, SequenceMatcher=SM))
++def _句(MV, no, i):
++    d = json.load(open(f'scripts/{no}.json')); ch = d['sentences'][i]['chunks']
++    return ' '.join(re.sub(r'\*\*', '', MV.R.strip_gloss(c['en'])).strip() for c in ch)
++def _标点数(MV):   # 带时长模型少报一个标点（模型行为变了）：标点数和分段数对不上必须停
++    s = next(x for x in (_句(MV, '20', i) for i in range(17)) if re.search(r'[,;:](?=\s)', x) and x not in MV.ENDING)
++    f0 = MV.KT.create_timed
++    def ct(*a, **k):
++        r = f0(*a, **k); return (r[0], r[1], [x for x in r[2] if x.phoneme not in ',;:'])
++    ps, p0, gs = [], 0, []
++    for mm in re.finditer(r'[,;:](?=\s)', s): ps.append((p0, mm.end())); p0 = mm.end() + 1; gs.append(MV.P_COMMA)
++    ps.append((p0, len(s)))
++    return _在(lambda: MV.sentence_audio(s, ps, gs), _换(MV.KT, create_timed=ct))
++def _擦音(MV):
++    import numpy as np
++    n = [0]
++    def sib(*a): n[0] += 1; return [(0, 0, 1.0)] * (2 if n[0] == 1 else 3)
++    return _在(lambda: MV._ending_sib_guard('a b.', {}, np.zeros(10), []), _换(MV, _sib_strength=sib), _换(MV.k, create=lambda *a, **k: (np.zeros(100, np.float32), 24000)),
++             _换(MV.KT, create_timed=lambda *a, **k: (np.zeros(100, np.float32), None, [])))
++def _供体(MV, **kv):
++    MV._DON.clear(); return _在(lambda: MV._donor('t'), _换(MV, **kv), lambda: MV._DON.clear())
++def _颜色(MV):   # 门被拆的话 build 会接着出：只出声音、出到临时目录（不出整篇画面、不乱写文件）
++    import tempfile; d = tempfile.mkdtemp(prefix='直测G49_'); os.environ['AUDIO_ONLY'] = '1'
++    try: return _在(lambda: MV.build('scripts/20.json', f'{d}/g49.mp4'), _换(MV.R, 同屏色差=lambda d_, c_: ['S1 两个重点词颜色太像']))
++    finally: os.environ.pop('AUDIO_ONLY', None); shutil.rmtree(d, ignore_errors=True)
++def _普通句(MV):   # 20 里一句有逗号、不是结尾句、没写人工插入点/删除区间/除阻的句子，及它的分段
++    for i in range(17):
++        s = _句(MV, '20', i)
++        if re.search(r'[,;:](?=\s)', s) and s not in MV.ENDING and not any(s in X for X in (MV.INSERT_AT, MV.DEL_AT, MV.GRAFT, MV.PGRAFT, MV.NONVOICE, MV.BOOST)): break
++    ps, p0, gs = [], 0, []
++    for mm in re.finditer(r'[,;:](?=\s)', s): ps.append((p0, mm.end())); p0 = mm.end() + 1; gs.append(MV.P_COMMA)
++    ps.append((p0, len(s))); return s, ps, gs
++def _自动删(MV, **kv):
++    s, ps, gs = _普通句(MV); return _在(lambda: MV.sentence_audio(s, ps, gs), _换(MV, **kv))
++def _结尾(MV, no='10'):
++    d = json.load(open(f'scripts/{no}.json')); s = _句(MV, no, len(d['sentences']) - 1); return s, MV.ENDING[s]
++def _音调伸出(MV):
++    s, e = _结尾(MV); e2 = json.loads(json.dumps(e)); e2['前段音调']['范围'] = [e2['前段音调']['范围'][0], 99.0]
++    return MV._ending_raw(s, e2)
++def _音调改响(MV):
++    import numpy as np
++    s, e = _结尾(MV); return _在(lambda: MV._ending_raw(s, e), _换(MV, _tone_shape=lambda rF, a_, b_, cfg: np.full(len(rF), 0.5, np.float32)))
++def _接点挪(MV, 插入=False, no='10'):
++    s, e = _结尾(MV, no); SR = MV.SR; gs = []; ps, p0 = [], 0
++    for mm in re.finditer(r'[,;:](?=\s)', s): ps.append((p0, mm.end())); p0 = mm.end() + 1; gs.append(MV.P_COMMA)
++    ps.append((p0, len(s)))
++    class D(dict):
++        def get(s_, k_, d_=None): v_ = dict.get(s_, k_, d_); return None if v_ is None else v_ + int(0.45 * SR)
++    kv = {'_EJ': D(MV._EJ)}
++    if 插入: kv.update(_停顿候选=lambda *a, **k: [], INSERT_AT={}, DEL_AT={})
++    return _在(lambda: MV.sentence_audio(s, ps, gs), _换(MV, **kv))
++def _画面L19(MV): return _画面运行(MV, [(MV.R, {'wide_notes': lambda *a, **k: ['假：说明比正文宽']})])
++def _画面L20(MV):
++    import 对正量 as DZ; return _画面运行(MV, [(DZ, {'gate': lambda *a, **k: ['假：S1 重点词中文偏了']})])
++def _画面L3(MV): return _画面运行(MV, [(MV.R, {'orphan_lines': lambda *a, **k: [(1, '假')]})])
++def _画面运行(MV, ps):
++    import tempfile, title_anim as TA
++    W = os.getcwd(); d = tempfile.mkdtemp(prefix='守门直测_', dir=os.path.dirname(W))
++    for x in os.listdir(W):
++        if x != 'scripts' and not x.startswith('work_') and not x.endswith(('.mp4', '.mp3', '.wav')): os.symlink(f'{W}/{x}', f'{d}/{x}')
++    os.symlink(f'{W}/scripts', f'{d}/scripts')
++    def 越过(*a, **k): raise RuntimeError('越过了画面守门')
++    os.chdir(d)
++    try: return _在(lambda: MV.build('scripts/25.json', f'{d}/x.mp4'), _换(TA, render_frames=越过), *[_换(o, **v) for o, v in ps])
++    finally: os.chdir(W); shutil.rmtree(d, ignore_errors=True)
++直测项 = [   # (编号, 改法说明, 改法(MV), 停止信息里必须有的字)
++    ('A23改正连读', '读音改正（带连读错法）在句子里注出了没登记的写法，换不全', lambda MV: _读音(MV, {'zork': 'zˈuːk'}, {'zork': ['zˈʌk']}, {}, 'a zork', {'zork': 'zˈɑːk'}), '读音改正没有全部换到'),
++    ('A23改正', '读音改正在句子里注出了没登记的写法，换不全', lambda MV: _读音(MV, {'zork': 'zˈuːk'}, {}, {}, 'a zork', {'zork': 'zˈɑːk'}), '读音改正没有全部换到'),
++    ('A24语境个数', '按语境读音：词出现 2 次、语境只有 1 处', lambda MV: _读音(MV, {}, {}, {'zork it': {'词': 'zork', '读音': 'zˈuːk'}}, 'zork it and zork', {'zork': 'zˈɑːk'}), '按语境读音（A24）'),
++    ('A24语境换到', '按语境读音：句子里注出的写法既不是错读也不是对读，换不到', lambda MV: _读音(MV, {}, {}, {'zork it': {'词': 'zork', '读音': 'zˈuːk'}}, 'zork it', {'zork': 'zˈɑːk'}), '按语境读音没有全部换到'),
++    ('A20没声音', '一段全是静音', lambda MV: MV._edges(__import__('numpy').zeros(48000, 'float32')), '没有能听见的声音'),
++    ('L14音素', '带时长模型的音素和朗读文字对不上', lambda MV: MV.chunk_token_starts(['hello'], [__import__('types').SimpleNamespace(phoneme='zzz')]), '带时长模型的音素与朗读文字对不上'),
++    ('L14块序', '序列比对把第二块对到第一块前面', _块序, '不是递增的'),
++    ('A21供体变了', '供体的合成和登记的指纹不同', lambda MV: _供体(MV, DONOR={**MV.DONOR, 't': (MV.DONOR['t'][0], '000000000000')}), '供体的合成变了'),
++    ('A21供体除阻', '供体里量不出除阻', lambda MV: _供体(MV, _release=lambda *a, **k: None), '供体里找不到除阻'),
++    ('A9标点数', '带时长模型少报一个标点', _标点数, '标点数对不上'),
++    ('A27擦音个数', '结尾句和原速的擦音个数不同', _擦音, '擦音个数对不上'),
++    ('A33音调伸出', '结尾句前段音调要改的范围伸到接点之后', _音调伸出, '伸到了接点之后'),
++    ('A33音调接点', '前段音调改完接点那里有声音', _音调改响, '接点不在静音里了'),
++    ('A10超出停顿', '自动删停顿：两头往里收算出的删除范围超出停顿', lambda MV: _自动删(MV, 余音删法=lambda s_: True, _余音两头=lambda e_, a_, b_, gap=2: (max(0, a_ - 80), b_ + 80)), '删除范围超出了停顿'),
++    ('A10删到词', '自动删停顿：选中的“停顿”一直伸进后面的词里', lambda MV: _自动删(MV, _停顿候选=lambda e_, pe_, ns_, lo_, hi_, fl_: [(lo_, min(len(e_) - 1, ns_ + 400))]), '要删的部分里有词的声音'),
++    ('A32接点删除', '20 结尾句接点挪到最后一个标点的停顿外（那里删了停顿）', lambda MV: _接点挪(MV, no='20'), '没有包住接点'),
++    ('A32接点插入', '10 结尾句接点挪到词里（那里是连读插入）', lambda MV: _接点挪(MV, True), '结尾句的接点不在静音里（A32）'),
++    ('L19说明行宽', '25 说明行比英文宽（宽度检查报出一处）', _画面L19, '说明行比上面的英文正文宽'),
++    ('L20对正', '25 重点词中文没对正（对正量报出一处）', _画面L20, '重点词中文没对正'),
++    ('L3孤词', '25 折行后末行只剩一个词（孤词检查报出一处）', _画面L3, '最后一行只剩一个词'),
++    ('G49颜色', '同屏重点词色差检查报出太像', _颜色, '颜色太像'),
++]
++
++
+ def main():
+     if not os.path.exists('make_video.py') or not os.path.isdir('scripts'):
+         sys.exit('【停止】请在视频工作目录（含 make_video.py、scripts/）下运行')
+@@ -57,14 +178,24 @@ def main():
+     for x in os.listdir(W):
+         if x == 'scripts' or x.startswith('work_') or x.endswith(('.mp4', '.mp3', '.wav', '.json')): continue
+         os.symlink(f'{W}/{x}', f'{WS}/{x}')
+-    for rid, no, how, fn, env, want in CASES:
++    def 私tts(over):   # 改 ../tts 里的文件（音色、降噪、缓存标记）：另搭一个工作根，tts 逐项链接回去，只有被改的那几项是改过的副本（真 tts 不碰）
++        R_ = f'{WS}_私'; shutil.rmtree(R_, ignore_errors=True); os.makedirs(f'{R_}/tts'); src = os.path.abspath(f'{W}/../tts')
++        for x in os.listdir(src):
++            if x in over: over[x](f'{src}/{x}', f'{R_}/tts/{x}')
++            else: os.symlink(f'{src}/{x}', f'{R_}/tts/{x}')
++        os.makedirs(f'{R_}/video')   # 真目录（链接成目录的话 ../tts 按真路径解析回真 tts）
++        for x in os.listdir(WS): os.symlink(f'{WS}/{x}', f'{R_}/video/{x}')
++        return f'{R_}/video'
++    for case in CASES:
++        rid, no, how, fn, env, want = case[:6]
+         if only and rid not in only: continue
+         d = copy.deepcopy(json.load(open(f'{W}/scripts/{no}.json')))
+         try: fn(d)
+         except Exception as e: fails.append(f'{rid} 自检样本找不到（{no} {how}）：{e}'); continue
+         for p in os.listdir(f'{WS}/scripts'): os.remove(f'{WS}/scripts/{p}')
+         json.dump(d, open(f'{WS}/scripts/{no}.json', 'w'), ensure_ascii=False)
+-        r = subprocess.run(['python3', 'make_video.py', f'scripts/{no}.json', f'守门自检_{rid}.mp4'], capture_output=True, text=True, cwd=WS,
++        cwd_ = 私tts(dict(case[6])) if len(case) > 6 else WS
++        r = subprocess.run(['python3', 'make_video.py', f'scripts/{no}.json', f'守门自检_{rid}.mp4'], capture_output=True, text=True, cwd=cwd_,
+                            env={**os.environ, 'AUDIO_ONLY': '1', **env})
+         o = r.stdout + r.stderr; stop = [l for l in o.splitlines() if '【停止】' in l]
+         if want is None: ok = r.returncode == 0 and not stop
+@@ -72,6 +203,7 @@ def main():
+         print(f"{'✔' if ok else '✘'} {rid}：第{no}篇 {how} → " + (('完整出完' if r.returncode == 0 else '没出完：' + (stop or o.strip().splitlines()[-1:])[0][:120]) if want is None
+               else (stop[0][:110] if stop else f'没停（退出码 {r.returncode}）')))
+         if not ok: fails.append(f'没抓到：{rid}（{how}）' if want else f'误拦：{rid}')
++        shutil.rmtree(f'{WS}_私', ignore_errors=True)
+     shutil.rmtree(WS, ignore_errors=True)
+     if not only or 'A36' in only:   # A36：复合词按它自己那一条读音改正换；所有格的 s 不被吞（注音函数直接测）
+         sys.path.insert(0, W); import make_video as MV
+@@ -84,6 +216,19 @@ def main():
+         ok = bool(hb and bs) and hb in p1 and hb not in p3 and any(bs + x in p2 for x in 'sz')
+         print(f"{'✔' if ok else '✘'} A36：Haber-Bosch 按登记读音{'换到' if hb and hb in p1 else '没换到'}、拿掉改正后{'停下' if p3 == '（停下）' else ('变回' if hb and hb not in p3 else '没变')}；BASF’s 结尾 s {'保住' if bs and any(bs + x in p2 for x in 'sz') else '被吞'}")
+         if not ok: fails.append('没抓到：复合词读音、所有格 s（A36）')
++    直 = [x for x in 直测项 if not only or x[0] in only]
++    if 直:   # 出片程序内部的守门（读音改正、按语境读音、供体、音素对齐、标点数、擦音个数、颜色……）：脚本造不出来，在进程里把内部状态改坏，守门必须停（G79 门变异）
++        sys.path.insert(0, W); import make_video as MV
++        os.environ['STRICT_CACHE'] = '1'   # 直测只用已有配音缓存，绝不现合成、不往仓库缓存里写
++        try:
++            for rid, how, fn, want in 直:
++                try: fn(MV); got = '没停'
++                except SystemExit as e: got = str(e)
++                except Exception as e: got = f'出错 {e!r}'
++                ok = want in got
++                print(f"{'✔' if ok else '✘'} {rid}：{how} → {got[:110]}")
++                if not ok: fails.append(f'没抓到：{rid}（{how}）')
++        finally: os.environ.pop('STRICT_CACHE', None)
+     if not fails and not only:
+         json.dump({'make_video.py': 指纹(f'{T}/make_video.py'), 'render.py': 指纹(f'{T}/render.py'), '出片守门自检.py': 指纹(__file__),
+                    '时间': time.strftime('%Y-%m-%dT%H:%M'), '项数': len(CASES)}, open(STAMP, 'w'), ensure_ascii=False, indent=1)
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\207\272\347\211\207\345\256\210\351\227\250\350\207\252\346\243\200\351\200\232\350\277\207.json" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\207\272\347\211\207\345\256\210\351\227\250\350\207\252\346\243\200\351\200\232\350\277\207.json"
+index bf7faa5..7652169 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\207\272\347\211\207\345\256\210\351\227\250\350\207\252\346\243\200\351\200\232\350\277\207.json"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\207\272\347\211\207\345\256\210\351\227\250\350\207\252\346\243\200\351\200\232\350\277\207.json"
+@@ -1,7 +1,7 @@
+ {
+  "make_video.py": "250ff4449e4a7bd84d889d8a4dc4fc736d3f789594a14df6f7ac8f4b6b25fb0a",
+  "render.py": "b705906ff1baff696c88eb332e92e0643ca08bea76a9b5552e9a9a310d265d60",
+- "出片守门自检.py": "0ce11b86beaff6e056557ea08922b6e969728fd3345692188c071023869af766",
+- "时间": "2026-10-27T05:14",
+- "项数": 26
++ "出片守门自检.py": "3c87cf8a7d76b259e1354e532d0640be23766e7a1b1e837518f8cd4ded0c0728",
++ "时间": "2026-10-27T16:27",
++ "项数": 34
+ }
+\ No newline at end of file
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\214\272\351\227\264\344\275\234\345\272\237.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\214\272\351\227\264\344\275\234\345\272\237.py"
+index 6b6440f..9f83237 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\214\272\351\227\264\344\275\234\345\272\237.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\214\272\351\227\264\344\275\234\345\272\237.py"
+@@ -42,6 +42,10 @@ def 自检():
+     if 'S7' not in e['非人声区间'] or 'S16 raw 1.0-1.2' not in e['核对确认']['删除段']: fails.append('A45 误删：没改读音的句子（S7、S16）的区间或确认被清掉')
+     记(e, {'S6': 'ccc', 'S7': 'ddd', 'S8': 'eee'})
+     if e.get('区间声音指纹') != {'S7': 'ddd'}: fails.append(f'A45 记指纹不对：只记有区间的句子，得到 {e.get("区间声音指纹")}')
++    import subprocess, tempfile, os   # A45 开关不许带进交付核查（G79 门变异：交付核查 第一道门以前没人探）
++    r = subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), '交付核查.py'), '20', '出片前'], cwd=tempfile.gettempdir(),
++                       env={**os.environ, 'OLD_IV_VOID': '1'}, capture_output=True, text=True, timeout=120)
++    if r.returncode == 0 or 'OLD_IV_VOID' not in r.stdout + r.stderr: fails.append('没抓到：环境里带着 OLD_IV_VOID 跑交付核查没停（A45 开关）')
+     return fails
+ 
+ 
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\217\245\345\206\205\345\223\215\345\272\246.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\217\245\345\206\205\345\223\215\345\272\246.py"
+index 235d940..db839bb 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\217\245\345\206\205\345\223\215\345\272\246.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\217\245\345\206\205\345\223\215\345\272\246.py"
+@@ -56,6 +56,9 @@ def 自检():
+         if not 4.0 <= g2.get('S1', {}).get('3', 0) <= 5.5: f.append(f'没抓到：已有 +1 dB 时没有累加（{g2}）')
+         w, sr = mk([0, 0, 0, 0]); m, TM = 量(w, sr)
+         if 算增益(m, TM, {}): f.append('误报：四段一样响也算出了增益')
++    import subprocess as _sp, tempfile as _tf   # 缺前提（没出过声音、没有 分段.json）必须停，不许接着量（G79 门变异）
++    r = _sp.run([sys.executable, os.path.abspath(__file__), '99'], cwd=_tf.mkdtemp(prefix='句内响度自检_'), capture_output=True, text=True)
++    if '【停止】没有 work_99/分段.json' not in r.stdout + r.stderr: f.append('没抓到：没有 work_NN/分段.json 也开量（缺前提要停）')
+     return f
+ 
+ if __name__ == '__main__':
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\223\215\345\272\246\344\270\200\350\207\264\346\200\247\346\240\270\345\257\271.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\223\215\345\272\246\344\270\200\350\207\264\346\200\247\346\240\270\345\257\271.py"
+index faa129b..198c2dc 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\223\215\345\272\246\344\270\200\350\207\264\346\200\247\346\240\270\345\257\271.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\223\215\345\272\246\344\270\200\350\207\264\346\200\247\346\240\270\345\257\271.py"
+@@ -104,16 +104,20 @@ def 句内(src, a=None, TM=None, seg_json=None):
+     return rs
+ def 句内报(rs): return [r for r in rs if abs(r[4]) > IN_ADJ]
+ def 句内自检(src, seg_json=None):
+-    """阳性对照：挑一句相邻段都不超标的，把它的第 2 段调到与前一段差 IN_ADJ+1 LU，必须报出这一处；原样的报出不变（不误报）。"""
+-    a = pcm(src); TM = momentary(src); rs = 句内(src, a, TM, seg_json); bad0 = {(r[0], r[1]) for r in 句内报(rs)}
+-    cand = [r for r in rs if r[1] == 1 and not any(q[0] == r[0] for q in 句内报(rs))]
+-    if not cand: return False, '自检前提不成立：没有一句相邻段都不超标、又有两段以上的'
+-    nm, j, (px, py), (x, y), dv = cand[len(cand) // 2]
+-    g = -(IN_ADJ + 1.0) - dv; b = a.copy(); b[int(x * SR):int(y * SR)] *= 10 ** (g / 20)
++    """阳性对照：挑一句相邻段都不超标的，把它的第 2 段调到与前一段差 IN_ADJ+1 LU，必须报出这一处；原样的报出不变（不误报）。
++    原样和改过的都先写成同样的 wav 再量（原来原样按成片 AAC 量、改过的按 wav 量，瞬时响度差一点，20 改号 25 的 S7 在门槛边上翻过去、多报，G79 原样自检揭出）"""
++    a = pcm(src)
+     with tempfile.TemporaryDirectory() as td:
+-        w = os.path.join(td, 't.wav')
+-        subprocess.run([FF, '-loglevel', 'error', '-f', 's16le', '-ar', str(SR), '-ac', '1', '-i', '-', w], input=(np.clip(b, -1, 1) * 32767).astype(np.int16).tobytes(), check=True)
+-        bad1 = {(r[0], r[1]) for r in 句内报(句内(w, b, None, seg_json))}
++        def 量(x, n):
++            w = os.path.join(td, n)
++            subprocess.run([FF, '-loglevel', 'error', '-f', 's16le', '-ar', str(SR), '-ac', '1', '-i', '-', w], input=(np.clip(x, -1, 1) * 32767).astype(np.int16).tobytes(), check=True)
++            return 句内(w, x, None, seg_json)
++        rs = 量(a, 'o.wav'); bad0 = {(r[0], r[1]) for r in 句内报(rs)}
++        cand = [r for r in rs if r[1] == 1 and not any(q[0] == r[0] for q in 句内报(rs))]
++        if not cand: return False, '自检前提不成立：没有一句相邻段都不超标、又有两段以上的'
++        nm, j, (px, py), (x, y), dv = cand[len(cand) // 2]
++        g = -(IN_ADJ + 1.0) - dv; b = a.copy(); b[int(x * SR):int(y * SR)] *= 10 ** (g / 20)
++        bad1 = {(r[0], r[1]) for r in 句内报(量(b, 't.wav'))}
+     ok = (nm, 1) in bad1 and bad1 - bad0 <= {(nm, 1), (nm, 2)}
+     return ok, f'故意把 {nm} 第 2 段（{x:.1f}–{y:.1f}s）调 {g:+.1f} dB，{"报出" if (nm, 1) in bad1 else "没报出"}；多报 {sorted(bad1 - bad0 - {(nm, 1), (nm, 2)})}'
+ 
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\345\243\260\351\237\263\346\274\224\347\273\203.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\345\243\260\351\237\263\346\274\224\347\273\203.py"
+index 29c946f..1f2385b 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\345\243\260\351\237\263\346\274\224\347\273\203.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\345\243\260\351\237\263\346\274\224\347\273\203.py"
+@@ -89,10 +89,12 @@ _SA = 'fades=fades_)\n    return clips,tmap'   # sentence_audio 的出口：无
+ _挪1 = 改读法('f=min(range(r0,r1),key=lambda f:e[f]); ca=cb=f*F; keep=max(0,b-a)*F/SR', 'f=min(range(r0,r1),key=lambda f:e[f]); ca=cb=f*F+int(0.15*SR); keep=max(0,b-a)*F/SR')
+ _挪2 = 改读法('            ca=cb=(cx if cx is not None else f*F); keep=0.0', '            ca=cb=(cx if cx is not None else f*F)+int(0.15*SR); keep=0.0')
+ def 停顿挪进词里(ws): _挪1(ws); _挪2(ws)   # A9：插入的停顿（只插不删、连读处插入）落到后一个词里 150 毫秒
++标点停顿加长 = 改读法(_SA, 'fades=fades_)\n    clips=[np.concatenate([c,np.zeros(int(0.2*SR),c.dtype)]) for c in clips[:-1]]+clips[-1:]\n    return clips,tmap')   # A9/A10：标点处听到的停顿比标准长 0.2 秒（G79 门变异：标点停顿核对 记不通过那一行以前没人探）
+ 剪词尾 = 改读法(_SA, 'fades=fades_)\n    clips=[np.concatenate([c[:-int(0.09*SR)],np.zeros(int(0.09*SR),c.dtype)]) for c in clips]\n    return clips,tmap')   # A21：停顿前、句末的词尾 90 毫秒剪掉
+ def 旧视频配新脚本(ws):   # G26：出完片又改了脚本（重放 24 第三稿：出片失败，旧视频照样过了出片后核查）
+     p = f'{ws}/scripts/{NO}.json'; d = json.load(open(p)); d['title_zh'] += '（改）'; os.unlink(p); json.dump(d, open(p, 'w'), ensure_ascii=False, indent=1)
+ def 加引号(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: _加英文(d, 'the "best" one', '那个“最好的”'))
++def 标题标点(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: d.__setitem__('title_en', 'The Last Walk, Remembered'))   # 标题句中逗号前是 /k/：程序定不了停顿位置，必须交人听（G79 门变异：词尾辅音核对 这道门以前没人走到）
+ def 加多音(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: _加英文(d, 'as they read', '正如他们读到的'))  # A24/A35：read 按语境核对读音
+ 
+ 
+@@ -101,6 +103,7 @@ def 加多音(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: _加英文
+     ('A4句中硬停', '出片前', '出片程序每句中间（没有标点处）多停 0.35 秒（像机器人）', None, 句中停顿, ['无标点处停顿'], ['A4']),
+     ('A21剪句尾辅音', '出片前', '出片程序把停顿前、句末的最后 90 毫秒剪掉（词尾 t/k/p 没了）', None, 剪词尾, ['词尾辅音核对（A21'], ['A21', 'A38', 'A41', 'A43', 'A6']),
+     ('A13独立复核剪句尾', '出片后', '每句最后 90 毫秒剪掉（词尾被切），独立复核必须报出', None, 改声音(剪句尾), ['独立复核'], ['A13', 'A14', 'A16', 'A18', 'A22', 'A31', 'A34', 'A10b', '流5']),
++    ('A9标点停顿加长', '出片前', '出片程序在每个标点处多留 0.2 秒静音（标点停顿比标准长）', None, 标点停顿加长, ['标点停顿核对（A9/A10'], ['A9', 'A10', 'A5']),
+     ('A9停顿落在词里', '出片前', '出片程序把只插不删的停顿往后挪 150 毫秒（落在后一个词里）', None, 停顿挪进词里, ['停顿位置核对（A9'], ['A9']),
+     ('A8一句变轻', '出片后', '中间一句突然变轻 12 dB', None, 改声音(一句变轻), ['响度一致性（逐句'], ['A8', 'A29']),
+     ('A2句间呼吸声', '出片后', '句间停顿里留 0.3 秒气声', None, 改声音(塞呼吸), ['纯人声核对'], ['A2', 'A19']),
+@@ -111,6 +114,7 @@ def 加多音(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: _加英文
+     ('A37时刻读法', '出片前', '时刻读法退回事故时（重放 15：11.40pm 读成 eleven point four zero）', None, 时刻退回, ['数字读法、引号自检'], ['A37']),
+     ('A17引号', '出片前', '引号照读（读法退回）、S2 有带引号的 "best"', 加引号, 引号退回, ['数字读法、引号自检', '引号不停顿'], ['A17']),
+     ('A24多音词', '出片前', 'S2 加 as they read（多音词没按语境核对）', 加多音, None, ['读音核对（A23'], ['A24', 'A35']),
++    ('A21标题标点', '出片前', '标题改成逗号前是清塞音（The Last Walk, Remembered），程序定不了停顿位置', 标题标点, None, ['词尾辅音核对（A21'], ['A21']),
+     ('G26旧视频配新脚本', '出片后', '出完片又改了脚本（视频还是旧的）', None, 旧视频配新脚本, ['视频是现行脚本、现行程序出的（G26'], ['G26']),
+     ('G36句内一段变轻', '出片后', '句内一段比前一段轻 4 LU（整句仍在 ±2 LU 内，重放 25 S2）', None, 句内一段变轻, ['句内分段响度（相邻两段'], ['G36'], NO25),
+     ('G41体检咔哒', '出片后', '句子中间一个采样突跳（咔哒声）', None, 改声音(咔哒, NO25), ['音频体检（与 01–24 最差比）'], ['G41'], NO25),
+@@ -166,6 +170,15 @@ def 演练(W, 只=None):
+             miss = [w for w in want if not any(w in l for l in new)]
+             return sid, c != 0 and not miss, ('新报出：' + next(l for l in new if want[0] in l)[:80]) if not miss else f'没挡住：{miss}（退出码 {c}，新报出 {"；".join(sorted(new))[:150]}）'
+         res = list(ex.map(one, todo))
++        自检坏 = lambda o: sorted(l for l in o if re.search(r'自检|失灵|没抓到', l) and not l.startswith('✘ 规则执行核查') and '印章' not in l)   # 规则执行核查 那一步（含印章）看的是程序改没改过，不是稿子   # G79：原样那一场只当基线做差，核查程序自己的自检失灵会在原样和造坑场一起 ✘、互相抵消（拆 audio_qc 削波门没人发现）
++        for k in stages:
++            res.append((f'原样自检{k[0]}{k[1]}', not 自检坏(bo[k][1]), f'没造坑的原样稿 {k[0]} 里核查程序自检全部通过' if not 自检坏(bo[k][1]) else f'没造坑的原样稿 {k[0]} 里核查程序自检失灵：{自检坏(bo[k][1])[0][:150]}'))
++        if not 只 or '自查拆门_原样自检' in 只:   # 拆门自查：镜像里拆掉 audio_qc 的削波门，原样出片后那一场必须报“自检失灵”（上面这条在起作用）
++            M, ws = 场('拆自检'); p = f'{M}/视频/工具/audio_qc.py'; t = open(p).read(); a_ = 'if np.abs(a).max() > 0.99: bad.append('
++            if t.count(a_) != 1: res.append(('自查拆门_原样自检', False, 'audio_qc.py 里找不到削波那道门（锚变了，改演练）'))
++            else:
++                open(p, 'w').write(t.replace(a_, 'if False and np.abs(a).max() > 0.99: bad.append(', 1)); c, o = 跑(M, ws, '出片后')
++                res.append(('自查拆门_原样自检', bool(自检坏(o)), '拆掉 audio_qc 削波门后，原样稿的自检失灵被报出（原样自检这条在起作用）' if 自检坏(o) else '拆掉 audio_qc 削波门后原样稿没报自检失灵：原样自检失灵'))
+         if 通路:   # 真实流程走得通（主对话 2026-10-25：26 起源头调平后 疑点清单 重建对不上，草稿声音.sh 三轮全停；演练以前只验门会挡，没验好稿子能走通）
+             M, ws = 场('通路26', no='26')
+             r = subprocess.run(['bash', '/home/user/postgraduate-vocabulary/视频/工具/草稿声音.sh', '26'], cwd=ws, capture_output=True, text=True, errors='replace', timeout=1800, env={**os.environ, 'CLAUDE_PROJECT_DIR': M})
+@@ -187,10 +200,46 @@ def 演练(W, 只=None):
+     for x in os.listdir(root):
+         if x.startswith('演练_'): shutil.rmtree(f'{root}/{x}', ignore_errors=True)
+     left = Y.清新缓存(c0)   # 演练里合成的新缓存（出片程序自动拷进 make_video 写死的仓库和本仓库的 配音缓存/）不留（G29）
++    return 收尾(res, left, Y.查样本(), Y._git状态() != g0)
++
++
++def 收尾(res, left, 样e, 变):
++    """演练跑完的三项清点：新缓存清干净（G29）、冻结样本没被改、真仓库没被碰"""
+     if left: res.append(('G29演练缓存清干净', False, f'演练留下 {len(left)} 个文件没清掉：{left[0]}'))
+-    if Y.查样本(): res.append(('冻结样本没被改', False, '；'.join(Y.查样本())))
+-    if Y._git状态() != g0: res.append(('真仓库没被碰', False, '声音演练改了真仓库（git status 变了）：镜像漏了写入的路径'))
++    if 样e: res.append(('冻结样本没被改', False, '；'.join(样e)))
++    if 变: res.append(('真仓库没被碰', False, '声音演练改了真仓库（git status 变了）：镜像漏了写入的路径'))
+     return res
++def 应有场次():
++    """全部演练应该跑到的场次（G79：哪一场被悄悄跳过——比如 通路 那道 if 被拆——全部演练必须报出来）"""
++    st = {(s[1], s[7] if len(s) > 7 else NO) for s in 声音场景}
++    return {s[0] for s in 声音场景} | {f'原样自检{a}{b}' for a, b in st} | {'通路_草稿声音26', '自查拆门_声音', '自查拆门_parakeet', '自查拆门_原样自检'}
++def 清点(res):
++    return sorted(应有场次() - {r[0] for r in res})
++def 开跑前提():
++    if not os.path.exists('make_video.py') or not os.path.isdir('scripts'): sys.exit('【停止】请在视频工作目录（含 make_video.py、scripts/）下运行')
++    import 出片指纹 as _ZW   # G27：出片程序清单从 make_video 的 import 自动找全
++    if _ZW.核对工作目录('.', T): sys.exit('【停止】' + '；'.join(_ZW.核对工作目录('.', T)) + '：先 python3 出片指纹.py --拷 . 再演练')
++    e = Y.查读现稿() + Y.查样本()   # 演练只读冻结拷贝
++    if e: sys.exit('【停止】' + '；'.join(e))
++def 自检():
++    """不出声音：收尾三项、整场清点、开跑三道前提，各造一处必须停（G79 门变异：这些门以前只有整场声音演练走得到）"""
++    import tempfile; f = []; cwd = os.getcwd()
++    if len(收尾([], ['x.pkl'], ['样本被改'], True)) != 3 or 收尾([], [], [], False): f.append('收尾没抓全：新缓存没清、冻结样本被改、真仓库被碰，三项都要报，都没有不报')
++    全 = [(x, True, '') for x in 应有场次()]
++    if 清点(全) or 清点([r for r in 全 if r[0] != '通路_草稿声音26']) != ['通路_草稿声音26']: f.append('没抓到：全部演练少跑了 通路 那一场')
++    def 停(want, 改=lambda: None):
++        try: 改(); 开跑前提(); return f'没抓到：{want}'
++        except SystemExit as x: return '' if want in str(x) else f'停错了：{x}'
++    d = tempfile.mkdtemp(prefix='声音演练自检_')
++    try:
++        os.chdir(d); f.append(停('请在视频工作目录'))
++        os.makedirs('scripts'); open('make_video.py', 'w').write('# 旧\n'); f.append(停('出片指纹.py --拷'))
++        subprocess.run([sys.executable, f'{T}/出片指纹.py', '--拷', d], capture_output=True)
++        q = Y.查样本; Y.查样本 = lambda: ['冻结样本被改了']
++        try: f.append(停('冻结样本被改了'))
++        finally: Y.查样本 = q
++    finally: os.chdir(cwd); shutil.rmtree(d, ignore_errors=True)
++    return [x for x in f if x]
+ 
+ 
+ def 印章有效():
+@@ -201,13 +250,12 @@ def 印章有效():
+ 
+ def main():
+     a = sys.argv[1:]
+-    if not os.path.exists('make_video.py') or not os.path.isdir('scripts'): sys.exit('【停止】请在视频工作目录（含 make_video.py、scripts/）下运行')
+-    import 出片指纹 as _ZW   # G27：出片程序清单从 make_video 的 import 自动找全
+-    if _ZW.核对工作目录('.', T): sys.exit('【停止】' + '；'.join(_ZW.核对工作目录('.', T)) + '：先 python3 出片指纹.py --拷 . 再演练')
+-    e = Y.查读现稿() + Y.查样本()   # 演练只读冻结拷贝
+-    if e: sys.exit('【停止】' + '；'.join(e))
++    if a[:1] == ['--自检']:
++        e = 自检(); print('\n'.join(e) or '声音演练 自检通过（收尾三项、整场少跑一场、开跑三道前提都报出）'); return 1 if e else 0
++    开跑前提()
+     only = [x for x in a if not x.startswith('--')]
+     res = 演练(os.getcwd(), only)
++    if not only and 清点(res): res.append(('整场清点', False, f'全部演练少跑了：{清点(res)}'))
+     for sid, ok, msg in res: print(f"{'✔' if ok else '✘'} {sid}：{msg}")
+     bad = [s for s, ok, _ in res if not ok]
+     if bad or only: print('执行效应声音演练：' + ('【没通过：' + '、'.join(bad) + '】' if bad else '部分演练通过（不盖印章）')); return 1 if bad else 0
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\346\274\224\347\273\203.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\346\274\224\347\273\203.py"
+index d20fa14..efb5621 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\346\274\224\347\273\203.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\346\274\224\347\273\203.py"
+@@ -485,6 +485,8 @@ def 覆盖():
+     for prog, rs in {'推送自检.py（临时仓库真跑 推送两仓库.sh）': ['G1', 'G2', 'G3', 'G4', 'G11', '守则3', '流12', 'G16', 'G20', 'G5', 'G58', 'G67', 'G87', 'G88', 'G89', 'G98', 'G99', 'G100'],
+                      '同步自检.py（临时副本真跑 sync_article.py）': ['S1', 'S3', 'S5'],
+                      '用上核查.py --自检（K53：现行文档把已淘汰程序当命令写必报、历史记录不误报）': ['G103'],
++                     '流程自检.py（K54：准备机器.sh 里 curl | tar 管道解压重放必报）': ['G104'],
++                     '执行效应声音演练 自查拆门_原样自检（K55：镜像里拆 audio_qc 削波门，原样稿必须报自检失灵）+ 原样自检 每场': ['A46'],
+                      '会话开工.py --自检（K52：两个仓库读过的版本都算，都没读照停）': ['G102'],
+                      '钩子/钩子自检.py（临时仓库真判 收工：已推过的 token 记录不拦、新的照拦）': ['G101'],
+                      '会话开工.py --自检 + 开工必读.py --自检（O/N：第一屏三大主义、顺序）': ['G93'],
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\350\257\267\346\261\202.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\350\257\267\346\261\202.py"
+index ccb420e..6e503b0 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\350\257\267\346\261\202.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\350\257\267\346\261\202.py"
+@@ -13,7 +13,7 @@ def 本地慢印章(行, 有效=None, 缺口数=None):
+     if '主演练' not in 行 or '补丁=' not in 行: return ''
+     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import 规则执行核查 as R
+     有效 = 有效 or R.印章有效
+-    bad = [p for p in R.STAMPED if p not in ('执行效应演练.py', '执行效应声音演练.py') and not 有效(p)]   # 演练印章本身就是这次请求要盖的
++    bad = [p for p in R.STAMPED if p not in ('执行效应演练.py', '执行效应声音演练.py', '彩排.sh') and not 有效(p)]   # 演练印章本身就是这次请求要盖的；彩排印章也只在 GitHub 上盖，而彩排要先有主演练印章（K60：两头互等，死锁）
+     if bad: return f'本地慢自检印章过期：{bad}（K35：先在视频工作目录跑 python3 视频/工具/{bad[0]}，通过后重做补丁再推主演练）'
+     import 执行效应演练 as Y   # 2026-10-26 K37v2：新规矩没登记演练覆盖，GitHub 主演练报“缺口变多”白跑一轮；本地几秒就查得出
+     g = 缺口数 if 缺口数 is not None else len(Y.缺口()); b = json.load(open(Y.GAPB))['缺口'] if os.path.exists(Y.GAPB) else 0
+@@ -42,6 +42,7 @@ def 自检():
+     if 待提交补丁('门变异 x 补丁=好.diff', d) or 待提交补丁('主演练', d): f.append('误报：补丁已提交或没有补丁也要再提交（K50）')
+     shutil.rmtree(d, ignore_errors=True)
+     if not 本地慢印章('主演练 补丁=视频/云端/待演练/x.diff', lambda p: p == '执行效应演练.py'): f.append('没抓到：出片守门自检印章过期还让推带补丁的主演练（K35）')
++    if 本地慢印章('主演练 补丁=视频/云端/待演练/x.diff', lambda p: p != '彩排.sh', 缺口数=0): f.append('误拦：只有彩排印章过期就不让推主演练（彩排要先有主演练印章，两头互等，K60）')
+     if not 本地慢印章('主演练 补丁=视频/云端/待演练/x.diff', lambda p: True, 缺口数=99): f.append('没抓到：演练缺口变多还让推带补丁的主演练')
+     if 本地慢印章('主演练 补丁=视频/云端/待演练/x.diff', lambda p: p != '执行效应演练.py', 缺口数=0) or 本地慢印章('声音演练 补丁=x', lambda p: False): f.append('误报：印章有效或不是主演练也拦（K35）')
+     return f
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\234\272\345\231\250\345\244\215\345\220\254.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\234\272\345\231\250\345\244\215\345\220\254.py"
+index 35610fd..b62882e 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\234\272\345\231\250\345\244\215\345\220\254.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\234\272\345\231\250\345\244\215\345\220\254.py"
+@@ -16,10 +16,10 @@ PD = os.path.expanduser('~/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8')
+ def 识别器():
+     """每一路一个离线识别器 {名: 识别器}。small.en（whisper，带语言模型补全）+ parakeet（NeMo TDT 0.6B int8）：
+     注入实测（改门_音频上GitHub.md 第二阶段）任一报就报，漏读、词中截断、句尾截断、咔哒、削波每类查全都比 small.en 单用高"""
+-    import sherpa_onnx
+     p = lambda d, x: os.path.join(d, x)
+     for d, f, u in ((MD, 'small.en-encoder.int8.onnx', 'sherpa-onnx-whisper-small.en'), (PD, 'encoder.int8.onnx', 'sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8')):
+         if not os.path.exists(p(d, f)): raise SystemExit(f'【停止】没有识别模型 {d}：bash 准备机器.sh 会下载（GitHub release k2-fsa/sherpa-onnx asr-models/{u}）；机器复听每一路都要有，不许少一路')
++    import sherpa_onnx   # 先查模型在不在（没有模型就停，不先要求装好识别程序）
+     return {'small.en': sherpa_onnx.OfflineRecognizer.from_whisper(encoder=p(MD, 'small.en-encoder.int8.onnx'), decoder=p(MD, 'small.en-decoder.int8.onnx'), tokens=p(MD, 'small.en-tokens.txt'), num_threads=4),
+             'parakeet': sherpa_onnx.OfflineRecognizer.from_transducer(encoder=p(PD, 'encoder.int8.onnx'), decoder=p(PD, 'decoder.int8.onnx'), joiner=p(PD, 'joiner.int8.onnx'), tokens=p(PD, 'tokens.txt'), model_type='nemo_transducer', num_threads=4)}
+ 
+@@ -182,6 +182,18 @@ def 比较自检():
+         if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
+     for r_, h_ in (('the cat sat on the mat', 'the cat on the mat'), ('the cabbies waited', 'the cabins waited'), ('He sat there', 'He set there')):
+         if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
++    global MD, PD, _tk, sf   # 前提门（G79 门变异：以前只有真听声音的主流程走得到）：没有识别模型、有声音程序却没有注音程序，都必须停
++    o_ = (MD, PD, _tk, sf)
++    try:
++        MD = PD = '/不存在的识别模型目录'
++        try: 识别器(); f.append('没抓到：没有识别模型也开听')
++        except SystemExit as x_:
++            if '没有识别模型' not in str(x_): f.append(f'停错了：{x_}')
++        _tk, sf = False, object()
++        try: 音标('cruise'); f.append('没抓到：有声音程序却没有 kokoro_onnx 注音程序，也按内置读音比')
++        except SystemExit as x_:
++            if '没有 kokoro_onnx' not in str(x_): f.append(f'停错了：{x_}')
++    finally: MD, PD, _tk, sf = o_
+     return f
+ 
+ def 分类(md):
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py"
+index bf037f2..e0df671 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py"
+@@ -172,5 +172,9 @@ sys.path.insert(0, f'{T}/初稿生成'); import 核对 as _HD   # T37 核对.py
+ if _HD.缺的重点词(['**hinge on**', '**dead reckoning**'], ['hinge on', 'dead reckoning']): fails.append('T37 误报：多词重点词（hinge on、dead reckoning）整体在却报“缺”')
+ if _HD.缺的重点词(['**dead reckoning**'], ['dead', 'reckoning']): fails.append('T37 误报：多词重点词每个词都加粗了却报“缺”')
+ if _HD.缺的重点词(['**vast**', '**hinge on**'], ['hinge on']) != ['vast']: fails.append('没抓到：文章重点词在对照里真的缺了（T37）')
++def 管道解压(txt):   # K54：curl 下载直接管道给 tar 解压，下载被截断就留半截文件、重跑跳过下载；必须先下到文件、解压成功才算
++    return [l.strip()[:80] for l in txt.splitlines() if not l.lstrip().startswith('#') and re.search(r'curl\b[^|#]*\|\s*tar\b', l)]
++if 管道解压(open(f'{T}/环境/准备机器.sh').read()): fails.append(f'准备机器.sh 又用 curl 管道直接 tar 解压（K54）：{管道解压(open(f"{T}/环境/准备机器.sh").read())[0]}')
++if not 管道解压('A=1; [ -f x ] || { curl -sSL https://e/x.tar.bz2 | tar xj -C ~/asr; }\n'): fails.append('没抓到：curl | tar 管道解压（K54 重放）')
+ print('流程自检：' + ('通过（占着锁再启动定稿流水线必停；步骤顺序被调换必报；④ 文本门真跑失败必停、.sh 中文变量和注释吞 || 必报（K37）；① 前没有 a.wav 先重建（K36）；本地慢印章过期不许推主演练补丁（K35）；全部 .sh 每道门真跑能停（G79 门变异）；钩子自检不读真实请求账（K38）；工作流不用中文变量名（K31））' if not fails else '失灵！' + '；'.join(fails)))
+ sys.exit(1 if fails else 0)
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\216\257\345\242\203/\345\207\206\345\244\207\346\234\272\345\231\250.sh" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\216\257\345\242\203/\345\207\206\345\244\207\346\234\272\345\231\250.sh"
+index 7e09f3c..064d03d 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\216\257\345\242\203/\345\207\206\345\244\207\346\234\272\345\231\250.sh"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\216\257\345\242\203/\345\207\206\345\244\207\346\234\272\345\231\250.sh"
+@@ -25,7 +25,12 @@ PY2
+ python3 -c "import imageio_ffmpeg,kokoro_onnx,parselmouth,pyloudnorm,soundfile,scipy" 2>/dev/null || pip install -q -r $V/工具/环境/requirements.txt; python3 -c "import pymupdf,docx" 2>/dev/null || pip install -q pymupdf python-docx   # 生成文本.py（Word/PDF 读回核对）要用
+ # 2026-10-25 机器复听（音频保障第 4 层）：离线语音识别 sherpa-onnx + whisper small.en（huggingface 被网络挡，GitHub release 通），下载到 ~/asr 并核对校验码
+ python3 -c "import sherpa_onnx" 2>/dev/null || pip install -q sherpa-onnx==2.0.0 2>/dev/null || pip install -q --break-system-packages sherpa-onnx==2.0.0
+-A=~/asr/sherpa-onnx-whisper-small.en; [ -f $A/small.en-encoder.int8.onnx ] || { mkdir -p ~/asr; curl -sSL --retry 3 https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-whisper-small.en.tar.bz2 | tar xj -C ~/asr; }
++# K54（2026-10-27 新容器）：经代理下载 tar.bz2 被截断，管道直接解压留下半截 encoder，重跑 [ -f ] 成立就跳过下载、只剩校验码失败。
++# 先整个下到临时文件、解压成功才算；失败就清掉半截目录（最多试两次）
++取模型() { local d=$1 f=$2 u=$3 t; [ -f $d/$f ] && return 0; mkdir -p ~/asr
++  for _i in 1 2; do t=$(mktemp ~/asr/.下载_XXXXXX); if curl -sSL --retry 3 -o $t $u && tar xjf $t -C ~/asr; then rm -f $t; return 0; fi; rm -rf $d $t; done
++  echo "✘ 识别模型下载或解压失败（K54：半截目录已清掉，重跑即可）：$u"; return 1; }
++A=~/asr/sherpa-onnx-whisper-small.en; 取模型 $A small.en-encoder.int8.onnx https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-whisper-small.en.tar.bz2
+ python3 - "$A" "$V/工具/环境/模型校验码.json" <<'PY3'
+ import sys,json,hashlib,os
+ d,j=sys.argv[1],json.load(open(sys.argv[2])); bad=0
+@@ -37,7 +42,7 @@ if bad and all(hs[a]==j[b].split(':')[1] for a,b in (fs,fs[::-1])): print('✘ 
+ sys.exit(bad)
+ PY3
+ # 2026-10-26 机器复听第二路 parakeet（NeMo TDT 0.6B int8，任一路报就报；改门_音频上GitHub.md 第二阶段 2），同样 GitHub release 下载、核对校验码
+-P=~/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8; [ -f $P/encoder.int8.onnx ] || { mkdir -p ~/asr; curl -sSL --retry 3 https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8.tar.bz2 | tar xj -C ~/asr; }
++P=~/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8; 取模型 $P encoder.int8.onnx https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8.tar.bz2
+ python3 - "$P" "$V/工具/环境/模型校验码.json" <<'PY4'
+ import sys,json,hashlib,os
+ d,j=sys.argv[1],json.load(open(sys.argv[2])); bad=0
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\226\221\347\202\271\346\270\205\345\215\225.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\226\221\347\202\271\346\270\205\345\215\225.py"
+index 9a838f6..bfa4ce6 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\226\221\347\202\271\346\270\205\345\215\225.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\226\221\347\202\271\346\270\205\345\215\225.py"
+@@ -6,6 +6,25 @@ import re, json, sys, os, importlib.util
+ import numpy as np, soundfile as sf
+ sys.path.insert(0, '.')
+ TOOLS = '/home/user/postgraduate-vocabulary/视频/工具'
++def 核对重建(A, B, no):
++    """重建的整片声音与 work_NN/a.wav 逐采样一致（差 ≤2 LSB），不一致就停"""
++    if len(A) != len(B) or np.abs(A - B).max() > 2 / 32768: raise SystemExit(f'【停止】重建的声音与 work_{no}/a.wav 不一致（长度 {len(A)} vs {len(B)}），work_{no} 不是当前程序做的')
++def 所在句(c, i0, info, tl0, nt):
++    """疑点所在的那一句（标题里的返回 None）；哪一句都不在就停"""
++    it = next((x for x in info if x['off'] <= i0 < x['off'] + x['n']), None)
++    if it is None and not (tl0 <= i0 < tl0 + nt): raise SystemExit(f'【停止】{c} 不在任何一句里')
++    return it
++if sys.argv[1:2] == ['--自检']:   # G79 门变异：这两道门以前只有载入模型的整篇流程走得到；不用模型直接喂坏输入
++    f = []
++    for fn, arg, want in ((核对重建, (np.zeros(10), np.zeros(11), '99'), '不一致'), (核对重建, (np.zeros(10), np.full(10, 0.01), '99'), '不一致'), (所在句, ({'t0': 9}, 5, [{'off': 100, 'n': 50}], 10, 20), '不在任何一句里')):
++        try: fn(*arg); f.append(f'没抓到：{want}')
++        except SystemExit as x:
++            if want not in str(x): f.append(f'停错了：{x}')
++    try:
++        核对重建(np.zeros(10), np.zeros(10) + 1 / 32768, '99')
++        if 所在句({}, 120, [{'off': 100, 'n': 50}], 10, 20) is None or 所在句({}, 15, [], 10, 20) is not None: f.append('找错句：在句里的没找到，或标题里的当成句子')
++    except SystemExit as x: f.append(f'误拦：{x}')
++    print('\n'.join(f) or '疑点清单 自检通过（重建与 a.wav 长度不同、样本差超 2 LSB 都停；疑点哪一句都不在就停；差 1 LSB、句里、标题里不误拦）'); sys.exit(1 if f else 0)
+ src = open('make_video.py').read().split("if __name__")[0]
+ h1 = "    w=clean_tail(raw)\n"   # 出片程序：raw 是这一句的原始合成（结尾句是两遍接起来的），下一行起处理
+ assert src.count(h1) == 1, '出片程序结构变了'
+@@ -39,7 +58,7 @@ for si, s in enumerate(d['sentences']):
+     audio += [sil(lead), a, sil(P_HOLD)]; cur += len(sil(lead)) + len(a) + len(sil(P_HOLD))
+ audio.append(sil(2.0 - P_HOLD)); A = np.concatenate(audio); A = A / np.abs(A).max() * 0.89
+ B, sr = sf.read(f'work_{no}/a.wav'); B = np.asarray(B, float)
+-if len(A) != len(B) or np.abs(A - B).max() > 2 / 32768: raise SystemExit(f'【停止】重建的声音与 work_{no}/a.wav 不一致（长度 {len(A)} vs {len(B)}），work_{no} 不是当前程序做的')
++核对重建(A, B, no)
+ 
+ # ---------- 候选：纯人声核对 ①–⑥ + A19 ----------
+ cands = [dict(kind=f[0], t0=f[1], t1=f[2], db=f[3], c=f[4], per=f[5], lo=f[6]) for f in pv.scan(B)]
+@@ -94,10 +113,8 @@ def spec(x):
+ lines = []; js = []
+ ov = {k_: d.get(k_, {}) for k_ in ('非人声区间', '停顿删除区间', '停顿插入点')}
+ for n_, c in enumerate(cands, 1):
+-    i0 = int(round(c['t0'] * SR)); it = next((x for x in info if x['off'] <= i0 < x['off'] + x['n']), None)
++    i0 = int(round(c['t0'] * SR)); tl0 = int(round(0.4 * SR)); it = 所在句(c, i0, info, tl0, len(title))
+     if it is None:
+-        tl0 = int(round(0.4 * SR))
+-        if not (tl0 <= i0 < tl0 + len(title)): raise SystemExit(f'【停止】{c} 不在任何一句里')
+         def tw(i):   # 标题：成片 → 标题声音（去底噪、裁两头后）→ 压缩前 → w（say() 的输出）
+             pr = i - tl0 + _ths
+             for x, y in _trm:
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\273\223\345\260\276\345\217\245\346\216\245\347\202\271.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\273\223\345\260\276\345\217\245\346\216\245\347\202\271.py"
+index bb4130a..d44ed3f 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\273\223\345\260\276\345\217\245\346\216\245\347\202\271.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\273\223\345\260\276\345\217\245\346\216\245\347\202\271.py"
+@@ -56,16 +56,33 @@ def 窗口自检():
+     e2 = np.full(f5(3.0), -10.0); e2[f5(1.8):f5(2.2)] = -70   # 估的词尾偏晚（2.0）、停顿是同一段静音：选法和原来一样
+     if 选静音(e2, f5(2.0), f5(2.2) + 6, (f5(1.8), f5(2.2))) != 最长静音(e2, f5(2.0) - 6, f5(2.2) + 6): f.append('误报：原来选的静音就在出片程序要删的那段里，也改了选法（01–26 的接点会跟着变）')
+     return f
++def 句中标点(sent_, no_):
++    """最后一句里句中标点的位置；没有句中标点的结尾句不用接点（停）"""
++    puncts_ = [m.end() for m in re.finditer(r'[,;:](?=\s)', sent_)]
++    if not puncts_: sys.exit(f'第{no_}篇最后一句没有句中标点：用 {{"整句语速": 0.80}}（01、02 的写法），不用接点')
++    return puncts_
++def 模型标点(ts_, speed):
++    """带时长模型输出里标点记号的位置；一个都没有就停（不按估计挪接点）"""
++    pi_ = [i for i, t_ in enumerate(ts_) if t_.phoneme in (',', ';', ':')]
++    if not pi_: sys.exit(f'带时长模型里找不到标点（语速 {speed}）')
++    return pi_
++def 前提自检():   # G79 门变异：这两道门以前只有载入配音模型的主流程走得到，自检直接喂坏输入
++    import types as ty; f = []
++    for fn, arg, want in ((句中标点, ('He left the house and never came back.', '99'), '没有句中标点'), (模型标点, ([ty.SimpleNamespace(phoneme='a'), ty.SimpleNamespace(phoneme='.')], 0.9), '找不到标点')):
++        try: fn(*arg); f.append(f'没抓到：{want}（结尾句接点）')
++        except SystemExit as x:
++            if want not in str(x): f.append(f'停错了：{x}')
++    if 句中标点('If so, its fame began.', '99') != [6]: f.append('误报：有逗号的结尾句也停了')
++    return f
+ if '--自检' in sys.argv:
+-    e = 自检() + ['结尾句接点 自检：' + x for x in 窗口自检()]; print('\n'.join(e) or '结尾句接点 自检通过（重跑 --写入 保留前段增益dB 等手写字段；接点变了作废前段音调范围）'); sys.exit(1 if e else 0)
++    e = 自检() + 前提自检() + ['结尾句接点 自检：' + x for x in 窗口自检()]; print('\n'.join(e) or '结尾句接点 自检通过（重跑 --写入 保留前段增益dB 等手写字段；接点变了作废前段音调范围）'); sys.exit(1 if e else 0)
+ sys.path.insert(0, '.')
+ exec(open('make_video.py').read().split("if __name__")[0])
+ args = [a for a in sys.argv[1:] if not a.startswith('--')]; no_ = args[0].zfill(2)
+ spF, spS, gap_ = (float(x) for x in (args[1:4] if len(args) >= 4 else ('0.90', '0.78', '0.70')))
+ js_ = f'scripts/{no_}.json'; d_ = json.load(open(js_)); si_ = len(d_['sentences'])
+ sent_ = ' '.join(re.sub(r'\*\*', '', R.strip_gloss(c['en'])).strip() for c in d_['sentences'][-1]['chunks'])
+-puncts_ = [m.end() for m in re.finditer(r'[,;:](?=\s)', sent_)]
+-if not puncts_: sys.exit(f'第{no_}篇最后一句没有句中标点：用 {{"整句语速": 0.80}}（01、02 的写法），不用接点')
++puncts_ = 句中标点(sent_, no_)
+ cut_ = puncts_[-1]; tail_ = sent_[cut_:].strip()
+ F5 = int(0.005 * SR)
+ 
+@@ -76,8 +93,7 @@ def find(speed, front=False):
+     r_, _ = k.create(spoken(txt_), voice=V, speed=speed, lang='en-us'); r_ = np.asarray(r_, np.float32)
+     tb_, _, ts_ = KT.create_timed(spoken(txt_), voice=V, speed=speed, lang='en-us', clause_pause=0, sentence_pause=0); sc_ = len(r_) / len(tb_)
+     # 最后一个标点在带时长模型里的位置：按顺序数标点记号（, ; :），取最后一个
+-    pi_ = [i for i, t_ in enumerate(ts_) if t_.phoneme in (',', ';', ':')]
+-    if not pi_: sys.exit(f'带时长模型里找不到标点（语速 {speed}）')
++    pi_ = 模型标点(ts_, speed)
+     p_ = ts_[pi_[-1]]; nxt_ = next((t_ for t_ in ts_[pi_[-1] + 1:] if t_.phoneme.strip() and t_.phoneme not in (',', ';', ':', '.')), None)
+     a_ = int(ts_[pi_[-1] - 1].end * sc_ * SR) if pi_[-1] > 0 else int(p_.start * sc_ * SR)
+     b_ = int(nxt_.start * sc_ * SR) if nxt_ else len(r_)
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\274\223\345\255\230\350\277\233\344\273\223\345\272\223\346\240\270\345\257\271.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\274\223\345\255\230\350\277\233\344\273\223\345\272\223\346\240\270\345\257\271.py"
+index 620ab79..c59bbcf 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\274\223\345\255\230\350\277\233\344\273\223\345\272\223\346\240\270\345\257\271.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\274\223\345\255\230\350\277\233\344\273\223\345\272\223\346\240\270\345\257\271.py"
+@@ -15,19 +15,38 @@ def 自检():
+     if a != ['调平_2.json']: e.append('没抓到：用到的调平缓存不在 git 里（G51 重放 26）')
+     if any(缺(['x.pkl'], {'x.pkl'}, {'x.pkl'})): e.append('误报：都在、都推送了也报')
+     return e
+-if __name__ == '__main__':
+-    if sys.argv[1:2] == ['--自检']:
+-        e = 自检(); print('\n'.join(e) or '缓存进仓库核对 自检通过（不在 git 里、在 git 里没推送都报；都推送了不报）'); sys.exit(1 if e else 0)
+-    no = sys.argv[1]
++def _出声(no, lg, out):
++    r = subprocess.run(['python3', 'make_video.py', f'scripts/{no}.json', out], env={**os.environ, 'AUDIO_ONLY': '1', 'STRICT_CACHE': '1', 'CACHE_LOG': lg}, capture_output=True, text=True)
++    return r.returncode, r.stdout + r.stderr
++def _git():
++    g = lambda *a: subprocess.run(['git', '-C', P, '-c', 'core.quotepath=off', *a], capture_output=True, text=True).stdout
++    subprocess.run(['git', '-C', P, 'fetch', '-q', 'origin', 'main'], capture_output=True)
++    return ({os.path.basename(x) for x in g('ls-files', '视频/配音缓存').split('\n') if x},
++            {os.path.basename(x) for x in g('ls-tree', '-r', '--name-only', 'origin/main', '视频/配音缓存').split('\n') if x})
++def 核对(no, 出声=_出声, 查git=_git):
+     with tempfile.TemporaryDirectory() as td:
+         lg = f'{td}/用到.txt'; out = f'{td}/{no}.mp4'
+-        r = subprocess.run(['python3', 'make_video.py', f'scripts/{no}.json', out], env={**os.environ, 'AUDIO_ONLY': '1', 'STRICT_CACHE': '1', 'CACHE_LOG': lg}, capture_output=True, text=True)
+-        if r.returncode: print('【停止】严格缓存模式出不了声音（缓存不全，别的机器重出会不同）：' + (r.stdout + r.stderr).strip().splitlines()[-1][:200]); sys.exit(1)
++        rc, o = 出声(no, lg, out)
++        if rc: print('【停止】严格缓存模式出不了声音（缓存不全，别的机器重出会不同）：' + (o.strip().splitlines() or [''])[-1][:200]); return 1
+         用到 = sorted(set(open(lg).read().split()))
+-    g = lambda *a: subprocess.run(['git', '-C', P, '-c', 'core.quotepath=off', *a], capture_output=True, text=True).stdout
+-    subprocess.run(['git', '-C', P, 'fetch', '-q', 'origin', 'main'], capture_output=True)
+-    已跟踪 = {os.path.basename(x) for x in g('ls-files', '视频/配音缓存').split('\n') if x}
+-    已推送 = {os.path.basename(x) for x in g('ls-tree', '-r', '--name-only', 'origin/main', '视频/配音缓存').split('\n') if x}
++    已跟踪, 已推送 = 查git()
+     a, b = 缺(用到, 已跟踪, 已推送)
+-    if a or b: print(f'【停止】第{no}篇用到的缓存没进仓库（G51）：不在 git 里 {len(a)} 条（如 {a[:3]}），没推送 {len(b)} 条（如 {b[:3]}）'); sys.exit(1)
+-    print(f'缓存进仓库核对：第{no}篇用到的 {len(用到)} 条缓存（配音 {sum(n.endswith(".pkl") for n in 用到)}、调平 {sum(n.startswith("调平_") for n in 用到)}）都已在 git 里、已推送')
++    if a or b: print(f'【停止】第{no}篇用到的缓存没进仓库（G51）：不在 git 里 {len(a)} 条（如 {a[:3]}），没推送 {len(b)} 条（如 {b[:3]}）'); return 1
++    print(f'缓存进仓库核对：第{no}篇用到的 {len(用到)} 条缓存（配音 {sum(n.endswith(".pkl") for n in 用到)}、调平 {sum(n.startswith("调平_") for n in 用到)}）都已在 git 里、已推送'); return 0
++def 流程自检():   # G79 门变异：主流程两道停（出不了声音、缓存没进仓库）以前没人走到；出声音、查 git 换成假的直接喂
++    import io, contextlib; e = []
++    def 跑(*a):
++        buf = io.StringIO()
++        with contextlib.redirect_stdout(buf): rc = 核对('99', *a)
++        return rc, buf.getvalue()
++    def 写(no, lg, out): open(lg, 'w').write('x.pkl 调平_1.json'); return 0, ''
++    rc, o = 跑(lambda no, lg, out: (1, '【停止】严格缓存模式缺配音缓存'), lambda: (set(), set()))
++    if rc != 1 or '出不了声音' not in o: e.append('没抓到：严格缓存模式出不了声音还往下查（G51）')
++    rc, o = 跑(写, lambda: ({'x.pkl'}, {'x.pkl'}))
++    if rc != 1 or '没进仓库' not in o: e.append('没抓到：用到的调平缓存不在 git 里，主流程没停（G51）')
++    if 跑(写, lambda: ({'x.pkl', '调平_1.json'}, {'x.pkl', '调平_1.json'}))[0] != 0: e.append('误报：都在、都推送了主流程也停')
++    return e
++if __name__ == '__main__':
++    if sys.argv[1:2] == ['--自检']:
++        e = 自检() + 流程自检(); print('\n'.join(e) or '缓存进仓库核对 自检通过（不在 git 里、在 git 里没推送都报；都推送了不报）'); sys.exit(1 if e else 0)
++    sys.exit(核对(sys.argv[1]))
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\346\240\270\346\237\245.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\346\240\270\346\237\245.py"
+index 071f114..f5d2604 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\346\240\270\346\237\245.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\346\240\270\346\237\245.py"
+@@ -41,7 +41,7 @@ ENTRY = ['定稿流水线.sh', '交付核查.py', '生成文本.py', '推送两
+ # 每次运行都先做自检的程序（不需要别人带“自检”参数调用）
+ ALWAYS_SELFTEST = {'踩坑核查.py', 'check_all.py', '规则执行核查.py', '交付核查.py'}   # 交付核查 出片后 每次先跑核查程序自检、高亮自检
+ # 机器当场跑的自检（不依赖工作目录、几秒内完成）
+-FAST = [['丝滑.py', '--自检'], ['生成文本.py', '--自检'], ['配音缓存核对.py', '--自检'], ['余音删法核对.py', '--自检'], ['确认按位置迁移.py', '--自检'], ['方法进化表.py', '--自检'], ['破折号.py', '--自检'], ['区间作废.py', '--自检'], ['放行口子核查.py', '--自检'], ['同步自检.py'], ['流程自检.py'], ['门变异.py', '--自检'], ['用上核查.py', '--自检'], ['踩坑核查.py', '自检'], ['check_all.py', '--自检'], ['钩子/钩子自检.py'], ['排版自检.py'], ['推送自检.py'], ['译文核查.py', '--自检'], ['演练镜像.py', '--自检'], ['出片指纹.py', '--自检'], ['结尾句接点.py', '--自检'], ['句内响度.py', '--自检'], ['开工记录.py', '--自检'], ['逐词对齐.py', '--自检'], ['停顿位置精确核对.py', '--自检'], ['响度一致性核对.py', '--确认自检'], ['音频首要法则.py', '--自检'], ['音频首要法则.py'], ['机器复听.py', '--比较自检'], ['纯人声核对.py', '--确认自检'], ['高亮同步核对.py', '--确认自检'], ['颜色核对.py', '--自检'], ['缓存进仓库核对.py', '--自检'], ['速查表.py'], ['报坑.py', '--自检'], ['开工必读.py', '--自检'], ['开工必读.py'], ['意思个数.py'], ['证据.py', '--自检'], ['证据.py'], ['会话开工.py', '--自检']]
++FAST = [['丝滑.py', '--自检'], ['生成文本.py', '--自检'], ['配音缓存核对.py', '--自检'], ['余音删法核对.py', '--自检'], ['确认按位置迁移.py', '--自检'], ['方法进化表.py', '--自检'], ['破折号.py', '--自检'], ['区间作废.py', '--自检'], ['放行口子核查.py', '--自检'], ['同步自检.py'], ['流程自检.py'], ['门变异.py', '--自检'], ['用上核查.py', '--自检'], ['踩坑核查.py', '自检'], ['check_all.py', '--自检'], ['钩子/钩子自检.py'], ['排版自检.py'], ['推送自检.py'], ['译文核查.py', '--自检'], ['演练镜像.py', '--自检'], ['出片指纹.py', '--自检'], ['结尾句接点.py', '--自检'], ['句内响度.py', '--自检'], ['开工记录.py', '--自检'], ['逐词对齐.py', '--自检'], ['停顿位置精确核对.py', '--自检'], ['响度一致性核对.py', '--确认自检'], ['音频首要法则.py', '--自检'], ['音频首要法则.py'], ['机器复听.py', '--比较自检'], ['纯人声核对.py', '--确认自检'], ['高亮同步核对.py', '--确认自检'], ['颜色核对.py', '--自检'], ['缓存进仓库核对.py', '--自检'], ['速查表.py'], ['报坑.py', '--自检'], ['开工必读.py', '--自检'], ['开工必读.py'], ['意思个数.py'], ['证据.py', '--自检'], ['证据.py'], ['会话开工.py', '--自检'], ['疑点清单.py', '--自检'], ['执行效应声音演练.py', '--自检']]
+ 摘要 = lambda s: re.sub(r'\*\*|`', '', s).strip()[:60]
+ # 要在工作目录（有模型、声音）里才能跑的慢自检：通过时写下所测程序的指纹（印章）；程序一改指纹对不上，就当“自检没跑”，提交、推送停
+ STAMPED = {'出片守门自检.py': ('出片守门自检通过.json', ['make_video.py', 'render.py', '出片守门自检.py'])}
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json"
+index 223666c..d9d6604 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json"
+@@ -7136,5 +7136,47 @@
+   "演练": [
+    "用上核查.py --自检（K53：现行文档把已淘汰程序当命令写必报、历史记录不误报）"
+   ]
++ },
++ "A46": {
++  "门": [
++   [
++    "执行效应声音演练.py",
++    "没造坑的原样稿 {k[0]} 里核查程序自检失灵"
++   ],
++   [
++    "响度一致性核对.py",
++    "原样和改过的都先写成同样的 wav 再量"
++   ]
++  ],
++  "自检": [
++   [
++    "执行效应声音演练.py",
++    "拆掉 audio_qc 削波门后原样稿没报自检失灵：原样自检失灵"
++   ]
++  ],
++  "演练": [
++   "执行效应声音演练 自查拆门_原样自检（K55：镜像里拆 audio_qc 削波门，原样稿必须报自检失灵）"
++  ]
++ },
++ "G104": {
++  "门": [
++   [
++    "流程自检.py",
++    "准备机器.sh 又用 curl 管道直接 tar 解压（K54）"
++   ],
++   [
++    "环境/准备机器.sh",
++    "取模型() { local d=$1 f=$2 u=$3 t;"
++   ]
++  ],
++  "自检": [
++   [
++    "流程自检.py",
++    "没抓到：curl | tar 管道解压（K54 重放）"
++   ]
++  ],
++  "演练": [
++   "流程自检（K54：curl | tar 管道解压重放必报）"
++  ]
+  }
+ }
+\ No newline at end of file
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\227\250\345\217\230\345\274\202.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\227\250\345\217\230\345\274\202.py"
+index e6bcfad..8085a30 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\227\250\345\217\230\345\274\202.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\227\250\345\217\230\345\274\202.py"
+@@ -8,6 +8,7 @@
+   python3 门变异.py --全量                全部入口（慢，放 GitHub：推请求.py 门变异）
+   python3 门变异.py --全量 --写清单       写 制作记录/门变异清单.md、门变异缺口基线.json（只许减少）
+   python3 门变异.py --查基线              规则执行核查用：清单里的漏洞数不许比基线多、清单要对得上现行门（门变了没重跑就停）
++  python3 门变异.py 文件 --全 --门=门号,… 只拆这几道门（本地补完验证）
+   python3 门变异.py --自检                K37 重放：K37 那一行（|| stop 在注释后）必须列为漏洞；门真被拆掉、拆门后探测报出要算“发现”
+ """
+ import os, sys, re, ast, json, subprocess, hashlib, shutil, tempfile
+@@ -78,7 +79,7 @@ def 自检门(txt, n, fn):
+     body = ''.join(ast.get_source_segment(txt, b) or '' for b in n.body if _是停(b))
+     if re.search(r'失灵', ''.join(ast.get_source_segment(txt, b) or '' for b in n.body)): return True   # “自检失灵就停”（踩坑核查 if fails: 失灵）
+     return bool(re.search(r'没抓到|误报|失灵|自检|拆门|重放', body))
+-_ARGV = {'a', 'argv', 'args', 'A', 'av'}
++_ARGV = {'a', 'a_', 'argv', 'args', 'A', 'av'}   # a_ = sys.argv[1:]（机器复听、音频体检）
+ def _是argv(x):
+     if isinstance(x, ast.Subscript): x = x.value
+     return (isinstance(x, ast.Name) and x.id in _ARGV) or (isinstance(x, ast.Attribute) and x.attr == 'argv')
+@@ -92,18 +93,30 @@ def _派发(t):
+     if isinstance(t, ast.Compare) and len(t.ops) == 1:
+         l, r = t.left, t.comparators[0]
+         if any(isinstance(x, ast.Name) and x.id == '__name__' for x in (l, r)): return True
+-        if any(isinstance(x, ast.Constant) and isinstance(x.value, str) for x in (l, r)) and any(_是argv(x) for x in (l, r)): return True
++        字 = lambda x: isinstance(x, ast.Constant) and isinstance(x.value, str) or isinstance(x, (ast.List, ast.Tuple)) and bool(x.elts) and all(isinstance(e, ast.Constant) and isinstance(e.value, str) for e in x.elts)
++        if any(字(x) for x in (l, r)) and any(_是argv(x) for x in (l, r)): return True   # sys.argv[1:2] == ['--带自检'] 也是分派
+     return False
++def _只报不停(n, f):
++    """这道 if 记下的“不通过”只进函数里的局部列表、函数不返回值、不 raise/exit：只打印给人看（机器复听 --清单 列 01–24 只列不改），不是门"""
++    if f is None: return False
++    if any(isinstance(x, (ast.Global, ast.Nonlocal, ast.Raise, ast.Yield)) or isinstance(x, ast.Return) and x.value is not None
++           or isinstance(x, ast.Call) and getattr(x.func, 'attr', '') in ('exit', '_exit') for x in ast.walk(f)): return False
++    loc = {t.id for x in ast.walk(f) if isinstance(x, ast.Assign) for t in x.targets if isinstance(t, ast.Name)} - {a.arg for a in f.args.args}
++    nm = []
++    for s in (b for b in n.body if _是停(b)):
++        if isinstance(s, ast.Expr) and isinstance(s.value.func, ast.Attribute) and isinstance(s.value.func.value, ast.Name): nm.append(s.value.func.value.id)
++        elif isinstance(s, ast.AugAssign): nm.append(s.target.id)
++        else: return False
++    return bool(nm) and all(x in loc for x in nm)
+ def 门_py(txt):
+     """[(行号, (起行, 起列字节, 止行, 止列字节), 原文, False)]：if 判断、分支里直接有“停/记不通过”的"""
+     try: tree = ast.parse(txt)
+     except SyntaxError: return []
+-    out = []; fn_of = {}
+-    for f in ast.walk(tree):
+-        if isinstance(f, (ast.FunctionDef, ast.AsyncFunctionDef)):
+-            for x in ast.walk(f): fn_of.setdefault(id(x), f.name)
++    out = []; fn_of = {}; fo = {}
++    for f in sorted((f for f in ast.walk(tree) if isinstance(f, (ast.FunctionDef, ast.AsyncFunctionDef))), key=lambda f: f.end_lineno - f.lineno):   # 最里层的函数先认
++        for x in ast.walk(f): fn_of.setdefault(id(x), f.name); fo.setdefault(id(x), f)
+     for n in ast.walk(tree):
+-        if isinstance(n, ast.If) and not _派发(n.test) and any(_是停(b) for b in n.body) and not 自检门(txt, n, fn_of.get(id(n), '')):
++        if isinstance(n, ast.If) and not _派发(n.test) and any(_是停(b) for b in n.body) and not 自检门(txt, n, fn_of.get(id(n), '')) and not _只报不停(n, fo.get(id(n))):
+             t = n.test; out.append((n.lineno, (t.lineno, t.col_offset, t.end_lineno, t.end_col_offset), txt.splitlines()[n.lineno - 1].strip()[:120], False))
+     return sorted(out)
+ def 变异_py(txt, pos):
+@@ -208,8 +221,10 @@ def 探测命令(M, 全, rel, 门=None):
+     ids = {s[0] for s in Y.场景} | {s[0] for s in Y.仓库场景}
+     主 = sorted({x for t in tags if t.startswith('主|') for x in [re.sub(r'^(演练_)?(原样)?(仓库_)?', '', t[2:])] if x in ids})   # 工作目录名 演练_仓库_<场景>、演练_<场景>
+     声 = sorted({sid for t in tags if t.startswith('声|') for sid in [s[0] for s in S.声音场景] if re.sub(r'^演练_声_|_video$', '', t[2:]) == sid})
+-    if not cs and not 主 and not 声 and any(t.startswith('声|') for t in tags): return [['待声音归属']]   # 只有声音演练走到、归属不到场景（旧覆盖图）：下次覆盖再测
+     胶 = "import sys;sys.path.insert(0,{tool!r});import 规则执行核查 as R;R.印章有效=lambda p:True;import runpy;sys.argv=[{p!r}]+{a!r};runpy.run_path({tool!r}+'/'+{p!r},run_name='__main__')"
++    if not cs and not 主 and not 声 and any(t.startswith('声|') for t in tags):
++        if rel in ('执行效应声音演练.py', '演练镜像.py') and 全: return [['python3', '-c', 胶.format(tool=tool, p='执行效应声音演练.py', a=[])]]   # 演练主程序自己的门（通路、清点）：整场声音演练当探测（一门一台机器）
++        return [['待声音归属']]   # 只有声音演练走到、归属不到场景（旧覆盖图）：下次覆盖再测
+     if 全 and 主: cs.append(['python3', '-c', 胶.format(tool=tool, p='执行效应演练.py', a=主)])
+     if 全 and 声: cs.append(['python3', '-c', 胶.format(tool=tool, p='执行效应声音演练.py', a=声)])
+     return cs
+@@ -298,6 +313,10 @@ def 查基线():
+     if len(hs) > len(b): e.append(f'门变异漏洞变多（{len(hs)} > 基线 {len(b)}）：新漏洞补演练场景或自检，补完重跑必须“发现”')
+     nw = [x for x in 新门(t) if not 是sh(x.split('|')[0])]
+     return e, ([f'门变异：{len(nw)} 道 .py 门是清单记录以后新加或改过的（{"、".join(sorted({x.split("|")[0] for x in nw}))[:80]}），找时间 GitHub 全量重跑'] if nw else [])
++def 未发现门():
++    """清单里结论不是“发现”的门 + 清单记录以后新加、改过的门"""
++    t = open(清单).read() if os.path.exists(清单) else ''
++    return set(re.findall(r'^\| (\S+\|[0-9a-f]{10}\|\d+) \|', t, re.M)) | set(新门(t))
+ def 新门(t=None):
+     t = t if t is not None else (open(清单).read() if os.path.exists(清单) else '')
+     m = re.search(r'## 门全集[^\n]*\n\n```\n(.*?)```', t, re.S); old = set(m.group(1).split()) if m else set()
+@@ -326,7 +345,11 @@ def 自检():
+     pf = "import sys\na = sys.argv[1:]\nif '--自检' in a:\n    sys.exit(main())\nif __name__ == '__main__':\n    sys.exit(main())\nif a and a[0] == '--查': sys.exit(查())\nif bad:\n    sys.exit(1)\n"
+     pr = "res = []; out = []\nif t:\n    res.append((f'把 {w} 挪', ok))\nif d:\n    out += [(c, k, x)]\nif bad:\n    res.append(f'不通过：{x}')\nif g:\n    res.append(('真仓库没被碰', False, why))\nif h:\n    out.append((i, '中文变量展开（bash 不认）'))\n"
+     if [g[0] for g in 门_py(pr)] != [6, 8, 10]: f.append(f'收普通结果的 res.append((标签, 布尔))、out += [(元组)] 被当成门，或记说明文字的真门漏了：{门_py(pr)}')
++    pf2 = "import sys\na_ = sys.argv[1:]\nif sys.argv[1:2] == ['--带自检']:\n    sys.exit(2 if f else 0)\nif a_[0] == '--自检':\n    sys.exit(main())\nif bad:\n    sys.exit(1)\n"
++    if [g[0] for g in 门_py(pf2)] != [7]: f.append(f'派发 if（a_[0] == "--自检"、sys.argv[1:2] == ["--带自检"]）被当成门，或真门漏了：{门_py(pf2)}')
+     if [g[0] for g in 门_py(pf)] != [8]: f.append(f'派发 if（按命令行参数、__name__ 分派）被当成门，或真门漏了（G79 交接①）：{门_py(pf)}')
++    pr2 = "def 清单():\n    bad = []\n    for x in y:\n        if x: bad.append(f'S{x}：听错')\n    print(bad)\ndef 查():\n    bad = []\n    if z: bad.append('不通过')\n    return bad\n"
++    if [g[0] for g in 门_py(pr2)] != [8]: f.append(f'只打印给人看的清单（局部列表、不返回、不停）被当成门，或返回问题的真门漏了：{门_py(pr2)}')
+     py2 = 'if (a and\n        b):\n    sys.exit(1)\n'
+     try: ast.parse(变异_py(py2, 门_py(py2)[0][1]))
+     except Exception as e: f.append(f'.py 多行判断拆门坏了：{e!r}')
+@@ -378,11 +401,12 @@ def main():
+         hs = 写清单(res); print(f'门变异清单：{len(res)} 道门，漏洞 {len(hs)}'); return 0
+     if '--分片表' in a:   # 按覆盖图：每个文件走到的门数 / 每片约 10 道 → 请求行的 文件@i@n 列表（没走到的门不用跑，一片带完）
+         图 = json.load(open(覆盖图)) if os.path.exists(覆盖图) else {'门': {}}; out = []
++        只基 = 未发现门() if '--只基线' in a else None
+         for rel in 入口文件():
+-            gs = 列门(rel, open(f'{T}/{rel}').read()); k = sum(1 for g in gs if 门号(g) in 图['门'] or 是sh(rel) or 门号(g) not in set(图.get('全集', [])))
++            gs = [g for g in 列门(rel, open(f'{T}/{rel}').read()) if 只基 is None or 门号(g) in 只基]; k = sum(1 for g in gs if 门号(g) in 图['门'] or 是sh(rel) or 门号(g) not in set(图.get('全集', [])))
+             if not gs: continue
+             演 = sum(1 for g in gs if any('执行效应' in ' '.join(c) for c in 探测命令('/M', True, rel, 门号(g))))   # K44：带演练的门一片最多 2 道（演练只能一份一份跑）
+-            n = max(1, -(-k // 10), -(-演 // 2)); out += [f'{rel}@{i}@{n}' for i in range(1, n + 1)]
++            n = max(1, -(-k // 10), -(-演 // 2)); out += [f'{rel}{"~基线" if 只基 is not None else ""}@{i}@{n}' for i in range(1, n + 1)]
+         print(' '.join(out)); return 0
+     if '--列' in a:
+         g = 现行门(); n = {}
+@@ -393,12 +417,16 @@ def main():
+         res = 跑(['定稿流水线.sh'], 底=old)
+     else:
+         files = [x for x in a if not x.startswith('--')] or (入口文件() if '--全量' in a else [])
++        if any(x.endswith('~基线') for x in files):   # 补漏洞那几批：只拆清单里还没“发现”的门和清单以后新加、改过的门（文件名后缀 ~基线，请求行 F~基线@i@n，工作流不用改）
++            files = [x.removesuffix('~基线') for x in files]; 基线门 = 未发现门()
++        else: 基线门 = None
+         if not files:
+             print('门变异：没指定文件（--全量 跑全部入口，放 GitHub）'); return 0
+         fp = next((x.split('=', 1)[1] for x in a if x.startswith('--分片=')), '')
+         rp0 = next((x.split('=', 1)[1] for x in a if x.startswith('--结果=')), '')
+         if rp0: json.dump([], open(rp0, 'w'))   # 先写空结果：这一片 0 道门或中途出错，写回步也有文件（G79 交接③）
+-        res = 跑(files, 全='--全' in a, 分片=tuple(map(int, fp.split('/'))) if fp else None)
++        只 = next((set(x.split('=', 1)[1].split(',')) for x in a if x.startswith('--门=')), 基线门)   # 本地补完一道门后只拆这几道验证（门号逗号隔开）
++        res = 跑(files, 全='--全' in a, 分片=tuple(map(int, fp.split('/'))) if fp else None, 只门=只)
+     rp = next((x.split('=', 1)[1] for x in a if x.startswith('--结果=')), '')
+     if rp: json.dump([[门号(g), g[0], g[1], g[3], c, m] for g, c, m in res], open(rp, 'w'), ensure_ascii=False, indent=0)
+     for g, c, m in res:
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\227\250\345\217\230\345\274\202\347\274\272\345\217\243\345\237\272\347\272\277.json" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\227\250\345\217\230\345\274\202\347\274\272\345\217\243\345\237\272\347\272\277.json"
+index cdd4dea..14025f0 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\227\250\345\217\230\345\274\202\347\274\272\345\217\243\345\237\272\347\272\277.json"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\227\250\345\217\230\345\274\202\347\274\272\345\217\243\345\237\272\347\272\277.json"
+@@ -1,55 +1,22 @@
+ {
+  "说明": "门变异漏洞基线（G79）：只许减少，目标 0；规则执行核查查清单漏洞数不比它多",
+  "漏洞": [
+-  "audio_qc.py|0c2400111f|0",
+-  "audio_qc.py|18158e4f4e|0",
+-  "audio_qc.py|589b59cc4b|0",
+   "check_all.py|14821f5508|0",
+-  "make_video.py|032486dbc0|0",
+-  "make_video.py|04badaab10|0",
+-  "make_video.py|090d57782e|0",
+-  "make_video.py|0911e79771|0",
+-  "make_video.py|0c4f3769d4|0",
+-  "make_video.py|10ec2a2bcb|0",
+-  "make_video.py|1cc69ea278|0",
+-  "make_video.py|2204060310|0",
+-  "make_video.py|2b2ceb6a6a|0",
+-  "make_video.py|31110c9c74|0",
+-  "make_video.py|49e7e458e4|0",
+-  "make_video.py|56999047b6|0",
+-  "make_video.py|578110f5de|0",
+-  "make_video.py|644770fadf|0",
+-  "make_video.py|64e0c8792e|0",
+-  "make_video.py|6d57756f38|0",
+-  "make_video.py|707db287dc|0",
+-  "make_video.py|72a405ad2c|0",
+-  "make_video.py|78493eea0c|0",
+-  "make_video.py|7a1dc20cb3|0",
+-  "make_video.py|7f9fbeb706|0",
+-  "make_video.py|931a09a8a0|0",
+-  "make_video.py|a9ca4dba6a|0",
+-  "make_video.py|c0c08d1f5e|0",
+-  "make_video.py|ca6ca566b6|0",
+-  "make_video.py|d7f6064410|0",
+-  "make_video.py|e7075f9b1e|0",
+-  "make_video.py|e9050f9848|0",
+-  "make_video.py|fe9bf0069b|0",
+-  "交付核查.py|2478031aec|0",
+   "会话开工.py|0088ba3970|0",
++  "会话开工.py|632258af08|0",
+   "会话开工.py|c6c6709c5a|0",
+   "会话开工.py|d54a53f0a8|0",
++  "会话开工.py|df4a151a9a|0",
+   "停顿位置精确核对.py|3b8a8573ce|0",
+   "停顿位置精确核对.py|65ae5d7d61|0",
+   "停顿位置精确核对.py|c00e7a63b6|0",
+   "全篇核查.py|04f6c132a0|0",
+   "全篇核查.py|3ad7e5d97c|0",
+   "全篇核查.py|dd56883bc7|0",
+-  "句内响度.py|81c10b70b3|0",
+   "句间停顿核对.py|4d521f20f6|0",
+   "句首句尾与停顿位置核对.py|327e851fdd|0",
+   "响度一致性核对.py|317cd72f84|0",
+   "响度一致性核对.py|70e53527df|0",
+-  "响度一致性核对.py|d9be11f71e|0",
+   "定稿视频核对.py|0ef80b1539|0",
+   "定稿视频核对.py|1f2986d762|0",
+   "定稿视频核对.py|3592846ef0|0",
+@@ -65,13 +32,17 @@
+   "开工记录.py|5548ae32ce|0",
+   "开工记录.py|88bb6f9617|0",
+   "归档定稿视频.py|a716a8f873|0",
+-  "执行效应声音演练.py|34dff4ea07|0",
+-  "执行效应声音演练.py|490322bb5b|0",
+-  "执行效应声音演练.py|6273f4bee4|0",
+-  "执行效应声音演练.py|8e0213724f|0",
+-  "执行效应声音演练.py|a7e6912d38|0",
+-  "执行效应声音演练.py|c8ccb02ed1|0",
+-  "执行效应声音演练.py|ca52b53ba3|0",
++  "彩排.sh|156474f412|53",
++  "彩排.sh|1c966240d3|33",
++  "彩排.sh|2a094ac83e|30",
++  "彩排.sh|786178700d|30",
++  "彩排.sh|ad681fd8cd|129",
++  "彩排.sh|c9feab6080|62",
++  "彩排.sh|cd5059f79b|73",
++  "彩排.sh|d7cd55a3c5|32",
++  "彩排.sh|da6c09f5ef|56",
++  "彩排.sh|dfefb5ca96|43",
++  "执行效应声音演练.py|ba2bdf0f3e|0",
+   "执行效应演练.py|2b0fa65c38|0",
+   "执行效应演练.py|3b241b55cf|0",
+   "执行效应演练.py|3c8c72f22a|0",
+@@ -80,11 +51,6 @@
+   "执行效应演练.py|dc320935eb|0",
+   "报坑.py|d8783d18f9|0",
+   "收工记录.py|f027dd71dc|0",
+-  "机器复听.py|2fe83af25d|0",
+-  "机器复听.py|4bfd2941ed|0",
+-  "机器复听.py|6d43285298|0",
+-  "机器复听.py|a8fa756068|0",
+-  "机器复听.py|fc17d0b4dd|0",
+   "标点停顿核对.py|fbe9f18d33|0",
+   "流程自检.py|004608b715|0",
+   "流程自检.py|26977fcb1b|0",
+@@ -93,6 +59,7 @@
+   "流程自检.py|4811fd76df|0",
+   "流程自检.py|4cfaaa71d4|0",
+   "流程自检.py|666f1f4026|0",
++  "流程自检.py|69f917b1f3|0",
+   "流程自检.py|81005ec34c|0",
+   "流程自检.py|87bb5ab6cc|0",
+   "流程自检.py|8999f8401b|0",
+@@ -108,15 +75,10 @@
+   "用上核查.py|9522cacc77|0",
+   "用上核查.py|a6ae082801|0",
+   "用上核查.py|d81b52656e|0",
+-  "疑点清单.py|054ad7aac8|0",
+-  "疑点清单.py|c374989fc6|0",
+-  "结尾句接点.py|602fa38dac|0",
+-  "结尾句接点.py|d680939115|0",
+-  "缓存进仓库核对.py|304dd5af82|0",
+-  "缓存进仓库核对.py|c3e0b6acb5|0",
+   "规则执行核查.py|01d5d8e0b4|0",
+   "规则执行核查.py|51e21e9129|0",
+   "规则执行核查.py|5b19c714d6|0",
++  "规则执行核查.py|5c921d87e9|0",
+   "规则执行核查.py|fb8e760695|0",
+   "证据.py|560066b62d|0",
+   "证据.py|76f0789372|0",
+@@ -124,12 +86,10 @@
+   "词尾辅音核对.py|1ce8274460|0",
+   "词尾辅音核对.py|749430d169|0",
+   "词尾辅音核对.py|8dfdf79df3|0",
+-  "词尾辅音核对.py|f8a3e54994|0",
+   "踩坑核查.py|05748d914c|0",
+   "踩坑核查.py|a3df3ede6d|0",
+   "踩坑核查.py|ce879f90c8|0",
+   "踩坑核查.py|efdb08e5f7|0",
+-  "踩坑核查.py|f8fce30a57|0",
+-  "音频体检.py|6d43285298|0"
++  "踩坑核查.py|f8fce30a57|0"
+  ]
+ }
+\ No newline at end of file
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\227\250\345\217\230\345\274\202\350\246\206\347\233\226.json" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\227\250\345\217\230\345\274\202\350\246\206\347\233\226.json"
+index 63594b6..150c9fd 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\227\250\345\217\230\345\274\202\350\246\206\347\233\226.json"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\227\250\345\217\230\345\274\202\350\246\206\347\233\226.json"
+@@ -82,12 +82,14 @@
+ "会话开工.py|0088ba3970|0",
+ "会话开工.py|0ee2832aed|0",
+ "会话开工.py|164e974177|0",
++"会话开工.py|632258af08|0",
+ "会话开工.py|71ec73b04d|0",
+ "会话开工.py|9f4627d2c6|0",
+ "会话开工.py|adc05d0d00|0",
+ "会话开工.py|bb542d6ff6|0",
+ "会话开工.py|c6c6709c5a|0",
+ "会话开工.py|d54a53f0a8|0",
++"会话开工.py|df4a151a9a|0",
+ "停顿位置精确核对.py|14f9356b3f|0",
+ "停顿位置精确核对.py|3b8a8573ce|0",
+ "停顿位置精确核对.py|65ae5d7d61|0",
+@@ -148,6 +150,7 @@
+ "归档定稿视频.py|a716a8f873|0",
+ "归档定稿视频.py|dc087cb1c5|0",
+ "执行效应声音演练.py|0de54afa8d|0",
++"执行效应声音演练.py|123a3b125c|0",
+ "执行效应声音演练.py|34dff4ea07|0",
+ "执行效应声音演练.py|480776678a|0",
+ "执行效应声音演练.py|490322bb5b|0",
+@@ -155,6 +158,8 @@
+ "执行效应声音演练.py|8e0213724f|0",
+ "执行效应声音演练.py|9c8dd79aa4|0",
+ "执行效应声音演练.py|a7e6912d38|0",
++"执行效应声音演练.py|ba2bdf0f3e|0",
++"执行效应声音演练.py|becf6833e2|0",
+ "执行效应声音演练.py|c8ccb02ed1|0",
+ "执行效应声音演练.py|ca52b53ba3|0",
+ "执行效应演练.py|0de54afa8d|0",
+@@ -202,6 +207,7 @@
+ "流程自检.py|4cfaaa71d4|0",
+ "流程自检.py|62ebcb59a2|0",
+ "流程自检.py|666f1f4026|0",
++"流程自检.py|69f917b1f3|0",
+ "流程自检.py|81005ec34c|0",
+ "流程自检.py|87bb5ab6cc|0",
+ "流程自检.py|8999f8401b|0",
+@@ -224,6 +230,7 @@
+ "用上核查.py|a6ae082801|0",
+ "用上核查.py|d81b52656e|0",
+ "疑点清单.py|054ad7aac8|0",
++"疑点清单.py|8a45ad95c3|0",
+ "疑点清单.py|b2844b651f|0",
+ "疑点清单.py|c374989fc6|0",
+ "确认按位置迁移.py|14f9356b3f|0",
+@@ -235,13 +242,16 @@
+ "结尾句接点.py|d680939115|0",
+ "缓存进仓库核对.py|14f9356b3f|0",
+ "缓存进仓库核对.py|304dd5af82|0",
++"缓存进仓库核对.py|b7f006da92|0",
+ "缓存进仓库核对.py|c3e0b6acb5|0",
++"缓存进仓库核对.py|eeed5bbfdb|0",
+ "规则执行核查.py|01d5d8e0b4|0",
+ "规则执行核查.py|0619ec15be|0",
+ "规则执行核查.py|0de54afa8d|0",
+ "规则执行核查.py|18cf8e332c|0",
+ "规则执行核查.py|51e21e9129|0",
+ "规则执行核查.py|5b19c714d6|0",
++"规则执行核查.py|5c921d87e9|0",
+ "规则执行核查.py|fb8e760695|0",
+ "证据.py|0b6c7e7e7a|0",
+ "证据.py|0de54afa8d|0",
+@@ -330,8 +340,8 @@
+ "踩坑核查.py|f8fce30a57|0",
+ "门变异.py|0de54afa8d|0",
+ "门变异.py|15137a4727|0",
++"门变异.py|852b7935bd|0",
+ "门变异.py|98c17df3a7|0",
+-"门变异.py|fdfd8826ac|0",
+ "音频体检.py|0de54afa8d|0",
+ "音频体检.py|6d43285298|0",
+ "音频体检.py|9c8dd79aa4|0",
+@@ -353,7 +363,8 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video"
+ ],
+ "audio_qc.py|18158e4f4e|0": [
+ "声|演练_声_A13独立复核剪句尾_video",
+@@ -369,23 +380,8 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
+-],
+-"audio_qc.py|26c3362628|0": [
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video"
+ ],
+ "audio_qc.py|26c42a63ce|0": [
+ "声|演练_声_A13独立复核剪句尾_video",
+@@ -401,7 +397,8 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video"
+ ],
+ "audio_qc.py|589b59cc4b|0": [
+ "声|演练_声_A13独立复核剪句尾_video",
+@@ -417,11 +414,8 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
+-],
+-"check_all.py|00e973cb64|0": [
+-"F13|工具",
+-"F22|工具"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video"
+ ],
+ "check_all.py|14821f5508|0": [
+ "主|演练_D1换行标记",
+@@ -491,6 +485,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -499,8 +494,8 @@
+ "声|演练_声_拆门_video"
+ ],
+ "check_all.py|267cf86771|0": [
+-"F13|工具",
+-"F22|工具",
++"F14|工具",
++"F23|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -568,6 +563,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -576,7 +572,6 @@
+ "声|演练_声_拆门_video"
+ ],
+ "check_all.py|37ec5273a9|0": [
+-"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -640,19 +635,10 @@
+ "主|演练_原样仓库_踩坑出片_25",
+ "主|演练_原样仓库_踩坑文本_23",
+ "主|演练_文10同词异译",
+-"主|演练_逐句确认没重做",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
++"主|演练_逐句确认没重做"
+ ],
+ "check_all.py|6de17d0475|0": [
+-"F13|工具",
++"F14|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -710,6 +696,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -718,7 +705,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "check_all.py|7d6592bbe7|0": [
+-"F13|工具",
++"F14|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -786,6 +773,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -794,7 +782,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "check_all.py|7ef593e975|0": [
+-"F13|工具",
++"F14|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -862,6 +850,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -870,7 +859,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "check_all.py|80ee8e63cc|0": [
+-"F13|工具",
++"F14|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -938,6 +927,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -946,7 +936,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "check_all.py|8778e62f5c|0": [
+-"F13|工具",
++"F14|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -1014,6 +1004,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -1022,7 +1013,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "check_all.py|9d027f62cb|0": [
+-"F13|工具",
++"F14|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -1090,6 +1081,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -1098,7 +1090,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "check_all.py|a00e661e7f|0": [
+-"F13|工具",
++"F14|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -1166,6 +1158,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -1174,7 +1167,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "check_all.py|b035c14729|0": [
+-"F13|工具",
++"F14|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -1242,6 +1235,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -1250,7 +1244,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "check_all.py|d85494a0ad|0": [
+-"F13|工具",
++"F14|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -1318,6 +1312,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -1393,6 +1388,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -1400,61 +1396,84 @@
+ "声|演练_声_原样出片前20_video",
+ "声|演练_声_拆门_video"
+ ],
++"make_video.py|032486dbc0|0": [
++"G|守门自检"
++],
+ "make_video.py|04badaab10|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|090d57782e|0": [
++"G|vw_video",
+ "G|守门自检",
++"G|守门自检_私_video",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|0911e79771|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|0c4f3769d4|0": [
+-"G|video",
+-"G|work_video",
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|10ec2a2bcb|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|13dfa0fcbb|0": [
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|14c705ce97|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|1833184477|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
++"make_video.py|1cc69ea278|0": [
++"G|vw_video"
++],
+ "make_video.py|2155ab994f|0": [
++"G|vw_video",
+ "G|守门自检"
+ ],
+ "make_video.py|2204060310|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+@@ -1462,22 +1481,30 @@
+ "make_video.py|22edc8ffb3|0": [
+ "G|守门自检"
+ ],
++"make_video.py|2b2ceb6a6a|0": [
++"G|vw_video"
++],
+ "make_video.py|2e33b34607|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|31110c9c74|0": [
+-"G|video",
+-"G|work_video",
++"G|vw_video",
+ "G|守门自检",
++"G|守门自检_私_video",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|318674c91c|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+@@ -1489,16 +1516,20 @@
+ "G|守门自检"
+ ],
+ "make_video.py|3e902234dd|0": [
++"G|vw_video",
+ "G|守门自检"
+ ],
+ "make_video.py|4875c51ad9|0": [
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|49e7e458e4|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+@@ -1506,90 +1537,124 @@
+ "make_video.py|4b92f82e18|0": [
+ "G|守门自检"
+ ],
++"make_video.py|56999047b6|0": [
++"G|vw_video"
++],
+ "make_video.py|578110f5de|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|59a2dfa4e4|0": [
++"G|vw_video",
+ "G|守门自检",
++"G|守门自检_私_video",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|5a2879e396|0": [
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|5dc8005145|0": [
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|644770fadf|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|64e0c8792e|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+-"make_video.py|6dcda231e0|0": [
+-"G|守门自检",
+-"声|演练_声底稿20",
+-"声|演练_声底稿25",
+-"声|演练_声底稿26"
++"make_video.py|6d57756f38|0": [
++"G|vw_video"
+ ],
+ "make_video.py|6ebb99c685|0": [
+ "G|守门自检"
+ ],
+ "make_video.py|707db287dc|0": [
+-"G|video",
+-"G|work_video",
++"G|vw_video",
+ "G|守门自检",
++"G|守门自检_私_video",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|72a405ad2c|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|78493eea0c|0": [
++"G|vw_video",
+ "G|守门自检",
++"G|守门自检_私_video",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
++"make_video.py|7a1dc20cb3|0": [
++"G|vw_video"
++],
+ "make_video.py|7a532b1d64|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
++"make_video.py|7f9fbeb706|0": [
++"G|vw_video"
++],
++"make_video.py|931a09a8a0|0": [
++"G|vw_video"
++],
+ "make_video.py|a6fc7bab11|0": [
+ "G|守门自检"
+ ],
++"make_video.py|a9ca4dba6a|0": [
++"G|vw_video"
++],
+ "make_video.py|aae15e2cf4|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|b715ece2e5|0": [
+-"G|video",
+-"G|work_video",
++"G|vw_video",
+ "G|守门自检",
++"G|守门自检_私_video",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+@@ -1598,61 +1663,76 @@
+ "G|守门自检"
+ ],
+ "make_video.py|c0c08d1f5e|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|c86b12ba90|0": [
++"G|vw_video",
++"G|守门自检"
++],
++"make_video.py|ca6ca566b6|0": [
+ "G|守门自检"
+ ],
+ "make_video.py|cac5f20ea3|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|d7f6064410|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|db5699b24e|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
++"make_video.py|e7075f9b1e|0": [
++"G|vw_video"
++],
+ "make_video.py|e9050f9848|0": [
++"G|vw_video",
+ "G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "make_video.py|ea1ce3156d|0": [
+-"G|video",
+-"G|work_video",
++"G|vw_video",
+ "G|守门自检"
+ ],
+ "make_video.py|fe9bf0069b|0": [
++"G|vw_video",
+ "G|守门自检",
+-"声|演练_声底稿20",
+-"声|演练_声底稿25",
+-"声|演练_声底稿26"
+-],
+-"make_video.py|ff7730e7c3|0": [
+-"G|守门自检",
++"声|演练_声_通路26_video",
+ "声|演练_声底稿20",
+ "声|演练_声底稿25",
+ "声|演练_声底稿26"
+ ],
+ "交付核查.py|2478031aec|0": [
+-"F9|工具",
++"F10|tmp",
++"F10|工具",
++"F7|tmp",
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A13独立复核剪句尾_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A2削波_video",
+ "声|演练_声_A2句间呼吸声_video",
+@@ -1670,10 +1750,11 @@
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+ "声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video",
+ "声|演练_声_拆门_video"
+ ],
+ "交付核查.py|6ca6a880d4|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "交付核查.py|9d88a869ff|0": [
+ "声|演练_声_A13独立复核剪句尾_video",
+@@ -1685,54 +1766,42 @@
+ "声|演练_声_拆parakeet_video"
+ ],
+ "会话开工.py|0ee2832aed|0": [
+-"F14|工具",
+-"F40|工具",
+-"F9|工具",
+ "主|演练_仓库_G63没开工就提交",
+ "主|演练_仓库_守则1开工提醒",
+ "主|演练_原样仓库_开工提醒_24"
+ ],
+ "会话开工.py|164e974177|0": [
+-"F14|工具",
+-"F9|工具",
+ "主|演练_仓库_G63没开工就提交",
+ "主|演练_仓库_守则1开工提醒",
+ "主|演练_原样仓库_开工提醒_24"
+ ],
++"会话开工.py|632258af08|0": [
++"F41|工具"
++],
+ "会话开工.py|71ec73b04d|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "会话开工.py|9f4627d2c6|0": [
+-"F14|工具",
+-"F9|工具",
+ "主|演练_仓库_G63没开工就提交",
+ "主|演练_仓库_守则1开工提醒",
+ "主|演练_原样仓库_开工提醒_24"
+ ],
+ "会话开工.py|adc05d0d00|0": [
+-"F40|工具",
++"F41|工具",
+ "主|演练_原样仓库_开工记录_25"
+ ],
+ "会话开工.py|bb542d6ff6|0": [
+-"F40|工具",
++"F41|工具",
+ "主|演练_原样仓库_开工记录_25"
+ ],
+-"停顿位置精确核对.py|14f9356b3f|0": [
+-"F24|工具",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
++"会话开工.py|df4a151a9a|0": [
++"F41|工具"
+ ],
+ "停顿位置精确核对.py|3b8a8573ce|0": [
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -1744,6 +1813,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -1755,6 +1825,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -1767,11 +1838,6 @@
+ "主|演练_原样仓库_欠着_23"
+ ],
+ "出片指纹.py|0de54afa8d|0": [
+-"F14|工具",
+-"F18|工具",
+-"F19|工具",
+-"F9|工具",
+-"G|守门自检",
+ "主|video",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+@@ -1850,37 +1916,9 @@
+ "主|演练_原样仓库_踩坑文本_23",
+ "主|演练_拆门_流7没说定稿就定稿",
+ "主|演练_文10同词异译",
+-"主|演练_逐句确认没重做",
+-"声|work_video",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video",
+-"声|演练_声_拆门_video",
+-"声|演练_声底稿20",
+-"声|演练_声底稿25",
+-"声|演练_声底稿26"
++"主|演练_逐句确认没重做"
+ ],
+ "出片指纹.py|0ee2832aed|0": [
+-"F19|工具",
+ "主|演练_仓库_G19工作稿是旧稿",
+ "主|演练_仓库_G28定稿后撤回",
+ "主|演练_仓库_G54报坑超期",
+@@ -1891,7 +1929,7 @@
+ "主|演练_拆门_流7没说定稿就定稿"
+ ],
+ "出片指纹.py|1fe51a17d6|0": [
+-"F19|工具",
++"F20|工具",
+ "声|演练_声_A13独立复核剪句尾_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A2削波_video",
+@@ -1905,10 +1943,11 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video"
+ ],
+ "出片指纹.py|734c16b382|0": [
+-"F19|工具",
++"F20|工具",
+ "声|演练_声_A13独立复核剪句尾_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A2削波_video",
+@@ -1922,7 +1961,8 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video"
+ ],
+ "出片指纹.py|837f172f4f|0": [
+ "主|演练_仓库_G19工作稿是旧稿",
+@@ -1935,10 +1975,9 @@
+ "主|演练_拆门_流7没说定稿就定稿"
+ ],
+ "出片指纹.py|8aff3c6faa|0": [
+-"F19|工具",
+-"F9|演练门_0q3a2t_w",
+-"F9|演练门_2axhifly",
+-"F9|演练门_fkb0zrue",
++"F10|演练门_vpv95kdf",
++"F20|工具",
++"F43|工具",
+ "主|video",
+ "主|演练_仓库_G19工作稿是旧稿",
+ "主|演练_仓库_G25演练读现稿",
+@@ -1950,7 +1989,7 @@
+ "主|演练_仓库_画17规则核查在最前",
+ "主|演练_原样仓库_演练入口_24",
+ "主|演练_拆门_流7没说定稿就定稿",
+-"声|work_video",
++"声|vw_video",
+ "声|演练_声_A13独立复核剪句尾_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A2削波_video",
+@@ -1964,13 +2003,13 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video"
+ ],
+ "出片指纹.py|a2a0365fa7|0": [
+-"F19|工具",
+-"F9|演练门_0q3a2t_w",
+-"F9|演练门_2axhifly",
+-"F9|演练门_fkb0zrue",
++"F10|演练门_vpv95kdf",
++"F20|工具",
++"F43|工具",
+ "主|video",
+ "主|演练_仓库_G19工作稿是旧稿",
+ "主|演练_仓库_G25演练读现稿",
+@@ -1982,7 +2021,7 @@
+ "主|演练_仓库_画17规则核查在最前",
+ "主|演练_原样仓库_演练入口_24",
+ "主|演练_拆门_流7没说定稿就定稿",
+-"声|work_video",
++"声|vw_video",
+ "声|演练_声_A13独立复核剪句尾_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A2削波_video",
+@@ -1996,10 +2035,11 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video"
+ ],
+ "出片指纹.py|ba02a7b304|0": [
+-"F19|工具",
++"F20|工具",
+ "声|演练_声_A13独立复核剪句尾_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A2削波_video",
+@@ -2013,10 +2053,11 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video"
+ ],
+ "出片指纹.py|c0ae31763f|0": [
+-"F19|工具",
++"F20|工具",
+ "声|演练_声_A13独立复核剪句尾_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A2削波_video",
+@@ -2030,49 +2071,16 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
+-],
+-"区间作废.py|26f5523645|0": [
+-"F6|工具"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video"
+ ],
+ "区间作废.py|e810f146aa|0": [
+-"F6|工具",
+-"F9|工具"
+-],
+-"句内响度.py|26c3362628|0": [
+-"F21|工具"
+-],
+-"句间停顿核对.py|0de54afa8d|0": [
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"F10|工具",
++"F7|工具"
+ ],
+-"句间停顿核对.py|26c3362628|0": [
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"句内响度.py|81c10b70b3|0": [
++"F22|句内响度自检_vfhd3lrv",
++"声|演练_声_通路26_video"
+ ],
+ "句间停顿核对.py|4d521f20f6|0": [
+ "声|演练_声_A13独立复核剪句尾_video",
+@@ -2088,7 +2096,8 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video"
+ ],
+ "句间停顿核对.py|876121bbd9|0": [
+ "声|演练_声_A13独立复核剪句尾_video",
+@@ -2103,23 +2112,15 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
+-],
+-"句首句尾与停顿位置核对.py|26c3362628|0": [
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video",
++"声|演练_声_通路26_video"
+ ],
+ "句首句尾与停顿位置核对.py|327e851fdd|0": [
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -2127,46 +2128,9 @@
+ "声|演练_声_原样出片前20_video",
+ "声|演练_声_拆门_video"
+ ],
+-"响度一致性核对.py|0de54afa8d|0": [
+-"F21|工具",
+-"F25|工具",
+-"G|守门自检",
+-"声|work_video",
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video",
+-"声|演练_声底稿26"
+-],
+-"响度一致性核对.py|26c3362628|0": [
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
+-],
+ "响度一致性核对.py|317cd72f84|0": [
+-"F21|工具",
+-"声|work_video",
++"F22|工具",
++"声|vw_video",
+ "声|演练_声_A13独立复核剪句尾_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A2削波_video",
+@@ -2180,7 +2144,9 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video",
++"声|演练_声_通路26_video"
+ ],
+ "响度一致性核对.py|70e53527df|0": [
+ "声|演练_声_A13独立复核剪句尾_video",
+@@ -2196,10 +2162,11 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video"
+ ],
+ "响度一致性核对.py|cd94a10bd1|0": [
+-"F25|工具",
++"F26|工具",
+ "声|演练_声_A13独立复核剪句尾_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A2削波_video",
+@@ -2213,7 +2180,8 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video"
+ ],
+ "响度一致性核对.py|d9be11f71e|0": [
+ "声|演练_声_A13独立复核剪句尾_video",
+@@ -2229,23 +2197,8 @@
+ "声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
+-],
+-"响度一致性核对.py|fd137d1f48|0": [
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video"
+ ],
+ "定稿视频核对.py|0ef80b1539|0": [
+ "主|演练_仓库_G9存的不是最终版",
+@@ -2288,24 +2241,14 @@
+ "主|演练_原样仓库_清点_23"
+ ],
+ "开工必读.py|0ee2832aed|0": [
+-"F14|工具",
+-"F22|工具",
+-"F35|工具",
+-"F36|工具",
+-"F9|工具",
+ "主|演练_仓库_守则1开工提醒",
+ "主|演练_原样仓库_开工提醒_24",
+ "主|演练_原样仓库_开工记录_25"
+ ],
+ "开工必读.py|122ef7a231|0": [
+-"F35|工具"
++"F36|工具"
+ ],
+ "开工必读.py|132fec1c7a|0": [
+-"F14|工具",
+-"F22|工具",
+-"F35|工具",
+-"F36|工具",
+-"F9|工具",
+ "主|演练_仓库_A26挂钩原文没了",
+ "主|演练_仓库_G14钩子会锁死",
+ "主|演练_仓库_G55做事对照没写",
+@@ -2317,45 +2260,19 @@
+ "主|演练_仓库_守则1开工提醒",
+ "主|演练_原样仓库_开工提醒_24",
+ "主|演练_原样仓库_开工记录_25",
+-"主|演练_原样仓库_规则核查_24",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video",
+-"声|演练_声_拆门_video"
++"主|演练_原样仓库_规则核查_24"
+ ],
+ "开工必读.py|5580b93562|0": [
+-"F35|工具"
++"F36|工具"
+ ],
+ "开工必读.py|73476668ee|0": [
+-"F36|工具"
++"F37|工具"
+ ],
+ "开工记录.py|0de54afa8d|0": [
+-"F22|工具",
+-"F9|工具",
+ "主|演练_仓库_G23开工记录不覆盖",
+ "主|演练_原样仓库_开工记录_25"
+ ],
+ "开工记录.py|26c3362628|0": [
+-"F22|工具",
+ "主|演练_仓库_G23开工记录不覆盖",
+ "主|演练_原样仓库_开工记录_25"
+ ],
+@@ -2366,13 +2283,6 @@
+ "主|演练_仓库_L12归档1080p"
+ ],
+ "执行效应声音演练.py|0de54afa8d|0": [
+-"F12|工具",
+-"F14|工具",
+-"F18|工具",
+-"F22|工具",
+-"F35|工具",
+-"F36|工具",
+-"F9|工具",
+ "主|video",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+@@ -2450,67 +2360,39 @@
+ "主|演练_原样仓库_踩坑文本_23",
+ "主|演练_文10同词异译",
+ "主|演练_自查拆门",
+-"主|演练_逐句确认没重做",
+-"声|work_video",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video",
+-"声|演练_声_拆门_video"
++"主|演练_逐句确认没重做"
+ ],
+-"执行效应声音演练.py|34dff4ea07|0": [
+-"声|work_video"
+-],
+-"执行效应声音演练.py|480776678a|0": [
+-"声|work_video"
++"执行效应声音演练.py|123a3b125c|0": [
++"F43|工具",
++"声|vw_video"
+ ],
+ "执行效应声音演练.py|490322bb5b|0": [
+-"声|work_video"
++"F43|工具",
++"声|vw_video"
+ ],
+ "执行效应声音演练.py|6273f4bee4|0": [
+-"声|work_video"
++"F43|工具",
++"声|vw_video"
+ ],
+-"执行效应声音演练.py|8e0213724f|0": [
+-"声|work_video"
++"执行效应声音演练.py|a7e6912d38|0": [
++"声|vw_video"
+ ],
+-"执行效应声音演练.py|9c8dd79aa4|0": [
+-"声|work_video"
++"执行效应声音演练.py|ba2bdf0f3e|0": [
++"声|vw_video"
+ ],
+-"执行效应声音演练.py|a7e6912d38|0": [
+-"声|work_video"
++"执行效应声音演练.py|becf6833e2|0": [
++"F43|工具",
++"声|vw_video"
+ ],
+ "执行效应声音演练.py|c8ccb02ed1|0": [
+-"声|work_video"
++"F43|工具",
++"声|vw_video"
+ ],
+ "执行效应声音演练.py|ca52b53ba3|0": [
+-"声|work_video"
++"F43|工具",
++"声|vw_video"
+ ],
+ "执行效应演练.py|0de54afa8d|0": [
+-"F12|工具",
+-"F14|工具",
+-"F18|工具",
+-"F22|工具",
+-"F35|工具",
+-"F36|工具",
+-"F9|工具",
+ "主|video",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+@@ -2589,31 +2471,7 @@
+ "主|演练_原样仓库_踩坑文本_23",
+ "主|演练_文10同词异译",
+ "主|演练_自查拆门",
+-"主|演练_逐句确认没重做",
+-"声|work_video",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video",
+-"声|演练_声_拆门_video"
++"主|演练_逐句确认没重做"
+ ],
+ "执行效应演练.py|2b0fa65c38|0": [
+ "主|video"
+@@ -2628,9 +2486,7 @@
+ "主|video"
+ ],
+ "执行效应演练.py|490322bb5b|0": [
+-"F9|演练门_0q3a2t_w",
+-"F9|演练门_2axhifly",
+-"F9|演练门_fkb0zrue",
++"F10|演练门_vpv95kdf",
+ "主|video",
+ "主|演练_仓库_G25演练读现稿",
+ "主|演练_原样仓库_演练入口_24"
+@@ -2644,9 +2500,7 @@
+ "主|演练_原样仓库_演练入口_24"
+ ],
+ "执行效应演练.py|ca52b53ba3|0": [
+-"F9|演练门_0q3a2t_w",
+-"F9|演练门_2axhifly",
+-"F9|演练门_fkb0zrue",
++"F10|演练门_vpv95kdf",
+ "主|video",
+ "主|演练_仓库_G25演练读现稿",
+ "主|演练_原样仓库_演练入口_24"
+@@ -2658,9 +2512,6 @@
+ "主|video"
+ ],
+ "报坑.py|0de54afa8d|0": [
+-"F14|工具",
+-"F34|工具",
+-"F9|工具",
+ "主|演练_仓库_A26挂钩原文没了",
+ "主|演练_仓库_G14钩子会锁死",
+ "主|演练_仓库_G62步骤表没跟",
+@@ -2674,54 +2525,41 @@
+ "主|演练_仓库_守则1开工提醒",
+ "主|演练_原样仓库_开工提醒_24",
+ "主|演练_原样仓库_报坑自检_24",
+-"主|演练_原样仓库_规则核查_24",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video",
+-"声|演练_声_拆门_video"
++"主|演练_原样仓库_规则核查_24"
+ ],
+ "报坑.py|6c1288142d|0": [
+-"F34|工具",
++"F35|工具",
+ "主|演练_仓库_G64自检指向真origin",
+ "主|演练_仓库_G66没持锁改门",
+ "主|演练_仓库_G73取号弄脏本地",
+ "主|演练_原样仓库_报坑自检_24"
+ ],
+ "报坑.py|a769bdf913|0": [
+-"F34|工具",
++"F35|工具",
+ "主|演练_仓库_G64自检指向真origin",
+ "主|演练_仓库_G66没持锁改门",
+ "主|演练_仓库_G73取号弄脏本地",
+ "主|演练_原样仓库_报坑自检_24"
+ ],
+ "报坑.py|fa2b338a89|0": [
+-"F34|工具",
++"F35|工具",
+ "主|演练_仓库_G64自检指向真origin",
+ "主|演练_仓库_G66没持锁改门",
+ "主|演练_仓库_G73取号弄脏本地",
+ "主|演练_原样仓库_报坑自检_24"
+ ],
++"收工记录.py|f027dd71dc|0": [
++"声|演练_声_A13独立复核剪句尾_video",
++"声|演练_声_A20句首被吃_video",
++"声|演练_声_A2削波_video",
++"声|演练_声_A2句间呼吸声_video",
++"声|演练_声_A8一句变轻_video",
++"声|演练_声_G26旧视频配新脚本_video",
++"声|演练_声_L14高亮错开_video",
++"声|演练_声_原样出片后20_video",
++"声|演练_声_拆自检_video"
++],
+ "放行口子核查.py|0de54afa8d|0": [
+-"F7|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -2786,22 +2624,12 @@
+ "主|演练_原样仓库_踩坑出片_25",
+ "主|演练_原样仓库_踩坑文本_23",
+ "主|演练_文10同词异译",
+-"主|演练_逐句确认没重做",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
++"主|演练_逐句确认没重做"
+ ],
+ "放行口子核查.py|613a26dca2|0": [
+ "主|演练_G24特批无原话"
+ ],
+ "放行口子核查.py|662c0d21d8|0": [
+-"F7|工具",
+ "主|演练_G24引号无原话",
+ "主|演练_G24特批无原话",
+ "主|演练_G24非人声放宽",
+@@ -2829,7 +2657,7 @@
+ "主|演练_原样仓库_踩坑出片_25"
+ ],
+ "放行口子核查.py|96eb72845a|0": [
+-"F7|工具",
++"F8|工具",
+ "主|演练_G24引号无原话",
+ "主|演练_G24特批无原话",
+ "主|演练_G24非人声放宽",
+@@ -2857,59 +2685,26 @@
+ "主|演练_原样仓库_踩坑出片_25"
+ ],
+ "放行口子核查.py|aa94a02391|0": [
+-"F7|工具"
++"F8|工具"
+ ],
+ "方法进化表.py|c687e51333|0": [
+-"F4|工具"
+-],
+-"无标点停顿核对.py|26c3362628|0": [
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
+-],
+-"无标点停顿核对.py|3aef9366da|0": [
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
++"F5|工具",
++"声|演练_声_A13独立复核剪句尾_video",
++"声|演练_声_A20句首被吃_video",
++"声|演练_声_A2削波_video",
++"声|演练_声_A2句间呼吸声_video",
++"声|演练_声_A8一句变轻_video",
++"声|演练_声_G26旧视频配新脚本_video",
++"声|演练_声_L14高亮错开_video",
++"声|演练_声_原样出片后20_video",
++"声|演练_声_拆自检_video",
++"声|演练_声_通路26_video"
+ ],
+-"机器复听.py|0de54afa8d|0": [
+-"F28|工具",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"机器复听.py|2fe83af25d|0": [
++"F29|工具"
+ ],
+ "机器复听.py|4bfd2941ed|0": [
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
+-],
+-"机器复听.py|a8fa756068|0": [
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
+-],
+-"机器复听.py|f343ed7c99|0": [
+-"F28|工具",
++"F29|工具",
+ "声|演练_声_G36句内一段变轻_video",
+ "声|演练_声_G41体检咔哒_video",
+ "声|演练_声_G42只有parakeet抓到_video",
+@@ -2921,78 +2716,73 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+ "声|演练_声_A9停顿落在词里_video",
+ "声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
++"声|演练_声_拆门_video",
++"声|演练_声_通路26_video"
+ ],
+ "流程自检.py|004608b715|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|0e8f8f6291|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|26977fcb1b|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|28fdc2d3df|0": [
+-"F9|工具"
+-],
+-"流程自检.py|31c8d3dd80|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|36cda121a7|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|45376911de|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|4811fd76df|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|4cfaaa71d4|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|62ebcb59a2|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|666f1f4026|0": [
+-"F9|工具"
++"F10|工具"
++],
++"流程自检.py|69f917b1f3|0": [
++"F10|工具"
+ ],
+ "流程自检.py|81005ec34c|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|87bb5ab6cc|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|8999f8401b|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|8cccd57733|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|b20290f75e|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|b993be08d0|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|d3a12a821d|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "流程自检.py|dc2ed2a952|0": [
+-"F9|工具"
++"F10|工具"
+ ],
+ "演练镜像.py|0de54afa8d|0": [
+-"F12|工具",
+-"F14|工具",
+-"F18|工具",
+-"F22|工具",
+-"F35|工具",
+-"F36|工具",
+-"F9|工具",
+ "主|video",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+@@ -3072,37 +2862,9 @@
+ "主|演练_原样仓库_踩坑文本_23",
+ "主|演练_文10同词异译",
+ "主|演练_自查拆门",
+-"主|演练_逐句确认没重做",
+-"声|work_video",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video",
+-"声|演练_声_拆门_video"
+-],
+-"演练镜像.py|0ee2832aed|0": [
+-"F18|工具"
++"主|演练_逐句确认没重做"
+ ],
+ "生成文本.py|14f9356b3f|0": [
+-"F0|工具",
+ "主|演练_仓库_W10读回不按同一函数",
+ "主|演练_仓库_W1Word和脚本对不上",
+ "主|演练_仓库_W5没生成PDF",
+@@ -3115,12 +2877,9 @@
+ "主|演练_仓库_W7用户修正稿不覆盖"
+ ],
+ "生成文本.py|4af49b6a66|0": [
+-"F0|工具"
++"F1|工具"
+ ],
+ "用上核查.py|0de54afa8d|0": [
+-"F11|工具",
+-"F14|工具",
+-"F9|工具",
+ "主|演练_仓库_A26挂钩原文没了",
+ "主|演练_仓库_G14钩子会锁死",
+ "主|演练_仓库_G62步骤表没跟",
+@@ -3131,40 +2890,32 @@
+ "主|演练_仓库_守则1开工提醒",
+ "主|演练_原样仓库_开工提醒_24",
+ "主|演练_原样仓库_开工记录_25",
+-"主|演练_原样仓库_规则核查_24",
++"主|演练_原样仓库_规则核查_24"
++],
++"用上核查.py|14468413e4|0": [
++"F10|工具",
++"F15|工具",
++"主|演练_仓库_守则1开工提醒",
++"主|演练_原样仓库_开工提醒_24",
++"主|演练_原样仓库_开工记录_25",
+ "声|演练_声_A11年份读法_video",
+-"声|演练_声_A13独立复核剪句尾_video",
+ "声|演练_声_A17引号_video",
+-"声|演练_声_A20句首被吃_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+-"声|演练_声_A8一句变轻_video",
+ "声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片前20_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video",
+ "声|演练_声_拆门_video"
+ ],
+-"用上核查.py|14468413e4|0": [
+-"F14|工具",
+-"F9|工具",
+-"主|演练_仓库_守则1开工提醒",
+-"主|演练_原样仓库_开工提醒_24",
+-"主|演练_原样仓库_开工记录_25",
++"用上核查.py|9522cacc77|0": [
++"F10|工具",
++"F15|工具",
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -3173,9 +2924,9 @@
+ "声|演练_声_拆门_video"
+ ],
+ "用上核查.py|a6ae082801|0": [
+-"F11|工具",
+-"F14|工具",
+-"F9|工具",
++"F10|工具",
++"F12|工具",
++"F15|工具",
+ "主|演练_仓库_A26挂钩原文没了",
+ "主|演练_仓库_G14钩子会锁死",
+ "主|演练_仓库_G62步骤表没跟",
+@@ -3192,6 +2943,7 @@
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A2削波_video",
+ "声|演练_声_A2句间呼吸声_video",
+@@ -3209,70 +2961,48 @@
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+ "声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video",
+ "声|演练_声_拆门_video"
+ ],
+-"确认按位置迁移.py|14f9356b3f|0": [
+-"F3|工具"
++"用上核查.py|d81b52656e|0": [
++"F10|工具",
++"F15|工具",
++"声|演练_声_A11年份读法_video",
++"声|演练_声_A17引号_video",
++"声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
++"声|演练_声_A24多音词_video",
++"声|演练_声_A37时刻读法_video",
++"声|演练_声_A4句中硬停_video",
++"声|演练_声_A9停顿落在词里_video",
++"声|演练_声_原样出片前20_video",
++"声|演练_声_拆门_video"
+ ],
+-"纯人声核对.py|0de54afa8d|0": [
+-"F29|工具",
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"疑点清单.py|8a45ad95c3|0": [
++"F42|工具",
++"声|演练_声_通路26_video"
+ ],
+-"纯人声核对.py|26c3362628|0": [
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"疑点清单.py|c374989fc6|0": [
++"F42|工具",
++"声|演练_声_通路26_video"
+ ],
+-"纯人声核对.py|d0394d1d3c|0": [
+-"F29|工具",
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
++"结尾句接点.py|602fa38dac|0": [
++"F21|工具",
++"声|演练_声_通路26_video"
+ ],
+-"结尾句接点.py|26c3362628|0": [
+-"F20|工具"
++"结尾句接点.py|d680939115|0": [
++"F21|工具",
++"声|演练_声_通路26_video"
+ ],
+-"缓存进仓库核对.py|14f9356b3f|0": [
+-"F32|工具"
++"缓存进仓库核对.py|b7f006da92|0": [
++"F33|工具"
++],
++"缓存进仓库核对.py|eeed5bbfdb|0": [
++"F33|工具"
+ ],
+ "规则执行核查.py|01d5d8e0b4|0": [
+-"F14|工具",
+-"F9|工具",
++"F10|工具",
++"F15|工具",
+ "主|演练_仓库_A26挂钩原文没了",
+ "主|演练_仓库_G14钩子会锁死",
+ "主|演练_仓库_G62步骤表没跟",
+@@ -3288,6 +3018,7 @@
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A2削波_video",
+ "声|演练_声_A2句间呼吸声_video",
+@@ -3305,15 +3036,10 @@
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+ "声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video",
+ "声|演练_声_拆门_video"
+ ],
+ "规则执行核查.py|0de54afa8d|0": [
+-"F12|工具",
+-"F14|工具",
+-"F22|工具",
+-"F35|工具",
+-"F36|工具",
+-"F9|工具",
+ "主|video",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+@@ -3391,39 +3117,9 @@
+ "主|演练_原样仓库_踩坑文本_23",
+ "主|演练_文10同词异译",
+ "主|演练_自查拆门",
+-"主|演练_逐句确认没重做",
+-"声|work_video",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video",
+-"声|演练_声_拆门_video"
++"主|演练_逐句确认没重做"
+ ],
+ "规则执行核查.py|18cf8e332c|0": [
+-"F12|工具",
+-"F14|工具",
+-"F22|工具",
+-"F35|工具",
+-"F36|工具",
+-"F9|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -3500,12 +3196,23 @@
+ "主|演练_原样仓库_踩坑文本_23",
+ "主|演练_文10同词异译",
+ "主|演练_自查拆门",
+-"主|演练_逐句确认没重做",
++"主|演练_逐句确认没重做"
++],
++"规则执行核查.py|51e21e9129|0": [
++"主|演练_仓库_A26挂钩原文没了",
++"主|演练_仓库_G14钩子会锁死",
++"主|演练_仓库_G62步骤表没跟",
++"主|演练_仓库_W10读回不按同一函数",
++"主|演练_仓库_W1Word和脚本对不上",
++"主|演练_仓库_W5没生成PDF",
++"主|演练_仓库_W7用户修正稿不覆盖",
++"主|演练_原样仓库_规则核查_24",
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A13独立复核剪句尾_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A2削波_video",
+ "声|演练_声_A2句间呼吸声_video",
+@@ -3523,22 +3230,18 @@
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+ "声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video",
+ "声|演练_声_拆门_video"
+ ],
+-"规则执行核查.py|51e21e9129|0": [
+-"主|演练_仓库_A26挂钩原文没了",
+-"主|演练_仓库_G14钩子会锁死",
+-"主|演练_仓库_G62步骤表没跟",
+-"主|演练_仓库_W10读回不按同一函数",
+-"主|演练_仓库_W1Word和脚本对不上",
+-"主|演练_仓库_W5没生成PDF",
+-"主|演练_仓库_W7用户修正稿不覆盖",
+-"主|演练_原样仓库_规则核查_24",
++"规则执行核查.py|5c921d87e9|0": [
++"F10|工具",
++"F15|工具",
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A13独立复核剪句尾_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A2削波_video",
+ "声|演练_声_A2句间呼吸声_video",
+@@ -3556,11 +3259,12 @@
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+ "声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video",
+ "声|演练_声_拆门_video"
+ ],
+ "规则执行核查.py|fb8e760695|0": [
+-"F14|工具",
+-"F9|工具",
++"F10|工具",
++"F15|工具",
+ "主|演练_仓库_A26挂钩原文没了",
+ "主|演练_仓库_G14钩子会锁死",
+ "主|演练_仓库_G62步骤表没跟",
+@@ -3576,6 +3280,7 @@
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A2削波_video",
+ "声|演练_声_A2句间呼吸声_video",
+@@ -3593,16 +3298,14 @@
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+ "声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video",
+ "声|演练_声_拆门_video"
+ ],
+ "证据.py|0b6c7e7e7a|0": [
+-"F9|工具"
++"F10|工具",
++"声|演练_声_通路26_video"
+ ],
+ "证据.py|0de54afa8d|0": [
+-"F14|工具",
+-"F38|工具",
+-"F39|工具",
+-"F9|工具",
+ "主|演练_仓库_A26挂钩原文没了",
+ "主|演练_仓库_G14钩子会锁死",
+ "主|演练_仓库_G62步骤表没跟",
+@@ -3613,54 +3316,24 @@
+ "主|演练_仓库_守则1开工提醒",
+ "主|演练_原样仓库_开工提醒_24",
+ "主|演练_原样仓库_开工记录_25",
+-"主|演练_原样仓库_规则核查_24",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video",
+-"声|演练_声_拆门_video"
++"主|演练_原样仓库_规则核查_24"
+ ],
+ "证据.py|0ee2832aed|0": [
+-"F14|工具",
+-"F38|工具",
+-"F39|工具",
+-"F9|工具",
+ "主|演练_仓库_守则1开工提醒",
+ "主|演练_原样仓库_开工提醒_24"
+ ],
+ "证据.py|1614684e0f|0": [
+-"F38|工具"
++"F39|工具"
+ ],
+ "证据.py|164e974177|0": [
+-"F14|工具",
+-"F39|工具",
+-"F9|工具",
+ "主|演练_仓库_守则1开工提醒",
+ "主|演练_原样仓库_开工提醒_24"
+ ],
+ "证据.py|167635adb3|0": [
+-"F14|工具",
+-"F38|工具",
++"F10|工具",
++"F15|工具",
+ "F39|工具",
+-"F9|工具",
++"F40|工具",
+ "主|演练_仓库_A26挂钩原文没了",
+ "主|演练_仓库_G14钩子会锁死",
+ "主|演练_仓库_G62步骤表没跟",
+@@ -3676,6 +3349,7 @@
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A2削波_video",
+ "声|演练_声_A2句间呼吸声_video",
+@@ -3693,39 +3367,34 @@
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+ "声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video",
+ "声|演练_声_拆门_video"
+ ],
+ "证据.py|27700b6ce1|0": [
+-"F38|工具"
++"F39|工具"
+ ],
+ "证据.py|2c744be9eb|0": [
+-"F14|工具",
+-"F39|工具",
+-"F9|工具",
+ "主|演练_仓库_守则1开工提醒",
+ "主|演练_原样仓库_开工提醒_24"
+ ],
+ "证据.py|306ea9c7c5|0": [
+-"F38|工具"
++"F39|工具"
+ ],
+ "证据.py|546be98071|0": [
+-"F14|工具",
+-"F39|工具",
+-"F9|工具",
+ "主|演练_仓库_守则1开工提醒",
+ "主|演练_原样仓库_开工提醒_24"
+ ],
+ "证据.py|560066b62d|0": [
+-"F38|工具"
++"F39|工具"
+ ],
+ "证据.py|561d6f4fc1|0": [
+-"F38|工具"
++"F39|工具"
+ ],
+ "证据.py|664682e5a1|0": [
+-"F14|工具",
+-"F38|工具",
++"F10|工具",
++"F15|工具",
+ "F39|工具",
+-"F9|工具",
++"F40|工具",
+ "主|演练_仓库_A26挂钩原文没了",
+ "主|演练_仓库_G14钩子会锁死",
+ "主|演练_仓库_G62步骤表没跟",
+@@ -3741,6 +3410,7 @@
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A2削波_video",
+ "声|演练_声_A2句间呼吸声_video",
+@@ -3758,13 +3428,14 @@
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+ "声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video",
+ "声|演练_声_拆门_video"
+ ],
+ "证据.py|76f0789372|0": [
+-"F14|工具",
+-"F38|工具",
++"F10|工具",
++"F15|工具",
+ "F39|工具",
+-"F9|工具",
++"F40|工具",
+ "主|演练_仓库_A26挂钩原文没了",
+ "主|演练_仓库_G14钩子会锁死",
+ "主|演练_仓库_G62步骤表没跟",
+@@ -3780,6 +3451,7 @@
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A2削波_video",
+ "声|演练_声_A2句间呼吸声_video",
+@@ -3797,55 +3469,17 @@
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+ "声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video",
+ "声|演练_声_拆门_video"
+ ],
+ "证据.py|80415f0cf5|0": [
+-"F38|工具"
++"F39|工具"
+ ],
+ "证据.py|84d254ce89|0": [
+-"F14|工具",
+-"F38|工具",
+-"F39|工具",
+-"F9|工具",
+-"主|演练_仓库_A26挂钩原文没了",
+-"主|演练_仓库_G14钩子会锁死",
+-"主|演练_仓库_G62步骤表没跟",
+-"主|演练_仓库_W10读回不按同一函数",
+-"主|演练_仓库_W1Word和脚本对不上",
+-"主|演练_仓库_W5没生成PDF",
+-"主|演练_仓库_W7用户修正稿不覆盖",
+-"主|演练_仓库_守则1开工提醒",
+-"主|演练_原样仓库_开工提醒_24",
+-"主|演练_原样仓库_规则核查_24",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video",
+-"声|演练_声_拆门_video"
+-],
+-"证据.py|9dd899bf2e|0": [
+-"F14|工具",
+-"F38|工具",
++"F10|工具",
++"F15|工具",
+ "F39|工具",
+-"F9|工具",
++"F40|工具",
+ "主|演练_仓库_A26挂钩原文没了",
+ "主|演练_仓库_G14钩子会锁死",
+ "主|演练_仓库_G62步骤表没跟",
+@@ -3857,159 +3491,76 @@
+ "主|演练_原样仓库_开工提醒_24",
+ "主|演练_原样仓库_规则核查_24",
+ "声|演练_声_A11年份读法_video",
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video",
+-"声|演练_声_拆门_video"
+-],
+-"词尾辅音核对.py|0de54afa8d|0": [
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
+-],
+-"词尾辅音核对.py|1ce8274460|0": [
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
+-],
+-"词尾辅音核对.py|26c3362628|0": [
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
+-],
+-"词尾辅音核对.py|5bb3d2838c|0": [
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
+-],
+-"词尾辅音核对.py|749430d169|0": [
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
+-],
+-"词尾辅音核对.py|8dfdf79df3|0": [
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
+-],
+-"读音核对.py|0de54afa8d|0": [
+-"主|演练_A23Inky",
+-"主|演练_原样_读音_07",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
+-],
+-"读音核对.py|26c3362628|0": [
+-"主|演练_A23Inky",
+-"主|演练_原样_读音_07",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
+-],
+-"读音核对.py|2c57b79642|0": [
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
+-],
+-"读音核对.py|4791035431|0": [
+-"主|演练_A23Inky",
+-"主|演练_原样_读音_07",
+-"声|演练_声_A11年份读法_video",
++"声|演练_声_A13独立复核剪句尾_video",
+ "声|演练_声_A17引号_video",
++"声|演练_声_A20句首被吃_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
++"声|演练_声_A2削波_video",
++"声|演练_声_A2句间呼吸声_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
++"声|演练_声_A8一句变轻_video",
+ "声|演练_声_A9停顿落在词里_video",
++"声|演练_声_G26旧视频配新脚本_video",
++"声|演练_声_G36句内一段变轻_video",
++"声|演练_声_G41体检咔哒_video",
++"声|演练_声_G42只有parakeet抓到_video",
++"声|演练_声_G42机器复听吞词_video",
++"声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片前20_video",
++"声|演练_声_原样出片后20_video",
++"声|演练_声_原样出片后25_video",
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video",
+ "声|演练_声_拆门_video"
+ ],
+-"读音核对.py|7f6f597a50|0": [
++"证据.py|9dd899bf2e|0": [
++"F10|工具",
++"F15|工具",
++"F39|工具",
++"F40|工具",
++"主|演练_仓库_A26挂钩原文没了",
++"主|演练_仓库_G14钩子会锁死",
++"主|演练_仓库_G62步骤表没跟",
++"主|演练_仓库_W10读回不按同一函数",
++"主|演练_仓库_W1Word和脚本对不上",
++"主|演练_仓库_W5没生成PDF",
++"主|演练_仓库_W7用户修正稿不覆盖",
++"主|演练_仓库_守则1开工提醒",
++"主|演练_原样仓库_开工提醒_24",
++"主|演练_原样仓库_规则核查_24",
+ "声|演练_声_A11年份读法_video",
++"声|演练_声_A13独立复核剪句尾_video",
+ "声|演练_声_A17引号_video",
++"声|演练_声_A20句首被吃_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
++"声|演练_声_A2削波_video",
++"声|演练_声_A2句间呼吸声_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
++"声|演练_声_A8一句变轻_video",
+ "声|演练_声_A9停顿落在词里_video",
++"声|演练_声_G26旧视频配新脚本_video",
++"声|演练_声_G36句内一段变轻_video",
++"声|演练_声_G41体检咔哒_video",
++"声|演练_声_G42只有parakeet抓到_video",
++"声|演练_声_G42机器复听吞词_video",
++"声|演练_声_L14高亮错开_video",
+ "声|演练_声_原样出片前20_video",
++"声|演练_声_原样出片后20_video",
++"声|演练_声_原样出片后25_video",
++"声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video",
+ "声|演练_声_拆门_video"
+ ],
+-"读音核对.py|b942f47aaa|0": [
+-"主|演练_A23Inky",
+-"主|演练_原样_读音_07",
+-"声|演练_声_A11年份读法_video",
++"词尾辅音核对.py|1ce8274460|0": [
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -4017,53 +3568,69 @@
+ "声|演练_声_原样出片前20_video",
+ "声|演练_声_拆门_video"
+ ],
+-"读音核对.py|c02bd306f9|0": [
+-"主|演练_A23Inky",
+-"主|演练_原样_读音_07",
+-"声|演练_声_A11年份读法_video",
++"词尾辅音核对.py|5bb3d2838c|0": [
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+ "声|演练_声_A9停顿落在词里_video",
+ "声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
++"声|演练_声_拆门_video",
++"声|演练_声_通路26_video"
+ ],
+-"读音核对.py|cb0ed7e87e|0": [
++"词尾辅音核对.py|749430d169|0": [
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+ "声|演练_声_A9停顿落在词里_video",
+ "声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
++"声|演练_声_拆门_video",
++"声|演练_声_通路26_video"
+ ],
+-"读音核对.py|e55b7ceff6|0": [
+-"声|演练_声_A11年份读法_video",
++"词尾辅音核对.py|8dfdf79df3|0": [
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+ "声|演练_声_A9停顿落在词里_video",
+ "声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
++"声|演练_声_拆门_video",
++"声|演练_声_通路26_video"
++],
++"词尾辅音核对.py|f8a3e54994|0": [
++"声|演练_声_A21标题标点_video"
++],
++"读音核对.py|0de54afa8d|0": [
++"主|演练_A23Inky",
++"主|演练_原样_读音_07"
++],
++"读音核对.py|26c3362628|0": [
++"主|演练_A23Inky",
++"主|演练_原样_读音_07"
++],
++"读音核对.py|4791035431|0": [
++"主|演练_A23Inky",
++"主|演练_原样_读音_07"
++],
++"读音核对.py|b942f47aaa|0": [
++"主|演练_A23Inky",
++"主|演练_原样_读音_07"
++],
++"读音核对.py|c02bd306f9|0": [
++"主|演练_A23Inky",
++"主|演练_原样_读音_07"
+ ],
+ "读音核对.py|f14385d918|0": [
+ "主|演练_A23Inky",
+-"主|演练_原样_读音_07",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
++"主|演练_原样_读音_07"
+ ],
+ "踩坑核查.py|016245842c|0": [
+ "主|演练_D1换行标记",
+@@ -4134,6 +3701,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -4209,6 +3777,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -4217,7 +3786,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|07cb08911d|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -4287,6 +3856,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -4295,7 +3865,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|0dcdb21800|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -4368,6 +3938,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -4376,7 +3947,6 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|0de54afa8d|0": [
+-"F12|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -4445,19 +4015,10 @@
+ "主|演练_原样仓库_踩坑文本_23",
+ "主|演练_文10同词异译",
+ "主|演练_自查拆门",
+-"主|演练_逐句确认没重做",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
++"主|演练_逐句确认没重做"
+ ],
+ "踩坑核查.py|147d0e636b|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -4527,6 +4088,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -4603,6 +4165,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -4611,7 +4174,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|2215903ca8|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -4681,6 +4244,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -4689,7 +4253,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|29b5a49fb5|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -4759,6 +4323,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -4767,7 +4332,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|2daeacf6d4|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -4837,6 +4402,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -4845,7 +4411,6 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|3da77894ac|0": [
+-"F12|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -4911,19 +4476,9 @@
+ "主|演练_原样仓库_踩坑文本_23",
+ "主|演练_文10同词异译",
+ "主|演练_自查拆门",
+-"主|演练_逐句确认没重做",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
++"主|演练_逐句确认没重做"
+ ],
+ "踩坑核查.py|49427a54e6|0": [
+-"F12|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -4989,19 +4544,10 @@
+ "主|演练_原样仓库_踩坑文本_23",
+ "主|演练_文10同词异译",
+ "主|演练_自查拆门",
+-"主|演练_逐句确认没重做",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
++"主|演练_逐句确认没重做"
+ ],
+ "踩坑核查.py|5024342213|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -5071,6 +4617,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -5079,7 +4626,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|54a603f268|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -5152,6 +4699,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -5160,7 +4708,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|55520c7b18|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -5230,6 +4778,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -5238,7 +4787,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|574ae6c8b5|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -5311,6 +4860,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -5319,7 +4869,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|5847828c66|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -5389,6 +4939,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -5397,7 +4948,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|5d10d54a0d|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -5467,6 +5018,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -5475,7 +5027,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|5f94802c42|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -5545,6 +5097,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -5553,7 +5106,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|62ea62d9fb|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -5623,6 +5176,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -5631,7 +5185,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|6628e547d1|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -5701,6 +5255,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -5709,7 +5264,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|6a1de22537|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -5779,6 +5334,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -5787,7 +5343,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|6b5bcbaf8f|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -5857,6 +5413,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -5865,7 +5422,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|751bc2f92b|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -5935,6 +5492,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -5943,7 +5501,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|7dc90e9320|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -6016,6 +5574,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -6024,7 +5583,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|804b39d761|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -6094,6 +5653,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -6102,7 +5662,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|833171dd19|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -6172,6 +5732,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -6180,7 +5741,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|8905e6ae08|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -6250,6 +5811,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -6258,7 +5820,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|9322071be3|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -6328,6 +5890,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -6336,7 +5899,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|950f5d521e|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -6406,6 +5969,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -6414,7 +5978,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|a051805ff6|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -6484,6 +6048,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -6492,7 +6057,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|a3df3ede6d|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -6562,6 +6127,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -6570,7 +6136,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|a4556ec8cb|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -6640,6 +6206,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -6716,6 +6283,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -6724,7 +6292,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|b7658d1dc1|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -6794,6 +6362,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -6802,7 +6371,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|b906b22793|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -6872,6 +6441,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -6880,7 +6450,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|bd15c5073b|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -6950,6 +6520,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -6958,7 +6529,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|bdaf61fb7c|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -7031,6 +6602,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -7107,6 +6679,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -7115,7 +6688,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|c36dc6ca09|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -7185,6 +6758,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -7193,7 +6767,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|ce879f90c8|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -7266,6 +6840,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -7274,7 +6849,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|d0184acd6d|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -7344,6 +6919,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -7352,7 +6928,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|d08250ae60|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -7422,6 +6998,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -7430,7 +7007,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|d365034f1b|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -7500,6 +7077,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -7508,7 +7086,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|d7d5fbe07d|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -7578,6 +7156,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -7586,7 +7165,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|e77a390eb5|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -7656,6 +7235,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -7664,7 +7244,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|efdb08e5f7|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -7737,6 +7317,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -7745,7 +7326,6 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|f197784ceb|0": [
+-"F12|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -7811,19 +7391,10 @@
+ "主|演练_原样仓库_踩坑文本_23",
+ "主|演练_文10同词异译",
+ "主|演练_自查拆门",
+-"主|演练_逐句确认没重做",
+-"声|演练_声_A11年份读法_video",
+-"声|演练_声_A17引号_video",
+-"声|演练_声_A21剪句尾辅音_video",
+-"声|演练_声_A24多音词_video",
+-"声|演练_声_A37时刻读法_video",
+-"声|演练_声_A4句中硬停_video",
+-"声|演练_声_A9停顿落在词里_video",
+-"声|演练_声_原样出片前20_video",
+-"声|演练_声_拆门_video"
++"主|演练_逐句确认没重做"
+ ],
+ "踩坑核查.py|f34268fdbe|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -7893,6 +7464,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -7901,7 +7473,7 @@
+ "声|演练_声_拆门_video"
+ ],
+ "踩坑核查.py|f69cc9424c|0": [
+-"F12|工具",
++"F13|工具",
+ "主|演练_D1换行标记",
+ "主|演练_D2对不上",
+ "主|演练_D3改英文",
+@@ -7971,6 +7543,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -8046,6 +7619,7 @@
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A37时刻读法_video",
+ "声|演练_声_A4句中硬停_video",
+@@ -8054,9 +7628,6 @@
+ "声|演练_声_拆门_video"
+ ],
+ "门变异.py|0de54afa8d|0": [
+-"F10|工具",
+-"F14|工具",
+-"F9|工具",
+ "主|演练_仓库_A26挂钩原文没了",
+ "主|演练_仓库_G14钩子会锁死",
+ "主|演练_仓库_G62步骤表没跟",
+@@ -8067,12 +7638,18 @@
+ "主|演练_仓库_守则1开工提醒",
+ "主|演练_原样仓库_开工提醒_24",
+ "主|演练_原样仓库_开工记录_25",
+-"主|演练_原样仓库_规则核查_24",
++"主|演练_原样仓库_规则核查_24"
++],
++"门变异.py|852b7935bd|0": [
++"F10|工具",
++"F11|工具",
++"F15|工具",
+ "声|演练_声_A11年份读法_video",
+ "声|演练_声_A13独立复核剪句尾_video",
+ "声|演练_声_A17引号_video",
+ "声|演练_声_A20句首被吃_video",
+ "声|演练_声_A21剪句尾辅音_video",
++"声|演练_声_A21标题标点_video",
+ "声|演练_声_A24多音词_video",
+ "声|演练_声_A2削波_video",
+ "声|演练_声_A2句间呼吸声_video",
+@@ -8090,38 +7667,9 @@
+ "声|演练_声_原样出片后20_video",
+ "声|演练_声_原样出片后25_video",
+ "声|演练_声_拆parakeet_video",
++"声|演练_声_拆自检_video",
+ "声|演练_声_拆门_video"
+ ],
+-"门变异.py|98c17df3a7|0": [
+-"F10|工具"
+-],
+-"门变异.py|fdfd8826ac|0": [
+-"F10|工具"
+-],
+-"音频体检.py|0de54afa8d|0": [
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
+-],
+-"音频体检.py|6d43285298|0": [
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
+-],
+-"音频体检.py|9c8dd79aa4|0": [
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
+-],
+ "音频体检.py|d7591fd4ca|0": [
+ "声|演练_声_G36句内一段变轻_video",
+ "声|演练_声_G41体检咔哒_video",
+@@ -8129,23 +7677,6 @@
+ "声|演练_声_G42机器复听吞词_video",
+ "声|演练_声_原样出片后25_video",
+ "声|演练_声_拆parakeet_video"
+-],
+-"高亮同步核对.py|d0394d1d3c|0": [
+-"F30|工具",
+-"声|演练_声_A13独立复核剪句尾_video",
+-"声|演练_声_A20句首被吃_video",
+-"声|演练_声_A2削波_video",
+-"声|演练_声_A2句间呼吸声_video",
+-"声|演练_声_A8一句变轻_video",
+-"声|演练_声_G26旧视频配新脚本_video",
+-"声|演练_声_G36句内一段变轻_video",
+-"声|演练_声_G41体检咔哒_video",
+-"声|演练_声_G42只有parakeet抓到_video",
+-"声|演练_声_G42机器复听吞词_video",
+-"声|演练_声_L14高亮错开_video",
+-"声|演练_声_原样出片后20_video",
+-"声|演练_声_原样出片后25_video",
+-"声|演练_声_拆parakeet_video"
+ ]
+ }
+ }
+\ No newline at end of file
+diff --git "a/\350\247\206\351\242\221/\345\274\200\345\267\245\345\277\205\350\257\273.md" "b/\350\247\206\351\242\221/\345\274\200\345\267\245\345\277\205\350\257\273.md"
+index a404ed0..dc1b50f 100644
+--- "a/\350\247\206\351\242\221/\345\274\200\345\267\245\345\277\205\350\257\273.md"
++++ "b/\350\247\206\351\242\221/\345\274\200\345\267\245\345\277\205\350\257\273.md"
+@@ -2,7 +2,7 @@
+ 
+ 用户 2026-10-26 原话：“一定要保证，一定要有一个机制，绝对的机制去保证我们踩过的这个坑，绝对不能再犯……每只要每次去开始做一个项目，都要有这么一个踩坑指南和别人要去做的事情指南，但就就是先先去读这些，先去读这些东西，然后再根据这些东西去做，ok。”
+ 
+-版本 f843dcaf：坑 232 个、做法 185 条，其中人判 9 条。音频另见 视频/音频首要法则.md（首要法则）；每条全文见《制作硬性标准与踩坑总结》、CLAUDE.md。
++版本 8564b772：坑 234 个、做法 185 条，其中人判 9 条。音频另见 视频/音频首要法则.md（首要法则）；每条全文见《制作硬性标准与踩坑总结》、CLAUDE.md。
+ 28 起 开工记录 在 制作记录/NN.md 生成“## 做事对照记录”（记下读过的条目）；指南新加了条目，跑 `python3 视频/工具/开工必读.py --补 NN` 读新条目；人判的每条写“本篇：怎么做的”，没写踩坑核查就停。
+ 
+ ## ⓪ 三大主义（第一节，每个会话开工第一屏：执行 → 丝滑 → 虹吸，G93）
+@@ -25,7 +25,7 @@
+ - ④ 严格按流程，不乱发挥：照 开工必读 ⑤ 步骤表一步一步用正式入口做，证据链少一步就停；觉得流程不好，写进方法复盘、报坑，由改门会话改程序（G60/G61）。
+ - ⑤ 方法进化：每做完一件事回头看哪里还能更省、更好，当场改成程序，记进方法升级记录；踩过的坑绝不再踩（守则2/12/13）。
+ 
+-## ① 踩坑指南（232 个坑：出过的问题 → 怎么防 → 哪道门挡）
++## ① 踩坑指南（234 个坑：出过的问题 → 怎么防 → 哪道门挡）
+ 
+ - **A1** 想去掉句尾的“电磁音”，结果误把 cameras 的 /z/ 尾音切掉了 → 句尾只去短于 0.05 秒、比本句最响处低 25 dB 以上（基准按 A10b，不用单个采样点的峰值）、且与语音有间隔的杂点（A6 又收紧为间隔 ≥0.25 秒），词尾辅音一律不能… ｜交付核查.py「句首句尾核对（clean_tail」；交付核查.py「独立复核：{len(cuts)} 处…」
+ - **A2** 背景有“电子声波音” → 后期用 AF 陷波去掉（保留在 B/F 方案里）。拦住它的是 audio_qc.py（出片后），每支视频都查 4800/9600 Hz 电流音 ｜交付核查.py「自动音频检查（削波、电流音」
+@@ -73,6 +73,7 @@
+ - **A43** 13 子代理报出：词尾辅音 --写入 在 project, a voluntary endeavour, 连读时把 /t/ 补到了 ende… → --写入 放不下时自动改写停顿处除阻、找不到交人看，绝不往后写；自动切点规则③放宽到 0.25 秒；spoken() 读小数（two hundred sixty-four poin… ｜交付核查.py「词尾辅音核对（A21」；交付核查.py「独立复核：{len(cuts)} 处…」
+ - **A44** 2026-10-23 写出片守门自检时，把改坏的脚本副本放在 /tmp 跑出片程序，八道守门“没停”——出片程序根本没读那份副本：它从工作目… → 守门自检一律在并排的隔离工作区（../守门自检/）里跑：模型、字体、缓存链接回原工作目录，scripts/ 里只放这一份改坏的脚本；每一项都必须停在对应编号的守门上，原样必须完整出… ｜出片守门自检.py「WS = os.path.abspa…」
+ - **A45** 2026-10-24 24 草稿：改了读音（读音改正.json）或语速后，这一句旧的非人声区间、词尾除阻还按原来的秒数用，不会自动作废 → 出片程序记下每句原始合成的指纹，脚本存写区间时的指纹（区间声音指纹）；对不上就停（A45）。草稿声音.sh 带 OLD_IV_VOID=1：跳过旧区间，区间作废.py 从脚本删掉这… ｜make_video.py「旧的非人声区间、词尾除阻、停顿删除都…」；区间作废.py「out = 清(d, r['作废']…」
++- **A46** 2026-10-27（K55）改门 门变异：执行效应声音演练 原样那一场只当基线做差、本身不判对错。核查程序自己的自检在原样稿上失灵，会和造… → 声音演练加“原样自检”：没造坑的原样稿里核查程序自检（自检、失灵、没抓到）一个都不许 ✘（规则执行核查 那一步看程序改没改过，不算）；配“自查拆门_原样自检”（镜像里拆 audio… ｜执行效应声音演练.py「没造坑的原样稿 {k[0]} 里核查…」；响度一致性核对.py「原样和改过的都先写成同样的 wav …」
+ - **L19** 12 S4 extensive 的说明一行比上面的英文正文还宽（用户：“分成两行来表示，不要超过上面的那一行……作为一个规矩记录，以后要严格… → 说明行不得比上面正文最宽的一行宽，超了就在标点处分行（字不改）；要做成程序检查（出片时超了就停），改第12篇时一起加。2026-10-16 用户看 13 又强调一次（“以后记住这个… ｜make_video.py「【停止】说明行比上面的英文正文宽（L」；交付核查.py「踩坑核查（核查程序自检、踩坑对照记录」
+ - **L20** 用户 2026-10-24 原话（看 24 S13）：“尽可能的这个标颜色的这个这个这个英文词汇和它下面这个标颜色的这个中文的汉语意思所对应… → 24 起，出片程序在每一格内平移英文行和各行中文，让同色中文中心尽量落在英文重点词正下方（格宽、换行、分组、字一个不动）；做不到的（同格几个重点词牵制、格边顶住、中文语序倒过来）由… ｜踩坑核查.py「err += [f'[L20] {x…」；make_video.py「【停止】重点词中文没对正（L20」
+ - **L1** 字太小 → 锁定既定换行，每屏字号铺满（宽≤1860、高≤1020、上限 100 号）。render.py 按每屏算最大字号；六.6 逐屏截图查“字号合理”（没有专门的核查程序） ｜render.py「def max_es(chunks,…」；make_video.py「R.ES_FIXED=min(siz…」
+@@ -254,6 +255,7 @@
+ - **G101** 2026-10-26（K33）改门 G71：等锁空转时每轮收工 收工记录.py 都重写 制作记录/方法进化/<本会话>.json，守则3 收… → 钩子/闸门.py 收工：已推过的（只是修改）制作记录/方法进化/*.json 不拦，跟下一次真推送一起走；新的 token 记录从没推过照拦；钩子自检 两种都造 ｜闸门.py「K33：已推过的本会话 token …」
+ - **G102** 2026-10-27（K52）改门 L：会话开工 的开工必读指纹 ~/.会话开工.json 两个仓库共用一份；主仓库开工必读改过（未推）时，… → 会话开工.py：--重读 把读过的指纹都记下（读过的指纹，最多 20 个），查开工 读过的任一版本都算；两个都没读过照停；会话开工 --自检 两种都造 ｜会话开工.py「fp not in rec.get(…」
+ - **G103** 2026-10-27（K53）改门 P：主会话核对发现 制作记录/主会话交接.md 还写着“重新对齐类的用 重新对齐收尾.py NN”（现行… → 用上核查 现行文档()：视频/ 下全部现行 .md + CLAUDE.md（改门_*.md、淘汰清单、踩坑总表和生成的开工必读、已淘汰/、演练样本/ 不算）；已淘汰的程序被当命令写… ｜用上核查.py「for d in 现行文档(vd):」
++- **G104** 2026-10-27（K54）改门 新容器 准备机器.sh：whisper 识别模型 tar.bz2 经代理下载被截断（tar Unexpe… → tar 管道解压（带重放） ｜流程自检.py「准备机器.sh 又用 curl 管道…」；准备机器.sh「取模型() { local d=$1…」
+ - **C1** 用户说“做网站”，其实只要一个 HTML 文件存档，我却去部署了 GitHub Pages → “上线/公开”是什么意思没把握时，先问；默认只生成文件，不做任何公开发布（硬性条件 五.4）。拦住：人工步骤；踩坑核查.py 通用 逐条列出来提醒（不能自动判断）；每篇的踩坑对照记… ｜闸门.py「【部署闸门】C1/C2/流16」
+ - **C2** 没经确认就触发了部署 → 对外公开、部署这类操作，必须先得到用户的明确同意（硬性条件 五.4）。拦住：同 C1 ｜闸门.py「【部署闸门】C1/C2/流16」
+ - **C3** 用户两次提的标准互相冲突（“字号统一”和“铺满屏幕”） → 明确指出冲突，请用户选择，并把最终的选择记下来。拦住：人工步骤；踩坑核查.py 通用 列出来提醒；每篇的踩坑对照记录里，这一条必须填写 ｜踩坑核查.py「只有人能判，要写明本篇具体怎么做的」；踩坑核查.py「只认固定格式（25 起）」
+@@ -511,7 +513,7 @@
+ |---|---|---|---|---|---|---|
+ | 1 | 〇 新会话 | 第一件事 python3 视频/工具/会话开工.py <出稿|改稿|改门 | 会话开工.py | 会话 | — | G61 G63 G66 G83 G90 |
+ | 2 | 〇 新会话 | 新容器里只有 literate-enigma | — | 会话 | — | — |
+-| 3 | 〇 新会话 | 搭工作目录 | 环境/准备机器.sh | 会话 | — | — |
++| 3 | 〇 新会话 | 搭工作目录 | 环境/准备机器.sh | 会话 | — | G104 |
+ | 4 | 〇 新会话 | 新篇第一次合成的声音就是原版 | — | 会话 | — | — |
+ | 5 | 〇 新会话 | 然后照下面“一、文本”往下做 | — | 会话 | — | — |
+ | 6 | 〇 新会话 | 出稿、改稿会话不碰演练 | — | 会话 | — | — |
+diff --git "a/\350\247\206\351\242\221/\351\237\263\351\242\221\351\246\226\350\246\201\346\263\225\345\210\231.md" "b/\350\247\206\351\242\221/\351\237\263\351\242\221\351\246\226\350\246\201\346\263\225\345\210\231.md"
+index 5f05b9d..27fdcc2 100644
+--- "a/\350\247\206\351\242\221/\351\237\263\351\242\221\351\246\226\350\246\201\346\263\225\345\210\231.md"
++++ "b/\350\247\206\351\242\221/\351\237\263\351\242\221\351\246\226\350\246\201\346\263\225\345\210\231.md"
+@@ -44,7 +44,7 @@
+ 36. 停顿前、句末的词尾 t/k/p 必须听得清除阻。
+ 37. 读音必须正确，人名、地名、物名、机构名、缩写尤其要查证。
+ 
+-## ③ 踩过的音频坑（73 个；坑 → 现在由哪道门挡）
++## ③ 踩过的音频坑（74 个；坑 → 现在由哪道门挡）
+ 
+ - **A1** 想去掉句尾的“电磁音”，结果误把 cameras 的 /z/ 尾音切掉了 → 句尾只去短于 0.05 秒、比本句最响处低 25 dB 以上（基准按 A10b，不用单个采样点的峰值）、且与语音有间隔的杂点（A6 又收紧为间隔 ≥0.25 秒），词尾辅音一律不能… ｜演练：声音演练 A20句首被吃（交付核查 出片后）
+ - **A2** 背景有“电子声波音” → 后期用 AF 陷波去掉（保留在 B/F 方案里）。拦住它的是 audio_qc.py（出片后），每支视频都查 4800/9600 Hz 电流音 ｜演练：声音演练 A2句间呼吸声（交付核查 出片后）；声音演练 A2削波（交付核查 出片后）
+@@ -92,6 +92,7 @@
+ - **A43** 13 子代理报出：词尾辅音 --写入 在 project, a voluntary endeavour, 连读时把 /t/ 补到了 ende… → --写入 放不下时自动改写停顿处除阻、找不到交人看，绝不往后写；自动切点规则③放宽到 0.25 秒；spoken() 读小数（two hundred sixty-four poin… ｜演练：声音演练 A21剪句尾辅音（交付核查 出片前）
+ - **A44** 2026-10-23 写出片守门自检时，把改坏的脚本副本放在 /tmp 跑出片程序，八道守门“没停”——出片程序根本没读那份副本：它从工作目… → 守门自检一律在并排的隔离工作区（../守门自检/）里跑：模型、字体、缓存链接回原工作目录，scripts/ 里只放这一份改坏的脚本；每一项都必须停在对应编号的守门上，原样必须完整出… ｜演练：出片守门自检.py（隔离工作区真跑 make_video.py）
+ - **A45** 2026-10-24 24 草稿：改了读音（读音改正.json）或语速后，这一句旧的非人声区间、词尾除阻还按原来的秒数用，不会自动作废 → 出片程序记下每句原始合成的指纹，脚本存写区间时的指纹（区间声音指纹）；对不上就停（A45）。草稿声音.sh 带 OLD_IV_VOID=1：跳过旧区间，`区间作废.py` 从脚本删… ｜演练：出片守门自检 A45
++- **A46** 2026-10-27（K55）改门 门变异：执行效应声音演练 原样那一场只当基线做差、本身不判对错。核查程序自己的自检在原样稿上失灵，会和造… → 声音演练加“原样自检”：没造坑的原样稿里核查程序自检（自检、失灵、没抓到）一个都不许 ✘（规则执行核查 那一步看程序改没改过，不算）；配“自查拆门_原样自检”（镜像里拆 audio… ｜演练：声音演练 自查拆门_原样自检（K55：镜像里拆 audio_qc 削波门，原样稿必须报自检失灵）
+ - **L19** 12 S4 extensive 的说明一行比上面的英文正文还宽（用户：“分成两行来表示，不要超过上面的那一行……作为一个规矩记录，以后要严格… → **说明行不得比上面正文最宽的一行宽**，超了就在标点处分行（字不改）；要做成程序检查（出片时超了就停），改第12篇时一起加。2026-10-16 用户看 13 又强调一次（“以后… ｜演练：主演练 L19说明太宽
+ - **L20** 用户 2026-10-24 原话（看 24 S13）：“尽可能的这个标颜色的这个这个这个英文词汇和它下面这个标颜色的这个中文的汉语意思所对应… → 24 起，出片程序在每一格内平移英文行和各行中文，让同色中文中心尽量落在英文重点词正下方（格宽、换行、分组、字一个不动）；做不到的（同格几个重点词牵制、格边顶住、中文语序倒过来）由… ｜演练：主演练 L20排版程序改坏（仓库镜像）；主演练 L20旧篇排版程序改坏（仓库镜像）
+ - **G1** 配音模型 325MB，超过 GitHub 单个文件 100MB 的上限，起初没存进仓库 → 拆成 4 段 + SHA256 + `还原.sh`（自动合并、校验 SHA256）；所有制作必需的文件都要上传。拦住：人工步骤（推送后核对云端文件列表，同 G5）；每篇的踩坑对照记… ｜演练：推送自检.py（临时仓库真跑 推送两仓库.sh）
