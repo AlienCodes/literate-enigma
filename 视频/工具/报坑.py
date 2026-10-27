@@ -84,7 +84,7 @@ def 隔离查(repo, root):
 def 镜像仓库(repo):
     """K29：镜像 literate-enigma 没有 main 分支，在那里跑会 fetch 失败 8 次后报成“被别人抢先”"""
     c, url = git('remote', 'get-url', 'origin', repo=repo)
-    return c == 0 and re.search(r'literate-enigma(\.git)?/?$', url.strip(), re.I) is not None   # 只认仓库名结尾（scratchpad 路径 -home-user-literate-enigma 里也有这几个字，演练镜像误判，2026-10-27）
+    u = url.strip(); return c == 0 and ('://' in u or '@' in u) and re.search(r'literate-enigma(\.git)?/?$', u, re.I) is not None   # 只认远端地址（本地路径只出现在自检里）   # 只认仓库名结尾（scratchpad 路径 -home-user-literate-enigma 里也有这几个字，演练镜像误判，2026-10-27）
 def 原子写(改, repo=None, 分支='main', 说明='报坑登记'):
     """把 改(远端坑登记) 的结果作为只改这一个文件的提交推到远端；别人刚推了就重读远端再来（这就是防撞号）"""
     if 镜像仓库(repo or P): raise SystemExit(f'【停止】这是镜像仓库 literate-enigma（{repo or P}），没有 main 分支（K29）：去 /home/user/postgraduate-vocabulary/视频 跑报坑、取号、取锁')

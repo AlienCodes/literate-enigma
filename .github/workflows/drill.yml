@@ -4,7 +4,7 @@
 # 同一时间只跑一个（concurrency），避免两个改门会话重盖印章。结果写进本次运行摘要；印章暂不回写（等 推送两仓库 反向同步做好）。
 # 门演练、出片、补丁演练搬到 GitHub 机器（2026-10-26 改门_GitHub化）：公开仓库，标准机器不计分钟。
 # 触发：推送时新加的请求文件 视频/云端/请求/<名字>.txt（一个请求一个文件；改动、删除不触发——镜像同步改回、删掉都不会重跑）。
-# 请求文件第一行（# 开头的是注释）：声音演练 / 主演练 / 合成对照 / 全篇重查 [篇号…] / 出片 NN；后面加“补丁=视频/云端/待演练/X.diff”= 打上补丁再跑，
+# 请求文件第一行（# 开头的是注释）：声音演练 / 主演练 / 彩排 / 合成对照 / 全篇重查 [篇号…] / 出片 NN；后面加“补丁=视频/云端/待演练/X.diff”= 打上补丁再跑，
 # 结果写回 视频/云端/结果/X.结果.diff|.txt（作者 github-actions[bot]，推送两仓库.sh 按 G58 回写主仓库）。workflow_dispatch 只认默认分支 master（别的项目）不能用。
 # 各请求各跑各的（不设全局排队：2026-10-26 单请求文件 + 全局排队时，后推的请求把排着队的请求顶掉了）；改门由 G66 改门锁排队。
 name: 门演练
@@ -75,6 +75,7 @@ jobs:
           case "${{ matrix.it.job }}" in
             声音演练) python3 $T/执行效应声音演练.py 2>&1 | tee /tmp/out.log | tail -40 ;;
             主演练)   python3 $T/执行效应演练.py 2>&1 | tee /tmp/out.log | tail -40 ;;
+            彩排)     STRICT_CACHE=1 bash $T/彩排.sh 25 2>&1 | tee /tmp/out.log | tail -40 ;;   # L 新容器整条彩排（丝滑主义）：会话开工 → 流程自检 → 定稿流水线 25 到 ④，0 次停下才盖印章
             出片) N=${{ matrix.it.no }}; export STRICT_CACHE=1 VIDEO_S=2   # 只用仓库缓存（缺一条就停，绝不现合成）
                   python3 make_video.py scripts/$N.json $N.mp4 2>&1 | tee /tmp/out.log | tail -3 && {
                   A=$(ls $GITHUB_WORKSPACE/最终版4K视频/$N\ *.mp4 2>/dev/null | head -1); h=$(sha256sum $N.mp4 | cut -c1-16)
