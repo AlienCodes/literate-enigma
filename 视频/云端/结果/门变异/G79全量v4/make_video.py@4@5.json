@@ -1,0 +1,90 @@
+[
+[
+"make_video.py|0c4f3769d4|0",
+"make_video.py",
+126,
+"if cnt!=n_: raise SystemExit(f'【停止】读音改正没有全部换到（A23）：{w_} 出现 {n_} 次，换了 {cnt} 次：{text[:60]}')",
+"漏洞",
+""
+],
+[
+"make_video.py|b715ece2e5|0",
+"make_video.py",
+167,
+"if os.environ.get('VOICE') or os.environ.get('AFFILE'): raise SystemExit('【停止】音色和降噪写死（A3/A7）：出片时不许用环境变量 VOICE、AFFILE 换掉 ",
+"发现",
+"出片守门自检.py：✔ T36：第20篇 24 起中文里出现破折号 → 【停止】画面或配音文字里有破折号（T36）：S1-1 zh“——”；S14-2 zh“——”。中文换成“，”“：”或括号（字义不改）；英文换成逗号、冒号或括号并同步文章"
+],
+[
+"make_video.py|fe9bf0069b|0",
+"make_video.py",
+308,
+"if full!=phonemes_of(_synth_punct(spoken(' '.join(texts)))): raise SystemExit('【停止】带时长模型的音素与朗读文字对不上（L14）')   # G57：合成标点（",
+"漏洞",
+""
+],
+[
+"make_video.py|10ec2a2bcb|0",
+"make_video.py",
+463,
+"if z is None: raise SystemExit(f'【停止】供体里找不到除阻（A21）：{txt}')",
+"漏洞",
+""
+],
+[
+"make_video.py|2b2ceb6a6a|0",
+"make_video.py",
+535,
+"if not b_*SR<mF-F_: raise SystemExit(f'【停止】前段音调要改的这一段伸到了接点之后：{sent[:60]}')",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"make_video.py|22edc8ffb3|0",
+"make_video.py",
+656,
+"if os.environ.get('STRICT_CACHE'): raise SystemExit(f'【停止】严格缓存模式缺调平缓存 调平_{_k}.json（G51：别的机器重算的调平增益可能翻档，不逐样本相同）：先在出过这一篇的机",
+"发现",
+"出片守门自检.py：✔ T36：第20篇 24 起中文里出现破折号 → 【停止】画面或配音文字里有破折号（T36）：S1-1 zh“——”；S14-2 zh“——”。中文换成“，”“：”或括号（字义不改）；英文换成逗号、冒号或括号并同步文章"
+],
+[
+"make_video.py|318674c91c|0",
+"make_video.py",
+761,
+"if bad_: raise SystemExit(f'【停止】{nm_} 写的第 {bad_} 个标点超出这一句的标点数（{len(idxs)} 个，按 , ; : 从 1 数）：{sent[:60]}')",
+"发现",
+"出片守门自检.py：✔ T36：第20篇 24 起中文里出现破折号 → 【停止】画面或配音文字里有破折号（T36）：S1-1 zh“——”；S14-2 zh“——”。中文换成“，”“：”或括号（字义不改）；英文换成逗号、冒号或括号并同步文章"
+],
+[
+"make_video.py|14c705ce97|0",
+"make_video.py",
+835,
+"if INSERT_AT.get(sent,{}).get(gi+1) is not None and DEL_AT.get(sent,{}).get(gi+1) is None:",
+"发现",
+"出片守门自检.py：✔ T36：第20篇 24 起中文里出现破折号 → 【停止】画面或配音文字里有破折号（T36）：S1-1 zh“——”；S14-2 zh“——”。中文换成“，”“：”或括号（字义不改）；英文换成逗号、冒号或括号并同步文章"
+],
+[
+"make_video.py|31d4ecc677|0",
+"make_video.py",
+876,
+"if gaps[gi]-keep<0.03: raise SystemExit(f'【停止】保留的部分已超过标准停顿，放不下静音（A19）：{sent[:60]} 第{gi+1}个标点')",
+"发现",
+"出片守门自检.py：✔ T36：第20篇 24 起中文里出现破折号 → 【停止】画面或配音文字里有破折号（T36）：S1-1 zh“——”；S14-2 zh“——”。中文换成“，”“：”或括号（字义不改）；英文换成逗号、冒号或括号并同步文章"
+],
+[
+"make_video.py|1833184477|0",
+"make_video.py",
+930,
+"if ln[0]<=0 or ln[-1]<=0: raise SystemExit(f'【停止】句首/句尾听不见的部分超过了第一段/最后一段（A20）：{sent[:60]}')",
+"发现",
+"出片守门自检.py：✔ T36：第20篇 24 起中文里出现破折号 → 【停止】画面或配音文字里有破折号（T36）：S1-1 zh“——”；S14-2 zh“——”。中文换成“，”“：”或括号（字义不改）；英文换成逗号、冒号或括号并同步文章"
+],
+[
+"make_video.py|aae15e2cf4|0",
+"make_video.py",
+1034,
+"if any(y<=x for x,y in zip(starts,starts[1:])): raise SystemExit(f'【停止】高亮时间不是递增的（L14）：{sent[:60]}')",
+"发现",
+"出片守门自检.py：✔ T36：第20篇 24 起中文里出现破折号 → 【停止】画面或配音文字里有破折号（T36）：S1-1 zh“——”；S14-2 zh“——”。中文换成“，”“：”或括号（字义不改）；英文换成逗号、冒号或括号并同步文章"
+]
+]
