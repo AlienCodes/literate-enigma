@@ -7,7 +7,7 @@
 # 请求文件第一行（# 开头的是注释）：声音演练 / 主演练 / 彩排 / 合成对照 / 全篇重查 [篇号…] / 出片 NN；后面加“补丁=视频/云端/待演练/X.diff”= 打上补丁再跑，
 # 结果写回 视频/云端/结果/X.结果.diff|.txt（作者 github-actions[bot]，推送两仓库.sh 按 G58 回写主仓库）。workflow_dispatch 只认默认分支 master（别的项目）不能用。
 # 改门推送（K59/K60，2026-10-27）：“改门推送 补丁=X.diff”一条请求按固定顺序走完：① run 门变异分片（受影响的门，拆探函数、覆盖图改了就全量）
-# → ② merge 收齐、合并、查基线（不过就停）→ ③ drill 主演练 + 声音演练 4 片（打上补丁和合并后的清单：演练里的流水线 ⓪ 用上核查要清单已重拆，K60v3 实测）
+# + 声音演练 4 片（⓪′ 与门变异同时跑）→ ② merge 收齐、合并、查基线（不过就停）→ ③ drill 主演练（打上补丁和合并后的清单：演练里的流水线 ⓪ 用上核查要清单已重拆，K60v3 实测）
 # → ④ gate 两个演练印章 → 同一台新容器彩排 → 全过把全部印章和清单写回 视频/云端/结果/X.结果.diff，
 # 会话 推请求.py --收 X 一条命令拉回、打上、推两仓库。前一步不过后一步不跑，不会再出现彩排先跑白跑（K59）、印章互等（K60）。
 # 各请求各跑各的（不设全局排队：2026-10-26 单请求文件 + 全局排队时，后推的请求把排着队的请求顶掉了）；改门由 G66 改门锁排队。
@@ -53,9 +53,10 @@ jobs:
                   if not ok or sh.returncode: print('改门推送：补丁打不上或分片表算不出', sh and sh.stderr[-500:]); raise SystemExit(1)
                   片 = sh.stdout.split(); mode = '增量' if any('~改@' in x for x in 片) or not 片 else '全量'
                   items += [{'req': rid, 'job': '门变异', 'patch': patch, 'no': x, 'an': x.replace('/', '_'), 'gate': '1'} for x in 片]
-                  drill = [{'req': rid, 'job': j, 'patch': patch, 'no': n, 'an': a} for j, n, a in [('主演练', '0', '主演练')] + [('声音分片', f'{i}/4', f'声音{i}') for i in range(1, 5)]]
-                  gate = json.dumps({'req': rid, 'patch': patch, 'n': len(片), 'nd': len(drill), 'mode': mode}, ensure_ascii=False); print(f'改门推送 {rid}：门变异 {len(片)} 片（{mode}）→ 主演练 + 声音 4 片 → 彩排'); continue
-              for n in (nos if job in ('全篇重查', '出片', '单线程复现', '门变异') else ['0']): items.append({'req': rid, 'job': job, 'patch': patch, 'no': n, 'an': n.replace('/', '_')})   # an：artifact 名字不许带 /（K41）
+                  items += [{'req': rid, 'job': '声音分片', 'patch': patch, 'no': f'{i}/4', 'an': f'声音{i}', 'gate': '2'} for i in range(1, 5)]   # ⓪′：声音演练 4 片和门变异同时跑（只要补丁，不要合并后的清单；v2 实测并行全过），关键路径少 23 分钟
+                  drill = [{'req': rid, 'job': j, 'patch': patch, 'no': n, 'an': a} for j, n, a in [('主演练', '0', '主演练')]]
+                  gate = json.dumps({'req': rid, 'patch': patch, 'n': len(片), 'nd': len(drill) + 4, 'mode': mode}, ensure_ascii=False); print(f'改门推送 {rid}：门变异 {len(片)} 片（{mode}）+ 声音 4 片 → 主演练 → 彩排'); continue
+              for n in (nos if job in ('全篇重查', '出片', '单线程复现', '门变异', '定稿', '草稿') else ['0']): items.append({'req': rid, 'job': job, 'patch': patch, 'no': n, 'an': n.replace('/', '_')})   # an：artifact 名字不许带 /（K41）
           print('新请求：', fs, '→', len(items), '个任务')
           o = open(os.environ['GITHUB_OUTPUT'], 'a'); o.write(f"items={json.dumps(items, ensure_ascii=False)}\n"); o.write(f"recheck={str(any(i['job'] == '全篇重查' for i in items)).lower()}\n"); o.write(f"gate={gate}\n"); o.write(f"drill={json.dumps(drill, ensure_ascii=False)}\n")
           PY
@@ -92,6 +93,7 @@ jobs:
           case "${{ matrix.it.job }}" in
             声音演练) python3 $T/执行效应声音演练.py 2>&1 | tee /tmp/out.log | tail -40 ;;
             主演练)   python3 $T/执行效应演练.py 2>&1 | tee /tmp/out.log | tail -40 ;;
+            声音分片) mkdir -p /tmp/sgate; python3 $T/执行效应声音演练.py --分片=${{ matrix.it.no }} --结果=/tmp/sgate/声音_${{ matrix.it.an }}.json 2>&1 | tee /tmp/out.log | tail -30 ;;   # ⓪′ 改门推送：与门变异同时跑，结果给 gate
             彩排)     STRICT_CACHE=1 bash $T/彩排.sh 25 2>&1 | tee /tmp/out.log | tail -40 ;;   # L 新容器整条彩排（丝滑主义）：会话开工 → 流程自检 → 定稿流水线 25 到 ④，0 次停下才盖印章
             出片) N=${{ matrix.it.no }}; export STRICT_CACHE=1 VIDEO_S=2   # 只用仓库缓存（缺一条就停，绝不现合成）
                   python3 make_video.py scripts/$N.json $N.mp4 2>&1 | tee /tmp/out.log | tail -3 && {
@@ -100,6 +102,9 @@ jobs:
                   if [ -n "$A" ]; then if cmp -s $N.mp4 "$A"; then echo "✔ 与存档 4K 逐字节相同" | tee -a /tmp/out.log; else echo "✘ 与存档 4K 不逐字节相同（存档 $(sha256sum "$A" | cut -c1-16)）" | tee -a /tmp/out.log; python3 $T/对比成片.py $N.mp4 "$A" 2>&1 | tail -6 | tee -a /tmp/out.log
                     FF=$(python3 -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())")   # 查差在哪：逐路流数据指纹、文件头元数据
                     for x in $N.mp4 "$A"; do echo "== $(basename "$x" | cut -c1-12)"; $FF -v error -i "$x" -map 0 -c copy -f streamhash -hash sha256 - | cut -c1-40; $FF -v error -i "$x" -f ffmetadata - | grep -v '^;'; cmp $N.mp4 "$A" | head -1; done 2>&1 | tee -a /tmp/out.log; false; fi; fi; } ;;
+            定稿) STRICT_CACHE=1 bash $T/定稿流水线.sh ${{ matrix.it.no }} 2>&1 | tee /tmp/out.log | tail -40 ;;   # 阶段 B：⓪–⑤ 原样跑（⓪ 用户原话、证据链），⑥ 只存记录（云端不自己推），写回见下
+            草稿) N=${{ matrix.it.no }}; export STRICT_CACHE=1; { bash $T/草稿声音.sh $N && python3 $T/交付核查.py $N 出片前 && python3 make_video.py scripts/$N.json $N.mp4 \
+                    && python3 $T/交付核查.py $N 出片后 && cp $N.mp4 $GITHUB_WORKSPACE/视频/视频/草稿1080p/${N}_1080p.mp4 && cp scripts/$N.json $GITHUB_WORKSPACE/视频/脚本/$N.json; } 2>&1 | tee /tmp/out.log | tail -40 ;;   # 阶段 B：草稿流程 二、三 的程序部分（严格缓存：缺一条配音缓存就停）
             单线程复现) python3 $GITHUB_WORKSPACE/视频/云端/单线程复现.py ../tts scripts/${{ matrix.it.no }}.json 2>&1 | grep -v 'W:onnx' | tee /tmp/out.log | tail -3 ;;
             合成对照) python3 $GITHUB_WORKSPACE/视频/云端/合成对照.py ../tts 2>&1 | tee /tmp/out.log ;;
             门变异) N="${{ matrix.it.no }}"; pip install -q coverage; mkdir -p /tmp/门变异
@@ -116,8 +121,35 @@ jobs:
         run: |
           mkdir -p /tmp/gate; A="${{ matrix.it.an }}"; cp /tmp/门变异/*.json /tmp/gate/ 2>/dev/null || true
           { cat /tmp/rc 2>/dev/null || echo 1; } > /tmp/gate/rc_$A; tail -15 /tmp/out.log > /tmp/gate/log_$A.txt 2>/dev/null || true
+      - name: 定稿、草稿：只把 G58 白名单里的结果提交推回镜像（作者 github-actions[bot]；白名单外的改动不写、记进结果并算不过）
+        if: always() && (matrix.it.job == '定稿' || matrix.it.job == '草稿')
+        run: |
+          cd $GITHUB_WORKSPACE; N="${{ matrix.it.no }}"; Q="${{ matrix.it.req }}"; rc=$(cat /tmp/rc 2>/dev/null || echo 1); mkdir -p 视频/云端/结果
+          python3 - "$N" "${{ matrix.it.job }}" > /tmp/越权.txt <<'PY'
+          import sys, subprocess, fnmatch
+          n, job = sys.argv[1:3]
+          白 = ['视频/工具/执行效应演练通过.json', '视频/工具/执行效应声音演练通过.json', '视频/工具/全篇重查通过.json', '视频/云端/结果/*', f'视频/视频/{n}.mp4', f'视频/视频/草稿1080p/{n}_*', f'最终版4K视频/{n} *', '最终版4K视频/README.md', f'新版定稿/{n}-*',
+               f'视频/制作记录/{n}.md', f'视频/制作记录/{n}_*', f'视频/制作记录/逐句确认/{n}.json', f'视频/制作记录/证据/{n}*', f'视频/脚本/已发版本/{n}.json', f'视频/音频核对/*_{n}.txt', f'视频/音频核对/*_{n}_*.txt'] + ([f'视频/脚本/{n}.json'] if job == '草稿' else [])   # 与 推送两仓库.sh G58 白名单同一份
+          fs = [l[3:].strip('"') for l in subprocess.run(['git', '-c', 'core.quotepath=off', 'status', '--porcelain', '--untracked-files=all'], capture_output=True, text=True).stdout.splitlines()]
+          for f in fs:
+              if any(fnmatch.fnmatchcase(f, w) for w in 白): subprocess.run(['git', 'add', '-A', '--', f])
+              else: print(f)
+          PY
+          [ -s /tmp/越权.txt ] && rc=1
+          { echo "${{ matrix.it.job }} $N"; echo "底版 ${{ github.sha }}"; echo "运行 ${{ github.run_id }}"; echo "退出码 $rc"; grep -E '✘|【|==|完成|到 ⑥' /tmp/out.log | tail -25; [ -s /tmp/越权.txt ] && { echo "【白名单外的改动（G58，没写回）】"; head -20 /tmp/越权.txt; }; } > 视频/云端/结果/$Q.结果.txt
+          git add 视频/云端/结果/$Q.结果.txt; cat 视频/云端/结果/$Q.结果.txt >> $GITHUB_STEP_SUMMARY
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -qm "工作流结果：${{ matrix.it.job }} $N（运行 ${{ github.run_id }}，退出码 $rc）"
+          for i in 1 2 3 4 5; do git push -q origin HEAD:${{ github.ref_name }} && break; sleep $((i*3)); git pull -q --rebase origin ${{ github.ref_name }}; done
+          exit $rc
+      - name: 改门推送：声音分片结果留给 gate（和 drill 同一种格式、同一个 演练_ 名字）
+        if: always() && matrix.it.gate == '2'
+        run: |
+          mkdir -p /tmp/sgate; A="${{ matrix.it.an }}"; { cat /tmp/rc 2>/dev/null || echo 1; } > /tmp/sgate/rc_$A; grep -E '✘|【' /tmp/out.log 2>/dev/null | tail -12 > /tmp/sgate/log_$A.txt || true
+      - uses: actions/upload-artifact@v4
+        if: always() && matrix.it.gate == '2'
+        with: {name: '演练_${{ matrix.it.req }}_${{ matrix.it.an }}', path: /tmp/sgate/, retention-days: 14}
       - name: 写回结果（演练自己写的改动 = 结果补丁；会话拉回后与本地同样的程序改动一起正常提交）
-        if: always() && matrix.it.gate != '1' && (matrix.it.patch != '' || matrix.it.job == '门变异')
+        if: always() && matrix.it.gate != '1' && matrix.it.gate != '2' && (matrix.it.patch != '' || matrix.it.job == '门变异')
         env: {GH_TOKEN: '${{ github.token }}'}
         run: |
           P="${{ matrix.it.patch }}"; N="${{ matrix.it.req }}"; R=视频/云端/结果   # 结果按请求名（同一补丁跑几个任务不互相覆盖）
@@ -200,7 +232,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with: {name: '合并_${{ fromJson(needs.plan.outputs.gate).req }}', path: /tmp/m/, retention-days: 14}
-  # K60 改门推送 ③：主演练 + 声音演练 4 片（补丁 + 合并后的清单都打上；只在 ② 通过后跑）
+  # K60 改门推送 ③：主演练（补丁 + 合并后的清单都打上；只在 ② 通过后跑；声音 4 片已在 run 里和门变异同时跑，⓪′）
   drill:
     needs: [plan, merge]
     if: needs.plan.outputs.gate != '' && needs.merge.result == 'success'
@@ -231,7 +263,7 @@ jobs:
         working-directory: /home/runner/work/video
         run: |
           set +e; T=$GITHUB_WORKSPACE/视频/工具; A="${{ matrix.it.an }}"; mkdir -p /tmp/gate
-          if [ "${{ matrix.it.job }}" = 主演练 ]; then python3 $T/执行效应演练.py > /tmp/out.log 2>&1; else python3 $T/执行效应声音演练.py --分片=${{ matrix.it.no }} --结果=/tmp/gate/声音_$A.json > /tmp/out.log 2>&1; fi
+          python3 $T/执行效应演练.py > /tmp/out.log 2>&1
           rc=$?; tail -30 /tmp/out.log; echo $rc > /tmp/gate/rc_$A; grep -E '✘|【' /tmp/out.log | tail -12 > /tmp/gate/log_$A.txt
           [ "${{ matrix.it.job }}" = 主演练 ] && git -C $GITHUB_WORKSPACE diff --binary -- 视频 CLAUDE.md > /tmp/gate/主演练.diff
           { echo "### ${{ matrix.it.job }} ${{ matrix.it.no }}：$([ $rc = 0 ] && echo ✔ || echo ✘)"; echo '```'; cat /tmp/gate/log_$A.txt; echo '```'; } >> $GITHUB_STEP_SUMMARY
