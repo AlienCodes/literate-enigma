@@ -182,7 +182,8 @@ def 写表(行=None):
     for no in ks:
         r = 行[no]; prev, b = 基线(行, no)
         cmp = '；'.join(f'{lab}{"↑" if r[k] > b[k] else "↓"}' for k, _, lab in 项[:3] if b.get(k)) if prev else '—'
-        L.append(f'| {no}{"（不全）" if no in 不全 else ""} | {r["等效"]}M{"（估）" if r["估"] else ""} | {r["调用"]} | {r["平均上下文"]}k | {r["会话数"]} | {r["改稿条数"]} | {r["报坑"]}{f'（漏洞 {r["机制漏洞"]}）' if r.get("机制漏洞") is not None else ''}{f'（不丝滑 {r["不丝滑"]}）' if r.get("不丝滑") is not None else ''} | {"—" if r["手工重复"] is None else r["手工重复"]} | {cmp} |')
+        漏 = '（漏洞 %s）' % r['机制漏洞'] if r.get('机制漏洞') is not None else ''; 丝 = '（不丝滑 %s）' % r['不丝滑'] if r.get('不丝滑') is not None else ''   # 不嵌套同种引号的 f-string：出片环境是 Python 3.11（K51）
+        L.append(f'| {no}{"（不全）" if no in 不全 else ""} | {r["等效"]}M{"（估）" if r["估"] else ""} | {r["调用"]} | {r["平均上下文"]}k | {r["会话数"]} | {r["改稿条数"]} | {r["报坑"]}{漏}{丝} | {"—" if r["手工重复"] is None else r["手工重复"]} | {cmp} |')
     L += ['', '## 每步预计/实测 token（同一张 开工必读 ⑤ 步骤表；实测 = 最近一篇有按步骤记录的会话，预计 = 最近三篇中位数）', '',
           '| 第几步 | 做什么 | 正式入口 | 在哪做 | 预计 | 实测 |', '|---|---|---|---|---|---|']
     try:
