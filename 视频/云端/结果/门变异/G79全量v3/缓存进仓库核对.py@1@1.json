@@ -1,0 +1,26 @@
+[
+[
+"缓存进仓库核对.py|14f9356b3f|0",
+"缓存进仓库核对.py",
+19,
+"if sys.argv[1:2] == ['--自检']:",
+"发现",
+"缓存进仓库核对.py：【停止】严格缓存模式出不了声音（缓存不全，别的机器重出会不同）：onnxruntime.capi.onnxruntime_pybind11_state.NoSuchFile: [ONNXRuntimeError] : 3 : NO_SUCHFILE : Load model from ../tts/"
+],
+[
+"缓存进仓库核对.py|c3e0b6acb5|0",
+"缓存进仓库核对.py",
+25,
+"if r.returncode: print('【停止】严格缓存模式出不了声音（缓存不全，别的机器重出会不同）：' + (r.stdout + r.stderr).strip().splitlines()[-1][:200]); sys.e",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+],
+[
+"缓存进仓库核对.py|304dd5af82|0",
+"缓存进仓库核对.py",
+32,
+"if a or b: print(f'【停止】第{no}篇用到的缓存没进仓库（G51）：不在 git 里 {len(a)} 条（如 {a[:3]}），没推送 {len(b)} 条（如 {b[:3]}）'); sys.exit(1)",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+]
+]
