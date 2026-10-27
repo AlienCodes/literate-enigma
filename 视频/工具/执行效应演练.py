@@ -159,6 +159,10 @@ def _镜像印章(f):
     for x in SY.声音被演练:
         t = f.get(f'视频/工具/{x}'); t = t.encode() if isinstance(t, str) else (None if isinstance(t, tuple) else t); st2[x] = hashlib.sha256(t).hexdigest() if t is not None else 指纹(f'{T}/{x}')
     f[k2] = json.dumps(st2, ensure_ascii=False)
+    import 规则执行核查 as _R; st3 = {}   # L 彩排印章同样按镜像重算（镜像里只是前置门；真印章要 GitHub 全新容器彩排才盖）
+    for x in _R.STAMPED['彩排.sh'][1]:
+        t = f.get(f'视频/工具/{x}'); t = t.encode() if isinstance(t, str) else (None if isinstance(t, tuple) else t); st3[x] = hashlib.sha256(t).hexdigest() if t is not None else 指纹(f'{T}/{x}')
+    f['视频/工具/彩排通过.json'] = json.dumps(st3, ensure_ascii=False)
 def _变异(prog, old, new):
     def fn(f):
         k = f'视频/工具/{prog}'; t = f[k].decode() if isinstance(f[k], bytes) else f[k]
@@ -478,8 +482,15 @@ def 覆盖():
     for sid, entry, no, how, fn, want, rules in 仓库场景:
         for r in rules: cov.setdefault(r, []).append(f'执行效应演练 {sid}（仓库镜像）')
     # 已有的真入口自检（规则执行核查每次当场跑）：在临时仓库/临时副本里真跑那支程序、造错必须停
-    for prog, rs in {'推送自检.py（临时仓库真跑 推送两仓库.sh）': ['G1', 'G2', 'G3', 'G4', 'G11', '守则3', '流12', 'G16', 'G20', 'G5', 'G58', 'G67', 'G87', 'G88', 'G89'],
+    for prog, rs in {'推送自检.py（临时仓库真跑 推送两仓库.sh）': ['G1', 'G2', 'G3', 'G4', 'G11', '守则3', '流12', 'G16', 'G20', 'G5', 'G58', 'G67', 'G87', 'G88', 'G89', 'G98', 'G99', 'G100'],
                      '同步自检.py（临时副本真跑 sync_article.py）': ['S1', 'S3', 'S5'],
+                     '钩子/钩子自检.py（临时仓库真判 收工：已推过的 token 记录不拦、新的照拦）': ['G101'],
+                     '会话开工.py --自检 + 开工必读.py --自检（O/N：第一屏三大主义、顺序）': ['G93'],
+                     '用上核查.py --自检（P：临时工具目录真跑 完全不用/老做法冲突/重复）': ['G94'],
+                     '规则执行核查 机器自检（python3.11 真编译造的嵌套引号 f-string）+ 彩排（3.11 全新容器）': ['G95'],
+                     '报坑.py --自检（临时仓库真跑：镜像判定、K23 隔离）': ['G96'],
+                     '推请求.py --自检（临时仓库真跑：补丁没提交随请求提交）': ['G97'],
+                     '彩排.sh（GitHub 全新容器真跑 会话开工 → 流程自检 → 定稿流水线 25 到 ④，0 次停下才盖印章）': ['G92'],
                      '丝滑.py --自检 + 方法进化表.py --自检（K：分类、计数、五个入口接线；不丝滑变差要进化落地）': ['G91'],
                      '会话开工.py --自检（M：缺包装不上必停并说缺什么、缺包先自动装、包齐不误装；开工源码必先调 环境检查）': ['G90'],
                      '出片守门自检.py（隔离工作区真跑 make_video.py）': ['A44', 'A36'],

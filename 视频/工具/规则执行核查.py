@@ -47,6 +47,19 @@ FAST = [['丝滑.py', '--自检'], ['生成文本.py', '--自检'], ['配音缓�
 STAMPED = {'出片守门自检.py': ('出片守门自检通过.json', ['make_video.py', 'render.py', '出片守门自检.py'])}
 # 执行效应（CLAUDE.md 第19条）：端到端演练，被演练的程序或规矩一改，印章对不上，提交、推送、交付核查、定稿流水线一律停
 sys.path.insert(0, T); import 执行效应演练 as _YL; STAMPED['执行效应演练.py'] = ('执行效应演练通过.json', _YL.被演练); import 执行效应声音演练 as _SY; STAMPED['执行效应声音演练.py'] = ('执行效应声音演练通过.json', _SY.声音被演练)   # 被演练的程序清单只在演练程序里写一份
+# L 新容器整条彩排（用户 2026-10-27 丝滑主义）：门程序（会话开工.门程序 认的全部）一改，GitHub 全新容器彩排的印章就对不上，提交、推送停
+def 彩排范围():
+    import 会话开工 as _KG; out = []
+    for dp, dn, fn in os.walk(T):
+        dn[:] = [x for x in dn if x not in ('__pycache__', '历史版本', '演练样本', 'fonts')]
+        for x in fn:
+            r = os.path.relpath(f'{dp}/{x}', T)
+            if _KG.门程序('视频/工具/' + r) and not r.endswith('通过.json'): out.append(r)
+    return sorted(out)
+STAMPED['彩排.sh'] = ('彩排通过.json', 彩排范围())
+def 盖彩排印章():
+    f, progs = STAMPED['彩排.sh']
+    json.dump({x: hashlib.sha256(open(f'{T}/{x}', 'rb').read()).hexdigest() for x in progs}, open(f'{T}/{f}', 'w'), ensure_ascii=False, indent=0)
 
 
 # G44（主对话 2026-10-25：主会话容器没装视频环境，机器复听.py 顶层 from scipy… 让 --比较自检 起不来，规则执行核查 在那边整个失败）：
@@ -276,6 +289,50 @@ def 当场自检(files):
     return bad
 
 
+def 旧版语法(t=T, 文件=None):
+    """K51：出片环境、GitHub 是 Python 3.11；本机 3.13 认的写法（嵌套同种引号的 f-string 等）3.11 直接 SyntaxError。有 python3.11 就逐个编译"""
+    import shutil as _sh
+    py = _sh.which('python3.11')
+    if not py: return []
+    fs = 文件 or sorted(os.path.join(dp, x) for dp, dn, fn in os.walk(t) for x in fn if x.endswith('.py') and not re.search(r'/(历史版本|已淘汰|演练样本|__pycache__)(/|$)', dp))
+    r = subprocess.run([py, '-c', "import sys\nfor f in sys.argv[1:]:\n    try: compile(open(f, encoding='utf-8').read(), f, 'exec')\n    except SyntaxError as e: print(f'{f}:{e.lineno} {e.msg}')", *fs], capture_output=True, text=True)
+    return [f'Python 3.11 编译不过（K51：出片环境、GitHub 是 3.11）：{os.path.relpath(x.split(":")[0], t)}:{x.split(":", 1)[1]}' for x in r.stdout.splitlines() if x.strip()]
+
+
+def 印章问题():
+    """慢自检、演练、彩排的印章：程序一改对不上就停（彩排 L 的提示指向 GitHub）"""
+    gl = []
+    for p in STAMPED:
+        if p == '彩排.sh' and os.environ.get('CAIPAI'): continue   # 彩排自己在跑：印章正是这一场要盖的
+        if p == '彩排.sh' and not 印章有效(p): gl.append(f'门程序改过、GitHub 新容器彩排的印章对不上（L 丝滑主义）：python3 {os.path.relpath(T, P)}/推请求.py <名> "彩排 补丁=视频/云端/待演练/<名>.diff"，结果补丁拉回 git apply（带 彩排通过.json）再提交'); continue
+        if not 印章有效(p): gl.append(f'{STAMPED[p][1]} 改过、慢自检的印章对不上：在视频工作目录跑 python3 {os.path.relpath(T, P)}/{p}，通过后再提交（A26/A42：改出片程序后必须先过守门自检）')
+    return gl
+
+
+def 彩排自检():
+    """L：彩排范围 = 门程序（不含本篇数据程序、印章）；门程序一改印章就失效"""
+    f = []; r = 彩排范围()
+    for x in ('定稿流水线.sh', '会话开工.py', '规则执行核查.py', '彩排.sh', '规则执行表.json'):
+        if x not in r: f.append(f'没抓到：{x} 不在彩排范围（L）')
+    if any(x.startswith('初稿生成/gen') or x.endswith('通过.json') for x in r): f.append('误收：本篇数据程序或印章进了彩排范围（L）')
+    old = STAMPED['彩排.sh']; tmp = '彩排自检临时.json'
+    try:
+        STAMPED['彩排.sh'] = (tmp, ['定稿流水线.sh', '会话开工.py'])
+        json.dump({x: hashlib.sha256(open(f'{T}/{x}', 'rb').read()).hexdigest() for x in STAMPED['彩排.sh'][1]}, open(f'{T}/{tmp}', 'w'))
+        if not 印章有效('彩排.sh'): f.append('误停：彩排印章对得上也算失效（L）')
+        d = json.load(open(f'{T}/{tmp}')); d['会话开工.py'] = '改过'; json.dump(d, open(f'{T}/{tmp}', 'w'))
+        if 印章有效('彩排.sh'): f.append('没抓到：门程序改过、彩排印章照样有效（L）')
+        _cp = os.environ.pop('CAIPAI', None)   # 彩排里也要测得出
+        try:
+            if not any('新容器彩排的印章对不上' in x for x in 印章问题()): f.append('没抓到：彩排印章失效，提交、推送照样放行（L）')
+        finally:
+            if _cp is not None: os.environ['CAIPAI'] = _cp
+    finally:
+        STAMPED['彩排.sh'] = old
+        if os.path.exists(f'{T}/{tmp}'): os.remove(f'{T}/{tmp}')
+    return f
+
+
 def 机器自检():
     std, cl, reg, files = open(STD).read(), open(f'{P}/CLAUDE.md').read(), json.load(open(REG)), 程序表()
     fails = []
@@ -330,11 +387,19 @@ def 机器自检():
         per8, gl8 = 核查(std, cl, reg, files, s3)
         if not any('不存在.py' in g for g in gl8): fails.append('没抓到：钩子指向的程序不存在（G14）')
     # 原样不得误报（基线里的缺口除外，由 main 处理）
+    fails += 彩排自检()
+    import tempfile as _tf, shutil as _sh2
+    if _sh2.which('python3.11'):
+        _d = _tf.mkdtemp(); open(f'{_d}/甲.py', 'w').write("r = {'a': 1}\nx = f'{f\'（{r[\"a\"]}）\' if r else \'\'}'\n"); open(f'{_d}/乙.py', 'w').write("x = 1\n")
+        e = 旧版语法(_d)
+        if not any('甲.py' in x for x in e) or any('乙.py' in x for x in e): fails.append(f'没抓到：3.12 才认的嵌套引号 f-string（K51）或误报：{e}')
+        _sh2.rmtree(_d, ignore_errors=True)
     return fails
 
 
 def main():
     a = sys.argv[1:]
+    if '--盖彩排印章' in a: 盖彩排印章(); print('彩排印章已写：' + STAMPED['彩排.sh'][0]); return 0
     if '--自检' in a:
         f = 机器自检()
         print('规则执行机器自检：' + ('通过（新坑、新守则、新标准没登记，锚被删，程序不存在，没接进流程，没有自检，自检没人跑，第二份总表，钩子会锁死，挂钩原文被改——造的错全部抓到）' if not f else '失灵！' + '；'.join(f)))
@@ -367,8 +432,7 @@ def main():
     import 报坑 as _BK; _bh, _bl, _bw = _BK.判(std, _BK.读本地()); gl += _bh   # G54：撞号、总表新行没取号就停；超期没入表的这里只提示（定稿流水线 ⓪、推门程序时 --严 停）
     for _x in (_bl + _bw if '--状态' not in a else []): print('  提示（报坑登记，G54）：', _x[:120])
     for _x in _ZJ.闲置问题(): print('  ✘ 机制闲置（G71，开下一篇、定稿流水线 ⓪、ci.yml 停）：', _x[:160])   # 只报不挡提交：修机制、经用户同意下线都要提交
-    for p in STAMPED:
-        if not 印章有效(p): gl.append(f'{STAMPED[p][1]} 改过、慢自检的印章对不上：在视频工作目录跑 python3 {os.path.relpath(T, P)}/{p}，通过后再提交（A26/A42：改出片程序后必须先过守门自检）')
+    gl += 印章问题() + 旧版语法()
     new = {k: v for k, v in per.items() if k not in base}
     n = {p: sum(1 for k in R if k.startswith(p)) for p in ('守则', '铁', '法', '音', '画', '文', '流', '单')}
     npit = len(R) - sum(n.values())

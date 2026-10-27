@@ -23,6 +23,15 @@ T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T); P = os.p
     '⑤ 方法进化：每做完一件事回头看哪里还能更省、更好，当场改成程序，记进方法升级记录；踩过的坑绝不再踩（守则2/12/13）。',
 ]
 
+# 三大主义（O，用户 2026-10-27 第五次原话：“执行主义是最重要的……还有一个就是绝对的丝滑，还有一个就是虹吸主义”）：每个会话开工第一屏，按这个顺序
+三大主义 = [
+    '① 执行主义（最重要）：做出来的机制都要跑起来、用上，每次都查，漏跑就停——用上核查（G83）、门变异（G79）、证据链（G60）、执行效应演练（守则19）。',
+    '② 丝滑主义：流程中间不许有 bug、冲突、要重跑的地方——会话开工 环境检查（M/G90）、丝滑记录 不丝滑次数（K/G91）、GitHub 新容器彩排（L/G92）；停下不是稿子的问题当场报坑。',
+    '③ 虹吸主义：程序能做的全交给程序，不花或少花 token——不派子代理、少调用、输出短、每篇新开会话（T29）；30 分钟没成果立刻换方法（守则2）。',
+]
+def 打印三大主义():
+    print('【三大主义（每个会话开工第一屏，用户 2026-10-27）】'); [print('  ' + x) for x in 三大主义]
+
 
 def 指纹(): return hashlib.sha256(open(必读F, 'rb').read()).hexdigest()[:12] if os.path.exists(必读F) else ''
 
@@ -73,6 +82,7 @@ def 开工(角色, 会话='', 任务=''):
     if 角色 not in 角色们: sys.exit(f'【停止】角色只能是 {"、".join(角色们)}')
     if 角色 == '改门' and not (任务 and os.path.exists(任务 if os.path.isabs(任务) else f'{V}/{任务}')):
         sys.exit('【停止】改门会话要写 --任务 制作记录/改门_xxx.md（主会话交给你的改门文件；G25：出稿、改稿会话不改门）')
+    打印三大主义()   # O：第一屏
     环境检查()   # M：环境先齐，后面的用上报告、开工必读才跑得动
     打印总纲()
     r = subprocess.run(['python3', f'{T}/用上核查.py'], capture_output=True, text=True); print(r.stdout.strip())   # G83：开头先打印用上报告，读完才记指纹
@@ -190,6 +200,9 @@ def 自检():
         try: 环境检查({'json': 'x'}, 装=lambda *a: f.append('误装：包都齐还去装（M）'))
         except SystemExit as e: f.append(f'误停：包都齐（M）：{e}')
         import inspect
+        _src = ''.join(l.split('#')[0] for l in inspect.getsource(开工).splitlines())
+        if '打印三大主义()' not in _src or _src.find('打印三大主义()') > min(_src.find(x) for x in ('环境检查()', '打印总纲()', '用上核查.py')): f.append('没抓到：开工第一屏不是三大主义（O）')
+        if [x[:4] for x in 三大主义] != ['① 执行', '② 丝滑', '③ 虹吸']: f.append('三大主义顺序不对或少了（O）')
         if '环境检查()' not in ''.join(l.split('#')[0] for l in inspect.getsource(开工).splitlines()): f.append('没抓到：开工不先跑环境自检（M）')
         try: 开工('改门', 'x', ''); f.append('没抓到：改门会话没写 --任务')
         except SystemExit: pass
@@ -207,7 +220,7 @@ if __name__ == '__main__':
     if '--查' in a:
         e = 查开工(); [print(x) for x in e]; sys.exit(1 if e else 0)
     if '--重读' in a: 重读(); sys.exit(0)
-    if '--总纲' in a: 打印总纲(); sys.exit(0)
+    if '--总纲' in a: 打印三大主义(); 打印总纲(); sys.exit(0)
     if '--状态' in a:
         r = 读记录(); e = 查开工(r)
         print('【会话开工】' + (f'角色 {r["角色"]}，开工必读 {"已读现行版" if not e else "更新了，要 --重读"}' if r else '还没开工：第一件事 python3 视频/工具/会话开工.py <出稿|改稿|改门|主会话>（没开工不能提交）'))

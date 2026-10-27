@@ -147,6 +147,7 @@ def 相关(rel):
     """(自检命令, 演练场景号)：闭包里有 rel 的"""
     sys.path.insert(0, T); import 规则执行核查 as R, 执行效应演练 as Y
     cmds = [c for c in R.FAST if rel in 闭包(c[0])]
+    if rel.endswith('.py') and os.path.exists(f'{T}/{rel}') and "'--自检'" in open(f'{T}/{rel}').read() and [rel, '--自检'] not in cmds: cmds.append([rel, '--自检'])   # 文件自己的自检总是相关（2026-10-27：规则执行核查 --自检 不在 FAST，自己的门没人探）
     sids = [s[0] for s in Y.场景 if rel in 闭包(演练入口.get(s[1], ''))] + [s[0] for s in Y.仓库场景 if rel in 闭包(演练入口.get(s[1], ''))]
     if rel in 闭包('钩子/闸门.py'): sids += [s[0] for s in Y.钩子场景]
     return cmds, sids

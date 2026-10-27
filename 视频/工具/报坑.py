@@ -145,6 +145,17 @@ def 取(前缀, 会话, 用途='', 登记号=None, repo=None):
     return 原子写(改, repo, 说明=f'取号：{前缀}（{用途[:30]}）')
 
 
+def 关门(k, g, repo=None):
+    """登记的坑已经写进总表现有的一行（几条登记同一个坑）：入表编号记成那一行；总表没有那一行不关"""
+    f = f'{repo or P}/{STDREL}'
+    if g not in 总表编号(open(f).read() if os.path.exists(f) else ''): return f'总表里没有 {g} 这一行，不关门'
+    def 改(d, std):
+        for r in d['登记']:
+            if r['号'] == k: r['入表编号'] = g
+        return d, g
+    原子写(改, repo, 说明=f'关门：{k} → {g}'); return ''
+
+
 锁时长 = datetime.timedelta(hours=2)
 def 本会话():
     try: return json.load(open(os.path.expanduser('~/.会话开工.json'))).get('会话', '')
@@ -180,6 +191,8 @@ def 自检_K29():
         if 'K29' not in str(e): f.append(f'镜像仓库里停了但没说清原因（K29）：{e}')
     subprocess.run(['git', '-C', d, 'remote', 'set-url', 'origin', 'https://github.com/alienalgorithm/postgraduate-vocabulary'])
     if 镜像仓库(d): f.append('误报：主仓库被当成镜像（K29）')
+    subprocess.run(['git', '-C', d, 'remote', 'set-url', 'origin', '/home/user/literate-enigma'])
+    if 镜像仓库(d): f.append('误报：本地路径结尾 literate-enigma 当成镜像远端（K49：镜像里报坑自检误停）')
     shutil.rmtree(d, ignore_errors=True); return f
 def 自检():
     fails = 自检_K29(); now = 解时("2026-10-27T12:00Z")
@@ -216,6 +229,7 @@ def 自检():
     iso = 隔离查(f'{tmp}/a', tmp)
     if not any('仓库' in x and '不在' in x for x in 隔离查(P, tmp)): fails.append('没抓到：自检用的仓库不在临时目录里（K23，G79 门变异）')
     if iso: fails.append('自检指向真 origin（K23）：' + '；'.join(iso)); subprocess.run(['rm', '-rf', tmp]); return fails
+    if not 关门('K1', 'G9999', repo=f'{tmp}/b'): fails.append('没抓到：关门到总表没有的一行（K26 关门）')
     try:
         x1 = 取('G', '会话A', '自检', repo=f'{tmp}/a'); x2 = 取('G', '会话B', '自检', repo=f'{tmp}/b')
         k1 = 报('自检造的坑', '会话B', repo=f'{tmp}/b'); k2 = 报('自检造的坑2', '会话A', repo=f'{tmp}/a')
@@ -267,6 +281,8 @@ def main():
         return 0 if r != '占用' else 1
     if '--锁状态' in a:
         L = 读本地().get('改门锁') or {}; print(f'改门锁：{L["会话"][-8:]} 持（{L.get("任务", "")}，到期 {L["到期"]}）' if 锁有效(L) else '改门锁：空'); return 0
+    if '--关门' in a:   # 登记的坑已经写进总表现有的一行（多条登记一个坑）：python3 报坑.py --关门 K26 --入表 G68
+        e = 关门(opt('--关门'), opt('--入表')); print(e or f'关门：{opt("--关门")} 已入表 {opt("--入表")}'); return 1 if e else 0
     if '--取号' in a:
         x = 取(opt('--取号'), 会话, opt('--用途'), opt('--登记') or None); print(f'取号：{x}（已推到远端预留；总表这一行写 {x}）'); return 0
     if '--查' in a or '--状态' in a:

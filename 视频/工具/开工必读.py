@@ -108,6 +108,12 @@ def 机制节():
     return L + ['']
 
 
+def 主义节():
+    """O/N（用户 2026-10-27 第四、五次原话：丝滑主义、执行主义）：开工必读第一节，三大主义按顺序"""
+    import 会话开工 as _HK
+    return ['## ⓪ 三大主义（第一节，每个会话开工第一屏：执行 → 丝滑 → 虹吸，G93）', '', *[f'- {x}' for x in _HK.三大主义], '']
+
+
 def 用上节():
     """G83（用户 2026-10-27：“开头也一定要去阅读……每次都要检查，看看我们所有的这些东西都有没有用起来”）：开工必读第一节"""
     C = json.load(open(f'{T}/机制清单.json'))
@@ -128,6 +134,7 @@ def 生成(std, cl, reg):
          '用户 2026-10-26 原话：“一定要保证，一定要有一个机制，绝对的机制去保证我们踩过的这个坑，绝对不能再犯……每只要每次去开始做一个项目，都要有这么一个踩坑指南和别人要去做的事情指南，但就就是先先去读这些，先去读这些东西，然后再根据这些东西去做，ok。”', '',
          f'版本 {版本(it)}：坑 {len(坑)} 个、做法 {len(it) - len(坑)} 条，其中人判 {len(判)} 条。音频另见 视频/音频首要法则.md（首要法则）；每条全文见《制作硬性标准与踩坑总结》、CLAUDE.md。',
          f'{起} 起 开工记录 在 制作记录/NN.md 生成“## 做事对照记录”（记下读过的条目）；指南新加了条目，跑 `python3 视频/工具/开工必读.py --补 NN` 读新条目；人判的每条写“本篇：怎么做的”，没写踩坑核查就停。', '',
+         *主义节(),
          *用上节(),
          *总纲节(),
          f'## ① 踩坑指南（{len(坑)} 个坑：出过的问题 → 怎么防 → 哪道门挡）', '', *[x[2] for x in 坑], '',
@@ -183,6 +190,8 @@ def 补(no, txt=None, items=None, reg=None):
 def 自检():
     std, cl, reg = 现行(); f = []
     t0 = 生成(std, cl, reg); i0 = RG.坑行(std)[0][0]
+    if not re.search(r'^## ', t0, re.M) or not re.search(r'^## [^\n]*', t0, re.M).group(0).startswith('## ⓪ 三大主义'): f.append('没抓到：开工必读第一节不是三大主义（O/N）')
+    if [l[2:6] for l in t0.splitlines() if l.startswith('- ①') or l.startswith('- ②') or l.startswith('- ③')][:3] != ['① 执行', '② 丝滑', '③ 虹吸']: f.append('开工必读三大主义顺序不对（O）')
     std2 = '\n'.join(l for l in std.splitlines() if not re.match(rf'^\| *{i0} *\|', l))
     if 生成(std2, cl, reg) == t0: f.append(f'没抓到：踩坑总表删掉 {i0}，开工必读没变（漏一条发现不了）')
     k0 = next(k for k in reg if k.startswith('文') and not 人判(reg, k) and reg[k].get('门'))
@@ -218,7 +227,7 @@ if __name__ == '__main__':
         if len(new) > 60: print(f'  ……另 {len(new) - 60} 条见 视频/开工必读.md')
         sys.exit(0)
     if '--要点' in a:
-        import 会话开工 as _HK; _HK.打印总纲()   # G63：五条总纲每个会话开工第一屏
+        import 会话开工 as _HK; _HK.打印三大主义(); _HK.打印总纲()   # G63：五条总纲每个会话开工第一屏
         it = 条目(std, cl, reg); 判 = [k for k, _, _ in it if 人判(reg, k)]
         print(f'【开工必读（用户 2026-10-26：先读踩坑指南和做事指南，再照着做）】先读 视频/开工必读.md：坑 {sum(1 for x in it if x[1] == "坑")} 个、做法 {sum(1 for x in it if x[1] != "坑")} 条；人判 {len(判)} 条（NN.md 做事对照记录逐条写本篇怎么做）：{" ".join(判)}'); sys.exit(0)
     if not os.path.exists(OUT) or open(OUT).read() != t:

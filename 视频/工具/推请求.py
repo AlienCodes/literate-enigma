@@ -24,6 +24,12 @@ def 补丁打不上(行, repo=L):
     if not m: return ''
     p = m.group(1); r = subprocess.run(['git', '-C', repo, 'apply', '--check', p], capture_output=True, text=True)
     return '' if r.returncode == 0 else f'补丁 {p} 在工作分支上打不上（K43：主仓库更新过，先合并最新 main 再重做补丁）：{(r.stderr or r.stdout).strip()[-150:]}'
+def 待提交补丁(行, repo=L):
+    """K50：补丁文件没提交（新文件或改过），GitHub 上打补丁找不到/打的是旧版：随请求一起提交"""
+    m = re.search(r'补丁=(\S+)', 行)
+    if not m: return []
+    r = subprocess.run(['git', '-C', repo, 'status', '--porcelain', '--', m.group(1)], capture_output=True, text=True).stdout.strip()
+    return [m.group(1)] if r else []
 def 自检():
     f = []
     d = tempfile.mkdtemp(prefix='推请求自检_'); sh = lambda c: subprocess.run(c, shell=True, cwd=d, capture_output=True)
@@ -31,6 +37,9 @@ def 自检():
     open(f'{d}/好.diff', 'w').write('--- a/x.txt\n+++ b/x.txt\n@@ -1,2 +1,2 @@\n a\n-b\n+c\n'); open(f'{d}/坏.diff', 'w').write('--- a/x.txt\n+++ b/x.txt\n@@ -1,2 +1,2 @@\n a\n-zzz\n+c\n')
     if not 补丁打不上('门变异 x 补丁=坏.diff', d): f.append('没抓到：补丁在工作分支上打不上还让推（K43）')
     if 补丁打不上('门变异 x 补丁=好.diff', d) or 补丁打不上('主演练', d): f.append('误报：补丁打得上或没有补丁也拦（K43）')
+    if 待提交补丁('门变异 x 补丁=好.diff', d) != ['好.diff']: f.append('没抓到：补丁文件没提交，请求照样推（K50）')
+    sh('git add 好.diff && git -c user.name=t -c user.email=t@t commit -qm 1')
+    if 待提交补丁('门变异 x 补丁=好.diff', d) or 待提交补丁('主演练', d): f.append('误报：补丁已提交或没有补丁也要再提交（K50）')
     shutil.rmtree(d, ignore_errors=True)
     if not 本地慢印章('主演练 补丁=视频/云端/待演练/x.diff', lambda p: p == '执行效应演练.py'): f.append('没抓到：出片守门自检印章过期还让推带补丁的主演练（K35）')
     if not 本地慢印章('主演练 补丁=视频/云端/待演练/x.diff', lambda p: True, 缺口数=99): f.append('没抓到：演练缺口变多还让推带补丁的主演练')
@@ -38,7 +47,7 @@ def 自检():
     return f
 def main():
     a = sys.argv[1:]
-    if a[:1] == ['--自检']: e = 自检(); print('\n'.join(e) or '推请求 自检通过（本地慢自检印章过期时带补丁的主演练必停，K35）'); return 1 if e else 0
+    if a[:1] == ['--自检']: e = 自检(); print('\n'.join(e) or '推请求 自检通过（本地慢自检印章过期时带补丁的主演练必停，K35；补丁文件没提交随请求提交，K50）'); return 1 if e else 0
     if len(a) < 2: print(__doc__); return 1
     名字, 行 = a[0], a[1]; 注 = a[2] if len(a) > 2 else ''
     e = 本地慢印章(行)
@@ -50,8 +59,10 @@ def main():
     if os.path.exists(f'{L}/{f}'): print(f'【停止】请求 {f} 已经有了（只认新加的文件）：换个名字'); return 1
     os.makedirs(f'{L}/视频/云端/请求', exist_ok=True)
     open(f'{L}/{f}', 'w').write((f'# {注}\n' if 注 else '') + 行 + '\n')
-    g('add', f); c = g('commit', '-qm', f'GitHub 请求：{名字}（{行[:60]}）\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>')
-    if c.returncode: print('【停止】提交没成功：' + (c.stdout + c.stderr)[-300:]); return 1
+    g('add', f, *待提交补丁(行)); c = g('commit', '-qm', f'GitHub 请求：{名字}（{行[:60]}）\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>')   # K50：补丁文件一起提交
+    if c.returncode:
+        g('reset', '-q', '--', f); os.remove(f'{L}/{f}')   # 提交没成功：请求文件收回，改好了用同一个名字再推
+        print('【停止】提交没成功：' + (c.stdout + c.stderr)[-300:]); return 1
     for _ in range(3):
         if g('push', '-q', 'origin', B).returncode == 0: break
         g('pull', '-q', '--no-rebase', '--no-edit', 'origin', B)

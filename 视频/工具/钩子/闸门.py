@@ -174,6 +174,7 @@ def 判(kind, d, 仓库=PV):
         for l in r.splitlines():
             p = l[3:].strip().strip('"')
             if not l.strip() or '子代理记录.md' in p or p.endswith('全篇重查通过.json'): continue   # 全篇重查边查边记的进度，跑完它自己推送
+            if l.startswith(' M') and re.match(r'视频/制作记录/方法进化/[^/]+\.json$', p): continue   # K33：已推过的本会话 token 记录每轮重写（等锁、等 GitHub 时每轮都要推一次），跟下一次真推送一起走
             if l.startswith(' M') and '制作记录/' in p:   # 收工记录钩子每轮自动更新的“进行中”行不算没推送的改动
                 df = subprocess.run(['git', '-C', 仓库, 'diff', '-U0', '--', p], capture_output=True, text=True).stdout
                 chg = [x for x in df.splitlines() if x[:1] in '+-' and not x.startswith(('+++', '---'))]

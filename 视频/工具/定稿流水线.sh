@@ -42,6 +42,7 @@ YAOWENBEN="${YAOWENBEN:-$(printenv 要文本)}"   # K37：bash 不认中文变�
 python3 $T/生成文本.py $no $([ -n "$YAOWENBEN" ] && echo --出文档 || echo --只核查) > "$LOG/文本.log" 2>&1 || { tail -15 "$LOG/文本.log"; stop "对照文本生成或文本核查不通过"; }   # 守则17：默认只核查不出 Word/PDF；用户要文本时 YAOWENBEN=1（或 env 要文本=1）
 md=$(ls $P/新版定稿/$no-*.md 2>/dev/null | head -1); [ -n "$md" ] || stop "找不到文章 新版定稿/$no-*.md"
 (cd $P && python3 视频/工具/sync_article.py 视频/脚本/$no.json "$md") > "$LOG/文章同步.log" 2>&1 || stop "文章同步失败"
+[ -n "$CAIPAI" ] && { step "彩排到此（L：⑤ 归档、⑥ 推送不做；彩排.sh 用）"; exit 0; }
 step "⑤ 归档（替换旧视频 + 定稿视频核对）"
 cp $no.mp4 $P/视频/视频/$no.mp4 || stop "复制失败"
 python3 $T/归档定稿视频.py $no > "$LOG/归档.log" 2>&1 || { tail -15 "$LOG/归档.log"; stop "归档或定稿视频核对不通过"; }

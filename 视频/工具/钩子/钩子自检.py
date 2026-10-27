@@ -39,6 +39,13 @@ _r3 = f'{tmp}/repo3'; os.makedirs(f'{_r3}/视频/工具'); subprocess.run(['git'
 subprocess.run(['git', '-C', _r3, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'add', '-A']); subprocess.run(['git', '-C', _r3, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'commit', '-qm', 'x', '--date=2000-01-01T00:00:00'], env={**os.environ, 'GIT_COMMITTER_DATE': '2000-01-01T00:00:00'})
 open(f'{_r3}/视频/工具/全篇重查通过.json', 'w').write('{"篇": {}}')   # 已跟踪的进度文件被改了（真实情形）
 if 拦了('收工', {}, 仓库=_r3): fails.append('误拦：全篇重查边查边记的进度文件')
+_r4 = f'{tmp}/repo4'; os.makedirs(f'{_r4}/视频/制作记录/方法进化'); subprocess.run(['git', 'init', '-q', _r4]); open(f'{_r4}/视频/制作记录/方法进化/s1.json', 'w').write('{}')
+_e4 = {k: v for k, v in os.environ.items() if not k.startswith('GIT_')}
+subprocess.run(['git', '-C', _r4, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'add', '-A'], env=_e4); subprocess.run(['git', '-C', _r4, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'commit', '-qm', 'y'], env=_e4)
+open(f'{_r4}/视频/制作记录/方法进化/s1.json', 'w').write('{"等效": 2}')
+if 拦了('收工', {}, 仓库=_r4): fails.append('误拦：已推过的本会话 token 记录每轮重写（K33）')
+open(f'{_r4}/视频/制作记录/方法进化/s2.json', 'w').write('{}')
+if not 拦了('收工', {}, 仓库=_r4): fails.append('没抓到：新的 token 记录从没推过就收工（K33 放得太宽）')
 import datetime as _dt   # 方法进化闸门：今天改了工具、方法升级记录没写今天 → 拦；写了 → 放行
 q = f'{tmp}/repo2'; os.makedirs(f'{q}/视频/工具'); subprocess.run(['git', 'init', '-q', q])
 for k, v in (('user.name', '自检'), ('user.email', 'selftest@example.com')): subprocess.run(['git', '-C', q, 'config', k, v])

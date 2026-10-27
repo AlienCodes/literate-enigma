@@ -11,11 +11,12 @@
   python3 用上核查.py            打印用上报告；①② 有问题退出 1
   python3 用上核查.py --严       ③ 也算（定稿、出片前用）
   python3 用上核查.py --报告 NN  本篇执行报告（开工必读 ⑤ 每一步证据 + 每个登记机制）
+  python3 用上核查.py --淘汰 [--写入]  P（用户 2026-10-27 第五次原话：完全不用的直接淘汰）：列 完全不用/老做法冲突/重复；--写入 把完全不用的挪进 已淘汰/、记“下线 <名>”、写 制作记录/淘汰清单.md
   python3 用上核查.py --自检"""
-import os, sys, re, json, glob, subprocess, datetime, tempfile, shutil
+import os, sys, re, json, glob, subprocess, datetime, tempfile, shutil, hashlib
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T); P = os.path.dirname(V); L = '/home/user/literate-enigma'
 清单F = f'{T}/机制清单.json'
-不算程序 = re.compile(r'(^|/)(演练样本|历史版本|fonts|__pycache__)/')
+不算程序 = re.compile(r'(^|/)(演练样本|历史版本|fonts|__pycache__|已淘汰)/')
 正式根 = ['会话开工.py', '开工提醒.sh', '推送两仓库.sh', '主会话核对.sh', '钩子/闸门.py', '规则执行核查.py', 'githooks/pre-commit', '定稿流水线.sh', '交付核查.py']
 
 # ② 管执行的机制：(机制, 文件, 锚)；文件相对 视频/工具
@@ -29,6 +30,7 @@ T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T); P = os.p
     ('闲置报警', '定稿流水线.sh', 'python3 $T/证据.py --闲置 || stop'), ('闲置报警', '开工提醒.sh', '证据.py --闲置'),
     ('门变异', '规则执行核查.py', '_me, _mw = _MB.查基线()'), ('门变异', '规则执行核查.py', "['门变异.py', '--自检']"), ('门变异', '流程自检.py', 'def sh门真跑(txt):'),
     ('机制漏洞记录', '踩坑核查.py', "err.append(f'[G79] 制作记录/{no}.md 没有"), ('机制漏洞记录', '方法进化表.py', '写报告进篇(no, 节); 写漏洞节(no, 行)'),
+    ('丝滑记录', '定稿流水线.sh', 'python3 "$T/丝滑.py" 记 定稿流水线'), ('丝滑记录', '交付核查.py', "_SH.记('交付核查'"), ('新容器彩排', '规则执行核查.py', "STAMPED['彩排.sh'] = ('彩排通过.json'"),
     ('用上核查', '会话开工.py', '用上核查.py'), ('用上核查', '开工提醒.sh', '用上核查.py'), ('用上核查', '规则执行核查.py', '_YS.问题()'),
     ('用上核查', '定稿流水线.sh', 'python3 $T/用上核查.py --严 || stop'), ('用上核查', '交付核查.py', "/用上核查.py', '--严'])"), ('用上核查', '主会话核对.sh', '用上核查.py'),
 ]
@@ -104,9 +106,51 @@ def 该用没用():
     return out
 
 
+淘汰词 = re.compile(r'一次性|不再用|原型|留着备查')
+def 淘汰(t=T, 清单=None):
+    """P：{类: [(对象, 说明)]}。完全不用 = 登记“辅助”且自己写着一次性/不再用/原型/备查、没有正式入口走到、别的程序和演练都不引用；
+    老做法冲突 = 草稿流程、主会话交接、改门_*.md 里点名的程序已经不存在；重复 = 两个程序内容一模一样，或 X_旧/X_old/X_vN 和现行 X 并存"""
+    m = 清单 or json.load(open(f'{t}/机制清单.json')); 辅 = m.get('辅助', {}); out = {'完全不用': [], '老做法冲突': [], '重复': []}
+    progs = 程序们(t); ok = 走得到(t, m)
+    演 = ''.join(open(f'{t}/{x}', errors='ignore').read() for x in ('执行效应演练.py', '执行效应声音演练.py') if os.path.exists(f'{t}/{x}'))
+    文 = {q: open(f'{t}/{q}', errors='ignore').read() for q in progs}
+    for p in progs:
+        if p in ok or p not in 辅 or not 淘汰词.search(str(辅[p])) or os.path.basename(p) in 演: continue
+        if any(os.path.basename(p) in 文[q] for q in progs if q != p): continue
+        out['完全不用'].append((p, str(辅[p])[:60]))
+    vd = os.path.dirname(t)
+    for d in sorted(glob.glob(f'{t}/草稿流程.md') + glob.glob(f'{vd}/制作记录/主会话交接.md') + glob.glob(f'{vd}/制作记录/改门_*.md')):
+        for x in sorted(set(re.findall(r'(?:视频/工具/|\$T/|工具/)([\w一-龥/]+\.(?:py|sh))', open(d).read()))):
+            if 'NN' not in x and not os.path.exists(f'{t}/{x}'): out['老做法冲突'].append((os.path.relpath(d, vd), f'点名的 {x} 已不存在'))
+    h = {}
+    for q in progs:
+        if os.path.getsize(f'{t}/{q}') > 0: h.setdefault(hashlib.sha256(open(f'{t}/{q}', 'rb').read()).hexdigest(), []).append(q)
+    out['重复'] += [('、'.join(v), '内容一模一样') for v in h.values() if len(v) > 1]
+    for q in progs:
+        mm = re.match(r'(.+?)(?:_旧|_old|_v\d+|旧版)\.(py|sh)$', q)
+        if mm and f'{mm.group(1)}.{mm.group(2)}' in progs: out['重复'].append((q, f'旧版，现行 {mm.group(1)}.{mm.group(2)}'))
+    return out
+def 淘汰写入(t=T):
+    """完全不用的挪进 已淘汰/（git 历史保留），机制清单 辅助 去掉，用户同意记录 每项一条“下线 <名>”引用 2026-10-27 总同意条，写 淘汰清单.md"""
+    r = 淘汰(t); m = json.load(open(f'{t}/机制清单.json')); 同 = json.load(open(f'{t}/用户同意记录.json'))
+    总 = next(x for x in 同['记录'] if '完全不用的那些东西就可以直接被淘汰掉' in x.get('原话', ''))
+    day = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d'); done = []
+    for p, why in r['完全不用']:
+        os.makedirs(os.path.dirname(f'{t}/已淘汰/{p}'), exist_ok=True)
+        if subprocess.run(['git', '-C', t, 'mv', p, f'已淘汰/{p}'], capture_output=True).returncode: shutil.move(f'{t}/{p}', f'{t}/已淘汰/{p}')
+        m.get('辅助', {}).pop(p, None); done.append((p, why))
+        同['记录'].append({'篇': '全部', '日期': day, '原话': 总['原话'], '用于': f'下线 {p}（完全不用：{why}；挪进 视频/工具/已淘汰/）', '来源': f'引用 {总["日期"]} 总同意条（{总["来源"][:40]}）；用上核查.py --淘汰 --写入'})
+    json.dump(m, open(f'{t}/机制清单.json', 'w'), ensure_ascii=False, indent=1); json.dump(同, open(f'{t}/用户同意记录.json', 'w'), ensure_ascii=False, indent=1)
+    vd = os.path.dirname(t); f = f'{vd}/制作记录/淘汰清单.md'; old = open(f).read() if os.path.exists(f) else '# 淘汰清单（用上核查.py --淘汰 --写入 生成；P，用户 2026-10-27：“完全不用的那些东西就可以直接被淘汰掉了”）\n\n| 日期 | 程序 | 原因 | 去向 |\n|---|---|---|---|\n'
+    open(f, 'w').write(old + ''.join(f'| {day} | {p} | {why} | 视频/工具/已淘汰/{p} |\n' for p, why in done))
+    return done, r
+
+
 def 问题(t=T):
-    """①② 结构问题：规则执行核查用（提交、推送、交付核查、定稿 ⓪）"""
-    return [f'孤儿：{p}（{w}）' for p, w in 孤儿(t)] + [f'没接上：{m} 没接在 {f}（锚“{a[:40]}”）' for m, f, a in 没接上(t)]
+    """①② 结构问题 + P 淘汰：规则执行核查用（提交、推送、交付核查、定稿 ⓪）"""
+    tt = 淘汰(t)
+    return [f'孤儿：{p}（{w}）' for p, w in 孤儿(t)] + [f'没接上：{m} 没接在 {f}（锚“{a[:40]}”）' for m, f, a in 没接上(t)] \
+        + [f'{k}（P 淘汰）：{x}（{w}）——python3 视频/工具/用上核查.py --淘汰 --写入，老做法冲突改文档指向现行入口' for k, v in tt.items() for x, w in v]
 
 
 def 报告(no):
@@ -132,6 +176,15 @@ def 自检():
     if '旧.py' not in o: f.append('没抓到：下线没有用户原话')
     if any(x in o for x in ('被调.py', '入口.py', '辅.py', '手工.py', '初稿生成/gen99.py')): f.append(f'误报：登记了、被调用、辅助、流程点名、本篇数据的也算孤儿：{o}')
     if '旧.py' in [p for p, _ in 孤儿(t, m, '', '{"原话": "下线 旧.py"}')]: f.append('误报：下线有用户原话还算孤儿')
+    tt = 淘汰(t, m)   # P：辅助里写着一次性/备查、没人引用 = 完全不用；文档点名不存在的程序 = 老做法冲突；同内容、X_旧 = 重复
+    if '辅.py' not in [x for x, _ in tt['完全不用']]: f.append('没抓到：一次性小程序没人用（P 完全不用）')
+    os.makedirs(f'{d}/视频/制作记录'); open(f'{d}/视频/制作记录/主会话交接.md', 'w').write('跑 python3 视频/工具/早没了.py\n')
+    open(f'{t}/被调_旧.py', 'w').write('y=2\n'); open(f'{t}/抄的.py', 'w').write('x=1\n')
+    tt = 淘汰(t, m)
+    if not any('早没了.py' in w for _, w in tt['老做法冲突']): f.append('没抓到：文档点名的程序已不存在（P 老做法冲突）')
+    if not any('被调_旧.py' == x for x, _ in tt['重复']) or not any('抄的.py' in x for x, _ in tt['重复']): f.append(f'没抓到：旧版并存、内容一样（P 重复）：{tt["重复"]}')
+    if any(x in [y for y, _ in tt['完全不用']] for x in ('被调.py', '入口.py', '手工.py')): f.append('误报：用着的程序当成完全不用（P）')
+    os.remove(f'{t}/被调_旧.py'); os.remove(f'{t}/抄的.py')
     for _, fn, a in 接线:   # 把真程序拷进假目录，拆掉一处接线必须报出
         os.makedirs(os.path.dirname(f'{t}/{fn}'), exist_ok=True)
         if os.path.exists(f'{T}/{fn}'): shutil.copy(f'{T}/{fn}', f'{t}/{fn}')
@@ -160,6 +213,13 @@ def main():
         e = 自检(); print('用上核查 自检：' + ('通过（新程序没登记、下线没用户原话必报；登记的、被调用的、辅助、流程点名、本篇数据不误报；拆掉规则执行核查/改门锁/开工打印/门变异的接线必报）' if not e else '【失灵】' + '；'.join(e)))
         return 1 if e else 0
     if '--报告' in a: print(报告(a[a.index('--报告') + 1])); return 0
+    if '--淘汰' in a:
+        if '--写入' in a:
+            done, r = 淘汰写入(); print(f'淘汰：挪进 已淘汰/ {len(done)} 个：' + '、'.join(p for p, _ in done))
+        r = 淘汰(); n = sum(len(v) for v in r.values()); print(f'【淘汰（P）】完全不用 {len(r["完全不用"])}、老做法冲突 {len(r["老做法冲突"])}、重复 {len(r["重复"])}')
+        for k, v in r.items():
+            for x, w in v: print(f'  ✘ {k}：{x}（{w}）'[:170])
+        return 1 if n else 0
     bad = 打印('--严' in a)
     return 1 if bad else 0
 
