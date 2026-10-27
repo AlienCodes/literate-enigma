@@ -38,7 +38,7 @@ jobs:
               if job == '全篇重查' and not nos: nos = 全部
               rid = os.path.basename(f)[:-4]
               if job == '门变异': nos = [x for x in rest if '@' in x]   # 门变异 覆盖@自检 覆盖@主 覆盖@声 / <文件>@i@n（一个分片一台机器）
-              for n in (nos if job in ('全篇重查', '出片', '单线程复现', '门变异') else ['0']): items.append({'req': rid, 'job': job, 'patch': patch, 'no': n})
+              for n in (nos if job in ('全篇重查', '出片', '单线程复现', '门变异') else ['0']): items.append({'req': rid, 'job': job, 'patch': patch, 'no': n, 'an': n.replace('/', '_')})   # an：artifact 名字不许带 /（K41）
           print('新请求：', fs, '→', len(items), '个任务')
           o = open(os.environ['GITHUB_OUTPUT'], 'a'); o.write(f"items={json.dumps(items, ensure_ascii=False)}\n"); o.write(f"recheck={str(any(i['job'] == '全篇重查' for i in items)).lower()}\n")
           PY
@@ -103,17 +103,22 @@ jobs:
           put() { python3 - "$1" "$2" <<'PY'
           import sys,base64,json,subprocess,urllib.parse,os
           path,src=sys.argv[1:3]; repo=os.environ['GITHUB_REPOSITORY']; br=os.environ['GITHUB_REF_NAME']; u=f'repos/{repo}/contents/{urllib.parse.quote(path)}'
-          g=subprocess.run(['gh','api',u+'?ref='+urllib.parse.quote(br)],capture_output=True,text=True); sha=json.loads(g.stdout).get('sha') if g.returncode==0 else None
-          body={'message':f'工作流结果：{path}','content':base64.b64encode(open(src,'rb').read()).decode(),'branch':br}
-          if sha: body['sha']=sha
-          r=subprocess.run(['gh','api','-X','PUT',u,'--input','-'],input=json.dumps(body),capture_output=True,text=True); print(path, '写回' if r.returncode==0 else '失败 '+r.stderr[-200:]); sys.exit(r.returncode)
+          import time,random
+          for i in range(8):   # K41：几十个分片同时写回同一分支，409（分支头变了）就重读再写
+              g=subprocess.run(['gh','api',u+'?ref='+urllib.parse.quote(br)],capture_output=True,text=True); sha=json.loads(g.stdout).get('sha') if g.returncode==0 else None
+              body={'message':f'工作流结果：{path}','content':base64.b64encode(open(src,'rb').read()).decode(),'branch':br}
+              if sha: body['sha']=sha
+              r=subprocess.run(['gh','api','-X','PUT',u,'--input','-'],input=json.dumps(body),capture_output=True,text=True)
+              if r.returncode==0 or not any(x in r.stderr for x in ('409','is at','422')): break
+              time.sleep(2+random.random()*6*(i+1))
+          print(path, '写回' if r.returncode==0 else '失败 '+r.stderr[-200:]); sys.exit(r.returncode)
           PY
           }
           if [ "${{ matrix.it.job }}" = 门变异 ]; then f=$(ls /tmp/门变异/*.json | head -1); [ -n "$f" ] && put "$R/门变异/$N/$(basename "$f")" "$f"; exit $?; fi   # 每个分片一份，不互相覆盖
           put "$R/$N.结果.diff" /tmp/结果.diff && put "$R/$N.结果.txt" /tmp/结果.txt
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: '结果_${{ matrix.it.req }}_${{ matrix.it.no }}', path: "/tmp/out.log\n/tmp/*通过.json\n/tmp/键_*.txt", retention-days: 14, if-no-files-found: ignore}
+        with: {name: '结果_${{ matrix.it.req }}_${{ matrix.it.an }}', path: "/tmp/out.log\n/tmp/*通过.json\n/tmp/键_*.txt", retention-days: 14, if-no-files-found: ignore}
   # 全篇重查过了的篇：把重查键（程序指纹-存的视频-现行脚本，与沙盒 全篇核查.py --视频 同一个函数）并进 全篇重查通过.json 写回（G58 回写主仓库）
   stamp:
     needs: [plan, run]
