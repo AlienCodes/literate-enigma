@@ -1,0 +1,66 @@
+[
+[
+"流程自检.py|87bb5ab6cc|0",
+"流程自检.py",
+13,
+"if 顺序(src): fails.append('原样就报：' + 顺序(src)[0])",
+"漏洞",
+""
+],
+[
+"流程自检.py|666f1f4026|0",
+"流程自检.py",
+41,
+"if '| T7 |' in _x or '| G6 |' in _x: fails.append('误补：只有人能判的坑（T7/G6）被自动补成“程序把关”')",
+"漏洞",
+""
+],
+[
+"流程自检.py|36cda121a7|0",
+"流程自检.py",
+80,
+"elif not _st: fails.append('定稿流水线 ④ 生成文本.py 失败了流水线没停（K37：|| stop 被注释吞掉？）')",
+"漏洞",
+""
+],
+[
+"流程自检.py|dc2ed2a952|0",
+"流程自检.py",
+83,
+"if _a is None or '--出文档' not in _a.split() or _st: fails.append(f'定稿流水线 ④ env 要文本=1 没出文档或不该停：参数“{_a}”{_e[:80]}')",
+"漏洞",
+""
+],
+[
+"流程自检.py|81005ec34c|0",
+"流程自检.py",
+140,
+"if '请在视频工作目录' not in _r.stdout + _r.stderr: fails.append('执行效应演练 不在视频工作目录也开跑了（G79 门变异）：' + (_r.stdout + _r.stderr).strip",
+"漏洞",
+""
+],
+[
+"流程自检.py|4811fd76df|0",
+"流程自检.py",
+147,
+"if _r.returncode == 0 or '会话开工（G61' not in _r.stdout + _r.stderr: fails.append('会话开工.py 角色乱写没打印用法停下（G79 门变异）')",
+"漏洞",
+""
+],
+[
+"流程自检.py|8999f8401b|0",
+"流程自检.py",
+151,
+"if _r.returncode == 0 or '不覆盖' not in _r.stdout + _r.stderr: fails.append('交付核查 对照表 把已有的踩坑对照记录又追加了一份（G79 门变异）')",
+"漏洞",
+""
+],
+[
+"流程自检.py|69f917b1f3|0",
+"流程自检.py",
+177,
+"if 管道解压(open(f'{T}/环境/准备机器.sh').read()): fails.append(f'准备机器.sh 又用 curl 管道直接 tar 解压（K54）：{管道解压(open(f\"{T}/环境/准备机器.sh\").r",
+"漏洞",
+""
+]
+]
