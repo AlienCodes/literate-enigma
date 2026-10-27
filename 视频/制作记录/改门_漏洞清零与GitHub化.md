@@ -31,3 +31,7 @@
 ## 追加 C（主会话 2026-10-27 15:0x 发现，先于阶段 A 剩余批次做，约 30 分钟内出结论）
 用户截图里主仓库 main 的检查是红叉 0/2。查：`.github/workflows/validate-content.yml`（Validate article archive，2026-09-04 建，跑 scripts/build_markdown.py、test_tools.py、inspector.py、final-version-guard.js）main 上每次推送都失败，至少从 2026-10-23（run 1319）起就一直红，没人发现——执行主义的漏洞：用上核查 只管 literate-enigma 的 7 个工作流，主仓库的 pages.yml、sync-article25.yml、validate-content.yml 不在清单里，红了也不停。
 要做：① 查 validate-content 红的根因（最近的 run 2 秒就结束、没有日志，可能是没起来；10-23 那次跑了 5 分钟是真失败），是文章归档内容真有错（修内容/修脚本）还是这套老检查已过时；② 主仓库三个工作流都登记进 用上核查：现行的必须绿（红了 用上核查 --严 停、开工提醒标红），完全不用的按 P 淘汰（sync-article25.yml 看起来是 25 的一次性工作流）；拿不准是否还要的（文章归档网站 pages.yml、validate-content）列出来报主会话问用户，不许自己定；③ 自检：造“主仓库工作流最近一次失败”必须被 用上核查 抓到。
+
+## 追加 D（主会话 2026-10-27，用户原话：“不用的，这些全都清理，没有用的这些全都清理，我们现在只留我们完完全全能够用得到的，而且能够最大发挥作用的，那些没有用的，拖后腿的全都删掉。”）
+主仓库远端有 18 个旧分支（主会话逐个核过：15 个已在 main、article-25-complete-sync/article-26-final 是 8 月旧网站/一次性同步、tb 和 zz-test-delete 是会话 10-26 推的测试垃圾，tb 删了 4460 个文件），PR #17 #22 #23 已由主会话关闭；会话代理不许删分支，交用户网页删。
+要做：用上核查 加一项“主仓库远端分支”：除 main 外出现任何分支就报（会话误推测试分支 = 不丝滑，K 登记）；推送两仓库.sh、报坑.py 原子写只许推 main，推别的分支就停（命令闸门同理）；自检造“推到 zz-x 分支”必抓。
