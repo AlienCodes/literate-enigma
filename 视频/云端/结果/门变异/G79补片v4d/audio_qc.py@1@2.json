@@ -1,0 +1,18 @@
+[
+[
+"audio_qc.py|0c2400111f|0",
+"audio_qc.py",
+14,
+"if np.abs(a).max() > 0.99: bad.append(f'削波：峰值 {np.abs(a).max():.3f}')",
+"漏洞",
+""
+],
+[
+"audio_qc.py|589b59cc4b|0",
+"audio_qc.py",
+30,
+"if long: bad.append('片中停顿过长：' + ', '.join(f'{t:.1f}s 处 {d:.2f}s' for t, d in long))",
+"漏洞",
+""
+]
+]
