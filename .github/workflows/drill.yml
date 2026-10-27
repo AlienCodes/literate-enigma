@@ -28,6 +28,7 @@ jobs:
       - id: p
         env: {GH_TOKEN: '${{ github.token }}'}
         run: |
+          pip install -q numpy soundfile 2>&1 | tail -1   # 改门推送 算分片要 import 声音演练（2026-10-27 K60改门推送v1 实测缺 numpy）
           python3 - <<'PY'
           import json, os, subprocess, base64, urllib.parse
           R = os.environ['GITHUB_REPOSITORY']; ev = json.load(open(os.environ['GITHUB_EVENT_PATH'])); sha = ev['after']
