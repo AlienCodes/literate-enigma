@@ -1,0 +1,74 @@
+[
+[
+"出片指纹.py|a2a0365fa7|0",
+"出片指纹.py",
+51,
+"if not q: bad.append(f'工作目录缺 {m}.py（出片会 ModuleNotFoundError）')",
+"发现",
+"出片指纹.py：TypeError: expected str, bytes or os.PathLike object, not NoneType"
+],
+[
+"出片指纹.py|8aff3c6faa|0",
+"出片指纹.py",
+52,
+"elif _sha(q) != _sha(p): bad.append(f'工作目录的 {m}.py 与仓库不一致')",
+"漏洞",
+""
+],
+[
+"出片指纹.py|c0ae31763f|0",
+"出片指纹.py",
+86,
+"if r.get('视频') != _sha(out): bad.append(f'{no}.mp4 不是写指纹那次出的片（被覆盖或换了）')",
+"发现",
+"出片指纹.py：出片指纹 自检：没抓到：视频被覆盖（G26）"
+],
+[
+"出片指纹.py|734c16b382|0",
+"出片指纹.py",
+87,
+"if r.get('脚本') != _sha(f'{W}/scripts/{no}.json'): bad.append(f'旧视频配新脚本：出片以后 scripts/{no}.json 又改了')",
+"发现",
+"出片指纹.py：出片指纹 自检：没抓到：旧视频配新脚本（G26）"
+],
+[
+"出片指纹.py|1fe51a17d6|0",
+"出片指纹.py",
+88,
+"if not os.path.exists(f'{W}/work_{no}/a.wav') or r.get('配音') != _sha(f'{W}/work_{no}/a.wav'): bad.append(f'work_{no}/a.w",
+"发现",
+"出片指纹.py：出片指纹 自检：没抓到：配音被换（G26）"
+],
+[
+"出片指纹.py|ba02a7b304|0",
+"出片指纹.py",
+91,
+"if diff: bad.append(f'出片以后出片程序改了（或出片用的不是仓库现行程序）：{\"、\".join(diff)}')",
+"发现",
+"出片指纹.py：出片指纹 自检：没抓到：出片以后程序改了（G26）"
+],
+[
+"出片指纹.py|0de54afa8d|0",
+"出片指纹.py",
+124,
+"if __name__ == '__main__':",
+"漏洞",
+""
+],
+[
+"出片指纹.py|0ee2832aed|0",
+"出片指纹.py",
+126,
+"if '--自检' in a:",
+"发现",
+"出片指纹.py：【停止】没有 --自检.mp4"
+],
+[
+"出片指纹.py|837f172f4f|0",
+"出片指纹.py",
+130,
+"if '--核对工作目录' in a:",
+"没人走到",
+"没有任何自检、演练场景走到这道门"
+]
+]
