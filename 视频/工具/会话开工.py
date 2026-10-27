@@ -104,7 +104,7 @@ def 重读():
     new = open(必读F).read(); 旧 = set(old); add = [l for l in new.splitlines() if l.strip() and l not in 旧]
     print(f'【开工必读 更新】新增或改了 {len(add)} 行：'); [print('  ' + l[:170]) for l in add[:80]]
     if len(add) > 80: print(f'  ……另 {len(add) - 80} 行见 视频/开工必读.md')
-    rec['开工必读指纹'] = 指纹(); json.dump(rec, open(记录F[0], 'w'), ensure_ascii=False); open(记录F[0] + '.md', 'w').write(new)
+    rec['开工必读指纹'] = 指纹(); rec['读过的指纹'] = (rec.get('读过的指纹', []) + [rec['开工必读指纹']])[-20:]; json.dump(rec, open(记录F[0], 'w'), ensure_ascii=False); open(记录F[0] + '.md', 'w').write(new)
     print(f'已记下新指纹 {rec["开工必读指纹"]}')
 
 
@@ -112,7 +112,7 @@ def 查开工(rec=None, fp=None):
     rec = 读记录() if rec is None else rec; fp = 指纹() if fp is None else fp
     if not rec or rec.get('角色') not in 角色们:
         return ['【G63 会话开工】本会话还没开工（没读开工必读、没记角色）：先 python3 视频/工具/会话开工.py <出稿|改稿|改门|主会话>，读完总纲、要点、步骤表再提交']
-    if rec.get('开工必读指纹') != fp:
+    if rec.get('开工必读指纹') != fp and fp not in rec.get('读过的指纹', []):   # K52：两个仓库（主仓库、镜像）的开工必读版本不同时，读过的都算
         return [f'【G63 会话开工】开工必读 更新了（读的是 {rec.get("开工必读指纹")}，现行 {fp}）：python3 视频/工具/会话开工.py --重读，读完新增的条目再提交']
     return []
 
@@ -179,6 +179,8 @@ def 自检():
         rec = {'角色': '出稿', '会话': 'x', '开工必读指纹': 'aaa'}
         if not 查开工(rec, 'bbb'): f.append('没抓到：开工必读更新了没重读')
         if 查开工(rec, 'aaa'): f.append('误报：读过现行开工必读')
+        if 查开工({**rec, '读过的指纹': ['ccc']}, 'ccc'): f.append('误拦：另一个仓库的开工必读也读过（K52 来回重读）')
+        if not 查开工({**rec, '读过的指纹': ['ccc']}, 'ddd'): f.append('没抓到：两个版本都没读过（K52 放得太宽）')
         no = lambda p: False
         for p in ('视频/工具/踩坑核查.py', '视频/工具/githooks/pre-commit', '视频/工具/规则执行表.json', '视频/工具/钩子/闸门.py', '.claude/settings.json', '.github/workflows/drill.yml', '视频/工具/草稿声音.sh'):
             if not 角色问题('出稿', [p], no): f.append(f'没抓到：出稿会话提交改门程序 {p}')
