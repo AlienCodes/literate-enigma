@@ -183,7 +183,7 @@ jobs:
         with: {sparse-checkout: "视频/工具\n视频/制作记录\n视频/云端", filter: 'blob:none'}
       - uses: actions/download-artifact@v4
         with: {pattern: '结果_${{ fromJson(needs.plan.outputs.gate).req }}_*', path: /tmp/a, merge-multiple: true}
-        continue-on-error: true   # 没有受影响的门（0 片）时没有分片结果；收齐按 rc_ 份数查
+        continue-on-error: true   # run 上传多个路径，文件落在 /tmp/a/gate/（K60v3 实测：查 /tmp/a/ 收到 0/18）。没有受影响的门（0 片）时没有分片结果；收齐按 rc_ 份数查
       - name: ② 收齐 → 门变异合并 → 查基线
         run: |
           set +e; shopt -s nullglob; pip install -q numpy soundfile 2>&1 | tail -1
@@ -191,9 +191,9 @@ jobs:
           j() { python3 -c "import json,os;print(json.loads(os.environ['GATE'])['$1'])"; }; N=$(j n); M=$(j mode); mkdir -p /tmp/m
           echo "改门推送 $(j req)（门变异 $N 片，$M）" > /tmp/m/gate.txt; stop() { echo "【改门推送不过】$1" | tee -a /tmp/m/gate.txt; exit 1; }
           git apply --index --include='视频/工具/*' --include='视频/制作记录/*' "$(j patch)" || stop "补丁打不上"
-          rcs=(/tmp/a/rc_*); [ "${#rcs[@]}" -eq "$N" ] || stop "② 门变异只收到 ${#rcs[@]}/$N 片的结果（有分片没跑完）"
-          for f in "${rcs[@]}"; do a=${f#/tmp/a/rc_}; [ "$(cat $f)" = 0 ] || { tail -6 /tmp/a/log_$a.txt 2>/dev/null | tee -a /tmp/m/gate.txt; stop "② 门变异分片 $a 没跑完"; }; done
-          python3 视频/工具/门变异.py --合并结果 --未测入基线 $([ "$M" = 增量 ] && echo --增量) /tmp/a/*@*.json > /tmp/m.log 2>&1 || { tail -5 /tmp/m.log | tee -a /tmp/m/gate.txt; stop "② 门变异合并出错"; }
+          rcs=(/tmp/a/gate/rc_*); [ "${#rcs[@]}" -eq "$N" ] || stop "② 门变异只收到 ${#rcs[@]}/$N 片的结果（有分片没跑完）"
+          for f in "${rcs[@]}"; do a=${f#/tmp/a/gate/rc_}; [ "$(cat $f)" = 0 ] || { tail -6 /tmp/a/gate/log_$a.txt 2>/dev/null | tee -a /tmp/m/gate.txt; stop "② 门变异分片 $a 没跑完"; }; done
+          python3 视频/工具/门变异.py --合并结果 --未测入基线 $([ "$M" = 增量 ] && echo --增量) /tmp/a/gate/*@*.json > /tmp/m.log 2>&1 || { tail -5 /tmp/m.log | tee -a /tmp/m/gate.txt; stop "② 门变异合并出错"; }
           tail -2 /tmp/m.log | tee -a /tmp/m/gate.txt
           python3 视频/工具/门变异.py --查基线 > /tmp/m.log 2>&1; r=$?; tail -2 /tmp/m.log | tee -a /tmp/m/gate.txt; [ $r = 0 ] || stop "② 门变异漏洞比基线多"
           git diff --binary -- 视频 > /tmp/m/合并.diff; echo "② 门变异合并、查基线通过" | tee -a /tmp/m/gate.txt
