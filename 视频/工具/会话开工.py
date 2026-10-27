@@ -40,10 +40,39 @@ def 节(txt, head):
     m = re.search(rf'^## {head}[^\n]*\n[\s\S]*?(?=^## |\Z)', txt, re.M); return m.group(0).rstrip() if m else ''
 
 
+模块 = {'soundfile': 'soundfile', 'numpy': 'numpy', 'imageio_ffmpeg': 'imageio-ffmpeg', 'PIL': 'pillow', 'wordfreq': 'wordfreq',
+        'scipy': 'scipy', 'parselmouth': 'praat-parselmouth', 'pyloudnorm': 'pyloudnorm', 'kokoro_onnx': 'kokoro-onnx',
+        'onnxruntime': 'onnxruntime', 'phonemizer': 'phonemizer', 'fitz': 'pymupdf', 'docx': 'python-docx', 'sherpa_onnx': 'sherpa-onnx'}
+def 缺包(mods=None):
+    import importlib.util; importlib.invalidate_caches()
+    return [m for m in (mods or 模块) if importlib.util.find_spec(m) is None]
+def _装(缺, mods):
+    pip = [sys.executable, '-m', 'pip', 'install', '-q']
+    subprocess.run(pip + ['-r', f'{T}/环境/requirements.txt'], capture_output=True)
+    subprocess.run(pip + ['--break-system-packages', '-r', f'{T}/环境/requirements.txt'], capture_output=True)
+    subprocess.run(pip + [mods[m] for m in 缺], capture_output=True)
+def _ff():
+    import imageio_ffmpeg; return imageio_ffmpeg.get_ffmpeg_exe()
+def 环境检查(mods=None, 装=None, ff取=None):
+    """M（用户 2026-10-27 丝滑主义；K42 新容器缺 soundfile/imageio_ffmpeg/wordfreq，推送三次才过）：开工先查 Python 包和 ffmpeg，
+    缺了自动装（requirements.txt），装不上才停并说清缺什么"""
+    mods = mods or 模块; 缺 = 缺包(mods)
+    if 缺:
+        print(f'【环境】缺 {"、".join(缺)}：自动装（M/K42）'); (装 or _装)(缺, mods); 缺 = 缺包(mods)
+        if 缺: sys.exit(f'【停止】环境缺包，自动装不上：{"、".join(缺)}（手工 pip install {" ".join(mods[m] for m in 缺)}；M/K42）')
+    if 'imageio_ffmpeg' in mods or ff取:
+        try:
+            ff = (ff取 or _ff)()
+            if not os.path.exists(ff): raise FileNotFoundError(ff)
+        except Exception as e: sys.exit(f'【停止】环境缺 ffmpeg（imageio_ffmpeg 找不到：{e}；M）')
+    print('【环境】Python 包、ffmpeg 齐（M；work_NN 缺 a.wav 由 定稿流水线 ①前 自动重建，K36）')
+
+
 def 开工(角色, 会话='', 任务=''):
     if 角色 not in 角色们: sys.exit(f'【停止】角色只能是 {"、".join(角色们)}')
     if 角色 == '改门' and not (任务 and os.path.exists(任务 if os.path.isabs(任务) else f'{V}/{任务}')):
         sys.exit('【停止】改门会话要写 --任务 制作记录/改门_xxx.md（主会话交给你的改门文件；G25：出稿、改稿会话不改门）')
+    环境检查()   # M：环境先齐，后面的用上报告、开工必读才跑得动
     打印总纲()
     r = subprocess.run(['python3', f'{T}/用上核查.py'], capture_output=True, text=True); print(r.stdout.strip())   # G83：开头先打印用上报告，读完才记指纹
     r = subprocess.run(['python3', f'{T}/开工必读.py', '--要点'], capture_output=True, text=True); print(r.stdout.strip())
@@ -147,6 +176,20 @@ def 自检():
         if 角色问题('改门', ['视频/工具/踩坑核查.py'], no): f.append('误拦：改门会话改门程序')
         if 角色问题('改稿', ['视频/工具/踩坑核查.py'], lambda p: True): f.append('误拦：合并进来的别人的改动（和远端相同）')
         if not 角色问题('改稿', ['视频/工具/踩坑核查.py'], no): f.append('没抓到：改稿会话改门程序')
+        try: 环境检查({'不存在的包_m门': 'x-not-exist'}, 装=lambda *a: None); f.append('没抓到：缺包装不上照样开工（M）')
+        except SystemExit as e:
+            if '自动装不上' not in str(e) or '不存在的包_m门' not in str(e): f.append(f'缺包停错了地方或没说缺什么（M）：{e}')
+        装过 = []
+        try: 环境检查({'不存在的包_m门': 'x'}, 装=lambda *a: 装过.append(1))
+        except SystemExit: pass
+        if not 装过: f.append('没抓到：缺包没先自动装（M）')
+        try: 环境检查({'json': 'x'}, ff取=lambda: '/不存在/ffmpeg'); f.append('没抓到：ffmpeg 不在照样开工（M）')
+        except SystemExit as e:
+            if '缺 ffmpeg' not in str(e): f.append(f'ffmpeg 缺停错了地方（M）：{e}')
+        try: 环境检查({'json': 'x'}, 装=lambda *a: f.append('误装：包都齐还去装（M）'))
+        except SystemExit as e: f.append(f'误停：包都齐（M）：{e}')
+        import inspect
+        if '环境检查()' not in ''.join(l.split('#')[0] for l in inspect.getsource(开工).splitlines()): f.append('没抓到：开工不先跑环境自检（M）')
         try: 开工('改门', 'x', ''); f.append('没抓到：改门会话没写 --任务')
         except SystemExit: pass
     finally:
@@ -158,7 +201,7 @@ if __name__ == '__main__':
     a = sys.argv[1:]
     opt = lambda k: a[a.index(k) + 1] if k in a and a.index(k) + 1 < len(a) else ''
     if '--自检' in a:
-        e = 自检(); print('\n'.join(e) or '会话开工 自检通过（没开工、开工必读旧了、出稿/改稿提交改门程序：造的全部拦下；本篇文件、改门会话、合并进来的改动放行）'); sys.exit(1 if e else 0)
+        e = 自检(); print('\n'.join(e) or '会话开工 自检通过（没开工、开工必读旧了、出稿/改稿提交改门程序、环境缺包装不上（M）：造的全部拦下；本篇文件、改门会话、合并进来的改动放行）'); sys.exit(1 if e else 0)
     if '--提交前' in a: sys.exit(提交前())
     if '--查' in a:
         e = 查开工(); [print(x) for x in e]; sys.exit(1 if e else 0)
