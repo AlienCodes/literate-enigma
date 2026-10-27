@@ -297,5 +297,7 @@ elif stage == '出片后':
 if ok and stage == '出片后':   # 发文件闸门凭这个回执放行（守则7/A25：只发过了核查的那个文件）
     sys.path.insert(0, f'{T}/钩子'); import 闸门; 闸门.记回执([f'{no}.mp4', f'标点试听_{no}.mp3'], f'交付核查 出片后 第{no}篇')
 if ok and stage in ('出片前', '出片后'): _ZJ.记(no, stage)   # G60：这一步的使用证据（只有正式入口写得出对得上的指纹）
+if not ok:   # K 丝滑记录：没通过的步骤记下来，程序/环境的毛病算不丝滑
+    sys.path.insert(0, T); import 丝滑 as _SH; _SH.记('交付核查', no, '；'.join(x.split('\n')[0] for x in out if x.startswith('✘')))
 print(f'第{no}篇 {stage}核查：\n' + '\n'.join(out) + f"\n{'全部通过' if ok else '【不通过，不得交付】'}")
 sys.exit(0 if ok else 1)

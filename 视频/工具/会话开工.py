@@ -59,6 +59,7 @@ def 环境检查(mods=None, 装=None, ff取=None):
     mods = mods or 模块; 缺 = 缺包(mods)
     if 缺:
         print(f'【环境】缺 {"、".join(缺)}：自动装（M/K42）'); (装 or _装)(缺, mods); 缺 = 缺包(mods)
+        if 缺 and 装 is None: import 丝滑; 丝滑.记('会话开工', '-', f'环境缺包，自动装不上：{缺}', '不丝滑')   # K
         if 缺: sys.exit(f'【停止】环境缺包，自动装不上：{"、".join(缺)}（手工 pip install {" ".join(mods[m] for m in 缺)}；M/K42）')
     if 'imageio_ffmpeg' in mods or ff取:
         try:

@@ -14,7 +14,7 @@
 set -o pipefail
 no=$(printf '%02d' "$((10#$1))"); T=$(cd "$(dirname "$0")" && pwd); P=$(dirname "$(dirname "$T")"); L=/home/user/literate-enigma
 BR=claude/adoring-hamilton-5qskmm; W=$(pwd); LOG=$W/定稿流水线_$no; mkdir -p "$LOG"
-stop() { echo "【停止】$1（记录在 $LOG）"; exit 1; }
+stop() { echo "【停止】$1（记录在 $LOG）"; python3 "$T/丝滑.py" 记 定稿流水线 "$no" "$1" 2>/dev/null || true; exit 1; }   # K 丝滑记录
 [ -n "$OLD_IV_VOID" ] && stop "环境里带着 OLD_IV_VOID（跳过旧区间的草稿开关），定稿不许带：先 unset OLD_IV_VOID（A45 开关，G24）"
 step() { echo "== $(date +%H:%M:%S) $1"; }
 push() {  # 网络失败才重试（2、4、8、16 秒）
