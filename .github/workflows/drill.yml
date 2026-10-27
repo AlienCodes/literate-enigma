@@ -86,7 +86,7 @@ jobs:
             合成对照) python3 $GITHUB_WORKSPACE/视频/云端/合成对照.py ../tts 2>&1 | tee /tmp/out.log ;;
             门变异) N="${{ matrix.it.no }}"; pip install -q coverage; mkdir -p /tmp/门变异
                     case "$N" in 覆盖@*) python3 $T/门变异.py --覆盖 "${N#覆盖@}" "/tmp/门变异/$N.json" 2>&1 | tee /tmp/out.log | tail -15 ;;
-                      *) IFS=@ read -r F I K <<< "$N"; python3 $T/门变异.py --全 "$F" --分片=$I/$K "--结果=/tmp/门变异/$N.json" 2>&1 | tee /tmp/out.log | tail -40 ;; esac ;;
+                      *) IFS=@ read -r F I K <<< "$N"; python3 $T/门变异.py --全 "$F" --分片=$I/$K "--结果=/tmp/门变异/${N//\//_}.json" 2>&1 | tee /tmp/out.log | tail -40 ;; esac ;;
             全篇重查) python3 $T/定稿视频核对.py --不查镜像 ${{ matrix.it.no }} 2>&1 | tee /tmp/out.log | tail -25 \
                       && python3 -c "import sys; sys.path.insert(0,'$T'); from 重查记录 import 键,已出片; n='${{ matrix.it.no }}'; print(键(n, 已出片()[n]))" > /tmp/键_${{ matrix.it.no }}.txt ;;
           esac; rc=$?; echo $rc > /tmp/rc
