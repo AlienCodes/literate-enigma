@@ -13,7 +13,7 @@ def 本地慢印章(行, 有效=None, 缺口数=None):
     if '主演练' not in 行 or '补丁=' not in 行: return ''
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import 规则执行核查 as R
     有效 = 有效 or R.印章有效
-    bad = [p for p in R.STAMPED if p not in ('执行效应演练.py', '执行效应声音演练.py') and not 有效(p)]   # 演练印章本身就是这次请求要盖的
+    bad = [p for p in R.STAMPED if p not in ('执行效应演练.py', '执行效应声音演练.py', '彩排.sh') and not 有效(p)]   # 演练印章本身就是这次请求要盖的；彩排印章也只在 GitHub 上盖，而彩排要先有主演练印章（K60：两头互等，死锁）
     if bad: return f'本地慢自检印章过期：{bad}（K35：先在视频工作目录跑 python3 视频/工具/{bad[0]}，通过后重做补丁再推主演练）'
     import 执行效应演练 as Y   # 2026-10-26 K37v2：新规矩没登记演练覆盖，GitHub 主演练报“缺口变多”白跑一轮；本地几秒就查得出
     g = 缺口数 if 缺口数 is not None else len(Y.缺口()); b = json.load(open(Y.GAPB))['缺口'] if os.path.exists(Y.GAPB) else 0
@@ -42,6 +42,7 @@ def 自检():
     if 待提交补丁('门变异 x 补丁=好.diff', d) or 待提交补丁('主演练', d): f.append('误报：补丁已提交或没有补丁也要再提交（K50）')
     shutil.rmtree(d, ignore_errors=True)
     if not 本地慢印章('主演练 补丁=视频/云端/待演练/x.diff', lambda p: p == '执行效应演练.py'): f.append('没抓到：出片守门自检印章过期还让推带补丁的主演练（K35）')
+    if 本地慢印章('主演练 补丁=视频/云端/待演练/x.diff', lambda p: p != '彩排.sh', 缺口数=0): f.append('误拦：只有彩排印章过期就不让推主演练（彩排要先有主演练印章，两头互等，K60）')
     if not 本地慢印章('主演练 补丁=视频/云端/待演练/x.diff', lambda p: True, 缺口数=99): f.append('没抓到：演练缺口变多还让推带补丁的主演练')
     if 本地慢印章('主演练 补丁=视频/云端/待演练/x.diff', lambda p: p != '执行效应演练.py', 缺口数=0) or 本地慢印章('声音演练 补丁=x', lambda p: False): f.append('误报：印章有效或不是主演练也拦（K35）')
     return f

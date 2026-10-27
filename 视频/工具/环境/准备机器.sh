@@ -25,7 +25,12 @@ PY2
 python3 -c "import imageio_ffmpeg,kokoro_onnx,parselmouth,pyloudnorm,soundfile,scipy" 2>/dev/null || pip install -q -r $V/工具/环境/requirements.txt; python3 -c "import pymupdf,docx" 2>/dev/null || pip install -q pymupdf python-docx   # 生成文本.py（Word/PDF 读回核对）要用
 # 2026-10-25 机器复听（音频保障第 4 层）：离线语音识别 sherpa-onnx + whisper small.en（huggingface 被网络挡，GitHub release 通），下载到 ~/asr 并核对校验码
 python3 -c "import sherpa_onnx" 2>/dev/null || pip install -q sherpa-onnx==2.0.0 2>/dev/null || pip install -q --break-system-packages sherpa-onnx==2.0.0
-A=~/asr/sherpa-onnx-whisper-small.en; [ -f $A/small.en-encoder.int8.onnx ] || { mkdir -p ~/asr; curl -sSL --retry 3 https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-whisper-small.en.tar.bz2 | tar xj -C ~/asr; }
+# K54（2026-10-27 新容器）：经代理下载 tar.bz2 被截断，管道直接解压留下半截 encoder，重跑 [ -f ] 成立就跳过下载、只剩校验码失败。
+# 先整个下到临时文件、解压成功才算；失败就清掉半截目录（最多试两次）
+取模型() { local d=$1 f=$2 u=$3 t; [ -f $d/$f ] && return 0; mkdir -p ~/asr
+  for _i in 1 2; do t=$(mktemp ~/asr/.下载_XXXXXX); if curl -sSL --retry 3 -o $t $u && tar xjf $t -C ~/asr; then rm -f $t; return 0; fi; rm -rf $d $t; done
+  echo "✘ 识别模型下载或解压失败（K54：半截目录已清掉，重跑即可）：$u"; return 1; }
+A=~/asr/sherpa-onnx-whisper-small.en; 取模型 $A small.en-encoder.int8.onnx https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-whisper-small.en.tar.bz2
 python3 - "$A" "$V/工具/环境/模型校验码.json" <<'PY3'
 import sys,json,hashlib,os
 d,j=sys.argv[1],json.load(open(sys.argv[2])); bad=0
@@ -37,7 +42,7 @@ if bad and all(hs[a]==j[b].split(':')[1] for a,b in (fs,fs[::-1])): print('✘ �
 sys.exit(bad)
 PY3
 # 2026-10-26 机器复听第二路 parakeet（NeMo TDT 0.6B int8，任一路报就报；改门_音频上GitHub.md 第二阶段 2），同样 GitHub release 下载、核对校验码
-P=~/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8; [ -f $P/encoder.int8.onnx ] || { mkdir -p ~/asr; curl -sSL --retry 3 https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8.tar.bz2 | tar xj -C ~/asr; }
+P=~/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8; 取模型 $P encoder.int8.onnx https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8.tar.bz2
 python3 - "$P" "$V/工具/环境/模型校验码.json" <<'PY4'
 import sys,json,hashlib,os
 d,j=sys.argv[1],json.load(open(sys.argv[2])); bad=0

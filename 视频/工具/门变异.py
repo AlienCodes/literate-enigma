@@ -8,6 +8,7 @@
   python3 门变异.py --全量                全部入口（慢，放 GitHub：推请求.py 门变异）
   python3 门变异.py --全量 --写清单       写 制作记录/门变异清单.md、门变异缺口基线.json（只许减少）
   python3 门变异.py --查基线              规则执行核查用：清单里的漏洞数不许比基线多、清单要对得上现行门（门变了没重跑就停）
+  python3 门变异.py 文件 --全 --门=门号,… 只拆这几道门（本地补完验证）
   python3 门变异.py --自检                K37 重放：K37 那一行（|| stop 在注释后）必须列为漏洞；门真被拆掉、拆门后探测报出要算“发现”
 """
 import os, sys, re, ast, json, subprocess, hashlib, shutil, tempfile
@@ -78,7 +79,7 @@ def 自检门(txt, n, fn):
     body = ''.join(ast.get_source_segment(txt, b) or '' for b in n.body if _是停(b))
     if re.search(r'失灵', ''.join(ast.get_source_segment(txt, b) or '' for b in n.body)): return True   # “自检失灵就停”（踩坑核查 if fails: 失灵）
     return bool(re.search(r'没抓到|误报|失灵|自检|拆门|重放', body))
-_ARGV = {'a', 'argv', 'args', 'A', 'av'}
+_ARGV = {'a', 'a_', 'argv', 'args', 'A', 'av'}   # a_ = sys.argv[1:]（机器复听、音频体检）
 def _是argv(x):
     if isinstance(x, ast.Subscript): x = x.value
     return (isinstance(x, ast.Name) and x.id in _ARGV) or (isinstance(x, ast.Attribute) and x.attr == 'argv')
@@ -92,18 +93,30 @@ def _派发(t):
     if isinstance(t, ast.Compare) and len(t.ops) == 1:
         l, r = t.left, t.comparators[0]
         if any(isinstance(x, ast.Name) and x.id == '__name__' for x in (l, r)): return True
-        if any(isinstance(x, ast.Constant) and isinstance(x.value, str) for x in (l, r)) and any(_是argv(x) for x in (l, r)): return True
+        字 = lambda x: isinstance(x, ast.Constant) and isinstance(x.value, str) or isinstance(x, (ast.List, ast.Tuple)) and bool(x.elts) and all(isinstance(e, ast.Constant) and isinstance(e.value, str) for e in x.elts)
+        if any(字(x) for x in (l, r)) and any(_是argv(x) for x in (l, r)): return True   # sys.argv[1:2] == ['--带自检'] 也是分派
     return False
+def _只报不停(n, f):
+    """这道 if 记下的“不通过”只进函数里的局部列表、函数不返回值、不 raise/exit：只打印给人看（机器复听 --清单 列 01–24 只列不改），不是门"""
+    if f is None: return False
+    if any(isinstance(x, (ast.Global, ast.Nonlocal, ast.Raise, ast.Yield)) or isinstance(x, ast.Return) and x.value is not None
+           or isinstance(x, ast.Call) and getattr(x.func, 'attr', '') in ('exit', '_exit') for x in ast.walk(f)): return False
+    loc = {t.id for x in ast.walk(f) if isinstance(x, ast.Assign) for t in x.targets if isinstance(t, ast.Name)} - {a.arg for a in f.args.args}
+    nm = []
+    for s in (b for b in n.body if _是停(b)):
+        if isinstance(s, ast.Expr) and isinstance(s.value.func, ast.Attribute) and isinstance(s.value.func.value, ast.Name): nm.append(s.value.func.value.id)
+        elif isinstance(s, ast.AugAssign): nm.append(s.target.id)
+        else: return False
+    return bool(nm) and all(x in loc for x in nm)
 def 门_py(txt):
     """[(行号, (起行, 起列字节, 止行, 止列字节), 原文, False)]：if 判断、分支里直接有“停/记不通过”的"""
     try: tree = ast.parse(txt)
     except SyntaxError: return []
-    out = []; fn_of = {}
-    for f in ast.walk(tree):
-        if isinstance(f, (ast.FunctionDef, ast.AsyncFunctionDef)):
-            for x in ast.walk(f): fn_of.setdefault(id(x), f.name)
+    out = []; fn_of = {}; fo = {}
+    for f in sorted((f for f in ast.walk(tree) if isinstance(f, (ast.FunctionDef, ast.AsyncFunctionDef))), key=lambda f: f.end_lineno - f.lineno):   # 最里层的函数先认
+        for x in ast.walk(f): fn_of.setdefault(id(x), f.name); fo.setdefault(id(x), f)
     for n in ast.walk(tree):
-        if isinstance(n, ast.If) and not _派发(n.test) and any(_是停(b) for b in n.body) and not 自检门(txt, n, fn_of.get(id(n), '')):
+        if isinstance(n, ast.If) and not _派发(n.test) and any(_是停(b) for b in n.body) and not 自检门(txt, n, fn_of.get(id(n), '')) and not _只报不停(n, fo.get(id(n))):
             t = n.test; out.append((n.lineno, (t.lineno, t.col_offset, t.end_lineno, t.end_col_offset), txt.splitlines()[n.lineno - 1].strip()[:120], False))
     return sorted(out)
 def 变异_py(txt, pos):
@@ -208,8 +221,10 @@ def 探测命令(M, 全, rel, 门=None):
     ids = {s[0] for s in Y.场景} | {s[0] for s in Y.仓库场景}
     主 = sorted({x for t in tags if t.startswith('主|') for x in [re.sub(r'^(演练_)?(原样)?(仓库_)?', '', t[2:])] if x in ids})   # 工作目录名 演练_仓库_<场景>、演练_<场景>
     声 = sorted({sid for t in tags if t.startswith('声|') for sid in [s[0] for s in S.声音场景] if re.sub(r'^演练_声_|_video$', '', t[2:]) == sid})
-    if not cs and not 主 and not 声 and any(t.startswith('声|') for t in tags): return [['待声音归属']]   # 只有声音演练走到、归属不到场景（旧覆盖图）：下次覆盖再测
     胶 = "import sys;sys.path.insert(0,{tool!r});import 规则执行核查 as R;R.印章有效=lambda p:True;import runpy;sys.argv=[{p!r}]+{a!r};runpy.run_path({tool!r}+'/'+{p!r},run_name='__main__')"
+    if not cs and not 主 and not 声 and any(t.startswith('声|') for t in tags):
+        if rel in ('执行效应声音演练.py', '演练镜像.py') and 全: return [['python3', '-c', 胶.format(tool=tool, p='执行效应声音演练.py', a=[])]]   # 演练主程序自己的门（通路、清点）：整场声音演练当探测（一门一台机器）
+        return [['待声音归属']]   # 只有声音演练走到、归属不到场景（旧覆盖图）：下次覆盖再测
     if 全 and 主: cs.append(['python3', '-c', 胶.format(tool=tool, p='执行效应演练.py', a=主)])
     if 全 and 声: cs.append(['python3', '-c', 胶.format(tool=tool, p='执行效应声音演练.py', a=声)])
     return cs
@@ -298,6 +313,10 @@ def 查基线():
     if len(hs) > len(b): e.append(f'门变异漏洞变多（{len(hs)} > 基线 {len(b)}）：新漏洞补演练场景或自检，补完重跑必须“发现”')
     nw = [x for x in 新门(t) if not 是sh(x.split('|')[0])]
     return e, ([f'门变异：{len(nw)} 道 .py 门是清单记录以后新加或改过的（{"、".join(sorted({x.split("|")[0] for x in nw}))[:80]}），找时间 GitHub 全量重跑'] if nw else [])
+def 未发现门():
+    """清单里结论不是“发现”的门 + 清单记录以后新加、改过的门"""
+    t = open(清单).read() if os.path.exists(清单) else ''
+    return set(re.findall(r'^\| (\S+\|[0-9a-f]{10}\|\d+) \|', t, re.M)) | set(新门(t))
 def 新门(t=None):
     t = t if t is not None else (open(清单).read() if os.path.exists(清单) else '')
     m = re.search(r'## 门全集[^\n]*\n\n```\n(.*?)```', t, re.S); old = set(m.group(1).split()) if m else set()
@@ -326,7 +345,11 @@ def 自检():
     pf = "import sys\na = sys.argv[1:]\nif '--自检' in a:\n    sys.exit(main())\nif __name__ == '__main__':\n    sys.exit(main())\nif a and a[0] == '--查': sys.exit(查())\nif bad:\n    sys.exit(1)\n"
     pr = "res = []; out = []\nif t:\n    res.append((f'把 {w} 挪', ok))\nif d:\n    out += [(c, k, x)]\nif bad:\n    res.append(f'不通过：{x}')\nif g:\n    res.append(('真仓库没被碰', False, why))\nif h:\n    out.append((i, '中文变量展开（bash 不认）'))\n"
     if [g[0] for g in 门_py(pr)] != [6, 8, 10]: f.append(f'收普通结果的 res.append((标签, 布尔))、out += [(元组)] 被当成门，或记说明文字的真门漏了：{门_py(pr)}')
+    pf2 = "import sys\na_ = sys.argv[1:]\nif sys.argv[1:2] == ['--带自检']:\n    sys.exit(2 if f else 0)\nif a_[0] == '--自检':\n    sys.exit(main())\nif bad:\n    sys.exit(1)\n"
+    if [g[0] for g in 门_py(pf2)] != [7]: f.append(f'派发 if（a_[0] == "--自检"、sys.argv[1:2] == ["--带自检"]）被当成门，或真门漏了：{门_py(pf2)}')
     if [g[0] for g in 门_py(pf)] != [8]: f.append(f'派发 if（按命令行参数、__name__ 分派）被当成门，或真门漏了（G79 交接①）：{门_py(pf)}')
+    pr2 = "def 清单():\n    bad = []\n    for x in y:\n        if x: bad.append(f'S{x}：听错')\n    print(bad)\ndef 查():\n    bad = []\n    if z: bad.append('不通过')\n    return bad\n"
+    if [g[0] for g in 门_py(pr2)] != [8]: f.append(f'只打印给人看的清单（局部列表、不返回、不停）被当成门，或返回问题的真门漏了：{门_py(pr2)}')
     py2 = 'if (a and\n        b):\n    sys.exit(1)\n'
     try: ast.parse(变异_py(py2, 门_py(py2)[0][1]))
     except Exception as e: f.append(f'.py 多行判断拆门坏了：{e!r}')
@@ -378,11 +401,12 @@ def main():
         hs = 写清单(res); print(f'门变异清单：{len(res)} 道门，漏洞 {len(hs)}'); return 0
     if '--分片表' in a:   # 按覆盖图：每个文件走到的门数 / 每片约 10 道 → 请求行的 文件@i@n 列表（没走到的门不用跑，一片带完）
         图 = json.load(open(覆盖图)) if os.path.exists(覆盖图) else {'门': {}}; out = []
+        只基 = 未发现门() if '--只基线' in a else None
         for rel in 入口文件():
-            gs = 列门(rel, open(f'{T}/{rel}').read()); k = sum(1 for g in gs if 门号(g) in 图['门'] or 是sh(rel) or 门号(g) not in set(图.get('全集', [])))
+            gs = [g for g in 列门(rel, open(f'{T}/{rel}').read()) if 只基 is None or 门号(g) in 只基]; k = sum(1 for g in gs if 门号(g) in 图['门'] or 是sh(rel) or 门号(g) not in set(图.get('全集', [])))
             if not gs: continue
             演 = sum(1 for g in gs if any('执行效应' in ' '.join(c) for c in 探测命令('/M', True, rel, 门号(g))))   # K44：带演练的门一片最多 2 道（演练只能一份一份跑）
-            n = max(1, -(-k // 10), -(-演 // 2)); out += [f'{rel}@{i}@{n}' for i in range(1, n + 1)]
+            n = max(1, -(-k // 10), -(-演 // 2)); out += [f'{rel}{"~基线" if 只基 is not None else ""}@{i}@{n}' for i in range(1, n + 1)]
         print(' '.join(out)); return 0
     if '--列' in a:
         g = 现行门(); n = {}
@@ -393,12 +417,16 @@ def main():
         res = 跑(['定稿流水线.sh'], 底=old)
     else:
         files = [x for x in a if not x.startswith('--')] or (入口文件() if '--全量' in a else [])
+        if any(x.endswith('~基线') for x in files):   # 补漏洞那几批：只拆清单里还没“发现”的门和清单以后新加、改过的门（文件名后缀 ~基线，请求行 F~基线@i@n，工作流不用改）
+            files = [x.removesuffix('~基线') for x in files]; 基线门 = 未发现门()
+        else: 基线门 = None
         if not files:
             print('门变异：没指定文件（--全量 跑全部入口，放 GitHub）'); return 0
         fp = next((x.split('=', 1)[1] for x in a if x.startswith('--分片=')), '')
         rp0 = next((x.split('=', 1)[1] for x in a if x.startswith('--结果=')), '')
         if rp0: json.dump([], open(rp0, 'w'))   # 先写空结果：这一片 0 道门或中途出错，写回步也有文件（G79 交接③）
-        res = 跑(files, 全='--全' in a, 分片=tuple(map(int, fp.split('/'))) if fp else None)
+        只 = next((set(x.split('=', 1)[1].split(',')) for x in a if x.startswith('--门=')), 基线门)   # 本地补完一道门后只拆这几道验证（门号逗号隔开）
+        res = 跑(files, 全='--全' in a, 分片=tuple(map(int, fp.split('/'))) if fp else None, 只门=只)
     rp = next((x.split('=', 1)[1] for x in a if x.startswith('--结果=')), '')
     if rp: json.dump([[门号(g), g[0], g[1], g[3], c, m] for g, c, m in res], open(rp, 'w'), ensure_ascii=False, indent=0)
     for g, c, m in res:

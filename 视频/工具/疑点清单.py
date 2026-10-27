@@ -6,6 +6,25 @@ import re, json, sys, os, importlib.util
 import numpy as np, soundfile as sf
 sys.path.insert(0, '.')
 TOOLS = '/home/user/postgraduate-vocabulary/视频/工具'
+def 核对重建(A, B, no):
+    """重建的整片声音与 work_NN/a.wav 逐采样一致（差 ≤2 LSB），不一致就停"""
+    if len(A) != len(B) or np.abs(A - B).max() > 2 / 32768: raise SystemExit(f'【停止】重建的声音与 work_{no}/a.wav 不一致（长度 {len(A)} vs {len(B)}），work_{no} 不是当前程序做的')
+def 所在句(c, i0, info, tl0, nt):
+    """疑点所在的那一句（标题里的返回 None）；哪一句都不在就停"""
+    it = next((x for x in info if x['off'] <= i0 < x['off'] + x['n']), None)
+    if it is None and not (tl0 <= i0 < tl0 + nt): raise SystemExit(f'【停止】{c} 不在任何一句里')
+    return it
+if sys.argv[1:2] == ['--自检']:   # G79 门变异：这两道门以前只有载入模型的整篇流程走得到；不用模型直接喂坏输入
+    f = []
+    for fn, arg, want in ((核对重建, (np.zeros(10), np.zeros(11), '99'), '不一致'), (核对重建, (np.zeros(10), np.full(10, 0.01), '99'), '不一致'), (所在句, ({'t0': 9}, 5, [{'off': 100, 'n': 50}], 10, 20), '不在任何一句里')):
+        try: fn(*arg); f.append(f'没抓到：{want}')
+        except SystemExit as x:
+            if want not in str(x): f.append(f'停错了：{x}')
+    try:
+        核对重建(np.zeros(10), np.zeros(10) + 1 / 32768, '99')
+        if 所在句({}, 120, [{'off': 100, 'n': 50}], 10, 20) is None or 所在句({}, 15, [], 10, 20) is not None: f.append('找错句：在句里的没找到，或标题里的当成句子')
+    except SystemExit as x: f.append(f'误拦：{x}')
+    print('\n'.join(f) or '疑点清单 自检通过（重建与 a.wav 长度不同、样本差超 2 LSB 都停；疑点哪一句都不在就停；差 1 LSB、句里、标题里不误拦）'); sys.exit(1 if f else 0)
 src = open('make_video.py').read().split("if __name__")[0]
 h1 = "    w=clean_tail(raw)\n"   # 出片程序：raw 是这一句的原始合成（结尾句是两遍接起来的），下一行起处理
 assert src.count(h1) == 1, '出片程序结构变了'
@@ -39,7 +58,7 @@ for si, s in enumerate(d['sentences']):
     audio += [sil(lead), a, sil(P_HOLD)]; cur += len(sil(lead)) + len(a) + len(sil(P_HOLD))
 audio.append(sil(2.0 - P_HOLD)); A = np.concatenate(audio); A = A / np.abs(A).max() * 0.89
 B, sr = sf.read(f'work_{no}/a.wav'); B = np.asarray(B, float)
-if len(A) != len(B) or np.abs(A - B).max() > 2 / 32768: raise SystemExit(f'【停止】重建的声音与 work_{no}/a.wav 不一致（长度 {len(A)} vs {len(B)}），work_{no} 不是当前程序做的')
+核对重建(A, B, no)
 
 # ---------- 候选：纯人声核对 ①–⑥ + A19 ----------
 cands = [dict(kind=f[0], t0=f[1], t1=f[2], db=f[3], c=f[4], per=f[5], lo=f[6]) for f in pv.scan(B)]
@@ -94,10 +113,8 @@ def spec(x):
 lines = []; js = []
 ov = {k_: d.get(k_, {}) for k_ in ('非人声区间', '停顿删除区间', '停顿插入点')}
 for n_, c in enumerate(cands, 1):
-    i0 = int(round(c['t0'] * SR)); it = next((x for x in info if x['off'] <= i0 < x['off'] + x['n']), None)
+    i0 = int(round(c['t0'] * SR)); tl0 = int(round(0.4 * SR)); it = 所在句(c, i0, info, tl0, len(title))
     if it is None:
-        tl0 = int(round(0.4 * SR))
-        if not (tl0 <= i0 < tl0 + len(title)): raise SystemExit(f'【停止】{c} 不在任何一句里')
         def tw(i):   # 标题：成片 → 标题声音（去底噪、裁两头后）→ 压缩前 → w（say() 的输出）
             pr = i - tl0 + _ths
             for x, y in _trm:

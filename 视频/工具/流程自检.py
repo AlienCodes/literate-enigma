@@ -172,5 +172,9 @@ sys.path.insert(0, f'{T}/初稿生成'); import 核对 as _HD   # T37 核对.py 
 if _HD.缺的重点词(['**hinge on**', '**dead reckoning**'], ['hinge on', 'dead reckoning']): fails.append('T37 误报：多词重点词（hinge on、dead reckoning）整体在却报“缺”')
 if _HD.缺的重点词(['**dead reckoning**'], ['dead', 'reckoning']): fails.append('T37 误报：多词重点词每个词都加粗了却报“缺”')
 if _HD.缺的重点词(['**vast**', '**hinge on**'], ['hinge on']) != ['vast']: fails.append('没抓到：文章重点词在对照里真的缺了（T37）')
+def 管道解压(txt):   # K54：curl 下载直接管道给 tar 解压，下载被截断就留半截文件、重跑跳过下载；必须先下到文件、解压成功才算
+    return [l.strip()[:80] for l in txt.splitlines() if not l.lstrip().startswith('#') and re.search(r'curl\b[^|#]*\|\s*tar\b', l)]
+if 管道解压(open(f'{T}/环境/准备机器.sh').read()): fails.append(f'准备机器.sh 又用 curl 管道直接 tar 解压（K54）：{管道解压(open(f"{T}/环境/准备机器.sh").read())[0]}')
+if not 管道解压('A=1; [ -f x ] || { curl -sSL https://e/x.tar.bz2 | tar xj -C ~/asr; }\n'): fails.append('没抓到：curl | tar 管道解压（K54 重放）')
 print('流程自检：' + ('通过（占着锁再启动定稿流水线必停；步骤顺序被调换必报；④ 文本门真跑失败必停、.sh 中文变量和注释吞 || 必报（K37）；① 前没有 a.wav 先重建（K36）；本地慢印章过期不许推主演练补丁（K35）；全部 .sh 每道门真跑能停（G79 门变异）；钩子自检不读真实请求账（K38）；工作流不用中文变量名（K31））' if not fails else '失灵！' + '；'.join(fails)))
 sys.exit(1 if fails else 0)

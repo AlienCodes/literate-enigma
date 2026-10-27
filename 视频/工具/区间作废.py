@@ -42,6 +42,10 @@ def 自检():
     if 'S7' not in e['非人声区间'] or 'S16 raw 1.0-1.2' not in e['核对确认']['删除段']: fails.append('A45 误删：没改读音的句子（S7、S16）的区间或确认被清掉')
     记(e, {'S6': 'ccc', 'S7': 'ddd', 'S8': 'eee'})
     if e.get('区间声音指纹') != {'S7': 'ddd'}: fails.append(f'A45 记指纹不对：只记有区间的句子，得到 {e.get("区间声音指纹")}')
+    import subprocess, tempfile, os   # A45 开关不许带进交付核查（G79 门变异：交付核查 第一道门以前没人探）
+    r = subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), '交付核查.py'), '20', '出片前'], cwd=tempfile.gettempdir(),
+                       env={**os.environ, 'OLD_IV_VOID': '1'}, capture_output=True, text=True, timeout=120)
+    if r.returncode == 0 or 'OLD_IV_VOID' not in r.stdout + r.stderr: fails.append('没抓到：环境里带着 OLD_IV_VOID 跑交付核查没停（A45 开关）')
     return fails
 
 

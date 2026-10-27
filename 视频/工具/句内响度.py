@@ -56,6 +56,9 @@ def 自检():
         if not 4.0 <= g2.get('S1', {}).get('3', 0) <= 5.5: f.append(f'没抓到：已有 +1 dB 时没有累加（{g2}）')
         w, sr = mk([0, 0, 0, 0]); m, TM = 量(w, sr)
         if 算增益(m, TM, {}): f.append('误报：四段一样响也算出了增益')
+    import subprocess as _sp, tempfile as _tf   # 缺前提（没出过声音、没有 分段.json）必须停，不许接着量（G79 门变异）
+    r = _sp.run([sys.executable, os.path.abspath(__file__), '99'], cwd=_tf.mkdtemp(prefix='句内响度自检_'), capture_output=True, text=True)
+    if '【停止】没有 work_99/分段.json' not in r.stdout + r.stderr: f.append('没抓到：没有 work_NN/分段.json 也开量（缺前提要停）')
     return f
 
 if __name__ == '__main__':

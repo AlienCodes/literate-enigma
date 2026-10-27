@@ -56,16 +56,33 @@ def 窗口自检():
     e2 = np.full(f5(3.0), -10.0); e2[f5(1.8):f5(2.2)] = -70   # 估的词尾偏晚（2.0）、停顿是同一段静音：选法和原来一样
     if 选静音(e2, f5(2.0), f5(2.2) + 6, (f5(1.8), f5(2.2))) != 最长静音(e2, f5(2.0) - 6, f5(2.2) + 6): f.append('误报：原来选的静音就在出片程序要删的那段里，也改了选法（01–26 的接点会跟着变）')
     return f
+def 句中标点(sent_, no_):
+    """最后一句里句中标点的位置；没有句中标点的结尾句不用接点（停）"""
+    puncts_ = [m.end() for m in re.finditer(r'[,;:](?=\s)', sent_)]
+    if not puncts_: sys.exit(f'第{no_}篇最后一句没有句中标点：用 {{"整句语速": 0.80}}（01、02 的写法），不用接点')
+    return puncts_
+def 模型标点(ts_, speed):
+    """带时长模型输出里标点记号的位置；一个都没有就停（不按估计挪接点）"""
+    pi_ = [i for i, t_ in enumerate(ts_) if t_.phoneme in (',', ';', ':')]
+    if not pi_: sys.exit(f'带时长模型里找不到标点（语速 {speed}）')
+    return pi_
+def 前提自检():   # G79 门变异：这两道门以前只有载入配音模型的主流程走得到，自检直接喂坏输入
+    import types as ty; f = []
+    for fn, arg, want in ((句中标点, ('He left the house and never came back.', '99'), '没有句中标点'), (模型标点, ([ty.SimpleNamespace(phoneme='a'), ty.SimpleNamespace(phoneme='.')], 0.9), '找不到标点')):
+        try: fn(*arg); f.append(f'没抓到：{want}（结尾句接点）')
+        except SystemExit as x:
+            if want not in str(x): f.append(f'停错了：{x}')
+    if 句中标点('If so, its fame began.', '99') != [6]: f.append('误报：有逗号的结尾句也停了')
+    return f
 if '--自检' in sys.argv:
-    e = 自检() + ['结尾句接点 自检：' + x for x in 窗口自检()]; print('\n'.join(e) or '结尾句接点 自检通过（重跑 --写入 保留前段增益dB 等手写字段；接点变了作废前段音调范围）'); sys.exit(1 if e else 0)
+    e = 自检() + 前提自检() + ['结尾句接点 自检：' + x for x in 窗口自检()]; print('\n'.join(e) or '结尾句接点 自检通过（重跑 --写入 保留前段增益dB 等手写字段；接点变了作废前段音调范围）'); sys.exit(1 if e else 0)
 sys.path.insert(0, '.')
 exec(open('make_video.py').read().split("if __name__")[0])
 args = [a for a in sys.argv[1:] if not a.startswith('--')]; no_ = args[0].zfill(2)
 spF, spS, gap_ = (float(x) for x in (args[1:4] if len(args) >= 4 else ('0.90', '0.78', '0.70')))
 js_ = f'scripts/{no_}.json'; d_ = json.load(open(js_)); si_ = len(d_['sentences'])
 sent_ = ' '.join(re.sub(r'\*\*', '', R.strip_gloss(c['en'])).strip() for c in d_['sentences'][-1]['chunks'])
-puncts_ = [m.end() for m in re.finditer(r'[,;:](?=\s)', sent_)]
-if not puncts_: sys.exit(f'第{no_}篇最后一句没有句中标点：用 {{"整句语速": 0.80}}（01、02 的写法），不用接点')
+puncts_ = 句中标点(sent_, no_)
 cut_ = puncts_[-1]; tail_ = sent_[cut_:].strip()
 F5 = int(0.005 * SR)
 
@@ -76,8 +93,7 @@ def find(speed, front=False):
     r_, _ = k.create(spoken(txt_), voice=V, speed=speed, lang='en-us'); r_ = np.asarray(r_, np.float32)
     tb_, _, ts_ = KT.create_timed(spoken(txt_), voice=V, speed=speed, lang='en-us', clause_pause=0, sentence_pause=0); sc_ = len(r_) / len(tb_)
     # 最后一个标点在带时长模型里的位置：按顺序数标点记号（, ; :），取最后一个
-    pi_ = [i for i, t_ in enumerate(ts_) if t_.phoneme in (',', ';', ':')]
-    if not pi_: sys.exit(f'带时长模型里找不到标点（语速 {speed}）')
+    pi_ = 模型标点(ts_, speed)
     p_ = ts_[pi_[-1]]; nxt_ = next((t_ for t_ in ts_[pi_[-1] + 1:] if t_.phoneme.strip() and t_.phoneme not in (',', ';', ':', '.')), None)
     a_ = int(ts_[pi_[-1] - 1].end * sc_ * SR) if pi_[-1] > 0 else int(p_.start * sc_ * SR)
     b_ = int(nxt_.start * sc_ * SR) if nxt_ else len(r_)

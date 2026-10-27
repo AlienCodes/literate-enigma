@@ -89,10 +89,12 @@ _SA = 'fades=fades_)\n    return clips,tmap'   # sentence_audio 的出口：无�
 _挪1 = 改读法('f=min(range(r0,r1),key=lambda f:e[f]); ca=cb=f*F; keep=max(0,b-a)*F/SR', 'f=min(range(r0,r1),key=lambda f:e[f]); ca=cb=f*F+int(0.15*SR); keep=max(0,b-a)*F/SR')
 _挪2 = 改读法('            ca=cb=(cx if cx is not None else f*F); keep=0.0', '            ca=cb=(cx if cx is not None else f*F)+int(0.15*SR); keep=0.0')
 def 停顿挪进词里(ws): _挪1(ws); _挪2(ws)   # A9：插入的停顿（只插不删、连读处插入）落到后一个词里 150 毫秒
+标点停顿加长 = 改读法(_SA, 'fades=fades_)\n    clips=[np.concatenate([c,np.zeros(int(0.2*SR),c.dtype)]) for c in clips[:-1]]+clips[-1:]\n    return clips,tmap')   # A9/A10：标点处听到的停顿比标准长 0.2 秒（G79 门变异：标点停顿核对 记不通过那一行以前没人探）
 剪词尾 = 改读法(_SA, 'fades=fades_)\n    clips=[np.concatenate([c[:-int(0.09*SR)],np.zeros(int(0.09*SR),c.dtype)]) for c in clips]\n    return clips,tmap')   # A21：停顿前、句末的词尾 90 毫秒剪掉
 def 旧视频配新脚本(ws):   # G26：出完片又改了脚本（重放 24 第三稿：出片失败，旧视频照样过了出片后核查）
     p = f'{ws}/scripts/{NO}.json'; d = json.load(open(p)); d['title_zh'] += '（改）'; os.unlink(p); json.dump(d, open(p, 'w'), ensure_ascii=False, indent=1)
 def 加引号(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: _加英文(d, 'the "best" one', '那个“最好的”'))
+def 标题标点(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: d.__setitem__('title_en', 'The Last Walk, Remembered'))   # 标题句中逗号前是 /k/：程序定不了停顿位置，必须交人听（G79 门变异：词尾辅音核对 这道门以前没人走到）
 def 加多音(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: _加英文(d, 'as they read', '正如他们读到的'))  # A24/A35：read 按语境核对读音
 
 
@@ -101,6 +103,7 @@ def 加多音(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: _加英文
     ('A4句中硬停', '出片前', '出片程序每句中间（没有标点处）多停 0.35 秒（像机器人）', None, 句中停顿, ['无标点处停顿'], ['A4']),
     ('A21剪句尾辅音', '出片前', '出片程序把停顿前、句末的最后 90 毫秒剪掉（词尾 t/k/p 没了）', None, 剪词尾, ['词尾辅音核对（A21'], ['A21', 'A38', 'A41', 'A43', 'A6']),
     ('A13独立复核剪句尾', '出片后', '每句最后 90 毫秒剪掉（词尾被切），独立复核必须报出', None, 改声音(剪句尾), ['独立复核'], ['A13', 'A14', 'A16', 'A18', 'A22', 'A31', 'A34', 'A10b', '流5']),
+    ('A9标点停顿加长', '出片前', '出片程序在每个标点处多留 0.2 秒静音（标点停顿比标准长）', None, 标点停顿加长, ['标点停顿核对（A9/A10'], ['A9', 'A10', 'A5']),
     ('A9停顿落在词里', '出片前', '出片程序把只插不删的停顿往后挪 150 毫秒（落在后一个词里）', None, 停顿挪进词里, ['停顿位置核对（A9'], ['A9']),
     ('A8一句变轻', '出片后', '中间一句突然变轻 12 dB', None, 改声音(一句变轻), ['响度一致性（逐句'], ['A8', 'A29']),
     ('A2句间呼吸声', '出片后', '句间停顿里留 0.3 秒气声', None, 改声音(塞呼吸), ['纯人声核对'], ['A2', 'A19']),
@@ -111,6 +114,7 @@ def 加多音(f): Y._改json(f, f'视频/脚本/{NO}.json', lambda d: _加英文
     ('A37时刻读法', '出片前', '时刻读法退回事故时（重放 15：11.40pm 读成 eleven point four zero）', None, 时刻退回, ['数字读法、引号自检'], ['A37']),
     ('A17引号', '出片前', '引号照读（读法退回）、S2 有带引号的 "best"', 加引号, 引号退回, ['数字读法、引号自检', '引号不停顿'], ['A17']),
     ('A24多音词', '出片前', 'S2 加 as they read（多音词没按语境核对）', 加多音, None, ['读音核对（A23'], ['A24', 'A35']),
+    ('A21标题标点', '出片前', '标题改成逗号前是清塞音（The Last Walk, Remembered），程序定不了停顿位置', 标题标点, None, ['词尾辅音核对（A21'], ['A21']),
     ('G26旧视频配新脚本', '出片后', '出完片又改了脚本（视频还是旧的）', None, 旧视频配新脚本, ['视频是现行脚本、现行程序出的（G26'], ['G26']),
     ('G36句内一段变轻', '出片后', '句内一段比前一段轻 4 LU（整句仍在 ±2 LU 内，重放 25 S2）', None, 句内一段变轻, ['句内分段响度（相邻两段'], ['G36'], NO25),
     ('G41体检咔哒', '出片后', '句子中间一个采样突跳（咔哒声）', None, 改声音(咔哒, NO25), ['音频体检（与 01–24 最差比）'], ['G41'], NO25),
@@ -166,6 +170,15 @@ def 演练(W, 只=None):
             miss = [w for w in want if not any(w in l for l in new)]
             return sid, c != 0 and not miss, ('新报出：' + next(l for l in new if want[0] in l)[:80]) if not miss else f'没挡住：{miss}（退出码 {c}，新报出 {"；".join(sorted(new))[:150]}）'
         res = list(ex.map(one, todo))
+        自检坏 = lambda o: sorted(l for l in o if re.search(r'自检|失灵|没抓到', l) and not l.startswith('✘ 规则执行核查') and '印章' not in l)   # 规则执行核查 那一步（含印章）看的是程序改没改过，不是稿子   # G79：原样那一场只当基线做差，核查程序自己的自检失灵会在原样和造坑场一起 ✘、互相抵消（拆 audio_qc 削波门没人发现）
+        for k in stages:
+            res.append((f'原样自检{k[0]}{k[1]}', not 自检坏(bo[k][1]), f'没造坑的原样稿 {k[0]} 里核查程序自检全部通过' if not 自检坏(bo[k][1]) else f'没造坑的原样稿 {k[0]} 里核查程序自检失灵：{自检坏(bo[k][1])[0][:150]}'))
+        if not 只 or '自查拆门_原样自检' in 只:   # 拆门自查：镜像里拆掉 audio_qc 的削波门，原样出片后那一场必须报“自检失灵”（上面这条在起作用）
+            M, ws = 场('拆自检'); p = f'{M}/视频/工具/audio_qc.py'; t = open(p).read(); a_ = 'if np.abs(a).max() > 0.99: bad.append('
+            if t.count(a_) != 1: res.append(('自查拆门_原样自检', False, 'audio_qc.py 里找不到削波那道门（锚变了，改演练）'))
+            else:
+                open(p, 'w').write(t.replace(a_, 'if False and np.abs(a).max() > 0.99: bad.append(', 1)); c, o = 跑(M, ws, '出片后')
+                res.append(('自查拆门_原样自检', bool(自检坏(o)), '拆掉 audio_qc 削波门后，原样稿的自检失灵被报出（原样自检这条在起作用）' if 自检坏(o) else '拆掉 audio_qc 削波门后原样稿没报自检失灵：原样自检失灵'))
         if 通路:   # 真实流程走得通（主对话 2026-10-25：26 起源头调平后 疑点清单 重建对不上，草稿声音.sh 三轮全停；演练以前只验门会挡，没验好稿子能走通）
             M, ws = 场('通路26', no='26')
             r = subprocess.run(['bash', '/home/user/postgraduate-vocabulary/视频/工具/草稿声音.sh', '26'], cwd=ws, capture_output=True, text=True, errors='replace', timeout=1800, env={**os.environ, 'CLAUDE_PROJECT_DIR': M})
@@ -187,10 +200,46 @@ def 演练(W, 只=None):
     for x in os.listdir(root):
         if x.startswith('演练_'): shutil.rmtree(f'{root}/{x}', ignore_errors=True)
     left = Y.清新缓存(c0)   # 演练里合成的新缓存（出片程序自动拷进 make_video 写死的仓库和本仓库的 配音缓存/）不留（G29）
+    return 收尾(res, left, Y.查样本(), Y._git状态() != g0)
+
+
+def 收尾(res, left, 样e, 变):
+    """演练跑完的三项清点：新缓存清干净（G29）、冻结样本没被改、真仓库没被碰"""
     if left: res.append(('G29演练缓存清干净', False, f'演练留下 {len(left)} 个文件没清掉：{left[0]}'))
-    if Y.查样本(): res.append(('冻结样本没被改', False, '；'.join(Y.查样本())))
-    if Y._git状态() != g0: res.append(('真仓库没被碰', False, '声音演练改了真仓库（git status 变了）：镜像漏了写入的路径'))
+    if 样e: res.append(('冻结样本没被改', False, '；'.join(样e)))
+    if 变: res.append(('真仓库没被碰', False, '声音演练改了真仓库（git status 变了）：镜像漏了写入的路径'))
     return res
+def 应有场次():
+    """全部演练应该跑到的场次（G79：哪一场被悄悄跳过——比如 通路 那道 if 被拆——全部演练必须报出来）"""
+    st = {(s[1], s[7] if len(s) > 7 else NO) for s in 声音场景}
+    return {s[0] for s in 声音场景} | {f'原样自检{a}{b}' for a, b in st} | {'通路_草稿声音26', '自查拆门_声音', '自查拆门_parakeet', '自查拆门_原样自检'}
+def 清点(res):
+    return sorted(应有场次() - {r[0] for r in res})
+def 开跑前提():
+    if not os.path.exists('make_video.py') or not os.path.isdir('scripts'): sys.exit('【停止】请在视频工作目录（含 make_video.py、scripts/）下运行')
+    import 出片指纹 as _ZW   # G27：出片程序清单从 make_video 的 import 自动找全
+    if _ZW.核对工作目录('.', T): sys.exit('【停止】' + '；'.join(_ZW.核对工作目录('.', T)) + '：先 python3 出片指纹.py --拷 . 再演练')
+    e = Y.查读现稿() + Y.查样本()   # 演练只读冻结拷贝
+    if e: sys.exit('【停止】' + '；'.join(e))
+def 自检():
+    """不出声音：收尾三项、整场清点、开跑三道前提，各造一处必须停（G79 门变异：这些门以前只有整场声音演练走得到）"""
+    import tempfile; f = []; cwd = os.getcwd()
+    if len(收尾([], ['x.pkl'], ['样本被改'], True)) != 3 or 收尾([], [], [], False): f.append('收尾没抓全：新缓存没清、冻结样本被改、真仓库被碰，三项都要报，都没有不报')
+    全 = [(x, True, '') for x in 应有场次()]
+    if 清点(全) or 清点([r for r in 全 if r[0] != '通路_草稿声音26']) != ['通路_草稿声音26']: f.append('没抓到：全部演练少跑了 通路 那一场')
+    def 停(want, 改=lambda: None):
+        try: 改(); 开跑前提(); return f'没抓到：{want}'
+        except SystemExit as x: return '' if want in str(x) else f'停错了：{x}'
+    d = tempfile.mkdtemp(prefix='声音演练自检_')
+    try:
+        os.chdir(d); f.append(停('请在视频工作目录'))
+        os.makedirs('scripts'); open('make_video.py', 'w').write('# 旧\n'); f.append(停('出片指纹.py --拷'))
+        subprocess.run([sys.executable, f'{T}/出片指纹.py', '--拷', d], capture_output=True)
+        q = Y.查样本; Y.查样本 = lambda: ['冻结样本被改了']
+        try: f.append(停('冻结样本被改了'))
+        finally: Y.查样本 = q
+    finally: os.chdir(cwd); shutil.rmtree(d, ignore_errors=True)
+    return [x for x in f if x]
 
 
 def 印章有效():
@@ -201,13 +250,12 @@ def 印章有效():
 
 def main():
     a = sys.argv[1:]
-    if not os.path.exists('make_video.py') or not os.path.isdir('scripts'): sys.exit('【停止】请在视频工作目录（含 make_video.py、scripts/）下运行')
-    import 出片指纹 as _ZW   # G27：出片程序清单从 make_video 的 import 自动找全
-    if _ZW.核对工作目录('.', T): sys.exit('【停止】' + '；'.join(_ZW.核对工作目录('.', T)) + '：先 python3 出片指纹.py --拷 . 再演练')
-    e = Y.查读现稿() + Y.查样本()   # 演练只读冻结拷贝
-    if e: sys.exit('【停止】' + '；'.join(e))
+    if a[:1] == ['--自检']:
+        e = 自检(); print('\n'.join(e) or '声音演练 自检通过（收尾三项、整场少跑一场、开跑三道前提都报出）'); return 1 if e else 0
+    开跑前提()
     only = [x for x in a if not x.startswith('--')]
     res = 演练(os.getcwd(), only)
+    if not only and 清点(res): res.append(('整场清点', False, f'全部演练少跑了：{清点(res)}'))
     for sid, ok, msg in res: print(f"{'✔' if ok else '✘'} {sid}：{msg}")
     bad = [s for s, ok, _ in res if not ok]
     if bad or only: print('执行效应声音演练：' + ('【没通过：' + '、'.join(bad) + '】' if bad else '部分演练通过（不盖印章）')); return 1 if bad else 0

@@ -16,10 +16,10 @@ PD = os.path.expanduser('~/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8')
 def 识别器():
     """每一路一个离线识别器 {名: 识别器}。small.en（whisper，带语言模型补全）+ parakeet（NeMo TDT 0.6B int8）：
     注入实测（改门_音频上GitHub.md 第二阶段）任一报就报，漏读、词中截断、句尾截断、咔哒、削波每类查全都比 small.en 单用高"""
-    import sherpa_onnx
     p = lambda d, x: os.path.join(d, x)
     for d, f, u in ((MD, 'small.en-encoder.int8.onnx', 'sherpa-onnx-whisper-small.en'), (PD, 'encoder.int8.onnx', 'sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8')):
         if not os.path.exists(p(d, f)): raise SystemExit(f'【停止】没有识别模型 {d}：bash 准备机器.sh 会下载（GitHub release k2-fsa/sherpa-onnx asr-models/{u}）；机器复听每一路都要有，不许少一路')
+    import sherpa_onnx   # 先查模型在不在（没有模型就停，不先要求装好识别程序）
     return {'small.en': sherpa_onnx.OfflineRecognizer.from_whisper(encoder=p(MD, 'small.en-encoder.int8.onnx'), decoder=p(MD, 'small.en-decoder.int8.onnx'), tokens=p(MD, 'small.en-tokens.txt'), num_threads=4),
             'parakeet': sherpa_onnx.OfflineRecognizer.from_transducer(encoder=p(PD, 'encoder.int8.onnx'), decoder=p(PD, 'decoder.int8.onnx'), joiner=p(PD, 'joiner.int8.onnx'), tokens=p(PD, 'tokens.txt'), model_type='nemo_transducer', num_threads=4)}
 
@@ -182,6 +182,18 @@ def 比较自检():
         if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
     for r_, h_ in (('the cat sat on the mat', 'the cat on the mat'), ('the cabbies waited', 'the cabins waited'), ('He sat there', 'He set there')):
         if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
+    global MD, PD, _tk, sf   # 前提门（G79 门变异：以前只有真听声音的主流程走得到）：没有识别模型、有声音程序却没有注音程序，都必须停
+    o_ = (MD, PD, _tk, sf)
+    try:
+        MD = PD = '/不存在的识别模型目录'
+        try: 识别器(); f.append('没抓到：没有识别模型也开听')
+        except SystemExit as x_:
+            if '没有识别模型' not in str(x_): f.append(f'停错了：{x_}')
+        _tk, sf = False, object()
+        try: 音标('cruise'); f.append('没抓到：有声音程序却没有 kokoro_onnx 注音程序，也按内置读音比')
+        except SystemExit as x_:
+            if '没有 kokoro_onnx' not in str(x_): f.append(f'停错了：{x_}')
+    finally: MD, PD, _tk, sf = o_
     return f
 
 def 分类(md):

@@ -104,16 +104,20 @@ def 句内(src, a=None, TM=None, seg_json=None):
     return rs
 def 句内报(rs): return [r for r in rs if abs(r[4]) > IN_ADJ]
 def 句内自检(src, seg_json=None):
-    """阳性对照：挑一句相邻段都不超标的，把它的第 2 段调到与前一段差 IN_ADJ+1 LU，必须报出这一处；原样的报出不变（不误报）。"""
-    a = pcm(src); TM = momentary(src); rs = 句内(src, a, TM, seg_json); bad0 = {(r[0], r[1]) for r in 句内报(rs)}
-    cand = [r for r in rs if r[1] == 1 and not any(q[0] == r[0] for q in 句内报(rs))]
-    if not cand: return False, '自检前提不成立：没有一句相邻段都不超标、又有两段以上的'
-    nm, j, (px, py), (x, y), dv = cand[len(cand) // 2]
-    g = -(IN_ADJ + 1.0) - dv; b = a.copy(); b[int(x * SR):int(y * SR)] *= 10 ** (g / 20)
+    """阳性对照：挑一句相邻段都不超标的，把它的第 2 段调到与前一段差 IN_ADJ+1 LU，必须报出这一处；原样的报出不变（不误报）。
+    原样和改过的都先写成同样的 wav 再量（原来原样按成片 AAC 量、改过的按 wav 量，瞬时响度差一点，20 改号 25 的 S7 在门槛边上翻过去、多报，G79 原样自检揭出）"""
+    a = pcm(src)
     with tempfile.TemporaryDirectory() as td:
-        w = os.path.join(td, 't.wav')
-        subprocess.run([FF, '-loglevel', 'error', '-f', 's16le', '-ar', str(SR), '-ac', '1', '-i', '-', w], input=(np.clip(b, -1, 1) * 32767).astype(np.int16).tobytes(), check=True)
-        bad1 = {(r[0], r[1]) for r in 句内报(句内(w, b, None, seg_json))}
+        def 量(x, n):
+            w = os.path.join(td, n)
+            subprocess.run([FF, '-loglevel', 'error', '-f', 's16le', '-ar', str(SR), '-ac', '1', '-i', '-', w], input=(np.clip(x, -1, 1) * 32767).astype(np.int16).tobytes(), check=True)
+            return 句内(w, x, None, seg_json)
+        rs = 量(a, 'o.wav'); bad0 = {(r[0], r[1]) for r in 句内报(rs)}
+        cand = [r for r in rs if r[1] == 1 and not any(q[0] == r[0] for q in 句内报(rs))]
+        if not cand: return False, '自检前提不成立：没有一句相邻段都不超标、又有两段以上的'
+        nm, j, (px, py), (x, y), dv = cand[len(cand) // 2]
+        g = -(IN_ADJ + 1.0) - dv; b = a.copy(); b[int(x * SR):int(y * SR)] *= 10 ** (g / 20)
+        bad1 = {(r[0], r[1]) for r in 句内报(量(b, 't.wav'))}
     ok = (nm, 1) in bad1 and bad1 - bad0 <= {(nm, 1), (nm, 2)}
     return ok, f'故意把 {nm} 第 2 段（{x:.1f}–{y:.1f}s）调 {g:+.1f} dB，{"报出" if (nm, 1) in bad1 else "没报出"}；多报 {sorted(bad1 - bad0 - {(nm, 1), (nm, 2)})}'
 
