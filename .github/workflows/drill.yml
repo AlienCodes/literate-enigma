@@ -6,8 +6,9 @@
 # 触发：推送时新加的请求文件 视频/云端/请求/<名字>.txt（一个请求一个文件；改动、删除不触发——镜像同步改回、删掉都不会重跑）。
 # 请求文件第一行（# 开头的是注释）：声音演练 / 主演练 / 彩排 / 合成对照 / 全篇重查 [篇号…] / 出片 NN；后面加“补丁=视频/云端/待演练/X.diff”= 打上补丁再跑，
 # 结果写回 视频/云端/结果/X.结果.diff|.txt（作者 github-actions[bot]，推送两仓库.sh 按 G58 回写主仓库）。workflow_dispatch 只认默认分支 master（别的项目）不能用。
-# 改门推送（K59/K60，2026-10-27）：“改门推送 补丁=X.diff”一条请求按固定依赖走完：门变异（受影响的门，门变异.py 改了就全量）、主演练、声音演练（4 片）并行
-# → gate：先合并门变异、查基线（不过就停），再合并两个演练印章，再在同一台新容器里彩排 → 全过把全部印章和清单写回 视频/云端/结果/X.结果.diff，
+# 改门推送（K59/K60，2026-10-27）：“改门推送 补丁=X.diff”一条请求按固定顺序走完：① run 门变异分片（受影响的门，拆探函数、覆盖图改了就全量）
+# → ② merge 收齐、合并、查基线（不过就停）→ ③ drill 主演练 + 声音演练 4 片（打上补丁和合并后的清单：演练里的流水线 ⓪ 用上核查要清单已重拆，K60v3 实测）
+# → ④ gate 两个演练印章 → 同一台新容器彩排 → 全过把全部印章和清单写回 视频/云端/结果/X.结果.diff，
 # 会话 推请求.py --收 X 一条命令拉回、打上、推两仓库。前一步不过后一步不跑，不会再出现彩排先跑白跑（K59）、印章互等（K60）。
 # 各请求各跑各的（不设全局排队：2026-10-26 单请求文件 + 全局排队时，后推的请求把排着队的请求顶掉了）；改门由 G66 改门锁排队。
 name: 门演练
@@ -21,7 +22,7 @@ defaults:
 jobs:
   plan:
     runs-on: ubuntu-latest
-    outputs: {items: '${{ steps.p.outputs.items }}', recheck: '${{ steps.p.outputs.recheck }}', gate: '${{ steps.p.outputs.gate }}'}
+    outputs: {items: '${{ steps.p.outputs.items }}', recheck: '${{ steps.p.outputs.recheck }}', gate: '${{ steps.p.outputs.gate }}', drill: '${{ steps.p.outputs.drill }}'}
     steps:
       - uses: actions/checkout@v4   # 改门推送要按打了补丁的门程序算分片（只取 视频/工具、制作记录、云端，几秒）
         with: {sparse-checkout: "视频/工具\n视频/制作记录\n视频/云端", filter: 'blob:none'}
@@ -35,7 +36,7 @@ jobs:
           gh = lambda *a: subprocess.run(['gh', 'api', *a], capture_output=True, text=True).stdout
           fs = [f['filename'] for f in json.loads(gh(f"repos/{R}/compare/{ev['before']}...{sha}") or '{}').get('files', [])
                 if f['status'] == 'added' and f['filename'].startswith('视频/云端/请求/') and f['filename'].endswith('.txt')]
-          items = []; gate = ''; 全部 = '01 02 03 04 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26'.split()
+          items = []; gate = ''; drill = []; 全部 = '01 02 03 04 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26'.split()
           for f in fs:
               txt = base64.b64decode(json.loads(gh(f'repos/{R}/contents/{urllib.parse.quote(f)}?ref={sha}'))['content']).decode()
               w = next((l.split() for l in txt.splitlines() if l.strip() and not l.lstrip().startswith('#')), [])
@@ -51,12 +52,12 @@ jobs:
                   sh = subprocess.run(['python3', '视频/工具/门变异.py', '--分片表', '--受影响'], capture_output=True, text=True) if ok else None
                   if not ok or sh.returncode: print('改门推送：补丁打不上或分片表算不出', sh and sh.stderr[-500:]); raise SystemExit(1)
                   片 = sh.stdout.split(); mode = '增量' if any('~改@' in x for x in 片) or not 片 else '全量'
-                  its = [('门变异', x) for x in 片] + [('主演练', '0')] + [('声音分片', f'{i}/4') for i in range(1, 5)]
-                  items += [{'req': rid, 'job': j, 'patch': patch, 'no': n, 'an': n.replace('/', '_') if j != '主演练' else '主演练', 'gate': '1'} for j, n in its]
-                  gate = json.dumps({'req': rid, 'patch': patch, 'n': len(its), 'mode': mode}, ensure_ascii=False); print(f'改门推送 {rid}：门变异 {len(片)} 片（{mode}）+ 主演练 + 声音 4 片'); continue
+                  items += [{'req': rid, 'job': '门变异', 'patch': patch, 'no': x, 'an': x.replace('/', '_'), 'gate': '1'} for x in 片]
+                  drill = [{'req': rid, 'job': j, 'patch': patch, 'no': n, 'an': a} for j, n, a in [('主演练', '0', '主演练')] + [('声音分片', f'{i}/4', f'声音{i}') for i in range(1, 5)]]
+                  gate = json.dumps({'req': rid, 'patch': patch, 'n': len(片), 'nd': len(drill), 'mode': mode}, ensure_ascii=False); print(f'改门推送 {rid}：门变异 {len(片)} 片（{mode}）→ 主演练 + 声音 4 片 → 彩排'); continue
               for n in (nos if job in ('全篇重查', '出片', '单线程复现', '门变异') else ['0']): items.append({'req': rid, 'job': job, 'patch': patch, 'no': n, 'an': n.replace('/', '_')})   # an：artifact 名字不许带 /（K41）
           print('新请求：', fs, '→', len(items), '个任务')
-          o = open(os.environ['GITHUB_OUTPUT'], 'a'); o.write(f"items={json.dumps(items, ensure_ascii=False)}\n"); o.write(f"recheck={str(any(i['job'] == '全篇重查' for i in items)).lower()}\n"); o.write(f"gate={gate}\n")
+          o = open(os.environ['GITHUB_OUTPUT'], 'a'); o.write(f"items={json.dumps(items, ensure_ascii=False)}\n"); o.write(f"recheck={str(any(i['job'] == '全篇重查' for i in items)).lower()}\n"); o.write(f"gate={gate}\n"); o.write(f"drill={json.dumps(drill, ensure_ascii=False)}\n")
           PY
   run:
     needs: plan
@@ -89,7 +90,6 @@ jobs:
         run: |
           T=$GITHUB_WORKSPACE/视频/工具; T0=$(date +%s); set -o pipefail
           case "${{ matrix.it.job }}" in
-            声音分片) mkdir -p /tmp/gate; python3 $T/执行效应声音演练.py --分片=${{ matrix.it.no }} --结果=/tmp/gate/声音_${{ matrix.it.an }}.json 2>&1 | tee /tmp/out.log | tail -30 ;;   # K60 改门推送
             声音演练) python3 $T/执行效应声音演练.py 2>&1 | tee /tmp/out.log | tail -40 ;;
             主演练)   python3 $T/执行效应演练.py 2>&1 | tee /tmp/out.log | tail -40 ;;
             彩排)     STRICT_CACHE=1 bash $T/彩排.sh 25 2>&1 | tee /tmp/out.log | tail -40 ;;   # L 新容器整条彩排（丝滑主义）：会话开工 → 流程自检 → 定稿流水线 25 到 ④，0 次停下才盖印章
@@ -115,7 +115,6 @@ jobs:
         if: always() && matrix.it.gate == '1'
         run: |
           mkdir -p /tmp/gate; A="${{ matrix.it.an }}"; cp /tmp/门变异/*.json /tmp/gate/ 2>/dev/null || true
-          [ "${{ matrix.it.job }}" = 主演练 ] && git diff --binary -- 视频 CLAUDE.md > /tmp/gate/主演练.diff
           { cat /tmp/rc 2>/dev/null || echo 1; } > /tmp/gate/rc_$A; tail -15 /tmp/out.log > /tmp/gate/log_$A.txt 2>/dev/null || true
       - name: 写回结果（演练自己写的改动 = 结果补丁；会话拉回后与本地同样的程序改动一起正常提交）
         if: always() && matrix.it.gate != '1' && (matrix.it.patch != '' || matrix.it.job == '门变异')
@@ -173,9 +172,76 @@ jobs:
               if r.returncode==0: print('写回', f); break
           else: raise SystemExit('写回失败 '+r.stderr[-200:])
           PY
-  # K60 改门推送 收尾：门变异合并、查基线 → 两个演练印章 → 同一台新容器彩排 → 全部印章、清单写回一份结果补丁（顺序写死在这里，前一步不过就停）
-  gate:
+  # K60 改门推送 ②：收齐门变异分片 → 合并（增量沿用清单）→ 查基线；不过就停，后面的演练、彩排都不跑
+  merge:
     needs: [plan, run]
+    if: always() && needs.plan.outputs.gate != ''
+    runs-on: ubuntu-latest
+    env: {GATE: '${{ needs.plan.outputs.gate }}'}
+    steps:
+      - uses: actions/checkout@v4
+        with: {sparse-checkout: "视频/工具\n视频/制作记录\n视频/云端", filter: 'blob:none'}
+      - uses: actions/download-artifact@v4
+        with: {pattern: '结果_${{ fromJson(needs.plan.outputs.gate).req }}_*', path: /tmp/a, merge-multiple: true}
+        continue-on-error: true   # 没有受影响的门（0 片）时没有分片结果；收齐按 rc_ 份数查
+      - name: ② 收齐 → 门变异合并 → 查基线
+        run: |
+          set +e; shopt -s nullglob; pip install -q numpy soundfile 2>&1 | tail -1
+          git config --global user.name ci; git config --global user.email ci@example.com
+          j() { python3 -c "import json,os;print(json.loads(os.environ['GATE'])['$1'])"; }; N=$(j n); M=$(j mode); mkdir -p /tmp/m
+          echo "改门推送 $(j req)（门变异 $N 片，$M）" > /tmp/m/gate.txt; stop() { echo "【改门推送不过】$1" | tee -a /tmp/m/gate.txt; exit 1; }
+          git apply --index --include='视频/工具/*' --include='视频/制作记录/*' "$(j patch)" || stop "补丁打不上"
+          rcs=(/tmp/a/rc_*); [ "${#rcs[@]}" -eq "$N" ] || stop "② 门变异只收到 ${#rcs[@]}/$N 片的结果（有分片没跑完）"
+          for f in "${rcs[@]}"; do a=${f#/tmp/a/rc_}; [ "$(cat $f)" = 0 ] || { tail -6 /tmp/a/log_$a.txt 2>/dev/null | tee -a /tmp/m/gate.txt; stop "② 门变异分片 $a 没跑完"; }; done
+          python3 视频/工具/门变异.py --合并结果 --未测入基线 $([ "$M" = 增量 ] && echo --增量) /tmp/a/*@*.json > /tmp/m.log 2>&1 || { tail -5 /tmp/m.log | tee -a /tmp/m/gate.txt; stop "② 门变异合并出错"; }
+          tail -2 /tmp/m.log | tee -a /tmp/m/gate.txt
+          python3 视频/工具/门变异.py --查基线 > /tmp/m.log 2>&1; r=$?; tail -2 /tmp/m.log | tee -a /tmp/m/gate.txt; [ $r = 0 ] || stop "② 门变异漏洞比基线多"
+          git diff --binary -- 视频 > /tmp/m/合并.diff; echo "② 门变异合并、查基线通过" | tee -a /tmp/m/gate.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: '合并_${{ fromJson(needs.plan.outputs.gate).req }}', path: /tmp/m/, retention-days: 14}
+  # K60 改门推送 ③：主演练 + 声音演练 4 片（补丁 + 合并后的清单都打上；只在 ② 通过后跑）
+  drill:
+    needs: [plan, merge]
+    if: needs.plan.outputs.gate != '' && needs.merge.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy: {fail-fast: false, matrix: {it: '${{ fromJson(needs.plan.outputs.drill) }}'}}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip, cache-dependency-path: 视频/工具/环境/requirements.txt}
+      - uses: actions/cache@v4
+        with: {path: '~/work/tts/*.onnx', key: kokoro-models-v1.0-v1.1}
+      - uses: actions/cache@v4
+        with: {path: '~/asr', key: asr-whisper-small-en-parakeet-v2}
+      - uses: actions/download-artifact@v4
+        with: {name: '合并_${{ matrix.it.req }}', path: /tmp/m}
+      - name: 打补丁 + 合并后的清单（暂存：演练自己写的改动才是结果）
+        run: |
+          git config --global user.name ci; git config --global user.email ci@example.com
+          git apply --index "${{ matrix.it.patch }}" && { [ ! -s /tmp/m/合并.diff ] || git apply --index /tmp/m/合并.diff; }
+      - name: 搭机器
+        run: |
+          sudo mkdir -p /home/user && sudo ln -sfn $GITHUB_WORKSPACE /home/user/postgraduate-vocabulary && sudo ln -sfn $GITHUB_WORKSPACE /home/user/literate-enigma
+          sudo apt-get install -y -qq espeak-ng >/dev/null 2>&1 || true
+          [ -e /opt/pw-browsers/chromium ] || { sudo mkdir -p /opt/pw-browsers && sudo ln -s "$(command -v google-chrome || command -v chromium)" /opt/pw-browsers/chromium; }
+          bash 视频/工具/环境/准备机器.sh . ~/work | tail -4
+      - name: ③ 演练
+        working-directory: /home/runner/work/video
+        run: |
+          set +e; T=$GITHUB_WORKSPACE/视频/工具; A="${{ matrix.it.an }}"; mkdir -p /tmp/gate
+          if [ "${{ matrix.it.job }}" = 主演练 ]; then python3 $T/执行效应演练.py > /tmp/out.log 2>&1; else python3 $T/执行效应声音演练.py --分片=${{ matrix.it.no }} --结果=/tmp/gate/声音_$A.json > /tmp/out.log 2>&1; fi
+          rc=$?; tail -30 /tmp/out.log; echo $rc > /tmp/gate/rc_$A; grep -E '✘|【' /tmp/out.log | tail -12 > /tmp/gate/log_$A.txt
+          [ "${{ matrix.it.job }}" = 主演练 ] && git -C $GITHUB_WORKSPACE diff --binary -- 视频 CLAUDE.md > /tmp/gate/主演练.diff
+          { echo "### ${{ matrix.it.job }} ${{ matrix.it.no }}：$([ $rc = 0 ] && echo ✔ || echo ✘)"; echo '```'; cat /tmp/gate/log_$A.txt; echo '```'; } >> $GITHUB_STEP_SUMMARY
+          exit $rc
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: '演练_${{ matrix.it.req }}_${{ matrix.it.an }}', path: /tmp/gate/, retention-days: 14}
+  # K60 改门推送 ④：两个演练印章 → 同一台新容器彩排 → 全部印章、清单写回一份结果补丁（顺序写死：前一步不过就停；不过也写回原因）
+  gate:
+    needs: [plan, merge, drill]
     if: always() && needs.plan.outputs.gate != ''
     runs-on: ubuntu-latest
     timeout-minutes: 120
@@ -189,22 +255,25 @@ jobs:
       - uses: actions/cache@v4
         with: {path: '~/asr', key: asr-whisper-small-en-parakeet-v2}
       - uses: actions/download-artifact@v4
-        with: {pattern: '结果_${{ fromJson(needs.plan.outputs.gate).req }}_*', path: /tmp/a, merge-multiple: true}
-      - name: ① 收齐 → ② 门变异合并、查基线 → ③ 两个演练印章
+        with: {name: '合并_${{ fromJson(needs.plan.outputs.gate).req }}', path: /tmp/m}
+        continue-on-error: true
+      - uses: actions/download-artifact@v4
+        with: {pattern: '演练_${{ fromJson(needs.plan.outputs.gate).req }}_*', path: /tmp/a, merge-multiple: true}
+        continue-on-error: true
+      - name: ③ 收齐演练 → 两个演练印章
         run: |
           set +e; shopt -s nullglob
           git config --global user.name ci; git config --global user.email ci@example.com
-          j() { python3 -c "import json,os;print(json.loads(os.environ['GATE'])['$1'])"; }; N=$(j n); M=$(j mode)
-          echo "改门推送 $(j req)（门变异 $M）" > /tmp/gate.txt; stop() { echo "【改门推送不过】$1" | tee -a /tmp/gate.txt; exit 1; }
+          j() { python3 -c "import json,os;print(json.loads(os.environ['GATE'])['$1'])"; }; N=$(j nd)
+          cp /tmp/m/gate.txt /tmp/gate.txt 2>/dev/null || echo "改门推送 $(j req)" > /tmp/gate.txt; stop() { echo "【改门推送不过】$1" | tee -a /tmp/gate.txt; exit 1; }
+          grep -q '② 门变异合并、查基线通过' /tmp/gate.txt || stop "② 门变异没过（见上），演练、彩排不跑"
           git apply --index "$(j patch)" || stop "补丁打不上"; git write-tree > /tmp/P0
-          rcs=(/tmp/a/rc_*); [ "${#rcs[@]}" -eq "$N" ] || stop "① 只收到 ${#rcs[@]}/$N 个任务的结果（有任务没跑完）"
-          for f in "${rcs[@]}"; do a=${f#/tmp/a/rc_}; [ "$(cat $f)" = 0 ] || { tail -6 /tmp/a/log_$a.txt 2>/dev/null | tee -a /tmp/gate.txt; stop "① $a 没过"; }; done
-          python3 视频/工具/门变异.py --合并结果 --未测入基线 $([ "$M" = 增量 ] && echo --增量) /tmp/a/*@*.json > /tmp/m.log 2>&1 || { tail -5 /tmp/m.log | tee -a /tmp/gate.txt; stop "② 门变异合并出错"; }
-          tail -2 /tmp/m.log | tee -a /tmp/gate.txt
-          python3 视频/工具/门变异.py --查基线 > /tmp/m.log 2>&1; r=$?; tail -2 /tmp/m.log | tee -a /tmp/gate.txt; [ $r = 0 ] || stop "② 门变异漏洞比基线多"
+          [ ! -s /tmp/m/合并.diff ] || git apply /tmp/m/合并.diff || stop "② 合并后的清单打不上"
+          rcs=(/tmp/a/rc_*); [ "${#rcs[@]}" -eq "$N" ] || stop "③ 演练只收到 ${#rcs[@]}/$N 份结果（有演练没跑完）"
+          for f in "${rcs[@]}"; do a=${f#/tmp/a/rc_}; [ "$(cat $f)" = 0 ] || { tail -8 /tmp/a/log_$a.txt 2>/dev/null | tee -a /tmp/gate.txt; stop "③ $a 没过"; }; done
           git apply /tmp/a/主演练.diff || stop "③ 主演练结果补丁打不上"
-          python3 视频/工具/执行效应声音演练.py --合并印章 /tmp/a/声音_*.json > /tmp/m.log 2>&1; r=$?; tail -2 /tmp/m.log | tee -a /tmp/gate.txt; [ $r = 0 ] || stop "③ 声音演练分片合并不过"
-          git add -A 视频 CLAUDE.md; echo "①②③ 通过" | tee -a /tmp/gate.txt
+          python3 视频/工具/执行效应声音演练.py --合并印章 /tmp/a/声音_*.json > /tmp/s.log 2>&1; r=$?; tail -2 /tmp/s.log | tee -a /tmp/gate.txt; [ $r = 0 ] || stop "③ 声音演练分片合并不过"
+          git add -A 视频 CLAUDE.md; echo "③ 两个演练印章通过" | tee -a /tmp/gate.txt
       - name: 搭机器
         run: |
           sudo mkdir -p /home/user && sudo ln -sfn $GITHUB_WORKSPACE /home/user/postgraduate-vocabulary && sudo ln -sfn $GITHUB_WORKSPACE /home/user/literate-enigma
