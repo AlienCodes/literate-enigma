@@ -1,0 +1,11 @@
+补丁 视频/云端/待演练/K60改门推送v6.diff sha256 3957af98d72dc606
+底版 9f1055ce474719c3f8a1fda5daed48d9a7f11573
+运行 40620773787
+退出码 1
+结果补丁 13 行
+改门推送 K60改门推送v6（门变异 126 片，全量）
+  hs = 写清单(res, None if '--增量' in a else datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%MZ')); print(f'门变异清单：{len(res)} 道门，漏洞 {len(hs)}' + ('（增量）' if '--增量' in a else '（全量）')); return 0
+门变异清单：321 道门，漏洞 79（全量）
+门变异基线：通过
+② 门变异合并、查基线通过
+【改门推送不过】③ 主演练结果补丁打不上
