@@ -10,4 +10,5 @@ for i in 1 2 3 4 5; do
   P=${PUSH_P:-/home/user/postgraduate-vocabulary}; L=${PUSH_L:-/home/user/literate-enigma}
   for r in $P $L; do git -C $r merge --abort 2>/dev/null; done   # 上一遍停在半截合并：先退回，再从头推
   echo "（第 $i 遍：两边一致核对没过，多半是别的会话正好在中间推了，自动重推）"; sleep $((i * 2 + RANDOM % 3))
-done; exit 1
+done
+exit 1

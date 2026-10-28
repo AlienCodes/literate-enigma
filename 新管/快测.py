@@ -175,6 +175,8 @@ def main():
     out.append(f'①b 坏样本覆盖：{len(规) - len(没)} / {len(规)}' + ('' if not 没 else f'，没覆盖 {没[:10]}'))
     全 = '--只文本' not in a
     if 全 and (not W or not os.path.exists(f'{W}/make_video.py')): bad.append('没有出片工作目录（XG_WORK=…/video）：先 bash 视频/工具/环境/准备机器.sh'); 全 = False
+    if 全 and 跑(['python3', f'{T}/出片指纹.py', '--核对工作目录', '.'], W, 60)[0]:   # 机械：工作目录的出片程序比工具旧（切换补丁改了 render.py 等），先拷过来（G27）
+        跑(['python3', f'{T}/出片指纹.py', '--拷', '.'], W, 120); out.append('（工作目录的出片程序比工具旧，已拷过来，G27）')
     with ThreadPoolExecutor(3) as ex:   # 三路并行：文本快自检、回归、声音（交付核查 + 守门自检）
         ft = ex.submit(文本自检, 看门); fr = ex.submit(回归, '--记基准' in a) if 全 else None; fs = ex.submit(声音) if 全 else None
         b, n = ft.result(); bad += b; out.append(f'② 文本/画面/流程 快自检 {n} 个程序：{"全过" if not b else f"{len(b)} 个不过"}')

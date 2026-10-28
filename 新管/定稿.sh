@@ -6,7 +6,8 @@
 H=$(cd "$(dirname "$0")" && pwd); [ -f "$(dirname $H)/交付核查.py" ] && T0=$(dirname $H) || T0=$(dirname $H)/视频/工具
 T=${XG_TOOLS:-$T0}; P=${XG_P:-/home/user/postgraduate-vocabulary}; L=${XG_L:-/home/user/literate-enigma}; BR=claude/adoring-hamilton-5qskmm
 no=$(printf '%02d' "$((10#$1))"); W=$(pwd); LOG=$W/定稿_$no; mkdir -p "$LOG"; export XG_TOOLS=$T; unset OLD_IV_VOID
-t0=$(date +%s); stop() { echo "【停】$1（$(( $(date +%s) - t0 )) 秒；记录在 $LOG）"; exit 1; }
+t0=$(date +%s)
+stop() { echo "【停】$1（$(( $(date +%s) - t0 )) 秒；记录在 $LOG）"; exit 1; }
 step() { echo "== $(date +%H:%M:%S) $1"; }
 push() { for t in 0 2 4 8 16; do sleep $t; git pull -q --no-rebase --no-edit origin "$1"; git push -q -u origin "$1" && return 0; done; return 1; }
 exec 9>"$W/.做_$no.lock"; flock -n 9 || stop "第${no}篇已经有一条 做/定稿 在跑"
