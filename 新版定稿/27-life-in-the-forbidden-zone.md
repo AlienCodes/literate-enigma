@@ -21,7 +21,7 @@ Counting heads cannot **guarantee** the health of **individual** animals, and **
 
 在一些研究中，更小的**生物**(organisms)过得更差。（fare：过得，进展；fare worse：过得更差）（organism：指任何有生命的个体（也就是生物体或有机体）。例：人类 a human organism，树木 a plant organism，细菌 a single-celled organism（单细胞生物））一项研究于2007年3月发现了更少的**筑巢的**(nesting)鸟类，以及更少的种类，在这里辐射更加**强烈**(intense)。（One 指一项研究；where…：地点状语从句，在……的地方）（intense：强烈的、极度集中的。例：强光 intense light，剧痛 intense pain，激烈的竞争 intense competition）另一项研究于2009年3月发现，**传粉昆虫**(pollinators)和蜘蛛没那么**丰富/数量众多**(plentiful)，在这些地方，辐射**接触**(exposure)更大。（find A less plentiful：发现 A 没那么多，复合宾语）（exposure：“暴露”或“接触”，指毫无遮挡地处在某种环境（尤其是有害环境）中。exposure to radiation 就是“暴露于辐射中”，大白话就是“受到辐射照射”）第三项研究于2014年3月发现，在最严重**被污染的**(polluted)地点，落叶的**分解**(decomposing)少了约40%，**阻碍了**(impeding)养分回归土壤。（find sth doing：发现……在怎样；per cent：百分之……）（impeding…：现在分词短语作结果状语；the return of A to B：A 回到 B）
 
-清点头数无法**保证**(guarantee)动物**个体**(individual)的健康；而低但**持续**(continual)的剂量会**造成**(inflict)**多大损害**(how much damage)，目前仍然存在**争议**(contentious)，因为各项研究**在**(clash over)方法**上存在冲突**(clash over)。（count heads：清点头数，这里指统计动物数量）（how much damage…inflict：主语从句，damage 是 inflict 的宾语，提到了前面；remain + 形容词：仍然……）（clash over…：在……上冲突）**迅速增长的**(burgeoning)**兽群**(herds)或许在**宣扬**(trumpet)人类**离开**(departure)所带来的**红利**(dividend)，但落叶**迟缓的**(sluggish)**腐烂**(rot)，记着一笔更安静的**账**(ledger)：辐射的代价。（trumpet：大肆宣扬，与后面的 quieter 对比；the dividend of…：……带来的红利）（keep a ledger of…：记下……的账，这里比喻记录代价）（简述：切尔诺贝利是灾难的代名词，这里却有大量野生动物。1986年4月26日凌晨，一座反应堆爆炸，放射性沉降物飘散到欧洲；第二天，普里皮亚季约45,000名居民在数小时内撤空，周围半径约30公里成为禁区，白俄罗斯也围起了相邻地带。2015年的研究发现，白俄罗斯一侧驼鹿、狍、马鹿和野猪的密度与未受污染的保护区相当，狼的数量是后者的七倍多；2016年，相机陷阱在危险最大的地点附近也拍到了狼、野猪和貉，可能的原因是这里没有农耕、伐木和狩猎。不过，2007、2009、2014年的研究发现，辐射越强的地方，筑巢的鸟、传粉昆虫和蜘蛛越少，落叶分解也慢了约40%。动物数量多不能保证个体健康，低剂量持续辐射的危害至今仍有争议。）
+仅靠清点动物的数量无法**确保**(guarantee)动物**个体**(individual)就是健康的；并且较低但是却**一直持续的**(continual)辐射剂量究竟会（对生物）**造成**(inflict)**多大伤害**(how much damage)，目前仍然存在**争议**(contentious)，因为各项研究**在**(clash over)方法**上存在冲突**(clash over)。（切尔诺贝利这里的动物数量比较多，不一定就说明这里的环境更加健康和适合这群动物）（how much damage…inflict：主语从句，damage 是 inflict 的宾语，提到了前面；remain + 形容词：仍然……）（clash over…：在……上冲突）**迅速增长的**(burgeoning)**兽群**(herds)或许在**宣扬**(trumpet)人类**离开**(departure)所带来的**红利**(dividend)，但落叶**迟缓的**(sluggish)**腐烂**(rot)，记着一笔更安静的**账**(ledger)：辐射的代价。（trumpet：大肆宣扬，与后面的 quieter 对比；the dividend of…：……带来的红利）（keep a ledger of…：记下……的账，这里比喻记录代价）（简述：切尔诺贝利是灾难的代名词，这里却有大量野生动物。1986年4月26日凌晨，一座反应堆爆炸，放射性沉降物飘散到欧洲；第二天，普里皮亚季约45,000名居民在数小时内撤空，周围半径约30公里成为禁区，白俄罗斯也围起了相邻地带。2015年的研究发现，白俄罗斯一侧驼鹿、狍、马鹿和野猪的密度与未受污染的保护区相当，狼的数量是后者的七倍多；2016年，相机陷阱在危险最大的地点附近也拍到了狼、野猪和貉，可能的原因是这里没有农耕、伐木和狩猎。不过，2007、2009、2014年的研究发现，辐射越强的地方，筑巢的鸟、传粉昆虫和蜘蛛越少，落叶分解也慢了约40%。动物数量多不能保证个体健康，低剂量持续辐射的危害至今仍有争议。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -74,11 +74,11 @@ Counting heads cannot **guarantee** the health of **individual** animals, and **
 | polluted | 本文：被污染的；adj. 受污染的（polluted air/water/sites）；pollute v. | 4 |
 | decomposing | 本文：分解；v. (decompose) 分解，腐烂（leaves decompose；decompose into）；decomposition n. | 4 |
 | impeding | 本文：阻碍了；v. (impede) 阻碍，妨碍（impede progress/the return of nutrients） | 4 |
-| guarantee | 本文：保证；v. 保证，担保（guarantee the health/quality of；guarantee that…）；n. 保证，保修单 | 5 |
+| guarantee | 本文：确保；v. 保证，担保（guarantee the health/quality of；guarantee that…）；n. 保证，保修单 | 5 |
 | individual | 本文：个体；adj. 个体的，个别的（individual animals/cases）；n. 个人，个体 | 5 |
-| continual | 本文：持续；adj. 持续不断的，频频的（continual doses/complaints）；比较 continuous 不间断的 | 5 |
+| continual | 本文：一直持续的；adj. 持续不断的，频频的（continual doses/complaints）；比较 continuous 不间断的 | 5 |
 | inflict | 本文：造成；v. 造成（损害、痛苦）（inflict damage/harm/pain on sb/sth） | 5 |
-| how much damage | 本文：多大损害；短语. 多大损害（how much damage low doses inflict 低剂量会造成多大损害；inflict damage on sth 对……造成损害） | 5 |
+| how much damage | 本文：多大伤害；短语. 多大伤害，多大损害（how much damage low doses inflict 低剂量会造成多大伤害；inflict damage on sth 对……造成损害） | 5 |
 | contentious | 本文：争议；adj. 有争议的，引起争论的（a contentious issue/claim） | 5 |
 | clash over | 本文：在……上存在冲突；v. 冲突，抵触（clash over methods/policy；clash with sb）；（颜色）不协调；n. 冲突 | 5 |
 | burgeoning | 本文：迅速增长的；adj. 迅速增长的，日益壮大的（a burgeoning population/industry/herds） | 5 |

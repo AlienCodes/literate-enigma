@@ -79,10 +79,19 @@ def 认得(入口, fp):
     """入口指纹是这个入口的现行版本或 git 里提交过的版本"""
     p = f'{T}/{入口}'
     if os.path.exists(p) and blob(p) == fp: return True
-    if 入口 not in _历史:
-        r = subprocess.run(['git', '-C', T, 'log', '--format=', '--raw', '--no-abbrev', '-n', '400', '--', 入口], capture_output=True, text=True).stdout
-        _历史[入口] = {l.split()[3] for l in r.splitlines() if l.startswith(':') and len(l.split()) > 4}
-    return fp in _历史[入口]
+    return fp in 历史(入口, T)
+
+
+def 历史(入口, T_):
+    """入口在 git 里提交过的各版本 blob。K89：浅克隆（CI 检出、会话 --depth 1）看不到旧版本，误判“不是正式入口写的”：
+    是浅克隆就先往回拉 400 个提交再找（拉不下来照样找不到，照停，不放宽）"""
+    k = (入口, T_)
+    if k not in _历史:
+        g = lambda *x: subprocess.run(['git', '-C', T_, *x], capture_output=True, text=True).stdout
+        if g('rev-parse', '--is-shallow-repository').strip() == 'true': g('fetch', '-q', '--deepen=400', 'origin')
+        r = g('log', '--format=', '--raw', '--no-abbrev', '-n', '400', '--', 入口)
+        _历史[k] = {l.split()[3] for l in r.splitlines() if l.startswith(':') and len(l.split()) > 4}
+    return _历史[k]
 
 
 def 查(no, 阶段, rs=None, C=None):
@@ -196,14 +205,25 @@ def 自检():
         f += [x.replace('证据 闲置自检：', '') for x in 闲置自检(C)]   # G71
     finally:
         目录[0] = old; shutil.rmtree(tmp, ignore_errors=True)
+    # K89：浅克隆里入口的旧版本也要认得（先往回拉），从没提交过的照样不认
+    d_ = tempfile.mkdtemp(prefix='证据浅克隆_'); G_ = lambda c, *x: subprocess.run(['git', '-C', c, '-c', 'user.name=t', '-c', 'user.email=t@t', *x], capture_output=True, text=True).stdout.strip()
+    os.makedirs(f'{d_}/src'); G_(f'{d_}/src', 'init', '-q'); open(f'{d_}/src/x.sh', 'w').write('v1\n'); G_(f'{d_}/src', 'add', '-A'); G_(f'{d_}/src', 'commit', '-qm', '1')
+    b1 = G_(f'{d_}/src', 'rev-parse', 'HEAD:x.sh'); open(f'{d_}/src/x.sh', 'w').write('v2\n'); G_(f'{d_}/src', 'commit', '-qam', '2')
+    subprocess.run(['git', 'clone', '-q', '--depth', '1', f'file://{d_}/src', f'{d_}/c'], capture_output=True)
+    if b1 not in 历史('x.sh', f'{d_}/c'): f.append('没认得：浅克隆里入口提交过的旧版本（K89：CI 误判 28 证据链）')
+    if '0' * 40 in 历史('x.sh', f'{d_}/c'): f.append('放得太宽：从没提交过的指纹也认')
+    shutil.rmtree(d_, ignore_errors=True)
     return ['证据 自检：' + x for x in f]
 
 
 # —— G71 机制闲置报警（用户 2026-10-26：“一定要有一个确保执行机制，一定要有一个绝对的，绝对的确保执行机制，而且要严格执行”）
 def _已过(记录, 归档, 开了=()):
-    """该用机制的篇：归档了定稿视频、证据里有“定稿”，或者后面已经开了新篇（有证据或有 制作记录/NN.md）"""
+    """该用机制的篇：归档了定稿视频、证据里有“定稿”，或者后面已经有篇定稿了。
+    K93（2026-10-28 用户要 29–40 并行做，主会话先写了 29–31 的交接 NN.md）：以前“后面开了新篇（有 NN.md）”就算前面做完，
+    并行做时 28 还在出片、29/30 只有交接，全被报闲置（CI 红、开工记录 不许开新篇）；现在只认定稿：自己定稿了，或后面有篇定稿了"""
     ns = set(记录) | set(归档) | set(开了)
-    return sorted(n for n in ns if int(n) >= 闲置从 and (n in 归档 or any(r.get('步') == '定稿' for r in 记录.get(n, [])) or any(m > n for m in ns)))
+    定 = {n for n in ns if n in 归档 or any(r.get('步') == '定稿' for r in 记录.get(n, []))}
+    return sorted(n for n in ns if int(n) >= 闲置从 and (n in 定 or any(m > n for m in 定)))
 
 
 def _现场():
@@ -222,10 +242,9 @@ def _下线(名, 同意=None):
     return any('下线' in r.get('用于', '') and 名[:6] in r.get('用于', '') and r.get('来源') != '演练' for r in 同意)
 
 
-def 闲置(C=None, 记录=None, 归档=None, 云=None, 同意=None):
+def 闲置(C=None, 记录=None, 归档=None, 云=None, 同意=None, 开了=()):
     """返回 [(名, 最近一次真用上的篇或 None, 该用没用的篇列表, 红)]：每个机制（含每篇要跑的 GitHub 工作流）"""
     C = C or 清单()
-    开了 = ()
     if 记录 is None: 记录, 归档, 云, 开了 = _现场()
     篇们 = _已过(记录, 归档 or set(), 开了); out = []
     项 = [(m['名'], m.get('起', 0), m.get('下线'), lambda rs, n, m=m: any(r.get('步') == m['证据'] and r.get('结果') == '通过' and (not m.get('详情') or (r.get('详情') or {}).get(m['详情'])) for r in rs)) for m in C['机制']]
@@ -263,6 +282,9 @@ def 闲置自检(C=None):
     if k(记录={'90': 全, '91': 全}): f.append(f'误报：两篇机制全用上了被报闲置：{k(记录={"90": 全, "91": 全})[:1]}')
     if not any('草稿声音' in p for p in k(记录={'90': 全, '91': 缺, '92': 缺})): f.append('没抓到：连续两篇没跑草稿声音')
     if any('草稿声音' in p for p in k(记录={'90': 全, '91': 缺, '92': 全})): f.append('误报：只隔一篇没用、后面又用上了')
+    半 = [r for r in 缺 if r['步'] != '定稿']   # K91：并行做，前面的篇还没定稿、后面只有交接 NN.md，不算闲置；后面有篇定稿了、前面两篇照样没用 → 照报
+    if k(记录={'90': 全, '91': 半}, 开了={'92', '93'}): f.append('误报：并行做时还没定稿的篇、只有交接的篇被报闲置（K93）')
+    if not any('草稿声音' in p for p in k(记录={'90': 全, '91': 半, '92': 缺}, 开了=set())): f.append('没抓到：后面 92 定稿了，91、92 都没跑草稿声音（K93 不许放宽）')
     if not any('建好后一次都没用上' in p for p in k(记录={'90': 缺, '91': []})): f.append('没抓到：建好后第一篇就没用上')
     if any('90' in p for p in k(记录={'90': rs('开工记录')})): f.append('误报：正在做的篇（没定稿、后面没开新篇）也算该用没用')
     C2 = json.loads(json.dumps(C)); C2['工作流']['自检造的.yml'] = {'每篇': True}

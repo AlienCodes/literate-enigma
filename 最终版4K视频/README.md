@@ -31,4 +31,5 @@
 | 24 | Survival in the Ice The Legend of Endurance | 冰海求生：坚忍号传奇 | 13.0 MB |
 | 25 | Apollo 13 The Successful Failure | 阿波罗13号：成功的失败 | 12.5 MB |
 | 26 | The Language the Children Invented | 孩子们发明的语言 | 12.1 MB |
-| 27 | Life in the Forbidden Zone | 禁区里的生机 | 13.3 MB |
+| 27 | Life in the Forbidden Zone | 禁区里的生机 | 13.4 MB |
+| 28 | A Handful of Wormwood That Saved Millions | 青蒿一握，济世千万 | 13.7 MB |

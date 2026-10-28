@@ -75,6 +75,7 @@ CONF={"牛津逗号":{},
  "S17 the one locality not yet connected":"对齐不了：not yet connected 是后置定语，中文“唯一尚未接入的地区”定语必须提前",
  "S18 A remedy aimed at the nose":"对齐不了：aimed at the nose 是后置定语，中文“冲着鼻子去的补救措施”定语必须提前"}}
 out={"no":"30","title_en":"The Stink That Built London's Sewers","title_zh":"大恶臭逼出了下水道","title_fx":{"hl":["Stink","Sewers"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+     "说明放宽特批":{"S18":{"倍数":"整屏","依据":"用户 2026-10-28 特批：“29、30、31 结尾简述都整屏、字号放到最大”（用户同意记录）"}},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Houses of Parliament":"议会大厦","Thames":"泰晤士河","London":"伦敦","Londoners":"伦敦人","Great Stink":"大恶臭","Exchequer":"财政部","Benjamin Disraeli":"本杰明·迪斯雷利","Joseph Bazalgette":"约瑟夫·巴泽尔杰特","Victoria":"维多利亚","Albert":"阿尔伯特","Chelsea":"切尔西","Embankments":"河堤","East End":"伦敦东区"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
