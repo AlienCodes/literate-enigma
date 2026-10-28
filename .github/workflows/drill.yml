@@ -223,9 +223,14 @@ jobs:
         with: {sparse-checkout: "视频/工具\n视频/制作记录\n视频/云端\n.github", filter: 'blob:none'}
       - name: 装核查依赖（K61/K67：checkout 后跑 python 的 job 一律先走这一步，清单 .github/核查依赖.txt）
         run: pip install -q -r .github/核查依赖.txt 2>&1 | tail -1
-      - uses: actions/download-artifact@v4   # 收尾快跑：从底运行下载（base 空 = 本次运行）
-        with: {pattern: '结果_${{ fromJson(needs.plan.outputs.gate).breq }}_*', path: /tmp/a, merge-multiple: true, run-id: '${{ fromJson(needs.plan.outputs.gate).base || github.run_id }}', github-token: '${{ github.token }}'}
+      - uses: actions/download-artifact@v4
+        if: fromJson(needs.plan.outputs.gate).base == ''
+        with: {pattern: '结果_${{ fromJson(needs.plan.outputs.gate).req }}_*', path: /tmp/a, merge-multiple: true}
         continue-on-error: true   # run 上传多个路径，文件落在 /tmp/a/gate/（K60v3 实测：查 /tmp/a/ 收到 0/18）。没有受影响的门（0 片）时没有分片结果；收齐按 rc_ 份数查
+      - name: 收尾快跑：从底运行收分片结果（gh 分页下载；download-artifact 跨运行只拿到第一页，快跑v7诊断 实测 91/126）
+        if: fromJson(needs.plan.outputs.gate).base != ''
+        env: {GH_TOKEN: '${{ github.token }}', BASE: '${{ fromJson(needs.plan.outputs.gate).base }}', BREQ: '${{ fromJson(needs.plan.outputs.gate).breq }}'}
+        run: gh run download "$BASE" -R "$GITHUB_REPOSITORY" -p "结果_${BREQ}_*" -D /tmp/x && mkdir -p /tmp/a && for d in /tmp/x/*/; do cp -r "$d". /tmp/a/; done; ls /tmp/a/gate | grep -c '^rc_'
       - name: ② 收齐 → 门变异合并 → 查基线
         run: |
           set +e; shopt -s nullglob
@@ -306,9 +311,10 @@ jobs:
       - uses: actions/download-artifact@v4
         with: {pattern: '演练_${{ fromJson(needs.plan.outputs.gate).req }}_*', path: /tmp/a, merge-multiple: true}
         continue-on-error: true
-      - uses: actions/download-artifact@v4   # 收尾快跑：声音 4 片拿底运行的（base 空 = 本次运行，同一批再下一遍）
-        with: {pattern: '演练_${{ fromJson(needs.plan.outputs.gate).breq }}_声音*', path: /tmp/a, merge-multiple: true, run-id: '${{ fromJson(needs.plan.outputs.gate).base || github.run_id }}', github-token: '${{ github.token }}'}
-        continue-on-error: true
+      - name: 收尾快跑：声音 4 片拿底运行的（gh 分页下载）
+        if: fromJson(needs.plan.outputs.gate).base != ''
+        env: {GH_TOKEN: '${{ github.token }}', BASE: '${{ fromJson(needs.plan.outputs.gate).base }}', BREQ: '${{ fromJson(needs.plan.outputs.gate).breq }}'}
+        run: gh run download "$BASE" -R "$GITHUB_REPOSITORY" -p "演练_${BREQ}_声音*" -D /tmp/y && mkdir -p /tmp/a && for d in /tmp/y/*/; do cp -r "$d". /tmp/a/; done; ls /tmp/a | grep -c '^rc_'
       - name: ③ 收齐演练 → 两个演练印章
         run: |
           set +e; shopt -s nullglob
