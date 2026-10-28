@@ -1,0 +1,80 @@
+import json,re,glob,os
+# 第29篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-10-28 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；非重点词也逐词对齐（G47）；三项以上并列加牛津逗号（T35，S9 scarcity, disease, and unrest 已加并同步文章）。
+S=[
+(1,[[[("In June 1816","1816年6月，"),("a","一场"),("**ceaseless**","**连绵不断**(ceaseless)的"),("**downpour**","**大雨**(downpour)"),("kept","把"),("a party","一群人"),("**besieged**","**围困**(besieged)在"),("at the Villa Diodati,","迪奥达蒂别墅里。")],
+     "（keep sb besieged：使某人一直处于被围困的状态）"],
+    [[("a **mansion**","这座**宅邸**(mansion)"),("the **poet**","是**诗人**(poet)"),("Lord Byron","拜伦勋爵"),("had **leased**","**租下**(leased)的，"),("on the **outskirts** of Geneva.","位于日内瓦**郊外**(outskirts)。")],
+     "（a mansion…：同位语，补充说明 the Villa Diodati；\nthe poet Lord Byron had leased：定语从句，省略了 that，修饰 a mansion；\non the outskirts of…：在……的郊外）"]]),
+(1,[[[("After reading","读完"),("an **anthology** of German **ghost stories**","一本德国**鬼故事**(ghost stories)的**选集**(anthology)"),("in French **translation**,","的法文**译本**(translation)之后，")],
+     "（an anthology of…：一本……的选集；\nin French translation：用法文翻译的，法文译本）"],
+    [[("Byron","拜伦"),("proposed","提议"),("that each guest","每位客人"),("write","各写"),("a","一个"),("**supernatural**","**超自然**(supernatural)"),("tale.","故事。")],
+     "（propose that sb do：提议某人做……，从句里用动词原形 write）"]]),
+(2,[[[("The","这种"),("**melancholy**","**阴郁**(melancholy)的"),("weather","天气，"),("was **attributable to**","**源于**(attributable to)"),("a distant blast.","远方的一次爆炸。")],
+     "（be attributable to…：可归因于……，由……引起）"]]),
+(2,[[[("On 10 April 1815","1815年4月10日，"),("Mount Tambora,","坦博拉火山，"),("on the Indonesian island of Sumbawa,","位于印度尼西亚松巴哇岛上，"),("blew itself apart","炸裂开来，")],
+     "（on the Indonesian island of Sumbawa：插入语，补充说明火山的位置；\nblow itself apart：把自己炸得四分五裂）"],
+    [[("in","那是"),("one of the most **potent**","有记录以来最**猛烈**(potent)的"),("**eruptions** in recorded history.","**喷发**(eruptions)之一。")],
+     "（one of the most…：最……的……之一；\nin recorded history：有记录以来，修饰最高级）"]]),
+(2,[[[("About","约"),("10,000","1万"),("people","人"),("died immediately,","当场死亡，")],
+     "（died immediately：当场死亡，指爆发直接致死）"],
+    [[("and","而"),("tens of thousands more","又有数万人"),("of **starvation**","死于**饥饿**(starvation)"),("and disease","和疾病，"),("in the **aftermath**.","发生在随后的**余波**(aftermath)中。")],
+     "（tens of thousands more 后面省略了 died；die of…：死于……；\nin the aftermath：在随后的余波中，指灾难过后的一段时间）"]]),
+(3,[[[("The **volcano**","这座**火山**(volcano)"),("**pumped**","**泵入**(pumped)了"),("**prodigious** quantities of","**数量惊人**(prodigious)的"),("sulphur dioxide","二氧化硫，"),("from its **crater**","从它的**火山口**(crater)"),("into the stratosphere,","送进平流层，")],
+     "（pump A from B into C：把 A 从 B 泵入 C；\nsulphur dioxide：二氧化硫；stratosphere：平流层）"],
+    [[("where","在那里，"),("it","它们"),("formed","形成了"),("sulphate aerosols","硫酸盐气溶胶，"),("that **blanketed**","像毯子一样**笼罩**(blanketed)了"),("the globe,","全球，")],
+     "（where 引导非限制性定语从句，修饰 the stratosphere；\nthat blanketed the globe：定语从句，修饰 sulphate aerosols）"],
+    [[("reflecting","反射"),("**sunshine**","**阳光**(sunshine)，"),("and **thereby**","**从而**(thereby)"),("**lowering**","**降低**(lowering)了"),("temperatures **world-wide**.","**全世界**(world-wide)的气温。")],
+     "（reflecting… and thereby lowering…：两个现在分词短语作结果状语；\nworld-wide：副词，在全世界范围内）"]]),
+(3,[[[("Europe","欧洲"),("and North America","和北美"),("came to know","后来把"),("1816","1816年"),("as the Year Without a Summer.","称作无夏之年。")],
+     "（come to do：渐渐开始做……；know A as B：把 A 称作 B）"]]),
+(4,[[[("Europe's summer","欧洲的夏天"),("was **chilly**","**寒冷**(chilly)，"),("and **relentlessly** wet.","雨也**下个不停**(relentlessly)。")],
+     "（relentlessly wet：无休止地潮湿，这里指雨一直下个不停）"]]),
+(4,[[[("Crops","庄稼"),("failed","要么歉收，"),("or lay **rotten**","要么**腐烂**(rotten)"),("in","在"),("**saturated**","**浸透了水**(saturated)的"),("fields,","田地里，")],
+     "（lie rotten：烂在那里，lay 是 lie 的过去式；\nsaturated：湿透的，这里指被雨水浸透）"],
+    [[("**cereal**","**谷物**(cereal)"),("and bread","和面包"),("prices","价格"),("**escalated**,","**飞涨**(escalated)，")],
+     "（三个分句并列：Crops failed…, prices escalated, and … followed）"],
+    [[("and **scarcity**,","**短缺**(scarcity)、"),("disease,","疾病"),("and **unrest**","和**动荡**(unrest)"),("followed.","随之而来。")],
+     "（follow：接着发生，随之而来）"]]),
+(5,[[[("The **eighteen-year-old**","**十八岁**(eighteen-year-old)的"),("Mary Godwin,","玛丽·戈德温，"),("later Mary Shelley,","也就是后来的玛丽·雪莱，")],
+     "（later Mary Shelley：同位语，补充说明 Mary Godwin 后来的名字）"],
+    [[("had set out in May","5月间就已启程，"),("**alongside**","**结伴**(alongside)同行的有"),("Percy Bysshe Shelley","珀西·比希·雪莱"),("and Claire Clairmont.","和克莱尔·克莱蒙特。")],
+     "（had set out：过去完成时，出发在6月之前；set out：出发，启程；\nalongside：介词，与……一起）"]]),
+(5,[[[("In her 1831 **preface**","在她1831年的**序言**(preface)里，"),("she","她"),("would **recollect**","**回忆**(recollect)说，"),("a **damp**,","那是一个**潮湿**(damp)、"),("**gloomy** summer","**阴沉**(gloomy)的夏天，")],
+     "（would recollect：过去将来时，从1816年看，她要到1831年才写下这段回忆）"],
+    [[("whose **torrents**","那个夏天的**倾盆大雨**(torrents)"),("often","常常"),("kept","把"),("the group","大家"),("indoors","困在屋里"),("for days.","好几天。")],
+     "（whose 引导定语从句，修饰 summer；\nkeep sb indoors：使某人待在屋里）"]]),
+(6,[[[("Byron's challenge","拜伦的挑战"),("proved","结果"),("**fruitful**.","**成果丰硕**(fruitful)。")],
+     "（prove＋形容词：结果证明是……）"]]),
+(6,[[[("His physician","他的医生"),("John Polidori","约翰·波利多里"),("produced","写出了"),("The Vampyre,","《吸血鬼》，")],
+     "（The Vampyre：《吸血鬼》，Vampyre 是 vampire 的旧拼法）"],
+    [[("**whilst**","**与此同时**(whilst)，"),("Byron's","拜伦"),("**poetic**","**诗歌**(poetic)方面的"),("**output**","**产出**(output)"),("included","中有"),("Darkness.","《黑暗》。")],
+     "（whilst：连词，同 while，英式用法；\noutput：产出，这里指写出的作品）"]]),
+(6,[[[("Mary","玛丽"),("began","开始写"),("the **ghastly**","那个**恐怖**(ghastly)的"),("**yarn**","**故事**(yarn)，"),("that became Frankenstein,","它后来成了《弗兰肯斯坦》，")],
+     "（that became Frankenstein：定语从句，修饰 yarn；\nyarn：故事，多指离奇的故事）"],
+    [[("which","这部作品"),("appeared **anonymously** in 1818","1818年**匿名**(anonymously)出版，"),("and was later","后来又"),("**reissued** under her name.","以她的名字**再版**(reissued)。")],
+     "（which 引导非限制性定语从句，修饰 Frankenstein；\nunder her name：以她的名字，署她的名）"]]),
+(6,[[[("It","这部作品"),("is often called","常被称为"),("the founding work of the science-fiction **genre**.","科幻**体裁**(genre)的开山之作。")],
+     "（the founding work：开山之作，奠基之作；\nscience-fiction：科幻的）"]]),
+(7,[[[("A tropical","一座热带"),("volcano","火山"),("had supplied","提供了"),("the rain,","雨，"),("and a teenager","一个少女"),("the monster.","提供了怪物。")],
+     "（and a teenager the monster：省略句，省略了 had supplied）\n"
+     "（简述：1816年6月，连绵大雨把拜伦等人困在日内瓦郊外的迪奥达蒂别墅，\n"
+     "拜伦提议每人写一个超自然故事。这种坏天气源于1815年4月坦博拉火山的猛烈喷发：\n"
+     "约1万人当场死亡，数万人随后死于饥饿和疾病；\n"
+     "喷出的二氧化硫在平流层形成气溶胶笼罩全球，反射阳光，使全世界降温，\n"
+     "1816年成了无夏之年。欧洲阴冷多雨，庄稼歉收，粮价飞涨，短缺、疾病和动荡随之而来。\n"
+     "十八岁的玛丽·戈德温与雪莱结伴来到这里，后来在1831年的序言里回忆那个潮湿阴沉的夏天。\n"
+     "波利多里写出《吸血鬼》，拜伦写了《黑暗》，玛丽开始写《弗兰肯斯坦》，\n"
+     "1818年匿名出版，常被称为科幻小说的开山之作。火山提供了雨，少女提供了怪物。）"]]),
+]
+CONF={
+"牛津逗号":{},
+"合组":{},
+"对齐":{},
+"短语":{}}
+out={"no":"29","title_en":"The Volcano That Gave Us Frankenstein","title_zh":"一座火山，造出了《弗兰肯斯坦》","title_fx":{"hl":["Volcano","Frankenstein"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+     "高亮按实际开口":True,"高亮开口门槛":40,
+     "术语":{"Villa Diodati":"迪奥达蒂别墅","Lord Byron":"拜伦勋爵","Geneva":"日内瓦","Mount Tambora":"坦博拉火山","Indonesian":"印度尼西亚","Sumbawa":"松巴哇岛","sulphur dioxide":"二氧化硫","stratosphere":"平流层","sulphate aerosols":"硫酸盐气溶胶","Europe":"欧洲","North America":"北美","Year Without a Summer":"无夏之年","Mary Godwin":"玛丽·戈德温","Mary Shelley":"玛丽·雪莱","Percy Bysshe Shelley":"珀西·比希·雪莱","Claire Clairmont":"克莱尔·克莱蒙特","John Polidori":"约翰·波利多里","The Vampyre":"《吸血鬼》","Darkness":"《黑暗》","Frankenstein":"《弗兰肯斯坦》"}}
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from 核对 import 生成并核对
+生成并核对(S, out)
