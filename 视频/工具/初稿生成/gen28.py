@@ -14,7 +14,7 @@ S=[
      "（be entrusted with doing…：被委以做……的重任，受命做……）"],
     [[("**despite**","**尽管**(despite)她"),("having no **doctorate**","既没有**博士学位**(doctorate)，"),("or","也没有"),("foreign","在国外"),("training.","受过训练。")],
      "（despite doing…：尽管……，despite 是介词，后面接动名词）"]]),
-(2,[[[("In an","在一次"),("**exhaustive** search,","**彻底的**(exhaustive)搜寻中，"),("her team","她的团队"),("**combed**","**翻检了**(combed)"),("over 2,000","2,000多个"),("**folk** recipes,","**民间**(folk)药方，")],
+(2,[[[("In an","在一次"),("**exhaustive** search,","**彻底的**(exhaustive)搜寻中，"),("her team","她的团队"),("**combed**","**仔细翻检了**(combed)"),("over 2,000","2,000多个"),("**folk** recipes,","**民间**(folk)药方，")],
      "（comb：梳理，这里指仔细翻检；over 2,000：2,000多个）"],
     [[("**compiled**","**整理**(compiled)出"),("640 **prescriptions**,","640个**方剂**(prescriptions)，"),("and **evaluated**","并**评估了**(evaluated)"),("about 380 extracts","约380种提取物，"),("from","它们来自"),("some 200","200种左右的"),("**medicinal**","**药用**(medicinal)"),("**herbs**.","**草药**(herbs)。")],
      "（some 200：大约200，some 表示“大约”）"]]),
