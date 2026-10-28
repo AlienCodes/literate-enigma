@@ -8,7 +8,7 @@ The river had become London's **lavatory**. **Antiquated** sewers and **outlets*
 
 **Disgust** found a voice on 15 July, when the **Chancellor** of the Exchequer, Benjamin Disraeli, **denounced** the river as a **hellish** pool of **unbearable** horrors. A bill funding new sewers was **fast-tracked** into law in about 18 days.
 
-The engineer Joseph Bazalgette **masterminded** the response. His 82 miles of **stout** intercepting sewers caught the flow short of the river and **diverted** it east, **downstream** of the city. With some 1,100 miles of street sewers as **tributaries**, the **infrastructure** took 318 million **bricks**. Having calculated an **adequate** **calibre** for each pipe, he doubled it. The **backbone** lies **buried** **underneath** the **newly** built Victoria, Albert and Chelsea Embankments. **Substantially** complete by 1875, much of the network is in use today.
+The engineer Joseph Bazalgette **masterminded** the response. His 82 miles of **stout** intercepting sewers caught the flow short of the river and **diverted** it east, **downstream** of the city. With some 1,100 miles of street sewers as **tributaries**, the **infrastructure** took 318 million **bricks**. Having calculated an **adequate** **calibre** for each pipe, he doubled it. The **backbone** lies **buried** **underneath** the **newly** built Victoria, Albert, and Chelsea Embankments. **Substantially** complete by 1875, much of the network is in use today.
 
 Yet that **sanitation** rested on a **fallacy**. The **predominant** **belief**, miasma, blamed disease on foul air and **vapours**, so the sewers were intended **principally** to **suppress** the smell. They worked for an **unintended** reason, guarding the **purity** of the water Londoners drank.
 

@@ -1,0 +1,47 @@
+# K62–K64 小批：在 sys.argv[1]（仓库根）上打；第六棒补丁里只取这三条
+import sys, re, subprocess, json, collections
+R = sys.argv[1]; D = R + '/视频/云端/待演练/第六棒_下一批_相对3a528c9.diff'
+if not __import__('os').path.exists(D): D = '/home/user/postgraduate-vocabulary/视频/云端/待演练/第六棒_下一批_相对3a528c9.diff'
+t = open(D).read()
+want = ('定稿流水线.sh', '推送两仓库.sh', '推送自检.py', '流程自检.py')
+blks = [b for b in re.split(r'(?=^diff --git )', t, flags=re.M) if b.startswith('diff')]
+def 名(b):
+    h = b.split('\n')[0]; return h.encode('latin1', 'ignore').decode('unicode_escape').encode('latin1').decode('utf8', 'ignore')
+sub = ''.join(b for b in blks if any(w in 名(b) for w in want))
+p = subprocess.run(['git', '-C', R, 'apply', '--3way', '-'], input=sub, text=True, capture_output=True); print('四文件', p.returncode, p.stderr[-300:])
+T = R + '/视频/工具/'
+# 推请求.py：只取 K62
+pq = [b for b in blks if '\\346\\216\\250\\350\\257\\267\\346\\261\\202.py' in b.split('\n')[0]][0]
+hs = re.split(r'(?=^@@ )', pq, flags=re.M)[1:]
+fn = '\n'.join(l[1:] for l in hs[[i for i, h in enumerate(hs) if 'def 在途冲突' in h][0]].split('\n') if l.startswith('+'))
+st = '\n'.join(l[1:] for l in hs[[i for i, h in enumerate(hs) if '推请求在途自检_' in h][0]].split('\n') if l.startswith('+'))
+s = open(T + '推请求.py').read()
+if 'def 在途冲突' not in s:
+    s = s.replace('def 补丁行(rel, 行):', fn + '\ndef 补丁行(rel, 行):', 1)
+    s = s.replace('    f += 自检_main()\n', '    f += 自检_main()\n' + st + '\n', 1)
+    cli = "    if a[:1] == ['--在途冲突']:   # 推送两仓库.sh 调（K62）\n        e = 在途冲突(*(a[1:3] or [None, None])); print('【停止】' + e if e else '在途冲突：无'); return 1 if e else 0\n"
+    s = re.sub(r"(    if a\[:1\] == \['--自检'\]:[^\n]*\n)", lambda m: m.group(1) + cli, s, count=1)
+    if not re.search(r'^import[^\n]*\btime\b', s, re.M): s = s.replace('import ', 'import time, ', 1)
+    open(T + '推请求.py', 'w').write(s)
+s = open(T + '报坑.py').read()
+if "'--本会话' in a" not in s:
+    s = s.replace("    if '--锁' in a or '--续锁' in a or '--放锁' in a:", "    if '--本会话' in a: print(本会话()); return 0   # K64：推送两仓库.sh、定稿流水线.sh 提交说明的 Claude-Session 用本会话，不写死\n    if '--锁' in a or '--续锁' in a or '--放锁' in a:", 1)
+    open(T + '报坑.py', 'w').write(s)
+# 入表 G111–G113 + 演练登记
+ks = {k['K']: k for k in json.load(open('/home/user/literate-enigma/视频/云端/待演练/第六棒_全部入表.json'))}
+号 = {'K62': 'G111', 'K63': 'G112', 'K64': 'G113'}
+std = R + '/视频/制作硬性标准与踩坑总结.md'; L = open(std).read().split('\n')
+TB = json.load(open(T + '规则执行表.json'), object_pairs_hook=collections.OrderedDict)
+for k, g in 号.items():
+    if any(l.startswith(f'| {g} |') for l in L): continue
+    i = max(j for j, l in enumerate(L) if re.match(r'\| G(\d+) \|', l) and int(re.match(r'\| G(\d+) \|', l).group(1)) < int(g[1:]))
+    L.insert(i + 1, f'| {g} | {ks[k]["行"]} |'); TB[g] = collections.OrderedDict([('门', ks[k]['门']), ('自检', ks[k]['自检'])])
+open(std, 'w').write('\n'.join(L)); open(T + '规则执行表.json', 'w').write(json.dumps(TB, ensure_ascii=False, indent=1) + '\n')
+s = open(T + '执行效应演练.py').read()
+a = "                     '机器复听.py --比较自检（27 S4"
+reg = {'G111': "推请求.py --自检 在途冲突（K62：推的提交碰了在途改门推送补丁的文件必停、结果已回或没碰不拦；推送自检 崩了也停；规则执行核查当场跑）",
+       'G112': "流程自检.py 先推后拷（K63：推送两仓库 先推主仓库再按合并后的 HEAD 拷镜像，顺序反了必报；规则执行核查当场跑）",
+       'G113': "流程自检.py 署名写死（K64：提交说明的 Claude-Session 不用 报坑.py --本会话 或写死会话必报；规则执行核查当场跑）"}
+for g, d in reg.items():
+    if f"['{g}']" not in s: s = s.replace(a, f"                     '{d}': ['{g}'],\n" + a, 1)
+open(T + '执行效应演练.py', 'w').write(s); print('完')
