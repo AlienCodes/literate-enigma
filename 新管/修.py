@@ -38,6 +38,9 @@ def main():
     no = sys.argv[1].zfill(2); js = f'scripts/{no}.json'; d = json.load(open(js)); 改 = []
     if PZ.查(d, no):
         改 += 破折号(d); json.dump(d, open(js, 'w'), ensure_ascii=False, indent=1)
+    if int(no) >= 25 and '（简述：' in (d['sentences'][-1]['chunks'][-1].get('note') or ''):   # G35 常规：简述按整屏字号最大折行
+        r = subprocess.run(['python3', f'{T}/说明分行.py', no, '--整屏', '--写入'], capture_output=True, text=True)
+        if '已写入' in r.stdout: 改 += [f'结尾简述整屏折行（G35）：{l.strip()[:80]}' for l in r.stdout.splitlines() if '结尾简述' in l]
     r = subprocess.run(['python3', f'{T}/说明分行.py', no, '--写入'], capture_output=True, text=True)
     if '已写入' in r.stdout: 改 += [f'说明折行（L19）：{l.strip()[:90]}' for l in r.stdout.splitlines() if '超宽' in l]
     if '【停止】' in r.stdout: 改 += [f'错：{l.strip()}' for l in r.stdout.splitlines() if '【停止】' in l]

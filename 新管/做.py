@@ -85,7 +85,7 @@ json.dump({'数据': _h(f'scripts/{no}.json'), '声音': _h(f'work_{no}/a.wav'),
            '快测印章': _h(f'{H}/快测通过.json'), '时刻': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())},
           open(f'{V}/制作记录/{no}_做指纹.json', 'w'), ensure_ascii=False, indent=0)
 if 推:
-    c, o = 跑('推送', ['bash', f'{T}/推送两仓库.sh', f'第{no}篇 草稿1080p（做.sh）：疑点 {len(疑点)}、自动修 {len(修了)}'], cwd=P)
+    c, o = 跑('推送', ['bash', f'{H}/推送.sh', f'第{no}篇 草稿1080p（做.sh）：疑点 {len(疑点)}、自动修 {len(修了)}'], cwd=P)
     if c: 停('⑥ 推送两仓库', o.strip().splitlines()[-6:])
 报告.append(f'⑥ 已拷 视频/视频/草稿1080p/{no}_1080p.mp4' + ('，两仓库已推送' if 推 else '（--不推）'))
 # ⑦

@@ -20,6 +20,11 @@ G = "__import__('管道').看门停用()"
     ('推送两仓库.sh', "  python3 $P/视频/工具/报坑.py --查 --严 ||", "  python3 -c \"import sys;sys.path.insert(0,'$P/视频/工具');sys.exit(0 if __import__('管道').看门停用() else 1)\" || python3 $P/视频/工具/报坑.py --查 --严 ||"),
     ('草稿声音.sh', 'no=$1; T=/home/user/postgraduate-vocabulary/视频/工具', 'no=$1; T=${XG_TOOLS:-/home/user/postgraduate-vocabulary/视频/工具}'),
     ('快速重建核查.sh', 'no=$1; T=/home/user/postgraduate-vocabulary/视频/工具', 'no=$1; T=${XG_TOOLS:-/home/user/postgraduate-vocabulary/视频/工具}'),
+    ('render.py', "    NOTE_RIGHT.clear(); _RIGHT_USE.clear()   # G37", "    _n = len(d.get('sentences', []))   # G35 常规规则（用户 2026-10-25 看 26：“以后以后一定要合理的安排，不要压缩成这个样子”，27 又说一次；用户同意记录 篇 26）：25 起结尾简述一律整屏，不再要每篇特批；写了特批的照特批\n    if _n and str(d.get('no', '0')).isdigit() and int(d['no']) >= 25 and f'S{_n}' not in d.get('说明放宽特批', {}) and '（简述：' in (d['sentences'][-1]['chunks'][-1].get('note') or ''):\n        NOTE_WIDE[' '.join(p[0] for c in d['sentences'][-1]['chunks'] for p in c['align'])] = '整屏'\n    NOTE_RIGHT.clear(); _RIGHT_USE.clear()   # G37"),
+    ('推送两仓库.sh', "git pull -q --no-rebase --no-edit origin main   # 2026-10-22", "git pull -q --no-rebase --no-edit origin main || python3 $P/视频/工具/新管/合并追加.py || exit 1   # 新管：追加型记录自动合并；2026-10-22"),
+    ('推送两仓库.sh', "git pull -q --no-rebase --no-edit origin $B)   # 镜像分支", "{ git pull -q --no-rebase --no-edit origin $B || python3 $P/视频/工具/新管/合并追加.py; })   # 镜像分支"),
+    ('推送两仓库.sh', "git push -q origin main || { git pull -q --no-rebase --no-edit origin main && git push -q origin main; }", "git push -q origin main || { { git pull -q --no-rebase --no-edit origin main || python3 $P/视频/工具/新管/合并追加.py; } && git push -q origin main; }"),
+    ('推送两仓库.sh', "git push -q -u origin $B || { git pull -q --no-rebase --no-edit origin $B && git push -q -u origin $B; }", "git push -q -u origin $B || { { git pull -q --no-rebase --no-edit origin $B || python3 $P/视频/工具/新管/合并追加.py; } && git push -q -u origin $B; }"),
 ]
 # 提交前钩子的改法（切换推送时由主会话批准后做，本程序不碰钩子文件，K16）：看门停用时只查快测印章（新管/印章.py），不再跑 会话开工 --提交前、规则执行核查
 管道 = '''import json, os

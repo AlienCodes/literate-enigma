@@ -70,6 +70,25 @@ def 覆盖(表, 看门):
     没 = [e['编号'] for e in 表 if e['状态'].startswith('搬') and e['自检'] and not ({x[0] for x in e['自检']} & (跑到 | 定稿时 | {'规则执行核查.py'}))]
     return 没
 
+def 常规规则():
+    """新管改成常规的规则（用户已说过“以后都这样”的）：坏样本必抓、好样本必放。
+    G35：25 起结尾简述没写特批也整屏；24 不给；中间句不给"""
+    import copy, glob
+    if not open(f'{T}/render.py').read().count('G35 常规规则'): return ['G35 常规规则：render.py 没打补丁（python3 新管/切换.py <工具>）']
+    r = subprocess.run(['python3', '-c', '''
+import sys, json, copy, glob; sys.path.insert(0, sys.argv[1]); import render as R
+V = sys.argv[2]; d27 = json.load(open(f"{V}/脚本/27.json")); d27["no"] = "27"; d24 = json.load(open(f"{V}/脚本/24.json")); d24["no"] = "24"
+key = lambda d, i: " ".join(p[0] for c in d["sentences"][i]["chunks"] for p in c["align"])
+bad = []
+a = copy.deepcopy(d27); a.pop("说明放宽特批", None); R.apply_script(a)
+if R.NOTE_WIDE.get(key(a, -1)) != "整屏": bad.append("没抓到：27 去掉特批后结尾简述不整屏")
+R.apply_script(d24)
+if R.NOTE_WIDE.get(key(d24, -1)) == "整屏": bad.append("误放：24（25 前）没特批也整屏了")
+b = copy.deepcopy(d27); b.pop("说明放宽特批", None); b["sentences"][-1]["chunks"][-1]["note"] = "（结局：x）"; R.apply_script(b)
+if R.NOTE_WIDE.get(key(b, -1)) == "整屏": bad.append("误放：最后一句不是简述也整屏了")
+print("\\n".join(bad))''', T, os.path.dirname(T)], capture_output=True, text=True, cwd=T, env=env0)
+    return [f'G35 常规规则：{x}' for x in (r.stdout.strip().splitlines() if r.returncode == 0 else [r.stderr.strip()[-200:]])]
+
 def 挂钩():
     import 规则执行核查 as RZ
     return [f'挂钩：{x}' for x in RZ.挂钩检查(RZ.程序表())]
@@ -108,6 +127,7 @@ def main():
         ft = ex.submit(文本自检, 看门); fr = ex.submit(回归, '--记基准' in a) if 全 else None; fs = ex.submit(声音) if 全 else None
         b, n = ft.result(); bad += b; out.append(f'② 文本/画面/流程 快自检 {n} 个程序：{"全过" if not b else f"{len(b)} 个不过"}')
         b = 挂钩(); bad += b; out.append(f'③ 挂钩检查：{"在" if not b else "断了"}')
+        b = 常规规则(); bad += b; out.append(f'③b 常规规则（G35 简述整屏）坏样本必抓、好样本必放：{"过" if not b else "不过"}')
         if 全:
             b, _ = fr.result(); bad += b; out.append(f'④ {NO} 回归：{"记了基准" if "--记基准" in a else ("a.wav、分段.json 逐字节、每屏像素一致" if not b else "不一致")}')
             b, n = fs.result(); bad += b; out.append(f'⑤ 交付核查 出片前/出片后 + 出片守门自检：{"全过" if not b else f"{len(b)} 处不过"}')
