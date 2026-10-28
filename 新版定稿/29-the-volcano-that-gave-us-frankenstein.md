@@ -8,7 +8,7 @@ The **melancholy** weather was **attributable** to a distant blast. On 10 April 
 
 The **volcano** **pumped** **prodigious** quantities of sulphur dioxide from its **crater** into the stratosphere, where it formed sulphate aerosols that **blanketed** the globe, reflecting **sunshine** and **thereby** **lowering** temperatures **world-wide**. Europe and North America came to know 1816 as the Year Without a Summer.
 
-Europe's summer was **chilly** and **relentlessly** wet. Crops failed or lay **rotten** in **saturated** fields, **cereal** and bread prices **escalated**, and **scarcity**, disease and **unrest** followed.
+Europe's summer was **chilly** and **relentlessly** wet. Crops failed or lay **rotten** in **saturated** fields, **cereal** and bread prices **escalated**, and **scarcity**, disease, and **unrest** followed.
 
 The **eighteen-year-old** Mary Godwin, later Mary Shelley, had set out in May **alongside** Percy Bysshe Shelley and Claire Clairmont. In her 1831 **preface** she would **recollect** a **damp**, **gloomy** summer whose **torrents** often kept the group indoors for days.
 
