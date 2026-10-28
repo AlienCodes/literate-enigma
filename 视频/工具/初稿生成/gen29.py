@@ -4,27 +4,27 @@ import json,re,glob,os
 S=[
 (1,[[[("In June 1816","1816年6月，"),("a","一场"),("**ceaseless**","**连绵不断**(ceaseless)的"),("**downpour**","**大雨**(downpour)"),("kept","把"),("a party","一群人"),("**besieged**","**围困**(besieged)在"),("at the Villa Diodati,","迪奥达蒂别墅里。")],
      "（keep sb besieged：使某人一直处于被围困的状态）"],
-    [[("a **mansion**","这座**宅邸**(mansion)"),("the **poet**","是**诗人**(poet)"),("Lord Byron","拜伦勋爵"),("had **leased**","**租下**(leased)的，"),("on the **outskirts** of Geneva.","位于日内瓦**郊外**(outskirts)。")],
-     "（a mansion…：同位语，补充说明 the Villa Diodati；\nthe poet Lord Byron had leased：定语从句，省略了 that，修饰 a mansion；\non the outskirts of…：在……的郊外）"]]),
+    [[("a **mansion**","这座**宅邸**(mansion)"),("the **poet**","是**诗人**(poet)"),("Lord Byron","拜伦勋爵"),("had **leased**","**租下**(leased)的，"),("on","位于"),("the **outskirts** of Geneva.","日内瓦**郊外**(outskirts)。")],
+     "（a mansion…：同位语，补充说明 the Villa Diodati；\nthe poet Lord Byron had leased：定语从句，\n省略了 that，修饰 a mansion；\non the outskirts of…：在……的郊外）"]]),
 (1,[[[("After reading","读完"),("an **anthology** of German **ghost stories**","一本德国**鬼故事**(ghost stories)的**选集**(anthology)"),("in French **translation**,","的法文**译本**(translation)之后，")],
      "（an anthology of…：一本……的选集；\nin French translation：用法文翻译的，法文译本）"],
-    [[("Byron","拜伦"),("proposed","提议"),("that each guest","每位客人"),("write","各写"),("a","一个"),("**supernatural**","**超自然**(supernatural)"),("tale.","故事。")],
+    [[("Byron","拜伦"),("proposed","提议"),("that each","每位"),("guest","客人"),("write","各写"),("a","一个"),("**supernatural**","**超自然**(supernatural)"),("tale.","故事。")],
      "（propose that sb do：提议某人做……，从句里用动词原形 write）"]]),
-(2,[[[("The","这种"),("**melancholy**","**阴郁**(melancholy)的"),("weather","天气，"),("was **attributable to**","**源于**(attributable to)"),("a distant blast.","远方的一次爆炸。")],
+(2,[[[("The","这种"),("**melancholy**","**阴郁**(melancholy)的"),("weather","天气，"),("was **attributable to**","**源于**(attributable to)"),("a","一次"),("distant","远方的"),("blast.","爆炸。")],
      "（be attributable to…：可归因于……，由……引起）"]]),
-(2,[[[("On 10 April 1815","1815年4月10日，"),("Mount Tambora,","坦博拉火山，"),("on the Indonesian island of Sumbawa,","位于印度尼西亚松巴哇岛上，"),("blew itself apart","炸裂开来，")],
+(2,[[[("On 10 April 1815","1815年4月10日，"),("Mount Tambora,","坦博拉火山，"),("on","位于"),("the Indonesian","印度尼西亚"),("island of Sumbawa,","松巴哇岛上，"),("blew itself","炸"),("apart","裂开来，")],
      "（on the Indonesian island of Sumbawa：插入语，补充说明火山的位置；\nblow itself apart：把自己炸得四分五裂）"],
-    [[("in","那是"),("one of the most **potent**","有记录以来最**猛烈**(potent)的"),("**eruptions** in recorded history.","**喷发**(eruptions)之一。")],
+    [[("in","那是"),("one of the most","最"),("**potent**","**猛烈**(potent)的"),("**eruptions**","**喷发**(eruptions)之一，"),("in recorded","在有记录的"),("history.","历史上。")],
      "（one of the most…：最……的……之一；\nin recorded history：有记录以来，修饰最高级）"]]),
 (2,[[[("About","约"),("10,000","1万"),("people","人"),("died immediately,","当场死亡，")],
      "（died immediately：当场死亡，指爆发直接致死）"],
     [[("and","而"),("tens of thousands more","又有数万人"),("of **starvation**","死于**饥饿**(starvation)"),("and disease","和疾病，"),("in the **aftermath**.","发生在随后的**余波**(aftermath)中。")],
      "（tens of thousands more 后面省略了 died；die of…：死于……；\nin the aftermath：在随后的余波中，指灾难过后的一段时间）"]]),
-(3,[[[("The **volcano**","这座**火山**(volcano)"),("**pumped**","**泵入**(pumped)了"),("**prodigious** quantities of","**数量惊人**(prodigious)的"),("sulphur dioxide","二氧化硫，"),("from its **crater**","从它的**火山口**(crater)"),("into the stratosphere,","送进平流层，")],
+(3,[[[("The **volcano**","这座**火山**(volcano)"),("**pumped**","**泵入了**(pumped)"),("**prodigious** quantities of","**数量惊人**(prodigious)的"),("sulphur dioxide","二氧化硫，"),("from its **crater**","从它的**火山口**(crater)"),("into the stratosphere,","送进平流层，")],
      "（pump A from B into C：把 A 从 B 泵入 C；\nsulphur dioxide：二氧化硫；stratosphere：平流层）"],
-    [[("where","在那里，"),("it","它们"),("formed","形成了"),("sulphate aerosols","硫酸盐气溶胶，"),("that **blanketed**","像毯子一样**笼罩**(blanketed)了"),("the globe,","全球，")],
+    [[("where","在那里，"),("it","它们"),("formed","形成了"),("sulphate","硫酸盐"),("aerosols","气溶胶，"),("that **blanketed**","像毯子一样**笼罩了**(blanketed)"),("the globe,","全球，")],
      "（where 引导非限制性定语从句，修饰 the stratosphere；\nthat blanketed the globe：定语从句，修饰 sulphate aerosols）"],
-    [[("reflecting","反射"),("**sunshine**","**阳光**(sunshine)，"),("and **thereby**","**从而**(thereby)"),("**lowering**","**降低**(lowering)了"),("temperatures **world-wide**.","**全世界**(world-wide)的气温。")],
+    [[("reflecting","反射"),("**sunshine**","**阳光**(sunshine)，"),("and **thereby**","**从而**(thereby)"),("**lowering**","**降低了**(lowering)"),("temperatures **world-wide**.","**全世界**(world-wide)的气温。")],
      "（reflecting… and thereby lowering…：两个现在分词短语作结果状语；\nworld-wide：副词，在全世界范围内）"]]),
 (3,[[[("Europe","欧洲"),("and North America","和北美"),("came to know","后来把"),("1816","1816年"),("as the Year Without a Summer.","称作无夏之年。")],
      "（come to do：渐渐开始做……；know A as B：把 A 称作 B）"]]),
@@ -54,24 +54,45 @@ S=[
      "（that became Frankenstein：定语从句，修饰 yarn；\nyarn：故事，多指离奇的故事）"],
     [[("which","这部作品"),("appeared **anonymously** in 1818","1818年**匿名**(anonymously)出版，"),("and was later","后来又"),("**reissued** under her name.","以她的名字**再版**(reissued)。")],
      "（which 引导非限制性定语从句，修饰 Frankenstein；\nunder her name：以她的名字，署她的名）"]]),
-(6,[[[("It","这部作品"),("is often called","常被称为"),("the founding work of the science-fiction **genre**.","科幻**体裁**(genre)的开山之作。")],
+(6,[[[("It","这部作品"),("is often","常"),("called","被称为"),("the founding work of the science-fiction **genre**.","科幻**体裁**(genre)的开山之作。")],
      "（the founding work：开山之作，奠基之作；\nscience-fiction：科幻的）"]]),
 (7,[[[("A tropical","一座热带"),("volcano","火山"),("had supplied","提供了"),("the rain,","雨，"),("and a teenager","一个少女"),("the monster.","提供了怪物。")],
-     "（and a teenager the monster：省略句，省略了 had supplied）\n"
+     "（and a teenager the monster：省略句，\n省略了 had supplied）\n"
      "（简述：1816年6月，连绵大雨把拜伦等人困在日内瓦郊外的迪奥达蒂别墅，\n"
      "拜伦提议每人写一个超自然故事。这种坏天气源于1815年4月坦博拉火山的猛烈喷发：\n"
      "约1万人当场死亡，数万人随后死于饥饿和疾病；\n"
      "喷出的二氧化硫在平流层形成气溶胶笼罩全球，反射阳光，使全世界降温，\n"
      "1816年成了无夏之年。欧洲阴冷多雨，庄稼歉收，粮价飞涨，短缺、疾病和动荡随之而来。\n"
-     "十八岁的玛丽·戈德温与雪莱结伴来到这里，后来在1831年的序言里回忆那个潮湿阴沉的夏天。\n"
+     "十八岁的玛丽·戈德温与雪莱结伴来到这里，后来在1831年的序言里回忆那年潮湿阴沉的夏天。\n"
      "波利多里写出《吸血鬼》，拜伦写了《黑暗》，玛丽开始写《弗兰肯斯坦》，\n"
      "1818年匿名出版，常被称为科幻小说的开山之作。火山提供了雨，少女提供了怪物。）"]]),
 ]
 CONF={
-"牛津逗号":{},
-"合组":{},
-"对齐":{},
-"短语":{}}
+"牛津逗号":{"S6 that blanketed the globe, reflecting sunshine and":"不是三项并列：并列的只有 reflecting sunshine 和 thereby lowering temperatures world-wide 两个现在分词短语，that blanketed the globe 是定语从句",
+ "S9 rotten in saturated fields, cereal and":"不是三项并列：cereal and bread 只有两项；这里三个分句并列（Crops failed…, prices escalated, and … followed），第三个分句前已有逗号"},
+"数字":{"S5-1 10,000":"10,000 读 ten thousand，中文按文章定稿写作“1万”，数值相同"},
+"方向":{"S2-1 after→读完":"After 的“之后”在本组最后一组（……的法文译本之后），中文“读完……之后”框架词必须放在后面，方向相同（之后）",
+ "S5-2 more→又有数万人":"more 在这里是“另外还有”，中文“又有”同义，不是先后方向词"},
+"短语":{"S1 leased … on":"不是搭配：on 属于 on the outskirts of Geneva（在日内瓦郊外），说明租的宅邸的位置，不是 lease on",
+ "S1 leased … of":"不是搭配：of 属于 the outskirts of Geneva（日内瓦的郊外），和 leased 无关",
+ "S1 outskirts … of":"不是搭配：the outskirts of A 是普通 of 结构（A 的郊外），outskirts 单独就是“郊外、郊区”",
+ "S2 anthology … of":"不是搭配：an anthology of A 是普通 of 结构（A 的选集），anthology 单独就是“选集”",
+ "S6 pumped … from":"不是搭配：from its crater 引出来源（从火山口），pump 单独就是“泵入”",
+ "S6 pumped … into":"不是搭配：into the stratosphere 引出去向（送进平流层），pump 单独就是“泵入”，中文已译出“送进”",
+ "S6 pumped … of":"不是搭配：of 属于 quantities of sulphur dioxide（大量的二氧化硫），和 pumped 无关",
+ "S9 prices escalated":"不是搭配：escalate 本义就是“上升、加剧”，“飞涨”是文章定稿按语境译的急剧上升，单独成义；prices 是主语，已译“价格”"},
+"合组":{"S4 island of Sumbawa,":"对齐不了：the island of Sumbawa 中文“松巴哇岛”，岛名必须放在“岛”前面，of 结构语序倒过来",
+ "S5 died immediately":"对齐不了：immediately 修饰 died，中文副词“当场”必须放在动词“死亡”前面",
+ "S5 tens of thousands more":"对齐不了：tens of thousands more 是一个数量短语“另外数万”，中文“又有数万人”里 more（又）必须提到最前",
+ "S6 sulphur dioxide":"对齐不了：sulphur dioxide 是化学名“二氧化硫”，sulphur 是“硫”、dioxide 是“二氧化”，中文语序倒过来",
+ "S7 came to know":"对齐不了：come to know A as B 是“后来把 A 称作 B”，know 和后面的 as 合成“称作”，放在 B 前面，“后来把”对应 came to know",
+ "S14 reissued under her name":"对齐不了：under her name 修饰 reissued，中文“以她的名字再版”状语必须放在动词前面",
+ "S15 the founding work of the science-fiction genre":"对齐不了：the founding work of A 中文“A 的开山之作”，of 结构语序必须倒过来"},
+"对齐":{"S1-2 the outskirts of Geneva.":"the outskirts of Geneva 中文“日内瓦郊外”，of 结构语序必须倒过来",
+ "S2-1 an anthology of German ghost s":"an anthology of German ghost stories 中文“一本德国鬼故事的选集”，of 结构语序必须倒过来；anthology、ghost stories 两个重点词因此同在一组（T34 倒装）",
+ "S7-1 as the Year Without a Summer.":"the Year Without a Summer 是专名“无夏之年”，整体对应；as 和 know 合成“称作”",
+ "S10-2 had set out in May":"in May 是时间状语，中文“5月间就已启程”时间必须放在动词前面",
+ "S15-1 the founding work of the scien":"the founding work of the science-fiction genre 中文“科幻体裁的开山之作”，of 结构语序必须倒过来"}}
 out={"no":"29","title_en":"The Volcano That Gave Us Frankenstein","title_zh":"一座火山，造出了《弗兰肯斯坦》","title_fx":{"hl":["Volcano","Frankenstein"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","说明放宽特批":{"S16":{"倍数":"整屏","依据":"用户 2026-10-28 特批：“29、30、31 结尾简述都整屏、字号放到最大”（用户同意记录）"}},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Villa Diodati":"迪奥达蒂别墅","Lord Byron":"拜伦勋爵","Geneva":"日内瓦","Mount Tambora":"坦博拉火山","Indonesian":"印度尼西亚","Sumbawa":"松巴哇岛","sulphur dioxide":"二氧化硫","stratosphere":"平流层","sulphate aerosols":"硫酸盐气溶胶","Europe":"欧洲","North America":"北美","Year Without a Summer":"无夏之年","Mary Godwin":"玛丽·戈德温","Mary Shelley":"玛丽·雪莱","Percy Bysshe Shelley":"珀西·比希·雪莱","Claire Clairmont":"克莱尔·克莱蒙特","John Polidori":"约翰·波利多里","The Vampyre":"《吸血鬼》","Darkness":"《黑暗》","Frankenstein":"《弗兰肯斯坦》"}}
