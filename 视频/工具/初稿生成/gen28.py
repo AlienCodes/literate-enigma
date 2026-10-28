@@ -45,7 +45,7 @@ S=[
     [[("and","而"),("on 8 November","在11月8日，"),("her team","她的团队"),("**obtained**","**得到了**(obtained)"),("pure **crystals** of the **substance**","这种**物质**(substance)的纯净**晶体**(crystals)，"),("later","它后来"),("named","被命名为"),("artemisinin.","青蒿素。")],
      "（later named artemisinin：过去分词短语作后置定语，\n修饰 the substance）"]]),
 (5,[[[("In September 2011","2011年9月，"),("Tu","屠呦呦"),("was named","被评为"),("a Lasker Award","拉斯克奖"),("**recipient**;","**得主**(recipient)；")],
-     "（be named…：被评为……；\nLasker Award：拉斯克奖，美国重要的医学奖项）"],
+     "（recipient 就是“接受者 / 接收者”（在奖项里特指“得主”）。\n奖项/荣誉场景：award recipient = 获奖者 / 得主\n物品/信息场景：email recipient = 邮件收件人；\nwelfare recipient = 福利领取者）"],
     [[("its **jury**","该奖的**评审团**(jury)"),("credited","称，"),("the drug","这种药"),("with saving","挽救了"),("millions.","数百万人。")],
      "（credit A with B：认为 B 是 A 的功劳）"]]),
 (5,[[[("On 5 October 2015","2015年10月5日，"),("she","她"),("won","获得了"),("half","一半的"),("the Nobel Prize in","诺贝尔"),("**Physiology**","**生理学**(Physiology)"),("or Medicine,","或医学奖，")],
