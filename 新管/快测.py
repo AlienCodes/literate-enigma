@@ -111,6 +111,8 @@ def main():
         if 全:
             b, _ = fr.result(); bad += b; out.append(f'④ {NO} 回归：{"记了基准" if "--记基准" in a else ("a.wav、分段.json 逐字节、每屏像素一致" if not b else "不一致")}')
             b, n = fs.result(); bad += b; out.append(f'⑤ 交付核查 出片前/出片后 + 出片守门自检：{"全过" if not b else f"{len(b)} 处不过"}')
+    if not bad and '--只文本' not in a and '--记基准' not in a:
+        subprocess.run(['python3', f'{H}/印章.py', '--盖'], env={**env0, 'XG_TOOLS': T}, capture_output=True); out.append('已盖快测印章（程序或规则表再改要重跑）')
     print('\n'.join(out + [f'  ✘ {x}' for x in bad] + [f'快测{"通过" if not bad else "不通过"}，用时 {time.time() - t0:.0f} 秒']))
     sys.exit(1 if bad else 0)
 

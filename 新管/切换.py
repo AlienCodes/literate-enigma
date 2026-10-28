@@ -16,7 +16,12 @@ G = "__import__('管道').看门停用()"
     ('草稿声音.sh', "python3 $T/方法进化表.py --上下文 || exit 1", "[ \"$(python3 -c \"import sys;sys.path.insert(0,'$T');print(__import__('管道').看门停用())\")\" = True ] || python3 $T/方法进化表.py --上下文 || exit 1"),
     ('草稿声音.sh', "python3 $T/证据.py --记 $no 草稿声音", "[ \"$(python3 -c \"import sys;sys.path.insert(0,'$T');print(__import__('管道').看门停用())\")\" = True ] || python3 $T/证据.py --记 $no 草稿声音"),
     ('生成文本.py', "_m = subprocess.run(['python3', f'{T}/规则执行核查.py'], capture_output=True, text=True)", f"_m = subprocess.run(['true'] if (sys.path.insert(0, T) or {G}) else ['python3', f'{{T}}/规则执行核查.py'], capture_output=True, text=True)"),
+    ('推送两仓库.sh', 'python3 $P/视频/工具/规则执行核查.py || { echo "【停止】规则执行核查不通过', 'if [ "$(python3 -c "import sys;sys.path.insert(0,\'$P/视频/工具\');print(__import__(\'管道\').看门停用())")" = True ]; then python3 $P/视频/工具/新管/印章.py || { echo "【停止】快测印章对不上：程序改过没过快测（python3 视频/工具/新管/快测.py）"; exit 1; }; else python3 $P/视频/工具/规则执行核查.py; fi || { echo "【停止】规则执行核查不通过'),
+    ('推送两仓库.sh', "  python3 $P/视频/工具/报坑.py --查 --严 ||", "  python3 -c \"import sys;sys.path.insert(0,'$P/视频/工具');sys.exit(0 if __import__('管道').看门停用() else 1)\" || python3 $P/视频/工具/报坑.py --查 --严 ||"),
+    ('草稿声音.sh', 'no=$1; T=/home/user/postgraduate-vocabulary/视频/工具', 'no=$1; T=${XG_TOOLS:-/home/user/postgraduate-vocabulary/视频/工具}'),
+    ('快速重建核查.sh', 'no=$1; T=/home/user/postgraduate-vocabulary/视频/工具', 'no=$1; T=${XG_TOOLS:-/home/user/postgraduate-vocabulary/视频/工具}'),
 ]
+# 提交前钩子的改法（切换推送时由主会话批准后做，本程序不碰钩子文件，K16）：看门停用时只查快测印章（新管/印章.py），不再跑 会话开工 --提交前、规则执行核查
 管道 = '''import json, os
 def 看门停用():
     """新管开关：<工具>/管道.json 写 {"看门": "停用"} 时，8 套看门机制（证据、闲置、用上核查、门变异、放行口子、规则执行核查、演练、丝滑）不再当门"""
