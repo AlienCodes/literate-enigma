@@ -116,6 +116,8 @@ def 回归(记):
 
 def main():
     t0 = time.time(); a = sys.argv[1:]; out = []
+    if '--只记基准' in a:   # 基准用旧管（没打补丁的工具）出：回归证明新管和旧管逐字节一致
+        b, cur = 回归(True); print('\n'.join(b) or f'{NO} 基准已记：a.wav {cur["a.wav"][:8]}、分段.json {cur["分段.json"][:8]}、{len(cur["画面"])} 屏（{time.time() - t0:.0f} 秒）'); sys.exit(1 if b else 0)
     bad, 表 = 规则表新鲜(); _, 看门 = 看门程序()
     规 = 表['规则']; 搬 = sum(1 for e in 规 if e['状态'].startswith('搬')); 替 = sum(1 for e in 规 if e['状态'] == '替代')
     out.append(f'① 规则表 {len(规)} 条：搬 {搬}、替代 {替}、没搬 {len(规) - 搬 - 替 - sum(1 for e in 规 if e["状态"].startswith("无门"))}；版本 {表["版本"]}')

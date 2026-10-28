@@ -9,12 +9,13 @@ import sys, re, os, tempfile
 def 原话(t):
     return [q for q in re.findall(r'“([^”]{6,})”', t)]
 
-def 写入(src, dst):
+def 写入(src, dst, 额外=()):
     t = open(src).read(); out = ['# 用户原话存档（旧 CLAUDE.md 全文，一字不删；CLAUDE.md 一页版每条规矩带编号指向这里）', '']
     parts = re.split(r'(?m)^(?=\d+\. )', t)
     out += ['## 开头', parts[0].strip(), '']
     for p in parts[1:]:
         n = re.match(r'(\d+)\. ', p).group(1); out += [f'## 守则{n}', p.strip(), '']
+    for x in 额外: out += [open(x).read().strip(), '']
     open(dst, 'w').write('\n'.join(out) + '\n')
 
 def 查(src, dst):
@@ -32,6 +33,6 @@ def 自检():
 if __name__ == '__main__':
     a = sys.argv[1:]
     if a[0] == '--自检': f = 自检(); print('原话存档 自检：' + ('通过' if not f else '；'.join(f))); sys.exit(1 if f else 0)
-    if a[0] == '--写入': 写入(a[1], a[2])
+    if a[0] == '--写入': 写入(a[1], a[2], a[3:])
     miss = 查(a[1], a[2]); n = len(原话(open(a[1]).read()))
     print(f'原话 {n} 段，存档里找不到 {len(miss)} 段' + ''.join(f'\n  ✘ “{q[:60]}”' for q in miss)); sys.exit(1 if miss else 0)
