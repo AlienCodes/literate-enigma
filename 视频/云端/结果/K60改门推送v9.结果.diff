@@ -1,0 +1,800 @@
+diff --git "a/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\351\227\250\345\217\230\345\274\202\346\270\205\345\215\225.md" "b/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\351\227\250\345\217\230\345\274\202\346\270\205\345\215\225.md"
+index 43bcfb6..de8b6e8 100644
+--- "a/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\351\227\250\345\217\230\345\274\202\346\270\205\345\215\225.md"
++++ "b/\350\247\206\351\242\221/\345\210\266\344\275\234\350\256\260\345\275\225/\351\227\250\345\217\230\345\274\202\346\270\205\345\215\225.md"
+@@ -1,6 +1,6 @@
+ # 门变异清单（门变异.py --合并结果 生成，不要手改；G79）
+ 
+-门 321 道：发现 242，没人走到 25，漏洞 54。漏洞 = 拆了没有任何探测报出；未测 = 还没有变异结果（算漏洞、进基线）；没人走到 = 没有任何自检、演练场景走到这道门；死门 = 门写在注释后面。
++门 322 道：发现 243，没人走到 25，漏洞 54。漏洞 = 拆了没有任何探测报出；未测 = 还没有变异结果（算漏洞、进基线）；没人走到 = 没有任何自检、演练场景走到这道门；死门 = 门写在注释后面。
+ 
+ 全量：2026-10-28T04:36Z
+ 
+@@ -45,9 +45,9 @@
+ | 执行效应演练.py|2b0fa65c38|0 | 执行效应演练.py:338 | `if l.startswith('== ') and '⓪' not in l: pr.kill(); out.append('【演练掐断：流水线走到了 ⓪ 以` | 没人走到 |
+ | 执行效应演练.py|dc320935eb|0 | 执行效应演练.py:381 | `if _git状态() != g0: res.append(('真仓库没被碰', False, '演练改了真仓库（git status 变了）：镜像漏了写入的路` | 没人走到 |
+ | 执行效应演练.py|3b241b55cf|0 | 执行效应演练.py:469 | `if 镜.查样本(): res.append(('冻结样本没被改', False, '；'.join(镜.查样本())))   # 演练里的程序写穿了冻结拷贝：` | 没人走到 |
+-| 执行效应演练.py|d9116b10cf|0 | 执行效应演练.py:611 | `if base is not None and len(g) > base: bad.append(f'缺口变多（{len(g)} > 基线 {base}）：新` | 没人走到 |
+-| 执行效应演练.py|bf19243b32|0 | 执行效应演练.py:614 | `if thin: bad.append(f'演练说明太空（原因、替代各至少 20 字）：{" ".join(thin)}')` | 没人走到 |
+-| 执行效应演练.py|3c8c72f22a|0 | 执行效应演练.py:615 | `if eb is not None and len(e) > eb: bad.append(f'“造不出样本”变多（{len(e)} > 基线 {eb}）：新规` | 没人走到 |
++| 执行效应演练.py|d9116b10cf|0 | 执行效应演练.py:612 | `if base is not None and len(g) > base: bad.append(f'缺口变多（{len(g)} > 基线 {base}）：新` | 没人走到 |
++| 执行效应演练.py|bf19243b32|0 | 执行效应演练.py:615 | `if thin: bad.append(f'演练说明太空（原因、替代各至少 20 字）：{" ".join(thin)}')` | 没人走到 |
++| 执行效应演练.py|3c8c72f22a|0 | 执行效应演练.py:616 | `if eb is not None and len(e) > eb: bad.append(f'“造不出样本”变多（{len(e)} > 基线 {eb}）：新规` | 没人走到 |
+ | 报坑.py|d8783d18f9|0 | 报坑.py:287 | `if not 我: print('【停止】不知道本会话 ID：先 python3 视频/工具/会话开工.py 改门 --会话 session_… 或加 --会话` | 没人走到 |
+ | 收工记录.py|f027dd71dc|0 | 收工记录.py:11 | `if not m: sys.exit(f'【停止】{f} 没有“开工时刻：YYYY-MM-DDTHH:MM（UTC）”，先在“## token 记录”下补上（T` | 漏洞 |
+ | 标点停顿核对.py|fbe9f18d33|0 | 标点停顿核对.py:56 | `if not ok: bad+=1` | 漏洞 |
+@@ -292,6 +292,7 @@ make_video.py|fe9bf0069b|0
+ 推请求.py|a314bc6fb8|0
+ 推请求.py|ae91f5c0cd|0
+ 推请求.py|b63164cb50|0
++推请求.py|b79a9b5943|0
+ 推送两仓库.sh|2a25bdc2e5|104
+ 推送两仓库.sh|3488786d62|31
+ 推送两仓库.sh|9bdc81ca90|104
+@@ -423,76 +424,76 @@ audio_qc.py|0c2400111f|0 5a700860aea6
+ audio_qc.py|18158e4f4e|0 5a700860aea6
+ audio_qc.py|26c42a63ce|0 5a700860aea6
+ audio_qc.py|589b59cc4b|0 5a700860aea6
+-check_all.py|14821f5508|0 7f6d2fdcbac1
+-check_all.py|267cf86771|0 d713dcffc3da
+-check_all.py|6de17d0475|0 7f6d2fdcbac1
+-check_all.py|7d6592bbe7|0 7f6d2fdcbac1
+-check_all.py|7ef593e975|0 7f6d2fdcbac1
+-check_all.py|80ee8e63cc|0 7f6d2fdcbac1
+-check_all.py|8778e62f5c|0 7f6d2fdcbac1
+-check_all.py|9d027f62cb|0 7f6d2fdcbac1
+-check_all.py|a00e661e7f|0 7f6d2fdcbac1
+-check_all.py|b035c14729|0 7f6d2fdcbac1
+-check_all.py|d85494a0ad|0 7f6d2fdcbac1
+-check_all.py|f950c3b679|0 7f6d2fdcbac1
++check_all.py|14821f5508|0 951a1a765641
++check_all.py|267cf86771|0 0ee17a811a99
++check_all.py|6de17d0475|0 951a1a765641
++check_all.py|7d6592bbe7|0 951a1a765641
++check_all.py|7ef593e975|0 951a1a765641
++check_all.py|80ee8e63cc|0 951a1a765641
++check_all.py|8778e62f5c|0 951a1a765641
++check_all.py|9d027f62cb|0 951a1a765641
++check_all.py|a00e661e7f|0 951a1a765641
++check_all.py|b035c14729|0 951a1a765641
++check_all.py|d85494a0ad|0 951a1a765641
++check_all.py|f950c3b679|0 951a1a765641
+ githooks/pre-commit|24465537a6|77 6c0ee8e114ed
+ githooks/pre-commit|708cbc1859|77 6c0ee8e114ed
+-make_video.py|032486dbc0|0 f10f2229f390
+-make_video.py|04badaab10|0 f10f2229f390
+-make_video.py|090d57782e|0 f10f2229f390
+-make_video.py|0911e79771|0 f10f2229f390
+-make_video.py|0c4f3769d4|0 f10f2229f390
+-make_video.py|10ec2a2bcb|0 f10f2229f390
+-make_video.py|13dfa0fcbb|0 f10f2229f390
+-make_video.py|14c705ce97|0 f10f2229f390
+-make_video.py|1833184477|0 f10f2229f390
+-make_video.py|1cc69ea278|0 f10f2229f390
+-make_video.py|2155ab994f|0 f10f2229f390
+-make_video.py|2204060310|0 f10f2229f390
+-make_video.py|22edc8ffb3|0 f10f2229f390
+-make_video.py|2b2ceb6a6a|0 f10f2229f390
+-make_video.py|2e33b34607|0 f10f2229f390
+-make_video.py|31110c9c74|0 f10f2229f390
+-make_video.py|318674c91c|0 f10f2229f390
+-make_video.py|31d4ecc677|0 f10f2229f390
+-make_video.py|3d0a8107bb|0 f10f2229f390
+-make_video.py|3e902234dd|0 f10f2229f390
+-make_video.py|4875c51ad9|0 f10f2229f390
+-make_video.py|49e7e458e4|0 f10f2229f390
+-make_video.py|4b92f82e18|0 f10f2229f390
+-make_video.py|56999047b6|0 f10f2229f390
+-make_video.py|578110f5de|0 f10f2229f390
+-make_video.py|59a2dfa4e4|0 f10f2229f390
+-make_video.py|5a2879e396|0 f10f2229f390
+-make_video.py|5dc8005145|0 f10f2229f390
+-make_video.py|644770fadf|0 f10f2229f390
+-make_video.py|64e0c8792e|0 f10f2229f390
+-make_video.py|6d57756f38|0 f10f2229f390
+-make_video.py|6ebb99c685|0 f10f2229f390
+-make_video.py|707db287dc|0 f10f2229f390
+-make_video.py|72a405ad2c|0 f10f2229f390
+-make_video.py|78493eea0c|0 f10f2229f390
+-make_video.py|7a1dc20cb3|0 f10f2229f390
+-make_video.py|7a532b1d64|0 f10f2229f390
+-make_video.py|7f9fbeb706|0 f10f2229f390
+-make_video.py|931a09a8a0|0 f10f2229f390
+-make_video.py|a6fc7bab11|0 f10f2229f390
+-make_video.py|a9ca4dba6a|0 f10f2229f390
+-make_video.py|aae15e2cf4|0 f10f2229f390
+-make_video.py|b715ece2e5|0 f10f2229f390
+-make_video.py|c0a3432479|0 f10f2229f390
+-make_video.py|c0c08d1f5e|0 f10f2229f390
+-make_video.py|c86b12ba90|0 f10f2229f390
+-make_video.py|ca6ca566b6|0 f10f2229f390
+-make_video.py|cac5f20ea3|0 f10f2229f390
+-make_video.py|d7f6064410|0 f10f2229f390
+-make_video.py|db5699b24e|0 f10f2229f390
+-make_video.py|e7075f9b1e|0 f10f2229f390
+-make_video.py|e9050f9848|0 f10f2229f390
+-make_video.py|ea1ce3156d|0 f10f2229f390
+-make_video.py|fe9bf0069b|0 f10f2229f390
+-主会话核对.sh|c2abb083f1|30 0b3de28e4bf2
+-主会话核对.sh|d853b03d6e|153 0b3de28e4bf2
++make_video.py|032486dbc0|0 5470a2575133
++make_video.py|04badaab10|0 5470a2575133
++make_video.py|090d57782e|0 5470a2575133
++make_video.py|0911e79771|0 5470a2575133
++make_video.py|0c4f3769d4|0 5470a2575133
++make_video.py|10ec2a2bcb|0 5470a2575133
++make_video.py|13dfa0fcbb|0 5470a2575133
++make_video.py|14c705ce97|0 5470a2575133
++make_video.py|1833184477|0 5470a2575133
++make_video.py|1cc69ea278|0 5470a2575133
++make_video.py|2155ab994f|0 5470a2575133
++make_video.py|2204060310|0 5470a2575133
++make_video.py|22edc8ffb3|0 5470a2575133
++make_video.py|2b2ceb6a6a|0 5470a2575133
++make_video.py|2e33b34607|0 5470a2575133
++make_video.py|31110c9c74|0 5470a2575133
++make_video.py|318674c91c|0 5470a2575133
++make_video.py|31d4ecc677|0 5470a2575133
++make_video.py|3d0a8107bb|0 5470a2575133
++make_video.py|3e902234dd|0 5470a2575133
++make_video.py|4875c51ad9|0 5470a2575133
++make_video.py|49e7e458e4|0 5470a2575133
++make_video.py|4b92f82e18|0 5470a2575133
++make_video.py|56999047b6|0 5470a2575133
++make_video.py|578110f5de|0 5470a2575133
++make_video.py|59a2dfa4e4|0 5470a2575133
++make_video.py|5a2879e396|0 5470a2575133
++make_video.py|5dc8005145|0 5470a2575133
++make_video.py|644770fadf|0 5470a2575133
++make_video.py|64e0c8792e|0 5470a2575133
++make_video.py|6d57756f38|0 5470a2575133
++make_video.py|6ebb99c685|0 5470a2575133
++make_video.py|707db287dc|0 5470a2575133
++make_video.py|72a405ad2c|0 5470a2575133
++make_video.py|78493eea0c|0 5470a2575133
++make_video.py|7a1dc20cb3|0 5470a2575133
++make_video.py|7a532b1d64|0 5470a2575133
++make_video.py|7f9fbeb706|0 5470a2575133
++make_video.py|931a09a8a0|0 5470a2575133
++make_video.py|a6fc7bab11|0 5470a2575133
++make_video.py|a9ca4dba6a|0 5470a2575133
++make_video.py|aae15e2cf4|0 5470a2575133
++make_video.py|b715ece2e5|0 5470a2575133
++make_video.py|c0a3432479|0 5470a2575133
++make_video.py|c0c08d1f5e|0 5470a2575133
++make_video.py|c86b12ba90|0 5470a2575133
++make_video.py|ca6ca566b6|0 5470a2575133
++make_video.py|cac5f20ea3|0 5470a2575133
++make_video.py|d7f6064410|0 5470a2575133
++make_video.py|db5699b24e|0 5470a2575133
++make_video.py|e7075f9b1e|0 5470a2575133
++make_video.py|e9050f9848|0 5470a2575133
++make_video.py|ea1ce3156d|0 5470a2575133
++make_video.py|fe9bf0069b|0 5470a2575133
++主会话核对.sh|c2abb083f1|30 462bbf3ab70b
++主会话核对.sh|d853b03d6e|153 462bbf3ab70b
+ 交付核查.py|2478031aec|0 3da0ae9f908b
+ 交付核查.py|6ca6a880d4|0 8ec767de9e00
+ 交付核查.py|9d88a869ff|0 c31bd3167fe2
+@@ -512,8 +513,8 @@ make_video.py|fe9bf0069b|0 f10f2229f390
+ 全篇核查.py|dd56883bc7|0 02ca553ea14e
+ 出片指纹.py|1fe51a17d6|0 e1bdc1b4f756
+ 出片指纹.py|734c16b382|0 e1bdc1b4f756
+-出片指纹.py|8aff3c6faa|0 5dd842a1471c
+-出片指纹.py|a2a0365fa7|0 5dd842a1471c
++出片指纹.py|8aff3c6faa|0 bc5340909c21
++出片指纹.py|a2a0365fa7|0 bc5340909c21
+ 出片指纹.py|ba02a7b304|0 e1bdc1b4f756
+ 出片指纹.py|c0ae31763f|0 e1bdc1b4f756
+ 区间作废.py|e810f146aa|0 2d0c85c59345
+@@ -525,69 +526,69 @@ make_video.py|fe9bf0069b|0 f10f2229f390
+ 响度一致性核对.py|70e53527df|0 8ce7042fd557
+ 响度一致性核对.py|cd94a10bd1|0 8ce7042fd557
+ 响度一致性核对.py|d9be11f71e|0 8ce7042fd557
+-定稿流水线.sh|014dd9a4c0|31 3f6e7811dd39
+-定稿流水线.sh|03d7198560|197 3f6e7811dd39
+-定稿流水线.sh|230c52d1bd|26 3f6e7811dd39
+-定稿流水线.sh|42fe5a6ec1|122 3f6e7811dd39
+-定稿流水线.sh|4c84a6808d|25 3f6e7811dd39
+-定稿流水线.sh|59f52a6b62|95 3f6e7811dd39
+-定稿流水线.sh|6a8c47b77b|85 3f6e7811dd39
+-定稿流水线.sh|6ae6b98bf2|69 3f6e7811dd39
+-定稿流水线.sh|72c163b9cd|93 3f6e7811dd39
+-定稿流水线.sh|7da7f4593d|75 3f6e7811dd39
+-定稿流水线.sh|7eb3dbba66|25 3f6e7811dd39
+-定稿流水线.sh|80c21c5a86|88 3f6e7811dd39
+-定稿流水线.sh|880499c779|62 3f6e7811dd39
+-定稿流水线.sh|9179c72acb|29 3f6e7811dd39
+-定稿流水线.sh|919464adf4|99 3f6e7811dd39
+-定稿流水线.sh|928403ec5d|31 3f6e7811dd39
+-定稿流水线.sh|99a5f86147|39 3f6e7811dd39
+-定稿流水线.sh|9c0be09960|98 3f6e7811dd39
+-定稿流水线.sh|a120cd2e26|33 3f6e7811dd39
+-定稿流水线.sh|b9279c9f19|197 3f6e7811dd39
+-定稿流水线.sh|bb0230b8d6|31 3f6e7811dd39
+-定稿流水线.sh|bf574e13a8|27 3f6e7811dd39
+-定稿流水线.sh|bf781fdb04|31 3f6e7811dd39
+-定稿流水线.sh|bfbf8689bc|33 3f6e7811dd39
+-定稿流水线.sh|c73d43c0c1|124 3f6e7811dd39
+-定稿流水线.sh|dbbc2275fc|109 3f6e7811dd39
+-定稿流水线.sh|e2b2ce95eb|65 3f6e7811dd39
+-定稿流水线.sh|ee4307feb4|95 3f6e7811dd39
+-定稿流水线.sh|f10f17c7f2|28 3f6e7811dd39
+-定稿流水线.sh|fd9096bc75|111 3f6e7811dd39
+-定稿视频核对.py|0ef80b1539|0 b494d5b25cc4
+-定稿视频核对.py|1cf33b646a|0 b494d5b25cc4
+-定稿视频核对.py|1f2986d762|0 b494d5b25cc4
++定稿流水线.sh|014dd9a4c0|31 63d64f1b790c
++定稿流水线.sh|03d7198560|197 63d64f1b790c
++定稿流水线.sh|230c52d1bd|26 63d64f1b790c
++定稿流水线.sh|42fe5a6ec1|122 63d64f1b790c
++定稿流水线.sh|4c84a6808d|25 63d64f1b790c
++定稿流水线.sh|59f52a6b62|95 63d64f1b790c
++定稿流水线.sh|6a8c47b77b|85 63d64f1b790c
++定稿流水线.sh|6ae6b98bf2|69 63d64f1b790c
++定稿流水线.sh|72c163b9cd|93 63d64f1b790c
++定稿流水线.sh|7da7f4593d|75 63d64f1b790c
++定稿流水线.sh|7eb3dbba66|25 63d64f1b790c
++定稿流水线.sh|80c21c5a86|88 63d64f1b790c
++定稿流水线.sh|880499c779|62 63d64f1b790c
++定稿流水线.sh|9179c72acb|29 63d64f1b790c
++定稿流水线.sh|919464adf4|99 63d64f1b790c
++定稿流水线.sh|928403ec5d|31 63d64f1b790c
++定稿流水线.sh|99a5f86147|39 63d64f1b790c
++定稿流水线.sh|9c0be09960|98 63d64f1b790c
++定稿流水线.sh|a120cd2e26|33 63d64f1b790c
++定稿流水线.sh|b9279c9f19|197 63d64f1b790c
++定稿流水线.sh|bb0230b8d6|31 63d64f1b790c
++定稿流水线.sh|bf574e13a8|27 63d64f1b790c
++定稿流水线.sh|bf781fdb04|31 63d64f1b790c
++定稿流水线.sh|bfbf8689bc|33 63d64f1b790c
++定稿流水线.sh|c73d43c0c1|124 63d64f1b790c
++定稿流水线.sh|dbbc2275fc|109 63d64f1b790c
++定稿流水线.sh|e2b2ce95eb|65 63d64f1b790c
++定稿流水线.sh|ee4307feb4|95 63d64f1b790c
++定稿流水线.sh|f10f17c7f2|28 63d64f1b790c
++定稿流水线.sh|fd9096bc75|111 63d64f1b790c
++定稿视频核对.py|0ef80b1539|0 eb356e0b3eb9
++定稿视频核对.py|1cf33b646a|0 eb356e0b3eb9
++定稿视频核对.py|1f2986d762|0 eb356e0b3eb9
+ 定稿视频核对.py|3592846ef0|0 56e29ebab1f2
+ 定稿视频核对.py|9325dad8d1|0 56e29ebab1f2
+-定稿视频核对.py|9d3af9aef5|0 b494d5b25cc4
+-定稿视频核对.py|af8c4094d5|0 b494d5b25cc4
++定稿视频核对.py|9d3af9aef5|0 eb356e0b3eb9
++定稿视频核对.py|af8c4094d5|0 eb356e0b3eb9
+ 定稿视频核对.py|ddbb5befd7|0 56e29ebab1f2
+-定稿视频核对.py|ee95c28678|0 b494d5b25cc4
++定稿视频核对.py|ee95c28678|0 eb356e0b3eb9
+ 定稿视频核对.py|f118fc8a9a|0 56e29ebab1f2
+ 定稿视频核对.py|f34dcc0580|0 56e29ebab1f2
+-定稿视频核对.py|f48b343169|0 b494d5b25cc4
+-定稿视频核对.py|fad01340ec|0 b494d5b25cc4
++定稿视频核对.py|f48b343169|0 eb356e0b3eb9
++定稿视频核对.py|fad01340ec|0 eb356e0b3eb9
+ 工作稿核对.py|266a771fd3|0 e6cccb05e4b1
+ 开工必读.py|122ef7a231|0 b063c00162b3
+ 开工必读.py|5580b93562|0 b063c00162b3
+ 开工必读.py|73476668ee|0 b063c00162b3
+ 开工记录.py|5548ae32ce|0 4f2495a729ad
+ 开工记录.py|88bb6f9617|0 4f2495a729ad
+-归档定稿视频.py|a716a8f873|0 b0b887bd83ed
+-归档定稿视频.py|dc087cb1c5|0 b0b887bd83ed
+-彩排.sh|156474f412|53 e07af0a0e125
+-彩排.sh|1c966240d3|33 e07af0a0e125
+-彩排.sh|2a094ac83e|30 e07af0a0e125
+-彩排.sh|786178700d|30 e07af0a0e125
+-彩排.sh|ad681fd8cd|129 e07af0a0e125
+-彩排.sh|c9feab6080|62 e07af0a0e125
+-彩排.sh|cd5059f79b|73 e07af0a0e125
+-彩排.sh|d7cd55a3c5|32 e07af0a0e125
+-彩排.sh|da6c09f5ef|56 e07af0a0e125
+-彩排.sh|dfefb5ca96|43 e07af0a0e125
++归档定稿视频.py|a716a8f873|0 5f70c2fb2886
++归档定稿视频.py|dc087cb1c5|0 5f70c2fb2886
++彩排.sh|156474f412|53 7acfa4f48cd4
++彩排.sh|1c966240d3|33 7acfa4f48cd4
++彩排.sh|2a094ac83e|30 7acfa4f48cd4
++彩排.sh|786178700d|30 7acfa4f48cd4
++彩排.sh|ad681fd8cd|129 7acfa4f48cd4
++彩排.sh|c9feab6080|62 7acfa4f48cd4
++彩排.sh|cd5059f79b|73 7acfa4f48cd4
++彩排.sh|d7cd55a3c5|32 7acfa4f48cd4
++彩排.sh|da6c09f5ef|56 7acfa4f48cd4
++彩排.sh|dfefb5ca96|43 7acfa4f48cd4
+ 执行效应声音演练.py|123a3b125c|0 fff59b494f78
+-执行效应声音演练.py|3f8c1664a1|0 d675139a508b
++执行效应声音演练.py|3f8c1664a1|0 2bb6f3d0cca3
+ 执行效应声音演练.py|490322bb5b|0 fff59b494f78
+ 执行效应声音演练.py|6273f4bee4|0 fff59b494f78
+ 执行效应声音演练.py|a7e6912d38|0 fff59b494f78
+@@ -595,38 +596,39 @@ make_video.py|fe9bf0069b|0 f10f2229f390
+ 执行效应声音演练.py|becf6833e2|0 fff59b494f78
+ 执行效应声音演练.py|c8ccb02ed1|0 fff59b494f78
+ 执行效应声音演练.py|ca52b53ba3|0 fff59b494f78
+-执行效应声音演练.py|d78a849581|0 d675139a508b
+-执行效应演练.py|2b0fa65c38|0 7218c8f412f5
+-执行效应演练.py|3b241b55cf|0 7218c8f412f5
+-执行效应演练.py|3c8c72f22a|0 7218c8f412f5
+-执行效应演练.py|490322bb5b|0 5601ae4c7fa5
+-执行效应演练.py|bf19243b32|0 7218c8f412f5
+-执行效应演练.py|c8ccb02ed1|0 7218c8f412f5
+-执行效应演练.py|ca52b53ba3|0 5601ae4c7fa5
+-执行效应演练.py|d9116b10cf|0 7218c8f412f5
+-执行效应演练.py|dc320935eb|0 7218c8f412f5
+-报坑.py|6c1288142d|0 d19eca29877f
+-报坑.py|a769bdf913|0 d19eca29877f
++执行效应声音演练.py|d78a849581|0 2bb6f3d0cca3
++执行效应演练.py|2b0fa65c38|0 0840ece934b7
++执行效应演练.py|3b241b55cf|0 0840ece934b7
++执行效应演练.py|3c8c72f22a|0 0840ece934b7
++执行效应演练.py|490322bb5b|0 a086699a048e
++执行效应演练.py|bf19243b32|0 0840ece934b7
++执行效应演练.py|c8ccb02ed1|0 0840ece934b7
++执行效应演练.py|ca52b53ba3|0 a086699a048e
++执行效应演练.py|d9116b10cf|0 0840ece934b7
++执行效应演练.py|dc320935eb|0 0840ece934b7
++报坑.py|6c1288142d|0 665ab160d2e2
++报坑.py|a769bdf913|0 665ab160d2e2
+ 报坑.py|d8783d18f9|0 f24780a6207b
+-报坑.py|fa2b338a89|0 d19eca29877f
+-推请求.py|009792af36|0 d675139a508b
+-推请求.py|0584bb381f|0 d675139a508b
+-推请求.py|3788519c81|0 d675139a508b
+-推请求.py|4ba129da4d|0 d675139a508b
+-推请求.py|59e9bdd625|0 d675139a508b
+-推请求.py|731ab2c40b|0 d675139a508b
+-推请求.py|83bcd3da5d|0 d675139a508b
+-推请求.py|83d2e08898|0 d675139a508b
+-推请求.py|a314bc6fb8|0 d675139a508b
+-推请求.py|ae91f5c0cd|0 d675139a508b
+-推请求.py|b63164cb50|0 d675139a508b
+-推送两仓库.sh|2a25bdc2e5|104 3795c9fa9488
+-推送两仓库.sh|3488786d62|31 3795c9fa9488
+-推送两仓库.sh|9bdc81ca90|104 3795c9fa9488
+-推送两仓库.sh|c9d7ebcb19|74 3795c9fa9488
+-推送两仓库.sh|f4436236b7|187 3795c9fa9488
++报坑.py|fa2b338a89|0 665ab160d2e2
++推请求.py|009792af36|0 2bb6f3d0cca3
++推请求.py|0584bb381f|0 2bb6f3d0cca3
++推请求.py|3788519c81|0 2bb6f3d0cca3
++推请求.py|4ba129da4d|0 2bb6f3d0cca3
++推请求.py|59e9bdd625|0 2bb6f3d0cca3
++推请求.py|731ab2c40b|0 2bb6f3d0cca3
++推请求.py|83bcd3da5d|0 2bb6f3d0cca3
++推请求.py|83d2e08898|0 2bb6f3d0cca3
++推请求.py|a314bc6fb8|0 2bb6f3d0cca3
++推请求.py|ae91f5c0cd|0 2bb6f3d0cca3
++推请求.py|b63164cb50|0 2bb6f3d0cca3
++推请求.py|b79a9b5943|0 2bb6f3d0cca3
++推送两仓库.sh|2a25bdc2e5|104 d154234094b4
++推送两仓库.sh|3488786d62|31 d154234094b4
++推送两仓库.sh|9bdc81ca90|104 d154234094b4
++推送两仓库.sh|c9d7ebcb19|74 d154234094b4
++推送两仓库.sh|f4436236b7|187 d154234094b4
+ 收工记录.py|f027dd71dc|0 290e1a03d2df
+-放行口子核查.py|96eb72845a|0 85eb23013946
++放行口子核查.py|96eb72845a|0 e4cd744d7db5
+ 放行口子核查.py|aa94a02391|0 07c106f71da7
+ 方法进化表.py|c687e51333|0 0c2385fc8884
+ 机器复听.py|2fe83af25d|0 e463f75f11d4
+@@ -636,7 +638,7 @@ make_video.py|fe9bf0069b|0 f10f2229f390
+ 流程自检.py|0e8f8f6291|0 fe4edcc181bc
+ 流程自检.py|26977fcb1b|0 fe4edcc181bc
+ 流程自检.py|28fdc2d3df|0 fe4edcc181bc
+-流程自检.py|3544a96015|0 d675139a508b
++流程自检.py|3544a96015|0 2bb6f3d0cca3
+ 流程自检.py|36cda121a7|0 fe4edcc181bc
+ 流程自检.py|45376911de|0 fe4edcc181bc
+ 流程自检.py|4811fd76df|0 fe4edcc181bc
+@@ -654,90 +656,90 @@ make_video.py|fe9bf0069b|0 f10f2229f390
+ 流程自检.py|dc2ed2a952|0 fe4edcc181bc
+ 生成文本.py|387aa5a27d|0 28cee888a583
+ 生成文本.py|446e45690e|0 28cee888a583
+-生成文本.py|485877f4dd|0 4fe374e7afbf
++生成文本.py|485877f4dd|0 21fd4ca18c31
+ 生成文本.py|4af49b6a66|0 28cee888a583
+ 生成文本.py|c7f57a4094|0 28cee888a583
+-用上核查.py|14468413e4|0 26002fa2c52b
+-用上核查.py|4823af2086|0 d675139a508b
+-用上核查.py|9522cacc77|0 b6b8880def77
+-用上核查.py|a6ae082801|0 26002fa2c52b
+-用上核查.py|d81b52656e|0 b6b8880def77
++用上核查.py|14468413e4|0 a023dd9ca0d1
++用上核查.py|4823af2086|0 2bb6f3d0cca3
++用上核查.py|9522cacc77|0 9c98cfd4c4bb
++用上核查.py|a6ae082801|0 a023dd9ca0d1
++用上核查.py|d81b52656e|0 9c98cfd4c4bb
+ 疑点清单.py|8a45ad95c3|0 2ed097075832
+ 疑点清单.py|c374989fc6|0 2ed097075832
+ 结尾句接点.py|602fa38dac|0 996f2e8e90d7
+ 结尾句接点.py|d680939115|0 996f2e8e90d7
+ 缓存进仓库核对.py|b7f006da92|0 e7f901a06539
+ 缓存进仓库核对.py|eeed5bbfdb|0 e7f901a06539
+-草稿声音.sh|c8d38c9ecc|29 b9cb0527370a
+-规则执行核查.py|01d5d8e0b4|0 25c63b951bf9
+-规则执行核查.py|51e21e9129|0 1a73c1f41f80
++草稿声音.sh|c8d38c9ecc|29 d2668c81ce60
++规则执行核查.py|01d5d8e0b4|0 8394a86caddd
++规则执行核查.py|51e21e9129|0 7776582a0dce
+ 规则执行核查.py|5b19c714d6|0 6503af3ad4ff
+-规则执行核查.py|5c921d87e9|0 9ec1f20da925
+-规则执行核查.py|fb8e760695|0 25c63b951bf9
++规则执行核查.py|5c921d87e9|0 c2ecd2959c3d
++规则执行核查.py|fb8e760695|0 8394a86caddd
+ 证据.py|0b6c7e7e7a|0 50f9350f0167
+ 证据.py|1614684e0f|0 19ed10f041d8
+-证据.py|167635adb3|0 53d491dc54b3
++证据.py|167635adb3|0 8e1da62d0fb7
+ 证据.py|27700b6ce1|0 19ed10f041d8
+ 证据.py|306ea9c7c5|0 19ed10f041d8
+ 证据.py|560066b62d|0 19ed10f041d8
+ 证据.py|561d6f4fc1|0 19ed10f041d8
+-证据.py|664682e5a1|0 53d491dc54b3
+-证据.py|76f0789372|0 53d491dc54b3
++证据.py|664682e5a1|0 8e1da62d0fb7
++证据.py|76f0789372|0 8e1da62d0fb7
+ 证据.py|80415f0cf5|0 19ed10f041d8
+-证据.py|84d254ce89|0 53d491dc54b3
+-证据.py|9dd899bf2e|0 53d491dc54b3
++证据.py|84d254ce89|0 8e1da62d0fb7
++证据.py|9dd899bf2e|0 8e1da62d0fb7
+ 词尾辅音核对.py|1ce8274460|0 c95dd41f93e6
+ 词尾辅音核对.py|5bb3d2838c|0 c95dd41f93e6
+ 词尾辅音核对.py|749430d169|0 c95dd41f93e6
+ 词尾辅音核对.py|8dfdf79df3|0 c95dd41f93e6
+ 词尾辅音核对.py|f8a3e54994|0 c95dd41f93e6
+-踩坑核查.py|016245842c|0 d05ca11be1d5
+-踩坑核查.py|05748d914c|0 d05ca11be1d5
+-踩坑核查.py|07cb08911d|0 d05ca11be1d5
+-踩坑核查.py|0dcdb21800|0 d05ca11be1d5
+-踩坑核查.py|147d0e636b|0 d05ca11be1d5
+-踩坑核查.py|1cbb15b2d0|0 d05ca11be1d5
+-踩坑核查.py|2215903ca8|0 d05ca11be1d5
+-踩坑核查.py|29b5a49fb5|0 d05ca11be1d5
+-踩坑核查.py|2daeacf6d4|0 d05ca11be1d5
+-踩坑核查.py|5024342213|0 d05ca11be1d5
+-踩坑核查.py|54a603f268|0 d05ca11be1d5
+-踩坑核查.py|55520c7b18|0 d05ca11be1d5
+-踩坑核查.py|574ae6c8b5|0 d05ca11be1d5
+-踩坑核查.py|5847828c66|0 d05ca11be1d5
+-踩坑核查.py|5d10d54a0d|0 d05ca11be1d5
+-踩坑核查.py|5f94802c42|0 d05ca11be1d5
+-踩坑核查.py|62ea62d9fb|0 d05ca11be1d5
+-踩坑核查.py|6628e547d1|0 d05ca11be1d5
+-踩坑核查.py|6a1de22537|0 d05ca11be1d5
+-踩坑核查.py|6b5bcbaf8f|0 d05ca11be1d5
+-踩坑核查.py|751bc2f92b|0 d05ca11be1d5
+-踩坑核查.py|7dc90e9320|0 d05ca11be1d5
+-踩坑核查.py|804b39d761|0 d05ca11be1d5
+-踩坑核查.py|833171dd19|0 d05ca11be1d5
+-踩坑核查.py|8905e6ae08|0 d05ca11be1d5
+-踩坑核查.py|9322071be3|0 d05ca11be1d5
+-踩坑核查.py|950f5d521e|0 d05ca11be1d5
+-踩坑核查.py|a051805ff6|0 d05ca11be1d5
+-踩坑核查.py|a3df3ede6d|0 d05ca11be1d5
+-踩坑核查.py|a4556ec8cb|0 d05ca11be1d5
+-踩坑核查.py|ac79d2ba15|0 d05ca11be1d5
+-踩坑核查.py|b7658d1dc1|0 d05ca11be1d5
+-踩坑核查.py|b906b22793|0 d05ca11be1d5
+-踩坑核查.py|bd15c5073b|0 d05ca11be1d5
+-踩坑核查.py|bdaf61fb7c|0 d05ca11be1d5
+-踩坑核查.py|bff130ea18|0 d05ca11be1d5
+-踩坑核查.py|c36dc6ca09|0 d05ca11be1d5
+-踩坑核查.py|ce879f90c8|0 d05ca11be1d5
+-踩坑核查.py|d0184acd6d|0 d05ca11be1d5
+-踩坑核查.py|d08250ae60|0 d05ca11be1d5
+-踩坑核查.py|d365034f1b|0 d05ca11be1d5
+-踩坑核查.py|d7d5fbe07d|0 d05ca11be1d5
+-踩坑核查.py|e77a390eb5|0 d05ca11be1d5
+-踩坑核查.py|efdb08e5f7|0 d05ca11be1d5
+-踩坑核查.py|f34268fdbe|0 d05ca11be1d5
+-踩坑核查.py|f69cc9424c|0 d05ca11be1d5
+-踩坑核查.py|f8fce30a57|0 d05ca11be1d5
+-门变异.py|852b7935bd|0 430afeebf953
++踩坑核查.py|016245842c|0 7f82b92b2dd4
++踩坑核查.py|05748d914c|0 7f82b92b2dd4
++踩坑核查.py|07cb08911d|0 7f82b92b2dd4
++踩坑核查.py|0dcdb21800|0 7f82b92b2dd4
++踩坑核查.py|147d0e636b|0 7f82b92b2dd4
++踩坑核查.py|1cbb15b2d0|0 7f82b92b2dd4
++踩坑核查.py|2215903ca8|0 7f82b92b2dd4
++踩坑核查.py|29b5a49fb5|0 7f82b92b2dd4
++踩坑核查.py|2daeacf6d4|0 7f82b92b2dd4
++踩坑核查.py|5024342213|0 7f82b92b2dd4
++踩坑核查.py|54a603f268|0 7f82b92b2dd4
++踩坑核查.py|55520c7b18|0 7f82b92b2dd4
++踩坑核查.py|574ae6c8b5|0 7f82b92b2dd4
++踩坑核查.py|5847828c66|0 7f82b92b2dd4
++踩坑核查.py|5d10d54a0d|0 7f82b92b2dd4
++踩坑核查.py|5f94802c42|0 7f82b92b2dd4
++踩坑核查.py|62ea62d9fb|0 7f82b92b2dd4
++踩坑核查.py|6628e547d1|0 7f82b92b2dd4
++踩坑核查.py|6a1de22537|0 7f82b92b2dd4
++踩坑核查.py|6b5bcbaf8f|0 7f82b92b2dd4
++踩坑核查.py|751bc2f92b|0 7f82b92b2dd4
++踩坑核查.py|7dc90e9320|0 7f82b92b2dd4
++踩坑核查.py|804b39d761|0 7f82b92b2dd4
++踩坑核查.py|833171dd19|0 7f82b92b2dd4
++踩坑核查.py|8905e6ae08|0 7f82b92b2dd4
++踩坑核查.py|9322071be3|0 7f82b92b2dd4
++踩坑核查.py|950f5d521e|0 7f82b92b2dd4
++踩坑核查.py|a051805ff6|0 7f82b92b2dd4
++踩坑核查.py|a3df3ede6d|0 7f82b92b2dd4
++踩坑核查.py|a4556ec8cb|0 7f82b92b2dd4
++踩坑核查.py|ac79d2ba15|0 7f82b92b2dd4
++踩坑核查.py|b7658d1dc1|0 7f82b92b2dd4
++踩坑核查.py|b906b22793|0 7f82b92b2dd4
++踩坑核查.py|bd15c5073b|0 7f82b92b2dd4
++踩坑核查.py|bdaf61fb7c|0 7f82b92b2dd4
++踩坑核查.py|bff130ea18|0 7f82b92b2dd4
++踩坑核查.py|c36dc6ca09|0 7f82b92b2dd4
++踩坑核查.py|ce879f90c8|0 7f82b92b2dd4
++踩坑核查.py|d0184acd6d|0 7f82b92b2dd4
++踩坑核查.py|d08250ae60|0 7f82b92b2dd4
++踩坑核查.py|d365034f1b|0 7f82b92b2dd4
++踩坑核查.py|d7d5fbe07d|0 7f82b92b2dd4
++踩坑核查.py|e77a390eb5|0 7f82b92b2dd4
++踩坑核查.py|efdb08e5f7|0 7f82b92b2dd4
++踩坑核查.py|f34268fdbe|0 7f82b92b2dd4
++踩坑核查.py|f69cc9424c|0 7f82b92b2dd4
++踩坑核查.py|f8fce30a57|0 7f82b92b2dd4
++门变异.py|852b7935bd|0 525c030d7ac4
+ 音频体检.py|d7591fd4ca|0 00040979b94e
+ ```
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\275\251\346\216\222\351\200\232\350\277\207.json" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\275\251\346\216\222\351\200\232\350\277\207.json"
+index b003327..19a4901 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\275\251\346\216\222\351\200\232\350\277\207.json"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\275\251\346\216\222\351\200\232\350\277\207.json"
+@@ -14,14 +14,14 @@
+ "title_anim.py": "c46ad2ac19434c1b4031235273bc57080e53e2c14cafcea956d3bbd7ddeabf12",
+ "token账本.py": "e21ae32e32b584bc02bd5b7d4e7d5939736eb4c2038a3ec6a9c9c798f5abd9bc",
+ "token进行中.sh": "bb6d109fc1041f143463252c0e677d008fdb1ef658b6c6607ada83a26b9caf9e",
+-"丝滑.py": "4b1f0b3aad7bd1f3dc516cfcf50ae877652967fa1ab3be145cd4c183a1b58fde",
+-"主会话核对.sh": "2c8b13144f193fe340be1c34d831ccb7bb27a9d038276a5f5b94f29ced259718",
++"丝滑.py": "56556b7960dd26fdaa6ebe3951e30c1e8022f7d4b9fcd28dba8b5f2c683f06a4",
++"主会话核对.sh": "b5f0a22a4d76ab1b7cf4e7cdb18fafe42e9c4f46d1bcf0834426910dac6cd53c",
+ "交付核查.py": "a1adc2eee5e08233a7a6547857e17e4a4194699f3f2bed74f281cd302d076c04",
+-"会话开工.py": "756c92cb3f3a23c0c5195b08d58c5a1934ba3a7fec1665deac1c337dd9a4e139",
++"会话开工.py": "f8592f70e3d732ad3ce448fc76328d220937fe6e29edad88208beb936b89a618",
+ "余音删法核对.py": "9c9e218e5a8c5fe1c4df79f5837f50ae5b1780b4336ef34669ec6d34d3157695",
+ "停顿位置精确核对.py": "4ea4f2433853f64b43ebfd89669f0bae5710a0d7abfef890110338ca5bf048a7",
+ "全篇核查.py": "a28620f8c586c19ddd7d978386b790be48daecfea6584451ea0256edca7e6ad9",
+-"出片守门自检.py": "3c87cf8a7d76b259e1354e532d0640be23766e7a1b1e837518f8cd4ded0c0728",
++"出片守门自检.py": "68a485c117d11fee356898d02728353e00a5e1861bf74c9488b0fc1b0f45f333",
+ "出片指纹.py": "ef589d2ad0bc9e1806a37161c81e727b7f900d4de490d05d4c74755b392b91a9",
+ "初稿生成/核对.py": "ccc583ccc906cd86187796377391a2e49a5318b78865835787c54143ae3a936c",
+ "删除段确认.py": "5827ea4f33fb052bbbf7adc2173d956a381ab248b978f2d40fca3683ab5afc13",
+@@ -34,7 +34,7 @@
+ "同意记录追加.py": "66e4f11442c2513d11881f8532c862d436251361f355b626af34c112414ab678",
+ "同步自检.py": "262731f3671a3ff2fd94ad5b98486dfe37564203c32a3169ddde1d0b16fbe481",
+ "响度一致性核对.py": "cfb3a044a71effb81c18c6c83d085d3c6eb9f394d8ce54ccf7949358c7cd4b4c",
+-"定稿流水线.sh": "51383c5a3cff817412a3289a552796183977adfb538d2bb36e7e3bb3a0144a04",
++"定稿流水线.sh": "90a63b264630dff4a0ea4915e1663cb7884669f0d6706e836cbcae7311ecfb6c",
+ "定稿视频核对.py": "c8aa69f8572210dbf78f49f5c8928f2e00b11d8e50de767bd68261a506ae0060",
+ "对正量.py": "d6adf6ba7a628614a88278c461f753584e5242a8d12995ca42f18ecfbd9ef97f",
+ "对比成片.py": "6e0f54fded1f2c1401c731d24f3188c33e0365b573b593a8d0329be41fef082e",
+@@ -49,29 +49,29 @@
+ "开工提醒.sh": "5f5d1280a84cdbc9a2354df9a1a867b8120fd6bdc40bd143738daebbc01ceaac",
+ "开工记录.py": "fcd588d0848b7bf5379d655cca6d4c1e63eec447a1b7d248886f3b037f9d40ca",
+ "归档定稿视频.py": "e0580c106bba65619a45f1e69842e10b6dfd5a7337d8d6f2c3a738ce0886bf7d",
+-"彩排.sh": "51b63841f5db2e9a0ca8ad5c7a652884f6e6a82a41ee3822c5f8bfaee777f35c",
++"彩排.sh": "29157e9b45c1a5682904c81a18810e675a17f2f7400936fe19e40a8482e8cdd9",
+ "快速重建核查.sh": "de6e6b6c97aaeb19ff325bb7f3f6cd3798515aaf8066d3c72c482303a2c642cf",
+ "意思个数.py": "601dd9919e3f681dcad00c657f1c8bb238f0d47376298d462000ecf71240c66f",
+ "成片时刻对照.py": "1d691022b6344a3af22fe21eb30d200f9513c6c157b6c3de3e733152d77f975e",
+-"执行效应声音演练.py": "2edc7f801d1e0fd7809fbff16aba7ac193832e1e70685b8a7e3ef320adc8535d",
+-"执行效应演练.py": "147cde0ce1532be48022d246017494cfbbf2dfcfde03db8cf977e97617666768",
++"执行效应声音演练.py": "b61caebbb88d3c81f64687bdf70488b686d2aefb1ccd5a288cc887c51cf33eb1",
++"执行效应演练.py": "bb16587ad9db64c78adb227d46df103fb4f5480b04abf5a8c9cd1ef63ac88cae",
+ "执行效应缺口基线.json": "9f13528fdc59a1c1062e44081c514a9c7e383216190cbfe88dd3d26d914d38b0",
+-"报坑.py": "b676bf511bc48964fb3de127dc9e63b54036a5f3f6d8a0db6a0224af28b6e21a",
++"报坑.py": "30165f55b96ada8052675c949977143cf28f15a667a3cbb40be532d9f155a783",
+ "抽屏.py": "f096021a30dae3e1231c2518076fdd86eb821be8dc7e2c4de3b1ddf9e5782437",
+ "拆分组.py": "5703f55a7b9f75368468731e855b0eb573bbb603412d2aa51e3d66e7695ba9db",
+ "排版自检.py": "920a0751f9abfc8cd291fab9adcf9d9176e2c69b39c10411b043387d9ef0ff81",
+-"推请求.py": "2cf4b08457471a533e305650b169f7403ad748230180e12f2720f801c83bf904",
+-"推送两仓库.sh": "20c64e2eec6f0c79dde4df3718952bc828b9004edf24505510dc60a4152c7060",
+-"推送自检.py": "0b456b895ddf926ecfacce674341c60db9b78ddf78a1b4a37b2259e653ae10b1",
++"推请求.py": "0be2c20578e11b2a306aa7388fb2cd8e27e2778daa61fa1f506130c85b53e1a2",
++"推送两仓库.sh": "8a2c868587d7ce97fa8bf17b89e44098ee65c59b2d8a0c091729e5dd4ca3dba6",
++"推送自检.py": "7b506a4e5877cb6f5cc396147a6715a0833eabcfdb7d2daa3ea6e6e68db98090",
+ "收工记录.py": "a369823029d610015eb06b6302940f1432fc5c6f51f5117a62773a30e7bee2e9",
+ "放行口子核查.py": "431eaef79bae8a06e534c1a9ab9b8762b8876b671c10ef5e6dc42b4ea8051608",
+-"放行口子表.json": "f89663b35c4445c71a4c10a232c24217e928dfb11da2bf3d40018f9a263d2777",
+-"方法进化表.py": "69b9258c67318c6543bf2894f5c94c152ade8f51877cb1f1dc73f6db49a5a0bc",
++"放行口子表.json": "d8ce883062b3184935fb32dab31cb4206193905bdcd90a38205a9f9e126cd3d8",
++"方法进化表.py": "5034c12ea22253a36c67659df77b47ea92c02789aa73205bb18203f8acb39bdc",
+ "无标点停顿核对.py": "0cf39746177d24fd925396460fbb7060420e901c5a4dcc22d001a85c6eb54471",
+-"机制清单.json": "fd08c14d6ed2ed0701e2de762e83acf6efce701b74de2c14b76c0b931d91eb00",
++"机制清单.json": "4318555b94bab490c18ddd5c9cdbfe0a6efaba3007f42ff5ddac3ce05ce40f97",
+ "机器复听.py": "bdff79c227687c73b9c6e83d36ec77b966cb3ba6b908a0453b788bc924d8b192",
+ "标点停顿核对.py": "eb9903c624e312647b2618fab972e05f0c64ade858bd71f244efbe4807961b71",
+-"流程自检.py": "a4a498d1dc16c87a7401f233c68840959ffe2107cc1d2552c02d6901c5371445",
++"流程自检.py": "a20fde674dfec4faa714e3781efdb584e8dae4f866446004e802aa140731bd60",
+ "演练镜像.py": "c7783435831fd9999f8f45ca38a45ff90654ab60f5f026f85f5e15df40f7b934",
+ "独立复核/audit.py": "bfe12dab6bec96c9b765faea286ae30a067589f6c5ef78461b21d12b955f1e22",
+ "独立复核/labels.py": "9dc510ac2d7f5ed3f0d5b666c10eea92f2f22c14a9e5681739b87cb376571c2d",
+@@ -80,7 +80,7 @@
+ "环境/准备机器.sh": "3160a0e1fcbf318870038c707b9c4b37e66c41f991111fa064d2c584d13ffb58",
+ "环境/模型校验码.json": "3058f0f9927b33c40d0d6d810c76b31d5083c880cf91d0a2576ce4f6f7685321",
+ "生成文本.py": "0ab301c19c7f44aede4f6f701d67b65e30e8798487f09129191d55bc4d01b317",
+-"用上核查.py": "89661e13fc646e35093a014cf64128a7ed59e5d524ffc36862a838a5e001d421",
++"用上核查.py": "4dc83d3d8b0e63bdbc44709df128a54f3d39ccd688b067bc75c2415c946cb21d",
+ "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea",
+ "破折号.py": "c1b1729e7f4df237865674ba843be8f15e00550806a56eacb1c7f878b4932471",
+ "确认平移.py": "8d12b72841efba01ee1d8855158f56c4cbc4370d151bccf87ab770ece6ba6fde",
+@@ -89,11 +89,11 @@
+ "结尾句接点.py": "15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61",
+ "缓存进仓库核对.py": "56298c3d1c56867e07f08e2d274d7fd5f089933f765d9b6488a77b8393bd8913",
+ "自动切点.py": "36c1d3df45095d1ea7e3e19ab87bb4f3d8d7e21f81ba34556d1cbba8802dedc0",
+-"草稿声音.sh": "e58326963d4e61aac699bd3a0b9c2d1d2aed1fec469a0019c093efa6c320aa99",
++"草稿声音.sh": "b56cde7f1cd55072173f858c1646e673ffa4a4a904a070e79f31501b0fe400e6",
+ "补对照记录.py": "61090128338885bfb2136cd8b471a52c5119bbddaef0257fb47126be7b4dbb9c",
+-"规则执行核查.py": "05a2d6df11dc53f3295f5a99b732277e22d78169a93d64385a4e1b455aaf3288",
++"规则执行核查.py": "fab6f5dfd3cc8c111044c79702ba6084658979898bb055fe499b18f448d729da",
+ "规则执行缺口基线.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+-"规则执行表.json": "22304c9efacc4d2d554761bdd49d371eeb314177d1391fed80ddd04b55570e8b",
++"规则执行表.json": "b26c648bca2d9b2c8a90f19e700596e2f1faeda3664a56ad0e40bed20bc9658f",
+ "证据.py": "21efab36dcb83c7a9e7eda4d423b51c052372e92f0dd831e9ae3287913090fad",
+ "词尾实测.py": "7cb71c5b4e60e5391bff7ba2843f553548e074a3ac7b71965bc62f2836817ad4",
+ "词尾辅音核对.py": "000884f9be1494370b1c849a779e50379d5a6ac62c5959c0b5bf1d6fc52bfb89",
+@@ -108,11 +108,11 @@
+ "配音缓存核对.py": "e4804cacb207e99a460e341ec990983c1c232f70cbc82b65190d45799c5b6ba9",
+ "重查记录.py": "dbd06ff88805b3761270100de8094e2397a85a0115f50b0fee7c31746d9e91ca",
+ "重点词被去掉.py": "b898e63bb0954f0f17b90f92c2af41b3264ca60b7fd264e1cfa632f3d1e86f93",
+-"钩子/钩子自检.py": "917fcd49fc3dc94b7daaa0dce18e112d0db52269ac896d2c9a33c8d9fff96080",
+-"钩子/闸门.py": "1d7cff4df48f1746c8e106be48f1d08b36e863b859bd9aac613609e034ea4183",
++"钩子/钩子自检.py": "c6ee869ed39faa1dbf07357da3f58a8dccdbe5f5992fb4aee463a2e444a36351",
++"钩子/闸门.py": "5ac426722414503712cfbd0ac2166fc480cfddf7da29598a067c37c7af883737",
+ "镜像同步.py": "264b373fa4db2a28f4ba832305904da37e9f20f1e2bbf176db6e0fc002bbd962",
+ "镜像回收.py": "999b81935cfb230ad29434209c5be953a33bfb4cfa459bccdfddbabc2e3a112a",
+-"门变异.py": "2eefbbd85b4889db48747c91793f5bfcddf0aa4ad7f5469c5700a6ae5c952b1a",
++"门变异.py": "08603d132e916fb1088e7f66580822d7289b49371fe5e75b2ecf5688f09fa021",
+ "音频体检.py": "4e453d2d7d78a31f50b4748eab2370e4eb1f089cc5a20cf448d878a1a2157242",
+ "音频首要法则.py": "a99898a404fed026f570c056195226e2621a627374bcb34ed83557b63953637a",
+ "颜色核对.py": "ab8864045c4eea5511d9b74f163d9f7591b319062d608b128ac0d6df27e31e45",
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\345\243\260\351\237\263\346\274\224\347\273\203\351\200\232\350\277\207.json" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\345\243\260\351\237\263\346\274\224\347\273\203\351\200\232\350\277\207.json"
+index f5b4d08..735151a 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\345\243\260\351\237\263\346\274\224\347\273\203\351\200\232\350\277\207.json"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\345\243\260\351\237\263\346\274\224\347\273\203\351\200\232\350\277\207.json"
+@@ -13,42 +13,42 @@
+  "机器复听.py": "bdff79c227687c73b9c6e83d36ec77b966cb3ba6b908a0453b788bc924d8b192",
+  "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea",
+  "自动切点.py": "36c1d3df45095d1ea7e3e19ab87bb4f3d8d7e21f81ba34556d1cbba8802dedc0",
+- "草稿声音.sh": "e58326963d4e61aac699bd3a0b9c2d1d2aed1fec469a0019c093efa6c320aa99",
++ "草稿声音.sh": "b56cde7f1cd55072173f858c1646e673ffa4a4a904a070e79f31501b0fe400e6",
+  "纯人声核对.py": "cb86edcc2b6dffe8158c484ae9e6310cdb44d264a9ffff87889aec1dba3b51da",
+  "句间停顿核对.py": "72d51908600dca90f45fe2256dd172bafc0f78dc70ebae82f0db4fd26ff40a40",
+  "高亮同步核对.py": "949672166042dfc94103c34e6be203c04fa7fcf64cd40842fbaad89f8d70c588",
+  "make_video.py": "250ff4449e4a7bd84d889d8a4dc4fc736d3f789594a14df6f7ac8f4b6b25fb0a",
+- "执行效应声音演练.py": "2edc7f801d1e0fd7809fbff16aba7ac193832e1e70685b8a7e3ef320adc8535d",
++ "执行效应声音演练.py": "b61caebbb88d3c81f64687bdf70488b686d2aefb1ccd5a288cc887c51cf33eb1",
+  "演练镜像.py": "c7783435831fd9999f8f45ca38a45ff90654ab60f5f026f85f5e15df40f7b934",
+  "演练样本/清单.json": "67f6486e638ea202de67279bebaed8f62a5602f3d1454840d136338fceb042b8",
+  "_挡住": [
+-  "A4句中硬停",
+-  "A21剪句尾辅音",
+-  "A13独立复核剪句尾",
+-  "A9标点停顿加长",
+-  "A9停顿落在词里",
+-  "A8一句变轻",
+-  "A2句间呼吸声",
+-  "A2削波",
+-  "A20句首被吃",
+-  "L14高亮错开",
+   "A11年份读法",
+-  "A37时刻读法",
++  "A13独立复核剪句尾",
+   "A17引号",
+-  "A24多音词",
++  "A20句首被吃",
++  "A21剪句尾辅音",
+   "A21标题标点",
++  "A24多音词",
++  "A2削波",
++  "A2句间呼吸声",
++  "A37时刻读法",
++  "A4句中硬停",
++  "A8一句变轻",
++  "A9停顿落在词里",
++  "A9标点停顿加长",
++  "G12只有声音",
+   "G26旧视频配新脚本",
+   "G36句内一段变轻",
+   "G41体检咔哒",
+-  "G42机器复听吞词",
+   "G42只有parakeet抓到",
+-  "G12只有声音",
++  "G42机器复听吞词",
++  "L14高亮错开",
+   "原样自检出片前20",
+   "原样自检出片后20",
+   "原样自检出片后25",
++  "自查拆门_parakeet",
+   "自查拆门_原样自检",
+-  "通路_草稿声音26",
+   "自查拆门_声音",
+-  "自查拆门_parakeet"
++  "通路_草稿声音26"
+  ]
+ }
+\ No newline at end of file
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\346\274\224\347\273\203\351\200\232\350\277\207.json" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\346\274\224\347\273\203\351\200\232\350\277\207.json"
+index 5753b0d..9623e3a 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\346\274\224\347\273\203\351\200\232\350\277\207.json"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\211\247\350\241\214\346\225\210\345\272\224\346\274\224\347\273\203\351\200\232\350\277\207.json"
+@@ -1,5 +1,5 @@
+ {
+- "钩子/闸门.py": "08db30326f36996098de25e9942c3db48cc12a340bab0524f91d3ae77451bcb6",
++ "钩子/闸门.py": "5ac426722414503712cfbd0ac2166fc480cfddf7da29598a067c37c7af883737",
+  "踩坑核查.py": "bea439d24fa57e61d3764cd38155ba6976549e7d93091c6f8f47eab222b269da",
+  "译文核查.py": "d8ba89be08ec42bcaf287941300ca68fe5abbdc232650cd0b84547a5f50a7359",
+  "破折号.py": "c1b1729e7f4df237865674ba843be8f15e00550806a56eacb1c7f878b4932471",
+@@ -7,10 +7,10 @@
+  "读音核对.py": "4392460131532a792e971a513f141a72aa7883a9cd6279cbfa1be0b5411d1d26",
+  "make_video.py": "250ff4449e4a7bd84d889d8a4dc4fc736d3f789594a14df6f7ac8f4b6b25fb0a",
+  "render.py": "b705906ff1baff696c88eb332e92e0643ca08bea76a9b5552e9a9a310d265d60",
+- "执行效应演练.py": "34b3c1ea95ab4c2678d32abb491a51fd5036248f1e54032f93fffe327d34a435",
+- "规则执行表.json": "b1a008d3158849b4bb8b5a79f528d256ebe002859cfffaad4490df2a041c6f1d",
++ "执行效应演练.py": "bb16587ad9db64c78adb227d46df103fb4f5480b04abf5a8c9cd1ef63ac88cae",
++ "规则执行表.json": "b26c648bca2d9b2c8a90f19e700596e2f1faeda3664a56ad0e40bed20bc9658f",
+  "放行口子核查.py": "431eaef79bae8a06e534c1a9ab9b8762b8876b671c10ef5e6dc42b4ea8051608",
+- "放行口子表.json": "c45ec94f48ce17f510e1e35e2f8629b84a33376a31ddce8a4aab8fbac2ba9fe8",
++ "放行口子表.json": "d8ce883062b3184935fb32dab31cb4206193905bdcd90a38205a9f9e126cd3d8",
+  "同意记录追加.py": "66e4f11442c2513d11881f8532c862d436251361f355b626af34c112414ab678",
+  "定稿流水线.sh": "90a63b264630dff4a0ea4915e1663cb7884669f0d6706e836cbcae7311ecfb6c",
+  "归档定稿视频.py": "e0580c106bba65619a45f1e69842e10b6dfd5a7337d8d6f2c3a738ce0886bf7d",
+@@ -165,5 +165,5 @@
+   "自查拆门_排版",
+   "自查拆门_清点"
+  ],
+- "_有演练的规矩": 434
++ "_有演练的规矩": 438
+ }
+\ No newline at end of file
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json"
+index 914ee26..66555cb 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json"
+@@ -7290,6 +7290,9 @@
+     "丝滑.py",
+     "自动登记没成功的不丝滑没列进未闭环（K56）"
+    ]
++  ],
++  "演练": [
++   "丝滑.py --自检（K56：自动登记没成功的不丝滑必列进未闭环；K57：改门会话不丝滑变差没写进化落地必报；K73：彩排停下数开工记录不算、不丝滑/内容问题/坏行都算）+ 方法进化表.py --自检（K58：改门会话上下文超 300k 必停）"
+   ]
+  },
+  "G109": {
+@@ -7308,6 +7311,9 @@
+     "丝滑.py",
+     "没抓到：改门会话不丝滑比前三个中位数差、没写进化落地（K57）"
+    ]
++  ],
++  "演练": [
++   "丝滑.py --自检（K56：自动登记没成功的不丝滑必列进未闭环；K57：改门会话不丝滑变差没写进化落地必报；K73：彩排停下数开工记录不算、不丝滑/内容问题/坏行都算）+ 方法进化表.py --自检（K58：改门会话上下文超 300k 必停）"
+   ]
+  },
+  "G110": {
+@@ -7322,6 +7328,9 @@
+     "方法进化表.py",
+     "没抓到：改门会话上下文 500k 超 300k（K58）"
+    ]
++  ],
++  "演练": [
++   "丝滑.py --自检（K56：自动登记没成功的不丝滑必列进未闭环；K57：改门会话不丝滑变差没写进化落地必报；K73：彩排停下数开工记录不算、不丝滑/内容问题/坏行都算）+ 方法进化表.py --自检（K58：改门会话上下文超 300k 必停）"
+   ]
+  },
+  "G121": {
+@@ -7340,6 +7349,9 @@
+     "丝滑.py",
+     "彩排停下数不对（K73"
+    ]
++  ],
++  "演练": [
++   "丝滑.py --自检（K56：自动登记没成功的不丝滑必列进未闭环；K57：改门会话不丝滑变差没写进化落地必报；K73：彩排停下数开工记录不算、不丝滑/内容问题/坏行都算）+ 方法进化表.py --自检（K58：改门会话上下文超 300k 必停）"
+   ]
+  }
+ }
+\ No newline at end of file
