@@ -1,0 +1,13 @@
+补丁 视频/云端/待演练/K60改门推送v5.diff sha256 348b0f7923b5efd4
+底版 5a6c8109b8042bb5b08036461b1c718e6cca5de5
+运行 40603121022
+退出码 1
+结果补丁 253 行
+改门推送 K60改门推送v5（门变异 126 片，全量）
+  hs = 写清单(res, None if '--增量' in a else datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%MZ')); print(f'门变异清单：{len(res)} 道门，漏洞 {len(hs)}' + ('（增量）' if '--增量' in a else '（全量）')); return 0
+门变异清单：321 道门，漏洞 79（全量）
+门变异基线：通过
+② 门变异合并、查基线通过
+    import numpy as np, soundfile as sf
+ModuleNotFoundError: No module named 'numpy'
+【改门推送不过】③ 声音演练分片合并不过
