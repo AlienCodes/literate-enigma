@@ -78,7 +78,7 @@ Counting heads cannot **guarantee** the health of **individual** animals, and **
 | individual | 本文：个体；adj. 个体的，个别的（individual animals/cases）；n. 个人，个体 | 5 |
 | continual | 本文：持续；adj. 持续不断的，频频的（continual doses/complaints）；比较 continuous 不间断的 | 5 |
 | inflict | 本文：造成；v. 造成（损害、痛苦）（inflict damage/harm/pain on sb/sth） | 5 |
-| how much damage | 本文：多大损害；短语. 多大损害（how much damage low doses inflict 低剂量会造成多大损害；inflict damage on sth 对……造成损害） | 5 |
+| how much damage | 本文：多大损害；短语. 多大伤害，多大损害（how much damage low doses inflict 低剂量会造成多大伤害；inflict damage on sth 对……造成损害） | 5 |
 | contentious | 本文：争议；adj. 有争议的，引起争论的（a contentious issue/claim） | 5 |
 | clash over | 本文：在……上存在冲突；v. 冲突，抵触（clash over methods/policy；clash with sb）；（颜色）不协调；n. 冲突 | 5 |
 | burgeoning | 本文：迅速增长的；adj. 迅速增长的，日益壮大的（a burgeoning population/industry/herds） | 5 |
