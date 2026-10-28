@@ -3,8 +3,10 @@
 不手抄：每条规矩的门、自检照旧表解析（规则执行核查.解析），按门所在程序归到阶段。
 用法：python3 新管/生成规则表.py [--写入]   不带 --写入只打印统计和“没搬”清单。"""
 import sys, os, re, json, hashlib
-H = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(H)
-T = os.environ.get('XG_TOOLS', f'{R}/视频/工具'); sys.path.insert(0, T)
+H = os.path.dirname(os.path.abspath(__file__))
+_内 = os.path.exists(f'{os.path.dirname(H)}/交付核查.py')   # 切换后在 视频/工具/新管/ 里
+R = os.path.dirname(os.path.dirname(os.path.dirname(H))) if _内 else os.path.dirname(H)   # 仓库根（有 CLAUDE.md）
+T = os.environ.get('XG_TOOLS') or (os.path.dirname(H) if _内 else f'{R}/视频/工具'); sys.path.insert(0, T)
 import 规则执行核查 as RZ
 
 # 门所在程序 → 阶段。看门类由 指纹/快测 替代（原因写在 替代原因）

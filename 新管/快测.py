@@ -10,7 +10,7 @@
 import sys, os, json, subprocess, hashlib, time, glob
 from concurrent.futures import ThreadPoolExecutor
 H = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(H)
-T = os.environ.get('XG_TOOLS', f'{R}/视频/工具'); W = os.environ.get('XG_WORK', '')
+T = os.environ.get('XG_TOOLS') or (R if os.path.exists(f'{R}/交付核查.py') else f'{R}/视频/工具'); W = os.environ.get('XG_WORK', '')
 NO = os.environ.get('XG_NO', '27'); 基准 = f'{H}/回归基准_{NO}.json'
 sys.path.insert(0, T)
 md5 = lambda p: hashlib.md5(open(p, 'rb').read()).hexdigest()
