@@ -15,6 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          fetch-depth: 400   # K89：证据链按 git 历史认入口的旧版本，浅克隆（默认 1）找不到就误判
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             /*
