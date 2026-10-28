@@ -42,11 +42,16 @@ def 音标(w):
         return _自检读音.get(w, w)
     return 归一音标(_tk.phonemize(w, 'en-us'))   # 注音变体（eleven/11、organised/organized）归一
 
+_序 = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth', 'twentieth'] + [f'twenty-{x}' for x in ('first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth')] + ['thirtieth', 'thirty-first']
+_序词 = '|'.join(sorted(_序, key=len, reverse=True))
 _月 = 'january|february|march|april|may|june|july|august|september|october|november|december'
 def 词(t):
     t = re.sub(r'(?<=\d),(?=\d{3})', '', t.lower())
-    t = re.sub(rf'\b([1-9]|[12]\d|3[01]) ({_月})\b', r'the \1 of \2', t)   # 出片程序把 6 January 读成 the sixth of January（make_video spoken）
     t = re.sub(r'(\d+)(st|nd|rd|th)\b', r'\1', t)
+    序 = lambda w: str(_序.index(w) + 1)
+    t = re.sub(rf'\b({_序词}) of ({_月})\b', lambda m_: f'{序(m_.group(1))} of {m_.group(2)}', t)   # G122（K81）：识别器写 the fifth of October，序数词归成数字（只在月份旁）
+    t = re.sub(rf'\b({_月}) (?:the )?({_序词}|[1-9]|[12]\d|3[01])\b', lambda m_: f'the {m_.group(2) if m_.group(2).isdigit() else 序(m_.group(2))} of {m_.group(1)}', t)   # G122（K81 28 S15）：small.en 把 the fifth of October 改写成 October 5 / October the fifth，归成同一种
+    t = re.sub(rf'\b(?:the )?([1-9]|[12]\d|3[01]) ({_月})\b', r'the \1 of \2', t)   # 出片程序把 6 January 读成 the sixth of January（make_video spoken）
     t = re.sub(r'(\d)\s*%', r'\1 per cent', t); t = re.sub(r'\bpercent\b', 'per cent', t)   # G56（27 S14）：识别器写 40%，脚本 per cent
     return re.findall(r"[^\W_]+(?:'[^\W_]+)?", t)   # 带变音符的专名（Ötztal）整词保留
 
@@ -100,8 +105,22 @@ def _比(ref, hyp):
         if R[a1:a2] and ''.join(R[a1:a2]) == ''.join(H[b1:b2]): continue   # 拼写连起来相同（脚本 walkiescorchie / 听到 walkie scorchie）
         if R[a1:a2] and ''.join(改.get(w, pr[a1 + j]) for j, w in enumerate(R[a1:a2])) == ''.join(ph[b1:b2]): continue   # 读音改正表：配音读的是改正后的读音（22 S11 Walkie-Scorchie 听成 scorchy）
         if op == 'replace' and all(w in 核专名 or w in 已核实() and w in 专名 for w in R[a1:a2]): continue   # 已核实表里大写开头的键（专名），句首也豁免（20 S17 Ötzi）   # A23 已对权威来源查过读音（读音核对 出片前把关）的专名（脚本里大写）：识别器不认识、听成别的不算；漏掉、多出照报
+        if op == 'replace' and 专名夹带(R[a1:a2], pr[a1:a2], ''.join(ph[b1:b2]), lambda w: w in 核专名 or w in 已核实() and w in 专名): continue   # G122（K81 28 S14 a Lasker → alaska）
         out.append((' '.join(R[a1:a2]) or '（多出）', ' '.join(H[b1:b2]) or '（没听到）'))
     return out
+
+def 专名夹带(ws, ps, h, 专):
+    """G122（K81）：识别器把已核实专名和旁边的普通词并成一个词（a Lasker → alaska）。专名只能是连着的一段；
+    专名前后的普通词必须原样听到（听到的音标以它们开头、结尾），中间剩下的给专名，不能是空的（专名漏掉照报）"""
+    k = [i for i, w in enumerate(ws) if 专(w)]
+    if not k or len(k) == len(ws) or k != list(range(k[0], k[-1] + 1)): return False
+    import itertools
+    读 = lambda i: {ps[i], _弱读.get(ws[i], ps[i])}   # 单念 a 是 /eɪ/，句中读弱读 /ə/
+    for 前 in map(''.join, itertools.product(*map(读, range(k[0])))):
+        for 后 in map(''.join, itertools.product(*map(读, range(k[-1] + 1, len(ws))))):
+            if h.startswith(前) and h.endswith(后) and len(h) > len(前) + len(后): return True
+    return False
+_弱读 = {'a': 'ə', 'an': 'ən', 'the': 'ðə', 'of': 'əv', 'to': 'tə', 'and': 'ənd', 'for': 'fəɹ', 'from': 'fɹəm', 'at': 'ət', 'as': 'əz'}
 
 def 听(no, src=None, rec=None, 改=None):
     d = json.load(open(f'scripts/{no}.json')); seg = json.load(open(f'work_{no}/分段.json'))
@@ -180,6 +199,12 @@ def 比较自检():
         if 比(r_, h_): f.append(f'误报：“{r_}”听成“{h_}”（句首已核实专名 / 读音改正表 / 货币符号），却报了 {比(r_, h_)}')
     for r_, h_ in (('He sat there', 'He set there'), ('a fine of 1,000 pounds each', 'a fine of £1,000'), ('Ötzi was found in 1991', 'was found in 1991')):   # 小写 sat 不因已核实表里有 SAT 豁免；货币归一后漏词、专名漏掉照报
         if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
+    for r_, h_ in (('Tu was named a Lasker Award recipient', 'Tu was named Alaska Award recipient'), ('On 5 October 2015 she won', 'On October 5, 2015 she won'),
+                   ('On 5 October 2015 she won', 'On October the fifth 2015 she won'), ('On 5 October 2015 she won', 'On the fifth of October 2015 she won')):   # G122（K81 28 S14、S15）
+        if 比(r_, h_): f.append(f'误报：“{r_}”听成“{h_}”（冠词并进已核实专名 / 日期改写），却报了 {比(r_, h_)}')
+    for r_, h_ in (('Tu was named a Lasker Award', 'Tu was named Laska Award'), ('Tu was named a Lasker Award', 'Tu was named a Award'), ('On 5 October 2015 she won', 'On October 2015 she won'),
+                   ('On 5 October 2015 she won', 'On October 6, 2015 she won'), ('she won the prize', 'she won the the prize')):   # G122：冠词漏读、专名漏掉、日子漏读读错、叠读照报
+        if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
     for r_, h_ in (('the cat sat on the mat', 'the cat on the mat'), ('the cabbies waited', 'the cabins waited'), ('He sat there', 'He set there')):
         if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
     global MD, PD, _tk, sf   # 前提门（G79 门变异：以前只有真听声音的主流程走得到）：没有识别模型、有声音程序却没有注音程序，都必须停
@@ -230,7 +255,7 @@ if __name__ == '__main__':
         print(f'## 疑似真问题（{len(q)} 处，先听这些）\n'); print('\n'.join('- ' + x for x in q) or '（无）')
         print(f'\n## 识别器听不准（{len(r)} 处）\n'); print('\n'.join('- ' + x for x in r) or '（无）'); sys.exit(0)
     if sys.argv[1:2] == ['--比较自检']:
-        e = 比较自检(); print('\n'.join(e) or '机器复听 比较自检通过（序数、同音、注音变体、日期、千分位、%、英美拼写、句首已核实专名、读音改正表、货币符号不报；漏词、读错必报）'); sys.exit(1 if e else 0)
+        e = 比较自检(); print('\n'.join(e) or '机器复听 比较自检通过（序数、同音、注音变体、日期（含识别器改写成 October 5）、冠词并进已核实专名、千分位、%、英美拼写、句首已核实专名、读音改正表、货币符号不报；漏词、读错必报）'); sys.exit(1 if e else 0)
     if sys.argv[1:2] == ['--清单']: 清单(sys.argv[2]); sys.exit(0)
     if sys.argv[1:2] == ['--带自检']:
         r0, f = 带自检(sys.argv[2]); bad = [(k, b) for k, _, b in r0 if b]
