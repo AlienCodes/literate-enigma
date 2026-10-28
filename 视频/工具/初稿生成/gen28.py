@@ -63,6 +63,7 @@ CONF={
  "S12 to assess its toxicity, Tu and":"不是三项并列：to assess its toxicity 是目的状语，并列的只有 Tu 和 two colleagues 两项"},
 "方向":{"S1-2 after→于":"after 属于 be named after（以……命名），不是时间方向词，“得名于”方向不涉及先后"},
 "短语":{
+ "S7 litres … of":"不是搭配：two litres of water 是“数量 + 单位名词 + of + 物质”的普通 of 结构（两升水），litres 单独是“升”",
  "S4 compiled … from":"不是搭配：from 属于 extracts from some 200 medicinal herbs（来自……的提取物），compiled 的宾语是 640 prescriptions",
  "S4 evaluated … from":"不是搭配：from 引出提取物的来源（extracts from herbs），evaluated 的宾语是 about 380 extracts",
  "S5 flashes … of":"不是搭配：show flashes of promise 里 flashes 单独是“闪现”，of promise 是普通的 of 结构（希望的闪现），已在说明里写出整句意思",

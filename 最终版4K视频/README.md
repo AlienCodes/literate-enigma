@@ -32,3 +32,4 @@
 | 25 | Apollo 13 The Successful Failure | 阿波罗13号：成功的失败 | 12.5 MB |
 | 26 | The Language the Children Invented | 孩子们发明的语言 | 12.1 MB |
 | 27 | Life in the Forbidden Zone | 禁区里的生机 | 13.4 MB |
+| 28 | A Handful of Wormwood That Saved Millions | 青蒿一握，济世千万 | 13.7 MB |
