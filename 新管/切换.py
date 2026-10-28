@@ -28,6 +28,9 @@ G = "__import__('管道').看门停用()"
     ('推送自检.py', "    if open(f'{L}/CLAUDE.md').read() != '新守则\\n': fails.append('没抓到：CLAUDE.md 没以 postgraduate-vocabulary 为准（G11）')\n", '    if open(f\'{L}/CLAUDE.md\').read() != \'新守则\\n\': fails.append(\'没抓到：CLAUDE.md 没以 postgraduate-vocabulary 为准（G11）\')\n    # 新管：看门停用时推送前查快测印章，印章对不上必停（管道.json 是“启用”时也在这里演练这条分支，门变异才抓得到）\n    写(f\'{P}/视频/工具/管道.py\', open(f\'{T}/管道.py\').read()); 写(f\'{P}/视频/工具/管道.json\', \'{"看门": "停用"}\'); 写(f\'{P}/视频/工具/新管/印章.py\', \'import sys; sys.exit(1)\\n\'); 写(f\'{P}/视频/印章测.md\', \'x\\n\')\n    r = run(); o = r.stdout + r.stderr\n    if r.returncode == 0 or \'快测印章对不上\' not in o: fails.append(f\'没抓到：看门停用时快测印章对不上，推送没停（新管）{o.strip()[-80:]}\')\n    for f_ in (\'视频/工具/管道.py\', \'视频/工具/管道.json\', \'视频/工具/新管/印章.py\', \'视频/印章测.md\'): os.remove(f\'{P}/{f_}\')\n    git(\'reset\', \'-q\', cwd=P)\n'),
     ('方法进化表.py', "re.M) if '## 机制漏洞' in txt else None", "re.M) if re.search(r'^## 机制漏洞', txt, re.M) else None   # K76/K101：只认行首整行标题（正文里出现这几个字不算有这一节）"),
     ('方法进化表.py', "    行2 = {'28': {'K': ['K1（程序）'], '机制漏洞': 1, '手工重复': 0}}\n", "    try: 漏洞节('29', {}, '## 方法设计\\n正文里提到 ## 机制漏洞 这几个字\\n')   # K76/K101：正文里出现“## 机制漏洞”字样不许崩\n    except Exception as e_: f.append(f'K76/K101：正文里出现“## 机制漏洞”字样，漏洞节() 崩了（{type(e_).__name__}）')\n    行2 = {'28': {'K': ['K1（程序）'], '机制漏洞': 1, '手工重复': 0}}\n"),
+    ('报坑.py', 'def 现在(): return datetime.datetime.now(datetime.timezone.utc)', "def 现在():\n    n = datetime.datetime.now(datetime.timezone.utc)\n    f = os.environ.get('BAOKENG_FREEZE')   # 时间炸弹①（主会话 2026-10-28 定）：GitHub 演练按请求提交时刻算超期（drill.yml 给）；提交时已超期的照停，不放宽 G54，只是不因演练跑两小时中途跨过宽限\n    if f and os.environ.get('GITHUB_ACTIONS') == 'true':\n        try: return min(n, datetime.datetime.fromisoformat(f.replace('Z', '+00:00')))\n        except ValueError: pass\n    return n"),
+    ('报坑.py', "    if not any('撞号' in x for x in 判(std, d3, now)[0]): fails.append('没抓到：预留撞号')\n", "    if not any('撞号' in x for x in 判(std, d3, now)[0]): fails.append('没抓到：预留撞号')\n    _env = {k_: os.environ.get(k_) for k_ in ('BAOKENG_FREEZE', 'GITHUB_ACTIONS')}   # 时间炸弹①：冻结时刻的正反样本\n    try:\n        T0 = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=2)   # 请求 2 小时前提交（演练跑了 2 小时）\n        os.environ['GITHUB_ACTIONS'] = 'true'; os.environ['BAOKENG_FREEZE'] = T0.isoformat()\n        dA = 空(); dA['登记'] = [{'号': 'K5', '时刻': 时刻(T0 - datetime.timedelta(hours=25)), '现象': '提交时已超期'}]\n        if not 判('', dA)[1]: fails.append('没抓到：演练冻结时刻下，提交时已超期的登记照样要停（冻结不许放宽 G54）')\n        dB = 空(); dB['登记'] = [{'号': 'K6', '时刻': 时刻(T0 - datetime.timedelta(hours=23)), '现象': '提交时未超期'}]\n        if 判('', dB)[1]: fails.append('误停：提交时未超期、演练中途才过宽限（时间炸弹①）')\n        os.environ.pop('GITHUB_ACTIONS')\n        if not 判('', dB)[1]: fails.append('没抓到：不在 GitHub 演练里冻结时刻起了作用（墙上时钟下已超期必停）')\n    finally:\n        for k_, v_ in _env.items():\n            if v_ is None: os.environ.pop(k_, None)\n            else: os.environ[k_] = v_\n"),
+    ('../../.github/workflows/drill.yml', '      - name: 跑\n        working-directory: /home/runner/work/video\n        run: |\n', "      - name: 跑\n        working-directory: /home/runner/work/video\n        env: {BAOKENG_FREEZE: '${{ github.event.head_commit.timestamp }}'}   # 时间炸弹①：报坑 --严 按请求提交时刻算超期\n        run: |\n"),
 ]
 # 提交前钩子的改法（切换推送时由主会话批准后做，本程序不碰钩子文件，K16）：看门停用时只查快测印章（新管/印章.py），不再跑 会话开工 --提交前、规则执行核查
 管道 = '''import json, os
@@ -42,6 +45,8 @@ def 看门停用():
     ('开关', 'XG_P'): '新管：主仓库根目录（默认 /home/user/postgraduate-vocabulary）；不放宽任何检查',
     ('开关', 'XG_WORK'): '新管 快测：出片工作目录；不放宽任何检查',
     ('开关', 'XG_NO'): '新管 快测：回归篇号（默认 27）；不放宽任何检查',
+    ('开关', 'BAOKENG_FREEZE'): '时间炸弹①（主会话 2026-10-28）：只在 GitHub 演练（GITHUB_ACTIONS=true）里起作用，取请求提交时刻和现在的较早者；提交时已超期照停，不放宽 G54；只由 drill.yml 设',
+    ('开关', 'GITHUB_ACTIONS'): '只用来认“这是 GitHub 上的演练”（配合 BAOKENG_FREEZE，时间炸弹①）；不放宽任何检查',
     ('起查', '修.py:25'): 'G35 结尾简述整屏常规 25 起（用户 2026-10-25 原话，用户同意记录 篇 26）',
 }
 
@@ -66,7 +71,9 @@ def main():
     t = sys.argv[1]; bad = []
     open(f'{t}/管道.py', 'w').write(管道)
     for f, a, b in 补丁:
-        p = f'{t}/{f}'; s = open(p).read()
+        p = f'{t}/{f}'
+        if f.startswith('../') and not os.path.exists(p): print(f'（{f} 不在这个副本里，跳过）'); continue   # 验收副本只拷了 视频/工具
+        s = open(p).read()
         if b in s: continue
         if s.count(a) != 1: bad.append(f'{f}：锚出现 {s.count(a)} 次：{a[:50]}'); continue
         open(p, 'w').write(s.replace(a, b))
