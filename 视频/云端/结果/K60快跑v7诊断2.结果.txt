@@ -1,0 +1,11 @@
+补丁 视频/云端/待演练/K60快跑v7诊断2.diff sha256 a55edaa781beda20
+底版 be182cf207f2edc3ec55ff0c42d66ec5dfac6ed8
+运行 40654682479
+退出码 1
+结果补丁 0 行
+改门推送 K60快跑v7诊断2（门变异 126 片，全量）
+  hs = 写清单(res, None if '--增量' in a else datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%MZ')); print(f'门变异清单：{len(res)} 道门，漏洞 {len(hs)}' + ('（增量）' if '--增量' in a else '（全量）')); return 0
+门变异清单：322 道门，漏洞 81（全量）
+门变异基线：【停止】门变异漏洞变多（81 > 基线 79）：新漏洞补演练场景或自检，补完重跑必须“发现”。新漏洞：make_video.py|0c4f3769d4|0 make_video.py:126  if cnt!=n_: raise SystemExit(f'【停止】读音改正没有全部换到（A23）：；make_video.py|49e7e458e4|0 make_video.py:113  if got_!=n_: raise SystemExit(f'【停止】读音改正没有全部换到（A23）
+【改门推送不过】② 门变异漏洞比基线多
+【改门推送不过】② 门变异没过（见上），演练、彩排不跑
