@@ -42,6 +42,12 @@ def 看门停用():
     ('起查', '修.py:25'): 'G35 结尾简述整屏常规 25 起（用户 2026-10-25 原话，用户同意记录 篇 26）',
 }
 
+def 有同意(t):
+    """停用 8 套看门只认用户原话：用户同意记录 里 用于 含“管道.json 看门 停用”、原话有字、来源不是演练"""
+    try: R = json.load(open(f'{t}/用户同意记录.json'))['记录']
+    except Exception: return False
+    return any('管道.json 看门 停用' in r.get('用于', '') and len(r.get('原话', '').strip()) >= 6 and r.get('来源') != '演练' for r in R)
+
 def main():
     t = sys.argv[1]; bad = []
     open(f'{t}/管道.py', 'w').write(管道)
@@ -57,6 +63,8 @@ def main():
             for 类, 键 in [名]:
                 if tb.setdefault(类, {}).get(键) != 用: tb[类][键] = 用; 改 = True
         if 改: json.dump(tb, open(k, 'w'), ensure_ascii=False, indent=1)
+    if '--停用' in sys.argv and not 有同意(t):
+        print('【停止】用户同意记录.json 里还没有“管道.json 看门 停用”的用户原话（主会话记；篇“全部”、用于含“管道.json 看门 停用”、来源不是演练），不切换'); sys.exit(1)
     if '--停用' in sys.argv or '--启用' in sys.argv:
         json.dump({'看门': '停用' if '--停用' in sys.argv else '启用'}, open(f'{t}/管道.json', 'w'), ensure_ascii=False)
     print('\n'.join(bad) or f'补丁 {len(补丁)} 处已打；开关 {t}/管道.json')
