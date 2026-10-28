@@ -104,6 +104,35 @@ print("\\n".join(bad))''', T], capture_output=True, text=True, cwd=T, env=env0)
     out += [f'G65：{x}' for x in (r.stdout.strip().splitlines() if r.returncode == 0 else [r.stderr.strip()[-200:]])]
     return out
 
+def 读音自检样本():
+    """K102：29 Europe 不误停（读音核对 29 --自检 必过）；把 make_video 的读音改正拆掉（PRON_WORDS 不生效）29 自检必停"""
+    import shutil, tempfile
+    if not W or not os.path.exists(f'{W}/make_video.py'): return []
+    if not os.path.exists(f'{W}/scripts/29.json') and os.path.exists(f'{os.path.dirname(T)}/脚本/29.json'): shutil.copy(f'{os.path.dirname(T)}/脚本/29.json', f'{W}/scripts/29.json')
+    if not os.path.exists(f'{W}/scripts/29.json'): return ['K102：没有 29 的脚本']
+    bad = []; rc, o, _ = 跑(['python3', f'{T}/读音核对.py', '29', '--自检'], W, 600)
+    if rc: bad.append(f'K102 误停：29 读音核对自检 → {o.splitlines()[-1][:120] if o else ""}')
+    with tempfile.TemporaryDirectory(dir=os.path.dirname(W)) as td:   # 和工作目录同级：../tts 照样找得到
+        for f in os.listdir(W):
+            if f.endswith('.py') or f in ('scripts', 'fonts'): (shutil.copytree if os.path.isdir(f'{W}/{f}') else shutil.copy)(f'{W}/{f}', f'{td}/{f}')
+        mv = open(f'{td}/make_video.py').read(); a = '    for w_,good in PRON_WORDS.items():'
+        if a not in mv: return bad + ['K102：make_video.py 里找不到读音改正那一行（坏样本造不出）']
+        open(f'{td}/make_video.py', 'w').write(mv.replace(a, '    for w_,good in {}.items():'))
+        rc, o, _ = 跑(['python3', f'{T}/读音核对.py', '29', '--自检'], td, 600)
+        if rc == 0: bad.append('K102 没抓到：读音改正拆掉（PRON_WORDS 不生效）29 自检照样通过')
+    return bad
+
+def 印章坏样本():
+    """改一个工具程序不重跑快测 → 印章必须对不上（提交、推送、做、定稿都停）"""
+    import tempfile, shutil
+    rc, o, _ = 跑(['python3', f'{H}/印章.py'], R, 60)
+    if rc: return [f'印章：刚盖完就对不上：{o[:120]}']
+    with tempfile.TemporaryDirectory() as td:
+        t2 = f'{td}/工具'; subprocess.run(['cp', '-rs', T, t2]); f = f'{t2}/交付核查.py'; x = open(f).read(); os.remove(f); open(f, 'w').write(x + '\n# 改一行\n')
+        r = subprocess.run(['python3', f'{H}/印章.py'], capture_output=True, text=True, env={**env0, 'XG_TOOLS': t2})
+        if r.returncode == 0: return ['印章没抓到：改了 交付核查.py 没重跑快测，印章照样对得上']
+    return []
+
 def 挂钩():
     import 规则执行核查 as RZ
     return [f'挂钩：{x}' for x in RZ.挂钩检查(RZ.程序表())]
@@ -147,9 +176,11 @@ def main():
         b = 常规规则(); bad += b; out.append(f'③b 常规规则（G35 简述整屏、G65 方法进化 K97）坏样本必抓、好样本必放：{"过" if not b else "不过"}')
         if 全:
             b, _ = fr.result(); bad += b; out.append(f'④ {NO} 回归：{"记了基准" if "--记基准" in a else ("a.wav、分段.json 逐字节、每屏像素一致" if not b else "不一致")}')
+            b = 读音自检样本(); bad += b; out.append(f'⑥ K102 读音自检：29 不误停、拆读音改正必停：{"过" if not b else "不过"}')
             b, n = fs.result(); bad += b; out.append(f'⑤ 交付核查 出片前/出片后 + 出片守门自检：{"全过" if not b else f"{len(b)} 处不过"}')
     if not bad and '--只文本' not in a and '--记基准' not in a:
-        subprocess.run(['python3', f'{H}/印章.py', '--盖'], env={**env0, 'XG_TOOLS': T}, capture_output=True); out.append('已盖快测印章（程序或规则表再改要重跑）')
+        subprocess.run(['python3', f'{H}/印章.py', '--盖'], env={**env0, 'XG_TOOLS': T}, capture_output=True)
+        b = 印章坏样本(); bad += b; out.append('已盖快测印章（程序或规则表再改要重跑）；改程序不重跑必停：' + ('过' if not b else '不过'))
     print('\n'.join(out + [f'  ✘ {x}' for x in bad] + [f'快测{"通过" if not bad else "不通过"}，用时 {time.time() - t0:.0f} 秒']))
     sys.exit(1 if bad else 0)
 
