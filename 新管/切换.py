@@ -25,6 +25,7 @@ G = "__import__('管道').看门停用()"
      "def 出过片(no, rec=None):   # K97（主会话 2026-10-28）：只算已经出过片（有出片后 收工记录）的篇；排队中的、只有交接的篇不算\n    f = f'{rec or REC}/{no}.md'\n    return (not os.path.exists(f)) or '\\n- 收工 ' in open(f).read()\n\n\ndef 汇总(rec=REC, 目录=None):"),
     ('方法进化表.py', "    for no, v in 篇.items():\n        ss = v['会话']", "    for no, v in 篇.items():\n        if not 出过片(no, rec): continue   # K97：排队中、没出过片的篇不进比较\n        ss = v['会话']"),
     ('方法进化表.py', "    if no not in 行: return [f'【G65 方法进化】{no} 没有一条 token 记录", "    if no not in 行 and not 出过片(no): return [], ''   # K97：还在排队、没出过片的篇（开下一篇时查上一篇）不拦\n    if no not in 行: return [f'【G65 方法进化】{no} 没有一条 token 记录"),
+    ('推送自检.py', "    if open(f'{L}/CLAUDE.md').read() != '新守则\\n': fails.append('没抓到：CLAUDE.md 没以 postgraduate-vocabulary 为准（G11）')\n", '    if open(f\'{L}/CLAUDE.md\').read() != \'新守则\\n\': fails.append(\'没抓到：CLAUDE.md 没以 postgraduate-vocabulary 为准（G11）\')\n    # 新管：看门停用时推送前查快测印章，印章对不上必停（管道.json 是“启用”时也在这里演练这条分支，门变异才抓得到）\n    写(f\'{P}/视频/工具/管道.py\', open(f\'{T}/管道.py\').read()); 写(f\'{P}/视频/工具/管道.json\', \'{"看门": "停用"}\'); 写(f\'{P}/视频/工具/新管/印章.py\', \'import sys; sys.exit(1)\\n\'); 写(f\'{P}/视频/印章测.md\', \'x\\n\')\n    r = run(); o = r.stdout + r.stderr\n    if r.returncode == 0 or \'快测印章对不上\' not in o: fails.append(f\'没抓到：看门停用时快测印章对不上，推送没停（新管）{o.strip()[-80:]}\')\n    for f_ in (\'视频/工具/管道.py\', \'视频/工具/管道.json\', \'视频/工具/新管/印章.py\', \'视频/印章测.md\'): os.remove(f\'{P}/{f_}\')\n    git(\'reset\', \'-q\', cwd=P)\n'),
 ]
 # 提交前钩子的改法（切换推送时由主会话批准后做，本程序不碰钩子文件，K16）：看门停用时只查快测印章（新管/印章.py），不再跑 会话开工 --提交前、规则执行核查
 管道 = '''import json, os
@@ -40,6 +41,17 @@ def 看门停用():
     ('开关', 'XG_WORK'): '新管 快测：出片工作目录；不放宽任何检查',
     ('开关', 'XG_NO'): '新管 快测：回归篇号（默认 27）；不放宽任何检查',
     ('起查', '修.py:25'): 'G35 结尾简述整屏常规 25 起（用户 2026-10-25 原话，用户同意记录 篇 26）',
+}
+
+新管用途 = {
+    '做.py': '新管：一条命令从数据到 1080p 草稿（做.sh 的主体）', '做.sh': '新管：草稿入口（管道.json 看门停用后的正式入口）',
+    '定稿.sh': '新管：4K 定稿入口（疑点清零、成片指纹、归档、推送）', '修.py': '新管：机械错误的标准修法（破折号、L19 折行、G35 简述整屏）',
+    '快测.py': '新管：改规则/程序后的门（坏样本必抓、27 回归、印章）', '印章.py': '新管：快测印章（程序哈希），提交、推送、出片前查',
+    '生成规则表.py': '新管：从规则执行表等生成规则表.json', '生成写稿须知.py': '新管：从规则表生成写稿须知.md',
+    '画面哈希.py': '新管：快测 27 回归的每屏像素哈希', '合并追加.py': '新管：推送 pull 撞追加型记录时三方自动合并（K100）',
+    '推送.sh': '新管：推送两仓库外壳，G2/被拒自动重推', '切换.py': '新管：切换补丁和 管道.json 开关',
+    '切换变异测.py': '新管：切换补丁的本地门变异', '并发测.py': '新管：三会话并发推送验收', '从零测.sh': '新管：全新浅克隆从零验收',
+    '对比4K.py': '新管：定稿 4K 与存档逐样本逐帧对比', '原话存档.py': '新管：CLAUDE.md 一页化前的用户原话存档与核对',
 }
 
 def 有同意(t):
@@ -63,6 +75,12 @@ def main():
             for 类, 键 in [名]:
                 if tb.setdefault(类, {}).get(键) != 用: tb[类][键] = 用; 改 = True
         if 改: json.dump(tb, open(k, 'w'), ensure_ascii=False, indent=1)
+    k = f'{t}/机制清单.json'   # 新管程序登记“辅助”（用上核查：没登记 = 孤儿）；用途写清，切换后由 做.sh/定稿.sh 正式调用
+    if os.path.exists(k):
+        m = json.load(open(k)); 辅 = m.setdefault('辅助', {}); 改 = False
+        for 名, 用 in 新管用途.items():
+            if 辅.get(f'新管/{名}') != 用: 辅[f'新管/{名}'] = 用; 改 = True
+        if 改: json.dump(m, open(k, 'w'), ensure_ascii=False, indent=1)
     if '--停用' in sys.argv and not 有同意(t):
         print('【停止】用户同意记录.json 里还没有“管道.json 看门 停用”的用户原话（主会话记；篇“全部”、用于含“管道.json 看门 停用”、来源不是演练），不切换'); sys.exit(1)
     if '--停用' in sys.argv or '--启用' in sys.argv:
