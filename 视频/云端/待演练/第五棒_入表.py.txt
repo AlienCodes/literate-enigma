@@ -1,0 +1,11 @@
+import json,sys
+V=sys.argv[1]; nums=sys.argv[2].split(',')
+ks=json.load(open(sys.argv[3]))
+p=f'{V}/制作硬性标准与踩坑总结.md'; L=open(p).read().split('\n')
+i=max(k for k,l in enumerate(L) if l.startswith('| G107 |'))
+T=json.load(open(f'{V}/工具/规则执行表.json'))
+for n,k in zip(nums,ks):
+    if any(l.startswith(f'| {n} |') for l in L): continue
+    i+=1; L.insert(i,f'| {n} | {k["行"]} |')
+    T[n]={'门':k['门'],'自检':k['自检']}
+open(p,'w').write('\n'.join(L)); json.dump(T,open(f'{V}/工具/规则执行表.json','w'),ensure_ascii=False,indent=1)
