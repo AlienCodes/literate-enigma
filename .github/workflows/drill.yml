@@ -25,11 +25,12 @@ jobs:
     outputs: {items: '${{ steps.p.outputs.items }}', recheck: '${{ steps.p.outputs.recheck }}', gate: '${{ steps.p.outputs.gate }}', drill: '${{ steps.p.outputs.drill }}'}
     steps:
       - uses: actions/checkout@v4   # 改门推送要按打了补丁的门程序算分片（只取 视频/工具、制作记录、云端，几秒）
-        with: {sparse-checkout: "视频/工具\n视频/制作记录\n视频/云端", filter: 'blob:none'}
+        with: {sparse-checkout: "视频/工具\n视频/制作记录\n视频/云端\n.github", filter: 'blob:none'}
+      - name: 装核查依赖（K61/K67：checkout 后跑 python 的 job 一律先走这一步，清单 .github/核查依赖.txt）
+        run: pip install -q -r .github/核查依赖.txt 2>&1 | tail -1
       - id: p
         env: {GH_TOKEN: '${{ github.token }}'}
         run: |
-          pip install -q numpy soundfile 2>&1 | tail -1   # 改门推送 算分片要 import 声音演练（2026-10-27 K60改门推送v1 实测缺 numpy）
           python3 - <<'PY'
           import json, os, subprocess, base64, urllib.parse
           R = os.environ['GITHUB_REPOSITORY']; ev = json.load(open(os.environ['GITHUB_EVENT_PATH'])); sha = ev['after']
@@ -70,6 +71,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11', cache: pip, cache-dependency-path: 视频/工具/环境/requirements.txt}
+      - name: 装核查依赖（K61/K67：checkout 后跑 python 的 job 一律先走这一步，清单 .github/核查依赖.txt）
+        run: pip install -q -r .github/核查依赖.txt 2>&1 | tail -1
       - uses: actions/cache@v4
         with: {path: '~/work/tts/*.onnx', key: kokoro-models-v1.0-v1.1}
       - uses: actions/cache@v4   # 机器复听的识别模型（small.en + parakeet）（准备机器.sh 照样核对校验码）
@@ -107,7 +110,7 @@ jobs:
                     && python3 $T/交付核查.py $N 出片后 && cp $N.mp4 $GITHUB_WORKSPACE/视频/视频/草稿1080p/${N}_1080p.mp4 && cp scripts/$N.json $GITHUB_WORKSPACE/视频/脚本/$N.json; } 2>&1 | tee /tmp/out.log | tail -40 ;;   # 阶段 B：草稿流程 二、三 的程序部分（严格缓存：缺一条配音缓存就停）
             单线程复现) python3 $GITHUB_WORKSPACE/视频/云端/单线程复现.py ../tts scripts/${{ matrix.it.no }}.json 2>&1 | grep -v 'W:onnx' | tee /tmp/out.log | tail -3 ;;
             合成对照) python3 $GITHUB_WORKSPACE/视频/云端/合成对照.py ../tts 2>&1 | tee /tmp/out.log ;;
-            门变异) N="${{ matrix.it.no }}"; pip install -q coverage; mkdir -p /tmp/门变异
+            门变异) N="${{ matrix.it.no }}"; mkdir -p /tmp/门变异
                     case "$N" in 覆盖@*) python3 $T/门变异.py --覆盖 "${N#覆盖@}" "/tmp/门变异/$N.json" 2>&1 | tee /tmp/out.log | tail -15 ;;
                       *) IFS=@ read -r F I K <<< "$N"; python3 $T/门变异.py --全 "$F" --分片=$I/$K "--结果=/tmp/门变异/${N//\//_}.json" 2>&1 | tee /tmp/out.log | tail -40 ;; esac ;;
             全篇重查) python3 $T/定稿视频核对.py --不查镜像 ${{ matrix.it.no }} 2>&1 | tee /tmp/out.log | tail -25 \
@@ -212,13 +215,15 @@ jobs:
     env: {GATE: '${{ needs.plan.outputs.gate }}'}
     steps:
       - uses: actions/checkout@v4
-        with: {sparse-checkout: "视频/工具\n视频/制作记录\n视频/云端", filter: 'blob:none'}
+        with: {sparse-checkout: "视频/工具\n视频/制作记录\n视频/云端\n.github", filter: 'blob:none'}
+      - name: 装核查依赖（K61/K67：checkout 后跑 python 的 job 一律先走这一步，清单 .github/核查依赖.txt）
+        run: pip install -q -r .github/核查依赖.txt 2>&1 | tail -1
       - uses: actions/download-artifact@v4
         with: {pattern: '结果_${{ fromJson(needs.plan.outputs.gate).req }}_*', path: /tmp/a, merge-multiple: true}
         continue-on-error: true   # run 上传多个路径，文件落在 /tmp/a/gate/（K60v3 实测：查 /tmp/a/ 收到 0/18）。没有受影响的门（0 片）时没有分片结果；收齐按 rc_ 份数查
       - name: ② 收齐 → 门变异合并 → 查基线
         run: |
-          set +e; shopt -s nullglob; pip install -q numpy soundfile 2>&1 | tail -1
+          set +e; shopt -s nullglob
           git config --global user.name ci; git config --global user.email ci@example.com
           j() { python3 -c "import json,os;print(json.loads(os.environ['GATE'])['$1'])"; }; N=$(j n); M=$(j mode); mkdir -p /tmp/m
           echo "改门推送 $(j req)（门变异 $N 片，$M）" > /tmp/m/gate.txt; stop() { echo "【改门推送不过】$1" | tee -a /tmp/m/gate.txt; exit 1; }
@@ -243,6 +248,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11', cache: pip, cache-dependency-path: 视频/工具/环境/requirements.txt}
+      - name: 装核查依赖（K61/K67：checkout 后跑 python 的 job 一律先走这一步，清单 .github/核查依赖.txt）
+        run: pip install -q -r .github/核查依赖.txt 2>&1 | tail -1
       - uses: actions/cache@v4
         with: {path: '~/work/tts/*.onnx', key: kokoro-models-v1.0-v1.1}
       - uses: actions/cache@v4
@@ -282,6 +289,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11', cache: pip, cache-dependency-path: 视频/工具/环境/requirements.txt}
+      - name: 装核查依赖（K61/K67：checkout 后跑 python 的 job 一律先走这一步，清单 .github/核查依赖.txt）
+        run: pip install -q -r .github/核查依赖.txt 2>&1 | tail -1
       - uses: actions/cache@v4
         with: {path: '~/work/tts/*.onnx', key: kokoro-models-v1.0-v1.1}
       - uses: actions/cache@v4
@@ -303,8 +312,7 @@ jobs:
           [ ! -s /tmp/m/合并.diff ] || git apply /tmp/m/合并.diff || stop "② 合并后的清单打不上"
           rcs=(/tmp/a/rc_*); [ "${#rcs[@]}" -eq "$N" ] || stop "③ 演练只收到 ${#rcs[@]}/$N 份结果（有演练没跑完）"
           for f in "${rcs[@]}"; do a=${f#/tmp/a/rc_}; [ "$(cat $f)" = 0 ] || { tail -8 /tmp/a/log_$a.txt 2>/dev/null | tee -a /tmp/gate.txt; stop "③ $a 没过"; }; done
-          git apply /tmp/a/主演练.diff || stop "③ 主演练结果补丁打不上"
-          pip install -q numpy soundfile 2>&1 | tail -1   # K67：合并印章要 import 声音演练（numpy），gate 这台机器没装过（v5 实测）
+          [ ! -s /tmp/a/主演练.diff ] || git apply /tmp/a/主演练.diff || stop "③ 主演练结果补丁打不上"
           python3 视频/工具/执行效应声音演练.py --合并印章 /tmp/a/声音_*.json > /tmp/s.log 2>&1; r=$?; tail -2 /tmp/s.log | tee -a /tmp/gate.txt; [ $r = 0 ] || stop "③ 声音演练分片合并不过"
           git add -A 视频 CLAUDE.md; echo "③ 两个演练印章通过" | tee -a /tmp/gate.txt
       - name: 搭机器
