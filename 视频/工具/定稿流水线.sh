@@ -21,6 +21,9 @@ push() {  # 网络失败才重试（2、4、8、16 秒）
   for t in 0 2 4 8 16; do sleep $t; git pull -q --no-rebase --no-edit origin "$1"; git push -q -u origin "$1" && return 0; done; return 1; }   # 2026-10-22：别的会话可能先推了，先合并远端再推
 # 同一篇只能有一条流水线在跑（2026-10-10 第09篇第二轮：一条用 & 启动、以为没起来又启动一条，两条同时写 09.mp4，声音坏了，出片后核查拦下；pgrep 认不出中文路径，没发现还有一条在跑）
 exec 9>"$W/.定稿流水线_$no.lock"; flock -n 9 || { echo "【停止】第${no}篇已经有一条定稿流水线在跑（$W/.定稿流水线_$no.lock 被占用），不能同时跑两条"; exit 1; }
+# 阶段 B（2026-10-27）云端定稿：GitHub 机器上两个仓库路径都链到同一份镜像检出（准备机器.sh、drill.yml 搭机器），⑥ 不许自己 git push（会把镜像推成 main）：
+# 只存记录，提交推送由 drill.yml 写回步骤按 G58 白名单做；云端必须严格缓存（缺一条配音缓存就停、绝不现合成 = 用到的缓存都在仓库里，代替推送后的 缓存进仓库核对）
+YUN=; [ "$(readlink -f $P)" = "$(readlink -f $L)" ] && YUN=1 && { [ "$STRICT_CACHE" = 1 ] || stop "云端定稿（两个仓库是同一份检出）必须 STRICT_CACHE=1：只用仓库里的配音缓存（G51）"; }
 [ -f make_video.py ] && [ -f "scripts/$no.json" ] && [ -d fonts ] || stop "请在视频工作目录下运行（要有 make_video.py、scripts/$no.json、fonts/）"
 python3 $T/出片指纹.py --核对工作目录 . || stop "工作目录的出片程序缺模块或与仓库工具不一致（G27：清单从 make_video 的 import 自动找全），先 python3 $T/出片指纹.py --拷 . 同步"
 
@@ -50,6 +53,7 @@ python3 $T/证据.py --记 $no 定稿 || stop "定稿证据没写进去（G60）
 step "⑥ 存记录、推送两个仓库"
 cat "$LOG/出片前.log" "$LOG/出片后.log" > $P/视频/音频核对/交付核查_${no}_4K定稿.txt
 awk '/^① 清点/{f=1} f' "$LOG/归档.log" > $P/视频/音频核对/定稿视频核对_${no}.txt
+[ -n "$YUN" ] && { python3 $T/证据.py --查 $no 定稿 > /dev/null || stop "云端定稿：定稿证据没齐（G60）"; tail -3 "$LOG/归档.log"; echo "第${no}篇 云端定稿到 ⑥ 存记录：推送由 drill.yml 按 G58 白名单写回镜像，会话 推送两仓库.sh 回写主仓库后跑 定稿视频核对 --只查清点和镜像"; exit 0; }
 MSG="第${no}篇 4K 定稿：出片前/出片后核查全部通过，替换旧视频归档，定稿视频核对逐屏逐样本通过（定稿流水线）
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

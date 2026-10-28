@@ -8,6 +8,7 @@ python3 视频/工具/会话开工.py 主会话 --重读 2>&1 | grep -E '^\s*- \
 python3 视频/工具/用上核查.py 2>&1 | head -8 | cut -c1-160   # G83：每次收回报都看用上报告
 timeout 300 python3 视频/工具/规则执行核查.py 2>&1 | tail -1 | cut -c1-60
 python3 -c "import sys; sys.path.insert(0,'视频/工具'); import 重查记录 as R; print('欠查:', [n for n in R.欠着() if n in R.已出片()])" 2>&1 | tail -1
+( set -o pipefail; python3 视频/工具/丝滑.py --未闭环 --严 | cut -c1-200 && python3 视频/工具/丝滑.py --改门比较 | cut -c1-240 ) || { echo "【停止】丝滑主义（K56/K57）：先把上面这条闭环再记交接"; exit 1; }
 if [ -n "$1" ]; then
   python3 - "$1" <<'PY'
 import sys; f='视频/制作记录/主会话交接.md'; t=open(f).read(); i=t.find('## 三、')

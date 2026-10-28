@@ -34,6 +34,22 @@ def 记回执(paths, 来源):
         if os.path.exists(p): open(f'{回执目录}/{指纹(p)}', 'w').write(f'{来源} {os.path.abspath(p)}\n')
 
 
+镜像 = '/home/user/literate-enigma'
+def 在途补丁(仓库, 镜=None):
+    """K66：主仓库的改动和镜像里已提交的某个改门推送补丁逐字节相同（请求也已提交）→ 在途，返回补丁名；否则 ''"""
+    镜 = 镜 or 镜像; d = f'{镜}/视频/云端/待演练'
+    if not os.path.isdir(d): return ''
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))); import 推请求 as Q
+        _, cur = Q.做补丁('收工闸门', 仓库, out=os.devnull)
+    except Exception: return ''
+    if not cur.strip(): return ''
+    for f in sorted(os.listdir(d)):
+        n = f[:-5]
+        if not f.endswith('.diff') or not os.path.exists(f'{镜}/视频/云端/请求/{n}.txt'): continue
+        if subprocess.run(['git', '-C', 镜, 'status', '--porcelain', '--', f'视频/云端/待演练/{f}', f'视频/云端/请求/{n}.txt'], capture_output=True, text=True).stdout.strip(): continue   # 没提交的不算在途
+        if open(f'{d}/{f}', 'rb').read() == cur: return n
+    return ''
 def 拦(事件, 理由):
     if 事件 == 'Stop': return {'decision': 'block', 'reason': 理由}
     return {'hookSpecificOutput': {'hookEventName': 'PreToolUse', 'permissionDecision': 'deny', 'permissionDecisionReason': 理由}}
@@ -124,6 +140,12 @@ def 判(kind, d, 仓库=PV):
                 return 拦('PreToolUse', '【规则执行闸门】不许用 --no-verify / -n 跳过 git 钩子（CLAUDE.md 第16条）。')
             if re.search(r'\bpush\b', s) and (re.search(r'(^|[\s:+])(master|gh-pages)(\s|$)', s) or re.search(r'\s(-f|--force)(\s|$)|--force-with-lease', s)) and '【用户同意' not in c:
                 return 拦('PreToolUse', '【部署闸门】C1/C2/流16：不推 master、gh-pages，不强推（master 是另一个项目）；用户明确要求时，命令里写“# 【用户同意：原话】”再执行。')
+            m_ = re.search(r'\bpush\b(.*)', s)
+            if m_ and '【用户同意' not in c:   # 追加 D（2026-10-27）：主仓库只留 main，镜像只用工作分支；推别的分支（会话误推测试分支 tb、zz-test-delete）一律拦
+                for r_ in [x for x in m_.group(1).split() if not x.startswith('-')][1:]:   # 第一个是远端
+                    d_ = r_.lstrip('+').split(':')[-1].removeprefix('refs/heads/')
+                    if d_ and d_ not in ('main', 'claude/adoring-hamilton-5qskmm', 'HEAD') and not d_.startswith(('$', '"$', 'refs/tags/')):
+                        return 拦('PreToolUse', f'【分支闸门】追加 D：只推 main（主仓库）和 claude/adoring-hamilton-5qskmm（镜像），不推 {d_}（测试分支一律不许推到远端）。')
             if re.search(r'core\.hooksPath\s+\S|--unset[^|;&]*core\.hooksPath|core\.hooksPath[^|;&]*--unset', s):   # 只拦设置、取消；读取不拦
                 return 拦('PreToolUse', '【规则执行闸门】不许改 core.hooksPath（提交前的规则执行核查靠它，开工提醒.sh 和 推送两仓库.sh 自动设好）。')
         if re.search(r'Document\(', c) and '.docx' in c and not re.search(r'read_docx2|make_docx|segs\(', c):
@@ -180,6 +202,8 @@ def 判(kind, d, 仓库=PV):
                 chg = [x for x in df.splitlines() if x[:1] in '+-' and not x.startswith(('+++', '---'))]
                 if chg and all('进行中' in x for x in chg): continue
             ch.append(l)
+        if ch and 在途补丁(仓库):   # K66：改动 = 已推 GitHub、还没 --收 的改门推送补丁：等 GitHub 回来 推请求.py --收（照守则3 现在推送两仓库，--收 时补丁就对不上了）
+            ch = []
         if ch:
             return 拦('Stop', f'【守则3 收工闸门】还有 {len(ch)} 个改动没推送（如 {ch[0][3:][:60]}）：'
                      '先 bash 视频/工具/推送两仓库.sh "说明"（会先过规则执行核查），再收工。')

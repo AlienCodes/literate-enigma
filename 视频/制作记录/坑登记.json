@@ -569,6 +569,12 @@
    "时刻": "2026-10-28T13:23Z",
    "会话": "session_01BA1TPGuWnAkjTSMCk2UwxV",
    "现象": "28 机器复听 只 small.en 一路误报：S14 “a Lasker Award” 听成 “alaska award”（Lasker 已核实 lˈæskɚ，豁免只认整组都是已核实专名，冠词 a 并进去就不豁免）；S15 “On 5 October 2015” 配音读 the fifth of October，small.en 把日期改写，报 the/of 没听到（日期展开应不报）；parakeet 两句都没报。机器复听没有确认路径，出片后过不去"
+  },
+  {
+   "号": "K82",
+   "时刻": "2026-10-28T13:26Z",
+   "会话": "session_01BA1TPCpt7TiodpDtnU2AKj",
+   "现象": "改门第六棒 推请求.py --收 K60改门推送v9 停“主仓库的改动和推上去的补丁不一样了”：内容逐字节相同，只有 diff 的 index 行短哈希 7 位变 8 位（主仓库 pull 后对象变多，git 自动加长缩写）；收 用 做补丁 重算再逐字节比，必然误停。临时：主仓库 git config core.abbrev 7；根治：做补丁 加 --full-index（实测 13:27）"
   }
  ],
  "预留": [
@@ -997,6 +1003,6 @@
   "会话": "session_01BA1TPCpt7TiodpDtnU2AKj",
   "任务": "",
   "取锁": "2026-10-28T12:02Z",
-  "到期": "2026-10-28T14:02Z"
+  "到期": "2026-10-28T15:25Z"
  }
 }

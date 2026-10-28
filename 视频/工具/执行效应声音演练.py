@@ -239,7 +239,38 @@ def 自检():
         try: f.append(停('冻结样本被改了'))
         finally: Y.查样本 = q
     finally: os.chdir(cwd); shutil.rmtree(d, ignore_errors=True)
+    n = 4; 片 = [分片(i, n) for i in range(1, n + 1)]   # K60 分片：几片合起来正好是全部场次、不重不漏，拆门自查和它的底子同一片
+    if sorted(x for p in 片 for x in p) != sorted({s[0] for s in 声音场景} | {'通路_草稿声音26', '自查拆门_声音', '自查拆门_parakeet', '自查拆门_原样自检'}): f.append('分片不是正好全部场次')
+    if any(any(k in p and any(v not in p for v in vs) for k, vs in _带着.items()) for p in 片): f.append('拆门自查和它要的那一场不在同一片')
+    d = tempfile.mkdtemp(prefix='声音合并自检_'); fp = {x: 指纹(f'{T}/{x}') for x in 声音被演练}
+    try:
+        全 = [(x, True, '') for x in 应有场次()]; st = f'{d}/印章.json'
+        def 片文件(rs, 指=fp, k='a'): p = f'{d}/{k}.json'; json.dump({'指纹': 指, '结果': rs}, open(p, 'w')); return p
+        if 合并印章([片文件(全[:3], k='a'), 片文件(全[3:], k='b')], st) or not os.path.exists(st): f.append('误拦：几片全过也没盖印章')
+        for 坏, why in (([片文件(全[1:], k='c')], '少一场'), ([片文件(全[:1] + [(全[1][0], False, 'x')] + 全[2:], k='d')], '有一场没过'), ([片文件(全, {**fp, 'x': 'y'}, k='e')], '指纹不是现在这份程序'), ([], '没有分片结果')):
+            if os.path.exists(st): os.remove(st)
+            if not 合并印章(坏, st) or os.path.exists(st): f.append(f'没抓到：分片合并{why}还盖了印章')
+    finally: shutil.rmtree(d, ignore_errors=True)
     return [x for x in f if x]
+
+
+# K60 改门推送：整场声音演练 32 分钟，是 GitHub 上一条命令走完的最长一步；拆成几台机器各跑几场，合起来清点、全过才盖印章。
+_带着 = {'A4句中硬停': ['自查拆门_声音'], 'G42只有parakeet抓到': ['自查拆门_parakeet']}   # 拆门自查要用那一场的原样底子，同一片跑
+def 分片(i, n):
+    单 = [['通路_草稿声音26'], ['自查拆门_原样自检']] + [[s[0], *_带着.get(s[0], [])] for s in 声音场景]
+    return [x for u in 单[i - 1::n] for x in u]
+def 合并印章(fs, stamp=None):
+    """几片的结果（同一份程序跑的）合起来：一场不少、一场不错才盖印章；返回问题列表"""
+    res, e, fp = [], [], {x: 指纹(f'{T}/{x}') for x in 声音被演练}
+    for f in fs:
+        try: d = json.load(open(f))
+        except Exception as x: e.append(f'读不了分片结果 {f}：{x!r}'); continue
+        if d.get('指纹') != fp: e.append(f'分片 {os.path.basename(f)} 跑的不是现在这份程序（指纹对不上）')
+        res += [tuple(r) for r in d.get('结果', [])]
+    if 清点(res): e.append(f'几片合起来少跑了：{清点(res)}')
+    e += [f'{s}：{m}' for s, ok, m in res if not ok]
+    if not e: json.dump({**fp, '_挡住': sorted({s for s, _, _ in res})}, open(stamp or STAMP, 'w'), ensure_ascii=False, indent=1)
+    return e
 
 
 def 印章有效():
@@ -251,9 +282,18 @@ def 印章有效():
 def main():
     a = sys.argv[1:]
     if a[:1] == ['--自检']:
-        e = 自检(); print('\n'.join(e) or '声音演练 自检通过（收尾三项、整场少跑一场、开跑三道前提都报出）'); return 1 if e else 0
+        e = 自检(); print('\n'.join(e) or '声音演练 自检通过（收尾三项、整场少跑一场、开跑三道前提都报出；分片合并少一场、错一场、指纹不对不盖印章）'); return 1 if e else 0
+    if a[:1] == ['--合并印章']:
+        e = 合并印章(a[1:]); print('执行效应声音演练（分片合并）：' + ('通过，印章已写' if not e else '【没通过】' + '；'.join(e)[:600])); return 1 if e else 0
     开跑前提()
     only = [x for x in a if not x.startswith('--')]
+    fp_ = next((x.split('=', 1)[1] for x in a if x.startswith('--分片=')), '')
+    if fp_:   # --分片=i/n --结果=f：只跑这一片，结果给 --合并印章（不盖印章）
+        i, n = map(int, fp_.split('/')); rf = next(x.split('=', 1)[1] for x in a if x.startswith('--结果='))
+        res = 演练(os.getcwd(), 分片(i, n))
+        for sid, ok, msg in res: print(f"{'✔' if ok else '✘'} {sid}：{msg}")
+        json.dump({'指纹': {x: 指纹(f'{T}/{x}') for x in 声音被演练}, '结果': res}, open(rf, 'w'), ensure_ascii=False, indent=0)
+        bad = [s for s, ok, _ in res if not ok]; print(f'执行效应声音演练 分片 {fp_}：' + ('【没通过：' + '、'.join(bad) + '】' if bad else f'{len(res)} 场通过（合并后才盖印章）')); return 1 if bad else 0
     res = 演练(os.getcwd(), only)
     if not only and 清点(res): res.append(('整场清点', False, f'全部演练少跑了：{清点(res)}'))
     for sid, ok, msg in res: print(f"{'✔' if ok else '✘'} {sid}：{msg}")

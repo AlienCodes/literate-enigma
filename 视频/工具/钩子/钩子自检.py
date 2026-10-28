@@ -35,6 +35,19 @@ r = f'{tmp}/repo'; os.makedirs(f'{r}/视频')
 subprocess.run(['git', 'init', '-q', r]); open(f'{r}/视频/x.md', 'w').write('x')
 if not 拦了('收工', {}, 仓库=r): fails.append('没抓到：有没推送的改动就收工（守则3）')
 if 拦了('收工', {'stop_hook_active': True}, 仓库=r): fails.append('误拦：已经拦过一次又拦（会死循环）')
+_m = f'{tmp}/镜'; os.makedirs(f'{_m}/视频/云端/待演练'); os.makedirs(f'{_m}/视频/云端/请求'); subprocess.run(['git', 'init', '-q', _m])   # K66：改动 = 已提交的在途改门推送补丁 → 放行；补丁不同、没提交 → 照拦
+subprocess.run(['git', '-C', r, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'commit', '-q', '--allow-empty', '-m', '0'], capture_output=True)
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))); import 推请求 as _Q
+open(f'{r}/CLAUDE.md', 'w').write('c'); _Q.做补丁('k66', r, out=f'{_m}/视频/云端/待演练/k66.diff'); open(f'{_m}/视频/云端/请求/k66.txt', 'w').write('改门推送 补丁=视频/云端/待演练/k66.diff\n')
+if G.在途补丁(r, _m): fails.append('误放：在途补丁还没提交就算在途（K66）')
+_e66 = {k: v for k, v in os.environ.items() if not k.startswith('GIT_')}; subprocess.run(['git', '-C', _m, 'add', '-A'], capture_output=True, env=_e66); subprocess.run(['git', '-C', _m, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'commit', '-qm', 'k'], capture_output=True, env=_e66)
+if G.在途补丁(r, _m) != 'k66': fails.append('没认出：改动就是已提交的在途改门推送补丁（K66：收工闸门逼着推送两仓库，--收 就对不上）')
+_g0 = G.镜像; G.镜像 = _m
+if 拦了('收工', {}, 仓库=r): fails.append('误拦：改动就是在途改门推送补丁也逼着推送两仓库（K66）')
+G.镜像 = _g0
+open(f'{r}/视频/x.md', 'w').write('y')
+if G.在途补丁(r, _m): fails.append('误放：改动和在途补丁不一样也算在途（K66）')
+open(f'{r}/视频/x.md', 'w').write('x')
 _r3 = f'{tmp}/repo3'; os.makedirs(f'{_r3}/视频/工具'); subprocess.run(['git', 'init', '-q', _r3]); open(f'{_r3}/视频/工具/全篇重查通过.json', 'w').write('{}')
 subprocess.run(['git', '-C', _r3, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'add', '-A']); subprocess.run(['git', '-C', _r3, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'commit', '-qm', 'x', '--date=2000-01-01T00:00:00'], env={**os.environ, 'GIT_COMMITTER_DATE': '2000-01-01T00:00:00'})
 open(f'{_r3}/视频/工具/全篇重查通过.json', 'w').write('{"篇": {}}')   # 已跟踪的进度文件被改了（真实情形）

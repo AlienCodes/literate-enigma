@@ -173,6 +173,7 @@ def main():
         sys.exit('【停止】请在视频工作目录（含 make_video.py、scripts/）下运行')
     for f in ('make_video.py', 'render.py'):
         if 指纹(f) != 指纹(f'{T}/{f}'): sys.exit(f'【停止】工作目录的 {f} 与仓库不一致，先拷过来再自检')
+    import tempfile; pyc = tempfile.mkdtemp(prefix='守门自检pyc_'); sys.pycache_prefix = pyc; os.environ['PYTHONPYCACHEPREFIX'] = pyc   # K71：门变异并行 4 份私有工作目录链接同一个 __pycache__，同一秒写出、同样大小的两个变异体共用一份 .pyc，测的是别人的变异（v7 A23 两道“漏洞”）
     only = sys.argv[1:]; fails = []; t0 = time.time(); W = os.getcwd(); WS = os.path.abspath('../守门自检')
     shutil.rmtree(WS, ignore_errors=True); os.makedirs(f'{WS}/scripts')
     for x in os.listdir(W):

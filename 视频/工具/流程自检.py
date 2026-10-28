@@ -149,6 +149,12 @@ _r = subprocess.run(['python3', f'{T}/证据.py', '--记', '99', '出片前'], c
 if _r.returncode == 0 or '只能由正式入口' not in _r.stdout + _r.stderr: fails.append('证据.py --记 手写证据没停（G60/G79 门变异）')
 _r = subprocess.run(['python3', f'{T}/交付核查.py', '03', '对照表'], capture_output=True, text=True)   # 03 已有踩坑对照记录：必须不覆盖、停下（G79 门变异）
 if _r.returncode == 0 or '不覆盖' not in _r.stdout + _r.stderr: fails.append('交付核查 对照表 把已有的踩坑对照记录又追加了一份（G79 门变异）')
+def 云端不推(txt):   # 阶段 B（2026-10-27）：GitHub 上两个仓库路径链到同一份镜像检出，⑥ 自己 git push 会把镜像推成 main；云端必须严格缓存，⑥ 存完记录就退出
+    i, j, k = txt.find('YUN=1 && { [ "$STRICT_CACHE" = 1 ] || stop'), txt.find('[ -n "$YUN" ] && {'), txt.find('git add -A')
+    return i >= 0 and 0 <= j < k and 'exit 0; }' in txt[j:k] and 'readlink -f $P)" = "$(readlink -f $L)' in txt
+if not 云端不推(src): fails.append('定稿流水线 云端定稿（两个仓库同一份检出）没在 ⑥ git push 前退出，或没要求 STRICT_CACHE=1（阶段 B）')
+for _bad, _why in ((src.replace('YUN=1 && { [ "$STRICT_CACHE" = 1 ] || stop', 'YUN=1 && { true || stop'), '不要求严格缓存'), (src.replace('[ -n "$YUN" ] && {', '[ -n "$YUN_" ] && {'), '云端没退出'), (src.replace('--只查清点和镜像"; exit 0; }', '--只查清点和镜像"; true; }'), '云端不退出照样推')):
+    if 云端不推(_bad) and _bad != src: fails.append(f'没抓到：云端定稿{_why}（阶段 B）')
 def 有重建(txt):   # K36：新容器没有 work_NN/a.wav，① 音频体检 ffmpeg 254 崩；① 之前没有 a.wav 必须先只出声音重建
     i = txt.find('[ -f "work_$no/a.wav" ] ||'); j = txt.find('step "① 出片前核查')
     return 0 <= i < j and 'AUDIO_ONLY=1 python3 make_' in txt[i:j]   # 只出声音重建

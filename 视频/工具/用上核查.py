@@ -95,7 +95,11 @@ def 该用没用():
         if not os.path.exists(MB.清单): out.append('门变异：还没有门变异清单（GitHub 全量跑一遍）')
         else:
             nw = [x for x in MB.新门() if not x.split('|')[0].endswith('.sh')]
-            c = subprocess.run(['git', '-C', P, 'log', '-1', '--format=%cI', '--', MB.清单], capture_output=True, text=True).stdout.strip()
+            raw = MB.全量时刻()
+            try: datetime.datetime.fromisoformat(raw.replace('Z', '+00:00')) if raw else None; 坏 = False
+            except ValueError: 坏 = True
+            if 坏: out.append(f'门变异：清单“全量：{raw}”不是时刻，没有全量记录（推请求.py 门变异 全量重跑一次）'); raw = ''   # K65：增量合并写“无”曾让本核查崩成“读不了”，流水线 ⓪ 白停
+            c = raw.replace('Z', '+00:00') or (None if 坏 else subprocess.run(['git', '-C', P, 'log', '-1', '--format=%cI', '--', MB.清单], capture_output=True, text=True).stdout.strip())   # K60：改门推送只增量合并，全量时刻单记（增量不算“全量跑过”）
             age = (datetime.datetime.now(datetime.timezone.utc) - datetime.datetime.fromisoformat(c)).total_seconds() / 3600 if c else 0
             if nw: out.append(f'门变异：清单记录以后 {len(nw)} 道 .py 门新加或改过，还没全量重跑（推请求.py 门变异）')
             if age > 24: out.append(f'门变异：{age:.0f} 小时没全量跑（每天一次，推请求.py 门变异）')
@@ -174,6 +178,18 @@ def 报告(no):
 
 def 自检():
     f = []
+    import 门变异 as MB   # K60：门变异 按时间该用没用（新门没重拆、全量超 24 小时、没清单）三项各造一处必报
+    o = (MB.新门, MB.全量时刻, MB.清单)
+    try:
+        MB.新门 = lambda *x: ['a.py|0123456789|0']; MB.全量时刻 = lambda: '2020-01-01T00:00Z'
+        e = 该用没用()
+        if not any('还没全量重跑' in x for x in e): f.append('没抓到：门变异清单以后新加的 .py 门没重拆')
+        if not any('没全量跑' in x for x in e): f.append('没抓到：门变异全量超过 24 小时没跑（K60：按清单“全量：”时刻）')
+        MB.新门 = lambda *x: []; MB.全量时刻 = lambda: '无'; e = 该用没用()   # K65：增量合并写的“全量：无”必须明确报没有全量记录，不许崩成“读不了”
+        if not any('没有全量记录' in x for x in e) or any('读不了' in x for x in e): f.append(f'没抓到：清单“全量：无”（K65）：{e}')
+        MB.清单 = '/不存在/门变异清单.md'
+        if not any('还没有门变异清单' in x for x in 该用没用()): f.append('没抓到：没有门变异清单')
+    finally: MB.新门, MB.全量时刻, MB.清单 = o
     d = tempfile.mkdtemp(prefix='用上自检_'); t = f'{d}/视频/工具'; os.makedirs(f'{t}/githooks')
     m = {'步骤': {'a': {'入口': ['入口.py']}}, '机制': [], '工作流': {}, '辅助': {'辅.py': '标定用的一次性小程序，留着备查'}, '下线': {'旧.py': '不用了'}}
     open(f'{t}/入口.py', 'w').write('import 被调\n'); open(f'{t}/被调.py', 'w').write('x=1\n'); open(f'{t}/新.py', 'w').write('x=1\n')

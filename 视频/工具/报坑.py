@@ -158,8 +158,11 @@ def 关门(k, g, repo=None):
 
 锁时长 = datetime.timedelta(hours=2)
 def 本会话():
-    try: return json.load(open(os.path.expanduser('~/.会话开工.json'))).get('会话', '')
-    except Exception: return ''
+    """K59/K57：不带 --会话 时自动填本会话 ID（按会话数不丝滑要用）：会话开工记的 → 云端会话环境变量（cse_… 即 session_…）"""
+    try: v = json.load(open(os.path.expanduser('~/.会话开工.json'))).get('会话', '')
+    except Exception: v = ''
+    e = os.environ.get('CLAUDE_CODE_REMOTE_SESSION_ID', '')
+    return v or (('session_' + e[4:]) if e.startswith('cse_') else e)
 def 锁有效(L, now=None): return bool(L and L.get('会话') and 解时(L['到期']) > (now or 现在()))
 def 锁(动作, 会话, 任务='', repo=None, now=None):
     """G66 改门锁（主会话 2026-10-26：从根上排队，同一时间只一个会话改门程序）：取/续/放，和取号同一套原子推送。
@@ -196,6 +199,14 @@ def 自检_K29():
     shutil.rmtree(d, ignore_errors=True); return f
 def 自检():
     fails = 自检_K29(); now = 解时("2026-10-27T12:00Z")
+    _x, _e = os.path.expanduser, os.environ.get('CLAUDE_CODE_REMOTE_SESSION_ID')   # K59：不带 --会话 也要自动填本会话 ID（开工记录没写会话时取云端会话 ID）
+    try:
+        os.path.expanduser = lambda p_: '/不存在/' + os.path.basename(p_); os.environ['CLAUDE_CODE_REMOTE_SESSION_ID'] = 'cse_01ABC'
+        if 本会话() != 'session_01ABC': fails.append(f'没自动填本会话 ID（K59）：{本会话()!r}')
+    finally:
+        os.path.expanduser = _x
+        if _e is None: os.environ.pop('CLAUDE_CODE_REMOTE_SESSION_ID', None)
+        else: os.environ['CLAUDE_CODE_REMOTE_SESSION_ID'] = _e
     std = '| G52 | a | b | c |\n| G53 | a | b | c |\n| A45 | a | b | c |\n'
     d = {'起': {'G': 53}, '预留': [{'编号': 'G53'}], '登记': [
         {'号': 'K1', '时刻': '2026-10-26T06:00Z', '现象': '已入表的', '入表编号': 'G53'},
@@ -260,7 +271,7 @@ def main():
     a = sys.argv[1:]
     def opt(k, dft=''):
         return a[a.index(k) + 1] if k in a and a.index(k) + 1 < len(a) else dft
-    会话 = opt('--会话', '（没写会话：报坑时加 --会话 session_…）')
+    会话 = opt('--会话') or 本会话() or '（没写会话：报坑时加 --会话 session_…）'
     if '--自检' in a:
         f = 自检(); print('报坑登记自检：' + ('通过（超期没入表、改门超 72 小时、总表新行没取号、预留撞号、总表重号都抓到；两个会话先后取号不撞）' if not f else '失灵！' + '；'.join(f)))
         return 1 if f else 0

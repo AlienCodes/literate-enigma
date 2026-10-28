@@ -13,6 +13,7 @@
 import os, sys, json, re, hashlib, datetime, subprocess
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T); P = os.path.dirname(V)
 记录F = [os.path.expanduser('~/.会话开工.json')]   # 每个会话一个容器；自检换成临时文件
+记录F默认 = 记录F[0]
 必读F = f'{V}/开工必读.md'
 角色们 = ('出稿', '改稿', '改门', '主会话')
 总纲 = [
@@ -93,6 +94,9 @@ def 开工(角色, 会话='', 任务=''):
     rec = {'角色': 角色, '会话': 会话, '任务': 任务, '开工必读指纹': 指纹(),
            '时刻': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%MZ')}
     json.dump(rec, open(记录F[0], 'w'), ensure_ascii=False); open(记录F[0] + '.md', 'w').write(t)
+    if 记录F[0] == 记录F默认:   # K57：开工记进 丝滑/会话.jsonl（角色、会话、任务），0 次不丝滑的会话也算进 改门会话 中位数比较（自检用临时记录F，不写）
+        try: sys.path.insert(0, T); import 丝滑; 丝滑.开工(角色, 会话, 任务)
+        except Exception as e: print(f'【提示】开工没记进丝滑记录（K57）：{e!r}')
     print(f'【会话开工】已记下：角色 {角色}，开工必读 指纹 {rec["开工必读指纹"]}（没记下不能提交；开工必读更新了先 --重读）')
     return rec
 

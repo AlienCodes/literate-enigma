@@ -60,6 +60,14 @@ try:
     r = run(); o = r.stdout + r.stderr
     if r.returncode == 0 or '白名单外' not in o or os.path.exists(f'{P}/视频/工具/越权.py'): fails.append(f'没抓到：工作流改了白名单外的文件没停（G58）{o.strip()[-100:]}')
     git('reset', '-q', '--hard', 'HEAD~1', cwd=L); git('push', '-qf', 'origin', 'tb', cwd=L)   # 收拾掉越权提交，后面的造错照常跑
+    # 阶段 B：草稿 NN 请求的脚本（切点、确认）照回写；出片、定稿请求的篇改脚本 = 越权，必停（G19 定稿不许改脚本）
+    git('pull', '-q', 'origin', 'tb', cwd=L); 写(f'{L}/视频/脚本/20.json', '{}\n'); git('add', '-A', cwd=L); bot('工作流改定稿脚本'); git('push', '-q', 'origin', 'tb', cwd=L)
+    r = run(); o = r.stdout + r.stderr
+    if r.returncode == 0 or '白名单外' not in o: fails.append(f'没抓到：出片/定稿请求的工作流改了脚本没停（阶段 B，G19）{o.strip()[-100:]}')
+    git('reset', '-q', '--hard', 'HEAD~1', cwd=L); git('push', '-qf', 'origin', 'tb', cwd=L)
+    写(f'{P}/视频/云端/请求/草稿21.txt', '草稿 21\n'); run(); git('pull', '-q', 'origin', 'tb', cwd=L); 写(f'{L}/视频/脚本/21.json', '{"草稿": 1}\n'); git('add', '-A', cwd=L); bot('工作流草稿'); git('push', '-q', 'origin', 'tb', cwd=L)
+    r = run(); o = r.stdout + r.stderr
+    if r.returncode != 0 or not os.path.exists(f'{P}/视频/脚本/21.json') or open(f'{P}/视频/脚本/21.json').read() != '{"草稿": 1}\n': fails.append(f'没抓到：草稿请求的工作流改的脚本没回写主仓库（阶段 B）{o.strip()[-100:]}')
     # K47：浅克隆镜像的边界提交（工作流写的）没有父提交，不许被当成“改了全部文件”误停
     git('pull', '-q', 'origin', 'tb', cwd=L); 写(f'{L}/视频/工具/边界.py', 'x\n'); git('add', '-A', cwd=L); bot('边界'); git('push', '-q', 'origin', 'tb', cwd=L)
     open(f'{L}/.git/shallow', 'w').write(git('rev-parse', 'HEAD', cwd=L).stdout)

@@ -26,7 +26,7 @@ CAIPAI=1 bash $T/定稿流水线.sh $no > $LG/流水线.log 2>&1 || { tail -8 $L
 grep -q '①前 重建声音' $LG/流水线.log || stop "没走 ①前 重建声音（K36 没重放到）"
 grep -q '彩排到此' $LG/流水线.log || stop "定稿流水线 没跑到 ④ 之后（彩排出口没到）"
 
-n=$(cat "$V"/制作记录/丝滑/*.jsonl 2>/dev/null | wc -l)
+n=$(python3 "$T/丝滑.py" --停下数 "$V/制作记录/丝滑")   # K73：只数停下（会话开工 的“开工”记录不算）；程序崩了 n 为空，下一行照样停
 [ "$n" -eq 0 ] || { cat "$V"/制作记录/丝滑/*.jsonl | tail -5; stop "停下 $n 次（丝滑记录）"; }
 git -C "$P" checkout -q -- 视频 2>/dev/null; git -C "$P" clean -qfd -- 视频/制作记录 视频/音频核对 2>/dev/null   # 彩排在流水线里写的记录不带回去，只留印章
 python3 $T/规则执行核查.py --盖彩排印章 || stop "印章没写上"
