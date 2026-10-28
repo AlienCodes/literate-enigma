@@ -18,7 +18,7 @@ S=[
      "（comb：梳理，这里指仔细翻检；over 2,000：2,000多个）"],
     [[("**compiled**","**编纂/汇编了**(compiled)"),("640 **prescriptions**,","640个**处方/药方**(prescriptions)，"),("and **evaluated**","并**评估了**(evaluated)"),("about 380 extracts","约380种提取物，"),("from","它们来自"),("some 200","200种左右的"),("**medicinal**","**药用的**(medicinal)"),("**herbs**.","**草药**(herbs)。")],
      "（some 200：大约200，some 表示“大约”）"]]),
-(2,[[[("Qinghao,","青蒿，"),("or **sweet wormwood**,","也就是**黄花蒿**(sweet wormwood)，"),("showed **flashes** of","不时**闪现**(flashes)"),("promise,","希望，"),("yet","但"),("its results","它的效果"),("were **erratic**.","**时好时坏**(erratic)。")],
+(2,[[[("Qinghao,","青蒿，"),("or **sweet wormwood**,","也就是**黄花蒿**(sweet wormwood)，"),("showed","展现出"),("**flashes** of **promise**,","几丝**成功迹象**(promise)的**闪光/闪现**(flashes)，"),("yet","但"),("its results","它的效果"),("were **erratic**.","**时好时坏**(erratic)。")],
      "（or：也就是，引出同一种植物的另一个名称；\nshow flashes of promise：不时显出希望）"]]),
 (2,[[[("Seeking","为了寻找"),("a **clue**,","一条**线索**(clue)，"),("Tu","屠呦呦"),("**revisited**","**重新翻阅了**(revisited)"),("the **classical** texts.","**古典**(classical)文献。")],
      "（Seeking a clue：现在分词短语作状语，表示目的）"]]),
@@ -97,6 +97,7 @@ CONF={
  "S11-1 Efficacy in mice":"in mice 修饰 efficacy，中文“在小鼠身上有药效”介词短语提前，语序必须倒过来",
  "S13-2 pure crystals of the substance":"the crystals of A 中文“A 的晶体”，of 结构语序必须倒过来；crystals、substance 两个重点词因此同在一组（T34 倒装）",
  "S17-1 The essence of Ge Hong's line":"the essence of A 中文“A 的精髓”，of 结构语序必须倒过来",
+ "S5-1 flashes of promise,":"show flashes of promise 中文“展现出几丝成功迹象的闪光/闪现”（用户 2026-10-28 定），of 结构语序必须倒过来；flashes、promise 两个重点词因此同在一组（T34 倒装）",
  "S7-2 immersed in two litres of wate":"引文回译成《肘后备急方》原文“以水二升渍”，文言语序（渍放在最后），语序必须倒过来",
  "S17-1 the boiling it skipped.":"it skipped 是定语从句修饰 the boiling，中文“它略去的煮沸”定语提前，语序必须倒过来"}}
 out={"no":"28","title_en":"A Handful of Wormwood That Saved Millions","title_zh":"青蒿一握，济世千万","title_fx":{"hl":["Wormwood","Millions"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
