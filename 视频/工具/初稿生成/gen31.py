@@ -72,7 +72,6 @@ S=[
 ]
 CONF={}
 out={"no":"31","title_en":"The Book Twelve Publishers Turned Down","title_zh":"被拒绝了十二次的哈利·波特","title_fx":{"hl":["Twelve","Publishers"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
-     "说明放宽特批":{"S16":{"倍数":"整屏","依据":"用户 2026-10-28 特批：“29、30、31 结尾简述都整屏、字号放到最大”（用户同意记录）"}},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Manchester":"曼彻斯特","King's Cross":"国王十字车站","Joanne Rowling":"乔安妮·罗琳","Harry Potter":"哈利·波特","Rowling":"罗琳","Porto":"波尔图","Edinburgh":"爱丁堡","Christopher Little":"克里斯托弗·利特尔","Bloomsbury":"布卢姆斯伯里","Nigel Newton":"奈杰尔·牛顿","Alice":"爱丽丝","Kathleen":"凯瑟琳","Philosopher's Stone":"魔法石","Scholastic":"学乐"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
