@@ -38,7 +38,8 @@ def main():
     no = sys.argv[1].zfill(2); js = f'scripts/{no}.json'; d = json.load(open(js)); 改 = []
     if PZ.查(d, no):
         改 += 破折号(d); json.dump(d, open(js, 'w'), ensure_ascii=False, indent=1)
-    if int(no) >= 25 and '（简述：' in (d['sentences'][-1]['chunks'][-1].get('note') or ''):   # G35 常规：简述按整屏字号最大折行
+    已发 = os.path.exists(f'{os.path.dirname(T)}/脚本/已发版本/{no}.json')
+    if int(no) >= 25 and not 已发 and '（简述：' in (d['sentences'][-1]['chunks'][-1].get('note') or ''):   # G35 常规：简述按整屏字号最大折行；只给第一稿（发过的版式是用户看过的，不自动动，L13）
         r = subprocess.run(['python3', f'{T}/说明分行.py', no, '--整屏', '--写入'], capture_output=True, text=True)
         if '已写入' in r.stdout: 改 += [f'结尾简述整屏折行（G35）：{l.strip()[:80]}' for l in r.stdout.splitlines() if '结尾简述' in l]
     r = subprocess.run(['python3', f'{T}/说明分行.py', no, '--写入'], capture_output=True, text=True)
