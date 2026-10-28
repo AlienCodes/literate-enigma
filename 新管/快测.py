@@ -95,6 +95,12 @@ bad = []
 if not hasattr(J, "出过片"): print("方法进化表.py 没打 K97 补丁"); sys.exit()
 行 = J.汇总(); 排 = next((n for n in sorted(map(lambda f: os.path.basename(f)[:2], glob.glob(J.REC + "/[0-9][0-9].md")), reverse=True) if not J.出过片(n)), None)
 if 排 and J.门(排, 行=行, 写=False)[0]: bad.append(f"误拦：{排} 还在排队（没出过片）也被 G65 拦（K97）")
+import tempfile, json as _j
+_r = tempfile.mkdtemp(); _m = tempfile.mkdtemp()
+open(_r + "/90.md", "w").write("## token 记录\\n- 进行中\\n"); open(_r + "/91.md", "w").write("## token 记录\\n- 收工 2026-10-28T00:00（UTC）：等效 1M\\n")
+for _n in ("90", "91"): _j.dump({"篇": _n, "会话": "s" + _n, "调用": 1, "等效": 1, "平均上下文": 1}, open(_m + "/" + _n + ".json", "w"))
+_h = J.汇总(rec=_r, 目录=_m)
+if "90" in _h or "91" not in _h: bad.append(f"K97：比较基线要只算出过片的篇（90 排队、91 出过片），现在算进了 {sorted(_h)}")
 行2 = copy.deepcopy(行)
 if "27" in 行2:
     for k in 行2["27"]:
