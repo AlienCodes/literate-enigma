@@ -4,7 +4,7 @@
 ## 英文
 Project 523, a **covert** **military** **mission** involving many institutes, was named after its launch date, 23 May 1967. Its **urgent** target was the chloroquine-**resistant** **malaria** **weakening** troops in the Vietnam War. In January 1969 Tu Youyou was **entrusted** with leading her institute's research group, **despite** having no **doctorate** or foreign training.
 
-In an **exhaustive** search, her team **combed** over 2,000 **folk** recipes, **compiled** 640 **prescriptions** and **evaluated** about 380 extracts from some 200 **medicinal** **herbs**. Qinghao, or sweet wormwood, showed **flashes** of promise, yet its results were **erratic**. Seeking a **clue**, Tu **revisited** the **classical** texts.
+In an **exhaustive** search, her team **combed** over 2,000 **folk** recipes, **compiled** 640 **prescriptions**, and **evaluated** about 380 extracts from some 200 **medicinal** **herbs**. Qinghao, or sweet wormwood, showed **flashes** of promise, yet its results were **erratic**. Seeking a **clue**, Tu **revisited** the **classical** texts.
 
 Around AD 340, the physician Ge Hong's **handbook** advised taking "a handful of qinghao immersed in two litres of water". This **bypassed** boiling. Tu suspected heat during **extraction** was **degrading** a **delicate** **component**, so she switched to **ether**, a **volatile** **solvent** boiling at about 35 degrees Celsius. On 4 October 1971 sample 191 completely **inhibited** the **parasite** in **infected** mice.
 
