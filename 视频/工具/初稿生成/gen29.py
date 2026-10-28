@@ -72,7 +72,7 @@ CONF={
 "合组":{},
 "对齐":{},
 "短语":{}}
-out={"no":"29","title_en":"The Volcano That Gave Us Frankenstein","title_zh":"一座火山，造出了《弗兰肯斯坦》","title_fx":{"hl":["Volcano","Frankenstein"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+out={"no":"29","title_en":"The Volcano That Gave Us Frankenstein","title_zh":"一座火山，造出了《弗兰肯斯坦》","title_fx":{"hl":["Volcano","Frankenstein"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","说明放宽特批":{"S16":{"倍数":"整屏","依据":"用户 2026-10-28 特批：“29、30、31 结尾简述都整屏、字号放到最大”（用户同意记录）"}},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Villa Diodati":"迪奥达蒂别墅","Lord Byron":"拜伦勋爵","Geneva":"日内瓦","Mount Tambora":"坦博拉火山","Indonesian":"印度尼西亚","Sumbawa":"松巴哇岛","sulphur dioxide":"二氧化硫","stratosphere":"平流层","sulphate aerosols":"硫酸盐气溶胶","Europe":"欧洲","North America":"北美","Year Without a Summer":"无夏之年","Mary Godwin":"玛丽·戈德温","Mary Shelley":"玛丽·雪莱","Percy Bysshe Shelley":"珀西·比希·雪莱","Claire Clairmont":"克莱尔·克莱蒙特","John Polidori":"约翰·波利多里","The Vampyre":"《吸血鬼》","Darkness":"《黑暗》","Frankenstein":"《弗兰肯斯坦》"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
