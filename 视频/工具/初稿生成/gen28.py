@@ -18,7 +18,7 @@ S=[
      "（comb：梳理，这里指仔细翻检；over 2,000：2,000多个）"],
     [[("**compiled**","**编纂/汇编了**(compiled)"),("640 **prescriptions**,","640个**处方/药方**(prescriptions)，"),("and **evaluated**","并**评估了**(evaluated)"),("about 380 extracts","约380种提取物，"),("from","它们来自"),("some 200","200种左右的"),("**medicinal**","**药用的**(medicinal)"),("**herbs**.","**草药**(herbs)。")],
      "（some 200：大约200，some 表示“大约”）"]]),
-(2,[[[("Qinghao,","青蒿，"),("or **sweet wormwood**,","也就是**黄花蒿**(sweet wormwood)，"),("showed","展现出"),("**flashes** of **promise**,","几丝**成功迹象**(promise)的**闪光/闪现**(flashes)，"),("yet","但"),("its results","它的效果"),("were **erratic**.","**时好时坏**(erratic)。")],
+(2,[[[("Qinghao,","青蒿，"),("or **sweet wormwood**,","也就是**黄花蒿**(sweet wormwood)，"),("showed","展现出"),("**flashes** of **promise**,","几丝**成功迹象**(promise)的**闪光/闪现**(flashes)，"),("yet","然而"),("its results","它的效果"),("were **erratic**.","却**并不稳定/时好时坏的**(erratic)。")],
      "（or：也就是，引出同一种植物的另一个名称；\nshow flashes of promise：不时显出希望）"]]),
 (2,[[[("Seeking","为了寻找"),("a **clue**,","一条**线索**(clue)，"),("Tu","屠呦呦"),("**revisited**","**重新翻阅了**(revisited)"),("the **classical** texts.","**古典**(classical)文献。")],
      "（Seeking a clue：现在分词短语作状语，表示目的）"]]),
