@@ -25,6 +25,7 @@ if not os.path.exists(f): sys.exit(print(f'没有 {f}（草稿不是 做.sh 出�
 z = json.load(open(f)); bad = [k for k, p in (('数据', f'scripts/{no}.json'), ('声音', f'work_{no}/a.wav')) if z[k] != h(p)]
 print('成片指纹：' + ('数据、声音与用户看过的草稿一致' if not bad else '变了：' + '、'.join(bad))); sys.exit(1 if bad else 0)
 PY
+[ -f "$P/视频/视频/草稿1080p/${no}_1080p.mp4" ] && mv "$P/视频/视频/草稿1080p/${no}_1080p.mp4" "$LOG/"   # 用户看过的草稿（指纹已对上）挪进记录：G7 已定稿篇的草稿不许留在 草稿1080p/
 step "① 出片前核查（疑点必须清零）"; python3 $T/交付核查.py $no 出片前 > "$LOG/出片前.log" 2>&1 || { grep -A3 "^✘" "$LOG/出片前.log" | head -30; stop "出片前核查不通过（疑点没清零或有错）"; }
 step "② 出 4K"; VIDEO_S=2 python3 make_video.py scripts/$no.json $no.mp4 > "$LOG/出片.log" 2>&1 || { tail -15 "$LOG/出片.log"; stop "出片失败"; }
 step "③ 出片后核查"; python3 $T/交付核查.py $no 出片后 > "$LOG/出片后.log" 2>&1 || { grep -A3 "^✘" "$LOG/出片后.log" | head -30; stop "出片后核查不通过"; }
@@ -36,7 +37,6 @@ md=$(ls $P/新版定稿/$no-*.md 2>/dev/null | head -1); [ -n "$md" ] || stop "�
 step "⑤ 归档（替换旧视频 + 定稿视频核对）"
 cp $no.mp4 $P/视频/视频/$no.mp4 || stop "复制失败"
 python3 $T/归档定稿视频.py $no > "$LOG/归档.log" 2>&1 || { tail -15 "$LOG/归档.log"; stop "归档或定稿视频核对不通过"; }
-rm -f $P/视频/视频/草稿1080p/${no}_1080p.mp4
 step "⑥ 推送两个仓库"
 cat "$LOG/出片前.log" "$LOG/出片后.log" > $P/视频/音频核对/交付核查_${no}_4K定稿.txt
 awk '/^① 清点/{f=1} f' "$LOG/归档.log" > $P/视频/音频核对/定稿视频核对_${no}.txt
