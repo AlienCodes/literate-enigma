@@ -1,0 +1,1457 @@
+diff --git "a/\350\247\206\351\242\221/\345\210\266\344\275\234\347\241\254\346\200\247\346\240\207\345\207\206\344\270\216\350\270\251\345\235\221\346\200\273\347\273\223.md" "b/\350\247\206\351\242\221/\345\210\266\344\275\234\347\241\254\346\200\247\346\240\207\345\207\206\344\270\216\350\270\251\345\235\221\346\200\273\347\273\223.md"
+index 5069dd4a3ee6de8eba7ed47ce9da5935013a8cf2..f828bf8a58e627eb8ae13b80bad31c153951ee95 100644
+--- "a/\350\247\206\351\242\221/\345\210\266\344\275\234\347\241\254\346\200\247\346\240\207\345\207\206\344\270\216\350\270\251\345\235\221\346\200\273\347\273\223.md"
++++ "b/\350\247\206\351\242\221/\345\210\266\344\275\234\347\241\254\346\200\247\346\240\207\345\207\206\344\270\216\350\270\251\345\235\221\346\200\273\347\273\223.md"
+@@ -722,7 +722,29 @@
+ | G108 | 2026-10-27（K56）主会话：丝滑记录 会话.jsonl 7 条不丝滑（推送两仓库.sh 停下）只写“退出码 1”，原因没记，也没有一条对上 K#；丝滑.py 只打印提示，用上核查、规则执行核查全绿，不丝滑静默堆积 | 推送两仓库 trap 不抓停下的行和命令；没有程序核对每条不丝滑对上登记号 | 推送两仓库.sh ERR trap 记“停在第几行、哪条命令”；丝滑.py 记不丝滑当场自动登记 K#（同入口同原因 24 小时沿用），--未闭环 --严 有没对上的就停，主会话核对.sh 接上；旧 7 条回填 K56“原因不可考”（用上核查 --严、报坑 --查 --严 并进 在第六棒下一批） |
+ | G109 | 2026-10-27（K57）主会话：没篇号的不丝滑（改门、主会话的会话级停下）全记进 会话.jsonl，方法进化表 G65 只比每篇 NN.jsonl，改门和协调的不丝滑变多没有门停 | 会话级记录没人读、没有比较 | 会话开工记一条开工（0 次的会话也算），丝滑.py --会话次数 按会话计；--改门比较：最近一个改门会话不丝滑比前三个中位数多，任务单里它的交接要有查得到的“进化落地：<提交号|G##|K##>”，没有就停；主会话核对.sh 接上 |
+ | G110 | 2026-10-27（K58）主会话：上下文上限只管出稿、改稿会话（超 40 万草稿声音.sh 停），改门会话没有上限，每次调用重读整个上下文越做越贵（第五棒 354k 才手跑发现） | 改门会话没有上下文限 | 方法进化表.py 改门上下文限 300k，--上下文 按 会话开工 记的角色判，超了退出码 1（先推已完成的、交接、放锁、send_message 报主会话）；推请求.py 发请求前、报坑.py 取/续锁前自动调 在第六棒下一批 |
++| G111 | 2026-10-27（K62）主会话：改门补丁在 GitHub 跑着（还没 --收），主会话推送两仓库 改了补丁碰的文件，补丁在 GitHub 打不上、--收 对不上 | 推送不知道有在途补丁 | 推请求.py --在途冲突：推的提交碰了在途改门推送补丁的文件就停（结果已回、8 小时以上的死请求不算）；推送两仓库.sh 推之前调 |
++| G112 | 2026-10-27（K63）改门：报坑.py --锁 原子提交直接推 origin/main，本地推送两仓库 先拷镜像、再推主仓库时合并进来别人的提交，镜像缺这部分，G2 一致核对停 | 推送两仓库.sh 拷镜像在合并之前 | 推送两仓库.sh 先推主仓库（含合并），再按合并后的 HEAD 拷镜像；流程自检 查顺序 |
++| G113 | 2026-10-27（K64）主会话：推送两仓库.sh、定稿流水线.sh 提交说明写死 Claude-Session 某个会话，别的会话提交署名错 | 署名写在程序里 | 两处一律用 报坑.py --本会话；流程自检 查写死和没用 --本会话 |
++| G114 | 2026-10-27（K65）改门 K60改门推送v4：增量合并把门变异清单写成“全量：无”，用上核查 fromisoformat 崩成“读不了”，定稿流水线 ⓪ 停，6 场流水线演练走不到各自的门 | 清单“全量：”只认时刻，增量合并没有全量记录时写了“无” | 用上核查 清单“全量：”不是时刻就明确报“没有全量记录（推请求.py 门变异 全量重跑一次）”，不许崩；清单补真实全量时刻；用上核查 --自检 造“全量：无”必报 |
++| G115 | 2026-10-27（K66）改门：收工闸门（闸门.py 收工）不认在途改门推送补丁：主仓库改动 = 已推 GitHub、还没 --收 的补丁，仍逼着推送两仓库，照做 --收 时补丁就对不上 | 收工闸门只看工作树有没有改动 | 闸门.py 收工 先查改动是不是镜像里已提交的在途改门推送补丁（逐字节相同、请求也已提交），是就放行；钩子自检 造“补丁没提交”“改动和补丁不同”必拦、“就是在途补丁”必放 |
++| G116 | 2026-10-28（K67）改门 K60改门推送v5：门变异全量 126 片过、基线 90→79，gate 合并声音演练印章 ModuleNotFoundError numpy（零散 pip 第二次漏装，第一次是 K61 plan） | 每个 job 自己写 pip install，漏一个就挂在最后 | .github/核查依赖.txt 一份清单，plan/run/merge/drill/gate 跑 python3 前一律先装；推请求 排序问题 静态查每个 job，拆任一 job 的安装步必抓 |
++| G117 | 2026-10-28（K68）改门 K60改门推送v6：门变异全量又过（基线 79），gate ③ 主演练没写改动时结果补丁为空，git apply 空文件退出 128，gate 停 | gate 无条件 git apply 主演练.diff | gate 先查 主演练.diff 非空再打（[ ! -s … ] ||）；推请求 排序问题 要求这一句，拆了必抓 |
++| G118 | 2026-10-28（K69）主会话：第四棒 git apply 改门补丁又撤回后，干净 main 工作树的提交被提交前钩子拦（彩排印章对不上），交接推不上；钩子不说是哪个文件 | 撤补丁没有正式命令，残留的没跟踪文件进了印章范围；印章核对只说对不上 | 推请求.py --撤补丁 <补丁>：反打补丁，列出没回到 HEAD 的残留（有就退出码 1）；规则执行核查 印章对不上时打印哪几个文件（改过 / 印章里没有 = 残留 / 文件没了） |
++| G119 | 2026-10-28（K70）改门第五棒：v4–v7 每次门变异全量 2.5 小时（受影响门拿 main 比，补丁里攒着的门变异.py 改动次次算“改了”）；v7 merge 只写“81 > 79”，结果在 artifact、沙盒拿不到，查不出是哪两道 | 底子是 main 不是最近已证明结果；失败只报数字；没有只重跑收尾的办法 | 门变异 清单记每道门指纹（门所在程序 + 直接探测程序）和拆探指纹，改门推送只拆指纹变了的（v8 126→49 片）；查基线 列出新漏洞门号；drill.yml 收尾快跑（快跑=底运行，gh 分页下载底运行分片结果，只跑合并→演练→彩排，结果不能 --收）；推请求 发前估时，超 60 分钟先报；门变异 --自检、推请求 --自检 造错必抓 |
++| G120 | 2026-10-28（K71）改门第五棒：v7 新漏洞 make_video.py:113、:126（A23），v5/v6 都“发现”、程序一字没改：门变异 探测并行 4 份，私有工作目录链接同一个 __pycache__，同一秒写出、同样大小的两个变异体共用一份 .pyc，出片守门自检测的是别人的变异，结论随机 | 并行变异共用字节码缓存 | 出片守门自检 导入出片程序前设私有 sys.pycache_prefix / PYTHONPYCACHEPREFIX；门变异 --自检 静态查顺序；走到出片守门自检的门指纹全变、重拆 |
+ | G121 | 2026-10-28（K73）改门第六棒：K60改门推送v8 门变异 49 片、两个演练全过，④ 彩排“停下 1 次”不过：彩排.sh 把丝滑记录行数当停下次数，v8 的 K57 让 会话开工 每次写一条“开工”记录，彩排把它数成停下 | 彩排数行不看类别 | 丝滑.py --停下数 只数 不丝滑、内容问题（坏行也算，宁停勿放），开工记录不算；彩排.sh 用它，程序崩了 n 为空照样停；丝滑 --自检 造开工+不丝滑+内容问题+坏行必须数成 3 |
++| G123 | 2026-10-28（K72）改门第六棒 推送两仓库.sh 停（G61/G63 角色闸门）：会话开工在 git apply 在途补丁之后才记指纹，撤补丁后主仓库 开工必读 回到 HEAD 版，推送被拒，--重读 后才过 | 会话开工只记读到的那一份指纹，不认在途补丁 | 会话开工.py 仓库版指纹()：开工、--重读 时 HEAD 版的每一行都在读过的那份里，HEAD 版也算读过；有读过的那份里没有的行不算（不放宽）。自检：补丁加行必认、补丁改行不认 |
++| G124 | 2026-10-28（K74）主会话：G65 方法进化门 落地查 只查号存不存在：没入表的 K、表里早就有的 G、仓库里任何旧提交都算“进化落地”；NN.md 有两个“## 方法复盘”只读第一个 | 落地查不看落成时刻 | 方法进化表.py 落地查：G 按取号预留时刻、K 按入表那个 G 的时刻，都要在本篇开工（证据链第一条、开工时刻、最早收工）以后、规则执行表里有门；提交号要在开工以后且改了 视频/工具/；查不到开工时刻一律不算；所有“## 方法复盘”都读。自检：旧 G、没入表 K、旧提交、只改文档的提交、查不到开工时刻必停，第二节里的落地必认 |
++| G125 | 2026-10-28（K75）28 开工记录.py 28（新容器第一次跑）把 制作记录/28.md 整份重写：主会话写好的标题、方法设计、token 记录被冲掉；同时往 27.md 追加 ## 方法进化 | 开工记录不核对写完后原有内容还在；调 G65 门时默认写上一篇 NN.md | 开工记录.py 守开工()：本地没有 NN.md 而仓库 HEAD 有就停（先 pull）；开工后原有的任何一行没了 → 恢复原文件并停；调上一篇 G65 门 写=False。自检：K75 原样重放（冲成只剩做事对照记录）必停并恢复，本地缺仓库有必停，全新一篇不误停 |
++| G126 | 2026-10-28（K76）28 方法进化表.py --写入：28.md 没有“## 机制漏洞”节，但踩坑对照记录正文里出现这几个字，in 判真、行首正则匹配不到 → AttributeError 崩 | 用字符串包含判节 | 漏洞节() 只认行首整行标题，正文提到不算。自检：正文提到“## 机制漏洞”字样不许崩 |
++| G127 | 2026-10-28（K77）28 读音改正 同时登记 qinghao 和 Qinghao，出片程序按不分大小写替换，S5/S7 “出现 1 次，换了 0 次”停（A23）；写入.py 不能删键 | 写入.py 不查只差大小写的键、没有删 | 发音词典/写入.py：读音改正 新键和已有的、或新键之间只差大小写 → 拒绝；--删 表名 词（带锁）；已核实读音 照旧区分大小写。自检进 规则执行核查 当场自检（FAST） |
++| G128 | 2026-10-28（K78）27 改稿会话（新容器）没有 work_27/a.wav，交付核查 出片前 音频体检 ffmpeg 读不到报 Traceback（退出码 254）才停 | 交付核查不先查成片声音在不在 | 交付核查.py 出片前、出片后 开头先查 work_NN/a.wav，没有就停并给出 快速重建核查.sh NN；流程自检 静态查这一行在音频体检前（拿掉必报） |
++| G129 | 2026-10-28（K79）27 改稿会话把新 1080p 草稿推到 视频/草稿1080p/27_1080p.mp4（新建目录），正确位置 视频/视频/草稿1080p/ 还是旧稿；交付核查、推送两仓库、主会话核对都没查出 | 草稿要手工 cp，G7 只在归档、定稿时查 | 踩坑核查.py 视频位置()：视频/ 下的视频只许在 视频/视频/、视频/视频/草稿1080p/（NN_1080p.mp4）、视频/试听/、视频/片头设计/；推送两仓库.sh 每次提交前调，放错就停。自检：K79 原样、命名不对必报，放对的不误报；推送自检 造放错必停 |
++| G130 | 2026-10-28（K80）28 S13 句末 artemisinin. 的 /n/ 嘎裂收尾，音频体检 判句尾截断 -44.9（01–24 最差 -49.2）超限；体检自检因“原样已超限”整项失灵 | 自检看全片最大值，原样有一句超限就验不了 | 音频体检.py 自检：按句的四项在原样没超限的一句上造坑、只看那一句（原样别的句超限照样验）；句尾截断超限提示重合成这一句（合成标点、语速）或修尾音，不开确认口子（首要法则，不放宽） |
++| G131 | 2026-10-28（K82）改门第六棒 推请求.py --收 停“主仓库的改动和推上去的补丁不一样了”：内容逐字节相同，只有 diff index 行短哈希 7 位变 8 位 | 做补丁用缩写哈希，对象多了 git 自动加长 | 推请求.py 做补丁 git diff 加 --full-index（完整哈希，不随仓库大小变） |
++| G132 | 2026-10-28（K83）推送两仓库 不丝滑：停在 git commit 那行（提交被钩子拒），丝滑记录只有“停在第 20 行”，拒的原因没记 | 提交输出没留 | 推送两仓库.sh 提交一律走 提交()：被拒时打印并把最后两行原因记进 Z_WHY，丝滑行带“原因：…”；流程自检 查只有这一处 git commit、带 Z_WHY（另写一条或拿掉必报） |
++| G133 | 2026-10-28（K84）28 文本阶段在 草稿声音.sh 合成途中推送，配音缓存正在写，两仓库 视频/ 不一致停（G2） | 推送不知道合成在跑 | 草稿声音.sh 合成期间拿共享锁（CAOGAO_LOCK，几篇、几场演练同时合成互不挡）；推送两仓库.sh 拿不到独占锁就停“等它跑完再推”。推送自检：持共享锁时推送必停 |
++| G134 | 2026-10-28（K85）28 推送：主仓库 28.md、方法进化表.md 与别的会话同时写的程序行（机制漏洞“程序填”行）合并冲突停；手工取新侧后重跑 方法进化表.py --写入 | 程序写的行冲突要人解 | 方法进化表.py --解冲突：冲突只在 方法进化表.md 或 NN.md 程序节（方法进化/机制漏洞/机制运行报告，不碰“会话补”）→ 取远端那侧、写表() 重算、git add；别的冲突 git merge --abort 停交人；推送两仓库.sh 合并失败时调。自检：程序填行冲突自动解，会话补、方法复盘、程序文件冲突必交人 |
+ | C1 | 用户说“做网站”，其实只要一个 HTML 文件存档，我却去部署了 GitHub Pages | 总表没写原因 | “上线/公开”是什么意思没把握时，先问；默认只生成文件，不做任何公开发布（硬性条件 五.4）。拦住：人工步骤；`踩坑核查.py 通用` 逐条列出来提醒（不能自动判断）；每篇的踩坑对照记录里，这一条必须填写 |
+ | C2 | 没经确认就触发了部署 | 总表没写原因 | 对外公开、部署这类操作，必须先得到用户的明确同意（硬性条件 五.4）。拦住：同 C1 |
+ | C3 | 用户两次提的标准互相冲突（“字号统一”和“铺满屏幕”） | 总表没写原因 | 明确指出冲突，请用户选择，并把最终的选择记下来。拦住：人工步骤；`踩坑核查.py 通用` 列出来提醒；每篇的踩坑对照记录里，这一条必须填写 |
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\344\272\244\344\273\230\346\240\270\346\237\245.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\344\272\244\344\273\230\346\240\270\346\237\245.py"
+index 178291ac25a26682636d872037e7de44cf54fa44..961b9c33f93d5df5f70e13870a55ce63257bb5b7 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\344\272\244\344\273\230\346\240\270\346\237\245.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\344\272\244\344\273\230\346\240\270\346\237\245.py"
+@@ -16,6 +16,8 @@ def step(name, passed, detail=''):
+     global ok
+     ok &= passed; out.append(f"{'✔' if passed else '✘'} {name}" + (f"\n    {detail}" if detail else ''))
+ 
++if stage in ('出片前', '出片后') and not os.path.exists(f'work_{no}/a.wav'):   # K78（27 改稿新容器：没有 a.wav，音频体检 ffmpeg 254 崩才停）
++    sys.exit(f'【停止】没有 work_{no}/a.wav（新容器、或不在视频工作目录）：先在视频工作目录跑 bash {T}/快速重建核查.sh {no} 从配音缓存重建，再跑交付核查')
+ if stage in ('出片前', '出片后'):   # G60 机制使用核查：本篇前面每一步都由正式入口留下证据、顺序对（28 起）
+     sys.path.insert(0, T); import 证据 as _ZJ; _ze = _ZJ.查(no, stage)
+     step('机制使用核查（G60：前面每一步都由正式入口留下证据、顺序对；少一步按 开工必读 ⑤ 步骤表补跑）', not _ze, '\n    '.join(_ze))
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\344\274\232\350\257\235\345\274\200\345\267\245.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\344\274\232\350\257\235\345\274\200\345\267\245.py"
+index 63484ca332c413cde6fa99c0fde104d53ebc7da8..fae354a88d809d0a38acf39b167616fe954bac95 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\344\274\232\350\257\235\345\274\200\345\267\245.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\344\274\232\350\257\235\345\274\200\345\267\245.py"
+@@ -37,6 +37,17 @@ def 打印三大主义():
+ def 指纹(): return hashlib.sha256(open(必读F, 'rb').read()).hexdigest()[:12] if os.path.exists(必读F) else ''
+ 
+ 
++def 仓库版指纹(读的=None):
++    """K72：工作树打着在途改门补丁时读的是补丁版，撤补丁后现行是仓库 HEAD 版。HEAD 版的每一行都在读过的那份里，才把 HEAD 版也算读过"""
++    try:
++        h = subprocess.run(['git', '-C', os.path.dirname(必读F), 'show', 'HEAD:./' + os.path.basename(必读F)], capture_output=True).stdout
++        读的 = open(必读F).read() if 读的 is None else 读的
++    except Exception: return []
++    if not h: return []
++    有 = set(读的.splitlines())
++    return [hashlib.sha256(h).hexdigest()[:12]] if all(l in 有 for l in h.decode().splitlines() if l.strip()) else []
++
++
+ def 读记录():
+     try: return json.load(open(记录F[0]))
+     except Exception: return None
+@@ -91,7 +102,7 @@ def 开工(角色, 会话='', 任务=''):
+     t = open(必读F).read() if os.path.exists(必读F) else ''
+     s = 节(t, '⑤')
+     if s: print(s)
+-    rec = {'角色': 角色, '会话': 会话, '任务': 任务, '开工必读指纹': 指纹(),
++    rec = {'角色': 角色, '会话': 会话, '任务': 任务, '开工必读指纹': 指纹(), '读过的指纹': 仓库版指纹(),
+            '时刻': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%MZ')}
+     json.dump(rec, open(记录F[0], 'w'), ensure_ascii=False); open(记录F[0] + '.md', 'w').write(t)
+     if 记录F[0] == 记录F默认:   # K57：开工记进 丝滑/会话.jsonl（角色、会话、任务），0 次不丝滑的会话也算进 改门会话 中位数比较（自检用临时记录F，不写）
+@@ -108,7 +119,7 @@ def 重读():
+     new = open(必读F).read(); 旧 = set(old); add = [l for l in new.splitlines() if l.strip() and l not in 旧]
+     print(f'【开工必读 更新】新增或改了 {len(add)} 行：'); [print('  ' + l[:170]) for l in add[:80]]
+     if len(add) > 80: print(f'  ……另 {len(add) - 80} 行见 视频/开工必读.md')
+-    rec['开工必读指纹'] = 指纹(); rec['读过的指纹'] = (rec.get('读过的指纹', []) + [rec['开工必读指纹']])[-20:]; json.dump(rec, open(记录F[0], 'w'), ensure_ascii=False); open(记录F[0] + '.md', 'w').write(new)
++    rec['开工必读指纹'] = 指纹(); rec['读过的指纹'] = (rec.get('读过的指纹', []) + [rec['开工必读指纹']] + 仓库版指纹(new))[-20:]; json.dump(rec, open(记录F[0], 'w'), ensure_ascii=False); open(记录F[0] + '.md', 'w').write(new)
+     print(f'已记下新指纹 {rec["开工必读指纹"]}')
+ 
+ 
+@@ -185,6 +196,14 @@ def 自检():
+         if 查开工(rec, 'aaa'): f.append('误报：读过现行开工必读')
+         if 查开工({**rec, '读过的指纹': ['ccc']}, 'ccc'): f.append('误拦：另一个仓库的开工必读也读过（K52 来回重读）')
+         if not 查开工({**rec, '读过的指纹': ['ccc']}, 'ddd'): f.append('没抓到：两个版本都没读过（K52 放得太宽）')
++        import tempfile as _tf; _d = _tf.mkdtemp(prefix='开工K72_'); _G = lambda *x: subprocess.run(['git', '-C', _d, '-c', 'user.name=t', '-c', 'user.email=t@t', *x], capture_output=True)
++        _F0 = globals()['必读F']; globals()['必读F'] = f'{_d}/开工必读.md'
++        try:
++            _G('init', '-q'); open(f'{_d}/开工必读.md', 'w').write('a\nb\n'); _G('add', '-A'); _G('commit', '-qm', 'x')
++            _h = hashlib.sha256(b'a\nb\n').hexdigest()[:12]
++            if 仓库版指纹('a\nb\nc 补丁加的\n') != [_h]: f.append('没抓到：打着在途补丁开工，撤补丁后 HEAD 版没算读过（K72）')
++            if 仓库版指纹('a\nc 补丁改的\n'): f.append('放得太宽：HEAD 版有读过的那份里没有的行，也算读过（K72）')
++        finally: globals()['必读F'] = _F0
+         no = lambda p: False
+         for p in ('视频/工具/踩坑核查.py', '视频/工具/githooks/pre-commit', '视频/工具/规则执行表.json', '视频/工具/钩子/闸门.py', '.claude/settings.json', '.github/workflows/drill.yml', '视频/工具/草稿声音.sh'):
+             if not 角色问题('出稿', [p], no): f.append(f'没抓到：出稿会话提交改门程序 {p}')
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\217\221\351\237\263\350\257\215\345\205\270/\345\206\231\345\205\245.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\217\221\351\237\263\350\257\215\345\205\270/\345\206\231\345\205\245.py"
+index 810636bdad5d9eab14daac0423b9d301968b2ca4..9a64a168364fa1d9823bb7e48f7d0fd0528ae8d7 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\217\221\351\237\263\350\257\215\345\205\270/\345\206\231\345\205\245.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\217\221\351\237\263\350\257\215\345\205\270/\345\206\231\345\205\245.py"
+@@ -1,10 +1,51 @@
+ #!/usr/bin/env python3
+ """发音词典带锁写入（2026-10-16，几篇同时做时防互相覆盖）：python3 写入.py 表名 '{"词": {...}}'
+-表名：已核实读音 / 读音改正 / 多音词核对。只增改给出的键，其余不动。"""
++表名：已核实读音 / 读音改正 / 多音词核对。只增改给出的键，其余不动。
++删一条：python3 写入.py --删 表名 词（K77：以前不能删键，只好手改）。
++读音改正 的键只差大小写的拒绝写（K77 28：qinghao、Qinghao 两条，出片程序不分大小写替换，“出现 1 次换了 0 次”停）。"""
+ import json, sys, fcntl, os
+-D = os.path.dirname(os.path.abspath(__file__)); name, patch = sys.argv[1], json.loads(sys.argv[2])
+-f = f'{D}/{name}.json'
+-with open(f'{D}/.写入.lock', 'w') as lk:
+-    fcntl.flock(lk, fcntl.LOCK_EX); d = json.load(open(f)); d.update(patch)
+-    tmp = f + '.tmp'; json.dump(d, open(tmp, 'w'), ensure_ascii=False, indent=1); os.replace(tmp, f)
+-print(f'{name}：写入 {len(patch)} 条')
++D = os.path.dirname(os.path.abspath(__file__))
++
++
++def 撞大小写(d, patch, name):
++    """读音改正（出片程序按不分大小写替换）：新键和已有的、或新键之间只差大小写 → 列出来"""
++    if name != '读音改正': return []
++    have = {k.lower(): k for k in d}; out = []
++    for k in patch:
++        o = have.get(k.lower())
++        if o is not None and o != k: out.append(f'{k} 和已有的 {o} 只差大小写')
++        have.setdefault(k.lower(), k)
++    return out
++
++
++def 写(name, patch=None, 删=None, D_=D):
++    f = f'{D_}/{name}.json'
++    with open(f'{D_}/.写入.lock', 'w') as lk:
++        fcntl.flock(lk, fcntl.LOCK_EX); d = json.load(open(f))
++        if 删 is not None:
++            if 删 not in d: return f'【停止】{name} 里没有 {删}'
++            del d[删]
++        else:
++            e = 撞大小写(d, patch, name)
++            if e: return '【停止】' + '；'.join(e) + '（K77：出片程序不分大小写替换，留一条；要换先 --删 旧的）'
++            d.update(patch)
++        tmp = f + '.tmp'; json.dump(d, open(tmp, 'w'), ensure_ascii=False, indent=1); os.replace(tmp, f)
++    return None
++
++
++def 自检():
++    import tempfile; t = tempfile.mkdtemp(prefix='写入自检_'); f = []
++    json.dump({'qinghao': {'读音': 'x'}}, open(f'{t}/读音改正.json', 'w')); json.dump({'SAT': {}}, open(f'{t}/已核实读音.json', 'w'))
++    if not 写('读音改正', {'Qinghao': {'读音': 'x'}}, D_=t): f.append('没抓到：读音改正 新键和已有的只差大小写（K77）')
++    if 写('已核实读音', {'sat': {}}, D_=t): f.append('误拦：已核实读音 区分大小写（SAT 是专名，sat 不是）')
++    if 写('读音改正', {'artemisinin': {'读音': 'y'}}, D_=t): f.append('误拦：新词')
++    if 写('读音改正', 删='qinghao', D_=t) or 'qinghao' in json.load(open(f'{t}/读音改正.json')): f.append('--删 没删掉（K77）')
++    if 写('读音改正', {'Qinghao': {'读音': 'x'}}, D_=t): f.append('误拦：删掉旧键后写新大小写')
++    return f
++
++
++if __name__ == '__main__':
++    a = sys.argv[1:]
++    if a[:1] == ['--自检']: e = 自检(); print('发音词典写入 自检：' + ('通过（读音改正只差大小写的键必拒、--删 能删）' if not e else '失灵！' + '；'.join(e))); sys.exit(1 if e else 0)
++    if a[:1] == ['--删']: e = 写(a[1], 删=a[2]); print(e or f'{a[1]}：删掉 {a[2]}'); sys.exit(1 if e else 0)
++    patch = json.loads(a[1]); e = 写(a[0], patch); print(e or f'{a[0]}：写入 {len(patch)} 条'); sys.exit(1 if e else 0)
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\256\232\347\250\277\346\265\201\346\260\264\347\272\277.sh" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\256\232\347\250\277\346\265\201\346\260\264\347\272\277.sh"
+index 7f6bdceb57fd815bad4c07f8bfffb63833b0f6bc..b3c9165bef88cfa010210f569cc09ec1a509c3d1 100755
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\256\232\347\250\277\346\265\201\346\260\264\347\272\277.sh"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\256\232\347\250\277\346\265\201\346\260\264\347\272\277.sh"
+@@ -56,8 +56,9 @@ awk '/^① 清点/{f=1} f' "$LOG/归档.log" > $P/视频/音频核对/定稿视
+ [ -n "$YUN" ] && { python3 $T/证据.py --查 $no 定稿 > /dev/null || stop "云端定稿：定稿证据没齐（G60）"; tail -3 "$LOG/归档.log"; echo "第${no}篇 云端定稿到 ⑥ 存记录：推送由 drill.yml 按 G58 白名单写回镜像，会话 推送两仓库.sh 回写主仓库后跑 定稿视频核对 --只查清点和镜像"; exit 0; }
+ MSG="第${no}篇 4K 定稿：出片前/出片后核查全部通过，替换旧视频归档，定稿视频核对逐屏逐样本通过（定稿流水线）
+ 
+-Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+-Claude-Session: https://claude.ai/code/session_01XbsiuYS9p9y2vNiB4h6ZZU"
++Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
++_S=$(python3 $T/报坑.py --本会话 2>/dev/null || true); [ -n "$_S" ] && MSG="$MSG
++Claude-Session: https://claude.ai/code/$_S"   # K64：用本会话，不写死
+ exec 7>"${PUSH_LOCK:-/tmp/推送两仓库.lock}"; flock 7   # G17：提交、镜像同步、推送与 推送两仓库.sh 同一把锁排队（2026-10-23 两篇同时到这一步，镜像同步撞同一个 .part 文件）
+ (cd $P && git add -A && { git diff --cached --quiet || git commit -q -m "$MSG"; } && push main) || stop "postgraduate-vocabulary 提交或推送失败"
+ (cd $P && python3 视频/工具/镜像同步.py > "$LOG/镜像.log" 2>&1 && cp CLAUDE.md $L/CLAUDE.md && cp 新版定稿/*.md $L/新版定稿/) || stop "镜像同步失败"
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\274\200\345\267\245\350\256\260\345\275\225.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\274\200\345\267\245\350\256\260\345\275\225.py"
+index e1d202a0a4482da8d92cdf0a51d895aa6ef43b53..52979f7f52bc6560cae9879a5970f6d9f1ff08c1 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\274\200\345\267\245\350\256\260\345\275\225.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\274\200\345\267\245\350\256\260\345\275\225.py"
+@@ -32,6 +32,25 @@ def 开工(V, no, 记当前=True, 根=None):
+     if no.isdigit() and int(no) >= _KB.起 and 记当前: open(f, 'w').write(_KB.补(no, open(f).read())[0])   # 28 起：做事对照记录（只追加）
+     out = subprocess.run(['python3', f'{os.path.dirname(os.path.abspath(__file__))}/check_all.py', '--写提醒', no] + (['--根', 根] if 根 else []), capture_output=True, text=True).stdout.strip()
+     return f'{f}：{len(rows)} 条\n{out}', 0
++def 守开工(V, no, 开工_=None, **k):
++    """K75：开工前本地没有 NN.md 而仓库里有就停；开工后原有的行少了就恢复原文件并停"""
++    f = f'{V}/制作记录/{no}.md'
++    e = 仓库里有(V, no) if not os.path.exists(f) else None
++    if e: return e, 1
++    old = open(f).read() if os.path.exists(f) else None
++    msg, c = (开工_ or 开工)(V, no, **k)
++    e = 只追加查(old, open(f).read() if os.path.exists(f) else '')
++    if e: open(f, 'w').write(old); return f'【停止】开工记录把 {f} 原有的 {len(e)} 行冲掉了（K75），已恢复原文件：' + '；'.join(e[:3]), 1
++    return msg, c
++def 只追加查(old, new):
++    """K75（28 新容器第一次跑，主会话写好的标题、方法设计、token 记录被冲掉）：原有的每一行（非空）都必须还在，返回没了的行"""
++    if not old: return []
++    have = set(new.split('\n')); return [l[:40] for l in old.split('\n') if l.strip() and l not in have]
++def 仓库里有(V, no):
++    """K75：本地没有 NN.md、仓库提交里却有（新容器没拉、工作目录不对）就停，不新建一份去冲掉"""
++    import subprocess
++    r = subprocess.run(['git', '-C', V, 'cat-file', '-e', f'HEAD:./制作记录/{no}.md'], capture_output=True)
++    return f'【停止】本地没有 制作记录/{no}.md，仓库 HEAD 里有（K75：新建会冲掉主会话写好的交接）：先 git pull、确认在仓库的 视频 目录下跑' if r.returncode == 0 else None
+ def 方法设计节(t):
+     m = re.search(r'^## 方法设计[^\n]*\n[\s\S]*?(?=^## |\Z)', t, re.M); return m.group(0) if m else ''
+ def 自检():
+@@ -52,6 +71,15 @@ def 自检():
+         t2 = open(f'{V}/制作记录/98.md').read()
+         if 方法设计节(t2) != a0 or len(re.findall(r'^## 撞车提醒', t2, re.M)) != 1: f.append('没抓到：重跑 --写提醒 冲掉了方法设计或多出一节（G46：正文提到“## 撞车提醒”被当成标题）')
+         if not any(x in 合成('# x\n\n正文提到“## 方法设计”\n', '98', [], 'now') for x in ('\n## 方法设计（T31',)): f.append('没抓到：正文提到“## 方法设计”就不补方法设计节（G46）')
++        def 冲(V_, no_, **k_): open(f'{V_}/制作记录/{no_}.md', 'w').write('## 做事对照记录\n'); return 'x', 0   # K75 重放：只剩做事对照记录
++        open(f'{V}/制作记录/97.md', 'w').write(md); m_, c_ = 守开工(V, '97', 冲)
++        if c_ != 1 or open(f'{V}/制作记录/97.md').read() != md: f.append('没抓到：开工记录把 NN.md 原有内容冲掉（K75：要停并恢复原文件）')
++        import subprocess as _sp; _sp.run(['git', '-C', V, 'init', '-q']); _sp.run(['git', '-C', V, '-c', 'user.name=t', '-c', 'user.email=t@t', 'add', '-A'], capture_output=True)
++        _sp.run(['git', '-C', V, '-c', 'user.name=t', '-c', 'user.email=t@t', 'commit', '-qm', 'x'], capture_output=True); os.remove(f'{V}/制作记录/97.md')
++        m_, c_ = 守开工(V, '97', lambda *a_, **k_: ('x', 0))
++        if c_ != 1 or os.path.exists(f'{V}/制作记录/97.md'): f.append('没抓到：本地没有 NN.md、仓库里有，开工记录照样新建（K75）')
++        if 守开工(V, '96', lambda *a_, **k_: ('x', 0))[1] != 0: f.append('误停：全新的一篇（本地、仓库都没有 NN.md）也停（K75）')
++        if "门(f'{int(_no) - 1:02d}', 写=False)" not in open(__file__).read(): f.append('没抓到：开工记录调 G65 门时写上一篇的 NN.md（K75：只查不写）')
+     finally: shutil.rmtree(r, ignore_errors=True)
+     return ['开工记录 自检：' + x for x in f]
+ if __name__ == '__main__':
+@@ -60,11 +88,11 @@ if __name__ == '__main__':
+     import 会话开工 as _HK
+     if not _HK.读记录(): _HK.开工('出稿')   # G63：出稿会话从开工记录开工，先读总纲、要点、步骤表，记下角色
+     V = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); _no = sys.argv[1].zfill(2)
+-    import 方法进化表 as _JH; _e, _ = _JH.门(f'{int(_no) - 1:02d}')   # G65：上一篇变差没落地，不开下一篇
++    import 方法进化表 as _JH; _e, _ = _JH.门(f'{int(_no) - 1:02d}', 写=False)   # G65：上一篇变差没落地，不开下一篇（K75：只查不写，出稿会话不碰上一篇的 NN.md）
+     if _e: print('\n'.join(_e)); sys.exit(1)
+     import 证据 as _ZJ0; _e = _ZJ0.闲置问题()   # G71：机制闲置（连续两篇该用没用、建好后第一篇就没用上），不开下一篇
+     if _e: print('\n'.join(['【停止】机制闲置报警（G71）：'] + _e)); sys.exit(1)
+-    msg, c = 开工(V, _no); print(msg)
++    msg, c = 守开工(V, _no); print(msg)
+     if c == 0:   # G60：开工的使用证据（撞车提醒、做事对照记录写了没有）
+         import 证据 as _ZJ; _t = open(f'{V}/制作记录/{_no}.md').read() if os.path.exists(f'{V}/制作记录/{_no}.md') else ''
+         _ZJ.记(_no, '开工记录', 详情={'撞车提醒': '## 撞车提醒' in _t, '做事对照': '## 做事对照记录' in _t})
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\212\245\345\235\221.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\212\245\345\235\221.py"
+index 5f5b8af7379480ba198566c33f9bc83bf5c950ec..975fb268c94833f15ccb3e4ade865a98e69b1c7f 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\212\245\345\235\221.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\212\245\345\235\221.py"
+@@ -33,6 +33,15 @@ def 号(x): m = re.match(r'([A-Z])(\d+)', x); return m.group(1), int(m.group(2))
+ def 自检残留(r): return r.get('用途') == '自检' or r.get('会话') in ('会话A', '会话B', '会话C') or str(r.get('现象', '')).startswith('自检造的')
+ 
+ 
++def _丝滑未闭环():
++    """K56：丝滑记录里没对上 K# 的不丝滑（和超期没入表一样：--严 停）"""
++    try:
++        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import 丝滑
++        return [f'不丝滑没对上报坑登记号（K56）：{f} {t} {x[:60]}' for f, t, x in 丝滑.未闭环()]
++    except Exception as e: return [f'丝滑.py 未闭环 查不了（K56）：{e}']
++未闭环查 = [_丝滑未闭环]
++
++
+ def 判(std, d, now=None):
+     """纯函数（自检用）：返回 (硬问题, 超期, 待入表)。硬问题 = 撞号、总表新行没取号；超期 = 过了宽限还没进总表"""
+     now = now or 现在(); rows = 总表编号(std); hard, late, wait = [], [], []
+@@ -52,6 +61,7 @@ def 判(std, d, now=None):
+         lim = 宽限['改门' if r.get('改门会话') else '普通']
+         s = f'{r["号"]}（{r["时刻"]}，{r.get("会话", "")[-8:]}）{r["现象"][:50]}'
+         (late if h > lim else wait).append(s + (f'：已 {h:.0f} 小时没进踩坑总表（宽限 {lim} 小时）' if h > lim else ''))
++    late += 未闭环查[0]()
+     return hard, late, wait
+ 
+ 
+@@ -164,6 +174,13 @@ def 本会话():
+     e = os.environ.get('CLAUDE_CODE_REMOTE_SESSION_ID', '')
+     return v or (('session_' + e[4:]) if e.startswith('cse_') else e)
+ def 锁有效(L, now=None): return bool(L and L.get('会话') and 解时(L['到期']) > (now or 现在()))
++def _上下文查():
++    """K58：改门会话上下文超 30 万不续改门锁（方法进化表.py --上下文；GitHub、演练里没有会话记录 → 不查）"""
++    r = subprocess.run(['python3', os.path.join(os.path.dirname(os.path.abspath(__file__)), '方法进化表.py'), '--上下文'], capture_output=True, text=True)
++    return (r.stdout.strip().splitlines() or ['上下文超限'])[-1] if r.returncode else ''
++上下文查 = [_上下文查]
++
++
+ def 锁(动作, 会话, 任务='', repo=None, now=None):
+     """G66 改门锁（主会话 2026-10-26：从根上排队，同一时间只一个会话改门程序）：取/续/放，和取号同一套原子推送。
+     返回 (结果, 锁)：结果 = 取到 / 续上 / 占用 / 放了 / 没持锁"""
+@@ -175,6 +192,9 @@ def 锁(动作, 会话, 任务='', repo=None, now=None):
+             return d, ('续上' if 我 else '取到', d['改门锁'])
+         if not 我: return d, ('没持锁', L)
+         d['改门锁'] = {}; return d, ('放了', L)
++    if 动作 in ('取', '续'):
++        m = 上下文查[0]()
++        if m: return '超限', {'说明': m}   # K58：超 30 万先交接、放锁、报主会话
+     return 原子写(改, repo, 说明=f'改门锁：{动作}（{会话[-8:]}）')
+ def 锁问题(staged_门, 会话, L, now=None):
+     """纯函数（提交前钩子、自检用）：改了门程序却没持锁 → 拒"""
+@@ -212,6 +232,7 @@ def 自检():
+         {'号': 'K1', '时刻': '2026-10-26T06:00Z', '现象': '已入表的', '入表编号': 'G53'},
+         {'号': 'K2', '时刻': '2026-10-27T06:00Z', '现象': '刚登记的'},
+         {'号': 'K3', '时刻': '2026-10-25T06:00Z', '现象': '改门中的', '改门会话': 'session_x'}]}
++    未闭0 = 未闭环查[0]; 未闭环查[0] = lambda: []
+     h, l, w = 判(std, d, now)
+     if h or l: fails.append(f'原样误报：{h + l}')
+     if not any('K2' in x for x in w): fails.append('没列出待入表的登记')
+@@ -225,6 +246,9 @@ def 自检():
+     d3 = json.loads(json.dumps(d)); d3['预留'].append({'编号': 'G53'})
+     if not any('撞号' in x for x in 判(std, d3, now)[0]): fails.append('没抓到：预留撞号')
+     if not any('重复' in x for x in 判(std + '| G53 | x | y | z |\n', d, now)[0]): fails.append('没抓到：总表编号重复')
++    未闭环查[0] = lambda: ['不丝滑没对上报坑登记号（K56）：会话.jsonl 自检']
++    if not any('K56' in x for x in 判(std, d, now)[1]): fails.append('没抓到：不丝滑没对上 K#（K56，--查 --严 要停）')
++    未闭环查[0] = 未闭0
+     # 真跑取号：本地假远端，A 取号后 B（本地是旧的）再取，必须拿到下一个号，不许撞
+     tmp = tempfile.mkdtemp(); _env = {k: v for k, v in os.environ.items() if not k.startswith('GIT_')}; sh = lambda c: subprocess.run(c, shell=True, cwd=tmp, capture_output=True, env=_env)
+     sh('git init -q --bare r.git && git clone -q r.git a && git clone -q r.git b')
+@@ -250,6 +274,7 @@ def 自检():
+         if (k1, k2) != ('K1', 'K2'): fails.append(f'两个会话先后报坑登记号撞了（{k1} {k2}）')
+     except SystemExit as e: fails.append(f'取号真跑失败：{e}')
+     # G66 改门锁：A 取到后 B 必须取不到；B 放不了 A 的锁；A 放后 B 取到；过期的锁可以抢；没持锁改门被拒、持锁不拒
++    上下文0 = 上下文查[0]; 上下文查[0] = lambda: ''
+     try:
+         r1 = 锁('取', '会话A', '自检', repo=f'{tmp}/a')[0]; r2 = 锁('取', '会话B', '自检', repo=f'{tmp}/b')[0]
+         r3 = 锁('放', '会话B', repo=f'{tmp}/b')[0]; r4 = 锁('放', '会话A', repo=f'{tmp}/a')[0]; r5 = 锁('取', '会话B', '自检', repo=f'{tmp}/b')[0]
+@@ -258,7 +283,12 @@ def 自检():
+         if r3 != '没持锁': fails.append('没抓到：不是持锁人也能放锁（G66）')
+         if (r4, r5) != ('放了', '取到'): fails.append(f'放锁后别人取不到（G66：{r4} {r5}）')
+         if r6 != '取到': fails.append(f'过期的锁抢不到（G66：{r6}）')
++        上下文查[0] = lambda: '【停止】改门会话上下文已 350k（超 300k，K58）'
++        r7, L7 = 锁('续', '会话B', repo=f'{tmp}/b'); r8 = 锁('取', '会话C', '自检', repo=f'{tmp}/b')[0]
++        if r7 != '超限': fails.append(f'没抓到：改门会话上下文超 30 万还能续改门锁（K58：{r7}）')
++        if r8 != '超限': fails.append(f'没抓到：改门会话上下文超 30 万还能取改门锁（K58：{r8}）')
+     except SystemExit as e: fails.append(f'改门锁真跑失败：{e}')
++    finally: 上下文查[0] = 上下文0
+     L = {'会话': '会话A', '任务': 't', '取锁': '2026-10-27T11:00Z', '到期': '2026-10-27T13:00Z'}
+     if not 锁问题(['视频/工具/x.py'], '会话B', L, now): fails.append('没抓到：没持锁的会话改门程序（G66）')
+     if not 锁问题(['视频/工具/x.py'], '会话A', L, 解时('2026-10-27T14:00Z')): fails.append('没抓到：锁过期了照样改门（G66）')
+@@ -272,6 +302,7 @@ def main():
+     def opt(k, dft=''):
+         return a[a.index(k) + 1] if k in a and a.index(k) + 1 < len(a) else dft
+     会话 = opt('--会话') or 本会话() or '（没写会话：报坑时加 --会话 session_…）'
++    if '--本会话' in a: print(本会话()); return 0   # K64：推送两仓库.sh、定稿流水线.sh 提交说明的 Claude-Session 用本会话，不写死
+     if '--自检' in a:
+         f = 自检(); print('报坑登记自检：' + ('通过（超期没入表、改门超 72 小时、总表新行没取号、预留撞号、总表重号都抓到；两个会话先后取号不撞）' if not f else '失灵！' + '；'.join(f)))
+         return 1 if f else 0
+@@ -288,8 +319,8 @@ def main():
+         r, L = 锁(动作, 我, opt('--任务'))
+         if '--静默' in a: return 0
+         print({'取到': f'改门锁：取到（到期 {L.get("到期")}）', '续上': f'改门锁：续上（到期 {L.get("到期")}）', '放了': '改门锁：已放开',
+-               '没持锁': '改门锁：本会话没持锁，不用放', '占用': f'改门锁：被 {L.get("会话", "")[-8:]} 占着（{L.get("任务", "")}，到期 {L.get("到期")}）——排队：订阅 PR #7 等锁放开'}[r])
+-        return 0 if r != '占用' else 1
++               '超限': L.get('说明', '') + '（K58：先推已完成的、交接、放锁、send_message 报主会话）', '没持锁': '改门锁：本会话没持锁，不用放', '占用': f'改门锁：被 {L.get("会话", "")[-8:]} 占着（{L.get("任务", "")}，到期 {L.get("到期")}）——排队：订阅 PR #7 等锁放开'}[r])
++        return 0 if r not in ('占用', '超限') else 1
+     if '--锁状态' in a:
+         L = 读本地().get('改门锁') or {}; print(f'改门锁：{L["会话"][-8:]} 持（{L.get("任务", "")}，到期 {L["到期"]}）' if 锁有效(L) else '改门锁：空'); return 0
+     if '--关门' in a:   # 登记的坑已经写进总表现有的一行（多条登记一个坑）：python3 报坑.py --关门 K26 --入表 G68
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\350\257\267\346\261\202.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\350\257\267\346\261\202.py"
+index 7aa03b5c9e3fa9e8fb3422ca8a7d10c87a000219..adc5095074154a2fe697e49341afa35dfd8f1aa1 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\350\257\267\346\261\202.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\350\257\267\346\261\202.py"
+@@ -5,8 +5,9 @@
+ 用法：python3 视频/工具/推请求.py <名字> "<任务行>" ["# 注释"]    例：推请求.py G72主演练 "主演练 补丁=视频/云端/待演练/G72单线程.diff"
+ 改门推送（K59/K60）：python3 视频/工具/推请求.py <名字> 改门推送
+   —— 把主仓库这次的改动做成补丁 视频/云端/待演练/<名字>.diff，GitHub 一条请求按 门变异 → 主演练+声音演练 → 彩排 走完，全过把印章写回；
+-  回来后 python3 视频/工具/推请求.py --收 <名字> "提交说明"：核对全过、补丁没变，打上结果补丁，推送两仓库。印章不再手排。"""
+-import os, sys, json, subprocess, datetime, re, tempfile, shutil
++  回来后 python3 视频/工具/推请求.py --收 <名字> "提交说明"：核对全过、补丁没变，打上结果补丁，推送两仓库。
++  撤补丁（K69）：python3 视频/工具/推请求.py --撤补丁 视频/云端/待演练/<名>.diff   反打补丁，列出没回到 HEAD 的残留（有残留退出码 1）印章不再手排。"""
++import os, sys, json, subprocess, datetime, re, tempfile, shutil, time
+ L = '/home/user/literate-enigma'; B = 'claude/adoring-hamilton-5qskmm'
+ 账 = os.path.expanduser('~/.云端请求.json')
+ def g(*a): return subprocess.run(['git', '-C', L, *a], capture_output=True, text=True)
+@@ -49,6 +50,20 @@ def 估时提示(e):
+     """交接 ③：改门推送发前估时。e = 门变异.py --估时 的结果；墙钟 = 门变异（总机器分钟 ÷ 20 + 最慢片，声音 4 片同时跑）+ 尾分。超 60 分钟先报"""
+     w = e['墙钟'] + 尾分; s = f"估时：门变异 {e['片']} 片、{e['机器分钟']} 机器分钟，墙钟约 {w} 分钟（门变异 {e['墙钟']} + 演练彩排 {尾分}；最慢 {e['最慢'][0]} 约 {e['最慢'][1]} 分钟）"
+     return ('【估时超 60 分钟，先报主会话】' + s) if w > 60 else s
++def 在途冲突(repo=None, 镜=None):
++    """K62：推送两仓库 推的提交改了在途改门推送补丁（请求已提交、GitHub 还没写回结果）碰的文件 → 补丁在 GitHub 打不上或 --收 对不上：停"""
++    repo = repo or P; 镜 = 镜 or L; d = f'{镜}/视频/云端/待演练'; out = []
++    if not os.path.isdir(d): return ''
++    q = lambda r, *a: subprocess.run(['git', '-c', 'core.quotepath=off', '-C', r, *a], capture_output=True, text=True).stdout
++    改 = set(q(repo, 'diff', '--name-only', 'origin/main', 'HEAD').split('\n')) - {''}
++    for f in sorted(os.listdir(d)):
++        n = f[:-5]
++        if not f.endswith('.diff') or not os.path.exists(f'{镜}/视频/云端/请求/{n}.txt') or os.path.exists(f'{镜}/视频/云端/结果/{n}.结果.txt'): continue
++        t = q(镜, 'log', '-1', '--format=%ct', '--', f'视频/云端/请求/{n}.txt').strip()
++        if t and time.time() - int(t) > 8 * 3600: continue   # GitHub 一个运行最多 6 小时：8 小时还没写回的是死请求（v1、G79补漏A1），不算在途
++        碰 = {l.split('\t')[-1] for l in subprocess.run(['git', 'apply', '--numstat', '-z', f'{d}/{f}'], capture_output=True, text=True, cwd=repo).stdout.split('\0') if l.strip()}   # -z：中文路径不转义
++        if 改 & 碰: out.append(f'{n}（{"、".join(sorted(改 & 碰))[:120]}）')
++    return ('这次推送改了在途改门推送补丁碰的文件（K62：GitHub 还没写回结果，补丁会打不上、--收 会对不上）：' + '；'.join(out) + '。等它回来 --收，或交接另写文件') if out else ''
+ def 补丁行(rel, 行):
+     return ' '.join([f'改门推送 补丁={rel}'] + 行.split()[1:])   # 第五棒：快跑=… 跟着走（原来只剩 补丁=，快跑悄悄变全量）
+ def 乱序(行):
+@@ -96,7 +111,7 @@ def _FAST查():
+ def 做补丁(名字, repo=P, out=None):
+     """主仓库相对 HEAD 的全部改动（含新文件）→ 补丁文件；返回补丁路径（相对镜像）"""
+     subprocess.run(['git', '-C', repo, 'add', '-A', '-N', '视频', 'CLAUDE.md'], capture_output=True)
+-    d = subprocess.run(['git', '-C', repo, 'diff', '--binary', 'HEAD', '--', '视频', 'CLAUDE.md', *不进补丁], capture_output=True).stdout
++    d = subprocess.run(['git', '-C', repo, 'diff', '--binary', '--full-index', 'HEAD', '--', '视频', 'CLAUDE.md', *不进补丁], capture_output=True).stdout
+     rel = f'视频/云端/待演练/{名字}.diff'; open(out or f'{L}/{rel}', 'wb').write(d); return rel, d
+ def 收(名字, 说明, repo=P, run=True):
+     """改门推送回来：结果全过、补丁就是主仓库现在的改动，才打上结果补丁并推送两仓库"""
+@@ -116,9 +131,9 @@ def 收(名字, 说明, repo=P, run=True):
+     return '' if r.returncode == 0 else '推送两仓库.sh 停了（结果补丁已打上，修好后重跑 推送两仓库.sh）'
+ def 自检_main():
+     """main 的每一道停：在临时仓库（本地 bare 当远端）里真跑 main，造错必须返回 1、不推；好请求必须推上去"""
+-    global L, P, 工作流, 账, 本地慢印章, _FAST查
++    global L, P, 工作流, 账, 本地慢印章, _FAST查, 上下文查
+     f = []; d = tempfile.mkdtemp(prefix='推请求main自检_'); sh = lambda c, w=d: subprocess.run(c, shell=True, cwd=w, capture_output=True, text=True)
+-    old = (L, P, 工作流, 账, 本地慢印章, _FAST查); import io, contextlib
++    old = (L, P, 工作流, 账, 本地慢印章, _FAST查, 上下文查); import io, contextlib
+     def 跑(*a):
+         with contextlib.redirect_stdout(io.StringIO()) as o: r = main(list(a))
+         return r, o.getvalue()
+@@ -126,7 +141,7 @@ def 自检_main():
+         sh(f'git init -q --bare r.git && git init -q -b {B} L && cd L && mkdir -p 视频/云端/待演练 && echo a > 视频/x.txt && git add -A && git -c user.name=t -c user.email=t@t commit -qm 0 && git remote add origin ../r.git && git push -q origin {B}')
+         sh('git init -q P && cd P && mkdir 视频 && echo a > 视频/x.txt && git add -A && git -c user.name=t -c user.email=t@t commit -qm 0')
+         for r_ in ('L', 'P'): sh('git config user.name t && git config user.email t@t', f'{d}/{r_}')
+-        L, P, 账 = f'{d}/L', f'{d}/P', f'{d}/账.json'; 本地慢印章 = lambda 行: ''; _FAST查 = lambda: []
++        L, P, 账 = f'{d}/L', f'{d}/P', f'{d}/账.json'; 本地慢印章 = lambda 行: ''; _FAST查 = lambda: []; 上下文查 = lambda: ''
+         open(f'{d}/好.yml', 'w').write(open(old[2]).read() if os.path.exists(old[2]) else ''); 工作流 = f'{d}/好.yml'
+         if 排序问题(open(工作流).read()): f.append('main 自检：现行 drill.yml 改门推送链就不对，下面几项测不了'); return f
+         open(f'{L}/视频/云端/待演练/好.diff', 'w').write('--- a/视频/x.txt\n+++ b/视频/x.txt\n@@ -1 +1 @@\n-a\n+b\n'); open(f'{L}/视频/云端/待演练/坏.diff', 'w').write('--- a/视频/x.txt\n+++ b/视频/x.txt\n@@ -1 +1 @@\n-zz\n+b\n')
+@@ -142,6 +157,7 @@ def 自检_main():
+             if 跑(*a_)[0] != 1: f.append(f'main 参数不够没停：{a_}')
+         本地慢印章 = lambda 行: '印章过期'; 停('本地慢自检印章过期（K35）', 'a4', '改门推送 补丁=视频/云端/待演练/好.diff'); 本地慢印章 = lambda 行: ''
+         _FAST查 = lambda: ['自检不通过：x']; 停('当场自检没全过还改门推送（K60v2）', 'a8', '改门推送 补丁=视频/云端/待演练/好.diff', 字='当场自检'); _FAST查 = lambda: []
++        上下文查 = lambda: '【停止】改门会话上下文已 350k（K58）'; 停('改门会话上下文超 30 万还发请求（K58）', 'a9', '主演练', 字='K58'); 上下文查 = lambda: ''
+         停('补丁在工作分支上打不上（K43）', 'a5', '改门推送 补丁=视频/云端/待演练/坏.diff')
+         os.makedirs(f'{L}/视频/云端/请求', exist_ok=True); open(f'{L}/视频/云端/请求/重名.txt', 'w').write('x\n'); sh('git add -A && git commit -qm r && git push -q origin HEAD', L)
+         停('请求重名', '重名', '主演练')
+@@ -149,10 +165,17 @@ def 自检_main():
+         停('提交没成功', 'a6', '主演练'); os.remove(f'{L}/.git/hooks/pre-commit')
+         sh('git remote set-url origin ../没有.git', L); 停('推送没成功', 'a7', '主演练'); sh('git remote set-url origin ../r.git', L)
+         停('--收 结果没写回', '--收', '没这个', 'x')
++        open(f'{L}/视频/云端/待演练/撤.diff', 'w').write('--- a/视频/x.txt\n+++ b/视频/x.txt\n@@ -1 +1 @@\n-a\n+c\n--- /dev/null\n+++ b/视频/新.py\n@@ -0,0 +1 @@\n+x\n')
++        sh('git apply ../L/视频/云端/待演练/撤.diff', P); open(f'{P}/视频/残留.json', 'w').write('{}')
++        e_ = 撤补丁('视频/云端/待演练/撤.diff', P)
++        if '残留.json' not in e_ or os.path.exists(f'{P}/视频/新.py') or open(f'{P}/视频/x.txt').read() != 'a\n': f.append(f'撤补丁没撤干净或没列残留（K69）：{e_[:80]}')
++        os.remove(f'{P}/视频/残留.json'); sh('git apply ../L/视频/云端/待演练/撤.diff', P)
++        if 撤补丁('视频/云端/待演练/撤.diff', P): f.append('撤补丁误报：撤干净了还报残留（K69）')
++        if not 撤补丁('视频/云端/待演练/撤.diff', P): f.append('撤补丁没停：补丁没打着还反打（K69）')
+         open(f'{P}/视频/x.txt', 'w').write('b\n'); r, o = 跑('好请求', '改门推送')
+         if r != 0 or 'origin/' and '好请求' not in sh(f'git --git-dir=r.git log -1 --name-only {B}').stdout: f.append(f'main 好请求没推上去：{o[-120:]}')
+     finally:
+-        L, P, 工作流, 账, 本地慢印章, _FAST查 = old; shutil.rmtree(d, ignore_errors=True)
++        L, P, 工作流, 账, 本地慢印章, _FAST查, 上下文查 = old; shutil.rmtree(d, ignore_errors=True)
+     return f
+ def 自检():
+     f = []
+@@ -212,6 +235,19 @@ def 自检():
+         finally: L = L0
+     finally: shutil.rmtree(d, ignore_errors=True)
+     f += 自检_main()
++    d2 = tempfile.mkdtemp(prefix='推请求在途自检_'); e2 = {k: v for k, v in os.environ.items() if not k.startswith('GIT_')}
++    try:   # K62：推的提交碰了在途补丁的文件必停；不碰、结果已回必放
++        sh2 = lambda c, w: subprocess.run(c, shell=True, cwd=w, capture_output=True, env=e2)
++        for x in ('o', 'p', 'm/视频/云端/待演练', 'm/视频/云端/请求', 'm/视频/云端/结果'): os.makedirs(f'{d2}/{x}', exist_ok=True)
++        sh2('git init -q --bare', f'{d2}/o'); sh2('git init -q -b main && mkdir 视频 && echo a > 视频/x.txt && echo a > 视频/y.txt && git add -A && git -c user.name=t -c user.email=t@t commit -qm 0 && git remote add origin ../o && git push -q origin main', f'{d2}/p')
++        open(f'{d2}/p/视频/x.txt', 'w').write('b\n'); sh2('git diff > ../m/视频/云端/待演练/k.diff && git checkout -q -- 视频', f'{d2}/p'); open(f'{d2}/m/视频/云端/请求/k.txt', 'w').write('改门推送\n')
++        open(f'{d2}/p/视频/x.txt', 'w').write('c\n'); sh2('git -c user.name=t -c user.email=t@t commit -qam 1', f'{d2}/p')
++        if not 在途冲突(f'{d2}/p', f'{d2}/m'): f.append('没抓到：推的提交改了在途改门推送补丁碰的文件（K62）')
++        open(f'{d2}/m/视频/云端/结果/k.结果.txt', 'w').write('x')
++        if 在途冲突(f'{d2}/p', f'{d2}/m'): f.append('误拦：在途补丁结果已回也拦（K62）')
++        os.remove(f'{d2}/m/视频/云端/结果/k.结果.txt'); sh2('git reset -q --hard origin/main && echo c > 视频/y.txt && git -c user.name=t -c user.email=t@t commit -qam 2', f'{d2}/p')
++        if 在途冲突(f'{d2}/p', f'{d2}/m'): f.append('误拦：推的提交没碰在途补丁的文件也拦（K62）')
++    finally: shutil.rmtree(d2, ignore_errors=True)
+     if '快跑=1@a@2@全量' not in 补丁行('x.diff', '改门推送 快跑=1@a@2@全量'): f.append('没抓到：改门推送 自动做补丁时把 快跑= 丢了（悄悄变全量）')
+     if '【估时超 60 分钟' not in 估时提示({'片': 120, '机器分钟': 1900, '墙钟': 135, '最慢': ['x', 85]}): f.append('没抓到：估时超 60 分钟没先报（交接 ③）')
+     if '【估时超' in 估时提示({'片': 10, '机器分钟': 100, '墙钟': 15, '最慢': ['x', 10]}): f.append('误报：估时不到 60 分钟也报超')
+@@ -220,14 +256,39 @@ def 自检():
+     if not 本地慢印章('主演练 补丁=视频/云端/待演练/x.diff', lambda p: True, 缺口数=99): f.append('没抓到：演练缺口变多还让推带补丁的主演练')
+     if 本地慢印章('主演练 补丁=视频/云端/待演练/x.diff', lambda p: p != '执行效应演练.py', 缺口数=0) or 本地慢印章('声音演练 补丁=x', lambda p: False): f.append('误报：印章有效或不是主演练也拦（K35）')
+     return f
++def 撤补丁(rel, repo=None):
++    """K69：撤改门补丁的正式命令：反打补丁，再列出 视频/、CLAUDE.md、.github/ 下还没回到 HEAD 的文件（残留会让提交前钩子算出的印章指纹和 main 不同）"""
++    repo = repo or P; p_ = rel if os.path.isabs(rel) else f'{L}/{rel}'
++    if not os.path.exists(p_): return f'补丁 {rel} 不在（镜像 {L}）'
++    r = subprocess.run(['git', '-C', repo, 'apply', '-R', '--check', p_], capture_output=True, text=True)
++    if r.returncode: return f'补丁反打不上（工作树不是 HEAD + 这份补丁）：{(r.stderr or r.stdout)[-200:]}'
++    subprocess.run(['git', '-C', repo, 'apply', '-R', p_], check=True)
++    st = subprocess.run(['git', '-C', repo, '-c', 'core.quotepath=off', 'status', '--porcelain', '--untracked-files=all', '--', '视频', 'CLAUDE.md', '.github'], capture_output=True, text=True).stdout.splitlines()
++    return ('补丁已撤，但还有残留（K69：提交前钩子会按它们算指纹；看清是不是自己的再删或还原）：' + '；'.join(x.strip() for x in st[:10])) if st else ''
++
++
++def _上下文查():
++    """K58：改门会话上下文超 30 万不再发 GitHub 请求（方法进化表.py --上下文）"""
++    r = subprocess.run(['python3', f'{os.path.dirname(os.path.abspath(__file__))}/方法进化表.py', '--上下文'], capture_output=True, text=True)
++    return (r.stdout.strip().splitlines() or ['上下文超限'])[-1] if r.returncode else ''
++上下文查 = _上下文查
++
++
+ def main(a=None):
+     a = sys.argv[1:] if a is None else a
+     if a[:1] == ['--自检']: e = 自检(); print('\n'.join(e) or '推请求 自检通过（本地慢自检印章过期时带补丁的主演练必停，K35；补丁文件没提交随请求提交，K50；乱序发、缺一步、彩排排前、不等收齐必拒，没全过或补丁改过不许收，K59/K60）'); return 1 if e else 0
++    if a[:1] == ['--在途冲突']:   # 推送两仓库.sh 调（K62）
++        e = 在途冲突(*(a[1:3] or [None, None])); print('【停止】' + e if e else '在途冲突：无'); return 1 if e else 0
++    if a[:1] == ['--撤补丁']:   # K69
++        if len(a) < 2: print(__doc__); return 1
++        e = 撤补丁(a[1]); print('【停止】' + e if e else f'补丁 {a[1]} 已撤干净：工作树 = HEAD'); return 1 if e else 0
+     if a[:1] == ['--收']:
+         if len(a) < 3: print(__doc__); return 1
+         e = 收(a[1], a[2], P); print('【停止】' + e if e else f'改门推送 {a[1]}：结果补丁已打上、两仓库已推送'); return 1 if e else 0
+     if len(a) < 2: print(__doc__); return 1
+     名字, 行 = a[0], a[1]; 注 = a[2] if len(a) > 2 else ''
++    e = 上下文查()
++    if e: print(e if e.startswith('【停止】') else '【停止】' + e); return 1
+     e = 乱序(行)
+     if e: print('【停止】' + e); return 1
+     if 行.split()[:1] == ['改门推送']:
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\344\270\244\344\273\223\345\272\223.sh" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\344\270\244\344\273\223\345\272\223.sh"
+index fb596d58542ef4bba1fd30cbee91acf74342bfa5..b43b79031915e30266125028befdcc77db3fdd99 100755
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\344\270\244\344\273\223\345\272\223.sh"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\344\270\244\344\273\223\345\272\223.sh"
+@@ -3,23 +3,27 @@
+ # → 提交 → 推送两边 → 用 git 记录的文件指纹比对两边 视频/ 逐文件一致（不再逐个读大视频，几秒完成）。
+ # 用法：bash 视频/工具/推送两仓库.sh "提交说明"
+ set -e
+-trap 'rc=$?; [ $rc -ne 0 ] && [ -f "${PUSH_P:-/home/user/postgraduate-vocabulary}/视频/工具/丝滑.py" ] && python3 "${PUSH_P:-/home/user/postgraduate-vocabulary}/视频/工具/丝滑.py" 记 推送两仓库 - "推送两仓库.sh 停下（退出码 $rc；$Z_CMD）" 不丝滑 2>/dev/null; exit $rc' EXIT
++trap 'rc=$?; [ $rc -ne 0 ] && [ -f "${PUSH_P:-/home/user/postgraduate-vocabulary}/视频/工具/丝滑.py" ] && python3 "${PUSH_P:-/home/user/postgraduate-vocabulary}/视频/工具/丝滑.py" 记 推送两仓库 - "推送两仓库.sh 停下（退出码 $rc；$Z_CMD${Z_WHY:+；原因：$Z_WHY}）" 不丝滑 2>/dev/null; exit $rc' EXIT
+ trap 'Z_CMD="停在第 $LINENO 行：${BASH_COMMAND:0:160}"' ERR   # K56：不丝滑要记下停在哪一行、哪条命令（以前只写“退出码 1”，事后查不出原因）   # K 丝滑记录：推送停下都不是稿子的问题
++提交() { local _CL; _CL=$(mktemp); git commit -qm "$1" >"$_CL" 2>&1 || { cat "$_CL"; Z_WHY=$(grep -v '^\s*$' "$_CL" | tail -2 | tr '\n' ' ' | cut -c1-240); rm -f "$_CL"; return 1; }; cat "$_CL"; rm -f "$_CL"; }   # K83：提交被钩子拒时把拒的原因记进丝滑记录（以前只记“停在 git commit 那行”）
+ exec 9>${PUSH_LOCK:-/tmp/推送两仓库.lock}; flock 9   # 几篇同时做时排队推送（推送自检用自己的锁，否则在推送里跑自检会自己等自己）
+ P=${PUSH_P:-/home/user/postgraduate-vocabulary}; L=${PUSH_L:-/home/user/literate-enigma}; B=${PUSH_B:-claude/adoring-hamilton-5qskmm}   # PUSH_* 只给 推送自检.py 在假仓库里测用
+-T=$'\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01XbsiuYS9p9y2vNiB4h6ZZU'
++_S=$(python3 "$P/视频/工具/报坑.py" --本会话 2>/dev/null || true); T=$'\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>'"${_S:+$'\n'Claude-Session: https://claude.ai/code/$_S}"   # K64：Claude-Session 用本会话（以前写死 01Xbsi，别的会话推的提交都署成它）
+ cd $P
+ # 规则执行机器（CLAUDE.md 第16条）：提交前先过；git 提交钩子也装上（新容器、别的会话同样生效）
+ git -C $P config core.hooksPath 视频/工具/githooks; git -C $L config core.hooksPath 视频/工具/githooks 2>/dev/null
+ python3 $P/视频/工具/规则执行核查.py || { echo "【停止】规则执行核查不通过，不推送（先给新规矩、新坑配好门和自检）"; exit 1; }
++flock -n -x "${CAOGAO_LOCK:-/tmp/草稿声音.lock}" true || { echo "【停止】草稿声音.sh 正在合成（K84：配音缓存正在写，推了两仓库对不上），等它跑完再推"; exit 1; }
+ git add -A 视频 CLAUDE.md 新版定稿   # 新版定稿：文章本身也会改（撞词去掉重点词等）；路径不存在 git 会报错，set -e 当场停（G3：不许悄悄没提交）
++python3 $P/视频/工具/踩坑核查.py --视频位置 $P || { echo "【停止】视频放错了地方（K79：草稿放 视频/视频/草稿1080p/NN_1080p.mp4）"; git reset -q; exit 1; }
+ if git diff --cached --name-only | grep -qE '^视频/工具/.*\.(py|sh)$'; then   # G54：推门程序的会话先把超期没入表的坑收进总表
+   python3 $P/视频/工具/报坑.py --查 --严 || { echo "【停止】这次推送改了门程序，但有报坑登记超期还没进踩坑总表（G54）：先写进总表、配门"; git reset -q; exit 1; }; fi
+ big=$(git diff --cached --name-only -z | xargs -0 -r du -b 2>/dev/null | awk '$1>95*1024*1024{print $2}')
+ [ -z "$big" ] || { echo "【停止】有文件超过 GitHub 单个文件 100MB 上限（G1）：$big——先拆成几段（附 SHA256 和还原脚本）"; git reset -q; exit 1; }
+-if ! git diff --cached --quiet; then git commit -qm "$1$T"; fi
+-git pull -q --no-rebase --no-edit origin main   # 2026-10-22：别的会话（每篇新开会话）可能先推了，先合并远端再算差异、再推
++if ! git diff --cached --quiet; then 提交 "$1$T"; fi
++git pull -q --no-rebase --no-edit origin main || { python3 $P/视频/工具/方法进化表.py --解冲突 $P && 提交 "合并：程序写的行冲突自动解（K85）$T"; } || { git merge --abort 2>/dev/null; echo "【停止】合并远端冲突，不只在程序写的行（K85），要人来解"; exit 1; }   # 2026-10-22：别的会话（每篇新开会话）可能先推了，先合并远端再算差异、再推
+ (cd $L; git checkout -q -- 视频 2>/dev/null; git pull -q --no-rebase --no-edit origin $B)   # 镜像分支先合并别的会话推的
++_K62=$(python3 "$P/视频/工具/推请求.py" --在途冲突 "$P" "$L" | tail -1); [ "$_K62" = "在途冲突：无" ] || { echo "$_K62"; echo "【停止】见上（K62：推请求.py 没明说“无”一律停，崩了也停）"; exit 1; }   # K62：推的提交碰了在途改门推送补丁的文件就停
+ # G58（2026-10-26 GitHub 化）：GitHub 工作流（github-actions[bot]）写回镜像的结果，先反向回写主仓库（含删除），不被主仓库的旧版本覆盖。
+ # 镜像上 bot 最后一次改这个文件、且比主仓库这份新才回写；只认白名单（印章、视频/云端/结果/、本次请求篇号 NN 的成片与记录，主会话 2026-10-26 定），
+ # bot 改了白名单外的文件 → 停（工作流越权写，不许悄悄混进主仓库）。
+@@ -60,8 +64,9 @@ for f in sorted(fs):
+     n_ += 1
+ if bad: sys.exit('【停止】GitHub 工作流改了白名单外的文件（G58，篇号 ' + (' '.join(sorted(nn)) or '无') + '）：' + '；'.join(bad[:5]))
+ PYW
+-git diff --cached --quiet || git commit -qm "回写：GitHub 工作流结果（G58）$T"
++git diff --cached --quiet || 提交 "回写：GitHub 工作流结果（G58）$T"
+ D='视频 最终版4K视频 新版定稿'
++git push -q origin main || { git pull -q --no-rebase --no-edit origin main && git push -q origin main; }   # 别的会话刚推了：合并一次再推   # K63：先推主仓库（推不上就合并再推），再按合并后的 HEAD 拷镜像；以前先拷后推，合并进来的 坑登记.json 没进镜像，G2 停
+ TP=$(mktemp); TL=$(mktemp)   # 2026-10-26：清单原写死 /tmp/_p.txt、/tmp/_l.txt，演练里几场推送自检同时跑互相覆盖，复制错文件（G58 演练在 GitHub 上偶发失灵查出）   # G20：三个都镜像（只镜像 视频/ 时，定稿流水线 ⑥ 中断后用本脚本补推，镜像里的 4K 和文章一直是旧的）
+ # 2026-10-23：按两边 git 指纹逐文件比对来拷（只拷“这次改动”会漏掉两个会话合并出来的文件）
+ git -c core.quotepath=off ls-tree -r HEAD $D | awk -F'\t' '{split($1,a," "); print a[3]"\t"$2}' | sort -k2 > $TP
+@@ -75,11 +80,10 @@ for f,h in p.items():
+ for f in q:
+     if f not in p and os.path.exists(f'{L}/{f}'): os.remove(f'{L}/{f}')
+ PY2
+-git push -q origin main || { git pull -q --no-rebase --no-edit origin main && git push -q origin main; }   # 别的会话刚推了：合并一次再推
+ cp $P/CLAUDE.md $L/CLAUDE.md   # CLAUDE.md 以 postgraduate-vocabulary 为准（G11：定稿流水线用它覆盖工作分支，只改工作分支那份会被冲掉）
+ cd $L; git symbolic-ref -q HEAD >/dev/null || git checkout -q -B $B   # 新容器 L 可能是游离 HEAD：分支挪到 HEAD 再推（2026-10-23 T34 九篇因此停）
+ git add -A
+-if ! git diff --cached --quiet; then git commit -qm "镜像：$1$T"; fi
++if ! git diff --cached --quiet; then 提交 "镜像：$1$T"; fi
+ git push -q -u origin $B || { git pull -q --no-rebase --no-edit origin $B && git push -q -u origin $B; }
+ diff <(git -C $P ls-tree -r HEAD $D | awk '{print $3,$4}') <(git -C $L ls-tree -r HEAD $D | awk '{print $3,$4}') >/dev/null \
+   && cmp -s $P/CLAUDE.md $L/CLAUDE.md && [ -z "$(git -C $P status --short)" ] && [ -z "$(git -C $L status --short)" ] \
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\350\207\252\346\243\200.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\350\207\252\346\243\200.py"
+index 5f3c270fb626e7e1eec2d41bd00af6651f95dd18..42c4c8345442018a65fa6cf12de4c0a2b27a8aaf 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\350\207\252\346\243\200.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\350\207\252\346\243\200.py"
+@@ -18,7 +18,7 @@ try:
+     git('clone', '-q', f'{tmp}/P.git', P); git('clone', '-q', f'{tmp}/L.git', L)
+     for r in (P, L):
+         git('config', 'user.name', '自检', cwd=r); git('config', 'user.email', 'selftest@example.com', cwd=r)
+-    写(f'{P}/视频/工具/规则执行核查.py', 'import sys; sys.exit(0)\n'); 写(f'{P}/视频/a.md', 'a\n'); 写(f'{P}/视频/中文名字.md', '中\n')
++    写(f'{P}/视频/工具/踩坑核查.py', 'print("视频位置：都对")\n'); 写(f'{P}/视频/工具/规则执行核查.py', 'import sys; sys.exit(0)\n'); 写(f'{P}/视频/工具/推请求.py', 'print("在途冲突：无")\n'); 写(f'{P}/视频/a.md', 'a\n'); 写(f'{P}/视频/中文名字.md', '中\n')
+     写(f'{P}/CLAUDE.md', '新守则\n'); 写(f'{P}/新版定稿/x.md', 'x\n'); 写(f'{P}/最终版4K视频/y.mp4', 'v\n')
+     git('add', '-A', cwd=P); git('commit', '-qm', 'init', cwd=P); git('push', '-q', '-u', 'origin', 'HEAD:main', cwd=P)
+     git('checkout', '-q', '-b', 'tb', cwd=L); 写(f'{L}/视频/旧文件.md', 'old\n'); 写(f'{L}/CLAUDE.md', '旧守则\n')
+@@ -26,6 +26,19 @@ try:
+     写(f'{P}/视频/新文件.md', 'new\n')
+     env = {**ENV, 'PUSH_P': P, 'PUSH_L': L, 'PUSH_B': 'tb', 'PUSH_LOCK': f'{tmp}/推送.lock'}   # 自己的锁：在真推送里跑自检不会自己等自己
+     run = lambda: subprocess.run(['bash', f'{T}/推送两仓库.sh', '推送自检'], capture_output=True, text=True, env=env, timeout=120)
++    for 假, why in (('print("【停止】碰了在途补丁的文件"); raise SystemExit(1)\n', '推的提交碰了在途补丁的文件'), ('raise SystemExit(3)\n', '推请求.py 崩了（没明说“无”）')):   # K62：一律停
++        写(f'{P}/视频/工具/推请求.py', 假)
++        r = run(); o = r.stdout + r.stderr
++        if r.returncode == 0 or 'K62' not in o: fails.append(f'没抓到：{why}还推送（K62）{o.strip()[-80:]}')
++    写(f'{P}/视频/工具/推请求.py', 'print("在途冲突：无")\n')
++    写(f'{P}/视频/工具/踩坑核查.py', 'print("[G7] 视频放错了地方：视频/草稿1080p/27_1080p.mp4"); raise SystemExit(1)\n'); r = run(); o = r.stdout + r.stderr   # K79
++    if r.returncode == 0 or 'K79' not in o: fails.append(f'没抓到：视频放错了地方还推送（K79）{o.strip()[-80:]}')
++    写(f'{P}/视频/工具/踩坑核查.py', 'print("视频位置：都对")\n')
++    env['CAOGAO_LOCK'] = f'{tmp}/草稿声音.lock'; import fcntl as _fc; _cg = open(env['CAOGAO_LOCK'], 'w'); _fc.flock(_cg, _fc.LOCK_SH)   # K84：合成在跑（共享锁）时推送必停
++    try:
++        r = run(); o = r.stdout + r.stderr
++        if r.returncode == 0 or 'K84' not in o: fails.append(f'没抓到：草稿声音.sh 在合成还推送（K84）{o.strip()[-80:]}')
++    finally: _cg.close()
+     lk = open('/tmp/推送两仓库.lock', 'a')   # G16：占着真推送锁（等于在推送当中跑本自检），假仓库推送必须照样跑完、不许自己等自己
+     try: fcntl.flock(lk, fcntl.LOCK_EX | fcntl.LOCK_NB)
+     except OSError: pass   # 已经在真推送里：锁正被占着，同样的情形
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\271\346\263\225\350\277\233\345\214\226\350\241\250.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\271\346\263\225\350\277\233\345\214\226\350\241\250.py"
+index bd9b6f63e038141048b2100de3cac868c9e0995e..def23aa7d03d1b003710998c95703bcf0697dfba 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\271\346\263\225\350\277\233\345\214\226\350\241\250.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\271\346\263\225\350\277\233\345\214\226\350\241\250.py"
+@@ -137,17 +137,41 @@ def 基线(行, no):
+     return prev, {k: (statistics.median([行[p][k] for p in prev if 行[p].get(k) is not None]) if any(行[p].get(k) is not None for p in prev) else None) for k, _, _ in 项}
+ 
+ 
+-def 落地查(txt, repos=None, 号=None):
+-    m = re.search(r'^## 方法复盘[^\n]*\n([\s\S]*?)(?=^## |\Z)', txt, re.M)
+-    hs = re.findall(r'进化落地[：:]\s*([^\n]+)', m.group(1)) if m else []
+-    if 号 is None:
+-        try: 号 = {k['号'] for k in json.load(open(f'{REC}/坑登记.json')).get('登记', [])} | set(json.load(open(f'{T}/规则执行表.json')))
+-        except Exception: 号 = set()
++def 开工时(no, txt=''):
++    """K74：本篇最早的开工时刻（证据链第一条、NN.md 开工时刻、收工记录里最早的一条），UTC 'YYYY-MM-DDTHH:MM'；查不到 None"""
++    ts = re.findall(r'(?:开工时刻[：:]\s*|收工 )(\d{4}-\d\d-\d\dT\d\d:\d\d)', txt or '')
++    try:
++        l = open(f'{REC}/证据/{no}.jsonl').readline(); ts.append(json.loads(l)['时刻'][:16])
++    except Exception: pass
++    return min(ts) if ts else None
++
++
++def 落地表():
++    """K74：{G##/K##: 落成时刻}。G = 取号预留时刻且规则执行表里有门；K = 入表编号那个 G 的时刻（没入表的 K 不算）"""
++    try: d = json.load(open(f'{REC}/坑登记.json')); 表 = json.load(open(f'{T}/规则执行表.json'))
++    except Exception: return {}
++    g = {r['编号']: r['时刻'][:16] for r in d.get('预留', []) if r.get('编号') in 表 and 表[r['编号']].get('门')}
++    return {**g, **{r['号']: g[r['入表编号']] for r in d.get('登记', []) if r.get('入表编号') in g}}
++
++
++def 落地查(txt, repos=None, 号=None, 起时=None):
++    """进化落地（G65）：查得到、且是本篇开工以后落成的程序（K74：以前只查号存不存在，没入表的 K、早就有的 G、任何旧提交都算）。
++    号 = {G##/K##: 落成时刻}；提交号要在 起时 以后、改了 视频/工具/。NN.md 有几个“## 方法复盘”都读（K74：以前只读第一个）"""
++    hs = [h for m in re.findall(r'^## 方法复盘[^\n]*\n([\s\S]*?)(?=^## |\Z)', txt, re.M) for h in re.findall(r'进化落地[：:]\s*([^\n]+)', m)]
++    号 = 落地表() if 号 is None else 号 if isinstance(号, dict) else dict.fromkeys(号)
++    if not 起时: return []   # 查不到本篇开工时刻：分不出新旧，一律不算
+     ok = []
+     for h in hs:
+         for x in re.findall(r'\b([0-9a-f]{7,40}|[GK]\d+)\b', h):
+-            if x[0] in 'GK' and x in 号: ok.append(x)
+-            elif x[0] not in 'GK' and any(subprocess.run(['git', '-C', r, 'cat-file', '-e', x + '^{commit}'], capture_output=True).returncode == 0 for r in (repos or [P, '/home/user/literate-enigma']) if os.path.isdir(r)): ok.append(x)
++            if x[0] in 'GK':
++                if (号.get(x) or '') >= 起时: ok.append(x)
++                continue
++            for r in (repos or [P, '/home/user/literate-enigma']):
++                if not os.path.isdir(r): continue
++                q = subprocess.run(['git', '-C', r, '-c', 'core.quotepath=off', 'show', '--format=%cI', '--name-only', x + '^{commit}'], capture_output=True, text=True)
++                if q.returncode: continue
++                ls = q.stdout.split('\n'); t_ = datetime.datetime.fromisoformat(ls[0].strip()).astimezone(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M')
++                if t_ >= 起时 and any(l.startswith('视频/工具/') for l in ls[1:]): ok.append(x); break
+     return ok
+ 
+ 
+@@ -167,7 +191,7 @@ def 门(no, 行=None, txt=None, 写=True, repos=None, 号=None):
+         t2 = re.sub(r'^## 方法进化（G65[^\n]*\n(?:- [^\n]*\n)*', '', txt, flags=re.M)
+         a = t2.find('\n## 方法复盘'); t2 = (t2[:a + 1] + 节 + '\n' + t2[a + 1:]) if a >= 0 else t2.rstrip('\n') + '\n\n' + 节
+         if t2 != txt: open(f, 'w').write(t2)
+-    if 差 and not 落地查(txt, repos, 号):
++    if 差 and not 落地查(txt, repos, 号, 开工时(no, txt)):
+         return [f'【G65 方法进化】{no} 比前三篇中位数变差（{"；".join(f"{a} {x}{u} > {y}{u}" for a, x, y, u in 差)}），方法复盘里没有查得到的“进化落地：<提交号|G##|K##>”：'
+                 f'先把最费的地方（{top}）改成程序、提交，再写这一行'], 节
+     return [], 节
+@@ -225,6 +249,42 @@ def 机制报告(no, 行=None, rows=None, rs=None):
+             '| 第几步 | 阶段 | 做什么 | 正式入口 | 在哪跑 | 证据 | token |', '|---|---|---|---|---|---|---|'] + L
+ 
+ 
++程序节 = ('## 方法进化（G65', '## 机制漏洞（G79', '## 机制运行报告')
++def 解冲突文(rel, t):
++    """K85（28 12:47：两个会话同时写 28.md、方法进化表.md 的程序行，推送合并冲突停，手工取新侧再 --写入）：
++    冲突只在程序写的地方（方法进化表.md 整份；NN.md 的 程序节 里、且不碰“- 会话补：”）→ 取远端那侧（写表() 随后重算）；别的冲突返回 None（人来解）"""
++    if not re.search(r'^<<<<<<< ', t, re.M): return t
++    whole = rel.endswith('制作记录/方法进化表.md')
++    if not whole and not re.search(r'制作记录/\d\d\.md$', rel): return None
++    out, 节_ = [], ''; ls = t.split('\n'); i = 0
++    while i < len(ls):
++        l = ls[i]
++        if not l.startswith('<<<<<<< '):
++            if l.startswith('## '): 节_ = l
++            out.append(l); i += 1; continue
++        j = next(k for k in range(i, len(ls)) if ls[k].startswith('======='))
++        k = next(k for k in range(j, len(ls)) if ls[k].startswith('>>>>>>> '))
++        ours, theirs = ls[i + 1:j], ls[j + 1:k]
++        头 = [x for x in ours + theirs if x.startswith('## ')]
++        if not whole and (not (节_.startswith(程序节) or 头) or any(not x.startswith(程序节) for x in 头) or any(x.startswith('- 会话补') for x in ours + theirs)): return None
++        out += theirs; 节_ = ([x for x in theirs if x.startswith('## ')] or [节_])[-1]; i = k + 1
++    return '\n'.join(out)
++
++
++def 解冲突(repo):
++    """推送两仓库.sh 合并远端冲突时调：全部能解 → 写回、重算 写表()、git add，返回 None；有解不了的 → 返回说明"""
++    g = lambda *x: subprocess.run(['git', '-C', repo, '-c', 'core.quotepath=off', *x], capture_output=True, text=True).stdout
++    fs = [x for x in g('diff', '--name-only', '--diff-filter=U').split('\n') if x]
++    if not fs: return '没有冲突文件，合并却失败了'
++    res = {}
++    for f in fs:
++        r = 解冲突文(f, open(f'{repo}/{f}').read()) if os.path.exists(f'{repo}/{f}') else None
++        if r is None: return f'{f} 的冲突不只在程序写的行（K85 只自动解 方法进化表.md 和 NN.md 程序节），要人来解'
++        res[f] = r
++    for f, r in res.items(): open(f'{repo}/{f}', 'w').write(r)
++    写表(); g('add', '--', *fs, os.path.relpath(OUT, repo)); return None
++
++
+ def 写报告进篇(no, 节, rec=REC):
+     f = f'{rec}/{no}.md'
+     if not os.path.exists(f): return False
+@@ -237,7 +297,8 @@ def 写报告进篇(no, 节, rec=REC):
+ 
+ def 漏洞节(no, 行, txt=''):
+     """G79 “## 机制漏洞”：程序填本篇登记的 K#、程序毛病条数、手工重复；“- 会话补：”由会话写（这次机制哪里没挡住、哪里不顺；没有写“无（依据：……）”），保留原文"""
+-    r = 行.get(no) or {}; old = re.search(r'^- 会话补：[^\n]*$', re.search(r'^## 机制漏洞[\s\S]*?(?=^## |\Z)', txt, re.M).group(0), re.M) if '## 机制漏洞' in txt else None
++    r = 行.get(no) or {}; 节_ = re.search(r'^## 机制漏洞[\s\S]*?(?=^## |\Z)', txt, re.M)   # K76：正文里提到“## 机制漏洞”字样不算节（以前 in 判真、行首正则匹配不到就崩）
++    old = re.search(r'^- 会话补：[^\n]*$', 节_.group(0), re.M) if 节_ else None
+     ks = r.get('K', [])
+     return [f'## 机制漏洞（G79，程序写：本篇登记的坑 = 现象以“{no} ”开头或本篇会话登记的；踩坑核查 28 起没有“会话补”就停）',
+             f'- 程序填：本篇登记 {len(ks)} 条（{"、".join(ks) or "无"}）；机制漏洞（程序毛病）{r.get("机制漏洞") or 0} 条；手工重复 {r.get("手工重复") if r.get("手工重复") is not None else "—"} 次',
+@@ -284,8 +345,22 @@ def 自检():
+     if not e: f.append('没抓到：27 比前三篇中位数贵三倍、没写进化落地')
+     e, _ = 门('27', 行, open(f'{d}/27.md').read() + '- 进化落地：deadbee 假提交\n', 写=False, repos=[d], 号=set())
+     if not e: f.append('没抓到：进化落地写的提交号查不到')
+-    e, _ = 门('27', 行, open(f'{d}/27.md').read() + '- 进化落地：G63 会话开工\n', 写=False, repos=[], 号={'G63'})
++    t27 = open(f'{d}/27.md').read() + '- 开工时刻：2026-10-26T00:00\n'
++    e, _ = 门('27', 行, t27 + '- 进化落地：G63 会话开工\n', 写=False, repos=[], 号={'G63': '2026-10-26T05:00'})
+     if e: f.append('误停：进化落地写了查得到的 G63 还停')
++    # K74：早就有的 G、没入表的 K、只读第一个方法复盘、旧提交 / 没改程序的提交
++    if not 门('27', 行, t27 + '- 进化落地：G63 会话开工\n', 写=False, repos=[], 号={'G63': '2026-10-20T05:00'})[0]: f.append('没抓到：进化落地写了本篇开工以前就有的 G63（K74）')
++    if not 门('27', 行, t27 + '- 进化落地：K69 撤补丁\n', 写=False, repos=[], 号={'G63': '2026-10-26T05:00'})[0]: f.append('没抓到：进化落地写了没入表的 K69（K74）')
++    if 门('27', 行, t27 + '\n## 方法复盘\n- 进化落地：G63 会话开工\n', 写=False, repos=[], 号={'G63': '2026-10-26T05:00'})[0]: f.append('误停：第二个“## 方法复盘”里的进化落地没读（K74）')
++    g_ = f'{d}/仓'; os.makedirs(f'{g_}/视频/工具'); G_ = lambda *x, **k: subprocess.run(['git', '-C', g_, '-c', 'user.name=t', '-c', 'user.email=t@t', *x], capture_output=True, text=True, env={**os.environ, **k})
++    G_('init', '-q'); open(f'{g_}/视频/工具/x.py', 'w').write('1'); G_('add', '-A'); G_('commit', '-qm', 'a', GIT_COMMITTER_DATE='2026-10-27T00:00:00Z')
++    c1 = G_('rev-parse', 'HEAD').stdout.strip()[:8]; open(f'{g_}/说明.md', 'w').write('1'); G_('add', '-A'); G_('commit', '-qm', 'b', GIT_COMMITTER_DATE='2026-10-27T00:00:00Z')
++    c2 = G_('rev-parse', 'HEAD').stdout.strip()[:8]; open(f'{g_}/视频/工具/x.py', 'w').write('2'); G_('add', '-A'); G_('commit', '-qm', 'c', GIT_COMMITTER_DATE='2026-10-20T00:00:00Z')
++    c3 = G_('rev-parse', 'HEAD').stdout.strip()[:8]
++    if 门('27', 行, t27 + f'- 进化落地：{c1} 改了程序\n', 写=False, repos=[g_], 号={})[0]: f.append('误停：本篇开工以后改了程序的提交不认（K74）')
++    if not 门('27', 行, t27 + f'- 进化落地：{c2} 只改文档\n', 写=False, repos=[g_], 号={})[0]: f.append('没抓到：进化落地的提交没改 视频/工具/ 程序（K74）')
++    if not 门('27', 行, t27 + f'- 进化落地：{c3} 旧提交\n', 写=False, repos=[g_], 号={})[0]: f.append('没抓到：进化落地写了本篇开工以前的提交（K74）')
++    if not 门('27', 行, open(f'{d}/27.md').read() + '- 进化落地：G63 会话开工\n', 写=False, repos=[], 号={'G63': '2026-10-26T05:00'})[0]: f.append('没抓到：查不到本篇开工时刻也认进化落地（K74）')
+     行['27']['等效'] = 1; 行['27']['手工重复'] = None
+     e, _ = 门('27', 行, open(f'{d}/27.md').read(), 写=False, repos=[], 号=set())
+     if e: f.append('误停：27 比中位数便宜也停')
+@@ -312,6 +387,8 @@ def 自检():
+     写漏洞节('28', 行2, d); t = open(f'{d}/28.md').read().replace('- 会话补：', '- 会话补：无（依据：门都挡住了）'); open(f'{d}/28.md', 'w').write(t); 写漏洞节('28', 行2, d)
+     t = open(f'{d}/28.md').read()
+     if t.count('## 机制漏洞') != 1 or '会话补：无（依据：门都挡住了）' not in t or 'K1（程序）' not in t or t.find('## 机制漏洞') > t.find('## 方法复盘'): f.append('“## 机制漏洞”节没写对（G79：重复、会话补被冲掉或位置不对）')
++    try: 漏洞节('29', 行2, '# x\n\n| G79 | 正文提到“## 机制漏洞”字样 |\n')
++    except Exception as x_: f.append(f'正文提到“## 机制漏洞”字样就崩（K76）：{type(x_).__name__}')
+     t = open(f'{d}/28.md').read()
+     if t.count('## 机制运行报告') != 1 or t.find('## 机制运行报告') > t.find('## 方法复盘'): f.append('机制运行报告写进 NN.md 没只写一节、或没放在方法复盘前')
+     # K 丝滑记录：不丝滑次数比前三篇中位多 = 变差，要进化落地
+@@ -319,6 +396,14 @@ def 自检():
+     行3['31'] = {**行3['28'], '不丝滑': 2}
+     e3, _ = 门('31', 行3, '## 方法复盘\n无\n', 写=False)
+     if not any('不丝滑次数' in x for x in e3): f.append('没抓到：不丝滑次数变差没要进化落地（K）')
++    # K85：程序节冲突自动取远端；会话补、别的节、别的文件冲突交人
++    c_ = lambda a_, b_: f'<<<<<<< HEAD\n{a_}\n=======\n{b_}\n>>>>>>> origin/main'
++    t_ = '# 28\n## 机制漏洞（G79，程序写）\n' + c_('- 程序填：本篇登记 6 条', '- 程序填：本篇登记 7 条') + '\n- 会话补：x\n## 方法复盘\ny'
++    if 解冲突文('视频/制作记录/28.md', t_) != '# 28\n## 机制漏洞（G79，程序写）\n- 程序填：本篇登记 7 条\n- 会话补：x\n## 方法复盘\ny': f.append('没解开：28.md 机制漏洞“程序填”行冲突（K85）')
++    if 解冲突文('视频/制作记录/28.md', t_.replace('- 程序填：本篇登记 7 条', '- 会话补：别的会话写的')) is not None: f.append('没交人：会话补冲突被自动取一侧（K85）')
++    if 解冲突文('视频/制作记录/28.md', '## 方法复盘\n' + c_('a', 'b')) is not None: f.append('没交人：方法复盘（人写的节）冲突被自动解（K85）')
++    if 解冲突文('视频/工具/x.py', c_('a', 'b')) is not None: f.append('没交人：程序文件冲突被自动解（K85）')
++    if 解冲突文('视频/制作记录/方法进化表.md', c_('a', 'b')) != 'b': f.append('没解开：方法进化表.md 冲突（K85）')
+     return ['方法进化表 自检：' + x for x in f]
+ 
+ 
+@@ -342,11 +427,12 @@ if __name__ == '__main__':
+         if not p: print('没有会话记录（GitHub 或演练里跑），不查上下文'); sys.exit(0)
+         try: 角色 = json.load(open(os.path.expanduser('~/.会话开工.json'))).get('角色', '')
+         except Exception: 角色 = ''
+-        s = 统计(p); m = 上下文超(s, 角色); print(m or f'本会话上下文 {s["最后上下文"]}k（限 {上下文限}k）'); sys.exit(1 if m else 0)
++        s = 统计(p); m = 上下文超(s, 角色); print(m or f'本会话上下文 {s["最后上下文"]}k（限 {改门上下文限 if 角色 == "改门" else 上下文限}k）'); sys.exit(1 if m else 0)
+     if '--门' in a:
+         no = a[a.index('--门') + 1].zfill(2); e, 节 = 门(no); print('\n'.join(e) or f'方法进化 {no}：通过')
+         if not e and int(no) >= 起: import 证据 as _ZJ; _ZJ.记(no, '方法进化', 详情={'进化表行': 节.splitlines()[1][2:] if 节 else ''})   # G60：使用证据
+         sys.exit(1 if e else 0)
+     if '--状态' in a: 状态(); sys.exit(0)
++    if '--解冲突' in a: e = 解冲突(a[a.index('--解冲突') + 1]); print('【停止】' + e if e else '程序行冲突已自动解（K85）'); sys.exit(1 if e else 0)
+     if '--写入' in a: print('已写', 写表()); sys.exit(0)
+     print(__doc__)
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py"
+index 4f12c3394db2d85f43bdd778371c273932b74bbc..b3be5852c274229baee256311a96c9122642b2f5 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py"
+@@ -13,6 +13,24 @@ src = open(f'{T}/定稿流水线.sh').read()
+ if 顺序(src): fails.append('原样就报：' + 顺序(src)[0])
+ sw = src.replace('step "② 出 4K', 'step "TMP').replace('step "③ 出片后核查', 'step "② 出 4K').replace('step "TMP', 'step "③ 出片后核查')
+ if not 顺序(sw): fails.append('没抓到：定稿流水线步骤顺序乱了（画17）')
++def 署名写死(txt):   # K64：提交说明的 Claude-Session 用本会话（报坑.py --本会话），不许写死某个会话
++    return bool(re.search(r'Claude-Session: https://claude\.ai/code/session_\w', txt)) or '--本会话' not in txt
++for _n in ('定稿流水线.sh', '推送两仓库.sh'):
++    _t = open(f'{T}/{_n}').read()
++    if 署名写死(_t): fails.append(f'{_n} 提交说明署名写死了会话或没用 报坑.py --本会话（K64）')
++if not 署名写死(src.replace('--本会话', '--x')): fails.append('没抓到：提交说明不用 --本会话（K64）')
++if not 署名写死('--本会话\nClaude-Session: https://claude.ai/code/session_01Xbsi'): fails.append('没抓到：提交说明署名写死会话（K64）')
++def 提交没记原因(txt):   # K83：推送两仓库 提交一律走 提交()（被钩子拒时把原因记进 Z_WHY），丝滑行要带上它
++    ls = [l for l in txt.splitlines() if re.search(r'\bgit commit\b', l)]
++    return len(ls) != 1 or 'Z_WHY=' not in ls[0] or '${Z_WHY:+' not in txt
++if 提交没记原因(open(f'{T}/推送两仓库.sh').read()): fails.append('推送两仓库.sh 有不走 提交() 的 git commit，或提交被拒的原因没记进丝滑记录（K83）')
++if not 提交没记原因(open(f'{T}/推送两仓库.sh').read().replace('${Z_WHY:+', '${X:+')): fails.append('没抓到：提交被拒原因没进丝滑行（K83）')
++if not 提交没记原因(open(f'{T}/推送两仓库.sh').read() + '\ngit commit -qm "x"\n'): fails.append('没抓到：另写一条不记原因的 git commit（K83）')
++def 先推后拷(txt):   # K63：推送两仓库 先推主仓库（含合并），再按合并后的 HEAD 拷镜像
++    a, b = txt.find('git push -q origin main'), txt.find('ls-tree -r HEAD $D')
++    return a >= 0 and b >= 0 and a < b
++if not 先推后拷(open(f'{T}/推送两仓库.sh').read()): fails.append('推送两仓库.sh 先拷镜像后推主仓库：合并进来的改动不进镜像，G2 停（K63）')
++if 先推后拷('ls-tree -r HEAD $D\ngit push -q origin main'): fails.append('没抓到：先拷镜像后推主仓库（K63）')
+ def 推送锁(txt):   # G17：⑥ 的提交、镜像同步、推送要占 推送两仓库 的锁
+     ls = txt.splitlines(); i = [k for k, l in enumerate(ls) if '镜像同步.py' in l and not l.lstrip().startswith('#')]
+     j = [k for k, l in enumerate(ls) if re.match(r'exec 7>.*推送两仓库\.lock.*; flock 7', l)]
+@@ -155,6 +173,12 @@ def 云端不推(txt):   # 阶段 B（2026-10-27）：GitHub 上两个仓库路
+ if not 云端不推(src): fails.append('定稿流水线 云端定稿（两个仓库同一份检出）没在 ⑥ git push 前退出，或没要求 STRICT_CACHE=1（阶段 B）')
+ for _bad, _why in ((src.replace('YUN=1 && { [ "$STRICT_CACHE" = 1 ] || stop', 'YUN=1 && { true || stop'), '不要求严格缓存'), (src.replace('[ -n "$YUN" ] && {', '[ -n "$YUN_" ] && {'), '云端没退出'), (src.replace('--只查清点和镜像"; exit 0; }', '--只查清点和镜像"; true; }'), '云端不退出照样推')):
+     if 云端不推(_bad) and _bad != src: fails.append(f'没抓到：云端定稿{_why}（阶段 B）')
++def 交付先查声音(txt):   # K78：交付核查 出片前/出片后 先查 work_NN/a.wav 在不在（给出重建的话），在音频体检之前
++    i = txt.find("and not os.path.exists(f'work_{no}/a.wav')"); j = txt.find("音频体检.py', '--自检'")
++    return 0 <= i < j and 'sys.exit(' in txt[i:i + 400]
++_jf = open(f'{T}/交付核查.py').read()
++if not 交付先查声音(_jf): fails.append('交付核查.py 没在音频体检前先查 work_NN/a.wav（K78）')
++if 交付先查声音(_jf.replace("and not os.path.exists(f'work_{no}/a.wav')", "and False")): fails.append('没抓到：拿掉交付核查查 a.wav 那一行（K78 重放）')
+ def 有重建(txt):   # K36：新容器没有 work_NN/a.wav，① 音频体检 ffmpeg 254 崩；① 之前没有 a.wav 必须先只出声音重建
+     i = txt.find('[ -f "work_$no/a.wav" ] ||'); j = txt.find('step "① 出片前核查')
+     return 0 <= i < j and 'AUDIO_ONLY=1 python3 make_' in txt[i:j]   # 只出声音重建
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\224\250\344\270\212\346\240\270\346\237\245.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\224\250\344\270\212\346\240\270\346\237\245.py"
+index 9b4ba204641153a6a2e93317c0b4c4ae73e8b27b..82f8773b2a21e788c06c28adc40139f257d3fb8e 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\224\250\344\270\212\346\240\270\346\237\245.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\224\250\344\270\212\346\240\270\346\237\245.py"
+@@ -89,6 +89,10 @@ def 没接上(t=T):
+ def 该用没用():
+     """③ 按时间：[说明]"""
+     out = []
++    try:   # K56：每条不丝滑都要对上报坑登记号（--严 停）
++        sys.path.insert(0, T); import 丝滑 as _SH
++        out += [f'不丝滑没对上报坑登记号（K56）：{f_} {t_} {x_[:60]}；报坑后 丝滑.py --对上 K# {t_}' for f_, t_, x_ in _SH.未闭环()]
++    except Exception as e: out.append(f'丝滑.py 未闭环 查不了（K56）：{e}')
+     sys.path.insert(0, T)
+     try:
+         import 门变异 as MB
+@@ -184,6 +188,10 @@ def 自检():
+         MB.新门 = lambda *x: ['a.py|0123456789|0']; MB.全量时刻 = lambda: '2020-01-01T00:00Z'
+         e = 该用没用()
+         if not any('还没全量重跑' in x for x in e): f.append('没抓到：门变异清单以后新加的 .py 门没重拆')
++        import 丝滑 as _SH; _u = _SH.未闭环; _SH.未闭环 = lambda: [('会话.jsonl', '2020-01-01T00:00:00Z', '自检造的不丝滑')]
++        try:
++            if not any('K56' in x for x in 该用没用()): f.append('没抓到：不丝滑没对上 K#（K56，--严 要停）')
++        finally: _SH.未闭环 = _u
+         if not any('没全量跑' in x for x in e): f.append('没抓到：门变异全量超过 24 小时没跑（K60：按清单“全量：”时刻）')
+         MB.新门 = lambda *x: []; MB.全量时刻 = lambda: '无'; e = 该用没用()   # K65：增量合并写的“全量：无”必须明确报没有全量记录，不许崩成“读不了”
+         if not any('没有全量记录' in x for x in e) or any('读不了' in x for x in e): f.append(f'没抓到：清单“全量：无”（K65）：{e}')
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\215\211\347\250\277\345\243\260\351\237\263.sh" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\215\211\347\250\277\345\243\260\351\237\263.sh"
+index 190a6d45dc792305e1b607409e3a7134b082fb93..4cdd78ab1053ce818ffa3d31a3faffb77f00fef0 100755
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\215\211\347\250\277\345\243\260\351\237\263.sh"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\215\211\347\250\277\345\243\260\351\237\263.sh"
+@@ -5,6 +5,7 @@
+ no=$1; T=/home/user/postgraduate-vocabulary/视频/工具
+ trap 'rc=$?; [ $rc -ne 0 ] && python3 $T/丝滑.py 记 草稿声音 "$no" "草稿声音.sh 退出码 $rc；$Z_CMD" 2>/dev/null; exit $rc' EXIT   # K 丝滑记录
+ trap 'Z_CMD="最后一条失败的命令在第 $LINENO 行：${BASH_COMMAND:0:160}"' ERR   # K56：记下停在哪
++exec 8>"${CAOGAO_LOCK:-/tmp/草稿声音.lock}"; flock -s 8   # K84：合成期间拿共享锁，推送两仓库.sh 拿不到独占锁就停（配音缓存正在写）；几篇、几场演练同时合成互不挡
+ python3 $T/方法进化表.py --上下文 || exit 1   # G65：出稿、改稿会话上下文超 40 万先交接、开新改稿会话（26 实测后半段每次调用贵一倍多）
+ # A45（2026-10-24）：改了读音或语速，这一句旧的非人声区间、词尾除阻、停顿删除、插入点和对应确认自动作废：出片程序跳过它们（OLD_IV_VOID=1），区间作废.py 从脚本删掉，下面重找
+ export OLD_IV_VOID=1
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\346\240\270\346\237\245.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\346\240\270\346\237\245.py"
+index 8bfff07380d3e48f55ebf90d774a8d364b7e74d3..cd5a3e94d16563929b9e60cdfbe2f5bebaf5c8a5 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\346\240\270\346\237\245.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\346\240\270\346\237\245.py"
+@@ -41,7 +41,7 @@ ENTRY = ['定稿流水线.sh', '交付核查.py', '生成文本.py', '推送两
+ # 每次运行都先做自检的程序（不需要别人带“自检”参数调用）
+ ALWAYS_SELFTEST = {'踩坑核查.py', 'check_all.py', '规则执行核查.py', '交付核查.py'}   # 交付核查 出片后 每次先跑核查程序自检、高亮自检
+ # 机器当场跑的自检（不依赖工作目录、几秒内完成）
+-FAST = [['丝滑.py', '--自检'], ['生成文本.py', '--自检'], ['配音缓存核对.py', '--自检'], ['余音删法核对.py', '--自检'], ['确认按位置迁移.py', '--自检'], ['方法进化表.py', '--自检'], ['破折号.py', '--自检'], ['区间作废.py', '--自检'], ['放行口子核查.py', '--自检'], ['同步自检.py'], ['流程自检.py'], ['门变异.py', '--自检'], ['用上核查.py', '--自检'], ['踩坑核查.py', '自检'], ['check_all.py', '--自检'], ['钩子/钩子自检.py'], ['排版自检.py'], ['推送自检.py'], ['译文核查.py', '--自检'], ['演练镜像.py', '--自检'], ['出片指纹.py', '--自检'], ['结尾句接点.py', '--自检'], ['句内响度.py', '--自检'], ['开工记录.py', '--自检'], ['逐词对齐.py', '--自检'], ['停顿位置精确核对.py', '--自检'], ['响度一致性核对.py', '--确认自检'], ['音频首要法则.py', '--自检'], ['音频首要法则.py'], ['机器复听.py', '--比较自检'], ['纯人声核对.py', '--确认自检'], ['高亮同步核对.py', '--确认自检'], ['颜色核对.py', '--自检'], ['缓存进仓库核对.py', '--自检'], ['速查表.py'], ['报坑.py', '--自检'], ['开工必读.py', '--自检'], ['开工必读.py'], ['意思个数.py'], ['证据.py', '--自检'], ['证据.py'], ['会话开工.py', '--自检'], ['疑点清单.py', '--自检'], ['执行效应声音演练.py', '--自检'], ['推请求.py', '--自检']]
++FAST = [['丝滑.py', '--自检'], ['生成文本.py', '--自检'], ['配音缓存核对.py', '--自检'], ['余音删法核对.py', '--自检'], ['确认按位置迁移.py', '--自检'], ['方法进化表.py', '--自检'], ['破折号.py', '--自检'], ['区间作废.py', '--自检'], ['放行口子核查.py', '--自检'], ['同步自检.py'], ['流程自检.py'], ['门变异.py', '--自检'], ['用上核查.py', '--自检'], ['踩坑核查.py', '自检'], ['check_all.py', '--自检'], ['钩子/钩子自检.py'], ['排版自检.py'], ['推送自检.py'], ['译文核查.py', '--自检'], ['演练镜像.py', '--自检'], ['出片指纹.py', '--自检'], ['结尾句接点.py', '--自检'], ['句内响度.py', '--自检'], ['开工记录.py', '--自检'], ['逐词对齐.py', '--自检'], ['停顿位置精确核对.py', '--自检'], ['响度一致性核对.py', '--确认自检'], ['音频首要法则.py', '--自检'], ['音频首要法则.py'], ['机器复听.py', '--比较自检'], ['纯人声核对.py', '--确认自检'], ['高亮同步核对.py', '--确认自检'], ['颜色核对.py', '--自检'], ['缓存进仓库核对.py', '--自检'], ['速查表.py'], ['报坑.py', '--自检'], ['开工必读.py', '--自检'], ['开工必读.py'], ['意思个数.py'], ['证据.py', '--自检'], ['证据.py'], ['会话开工.py', '--自检'], ['疑点清单.py', '--自检'], ['执行效应声音演练.py', '--自检'], ['推请求.py', '--自检'], ['发音词典/写入.py', '--自检']]
+ 摘要 = lambda s: re.sub(r'\*\*|`', '', s).strip()[:60]
+ # 要在工作目录（有模型、声音）里才能跑的慢自检：通过时写下所测程序的指纹（印章）；程序一改指纹对不上，就当“自检没跑”，提交、推送停
+ STAMPED = {'出片守门自检.py': ('出片守门自检通过.json', ['make_video.py', 'render.py', '出片守门自检.py'])}
+@@ -96,6 +96,22 @@ def 印章有效(p):
+     return all(st.get(x) == (hashlib.sha256(open(f'{T}/{x}', 'rb').read()).hexdigest() if os.path.exists(f'{T}/{x}') else '无') for x in progs)
+ 
+ 
++
++def 印章差(p):
++    """K69：印章对不上时到底是哪几个文件（改过 / 印章里没有 = 多出来的，常是撤补丁后的残留 / 印章里有、文件没了）"""
++    f, progs = STAMPED[p]
++    try: st = json.load(open(f'{T}/{f}'))
++    except Exception: return [f'没有印章文件 {f}']
++    out = []
++    for x in progs:
++        h = hashlib.sha256(open(f'{T}/{x}', 'rb').read()).hexdigest() if os.path.exists(f'{T}/{x}') else '无'
++        if x not in st:
++            tr = subprocess.run(['git', '-C', T, 'ls-files', '--error-unmatch', x], capture_output=True).returncode == 0
++            out.append(f'{x}（印章里没有：{"新加的门程序" if tr else "没跟踪的残留文件，撤补丁没撤干净？"}）')
++        elif st[x] != h: out.append(f'{x}（{"文件没了" if h == "无" else "改过"}）')
++    return out
++
++
+ def 坑行(text=None):
+     """踩坑总表每一行：(编号, 出过的问题, 以后怎么防)。唯一来源：《制作硬性标准与踩坑总结》里的表。"""
+     text = open(STD).read() if text is None else text
+@@ -304,7 +320,7 @@ def 印章问题():
+     gl = []
+     for p in STAMPED:
+         if p == '彩排.sh' and os.environ.get('CAIPAI'): continue   # 彩排自己在跑：印章正是这一场要盖的
+-        if p == '彩排.sh' and not 印章有效(p): gl.append(f'门程序改过、GitHub 新容器彩排的印章对不上（L 丝滑主义）：python3 {os.path.relpath(T, P)}/推请求.py <名> 改门推送（K60：门变异 → 两个演练 → 彩排 一条命令，GitHub 全过写回印章），回来 推请求.py --收 <名> "说明"'); continue
++        if p == '彩排.sh' and not 印章有效(p): gl.append(f'门程序改过、GitHub 新容器彩排的印章对不上（L 丝滑主义；K69 不同的文件：{"、".join(印章差(p)[:5]) or "?"}）：python3 {os.path.relpath(T, P)}/推请求.py <名> 改门推送（K60：门变异 → 两个演练 → 彩排 一条命令，GitHub 全过写回印章），回来 推请求.py --收 <名> "说明"'); continue
+         if not 印章有效(p): gl.append(f'{STAMPED[p][1]} 改过、慢自检的印章对不上：在视频工作目录跑 python3 {os.path.relpath(T, P)}/{p}，通过后再提交（A26/A42：改出片程序后必须先过守门自检）')
+     return gl
+ 
+@@ -322,9 +338,10 @@ def 彩排自检():
+         if not 印章有效('彩排.sh'): f.append('误停：彩排印章对得上也算失效（L）')
+         d = json.load(open(f'{T}/{tmp}')); d['会话开工.py'] = '改过'; json.dump(d, open(f'{T}/{tmp}', 'w'))
+         if 印章有效('彩排.sh'): f.append('没抓到：门程序改过、彩排印章照样有效（L）')
++        if not any(x.startswith('会话开工.py（改过') for x in 印章差('彩排.sh')): f.append('没抓到：印章对不上时没说是哪个文件（K69）')
+         _cp = os.environ.pop('CAIPAI', None)   # 彩排里也要测得出
+         try:
+-            if not any('新容器彩排的印章对不上' in x for x in 印章问题()): f.append('没抓到：彩排印章失效，提交、推送照样放行（L）')
++            if not any('新容器彩排的印章对不上' in x and '会话开工.py（改过' in x for x in 印章问题()): f.append('没抓到：彩排印章失效，提交、推送照样放行，或没打印是哪个文件（L/K69）')
+         finally:
+             if _cp is not None: os.environ['CAIPAI'] = _cp
+     finally:
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json"
+index 66555cbab38a9469a1046341ba24aa3f3a580d5e..7ced452682bf09f082ead4fa2a5042d902373bde 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\247\204\345\210\231\346\211\247\350\241\214\350\241\250.json"
+@@ -7280,6 +7280,14 @@
+     "丝滑.py",
+     "def 未闭环():"
+    ],
++   [
++    "用上核查.py",
++    "不丝滑没对上报坑登记号（K56）"
++   ],
++   [
++    "报坑.py",
++    "late += 未闭环查[0]()"
++   ],
+    [
+     "推送两仓库.sh",
+     "K56：不丝滑要记下停在哪一行"
+@@ -7289,6 +7297,14 @@
+    [
+     "丝滑.py",
+     "自动登记没成功的不丝滑没列进未闭环（K56）"
++   ],
++   [
++    "用上核查.py",
++    "没抓到：不丝滑没对上 K#（K56，--严 要停）"
++   ],
++   [
++    "报坑.py",
++    "没抓到：不丝滑没对上 K#（K56，--查 --严 要停）"
+    ]
+   ],
+   "演练": [
+@@ -7321,12 +7337,28 @@
+    [
+     "方法进化表.py",
+     "改门上下文限 = 300"
++   ],
++   [
++    "推请求.py",
++    "def _上下文查():"
++   ],
++   [
++    "报坑.py",
++    "def _上下文查():"
+    ]
+   ],
+   "自检": [
+    [
+     "方法进化表.py",
+     "没抓到：改门会话上下文 500k 超 300k（K58）"
++   ],
++   [
++    "推请求.py",
++    "改门会话上下文超 30 万还发请求（K58）"
++   ],
++   [
++    "报坑.py",
++    "没抓到：改门会话上下文超 30 万还能续改门锁（K58"
+    ]
+   ],
+   "演练": [
+@@ -7353,5 +7385,381 @@
+   "演练": [
+    "丝滑.py --自检（K56：自动登记没成功的不丝滑必列进未闭环；K57：改门会话不丝滑变差没写进化落地必报；K73：彩排停下数开工记录不算、不丝滑/内容问题/坏行都算）+ 方法进化表.py --自检（K58：改门会话上下文超 300k 必停）"
+   ]
++ },
++ "G111": {
++  "门": [
++   [
++    "推请求.py",
++    "def 在途冲突(repo=None, 镜=None):"
++   ],
++   [
++    "推送两仓库.sh",
++    "推请求.py\" --在途冲突"
++   ]
++  ],
++  "自检": [
++   [
++    "推请求.py",
++    "没抓到：推的提交改了在途改门推送补丁碰的文件（K62）"
++   ]
++  ]
++ },
++ "G112": {
++  "门": [
++   [
++    "推送两仓库.sh",
++    "K63：先推主仓库"
++   ]
++  ],
++  "自检": [
++   [
++    "流程自检.py",
++    "没抓到：先拷镜像后推主仓库（K63）"
++   ]
++  ]
++ },
++ "G113": {
++  "门": [
++   [
++    "推送两仓库.sh",
++    "报坑.py\" --本会话"
++   ],
++   [
++    "定稿流水线.sh",
++    "K64：用本会话，不写死"
++   ]
++  ],
++  "自检": [
++   [
++    "流程自检.py",
++    "没抓到：提交说明署名写死会话（K64）"
++   ]
++  ]
++ },
++ "G114": {
++  "门": [
++   [
++    "用上核查.py",
++    "没有全量记录（推请求.py 门变异 全量重跑一次）"
++   ]
++  ],
++  "自检": [
++   [
++    "用上核查.py",
++    "没抓到：清单“全量：无”（K65）"
++   ]
++  ]
++ },
++ "G115": {
++  "门": [
++   [
++    "钩子/闸门.py",
++    "if ch and 在途补丁(仓库):"
++   ]
++  ],
++  "自检": [
++   [
++    "钩子/钩子自检.py",
++    "误拦：改动就是在途改门推送补丁也逼着推送两仓库（K66）"
++   ],
++   [
++    "钩子/钩子自检.py",
++    "没认出：改动就是已提交的在途改门推送补丁"
++   ]
++  ]
++ },
++ "G116": {
++  "门": [
++   [
++    "推请求.py",
++    "def 依赖问题(t):"
++   ]
++  ],
++  "自检": [
++   [
++    "推请求.py",
++    "gate 没走装核查依赖这一步（K67"
++   ]
++  ]
++ },
++ "G117": {
++  "门": [
++   [
++    "推请求.py",
++    "'[ ! -s /tmp/a/主演练.diff ]'"
++   ]
++  ],
++  "自检": [
++   [
++    "推请求.py",
++    "主演练没写改动时空结果补丁 git apply 报错（K68"
++   ]
++  ]
++ },
++ "G118": {
++  "门": [
++   [
++    "推请求.py",
++    "def 撤补丁(rel, repo=None):"
++   ],
++   [
++    "规则执行核查.py",
++    "def 印章差(p):"
++   ]
++  ],
++  "自检": [
++   [
++    "推请求.py",
++    "撤补丁没撤干净或没列残留（K69）"
++   ],
++   [
++    "规则执行核查.py",
++    "没抓到：印章对不上时没说是哪个文件（K69）"
++   ]
++  ]
++ },
++ "G119": {
++  "门": [
++   [
++    "门变异.py",
++    "def 拆探指纹():"
++   ],
++   [
++    "门变异.py",
++    "def 沿用结论(现):"
++   ],
++   [
++    "推请求.py",
++    "def 估时提示(e):"
++   ],
++   [
++    "推请求.py",
++    "startswith('快跑=')"
++   ]
++  ],
++  "自检": [
++   [
++    "门变异.py",
++    "没抓到：门所在程序变了还沿用旧结论（指纹）"
++   ],
++   [
++    "门变异.py",
++    "没抓到：漏洞变多时没列出是哪几道新漏洞"
++   ],
++   [
++    "推请求.py",
++    "没抓到：估时超 60 分钟没先报"
++   ],
++   [
++    "推请求.py",
++    "没抓到：收尾快跑的结果也让 --收"
++   ]
++  ]
++ },
++ "G120": {
++  "门": [
++   [
++    "出片守门自检.py",
++    "sys.pycache_prefix = pyc"
++   ]
++  ],
++  "自检": [
++   [
++    "门变异.py",
++    "没抓到：出片守门自检 没在导入出片程序前设私有字节码缓存"
++   ]
++  ]
++ },
++ "G123": {
++  "门": [
++   [
++    "会话开工.py",
++    "def 仓库版指纹(读的=None):"
++   ]
++  ],
++  "自检": [
++   [
++    "会话开工.py",
++    "没抓到：打着在途补丁开工，撤补丁后 HEAD 版没算读过（K72）"
++   ]
++  ]
++ },
++ "G124": {
++  "门": [
++   [
++    "方法进化表.py",
++    "def 落地表():"
++   ],
++   [
++    "方法进化表.py",
++    "if not 起时: return []"
++   ]
++  ],
++  "自检": [
++   [
++    "方法进化表.py",
++    "没抓到：进化落地写了本篇开工以前就有的 G63（K74）"
++   ]
++  ]
++ },
++ "G125": {
++  "门": [
++   [
++    "开工记录.py",
++    "def 守开工(V, no, 开工_=None, **k):"
++   ],
++   [
++    "开工记录.py",
++    "门(f'{int(_no) - 1:02d}', 写=False)"
++   ]
++  ],
++  "自检": [
++   [
++    "开工记录.py",
++    "没抓到：开工记录把 NN.md 原有内容冲掉（K75：要停并恢复原文件）"
++   ]
++  ]
++ },
++ "G126": {
++  "门": [
++   [
++    "方法进化表.py",
++    "节_ = re.search(r'^## 机制漏洞[\\s\\S]*?(?=^## |\\Z)', txt, re.M)"
++   ]
++  ],
++  "自检": [
++   [
++    "方法进化表.py",
++    "正文提到“## 机制漏洞”字样就崩（K76）"
++   ]
++  ]
++ },
++ "G127": {
++  "门": [
++   [
++    "发音词典/写入.py",
++    "def 撞大小写(d, patch, name):"
++   ]
++  ],
++  "自检": [
++   [
++    "发音词典/写入.py",
++    "没抓到：读音改正 新键和已有的只差大小写（K77）"
++   ]
++  ]
++ },
++ "G128": {
++  "门": [
++   [
++    "交付核查.py",
++    "and not os.path.exists(f'work_{no}/a.wav'):   # K78"
++   ]
++  ],
++  "自检": [
++   [
++    "流程自检.py",
++    "没抓到：拿掉交付核查查 a.wav 那一行（K78 重放）"
++   ]
++  ]
++ },
++ "G129": {
++  "门": [
++   [
++    "踩坑核查.py",
++    "def 视频位置(root):"
++   ],
++   [
++    "推送两仓库.sh",
++    "踩坑核查.py --视频位置 $P"
++   ]
++  ],
++  "自检": [
++   [
++    "踩坑核查.py",
++    "没抓到：草稿放在 视频/草稿1080p/（K79）"
++   ],
++   [
++    "推送自检.py",
++    "没抓到：视频放错了地方还推送（K79）"
++   ]
++  ]
++ },
++ "G130": {
++  "门": [
++   [
++    "音频体检.py",
++    "m['_每句'] = {k: per[k] for k in ('直流偏移', '咔哒', '句尾截断', '句首突起')}"
++   ]
++  ],
++  "自检": [
++   [
++    "音频体检.py",
++    "没抓到：第{j}句造了“{k}”，这一句没超限"
++   ]
++  ]
++ },
++ "G131": {
++  "门": [
++   [
++    "推请求.py",
++    "'diff', '--binary', '--full-index', 'HEAD'"
++   ]
++  ],
++  "自检": [
++   [
++    "推请求.py",
++    "推请求 自检通过"
++   ]
++  ]
++ },
++ "G132": {
++  "门": [
++   [
++    "推送两仓库.sh",
++    "提交() { local _CL; _CL=$(mktemp); git commit -qm \"$1\""
++   ]
++  ],
++  "自检": [
++   [
++    "流程自检.py",
++    "没抓到：另写一条不记原因的 git commit（K83）"
++   ]
++  ]
++ },
++ "G133": {
++  "门": [
++   [
++    "推送两仓库.sh",
++    "flock -n -x \"${CAOGAO_LOCK:-/tmp/草稿声音.lock}\" true"
++   ],
++   [
++    "草稿声音.sh",
++    "flock -s 8"
++   ]
++  ],
++  "自检": [
++   [
++    "推送自检.py",
++    "没抓到：草稿声音.sh 在合成还推送（K84）"
++   ]
++  ]
++ },
++ "G134": {
++  "门": [
++   [
++    "方法进化表.py",
++    "def 解冲突文(rel, t):"
++   ],
++   [
++    "推送两仓库.sh",
++    "方法进化表.py --解冲突 $P"
++   ]
++  ],
++  "自检": [
++   [
++    "方法进化表.py",
++    "没交人：会话补冲突被自动取一侧（K85）"
++   ]
++  ]
+  }
+-}
+\ No newline at end of file
++}
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\270\251\345\235\221\346\240\270\346\237\245.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\270\251\345\235\221\346\240\270\346\237\245.py"
+index eb7045a742b1f3c6e595a91c31908818883db1dc..8a82cff2ef2b2a03438bb4da5ba5ed36f703fa18 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\270\251\345\235\221\346\240\270\346\237\245.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\270\251\345\235\221\346\240\270\346\237\245.py"
+@@ -560,6 +560,20 @@ def video_folders(root):
+     return err
+ 
+ 
++视频允许 = ('视频/视频', '视频/视频/草稿1080p', '视频/试听')
++def 视频位置(root):
++    """K79（27 改稿会话把 1080p 草稿推到 视频/草稿1080p/，正确是 视频/视频/草稿1080p/，交付核查、推送、主会话核对都没查出）：
++    视频/ 下的视频文件只许在 视频/视频/、视频/视频/草稿1080p/（NN_1080p.mp4）、视频/试听/、视频/片头设计/（片头小样）；推送两仓库.sh 每次提交前查"""
++    err = []
++    for d, ds, fs in os.walk(f'{root}/视频'):
++        ds[:] = [x for x in ds if not x.startswith('.')]; r = os.path.relpath(d, root).replace(os.sep, '/')
++        for f in fs:
++            if not f.lower().endswith(VIDEO_EXT): continue
++            if r == '视频/视频/草稿1080p' and not re.fullmatch(r'\d\d_1080p\.mp4', f): err.append(f'[G7] 草稿要叫 NN_1080p.mp4：{r}/{f}')
++            elif r not in 视频允许 and not (r + '/').startswith('视频/片头设计/'): err.append(f'[G7] 视频放错了地方（K79：草稿放 视频/视频/草稿1080p/NN_1080p.mp4）：{r}/{f}')
++    return err
++
++
+ def selftest_folders():
+     """G7 自检：临时目录里造一份"已定稿、草稿没删"的目录，必须报出；删干净的必须不报"""
+     import tempfile
+@@ -579,6 +593,12 @@ def selftest_folders():
+         os.remove(f'{r}/最终版4K视频/03 - A - 乙.mp4'); open(f'{r}/视频/视频/笔记.txt', 'w').write('x'); os.makedirs(f'{r}/视频/视频/旧版')   # G79 门变异
+         if not any('不是定稿的文件' in x for x in video_folders(r)): fails.append('没抓到：视频/视频/ 里有不是定稿的文件（G7）')
+         if not any('多余的文件夹' in x for x in video_folders(r)): fails.append('没抓到：视频/视频/ 里有多余的文件夹（G7）')
++        os.makedirs(f'{r}/视频/草稿1080p'); open(f'{r}/视频/草稿1080p/27_1080p.mp4', 'wb').write(b'x')   # K79 原样重放
++        if not any('放错了地方' in x for x in 视频位置(r)): fails.append('没抓到：草稿放在 视频/草稿1080p/（K79）')
++        os.remove(f'{r}/视频/草稿1080p/27_1080p.mp4'); open(f'{r}/视频/视频/草稿1080p/27.mp4', 'wb').write(b'x')
++        if not any('NN_1080p' in x for x in 视频位置(r)): fails.append('没抓到：草稿没按 NN_1080p.mp4 命名（K79）')
++        os.remove(f'{r}/视频/视频/草稿1080p/27.mp4'); open(f'{r}/视频/视频/草稿1080p/27_1080p.mp4', 'wb').write(b'x'); os.makedirs(f'{r}/视频/片头设计/特效小样'); open(f'{r}/视频/片头设计/特效小样/a.mp4', 'wb').write(b'x')
++        if 视频位置(r): fails.append(f'误报：放对地方的草稿、片头小样也报 {视频位置(r)}（K79）')
+     return fails
+ 
+ 
+@@ -858,4 +878,6 @@ def main():
+ 
+ 
+ if __name__ == '__main__':
++    if sys.argv[1:2] == ['--视频位置']:   # 推送两仓库.sh 提交前调（K79）
++        e = 视频位置(sys.argv[2] if len(sys.argv) > 2 else ROOT); print('\n'.join(e) or '视频位置：都对'); sys.exit(1 if e else 0)
+     sys.exit(main())
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\237\263\351\242\221\344\275\223\346\243\200.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\237\263\351\242\221\344\275\223\346\243\200.py"
+index b885c08c861384413e41c1eab65176f5d4e2c0df..1f303b8a09ff6275b277d9fdba3cb4518e090019 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\237\263\351\242\221\344\275\223\346\243\200.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\237\263\351\242\221\344\275\223\346\243\200.py"
+@@ -63,6 +63,7 @@ def 指标(a, no=None):
+     at = lambda i: f'第{i}句' if i else '片头'
+     for k in ('直流偏移', '咔哒', '句尾截断', '句首突起'):
+         i = int(np.argmax(per[k])); m[k] = (per[k][i], at(i))
++    m['_每句'] = {k: per[k] for k in ('直流偏移', '咔哒', '句尾截断', '句首突起')}   # K80：自检按造坑那一句判（原样别的句已超限也能验）
+     sb = np.array(per['齿音']); i = int(np.argmax(sb)); m['齿音'] = (float(sb[i] - np.median(sb)), at(i))
+     c = np.array(per['质心'][1:]); dv = np.abs(c - np.median(c)) / np.median(c); i = int(np.argmax(dv)); m['音色突变'] = (float(dv[i]), at(i + 1))
+     txt = 文本(no)
+@@ -80,9 +81,9 @@ def 超限(m, base):
+         if v > base[k]['上限'] + 1e-6: bad.append(f'{k} {v:.3g}（{w}）超过 01–24 最差 {base[k]["上限"]:.3g}（{base[k]["篇"]}）')
+     return bad
+ 
+-def 造坑(a, no):
+-    """每一项造一种毛病（成片副本上），返回 {项: 副本}"""
+-    seg = 句段(a); s, e = seg[len(seg) // 2]; L = e - s; out = {}
++def 造坑(a, no, j=None):
++    """每一项造一种毛病（成片副本上，第 j 句，默认正中那句），返回 {项: 副本}"""
++    seg = 句段(a); s, e = seg[len(seg) // 2 if j is None else j]; L = e - s; out = {}
+     rng = np.random.default_rng(3)
+     b = a.copy(); r = slice(s + L // 3, s + L // 3 + int(0.2 * SR)); b[r] = np.clip(b[r] * 50, -1, 1); out["削波"] = b
+     b = a.copy(); b[s:e] += 0.05; out['直流偏移'] = b
+@@ -95,9 +96,18 @@ def 造坑(a, no):
+     return out
+ 
+ def 自检(src, no):
++    """每一项造一种毛病必须报出。K80（28 S13 句尾嘎裂原样已超限，自检“前提不成立”整项失灵）：
++    按句的四项（直流偏移、咔哒、句尾截断、句首突起）在原样没超限的一句上造坑、只看那一句；全片一个值的项原样已超限才算前提不成立"""
+     base = json.load(open(BASE)); a = 读(src); m0 = 指标(a, no); bad0 = {x.split(' ')[0].split('：')[0] for x in 超限(m0, base)}; f = []
+-    for k, b in 造坑(a, no).items():
+-        got = {x.split(' ')[0].split('：')[0] for x in 超限(指标(b, no), base)}
++    每句 = m0['_每句']; n = len(每句['句尾截断']); 好 = [i for i in range(1, n) if all(每句[k][i] <= base[k]['上限'] for k in 每句)]
++    if not 好: return ['自检前提不成立：每一句都有按句的项已超限'], sorted(bad0)
++    j = min(好, key=lambda i: abs(i - n // 2))
++    for k, b in 造坑(a, no, j).items():
++        m1 = 指标(b, no)
++        if k in 每句:
++            if not m1['_每句'][k][j] > base[k]['上限'] + 1e-6: f.append(f'没抓到：第{j}句造了“{k}”，这一句没超限')
++            continue
++        got = {x.split(' ')[0].split('：')[0] for x in 超限(m1, base)}
+         if k in bad0: f.append(f'自检前提不成立：原样 {k} 已超限，造坑看不出来')
+         elif k not in got: f.append(f'没抓到：造了“{k}”，体检没报（报了 {sorted(got - bad0)}）')
+     return f, sorted(bad0)
+@@ -131,4 +141,5 @@ if __name__ == '__main__':
+     base = json.load(open(BASE)); m = 指标(读(a_[0]), a_[1] if len(a_) > 1 else None); bad = 超限(m, base)
+     print(f'音频体检 {len(项)} 项：超过 01–24 最差的 {len(bad)} 处')
+     for x in bad: print('  ' + x)
++    if any(x.startswith('句尾截断') for x in bad): print('  句尾截断：这一句重合成（换合成标点 G57、语速）或修尾音，修好重跑；不开确认口子（首要法则，K80）')
+     sys.exit(1 if bad else 0)
