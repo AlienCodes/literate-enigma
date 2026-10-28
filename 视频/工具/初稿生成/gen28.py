@@ -28,7 +28,7 @@ S=[
      "（a handful of…：一把……；immersed in…：过去分词短语，浸在……里；\n引文是《肘后备急方》原文“青蒿一握，以水二升渍”的英译）"]]),
 (3,[[[("This","这个方法"),("**bypassed**","**绕开了**(bypassed)"),("boiling.","煮沸。")],
      "（This 指上面用水浸泡青蒿的做法；\nbypass：绕过，避开）"]]),
-(3,[[[("Tu","屠呦呦"),("suspected","怀疑，"),("heat during **extraction**","**提取**(extraction)时的高温"),("was **degrading**","**破坏了**(degrading)"),("a","某种"),("**delicate**","**不耐热的**(delicate)"),("**component**,","**成分**(component)，")],
+(3,[[[("Tu","屠呦呦"),("suspected","怀疑，"),("heat during **extraction**","**提取**(extraction)过程中的高温"),("was **degrading**","正在**降解/分解**(degrading)"),("a","某种"),("**delicate**","**脆弱的**(delicate)"),("**component**,","**成分**(component)，")],
      "（suspected 后面省略了 that，引出宾语从句；\ndelicate：这里指不耐热、容易被破坏的）"],
     [[("so","于是"),("she","她"),("switched to","改用了"),("**ether**,","**乙醚**(ether)，")],
      "（switch to…：改用……，换成……）"],
