@@ -34,6 +34,14 @@ def 看门停用():
     except Exception: return False
 '''
 
+登记 = {   # (类, 键): 用途
+    ('开关', 'XG_TOOLS'): '新管：检查程序目录（默认 视频/工具；验收在副本上跑时指过去）；不放宽任何检查',
+    ('开关', 'XG_P'): '新管：主仓库根目录（默认 /home/user/postgraduate-vocabulary）；不放宽任何检查',
+    ('开关', 'XG_WORK'): '新管 快测：出片工作目录；不放宽任何检查',
+    ('开关', 'XG_NO'): '新管 快测：回归篇号（默认 27）；不放宽任何检查',
+    ('起查', '修.py:25'): 'G35 结尾简述整屏常规 25 起（用户 2026-10-25 原话，用户同意记录 篇 26）',
+}
+
 def main():
     t = sys.argv[1]; bad = []
     open(f'{t}/管道.py', 'w').write(管道)
@@ -42,6 +50,13 @@ def main():
         if b in s: continue
         if s.count(a) != 1: bad.append(f'{f}：锚出现 {s.count(a)} 次：{a[:50]}'); continue
         open(p, 'w').write(s.replace(a, b))
+    k = f'{t}/放行口子表.json'   # 新管程序里的路径开关、起查要登记（G24 放行口子核查；不放宽任何检查）
+    if os.path.exists(k):
+        tb = json.load(open(k)); 改 = False
+        for 名, 用 in 登记.items():
+            for 类, 键 in [名]:
+                if tb.setdefault(类, {}).get(键) != 用: tb[类][键] = 用; 改 = True
+        if 改: json.dump(tb, open(k, 'w'), ensure_ascii=False, indent=1)
     if '--停用' in sys.argv or '--启用' in sys.argv:
         json.dump({'看门': '停用' if '--停用' in sys.argv else '启用'}, open(f'{t}/管道.json', 'w'), ensure_ascii=False)
     print('\n'.join(bad) or f'补丁 {len(补丁)} 处已打；开关 {t}/管道.json')

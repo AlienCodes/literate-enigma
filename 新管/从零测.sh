@@ -8,6 +8,7 @@ trap '[ -n "$OLD" ] && ln -sfn "$OLD" /home/user/postgraduate-vocabulary; echo "
 echo "== 浅克隆"; git clone -q --depth 1 -b $BR https://github.com/AlienCodes/literate-enigma "$D/L"
 ln -sfn "$D/L" /home/user/postgraduate-vocabulary
 echo "== 准备机器"; bash "$D/L/视频/工具/环境/准备机器.sh" "$D/L" "$D/机" > "$D/准备.log" 2>&1 || { tail -5 "$D/准备.log"; exit 1; }; tail -1 "$D/准备.log"
+echo "== K102（切换的底是 K102 落地后的 main）"; grep -q "读音改正生效（" "$D/L/视频/工具/读音核对.py" || (cd "$D/L" && git apply 改门待演练/K102读音自检.diff) || exit 1
 echo "== 装新管、切换"; cp -r "$D/L/新管" "$D/L/视频/工具/新管"; python3 "$D/L/视频/工具/新管/切换.py" "$D/L/视频/工具" --停用
 cd "$D/机/video"
 echo "== 快测"; XG_WORK="$D/机/video" python3 "$D/L/视频/工具/新管/快测.py" 2>&1 | tail -4

@@ -17,8 +17,8 @@ def 程序哈希():
     for root in (T, H):
         for f in glob.glob(f'{root}/**/*', recursive=True):
             r = os.path.relpath(f, root)
-            if not os.path.isfile(f) or '__pycache__' in r or '历史版本' in r or '已淘汰' in r or r.startswith(('演练样本', '发音词典', '新管/')) : continue
-            if f.endswith(('.py', '.sh')) or r.startswith('githooks/') or r in ('规则表.json', '管道.json'):
+            要 = os.path.isfile(f) and not ('__pycache__' in r or '历史版本' in r or '已淘汰' in r or r.startswith(('演练样本', '发音词典', '新管/')))   # 目录、缓存、历史版本不算程序（不是放行口子：程序一个不漏）
+            if 要 and (f.endswith(('.py', '.sh')) or r.startswith('githooks/') or r in ('规则表.json', '管道.json')):
                 if re.match(r'gen\d+\.py$', os.path.basename(f)): continue   # 各篇 genNN 是数据
                 fs.append((('新管/' if root == H else '') + r, f))
     h = {r: hashlib.sha256(open(f, 'rb').read()).hexdigest()[:16] for r, f in sorted(fs)}
