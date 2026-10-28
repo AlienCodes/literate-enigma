@@ -20,7 +20,7 @@ S=[
      "（some 200：大约200，some 表示“大约”）"]]),
 (2,[[[("Qinghao,","青蒿，"),("or **sweet wormwood**,","也就是**黄花蒿**(sweet wormwood)，"),("showed","展现出"),("**flashes** of **promise**,","几丝**成功迹象**(promise)的**闪光/闪现**(flashes)，"),("yet","然而"),("its results","它的效果"),("were **erratic**.","却**并不稳定/时好时坏的**(erratic)。")],
      "（or：也就是，引出同一种植物的另一个名称；\nshow flashes of promise：不时显出希望）"]]),
-(2,[[[("Seeking","为了寻找"),("a **clue**,","一条**线索**(clue)，"),("Tu","屠呦呦"),("**revisited**","**重新翻阅了**(revisited)"),("the **classical** texts.","**古典**(classical)文献。")],
+(2,[[[("Seeking","为了寻找"),("a **clue**,","**线索**(clue)，"),("Tu","屠呦呦"),("**revisited**","**重新审阅了**(revisited)"),("the **classical** texts.","**古典**(classical)文献。")],
      "（Seeking a clue：现在分词短语作状语，表示目的）"]]),
 (3,[[[("Around AD 340,","约公元340年，"),("the physician","医学家"),("Ge Hong's","葛洪的"),("**handbook**","**手册**(handbook)"),("advised","建议"),("taking","服用：")],
      "（advise doing…：建议做……；handbook：手册，指葛洪的《肘后备急方》）"],
