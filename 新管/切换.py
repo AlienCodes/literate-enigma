@@ -10,10 +10,8 @@ G = "__import__('管道').看门停用()"
     ('交付核查.py', "    c, o = run(['python3', f'{T}/规则执行核查.py']); step('规则执行核查（守则16：每条规矩都有门、接进流程、有自检，机器自检通过）', c == 0, '' if c == 0 else o.strip()[-600:])\n    c, o = run(['python3', f'{T}/用上核查.py', '--严'])",
      f"    if not {G}: c, o = run(['python3', f'{{T}}/规则执行核查.py']); step('规则执行核查（守则16：每条规矩都有门、接进流程、有自检，机器自检通过）', c == 0, '' if c == 0 else o.strip()[-600:])\n    if not {G}: c, o = run(['python3', f'{{T}}/用上核查.py', '--严'])"),
     ('交付核查.py', "elif stage == '出片后':\n    c, o = run(['python3', f'{T}/规则执行核查.py'])", f"elif stage == '出片后':\n    if not {G}: c, o = run(['python3', f'{{T}}/规则执行核查.py'])"),
-    ('交付核查.py', "    c, o = run(['python3', f'{T}/收工记录.py', no]); step(", f"    if not {G}: c, o = run(['python3', f'{{T}}/收工记录.py', no]); step("),
     ('交付核查.py', "if ok and stage in ('出片前', '出片后'): _ZJ.记(no, stage)", f"if ok and stage in ('出片前', '出片后') and not {G}: _ZJ.记(no, stage)"),
     ('交付核查.py', "if not ok:   # K 丝滑记录", f"if not ok and not {G}:   # K 丝滑记录"),
-    ('草稿声音.sh', "python3 $T/方法进化表.py --上下文 || exit 1", "[ \"$(python3 -c \"import sys;sys.path.insert(0,'$T');print(__import__('管道').看门停用())\")\" = True ] || python3 $T/方法进化表.py --上下文 || exit 1"),
     ('草稿声音.sh', "python3 $T/证据.py --记 $no 草稿声音", "[ \"$(python3 -c \"import sys;sys.path.insert(0,'$T');print(__import__('管道').看门停用())\")\" = True ] || python3 $T/证据.py --记 $no 草稿声音"),
     ('生成文本.py', "_m = subprocess.run(['python3', f'{T}/规则执行核查.py'], capture_output=True, text=True)", f"_m = subprocess.run(['true'] if (sys.path.insert(0, T) or {G}) else ['python3', f'{{T}}/规则执行核查.py'], capture_output=True, text=True)"),
     ('推送两仓库.sh', 'python3 $P/视频/工具/规则执行核查.py || { echo "【停止】规则执行核查不通过', 'if [ "$(python3 -c "import sys;sys.path.insert(0,\'$P/视频/工具\');print(__import__(\'管道\').看门停用())")" = True ]; then python3 $P/视频/工具/新管/印章.py || { echo "【停止】快测印章对不上：程序改过没过快测（python3 视频/工具/新管/快测.py）"; exit 1; }; else python3 $P/视频/工具/规则执行核查.py; fi || { echo "【停止】规则执行核查不通过'),
@@ -25,6 +23,10 @@ G = "__import__('管道').看门停用()"
     ('推送两仓库.sh', "git pull -q --no-rebase --no-edit origin $B)   # 镜像分支", "{ git pull -q --no-rebase --no-edit origin $B || python3 $P/视频/工具/新管/合并追加.py; })   # 镜像分支"),
     ('推送两仓库.sh', "git push -q origin main || { git pull -q --no-rebase --no-edit origin main && git push -q origin main; }", "git push -q origin main || { { git pull -q --no-rebase --no-edit origin main || python3 $P/视频/工具/新管/合并追加.py; } && git push -q origin main; }"),
     ('推送两仓库.sh', "git push -q -u origin $B || { git pull -q --no-rebase --no-edit origin $B && git push -q -u origin $B; }", "git push -q -u origin $B || { { git pull -q --no-rebase --no-edit origin $B || python3 $P/视频/工具/新管/合并追加.py; } && git push -q -u origin $B; }"),
+    ('方法进化表.py', "def 汇总(rec=REC, 目录=None):",
+     "def 出过片(no, rec=None):   # K97（主会话 2026-10-28）：只算已经出过片（有出片后 收工记录）的篇；排队中的、只有交接的篇不算\n    f = f'{rec or REC}/{no}.md'\n    return (not os.path.exists(f)) or '\\n- 收工 ' in open(f).read()\n\n\ndef 汇总(rec=REC, 目录=None):"),
+    ('方法进化表.py', "    for no, v in 篇.items():\n        ss = v['会话']", "    for no, v in 篇.items():\n        if not 出过片(no, rec): continue   # K97：排队中、没出过片的篇不进比较\n        ss = v['会话']"),
+    ('方法进化表.py', "    if no not in 行: return [f'【G65 方法进化】{no} 没有一条 token 记录", "    if no not in 行 and not 出过片(no): return [], ''   # K97：还在排队、没出过片的篇（开下一篇时查上一篇）不拦\n    if no not in 行: return [f'【G65 方法进化】{no} 没有一条 token 记录"),
 ]
 # 提交前钩子的改法（切换推送时由主会话批准后做，本程序不碰钩子文件，K16）：看门停用时只查快测印章（新管/印章.py），不再跑 会话开工 --提交前、规则执行核查
 管道 = '''import json, os

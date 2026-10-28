@@ -36,7 +36,7 @@ def 规则表新鲜():
     if 新.get('版本') != 表.get('版本'): bad.append(f'规则表.json 不是最新的（{表.get("版本")} → {新.get("版本")}）：python3 新管/生成规则表.py --写入')
     return bad, 表
 
-停跑 = {'门变异.py', '用上核查.py', '证据.py', '丝滑.py', '演练镜像.py', '执行效应声音演练.py', '推请求.py', '会话开工.py', '方法进化表.py'}
+停跑 = {'门变异.py', '用上核查.py', '证据.py', '丝滑.py', '演练镜像.py', '执行效应声音演练.py', '推请求.py', '会话开工.py'}
 
 def 文本自检(看门):
     import 规则执行核查 as RZ
@@ -87,7 +87,22 @@ if R.NOTE_WIDE.get(key(d24, -1)) == "整屏": bad.append("误放：24（25 前�
 b = copy.deepcopy(d27); b.pop("说明放宽特批", None); b["sentences"][-1]["chunks"][-1]["note"] = "（结局：x）"; R.apply_script(b)
 if R.NOTE_WIDE.get(key(b, -1)) == "整屏": bad.append("误放：最后一句不是简述也整屏了")
 print("\\n".join(bad))''', T, os.path.dirname(T)], capture_output=True, text=True, cwd=T, env=env0)
-    return [f'G35 常规规则：{x}' for x in (r.stdout.strip().splitlines() if r.returncode == 0 else [r.stderr.strip()[-200:]])]
+    out = [f'G35 常规规则：{x}' for x in (r.stdout.strip().splitlines() if r.returncode == 0 else [r.stderr.strip()[-200:]])]
+    # G65 方法进化（用户原话立的规矩，照跑）+ K97 误拦修正：排队中的篇不拦；变差没写进化落地必拦
+    r = subprocess.run(['python3', '-c', '''
+import sys, copy, glob, os; sys.path.insert(0, sys.argv[1]); import 方法进化表 as J
+bad = []
+if not hasattr(J, "出过片"): print("方法进化表.py 没打 K97 补丁"); sys.exit()
+行 = J.汇总(); 排 = next((n for n in sorted(map(lambda f: os.path.basename(f)[:2], glob.glob(J.REC + "/[0-9][0-9].md")), reverse=True) if not J.出过片(n)), None)
+if 排 and J.门(排, 行=行, 写=False)[0]: bad.append(f"误拦：{排} 还在排队（没出过片）也被 G65 拦（K97）")
+行2 = copy.deepcopy(行)
+if "27" in 行2:
+    for k in 行2["27"]:
+        if isinstance(行2["27"][k], (int, float)) and not isinstance(行2["27"][k], bool): 行2["27"][k] = 行2["27"][k] * 10 + 100
+    if not J.门("27", 行=行2, txt="## 方法复盘\\n- 无\\n", 写=False, 号=set())[0]: bad.append("没抓到：27 比前三篇中位数贵十倍、没写进化落地（G65）")
+print("\\n".join(bad))''', T], capture_output=True, text=True, cwd=T, env=env0)
+    out += [f'G65：{x}' for x in (r.stdout.strip().splitlines() if r.returncode == 0 else [r.stderr.strip()[-200:]])]
+    return out
 
 def 挂钩():
     import 规则执行核查 as RZ
@@ -129,7 +144,7 @@ def main():
         ft = ex.submit(文本自检, 看门); fr = ex.submit(回归, '--记基准' in a) if 全 else None; fs = ex.submit(声音) if 全 else None
         b, n = ft.result(); bad += b; out.append(f'② 文本/画面/流程 快自检 {n} 个程序：{"全过" if not b else f"{len(b)} 个不过"}')
         b = 挂钩(); bad += b; out.append(f'③ 挂钩检查：{"在" if not b else "断了"}')
-        b = 常规规则(); bad += b; out.append(f'③b 常规规则（G35 简述整屏）坏样本必抓、好样本必放：{"过" if not b else "不过"}')
+        b = 常规规则(); bad += b; out.append(f'③b 常规规则（G35 简述整屏、G65 方法进化 K97）坏样本必抓、好样本必放：{"过" if not b else "不过"}')
         if 全:
             b, _ = fr.result(); bad += b; out.append(f'④ {NO} 回归：{"记了基准" if "--记基准" in a else ("a.wav、分段.json 逐字节、每屏像素一致" if not b else "不一致")}')
             b, n = fs.result(); bad += b; out.append(f'⑤ 交付核查 出片前/出片后 + 出片守门自检：{"全过" if not b else f"{len(b)} 处不过"}')

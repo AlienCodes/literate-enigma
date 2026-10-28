@@ -13,6 +13,7 @@ exec 9>"$W/.做_$no.lock"; flock -n 9 || stop "第${no}篇已经有一条 做/�
 [ -f make_video.py ] && [ -f "scripts/$no.json" ] && [ -d fonts ] || stop "请在出片工作目录下运行（要有 make_video.py、scripts/$no.json、fonts/）"
 python3 $H/印章.py > "$LOG/印章.log" 2>&1 || { cat "$LOG/印章.log"; stop "快测印章对不上"; }
 python3 $T/出片指纹.py --核对工作目录 . > /dev/null 2>&1 || { python3 $T/出片指纹.py --拷 . > /dev/null && echo "（工作目录的出片程序比仓库旧，已拷过来，G27）"; } || stop "拷出片程序失败（G27）"
+python3 $T/方法进化表.py --门 $no || stop "方法进化（G65）：本篇比前三篇中位数变差，方法复盘里还没有查得到的“进化落地：<提交号|G##|K##>”"
 python3 $T/放行口子核查.py --定稿 $no || stop "用户还没说定稿（用户原话记进 用户同意记录.json）"
 python3 $T/工作稿核对.py $no || stop "工作目录的脚本是旧稿（G19）"
 python3 $T/补对照记录.py $no > /dev/null || stop "补对照记录失败"
