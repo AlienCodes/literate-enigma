@@ -32,7 +32,7 @@ S=[
      "（suspected 后面省略了 that，引出宾语从句；\ndelicate：这里指不耐热、容易被破坏的）"],
     [[("so","于是"),("she","她"),("switched to","改用了"),("**ether**,","**乙醚**(ether)，")],
      "（switch to…：改用……，换成……）"],
-    [[("a","一种"),("**volatile**","**易挥发的**(volatile)"),("**solvent**","**溶剂**(solvent)，"),("boiling at","沸点为"),("about 35 degrees Celsius.","约35摄氏度。")],
+    [[("a","一种"),("**volatile**","**易挥发的**(volatile)"),("**solvent**","**溶剂**(solvent)，"),("boiling at","沸点为"),("about 35","约35"),("**degrees Celsius**.","**摄氏度**(degrees Celsius)。")],
      "（a volatile solvent…：同位语，补充说明 ether；\nboiling at…：现在分词短语作后置定语，在……时沸腾）"]]),
 (3,[[[("On 4 October 1971","1971年10月4日，"),("sample 191","第191号样品"),("completely","完全"),("**inhibited**","**抑制了**(inhibited)"),("the **parasite** in **infected** mice.","**受感染**(infected)小鼠体内的**疟原虫**(parasite)。")],
      "（parasite：寄生虫，这里指疟原虫；\nin infected mice：后置定语，修饰 the parasite）"]]),
