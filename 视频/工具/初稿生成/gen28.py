@@ -38,7 +38,7 @@ S=[
      "（parasite：寄生虫，这里指疟原虫；\nin infected mice：后置定语，修饰 the parasite）"]]),
 (4,[[[("**Efficacy** in mice","在小鼠身上有**药效**(Efficacy)，"),("**indicated** nothing about","并不能**说明**(indicated)"),("human","人"),("safety.","是否安全。")],
      "（indicate nothing about…：对……什么也说明不了）"]]),
-(4,[[[("In July 1972,","1972年7月，"),("to **assess**","为了**检验**(assess)"),("its **toxicity**,","它的**毒性**(toxicity)，"),("Tu","屠呦呦"),("and two colleagues","和两名同事"),("**voluntarily**","**自愿**(voluntarily)"),("took","服下了"),("the extract.","这种提取物。")],
+(4,[[[("In July 1972,","1972年7月，"),("to **assess**","为了**评估**(assess)"),("its **toxicity**,","它的**毒性**(toxicity)，"),("Tu","屠呦呦"),("and two colleagues","和两名同事"),("**voluntarily**","**自愿地**(voluntarily)"),("took","服下了"),("the extract.","这种提取物。")],
      "（to assess…：不定式作目的状语）"]]),
 (4,[[[("**Thereafter**,","**此后**(Thereafter)，"),("from August to October,","从8月到10月，"),("it","这种提取物"),("was **administered to**","**用于治疗**(administered to)"),("21","21名"),("malaria","疟疾"),("patients","病人，"),("in Hainan,","在海南，")],
      "（administer A to B：给 B 施用 A，这里指给病人用药）"],
