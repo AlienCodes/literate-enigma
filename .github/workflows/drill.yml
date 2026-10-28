@@ -16,7 +16,7 @@ on:
   push:
     branches: ['claude/adoring-hamilton-5qskmm']
     paths: ['视频/云端/请求/**']
-permissions: {contents: write}
+permissions: {contents: write, actions: read}   # actions: read：收尾快跑从底运行下载分片结果（第五棒）
 defaults:
   run: {shell: bash}
 jobs:
@@ -48,6 +48,11 @@ jobs:
               if job == '门变异': nos = [x for x in rest if '@' in x]   # 门变异 覆盖@自检 覆盖@主 覆盖@声 / <文件>@i@n（一个分片一台机器）
               if job == '改门推送':   # K60：一条请求拆成 门变异分片 + 主演练 + 声音 4 片，gate 收齐再合并、彩排
                   if gate or not patch: print('改门推送 一次只认一条、必须带 补丁='); raise SystemExit(1)
+                  快 = next((x[3:].split('@') for x in rest if x.startswith('快跑=')), None)   # 第五棒 收尾快跑：快跑=<底运行>@<底请求>@<片数>@<全量|增量>，门变异分片和声音 4 片拿底运行的结果，只跑 合并 → 主演练 → 印章 → 彩排（结果不能 --收）
+                  if 快:
+                      if len(快) != 4 or not 快[0].isdigit() or not 快[2].isdigit(): print('快跑= 写成 <底运行>@<底请求>@<片数>@<全量|增量>'); raise SystemExit(1)
+                      drill = [{'req': rid, 'job': '主演练', 'patch': patch, 'no': '0', 'an': '主演练'}]
+                      gate = json.dumps({'req': rid, 'patch': patch, 'n': int(快[2]), 'nd': 5, 'mode': 快[3], 'base': 快[0], 'breq': 快[1]}, ensure_ascii=False); print(f'收尾快跑 {rid}：底运行 {快[0]}（{快[1]}，{快[2]} 片）→ 合并 → 主演练 → 彩排'); continue
                   subprocess.run(['git', 'config', 'user.name', 'ci']); subprocess.run(['git', 'config', 'user.email', 'ci@example.com'])
                   ok = subprocess.run(['git', 'apply', '--index', '--include=视频/工具/*', '--include=视频/制作记录/*', patch]).returncode == 0
                   sh = subprocess.run(['python3', '视频/工具/门变异.py', '--分片表', '--受影响'], capture_output=True, text=True) if ok else None
@@ -56,7 +61,7 @@ jobs:
                   items += [{'req': rid, 'job': '门变异', 'patch': patch, 'no': x, 'an': x.replace('/', '_'), 'gate': '1'} for x in 片]
                   items += [{'req': rid, 'job': '声音分片', 'patch': patch, 'no': f'{i}/4', 'an': f'声音{i}', 'gate': '2'} for i in range(1, 5)]   # ⓪′：声音演练 4 片和门变异同时跑（只要补丁，不要合并后的清单；v2 实测并行全过），关键路径少 23 分钟
                   drill = [{'req': rid, 'job': j, 'patch': patch, 'no': n, 'an': a} for j, n, a in [('主演练', '0', '主演练')]]
-                  gate = json.dumps({'req': rid, 'patch': patch, 'n': len(片), 'nd': len(drill) + 4, 'mode': mode}, ensure_ascii=False); print(f'改门推送 {rid}：门变异 {len(片)} 片（{mode}）+ 声音 4 片 → 主演练 → 彩排'); continue
+                  gate = json.dumps({'req': rid, 'patch': patch, 'n': len(片), 'nd': len(drill) + 4, 'mode': mode, 'base': '', 'breq': rid}, ensure_ascii=False); print(f'改门推送 {rid}：门变异 {len(片)} 片（{mode}）+ 声音 4 片 → 主演练 → 彩排'); continue
               for n in (nos if job in ('全篇重查', '出片', '单线程复现', '门变异', '定稿', '草稿') else ['0']): items.append({'req': rid, 'job': job, 'patch': patch, 'no': n, 'an': n.replace('/', '_')})   # an：artifact 名字不许带 /（K41）
           print('新请求：', fs, '→', len(items), '个任务')
           o = open(os.environ['GITHUB_OUTPUT'], 'a'); o.write(f"items={json.dumps(items, ensure_ascii=False)}\n"); o.write(f"recheck={str(any(i['job'] == '全篇重查' for i in items)).lower()}\n"); o.write(f"gate={gate}\n"); o.write(f"drill={json.dumps(drill, ensure_ascii=False)}\n")
@@ -218,8 +223,8 @@ jobs:
         with: {sparse-checkout: "视频/工具\n视频/制作记录\n视频/云端\n.github", filter: 'blob:none'}
       - name: 装核查依赖（K61/K67：checkout 后跑 python 的 job 一律先走这一步，清单 .github/核查依赖.txt）
         run: pip install -q -r .github/核查依赖.txt 2>&1 | tail -1
-      - uses: actions/download-artifact@v4
-        with: {pattern: '结果_${{ fromJson(needs.plan.outputs.gate).req }}_*', path: /tmp/a, merge-multiple: true}
+      - uses: actions/download-artifact@v4   # 收尾快跑：从底运行下载（base 空 = 本次运行）
+        with: {pattern: '结果_${{ fromJson(needs.plan.outputs.gate).breq }}_*', path: /tmp/a, merge-multiple: true, run-id: '${{ fromJson(needs.plan.outputs.gate).base || github.run_id }}', github-token: '${{ github.token }}'}
         continue-on-error: true   # run 上传多个路径，文件落在 /tmp/a/gate/（K60v3 实测：查 /tmp/a/ 收到 0/18）。没有受影响的门（0 片）时没有分片结果；收齐按 rc_ 份数查
       - name: ② 收齐 → 门变异合并 → 查基线
         run: |
@@ -301,6 +306,9 @@ jobs:
       - uses: actions/download-artifact@v4
         with: {pattern: '演练_${{ fromJson(needs.plan.outputs.gate).req }}_*', path: /tmp/a, merge-multiple: true}
         continue-on-error: true
+      - uses: actions/download-artifact@v4   # 收尾快跑：声音 4 片拿底运行的（base 空 = 本次运行，同一批再下一遍）
+        with: {pattern: '演练_${{ fromJson(needs.plan.outputs.gate).breq }}_声音*', path: /tmp/a, merge-multiple: true, run-id: '${{ fromJson(needs.plan.outputs.gate).base || github.run_id }}', github-token: '${{ github.token }}'}
+        continue-on-error: true
       - name: ③ 收齐演练 → 两个演练印章
         run: |
           set +e; shopt -s nullglob
@@ -327,14 +335,15 @@ jobs:
           set +e; STRICT_CACHE=1 bash $GITHUB_WORKSPACE/视频/工具/彩排.sh 25 > /tmp/out.log 2>&1; rc=$?; tail -30 /tmp/out.log
           grep -E '✘|【' /tmp/out.log | tail -10 >> /tmp/gate.txt
           [ $rc = 0 ] || { echo "【改门推送不过】④ 彩排" >> /tmp/gate.txt; exit 1; }
-          echo "④ 彩排通过" >> /tmp/gate.txt; echo "改门推送：全过" >> /tmp/gate.txt
+          echo "④ 彩排通过" >> /tmp/gate.txt
+          if [ -n "$(python3 -c "import json,os;print(json.loads(os.environ['GATE'])['base'])")" ]; then echo "收尾快跑：全过（门变异结论来自底运行，不能 --收）" >> /tmp/gate.txt; else echo "改门推送：全过" >> /tmp/gate.txt; fi
       - name: 写回结果（全过才有印章；不过也写回原因）
         if: always()
         env: {GH_TOKEN: '${{ github.token }}'}
         run: |
           set +e; j() { python3 -c "import json,os;print(json.loads(os.environ['GATE'])['$1'])"; }; P=$(j patch); R=视频/云端/结果/$(j req)
           git add -A 视频 CLAUDE.md 2>/dev/null; if [ -s /tmp/P0 ]; then git diff --binary --cached $(cat /tmp/P0) -- 视频 CLAUDE.md > /tmp/结果.diff; else : > /tmp/结果.diff; fi
-          grep -q '改门推送：全过' /tmp/gate.txt 2>/dev/null && rc=0 || rc=1
+          grep -q '改门推送：全过\|收尾快跑：全过' /tmp/gate.txt 2>/dev/null && rc=0 || rc=1
           { echo "补丁 $P sha256 $(sha256sum "$P" | cut -c1-16)"; echo "底版 ${{ github.sha }}"; echo "运行 ${{ github.run_id }}"; echo "退出码 $rc"; echo "结果补丁 $(wc -l < /tmp/结果.diff) 行"; cat /tmp/gate.txt 2>/dev/null; } > /tmp/结果.txt
           cat /tmp/结果.txt >> $GITHUB_STEP_SUMMARY
           for x in diff txt; do python3 - "$R.结果.$x" "/tmp/结果.$x" <<'PY' || exit 1
