@@ -25,7 +25,7 @@ S=[
 (3,[[[("Later","后来的"),("**fieldwork**","**实地考察**(fieldwork)"),("**bolstered**","**佐证了**(bolstered)"),("these findings.","这些发现。")],
      "（bolster：支持，加强，这里指佐证）"]]),
 (3,[[[("In April 2016,","2016年4月，"),("camera","相机"),("traps","陷阱"),("**snapped**","**拍到了**(snapped)"),("wolves,","狼、"),("boar,","野猪"),("and","和"),("raccoon dogs","貉，"),("near **the most hazardous** spots,","在**危险最大的**(the most hazardous)地点附近，")],
-     "（camera trap：相机陷阱，自动拍摄的相机；raccoon dog：貉）"],
+     "（camera trap：相机陷阱，自动拍摄的相机；\nraccoon dog：貉）"],
     [[("with no sign of","没有迹象表明"),("**suppressed** numbers.","数量被**压低**(suppressed)。")],
      "（with no sign of…：没有……的迹象）"]]),
 (3,[[[("The **probable** reason","**可能的**(probable)原因"),("is **mundane**:","很**平常**(mundane)："),("the **absence** of","**没有**(absence)"),("**agriculture**,","**农耕**(agriculture)、"),("**forestry**,","**伐木**(forestry)"),("and hunting.","和狩猎。")],
