@@ -2,13 +2,13 @@ import json,re,glob,os
 # 第28篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-10-28 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；非重点词也逐词对齐（G47）；三项以上并列加牛津逗号（T35）。
 S=[
-(1,[[[("Project 523,","523项目"),("a","是一项"),("**covert**","**秘密**(covert)"),("**military**","**军事**(military)"),("**mission**","**任务**(mission)，"),("involving","涉及"),("many institutes,","多家机构，")],
+(1,[[[("Project 523,","523项目"),("a","是一项"),("**covert**","**秘密的/隐秘的**(covert)"),("**military**","**军事**(military)"),("**mission**","**任务**(mission)，"),("involving","涉及"),("many institutes,","多家机构，")],
      "（a covert military mission…：同位语，补充说明 Project 523；\ninvolving many institutes：现在分词短语作后置定语）"],
     [[("was named","得名"),("after","于"),("its","它的"),("launch","启动"),("date,","日期，"),("23 May 1967.","1967年5月23日。")],
      "（be named after…：以……命名）"]]),
 (1,[[[("Its","它的"),("**urgent** target","**紧迫**(urgent)目标"),("was","是"),("the chloroquine-**resistant**","对氯喹**产生耐药性的**(resistant)"),("**malaria**","**疟疾**(malaria)，")],
      "（chloroquine-resistant：对氯喹产生耐药性的，chloroquine 是氯喹）"],
-    [[("**weakening**","它**削弱了**(weakening)"),("troops in the Vietnam War.","越战中的部队。")],
+    [[("**weakening**","它**削弱了**(weakening)"),("**troops** in the **Vietnam War**.","**越南战争**(Vietnam War)中的**部队**(troops)。")],
      "（weakening troops…：现在分词短语作后置定语，修饰 malaria）"]]),
 (1,[[[("In January 1969","1969年1月，"),("Tu Youyou","屠呦呦"),("was **entrusted with**","**受命**(entrusted with)"),("leading","领导"),("her institute's","她所在研究所的"),("research","研究"),("group,","组，")],
      "（be entrusted with doing…：被委以做……的重任，受命做……）"],
@@ -81,7 +81,7 @@ CONF={
  "S17 essence … of":"不是搭配：the essence of A 是普通的 of 结构（A 的精髓），essence 单独是重点词",
  "S4 an exhaustive search":"不是搭配：exhaustive 本身就是“详尽的、彻底的”，search 是普通名词“搜寻”，各自对齐即可"},
 "合组":{
- "S2 troops in the Vietnam War.":"对齐不了：in the Vietnam War 是后置定语修饰 troops，中文“越战中的部队”定语必须提前",
+ "S2 troops in the Vietnam War.":"对齐不了：in the Vietnam War 是后置定语修饰 troops，中文“越南战争中的部队”定语必须提前",
  "S9 heat during extraction":"对齐不了：during extraction 是后置定语修饰 heat，中文“提取时的高温”定语必须提前",
  "S10 the parasite in infected mice.":"对齐不了：in infected mice 是后置定语修饰 the parasite，中文“受感染小鼠体内的疟原虫”定语必须提前",
  "S11 Efficacy in mice":"对齐不了：in mice 修饰 efficacy，中文“在小鼠身上有药效”介词短语必须提前",
@@ -91,7 +91,7 @@ CONF={
  "S7 \"a handful of qinghao":"对齐不了：引文回译成《肘后备急方》原文“青蒿一握”，文言语序（一握放在青蒿后面），拆开不通",
  "S7 immersed in two litres of water\"":"对齐不了：引文回译成《肘后备急方》原文“以水二升渍”，文言语序，拆开不通"},
 "对齐":{
- "S2-2 troops in the Vietnam War.":"in the Vietnam War 是后置定语修饰 troops，中文“越战中的部队”定语提前，语序必须倒过来",
+ "S2-2 troops in the Vietnam War.":"in the Vietnam War 是后置定语修饰 troops，中文“越南战争中的部队”定语提前，语序必须倒过来；troops、Vietnam War 两个重点词因此同在一组（T34 倒装）",
  "S9-1 heat during extraction":"during extraction 是后置定语修饰 heat，中文“提取时的高温”定语提前，语序必须倒过来",
  "S10-1 the parasite in infected mice.":"in infected mice 是后置定语修饰 the parasite，中文“受感染小鼠体内的疟原虫”定语提前，语序必须倒过来；parasite、infected 两个重点词因此同在一组（T34 倒装）",
  "S11-1 Efficacy in mice":"in mice 修饰 efficacy，中文“在小鼠身上有药效”介词短语提前，语序必须倒过来",
@@ -101,7 +101,7 @@ CONF={
  "S17-1 the boiling it skipped.":"it skipped 是定语从句修饰 the boiling，中文“它略去的煮沸”定语提前，语序必须倒过来"}}
 out={"no":"28","title_en":"A Handful of Wormwood That Saved Millions","title_zh":"青蒿一握，济世千万","title_fx":{"hl":["Wormwood","Millions"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮按实际开口":True,"高亮开口门槛":40,
-     "术语":{"Project 523":"523项目","Vietnam War":"越战","Tu Youyou":"屠呦呦","Qinghao":"青蒿","Ge Hong":"葛洪","Hainan":"海南","Lasker Award":"拉斯克奖","Nobel Prize":"诺贝尔","WHO":"世界卫生组织","artemisinin":"青蒿素","chloroquine":"氯喹","Celsius":"摄氏度"}}
+     "术语":{"Project 523":"523项目","Vietnam War":"越南战争","Tu Youyou":"屠呦呦","Qinghao":"青蒿","Ge Hong":"葛洪","Hainan":"海南","Lasker Award":"拉斯克奖","Nobel Prize":"诺贝尔","WHO":"世界卫生组织","artemisinin":"青蒿素","chloroquine":"氯喹","Celsius":"摄氏度"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)
