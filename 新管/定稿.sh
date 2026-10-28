@@ -12,7 +12,7 @@ push() { for t in 0 2 4 8 16; do sleep $t; git pull -q --no-rebase --no-edit ori
 exec 9>"$W/.做_$no.lock"; flock -n 9 || stop "第${no}篇已经有一条 做/定稿 在跑"
 [ -f make_video.py ] && [ -f "scripts/$no.json" ] && [ -d fonts ] || stop "请在出片工作目录下运行（要有 make_video.py、scripts/$no.json、fonts/）"
 python3 $H/印章.py > "$LOG/印章.log" 2>&1 || { cat "$LOG/印章.log"; stop "快测印章对不上"; }
-python3 $T/出片指纹.py --核对工作目录 . || stop "工作目录的出片程序与仓库工具不一致（G27），先 python3 $T/出片指纹.py --拷 ."
+python3 $T/出片指纹.py --核对工作目录 . > /dev/null 2>&1 || { python3 $T/出片指纹.py --拷 . > /dev/null && echo "（工作目录的出片程序比仓库旧，已拷过来，G27）"; } || stop "拷出片程序失败（G27）"
 python3 $T/放行口子核查.py --定稿 $no || stop "用户还没说定稿（用户原话记进 用户同意记录.json）"
 python3 $T/工作稿核对.py $no || stop "工作目录的脚本是旧稿（G19）"
 python3 $T/补对照记录.py $no > /dev/null || stop "补对照记录失败"

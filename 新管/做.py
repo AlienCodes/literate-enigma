@@ -28,6 +28,11 @@ def 停(步, 行):
 
 # ⓪
 if not (os.path.exists('make_video.py') and os.path.exists(f'scripts/{no}.json')): 停('⓪ 工作目录', [f'请在出片工作目录运行（要有 make_video.py、scripts/{no}.json）'])
+c, o = 跑('工作目录程序', ['python3', f'{T}/出片指纹.py', '--核对工作目录', '.'])
+if c:   # 机械：工作目录的出片程序比仓库旧（G27），照现有做法拷过来
+    c, o = 跑('拷出片程序', ['python3', f'{T}/出片指纹.py', '--拷', '.'])
+    if c: 停('⓪ 拷出片程序', o.strip().splitlines()[-3:])
+    修了.append('工作目录的出片程序比仓库旧，已按 出片指纹.py --拷 拷过来（G27）')
 c, o = 跑('印章', ['python3', f'{H}/印章.py'], extra={'XG_TOOLS': T})
 if c: 停('⓪ 快测印章', o.strip().splitlines())
 if os.path.exists(f'{T}/初稿生成/gen{no}.py') and os.path.getmtime(f'{T}/初稿生成/gen{no}.py') > os.path.getmtime(f'scripts/{no}.json'):
@@ -42,6 +47,12 @@ c, o = 跑('文本', ['python3', f'{T}/踩坑核查.py', no, '出片'])
 if '【核查程序失灵' in o: 停('① 踩坑核查自检失灵', o.strip().splitlines()[-3:])
 if 错: 停('① 文本（改 genNN 数据或脚本后重跑 做.sh）', 错)
 疑点 += [('文本', l.strip()[2:]) for l in o.splitlines() if l.strip().startswith('？')]
+import glob as _gl, tempfile as _tf   # K98（28 定稿到 ④ 文章同步才查出速查表缺 11 个新重点词）：文章同步在 ① 先试跑一遍（临时副本，不改文章）
+_md = _gl.glob(f'{P}/新版定稿/{no}-*.md')
+if _md:
+    with _tf.TemporaryDirectory() as _td:
+        shutil.copy(_md[0], f'{_td}/a.md'); c, o = 跑('文章同步试跑', ['python3', f'{T}/sync_article.py', os.path.abspath(f'scripts/{no}.json'), f'{_td}/a.md'], cwd=P)
+    if c or '【停止】' in o: 停('① 文章同步试跑（速查表缺词性词义等，K98）', [l for l in o.splitlines() if '停止' in l or 'Error' in l][:5] or o.strip().splitlines()[-3:])
 报告.append(f'① 文本：通过' + (f'，疑点 {len(疑点)} 处' if 疑点 else '') + (f'，自动修 {len(修了)} 处' if 修了 else ''))
 # ②
 c, o = 跑('声音', ['bash', f'{T}/草稿声音.sh', no])

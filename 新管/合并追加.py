@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""推送时 git pull 撞冲突：几个会话都往里追加的共享记录（.jsonl、.json）自动合并，然后提交合并；别的文件冲突照旧停（真冲突要人看）。
+"""推送时 git pull 撞冲突（.jsonl、.json、视频/制作记录/ 下的 .md）：几个会话都往里追加的共享记录（.jsonl、.json）自动合并，然后提交合并；别的文件冲突照旧停（真冲突要人看）。
   .jsonl：按行合并（我的在前，别人新加的行接在后面，不重复）
   .json ：三方合并（共同祖先 / 我的 / 别人的）：字典逐键合并；列表 = 我的（去掉别人删了的）+ 别人新加的；同一个值两边改得不一样 → 停
 在仓库里运行（git pull 失败之后）：python3 合并追加.py   返回 0 = 合并好并已提交；1 = 有真冲突，已 git merge --abort"""
@@ -43,7 +43,7 @@ def 缩进(s):
 def 合(f):
     b, o, t = 版本(1, f), 版本(2, f), 版本(3, f)
     if o is None or t is None: raise 真冲突('一边删了文件')
-    if f.endswith('.jsonl'):
+    if f.endswith('.jsonl') or (f.startswith('视频/制作记录/') and f.endswith('.md')):   # K100：制作记录 NN.md 几个会话都往后追加
         ol = o.splitlines(); seen = set(ol); bl = set((b or '').splitlines())
         out = [l for l in ol if not (l in bl and l not in t.splitlines())] + [l for l in t.splitlines() if l not in seen and l not in bl]
         return '\n'.join(out) + '\n'
