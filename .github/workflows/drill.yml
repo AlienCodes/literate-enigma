@@ -304,6 +304,7 @@ jobs:
           rcs=(/tmp/a/rc_*); [ "${#rcs[@]}" -eq "$N" ] || stop "③ 演练只收到 ${#rcs[@]}/$N 份结果（有演练没跑完）"
           for f in "${rcs[@]}"; do a=${f#/tmp/a/rc_}; [ "$(cat $f)" = 0 ] || { tail -8 /tmp/a/log_$a.txt 2>/dev/null | tee -a /tmp/gate.txt; stop "③ $a 没过"; }; done
           git apply /tmp/a/主演练.diff || stop "③ 主演练结果补丁打不上"
+          pip install -q numpy soundfile 2>&1 | tail -1   # K67：合并印章要 import 声音演练（numpy），gate 这台机器没装过（v5 实测）
           python3 视频/工具/执行效应声音演练.py --合并印章 /tmp/a/声音_*.json > /tmp/s.log 2>&1; r=$?; tail -2 /tmp/s.log | tee -a /tmp/gate.txt; [ $r = 0 ] || stop "③ 声音演练分片合并不过"
           git add -A 视频 CLAUDE.md; echo "③ 两个演练印章通过" | tee -a /tmp/gate.txt
       - name: 搭机器
