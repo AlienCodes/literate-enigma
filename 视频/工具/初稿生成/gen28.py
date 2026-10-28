@@ -16,7 +16,7 @@ S=[
      "（despite doing…：尽管……，despite 是介词，后面接动名词）"]]),
 (2,[[[("In an","在一次"),("**exhaustive** search,","**彻底的**(exhaustive)搜寻中，"),("her team","她的团队"),("**combed**","**仔细翻检了**(combed)"),("over 2,000","2,000多个"),("**folk** recipes,","**民间**(folk)药方，")],
      "（comb：梳理，这里指仔细翻检；over 2,000：2,000多个）"],
-    [[("**compiled**","**编纂/汇编了**(compiled)"),("640 **prescriptions**,","640个**处方/药方**(prescriptions)，"),("and **evaluated**","并**评估了**(evaluated)"),("about 380 extracts","约380种提取物，"),("from","它们来自"),("some 200","200种左右的"),("**medicinal**","**药用**(medicinal)"),("**herbs**.","**草药**(herbs)。")],
+    [[("**compiled**","**编纂/汇编了**(compiled)"),("640 **prescriptions**,","640个**处方/药方**(prescriptions)，"),("and **evaluated**","并**评估了**(evaluated)"),("about 380 extracts","约380种提取物，"),("from","它们来自"),("some 200","200种左右的"),("**medicinal**","**药用的**(medicinal)"),("**herbs**.","**草药**(herbs)。")],
      "（some 200：大约200，some 表示“大约”）"]]),
 (2,[[[("Qinghao,","青蒿，"),("or **sweet wormwood**,","也就是**黄花蒿**(sweet wormwood)，"),("showed **flashes** of","不时**闪现**(flashes)"),("promise,","希望，"),("yet","但"),("its results","它的效果"),("were **erratic**.","**时好时坏**(erratic)。")],
      "（or：也就是，引出同一种植物的另一个名称；\nshow flashes of promise：不时显出希望）"]]),
