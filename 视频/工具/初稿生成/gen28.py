@@ -52,7 +52,7 @@ S=[
      "（won half the Nobel Prize：获得了诺贝尔奖的一半，\n另一半由另外两位学者分享）"],
     [[("the first","成为第一位"),("Chinese woman","中国女性"),("Nobel **laureate**.","诺贝尔奖**获得者**(laureate)。")],
      "（the first Chinese woman Nobel laureate：同位语，补充说明 she）"]]),
-(5,[[[("Since 2006","自2006年起，"),("WHO **guidelines**","世界卫生组织的**指南**(guidelines)"),("have **endorsed**","一直**推荐**(endorsed)"),("artemisinin-based","以青蒿素为基础的"),("**combination**","**联合**(combination)"),("**therapies**","**疗法**(therapies)，"),("against","用来对付"),("malaria's","疟疾中"),("**deadliest** form.","**最致命的**(deadliest)一种。")],
+(5,[[[("Since 2006","自2006年起，"),("WHO **guidelines**","世界卫生组织的**指南**(guidelines)"),("have **endorsed**","一直**公开支持/赞同**(endorsed)"),("artemisinin-based","以青蒿素为基础的"),("**combination**","**联合**(combination)"),("**therapies**","**疗法**(therapies)，"),("against","用来对付"),("malaria's","疟疾中"),("**deadliest** form.","**最致命的**(deadliest)一种。")],
      "（WHO：世界卫生组织；artemisinin-based：以青蒿素为基础的；\nhave endorsed：现在完成时，表示从2006年一直到现在）"]]),
 (5,[[[("The **essence** of Ge Hong's line","葛洪那句话的**精髓**(essence)，"),("lay in","正在于"),("the boiling it **skipped**.","它**略去**(skipped)的煮沸。")],
      "（lie in…：在于……，lay 是 lie 的过去式；\nit skipped：定语从句，\n修饰 the boiling，省略了 that）\n"
