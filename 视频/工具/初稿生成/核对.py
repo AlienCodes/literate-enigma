@@ -10,6 +10,23 @@ def 缺的重点词(abold, sb):
     return sorted(w for w in {p_(x) for x in abold} if not (w in sw or any(w in x for x in low) or any(w in x for x in sw) or all(t in sw for t in w.split())))
 
 
+def _深合(旧, 新):
+    """旧脚本的值并进新的：两边都是 dict 就逐键往下合，别的一律新的（genNN 里写的）为准；只在旧的里有的键保留"""
+    if isinstance(旧, dict) and isinstance(新, dict):
+        return {**{k: v for k, v in 旧.items() if k not in 新}, **{k: (_深合(旧[k], v) if k in 旧 else v) for k, v in 新.items()}}
+    return 新
+
+
+def 合并旧脚本(out, old):
+    """重新生成时合进旧 scripts/NN.json：后来程序写进去的键（核对确认、非人声区间、词尾除阻、结尾句接点……）留着；
+    genNN 里写了的值一律以 genNN 为准（32 报：说明、放宽、特批在 gen 里改了，旧 json 的同名键盖回去，改稿悄悄不生效）。
+    句子、篇号、标题只认 genNN。"""
+    for k_, v_ in old.items():
+        if k_ in ("no", "title_en", "title_zh", "title_fx", "sentences"): continue
+        out[k_] = _深合(v_, out[k_]) if k_ in out else v_
+    return out
+
+
 def 生成并核对(S, out):
     no = out["no"]
     sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")); import 重点词被去掉 as _QD
@@ -22,14 +39,7 @@ def 生成并核对(S, out):
             if len(c)>1: d["note"]=c[1]
             cs.append(d)
         out["sentences"].append({"para":p,"chunks":cs})
-    if os.path.exists(f"scripts/{no}.json"):                      # 保留后来写进脚本的核对确认、列举逗号、结尾句等（初稿程序只管句子）；核对确认合并，程序里写的这几条为准
-        old=json.load(open(f"scripts/{no}.json"))
-        for k_,v_ in old.items():
-            if k_ == "核对确认":
-                for kk,vv in v_.items():
-                    if isinstance(vv,dict) and isinstance(out[k_].get(kk,{}),dict): out[k_][kk]={**vv,**out[k_].get(kk,{})}
-                    else: out[k_].setdefault(kk,vv)   # 字符串值的确认（已告诉用户被去掉的重点词）：程序里写的为准（21 重跑生成时这里报 TypeError）
-            elif k_ not in ("no","title_en","title_zh","title_fx","sentences"): out[k_]=v_
+    if os.path.exists(f"scripts/{no}.json"): 合并旧脚本(out, json.load(open(f"scripts/{no}.json")))   # 保留后来程序写进脚本的键（切点、确认、结尾句接点……），genNN 里写的为准
     json.dump(out,open(f"scripts/{no}.json","w"),ensure_ascii=False,indent=1)
     art=open(glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "新版定稿", f"{no}-*.md"))[0]).read()   # 按本程序所在仓库找文章（演练镜像里读冻结拷贝）
     eng=art.split("## 英文")[1].split("## 中文")[0].strip().split("\n\n")
