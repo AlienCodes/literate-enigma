@@ -25,10 +25,22 @@ def 识别器():
 
 def 转写(rec, x16):
     s = rec.create_stream(); s.accept_waveform(16000, x16); rec.decode_stream(s); return s.result.text.strip()
-def 各路(recs, ref, x16):
-    """每一路听一遍：(听到的文字 {名: 文字}, 对不上的 [(脚本词, 听到词〔路名〕)])，任一路报就报"""
-    t = {n: 转写(r, x16) for n, r in recs.items()}
-    return t, [(a, f'{b}〔{n}〕') for n in recs for a, b in 比(ref, t[n])]
+def _并词(a, b):
+    """K111（30 S1 chloride of lime → chloroflime〔parakeet〕）：一路把几个词并成一个词：听到的那一个词以脚本第一个词的前 4 个字母开头、
+    以最后一个词的后 3 个字母结尾，长度不短于脚本几个词连起来的六成"""
+    R, H = a.lower().split(), b.lower().split()
+    return len(R) >= 2 and len(H) == 1 and len(R[0]) >= 4 and H[0].startswith(R[0][:4]) and H[0].endswith(R[-1][-3:]) and len(H[0]) >= 0.6 * len(''.join(R))
+
+def 各路(recs, ref, x16, 并=None):
+    """每一路听一遍：(听到的文字 {名: 文字}, 对不上的 [(脚本词, 听到词〔路名〕)])，任一路报就报。
+    K111：给了 并（列表）时，一路只是把几个词并成一个词（_并词）、别的路这几个词都逐词听对，不算对不上，记进 并 交用户听（疑点表）；自检不给 并，照报"""
+    t = {n: 转写(r, x16) for n, r in recs.items()}; 各 = {n: 比(ref, t[n]) for n in recs}; out = []
+    for n in recs:
+        for a, b in 各[n]:
+            别路对 = len(recs) > 1 and all(not any(set(a.lower().split()) & set(x.lower().split()) for x, _ in 各[m]) for m in recs if m != n)
+            if 并 is not None and 别路对 and _并词(a, b): 并.append((a, f'{b}〔{n}〕')); continue
+            out.append((a, f'{b}〔{n}〕'))
+    return t, out
 
 _tk = None
 _自检读音 = {"crew's": 'kɹuːz', 'cruise': 'kɹuːz', 'organised': 'ɔɹɡənaɪzd', 'organized': 'ɔɹɡənaɪzd', 'eleven': 'ɪlɛvən', '11': 'ɪlɛvən', 'walkie': 'wɔki', 'scorchy': 'skɔɹtʃi', 'scorchie': 'skɔɹki', 'fifty': 'fɪfti', '50': 'fɪfti'}   # espeak 的读音（kokoro 注音实测）
@@ -132,8 +144,9 @@ def 听(no, src=None, rec=None, 改=None):
         x = a[int(v[0]['时刻'][0] * sr):int(v[-1]['时刻'][1] * sr)]
         x = resample_poly(x, 16000, sr).astype(np.float32) if sr != 16000 else x.astype(np.float32)
         ref = ' '.join(re.sub(r'\{\{.*?\}\}|\*\*', '', c['en']) for c in d['sentences'][i]['chunks'])
-        t, b = 各路(rec, ref, x); res.append((k, t, b))
+        并 = []; t, b = 各路(rec, ref, x, 并); res.append((k, t, b)); 并词记录.extend((k, x_, y_) for x_, y_ in 并)
     return res
+并词记录 = []
 
 def 吞段(v):
     """自检吞掉的那一截：这一句最长一段（停顿隔开）的中间七成，几个词连着没了。
@@ -191,6 +204,8 @@ def 清单(vdir):
 def 比较自检():
     """不用识别模型：比() 的归一规则。序数、同音、注音变体、日期展开不报；少一个词、读错一个词必报"""
     f = []
+    for a_, b_, 应 in (('chloride of lime', 'chloroflime', True), ('chloride of lime', 'chlorine', False), ('chloride of lime', 'chloride', False), ('of lime', 'oflime', False), ('blew', 'blue', False)):
+        if _并词(a_, b_) != 应: f.append(f'K111 并词判错：“{a_}”→“{b_}” 应{"算" if 应 else "不算"}并词')
     for r_, h_ in (('some 3,000 kilometres away', 'some 3000 kilometers away'), ('about 40 per cent less', 'about 40% less'), ('the colour of', 'the color of'),
                    ('On April 13th', 'On April 13'), ("the crew's capsule", 'the cruise capsule'), ('organised eleven', 'organized 11'), ('On 6 January', 'On the 6 of January'), ('some 200,000 miles', 'some 200000 miles'), ('a smell of sulphur', 'a smell of sulfur')):
         if 比(r_, h_): f.append(f'误报：“{r_}”听成“{h_}”读音一样，却报了 {比(r_, h_)}')
@@ -261,7 +276,7 @@ if __name__ == '__main__':
     if sys.argv[1:2] == ['--带自检']:
         r0, f = 带自检(sys.argv[2]); bad = [(k, b) for k, _, b in r0 if b]
         print(('✘ 机器复听 自检：' + '；'.join(f)) if f else f'✔ 机器复听 自检：吞掉一句最长一段的中间七成，{"、".join(路名)} 每一路都报')
-        print(f'机器复听 {len(r0)} 句：读音对不上的 {len(bad)} 句')
+        print(f'机器复听 {len(r0)} 句：读音对不上的 {len(bad)} 句' + (f'；单路并词交用户听 {len(并词记录)} 处（' + '；'.join(f'{k} 脚本“{x}” 一路听成“{y}”、别的路逐词听对' for k, x, y in 并词记录) + '）' if 并词记录 else ''))
         for k, b in bad: print(f'  {k}：' + '；'.join(f'脚本“{x}” 听到“{y}”' for x, y in b))
         sys.exit(2 if f else (1 if bad else 0))
     a_ = sys.argv[1:]
