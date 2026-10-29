@@ -10,7 +10,7 @@ The **advent** of digital photography proved **disruptive**. In June 2009 Kodak 
 
 On 19 January 2012 the 131-year-old firm sought Chapter 11 protection from its **creditors**, **sapped** by **pension** costs and years of **slowness** in going digital. Citigroup, a **lender**, provided $950 million for its **restructuring**. A **portfolio** of 1,100 digital imaging patents fetched about $525 million from a **consortium** of twelve **buyers**, including the **giants** Apple and Google.
 
-After 19 months of **reorganisation**, the **once-mighty** Kodak left bankruptcy in September 2013, **downsized**, **streamlined** and **refocused** as a commercial **printer** for business **clients**. In November 2009 President Obama had **decorated** Sasson with national **laurels**, **commending** his digital camera. That medal's year also saw Kodak announce the end of Kodachrome.
+After 19 months of **reorganisation**, the **once-mighty** Kodak left bankruptcy in September 2013, **downsized**, **streamlined**, and **refocused** as a commercial **printer** for business **clients**. In November 2009 President Obama had **decorated** Sasson with national **laurels**, **commending** his digital camera. That medal's year also saw Kodak announce the end of Kodachrome.
 
 ## 中文
 
