@@ -158,10 +158,9 @@ def 贴词尾擦音(a, f):
             back = [lv(x) for x in range(i0 - h, max(0, i0 - int(0.06 * SR)) - 1, -h)]
             k = next((n for n, v in enumerate(back) if v >= -30), None)
             if k is None or any(v < -50 for v in back[:k]): return False
-            n20 = int(0.02 * SR); fr = np.fft.rfftfreq(n20, 1 / SR)
-            for x in range(i0, max(i0 + 1, i1 - n20), h):
-                X = np.abs(np.fft.rfft(a[x:x + n20] * np.hanning(n20))) ** 2
-                if X.sum() > 0 and (X * fr).sum() / X.sum() > 3300: return True
+            n20 = int(0.02 * SR)
+            for x in range(i0, max(i0 + 1, i1 - n20), h):   # K139b（36）：重心用 spec()（幅度谱重心），和 实测()、逐段看声音 同一个口径；原来用功率谱重心，同一段声音低 1 kHz 以上，一个 /v/ 也收不进
+                if np.any(a[x:x + n20] != 0) and spec(a[x:x + n20])[0] > 3300: return True
             return False
     return False
 def 确认可收(no, f, cf, a=None):
