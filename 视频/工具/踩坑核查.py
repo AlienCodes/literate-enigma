@@ -330,9 +330,13 @@ def term_checks(d):
     names = {w for s in d['sentences'] for c in s['chunks'] for w in re.findall(r"[A-Z][A-Za-z]+", re.sub(r'\*\*|\{\{.*?\}\}', '', c['en'])) if re.search(r'(?<![A-Za-z])' + w + r'(?![A-Za-z])', allzh)}   # 单独出现才算（AlphaGo 里的 Go 不算）
     for i, s in enumerate(d['sentences'], 1):
         en = re.sub(r'\*\*|\{\{.*?\}\}', '', ' '.join(c['en'] for c in s['chunks'])); zh = ''.join(c['zh'] for c in s['chunks'])
+        盖 = set()   # K121（31 S14）：这句英文里已由术语表整个专名译出的词（Sorcerer's Stone → 魔法石），不再按单个专名查
         for e, z in d.get('术语', {}).items():
-            if re.search(r'\b' + re.escape(e) + r'\b', en, re.I) and z not in zh: out.append(f'[T30] S{i} 英文有 {e}，中文这一句没有“{z}”（漏译）')
+            if re.search(r'\b' + re.escape(e) + r'\b', en, re.I):
+                if z not in zh: out.append(f'[T30] S{i} 英文有 {e}，中文这一句没有“{z}”（漏译）')
+                else: 盖 |= set(re.findall(r'[A-Za-z]+', e))
         for w in names:
+            if w in 盖: continue
             if re.search(r'\b' + w + r'\b', en) and not re.search(r'(?<![A-Za-z])' + w + r'(?![A-Za-z])', zh): out.append(f'[T30] S{i} 英文有 {w}，中文这一句没有（漏译）')
     return out
 def note_bracket_ok(note):
@@ -349,6 +353,11 @@ def selftest_term():
     b1 = copy.deepcopy(ok_); b1['sentences'][0]['chunks'][0]['zh'] = '和 AlphaGo 那次**大胆**(audacious)一样'
     b2 = copy.deepcopy(ok_); b2['sentences'][0]['chunks'][0]['zh'] = '和那次**大胆的**(audacious)肩冲一样'; b2['sentences'].append({'chunks': [{'en': 'AlphaGo won.', 'zh': 'AlphaGo 赢了。'}]})
     fails = []
+    k121 = {'术语': {"Sorcerer's Stone": '魔法石'}, 'sentences': [{'chunks': [{'en': "It was called Harry Potter and the Philosopher's Stone.", 'zh': '它叫《哈利·波特与魔法石》（Philosopher\'s Stone）。'}]},
+            {'chunks': [{'en': "The renamed Sorcerer's Stone appeared there.", 'zh': '更名后的《魔法石》在那里问世。'}]}]}
+    if any('Stone' in x for x in term_checks(k121)): fails.append('T30 误报：Stone 已由术语表 Sorcerer\'s Stone 整个译成 魔法石，还按单个专名报（K121）')
+    k121b = {'术语': {"Sorcerer's Stone": '魔法石'}, 'sentences': k121['sentences'][:1] + [{'chunks': [{'en': "The renamed Sorcerer's Stone appeared there.", 'zh': '更名后的书在那里问世。'}]}]}
+    if not term_checks(k121b): fails.append('没抓到：术语 Sorcerer\'s Stone 漏译 魔法石（K121 不许放过）')
     if term_checks(ok_): fails.append('T30 误报：术语、专名都在的被报出')
     if not term_checks(b1): fails.append('没抓到：漏了术语“肩冲”（T30，11 S17）')
     if not term_checks(b2): fails.append('没抓到：漏了专名 AlphaGo（T30）')
