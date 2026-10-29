@@ -8,7 +8,7 @@ For nine days their **whereabouts** were unknown. On 2 July two **elite** Britis
 
 The only **exit** ran through **kilometres** of **constricted**, **treacherous** passages, many of them **navigable** only with **scuba** gear. **Rescuers** began **stockpiling** oxygen **cylinders** along the route. On 6 July Saman Kunan, a former Thai Navy SEAL, fell **unconscious** while laying them and died.
 
-The **evacuation** began on 8 July, and the boys came out in **batches**. Each was given **doses** of sedative, **wrapped** **motionless** in a **stretcher** and passed from diver to diver, with **medics** stationed along the route. On 10 July the last four **footballers** and their coach were **escorted** out after their **teammates**.
+The **evacuation** began on 8 July, and the boys came out in **batches**. Each was given **doses** of sedative, **wrapped** **motionless** in a **stretcher**, and passed from diver to diver, with **medics** stationed along the route. On 10 July the last four **footballers** and their coach were **escorted** out after their **teammates**.
 
 The **multinational** **mobilisation** was a feat of **logistics**. Some 10,000 people **converged** on the site, including a **contingent** of more than 100 divers, plus 2,000 soldiers and 900 **policemen**, with teams **deployed** from abroad. The rescue had a **sobering** **postscript**: in December 2019 another Navy SEAL died of a blood infection caught during the operation. Every boy came home alive, and two rescuers were **mourned**.
 
