@@ -41,6 +41,7 @@ A remedy aimed at the nose protected the gut.
 | tolerable | adj. 可以忍受的（tolerable pain） | 1 |
 | festered | v. (fester) 溃烂，腐烂发臭（a festering wound） | 1 |
 | contemplated | v. (contemplate) 考虑，打算（contemplate moving abroad） | 1 |
+| Houses of Parliament | n. 议会大厦（英国议会所在地，the Houses of Parliament） | 1 |
 | lavatory | n. 厕所（a public lavatory） | 2 |
 | antiquated | adj. 陈旧过时的（antiquated equipment） | 2 |
 | outlets | n. (outlet) 排放口，出口（a sewage outlet） | 2 |
@@ -55,12 +56,15 @@ A remedy aimed at the nose protected the gut.
 | vile | adj. 极讨厌的，恶劣的（a vile smell） | 2 |
 | fumes | n. (fume) 难闻的气体，烟雾（exhaust fumes） | 2 |
 | overpowering | adj. 压倒性的，强烈难忍的（an overpowering smell） | 2 |
+| episode | 本文：这段时期；n. 一段经历，插曲，事件（a painful episode）；（电视剧的）一集 | 2 |
+| Stink | n. 恶臭，臭气（the Great Stink 大恶臭）；v. 发出恶臭 | 2 |
 | disgust | n. 厌恶，憎恶（in disgust） | 3 |
 | chancellor | n. 大臣；（英国）财政大臣（the Chancellor of the Exchequer） | 3 |
 | denounced | v. (denounce) 谴责，痛斥（denounce sb as a traitor） | 3 |
 | hellish | adj. 地狱般的，可怕的（a hellish journey） | 3 |
 | unbearable | adj. 难以忍受的（unbearable heat） | 3 |
 | fast-tracked | v. (fast-track) 加快处理（fast-track a bill） | 3 |
+| bill | n. 法案，议案（pass a bill）；账单 | 3 |
 | masterminded | v. (mastermind) 策划，主持（mastermind a plan） | 4 |
 | stout | adj. 结实的，坚固的；粗壮的（stout boots/walls） | 4 |
 | diverted | v. (divert) 使改道（divert traffic/a river） | 4 |
@@ -75,6 +79,10 @@ A remedy aimed at the nose protected the gut.
 | underneath | prep. 在……下面（underneath the bridge） | 4 |
 | newly | adv. 新近（a newly built house） | 4 |
 | substantially | adv. 基本上；大大地（substantially complete；substantially higher） | 4 |
+| intercepting sewers | n. (intercepting sewer) 截流下水道（在污水入河前截住、另行导走的总下水道） | 4 |
+| short of | prep. 在到达……之前；不足，缺少（stop short of the river） | 4 |
+| doubled | v. (double) 使加倍，翻一番（double the price） | 4 |
+| in use | prep. phr. 在使用中（still in use today） | 4 |
 | sanitation | n. 卫生设施，公共卫生（poor sanitation） | 5 |
 | fallacy | n. 谬误（a common fallacy） | 5 |
 | predominant | adj. 主要的，占主导地位的（the predominant view） | 5 |
@@ -84,8 +92,12 @@ A remedy aimed at the nose protected the gut.
 | suppress | v. 压制，抑制（suppress a smell/an urge） | 5 |
 | unintended | adj. 无意的，意料之外的（unintended consequences） | 5 |
 | purity | n. 纯净，纯洁（the purity of water） | 5 |
+| rested on | v. (rest on) 建立在……之上，以……为基础（rest on an assumption） | 5 |
+| foul air | n. 污浊的空气（foul：污浊的，恶臭的） | 5 |
 | resurfaced | v. (resurface) 重新出现（the problem resurfaced） | 6 |
 | locality | n. 地区，地方（in the locality） | 6 |
+| aimed at | v. (aim at) 冲着……去的，针对（be aimed at） | 7 |
+| gut | n. 肠胃，内脏；直觉（a gut feeling） | 7 |
 
 ## 史实与来源
 - 【T1】到1858年，约三百万伦敦人的污水经老旧下水道和排污口直接排入泰晤士河；1858年夏天炎热（英文 fierce heat），腐烂的污水散发出难以忍受的恶臭，史称"大恶臭"。英文 London's lavatory 为比喻，three million city dwellers 即约三百万城市居民；excrement、stewed、vile 为描写。S1

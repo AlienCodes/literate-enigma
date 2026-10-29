@@ -2,7 +2,7 @@ import json,re,glob,os
 # 第30篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-10-28 重点词中文沿用文章定稿（铁律），形容词“的”、动词“了”进粗体（28 用户改稿惯例）；非重点词也逐词对齐（G47）；三项并列加牛津逗号（T35）。
 S=[
-(1,[[[("In the","在"),("**fierce heat**","**酷热**(fierce heat)"),("of","的"),("summer 1858,","1858年夏天，"),("the curtains of the new Houses of Parliament","新落成的议会大厦里的窗帘"),("hung","垂挂着，"),("heavy with","沉甸甸地浸湿了"),("chloride of **lime**,","氯化**石灰**(lime)，")],
+(1,[[[("In the","在"),("**fierce heat**","**酷热**(fierce heat)"),("of","的"),("summer 1858,","1858年夏天，"),("the curtains of the new **Houses of Parliament**","新落成的**议会大厦**(Houses of Parliament)里的窗帘"),("hung","垂挂着，"),("heavy with","沉甸甸地浸湿了"),("chloride of **lime**,","氯化**石灰**(lime)，")],
      "（hang heavy with…：沉甸甸地浸满……；\nchloride of lime：氯化石灰，即漂白粉）"],
     [[("a **bleach**","这是一种**漂白剂**(bleach)，"),("to make","用来让"),("the air","空气"),("**tolerable**.","变得**可以忍受**(tolerable)。")],
      "（a bleach…：同位语，补充说明 chloride of lime；\nmake + 宾语 + 形容词：使……变得……）"]]),
@@ -14,7 +14,7 @@ S=[
      "（discharge A into B：把 A 排放到 B 中；\nsome three million：约三百万，some 表示“大约”；\ncity dweller：城市居民）"],
     [[("where","在那里，"),("the **excrement**","**粪便**(excrement)"),("**stewed**","**处于炎热的空气中**(stewed)"),("and","并"),("**decayed**.","**腐败**(decayed)。")],
      "（where…：非限制性定语从句，where 指 its currents；\nstew：炖，这里指在闷热中闷着、沤着）"]]),
-(2,[[[("The **vile**","**令人恶心的**(vile)"),("**fumes**","**刺鼻气体**(fumes)"),("grew so","变得如此"),("**overpowering**","**极其强烈的/令人难以忍受**(overpowering)，"),("that","以至于"),("the episode","这段时期"),("earned","赢得了"),("a name,","一个名字，"),("the Great **Stink**.","大**恶臭**(Stink)。")],
+(2,[[[("The **vile**","**令人恶心的**(vile)"),("**fumes**","**刺鼻气体**(fumes)"),("grew so","变得如此"),("**overpowering**","**极其强烈的/令人难以忍受**(overpowering)，"),("that","以至于"),("the **episode**","**这段时期**(episode)"),("earned","赢得了"),("a name,","一个名字，"),("the Great **Stink**.","大**恶臭**(Stink)。")],
      "（so…that…：如此……以至于……；\nthe Great Stink：同位语，补充说明 a name）"]]),
 (3,[[[("**Disgust**","这股**厌恶**(Disgust)"),("found","找到了"),("a voice","代言人，"),("on 15 July,","是在7月15日，")],
      "（find a voice：找到表达的出口，这里指有了代言人）"],
@@ -24,7 +24,7 @@ S=[
      "（funding new sewers：现在分词短语作后置定语，修饰 a bill；\nfast-track A into law：加快把 A 变成法律）"]]),
 (4,[[[("The engineer","工程师"),("Joseph Bazalgette","约瑟夫·巴泽尔杰特"),("**masterminded**","**主持策划了**(masterminded)"),("the response.","这次应对。")],
      "（mastermind：策划，主持）"]]),
-(4,[[[("His","他修建的"),("82 miles of","82英里"),("**stout**","**坚固的**(stout)"),("intercepting","截流"),("sewers","下水道"),("caught","截住了"),("the flow","污水，"),("**short of**","**在到达**(short of)"),("the river","河流**之前**(short of)，")],
+(4,[[[("His","他修建的"),("82 miles of","82英里"),("**stout**","**坚固的**(stout)"),("**intercepting sewers**","**截流下水道**(intercepting sewers)"),("caught","截住了"),("the flow","污水，"),("**short of**","**在到达**(short of)"),("the river","河流**之前**(short of)，")],
      "（82 miles of…：82英里长的……；\nintercepting sewer：截流下水道；\nshort of…：在到达……之前）"],
     [[("and **diverted** it","并把它**改道**(diverted)"),("east,","向东，"),("**downstream** of the city.","送往城市**下游**(downstream)。")],
      "（divert：使改道；downstream of…：在……的下游）"]]),
@@ -40,7 +40,7 @@ S=[
      "（Substantially complete by 1875：形容词短语作状语，\n逻辑主语是 the network；in use：在使用中）"]]),
 (5,[[[("Yet","然而，"),("that **sanitation**","这套**卫生设施/下水道设施**(sanitation)"),("**rested on**","**建立在**(rested on)"),("a **fallacy**.","一个**谬误**(fallacy)**之上**(rested on)。")],
      "（rest on…：建立在……之上，以……为基础）"]]),
-(5,[[[("The **predominant**","当时**占主导地位的**(predominant)"),("**belief**,","**看法**(belief)"),("miasma,","是瘴气说，"),("blamed disease on","把疾病归咎于"),("foul","污浊的"),("air","空气"),("and **vapours**,","和臭水的**蒸汽**(vapours)，")],
+(5,[[[("The **predominant**","当时**占主导地位的**(predominant)"),("**belief**,","**看法**(belief)"),("miasma,","是瘴气说，"),("blamed disease on","把疾病归咎于"),("**foul air**","**污浊的空气**(foul air)"),("and **vapours**,","和臭水的**蒸汽**(vapours)，")],
      "（miasma：瘴气说，同位语，补充说明 belief；\nblame A on B：把 A 归咎于 B）"],
     [[("so","所以"),("the sewers","下水道"),("were intended","修建的目的"),("**principally**","**主要**(principally)"),("to **suppress**","是为了**压住**(suppress)"),("the smell.","臭味。")],
      "（be intended to do：目的是做……，打算用来……）"]]),
@@ -71,7 +71,8 @@ CONF={"牛津逗号":{"S4 dwellers into its currents, where the excrement stewed
  "rested on：之上/建立在":"S14 rest on“建立在……之上”被“一个谬误”隔开，“建立在”“之上”是同一个意思的两部分（T22/T23），不是两种译法",
  "short of：之前/在到达":"S9 short of“在到达……之前”被“河流”隔开，“在到达”“之前”是同一个意思的两部分（T22/T23），不是两种译法",
  "denounced as：公开抨击/是":"S6 denounce A as B“公开抨击……是”被“这条河”隔开，“公开抨击”“是”是同一个意思的两部分（T22/T23），不是两种译法"},
-"短语":{"S4 discharged … into":"不是搭配：into 是普通方向介词，引出排放去处（its currents）；discharge 单独就是“排放”",
+"短语":{"S15 on … foul":"不是搭配：on 属于 blame A on B（blamed disease on，已整组），foul air 是 B，整体标为重点词",
+ "S4 discharged … into":"不是搭配：into 是普通方向介词，引出排放去处（its currents）；discharge 单独就是“排放”",
  "S4 discharged … of":"不是搭配：of 属于 the untreated sewage of some three million city dwellers（谁的污水）",
  "S6 denounced … of":"不是搭配：of 属于 a hellish pool of unbearable horrors（满是恐怖的池水）；denounce A as B 已整体标",
  "S7 fast-tracked … into":"不是搭配：into law 是结果（成为法律），fast-track 单独就是“加快处理”，速查表搭配 fast-track a bill",
@@ -95,7 +96,7 @@ CONF={"牛津逗号":{"S4 dwellers into its currents, where the excrement stewed
  "S16 the purity of the water Londoners drank":"对齐不了：the purity of A 中文“A 的洁净”，of 结构语序必须倒过来",
  "S17 the one locality not yet connected":"对齐不了：not yet connected 是后置定语，中文“唯一尚未接入的地区”定语必须提前",
  "S18 A remedy aimed at the nose":"对齐不了：aimed at the nose 是后置定语，中文“冲着鼻子去的补救措施”定语必须提前"}}
-out={"no":"30","title_en":"The Stink That Built London's Sewers","title_zh":"大恶臭逼出了下水道","title_fx":{"hl":["Stink","Sewers"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+out={"no":"30","title_en":"The Stink That Built London's Sewers","title_zh":"大恶臭逼出了下水道","title_fx":{"hl":["Stink","Sewers"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","合成标点":{"S10":[["tributaries, the","tributaries; the"]]},"换行变更已获同意":{"S9":"用户 2026-10-29 原话：“intercepting sewer 标注为 重点词汇”“然后这几个全都保留……全都保留，全都保留，全都保留”（intercepting sewers 整体标为一组、short of 按用户改，S9 分组、换行随之变）"},"allow_clash":["Houses of Parliament","episode","intercepting sewers","foul air"],
      "说明放宽特批":{"S18":{"倍数":"整屏","依据":"用户 2026-10-28 特批：“29、30、31 结尾简述都整屏、字号放到最大”（用户同意记录）"}},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Houses of Parliament":"议会大厦","Thames":"泰晤士河","London":"伦敦","Londoners":"伦敦人","Benjamin Disraeli":"本杰明·迪斯雷利","Joseph Bazalgette":"约瑟夫·巴泽尔杰特","Victoria":"维多利亚","Albert":"阿尔伯特","Chelsea":"切尔西","Embankments":"河堤","East End":"伦敦东区"}}
