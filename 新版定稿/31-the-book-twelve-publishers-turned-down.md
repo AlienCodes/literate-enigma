@@ -22,7 +22,7 @@ Harry Potter and the Philosopher's Stone was published on 26 June 1997, in a **c
 
 在布卢姆斯伯里出版社，**董事长**(chairman)奈杰尔·牛顿把第一**章**(chapter)交给八岁的女儿爱丽丝。爱丽丝**十分享受**(relished)读这部小说，还**急切**(eagerly)地要看下一**部分**(instalment)。这家出版社支付了**一笔**(a sum of)1,500英镑的**款项**(a sum of)**作为预付金**(as an advance)。出版方**担心**(fearful)男孩们可能会**忽视**(disregard)女性写的书，**选择**(opted)用**名字缩写**(initials)**掩饰/隐瞒**(mask)她的**性别**(gender)。罗琳没有中间名，便从祖母凯瑟琳的名字里取了 K 作为**笔名**(pseudonym)的一部分。
 
-《哈利·波特与魔法石》于1997年6月26日出版，首印**谨慎**(cautious)地定为500册**精装本**(hardbacks)，其中300册**分配**(allocated)给图书馆。美国的学乐出版社以10.5万美元买下美国版权，这本书**改名**(renamed)为 Sorcerer's Stone，于1998年9月1日在美国出版。此后，这个**系列**(series)及其**衍生**(spin-off)**图书**(volumes)的销量**合计**(collectively)已**超过**(surpassed)5亿册，涉及80种语言。**显然**(evidently)，千百万读者都有着和爱丽丝一样的**胃口**(appetite)。
+《哈利·波特与魔法石》于1997年6月26日出版，首印十分**谨慎**(cautious)，仅为500册**精装本**(hardbacks)，其中300册**分配**(allocated)给了图书馆。美国的学乐出版社以10.5万美元买下美国版权，而**更名后的**(renamed)《魔法石》于1998年9月1日在那里问世。此后，这个**系列**(series)及其**衍生**(spin-off)**图书**(volumes)的销量**合计**(collectively)已**超过**(surpassed)5亿册，翻译成80种语言。爱丽丝的这份**胃口**(appetite)，**显然**(evidently)在数百万人中引发了共鸣。
 
 ## 速查表
 | 词 | 释义 | 段 |

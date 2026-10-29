@@ -50,15 +50,15 @@ S=[
      "（Having no middle name：现在分词短语作原因状语；\ntake A from B：从 B 那里取来 A）"]]),
 (5,[[[("Harry Potter and the Philosopher's Stone","《哈利·波特与魔法石》（Philosopher's Stone）"),("was published on 26 June 1997,","于1997年6月26日出版，")],
      "（Harry Potter and the Philosopher's Stone：\n英国版书名《哈利·波特与魔法石》）"],
-    [[("in a **cautious** first print run","首印**谨慎地**(cautious)定为"),("of 500 **hardbacks**,","500册**精装本**(hardbacks)，"),("300","其中300册"),("**allocated**","**分配**(allocated)"),("to libraries.","给图书馆。")],
+    [[("in a **cautious** first print run","首印十分**谨慎**(cautious)，仅为"),("of 500 **hardbacks**,","500册**精装本**(hardbacks)，"),("300","其中300册"),("**allocated**","**分配**(allocated)"),("to libraries.","给了图书馆。")],
      "（print run：一次印刷的数量；\n300 allocated to libraries：独立主格结构，300 后面省略了 hardbacks）"]]),
 (5,[[[("The American publisher Scholastic","美国的学乐出版社"),("paid $105,000","以105,000美元"),("for the US rights,","买下了美国版权，")],
      "（pay … for…：为……付出……）"],
-    [[("and","而"),("the **renamed** Sorcerer's Stone","**改名**(renamed)为 Sorcerer's Stone 的这本书"),("appeared there on 1 September 1998.","于1998年9月1日在美国出版。")],
+    [[("and","而"),("the **renamed** Sorcerer's Stone","**更名后的**(renamed)《魔法石》"),("appeared there on 1 September 1998.","于1998年9月1日在那里问世。")],
      "（the renamed Sorcerer's Stone：\n改名后的 Sorcerer's Stone；\nthere 指美国）"]]),
-(5,[[[("The **series**","这个**系列**(series)"),("and its **spin-off**","及其**衍生的**(spin-off)"),("**volumes**","**图书**(volumes)"),("have **collectively**","**合计**(collectively)"),("**surpassed**","已**超过了**(surpassed)"),("500 million copies","5亿册"),("sold,","的销量，"),("in 80 languages.","涉及80种语言。")],
+(5,[[[("The **series**","这个**系列**(series)"),("and its **spin-off**","及其**衍生的**(spin-off)"),("**volumes**","**图书**(volumes)"),("have **collectively**","**合计**(collectively)"),("**surpassed**","已**超过了**(surpassed)"),("500 million copies","5亿册"),("sold,","的销量，"),("in 80 languages.","翻译成80种语言。")],
      "（spin-off volumes：衍生图书；\nhave surpassed：现在完成时，表示到现在为止的累计）"]]),
-(5,[[[("Alice's **appetite**","爱丽丝的**胃口**(appetite)，"),("was **evidently**","**显然**(evidently)"),("shared by millions.","千百万读者都有。")],
+(5,[[[("Alice's **appetite**","爱丽丝的这份**胃口**(appetite)，"),("was **evidently**","**显然**(evidently)"),("shared by millions.","在数百万人中引发了共鸣。")],
      "（be shared by…：被……共有；\nappetite：胃口，这里指对这本书的兴趣）\n"
      "（简述：1990年，罗琳在一列晚点的火车上得到了哈利·波特的灵感。\n"
      "同年12月30日母亲去世，她随后移居波尔图教英语。1992年10月她在波尔图结婚，\n"
@@ -74,7 +74,7 @@ CONF={"合组":{
  "S6 wrote in cafés":"对齐不了：in cafés 是地点状语，中文“在咖啡馆里写作”地点必须放到动词前，拆开成“写作在咖啡馆里”不通",
  "S9 gave the first chapter":"对齐不了：give A to B 中文“把 A 交给 B”，动词要放到 A 后面，拆开语序就乱",
  "S11 a book by a woman":"对齐不了：by a woman 是后置定语修饰 book，中文“女性写的书”定语必须提前",
- "S13 in a cautious first print run":"对齐不了：first print run 是一个名词（第一次印刷的数量），中文就是“首印”一个词；cautious 修饰它，中文“首印谨慎地定为”（文章定稿译法），拆开语序就乱",
+ "S13 in a cautious first print run":"对齐不了：first print run 是一个名词（第一次印刷的数量），中文就是“首印”一个词；cautious 修饰它，中文“首印十分谨慎，仅为”（用户 2026-10-29 定的译法），拆开语序就乱",
  "S16 shared by millions":"对齐不了：被动 be shared by millions 中文“千百万读者都有”，施动者 millions 必须提到动词前"}}
 CONF.update({
 "牛津逗号":{"S7 Christopher Little, took on the manuscript and":"不是三项并列：Christopher Little 是同位语，and 连接 took on 和 pitched 两个谓语，只有两项",
@@ -90,7 +90,7 @@ CONF.update({
  "S11-1 a book by a woman,":"by a woman 是后置定语修饰 book，中文“女性写的书”定语必须提前",
  "S13-1 Harry Potter and the Philosoph":"书名整体一个专名，中文《哈利·波特与魔法石》是一个书名，拆开不通",
  "S13-1 was published on 26 June 1997,":"on 26 June 1997 是时间状语，中文“于1997年6月26日出版”时间必须放到动词前",
- "S13-2 in a cautious first print run":"first print run 是一个名词（第一次印刷的数量），中文就是“首印”；cautious 修饰它，中文“首印谨慎地定为”（文章定稿译法），语序必须倒过来",
+ "S13-2 in a cautious first print run":"first print run 是一个名词（第一次印刷的数量），中文就是“首印”；cautious 修饰它，中文“首印十分谨慎，仅为”（用户 2026-10-29 定的译法），语序必须倒过来",
  "S14-2 appeared there on 1 September ":"there、on 1 September 1998 是地点、时间状语，中文“于1998年9月1日在美国出版”状语必须放到动词前"},
 "词性":{"S13-2 cautious 谨慎地":"文章定稿译法“首印谨慎地定为”（铁律：定稿中文意思不改）；cautious 修饰 print run，中文把它化成修饰“定为”的状语，意思一样"},
 "中文意思":{"S1 would-be":"would-be 的“想要成为……的”两部分在中文里是“有志成为”和后面的“的人”；“的”只是定语标记，文章定稿只标“有志成为”，不是被隔开的同一个意思"},
@@ -112,7 +112,7 @@ out={"no":"31","title_en":"The Book Twelve Publishers Turned Down","title_zh":"�
      "非人声区间":{"S2":[[6.12,6.315]],"S5":[[1.817125,1.955,"紧贴词尾"]],"S9":[[0.985,1.16],[7.342542,7.574583,"紧贴词头"]],"S14":[[6.13,6.31]]},
      "分段增益dB":{"S12":{"2":0.5}},
      "高亮按实际开口":True,"高亮开口门槛":40,
-     "术语":{"Manchester":"曼彻斯特","King's Cross":"国王十字车站","Joanne Rowling":"乔安妮·罗琳","Harry Potter":"哈利·波特","Rowling":"罗琳","Porto":"波尔图","Edinburgh":"爱丁堡","Christopher Little":"克里斯托弗·利特尔","Bloomsbury":"布卢姆斯伯里","Nigel Newton":"奈杰尔·牛顿","Alice":"爱丽丝","Kathleen":"凯瑟琳","Philosopher's Stone":"魔法石","Scholastic":"学乐"}}
+     "术语":{"Manchester":"曼彻斯特","King's Cross":"国王十字车站","Joanne Rowling":"乔安妮·罗琳","Harry Potter":"哈利·波特","Rowling":"罗琳","Porto":"波尔图","Edinburgh":"爱丁堡","Christopher Little":"克里斯托弗·利特尔","Bloomsbury":"布卢姆斯伯里","Nigel Newton":"奈杰尔·牛顿","Alice":"爱丽丝","Kathleen":"凯瑟琳","Philosopher's Stone":"魔法石","Sorcerer's Stone":"魔法石","Scholastic":"学乐"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)
