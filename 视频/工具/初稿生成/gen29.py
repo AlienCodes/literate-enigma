@@ -12,7 +12,7 @@ S=[
      "（propose that sb do：提议某人做……，从句里用动词原形 write）"]]),
 (2,[[[("The","这种"),("**melancholy**","**阴郁**(melancholy)的"),("weather","天气，"),("was **attributable to**","**归因于**(attributable to)"),("a","一次"),("distant","远方的"),("blast.","爆炸。")],
      "（be attributable to…：可归因于……，由……引起）"]]),
-(2,[[[("On 10 April 1815","1815年4月10日，"),("Mount Tambora,","坦博拉火山，"),("on","位于"),("the Indonesian","印度尼西亚"),("island of Sumbawa,","松巴哇岛上，"),("blew itself","炸"),("apart","裂开来，")],
+(2,[[[("On 10 April 1815","1815年4月10日，"),("Mount Tambora,","坦博拉火山，"),("on","位于"),("the **Indonesian**","**印度尼西亚的**(Indonesian)"),("island of Sumbawa,","松巴哇岛上，"),("blew itself","炸"),("apart","裂开来，")],
      "（on the Indonesian island of Sumbawa：插入语，补充说明火山的位置；\nblow itself apart：把自己炸得四分五裂）"],
     [[("in","那是"),("one of the most","最"),("**potent**","**猛烈**(potent)的"),("**eruptions**","**喷发**(eruptions)之一，"),("in recorded","在有记录的"),("history.","历史上。")],
      "（one of the most…：最……的……之一；\nin recorded history：有记录以来，修饰最高级）"]]),
