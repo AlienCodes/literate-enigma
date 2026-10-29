@@ -224,6 +224,8 @@ def write_grafts(no, d, bad):
                 pf = next((f for f in range(ca // F5 - 1, max(1, ca // F5 - 12), -1) if e[f - 1] < -40 and max(e[f:max(f + 1, ca // F5)]) < -30), None)
                 if pf is None or str(g + 1) in d.get('停顿插入点', {}).get(lab, {}):
                     print('放不下、也找不到停顿处除阻的位置，交人看（逐段看声音找闭塞，写 停顿处除阻）：', line); continue
+                if str(g + 1) in d.get('停顿删除区间', {}).get(lab, {}):   # K134（34 S5 state, not）：这个标点已有停顿删除区间，出片程序不许再加停顿处除阻（A21 守门），自动写了必停；交人看：删除段起点放在原有除阻之后，或改用除阻加强
+                    print('这个标点已有停顿删除区间，不能再加停顿处除阻（出片程序不收），交人看（把删除段起点放在原有除阻之后，或用 除阻加强）：', line); continue
                 d.setdefault('停顿处除阻', {}).setdefault(lab, {})[str(g + 1)] = [round(pf * F5 / SR, 6), round(ca / SR, 6), ph]; n += 1
                 print(f'写入 {no} {lab} 第{g + 1}个标点 /{ph}/ 停顿处除阻 w {pf * F5 / SR:.3f}–{ca / SR:.3f}s（连读，供体放不进停顿之前）'); continue
         if g == last:
