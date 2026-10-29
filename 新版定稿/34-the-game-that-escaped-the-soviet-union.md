@@ -53,10 +53,12 @@ The man whose puzzle once spread for nothing later helped decide who could sell 
 | entitlement | n. 权利，资格（an entitlement to benefits） | 2 |
 | mushroomed | v. (mushroom) 迅速增长，遍地开花（cities mushroomed） | 2 |
 | freely | adv. 自由地，免费地（move/speak freely） | 2 |
-| disks | n. (disk) 磁盘（a floppy disk） | 2 |
+| floppy disks | n. (floppy disk) 软盘（save files on a floppy disk） | 2 |
 | bloc | n. （国家）集团（the Eastern bloc） | 2 |
 | enterprising | adj. 有进取心的（an enterprising young man） | 3 |
+| software | n. 软件（computer software） | 3 |
 | vendor | n. 小贩，供应商（a street vendor；a software vendor） | 3 |
+| Hungary | n. 匈牙利（a trip to Hungary） | 3 |
 | stumbled | v. (stumble upon) 偶然发现；绊倒（stumble upon a secret） | 3 |
 | ignorance | n. 无知，不知情（in ignorance of the facts） | 3 |
 | bureau | n. 局，办事处（a news bureau） | 3 |
