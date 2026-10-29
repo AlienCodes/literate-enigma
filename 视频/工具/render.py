@@ -604,6 +604,8 @@ def 分色(d):
                     if w.lower() not in colors: colors[w.lower()]=PAL[i%len(PAL)]; i+=1
         return colors
     used={}
+    for k_,v_ in d.get('重点词颜色',{}).items():   # K140（34 S17 puzzle，用户：“换成一个更显眼的颜色”）：用户指定的颜色先定下，同屏别的单元围着它挑色（G49 照查）；值 "#RRGGBB"
+        h_=str(v_).lstrip('#'); colors[k_.lower()]=tuple(int(h_[i:i+2],16) for i in (0,2,4))
     for s in d['sentences']:
         us=句单元(s); got=[colors.get(u) or colors.get(ws[0]) for u,ws in us]
         def ok(j,c,g,远):   # 放 c 在第 j 个单元：和已放的相邻 ≥60°、和同屏所有已放的 ≥25°（远>0 时离开 ≥远 个单元的不比）

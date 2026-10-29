@@ -38,6 +38,12 @@ def 自检():
     if not any('v0↔v2' in x for x in R.同屏色差(e13, 近)): f.append('没抓到：一屏 13 个单元，隔 2 个单元的两个用同一种颜色')
     远_ = {f'v{i}': P_[[0, 5, 2, 7, 4, 9, 6, 1, 8, 3, 10, 0, 5][i]] for i in range(13)}   # v0/v11 同色、v1/v12 同色，都隔 ≥5 个单元
     if any('v0↔v11' in x or 'v1↔v12' in x for x in R.同屏色差(e13, 远_)): f.append('误报：一屏 13 个单元，隔 ≥5 个单元的同色也报了')
+    # K140：重点词颜色 用户指定的颜色要用上，同屏别的单元围着它挑色、仍然分得开；两个相邻单元都被指定成相近的颜色，门照样报
+    ov = {'no': '34', '重点词颜色': {'puzzle': '#FBBF24'}, 'sentences': [{'chunks': [{'en': 'a **simple** **puzzle** that **hooked** **millions**', 'zh': '', 'align': []}]}]}
+    if 颜色(ov).get('puzzle') != (251, 191, 36): f.append('没用上：重点词颜色 指定的 puzzle 颜色（K140）')
+    if R.同屏色差(ov, 颜色(ov)): f.append(f'指定颜色后同屏还不合格：{R.同屏色差(ov, 颜色(ov))[:2]}（K140）')
+    ov2 = dict(ov, 重点词颜色={'puzzle': '#FBBF24', 'simple': '#FBC024'})
+    if not R.同屏色差(ov2, 颜色(ov2)): f.append('没抓到：两个相邻单元被指定成几乎一样的颜色（K140）')
     dup = {'no': '26', 'sentences': [{'chunks': [{'en': '**a1** x **b2** y **c3**', 'zh': '', 'align': []}]}]}
     if not R.同屏色差(dup, {'a1': (251, 191, 36), 'b2': (56, 189, 248), 'c3': (251, 191, 36)}): f.append('没抓到：同屏两个不同重点词用同一种颜色（一律不许，不设口子）')
     s11 = {'no': '26', 'sentences': [{'chunks': [{'en': 'by **American Sign Language** **linguist**', 'zh': '', 'align': []}]}]}
