@@ -87,6 +87,7 @@ python3 "$T/出片指纹.py" --拷 "$W" > /dev/null
 grep -q "快测通过" /tmp/快测_$$.log && RES+=("快测：$(tail -1 /tmp/快测_$$.log)") || { RES+=("快测：不通过（见上）"); QBAD=1; }
 
 echo "== ⑧ 做.sh 27 --不推 回归"
+cp "$P/视频/脚本/27.json" "$W/scripts/27.json"   # 工作目录的 27 脚本用主仓库现行版（旧拷贝会让 L13/T10 误停）
 BEFORE=$(cd "$P" && git -c core.quotepath=off status --porcelain | sort)
 (cd "$W" && XG_P="$P" bash "$T/新管/做.sh" 27 --不推) 2>&1 | tail -12 | tee /tmp/做27_$$.log
 grep -q "做完" /tmp/做27_$$.log && RES+=("做.sh 27：$(grep '做完' /tmp/做27_$$.log | head -1)") || { RES+=("做.sh 27：停了（见上）"); ZBAD=1; }
