@@ -1,0 +1,8229 @@
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/githooks/pre-commit" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/githooks/pre-commit"
+index d9ebe33..cb288d4 100755
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/githooks/pre-commit"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/githooks/pre-commit"
+@@ -1,9 +1,5 @@
+ #!/bin/bash
+-# 规则执行机器（CLAUDE.md 第16条）：每次提交前跑；不过就不许提交（不许用 --no-verify 绕过，命令闸门会拦）
++# 提交前：快测印章对得上就过；对不上自动跑快测，过了接着提交，不过才停（那说明真有检查坏了）。用户 2026-10-29：质量没问题，任何东西都不许卡
+ d=$(git rev-parse --show-toplevel)
+-[ -f "$d/视频/工具/规则执行核查.py" ] || exit 0
+-if python3 -c "import sys;sys.path.insert(0,'$d/视频/工具');sys.exit(0 if __import__('管道').看门停用() else 1)" 2>/dev/null; then
+-  python3 "$d/视频/工具/新管/印章.py" || { echo "【停止】快测印章对不上，不能提交：先 python3 视频/工具/新管/快测.py"; exit 1; }; exit 0
+-fi
+-python3 "$d/视频/工具/会话开工.py" --提交前 || { echo "【停止】会话开工/角色闸门不通过，不能提交（G61/G63）"; exit 1; }
+-python3 "$d/视频/工具/规则执行核查.py" || { echo "【停止】规则执行核查不通过，不能提交（CLAUDE.md 第16条）"; exit 1; }
++[ -f "$d/视频/工具/新管/印章.py" ] || exit 0
++python3 "$d/视频/工具/新管/印章.py" --自动 || { echo "【停止】快测不通过（有检查坏了），不能提交：看上面哪一条"; exit 1; }
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\344\272\244\344\273\230\346\240\270\346\237\245.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\344\272\244\344\273\230\346\240\270\346\237\245.py"
+index d903166..89f8209 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\344\272\244\344\273\230\346\240\270\346\237\245.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\344\272\244\344\273\230\346\240\270\346\237\245.py"
+@@ -16,21 +16,19 @@ def step(name, passed, detail=''):
+     global ok
+     ok &= passed; out.append(f"{'✔' if passed else '✘'} {name}" + (f"\n    {detail}" if detail else ''))
+ 
+-if stage in ('出片前', '出片后') and not __import__('管道').看门停用():   # G60 机制使用核查：本篇前面每一步都由正式入口留下证据、顺序对（28 起）
+-    sys.path.insert(0, T); import 证据 as _ZJ; _ze = _ZJ.查(no, stage)
+-    step('机制使用核查（G60：前面每一步都由正式入口留下证据、顺序对；少一步按 开工必读 ⑤ 步骤表补跑）', not _ze, '\n    '.join(_ze))
++def 提醒(name, detail=''):   # 用户 2026-10-29：不是声音、文字、画面的问题只提醒，不卡出片
++    out.append(f"△ {name}" + (f"\n    {detail}" if detail else ''))
++
+ if stage == '对照表':
+     # 生成"踩坑对照记录"模板，追加到 制作记录/NN.md；逐条填"涉及/不涉及"和"怎么防的、核查结果"
+     rec = f'{T}/../制作记录/{no}.md'; txt = open(rec).read() if os.path.exists(rec) else f'# 第{no}篇制作记录\n'
+     if '## 踩坑对照记录' in txt: sys.exit(f'制作记录/{no}.md 已有"## 踩坑对照记录"，不覆盖')
+-    sys.path.insert(0, T); from 规则执行核查 import 坑行; rows = [(i, q) for i, q, _ in 坑行()]   # 总表只有一份（规则执行机器 ⑤）
++    sys.path.insert(0, T); from 坑表 import 坑行; rows = [(i, q) for i, q, _ in 坑行()]   # 总表只有一份
+     tab = ['', '## 踩坑对照记录', '', '> 开工前逐条重读《踩坑总表》后填写；交付前再对照一遍。第三列只写"涉及"或"不涉及"，第四列写怎么防的、核查结果。', '',
+            '| 编号 | 坑（摘要） | 本篇是否涉及 | 怎么防的、核查结果 |', '|---|---|---|---|']
+     tab += [f"| {i} | {re.sub(r'[*`]', '', d).strip()[:40]} | 待填 | 待填 |" for i, d in rows]
+     open(rec, 'w').write(txt.rstrip('\n') + '\n' + '\n'.join(tab) + '\n'); print(f'已生成 制作记录/{no}.md 的踩坑对照记录模板（{len(rows)} 条），逐条填完才能通过出片前核查'); sys.exit(0)
+ elif stage == '出片前':
+-    if not __import__('管道').看门停用(): c, o = run(['python3', f'{T}/规则执行核查.py']); step('规则执行核查（守则16：每条规矩都有门、接进流程、有自检，机器自检通过）', c == 0, '' if c == 0 else o.strip()[-600:])
+-    if not __import__('管道').看门停用(): c, o = run(['python3', f'{T}/用上核查.py', '--严']); step('用上核查（G83：每个程序、工作流、管执行的机制都用上，门变异按时跑、机制不闲置）', c == 0, '' if c == 0 else o.strip()[-600:])
+     # 0 踩坑核查（最高铁律）：核查程序自检 + 踩坑对照记录逐条填完 + 能用程序查的坑逐条查 + 换行与用户看过的版本比对（L13）
+     c, o = run(['python3', f'{T}/踩坑核查.py', no, '出片'])
+     step('踩坑核查（核查程序自检、踩坑对照记录、逐条程序核查、换行比对）', c == 0, '' if c == 0 else '\n    '.join(o.strip().splitlines()))
+@@ -78,7 +76,6 @@ elif stage == '出片前':
+         c, o = run(['python3', f'{T}/音频体检.py', '--自检', f'work_{no}/a.wav', no]); step(o.strip().lstrip('✔✘ ') or '音频体检 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的体检结果不可信】')
+         c, o = run(['python3', f'{T}/音频体检.py', f'work_{no}/a.wav', no]); step('音频体检（与 01–24 最差比）：' + (o.strip().splitlines() or ['没有输出'])[0], c == 0, '\n    '.join(o.strip().splitlines()[1:]))
+ elif stage == '出片后':
+-    if not __import__('管道').看门停用(): c, o = run(['python3', f'{T}/规则执行核查.py']); step('规则执行核查（守则16：每条规矩都有门、接进流程、有自检，机器自检通过）', c == 0, '' if c == 0 else o.strip()[-600:])
+     # G26 视频必须是现行脚本、现行程序出的（2026-10-24 24 第三稿：出片报错失败后，09:18 的旧 24.mp4 照样“全部通过”）
+     sys.path.insert(0, T); import 出片指纹 as _ZW; _ze = _ZW.自检()
+     step('出片指纹 自检（G26：旧视频配新脚本、出片后程序改了、视频被覆盖、没有指纹都要停）', not _ze, '；'.join(_ze)[:300])
+@@ -101,7 +98,8 @@ elif stage == '出片后':
+     step('成片有画面（G12：有画面流、宽 ≥1920；只有声音的文件一律不得交付——快速重建核查.sh 会把 NN.mp4 覆盖成只有声音，出片要放在它之后）',
+          bool(_v) and int(_v.group(1)) >= 1920 and _vd is not None and _vd.returncode == 0,
+          ('' if _v else f'{no}.mp4 没有画面流（只有声音），重新 python3 make_video.py scripts/{no}.json {no}.mp4，之后不要再跑 快速重建核查.sh') + (f' 时长 {_d.group(0)}' if _d else ''))
+-    c, o = run(['python3', f'{T}/收工记录.py', no]); step('token 记录（T31：程序自动算这篇花了多少，写进制作记录）', c == 0, o.strip()[-200:])
++    c, o = run(['python3', f'{T}/收工记录.py', no])
++    if c: 提醒('token 记录没写上（T31，只提醒）', o.strip()[-200:])
+     c, o = run(['python3', f'{T}/audio_qc.py', f'{no}.mp4', '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else 'audio_qc 自检没有输出', c == 0, '' if c == 0 else o.strip()[-300:])
+     c, o = run(['python3', f'{T}/audio_qc.py', f'{no}.mp4'])
+     # 标出的"响度骤降"要剪成试听交用户确认。确认过、并用实际声音核实的，写进 核对确认.响度骤降：
+@@ -296,8 +294,5 @@ elif stage == '出片后':
+     step(f'生成标点试听 标点试听_{no}.mp3（{len(runs)} 处，需交用户试听）', True)
+ if ok and stage == '出片后':   # 发文件闸门凭这个回执放行（守则7/A25：只发过了核查的那个文件）
+     sys.path.insert(0, f'{T}/钩子'); import 闸门; 闸门.记回执([f'{no}.mp4', f'标点试听_{no}.mp3'], f'交付核查 出片后 第{no}篇')
+-if ok and stage in ('出片前', '出片后') and not __import__('管道').看门停用(): _ZJ.记(no, stage)   # G60：这一步的使用证据（只有正式入口写得出对得上的指纹）
+-if not ok and not __import__('管道').看门停用():   # K 丝滑记录：没通过的步骤记下来，程序/环境的毛病算不丝滑
+-    sys.path.insert(0, T); import 丝滑 as _SH; _SH.记('交付核查', no, '；'.join(x.split('\n')[0] for x in out if x.startswith('✘')))
+ print(f'第{no}篇 {stage}核查：\n' + '\n'.join(out) + f"\n{'全部通过' if ok else '【不通过，不得交付】'}")
+ sys.exit(0 if ok else 1)
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\235\221\350\241\250.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\235\221\350\241\250.py"
+new file mode 100644
+index 0000000..7381045
+--- /dev/null
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\235\221\350\241\250.py"
+@@ -0,0 +1,13 @@
++#!/usr/bin/env python3
++"""踩坑总表每一行：(编号, 出过的问题, 以后怎么防)。唯一来源：《制作硬性标准与踩坑总结》里的表。"""
++import os, re
++T = os.path.dirname(os.path.abspath(__file__)); STD = f'{os.path.dirname(T)}/制作硬性标准与踩坑总结.md'
++def 坑行(text=None):
++    text = open(STD).read() if text is None else text
++    out = []
++    for line in text.splitlines():
++        m = re.match(r'^\| *([A-Z]\d+b?) *\|(.*)\|\s*$', line)
++        if m:
++            cells = [c.strip() for c in m.group(2).split('|')]
++            out.append((m.group(1), cells[0], cells[-1] if len(cells) > 1 else ''))
++    return out
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\274\200\345\267\245\346\217\220\351\206\222.sh" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\274\200\345\267\245\346\217\220\351\206\222.sh"
+index 4bcc6eb..6a813e6 100755
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\274\200\345\267\245\346\217\220\351\206\222.sh"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\274\200\345\267\245\346\217\220\351\206\222.sh"
+@@ -2,20 +2,13 @@
+ # SessionStart 钩子（T31）：每次开会话先把必做的事摆出来——不靠记忆。
+ P=/home/user/postgraduate-vocabulary/视频; [ -d $P ] || P="$CLAUDE_PROJECT_DIR/视频"
+ python3 $P/工具/方法进化表.py --状态 2>/dev/null   # G65：第一屏先看方法进化趋势和 GitHub 工作流最近结果
+-python3 $P/工具/用上核查.py 2>/dev/null   # G83：开头先看所有程序、工作流、管执行的机制有没有用上（每次都查）
+-python3 $P/工具/证据.py --闲置 --提醒 2>/dev/null   # G71：机制连续两篇该用没用（或建好后第一篇就没用上），第一屏标红
+ python3 $P/工具/音频首要法则.py --要点 2>/dev/null   # 首要法则（CLAUDE.md 0.，用户 2026-10-25）：开工先读音频要求和全部音频坑
+ no=$(cat ~/.当前篇 2>/dev/null || cat $P/制作记录/当前篇.txt 2>/dev/null)
+-echo "【开工必做（T31，程序提醒）】先读 CLAUDE.md 的 T29/T31、视频/工具/草稿流程.md、视频/制作记录/草稿进度.md（只读要用的段落）；动手前在 制作记录/NN.md 写好“## 方法设计”（踩坑核查 [T31] 没写就停）；一次只做一篇，方法一出问题立刻停。"
++echo "【开工必做】只读 视频/工具/新管/写稿须知.md；做片子：写 genNN → bash 视频/工具/新管/做.sh NN（到 1080p）→ 用户说定稿后 bash 视频/工具/新管/定稿.sh NN；一次只做一篇。"
+ [ -n "$no" ] && f=$P/制作记录/$no.md && [ -f $f ] && echo "当前篇：$no；方法设计：$(grep -q '预计调用：\s*\S' $f && echo 已写 || echo 未写，先写)；$(grep -E '^- (进行中|收工)' $f | tail -1 | python3 -c 'import sys; print(sys.stdin.read().strip()[:60])')"
+ [ -n "$no" ] && python3 $P/工具/重点词被去掉.py $no 2>/dev/null
+-# 规则执行机器（CLAUDE.md 第16条）：装上 git 提交钩子，打印机器状态
++# 装上 git 提交钩子（提交前只查快测印章）
+ for r in /home/user/postgraduate-vocabulary /home/user/literate-enigma; do [ -d $r/视频/工具/githooks ] && git -C $r config core.hooksPath 视频/工具/githooks; done
+-python3 $P/工具/规则执行核查.py --状态 2>/dev/null
+-python3 $P/工具/开工必读.py --要点 2>/dev/null
+-python3 $P/工具/会话开工.py --状态 2>/dev/null   # G63：第一件事 会话开工.py <角色>（没开工不能提交）
+-[ -n "$no" ] && python3 $P/工具/证据.py --状态 $no 2>/dev/null   # G60：本篇哪些步骤已留使用证据   # G55：先读 视频/开工必读.md 再照它做
+ python3 $P/工具/报坑.py --状态 2>/dev/null   # G54：待入表、超期的报坑登记
+-python3 $P/工具/执行效应演练.py --状态 2>/dev/null   # 执行效应（CLAUDE.md 第19条）：开工先看演练是否全挡住，不全挡住先修门再干活
+ python3 -c "import sys; sys.path.insert(0,'$P/工具'); import 重查记录 as R; q=[n for n in R.欠着() if n in R.已出片()]; print('【存的视频】欠重查或欠重出 4K（G9/G22）：'+(' '.join(q) if q else '无'))" 2>/dev/null
+ exit 0
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\274\200\345\267\245\350\256\260\345\275\225.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\274\200\345\267\245\350\256\260\345\275\225.py"
+index e1d202a..9db5606 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\274\200\345\267\245\350\256\260\345\275\225.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\274\200\345\267\245\350\256\260\345\275\225.py"
+@@ -18,7 +18,7 @@ def 开工(V, no, 记当前=True, 根=None):
+     f = f'{V}/制作记录/{no}.md'; old = open(f).read() if os.path.exists(f) else None
+     if 有节(old, '## 踩坑对照记录'): return f'{f} 已有踩坑对照记录，不覆盖', 1
+     rows = []
+-    for l in open(f'{V}/制作硬性标准与踩坑总结.md'):   # 总表只有一份（规则执行机器 ⑤）
++    for l in open(f'{V}/制作硬性标准与踩坑总结.md'):   # 总表只有一份
+         m = re.match(r'\| (\w+) \| ([^|]{0,40})', l)
+         if m and m.group(1) not in ('编号',) and re.match(r'[A-Z]\d', m.group(1)):
+             rows.append(f'| {m.group(1)} | {m.group(2).strip()} | 涉及 | ' + ('待填（只有人能判：写明本篇具体怎么做的）' if m.group(1) in ('G6', 'C3', 'C4') else '按现行做法由程序把关（踩坑总表“拦住”），本篇核查通过') + ' |')
+@@ -27,9 +27,6 @@ def 开工(V, no, 记当前=True, 根=None):
+     if 记当前: open(f'{V}/制作记录/当前篇.txt', 'w').write(no); open(os.path.expanduser('~/.当前篇'), 'w').write(no)   # 本容器自己的当前篇优先（钩子先读它）   # 钩子据此每轮更新这篇的 token 记录（T31）
+     import subprocess   # J（用户 2026-10-25）：开工就把本篇撞车提醒写进制作记录并打印，发草稿时告诉用户
+     print(subprocess.run(['python3', f'{os.path.dirname(os.path.abspath(__file__))}/音频首要法则.py', '--要点'], capture_output=True, text=True).stdout.rstrip())   # 首要法则（CLAUDE.md 0.）
+-    print(subprocess.run(['python3', f'{os.path.dirname(os.path.abspath(__file__))}/开工必读.py', '--要点'], capture_output=True, text=True).stdout.rstrip())   # G55：先读开工必读
+-    import 开工必读 as _KB
+-    if no.isdigit() and int(no) >= _KB.起 and 记当前: open(f, 'w').write(_KB.补(no, open(f).read())[0])   # 28 起：做事对照记录（只追加）
+     out = subprocess.run(['python3', f'{os.path.dirname(os.path.abspath(__file__))}/check_all.py', '--写提醒', no] + (['--根', 根] if 根 else []), capture_output=True, text=True).stdout.strip()
+     return f'{f}：{len(rows)} 条\n{out}', 0
+ def 方法设计节(t):
+@@ -57,15 +54,8 @@ def 自检():
+ if __name__ == '__main__':
+     if '--自检' in sys.argv:
+         e = 自检(); print('\n'.join(e) or '开工记录 自检通过（已有方法设计一字不变、正文提到标题字样不误认、撞车提醒只写一节）'); sys.exit(1 if e else 0)
+-    import 会话开工 as _HK
+-    if not _HK.读记录(): _HK.开工('出稿')   # G63：出稿会话从开工记录开工，先读总纲、要点、步骤表，记下角色
+     V = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); _no = sys.argv[1].zfill(2)
+-    import 方法进化表 as _JH; _e, _ = _JH.门(f'{int(_no) - 1:02d}')   # G65：上一篇变差没落地，不开下一篇
+-    if _e: print('\n'.join(_e)); sys.exit(1)
+-    import 证据 as _ZJ0; _e = _ZJ0.闲置问题()   # G71：机制闲置（连续两篇该用没用、建好后第一篇就没用上），不开下一篇
+-    if _e: print('\n'.join(['【停止】机制闲置报警（G71）：'] + _e)); sys.exit(1)
++    import 方法进化表 as _JH; _e, _ = _JH.门(f'{int(_no) - 1:02d}', 写=False)   # G65：上一篇变差没落地，只提醒（用户 2026-10-29：不是质量问题不卡）
++    if _e: print('（提醒）' + '\n'.join(_e))
+     msg, c = 开工(V, _no); print(msg)
+-    if c == 0:   # G60：开工的使用证据（撞车提醒、做事对照记录写了没有）
+-        import 证据 as _ZJ; _t = open(f'{V}/制作记录/{_no}.md').read() if os.path.exists(f'{V}/制作记录/{_no}.md') else ''
+-        _ZJ.记(_no, '开工记录', 详情={'撞车提醒': '## 撞车提醒' in _t, '做事对照': '## 做事对照记录' in _t})
+     sys.exit(c)
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\212\245\345\235\221.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\212\245\345\235\221.py"
+index 007b1b1..a293c7f 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\212\245\345\235\221.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\212\245\345\235\221.py"
+@@ -1,14 +1,13 @@
+ #!/usr/bin/env python3
+ """报坑登记 + 取号（G54，用户 2026-10-26：“只要踩过这些坑，以后全部都要记录到这个踩坑指南里面……我们不是有这么一个机制吗？
+-就把这些所有踩过的坑加入到那个机制里面去”）。不另建机制：这里只是入口，坑一律进 踩坑总表 → 规则执行核查 → 执行效应演练。
++就把这些所有踩过的坑加入到那个机制里面去”）。不另建机制：这里只是入口，坑一律进 踩坑总表 → 规则表一行 + 坏样本（快测跑）。
+ 
+   报坑：python3 报坑.py "27 S16 现象（实测）" [--会话 ID]   → 当场原子写进远端 视频/制作记录/坑登记.json，打印登记号 K#
+   取号：python3 报坑.py --取号 G [--登记 K#] [--会话 ID] [--用途 说明]
+   改门锁（G66）：python3 报坑.py --锁 --任务 "改什么" | --续锁 | --放锁 | --锁状态   （2 小时过期；改门程序没持锁，提交前钩子拒）
+         → 原子取号：读远端+本地的总表、预留，取最大号+1，只把这一条预留提交推到远端 main，推不上（别人刚取）就重取
+   关门：总表里写出这条登记的入表编号那一行，登记就算已入表（不用手改状态）。
+-  查：  python3 报坑.py --查 [--严]   （规则执行核查每次跑：撞号、总表新行没取号就停；超期没入表的只提示。
+-        --严 = 定稿流水线 ⓪、推送两仓库改门程序时：超期没入表就停）
++  查：  python3 报坑.py --查   （撞号、总表新行没取号返回 1；超期没入表的只提示。做.sh、定稿.sh、推送都只提醒，不拦）
+       python3 报坑.py --状态 / --自检
+ 超期：登记后 24 小时没进总表；写明“改门会话”的宽限 72 小时。"""
+ import shutil, os, re, sys, json, subprocess, tempfile, datetime
+@@ -19,10 +18,6 @@ REL = '视频/制作记录/坑登记.json'; STDREL = '视频/制作硬性标准
+ 
+ def 现在():
+     n = datetime.datetime.now(datetime.timezone.utc)
+-    f = os.environ.get('BAOKENG_FREEZE')   # 时间炸弹①（主会话 2026-10-28 定）：GitHub 演练按请求提交时刻算超期（drill.yml 给）；提交时已超期的照停，不放宽 G54，只是不因演练跑两小时中途跨过宽限
+-    if f and os.environ.get('GITHUB_ACTIONS') == 'true':
+-        try: return min(n, datetime.datetime.fromisoformat(f.replace('Z', '+00:00')))
+-        except ValueError: pass
+     return n
+ def 时刻(t=None): return (t or 现在()).strftime('%Y-%m-%dT%H:%MZ')
+ def 解时(s): return datetime.datetime.strptime(s, '%Y-%m-%dT%H:%MZ').replace(tzinfo=datetime.timezone.utc)
+@@ -230,20 +225,6 @@ def 自检():
+     if not any('自检造的' in x for x in 判(std, d4, now)[0]): fails.append('没抓到：自检造的预留进了真登记（K23）')
+     d3 = json.loads(json.dumps(d)); d3['预留'].append({'编号': 'G53'})
+     if not any('撞号' in x for x in 判(std, d3, now)[0]): fails.append('没抓到：预留撞号')
+-    _env = {k_: os.environ.get(k_) for k_ in ('BAOKENG_FREEZE', 'GITHUB_ACTIONS')}   # 时间炸弹①：冻结时刻的正反样本
+-    try:
+-        T0 = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=2)   # 请求 2 小时前提交（演练跑了 2 小时）
+-        os.environ['GITHUB_ACTIONS'] = 'true'; os.environ['BAOKENG_FREEZE'] = T0.isoformat()
+-        dA = 空(); dA['登记'] = [{'号': 'K5', '时刻': 时刻(T0 - datetime.timedelta(hours=25)), '现象': '提交时已超期'}]
+-        if not 判('', dA)[1]: fails.append('没抓到：演练冻结时刻下，提交时已超期的登记照样要停（冻结不许放宽 G54）')
+-        dB = 空(); dB['登记'] = [{'号': 'K6', '时刻': 时刻(T0 - datetime.timedelta(hours=23)), '现象': '提交时未超期'}]
+-        if 判('', dB)[1]: fails.append('误停：提交时未超期、演练中途才过宽限（时间炸弹①）')
+-        os.environ.pop('GITHUB_ACTIONS')
+-        if not 判('', dB)[1]: fails.append('没抓到：不在 GitHub 演练里冻结时刻起了作用（墙上时钟下已超期必停）')
+-    finally:
+-        for k_, v_ in _env.items():
+-            if v_ is None: os.environ.pop(k_, None)
+-            else: os.environ[k_] = v_
+     if not any('重复' in x for x in 判(std + '| G53 | x | y | z |\n', d, now)[0]): fails.append('没抓到：总表编号重复')
+     # 真跑取号：本地假远端，A 取号后 B（本地是旧的）再取，必须拿到下一个号，不许撞
+     tmp = tempfile.mkdtemp(); _env = {k: v for k, v in os.environ.items() if not k.startswith('GIT_')}; sh = lambda c: subprocess.run(c, shell=True, cwd=tmp, capture_output=True, env=_env)
+@@ -304,7 +285,7 @@ def main():
+         原子写(改, 说明='报坑登记：清掉自检推到真远端的预留和登记（K23）'); print(f'清掉自检残留 {n[0]} 条'); return 0
+     if '--锁' in a or '--续锁' in a or '--放锁' in a:
+         动作 = '取' if '--锁' in a else '续' if '--续锁' in a else '放'; 我 = opt('--会话') or 本会话()
+-        if not 我: print('【停止】不知道本会话 ID：先 python3 视频/工具/会话开工.py 改门 --会话 session_… 或加 --会话'); return 1
++        if not 我: print('【停止】不知道本会话 ID：加 --会话 session_…'); return 1
+         r, L = 锁(动作, 我, opt('--任务'))
+         if '--静默' in a: return 0
+         print({'取到': f'改门锁：取到（到期 {L.get("到期")}）', '续上': f'改门锁：续上（到期 {L.get("到期")}）', '放了': '改门锁：已放开',
+@@ -321,10 +302,9 @@ def main():
+         if '--状态' in a:
+             print(f'【报坑登记】待入表 {len(w)} 条、超期 {len(l)} 条' + ('：' + '；'.join(l + w)[:300] if l or w else '') + ('；问题：' + '；'.join(h) if h else '')); return 0
+         for x in w: print('  提示（待入表，G54）：', x)
+-        for x in h + (l if '--严' in a else []): print('  ✘', x)
+-        if not ('--严' in a) and l:
+-            for x in l: print('  提示（超期，定稿流水线和推门程序会停）：', x)
+-        return 1 if h or ('--严' in a and l) else 0
++        for x in h: print('  ✘', x)
++        for x in l: print('  提示（超期没入表，只提醒）：', x)
++        return 1 if h else 0
+     if a and not a[0].startswith('--'):
+         k = 报(a[0], 会话); print(f'登记号：{k}（报主会话时附上；坑写进总表时 python3 视频/工具/报坑.py --取号 <字头> --登记 {k}）'); return 0
+     print(__doc__); return 1
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\344\270\244\344\273\223\345\272\223.sh" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\344\270\244\344\273\223\345\272\223.sh"
+index 4371917..559fbbd 100755
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\344\270\244\344\273\223\345\272\223.sh"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\344\270\244\344\273\223\345\272\223.sh"
+@@ -3,18 +3,15 @@
+ # → 提交 → 推送两边 → 用 git 记录的文件指纹比对两边 视频/ 逐文件一致（不再逐个读大视频，几秒完成）。
+ # 用法：bash 视频/工具/推送两仓库.sh "提交说明"
+ set -e
+-trap 'rc=$?; [ $rc -ne 0 ] && [ -f "${PUSH_P:-/home/user/postgraduate-vocabulary}/视频/工具/丝滑.py" ] && python3 "${PUSH_P:-/home/user/postgraduate-vocabulary}/视频/工具/丝滑.py" 记 推送两仓库 - "推送两仓库.sh 停下（退出码 $rc；$Z_CMD）" 不丝滑 2>/dev/null; exit $rc' EXIT
+-trap 'Z_CMD="停在第 $LINENO 行：${BASH_COMMAND:0:160}"' ERR   # K56：不丝滑要记下停在哪一行、哪条命令（以前只写“退出码 1”，事后查不出原因）   # K 丝滑记录：推送停下都不是稿子的问题
+ exec 9>${PUSH_LOCK:-/tmp/推送两仓库.lock}; flock 9   # 几篇同时做时排队推送（推送自检用自己的锁，否则在推送里跑自检会自己等自己）
+ P=${PUSH_P:-/home/user/postgraduate-vocabulary}; L=${PUSH_L:-/home/user/literate-enigma}; B=${PUSH_B:-claude/adoring-hamilton-5qskmm}   # PUSH_* 只给 推送自检.py 在假仓库里测用
+ T=$'\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01XbsiuYS9p9y2vNiB4h6ZZU'
+ cd $P
+-# 规则执行机器（CLAUDE.md 第16条）：提交前先过；git 提交钩子也装上（新容器、别的会话同样生效）
++# git 提交钩子装上（新容器、别的会话同样生效）：提交前只查快测印章，对不上自动跑快测
+ git -C $P config core.hooksPath 视频/工具/githooks; git -C $L config core.hooksPath 视频/工具/githooks 2>/dev/null
+-if [ "$(python3 -c "import sys;sys.path.insert(0,'$P/视频/工具');print(__import__('管道').看门停用())")" = True ]; then python3 $P/视频/工具/新管/印章.py || { echo "【停止】快测印章对不上：程序改过没过快测（python3 视频/工具/新管/快测.py）"; exit 1; }; python3 $P/视频/工具/报坑.py --查 || { echo "【停止】报坑登记有硬问题（撞号、总表新行没取号，G54）；超期没入表的只提醒、不拦（用户 2026-10-29：“直接一刀切把它砍掉了”）"; exit 1; }; else python3 $P/视频/工具/规则执行核查.py; fi || { echo "【停止】规则执行核查不通过，不推送（先给新规矩、新坑配好门和自检）"; exit 1; }
++[ ! -f $P/视频/工具/新管/印章.py ] || python3 $P/视频/工具/新管/印章.py --自动 || { echo "【停止】快测不通过（有检查坏了，属于质量问题）：先修好再推"; exit 1; }   # 印章对不上自动跑快测，过了接着推（用户 2026-10-29）
++python3 $P/视频/工具/报坑.py --查 > /dev/null 2>&1 || echo "（提醒：报坑登记有撞号或总表新行没取号，python3 视频/工具/报坑.py --查 看；只提醒，不拦）"
+ git add -A 视频 CLAUDE.md 新版定稿   # 新版定稿：文章本身也会改（撞词去掉重点词等）；路径不存在 git 会报错，set -e 当场停（G3：不许悄悄没提交）
+-if git diff --cached --name-only | grep -qE '^视频/工具/.*\.(py|sh)$'; then   # G54：推门程序的会话先把超期没入表的坑收进总表
+-  python3 -c "import sys;sys.path.insert(0,'$P/视频/工具');sys.exit(0 if __import__('管道').看门停用() else 1)" || python3 $P/视频/工具/报坑.py --查 --严 || { echo "【停止】这次推送改了门程序，但有报坑登记超期还没进踩坑总表（G54）：先写进总表、配门"; git reset -q; exit 1; }; fi
+ big=$(git diff --cached --name-only -z | xargs -0 -r du -b 2>/dev/null | awk '$1>95*1024*1024{print $2}')
+ [ -z "$big" ] || { echo "【停止】有文件超过 GitHub 单个文件 100MB 上限（G1）：$big——先拆成几段（附 SHA256 和还原脚本）"; git reset -q; exit 1; }
+ if ! git diff --cached --quiet; then git commit -qm "$1$T"; fi
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\350\207\252\346\243\200.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\350\207\252\346\243\200.py"
+index 926e9fb..19238e3 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\350\207\252\346\243\200.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\216\250\351\200\201\350\207\252\346\243\200.py"
+@@ -18,7 +18,7 @@ try:
+     git('clone', '-q', f'{tmp}/P.git', P); git('clone', '-q', f'{tmp}/L.git', L)
+     for r in (P, L):
+         git('config', 'user.name', '自检', cwd=r); git('config', 'user.email', 'selftest@example.com', cwd=r)
+-    写(f'{P}/视频/工具/规则执行核查.py', 'import sys; sys.exit(0)\n'); 写(f'{P}/视频/a.md', 'a\n'); 写(f'{P}/视频/中文名字.md', '中\n')
++    写(f'{P}/视频/a.md', 'a\n'); 写(f'{P}/视频/中文名字.md', '中\n')
+     写(f'{P}/CLAUDE.md', '新守则\n'); 写(f'{P}/新版定稿/x.md', 'x\n'); 写(f'{P}/最终版4K视频/y.mp4', 'v\n')
+     git('add', '-A', cwd=P); git('commit', '-qm', 'init', cwd=P); git('push', '-q', '-u', 'origin', 'HEAD:main', cwd=P)
+     git('checkout', '-q', '-b', 'tb', cwd=L); 写(f'{L}/视频/旧文件.md', 'old\n'); 写(f'{L}/CLAUDE.md', '旧守则\n')
+@@ -38,20 +38,15 @@ try:
+     if '视频/旧文件.md' in lsl: fails.append('没抓到：镜像里多出来的旧文件没删')
+     if '视频/中文名字.md' not in lsl: fails.append('没抓到：中文文件名没同步（G4）')
+     if open(f'{L}/CLAUDE.md').read() != '新守则\n': fails.append('没抓到：CLAUDE.md 没以 postgraduate-vocabulary 为准（G11）')
+-    # 新管：看门停用时推送前查快测印章，印章对不上必停（管道.json 是“启用”时也在这里演练这条分支，门变异才抓得到）
+-    写(f'{P}/视频/工具/管道.py', open(f'{T}/管道.py').read()); 写(f'{P}/视频/工具/管道.json', '{"看门": "停用"}'); 写(f'{P}/视频/工具/新管/印章.py', 'import sys; sys.exit(1)\n'); 写(f'{P}/视频/印章测.md', 'x\n')
++    # 印章对不上自动跑快测：快测不过（印章.py --自动 返回 1）必停；报坑硬问题（撞号）只提醒、照推（用户 2026-10-29）
++    写(f'{P}/视频/工具/新管/印章.py', 'import sys; print("快测不通过"); sys.exit(1)\n'); 写(f'{P}/视频/印章测.md', 'x\n')
+     r = run(); o = r.stdout + r.stderr
+-    if r.returncode == 0 or '快测印章对不上' not in o: fails.append(f'没抓到：看门停用时快测印章对不上，推送没停（新管）{o.strip()[-80:]}')
+-    # 看门停用：报坑超期只提醒不拦（用户 2026-10-29 原话），撞号等硬问题照停
++    if r.returncode == 0 or '快测不通过' not in o: fails.append(f'没抓到：快测不通过，推送没停{o.strip()[-80:]}')
+     写(f'{P}/视频/工具/新管/印章.py', 'import sys; sys.exit(0)\n'); 写(f'{P}/视频/工具/报坑.py', 'import sys; print("  ✘ 预留编号撞号：G1"); sys.exit(1)\n')
+     r = run(); o = r.stdout + r.stderr
+-    if r.returncode == 0 or '报坑登记有硬问题' not in o: fails.append(f'没抓到：看门停用时报坑有硬问题（撞号）推送没停{o.strip()[-80:]}')
+-    写(f'{P}/视频/工具/报坑.py', 'import sys; print("  提示（超期）：K1"); sys.exit(0)\n')
+-    r = run(); o = r.stdout + r.stderr
+-    if r.returncode != 0: fails.append(f'误停：看门停用时报坑只有超期，推送被拦了（应只提醒）{o.strip()[-80:]}')
+-    git('rm', '-q', '--cached', '-r', '--ignore-unmatch', '视频/工具/管道.py', '视频/工具/管道.json', '视频/工具/新管/印章.py', '视频/工具/报坑.py', '视频/印章测.md', cwd=P)
+-    for f_ in ('视频/工具/报坑.py',): os.path.exists(f'{P}/{f_}') and os.remove(f'{P}/{f_}')
+-    for f_ in ('视频/工具/管道.py', '视频/工具/管道.json', '视频/工具/新管/印章.py', '视频/印章测.md'): os.remove(f'{P}/{f_}')
++    if r.returncode != 0 or '提醒：报坑登记' not in o: fails.append(f'误停：报坑撞号是记录问题，应只提醒、照推{o.strip()[-80:]}')
++    git('rm', '-q', '--cached', '-r', '--ignore-unmatch', '视频/工具/新管/印章.py', '视频/工具/报坑.py', '视频/印章测.md', cwd=P)
++    for f_ in ('视频/工具/新管/印章.py', '视频/工具/报坑.py', '视频/印章测.md'): os.path.exists(f'{P}/{f_}') and os.remove(f'{P}/{f_}')
+     git('reset', '-q', cwd=P)
+     if git('rev-parse', 'HEAD', cwd=P).stdout != git('rev-parse', 'main', cwd=f'{tmp}/P.git').stdout or \
+        git('rev-parse', 'HEAD', cwd=L).stdout != git('rev-parse', 'tb', cwd=f'{tmp}/L.git').stdout: fails.append('没抓到：云端与本地不一致（G2）')
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\344\273\216\351\233\266\346\265\213.sh" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\344\273\216\351\233\266\346\265\213.sh"
+index 624885b..e96293c 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\344\273\216\351\233\266\346\265\213.sh"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\344\273\216\351\233\266\346\265\213.sh"
+@@ -1,6 +1,6 @@
+ #!/bin/bash
+ # 验收 ④：全新浅克隆从零跑 做.sh 27 一次通过（K78/K89 那类“新容器缺东西”）。
+-# 浅克隆镜像分支 → 准备机器.sh 搭工作目录（重新下载配音模型、拷缓存）→ 装新管、打切换补丁 → 快测（盖印章）→ 做.sh 27 --不推。
++# 浅克隆镜像分支 → 准备机器.sh 搭工作目录（重新下载配音模型、拷缓存）→ 快测（盖印章）→ 做.sh 27 --不推。
+ # 用法：bash 从零测.sh <空目录>   （本容器的 /home/user/postgraduate-vocabulary 链接临时指向这份克隆，跑完改回）
+ set -e; D=$(mkdir -p "$1" && cd "$1" && pwd); H=$(cd "$(dirname "$0")" && pwd); t0=$(date +%s)
+ BR=claude/adoring-hamilton-5qskmm; OLD=$(readlink /home/user/postgraduate-vocabulary || true)
+@@ -8,12 +8,7 @@ trap '[ -n "$OLD" ] && ln -sfn "$OLD" /home/user/postgraduate-vocabulary; echo "
+ echo "== 浅克隆"; git clone -q --depth 1 -b $BR https://github.com/AlienCodes/literate-enigma "$D/L"
+ ln -sfn "$D/L" /home/user/postgraduate-vocabulary
+ echo "== 准备机器"; bash "$D/L/视频/工具/环境/准备机器.sh" "$D/L" "$D/机" > "$D/准备.log" 2>&1 || { tail -5 "$D/准备.log"; exit 1; }; tail -1 "$D/准备.log"
+-if [ -d "$D/L/视频/工具/新管" ]; then   # 已装好（切换后的 main）：只测，不装、不打补丁
+-  echo "== 已装新管：管道.json $(cat "$D/L/视频/工具/管道.json" 2>/dev/null)"
+-else
+-  echo "== K102（切换的底是 K102 落地后的 main）"; grep -q "读音改正生效（" "$D/L/视频/工具/读音核对.py" || (cd "$D/L" && git apply 改门待演练/K102读音自检.diff) || exit 1
+-  echo "== 装新管、切换"; cp -r "$D/L/新管" "$D/L/视频/工具/新管"; python3 "$D/L/视频/工具/新管/切换.py" "$D/L/视频/工具" --停用
+-fi
++[ -d "$D/L/视频/工具/新管" ] || { echo "【停】克隆里没有 视频/工具/新管"; exit 1; }
+ cd "$D/机/video"
+ echo "== 快测"; XG_WORK="$D/机/video" python3 "$D/L/视频/工具/新管/快测.py" 2>&1 | tail -14
+ echo "== 做.sh 27"; XG_P="$D/L" bash "$D/L/视频/工具/新管/做.sh" 27 --不推 2>&1 | tail -12
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\201\232.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\201\232.py"
+index b8debeb..74446bc 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\201\232.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\201\232.py"
+@@ -1,6 +1,6 @@
+ #!/usr/bin/env python3
+ """做：一条命令从数据到 1080p 草稿（在出片工作目录下运行；做.sh 是它的外壳）。
+-  ⓪ 快测印章（程序改了没过快测就停）
++  ⓪ 快测印章（程序改了自动跑快测：过了接着做，不过才停——那说明真有检查坏了）
+   ① 文本：机械修（破折号、L19 折行）→ 踩坑核查。✘ 错 → 停；？ 待确认 → 疑点表
+   ② 声音：草稿声音.sh（结尾句接点、自动切点、词尾除阻、句内响度这些标准修法都在里面，缓存命中只重做改过的句子）
+   ③ 出片前核查（交付核查，看门已停用：只剩真检查）。✘ → 停（读音待核实、停顿、词尾……指出哪句哪词）
+@@ -33,8 +33,9 @@ if c:   # 机械：工作目录的出片程序比仓库旧（G27），照现有
+     c, o = 跑('拷出片程序', ['python3', f'{T}/出片指纹.py', '--拷', '.'])
+     if c: 停('⓪ 拷出片程序', o.strip().splitlines()[-3:])
+     修了.append('工作目录的出片程序比仓库旧，已按 出片指纹.py --拷 拷过来（G27）')
+-c, o = 跑('印章', ['python3', f'{H}/印章.py'], extra={'XG_TOOLS': T})
+-if c: 停('⓪ 快测印章', o.strip().splitlines())
++c, o = 跑('印章', ['python3', f'{H}/印章.py', '--自动'], extra={'XG_TOOLS': T, 'XG_WORK': os.getcwd()})
++if c: 停('⓪ 快测不通过（有检查坏了，先修好）', [l for l in o.strip().splitlines() if '✘' in l or '不通过' in l][-12:] or o.strip().splitlines()[-6:])
++if '自动跑快测' in o: 修了.append('程序改过：已自动跑快测并通过、重盖印章')
+ if os.path.exists(f'{T}/初稿生成/gen{no}.py') and os.path.getmtime(f'{T}/初稿生成/gen{no}.py') > os.path.getmtime(f'scripts/{no}.json'):
+     c, o = 跑('生成', ['python3', f'{T}/初稿生成/gen{no}.py'])
+     if c: 停('⓪ genNN 生成脚本', o.strip().splitlines()[-8:])
+@@ -97,10 +98,10 @@ json.dump({'数据': _h(f'scripts/{no}.json'), '声音': _h(f'work_{no}/a.wav'),
+           open(f'{V}/制作记录/{no}_做指纹.json', 'w'), ensure_ascii=False, indent=0)
+ if 推:
+     c, o = 跑('推送', ['bash', f'{H}/推送.sh', f'第{no}篇 草稿1080p（做.sh）：疑点 {len(疑点)}、自动修 {len(修了)}'], cwd=P)
+-    if c: 停('⑥ 推送两仓库', o.strip().splitlines()[-6:])
+-报告.append(f'⑥ 已拷 视频/视频/草稿1080p/{no}_1080p.mp4' + ('，两仓库已推送' if 推 else '（--不推）'))
+-c, o = 跑('报坑', ['python3', f'{T}/报坑.py', '--查'])   # 硬问题（撞号、没取号）停；超期只提醒（用户 2026-10-29：“直接一刀切把它砍掉了”）
+-if c: 停('⑥ 报坑登记有硬问题（G54）', [l.strip() for l in o.splitlines() if '✘' in l])
++    if c: 报告.append('提醒：推送两仓库没成功（片子已出、已拷，只提醒）：' + ' / '.join(o.strip().splitlines()[-3:])[:300])
++报告.append(f'⑥ 已拷 视频/视频/草稿1080p/{no}_1080p.mp4' + ('，两仓库已推送' if 推 and not c else '（--不推）' if not 推 else ''))
++c, o = 跑('报坑', ['python3', f'{T}/报坑.py', '--查'])   # 报坑登记的问题都只提醒（用户 2026-10-29：不是质量问题不卡）
++if c: 报告.append('提醒：报坑登记有撞号或总表新行没取号：' + '；'.join(l.strip() for l in o.splitlines() if '✘' in l)[:200])
+ 超 = [l.strip() for l in o.splitlines() if '超期' in l]
+ if 超: 报告.append(f'提醒：报坑登记 {len(超)} 条超期没入表（只提醒不拦）')
+ # ⑦
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\215\260\347\253\240.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\215\260\347\253\240.py"
+index 0cdcc60..0438aa8 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\215\260\347\253\240.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\215\260\347\253\240.py"
+@@ -1,16 +1,18 @@
+ #!/usr/bin/env python3
+-"""快测印章（替代 证据链 / 用上核查 / 规则执行核查 的“拦人”作用）：
+-快测通过时盖章 = 规则表版本 + 全部检查程序和出片程序的哈希。程序或规则表一改，章就对不上：
+-提交、推送、做.sh、定稿.sh 都先查章，对不上就停（先跑快测）。数据（各篇脚本、发音词典、制作记录）不进哈希，改它们不用重跑快测。
+-  python3 印章.py --查     对不上返回 1，并列出改了的程序
++"""快测印章：快测通过时盖章 = 规则表版本 + 全部检查程序和出片程序的哈希。数据（各篇脚本、发音词典、制作记录）不进哈希。
++程序或规则表改了、章对不上：提交、推送、做.sh、定稿.sh 自动跑快测，过了接着做；快测不过才停（那说明真有检查坏了，属于质量问题）。
++用户 2026-10-29：“能卡住出稿、出片的只有质量问题（声音、文字、画面）；质量没问题，任何东西都不许卡。”
++  python3 印章.py          对不上返回 1，并列出改了的程序
++  python3 印章.py --自动   对得上返回 0；对不上自动跑快测（出片工作目录：XG_WORK、当前目录、上次快测记下的），快测过了返回 0，不过返回 1；
++                           找不到出片工作目录（主仓库里提交、推送）只提醒、返回 0：程序改了的片子在 做.sh / 定稿.sh 里照样先过快测
+   python3 印章.py --盖     （快测通过后由 快测.py 调用）"""
+-import sys, os, re, json, glob, hashlib
++import sys, os, re, json, glob, hashlib, subprocess
+ H = os.path.dirname(os.path.abspath(__file__))
+ def 工具目录():
+     p = os.path.dirname(H)
+     return p if os.path.exists(f'{p}/交付核查.py') else os.environ.get('XG_TOOLS', f'{os.path.dirname(H)}/视频/工具')
+ T = os.environ.get('XG_TOOLS') or 工具目录()
+-章 = f'{H}/快测通过.json'
++章 = f'{H}/快测通过.json'; 记W = os.path.expanduser('~/.新管工作目录')
+ 
+ def 程序哈希():
+     fs = []
+@@ -18,7 +20,7 @@ def 程序哈希():
+         for f in glob.glob(f'{root}/**/*', recursive=True):
+             r = os.path.relpath(f, root)
+             要 = os.path.isfile(f) and not ('__pycache__' in r or '历史版本' in r or '已淘汰' in r or r.startswith(('演练样本', '发音词典', '新管/')))   # 目录、缓存、历史版本不算程序（不是放行口子：程序一个不漏）
+-            if 要 and (f.endswith(('.py', '.sh')) or r.startswith('githooks/') or r in ('规则表.json', '管道.json')):
++            if 要 and (f.endswith(('.py', '.sh')) or r.startswith('githooks/') or r in ('规则表.json', '确认格式表.json')):
+                 if re.match(r'gen\d+\.py$', os.path.basename(f)): continue   # 各篇 genNN 是数据
+                 fs.append((('新管/' if root == H else '') + r, f))
+     h = {r: hashlib.sha256(open(f, 'rb').read()).hexdigest()[:16] for r, f in sorted(fs)}
+@@ -36,6 +38,22 @@ def 查():
+     if 改: bad.append(f'快测通过后改了 {len(改)} 个程序：{"、".join(改[:8])}{"……" if len(改) > 8 else ""}；先跑快测')
+     return bad
+ 
++def 工作目录():
++    for w in (os.environ.get('XG_WORK'), os.getcwd(), open(记W).read().strip() if os.path.exists(记W) else ''):
++        if w and os.path.exists(f'{w}/make_video.py'): return os.path.abspath(w)
++    return ''
++
++def 自动():
++    b = 查()
++    if not b: return 0
++    W = 工作目录()
++    if not W:
++        print('（提醒：' + '；'.join(b) + '。这里没有出片工作目录，跑不了快测；只提醒，不拦。做.sh / 定稿.sh 会先自动跑快测）'); return 0
++    print('快测印章对不上（' + '；'.join(b)[:200] + '）：自动跑快测（约 5 分钟）')
++    r = subprocess.run(['python3', f'{H}/快测.py'], cwd=W, env={**{k: v for k, v in os.environ.items() if not k.startswith('GIT_')}, 'XG_WORK': W, 'XG_TOOLS': T})
++    return 1 if r.returncode else 0
++
+ if __name__ == '__main__':
+     if '--盖' in sys.argv: 盖(); print('快测印章已盖'); sys.exit(0)
++    if '--自动' in sys.argv: sys.exit(自动())
+     b = 查(); print('\n'.join(b) or '快测印章对得上'); sys.exit(1 if b else 0)
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\233\236\345\275\222\345\237\272\345\207\206_28.json" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\233\236\345\275\222\345\237\272\345\207\206_28.json"
+new file mode 100644
+index 0000000..98c969d
+--- /dev/null
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\233\236\345\275\222\345\237\272\345\207\206_28.json"
+@@ -0,0 +1,79 @@
++{
++"a.wav": "dcf6b32c570eb427efe60e0fa8cb59a6",
++"分段.json": "409156926d4e214adeab480691681d07",
++"画面": [
++"片头 0:e6704947afc97e59",
++"片头 1:e6704947afc97e59",
++"片头 2:e6704947afc97e59",
++"片头 3:e6704947afc97e59",
++"片头 4:d320148ddc059999",
++"片头 5:8d36aef6553c005d",
++"片头 6:4619bd6221b2c0a0",
++"片头 7:114f15e189395aaa",
++"片头 8:c1a38b4b2d80ebbc",
++"片头 9:c4713274263d4f85",
++"片头 10:448c10793c6d3d68",
++"片头 11:4507d0bdd49aef19",
++"片头 12:1bc01efe2588708b",
++"片头 13:24e7f98717135c30",
++"片头 14:7a3c2dfe85011ba8",
++"片头 15:22833b5bcb6e77de",
++"片头 16:d517c815d569e55b",
++"片头 17:80d80c43d83b1880",
++"片头 18:2588d0e4f699b800",
++"片头 19:887cec243433da8b",
++"片头 20:cfe23bf4823d84c4",
++"片头 21:ec6020a9985356a8",
++"片头 22:24ac1c8797027b92",
++"片头 23:e7e53f4abda0a388",
++"片头 24:bdd5c9bc7aa99ab6",
++"片头 25:47c42e4fca8b1807",
++"片头 26:62e43b03e2f38ae9",
++"片头 27:80a019984fc9e179",
++"片头 28:bcda99073c3bac21",
++"片头 29:689544edc18aa54e",
++"片头 30:a03f94eccd5f515b",
++"片头 31:543968f759df23c6",
++"片头 32:45fd2f3de287d486",
++"片头 33:ef95e6e223955b24",
++"片头 34:e16f53b89e84c9e9",
++"片头 35:41cc9bca4709a89c",
++"片头 36:301a11874ad112c7",
++"片头 37:b99ea198c22aa4fb",
++"片头 38:cac6ffc794a9feb3",
++"片头 39:821e76d181b5b7b5",
++"片头 40:51265e55906992f3",
++"片头 41:07de835b59dd3611",
++"片头 42:72802f6dc25cb3e7",
++"片头 43:dfb6d3255cb9bcd0",
++"片头 44:8d20fa58e60f1823",
++"片头 45:02fe366f891a4b03",
++"S1-1:8e004c8da38d970a",
++"S1-2:76e6f9ea19eb77bb",
++"S2-1:16feb41f29c41009",
++"S2-2:71a62c41ecc77092",
++"S3-1:e0542ec3e81d2bed",
++"S3-2:d5e48567bd529e50",
++"S4-1:5949343fd3a39bf1",
++"S4-2:86d84543216ae962",
++"S5-1:ed99b9104483578a",
++"S6-1:b59306ec03a047bf",
++"S7-1:74fefc19dd18b5a2",
++"S7-2:81cb160c34b4d3ee",
++"S8-1:2413a566fee90a4f",
++"S9-1:f0b303ccaa74e927",
++"S9-2:88f23f231df1dfdd",
++"S9-3:0289296e7df7baa7",
++"S10-1:efd2e11aae27fa8a",
++"S11-1:7a4823d13de825dd",
++"S12-1:3e538a284b902333",
++"S13-1:cd46f859a6abc992",
++"S13-2:119260d0804af22c",
++"S14-1:1dbad4f6d869dba2",
++"S14-2:bb3fd6c59d5bcfb8",
++"S15-1:b897763baa51f47d",
++"S15-2:9887ae9f8e209de1",
++"S16-1:ad90cc98efde52b3",
++"S17-1:c4b32f70863c7c44"
++]
++}
+\ No newline at end of file
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\256\232\347\250\277.sh" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\256\232\347\250\277.sh"
+index 579d293..6adc565 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\256\232\347\250\277.sh"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\256\232\347\250\277.sh"
+@@ -12,14 +12,13 @@ step() { echo "== $(date +%H:%M:%S) $1"; }
+ push() { for t in 0 2 4 8 16; do sleep $t; git pull -q --no-rebase --no-edit origin "$1"; git push -q -u origin "$1" && return 0; done; return 1; }
+ exec 9>"$W/.做_$no.lock"; flock -n 9 || stop "第${no}篇已经有一条 做/定稿 在跑"
+ [ -f make_video.py ] && [ -f "scripts/$no.json" ] && [ -d fonts ] || stop "请在出片工作目录下运行（要有 make_video.py、scripts/$no.json、fonts/）"
+-python3 $H/印章.py > "$LOG/印章.log" 2>&1 || { cat "$LOG/印章.log"; stop "快测印章对不上"; }
++XG_WORK=$W python3 $H/印章.py --自动 > "$LOG/印章.log" 2>&1 || { grep -E "✘|不通过" "$LOG/印章.log" | tail -12; stop "快测不通过（有检查坏了，先修好）"; }   # 印章对不上自动跑快测，过了接着做
+ python3 $T/出片指纹.py --核对工作目录 . > /dev/null 2>&1 || { python3 $T/出片指纹.py --拷 . > /dev/null && echo "（工作目录的出片程序比仓库旧，已拷过来，G27）"; } || stop "拷出片程序失败（G27）"
+-python3 $T/方法进化表.py --门 $no || stop "方法进化（G65）：本篇比前三篇中位数变差，方法复盘里还没有查得到的“进化落地：<提交号|G##|K##>”"
+-python3 $T/报坑.py --查 > "$LOG/报坑.log" 2>&1 || { grep "✘" "$LOG/报坑.log"; stop "报坑登记有硬问题（撞号、总表新行没取号，G54）"; }
+-grep -q "超期" "$LOG/报坑.log" && echo "（提醒：有报坑登记超期还没入表，只提醒不拦；用户 2026-10-29：“直接一刀切把它砍掉了”）"
+-python3 $T/放行口子核查.py --定稿 $no || stop "用户还没说定稿（用户原话记进 用户同意记录.json）"
++python3 $T/报坑.py --查 > "$LOG/报坑.log" 2>&1 || echo "（提醒：报坑登记有撞号或总表新行没取号，见 $LOG/报坑.log；只提醒，不拦）"
++grep -q "超期" "$LOG/报坑.log" && echo "（提醒：有报坑登记超期还没入表，只提醒不拦）"
++python3 $T/踩坑核查.py 定稿同意 $no || stop "用户还没说定稿（用户原话记进 用户同意记录.json）"   # 用户本人的决定，照停
+ python3 $T/工作稿核对.py $no || stop "工作目录的脚本是旧稿（G19）"
+-python3 $T/补对照记录.py $no > /dev/null || stop "补对照记录失败"
++python3 $T/补对照记录.py $no > /dev/null || echo "（提醒：补对照记录没补上，只提醒）"
+ [ -f "work_$no/a.wav" ] || { AUDIO_ONLY=1 python3 make_video.py scripts/$no.json $no.mp4 > "$LOG/重建声音.log" 2>&1 || stop "重建声音失败"; }
+ python3 - "$no" "$P/视频/制作记录/${no}_做指纹.json" <<'PY' || stop "成片指纹对不上：定稿的不是用户看过的那一版（数据或声音变了），先 做.sh 出草稿给用户看"
+ import sys, json, hashlib, os
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\277\253\346\265\213.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\277\253\346\265\213.py"
+index bd0d66b..96399e4 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\277\253\346\265\213.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\277\253\346\265\213.py"
+@@ -1,8 +1,8 @@
+ #!/usr/bin/env python3
+-"""快测：改规则、改程序后唯一要过的门（替代 门变异 / 执行效应演练 / 声音演练 / 彩排 的拦人作用）。本地并行，目标 ≤5 分钟。
+-  ① 规则表是最新的（从现有表重新生成，版本一致）；没搬的规则 0 条或有说明
+-  ② 每条搬进新管的规则：它的坏样本必须抓到、好样本必须放过 = 跑它的自检程序（现有 --自检，就是造坏样本、放好样本）
+-     文本/画面/流程类：FAST 快自检（与 规则执行核查 当场自检同一张清单）；声音类：在工作目录用 27 跑各声音核查的 --自检
++"""快测：改规则、改程序后唯一要过的测试（印章对不上时 做.sh、定稿.sh、提交、推送自动跑它）。本地并行，目标 ≤5 分钟。
++  ① 规则表.json（规矩的唯一来源，新规矩 = 一行 + 坏样本 + 好样本）读得出；每条规则的坏样本都有程序跑
++  ② 每条规则：它的坏样本必须抓到、好样本必须放过 = 跑它的自检程序（现有 --自检，就是造坏样本、放好样本）
++     文本/画面/流程类：FAST 快自检；声音类：在工作目录用 27 跑各声音核查的 --自检
+   ③ 挂钩检查（A26/A42）：核查程序挂钩的出片程序原文还在
+   ④ 27 回归：缓存重建，a.wav、分段.json 逐字节同基准；每一屏重画，像素哈希同基准
+ 用法：python3 新管/快测.py [--只文本] [--记基准]
+@@ -22,25 +22,23 @@ def 跑(cmd, cwd, t=900):
+     except subprocess.TimeoutExpired: return 1, f'超时 {t}s', time.time() - t0
+     return r.returncode, (r.stdout + r.stderr).strip(), time.time() - t0
+ 
+-def 看门程序():
+-    import importlib.util
+-    s = importlib.util.spec_from_file_location('生成规则表', f'{H}/生成规则表.py'); m = importlib.util.module_from_spec(s); s.loader.exec_module(m)
+-    return m, set(m.阶段表['看门'])
+-
+-def 规则表新鲜():
+-    m, _ = 看门程序(); 表 = json.load(open(f'{H}/规则表.json'))
+-    r = subprocess.run(['python3', f'{H}/生成规则表.py'], capture_output=True, text=True, env={**env0, 'XG_TOOLS': T})
+-    bad = [l for l in r.stdout.splitlines() if l.strip().startswith('没搬')]
+-    tmp = f'{H}/.规则表.新'; subprocess.run(['python3', f'{H}/生成规则表.py', '--写入', '--到', tmp], capture_output=True, env={**env0, 'XG_TOOLS': T})
+-    新 = json.load(open(tmp)) if os.path.exists(tmp) else {}; os.path.exists(tmp) and os.remove(tmp)
+-    if 新.get('版本') != 表.get('版本'): bad.append(f'规则表.json 不是最新的（{表.get("版本")} → {新.get("版本")}）：python3 新管/生成规则表.py --写入')
++def 规则表():
++    表 = json.load(open(f'{H}/规则表.json')); bad = []
++    for e in 表['规则']:
++        if not e.get('编号') or not e.get('状态'): bad.append(f'规则表一行缺编号或状态：{str(e)[:80]}')
+     return bad, 表
+ 
+-停跑 = {'门变异.py', '用上核查.py', '证据.py', '丝滑.py', '演练镜像.py', '执行效应声音演练.py', '推请求.py', '会话开工.py'}
++# 文本/画面/流程类自检（造坏样本必抓、好样本必放）。2026-10-29 删除旧看门：门变异、用上核查、证据、丝滑、演练、会话开工、推请求、
++# 放行口子扫码、规则执行核查、开工必读/音频首要法则 文档对文档核对 一律删掉（用户：不看视频本身的检查一律砍掉）
++FAST = [['生成文本.py', '--自检'], ['配音缓存核对.py', '--自检'], ['余音删法核对.py', '--自检'], ['确认按位置迁移.py', '--自检'], ['方法进化表.py', '--自检'],
++        ['破折号.py', '--自检'], ['区间作废.py', '--自检'], ['同步自检.py'], ['流程自检.py'], ['踩坑核查.py', '自检'], ['check_all.py', '--自检'], ['钩子/钩子自检.py'],
++        ['排版自检.py'], ['推送自检.py'], ['译文核查.py', '--自检'], ['出片指纹.py', '--自检'], ['结尾句接点.py', '--自检'], ['句内响度.py', '--自检'],
++        ['开工记录.py', '--自检'], ['逐词对齐.py', '--自检'], ['停顿位置精确核对.py', '--自检'], ['响度一致性核对.py', '--确认自检'], ['机器复听.py', '--比较自检'],
++        ['纯人声核对.py', '--确认自检'], ['高亮同步核对.py', '--确认自检'], ['颜色核对.py', '--自检'], ['缓存进仓库核对.py', '--自检'], ['速查表.py'], ['报坑.py', '--自检'],
++        ['意思个数.py'], ['疑点清单.py', '--自检']]
+ 
+-def 文本自检(看门):
+-    import 规则执行核查 as RZ
+-    cmds = [c for c in RZ.FAST if c[0] not in 停跑]   # 只停真正退役的看门程序；放行口子核查、开工必读 的自检仍是 G24/G55 的坏样本
++def 文本自检():
++    cmds = FAST
+     with ThreadPoolExecutor(8) as ex:
+         rs = list(ex.map(lambda c: (c, 跑(['python3', f'{T}/{c[0]}', *c[1:]], T, 300)), cmds))
+     return [f'自检不通过：{" ".join(c)} → {o.splitlines()[-1][:160] if o else "无输出"}' for c, (rc, o, _) in rs if rc], len(cmds)
+@@ -61,13 +59,13 @@ def 声音():
+         bad += [f'{" ".join(c)}（{dt:.0f}s）：{l[:150]}' for l in x]
+     return bad, len(cmds)
+ 
+-def 覆盖(表, 看门):
++def 覆盖(表):
+     """每条搬进新管的规则，至少一个自检程序会被快测跑到（坏样本必抓）"""
+-    import 规则执行核查 as RZ, re
+-    跑到 = {c[0] for c in RZ.FAST if c[0] not in 停跑} | {'交付核查.py', '出片守门自检.py'}
++    import re
++    跑到 = {c[0] for c in FAST} | {'交付核查.py', '出片守门自检.py'}
+     src = open(f'{T}/交付核查.py').read(); 跑到 |= set(re.findall(r"f'\{T\}/([^']+?\.py)'", src))
+     定稿时 = {'定稿视频核对.py'}
+-    没 = [e['编号'] for e in 表 if e['状态'].startswith('搬') and e['自检'] and not ({x[0] for x in e['自检']} & (跑到 | 定稿时 | {'规则执行核查.py'}))]
++    没 = [e['编号'] for e in 表 if e['状态'].startswith('搬') and (not e['自检'] or not ({x[0] for x in e['自检']} & (跑到 | 定稿时 | {'新管/快测.py'})))]
+     return 没
+ 
+ def 常规规则():
+@@ -139,9 +137,32 @@ def 印章坏样本():
+         if r.returncode == 0: return ['印章没抓到：改了 交付核查.py 没重跑快测，印章照样对得上']
+     return []
+ 
++def 程序表():
++    """{相对 工具/ 的路径: 原文}（不含历史版本、各篇 genNN 数据、缓存）"""
++    import re
++    out = {}
++    for f in glob.glob(f'{T}/**/*', recursive=True):
++        r = os.path.relpath(f, T)
++        if not os.path.isfile(f) or '历史版本' in r or '__pycache__' in r or re.search(r'gen\d+\.py$', r): continue
++        if r.endswith(('.py', '.sh')) or r.startswith('githooks/'): out[r] = open(f, errors='ignore').read()
++    return out
++
++def 挂钩检查(files):
++    """A26/A42：核查程序靠出片程序（make_video.py、render.py）的原文挂钩（src.index/split/replace 的那一句），
++    出片程序一改、那一句没了，核查程序就会崩或悄悄失效。逐个查：每个挂钩的原文都必须还在出片程序里。"""
++    import re
++    out = []
++    for f, t in files.items():
++        if f in ('make_video.py', 'render.py') or 'make_video.py' not in t: continue
++        tg = set(re.findall(r"open\([^)]*?([\w\u4e00-\u9fff]+\.(?:py|sh))", t))   # 它用 open() 读进来的那些程序
++        base = ''.join(files[g] for g in files if g != f and os.path.basename(g) in tg)
++        for l in [x for x in t.splitlines() if x.strip() and not x.strip().startswith('#')]:
++            for anc in re.findall(r"""(?:_?src|read\(\))\.(?:index|split|replace)\(\s*(['"])(.+?)\1""", l):
++                if anc[1] not in base: out.append(f'{f} 挂钩的出片程序原文没了：“{anc[1][:40]}”（A26/A42：改出片程序后核查程序要跟着改）')
++    return out
++
+ def 挂钩():
+-    import 规则执行核查 as RZ
+-    return [f'挂钩：{x}' for x in RZ.挂钩检查(RZ.程序表())]
++    return [f'挂钩：{x}' for x in 挂钩检查(程序表())]
+ 
+ def 回归(记):
+     """缓存重建回归篇：只出声音（AUDIO_ONLY，与正式出片同一套程序），比 a.wav、分段.json；每屏重画比像素哈希"""
+@@ -168,17 +189,17 @@ def main():
+     t0 = time.time(); a = sys.argv[1:]; out = []
+     if '--只记基准' in a:   # 基准用旧管（没打补丁的工具）出：回归证明新管和旧管逐字节一致
+         b, cur = 回归(True); print('\n'.join(b) or f'{NO} 基准已记：a.wav {cur["a.wav"][:8]}、分段.json {cur["分段.json"][:8]}、{len(cur["画面"])} 屏（{time.time() - t0:.0f} 秒）'); sys.exit(1 if b else 0)
+-    bad, 表 = 规则表新鲜(); _, 看门 = 看门程序()
+-    规 = 表['规则']; 搬 = sum(1 for e in 规 if e['状态'].startswith('搬')); 替 = sum(1 for e in 规 if e['状态'] == '替代')
+-    out.append(f'① 规则表 {len(规)} 条：搬 {搬}、替代 {替}、没搬 {len(规) - 搬 - 替 - sum(1 for e in 规 if e["状态"].startswith("无门"))}；版本 {表["版本"]}')
+-    没 = 覆盖(规, 看门); bad += [f'规则的坏样本没人跑：{"、".join(没)}'] if 没 else []
++    bad, 表 = 规则表()
++    规 = 表['规则']; 搬 = sum(1 for e in 规 if e['状态'].startswith('搬')); 替 = sum(1 for e in 规 if not e['状态'].startswith('搬'))
++    out.append(f'① 规则表 {len(规)} 条：有坏样本由快测跑的 {搬}、替代或已删 {替}；版本 {表["版本"]}')
++    没 = 覆盖(规); bad += [f'规则的坏样本没人跑：{"、".join(没)}'] if 没 else []
+     out.append(f'①b 坏样本覆盖：{len(规) - len(没)} / {len(规)}' + ('' if not 没 else f'，没覆盖 {没[:10]}'))
+     全 = '--只文本' not in a
+     if 全 and (not W or not os.path.exists(f'{W}/make_video.py')): bad.append('没有出片工作目录（XG_WORK=…/video）：先 bash 视频/工具/环境/准备机器.sh'); 全 = False
+     if 全 and 跑(['python3', f'{T}/出片指纹.py', '--核对工作目录', '.'], W, 60)[0]:   # 机械：工作目录的出片程序比工具旧（切换补丁改了 render.py 等），先拷过来（G27）
+         跑(['python3', f'{T}/出片指纹.py', '--拷', '.'], W, 120); out.append('（工作目录的出片程序比工具旧，已拷过来，G27）')
+     with ThreadPoolExecutor(3) as ex:   # 三路并行：文本快自检、回归、声音（交付核查 + 守门自检）
+-        ft = ex.submit(文本自检, 看门); fr = ex.submit(回归, '--记基准' in a) if 全 else None; fs = ex.submit(声音) if 全 else None
++        ft = ex.submit(文本自检); fr = ex.submit(回归, '--记基准' in a) if 全 else None; fs = ex.submit(声音) if 全 else None
+         b, n = ft.result(); bad += b; out.append(f'② 文本/画面/流程 快自检 {n} 个程序：{"全过" if not b else f"{len(b)} 个不过"}')
+         b = 挂钩(); bad += b; out.append(f'③ 挂钩检查：{"在" if not b else "断了"}')
+         b = 常规规则(); bad += b; out.append(f'③b 常规规则（G35 简述整屏、G65 方法进化 K97）坏样本必抓、好样本必放：{"过" if not b else "不过"}')
+@@ -188,6 +209,8 @@ def main():
+             b, n = fs.result(); bad += b; out.append(f'⑤ 交付核查 出片前/出片后 + 出片守门自检：{"全过" if not b else f"{len(b)} 处不过"}')
+     if not bad and '--只文本' not in a and '--记基准' not in a:
+         subprocess.run(['python3', f'{H}/印章.py', '--盖'], env={**env0, 'XG_TOOLS': T}, capture_output=True)
++        try: open(os.path.expanduser('~/.新管工作目录'), 'w').write(W)   # 提交、推送时 印章.py --自动 在这里跑快测
++        except OSError: pass
+         b = 印章坏样本(); bad += b; out.append('已盖快测印章（程序或规则表再改要重跑）；改程序不重跑必停：' + ('过' if not b else '不过'))
+     print('\n'.join(out + [f'  ✘ {x}' for x in bad] + [f'快测{"通过" if not bad else "不通过"}，用时 {time.time() - t0:.0f} 秒']))
+     sys.exit(1 if bad else 0)
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\347\224\237\346\210\220\345\206\231\347\250\277\351\241\273\347\237\245.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\347\224\237\346\210\220\345\206\231\347\250\277\351\241\273\347\237\245.py"
+index 8be591e..06f5eac 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\347\224\237\346\210\220\345\206\231\347\250\277\351\241\273\347\237\245.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\347\224\237\346\210\220\345\206\231\347\250\277\351\241\273\347\237\245.py"
+@@ -5,8 +5,7 @@ import sys, os, re, json
+ H = os.path.dirname(os.path.abspath(__file__))
+ T = os.environ.get('XG_TOOLS') or (os.path.dirname(H) if os.path.exists(f'{os.path.dirname(H)}/交付核查.py') else f'{os.path.dirname(H)}/视频/工具')
+ 表 = json.load(open(f'{H}/规则表.json')); 规 = {e['编号']: e for e in 表['规则']}
+-reg = json.load(open(f'{T}/规则执行表.json'))
+-人判 = [k for k in 规 if reg.get(k, {}).get('部分靠人') or reg.get(k, {}).get('为什么程序判不了')]
++人判 = ['C3', 'C4', 'G6', 'T7', 'T8', 'T15', 'T21', '单17', '单22', '文14', '文15', '文18', '文35', '流2', '流7', '流17', '流18', '铁9', '音22', '音30']   # 只靠人、机器只能提醒的（2026-10-29 规则执行表删除时定下，新规矩加在这里）
+ # 踩坑核查报“？”的（机器拿不准、要我判、判完写 核对确认 或交用户）
+ 问 = {'T18': '“A, B and C” 是不是三项并列：是就加牛津逗号（脚本、文章同改）；不是写 核对确认.牛津逗号“不是三项并列：……”',
+       'T16': '中文里的数和英文数一致、读法对', 'T24': '口述引语的处理', 'T22': '短语型用法整体标（介词/小品词一起加粗同色，被隔开两段都标）',
+@@ -19,7 +18,7 @@ L = [f'# 写稿须知（规则表 {表["版本"]} 生成，别处不用读）',
+      '2. 在出片工作目录 `bash 视频/工具/新管/做.sh NN`：一路到 1080p、推两仓库、打印一页报告。结果只有三种：通过 / 修了（看报告）/ 疑点（片子照出，疑点表 制作记录/NN_疑点.md 跟着发）。',
+      '   报“停”：照它指的句、词改 genNN 或脚本，再跑一遍（缓存命中，只重做改过的句子）。',
+      '3. 用户说定稿、主会话记下原话后：`bash 视频/工具/新管/定稿.sh NN`（4K、疑点清零、指纹核对、归档、推送）。',
+-     '改了任何程序或规则：先 `python3 视频/工具/新管/快测.py`（约 5 分钟；只改文本规则加 --只文本，30 秒），过了才能提交。', '',
++     '改了任何程序或规则：做.sh、定稿.sh、提交、推送发现快测印章对不上会自动跑快测（约 5 分钟），过了接着做，不过才停；也可先手跑 `python3 视频/工具/新管/快测.py`。', '',
+      '## 写数据时我自己判断的（机器判不了）',
+      '- 重点词中文沿用文章定稿的意思，绝不改意思（铁律）；格式上“的/地/了”放进粗体；顺英文语序排，必须倒的才整组；代词译出；英文没有引号中文不加。',
+      '- 重点词贴合语境（T21/文18）；中文通顺、不为对齐拆碎（T7）；读者看得懂，需要背景的放说明（T8）；冠词/物主/数量词译不译看通顺（文35）。',
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\350\247\204\345\210\231\350\241\250.json" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\350\247\204\345\210\231\350\241\250.json"
+index cc96483..4e7921f 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\350\247\204\345\210\231\350\241\250.json"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\350\247\204\345\210\231\350\241\250.json"
+@@ -1,6 +1,6 @@
+ {
+-"版本": "e371773d9911",
+-"来源": "生成规则表.py 从 规则执行表.json、CLAUDE.md、制作硬性标准与踩坑总结.md 生成",
++"版本": "db67f8c21de0",
++"来源": "生成规则表.py 从 规则执行表.json、CLAUDE.md、制作硬性标准与踩坑总结.md 生成；2026-10-29 删除旧看门后规则表是唯一来源（不再从 规则执行表 生成），新规矩 = 加一行 + 坏样本 + 好样本",
+ "规则": [
+ {
+ "编号": "A1",
+@@ -25,9 +25,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A20句首被吃（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -51,10 +48,6 @@
+ "没抓到：削波（A2）"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A2句间呼吸声（交付核查 出片后）",
+-"执行效应声音演练 A2削波（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -81,9 +74,6 @@
+ "('A3', '20'"
+ ]
+ ],
+-"演练": [
+-"出片守门自检 A3"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -106,9 +96,6 @@
+ "插入 0.25 秒静音"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A4句中硬停（交付核查 出片前）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -139,10 +126,6 @@
+ "if '--自检' in sys.argv"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A9标点停顿加长（交付核查 出片前）",
+-"执行效应声音演练 A20句首被吃（交付核查 出片后）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -173,9 +156,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A21剪句尾辅音（交付核查 出片前）"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -203,9 +183,6 @@
+ "('A7', '20'"
+ ]
+ ],
+-"演练": [
+-"出片守门自检 A7"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -232,9 +209,6 @@
+ "没抓到：一段突然变轻（A8"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A8一句变轻（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片内",
+ "出片后"
+@@ -266,10 +240,6 @@
+ "A19 自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A9标点停顿加长（交付核查 出片前）",
+-"执行效应声音演练 A9停顿落在词里（交付核查 出片前）"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -305,10 +275,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A9标点停顿加长（交付核查 出片前）",
+-"出片守门自检 A10"
+-],
+ "阶段": [
+ "出片内",
+ "出片后",
+@@ -333,9 +299,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A13独立复核剪句尾（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -358,9 +321,6 @@
+ "数字读法、引号自检（A11"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A11年份读法（交付核查 出片前）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -391,9 +351,6 @@
+ "('A15', '04'"
+ ]
+ ],
+-"演练": [
+-"出片守门自检 A12"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -417,9 +374,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A13独立复核剪句尾（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -442,9 +396,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A13独立复核剪句尾（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -471,9 +422,6 @@
+ "('A15', '04'"
+ ]
+ ],
+-"演练": [
+-"出片守门自检 A15"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -497,9 +445,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A13独立复核剪句尾（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -522,9 +467,6 @@
+ "数字读法、引号自检（A11"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A17引号（交付核查 出片前）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -547,9 +489,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A13独立复核剪句尾（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -580,9 +519,6 @@
+ "纯人声核对 自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A2句间呼吸声（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -614,9 +550,6 @@
+ "句首句尾核对 自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A20句首被吃（交付核查 出片后）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -639,10 +572,6 @@
+ "词尾辅音核对 自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A21剪句尾辅音（交付核查 出片前）",
+-"执行效应声音演练 A21标题标点（交付核查 出片前）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -665,9 +594,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A13独立复核剪句尾（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -694,9 +620,6 @@
+ "读音核对 自检："
+ ]
+ ],
+-"演练": [
+-"执行效应演练 A23Inky"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -724,9 +647,6 @@
+ "读音核对 自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A24多音词（交付核查 出片前）"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -750,11 +670,6 @@
+ "('A25', '07'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 A25一次发两个（钩子）",
+-"执行效应演练 A25没过核查就发（钩子）",
+-"出片守门自检 A25"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -767,23 +682,20 @@
+ "摘要": "07 第二版出片时，出片程序改了（结尾句两遍合成、Inky 处淡入淡出），好几个核查程序跟不上：疑点清单/逐段看声音/可",
+ "门": [
+ [
+-"规则执行核查.py",
++"新管/快测.py",
+ "def 挂钩检查(files):"
+ ]
+ ],
+ "自检": [
+ [
+-"规则执行核查.py",
+-"没抓到：核查程序挂钩的出片程序原文被改掉（A26/A42）"
++"新管/快测.py",
++"def 挂钩检查(files):"
+ ],
+ [
+ "出片守门自检.py",
+ "('原样', '20'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 A26挂钩原文没了（仓库镜像）"
+-],
+ "阶段": [
+ "看门"
+ ],
+@@ -808,9 +720,6 @@
+ "('A27', '02'"
+ ]
+ ],
+-"演练": [
+-"出片守门自检 A27"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -837,9 +746,6 @@
+ "('A28', '04'"
+ ]
+ ],
+-"演练": [
+-"出片守门自检 A28"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -863,9 +769,6 @@
+ "自检前提不成立：原片已有报警"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A8一句变轻（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -888,9 +791,6 @@
+ "('A30', '20'"
+ ]
+ ],
+-"演练": [
+-"出片守门自检 A30"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -913,9 +813,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A13独立复核剪句尾（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -942,9 +839,6 @@
+ "('A32', '10'"
+ ]
+ ],
+-"演练": [
+-"出片守门自检 A32"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -968,9 +862,6 @@
+ "('A33', '10'"
+ ]
+ ],
+-"演练": [
+-"出片守门自检 A33"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -993,9 +884,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A13独立复核剪句尾（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -1018,9 +906,6 @@
+ "读音核对 自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A24多音词（交付核查 出片前）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -1047,9 +932,6 @@
+ "没抓到：复合词读音、所有格 s（A36）"
+ ]
+ ],
+-"演练": [
+-"出片守门自检.py（隔离工作区真跑 make_video.py）"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -1081,9 +963,6 @@
+ "数字读法、引号自检（A11"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A37时刻读法（交付核查 出片前）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -1106,9 +985,6 @@
+ "词尾辅音核对 自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A21剪句尾辅音（交付核查 出片前）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -1135,9 +1011,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"出片守门自检 A39"
+-],
+ "阶段": [
+ "出片内",
+ "出片后"
+@@ -1165,9 +1038,6 @@
+ "词尾辅音核对 自检："
+ ]
+ ],
+-"演练": [
+-"出片守门自检 A40"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -1191,9 +1061,6 @@
+ "词尾辅音核对 自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A21剪句尾辅音（交付核查 出片前）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -1212,10 +1079,6 @@
+ [
+ "交付核查.py",
+ "停顿位置核对（A9/A15"
+-],
+-[
+-"规则执行核查.py",
+-"def 挂钩检查(files):"
+ ]
+ ],
+ "自检": [
+@@ -1224,9 +1087,6 @@
+ "('A42', '19'"
+ ]
+ ],
+-"演练": [
+-"出片守门自检 A42"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -1259,9 +1119,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A21剪句尾辅音（交付核查 出片前）"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -1285,9 +1142,6 @@
+ "('A30', '20'"
+ ]
+ ],
+-"演练": [
+-"出片守门自检.py（隔离工作区真跑 make_video.py）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -1318,9 +1172,6 @@
+ "fails += _QJ.自检()"
+ ]
+ ],
+-"演练": [
+-"出片守门自检 A45"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -1334,23 +1185,11 @@
+ "摘要": "2026-10-27（K55）改门 门变异：执行效应声音演练 原样那一场只当基线做差、本身不判对错。核查程序自己的自检在",
+ "门": [
+ [
+-"执行效应声音演练.py",
+-"没造坑的原样稿 {k[0]} 里核查程序自检失灵"
+-],
+-[
+ "响度一致性核对.py",
+ "原样和改过的都先写成同样的 wav 再量"
+ ]
+ ],
+-"自检": [
+-[
+-"执行效应声音演练.py",
+-"拆掉 audio_qc 削波门后原样稿没报自检失灵：原样自检失灵"
+-]
+-],
+-"演练": [
+-"执行效应声音演练 自查拆门_原样自检（K55：镜像里拆 audio_qc 削波门，原样稿必须报自检失灵）+ 原样自检 每场"
+-],
++"自检": [],
+ "阶段": [
+ "出片后"
+ ],
+@@ -1374,10 +1213,6 @@
+ "没抓到：没经同意就部署（C1/C2/流16）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 C1强推master（钩子）",
+-"执行效应演练 C2部署（钩子）"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -1400,10 +1235,6 @@
+ "没抓到：推 master（C1/C2）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 C1强推master（钩子）",
+-"执行效应演练 C2部署（钩子）"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -1434,11 +1265,6 @@
+ "没抓到：25 起 G6/C3/C4 没按固定格式写（本篇无/本篇有）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G6固定格式25（仓库镜像）",
+-"执行效应演练 C4固定格式25（仓库镜像）",
+-"执行效应演练 G6套话（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -1469,11 +1295,6 @@
+ "没抓到：25 起 G6/C3/C4 没按固定格式写（本篇无/本篇有）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G6固定格式25（仓库镜像）",
+-"执行效应演练 C4固定格式25（仓库镜像）",
+-"执行效应演练 G6套话（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -1499,14 +1320,6 @@
+ ],
+ [
+ "踩坑核查.py",
+-"[T29]"
+-],
+-[
+-"钩子/闸门.py",
+-"【方法进化闸门】"
+-],
+-[
+-"踩坑核查.py",
+ "[T31]"
+ ]
+ ],
+@@ -1525,20 +1338,9 @@
+ ],
+ [
+ "踩坑核查.py",
+-"没抓到：制作记录没写方法复盘（T29）"
+-],
+-[
+-"钩子/钩子自检.py",
+-"没抓到：改了工具没写方法升级记录（守则12）"
+-],
+-[
+-"踩坑核查.py",
+ "没抓到：制作记录没写方法设计（T31）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 C5派子代理（钩子）"
+-],
+ "阶段": [
+ "文本",
+ "行为闸门"
+@@ -1562,9 +1364,6 @@
+ "造('英文混入换行标记','D1'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 D1换行标记"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -1587,9 +1386,6 @@
+ "造('中文与分组拼接不一致','D2'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 D2对不上"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -1612,9 +1408,6 @@
+ "造('英文与文章原文不一致','D3'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 D3改英文"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -1637,9 +1430,6 @@
+ "造('重点词缺中文标记','D4'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 D4缺标记"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -1662,9 +1452,6 @@
+ "判('D5 注解只显示不朗读'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 D5排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -1687,9 +1474,6 @@
+ "判('D6 格内分行与彩色说明'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 D6排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -1712,9 +1496,6 @@
+ "没抓到：超过 100MB 的文件（G1）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -1737,9 +1518,6 @@
+ "没抓到：云端与本地不一致（G2）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -1762,9 +1540,6 @@
+ "没抓到：要提交的路径不存在却说已推送（G3）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -1787,9 +1562,6 @@
+ "没抓到：中文文件名没同步（G4）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -1812,9 +1584,6 @@
+ "没抓到：两边 视频/ 文件不一致（守则3）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -1845,10 +1614,6 @@
+ "没抓到：25 起 G6/C3/C4 没按固定格式写（本篇无/本篇有）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G6固定格式25（仓库镜像）",
+-"执行效应演练 G6套话（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -1871,9 +1636,6 @@
+ "'没抓到：已定稿篇目的草稿没删（G7）'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G7定稿篇目草稿没删（仓库镜像）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -1900,9 +1662,6 @@
+ "没抓到：有没推送的改动就收工（守则3）"
+ ]
+ ],
+-"演练": [
+-"同 守则3"
+-],
+ "阶段": [
+ "定稿",
+ "行为闸门"
+@@ -1916,7 +1675,7 @@
+ "摘要": "2026-10-10 用户定为铁律：最终存的视频必须是我们最后做好的版本，千万不能是老视频。隐患：定稿归档后用户又改了脚",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "定稿视频核对"
+ ],
+ [
+@@ -1930,10 +1689,6 @@
+ "自检样本找不到"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G9存的不是最终版（仓库镜像）",
+-"执行效应演练 G9旧标题旧版本（仓库镜像）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -1946,7 +1701,7 @@
+ "摘要": "2026-10-10 第09篇第二轮出 4K：第一次用 & 在一条命令里启动定稿流水线，查进程时 pgrep 认不出中文",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "已经有一条定稿流水线在跑"
+ ],
+ [
+@@ -1964,9 +1719,6 @@
+ "pgrep 认不出中文路径（G10）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G10中文pkill（钩子）"
+-],
+ "阶段": [
+ "定稿",
+ "行为闸门"
+@@ -1990,9 +1742,6 @@
+ "没抓到：CLAUDE.md 没以 postgraduate-vocabulary 为准（G11）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -2015,9 +1764,6 @@
+ "成片有画面 自检（G12"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 G12只有声音（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -2030,10 +1776,6 @@
+ "摘要": "规矩只写在文档里、没接进程序，一再重犯：同根不算撞车说过多次，文档五处反倒写着“含同根”；A22、G12 只在旧总表或制",
+ "门": [
+ [
+-"规则执行核查.py",
+-"def 核查("
+-],
+-[
+ "githooks/pre-commit",
+ "规则执行核查.py"
+ ],
+@@ -2044,18 +1786,10 @@
+ ],
+ "自检": [
+ [
+-"规则执行核查.py",
+-"bad('新坑没登记'"
+-],
+-[
+ "钩子/钩子自检.py",
+ "跳过提交前核查"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G13跳过钩子（钩子）",
+-"执行效应演练 G13改钩子路径（钩子）"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -2066,21 +1800,8 @@
+ {
+ "编号": "G14",
+ "摘要": "2026-10-23 新装的 Claude 钩子指向 literate-enigma 里还没同步过去的闸门程序，pyth",
+-"门": [
+-[
+-"规则执行核查.py",
+-"钩子会锁死：钩子命令没有"
+-]
+-],
+-"自检": [
+-[
+-"规则执行核查.py",
+-"没抓到：钩子会锁死（G14）"
+-]
+-],
+-"演练": [
+-"执行效应演练 G14钩子会锁死（仓库镜像）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -2104,9 +1825,6 @@
+ "误拦：heredoc 里的文字（G15）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G15heredoc里的字不误拦（钩子）"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -2129,9 +1847,6 @@
+ "没抓到：推送锁死锁（G16"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -2144,7 +1859,7 @@
+ "摘要": "2026-10-23 12、14 两篇定稿流水线同时跑到 ⑥（排队循环用 pgrep 中文认不出，见 G10），两边的镜",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "# G17：提交、镜像同步、推送与 推送两仓库.sh 同一把锁"
+ ]
+ ],
+@@ -2154,7 +1869,6 @@
+ "没抓到：⑥ 不占推送锁（G17）"
+ ]
+ ],
+-"演练": [],
+ "阶段": [
+ "定稿"
+ ],
+@@ -2177,9 +1891,6 @@
+ "原稿重点词.json 缺了或是空的"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G18原稿重点词空（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -2196,7 +1907,7 @@
+ "比仓库 视频/脚本/"
+ ],
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "工作稿核对.py $no"
+ ]
+ ],
+@@ -2206,9 +1917,6 @@
+ "没抓到：工作目录脚本比仓库旧（G19）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G19工作稿是旧稿（仓库镜像）"
+-],
+ "阶段": [
+ "定稿",
+ "文本"
+@@ -2232,9 +1940,6 @@
+ "没抓到：最终版4K视频、新版定稿 没镜像过去（G20）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -2247,7 +1952,7 @@
+ "摘要": "2026-10-23 一天里三次（15、17 两次）：我刚往踩坑总表加了新坑（G17–G19、T33、G20），正在跑的",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "补对照记录.py $no"
+ ],
+ [
+@@ -2269,9 +1974,6 @@
+ "没抓到：程序把关的新坑没自动补进对照记录"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G21程序把关的坑自动补（仓库镜像）"
+-],
+ "阶段": [
+ "定稿",
+ "文本"
+@@ -2303,9 +2005,6 @@
+ "没抓到：改了已定稿篇目的脚本没提醒重出 4K（G22）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G22改了定稿脚本要提醒（仓库镜像）"
+-],
+ "阶段": [
+ "定稿",
+ "文本"
+@@ -2329,9 +2028,6 @@
+ "没抓到：开工记录.py 覆盖了已有的"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G23开工记录不覆盖（仓库镜像）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -2348,25 +2044,20 @@
+ "err += _KZ.查篇(d, no)"
+ ],
+ [
+-"放行口子核查.py",
++"踩坑核查.py",
+ "def 没登记("
+ ]
+ ],
+ "自检": [
+ [
+-"放行口子核查.py",
++"踩坑核查.py",
+ "没抓到：牛津逗号“英式写法、不改”（T35 重放）"
+ ],
+ [
+-"放行口子核查.py",
++"踩坑核查.py",
+ "没抓到：代码里没登记的新口子"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G24特批无原话",
+-"执行效应演练 G24非人声放宽",
+-"执行效应演练 G24引号无原话"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -2377,33 +2068,8 @@
+ {
+ "编号": "G25",
+ "摘要": "2026-10-24 24 改稿会话：25 条 13 分钟改完、文本门全过，之后 25 分钟以上耗在演练上（用户：“为什",
+-"门": [
+-[
+-"执行效应演练.py",
+-"e = 镜.查读现稿() + 镜.查样本()"
+-],
+-[
+-"执行效应声音演练.py",
+-"e = Y.查读现稿() + Y.查样本()"
+-],
+-[
+-"演练镜像.py",
+-"def 查读现稿("
+-]
+-],
+-"自检": [
+-[
+-"演练镜像.py",
+-"没抓到：演练程序读现稿"
+-],
+-[
+-"演练镜像.py",
+-"误报：追加一条同意记录，演练印章就失效"
+-]
+-],
+-"演练": [
+-"执行效应演练 G25演练读现稿（仓库镜像）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -2435,9 +2101,6 @@
+ "造('旧视频配新脚本'"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 G26旧视频配新脚本（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片内",
+ "出片后"
+@@ -2451,7 +2114,7 @@
+ "摘要": "2026-10-24 24 第三稿：L20 新加的 对正量.py 没进 准备机器.sh、草稿流程〇 的拷贝清单，新容器第",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "出片指纹.py --核对工作目录"
+ ],
+ [
+@@ -2469,9 +2132,6 @@
+ "没抓到：工作目录缺一个出片模块"
+ ]
+ ],
+-"演练": [
+-"出片指纹.py --自检（临时工具目录新加被 import 的模块必进清单、工作目录缺模块必停；定稿流水线、两个演练入口真跑 --核对工作目录）"
+-],
+ "阶段": [
+ "出片后",
+ "定稿"
+@@ -2485,19 +2145,16 @@
+ "摘要": "2026-10-24 24：14:17 用户说定稿（记进用户同意记录），14:18 用户说暂停、先核查（记了撤回），定稿",
+ "门": [
+ [
+-"放行口子核查.py",
++"踩坑核查.py",
+ "'撤回' not in rs[-1]"
+ ]
+ ],
+ "自检": [
+ [
+-"放行口子核查.py",
++"踩坑核查.py",
+ "没抓到：定稿后又撤回"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G28定稿后撤回（仓库镜像）"
+-],
+ "阶段": [
+ "看门"
+ ],
+@@ -2509,25 +2166,8 @@
+ {
+ "编号": "G29",
+ "摘要": "2026-10-24 声音演练合成的配音缓存，被 make_video 按写死的 _REPO_CACHE 拷进 post",
+-"门": [
+-[
+-"执行效应声音演练.py",
+-"left = Y.清新缓存(c0)"
+-],
+-[
+-"演练镜像.py",
+-"def 清新缓存("
+-]
+-],
+-"自检": [
+-[
+-"演练镜像.py",
+-"没清掉：演练在另一个仓库留下的配音缓存"
+-]
+-],
+-"演练": [
+-"执行效应声音演练（结束核对两个仓库的配音缓存，留下就报；演练镜像 --自检 造坑）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -2555,10 +2195,6 @@
+ "误报：25 起守则17 不出 Word"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G30不出Word不误停（仓库镜像）",
+-"执行效应演练 G30缺docx仍停23（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -2581,9 +2217,6 @@
+ "没抓到：重跑接点 --写入 把“前段增益dB”冲掉了"
+ ]
+ ],
+-"演练": [
+-"结尾句接点.py --自检（--写入 用的同一个 合并()：写了前段增益dB 再跑接点，增益必须还在）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -2604,7 +2237,7 @@
+ "int(no)<T12全篇_起 and not 全: continue"
+ ],
+ [
+-"放行口子核查.py",
++"踩坑核查.py",
+ "add('跳过', f'{os.path.basename(f)}:{m.group(1).strip()}', f)"
+ ]
+ ],
+@@ -2614,13 +2247,10 @@
+ "没抓到：没做视频的第30篇加粗过的词"
+ ],
+ [
+-"放行口子核查.py",
++"踩坑核查.py",
+ "'假程序.py:js_'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T12全篇撞车（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -2647,9 +2277,6 @@
+ "撞车判断错："
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T12全篇撞车（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -2676,9 +2303,6 @@
+ "没抓到：本篇原有重点词撞车，制作记录没有“## 撞车提醒”"
+ ]
+ ],
+-"演练": [
+-"check_all.py --自检（临时仓库真跑 查提醒/写提醒：原稿撞车词没写进制作记录必停、漏词必停、写了放行；踩坑核查 25 起每次跑 查提醒）"
+-],
+ "阶段": [
+ "定稿",
+ "文本"
+@@ -2714,9 +2338,6 @@
+ "L19 放宽特批上限（无特批放宽仍停"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G35排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内",
+ "文本"
+@@ -2748,10 +2369,6 @@
+ "没抓到：第 3 段轻 4 dB"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 G36句内一段变轻（交付核查 出片后）",
+-"出片守门自检 G36"
+-],
+ "阶段": [
+ "出片内",
+ "出片后"
+@@ -2783,9 +2400,6 @@
+ "G37 放右侧只在字号更大时才用"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G37排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -2816,9 +2430,6 @@
+ "没抓到：短语（glacier on）和别篇单词"
+ ]
+ ],
+-"演练": [
+-"check_all.py --自检（N：T22 扩成的短语仍算原有、不当新加；短语拆实词比，短语对单词漏报必停）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -2841,9 +2452,6 @@
+ "没抓到：方法设计是空模板"
+ ]
+ ],
+-"演练": [
+-"踩坑核查.py 自检（G39：方法设计空模板必报、写全的不报；踩坑核查 NN 出片每次先跑自检）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -2874,9 +2482,6 @@
+ "没抓到：25 偏轻 8.5 dB"
+ ]
+ ],
+-"演练": [
+-"停顿位置精确核对.py --自检 + 响度一致性核对.py --确认自检（25 起离后词为负没用插入点的停顿位置确认、超过 7.1 dB 的响度骤降确认必须不收；规则执行核查当场跑）"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -2900,9 +2505,6 @@
+ "没抓到：造了“{k}”，体检没报"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 G41体检咔哒（交付核查 出片后）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -2925,10 +2527,6 @@
+ "最长一段中间七成声音被吞掉，没报"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 G42机器复听吞词（交付核查 出片后）",
+-"执行效应声音演练 G42只有parakeet抓到（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -2955,9 +2553,6 @@
+ "没抓到：25 实测像可闻吸气"
+ ]
+ ],
+-"演练": [
+-"纯人声核对.py --确认自检（25 起像可闻吸气的非人声确认必拒、没有实测或实测对不上必拒；重放 25 S10；规则执行核查当场跑）"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -2969,21 +2564,8 @@
+ {
+ "编号": "G44",
+ "摘要": "2026-10-25 主会话：在没装视频环境的容器里 规则执行核查 失败（“自检不通过：机器复听.py --比较自检”）",
+-"门": [
+-[
+-"规则执行核查.py",
+-"当场自检的程序顶层导入重库"
+-]
+-],
+-"自检": [
+-[
+-"规则执行核查.py",
+-"没抓到：自检程序经本地模块顶层导入 scipy"
+-]
+-],
+-"演练": [
+-"规则执行核查.py 重依赖自检（经本地模块顶层导入 scipy 必报、try 里和函数里不报；规则执行核查每次跑；旧版 机器复听.py 实测报出）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -3007,9 +2589,6 @@
+ "没抓到：确认写的“开始读”落在一个音的中间"
+ ]
+ ],
+-"演练": [
+-"高亮同步核对.py --确认自检（25 起高亮确认的“开始读”落在音中间、静音里必拒；规则执行核查当场跑）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -3040,9 +2619,6 @@
+ "没抓到：重跑 --写提醒 冲掉了方法设计"
+ ]
+ ],
+-"演练": [
+-"开工记录.py --自检（临时仓库真跑 开工记录 和 check_all --写提醒：已有方法设计一字不变；改回先清空再读必报）"
+-],
+ "阶段": [
+ "定稿",
+ "文本"
+@@ -3070,9 +2646,6 @@
+ "没抓到：26 S14 “something rolling downhill” 合在一组没拆"
+ ]
+ ],
+-"演练": [
+-"逐词对齐.py --自检（重放 26 S14 something rolling downhill 合组必停；踩坑核查 26 起每次调 逐词对齐.查）"
+-],
+ "阶段": [
+ "声音",
+ "文本"
+@@ -3096,9 +2669,6 @@
+ "('brought in','brought back',None)"
+ ]
+ ],
+-"演练": [
+-"check_all.py --自检（G48：短语对短语小品词不同不报 bring in↔bring back，hinge on↔hinged on 必报）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -3129,9 +2699,6 @@
+ "没抓到：26 S10 ripened into（珊瑚红）↔rapidly（琥珀黄）相邻颜色太像"
+ ]
+ ],
+-"演练": [
+-"颜色核对.py --自检（重放 26 S10 珊瑚红↔琥珀黄相邻必停；出片程序、踩坑核查 25 起都调 同屏色差）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -3158,9 +2725,6 @@
+ "没抓到：造的“假抽屏.py 自己轮流取色”"
+ ]
+ ],
+-"演练": [
+-"颜色核对.py --自检（G50：扫工具目录，自己算颜色不用共用分色的必停；造假抽屏必报）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -3181,7 +2745,7 @@
+ "用到的缓存没进仓库（G51）"
+ ],
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "python3 $T/缓存进仓库核对.py $no"
+ ]
+ ],
+@@ -3191,9 +2755,6 @@
+ "没抓到：用到的调平缓存不在 git 里"
+ ]
+ ],
+-"演练": [
+-"出片守门自检 G51"
+-],
+ "阶段": [
+ "出片内",
+ "定稿"
+@@ -3221,9 +2782,6 @@
+ "没抓到：速查表一行只有“本文：”"
+ ]
+ ],
+-"演练": [
+-"速查表.py 自检 + check_all.py --自检 S4（速查表只有“本文：”必报；sync_article 用同一个判断，写完缺就停在定稿流水线 ④）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -3250,9 +2808,6 @@
+ "没抓到：27 S16 接点应在吸气前"
+ ]
+ ],
+-"演练": [
+-"结尾句接点.py --自检（27 S16：估的词尾晚 0.4 秒、吸气前有长静音，接点必须落在出片程序要删的那段里；规则执行核查当场跑）"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -3274,12 +2829,8 @@
+ "hard.append(f'预留编号撞号"
+ ],
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "报坑.py --查 --严"
+-],
+-[
+-"规则执行核查.py",
+-"_BK.判(std, _BK.读本地())"
+ ]
+ ],
+ "自检": [
+@@ -3292,9 +2843,6 @@
+ "没抓到：登记超过 24 小时没进总表"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G54报坑超期（仓库镜像）"
+-],
+ "阶段": [
+ "定稿",
+ "行为闸门"
+@@ -3306,39 +2854,14 @@
+ {
+ "编号": "G55",
+ "摘要": "2026-10-26 用户：“一定要有一个机制，绝对的机制去保证我们踩过的这个坑，绝对不能再犯……比如说这个尽可能的单词",
+-"门": [
+-[
+-"开工必读.py",
+-"print('【停止】视频/开工必读.md 与现行规矩"
+-],
+-[
+-"踩坑核查.py",
+-"return record_gate_text(txt, no, stage) + _KB.查记录(txt, no)"
+-],
+-[
+-"开工必读.py",
+-"err.append(f'[开工必读] 指南新加了条目"
+-]
+-],
+-"自检": [
+-[
+-"开工必读.py",
+-"没抓到：踩坑总表删掉"
+-],
+-[
+-"开工必读.py",
+-"没抓到：指南新加了条目、对照记录读的是旧版"
+-]
+-],
+-"演练": [
+-"执行效应演练 G55做事对照没写（仓库镜像）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "文本"
+ ],
+ "级别": "错",
+ "修法": "",
+-"状态": "搬：文本"
++"状态": "替代：删除旧看门（2026-10-29 用户：不是质量问题不卡）：开工必读、做事对照记录检查已删；踩过的坑由规则表各行的坏样本防"
+ },
+ {
+ "编号": "G56",
+@@ -3355,9 +2878,6 @@
+ "'some 3,000 kilometres away', 'some 3000 kilometers away'"
+ ]
+ ],
+-"演练": [
+-"机器复听.py --比较自检（27 S4 kilometres/kilometers、S14 40%/per cent 必须不报，漏词读错照报；规则执行核查当场跑）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -3384,9 +2904,6 @@
+ "'G57', '20', '合成标点把字母也改了'"
+ ]
+ ],
+-"演练": [
+-"出片守门自检 G57"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -3413,9 +2930,6 @@
+ "没抓到：工作流改了白名单外的文件没停（G58）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -3446,11 +2960,6 @@
+ "没抓到：绕提交钩子"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G59临时改钩子路径（钩子）",
+-"执行效应演练 G59GIT环境变量（钩子）",
+-"执行效应演练 G59删钩子（钩子）"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -3463,36 +2972,15 @@
+ "摘要": "2026-10-26 用户：“我们要求已经去执行的这些机制一定要跑起来……必须必须必须得跑起来”“严格按照我们要求的这个",
+ "门": [
+ [
+-"证据.py",
+-"err.append(f'[G60] 第{no}篇{阶段}要先有"
+-],
+-[
+ "交付核查.py",
+ "_ze = _ZJ.查(no, stage)"
+ ],
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "python3 $T/证据.py --查 $no 定稿"
+-],
+-[
+-"规则执行核查.py",
+-"gl += _ZJ.清单问题()"
+-]
+-],
+-"自检": [
+-[
+-"证据.py",
+-"没抓到：少了文本门"
+-],
+-[
+-"证据.py",
+-"没抓到：草稿声音.sh 加了新程序没进机制清单"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G60手写证据（钩子）",
+-"执行效应演练 G60证据链不全（仓库镜像）"
+-],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -3506,10 +2994,6 @@
+ "摘要": "2026-10-26 用户：“一定要坚决按照指令去执行的机制……就怕就是我们已经从头到尾设计好的东西又不用了，又去乱发挥",
+ "门": [
+ [
+-"会话开工.py",
+-"return [f'【G61 会话角色闸门】"
+-],
+-[
+ "githooks/pre-commit",
+ "会话开工.py\" --提交前"
+ ],
+@@ -3518,15 +3002,7 @@
+ "if r.get('角色') in ('出稿', '改稿') and _HK.门程序(rel):"
+ ]
+ ],
+-"自检": [
+-[
+-"会话开工.py",
+-"没抓到：出稿会话提交改门程序"
+-]
+-],
+-"演练": [
+-"执行效应演练 G61出稿会话改门程序（钩子）"
+-],
++"自检": [],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -3538,29 +3014,8 @@
+ {
+ "编号": "G62",
+ "摘要": "2026-10-26 用户：“他首先第一件事要知道这个做视频的流程，第一步该干嘛？第二步该干嘛？……一定要去严格按照这个",
+-"门": [
+-[
+-"开工必读.py",
+-"L += 机制节() + 步骤节(reg)"
+-],
+-[
+-"开工必读.py",
+-"print('【停止】视频/开工必读.md 与现行规矩"
+-],
+-[
+-"规则执行核查.py",
+-"gl.append('视频/开工必读.md 与现行规矩、步骤表对不上"
+-]
+-],
+-"自检": [
+-[
+-"开工必读.py",
+-"没抓到：定稿流水线加了一步，步骤表没变"
+-]
+-],
+-"演练": [
+-"执行效应演练 G62步骤表没跟（仓库镜像）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -3574,10 +3029,6 @@
+ "摘要": "2026-10-26 用户：“会话开始之前第一件事应该先去知道先去做什么……虹吸效应，进化方法……一个token，一定要",
+ "门": [
+ [
+-"会话开工.py",
+-"return ['【G63 会话开工】本会话还没开工"
+-],
+-[
+ "githooks/pre-commit",
+ "会话开工.py\" --提交前"
+ ],
+@@ -3586,19 +3037,7 @@
+ "会话开工.py --状态"
+ ]
+ ],
+-"自检": [
+-[
+-"会话开工.py",
+-"没抓到：没开工就提交"
+-],
+-[
+-"会话开工.py",
+-"没抓到：开工必读更新了没重读"
+-]
+-],
+-"演练": [
+-"执行效应演练 G63没开工就提交（仓库镜像）"
+-],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -3618,10 +3057,6 @@
+ [
+ "报坑.py",
+ "if 自检残留(r): hard.append("
+-],
+-[
+-"规则执行核查.py",
+-"env={k: v for k, v in os.environ.items() if not k.startswith('GIT_')})   # K23"
+ ]
+ ],
+ "自检": [
+@@ -3634,9 +3069,6 @@
+ "没抓到：自检造的预留进了真登记（K23）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G64自检指向真origin（仓库镜像）"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -3653,7 +3085,7 @@
+ "【G65 方法进化】"
+ ],
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "方法进化表.py --门"
+ ],
+ [
+@@ -3683,9 +3115,6 @@
+ "没抓到：改稿会话上下文 500k 超限"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G65进化变差没落地（仓库镜像）"
+-],
+ "阶段": [
+ "声音",
+ "定稿"
+@@ -3703,10 +3132,6 @@
+ "if 锁有效(L, now) and L['会话'] == 会话: return []"
+ ],
+ [
+-"会话开工.py",
+-"err += K.锁问题(门, (读记录() or {}).get('会话', ''), L)"
+-],
+-[
+ "推送两仓库.sh",
+ "报坑.py --放锁 --静默"
+ ]
+@@ -3721,9 +3146,6 @@
+ "没抓到：没持锁的会话改门程序（G66）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G66没持锁改门（仓库镜像）"
+-],
+ "阶段": [
+ "定稿",
+ "行为闸门"
+@@ -3747,9 +3169,6 @@
+ "没抓到：主仓库推送删了别的会话放在镜像里的请求（K24）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -3772,9 +3191,6 @@
+ "最长一段中间七成声音被吞掉，没报"
+ ]
+ ],
+-"演练": [
+-"机器复听.py --带自检（K25：吞这一句最长一段的中间七成，whisper 补不回；27、25 实测必报；交付核查 出片后每次跑）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -3801,9 +3217,6 @@
+ "没抓到：换回旧删法（从第一个 -55 dB 帧起删），余音自检没报"
+ ]
+ ],
+-"演练": [
+-"余音删法核对.py --自检（K27：27 S6 余音必留、停顿底噪照删；换回旧删法、拆掉调用必报；规则执行核查当场跑）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -3826,9 +3239,6 @@
+ "误删：27 S12 词头浊音确认 w 4.205–4.240"
+ ]
+ ],
+-"演练": [
+-"确认按位置迁移.py --自检（K28：27 S12 边上重叠 1 ms 必迁，整段在区间里、盖住短区间必不迁；规则执行核查当场跑）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -3841,15 +3251,11 @@
+ "摘要": "2026-10-26 用户：“一定要有一个确保执行机制，一定要有一个绝对的，绝对的确保执行机制，而且要严格执行……不要说",
+ "门": [
+ [
+-"证据.py",
+-"[G71] 机制“"
+-],
+-[
+ "开工记录.py",
+ "_ZJ0.闲置问题()"
+ ],
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "证据.py --闲置"
+ ],
+ [
+@@ -3857,35 +3263,16 @@
+ "证据.py --闲置 --提醒"
+ ],
+ [
+-"规则执行核查.py",
+-"_ZJ.闲置问题()"
+-],
+-[
+ "方法进化表.py",
+ "机制报告(no, 行, rows)"
+ ]
+ ],
+ "自检": [
+ [
+-"证据.py",
+-"没抓到：连续两篇没跑草稿声音"
+-],
+-[
+-"证据.py",
+-"没抓到：建好后第一篇就没用上"
+-],
+-[
+-"证据.py",
+-"没抓到：全查（ci.yml）漏了被手改的证据文件"
+-],
+-[
+ "方法进化表.py",
+ "机制运行报告没写对"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G71机制闲置（仓库镜像）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -3920,10 +3307,6 @@
+ "没抓到：没有 .单线程 标记又不在老条目清单里的新条目（G72）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G72老条目被改（仓库镜像）",
+-"执行效应演练 G72无标记新条目（仓库镜像）"
+-],
+ "阶段": [
+ "出片内",
+ "出片后"
+@@ -3947,9 +3330,6 @@
+ "没抓到：取号后本地工作区留了改动（K32"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G73取号弄脏本地（仓库镜像）"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -3964,21 +3344,9 @@
+ [
+ "钩子/闸门.py",
+ "if last and a.get('唤醒', '') < last:"
+-],
+-[
+-"推请求.py",
+-"json.dump(d, open(账, 'w'), ensure_ascii=False)"
+-]
+-],
+-"自检": [
+-[
+-"执行效应演练.py",
+-"('G74推请求没约唤醒', '收工'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G74推请求没约唤醒（钩子）"
+-],
++"自检": [],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -4014,9 +3382,6 @@
+ "('a trek in the Ötztal Alps', 'a trek in the Erzdal Alps')"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 G42只有parakeet抓到（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -4027,31 +3392,14 @@
+ {
+ "编号": "G76",
+ "摘要": "2026-10-26（K35）改门 G49起25：改了 render.py 后先做补丁推 GitHub 主演练，再在沙盒",
+-"门": [
+-[
+-"推请求.py",
+-"e = 本地慢印章(行)"
+-]
+-],
+-"自检": [
+-[
+-"推请求.py",
+-"没抓到：出片守门自检印章过期还让推带补丁的主演练（K35）"
+-],
+-[
+-"流程自检.py",
+-"推请求.py --自检 不过（K35）"
+-]
+-],
+-"演练": [
+-"推请求.py --自检（出片守门自检印章过期时带补丁的主演练必停；流程自检当场跑）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+ "级别": "错",
+ "修法": "",
+-"状态": "替代",
++"状态": "替代：删除旧看门（2026-10-29 用户：不看视频本身的检查一律砍掉）：推请求（GitHub 改门推送） 已删",
+ "替代原因": "GitHub 全量链降为每周体检"
+ },
+ {
+@@ -4059,7 +3407,7 @@
+ "摘要": "2026-10-26（K36）25 定稿 新容器：准备机器.sh 后没有 work_25，定稿流水线 ① 音频体检直接读",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "[ -f \"work_$no/a.wav\" ] || { step \"①前 重建声音"
+ ]
+ ],
+@@ -4069,9 +3417,6 @@
+ "没抓到：拿掉 a.wav 重建那一行（K36 重放）"
+ ]
+ ],
+-"演练": [
+-"流程自检.py 有重建()（拿掉 ① 前 a.wav 重建那一行必报；规则执行核查当场跑）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -4084,7 +3429,7 @@
+ "摘要": "2026-10-26（K37）25 定稿：定稿流水线.sh ④ 写 ${要文本:+--出文档}，bash 只认 ASCI",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "YAOWENBEN=\"${YAOWENBEN:-$(printenv 要文本)}\""
+ ],
+ [
+@@ -4106,9 +3451,6 @@
+ "没抓到：{_bad}（K37 重放）"
+ ]
+ ],
+-"演练": [
+-"流程自检.py 跑文本门()（定稿流水线 ④ 两行真跑：假 生成文本.py 失败必停、默认 --只核查；K37 原样那一行重放必抓；规则执行核查当场跑）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -4121,40 +3463,16 @@
+ "摘要": "2026-10-27（K39）用户：“要一直不停的去发现……这套机制的问题和漏洞，然后不断的去进化和升级，直到做到绝对完",
+ "门": [
+ [
+-"门变异.py",
+-"def 门_sh(txt):"
+-],
+-[
+-"门变异.py",
+-"def 门_py(txt):"
+-],
+-[
+-"流程自检.py",
+-"def sh门真跑(txt):"
+-],
+-[
+ "踩坑核查.py",
+ "elif not b or (b.group(1).startswith('无') and '依据' not in b.group(1)):"
+ ],
+ [
+ "方法进化表.py",
+ "def 写漏洞节(no, 行, rec=REC):"
+-],
+-[
+-"规则执行核查.py",
+-"_me, _mw = _MB.查基线()"
+ ]
+ ],
+ "自检": [
+ [
+-"门变异.py",
+-"没抓到：K37 那一行（|| stop 在注释后）没列成死门"
+-],
+-[
+-"流程自检.py",
+-"没抓到：拆掉的门 {_bad}（G79 门变异重放）"
+-],
+-[
+ "踩坑核查.py",
+ "没抓到：28 没有“## 机制漏洞”（G79）"
+ ],
+@@ -4163,17 +3481,13 @@
+ "“## 机制漏洞”节没写对（G79"
+ ]
+ ],
+-"演练": [
+-"流程自检.py sh门真跑()（全部 .sh 每道门单独真跑必须停：拆掉的门、注释吞掉的门必报；门变异.py 拆门重跑；规则执行核查当场跑）",
+-"踩坑核查.py 自检 record_meta_checks（28 没有“## 机制漏洞”、会话补空着或写“无”没依据必报；规则执行核查当场跑）"
+-],
+ "阶段": [
+ "定稿",
+ "文本"
+ ],
+ "级别": "错",
+ "修法": "",
+-"状态": "搬：定稿、文本"
++"状态": "替代：删除旧看门（2026-10-29 用户：不看视频本身的检查一律砍掉）：门变异式“死门”检查（检查的检查） 已删"
+ },
+ {
+ "编号": "G80",
+@@ -4190,9 +3504,6 @@
+ "K31 自检：工作流中文变量名没抓到或误报"
+ ]
+ ],
+-"演练": [
+-"流程自检.py yml中文变量()（工作流 export 中文名、$中文名必报；规则执行核查当场跑）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -4219,9 +3530,6 @@
+ "钩子自检读了真实的 ~/.云端请求.json（K38 重放"
+ ]
+ ],
+-"演练": [
+-"流程自检.py K38 重放（HOME 里放推了请求没约唤醒的账，钩子自检必须照样通过；规则执行核查当场跑）"
+-],
+ "阶段": [
+ "定稿",
+ "行为闸门"
+@@ -4245,9 +3553,6 @@
+ "没抓到：在镜像仓库 literate-enigma 里跑报坑（K29）"
+ ]
+ ],
+-"演练": [
+-"报坑.py --自检 自检_K29（镜像 origin 里原子写必停、主仓库不误报；规则执行核查当场跑）"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -4260,39 +3565,11 @@
+ "摘要": "2026-10-27（K40）用户两次原话（“不能说我们做出来的东西到最后完完全全没有用上”“专门检查我们的所有的东西都",
+ "门": [
+ [
+-"用上核查.py",
+-"def 孤儿(t=T, 清单=None, 流程=None, 同意=None):"
+-],
+-[
+-"用上核查.py",
+-"def 没接上(t=T):"
+-],
+-[
+-"规则执行核查.py",
+-"import 用上核查 as _YS; gl += _YS.问题()"
+-],
+-[
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "python3 $T/用上核查.py --严 || stop"
+-],
+-[
+-"会话开工.py",
+-"r = subprocess.run(['python3', f'{T}/用上核查.py'], capture_output=True, text=True)"
+ ]
+ ],
+-"自检": [
+-[
+-"用上核查.py",
+-"没抓到：新程序没登记、没人调用（孤儿）"
+-],
+-[
+-"用上核查.py",
+-"没抓到：{机} 从 {fn} 拆掉（管执行的机制被拆）"
+-]
+-],
+-"演练": [
+-"用上核查.py --自检（新程序没登记、下线没用户原话必报；拆掉规则执行核查/改门锁/开工打印/门变异的接线必报；规则执行核查当场跑）"
+-],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -4304,50 +3581,20 @@
+ {
+ "编号": "G84",
+ "摘要": "2026-10-27（K41）改门 G79全量v4：门演练 drill.yml 写回步 put() 遇 HTTP 409",
+-"门": [
+-[
+-"流程自检.py",
+-"def drill写回(txt):"
+-]
+-],
+-"自检": [
+-[
+-"流程自检.py",
+-"没抓到：drill.yml 写回不重试、artifact 名字带 /（K41 重放）"
+-]
+-],
+-"演练": [
+-"流程自检.py drill写回()（K41：drill.yml 写回 put() 遇 409 不重试、artifact 名字带 / 必报，K41 原样重放；规则执行核查当场跑）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "定稿"
+ ],
+ "级别": "错",
+ "修法": "",
+-"状态": "搬：定稿"
++"状态": "替代：删除旧看门（2026-10-29 用户：不看视频本身的检查一律砍掉）：drill.yml（演练工作流） 已删"
+ },
+ {
+ "编号": "G85",
+ "摘要": "2026-10-27（K43）改门 G79补片v4b：推请求.py 推了补丁 v8，镜像工作分支已被主会话同步到新 ma",
+-"门": [
+-[
+-"推请求.py",
+-"def 补丁打不上(行, repo=L):"
+-],
+-[
+-"推请求.py",
+-"e = 补丁打不上(行, L)"
+-]
+-],
+-"自检": [
+-[
+-"推请求.py",
+-"没抓到：补丁在工作分支上打不上还让推（K43）"
+-]
+-],
+-"演练": [
+-"推请求.py --自检 补丁打不上()（K43：工作分支上打不上的补丁必停、打得上不拦；流程自检当场跑）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -4359,25 +3606,8 @@
+ {
+ "编号": "G86",
+ "摘要": "2026-10-27（K44）改门 G79全量v4/补片v4c：门变异分片里探测带声音演练、主演练的（audio_qc、",
+-"门": [
+-[
+-"门变异.py",
+-"def _并行(探, 并行):"
+-],
+-[
+-"门变异.py",
+-"with ThreadPoolExecutor(_并行(探, 并行)) as ex:"
+-]
+-],
+-"自检": [
+-[
+-"门变异.py",
+-"K44：带演练探测的门没降成一次一道，或不带演练的也降了"
+-]
+-],
+-"演练": [
+-"门变异.py --自检 _并行()（K44：探测带演练的门一次只跑一道、不带的照常并行；规则执行核查当场跑）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -4401,9 +3631,6 @@
+ "没抓到：主仓库推送删了会话放在镜像里的 云端/"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "看门"
+ ],
+@@ -4428,9 +3655,6 @@
+ "误停：浅克隆边界提交当成工作流改了全部文件（K47）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -4453,9 +3677,6 @@
+ "没抓到：同大小、同修改时刻的改动镜像没提交（K48）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -4466,29 +3687,8 @@
+ {
+ "编号": "G90",
+ "摘要": "2026-10-26（K42）主会话新容器：推送两仓库时规则执行核查崩 ModuleNotFoundError（缺 so",
+-"门": [
+-[
+-"会话开工.py",
+-"    环境检查()   # M："
+-],
+-[
+-"会话开工.py",
+-"if 缺: sys.exit(f'【停止】环境缺包，自动装不上"
+-]
+-],
+-"自检": [
+-[
+-"会话开工.py",
+-"没抓到：缺包装不上照样开工（M）"
+-],
+-[
+-"会话开工.py",
+-"没抓到：开工不先跑环境自检（M）"
+-]
+-],
+-"演练": [
+-"会话开工.py --自检（M：缺包装不上必停并说缺什么、缺包先自动装、包齐不误装；开工源码必先调 环境检查）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -4502,7 +3702,7 @@
+ "摘要": "2026-10-27 用户丝滑主义（“一定要确保这个流程的运行，中间非常的丝滑，没有任何的bug，没有任何的问题，也没有",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "python3 \"$T/丝滑.py\" 记 定稿流水线"
+ ],
+ [
+@@ -4516,17 +3716,10 @@
+ ],
+ "自检": [
+ [
+-"丝滑.py",
+-"没接上：{prog} 停下不记丝滑（K）"
+-],
+-[
+ "方法进化表.py",
+ "没抓到：不丝滑次数变差没要进化落地（K）"
+ ]
+ ],
+-"演练": [
+-"丝滑.py --自检 + 方法进化表.py --自检（K：分类、计数、五个入口接线；不丝滑变差要进化落地）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -4540,27 +3733,11 @@
+ "摘要": "2026-10-27 用户丝滑主义；实例：25 定稿流水线跑 4 次才过（K36 新容器缺 a.wav、K37 bad ",
+ "门": [
+ [
+-"规则执行核查.py",
+-"门程序改过、GitHub 新容器彩排的印章对不上"
+-],
+-[
+-"彩排.sh",
+-"stop \"会话开工 没把环境装好（K42/M）\""
+-],
+-[
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "[ -n \"$CAIPAI\" ] && { step \"彩排到此"
+ ]
+ ],
+-"自检": [
+-[
+-"规则执行核查.py",
+-"没抓到：门程序改过、彩排印章照样有效（L）"
+-]
+-],
+-"演练": [
+-"彩排.sh（GitHub 全新容器真跑 会话开工 → 流程自检 → 定稿流水线 25 到 ④，0 次停下才盖印章）"
+-],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -4572,29 +3749,8 @@
+ {
+ "编号": "G93",
+ "摘要": "2026-10-27 用户第四、五次原话（丝滑主义、执行主义：“刚开始去读的时候，一定要去读这个执行机制……去读这个执行",
+-"门": [
+-[
+-"会话开工.py",
+-"    打印三大主义()   # O：第一屏"
+-],
+-[
+-"开工必读.py",
+-"         *主义节(),"
+-]
+-],
+-"自检": [
+-[
+-"会话开工.py",
+-"没抓到：开工第一屏不是三大主义（O）"
+-],
+-[
+-"开工必读.py",
+-"没抓到：开工必读第一节不是三大主义（O/N）"
+-]
+-],
+-"演练": [
+-"会话开工.py --自检 + 开工必读.py --自检（O/N：第一屏三大主义、顺序）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -4606,25 +3762,8 @@
+ {
+ "编号": "G94",
+ "摘要": "2026-10-27 用户第五次原话：“看看有没有漏跑的那些比较老的那些方式会影响我们当前去做事情的方式，一些完全不用的",
+-"门": [
+-[
+-"用上核查.py",
+-"for k, v in tt.items() for x, w in v]"
+-]
+-],
+-"自检": [
+-[
+-"用上核查.py",
+-"没抓到：一次性小程序没人用（P 完全不用）"
+-],
+-[
+-"用上核查.py",
+-"没抓到：文档点名的程序已不存在（P 老做法冲突）"
+-]
+-],
+-"演练": [
+-"用上核查.py --自检（P：临时工具目录真跑 完全不用/老做法冲突/重复）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -4636,21 +3775,8 @@
+ {
+ "编号": "G95",
+ "摘要": "2026-10-27（K51）改门 L：方法进化表.py 表格行用了嵌套同种引号的 f-string（f'（漏洞 {r[",
+-"门": [
+-[
+-"规则执行核查.py",
+-"    gl += 印章问题() + 旧版语法()"
+-]
+-],
+-"自检": [
+-[
+-"规则执行核查.py",
+-"没抓到：3.12 才认的嵌套引号 f-string（K51）"
+-]
+-],
+-"演练": [
+-"规则执行核查 机器自检（python3.11 真编译造的嵌套引号 f-string）+ 彩排（3.11 全新容器）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -4674,9 +3800,6 @@
+ "误报：本地路径结尾 literate-enigma 当成镜像远端（K49"
+ ]
+ ],
+-"演练": [
+-"报坑.py --自检（临时仓库真跑：镜像判定、K23 隔离）"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -4687,21 +3810,8 @@
+ {
+ "编号": "G97",
+ "摘要": "2026-10-27（K50）改门 L：推请求.py 推带 补丁= 的请求只提交请求 txt，补丁文件没 git add",
+-"门": [
+-[
+-"推请求.py",
+-"g('add', f, *待提交补丁(行, L))"
+-]
+-],
+-"自检": [
+-[
+-"推请求.py",
+-"没抓到：补丁文件没提交，请求照样推（K50）"
+-]
+-],
+-"演练": [
+-"推请求.py --自检（临时仓库真跑：补丁没提交随请求提交）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -4725,9 +3835,6 @@
+ "没抓到：git 环境变量没去掉，假仓库会改到真仓库（K21）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -4750,9 +3857,6 @@
+ "没抓到：推送两仓库 文件清单写死 /tmp 固定名（K22）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -4775,9 +3879,6 @@
+ "没抓到：工作流改了白名单外的文件没停（G58）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -4800,9 +3901,6 @@
+ "误拦：已推过的本会话 token 记录每轮重写（K33）"
+ ]
+ ],
+-"演练": [
+-"钩子/钩子自检.py（临时仓库真判 收工：已推过的 token 记录不拦、新的照拦）"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -4813,21 +3911,8 @@
+ {
+ "编号": "G102",
+ "摘要": "2026-10-27（K52）改门 L：会话开工 的开工必读指纹 ~/.会话开工.json 两个仓库共用一份；主仓库开工",
+-"门": [
+-[
+-"会话开工.py",
+-"fp not in rec.get('读过的指纹', [])"
+-]
+-],
+-"自检": [
+-[
+-"会话开工.py",
+-"误拦：另一个仓库的开工必读也读过（K52 来回重读）"
+-]
+-],
+-"演练": [
+-"会话开工.py --自检（K52：两个仓库读过的版本都算，都没读照停）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -4839,21 +3924,8 @@
+ {
+ "编号": "G103",
+ "摘要": "2026-10-27（K53）改门 P：主会话核对发现 制作记录/主会话交接.md 还写着“重新对齐类的用 重新对齐收尾",
+-"门": [
+-[
+-"用上核查.py",
+-"for d in 现行文档(vd):"
+-]
+-],
+-"自检": [
+-[
+-"用上核查.py",
+-"没抓到：现行文档把已淘汰的程序当命令写（K53"
+-]
+-],
+-"演练": [
+-"用上核查.py --自检（K53：现行文档把已淘汰程序当命令写必报、历史记录不误报）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -4881,9 +3953,6 @@
+ "没抓到：curl | tar 管道解压（K54 重放）"
+ ]
+ ],
+-"演练": [
+-"流程自检.py（K54：准备机器.sh 里 curl | tar 管道解压重放必报）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -4896,27 +3965,16 @@
+ "摘要": "2026-10-27（K59）主会话：推请求 G79补漏A1 同时发门变异全量和彩排，彩排 ⓪ 用上核查要求门变异已全量",
+ "门": [
+ [
+-"推请求.py",
+-"def 乱序(行):"
+-],
+-[
+ "报坑.py",
+ "e = os.environ.get('CLAUDE_CODE_REMOTE_SESSION_ID', '')"
+ ]
+ ],
+ "自检": [
+ [
+-"推请求.py",
+-"单独发（K59/K60 乱序手排印章）"
+-],
+-[
+ "报坑.py",
+ "没自动填本会话 ID（K59）"
+ ]
+ ],
+-"演练": [
+-"推请求.py --自检（K59/K60：乱序发、缺一步、彩排排前、不等收齐必拒，没全过或补丁改过不许收）+ 报坑.py --自检（会话 ID 自动填）+ 门变异.py --自检（受影响门）+ 执行效应声音演练.py --自检（分片合并）"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -4927,45 +3985,8 @@
+ {
+ "编号": "G106",
+ "摘要": "2026-10-27（K60）改门 G79补漏A1：16:30 改完，到 18:25 还在 GitHub 上排印章（彩排",
+-"门": [
+-[
+-"推请求.py",
+-"def 排序问题(t):"
+-],
+-[
+-"推请求.py",
+-"def 收(名字, 说明"
+-],
+-[
+-"门变异.py",
+-"def 受影响门("
+-],
+-[
+-"执行效应声音演练.py",
+-"def 合并印章("
+-]
+-],
+-"自检": [
+-[
+-"推请求.py",
+-"gate 里彩排排到演练印章前面"
+-],
+-[
+-"推请求.py",
+-"没抓到：改门推送没全过也打上结果补丁"
+-],
+-[
+-"门变异.py",
+-"没抓到：拆门程序“怎么拆、怎么探”的函数改了还沿用旧结论"
+-],
+-[
+-"执行效应声音演练.py",
+-"还盖了印章"
+-]
+-],
+-"演练": [
+-"推请求.py --自检（K59/K60：乱序发、缺一步、彩排排前、不等收齐必拒，没全过或补丁改过不许收）+ 报坑.py --自检（会话 ID 自动填）+ 门变异.py --自检（受影响门）+ 执行效应声音演练.py --自检（分片合并）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -4977,29 +3998,8 @@
+ {
+ "编号": "G107",
+ "摘要": "2026-10-27（K61）改门 K60 改门推送首两轮：v1 plan 机器缺 numpy（算分片要 import ",
+-"门": [
+-[
+-"推请求.py",
+-"def _FAST查():"
+-],
+-[
+-"推请求.py",
+-"不进补丁 = [':(exclude)视频/制作记录/方法进化'"
+-]
+-],
+-"自检": [
+-[
+-"推请求.py",
+-"当场自检没全过还改门推送（K60v2）"
+-],
+-[
+-"推请求.py",
+-"钩子写的会话记录不算改动"
+-]
+-],
+-"演练": [
+-"推请求.py --自检（K59/K60：乱序发、缺一步、彩排排前、不等收齐必拒，没全过或补丁改过不许收）+ 报坑.py --自检（会话 ID 自动填）+ 门变异.py --自检（受影响门）+ 执行效应声音演练.py --自检（分片合并）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -5013,23 +4013,11 @@
+ "摘要": "2026-10-27（K56）主会话：丝滑记录 会话.jsonl 7 条不丝滑（推送两仓库.sh 停下）只写“退出码 1",
+ "门": [
+ [
+-"丝滑.py",
+-"def 未闭环():"
+-],
+-[
+ "推送两仓库.sh",
+ "K56：不丝滑要记下停在哪一行"
+ ]
+ ],
+-"自检": [
+-[
+-"丝滑.py",
+-"自动登记没成功的不丝滑没列进未闭环（K56）"
+-]
+-],
+-"演练": [
+-"丝滑.py --自检（K56：自动登记没成功的不丝滑必列进未闭环；K57：改门会话不丝滑变差没写进化落地必报；K73：彩排停下数开工记录不算、不丝滑/内容问题/坏行都算）+ 方法进化表.py --自检（K58：改门会话上下文超 300k 必停）"
+-],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -5041,25 +4029,8 @@
+ {
+ "编号": "G109",
+ "摘要": "2026-10-27（K57）主会话：没篇号的不丝滑（改门、主会话的会话级停下）全记进 会话.jsonl，方法进化表 G",
+-"门": [
+-[
+-"丝滑.py",
+-"def 改门比较(V_=None):"
+-],
+-[
+-"主会话核对.sh",
+-"丝滑.py --改门比较"
+-]
+-],
+-"自检": [
+-[
+-"丝滑.py",
+-"没抓到：改门会话不丝滑比前三个中位数差、没写进化落地（K57）"
+-]
+-],
+-"演练": [
+-"丝滑.py --自检（K56：自动登记没成功的不丝滑必列进未闭环；K57：改门会话不丝滑变差没写进化落地必报；K73：彩排停下数开工记录不算、不丝滑/内容问题/坏行都算）+ 方法进化表.py --自检（K58：改门会话上下文超 300k 必停）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -5083,9 +4054,6 @@
+ "没抓到：改门会话上下文 500k 超 300k（K58）"
+ ]
+ ],
+-"演练": [
+-"丝滑.py --自检（K56：自动登记没成功的不丝滑必列进未闭环；K57：改门会话不丝滑变差没写进化落地必报；K73：彩排停下数开工记录不算、不丝滑/内容问题/坏行都算）+ 方法进化表.py --自检（K58：改门会话上下文超 300k 必停）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -5096,25 +4064,8 @@
+ {
+ "编号": "G121",
+ "摘要": "2026-10-28（K73）改门第六棒：K60改门推送v8 门变异 49 片、两个演练全过，④ 彩排“停下 1 次”不",
+-"门": [
+-[
+-"丝滑.py",
+-"def 停下数(d=None):"
+-],
+-[
+-"彩排.sh",
+-"丝滑.py\" --停下数"
+-]
+-],
+-"自检": [
+-[
+-"丝滑.py",
+-"彩排停下数不对（K73"
+-]
+-],
+-"演练": [
+-"丝滑.py --自检（K56：自动登记没成功的不丝滑必列进未闭环；K57：改门会话不丝滑变差没写进化落地必报；K73：彩排停下数开工记录不算、不丝滑/内容问题/坏行都算）+ 方法进化表.py --自检（K58：改门会话上下文超 300k 必停）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -5142,9 +4093,6 @@
+ "('Tu was named a Lasker Award recipient', 'Tu was named Alaska Award recipient')"
+ ]
+ ],
+-"演练": [
+-"机器复听.py --比较自检（K81 28 S14 a Lasker→alaska、S15 5 October→October 5 必须不报，冠词漏读、专名漏掉、日子漏读读错照报；规则执行核查当场跑）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -5155,21 +4103,8 @@
+ {
+ "编号": "G136",
+ "摘要": "2026-10-28（K89）镜像 ci.yml rules 红（运行 40700691771）：证据/28.jsonl",
+-"门": [
+-[
+-"证据.py",
+-"g('fetch', '-q', '--deepen=400', 'origin')"
+-]
+-],
+-"自检": [
+-[
+-"证据.py",
+-"没认得：浅克隆里入口提交过的旧版本（K89：CI 误判 28 证据链）"
+-]
+-],
+-"演练": [
+-"证据.py --自检 浅克隆（K89：浅克隆里入口提交过的旧版本必认、从没提交过的不认；拆掉往回拉必报；规则执行核查当场跑）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -5181,21 +4116,8 @@
+ {
+ "编号": "G137",
+ "摘要": "2026-10-28（K93）镜像 ci.yml rules 红（运行 40708195533）：主会话写了 29–31",
+-"门": [
+-[
+-"证据.py",
+-"定 = {n for n in ns if n in 归档 or any(r.get('步') == '定稿' for r in 记录.get(n, []))}"
+-]
+-],
+-"自检": [
+-[
+-"证据.py",
+-"误报：并行做时还没定稿的篇、只有交接的篇被报闲置（K93）"
+-]
+-],
+-"演练": [
+-"证据.py --自检 闲置（K93：并行做时没定稿的、只有交接的篇不报，后面定稿了前面连着没用必报；规则执行核查当场跑）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -5219,9 +4141,6 @@
+ "判('H1 片头色块水平居中"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 H1排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -5244,9 +4163,6 @@
+ "判('H2 色块是圆角长方形"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 H2排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -5269,9 +4185,6 @@
+ "判('H3 色块里的字上下居中"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 H3排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -5298,9 +4211,6 @@
+ "判('L1/L4 每屏字号铺满"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L1排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -5323,9 +4233,6 @@
+ "判('L2 放得下不拆行"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L2排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -5352,9 +4259,6 @@
+ "判('L3 末行孤词查得出"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L3排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -5377,9 +4281,6 @@
+ "判('L4 字号按句算"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L4排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -5402,9 +4303,6 @@
+ "判('L5 中文 = 英文 × 0.72"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L5排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -5427,9 +4325,6 @@
+ "判('L6 数字不拆"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L6排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -5452,9 +4347,6 @@
+ "判('L7 说明计入字号"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L7排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -5477,9 +4369,6 @@
+ "判('L8 正文页不画标题"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L8排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -5514,10 +4403,6 @@
+ "判('L1/L4 每屏字号铺满"
+ ]
+ ],
+-"演练": [
+-"同 L13",
+-"同 L1"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -5541,9 +4426,6 @@
+ "判('L10 另译黄字"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L10排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -5566,9 +4448,6 @@
+ "判('L11 重点词两侧间隙"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L11排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -5591,9 +4470,6 @@
+ "判('L12 只有 3840×2160 能归档"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L12归档1080p（仓库镜像）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -5616,9 +4492,6 @@
+ "mut('擅自加换行（L13）'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L13换行"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -5645,9 +4518,6 @@
+ "高亮同步核对 自检：S"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 L14高亮错开（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片内",
+ "出片后"
+@@ -5671,9 +4541,6 @@
+ "判('L15 找不到颜色就停"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L15排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -5696,9 +4563,6 @@
+ "没抓到：说明一行以“。”开头（L16"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L16行首标点"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -5721,9 +4585,6 @@
+ "高亮同步核对 自检：S"
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 L14高亮错开（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -5746,7 +4607,6 @@
+ "自检样本找不到"
+ ]
+ ],
+-"演练": [],
+ "阶段": [
+ "定稿"
+ ],
+@@ -5773,9 +4633,6 @@
+ "没抓到：说明行比英文正文宽（L19）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L19说明太宽"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -5811,10 +4668,6 @@
+ "对正量 自检失败：造的坑没被挡住"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L20排版程序改坏（仓库镜像）",
+-"执行效应演练 L20旧篇排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内",
+ "文本"
+@@ -5828,7 +4681,7 @@
+ "摘要": "文章译文和视频不一致",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "sync_article.py"
+ ]
+ ],
+@@ -5842,9 +4695,6 @@
+ "没抓到：已定稿的文章同步后变了"
+ ]
+ ],
+-"演练": [
+-"同步自检.py（临时副本真跑 sync_article.py）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -5867,9 +4717,6 @@
+ "造('速查表本文重复','S2'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 S2速查表本文重复（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -5882,7 +4729,7 @@
+ "摘要": "用 git checkout 恢复文件后再同步，结果恢复的是已经同步过的版本",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "sync_article.py"
+ ]
+ ],
+@@ -5892,9 +4739,6 @@
+ "没抓到：同步不能重复运行（连跑两遍结果不一样，S3）"
+ ]
+ ],
+-"演练": [
+-"同步自检.py（临时副本真跑 sync_article.py）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -5917,9 +4761,6 @@
+ "造('速查表只有本文、缺词性','S4'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 S4速查表缺词性（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -5932,7 +4773,7 @@
+ "摘要": "10 S16 速查表 elevated to 只写了“本文：把”，被隔开的意思“把……抬高到了……的地位”分在两块，没连",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "sync_article.py"
+ ]
+ ],
+@@ -5942,9 +4783,6 @@
+ "没抓到：被隔开的意思没按整句连（S5"
+ ]
+ ],
+-"演练": [
+-"同步自检.py（临时副本真跑 sync_article.py）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -5975,9 +4813,6 @@
+ "没抓到：逐句确认一句套话贴到每一句（逐句格式）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T1括号包重点词（仓库镜像）"
+-],
+ "阶段": [
+ "声音",
+ "文本"
+@@ -6009,9 +4844,6 @@
+ "没抓到：改过的句子没重新确认（逐句确认）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T2形容词译成地"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6050,9 +4882,6 @@
+ "没抓到：逐句确认一句套话贴到每一句（逐句格式）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 逐句确认没重做"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6079,9 +4908,6 @@
+ "没抓到：before 放在“之后才”上面（T4/T20）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T4方向反了"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6104,10 +4930,6 @@
+ [
+ "译文核查.py",
+ "[逐句确认]"
+-],
+-[
+-"踩坑核查.py",
+-"import 译文核查 as _YW"
+ ]
+ ],
+ "自检": [
+@@ -6124,9 +4946,6 @@
+ "没抓到：改过的句子没重新确认（逐句确认）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T9对齐太粗"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6157,9 +4976,6 @@
+ "没抓到：逐句确认一句套话贴到每一句（逐句格式）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T6空译文（仓库镜像）"
+-],
+ "阶段": [
+ "声音",
+ "文本"
+@@ -6195,9 +5011,6 @@
+ "没抓到：逐句确认一句套话贴到每一句（逐句格式）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 逐句确认没重做"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6232,9 +5045,6 @@
+ "没抓到：逐句确认一句套话贴到每一句（逐句格式）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 逐句确认没重做"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6257,10 +5067,6 @@
+ [
+ "译文核查.py",
+ "[逐句确认]"
+-],
+-[
+-"踩坑核查.py",
+-"import 译文核查 as _YW"
+ ]
+ ],
+ "自检": [
+@@ -6277,9 +5083,6 @@
+ "没抓到：改过的句子没重新确认（逐句确认）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T9对齐太粗"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6306,9 +5109,6 @@
+ "没抓到：没有用户原话就改了已发的中文（T10/铁13）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T10改稿无原话"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6331,9 +5131,6 @@
+ "造('重点词缺中文标记','D4'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T11重点词漏标（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6356,9 +5153,6 @@
+ "没抓到：撞词按屈折变化判（T12）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T12新加撞词（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6381,10 +5175,6 @@
+ [
+ "译文核查.py",
+ "[逐句确认]"
+-],
+-[
+-"踩坑核查.py",
+-"import 译文核查 as _YW"
+ ]
+ ],
+ "自检": [
+@@ -6397,9 +5187,6 @@
+ "没抓到：改过的句子没重新确认（逐句确认）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T13倍数结构"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6422,9 +5209,6 @@
+ "没抓到：介词 + 名词只标名词（T22"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T22depart重放"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -6451,9 +5235,6 @@
+ "没抓到：改过的句子没重新确认（逐句确认）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 逐句确认没重做"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6476,9 +5257,6 @@
+ "mut('数字抄错（T16）'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T16数字丢了"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -6501,9 +5279,6 @@
+ "没抓到：撞词按屈折变化判（T12）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T12新加撞词（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6526,10 +5301,6 @@
+ "mut('牛津逗号被去掉（T18）'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T35英式不改",
+-"执行效应演练 T18去牛津逗号"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -6552,9 +5323,6 @@
+ "mut('\"了\"放在加粗外（T19）'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T19即"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -6585,9 +5353,6 @@
+ "没抓到：改过的句子没重新确认（逐句确认）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T4方向反了"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6622,9 +5387,6 @@
+ "没抓到：逐句确认一句套话贴到每一句（逐句格式）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 逐句确认没重做"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6647,10 +5409,6 @@
+ "没抓到：介词 + 名词只标名词（T22"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T22拆短语",
+-"执行效应演练 T22depart重放"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -6673,9 +5431,6 @@
+ "没抓到：中文意思只标一部分（T23"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T23意思标一半"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -6698,9 +5453,6 @@
+ "mut('括号说明里有语音输入多出来的“觉得”（T24）'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T24口述词"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -6723,9 +5475,6 @@
+ "没抓到：用户给的释义没上画面（T25"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T25用户释义没上画面"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -6748,9 +5497,6 @@
+ "没抓到：两个重点词用了同一个中文（T26"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T26中文重复"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -6773,9 +5519,6 @@
+ "没抓到：说明里写了“怎么理解”（T27"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T27怎么理解"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -6798,9 +5541,6 @@
+ "（T28）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T28无结尾解说"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -6823,9 +5563,6 @@
+ "没抓到：漏了术语“肩冲”（T30"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T30漏术语"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -6856,9 +5593,6 @@
+ "没抓到：逐句确认一句套话贴到每一句（逐句格式）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T33还写结局"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6889,9 +5623,6 @@
+ "T34 自动拆错了：to avert imprisonment"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T34同序挤一组"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6914,9 +5645,6 @@
+ "没抓到：牛津逗号核对确认写“英式写法、不改”被放行"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T35英式不改"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6947,10 +5675,6 @@
+ "24 起中文里出现破折号"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T36破折号",
+-"出片守门自检 T36"
+-],
+ "阶段": [
+ "出片内",
+ "文本"
+@@ -6974,9 +5698,6 @@
+ "T37 误报：多词重点词（hinge on"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T37多词重点词不误报（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -6999,9 +5720,6 @@
+ "没抓到：Word 和脚本对不上（W1）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 W1Word和脚本对不上（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -7024,9 +5742,6 @@
+ "没抓到：不用 read_docx2 读用户改过的 Word（W2）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 W2直接读Word（钩子）"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -7053,9 +5768,6 @@
+ "没抓到：译文里的排版指令（W3）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 W3排版指令"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -7078,9 +5790,6 @@
+ "mut('中文说明用了半角括号（W4）'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 W4半角括号"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -7103,9 +5812,6 @@
+ "没抓到：PDF 没有生成（W5/W8/W9）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 W5没生成PDF（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -7128,9 +5834,6 @@
+ "没抓到：发 Word 没提醒打印背景色（W6）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 W6发Word提醒背景色（钩子）"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -7153,9 +5856,6 @@
+ "没抓到：docx 没有一起覆盖，或覆盖了用户的修正稿（W7）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 W7用户修正稿不覆盖（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -7186,9 +5886,6 @@
+ "没抓到：PDF 没有生成（W5/W8/W9）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 A25一次发两个（钩子）"
+-],
+ "阶段": [
+ "文本",
+ "行为闸门"
+@@ -7220,9 +5917,6 @@
+ "没抓到：PDF 没有生成（W5/W8/W9）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 A25一次发两个（钩子）"
+-],
+ "阶段": [
+ "文本",
+ "行为闸门"
+@@ -7250,9 +5944,6 @@
+ "Word 读回 误报"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 W10读回不按同一函数（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -7275,9 +5966,6 @@
+ "没抓到：开工提醒没打印"
+ ]
+ ],
+-"演练": [
+-"同 守则1"
+-],
+ "阶段": [
+ "看门"
+ ],
+@@ -7301,9 +5989,6 @@
+ "'没抓到：踩坑对照记录没填完'"
+ ]
+ ],
+-"演练": [
+-"同 法1"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -7338,10 +6023,6 @@
+ "读音核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A11",
+-"同 A23"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -7365,9 +6046,6 @@
+ "mut('牛津逗号被去掉（T18）'"
+ ]
+ ],
+-"演练": [
+-"同 T18"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -7410,10 +6088,6 @@
+ "没抓到：撞词按屈折变化判（T12）"
+ ]
+ ],
+-"演练": [
+-"同 T21",
+-"同 T12"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -7456,10 +6130,6 @@
+ "没抓到：逐句确认一句套话贴到每一句（逐句格式）"
+ ]
+ ],
+-"演练": [
+-"同 T19",
+-"同 T21"
+-],
+ "阶段": [
+ "声音",
+ "文本"
+@@ -7485,10 +6155,6 @@
+ "[T4方向]"
+ ],
+ [
+-"踩坑核查.py",
+-"import 译文核查 as _YW"
+-],
+-[
+ "交付核查.py",
+ "踩坑核查（核查程序自检、踩坑对照记录"
+ ],
+@@ -7527,12 +6193,6 @@
+ "判('L15 找不到颜色就停"
+ ]
+ ],
+-"演练": [
+-"同 T2",
+-"同 T4",
+-"同 T1",
+-"同 L15"
+-],
+ "阶段": [
+ "出片内",
+ "声音",
+@@ -7561,9 +6221,6 @@
+ "没抓到：没有用户原话就改了已发的中文（T10/铁13）"
+ ]
+ ],
+-"演练": [
+-"同 T10"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -7594,10 +6251,6 @@
+ "造('英文混入换行标记','D1'"
+ ]
+ ],
+-"演练": [
+-"同 D3",
+-"同 D1"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -7620,14 +6273,6 @@
+ [
+ "生成文本.py",
+ "PDF核对"
+-],
+-[
+-"钩子/闸门.py",
+-"【A25 闸门】守则7"
+-],
+-[
+-"生成文本.py",
+-"PDF核对"
+ ]
+ ],
+ "自检": [
+@@ -7642,21 +6287,8 @@
+ [
+ "生成文本.py",
+ "没抓到：PDF 没有生成（W5/W8/W9）"
+-],
+-[
+-"钩子/钩子自检.py",
+-"没抓到：发没过核查的视频（A25）"
+-],
+-[
+-"生成文本.py",
+-"没抓到：PDF 没有生成（W5/W8/W9）"
+ ]
+ ],
+-"演练": [
+-"同 W1",
+-"同 W8",
+-"同 W9"
+-],
+ "阶段": [
+ "文本",
+ "行为闸门"
+@@ -7680,9 +6312,6 @@
+ "'没抓到：踩坑对照记录没填完'"
+ ]
+ ],
+-"演练": [
+-"同 流3"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -7713,9 +6342,6 @@
+ "纯人声核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 音34"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -7739,9 +6365,6 @@
+ "判('L12 只有 3840×2160 能归档"
+ ]
+ ],
+-"演练": [
+-"同 L12"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -7764,9 +6387,6 @@
+ "成片有画面 自检（G12"
+ ]
+ ],
+-"演练": [
+-"同 G12"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -7789,9 +6409,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"同 流5"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -7854,14 +6471,6 @@
+ "造('速查表只有本文、缺词性','S4'"
+ ]
+ ],
+-"演练": [
+-"同 D1",
+-"同 D2",
+-"同 D3",
+-"同 D4",
+-"同 S2",
+-"同 S4"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -7888,14 +6497,6 @@
+ [
+ "交付核查.py",
+ "独立复核：{len(cuts)} 处改动"
+-],
+-[
+-"交付核查.py",
+-"句首句尾核对（clean_tail"
+-],
+-[
+-"交付核查.py",
+-"独立复核：{len(cuts)} 处改动"
+ ]
+ ],
+ "自检": [
+@@ -7910,21 +6511,8 @@
+ [
+ "交付核查.py",
+ "核查程序自检："
+-],
+-[
+-"句首句尾与停顿位置核对.py",
+-"句首句尾核对 自检："
+-],
+-[
+-"交付核查.py",
+-"核查程序自检："
+ ]
+ ],
+-"演练": [
+-"同 A8",
+-"同 A1",
+-"同 A6"
+-],
+ "阶段": [
+ "出片内",
+ "出片后",
+@@ -7949,10 +6537,6 @@
+ [
+ "交付核查.py",
+ "句间停顿核对（A20"
+-],
+-[
+-"交付核查.py",
+-"句首句尾核对（clean_tail"
+ ]
+ ],
+ "自检": [
+@@ -7967,16 +6551,8 @@
+ [
+ "句间停顿核对.py",
+ "if '--自检' in sys.argv"
+-],
+-[
+-"句首句尾与停顿位置核对.py",
+-"句首句尾核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A1",
+-"同 A20"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -8040,13 +6616,6 @@
+ "判('L11 重点词两侧间隙"
+ ]
+ ],
+-"演练": [
+-"同 L1",
+-"同 L3",
+-"同 L6",
+-"同 L7",
+-"同 L11"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -8069,9 +6638,6 @@
+ "mut('擅自加换行（L13）'"
+ ]
+ ],
+-"演练": [
+-"同 L13"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -8098,9 +6664,6 @@
+ "没抓到：一次发两个声音视频（A25）"
+ ]
+ ],
+-"演练": [
+-"同 守则7"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -8113,7 +6676,7 @@
+ "摘要": "视频 + 标点试听 + 所有疑点试听一起发，如实说明核查结果（换了英文重点词的，逐个说明换了什么、为什么）；用户试听确认",
+ "门": [
+ [
+-"放行口子核查.py",
++"踩坑核查.py",
+ "def 定稿同意("
+ ],
+ [
+@@ -8121,17 +6684,13 @@
+ "【A25 闸门】守则7"
+ ],
+ [
+-"钩子/闸门.py",
+-"【A25 闸门】守则7"
+-],
+-[
+ "交付核查.py",
+ "独立复核：{len(cuts)} 处改动"
+ ]
+ ],
+ "自检": [
+ [
+-"放行口子核查.py",
++"踩坑核查.py",
+ "没抓到：用户没说定稿就跑定稿流水线（画19/流7）"
+ ],
+ [
+@@ -8143,21 +6702,10 @@
+ "没抓到：一次发两个声音视频（A25）"
+ ],
+ [
+-"钩子/钩子自检.py",
+-"没抓到：发没过核查的视频（A25）"
+-],
+-[
+-"钩子/钩子自检.py",
+-"没抓到：一次发两个声音视频（A25）"
+-],
+-[
+ "交付核查.py",
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"同 守则7"
+-],
+ "阶段": [
+ "出片后",
+ "行为闸门"
+@@ -8171,7 +6719,7 @@
+ "摘要": "Word / HTML / PDF、文章、速查表（没有重复的“本文：”，新加重点词已补齐词性、词义、例子）、70篇合集、",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "sync_article.py"
+ ],
+ [
+@@ -8209,12 +6757,6 @@
+ "没抓到：docx 没有一起覆盖，或覆盖了用户的修正稿（W7）"
+ ]
+ ],
+-"演练": [
+-"同 S1",
+-"同 S2",
+-"同 S4",
+-"同 W7"
+-],
+ "阶段": [
+ "定稿",
+ "文本"
+@@ -8228,7 +6770,7 @@
+ "摘要": "定稿后用 python3 工具/归档定稿视频.py NN 把 4K 定稿放进 最终版4K视频/（每篇一个文件，复制后逐字",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "定稿视频核对"
+ ],
+ [
+@@ -8250,10 +6792,6 @@
+ "判('L12 只有 3840×2160 能归档"
+ ]
+ ],
+-"演练": [
+-"同 G9",
+-"同 L12"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -8276,9 +6814,6 @@
+ "没抓到：云端与本地不一致（G2）"
+ ]
+ ],
+-"演练": [
+-"同 G2"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -8291,10 +6826,6 @@
+ "摘要": "本篇新踩的坑已追加到《踩坑总表》和《硬性条件》；能用程序查的，已加进 踩坑核查.py 并在自检里加了造坑样本",
+ "门": [
+ [
+-"规则执行核查.py",
+-"def 核查("
+-],
+-[
+ "githooks/pre-commit",
+ "规则执行核查.py"
+ ],
+@@ -8305,17 +6836,10 @@
+ ],
+ "自检": [
+ [
+-"规则执行核查.py",
+-"bad('新坑没登记'"
+-],
+-[
+ "钩子/钩子自检.py",
+ "跳过提交前核查"
+ ]
+ ],
+-"演练": [
+-"同 守则16"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -8354,9 +6878,6 @@
+ "24 起中文里出现破折号"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T18去牛津逗号"
+-],
+ "阶段": [
+ "出片内",
+ "文本"
+@@ -8392,9 +6913,6 @@
+ "对正量 自检失败：造的坑没被挡住"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L20排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内",
+ "文本"
+@@ -8420,15 +6938,7 @@
+ "音频首要法则.py --要点"
+ ]
+ ],
+-"自检": [
+-[
+-"音频首要法则.py",
+-"没抓到：踩坑总表删掉"
+-]
+-],
+-"演练": [
+-"音频首要法则.py --自检（踩坑总表删一条音频坑必被发现、CLAUDE.md 第一条不是首要法则必停；规则执行核查每次核对 音频首要法则.md）"
+-],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -8452,9 +6962,6 @@
+ "没抓到：开工提醒没打印"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 守则1开工提醒（仓库镜像）"
+-],
+ "阶段": [
+ "看门"
+ ],
+@@ -8494,9 +7001,6 @@
+ "没抓到：改了工具没写方法升级记录（守则12）"
+ ]
+ ],
+-"演练": [
+-"同 守则12"
+-],
+ "阶段": [
+ "文本",
+ "行为闸门"
+@@ -8524,9 +7028,6 @@
+ "没抓到：有没推送的改动就收工（守则3）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿",
+ "行为闸门"
+@@ -8554,9 +7055,6 @@
+ "没抓到：没有用户原话就改了已发的中文（T10/铁13）"
+ ]
+ ],
+-"演练": [
+-"同 T10"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -8573,10 +7071,6 @@
+ "踩坑核查（核查程序自检、踩坑对照记录"
+ ],
+ [
+-"交付核查.py",
+-"踩坑核查（核查程序自检、踩坑对照记录"
+-],
+-[
+ "译文核查.py",
+ "[T10改稿]"
+ ],
+@@ -8607,9 +7101,6 @@
+ "没抓到：没经同意就部署（C1/C2/流16）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L13换行"
+-],
+ "阶段": [
+ "声音",
+ "文本",
+@@ -8632,10 +7123,6 @@
+ "读音改正没有全部换到（A23）"
+ ],
+ [
+-"交付核查.py",
+-"读音核对（A23"
+-],
+-[
+ "make_video.py",
+ "按语境读音没有全部换到（A24）"
+ ]
+@@ -8644,15 +7131,8 @@
+ [
+ "读音核对.py",
+ "读音核对 自检："
+-],
+-[
+-"读音核对.py",
+-"读音核对 自检："
+ ]
+ ],
+-"演练": [
+-"执行效应演练 A23Inky"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -8680,10 +7160,6 @@
+ "没抓到：一次发两个声音视频（A25）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 A25一次发两个（钩子）",
+-"执行效应演练 A25没过核查就发（钩子）"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -8698,10 +7174,6 @@
+ [
+ "交付核查.py",
+ "踩坑核查（核查程序自检、踩坑对照记录"
+-],
+-[
+-"交付核查.py",
+-"踩坑核查（核查程序自检、踩坑对照记录"
+ ]
+ ],
+ "自检": [
+@@ -8714,10 +7186,6 @@
+ "没抓到：中文意思只标一部分（T23"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T22拆短语",
+-"执行效应演练 T23意思标一半"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -8730,7 +7198,7 @@
+ "摘要": "存下来的视频必须是最后一次通过核查的最终版（G9）：只用 定稿.sh 出 4K、归档。",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "定稿视频核对"
+ ],
+ [
+@@ -8738,7 +7206,7 @@
+ "定稿视频核对"
+ ],
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "已经有一条定稿流水线在跑"
+ ],
+ [
+@@ -8760,10 +7228,6 @@
+ "pgrep 认不出中文路径（G10）"
+ ]
+ ],
+-"演练": [
+-"同 G9",
+-"同 G10"
+-],
+ "阶段": [
+ "定稿",
+ "行为闸门"
+@@ -8787,9 +7251,6 @@
+ "没抓到：说明里写了“怎么理解”（T27"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T27怎么理解"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -8812,9 +7273,6 @@
+ "（T28）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T28无结尾解说"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -8845,9 +7303,6 @@
+ "没抓到：改了工具没写方法升级记录（守则12）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 守则12没写方法复盘（仓库镜像）"
+-],
+ "阶段": [
+ "文本",
+ "行为闸门"
+@@ -8871,9 +7326,6 @@
+ "没抓到：制作记录没写方法设计（T31）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 守则13没写方法设计（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -8900,9 +7352,6 @@
+ "没抓到：说明行比英文正文宽（L19）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L19说明太宽"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -8926,9 +7375,6 @@
+ "没抓到：撞词按屈折变化判（T12）"
+ ]
+ ],
+-"演练": [
+-"同 T12"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -8941,10 +7387,6 @@
+ "摘要": "规矩由机器执行：规则表 + 快测（坏样本必抓、好样本必放、27 回归）；例外只认 用户同意记录 里的用户原话（G24）；",
+ "门": [
+ [
+-"规则执行核查.py",
+-"def 核查("
+-],
+-[
+ "githooks/pre-commit",
+ "规则执行核查.py"
+ ],
+@@ -8955,17 +7397,10 @@
+ ],
+ "自检": [
+ [
+-"规则执行核查.py",
+-"bad('新坑没登记'"
+-],
+-[
+ "钩子/钩子自检.py",
+ "跳过提交前核查"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G13跳过钩子（钩子）"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -8978,7 +7413,7 @@
+ "摘要": "先只做视频，不出 Word/PDF（用户要时 定稿.sh 加 YAOWENBEN=1）。",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "--只核查"
+ ],
+ [
+@@ -8992,9 +7427,6 @@
+ "没抓到：定稿流水线默认还在出 Word/PDF（守则17）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G30不出Word不误停（仓库镜像）"
+-],
+ "阶段": [
+ "定稿",
+ "文本"
+@@ -9026,9 +7458,6 @@
+ "24 起中文里出现破折号"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T36破折号"
+-],
+ "阶段": [
+ "出片内",
+ "文本"
+@@ -9040,25 +7469,8 @@
+ {
+ "编号": "守则19",
+ "摘要": "执行效应：规矩在真实流程里挡住违规才算数，快测逐条证明；全量门变异每周后台体检。",
+-"门": [
+-[
+-"规则执行核查.py",
+-"STAMPED['执行效应演练.py'] = ('执行效应演练通过.json'"
+-],
+-[
+-"执行效应演练.py",
+-"ok = c != 0 and bool(hit)"
+-]
+-],
+-"自检": [
+-[
+-"执行效应演练.py",
+-"拆掉 T36 的门后，演练报“没挡住”（演练能发现坏门）"
+-]
+-],
+-"演练": [
+-"执行效应演练 自查拆门（拆掉 T36 的门，演练必须报没挡住）"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -9072,41 +7484,20 @@
+ "摘要": "机制自己找漏洞、做出来的都要用上：只有 做.sh/定稿.sh 两条路，成片指纹核对；执行 → 丝滑 → 虹吸。",
+ "门": [
+ [
+-"门变异.py",
+-"def 跑(rels, 全=False"
+-],
+-[
+-"规则执行核查.py",
+-"_me, _mw = _MB.查基线()"
+-],
+-[
+ "踩坑核查.py",
+ "漏洞节_起 = 28"
+ ],
+ [
+ "方法进化表.py",
+ "('机制漏洞', '', '机制漏洞数')"
+-],
+-[
+-"用上核查.py",
+-"def 该用没用():"
+ ]
+ ],
+ "自检": [
+ [
+-"门变异.py",
+-"没抓到：K37 那一行（|| stop 在注释后）没列成死门"
+-],
+-[
+ "踩坑核查.py",
+ "没抓到：机制漏洞“会话补”写“{_b}”（G79）"
+ ]
+ ],
+-"演练": [
+-"流程自检.py sh门真跑()（全部 .sh 每道门单独真跑必须停：拆掉的门、注释吞掉的门必报；门变异.py 拆门重跑；规则执行核查当场跑）",
+-"踩坑核查.py 自检 record_meta_checks（28 没有“## 机制漏洞”、会话补空着或写“无”没依据必报；规则执行核查当场跑）",
+-"用上核查.py --自检（新程序没登记、下线没用户原话必报；拆掉规则执行核查/改门锁/开工打印/门变异的接线必报；规则执行核查当场跑）"
+-],
+ "阶段": [
+ "定稿",
+ "文本"
+@@ -9134,10 +7525,6 @@
+ [
+ "踩坑核查.py",
+ "import 译文核查 as _YW"
+-],
+-[
+-"译文核查.py",
+-"逐句格式(d, 读("
+ ]
+ ],
+ "自检": [
+@@ -9152,16 +7539,8 @@
+ [
+ "译文核查.py",
+ "没抓到：改过的句子没重新确认（逐句确认）"
+-],
+-[
+-"译文核查.py",
+-"没抓到：逐句确认一句套话贴到每一句（逐句格式）"
+ ]
+ ],
+-"演练": [
+-"同 T6",
+-"同 T7"
+-],
+ "阶段": [
+ "声音",
+ "文本"
+@@ -9197,10 +7576,6 @@
+ "mut('中文说明用了半角括号（W4）'"
+ ]
+ ],
+-"演练": [
+-"同 T10",
+-"同 W4"
+-],
+ "阶段": [
+ "声音",
+ "文本"
+@@ -9220,14 +7595,6 @@
+ [
+ "交付核查.py",
+ "踩坑核查（核查程序自检、踩坑对照记录"
+-],
+-[
+-"译文核查.py",
+-"逐句格式(d, 读("
+-],
+-[
+-"交付核查.py",
+-"踩坑核查（核查程序自检、踩坑对照记录"
+ ]
+ ],
+ "自检": [
+@@ -9240,18 +7607,10 @@
+ "mut('括号里包着重点词（T19/T1）'"
+ ],
+ [
+-"译文核查.py",
+-"没抓到：逐句确认一句套话贴到每一句（逐句格式）"
+-],
+-[
+ "踩坑核查.py",
+ "mut('\"了\"放在加粗外（T19）'"
+ ]
+ ],
+-"演练": [
+-"同 T1",
+-"同 T19"
+-],
+ "阶段": [
+ "声音",
+ "文本"
+@@ -9274,14 +7633,6 @@
+ ],
+ [
+ "译文核查.py",
+-"[T2词性]"
+-],
+-[
+-"踩坑核查.py",
+-"import 译文核查 as _YW"
+-],
+-[
+-"译文核查.py",
+ "逐句格式(d, 读("
+ ]
+ ],
+@@ -9296,21 +7647,9 @@
+ ],
+ [
+ "译文核查.py",
+-"没抓到：adj. 译成“…地”（T2）"
+-],
+-[
+-"译文核查.py",
+-"没抓到：改过的句子没重新确认（逐句确认）"
+-],
+-[
+-"译文核查.py",
+ "没抓到：逐句确认一句套话贴到每一句（逐句格式）"
+ ]
+ ],
+-"演练": [
+-"同 T2",
+-"同 T3"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -9329,14 +7668,6 @@
+ [
+ "踩坑核查.py",
+ "import 译文核查 as _YW"
+-],
+-[
+-"译文核查.py",
+-"[T4方向]"
+-],
+-[
+-"踩坑核查.py",
+-"import 译文核查 as _YW"
+ ]
+ ],
+ "自检": [
+@@ -9346,17 +7677,9 @@
+ ],
+ [
+ "译文核查.py",
+-"没抓到：before 放在“之后才”上面（T4/T20）"
+-],
+-[
+-"译文核查.py",
+ "没抓到：改过的句子没重新确认（逐句确认）"
+ ]
+ ],
+-"演练": [
+-"同 T4",
+-"同 T20"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -9383,9 +7706,6 @@
+ "没抓到：全篇对齐比 01–03 粗（T9/文6）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T9对齐太粗"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -9410,18 +7730,6 @@
+ "[逐句确认]"
+ ],
+ [
+-"踩坑核查.py",
+-"import 译文核查 as _YW"
+-],
+-[
+-"译文核查.py",
+-"[逐句确认]"
+-],
+-[
+-"踩坑核查.py",
+-"import 译文核查 as _YW"
+-],
+-[
+ "译文核查.py",
+ "逐句格式(d, 读("
+ ]
+@@ -9441,17 +7749,9 @@
+ ],
+ [
+ "译文核查.py",
+-"没抓到：改过的句子没重新确认（逐句确认）"
+-],
+-[
+-"译文核查.py",
+ "没抓到：逐句确认一句套话贴到每一句（逐句格式）"
+ ]
+ ],
+-"演练": [
+-"同 T5",
+-"同 T7"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -9474,10 +7774,6 @@
+ [
+ "译文核查.py",
+ "[逐句确认]"
+-],
+-[
+-"踩坑核查.py",
+-"import 译文核查 as _YW"
+ ]
+ ],
+ "自检": [
+@@ -9490,9 +7786,6 @@
+ "没抓到：改过的句子没重新确认（逐句确认）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T13倍数结构"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -9519,10 +7812,6 @@
+ [
+ "交付核查.py",
+ "踩坑核查（核查程序自检、踩坑对照记录"
+-],
+-[
+-"交付核查.py",
+-"踩坑核查（核查程序自检、踩坑对照记录"
+ ]
+ ],
+ "自检": [
+@@ -9543,11 +7832,6 @@
+ "没抓到：说明一行以“。”开头（L16"
+ ]
+ ],
+-"演练": [
+-"同 T8",
+-"同 T27",
+-"同 L16"
+-],
+ "阶段": [
+ "声音",
+ "文本"
+@@ -9575,9 +7859,6 @@
+ "没抓到：同一个重点词全篇译法不一（文10）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 文10同词异译"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -9600,9 +7881,6 @@
+ "mut('数字抄错（T16）'"
+ ]
+ ],
+-"演练": [
+-"同 T16"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -9633,10 +7911,6 @@
+ "mut('\"了\"放在加粗外（T19）'"
+ ]
+ ],
+-"演练": [
+-"同 D4",
+-"同 T19"
+-],
+ "阶段": [
+ "声音",
+ "文本"
+@@ -9652,10 +7926,6 @@
+ [
+ "交付核查.py",
+ "踩坑核查（核查程序自检、踩坑对照记录"
+-],
+-[
+-"交付核查.py",
+-"踩坑核查（核查程序自检、踩坑对照记录"
+ ]
+ ],
+ "自检": [
+@@ -9668,10 +7938,6 @@
+ "mut('中文说明用了半角括号（W4）'"
+ ]
+ ],
+-"演练": [
+-"同 T19",
+-"同 W4"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -9694,9 +7960,6 @@
+ "mut('\"了\"放在加粗外（T19）'"
+ ]
+ ],
+-"演练": [
+-"同 铁9"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -9731,9 +7994,6 @@
+ "没抓到：逐句确认一句套话贴到每一句（逐句格式）"
+ ]
+ ],
+-"演练": [
+-"同 T21"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -9800,9 +8060,6 @@
+ "24 起中文里出现破折号"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 D3改英文"
+-],
+ "阶段": [
+ "出片内",
+ "声音",
+@@ -9835,10 +8092,6 @@
+ "没抓到：牛津逗号核对确认写“英式写法、不改”被放行"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T35英式不改",
+-"执行效应演练 T18去牛津逗号"
+-],
+ "阶段": [
+ "声音",
+ "文本"
+@@ -9874,9 +8127,6 @@
+ "没抓到：逐句确认一句套话贴到每一句（逐句格式）"
+ ]
+ ],
+-"演练": [
+-"同 T21"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -9891,26 +8141,14 @@
+ [
+ "check_all.py",
+ "bad.append(f'D4 重点词缺中文标记"
+-],
+-[
+-"check_all.py",
+-"bad.append(f'D4 重点词缺中文标记"
+ ]
+ ],
+ "自检": [
+ [
+ "check_all.py",
+ "造('重点词缺中文标记','D4'"
+-],
+-[
+-"check_all.py",
+-"造('重点词缺中文标记','D4'"
+ ]
+ ],
+-"演练": [
+-"同 D4",
+-"同 T11"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -9933,9 +8171,6 @@
+ "没抓到：撞词按屈折变化判（T12）"
+ ]
+ ],
+-"演练": [
+-"同 T12"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -9958,9 +8193,6 @@
+ "造('重点词缺中文标记','D4'"
+ ]
+ ],
+-"演练": [
+-"同 D4"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -9983,9 +8215,6 @@
+ "造('英文混入换行标记','D1'"
+ ]
+ ],
+-"演练": [
+-"同 D1"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -10008,9 +8237,6 @@
+ "造('中文与分组拼接不一致','D2'"
+ ]
+ ],
+-"演练": [
+-"同 D2"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -10033,9 +8259,6 @@
+ "判('D5 注解只显示不朗读'"
+ ]
+ ],
+-"演练": [
+-"同 D5"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -10058,9 +8281,6 @@
+ "判('D6 格内分行与彩色说明'"
+ ]
+ ],
+-"演练": [
+-"同 D6"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -10083,9 +8303,6 @@
+ "mut('擅自加换行（L13）'"
+ ]
+ ],
+-"演练": [
+-"同 L13"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -10124,10 +8341,6 @@
+ "没抓到：PDF 没有生成（W5/W8/W9）"
+ ]
+ ],
+-"演练": [
+-"同 W1",
+-"同 W8"
+-],
+ "阶段": [
+ "文本",
+ "行为闸门"
+@@ -10151,9 +8364,6 @@
+ "没抓到：docx 没有一起覆盖，或覆盖了用户的修正稿（W7）"
+ ]
+ ],
+-"演练": [
+-"同 W7"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -10176,9 +8386,6 @@
+ "没抓到：不用 read_docx2 读用户改过的 Word（W2）"
+ ]
+ ],
+-"演练": [
+-"同 W2"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -10213,10 +8420,6 @@
+ "mut('中文说明用了半角括号（W4）'"
+ ]
+ ],
+-"演练": [
+-"同 W3",
+-"同 W4"
+-],
+ "阶段": [
+ "声音",
+ "文本"
+@@ -10248,10 +8451,6 @@
+ "没抓到：发 Word 没提醒打印背景色（W6）"
+ ]
+ ],
+-"演练": [
+-"同 W5",
+-"同 W6"
+-],
+ "阶段": [
+ "文本",
+ "行为闸门"
+@@ -10265,11 +8464,7 @@
+ "摘要": "视频定稿后反向同步，同步脚本能重复运行。 用 sync_article.py 把视频脚本反向同步回文章（英文、中文、速查",
+ "门": [
+ [
+-"定稿流水线.sh",
+-"sync_article.py"
+-],
+-[
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "sync_article.py"
+ ]
+ ],
+@@ -10287,10 +8482,6 @@
+ "没抓到：同步不能重复运行（连跑两遍结果不一样，S3）"
+ ]
+ ],
+-"演练": [
+-"同 S1",
+-"同 S3"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -10321,10 +8512,6 @@
+ "造('速查表只有本文、缺词性','S4'"
+ ]
+ ],
+-"演练": [
+-"同 S2",
+-"同 S4"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -10355,9 +8542,6 @@
+ "24 起中文里出现破折号"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 T36破折号"
+-],
+ "阶段": [
+ "出片内",
+ "文本"
+@@ -10371,10 +8555,6 @@
+ "摘要": "非重点词也一组一组对齐，按英文语序拆组；冠词、物主代词、数量词能译出的照译、放在对应英文正下方（G55）。 用户 24–",
+ "门": [
+ [
+-"开工必读.py",
+-"bad = [k for k, _, _ in it if 人判(reg, k)"
+-],
+-[
+ "踩坑核查.py",
+ "import 逐词对齐 as _ZD; err += _ZD.查(d, no)"
+ ],
+@@ -10385,17 +8565,10 @@
+ ],
+ "自检": [
+ [
+-"开工必读.py",
+-"没抓到：人判的留着待填"
+-],
+-[
+ "逐词对齐.py",
+ "没抓到：26 S14 “something rolling downhill” 合在一组没拆"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 G55做事对照没写（仓库镜像）"
+-],
+ "阶段": [
+ "声音",
+ "文本"
+@@ -10423,9 +8596,6 @@
+ "没抓到：重点词中文三个意思"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 文36三个意思（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -10448,9 +8618,6 @@
+ "'没抓到：踩坑对照记录没填完'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 法1对照没填完（仓库镜像）"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -10481,9 +8648,6 @@
+ "纯人声核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 音34"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -10531,10 +8695,6 @@
+ "句首句尾核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A19",
+-"同 A20"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -10558,9 +8718,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"同 A18"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -10583,9 +8740,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"同 A31"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -10598,7 +8752,7 @@
+ "摘要": "定稿：bash 工具/定稿流水线.sh NN 一条命令做完（用户 2026-10-10 要求定稿视频及时替换、及时存进文",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "定稿视频核对"
+ ],
+ [
+@@ -10612,9 +8766,6 @@
+ "自检样本找不到"
+ ]
+ ],
+-"演练": [
+-"同 G9"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -10637,9 +8788,6 @@
+ "'没抓到：踩坑对照记录没填完'"
+ ]
+ ],
+-"演练": [
+-"同 法1"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -10674,9 +8822,6 @@
+ "没抓到：逐句确认一句套话贴到每一句（逐句格式）"
+ ]
+ ],
+-"演练": [
+-"同 T21"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -10699,9 +8844,6 @@
+ "'没抓到：踩坑对照记录没填完'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 法1对照没填完（仓库镜像）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -10740,10 +8882,6 @@
+ "判('L12 只有 3840×2160 能归档"
+ ]
+ ],
+-"演练": [
+-"同 A19",
+-"同 L12"
+-],
+ "阶段": [
+ "出片后",
+ "声音",
+@@ -10768,9 +8906,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"执行效应声音演练 A13独立复核剪句尾（交付核查 出片后）"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -10817,12 +8952,6 @@
+ "造('重点词缺中文标记','D4'"
+ ]
+ ],
+-"演练": [
+-"同 D1",
+-"同 D2",
+-"同 D3",
+-"同 D4"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -10835,7 +8964,7 @@
+ "摘要": "第7步 交付。 视频、标点试听、所有疑点的试听一起发给用户，并如实说明核查结果；用户试听确认后才算定稿。听起来可能发闷、",
+ "门": [
+ [
+-"放行口子核查.py",
++"踩坑核查.py",
+ "def 定稿同意("
+ ],
+ [
+@@ -10849,7 +8978,7 @@
+ ],
+ "自检": [
+ [
+-"放行口子核查.py",
++"踩坑核查.py",
+ "没抓到：用户没说定稿就跑定稿流水线（画19/流7）"
+ ],
+ [
+@@ -10857,9 +8986,6 @@
+ "没抓到：一段突然变轻（A8"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 流7没说定稿就定稿（仓库镜像）"
+-],
+ "阶段": [
+ "出片内",
+ "出片后"
+@@ -10873,7 +8999,7 @@
+ "摘要": "第8步 保存。 4K 定稿用 python3 工具/归档定稿视频.py NN 复制到仓库根目录的 最终版4K视频/。文件",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "定稿视频核对"
+ ],
+ [
+@@ -10903,11 +9029,6 @@
+ "判('L12 只有 3840×2160 能归档"
+ ]
+ ],
+-"演练": [
+-"同 G9",
+-"同 G7",
+-"同 L12"
+-],
+ "阶段": [
+ "声音",
+ "定稿"
+@@ -10947,10 +9068,6 @@
+ "没抓到：PDF 没有生成（W5/W8/W9）"
+ ]
+ ],
+-"演练": [
+-"同 W7",
+-"同 W9"
+-],
+ "阶段": [
+ "文本",
+ "行为闸门"
+@@ -10982,10 +9099,6 @@
+ "没抓到：云端与本地不一致（G2）"
+ ]
+ ],
+-"演练": [
+-"同 G1",
+-"同 G2"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -11008,9 +9121,6 @@
+ "'没抓到：已定稿篇目的草稿没删（G7）'"
+ ]
+ ],
+-"演练": [
+-"同 G7"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -11057,9 +9167,6 @@
+ "没抓到：两边 视频/ 文件不一致（守则3）"
+ ]
+ ],
+-"演练": [
+-"推送自检.py（临时仓库真跑 推送两仓库.sh）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -11090,10 +9197,6 @@
+ "没抓到：两边 视频/ 文件不一致（守则3）"
+ ]
+ ],
+-"演练": [
+-"同 G1",
+-"同 G5"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -11132,10 +9235,6 @@
+ "'没抓到：已定稿篇目的草稿没删（G7）'"
+ ]
+ ],
+-"演练": [
+-"同 G6",
+-"同 G7"
+-],
+ "阶段": [
+ "声音",
+ "文本"
+@@ -11149,10 +9248,6 @@
+ "摘要": "交付前按《交付前检查单》逐项打勾（每篇必过）。 检查单见文末“附：交付前检查单（最新）”，它保留了《踩坑总表》末尾《交付",
+ "门": [
+ [
+-"规则执行核查.py",
+-"def 核查("
+-],
+-[
+ "githooks/pre-commit",
+ "规则执行核查.py"
+ ],
+@@ -11163,17 +9258,10 @@
+ ],
+ "自检": [
+ [
+-"规则执行核查.py",
+-"bad('新坑没登记'"
+-],
+-[
+ "钩子/钩子自检.py",
+ "跳过提交前核查"
+ ]
+ ],
+-"演练": [
+-"同 守则16"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -11188,10 +9276,6 @@
+ [
+ "钩子/闸门.py",
+ "【部署闸门】C1/C2/流16"
+-],
+-[
+-"钩子/闸门.py",
+-"【部署闸门】C1/C2/流16"
+ ]
+ ],
+ "自检": [
+@@ -11204,10 +9288,6 @@
+ "没抓到：推 master（C1/C2）"
+ ]
+ ],
+-"演练": [
+-"同 C1",
+-"同 C2"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -11238,9 +9318,6 @@
+ "没抓到：25 起 G6/C3/C4 没按固定格式写（本篇无/本篇有）"
+ ]
+ ],
+-"演练": [
+-"同 C3"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -11271,9 +9348,6 @@
+ "没抓到：25 起 G6/C3/C4 没按固定格式写（本篇无/本篇有）"
+ ]
+ ],
+-"演练": [
+-"同 C4"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -11316,9 +9390,6 @@
+ "没抓到：没有用户原话就改了已发的中文（T10/铁13）"
+ ]
+ ],
+-"演练": [
+-"同 C3"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -11341,9 +9412,6 @@
+ "判('画1 画面 16:9'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 画1排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -11366,9 +9434,6 @@
+ "判('L11 重点词两侧间隙"
+ ]
+ ],
+-"演练": [
+-"同 L11"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -11391,9 +9456,6 @@
+ "mut('擅自加换行（L13）'"
+ ]
+ ],
+-"演练": [
+-"同 L13"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -11416,9 +9478,6 @@
+ "mut('擅自加换行（L13）'"
+ ]
+ ],
+-"演练": [
+-"同 L13"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -11437,10 +9496,6 @@
+ [
+ "make_video.py",
+ "R.ES_FIXED=min(sizes[si],100*R.S)"
+-],
+-[
+-"make_video.py",
+-"R.ES_FIXED=min(sizes[si],100*R.S)"
+ ]
+ ],
+ "自检": [
+@@ -11453,10 +9508,6 @@
+ "判('L4 字号按句算"
+ ]
+ ],
+-"演练": [
+-"同 L1",
+-"同 L4"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -11479,9 +9530,6 @@
+ "判('L5 中文 = 英文 × 0.72"
+ ]
+ ],
+-"演练": [
+-"同 L5"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -11524,11 +9572,6 @@
+ "判('L7 说明计入字号"
+ ]
+ ],
+-"演练": [
+-"同 L3",
+-"同 L6",
+-"同 L7"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -11551,9 +9594,6 @@
+ "判('L10 另译黄字"
+ ]
+ ],
+-"演练": [
+-"同 L10"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -11576,9 +9616,6 @@
+ "判('L8 正文页不画标题"
+ ]
+ ],
+-"演练": [
+-"同 L8"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -11617,11 +9654,6 @@
+ "判('H3 色块里的字上下居中"
+ ]
+ ],
+-"演练": [
+-"同 H1",
+-"同 H2",
+-"同 H3"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -11643,10 +9675,6 @@
+ ],
+ [
+ "交付核查.py",
+-"句间停顿核对（A20"
+-],
+-[
+-"交付核查.py",
+ "句首句尾核对（clean_tail"
+ ]
+ ],
+@@ -11660,18 +9688,10 @@
+ "if '--自检' in sys.argv"
+ ],
+ [
+-"句间停顿核对.py",
+-"if '--自检' in sys.argv"
+-],
+-[
+ "句首句尾与停顿位置核对.py",
+ "句首句尾核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A5",
+-"同 A20"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -11698,9 +9718,6 @@
+ "高亮同步核对 自检：S"
+ ]
+ ],
+-"演练": [
+-"同 L14"
+-],
+ "阶段": [
+ "出片内",
+ "出片后"
+@@ -11728,9 +9745,6 @@
+ "高亮同步核对 自检：S"
+ ]
+ ],
+-"演练": [
+-"同 L14"
+-],
+ "阶段": [
+ "出片内",
+ "出片后"
+@@ -11758,9 +9772,6 @@
+ "高亮同步核对 自检：S"
+ ]
+ ],
+-"演练": [
+-"同 L14"
+-],
+ "阶段": [
+ "出片内",
+ "出片后"
+@@ -11784,9 +9795,6 @@
+ "判('L12 只有 3840×2160 能归档"
+ ]
+ ],
+-"演练": [
+-"同 L12"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -11817,9 +9825,6 @@
+ "纯人声核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 音34"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -11833,7 +9838,7 @@
+ "摘要": "出片顺序不能乱：",
+ "门": [
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "step \"⓪ 规则执行核查"
+ ]
+ ],
+@@ -11843,9 +9848,6 @@
+ "没抓到：定稿流水线步骤顺序乱了（画17）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 画17规则核查在最前（仓库镜像）"
+-],
+ "阶段": [
+ "看门"
+ ],
+@@ -11910,13 +9912,6 @@
+ "判('L11 重点词两侧间隙"
+ ]
+ ],
+-"演练": [
+-"同 L1",
+-"同 L3",
+-"同 L6",
+-"同 L7",
+-"同 L11"
+-],
+ "阶段": [
+ "出片内"
+ ],
+@@ -11929,7 +9924,7 @@
+ "摘要": "交付与定稿：视频、标点试听和所有疑点试听一起发给用户，如实说明核查结果。用户试听确认以后才算定稿。（来源：硬性条件 六.",
+ "门": [
+ [
+-"放行口子核查.py",
++"踩坑核查.py",
+ "def 定稿同意("
+ ],
+ [
+@@ -11939,7 +9934,7 @@
+ ],
+ "自检": [
+ [
+-"放行口子核查.py",
++"踩坑核查.py",
+ "没抓到：用户没说定稿就跑定稿流水线（画19/流7）"
+ ],
+ [
+@@ -11951,9 +9946,6 @@
+ "没抓到：一次发两个声音视频（A25）"
+ ]
+ ],
+-"演练": [
+-"同 守则7"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -11976,9 +9968,6 @@
+ "'没抓到：已定稿篇目的草稿没删（G7）'"
+ ]
+ ],
+-"演练": [
+-"同 G7"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -11995,7 +9984,7 @@
+ "def 欠着"
+ ],
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "全篇核查.py --欠着"
+ ]
+ ],
+@@ -12005,9 +9994,6 @@
+ "没抓到：改了出片程序没全篇重查（铁4）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 铁4改了出片程序要全篇重查（仓库镜像）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -12042,10 +10028,6 @@
+ "对正量 自检失败：造的坑没被挡住"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 L20排版程序改坏（仓库镜像）",
+-"执行效应演练 L20旧篇排版程序改坏（仓库镜像）"
+-],
+ "阶段": [
+ "出片内",
+ "文本"
+@@ -12059,10 +10041,6 @@
+ "摘要": "这是教材，零瑕疵。 任何一处读错、切音、卡顿、发闷、错字、错译都不允许，宁可慢，不可错；硬性条件任何一条不满足，不得交付",
+ "门": [
+ [
+-"规则执行核查.py",
+-"def 核查("
+-],
+-[
+ "githooks/pre-commit",
+ "规则执行核查.py"
+ ],
+@@ -12073,17 +10051,10 @@
+ ],
+ "自检": [
+ [
+-"规则执行核查.py",
+-"bad('新坑没登记'"
+-],
+-[
+ "钩子/钩子自检.py",
+ "跳过提交前核查"
+ ]
+ ],
+-"演练": [
+-"同 守则16"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -12096,10 +10067,6 @@
+ "摘要": "踩过的坑绝不再踩。 每篇开工前逐条重读《踩坑总表》，运行 交付核查.py NN 对照表 生成模板，在 制作记录/NN.m",
+ "门": [
+ [
+-"规则执行核查.py",
+-"def 核查("
+-],
+-[
+ "githooks/pre-commit",
+ "规则执行核查.py"
+ ],
+@@ -12114,10 +10081,6 @@
+ ],
+ "自检": [
+ [
+-"规则执行核查.py",
+-"bad('新坑没登记'"
+-],
+-[
+ "钩子/钩子自检.py",
+ "跳过提交前核查"
+ ],
+@@ -12126,10 +10089,6 @@
+ "'没抓到：踩坑对照记录没填完'"
+ ]
+ ],
+-"演练": [
+-"同 守则16",
+-"同 法1"
+-],
+ "阶段": [
+ "文本",
+ "行为闸门"
+@@ -12145,26 +10104,14 @@
+ [
+ "交付核查.py",
+ "独立复核：{len(cuts)} 处改动"
+-],
+-[
+-"交付核查.py",
+-"独立复核：{len(cuts)} 处改动"
+ ]
+ ],
+ "自检": [
+ [
+ "交付核查.py",
+ "核查程序自检："
+-],
+-[
+-"交付核查.py",
+-"核查程序自检："
+ ]
+ ],
+-"演练": [
+-"同 A13",
+-"同 A14"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -12181,7 +10128,7 @@
+ "def 欠着"
+ ],
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "全篇核查.py --欠着"
+ ]
+ ],
+@@ -12191,9 +10138,6 @@
+ "没抓到：改了出片程序没全篇重查（铁4）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 铁4改了出片程序要全篇重查（仓库镜像）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -12220,9 +10164,6 @@
+ "没抓到：一次发两个声音视频（A25）"
+ ]
+ ],
+-"演练": [
+-"同 守则7"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -12257,10 +10198,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"同 守则7",
+-"同 A18"
+-],
+ "阶段": [
+ "出片后",
+ "行为闸门"
+@@ -12284,9 +10221,6 @@
+ "'没抓到：踩坑对照记录没填完'"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 法1对照没填完（仓库镜像）"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -12299,10 +10233,6 @@
+ "摘要": "新坑当场入表，当场加核查。 新踩的坑当场写进《踩坑总表》，并在《硬性条件》里补上相应条款。凡是能用程序查的，必须同时加进",
+ "门": [
+ [
+-"规则执行核查.py",
+-"def 核查("
+-],
+-[
+ "githooks/pre-commit",
+ "规则执行核查.py"
+ ],
+@@ -12313,17 +10243,10 @@
+ ],
+ "自检": [
+ [
+-"规则执行核查.py",
+-"bad('新坑没登记'"
+-],
+-[
+ "钩子/钩子自检.py",
+ "跳过提交前核查"
+ ]
+ ],
+-"演练": [
+-"同 守则16"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -12346,9 +10269,6 @@
+ "mut('\"了\"放在加粗外（T19）'"
+ ]
+ ],
+-"演练": [
+-"同 T19"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -12383,10 +10303,6 @@
+ "高亮同步核对 自检：S"
+ ]
+ ],
+-"演练": [
+-"同 A16",
+-"同 L14"
+-],
+ "阶段": [
+ "出片内",
+ "出片后"
+@@ -12418,10 +10334,6 @@
+ "mut('\"了\"放在加粗外（T19）'"
+ ]
+ ],
+-"演练": [
+-"同 A18",
+-"同 T19"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -12453,14 +10365,6 @@
+ [
+ "推送两仓库.sh",
+ "git push -q origin main"
+-],
+-[
+-"踩坑核查.py",
+-"[T29]"
+-],
+-[
+-"钩子/闸门.py",
+-"【方法进化闸门】"
+ ]
+ ],
+ "自检": [
+@@ -12479,20 +10383,8 @@
+ [
+ "钩子/钩子自检.py",
+ "没抓到：有没推送的改动就收工（守则3）"
+-],
+-[
+-"踩坑核查.py",
+-"没抓到：制作记录没写方法复盘（T29）"
+-],
+-[
+-"钩子/钩子自检.py",
+-"没抓到：改了工具没写方法升级记录（守则12）"
+ ]
+ ],
+-"演练": [
+-"同 守则3",
+-"同 守则12"
+-],
+ "阶段": [
+ "定稿",
+ "文本",
+@@ -12521,9 +10413,6 @@
+ "没抓到：没有用户原话就改了已发的中文（T10/铁13）"
+ ]
+ ],
+-"演练": [
+-"同 T10"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -12546,9 +10435,6 @@
+ "没抓到：说明里写了“怎么理解”（T27"
+ ]
+ ],
+-"演练": [
+-"同 T27"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -12561,10 +10447,6 @@
+ "摘要": "规矩由机器执行，不靠记忆（CLAUDE.md 第16条）。 每一条守则、踩坑、硬性标准都在 工具/规则执行表.json ",
+ "门": [
+ [
+-"规则执行核查.py",
+-"def 核查("
+-],
+-[
+ "githooks/pre-commit",
+ "规则执行核查.py"
+ ],
+@@ -12575,17 +10457,10 @@
+ ],
+ "自检": [
+ [
+-"规则执行核查.py",
+-"bad('新坑没登记'"
+-],
+-[
+ "钩子/钩子自检.py",
+ "跳过提交前核查"
+ ]
+ ],
+-"演练": [
+-"同 守则16"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -12596,25 +10471,8 @@
+ {
+ "编号": "铁16",
+ "摘要": "执行效应：规矩在真实流程里挡住违规才算数（CLAUDE.md 第19条，用户 2026-10-24）。 “门在”不算数；",
+-"门": [
+-[
+-"规则执行核查.py",
+-"STAMPED['执行效应演练.py'] = ('执行效应演练通过.json'"
+-],
+-[
+-"执行效应演练.py",
+-"ok = c != 0 and bool(hit)"
+-]
+-],
+-"自检": [
+-[
+-"执行效应演练.py",
+-"拆掉 T36 的门后，演练报“没挡住”（演练能发现坏门）"
+-]
+-],
+-"演练": [
+-"同 守则19"
+-],
++"门": [],
++"自检": [],
+ "阶段": [
+ "看门"
+ ],
+@@ -12636,14 +10494,6 @@
+ "独立复核：{len(cuts)} 处改动"
+ ],
+ [
+-"交付核查.py",
+-"句首句尾核对（clean_tail"
+-],
+-[
+-"交付核查.py",
+-"独立复核：{len(cuts)} 处改动"
+-],
+-[
+ "make_video.py",
+ "不允许退回分段合成（A8）"
+ ],
+@@ -12661,10 +10511,6 @@
+ ],
+ [
+ "交付核查.py",
+-"独立复核：{len(cuts)} 处改动"
+-],
+-[
+-"交付核查.py",
+ "词尾辅音核对（A21"
+ ]
+ ],
+@@ -12678,14 +10524,6 @@
+ "核查程序自检："
+ ],
+ [
+-"句首句尾与停顿位置核对.py",
+-"句首句尾核对 自检："
+-],
+-[
+-"交付核查.py",
+-"核查程序自检："
+-],
+-[
+ "audio_qc.py",
+ "没抓到：一段突然变轻（A8"
+ ],
+@@ -12694,21 +10532,10 @@
+ "A19 自检："
+ ],
+ [
+-"交付核查.py",
+-"核查程序自检："
+-],
+-[
+ "词尾辅音核对.py",
+ "词尾辅音核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A1",
+-"同 A6",
+-"同 A8",
+-"同 A10",
+-"同 A21"
+-],
+ "阶段": [
+ "出片内",
+ "出片后",
+@@ -12757,10 +10584,6 @@
+ "句首句尾核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A19",
+-"同 A20"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -12792,9 +10615,6 @@
+ "纯人声核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A19"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -12826,9 +10646,6 @@
+ "纯人声核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A19"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -12860,9 +10677,6 @@
+ "纯人声核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A19"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -12889,10 +10703,6 @@
+ ],
+ [
+ "make_video.py",
+-"音色和降噪写死（A3/A7）"
+-],
+-[
+-"make_video.py",
+ "降噪设置 AF.txt 被改过（A7"
+ ]
+ ],
+@@ -12910,11 +10720,6 @@
+ "('A7', '20'"
+ ]
+ ],
+-"演练": [
+-"同 A2",
+-"同 A3",
+-"同 A7"
+-],
+ "阶段": [
+ "出片内",
+ "出片后"
+@@ -12950,10 +10755,6 @@
+ "没抓到：一段突然变轻（A8"
+ ]
+ ],
+-"演练": [
+-"同 A4",
+-"同 A8"
+-],
+ "阶段": [
+ "出片内",
+ "出片后",
+@@ -12994,10 +10795,6 @@
+ "A19 自检："
+ ]
+ ],
+-"演练": [
+-"同 A4",
+-"同 A9"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -13053,12 +10850,6 @@
+ "mut('牛津逗号被去掉（T18）'"
+ ]
+ ],
+-"演练": [
+-"同 A17",
+-"同 A4",
+-"同 A5",
+-"同 T18"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -13081,10 +10872,6 @@
+ [
+ "交付核查.py",
+ "标点停顿核对（A9/A10"
+-],
+-[
+-"交付核查.py",
+-"句间停顿核对（A20"
+ ]
+ ],
+ "自检": [
+@@ -13099,16 +10886,8 @@
+ [
+ "标点停顿核对.py",
+ "A19 自检："
+-],
+-[
+-"句间停顿核对.py",
+-"if '--自检' in sys.argv"
+ ]
+ ],
+-"演练": [
+-"同 A20",
+-"同 A5"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -13139,9 +10918,6 @@
+ "纯人声核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A19"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -13185,10 +10961,6 @@
+ "高亮同步核对 自检：S"
+ ]
+ ],
+-"演练": [
+-"同 A19",
+-"同 L14"
+-],
+ "阶段": [
+ "出片内",
+ "出片后",
+@@ -13221,9 +10993,6 @@
+ "A19 自检："
+ ]
+ ],
+-"演练": [
+-"同 A9"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -13247,30 +11016,14 @@
+ [
+ "交付核查.py",
+ "停顿位置核对（A9/A15"
+-],
+-[
+-"make_video.py",
+-"人工核实的插入点不在该标点附近，或落在响亮的声音上（A15）"
+-],
+-[
+-"交付核查.py",
+-"停顿位置核对（A9/A15"
+ ]
+ ],
+ "自检": [
+ [
+ "出片守门自检.py",
+ "('A15', '04'"
+-],
+-[
+-"出片守门自检.py",
+-"('A15', '04'"
+ ]
+ ],
+-"演练": [
+-"同 A12",
+-"同 A15"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -13298,22 +11051,6 @@
+ [
+ "交付核查.py",
+ "标点停顿核对（A9/A10"
+-],
+-[
+-"交付核查.py",
+-"独立复核：{len(cuts)} 处改动"
+-],
+-[
+-"交付核查.py",
+-"独立复核：{len(cuts)} 处改动"
+-],
+-[
+-"交付核查.py",
+-"句首句尾核对（clean_tail"
+-],
+-[
+-"交付核查.py",
+-"独立复核：{len(cuts)} 处改动"
+ ]
+ ],
+ "自检": [
+@@ -13328,30 +11065,8 @@
+ [
+ "标点停顿核对.py",
+ "A19 自检："
+-],
+-[
+-"交付核查.py",
+-"核查程序自检："
+-],
+-[
+-"交付核查.py",
+-"核查程序自检："
+-],
+-[
+-"句首句尾与停顿位置核对.py",
+-"句首句尾核对 自检："
+-],
+-[
+-"交付核查.py",
+-"核查程序自检："
+ ]
+ ],
+-"演练": [
+-"同 A1",
+-"同 A10",
+-"同 A10b",
+-"同 A6"
+-],
+ "阶段": [
+ "出片内",
+ "出片后",
+@@ -13376,9 +11091,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"同 A10b"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -13401,10 +11113,6 @@
+ [
+ "交付核查.py",
+ "独立复核：{len(cuts)} 处改动"
+-],
+-[
+-"交付核查.py",
+-"独立复核：{len(cuts)} 处改动"
+ ]
+ ],
+ "自检": [
+@@ -13415,16 +11123,8 @@
+ [
+ "交付核查.py",
+ "核查程序自检："
+-],
+-[
+-"交付核查.py",
+-"核查程序自检："
+ ]
+ ],
+-"演练": [
+-"同 A10",
+-"同 A13"
+-],
+ "阶段": [
+ "出片内",
+ "出片后",
+@@ -13448,27 +11148,11 @@
+ ],
+ [
+ "交付核查.py",
+-"独立复核：{len(cuts)} 处改动"
+-],
+-[
+-"交付核查.py",
+ "句间停顿核对（A20"
+ ],
+ [
+ "交付核查.py",
+-"句首句尾核对（clean_tail"
+-],
+-[
+-"交付核查.py",
+ "词尾辅音核对（A21"
+-],
+-[
+-"交付核查.py",
+-"句首句尾核对（clean_tail"
+-],
+-[
+-"交付核查.py",
+-"独立复核：{len(cuts)} 处改动"
+ ]
+ ],
+ "自检": [
+@@ -13481,37 +11165,14 @@
+ "核查程序自检："
+ ],
+ [
+-"交付核查.py",
+-"核查程序自检："
+-],
+-[
+ "句间停顿核对.py",
+ "if '--自检' in sys.argv"
+ ],
+ [
+-"句首句尾与停顿位置核对.py",
+-"句首句尾核对 自检："
+-],
+-[
+ "词尾辅音核对.py",
+ "词尾辅音核对 自检："
+-],
+-[
+-"句首句尾与停顿位置核对.py",
+-"句首句尾核对 自检："
+-],
+-[
+-"交付核查.py",
+-"核查程序自检："
+ ]
+ ],
+-"演练": [
+-"同 A1",
+-"同 A10b",
+-"同 A20",
+-"同 A21",
+-"同 A6"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -13535,9 +11196,6 @@
+ "数字读法、引号自检（A11"
+ ]
+ ],
+-"演练": [
+-"同 A11"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -13568,10 +11226,6 @@
+ "判('D5 注解只显示不朗读'"
+ ]
+ ],
+-"演练": [
+-"同 A17",
+-"同 D5"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+@@ -13603,9 +11257,6 @@
+ "('音21', '20'"
+ ]
+ ],
+-"演练": [
+-"出片守门自检 音21"
+-],
+ "阶段": [
+ "出片内",
+ "出片后"
+@@ -13633,9 +11284,6 @@
+ "没抓到：一段突然变轻（A8"
+ ]
+ ],
+-"演练": [
+-"同 A8"
+-],
+ "阶段": [
+ "出片内",
+ "出片后"
+@@ -13659,9 +11307,6 @@
+ "没抓到：削波（A2）"
+ ]
+ ],
+-"演练": [
+-"同 A2"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -13676,35 +11321,14 @@
+ [
+ "交付核查.py",
+ "独立复核：{len(cuts)} 处改动"
+-],
+-[
+-"交付核查.py",
+-"独立复核：{len(cuts)} 处改动"
+-],
+-[
+-"交付核查.py",
+-"独立复核：{len(cuts)} 处改动"
+ ]
+ ],
+ "自检": [
+ [
+ "交付核查.py",
+ "核查程序自检："
+-],
+-[
+-"交付核查.py",
+-"核查程序自检："
+-],
+-[
+-"交付核查.py",
+-"核查程序自检："
+ ]
+ ],
+-"演练": [
+-"同 A13",
+-"同 A16",
+-"同 A18"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -13719,26 +11343,14 @@
+ [
+ "交付核查.py",
+ "独立复核：{len(cuts)} 处改动"
+-],
+-[
+-"交付核查.py",
+-"独立复核：{len(cuts)} 处改动"
+ ]
+ ],
+ "自检": [
+ [
+ "交付核查.py",
+ "核查程序自检："
+-],
+-[
+-"交付核查.py",
+-"核查程序自检："
+ ]
+ ],
+-"演练": [
+-"同 A13",
+-"同 A14"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -13761,9 +11373,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"同 A16"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -13802,10 +11411,6 @@
+ "纯人声核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A18",
+-"同 A19"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -13829,9 +11434,6 @@
+ "核查程序自检："
+ ]
+ ],
+-"演练": [
+-"同 A18"
+-],
+ "阶段": [
+ "出片后"
+ ],
+@@ -13848,7 +11450,7 @@
+ "def 欠着"
+ ],
+ [
+-"定稿流水线.sh",
++"新管/定稿.sh",
+ "全篇核查.py --欠着"
+ ]
+ ],
+@@ -13858,9 +11460,6 @@
+ "没抓到：改了出片程序没全篇重查（铁4）"
+ ]
+ ],
+-"演练": [
+-"执行效应演练 铁4改了出片程序要全篇重查（仓库镜像）"
+-],
+ "阶段": [
+ "定稿"
+ ],
+@@ -13887,9 +11486,6 @@
+ "没抓到：一段突然变轻（A8"
+ ]
+ ],
+-"演练": [
+-"同 A8"
+-],
+ "阶段": [
+ "出片内",
+ "出片后"
+@@ -13917,9 +11513,6 @@
+ "没抓到：一次发两个声音视频（A25）"
+ ]
+ ],
+-"演练": [
+-"同 守则7"
+-],
+ "阶段": [
+ "行为闸门"
+ ],
+@@ -13942,9 +11535,6 @@
+ "'没抓到：踩坑对照记录没填完'"
+ ]
+ ],
+-"演练": [
+-"同 法1"
+-],
+ "阶段": [
+ "文本"
+ ],
+@@ -13967,9 +11557,6 @@
+ "词尾辅音核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A21"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -14000,9 +11587,6 @@
+ "纯人声核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A19"
+-],
+ "阶段": [
+ "出片后",
+ "声音"
+@@ -14034,9 +11618,6 @@
+ "句首句尾核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A20"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -14059,9 +11640,6 @@
+ "词尾辅音核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A21"
+-],
+ "阶段": [
+ "声音"
+ ],
+@@ -14088,9 +11666,6 @@
+ "读音核对 自检："
+ ]
+ ],
+-"演练": [
+-"同 A23"
+-],
+ "阶段": [
+ "出片内",
+ "声音"
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\271\346\263\225\350\277\233\345\214\226\350\241\250.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\271\346\263\225\350\277\233\345\214\226\350\241\250.py"
+index 4a784eb..b439d9d 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\271\346\263\225\350\277\233\345\214\226\350\241\250.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\271\346\263\225\350\277\233\345\214\226\350\241\250.py"
+@@ -27,7 +27,7 @@ W = dict(input_tokens=1, cache_creation_input_tokens=1.25, cache_read_input_toke
+ 丝滑起 = 28   # K 丝滑记录（用户 2026-10-27 丝滑主义）：28 起每篇数 制作记录/丝滑/NN.jsonl 里的“不丝滑”，进 G65 比较
+ 漏洞起 = 27   # 27 起进比较（之前的篇没有按会话记，不比）
+ def 不丝滑数(no):
+-    sys.path.insert(0, T); import 丝滑; return 丝滑.次数(no)
++    return None   # 丝滑记录已删（用户 2026-10-29）
+ def 坑归篇(k, 会篇):
+     m = re.match(r'(\d\d)\s', k.get('现象', ''))
+     return m.group(1) if m else 会篇.get(k.get('会话'))
+@@ -147,7 +147,7 @@ def 落地查(txt, repos=None, 号=None):
+     m = re.search(r'^## 方法复盘[^\n]*\n([\s\S]*?)(?=^## |\Z)', txt, re.M)
+     hs = re.findall(r'进化落地[：:]\s*([^\n]+)', m.group(1)) if m else []
+     if 号 is None:
+-        try: 号 = {k['号'] for k in json.load(open(f'{REC}/坑登记.json')).get('登记', [])} | set(json.load(open(f'{T}/规则执行表.json')))
++        try: 号 = {k['号'] for k in json.load(open(f'{REC}/坑登记.json')).get('登记', [])} | {e['编号'] for e in json.load(open(f'{T}/新管/规则表.json'))['规则']}
+         except Exception: 号 = set()
+     ok = []
+     for h in hs:
+@@ -192,61 +192,20 @@ def 写表(行=None):
+         cmp = '；'.join(f'{lab}{"↑" if r[k] > b[k] else "↓"}' for k, _, lab in 项[:3] if b.get(k)) if prev else '—'
+         漏 = '（漏洞 %s）' % r['机制漏洞'] if r.get('机制漏洞') is not None else ''; 丝 = '（不丝滑 %s）' % r['不丝滑'] if r.get('不丝滑') is not None else ''   # 不嵌套同种引号的 f-string：出片环境是 Python 3.11（K51）
+         L.append(f'| {no}{"（不全）" if no in 不全 else ""} | {r["等效"]}M{"（估）" if r["估"] else ""} | {r["调用"]} | {r["平均上下文"]}k | {r["会话数"]} | {r["改稿条数"]} | {r["报坑"]}{漏}{丝} | {"—" if r["手工重复"] is None else r["手工重复"]} | {cmp} |')
+-    L += ['', '## 每步预计/实测 token（同一张 开工必读 ⑤ 步骤表；实测 = 最近一篇有按步骤记录的会话，预计 = 最近三篇中位数）', '',
+-          '| 第几步 | 做什么 | 正式入口 | 在哪做 | 预计 | 实测 |', '|---|---|---|---|---|---|']
+-    try:
+-        sys.path.insert(0, T); import 开工必读 as K; rows = K.步骤表(reg=json.load(open(f'{T}/规则执行表.json')))
+-    except Exception: rows = []
+-    有步 = [no for no in ks if 行[no]['按步骤']]
+-    for i, (段, 做, cmd, 在, 证, g) in enumerate(rows, 1):
+-        p = cmd.split()[0] if cmd != '—' else ''
+-        xs = [行[no]['按步骤'].get(p) for no in 有步[-3:] if 行[no]['按步骤'].get(p)] if p else []
+-        L.append(f'| {i} | {做} | {cmd} | {在} | {str(round(statistics.median(xs), 2)) + "M" if xs else "—"} | {str(xs[-1]) + "M" if xs else "—"} |')
+-    sys.path.insert(0, T); import 证据 as ZJ   # G71：28 起每篇一节机制运行报告，同时写进 NN.md
+-    for no in sorted({os.path.basename(x)[:2] for x in glob.glob(f'{ZJ.目录[0]}/[0-9][0-9].jsonl')}):
+-        if int(no) < 报告起: continue
+-        节 = 机制报告(no, 行, rows); L += [''] + [节[0].replace('## ', f'## 第{no}篇 ', 1)] + 节[1:]; 写报告进篇(no, 节); 写漏洞节(no, 行)
++    for no in sorted(os.path.basename(x)[:2] for x in glob.glob(f'{REC}/[0-9][0-9].md')):
++        if int(no) >= 报告起 and 出过片(no): 写漏洞节(no, 行)   # 只写出过片的篇（排队中的不动）
+     open(OUT, 'w').write('\n'.join(L) + '\n'); return OUT
+ 
+ 
+-报告起 = 28   # G71：机制运行报告从 28 起（证据链从 28 起）
+-
+-
+-def 机制报告(no, 行=None, rows=None, rs=None):
+-    """G71 机制运行报告（用户 2026-10-26：“一定要确保这些所有的东西都能够执行起来……不要说好不容易费了这么多时间，费了这么多token，弄完之后到最后不用”）：
+-    开工必读 ⑤ 每一步：证据在不在（证据/NN.jsonl）、在 GitHub 还是会话跑、用了多少 token"""
+-    sys.path.insert(0, T); import 证据 as ZJ
+-    if rows is None:
+-        import 开工必读 as K; rows = K.步骤表(reg=json.load(open(f'{T}/规则执行表.json')))
+-    rs = ZJ.读(no) if rs is None else rs; 步 = ((汇总() if 行 is None else 行).get(no) or {}).get('按步骤', {})
+-    时 = {r['步']: r.get('时刻', '') for r in rs if r.get('结果') == '通过'}
+-    L = []; 齐 = 缺 = 0
+-    for i, (段, 做, cmd, 在, 证, g) in enumerate(rows, 1):
+-        m = re.search(r'“(.+?)”', 证); p = cmd.split()[0] if cmd != '—' else ''
+-        if not m: e = '—'
+-        elif m.group(1) in 时: e = f'✔ {m.group(1)}（{时[m.group(1)][5:16]}）'; 齐 += 1
+-        else: e = f'✘ 缺“{m.group(1)}”'; 缺 += 1
+-        L.append(f'| {i} | {段} | {做} | {cmd} | {在} | {e} | {str(步[p]) + "M" if p in 步 else "—"} |')
+-    return [f'## 机制运行报告（G71，程序写：开工必读 ⑤ 的 {len(rows)} 步，证据 = 制作记录/证据/{no}.jsonl）', '',
+-            f'- 留证据的步骤：齐 {齐}、缺 {缺}' + ('（缺的按步骤表补跑，定稿流水线 ⓪ 查证据链）' if 缺 else '（全部真跑过）'), '',
+-            '| 第几步 | 阶段 | 做什么 | 正式入口 | 在哪跑 | 证据 | token |', '|---|---|---|---|---|---|---|'] + L
++报告起 = 28   # G79 机制漏洞节从 28 起
+ 
+ 
+-def 写报告进篇(no, 节, rec=REC):
+-    f = f'{rec}/{no}.md'
+-    if not os.path.exists(f): return False
+-    txt = open(f).read(); t2 = re.sub(r'^## 机制运行报告（G71[^\n]*\n(?:\n|- [^\n]*\n|\|[^\n]*\n)*', '', txt, flags=re.M)
+-    a = t2.find('\n## 方法复盘'); 块 = '\n'.join(节) + '\n\n'
+-    t2 = (t2[:a + 1] + 块 + t2[a + 1:]) if a >= 0 else t2.rstrip('\n') + '\n\n' + 块
+-    if t2 != txt: open(f, 'w').write(t2)
+-    return True
+-
+ 
+ def 漏洞节(no, 行, txt=''):
+     """G79 “## 机制漏洞”：程序填本篇登记的 K#、程序毛病条数、手工重复；“- 会话补：”由会话写（这次机制哪里没挡住、哪里不顺；没有写“无（依据：……）”），保留原文"""
+     r = 行.get(no) or {}; old = re.search(r'^- 会话补：[^\n]*$', re.search(r'^## 机制漏洞[\s\S]*?(?=^## |\Z)', txt, re.M).group(0), re.M) if re.search(r'^## 机制漏洞', txt, re.M) else None   # K76/K101：只认行首整行标题（正文里出现这几个字不算有这一节）
+     ks = r.get('K', [])
+-    return [f'## 机制漏洞（G79，程序写：本篇登记的坑 = 现象以“{no} ”开头或本篇会话登记的；踩坑核查 28 起没有“会话补”就停）',
++    return [f'## 机制漏洞（G79，程序写：本篇登记的坑 = 现象以“{no} ”开头或本篇会话登记的；踩坑核查 28 起没有“会话补”只提醒）',
+             f'- 程序填：本篇登记 {len(ks)} 条（{"、".join(ks) or "无"}）；机制漏洞（程序毛病）{r.get("机制漏洞") or 0} 条；手工重复 {r.get("手工重复") if r.get("手工重复") is not None else "—"} 次',
+             old.group(0) if old else '- 会话补：']
+ def 写漏洞节(no, 行, rec=REC):
+@@ -267,13 +226,6 @@ def 状态():
+     c = f'；{cur} 比前三篇中位 {b["等效"]}M {"变差↑" if 行[cur]["等效"] > b["等效"] else "变好↓"}' if cur and b.get('等效') else ''
+     超 = [f'{k}:{"、".join(行[k]["超限会话"])}' for k in ks if 行[k]['超限会话']]
+     print(f'【方法进化（G65）】等效 token：{s}{c}（*=含估算）；表：视频/制作记录/方法进化表.md' + (f'；上下文超 {上下文限}k 的会话：{" ".join(超)}' if 超 else ''))
+-    rs = []
+-    for f in glob.glob(f'{V}/云端/结果/*.结果.txt'):
+-        t = open(f).read(); ts = subprocess.run(['git', '-C', P, 'log', '-1', '--format=%cI', '--', f], capture_output=True, text=True).stdout.strip()
+-        g = lambda k: (re.search(rf'^{k} (\S+)', t, re.M) or [None, '?'])[1]
+-        rs.append((ts, os.path.basename(f).replace('.结果.txt', ''), g('运行'), g('退出码')))
+-    rs.sort(reverse=True)
+-    print('【GitHub 工作流最近结果】' + ('；'.join(f'{n} 运行 {r} 退出码 {c}（{t[5:16]}）' for t, n, r, c in rs[:3]) if rs else '视频/云端/结果/ 还没有回写'))
+ 
+ 
+ def 自检():
+@@ -307,11 +259,7 @@ def 自检():
+     if 上下文超(s, '改稿') is None: f.append('没抓到：改稿会话上下文 500k 超限')
+     if 上下文超(s, '改门') is None: f.append('没抓到：改门会话上下文 500k 超 300k（K58）')
+     if 上下文超({**s, '最后上下文': 280}, '改门') is not None or 上下文超({**s, '最后上下文': 350}, '改稿') is not None: f.append('误停：改门 280k、改稿 350k 都没超各自的限（K58）')
+-    rows = [('二 声音', '跑 草稿声音.sh', '草稿声音.sh NN', '会话', '证据“草稿声音”', '—'), ('二 声音', '跑 交付核查.py', '交付核查.py NN 出片前', '会话', '证据“出片前”', '—'), ('〇', '搭目录', '—', '会话', '—', '—')]
+-    节 = 机制报告('28', {'28': {'按步骤': {'草稿声音.sh': 1.5}}}, rows, [{'步': '草稿声音', '结果': '通过', '时刻': '2026-10-27T01:00:00Z'}])
+-    t = '\n'.join(节)
+-    if '✘ 缺“出片前”' not in t or '✔ 草稿声音' not in t or '1.5M' not in t or '齐 1、缺 1' not in t: f.append('机制运行报告没写对：缺的步骤、有的证据、按步骤 token')
+-    open(f'{d}/28.md', 'w').write('## 方法设计\nx\n\n## 方法复盘\ny\n'); 写报告进篇('28', 节, d); 写报告进篇('28', 节, d)
++    open(f'{d}/28.md', 'w').write('## 方法设计\nx\n\n## 方法复盘\ny\n')
+     # G79 机制漏洞：坑归篇（前缀/会话）、程序毛病分类、“## 机制漏洞”节写两次不重复、会话补原文保留
+     if 坑归篇({'现象': '28 S3 x'}, {}) != '28' or 坑归篇({'现象': '2026 改门', '会话': 's1'}, {'s1': '28'}) != '28' or 坑归篇({'现象': 'x', '会话': 's2'}, {}) is not None: f.append('坑归篇错（G79）')
+     if not 是程序毛病('定稿流水线 ④ 文本门静默跳过') or 是程序毛病('S5 hallmark 读成 hall-mark'): f.append('程序毛病分类错（G79）')
+@@ -321,8 +269,6 @@ def 自检():
+     写漏洞节('28', 行2, d); t = open(f'{d}/28.md').read().replace('- 会话补：', '- 会话补：无（依据：门都挡住了）'); open(f'{d}/28.md', 'w').write(t); 写漏洞节('28', 行2, d)
+     t = open(f'{d}/28.md').read()
+     if t.count('## 机制漏洞') != 1 or '会话补：无（依据：门都挡住了）' not in t or 'K1（程序）' not in t or t.find('## 机制漏洞') > t.find('## 方法复盘'): f.append('“## 机制漏洞”节没写对（G79：重复、会话补被冲掉或位置不对）')
+-    t = open(f'{d}/28.md').read()
+-    if t.count('## 机制运行报告') != 1 or t.find('## 机制运行报告') > t.find('## 方法复盘'): f.append('机制运行报告写进 NN.md 没只写一节、或没放在方法复盘前')
+     # K 丝滑记录：不丝滑次数比前三篇中位多 = 变差，要进化落地
+     行3 = {n: {'等效': 1, '调用': 1, '平均上下文': 1, '手工重复': 0, '机制漏洞': 0, '不丝滑': 0, '按步骤': {}} for n in ('28', '29', '30')}
+     行3['31'] = {**行3['28'], '不丝滑': 2}
+@@ -354,7 +300,6 @@ if __name__ == '__main__':
+         s = 统计(p); m = 上下文超(s, 角色); print(m or f'本会话上下文 {s["最后上下文"]}k（限 {上下文限}k）'); sys.exit(1 if m else 0)
+     if '--门' in a:
+         no = a[a.index('--门') + 1].zfill(2); e, 节 = 门(no); print('\n'.join(e) or f'方法进化 {no}：通过')
+-        if not e and int(no) >= 起: import 证据 as _ZJ; _ZJ.记(no, '方法进化', 详情={'进化表行': 节.splitlines()[1][2:] if 节 else ''})   # G60：使用证据
+         sys.exit(1 if e else 0)
+     if '--状态' in a: 状态(); sys.exit(0)
+     if '--写入' in a: print('已写', 写表()); sys.exit(0)
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py"
+index 4f12c33..e6edeb3 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py"
+@@ -1,18 +1,18 @@
+ #!/usr/bin/env python3
+-"""流程自检（规则执行机器当场跑）：
+-  G10 同一篇同时只能跑一条定稿流水线：占着锁再启动，必须停；
+-  画17/守则9 定稿流水线的步骤顺序固定：⓪ 规则执行核查 → ① 出片前核查 → ② 出 4K → ③ 出片后核查 → ④ 对照文本、文章同步 → ⑤ 归档 → ⑥ 推送；
+-  顺序被改乱必须报出（造一个调换了的样本）。"""
++"""流程自检（快测跑）：查 定稿.sh（新管）这条出 4K 的路本身：
++  G10 同一篇同时只能跑一条 做/定稿：占着锁再启动，必须停；
++  画17/守则9 定稿.sh 的步骤顺序固定：① 出片前核查 → ② 出 4K → ③ 出片后核查 → ④ 文本核查、文章同步 → ⑤ 归档 → ⑥ 推送；
++  顺序被改乱必须报出（造一个调换了的样本）。2026-10-29 删除旧看门：门变异式的“死门”检查、drill.yml、演练、会话开工、证据、推请求的样本一并删掉。"""
+ import os, sys, re, subprocess, tempfile, fcntl, shutil, json
+ T = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, T); fails = []
+-ORDER = ['⓪ 规则执行核查', '① 出片前核查', '② 出 4K', '③ 出片后核查', '④ 对照文本', '⑤ 归档', '⑥ 存记录、推送']
++ORDER = ['① 出片前核查', '② 出 4K', '③ 出片后核查', '④ 文本核查', '⑤ 归档', '⑥ 推送']
+ def 顺序(txt):
+     pos = [txt.find(f'step "{s}') for s in ORDER]
+-    return [] if all(p >= 0 for p in pos) and pos == sorted(pos) else [f'定稿流水线步骤缺了或顺序乱了：{[s for s, p in zip(ORDER, pos) if p < 0] or "顺序不对"}']
+-src = open(f'{T}/定稿流水线.sh').read()
++    return [] if all(p >= 0 for p in pos) and pos == sorted(pos) else [f'定稿.sh 步骤缺了或顺序乱了：{[s for s, p in zip(ORDER, pos) if p < 0] or "顺序不对"}']
++DG = f'{T}/新管/定稿.sh'; src = open(DG).read()
+ if 顺序(src): fails.append('原样就报：' + 顺序(src)[0])
+ sw = src.replace('step "② 出 4K', 'step "TMP').replace('step "③ 出片后核查', 'step "② 出 4K').replace('step "TMP', 'step "③ 出片后核查')
+-if not 顺序(sw): fails.append('没抓到：定稿流水线步骤顺序乱了（画17）')
++if not 顺序(sw): fails.append('没抓到：定稿.sh 步骤顺序乱了（画17）')
+ def 推送锁(txt):   # G17：⑥ 的提交、镜像同步、推送要占 推送两仓库 的锁
+     ls = txt.splitlines(); i = [k for k, l in enumerate(ls) if '镜像同步.py' in l and not l.lstrip().startswith('#')]
+     j = [k for k, l in enumerate(ls) if re.match(r'exec 7>.*推送两仓库\.lock.*; flock 7', l)]
+@@ -44,7 +44,7 @@ import 重查记录 as _RC   # G22：已定稿的篇目欠重出，踩坑核查
+ if not _RC.定稿提醒('21', {'21': 'x.mp4'}, ['21']): fails.append('没抓到：改了已定稿篇目的脚本没提醒重出 4K（G22）')
+ if _RC.定稿提醒('23', {'21': 'x.mp4'}, ['21']) or _RC.定稿提醒('21', {'21': 'x.mp4'}, []): fails.append('误报：没定稿或已重查过的篇目也提醒（G22）')
+ _l = [l for l in src.splitlines() if '生成文本.py' in l and not l.lstrip().startswith('#')]   # 守则17：默认不出 Word/PDF
+-if not _l or '--只核查' not in _l[0] or '要文本' not in _l[0]: fails.append('没抓到：定稿流水线默认还在出 Word/PDF（守则17）')
++if not _l or '--只核查' not in _l[0] or 'YAOWENBEN' not in _l[0]: fails.append('没抓到：定稿.sh 默认还在出 Word/PDF（守则17）')
+ if '只核查 = ' not in open(f'{T}/生成文本.py').read(): fails.append('没抓到：生成文本没有只核查用法（守则17）')
+ # K37（25 定稿撞到）：定稿流水线 ④ 写 ${要文本:+--出文档}，bash 不认中文变量名直接 bad substitution，|| stop 又写在 # 注释后面，
+ # 生成文本.py 没跑、失败也不停，文本门从 2026-10-24 起被静默跳过。两道静态查（全部 .sh）+ 真跑 ④ 那两行（假 生成文本.py 失败必须停、参数对）
+@@ -66,53 +66,21 @@ for _bad in ('python3 x.py ${要文本:+--出文档} > a 2>&1', 'python3 x.py $(
+ for _ok in ('echo "第${no}篇"', 'exec 9>"${PUSH_LOCK:-/tmp/推送两仓库.lock}"; flock 9', 'x=1   # 说明：失败就 || 停'):
+     if sh毛病(_ok): fails.append(f'误报：{_ok} 被当成 K37 毛病')
+ def 跑文本门(要文本, 退出码, txt=src):
+-    """把 定稿流水线 ④ 生成文本那两行（YAOWENBEN= 和 python3 $T/生成文本.py）拿出来真跑：假 生成文本.py 记下参数、按 退出码 退出"""
++    """把 定稿.sh ④ 生成文本那一行（python3 $T/生成文本.py）拿出来真跑：假 生成文本.py 记下参数、按 退出码 退出"""
+     ls_ = [l for l in txt.splitlines() if not l.lstrip().startswith('#') and ('生成文本.py' in l or l.startswith('YAOWENBEN='))]
+     d = tempfile.mkdtemp(); open(f'{d}/生成文本.py', 'w').write(f'import sys; open(sys.argv[0] + ".参数", "w").write(" ".join(sys.argv[1:])); sys.exit({退出码})\n')
+     sh = f'stop() {{ echo 【停止】$1; exit 1; }}\nno=99; T={d}; LOG={d}\n' + '\n'.join(ls_) + '\necho 走过了\n'
+     env = {k: v for k, v in os.environ.items() if k not in ('要文本', 'YAOWENBEN')}
+-    if 要文本: env['要文本'] = '1'
++    if 要文本: env['要文本'] = '1'; env['YAOWENBEN'] = '1'
+     r = subprocess.run(['bash', '-c', sh], capture_output=True, text=True, env=env, timeout=30)
+     a = open(f'{d}/生成文本.py.参数').read() if os.path.exists(f'{d}/生成文本.py.参数') else None; shutil.rmtree(d, ignore_errors=True)
+     return a, '【停止】' in r.stdout and '走过了' not in r.stdout, r.stderr.strip()
+ _a, _st, _e = 跑文本门(False, 1)
+-if _a is None: fails.append(f'定稿流水线 ④ 生成文本.py 根本没跑（K37）：{_e[:120]}')
+-elif not _st: fails.append('定稿流水线 ④ 生成文本.py 失败了流水线没停（K37：|| stop 被注释吞掉？）')
+-elif '--只核查' not in _a.split(): fails.append(f'定稿流水线 ④ 默认没带 --只核查（守则17）：参数“{_a}”')
++if _a is None: fails.append(f'定稿.sh ④ 生成文本.py 根本没跑（K37）：{_e[:120]}')
++elif not _st: fails.append('定稿.sh ④ 生成文本.py 失败了流水线没停（K37：|| stop 被注释吞掉？）')
++elif '--只核查' not in _a.split(): fails.append(f'定稿.sh ④ 默认没带 --只核查（守则17）：参数“{_a}”')
+ _a, _st, _e = 跑文本门(True, 0)
+-if _a is None or '--出文档' not in _a.split() or _st: fails.append(f'定稿流水线 ④ env 要文本=1 没出文档或不该停：参数“{_a}”{_e[:80]}')
+-# G79（门变异演练找出来的）：.sh 里每一道门都要真能停。把每一行有 stop/exit 非0 的代码单独拿出来真跑：外部命令一律失败（PATH 指向空目录，
+-# command_not_found_handle 返回 1）、变量分别取空和 "1" 两种，任一种必须停在这一行（退出码非 0、走不到这一行后面）。
+-# 拆掉的门（stop 前加 :、写进注释、|| true、exit 1 被吃掉）两种都走过去 = 死门。演练只跑到 ⓪，① 以后的门以前没有任何东西查。
+-def sh门真跑(txt):
+-    import 门变异 as _MB
+-    out = []
+-    for i, col, l, dead in _MB.门_sh(txt):
+-        ls_ = txt.splitlines(); a = b = i - 1   # 整条逻辑行：续行 \\、下一行以 && || | 开头的连上
+-        while a > 0 and (ls_[a - 1].rstrip().endswith('\\') or re.match(r'\s*(&&|\|\|?)', ls_[a])): a -= 1
+-        while b + 1 < len(ls_) and (ls_[b].rstrip().endswith('\\') or re.match(r'\s*(&&|\|\|?)', ls_[b + 1])): b += 1
+-        line = re.sub(r';?\s*\b(fi|done|esac)\s*$', '', '\n'.join(ls_[a:b + 1]))
+-        if subprocess.run(['/bin/bash', '-n', '-c', line], capture_output=True).returncode:
+-            out.append((i, '单独拿出来语法不对，真跑不了：' + ls_[i - 1].strip()[:50])); continue
+-        vs = sorted(set(re.findall(r'\$\{?([A-Za-z_][A-Za-z0-9_]*)', line)) - {'T', 'P', 'L', 'W', 'LOG', 'no', 'BR'})
+-        ok = False
+-        for v in ('', '1'):
+-            d = tempfile.mkdtemp(); e = ''.join(f'export {x}={v!r}\n' if v else f'unset {x}\n' for x in vs)
+-            sh = (f'set -o pipefail\nstop() {{ echo 【停止】; exit 1; }}\nstep() {{ :; }}\npush() {{ return 1; }}\ncd() {{ return 1; }}\ncommand_not_found_handle() {{ return 1; }}\n'
+-                  f'no=99; T={d}; P={d}; L={d}; W={d}; LOG={d}; BR=x\n{e}PATH={d}/空\n{line}\necho 走过了\n')
+-            try: r = subprocess.run(['/bin/bash', '-c', sh], capture_output=True, text=True, timeout=20, cwd=d)
+-            except subprocess.TimeoutExpired: r = None
+-            shutil.rmtree(d, ignore_errors=True)
+-            if r is not None and r.returncode != 0 and '走过了' not in r.stdout: ok = True; break
+-        if not ok: out.append((i, line.strip()[:70]))
+-    return out
+-for _f in sorted(__import__('glob').glob(f'{T}/**/*.sh', recursive=True)) + [f'{T}/githooks/pre-commit']:   # H：提交前钩子也真跑
+-    if '演练样本' in _f: continue
+-    for _i, _m in sh门真跑(open(_f).read()): fails.append(f'{os.path.relpath(_f, T)} 第 {_i} 行的门真跑停不下来（G79 死门）：{_m}')
+-for _bad in ('x || : stop "拆了"', 'a \\\n  && b || { echo x; : exit 1; }', 'if x; then\n  y || { echo x; : exit 1; }; fi', 'x || true   # || stop "注释吞了"', 'flock -n 9 || { echo "【停止】已经在跑"; : exit 1; }', '[ -n "$Z" ] && : stop "拆了"'):
+-    if not sh门真跑(_bad): fails.append(f'没抓到：拆掉的门 {_bad}（G79 门变异重放）')
+-for _ok in ('x || stop "好门"', '[ -n "$Z" ] && stop "好门"', 'flock -n 9 || { echo "【停止】"; exit 1; }', 'md=$(ls a 2>/dev/null | head -1); [ -n "$md" ] || stop "好门"'):
+-    if sh门真跑(_ok): fails.append(f'误报：好门 {_ok} 被当成死门（G79）')
++if _a is None or '--出文档' not in _a.split() or _st: fails.append(f'定稿.sh ④ env 要文本=1 没出文档或不该停：参数“{_a}”{_e[:80]}')
+ # K38：钩子自检必须在隔离的请求账里跑：HOME 里放一份“推了请求、没约唤醒”的真实账，钩子自检照样要通过
+ _h = tempfile.mkdtemp(prefix='K38_HOME_'); json.dump({'请求': [{'名字': '演练', '时刻': '2099-01-01T00:00:00Z'}]}, open(f'{_h}/.云端请求.json', 'w'))
+ _r = subprocess.run(['python3', f'{T}/钩子/钩子自检.py'], capture_output=True, text=True, env={**{k: v for k, v in os.environ.items() if not k.startswith('GIT_')}, 'HOME': _h})
+@@ -123,50 +91,19 @@ def yml中文变量(txt): return [i for i, l in enumerate(txt.splitlines(), 1) i
+ for _f in [x for d in (os.path.dirname(os.path.dirname(T)), '/home/user/literate-enigma') for x in __import__('glob').glob(f'{d}/.github/workflows/*.yml')]:
+     for _i in yml中文变量(open(_f).read()): fails.append(f'{_f} 第 {_i} 行：工作流 shell 用了中文变量名（K31）')
+ if not yml中文变量('        run: export 正例=/tmp/正例') or not yml中文变量('  run: echo ${正例}') or yml中文变量('  run: echo ${{ matrix.it.no }} $N ${N#覆盖@}'): fails.append('K31 自检：工作流中文变量名没抓到或误报')
+-def drill写回(txt):   # K41：几十个分片同时写回，put() 遇 409 不重试就丢结果；artifact 名字带 /（githooks/pre-commit）上传报错
+-    e = []
+-    if 'put() {' in txt:
+-        p = txt[txt.index('put() {'):]; p = p[:p.find('\n          PY\n') if '\n          PY\n' in p else len(p)]
+-        if not ('409' in p and 'for ' in p and 'sleep' in p): e.append('写回 put() 遇 409 不重试（K41）')
+-    if re.search(r"name: '结果_\$\{\{ matrix\.it\.req \}\}_\$\{\{ matrix\.it\.no \}\}'", txt): e.append('artifact 名字直接用 matrix.it.no（带 / 就上传失败，K41）')
+-    return e
+-for _f in __import__('glob').glob('/home/user/literate-enigma/.github/workflows/drill.yml'):
+-    fails += [f'drill.yml：{x}' for x in drill写回(open(_f).read())]
+-_k41 = "          put() { python3 - <<'PY'\n          r=subprocess.run(['gh','api','-X','PUT'])\n          PY\n        with: {name: '结果_${{ matrix.it.req }}_${{ matrix.it.no }}', path: x}\n"
+-if len(drill写回(_k41)) != 2: fails.append(f'没抓到：drill.yml 写回不重试、artifact 名字带 /（K41 重放）：{drill写回(_k41)}')
+-# G79 门变异：执行效应演练 开跑前两道门（不在视频工作目录、工作目录的出片程序是旧的）拆了没人发现：真跑，必须停在对的话上
+-_ew = tempfile.mkdtemp(prefix='演练门_')
+-_r = subprocess.run(['python3', f'{T}/执行效应演练.py'], cwd=_ew, capture_output=True, text=True)
+-if '请在视频工作目录' not in _r.stdout + _r.stderr: fails.append('执行效应演练 不在视频工作目录也开跑了（G79 门变异）：' + (_r.stdout + _r.stderr).strip()[-80:])
+-os.makedirs(f'{_ew}/scripts'); open(f'{_ew}/make_video.py', 'w').write('# 旧\n')
+-_r = subprocess.run(['python3', f'{T}/执行效应演练.py'], cwd=_ew, capture_output=True, text=True)
+-if '出片指纹.py --拷' not in _r.stdout + _r.stderr: fails.append('执行效应演练 工作目录的出片程序是旧的也开跑了（G27/G79 门变异）：' + (_r.stdout + _r.stderr).strip()[-80:])
+-shutil.rmtree(_ew, ignore_errors=True)
+-# G79 门变异：会话开工 角色乱写要打印用法停下；证据.py --记 不是正式入口调用必停（G60）
+-_r = subprocess.run(['python3', f'{T}/会话开工.py', '乱写'], capture_output=True, text=True, env={**os.environ, 'HOME': tempfile.mkdtemp(prefix='开工门_')})
+-if _r.returncode == 0 or '会话开工（G61' not in _r.stdout + _r.stderr: fails.append('会话开工.py 角色乱写没打印用法停下（G79 门变异）')
+-_r = subprocess.run(['python3', f'{T}/证据.py', '--记', '99', '出片前'], capture_output=True, text=True)
+-if _r.returncode == 0 or '只能由正式入口' not in _r.stdout + _r.stderr: fails.append('证据.py --记 手写证据没停（G60/G79 门变异）')
+ _r = subprocess.run(['python3', f'{T}/交付核查.py', '03', '对照表'], capture_output=True, text=True)   # 03 已有踩坑对照记录：必须不覆盖、停下（G79 门变异）
+-if _r.returncode == 0 or '不覆盖' not in _r.stdout + _r.stderr: fails.append('交付核查 对照表 把已有的踩坑对照记录又追加了一份（G79 门变异）')
+-def 云端不推(txt):   # 阶段 B（2026-10-27）：GitHub 上两个仓库路径链到同一份镜像检出，⑥ 自己 git push 会把镜像推成 main；云端必须严格缓存，⑥ 存完记录就退出
+-    i, j, k = txt.find('YUN=1 && { [ "$STRICT_CACHE" = 1 ] || stop'), txt.find('[ -n "$YUN" ] && {'), txt.find('git add -A')
+-    return i >= 0 and 0 <= j < k and 'exit 0; }' in txt[j:k] and 'readlink -f $P)" = "$(readlink -f $L)' in txt
+-if not 云端不推(src): fails.append('定稿流水线 云端定稿（两个仓库同一份检出）没在 ⑥ git push 前退出，或没要求 STRICT_CACHE=1（阶段 B）')
+-for _bad, _why in ((src.replace('YUN=1 && { [ "$STRICT_CACHE" = 1 ] || stop', 'YUN=1 && { true || stop'), '不要求严格缓存'), (src.replace('[ -n "$YUN" ] && {', '[ -n "$YUN_" ] && {'), '云端没退出'), (src.replace('--只查清点和镜像"; exit 0; }', '--只查清点和镜像"; true; }'), '云端不退出照样推')):
+-    if 云端不推(_bad) and _bad != src: fails.append(f'没抓到：云端定稿{_why}（阶段 B）')
++if _r.returncode == 0 or '不覆盖' not in _r.stdout + _r.stderr: fails.append('交付核查 对照表 把已有的踩坑对照记录又追加了一份')
+ def 有重建(txt):   # K36：新容器没有 work_NN/a.wav，① 音频体检 ffmpeg 254 崩；① 之前没有 a.wav 必须先只出声音重建
+     i = txt.find('[ -f "work_$no/a.wav" ] ||'); j = txt.find('step "① 出片前核查')
+     return 0 <= i < j and 'AUDIO_ONLY=1 python3 make_' in txt[i:j]   # 只出声音重建
+-if not 有重建(src): fails.append('定稿流水线 ① 之前没有“没有 work_NN/a.wav 就只出声音重建”（K36）')
++if not 有重建(src): fails.append('定稿.sh ① 之前没有“没有 work_NN/a.wav 就只出声音重建”（K36）')
+ if 有重建(src.replace('[ -f "work_$no/a.wav" ] ||', '')): fails.append('没抓到：拿掉 a.wav 重建那一行（K36 重放）')
+-if subprocess.run(['python3', f'{T}/推请求.py', '--自检'], capture_output=True).returncode: fails.append('推请求.py --自检 不过（K35）')
+ _旧 = 'python3 $T/生成文本.py $no ${要文本:+--出文档} $([ -z "$要文本" ] && echo --只核查) > "$LOG/文本.log" 2>&1   # 守则17 || { tail -15 "$LOG/文本.log"; stop "对照文本生成或文本核查不通过"; }'
+ _a, _st, _e = 跑文本门(False, 1, _旧)
+ if _a is not None and _st: fails.append('没抓到：K37 原样那一行（中文变量 + 注释吞 ||）重放，真跑没发现文本门没跑、不停')
+-td = tempfile.mkdtemp(); lk = open(f'{td}/.定稿流水线_99.lock', 'w'); fcntl.flock(lk, fcntl.LOCK_EX)
+-r = subprocess.run(['bash', f'{T}/定稿流水线.sh', '99'], capture_output=True, text=True, cwd=td, timeout=60)
+-if r.returncode == 0 or '已经有一条定稿流水线在跑' not in r.stdout + r.stderr: fails.append('没抓到：同一篇同时跑两条定稿流水线（G10）')
++td = tempfile.mkdtemp(); lk = open(f'{td}/.做_99.lock', 'w'); fcntl.flock(lk, fcntl.LOCK_EX)
++r = subprocess.run(['bash', DG, '99'], capture_output=True, text=True, cwd=td, timeout=60, env={**os.environ, 'XG_TOOLS': T})
++if r.returncode == 0 or '已经有一条 做/定稿 在跑' not in r.stdout + r.stderr: fails.append('没抓到：同一篇同时跑两条定稿流水线（G10）')
+ lk.close(); shutil.rmtree(td, ignore_errors=True)
+ # 24 草稿会话报的三个共用程序问题（2026-10-24）
+ sys.path.insert(0, T); import 开工记录 as _KG   # G23 开工记录.py 已有的 NN.md 只追加、不覆盖
+@@ -182,5 +119,5 @@ def 管道解压(txt):   # K54：curl 下载直接管道给 tar 解压，下载
+     return [l.strip()[:80] for l in txt.splitlines() if not l.lstrip().startswith('#') and re.search(r'curl\b[^|#]*\|\s*tar\b', l)]
+ if 管道解压(open(f'{T}/环境/准备机器.sh').read()): fails.append(f'准备机器.sh 又用 curl 管道直接 tar 解压（K54）：{管道解压(open(f"{T}/环境/准备机器.sh").read())[0]}')
+ if not 管道解压('A=1; [ -f x ] || { curl -sSL https://e/x.tar.bz2 | tar xj -C ~/asr; }\n'): fails.append('没抓到：curl | tar 管道解压（K54 重放）')
+-print('流程自检：' + ('通过（占着锁再启动定稿流水线必停；步骤顺序被调换必报；④ 文本门真跑失败必停、.sh 中文变量和注释吞 || 必报（K37）；① 前没有 a.wav 先重建（K36）；本地慢印章过期不许推主演练补丁（K35）；全部 .sh 每道门真跑能停（G79 门变异）；钩子自检不读真实请求账（K38）；工作流不用中文变量名（K31））' if not fails else '失灵！' + '；'.join(fails)))
++print('流程自检：' + ('通过（定稿.sh：占着锁再启动必停、步骤顺序被调换必报、④ 文本门真跑失败必停、默认不出 Word/PDF、① 前没有 a.wav 先重建、⑥ 占推送锁；.sh 中文变量和注释吞 || 必报（K37）；工作稿、全篇重查、补对照、G22、G23、A45、T37、K31、K38、K54 样本）' if not fails else '失灵！' + '；'.join(fails)))
+ sys.exit(1 if fails else 0)
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\224\237\346\210\220\346\226\207\346\234\254.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\224\237\346\210\220\346\226\207\346\234\254.py"
+index 4937d2d..dc301fb 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\224\237\346\210\220\346\226\207\346\234\254.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\224\237\346\210\220\346\226\207\346\234\254.py"
+@@ -49,8 +49,6 @@ no = sys.argv[1].zfill(2); js = os.path.abspath(f'scripts/{no}.json'); d = json.
+ docx, html, pdf = (os.path.abspath(f'{no}-文本.{x}') for x in ('docx', 'html', 'pdf'))
+ t0 = time.time(); bad = []
+ # 最高铁律：先过踩坑核查（含核查程序自检、踩坑对照记录、换行比对），不通过不生成、不发
+-_m = subprocess.run(['true'] if (sys.path.insert(0, T) or __import__('管道').看门停用()) else ['python3', f'{T}/规则执行核查.py'], capture_output=True, text=True)   # 守则16：规则执行机器先过
+-if _m.returncode: sys.exit(_m.stdout.strip() + '\n【规则执行核查不通过，不生成、不发给用户】')
+ r = subprocess.run(['python3', f'{T}/踩坑核查.py', no, '文本'], capture_output=True, text=True); print(r.stdout.strip())
+ if r.returncode: sys.exit('【踩坑核查不通过，不生成、不发给用户】')
+ if 只核查:
+@@ -58,7 +56,6 @@ if 只核查:
+         d.setdefault('换行变更记录', []).append({'日期': time.strftime('%Y-%m-%d'), **d.pop('换行变更已获同意')})
+         json.dump(d, open(js, 'w'), ensure_ascii=False, indent=1)
+     shutil.copy(js, f'{T}/../脚本/{no}.json'); os.makedirs(f'{T}/../脚本/已发版本', exist_ok=True); shutil.copy(js, f'{T}/../脚本/已发版本/{no}.json')
+-    sys.path.insert(0, T); import 证据 as _ZJ; _ZJ.记(no, '文本门', 详情={'只核查': True})   # G60：文本门的使用证据
+     sys.exit(print(f'第{no}篇：文本核查全部通过，脚本已存为已发版本（只核查：不出 Word/PDF，守则17）'))
+ subprocess.run(['python3', f'{T}/make_docx.py', js, docx], check=True)
+ subprocess.run(['python3', f'{T}/make_text.py', js, html], check=True)
+@@ -79,6 +76,5 @@ if d.get('换行变更已获同意'):
+     json.dump(d, open(js, 'w'), ensure_ascii=False, indent=1)
+ shutil.copy(js, f'{T}/../脚本/{no}.json'); os.makedirs(f'{T}/../脚本/已发版本', exist_ok=True); shutil.copy(js, f'{T}/../脚本/已发版本/{no}.json')
+ sys.path.insert(0, f'{T}/钩子'); import 闸门; 闸门.记回执([docx, html, pdf] + [f'{dst}/{no}-文本.{x}' for x in ('docx', 'html', 'pdf')], f'生成文本 第{no}篇')   # 发文件闸门凭回执放行
+-sys.path.insert(0, T); import 证据 as _ZJ; _ZJ.记(no, '文本门', 详情={'只核查': False})   # G60：文本门的使用证据
+ import pymupdf
+ print(f'第{no}篇对照文本：Word {len(cells)} 格逐格一致，PDF {len(pymupdf.open(pdf))} 页，已拷进 视频/对照文本/')
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\241\256\350\256\244\346\240\274\345\274\217\350\241\250.json" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\241\256\350\256\244\346\240\274\345\274\217\350\241\250.json"
+new file mode 100644
+index 0000000..44e2473
+--- /dev/null
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\347\241\256\350\256\244\346\240\274\345\274\217\350\241\250.json"
+@@ -0,0 +1,260 @@
++{
++ "_起": 24,
++ "_说明": "确认格式表（G24，原 放行口子表 的确认、特批两节）：踩坑核查 用。确认 = 核对确认里的类别；特批字段 = 脚本顶层字段。保留违规、放宽、特批只认 用户同意记录 里的用户原话。",
++ "确认": {
++  "对齐": {
++   "类": "判断",
++   "规矩": "T34/T9 中文对齐",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "短语": {
++   "类": "判断",
++   "规矩": "T22 短语整体标",
++   "允许": "^不是搭配[：:]",
++   "允许说明": "“不是搭配：……”（是搭配就整体加粗，不写确认）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样",
++   "起": 24,
++   "旧允许": ".{6,}"
++  },
++  "中文意思": {
++   "类": "判断",
++   "规矩": "T23 意思标全",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "方向": {
++   "类": "判断",
++   "规矩": "T4 方向词",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "词性": {
++   "类": "判断",
++   "规矩": "T2 词性",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "同词异译": {
++   "类": "判断",
++   "规矩": "文10 同词同译",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "中文重复": {
++   "类": "判断",
++   "规矩": "T26 不同重点词中文不同",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "排版指令": {
++   "类": "判断",
++   "规矩": "W3 排版指令",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "口述": {
++   "类": "判断",
++   "规矩": "T24 口述多出的词",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "数字": {
++   "类": "判断",
++   "规矩": "T16 数字",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "列举逗号": {
++   "类": "判断",
++   "规矩": "A4/A5 列举停顿",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "牛津逗号改动": {
++   "类": "判断",
++   "规矩": "T18 牛津逗号",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "是的": {
++   "类": "判断",
++   "规矩": "T19 是……的",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "们": {
++   "类": "判断",
++   "规矩": "T19 们",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "即": {
++   "类": "判断",
++   "规矩": "T19 即",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "数字写法": {
++   "类": "判断",
++   "规矩": "T19 数字写法",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "读音": {
++   "类": "判断",
++   "规矩": "A23 读音",
++   "允许": ".{6,}",
++   "允许说明": "写明为什么这不是违规（至少一句）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|英式写法|不用改|先这样"
++  },
++  "牛津逗号": {
++   "类": "判断",
++   "规矩": "T18/T35 三项并列一律加牛津逗号",
++   "允许": "^不是(三项)?并列",
++   "允许说明": "“不是三项并列：……”",
++   "禁止": "英式|不改|保留|不用牛津"
++  },
++  "非人声": {
++   "类": "核实",
++   "规矩": "音 纯人声",
++   "允许": "配音指纹|实际声音|\\d{4}-\\d{2}-\\d{2}|\"类型\"",
++   "允许说明": "实际声音核实的依据（日期、配音指纹、电平）",
++   "禁止": "放宽|豁免|特批|例外|听不出|不明显|可以接受"
++  },
++  "删除段": {
++   "类": "核实",
++   "规矩": "A18 删除段",
++   "允许": "配音指纹|实际声音|\\d{4}-\\d{2}-\\d{2}|\"类型\"",
++   "允许说明": "实际声音核实的依据（日期、配音指纹、电平）",
++   "禁止": "放宽|豁免|特批|例外|听不出|不明显|可以接受"
++  },
++  "停顿位置": {
++   "类": "核实",
++   "规矩": "A9/A15 停顿位置",
++   "允许": "配音指纹|实际声音|\\d{4}-\\d{2}-\\d{2}|\"类型\"",
++   "允许说明": "实际声音核实的依据（日期、配音指纹、电平）",
++   "禁止": "放宽|豁免|特批|例外|听不出|不明显|可以接受"
++  },
++  "高亮": {
++   "类": "核实",
++   "规矩": "画 高亮同步",
++   "允许": "配音指纹|实际声音|\\d{4}-\\d{2}-\\d{2}|\"类型\"",
++   "允许说明": "实际声音核实的依据（日期、配音指纹、电平）",
++   "禁止": "放宽|豁免|特批|例外|听不出|不明显|可以接受"
++  },
++  "响度骤降": {
++   "类": "核实",
++   "规矩": "A10 响度骤降",
++   "允许": "配音指纹|实际声音|\\d{4}-\\d{2}-\\d{2}|\"类型\"",
++   "允许说明": "实际声音核实的依据（日期、配音指纹、电平）",
++   "禁止": "放宽|豁免|特批|例外|听不出|不明显|可以接受"
++  },
++  "已告诉用户被去掉的重点词": {
++   "类": "判断",
++   "规矩": "T32 重点词被去掉要先告诉用户",
++   "允许": "已在会话中|已告诉|已经告诉|在会话报告中",
++   "允许说明": "“已在会话中把……告诉用户”",
++   "禁止": "例外|放宽|没告诉|不用告诉"
++  },
++  "引号": {
++   "类": "用户",
++   "规矩": "T19 英文没有引号中文不加",
++   "允许说明": "引用户原话，且原话在 用户同意记录.json 里"
++  },
++  "括号含重点词": {
++   "类": "用户",
++   "规矩": "T1 原文译文不放进括号",
++   "允许说明": "引用户原话，且原话在 用户同意记录.json 里"
++  },
++  "换行变更已获同意": {
++   "类": "用户",
++   "规矩": "L13 换行不擅改",
++   "允许说明": "引用户原话，且原话在 用户同意记录.json 里"
++  },
++  "除阻加强放宽": {
++   "类": "用户",
++   "规矩": "A21 词尾除阻标准",
++   "允许说明": "引用户原话，且原话在 用户同意记录.json 里"
++  },
++  "结尾解说无标签特批": {
++   "类": "用户",
++   "规矩": "T28/T33 结尾解说标签",
++   "允许说明": "引用户原话，且原话在 用户同意记录.json 里"
++  },
++  "说明放宽特批": {
++   "类": "用户",
++   "规矩": "L19 说明不比正文宽",
++   "允许说明": "引用户原话，且原话在 用户同意记录.json 里"
++  },
++  "说明放右侧特批": {
++   "类": "用户",
++   "规矩": "G37 说明放右侧",
++   "允许说明": "引用户原话，且原话在 用户同意记录.json 里"
++  },
++  "合组": {
++   "类": "判断",
++   "规矩": "G47 非重点词也逐词对齐（T9 加强）",
++   "允许": "^对齐不了[：:].{4,}",
++   "允许说明": "“对齐不了：<原因>”（能拆就拆，拆了不写确认）",
++   "禁止": "例外|特批|放宽|将就|暂不|先不改|以后再改|不用改|先这样|不拆",
++   "起": 26,
++   "旧允许": ".{4,}"
++  },
++  "停顿删除": {
++   "类": "核实",
++   "规矩": "A10/A42 停顿删除区间（K28：依据写进 核对确认.停顿删除）",
++   "允许": "配音指纹|实际声音|\\d{4}-\\d{2}-\\d{2}|\"类型\"",
++   "允许说明": "实际声音核实的依据（日期、配音指纹、电平）",
++   "禁止": "放宽|豁免|特批|例外|听不出|不明显|可以接受"
++  }
++ },
++ "特批字段": {
++  "结尾解说无标签特批": {
++   "数据字段": true,
++   "规矩": "T28/T33"
++  },
++  "说明放宽特批": {
++   "数据字段": true,
++   "规矩": "L19",
++   "用途": "；G35：倍数“整屏”只给 25 起最后一句的结尾简述（用户 2026-10-25 原话），简述段只受整屏宽限制"
++  },
++  "换行变更已获同意": {
++   "数据字段": true,
++   "规矩": "L13"
++  },
++  "除阻加强放宽": {
++   "规矩": "A21",
++   "说明": "核对确认里的类别（见 确认）"
++  },
++  "特批": {
++   "说明": "不是口子：程序里判断“特批”二字的字符串"
++  },
++  "无标签特批没有用户原话": {
++   "说明": "不是口子：自检样本名"
++  },
++  "特批了但没有解说": {
++   "说明": "不是口子：自检样本名"
++  },
++  "说明放右侧特批": {
++   "数据字段": true,
++   "规矩": "G37",
++   "用途": "说明放在正文右侧（只认 25 起、用户原话记进用户同意记录）"
++  }
++ }
++}
+\ No newline at end of file
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\215\211\347\250\277\345\243\260\351\237\263.sh" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\215\211\347\250\277\345\243\260\351\237\263.sh"
+index 956f2ab..b5ef1a0 100755
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\215\211\347\250\277\345\243\260\351\237\263.sh"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\215\211\347\250\277\345\243\260\351\237\263.sh"
+@@ -3,9 +3,7 @@
+ # 结尾句接点 → 三轮（重建 → 疑点清单 → 自动切点 --写入）→ 词尾辅音 --写入 → 重建 → 确认按位置迁移 → 只打印问题行：
+ # 三项声音核查的问题数、程序交人看的疑点、读音待核实。人只看这些。
+ no=$1; T=${XG_TOOLS:-/home/user/postgraduate-vocabulary/视频/工具}
+-trap 'rc=$?; [ $rc -ne 0 ] && python3 $T/丝滑.py 记 草稿声音 "$no" "草稿声音.sh 退出码 $rc；$Z_CMD" 2>/dev/null; exit $rc' EXIT   # K 丝滑记录
+-trap 'Z_CMD="最后一条失败的命令在第 $LINENO 行：${BASH_COMMAND:0:160}"' ERR   # K56：记下停在哪
+-python3 $T/方法进化表.py --上下文 || exit 1   # G65：出稿、改稿会话上下文超 40 万先交接、开新改稿会话（26 实测后半段每次调用贵一倍多）
++python3 $T/方法进化表.py --上下文 || echo "（提醒：会话上下文超限，做完这一步先交接；只提醒，不拦）"   # G65（用户 2026-10-29：不是质量问题不卡）
+ # A45（2026-10-24）：改了读音或语速，这一句旧的非人声区间、词尾除阻、停顿删除、插入点和对应确认自动作废：出片程序跳过它们（OLD_IV_VOID=1），区间作废.py 从脚本删掉，下面重找
+ export OLD_IV_VOID=1
+ # 已定过结尾句语速的（20 前段 0.96，A27）照原语速重找接点，不改回默认值
+@@ -20,4 +18,3 @@ python3 $T/区间作废.py $no --记指纹
+ python3 $T/疑点清单.py $no >/dev/null 2>&1; python3 $T/确认按位置迁移.py $no
+ python3 $T/自动切点.py $no 2>&1 | grep "人看" | cut -c1-120
+ python3 $T/读音核对.py $no 2>&1 | grep -E "待核实 \[|BAD|问题数" | cut -c1-170
+-[ "$(python3 -c "import sys;sys.path.insert(0,'$T');print(__import__('管道').看门停用())")" = True ] || python3 $T/证据.py --记 $no 草稿声音   # G60：草稿声音的使用证据（只有从本入口调用才写得进）
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\241\245\345\257\271\347\205\247\350\256\260\345\275\225.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\241\245\345\257\271\347\205\247\350\256\260\345\275\225.py"
+index b07e93d..36f7b3e 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\241\245\345\257\271\347\205\247\350\256\260\345\275\225.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\241\245\345\257\271\347\205\247\350\256\260\345\275\225.py"
+@@ -1,13 +1,11 @@
+ #!/usr/bin/env python3
+ """补对照记录（定稿流水线 ⓪ 自动跑，2026-10-23：新加的坑让进行中的篇目在 ① 停了三次）：踩坑总表新加了条目，进行中的篇目 制作记录/NN.md 的“## 踩坑对照记录”补上缺的行（G6/C3/C4 只有人能判，不自动补，缺了照样停）。
+-新加的坑都配了程序门（规则执行核查保证），补的行写“按现行做法由程序把关”，出片前核查照样逐条跑这些门。
++新加的坑都配了程序门，补的行写“按现行做法由程序把关”，出片前核查照样逐条跑这些门。
+ 用法：python3 补对照记录.py NN [NN …]"""
+ import os, sys, re
+ T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T); sys.path.insert(0, T)
+-from 规则执行核查 import 坑行
+-import json
+-_reg = json.load(open(f'{T}/规则执行表.json'))
+-人判 = {'G6', 'C3', 'C4'} | {k for k, v in _reg.items() if v.get('为什么程序判不了')}   # 只有人能判的坑不自动补：缺了照样停
++from 坑表 import 坑行
++人判 = {'C3', 'C4', 'G6', 'T15', 'T21', 'T7', 'T8', '文15', '文18', '文35', '流17', '流18', '流2'}   # 只有人能判的坑不自动补：缺了照样停
+ def 补(no, rec=None):
+     rec = rec or f'{V}/制作记录/{no}.md'; rt = open(rec).read()
+     if '## 踩坑对照记录' not in rt: return f'{no}：没有“## 踩坑对照记录”，不补'
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\270\251\345\235\221\346\240\270\346\237\245.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\270\251\345\235\221\346\240\270\346\237\245.py"
+index eb7045a..54b6a78 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\270\251\345\235\221\346\240\270\346\237\245.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\270\251\345\235\221\346\240\270\346\237\245.py"
+@@ -23,7 +23,7 @@ ns = lambda x: re.sub(r'[\*\s]', '', x)
+ 
+ def pit_rows():
+     """《踩坑总表》每一行：(编号, 出过的问题, 以后怎么防)"""
+-    sys.path.insert(0, T); from 规则执行核查 import 坑行   # 总表只有一份：《制作硬性标准与踩坑总结》里的表（规则执行机器 ⑤）
++    sys.path.insert(0, T); from 坑表 import 坑行   # 总表只有一份：《制作硬性标准与踩坑总结》里的表
+     return 坑行()
+ 
+ 
+@@ -34,8 +34,7 @@ def record_gate(no, stage):
+         import 补对照记录 as _BJ; _BJ.补(no)
+     except Exception: pass
+     txt = open(rec).read() if os.path.exists(rec) else ''
+-    import 开工必读 as _KB   # G55（28 起）：做事对照记录读过现行开工必读、人判的写了本篇怎么做
+-    return record_gate_text(txt, no, stage) + _KB.查记录(txt, no)
++    return record_gate_text(txt, no, stage)
+ 
+ 
+ 人判格式_起 = 25
+@@ -239,7 +238,7 @@ def _ph_pats(text, lem, word):
+ 
+ 
+ T22宽_起 = 24   # 24 S1 departed South Georgia, a remote whaling outpost, for Antarctica 漏网（用户看草稿才发现）：24 起跨同位语逗号往后找（到 ; : . 为止、10 个词以内），
+-PH_GEN = ['for', 'to', 'from', 'on', 'with', 'into', 'of']   # 并且动词重点词后面出现这些常见搭配介词一律列为待确认（结论只认“不是搭配：……”，放行口子核查管）
++PH_GEN = ['for', 'to', 'from', 'on', 'with', 'into', 'of']   # 并且动词重点词后面出现这些常见搭配介词一律列为待确认（结论只认“不是搭配：……”，G24 确认结论管）
+ 
+ 
+ def phrase_checks(d, no):
+@@ -795,8 +794,105 @@ def selftest_record_meta():
+     return fails
+ 
+ 
++
++# ---------- G24 确认结论（原 放行口子核查 的确认、特批部分；扫代码找“新口子”那部分已删，用户 2026-10-29）----------
++# 脚本里写的保留、特批、例外，结论必须合 确认格式表.json 的格式；保留违规、放宽、特批只认 用户同意记录 里的用户原话（AI 自己写的例外一律不认）。
++KZ_表 = json.load(open(f'{T}/确认格式表.json'))
++def KZ_同意():
++    return json.load(open(f'{T}/用户同意记录.json'))['记录']
++
++KZ_ns = lambda x: re.sub(r'[\s，。、；：:,.;!?！？…“”"\'（）()—\-]', '', x)
++
++def KZ_有原话(text, rec=None):
++    """结论里引的“……”在 用户同意记录.json 里有（至少一句、去标点后 ≥4 字、是某条原话的一段）"""
++    rec = KZ_同意() if rec is None else rec; ys = [KZ_ns(r['原话']) for r in rec]
++    for q in re.findall(r'“([^”]{4,})”', text):
++        q = KZ_ns(q)
++        if len(q) >= 4 and any(q[:30] in y for y in ys): return True
++    return False
++
++def KZ_判(cat, val, rec=None, 规=None, no=None):
++    """一条确认/特批：合格返回 None，否则返回问题"""
++    规 = KZ_表['确认'] if 规 is None else 规
++    sp = 规.get(cat)
++    if sp is None: return f'没登记的口子类别“{cat}”（先在 确认格式表.json 登记规矩、允许、禁止）'
++    text = json.dumps(val, ensure_ascii=False) if isinstance(val, (dict, list)) else str(val)
++    backed = KZ_有原话(text, rec)
++    if sp['类'] == '用户' and not backed:
++        return '这是保留违规/放宽/特批，只认用户原话：结论里引“用户原话”，且这句话已记进 用户同意记录.json（AI 自己写的理由不算）'
++    if sp.get('禁止') and re.search(sp['禁止'], text) and not backed:
++        return f'结论违背规矩（命中“{re.search(sp["禁止"], text).group(0)}”）：{sp["规矩"]} 不许写例外，要例外先拿到用户原话'
++    allow = sp.get('允许')
++    if sp.get('起') and str(no).isdigit() and int(no) < sp['起']: allow = sp.get('旧允许', allow)   # 这一类收紧前的篇目按原来的格式体检
++    if allow and not re.search(allow, text) and not backed:
++        return f'结论不合格式（只认：{sp["允许说明"]}）'
++    return None
++
++def KZ_条目(d):
++    """(类别, 键, 值)：核对确认 每一条 + 顶层特批字段"""
++    out = []
++    for cat, v in d.get('核对确认', {}).items():
++        if isinstance(v, dict): out += [(cat, k, x) for k, x in v.items()]
++        elif isinstance(v, list): out += [(cat, x, x) for x in v]
++        else: out.append((cat, '', v))
++    for k, sp in KZ_表['特批字段'].items():
++        if sp.get('数据字段') and k in d:
++            v = d[k]
++            if isinstance(v, dict): out += [(k, s, x) for s, x in v.items()]
++            else: out.append((k, '', v))
++    return out
++
++def KZ_查篇(d, no, rec=None, 强制=False):
++    if not 强制 and (not str(no).isdigit() or int(no) < KZ_表['_起']): return []
++    out = []
++    for cat, k, v in KZ_条目(d):
++        p = KZ_判(cat, v, rec, no=no)
++        if p: out.append(f'[口子] {cat} {str(k)[:40]}：{p}')
++    return out
++
++def KZ_自检():
++    fails = []
++    rec = [{'篇': '99', '日期': '2026-10-24', '原话': '这个地方可以不加，我同意', '用于': '自检'}]
++    # ⑤ 每个确认类别的绕过样本：AI 写的“例外/放宽/不改”必须抓到
++    for cat, sp in KZ_表['确认'].items():
++        bad = '例外：英式写法，不改，先放宽' if sp['类'] != '核实' else {'配音指纹': 'x', '依据': '放宽：听不出来，例外'}
++        if KZ_判(cat, bad, rec) is None: fails.append(f'没抓到：{cat} 写“例外/不改/放宽”的确认被放行（G24 绕过样本）')
++    for k in [k for k, sp in KZ_表['特批字段'].items() if sp.get('数据字段')]:
++        if KZ_判(k, 'AI 觉得可以放宽一点', rec) is None: fails.append(f'没抓到：{k} 没有用户原话的特批被放行（G24）')
++    if KZ_判('牛津逗号', '文章英文是英式写法，三项并列不用牛津逗号；不改', rec) is None: fails.append('没抓到：牛津逗号“英式写法、不改”（T35 重放）')
++    if KZ_判('短语', 'in 是普通介词', rec, no='24') is None: fails.append('没抓到：24 起短语确认没写“不是搭配：……”（T22）')
++    if KZ_判('短语', 'in 是普通介词，不是固定搭配', rec, no='20'): fails.append('T22 误报：24 以前的短语确认按旧格式')
++    if KZ_判('短语', '不是搭配：in 是普通介词“在……里”', rec, no='24'): fails.append('T22 误报：“不是搭配：……”被报出')
++    if KZ_判('牛津逗号', '不是三项并列：upright and intact 是两项', rec): fails.append('G24 误报：牛津逗号“不是三项并列：……”被报出')
++    if KZ_判('引号', '用户 2026-10-24：“这个地方可以不加，我同意”', rec): fails.append('G24 误报：引了用户同意记录里原话的例外被报出')
++    if KZ_判('引号', '用户 2026-10-24：“我编的一句话不在记录里”', rec) is None: fails.append('没抓到：引的“原话”不在用户同意记录里（AI 编的）')
++    if KZ_判('非人声', {'配音指纹': 'c81ce56b1f49', '依据': '2026-10-09 实际声音（逐 5 ms 电平）'}, rec): fails.append('G24 误报：正常的非人声核实被报出')
++    if KZ_判('新类别XYZ', '随便', rec) is None: fails.append('没抓到：没登记的确认类别')
++    if KZ_定稿同意('24', rec): fails.append('没抓到：用户没说定稿就跑定稿（画19/流7）')
++    if not KZ_定稿同意('24', rec + [{'篇': '24', '日期': '2026-10-24', '原话': '可以，定稿吧', '用于': '定稿 24'}]): fails.append('定稿门 误报：用户同意记录里有“定稿 24”')
++    _定 = {'篇': '24', '日期': '2026-10-24', '原话': '可以，定稿吧', '用于': '定稿 24'}; _撤 = {'篇': '24', '日期': '2026-10-24', '原话': '暂停，我先核查一下', '用于': '撤回 定稿 24'}
++    if KZ_定稿同意('24', rec + [_定, _撤]): fails.append('没抓到：定稿后又撤回，照样跑定稿（G28）')
++    if not KZ_定稿同意('24', rec + [_定, _撤, dict(_定, 原话='好了，这回定稿')]): fails.append('定稿门 误报：撤回后用户又说定稿（G28）')
++    if not KZ_定稿同意('20', rec): fails.append('定稿门 误报：24 以前已定稿的篇目')
++    if KZ_查篇({'核对确认': {'牛津逗号': {'S1 a, b and': '英式写法，不改'}}}, '23', rec): fails.append('G24 误报：24 以前已定稿篇目被报出（只列不改）')
++    if not KZ_查篇({'核对确认': {'牛津逗号': {'S1 a, b and': '英式写法，不改'}}}, '24', rec): fails.append('没抓到：24 起的“英式写法、不改”（G24）')
++    return fails
++
++KZ_定稿_起 = 24   # 画19/流7/单22：用户试听确认后才算定稿——定稿流水线先查 用户同意记录 里有这一篇“定稿”的用户原话（24 KZ_表['_起']）
++
++def KZ_定稿同意(no, rec=None):
++    rec = KZ_同意() if rec is None else rec
++    if not str(no).isdigit() or int(no) < KZ_定稿_起: return True
++    rs = [r for r in rec if r.get('篇') == no and '定稿' in r.get('用于', '') and len(KZ_ns(r.get('原话', ''))) >= 2]
++    return bool(rs) and '撤回' not in rs[-1].get('用于', '')   # G28：同一篇按记录先后，最后一条定稿类记录是“撤回”就停（24：14:17 定稿、14:18 撤回）
++
++
+ def main():
+     args = sys.argv[1:]
++    if args and args[0] == '定稿同意':   # 画19/流7/G28：用户试听确认说了定稿（用户同意记录 里有这一篇“定稿”的原话、最后一条不是撤回）才跑定稿.sh
++        no = args[1].zfill(2); ok = KZ_定稿同意(no)
++        print(f'第{no}篇 用户定稿原话：' + ('有' if ok else ('【已撤回】最后一条定稿类记录是撤回（G28）' if any(r.get('篇') == no and '撤回' in r.get('用于', '') for r in KZ_同意()) else '【没有】用户试听确认说定稿后，把原话记进 用户同意记录.json')))
++        return 0 if ok else 1
+     if args and args[0] == '通用':
+         print('做任何事之前逐条对照（沟通、保存类的坑 + 铁律）：')
+         for i, a, b in pit_rows():
+@@ -806,7 +902,7 @@ def main():
+         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
+         return 1 if vf else 0
+     sys.path.insert(0, T); import 译文核查 as _YW
+-    fails = selftest() + _YW.自检() + selftest_record_human() + selftest_l19() + selftest_l20() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart() + __import__('破折号').自检()
++    fails = selftest() + _YW.自检() + KZ_自检() + selftest_record_human() + selftest_l19() + selftest_l20() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart() + __import__('破折号').自检()
+     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
+     if fails: print('【核查程序失灵，不得交付】'); return 1
+     if args and args[0] == '自检': return 0
+@@ -814,13 +910,13 @@ def main():
+     js = f'scripts/{no}.json' if os.path.exists(f'scripts/{no}.json') else f'{V}/脚本/{no}.json'
+     d = json.load(open(js)); snap = f'{V}/脚本/已发版本/{no}.json'
+     sent = json.load(open(snap)) if os.path.exists(snap) else None
+-    err = record_gate(no, stage) + video_folders(ROOT)
++    err = []; 只提醒 = record_gate(no, stage) + video_folders(ROOT)   # 踩坑对照记录、视频文件夹：不是片子本身的问题，只提醒（用户 2026-10-29）
+     e, conf, ref = text_checks(d, article_en(no), sent, no); err += e
+     sys.path.insert(0, T); import 破折号 as _PZ; err += _PZ.查(d, no)
+     import 逐词对齐 as _ZD; err += _ZD.查(d, no)
+     import 意思个数 as _YS; err += _YS.查(d, no)   # 文36（27 起）：重点词中文最多两个意思
+     import 颜色核对 as _YS; err += _YS.查(d, no)                       # G49 同屏重点词颜色分得开（用户 2026-10-25，25 起：2026-10-26 起点移到 25）                       # G47 非重点词也逐词对齐（用户 2026-10-25，25 起：2026-10-26 起点移到 25）          # T36 破折号禁用（用户 2026-10-24，24 起）
+-    import 放行口子核查 as _KZ; err += _KZ.查篇(d, no)                  # G24 放行口子：确认的结论受白名单约束，例外只认用户原话（24 起）
++    err += KZ_查篇(d, no)                                           # G24：确认的结论合格式，保留违规、放宽、特批只认用户原话（24 起）
+     sys.path.insert(0, T); import 译文核查 as _YW                       # 译文规矩（21 起）：方向词 T4、词性 T2、同词异译 文10、排版指令 W3、改稿门 T10、逐句确认
+     _md = glob.glob(f'{ROOT}/新版定稿/{no}-*.md'); _e, _c = _YW.查(d, no, open(_md[0]).read() if _md else ''); err += _e; conf += _c
+     # T22 只查以后新做的篇目（09 起）。用户 2026-10-10：“以后查就行，已经做完了，这几天不要再查了……刚刚做完这篇，你查啥？不用再查了，又浪费时间……以后每次都要（查）”
+@@ -835,7 +931,7 @@ def main():
+     if int(no) >= 12: err += l19_checks({**json.load(open(f'scripts/{no}.json')), '_no': no})   # [L19] 铁律（用户 2026-10-16，见 l19_checks）
+     if int(no) >= 24:                                               # [L20] 重点词对正（用户 2026-10-24，24 起；对正量.py：做得到的必须正对，做不到的由程序给出几何原因）
+         sys.path.insert(0, T); import 对正量 as _DZ; err += [f'[L20] {x}' for x in _DZ.gate(no, json.load(open(f'scripts/{no}.json')))]
+-    err += record_meta_checks(no, _rec)                             # [T31] 方法设计、[T29] 方法复盘（见 record_meta_checks）
++    只提醒 += record_meta_checks(no, _rec)                          # [T31] 方法设计、[T29] 方法复盘、[G79] 机制漏洞：只提醒（用户 2026-10-29）
+     sys.path.insert(0, T); import 重点词被去掉 as _QD                   # [T32] 用户 2026-10-17：这一篇有重点词因撞词被去掉，做时必须先告诉用户
+     if _QD.记录(no) and not d.get('核对确认', {}).get('已告诉用户被去掉的重点词'):
+         err.append('[T32] 这一篇有重点词因撞词被去掉了，先把下面的话原样告诉用户，再在脚本写 核对确认.已告诉用户被去掉的重点词：\n' + _QD.提醒(no))
+@@ -852,6 +948,7 @@ def main():
+     for x in err: print('  ✘ ' + x)
+     for x in conf: print('  ？ ' + x)
+     for x in ref: print('  · ' + x)
++    for x in 只提醒: print('  △ （只提醒）' + x.replace('\n', ' '))
+     bad = bool(err or conf)
+     print('  全部通过' if not bad else f'  【不通过：{len(err)} 个错误，{len(conf)} 处待确认，不得交付】')
+     return 1 if bad else 0
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\200\220\350\257\215\345\257\271\351\275\220.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\200\220\350\257\215\345\257\271\351\275\220.py"
+index 1d84c6f..98b2643 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\200\220\350\257\215\345\257\271\351\275\220.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\200\220\350\257\215\345\257\271\351\275\220.py"
+@@ -4,7 +4,7 @@
+ 描述某个东西滚下坡  就比如说某个东西就要跟这个something对齐。 rolling 就和滚对齐。 啊，尽量大家都要按照这个方式来对齐。”
+ 门（26 起）：一个对齐组的英文里，除去重点词本身、专有名词（大写开头）、数字、虚词（冠词、介词、小品词、代词、助动词）后
+ 还剩 2 个以上实词，就要拆开逐词对齐；对不了（习惯说法、语序整体换了、拆开中文不通顺，T7）写进 核对确认.合组：
+-{"S14 something rolling downhill": "对齐不了：<原因>"}（只认“对齐不了：”开头，登记 放行口子表）。没拆也没写就停。
++{"S14 something rolling downhill": "对齐不了：<原因>"}（只认“对齐不了：”开头）。没拆也没写就停。
+ 01–25 不回头改：python3 逐词对齐.py --清单 把多实词组列进 制作记录/逐词对齐清单.md 交用户看。
+ 用法：python3 逐词对齐.py --自检 | --清单"""
+ import json, re, os, sys, glob
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\207\215\346\237\245\350\256\260\345\275\225.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\207\215\346\237\245\350\256\260\345\275\225.py"
+index c32fb52..3ac0aa6 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\207\215\346\237\245\350\256\260\345\275\225.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\207\215\346\237\245\350\256\260\345\275\225.py"
+@@ -19,7 +19,7 @@ def 键(no, mp4, fp=None):   # 程序 + 这一篇存的视频 + 现行脚本：
+ def 定稿提醒(no, 已, 欠):
+     """G22：已有定稿 4K 的篇目，现行脚本或程序和存的视频对不上 → 提醒必须重出 4K（2026-10-23 我改了已定稿的 21 没重出，全篇重查才查出来）"""
+     if no in 已 and no in 欠:
+-        return f'★ [G22] 第{no}篇已有定稿 4K，现行脚本或程序和存的视频对不上（或还没重查过）：改完必须 bash 视频/工具/定稿流水线.sh {no} 重出 4K、归档（G9）'
++        return f'★ [G22] 第{no}篇已有定稿 4K，现行脚本或程序和存的视频对不上（或还没重查过）：改完必须 bash 视频/工具/新管/定稿.sh {no} 重出 4K、归档（G9）'
+ def 欠着(stamp=STAMP, keys=None):
+     """还没用现行程序重查过的已出片篇目（铁4/音29/画21：改一处，全部重查）；按篇记，查一篇记一篇，中途停了不白查"""
+     if keys is None: fp = 程序指纹(); keys = {no: 键(no, p, fp) for no, p in 已出片().items()}
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\222\251\345\255\220\350\207\252\346\243\200.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\222\251\345\255\220\350\207\252\346\243\200.py"
+index bcfff0e..743e0b9 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\222\251\345\255\220\350\207\252\346\243\200.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\222\251\345\255\220\350\207\252\346\243\200.py"
+@@ -35,19 +35,6 @@ r = f'{tmp}/repo'; os.makedirs(f'{r}/视频')
+ subprocess.run(['git', 'init', '-q', r]); open(f'{r}/视频/x.md', 'w').write('x')
+ if not 拦了('收工', {}, 仓库=r): fails.append('没抓到：有没推送的改动就收工（守则3）')
+ if 拦了('收工', {'stop_hook_active': True}, 仓库=r): fails.append('误拦：已经拦过一次又拦（会死循环）')
+-_m = f'{tmp}/镜'; os.makedirs(f'{_m}/视频/云端/待演练'); os.makedirs(f'{_m}/视频/云端/请求'); subprocess.run(['git', 'init', '-q', _m])   # K66：改动 = 已提交的在途改门推送补丁 → 放行；补丁不同、没提交 → 照拦
+-subprocess.run(['git', '-C', r, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'commit', '-q', '--allow-empty', '-m', '0'], capture_output=True)
+-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))); import 推请求 as _Q
+-open(f'{r}/CLAUDE.md', 'w').write('c'); _Q.做补丁('k66', r, out=f'{_m}/视频/云端/待演练/k66.diff'); open(f'{_m}/视频/云端/请求/k66.txt', 'w').write('改门推送 补丁=视频/云端/待演练/k66.diff\n')
+-if G.在途补丁(r, _m): fails.append('误放：在途补丁还没提交就算在途（K66）')
+-_e66 = {k: v for k, v in os.environ.items() if not k.startswith('GIT_')}; subprocess.run(['git', '-C', _m, 'add', '-A'], capture_output=True, env=_e66); subprocess.run(['git', '-C', _m, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'commit', '-qm', 'k'], capture_output=True, env=_e66)
+-if G.在途补丁(r, _m) != 'k66': fails.append('没认出：改动就是已提交的在途改门推送补丁（K66：收工闸门逼着推送两仓库，--收 就对不上）')
+-_g0 = G.镜像; G.镜像 = _m
+-if 拦了('收工', {}, 仓库=r): fails.append('误拦：改动就是在途改门推送补丁也逼着推送两仓库（K66）')
+-G.镜像 = _g0
+-open(f'{r}/视频/x.md', 'w').write('y')
+-if G.在途补丁(r, _m): fails.append('误放：改动和在途补丁不一样也算在途（K66）')
+-open(f'{r}/视频/x.md', 'w').write('x')
+ _r3 = f'{tmp}/repo3'; os.makedirs(f'{_r3}/视频/工具'); subprocess.run(['git', 'init', '-q', _r3]); open(f'{_r3}/视频/工具/全篇重查通过.json', 'w').write('{}')
+ subprocess.run(['git', '-C', _r3, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'add', '-A']); subprocess.run(['git', '-C', _r3, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'commit', '-qm', 'x', '--date=2000-01-01T00:00:00'], env={**os.environ, 'GIT_COMMITTER_DATE': '2000-01-01T00:00:00'})
+ open(f'{_r3}/视频/工具/全篇重查通过.json', 'w').write('{"篇": {}}')   # 已跟踪的进度文件被改了（真实情形）
+@@ -80,7 +67,7 @@ if 拦了('命令', {'tool_input': {'command': 'pgrep -f make_video'}}): fails.a
+ r6 = G.判('发文件后', {'tool_input': {'files': ['/x/a-文本.docx']}}); r6b = G.判('发文件后', {'tool_input': {'files': ['/x/a.mp4']}})
+ if not (r6 and '打印背景色' in json.dumps(r6, ensure_ascii=False)) or r6b: fails.append('没抓到：发 Word 没提醒打印背景色（W6）')
+ o = subprocess.run(['bash', os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '开工提醒.sh')], capture_output=True, text=True).stdout
+-if '【开工必做' not in o or '【规则执行机器】' not in o: fails.append('没抓到：开工提醒没打印（守则1：开工必读、规则执行机器状态）')
++if '【开工必做' not in o: fails.append('没抓到：开工提醒没打印（守则1）')
+ # K16（G59）：绕提交钩子的写法逐个试，必须全拦；正常命令放行
+ for _c in ['git -c core.hooksPath=/dev/null commit -m x', 'git -c core.HooksPath= commit -m x', 'GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.hooksPath GIT_CONFIG_VALUE_0=/x git commit -m x',
+            'export GIT_CONFIG_PARAMETERS="x"; git commit -m y', 'env GIT_DIR=/tmp/x git commit -m x', 'rm .git/hooks/pre-commit', 'rm -f 视频/工具/githooks/pre-commit',
+@@ -88,20 +75,13 @@ for _c in ['git -c core.hooksPath=/dev/null commit -m x', 'git -c core.HooksPath
+            'sed -i s/exit/x/ 视频/工具/githooks/pre-commit', 'git commit --no-veri -m x', 'git -C /x commit -an -m x', 'git config alias.ci "commit --no-verify"',
+            'git -c alias.ci=commit ci -m x', 'git commit-tree HEAD^{tree} -m x', 'git update-ref refs/heads/main abc', 'echo Z2l0 | base64 -d | sh', 'alias gc="git commit -n"',
+            'cd .git/hooks && rm pre-commit', 'git config --global include.path /tmp/x', 'git --config-env=core.hooksPath=X commit', '/usr/bin/git commit --no-verify -m x',
+-           'command git commit -n -m x', 'echo x >> ~/.gitconfig', 'ln -sf /dev/null .git/hooks/pre-commit', 'echo "{}" > 视频/制作记录/证据/28.jsonl', 'bash -c "git commit --no-verify"']:
++           'command git commit -n -m x', 'echo x >> ~/.gitconfig', 'ln -sf /dev/null .git/hooks/pre-commit', 'bash -c "git commit --no-verify"']:
+     if not 拦了('命令', {'tool_input': {'command': _c}}): fails.append(f'没抓到：绕提交钩子 {_c}（K16）')
+ for _c in ['git commit -qm "x"', 'git -C /x config core.hooksPath', 'ls .git/hooks 2>/dev/null', 'cat 视频/工具/githooks/pre-commit', 'git add 视频/工具/githooks/pre-commit',
+            'du -sh .git', 'git -C x symbolic-ref -q HEAD', 'GIT_LFS_SKIP_SMUDGE=1 git clone x', 'git -c core.quotepath=off status --porcelain', 'git push -n origin main']:
+     if 拦了('命令', {'tool_input': {'command': _c}}): fails.append(f'误拦：{_c}（K16）')
+ if not 拦了('改文件', {'tool_input': {'file_path': '/home/user/postgraduate-vocabulary/.git/hooks/pre-commit'}}): fails.append('没抓到：Edit 改 .git/hooks（K16）')
+-if not 拦了('改文件', {'tool_input': {'file_path': '/home/user/postgraduate-vocabulary/视频/制作记录/证据/28.jsonl'}}): fails.append('没抓到：手写使用证据（G60）')
+ if 拦了('改文件', {'tool_input': {'file_path': '/home/user/postgraduate-vocabulary/视频/脚本/28.json'}}): fails.append('误拦：改本篇脚本')
+-import 会话开工 as _HK
+-_old = _HK.记录F[0]; _HK.记录F[0] = f'{tmp}/开工.json'; json.dump({'角色': '出稿'}, open(_HK.记录F[0], 'w'))
+-if not 拦了('改文件', {'tool_input': {'file_path': '/home/user/postgraduate-vocabulary/视频/工具/踩坑核查.py'}}): fails.append('没抓到：出稿会话改门程序（G61）')
+-json.dump({'角色': '改门'}, open(_HK.记录F[0], 'w'))
+-if 拦了('改文件', {'tool_input': {'file_path': '/home/user/postgraduate-vocabulary/视频/工具/踩坑核查.py'}}): fails.append('误拦：改门会话改门程序（G61）')
+-_HK.记录F[0] = _old
+ shutil.rmtree(tmp)
+ print('钩子自检：' + ('通过（子代理、发文件、跳过核查、部署、收工闸门和发 Word 提醒：造的违规全部拦下，正常的放行）' if not fails else '失灵！' + '；'.join(fails)))
+ sys.exit(1 if fails else 0)
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\227\270\351\227\250.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\227\270\351\227\250.py"
+index e561635..efbf9e1 100755
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\227\270\351\227\250.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\227\270\351\227\250.py"
+@@ -13,7 +13,7 @@ import sys, os, json, re, hashlib, subprocess, datetime
+ V = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ PV = '/home/user/postgraduate-vocabulary'
+ 回执目录 = os.path.expanduser('~/.核查回执')
+-请求账 = os.path.expanduser('~/.云端请求.json')   # K34：推了 GitHub 请求（推请求.py 记）、约了唤醒（send_later 后钩子记）
++请求账 = os.path.expanduser('~/.云端请求.json')   # K34：约了唤醒（send_later 后钩子记）
+ def _读账():
+     try: return json.load(open(请求账))
+     except Exception: return {}
+@@ -35,21 +35,6 @@ def 记回执(paths, 来源):
+ 
+ 
+ 镜像 = '/home/user/literate-enigma'
+-def 在途补丁(仓库, 镜=None):
+-    """K66：主仓库的改动和镜像里已提交的某个改门推送补丁逐字节相同（请求也已提交）→ 在途，返回补丁名；否则 ''"""
+-    镜 = 镜 or 镜像; d = f'{镜}/视频/云端/待演练'
+-    if not os.path.isdir(d): return ''
+-    try:
+-        sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))); import 推请求 as Q
+-        _, cur = Q.做补丁('收工闸门', 仓库, out=os.devnull)
+-    except Exception: return ''
+-    if not cur.strip(): return ''
+-    for f in sorted(os.listdir(d)):
+-        n = f[:-5]
+-        if not f.endswith('.diff') or not os.path.exists(f'{镜}/视频/云端/请求/{n}.txt'): continue
+-        if subprocess.run(['git', '-C', 镜, 'status', '--porcelain', '--', f'视频/云端/待演练/{f}', f'视频/云端/请求/{n}.txt'], capture_output=True, text=True).stdout.strip(): continue   # 没提交的不算在途
+-        if open(f'{d}/{f}', 'rb').read() == cur: return n
+-    return ''
+ def 拦(事件, 理由):
+     if 事件 == 'Stop': return {'decision': 'block', 'reason': 理由}
+     return {'hookSpecificOutput': {'hookEventName': 'PreToolUse', 'permissionDecision': 'deny', 'permissionDecisionReason': 理由}}
+@@ -59,7 +44,7 @@ def 拦(事件, 理由):
+ # 绕开提交前规则执行核查的写法一律拦：--no-verify 及其缩写、-c/--config-env/include 改 hooksPath、GIT_* 环境变量、
+ # 改/删 .git/hooks、.git/config、githooks、~/.gitconfig、git 别名、不走钩子的底层提交（commit-tree、update-ref……）、解码后再执行
+ _放行GIT变量 = re.compile(r'GIT_(AUTHOR|COMMITTER)_(NAME|EMAIL|DATE)|GIT_TERMINAL_PROMPT|GIT_PAGER|GIT_LFS_SKIP_SMUDGE|GIT_TRACE\w*|GIT_SSL_CAINFO|GIT_HTTP_LOW_SPEED_\w+')
+-_护路径 = re.compile('(?:^|[\\s/"\'=:<>(])(?:\\.git(?:/(?:hooks|config|info)\\b|/?(?=[\\s"\';&|)]|$))|githooks\\b|\\.gitconfig\\b|制作记录/证据/)')
++_护路径 = re.compile('(?:^|[\\s/"\'=:<>(])(?:\\.git(?:/(?:hooks|config|info)\\b|/?(?=[\\s"\';&|)]|$))|githooks\\b|\\.gitconfig\\b)')
+ _只读命令 = {'ls', 'cat', 'head', 'tail', 'grep', 'rg', 'wc', 'diff', 'stat', 'file', 'sha256sum', 'md5sum', 'readlink', 'realpath', 'du', 'test', '['}
+ _只读git = {'log', 'diff', 'show', 'status', 'add', 'ls-files', 'blame', 'grep', 'cat-file', 'ls-tree', 'rev-parse', 'fetch', 'pull', 'push', 'commit', 'clone', 'stash', 'branch', 'remote'}
+ 
+@@ -87,9 +72,9 @@ def 绕钩子(c, segs):
+         if sub == 'commit' and re.search(r'\s-[a-zA-Z]*n[a-zA-Z]*(?=\s|$)', w): return '不许用 -n 跳过 git 钩子'
+         if re.match(r'alias\b', w) and re.search(r'\bgit\b', w): return '不许用 shell 别名包装 git'
+         if _护路径.search(' ' + w):
+-            写 = re.search(r'>>?\s*\S*(?:\.git\b|githooks|\.gitconfig|证据/)', w)
++            写 = re.search(r'>>?\s*\S*(?:\.git\b|githooks|\.gitconfig)', w)
+             ok = not 写 and ((first in _只读命令 and not re.search(r'\btee\b|-delete|-exec', w)) or (first == 'git' and sub in _只读git))
+-            if not ok: return '不许改、删、移 .git/hooks、.git/config、githooks、~/.gitconfig、制作记录/证据（钩子和使用证据只能由正式程序改）'
++            if not ok: return '不许改、删、移 .git/hooks、.git/config、githooks、~/.gitconfig（钩子只能由正式程序改）'
+     return None
+ 
+ 
+@@ -165,14 +150,6 @@ def 判(kind, d, 仓库=PV):
+         p = os.path.abspath(str(ti.get('file_path') or ti.get('notebook_path') or ''))
+         if re.search(r'/\.git(/|$)|/\.gitconfig$', p):
+             return 拦('PreToolUse', '【规则执行闸门】K16：不许直接改 .git/ 下的文件或 ~/.gitconfig（提交钩子、git 配置只能由 开工提醒.sh、推送两仓库.sh 设）。')
+-        if '/制作记录/证据/' in p:
+-            return 拦('PreToolUse', '【G60 证据闸门】使用证据只能由正式入口（开工记录、生成文本、草稿声音.sh、交付核查、定稿流水线）写，不许手写。')
+-        try:
+-            sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))); import 会话开工 as _HK
+-            r = _HK.读记录() or {}; rel = re.sub(r'^.*?/(?=(视频/工具/|\.github/|\.claude/))', '', p)
+-            if r.get('角色') in ('出稿', '改稿') and _HK.门程序(rel):
+-                return 拦('PreToolUse', f'【G61 会话角色闸门】本会话是“{r["角色"]}”会话，不许改门程序 {rel}（G25：程序不好写进 NN.md 方法复盘 + 报坑.py 登记，由改门会话改）。')
+-        except Exception: pass
+         return None
+     if kind == '已约唤醒':   # K34：send_later 之后记下（PostToolUse），收工闸门据此放行
+         a = _读账(); a['唤醒'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+@@ -185,10 +162,6 @@ def 判(kind, d, 仓库=PV):
+         return None
+     if kind == '收工':
+         if d.get('stop_hook_active'): return None
+-        a = _读账(); rq = a.get('请求', []); last = max((r.get('时刻', '') for r in rq), default='')
+-        if last and a.get('唤醒', '') < last:   # K34：GitHub 写回结果（API 提交）不触发 PR 事件、不会唤醒会话（2026-10-26 空等 2 小时 20 分、改门锁过期）
+-            return 拦('Stop', f'【K34 云端请求闸门】推了 GitHub 请求（{rq[-1].get("名字", "")}，{last}）还没约唤醒：GitHub 写回结果不会唤醒会话。'
+-                     '先用 send_later（claude-code-remote）约约 20 分钟后叫回自己，再收工。')
+         if not os.path.isdir(仓库): return None
+         r = subprocess.run(['git', '-c', 'core.quotepath=off', '-C', 仓库, 'status', '--porcelain', '--', '视频', 'CLAUDE.md', '新版定稿'],
+                            capture_output=True, text=True).stdout
+@@ -202,11 +175,9 @@ def 判(kind, d, 仓库=PV):
+                 chg = [x for x in df.splitlines() if x[:1] in '+-' and not x.startswith(('+++', '---'))]
+                 if chg and all('进行中' in x for x in chg): continue
+             ch.append(l)
+-        if ch and 在途补丁(仓库):   # K66：改动 = 已推 GitHub、还没 --收 的改门推送补丁：等 GitHub 回来 推请求.py --收（照守则3 现在推送两仓库，--收 时补丁就对不上了）
+-            ch = []
+         if ch:
+             return 拦('Stop', f'【守则3 收工闸门】还有 {len(ch)} 个改动没推送（如 {ch[0][3:][:60]}）：'
+-                     '先 bash 视频/工具/推送两仓库.sh "说明"（会先过规则执行核查），再收工。')
++                     '先 bash 视频/工具/推送两仓库.sh "说明"（先查快测印章），再收工。')
+         # 方法进化闸门（守则12/T29，用户 2026-10-23：“我们的方法一定要不断的进化……这次做完，你就下一步想……还有没有能够去进化的地方”）：
+         # 今天改过工具，《制作硬性标准与踩坑总结》的方法升级记录里就要有今天的一行（哪件手工活变成了程序、哪里还能更省）
+         今天 = datetime.datetime.utcnow().strftime('%Y-%m-%d')
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\237\263\351\242\221\351\246\226\350\246\201\346\263\225\345\210\231.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\237\263\351\242\221\351\246\226\350\246\201\346\263\225\345\210\231.py"
+index b7b2ae4..dbc2ddb 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\237\263\351\242\221\351\246\226\350\246\201\346\263\225\345\210\231.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\237\263\351\242\221\351\246\226\350\246\201\346\263\225\345\210\231.py"
+@@ -28,12 +28,7 @@ def 标准(std):
+     s = std.split('## 一、音频', 1)[1].split('\n## ', 1)[0]
+     return [m.group(1) for m in re.finditer(r'^\d+\. \*\*(.+?)\*\*', s, re.M)]
+ 
+-def 演练(i):
+-    """这个坑由哪一场演练重放（规则执行表 的“演练”，执行效应演练 自动写）；核对时不比这一段（演练一重跑它就可能改写）"""
+-    import json
+-    try: e = json.load(open(f'{T}/规则执行表.json')).get(i, {}).get('演练') or []
+-    except Exception: e = []
+-    return ' ｜演练：' + ('；'.join(x.replace('执行效应声音演练 ', '声音演练 ').replace('执行效应演练 ', '主演练 ') for x in e[:3]) if e else '（还没有演练场景）')
++def 演练(i): return ''   # 演练已删（用户 2026-10-29）
+ 去演练 = lambda t: re.sub(r' ｜演练：.*$', '', t, flags=re.M)
+ 短 = lambda x, n: re.sub(r'\s+', ' ', x)[:n] + ('…' if len(x) > n else '')
+ 
+@@ -61,10 +56,6 @@ def 自检():
+     if not ps: return ['自检前提不成立：踩坑总表里找不到音频坑']
+     i0 = ps[0][0]; std2 = '\n'.join(l for l in std.splitlines() if not re.match(rf'^\| *{i0} *\|', l))
+     if 去演练(生成(cl, std2)) == 去演练(生成(cl, std)): f.append(f'没抓到：踩坑总表删掉 {i0}，生成的首要法则没变（核对发现不了漏坑）')
+-    global 演练
+-    原 = 演练; 演练 = lambda i: ' ｜演练：（还没有演练场景）' if i == ps[0][0] else 原(i)
+-    if '还没有演练场景' not in 生成(cl, std): f.append('没抓到：音频坑没有演练重放')
+-    演练 = 原
+     if 首要(cl.replace('0. **首要法则', '0. **别的', 1)) is not None: f.append('没抓到：CLAUDE.md 第一条不是首要法则')
+     if '25 S2' not in 生成(cl, std) and not any('句内' in q or '句内' in x for _, q, x in ps): f.append('没抓到：25 S2 句内一段变小（G36）不在音频坑里')
+     return f
+@@ -79,8 +70,4 @@ if __name__ == '__main__':
+         cl = open(CL).read(); ps = 坑(open(STD).read())
+         print('【音频首要法则（用户 2026-10-25：音频是最重要的环节，坚决不可以出现任何问题）】开工先读 视频/音频首要法则.md；踩过的音频坑：')
+         print('\n'.join(f'  {i} {短(q, 40)}' for i, q, _ in ps)); sys.exit(0)
+-    if not os.path.exists(OUT) or 去演练(open(OUT).read()) != 去演练(t):
+-        print('【停止】视频/音频首要法则.md 与 CLAUDE.md 首要法则、踩坑总表的音频坑、音频硬性标准对不上（漏了或改了没重新生成）：python3 视频/工具/音频首要法则.py --写入'); sys.exit(1)
+-    缺 = [i for i, _, _ in 坑(open(STD).read()) if '还没有演练场景' in 演练(i)]
+-    if 缺: print(f'提示：这些音频坑还没有演练重放：{缺}（执行效应演练 跑完会写上；没有场景的算缺口，缺口基线只许减少，演练那边就停）')   # 新坑刚写进来时演练还没跑，这里停会把演练自己挡住
+-    print(f'音频首要法则 与踩坑总表、标准一致（{len(坑(open(STD).read()))} 个音频坑，每个都有演练重放）')
++    open(OUT, 'w').write(t); print(f'已重新生成 {OUT}（只生成，不当门；用户 2026-10-29）')
