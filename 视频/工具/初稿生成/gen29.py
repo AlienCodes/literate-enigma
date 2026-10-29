@@ -34,7 +34,7 @@ S=[
      "（lie rotten：烂在那里，lay 是 lie 的过去式；\nsaturated：湿透的，这里指被雨水浸透）"],
     [[("**cereal**","**谷物**(cereal)"),("and bread","和面包"),("prices","价格"),("**escalated**,","**飞涨**(escalated)，")],
      "（三个分句并列：Crops failed…, prices escalated, and … followed）"],
-    [[("and **scarcity**,","**短缺**(scarcity)、"),("disease,","疾病"),("and **unrest**","和**动荡**(unrest)"),("followed.","随之而来。")],
+    [[("and **scarcity**,","(物资)**短缺**(scarcity)、"),("disease,","疾病"),("and **unrest**","和**动荡**(unrest)"),("followed.","随之而来。")],
      "（follow：接着发生，随之而来）"]]),
 (5,[[[("The **eighteen-year-old**","**十八岁**(eighteen-year-old)的"),("Mary Godwin,","玛丽·戈德温，"),("later Mary Shelley,","也就是后来的玛丽·雪莱，")],
      "（later Mary Shelley：同位语，补充说明 Mary Godwin 后来的名字）"],
