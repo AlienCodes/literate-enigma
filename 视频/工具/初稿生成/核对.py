@@ -54,7 +54,7 @@ def 生成并核对(S, out):
         assert c["zh"]=="".join(b for a,b in c["align"])
         keys=re.findall(r"\*\*[^*]+\*\*\(([^)]+)\)",c["zh"])
         for w in re.findall(r"\*\*(.+?)\*\*",c["en"]):
-            sb.append(w); assert "("+w+")" in c["zh"] or any(w in k.split() or w in k for k in keys),w
+            sb.append(w); assert "("+w+")" in c["zh"] or any(w.lower() in k.lower().split() or w.lower() in k.lower() for k in keys),w   # K137（34 S8 **In** his **ignorance** **of**）：句首大写的 In 对小写标签 (in ignorance of)，不分大小写（踩坑核查 D4、render 上色本来就不分）
         sen=" ".join(x["en"] for x in s["chunks"])               # 被隔开的短语可以跨块（elevated … to 分在两块）
         for w in keys: assert "**"+w+"**" in c["en"] or all("**"+x+"**" in sen or x in plain(sen) for x in w.split()),w
     miss=缺的重点词(abold, sb)
