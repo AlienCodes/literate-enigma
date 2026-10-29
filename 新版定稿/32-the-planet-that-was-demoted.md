@@ -16,7 +16,7 @@ Amid the **controversy**, an **irony** was already in **transit**. New Horizons 
 
 1930年2月18日，**天文学家**(astronomer)克莱德·汤博在洛厄尔天文台比对**照相**(photographic)底片时，**察觉**(perceived)到一个在底片之间移动过的**暗淡**(dim)**小点**(dot)。一名11岁的英国女孩**提议**(put forward)了它的名字，取自罗马神话中的**冥界**(underworld)**神灵**(deity)。此后76年里，冥王星一直占据**行星**(planetary)**名单**(roster)上的第九个**位置**(slot)。
 
-2005年1月，天文学家发现了一个**遥远**(far-off)的天体，它后来被命名为厄里斯，起初看上去比冥王星还大。美国航天局一度称它为第十大行星。这个**竞争者**(contender)带来了一个**棘手**(awkward)的**难题**(dilemma)。"行星"一词**此前**(hitherto)一直用得很**宽泛**(loosely)，而且很可能还会发现更多**冰冷**(icy)的天体，一个**精确**(precise)的**定义**(definition)已**势在必行**(necessity)。
+2005年1月，天文学家发现了一个**遥远**(far-off)的天体，它后来被命名为厄里斯，起初被认为比冥王星还要大。美国航天局曾短暂地称它为第十大行星。这个**竞争者**(contender)造成了一个**尴尬**(awkward)的**两难困境**(dilemma)。"行星"一词**此前**(hitherto)一直用得很**宽泛**(loosely)，而且很可能还会发现更多**冰冷**(icy)的天体，一个**精确**(precise)的**定义**(definition)已**势在必行**(necessity)。
 
 2006年8月24日，在布拉格**召开大会**(convened)的国际天文学联合会投票决定，行星必须**环绕**(revolve)太阳运行、接近**球形**(spherical)，并且已经清空其轨道附近的**区域**(neighbourhood)。冥王星不符合最后一条**标准**(criterion)，被**重新归类**(reclassified)为**矮行星**(dwarf)，行星只剩下八颗。冥王星在**物理上**(physically)**毫无改变**(unaltered)，移动的只是**界线**(boundary)。
 

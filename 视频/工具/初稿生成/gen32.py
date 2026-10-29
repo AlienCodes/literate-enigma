@@ -16,12 +16,12 @@ S=[
      "（hold the ninth slot：占据第九个位置；\nslot：指名单、序列或时间表上的“位置、名额”；\non the planetary roster：介词短语作后置定语，修饰 slot）"]]),
 (2,[[[("In January 2005,","2005年1月，"),("astronomers","天文学家"),("found","发现了"),("a **far-off** body,","一个**遥远的**(far-off)天体，")],
      "（body：天体）"],
-    [[("later","它后来"),("named Eris,","被命名为厄里斯，"),("at first thought","起初看上去"),("larger than Pluto.","比冥王星还大。")],
+    [[("later","它后来"),("named Eris,","被命名为厄里斯，"),("at first thought","起初被认为"),("larger than Pluto.","比冥王星还要大。")],
      "（later named Eris、at first thought larger than Pluto：\n两个过去分词短语作后置定语，修饰 a far-off body）"]]),
-(2,[[[("NASA","美国航天局"),("briefly","一度"),("called it","称它为"),("the tenth","第十大"),("planet.","行星。")],
+(2,[[[("NASA","美国航天局"),("briefly","曾短暂地"),("called it","称它为"),("the tenth","第十大"),("planet.","行星。")],
      "（call A B：称 A 为 B；\nNASA：美国国家航空航天局）"]]),
-(2,[[[("The **contender**","这个**竞争者**(contender)"),("posed","带来了"),("an **awkward**","一个**棘手的**(awkward)"),("**dilemma**.","**难题**(dilemma)。")],
-     "（pose：造成（问题、困难）；\ncontender 指 Eris）"]]),
+(2,[[[("The **contender**","这个**竞争者**(contender)"),("posed","造成了"),("an **awkward**","一个**尴尬的**(awkward)"),("**dilemma**.","**两难困境**(dilemma)。")],
+     "（pose：造成，引发（问题、困难）；\ncontender 指 Eris；\ndilemma：指陷入“进退维谷”的境地，\n无论选择哪一方，都必须承受相应的损失或代价）"]]),
 (2,[[[("The term \"planet\"","“行星”一词"),("had **hitherto**","**此前**(hitherto)一直"),("been used **loosely**,","用得很**宽泛**(loosely)，")],
      "（had been used：过去完成时的被动语态；\nhitherto：迄今，此前）"],
     [[("and with","而且"),("more **icy** worlds","更多**冰冷的**(icy)天体"),("likely","很可能"),("to be found,","还会被发现，")],
@@ -69,7 +69,7 @@ S=[
      "（简述：1930年2月18日，汤博在洛厄尔天文台比对底片时发现了冥王星，\n"
      "名字由一名11岁的英国女孩提议，取自罗马神话中的冥界之神。\n"
      "此后76年里，它一直占据行星名单上的第九个位置。2005年1月发现的厄里斯\n"
-     "起初看上去比冥王星还大，“行星”需要一个精确的定义。2006年8月24日，\n"
+     "起初被认为比冥王星还要大，“行星”需要一个精确的定义。2006年8月24日，\n"
      "国际天文学联合会在布拉格投票，规定行星必须绕日运行、接近球形，并且清空轨道附近区域；\n"
      "冥王星被重新归类为矮行星，行星只剩八颗。表决有效，但约1万名会员中只有424人投票，\n"
      "正当性受到批评：数百名天文学家签署请愿书，“plutoed”成了2006年度词汇，\n"
