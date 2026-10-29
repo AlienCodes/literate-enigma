@@ -48,7 +48,7 @@ S=[
      "（work：这里指奏效，起作用）"],
     [[("guarding","那就是守住了"),("the **purity** of the water Londoners drank.","伦敦人饮用水的**洁净**(purity)。")],
      "（guarding…：现在分词短语，解释 reason；\nthe water Londoners drank：省略 that 的定语从句）"]]),
-(6,[[[("Cholera","霍乱"),("**resurfaced**","**卷土重来**(resurfaced)"),("in 1866","于1866年，"),("and killed","夺去了"),("about 5,600 people","约5,600人的生命，"),("in the East End,","在伦敦东区，")],
+(6,[[[("Cholera","霍乱"),("**resurfaced**","**再次出现**(resurfaced)"),("in 1866","于1866年，"),("and killed","夺去了"),("about 5,600 people","约5,600人的生命，"),("in the East End,","在伦敦东区，")],
      "（the East End：伦敦东区）"],
     [[("the one **locality** not yet connected.","那是唯一尚未接入的**地区**(locality)。")],
      "（the one locality…：同位语，补充说明 the East End；\nnot yet connected：过去分词短语作后置定语）"]]),
