@@ -2,7 +2,7 @@ import json,re,glob,os
 # 第29篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-10-28 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；非重点词也逐词对齐（G47）；三项以上并列加牛津逗号（T35，S9 scarcity, disease, and unrest 已加并同步文章）。
 S=[
-(1,[[[("In June 1816","1816年6月，"),("a","一场"),("**ceaseless**","**连绵不断**(ceaseless)的"),("**downpour**","**倾盆大雨**(downpour)"),("kept","把"),("a party","一群人"),("**besieged**","**围困**(besieged)在"),("at the Villa Diodati,","迪奥达蒂别墅里。")],
+(1,[[[("In June 1816","1816年6月，"),("a","一场"),("**ceaseless**","**持续的/无休止的**(ceaseless)"),("**downpour**","**倾盆大雨**(downpour)"),("kept","把"),("a party","一群人"),("**besieged**","**围困**(besieged)在"),("at the Villa Diodati,","迪奥达蒂别墅里。")],
      "（keep sb besieged：使某人一直处于被围困的状态）"],
     [[("a **mansion**","这座**宅邸**(mansion)"),("the **poet**","是**诗人**(poet)"),("Lord Byron","拜伦勋爵"),("had **leased**","**租下**(leased)的，"),("on","位于"),("the **outskirts** of Geneva.","日内瓦**郊外**(outskirts)。")],
      "（a mansion…：同位语，补充说明 the Villa Diodati；\nthe poet Lord Byron had leased：定语从句，\n省略了 that，修饰 a mansion；\non the outskirts of…：在……的郊外）"]]),
