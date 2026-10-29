@@ -4,7 +4,7 @@
 ## 英文
 In June 1984 Alexey Pajitnov, a 29-year-old Moscow **coder**, grew **engrossed** in a **diversion** he had built. His **primitive** Elektronika 60 had a **purely** **textual** display, so every **geometric** piece of four **tiles** was assembled from characters. The result proved **addictive**. He called it Tetris, a **fusion** of the Greek tetra- and tennis, his favourite **pastime**.
 
-Under the **communist** system, the state, not its **salaried** **designer**, was the **proprietor** of this **intellectual** property, and Pajitnov held no **entitlement** to it. Copies **mushroomed** **freely** on floppy **disks** across the Eastern **bloc**.
+In the Soviet Union, the state, not its **salaried** **designer**, was the **proprietor** of this **intellectual** property, and Pajitnov held no **entitlement** to it. Copies **mushroomed** **freely** on floppy **disks** across the Eastern **bloc**.
 
 In 1986 Robert Stein, an **enterprising** British software **vendor**, **stumbled** upon Tetris in Hungary. In his **ignorance** of Elorg, the state **bureau** **regulating** Soviet software exports, he **hastily** **hawked** rights he did not yet **legitimately** hold. The rights were **shuffled** **onward** through a **chaotic** **muddle** of **overlapping** deals among Western firms, one owned by the **magnate** Robert Maxwell.
 
@@ -18,7 +18,7 @@ The man whose puzzle once spread for nothing later helped decide who could sell 
 
 1984年6月，29岁的莫斯科**程序员**(coder)阿列克谢·帕基特诺夫，**沉迷**(engrossed)于自己编写的一个**消遣**(diversion)。他那台**简陋**(primitive)的 Elektronika 60 **只能**(purely)显示**文字**(textual)，所以每个由四个**小格**(tiles)组成的**几何**(geometric)方块，全是用字符拼出来的。结果，这个游戏让人**上瘾**(addictive)。他给它取名 Tetris，这是希腊语前缀 tetra- 和网球 tennis 的**融合**(fusion)，网球是他最爱的**消闲**(pastime)运动。
 
-在**共产主义**(communist)体制下，这份**知识**(intellectual)产权的**所有者**(proprietor)是国家，而不是领**工资**(salaried)的**设计者**(designer)，帕基特诺夫对它没有任何**权利**(entitlement)。拷贝存在**软盘**(disks)上，在整个东欧**集团**(bloc)内**自由**(freely)流传，**遍地开花**(mushroomed)。
+在前苏联，这份**知识**(intellectual)产权的**所有者**(proprietor)是国家，而不是领**工资**(salaried)的**设计者**(designer)，帕基特诺夫对它没有任何**权利**(entitlement)。拷贝存在**软盘**(disks)上，在整个东欧**集团**(bloc)内**自由**(freely)流传，**遍地开花**(mushroomed)。
 
 1986年，**富有进取心**(enterprising)的英国软件**商人**(vendor)罗伯特·斯坦因在匈牙利**偶然碰到**(stumbled)了俄罗斯方块。他对 Elorg 这个**管理**(regulating)苏联软件出口的国家**机构**(bureau)毫不**知情**(ignorance)，就**草率**(hastily)地**兜售**(hawked)起他尚未**合法**(legitimately)拥有的版权。这些版权在西方公司之间被**倒来倒去**(shuffled)，一路**传下去**(onward)，陷入一团**混乱**(chaotic)的**乱麻**(muddle)，交易彼此**重叠**(overlapping)，其中一家公司归**大亨**(magnate)罗伯特·马克斯韦尔所有。
 
@@ -39,10 +39,13 @@ The man whose puzzle once spread for nothing later helped decide who could sell 
 | textual | adj. 文本的，文字的（textual analysis） | 1 |
 | geometric | adj. 几何的（geometric shapes/patterns） | 1 |
 | tiles | n. (tile) 瓷砖；（游戏中的）小格（roof tiles） | 1 |
+| assembled from | v. (assemble from) 由……组装、拼装而成（be assembled from parts） | 1 |
+| characters | n. (character) 字符；人物；性格（Chinese characters） | 1 |
+| Tetris | n. 俄罗斯方块（电子游戏名）（play Tetris） | 1 |
 | addictive | adj. 使人上瘾的（an addictive game） | 1 |
+| Greek | adj. 希腊的；希腊语的（the Greek alphabet） | 1 |
 | fusion | n. 融合，结合（a fusion of styles；nuclear fusion） | 1 |
 | pastime | n. 消遣，娱乐（a popular pastime） | 1 |
-| communist | adj. 共产主义的（a communist country） | 2 |
 | salaried | adj. 拿薪水的（salaried staff） | 2 |
 | designer | n. 设计者（a game designer） | 2 |
 | proprietor | n. 所有者，业主（the proprietor of a shop） | 2 |
