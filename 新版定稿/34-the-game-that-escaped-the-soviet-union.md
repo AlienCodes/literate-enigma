@@ -18,9 +18,9 @@ The man whose **puzzle** once spread for nothing later helped decide who could s
 
 1984年6月，阿列克谢·帕基特诺夫，一位29岁的**莫斯科**(Moscow)**程序员**(coder)，渐渐变得**全神贯注于**(engrossed in)一个他自己此前编写出来的**消遣（游戏）**(diversion)。（a 29-year-old Moscow coder：同位语，补充说明 Alexey Pajitnov）（engrossed in：全神贯注于；专心致志于；沉浸于；he had built：定语从句，省略了关系代词，修饰 diversion）他那台**简陋的**(primitive)Elektronika 60只有一块**纯粹地**(purely)**文本的**(textual)显示屏，所以每一个**几何**(geometric)方块，由四个**小格**(tiles)组成的，都是**由**(assembled from)**字符**(characters)**拼装而成的**(assembled from)。（Elektronika 60：一种计算机型号；a purely textual display：只能显示文字的屏幕）（of four tiles：of 结构作后置定语，修饰 piece；be assembled from…：由……拼成）结果，这个游戏**让人上瘾**(addictive)。（prove＋形容词：结果是……，事实证明……）他给它取名 **Tetris（俄罗斯方块）**(Tetris)，这是**希腊语**(Greek)前缀 tetra- 和网球 tennis 的**融合**(fusion)，网球是他最爱的**消遣**(pastime)运动。（call A B：把 A 叫作 B）（a fusion of…：同位语，补充说明 Tetris；tetra-：希腊语前缀，意为“四”）（his favourite pastime：同位语，补充说明 tennis）
 
-在前苏联，国家，而不是领**工资的**(salaried)**设计者**(designer)，是这份**知识产权**(intellectual property)的**所有者**(proprietor)，而帕基特诺夫对它没有任何**权利**(entitlement)。（the Soviet Union：苏联，1991年解体，中文常称“前苏联”）（not its salaried designer：插入语，和 the state 对比；intellectual property：知识产权）（hold no entitlement to…：对……没有任何权利）拷贝**不受限制地**(freely)**如蘑菇般迅速涌现**(mushroomed)，靠**软盘**(floppy disks)遍及整个**东欧集团**(Eastern bloc)。（mushroomed：像雨后蘑菇一夜之间冒头那样，在极短时间内突然、大量地涌现出来，核心就三个字：快、多、猛）（东欧集团（the Eastern bloc）就是冷战时期，以苏联为首的阵营）
+在前苏联，国家，而不是领**工资的**(salaried)**设计者**(designer)，是这份**知识产权**(intellectual property)的**所有者**(proprietor)，而帕基特诺夫对它没有任何**权利**(entitlement)。（the Soviet Union：苏联，1991年解体，中文常称“前苏联”）（因为在当时的苏联体制下，他作为领薪水的员工，在工作期间用单位电脑写出的游戏属于“职务发明”，按法律规定知识产权全归国家所有，他个人无权占有。）（hold no entitlement to…：对……没有任何权利）拷贝**不受限制地**(freely)**如蘑菇般迅速涌现**(mushroomed)，靠**软盘**(floppy disks)遍及整个**东欧集团**(Eastern bloc)。（mushroomed：像雨后蘑菇一夜之间冒头那样，在极短时间内突然、大量地涌现出来，核心就三个字：快、多、猛）（东欧集团（the Eastern bloc）就是冷战时期，以苏联为首的阵营）
 
-1986年，罗伯特·斯坦因，一位**富有进取心的**(enterprising)英国**软件**(software)**商人**(vendor)，在**匈牙利**(Hungary)**偶然碰到了**(stumbled upon)**俄罗斯方块**(Tetris)。（an enterprising British software vendor：同位语，补充说明 Robert Stein）（stumble upon…：偶然碰到，偶然发现……；in Hungary：地点状语）由于他**对**(in ignorance of) Elorg **毫不知情**(in ignorance of)，那是一个**国家机关**(state bureau)，**监管**(regulating)着苏联**软件**(software)出口，他就**草率地**(hastily)**兜售**(hawked)起他尚未**合法**(legitimately)拥有的版权。（the state bureau…：同位语，补充说明 Elorg；regulating…：现在分词短语作后置定语）（hawk：叫卖，兜售；rights he did not yet…：定语从句，省略了关系代词，修饰 rights）（一个西方商人因为不懂苏联国情，连真正的版权老板是谁都没搞清楚，就开始满世界疯狂转卖版权，但他手里其实根本没有合法的版权。）这些版权在**混乱的**(chaotic)**一团糟**(muddle)中，被**持续地**(onward)**洗牌式地来回倒手**(shuffled)，由西方公司彼此之间的**重叠**(overlapping)交易所导致，其中一家公司归**大亨**(magnate)罗伯特·马克斯韦尔所有。（shuffle：洗牌，来回倒手；onward：向前，持续往下；a chaotic muddle of…：一团……的混乱）（among Western firms：后置定语，修饰 deals）（one owned by…：one 指其中一家公司，owned by…：过去分词短语作后置定语）
+1986年，罗伯特·斯坦因，一位**富有进取心的**(enterprising)英国**软件**(software)**商人**(vendor)，在**匈牙利**(Hungary)**偶然碰到了**(stumbled upon)**俄罗斯方块**(Tetris)。（an enterprising British software vendor：同位语，补充说明 Robert Stein）（stumble upon…：偶然碰到，偶然发现……；in Hungary：地点状语）由于他**对**(in ignorance of) Elorg **毫不知情**(in ignorance of)，那是一个**国家机关**(state bureau)，**监管**(regulating)着苏联**软件**(software)出口，他就**草率地**(hastily)**兜售**(hawked)起他尚未**合法**(legitimately)拥有的版权。（the state bureau…：同位语，补充说明 Elorg；regulating…：现在分词短语作后置定语）（hawk：叫卖，兜售；rights he did not yet…：定语从句，省略了关系代词，修饰 rights）（一个西方商人因为不懂苏联国情，连真正的版权老板是谁都没搞清楚，就开始满世界疯狂转卖版权，但他手里其实根本没有合法的版权。）这些版权在**混乱的**(chaotic)**一团糟**(muddle)中，被**持续地**(onward)**洗牌式地来回倒手**(shuffled)，因为由西方公司之间**重叠的**(overlapping)交易而导致了这种情况，其中一家公司归**大亨**(magnate)罗伯特·马克斯韦尔所有。（shuffle：洗牌，来回倒手；onward：向前，持续往下；a chaotic muddle of…：一团……的混乱）（among Western firms：后置定语，修饰 deals）（one owned by…：one 指其中一家公司，owned by…：过去分词短语作后置定语）
 
 1989年2月，亨克·罗杰斯，一位**足智多谋的**(resourceful)荷兰裔**发行商**(publisher)，持旅游**签证**(visa)来到**莫斯科**(Moscow)，**设法找到了**(found his way to) Elorg。（a resourceful Dutch-born publisher：同位语，补充说明 Henk Rogers）（on a tourist visa：持旅游签证；find one's way to…：设法找到……）斯坦因和凯文·马克斯韦尔，那位大亨的儿子，都在**莫斯科**(Moscow)，就在同一个**忙乱的**(hectic)**谈判**(negotiations)周里，各自都是**竞标者**(bidder)。（the magnate's son：同位语，补充说明 Kevin Maxwell）（that same hectic week…：时间状语；each a bidder：each 指两人各自）帕基特诺夫对罗杰斯颇有**好感**(fondness)，**任天堂**(Nintendo)**抢得/抢下了**(scooped)掌机版权，后来又拿下了全球**游戏主机**(console)版权。（feel a fondness for…：对……有好感；Rogers：即亨克·罗杰斯，任天堂的合作商与版权谈判代表）（scoop：抢先获得；then worldwide console rights：省略了 scooped）
 
@@ -71,7 +71,7 @@ The man whose **puzzle** once spread for nothing later helped decide who could s
 | muddle | 本文：一团糟；n. 混乱，糊涂（in a muddle） | 3 |
 | onward | 本文：持续地；adv. 向前，往后传（pass the message onward） | 3 |
 | shuffled | 本文：洗牌式地来回倒手；v. (shuffle) 来回挪动；洗牌（shuffle papers/cards） | 3 |
-| overlapping | 本文：重叠；adj. 重叠的（overlapping responsibilities） | 3 |
+| overlapping | 本文：重叠的；adj. 重叠的（overlapping responsibilities） | 3 |
 | magnate | 本文：大亨；n. 巨头，大亨（a media magnate） | 3 |
 | resourceful | 本文：足智多谋的；adj. 足智多谋的（a resourceful leader） | 4 |
 | publisher | 本文：发行商；n. 出版商，发行商（a game publisher） | 4 |
@@ -86,13 +86,13 @@ The man whose **puzzle** once spread for nothing later helped decide who could s
 | console | 本文：游戏主机；n. 游戏机，控制台（a games console） | 4 |
 | pocket-sized | 本文：口袋大小的；adj. 袖珍的（a pocket-sized dictionary） | 5 |
 | bundled | 本文：捆绑；v. (bundle) 捆绑（销售）（software bundled with a computer） | 5 |
+| version | 本文：版本；n. 版本（the latest version） | 5 |
 | reaped | 本文：收获；v. (reap) 获得，收获（reap the benefits） | 5 |
 | spoils | 本文：战利品；n. 战利品，收益（the spoils of war/victory） | 5 |
 | arrangement | 本文：协议；n. 安排；协议（a financial arrangement） | 5 |
 | expiry | 本文：到期；n. 期满，到期（the expiry date） | 5 |
 | earnings | 本文：收入；n. 收入，收益（annual earnings） | 5 |
 | founded | 本文：成立/创办了；v. (found) 成立，创办（found a company） | 5 |
-| version | 本文：版本；n. 版本（the latest version） | 5 |
 | puzzle | 本文：益智游戏；n. 益智游戏；谜（a jigsaw puzzle） | 6 |
 
 ## 史实与来源

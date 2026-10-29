@@ -38,4 +38,4 @@
 | 31 | The Book Twelve Publishers Turned Down | 被拒绝了十二次的哈利·波特 | 12.4 MB |
 | 32 | The Planet That Was Demoted | 被降级的冥王星 | 12.2 MB |
 | 33 | Thirteen in the Cave | 洞穴里的十三个人 | 12.9 MB |
-| 34 | The Game That Escaped the Soviet Union | 走出苏联的俄罗斯方块 | 14.0 MB |
+| 34 | The Game That Escaped the Soviet Union | 走出苏联的俄罗斯方块 | 14.1 MB |
