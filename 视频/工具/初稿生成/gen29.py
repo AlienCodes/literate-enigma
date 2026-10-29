@@ -4,7 +4,7 @@ import json,re,glob,os
 S=[
 (1,[[[("In June 1816","1816年6月，"),("a","一场"),("**ceaseless**","**持续的/无休止的**(ceaseless)"),("**downpour**","**倾盆大雨**(downpour)"),("kept","把"),("a party","一群人"),("**besieged**","**围困**(besieged)在"),("at the Villa Diodati,","迪奥达蒂别墅里。")],
      "（keep sb besieged：使某人一直处于被围困的状态）"],
-    [[("a **mansion**","这座**宅邸**(mansion)"),("the **poet**","是**诗人**(poet)"),("Lord Byron","拜伦勋爵"),("had **leased**","**租下**(leased)的，"),("on","位于"),("the **outskirts** of Geneva.","日内瓦**郊外**(outskirts)。")],
+    [[("a **mansion**","这座**宅邸**(mansion)"),("the **poet**","是**诗人**(poet)"),("Lord Byron","拜伦勋爵"),("had **leased**","**租下**(leased)的，"),("on","位于"),("the **outskirts** of Geneva.","日内瓦的**郊区**(outskirts)。")],
      "（a mansion…：同位语，补充说明 the Villa Diodati；\nthe poet Lord Byron had leased：定语从句，\n省略了 that，修饰 a mansion；\non the outskirts of…：在……的郊外）"]]),
 (1,[[[("After reading","读完"),("an **anthology** of German **ghost stories**","一本德国**鬼故事**(ghost stories)的**选集**(anthology)"),("in French **translation**,","的法文**译本**(translation)之后，")],
      "（an anthology of…：一本……的选集；\nin French translation：用法文翻译的，法文译本）"],
@@ -88,7 +88,7 @@ CONF={
  "S7 came to know":"对齐不了：come to know A as B 是“后来把 A 称作 B”，know 和后面的 as 合成“称作”，放在 B 前面，“后来把”对应 came to know",
  "S14 reissued under her name":"对齐不了：under her name 修饰 reissued，中文“以她的名字再版”状语必须放在动词前面",
  "S15 the founding work of the science-fiction genre":"对齐不了：the founding work of A 中文“A 的开山之作”，of 结构语序必须倒过来"},
-"对齐":{"S1-2 the outskirts of Geneva.":"the outskirts of Geneva 中文“日内瓦郊外”，of 结构语序必须倒过来",
+"对齐":{"S1-2 the outskirts of Geneva.":"the outskirts of Geneva 中文“日内瓦的郊区”，of 结构语序必须倒过来",
  "S2-1 an anthology of German ghost s":"an anthology of German ghost stories 中文“一本德国鬼故事的选集”，of 结构语序必须倒过来；anthology、ghost stories 两个重点词因此同在一组（T34 倒装）",
  "S7-1 as the Year Without a Summer.":"the Year Without a Summer 是专名“无夏之年”，整体对应；as 和 know 合成“称作”",
  "S10-2 had set out in May":"in May 是时间状语，中文“5月间就已启程”时间必须放在动词前面",
