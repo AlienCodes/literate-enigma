@@ -30,7 +30,7 @@ S=[
      "（come to do：渐渐开始做……；know A as B：把 A 称作 B）"]]),
 (4,[[[("Europe's summer","欧洲的夏天"),("was **chilly**","**寒冷**(chilly)，"),("and **relentlessly** wet.","雨也**持续不断**(relentlessly)。")],
      "（relentlessly wet：无休止地潮湿，这里指雨一直下个不停）"]]),
-(4,[[[("Crops","庄稼"),("failed","要么歉收，"),("or lay **rotten**","要么**腐烂**(rotten)"),("in","在"),("**saturated**","**浸透了水**(saturated)的"),("fields,","田地里，")],
+(4,[[[("Crops","庄稼"),("failed","要么歉收，"),("or lay **rotten**","要么**腐烂**(rotten)"),("in","在"),("**saturated**","**浸透了水的**(saturated)"),("fields,","田地里，")],
      "（lie rotten：烂在那里，lay 是 lie 的过去式；\nsaturated：湿透的，这里指被雨水浸透）"],
     [[("**cereal**","**谷物**(cereal)"),("and bread","和面包"),("prices","价格"),("**escalated**,","**飞涨**(escalated)，")],
      "（三个分句并列：Crops failed…, prices escalated, and … followed）"],
