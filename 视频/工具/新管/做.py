@@ -62,6 +62,7 @@ for l in o.splitlines():
 # ③
 c, o = 跑('出片前', ['python3', f'{T}/交付核查.py', no, '出片前'])
 x = [l for l in o.split('\n✘ ')[1:]] if c else []
+if c and not x: 停('③ 出片前核查', [f'交付核查 返回 {c} 却没有一条 ✘（程序出错，不能当通过）'] + o.strip().splitlines()[-8:])   # K112b
 x = [b for b in x if not b.startswith('踩坑核查（') or 错]   # 踩坑核查那一步只因“？”不过：已进疑点表
 if x: 停('③ 出片前核查', ['✘ ' + b.strip()[:400] for b in x])
 报告.append('③ 出片前核查：通过')
@@ -71,9 +72,13 @@ if c: 停('④ 出 1080p', o.strip().splitlines()[-10:])
 # ⑤
 c, o = 跑('出片后', ['python3', f'{T}/交付核查.py', no, '出片后'])
 bs = [b for b in o.split('\n✘ ')[1:]] if c else []
+if c and not bs: 停('⑤ 出片后核查', [f'交付核查 返回 {c} 却没有一条 ✘（程序出错，不能当通过）'] + o.strip().splitlines()[-8:])   # K112b
 疑点 += [('机器复听（单路并词，交用户听）', l.strip()) for l in o.splitlines() if '单路并词交用户听' in l]   # K111
 for b in bs:
-    _ls = [l.strip() for l in b.split('\n')[1:] if l.strip()]   # K112（30）：白名单。标题下面每一行都是“响度比全片低”（或“→ 标出的位置必须剪成试听”）才算疑点；削波、电流音、片中停顿过长、程序出错、以后新加的项，一律停
+    _ls = []   # K112b（30）：只看标题下面缩进的说明行，遇到第一行顶格（下一项 ✔ …）就截住；每一行都是“响度比全片低”或“→ 标出的位置必须剪成试听”才算疑点，别的一律停
+    for l in b.split('\n')[1:]:
+        if l.strip() and not l.startswith((' ', '\t')): break
+        if l.strip(): _ls.append(l.strip())
     if b.startswith('自动音频检查') and any('响度比全片低' in l for l in _ls) and all('响度比全片低' in l or l.startswith('→ 标出的位置必须剪成试听') for l in _ls):
         疑点 += [('响度骤降（剪成试听交用户听）', l.strip()) for l in b.splitlines() if '响度比全片低' in l]
     else: 停('⑤ 出片后核查', ['✘ ' + b.strip()[:400] for b in bs])
