@@ -40,7 +40,7 @@ S=[
      "（later Mary Shelley：同位语，补充说明 Mary Godwin 后来的名字）"],
     [[("had set out in May","5月间就已启程，"),("**alongside**","**结伴**(alongside)同行的有"),("Percy Bysshe Shelley","珀西·比希·雪莱"),("and Claire Clairmont.","和克莱尔·克莱蒙特。")],
      "（had set out：过去完成时，出发在6月之前；set out：出发，启程；\nalongside：介词，与……一起）"]]),
-(5,[[[("In her 1831 **preface**","在她1831年的**序言**(preface)里，"),("she","她"),("would **recollect**","**回忆**(recollect)说，"),("a **damp**,","那是一个**潮湿**(damp)、"),("**gloomy** summer","**阴沉**(gloomy)的夏天，")],
+(5,[[[("In her 1831 **preface**","在她1831年的(书的)**序言**(preface)里，"),("she","她"),("would **recollect**","**回忆**(recollect)说，"),("a **damp**,","那是一个**潮湿**(damp)、"),("**gloomy** summer","**阴沉的**(gloomy)夏天，")],
      "（would recollect：过去将来时，从1816年看，她要到1831年才写下这段回忆）"],
     [[("whose **torrents**","那个夏天的**倾盆大雨**(torrents)"),("often","常常"),("kept","把"),("the group","大家"),("indoors","困在屋里"),("for days.","好几天。")],
      "（whose 引导定语从句，修饰 summer；\nkeep sb indoors：使某人待在屋里）"]]),
