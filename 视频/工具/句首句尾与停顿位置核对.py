@@ -17,6 +17,9 @@ def head_conn(raw,st,ref):
     """句首剪点 st：剪掉的部分里最靠后的能听见的帧离剪点几帧、与留下的第一个能听见的帧之间隔几帧；隔不到 3 帧（15 ms）= 与词相连"""
     nb=st//F5; pre=db5(raw[st-nb*F5:st],ref)[::-1]; post=db5(raw[st:st+int(0.5*SR)],ref)
     k_pre=next((i for i,v in enumerate(pre) if v>=AUD_DB),None); j_post=next((i for i,v in enumerate(post) if v>=AUD_DB),len(post))
+    if k_pre is not None and j_post==0:   # K110（30 S11）：剪点落在开口前的孤立杂点上（剪点后能听见的不到 15 ms、最响 <-48 dB，接着 ≥15 ms 听不见才到词）= 剪到的是杂点，不是起音
+        run=next((i for i,v in enumerate(post) if v<AUD_DB),len(post)); gap=next((i for i,v in enumerate(post[run:]) if v>=AUD_DB),len(post)-run)
+        if run<3 and gap>=3 and max(post[:run].max(),pre[:k_pre+1].max())<-48: j_post=run+gap
     return k_pre is not None and k_pre+j_post<3, k_pre, j_post, (float(pre.max()) if len(pre) else -99.0)
 def tail_vals(raw,w,st,ref):
     """句尾：剪掉的部分（raw 在 w 之后的部分）最响的帧；淡出改动过的样本（w 与原始合成不同的部分，句首 10 ms 淡入除外）原来最响的帧。
@@ -39,6 +42,12 @@ if '--自检' in sys.argv:
     # 句尾（A21）：把 S1 的句尾剪进最后一个能听见的帧之前 20 ms、再淡出 50 ms（旧 clean_tail 剪 intelligent. 的样子），必须报；原样不报
     w=_keep_tail(raw,w,st); t0=tail_flags(raw,w,st,ref)
     au=np.where(db5(raw,ref)>=AUD_DB)[0]; cut=(au[-1]+1)*F5-int(0.02*SR)-st; wb=w[:cut].copy(); fz=int(0.05*SR); wb[-fz:]*=np.linspace(1,0,fz)**2
+    def _样(lv,gap_ms):
+        z=np.zeros(int(0.1*SR),np.float32); amp=np.sqrt(2)*10**(lv/20); n=int(0.005*SR); t=np.arange(n)/SR
+        b=(amp*np.sin(2*np.pi*3500*t)).astype(np.float32); g=np.zeros(int(gap_ms/1000*SR),np.float32); wd=(np.sqrt(2)*np.sin(2*np.pi*200*np.arange(int(0.2*SR))/SR)).astype(np.float32)
+        x=np.concatenate([z,b,g,wd]); return head_conn(x,len(z)+n//2,1.0)[0]
+    k1,k2,k3=_样(-51,20),_样(-35,20),_样(-51,10)
+    if k1 or not k2 or not k3: print(f'✘ 句首句尾核对 自检（K110 样本）：-51 dB 孤立杂点隔 20 ms {"误报" if k1 else "不报"}；-35 dB 爆破{"报出" if k2 else "没报出"}；杂点隔 10 ms {"报出" if k3 else "没报出"}'); sys.exit(1)
     t1=tail_flags(raw,wb,st,ref); ok=(not c0) and c1 and (not t0) and t1
     print(f"{'✔' if ok else '✘'} 句首句尾核对 自检：{no} S1 原剪点 {st/SR:.3f}s {'报' if c0 else '不报'}；挪进起音 10 ms（{bad_st/SR:.3f}s）{'报出' if c1 else '没报出'}；"
           f"句尾原样{'报' if t0 else '不报'}，剪进听得见的词尾 20 ms 并淡出{'报出' if t1 else '没报出'}")
