@@ -38,6 +38,21 @@ try:
     if '视频/旧文件.md' in lsl: fails.append('没抓到：镜像里多出来的旧文件没删')
     if '视频/中文名字.md' not in lsl: fails.append('没抓到：中文文件名没同步（G4）')
     if open(f'{L}/CLAUDE.md').read() != '新守则\n': fails.append('没抓到：CLAUDE.md 没以 postgraduate-vocabulary 为准（G11）')
+    # 新管：看门停用时推送前查快测印章，印章对不上必停（管道.json 是“启用”时也在这里演练这条分支，门变异才抓得到）
+    写(f'{P}/视频/工具/管道.py', open(f'{T}/管道.py').read()); 写(f'{P}/视频/工具/管道.json', '{"看门": "停用"}'); 写(f'{P}/视频/工具/新管/印章.py', 'import sys; sys.exit(1)\n'); 写(f'{P}/视频/印章测.md', 'x\n')
+    r = run(); o = r.stdout + r.stderr
+    if r.returncode == 0 or '快测印章对不上' not in o: fails.append(f'没抓到：看门停用时快测印章对不上，推送没停（新管）{o.strip()[-80:]}')
+    # 看门停用：报坑超期只提醒不拦（用户 2026-10-29 原话），撞号等硬问题照停
+    写(f'{P}/视频/工具/新管/印章.py', 'import sys; sys.exit(0)\n'); 写(f'{P}/视频/工具/报坑.py', 'import sys; print("  ✘ 预留编号撞号：G1"); sys.exit(1)\n')
+    r = run(); o = r.stdout + r.stderr
+    if r.returncode == 0 or '报坑登记有硬问题' not in o: fails.append(f'没抓到：看门停用时报坑有硬问题（撞号）推送没停{o.strip()[-80:]}')
+    写(f'{P}/视频/工具/报坑.py', 'import sys; print("  提示（超期）：K1"); sys.exit(0)\n')
+    r = run(); o = r.stdout + r.stderr
+    if r.returncode != 0: fails.append(f'误停：看门停用时报坑只有超期，推送被拦了（应只提醒）{o.strip()[-80:]}')
+    git('rm', '-q', '--cached', '-r', '--ignore-unmatch', '视频/工具/管道.py', '视频/工具/管道.json', '视频/工具/新管/印章.py', '视频/工具/报坑.py', '视频/印章测.md', cwd=P)
+    for f_ in ('视频/工具/报坑.py',): os.path.exists(f'{P}/{f_}') and os.remove(f'{P}/{f_}')
+    for f_ in ('视频/工具/管道.py', '视频/工具/管道.json', '视频/工具/新管/印章.py', '视频/印章测.md'): os.remove(f'{P}/{f_}')
+    git('reset', '-q', cwd=P)
     if git('rev-parse', 'HEAD', cwd=P).stdout != git('rev-parse', 'main', cwd=f'{tmp}/P.git').stdout or \
        git('rev-parse', 'HEAD', cwd=L).stdout != git('rev-parse', 'tb', cwd=f'{tmp}/L.git').stdout: fails.append('没抓到：云端与本地不一致（G2）')
     # G58：工作流（github-actions[bot]）写回镜像的印章要反向拷回主仓库；不是工作流写的，照旧以主仓库为准

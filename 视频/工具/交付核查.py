@@ -16,7 +16,7 @@ def step(name, passed, detail=''):
     global ok
     ok &= passed; out.append(f"{'✔' if passed else '✘'} {name}" + (f"\n    {detail}" if detail else ''))
 
-if stage in ('出片前', '出片后'):   # G60 机制使用核查：本篇前面每一步都由正式入口留下证据、顺序对（28 起）
+if stage in ('出片前', '出片后') and not __import__('管道').看门停用():   # G60 机制使用核查：本篇前面每一步都由正式入口留下证据、顺序对（28 起）
     sys.path.insert(0, T); import 证据 as _ZJ; _ze = _ZJ.查(no, stage)
     step('机制使用核查（G60：前面每一步都由正式入口留下证据、顺序对；少一步按 开工必读 ⑤ 步骤表补跑）', not _ze, '\n    '.join(_ze))
 if stage == '对照表':
@@ -29,8 +29,8 @@ if stage == '对照表':
     tab += [f"| {i} | {re.sub(r'[*`]', '', d).strip()[:40]} | 待填 | 待填 |" for i, d in rows]
     open(rec, 'w').write(txt.rstrip('\n') + '\n' + '\n'.join(tab) + '\n'); print(f'已生成 制作记录/{no}.md 的踩坑对照记录模板（{len(rows)} 条），逐条填完才能通过出片前核查'); sys.exit(0)
 elif stage == '出片前':
-    c, o = run(['python3', f'{T}/规则执行核查.py']); step('规则执行核查（守则16：每条规矩都有门、接进流程、有自检，机器自检通过）', c == 0, '' if c == 0 else o.strip()[-600:])
-    c, o = run(['python3', f'{T}/用上核查.py', '--严']); step('用上核查（G83：每个程序、工作流、管执行的机制都用上，门变异按时跑、机制不闲置）', c == 0, '' if c == 0 else o.strip()[-600:])
+    if not __import__('管道').看门停用(): c, o = run(['python3', f'{T}/规则执行核查.py']); step('规则执行核查（守则16：每条规矩都有门、接进流程、有自检，机器自检通过）', c == 0, '' if c == 0 else o.strip()[-600:])
+    if not __import__('管道').看门停用(): c, o = run(['python3', f'{T}/用上核查.py', '--严']); step('用上核查（G83：每个程序、工作流、管执行的机制都用上，门变异按时跑、机制不闲置）', c == 0, '' if c == 0 else o.strip()[-600:])
     # 0 踩坑核查（最高铁律）：核查程序自检 + 踩坑对照记录逐条填完 + 能用程序查的坑逐条查 + 换行与用户看过的版本比对（L13）
     c, o = run(['python3', f'{T}/踩坑核查.py', no, '出片'])
     step('踩坑核查（核查程序自检、踩坑对照记录、逐条程序核查、换行比对）', c == 0, '' if c == 0 else '\n    '.join(o.strip().splitlines()))
@@ -78,7 +78,7 @@ elif stage == '出片前':
         c, o = run(['python3', f'{T}/音频体检.py', '--自检', f'work_{no}/a.wav', no]); step(o.strip().lstrip('✔✘ ') or '音频体检 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的体检结果不可信】')
         c, o = run(['python3', f'{T}/音频体检.py', f'work_{no}/a.wav', no]); step('音频体检（与 01–24 最差比）：' + (o.strip().splitlines() or ['没有输出'])[0], c == 0, '\n    '.join(o.strip().splitlines()[1:]))
 elif stage == '出片后':
-    c, o = run(['python3', f'{T}/规则执行核查.py']); step('规则执行核查（守则16：每条规矩都有门、接进流程、有自检，机器自检通过）', c == 0, '' if c == 0 else o.strip()[-600:])
+    if not __import__('管道').看门停用(): c, o = run(['python3', f'{T}/规则执行核查.py']); step('规则执行核查（守则16：每条规矩都有门、接进流程、有自检，机器自检通过）', c == 0, '' if c == 0 else o.strip()[-600:])
     # G26 视频必须是现行脚本、现行程序出的（2026-10-24 24 第三稿：出片报错失败后，09:18 的旧 24.mp4 照样“全部通过”）
     sys.path.insert(0, T); import 出片指纹 as _ZW; _ze = _ZW.自检()
     step('出片指纹 自检（G26：旧视频配新脚本、出片后程序改了、视频被覆盖、没有指纹都要停）', not _ze, '；'.join(_ze)[:300])
@@ -296,8 +296,8 @@ elif stage == '出片后':
     step(f'生成标点试听 标点试听_{no}.mp3（{len(runs)} 处，需交用户试听）', True)
 if ok and stage == '出片后':   # 发文件闸门凭这个回执放行（守则7/A25：只发过了核查的那个文件）
     sys.path.insert(0, f'{T}/钩子'); import 闸门; 闸门.记回执([f'{no}.mp4', f'标点试听_{no}.mp3'], f'交付核查 出片后 第{no}篇')
-if ok and stage in ('出片前', '出片后'): _ZJ.记(no, stage)   # G60：这一步的使用证据（只有正式入口写得出对得上的指纹）
-if not ok:   # K 丝滑记录：没通过的步骤记下来，程序/环境的毛病算不丝滑
+if ok and stage in ('出片前', '出片后') and not __import__('管道').看门停用(): _ZJ.记(no, stage)   # G60：这一步的使用证据（只有正式入口写得出对得上的指纹）
+if not ok and not __import__('管道').看门停用():   # K 丝滑记录：没通过的步骤记下来，程序/环境的毛病算不丝滑
     sys.path.insert(0, T); import 丝滑 as _SH; _SH.记('交付核查', no, '；'.join(x.split('\n')[0] for x in out if x.startswith('✘')))
 print(f'第{no}篇 {stage}核查：\n' + '\n'.join(out) + f"\n{'全部通过' if ok else '【不通过，不得交付】'}")
 sys.exit(0 if ok else 1)

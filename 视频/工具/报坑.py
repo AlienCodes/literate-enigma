@@ -17,7 +17,13 @@ REL = '视频/制作记录/坑登记.json'; STDREL = '视频/制作硬性标准�
 宽限 = {'普通': 24, '改门': 72}
 
 
-def 现在(): return datetime.datetime.now(datetime.timezone.utc)
+def 现在():
+    n = datetime.datetime.now(datetime.timezone.utc)
+    f = os.environ.get('BAOKENG_FREEZE')   # 时间炸弹①（主会话 2026-10-28 定）：GitHub 演练按请求提交时刻算超期（drill.yml 给）；提交时已超期的照停，不放宽 G54，只是不因演练跑两小时中途跨过宽限
+    if f and os.environ.get('GITHUB_ACTIONS') == 'true':
+        try: return min(n, datetime.datetime.fromisoformat(f.replace('Z', '+00:00')))
+        except ValueError: pass
+    return n
 def 时刻(t=None): return (t or 现在()).strftime('%Y-%m-%dT%H:%MZ')
 def 解时(s): return datetime.datetime.strptime(s, '%Y-%m-%dT%H:%MZ').replace(tzinfo=datetime.timezone.utc)
 def 空(): return {'说明': '报坑登记（G54）：入口在 工具/报坑.py；每条登记都要进踩坑总表（入表编号那一行写出来就算关门）', '起': {}, '登记': [], '预留': []}
@@ -224,6 +230,20 @@ def 自检():
     if not any('自检造的' in x for x in 判(std, d4, now)[0]): fails.append('没抓到：自检造的预留进了真登记（K23）')
     d3 = json.loads(json.dumps(d)); d3['预留'].append({'编号': 'G53'})
     if not any('撞号' in x for x in 判(std, d3, now)[0]): fails.append('没抓到：预留撞号')
+    _env = {k_: os.environ.get(k_) for k_ in ('BAOKENG_FREEZE', 'GITHUB_ACTIONS')}   # 时间炸弹①：冻结时刻的正反样本
+    try:
+        T0 = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=2)   # 请求 2 小时前提交（演练跑了 2 小时）
+        os.environ['GITHUB_ACTIONS'] = 'true'; os.environ['BAOKENG_FREEZE'] = T0.isoformat()
+        dA = 空(); dA['登记'] = [{'号': 'K5', '时刻': 时刻(T0 - datetime.timedelta(hours=25)), '现象': '提交时已超期'}]
+        if not 判('', dA)[1]: fails.append('没抓到：演练冻结时刻下，提交时已超期的登记照样要停（冻结不许放宽 G54）')
+        dB = 空(); dB['登记'] = [{'号': 'K6', '时刻': 时刻(T0 - datetime.timedelta(hours=23)), '现象': '提交时未超期'}]
+        if 判('', dB)[1]: fails.append('误停：提交时未超期、演练中途才过宽限（时间炸弹①）')
+        os.environ.pop('GITHUB_ACTIONS')
+        if not 判('', dB)[1]: fails.append('没抓到：不在 GitHub 演练里冻结时刻起了作用（墙上时钟下已超期必停）')
+    finally:
+        for k_, v_ in _env.items():
+            if v_ is None: os.environ.pop(k_, None)
+            else: os.environ[k_] = v_
     if not any('重复' in x for x in 判(std + '| G53 | x | y | z |\n', d, now)[0]): fails.append('没抓到：总表编号重复')
     # 真跑取号：本地假远端，A 取号后 B（本地是旧的）再取，必须拿到下一个号，不许撞
     tmp = tempfile.mkdtemp(); _env = {k: v for k, v in os.environ.items() if not k.startswith('GIT_')}; sh = lambda c: subprocess.run(c, shell=True, cwd=tmp, capture_output=True, env=_env)

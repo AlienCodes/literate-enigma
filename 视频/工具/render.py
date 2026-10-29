@@ -231,6 +231,9 @@ def apply_script(d):
         elif not ('用户' in v_.get('依据', '') and '特批' in v_.get('依据', '') and 1 < float(v_.get('倍数', 0)) <= 1.5):
             raise SystemExit(f'【停止】说明放宽特批 {k_} 不合规：依据要写用户原话（含“用户”“特批”），倍数在 1–1.5 之间（用户：“不要过于宽”）')
         NOTE_WIDE[' '.join(p[0] for c in d['sentences'][int(k_[1:]) - 1]['chunks'] for p in c['align'])] = v_['倍数'] if v_['倍数'] == '整屏' else float(v_['倍数'])
+    _n = len(d.get('sentences', []))   # G35 常规规则（用户 2026-10-25 看 26：“以后以后一定要合理的安排，不要压缩成这个样子”，27 又说一次；用户同意记录 篇 26）：25 起结尾简述一律整屏，不再要每篇特批；写了特批的照特批
+    if _n and str(d.get('no', '0')).isdigit() and int(d['no']) >= 25 and f'S{_n}' not in d.get('说明放宽特批', {}) and '（简述：' in (d['sentences'][-1]['chunks'][-1].get('note') or ''):
+        NOTE_WIDE[' '.join(p[0] for c in d['sentences'][-1]['chunks'] for p in c['align'])] = '整屏'
     NOTE_RIGHT.clear(); _RIGHT_USE.clear()   # G37（25 用户 2026-10-25：S17 ingenuity 说明放到正文右边，空间全部用上、字号再放大）：只认 25 起、依据带用户原话
     for k_, v_ in d.get('说明放右侧特批', {}).items():
         si_ = int(k_[1:]) - 1; bs_ = v_.get('块', []) if isinstance(v_, dict) else []

@@ -96,6 +96,11 @@ def 旧会话(txt):
     return out + ([seg] if seg else [])
 
 
+def 出过片(no, rec=None):   # K97（主会话 2026-10-28）：只算已经出过片（有出片后 收工记录）的篇；排队中的、只有交接的篇不算
+    f = f'{rec or REC}/{no}.md'
+    return (not os.path.exists(f)) or '\n- 收工 ' in open(f).read()
+
+
 def 汇总(rec=REC, 目录=None):
     篇 = {}
     for f in sorted(glob.glob(f'{rec}/[0-9][0-9].md')):
@@ -117,6 +122,7 @@ def 汇总(rec=REC, 目录=None):
     except Exception: pass
     行 = {}
     for no, v in 篇.items():
+        if not 出过片(no, rec): continue   # K97：排队中、没出过片的篇不进比较
         ss = v['会话']
         if not ss: continue
         c = sum(s['调用'] for s in ss); 新 = [s for s in ss if not s.get('估')]
@@ -155,6 +161,7 @@ def 门(no, 行=None, txt=None, 写=True, repos=None, 号=None):
     """返回 (问题列表, 写进 NN.md 的“## 方法进化”节)"""
     行 = 汇总() if 行 is None else 行; f = f'{REC}/{no}.md'; txt = (open(f).read() if os.path.exists(f) else '') if txt is None else txt
     if int(no) < 起: return [], ''
+    if no not in 行 and not 出过片(no): return [], ''   # K97：还在排队、没出过片的篇（开下一篇时查上一篇）不拦
     if no not in 行: return [f'【G65 方法进化】{no} 没有一条 token 记录（收工记录.py 每轮自动写；没有就是记录钩子没跑）'], ''
     prev, b = 基线(行, no); r = 行[no]
     差 = [(lab, r[k], b[k], u) for k, u, lab in 项 if r.get(k) is not None and b.get(k) is not None and r[k] > b[k]]
@@ -237,7 +244,7 @@ def 写报告进篇(no, 节, rec=REC):
 
 def 漏洞节(no, 行, txt=''):
     """G79 “## 机制漏洞”：程序填本篇登记的 K#、程序毛病条数、手工重复；“- 会话补：”由会话写（这次机制哪里没挡住、哪里不顺；没有写“无（依据：……）”），保留原文"""
-    r = 行.get(no) or {}; old = re.search(r'^- 会话补：[^\n]*$', re.search(r'^## 机制漏洞[\s\S]*?(?=^## |\Z)', txt, re.M).group(0), re.M) if '## 机制漏洞' in txt else None
+    r = 行.get(no) or {}; old = re.search(r'^- 会话补：[^\n]*$', re.search(r'^## 机制漏洞[\s\S]*?(?=^## |\Z)', txt, re.M).group(0), re.M) if re.search(r'^## 机制漏洞', txt, re.M) else None   # K76/K101：只认行首整行标题（正文里出现这几个字不算有这一节）
     ks = r.get('K', [])
     return [f'## 机制漏洞（G79，程序写：本篇登记的坑 = 现象以“{no} ”开头或本篇会话登记的；踩坑核查 28 起没有“会话补”就停）',
             f'- 程序填：本篇登记 {len(ks)} 条（{"、".join(ks) or "无"}）；机制漏洞（程序毛病）{r.get("机制漏洞") or 0} 条；手工重复 {r.get("手工重复") if r.get("手工重复") is not None else "—"} 次',
@@ -308,6 +315,8 @@ def 自检():
     # G79 机制漏洞：坑归篇（前缀/会话）、程序毛病分类、“## 机制漏洞”节写两次不重复、会话补原文保留
     if 坑归篇({'现象': '28 S3 x'}, {}) != '28' or 坑归篇({'现象': '2026 改门', '会话': 's1'}, {'s1': '28'}) != '28' or 坑归篇({'现象': 'x', '会话': 's2'}, {}) is not None: f.append('坑归篇错（G79）')
     if not 是程序毛病('定稿流水线 ④ 文本门静默跳过') or 是程序毛病('S5 hallmark 读成 hall-mark'): f.append('程序毛病分类错（G79）')
+    try: 漏洞节('29', {}, '## 方法设计\n正文里提到 ## 机制漏洞 这几个字\n')   # K76/K101：正文里出现“## 机制漏洞”字样不许崩
+    except Exception as e_: f.append(f'K76/K101：正文里出现“## 机制漏洞”字样，漏洞节() 崩了（{type(e_).__name__}）')
     行2 = {'28': {'K': ['K1（程序）'], '机制漏洞': 1, '手工重复': 0}}
     写漏洞节('28', 行2, d); t = open(f'{d}/28.md').read().replace('- 会话补：', '- 会话补：无（依据：门都挡住了）'); open(f'{d}/28.md', 'w').write(t); 写漏洞节('28', 行2, d)
     t = open(f'{d}/28.md').read()

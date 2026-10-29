@@ -34,7 +34,7 @@ python3 $T/证据.py --查 $no 定稿 || stop "本篇草稿的机制证据不全
 python3 $T/放行口子核查.py --定稿 $no || stop "用户还没说定稿（画19/流7：用户试听确认后才算定稿；用户原话记进 用户同意记录.json，用于写“定稿 $no”）"
 python3 $T/工作稿核对.py $no || stop "工作目录的脚本是旧稿（G19）"
 python3 $T/补对照记录.py $no > /dev/null || stop "补对照记录失败"   # 新加的、程序把关的坑自动补进对照记录；只有人能判的不补（缺了 ① 照样停）
-python3 $T/报坑.py --查 --严 || stop "有报坑登记超期还没进踩坑总表（G54：坑一律进总表、配门、演练；python3 $T/报坑.py --状态 看是哪条）"
+python3 $T/报坑.py --查 $([ "$(python3 -c "import sys;sys.path.insert(0,'$T');print(__import__('管道').看门停用())")" = True ] || echo --严) || stop "有报坑登记超期还没进踩坑总表（G54：坑一律进总表、配门、演练；python3 $T/报坑.py --状态 看是哪条）"
 step "⓪ 规则执行核查（守则16）"; python3 $T/规则执行核查.py > "$LOG/规则执行.log" 2>&1 || { tail -25 "$LOG/规则执行.log"; stop "规则执行核查不通过"; }
 [ -f "work_$no/a.wav" ] || { step "①前 重建声音（新容器没有 work_$no/a.wav，K36：只出声音，配音缓存命中）"; AUDIO_ONLY=1 python3 make_video.py scripts/$no.json $no.mp4 > "$LOG/重建声音.log" 2>&1 || { tail -15 "$LOG/重建声音.log"; stop "重建声音失败（K36）"; }; }
 step "① 出片前核查"; python3 $T/交付核查.py $no 出片前 > "$LOG/出片前.log" 2>&1 || { tail -25 "$LOG/出片前.log"; stop "出片前核查不通过"; }

@@ -2,5 +2,8 @@
 # 规则执行机器（CLAUDE.md 第16条）：每次提交前跑；不过就不许提交（不许用 --no-verify 绕过，命令闸门会拦）
 d=$(git rev-parse --show-toplevel)
 [ -f "$d/视频/工具/规则执行核查.py" ] || exit 0
+if python3 -c "import sys;sys.path.insert(0,'$d/视频/工具');sys.exit(0 if __import__('管道').看门停用() else 1)" 2>/dev/null; then
+  python3 "$d/视频/工具/新管/印章.py" || { echo "【停止】快测印章对不上，不能提交：先 python3 视频/工具/新管/快测.py"; exit 1; }; exit 0
+fi
 python3 "$d/视频/工具/会话开工.py" --提交前 || { echo "【停止】会话开工/角色闸门不通过，不能提交（G61/G63）"; exit 1; }
 python3 "$d/视频/工具/规则执行核查.py" || { echo "【停止】规则执行核查不通过，不能提交（CLAUDE.md 第16条）"; exit 1; }
