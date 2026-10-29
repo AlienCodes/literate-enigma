@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """报坑登记 + 取号（G54，用户 2026-10-26：“只要踩过这些坑，以后全部都要记录到这个踩坑指南里面……我们不是有这么一个机制吗？
-就把这些所有踩过的坑加入到那个机制里面去”）。不另建机制：这里只是入口，坑一律进 踩坑总表 → 规则执行核查 → 执行效应演练。
+就把这些所有踩过的坑加入到那个机制里面去”）。不另建机制：这里只是入口，坑一律进 踩坑总表 → 规则表一行 + 坏样本（快测跑）。
 
   报坑：python3 报坑.py "27 S16 现象（实测）" [--会话 ID]   → 当场原子写进远端 视频/制作记录/坑登记.json，打印登记号 K#
   取号：python3 报坑.py --取号 G [--登记 K#] [--会话 ID] [--用途 说明]
   改门锁（G66）：python3 报坑.py --锁 --任务 "改什么" | --续锁 | --放锁 | --锁状态   （2 小时过期；改门程序没持锁，提交前钩子拒）
         → 原子取号：读远端+本地的总表、预留，取最大号+1，只把这一条预留提交推到远端 main，推不上（别人刚取）就重取
   关门：总表里写出这条登记的入表编号那一行，登记就算已入表（不用手改状态）。
-  查：  python3 报坑.py --查 [--严]   （规则执行核查每次跑：撞号、总表新行没取号就停；超期没入表的只提示。
-        --严 = 定稿流水线 ⓪、推送两仓库改门程序时：超期没入表就停）
+  查：  python3 报坑.py --查   （撞号、总表新行没取号返回 1；超期没入表的只提示。做.sh、定稿.sh、推送都只提醒，不拦）
       python3 报坑.py --状态 / --自检
 超期：登记后 24 小时没进总表；写明“改门会话”的宽限 72 小时。"""
 import shutil, os, re, sys, json, subprocess, tempfile, datetime
@@ -19,10 +18,6 @@ REL = '视频/制作记录/坑登记.json'; STDREL = '视频/制作硬性标准�
 
 def 现在():
     n = datetime.datetime.now(datetime.timezone.utc)
-    f = os.environ.get('BAOKENG_FREEZE')   # 时间炸弹①（主会话 2026-10-28 定）：GitHub 演练按请求提交时刻算超期（drill.yml 给）；提交时已超期的照停，不放宽 G54，只是不因演练跑两小时中途跨过宽限
-    if f and os.environ.get('GITHUB_ACTIONS') == 'true':
-        try: return min(n, datetime.datetime.fromisoformat(f.replace('Z', '+00:00')))
-        except ValueError: pass
     return n
 def 时刻(t=None): return (t or 现在()).strftime('%Y-%m-%dT%H:%MZ')
 def 解时(s): return datetime.datetime.strptime(s, '%Y-%m-%dT%H:%MZ').replace(tzinfo=datetime.timezone.utc)
@@ -230,20 +225,6 @@ def 自检():
     if not any('自检造的' in x for x in 判(std, d4, now)[0]): fails.append('没抓到：自检造的预留进了真登记（K23）')
     d3 = json.loads(json.dumps(d)); d3['预留'].append({'编号': 'G53'})
     if not any('撞号' in x for x in 判(std, d3, now)[0]): fails.append('没抓到：预留撞号')
-    _env = {k_: os.environ.get(k_) for k_ in ('BAOKENG_FREEZE', 'GITHUB_ACTIONS')}   # 时间炸弹①：冻结时刻的正反样本
-    try:
-        T0 = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=2)   # 请求 2 小时前提交（演练跑了 2 小时）
-        os.environ['GITHUB_ACTIONS'] = 'true'; os.environ['BAOKENG_FREEZE'] = T0.isoformat()
-        dA = 空(); dA['登记'] = [{'号': 'K5', '时刻': 时刻(T0 - datetime.timedelta(hours=25)), '现象': '提交时已超期'}]
-        if not 判('', dA)[1]: fails.append('没抓到：演练冻结时刻下，提交时已超期的登记照样要停（冻结不许放宽 G54）')
-        dB = 空(); dB['登记'] = [{'号': 'K6', '时刻': 时刻(T0 - datetime.timedelta(hours=23)), '现象': '提交时未超期'}]
-        if 判('', dB)[1]: fails.append('误停：提交时未超期、演练中途才过宽限（时间炸弹①）')
-        os.environ.pop('GITHUB_ACTIONS')
-        if not 判('', dB)[1]: fails.append('没抓到：不在 GitHub 演练里冻结时刻起了作用（墙上时钟下已超期必停）')
-    finally:
-        for k_, v_ in _env.items():
-            if v_ is None: os.environ.pop(k_, None)
-            else: os.environ[k_] = v_
     if not any('重复' in x for x in 判(std + '| G53 | x | y | z |\n', d, now)[0]): fails.append('没抓到：总表编号重复')
     # 真跑取号：本地假远端，A 取号后 B（本地是旧的）再取，必须拿到下一个号，不许撞
     tmp = tempfile.mkdtemp(); _env = {k: v for k, v in os.environ.items() if not k.startswith('GIT_')}; sh = lambda c: subprocess.run(c, shell=True, cwd=tmp, capture_output=True, env=_env)
@@ -304,7 +285,7 @@ def main():
         原子写(改, 说明='报坑登记：清掉自检推到真远端的预留和登记（K23）'); print(f'清掉自检残留 {n[0]} 条'); return 0
     if '--锁' in a or '--续锁' in a or '--放锁' in a:
         动作 = '取' if '--锁' in a else '续' if '--续锁' in a else '放'; 我 = opt('--会话') or 本会话()
-        if not 我: print('【停止】不知道本会话 ID：先 python3 视频/工具/会话开工.py 改门 --会话 session_… 或加 --会话'); return 1
+        if not 我: print('【停止】不知道本会话 ID：加 --会话 session_…'); return 1
         r, L = 锁(动作, 我, opt('--任务'))
         if '--静默' in a: return 0
         print({'取到': f'改门锁：取到（到期 {L.get("到期")}）', '续上': f'改门锁：续上（到期 {L.get("到期")}）', '放了': '改门锁：已放开',
@@ -321,10 +302,9 @@ def main():
         if '--状态' in a:
             print(f'【报坑登记】待入表 {len(w)} 条、超期 {len(l)} 条' + ('：' + '；'.join(l + w)[:300] if l or w else '') + ('；问题：' + '；'.join(h) if h else '')); return 0
         for x in w: print('  提示（待入表，G54）：', x)
-        for x in h + (l if '--严' in a else []): print('  ✘', x)
-        if not ('--严' in a) and l:
-            for x in l: print('  提示（超期，定稿流水线和推门程序会停）：', x)
-        return 1 if h or ('--严' in a and l) else 0
+        for x in h: print('  ✘', x)
+        for x in l: print('  提示（超期没入表，只提醒）：', x)
+        return 1 if h else 0
     if a and not a[0].startswith('--'):
         k = 报(a[0], 会话); print(f'登记号：{k}（报主会话时附上；坑写进总表时 python3 视频/工具/报坑.py --取号 <字头> --登记 {k}）'); return 0
     print(__doc__); return 1

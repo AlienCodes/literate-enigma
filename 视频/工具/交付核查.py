@@ -16,21 +16,19 @@ def step(name, passed, detail=''):
     global ok
     ok &= passed; out.append(f"{'✔' if passed else '✘'} {name}" + (f"\n    {detail}" if detail else ''))
 
-if stage in ('出片前', '出片后') and not __import__('管道').看门停用():   # G60 机制使用核查：本篇前面每一步都由正式入口留下证据、顺序对（28 起）
-    sys.path.insert(0, T); import 证据 as _ZJ; _ze = _ZJ.查(no, stage)
-    step('机制使用核查（G60：前面每一步都由正式入口留下证据、顺序对；少一步按 开工必读 ⑤ 步骤表补跑）', not _ze, '\n    '.join(_ze))
+def 提醒(name, detail=''):   # 用户 2026-10-29：不是声音、文字、画面的问题只提醒，不卡出片
+    out.append(f"△ {name}" + (f"\n    {detail}" if detail else ''))
+
 if stage == '对照表':
     # 生成"踩坑对照记录"模板，追加到 制作记录/NN.md；逐条填"涉及/不涉及"和"怎么防的、核查结果"
     rec = f'{T}/../制作记录/{no}.md'; txt = open(rec).read() if os.path.exists(rec) else f'# 第{no}篇制作记录\n'
     if '## 踩坑对照记录' in txt: sys.exit(f'制作记录/{no}.md 已有"## 踩坑对照记录"，不覆盖')
-    sys.path.insert(0, T); from 规则执行核查 import 坑行; rows = [(i, q) for i, q, _ in 坑行()]   # 总表只有一份（规则执行机器 ⑤）
+    sys.path.insert(0, T); from 坑表 import 坑行; rows = [(i, q) for i, q, _ in 坑行()]   # 总表只有一份
     tab = ['', '## 踩坑对照记录', '', '> 开工前逐条重读《踩坑总表》后填写；交付前再对照一遍。第三列只写"涉及"或"不涉及"，第四列写怎么防的、核查结果。', '',
            '| 编号 | 坑（摘要） | 本篇是否涉及 | 怎么防的、核查结果 |', '|---|---|---|---|']
     tab += [f"| {i} | {re.sub(r'[*`]', '', d).strip()[:40]} | 待填 | 待填 |" for i, d in rows]
     open(rec, 'w').write(txt.rstrip('\n') + '\n' + '\n'.join(tab) + '\n'); print(f'已生成 制作记录/{no}.md 的踩坑对照记录模板（{len(rows)} 条），逐条填完才能通过出片前核查'); sys.exit(0)
 elif stage == '出片前':
-    if not __import__('管道').看门停用(): c, o = run(['python3', f'{T}/规则执行核查.py']); step('规则执行核查（守则16：每条规矩都有门、接进流程、有自检，机器自检通过）', c == 0, '' if c == 0 else o.strip()[-600:])
-    if not __import__('管道').看门停用(): c, o = run(['python3', f'{T}/用上核查.py', '--严']); step('用上核查（G83：每个程序、工作流、管执行的机制都用上，门变异按时跑、机制不闲置）', c == 0, '' if c == 0 else o.strip()[-600:])
     # 0 踩坑核查（最高铁律）：核查程序自检 + 踩坑对照记录逐条填完 + 能用程序查的坑逐条查 + 换行与用户看过的版本比对（L13）
     c, o = run(['python3', f'{T}/踩坑核查.py', no, '出片'])
     step('踩坑核查（核查程序自检、踩坑对照记录、逐条程序核查、换行比对）', c == 0, '' if c == 0 else '\n    '.join(o.strip().splitlines()))
@@ -78,7 +76,6 @@ elif stage == '出片前':
         c, o = run(['python3', f'{T}/音频体检.py', '--自检', f'work_{no}/a.wav', no]); step(o.strip().lstrip('✔✘ ') or '音频体检 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的体检结果不可信】')
         c, o = run(['python3', f'{T}/音频体检.py', f'work_{no}/a.wav', no]); step('音频体检（与 01–24 最差比）：' + (o.strip().splitlines() or ['没有输出'])[0], c == 0, '\n    '.join(o.strip().splitlines()[1:]))
 elif stage == '出片后':
-    if not __import__('管道').看门停用(): c, o = run(['python3', f'{T}/规则执行核查.py']); step('规则执行核查（守则16：每条规矩都有门、接进流程、有自检，机器自检通过）', c == 0, '' if c == 0 else o.strip()[-600:])
     # G26 视频必须是现行脚本、现行程序出的（2026-10-24 24 第三稿：出片报错失败后，09:18 的旧 24.mp4 照样“全部通过”）
     sys.path.insert(0, T); import 出片指纹 as _ZW; _ze = _ZW.自检()
     step('出片指纹 自检（G26：旧视频配新脚本、出片后程序改了、视频被覆盖、没有指纹都要停）', not _ze, '；'.join(_ze)[:300])
@@ -101,7 +98,8 @@ elif stage == '出片后':
     step('成片有画面（G12：有画面流、宽 ≥1920；只有声音的文件一律不得交付——快速重建核查.sh 会把 NN.mp4 覆盖成只有声音，出片要放在它之后）',
          bool(_v) and int(_v.group(1)) >= 1920 and _vd is not None and _vd.returncode == 0,
          ('' if _v else f'{no}.mp4 没有画面流（只有声音），重新 python3 make_video.py scripts/{no}.json {no}.mp4，之后不要再跑 快速重建核查.sh') + (f' 时长 {_d.group(0)}' if _d else ''))
-    c, o = run(['python3', f'{T}/收工记录.py', no]); step('token 记录（T31：程序自动算这篇花了多少，写进制作记录）', c == 0, o.strip()[-200:])
+    c, o = run(['python3', f'{T}/收工记录.py', no])
+    if c: 提醒('token 记录没写上（T31，只提醒）', o.strip()[-200:])
     c, o = run(['python3', f'{T}/audio_qc.py', f'{no}.mp4', '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else 'audio_qc 自检没有输出', c == 0, '' if c == 0 else o.strip()[-300:])
     c, o = run(['python3', f'{T}/audio_qc.py', f'{no}.mp4'])
     # 标出的"响度骤降"要剪成试听交用户确认。确认过、并用实际声音核实的，写进 核对确认.响度骤降：
@@ -296,8 +294,5 @@ elif stage == '出片后':
     step(f'生成标点试听 标点试听_{no}.mp3（{len(runs)} 处，需交用户试听）', True)
 if ok and stage == '出片后':   # 发文件闸门凭这个回执放行（守则7/A25：只发过了核查的那个文件）
     sys.path.insert(0, f'{T}/钩子'); import 闸门; 闸门.记回执([f'{no}.mp4', f'标点试听_{no}.mp3'], f'交付核查 出片后 第{no}篇')
-if ok and stage in ('出片前', '出片后') and not __import__('管道').看门停用(): _ZJ.记(no, stage)   # G60：这一步的使用证据（只有正式入口写得出对得上的指纹）
-if not ok and not __import__('管道').看门停用():   # K 丝滑记录：没通过的步骤记下来，程序/环境的毛病算不丝滑
-    sys.path.insert(0, T); import 丝滑 as _SH; _SH.记('交付核查', no, '；'.join(x.split('\n')[0] for x in out if x.startswith('✘')))
 print(f'第{no}篇 {stage}核查：\n' + '\n'.join(out) + f"\n{'全部通过' if ok else '【不通过，不得交付】'}")
 sys.exit(0 if ok else 1)

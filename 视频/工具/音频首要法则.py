@@ -28,12 +28,7 @@ def 标准(std):
     s = std.split('## 一、音频', 1)[1].split('\n## ', 1)[0]
     return [m.group(1) for m in re.finditer(r'^\d+\. \*\*(.+?)\*\*', s, re.M)]
 
-def 演练(i):
-    """这个坑由哪一场演练重放（规则执行表 的“演练”，执行效应演练 自动写）；核对时不比这一段（演练一重跑它就可能改写）"""
-    import json
-    try: e = json.load(open(f'{T}/规则执行表.json')).get(i, {}).get('演练') or []
-    except Exception: e = []
-    return ' ｜演练：' + ('；'.join(x.replace('执行效应声音演练 ', '声音演练 ').replace('执行效应演练 ', '主演练 ') for x in e[:3]) if e else '（还没有演练场景）')
+def 演练(i): return ''   # 演练已删（用户 2026-10-29）
 去演练 = lambda t: re.sub(r' ｜演练：.*$', '', t, flags=re.M)
 短 = lambda x, n: re.sub(r'\s+', ' ', x)[:n] + ('…' if len(x) > n else '')
 
@@ -61,10 +56,6 @@ def 自检():
     if not ps: return ['自检前提不成立：踩坑总表里找不到音频坑']
     i0 = ps[0][0]; std2 = '\n'.join(l for l in std.splitlines() if not re.match(rf'^\| *{i0} *\|', l))
     if 去演练(生成(cl, std2)) == 去演练(生成(cl, std)): f.append(f'没抓到：踩坑总表删掉 {i0}，生成的首要法则没变（核对发现不了漏坑）')
-    global 演练
-    原 = 演练; 演练 = lambda i: ' ｜演练：（还没有演练场景）' if i == ps[0][0] else 原(i)
-    if '还没有演练场景' not in 生成(cl, std): f.append('没抓到：音频坑没有演练重放')
-    演练 = 原
     if 首要(cl.replace('0. **首要法则', '0. **别的', 1)) is not None: f.append('没抓到：CLAUDE.md 第一条不是首要法则')
     if '25 S2' not in 生成(cl, std) and not any('句内' in q or '句内' in x for _, q, x in ps): f.append('没抓到：25 S2 句内一段变小（G36）不在音频坑里')
     return f
@@ -79,8 +70,4 @@ if __name__ == '__main__':
         cl = open(CL).read(); ps = 坑(open(STD).read())
         print('【音频首要法则（用户 2026-10-25：音频是最重要的环节，坚决不可以出现任何问题）】开工先读 视频/音频首要法则.md；踩过的音频坑：')
         print('\n'.join(f'  {i} {短(q, 40)}' for i, q, _ in ps)); sys.exit(0)
-    if not os.path.exists(OUT) or 去演练(open(OUT).read()) != 去演练(t):
-        print('【停止】视频/音频首要法则.md 与 CLAUDE.md 首要法则、踩坑总表的音频坑、音频硬性标准对不上（漏了或改了没重新生成）：python3 视频/工具/音频首要法则.py --写入'); sys.exit(1)
-    缺 = [i for i, _, _ in 坑(open(STD).read()) if '还没有演练场景' in 演练(i)]
-    if 缺: print(f'提示：这些音频坑还没有演练重放：{缺}（执行效应演练 跑完会写上；没有场景的算缺口，缺口基线只许减少，演练那边就停）')   # 新坑刚写进来时演练还没跑，这里停会把演练自己挡住
-    print(f'音频首要法则 与踩坑总表、标准一致（{len(坑(open(STD).read()))} 个音频坑，每个都有演练重放）')
+    open(OUT, 'w').write(t); print(f'已重新生成 {OUT}（只生成，不当门；用户 2026-10-29）')

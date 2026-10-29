@@ -23,7 +23,7 @@ ns = lambda x: re.sub(r'[\*\s]', '', x)
 
 def pit_rows():
     """《踩坑总表》每一行：(编号, 出过的问题, 以后怎么防)"""
-    sys.path.insert(0, T); from 规则执行核查 import 坑行   # 总表只有一份：《制作硬性标准与踩坑总结》里的表（规则执行机器 ⑤）
+    sys.path.insert(0, T); from 坑表 import 坑行   # 总表只有一份：《制作硬性标准与踩坑总结》里的表
     return 坑行()
 
 
@@ -34,8 +34,7 @@ def record_gate(no, stage):
         import 补对照记录 as _BJ; _BJ.补(no)
     except Exception: pass
     txt = open(rec).read() if os.path.exists(rec) else ''
-    import 开工必读 as _KB   # G55（28 起）：做事对照记录读过现行开工必读、人判的写了本篇怎么做
-    return record_gate_text(txt, no, stage) + _KB.查记录(txt, no)
+    return record_gate_text(txt, no, stage)
 
 
 人判格式_起 = 25
@@ -239,7 +238,7 @@ def _ph_pats(text, lem, word):
 
 
 T22宽_起 = 24   # 24 S1 departed South Georgia, a remote whaling outpost, for Antarctica 漏网（用户看草稿才发现）：24 起跨同位语逗号往后找（到 ; : . 为止、10 个词以内），
-PH_GEN = ['for', 'to', 'from', 'on', 'with', 'into', 'of']   # 并且动词重点词后面出现这些常见搭配介词一律列为待确认（结论只认“不是搭配：……”，放行口子核查管）
+PH_GEN = ['for', 'to', 'from', 'on', 'with', 'into', 'of']   # 并且动词重点词后面出现这些常见搭配介词一律列为待确认（结论只认“不是搭配：……”，G24 确认结论管）
 
 
 def phrase_checks(d, no):
@@ -795,8 +794,105 @@ def selftest_record_meta():
     return fails
 
 
+
+# ---------- G24 确认结论（原 放行口子核查 的确认、特批部分；扫代码找“新口子”那部分已删，用户 2026-10-29）----------
+# 脚本里写的保留、特批、例外，结论必须合 确认格式表.json 的格式；保留违规、放宽、特批只认 用户同意记录 里的用户原话（AI 自己写的例外一律不认）。
+KZ_表 = json.load(open(f'{T}/确认格式表.json'))
+def KZ_同意():
+    return json.load(open(f'{T}/用户同意记录.json'))['记录']
+
+KZ_ns = lambda x: re.sub(r'[\s，。、；：:,.;!?！？…“”"\'（）()—\-]', '', x)
+
+def KZ_有原话(text, rec=None):
+    """结论里引的“……”在 用户同意记录.json 里有（至少一句、去标点后 ≥4 字、是某条原话的一段）"""
+    rec = KZ_同意() if rec is None else rec; ys = [KZ_ns(r['原话']) for r in rec]
+    for q in re.findall(r'“([^”]{4,})”', text):
+        q = KZ_ns(q)
+        if len(q) >= 4 and any(q[:30] in y for y in ys): return True
+    return False
+
+def KZ_判(cat, val, rec=None, 规=None, no=None):
+    """一条确认/特批：合格返回 None，否则返回问题"""
+    规 = KZ_表['确认'] if 规 is None else 规
+    sp = 规.get(cat)
+    if sp is None: return f'没登记的口子类别“{cat}”（先在 确认格式表.json 登记规矩、允许、禁止）'
+    text = json.dumps(val, ensure_ascii=False) if isinstance(val, (dict, list)) else str(val)
+    backed = KZ_有原话(text, rec)
+    if sp['类'] == '用户' and not backed:
+        return '这是保留违规/放宽/特批，只认用户原话：结论里引“用户原话”，且这句话已记进 用户同意记录.json（AI 自己写的理由不算）'
+    if sp.get('禁止') and re.search(sp['禁止'], text) and not backed:
+        return f'结论违背规矩（命中“{re.search(sp["禁止"], text).group(0)}”）：{sp["规矩"]} 不许写例外，要例外先拿到用户原话'
+    allow = sp.get('允许')
+    if sp.get('起') and str(no).isdigit() and int(no) < sp['起']: allow = sp.get('旧允许', allow)   # 这一类收紧前的篇目按原来的格式体检
+    if allow and not re.search(allow, text) and not backed:
+        return f'结论不合格式（只认：{sp["允许说明"]}）'
+    return None
+
+def KZ_条目(d):
+    """(类别, 键, 值)：核对确认 每一条 + 顶层特批字段"""
+    out = []
+    for cat, v in d.get('核对确认', {}).items():
+        if isinstance(v, dict): out += [(cat, k, x) for k, x in v.items()]
+        elif isinstance(v, list): out += [(cat, x, x) for x in v]
+        else: out.append((cat, '', v))
+    for k, sp in KZ_表['特批字段'].items():
+        if sp.get('数据字段') and k in d:
+            v = d[k]
+            if isinstance(v, dict): out += [(k, s, x) for s, x in v.items()]
+            else: out.append((k, '', v))
+    return out
+
+def KZ_查篇(d, no, rec=None, 强制=False):
+    if not 强制 and (not str(no).isdigit() or int(no) < KZ_表['_起']): return []
+    out = []
+    for cat, k, v in KZ_条目(d):
+        p = KZ_判(cat, v, rec, no=no)
+        if p: out.append(f'[口子] {cat} {str(k)[:40]}：{p}')
+    return out
+
+def KZ_自检():
+    fails = []
+    rec = [{'篇': '99', '日期': '2026-10-24', '原话': '这个地方可以不加，我同意', '用于': '自检'}]
+    # ⑤ 每个确认类别的绕过样本：AI 写的“例外/放宽/不改”必须抓到
+    for cat, sp in KZ_表['确认'].items():
+        bad = '例外：英式写法，不改，先放宽' if sp['类'] != '核实' else {'配音指纹': 'x', '依据': '放宽：听不出来，例外'}
+        if KZ_判(cat, bad, rec) is None: fails.append(f'没抓到：{cat} 写“例外/不改/放宽”的确认被放行（G24 绕过样本）')
+    for k in [k for k, sp in KZ_表['特批字段'].items() if sp.get('数据字段')]:
+        if KZ_判(k, 'AI 觉得可以放宽一点', rec) is None: fails.append(f'没抓到：{k} 没有用户原话的特批被放行（G24）')
+    if KZ_判('牛津逗号', '文章英文是英式写法，三项并列不用牛津逗号；不改', rec) is None: fails.append('没抓到：牛津逗号“英式写法、不改”（T35 重放）')
+    if KZ_判('短语', 'in 是普通介词', rec, no='24') is None: fails.append('没抓到：24 起短语确认没写“不是搭配：……”（T22）')
+    if KZ_判('短语', 'in 是普通介词，不是固定搭配', rec, no='20'): fails.append('T22 误报：24 以前的短语确认按旧格式')
+    if KZ_判('短语', '不是搭配：in 是普通介词“在……里”', rec, no='24'): fails.append('T22 误报：“不是搭配：……”被报出')
+    if KZ_判('牛津逗号', '不是三项并列：upright and intact 是两项', rec): fails.append('G24 误报：牛津逗号“不是三项并列：……”被报出')
+    if KZ_判('引号', '用户 2026-10-24：“这个地方可以不加，我同意”', rec): fails.append('G24 误报：引了用户同意记录里原话的例外被报出')
+    if KZ_判('引号', '用户 2026-10-24：“我编的一句话不在记录里”', rec) is None: fails.append('没抓到：引的“原话”不在用户同意记录里（AI 编的）')
+    if KZ_判('非人声', {'配音指纹': 'c81ce56b1f49', '依据': '2026-10-09 实际声音（逐 5 ms 电平）'}, rec): fails.append('G24 误报：正常的非人声核实被报出')
+    if KZ_判('新类别XYZ', '随便', rec) is None: fails.append('没抓到：没登记的确认类别')
+    if KZ_定稿同意('24', rec): fails.append('没抓到：用户没说定稿就跑定稿（画19/流7）')
+    if not KZ_定稿同意('24', rec + [{'篇': '24', '日期': '2026-10-24', '原话': '可以，定稿吧', '用于': '定稿 24'}]): fails.append('定稿门 误报：用户同意记录里有“定稿 24”')
+    _定 = {'篇': '24', '日期': '2026-10-24', '原话': '可以，定稿吧', '用于': '定稿 24'}; _撤 = {'篇': '24', '日期': '2026-10-24', '原话': '暂停，我先核查一下', '用于': '撤回 定稿 24'}
+    if KZ_定稿同意('24', rec + [_定, _撤]): fails.append('没抓到：定稿后又撤回，照样跑定稿（G28）')
+    if not KZ_定稿同意('24', rec + [_定, _撤, dict(_定, 原话='好了，这回定稿')]): fails.append('定稿门 误报：撤回后用户又说定稿（G28）')
+    if not KZ_定稿同意('20', rec): fails.append('定稿门 误报：24 以前已定稿的篇目')
+    if KZ_查篇({'核对确认': {'牛津逗号': {'S1 a, b and': '英式写法，不改'}}}, '23', rec): fails.append('G24 误报：24 以前已定稿篇目被报出（只列不改）')
+    if not KZ_查篇({'核对确认': {'牛津逗号': {'S1 a, b and': '英式写法，不改'}}}, '24', rec): fails.append('没抓到：24 起的“英式写法、不改”（G24）')
+    return fails
+
+KZ_定稿_起 = 24   # 画19/流7/单22：用户试听确认后才算定稿——定稿流水线先查 用户同意记录 里有这一篇“定稿”的用户原话（24 KZ_表['_起']）
+
+def KZ_定稿同意(no, rec=None):
+    rec = KZ_同意() if rec is None else rec
+    if not str(no).isdigit() or int(no) < KZ_定稿_起: return True
+    rs = [r for r in rec if r.get('篇') == no and '定稿' in r.get('用于', '') and len(KZ_ns(r.get('原话', ''))) >= 2]
+    return bool(rs) and '撤回' not in rs[-1].get('用于', '')   # G28：同一篇按记录先后，最后一条定稿类记录是“撤回”就停（24：14:17 定稿、14:18 撤回）
+
+
 def main():
     args = sys.argv[1:]
+    if args and args[0] == '定稿同意':   # 画19/流7/G28：用户试听确认说了定稿（用户同意记录 里有这一篇“定稿”的原话、最后一条不是撤回）才跑定稿.sh
+        no = args[1].zfill(2); ok = KZ_定稿同意(no)
+        print(f'第{no}篇 用户定稿原话：' + ('有' if ok else ('【已撤回】最后一条定稿类记录是撤回（G28）' if any(r.get('篇') == no and '撤回' in r.get('用于', '') for r in KZ_同意()) else '【没有】用户试听确认说定稿后，把原话记进 用户同意记录.json')))
+        return 0 if ok else 1
     if args and args[0] == '通用':
         print('做任何事之前逐条对照（沟通、保存类的坑 + 铁律）：')
         for i, a, b in pit_rows():
@@ -806,7 +902,7 @@ def main():
         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
         return 1 if vf else 0
     sys.path.insert(0, T); import 译文核查 as _YW
-    fails = selftest() + _YW.自检() + selftest_record_human() + selftest_l19() + selftest_l20() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart() + __import__('破折号').自检()
+    fails = selftest() + _YW.自检() + KZ_自检() + selftest_record_human() + selftest_l19() + selftest_l20() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart() + __import__('破折号').自检()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
@@ -814,13 +910,13 @@ def main():
     js = f'scripts/{no}.json' if os.path.exists(f'scripts/{no}.json') else f'{V}/脚本/{no}.json'
     d = json.load(open(js)); snap = f'{V}/脚本/已发版本/{no}.json'
     sent = json.load(open(snap)) if os.path.exists(snap) else None
-    err = record_gate(no, stage) + video_folders(ROOT)
+    err = []; 只提醒 = record_gate(no, stage) + video_folders(ROOT)   # 踩坑对照记录、视频文件夹：不是片子本身的问题，只提醒（用户 2026-10-29）
     e, conf, ref = text_checks(d, article_en(no), sent, no); err += e
     sys.path.insert(0, T); import 破折号 as _PZ; err += _PZ.查(d, no)
     import 逐词对齐 as _ZD; err += _ZD.查(d, no)
     import 意思个数 as _YS; err += _YS.查(d, no)   # 文36（27 起）：重点词中文最多两个意思
     import 颜色核对 as _YS; err += _YS.查(d, no)                       # G49 同屏重点词颜色分得开（用户 2026-10-25，25 起：2026-10-26 起点移到 25）                       # G47 非重点词也逐词对齐（用户 2026-10-25，25 起：2026-10-26 起点移到 25）          # T36 破折号禁用（用户 2026-10-24，24 起）
-    import 放行口子核查 as _KZ; err += _KZ.查篇(d, no)                  # G24 放行口子：确认的结论受白名单约束，例外只认用户原话（24 起）
+    err += KZ_查篇(d, no)                                           # G24：确认的结论合格式，保留违规、放宽、特批只认用户原话（24 起）
     sys.path.insert(0, T); import 译文核查 as _YW                       # 译文规矩（21 起）：方向词 T4、词性 T2、同词异译 文10、排版指令 W3、改稿门 T10、逐句确认
     _md = glob.glob(f'{ROOT}/新版定稿/{no}-*.md'); _e, _c = _YW.查(d, no, open(_md[0]).read() if _md else ''); err += _e; conf += _c
     # T22 只查以后新做的篇目（09 起）。用户 2026-10-10：“以后查就行，已经做完了，这几天不要再查了……刚刚做完这篇，你查啥？不用再查了，又浪费时间……以后每次都要（查）”
@@ -835,7 +931,7 @@ def main():
     if int(no) >= 12: err += l19_checks({**json.load(open(f'scripts/{no}.json')), '_no': no})   # [L19] 铁律（用户 2026-10-16，见 l19_checks）
     if int(no) >= 24:                                               # [L20] 重点词对正（用户 2026-10-24，24 起；对正量.py：做得到的必须正对，做不到的由程序给出几何原因）
         sys.path.insert(0, T); import 对正量 as _DZ; err += [f'[L20] {x}' for x in _DZ.gate(no, json.load(open(f'scripts/{no}.json')))]
-    err += record_meta_checks(no, _rec)                             # [T31] 方法设计、[T29] 方法复盘（见 record_meta_checks）
+    只提醒 += record_meta_checks(no, _rec)                          # [T31] 方法设计、[T29] 方法复盘、[G79] 机制漏洞：只提醒（用户 2026-10-29）
     sys.path.insert(0, T); import 重点词被去掉 as _QD                   # [T32] 用户 2026-10-17：这一篇有重点词因撞词被去掉，做时必须先告诉用户
     if _QD.记录(no) and not d.get('核对确认', {}).get('已告诉用户被去掉的重点词'):
         err.append('[T32] 这一篇有重点词因撞词被去掉了，先把下面的话原样告诉用户，再在脚本写 核对确认.已告诉用户被去掉的重点词：\n' + _QD.提醒(no))
@@ -852,6 +948,7 @@ def main():
     for x in err: print('  ✘ ' + x)
     for x in conf: print('  ？ ' + x)
     for x in ref: print('  · ' + x)
+    for x in 只提醒: print('  △ （只提醒）' + x.replace('\n', ' '))
     bad = bool(err or conf)
     print('  全部通过' if not bad else f'  【不通过：{len(err)} 个错误，{len(conf)} 处待确认，不得交付】')
     return 1 if bad else 0

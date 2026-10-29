@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""快测：改规则、改程序后唯一要过的门（替代 门变异 / 执行效应演练 / 声音演练 / 彩排 的拦人作用）。本地并行，目标 ≤5 分钟。
-  ① 规则表是最新的（从现有表重新生成，版本一致）；没搬的规则 0 条或有说明
-  ② 每条搬进新管的规则：它的坏样本必须抓到、好样本必须放过 = 跑它的自检程序（现有 --自检，就是造坏样本、放好样本）
-     文本/画面/流程类：FAST 快自检（与 规则执行核查 当场自检同一张清单）；声音类：在工作目录用 27 跑各声音核查的 --自检
+"""快测：改规则、改程序后唯一要过的测试（印章对不上时 做.sh、定稿.sh、提交、推送自动跑它）。本地并行，目标 ≤5 分钟。
+  ① 规则表.json（规矩的唯一来源，新规矩 = 一行 + 坏样本 + 好样本）读得出；每条规则的坏样本都有程序跑
+  ② 每条规则：它的坏样本必须抓到、好样本必须放过 = 跑它的自检程序（现有 --自检，就是造坏样本、放好样本）
+     文本/画面/流程类：FAST 快自检；声音类：在工作目录用 27 跑各声音核查的 --自检
   ③ 挂钩检查（A26/A42）：核查程序挂钩的出片程序原文还在
   ④ 27 回归：缓存重建，a.wav、分段.json 逐字节同基准；每一屏重画，像素哈希同基准
 用法：python3 新管/快测.py [--只文本] [--记基准]
@@ -14,7 +14,7 @@ T = os.environ.get('XG_TOOLS') or (R if os.path.exists(f'{R}/交付核查.py') e
 NO = os.environ.get('XG_NO', '27'); 基准 = f'{H}/回归基准_{NO}.json'
 sys.path.insert(0, T)
 md5 = lambda p: hashlib.md5(open(p, 'rb').read()).hexdigest()
-env0 = {k: v for k, v in os.environ.items() if not k.startswith('GIT_')}
+env0 = {**{k: v for k, v in os.environ.items() if not k.startswith('GIT_')}, 'XG_QUICKTEST': '1'}   # XG_QUICKTEST：收工记录、补对照记录不写主仓库的制作记录（只写临时目录）
 
 def 跑(cmd, cwd, t=900):
     t0 = time.time()
@@ -22,25 +22,23 @@ def 跑(cmd, cwd, t=900):
     except subprocess.TimeoutExpired: return 1, f'超时 {t}s', time.time() - t0
     return r.returncode, (r.stdout + r.stderr).strip(), time.time() - t0
 
-def 看门程序():
-    import importlib.util
-    s = importlib.util.spec_from_file_location('生成规则表', f'{H}/生成规则表.py'); m = importlib.util.module_from_spec(s); s.loader.exec_module(m)
-    return m, set(m.阶段表['看门'])
-
-def 规则表新鲜():
-    m, _ = 看门程序(); 表 = json.load(open(f'{H}/规则表.json'))
-    r = subprocess.run(['python3', f'{H}/生成规则表.py'], capture_output=True, text=True, env={**env0, 'XG_TOOLS': T})
-    bad = [l for l in r.stdout.splitlines() if l.strip().startswith('没搬')]
-    tmp = f'{H}/.规则表.新'; subprocess.run(['python3', f'{H}/生成规则表.py', '--写入', '--到', tmp], capture_output=True, env={**env0, 'XG_TOOLS': T})
-    新 = json.load(open(tmp)) if os.path.exists(tmp) else {}; os.path.exists(tmp) and os.remove(tmp)
-    if 新.get('版本') != 表.get('版本'): bad.append(f'规则表.json 不是最新的（{表.get("版本")} → {新.get("版本")}）：python3 新管/生成规则表.py --写入')
+def 规则表():
+    表 = json.load(open(f'{H}/规则表.json')); bad = []
+    for e in 表['规则']:
+        if not e.get('编号') or not e.get('状态'): bad.append(f'规则表一行缺编号或状态：{str(e)[:80]}')
     return bad, 表
 
-停跑 = {'门变异.py', '用上核查.py', '证据.py', '丝滑.py', '演练镜像.py', '执行效应声音演练.py', '推请求.py', '会话开工.py'}
+# 文本/画面/流程类自检（造坏样本必抓、好样本必放）。2026-10-29 删除旧看门：门变异、用上核查、证据、丝滑、演练、会话开工、推请求、
+# 放行口子扫码、规则执行核查、开工必读/音频首要法则 文档对文档核对 一律删掉（用户：不看视频本身的检查一律砍掉）
+FAST = [['生成文本.py', '--自检'], ['配音缓存核对.py', '--自检'], ['余音删法核对.py', '--自检'], ['确认按位置迁移.py', '--自检'], ['方法进化表.py', '--自检'],
+        ['破折号.py', '--自检'], ['区间作废.py', '--自检'], ['同步自检.py'], ['流程自检.py'], ['踩坑核查.py', '自检'], ['check_all.py', '--自检'], ['钩子/钩子自检.py'],
+        ['排版自检.py'], ['推送自检.py'], ['译文核查.py', '--自检'], ['出片指纹.py', '--自检'], ['结尾句接点.py', '--自检'], ['句内响度.py', '--自检'],
+        ['开工记录.py', '--自检'], ['逐词对齐.py', '--自检'], ['停顿位置精确核对.py', '--自检'], ['响度一致性核对.py', '--确认自检'], ['机器复听.py', '--比较自检'],
+        ['纯人声核对.py', '--确认自检'], ['高亮同步核对.py', '--确认自检'], ['颜色核对.py', '--自检'], ['缓存进仓库核对.py', '--自检'], ['速查表.py'], ['报坑.py', '--自检'],
+        ['意思个数.py'], ['疑点清单.py', '--自检'], ['新管/分流.py']]
 
-def 文本自检(看门):
-    import 规则执行核查 as RZ
-    cmds = [c for c in RZ.FAST if c[0] not in 停跑]   # 只停真正退役的看门程序；放行口子核查、开工必读 的自检仍是 G24/G55 的坏样本
+def 文本自检():
+    cmds = FAST
     with ThreadPoolExecutor(8) as ex:
         rs = list(ex.map(lambda c: (c, 跑(['python3', f'{T}/{c[0]}', *c[1:]], T, 300)), cmds))
     return [f'自检不通过：{" ".join(c)} → {o.splitlines()[-1][:160] if o else "无输出"}' for c, (rc, o, _) in rs if rc], len(cmds)
@@ -61,13 +59,13 @@ def 声音():
         bad += [f'{" ".join(c)}（{dt:.0f}s）：{l[:150]}' for l in x]
     return bad, len(cmds)
 
-def 覆盖(表, 看门):
+def 覆盖(表):
     """每条搬进新管的规则，至少一个自检程序会被快测跑到（坏样本必抓）"""
-    import 规则执行核查 as RZ, re
-    跑到 = {c[0] for c in RZ.FAST if c[0] not in 停跑} | {'交付核查.py', '出片守门自检.py'}
+    import re
+    跑到 = {c[0] for c in FAST} | {'交付核查.py', '出片守门自检.py'}
     src = open(f'{T}/交付核查.py').read(); 跑到 |= set(re.findall(r"f'\{T\}/([^']+?\.py)'", src))
     定稿时 = {'定稿视频核对.py'}
-    没 = [e['编号'] for e in 表 if e['状态'].startswith('搬') and e['自检'] and not ({x[0] for x in e['自检']} & (跑到 | 定稿时 | {'规则执行核查.py'}))]
+    没 = [e['编号'] for e in 表 if e['状态'].startswith('搬') and (not e['自检'] or not ({x[0] for x in e['自检']} & (跑到 | 定稿时 | {'新管/快测.py'})))]
     return 没
 
 def 常规规则():
@@ -139,9 +137,47 @@ def 印章坏样本():
         if r.returncode == 0: return ['印章没抓到：改了 交付核查.py 没重跑快测，印章照样对得上']
     return []
 
+def 程序表():
+    """{相对 工具/ 的路径: 原文}（不含历史版本、各篇 genNN 数据、缓存）"""
+    import re
+    out = {}
+    for f in glob.glob(f'{T}/**/*', recursive=True):
+        r = os.path.relpath(f, T)
+        if not os.path.isfile(f) or '历史版本' in r or '__pycache__' in r or re.search(r'gen\d+\.py$', r): continue
+        if r.endswith(('.py', '.sh')) or r.startswith('githooks/'): out[r] = open(f, errors='ignore').read()
+    return out
+
+def 挂钩检查(files):
+    """A26/A42：核查程序靠出片程序（make_video.py、render.py）的原文挂钩（src.index/split/replace 的那一句），
+    出片程序一改、那一句没了，核查程序就会崩或悄悄失效。逐个查：每个挂钩的原文都必须还在出片程序里。"""
+    import re
+    out = []
+    for f, t in files.items():
+        if f in ('make_video.py', 'render.py') or 'make_video.py' not in t: continue
+        tg = set(re.findall(r"open\([^)]*?([\w\u4e00-\u9fff]+\.(?:py|sh))", t))   # 它用 open() 读进来的那些程序
+        base = ''.join(files[g] for g in files if g != f and os.path.basename(g) in tg)
+        for l in [x for x in t.splitlines() if x.strip() and not x.strip().startswith('#')]:
+            for anc in re.findall(r"""(?:_?src|read\(\))\.(?:index|split|replace)\(\s*(['"])(.+?)\1""", l):
+                if anc[1] not in base: out.append(f'{f} 挂钩的出片程序原文没了：“{anc[1][:40]}”（A26/A42：改出片程序后核查程序要跟着改）')
+    return out
+
+def 草稿路径样本():
+    """K109：草稿篇的脚本只在工作目录 scripts/NN.json（仓库 视频/脚本/ 还没有）：音频体检 --自检 要过、语速突变要量得出来。
+    以前快测只拿已定稿的 27 回归，草稿篇才走的路径没覆盖（30 的音频体检自检因此失灵）。用假篇号 97（仓库里没有它的脚本）"""
+    import shutil, tempfile
+    if not os.path.exists(f'{W}/work_{NO}/a.wav'): return [f'K109 样本：没有 work_{NO}/a.wav']
+    if os.path.exists(f'{os.path.dirname(T)}/脚本/97.json'): return ['K109 样本：仓库里竟有 视频/脚本/97.json，样本不成立']
+    bad = []
+    with tempfile.TemporaryDirectory(dir=os.path.dirname(W)) as td:
+        os.makedirs(f'{td}/scripts'); shutil.copy(f'{W}/scripts/{NO}.json', f'{td}/scripts/97.json'); os.makedirs(f'{td}/work_97'); shutil.copy(f'{W}/work_{NO}/a.wav', f'{td}/work_97/a.wav')   # 和真草稿同一个位置（../../tts/AF.txt 后期才找得到）
+        rc, o, _ = 跑(['python3', f'{T}/音频体检.py', '--自检', 'work_97/a.wav', '97'], td, 600)
+        if rc: bad.append(f'K109：脚本只在工作目录时 音频体检 --自检 不过 → {o.splitlines()[-1][:140] if o else "无输出"}')
+        rc, o, _ = 跑(['python3', '-c', f"import sys; sys.path.insert(0, {T!r}); import 音频体检 as A; m = A.指标(A.读('work_97/a.wav'), '97'); v = m.get('语速突变'); print(v); sys.exit(0 if v and v[0] is not None else 1)"], td, 600)
+        if rc: bad.append(f'K109：脚本只在工作目录时 语速突变 量不出来 → {o.splitlines()[-1][:140] if o else "无输出"}')
+    return bad
+
 def 挂钩():
-    import 规则执行核查 as RZ
-    return [f'挂钩：{x}' for x in RZ.挂钩检查(RZ.程序表())]
+    return [f'挂钩：{x}' for x in 挂钩检查(程序表())]
 
 def 回归(记):
     """缓存重建回归篇：只出声音（AUDIO_ONLY，与正式出片同一套程序），比 a.wav、分段.json；每屏重画比像素哈希"""
@@ -168,17 +204,17 @@ def main():
     t0 = time.time(); a = sys.argv[1:]; out = []
     if '--只记基准' in a:   # 基准用旧管（没打补丁的工具）出：回归证明新管和旧管逐字节一致
         b, cur = 回归(True); print('\n'.join(b) or f'{NO} 基准已记：a.wav {cur["a.wav"][:8]}、分段.json {cur["分段.json"][:8]}、{len(cur["画面"])} 屏（{time.time() - t0:.0f} 秒）'); sys.exit(1 if b else 0)
-    bad, 表 = 规则表新鲜(); _, 看门 = 看门程序()
-    规 = 表['规则']; 搬 = sum(1 for e in 规 if e['状态'].startswith('搬')); 替 = sum(1 for e in 规 if e['状态'] == '替代')
-    out.append(f'① 规则表 {len(规)} 条：搬 {搬}、替代 {替}、没搬 {len(规) - 搬 - 替 - sum(1 for e in 规 if e["状态"].startswith("无门"))}；版本 {表["版本"]}')
-    没 = 覆盖(规, 看门); bad += [f'规则的坏样本没人跑：{"、".join(没)}'] if 没 else []
+    bad, 表 = 规则表()
+    规 = 表['规则']; 搬 = sum(1 for e in 规 if e['状态'].startswith('搬')); 替 = sum(1 for e in 规 if not e['状态'].startswith('搬'))
+    out.append(f'① 规则表 {len(规)} 条：有坏样本由快测跑的 {搬}、替代或已删 {替}；版本 {表["版本"]}')
+    没 = 覆盖(规); bad += [f'规则的坏样本没人跑：{"、".join(没)}'] if 没 else []
     out.append(f'①b 坏样本覆盖：{len(规) - len(没)} / {len(规)}' + ('' if not 没 else f'，没覆盖 {没[:10]}'))
     全 = '--只文本' not in a
     if 全 and (not W or not os.path.exists(f'{W}/make_video.py')): bad.append('没有出片工作目录（XG_WORK=…/video）：先 bash 视频/工具/环境/准备机器.sh'); 全 = False
     if 全 and 跑(['python3', f'{T}/出片指纹.py', '--核对工作目录', '.'], W, 60)[0]:   # 机械：工作目录的出片程序比工具旧（切换补丁改了 render.py 等），先拷过来（G27）
         跑(['python3', f'{T}/出片指纹.py', '--拷', '.'], W, 120); out.append('（工作目录的出片程序比工具旧，已拷过来，G27）')
     with ThreadPoolExecutor(3) as ex:   # 三路并行：文本快自检、回归、声音（交付核查 + 守门自检）
-        ft = ex.submit(文本自检, 看门); fr = ex.submit(回归, '--记基准' in a) if 全 else None; fs = ex.submit(声音) if 全 else None
+        ft = ex.submit(文本自检); fr = ex.submit(回归, '--记基准' in a) if 全 else None; fs = ex.submit(声音) if 全 else None
         b, n = ft.result(); bad += b; out.append(f'② 文本/画面/流程 快自检 {n} 个程序：{"全过" if not b else f"{len(b)} 个不过"}')
         b = 挂钩(); bad += b; out.append(f'③ 挂钩检查：{"在" if not b else "断了"}')
         b = 常规规则(); bad += b; out.append(f'③b 常规规则（G35 简述整屏、G65 方法进化 K97）坏样本必抓、好样本必放：{"过" if not b else "不过"}')
@@ -186,8 +222,11 @@ def main():
             b, _ = fr.result(); bad += b; out.append(f'④ {NO} 回归：{"记了基准" if "--记基准" in a else ("a.wav、分段.json 逐字节、每屏像素一致" if not b else "不一致")}')
             b = 读音自检样本(); bad += b; out.append(f'⑥ K102 读音自检：29 不误停、拆读音改正必停：{"过" if not b else "不过"}')
             b, n = fs.result(); bad += b; out.append(f'⑤ 交付核查 出片前/出片后 + 出片守门自检：{"全过" if not b else f"{len(b)} 处不过"}')
+            b = 草稿路径样本(); bad += b; out.append(f'⑦ 草稿篇路径（K109：脚本只在工作目录，音频体检自检过、语速突变量得出）：{"过" if not b else "不过"}')
     if not bad and '--只文本' not in a and '--记基准' not in a:
         subprocess.run(['python3', f'{H}/印章.py', '--盖'], env={**env0, 'XG_TOOLS': T}, capture_output=True)
+        try: open(os.path.expanduser('~/.新管工作目录'), 'w').write(W)   # 提交、推送时 印章.py --自动 在这里跑快测
+        except OSError: pass
         b = 印章坏样本(); bad += b; out.append('已盖快测印章（程序或规则表再改要重跑）；改程序不重跑必停：' + ('过' if not b else '不过'))
     print('\n'.join(out + [f'  ✘ {x}' for x in bad] + [f'快测{"通过" if not bad else "不通过"}，用时 {time.time() - t0:.0f} 秒']))
     sys.exit(1 if bad else 0)

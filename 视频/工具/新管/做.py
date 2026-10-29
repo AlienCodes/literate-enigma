@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """做：一条命令从数据到 1080p 草稿（在出片工作目录下运行；做.sh 是它的外壳）。
-  ⓪ 快测印章（程序改了没过快测就停）
+  ⓪ 快测印章（程序改了自动跑快测：过了接着做，不过才停——那说明真有检查坏了）
   ① 文本：机械修（破折号、L19 折行）→ 踩坑核查。✘ 错 → 停；？ 待确认 → 疑点表
   ② 声音：草稿声音.sh（结尾句接点、自动切点、词尾除阻、句内响度这些标准修法都在里面，缓存命中只重做改过的句子）
   ③ 出片前核查（交付核查，看门已停用：只剩真检查）。✘ → 停（读音待核实、停顿、词尾……指出哪句哪词）
@@ -33,8 +33,9 @@ if c:   # 机械：工作目录的出片程序比仓库旧（G27），照现有�
     c, o = 跑('拷出片程序', ['python3', f'{T}/出片指纹.py', '--拷', '.'])
     if c: 停('⓪ 拷出片程序', o.strip().splitlines()[-3:])
     修了.append('工作目录的出片程序比仓库旧，已按 出片指纹.py --拷 拷过来（G27）')
-c, o = 跑('印章', ['python3', f'{H}/印章.py'], extra={'XG_TOOLS': T})
-if c: 停('⓪ 快测印章', o.strip().splitlines())
+c, o = 跑('印章', ['python3', f'{H}/印章.py', '--自动'], extra={'XG_TOOLS': T, 'XG_WORK': os.getcwd()})
+if c: 停('⓪ 快测不通过（有检查坏了，先修好）', [l for l in o.strip().splitlines() if '✘' in l or '不通过' in l][-12:] or o.strip().splitlines()[-6:])
+if '自动跑快测' in o: 修了.append('程序改过：已自动跑快测并通过、重盖印章')
 if os.path.exists(f'{T}/初稿生成/gen{no}.py') and os.path.getmtime(f'{T}/初稿生成/gen{no}.py') > os.path.getmtime(f'scripts/{no}.json'):
     c, o = 跑('生成', ['python3', f'{T}/初稿生成/gen{no}.py'])
     if c: 停('⓪ genNN 生成脚本', o.strip().splitlines()[-8:])
@@ -61,9 +62,8 @@ for l in o.splitlines():
 报告.append('② 声音：' + '；'.join(l.strip() for l in o.splitlines() if '问题数' in l)[:200])
 # ③
 c, o = 跑('出片前', ['python3', f'{T}/交付核查.py', no, '出片前'])
-x = [l for l in o.split('\n✘ ')[1:]] if c else []
-if c and not x: 停('③ 出片前核查', [f'交付核查 返回 {c} 却没有一条 ✘（程序出错，不能当通过）'] + o.strip().splitlines()[-8:])   # K112b
-x = [b for b in x if not b.startswith('踩坑核查（') or 错]   # 踩坑核查那一步只因“？”不过：已进疑点表
+sys.path.insert(0, H); import 分流   # K112：疑点/停的分流抽成函数，快测配样本
+x = 分流.出片前(o, c, bool(错))   # 踩坑核查那一步只因“？”不过：已进疑点表；交付核查崩了（返回非 0 却没有 ✘）照停
 if x: 停('③ 出片前核查', ['✘ ' + b.strip()[:400] for b in x])
 报告.append('③ 出片前核查：通过')
 # ④
@@ -71,18 +71,11 @@ c, o = 跑('出片', ['python3', 'make_video.py', f'scripts/{no}.json', f'{no}.m
 if c: 停('④ 出 1080p', o.strip().splitlines()[-10:])
 # ⑤
 c, o = 跑('出片后', ['python3', f'{T}/交付核查.py', no, '出片后'])
-bs = [b for b in o.split('\n✘ ')[1:]] if c else []
-if c and not bs: 停('⑤ 出片后核查', [f'交付核查 返回 {c} 却没有一条 ✘（程序出错，不能当通过）'] + o.strip().splitlines()[-8:])   # K112b
 疑点 += [('机器复听（单路并词，交用户听）', l.strip()) for l in o.splitlines() if '单路并词交用户听' in l]   # K111
-for b in bs:
-    _ls = []   # K112b（30）：只看标题下面缩进的说明行，遇到第一行顶格（下一项 ✔ …）就截住；每一行都是“响度比全片低”或“→ 标出的位置必须剪成试听”才算疑点，别的一律停
-    for l in b.split('\n')[1:]:
-        if l.strip() and not l.startswith((' ', '\t')): break
-        if l.strip(): _ls.append(l.strip())
-    if b.startswith('自动音频检查') and any('响度比全片低' in l for l in _ls) and all('响度比全片低' in l or l.startswith('→ 标出的位置必须剪成试听') for l in _ls):
-        疑点 += [('响度骤降（剪成试听交用户听）', l.strip()) for l in b.splitlines() if '响度比全片低' in l]
-    else: 停('⑤ 出片后核查', ['✘ ' + b.strip()[:400] for b in bs])
-报告.append('⑤ 出片后核查：' + ('全部通过' if not bs else '只剩疑点'))
+_疑, _停 = 分流.出片后(o, c)   # K112 白名单：只有“自动音频检查”下面全是响度骤降才算疑点，别的一律停
+if _停: 停('⑤ 出片后核查', ['✘ ' + b.strip()[:400] for b in _停])
+疑点 += [('响度骤降（剪成试听交用户听）', l) for l in _疑]
+报告.append('⑤ 出片后核查：' + ('全部通过' if not _疑 else '只剩疑点'))
 # ⑥
 os.makedirs(f'{V}/视频/草稿1080p', exist_ok=True)
 shutil.copy(f'{no}.mp4', f'{V}/视频/草稿1080p/{no}_1080p.mp4'); shutil.copy(f'scripts/{no}.json', f'{V}/脚本/{no}.json')
@@ -104,10 +97,10 @@ json.dump({'数据': _h(f'scripts/{no}.json'), '声音': _h(f'work_{no}/a.wav'),
           open(f'{V}/制作记录/{no}_做指纹.json', 'w'), ensure_ascii=False, indent=0)
 if 推:
     c, o = 跑('推送', ['bash', f'{H}/推送.sh', f'第{no}篇 草稿1080p（做.sh）：疑点 {len(疑点)}、自动修 {len(修了)}'], cwd=P)
-    if c: 停('⑥ 推送两仓库', o.strip().splitlines()[-6:])
-报告.append(f'⑥ 已拷 视频/视频/草稿1080p/{no}_1080p.mp4' + ('，两仓库已推送' if 推 else '（--不推）'))
-c, o = 跑('报坑', ['python3', f'{T}/报坑.py', '--查'])   # 硬问题（撞号、没取号）停；超期只提醒（用户 2026-10-29：“直接一刀切把它砍掉了”）
-if c: 停('⑥ 报坑登记有硬问题（G54）', [l.strip() for l in o.splitlines() if '✘' in l])
+    if c: 报告.append('提醒：推送两仓库没成功（片子已出、已拷，只提醒）：' + ' / '.join(o.strip().splitlines()[-3:])[:300])
+报告.append(f'⑥ 已拷 视频/视频/草稿1080p/{no}_1080p.mp4' + ('，两仓库已推送' if 推 and not c else '（--不推）' if not 推 else ''))
+c, o = 跑('报坑', ['python3', f'{T}/报坑.py', '--查'])   # 报坑登记的问题都只提醒（用户 2026-10-29：不是质量问题不卡）
+if c: 报告.append('提醒：报坑登记有撞号或总表新行没取号：' + '；'.join(l.strip() for l in o.splitlines() if '✘' in l)[:200])
 超 = [l.strip() for l in o.splitlines() if '超期' in l]
 if 超: 报告.append(f'提醒：报坑登记 {len(超)} 条超期没入表（只提醒不拦）')
 # ⑦

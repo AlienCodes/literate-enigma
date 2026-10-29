@@ -12,14 +12,13 @@ step() { echo "== $(date +%H:%M:%S) $1"; }
 push() { for t in 0 2 4 8 16; do sleep $t; git pull -q --no-rebase --no-edit origin "$1"; git push -q -u origin "$1" && return 0; done; return 1; }
 exec 9>"$W/.做_$no.lock"; flock -n 9 || stop "第${no}篇已经有一条 做/定稿 在跑"
 [ -f make_video.py ] && [ -f "scripts/$no.json" ] && [ -d fonts ] || stop "请在出片工作目录下运行（要有 make_video.py、scripts/$no.json、fonts/）"
-python3 $H/印章.py > "$LOG/印章.log" 2>&1 || { cat "$LOG/印章.log"; stop "快测印章对不上"; }
+XG_WORK=$W python3 $H/印章.py --自动 > "$LOG/印章.log" 2>&1 || { grep -E "✘|不通过" "$LOG/印章.log" | tail -12; stop "快测不通过（有检查坏了，先修好）"; }   # 印章对不上自动跑快测，过了接着做
 python3 $T/出片指纹.py --核对工作目录 . > /dev/null 2>&1 || { python3 $T/出片指纹.py --拷 . > /dev/null && echo "（工作目录的出片程序比仓库旧，已拷过来，G27）"; } || stop "拷出片程序失败（G27）"
-python3 $T/方法进化表.py --门 $no || stop "方法进化（G65）：本篇比前三篇中位数变差，方法复盘里还没有查得到的“进化落地：<提交号|G##|K##>”"
-python3 $T/报坑.py --查 > "$LOG/报坑.log" 2>&1 || { grep "✘" "$LOG/报坑.log"; stop "报坑登记有硬问题（撞号、总表新行没取号，G54）"; }
-grep -q "超期" "$LOG/报坑.log" && echo "（提醒：有报坑登记超期还没入表，只提醒不拦；用户 2026-10-29：“直接一刀切把它砍掉了”）"
-python3 $T/放行口子核查.py --定稿 $no || stop "用户还没说定稿（用户原话记进 用户同意记录.json）"
+python3 $T/报坑.py --查 > "$LOG/报坑.log" 2>&1 || echo "（提醒：报坑登记有撞号或总表新行没取号，见 $LOG/报坑.log；只提醒，不拦）"
+grep -q "超期" "$LOG/报坑.log" && echo "（提醒：有报坑登记超期还没入表，只提醒不拦）"
+python3 $T/踩坑核查.py 定稿同意 $no || stop "用户还没说定稿（用户原话记进 用户同意记录.json）"   # 用户本人的决定，照停
 python3 $T/工作稿核对.py $no || stop "工作目录的脚本是旧稿（G19）"
-python3 $T/补对照记录.py $no > /dev/null || stop "补对照记录失败"
+python3 $T/补对照记录.py $no > /dev/null || echo "（提醒：补对照记录没补上，只提醒）"
 [ -f "work_$no/a.wav" ] || { AUDIO_ONLY=1 python3 make_video.py scripts/$no.json $no.mp4 > "$LOG/重建声音.log" 2>&1 || stop "重建声音失败"; }
 python3 - "$no" "$P/视频/制作记录/${no}_做指纹.json" <<'PY' || stop "成片指纹对不上：定稿的不是用户看过的那一版（数据或声音变了），先 做.sh 出草稿给用户看"
 import sys, json, hashlib, os

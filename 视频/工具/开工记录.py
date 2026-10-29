@@ -18,7 +18,7 @@ def 开工(V, no, 记当前=True, 根=None):
     f = f'{V}/制作记录/{no}.md'; old = open(f).read() if os.path.exists(f) else None
     if 有节(old, '## 踩坑对照记录'): return f'{f} 已有踩坑对照记录，不覆盖', 1
     rows = []
-    for l in open(f'{V}/制作硬性标准与踩坑总结.md'):   # 总表只有一份（规则执行机器 ⑤）
+    for l in open(f'{V}/制作硬性标准与踩坑总结.md'):   # 总表只有一份
         m = re.match(r'\| (\w+) \| ([^|]{0,40})', l)
         if m and m.group(1) not in ('编号',) and re.match(r'[A-Z]\d', m.group(1)):
             rows.append(f'| {m.group(1)} | {m.group(2).strip()} | 涉及 | ' + ('待填（只有人能判：写明本篇具体怎么做的）' if m.group(1) in ('G6', 'C3', 'C4') else '按现行做法由程序把关（踩坑总表“拦住”），本篇核查通过') + ' |')
@@ -27,9 +27,6 @@ def 开工(V, no, 记当前=True, 根=None):
     if 记当前: open(f'{V}/制作记录/当前篇.txt', 'w').write(no); open(os.path.expanduser('~/.当前篇'), 'w').write(no)   # 本容器自己的当前篇优先（钩子先读它）   # 钩子据此每轮更新这篇的 token 记录（T31）
     import subprocess   # J（用户 2026-10-25）：开工就把本篇撞车提醒写进制作记录并打印，发草稿时告诉用户
     print(subprocess.run(['python3', f'{os.path.dirname(os.path.abspath(__file__))}/音频首要法则.py', '--要点'], capture_output=True, text=True).stdout.rstrip())   # 首要法则（CLAUDE.md 0.）
-    print(subprocess.run(['python3', f'{os.path.dirname(os.path.abspath(__file__))}/开工必读.py', '--要点'], capture_output=True, text=True).stdout.rstrip())   # G55：先读开工必读
-    import 开工必读 as _KB
-    if no.isdigit() and int(no) >= _KB.起 and 记当前: _t = open(f).read(); open(f, 'w').write(_KB.补(no, _t)[0])   # K75（31 又中）：先读再清空写   # 28 起：做事对照记录（只追加）
     out = subprocess.run(['python3', f'{os.path.dirname(os.path.abspath(__file__))}/check_all.py', '--写提醒', no] + (['--根', 根] if 根 else []), capture_output=True, text=True).stdout.strip()
     return f'{f}：{len(rows)} 条\n{out}', 0
 def 方法设计节(t):
@@ -57,15 +54,8 @@ def 自检():
 if __name__ == '__main__':
     if '--自检' in sys.argv:
         e = 自检(); print('\n'.join(e) or '开工记录 自检通过（已有方法设计一字不变、正文提到标题字样不误认、撞车提醒只写一节）'); sys.exit(1 if e else 0)
-    import 会话开工 as _HK
-    if not _HK.读记录(): _HK.开工('出稿')   # G63：出稿会话从开工记录开工，先读总纲、要点、步骤表，记下角色
     V = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); _no = sys.argv[1].zfill(2)
     import 方法进化表 as _JH; _e, _ = _JH.门(f'{int(_no) - 1:02d}')   # G65：上一篇变差没落地，不开下一篇
     if _e: print('\n'.join(['提醒（第一优先级：只有质量问题能拦，G65 只提醒）：'] + _e))   # K113（31）：G65 拦了 31 开工，不是片子问题
-    import 证据 as _ZJ0; _e = _ZJ0.闲置问题()   # G71：机制闲置（连续两篇该用没用、建好后第一篇就没用上），不开下一篇
-    if _e: print('\n'.join(['提醒（G71 只提醒，不拦）：'] + _e))   # K113
     msg, c = 开工(V, _no); print(msg)
-    if c == 0:   # G60：开工的使用证据（撞车提醒、做事对照记录写了没有）
-        import 证据 as _ZJ; _t = open(f'{V}/制作记录/{_no}.md').read() if os.path.exists(f'{V}/制作记录/{_no}.md') else ''
-        _ZJ.记(_no, '开工记录', 详情={'撞车提醒': '## 撞车提醒' in _t, '做事对照': '## 做事对照记录' in _t})
     sys.exit(c)

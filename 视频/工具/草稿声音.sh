@@ -3,9 +3,7 @@
 # 结尾句接点 → 三轮（重建 → 疑点清单 → 自动切点 --写入）→ 词尾辅音 --写入 → 重建 → 确认按位置迁移 → 只打印问题行：
 # 三项声音核查的问题数、程序交人看的疑点、读音待核实。人只看这些。
 no=$1; T=${XG_TOOLS:-/home/user/postgraduate-vocabulary/视频/工具}
-trap 'rc=$?; [ $rc -ne 0 ] && python3 $T/丝滑.py 记 草稿声音 "$no" "草稿声音.sh 退出码 $rc；$Z_CMD" 2>/dev/null; exit $rc' EXIT   # K 丝滑记录
-trap 'Z_CMD="最后一条失败的命令在第 $LINENO 行：${BASH_COMMAND:0:160}"' ERR   # K56：记下停在哪
-python3 $T/方法进化表.py --上下文 || exit 1   # G65：出稿、改稿会话上下文超 40 万先交接、开新改稿会话（26 实测后半段每次调用贵一倍多）
+python3 $T/方法进化表.py --上下文 || echo "（提醒：会话上下文超限，做完这一步先交接；只提醒，不拦）"   # G65（用户 2026-10-29：不是质量问题不卡）
 # A45（2026-10-24）：改了读音或语速，这一句旧的非人声区间、词尾除阻、停顿删除、插入点和对应确认自动作废：出片程序跳过它们（OLD_IV_VOID=1），区间作废.py 从脚本删掉，下面重找
 export OLD_IV_VOID=1
 # 已定过结尾句语速的（20 前段 0.96，A27）照原语速重找接点，不改回默认值
@@ -20,4 +18,3 @@ python3 $T/区间作废.py $no --记指纹
 python3 $T/疑点清单.py $no >/dev/null 2>&1; python3 $T/确认按位置迁移.py $no
 python3 $T/自动切点.py $no 2>&1 | grep "人看" | cut -c1-120
 python3 $T/读音核对.py $no 2>&1 | grep -E "待核实 \[|BAD|问题数" | cut -c1-170
-[ "$(python3 -c "import sys;sys.path.insert(0,'$T');print(__import__('管道').看门停用())")" = True ] || python3 $T/证据.py --记 $no 草稿声音   # G60：草稿声音的使用证据（只有从本入口调用才写得进）

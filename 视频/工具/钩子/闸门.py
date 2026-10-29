@@ -5,7 +5,7 @@
   python3 闸门.py 发文件   PreToolUse(SendUserFile)：守则7/A25 声音、视频、Word、PDF、网页一次只发一个，
                            并且必须是过了核查的那个文件（交付核查 出片后 / 生成文本 记下的文件指纹）
   python3 闸门.py 命令     PreToolUse(Bash)：不许用 --no-verify / -n 跳过提交前的规则执行核查，不许改 core.hooksPath
-  python3 闸门.py 收工     Stop：postgraduate-vocabulary 里还有没推送的改动就不让收工（守则3）
+  python3 闸门.py 收工     Stop：还有没推送的改动、今天改了工具没写方法升级记录，只提醒（不拦）
   python3 闸门.py 发文件后 PostToolUse(SendUserFile)：发了 Word 就提醒用户打印勾选“打印背景色”（W6）
   命令闸门同时管部署（C1/C2/流16）：不部署、不公开发布、不推 master/gh-pages、不强推，除非命令里写明用户原话
 输入：钩子的 JSON（stdin）；输出：拦下时打印决定 JSON。"""
@@ -13,7 +13,7 @@ import sys, os, json, re, hashlib, subprocess, datetime
 V = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PV = '/home/user/postgraduate-vocabulary'
 回执目录 = os.path.expanduser('~/.核查回执')
-请求账 = os.path.expanduser('~/.云端请求.json')   # K34：推了 GitHub 请求（推请求.py 记）、约了唤醒（send_later 后钩子记）
+请求账 = os.path.expanduser('~/.云端请求.json')   # K34：约了唤醒（send_later 后钩子记）
 def _读账():
     try: return json.load(open(请求账))
     except Exception: return {}
@@ -35,21 +35,10 @@ def 记回执(paths, 来源):
 
 
 镜像 = '/home/user/literate-enigma'
-def 在途补丁(仓库, 镜=None):
-    """K66：主仓库的改动和镜像里已提交的某个改门推送补丁逐字节相同（请求也已提交）→ 在途，返回补丁名；否则 ''"""
-    镜 = 镜 or 镜像; d = f'{镜}/视频/云端/待演练'
-    if not os.path.isdir(d): return ''
-    try:
-        sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))); import 推请求 as Q
-        _, cur = Q.做补丁('收工闸门', 仓库, out=os.devnull)
-    except Exception: return ''
-    if not cur.strip(): return ''
-    for f in sorted(os.listdir(d)):
-        n = f[:-5]
-        if not f.endswith('.diff') or not os.path.exists(f'{镜}/视频/云端/请求/{n}.txt'): continue
-        if subprocess.run(['git', '-C', 镜, 'status', '--porcelain', '--', f'视频/云端/待演练/{f}', f'视频/云端/请求/{n}.txt'], capture_output=True, text=True).stdout.strip(): continue   # 没提交的不算在途
-        if open(f'{d}/{f}', 'rb').read() == cur: return n
-    return ''
+def 提醒(理由):   # 收工时只提醒、不拦（用户 2026-10-29 第一优先级：只有质量问题能拦）
+    return {'systemMessage': 理由}
+
+
 def 拦(事件, 理由):
     if 事件 == 'Stop': return {'decision': 'block', 'reason': 理由}
     return {'hookSpecificOutput': {'hookEventName': 'PreToolUse', 'permissionDecision': 'deny', 'permissionDecisionReason': 理由}}
@@ -59,7 +48,7 @@ def 拦(事件, 理由):
 # 绕开提交前规则执行核查的写法一律拦：--no-verify 及其缩写、-c/--config-env/include 改 hooksPath、GIT_* 环境变量、
 # 改/删 .git/hooks、.git/config、githooks、~/.gitconfig、git 别名、不走钩子的底层提交（commit-tree、update-ref……）、解码后再执行
 _放行GIT变量 = re.compile(r'GIT_(AUTHOR|COMMITTER)_(NAME|EMAIL|DATE)|GIT_TERMINAL_PROMPT|GIT_PAGER|GIT_LFS_SKIP_SMUDGE|GIT_TRACE\w*|GIT_SSL_CAINFO|GIT_HTTP_LOW_SPEED_\w+')
-_护路径 = re.compile('(?:^|[\\s/"\'=:<>(])(?:\\.git(?:/(?:hooks|config|info)\\b|/?(?=[\\s"\';&|)]|$))|githooks\\b|\\.gitconfig\\b|制作记录/证据/)')
+_护路径 = re.compile('(?:^|[\\s/"\'=:<>(])(?:\\.git(?:/(?:hooks|config|info)\\b|/?(?=[\\s"\';&|)]|$))|githooks\\b|\\.gitconfig\\b)')
 _只读命令 = {'ls', 'cat', 'head', 'tail', 'grep', 'rg', 'wc', 'diff', 'stat', 'file', 'sha256sum', 'md5sum', 'readlink', 'realpath', 'du', 'test', '['}
 _只读git = {'log', 'diff', 'show', 'status', 'add', 'ls-files', 'blame', 'grep', 'cat-file', 'ls-tree', 'rev-parse', 'fetch', 'pull', 'push', 'commit', 'clone', 'stash', 'branch', 'remote'}
 
@@ -87,9 +76,9 @@ def 绕钩子(c, segs):
         if sub == 'commit' and re.search(r'\s-[a-zA-Z]*n[a-zA-Z]*(?=\s|$)', w): return '不许用 -n 跳过 git 钩子'
         if re.match(r'alias\b', w) and re.search(r'\bgit\b', w): return '不许用 shell 别名包装 git'
         if _护路径.search(' ' + w):
-            写 = re.search(r'>>?\s*\S*(?:\.git\b|githooks|\.gitconfig|证据/)', w)
+            写 = re.search(r'>>?\s*\S*(?:\.git\b|githooks|\.gitconfig)', w)
             ok = not 写 and ((first in _只读命令 and not re.search(r'\btee\b|-delete|-exec', w)) or (first == 'git' and sub in _只读git))
-            if not ok: return '不许改、删、移 .git/hooks、.git/config、githooks、~/.gitconfig、制作记录/证据（钩子和使用证据只能由正式程序改）'
+            if not ok: return '不许改、删、移 .git/hooks、.git/config、githooks、~/.gitconfig（钩子只能由正式程序改）'
     return None
 
 
@@ -165,14 +154,6 @@ def 判(kind, d, 仓库=PV):
         p = os.path.abspath(str(ti.get('file_path') or ti.get('notebook_path') or ''))
         if re.search(r'/\.git(/|$)|/\.gitconfig$', p):
             return 拦('PreToolUse', '【规则执行闸门】K16：不许直接改 .git/ 下的文件或 ~/.gitconfig（提交钩子、git 配置只能由 开工提醒.sh、推送两仓库.sh 设）。')
-        if '/制作记录/证据/' in p:
-            return 拦('PreToolUse', '【G60 证据闸门】使用证据只能由正式入口（开工记录、生成文本、草稿声音.sh、交付核查、定稿流水线）写，不许手写。')
-        try:
-            sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))); import 会话开工 as _HK
-            r = _HK.读记录() or {}; rel = re.sub(r'^.*?/(?=(视频/工具/|\.github/|\.claude/))', '', p)
-            if r.get('角色') in ('出稿', '改稿') and _HK.门程序(rel):
-                return 拦('PreToolUse', f'【G61 会话角色闸门】本会话是“{r["角色"]}”会话，不许改门程序 {rel}（G25：程序不好写进 NN.md 方法复盘 + 报坑.py 登记，由改门会话改）。')
-        except Exception: pass
         return None
     if kind == '已约唤醒':   # K34：send_later 之后记下（PostToolUse），收工闸门据此放行
         a = _读账(); a['唤醒'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
@@ -185,10 +166,6 @@ def 判(kind, d, 仓库=PV):
         return None
     if kind == '收工':
         if d.get('stop_hook_active'): return None
-        a = _读账(); rq = a.get('请求', []); last = max((r.get('时刻', '') for r in rq), default='')
-        if last and a.get('唤醒', '') < last:   # K34：GitHub 写回结果（API 提交）不触发 PR 事件、不会唤醒会话（2026-10-26 空等 2 小时 20 分、改门锁过期）
-            return 拦('Stop', f'【K34 云端请求闸门】推了 GitHub 请求（{rq[-1].get("名字", "")}，{last}）还没约唤醒：GitHub 写回结果不会唤醒会话。'
-                     '先用 send_later（claude-code-remote）约约 20 分钟后叫回自己，再收工。')
         if not os.path.isdir(仓库): return None
         r = subprocess.run(['git', '-c', 'core.quotepath=off', '-C', 仓库, 'status', '--porcelain', '--', '视频', 'CLAUDE.md', '新版定稿'],
                            capture_output=True, text=True).stdout
@@ -202,11 +179,9 @@ def 判(kind, d, 仓库=PV):
                 chg = [x for x in df.splitlines() if x[:1] in '+-' and not x.startswith(('+++', '---'))]
                 if chg and all('进行中' in x for x in chg): continue
             ch.append(l)
-        if ch and 在途补丁(仓库):   # K66：改动 = 已推 GitHub、还没 --收 的改门推送补丁：等 GitHub 回来 推请求.py --收（照守则3 现在推送两仓库，--收 时补丁就对不上了）
-            ch = []
         if ch:
-            return 拦('Stop', f'【守则3 收工闸门】还有 {len(ch)} 个改动没推送（如 {ch[0][3:][:60]}）：'
-                     '先 bash 视频/工具/推送两仓库.sh "说明"（会先过规则执行核查），再收工。')
+            return 提醒(f'【守则3 收工提醒（只提醒，不拦）】还有 {len(ch)} 个改动没推送（如 {ch[0][3:][:60]}）：'
+                     '先 bash 视频/工具/推送两仓库.sh "说明"（先查快测印章）。')
         # 方法进化闸门（守则12/T29，用户 2026-10-23：“我们的方法一定要不断的进化……这次做完，你就下一步想……还有没有能够去进化的地方”）：
         # 今天改过工具，《制作硬性标准与踩坑总结》的方法升级记录里就要有今天的一行（哪件手工活变成了程序、哪里还能更省）
         今天 = datetime.datetime.utcnow().strftime('%Y-%m-%d')
@@ -214,8 +189,8 @@ def 判(kind, d, 仓库=PV):
         try: 记 = open(f'{仓库}/视频/制作硬性标准与踩坑总结.md').read().split('方法升级记录', 1)[1]
         except Exception: 记 = ''
         if 改 and f'- {今天}' not in 记:
-            return 拦('Stop', f'【方法进化闸门】今天改了 {len(改)} 次工具，《制作硬性标准与踩坑总结》“方法升级记录”里还没有今天（{今天}）的一行：'
-                     '写清哪件手工活变成了程序、哪个门改成了查用户看到的东西、下一步哪里还能更省，推送后再收工。')
+            return 提醒(f'【方法进化提醒（只提醒，不拦）】今天改了 {len(改)} 次工具，《制作硬性标准与踩坑总结》“方法升级记录”里还没有今天（{今天}）的一行：'
+                     '写清哪件手工活变成了程序、哪个门改成了查用户看到的东西、下一步哪里还能更省，推送。')
         return None
     return None
 

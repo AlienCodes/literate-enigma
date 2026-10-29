@@ -3,6 +3,7 @@
 从 制作记录/NN.md 的“开工时刻：…（UTC）”起，用 token账本.py 算这篇花了多少等效 token、调用几次，写进“## token 记录”。
 交付核查 出片后 自动调用（不用记着手动跑）。用法：python3 收工记录.py NN"""
 import sys, re, os, subprocess, datetime
+if os.environ.get('XG_QUICKTEST'): sys.exit(print('（快测里：不写制作记录）'))   # 快测只写临时目录，不碰主仓库的制作记录（主会话 2026-10-29）
 V = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); sys.path.insert(0, f'{V}/工具'); import 方法进化表 as JH   # G65
 if '--只会话' in sys.argv:   # 改门、主会话没有当前篇：只写本会话的进化记录（篇 = 角色）
     a = sys.argv.index('--只会话'); JH.写会话(sys.argv[a + 1] if len(sys.argv) > a + 1 else (JH.角色() or '会话')); sys.exit(0)

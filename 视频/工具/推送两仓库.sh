@@ -3,18 +3,15 @@
 # → 提交 → 推送两边 → 用 git 记录的文件指纹比对两边 视频/ 逐文件一致（不再逐个读大视频，几秒完成）。
 # 用法：bash 视频/工具/推送两仓库.sh "提交说明"
 set -e
-trap 'rc=$?; [ $rc -ne 0 ] && [ -f "${PUSH_P:-/home/user/postgraduate-vocabulary}/视频/工具/丝滑.py" ] && python3 "${PUSH_P:-/home/user/postgraduate-vocabulary}/视频/工具/丝滑.py" 记 推送两仓库 - "推送两仓库.sh 停下（退出码 $rc；$Z_CMD）" 不丝滑 2>/dev/null; exit $rc' EXIT
-trap 'Z_CMD="停在第 $LINENO 行：${BASH_COMMAND:0:160}"' ERR   # K56：不丝滑要记下停在哪一行、哪条命令（以前只写“退出码 1”，事后查不出原因）   # K 丝滑记录：推送停下都不是稿子的问题
 exec 9>${PUSH_LOCK:-/tmp/推送两仓库.lock}; flock 9   # 几篇同时做时排队推送（推送自检用自己的锁，否则在推送里跑自检会自己等自己）
 P=${PUSH_P:-/home/user/postgraduate-vocabulary}; L=${PUSH_L:-/home/user/literate-enigma}; B=${PUSH_B:-claude/adoring-hamilton-5qskmm}   # PUSH_* 只给 推送自检.py 在假仓库里测用
 T=$'\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01XbsiuYS9p9y2vNiB4h6ZZU'
 cd $P
-# 规则执行机器（CLAUDE.md 第16条）：提交前先过；git 提交钩子也装上（新容器、别的会话同样生效）
+# git 提交钩子装上（新容器、别的会话同样生效）：提交前只查快测印章，对不上自动跑快测
 git -C $P config core.hooksPath 视频/工具/githooks; git -C $L config core.hooksPath 视频/工具/githooks 2>/dev/null
-if [ "$(python3 -c "import sys;sys.path.insert(0,'$P/视频/工具');print(__import__('管道').看门停用())")" = True ]; then python3 $P/视频/工具/新管/印章.py || { echo "【停止】快测印章对不上：程序改过没过快测（python3 视频/工具/新管/快测.py）"; exit 1; }; python3 $P/视频/工具/报坑.py --查 || { echo "【停止】报坑登记有硬问题（撞号、总表新行没取号，G54）；超期没入表的只提醒、不拦（用户 2026-10-29：“直接一刀切把它砍掉了”）"; exit 1; }; else python3 $P/视频/工具/规则执行核查.py; fi || { echo "【停止】规则执行核查不通过，不推送（先给新规矩、新坑配好门和自检）"; exit 1; }
+[ ! -f $P/视频/工具/新管/印章.py ] || python3 $P/视频/工具/新管/印章.py --自动 || { echo "【停止】快测不通过（有检查坏了，属于质量问题）：先修好再推"; exit 1; }   # 印章对不上自动跑快测，过了接着推（用户 2026-10-29）
+python3 $P/视频/工具/报坑.py --查 > /dev/null 2>&1 || echo "（提醒：报坑登记有撞号或总表新行没取号，python3 视频/工具/报坑.py --查 看；只提醒，不拦）"
 git add -A 视频 CLAUDE.md 新版定稿   # 新版定稿：文章本身也会改（撞词去掉重点词等）；路径不存在 git 会报错，set -e 当场停（G3：不许悄悄没提交）
-if git diff --cached --name-only | grep -qE '^视频/工具/.*\.(py|sh)$'; then   # G54：推门程序的会话先把超期没入表的坑收进总表
-  python3 -c "import sys;sys.path.insert(0,'$P/视频/工具');sys.exit(0 if __import__('管道').看门停用() else 1)" || python3 $P/视频/工具/报坑.py --查 --严 || { echo "【停止】这次推送改了门程序，但有报坑登记超期还没进踩坑总表（G54）：先写进总表、配门"; git reset -q; exit 1; }; fi
 big=$(git diff --cached --name-only -z | xargs -0 -r du -b 2>/dev/null | awk '$1>95*1024*1024{print $2}')
 [ -z "$big" ] || { echo "【停止】有文件超过 GitHub 单个文件 100MB 上限（G1）：$big——先拆成几段（附 SHA256 和还原脚本）"; git reset -q; exit 1; }
 if ! git diff --cached --quiet; then git commit -qm "$1$T"; fi
