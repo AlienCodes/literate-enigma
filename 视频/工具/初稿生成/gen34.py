@@ -6,7 +6,7 @@ S=[
      "（a 29-year-old Moscow coder：同位语，补充说明 Alexey Pajitnov）"],
     [[("grew","渐渐变得"),("**engrossed in**","**全神贯注于**(engrossed in)"),("a","一个"),("**diversion** he had built.","他自己此前编写出来的**消遣（游戏）**(diversion)。")],
      "（engrossed in：全神贯注于；专心致志于；沉浸于；\nhe had built：定语从句，省略了关系代词，修饰 diversion）"]]),
-(1,[[[("His","他那台"),("**primitive**","**简陋的**(primitive)"),("Elektronika 60","Elektronika 60"),("had","配备了"),("a","一块"),("**purely**","**纯粹地**(purely)"),("**textual**","**文本的**(textual)"),("display,","显示屏，")],
+(1,[[[("His","他那台"),("**primitive**","**简陋的**(primitive)"),("Elektronika 60","Elektronika 60"),("had","只有"),("a","一块"),("**purely**","**纯粹地**(purely)"),("**textual**","**文本的**(textual)"),("display,","显示屏，")],
      "（Elektronika 60：一种计算机型号；\na purely textual display：只能显示文字的屏幕）"],
     [[("so","所以"),("every","每一个"),("**geometric**","**几何**(geometric)"),("piece","方块，"),("of four **tiles**","由四个**小格**(tiles)组成的，"),("was **assembled from** **characters**.","都是**由**(assembled from)**字符**(characters)**拼装而成的**(assembled from)。")],
      "（of four tiles：of 结构作后置定语，修饰 piece；\nbe assembled from…：由……拼成）"]]),
