@@ -21,7 +21,7 @@ S=[
 (2,[[[("In the Soviet Union,","在前苏联，")],
      "（the Soviet Union：苏联，1991年解体，中文常称“前苏联”）"],
     [[("the state,","国家，"),("not its **salaried**","而不是领**工资的**(salaried)"),("**designer**,","**设计者**(designer)，"),("was the **proprietor** of this **intellectual property**,","是这份**知识产权**(intellectual property)的**所有者**(proprietor)，")],
-     "（not its salaried designer：插入语，和 the state 对比；\nintellectual property：知识产权）"],
+     "（因为在当时的苏联体制下，他作为领薪水的员工，\n在工作期间用单位电脑写出的游戏属于“职务发明”，\n按法律规定知识产权全归国家所有，他个人无权占有。）"],
     [[("and","而"),("Pajitnov","帕基特诺夫"),("held no **entitlement** to it.","对它没有任何**权利**(entitlement)。")],
      "（hold no entitlement to…：对……没有任何权利）"]]),
 (2,[[[("Copies","拷贝"),("**mushroomed** **freely**","**不受限制地**(freely)**如蘑菇般迅速涌现**(mushroomed)，")],
@@ -38,7 +38,7 @@ S=[
      "（hawk：叫卖，兜售；rights he did not yet…：\n定语从句，省略了关系代词，修饰 rights）\n（一个西方商人因为不懂苏联国情，\n连真正的版权老板是谁都没搞清楚，\n就开始满世界疯狂转卖版权，但他手里其实根本没有合法的版权。）"]]),
 (3,[[[("The rights","这些版权"),("were **shuffled** **onward** through a **chaotic** **muddle**","在**混乱的**(chaotic)**一团糟**(muddle)中，被**持续地**(onward)**洗牌式地来回倒手**(shuffled)，")],
      "（shuffle：洗牌，来回倒手；onward：向前，持续往下；\na chaotic muddle of…：一团……的混乱）"],
-    [[("of **overlapping** deals among Western firms,","由西方公司彼此之间的**重叠**(overlapping)交易所导致，")],
+    [[("of **overlapping** deals among Western firms,","因为由西方公司之间**重叠的**(overlapping)交易而导致了这种情况，")],
      "（among Western firms：后置定语，修饰 deals）"],
     [[("one","其中一家公司"),("owned by","归"),("the **magnate**","**大亨**(magnate)"),("Robert Maxwell.","罗伯特·马克斯韦尔所有。")],
      "（one owned by…：one 指其中一家公司，\nowned by…：过去分词短语作后置定语）"]]),
@@ -56,7 +56,7 @@ S=[
      "（scoop：抢先获得；\nthen worldwide console rights：省略了 scooped）"]]),
 (5,[[[("**Nintendo**","**任天堂**(Nintendo)"),("**bundled** **Tetris** with its **pocket-sized** Game Boy,","把**俄罗斯方块**(Tetris)和它那款**口袋大小的**(pocket-sized) Game Boy **捆绑**(bundled)销售，")],
      "（bundle A with B：把 A 和 B 捆绑在一起（销售））"],
-    [[("and that version","这个版本"),("shipped","出货"),("over 35 million copies.","超过3,500万份。")],
+    [[("and that","这个"),("**version**","**版本**(version)"),("shipped","出货"),("over 35 million copies.","超过3,500万份。")],
      "（ship：发货，出货；over：超过）"]]),
 (5,[[[("Pajitnov","帕基特诺夫"),("**reaped**","**收获**(reaped)"),("none of","不到一点"),("the **spoils**","那些**战利品**(spoils)（即收益），"),("for years.","多年来始终如此。")],
      "（背景：帕基特诺夫是1984年在苏联科学院写出的这个游戏。\n因为当时苏联是公有制，他是在上班摸鱼写的，所以游戏版权归国家。\n后来这游戏火遍全球，赚了无数钱，作为发明者的他\n却因为身处苏联体制内，一分钱分红都拿不到。）"]]),
@@ -80,7 +80,7 @@ S=[
 ]
 # S9 第2块高亮开始 73.68：2026-10-29 逐 20 ms 看实际声音，muddle 的 /l/ 在 73.64–73.66 落到最低（62.5 dB），73.68 起 of 的元音回升（63.6 dB、重心 1.1 kHz），两种办法 73.67/73.69 一致
 CONF={"合组":{
- "S9 of overlapping deals among Western firms":"对齐不了：用户 2026-10-29 改稿原话定的译法“由西方公司彼此之间的重叠交易所导致”，among Western firms 后置定语提到 deals 前，“所导致”是 of 引出原因，拆开不通",
+ "S9 of overlapping deals among Western firms":"对齐不了：用户 2026-10-29 改稿原话定的译法“因为由西方公司之间重叠的交易而导致了这种情况”，among Western firms 后置定语提到 deals 前，“所导致”是 of 引出原因，拆开不通",
  "S9 were shuffled onward through a chaotic muddle of overlapping deals among Western firms":"对齐不了：用户 2026-10-29 改稿原话定的语序“在西方公司之间彼此重叠交易的混乱的一团糟中，被持续地洗牌式地倒手”，地点、后置定语、介词短语全部提到动词前，和英文完全倒序，拆开不通",
  "S2 was assembled from characters":"对齐不了：被动 be assembled from A 中文“由 A 拼装而成”（用户 2026-10-29 改稿原话），材料 from characters 必须放到动词前；assembled from 被隔开的“由”和“拼装而成的”两处都标（T23）",
  "S4 a fusion of the Greek tetra- and tennis":"对齐不了：a fusion of A and B 中文“A 和 B 的融合”，of 结构语序必须倒过来；tetra-、tennis 两个词保留英文原形",
@@ -91,7 +91,7 @@ CONF={"合组":{
  "S15 His earnings began only after his arrangement's expiry around 1995":"对齐不了：only after A, B 中文“直到 A 之后，才 B”，时间状语必须提前，“才开始有收入”放到最后",
  "S17 spread for nothing":"对齐不了：for nothing 是方式状语，中文“免费四处流传”必须放到动词前"},
 "对齐":{
- "S9-2 of overlapping deals among Wes":"用户 2026-10-29 改稿原话定的译法“由西方公司彼此之间的重叠交易所导致”，among Western firms 是后置定语，必须提到 deals 前；of 引出原因，“所导致”放最后，语序必须倒过来",
+ "S9-2 of overlapping deals among Wes":"用户 2026-10-29 改稿原话定的译法“因为由西方公司之间重叠的交易而导致了这种情况”，among Western firms 是后置定语，必须提到 deals 前；of 引出原因，“所导致”放最后，语序必须倒过来",
  "S9-1 were shuffled onward through a":"用户 2026-10-29 改稿原话定的语序，介词短语 through a chaotic muddle of overlapping deals among Western firms 整体提到“被持续地洗牌式地倒手”前面，语序必须倒过来",
  "S1-2 diversion he had built.":"he had built 是省略关系代词的定语从句，修饰 diversion，中文“他自己此前编写出来的消遣（游戏）”从句必须提前（用户 2026-10-29 改稿原话定的译法）",
  "S4-2 a fusion of the Greek tetra- a":"a fusion of A and B 中文“A 和 B 的融合”，of 结构语序必须倒过来",

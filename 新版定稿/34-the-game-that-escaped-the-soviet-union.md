@@ -10,7 +10,7 @@ In 1986 Robert Stein, an **enterprising** British **software** **vendor**, **stu
 
 In February 1989 Henk Rogers, a **resourceful** Dutch-born **publisher**, reached **Moscow** on a tourist **visa** and **found his way to** Elorg. Stein and Kevin Maxwell, the magnate's son, were in **Moscow** that same **hectic** week of **negotiations**, each a **bidder**. Pajitnov felt a **fondness** for Rogers, and **Nintendo** **scooped** the handheld rights, then worldwide **console** rights.
 
-**Nintendo** **bundled** **Tetris** with its **pocket-sized** Game Boy, and that version shipped over 35 million copies. Pajitnov **reaped** none of the **spoils** for years. His **earnings** began only after his **arrangement**'s **expiry** around 1995. In 1996 he and Rogers **founded** The Tetris Company to manage the rights.
+**Nintendo** **bundled** **Tetris** with its **pocket-sized** Game Boy, and that **version** shipped over 35 million copies. Pajitnov **reaped** none of the **spoils** for years. His **earnings** began only after his **arrangement**'s **expiry** around 1995. In 1996 he and Rogers **founded** The Tetris Company to manage the rights.
 
 The man whose **puzzle** once spread for nothing later helped decide who could sell it.
 
@@ -24,7 +24,7 @@ The man whose **puzzle** once spread for nothing later helped decide who could s
 
 1989年2月，亨克·罗杰斯，一位**足智多谋的**(resourceful)荷兰裔**发行商**(publisher)，持旅游**签证**(visa)来到**莫斯科**(Moscow)，**设法找到了**(found his way to) Elorg。（a resourceful Dutch-born publisher：同位语，补充说明 Henk Rogers）（on a tourist visa：持旅游签证；find one's way to…：设法找到……）斯坦因和凯文·马克斯韦尔，那位大亨的儿子，都在**莫斯科**(Moscow)，就在同一个**忙乱的**(hectic)**谈判**(negotiations)周里，各自都是**竞标者**(bidder)。（the magnate's son：同位语，补充说明 Kevin Maxwell）（that same hectic week…：时间状语；each a bidder：each 指两人各自）帕基特诺夫对罗杰斯颇有**好感**(fondness)，**任天堂**(Nintendo)**抢得/抢下了**(scooped)掌机版权，后来又拿下了全球**游戏主机**(console)版权。（feel a fondness for…：对……有好感；Rogers：即亨克·罗杰斯，任天堂的合作商与版权谈判代表）（scoop：抢先获得；then worldwide console rights：省略了 scooped）
 
-**任天堂**(Nintendo)把**俄罗斯方块**(Tetris)和它那款**口袋大小的**(pocket-sized) Game Boy **捆绑**(bundled)销售，这个版本出货超过3,500万份。（bundle A with B：把 A 和 B 捆绑在一起（销售））（ship：发货，出货；over：超过）帕基特诺夫**收获**(reaped)不到一点那些**战利品**(spoils)（即收益），多年来始终如此。（背景：帕基特诺夫是1984年在苏联科学院写出的这个游戏。因为当时苏联是公有制，他是在上班摸鱼写的，所以游戏版权归国家。后来这游戏火遍全球，赚了无数钱，作为发明者的他却因为身处苏联体制内，一分钱分红都拿不到。）直到1995年前后他的**协议**(arrangement)**到期**(expiry)之后，他才开始有**收入**(earnings)。（背景：苏联解体后，情况变了。但因为他早年签过一些关于授权的“协议（arrangement）”，这些协议的约束力一直持续到1995年左右。等这份束缚他的旧协议终于过期作废了，他才终于开始堂堂正正地拿到属于自己的钱。）1996年，他和罗杰斯**成立/创办了**(founded)俄罗斯方块公司，来管理这些版权。（罗杰斯(Rogers)当年是代表任天堂去莫斯科，从苏联官方手里买下了版权；而他和帕基特诺夫因为这场谈判成了生死之交。多年后合同到期，两人合伙开公司，才真正把版权拿回了发明者自己手中。）
+**任天堂**(Nintendo)把**俄罗斯方块**(Tetris)和它那款**口袋大小的**(pocket-sized) Game Boy **捆绑**(bundled)销售，这个**版本**(version)出货超过3,500万份。（bundle A with B：把 A 和 B 捆绑在一起（销售））（ship：发货，出货；over：超过）帕基特诺夫**收获**(reaped)不到一点那些**战利品**(spoils)（即收益），多年来始终如此。（背景：帕基特诺夫是1984年在苏联科学院写出的这个游戏。因为当时苏联是公有制，他是在上班摸鱼写的，所以游戏版权归国家。后来这游戏火遍全球，赚了无数钱，作为发明者的他却因为身处苏联体制内，一分钱分红都拿不到。）直到1995年前后他的**协议**(arrangement)**到期**(expiry)之后，他才开始有**收入**(earnings)。（背景：苏联解体后，情况变了。但因为他早年签过一些关于授权的“协议（arrangement）”，这些协议的约束力一直持续到1995年左右。等这份束缚他的旧协议终于过期作废了，他才终于开始堂堂正正地拿到属于自己的钱。）1996年，他和罗杰斯**成立/创办了**(founded)俄罗斯方块公司，来管理这些版权。（罗杰斯(Rogers)当年是代表任天堂去莫斯科，从苏联官方手里买下了版权；而他和帕基特诺夫因为这场谈判成了生死之交。多年后合同到期，两人合伙开公司，才真正把版权拿回了发明者自己手中。）
 
 那个人他的**益智游戏**(puzzle)曾经免费四处流传，然而后来他却参与了决定谁能够卖它。（whose puzzle…：定语从句，修饰 The man；for nothing：免费；who could sell it：宾语从句）（简述：1984年，苏联程序员帕基特诺夫在只能显示文字的老旧电脑上，敲出了《俄罗斯方块》。但因当时的苏联体制，游戏版权归国家所有，他本人毫无权利，游戏只能靠软盘在“东欧集团”内无偿疯传。1986年，英国商人斯坦因在匈牙利发现了这款游戏。他因对苏联体制一无所知，完全不知道真正掌管版权的国家机关是 Elorg，便草率地将自己尚未合法拥有的版权倒卖给了西方各家游戏公司。1989年，罗杰斯代表任天堂亲赴莫斯科，直接找到了真正的版权方 Elorg。在一番激烈的谈判与争夺后，任天堂一举拿下了掌机与主机版权。随后，Game Boy版《俄罗斯方块》狂销超3,500万份。然而，作为发明者的帕基特诺夫却多年分文未得，直到1995年旧协议到期。1996年，他终于与挚友罗杰斯合伙成立了“俄罗斯方块公司”，彻底将版权握回了自己手中。）
 
@@ -92,6 +92,7 @@ The man whose **puzzle** once spread for nothing later helped decide who could s
 | expiry | 本文：到期；n. 期满，到期（the expiry date） | 5 |
 | earnings | 本文：收入；n. 收入，收益（annual earnings） | 5 |
 | founded | 本文：成立/创办了；v. (found) 成立，创办（found a company） | 5 |
+| version | 本文：版本；n. 版本（the latest version） | 5 |
 | puzzle | 本文：益智游戏；n. 益智游戏；谜（a jigsaw puzzle） | 6 |
 
 ## 史实与来源
