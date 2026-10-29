@@ -5,7 +5,7 @@
 数字两边都去掉逗号和序数词尾（13th / 13）。读音对不上的词（漏词、多词、读错、吞音）列出来。
 用法（视频工作目录）：python3 机器复听.py NN [成片或 a.wav]；--自检 NN（把一句的一个词换成别的词的声音，必须报出这个词；原样不误报）
 """
-import os, sys, re, json, difflib, numpy as np
+import hashlib, os, sys, re, json, difflib, numpy as np
 try: import soundfile as sf; from scipy.signal import resample_poly   # 重依赖只有真听声音时才要；--比较自检 在只有标准库 + numpy 的容器（主会话）也能跑
 except ImportError: sf = resample_poly = None
 T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T)
@@ -279,8 +279,13 @@ if __name__ == '__main__':
     if sys.argv[1:2] == ['--清单']: 清单(sys.argv[2]); sys.exit(0)
     if sys.argv[1:2] == ['--带自检']:
         r0, f = 带自检(sys.argv[2]); bad = [(k, b) for k, _, b in r0 if b]
+        # K126（34）：识别器听不准、会话已逐段实测写了依据的句子（核对确认.机器复听["S14"] = {配音指纹, 依据}）不拦出片，进疑点表交用户听；配音一变就作废
+        _no = sys.argv[2]; _fp = hashlib.md5(open(f'work_{_no}/a.wav', 'rb').read()).hexdigest()[:12]
+        _cf = json.load(open(f'scripts/{_no}.json')).get('核对确认', {}).get('机器复听', {})
+        人听 = [(k, b) for k, b in bad if isinstance(_cf.get(k), dict) and _cf[k].get('配音指纹') == _fp and len(str(_cf[k].get('依据', ''))) >= 20]
+        bad = [x for x in bad if x not in 人听]
         print(('✘ 机器复听 自检：' + '；'.join(f)) if f else f'✔ 机器复听 自检：吞掉一句最长一段的中间七成，{"、".join(路名)} 每一路都报')
-        print(f'机器复听 {len(r0)} 句：读音对不上的 {len(bad)} 句' + (f'；单路并词交用户听 {len(并词记录)} 处（' + '；'.join(f'{k} 脚本“{x}” 一路听成“{y}”、别的路逐词听对' for k, x, y in 并词记录) + '）' if 并词记录 else ''))
+        print(f'机器复听 {len(r0)} 句：读音对不上的 {len(bad)} 句' + (f'；实测写了依据交用户听 {len(人听)} 句（' + '；'.join(f'{k} ' + '、'.join(f'“{x}”听成“{y}”' for x, y in b) for k, b in 人听) + '）' if 人听 else '') + (f'；单路并词交用户听 {len(并词记录)} 处（' + '；'.join(f'{k} 脚本“{x}” 一路听成“{y}”、别的路逐词听对' for k, x, y in 并词记录) + '）' if 并词记录 else ''))
         for k, b in bad: print(f'  {k}：' + '；'.join(f'脚本“{x}” 听到“{y}”' for x, y in b))
         sys.exit(2 if f else (1 if bad else 0))
     a_ = sys.argv[1:]

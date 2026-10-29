@@ -71,7 +71,7 @@ c, o = 跑('出片', ['python3', 'make_video.py', f'scripts/{no}.json', f'{no}.m
 if c: 停('④ 出 1080p', o.strip().splitlines()[-10:])
 # ⑤
 c, o = 跑('出片后', ['python3', f'{T}/交付核查.py', no, '出片后'])
-疑点 += [('机器复听（单路并词，交用户听）', l.strip()) for l in o.splitlines() if '单路并词交用户听' in l]   # K111
+疑点 += [('机器复听（单路并词，交用户听）', l.strip()) for l in o.splitlines() if '交用户听' in l]   # K111、K126（实测写了依据的句子也交用户听）
 _疑, _停 = 分流.出片后(o, c)   # K112 白名单：只有“自动音频检查”下面全是响度骤降才算疑点，别的一律停
 if _停: 停('⑤ 出片后核查', ['✘ ' + b.strip()[:400] for b in _停])
 疑点 += [('响度骤降（剪成试听交用户听）', l) for l in _疑]
