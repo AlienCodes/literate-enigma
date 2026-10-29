@@ -7,7 +7,7 @@ S=[
     [[("a **bleach**","这是一种**漂白剂**(bleach)，"),("to make","用来让"),("the air","空气"),("**tolerable**.","变得**可以忍受**(tolerable)。")],
      "（a bleach…：同位语，补充说明 chloride of lime；\nmake + 宾语 + 形容词：使……变得……）"]]),
 (1,[[[("The Thames","泰晤士河"),("**festered**,","正在**溃烂发臭**(festered)，"),("and","而"),("MPs","议员们"),("**contemplated**","**考虑**(contemplated)过"),("moving out.","搬离这里。")],
-     "（contemplate doing…：考虑做……；\nMP：议员，即 Member of Parliament）"]]),
+     "（contemplate doing…：考虑做……；\nMP：议员，即 Member of Parliament）\n（contemplate 指深入、反复权衡的“仔细考虑”，\n或陷入“沉思/凝视”\n（比普通的 think 更有深度和画面感））"]]),
 (2,[[[("The river","这条河"),("had become","已经成了"),("London's","伦敦的"),("**lavatory**.","**厕所**(lavatory)。")],
      "（had become：过去完成时，表示到那时已经……）"]]),
 (2,[[[("**Antiquated**","**老旧的**(Antiquated)"),("sewers","下水道"),("and","和"),("**outlets**","**排污口**(outlets)"),("**discharged**","**排放**(discharged)"),("the **untreated**","**未经处理的**(untreated)"),("**sewage**","**污水**(sewage)，"),("of","它们来自"),("some three million","约三百万"),("city **dwellers**","城市**居民**(dwellers)，"),("into","排入"),("its **currents**,","河的**水流**(currents)中，")],
