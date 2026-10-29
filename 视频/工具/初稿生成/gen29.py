@@ -22,7 +22,7 @@ S=[
      "（tens of thousands more 后面省略了 died；die of…：死于……；\nin the aftermath：在随后的余波中，指灾难过后的一段时间）"]]),
 (3,[[[("The **volcano**","这座**火山**(volcano)"),("**pumped**","**泵入了**(pumped)"),("**prodigious** quantities of","**庞大**(prodigious)数量的"),("sulphur dioxide","二氧化硫，"),("from its **crater**","从它的**火山口**(crater)"),("into the stratosphere,","送进平流层，")],
      "（pump A from B into C：把 A 从 B 泵入 C；\nprodigious：（范围，规模，程度）巨大的，庞大的）"],
-    [[("where","在那里，"),("it","它们"),("formed","形成了"),("sulphate","硫酸盐"),("aerosols","气溶胶，"),("that **blanketed**","像毯子一样**笼罩了**(blanketed)"),("the globe,","全球，")],
+    [[("where","在那里，"),("it","它们"),("formed","形成了"),("sulphate","硫酸盐"),("**aerosols**","**气溶胶**(aerosols)，"),("that **blanketed**","像毯子一样**笼罩了**(blanketed)"),("the globe,","全球，")],
      "（where 引导非限制性定语从句，修饰 the stratosphere；\nthat blanketed the globe：定语从句，修饰 sulphate aerosols）"],
     [[("reflecting","反射"),("**sunshine**","**阳光**(sunshine)，"),("and **thereby**","**从而**(thereby)"),("**lowering**","**降低了**(lowering)"),("temperatures **world-wide**.","**全世界**(world-wide)的气温。")],
      "（reflecting… and thereby lowering…：两个现在分词短语作结果状语；\nworld-wide：副词，在全世界范围内）"]]),
