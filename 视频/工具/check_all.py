@@ -139,12 +139,22 @@ T12全篇_起 = 25   # T12（用户 2026-10-24：“这个撞车检查肯定要�
                   # 2026-10-25：“查撞车清单是70篇，全部都查给70篇……所有的重点词汇全部都查，不是说只查已经做完的”）：
                   # 25 起，本篇所有重点词和 新版定稿 全部篇目的所有重点词比（做了视频的按脚本，没做的按 md 加粗）；01–24 已定稿的照旧（只比新加的、做了视频的），不回头改，列进撞车清单
 def _加粗(t): return re.findall(r'\*\*([^*]+)\*\*',t)
+def 句重点词(s):
+    """K119（31 改稿 take on 误报撞 25 的 took）：一句的重点词，被隔开标的短语（英文 **took** **refuge** **in**、中文标 (took refuge in)）合成一个短语，
+    不拆成 took、refuge、in 单个比（和 render 句单元 同一个认法：中文标记里的多词英文、每个词在这句英文里都加粗）"""
+    ens=[b for c in s['chunks'] for b in _加粗(c['en'])]; low={b.lower() for b in ens}; 并=[]
+    for c in s['chunks']:
+        for k in re.findall(r'\(([A-Za-z][^()]*\s[^()]*)\)', c.get('zh','')):
+            ps=k.split()
+            if len(ps)>1 and all(p.lower() in low for p in ps) and k.lower() not in low and k not in 并: 并.append(k)
+    拆={p.lower() for k in 并 for p in k.split()}
+    return 并+[b for b in ens if b.lower() not in 拆]
 def 篇重点词(n, root=ROOT):
     """第 n 篇的全部重点词（去掉用户同意保留的 allow_clash）：做了视频的按脚本英文，没做的按文章英文加粗"""
     js_=f'{root}/视频/脚本/{n}.json'
     if os.path.exists(js_):
         d_=json.load(open(js_)); ac_={x.lower() for x in d_.get('allow_clash',[])}
-        ws=[b for s in d_['sentences'] for c in s['chunks'] for b in _加粗(c['en'])]
+        ws=[b for s in d_['sentences'] for b in 句重点词(s)]
     else:
         mds=glob.glob(f'{root}/新版定稿/{n}-*.md'); ac_=set()
         ws=_加粗(open(mds[0]).read().split('## 英文',1)[1].split('## 中文',1)[0]) if mds else []
@@ -165,7 +175,7 @@ def 撞车(d, no, others, orig):
     """返回 (撞车, 待判)。25 起本篇所有重点词都比、待判也报；01–24 只比新加的、只报撞车"""
     new_only=int(no)<T12全篇_起; hit, ask = [], []
     ac_={x.lower() for x in d.get('allow_clash',[])}
-    for b in dict.fromkeys(b for s in d['sentences'] for c in s['chunks'] for b in _加粗(c['en'])):
+    for b in dict.fromkeys(b for s in d['sentences'] for b in 句重点词(s)):
         if b.lower() in ac_ or (原有(b, orig) if not new_only else b.lower() in orig): continue   # 原稿就有的重点词（含 T22 扩成的短语）撞车：不去掉、不停，写进制作记录“## 撞车提醒”告诉用户（J，用户 2026-10-25）
         for n, o in others.get(ckey(b) or '', []):
             v=同词(b, o) if not new_only else ('撞车' if 旧键(b) and 旧键(b)==旧键(o) else None)   # 01–24：沿用原先的判法（已定稿的结果不变，按新判法的列进撞车清单）
@@ -236,6 +246,12 @@ def 自检T12():
         h16,_=撞车({'sentences':[{'chunks':[{'en':'**scaled**'}]}]},'16',{ckey('scale'):[('15','scale')]},set())
         if h16: f.append('误报：01–24 已定稿篇目按新判法被拦（只列撞车清单，不改）')
     finally: _sh.rmtree(r, ignore_errors=True)
+    # K119（31 改稿 take on）：被隔开标的短语 took refuge in 合成一个短语，不拆成 took 单个比；短语对不同小品词的短语不撞车，单独标的 took 照算
+    _s1={'chunks':[{'en':'they **took** **refuge** **in** the module','zh':'他们**躲进**(took refuge in)登月舱'}]}
+    if 句重点词(_s1)!=['took refuge in']: f.append(f'没合成短语：**took** **refuge** **in** 拆成了 {句重点词(_s1)}（K119）')
+    _s2={'chunks':[{'en':'he **took** it','zh':'他**拿走了**(took)它'}]}
+    if 句重点词(_s2)!=['took']: f.append('误合：单独标的 took 不该变（K119）')
+    if 同词('took on','took refuge in') is not None: f.append('误报：took on 和 took refuge in 是两个短语（K119、G48）')
     return f
 if sys.argv[1:2]==['--写提醒']:
     n=sys.argv[2].zfill(2); _rt=sys.argv[sys.argv.index('--根')+1] if '--根' in sys.argv else ROOT; it=写提醒(n, _rt); print(f'第{n}篇 撞车提醒：{len(it)} 处，已写进 制作记录/{n}.md 的“## 撞车提醒”' + ''.join(f'\n  {b}：第 {m} 篇也加粗（{o}）' + ('，待用户判' if v=='待判' else '') for b,m,o,v in it)); sys.exit(0)
