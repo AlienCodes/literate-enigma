@@ -750,6 +750,12 @@
    "时刻": "2026-10-29T03:32Z",
    "会话": "session_01BA1TPEzQe8UQMLvRovuuCW",
    "现象": "29 交付核查 出片后 机器复听 误报：S6 脚本 sulphur、small.en 和 parakeet 都听到 sulfur（美式拼写）。配音实读 sˈʌlfɚ，与 CMU sulphur/sulfur 两种拼写同一读法 S AH1 L F ER0 完全一致；机器复听.py 拼写归一() 没有 ph→f（sulphur/sulfur、sulphate/sulfate），而 espeak 把 sulfur 注成 sˈʌlfɜː、sulphur 注成 sˈʌlfɚ，比读音也对不上 → 误判。"
+  },
+  {
+   "号": "K109",
+   "时刻": "2026-10-29T06:14Z",
+   "会话": "session_01BA1TPEzQe8UQMLvRovuuCW",
+   "现象": "29 做.sh ① 文本 G49 停：S6 用户加了重点词后同屏 11 个重点单元（volcano pumped prodigious sulphur-dioxide crater aerosols blanketed sunshine thereby lowering world-wide），PAL26 只有 10 色，同屏任意两个 ≥25° 不可能满足；同屏色差() 文档写“超过 7 个单元才许重复用色”，代码没实现；分色() 回溯失败后贪心放，连相邻 ≥60° 也不保证（aerosols↔blanketed 37°、sulphur dioxide↔crater 39°、sunshine↔thereby 30°）"
   }
  ],
  "预留": [

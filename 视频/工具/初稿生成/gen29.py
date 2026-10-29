@@ -34,13 +34,13 @@ S=[
      "（lie rotten：烂在那里，lay 是 lie 的过去式；\nsaturated：湿透的，这里指被雨水浸透）"],
     [[("**cereal**","**谷物**(cereal)"),("and bread","和面包"),("prices","价格"),("**escalated**,","**飞涨**(escalated)，")],
      "（三个分句并列：Crops failed…, prices escalated, and … followed）"],
-    [[("and **scarcity**,","(物资)**短缺**(scarcity)、"),("disease,","疾病"),("and **unrest**","和**动荡**(unrest)"),("followed.","随之而来。")],
+    [[("and **scarcity**,","（物资）**短缺**(scarcity)、"),("disease,","疾病"),("and **unrest**","和**动荡**(unrest)"),("followed.","随之而来。")],
      "（follow：接着发生，随之而来）"]]),
 (5,[[[("The **eighteen-year-old**","**十八岁的**(eighteen-year-old)"),("Mary Godwin,","玛丽·戈德温，"),("later Mary Shelley,","也就是后来的玛丽·雪莱，")],
      "（later Mary Shelley：同位语，补充说明 Mary Godwin 后来的名字）"],
     [[("had **set out** in May","5月间就已**启程**(set out)，"),("**alongside**","**结伴**(alongside)同行的有"),("Percy Bysshe Shelley","珀西·比希·雪莱"),("and Claire Clairmont.","和克莱尔·克莱蒙特。")],
      "（had set out：过去完成时，出发在6月之前；set out：出发，启程；\nalongside：介词，与……一起）"]]),
-(5,[[[("In her 1831 **preface**","在她1831年的(书的)**序言**(preface)里，"),("she","她"),("would **recollect**","**回忆**(recollect)说，"),("a **damp**,","那是一个**潮湿**(damp)、"),("**gloomy** summer","**阴沉的**(gloomy)夏天，")],
+(5,[[[("In her 1831 **preface**","在她1831年的（书的）**序言**(preface)里，"),("she","她"),("would **recollect**","**回忆**(recollect)说，"),("a **damp**,","那是一个**潮湿**(damp)、"),("**gloomy** summer","**阴沉的**(gloomy)夏天，")],
      "（would recollect：过去将来时，从1816年看，她要到1831年才写下这段回忆）"],
     [[("whose **torrents**","那个夏天的**倾盆大雨**(torrents)"),("often","常常"),("kept","把"),("the group","大家"),("indoors","困在屋里"),("for days.","好几天。")],
      "（whose 引导定语从句，修饰 summer；\nkeep sb indoors：使某人待在屋里）"]]),
@@ -73,7 +73,12 @@ CONF={
 "数字":{"S5-1 10,000":"10,000 读 ten thousand，中文按文章定稿写作“1万”，数值相同"},
 "方向":{"S2-1 after→读完":"After 的“之后”在本组最后一组（……的法文译本之后），中文“读完……之后”框架词必须放在后面，方向相同（之后）",
  "S5-2 more→又有数万人":"more 在这里是“另外还有”，中文“又有”同义，不是先后方向词"},
-"短语":{"S1 leased … on":"不是搭配：on 属于 on the outskirts of Geneva（在日内瓦郊外），说明租的宅邸的位置，不是 lease on",
+"同词异译":{"blew apart：炸/裂开来":"不是异译：blew itself apart 被 itself 隔开，中文“炸裂开来”拆在两处，同一个意思（T23 被隔开的意思每处都标）",
+ "know as：把/称作":"不是异译：know A as B 被 1816 隔开，中文“把……称作……”拆在两处，同一个意思（T23）",
+ "crops failed：庄稼/歉收":"不是异译：crops failed 中文“庄稼……歉收”被“要么”隔开，同一个意思（T23）"},
+"中文重复":{"倾盆大雨":"用户 2026-10-29 特批：downpour（S1，用户原话“这个地方 downpour 的意思改为倾盆大雨。”）和 torrents（S11，文章定稿）同用“倾盆大雨”，用户原话“几个都是特批的，这几个都是特批的，全都全都标注为重点词汇”（用户同意记录）"},
+"短语":{
+ "S10 set … in":"不是搭配：in 引出时间 in May（5月间），set out 已整体标","S1 leased … on":"不是搭配：on 属于 on the outskirts of Geneva（在日内瓦郊外），说明租的宅邸的位置，不是 lease on",
  "S1 leased … of":"不是搭配：of 属于 the outskirts of Geneva（日内瓦的郊外），和 leased 无关",
  "S1 outskirts … of":"不是搭配：the outskirts of A 是普通 of 结构（A 的郊外），outskirts 单独就是“郊外、郊区”",
  "S2 anthology … of":"不是搭配：an anthology of A 是普通 of 结构（A 的选集），anthology 单独就是“选集”",
@@ -92,9 +97,9 @@ CONF={
  "S7-1 the Year Without a Summer.":"the Year Without a Summer 是专名“无夏之年”，整体对应",
  "S10-2 had **set out** in May":"in May 是时间状语，中文“5月间就已启程”时间必须放在动词前面",
  "S15-1 the founding work of the scien":"the founding work of the science-fiction genre 中文“科幻体裁/类型的开山之作”，of 结构语序必须倒过来；founding work、science-fiction、genre 三个重点词因此同在一组（T34 倒装）"}}
-out={"no":"29","title_en":"The Volcano That Gave Us Frankenstein","title_zh":"一座火山，造出了《弗兰肯斯坦》","title_fx":{"hl":["Volcano","Frankenstein"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["tropical volcano","set out","crops failed","sulphur dioxide"],"说明放宽特批":{"S16":{"倍数":"整屏","依据":"用户 2026-10-28 特批：“29、30、31 结尾简述都整屏、字号放到最大”（用户同意记录）"}},
+out={"no":"29","title_en":"The Volcano That Gave Us Frankenstein","title_zh":"一座火山，造出了《弗兰肯斯坦》","title_fx":{"hl":["Volcano","Frankenstein"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["tropical volcano","set out","crops failed","Crops","crops","sulphur dioxide"],"说明放宽特批":{"S16":{"倍数":"整屏","依据":"用户 2026-10-28 特批：“29、30、31 结尾简述都整屏、字号放到最大”（用户同意记录）"}},
      "高亮按实际开口":True,"高亮开口门槛":40,
-     "术语":{"Villa Diodati":"迪奥达蒂别墅","Lord Byron":"拜伦勋爵","Geneva":"日内瓦","Mount Tambora":"坦博拉火山","Indonesian":"印度尼西亚","Sumbawa":"松巴哇岛","sulphur dioxide":"二氧化硫","stratosphere":"平流层","sulphate aerosols":"硫酸盐气溶胶","Europe":"欧洲","North America":"北美","Year Without a Summer":"无夏之年","Mary Godwin":"玛丽·戈德温","Mary Shelley":"玛丽·雪莱","Percy Bysshe Shelley":"珀西·比希·雪莱","Claire Clairmont":"克莱尔·克莱蒙特","John Polidori":"约翰·波利多里","The Vampyre":"《吸血鬼》","Darkness":"《黑暗》","Frankenstein":"《弗兰肯斯坦》"}}
+     "术语":{"Villa Diodati":"迪奥达蒂别墅","Lord Byron":"拜伦勋爵","Geneva":"日内瓦","Mount Tambora":"坦博拉火山","Indonesian":"印度尼西亚","Sumbawa":"松巴哇岛","sulphur dioxide":"二氧化硫","stratosphere":"平流层","sulphate":"硫酸盐","aerosols":"气溶胶","Europe":"欧洲","North America":"北美","Year Without a Summer":"无夏之年","Mary Godwin":"玛丽·戈德温","Mary Shelley":"玛丽·雪莱","Percy Bysshe Shelley":"珀西·比希·雪莱","Claire Clairmont":"克莱尔·克莱蒙特","John Polidori":"约翰·波利多里","The Vampyre":"《吸血鬼》","Darkness":"《黑暗》","Frankenstein":"《弗兰肯斯坦》"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)
