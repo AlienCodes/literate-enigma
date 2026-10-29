@@ -80,6 +80,7 @@ def 拼写归一(t):
     t = re.sub(r'(?<=[a-z])tre(s?)\b', r'ter\1', t); t = re.sub(r'(?<=[a-z])our(s|ed|ing|ful|ite|ites)?\b', r'or\1', t)
     t = re.sub(r'(?<=[a-z])is(e|es|ed|ing|ation|ations)\b', r'iz\1', t); t = re.sub(r'(?<=[a-z])ys(e|es|ed|ing)\b', r'yz\1', t)
     t = re.sub(r'(?<=[a-z])ogue(s?)\b', r'og\1', t); t = re.sub(r'(?<=[aeiou])ll(ed|ing|er|ers)\b', r'l\1', t); t = re.sub(r'(?<=[a-z])ence\b', 'ense', t)
+    t = re.sub(r'\bsulph', 'sulf', t)   # K108（29 S6 sulphur/sulfur）：同一读音 S AH1 L F ER0，识别器写美式拼写
     return t
 _币 = {'£': ('pounds', 'pound'), '$': ('dollars', 'dollar'), '€': ('euros', 'euro')}
 def 比(ref, hyp):
@@ -191,7 +192,7 @@ def 比较自检():
     """不用识别模型：比() 的归一规则。序数、同音、注音变体、日期展开不报；少一个词、读错一个词必报"""
     f = []
     for r_, h_ in (('some 3,000 kilometres away', 'some 3000 kilometers away'), ('about 40 per cent less', 'about 40% less'), ('the colour of', 'the color of'),
-                   ('On April 13th', 'On April 13'), ("the crew's capsule", 'the cruise capsule'), ('organised eleven', 'organized 11'), ('On 6 January', 'On the 6 of January'), ('some 200,000 miles', 'some 200000 miles')):
+                   ('On April 13th', 'On April 13'), ("the crew's capsule", 'the cruise capsule'), ('organised eleven', 'organized 11'), ('On 6 January', 'On the 6 of January'), ('some 200,000 miles', 'some 200000 miles'), ('a smell of sulphur', 'a smell of sulfur')):
         if 比(r_, h_): f.append(f'误报：“{r_}”听成“{h_}”读音一样，却报了 {比(r_, h_)}')
     if 比('He met Windhandel there', 'He met Vinthehandel there') and 'windhandel' in 已核实(): f.append('误报：已核实读音的专名被识别器听错也报了')
     for r_, h_ in (('Ötzi was found in 1991', 'Erzi was found in 1991'), ('It sold as the Walkie-Scorchie in London', 'It sold as the walkie scorchy in London'),
