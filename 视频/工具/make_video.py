@@ -687,7 +687,7 @@ def _auto_level(clips,tmap,gaps,no='',rounds=2):
 def 句增益(d,no,si,sent,pieces,gaps,clips,tmap,a):
     """一句话拼好以后的全部增益（G36 源头调平 26 起、分段增益dB、句子增益dB），出片程序和 疑点清单/自动切点 的重建共用（25 会话 2026-10-25：重建漏了分段增益，疑点清单停）"""
     _agn={}
-    if str(no).isdigit() and int(no)>=26 and len(pieces)>1:     # G36 源头调平（主对话 2026-10-25 “用巧劲”：拼接前就把句内各段调平，句内忽大忽小根本产生不出来）：26 起自动做
+    if str(no).isdigit() and int(no)>=26 and len(pieces)>1 and not (int(no)>=36 and sent in PGRAFT):     # K138（36 S2 gadget, a）：有 停顿处除阻 的句子不做自动调平（和手写分段增益dB 同一条规矩：独立复核的位置会错开）；26 S9、30 S9 已定稿不动。G36 源头调平（主对话 2026-10-25 “用巧劲”：拼接前就把句内各段调平，句内忽大忽小根本产生不出来）：26 起自动做
         _agn=_auto_level(clips,tmap,gaps,no)
         for k_,g_ in _agn.items(): clips[2*(k_-1)]=clips[2*(k_-1)]*np.float32(10**(g_/20))
         if _agn: a=np.concatenate(clips)
