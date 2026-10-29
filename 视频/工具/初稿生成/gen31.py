@@ -95,7 +95,6 @@ CONF.update({
 "词性":{"S13-2 cautious 谨慎地":"文章定稿译法“首印谨慎地定为”（铁律：定稿中文意思不改）；cautious 修饰 print run，中文把它化成修饰“定为”的状语，意思一样"},
 "中文意思":{"S1 would-be":"would-be 的“想要成为……的”两部分在中文里是“有志成为”和后面的“的人”；“的”只是定语标记，文章定稿只标“有志成为”，不是被隔开的同一个意思"},
 })
-CONF["停顿位置"]={"S9 daughter, / Alice, @5.650":"2026-10-29 逐段看声音实测（S9 w）：daughter 末尾 ɚ 到 5.59s 还是浊音（-24 dB），5.61s 降到 -44 dB、5.62s -52 dB，5.6525s 是两词之间最低处 -55.2 dB，5.6625s 起 Alice 的起音回升到 -20.6 dB；插在交界最低点，不切前后词（A42）"}
 CONF["短语"]={"S1 inspiration … for":"不是搭配：for 引出灵感的对象（for Harry Potter），inspiration 单独就是“灵感”",
  "S3 relocated … to":"不是搭配：to 是普通方向介词，引出去处（Porto）；relocate 单独就是“移居”",
  "S5 resettled … in":"不是搭配：in 引出地点（Edinburgh）；resettle 单独就是“重新安家”",
@@ -110,7 +109,6 @@ CONF["短语"]={"S1 inspiration … for":"不是搭配：for 引出灵感的对�
  "S1 a delayed train":"不是搭配：delayed 就是本义“晚点的”（速查表第一个意思），train 是普通名词“列车”，各自对齐即可"}
 out={"no":"31","title_en":"The Book Twelve Publishers Turned Down","title_zh":"被拒绝了十二次的哈利·波特","title_fx":{"hl":["Twelve","Publishers"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "说明放宽特批":{"S16":{"倍数":"整屏","依据":"用户 2026-10-28 特批：“29、30、31 结尾简述都整屏、字号放到最大”（用户同意记录）"}},
-     "非人声区间":{"S2":[[6.12,6.315]],"S9":[[0.985,1.16]]},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Manchester":"曼彻斯特","King's Cross":"国王十字车站","Joanne Rowling":"乔安妮·罗琳","Harry Potter":"哈利·波特","Rowling":"罗琳","Porto":"波尔图","Edinburgh":"爱丁堡","Christopher Little":"克里斯托弗·利特尔","Bloomsbury":"布卢姆斯伯里","Nigel Newton":"奈杰尔·牛顿","Alice":"爱丽丝","Kathleen":"凯瑟琳","Philosopher's Stone":"魔法石","Scholastic":"学乐"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

@@ -2,7 +2,7 @@ import json,re,glob,os
 # 第30篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-10-28 重点词中文沿用文章定稿（铁律），形容词“的”、动词“了”进粗体（28 用户改稿惯例）；非重点词也逐词对齐（G47）；三项并列加牛津逗号（T35）。
 S=[
-(1,[[[("In the","在"),("**fierce heat**","**酷热**(fierce heat)"),("of","的"),("summer 1858,","1858年夏天，"),("the curtains of the new Houses of Parliament","新落成的议会大厦里的窗帘"),("hung","垂挂着，"),("heavy with","沉甸甸地浸满了"),("chloride of **lime**,","氯化**石灰**(lime)，")],
+(1,[[[("In the","在"),("**fierce heat**","**酷热**(fierce heat)"),("of","的"),("summer 1858,","1858年夏天，"),("the curtains of the new Houses of Parliament","新落成的议会大厦里的窗帘"),("hung","垂挂着，"),("heavy with","沉甸甸地浸湿了"),("chloride of **lime**,","氯化**石灰**(lime)，")],
      "（hang heavy with…：沉甸甸地浸满……；\nchloride of lime：氯化石灰，即漂白粉）"],
     [[("a **bleach**","这是一种**漂白剂**(bleach)，"),("to make","用来让"),("the air","空气"),("**tolerable**.","变得**可以忍受**(tolerable)。")],
      "（a bleach…：同位语，补充说明 chloride of lime；\nmake + 宾语 + 形容词：使……变得……）"]]),
