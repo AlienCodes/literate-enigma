@@ -30,6 +30,14 @@ def 自检():
     if R.同屏色差(dict(d, no='24'), 旧): f.append('误报：01–24 不回头查')
     big = {'no': '26', 'sentences': [{'chunks': [{'en': ' '.join(f'**w{i}**' for i in range(10)), 'zh': '', 'align': []}]}]}
     if R.同屏色差(big, 颜色(big)): f.append('一屏 10 个单元，新色板应能全部分开（两两 ≥25°、不重复）')
+    for n_ in (11, 13):   # K115（29 S6 同屏 11 个单元）：11 个用补的第 11 色全部分开；13 个只许离开 ≥5 个单元的相近，相邻照样 ≥60°
+        bn = {'no': '26', 'sentences': [{'chunks': [{'en': ' '.join(f'**w{i}**' for i in range(n_)), 'zh': '', 'align': []}]}]}
+        if R.同屏色差(bn, 颜色(bn)): f.append(f'一屏 {n_} 个单元，分色后还不合格：{R.同屏色差(bn, 颜色(bn))[:2]}')
+    P_ = R.PAL26 + R.PAL补; e13 = {'no': '26', 'sentences': [{'chunks': [{'en': ' '.join(f'**v{i}**' for i in range(13)), 'zh': '', 'align': []}]}]}
+    近 = {f'v{i}': P_[[0, 5, 2, 7, 4, 9, 6, 1, 8, 3, 10, 0, 5][i]] for i in range(13)}; 近['v2'] = P_[0]   # v0 和 v2 只隔 2 个单元却同色
+    if not any('v0↔v2' in x for x in R.同屏色差(e13, 近)): f.append('没抓到：一屏 13 个单元，隔 2 个单元的两个用同一种颜色')
+    远_ = {f'v{i}': P_[[0, 5, 2, 7, 4, 9, 6, 1, 8, 3, 10, 0, 5][i]] for i in range(13)}   # v0/v11 同色、v1/v12 同色，都隔 ≥5 个单元
+    if any('v0↔v11' in x or 'v1↔v12' in x for x in R.同屏色差(e13, 远_)): f.append('误报：一屏 13 个单元，隔 ≥5 个单元的同色也报了')
     dup = {'no': '26', 'sentences': [{'chunks': [{'en': '**a1** x **b2** y **c3**', 'zh': '', 'align': []}]}]}
     if not R.同屏色差(dup, {'a1': (251, 191, 36), 'b2': (56, 189, 248), 'c3': (251, 191, 36)}): f.append('没抓到：同屏两个不同重点词用同一种颜色（一律不许，不设口子）')
     s11 = {'no': '26', 'sentences': [{'chunks': [{'en': 'by **American Sign Language** **linguist**', 'zh': '', 'align': []}]}]}
