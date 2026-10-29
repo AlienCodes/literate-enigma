@@ -16,8 +16,12 @@ rm -rf "$T/新管" && cp -r "$H" "$T/新管" && sed -i '/^快测通过.json$/d' 
 RES+=("新管已拷进 视频/工具/新管（快测印章随提交进仓库）")
 
 echo "== ② K102 读音核对 自检"
-if grep -q "读音改正生效（" "$T/读音核对.py"; then RES+=("K102 已在 main 上")
-else (cd "$P" && git apply "$L/改门待演练/K102读音自检.diff") || stop "K102 补丁打不上"; RES+=("K102 已打"); fi
+if grep -q "读音改正生效（" "$T/读音核对.py"; then
+  RES+=("K102 已在 main 上")
+else
+  (cd "$P" && git apply "$L/改门待演练/K102读音自检.diff") || stop "K102 补丁打不上"
+  RES+=("K102 已打")
+fi
 
 echo "== ③ 切换.py --停用"
 python3 "$T/新管/切换.py" "$T" --停用 || stop "切换失败（锚对不上或没有同意记录）"
