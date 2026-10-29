@@ -84,9 +84,9 @@ The **multinational** **mobilisation** was a feat of **logistics**. Some 10,000 
 | contingent | 本文：分队；n. 分队，代表团（a contingent of troops/fans） | 5 |
 | policemen | 本文：警察；n. (policeman) 警察（armed policemen） | 5 |
 | deployed | 本文：调派；v. (deploy) 部署，调派（deploy troops/resources） | 5 |
-| blood infection | n. 血液感染（die of a blood infection） | 5 |
 | sobering | 本文：令人警醒的；adj. 令人清醒的，令人沉重的（a sobering thought/reminder） | 5 |
 | postscript | 本文：后续；n. 后记，附言；后续事件（add a postscript to a letter） | 5 |
+| blood infection | 本文：血液感染；n. 血液感染（die of a blood infection） | 5 |
 | mourned | 本文：悼念；v. (mourn) 哀悼，悼念（mourn the loss of a friend） | 5 |
 
 ## 史实与来源
