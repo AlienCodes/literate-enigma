@@ -10,7 +10,7 @@ On 24 August 2006 the International Astronomical Union, **convened** in Prague, 
 
 The vote was **valid**, yet its **legitimacy** drew **criticism**: only 424 of some 10,000 members took part. Hundreds of **dissenting** astronomers signed a **petition**. The American Dialect Society made "plutoed", **playful** **slang** for "to **devalue**", its word of 2006, and New Mexico and Illinois **lawmakers** passed **resolutions** **affirming** that Pluto was a planet.
 
-Amid the **controversy**, an **irony** was already in **transit**. New Horizons was launched on 19 January 2006, seven months before the vote, carrying **a pinch of** Tombaugh's ashes. On 14 July 2015 the **unmanned** craft flew past Pluto, **transmitting** images of an **enormous** **heart-shaped** plain, **fittingly** named Tombaugh Regio. The **discoverer**'s ashes swept past the heart that bears his name.
+Amid the **controversy**, an **irony** was already in **transit**. New Horizons was launched on 19 January 2006, seven months before the vote, carrying **a pinch of** Tombaugh's ashes. On 14 July 2015 the **unmanned** craft flew past Pluto, **transmitting** images of an **enormous** **heart-shaped** plain, **fittingly** named Tombaugh Regio. The **discoverer**'s ashes **swept past** the heart that bears his name.
 
 ## 中文
 
@@ -22,7 +22,7 @@ Amid the **controversy**, an **irony** was already in **transit**. New Horizons 
 
 这次表决虽然是**有效**(valid)的，但其**正当性**(legitimacy)却招致了**批评**(criticism)：约1万名成员中仅有424人参加。数百名**持异议**(dissenting)的天文学家签署了**请愿书**(petition)。美国方言学会把"plutoed"评为2006年度词汇，这是一个带有**戏谑**(playful)意味的**俚语**(slang)，意思是"**贬低**(devalue)"。新墨西哥州和伊利诺伊州的**立法者**(lawmakers)通过**决议**(resolutions)，**确认**(affirming)冥王星是行星。
 
-就在一片**争议**(controversy)声中，一件颇具**讽刺**(irony)意味的事早已在**途中**(transit)。新视野号于2006年1月19日发射，比那次表决早七个月，携带着**一小撮**(a pinch of)汤博的骨灰。2015年7月14日，这艘**无人**(unmanned)飞船飞掠冥王星，**传回**(transmitting)了一片**巨大**(enormous)的**心形**(heart-shaped)平原的图像，这片平原**恰如其分**(fittingly)地被命名为汤博区。这位**发现者**(discoverer)的骨灰，掠过了那颗以他命名的"心"。
+就在一片**争议**(controversy)声中，一件颇具**讽刺**(irony)意味的事早已在**途中**(transit)。新视野号于2006年1月19日发射，比那次表决早七个月，携带着**一小撮**(a pinch of)汤博的骨灰。2015年7月14日，这艘**无人**(unmanned)飞船飞掠冥王星，**传回**(transmitting)了一片**巨大**(enormous)的**心形**(heart-shaped)平原的图像，这片平原**恰如其分**(fittingly)地被命名为汤博区。这位**发现者**(discoverer)的骨灰，**掠过了**(swept past)那颗以他命名的"心"。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -79,6 +79,7 @@ Amid the **controversy**, an **irony** was already in **transit**. New Horizons 
 | heart-shaped | adj. 心形的（a heart-shaped box/cake） | 5 |
 | fittingly | adv. 恰当地，合宜地（fittingly, the award went to…） | 5 |
 | discoverer | n. 发现者（the discoverer of penicillin） | 5 |
+| swept past | phr. v. (sweep past) 掠过，从旁疾驰而过（a car swept past us） | 5 |
 
 ## 史实与来源
 - 【T1】1930年2月18日，汤博在亚利桑那州弗拉格斯塔夫附近的洛厄尔天文台比对玻璃底片时发现冥王星；1930年3月13日公布（正文不写公布日）。S1
