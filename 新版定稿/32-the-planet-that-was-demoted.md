@@ -8,9 +8,9 @@ In January 2005, astronomers found a **far-off** body, later named Eris, at firs
 
 On 24 August 2006 the International Astronomical Union, **convened** in Prague, voted that a planet must **revolve** around the Sun, be nearly **spherical**, and have cleared the **neighbourhood** around its orbit. Pluto failed that last **criterion** and was **reclassified** as a **dwarf** planet, leaving eight. Pluto was **physically** **unaltered**; only the **boundary** had moved.
 
-The vote was **valid**, yet its **legitimacy** drew **criticism**: only 424 of some 10,000 members took part. Hundreds of **dissenting** astronomers signed a **petition**. The American Dialect Society made "plutoed", **playful** **slang** for "to **devalue**", its word of 2006, and New Mexico and Illinois **lawmakers** passed resolutions **affirming** that Pluto was a planet.
+The vote was **valid**, yet its **legitimacy** drew **criticism**: only 424 of some 10,000 members took part. Hundreds of **dissenting** astronomers signed a **petition**. The American Dialect Society made "plutoed", **playful** **slang** for "to **devalue**", its word of 2006, and New Mexico and Illinois **lawmakers** passed **resolutions** **affirming** that Pluto was a planet.
 
-Amid the **controversy**, an **irony** was already in **transit**. New Horizons was launched on 19 January 2006, seven months before the vote, carrying a **pinch** of Tombaugh's ashes. On 14 July 2015 the **unmanned** craft flew past Pluto, **transmitting** images of an **enormous** **heart-shaped** plain, **fittingly** named Tombaugh Regio. The **discoverer**'s ashes swept past the heart that bears his name.
+Amid the **controversy**, an **irony** was already in **transit**. New Horizons was launched on 19 January 2006, seven months before the vote, carrying **a pinch of** Tombaugh's ashes. On 14 July 2015 the **unmanned** craft flew past Pluto, **transmitting** images of an **enormous** **heart-shaped** plain, **fittingly** named Tombaugh Regio. The **discoverer**'s ashes swept past the heart that bears his name.
 
 ## 中文
 
@@ -20,9 +20,9 @@ Amid the **controversy**, an **irony** was already in **transit**. New Horizons 
 
 2006年8月24日，国际天文学联合会在布拉格**召开会议**(convened)，投票决定：一颗行星必须**围绕**(revolve)太阳**转动**(revolve)、形状接近**球形**(spherical)，并且已清空其轨道附近的**区域**(neighbourhood)。冥王星不符合最后一条**标准**(criterion)，被**重新归类**(reclassified)为**矮行星**(dwarf)，行星只剩下八颗。冥王星在**物理上**(physically)**毫无改变**(unaltered)，移动的只是**界线**(boundary)。
 
-这次表决虽然是**有效**(valid)的，但其**正当性**(legitimacy)却招致了**批评**(criticism)：约1万名成员中仅有424人参加。数百名**持异议**(dissenting)的天文学家签署了**请愿书**(petition)。美国方言学会把"plutoed"评为2006年度词汇，这是一个带有**戏谑**(playful)意味的**俚语**(slang)，意思是"**贬低**(devalue)"。新墨西哥州和伊利诺伊州的**立法者**(lawmakers)通过决议，**确认**(affirming)冥王星是行星。
+这次表决虽然是**有效**(valid)的，但其**正当性**(legitimacy)却招致了**批评**(criticism)：约1万名成员中仅有424人参加。数百名**持异议**(dissenting)的天文学家签署了**请愿书**(petition)。美国方言学会把"plutoed"评为2006年度词汇，这是一个带有**戏谑**(playful)意味的**俚语**(slang)，意思是"**贬低**(devalue)"。新墨西哥州和伊利诺伊州的**立法者**(lawmakers)通过**决议**(resolutions)，**确认**(affirming)冥王星是行星。
 
-就在一片**争议**(controversy)声中，一件颇具**讽刺**(irony)意味的事早已在**途中**(transit)。新视野号于2006年1月19日发射，比那次表决早七个月，携带着**一小撮**(pinch)汤博的骨灰。2015年7月14日，这艘**无人**(unmanned)飞船飞掠冥王星，**传回**(transmitting)了一片**巨大**(enormous)的**心形**(heart-shaped)平原的图像，这片平原**恰如其分**(fittingly)地被命名为汤博区。这位**发现者**(discoverer)的骨灰，掠过了那颗以他命名的"心"。
+就在一片**争议**(controversy)声中，一件颇具**讽刺**(irony)意味的事早已在**途中**(transit)。新视野号于2006年1月19日发射，比那次表决早七个月，携带着**一小撮**(a pinch of)汤博的骨灰。2015年7月14日，这艘**无人**(unmanned)飞船飞掠冥王星，**传回**(transmitting)了一片**巨大**(enormous)的**心形**(heart-shaped)平原的图像，这片平原**恰如其分**(fittingly)地被命名为汤博区。这位**发现者**(discoverer)的骨灰，掠过了那颗以他命名的"心"。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -67,6 +67,7 @@ Amid the **controversy**, an **irony** was already in **transit**. New Horizons 
 | slang | n. 俚语（army slang；a slang word） | 4 |
 | devalue | v. 贬低；使（货币）贬值（devalue sb's work；devalue the currency） | 4 |
 | lawmakers | n. (lawmaker) 立法者，议员（state lawmakers） | 4 |
+| resolutions | n. (resolution) 决议，正式决定（pass/adopt a resolution） | 4 |
 | affirming | v. (affirm) 确认，申明（affirm one's commitment/support） | 4 |
 | controversy | n. 争议，争论（cause/spark controversy） | 5 |
 | irony | n. 讽刺，具有讽刺意味的事（the irony is that…；by a twist of irony） | 5 |
@@ -83,7 +84,7 @@ Amid the **controversy**, an **irony** was already in **transit**. New Horizons 
 - 【T1】1930年2月18日，汤博在亚利桑那州弗拉格斯塔夫附近的洛厄尔天文台比对玻璃底片时发现冥王星；1930年3月13日公布（正文不写公布日）。S1
 - 【T2】名字由11岁英国女孩维尼夏·伯尼提议，取自罗马冥界之神，1930年5月1日正式采用；女孩姓名及传话细节正文不写。76年为1930至2006年。S1
 - 【T3】2005年1月布朗团队发现厄里斯，起初看来比冥王星大，美国航天局一度称之为"第十大行星"；后测其体积略小于冥王星、质量大27%，正文只写 at first seemed larger，不写最终大小。此事和可能发现的更多同类天体促使天文学联合会首次定义"行星"。S2
-- 【T4】2006年8月24日，第26届国际天文学联合会大会在布拉格通过决议，行星须绕日运行、近似球形、清空轨道附近区域；冥王星归为矮行星，行星减为8颗。中文不写"被踢出太阳系"。S3
+- 【T4】2006年8月24日，第26届国际天文学联合会大会在布拉格通过**决议**(resolutions)，行星须绕日运行、近似球形、清空轨道附近区域；冥王星归为矮行星，行星减为8颗。中文不写"被踢出太阳系"。S3
 - 【T5】约1万名会员中只有424人投票，均为留到大会最后一天的人（正文不写）；数百名天文学家联署反对。表决合乎程序，正文不说"无效"。S4
 - 【T6】美国方言学会2007年1月宣布 plutoed 为2006年度词汇；新墨西哥州（2007年）、伊利诺伊州（2009年）通过决议称冥王星为行星，州年份正文不写。S5
 - 【T7】新视野号2006年1月19日发射，比降级表决早约七个月，携带汤博（1997年去世）的少量骨灰；2015年7月14日首次飞掠冥王星，拍到巨大心形平原，以汤博之名命名为 Tombaugh Regio（汤博区）。飞掠距离约1.25万公里，正文写"掠过"。S6
