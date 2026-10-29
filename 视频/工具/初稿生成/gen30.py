@@ -14,7 +14,7 @@ S=[
      "（discharge A into B：把 A 排放到 B 中；\nsome three million：约三百万，some 表示“大约”；\ncity dweller：城市居民）"],
     [[("where","在那里，"),("the **excrement**","**粪便**(excrement)"),("**stewed**","**处于炎热的空气中**(stewed)"),("and","并"),("**decayed**.","**腐败**(decayed)。")],
      "（where…：非限制性定语从句，where 指 its currents；\nstew：炖，这里指在闷热中闷着、沤着）"]]),
-(2,[[[("The **vile**","**令人恶心的**(vile)"),("**fumes**","**刺鼻气体**(fumes)"),("grew so","变得如此"),("**overpowering**","**令人难以招架**(overpowering)，"),("that","以至于"),("the episode","这段日子"),("earned","得到了"),("a name,","一个名字，"),("the Great Stink.","大恶臭。")],
+(2,[[[("The **vile**","**令人恶心的**(vile)"),("**fumes**","**刺鼻气体**(fumes)"),("grew so","变得如此"),("**overpowering**","**极其强烈的/令人难以忍受**(overpowering)，"),("that","以至于"),("the episode","这段日子"),("earned","得到了"),("a name,","一个名字，"),("the Great Stink.","大恶臭。")],
      "（so…that…：如此……以至于……；\nthe Great Stink：同位语，补充说明 a name）"]]),
 (3,[[[("**Disgust**","这股**厌恶**(Disgust)"),("found","找到了"),("a voice","代言人，"),("on 15 July,","是在7月15日，")],
      "（find a voice：找到表达的出口，这里指有了代言人）"],
