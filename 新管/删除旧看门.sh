@@ -34,7 +34,7 @@ grep -q "快测通过" /tmp/快测_$$.log && RES+=("快测：$(tail -1 /tmp/快�
 echo "== ⑥ 做.sh 27 --不推 回归"
 cp "$P/视频/脚本/27.json" "$W/scripts/27.json"
 BEFORE=$(cd "$P" && git -c core.quotepath=off status --porcelain | sort)
-(cd "$W" && XG_P="$P" bash "$T/新管/做.sh" 27 --不推) 2>&1 | tail -12 | tee /tmp/做27_$$.log
+(cd "$W" && XG_P="$P" bash "$T/新管/做.sh" 27 --不推) > /tmp/做27_$$.log 2>&1; grep -v "人看" /tmp/做27_$$.log | tail -12   # 全文存下再判（疑点多时 tail 会把“做完”那行截掉）
 grep -q "做完" /tmp/做27_$$.log && RES+=("做.sh 27：$(grep '做完' /tmp/做27_$$.log | head -1)") || { RES+=("做.sh 27：停了（见上）"); ZBAD=1; }
 AFTER=$(cd "$P" && git -c core.quotepath=off status --porcelain | sort)
 comm -13 <(echo "$BEFORE") <(echo "$AFTER") | while IFS= read -r l; do f="${l:3}"; f="${f%\"}"; f="${f#\"}"

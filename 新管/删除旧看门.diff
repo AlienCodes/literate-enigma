@@ -550,7 +550,7 @@ index 579d293..6adc565 100644
  python3 - "$no" "$P/视频/制作记录/${no}_做指纹.json" <<'PY' || stop "成片指纹对不上：定稿的不是用户看过的那一版（数据或声音变了），先 做.sh 出草稿给用户看"
  import sys, json, hashlib, os
 diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\277\253\346\265\213.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\277\253\346\265\213.py"
-index bd0d66b..82a5e7d 100644
+index bd0d66b..7602784 100644
 --- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\277\253\346\265\213.py"
 +++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\277\253\346\265\213.py"
 @@ -1,8 +1,8 @@
@@ -633,7 +633,7 @@ index bd0d66b..82a5e7d 100644
      return 没
  
  def 常规规则():
-@@ -139,9 +137,32 @@ def 印章坏样本():
+@@ -139,9 +137,47 @@ def 印章坏样本():
          if r.returncode == 0: return ['印章没抓到：改了 交付核查.py 没重跑快测，印章照样对得上']
      return []
  
@@ -661,6 +661,21 @@ index bd0d66b..82a5e7d 100644
 +                if anc[1] not in base: out.append(f'{f} 挂钩的出片程序原文没了：“{anc[1][:40]}”（A26/A42：改出片程序后核查程序要跟着改）')
 +    return out
 +
++def 草稿路径样本():
++    """K109：草稿篇的脚本只在工作目录 scripts/NN.json（仓库 视频/脚本/ 还没有）：音频体检 --自检 要过、语速突变要量得出来。
++    以前快测只拿已定稿的 27 回归，草稿篇才走的路径没覆盖（30 的音频体检自检因此失灵）。用假篇号 97（仓库里没有它的脚本）"""
++    import shutil, tempfile
++    if not os.path.exists(f'{W}/work_{NO}/a.wav'): return [f'K109 样本：没有 work_{NO}/a.wav']
++    if os.path.exists(f'{os.path.dirname(T)}/脚本/97.json'): return ['K109 样本：仓库里竟有 视频/脚本/97.json，样本不成立']
++    bad = []
++    with tempfile.TemporaryDirectory(dir=os.path.dirname(W)) as td:
++        os.makedirs(f'{td}/scripts'); shutil.copy(f'{W}/scripts/{NO}.json', f'{td}/scripts/97.json'); os.makedirs(f'{td}/work_97'); shutil.copy(f'{W}/work_{NO}/a.wav', f'{td}/work_97/a.wav')   # 和真草稿同一个位置（../../tts/AF.txt 后期才找得到）
++        rc, o, _ = 跑(['python3', f'{T}/音频体检.py', '--自检', 'work_97/a.wav', '97'], td, 600)
++        if rc: bad.append(f'K109：脚本只在工作目录时 音频体检 --自检 不过 → {o.splitlines()[-1][:140] if o else "无输出"}')
++        rc, o, _ = 跑(['python3', '-c', f"import sys; sys.path.insert(0, {T!r}); import 音频体检 as A; m = A.指标(A.读('work_97/a.wav'), '97'); v = m.get('语速突变'); print(v); sys.exit(0 if v and v[0] is not None else 1)"], td, 600)
++        if rc: bad.append(f'K109：脚本只在工作目录时 语速突变 量不出来 → {o.splitlines()[-1][:140] if o else "无输出"}')
++    return bad
++
  def 挂钩():
 -    import 规则执行核查 as RZ
 -    return [f'挂钩：{x}' for x in RZ.挂钩检查(RZ.程序表())]
@@ -668,7 +683,7 @@ index bd0d66b..82a5e7d 100644
  
  def 回归(记):
      """缓存重建回归篇：只出声音（AUDIO_ONLY，与正式出片同一套程序），比 a.wav、分段.json；每屏重画比像素哈希"""
-@@ -168,17 +189,17 @@ def main():
+@@ -168,17 +204,17 @@ def main():
      t0 = time.time(); a = sys.argv[1:]; out = []
      if '--只记基准' in a:   # 基准用旧管（没打补丁的工具）出：回归证明新管和旧管逐字节一致
          b, cur = 回归(True); print('\n'.join(b) or f'{NO} 基准已记：a.wav {cur["a.wav"][:8]}、分段.json {cur["分段.json"][:8]}、{len(cur["画面"])} 屏（{time.time() - t0:.0f} 秒）'); sys.exit(1 if b else 0)
@@ -691,8 +706,11 @@ index bd0d66b..82a5e7d 100644
          b, n = ft.result(); bad += b; out.append(f'② 文本/画面/流程 快自检 {n} 个程序：{"全过" if not b else f"{len(b)} 个不过"}')
          b = 挂钩(); bad += b; out.append(f'③ 挂钩检查：{"在" if not b else "断了"}')
          b = 常规规则(); bad += b; out.append(f'③b 常规规则（G35 简述整屏、G65 方法进化 K97）坏样本必抓、好样本必放：{"过" if not b else "不过"}')
-@@ -188,6 +209,8 @@ def main():
+@@ -186,8 +222,11 @@ def main():
+             b, _ = fr.result(); bad += b; out.append(f'④ {NO} 回归：{"记了基准" if "--记基准" in a else ("a.wav、分段.json 逐字节、每屏像素一致" if not b else "不一致")}')
+             b = 读音自检样本(); bad += b; out.append(f'⑥ K102 读音自检：29 不误停、拆读音改正必停：{"过" if not b else "不过"}')
              b, n = fs.result(); bad += b; out.append(f'⑤ 交付核查 出片前/出片后 + 出片守门自检：{"全过" if not b else f"{len(b)} 处不过"}')
++            b = 草稿路径样本(); bad += b; out.append(f'⑦ 草稿篇路径（K109：脚本只在工作目录，音频体检自检过、语速突变量得出）：{"过" if not b else "不过"}')
      if not bad and '--只文本' not in a and '--记基准' not in a:
          subprocess.run(['python3', f'{H}/印章.py', '--盖'], env={**env0, 'XG_TOOLS': T}, capture_output=True)
 +        try: open(os.path.expanduser('~/.新管工作目录'), 'w').write(W)   # 提交、推送时 印章.py --自动 在这里跑快测
