@@ -12,7 +12,7 @@ S=[
      "（had become：过去完成时，表示到那时已经……）"]]),
 (2,[[[("**Antiquated**","**老旧的**(Antiquated)"),("sewers","下水道"),("and","和"),("**outlets**","**排污口**(outlets)"),("**discharged**","**排放**(discharged)"),("the **untreated**","**未经处理的**(untreated)"),("**sewage**","**污水**(sewage)，"),("of","它们来自"),("some three million","约三百万"),("city **dwellers**","城市**居民**(dwellers)，"),("into","排入"),("its **currents**,","河的**水流**(currents)中，")],
      "（discharge A into B：把 A 排放到 B 中；\nsome three million：约三百万，some 表示“大约”；\ncity dweller：城市居民）"],
-    [[("where","在那里，"),("the **excrement**","**粪便**(excrement)"),("**stewed**","**闷沤**(stewed)"),("and","并"),("**decayed**.","**腐败**(decayed)。")],
+    [[("where","在那里，"),("the **excrement**","**粪便**(excrement)"),("**stewed**","**处于炎热的空气中**(stewed)"),("and","并"),("**decayed**.","**腐败**(decayed)。")],
      "（where…：非限制性定语从句，where 指 its currents；\nstew：炖，这里指在闷热中闷着、沤着）"]]),
 (2,[[[("The **vile**","**污浊的**(vile)"),("**fumes**","**臭气**(fumes)"),("grew so","变得如此"),("**overpowering**","**令人难以招架**(overpowering)，"),("that","以至于"),("the episode","这段日子"),("earned","得到了"),("a name,","一个名字，"),("the Great Stink.","大恶臭。")],
      "（so…that…：如此……以至于……；\nthe Great Stink：同位语，补充说明 a name）"]]),
