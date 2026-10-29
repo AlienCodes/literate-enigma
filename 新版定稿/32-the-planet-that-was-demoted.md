@@ -2,7 +2,7 @@
 # ZH: 被降级的冥王星
 
 ## 英文
-On 18 February 1930, comparing **photographic** plates at the Lowell Observatory, the **astronomer** Clyde Tombaugh **perceived** a **dim** dot that shifted between them. An eleven-year-old English girl **put forward** the name, after the Roman **deity** of the **underworld**. For 76 years Pluto held the ninth **slot** on the **planetary** **roster**.
+On 18 February 1930, comparing **photographic** plates at the Lowell Observatory, the **astronomer** Clyde Tombaugh **perceived** a **dim** **dot** that shifted between them. An eleven-year-old English girl **put forward** the name, after the Roman **deity** of the **underworld**. For 76 years Pluto held the ninth **slot** on the **planetary** **roster**.
 
 In January 2005, astronomers found a **far-off** body, later named Eris, at first thought larger than Pluto. NASA briefly called it the tenth planet. The **contender** posed an **awkward** **dilemma**. The term "planet" had **hitherto** been used **loosely**, and with more **icy** worlds likely to be found, a **precise** **definition** became a **necessity**.
 
@@ -14,7 +14,7 @@ Amid the **controversy**, an **irony** was already in **transit**. New Horizons 
 
 ## 中文
 
-1930年2月18日，**天文学家**(astronomer)克莱德·汤博在洛厄尔天文台比对**照相**(photographic)底片时，**察觉**(perceived)到一个在底片之间移动过的**暗淡**(dim)小点。一名11岁的英国女孩**提议**(put forward)了它的名字，取自罗马神话中的**冥界**(underworld)**神祇**(deity)。此后76年里，冥王星一直占据**行星**(planetary)**名单**(roster)上的第九个**位置**(slot)。
+1930年2月18日，**天文学家**(astronomer)克莱德·汤博在洛厄尔天文台比对**照相**(photographic)底片时，**察觉**(perceived)到一个在底片之间移动过的**暗淡**(dim)**小点**(dot)。一名11岁的英国女孩**提议**(put forward)了它的名字，取自罗马神话中的**冥界**(underworld)**神灵**(deity)。此后76年里，冥王星一直占据**行星**(planetary)**名单**(roster)上的第九个**位置**(slot)。
 
 2005年1月，天文学家发现了一个**遥远**(far-off)的天体，它后来被命名为厄里斯，起初看上去比冥王星还大。美国航天局一度称它为第十大行星。这个**竞争者**(contender)带来了一个**棘手**(awkward)的**难题**(dilemma)。"行星"一词**此前**(hitherto)一直用得很**宽泛**(loosely)，而且很可能还会发现更多**冰冷**(icy)的天体，一个**精确**(precise)的**定义**(definition)已**势在必行**(necessity)。
 
@@ -31,6 +31,7 @@ Amid the **controversy**, an **irony** was already in **transit**. New Horizons 
 | astronomer | n. 天文学家（an amateur astronomer） | 1 |
 | perceived | v. (perceive) 察觉，注意到；认为（perceive a change；be perceived as a threat） | 1 |
 | dim | adj. 昏暗的，暗淡的（a dim light；in the dim distance） | 1 |
+| dot | n. 点，小圆点（a dot on the map；a tiny dot of light） | 1 |
 | put forward | phr. v. 提出（建议、理论、人选等）（put forward a proposal/theory） | 1 |
 | deity | n. 神，女神（a Hindu deity；pagan deities） | 1 |
 | underworld | n. 冥界，阴间；黑社会（the criminal underworld） | 1 |
