@@ -6,9 +6,9 @@ On 23 June 2018, twelve boys aged 11 to 16 from a **junior** football **squad** 
 
 For nine days their **whereabouts** were unknown. On 2 July two **elite** British **divers**, **threading through** **submerged** **passages**, reached an **inundated** chamber about 4 km from the **entrance**. All 13 were there, **huddled** on a **muddy** **mound** and **perched** just above the water, every one of them **alive**.
 
-The only **exit** ran through **kilometres** of **constricted**, **treacherous** **passages**, many of them **navigable** only with **scuba** gear. **Rescuers** began **stockpiling** oxygen **cylinders** along the route. On 6 July Saman Kunan, a former Thai Navy SEAL, fell **unconscious** while laying them and died.
+The only **exit** **ran through** **kilometres** of **constricted**, **treacherous** **passages**, many of them **navigable** only with **scuba** gear. **Rescuers** began **stockpiling** oxygen **cylinders** **along the route**. On 6 July Saman Kunan, a **former** Thai Navy SEAL, fell **unconscious** while laying them and died.
 
-The **evacuation** began on 8 July, and the boys came out in **batches**. Each was given **doses** of sedative, **wrapped** **motionless** in a **stretcher**, and passed from diver to diver, with **medics** stationed along the route. On 10 July the last four **footballers** and their coach were **escorted** out after their **teammates**.
+The **evacuation** began on 8 July, and the boys came out in **batches**. Each was given **doses** of **sedative**, **wrapped** **motionless** in a **stretcher**, and passed from diver to diver, with **medics** **stationed** **along the route**. On 10 July the last four **footballers** and their coach were **escorted** out after their **teammates**.
 
 The **multinational** **mobilisation** was a feat of **logistics**. Some 10,000 people **converged** on the site, including a **contingent** of more than 100 divers, plus 2,000 soldiers and 900 **policemen**, with teams **deployed** from abroad. The rescue had a **sobering** **postscript**: in December 2019 another Navy SEAL died of a blood infection caught during the operation. Every boy came home alive, and two rescuers were **mourned**.
 
@@ -18,11 +18,11 @@ The **multinational** **mobilisation** was a feat of **logistics**. Some 10,000 
 
 九天里，他们**下落**(whereabouts)不明。7月2日，两名英国**精英**(elite)**潜水员**(divers)**穿过**(threading through)**水下**(submerged)**通道**(passages)，到达距离洞穴的**入口**(entrance)大约4公里的一个**被淹**(inundated)洞室。13人都在那里，**挤在一起**(huddled)在一处**泥泞**(muddy)的**土堆**(mound)上，刚好**栖身**(perched)于水面之上，他们每个人都还**活着**(alive)。
 
-唯一的**出口**(exit)要穿过数**公里**(kilometres)**狭窄**(constricted)而**暗藏危险**(treacherous)的**通道**(passages)，其中许多段只有借助**水肺**(scuba)装备才能**通行**(navigable)。**救援人员**(rescuers)开始沿途**储备**(stockpiling)氧气**钢瓶**(cylinders)。7月6日，前泰国海军海豹突击队员萨曼·古南在布放钢瓶时**失去知觉**(unconscious)，随后死亡。
+唯一的**出口**(exit)要**穿过**(ran through)数**公里**(kilometres)**狭窄**(constricted)而**暗藏危险**(treacherous)的**通道**(passages)，其中许多段只有借助**水肺**(scuba)装备才能**通行**(navigable)。**救援人员**(rescuers)开始**沿途**(along the route)**储备**(stockpiling)氧气**钢瓶**(cylinders)。7月6日，**前**(former)泰国海军海豹突击队员萨曼·古南在布放钢瓶时**失去知觉**(unconscious)，随后死亡。
 
-7月8日，**撤离**(evacuation)开始，男孩们**分批**(batches)出洞。每人都用了**数剂**(doses)镇静药，**一动不动**(motionless)地**包裹**(wrapped)在**担架**(stretcher)里，由潜水员一个接一个传递出去，沿途有**医护人员**(medics)驻守。7月10日，最后四名**小球员**(footballers)和教练继**队友**(teammates)之后被**护送**(escorted)出洞。
+7月8日，**撤离**(evacuation)开始，男孩们**分批**(batches)出洞。每人都用了**数剂**(doses)**镇静药**(sedative)，**一动不动**(motionless)地**包裹**(wrapped)在**担架**(stretcher)里，由潜水员一个接一个传递出去，**沿途**(along the route)有**医护人员**(medics)**驻守**(stationed)。7月10日，最后四名**小球员**(footballers)和教练继**队友**(teammates)之后被**护送**(escorted)出洞。
 
-这场**多国**(multinational)**动员**(mobilisation)堪称**后勤**(logistics)壮举。约1万人**汇集**(converged)到现场，其中包括一支100多名潜水员组成的**分队**(contingent)，另有2,000名士兵和900名**警察**(policemen)，还有从国外**调派**(deployed)来的救援小组。2019年12月，又一名海军海豹突击队员死于在救援中染上的血液感染，为这次救援留下一个**令人沉重**(sobering)的**尾声**(postscript)。每个男孩都活着回到了家，人们则为两名救援者**哀悼**(mourned)。
+这场**多国**(multinational)的**动员**(mobilisation)被堪称为一场**后勤**(logistics)壮举。约1万人**汇集**(converged)到现场，其中包括一支100多名潜水员组成的**分队**(contingent)，另有2,000名士兵和900名**警察**(policemen)，还有从国外**调派**(deployed)来的救援小组。2019年12月，又一名海军海豹突击队员死于在救援中染上的血液感染，为这次救援留下一个**令人警醒**(sobering)的**后续**(postscript)。每个男孩都活着回到了家，两名救援者却只能永远被**悼念**(mourned)。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -53,6 +53,7 @@ The **multinational** **mobilisation** was a feat of **logistics**. Some 10,000 
 | perched | v. (perch) 暂栖，处于高处（a village perched on a hill） | 2 |
 | alive | adj. 活着的（stay/keep alive；come home alive） | 2 |
 | exit | n. 出口（an emergency/fire exit） | 3 |
+| ran through | v. (run through) 穿过，贯穿（a path runs through the woods） | 3 |
 | kilometres | n. (kilometre) 公里（a few kilometres away） | 3 |
 | constricted | adj. 狭窄的，受限制的（a constricted throat/space） | 3 |
 | treacherous | adj. 危险的，暗藏危机的；背叛的（treacherous roads/currents） | 3 |
@@ -61,14 +62,18 @@ The **multinational** **mobilisation** was a feat of **logistics**. Some 10,000 
 | rescuers | n. (rescuer) 救援人员（rescuers searched the rubble） | 3 |
 | stockpiling | v. (stockpile) 储备，囤积（stockpile food/weapons） | 3 |
 | cylinders | n. (cylinder) 气瓶，钢瓶；圆柱体（a gas cylinder） | 3 |
+| along the route | prep. 沿途，沿路（stop along the route） | 3 |
+| former | adj. 以前的，前任的（a former soldier/president） | 3 |
 | unconscious | adj. 失去知觉的，昏迷的（knock sb unconscious） | 3 |
 | evacuation | n. 撤离，疏散（the evacuation of civilians） | 4 |
 | batches | n. (batch) 一批（in batches；a batch of cakes） | 4 |
 | doses | n. (dose) 剂量，一剂（a high dose；take a dose of medicine） | 4 |
 | wrapped | v. (wrap) 包，裹（wrap a gift；be wrapped in a blanket） | 4 |
+| sedative | n. 镇静药，镇静剂（take/give a sedative） | 4 |
 | motionless | adj. 静止的，一动不动的（stand/lie motionless） | 4 |
 | stretcher | n. 担架（carry sb on a stretcher） | 4 |
 | medics | n. (medic) 医护人员，军医（army medics） | 4 |
+| stationed | v. (station) 驻扎，驻守（troops stationed abroad） | 4 |
 | footballers | n. (footballer) 足球运动员（a professional footballer） | 4 |
 | teammates | n. (teammate) 队友（celebrate with teammates） | 4 |
 | escorted | v. (escort) 护送，陪同（be escorted by police） | 4 |
