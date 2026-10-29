@@ -36,7 +36,7 @@ S=[
      "（Having calculated…：现在分词完成式作状语，\n表示动作先于 doubled 发生）"]]),
 (4,[[[("The **backbone**","系统的**主干**(backbone)"),("lies **buried**","就**埋藏**(buried)在"),("**underneath** the **newly** built Victoria, Albert, and Chelsea Embankments.","**新近**(newly)修成的维多利亚、阿尔伯特和切尔西河堤**之下**(underneath)。")],
      "（lie buried：埋藏着，lie + 过去分词表示处于某种状态；\nEmbankment：河堤，泰晤士河沿岸的堤岸大道）"]]),
-(4,[[[("**Substantially** complete by 1875,","到1875年已**基本**(Substantially)完工，"),("much of the network","这套管网的大部分"),("is in use today.","至今仍在使用。")],
+(4,[[[("**Substantially** complete by 1875,","到1875年**基本上**(Substantially)已经完工，"),("much of the network","这套管网的大部分"),("is in use today.","至今仍在使用。")],
      "（Substantially complete by 1875：形容词短语作状语，\n逻辑主语是 the network；in use：在使用中）"]]),
 (5,[[[("Yet","然而，"),("that **sanitation**","这套**卫生设施**(sanitation)"),("rested on","建立在"),("a **fallacy**.","一个**谬误**(fallacy)之上。")],
      "（rest on…：建立在……之上，以……为基础）"]]),
