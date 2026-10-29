@@ -20,6 +20,12 @@ def 推送锁(txt):   # G17：⑥ 的提交、镜像同步、推送要占 推送
     return [] if i and j and u and j[0] < i[0] < u[0] else ['⑥ 镜像同步没在推送锁里（G17）']
 if 推送锁(src): fails.append('原样就报：' + 推送锁(src)[0])
 if not 推送锁(re.sub(r'(?m)^exec 7>.*\n', '', src)): fails.append('没抓到：⑥ 不占推送锁（G17）')
+def 先合回(txt):   # 合回镜像（主会话 2026-10-29）：定稿.sh ⑥ 推 main、盖镜像之前，先把只在镜像的改动合回 main
+    ls = [l for l in txt.splitlines() if not l.lstrip().startswith('#')]
+    i = next((k for k, l in enumerate(ls) if '合回镜像.py' in l and '|| stop' in l), None); j = next((k for k, l in enumerate(ls) if 'push main' in l), None)
+    return [] if i is not None and j is not None and i < j else ['定稿.sh ⑥ 推 main 之前没先合回镜像（只在镜像的改动会被盖掉）']
+if 先合回(src): fails.append('原样就报：' + 先合回(src)[0])
+if not 先合回(re.sub(r'(?m)^.*合回镜像\.py.*\n', '', src)): fails.append('没抓到：定稿.sh 去掉合回镜像那一行（合回镜像）')
 import 工作稿核对 as _G; _d = tempfile.mkdtemp(); _w, _p = f'{_d}/w.json', f'{_d}/p.json'   # G19：工作稿比仓库旧必停
 open(_w, 'w').write('旧'); open(_p, 'w').write('新'); os.utime(_w, (1, 1))
 if not _G.旧了(_w, _p): fails.append('没抓到：工作目录脚本比仓库旧（G19）')

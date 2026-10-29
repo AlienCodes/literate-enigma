@@ -22,7 +22,7 @@ try:
     写(f'{P}/CLAUDE.md', '新守则\n'); 写(f'{P}/新版定稿/x.md', 'x\n'); 写(f'{P}/最终版4K视频/y.mp4', 'v\n')
     git('add', '-A', cwd=P); git('commit', '-qm', 'init', cwd=P); git('push', '-q', '-u', 'origin', 'HEAD:main', cwd=P)
     git('checkout', '-q', '-b', 'tb', cwd=L); 写(f'{L}/视频/旧文件.md', 'old\n'); 写(f'{L}/CLAUDE.md', '旧守则\n')
-    git('add', '-A', cwd=L); git('commit', '-qm', 'init', cwd=L); git('push', '-q', '-u', 'origin', 'tb', cwd=L)
+    git('add', '-A', cwd=L); git('commit', '-qm', '镜像：init', cwd=L); git('push', '-q', '-u', 'origin', 'tb', cwd=L)   # 真镜像上同步提交都以“镜像：”开头（合回镜像靠它认）
     写(f'{P}/视频/新文件.md', 'new\n')
     env = {**ENV, 'PUSH_P': P, 'PUSH_L': L, 'PUSH_B': 'tb', 'PUSH_LOCK': f'{tmp}/推送.lock'}   # 自己的锁：在真推送里跑自检不会自己等自己
     run = lambda: subprocess.run(['bash', f'{T}/推送两仓库.sh', '推送自检'], capture_output=True, text=True, env=env, timeout=120)
@@ -50,6 +50,19 @@ try:
     git('reset', '-q', cwd=P)
     if git('rev-parse', 'HEAD', cwd=P).stdout != git('rev-parse', 'main', cwd=f'{tmp}/P.git').stdout or \
        git('rev-parse', 'HEAD', cwd=L).stdout != git('rev-parse', 'tb', cwd=f'{tmp}/L.git').stdout: fails.append('没抓到：云端与本地不一致（G2）')
+    # 合回镜像（主会话 2026-10-29：31 的配音缓存、31.md 被冲了两次）：只能推镜像的会话推到镜像上的文件，主仓库推送不许盖掉，要合回主仓库
+    L2 = f'{tmp}/L2'; git('clone', '-q', '-b', 'tb', f'{tmp}/L.git', L2); git('config', 'user.name', '镜像会话', cwd=L2); git('config', 'user.email', 'm@example.com', cwd=L2)
+    写(f'{L2}/视频/制作记录/31.md', '31 交接\n'); 写(f'{L2}/视频/a.md', 'a 镜像改\n'); git('add', '-A', cwd=L2); git('commit', '-qm', '31 交接（只在镜像）', cwd=L2); git('push', '-q', 'origin', 'tb', cwd=L2)
+    写(f'{P}/视频/主又改.md', 'm\n'); r = run(); o = r.stdout + r.stderr
+    for f_, v_ in (('视频/制作记录/31.md', '31 交接\n'), ('视频/a.md', 'a 镜像改\n')):
+        if not os.path.exists(f'{P}/{f_}') or open(f'{P}/{f_}').read() != v_: fails.append(f'没抓到：镜像会话推到镜像的 {f_} 没合回主仓库（被盖掉了）{o.strip()[-80:]}')
+        if git('show', f'tb:{f_}', cwd=f'{tmp}/L.git').stdout != v_: fails.append(f'没抓到：主仓库推送把镜像上的 {f_} 盖掉了')
+    if r.returncode != 0: fails.append(f'合回镜像后推送没过：{o.strip()[-100:]}')
+    git('pull', '-q', 'origin', 'tb', cwd=L2); 写(f'{L2}/视频/a.md', 'a 镜像再改\n'); git('commit', '-qam', '只在镜像再改', cwd=L2); git('push', '-q', 'origin', 'tb', cwd=L2)
+    写(f'{P}/视频/a.md', 'a 主改\n'); r = run(); o = r.stdout + r.stderr
+    if r.returncode == 0 or '冲突' not in o: fails.append(f'没抓到：两边改了同一行，推送没停（会盖掉镜像那份）{o.strip()[-80:]}')
+    if git('show', 'tb:视频/a.md', cwd=f'{tmp}/L.git').stdout != 'a 镜像再改\n': fails.append('没抓到：冲突时镜像上的 a.md 被盖掉了')
+    git('reset', '-q', '--hard', 'origin/main', cwd=P); 写(f'{P}/视频/a.md', 'a 镜像再改\n'); run()   # 人工合好（取镜像那份），后面的造错照常跑
     # G58：工作流（github-actions[bot]）写回镜像的印章要反向拷回主仓库；不是工作流写的，照旧以主仓库为准
     写(f'{P}/视频/工具/全篇重查通过.json', '旧印章\n'); 写(f'{P}/视频/工具/执行效应演练通过.json', '主仓库\n'); run()
     git('pull', '-q', 'origin', 'tb', cwd=L); 写(f'{L}/视频/工具/全篇重查通过.json', '工作流印章\n'); 写(f'{L}/视频/工具/执行效应演练通过.json', '有人乱改\n')
@@ -57,7 +70,7 @@ try:
     git('add', '-A', cwd=L); git('commit', '-qm', '人改', cwd=L); git('push', '-q', 'origin', 'tb', cwd=L)
     r = run(); o = r.stdout + r.stderr
     if open(f'{P}/视频/工具/全篇重查通过.json').read() != '工作流印章\n' or open(f'{L}/视频/工具/全篇重查通过.json').read() != '工作流印章\n': fails.append(f'没抓到：工作流写回的印章没拷回主仓库（G58）{o.strip()[-100:]}')
-    if open(f'{L}/视频/工具/执行效应演练通过.json').read() != '主仓库\n': fails.append('没抓到：不是工作流写的改动没被主仓库覆盖（G58）')
+    if open(f'{P}/视频/工具/执行效应演练通过.json').read() != '有人乱改\n' or open(f'{L}/视频/工具/执行效应演练通过.json').read() != '有人乱改\n': fails.append('没抓到：不是工作流写的、别的会话推到镜像的改动要合回主仓库，不许被盖（合回镜像）')
     # G58 白名单：本次请求篇号的成片回写、删除照回写；工作流改了白名单外的文件必须停
     写(f'{P}/视频/云端/请求/出片20.txt', '出片 20\n'); 写(f'{P}/视频/视频/草稿1080p/20_1080p.mp4', '旧草稿\n'); run()
     git('pull', '-q', 'origin', 'tb', cwd=L); 写(f'{L}/视频/视频/20.mp4', '工作流出的片\n'); os.remove(f'{L}/视频/视频/草稿1080p/20_1080p.mp4')
@@ -83,7 +96,7 @@ try:
     open(f'{L}/.git/shallow', 'w').write(git('rev-parse', 'HEAD', cwd=L).stdout)
     r = run(); o = r.stdout + r.stderr
     if '白名单外' in o: fails.append(f'误停：浅克隆边界提交当成工作流改了全部文件（K47）{o.strip()[-100:]}')
-    os.remove(f'{L}/.git/shallow'); git('pull', '-q', 'origin', 'tb', cwd=L)
+    os.path.exists(f'{L}/.git/shallow') and os.remove(f'{L}/.git/shallow'); git('pull', '-q', 'origin', 'tb', cwd=L)   # 合回镜像找同步提交时会把浅克隆往回取深（标记文件随之没了）
     # K24：别的会话直接放在镜像里的请求，主仓库推送不许删掉，要拷回主仓库
     git('pull', '-q', 'origin', 'tb', cwd=L); 写(f'{L}/视频/云端/请求/别的会话-0920.txt', '声音演练\n'); 写(f'{L}/视频/云端/待演练/交接.diff', 'd\n'); 写(f'{L}/视频/云端/结果/门变异/本地/x.json', '[]\n'); git('add', '-A', cwd=L); git('commit', '-qm', '别的会话的请求', cwd=L); git('push', '-q', 'origin', 'tb', cwd=L)
     写(f'{P}/视频/又一个.md', 'y\n'); r = run(); o = r.stdout + r.stderr

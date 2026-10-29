@@ -3,6 +3,7 @@
 # → 提交 → 推送两边 → 用 git 记录的文件指纹比对两边 视频/ 逐文件一致（不再逐个读大视频，几秒完成）。
 # 用法：bash 视频/工具/推送两仓库.sh "提交说明"
 set -e
+HERE=$(cd "$(dirname "$0")" && pwd)   # 本程序所在的工具目录（下面会 cd 到主仓库）
 exec 9>${PUSH_LOCK:-/tmp/推送两仓库.lock}; flock 9   # 几篇同时做时排队推送（推送自检用自己的锁，否则在推送里跑自检会自己等自己）
 P=${PUSH_P:-/home/user/postgraduate-vocabulary}; L=${PUSH_L:-/home/user/literate-enigma}; B=${PUSH_B:-claude/adoring-hamilton-5qskmm}   # PUSH_* 只给 推送自检.py 在假仓库里测用
 T=$'\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01XbsiuYS9p9y2vNiB4h6ZZU'
@@ -58,6 +59,8 @@ for f in sorted(fs):
 if bad: sys.exit('【停止】GitHub 工作流改了白名单外的文件（G58，篇号 ' + (' '.join(sorted(nn)) or '无') + '）：' + '；'.join(bad[:5]))
 PYW
 git diff --cached --quiet || git commit -qm "回写：GitHub 工作流结果（G58）$T"
+python3 "$HERE/新管/合回镜像.py" "$P" "$L" || exit 1   # 只能推镜像的会话推到镜像上的改动先按文件合回 main，不许盖掉（主会话 2026-10-29：31 的配音缓存、31.md 被冲了两次）
+git diff --cached --quiet || git commit -qm "合回：别的会话只推到镜像的改动$T"
 D='视频 最终版4K视频 新版定稿'
 TP=$(mktemp); TL=$(mktemp)   # 2026-10-26：清单原写死 /tmp/_p.txt、/tmp/_l.txt，演练里几场推送自检同时跑互相覆盖，复制错文件（G58 演练在 GitHub 上偶发失灵查出）   # G20：三个都镜像（只镜像 视频/ 时，定稿流水线 ⑥ 中断后用本脚本补推，镜像里的 4K 和文章一直是旧的）
 # 2026-10-23：按两边 git 指纹逐文件比对来拷（只拷“这次改动”会漏掉两个会话合并出来的文件）
@@ -76,7 +79,7 @@ git push -q origin main || { git pull -q --no-rebase --no-edit origin main && gi
 cp $P/CLAUDE.md $L/CLAUDE.md   # CLAUDE.md 以 postgraduate-vocabulary 为准（G11：定稿流水线用它覆盖工作分支，只改工作分支那份会被冲掉）
 cd $L; git symbolic-ref -q HEAD >/dev/null || git checkout -q -B $B   # 新容器 L 可能是游离 HEAD：分支挪到 HEAD 再推（2026-10-23 T34 九篇因此停）
 git add -A
-if ! git diff --cached --quiet; then git commit -qm "镜像：$1$T"; fi
+if ! git diff --cached --quiet; then git commit -qm "镜像：$1"$'\n\n'"主仓库提交：$(git -C $P rev-parse HEAD)$T"; fi   # 主仓库提交：合回镜像 靠这一行认同步提交（只看“镜像：”开头不够，别的会话也可能这样写）
 git push -q -u origin $B || { git pull -q --no-rebase --no-edit origin $B && git push -q -u origin $B; }
 diff <(git -C $P ls-tree -r HEAD $D | awk '{print $3,$4}') <(git -C $L ls-tree -r HEAD $D | awk '{print $3,$4}') >/dev/null \
   && cmp -s $P/CLAUDE.md $L/CLAUDE.md && [ -z "$(git -C $P status --short)" ] && [ -z "$(git -C $L status --short)" ] \
