@@ -28,11 +28,11 @@ S=[
      "（with + 名词 + 不定式：with 复合结构，作原因状语）"],
     [[("a **precise**","一个**精确的**(precise)"),("**definition**","**定义**(definition)"),("became a **necessity**.","便成了**必需**(necessity)。")],
      "（become a necessity：成为必需）"]]),
-(3,[[[("On 24 August 2006","2006年8月24日，"),("the International Astronomical Union,","国际天文学联合会"),("**convened** in Prague,","在布拉格**召开大会**(convened)，")],
+(3,[[[("On 24 August 2006","2006年8月24日，"),("the International Astronomical Union,","国际天文学联合会"),("**convened** in Prague,","在布拉格**召开会议**(convened)，")],
      "（convened in Prague：过去分词短语作插入语，\n补充说明 the International Astronomical Union）"],
-    [[("voted that","投票决定，"),("a planet","行星"),("must","必须"),("**revolve around**","**环绕**(revolve around)"),("the Sun,","太阳**运行**(revolve around)、")],
+    [[("voted that","投票决定："),("a planet","一颗行星"),("must","必须"),("**revolve around**","**围绕**(revolve around)"),("the Sun,","太阳**转动**(revolve around)、")],
      "（that 引导宾语从句，作 voted 的宾语；\nrevolve around…：绕……运行）"],
-    [[("be nearly **spherical**,","接近**球形**(spherical)，"),("and have cleared","并且已经清空"),("the **neighbourhood** around its orbit.","其轨道附近的**区域**(neighbourhood)。")],
+    [[("be nearly **spherical**,","形状接近**球形**(spherical)，"),("and have cleared","并且已清空"),("the **neighbourhood** around its orbit.","其轨道附近的**区域**(neighbourhood)。")],
      "（must revolve…, be…, and have cleared…：\n三个并列谓语，共用 must）"]]),
 (3,[[[("Pluto","冥王星"),("failed","不符合"),("that last **criterion**","最后一条**标准**(criterion)，")],
      "（fail a criterion：不符合标准）"],
@@ -42,11 +42,11 @@ S=[
      "（physically：物理上，实际上）"],
     [[("only","只有"),("the **boundary**","**界线**(boundary)"),("had moved.","移动了。")],
      "（分号连接两个前后对照的分句）"]]),
-(4,[[[("The vote","这次表决"),("was **valid**,","**有效**(valid)，"),("yet","但"),("its **legitimacy**","其**正当性**(legitimacy)"),("drew **criticism**:","受到了**批评**(criticism)，")],
+(4,[[[("The vote","这次表决"),("was **valid**,","虽然是**有效的**(valid)，"),("yet","但"),("its **legitimacy**","其**正当性**(legitimacy)"),("drew **criticism**:","却招致了**批评**(criticism)：")],
      "（draw criticism：招致批评；\n冒号后面说明受批评的原因）"],
-    [[("only 424 of some 10,000 members","因为约1万名会员中只有424人"),("took part.","参加了投票。")],
+    [[("only 424 of some 10,000 members","约1万名成员中仅有424人"),("took part.","参加。")],
      "（424 of some 10,000 members：约1万名会员中的424人；\nsome：大约）"]]),
-(4,[[[("Hundreds of","数百名"),("**dissenting** astronomers","持**异议**(dissenting)的天文学家"),("signed","签署了"),("a **petition**.","一份**请愿书**(petition)。")],
+(4,[[[("Hundreds of","数百名"),("**dissenting** astronomers","**持异议的**(dissenting)天文学家"),("signed","签署了"),("a **petition**.","一份**请愿书**(petition)。")],
      "（dissenting：持异议的，持不同意见的）"]]),
 (4,[[[("The American Dialect Society","美国方言学会"),("made","把"),("\"plutoed\",","“plutoed”，"),("**playful**","这个**戏谑的**(playful)"),("**slang**","**俚语**(slang)，"),("for \"to **devalue**\",","意思是“**贬低**(devalue)”，"),("its word of 2006,","评为2006年度词汇，")],
      "（made A B：把 A 评为 B；\nplayful slang for \"to devalue\"：同位语，补充说明 plutoed）"],
@@ -107,7 +107,7 @@ CONF["短语"]={"S2 deity … of":"不是搭配：of the underworld 是后置定
  "S13 devalue … of":"不是搭配：of 属于后面的 its word of 2006（2006年度词汇），和 devalue 无关",
  "S15 pinch … of":"不是搭配：a pinch of A 是普通量词结构（一撮 A），同 a sum of；pinch 单独就是“一撮”，中文“一小撮”",
  "S16 transmitting … of":"不是搭配：of 属于 images of an enormous plain（……的图像），transmit 的宾语是 images"}
-CONF["同词异译"]={"revolve around：环绕/运行":"不是两种译法：revolve around 的意思“绕……运行”被“太阳”隔开，“环绕”和“运行”是同一个意思的两段（T23）"}
+CONF["同词异译"]={"revolve around：围绕/转动":"不是两种译法：revolve around 的意思“围绕……转动”被“太阳”隔开，“围绕”和“转动”是同一个意思的两段（T23）"}
 CONF["方向"]={"S2-2 after→名字取自":"after 这里是“以……命名、取自”，不是时间先后，中文“名字取自”意思对"}
 CONF["非人声"]={"21.39–21.48s": {"配音指纹": "a784afd9344b", "依据": "2026-10-29 32（S2 w 5.860–5.950s）：词尾浊音衰减：underworld 末尾 /l/→/d/ 闭塞前的浊音（重心 1.0–2.5 kHz、周期 0.2–0.3），从 -26 dB 连续衰减，/d/ 除阻在 w 5.98–6.01（-26 dB、3.3 kHz），属于 world 这个词（逐 5 ms 实测）", "实测": {"最响dB": -35.2, "重心Hz": 1655, "周期": 0.26, "低频dB": -2.5}}, "32.38–32.39s": {"配音指纹": "a784afd9344b", "依据": "2026-10-29 32（S4 w 4.075–4.090s）：词头浊音起始：body 的 /b/ 浊音杠，far-off 的 /f/（7 kHz）衰减到 -66 dB（w 4.0675）之后，重心从 2.7 kHz 降到 0.2–0.3 kHz、周期升到 0.5，接上 /b/ 后的元音（逐 2.5 ms 实测）", "实测": {"最响dB": -32.5, "重心Hz": 790, "周期": 0.0, "低频dB": -1.4}}, "51.09–51.12s": {"配音指纹": "a784afd9344b", "依据": "2026-10-29 32（S7 w 6.585–6.605s）：词头除阻前段：precise 的 /p/ 闭塞段里 -50～-54 dB 的低电平声，紧接 /p/ 除阻（w 6.605–6.61，-47→-12 dB、3.5–4.1 kHz），a 的元音已在 w 6.575 衰减到 -65 dB（逐 5 ms 实测）", "实测": {"最响dB": -50.4, "重心Hz": 2089, "周期": 0.44, "低频dB": -0.4}}, "51.73–51.75s": {"配音指纹": "a784afd9344b", "依据": "2026-10-29 32（S7 w 7.215–7.240s）：词头浊音起始：definition 的 /d/ 浊音杠（重心 0.5–0.7 kHz、周期 0.4），precise 的 /s/（5.8 kHz）在 w 7.195 衰减到 -66 dB 之后，紧接 /d/ 除阻（w 7.245，-19 dB、3.2 kHz）（逐 5 ms 实测）", "实测": {"最响dB": -30.6, "重心Hz": 805, "周期": 0.44, "低频dB": -0.1}}, "141.03–141.05s": {"配音指纹": "a784afd9344b", "依据": "2026-10-29 32（S17 w 1.600–1.615s）：词尾除阻：swept 的 /p/ 除阻（-42 dB、3.5 kHz），前面 /p/ 闭塞 w 1.585–1.595（-58～-61 dB），后面 /t/ 闭塞 w 1.615–1.63（-62 dB）再接 /t/ 除阻 w 1.635（逐 5 ms 实测）", "实测": {"最响dB": -35.6, "重心Hz": 3653, "周期": 0.0, "低频dB": -18.7}}}
 CONF["删除段"]={"S4 raw 1.9550-2.2150": {"类型": "紧贴词尾的非人声", "配音指纹": "a784afd9344b", "依据": "2026-10-29 32 程序切的停顿（2005, 后）：five 的 /v/（4.7–5.2 kHz）衰减到 -54 dB（raw 1.955）直接接上停顿里的呼吸声（raw 1.96–2.17，-39～-47 dB、重心 2.0–3.2 kHz、周期 0.2），中间没有 -55 dB 低谷，只能紧贴切；右边 raw 2.21–2.215 降到 -57 dB，astronomers 元音 raw 2.23 起没碰（逐 5 ms 实测）"}, "S7 raw 2.8500-3.2857": "2026-10-29 32 实测：loosely, 后停顿里的吸气声（raw 3.08–3.285，-39～-55 dB、重心 2.1–2.6 kHz、周期 0.2）连同停顿删除；左边 raw 2.845 已降到 -57 dB，右边 raw 3.285 -55 dB、and 元音 raw 3.29 起没碰", "S7 raw 6.1000-6.4699": "2026-10-29 32 实测：found, 后停顿里的吸气声（raw 6.13–6.42，-41～-49 dB、重心 1.9–2.4 kHz）；左边 found 的 /d/ 除阻 raw 6.05 衰减到 -59 dB（raw 6.10），右边 raw 6.465 -62 dB，a 的元音 raw 6.475 起没碰", "S8 raw 7.1300-7.5082": {"类型": "紧贴两头的非人声", "配音指纹": "a784afd9344b", "依据": "2026-10-29 32 Prague, 后停顿：/g/ 除阻 raw 7.08（-21 dB、3 kHz）衰减到 -53 dB 后接上呼吸声（raw 7.14–7.17 回升到 -45 dB、重心 2.3–2.7 kHz），中间没有 -55 dB 低谷；右边停顿后残留 -46～-56 dB 低电平声紧贴 voted 的 /v/（raw 7.515 起 -38 dB、1.6 kHz），切在过零点 raw 7.5082，/v/ 没碰（逐 5 ms 实测）"}, "S11 raw 1.3200-1.6553": {"类型": "紧贴词头的非人声", "配音指纹": "a784afd9344b", "依据": "2026-10-29 32 valid, 后停顿：左边 raw 1.315 已降到 -57 dB；停顿后残留 -49～-57 dB 低电平声紧贴 yet 的 /j/（raw 1.66 起 -38→-20 dB、1.5 kHz），切在过零点 raw 1.6553，/j/ 没碰（逐 5 ms 实测）"}, "S13 raw 2.9355-3.1350": {"类型": "紧贴词尾的非人声", "配音指纹": "a784afd9344b", "依据": "2026-10-29 32 plutoed, 后：/d/ 除阻 raw 2.895–2.905（-20 dB、1.4–1.9 kHz）衰减到 -50 dB（raw 2.93）后接上呼出的气声（raw 2.945 起回升到 -44 dB、重心 2.2–2.4 kHz、周期 0.2，持续 150 ms），中间没有 -55 dB 低谷，切在过零点 raw 2.9355；右边 raw 3.09 起 -55～-67 dB（逐 5 ms 实测）"}, "S13 raw 10.1650-10.1800": "2026-10-29 32 实测：去底噪清掉的是 lawmakers 的 /k/ 闭塞段里 -56～-67 dB 的部分（最响 -55.9 dB），/eɪ/ 在 raw 10.16 已衰减到 -56 dB，/k/ 除阻 raw 10.19（-25 dB、4.2 kHz）没碰", "S13 raw 10.4735-10.6700": {"类型": "紧贴词尾的非人声", "配音指纹": "a784afd9344b", "依据": "2026-10-29 32 lawmakers 和 passed 之间：/z/（4.3–5 kHz）在 raw 10.47 衰减到 -55 dB，紧接回升的气声（raw 10.475 起 -44 dB、重心 3.3→2.3 kHz、周期 0.1–0.3）和低电平喉音（raw 10.595–10.63，-40～-50 dB），中间低谷只有一帧，切在低谷的过零点 raw 10.4735；“词尾被切 5 ms”是被删气声的头 5 ms（-44 dB、3.3 kHz，不是 /z/ 的 4.3–5 kHz）；右边 raw 10.635–10.67 -57～-65 dB，passed 的 /p/ 除阻 raw 10.68 起没碰（逐 5 ms 实测）"}, "S16 raw 2.7385-3.0350": "2026-10-29 32 实测：fifteen 和 the 之间的吸气声（raw 2.74–2.98，-38～-50 dB、重心 2.0–3.4 kHz、周期 0.2）；左边 /n/ 在 raw 2.735 降到 -57 dB，右边 raw 3.03–3.035 -61 dB，the 的 /ð/ raw 3.045 起没碰"}

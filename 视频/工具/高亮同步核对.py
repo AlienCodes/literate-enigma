@@ -24,7 +24,8 @@ def 是开口(A, sr, t):
     if len(w) < 2 * F or i < 6 * F: return False
     n = len(w) // (2 * F); ref = np.sqrt(np.mean(w[:n * 2 * F].reshape(n, 2 * F) ** 2, axis=1)).max() + 1e-12
     lv = lambda a, b: [20 * np.log10(np.sqrt(np.mean(A[x:x + F] ** 2)) / ref + 1e-12) for x in range(a, b, F)]
-    return max(lv(i - 6 * F, i)) < -40 and max(lv(i, i + 8 * F)) >= -30
+    pre, post = max(lv(i - 6 * F, i)), max(lv(i, i + 8 * F))
+    return post >= -30 and (pre < -40 or (pre < -35 and post - pre >= 15))   # K123（33 S1 went）：/w/ 这类浊音渐起，开口前 30 ms 有 -38 dB 的前导：前面 <-35 且之后比前面响 ≥15 dB 也算真开口
 def 确认可收(no, A, sr, t): return not (str(no).isdigit() and int(no) >= 25) or 是开口(A, sr, t)
 def 确认自检():
     sr = 24000; A = np.zeros(3 * sr); A[sr:2 * sr] = 0.3 * np.sin(np.arange(sr) * 2 * np.pi * 200 / sr); e = []
@@ -32,6 +33,10 @@ def 确认自检():
     if 确认可收('25', A, sr, 1.5): e.append('没抓到：确认写的“开始读”落在一个音的中间，照样收了')
     if 确认可收('25', A, sr, 0.5): e.append('没抓到：确认写的“开始读”落在静音里，照样收了')
     if not 确认可收('24', A, sr, 1.5): e.append('误报：24 以前的不回头查')
+    B = A.copy(); n5 = int(0.03 * sr); B[sr - n5:sr] = 0.3 * 10 ** (-38 / 20) * np.sin(np.arange(n5) * 2 * np.pi * 200 / sr)   # K123：起声前 30 ms 有 -38 dB 浊音前导
+    if not 确认可收('25', B, sr, 1.0): e.append('误报：浊音渐起（前导 -38 dB、之后响 ≥15 dB）的真开口被拒（K123）')
+    C = A.copy(); C[sr - n5:sr] = 0.3 * 10 ** (-33 / 20) * np.sin(np.arange(n5) * 2 * np.pi * 200 / sr)
+    if 确认可收('25', C, sr, 1.0): e.append('没抓到：开口前 30 ms 已有 -33 dB 的声音，还当真开口收了（K123）')
     return e
 if sys.argv[1:2] == ['--确认自检']:
     e = 确认自检(); print('\n'.join(e) or '高亮同步核对 确认自检通过（25 起“开始读”必须是真开口：落在音中间、静音里都不收）'); sys.exit(1 if e else 0)
