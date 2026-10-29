@@ -40,7 +40,7 @@ S=[
      "（Substantially complete by 1875：形容词短语作状语，\n逻辑主语是 the network；in use：在使用中）"]]),
 (5,[[[("Yet","然而，"),("that **sanitation**","这套**卫生设施/下水道设施**(sanitation)"),("**rested on**","**建立在**(rested on)"),("a **fallacy**.","一个**谬误**(fallacy)**之上**(rested on)。")],
      "（rest on…：建立在……之上，以……为基础）"]]),
-(5,[[[("The **predominant**","当时**占主导地位的**(predominant)"),("**belief**,","**看法**(belief)"),("miasma,","是瘴气说，"),("blamed disease on","把疾病归咎于"),("foul","污浊的"),("air","空气"),("and **vapours**,","和**秽气**(vapours)，")],
+(5,[[[("The **predominant**","当时**占主导地位的**(predominant)"),("**belief**,","**看法**(belief)"),("miasma,","是瘴气说，"),("blamed disease on","把疾病归咎于"),("foul","污浊的"),("air","空气"),("and **vapours**,","和臭水的**蒸汽**(vapours)，")],
      "（miasma：瘴气说，同位语，补充说明 belief；\nblame A on B：把 A 归咎于 B）"],
     [[("so","所以"),("the sewers","下水道"),("were intended","修建的目的"),("**principally**","**主要**(principally)"),("to **suppress**","是为了**压住**(suppress)"),("the smell.","臭味。")],
      "（be intended to do：目的是做……，打算用来……）"]]),
