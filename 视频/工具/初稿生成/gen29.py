@@ -28,7 +28,7 @@ S=[
      "（reflecting… and thereby lowering…：两个现在分词短语作结果状语；\nworld-wide：副词，在全世界范围内）"]]),
 (3,[[[("Europe","欧洲"),("and North America","和北美"),("came to","后来"),("**know**","**把**(know as)"),("1816","1816年"),("**as**","**称作**(know as)"),("the Year Without a Summer.","无夏之年。")],
      "（come to do：渐渐开始做……；know A as B：把 A 称作 B）"]]),
-(4,[[[("Europe's summer","欧洲的夏天"),("was **chilly**","**寒冷**(chilly)，"),("and **relentlessly** wet.","雨也**下个不停**(relentlessly)。")],
+(4,[[[("Europe's summer","欧洲的夏天"),("was **chilly**","**寒冷**(chilly)，"),("and **relentlessly** wet.","雨也**持续不断**(relentlessly)。")],
      "（relentlessly wet：无休止地潮湿，这里指雨一直下个不停）"]]),
 (4,[[[("Crops","庄稼"),("failed","要么歉收，"),("or lay **rotten**","要么**腐烂**(rotten)"),("in","在"),("**saturated**","**浸透了水**(saturated)的"),("fields,","田地里，")],
      "（lie rotten：烂在那里，lay 是 lie 的过去式；\nsaturated：湿透的，这里指被雨水浸透）"],
