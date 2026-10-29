@@ -54,7 +54,7 @@ S=[
      "（《弗兰肯斯坦》也就是我们所熟知的《科学怪人》；\nyarn：故事，多指离奇的故事）"],
     [[("which","这部作品"),("appeared **anonymously** in 1818","1818年**匿名**(anonymously)出版，"),("and was later","后来又"),("**reissued** under her name.","以她的名字**重新发行**(reissued)。")],
      "（which 引导非限制性定语从句，修饰 Frankenstein；\nunder her name：以她的名字，署她的名）"]]),
-(6,[[[("It","这部作品"),("is often","常"),("called","被称为"),("the founding work of the science-fiction **genre**.","科幻**体裁**(genre)的开山之作。")],
+(6,[[[("It","这部作品"),("is often","常"),("called","被称为"),("the **founding work** of the **science-fiction** **genre**.","**科幻**(science-fiction)**体裁/类型**(genre)的**开山之作**(founding work)。")],
      "（the founding work：开山之作，奠基之作；\nscience-fiction：科幻的）"]]),
 (7,[[[("A tropical","一座热带"),("volcano","火山"),("had supplied","提供了"),("the rain,","雨，"),("and a teenager","一个少女"),("the monster.","提供了怪物。")],
      "（and a teenager the monster：省略句，\n省略了 had supplied）\n"
@@ -86,12 +86,12 @@ CONF={
  "S5 **tens of thousands** more":"对齐不了：tens of thousands more 是一个数量短语“另外数万”，中文“又有数万人”里 more（又）必须提到最前",
  "S6 sulphur dioxide":"对齐不了：sulphur dioxide 是化学名“二氧化硫”，sulphur 是“硫”、dioxide 是“二氧化”，中文语序倒过来",
  "S14 reissued under her name":"对齐不了：under her name 修饰 reissued，中文“以她的名字重新发行”状语必须放在动词前面",
- "S15 the founding work of the science-fiction genre":"对齐不了：the founding work of A 中文“A 的开山之作”，of 结构语序必须倒过来"},
+ "S15 the **founding work** of the **science-fiction** **genre**.":"对齐不了：the founding work of A 中文“A 的开山之作”，of 结构语序必须倒过来"},
 "对齐":{"S1-2 the outskirts of Geneva.":"the outskirts of Geneva 中文“日内瓦的郊区”，of 结构语序必须倒过来",
  "S2-1 an anthology of German ghost s":"an anthology of German ghost stories 中文“一本德国鬼故事的选集”，of 结构语序必须倒过来；anthology、ghost stories 两个重点词因此同在一组（T34 倒装）",
  "S7-1 the Year Without a Summer.":"the Year Without a Summer 是专名“无夏之年”，整体对应",
  "S10-2 had set out in May":"in May 是时间状语，中文“5月间就已启程”时间必须放在动词前面",
- "S15-1 the founding work of the scien":"the founding work of the science-fiction genre 中文“科幻体裁的开山之作”，of 结构语序必须倒过来"}}
+ "S15-1 the founding work of the scien":"the founding work of the science-fiction genre 中文“科幻体裁/类型的开山之作”，of 结构语序必须倒过来；founding work、science-fiction、genre 三个重点词因此同在一组（T34 倒装）"}}
 out={"no":"29","title_en":"The Volcano That Gave Us Frankenstein","title_zh":"一座火山，造出了《弗兰肯斯坦》","title_fx":{"hl":["Volcano","Frankenstein"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","说明放宽特批":{"S16":{"倍数":"整屏","依据":"用户 2026-10-28 特批：“29、30、31 结尾简述都整屏、字号放到最大”（用户同意记录）"}},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Villa Diodati":"迪奥达蒂别墅","Lord Byron":"拜伦勋爵","Geneva":"日内瓦","Mount Tambora":"坦博拉火山","Indonesian":"印度尼西亚","Sumbawa":"松巴哇岛","sulphur dioxide":"二氧化硫","stratosphere":"平流层","sulphate aerosols":"硫酸盐气溶胶","Europe":"欧洲","North America":"北美","Year Without a Summer":"无夏之年","Mary Godwin":"玛丽·戈德温","Mary Shelley":"玛丽·雪莱","Percy Bysshe Shelley":"珀西·比希·雪莱","Claire Clairmont":"克莱尔·克莱蒙特","John Polidori":"约翰·波利多里","The Vampyre":"《吸血鬼》","Darkness":"《黑暗》","Frankenstein":"《弗兰肯斯坦》"}}
