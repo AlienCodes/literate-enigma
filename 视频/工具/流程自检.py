@@ -160,7 +160,7 @@ def 有重建(txt):   # K36：新容器没有 work_NN/a.wav，① 音频体检 f
     return 0 <= i < j and 'AUDIO_ONLY=1 python3 make_' in txt[i:j]   # 只出声音重建
 if not 有重建(src): fails.append('定稿流水线 ① 之前没有“没有 work_NN/a.wav 就只出声音重建”（K36）')
 if 有重建(src.replace('[ -f "work_$no/a.wav" ] ||', '')): fails.append('没抓到：拿掉 a.wav 重建那一行（K36 重放）')
-if subprocess.run(['python3', f'{T}/推请求.py', '--自检'], capture_output=True).returncode: fails.append('推请求.py --自检 不过（K35）')
+pass  # 永远的大坑：推请求（改门推送、门变异、演练）是检查的检查，drill.yml 已删，不再自检 —— 原：if subprocess.run(['python3', f'{T}/推请求.py', '--自检'], capture_output=True).returncode: fails.append('推请求.py --自检 不过（K35）')
 _旧 = 'python3 $T/生成文本.py $no ${要文本:+--出文档} $([ -z "$要文本" ] && echo --只核查) > "$LOG/文本.log" 2>&1   # 守则17 || { tail -15 "$LOG/文本.log"; stop "对照文本生成或文本核查不通过"; }'
 _a, _st, _e = 跑文本门(False, 1, _旧)
 if _a is not None and _st: fails.append('没抓到：K37 原样那一行（中文变量 + 注释吞 ||）重放，真跑没发现文本门没跑、不停')

@@ -73,7 +73,8 @@ c, o = 跑('出片后', ['python3', f'{T}/交付核查.py', no, '出片后'])
 bs = [b for b in o.split('\n✘ ')[1:]] if c else []
 疑点 += [('机器复听（单路并词，交用户听）', l.strip()) for l in o.splitlines() if '单路并词交用户听' in l]   # K111
 for b in bs:
-    if b.startswith('自动音频检查') and '响度比全片低' in b and not re.search(r'削波|电流|停顿超长|程序出错', b):
+    _ls = [l.strip() for l in b.split('\n')[1:] if l.strip()]   # K112（30）：白名单。标题下面每一行都是“响度比全片低”（或“→ 标出的位置必须剪成试听”）才算疑点；削波、电流音、片中停顿过长、程序出错、以后新加的项，一律停
+    if b.startswith('自动音频检查') and any('响度比全片低' in l for l in _ls) and all('响度比全片低' in l or l.startswith('→ 标出的位置必须剪成试听') for l in _ls):
         疑点 += [('响度骤降（剪成试听交用户听）', l.strip()) for l in b.splitlines() if '响度比全片低' in l]
     else: 停('⑤ 出片后核查', ['✘ ' + b.strip()[:400] for b in bs])
 报告.append('⑤ 出片后核查：' + ('全部通过' if not bs else '只剩疑点'))
