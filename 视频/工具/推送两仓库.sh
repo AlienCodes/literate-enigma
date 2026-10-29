@@ -8,6 +8,7 @@ exec 9>${PUSH_LOCK:-/tmp/推送两仓库.lock}; flock 9   # 几篇同时做时�
 P=${PUSH_P:-/home/user/postgraduate-vocabulary}; L=${PUSH_L:-/home/user/literate-enigma}; B=${PUSH_B:-claude/adoring-hamilton-5qskmm}   # PUSH_* 只给 推送自检.py 在假仓库里测用
 T=$'\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01XbsiuYS9p9y2vNiB4h6ZZU'
 cd $P
+git symbolic-ref -q HEAD >/dev/null || git checkout -q -B main   # K130（36 推送连被拒 5 遍）：主仓库分离 HEAD 时 main 落后，先把 main 挪到 HEAD（定稿.sh K128 同一写法）
 # git 提交钩子装上（新容器、别的会话同样生效）：提交前只查快测印章，对不上自动跑快测
 git -C $P config core.hooksPath 视频/工具/githooks; git -C $L config core.hooksPath 视频/工具/githooks 2>/dev/null
 [ ! -f $P/视频/工具/新管/印章.py ] || python3 $P/视频/工具/新管/印章.py --自动 || { echo "【停止】快测不通过（有检查坏了，属于质量问题）：先修好再推"; exit 1; }   # 印章对不上自动跑快测，过了接着推（用户 2026-10-29）

@@ -99,10 +99,12 @@ _币 = {'£': ('pounds', 'pound'), '$': ('dollars', 'dollar'), '€': ('euros', 
 def 比(ref, hyp):
     """读音对不上的 [(脚本里的词, 听到的词)]。听到的一侧有 £/$/€ + 数字（识别器把钱数写成符号，22 S8 £1,000、23 S18 £50 note）：
     写成 数字 + pounds 或 pound 两种，取对不上少的那种（符号本身不分单复数）"""
+    _量 = r'(?: (million|billion|trillion)\b)?'   # K130：$950 million 配音读 950 million dollars，币名在量词后面
+    ref = re.sub(r'([£$€])(\d[\d,]*(?:\.\d+)?) (million|billion|trillion)\b', lambda m_: f"{m_.group(2)} {m_.group(3)} {_币[m_.group(1)][0]}", ref)
     ref = re.sub(r'([£$€])(\d[\d,]*)(?![.]\d)', lambda m_: f"{m_.group(2)} {_币[m_.group(1)][1 if m_.group(2) == '1' else 0]}", ref)   # K114（31 S14）：脚本里的 $105,000 配音读成 105000 dollars（make_video spoken()），脚本一侧也展开再比
     m = re.search(r'([£$€])\s*(\d[\d,]*(?:\.\d+)?)', hyp)
     if not m: return _比(ref, hyp)
-    vs = [_比(ref, re.sub(r'([£$€])\s*(\d[\d,]*(?:\.\d+)?)', lambda m_: f'{m_.group(2)} {_币[m_.group(1)][i]}', hyp)) for i in (0, 1)]
+    vs = [_比(ref, re.sub(r'([£$€])\s*(\d[\d,]*(?:\.\d+)?)' + _量, lambda m_: f'{m_.group(2)} {m_.group(3)} {_币[m_.group(1)][0]}' if m_.group(3) else f'{m_.group(2)} {_币[m_.group(1)][i]}', hyp)) for i in (0, 1)]
     return min(vs, key=len)
 def _比(ref, hyp):
     改 = 改正读音()
@@ -211,13 +213,13 @@ def 比较自检():
     for a_, b_, 应 in (('chloride of lime', 'chloroflime', True), ('chloride of lime', 'chlorine', False), ('chloride of lime', 'chloride', False), ('of lime', 'oflime', False), ('blew', 'blue', False)):
         if _并词(a_, b_) != 应: f.append(f'K111 并词判错：“{a_}”→“{b_}” 应{"算" if 应 else "不算"}并词')
     for r_, h_ in (('some 3,000 kilometres away', 'some 3000 kilometers away'), ('about 40 per cent less', 'about 40% less'), ('the colour of', 'the color of'),
-                   ('On April 13th', 'On April 13'), ("the crew's capsule", 'the cruise capsule'), ('organised eleven', 'organized 11'), ('On 6 January', 'On the 6 of January'), ('some 200,000 miles', 'some 200000 miles'), ('a smell of sulphur', 'a smell of sulfur'), ('paid $105,000 for', 'paid $105,000 for'), ('paid $105,000 for', 'paid 105,000 dollars for'), ('NASA called it the tenth planet', 'NASA called it the 10th planet'), ('the 10th planet', 'the tenth planet'), ('On 21 July', 'On July 21st'), ('On 24 August 2006, the', 'On 24th August 2006, the'), ('On 24 August 2006', 'On the 24th of August 2006'), ('On 24 August 2006', 'On August 24th, 2006'), ('On 24 August 2006', 'On 24 August 2006'), ('On 2 July two elite British divers', 'On the 2nd of July 2, elite British divers'), ('about 4 km from the entrance', 'about four kilometers from the entrance'), ('about 4 km from the entrance', 'about 4 kilometres from the entrance')):
+                   ('On April 13th', 'On April 13'), ("the crew's capsule", 'the cruise capsule'), ('organised eleven', 'organized 11'), ('On 6 January', 'On the 6 of January'), ('some 200,000 miles', 'some 200000 miles'), ('a smell of sulphur', 'a smell of sulfur'), ('paid $105,000 for', 'paid $105,000 for'), ('paid $105,000 for', 'paid 105,000 dollars for'), ('sold for $950 million in', 'sold for $950 million in'), ('sold for $950 million in', 'sold for 950 million dollars in'), ('NASA called it the tenth planet', 'NASA called it the 10th planet'), ('the 10th planet', 'the tenth planet'), ('On 21 July', 'On July 21st'), ('On 24 August 2006, the', 'On 24th August 2006, the'), ('On 24 August 2006', 'On the 24th of August 2006'), ('On 24 August 2006', 'On August 24th, 2006'), ('On 24 August 2006', 'On 24 August 2006'), ('On 2 July two elite British divers', 'On the 2nd of July 2, elite British divers'), ('about 4 km from the entrance', 'about four kilometers from the entrance'), ('about 4 km from the entrance', 'about 4 kilometres from the entrance')):
         if 比(r_, h_): f.append(f'误报：“{r_}”听成“{h_}”读音一样，却报了 {比(r_, h_)}')
     if 比('He met Windhandel there', 'He met Vinthehandel there') and 'windhandel' in 已核实(): f.append('误报：已核实读音的专名被识别器听错也报了')
     for r_, h_ in (('Ötzi was found in 1991', 'Erzi was found in 1991'), ('It sold as the Walkie-Scorchie in London', 'It sold as the walkie scorchy in London'),
                    ('a fine of 1,000 pounds each', 'a fine of £1,000 each'), ('a fifty-pound note', 'a £50 note'), ('a trek in the Ötztal Alps', 'a trek in the Erzdal Alps')):   # 第二阶段 2 通用规则（20 S17、22 S11、22 S8、23 S18）
         if 比(r_, h_): f.append(f'误报：“{r_}”听成“{h_}”（句首已核实专名 / 读音改正表 / 货币符号），却报了 {比(r_, h_)}')
-    for r_, h_ in (('about 4 km from', 'about four miles from'), ('On 2 July two elite divers', 'On the 2nd of July elite divers'), ('the tenth planet', 'the 10 planet'), ('the tenth planet', 'the ten planet'), ('paid $105,000 for', 'paid dollar 105,000 for'), ('paid $105,000 for', 'paid 105,000 for'), ('He sat there', 'He set there'), ('a fine of 1,000 pounds each', 'a fine of £1,000'), ('Ötzi was found in 1991', 'was found in 1991')):   # 小写 sat 不因已核实表里有 SAT 豁免；货币归一后漏词、专名漏掉照报
+    for r_, h_ in (('sold for $950 million in', 'sold for 950 dollars million in'), ('about 4 km from', 'about four miles from'), ('On 2 July two elite divers', 'On the 2nd of July elite divers'), ('the tenth planet', 'the 10 planet'), ('the tenth planet', 'the ten planet'), ('paid $105,000 for', 'paid dollar 105,000 for'), ('paid $105,000 for', 'paid 105,000 for'), ('He sat there', 'He set there'), ('a fine of 1,000 pounds each', 'a fine of £1,000'), ('Ötzi was found in 1991', 'was found in 1991')):   # 小写 sat 不因已核实表里有 SAT 豁免；货币归一后漏词、专名漏掉照报
         if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
     for r_, h_ in (('Tu was named a Lasker Award recipient', 'Tu was named Alaska Award recipient'), ('On 5 October 2015 she won', 'On October 5, 2015 she won'),
                    ('On 5 October 2015 she won', 'On October the fifth 2015 she won'), ('On 5 October 2015 she won', 'On the fifth of October 2015 she won')):   # G122（K81 28 S14、S15）

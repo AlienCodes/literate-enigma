@@ -37,7 +37,7 @@ elif stage == '出片前':
     # 数字读法、引号自检（A11/A37/A17）：标准读法必须一字不差，引号必须不读、撇号必须保留
     _sp = {'in 1995 he': 'in nineteen ninety-five he', 'the 1960s were': 'the nineteen sixties were', 'on 6 January': 'on the sixth of January',
            'at 11.40pm': 'at eleven forty PM', 'was 264.4 km': 'was two hundred sixty-four point four km',
-           '"Hello," she said.': 'Hello, she said.', "he didn't": "he didn't", '‘Yes’ he said': 'Yes he said', 'paid $105,000 for': 'paid one hundred five thousand dollars for', 'a fine of £1 each': 'a fine of one pound each'}   # K114
+           '"Hello," she said.': 'Hello, she said.', "he didn't": "he didn't", '‘Yes’ he said': 'Yes he said', 'paid $105,000 for': 'paid one hundred five thousand dollars for', 'a fine of £1 each': 'a fine of one pound each', 'sold for $950 million in': 'sold for nine hundred fifty million dollars in'}   # K114、K130
     _spbad = [f'{k} → {spoken(k)}（应为 {v}）' for k, v in _sp.items() if spoken(k) != v]
     step('数字读法、引号自检（A11/A37/A17：年份、年代、日期、时刻、小数读法；引号不读、撇号保留）', not _spbad, '没抓到：' + '；'.join(_spbad) if _spbad else '')
     d = json.load(open(f'scripts/{no}.json'))
