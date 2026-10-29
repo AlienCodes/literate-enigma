@@ -107,6 +107,13 @@ CONF["短语"]={"S1 inspiration … for":"不是搭配：for 引出灵感的对�
  "S13 allocated … to":"不是搭配：to 引出分配的去处（libraries）；allocate 单独就是“分配”，同 send to、give to",
  "S14 renamed … on":"不是搭配：on 引出时间 on 1 September 1998，属于 appeared",
  "S1 a delayed train":"不是搭配：delayed 就是本义“晚点的”（速查表第一个意思），train 是普通名词“列车”，各自对齐即可"}
+CONF.setdefault("同词异译",{}).update({"a sum of：一笔/款项":"S10 a sum of“一笔……的款项”被“1,500英镑的”隔开，“一笔”和“款项”是同一个意思的两部分（T22/T23，用户 2026-10-29 原话“a sum of 整体标注为重点词汇”），不是两种译法"})
+CONF["短语"].update({"S1 Manchester … to":"不是搭配：from Manchester to London's King's Cross 是 from A to B 的起止结构，to 属于 London's King's Cross；Manchester 是专名，单独标（用户 2026-10-29 原话“Manchester 标注为重点词汇”）",
+ "S5 in … Edinburgh":"不是固定用法：in 只引出地点（resettled in Edinburgh 在爱丁堡重新安家），Edinburgh 是专名，单独标（用户 2026-10-29 原话“爱丁堡 也要作为重点词汇”）",
+ "S9 the first chapter":"不是习语：chapter 本文就是“（书的）章”（速查表第一义），the first chapter 是普通的序数词 + 名词，中文“第一章”；用户 2026-10-29 原话只要标 chapter"})
+CONF["响度骤降"]={"39.1–39.6s":{"配音指纹":"a7f55679b4d7","低":6.5,"句子":"S4 Rowling married in Porto in October 1992, and a daughter's arrival in July 1993 ushered in motherhood.（ninety-three）",
+ "依据":"2026-10-29 逐段看声音实测 S4 w 6.90–7.45（成片约 39.1–39.6s）：ninety-three 的 -ty three 各音完整：t 6.93–6.96 除阻（重心 5.8 kHz）、i 6.98–7.03 浊音 -21 dB、θ 7.04–7.16 清擦音 -25 dB（重心 7–8 kHz，低频 -30～-51 dB）、ɹ 7.18–7.20 过渡、iː 7.20–7.42 浊音 -15～-23 dB（周期 0.5，与全片元音同级），7.44 衰减到 -56 dB；偏轻来自 120 ms 的清擦音 θ，不是发闷、断续或缺音",
+ "用户原话":"surpassed  只保留这个 根据我们改的，然后根据我们改的直接出4K（用户看过 31 草稿、逐屏改稿 17 条之后说）"}}
 out={"no":"31","title_en":"The Book Twelve Publishers Turned Down","title_zh":"被拒绝了十二次的哈利·波特","title_fx":{"hl":["Twelve","Publishers"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "说明放宽特批":{"S16":{"倍数":"整屏","依据":"用户 2026-10-28 特批：“29、30、31 结尾简述都整屏、字号放到最大”（用户同意记录）"}},
      "非人声区间":{"S2":[[6.12,6.315]],"S5":[[1.817125,1.955,"紧贴词尾"]],"S9":[[0.985,1.16],[7.342542,7.574583,"紧贴词头"]],"S14":[[6.13,6.31]]},
