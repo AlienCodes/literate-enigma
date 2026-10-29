@@ -147,9 +147,26 @@ def 爆破起(a, f):
             k = next((n for n, v in enumerate(tail) if v < -55), None)
             return k is None or all(v < -50 for v in tail[k:])
     return False
+def 贴词尾擦音(a, f):
+    """K139（36 S10 disruptive. 的 /v/ 清化）：这段开头前 60 ms 内就是 ≥-30 dB 的词，中间没有 <-50 dB 的低谷（连着前面的词）；
+    段里有一段 20 ms 的擦音核心（重心 >3300 Hz）= 词尾擦音的清化收尾，不是吸气（吸气重心 2–2.8 kHz）"""
+    i0, i1 = int(round(f[1] * SR)), int(round(f[2] * SR)); h = F // 2
+    for s0, s1 in segments(a):
+        if s0 <= i0 < s1:
+            seg = a[s0:s1]; m = len(seg) // F; ref = np.sqrt(np.mean(seg[:m * F].reshape(m, F) ** 2, axis=1)).max() + 1e-12
+            lv = lambda x: 20 * np.log10(np.sqrt(np.mean(a[x:x + h] ** 2)) / ref + 1e-12) if x >= 0 and len(a[x:x + h]) == h else -99.0
+            back = [lv(x) for x in range(i0 - h, max(0, i0 - int(0.06 * SR)) - 1, -h)]
+            k = next((n for n, v in enumerate(back) if v >= -30), None)
+            if k is None or any(v < -50 for v in back[:k]): return False
+            n20 = int(0.02 * SR); fr = np.fft.rfftfreq(n20, 1 / SR)
+            for x in range(i0, max(i0 + 1, i1 - n20), h):
+                X = np.abs(np.fft.rfft(a[x:x + n20] * np.hanning(n20))) ** 2
+                if X.sum() > 0 and (X * fr).sum() / X.sum() > 3300: return True
+            return False
+    return False
 def 确认可收(no, f, cf, a=None):
     if not (str(no).isdigit() and int(no) >= 25): return True, ''
-    h_ = 像吸气(f) and a is not None and isinstance(cf, dict) and ((cf.get('词头') == 'h' and 贴词头(a, f)) or (cf.get('词尾') in ('p', 't', 'k', 'tʃ') and 爆破起(a, f)))   # K135：词尾塞音的除阻 + 送气（写明 词尾=k，程序量得到从闭塞里爆出、无缝衰减）   # K127：词头 /h/ 的送气，声学上落在吸气范围里；确认写明 词头=h、程序量得到紧连着后面的词，才收（照样要实测、交用户听）
+    h_ = 像吸气(f) and a is not None and isinstance(cf, dict) and ((cf.get('词头') == 'h' and 贴词头(a, f)) or (cf.get('词尾') in ('p', 't', 'k', 'tʃ') and 爆破起(a, f)) or (cf.get('词尾') in ('v', 'f', 'z', 's', 'θ', 'ð', 'ʃ') and 贴词尾擦音(a, f)))   # K139：词尾擦音清化收尾（连着前面的词、有 >3.3 kHz 的擦音核心）   # K135：词尾塞音的除阻 + 送气（写明 词尾=k，程序量得到从闭塞里爆出、无缝衰减）   # K127：词头 /h/ 的送气，声学上落在吸气范围里；确认写明 词头=h、程序量得到紧连着后面的词，才收（照样要实测、交用户听）
     if 像吸气(f) and not h_: return False, f'实测像可闻吸气（{实测(f)}），确认不收，用 非人声区间 去掉（G43）'
     m = cf.get('实测') if isinstance(cf, dict) else None
     if not isinstance(m, dict): return False, '确认里没有实测数据（G43：python3 纯人声核对.py NN --写实测）'
@@ -179,6 +196,14 @@ def 确认自检():
     if not 确认可收('25', fk, {'词尾': 'k', '实测': 实测(fk)}, K_)[0]: e.append('误报：词尾 /k/ 从闭塞里爆出、无缝衰减，写明 词尾=k 也不收（K135）')
     L_ = K_.copy(); L_[i5:i5 + n6] = 0.02 * rng_.standard_normal(n6) * np.linspace(0.05, 1, n6)
     if 确认可收('25', fk, {'词尾': 'k', '实测': 实测(fk)}, L_)[0]: e.append('没抓到：慢慢起来的吸气，写了 词尾=k 照样收了（K135）')
+    # K139：词尾 /v/ 清化：紧连着前面的浊音、有 4 kHz 擦音核心 → 写明 词尾=v 收；和前面的词隔着静音、重心只有 2 kHz（吸气）→ 不收
+    V_ = np.zeros(SR); t_ = np.arange(int(0.3 * SR)) / SR; V_[int(0.1 * SR):int(0.4 * SR)] = 0.5 * np.sin(2 * np.pi * 200 * t_)
+    nf = int(0.1 * SR); Xf = np.fft.rfft(rng_.standard_normal(nf)); ff_ = np.fft.rfftfreq(nf, 1 / SR); Xf[(ff_ < 3500) | (ff_ > 5000)] = 0; hiss = np.fft.irfft(Xf, nf); hiss *= 0.03 / (np.sqrt(np.mean(hiss ** 2)) + 1e-12)
+    V_[int(0.4 * SR):int(0.4 * SR) + nf] = hiss
+    fv = ('呼吸声', 0.40, 0.50, -35.1, 3649, 0.22, -10.6)
+    if not 确认可收('25', fv, {'词尾': 'v', '实测': 实测(fv)}, V_)[0]: e.append('误报：词尾 /v/ 清化（连着前面、4 kHz 擦音核心），写明 词尾=v 也不收（K139）')
+    U_ = V_.copy(); U_[int(0.38 * SR):int(0.4 * SR)] = 0; Xb = np.fft.rfft(rng_.standard_normal(nf)); Xb[(ff_ < 1500) | (ff_ > 2500)] = 0; br = np.fft.irfft(Xb, nf); U_[int(0.4 * SR):int(0.4 * SR) + nf] = br * 0.03 / (np.sqrt(np.mean(br ** 2)) + 1e-12)
+    if 确认可收('25', fv, {'词尾': 'v', '实测': 实测(fv)}, U_)[0]: e.append('没抓到：隔着静音、重心 2 kHz 的吸气，写了 词尾=v 照样收了（K139）')
     M_ = K_.copy(); M_[i5 + int(0.02 * SR):i5 + int(0.035 * SR)] = 0; M_[i5 + int(0.035 * SR):i5 + n6] = 0.02 * rng_.standard_normal(n6 - int(0.035 * SR))
     if 确认可收('25', fk, {'词尾': 'k', '实测': 实测(fk)}, M_)[0]: e.append('没抓到：爆破后隔着静音缝又起一段声音，写了 词尾=k 照样收了（K135）')
     return e
