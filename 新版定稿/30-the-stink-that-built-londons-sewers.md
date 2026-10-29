@@ -28,7 +28,7 @@ A remedy **aimed at** the nose protected the **gut**.
 
 然而，这套**卫生设施/下水道设施**(sanitation)**建立在**(rested on)一个**谬误**(fallacy)**之上**(rested on)。（rest on…：建立在……之上，以……为基础）当时**占主导地位的**(predominant)**看法**(belief)是瘴气说，把疾病归咎于**污浊的空气**(foul air)和臭水的**蒸汽**(vapours)，所以下水道修建的目的**主要**(principally)是为了**压住**(suppress)臭味。（miasma：瘴气说，同位语，补充说明 belief；blame A on B：把 A 归咎于 B）（be intended to do：目的是做……，打算用来……）它们奏效，却是出于一个**意料之外的**(unintended)原因，那就是守住了伦敦人饮用水的**洁净**(purity)。（work：这里指奏效，起作用）（guarding…：现在分词短语，解释 reason；the water Londoners drank：省略 that 的定语从句）
 
-霍乱**卷土重来**(resurfaced)于1866年，夺去了约5,600人的生命，在伦敦东区，那是唯一尚未接入的**地区**(locality)。（the East End：伦敦东区）（the one locality…：同位语，补充说明 the East End；not yet connected：过去分词短语作后置定语）
+霍乱**再次出现**(resurfaced)于1866年，夺去了约5,600人的生命，在伦敦东区，那是唯一尚未接入的**地区**(locality)。（the East End：伦敦东区）（the one locality…：同位语，补充说明 the East End；not yet connected：过去分词短语作后置定语）
 
 一项**冲着**(aimed at)鼻子**去的**(aimed at)补救措施，护住的却是**肠胃**(gut)。（aimed at…：过去分词短语作后置定语，修饰 remedy；the gut：肠胃，与 the nose 对比）（简述：1858年夏天酷热，伦敦约三百万居民的污水直接排进泰晤士河，臭气熏天，史称大恶臭；议会大厦的窗帘浸满氯化石灰，议员们考虑过搬走。7月15日，财政大臣迪斯雷利痛斥这条河，修新下水道的法案约18天成为法律。工程师巴泽尔杰特修了82英里截流下水道，把污水截住送往城市下游，另有约1,100英里街道下水道汇入，用砖三亿一千八百万块，管径算出后再加倍，到1875年基本完工，大部分至今仍在使用。当时人们相信瘴气说，修下水道主要为了除臭，它奏效却是因为守住了饮用水的洁净。1866年霍乱再起，夺去约5,600人生命的东区，正是唯一尚未接入的地区。）
 
@@ -94,7 +94,7 @@ A remedy **aimed at** the nose protected the **gut**.
 | suppress | 本文：压住；v. 压制，抑制（suppress a smell/an urge） | 5 |
 | unintended | 本文：意料之外的；adj. 无意的，意料之外的（unintended consequences） | 5 |
 | purity | 本文：洁净；n. 纯净，纯洁（the purity of water） | 5 |
-| resurfaced | 本文：卷土重来；v. (resurface) 重新出现（the problem resurfaced） | 6 |
+| resurfaced | 本文：再次出现；v. (resurface) 重新出现（the problem resurfaced） | 6 |
 | locality | 本文：地区；n. 地区，地方（in the locality） | 6 |
 | aimed at | 本文：冲着……去的；v. (aim at) 冲着……去的，针对（be aimed at） | 7 |
 | gut | 本文：肠胃；n. 肠胃，内脏；直觉（a gut feeling） | 7 |
