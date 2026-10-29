@@ -147,7 +147,7 @@ def text_checks(d, art=None, sent=None, no=None):
             if re.search(r'[一-鿿）】》”][,.;:?!]|[,;:?!][一-鿿（【《“]', z): err.append(f'[标点] {C} 中文里用了半角标点：{c["zh"][:30]}')
             if re.search(r'[「」『』"]', z): err.append(f'[标点] {C} 引号要用中文引号“”：{c["zh"][:30]}')
             if re.search(r'\((?![A-Za-z])', z): err.append(f'[W4] {C} 中文说明用了半角括号（要用全角（））')
-            if c.get('note') and not re.match(r'^(#\w+)?（.*）$', c['note'], re.S): err.append(f'[注释] {C} 注释要写在全角（）里：{c["note"][:30]}')
+            if c.get('note') and not note_bracket_ok(c['note']): err.append(f'[注释] {C} 注释要写在全角（）里：{c["note"][:30]}')
             # T16 数字：英文里的阿拉伯数字，中文里要有同一个数（写法不同的逐个确认）
             for num in re.findall(r'\d[\d,]*\d|\d', strip_en(c['en'])):
                 if num not in c['zh'] and num.replace(',', '') not in c['zh'].replace(',', ''):
@@ -335,6 +335,15 @@ def term_checks(d):
         for w in names:
             if re.search(r'\b' + w + r'\b', en) and not re.search(r'(?<![A-Za-z])' + w + r'(?![A-Za-z])', zh): out.append(f'[T30] S{i} 英文有 {w}，中文这一句没有（漏译）')
     return out
+def note_bracket_ok(note):
+    """注释写在全角（）里。K117（31 改稿 S2）：先去掉行首的“@词|”续行颜色标记（render._note_txt 同一写法），再判括号"""
+    return bool(re.match(r'^(#\w+)?（.*）$', re.sub(r'(?m)^@[^|（]*\|', '', note), re.S))
+def selftest_note():
+    f = []
+    for n_, 应 in (('（overshadow：使黯然失色）', True), ('@overshadow|（overshadow：使黯然失色，盖过；\n另一行）', True), ('#t（说明）', True),
+                   ('overshadow：使黯然失色', False), ('@overshadow|overshadow：使黯然失色', False), ('(overshadow: half-width)', False)):
+        if note_bracket_ok(n_) != 应: f.append(f'[注释] 判错：{n_[:30]} 应{"过" if 应 else "报"}')
+    return f
 def selftest_term():
     ok_ = {'术语': {'shoulder hit': '肩冲'}, 'sentences': [{'chunks': [{'en': "as those of AlphaGo's **audacious** shoulder hit.", 'zh': '和 AlphaGo 那次**大胆的**(audacious)肩冲一样'}]}]}
     b1 = copy.deepcopy(ok_); b1['sentences'][0]['chunks'][0]['zh'] = '和 AlphaGo 那次**大胆**(audacious)一样'
@@ -904,7 +913,7 @@ def main():
         print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
         return 1 if vf else 0
     sys.path.insert(0, T); import 译文核查 as _YW
-    fails = selftest() + _YW.自检() + KZ_自检() + selftest_record_human() + selftest_l19() + selftest_l20() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart() + __import__('破折号').自检()
+    fails = selftest() + _YW.自检() + KZ_自检() + selftest_record_human() + selftest_l19() + selftest_l20() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_note() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart() + __import__('破折号').自检()
     print('核查程序自检：' + ('通过（每一种造出来的坑都抓到，原稿无误报）' if not fails else '【失灵】' + '；'.join(fails)))
     if fails: print('【核查程序失灵，不得交付】'); return 1
     if args and args[0] == '自检': return 0
