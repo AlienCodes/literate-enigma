@@ -32,7 +32,7 @@ S=[
      "（with A as B：以 A 作为 B，with 复合结构作状语）"],
     [[("the **infrastructure**","整套**基础设施**(infrastructure)"),("took","用了"),("318 million","三亿一千八百万"),("**bricks**.","**砖块**(bricks)。")],
      "（take：这里指耗用，需要）"]]),
-(4,[[[("Having calculated","先算出"),("an **adequate**","**足够的**(adequate)"),("**calibre**","**管径**(calibre)，"),("for","用于"),("each","每条"),("pipe,","管道，"),("he","他"),("doubled it.","再把它加倍。")],
+(4,[[[("Having calculated","先算出"),("an **adequate**","**足够的**(adequate)"),("**calibre**","**内径/粗细**(calibre)，"),("for","用于"),("each","每条"),("pipe,","管道，"),("he","他"),("**doubled** it.","再把它**加倍**(doubled)。")],
      "（Having calculated…：现在分词完成式作状语，\n表示动作先于 doubled 发生）"]]),
 (4,[[[("The **backbone**","系统的**主干**(backbone)"),("lies **buried**","就**埋藏**(buried)在"),("**underneath** the **newly** built Victoria, Albert, and Chelsea Embankments.","**新近**(newly)修成的维多利亚、阿尔伯特和切尔西河堤**之下**(underneath)。")],
      "（lie buried：埋藏着，lie + 过去分词表示处于某种状态；\nEmbankment：河堤，泰晤士河沿岸的堤岸大道）"]]),
