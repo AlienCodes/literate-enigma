@@ -115,9 +115,24 @@ def key(f): return f'{f[1]:.2f}–{f[2]:.2f}s'
 #    （长 ≥60 ms：/p/ /t/ 的除阻也是这种频谱，但只有 10–20 ms，25 S13 upgraded 的 /p/ 除阻 20 ms）
 def 实测(f): return {'最响dB': round(float(f[3]), 1), '重心Hz': round(float(f[4])), '周期': round(float(f[5]), 2), '低频dB': round(float(f[6]), 1)}
 def 像吸气(f): return f[0] in ('呼吸声', '噗声', '孤立杂音') and f[2] - f[1] >= 0.06 and 1800 <= f[4] <= 3800 and f[6] < -10 and f[5] < 0.35 and f[3] >= -45
-def 确认可收(no, f, cf):
+def 贴词头(a, f):
+    """K127（34 S17 helped）：这段结束后 60 ms 内就进到 ≥-30 dB 的词，中间没有 <-55 dB 的低谷（和 自动切点 K125 同一判据）= 连着后面的词"""
+    i = int(round(f[2] * SR))
+    for s0, s1 in segments(a):
+        if s0 <= i < s1:
+            seg = a[s0:s1]; m = len(seg) // F; ref = np.sqrt(np.mean(seg[:m * F].reshape(m, F) ** 2, axis=1)).max() + 1e-12
+            for k in range(13):
+                x = a[i + k * F:i + (k + 1) * F]
+                if len(x) < F: return False
+                lv = 20 * np.log10(np.sqrt(np.mean(x ** 2)) / ref + 1e-12)
+                if lv < -55: return False
+                if lv >= -30: return True
+            return False
+    return False
+def 确认可收(no, f, cf, a=None):
     if not (str(no).isdigit() and int(no) >= 25): return True, ''
-    if 像吸气(f): return False, f'实测像可闻吸气（{实测(f)}），确认不收，用 非人声区间 去掉（G43）'
+    h_ = 像吸气(f) and a is not None and isinstance(cf, dict) and cf.get('词头') == 'h' and 贴词头(a, f)   # K127：词头 /h/ 的送气，声学上落在吸气范围里；确认写明 词头=h、程序量得到紧连着后面的词，才收（照样要实测、交用户听）
+    if 像吸气(f) and not h_: return False, f'实测像可闻吸气（{实测(f)}），确认不收，用 非人声区间 去掉（G43）'
     m = cf.get('实测') if isinstance(cf, dict) else None
     if not isinstance(m, dict): return False, '确认里没有实测数据（G43：python3 纯人声核对.py NN --写实测）'
     t = 实测(f)
@@ -132,6 +147,13 @@ def 确认自检():
     if 确认可收('25', w, {'依据': '是词头'})[0]: e.append('没抓到：只写判断、没有实测数据的确认照样收了')
     if 确认可收('25', w, {'实测': {**实测(w), '最响dB': -30.0}})[0]: e.append('没抓到：确认里的实测和当场量的对不上')
     if not 确认可收('24', b, {})[0]: e.append('误报：24 以前的不回头查')
+    # K127：词头 /h/ 送气紧连着后面的元音 → 写明 词头=h 的确认收；中间隔着 <-55 dB 低谷（真吸气）→ 不收
+    rng_ = np.random.default_rng(7); A_ = np.zeros(SR); A_[int(0.3 * SR):int(0.4 * SR)] = 0.02 * rng_.standard_normal(int(0.1 * SR)); A_[int(0.4 * SR):int(0.7 * SR)] = 0.5 * np.sin(np.arange(int(0.3 * SR)) * 2 * np.pi * 200 / SR)
+    fh = ('呼吸声', 0.30, 0.40, -36.6, 2241, 0.21, -14.7)
+    if not 确认可收('25', fh, {'词头': 'h', '实测': 实测(fh)}, A_)[0]: e.append('误报：紧连着元音的词头 /h/ 送气，写明 词头=h 也不收（K127）')
+    G_ = A_.copy(); G_[int(0.4 * SR):int(0.45 * SR)] = 0; G_[int(0.45 * SR):int(0.75 * SR)] = A_[int(0.4 * SR):int(0.7 * SR)]
+    if 确认可收('25', fh, {'词头': 'h', '实测': 实测(fh)}, G_)[0]: e.append('没抓到：和后面的词隔着静音低谷的吸气，写了 词头=h 照样收了（K127）')
+    if 确认可收('25', fh, {'实测': 实测(fh)}, A_)[0]: e.append('没抓到：没写明 词头=h 的吸气样确认照样收了（K127）')
     return e
 
 if __name__ == '__main__':
@@ -194,9 +216,10 @@ if __name__ == '__main__':
         if g:
             rows.append(f"{no} OK（A21 移植的词尾除阻：{g['句']} {g['位置']}，{g['开始']:.3f}–{g['结束']:.3f}s）{f[0]} {key(f)} 最响 {f[3]:.1f} dB"); continue
         cf = conf.get(key(f)); ok = isinstance(cf, dict) and cf.get('配音指纹') == fp
-        if ok and '--写实测' in sys.argv and isinstance(cf, dict) and not 像吸气(f): cf['实测'] = 实测(f); 写_ = True
+        if ok and '--写实测' in sys.argv and isinstance(cf, dict) and (not 像吸气(f) or cf.get('词头') == 'h'): cf['实测'] = 实测(f); 写_ = True
         if ok:
-            ok, why_ = 确认可收(no, f, cf)
+            ok, why_ = 确认可收(no, f, cf, a)
+            if ok and 像吸气(f): rows.append(f'{no} 人看（K127 词头 /h/ 送气，确认已收，交用户听）{f[0]} {key(f)}')
             if not ok: rows.append(f'{no} BAD（{why_}）{f[0]} {key(f)}')
         bad += not ok
         if f[0] in ('起音前过长', '收尾过长'):
