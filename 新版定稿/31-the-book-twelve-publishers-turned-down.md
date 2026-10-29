@@ -2,11 +2,11 @@
 # ZH: 被拒绝了十二次的哈利·波特
 
 ## 英文
-In 1990, on a **delayed** train from Manchester to London's King's Cross, Joanne Rowling, a **would-be** **novelist**, was **unexpectedly** struck by the **inspiration** for Harry Potter, an **orphaned** young **wizard**. **Grief** soon **overshadowed** that **spark**: her mother died on 30 December 1990, aged 45. Rowling then **relocated** to Porto to teach English.
+In 1990, on a **delayed** train from **Manchester** to London's King's Cross, Joanne Rowling, a **would-be** **novelist**, was **unexpectedly** struck by the **inspiration** for Harry Potter, an **orphaned** young **wizard**. **Grief** soon **overshadowed** that **spark**: her mother died on 30 December 1990, aged 45. Rowling then **relocated** to Porto to teach English.
 
-Rowling married in Porto in October 1992, and a daughter's **arrival** in July 1993 **ushered** in **motherhood**. At the end of 1993 she **resettled** in Edinburgh, a **lone** mother **reliant** on state **welfare**. She **habitually** wrote in cafés, **patiently** **polishing** her **unfinished** novel.
+Rowling married in Porto in October 1992, and a daughter's **arrival** in July 1993 **ushered** in **motherhood**. At the end of 1993 she **resettled** in **Edinburgh**, a **lone** mother **reliant** on state **welfare**. She **habitually** wrote in cafés, **patiently** **polishing** her **unfinished** novel.
 
-A **literary** agent, Christopher Little, took on the manuscript and **pitched** it **repeatedly** to **prospective** buyers. It was reportedly **rejected** by twelve publishers in **succession**, a **relentless** run of **refusals** that offered the **newcomer** little **encouragement**.
+A **literary** agent, Christopher Little, **took on** the manuscript and **pitched** it **repeatedly** to **prospective** buyers. It was reportedly **rejected** by twelve publishers in **succession**, a **relentless** run of **refusals** that offered the **newcomer** little **encouragement**.
 
 At Bloomsbury, the chairman Nigel Newton gave the first chapter to his eight-year-old daughter, Alice, who **relished** it and **eagerly** asked for the next **instalment**. The firm paid a **sum** of 1,500 pounds as an advance. **Fearful** that boys might **disregard** a book by a woman, the publishers **opted** for initials to **mask** her **gender**. Having no middle name, Rowling took the K for her **pseudonym** from her grandmother Kathleen.
 
@@ -14,11 +14,11 @@ Harry Potter and the Philosopher's Stone was published on 26 June 1997, in a **c
 
 ## 中文
 
-1990年，在一列从曼彻斯特开往伦敦国王十字车站的**晚点**(delayed)列车上，**有志成为**(would-be)**小说家**(novelist)的乔安妮·罗琳**出乎意料**(unexpectedly)地得到了哈利·波特的**灵感**(inspiration)。哈利是一个**父母双亡**(orphaned)的少年**巫师**(wizard)。很快，**悲痛**(grief)**盖过**(overshadowed)了那点**火花**(spark)。她的母亲于1990年12月30日去世，终年45岁。随后，罗琳**移居**(relocated)波尔图，教英语。
+1990年，在一列从**曼彻斯特**(Manchester)开往伦敦国王十字车站的**晚点**(delayed)列车上，**有志成为**(would-be)**小说家**(novelist)的乔安妮·罗琳**出乎意料**(unexpectedly)地得到了哈利·波特的**灵感**(inspiration)。哈利是一个**成为孤儿**(orphaned)的少年**巫师**(wizard)。很快，**悲痛**(grief)**盖过**(overshadowed)了那点**火花**(spark)。她的母亲于1990年12月30日去世，终年45岁。随后，罗琳**移居**(relocated)波尔图，教英语。
 
-1992年10月，罗琳在波尔图结婚；1993年7月，女儿的**降生**(arrival)**开启**(ushered)了她**为人母**(motherhood)的生活。1993年底，她在爱丁堡**重新安家**(resettled)，成了一位**独自**(lone)带孩子、**依靠**(reliant)国家**福利**(welfare)生活的母亲。她**习惯**(habitually)在咖啡馆里写作，**耐心**(patiently)地**打磨**(polishing)那部**尚未完成**(unfinished)的小说。
+1992年10月，罗琳在波尔图结婚；1993年7月，女儿的**降生**(arrival)**开启/迎来**(ushered)了她**为人母**(motherhood)的生活。1993年底，她在**爱丁堡**(Edinburgh)**重新安家**(resettled)，成了一位**独自**(lone)带孩子、**依靠**(reliant)国家**福利**(welfare)生活的母亲。她**习惯**(habitually)在咖啡馆里写作，**耐心**(patiently)地**打磨**(polishing)那部**尚未完成**(unfinished)的小说。
 
-**文学**(literary)经纪人克里斯托弗·利特尔接下了这部书稿，并**多次**(repeatedly)向**潜在**(prospective)买家**推荐**(pitched)。据报道，书稿**接连**(succession)遭到十二家出版社**拒绝**(rejected)；这一连串**毫不留情**(relentless)的**回绝**(refusals)，没给这位**新人**(newcomer)多少**鼓励**(encouragement)。
+**文学**(literary)经纪人克里斯托弗·利特尔**接下**(took on)了这部书稿，并**多次**(repeatedly)向**潜在**(prospective)买家**推荐**(pitched)。据报道，书稿**接连**(succession)遭到十二家出版社**拒绝**(rejected)；这一连串**毫不留情**(relentless)的**回绝**(refusals)，没给这位**新人**(newcomer)多少**鼓励**(encouragement)。
 
 在布卢姆斯伯里出版社，董事长奈杰尔·牛顿把第一章交给八岁的女儿爱丽丝。爱丽丝读得**津津有味**(relished)，还**急切**(eagerly)地要看下一**部分**(instalment)。出版社支付了1,500英镑的**款项**(sum)作为预付金。出版方**担心**(fearful)男孩们可能会**忽视**(disregard)女性写的书，**选择**(opted)用名字缩写**隐去**(mask)她的**性别**(gender)。罗琳没有中间名，便从祖母凯瑟琳的名字里取了 K 作为**笔名**(pseudonym)的一部分。
 
@@ -28,6 +28,7 @@ Harry Potter and the Philosopher's Stone was published on 26 June 1997, in a **c
 | 词 | 释义 | 段 |
 |---|---|---|
 | delayed | adj. 延误的，晚点的（a delayed flight/train） | 1 |
+| Manchester | n. 曼彻斯特（英国英格兰西北部城市） | 1 |
 | inspiration | n. 灵感；鼓舞（draw inspiration from；a flash of inspiration） | 1 |
 | orphaned | adj. 失去双亲的，成为孤儿的（be orphaned at an early age） | 1 |
 | wizard | n. 巫师，男巫；奇才（a wizard with a wand；a computer wizard） | 1 |
@@ -42,6 +43,7 @@ Harry Potter and the Philosopher's Stone was published on 26 June 1997, in a **c
 | ushered | v. (usher) 引领；(usher in) 开启，引来（usher in a new era；usher sb into a room） | 2 |
 | motherhood | n. 母亲身份，做母亲（the joys of motherhood） | 2 |
 | resettled | v. (resettle) 重新安顿，重新定居（resettle refugees；resettle in the countryside） | 2 |
+| Edinburgh | n. 爱丁堡（英国苏格兰首府） | 2 |
 | lone | adj. 单独的，独自的（a lone parent；a lone survivor） | 2 |
 | reliant | adj. 依赖的，依靠的（be heavily reliant on imports） | 2 |
 | welfare | n. 福利；社会救济（child welfare；be on welfare） | 2 |
@@ -50,6 +52,7 @@ Harry Potter and the Philosopher's Stone was published on 26 June 1997, in a **c
 | polishing | v. (polish) 擦亮；润色，打磨（polish one's shoes；polish a speech） | 2 |
 | unfinished | adj. 未完成的（an unfinished symphony/business） | 2 |
 | literary | adj. 文学的（a literary agent/prize/critic） | 3 |
+| take on | phr. v. 接受，承担（工作、责任）；呈现（take on a project；take on new meaning） | 3 |
 | pitched | v. (pitch) 推销，推介（pitch an idea to investors） | 3 |
 | repeatedly | adv. 一再地，多次地（be warned repeatedly） | 3 |
 | prospective | adj. 潜在的，可能的（prospective customers/students） | 3 |
