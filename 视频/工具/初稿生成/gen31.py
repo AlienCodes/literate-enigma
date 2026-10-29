@@ -30,7 +30,7 @@ S=[
      "（patiently polishing…：现在分词短语作伴随状语；\npolish：润色，打磨）"]]),
 (3,[[[("A **literary** agent,","**文学**(literary)经纪人"),("Christopher Little,","克里斯托弗·利特尔"),("**took on**","**接下了**(took on)"),("the manuscript","这部书稿，")],
      "（Christopher Little：同位语，补充说明 A literary agent；\ntake on：接受，承担）"],
-    [[("and","并"),("**pitched** it **repeatedly** to","**多次**(repeatedly)把它**推荐**(pitched)给"),("**prospective**","**潜在的**(prospective)"),("buyers.","买家。")],
+    [[("and","并"),("**pitched** it **repeatedly** to","**多次**(repeatedly)把它**推销**(pitched)给"),("**prospective**","**潜在的**(prospective)"),("buyers.","买家。")],
      "（pitch：推荐，推销；to 引出推荐的对象；\nprospective：潜在的，可能的）"]]),
 (3,[[[("It","书稿"),("was reportedly","据报道"),("**rejected** by twelve publishers **in succession**,","**接连**(in succession)遭到十二家出版社**拒绝**(rejected)，")],
      "（in succession：接连地，一个接一个地）"],

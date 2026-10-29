@@ -18,7 +18,7 @@ Harry Potter and the Philosopher's Stone was published on 26 June 1997, in a **c
 
 1992年10月，罗琳在波尔图结婚；1993年7月，女儿的**降生**(arrival)**开启/迎来**(ushered)了她**为人母**(motherhood)的生活。1993年底，她在**爱丁堡**(Edinburgh)**重新安家**(resettled)，成了一位**独自**(lone)带孩子、**依靠**(reliant)国家**福利**(welfare)生活的母亲。她**习惯**(habitually)在咖啡馆里写作，**耐心**(patiently)地**打磨**(polishing)那部**尚未完成**(unfinished)的小说。
 
-**文学**(literary)经纪人克里斯托弗·利特尔**接下**(took on)了这部书稿，并**多次**(repeatedly)向**潜在**(prospective)买家**推荐**(pitched)。据报道，书稿**接连**(succession)遭到十二家出版社**拒绝**(rejected)；这一连串**毫不留情**(relentless)的**回绝**(refusals)，没给这位**新人**(newcomer)多少**鼓励**(encouragement)。
+**文学**(literary)经纪人克里斯托弗·利特尔**接下**(took on)了这部书稿，并**多次**(repeatedly)向**潜在**(prospective)买家**推销**(pitched)。据报道，书稿**接连**(succession)遭到十二家出版社**拒绝**(rejected)；这一连串**毫不留情**(relentless)的**回绝**(refusals)，没给这位**新人**(newcomer)多少**鼓励**(encouragement)。
 
 在布卢姆斯伯里出版社，董事长奈杰尔·牛顿把第一章交给八岁的女儿爱丽丝。爱丽丝读得**津津有味**(relished)，还**急切**(eagerly)地要看下一**部分**(instalment)。出版社支付了1,500英镑的**款项**(sum)作为预付金。出版方**担心**(fearful)男孩们可能会**忽视**(disregard)女性写的书，**选择**(opted)用名字缩写**隐去**(mask)她的**性别**(gender)。罗琳没有中间名，便从祖母凯瑟琳的名字里取了 K 作为**笔名**(pseudonym)的一部分。
 
