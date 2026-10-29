@@ -36,7 +36,7 @@ S=[
      "（三个分句并列：Crops failed…, prices escalated, and … followed）"],
     [[("and **scarcity**,","(物资)**短缺**(scarcity)、"),("disease,","疾病"),("and **unrest**","和**动荡**(unrest)"),("followed.","随之而来。")],
      "（follow：接着发生，随之而来）"]]),
-(5,[[[("The **eighteen-year-old**","**十八岁**(eighteen-year-old)的"),("Mary Godwin,","玛丽·戈德温，"),("later Mary Shelley,","也就是后来的玛丽·雪莱，")],
+(5,[[[("The **eighteen-year-old**","**十八岁的**(eighteen-year-old)"),("Mary Godwin,","玛丽·戈德温，"),("later Mary Shelley,","也就是后来的玛丽·雪莱，")],
      "（later Mary Shelley：同位语，补充说明 Mary Godwin 后来的名字）"],
     [[("had set out in May","5月间就已启程，"),("**alongside**","**结伴**(alongside)同行的有"),("Percy Bysshe Shelley","珀西·比希·雪莱"),("and Claire Clairmont.","和克莱尔·克莱蒙特。")],
      "（had set out：过去完成时，出发在6月之前；set out：出发，启程；\nalongside：介词，与……一起）"]]),
