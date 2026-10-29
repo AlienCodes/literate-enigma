@@ -63,7 +63,7 @@ def 词(t):
     t = re.sub(r'(\d+)(st|nd|rd|th)\b', lambda m_: _序[int(m_.group(1)) - 1] if 1 <= int(m_.group(1)) <= len(_序) else m_.group(1), t)   # K118（32 S5 the 10th planet）：10th 归成序数词 tenth（原来去掉词尾成 10，和脚本 tenth 比成 ten≠tenth）；月份旁的下面再归成数字
     序 = lambda w: str(_序.index(w) + 1)
     t = re.sub(rf'\b({_序词}) of ({_月})\b', lambda m_: f'{序(m_.group(1))} of {m_.group(2)}', t)   # G122（K81）：识别器写 the fifth of October，序数词归成数字（只在月份旁）
-    t = re.sub(rf'\b({_月}) (?:the )?({_序词}|[1-9]|[12]\d|3[01])\b', lambda m_: f'the {m_.group(2) if m_.group(2).isdigit() else 序(m_.group(2))} of {m_.group(1)}', t)   # G122（K81 28 S15）：small.en 把 the fifth of October 改写成 October 5 / October the fifth，归成同一种
+    t = re.sub(rf'(?<!of )\b({_月}) (?:the )?({_序词}|[1-9]|[12]\d|3[01])\b', lambda m_: f'the {m_.group(2) if m_.group(2).isdigit() else 序(m_.group(2))} of {m_.group(1)}', t)   # G122（K81 28 S15）：small.en 把 the fifth of October 改写成 October 5 / October the fifth，归成同一种
     t = re.sub(rf'\b(?:the )?([1-9]|[12]\d|3[01]) ({_月})\b', r'the \1 of \2', t)   # 出片程序把 6 January 读成 the sixth of January（make_video spoken）
     t = re.sub(r'(\d)\s*%', r'\1 per cent', t); t = re.sub(r'\bpercent\b', 'per cent', t)   # G56（27 S14）：识别器写 40%，脚本 per cent
     return re.findall(r"[^\W_]+(?:'[^\W_]+)?", t)   # 带变音符的专名（Ötztal）整词保留
@@ -116,6 +116,7 @@ def _比(ref, hyp):
     for op, a1, a2, b1, b2 in sm.get_opcodes():
         if op == 'equal': continue
         if 拼写归一(' '.join(R[a1:a2])) == 拼写归一(' '.join(H[b1:b2])) and R[a1:a2]: continue   # G56（27 S4 kilometres/kilometers）：英美拼写变体是同一个词，两种读法词典都收
+        if op == 'replace' and len(R[a1:a2]) == 1 and len(H[b1:b2]) == 1 and R[a1].lower() in _缩写 and 拼写归一(H[b1].lower()) in {拼写归一(x) for x in _缩写[R[a1].lower()]}: continue   # K122（33 S5 km → kilometers）：缩写按读音改正读全称，识别器写全称
         if ''.join(pr[a1:a2]) == ''.join(ph[b1:b2]): continue   # 连写/拆写（switches / switch is 读音一样不算；every one / everyone）
         if R[a1:a2] and ''.join(R[a1:a2]) == ''.join(H[b1:b2]): continue   # 拼写连起来相同（脚本 walkiescorchie / 听到 walkie scorchie）
         if R[a1:a2] and ''.join(改.get(w, pr[a1 + j]) for j, w in enumerate(R[a1:a2])) == ''.join(ph[b1:b2]): continue   # 读音改正表：配音读的是改正后的读音（22 S11 Walkie-Scorchie 听成 scorchy）
@@ -135,6 +136,7 @@ def 专名夹带(ws, ps, h, 专):
         for 后 in map(''.join, itertools.product(*map(读, range(k[-1] + 1, len(ws))))):
             if h.startswith(前) and h.endswith(后) and len(h) > len(前) + len(后): return True
     return False
+_缩写 = {'km': ('kilometres', 'kilometre'), 'kg': ('kilograms', 'kilogram'), 'cm': ('centimetres', 'centimetre'), 'mm': ('millimetres', 'millimetre')}   # K122：脚本缩写 → 配音读的全称（英美拼写由 拼写归一 统一）
 _弱读 = {'a': 'ə', 'an': 'ən', 'the': 'ðə', 'of': 'əv', 'to': 'tə', 'and': 'ənd', 'for': 'fəɹ', 'from': 'fɹəm', 'at': 'ət', 'as': 'əz'}
 
 def 听(no, src=None, rec=None, 改=None):
@@ -209,13 +211,13 @@ def 比较自检():
     for a_, b_, 应 in (('chloride of lime', 'chloroflime', True), ('chloride of lime', 'chlorine', False), ('chloride of lime', 'chloride', False), ('of lime', 'oflime', False), ('blew', 'blue', False)):
         if _并词(a_, b_) != 应: f.append(f'K111 并词判错：“{a_}”→“{b_}” 应{"算" if 应 else "不算"}并词')
     for r_, h_ in (('some 3,000 kilometres away', 'some 3000 kilometers away'), ('about 40 per cent less', 'about 40% less'), ('the colour of', 'the color of'),
-                   ('On April 13th', 'On April 13'), ("the crew's capsule", 'the cruise capsule'), ('organised eleven', 'organized 11'), ('On 6 January', 'On the 6 of January'), ('some 200,000 miles', 'some 200000 miles'), ('a smell of sulphur', 'a smell of sulfur'), ('paid $105,000 for', 'paid $105,000 for'), ('paid $105,000 for', 'paid 105,000 dollars for'), ('NASA called it the tenth planet', 'NASA called it the 10th planet'), ('the 10th planet', 'the tenth planet'), ('On 21 July', 'On July 21st'), ('On 24 August 2006, the', 'On 24th August 2006, the'), ('On 24 August 2006', 'On the 24th of August 2006'), ('On 24 August 2006', 'On August 24th, 2006'), ('On 24 August 2006', 'On 24 August 2006')):
+                   ('On April 13th', 'On April 13'), ("the crew's capsule", 'the cruise capsule'), ('organised eleven', 'organized 11'), ('On 6 January', 'On the 6 of January'), ('some 200,000 miles', 'some 200000 miles'), ('a smell of sulphur', 'a smell of sulfur'), ('paid $105,000 for', 'paid $105,000 for'), ('paid $105,000 for', 'paid 105,000 dollars for'), ('NASA called it the tenth planet', 'NASA called it the 10th planet'), ('the 10th planet', 'the tenth planet'), ('On 21 July', 'On July 21st'), ('On 24 August 2006, the', 'On 24th August 2006, the'), ('On 24 August 2006', 'On the 24th of August 2006'), ('On 24 August 2006', 'On August 24th, 2006'), ('On 24 August 2006', 'On 24 August 2006'), ('On 2 July two elite British divers', 'On the 2nd of July 2, elite British divers'), ('about 4 km from the entrance', 'about four kilometers from the entrance'), ('about 4 km from the entrance', 'about 4 kilometres from the entrance')):
         if 比(r_, h_): f.append(f'误报：“{r_}”听成“{h_}”读音一样，却报了 {比(r_, h_)}')
     if 比('He met Windhandel there', 'He met Vinthehandel there') and 'windhandel' in 已核实(): f.append('误报：已核实读音的专名被识别器听错也报了')
     for r_, h_ in (('Ötzi was found in 1991', 'Erzi was found in 1991'), ('It sold as the Walkie-Scorchie in London', 'It sold as the walkie scorchy in London'),
                    ('a fine of 1,000 pounds each', 'a fine of £1,000 each'), ('a fifty-pound note', 'a £50 note'), ('a trek in the Ötztal Alps', 'a trek in the Erzdal Alps')):   # 第二阶段 2 通用规则（20 S17、22 S11、22 S8、23 S18）
         if 比(r_, h_): f.append(f'误报：“{r_}”听成“{h_}”（句首已核实专名 / 读音改正表 / 货币符号），却报了 {比(r_, h_)}')
-    for r_, h_ in (('the tenth planet', 'the 10 planet'), ('the tenth planet', 'the ten planet'), ('paid $105,000 for', 'paid dollar 105,000 for'), ('paid $105,000 for', 'paid 105,000 for'), ('He sat there', 'He set there'), ('a fine of 1,000 pounds each', 'a fine of £1,000'), ('Ötzi was found in 1991', 'was found in 1991')):   # 小写 sat 不因已核实表里有 SAT 豁免；货币归一后漏词、专名漏掉照报
+    for r_, h_ in (('about 4 km from', 'about four miles from'), ('On 2 July two elite divers', 'On the 2nd of July elite divers'), ('the tenth planet', 'the 10 planet'), ('the tenth planet', 'the ten planet'), ('paid $105,000 for', 'paid dollar 105,000 for'), ('paid $105,000 for', 'paid 105,000 for'), ('He sat there', 'He set there'), ('a fine of 1,000 pounds each', 'a fine of £1,000'), ('Ötzi was found in 1991', 'was found in 1991')):   # 小写 sat 不因已核实表里有 SAT 豁免；货币归一后漏词、专名漏掉照报
         if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
     for r_, h_ in (('Tu was named a Lasker Award recipient', 'Tu was named Alaska Award recipient'), ('On 5 October 2015 she won', 'On October 5, 2015 she won'),
                    ('On 5 October 2015 she won', 'On October the fifth 2015 she won'), ('On 5 October 2015 she won', 'On the fifth of October 2015 she won')):   # G122（K81 28 S14、S15）
