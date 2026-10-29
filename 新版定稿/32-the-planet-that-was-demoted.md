@@ -6,7 +6,7 @@ On 18 February 1930, comparing **photographic** plates at the Lowell Observatory
 
 In January 2005, astronomers found a **far-off** body, later named Eris, at first thought larger than Pluto. NASA briefly called it the tenth planet. The **contender** posed an **awkward** **dilemma**. The term "planet" had **hitherto** been used **loosely**, and with more **icy** worlds likely to be found, a **precise** **definition** became a **necessity**.
 
-On 24 August 2006 the International Astronomical Union, **convened** in Prague, voted that a planet must **revolve** around the Sun, be nearly **spherical** and have cleared the **neighbourhood** around its orbit. Pluto failed that last **criterion** and was **reclassified** as a **dwarf** planet, leaving eight. Pluto was **physically** **unaltered**; only the **boundary** had moved.
+On 24 August 2006 the International Astronomical Union, **convened** in Prague, voted that a planet must **revolve** around the Sun, be nearly **spherical**, and have cleared the **neighbourhood** around its orbit. Pluto failed that last **criterion** and was **reclassified** as a **dwarf** planet, leaving eight. Pluto was **physically** **unaltered**; only the **boundary** had moved.
 
 The vote was **valid**, yet its **legitimacy** drew **criticism**: only 424 of some 10,000 members took part. Hundreds of **dissenting** astronomers signed a **petition**. The American Dialect Society made "plutoed", **playful** **slang** for "to **devalue**", its word of 2006, and New Mexico and Illinois **lawmakers** passed resolutions **affirming** that Pluto was a planet.
 
