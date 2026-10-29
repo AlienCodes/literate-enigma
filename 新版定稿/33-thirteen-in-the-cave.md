@@ -2,11 +2,11 @@
 # ZH: 洞穴里的十三个人
 
 ## 英文
-On 23 June 2018, twelve boys aged 11 to 16 from a **junior** football **squad** went on an **outing** with their 25-year-old assistant coach. They entered Tham Luang, a **sprawling** **maze** of **tunnels** in northern Thailand, to **penetrate** its **gloom**. **Monsoon** rain then **flooded** the passages, and the rising water trapped all of them.
+On 23 June 2018, twelve boys aged 11 to 16 from a **junior** football **squad** **went on an outing** with their 25-year-old **assistant coach**. They **entered** Tham Luang, a **sprawling** **maze** of **tunnels** in northern Thailand, to **penetrate** its **gloom**. **Monsoon** rain then **flooded** the **passages**, and the rising water trapped all of them.
 
-For nine days their **whereabouts** were unknown. On 2 July two **elite** British **divers**, threading through **submerged** passages, reached an **inundated** chamber about 4 km from the **entrance**. All 13 were there, **huddled** on a **muddy** **mound** and **perched** just above the water, every one of them alive.
+For nine days their **whereabouts** were unknown. On 2 July two **elite** British **divers**, **threading through** **submerged** **passages**, reached an **inundated** chamber about 4 km from the **entrance**. All 13 were there, **huddled** on a **muddy** **mound** and **perched** just above the water, every one of them **alive**.
 
-The only **exit** ran through **kilometres** of **constricted**, **treacherous** passages, many of them **navigable** only with **scuba** gear. **Rescuers** began **stockpiling** oxygen **cylinders** along the route. On 6 July Saman Kunan, a former Thai Navy SEAL, fell **unconscious** while laying them and died.
+The only **exit** ran through **kilometres** of **constricted**, **treacherous** **passages**, many of them **navigable** only with **scuba** gear. **Rescuers** began **stockpiling** oxygen **cylinders** along the route. On 6 July Saman Kunan, a former Thai Navy SEAL, fell **unconscious** while laying them and died.
 
 The **evacuation** began on 8 July, and the boys came out in **batches**. Each was given **doses** of sedative, **wrapped** **motionless** in a **stretcher**, and passed from diver to diver, with **medics** stationed along the route. On 10 July the last four **footballers** and their coach were **escorted** out after their **teammates**.
 
@@ -14,11 +14,11 @@ The **multinational** **mobilisation** was a feat of **logistics**. Some 10,000 
 
 ## 中文
 
-2018年6月23日，一支**青少年**(junior)足球**队伍**(squad)的12名11至16岁男孩，和25岁的助理教练一起**出游**(outing)。他们进入泰国北部的睡美人洞，那是一座由**隧道**(tunnels)构成、**纵横延伸**(sprawling)的**迷宫**(maze)，他们想要**深入**(penetrate)洞中的**幽暗**(gloom)。随后，**季风**(monsoon)带来的雨水**淹没**(flooded)了通道，上涨的水把他们全部困在里面。
+2018年6月23日，一支**青少年**(junior)足球**小队**(squad)的12名11至16岁男孩，和25岁的**助理教练**(assistant coach)一起**外出郊游**(went on an outing)。他们**进入**(entered)泰国北部的睡美人洞，那是一座由**隧道**(tunnels)构成、**向四周分散延伸**(sprawling)的**迷宫**(maze)，他们想要**穿透/深入**(penetrate)洞中的**幽暗**(gloom)。随后，**季风**(monsoon)带来的雨水**淹没**(flooded)了**通道**(passages)，上涨的水把他们全部困住了。
 
-九天里，他们**下落**(whereabouts)不明。7月2日，两名英国**精英**(elite)**潜水员**(divers)穿过**水下**(submerged)通道，到达距**洞口**(entrance)约4公里的一个**被淹**(inundated)洞室。13人都在那里，**蜷缩**(huddled)在一处**泥泞**(muddy)的**土堆**(mound)上，**栖身**(perched)于水面之上，一个不少，全都活着。
+九天里，他们**下落**(whereabouts)不明。7月2日，两名英国**精英**(elite)**潜水员**(divers)**穿过**(threading through)**水下**(submerged)**通道**(passages)，到达距离洞穴的**入口**(entrance)大约4公里的一个**被淹**(inundated)洞室。13人都在那里，**挤在一起**(huddled)在一处**泥泞**(muddy)的**土堆**(mound)上，刚好**栖身**(perched)于水面之上，他们每个人都还**活着**(alive)。
 
-唯一的**出口**(exit)要穿过数**公里**(kilometres)**狭窄**(constricted)而**凶险**(treacherous)的通道，其中许多段只有借助**水肺**(scuba)装备才能**通行**(navigable)。**救援人员**(rescuers)开始沿途**储备**(stockpiling)氧气**钢瓶**(cylinders)。7月6日，前泰国海军海豹突击队员萨曼·古南在布放钢瓶时**失去知觉**(unconscious)，随后死亡。
+唯一的**出口**(exit)要穿过数**公里**(kilometres)**狭窄**(constricted)而**暗藏危险**(treacherous)的**通道**(passages)，其中许多段只有借助**水肺**(scuba)装备才能**通行**(navigable)。**救援人员**(rescuers)开始沿途**储备**(stockpiling)氧气**钢瓶**(cylinders)。7月6日，前泰国海军海豹突击队员萨曼·古南在布放钢瓶时**失去知觉**(unconscious)，随后死亡。
 
 7月8日，**撤离**(evacuation)开始，男孩们**分批**(batches)出洞。每人都用了**数剂**(doses)镇静药，**一动不动**(motionless)地**包裹**(wrapped)在**担架**(stretcher)里，由潜水员一个接一个传递出去，沿途有**医护人员**(medics)驻守。7月10日，最后四名**小球员**(footballers)和教练继**队友**(teammates)之后被**护送**(escorted)出洞。
 
@@ -29,7 +29,9 @@ The **multinational** **mobilisation** was a feat of **logistics**. Some 10,000 
 |---|---|---|
 | junior | adj. 青少年的；初级的（a junior team/tennis player；junior staff） | 1 |
 | squad | n. （运动）队；小组（the national squad；a bomb squad） | 1 |
-| outing | n. 出游，远足（a family/school outing） | 1 |
+| went on an outing | v. (go on an outing) 外出郊游，出游（go on a family/school outing） | 1 |
+| assistant coach | n. 助理教练（an assistant coach/manager） | 1 |
+| entered | v. (enter) 进入（enter a room/building；enter the cave） | 1 |
 | sprawling | adj. 杂乱延伸的，蔓延的（a sprawling city/estate） | 1 |
 | maze | n. 迷宫；错综复杂的事物（a maze of streets/regulations） | 1 |
 | tunnels | n. (tunnel) 隧道，地道（a railway tunnel；dig a tunnel） | 1 |
@@ -37,9 +39,11 @@ The **multinational** **mobilisation** was a feat of **logistics**. Some 10,000 
 | gloom | n. 昏暗，幽暗；忧郁（peer into the gloom；a mood of gloom） | 1 |
 | monsoon | n. 季风，雨季（the monsoon season；monsoon rains） | 1 |
 | flooded | v. (flood) 淹没，泛滥（the river flooded the fields） | 1 |
+| passages | n. (passage) 通道，走廊（an underground passage；a narrow passage） | 1 |
 | whereabouts | n. 下落，行踪（his whereabouts are unknown） | 2 |
 | elite | adj./n. 精英的；精英（elite troops/athletes；the ruling elite） | 2 |
 | divers | n. (diver) 潜水员（deep-sea divers） | 2 |
+| threading through | v. (thread through) 穿过，穿行于（thread through the crowd/traffic） | 2 |
 | submerged | adj. 水下的，被淹没的（a submerged rock/wreck） | 2 |
 | inundated | adj./v. (inundate) 被淹没的；使应接不暇（be inundated with letters；inundated farmland） | 2 |
 | entrance | n. 入口（the main entrance；at the entrance to the park） | 2 |
@@ -47,6 +51,7 @@ The **multinational** **mobilisation** was a feat of **logistics**. Some 10,000 
 | muddy | adj. 泥泞的（muddy boots/roads） | 2 |
 | mound | n. 土堆，小丘（a burial mound；a mound of earth） | 2 |
 | perched | v. (perch) 暂栖，处于高处（a village perched on a hill） | 2 |
+| alive | adj. 活着的（stay/keep alive；come home alive） | 2 |
 | exit | n. 出口（an emergency/fire exit） | 3 |
 | kilometres | n. (kilometre) 公里（a few kilometres away） | 3 |
 | constricted | adj. 狭窄的，受限制的（a constricted throat/space） | 3 |
