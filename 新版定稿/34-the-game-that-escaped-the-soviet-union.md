@@ -60,8 +60,8 @@ The man whose puzzle once spread for nothing later helped decide who could sell 
 | vendor | n. 小贩，供应商（a street vendor；a software vendor） | 3 |
 | Hungary | n. 匈牙利（a trip to Hungary） | 3 |
 | stumbled | v. (stumble upon) 偶然发现；绊倒（stumble upon a secret） | 3 |
-| ignorance | n. 无知，不知情（in ignorance of the facts） | 3 |
-| bureau | n. 局，办事处（a news bureau） | 3 |
+| in ignorance of | prep. 对……毫不知情（in ignorance of the facts） | 3 |
+| state bureau | n. 国家机关（a state bureau） | 3 |
 | regulating | v. (regulate) 管理，控制（regulate trade/prices） | 3 |
 | hastily | adv. 匆忙地，草率地（act hastily; a hastily arranged meeting） | 3 |
 | hawked | v. (hawk) 叫卖，兜售（hawk goods in the street） | 3 |
