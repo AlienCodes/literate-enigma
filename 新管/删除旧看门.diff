@@ -340,7 +340,7 @@ index 624885b..e96293c 100644
  echo "== 快测"; XG_WORK="$D/机/video" python3 "$D/L/视频/工具/新管/快测.py" 2>&1 | tail -14
  echo "== 做.sh 27"; XG_P="$D/L" bash "$D/L/视频/工具/新管/做.sh" 27 --不推 2>&1 | tail -12
 diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\201\232.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\201\232.py"
-index b8debeb..74446bc 100644
+index 298e864..3140c2d 100644
 --- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\201\232.py"
 +++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\201\232.py"
 @@ -1,6 +1,6 @@
@@ -363,7 +363,7 @@ index b8debeb..74446bc 100644
  if os.path.exists(f'{T}/初稿生成/gen{no}.py') and os.path.getmtime(f'{T}/初稿生成/gen{no}.py') > os.path.getmtime(f'scripts/{no}.json'):
      c, o = 跑('生成', ['python3', f'{T}/初稿生成/gen{no}.py'])
      if c: 停('⓪ genNN 生成脚本', o.strip().splitlines()[-8:])
-@@ -97,10 +98,10 @@ json.dump({'数据': _h(f'scripts/{no}.json'), '声音': _h(f'work_{no}/a.wav'),
+@@ -98,10 +99,10 @@ json.dump({'数据': _h(f'scripts/{no}.json'), '声音': _h(f'work_{no}/a.wav'),
            open(f'{V}/制作记录/{no}_做指纹.json', 'w'), ensure_ascii=False, indent=0)
  if 推:
      c, o = 跑('推送', ['bash', f'{H}/推送.sh', f'第{no}篇 草稿1080p（做.sh）：疑点 {len(疑点)}、自动修 {len(修了)}'], cwd=P)
@@ -8080,13 +8080,25 @@ index c32fb52..3ac0aa6 100644
      """还没用现行程序重查过的已出片篇目（铁4/音29/画21：改一处，全部重查）；按篇记，查一篇记一篇，中途停了不白查"""
      if keys is None: fp = 程序指纹(); keys = {no: 键(no, p, fp) for no, p in 已出片().items()}
 diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\222\251\345\255\220\350\207\252\346\243\200.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\222\251\345\255\220\350\207\252\346\243\200.py"
-index bcfff0e..743e0b9 100644
+index bcfff0e..84e1564 100644
 --- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\222\251\345\255\220\350\207\252\346\243\200.py"
 +++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\222\251\345\255\220\350\207\252\346\243\200.py"
-@@ -35,19 +35,6 @@ r = f'{tmp}/repo'; os.makedirs(f'{r}/视频')
+@@ -4,7 +4,8 @@ import os, sys, json, tempfile, subprocess, shutil
+ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ import 闸门 as G
+ fails = []
+-def 拦了(kind, d, **k): return G.判(kind, d, **k) is not None
++def 拦了(kind, d, **k): r = G.判(kind, d, **k); return bool(r) and 'systemMessage' not in r
++def 提醒了(kind, d, **k): r = G.判(kind, d, **k); return bool(r) and 'systemMessage' in r
+ # 子代理（T29）
+ if not 拦了('子代理', {'tool_name': 'Agent', 'tool_input': {'prompt': '审校全文'}}): fails.append('没抓到：没写理由就派子代理（T29）')
+ # 发文件（A25）
+@@ -33,41 +34,29 @@ if not 拦了('命令', {'tool_input': {'command': "cat > /tmp/x.md <<'EOF'\nx\n
+ # 收工（守则3）
+ r = f'{tmp}/repo'; os.makedirs(f'{r}/视频')
  subprocess.run(['git', 'init', '-q', r]); open(f'{r}/视频/x.md', 'w').write('x')
- if not 拦了('收工', {}, 仓库=r): fails.append('没抓到：有没推送的改动就收工（守则3）')
- if 拦了('收工', {'stop_hook_active': True}, 仓库=r): fails.append('误拦：已经拦过一次又拦（会死循环）')
+-if not 拦了('收工', {}, 仓库=r): fails.append('没抓到：有没推送的改动就收工（守则3）')
+-if 拦了('收工', {'stop_hook_active': True}, 仓库=r): fails.append('误拦：已经拦过一次又拦（会死循环）')
 -_m = f'{tmp}/镜'; os.makedirs(f'{_m}/视频/云端/待演练'); os.makedirs(f'{_m}/视频/云端/请求'); subprocess.run(['git', 'init', '-q', _m])   # K66：改动 = 已提交的在途改门推送补丁 → 放行；补丁不同、没提交 → 照拦
 -subprocess.run(['git', '-C', r, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'commit', '-q', '--allow-empty', '-m', '0'], capture_output=True)
 -sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))); import 推请求 as _Q
@@ -8100,10 +8112,38 @@ index bcfff0e..743e0b9 100644
 -open(f'{r}/视频/x.md', 'w').write('y')
 -if G.在途补丁(r, _m): fails.append('误放：改动和在途补丁不一样也算在途（K66）')
 -open(f'{r}/视频/x.md', 'w').write('x')
++if not 提醒了('收工', {}, 仓库=r): fails.append('没提醒：有没推送的改动就收工（守则3，只提醒）')
++if 拦了('收工', {}, 仓库=r): fails.append('误拦：收工只许提醒，不许拦（用户 2026-10-29：只有质量问题能拦）')
++if 提醒了('收工', {'stop_hook_active': True}, 仓库=r): fails.append('误报：已经提醒过一次又提醒（会死循环）')
  _r3 = f'{tmp}/repo3'; os.makedirs(f'{_r3}/视频/工具'); subprocess.run(['git', 'init', '-q', _r3]); open(f'{_r3}/视频/工具/全篇重查通过.json', 'w').write('{}')
  subprocess.run(['git', '-C', _r3, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'add', '-A']); subprocess.run(['git', '-C', _r3, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'commit', '-qm', 'x', '--date=2000-01-01T00:00:00'], env={**os.environ, 'GIT_COMMITTER_DATE': '2000-01-01T00:00:00'})
  open(f'{_r3}/视频/工具/全篇重查通过.json', 'w').write('{"篇": {}}')   # 已跟踪的进度文件被改了（真实情形）
-@@ -80,7 +67,7 @@ if 拦了('命令', {'tool_input': {'command': 'pgrep -f make_video'}}): fails.a
+-if 拦了('收工', {}, 仓库=_r3): fails.append('误拦：全篇重查边查边记的进度文件')
++if 提醒了('收工', {}, 仓库=_r3): fails.append('误拦：全篇重查边查边记的进度文件')
+ _r4 = f'{tmp}/repo4'; os.makedirs(f'{_r4}/视频/制作记录/方法进化'); subprocess.run(['git', 'init', '-q', _r4]); open(f'{_r4}/视频/制作记录/方法进化/s1.json', 'w').write('{}')
+ _e4 = {k: v for k, v in os.environ.items() if not k.startswith('GIT_')}
+ subprocess.run(['git', '-C', _r4, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'add', '-A'], env=_e4); subprocess.run(['git', '-C', _r4, '-c', 'user.name=x', '-c', 'user.email=x@example.com', 'commit', '-qm', 'y'], env=_e4)
+ open(f'{_r4}/视频/制作记录/方法进化/s1.json', 'w').write('{"等效": 2}')
+-if 拦了('收工', {}, 仓库=_r4): fails.append('误拦：已推过的本会话 token 记录每轮重写（K33）')
++if 提醒了('收工', {}, 仓库=_r4): fails.append('误拦：已推过的本会话 token 记录每轮重写（K33）')
+ open(f'{_r4}/视频/制作记录/方法进化/s2.json', 'w').write('{}')
+-if not 拦了('收工', {}, 仓库=_r4): fails.append('没抓到：新的 token 记录从没推过就收工（K33 放得太宽）')
++if not 提醒了('收工', {}, 仓库=_r4): fails.append('没抓到：新的 token 记录从没推过就收工（K33 放得太宽）')
+ import datetime as _dt   # 方法进化闸门：今天改了工具、方法升级记录没写今天 → 拦；写了 → 放行
+ q = f'{tmp}/repo2'; os.makedirs(f'{q}/视频/工具'); subprocess.run(['git', 'init', '-q', q])
+ for k, v in (('user.name', '自检'), ('user.email', 'selftest@example.com')): subprocess.run(['git', '-C', q, 'config', k, v])
+ open(f'{q}/视频/工具/x.py', 'w').write('x'); open(f'{q}/视频/制作硬性标准与踩坑总结.md', 'w').write('- **方法升级记录**\n- 2000-01-01 旧的\n')
+ subprocess.run(['git', '-C', q, 'add', '-A']); subprocess.run(['git', '-C', q, 'commit', '-qm', 'x'])
+-if not 拦了('收工', {}, 仓库=q): fails.append('没抓到：改了工具没写方法升级记录（守则12）')
++if not 提醒了('收工', {}, 仓库=q): fails.append('没抓到：改了工具没写方法升级记录（守则12）')
+ open(f'{q}/视频/制作硬性标准与踩坑总结.md', 'w').write(f'- **方法升级记录**\n- {_dt.datetime.utcnow():%Y-%m-%d} 新的\n')
+ subprocess.run(['git', '-C', q, 'commit', '-qam', 'y'])
+-if 拦了('收工', {}, 仓库=q): fails.append('误拦：方法升级记录写了今天的')
++if 提醒了('收工', {}, 仓库=q): fails.append('误拦：方法升级记录写了今天的')
+ if not 拦了('命令', {'tool_input': {'command': 'npx vercel --prod'}}): fails.append('没抓到：没经同意就部署（C1/C2/流16）')
+ if not 拦了('命令', {'tool_input': {'command': 'git push origin master'}}): fails.append('没抓到：推 master（C1/C2）')
+ if not 拦了('命令', {'tool_input': {'command': 'cd x && git push -f origin main'}}): fails.append('没抓到：强推（C1/C2）')
+@@ -80,7 +69,7 @@ if 拦了('命令', {'tool_input': {'command': 'pgrep -f make_video'}}): fails.a
  r6 = G.判('发文件后', {'tool_input': {'files': ['/x/a-文本.docx']}}); r6b = G.判('发文件后', {'tool_input': {'files': ['/x/a.mp4']}})
  if not (r6 and '打印背景色' in json.dumps(r6, ensure_ascii=False)) or r6b: fails.append('没抓到：发 Word 没提醒打印背景色（W6）')
  o = subprocess.run(['bash', os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '开工提醒.sh')], capture_output=True, text=True).stdout
@@ -8112,7 +8152,7 @@ index bcfff0e..743e0b9 100644
  # K16（G59）：绕提交钩子的写法逐个试，必须全拦；正常命令放行
  for _c in ['git -c core.hooksPath=/dev/null commit -m x', 'git -c core.HooksPath= commit -m x', 'GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.hooksPath GIT_CONFIG_VALUE_0=/x git commit -m x',
             'export GIT_CONFIG_PARAMETERS="x"; git commit -m y', 'env GIT_DIR=/tmp/x git commit -m x', 'rm .git/hooks/pre-commit', 'rm -f 视频/工具/githooks/pre-commit',
-@@ -88,20 +75,13 @@ for _c in ['git -c core.hooksPath=/dev/null commit -m x', 'git -c core.HooksPath
+@@ -88,20 +77,13 @@ for _c in ['git -c core.hooksPath=/dev/null commit -m x', 'git -c core.HooksPath
             'sed -i s/exit/x/ 视频/工具/githooks/pre-commit', 'git commit --no-veri -m x', 'git -C /x commit -an -m x', 'git config alias.ci "commit --no-verify"',
             'git -c alias.ci=commit ci -m x', 'git commit-tree HEAD^{tree} -m x', 'git update-ref refs/heads/main abc', 'echo Z2l0 | base64 -d | sh', 'alias gc="git commit -n"',
             'cd .git/hooks && rm pre-commit', 'git config --global include.path /tmp/x', 'git --config-env=core.hooksPath=X commit', '/usr/bin/git commit --no-verify -m x',
@@ -8135,9 +8175,18 @@ index bcfff0e..743e0b9 100644
  print('钩子自检：' + ('通过（子代理、发文件、跳过核查、部署、收工闸门和发 Word 提醒：造的违规全部拦下，正常的放行）' if not fails else '失灵！' + '；'.join(fails)))
  sys.exit(1 if fails else 0)
 diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\227\270\351\227\250.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\227\270\351\227\250.py"
-index e561635..efbf9e1 100755
+index e561635..97d196c 100755
 --- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\227\270\351\227\250.py"
 +++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\222\251\345\255\220/\351\227\270\351\227\250.py"
+@@ -5,7 +5,7 @@
+   python3 闸门.py 发文件   PreToolUse(SendUserFile)：守则7/A25 声音、视频、Word、PDF、网页一次只发一个，
+                            并且必须是过了核查的那个文件（交付核查 出片后 / 生成文本 记下的文件指纹）
+   python3 闸门.py 命令     PreToolUse(Bash)：不许用 --no-verify / -n 跳过提交前的规则执行核查，不许改 core.hooksPath
+-  python3 闸门.py 收工     Stop：postgraduate-vocabulary 里还有没推送的改动就不让收工（守则3）
++  python3 闸门.py 收工     Stop：还有没推送的改动、今天改了工具没写方法升级记录，只提醒（不拦）
+   python3 闸门.py 发文件后 PostToolUse(SendUserFile)：发了 Word 就提醒用户打印勾选“打印背景色”（W6）
+   命令闸门同时管部署（C1/C2/流16）：不部署、不公开发布、不推 master/gh-pages、不强推，除非命令里写明用户原话
+ 输入：钩子的 JSON（stdin）；输出：拦下时打印决定 JSON。"""
 @@ -13,7 +13,7 @@ import sys, os, json, re, hashlib, subprocess, datetime
  V = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
  PV = '/home/user/postgraduate-vocabulary'
@@ -8147,7 +8196,7 @@ index e561635..efbf9e1 100755
  def _读账():
      try: return json.load(open(请求账))
      except Exception: return {}
-@@ -35,21 +35,6 @@ def 记回执(paths, 来源):
+@@ -35,21 +35,10 @@ def 记回执(paths, 来源):
  
  
  镜像 = '/home/user/literate-enigma'
@@ -8166,10 +8215,14 @@ index e561635..efbf9e1 100755
 -        if subprocess.run(['git', '-C', 镜, 'status', '--porcelain', '--', f'视频/云端/待演练/{f}', f'视频/云端/请求/{n}.txt'], capture_output=True, text=True).stdout.strip(): continue   # 没提交的不算在途
 -        if open(f'{d}/{f}', 'rb').read() == cur: return n
 -    return ''
++def 提醒(理由):   # 收工时只提醒、不拦（用户 2026-10-29 第一优先级：只有质量问题能拦）
++    return {'systemMessage': 理由}
++
++
  def 拦(事件, 理由):
      if 事件 == 'Stop': return {'decision': 'block', 'reason': 理由}
      return {'hookSpecificOutput': {'hookEventName': 'PreToolUse', 'permissionDecision': 'deny', 'permissionDecisionReason': 理由}}
-@@ -59,7 +44,7 @@ def 拦(事件, 理由):
+@@ -59,7 +48,7 @@ def 拦(事件, 理由):
  # 绕开提交前规则执行核查的写法一律拦：--no-verify 及其缩写、-c/--config-env/include 改 hooksPath、GIT_* 环境变量、
  # 改/删 .git/hooks、.git/config、githooks、~/.gitconfig、git 别名、不走钩子的底层提交（commit-tree、update-ref……）、解码后再执行
  _放行GIT变量 = re.compile(r'GIT_(AUTHOR|COMMITTER)_(NAME|EMAIL|DATE)|GIT_TERMINAL_PROMPT|GIT_PAGER|GIT_LFS_SKIP_SMUDGE|GIT_TRACE\w*|GIT_SSL_CAINFO|GIT_HTTP_LOW_SPEED_\w+')
@@ -8178,7 +8231,7 @@ index e561635..efbf9e1 100755
  _只读命令 = {'ls', 'cat', 'head', 'tail', 'grep', 'rg', 'wc', 'diff', 'stat', 'file', 'sha256sum', 'md5sum', 'readlink', 'realpath', 'du', 'test', '['}
  _只读git = {'log', 'diff', 'show', 'status', 'add', 'ls-files', 'blame', 'grep', 'cat-file', 'ls-tree', 'rev-parse', 'fetch', 'pull', 'push', 'commit', 'clone', 'stash', 'branch', 'remote'}
  
-@@ -87,9 +72,9 @@ def 绕钩子(c, segs):
+@@ -87,9 +76,9 @@ def 绕钩子(c, segs):
          if sub == 'commit' and re.search(r'\s-[a-zA-Z]*n[a-zA-Z]*(?=\s|$)', w): return '不许用 -n 跳过 git 钩子'
          if re.match(r'alias\b', w) and re.search(r'\bgit\b', w): return '不许用 shell 别名包装 git'
          if _护路径.search(' ' + w):
@@ -8190,7 +8243,7 @@ index e561635..efbf9e1 100755
      return None
  
  
-@@ -165,14 +150,6 @@ def 判(kind, d, 仓库=PV):
+@@ -165,14 +154,6 @@ def 判(kind, d, 仓库=PV):
          p = os.path.abspath(str(ti.get('file_path') or ti.get('notebook_path') or ''))
          if re.search(r'/\.git(/|$)|/\.gitconfig$', p):
              return 拦('PreToolUse', '【规则执行闸门】K16：不许直接改 .git/ 下的文件或 ~/.gitconfig（提交钩子、git 配置只能由 开工提醒.sh、推送两仓库.sh 设）。')
@@ -8205,7 +8258,7 @@ index e561635..efbf9e1 100755
          return None
      if kind == '已约唤醒':   # K34：send_later 之后记下（PostToolUse），收工闸门据此放行
          a = _读账(); a['唤醒'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
-@@ -185,10 +162,6 @@ def 判(kind, d, 仓库=PV):
+@@ -185,10 +166,6 @@ def 判(kind, d, 仓库=PV):
          return None
      if kind == '收工':
          if d.get('stop_hook_active'): return None
@@ -8216,19 +8269,31 @@ index e561635..efbf9e1 100755
          if not os.path.isdir(仓库): return None
          r = subprocess.run(['git', '-c', 'core.quotepath=off', '-C', 仓库, 'status', '--porcelain', '--', '视频', 'CLAUDE.md', '新版定稿'],
                             capture_output=True, text=True).stdout
-@@ -202,11 +175,9 @@ def 判(kind, d, 仓库=PV):
+@@ -202,11 +179,9 @@ def 判(kind, d, 仓库=PV):
                  chg = [x for x in df.splitlines() if x[:1] in '+-' and not x.startswith(('+++', '---'))]
                  if chg and all('进行中' in x for x in chg): continue
              ch.append(l)
 -        if ch and 在途补丁(仓库):   # K66：改动 = 已推 GitHub、还没 --收 的改门推送补丁：等 GitHub 回来 推请求.py --收（照守则3 现在推送两仓库，--收 时补丁就对不上了）
 -            ch = []
          if ch:
-             return 拦('Stop', f'【守则3 收工闸门】还有 {len(ch)} 个改动没推送（如 {ch[0][3:][:60]}）：'
+-            return 拦('Stop', f'【守则3 收工闸门】还有 {len(ch)} 个改动没推送（如 {ch[0][3:][:60]}）：'
 -                     '先 bash 视频/工具/推送两仓库.sh "说明"（会先过规则执行核查），再收工。')
-+                     '先 bash 视频/工具/推送两仓库.sh "说明"（先查快测印章），再收工。')
++            return 提醒(f'【守则3 收工提醒（只提醒，不拦）】还有 {len(ch)} 个改动没推送（如 {ch[0][3:][:60]}）：'
++                     '先 bash 视频/工具/推送两仓库.sh "说明"（先查快测印章）。')
          # 方法进化闸门（守则12/T29，用户 2026-10-23：“我们的方法一定要不断的进化……这次做完，你就下一步想……还有没有能够去进化的地方”）：
          # 今天改过工具，《制作硬性标准与踩坑总结》的方法升级记录里就要有今天的一行（哪件手工活变成了程序、哪里还能更省）
          今天 = datetime.datetime.utcnow().strftime('%Y-%m-%d')
+@@ -214,8 +189,8 @@ def 判(kind, d, 仓库=PV):
+         try: 记 = open(f'{仓库}/视频/制作硬性标准与踩坑总结.md').read().split('方法升级记录', 1)[1]
+         except Exception: 记 = ''
+         if 改 and f'- {今天}' not in 记:
+-            return 拦('Stop', f'【方法进化闸门】今天改了 {len(改)} 次工具，《制作硬性标准与踩坑总结》“方法升级记录”里还没有今天（{今天}）的一行：'
+-                     '写清哪件手工活变成了程序、哪个门改成了查用户看到的东西、下一步哪里还能更省，推送后再收工。')
++            return 提醒(f'【方法进化提醒（只提醒，不拦）】今天改了 {len(改)} 次工具，《制作硬性标准与踩坑总结》“方法升级记录”里还没有今天（{今天}）的一行：'
++                     '写清哪件手工活变成了程序、哪个门改成了查用户看到的东西、下一步哪里还能更省，推送。')
+         return None
+     return None
+ 
 diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\237\263\351\242\221\351\246\226\350\246\201\346\263\225\345\210\231.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\237\263\351\242\221\351\246\226\350\246\201\346\263\225\345\210\231.py"
 index b7b2ae4..dbc2ddb 100644
 --- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\351\237\263\351\242\221\351\246\226\350\246\201\346\263\225\345\210\231.py"
