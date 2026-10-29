@@ -29,7 +29,7 @@ def 开工(V, no, 记当前=True, 根=None):
     print(subprocess.run(['python3', f'{os.path.dirname(os.path.abspath(__file__))}/音频首要法则.py', '--要点'], capture_output=True, text=True).stdout.rstrip())   # 首要法则（CLAUDE.md 0.）
     print(subprocess.run(['python3', f'{os.path.dirname(os.path.abspath(__file__))}/开工必读.py', '--要点'], capture_output=True, text=True).stdout.rstrip())   # G55：先读开工必读
     import 开工必读 as _KB
-    if no.isdigit() and int(no) >= _KB.起 and 记当前: open(f, 'w').write(_KB.补(no, open(f).read())[0])   # 28 起：做事对照记录（只追加）
+    if no.isdigit() and int(no) >= _KB.起 and 记当前: _t = open(f).read(); open(f, 'w').write(_KB.补(no, _t)[0])   # K75（31 又中）：先读再清空写   # 28 起：做事对照记录（只追加）
     out = subprocess.run(['python3', f'{os.path.dirname(os.path.abspath(__file__))}/check_all.py', '--写提醒', no] + (['--根', 根] if 根 else []), capture_output=True, text=True).stdout.strip()
     return f'{f}：{len(rows)} 条\n{out}', 0
 def 方法设计节(t):

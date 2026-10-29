@@ -26,7 +26,7 @@ def 自检():
     open(s, 'w').write('# x\n0. 规矩（用户原话：“音频坚决不可以出现任何问题”）\n1. 另一条（用户：“不要把简单的事情复杂化”）\n')
     写入(s, z); f = []
     if 查(s, z): f.append('误报：原样存档被说丢了原话')
-    open(z, 'w').write(open(z).read().replace('复杂化', '复杂'))
+    _t = open(z).read(); open(z, 'w').write(_t.replace('复杂化', '复杂'))   # 先读再写（原来先清空再读，样本成了空文件，测的不是“少一个字”）
     if not 查(s, z): f.append('没抓到：存档里少了一句原话的一个字')
     return f
 
