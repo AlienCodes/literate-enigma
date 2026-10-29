@@ -33,3 +33,4 @@
 | 26 | The Language the Children Invented | 孩子们发明的语言 | 12.1 MB |
 | 27 | Life in the Forbidden Zone | 禁区里的生机 | 13.4 MB |
 | 28 | A Handful of Wormwood That Saved Millions | 青蒿一握，济世千万 | 13.7 MB |
+| 29 | The Volcano That Gave Us Frankenstein | 一座火山，造出了《弗兰肯斯坦》 | 12.9 MB |
