@@ -8,7 +8,7 @@ S=[
      "（a mansion…：同位语，补充说明 the Villa Diodati；\nthe poet Lord Byron had leased：定语从句，\n省略了 that，修饰 a mansion；\non the outskirts of…：在……的郊外）"]]),
 (1,[[[("After reading","读完"),("an **anthology** of German **ghost stories**","一本德国**鬼故事**(ghost stories)的**选集**(anthology)"),("in French **translation**,","的法文**译本**(translation)之后，")],
      "（an anthology of…：一本……的选集；\nin French translation：用法文翻译的，法文译本）"],
-    [[("Byron","拜伦"),("proposed","提议"),("that each","每位"),("guest","客人"),("write","各写"),("a","一个"),("**supernatural**","**超自然**(supernatural)"),("tale.","故事。")],
+    [[("Byron","拜伦"),("proposed","提议"),("that each","每位"),("guest","客人"),("write","各写"),("a","一个"),("**supernatural**","**超自然的**(supernatural)"),("tale.","故事。")],
      "（propose that sb do：提议某人做……，从句里用动词原形 write）"]]),
 (2,[[[("The","这种"),("**melancholy**","**阴郁**(melancholy)的"),("weather","天气，"),("was **attributable to**","**源于**(attributable to)"),("a","一次"),("distant","远方的"),("blast.","爆炸。")],
      "（be attributable to…：可归因于……，由……引起）"]]),
