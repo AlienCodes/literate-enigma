@@ -19,13 +19,22 @@ def 自检():
     if not 碰到(2.06, 2.08, 2.065, 2.0725): f.append('没抓到：确认盖住整个 7.5 ms 的停顿删除区间')
     if not 碰到(4.18, 4.24, 4.01, 4.206083): f.append('没抓到：确认和区间重叠 26 ms')
     if 碰到(4.21, 4.24, 4.01, 4.206083): f.append('误删：不重叠也算碰到')
+    # K136：两条旧确认依据写同一段 w，迁过去要各认各的（按旧时刻最接近），实测不许互相覆盖
+    import tempfile, os, subprocess
+    with tempfile.TemporaryDirectory() as td:
+        os.makedirs(f'{td}/scripts'); os.makedirs(f'{td}/work_99'); open(f'{td}/work_99/a.wav', 'wb').write(b'x')
+        json.dump({'核对确认': {'非人声': {'33.13–33.22s': {'配音指纹': 'old', '依据': 'S3 w 9.785–9.800s', '实测': {'最响dB': -36.2}}, '33.17–33.19s': {'配音指纹': 'old', '依据': 'S3 w 9.785–9.800s', '实测': {'最响dB': -39.1}}}}}, open(f'{td}/scripts/99.json', 'w'), ensure_ascii=False)
+        json.dump([{'si': 3, 'w0': 9.78, 'w1': 9.81, 't0': 33.13, 't1': 33.22}, {'si': 3, 'w0': 9.78, 'w1': 9.81, 't0': 33.17, 't1': 33.19}], open(f'{td}/dossier_99.json', 'w'))
+        subprocess.run([sys.executable, os.path.abspath(__file__), '99'], cwd=td, capture_output=True)
+        c = json.load(open(f'{td}/scripts/99.json'))['核对确认']['非人声']
+        if c.get('33.13–33.22s', {}).get('实测', {}).get('最响dB') != -36.2 or c.get('33.17–33.19s', {}).get('实测', {}).get('最响dB') != -39.1: f.append(f'迁移把两条确认的实测弄混了（K136 28 S3）：{c}')
     return f
 
 if sys.argv[1:2] == ['--自检']:
     e = 自检(); print(('✘ 确认按位置迁移 自检：' + '；'.join(e)) if e else '✔ 确认按位置迁移 自检：边上重叠 ≤10 ms 迁、整段在区间里或盖住整个短区间不迁（K28）'); sys.exit(1 if e else 0)
 no = sys.argv[1]; js = f'scripts/{no}.json'; d = json.load(open(js)); D = json.load(open(f'dossier_{no}.json'))
 fp = hashlib.md5(open(f'work_{no}/a.wav', 'rb').read()).hexdigest()[:12]
-cf = d['核对确认'].get('非人声', {}); keep = {k: v for k, v in cf.items() if v.get('配音指纹') == fp}; moved = 0; drop = []
+cf = d['核对确认'].get('非人声', {}); keep = {k: v for k, v in cf.items() if v.get('配音指纹') == fp}; moved = 0; drop = []; 候选 = {}
 for k, v in cf.items():
     if v.get('配音指纹') == fp: continue
     m = re.search(r'S(\d+) w ([\d.]+)–([\d.]+)s', v.get('依据', ''))
@@ -34,8 +43,12 @@ for k, v in cf.items():
     ivs = [x[:2] for x in d.get('非人声区间', {}).get(f'S{si}', [])] + [x[:2] for x in d.get('停顿删除区间', {}).get(f'S{si}', {}).values() if isinstance(x, list)]
     ivs += [[x[0] - 0.01, x[0] + 0.08] for x in d.get('词尾除阻', {}).get(f'S{si}', {}).values() if isinstance(x, list)]   # 移植的除阻也改了声音
     if any(碰到(a, b, x, y) for x, y in ivs): drop.append(k + '（碰到删除区间）'); continue
+    km = re.match(r'([\d.]+)–([\d.]+)s', k); o0, o1 = (float(km.group(1)), float(km.group(2))) if km else (None, None)
     for e in D:
         if e['si'] == si and e['w0'] < b and a < e['w1']:
-            keep[f"{e['t0']:.2f}–{e['t1']:.2f}s"] = dict(v, 配音指纹=fp); moved += 1
+            nk = f"{e['t0']:.2f}–{e['t1']:.2f}s"; dist = abs(o0 - e['t0']) + abs(o1 - e['t1']) if km else 9e9
+            if nk in 候选 and 候选[nk][0] <= dist: continue   # K136（28 S3）：两条旧确认（呼吸声、噗声）依据写同一段 w，迁到同一个新疑点时后一条盖掉前一条、实测对不上；每个新疑点只认旧时刻最接近的那条
+            候选[nk] = (dist, dict(v, 配音指纹=fp))
+for nk, (_, v) in 候选.items(): keep[nk] = v; moved += 1
 d['核对确认']['非人声'] = keep; json.dump(d, open(js, 'w'), ensure_ascii=False, indent=1)
 print(f'{no} 确认迁移：迁了 {moved} 条，没迁 {len(drop)} 条', drop[:5])
