@@ -43,6 +43,5 @@ comm -13 <(echo "$BEFORE") <(echo "$AFTER") | while IFS= read -r l; do f="${l:3}
 echo; echo "======== 删除旧看门 结论（没有提交）========"
 for x in "${RES[@]}"; do echo "- $x"; done
 echo "- 主仓库改动：$(cd "$P" && git status --porcelain | wc -l) 处；看过没问题就提交、推送两仓库"
-echo "- 镜像另外要删（推送两仓库只同步 视频/）：literate-enigma 的 .github/workflows/drill.yml、ci.yml（整份都是规则执行核查、证据）"
 [ -n "$QBAD$ZBAD" ] && { echo "【有不通过的，先别提交】"; exit 1; }
 exit 0
