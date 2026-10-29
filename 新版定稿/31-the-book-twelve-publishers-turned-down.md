@@ -8,9 +8,9 @@ Rowling married in Porto in October 1992, and a daughter's **arrival** in July 1
 
 A **literary** agent, Christopher Little, **took on** the manuscript and **pitched** it **repeatedly** to **prospective** buyers. It was reportedly **rejected** by twelve publishers in **succession**, a **relentless** run of **refusals** that offered the **newcomer** little **encouragement**.
 
-At Bloomsbury, the chairman Nigel Newton gave the first chapter to his eight-year-old daughter, Alice, who **relished** it and **eagerly** asked for the next **instalment**. The firm paid a **sum** of 1,500 pounds as an advance. **Fearful** that boys might **disregard** a book by a woman, the publishers **opted** for initials to **mask** her **gender**. Having no middle name, Rowling took the K for her **pseudonym** from her grandmother Kathleen.
+At Bloomsbury, the **chairman** Nigel Newton gave the first **chapter** to his eight-year-old daughter, Alice, who **relished** it and **eagerly** asked for the next **instalment**. The firm paid **a sum of** 1,500 pounds **as an advance**. **Fearful** that boys might **disregard** a book by a woman, the publishers **opted** for **initials** to **mask** her **gender**. Having no middle name, Rowling took the K for her **pseudonym** from her grandmother Kathleen.
 
-Harry Potter and the Philosopher's Stone was published on 26 June 1997, in a **cautious** first print run of 500 hardbacks, 300 **allocated** to libraries. The American publisher Scholastic paid $105,000 for the US rights, and the **renamed** Sorcerer's Stone appeared there on 1 September 1998. The **series** and its **spin-off** **volumes** have **collectively** **surpassed** 500 million copies sold, in 80 languages. Alice's **appetite** was **evidently** shared by millions.
+Harry Potter and the Philosopher's Stone was published on 26 June 1997, in a **cautious** first print run of 500 **hardbacks**, 300 **allocated** to libraries. The American publisher Scholastic paid $105,000 for the US rights, and the **renamed** Sorcerer's Stone appeared there on 1 September 1998. The **series** and its **spin-off** **volumes** have **collectively** **surpassed** 500 million copies sold, in 80 languages. Alice's **appetite** was **evidently** shared by millions.
 
 ## 中文
 
@@ -20,9 +20,9 @@ Harry Potter and the Philosopher's Stone was published on 26 June 1997, in a **c
 
 **文学**(literary)经纪人克里斯托弗·利特尔**接下**(took on)了这部书稿，并**多次**(repeatedly)向**潜在**(prospective)买家**推销**(pitched)。据报道，书稿**接连**(succession)遭到十二家出版社**拒绝**(rejected)；这一连串**毫不留情**(relentless)的**回绝**(refusals)，没给这位**新人**(newcomer)多少**鼓励**(encouragement)。
 
-在布卢姆斯伯里出版社，董事长奈杰尔·牛顿把第一章交给八岁的女儿爱丽丝。爱丽丝读得**津津有味**(relished)，还**急切**(eagerly)地要看下一**部分**(instalment)。出版社支付了1,500英镑的**款项**(sum)作为预付金。出版方**担心**(fearful)男孩们可能会**忽视**(disregard)女性写的书，**选择**(opted)用名字缩写**隐去**(mask)她的**性别**(gender)。罗琳没有中间名，便从祖母凯瑟琳的名字里取了 K 作为**笔名**(pseudonym)的一部分。
+在布卢姆斯伯里出版社，**董事长**(chairman)奈杰尔·牛顿把第一**章**(chapter)交给八岁的女儿爱丽丝。爱丽丝**十分享受**(relished)读这部小说，还**急切**(eagerly)地要看下一**部分**(instalment)。这家出版社支付了**一笔**(a sum of)1,500英镑的**款项**(a sum of)**作为预付金**(as an advance)。出版方**担心**(fearful)男孩们可能会**忽视**(disregard)女性写的书，**选择**(opted)用**名字缩写**(initials)**掩饰/隐瞒**(mask)她的**性别**(gender)。罗琳没有中间名，便从祖母凯瑟琳的名字里取了 K 作为**笔名**(pseudonym)的一部分。
 
-《哈利·波特与魔法石》于1997年6月26日出版，首印**谨慎**(cautious)地定为500册精装本，其中300册**分配**(allocated)给图书馆。美国的学乐出版社以10.5万美元买下美国版权，这本书**改名**(renamed)为 Sorcerer's Stone，于1998年9月1日在美国出版。此后，这个**系列**(series)及其**衍生**(spin-off)**图书**(volumes)的销量**合计**(collectively)已**超过**(surpassed)5亿册，涉及80种语言。**显然**(evidently)，千百万读者都有着和爱丽丝一样的**胃口**(appetite)。
+《哈利·波特与魔法石》于1997年6月26日出版，首印**谨慎**(cautious)地定为500册**精装本**(hardbacks)，其中300册**分配**(allocated)给图书馆。美国的学乐出版社以10.5万美元买下美国版权，这本书**改名**(renamed)为 Sorcerer's Stone，于1998年9月1日在美国出版。此后，这个**系列**(series)及其**衍生**(spin-off)**图书**(volumes)的销量**合计**(collectively)已**超过**(surpassed)5亿册，涉及80种语言。**显然**(evidently)，千百万读者都有着和爱丽丝一样的**胃口**(appetite)。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -52,7 +52,7 @@ Harry Potter and the Philosopher's Stone was published on 26 June 1997, in a **c
 | polishing | v. (polish) 擦亮；润色，打磨（polish one's shoes；polish a speech） | 2 |
 | unfinished | adj. 未完成的（an unfinished symphony/business） | 2 |
 | literary | adj. 文学的（a literary agent/prize/critic） | 3 |
-| take on | phr. v. 接受，承担（工作、责任）；呈现（take on a project；take on new meaning） | 3 |
+| took on | 本文：接下（书稿）；phr. v. take on 接受，承担（工作、责任）；呈现（take on a project；take on new meaning） | 3 |
 | pitched | v. (pitch) 推销，推介（pitch an idea to investors） | 3 |
 | repeatedly | adv. 一再地，多次地（be warned repeatedly） | 3 |
 | prospective | adj. 潜在的，可能的（prospective customers/students） | 3 |
@@ -62,17 +62,22 @@ Harry Potter and the Philosopher's Stone was published on 26 June 1997, in a **c
 | refusals | n. (refusal) 拒绝（a flat refusal；refusal to cooperate） | 3 |
 | newcomer | n. 新来者，新手（a newcomer to politics） | 3 |
 | encouragement | n. 鼓励（words of encouragement；give sb encouragement） | 3 |
+| chairman | n. 主席；董事长（the chairman of the board） | 4 |
+| chapter | n. （书的）章；（人生的）一段时期（the first chapter；a new chapter in one's life） | 4 |
 | relished | v. (relish) 享受，津津有味地品尝（relish a challenge；relish the chance） | 4 |
 | eagerly | adv. 急切地，热切地（eagerly await；eagerly anticipated） | 4 |
 | instalment | n. （连载的）一部分，一集；分期付款（the final instalment；pay in instalments） | 4 |
-| sum | n. 款项，金额；总和（a large sum of money；a lump sum） | 4 |
+| a sum of | 本文：一笔……的款项；n. （sum）款项，金额；总和（a large sum of money；a lump sum） | 4 |
+| as an advance | 本文：作为预付金；n. （advance）预付款；进展（an advance on salary；in advance 提前） | 4 |
 | fearful | adj. 害怕的，担心的（fearful of losing one's job） | 4 |
 | disregard | v./n. 忽视，不理会（disregard advice/the rules） | 4 |
 | opted | v. (opt) 选择，挑选（opt for a cheaper model；opt to stay at home） | 4 |
+| initials | n. （姓名的）首字母缩写（sign with one's initials）；initial adj. 最初的 | 4 |
 | mask | v./n. 掩饰，遮盖；面具（mask one's feelings；mask a smell） | 4 |
 | gender | n. 性别（gender equality；gender differences） | 4 |
 | pseudonym | n. 笔名，化名（write under a pseudonym） | 4 |
 | cautious | adj. 谨慎的，小心的（a cautious approach；cautious optimism） | 5 |
+| hardbacks | n. (hardback) 精装本（in hardback；hardback and paperback 精装本和平装本） | 5 |
 | allocated | v. (allocate) 分配，划拨（allocate funds/resources to sth） | 5 |
 | renamed | v. (rename) 重新命名，改名（rename a street/company） | 5 |
 | series | n. 系列，丛书；连续剧（a TV series；a series of events） | 5 |
