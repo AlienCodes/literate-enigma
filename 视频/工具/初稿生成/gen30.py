@@ -20,7 +20,7 @@ S=[
      "（find a voice：找到表达的出口，这里指有了代言人）"],
     [[("when","当时"),("the **Chancellor of the Exchequer**,","**财政大臣**(Chancellor of the Exchequer)"),("Benjamin Disraeli,","本杰明·迪斯雷利"),("**denounced**","**公开抨击**(denounced as)"),("the river","这条河"),("**as**","**是**(denounced as)"),("a **hellish** pool","一潭**地狱般的**(hellish)池水，"),("of **unbearable** horrors.","满是**令人无法忍受的**(unbearable)恐怖。")],
      "（the Chancellor of the Exchequer：英国财政大臣；\nBenjamin Disraeli：同位语，补充说明 the Chancellor；\ndenounce A as B：痛斥 A 是 B）"]]),
-(3,[[[("A bill funding new sewers","一项为新下水道拨款的法案"),("was **fast-tracked**","被**快速推进**(fast-tracked)，"),("into law","成为法律，"),("in about 18 days.","只用了约18天。")],
+(3,[[[("A **bill** funding new sewers","一项为新下水道拨款的**法案**(bill)"),("was **fast-tracked**","被**快速推进**(fast-tracked)，"),("into law","成为法律，"),("in about 18 days.","只用了约18天。")],
      "（funding new sewers：现在分词短语作后置定语，修饰 a bill；\nfast-track A into law：加快把 A 变成法律）"]]),
 (4,[[[("The engineer","工程师"),("Joseph Bazalgette","约瑟夫·巴泽尔杰特"),("**masterminded**","**主持策划了**(masterminded)"),("the response.","这次应对。")],
      "（mastermind：策划，主持）"]]),
