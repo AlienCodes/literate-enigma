@@ -99,6 +99,10 @@ if 推:
     c, o = 跑('推送', ['bash', f'{H}/推送.sh', f'第{no}篇 草稿1080p（做.sh）：疑点 {len(疑点)}、自动修 {len(修了)}'], cwd=P)
     if c: 停('⑥ 推送两仓库', o.strip().splitlines()[-6:])
 报告.append(f'⑥ 已拷 视频/视频/草稿1080p/{no}_1080p.mp4' + ('，两仓库已推送' if 推 else '（--不推）'))
+c, o = 跑('报坑', ['python3', f'{T}/报坑.py', '--查'])   # 硬问题（撞号、没取号）停；超期只提醒（用户 2026-10-29：“直接一刀切把它砍掉了”）
+if c: 停('⑥ 报坑登记有硬问题（G54）', [l.strip() for l in o.splitlines() if '✘' in l])
+超 = [l.strip() for l in o.splitlines() if '超期' in l]
+if 超: 报告.append(f'提醒：报坑登记 {len(超)} 条超期没入表（只提醒不拦）')
 # ⑦
 print('\n'.join([f'第{no}篇 做完（{time.time() - t0:.0f} 秒）：' + ('通过' if not 疑点 and not 修了 else f'修了 {len(修了)} 处、疑点 {len(疑点)} 处')] + 报告
                 + [f'疑点表：视频/制作记录/{no}_疑点.md（跟着片子发给用户）'] + [f'  · [{k}] {v[:120]}' for k, v in 疑点[:20]]
