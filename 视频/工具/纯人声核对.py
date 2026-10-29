@@ -129,9 +129,27 @@ def 贴词头(a, f):
                 if lv >= -30: return True
             return False
     return False
+def 爆破起(a, f):
+    """K135（35 S7 arc. 的 /k/）：这段从闭塞里突然爆出（开口前 <-50 dB，开口后 5 ms 内就到这一段最响的 3 dB 以内），之后到结束没有 <-55 dB 的缝
+    = 词尾塞音的除阻加送气；吸气是慢慢起来的，最响在后面，不算"""
+    i0, i1 = int(round(f[1] * SR)), int(round(f[2] * SR)); h = F // 2
+    for s0, s1 in segments(a):
+        if s0 <= i0 < s1:
+            seg = a[s0:s1]; m = len(seg) // F; ref = np.sqrt(np.mean(seg[:m * F].reshape(m, F) ** 2, axis=1)).max() + 1e-12
+            lv = lambda x: 20 * np.log10(np.sqrt(np.mean(a[x:x + h] ** 2)) / ref + 1e-12) if x >= 0 and len(a[x:x + h]) == h else -99.0
+            xs = list(range(max(0, i0 - 2 * F), i1, h))
+            on = next((x for x in xs if lv(x) >= -50), None)
+            if on is None or lv(on - h) >= -50: return False
+            pk = max(lv(x) for x in xs if x >= on)
+            if max(lv(x) for x in range(on, on + F + 1, h)) < pk - 3: return False
+            top = max(range(on, on + F + 1, h), key=lv)
+            tail = [lv(x) for x in range(top, i1, h)]   # 衰减到 -55 dB 以下就算结束；之后不许再起来（有缝再起 = 两段声音，不是一个除阻）
+            k = next((n for n, v in enumerate(tail) if v < -55), None)
+            return k is None or all(v < -50 for v in tail[k:])
+    return False
 def 确认可收(no, f, cf, a=None):
     if not (str(no).isdigit() and int(no) >= 25): return True, ''
-    h_ = 像吸气(f) and a is not None and isinstance(cf, dict) and cf.get('词头') == 'h' and 贴词头(a, f)   # K127：词头 /h/ 的送气，声学上落在吸气范围里；确认写明 词头=h、程序量得到紧连着后面的词，才收（照样要实测、交用户听）
+    h_ = 像吸气(f) and a is not None and isinstance(cf, dict) and ((cf.get('词头') == 'h' and 贴词头(a, f)) or (cf.get('词尾') in ('p', 't', 'k', 'tʃ') and 爆破起(a, f)))   # K135：词尾塞音的除阻 + 送气（写明 词尾=k，程序量得到从闭塞里爆出、无缝衰减）   # K127：词头 /h/ 的送气，声学上落在吸气范围里；确认写明 词头=h、程序量得到紧连着后面的词，才收（照样要实测、交用户听）
     if 像吸气(f) and not h_: return False, f'实测像可闻吸气（{实测(f)}），确认不收，用 非人声区间 去掉（G43）'
     m = cf.get('实测') if isinstance(cf, dict) else None
     if not isinstance(m, dict): return False, '确认里没有实测数据（G43：python3 纯人声核对.py NN --写实测）'
@@ -154,6 +172,15 @@ def 确认自检():
     G_ = A_.copy(); G_[int(0.4 * SR):int(0.45 * SR)] = 0; G_[int(0.45 * SR):int(0.75 * SR)] = A_[int(0.4 * SR):int(0.7 * SR)]
     if 确认可收('25', fh, {'词头': 'h', '实测': 实测(fh)}, G_)[0]: e.append('没抓到：和后面的词隔着静音低谷的吸气，写了 词头=h 照样收了（K127）')
     if 确认可收('25', fh, {'实测': 实测(fh)}, A_)[0]: e.append('没抓到：没写明 词头=h 的吸气样确认照样收了（K127）')
+    # K135：词尾 /k/ 从闭塞里爆出（-60 dB → 2.5 ms 内跳到 -28 dB）、无缝衰减 → 写明 词尾=k 收；慢慢起来的吸气 → 不收
+    K_ = np.zeros(SR); K_[int(0.1 * SR):int(0.4 * SR)] = 0.5 * np.sin(np.arange(int(0.3 * SR)) * 2 * np.pi * 200 / SR); n6 = int(0.06 * SR); i5 = int(0.45 * SR)
+    K_[i5:i5 + n6] = 0.02 * rng_.standard_normal(n6) * np.exp(-np.arange(n6) / (0.02 * SR))
+    fk = ('孤立杂音', 0.45, 0.51, -31.0, 3686, 0.2, -15.6)
+    if not 确认可收('25', fk, {'词尾': 'k', '实测': 实测(fk)}, K_)[0]: e.append('误报：词尾 /k/ 从闭塞里爆出、无缝衰减，写明 词尾=k 也不收（K135）')
+    L_ = K_.copy(); L_[i5:i5 + n6] = 0.02 * rng_.standard_normal(n6) * np.linspace(0.05, 1, n6)
+    if 确认可收('25', fk, {'词尾': 'k', '实测': 实测(fk)}, L_)[0]: e.append('没抓到：慢慢起来的吸气，写了 词尾=k 照样收了（K135）')
+    M_ = K_.copy(); M_[i5 + int(0.02 * SR):i5 + int(0.035 * SR)] = 0; M_[i5 + int(0.035 * SR):i5 + n6] = 0.02 * rng_.standard_normal(n6 - int(0.035 * SR))
+    if 确认可收('25', fk, {'词尾': 'k', '实测': 实测(fk)}, M_)[0]: e.append('没抓到：爆破后隔着静音缝又起一段声音，写了 词尾=k 照样收了（K135）')
     return e
 
 if __name__ == '__main__':
