@@ -18,7 +18,7 @@ LOG = os.path.abspath(f'做_{no}'); os.makedirs(LOG, exist_ok=True)
 env = {**{k: v for k, v in os.environ.items() if k != 'OLD_IV_VOID'}, 'XG_TOOLS': T}
 
 def 跑(name, cmd, **kw):
-    r = subprocess.run(cmd, capture_output=True, text=True, env={**env, **kw.pop('extra', {})}, **kw)
+    r = subprocess.run(cmd, capture_output=True, text=True, errors='replace', env={**env, **kw.pop('extra', {})}, **kw)
     o = r.stdout + r.stderr; open(f'{LOG}/{name}.log', 'w').write(o); return r.returncode, o
 
 def 停(步, 行):
