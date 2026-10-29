@@ -42,8 +42,9 @@ def 句段(a):
     return [(s, e) for s, e in out if e - s > 0.3 * SR]
 
 def 文本(no):
-    js = f'{V}/脚本/{no}.json'
-    if not no or not os.path.exists(js): return None
+    if not no: return None
+    js = next((p for p in (f'scripts/{no}.json', f'{V}/脚本/{no}.json') if os.path.exists(p)), None)   # K109（30 草稿）：草稿脚本只在工作目录 scripts/，先找它，语速突变才量得出
+    if not js: return None
     d = json.load(open(js))
     return [d['title_en']] + [' '.join(re.sub(r'\{\{.*?\}\}|\*\*', '', c['en']) for c in s_['chunks']) for s_ in d['sentences']]
 
