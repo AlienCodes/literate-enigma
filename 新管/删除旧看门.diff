@@ -340,7 +340,7 @@ index 624885b..e96293c 100644
  echo "== 快测"; XG_WORK="$D/机/video" python3 "$D/L/视频/工具/新管/快测.py" 2>&1 | tail -14
  echo "== 做.sh 27"; XG_P="$D/L" bash "$D/L/视频/工具/新管/做.sh" 27 --不推 2>&1 | tail -12
 diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\201\232.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\201\232.py"
-index 298e864..3140c2d 100644
+index 0becdbd..3ad74a8 100644
 --- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\201\232.py"
 +++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\201\232.py"
 @@ -1,6 +1,6 @@
@@ -363,7 +363,37 @@ index 298e864..3140c2d 100644
  if os.path.exists(f'{T}/初稿生成/gen{no}.py') and os.path.getmtime(f'{T}/初稿生成/gen{no}.py') > os.path.getmtime(f'scripts/{no}.json'):
      c, o = 跑('生成', ['python3', f'{T}/初稿生成/gen{no}.py'])
      if c: 停('⓪ genNN 生成脚本', o.strip().splitlines()[-8:])
-@@ -98,10 +99,10 @@ json.dump({'数据': _h(f'scripts/{no}.json'), '声音': _h(f'work_{no}/a.wav'),
+@@ -61,8 +62,8 @@ for l in o.splitlines():
+ 报告.append('② 声音：' + '；'.join(l.strip() for l in o.splitlines() if '问题数' in l)[:200])
+ # ③
+ c, o = 跑('出片前', ['python3', f'{T}/交付核查.py', no, '出片前'])
+-x = [l for l in o.split('\n✘ ')[1:]] if c else []
+-x = [b for b in x if not b.startswith('踩坑核查（') or 错]   # 踩坑核查那一步只因“？”不过：已进疑点表
++sys.path.insert(0, H); import 分流   # K112：疑点/停的分流抽成函数，快测配样本
++x = 分流.出片前(o, c, bool(错))   # 踩坑核查那一步只因“？”不过：已进疑点表；交付核查崩了（返回非 0 却没有 ✘）照停
+ if x: 停('③ 出片前核查', ['✘ ' + b.strip()[:400] for b in x])
+ 报告.append('③ 出片前核查：通过')
+ # ④
+@@ -70,14 +71,11 @@ c, o = 跑('出片', ['python3', 'make_video.py', f'scripts/{no}.json', f'{no}.m
+ if c: 停('④ 出 1080p', o.strip().splitlines()[-10:])
+ # ⑤
+ c, o = 跑('出片后', ['python3', f'{T}/交付核查.py', no, '出片后'])
+-bs = [b for b in o.split('\n✘ ')[1:]] if c else []
+ 疑点 += [('机器复听（单路并词，交用户听）', l.strip()) for l in o.splitlines() if '单路并词交用户听' in l]   # K111
+-for b in bs:
+-    _ls = [l.strip() for l in b.split('\n')[1:] if l.strip()]   # K112（30）：白名单。标题下面每一行都是“响度比全片低”（或“→ 标出的位置必须剪成试听”）才算疑点；削波、电流音、片中停顿过长、程序出错、以后新加的项，一律停
+-    if b.startswith('自动音频检查') and any('响度比全片低' in l for l in _ls) and all('响度比全片低' in l or l.startswith('→ 标出的位置必须剪成试听') for l in _ls):
+-        疑点 += [('响度骤降（剪成试听交用户听）', l.strip()) for l in b.splitlines() if '响度比全片低' in l]
+-    else: 停('⑤ 出片后核查', ['✘ ' + b.strip()[:400] for b in bs])
+-报告.append('⑤ 出片后核查：' + ('全部通过' if not bs else '只剩疑点'))
++_疑, _停 = 分流.出片后(o, c)   # K112 白名单：只有“自动音频检查”下面全是响度骤降才算疑点，别的一律停
++if _停: 停('⑤ 出片后核查', ['✘ ' + b.strip()[:400] for b in _停])
++疑点 += [('响度骤降（剪成试听交用户听）', l) for l in _疑]
++报告.append('⑤ 出片后核查：' + ('全部通过' if not _疑 else '只剩疑点'))
+ # ⑥
+ os.makedirs(f'{V}/视频/草稿1080p', exist_ok=True)
+ shutil.copy(f'{no}.mp4', f'{V}/视频/草稿1080p/{no}_1080p.mp4'); shutil.copy(f'scripts/{no}.json', f'{V}/脚本/{no}.json')
+@@ -99,10 +97,10 @@ json.dump({'数据': _h(f'scripts/{no}.json'), '声音': _h(f'work_{no}/a.wav'),
            open(f'{V}/制作记录/{no}_做指纹.json', 'w'), ensure_ascii=False, indent=0)
  if 推:
      c, o = 跑('推送', ['bash', f'{H}/推送.sh', f'第{no}篇 草稿1080p（做.sh）：疑点 {len(疑点)}、自动修 {len(修了)}'], cwd=P)
@@ -378,6 +408,63 @@ index 298e864..3140c2d 100644
  超 = [l.strip() for l in o.splitlines() if '超期' in l]
  if 超: 报告.append(f'提醒：报坑登记 {len(超)} 条超期没入表（只提醒不拦）')
  # ⑦
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\210\206\346\265\201.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\210\206\346\265\201.py"
+new file mode 100644
+index 0000000..d418f56
+--- /dev/null
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\210\206\346\265\201.py"
+@@ -0,0 +1,51 @@
++#!/usr/bin/env python3
++"""交付核查输出分流（K112）：哪些 ✘ 只算疑点（片子照出、疑点表跟着发），哪些必须停。做.py 用；快测配样本（做.py 的疑点分支以前从没被真实走过）。
++出片后：只有一种算疑点——“自动音频检查”下面每一行都是“响度比全片低”（或“→ 标出的位置必须剪成试听”）。
++        削波、电流音、片中停顿过长、程序出错、以后新加的项，一律停（白名单，不是黑名单：K112 前黑名单写“停顿超长”，audio_qc 实际报“片中停顿过长”，对不上）。
++出片前：踩坑核查那一步只因“？”不过（文本没有 ✘）已进疑点表，不停；别的 ✘ 一律停。
++两处都一样：交付核查返回非 0 却一个 ✘ 也没有（程序崩了）→ 停，不许当成通过。"""
++
++def _块(o, c): return o.split('\n✘ ')[1:] if c else []
++
++def _崩(o, c, 块): return ['交付核查返回 %d 却没有任何 ✘（程序出错）：%s' % (c, ' / '.join(o.strip().splitlines()[-3:])[:300])] if c and not 块 else []
++
++def 出片后(o, c):
++    """返回 (疑点行, 停的块)"""
++    疑, 停 = [], []
++    块 = _块(o, c)
++    for b in 块:
++        ls = []
++        for l in b.split('\n')[1:]:   # 只看标题下面缩进的说明行：块一直延到下一个 ✘，后面的“✔ 响度一致性…”“全部通过”这些顶格行不是这一项的（K112 漏了这一点）
++            if l[:1] not in (' ', '\t'): break
++            if l.strip(): ls.append(l.strip())
++        if b.startswith('自动音频检查') and any('响度比全片低' in l for l in ls) and all('响度比全片低' in l or l.startswith('→ 标出的位置必须剪成试听') for l in ls):
++            疑 += [l for l in ls if '响度比全片低' in l]
++        else: 停.append(b)
++    return 疑, 停 + _崩(o, c, 块)
++
++def 出片前(o, c, 文本有错):
++    """返回 停的块（踩坑核查只因“？”不过的那一块不停）"""
++    块 = _块(o, c)
++    return [b for b in 块 if not b.startswith('踩坑核查（') or 文本有错] + _崩(o, c, 块)
++
++def 自检():
++    T = '✘ 自动音频检查（削波、电流音、停顿超长、响度骤降）\n    '
++    骤 = '108.7–109.3s 响度比全片低 6.0 dB（疑似发闷/变小，需试听）'; 尾 = '\n    → 标出的位置必须剪成试听交用户确认\n✔ 响度一致性'
++    f = []
++    疑, 停 = 出片后('第30篇 出片后核查：\n' + T + 骤 + 尾, 1)
++    if len(疑) != 1 or 停: f.append(f'只有响度骤降应进疑点、不停：疑点 {len(疑)}、停 {len(停)}')
++    for 名, 行 in (('骤降+削波', 骤 + '\n    削波：峰值 1.000'), ('片中停顿过长', '片中停顿过长：61.2s 处 1.85s'), ('骤降+片中停顿过长', 骤 + '\n    片中停顿过长：61.2s 处 1.85s'),
++                   ('骤降+电流音', 骤 + '\n    4800 Hz 电流音突出 14.2 dB'), ('程序出错', 'audio_qc 返回 1 却没有输出（程序出错）')):
++        if not 出片后('x\n' + T + 行 + 尾, 1)[1]: f.append(f'{名} 应停，却没停')
++    if not 出片后('Traceback (most recent call last):\n  File x\nKeyError: 1', 1)[1]: f.append('交付核查崩了（返回 1、没有 ✘）应停，却当成通过')
++    if 出片后('x\n✔ 全部\n全部通过', 0) != ([], []): f.append('全部通过的误停')
++    if not 出片后('x\n✘ 机器复听（逐词读音与脚本一致）：问题数 1\n    S3 x', 1)[1]: f.append('机器复听不过应停')
++    if 出片前('x\n✘ 踩坑核查（核查程序自检…）\n    ？ T18', 1, False): f.append('出片前：踩坑核查只因“？”不过，不该停')
++    if not 出片前('x\n✘ 踩坑核查（…）\n    ✘ T27', 1, True): f.append('出片前：文本有错应停')
++    if not 出片前('x\n✘ 读音核对（A23…）\n    待核实 Europe', 1, False): f.append('出片前：读音待核实应停')
++    if not 出片前('Traceback\nNameError', 1, False): f.append('出片前：交付核查崩了应停，却当成通过')
++    return f
++
++if __name__ == '__main__':
++    import sys
++    e = 自检(); print('\n'.join(e) or '分流 自检通过（只有响度骤降进疑点；骤降+削波、片中停顿过长、骤降+停顿过长、电流音、程序出错、交付核查崩了都停；出片前 只因“？”不停、文本错/读音/崩了都停）'); sys.exit(1 if e else 0)
 diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\215\260\347\253\240.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\215\260\347\253\240.py"
 index 0cdcc60..0438aa8 100644
 --- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\215\260\347\253\240.py"
@@ -550,7 +637,7 @@ index 579d293..6adc565 100644
  python3 - "$no" "$P/视频/制作记录/${no}_做指纹.json" <<'PY' || stop "成片指纹对不上：定稿的不是用户看过的那一版（数据或声音变了），先 做.sh 出草稿给用户看"
  import sys, json, hashlib, os
 diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\277\253\346\265\213.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\277\253\346\265\213.py"
-index bd0d66b..7602784 100644
+index bd0d66b..dad448b 100644
 --- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\277\253\346\265\213.py"
 +++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\226\260\347\256\241/\345\277\253\346\265\213.py"
 @@ -1,8 +1,8 @@
@@ -605,7 +692,7 @@ index bd0d66b..7602784 100644
 +        ['排版自检.py'], ['推送自检.py'], ['译文核查.py', '--自检'], ['出片指纹.py', '--自检'], ['结尾句接点.py', '--自检'], ['句内响度.py', '--自检'],
 +        ['开工记录.py', '--自检'], ['逐词对齐.py', '--自检'], ['停顿位置精确核对.py', '--自检'], ['响度一致性核对.py', '--确认自检'], ['机器复听.py', '--比较自检'],
 +        ['纯人声核对.py', '--确认自检'], ['高亮同步核对.py', '--确认自检'], ['颜色核对.py', '--自检'], ['缓存进仓库核对.py', '--自检'], ['速查表.py'], ['报坑.py', '--自检'],
-+        ['意思个数.py'], ['疑点清单.py', '--自检']]
++        ['意思个数.py'], ['疑点清单.py', '--自检'], ['新管/分流.py']]
  
 -def 文本自检(看门):
 -    import 规则执行核查 as RZ
@@ -7373,7 +7460,7 @@ index 4a784eb..b439d9d 100644
      if '--状态' in a: 状态(); sys.exit(0)
      if '--写入' in a: print('已写', 写表()); sys.exit(0)
 diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py"
-index 4f12c33..e6edeb3 100644
+index c5ce2c3..254f461 100644
 --- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py"
 +++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py"
 @@ -1,18 +1,18 @@
@@ -7412,7 +7499,7 @@ index 4f12c33..e6edeb3 100644
  if '只核查 = ' not in open(f'{T}/生成文本.py').read(): fails.append('没抓到：生成文本没有只核查用法（守则17）')
  # K37（25 定稿撞到）：定稿流水线 ④ 写 ${要文本:+--出文档}，bash 不认中文变量名直接 bad substitution，|| stop 又写在 # 注释后面，
  # 生成文本.py 没跑、失败也不停，文本门从 2026-10-24 起被静默跳过。两道静态查（全部 .sh）+ 真跑 ④ 那两行（假 生成文本.py 失败必须停、参数对）
-@@ -66,53 +66,21 @@ for _bad in ('python3 x.py ${要文本:+--出文档} > a 2>&1', 'python3 x.py $(
+@@ -66,107 +66,42 @@ for _bad in ('python3 x.py ${要文本:+--出文档} > a 2>&1', 'python3 x.py $(
  for _ok in ('echo "第${no}篇"', 'exec 9>"${PUSH_LOCK:-/tmp/推送两仓库.lock}"; flock 9', 'x=1   # 说明：失败就 || 停'):
      if sh毛病(_ok): fails.append(f'误报：{_ok} 被当成 K37 毛病')
  def 跑文本门(要文本, 退出码, txt=src):
@@ -7472,9 +7559,13 @@ index 4f12c33..e6edeb3 100644
  # K38：钩子自检必须在隔离的请求账里跑：HOME 里放一份“推了请求、没约唤醒”的真实账，钩子自检照样要通过
  _h = tempfile.mkdtemp(prefix='K38_HOME_'); json.dump({'请求': [{'名字': '演练', '时刻': '2099-01-01T00:00:00Z'}]}, open(f'{_h}/.云端请求.json', 'w'))
  _r = subprocess.run(['python3', f'{T}/钩子/钩子自检.py'], capture_output=True, text=True, env={**{k: v for k, v in os.environ.items() if not k.startswith('GIT_')}, 'HOME': _h})
-@@ -123,50 +91,19 @@ def yml中文变量(txt): return [i for i, l in enumerate(txt.splitlines(), 1) i
- for _f in [x for d in (os.path.dirname(os.path.dirname(T)), '/home/user/literate-enigma') for x in __import__('glob').glob(f'{d}/.github/workflows/*.yml')]:
-     for _i in yml中文变量(open(_f).read()): fails.append(f'{_f} 第 {_i} 行：工作流 shell 用了中文变量名（K31）')
+ if _r.returncode: fails.append('钩子自检读了真实的 ~/.云端请求.json（K38 重放：推了请求没约唤醒时自检报失灵）：' + (_r.stdout + _r.stderr).strip()[-120:])
+ shutil.rmtree(_h, ignore_errors=True)
+-# K31：GitHub 工作流 run 里的 shell 也不许用中文变量名（export 正例=… 是 not a valid identifier，第一轮 48 个任务全挂）
++# K31：GitHub 工作流 run 里的 shell 也不许用中文变量名（export 正例=… 是 not a valid identifier，第一轮 48 个任务全挂）（只用造的样本，不读镜像或 GitHub 上的文件：主会话 2026-10-29）
+ def yml中文变量(txt): return [i for i, l in enumerate(txt.splitlines(), 1) if re.search(r'(?:^|[\s;])export\s+[^\x00-\x7F]|\$\{?[^\x00-\x7F\s{(]', l)]
+-for _f in [x for d in (os.path.dirname(os.path.dirname(T)), '/home/user/literate-enigma') for x in __import__('glob').glob(f'{d}/.github/workflows/*.yml')]:
+-    for _i in yml中文变量(open(_f).read()): fails.append(f'{_f} 第 {_i} 行：工作流 shell 用了中文变量名（K31）')
  if not yml中文变量('        run: export 正例=/tmp/正例') or not yml中文变量('  run: echo ${正例}') or yml中文变量('  run: echo ${{ matrix.it.no }} $N ${N#覆盖@}'): fails.append('K31 自检：工作流中文变量名没抓到或误报')
 -def drill写回(txt):   # K41：几十个分片同时写回，put() 遇 409 不重试就丢结果；artifact 名字带 /（githooks/pre-commit）上传报错
 -    e = []
@@ -7515,7 +7606,7 @@ index 4f12c33..e6edeb3 100644
 -if not 有重建(src): fails.append('定稿流水线 ① 之前没有“没有 work_NN/a.wav 就只出声音重建”（K36）')
 +if not 有重建(src): fails.append('定稿.sh ① 之前没有“没有 work_NN/a.wav 就只出声音重建”（K36）')
  if 有重建(src.replace('[ -f "work_$no/a.wav" ] ||', '')): fails.append('没抓到：拿掉 a.wav 重建那一行（K36 重放）')
--if subprocess.run(['python3', f'{T}/推请求.py', '--自检'], capture_output=True).returncode: fails.append('推请求.py --自检 不过（K35）')
+-pass  # 永远的大坑：推请求（改门推送、门变异、演练）是检查的检查，drill.yml 已删，不再自检 —— 原：if subprocess.run(['python3', f'{T}/推请求.py', '--自检'], capture_output=True).returncode: fails.append('推请求.py --自检 不过（K35）')
  _旧 = 'python3 $T/生成文本.py $no ${要文本:+--出文档} $([ -z "$要文本" ] && echo --只核查) > "$LOG/文本.log" 2>&1   # 守则17 || { tail -15 "$LOG/文本.log"; stop "对照文本生成或文本核查不通过"; }'
  _a, _st, _e = 跑文本门(False, 1, _旧)
  if _a is not None and _st: fails.append('没抓到：K37 原样那一行（中文变量 + 注释吞 ||）重放，真跑没发现文本门没跑、不停')
@@ -7528,7 +7619,7 @@ index 4f12c33..e6edeb3 100644
  lk.close(); shutil.rmtree(td, ignore_errors=True)
  # 24 草稿会话报的三个共用程序问题（2026-10-24）
  sys.path.insert(0, T); import 开工记录 as _KG   # G23 开工记录.py 已有的 NN.md 只追加、不覆盖
-@@ -182,5 +119,5 @@ def 管道解压(txt):   # K54：curl 下载直接管道给 tar 解压，下载
+@@ -182,5 +117,5 @@ def 管道解压(txt):   # K54：curl 下载直接管道给 tar 解压，下载
      return [l.strip()[:80] for l in txt.splitlines() if not l.lstrip().startswith('#') and re.search(r'curl\b[^|#]*\|\s*tar\b', l)]
  if 管道解压(open(f'{T}/环境/准备机器.sh').read()): fails.append(f'准备机器.sh 又用 curl 管道直接 tar 解压（K54）：{管道解压(open(f"{T}/环境/准备机器.sh").read())[0]}')
  if not 管道解压('A=1; [ -f x ] || { curl -sSL https://e/x.tar.bz2 | tar xj -C ~/asr; }\n'): fails.append('没抓到：curl | tar 管道解压（K54 重放）')
