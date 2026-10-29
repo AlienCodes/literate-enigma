@@ -199,6 +199,7 @@ def _int2w(n):
     if n<1000: return _ONES[n//100]+' hundred'+('' if n%100==0 else ' '+_n2w(n%100))
     return _int2w(n//1000)+' thousand'+('' if n%1000==0 else ' '+_int2w(n%1000))
 def spoken(t):
+    t=re.sub(r'([$£€])(\d{1,3}(?:,\d{3})+|\d{1,6})(?![\d.,]\d)',lambda m:m.group(0) if int(m.group(2).replace(',',''))>=10**6 else _int2w(int(m.group(2).replace(',','')))+' '+{'$':('dollar','dollars'),'£':('pound','pounds'),'€':('euro','euros')}[m.group(1)][int(m.group(2).replace(',',''))!=1],t)   # K114（31 S14 $105,000 被读成 dollar one hundred five thousand）：$105,000 → one hundred five thousand dollars；小数、百万以上不转（交付核查 照报）
     t=re.sub(r'\b(1[0-2]|[1-9])[.:]([0-5]\d)([ap])m\b',lambda m:_n2w(int(m.group(1)))+('' if m.group(2)=='00' else ' oh '+_ONES[int(m.group(2))] if m.group(2)[0]=='0' else ' '+_n2w(int(m.group(2))))+' '+m.group(3).upper()+'M',t)  # 11.40pm → eleven forty PM（15：原来读成 eleven point four zero；小写 am 会读成 ɐm，大写 AM/PM 读成字母）
     t=re.sub(r'(?<![\d.,])(\d{1,6})\.(\d+)(?![\d.])',lambda m:_int2w(int(m.group(1)))+' point '+' '.join(_ONES[int(c)] for c in m.group(2)),t)   # 264.4 → two hundred sixty-four point four（13；时间在上一行先转）
     t=re.sub(r'\b(1[1-9])(\d)0s\b',lambda m:_n2w(int(m.group(1)))+' '+_PL[_TENS[int(m.group(2))]],t)          # 1960s → nineteen sixties
