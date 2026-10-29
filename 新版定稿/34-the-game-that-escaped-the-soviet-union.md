@@ -1,5 +1,5 @@
 # EN: The Game That Escaped the Soviet Union
-# ZH: 越过铁幕的俄罗斯方块
+# ZH: 走出苏联的俄罗斯方块
 
 ## 英文
 In June 1984 Alexey Pajitnov, a 29-year-old Moscow **coder**, grew **engrossed** in a **diversion** he had built. His **primitive** Elektronika 60 had a **purely** **textual** display, so every **geometric** piece of four **tiles** was assembled from characters. The result proved **addictive**. He called it Tetris, a **fusion** of the Greek tetra- and tennis, his favourite **pastime**.
@@ -31,6 +31,7 @@ The man whose puzzle once spread for nothing later helped decide who could sell 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
+| Moscow | n. 莫斯科（the streets of Moscow） | 1 |
 | coder | n. 程序员（a freelance coder） | 1 |
 | engrossed | adj. 全神贯注的（be engrossed in a book） | 1 |
 | diversion | n. 消遣，娱乐；转移（a pleasant diversion） | 1 |
@@ -75,10 +76,12 @@ The man whose puzzle once spread for nothing later helped decide who could sell 
 | resourceful | adj. 足智多谋的（a resourceful leader） | 4 |
 | publisher | n. 出版商，发行商（a game publisher） | 4 |
 | visa | n. 签证（a tourist visa） | 4 |
+| found his way to | v. (find one's way to) 设法找到，设法到达（find your way to the station） | 4 |
 | hectic | adj. 忙乱的（a hectic schedule） | 4 |
 | negotiations | n. (negotiation) 谈判（peace negotiations） | 4 |
 | bidder | n. 投标人，竞买者（the highest bidder） | 4 |
 | fondness | n. 喜爱，好感（a fondness for sweets） | 4 |
+| Nintendo | n. 任天堂（日本游戏公司）（a Nintendo console） | 4 |
 | scooped | v. (scoop) 抢先获得，捞取（scoop a prize） | 4 |
 | console | n. 游戏机，控制台（a games console） | 4 |
 | bundled | v. (bundle) 捆绑（销售）（software bundled with a computer） | 5 |
@@ -87,6 +90,9 @@ The man whose puzzle once spread for nothing later helped decide who could sell 
 | spoils | n. 战利品，收益（the spoils of war/victory） | 5 |
 | earnings | n. 收入，收益（annual earnings） | 5 |
 | expiry | n. 期满，到期（the expiry date） | 5 |
+| founded | v. (found) 成立，创办（found a company） | 5 |
+| arrangement | n. 安排；协议（a financial arrangement） | 5 |
+| puzzle | n. 益智游戏；谜（a jigsaw puzzle） | 6 |
 
 ## 史实与来源
 - 【T1】1984年6月，29岁的计算机工程师阿列克谢·帕基特诺夫在莫斯科苏联科学院多罗德尼岑计算中心，用一台只能显示文字的 Elektronika 60 完成俄罗斯方块核心玩法，方块由字符组成；名字由希腊前缀 tetra-（每块四格）与他最爱的运动网球（tennis）合成。英文 coder、pastime 为对"工程师""运动"的通俗说法；fusion 指名字的合成。S1
