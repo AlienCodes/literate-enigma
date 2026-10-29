@@ -43,7 +43,7 @@ def record_gate(no, stage):
 def record_gate_text(txt, no, stage):
     if '## 踩坑对照记录' not in txt:
         return [f'制作记录/{no}.md 没有"## 踩坑对照记录"（先运行：交付核查.py {no} 对照表，再逐条填写）']
-    sec = txt[txt.index('## 踩坑对照记录'):]
+    _m = re.search(r'^## 踩坑对照记录[^\n]*\n(.*?)(?=^## |\Z)', txt, re.S | re.M); sec = _m.group(1) if _m else txt[txt.index('## 踩坑对照记录'):]   # 只到下一个“## ”标题（32 报：后面“做事对照记录”表的 T15 行被当成踩坑对照行）
     rows = {m.group(1): [c.strip() for c in m.group(2).split('|')] for m in re.finditer(r'^\| *([A-Z]\d+b?) *\|(.*)\|\s*$', sec, re.M)}
     need = [i for i, _, _ in pit_rows() if i[0] in STAGE_PREFIX[stage]]
     miss = [i for i in need if i not in rows]
@@ -72,6 +72,8 @@ def selftest_record_human():
     if not any('只认固定格式' in x for x in record_gate_text(rec2('本篇有：合并成一次改了'), '25', '文本')): fails.append('没抓到：25 起“本篇有”却没引用户原话')
     if record_gate_text(rec2('本篇无：用户没有提互相冲突的要求，也没有插话'), '25', '文本'): fails.append('G6/C3/C4 误报：固定格式“本篇无：……”')
     if record_gate_text(rec2('本篇有：两次插话合并成一次改，用户原话“这两处一起改”'), '25', '文本'): fails.append('G6/C3/C4 误报：固定格式“本篇有：……“原话””')
+    _t = rec('用户两次要求不冲突，没有需要问的') + '\n\n## 做事对照记录\n| T15 | z | 待填 | 待填 |\n'   # 32 报：做事对照记录表放在后面，T15 行被当成踩坑对照行
+    if any('T15' in x for x in record_gate_text(_t, '21', '文本')): fails.append('误报：做事对照记录里的 T15 行被当成踩坑对照行（只该看到下一个“## ”标题为止）')
     return fails
 
 

@@ -85,6 +85,18 @@ A tropical volcano had supplied the rain, and a teenager the monster.
 | anonymously | adv. 匿名地（published anonymously） | 6 |
 | reissued | v. (reissue) 再版，重新发行（reissue a book/album） | 6 |
 | genre | n. 体裁，类型（the crime genre） | 6 |
+| Indonesian | adj. 印度尼西亚的（an Indonesian island） | 2 |
+| blew apart | v. (blow apart) 炸裂，炸得四分五裂（blow itself apart） | 2 |
+| tens of thousands | n. 数万（tens of thousands of people） | 2 |
+| sulphur dioxide | n. 二氧化硫（emissions of sulphur dioxide） | 3 |
+| aerosols | n. (aerosol) 气溶胶；喷雾剂（sulphate aerosols） | 3 |
+| know as | v. (know A as B) 把 A 称作 B（be known as） | 3 |
+| Crops failed | v. (crops fail) 庄稼歉收（the crops failed） | 4 |
+| set out | v. 出发，启程（set out on a journey） | 5 |
+| Frankenstein | n. 《弗兰肯斯坦》（即《科学怪人》） | 6 |
+| science-fiction | adj. 科幻的（a science-fiction novel） | 6 |
+| founding work | n. 开山之作，奠基之作（the founding work of a genre） | 6 |
+| monster | n. 怪物（a sea monster） | 7 |
 
 ## 史实与来源
 - 【T1】1815年4月10日，印度尼西亚松巴哇岛的坦博拉火山猛烈爆发，是有记录以来最强烈的火山爆发之一（英文 blew itself apart）；直接死亡约1万余人（英文 died immediately 即直接致死），随后饥荒和疾病又夺去数万人生命。S1
