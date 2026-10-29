@@ -597,14 +597,25 @@ def _ending_toks(sent,e):
         tone_=(a_,b_,k_); rF_=rF0_
         d_=(mF_-mF0_)/SR                                              # 改完以后前段实际多出来的长度
         mv_=lambda t_: t_ if t_<a_ else (min(a_+(t_-a_)*k_,b_+d_) if t_<=b_ else t_+d_)
+    ps_=[]
     for sp_,r_,m_,first_ in ((float(e['前段语速']),rF_,(mF0_ if tone_ else mF_),True),(float(e['最后一段语速']),rS_,mS_,False)):
-        tb_,_,ts_=KT.create_timed(spoken(sent),voice=V,speed=sp_,lang='en-us',clause_pause=0,sentence_pause=0); sc_=len(r_)/len(tb_)
-        sh_=0 if first_ else mS_-mF_
+        tb_,_,ts_=KT.create_timed(spoken(sent),voice=V,speed=sp_,lang='en-us',clause_pause=0,sentence_pause=0); sc_=len(r_)/len(tb_); ts_=list(ts_)
+        sh_=0 if first_ else mS_-mF_; ps_.append((ts_,sc_,sh_,m_))
         for t_ in ts_:
             if (t_.start*sc_*SR<m_)==first_:
                 s_,n_=(t_.start*sc_*SR-sh_)/SR,(t_.end*sc_*SR-sh_)/SR
                 if first_ and tone_: s_,n_=mv_(s_),mv_(n_)
                 toks.append(_ty.SimpleNamespace(phoneme=t_.phoneme,start=s_,end=n_))
+    (t1_,c1_,_,m1_),(t2_,c2_,h2_,_)=ps_
+    if [t_.phoneme for t_ in toks]!=[t_.phoneme for t_ in t1_] and [t_.phoneme for t_ in t1_]==[t_.phoneme for t_ in t2_]:
+        # K120（33 S16 alive, and）：同一个音（逗号后的空格）前段那遍起点早于接点、最后一段那遍起点晚于接点，两遍各留一次，音素多出一个。
+        # 按顺序拼：前段取接点前的前 i 个，最后一段从第 i 个接着取（起点不早于接点）。原来拼得对的结尾句不走这里，声音、时刻都不变
+        i_=sum(1 for t_ in t1_ if t_.start*c1_*SR<m1_); toks=[]
+        for t_ in t1_[:i_]:
+            s_,n_=t_.start*c1_,t_.end*c1_
+            if tone_: s_,n_=mv_(s_),mv_(n_)
+            toks.append(_ty.SimpleNamespace(phoneme=t_.phoneme,start=s_,end=n_))
+        toks+=[_ty.SimpleNamespace(phoneme=t_.phoneme,start=(max(t_.start*c2_*SR,mS_)-h2_)/SR,end=(max(t_.end*c2_*SR,mS_)-h2_)/SR) for t_ in t2_[i_:]]
     return toks
 def _ending_raw(sent,e):
     if '整句语速' in e:                                                # 没有句中标点的结尾句：整句一个较慢的语速
