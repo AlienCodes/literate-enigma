@@ -32,6 +32,13 @@ def 读(L, rev, f):
     r = g(L, 'show', f'{rev}:{f}', 字节=True)
     return r.stdout if r.returncode == 0 else None
 
+def 主历史有(P, f, 内容):
+    """K116（31 推送误停）：镜像上这一版就是 main 历史里出现过的某一版（旧推送程序同步过去、提交没带“主仓库提交：”一行）→ 不是只在镜像的改动"""
+    for h in g(P, 'log', '-300', '--format=%H', '--', f).split():
+        r = g(P, 'show', f'{h}:{f}', 字节=True)
+        if r.returncode == 0 and r.stdout == 内容: return True
+    return False
+
 def 合回(P, L):
     S = 上次同步(L)
     if not S: return [], ['镜像分支上找不到“镜像：”开头的同步提交，判断不了哪些是只在镜像的改动（先别推，报给主会话）']
@@ -45,6 +52,7 @@ def 合回(P, L):
         base, 镜 = 读(L, S, f), 读(L, 'HEAD', f)
         pf = f'{P}/{f}'; 主 = open(pf, 'rb').read() if os.path.exists(pf) else None
         if 主 == 镜: continue
+        if 镜 is not None and 主历史有(P, f, 镜): continue   # K116：镜像这一版来自 main 的历史，main 现在的为准
         if 主 == base:
             if 镜 is None: os.remove(pf); g(P, 'rm', '-q', '--cached', '--ignore-unmatch', '--', f); 做了.append(f'删 {f}')
             else:
@@ -99,6 +107,12 @@ def 自检():
         g(L, 'commit', '-q', '--allow-empty', '-m', '镜像：同步\n\n主仓库提交：abc'); w(L, '视频/e.md', 'e 镜像会话\n'); g(L, 'add', '-A'); g(L, 'commit', '-qm', '镜像：31 交接（会话自己这样写）')
         合回(P, L)
         if not os.path.exists(f'{P}/视频/e.md'): fails.append('没合回：别的会话说明写成“镜像：”开头，就被当成同步、改动被盖（要认“主仓库提交：”一行）')
+        # K116（31）：旧推送程序同步的提交没带“主仓库提交：”一行，镜像上那一版就是 main 历史里的一版；main 之后又改了 → 不算冲突，main 不动
+        w(P, '视频/f.md', 'f 一\n'); g(P, 'add', '-A'); g(P, 'commit', '-qm', 'f1'); w(L, '视频/f.md', 'f 一\n'); g(L, 'add', '-A'); g(L, 'commit', '-qm', '镜像：第31篇 草稿（旧推送，没带主仓库提交一行）')
+        w(P, '视频/f.md', 'f 一\nf 二 主改\n'); g(P, 'commit', '-qam', 'f2')
+        做, 冲 = 合回(P, L)
+        if any('f.md' in x for x in 冲 + 做): fails.append(f'误判：镜像上的 f.md 是 main 历史里的一版（旧推送同步），却当成只在镜像的改动：{冲 + 做}')
+        if open(f'{P}/视频/f.md').read() != 'f 一\nf 二 主改\n': fails.append('误动：main 的 f.md 被镜像上的旧版改了')
         # 找不到同步提交：停下报出来，不猜
         L2 = f'{td}/L2'; os.makedirs(L2); subprocess.run(['git', 'init', '-q', L2]); g(L2, 'config', 'user.name', 'x'); g(L2, 'config', 'user.email', 'x@x')
         w(L2, '视频/x.md', 'x\n'); g(L2, 'add', '-A'); g(L2, 'commit', '-qm', 'init')
