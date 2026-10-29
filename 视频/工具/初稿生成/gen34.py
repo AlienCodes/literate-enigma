@@ -49,7 +49,7 @@ S=[
     [[("were in **Moscow**","都在**莫斯科**(Moscow)，"),("that same **hectic**","就在同一个**忙乱的**(hectic)"),("week of **negotiations**,","**谈判**(negotiations)周里，"),("each a **bidder**.","各自都是**竞标者**(bidder)。")],
      "（that same hectic week…：时间状语；\neach a bidder：each 指两人各自）"]]),
 (4,[[[("Pajitnov","帕基特诺夫"),("felt a **fondness** for Rogers,","对罗杰斯颇有**好感**(fondness)，")],
-     "（feel a fondness for…：对……有好感）"],
+     "（feel a fondness for…：对……有好感；\nRogers：即亨克·罗杰斯，任天堂的合作商与版权谈判代表）"],
     [[("and **Nintendo**","**任天堂**(Nintendo)"),("**scooped**","**抢得/抢下了**(scooped)"),("the handheld","掌机"),("rights,","版权，"),("then","后来又拿下了"),("worldwide","全球"),("**console**","**游戏主机**(console)"),("rights.","版权。")],
      "（scoop：抢先获得；\nthen worldwide console rights：省略了 scooped）"]]),
 (5,[[[("**Nintendo**","**任天堂**(Nintendo)"),("**bundled** **Tetris** with its **pocket-sized** Game Boy,","把**俄罗斯方块**(Tetris)和它那款**口袋大小的**(pocket-sized) Game Boy **捆绑**(bundled)销售，")],
