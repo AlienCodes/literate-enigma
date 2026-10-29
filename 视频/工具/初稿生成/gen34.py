@@ -91,6 +91,7 @@ CONF={"合组":{
  "S15 His earnings began only after his arrangement's expiry around 1995":"对齐不了：only after A, B 中文“直到 A 之后，才 B”，时间状语必须提前，“才开始有收入”放到最后",
  "S17 spread for nothing":"对齐不了：for nothing 是方式状语，中文“免费四处流传”必须放到动词前"},
 "对齐":{
+ "S9-2 of overlapping deals among Wes":"用户 2026-10-29 改稿原话定的译法“由西方公司彼此之间的重叠交易所导致”，among Western firms 是后置定语，必须提到 deals 前；of 引出原因，“所导致”放最后，语序必须倒过来",
  "S9-1 were shuffled onward through a":"用户 2026-10-29 改稿原话定的语序，介词短语 through a chaotic muddle of overlapping deals among Western firms 整体提到“被持续地洗牌式地倒手”前面，语序必须倒过来",
  "S1-2 diversion he had built.":"he had built 是省略关系代词的定语从句，修饰 diversion，中文“他自己此前编写出来的消遣（游戏）”从句必须提前（用户 2026-10-29 改稿原话定的译法）",
  "S4-2 a fusion of the Greek tetra- a":"a fusion of A and B 中文“A 和 B 的融合”，of 结构语序必须倒过来",
