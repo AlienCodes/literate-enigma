@@ -14,7 +14,7 @@ S=[
      "（discharge A into B：把 A 排放到 B 中；\nsome three million：约三百万，some 表示“大约”；\ncity dweller：城市居民）"],
     [[("where","在那里，"),("the **excrement**","**粪便**(excrement)"),("**stewed**","**处于炎热的空气中**(stewed)"),("and","并"),("**decayed**.","**腐败**(decayed)。")],
      "（where…：非限制性定语从句，where 指 its currents；\nstew：炖，这里指在闷热中闷着、沤着）"]]),
-(2,[[[("The **vile**","**令人恶心的**(vile)"),("**fumes**","**刺鼻气体**(fumes)"),("grew so","变得如此"),("**overpowering**","**极其强烈的/令人难以忍受**(overpowering)，"),("that","以至于"),("the episode","这段时期"),("earned","赢得了"),("a name,","一个名字，"),("the Great Stink.","大恶臭。")],
+(2,[[[("The **vile**","**令人恶心的**(vile)"),("**fumes**","**刺鼻气体**(fumes)"),("grew so","变得如此"),("**overpowering**","**极其强烈的/令人难以忍受**(overpowering)，"),("that","以至于"),("the episode","这段时期"),("earned","赢得了"),("a name,","一个名字，"),("the Great **Stink**.","大**恶臭**(Stink)。")],
      "（so…that…：如此……以至于……；\nthe Great Stink：同位语，补充说明 a name）"]]),
 (3,[[[("**Disgust**","这股**厌恶**(Disgust)"),("found","找到了"),("a voice","代言人，"),("on 15 July,","是在7月15日，")],
      "（find a voice：找到表达的出口，这里指有了代言人）"],
@@ -95,7 +95,7 @@ CONF={"牛津逗号":{"S4 dwellers into its currents, where the excrement stewed
 out={"no":"30","title_en":"The Stink That Built London's Sewers","title_zh":"大恶臭逼出了下水道","title_fx":{"hl":["Stink","Sewers"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "说明放宽特批":{"S18":{"倍数":"整屏","依据":"用户 2026-10-28 特批：“29、30、31 结尾简述都整屏、字号放到最大”（用户同意记录）"}},
      "高亮按实际开口":True,"高亮开口门槛":40,
-     "术语":{"Houses of Parliament":"议会大厦","Thames":"泰晤士河","London":"伦敦","Londoners":"伦敦人","Great Stink":"大恶臭","Benjamin Disraeli":"本杰明·迪斯雷利","Joseph Bazalgette":"约瑟夫·巴泽尔杰特","Victoria":"维多利亚","Albert":"阿尔伯特","Chelsea":"切尔西","Embankments":"河堤","East End":"伦敦东区"}}
+     "术语":{"Houses of Parliament":"议会大厦","Thames":"泰晤士河","London":"伦敦","Londoners":"伦敦人","Benjamin Disraeli":"本杰明·迪斯雷利","Joseph Bazalgette":"约瑟夫·巴泽尔杰特","Victoria":"维多利亚","Albert":"阿尔伯特","Chelsea":"切尔西","Embankments":"河堤","East End":"伦敦东区"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)
