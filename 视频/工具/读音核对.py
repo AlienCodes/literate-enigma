@@ -162,6 +162,7 @@ def refs(word):
 
 
 FUNC = set('a an the of to in on at by for and or but as is was be been were are it its that this with from not no so than then he she they his her their them we you i me my our your had has have into onto up who which what when how'.split())
+def _虚(w): return w.lower() in FUNC and not (w.isupper() and len(w) > 1)   # K132（35 S? below WHO safety）：全大写缩写（WHO、US、IT）不是虚词 who/us/it，照专名查
 
 
 def words_of(text):
@@ -184,7 +185,7 @@ def check(no):
                 rows.append(('多音词', f"{no} {'待核实' if c_ is None else '整句读法变了，要重新核实'} [多音词] {w}  词典里按词性有几种读法：{MG.get(w) or MG.get(w.lower())}｜整句：/{phonemes_of(sp)}/｜出现在 {lab}", True))
         for i, w in enumerate(ws):
             ph = re.sub(r'[,;:.!?"“”]', '', phonemes_of(w)).strip()
-            if w.lower() not in FUNC and re.sub(r'[ˈˌ\s]', '', ph) not in ph_sent:
+            if not _虚(w) and re.sub(r'[ˈˌ\s]', '', ph) not in ph_sent:
                 cv = conf.get(w) or VERIFIED.get(w)
                 hv = HETCONF.get(f'{no} {lab} {w}')   # 这一句的多音词核对记录（整句音标对得上）已核实了整句里的读法（13 S4 过去式 read）
                 if not (isinstance(cv, dict) and cv.get('整句读法已核实')) and not (isinstance(hv, dict) and hv.get('判定') == '正确' and hv.get('整句音标') == phonemes_of(sp)):
@@ -198,7 +199,7 @@ def check(no):
             if k_ in seen: seen[k_][1].append(lab); continue
             rs = refs(w); tts = ipa_phones(ph)
             ok = [r for r in rs if same(tts, r[2])[0]]
-            if w.lower() in FUNC and (ok or not rs): continue
+            if _虚(w) and (ok or not rs): continue
             if rs and ok and not proper: seen[k_] = (None, [lab]); continue
             why = '词典里没有' if not rs else ('不一致：' + '；'.join(sorted({same(tts, r[2])[1] for r in rs})) if not ok else '')
             cat = '专有名词' if proper else ('词典里没有' if not rs else '不一致')

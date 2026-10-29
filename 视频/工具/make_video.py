@@ -814,7 +814,9 @@ def sentence_audio(sent,pieces,gaps):
             # A15：没有长的自然停顿时，候选 = 短静音段 + 足够安静的低谷（与窗口最安静处相差不超过 6 dB），
             # 选离"前一个词结尾 pe"最近的一个。不能按"窗口里最安静"或"离两词中点最近"选：下一个词里 /t/ 的闭塞
             # 常常更安静（cabbies, i|ts），而带时长模型每次运行的时长略有不同，按中点选会时对时错（learned, it）。
-            win=list(range(max(lo,pe-16),min(hi,ns+2)+1)); deep=min(e[g] for g in win)
+            win=list(range(max(lo,pe-16),min(hi,ns+2)+1))
+            if not win: win=list(range(max(0,min(pe,ns)-16),min(len(e)-1,max(pe,ns)+2)+1))   # K131（35 S21 cracked, but 结尾句）：前段那遍的 /t/ 结束时刻落在接点之后，pe 比下一个词起音 ns 还晚，窗口为空、出片崩；只有空窗口时才换成两者之间（已出片的篇目窗口都不空，不受影响）
+            deep=min(e[g] for g in win)
             dips=[g for g in win if e[g]<=min(e[max(0,g-4):g+5]) and e[g]<=deep+6 and not any(s0<=g<s1 for s0,s1 in runs)]
             cand=[(max(s0-pe,pe-(s1-1),0),0,(s0,s1)) for s0,s1 in runs]+[(abs(g-pe),1,g) for g in dips]
             if cand:
