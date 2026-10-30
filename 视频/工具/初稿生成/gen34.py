@@ -91,8 +91,8 @@ CONF={"合组":{
  "S17 The man whose puzzle once spread for nothing":"对齐不了：用户 2026-10-30 改稿原话定的译法“他的益智游戏曾无偿流布天下”，whose 定语从句改译成独立分句，拆开不通",
  "S17 helped decide who could sell it":"对齐不了：用户 2026-10-30 改稿原话定的译法“他却成了决定谁能售卖它的人”，who could sell it 宾语从句提到“人”前面，拆开不通"},
 "对齐":{
- "S17-1 The man whose puzzle once spread":"用户 2026-10-30 改稿原话定的译法，whose 定语从句修饰 The man，中文改译成“他的益智游戏曾无偿流布天下”",
- "S17-1 helped decide who could sell it.":"用户 2026-10-30 改稿原话定的译法“他却成了决定谁能售卖它的人”，宾语从句必须提前",
+ "S17-1 The man whose puzzle once spre":"用户 2026-10-30 改稿原话定的译法，whose 定语从句修饰 The man，中文改译成“他的益智游戏曾无偿流布天下”",
+ "S17-1 helped decide who could sell i":"用户 2026-10-30 改稿原话定的译法“他却成了决定谁能售卖它的人”，宾语从句必须提前",
  "S9-2 of overlapping deals among Wes":"用户 2026-10-29 改稿原话定的译法“因为由西方公司之间重叠的交易而导致了这种情况”，among Western firms 是后置定语，必须提到 deals 前；of 引出原因，“所导致”放最后，语序必须倒过来",
  "S9-1 were shuffled onward through a":"用户 2026-10-29 改稿原话定的语序，介词短语 through a chaotic muddle of overlapping deals among Western firms 整体提到“被持续地洗牌式地倒手”前面，语序必须倒过来",
  "S1-2 diversion he had built.":"he had built 是省略关系代词的定语从句，修饰 diversion，中文“他自己此前编写出来的消遣（游戏）”从句必须提前（用户 2026-10-29 改稿原话定的译法）",
