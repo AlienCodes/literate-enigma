@@ -63,7 +63,7 @@ S=[
      "（背景：苏联解体后，情况变了。\n但因为他早年签过一些关于授权的\n“协议（arrangement）”，\n这些协议的约束力一直持续到1995年左右。\n等这份束缚他的旧协议终于过期作废了，\n他才终于开始堂堂正正地拿到属于自己的钱。）"]]),
 (5,[[[("In 1996","1996年，"),("he and Rogers","他和罗杰斯"),("**founded** The Tetris Company","**成立/创办了**(founded)俄罗斯方块公司，"),("to manage","来管理"),("the rights.","这些版权。")],
      "（罗杰斯(Rogers)当年是代表任天堂去莫斯科，从苏联官方手里买下了版权；\n而他和帕基特诺夫因为这场谈判成了生死之交。\n多年后合同到期，两人合伙开公司，\n才真正把版权拿回了发明者自己手中。）"]]),
-(6,[[[("The man","那个人"),("whose **puzzle**","他的**益智游戏**(puzzle)"),("once","曾经"),("spread for nothing","免费四处流传，"),("later","然而后来他却"),("helped","参与了"),("decide","决定"),("who could sell it.","谁能够卖它。")],
+(6,[[[("The man whose **puzzle** once spread for nothing","他的**益智游戏**(puzzle)曾无偿流布天下，"),("later","多年后，"),("helped decide who could sell it.","他却成了决定谁能售卖它的人。")],
      "（whose puzzle…：定语从句，修饰 The man；\nfor nothing：免费；\nwho could sell it：宾语从句）\n"
      "（简述：1984年，苏联程序员帕基特诺夫在只能显示文字的老旧电脑上，\n"
      "敲出了《俄罗斯方块》。但因当时的苏联体制，游戏版权归国家所有，他本人毫无权利，\n"
@@ -88,8 +88,11 @@ CONF={"合组":{
  "S10 reached Moscow on a tourist visa":"对齐不了：on a tourist visa 是方式状语，中文“持旅游签证来到莫斯科”必须放到动词前",
  "S10 and found his way to Elorg":"对齐不了：find one's way to 是固定说法“设法找到”，拆开不通",
  "S15 His earnings began only after his arrangement's expiry around 1995":"对齐不了：only after A, B 中文“直到 A 之后，才 B”，时间状语必须提前，“才开始有收入”放到最后",
- "S17 spread for nothing":"对齐不了：for nothing 是方式状语，中文“免费四处流传”必须放到动词前"},
+ "S17 The man whose puzzle once spread for nothing":"对齐不了：用户 2026-10-30 改稿原话定的译法“他的益智游戏曾无偿流布天下”，whose 定语从句改译成独立分句，拆开不通",
+ "S17 helped decide who could sell it":"对齐不了：用户 2026-10-30 改稿原话定的译法“他却成了决定谁能售卖它的人”，who could sell it 宾语从句提到“人”前面，拆开不通"},
 "对齐":{
+ "S17-1 The man whose puzzle once spread":"用户 2026-10-30 改稿原话定的译法，whose 定语从句修饰 The man，中文改译成“他的益智游戏曾无偿流布天下”",
+ "S17-1 helped decide who could sell it.":"用户 2026-10-30 改稿原话定的译法“他却成了决定谁能售卖它的人”，宾语从句必须提前",
  "S9-2 of overlapping deals among Wes":"用户 2026-10-29 改稿原话定的译法“因为由西方公司之间重叠的交易而导致了这种情况”，among Western firms 是后置定语，必须提到 deals 前；of 引出原因，“所导致”放最后，语序必须倒过来",
  "S9-1 were shuffled onward through a":"用户 2026-10-29 改稿原话定的语序，介词短语 through a chaotic muddle of overlapping deals among Western firms 整体提到“被持续地洗牌式地倒手”前面，语序必须倒过来",
  "S1-2 diversion he had built.":"he had built 是省略关系代词的定语从句，修饰 diversion，中文“他自己此前编写出来的消遣（游戏）”从句必须提前（用户 2026-10-29 改稿原话定的译法）",
