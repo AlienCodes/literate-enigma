@@ -1,5 +1,8 @@
 import json,re,glob,os
 # 第41篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-03 用户改稿 S14：“wreaked 为重点词汇为重点词汇。”（wreak havoc 整体标，T22）；“蟾蜍造成了严重破坏，但损害并不均衡；有些物种反而繁荣了起来。……改一下翻译”
+# 2026-11-03 用户改稿 S13：“Lizard 没重点词汇标注为重点词汇。……marsupial 也标注重点词汇”
+# 2026-11-03 用户改稿 S10：“起初每年 缓慢行进 约十公里”“改为它们的入侵前沿。它们 后面有一个白勺。”；S12：“它们皮肤里的毒素腺体，使它们成为了一顿致命的餐食。翻译改成这个”
 # 2026-11-03 用户看 S9 they multiplied unchecked：“这两个颜色太相近了”——multiplied 琥珀黄 #FBBF24、unchecked 青绿 #2DD4BF（K140 重点词颜色）
 # 2026-11-03 用户改稿 S4/S6/S7：“biological下面对应的意思改为 生物的”“halt 叫停改为停止。”“这套方案以失败告终。改为这套计划/方案 彻底失败。”
 # 2026-11-03 用户改稿 S2：“bulky 意思对应 庞大笨重的”“Native to 标注重点词汇”“那就按照你说的来，原产于美洲”
@@ -35,23 +38,23 @@ S=[
      "（with＋名词＋现在分词：with 复合结构作原因状语；\nfoes：敌人，这里指天敌）"],
     [[("they","它们"),("**multiplied** **unchecked**.","**不受遏制地**(unchecked)**大量繁殖**(multiplied)。")],
      "（unchecked：形容词作状语，说明繁殖的状态）"]]),
-(3,[[[("Their","它们"),("**invasion**","**入侵**(invasion)"),("**frontier**,","**前沿**(frontier)"),("creeping about ten kilometres a year at first,","起初每年约缓缓推进十公里，")],
+(3,[[[("Their","它们的"),("**invasion**","**入侵**(invasion)"),("**frontier**,","**前沿**(frontier)"),("creeping about ten kilometres a year at first,","起初每年缓慢行进约十公里，")],
      "（creeping…：现在分词短语作插入语，补充说明 frontier；\ncreep：缓慢移动）"],
     [[("**accelerated** to about 50 a year in the **tropical** north.","到了**热带**(tropical)北部，**加快**(accelerated)到每年约50公里。")],
      "（about 50 a year：省略了 kilometres）"]]),
 (3,[[[("In February 2009","2009年2月，"),("the first known","已知的第一只"),("toad","蟾蜍"),("**breached**","**突破了**(breached)"),("Western Australia's border.","西澳大利亚州的边界。")],
      "（first known：已知的第一个）"]]),
-(4,[[[("**Toxin**","它们皮肤里有分泌**毒素**(Toxin)的"),("**glands** in their skin","**腺体**(glands)，"),("make them a deadly meal.","谁吃了它们，这一餐就是致命的。")],
+(4,[[[("**Toxin**","它们皮肤里的**毒素**(Toxin)"),("**glands** in their skin","**腺体**(glands)，"),("make","使"),("them","它们成为了"),("a","一顿"),("deadly","致命的"),("meal.","餐食。")],
      "（make A B：使 A 成为 B；\nToxin glands：毒腺，toxin 作定语）"]]),
-(4,[[[("Numbers of goannas (large lizards)","巨蜥"),("and","和"),("northern","北"),("quolls","袋鼬"),("(small","（一种小型"),("marsupial","有袋类"),("hunters)","猎手）的数量")],
+(4,[[[("Numbers of goannas","巨蜥"),("(large","（大型"),("**lizards**)","**蜥蜴**(lizards)）"),("and","和"),("northern","北"),("quolls","袋鼬"),("(small","（一种小型"),("**marsupial**","**有袋类**(marsupial)"),("hunters)","猎手）的数量")],
      "（Numbers of…：……的数量，of 结构语序倒过来；\ngoannas：巨蜥，括号里 large lizards 意为大型蜥蜴）"],
     [[("have **slumped** in places;","在一些地方**锐减**(slumped)；")],
      "（in places：在一些地方）"],
     [[("some","部分"),("local","地方的"),("quoll","袋鼬"),("populations","种群"),("were **wiped out**.","被**彻底消灭**(wiped out)。")],
      "（wipe out：彻底消灭）"]]),
-(4,[[[("The toads","蟾蜍"),("have wreaked","造成了"),("**havoc**,","一场**浩劫**(havoc)，")],
+(4,[[[("The toads","蟾蜍"),("have **wreaked**","**造成了**(wreaked havoc)"),("**havoc**,","**严重破坏**(wreaked havoc)，")],
      "（wreak havoc：造成严重破坏）"],
-    [[("but","但"),("the damage","各地受害"),("is **uneven**;","轻重**不一**(uneven)；"),("some","有些"),("species","物种"),("have **prospered**.","反而**繁盛**(prospered)起来。")],
+    [[("but","但"),("the damage","损害"),("is **uneven**;","并**不均衡**(uneven)；"),("some","有些"),("species","物种"),("have **prospered**.","反而**繁荣了**(prospered)起来。")],
      "（the damage is uneven：各地受害程度不一样）"]]),
 (5,[[[("Biological control","生物防治"),("can **triumph**.","也能**大获成功**(triumph)。")]]]),
 (5,[[[("From 1926","从1926年起，"),("the cactus **moth**, Cactoblastis,","仙人掌螟这种**蛾子**(moth)")],
@@ -81,10 +84,9 @@ S=[
 CONF={
 "合组":{
  "S7 high up on cane stalks":"对齐不了：high up on cane stalks 是地点状语，中文“甘蔗茎秆的高处”方位词 high up 必须放到后面，on 结构语序倒过来",
- "S10 creeping about ten kilometres a year at first":"对齐不了：a year、at first 是时间状语，中文“起初每年约缓缓推进十公里”时间必须放到动词前（沿用文章定稿语序）",
+ "S10 creeping about ten kilometres a year at first":"对齐不了：a year、at first 是时间状语，中文“起初每年缓慢行进约十公里”（用户 2026-11-03 改）时间必须放到动词前（沿用文章定稿语序）",
  "S10 accelerated to about 50 a year in the tropical north":"对齐不了：in the tropical north 是地点状语，中文“到了热带北部”必须放到“加快”前；a year 中文“每年”放到数字前（沿用文章定稿语序）",
- "S12 make them a deadly meal":"对齐不了：make A B 结构，文章定稿中文化成两个小句“谁吃了它们，这一餐就是致命的”，拆开 make、deadly、meal 中文不通",
- "S13 Numbers of goannas (large lizards)":"对齐不了：goannas (large lizards) 中文就是“巨蜥”一个词，括号里 large lizards 是英文对 goannas 的解释，“巨蜥”已经包含；Numbers of 是 of 结构，“的数量”必须放到后面（沿用文章定稿）",
+ "S13 Numbers of goannas":"对齐不了：Numbers of 是 of 结构，“的数量”必须放到后面（沿用文章定稿）",
  "S16 cleared most prickly pear":"对齐不了：后面的 from Queensland and New South Wales within about a decade 是地点、时间状语，中文“在约十年内清除了昆士兰州和新南威尔士州的大部分刺梨”必须提到这里，同位语 an invasive cactus 放到最后（沿用文章定稿语序）",
  "S16 an invasive cactus, from Queensland and New South Wales within about a decade":"对齐不了：from Queensland and New South Wales、within about a decade 是地点、时间状语，中文已提到前一组“清除了”前后，这一组只剩同位语“这是一种外来入侵的仙人掌”（沿用文章定稿语序）",
  "S17 starved rather than eat":"对齐不了：rather than 中文“宁可……也不……”，“宁可”必须放到 starved 前，拆开语序不通",
@@ -97,8 +99,6 @@ CONF={
  "S7-2 high up on cane stalks.":"high up on cane stalks 是地点状语，中文“甘蔗茎秆的高处”方位词必须放到后面",
  "S10-1 creeping about ten kilometres ":"a year、at first 是时间状语，中文“起初每年”必须放到动词前",
  "S10-2 accelerated to about 50 a year":"in the tropical north 是地点状语，中文“到了热带北部”必须放到“加快”前",
- "S12-1 make them a deadly meal.":"make A B 结构，文章定稿中文化成两个小句，拆开不通",
- "S13-1 Numbers of goannas (large liza":"of 结构：Numbers of…，“的数量”放到后面；goannas (large lizards) 中文就是“巨蜥”",
  "S16-2 an invasive cactus, from Queen":"from…、within about a decade 是地点、时间状语，中文已提到“清除了”前后，这一组只剩同位语",
  "S18-1 Under an October 1984 law,":"Under…law 中文“根据1984年10月通过的一部法律”，时间定语 October 1984 必须放到“一部法律”前",
  "S19-1 sealed by lobbying that overro":"by lobbying that overrode a warning 是方式状语加定语从句，中文必须放到 sealed（而成定局）前"},
@@ -107,6 +107,8 @@ CONF={
 "方向":{"S6-2 after→经":"after Queensland's lobbying 中文“经昆士兰州游说”，“经”就是经过……之后，方向一致（沿用文章定稿）"},
 "词性":{"S9-2 unchecked 不受遏制地":"unchecked 是 adj.，在 multiplied unchecked 里作状语（说明繁殖的状态），中文“不受遏制地”作状语，沿用文章定稿"},
 "即":{"S4-1 即":"沿用文章定稿中文“即用一个物种去对付一种害虫”，同位说明 Biological control，用“即”简洁准确"},
+"同词异译":{"wreaked havoc：严重破坏/造成了":"不是两种译法：wreak havoc 的意思“造成了严重破坏”，wreaked 对“造成了”、havoc 对“严重破坏”，整体标同一个英文（T22/T23，用户 2026-11-03 原话“wreaked 为重点词汇”）"},
+"括号含重点词":{"S13-1 （大型**蜥蜴**(lizards)）":"英文原文就是括号 (large lizards)，中文照英文括号对应，不是补充说明；用户原话：“Lizard 没重点词汇标注为重点词汇。标注意重点词汇。 marsupial 也标注重点词汇，也标注重点词汇。”——lizards 在英文括号里，按用户原话标重点词","S13-1 （一种小型**有袋类**(marsupial)猎手）":"英文原文就是括号 (small marsupial hunters)，中文照英文括号对应（沿用文章定稿），不是补充说明；用户原话：“Lizard 没重点词汇标注为重点词汇。标注意重点词汇。 marsupial 也标注重点词汇，也标注重点词汇。”——marsupial 在英文括号里，按用户原话标重点词"},
 "中文意思":{"S2 native to":"不是被隔开的两处：用户 2026-11-03 原话定的“原产于美洲”，native to 只对应“原产于”，后面直接接“美洲、”，没有“……的”"},
 "短语":{
  "S2 imported … from":"不是搭配：from Hawaii 只引出来源（从夏威夷），imported 本身就是“引进”（同 40 dispensed … to 的判法）",

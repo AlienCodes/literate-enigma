@@ -8,7 +8,7 @@ The **hasty** plan met **opposition**. In November 1935 an insect expert, Walter
 
 The toads **thrived** instead. With few **foes** and **fertile** females **spawning** thousands of eggs, they **multiplied** **unchecked**. Their **invasion** **frontier**, creeping about ten kilometres a year at first, **accelerated** to about 50 a year in the **tropical** north. In February 2009 the first known toad **breached** Western Australia's border.
 
-**Toxin** **glands** in their skin make them a deadly meal. Numbers of goannas (large lizards) and northern quolls (small marsupial hunters) have **slumped** in places; some local quoll populations were **wiped out**. The toads have wreaked **havoc**, but the damage is **uneven**; some species have **prospered**.
+**Toxin** **glands** in their skin make them a deadly meal. Numbers of goannas (large **lizards**) and northern quolls (small **marsupial** hunters) have **slumped** in places; some local quoll populations were **wiped out**. The toads have **wreaked** **havoc**, but the damage is **uneven**; some species have **prospered**.
 
 Biological control can **triumph**. From 1926 the cactus **moth**, Cactoblastis, cleared most prickly pear, an **invasive** cactus, from Queensland and New South Wales within about a decade. Tested first, its larvae starved rather than eat fifteen other plants; the toads faced no such test. Under an October 1984 law, recruits now face **stringent** **scrutiny**. The **blunder** was born of **haste** and sealed by lobbying that overrode a warning: an **untested** ally, once loose, may never be **recalled**.
 
@@ -18,9 +18,9 @@ Biological control can **triumph**. From 1926 the cactus **moth**, Cactoblastis,
 
 这个**草率的**(hasty)计划遭到了**反对**(opposition)。1935年11月，昆虫专家沃尔特·弗罗格特**说服**(persuaded)官员**停止**(halt)释放；经昆士兰州**游说**(lobbying)，释放于1936年9月**恢复**(resumed)。这套**计划/方案**(scheme)**彻底失败**(flopped)：蟾蜍几乎没能**削减**(dented)甲虫的数量，或许是因为这些昆虫一直待在甘蔗**茎秆**(stalks)的高处。
 
-蟾蜍自己反倒**兴旺**(thrived)起来。**天敌**(foes)寥寥，**能生育的**(fertile)雌蟾**产下**(spawning)数千枚卵，它们**不受遏制地**(unchecked)**大量繁殖**(multiplied)。它们**入侵**(invasion)**前沿**(frontier)起初每年约缓缓推进十公里，到了**热带**(tropical)北部，**加快**(accelerated)到每年约50公里。2009年2月，已知的第一只蟾蜍**突破**(breached)了西澳大利亚州的边界。
+蟾蜍自己反倒**兴旺**(thrived)起来。**天敌**(foes)寥寥，**能生育的**(fertile)雌蟾**产下**(spawning)数千枚卵，它们**不受遏制地**(unchecked)**大量繁殖**(multiplied)。它们的**入侵**(invasion)**前沿**(frontier)起初每年缓慢行进约十公里，到了**热带**(tropical)北部，**加快**(accelerated)到每年约50公里。2009年2月，已知的第一只蟾蜍**突破**(breached)了西澳大利亚州的边界。
 
-它们皮肤里有分泌**毒素**(Toxin)的**腺体**(glands)，谁吃了它们，这一餐就是致命的。巨蜥和北袋鼬（一种小型有袋类猎手）的数量在一些地方**锐减**(slumped)；部分地方的袋鼬种群被**彻底消灭**(wiped out)。蟾蜍造成了一场**浩劫**(havoc)，但各地受害轻重**不一**(uneven)；有些物种反而**繁盛**(prospered)起来。
+它们皮肤里的**毒素**(Toxin)**腺体**(glands)，使它们成为了一顿致命的餐食。巨蜥（大型**蜥蜴**(lizards)）和北袋鼬（一种小型**有袋类**(marsupial)猎手）的数量在一些地方**锐减**(slumped)；部分地方的袋鼬种群被**彻底消灭**(wiped out)。蟾蜍**造成了**(wreaked havoc)**严重破坏**(wreaked havoc)，但损害并**不均衡**(uneven)；有些物种反而**繁荣了**(prospered)起来。
 
 生物防治也能**大获成功**(triumph)。从1926年起，仙人掌螟这种**蛾子**(moth)在约十年内清除了昆士兰州和新南威尔士州的大部分刺梨，这是一种**外来入侵的**(invasive)仙人掌。这种蛾子放出前经过检验，其幼虫宁可饿死也不吃另外十五种植物；蟾蜍却从未受过这样的检验。根据1984年10月通过的一部法律，如今新兵都要经过**严格的**(stringent)**审查**(scrutiny)。这个**大错**(blunder)起于**仓促**(haste)，又因游说压过了警告而成定局：**未经检验的**(untested)盟友一旦放出，就可能再也**召不回来**(recalled)。
 
@@ -66,9 +66,11 @@ Biological control can **triumph**. From 1926 the cactus **moth**, Cactoblastis,
 | breached | v. (breach) 突破，攻破（breach a wall/defences）；违反（breach a contract/the law）；n. 违反（a breach of contract）；缺口，裂口 | 3 |
 | toxin | n. 毒素（produce/release toxins）；toxic adj. 有毒的；toxicity n. 毒性 | 4 |
 | glands | n. (gland) 腺（sweat/poison glands；swollen glands 淋巴结肿大） | 4 |
+| lizards | n. (lizard) 蜥蜴（a monitor lizard 巨蜥） | 4 |
+| marsupial | adj. 有袋类的；n. 有袋动物（袋鼠、考拉、袋鼬等）（marsupial mammals 有袋哺乳动物） | 4 |
 | slumped | v. (slump) （数量、价格等）锐减，暴跌（sales slumped by…）；颓然倒下，瘫坐（slump into a chair）；n. 暴跌；（经济）萧条 | 4 |
 | wiped out | phr. v. (wipe out) 彻底消灭，毁灭（wipe out a population/a species）；抹去，清除（wipe out debts/profits）；wipe v. 擦 | 4 |
-| havoc | n. 浩劫，严重破坏；混乱（wreak/cause havoc 造成严重破坏；play havoc with sth 扰乱） | 4 |
+| wreaked havoc | phr. (wreak havoc) 造成严重破坏（wreak/cause havoc；play havoc with sth 扰乱）；havoc n. 浩劫，严重破坏；混乱（wreak/cause havoc 造成严重破坏；play havoc with sth 扰乱） | 4 |
 | uneven | adj. 不均衡的，参差不齐的（uneven distribution/progress）；（表面）不平的（uneven ground）；质量不一的；反义 even | 4 |
 | prospered | v. (prosper) 兴旺，繁荣，成功（the business prospered）；prosperity n. 繁荣；prosperous adj. 繁荣的 | 4 |
 | triumph | v. 获胜，成功（triumph over adversity 战胜逆境）；n. 巨大成功，胜利（a triumph of…）；成功的喜悦（in triumph 得意地）；triumphant adj. | 5 |
