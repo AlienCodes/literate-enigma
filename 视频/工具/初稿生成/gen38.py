@@ -42,7 +42,7 @@ S=[
      "（judge A (to be) B：认为 A 是 B；it：指 the field evidence）"],
     [[("to **demonstrate**","不足以**证明**(demonstrate)"),("that shared","共享"),("networks","网络"),("are **widespread**.","**普遍存在**(widespread)。")],
      "（too…to…：太……而不能……；that 引导宾语从句）"]]),
-(4,[[[("In 26","在26项"),("field","野外"),("studies,","研究中，"),("networks","网络"),("helped and **hindered** seedlings","对幼苗有所助益和有所**妨碍**(hindered)的情形"),("about","大致"),("equally","一样"),("often,","多，")],
+(4,[[[("In 26","在26项"),("field","野外"),("studies,","研究中，"),("networks","网络"),("helped","帮助"),("and","和"),("**hindered**","**阻碍**(hindered)"),("seedlings","幼苗的"),("about equally often,","频率大致相同，")],
      "（about equally often：次数大致一样多）"],
     [[("with","而以"),("**neutral**","**中性**(neutral)"),("effects","效应"),("**predominating**.","**居多**(predominating)。")],
      "（with＋名词＋现在分词：with 复合结构作伴随状语）"]]),
@@ -72,6 +72,7 @@ S=[
 ]
 CONF={
 "合组":{
+ "S12 about equally often":"对齐不了：about equally often 中文“频率大致相同”（用户 2026-11-03 原话），about 化成“大致”放在中间，拆开语序就乱",
  "S2 paper birch":"对齐不了：paper birch 是一种树的名字“纸桦”，拆开 paper 就成了“纸”",
  "S2 bathed each species":"对齐不了：bathe A in B 中文“让 A 沐浴在 B 中”，使役句宾语“两种幼苗”必须放到“沐浴”前面；each 化成“分别”",
  "S2 in carbon dioxide laced with":"对齐不了：laced with… 是后置定语修饰 carbon dioxide，中文“在掺有不同示踪物的二氧化碳中”定语必须提前，“二氧化碳”落在最后一组",
@@ -82,7 +83,6 @@ CONF={
  "S6 the \"wood-wide web\"":"对齐不了：wood-wide web 是一个新造术语，整体译“林木万维网”，括号保留英文（文章定稿），拆开没意思",
  "S8 told readers that":"对齐不了：tell sb that… 中文“向读者讲述”，间接宾语必须放到动词前",
  "S8 as \"mother trees\"":"对齐不了：mother trees 是一个带引号的说法，整体译“母树”（文章定稿），拆开引号就断",
- "S12 helped and hindered seedlings":"对齐不了：help and hinder A 中文“对 A 有所助益和有所妨碍”，宾语必须放到动词前",
  "S14 assertions in later papers":"对齐不了：in later papers 后置定语修饰 assertions，中文“在后来的论文中”提到句首（放在前一组），这一组只剩“论断”",
  "S14 had doubled over 25 years":"对齐不了：over 25 years 是时间状语，中文“在25年间增加了一倍”时间必须放到动词前",
  "S17 migrate between trees underground":"对齐不了：between trees、underground 都是地点状语，中文“经由地下在树与树之间迁移”必须放到动词前",
@@ -137,7 +137,7 @@ out={"no":"38","title_en":"The Web Beneath the Woods","title_zh":"林下之网",
      "说明放宽特批":{"S18":{"倍数":"整屏","依据":"用户 2026-10-25 看 25 简述截图：“以后以后一定要合理的安排，不要压缩成这个样子……这个地方特批一下”（用户同意记录：原话适用以后各篇，26 起沿用）"}},
      "非人声区间":{"S11":[[2.767958,2.990125,"紧贴两头"]],"S12":[[1.737542,2.0475,"紧贴词尾"],[5.505,5.774917,"紧贴词头"]],"S13":[[3.18,3.355792,"紧贴词头"]],"S18":[[5.432792,5.751125,"紧贴词头"],[8.357667,8.556167,"紧贴词头"]]},
      "停顿处除阻":{"S11":{"2":[2.76,2.990125,"t"]}},
-     "换行变更已获同意":{"S5":"用户原话“knit into 就重点词汇。 把...编织进”（2026-11-03，S5 knit … into 拆组标色，换行随之变）","S2":"用户原话“刚需要标注的是把in也标注进去。 把.....罩进....里 都要标色”“这个要标注重点词汇，幼苗”（2026-11-03，S2 enclosed … in、seedlings 拆组标色，换行随之变）"},
+     "换行变更已获同意":{"S12":"用户原话“在26项野外研究中，网络帮助和阻碍幼苗的频率大致相同，”（2026-11-03，S12 第1块中文改写，按新语序拆组，换行随之变）","S5":"用户原话“knit into 就重点词汇。 把...编织进”（2026-11-03，S5 knit … into 拆组标色，换行随之变）","S2":"用户原话“刚需要标注的是把in也标注进去。 把.....罩进....里 都要标色”“这个要标注重点词汇，幼苗”（2026-11-03，S2 enclosed … in、seedlings 拆组标色，换行随之变）"},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Canadian":"加拿大的","paper birch":"纸桦","Douglas fir":"花旗松","Nature":"《自然》","wood-wide web":"林木万维网"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
