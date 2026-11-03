@@ -63,7 +63,7 @@ S=[
 (4,[[[("The iMac,","iMac、"),("iPod,","iPod"),("and iPhone","和 iPhone"),("followed,","相继问世，")]],
     [[("the iPhone","iPhone"),("**showcased** on 9 January 2007.","于2007年1月9日公开**展示**(showcased)。")],
      "（the iPhone showcased…：独立主格结构，补充说明 iPhone）"]]),
-(5,[[[("In October 2003","2003年10月，"),("Jobs","乔布斯"),("received a **diagnosis**:","被**诊断**(diagnosis)出患有")],
+(5,[[[("In October 2003","2003年10月，"),("Jobs","乔布斯"),("received","收到了"),("a **diagnosis**:","一份**诊断**(diagnosis)：")],
      "（receive a diagnosis：被诊断出；冒号后说明诊断结果）"],
     [[("an **uncommon**,","一种**罕见的**(uncommon)"),("**cancerous**","**恶性**(cancerous)"),("**pancreatic**","**胰腺**(pancreatic)"),("**tumour**.","**肿瘤**(tumour)。")]]]),
 (5,[[[("In August 2011","2011年8月，"),("Apple","苹果公司"),("**briefly**","**一度**(briefly)"),("**overtook** Exxon Mobil","**超越**(overtook)埃克森美孚，")]],

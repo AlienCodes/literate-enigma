@@ -22,7 +22,7 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 
 1996年12月20日，局面出现**彻底转变**(reversal)。苹果同意收购 NeXT，从而获得了**最终版**(eventual) Mac OS X 的**核心**(core)软件，并与**关系疏远**(estranged)的联合创始人**重聚**(reuniting)。1997年8月，微软向这个**陷入困境**(distressed)的**竞争对手**(competitor)**投资**(invested)1.5亿美元；同年9月，乔布斯**接掌大权**(reins)，出任**临时**(interim)负责人。他后来说，苹果当时离**破产**(ruin)只差几周。iMac、iPod 和 iPhone 相继问世，iPhone 于2007年1月9日公开**展示**(showcased)。
 
-2003年10月，乔布斯被**诊断**(diagnosis)出患有一种**罕见**(uncommon)的**恶性**(cancerous)**胰腺**(pancreatic)**肿瘤**(tumour)。2011年8月，苹果公司**一度**(briefly)**超越**(overtook)埃克森美孚，成为全球市值最高的公司。2011年8月24日，他的**任期**(tenure)结束；2011年10月5日，他去世，终年56岁。他已在那家曾把他**逐出**(ousted)的公司**掌舵**(helm)近十四年。
+2003年10月，乔布斯收到了一份**诊断**(diagnosis)：一种**罕见**(uncommon)的**恶性**(cancerous)**胰腺**(pancreatic)**肿瘤**(tumour)。2011年8月，苹果公司**一度**(briefly)**超越**(overtook)埃克森美孚，成为全球市值最高的公司。2011年8月24日，他的**任期**(tenure)结束；2011年10月5日，他去世，终年56岁。他已在那家曾把他**逐出**(ousted)的公司**掌舵**(helm)近十四年。
 
 ## 速查表
 | 词 | 释义 | 段 |
