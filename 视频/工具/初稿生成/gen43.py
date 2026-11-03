@@ -37,7 +37,7 @@ S=[
      "（a computer start-up：同位语，\n补充说明 NeXT）"]]),
 (3,[[[("In February 1986","1986年2月，"),("he **acquired**","他**收购了**(acquired)"),("Lucasfilm's","卢卡斯影业的"),("computer-**graphics**","电脑**图形**(graphics)"),("**outfit**,","**团队**(outfit)，")],
      "（outfit：口语，团队，小机构）"],
-    [[("which became Pixar.","这个团队后来成为皮克斯。")],
+    [[("which became **Pixar**.","这个团队后来成为**皮克斯**(Pixar)。")],
      "（which…：非限制性定语从句，补充说明 outfit）"]]),
 (3,[[[("It began as","皮克斯起初是"),("a **manufacturer**","一家**制造商**(manufacturer)，"),("of **specialised** hardware,","生产**专用**(specialised)硬件，")],
      "（begin as…：起初是……；\nof specialised hardware：of 结构作后置定语，修饰 manufacturer）"],
