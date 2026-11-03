@@ -56,7 +56,7 @@ S=[
     [[("and Canada and Europe followed in 1981.","1981年，便利贴又进入加拿大和欧洲。")]]]),
 (5,[[[("The **stationery**","这款**文具的**(stationery)"),("**staple**","**必备品**(staple)"),("owes its","那"),("**signature**","**标志性的**(signature)"),("**canary**","**金丝雀黄**(canary)"),("**tone**","**色调**(tone)，"),("to an **unplanned** twist.","源于一次**计划外的**(unplanned)转折。")],
      "（owe A to B：A 源于 B）"]]),
-(5,[[[("The laboratory next door","隔壁实验室"),("had only","手头只有"),("**leftover**","**剩下的**(leftover)"),("yellow","黄"),("paper.","纸。")],
+(5,[[[("The laboratory next door","因为当时隔壁的实验室里，"),("had only","只有一些"),("**leftover**","**剩余的**(leftover)"),("yellow","黄"),("paper.","纸。")],
      "（next door：作后置定语，隔壁的）\n"
      "（简述：1968年，3M科学家西尔弗想研制超强黏合剂，\n"
      "却做出一种粘得轻、能揭下再贴的黏合剂。\n"

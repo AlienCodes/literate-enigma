@@ -22,7 +22,7 @@ On 6 April 1980 the **pads**, **rebranded** as **Post-it Notes**, went on sale *
 
 1977年，这种**便条**(notes)以"Press 'n Peel"之名在美国四个城市**试销**(test-marketed)，然而在这四个城市，**购买者**(purchasers)展示出极少的**热情**(enthusiasm)。1978年，3M的**营销人员**(marketers)在爱达荷州博伊西**发起**(staged)一场**闪电攻势**(blitz)，向很多办公室**分发**(dispensed)**免费的**(complimentary)一**小包**(packets)一小包的便条。试用过的**受访者**(respondents)中，超过90%表示会购买。**冷遇**(coolness)之后，迎来了**转机**(turnaround)。
 
-1980年4月6日，这种**便笺本**(pads)**更名**(rebranded)为**便利贴**(Post-it Notes)，在美国**全国**(nationally)上市；1981年，便利贴又进入加拿大和欧洲。这款**文具的**(stationery)**必备品**(staple)那**标志性**(signature)的**金丝雀黄**(canary)**色调**(tone)，源于一次**计划外**(unplanned)的转折。隔壁实验室手头只有**剩下的**(leftover)黄纸。
+1980年4月6日，这种**便笺本**(pads)**更名**(rebranded)为**便利贴**(Post-it Notes)，在美国**全国**(nationally)上市；1981年，便利贴又进入加拿大和欧洲。这款**文具的**(stationery)**必备品**(staple)那**标志性**(signature)的**金丝雀黄**(canary)**色调**(tone)，源于一次**计划外**(unplanned)的转折。因为当时隔壁的实验室里，只有一些**剩余的**(leftover)黄纸。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -89,7 +89,7 @@ On 6 April 1980 the **pads**, **rebranded** as **Post-it Notes**, went on sale *
 | canary | n./adj. 金丝雀；金丝雀黄的，淡黄色的（canary yellow） | 5 |
 | tone | n. 色调；语气（warm tones；a friendly tone） | 5 |
 | unplanned | adj. 计划外的，意外的（an unplanned stop/pregnancy） | 5 |
-| leftover | adj./n. 剩下的；剩余物（leftover food；Christmas leftovers） | 5 |
+| leftover | adj./n. 剩余的，剩下的；剩余物（leftover food；Christmas leftovers） | 5 |
 
 ## 史实与来源
 - 【T1】1968年，3M科学家斯潘塞·西尔弗本想研制超强黏合剂，结果做出一种低黏性、可重复粘贴的压敏黏合剂（丙烯酸酯微球），粘得轻、能揭下再用；"微小球体"即据此。"对追求强度的发明者来说是挫折"是由研发目标推出的评述，来源未载他本人的反应。S1
