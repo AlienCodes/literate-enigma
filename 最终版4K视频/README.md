@@ -44,3 +44,4 @@
 | 37 | Dynamite for the Heart | 炸药大王的救心药 | 13.4 MB |
 | 39 | Y2K The Crisis That Success Erased | 千年虫：被成功抹去的危机 | 13.1 MB |
 | 40 | The Glue That Failed Its Way to Success | 失败的胶水，成功的便利贴 | 11.1 MB |
+| 42 | The Telescope That Needed Glasses | 需要戴眼镜的望远镜 | 12.4 MB |
