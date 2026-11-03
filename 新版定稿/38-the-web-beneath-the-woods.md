@@ -10,7 +10,7 @@ The **metaphor** proved **irresistible**. Between 2015 and 2021, a forester's **
 
 In February 2023, three researchers **combed through** the field evidence. They judged it too **sparse**, **inconsistent**, or **ambiguous** to **demonstrate** that shared networks are **widespread**. In 26 field studies, networks helped and **hindered** seedlings about equally often, with **neutral** effects **predominating**. No **peer-reviewed** field study showed **mature** trees **favouring** their own **offspring**. **Unsupported** **assertions** in later papers had **doubled** over 25 years, with **citations** **skewed** **towards** **positive results**.
 
-None of this **disproves** the networks' **existence**. In January 2025, defenders faulted the critique's methods. The critics **concede** that carbon and nutrients can **migrate** between trees underground. It is evidence **unearthed** in real forests, not the **allure** of a family **saga**, that must settle how much the networks **convey**, and whether it matters.
+None of this **disproves** the networks' **existence**. In January 2025, **defenders** faulted the critique's methods. The critics **concede** that carbon and nutrients can **migrate** between trees underground. It is evidence **unearthed** in real forests, not the **allure** of a family **saga**, that must settle how much the networks **convey**, and whether it matters.
 
 ## 中文
 
@@ -22,7 +22,7 @@ None of this **disproves** the networks' **existence**. In January 2025, defende
 
 2023年2月，三位研究者**梳理**(combed through)了野外证据。他们认为，这些证据或过于**稀少**(sparse)，或**互不一致**(inconsistent)，或**含糊不清**(ambiguous)，不足以**证明**(demonstrate)共享网络**普遍存在**(widespread)。在26项野外研究中，网络帮助和**阻碍**(hindered)幼苗的频率大致相同，并且**中性的**(neutral)效应**占据大多数**(predominating)。没有任何一项经**同行评审**(peer-reviewed)的野外研究表明，**成年**(mature)树木会**偏爱**(favouring)自己的**后代**(offspring)。在后来的论文中，**缺乏依据的**(unsupported)**论断/断言**(assertions)在25年间**增加了一倍/翻了一倍**(doubled)，**引用**(citations)也**偏向**(skewed towards)**于**(skewed towards)**正面结果**(positive results)。
 
-这一切都不能**否定**(disproves)这些网络的**存在**(existence)。2025年1月，共享网络说的拥护者指摘了这篇批评文章的方法。批评者也**承认**(concede)，碳和养分可以经由地下在树与树之间**迁移**(migrate)。网络究竟**输送**(convey)了多少、这又是否要紧，必须由在真实森林中**发掘**(unearthed)出的证据来裁定，而不能凭一部家族**传奇**(saga)的**魅力**(allure)来决定。
+这一切都不能**否定**(disproves)这些网络的**存在**(existence)。2025年1月，共享网络说的**拥护者**(defenders)指摘了这篇批评文章的方法。批评者也**承认**(concede)，碳和养分可以经由地下在树与树之间**迁移**(migrate)。网络究竟**输送**(convey)了多少、这又是否要紧，必须由在真实森林中**发掘**(unearthed)出的证据来裁定，而不能凭一部家族**传奇**(saga)的**魅力**(allure)来决定。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -85,6 +85,7 @@ None of this **disproves** the networks' **existence**. In January 2025, defende
 | positive results | n. 正面结果，阳性结果（研究中显示有作用、有效果的结果；positive results 与 negative/neutral results 相对；本文指显示共享网络有益的研究结果） | 4 |
 | disproves | v. (disprove) 否定，证明……不成立，驳倒（disprove a theory/claim/hypothesis）；反义 prove | 5 |
 | existence | n. 存在（the existence of sth；prove/disprove the existence of sth 证明/否定……的存在；come into existence 开始存在） | 5 |
+| defenders | n. (defender) 拥护者，捍卫者，辩护者（a defender of the theory 这一理论的拥护者）；（体育）后卫；defend v. 为……辩护 | 5 |
 | concede | v. （勉强）承认（concede that…；concede a point 承认某一点有理）；让步；认输（concede defeat） | 5 |
 | migrate | v. （物质）迁移，转移（chemicals migrate into soil，本文指碳和养分在树间移动）；（动物）迁徙（birds migrate south）；（人）移居；（数据、系统）迁移 | 5 |
 | unearthed | v. (unearth) 发掘，挖出（unearth evidence/fossils）；发现，揭露（unearth the truth/a secret） | 5 |
