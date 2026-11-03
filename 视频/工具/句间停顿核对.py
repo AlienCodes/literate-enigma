@@ -35,6 +35,10 @@ def audible(a, x, y):
     return x + int(idx[0]) * F, min(y, x + int(idx[-1] + 1) * F)
 
 
+def 合格(got, std):   # K153（42 S2→S3 词到词 1.010 s：1.010 - 1.0 浮点算出 0.0100000000000000009，被判超 ±0.01）：按整采样数比，±0.01 秒含边界
+    return abs(round(got * SR) - round(std * SR)) <= round(TOL * SR)
+
+
 def check(a, d):
     segs = segments(a); n = len(d['sentences'])
     if len(segs) != n + 1: return None, [f'分段数 {len(segs)} ≠ 标题 + {n} 句（有句子内部的停顿 ≥0.6 秒，或句间停顿不到 0.6 秒）']
@@ -47,7 +51,7 @@ def check(a, d):
     want.append((f'片尾（S{n}→文件结尾）', P_END, (len(a) - au[-1][1]) / SR))
     rows = []; bad = []
     for name, std, got in want:
-        ok = abs(got - std) <= TOL
+        ok = 合格(got, std)
         rows.append(f"{'OK ' if ok else 'BAD'} {name} 标准 {std:.2f}s 词到词实际 {got:.3f}s（差 {got - std:+.3f}）")
         if not ok: bad.append(name)
     return bad, rows
@@ -59,6 +63,7 @@ if __name__ == '__main__':
     if '--自检' in sys.argv:
         bad0, _ = check(a, d)
         if bad0 is None or bad0: print(f'✘ 句间停顿核对 自检：原样已有报警，自检前提不成立 {bad0}'); sys.exit(1)
+        if not (合格(1.01, 1.0) and 合格(0.99, 1.0) and not 合格(1.015, 1.0) and not 合格(1.02, 1.0)): print('✘ 句间停顿核对 自检：±0.01 秒边界判错（K153：+0.010 应合格、+0.015/+0.02 应报）'); sys.exit(1)
         segs = segments(a); n = len(d['sentences']); k1, k2 = max(1, n // 3), max(2, 2 * n // 3)
         k3 = next(k for k in [n // 2] + list(range(1, n + 1)) if k - 1 not in (k1, k2) and k not in (k1, k2))
         b = a.copy()
