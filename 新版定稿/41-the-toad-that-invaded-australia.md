@@ -14,9 +14,9 @@ Biological control can **triumph**. From 1926 the cactus **moth**, Cactoblastis,
 
 ## 中文
 
-灰背蔗**甲虫**(beetles)它的**幼虫**(larvae)**啃食**(devour)根系，正**困扰**(plaguing)着**利润丰厚的**(lucrative)甘蔗**种植园**(plantations)，此种植园位于澳大利亚东北部的昆士兰州。1935年6月，昆士兰州从夏威夷**引进**(imported)了102只甘蔗蟾蜍，这是一种**原产于**(native to)美洲、**庞大笨重的**(bulky)**两栖动物**(amphibians)。同年8月，它们的约2,400只后代被**释放**(released)到野外。**生物**(Biological)防治，即用一个**物种**(species)去对付一种**害虫**(pest)，就此迎来了一名**雄心勃勃的**(ambitious)**新兵**(recruit)。
+灰背蔗**甲虫**(beetles)它的**幼虫**(larvae)**啃食**(devour)根系，正**困扰**(plaguing)着**利润丰厚的**(lucrative)甘蔗**种植园**(plantations)，此种植园位于澳大利亚东北部的昆士兰州。1935年6月，昆士兰州从夏威夷**引进**(imported)了102只甘蔗蟾蜍，这是一种**原产于**(native to)美洲、**庞大笨重的**(bulky)**两栖动物**(amphibians)。同年8月，它们的约2,400只后代被**释放**(released)到野外。**生物的**(Biological)防治，即用一个**物种**(species)去对付一种**害虫**(pest)，就此迎来了一名**雄心勃勃的**(ambitious)**新兵**(recruit)。
 
-这个**草率的**(hasty)计划遭到了**反对**(opposition)。1935年11月，昆虫专家沃尔特·弗罗格特**说服**(persuaded)官员**叫停**(halt)释放；经昆士兰州**游说**(lobbying)，释放于1936年9月**恢复**(resumed)。这套**方案**(scheme)**以失败告终**(flopped)：蟾蜍几乎没能**削减**(dented)甲虫的数量，或许是因为这些昆虫一直待在甘蔗**茎秆**(stalks)的高处。
+这个**草率的**(hasty)计划遭到了**反对**(opposition)。1935年11月，昆虫专家沃尔特·弗罗格特**说服**(persuaded)官员**停止**(halt)释放；经昆士兰州**游说**(lobbying)，释放于1936年9月**恢复**(resumed)。这套**计划/方案**(scheme)**彻底失败**(flopped)：蟾蜍几乎没能**削减**(dented)甲虫的数量，或许是因为这些昆虫一直待在甘蔗**茎秆**(stalks)的高处。
 
 蟾蜍自己反倒**兴旺**(thrived)起来。**天敌**(foes)寥寥，**能生育的**(fertile)雌蟾**产下**(spawning)数千枚卵，它们**不受遏制地**(unchecked)**大量繁殖**(multiplied)。它们**入侵**(invasion)**前沿**(frontier)起初每年约缓缓推进十公里，到了**热带**(tropical)北部，**加快**(accelerated)到每年约50公里。2009年2月，已知的第一只蟾蜍**突破**(breached)了西澳大利亚州的边界。
 

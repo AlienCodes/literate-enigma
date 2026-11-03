@@ -49,5 +49,8 @@ sys.path.insert(0, T); import importlib; K = importlib.import_module('踩坑核�
 vf = K.video_folders(ROOT)
 print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
 # G9：存的必须是最终版——逐屏、逐样本与现行定稿脚本比对（镜像仓库这时还没同步；同步推送后再跑 定稿视频核对.py --只查清点和镜像）
-g9 = subprocess.run(['python3', f'{T}/定稿视频核对.py', '--不查镜像'] + [a.zfill(2) for a in sys.argv[1:]]).returncode
+from 重查记录 import 记, 键, 程序指纹   # K160（43 定稿）：这道核对和全篇重查是同一套判法，通过就记进 全篇重查通过.json，刚定稿的篇目不再被列成欠着、主会话不用再重查一遍
+fp = 程序指纹(); nos = [a.zfill(2) for a in sys.argv[1:]]; cur = lambda no: 键(no, glob.glob(f'{DST}/{no} - *.mp4')[0], fp); k0 = {no: cur(no) for no in nos}
+g9 = subprocess.run(['python3', f'{T}/定稿视频核对.py', '--不查镜像'] + nos).returncode
+if not g9 and all(cur(no) == k0[no] for no in nos): 记(k0, fp=fp); print(f'已记入全篇重查记录：{" ".join(nos)}')
 sys.exit(1 if vf or g9 else 0)

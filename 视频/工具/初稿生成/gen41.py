@@ -1,5 +1,7 @@
 import json,re,glob,os
 # 第41篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-03 用户看 S9 they multiplied unchecked：“这两个颜色太相近了”——multiplied 琥珀黄 #FBBF24、unchecked 青绿 #2DD4BF（K140 重点词颜色）
+# 2026-11-03 用户改稿 S4/S6/S7：“biological下面对应的意思改为 生物的”“halt 叫停改为停止。”“这套方案以失败告终。改为这套计划/方案 彻底失败。”
 # 2026-11-03 用户改稿 S2：“bulky 意思对应 庞大笨重的”“Native to 标注重点词汇”“那就按照你说的来，原产于美洲”
 # 2026-11-03 用户改稿 S1：“的 改为 它的”；“最后一句改为 此种植园位于澳大利亚东北部的昆士兰州。把前面那个正困扰着后面的澳大利亚东北部昆士兰州给去掉。”
 # 2026-11-03 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；短语型用法整体标（T22）；不用破折号（T36）。
@@ -13,17 +15,17 @@ S=[
      "（bulky amphibians native to the Americas：同位语，补充说明 cane toads；\nnative to…：原产于……；from Hawaii：修饰 imported）"]]),
 (1,[[[("That August","同年8月，"),("about 2,400 of their young","它们的约2,400只后代"),("were **released**.","被**释放**(released)到野外。")],
      "（young：名词，指动物的幼崽、后代）"]]),
-(1,[[[("**Biological**","**生物**(Biological)"),("control,","防治，"),("setting","即用"),("one **species**","一个**物种**(species)"),("against","去对付"),("a **pest**,","一种**害虫**(pest)，")],
+(1,[[[("**Biological**","**生物的**(Biological)"),("control,","防治，"),("setting","即用"),("one **species**","一个**物种**(species)"),("against","去对付"),("a **pest**,","一种**害虫**(pest)，")],
      "（setting one species against a pest：现在分词短语，补充说明 Biological control；\nset A against B：用 A 对付 B）"],
     [[("had","就此迎来了"),("an","一名"),("**ambitious**","**雄心勃勃的**(ambitious)"),("new **recruit**.","**新兵**(recruit)。")],
      "（recruit：新兵，这里指刚被派上场的甘蔗蟾蜍）"]]),
 (2,[[[("The **hasty** plan","这个**草率的**(hasty)计划"),("met **opposition**.","遭到了**反对**(opposition)。")],
      "（meet opposition：遭到反对）"]]),
-(2,[[[("In November 1935","1935年11月，"),("an insect","昆虫"),("expert,","专家"),("Walter Froggatt,","沃尔特·弗罗格特"),("**persuaded**","**说服**(persuaded)"),("officials","官员"),("to **halt**","**叫停**(halt)"),("releases;","释放；")],
+(2,[[[("In November 1935","1935年11月，"),("an insect","昆虫"),("expert,","专家"),("Walter Froggatt,","沃尔特·弗罗格特"),("**persuaded**","**说服**(persuaded)"),("officials","官员"),("to **halt**","**停止**(halt)"),("releases;","释放；")],
      "（Walter Froggatt：同位语，补充说明 an insect expert；\npersuade sb to do sth：说服某人做某事）"],
     [[("after","经"),("Queensland's **lobbying**,","昆士兰州**游说**(lobbying)，"),("they","释放"),("**resumed** in September 1936.","于1936年9月**恢复**(resumed)。")],
      "（they：指 releases，即释放）"]]),
-(2,[[[("The **scheme**","这套**方案**(scheme)"),("**flopped**:","**以失败告终**(flopped)："),("the toads","蟾蜍"),("barely","几乎没能"),("**dented**","**削减**(dented)"),("beetle","甲虫的"),("numbers,","数量，")],
+(2,[[[("The **scheme**","这套**计划/方案**(scheme)"),("**flopped**:","**彻底失败**(flopped)："),("the toads","蟾蜍"),("barely","几乎没能"),("**dented**","**削减**(dented)"),("beetle","甲虫的"),("numbers,","数量，")],
      "（barely：几乎不，带否定意味；\n冒号后的分句具体说明 flopped）"],
     [[("perhaps","或许"),("because","是因为"),("the insects","这些昆虫"),("stayed","一直待在"),("high up on cane **stalks**.","甘蔗**茎秆**(stalks)的高处。")],
      "（perhaps because…：原因状语从句，表推测）"]]),
@@ -115,7 +117,7 @@ CONF={
  "S9 spawning … of":"不是搭配：of 属于 thousands of eggs，和 spawning 无关",
  "S10 accelerated … to":"不是搭配：to 只引出加快后达到的速度（到每年约50公里），accelerated 本身就是“加快”"}}
 out={"no":"41","title_en":"The Toad That Invaded Australia","title_zh":"入侵澳洲的毒蟾","title_fx":{"hl":["Toad","Invaded"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
-     "换行变更已获同意":{"S1":"用户 2026-11-03 原话：“最后一句，最后一句。改为 此种植园位于澳大利亚东北部的昆士兰州。把前面那个正困扰着 后面的澳大利亚东北部昆士兰州给去掉。”"},"高亮按实际开口":True,"高亮开口门槛":40,
+     "换行变更已获同意":{"S1":"用户 2026-11-03 原话：“最后一句，最后一句。改为 此种植园位于澳大利亚东北部的昆士兰州。把前面那个正困扰着 后面的澳大利亚东北部昆士兰州给去掉。”"},"重点词颜色":{"multiplied":"#FBBF24","unchecked":"#2DD4BF"},"高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Biological":"生物","Queensland":"昆士兰州","Australia":"澳大利亚","Hawaii":"夏威夷","Americas":"美洲","Walter Froggatt":"沃尔特·弗罗格特","Western Australia":"西澳大利亚州","goannas":"巨蜥","northern quolls":"北袋鼬","quoll":"袋鼬","Cactoblastis":"仙人掌螟","New South Wales":"新南威尔士州","prickly pear":"刺梨"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
