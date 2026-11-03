@@ -38,7 +38,13 @@ elif stage == '出片前':
     _sp = {'in 1995 he': 'in nineteen ninety-five he', 'the 1960s were': 'the nineteen sixties were', 'on 6 January': 'on the sixth of January',
            'at 11.40pm': 'at eleven forty PM', 'was 264.4 km': 'was two hundred sixty-four point four km',
            '"Hello," she said.': 'Hello, she said.', "he didn't": "he didn't", '‘Yes’ he said': 'Yes he said', 'paid $105,000 for': 'paid one hundred five thousand dollars for', 'a fine of £1 each': 'a fine of one pound each', 'sold for $950 million in': 'sold for nine hundred fifty million dollars in', 'about $100bn; projects': 'about one hundred billion dollars; projects', 'a £2.5bn deal': 'a two point five billion pounds deal', 'cost $5m in': 'cost five million dollars in', 'ran the 100m in': 'ran the 100m in'}   # K141   # K114、K130
+    def _未处理(x, m):   # K150（42 S? $1.5 billion：单独转 “$1.5” 判成未处理，误报）：连着后面的 million/billion/trillion 一起转
+        q = re.match(r'\s+(?:million|billion|trillion)\b', x[m.end():])
+        return bool(re.search(r'\d+\.\d+|%|\$|£|€|\d+/\d+', spoken(m.group(0) + (q.group(0) if q else ''))))
     _spbad = [f'{k} → {spoken(k)}（应为 {v}）' for k, v in _sp.items() if spoken(k) != v]
+    for x_, 应 in (('cost about $1.5 billion, a', False), ('sold for $950 million in', False), ('cost about $1.5, a', True), ('a 2/3 share', True)):   # K150 好/坏样本
+        m_ = re.search(r'\S*\d\S*', x_)
+        if _未处理(x_, m_) != 应: _spbad.append(f'K150 “{x_}” {"该报没报" if 应 else "误报未处理"}')
     step('数字读法、引号自检（A11/A37/A17：年份、年代、日期、时刻、小数读法；引号不读、撇号保留）', not _spbad, '没抓到：' + '；'.join(_spbad) if _spbad else '')
     d = json.load(open(f'scripts/{no}.json'))
     texts = [d['title_en']] + [' '.join(re.sub(r'\*\*|\{\{.*?\}\}', '', c['en']).strip() for c in s['chunks']) for s in d['sentences']]
@@ -47,7 +53,7 @@ elif stage == '出片前':
         for m in re.finditer(r"\S*\d\S*", x):
             ctx = x[max(0, m.start()-12):m.end()+12]
             rows.append(f"{m.group(0):>14}  →  {spoken(ctx)}")
-            if re.search(r'\d+\.\d+|%|\$|£|€|\d+/\d+', spoken(m.group(0))): odd.append(m.group(0))   # spoken() 已转成读法的（如 11.40pm）不算未处理
+            if _未处理(x, m): odd.append(m.group(0))   # spoken() 已转成读法的（如 11.40pm）不算未处理
     step('数字读法清单（请人工逐个确认读法）', not odd, '\n    '.join(rows) + (f"\n    未处理的数字格式：{odd}" if odd else ''))
     # 引号不停顿（A17）：带引号的句子，朗读文字里必须已经去掉引号
     qbad = [x for x in texts if re.search(r'["“”‘’]|(?<![A-Za-z])\'|\'(?![A-Za-z])', x) and re.search(r'["“”‘]|(?<![A-Za-z])[\'’]|[\'’](?![A-Za-z])', spoken(x))]

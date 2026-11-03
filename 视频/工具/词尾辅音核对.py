@@ -63,9 +63,20 @@ def centroid(x, a, b):
 CEN_MIN = 1000; DUR_MAX = 110
 
 
+# K149（41 S10 Tested first,：除阻换成静音后，程序往回把 Tested 的 /d/ 后那一下低谷当成闭塞、把 “firs” 整个当成除阻，没报）：
+# /t/ /k/ 的除阻是送气噪声，800 Hz 以下很弱；元音 800 Hz 以下最响。04/14/19/25/27/30/33/36/38 共 39 处合格除阻实测：800 Hz 以下最响 5 ms 帧最高 -30.5 dB
+# （基准 = 本句最响 5 ms 帧），混进元音的假除阻在 -5～-15 dB；超过 LF_MAX 就不是除阻。
+LP8 = ss.butter(6, 800, 'lowpass', fs=SR, output='sos'); LF_MAX = -20.0
+def lf_peak(x, a, b):
+    m = len(x) // F5; ref = np.sqrt(np.mean(np.asarray(x[:m * F5], np.float64).reshape(m, F5) ** 2, axis=1)).max()
+    p0 = max(0, a - 960); seg = ss.sosfiltfilt(LP8, np.asarray(x[p0:b + 960], np.float64))[a - p0:b - p0]; k = len(seg) // F5
+    if k == 0: return -200.0
+    return float(20 * np.log10(np.sqrt(np.mean(seg[:k * F5].reshape(k, F5) ** 2, axis=1)).max() / ref + 1e-12))
+
+
 def judge(x, z, ph):
     if z is None: return False
-    if ph in 'tk': return z[1] >= TH_HF and z[2] <= DUR_MAX and centroid(x, *z[3]) >= CEN_MIN
+    if ph in 'tk': return z[1] >= TH_HF and z[2] <= DUR_MAX and centroid(x, *z[3]) >= CEN_MIN and lf_peak(x, *z[3]) <= LF_MAX
     return z[0] >= TH_P
 
 
@@ -258,6 +269,14 @@ if __name__ == '__main__':
                     o = out.copy(); o[z[3][0]:z[3][1]] *= gain
                     z2 = release(o, ss.sosfiltfilt(HP, np.asarray(o, np.float64)), starts[g], ref)
                     if judge(o, z2, ph): miss.append(f'{lab} {word} {name}')
+        # K149 坏样本（41 S10 Tested first,）：前面一下静音、后面是 30 ms 元音 + 50 ms /s/，旧判法把它当成 /t/ 除阻；好样本：闭塞后 30 ms 高频爆破
+        rng_ = np.random.default_rng(7); n_ = lambda sec: int(sec * SR); tt_ = lambda sec: np.arange(n_(sec)) / SR
+        loud_ = 0.9 * np.sin(2 * np.pi * 200 * tt_(0.2)); z0_ = np.zeros(n_(0.05))
+        vow_ = 0.3 * np.sin(2 * np.pi * 180 * tt_(0.03)) + 0.15 * np.sin(2 * np.pi * 360 * tt_(0.03)); s_ = ss.sosfiltfilt(HP, rng_.standard_normal(n_(0.05))) * 0.25
+        b_ = ss.sosfiltfilt(HP, rng_.standard_normal(n_(0.03))) * 0.3 * np.exp(-tt_(0.03) / 0.01)
+        for nm_, x_, want_ in (('元音+s 假除阻', np.concatenate([loud_, z0_, vow_, s_, z0_]), False), ('真除阻', np.concatenate([loud_, z0_, b_, z0_]), True)):
+            m_ = len(x_) // F5; ref_ = np.sqrt(np.mean(x_[:m_ * F5].reshape(m_, F5) ** 2, axis=1)).max()
+            if judge(x_, release(x_, ss.sosfiltfilt(HP, x_), len(x_), ref_), 't') != want_: miss.append(f'K149 {nm_} 判{"错放" if not want_ else "错拦"}')
         ok = n_ok > 0 and not miss
         print(f"{'✔' if ok else '✘'} 词尾辅音核对 自检：{no} 原样 {n_ok} 处全部合格；逐处把除阻换成静音、压低 20 dB，共 {2 * n_ok} 次" + ('全部报出' if not miss else f'，没报出 {len(miss)} 次：' + '；'.join(miss)))
         sys.exit(0 if ok else 1)
