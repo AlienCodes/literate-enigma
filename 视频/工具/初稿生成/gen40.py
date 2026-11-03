@@ -43,7 +43,7 @@ S=[
      "（where…：非限制性定语从句，修饰 four American cities）"]]),
 (4,[[[("In 1978","1978年，"),("3M's **marketers**","3M的**营销人员**(marketers)"),("staged a **blitz** in Boise, Idaho,","在爱达荷州博伊西发起一场**闪电攻势**(blitz)，")],
      "（stage：发起，组织；Boise, Idaho：城市在前、州在后）"],
-    [[("and **dispensed** **complimentary** **packets** of notes to offices.","向各办公室**分发**(dispensed)一**小包**(packets)一小包的**免费的**(complimentary)便条。")],
+    [[("{{=}}and **dispensed** **complimentary** **packets** of notes to offices.","向各办公室**分发**(dispensed)一**小包**(packets)一小包的**免费的**(complimentary)便条。")],
      "（dispense A to B：把 A 分发给 B）"]]),
 (4,[[[("More than 90 per cent of **respondents** who tried them","试用过的**受访者**(respondents)中，超过90%"),("said","表示"),("they would buy.","会购买。")],
      "（who tried them：定语从句，修饰 respondents）"]]),
