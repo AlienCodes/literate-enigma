@@ -16,7 +16,7 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 
 1985年5月，经过一场**十分激烈**(bruising)的**争执/交锋**(confrontation)，苹果公司**董事会**(board)**最终**(ultimately)支持首席**执行官**(executive)约翰·斯卡利。时年30岁的史蒂夫·乔布斯在他参与**创办**(co-founded)的公司里被**剥夺**(stripped)了**管理的**(managerial)职务。同年9月，已被**架空**(sidelined)、**被疏远的**(alienated)乔布斯**辞职了**(resigned)。
 
-**回溯**(rewind)三十年。1955年2月24日，乔布斯生于**旧金山**(San Francisco)，还是**新生儿**(newborn)时就**被收养**(adopted)。1976年4月1日，他与史蒂夫·沃兹尼亚克**创办**(founded)了苹果公司；沃兹尼亚克是苹果首批**样机**(prototypes)背后的**电子**(electronics)工程师。苹果的车库**起家**(origins)史在很大程度上只具**象征**(symbolic)意义；沃兹尼亚克认为它的**分量**(significance)被**夸大**(inflated)了。1980年12月12日，苹果公司**上市**(floated)；1984年1月24日，**旗舰**(flagship)产品 Macintosh **亮相**(debuted)。
+**回溯**(rewind)三十年。1955年2月24日，乔布斯生于**旧金山**(San Francisco)，还是**新生儿**(newborn)时就**被收养**(adopted)。1976年4月1日，他与史蒂夫·沃兹尼亚克**创办**(founded)了苹果公司；沃兹尼亚克是苹果首批**样机**(prototypes)背后的**电子**(electronics)工程师。苹果的车库**起源**(origins)在很大程度上只是具有**象征**(symbolic)意义的；沃兹尼亚克称其**意义**(significance)被**夸大**(inflated)了。1980年12月12日，苹果公司**上市**(floated)；1984年1月24日，**旗舰**(flagship)产品 Macintosh **亮相**(debuted)。
 
 这段**放逐**(exile)岁月**成果丰硕**(productive)。1985年晚些时候，乔布斯创办了电脑**初创公司**(start-up) NeXT。1986年2月，他**收购**(acquired)了卢卡斯影业的电脑**图形**(graphics)**团队**(outfit)，这个团队后来成为皮克斯。皮克斯起初是一家**制造商**(manufacturer)，生产**专用**(specialised)硬件，主要并不是**动画**(animation)工作室。《玩具总动员》于1995年11月22日上映，是第一部**长篇**(feature-length)**电脑动画**(computer-animated)电影。
 
@@ -89,7 +89,7 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 ## 史实与来源
 - 【T1】1955年2月24日生于旧金山，由保罗与克拉拉·乔布斯收养（正文不写养父母姓名）。S1
 - 【T2】1976年4月1日与沃兹尼亚克（另有罗纳德·韦恩）以合伙形式创办苹果；沃兹尼亚克称具体日期"模糊"。正文不写韦恩。S3
-- 【T3】车库：沃兹尼亚克说车库故事被夸大，那里没做过设计，Apple I 主要在他惠普公司的工位上完成。正文写作"只是一个象征"，并把"意义被夸大"归于沃兹尼亚克本人的看法，中文不写成"在车库里造出电脑"。electronics engineer 译"电子工程师"；origins 译"车库起家史……只具象征意义"，以免车库读作实指。S2
+- 【T3】车库：沃兹尼亚克说车库故事被夸大，那里没做过设计，Apple I 主要在他惠普公司的工位上完成。正文写作"只是一个象征"，并把"意义被夸大"归于沃兹尼亚克本人的看法，中文不写成"在车库里造出电脑"。electronics engineer 译"电子工程师"；origins 译"车库起源……只是具有象征意义的"（用户 2026-11-03 改，原为"车库起家史……只具象征意义"），以免车库读作实指。S2
 - 【T4】1980年12月12日上市；Macintosh 1984年1月24日推出。正文未写 Apple II。S5；S4
 - 【T5】1985年5月24日董事会会议站在斯卡利一边，乔布斯失去全部经营职务，但仍任董事长；斯卡利称自己"从未解雇"乔布斯。中文写"被剥夺了管理职务"，ousted 译"逐出"、alienated 译"被疏远的"（用户 2026-11-03 改，原为"心生隔阂"），均不写"解雇"。S6
 - 【T6】1985年9月辞职（日期有16、17日两说，正文只写月份）。S7
