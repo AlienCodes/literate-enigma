@@ -30,7 +30,7 @@ S=[
     [[("faced a small **annoyance** at church.","在教堂里遇到了一件小小的**烦心事**(annoyance)。")]]]),
 (3,[[[("The paper **bookmarks** **wedged** in his **choir**'s **hymn** book","他所在**唱诗班**(choir)的**赞美诗**(hymn)集里**夹着的**(wedged)纸**书签**(bookmarks)")],
      "（wedged in…：过去分词短语作后置定语，修饰 bookmarks）"],
-    [[("kept","总是"),("getting **dislodged**","**移位**(dislodged)，"),("and falling out.","掉出来。")],
+    [[("kept","总是"),("getting **dislodged**","**移位**(dislodged)，"),("and **falling out**.","**掉出来**(falling out)。")],
      "（keep doing：一直，总是；get＋过去分词：被……）"]]),
 (3,[[[("The **frustration**","这份**懊恼**(frustration)"),("gave Fry","让弗莱"),("an idea.","想到一个主意。")],
      "（give sb an idea：让某人想到一个主意）"]]),
