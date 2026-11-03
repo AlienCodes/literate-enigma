@@ -12,15 +12,19 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import 响度一致性核对 as R
 
 def 量(wav, seg_rec, TM=None):
-    """{句: [(这一组的段号, 起, 止, 响度)]}：后面停顿 < IN_GAP 的段（列举逗号 0.2 秒）并进下一段，与门的切法一致。"""
-    TM = R.momentary(wav) if TM is None else TM; out = {}
-    for s, rec in seg_rec.items():
-        gs = [[rec[0]]]
-        for r0, r in zip(rec, rec[1:]):
-            if (r0['停顿'] or 0) >= R.IN_GAP: gs.append([r])
-            else: gs[-1].append(r)
-        out[s] = [([r['段'] for r in g], g[0]['时刻'][0], g[-1]['时刻'][1], R.段响度(TM, g[0]['时刻'][0], g[-1]['时刻'][1])) for g in gs]
+    """{句: [(这一组的段号, 起, 止, 响度)]}：K144（40 S8：门量成片报后段轻 2.6 LU，这里量 a.wav、按出片程序记的停顿并段，报 0，永远修不好）：
+    切段、量响度全用门的函数（响度一致性核对.分段 / 段响度：句内 ≥IN_GAP 秒的静音切段），段号按出片程序记的各段中点落在哪一组。"""
+    TM = R.momentary(wav) if TM is None else TM; a = R.pcm(wav); out = {}
+    rg = [(k, v[0]['时刻'][0], v[-1]['时刻'][1]) for k, v in seg_rec.items()]
+    for (s, _, _), cur in zip(rg, R.分段(a, [(x, y) for _, x, y in rg])):
+        out[s] = [([r['段'] for r in seg_rec[s] if x - 1e-6 <= (r['时刻'][0] + r['时刻'][1]) / 2 <= y + 1e-6], x, y, R.段响度(TM, x, y)) for x, y in cur]
     return out, TM
+
+def 成片声(wav, td):
+    """K144：a.wav 先过出片程序同一套后期（../tts/AF.txt + AAC 256k，make_video 出 a.m4a/成片的写法），与门量的成片 mp4 一致；没有 AF.txt 就量原 wav"""
+    af = os.path.join(os.path.dirname(os.path.abspath(wav)), '..', '..', 'tts', 'AF.txt')
+    if not os.path.exists(af): return wav
+    o = os.path.join(td, 'a.m4a'); subprocess.run([R.FF, '-y', '-loglevel', 'error', '-i', wav, '-af', open(af).read().strip(), '-c:a', 'aac', '-b:a', '256k', o], check=True); return o
 
 def 算增益(m, TM, old):
     """{句: {段号: 新增益}}：只算有相邻两组超标的句子。"""
@@ -56,6 +60,10 @@ def 自检():
         if not 4.0 <= g2.get('S1', {}).get('3', 0) <= 5.5: f.append(f'没抓到：已有 +1 dB 时没有累加（{g2}）')
         w, sr = mk([0, 0, 0, 0]); m, TM = 量(w, sr)
         if 算增益(m, TM, {}): f.append('误报：四段一样响也算出了增益')
+        w, sr = mk([0, 0, -3.5, 0]); sr['S1'][1]['停顿'] = 0.25   # K144 坏样本：记的停顿比实际短（门照样在 0.4 秒静音处切开、报第 3 段轻），增益必须照门的切法算出来
+        m, TM = 量(w, sr); g = 算增益(m, TM, {}); js = os.path.join(td, 'seg.json'); json.dump(sr, open(js, 'w')); rs = R.句内报(R.句内(w, None, TM, js))
+        if not rs: f.append('自检前提不成立：门没报第 3 段轻 3.5 dB')
+        elif set(g.get('S1', {})) != {'3'}: f.append(f'没抓到：门报了 {[(r[0], r[1]) for r in rs]}，这里算出的增益是 {g}（量法和门不一致，K144 40 S8）')
     import subprocess as _sp, tempfile as _tf   # 缺前提（没出过声音、没有 分段.json）必须停，不许接着量（G79 门变异）
     r = _sp.run([sys.executable, os.path.abspath(__file__), '99'], cwd=_tf.mkdtemp(prefix='句内响度自检_'), capture_output=True, text=True)
     if '【停止】没有 work_99/分段.json' not in r.stdout + r.stderr: f.append('没抓到：没有 work_NN/分段.json 也开量（缺前提要停）')
@@ -67,7 +75,8 @@ if __name__ == '__main__':
     no = sys.argv[1]; sj = f'work_{no}/分段.json'
     if not os.path.exists(sj): raise SystemExit(f'【停止】没有 {sj}：先用现行出片程序出一次声音（快速重建核查.sh {no}）')
     d = json.load(open(f'scripts/{no}.json')); old = d.get('分段增益dB', {})
-    m, TM = 量(f'work_{no}/a.wav', json.load(open(sj))); new = 算增益(m, TM, old)
+    with tempfile.TemporaryDirectory() as td: m, TM = 量(成片声(f'work_{no}/a.wav', td), json.load(open(sj)))
+    new = 算增益(m, TM, old)
     for s, v in new.items(): print(f'{no} {s} 分段增益dB {old.get(s, {})} → {v}')
     if '--写入' in sys.argv and new:
         d.setdefault('分段增益dB', {}).update(new); json.dump(d, open(f'scripts/{no}.json', 'w'), ensure_ascii=False, indent=1)
