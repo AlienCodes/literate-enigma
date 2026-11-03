@@ -115,6 +115,7 @@ CONF={
  "S14 packets … of":"不是搭配：packets of notes 里 of 只引出所装的东西，packets 本身就是“小包”（同 16 beads … of 的判法）",
  "S17 rebranded … on":"不是搭配：on 属于后面的 went on sale，和 rebranded 无关"},
 "已告诉用户被去掉的重点词":"2026-11-03 已在会话中把 stationery（与21 stationery 撞词，用户 2026-10-17 定留在先做的21，40 改回普通词）原样告诉用户（经主会话转告）"}
+CONF["停顿位置"]={"S3 off, / and @7.370":"2026-11-03 逐 5 ms 看声音实测（S3 w，配音指纹 67f86bdba50c）：off 的 /f/ 摩擦 7.28–7.365（-24～-29 dB、重心 5.1–7.0 kHz、低频 -22～-40 dB、周期 ≤0.16），7.370 降到全段最低 -36.7 dB（过零 7.370583），7.375 起 and 的声门起音（低频 -5 dB），7.38 起 æ 浊音（周期 0.19→0.45、重心 1.2–2.5 kHz）；两词之间没有静音，7.370 是交界最低处，插在这里不切 /f/ 也不切 and（A42）；程序“后词开头 7.456”是带时长模型估的，实际 and 在 7.375 开口"}
 out={"no":"40","title_en":"The Glue That Failed Its Way to Success","title_zh":"失败的胶水，成功的便利贴","title_fx":{"hl":["Failed","Success"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Spencer Silver":"斯潘塞·西尔弗","Silver":"西尔弗","3M":"3M","Art Fry":"阿特·弗莱","Fry":"弗莱","Press 'n Peel":"Press 'n Peel","Boise":"博伊西","Idaho":"爱达荷州","Post-it Notes":"便利贴","US":"美国","American":"美国","Canada":"加拿大","Europe":"欧洲"}}
