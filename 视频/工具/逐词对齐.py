@@ -19,14 +19,15 @@ T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T)
 def 实词(en):
     ws = re.findall(r"(?<![\w])[A-Za-z][A-Za-z'’-]*", re.sub(r'\*\*[^*]+\*\*', ' ', en))   # 1970s 的 s 不算词
     return [w for w in ws if w.lower() not in 虚 and w.lower() not in 数 and not w[0].isupper()]
-def 键(si, en): return f'S{si} ' + re.sub(r'\s+', ' ', en.replace('**', '')).strip(' ,.;:')
+def 键(si, en): return f'S{si} ' + re.sub(r'\s+', ' ', re.sub(r'\{\{.*?\}\}', '', en).replace('**', '')).strip(' ,.;:')   # K143（40 S14 {{=}}and dispensed）：键去掉 {{=}} {{换行}} 标记
+def 旧键(si, en): return f'S{si} ' + re.sub(r'\s+', ' ', en.replace('**', '')).strip(' ,.;:')
 def 多实词组(d):
     return [(si, en, zh, 实词(en)) for si, s in enumerate(d['sentences'], 1) for c in s['chunks'] for en, zh in c['align'] if len(实词(en)) >= 2]
 def 查(d, no):
     if not str(no).isdigit() or int(no) < 起: return []
     ok = d.get('核对确认', {}).get('合组', {}); out = []
     for si, en, zh, ws in 多实词组(d):
-        k = 键(si, en); v = ok.get(k, '')
+        k = 键(si, en); v = ok.get(k, '') or ok.get(旧键(si, en), '')
         if not re.match(r'^对齐不了[：:].{4,}', v):
             out.append(f'[G47] {k}「{zh}」含 {len(ws)} 个实词（{"、".join(ws)}）没拆：能对齐的尽量逐词对齐（用户 2026-10-25：“rolling 就和滚对齐”）；'
                        f'对不了写 核对确认.合组 "{k}": "对齐不了：原因"')
@@ -52,6 +53,12 @@ def 自检():
     if 查(d3, '26'): f.append('误报：写了“对齐不了：原因”还报')
     d4 = json.loads(json.dumps(d)); d4['核对确认'] = {'合组': {'S1 something rolling downhill': '先不拆，以后再说'}}
     if not 查(d4, '26'): f.append('没抓到：合组确认不是“对齐不了：”开头也放行')
+    d5 = {'sentences': [{'chunks': [{'align': [['{{=}}and dispensed **remedies** to villagers', '给村民发**药**(remedies)']]}]}]}   # K143 好/坏样本（40 S14）
+    if not any('S1 and dispensed remedies to villagers' in x for x in 查(d5, '26')): f.append('没抓到：{{=}} 开头的多实词组没拆也没写（K143）')
+    d5['核对确认'] = {'合组': {'S1 and dispensed remedies to villagers': '对齐不了：中文语序整体换了，拆开不通顺'}}
+    if 查(d5, '26'): f.append('误报：{{=}} 组按去掉标记的键写了“对齐不了”还报（K143，40 S14）')
+    d5['核对确认'] = {'合组': {'S1 {{=}}and dispensed remedies to villagers': '对齐不了：中文语序整体换了，拆开不通顺'}}
+    if 查(d5, '26'): f.append('误报：带标记的旧键不认了（K143）')
     for en in ('came out', 'Apollo 13 crew', '**trade journal**', 'kept up', 'two days', 'Before the late 1970s', 'more often'):
         if len(实词(en)) >= 2: f.append(f'误报：{en} 不该算多实词（小品词、专名、数字、重点词本身不算）')
     return ['逐词对齐 自检：' + x for x in f]

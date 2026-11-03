@@ -111,8 +111,8 @@ def 对齐(d, ok):
     avg = sum(词数(a) for *_, a in g) / len(g); err, conf = [], []
     if avg > 3.0: err.append(f'[T9对齐] 全篇平均每组 {avg:.2f} 个英文词，比 01–03 定稿（1.75–2.67）粗：中英语序一致的地方逐词或按意群拆开，每个中文放在它对应的英文正下方（用户 2026-10-23：“下面这个汉译尽量跟它所对应的这个英文最好对齐”）')
     for i, k, a in g:
-        n = 词数(a); key = f'S{i + 1}-{k + 1} {re.sub(r"[*]", "", a)[:30]}'
-        if n >= 5 and key not in ok.get('对齐', {}):
+        n = 词数(a); key = f"S{i + 1}-{k + 1} {re.sub(r'\{\{.*?\}\}|[*]', '', a).strip()[:30]}"; 旧键 = f'S{i + 1}-{k + 1} {re.sub(r"[*]", "", a)[:30]}'   # K143（40 S14 {{=}}and dispensed）：键去掉 {{=}} {{换行}} 这类标记；13、16、23 定稿里带标记的旧键照认
+        if n >= 5 and key not in ok.get('对齐', {}) and 旧键 not in ok.get('对齐', {}):
             conf.append(f'[T9对齐] {key}  ← 这一组 {n} 个英文词：能拆就拆到词或意群；确实是语序必须倒过来（后置定语、从句、of 结构、提前的介词短语、同位语）的，在 核对确认.对齐 写明原因')
     return err, conf
 
@@ -280,6 +280,11 @@ def 自检():
     if not e_: fails.append('没抓到：全篇对齐比 01–03 粗（T9/文6）')
     if not c_: fails.append('没抓到：一组塞了 9 个英文词（T9/文6）')
     if 对齐(粗, {'对齐': {c_[0].split('  ←')[0][len('[T9对齐] '):]: '整句语序倒装'}})[1]: fails.append('T9对齐 误报：写了原因的组')
+    标 = {'sentences': [句(('He came to the city before the war began', '他'), ('{{=}}and stayed there for many long years', '在那里待了很多年'))]}   # K143 好/坏样本
+    c2_ = 对齐(标, {})[1]
+    if not any('S1-1 and stayed there for many long ' in x for x in c2_): fails.append('没抓到：{{=}} 开头的 9 词组没写原因（K143）')
+    if 对齐(标, {'对齐': {'S1-1 He came to the city before the': '整句语序倒装', 'S1-1 and stayed there for many long': '整句语序倒装'}})[1]: fails.append('T9对齐 误报：{{=}} 组按去掉标记的键写了原因还报（K143，40 S14）')
+    if 对齐(标, {'对齐': {'S1-1 He came to the city before the': '整句语序倒装', 'S1-1 {{=}}and stayed there for many': '整句语序倒装'}})[1]: fails.append('T9对齐 误报：定稿里带标记的旧键不认了（K143，13 S15、23 S3）')
     坏 = {'sentences': [句(('a **formidable** **intellect**', '**强大的**(formidable)**才智**(intellect)，'))]}
     if not 同序组(坏, {}): fails.append('没抓到：两个重点词同序挤在一组（T34）')
     if 同序组({'sentences': [句(('an **emblem** of **virtue**,', '**美德**(virtue)的**象征**(emblem)，'))]}, {}): fails.append('T34 误报：倒装的整组')
