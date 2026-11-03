@@ -2,11 +2,11 @@
 # ZH: 千年虫：被成功抹去的危机
 ## 英文
 
-The Y2K **bug**, or **millennium** bug, began as a **shortcut**. When memory and **hardware** were **costly**, **programmers** stored years as two **digits**, writing "99" for 1999. That **compact** **code** hid an **ambiguity**: a machine might read "00" as 1900, **corrupting** calculations of interest, ages, or **deadlines**.
+The Y2K **bug**, or **millennium** bug, began as a **shortcut**. When **memory** and **hardware** were **costly**, **programmers** stored years as two **digits**, writing "99" for 1999. That **compact** **code** hid an **ambiguity**: a machine might read "00" as 1900, **corrupting** calculations of interest, ages, or **deadlines**.
 
-Governments and firms **braced** for **chaos**. In February 1998 President Clinton created a **council** to **coordinate** America's effort. **Consultants** **audited** **legacy** systems and **patched** **faulty** date logic. In November 1999 the Commerce Department estimated American governments and **enterprises** would spend about $100bn; **projections** of the **global** bill ran to hundreds of billions.
+Governments and firms **braced** for **chaos**. In February 1998 **President** Clinton created a **council** to **coordinate** America's effort. **Consultants** **audited** **legacy** systems and **patched** **faulty** date logic. In November 1999 the **Commerce Department** estimated American governments and **enterprises** would spend about $100bn; **projections** of the **global** bill ran to hundreds of billions.
 
-Then **midnight** struck on 31 December 1999, and little went wrong. Glitches that did **crop up** were **sporadic** and mostly **minor**. Radiation-monitoring equipment **faltered** at Japan's Shika nuclear plant without any threat to safety, and a Pentagon ground system that processes **spy**-satellite data failed. In February 2000 a Senate committee **concluded** that the **expenditure** had been **justified**.
+Then **midnight** **struck** on 31 December 1999, and little went wrong. **Glitches** that did **crop up** were **sporadic** and mostly **minor**. Radiation-monitoring equipment **faltered** at Japan's Shika nuclear plant without any threat to safety, and a Pentagon ground system that processes **spy**-satellite data failed. In February 2000 a Senate committee **concluded** that the **expenditure** had been **justified**.
 
 Many saw it differently: the threat had been **exaggerated**, even a **hoax**. Yet calm **prevailed** **largely** because so much had been fixed. This is the preparedness paradox: when **precautions** work, the danger they **ward off** never appears, so it looks **imaginary**. **Tedious** repairs earned **mockery** rather than **gratitude**.
 
@@ -14,11 +14,11 @@ Critics noted that Italy and South Korea spent far less yet fared no worse. The 
 
 ## 中文
 
-千年虫（Y2K **漏洞**(bug)），又称"**千年**(millennium)虫"，起初只是一条**捷径**(shortcut)。当年内存和**硬件**(hardware)都很**昂贵**(costly)，**程序员**(programmers)便只用两位**数字**(digits)记录年份，把1999年写成"99"。这种**简洁紧凑的**(compact)**代码**(code)暗藏着一种**歧义**(ambiguity)：机器可能把"00"读成1900年，从而**搞错**(corrupting)利息、年龄或**截止日期**(deadlines)的计算。
+千年虫（Y2K **漏洞**(bug)），又称"**千年**(millennium)虫"，起初只是一条**捷径**(shortcut)。当年**内存**(memory)和**硬件**(hardware)都很**昂贵**(costly)，**程序员**(programmers)便只用两位**数字**(digits)记录年份，把1999年写成"99"。这种**小而紧凑的**(compact)**代码**(code)暗藏着一种**歧义**(ambiguity)：机器可能把"00"读成1900年，从而**搞错**(corrupting)利息、年龄或**截止日期**(deadlines)的计算。
 
-各国政府和企业都在**严阵以待**(braced)，准备迎接一场**混乱**(chaos)。1998年2月，美国总统克林顿设立了一个**委员会**(council)来**协调**(coordinate)全美的应对工作。**顾问**(Consultants)们**审查**(audited)了**遗留**(legacy)系统，并给**有缺陷的**(faulty)日期处理逻辑**打上补丁**(patched)。1999年11月，据美国商务部估算，美国各级政府和**企业**(enterprises)将为此花费约1,000亿美元；对**全球**(global)总账单的各种**预测**(projections)则高达数千亿美元。
+各国政府和企业都在**严阵以待**(braced)，准备迎接一场**混乱**(chaos)。1998年2月，美国**总统**(President)克林顿设立了一个**委员会**(council)来**协调**(coordinate)全美的应对工作。**顾问**(Consultants)们**审查**(audited)了**遗留**(legacy)系统，并**给**(patched)**有缺陷的**(faulty)日期处理逻辑**打上补丁**(patched)。1999年11月，据**美国商务部**(Commerce Department)估算，美国各级政府和**企业**(enterprises)将为此花费约1,000亿美元；对**全球**(global)总账单的各种**预测**(projections)则高达数千亿美元。
 
-随后，1999年12月31日的**午夜**(midnight)钟声敲响，几乎没出什么问题。确实**冒出来**(crop up)的故障也是**零星的**(sporadic)，而且大多**轻微**(minor)。日本志贺核电站的辐射监测设备**出了故障**(faltered)，但并未威胁安全；美国国防部一套处理**间谍**(spy)卫星数据的地面系统也曾失灵。2000年2月，美国参议院的一个委员会**得出结论**(concluded)，认定这笔**开支**(expenditure)是**合理的**(justified)。
+随后，1999年12月31日的**午夜**(midnight)钟声**敲响**(struck)，几乎没出什么问题。确实**意外出现**(crop up)的**小故障/小毛病**(Glitches)也是**零星的/偶发的**(sporadic)，而且大多**轻微**(minor)。日本志贺核电站的辐射监测设备**出了故障**(faltered)，但并未威胁安全；美国国防部一套处理**间谍**(spy)卫星数据的地面系统也曾失灵。2000年2月，美国参议院的一个委员会**得出结论**(concluded)，认定这笔**开支**(expenditure)是**合理的**(justified)。
 
 许多人却不这么看：在他们眼里，这一威胁被**夸大**(exaggerated)了，甚至是一场**骗局**(hoax)。然而，局面之所以能**保持**(prevailed)平静，**很大程度上**(largely)正是因为大量问题早已修好。这就是"防备悖论"：**预防措施**(precautions)一旦奏效，它们所**抵御**(ward off)的危险就永远不会出现，于是看起来像是**虚构的**(imaginary)。那些**枯燥乏味的**(Tedious)修复工作换来的是**嘲笑**(mockery)，而不是**感激**(gratitude)。
 
@@ -30,6 +30,7 @@ Critics noted that Italy and South Korea spent far less yet fared no worse. The 
 | bug | n. （计算机程序的）缺陷，漏洞（fix a bug 修复漏洞）；虫子；病菌；v. 窃听；烦扰 | 1 |
 | millennium | n. (复数 millennia) 一千年，千年期；（the millennium）千禧年（the millennium bug 千年虫） | 1 |
 | shortcut | n. 捷径，近路（take a shortcut）；（喻）省事的办法（there are no shortcuts to success） | 1 |
+| memory | n. （计算机）内存，存储器；记忆，记忆力（have a good memory）；回忆（childhood memories）；in memory of 纪念…… | 1 |
 | hardware | n. （计算机）硬件（与 software 相对）；五金器具；（军事）装备 | 1 |
 | costly | adj. 昂贵的，花钱多的（a costly mistake 代价高昂的错误）；造成损失的 | 1 |
 | programmers | n. (programmer) 程序员，编程者；program v. 编程 | 1 |
@@ -41,6 +42,7 @@ Critics noted that Italy and South Korea spent far less yet fared no worse. The 
 | deadlines | n. (deadline) 截止日期，最后期限（meet/miss a deadline） | 1 |
 | braced | v. (brace) 准备应对（不好的事）（brace (oneself) for sth）；支撑，加固；n. 支架；牙箍 | 2 |
 | chaos | n. 混乱，紊乱（in chaos；cause chaos）；chaotic adj. 混乱的 | 2 |
+| president | n. 总统；（机构的）主席，会长，校长（the president of a company/university）；presidential adj. 总统的 | 2 |
 | council | n. 委员会，理事会（a city council 市议会；the Security Council）；注意与 counsel 区分 | 2 |
 | coordinate | v. 协调，使配合（coordinate efforts/policies）；n. 坐标；coordination n. 协调 | 2 |
 | consultants | n. (consultant) 顾问，咨询师（a management consultant）；（英）会诊医生；consult v. 咨询 | 2 |
@@ -48,10 +50,13 @@ Critics noted that Italy and South Korea spent far less yet fared no worse. The 
 | legacy | adj. 遗留的（legacy systems 遗留系统，指仍在使用的旧计算机系统）；n. 遗产，遗赠；（历史）留下的影响 | 2 |
 | patched | v. (patch) 给（软件）打补丁（patch a bug）；修补（patch up 草草修补；调解）；n. 补丁；小块地 | 2 |
 | faulty | adj. 有缺陷的，有毛病的（faulty wiring/goods）；（推理）错误的；fault n. 缺点，过错 | 2 |
+| Commerce Department | n. （美国）商务部；commerce n. 商业，贸易（e-commerce 电子商务）；department n. （政府的）部，部门 | 2 |
 | enterprises | n. (enterprise) 企业，公司（state-owned enterprises 国有企业）；事业；进取心（show enterprise） | 2 |
 | projections | n. (projection) 预测，估算（sales projections）；投影，放映；突出物；project v. 预计；投射 | 2 |
 | global | adj. 全球的，全世界的（global warming）；全面的，整体的；globe n. 地球 | 2 |
 | midnight | n. 午夜，子夜（at midnight） | 3 |
+| struck | v. (strike 的过去式) （钟）敲响，报时（the clock struck twelve）；打，击；（灾难、疾病）突然发生；n. strike 罢工 | 3 |
+| glitches | n. (glitch) （机器、系统的）小故障，小毛病（a technical/computer glitch） | 3 |
 | crop up | phr. v. 突然出现，冒出来（problems crop up）；crop n. 庄稼，收成 | 3 |
 | sporadic | adj. 零星的，偶尔发生的，分散的（sporadic fighting/outbreaks） | 3 |
 | minor | adj. 次要的，轻微的（a minor problem/injury）；n. 未成年人；（大学）辅修科目；minority n. 少数 | 3 |
