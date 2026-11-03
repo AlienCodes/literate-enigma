@@ -67,7 +67,7 @@ S=[
      "（receive a diagnosis：被诊断出；冒号后说明诊断结果）"],
     [[("an **uncommon**,","一种**罕见的**(uncommon)"),("**cancerous**","**恶性**(cancerous)"),("**pancreatic**","**胰腺**(pancreatic)"),("**tumour**.","**肿瘤**(tumour)。")]]]),
 (5,[[[("In August 2011","2011年8月，"),("Apple","苹果公司"),("**briefly**","**一度**(briefly)"),("**overtook** Exxon Mobil","**超越**(overtook)埃克森美孚，")]],
-    [[("as","成为"),("the world's","全球"),("most valuable","市值最高的"),("company.","公司。")],
+    [[("as","成为"),("the world's","全球"),("**most valuable**","**市值最高的**(most valuable)"),("company.","公司。")],
      "（overtake A as…：超过 A，成为……）"]]),
 (5,[[[("His **tenure** ended on 24 August 2011;","2011年8月24日，他的**任期**(tenure)结束；")]],
     [[("he died on 5 October 2011,","2011年10月5日，他去世，"),("aged 56.","终年56岁。")],

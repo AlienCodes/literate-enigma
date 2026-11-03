@@ -10,7 +10,7 @@ In May 1985, after a **bruising** **confrontation**, Apple's **board** **ultimat
 
 The **reversal** came on 20 December 1996: Apple agreed to buy NeXT, gaining the **core** software of the **eventual** Mac OS X and **reuniting** with its **estranged** co-founder. In August 1997 Microsoft **invested** $150 million in its **distressed** **competitor**; that September Jobs took the **reins** as **interim** chief. Apple, he later said, had been weeks from **ruin**. The iMac, iPod, and iPhone followed, the iPhone **showcased** on 9 January 2007.
 
-In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **pancreatic** **tumour**. In August 2011 Apple **briefly** **overtook** Exxon Mobil as the world's most valuable company. His **tenure** ended on 24 August 2011; he died on 5 October 2011, aged 56. He had spent nearly fourteen years at the **helm** of the company that **ousted** him.
+In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **pancreatic** **tumour**. In August 2011 Apple **briefly** **overtook** Exxon Mobil as the world's **most valuable** company. His **tenure** ended on 24 August 2011; he died on 5 October 2011, aged 56. He had spent nearly fourteen years at the **helm** of the company that **ousted** him.
 
 ## 中文
 
@@ -22,7 +22,7 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 
 1996年12月20日，局面出现**彻底转变**(reversal)。苹果同意收购 NeXT，从而获得了**最终版**(eventual) Mac OS X 的**核心**(core)软件，并与**关系疏远**(estranged)的联合创始人**重聚**(reuniting)。1997年8月，微软向这个**陷入困境**(distressed)的**竞争对手**(competitor)**投资**(invested)1.5亿美元；同年9月，乔布斯**接掌大权**(reins)，出任**临时**(interim)负责人。他后来说，苹果当时离**破产**(ruin)只差几周。iMac、iPod 和 iPhone 相继问世，iPhone 于2007年1月9日公开**展示**(showcased)。
 
-2003年10月，乔布斯收到了一份**诊断**(diagnosis)：一种**罕见**(uncommon)的**恶性**(cancerous)**胰腺**(pancreatic)**肿瘤**(tumour)。2011年8月，苹果公司**一度**(briefly)**超越**(overtook)埃克森美孚，成为全球市值最高的公司。2011年8月24日，他的**任期**(tenure)结束；2011年10月5日，他去世，终年56岁。他已在那家曾把他**逐出**(ousted)的公司**掌舵**(helm)近十四年。
+2003年10月，乔布斯收到了一份**诊断**(diagnosis)：一种**罕见**(uncommon)的**恶性**(cancerous)**胰腺**(pancreatic)**肿瘤**(tumour)。2011年8月，苹果公司**一度**(briefly)**超越**(overtook)埃克森美孚，成为全球**市值最高的**(most valuable)公司。2011年8月24日，他的**任期**(tenure)结束；2011年10月5日，他去世，终年56岁。他已在那家曾把他**逐出**(ousted)的公司**掌舵**(helm)近十四年。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -86,6 +86,7 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 | tumour | n. 肿瘤（a brain tumour；a benign tumour） | 5 |
 | briefly | adv. 短暂地；简要地（pause briefly；briefly describe） | 5 |
 | overtook | v. (overtake) 超过，赶上（overtake a lorry；sales overtook last year's） | 5 |
+| most valuable | adj. (valuable 的最高级) 最有价值的；（公司）市值最高的（the world's most valuable company；most valuable player） | 5 |
 | tenure | n. 任期，任职（during her tenure as mayor；security of tenure） | 5 |
 | helm | n. 舵；领导地位（take the helm；at the helm of a team） | 5 |
 | ousted | v. (oust) 罢免，逐出（oust a leader from power） | 5 |
