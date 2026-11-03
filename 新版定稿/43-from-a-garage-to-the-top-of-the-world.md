@@ -20,7 +20,7 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 
 这段**放逐**(exile)岁月**成果丰硕**(productive)。1985年晚些时候，乔布斯**创办**(founded)了 NeXT，一家电脑**初创公司**(start-up)。1986年2月，他**收购**(acquired)了卢卡斯影业的电脑**图形**(graphics)**团队**(outfit)，这个团队后来成为**皮克斯**(Pixar)。皮克斯起初是一家**制造商**(manufacturer)，生产**专用**(specialised)**硬件**(hardware)，主要并不是**动画**(animation)**工作室**(studio)。《玩具总动员》于1995年11月22日**上映**(released)，是第一部**长篇**(feature-length)**电脑动画**(computer-animated)电影。
 
-1996年12月20日，局面出现**转机**(reversal)。当天苹果公司同意买下 NeXT，得到了**日后**(eventual) Mac OS X 的**核心**(core)软件，并与那位**关系疏远**(estranged)的联合创始人**重聚**(reuniting)。1997年8月，微软向这个**陷入困境**(distressed)的**竞争对手**(competitor)**投资**(invested)1.5亿美元；同年9月，乔布斯**接掌大权**(reins)，出任**临时**(interim)负责人。他后来说，苹果当时离**破产**(ruin)只差几周。iMac、iPod 和 iPhone 相继问世，iPhone 于2007年1月9日公开**展示**(showcased)。
+1996年12月20日，局面出现**彻底转变**(reversal)。苹果同意收购 NeXT，从而获得了**最终版**(eventual) Mac OS X 的**核心**(core)软件，并与**关系疏远**(estranged)的联合创始人**重聚**(reuniting)。1997年8月，微软向这个**陷入困境**(distressed)的**竞争对手**(competitor)**投资**(invested)1.5亿美元；同年9月，乔布斯**接掌大权**(reins)，出任**临时**(interim)负责人。他后来说，苹果当时离**破产**(ruin)只差几周。iMac、iPod 和 iPhone 相继问世，iPhone 于2007年1月9日公开**展示**(showcased)。
 
 2003年10月，乔布斯被**诊断**(diagnosis)出患有一种**罕见**(uncommon)的**恶性**(cancerous)**胰腺**(pancreatic)**肿瘤**(tumour)。2011年8月，苹果公司**一度**(briefly)**超越**(overtook)埃克森美孚，成为全球市值最高的公司。2011年8月24日，他的**任期**(tenure)结束；2011年10月5日，他去世，终年56岁。他已在那家曾把他**逐出**(ousted)的公司**掌舵**(helm)近十四年。
 
@@ -99,8 +99,8 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 - 【T6】1985年9月辞职（日期有16、17日两说，正文只写月份）。S7
 - 【T7】1985年创办 NeXT；1986年2月（3日分拆）购入卢卡斯影业电脑图形部门，即皮克斯，起初做硬件；金额不写。S1；S8
 - 【T8】《玩具总动员》1995年11月22日上映，第一部长篇电脑动画电影。S9
-- 【T9】1996年12月20日苹果宣布收购 NeXT，乔布斯以顾问身份回归；金额不写。英文 agreed to buy 译"同意买下"。S11
-- 【T9b】NeXT 的 NeXTSTEP 操作系统成为 Mac OS X 的核心基础（Darwin 等）；Mac OS X 10.0 于2001年3月发布（正文不写发布日期）。英文 the core software of the eventual Mac OS X 译"日后 Mac OS X 的核心软件"。此条不在约稿单原核准史实表内，系评审后补入，来源 S24–S26。
+- 【T9】1996年12月20日苹果宣布收购 NeXT，乔布斯以顾问身份回归；金额不写。英文 agreed to buy 译"同意收购"（用户 2026-11-03 改，原为"同意买下"）。S11
+- 【T9b】NeXT 的 NeXTSTEP 操作系统成为 Mac OS X 的核心基础（Darwin 等）；Mac OS X 10.0 于2001年3月发布（正文不写发布日期）。英文 the core software of the eventual Mac OS X 译"最终版 Mac OS X 的核心软件"（用户 2026-11-03 改，原为"日后 Mac OS X 的核心软件"）。此条不在约稿单原核准史实表内，系评审后补入，来源 S24–S26。
 - 【T10】1997年8月6日微软以1.5亿美元购入苹果无投票权股票；正文只写月份。S13
 - 【T11】1997年9月（16日）出任临时首席执行官；英文 took the reins as interim chief 译"接掌大权，出任临时负责人"；此前他从未任首席执行官，故不写"重掌"，不重复"执行官"。S12
 - 【T12】"离破产只差几周"是乔布斯本人后来的说法（2010年 D8 大会称约90天），并非审计数字；正文写 he later said，中文"他后来说"，ruin 译"破产"，不写"90天"。S15
