@@ -39,7 +39,7 @@ S=[
      "（outfit：口语，团队，小机构）"],
     [[("which became **Pixar**.","这个团队后来成为**皮克斯**(Pixar)。")],
      "（which…：非限制性定语从句，补充说明 outfit）"]]),
-(3,[[[("It began as","皮克斯起初是"),("a **manufacturer**","一家**制造商**(manufacturer)，"),("of **specialised** hardware,","生产**专用**(specialised)硬件，")],
+(3,[[[("It began as","皮克斯起初是"),("a **manufacturer**","一家**制造商**(manufacturer)，"),("of **specialised**","生产**专用**(specialised)"),("**hardware**,","**硬件**(hardware)，")],
      "（begin as…：起初是……；\nof specialised hardware：of 结构作后置定语，修饰 manufacturer）"],
     [[("not chiefly","主要并不是"),("an **animation** studio.","**动画**(animation)工作室。")],
      "（not chiefly…：主要并不是……，与 a manufacturer 对照）"]]),
@@ -157,7 +157,7 @@ CONF={
  "S19 overtook … as":"不是搭配：as the world's most valuable company 表示超越之后的身份（成为……），不是 overtake as 的固定用法"},
 }
 out={"no":"43","title_en":"From a Garage to the Top of the World","title_zh":"从车库到世界之巅","title_fx":{"hl":["Garage","Top"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
-     "allow_clash":["adopted","founded"],"换行变更已获同意":{"S10":"用户原话“这个作为单独单独一行。这个翻译为乔布斯创办了next 一家电脑初创公司。分三行，分成三行，分成三行。”（2026-11-03，S10 分成 Later in 1985 / Jobs founded NeXT, / a computer start-up. 三行）","S8":"用户原话“翻译为 而旗舰产品首次推出于 1984年1月24号。”（2026-11-03，S8 后半句按用户语序改写、用户选“保留 Macintosh”，日期挪到句末，换行随之变）","S6":"用户原话“1976年4月1日，他与史蒂夫·沃兹尼亚克创办了苹果公司；沃兹尼亚克是苹果首批样机背后的电子工程师。”（2026-11-03，S6 后半句中文按用户语序改写，后置定语整体提前，换行随之变）"},"高亮按实际开口":True,"高亮开口门槛":40,
+     "allow_clash":["adopted","founded","hardware"],"换行变更已获同意":{"S10":"用户原话“这个作为单独单独一行。这个翻译为乔布斯创办了next 一家电脑初创公司。分三行，分成三行，分成三行。”（2026-11-03，S10 分成 Later in 1985 / Jobs founded NeXT, / a computer start-up. 三行）","S8":"用户原话“翻译为 而旗舰产品首次推出于 1984年1月24号。”（2026-11-03，S8 后半句按用户语序改写、用户选“保留 Macintosh”，日期挪到句末，换行随之变）","S6":"用户原话“1976年4月1日，他与史蒂夫·沃兹尼亚克创办了苹果公司；沃兹尼亚克是苹果首批样机背后的电子工程师。”（2026-11-03，S6 后半句中文按用户语序改写，后置定语整体提前，换行随之变）"},"高亮按实际开口":True,"高亮开口门槛":40,
      "分段增益dB":{"S2":{"1":-2.0,"2":-2.0,"3":-2.5},"S16":{"1":-0.5,"2":-0.5}},
      "合成标点":{"S2":[["Jobs, 30","Jobs; 30"]],"S16":[["Apple, he","Apple; he"]],"S17":[["iPod, and","iPod; and"]]},
      "非人声区间":{"S3":[[0.80575,0.915042,"紧贴两头"],[2.505083,2.532625,"紧贴两头"]],"S15":[[2.140333,2.323,"紧贴两头"],[7.88,8.098708,"紧贴词头"]],"S18":[[1.752667,1.934333,"紧贴两头"]],"S17":[[1.945,2.142917,"紧贴词头"]],"S19":[[2.072792,2.363833]]},
