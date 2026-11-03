@@ -579,6 +579,41 @@ PAL补=[(112,146,255)]   # K115（29 S6 同屏 11 个单元）：天蓝 198° �
 import colorsys as _cs
 def _hue(c): return _cs.rgb_to_hsv(*[x/255 for x in c])[0]*360
 def _hd(a,b): d=abs(_hue(a)-_hue(b))%360; return min(d,360-d)
+# K161（用户 2026-11-03：“两个重点词靠在一起，你不能用太相近的两个颜色，那为什么还会出现这种情况呢？”）：
+#   ① 以前“相邻”只按英文顺序算，中文语序不同，英文隔开、中文挨着的两个只要 ≥25°（44 S6 head-on↔overtaking 紫↔品红 37°、45 S1、38 S4）；
+#   ② 色相差 ≥60° 也会看着像（紫↔粉 73°、CIEDE2000 色差 22；草绿↔青绿 61°、色差 24）。
+#   现在：英文挨着、中文挨着的两个单元都算相邻，色相 ≥60° 且色差 ΔE2000 ≥25（紫↔粉、草绿↔青绿 也不许相邻）。
+#   下面这些篇 4K 定稿在先，颜色照旧（定稿视频核对要逐屏对上，G9），列 制作记录/颜色太像清单.md 交用户；用户说改，就从这里删掉、重出 1080p 给用户看、再定稿
+相邻色差=25; 中文相邻旧定稿={'25','26','27','28','29','30','31','33','34','36','39','40','42'}
+def _新相邻(d): no=str(d.get('no','0')); return no.isdigit() and int(no)>=色相起 and no.zfill(2) not in 中文相邻旧定稿
+def _lab(c):
+    f=lambda u: ((u/255+0.055)/1.055)**2.4 if u/255>0.04045 else u/255/12.92
+    r,g,b=map(f,c); X=(0.4124*r+0.3576*g+0.1805*b)/0.95047; Y=0.2126*r+0.7152*g+0.0722*b; Z=(0.0193*r+0.1192*g+0.9505*b)/1.08883
+    q=lambda t: t**(1/3) if t>0.008856 else 7.787*t+16/116
+    return 116*q(Y)-16, 500*(q(X)-q(Y)), 200*(q(Y)-q(Z))
+def _de(c1,c2):   # CIEDE2000 色差（人眼感觉的差别）
+    import math as m
+    L1,a1,b1=_lab(c1); L2,a2,b2=_lab(c2); Cb=(m.hypot(a1,b1)+m.hypot(a2,b2))/2; G=0.5*(1-m.sqrt(Cb**7/(Cb**7+25**7)))
+    a1p,a2p=(1+G)*a1,(1+G)*a2; C1,C2=m.hypot(a1p,b1),m.hypot(a2p,b2); h1,h2=m.degrees(m.atan2(b1,a1p))%360,m.degrees(m.atan2(b2,a2p))%360
+    dh=h2-h1; dh=dh-360 if dh>180 else dh+360 if dh<-180 else dh
+    dL,dC,dH=L2-L1,C2-C1,2*m.sqrt(C1*C2)*m.sin(m.radians(dh/2)); Lb,Cp=(L1+L2)/2,(C1+C2)/2
+    hb=(h1+h2)/2 if abs(h1-h2)<=180 else (h1+h2+360)/2
+    Tt=1-0.17*m.cos(m.radians(hb-30))+0.24*m.cos(m.radians(2*hb))+0.32*m.cos(m.radians(3*hb+6))-0.20*m.cos(m.radians(4*hb-63))
+    SL,SC,SH=1+0.015*(Lb-50)**2/m.sqrt(20+(Lb-50)**2),1+0.045*Cp,1+0.015*Cp*Tt
+    RT=-2*m.sqrt(Cp**7/(Cp**7+25**7))*m.sin(m.radians(60*m.exp(-((hb-275)/25)**2)))
+    return m.sqrt((dL/SL)**2+(dC/SC)**2+(dH/SH)**2+RT*(dC/SC)*(dH/SH))
+def 邻对(s,us):
+    """K161：这一屏相邻的单元对 (i,j)：返回 (英文挨着的, 只在中文挨着的)。中文按 **中文**(key) 的先后，跨组接着算"""
+    ix={}
+    for i,(u,ws) in enumerate(us):
+        ix[u]=i
+        for w in ws: ix.setdefault(w,i)
+    en={(i,i+1) for i in range(len(us)-1)}; zh=[]
+    for c in s['chunks']:
+        for k in re.findall(r'\*\*[^*]+\*\*\(([^)]+)\)',c['zh']):
+            k=k.lower(); i=ix.get(k, ix.get((k.split() or [''])[0]))
+            if i is not None and (not zh or zh[-1]!=i): zh.append(i)
+    return en, {tuple(sorted(p)) for p in zip(zh,zh[1:]) if p[0]!=p[1]}-en
 def 句单元(s):
     """这一屏的重点单元（按英文出现顺序）：被隔开的短语（中文标 **…**(a b)）算一个单元，其余每个加粗词一个单元。返回 [(单元键, [组成的词])]"""
     ens=[w.lower() for c in s['chunks'] for w in re.findall(r'\*\*([^*]+)\*\*',c['en'])]; ph={}
@@ -608,8 +643,12 @@ def 分色(d):
         h_=str(v_).lstrip('#'); colors[k_.lower()]=tuple(int(h_[i:i+2],16) for i in (0,2,4))
     for s in d['sentences']:
         us=句单元(s); got=[colors.get(u) or colors.get(ws[0]) for u,ws in us]
-        def ok(j,c,g,远):   # 放 c 在第 j 个单元：和已放的相邻 ≥60°、和同屏所有已放的 ≥25°（远>0 时离开 ≥远 个单元的不比）
-            if any(0<=k<len(us) and g[k] is not None and _hd(c,g[k])<相邻色相 for k in (j-1,j+1)): return False
+        新=_新相邻(d); 邻={j:{j-1,j+1} for j in range(len(us))}
+        if 新:   # K161：中文挨着的也算相邻；相邻还要人眼色差 ≥25
+            for a_,b_ in 邻对(s,us)[1]: 邻[a_].add(b_); 邻[b_].add(a_)
+        近=lambda x,y: _hd(x,y)<相邻色相 or (新 and _de(x,y)<相邻色差)
+        def ok(j,c,g,远):   # 放 c 在第 j 个单元：和已放的相邻 ≥60°（K161 起中文挨着的也算、色差 ≥25）、和同屏所有已放的 ≥25°（远>0 时离开 ≥远 个单元的不比）
+            if any(0<=k<len(us) and g[k] is not None and 近(c,g[k]) for k in 邻[j]): return False
             return all(g[k] is None or k==j or (远 and abs(k-j)>=远) or _hd(c,g[k])>=同屏色相 for k in range(len(us)))
         def 排(j,g,pal,远=0):   # 回溯：按“和已放的差得越大越好、用得少的优先”的顺序试
             if j==len(us): return g
@@ -638,7 +677,13 @@ def 同屏色差(d,colors):
     out=[]
     for si,s in enumerate(d['sentences'],1):
         sc=sent_colors(colors,s); us=句单元(s); cs=[(u,sc.get(u) or sc.get(ws[0])) for u,ws in us]
-        for (a,ca),(b,cb) in zip(cs,cs[1:]):
+        if _新相邻(d):   # K161：英文挨着、中文挨着的都查；色相 ≥60° 且人眼色差 ΔE2000 ≥25
+            en_,zh_=邻对(s,us)
+            for i,j in sorted(en_|zh_):
+                (a,ca),(b,cb)=cs[i],cs[j]
+                if ca and cb and (_hd(ca,cb)<相邻色相 or _de(ca,cb)<相邻色差): out.append(f'S{si} {"中文" if (i,j) in zh_ else "英文"}挨着的 {a}↔{b} 颜色太像：色相只差 {_hd(ca,cb):.0f}°、色差 ΔE {_de(ca,cb):.0f}（要 ≥{相邻色相}° 且 ΔE ≥{相邻色差}）')
+        else:
+          for (a,ca),(b,cb) in zip(cs,cs[1:]):
             if ca and cb and _hd(ca,cb)<相邻色相: out.append(f'S{si} 相邻的 {a}↔{b} 色相只差 {_hd(ca,cb):.0f}°（要 ≥{相邻色相}°）')
         远=同屏远 if len(cs)>len(PAL26)+len(PAL补) else 0   # K115：超过 11 个单元，离开 ≥5 个的不比
         for (i,(a,ca)),(j,(b,cb)) in __import__('itertools').combinations(list(enumerate(cs)),2):

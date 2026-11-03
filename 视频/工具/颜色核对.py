@@ -18,6 +18,12 @@ def 清单():
         if int(n) >= R.色相起: continue
         d = json.load(open(p)); R.apply_script(d); e = R.同屏色差(dict(d, no=str(R.色相起)), 颜色(d))
         if e: L += [f'## 第{n}篇（{len({x.split()[0] for x in e})} 屏）', ''] + [f'- {x}' for x in e] + ['']; tot += len({x.split()[0] for x in e})
+    L += ['# 25 起已定稿、中文挨着颜色太像的屏（K161）', '',
+          '用户 2026-11-03：“两个重点词靠在一起，你不能用太相近的两个颜色，那为什么还会出现这种情况呢？”以前“相邻”只按英文顺序算、只看色相；'
+          '现在英文挨着、中文挨着都算，色相 ≥60° 且色差 ΔE2000 ≥25。下面这些篇 4K 定稿在先，画面照旧（render.中文相邻旧定稿），用户说改就重出。', '']
+    for n in sorted(R.中文相邻旧定稿):
+        d = json.load(open(f'{V}/脚本/{n}.json')); R.apply_script(d); e = R.同屏色差(dict(d, no='99'), 颜色(dict(d, no=n)))
+        if e: L += [f'## 第{n}篇（{len({x.split()[0] for x in e})} 屏）', ''] + [f'- {x}' for x in e] + ['']; tot += len({x.split()[0] for x in e})
     open(f'{V}/制作记录/颜色太像清单.md', 'w').write('\n'.join(L) + '\n'); return tot
 def 自检():
     f = []
@@ -50,6 +56,15 @@ def 自检():
     if not any('american sign language↔linguist' in x for x in R.同屏色差(s11, {'american sign language': (167, 139, 250) if False else (248, 113, 113), 'linguist': (251, 191, 36)})): f.append('没抓到：26 S11 American Sign Language（浅橙红）↔linguist（琥珀黄）相邻（G49 第二个样本）')
     s1 = {'no': '26', 'sentences': [{'chunks': [{'en': 'their **wrists** **flicking**', 'zh': '', 'align': []}]}]}
     if not any('wrists↔flicking' in x for x in R.同屏色差(s1, {'wrists': (248, 113, 113), 'flicking': (251, 191, 36)})): f.append('没抓到：26 S1 wrists↔flicking 相邻颜色太像（G49 第三个样本）')
+    # K161（用户 2026-11-03：“两个重点词靠在一起，你不能用太相近的两个颜色”）：中文挨着的也算相邻；相邻还要人眼色差 ΔE2000 ≥25
+    k1 = {'no': '46', 'sentences': [{'chunks': [{'en': '**motorists** **overtaking** in the **lane** of **highways** **head-on**', 'zh': '**驾车者**(motorists)**车道**(lane)**公路**(highways)**超车**(overtaking)**迎头**(head-on)', 'align': []}]}]}
+    c1 = {'motorists': (120, 240, 100), 'overtaking': (232, 121, 249), 'lane': (56, 189, 248), 'highways': (251, 191, 36), 'head-on': (167, 139, 250)}
+    if not any('中文挨着的 overtaking↔head-on' in x for x in R.同屏色差(k1, c1)): f.append('没抓到：44 S6 英文隔开、中文挨着的 超车（品红）↔迎头（紫）只差 37°（K161 重放）')
+    if R.同屏色差(k1, 颜色(k1)): f.append(f'K161 新分色还不合格：{R.同屏色差(k1, 颜色(k1))[:2]}')
+    k2 = {'no': '46', 'sentences': [{'chunks': [{'en': '**alpha** **beta** **gamma**', 'zh': '', 'align': []}]}]}
+    if not any('英文挨着的 alpha↔beta' in x for x in R.同屏色差(k2, {'alpha': (167, 139, 250), 'beta': (244, 114, 182), 'gamma': (190, 242, 100)})): f.append('没抓到：紫↔粉 相邻（色相差 73°、色差 ΔE 22，看着像）（K161）')
+    if R.同屏色差(k2, {'alpha': (248, 113, 113), 'beta': (56, 189, 248), 'gamma': (190, 242, 100)}): f.append('误报：珊瑚红、天蓝、黄绿 相邻分得开（K161）')
+    if any('挨着' in x for x in R.同屏色差(dict(k1, no='27'), c1)): f.append('误报：4K 已定稿在先的篇目（27）按新门回头查了（K161：画面照旧，列清单交用户）')
     f += 各算各的()
     return ['颜色核对 自检：' + x for x in f]
 def 各算各的(files=None):
@@ -66,5 +81,5 @@ def 各算各的(files=None):
 if __name__ == '__main__':
     if '--自检' in sys.argv:
         e = 自检(); print('\n'.join(e) or '颜色核对 自检通过（26 S1、S10、S11 浅橙红↔琥珀黄相邻必停、同屏重复同色必停、新分色合格、10 个单元也分得开、01–24 不回头查）'); sys.exit(1 if e else 0)
-    if '--清单' in sys.argv: print(f'颜色太像清单：01–24 共 {清单()} 屏，写进 制作记录/颜色太像清单.md'); sys.exit(0)
+    if '--清单' in sys.argv: print(f'颜色太像清单：01–24 和 25 起旧定稿共 {清单()} 屏，写进 制作记录/颜色太像清单.md'); sys.exit(0)
     print(__doc__)
