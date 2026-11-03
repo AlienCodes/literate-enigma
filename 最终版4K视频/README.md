@@ -42,3 +42,4 @@
 | 35 | The Bird That Beat the Letter Home | 比信先到家的鸟 | 13.4 MB |
 | 36 | The Company That Invented Its Own Killer | 发明了数码相机，却被它打败 | 13.4 MB |
 | 37 | Dynamite for the Heart | 炸药大王的救心药 | 13.4 MB |
+| 39 | Y2K The Crisis That Success Erased | 千年虫：被成功抹去的危机 | 13.1 MB |
