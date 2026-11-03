@@ -44,7 +44,7 @@ S=[
      "（too…to…：太……而不能……；that 引导宾语从句）"]]),
 (4,[[[("In 26","在26项"),("field","野外"),("studies,","研究中，"),("networks","网络"),("helped","帮助"),("and","和"),("**hindered**","**阻碍**(hindered)"),("seedlings","幼苗的"),("about equally often,","频率大致相同，")],
      "（about equally often：次数大致一样多）"],
-    [[("with","而以"),("**neutral**","**中性**(neutral)"),("effects","效应"),("**predominating**.","**居多**(predominating)。")],
+    [[("with","并且"),("**neutral**","**中性的**(neutral)"),("effects","效应"),("**predominating**.","**占据大多数**(predominating)。")],
      "（with＋名词＋现在分词：with 复合结构作伴随状语）"]]),
 (4,[[[("No","没有任何一项经"),("**peer-reviewed**","**同行评审的**(peer-reviewed)"),("field","野外"),("study","研究"),("showed","表明，"),("**mature** trees","**成年**(mature)树木"),("**favouring**","会**偏爱**(favouring)"),("their own","自己的"),("offspring.","后代。")],
      "（show A doing：表明 A 在做某事；\nfavouring：英式拼写，美式 favoring）"]]),
