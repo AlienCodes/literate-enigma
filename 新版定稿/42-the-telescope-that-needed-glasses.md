@@ -4,30 +4,31 @@
 ## 英文
 On 24 April 1990 the space shuttle Discovery **lofted** the Hubble Space Telescope into orbit. The **observatory** **cradled** in the **payload** bay had cost about $1.5 billion, a **lavish** **investment** meant to fix its **gaze** on the **cosmos** and its **galaxies**. Money, it soon emerged, could not buy **clarity**.
 
-Its first **snapshots** came back **blurred** and **fuzzy**. In June 1990 NASA announced a flaw in the main mirror: its outer **rim** had been **flattened** by 2.2 micrometres, roughly a fiftieth of the **width** of a hair. That **deviation** **marred** the **optics**, leaving light without a **sharp** focus.
+Its first **snapshots** came back **blurred** and **fuzzy**. In June 1990 NASA announced a **flaw** in the main mirror: its **outer** **rim** had been **flattened** by 2.2 micrometres, roughly a fiftieth of the **width** of a hair. That **deviation** **marred** the **optics**, leaving light without a **sharp** focus.
 
-The trouble began with **calibration**. A **lens** in the **assembly** that checked the mirror's shape had been **offset** by about 1.3 **millimetres**, so the mirror was ground to the wrong **curve**. A second, independent test by the contractor, Perkin-Elmer, gave a **divergent** result, but engineers and NASA managers judged it less **reliable** and left the **contradictory** reading **unexplored**.
+The trouble began with **calibration**. A **lens** in the **assembly** that checked the mirror's shape had been **offset** by about 1.3 **millimetres**, so the mirror **was ground to** the wrong **curve**. A second, **independent test** by the **contractor**, Perkin-Elmer, gave a **divergent** result, but engineers and NASA managers judged it less **reliable** and left the **contradictory** reading **unexplored**.
 
-The mirror could not be repaired in orbit, so engineers **prescribed** **tailored** glasses. COSTAR, a **corrective** **cabinet** the size of a refrigerator, carried small mirrors on **adjustable** arms that **intercepted** the light and **compensated** for the **imperfect** mirror's **distortion** before the light reached the instruments. The mirror itself would stay **untouched**, and a new main camera was prepared.
+The mirror could not be repaired in orbit, so engineers **prescribed** **tailored** glasses. COSTAR, a **corrective** **cabinet** the size of a **refrigerator**, carried small mirrors on **adjustable** arms that **intercepted** the light and **compensated** for the **imperfect** mirror's **distortion** before the light reached the instruments. The mirror itself would stay **untouched**, and a new main camera was prepared.
 
-On 2 December 1993 Endeavour **ascended** with seven astronauts. After a **rendezvous**, they worked in **tandem** across five spacewalks, about 35 and a half hours of **exertion**, **installing** COSTAR and the new camera. The **imagery** turned **crisp**, Hubble's **vision** **renewed**. The mirror still carries that 2.2-micrometre flaw, and the light it **gathers** is corrected only after leaving it.
+On 2 December 1993 Endeavour **ascended** with seven astronauts. After a **rendezvous**, they worked in **tandem** across five **spacewalks**, about 35 and a half hours of **exertion**, **installing** COSTAR and the new camera. The **imagery** turned **crisp**, Hubble's **vision** **renewed**. The mirror still carries that 2.2-micrometre flaw, and the light it **gathers** is corrected only after leaving it.
 
 ## 中文
 
-1990年4月24日，"发现号"航天飞机把哈勃空间望远镜**送上**(lofted)轨道。这座**安放**(cradled)在**有效载荷**(payload)舱里的**天文台**(observatory)耗资约15亿美元，是一笔**巨额**(lavish)**投资**(investment)，旨在把**目光**(gaze)投向**宇宙**(cosmos)及其中的**星系**(galaxies)。人们很快发现，钱买不来**清晰**(clarity)。
+1990年4月24日，"发现号"航天飞机把哈勃空间望远镜**送上**(lofted)轨道。这座**安放**(cradled)在**有效载荷**(payload)舱里的**天文台**(observatory)耗资约15亿美元，是一笔**巨额**(lavish)**投资**(investment)，旨在把**目光**(gaze)投向**宇宙**(cosmos)及其中的**星系**(galaxies)。人们很快发现，金钱买不来**清晰度**(clarity)。
 
-它最初的**快照**(snapshots)传回来时**模糊**(blurred)不清、**朦胧**(fuzzy)一片。1990年6月，美国航天局宣布主镜有缺陷，主镜外侧**边缘**(rim)被**磨平**(flattened)了2.2微米，大约相当于头发丝**宽度**(width)的五十分之一。这一**偏差**(deviation)**损害**(marred)了**光学系统**(optics)，使光线无法形成**锐利**(sharp)的焦点。
+它最初的**快照**(snapshots)传回来时**模糊不清**(blurred)、**很不清楚**(fuzzy)。1990年6月，美国航天局宣布主镜的一个**缺陷**(flaw)，主镜**外侧的**(outer)**边缘**(rim)被**磨平**(flattened)了2.2微米，大约相当于头发丝**宽度**(width)的五十分之一。这一**偏差**(deviation)**损害**(marred)了**光学系统**(optics)，使光线无法形成**锐利**(sharp)的焦点。
 
-问题始于**校准**(calibration)。检测主镜形状的那套**组件**(assembly)中，一块**透镜**(lens)**错位**(offset)了约1.3**毫米**(millimetres)，主镜因此被磨成了错误的**曲面**(curve)。承包商珀金-埃尔默公司做的第二次独立测试给出了**不同**(divergent)的结果，但工程师和美国航天局的管理人员认为它不太**可靠**(reliable)，这一**相互矛盾**(contradictory)的读数也就**无人深究**(unexplored)。
+问题始于**校准**(calibration)。检测主镜形状的那套**组件**(assembly)中，一块**透镜**(lens)**错位了/偏离了**(offset)约1.3**毫米**(millimetres)，主镜因此**被磨成了**(was ground to)错误的**曲面**(curve)。**承包商**(contractor)珀金-埃尔默公司做的第二次**独立测试**(independent test)给出了**不同**(divergent)的结果，但工程师和美国航天局的管理人员认为它不太**可靠**(reliable)，这一**相互矛盾**(contradictory)的读数也就**无人深究**(unexplored)。
 
-主镜无法在轨道上修复，于是工程师**开出**(prescribed)了一副**量身定制**(tailored)的眼镜。COSTAR 是一个冰箱大小的**矫正**(corrective)**箱体**(cabinet)，**可调节**(adjustable)的机械臂上装着小镜子，在光线到达仪器之前将光**截住**(intercepted)，**抵消**(compensated)**有缺陷**(imperfect)的主镜造成的**畸变**(distortion)。主镜本身将保持**原封不动**(untouched)，一台新的主相机也已准备就绪。
+主镜无法在轨道上修复，于是工程师**开出**(prescribed)了一副**量身定制**(tailored)的眼镜。COSTAR 是一个**冰箱**(refrigerator)大小的**矫正**(corrective)**箱体**(cabinet)，**可调节**(adjustable)的机械臂上装着小镜子，**截住**(intercepted)光线，**抵消**(compensated)**有缺陷**(imperfect)的主镜造成的**畸变**(distortion)，这些都需要在光线到达仪器之前完成。主镜本身将保持**原封不动**(untouched)，一台新的主相机也已准备就绪。
 
-1993年12月2日，"奋进号"载着七名宇航员**升空**(ascended)。完成**交会**(rendezvous)后，他们**协同**(tandem)进行了五次太空行走，**辛苦作业**(exertion)共约35个半小时，**安装**(installing)了 COSTAR 和新相机。**影像**(imagery)变得**清楚分明**(crisp)，哈勃的**视力**(vision)得以**恢复**(renewed)。主镜至今仍带着那2.2微米的缺陷，它**收集**(gathers)的光要离开镜面之后才得到矫正。
+1993年12月2日，"奋进号"载着七名宇航员**升空**(ascended)。完成**交会**(rendezvous)后，他们**协同**(tandem)进行了五次**太空行走**(spacewalks)，**辛苦作业**(exertion)共约35个半小时，**安装**(installing)了 COSTAR 和新相机。**影像**(imagery)变得**清楚分明**(crisp)，哈勃的**视力**(vision)得以**恢复**(renewed)。主镜至今仍带着那2.2微米的缺陷，它**收集**(gathers)的光要离开镜面之后才会被矫正。
 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
-| lofted | v. (loft) 把……高高送起（loft a ball into the air） | 1 |
+| lofted into | 本文：把……送上；v. (loft … into) 把……送入（loft a satellite into orbit；loft a ball into the air） | 1 |
+| Telescope | n. (telescope) 望远镜（a space telescope；look through a telescope） | 1 |
 | cradled | v. (cradle) 轻轻抱着，稳妥安放（cradle a baby in one's arms） | 1 |
 | payload | n. 有效载荷（a satellite's payload；payload capacity） | 1 |
 | observatory | n. 天文台，观测站（an astronomical observatory） | 1 |
@@ -36,12 +37,14 @@ On 2 December 1993 Endeavour **ascended** with seven astronauts. After a **rende
 | gaze | n./v. 凝视，注视（a steady gaze；gaze at the stars） | 1 |
 | cosmos | n. 宇宙（the origins of the cosmos） | 1 |
 | galaxies | n. (galaxy) 星系（distant galaxies；the Milky Way galaxy） | 1 |
-| clarity | n. 清晰，明确（clarity of thought；picture clarity） | 1 |
+| clarity | n. 清晰度，清晰，明确（clarity of thought；picture clarity） | 1 |
 | snapshots | n. (snapshot) 快照；简要印象（holiday snapshots；a snapshot of life） | 2 |
 | blurred | adj. 模糊的（blurred vision/photos） | 2 |
 | fuzzy | adj. 模糊的，不清楚的；毛茸茸的（a fuzzy picture；fuzzy logic） | 2 |
+| outer | adj. 外侧的，外部的（the outer edge；outer space） | 2 |
 | rim | n. 边缘，边沿（the rim of a cup/glass） | 2 |
 | flattened | v. (flatten) 使变平，压平（flatten the dough） | 2 |
+| flaw | n. 缺陷，瑕疵（a flaw in the design；a fatal flaw） | 2 |
 | width | n. 宽度（the width of the road；2 metres in width） | 2 |
 | deviation | n. 偏差，偏离（a standard deviation；deviation from the plan） | 2 |
 | marred | v. (mar) 损坏，破坏（an occasion marred by violence） | 2 |
@@ -52,7 +55,10 @@ On 2 December 1993 Endeavour **ascended** with seven astronauts. After a **rende
 | assembly | n. 组件，装配；集会（a gearbox assembly；a school assembly） | 3 |
 | offset | v./n. 使偏移；抵消，弥补（offset losses；be offset by a few degrees） | 3 |
 | millimetres | n. (millimetre) 毫米（a few millimetres thick） | 3 |
+| was ground to | 本文：被磨成了……；v. (be ground to，grind 的过去分词) 被磨成……（be ground to a fine powder） | 3 |
 | curve | n. 曲线，曲面（a sharp curve in the road；a learning curve） | 3 |
+| independent test | n. 独立测试（an independent test/review） | 3 |
+| contractor | n. 承包商，承包人（a building contractor；a defence contractor） | 3 |
 | divergent | adj. 不同的，有分歧的（divergent views/interests） | 3 |
 | reliable | adj. 可靠的（reliable data/sources） | 3 |
 | contradictory | adj. 相互矛盾的（contradictory evidence/statements） | 3 |
@@ -61,6 +67,7 @@ On 2 December 1993 Endeavour **ascended** with seven astronauts. After a **rende
 | tailored | adj. 量身定做的，特制的（tailored advice；a tailored suit） | 4 |
 | corrective | adj. 矫正的，纠正的（corrective lenses/action） | 4 |
 | cabinet | n. 柜子，箱体；内阁（a filing cabinet；a cabinet minister） | 4 |
+| refrigerator | n. 冰箱（a fridge-freezer；keep food in the refrigerator） | 4 |
 | adjustable | adj. 可调节的（an adjustable seat/strap） | 4 |
 | intercepted | v. (intercept) 拦截，截住（intercept a pass/message） | 4 |
 | compensated | v. (compensate) 补偿，抵消（compensate for a loss/weakness） | 4 |
@@ -70,6 +77,7 @@ On 2 December 1993 Endeavour **ascended** with seven astronauts. After a **rende
 | ascended | v. (ascend) 上升，登上（ascend a staircase；the plane ascended） | 5 |
 | rendezvous | n. （航天器）交会；约会（a secret rendezvous；orbital rendezvous） | 5 |
 | tandem | n. 协力，配合；双人自行车（work in tandem with sb） | 5 |
+| spacewalks | n. (spacewalk) 太空行走（make a spacewalk；a seven-hour spacewalk） | 5 |
 | exertion | n. 费力，劳累（physical exertion；breathless from exertion） | 5 |
 | installing | v. (install) 安装（install software/a heating system） | 5 |
 | imagery | n. 影像，图像（总称）；意象（satellite imagery；poetic imagery） | 5 |
