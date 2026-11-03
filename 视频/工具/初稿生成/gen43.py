@@ -84,6 +84,7 @@ S=[
      "2011年8月卸任，10月去世，终年56岁。）"]]),
 ]
 CONF={
+"停顿位置":{"S3 alienated, / he @2.505":"2026-11-03 逐 2.5/10 ms 看声音实测（S3 w）：alienated 的 /d/ 在 2.46–2.4675 收尾（-32→-38 dB），2.4775–2.5075 衰减到 -48～-55 dB（2.5075 -54.9 dB 低谷）；he 的 /h/ 2.5375 起（-45 dB、重心 4.0→5.0 kHz 一路升），2.6275 起 iː 元音 -21→-11 dB；停顿 2.505 落在 alienated 尾音衰减之后、/h/ 之前的低谷里，是两词之间"},
 "合组":{
  "S2 was stripped of his managerial duties at the company he had co-founded":"对齐不了：at the company 是地点状语、he had co-founded 是省略关系代词的定语从句，中文“在他参与创办的公司里”必须整体放到动词前（沿用文章定稿语序），duties、company 拆开后中文语序全乱",
  "S16 Apple, he later said":"对齐不了：he later said 是插入语，中文“他后来说”必须放到句首，主语“苹果当时”放在它后面（沿用文章定稿语序）",
@@ -109,6 +110,7 @@ CONF={
 "数字":{"S15-1 150":"$150 million 中文写“1.5亿美元”，数值相同（150百万=1.5亿）；英文读 one hundred and fifty million dollars"},
 "方向":{"S1-1 after→经过":"after a bruising confrontation 中文“经过一场激烈的交锋”，“经过”表示在交锋之后，方向一致"},
 "同词异译":{"invested in：向/投资":"不是异译：invest A in B 短语整体标，被隔开的中文“向……投资”两处都标同一个英文（T22/T23）","reuniting with：与/重聚":"不是异译：reunite with 短语整体标，被隔开的中文“与……重聚”两处都标同一个英文（T22/T23）"},
+"读音":{"X":{"读音":"tˈɛn","依据":"2026-11-03 43 S14 Mac OS X：X 是罗马数字10，苹果官方读 ten（https://en.wikipedia.org/wiki/MacOS：Mac OS X，X pronounced ten）；按语境读音“Mac OS X”换成 tˈɛn，只认这一种读法（关掉按语境读音读回字母 ˈɛks 必须报出）"}},
 "短语":{"S8 floated … on":"不是搭配：on 12 December 1980 只引出日期，不是 float on 的固定用法",
  "S8 debuted … on":"不是搭配：on 24 January 1984 只引出日期，不是 debut on 的固定用法",
  "S14 core … of":"不是搭配：of the eventual Mac OS X 只表示所属，core 在这里是形容词修饰 software，不是 core of 的固定用法",
@@ -117,6 +119,8 @@ CONF={
 }
 out={"no":"43","title_en":"From a Garage to the Top of the World","title_zh":"从车库到世界之巅","title_fx":{"hl":["Garage","Top"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮按实际开口":True,"高亮开口门槛":40,
+     "合成标点":{"S2":[["Jobs, 30","Jobs; 30"]],"S16":[["Apple, he","Apple; he"]],"S17":[["iPod, and","iPod; and"]]},
+     "非人声区间":{"S3":[[2.505,2.532625,"紧贴词头"]],"S19":[[2.072792,2.363833]]},
      "术语":{"Apple":"苹果","John Sculley":"约翰·斯卡利","Sculley":"斯卡利","Steve Jobs":"史蒂夫·乔布斯","Jobs":"乔布斯","San Francisco":"旧金山","Steve Wozniak":"史蒂夫·沃兹尼亚克","Wozniak":"沃兹尼亚克","Macintosh":"Macintosh","NeXT":"NeXT","Lucasfilm":"卢卡斯影业","Pixar":"皮克斯","Toy Story":"玩具总动员","Mac OS X":"Mac OS X","Microsoft":"微软","iMac":"iMac","iPod":"iPod","iPhone":"iPhone","Exxon Mobil":"埃克森美孚"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
