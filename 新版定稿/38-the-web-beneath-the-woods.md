@@ -8,7 +8,7 @@ Most **terrestrial** plants **harbour** such **fungi**, whose **filaments** **fo
 
 The **metaphor** proved **irresistible**. Between 2015 and 2021, a forester's **bestseller**, an **acclaimed** novel, and an ecologist's **memoir** told readers that trees **converse**, **warn one another**, and, as "mother trees", **nurture** their **kin**. Yet the 1997 trees were seedlings, not **elderly** mothers.
 
-In February 2023, three researchers **combed through** the field evidence. They judged it too **sparse**, **inconsistent**, or **ambiguous** to **demonstrate** that shared networks are **widespread**. In 26 field studies, networks helped and **hindered** seedlings about equally often, with **neutral** effects **predominating**. No **peer-reviewed** field study showed **mature** trees **favouring** their own offspring. **Unsupported** **assertions** in later papers had doubled over 25 years, with **citations** **skewed** towards positive results.
+In February 2023, three researchers **combed through** the field evidence. They judged it too **sparse**, **inconsistent**, or **ambiguous** to **demonstrate** that shared networks are **widespread**. In 26 field studies, networks helped and **hindered** seedlings about equally often, with **neutral** effects **predominating**. No **peer-reviewed** field study showed **mature** trees **favouring** their own **offspring**. **Unsupported** **assertions** in later papers had doubled over 25 years, with **citations** **skewed** towards positive results.
 
 None of this **disproves** the networks' existence. In January 2025, defenders faulted the critique's methods. The critics **concede** that carbon and nutrients can **migrate** between trees underground. It is evidence **unearthed** in real forests, not the **allure** of a family **saga**, that must settle how much the networks **convey**, and whether it matters.
 
@@ -20,7 +20,7 @@ None of this **disproves** the networks' existence. In January 2025, defenders f
 
 结果，这个**比喻**(metaphor)**令人难以抗拒**(irresistible)。2015年至2021年间，一位护林人的**畅销书**(bestseller)、一部**广受赞誉的**(acclaimed)小说和一位生态学家的**回忆录**(memoir)都向读者讲述，树木会**交谈**(converse)，会**互相示警**(warn one another)，还会作为“母树”**哺育/养育**(nurture)自己的**亲族**(kin)。然而，1997年实验里的树都还是幼苗，并非**年迈的**(elderly)母亲。
 
-2023年2月，三位研究者**梳理**(combed through)了野外证据。他们认为，这些证据或过于**稀少**(sparse)，或**互不一致**(inconsistent)，或**含糊不清**(ambiguous)，不足以**证明**(demonstrate)共享网络**普遍存在**(widespread)。在26项野外研究中，网络帮助和**阻碍**(hindered)幼苗的频率大致相同，并且**中性的**(neutral)效应**占据大多数**(predominating)。没有任何一项经**同行评审**(peer-reviewed)的野外研究表明，**成年**(mature)树木会**偏爱**(favouring)自己的后代。在后来的论文中，**缺乏依据的**(unsupported)**论断**(assertions)在25年间增加了一倍，**引用**(citations)也**偏向**(skewed)正面结果。
+2023年2月，三位研究者**梳理**(combed through)了野外证据。他们认为，这些证据或过于**稀少**(sparse)，或**互不一致**(inconsistent)，或**含糊不清**(ambiguous)，不足以**证明**(demonstrate)共享网络**普遍存在**(widespread)。在26项野外研究中，网络帮助和**阻碍**(hindered)幼苗的频率大致相同，并且**中性的**(neutral)效应**占据大多数**(predominating)。没有任何一项经**同行评审**(peer-reviewed)的野外研究表明，**成年**(mature)树木会**偏爱**(favouring)自己的**后代**(offspring)。在后来的论文中，**缺乏依据的**(unsupported)**论断**(assertions)在25年间增加了一倍，**引用**(citations)也**偏向**(skewed)正面结果。
 
 这一切都不能**否定**(disproves)这些网络的存在。2025年1月，共享网络说的拥护者指摘了这篇批评文章的方法。批评者也**承认**(concede)，碳和养分可以经由地下在树与树之间**迁移**(migrate)。网络究竟**输送**(convey)了多少、这又是否要紧，必须由在真实森林中**发掘**(unearthed)出的证据来裁定，而不能凭一部家族**传奇**(saga)的**魅力**(allure)来决定。
 
@@ -76,6 +76,7 @@ None of this **disproves** the networks' existence. In January 2025, defenders f
 | peer-reviewed | adj. 经同行评审的（a peer-reviewed journal/study/paper）；peer review n. 同行评审 | 4 |
 | mature | adj. 成年的，成熟的（mature trees/adults；a mature forest）；（人）成熟稳重的；v. 成熟；（保单等）到期 | 4 |
 | favouring | v. (favour) 偏爱，优待（favour one's own offspring；favour sb over sb）；支持，赞成（favour a plan）；有利于（conditions favour growth）；美式 favor | 4 |
+| offspring | n. 后代，子女，（动植物的）幼体（单复数同形；produce offspring；their own offspring 它们自己的后代） | 4 |
 | unsupported | adj. 缺乏依据的，无证据支持的（unsupported claims/assertions/statements）；无支撑的 | 4 |
 | assertions | n. (assertion) 论断，断言，主张（make an assertion；an unsupported/bold assertion）；assert v. 断言 | 4 |
 | citations | n. (citation) 引用，引文（citation bias 引用偏差；cite v. 引用）；（军人等的）嘉奖令；传票 | 4 |
