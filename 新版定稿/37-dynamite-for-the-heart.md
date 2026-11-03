@@ -8,7 +8,7 @@ Nobel **tamed** the liquid by **blending** it with kieselguhr, a **porous** eart
 
 Nitroglycerin had **side-effects**. Factory **operatives** suffered **racking** headaches, and their **tolerance**, built over the week, **ebbed** at weekends. Mondays brought a **recurrence**, with **dizziness** and **palpitations**, **hence** the name Monday disease. In 1879 William Murrell reported in The Lancet on its **therapeutic** use against angina pectoris, attacks of chest pain.
 
-On 25 October 1896 Nobel, who had angina, wrote to his **aide** that by an irony of fate doctors had prescribed him nitroglycerin to take **internally**. Its **alias**, Trinitrin, was chosen, he explained, to avoid **frightening** **pharmacists** or the public. He did not **comply**. **Partly** **paralysed** by a **cerebral** haemorrhage, he died at his San Remo **villa** on 10 December 1896.
+On 25 October 1896 Nobel, who had angina, wrote to his **aide** that **by an irony of fate** doctors had prescribed him nitroglycerin to take **internally**. Its **alias**, Trinitrin, was chosen, he explained, to avoid **frightening** **pharmacists** or the public. He did not **comply**. **Partly** **paralysed** by a **cerebral** haemorrhage, he died at his San Remo **villa** on 10 December 1896.
 
 In 1977 Murad **ascertained** that nitroglycerin releases nitric oxide, which **widens** blood vessels. Furchgott found an **unidentified** relaxing **factor** in **vascular** **linings** in 1980, and Ignarro recognised it as nitric oxide in 1986. The **trio** shared the 1998 Nobel Prize in Physiology or Medicine. Its **presentation** speech, on 10 December, the anniversary of Nobel's death, **quoted** his **ironic** letter.
 
@@ -20,7 +20,7 @@ In 1977 Murad **ascertained** that nitroglycerin releases nitric oxide, which **
 
 硝酸甘油有**副作用**(side-effects)。工厂**工人**(operatives)饱受**折磨人**(racking)的头痛，他们的**耐受性**(tolerance)在一周中逐渐建立，到周末又**减退**(ebbed)。每逢星期一，头痛便**复发**(recurrence)，还伴有**眩晕**(dizziness)和**心悸**(palpitations)，**因此**(hence)得名"星期一病"。1879年，威廉·默雷尔在《柳叶刀》上报告了它对心绞痛的**治疗**(therapeutic)用途，心绞痛即阵发性的胸痛。
 
-1896年10月25日，患有心绞痛的诺贝尔写信给他的**助手**(aide)，说命运真是讽刺，医生竟给他开了硝酸甘油让他**内服**(internally)。他解释说，这种药的**别名**(alias)Trinitrin是特意选的，为的是避免**吓到**(frightening)那些**药剂师**(pharmacists)和公众。他没有**遵从**(comply)医嘱。他因**脑部**(cerebral)出血，身体**部分**(partly)出现**瘫痪**(paralysed)，于1896年12月10日在圣雷莫的**别墅**(villa)中去世。
+1896年10月25日，患有心绞痛的诺贝尔写信给他的**助手**(aide)，说**命运真是讽刺**(by an irony of fate)，医生竟给他开了硝酸甘油让他**内服**(internally)。他解释说，这种药的**别名**(alias)Trinitrin是特意选的，为的是避免**吓到**(frightening)那些**药剂师**(pharmacists)和公众。他没有**遵从**(comply)医嘱。他因**脑部**(cerebral)出血，身体**部分**(partly)出现**瘫痪**(paralysed)，于1896年12月10日在圣雷莫的**别墅**(villa)中去世。
 
 1977年，穆拉德**查明**(ascertained)硝酸甘油会释放一氧化氮，使血管**扩张**(widens)。1980年，弗奇戈特在**血管**(vascular)的**内壁**(linings)中发现了一种**未经鉴定**(unidentified)的舒张**因子**(factor)；1986年，伊格纳罗认定它就是一氧化氮。这个**三人组**(trio)分享了1998年诺贝尔生理学或医学奖。12月10日，即诺贝尔的忌日，**颁奖**(presentation)致辞**引述**(quoted)了他那封感叹命运**讽刺**(ironic)的信。
 
@@ -63,6 +63,7 @@ In 1977 Murad **ascertained** that nitroglycerin releases nitric oxide, which **
 | hence | adv. 因此，由此（hence the name） | 3 |
 | therapeutic | adj. 治疗的，有疗效的（therapeutic effects/drugs） | 3 |
 | aide | n. 助手，助理（a presidential aide） | 4 |
+| by an irony of fate | phr. 说来讽刺，命运弄人（by an irony of fate） | 4 |
 | internally | adv. 内服地；在内部（not to be taken internally） | 4 |
 | alias | n. 别名，化名（under an alias） | 4 |
 | frightening | v./adj. (frighten) 使惊吓；令人害怕的（frighten sb away；a frightening experience） | 4 |

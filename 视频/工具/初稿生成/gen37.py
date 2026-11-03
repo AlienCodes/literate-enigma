@@ -40,7 +40,7 @@ S=[
      "（attacks of chest pain：同位语，补充说明 angina pectoris）"]]),
 (4,[[[("On 25 October 1896","1896年10月25日，"),("Nobel, who had angina,","患有心绞痛的诺贝尔")],
      "（who had angina：非限制性定语从句，补充说明 Nobel）"],
-    [[("wrote","写信"),("to his **aide**","给他的**助手**(aide)，"),("that","说"),("by an irony of fate","命运真是讽刺，")],
+    [[("wrote","写信"),("to his **aide**","给他的**助手**(aide)，"),("that","说"),("**by an irony of fate**","**命运真是讽刺**(by an irony of fate)，")],
      "（that…：宾语从句，说明信的内容；\nby an irony of fate：说来讽刺，命运弄人）"],
     [[("doctors","医生"),("had prescribed him","竟给他开了"),("nitroglycerin","硝酸甘油"),("to take **internally**.","让他**内服**(internally)。")],
      "（prescribe sb sth：给某人开某药；\nto take internally：不定式表目的）"]]),
