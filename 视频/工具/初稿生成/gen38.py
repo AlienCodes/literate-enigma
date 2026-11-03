@@ -48,7 +48,7 @@ S=[
      "（with＋名词＋现在分词：with 复合结构作伴随状语）"]]),
 (4,[[[("No","没有任何一项经"),("**peer-reviewed**","**同行评审的**(peer-reviewed)"),("field","野外"),("study","研究"),("showed","表明，"),("**mature** trees","**成年**(mature)树木"),("**favouring**","会**偏爱**(favouring)"),("their own","自己的"),("**offspring**.","**后代**(offspring)。")],
      "（show A doing：表明 A 在做某事；\nfavouring：英式拼写，美式 favoring）"]]),
-(4,[[[("**Unsupported**","在后来的论文中，**缺乏依据的**(Unsupported)"),("**assertions** in later papers","**论断/断言**(assertions)"),("had doubled over 25 years,","在25年间增加了一倍，")],
+(4,[[[("**Unsupported**","在后来的论文中，**缺乏依据的**(Unsupported)"),("**assertions** in later papers","**论断/断言**(assertions)"),("had **doubled** over 25 years,","在25年间**增加了一倍/翻了一倍**(doubled)，")],
      "（in later papers：介词短语作后置定语，修饰 assertions；\nhad doubled：过去完成时）"],
     [[("with **citations**","**引用**(citations)也"),("**skewed** towards","**偏向**(skewed)"),("positive","正面"),("results.","结果。")],
      "（with＋名词＋过去分词：with 复合结构作伴随状语；\nskewed towards…：偏向……）"]]),
@@ -97,11 +97,13 @@ CONF={
  "S18-2 how much the networks convey,":"how much 宾语从句，中文“网络究竟输送了多少”疑问词按中文习惯放到动词后"},
 "牛津逗号":{"S2 In a Canadian forest, researchers enclosed paper birch and":"不是三项并列：and 只连接 paper birch 和 Douglas fir 两种树",
  "S12 In 26 field studies, networks helped and":"不是三项并列：and 只连接 helped 和 hindered 两个动词"},
-"方向":{"S14-1 later→论断":"later 在 in later papers 里，中文“在后来的论文中”因后置定语倒序提到前一组句首，“后来”方向一致"},
+"方向":{"S14-1 later→论断/断言":"later 在 in later papers 里，中文“在后来的论文中”因后置定语倒序提到前一组句首，“后来”方向一致"},
 "中文意思":{
  "S4 swapping":"swap A for B 本文中文“拿去换取”，“换取”一处就是全部意思，没有被隔开",
  "S14 skewed":"本文义项“偏向”，中文“偏向正面结果”只有一处，没有“的”的另一半"},
 "短语":{
+ "S14 doubled … over":"不是搭配：over 25 years 是时间状语（在25年间），double 单独就是“增加一倍”",
+ "S14 doubled … with":"不是搭配：with 属于后面的 with 复合结构（with citations skewed…），和 doubled 无关",
  "S2 bathed … in":"不是搭配：in carbon dioxide 引出沐浴的介质，bathe 单独就是“使沐浴、使笼罩”",
  "S2 bathed … with":"不是搭配：with 属于 laced with（已整体标），和 bathed 无关",
  "S4 harbour … for":"不是搭配：for 属于 forage for water，和 harbour 无关",
@@ -133,7 +135,7 @@ CONF={
 #  S13 [3.18, 3.355792, 紧贴词头]（原自动切点 [3.18, 3.32]，纯人声报 噗声 109.65–109.67s）：3.325–3.3525 是 -49～-57 dB 的低频残声（低频 -0.3～-2.5 dB），是 trees 后吸气的尾巴；favouring 的 /f/ 3.355 起（重心 4.2→6.2 kHz），右头切在过零点 3.355792，/f/ 完整保留
 #  S18 [5.432792, 5.751125, 紧贴词头]：saga 的 ə 到 5.39 收尾（-39 dB），5.40–5.43 静音 -57～-63 dB（左头 5.432792 过零点，外侧 5 ms -56～-60 dB）；5.44–5.68 是 -44～-52 dB 的吸气（重心 2.0–2.7 kHz、低频 -5～-24 dB），5.69–5.74 是 -45～-53 dB 的低频残声，和 that 之间隔着 5.745–5.75 的 -58～-60 dB 低谷，不连着词；右头切在 5.751125 过零点，之后 5.755 起一路升进 that 的 /ð/（5.77 -32.8、5.80 -8.6 dB），保留
 #  S18 [8.357667, 8.556167, 紧贴词头]：convey 的 eɪ 到 8.325 收尾，8.3575 低谷 -57.5 dB（左头）；8.37–8.55 是 -40～-50 dB 的吸气（重心 2.5–3.0 kHz、低频 -5～-26 dB）；8.555 低谷 -54.6 dB（右头），8.5575–8.59 低频 -1 dB 是 and 的浊音起音（保留），8.595 起 and 的元音
-out={"no":"38","title_en":"The Web Beneath the Woods","title_zh":"林下之网","title_fx":{"hl":["Web","Woods"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["linking","nitrogen","offspring"],
+out={"no":"38","title_en":"The Web Beneath the Woods","title_zh":"林下之网","title_fx":{"hl":["Web","Woods"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["linking","nitrogen","offspring","doubled"],
      "说明放宽特批":{"S18":{"倍数":"整屏","依据":"用户 2026-10-25 看 25 简述截图：“以后以后一定要合理的安排，不要压缩成这个样子……这个地方特批一下”（用户同意记录：原话适用以后各篇，26 起沿用）"}},
      "非人声区间":{"S11":[[2.767958,2.990125,"紧贴两头"]],"S12":[[1.737542,2.0475,"紧贴词尾"],[5.505,5.774917,"紧贴词头"]],"S13":[[3.18,3.355792,"紧贴词头"]],"S18":[[5.432792,5.751125,"紧贴词头"],[8.357667,8.556167,"紧贴词头"]]},
      "停顿处除阻":{"S11":{"2":[2.76,2.990125,"t"]}},
