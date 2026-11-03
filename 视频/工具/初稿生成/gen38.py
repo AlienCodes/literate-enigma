@@ -48,7 +48,7 @@ S=[
      "（with＋名词＋现在分词：with 复合结构作伴随状语）"]]),
 (4,[[[("No","没有任何一项经"),("**peer-reviewed**","**同行评审的**(peer-reviewed)"),("field","野外"),("study","研究"),("showed","表明，"),("**mature** trees","**成年**(mature)树木"),("**favouring**","会**偏爱**(favouring)"),("their own","自己的"),("**offspring**.","**后代**(offspring)。")],
      "（show A doing：表明 A 在做某事；\nfavouring：英式拼写，美式 favoring）"]]),
-(4,[[[("**Unsupported**","在后来的论文中，**缺乏依据的**(Unsupported)"),("**assertions** in later papers","**论断**(assertions)"),("had doubled over 25 years,","在25年间增加了一倍，")],
+(4,[[[("**Unsupported**","在后来的论文中，**缺乏依据的**(Unsupported)"),("**assertions** in later papers","**论断/断言**(assertions)"),("had doubled over 25 years,","在25年间增加了一倍，")],
      "（in later papers：介词短语作后置定语，修饰 assertions；\nhad doubled：过去完成时）"],
     [[("with **citations**","**引用**(citations)也"),("**skewed** towards","**偏向**(skewed)"),("positive","正面"),("results.","结果。")],
      "（with＋名词＋过去分词：with 复合结构作伴随状语；\nskewed towards…：偏向……）"]]),

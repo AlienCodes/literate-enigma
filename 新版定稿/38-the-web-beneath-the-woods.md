@@ -20,7 +20,7 @@ None of this **disproves** the networks' existence. In January 2025, defenders f
 
 结果，这个**比喻**(metaphor)**令人难以抗拒**(irresistible)。2015年至2021年间，一位护林人的**畅销书**(bestseller)、一部**广受赞誉的**(acclaimed)小说和一位生态学家的**回忆录**(memoir)都向读者讲述，树木会**交谈**(converse)，会**互相示警**(warn one another)，还会作为“母树”**哺育/养育**(nurture)自己的**亲族**(kin)。然而，1997年实验里的树都还是幼苗，并非**年迈的**(elderly)母亲。
 
-2023年2月，三位研究者**梳理**(combed through)了野外证据。他们认为，这些证据或过于**稀少**(sparse)，或**互不一致**(inconsistent)，或**含糊不清**(ambiguous)，不足以**证明**(demonstrate)共享网络**普遍存在**(widespread)。在26项野外研究中，网络帮助和**阻碍**(hindered)幼苗的频率大致相同，并且**中性的**(neutral)效应**占据大多数**(predominating)。没有任何一项经**同行评审**(peer-reviewed)的野外研究表明，**成年**(mature)树木会**偏爱**(favouring)自己的**后代**(offspring)。在后来的论文中，**缺乏依据的**(unsupported)**论断**(assertions)在25年间增加了一倍，**引用**(citations)也**偏向**(skewed)正面结果。
+2023年2月，三位研究者**梳理**(combed through)了野外证据。他们认为，这些证据或过于**稀少**(sparse)，或**互不一致**(inconsistent)，或**含糊不清**(ambiguous)，不足以**证明**(demonstrate)共享网络**普遍存在**(widespread)。在26项野外研究中，网络帮助和**阻碍**(hindered)幼苗的频率大致相同，并且**中性的**(neutral)效应**占据大多数**(predominating)。没有任何一项经**同行评审**(peer-reviewed)的野外研究表明，**成年**(mature)树木会**偏爱**(favouring)自己的**后代**(offspring)。在后来的论文中，**缺乏依据的**(unsupported)**论断/断言**(assertions)在25年间增加了一倍，**引用**(citations)也**偏向**(skewed)正面结果。
 
 这一切都不能**否定**(disproves)这些网络的存在。2025年1月，共享网络说的拥护者指摘了这篇批评文章的方法。批评者也**承认**(concede)，碳和养分可以经由地下在树与树之间**迁移**(migrate)。网络究竟**输送**(convey)了多少、这又是否要紧，必须由在真实森林中**发掘**(unearthed)出的证据来裁定，而不能凭一部家族**传奇**(saga)的**魅力**(allure)来决定。
 
