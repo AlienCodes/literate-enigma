@@ -4,7 +4,7 @@
 ## 英文
 In 1968 Spencer Silver, a scientist at 3M, **set out to** make a **super-strong** **adhesive**. The **polymer** he produced did **something else**. Its tiny **spheres** formed a layer with little **tack**, giving paper a **temporary** hold, so it would **adhere**, **peel off**, and be **reapplied**. To an **inventor** chasing strength, the **formulation** was a **setback**.
 
-For five years Silver **acted as** its **promoter** within 3M's **corporate** ranks, in **informal** chats and at **seminars**. In his own **summary**, it was a solution without a problem. His **perseverance** met **indifference**. The **unconventional** material found no use, and the **pursuit** proved **fruitless**.
+For five years Silver **acted as** its **promoter** within 3M's **corporate** ranks, in **informal** chats and at **seminars**. In his own **summary**, it was a **solution** without a problem. His **perseverance** met **indifference**. The **unconventional** material found no use, and the **pursuit** proved **fruitless**.
 
 In 1974 Art Fry, a colleague who had heard one of those talks, faced a small **annoyance** at church. The paper **bookmarks** **wedged** in his **choir**'s **hymn** book kept getting **dislodged** and falling out. The **frustration** gave Fry an idea. The **unwanted** adhesive could make a marker that would **cling** to a page, stay put, and leave it **undamaged**.
 
@@ -16,7 +16,7 @@ On 6 April 1980 the **pads**, **rebranded** as Post-it Notes, went on sale **nat
 
 1968年，3M公司的科学家斯潘塞·西尔弗**着手**(set out to)研制一种**超强**(super-strong)**黏合剂**(adhesive)。然而他制成的**聚合物**(polymer)却做了**其他的事情**(something else)。它的微小的**球状颗粒**(spheres)形成一层**黏着力**(tack)很小的涂层，让纸张获得**暂时**(temporary)的黏着，因此纸张能**粘附**(adhere)上去，**揭下**(peel off)后还能**重新贴上**(reapplied)。对一个追求强度的**发明者**(inventor)来说，这种**配方**(formulation)是一次**挫折**(setback)。
 
-五年间，西尔弗在3M的**企业**(corporate)上下**充当**(acted as)它的**推广者**(promoter)，在**非正式**(informal)的闲谈中、也在**研讨会**(seminars)上介绍它。按他自己的**概括**(summary)，这是一个找不到问题的解决方案。他的**坚持不懈**(perseverance)换来的是**冷漠**(indifference)。这种**非常规**(unconventional)的材料找不到用途，这番**追求**(pursuit)终究**一无所获**(fruitless)。
+五年间，西尔弗在3M的**企业**(corporate)上下**充当**(acted as)它的**推广者**(promoter)，在**非正式**(informal)的闲谈中、也在**研讨会**(seminars)上介绍它。用他自己的话**总结**(summary)，这完全是一个**解决**(solution)“不存在的问题”的**方案**(solution)。他的**坚持不懈**(perseverance)换来的是**冷漠**(indifference)。这种**非常规**(unconventional)的材料找不到用途，这番**追求**(pursuit)终究**一无所获**(fruitless)。
 
 1974年，听过其中一次讲座的同事阿特·弗莱在教堂里遇到了一件小小的**烦心事**(annoyance)。他所在**唱诗班**(choir)的**赞美诗**(hymn)集里**夹着**(wedged)的纸**书签**(bookmarks)总是**移位**(dislodged)，掉出来。这份**懊恼**(frustration)让弗莱想到一个主意。这种**没人要**(unwanted)的黏合剂可以做成一种书签，**附着**(cling)在书页上不会移动，还能让书页**完好无损**(undamaged)。
 
@@ -46,7 +46,8 @@ On 6 April 1980 the **pads**, **rebranded** as Post-it Notes, went on sale **nat
 | corporate | adj. 公司的，企业的（corporate culture/headquarters） | 2 |
 | informal | adj. 非正式的（an informal meeting） | 2 |
 | seminars | n. (seminar) 研讨会（attend a seminar on marketing） | 2 |
-| summary | n. 概括，摘要（a brief summary；in summary） | 2 |
+| summary | n. 总结，概括，摘要（a brief summary；in summary） | 2 |
+| solution | n. 解决方案，解决办法（find a solution to the problem） | 2 |
 | perseverance | n. 坚持不懈，毅力（show great perseverance） | 2 |
 | indifference | n. 冷漠，漠不关心（public indifference to the issue） | 2 |
 | unconventional | adj. 非常规的（unconventional methods） | 2 |
