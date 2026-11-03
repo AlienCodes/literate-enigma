@@ -10,7 +10,7 @@ Then **midnight** **struck** on 31 December 1999, and little went wrong. **Glitc
 
 Many saw it differently: the threat had been **exaggerated**, even a **hoax**. Yet calm **prevailed** **largely** because so much had been fixed. This is the **preparedness paradox**: when **precautions** work, the danger they **ward off** never appears, so it looks **imaginary**. **Tedious** repairs earned **mockery** rather than **gratitude**.
 
-Critics noted that Italy and South Korea spent far less yet fared no worse. The **comparison** **misleads**: those low figures often **omitted** what firms spent, and much of the **remedial** work replaced **obsolete** systems **overdue** for upgrading. Nobody can say which dollars were **essential** and which **excessive**. **Prevention** that works may leave nothing but an **invoice**, to be weighed against a **catastrophe** that might have been.
+Critics noted that Italy and **South Korea** spent far less yet **fared no worse**. The **comparison** **misleads**: those low figures often **omitted** what firms spent, and much of the **remedial** work replaced **obsolete** systems **overdue** for upgrading. Nobody can say which dollars were **essential** and which **excessive**. **Prevention** that works may leave nothing but an **invoice**, to **be weighed against** a **catastrophe** that might have been.
 
 ## 中文
 
@@ -22,7 +22,7 @@ Critics noted that Italy and South Korea spent far less yet fared no worse. The 
 
 许多人却不这么看：在他们眼里，这一威胁被**夸大**(exaggerated)了，甚至是一场**骗局**(hoax)。然而，平静之所以**占据上风**(prevailed)，**很大程度上**(largely)正是因为大量问题早已修好。这就是"**防备悖论**(preparedness paradox)"：**预防措施**(precautions)一旦奏效，它们所**抵御**(ward off)的危险就永远不会出现，于是看起来像是**虚构的**(imaginary)。那些**枯燥乏味的**(Tedious)修复工作换来的是**嘲笑**(mockery)，而不是**感激**(gratitude)。
 
-批评者指出，意大利和韩国花得少得多，结果也不比别国差。但这种**比较**(comparison)**具有误导性**(misleads)：那些低支出数字往往**遗漏**(omitted)了企业自己的花费，而且很大一部分**补救**(remedial)工作替换的是**早该**(overdue)升级的**过时**(obsolete)系统。谁也说不清哪些钱是**必不可少的**(essential)，哪些是**过度的**(excessive)。奏效的**预防**(Prevention)留下的可能只有一张**账单**(invoice)，留待与一场本可能发生的**灾难**(catastrophe)相权衡。
+批评者指出，意大利和**韩国**(South Korea)花得少得多，结果也**不比别国差**(fared no worse)。但这种**比较**(comparison)**具有误导性**(misleads)：那些低支出数字往往**遗漏**(omitted)了企业自己的花费，而且很大一部分**补救**(remedial)工作替换了**早该**(overdue)升级的**过时的/淘汰的**(obsolete)系统。谁也说不清哪些钱是**必不可少的**(essential)，哪些是**过度花费的**(excessive)。奏效的**预防**(Prevention)，可能只会留下一张**账单**(invoice)，用来**与**(be weighed against)一场本可能发生的**灾难**(catastrophe)**相权衡**(be weighed against)。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -76,6 +76,8 @@ Critics noted that Italy and South Korea spent far less yet fared no worse. The 
 | tedious | adj. 冗长乏味的，单调的（a tedious task/job） | 4 |
 | mockery | n. 嘲笑，嘲弄（an object of mockery）；徒具形式的东西（make a mockery of 使显得荒唐）；mock v. 嘲笑；adj. 模拟的（a mock exam） | 4 |
 | gratitude | n. 感激，感谢（express gratitude to sb for sth）；反义 ingratitude | 4 |
+| South Korea | n. 韩国（Korea 朝鲜半岛；Korean adj./n. 韩国的，韩国人，韩语） | 5 |
+| fared no worse | phr. 情况不比……差（fare v. 过得，进展：fare well/badly；fare n. 车费） | 5 |
 | comparison | n. 比较，对比（in comparison with 与……相比；by comparison）；compare v. | 5 |
 | misleads | v. (mislead) 误导，使产生错误印象（be misled into doing）；misleading adj. 误导性的 | 5 |
 | omitted | v. (omit) 遗漏，省略（omit sth from a list）；omit to do 忘了做；omission n. 遗漏 | 5 |
@@ -86,6 +88,7 @@ Critics noted that Italy and South Korea spent far less yet fared no worse. The 
 | excessive | adj. 过度的，过多的（excessive spending/force）；excess n. 过量 | 5 |
 | prevention | n. 预防，防止（disease prevention；Prevention is better than cure. 预防胜于治疗）；prevent v. | 5 |
 | invoice | n. 发票，账单（issue/send an invoice）；v. 开发票，开账单 | 5 |
+| be weighed against | phr. 与……相权衡，与……相比较（weigh A against B 权衡 A 与 B）；weigh v. 称重；权衡 | 5 |
 | catastrophe | n. 灾难，大祸（an environmental catastrophe；avert a catastrophe 避免灾难）；catastrophic adj. 灾难性的 | 5 |
 
 ## 史实与来源
