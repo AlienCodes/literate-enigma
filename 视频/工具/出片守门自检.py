@@ -213,6 +213,24 @@ def main():
         ok = p_.startswith('zˌɔːk') and 'zˈɔːk' not in p_
         print(f"{'✔' if ok else '✘'} A24重音：按语境读音只改重音 → {p_[:80]}")
         if not ok: fails.append('误拦：按语境读音只改重音（K145）')
+    if not only or 'A23大小写' in only:   # K148（43 NeXT）：读音改正的词中间有大写（ZorK），普通小写 zork 不许被当成它去换（原来不分大小写，换不到就停）；大小写对得上的照换
+        sys.path.insert(0, W); import make_video as MV
+        try: p_ = _读音(MV, {'ZorK': 'zˈuːk'}, {}, {}, 'the zork day', {'the zork day': 'ðə zˈɔːk dˈeɪ', 'ZorK': 'zˈiː ˈoʊ'})
+        except SystemExit as e: p_ = f'（停下）{e}'
+        try: q_ = _读音(MV, {'ZorK': 'zˈuːk'}, {}, {}, 'a ZorK', {'a ZorK': 'ɐ zˈiː ˈoʊ', 'ZorK': 'zˈiː ˈoʊ'})
+        except SystemExit as e: q_ = f'（停下）{e}'
+        ok = 'zˈɔːk' in p_ and 'zˈuːk' in q_
+        print(f"{'✔' if ok else '✘'} A23大小写：小写 zork 不动 → {p_[:30]}；ZorK 照换 → {q_[:30]}")
+        if not ok: fails.append('误拦：读音改正把大小写不同的普通词当成专名（K148）')
+    if not only or 'A24盖全局' in only:   # K147（19 S9 Dutch commerce）：词在读音改正表里（全局改成 zˈuːk），语境读音要能按原读法 zˈɑːk 换回来，不许停；别的句子仍按全局
+        sys.path.insert(0, W); import make_video as MV
+        try: p_ = _读音(MV, {'zork': 'zˈuːk'}, {}, {'zork it': {'词': 'zork', '读音': 'zˈɑːk'}}, 'zork it', {'zork it': 'zˈɑːk ɪt', 'zork': 'zˈɑːk'})
+        except SystemExit as e: p_ = f'（停下）{e}'
+        try: q_ = _读音(MV, {'zork': 'zˈuːk'}, {}, {'zork it': {'词': 'zork', '读音': 'zˈɑːk'}}, 'a zork', {'a zork': 'ɐ zˈɑːk', 'zork': 'zˈɑːk'})
+        except SystemExit as e: q_ = f'（停下）{e}'
+        ok = p_.startswith('zˈɑːk') and 'zˈuːk' in q_
+        print(f"{'✔' if ok else '✘'} A24盖全局：语境读音盖过读音改正 → {p_[:40]}；别处照全局 → {q_[:40]}")
+        if not ok: fails.append('误拦：语境读音盖不过读音改正（K147）')
     if not only or 'A36' in only:   # A36：复合词按它自己那一条读音改正换；所有格的 s 不被吞（注音函数直接测）
         sys.path.insert(0, W); import make_video as MV
         hb, bs = MV.PRON_WORDS.get('Haber-Bosch'), MV.PRON_WORDS.get('BASF')
