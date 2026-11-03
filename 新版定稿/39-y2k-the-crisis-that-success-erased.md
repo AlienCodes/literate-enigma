@@ -8,7 +8,7 @@ Governments and firms **braced** for **chaos**. In February 1998 **President** C
 
 Then **midnight** **struck** on 31 December 1999, and little went wrong. **Glitches** that did **crop up** were **sporadic** and mostly **minor**. Radiation-monitoring equipment **faltered** at Japan's Shika nuclear plant without any threat to safety, and a Pentagon ground system that processes **spy**-satellite data failed. In February 2000 a Senate committee **concluded** that the **expenditure** had been **justified**.
 
-Many saw it differently: the threat had been **exaggerated**, even a **hoax**. Yet calm **prevailed** **largely** because so much had been fixed. This is the preparedness paradox: when **precautions** work, the danger they **ward off** never appears, so it looks **imaginary**. **Tedious** repairs earned **mockery** rather than **gratitude**.
+Many saw it differently: the threat had been **exaggerated**, even a **hoax**. Yet calm **prevailed** **largely** because so much had been fixed. This is the **preparedness paradox**: when **precautions** work, the danger they **ward off** never appears, so it looks **imaginary**. **Tedious** repairs earned **mockery** rather than **gratitude**.
 
 Critics noted that Italy and South Korea spent far less yet fared no worse. The **comparison** **misleads**: those low figures often **omitted** what firms spent, and much of the **remedial** work replaced **obsolete** systems **overdue** for upgrading. Nobody can say which dollars were **essential** and which **excessive**. **Prevention** that works may leave nothing but an **invoice**, to be weighed against a **catastrophe** that might have been.
 
@@ -20,7 +20,7 @@ Critics noted that Italy and South Korea spent far less yet fared no worse. The 
 
 随后，1999年12月31日的**午夜**(midnight)钟声**敲响**(struck)，几乎没出什么问题。确实**意外出现**(crop up)的**小故障/小毛病**(Glitches)也是**零星的/偶发的**(sporadic)，而且大多**轻微**(minor)。日本志贺核电站的辐射监测设备**出了故障**(faltered)，但并未威胁安全；美国国防部一套处理**间谍**(spy)卫星数据的地面系统也曾失灵。2000年2月，美国参议院的一个委员会**得出结论**(concluded)，认定这笔**开支**(expenditure)是**合理的**(justified)。
 
-许多人却不这么看：在他们眼里，这一威胁被**夸大**(exaggerated)了，甚至是一场**骗局**(hoax)。然而，平静之所以**占据上风**(prevailed)，**很大程度上**(largely)正是因为大量问题早已修好。这就是"防备悖论"：**预防措施**(precautions)一旦奏效，它们所**抵御**(ward off)的危险就永远不会出现，于是看起来像是**虚构的**(imaginary)。那些**枯燥乏味的**(Tedious)修复工作换来的是**嘲笑**(mockery)，而不是**感激**(gratitude)。
+许多人却不这么看：在他们眼里，这一威胁被**夸大**(exaggerated)了，甚至是一场**骗局**(hoax)。然而，平静之所以**占据上风**(prevailed)，**很大程度上**(largely)正是因为大量问题早已修好。这就是"**防备悖论**(preparedness paradox)"：**预防措施**(precautions)一旦奏效，它们所**抵御**(ward off)的危险就永远不会出现，于是看起来像是**虚构的**(imaginary)。那些**枯燥乏味的**(Tedious)修复工作换来的是**嘲笑**(mockery)，而不是**感激**(gratitude)。
 
 批评者指出，意大利和韩国花得少得多，结果也不比别国差。但这种**比较**(comparison)**具有误导性**(misleads)：那些低支出数字往往**遗漏**(omitted)了企业自己的花费，而且很大一部分**补救**(remedial)工作替换的是**早该**(overdue)升级的**过时**(obsolete)系统。谁也说不清哪些钱是**必不可少的**(essential)，哪些是**过度的**(excessive)。奏效的**预防**(Prevention)留下的可能只有一张**账单**(invoice)，留待与一场本可能发生的**灾难**(catastrophe)相权衡。
 
@@ -69,6 +69,7 @@ Critics noted that Italy and South Korea spent far less yet fared no worse. The 
 | hoax | n. 骗局，恶作剧（a bomb hoax 虚假炸弹警报）；v. 欺骗 | 4 |
 | prevailed | v. (prevail) 占上风，盛行（calm prevailed 局面保持平静）；获胜（prevail over/against）；prevail on sb to do 劝说；prevailing adj. 盛行的 | 4 |
 | largely | adv. 在很大程度上，主要地（largely because… 主要因为……） | 4 |
+| preparedness paradox | n. 防备悖论（防备越成功，危险越显得不存在）；preparedness n. 准备，防备（emergency preparedness 应急准备）；paradox n. 悖论 | 4 |
 | precautions | n. (precaution) 预防措施（take precautions against sth）；precautionary adj. | 4 |
 | ward off | phr. v. 防止，避开，抵御（ward off danger/disease/an attack） | 4 |
 | imaginary | adj. 想象中的，虚构的（an imaginary enemy）；注意与 imaginative（富有想象力的）区分 | 4 |
