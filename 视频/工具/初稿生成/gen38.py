@@ -7,7 +7,7 @@ S=[
 (1,[[[("In a Canadian forest,","在加拿大的一片森林里，"),("researchers","研究人员"),("**enclosed**","**把**(enclosed in)"),("paper birch","纸桦"),("and","和"),("Douglas fir","花旗松的"),("**seedlings**","**幼苗**(seedlings)"),("**in** them,","**罩进**(enclosed in)袋**里**(enclosed in)，")],
      "（enclose A in B：把 A 罩进 B 里；\nthem：指上句的 plastic bags）"],
     [[("then","再"),("**bathed** each species","让两种幼苗分别**沐浴**(bathed)"),("in carbon dioxide **laced with**","在**掺有**(laced with)"),("a different","不同"),("**tracer**.","**示踪物**(tracer)的二氧化碳中。")],
-     "（each species：指纸桦和花旗松两种幼苗；\nlaced with…：过去分词短语作后置定语，修饰 carbon dioxide）"]]),
+     "（each species：指纸桦和花旗松两种幼苗；\nlaced with…：过去分词短语作后置定语，修饰 carbon dioxide；\n科学家给两棵树吸了加了不同“追踪器”的二氧化碳，\n就是为了看清楚它们有没有在地下互相交换碳元素）"]]),
 (1,[[[("Carbon","碳"),("**shuttled** both ways,","在两种树之间双向**穿梭**(shuttled)，")],
      "（both ways：双向，来回）"],
     [[("**apparently**","**似乎**(apparently)是"),("via","经由"),("**fungi** linking the trees' roots,","连接两者根系的**真菌**(fungi)；")],
