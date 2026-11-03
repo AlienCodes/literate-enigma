@@ -18,7 +18,7 @@ None of this **disproves** the networks' existence. In January 2025, defenders f
 
 大多数**陆生**(terrestrial)植物身上都**包含/携带着**(harbour)这类**真菌**(fungi)，它们的**菌丝**(filaments)四处**搜寻/寻找**(forage for)水分和**氮**(nitrogen)等**养分**(nutrients)，再拿去**换取**(swapping)植物的糖分。单个真菌就能**把**(knit into)多株植物**编织进**(knit into)同一张**共享网络**(shared network)。1997年8月7日，《自然》杂志**公布/发表了**(unveiled)这项研究，当期封面还送上一个**响亮好记的**(catchy)**新造词**(coinage)——“林木万维网”（wood-wide web）。
 
-结果，这个**比喻**(metaphor)**令人难以抗拒**(irresistible)。2015年至2021年间，一位护林人的**畅销书**(bestseller)、一部**广受赞誉的**(acclaimed)小说和一位生态学家的**回忆录**(memoir)都向读者讲述，树木会**交谈**(converse)，会互相示警，还会作为“母树”**照料**(nurture)自己的**亲族**(kin)。然而，1997年实验里的树都还是幼苗，并非**年迈的**(elderly)母亲。
+结果，这个**比喻**(metaphor)**令人难以抗拒**(irresistible)。2015年至2021年间，一位护林人的**畅销书**(bestseller)、一部**广受赞誉的**(acclaimed)小说和一位生态学家的**回忆录**(memoir)都向读者讲述，树木会**交谈**(converse)，会互相示警，还会作为“母树”**哺育/养育**(nurture)自己的**亲族**(kin)。然而，1997年实验里的树都还是幼苗，并非**年迈的**(elderly)母亲。
 
 2023年2月，三位研究者**梳理**(combed through)了野外证据。他们认为，这些证据或过于**稀少**(sparse)，或**互不一致**(inconsistent)，或**含糊不清**(ambiguous)，不足以**证明**(demonstrate)共享网络**普遍存在**(widespread)。在26项野外研究中，网络对幼苗有所助益和有所**妨碍**(hindered)的情形大致一样多，而以**中性**(neutral)效应**居多**(predominating)。没有任何一项经**同行评审**(peer-reviewed)的野外研究表明，**成年**(mature)树木会**偏爱**(favouring)自己的后代。在后来的论文中，**缺乏依据的**(unsupported)**论断**(assertions)在25年间增加了一倍，**引用**(citations)也**偏向**(skewed)正面结果。
 

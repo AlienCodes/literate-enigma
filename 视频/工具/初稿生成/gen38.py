@@ -32,7 +32,7 @@ S=[
      "（prove＋形容词：结果是……，事实证明……）"]]),
 (3,[[[("Between 2015 and 2021,","2015年至2021年间，"),("a forester's **bestseller**,","一位护林人的**畅销书**(bestseller)、"),("an **acclaimed** novel,","一部**广受赞誉的**(acclaimed)小说"),("and an ecologist's **memoir**","和一位生态学家的**回忆录**(memoir)")],
      "（a forester's bestseller, an acclaimed novel, and an ecologist's memoir：\n三个名词短语并列作主语）"],
-    [[("told readers that","都向读者讲述，"),("trees","树木会"),("**converse**,","**交谈**(converse)，"),("warn one another,","会互相示警，"),("and,","还会"),("as \"mother trees\",","作为“母树”"),("**nurture**","**照料**(nurture)"),("their","自己的"),("**kin**.","**亲族**(kin)。")],
+    [[("told readers that","都向读者讲述，"),("trees","树木会"),("**converse**,","**交谈**(converse)，"),("warn one another,","会互相示警，"),("and,","还会"),("as \"mother trees\",","作为“母树”"),("**nurture**","**哺育/养育**(nurture)"),("their","自己的"),("**kin**.","**亲族**(kin)。")],
      "（that 引导宾语从句；converse, warn, and nurture：三个谓语动词并列；\nas \"mother trees\"：作为“母树”，插入语）"]]),
 (3,[[[("Yet","然而，"),("the 1997 trees","1997年实验里的树"),("were seedlings,","都还是幼苗，"),("not **elderly** mothers.","并非**年迈的**(elderly)母亲。")],
      "（the 1997 trees：指1997年那项实验里的树）"]]),
