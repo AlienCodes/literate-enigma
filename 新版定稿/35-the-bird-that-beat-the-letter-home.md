@@ -8,7 +8,7 @@ The first **hints** of a compass were **celestial**. In the 1950s Kramer kept st
 
 In 1972 the Wiltschkos showed that **robins** read Earth's **magnetic** field by **inclination**, not **polarity**, unlike a **sailor**'s **needle**. In 1978 Schulten proposed a **light-triggered** reaction to **decode** the field. Proposed in 2000, cryptochrome, a protein in the **retina**, is now the **foremost** **suspect**. In 2021 robin cryptochrome proved more **finely** **tuned** in the laboratory than that of chickens or **pigeons**. Proof in a living bird is **awaited**.
 
-In 2014 came an **eerie**, **man-made** **twist**. At Oldenburg University, robins in campus **huts** lost that **sense**. In huts **clad in** grounded aluminium, they **reclaimed** their **bearings**. Removing the grounding, or **piping** radio noise in, **bewildered** them again in double-blind tests. The **interference**, a **murmur** from everyday **appliances**, sat far below WHO safety limits.
+In 2014 came an **eerie**, **man-made** **twist**. At Oldenburg University, robins in campus **huts** lost that **sense**. In huts **clad in** grounded aluminium, they **reclaimed** their **bearings**. Removing the grounding, or **piping** radio noise in, **bewildered** them again in double-blind tests. The **interference**, a **murmur** from everyday **appliances**, sat far below WHO **safety limits**.
 
 How a **wanderer** knows where it is remains **unanswered**. The compass code is partly **cracked**, but the **atlas** that steered the shearwater has yet to be read.
 
@@ -20,7 +20,7 @@ How a **wanderer** knows where it is remains **unanswered**. The compass code is
 
 1972年，维尔奇科夫妇证明，**知更鸟**(robins)读取地球**磁场**(magnetic)时，看的是**倾角**(inclination)，而不是**极性**(polarity)，这一点和**水手**(sailor)的罗盘**指针**(needle)不同。1978年，舒尔滕提出了一种**由光触发**(light-triggered)、用于**解码**(decode)地球磁场的反应。2000年，**视网膜**(retina)中的一种蛋白质隐花色素被提了出来，如今它是**头号**(foremost)**嫌疑对象**(suspect)。2021年的实验室测试表明，知更鸟的隐花色素比鸡和**鸽子**(pigeons)的**调校**(tuned)得更**精细**(finely)。在活鸟身上的证据，仍**有待**(awaited)获取。
 
-2014年，事情出现了一个**诡异**(eerie)的、**人为**(man-made)的**转折**(twist)。在奥尔登堡大学，校园**小木屋**(huts)里的知更鸟失去了这种**感知/感官**(sense)。在**覆有**(clad in)接地铝板**的**(clad in)小屋里，它们**找回**(reclaimed)了它们的**方向**(bearings)。在双盲实验中，拆掉接地，或往屋里**灌入**(piping)无线电噪声，又让它们**晕头转向**(bewildered)。这种**干扰**(interference)只是日常**电器**(appliances)发出的一阵电磁**低语**(murmur)，强度远低于世卫组织的安全限值。
+2014年，事情出现了一个**诡异**(eerie)的、**人为**(man-made)的**转折**(twist)。在奥尔登堡大学，校园**小木屋**(huts)里的知更鸟失去了这种**感知/感官**(sense)。在**覆有**(clad in)接地铝板**的**(clad in)小屋里，它们**找回**(reclaimed)了它们的**方向**(bearings)。无论是拆掉接地，还是**灌入**(piping)无线电噪声，在双盲实验中都再次让它们**不知所措**(bewildered)。这种**干扰**(interference)只是日常**电器**(appliances)发出的一阵电磁**低语**(murmur)，强度远低于世卫组织的**安全限值**(safety limits)。
 
 一位**漫游者**(wanderer)如何知道自己身在何处，至今仍**没有答案**(unanswered)。罗盘的密码已**破解**(cracked)了一部分，但指引那只大西洋鹱的那张**地图**(atlas)，还没有人读懂。
 
@@ -83,6 +83,7 @@ How a **wanderer** knows where it is remains **unanswered**. The compass code is
 | interference | n. 干扰（radio interference） | 4 |
 | murmur | n. 低沉连续的声音；（喻）微弱的信号（the murmur of traffic） | 4 |
 | appliances | n. (appliance) 电器，器具（household appliances） | 4 |
+| safety limits | n. phr. 安全限值（exceed safety limits） | 4 |
 | wanderer | n. 漫游者，流浪者（a lonely wanderer） | 5 |
 | unanswered | adj. 未答复的，悬而未决的（unanswered questions） | 5 |
 | cracked | v. (crack) 破解；破裂（crack a code/case） | 5 |
