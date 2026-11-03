@@ -18,7 +18,7 @@ S=[
      "（larger in deeper shade：省略结构，\n即 the surplus was larger in deeper shade）"]]),
 (2,[[[("Most","大多数"),("**terrestrial**","**陆生**(terrestrial)"),("plants","植物身上都"),("**harbour**","**包含/携带着**(harbour)"),("such **fungi**,","这类**真菌**(fungi)，")],
      "（harbour：英式拼写，美式 harbor）"],
-    [[("whose **filaments**","它们的**菌丝**(filaments)"),("**forage** for","四处**搜寻**(forage)"),("water","水分"),("and","和"),("**nutrients** including nitrogen,","氮等**养分**(nutrients)，")],
+    [[("whose **filaments**","它们的**菌丝**(filaments)"),("**forage for**","四处**搜寻/寻找**(forage for)"),("water","水分"),("and","和"),("**nutrients** including **nitrogen**,","**氮**(nitrogen)等**养分**(nutrients)，")],
      "（whose…：非限制性定语从句，修饰 such fungi；\nincluding nitrogen：介词短语，修饰 nutrients）"],
     [[("**swapping** them for","再拿去**换取**(swapping)"),("plant","植物的"),("sugars.","糖分。")],
      "（swapping…：现在分词短语作伴随状语；\nswap A for B：用 A 换 B）"]]),
@@ -106,7 +106,6 @@ CONF={
  "S2 bathed … in":"不是搭配：in carbon dioxide 引出沐浴的介质，bathe 单独就是“使沐浴、使笼罩”",
  "S2 bathed … with":"不是搭配：with 属于 laced with（已整体标），和 bathed 无关",
  "S4 harbour … for":"不是搭配：for 属于 forage for water，和 harbour 无关",
- "S4 forage … for":"不是搭配：forage 单独就是“搜寻（食物、养分）”，for 只引出搜寻的对象（同 34 fondness … for 的判法）",
  "S4 swapping … for":"不是搭配：swap A for B 里 for 引出换来的东西（植物的糖分），swap 单独就是“交换”（同 34 bundled … with 的判法）",
  "S5 knit … into":"不是搭配：into a shared network 引出编织进去的地方，knit 单独就是“编织、使联结”",
  "S6 unveiled … on":"不是搭配：on 7 August 1997 是时间状语，和 unveiled 无关",
@@ -135,7 +134,7 @@ CONF={
 #  S13 [3.18, 3.355792, 紧贴词头]（原自动切点 [3.18, 3.32]，纯人声报 噗声 109.65–109.67s）：3.325–3.3525 是 -49～-57 dB 的低频残声（低频 -0.3～-2.5 dB），是 trees 后吸气的尾巴；favouring 的 /f/ 3.355 起（重心 4.2→6.2 kHz），右头切在过零点 3.355792，/f/ 完整保留
 #  S18 [5.432792, 5.751125, 紧贴词头]：saga 的 ə 到 5.39 收尾（-39 dB），5.40–5.43 静音 -57～-63 dB（左头 5.432792 过零点，外侧 5 ms -56～-60 dB）；5.44–5.68 是 -44～-52 dB 的吸气（重心 2.0–2.7 kHz、低频 -5～-24 dB），5.69–5.74 是 -45～-53 dB 的低频残声，和 that 之间隔着 5.745–5.75 的 -58～-60 dB 低谷，不连着词；右头切在 5.751125 过零点，之后 5.755 起一路升进 that 的 /ð/（5.77 -32.8、5.80 -8.6 dB），保留
 #  S18 [8.357667, 8.556167, 紧贴词头]：convey 的 eɪ 到 8.325 收尾，8.3575 低谷 -57.5 dB（左头）；8.37–8.55 是 -40～-50 dB 的吸气（重心 2.5–3.0 kHz、低频 -5～-26 dB）；8.555 低谷 -54.6 dB（右头），8.5575–8.59 低频 -1 dB 是 and 的浊音起音（保留），8.595 起 and 的元音
-out={"no":"38","title_en":"The Web Beneath the Woods","title_zh":"林下之网","title_fx":{"hl":["Web","Woods"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["linking"],
+out={"no":"38","title_en":"The Web Beneath the Woods","title_zh":"林下之网","title_fx":{"hl":["Web","Woods"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["linking","nitrogen"],
      "说明放宽特批":{"S18":{"倍数":"整屏","依据":"用户 2026-10-25 看 25 简述截图：“以后以后一定要合理的安排，不要压缩成这个样子……这个地方特批一下”（用户同意记录：原话适用以后各篇，26 起沿用）"}},
      "非人声区间":{"S11":[[2.767958,2.990125,"紧贴两头"]],"S12":[[1.737542,2.0475,"紧贴词尾"],[5.505,5.774917,"紧贴词头"]],"S13":[[3.18,3.355792,"紧贴词头"]],"S18":[[5.432792,5.751125,"紧贴词头"],[8.357667,8.556167,"紧贴词头"]]},
      "停顿处除阻":{"S11":{"2":[2.76,2.990125,"t"]}},
