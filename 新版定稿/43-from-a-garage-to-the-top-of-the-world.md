@@ -4,7 +4,7 @@
 ## 英文
 In May 1985, after a **bruising** **confrontation**, Apple's **board** **ultimately** backed chief **executive** John Sculley. Steve Jobs, 30, was **stripped** of his **managerial** duties at the company he had **co-founded**. That September, **sidelined** and **alienated**, he **resigned**.
 
-**Rewind** three decades. Born in San Francisco on 24 February 1955, Jobs was adopted as a **newborn**. On 1 April 1976 he founded Apple with Steve Wozniak, the **electronics** engineer behind its first **prototypes**. Apple's garage **origins** are largely **symbolic**; Wozniak calls their **significance** **inflated**. Apple **floated** on 12 December 1980; the **flagship** Macintosh **debuted** on 24 January 1984.
+**Rewind** three decades. Born in **San Francisco** on 24 February 1955, Jobs was adopted as a **newborn**. On 1 April 1976 he founded Apple with Steve Wozniak, the **electronics** engineer behind its first **prototypes**. Apple's garage **origins** are largely **symbolic**; Wozniak calls their **significance** **inflated**. Apple **floated** on 12 December 1980; the **flagship** Macintosh **debuted** on 24 January 1984.
 
 **Exile** proved **productive**. Later in 1985 Jobs founded NeXT, a computer **start-up**. In February 1986 he **acquired** Lucasfilm's computer-**graphics** **outfit**, which became Pixar. It began as a **manufacturer** of **specialised** hardware, not chiefly an **animation** studio. Toy Story, released on 22 November 1995, was the first **feature-length** **computer-animated** film.
 
@@ -16,7 +16,7 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 
 1985年5月，经过一场**十分激烈**(bruising)的**争执/交锋**(confrontation)，苹果公司**董事会**(board)**最终**(ultimately)支持首席**执行官**(executive)约翰·斯卡利。时年30岁的史蒂夫·乔布斯在他参与**创办**(co-founded)的公司里被**剥夺**(stripped)了**管理的**(managerial)职务。同年9月，已被**架空**(sidelined)、**被疏远的**(alienated)乔布斯**辞职了**(resigned)。
 
-**回溯**(rewind)三十年。1955年2月24日，乔布斯生于旧金山，还是**新生儿**(newborn)时就被人收养。1976年4月1日，他与史蒂夫·沃兹尼亚克创办了苹果公司；沃兹尼亚克是一名**电子**(electronics)工程师，苹果最早的**样机**(prototypes)出自他手。苹果的车库**起家**(origins)史在很大程度上只具**象征**(symbolic)意义；沃兹尼亚克认为它的**分量**(significance)被**夸大**(inflated)了。1980年12月12日，苹果公司**上市**(floated)；1984年1月24日，**旗舰**(flagship)产品 Macintosh **亮相**(debuted)。
+**回溯**(rewind)三十年。1955年2月24日，乔布斯生于**旧金山**(San Francisco)，还是**新生儿**(newborn)时就被人收养。1976年4月1日，他与史蒂夫·沃兹尼亚克创办了苹果公司；沃兹尼亚克是一名**电子**(electronics)工程师，苹果最早的**样机**(prototypes)出自他手。苹果的车库**起家**(origins)史在很大程度上只具**象征**(symbolic)意义；沃兹尼亚克认为它的**分量**(significance)被**夸大**(inflated)了。1980年12月12日，苹果公司**上市**(floated)；1984年1月24日，**旗舰**(flagship)产品 Macintosh **亮相**(debuted)。
 
 这段**放逐**(exile)岁月**成果丰硕**(productive)。1985年晚些时候，乔布斯创办了电脑**初创公司**(start-up) NeXT。1986年2月，他**收购**(acquired)了卢卡斯影业的电脑**图形**(graphics)**团队**(outfit)，这个团队后来成为皮克斯。皮克斯起初是一家**制造商**(manufacturer)，生产**专用**(specialised)硬件，主要并不是**动画**(animation)工作室。《玩具总动员》于1995年11月22日上映，是第一部**长篇**(feature-length)**电脑动画**(computer-animated)电影。
 
@@ -39,6 +39,7 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 | alienated | adj./v. (alienate) 疏离的，心生隔阂的（feel alienated from society；alienate voters） | 1 |
 | resigned | v. (resign) 辞职（resign from a post；resign as captain） | 1 |
 | rewind | v. 倒回（磁带、视频等）；回顾（rewind the tape；press rewind） | 2 |
+| San Francisco | n. 旧金山（美国加利福尼亚州城市）（born in San Francisco；the San Francisco Bay Area） | 2 |
 | newborn | n./adj. 新生儿；新生的（care for a newborn；a newborn calf） | 2 |
 | electronics | n. 电子学；电子产品（consumer electronics；an electronics company） | 2 |
 | prototypes | n. (prototype) 原型，样机（build/test a prototype） | 2 |
