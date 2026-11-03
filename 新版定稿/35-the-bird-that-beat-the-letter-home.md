@@ -2,7 +2,7 @@
 # ZH: 比信先到家的鸟
 
 ## 英文
-On 3 June 1952 Rosario Mazzeo **released** a Manx shearwater in Boston. It came by **rail** and **airliner** from its **burrow** on Skokholm, an **isle** off Wales, and Mazzeo posted a letter at once. After a roughly 3,200-mile **odyssey** across the **unbroken** Atlantic, the **feathered** **traveller** was back on its **doorstep** twelve and a half days later. The letter arrived **afterwards**.
+On 3 June 1952 Rosario Mazzeo **released** a Manx shearwater in Boston. It came by **rail** and **airliner** from its **burrow** on Skokholm, an **isle** off Wales, and Mazzeo **posted a letter** **at once**. After a roughly 3,200-mile **odyssey** across the **unbroken** Atlantic, the **feathered** **traveller** was back on its **doorstep** twelve and a half days later. The letter arrived **afterwards**.
 
 The first **hints** of a compass were **celestial**. In the 1950s Kramer kept starlings **cooped** in cages and moved the apparent sun with mirrors. The **duped** birds **swivelled** to match, allowing for the sun's daily **arc**. In the 1960s Emlen **curtained** off stars in a planetarium's **vault**. His buntings steered by stars around the **pole-star**, the **axis** of the **nightly** **whirl**.
 
@@ -14,7 +14,7 @@ How a **wanderer** knows where it is remains **unanswered**. The compass code is
 
 ## 中文
 
-1952年6月3日，罗萨里奥·马泽奥在波士顿**放飞**(released)了一只大西洋鹱。它来自威尔士外海斯科克霍姆这座**小岛**(isle)上的**洞巢**(burrow)，先坐**火车**(rail)，再搭**客机**(airliner)，一路被带到这里。马泽奥随即寄出一封信。这位**披着羽毛**(feathered)的**旅行者**(traveller)飞越约三千二百英里**一望无际**(unbroken)的大西洋，完成了一场**远征**(odyssey)，十二天半后回到自家**门口**(doorstep)。那封信是**随后**(afterwards)才到的。
+1952年6月3日，罗萨里奥·马泽奥在波士顿**放飞**(released)了一只大西洋鹱。它乘**火车**(rail)和**客机**(airliner)，从斯科克霍姆岛上的**洞穴**(burrow)来到这里——那是威尔士外海的一座**小岛**(isle)；而马泽奥**随即**(at once)**寄出了一封信**(posted a letter)。这位**披着羽毛**(feathered)的**旅行者**(traveller)飞越约三千二百英里**一望无际**(unbroken)的大西洋，完成了一场**远征**(odyssey)，十二天半后回到自家**门口**(doorstep)。那封信是**随后**(afterwards)才到的。
 
 最初的罗盘**线索**(hints)来自**天上**(celestial)。20世纪50年代，克雷默把椋鸟**关进**(cooped)笼子里，再用镜子挪动太阳的视位置。**受骗**(duped)的鸟随之**转身**(swivelled)，而且会顾及太阳每天划过的**弧线**(arc)。20世纪60年代，埃姆伦在天文馆的**穹顶**(vault)上把星星一片片**遮住**(curtained)。他的靛蓝彩鹀依靠**北极星**(pole-star)周围的星星辨向，北极星正是星空**每夜**(nightly)都绕着**旋转**(whirl)的**轴心**(axis)。
 
@@ -36,6 +36,8 @@ How a **wanderer** knows where it is remains **unanswered**. The compass code is
 | unbroken | adj. 连续不断的，一望无际的（an unbroken line/view） | 1 |
 | feathered | adj. 长羽毛的（our feathered friends） | 1 |
 | traveller | n. 旅行者（a seasoned traveller） | 1 |
+| posted a letter | v. phr. (post a letter) 寄出一封信，寄信（post a letter to sb） | 1 |
+| at once | adv. phr. 立刻，随即（leave at once） | 1 |
 | doorstep | n. 门口，门阶（on sb's doorstep） | 1 |
 | afterwards | adv. 之后，随后（shortly afterwards） | 1 |
 | hints | n. (hint) 线索，暗示（drop a hint；a hint of sth） | 2 |

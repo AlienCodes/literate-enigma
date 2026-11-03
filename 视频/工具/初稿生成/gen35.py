@@ -4,9 +4,9 @@ import json,re,glob,os
 S=[
 (1,[[[("On 3 June 1952","1952年6月3日，"),("Rosario Mazzeo","罗萨里奥·马泽奥"),("**released** a Manx shearwater in Boston.","在波士顿**放飞了**(released)一只大西洋鹱。")],
      "（Manx shearwater：大西洋鹱，一种海鸟；\nin Boston：地点状语）"]]),
-(1,[[[("It","它"),("came by **rail**","先坐**火车**(rail)，"),("and **airliner**","再搭**客机**(airliner)，"),("from its **burrow**","从自己的**洞巢**(burrow)一路被带到这里；"),("on Skokholm,","洞巢在斯科克霍姆，"),("an **isle** off Wales,","那是威尔士外海的一座**小岛**(isle)。")],
+(1,[[[("It","它"),("came by **rail**","乘**火车**(rail)"),("and **airliner**","和**客机**(airliner)，"),("from its **burrow** on Skokholm,","从斯科克霍姆岛上的**洞穴**(burrow)来到这里——"),("an **isle** off Wales,","那是威尔士外海的一座**小岛**(isle)；")],
      "（come by rail and airliner：乘火车和客机来，by 表示交通方式；\nan isle off Wales：同位语，补充说明 Skokholm；off：在……外海）"],
-    [[("and Mazzeo","马泽奥"),("posted a letter at once.","随即寄出一封信。")],
+    [[("and Mazzeo","而马泽奥"),("**posted a letter** **at once**.","**随即**(at once)**寄出了一封信**(posted a letter)。")],
      "（at once：立刻，马上）"]]),
 (1,[[[("After a roughly","经过约"),("3,200-mile","三千二百英里的"),("**odyssey**","**远征**(odyssey)，"),("across","飞越"),("the **unbroken** Atlantic,","**一望无际的**(unbroken)大西洋，")],
      "（After…：时间状语；\nacross the unbroken Atlantic：后置定语，修饰 odyssey）"],
@@ -80,7 +80,8 @@ S=[
 ]
 CONF={"合组":{
  "S1 released a Manx shearwater in Boston":"对齐不了：in Boston 是地点状语，中文“在波士顿放飞了一只大西洋鹱”地点必须放到动词前；Manx shearwater 是一个鸟名“大西洋鹱”",
- "S2 posted a letter at once":"对齐不了：at once 是时间状语，中文“随即寄出一封信”，“随即”必须放到动词前",
+ "S2 posted a letter at once":"对齐不了：at once 是时间状语，中文“随即寄出了一封信”，“随即”必须放到动词前（用户 2026-11-03 定的译法）",
+ "S2 from its burrow on Skokholm":"对齐不了：on Skokholm 是后置定语，修饰 burrow，中文“从斯科克霍姆岛上的洞穴来到这里”定语必须提前；came 的“来到这里”放在最后（用户 2026-11-03 定的译法）",
  "S3 was back on its doorstep twelve and a half days later":"对齐不了：twelve and a half days later 是时间状语，中文“十二天半后回到了自家门口”，时间必须放到动词前",
  "S6 kept starlings":"对齐不了：keep A cooped in B 中文是“把”字句“把 A 关进 B”，kept 不单独译，化进“把”和“关进”",
  "S6 moved the apparent sun with mirrors":"对齐不了：with mirrors 是方式状语，中文“用镜子挪动太阳的视位置”必须放到动词前；the apparent sun 中文“太阳的视位置”是一个词组",
@@ -111,7 +112,7 @@ CONF.setdefault("即",{}).update({"S2-2 即": "“随即”是现代汉语常用
 out={"no":"35","title_en":"The Bird That Beat the Letter Home","title_zh":"比信先到家的鸟","title_fx":{"hl":["Bird","Letter"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "说明放宽特批":{"S21":{"倍数":"整屏","依据":"用户 2026-10-25 看 25 简述截图：“以后以后一定要合理的安排，不要压缩成这个样子……这个地方特批一下”（用户同意记录：原话适用以后各篇，26 起沿用）"}},
      "非人声区间":{"S1":[[2.45,2.725]],"S2":[[3.755,4.043792,"紧贴词头"]],"S6":[[1.2525,1.34],[4.13,4.443708,"紧贴词头"]],"S8":[[1.325,1.655]],"S10":[[6.61,6.97]],"S11":[[1.45,1.645]],"S12":[[4.0,4.2275]],"S13":[[1.855,2.075],[6.225,6.585]],"S15":[[2.04,2.21]],"S18":[[3.39,3.685]],"S19":[[3.4875,3.69]],"S21":[[2.565,2.585]]},
-     "allow_clash":["released"],"高亮按实际开口":True,"高亮开口门槛":40,
+     "allow_clash":["released"],"换行变更已获同意":{"S2":"用户 2026-11-03 原话：“同意换行变”（问的是：S2 按用户新译文，on Skokholm 和 from its burrow 放一组，英文换行跟上一版不同，同意吗）"},"高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Rosario Mazzeo":"罗萨里奥·马泽奥","Mazzeo":"马泽奥","Manx shearwater":"大西洋鹱","shearwater":"大西洋鹱","Boston":"波士顿","Skokholm":"斯科克霍姆","Wales":"威尔士","Atlantic":"大西洋","Kramer":"克雷默","Emlen":"埃姆伦","buntings":"靛蓝彩鹀","Wiltschkos":"维尔奇科夫妇","Schulten":"舒尔滕","cryptochrome":"隐花色素","Oldenburg University":"奥尔登堡大学","WHO":"世卫组织"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
