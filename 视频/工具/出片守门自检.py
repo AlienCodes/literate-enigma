@@ -213,6 +213,12 @@ def main():
         ok = p_.startswith('zˌɔːk') and 'zˈɔːk' not in p_
         print(f"{'✔' if ok else '✘'} A24重音：按语境读音只改重音 → {p_[:80]}")
         if not ok: fails.append('误拦：按语境读音只改重音（K145）')
+    if not only or 'K155合成标点' in only:   # K155（45 S5 Johnny B. Goode）：合成标点许去掉人名首字母后的点；改字、去句末句号、加点、U.S. 的点、删逗号照停
+        sys.path.insert(0, W); import make_video as MV
+        cs_ = [('B. Goode', 'B Goode', True), ('Johnny B. Goode, and', 'Johnny B. Goode; and', True), ('birds, and', 'birds; and', True), ('the', 'teh', False), ('Goode.', 'Goode', False), ('B Goode', 'B. Goode', False), ('U.S. Army', 'U.S Army', False), ('Goode, and', 'Goode and', False)]
+        bad_ = [f'{a}→{b}' for a, b, want in cs_ if MV._合成标点可收(a, b) != want]
+        print(f"{'✔' if not bad_ else '✘'} K155合成标点：{len(cs_)} 个样本" + ('全对' if not bad_ else f'判错 {bad_}'))
+        if bad_: fails.append(f'合成标点判错（K155）：{bad_}')
     if not only or 'K154擦音压低' in only:   # K154（44 S14 statistical 的 /s/ 发尖）：负增益只许罩住擦音（重心 ≥3 kHz、10–150 ms、-6～0 dB）；罩到元音、超过 -6 dB 都要停
         sys.path.insert(0, W); import make_video as MV, numpy as np_, scipy.signal as ss_
         SR_ = MV.SR; rg_ = np_.random.default_rng(11); tt_ = np_.arange(int(0.3 * SR_)) / SR_

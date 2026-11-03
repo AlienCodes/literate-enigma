@@ -140,13 +140,18 @@ def phonemes_of(text):
 # 停顿只能插在 /z/ 和 and 的交界，and 开头带浊擦音，识别器和单听都像 “than”。配音模型对分号会自己停一下（同一句 75 ms 静音），语气仍是“接着说”。
 # 脚本 "合成标点": {"S12": [["birds, and", "birds; and"]]}：只在合成这一句时把逗号换成分号交给配音模型；屏幕文字、停顿个数和长度都不变。只许 , ↔ ;
 SYNTH_PUNCT={}
+_ini=lambda x_: re.sub(r'(?<![A-Za-z.])([A-Z])\.(?=\s+[A-Z])',r'\1',x_)
+def _合成标点可收(a_,b_):
+    """G57 合成标点只许把逗号换成分号；K155（45 S5 Johnny B. Goode：配音把人名首字母 B. 当句号读，降调、停 0.5 秒）：还许去掉人名中间首字母后的点
+    （B. Goode → B Goode，后面紧跟大写开头的词），只在合成时，屏幕照旧；不许改字、不许去句末句号、不许加点、不许删逗号"""
+    return re.sub(r'[,;]','',_ini(a_))==re.sub(r'[,;]','',_ini(b_)) and b_.count('.')<=a_.count('.') and a_.count(',')+a_.count(';')==b_.count(',')+b_.count(';')
 for _p_ in sorted(__import__('glob').glob('scripts/*.json')):
     try: _d_=json.load(open(_p_))
     except Exception: continue
     for _k_,_v_ in _d_.get('合成标点',{}).items():
         _s_=_d_['sentences'][int(_k_[1:])-1]; _disp_=' '.join(re.sub(r'\*\*','',re.sub(r'\{\{.*?\}\}','',c['en'])).strip() for c in _s_['chunks'])   # 与 R.strip_gloss 同一写法（独立复核没有 render）
         for a_,b_ in _v_:
-            if re.sub(r'[,;]','',a_)!=re.sub(r'[,;]','',b_) or a_.count(',')+a_.count(';')!=b_.count(',')+b_.count(';'): raise SystemExit(f'【停止】合成标点只许把逗号换成分号（G57）：{_p_} {_k_} {a_} → {b_}')
+            if not _合成标点可收(a_,b_): raise SystemExit(f'【停止】合成标点只许把逗号换成分号、去掉人名首字母后的点（G57）：{_p_} {_k_} {a_} → {b_}')
         SYNTH_PUNCT[(_p_,_k_)]=(_disp_,[tuple(x) for x in _v_])
 _SP_CACHE={}
 def _synth_punct(text):
