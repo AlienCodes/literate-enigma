@@ -206,6 +206,13 @@ def main():
         if not ok: fails.append(f'没抓到：{rid}（{how}）' if want else f'误拦：{rid}')
         shutil.rmtree(f'{WS}_私', ignore_errors=True)
     shutil.rmtree(WS, ignore_errors=True)
+    if not only or 'A24重音' in only:   # K145（39 S1 Y2K）：按语境读音只改重音（zˈɔːk → zˌɔːk）必须换到、不许停；旧程序同一处既算换了又算原本就对，停下
+        sys.path.insert(0, W); import make_video as MV
+        try: p_ = _读音(MV, {}, {}, {'zork it': {'词': 'zork', '读音': 'zˌɔːk'}}, 'zork it', {'zork it': 'zˈɔːk ɪt', 'zork': 'zˈɔːk'})
+        except SystemExit as e: p_ = f'（停下）{e}'
+        ok = p_.startswith('zˌɔːk') and 'zˈɔːk' not in p_
+        print(f"{'✔' if ok else '✘'} A24重音：按语境读音只改重音 → {p_[:80]}")
+        if not ok: fails.append('误拦：按语境读音只改重音（K145）')
     if not only or 'A36' in only:   # A36：复合词按它自己那一条读音改正换；所有格的 s 不被吞（注音函数直接测）
         sys.path.insert(0, W); import make_video as MV
         hb, bs = MV.PRON_WORDS.get('Haber-Bosch'), MV.PRON_WORDS.get('BASF')

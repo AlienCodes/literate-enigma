@@ -130,7 +130,7 @@ def phonemes_of(text):
         w_=v_['词']; m_=len(re.findall(r"(?<![A-Za-z])"+re.escape(w_)+r"(?![A-Za-z])",text,flags=re.I))
         if m_!=n_: raise SystemExit(f'【停止】按语境读音（A24）：{w_} 句中出现 {m_} 次，语境“{c_}”只有 {n_} 处，分不清换哪个：{text[:60]}')
         B_="(?<![^\\s,;:.!?])"; E_="(?=[\\s,;:.!?]|$)"; bad=re.sub(r'[,;:.!?]','',KT.tokenizer.phonemize(w_,'en-us')).strip()
-        ok_=len(re.findall(B_+_stress_free_re(v_['读音'])+E_,ph)); ph,cnt=re.subn(B_+_stress_free_re(bad)+E_,v_['读音'],ph)
+        ok_=0 if re.sub('[ˈˌ]','',bad)==re.sub('[ˈˌ]','',v_['读音']) else len(re.findall(B_+_stress_free_re(v_['读音'])+E_,ph)); ph,cnt=re.subn(B_+_stress_free_re(bad)+E_,v_['读音'],ph)   # K145（39 S1 Y2K 只改重音 wˌaɪ tˌuː kˈeɪ）：只差重音号时同一处会既算“换了”又算“原本就对”，计数翻倍停下；只差重音时一律按换算
         if cnt+ok_!=n_: raise SystemExit(f'【停止】按语境读音没有全部换到（A24）：{w_} 应换 {n_} 处，换了 {cnt} 处、原本就对 {ok_} 处：{text[:60]}')
     return ph
 # G57（2026-10-26 27 S12 “fewer nesting birds, and fewer species”）：配音把 birds 的 /z/ 直接连进 and，逗号处一点静音都没有（语速 0.88–1.0 都一样），
