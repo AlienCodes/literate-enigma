@@ -91,7 +91,12 @@ def 造坑(a, no):
     b = a.copy(); n = int(0.03 * SR); t = np.arange(n) / SR; b[s + L // 2:s + L // 2 + n] += 0.5 * np.sin(2 * np.pi * 7000 * t); out['齿音'] = b
     b = a.copy(); q = int(0.01 * SR); src = a[s + L // 2:s + L // 2 + 3 * q]; b[e - 3 * q:e] = src / (np.abs(src).max() + 1e-9) * np.abs(a[s:e]).max(); out['句尾截断'] = b
     b = a.copy(); b[s:s + 3 * q] = src / (np.abs(src).max() + 1e-9) * np.abs(a[s:e]).max(); out['句首突起'] = b
-    cut = int(0.45 * L); out['语速突变'] = np.concatenate([a[:s + L // 4], a[s + L // 4 + cut:]])
+    s2, e2, L2 = s, e, L   # K142（38 自检没抓到语速突变）：造坑放在语速最接近全片中位数的那句；原来固定放中间那句，那句本来就慢（38 第9句），切掉 45% 还没超过 01–24 上限
+    txt = 文本(no)
+    if txt and len(txt) == len(seg) and len(seg) > 2:
+        r = np.array([len(re.sub(r'[^A-Za-z0-9]', '', t)) / ((e_ - s_) / SR) for t, (s_, e_) in zip(txt[1:], seg[1:])])
+        s2, e2 = seg[1 + int(np.argmin(np.abs(r - np.median(r))))]; L2 = e2 - s2
+    cut = int(0.45 * L2); out['语速突变'] = np.concatenate([a[:s2 + L2 // 4], a[s2 + L2 // 4 + cut:]])
     b = a.copy(); X = np.fft.rfft(a[s:e]); f = np.fft.rfftfreq(L, 1 / SR); X[f < 3000] *= 0.03; b[s:e] = np.fft.irfft(X, L); out['音色突变'] = b
     return out
 
