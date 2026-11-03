@@ -10,7 +10,7 @@ The toads **thrived** instead. With few **foes** and **fertile** females **spawn
 
 **Toxin** **glands** in their skin make them a deadly meal. Numbers of goannas (large **lizards**) and northern quolls (small **marsupial** hunters) have **slumped** in places; some local quoll populations were **wiped out**. The toads have **wreaked** **havoc**, but the damage is **uneven**; some species have **prospered**.
 
-Biological control can **triumph**. From 1926 the cactus **moth**, Cactoblastis, cleared most prickly pear, an **invasive** cactus, from Queensland and New South Wales within about a decade. Tested first, its larvae starved rather than eat fifteen other plants; the toads faced no such test. Under an October 1984 law, recruits now face **stringent** **scrutiny**. The **blunder** was born of **haste** and sealed by lobbying that overrode a warning: an **untested** ally, once loose, may never be **recalled**.
+Biological control can **triumph**. From 1926 the cactus **moth**, Cactoblastis, cleared most **prickly** pear, an **invasive** **cactus**, from Queensland and New South Wales within about a decade. Tested first, its larvae starved rather than eat fifteen other plants; the toads faced no such test. Under an October 1984 law, recruits now face **stringent** **scrutiny**. The **blunder** was born of **haste** and sealed by lobbying that overrode a warning: an **untested** ally, once loose, may never be **recalled**.
 
 ## 中文
 
@@ -22,7 +22,7 @@ Biological control can **triumph**. From 1926 the cactus **moth**, Cactoblastis,
 
 它们皮肤里的**毒素**(Toxin)**腺体**(glands)，使它们成为了一顿致命的餐食。巨蜥（大型**蜥蜴**(lizards)）和北袋鼬（一种小型**有袋类**(marsupial)猎手）的数量在一些地方**锐减**(slumped)；部分地方的袋鼬种群被**彻底消灭**(wiped out)。蟾蜍**造成了**(wreaked havoc)**严重破坏**(wreaked havoc)，但损害并**不均衡**(uneven)；有些物种反而**繁荣了**(prospered)起来。
 
-生物防治也能**大获成功**(triumph)。从1926年起，仙人掌螟这种**蛾子**(moth)在约十年内清除了昆士兰州和新南威尔士州的大部分刺梨，这是一种**外来入侵的**(invasive)仙人掌。这种蛾子放出前经过检验，其幼虫宁可饿死也不吃另外十五种植物；蟾蜍却从未受过这样的检验。根据1984年10月通过的一部法律，如今新兵都要经过**严格的**(stringent)**审查**(scrutiny)。这个**大错**(blunder)起于**仓促**(haste)，又因游说压过了警告而成定局：**未经检验的**(untested)盟友一旦放出，就可能再也**召不回来**(recalled)。
+生物防治也能**大获成功**(triumph)。从1926年起，仙人掌螟这种**蛾子**(moth)在约十年内清除了大部分“**带刺的**(prickly)梨”，这是一种**外来入侵的**(invasive)**仙人掌**(cactus)，清除范围遍及昆士兰州和新南威尔士州。这种蛾子放出前经过检验，其幼虫宁可饿死也不吃另外十五种植物；蟾蜍却从未受过这样的检验。根据1984年10月通过的一部法律，如今新兵都要经过**严格的**(stringent)**审查**(scrutiny)。这个**大错**(blunder)起于**仓促**(haste)，又因游说压过了警告而成定局：**未经检验的**(untested)盟友一旦放出，就可能再也**召不回来**(recalled)。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -75,7 +75,9 @@ Biological control can **triumph**. From 1926 the cactus **moth**, Cactoblastis,
 | prospered | v. (prosper) 兴旺，繁荣，成功（the business prospered）；prosperity n. 繁荣；prosperous adj. 繁荣的 | 4 |
 | triumph | v. 获胜，成功（triumph over adversity 战胜逆境）；n. 巨大成功，胜利（a triumph of…）；成功的喜悦（in triumph 得意地）；triumphant adj. | 5 |
 | moth | n. 蛾，飞蛾（like a moth to a flame 飞蛾扑火） | 5 |
+| prickly | adj. 带刺的，多刺的（prickly pear 刺梨，仙人掌的一种）；易怒的（a prickly character） | 5 |
 | invasive | adj. （物种）入侵的，扩散的（invasive species/weeds）；（医疗）侵入性的（invasive surgery）；（疾病）侵袭性的 | 5 |
+| cactus | n. (复数 cacti/cactuses) 仙人掌（a cactus plant） | 5 |
 | stringent | adj. 严格的，严厉的（stringent rules/standards/tests） | 5 |
 | scrutiny | n. 仔细审查，详细检查（under scrutiny 受到审查；come under close scrutiny）；scrutinise v. 仔细审查 | 5 |
 | blunder | n. 大错，愚蠢的错误（make a blunder；a costly blunder）；v. 犯大错；跌跌撞撞地走（blunder into sth） | 5 |
