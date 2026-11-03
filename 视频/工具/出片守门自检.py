@@ -213,6 +213,21 @@ def main():
         ok = p_.startswith('zˌɔːk') and 'zˈɔːk' not in p_
         print(f"{'✔' if ok else '✘'} A24重音：按语境读音只改重音 → {p_[:80]}")
         if not ok: fails.append('误拦：按语境读音只改重音（K145）')
+    if not only or 'K154擦音压低' in only:   # K154（44 S14 statistical 的 /s/ 发尖）：负增益只许罩住擦音（重心 ≥3 kHz、10–150 ms、-6～0 dB）；罩到元音、超过 -6 dB 都要停
+        sys.path.insert(0, W); import make_video as MV, numpy as np_, scipy.signal as ss_
+        SR_ = MV.SR; rg_ = np_.random.default_rng(11); tt_ = np_.arange(int(0.3 * SR_)) / SR_
+        vow_ = (0.5 * np_.sin(2 * np_.pi * 180 * tt_) + 0.2 * np_.sin(2 * np_.pi * 540 * tt_)).astype(np_.float32)
+        s_ = (ss_.sosfiltfilt(ss_.butter(6, 4000, 'highpass', fs=SR_, output='sos'), rg_.standard_normal(int(0.08 * SR_))) * 0.4).astype(np_.float32)
+        w_ = np_.concatenate([vow_, s_, vow_]); a_, b_ = 0.3, 0.38; rm_ = lambda x: 20 * np_.log10(np_.sqrt(np_.mean(np_.asarray(x, np_.float64) ** 2)) + 1e-12)
+        try: o_ = MV._boost(w_, {'1': [a_, b_, -3.0]}, '自检'); dd_ = rm_(o_[int(0.31 * SR_):int(0.37 * SR_)]) - rm_(w_[int(0.31 * SR_):int(0.37 * SR_)]); g1 = -3.3 < dd_ < -2.7
+        except SystemExit as e: g1 = False; dd_ = str(e)[:60]
+        def 停(items):
+            try: MV._boost(w_, items, '自检'); return False
+            except SystemExit as e: return 'K154' in str(e)
+        b1 = 停({'1': [0.1, 0.2, -3.0]}); b2 = 停({'1': [a_, b_, -7.0]})
+        ok = g1 and b1 and b2
+        print(f"{'✔' if ok else '✘'} K154擦音压低：/s/ 压 3 dB → {dd_ if isinstance(dd_, str) else f'{dd_:+.2f} dB'}；罩到元音{'停' if b1 else '没停'}；-7 dB {'停' if b2 else '没停'}")
+        if not ok: fails.append('没抓到或误拦：擦音压低（K154）')
     if not only or 'A23大小写' in only:   # K148（43 NeXT）：读音改正的词中间有大写（ZorK），普通小写 zork 不许被当成它去换（原来不分大小写，换不到就停）；大小写对得上的照换
         sys.path.insert(0, W); import make_video as MV
         try: p_ = _读音(MV, {'ZorK': 'zˈuːk'}, {}, {}, 'the zork day', {'the zork day': 'ðə zˈɔːk dˈeɪ', 'ZorK': 'zˈiː ˈoʊ'})

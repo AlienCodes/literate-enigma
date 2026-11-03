@@ -34,16 +34,22 @@ def release(x, hp, P, ref, deep=True):
     q = 0
     while q < len(L) and L[q] < AUD_DB: q += 1
     if q == len(L): return None
-    pk = L[q]; c = None; r = q
-    while r < len(L):
-        if c is None:
-            if L[r] > pk: pk = L[r]
-            elif L[r] <= pk - 6: c = r
-            elif r - q > 16: return None
-        else:
-            if L[r] < L[c]: c = r
-            elif L[r] >= L[c] + 6: break
-        r += 1
+    q0 = q
+    for _try in range(3):   # K152（41 S10 first,：除阻衰减末尾 5 ms -52 dB 的一小截后面隔着一帧 -60 dB 的小凹口，被当成闭塞，判“没除阻”、自动又补了一个，成片双爆破）
+        pk = L[q]; c = None; r = q
+        while r < len(L):
+            if c is None:
+                if L[r] > pk: pk = L[r]
+                elif L[r] <= pk - 6: c = r
+                elif r - q > 16: return None
+            else:
+                if L[r] < L[c]: c = r
+                elif L[r] >= L[c] + 6: break
+            r += 1
+        # 找到的“除阻”不到 -45 dB、“闭塞”只有一帧低于 -55 dB（前一帧又能听见）：这是除阻衰减里的凹口，接着往前找真正的除阻
+        if c is not None and L[q0:c].max() < AUD_DB + 10 and c + 1 < len(L) and L[c + 1] >= AUD_DB and (c == 0 or L[c - 1] >= AUD_DB): q = c + 1; continue
+        break
+    q = q0
     # 闭塞必须是真正的静音（< -50 dB）：04 自检查出，first, 的 /t/ 除阻被换成静音后，前面 /s/ 擦音与元音之间的小低谷（不是闭塞）
     # 被当成了闭塞、/s/ 被当成了除阻，没报。01–07 所有合格处的闭塞最低都在 -58 dB 以下（多数是数字静音）。
     if c is None or (deep and L[c] >= -50): return None     # 浊塞音（deep=False）的闭塞带声带振动，不是静音，只要求是低谷
@@ -277,6 +283,11 @@ if __name__ == '__main__':
         for nm_, x_, want_ in (('元音+s 假除阻', np.concatenate([loud_, z0_, vow_, s_, z0_]), False), ('真除阻', np.concatenate([loud_, z0_, b_, z0_]), True)):
             m_ = len(x_) // F5; ref_ = np.sqrt(np.mean(x_[:m_ * F5].reshape(m_, F5) ** 2, axis=1)).max()
             if judge(x_, release(x_, ss.sosfiltfilt(HP, x_), len(x_), ref_), 't') != want_: miss.append(f'K149 {nm_} 判{"错放" if not want_ else "错拦"}')
+        # K152 好样本（41 S10 first, 无补除阻时的实测帧电平，从停顿往回）：除阻衰减末尾一小截 + 一帧凹口，后面才是 -26.8 dB 的真除阻；必须判合格（旧判法判没除阻、又补一个，成片双爆破）
+        sq_ = [-240.0, -57.9, -52.4, -60.2, -54.0, -48.6, -43.8, -36.9, -35.2, -29.8, -26.8, -33.5, -32.3, -49.1, -61.6, -240.0, -59.3, -54.2, -45.6, -35.4, -25.7, -16.3, -16.4, -13.6, -11.2, -10.9, -10.8, -10.7, -11.1, -13.5]
+        fr_ = [np.ones(F5)] + [np.zeros(F5) if v < -200 else (lambda f: f / (np.sqrt(np.mean(f ** 2)) + 1e-20) * 10 ** (v / 20))(ss.sosfiltfilt(HP, rng_.standard_normal(3 * F5))[F5:2 * F5]) for v in reversed(sq_)]
+        x_ = np.concatenate(fr_); m_ = len(x_) // F5; ref_ = np.sqrt(np.mean(x_[:m_ * F5].reshape(m_, F5) ** 2, axis=1)).max()
+        if not judge(x_, release(x_, ss.sosfiltfilt(HP, x_), len(x_), ref_), 't'): miss.append('K152 除阻衰减里一帧凹口当成闭塞（41 S10 first,）判错拦')
         ok = n_ok > 0 and not miss
         print(f"{'✔' if ok else '✘'} 词尾辅音核对 自检：{no} 原样 {n_ok} 处全部合格；逐处把除阻换成静音、压低 20 dB，共 {2 * n_ok} 次" + ('全部报出' if not miss else f'，没报出 {len(miss)} 次：' + '；'.join(miss)))
         sys.exit(0 if ok else 1)

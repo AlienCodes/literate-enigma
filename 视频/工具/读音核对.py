@@ -179,12 +179,13 @@ def check(no):
         sp = spoken(re.sub(r'\*\*', '', R.strip_gloss(t)))
         ph_sent = re.sub(r'[ˈˌ\s]', '', phonemes_of(sp))
         ws = words_of(sp)
+        ctx_ = {v_['词'].lower(): v_['读音'] for c_, v_ in PRON_CTX.items() if re.search(r"(?<![A-Za-z])" + re.escape(c_) + r"(?![A-Za-z])", sp, flags=re.I)}   # K151（43 S14 Mac OS X）：按语境读音换过的词，这一句里按语境的读音核（原来单读 X 得 ˈɛks，又碰巧在同句 NeXT 的 nˈɛkst 里找到，误判成配音读了 ˈɛks）
         for w in dict.fromkeys(x for y in ws for x in y.split('-') if het_key(x) and x.lower() not in FUNC):   # 连字符词逐段查（02 college-entrance）
             c_ = HETCONF.get(f'{no} {lab} {w}')
             if not (isinstance(c_, dict) and c_.get('判定') == '正确' and c_.get('整句音标') == phonemes_of(sp)):
                 rows.append(('多音词', f"{no} {'待核实' if c_ is None else '整句读法变了，要重新核实'} [多音词] {w}  词典里按词性有几种读法：{MG.get(w) or MG.get(w.lower())}｜整句：/{phonemes_of(sp)}/｜出现在 {lab}", True))
         for i, w in enumerate(ws):
-            ph = re.sub(r'[,;:.!?"“”]', '', phonemes_of(w)).strip()
+            ph = ctx_.get(w.lower()) or re.sub(r'[,;:.!?"“”]', '', phonemes_of(w)).strip()
             if not _虚(w) and re.sub(r'[ˈˌ\s]', '', ph) not in ph_sent:
                 cv = conf.get(w) or VERIFIED.get(w)
                 hv = HETCONF.get(f'{no} {lab} {w}')   # 这一句的多音词核对记录（整句音标对得上）已核实了整句里的读法（13 S4 过去式 read）
