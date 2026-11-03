@@ -10,7 +10,7 @@ The **metaphor** proved **irresistible**. Between 2015 and 2021, a forester's **
 
 In February 2023, three researchers **combed through** the field evidence. They judged it too **sparse**, **inconsistent**, or **ambiguous** to **demonstrate** that shared networks are **widespread**. In 26 field studies, networks helped and **hindered** seedlings about equally often, with **neutral** effects **predominating**. No **peer-reviewed** field study showed **mature** trees **favouring** their own **offspring**. **Unsupported** **assertions** in later papers had **doubled** over 25 years, with **citations** **skewed** **towards** **positive results**.
 
-None of this **disproves** the networks' **existence**. In January 2025, **defenders** **faulted** the **critique**'s methods. The **critics** **concede** that carbon and nutrients can **migrate** between trees underground. It is evidence **unearthed** in real forests, not the **allure** of a family **saga**, that must settle how much the networks **convey**, and whether it matters.
+None of this **disproves** the networks' **existence**. In January 2025, **defenders** **faulted** the **critique**'s methods. The **critics** **concede** that carbon and nutrients can **migrate** between trees underground. It is evidence **unearthed** in real forests, not the **allure** of a family **saga**, that must settle how much the networks **convey**, and whether it **matters**.
 
 ## 中文
 
@@ -22,7 +22,7 @@ None of this **disproves** the networks' **existence**. In January 2025, **defen
 
 2023年2月，三位研究者**梳理**(combed through)了野外证据。他们认为，这些证据或过于**稀少**(sparse)，或**互不一致**(inconsistent)，或**含糊不清**(ambiguous)，不足以**证明**(demonstrate)共享网络**普遍存在**(widespread)。在26项野外研究中，网络帮助和**阻碍**(hindered)幼苗的频率大致相同，并且**中性的**(neutral)效应**占据大多数**(predominating)。没有任何一项经**同行评审**(peer-reviewed)的野外研究表明，**成年**(mature)树木会**偏爱**(favouring)自己的**后代**(offspring)。在后来的论文中，**缺乏依据的**(unsupported)**论断/断言**(assertions)在25年间**增加了一倍/翻了一倍**(doubled)，**引用**(citations)也**偏向**(skewed towards)**于**(skewed towards)**正面结果**(positive results)。
 
-这一切都不能**否定**(disproves)这些网络的**存在**(existence)。2025年1月，共享网络说的**拥护者**(defenders)**挑出了**(faulted)这篇**批评文章**(critique)方法上的**问题**(faulted)。**批评者**(critics)也**承认**(concede)，碳和养分可以经由地下在树与树之间**迁移**(migrate)。网络究竟**输送**(convey)了多少、这又是否要紧，必须由在真实森林中**发掘**(unearthed)出的证据来裁定，而不能凭一部家族**传奇**(saga)的**魅力**(allure)来决定。
+这一切都不能**否定**(disproves)这些网络的**存在**(existence)。2025年1月，共享网络说的**拥护者**(defenders)**挑出了**(faulted)这篇**批评文章**(critique)方法上的**问题**(faulted)。**批评者**(critics)也**承认**(concede)，碳和养分可以经由地下在树与树之间**迁移**(migrate)。唯有在真实森林中**发掘**(unearthed)出的证据（而非家族**传奇**(saga)的**魅力**(allure)），才能裁定网络究竟**输送**(convey)了多少，以及这件事**重不重要**(matters)。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -94,6 +94,7 @@ None of this **disproves** the networks' **existence**. In January 2025, **defen
 | unearthed | v. (unearth) 发掘，挖出（unearth evidence/fossils）；发现，揭露（unearth the truth/a secret） | 5 |
 | allure | n. 魅力，诱惑力（the allure of sth；lose its allure）；v. 吸引，诱惑 | 5 |
 | saga | n. 传奇，长篇故事（a family saga 家族传奇，家世小说）；（冗长的）一连串事件（the saga of…）；（北欧）萨迦 | 5 |
+| matters | v. (matter) 重要，要紧（it matters 这很重要；it doesn't matter 没关系；what matters is… 重要的是……）；n. 事情，问题；物质 | 5 |
 | convey | v. 输送，运送（convey water/goods/nutrients）；传达，表达（convey a message/meaning） | 5 |
 
 ## 史实与来源
