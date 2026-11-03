@@ -19,7 +19,7 @@ S=[
     [[("was **adopted** as a **newborn**.","还是**新生儿**(newborn)时就**被收养**(adopted)。")],
      "（as a newborn：作为新生儿，指刚出生不久）"]]),
 (2,[[[("On 1 April 1976","1976年4月1日，"),("he","他"),("**founded** Apple with Steve Wozniak,","与史蒂夫·沃兹尼亚克**创办了**(founded)苹果公司；")]],
-    [[("the **electronics** engineer","沃兹尼亚克是一名**电子**(electronics)工程师，"),("behind its first **prototypes**.","苹果最早的**样机**(prototypes)出自他手。")],
+    [[("the","沃兹尼亚克是"),("**electronics** engineer behind its first **prototypes**.","苹果首批**样机**(prototypes)背后的**电子**(electronics)工程师。")],
      "（the electronics engineer…：同位语，补充说明 Steve Wozniak；\nbehind…：介词短语作后置定语，修饰 engineer）"]]),
 (2,[[[("Apple's garage **origins**","苹果的车库**起家**(origins)史"),("are largely","在很大程度上只具"),("**symbolic**;","**象征**(symbolic)意义；")],
      "（largely：在很大程度上）"],
@@ -122,10 +122,12 @@ CONF={
 "停顿位置":{"S16 Apple, / he @0.415":"2026-11-03 S16 合成标点 Apple; he 重新合成后逐 2.5/5 ms 实测（w）：Apple 的 /l/ 在 0.34–0.37 收尾（-12～-16 dB、重心 1.4–2.5 kHz），0.375–0.43 衰减成 -18～-23 dB 的过渡段（5 ms 包络 0.385 -19.9、0.395 -21.6、0.415 -23.2 最低）；带时长模型分号格在 0.37–0.442、h 0.442、iː 0.467；0.435 起升到 -17.6、0.4425 -11.2 是 he 的开头。停顿 0.415 落在包络最低点、he 起声之前，是两词之间；原合成 Apple, he 两词完全连读，插在 0.460（he 的元音里），已改合成标点",
 "S3 alienated, / he @2.505":"2026-11-03 逐 2.5/10 ms 看声音实测（S3 w）：alienated 的 /d/ 在 2.46–2.4675 收尾（-32→-38 dB），2.4775–2.5075 衰减到 -48～-55 dB（2.5075 -54.9 dB 低谷）；he 的 /h/ 2.5375 起（-45 dB、重心 4.0→5.0 kHz 一路升），2.6275 起 iː 元音 -21→-11 dB；停顿 2.505 落在 alienated 尾音衰减之后、/h/ 之前的低谷里，是两词之间"},
 "合组":{
+ "S6 electronics engineer behind its first prototypes":"对齐不了：behind its first prototypes 是介词短语作后置定语，修饰 engineer，中文“苹果首批样机背后的电子工程师”定语必须整体提前（用户 2026-11-03 原话定的译文）",
  "S2 was stripped of his managerial duties at the company he had co-founded":"对齐不了：at the company 是地点状语、he had co-founded 是省略关系代词的定语从句，中文“在他参与创办的公司里”必须整体放到动词前（沿用文章定稿语序），duties、company 拆开后中文语序全乱",
  "S16 Apple, he later said":"对齐不了：he later said 是插入语，中文“他后来说”必须放到句首，主语“苹果当时”放在它后面（沿用文章定稿语序）",
  "S21 had spent nearly fourteen years at the helm of the company that ousted him":"对齐不了：spend 时长 at…中文“在那家……的公司掌舵近十四年”语序必须倒过来：地点（含定语从句 that ousted him）提前、时长放到最后（沿用文章定稿语序）"},
 "对齐":{
+ "S6-2 electronics engineer behind it":"behind its first prototypes 是后置定语，修饰 engineer，中文“苹果首批样机背后的电子工程师”定语必须整体提前（用户原话定的译文）",
  "S2-2 was stripped of his managerial":"at the company he had co-founded 是地点状语加定语从句，中文“在他参与创办的公司里”必须整体提前",
  "S5-1 Born in San Francisco on 24 Fe":"过去分词短语作状语，日期在中文必须提前（“1955年2月24日，乔布斯生于旧金山”），主语 Jobs 中文放进这一组，沿用文章定稿语序",
  "S5-2 was adopted as a newborn.":"as a newborn 是提前的介词短语，中文“还是新生儿时就被人收养”时间必须放到动词前",
@@ -154,7 +156,7 @@ CONF={
  "S19 overtook … as":"不是搭配：as the world's most valuable company 表示超越之后的身份（成为……），不是 overtake as 的固定用法"},
 }
 out={"no":"43","title_en":"From a Garage to the Top of the World","title_zh":"从车库到世界之巅","title_fx":{"hl":["Garage","Top"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
-     "allow_clash":["adopted","founded"],"高亮按实际开口":True,"高亮开口门槛":40,
+     "allow_clash":["adopted","founded"],"换行变更已获同意":{"S6":"用户原话“1976年4月1日，他与史蒂夫·沃兹尼亚克创办了苹果公司；沃兹尼亚克是苹果首批样机背后的电子工程师。”（2026-11-03，S6 后半句中文按用户语序改写，后置定语整体提前，换行随之变）"},"高亮按实际开口":True,"高亮开口门槛":40,
      "分段增益dB":{"S2":{"1":-2.0,"2":-2.0,"3":-2.5},"S16":{"1":-0.5,"2":-0.5}},
      "合成标点":{"S2":[["Jobs, 30","Jobs; 30"]],"S16":[["Apple, he","Apple; he"]],"S17":[["iPod, and","iPod; and"]]},
      "非人声区间":{"S3":[[0.80575,0.915042,"紧贴两头"],[2.505083,2.532625,"紧贴两头"]],"S15":[[2.140333,2.323,"紧贴两头"],[7.88,8.098708,"紧贴词头"]],"S18":[[1.752667,1.934333,"紧贴两头"]],"S17":[[1.945,2.142917,"紧贴词头"]],"S19":[[2.072792,2.363833]]},
