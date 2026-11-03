@@ -2,7 +2,7 @@
 # ZH: 林下之网
 ## 英文
 
-One of **ecology**'s most **romantic** ideas **grew out of** plastic bags. In a Canadian forest, researchers **enclosed** paper birch and Douglas fir **seedlings** **in** them, then **bathed** each species in carbon dioxide **laced** with a different **tracer**. Carbon **shuttled** both ways, **apparently** via **fungi** linking the trees' roots, yet the firs ran a **slight** **surplus**, larger in deeper **shade**.
+One of **ecology**'s most **romantic** ideas **grew out of** plastic bags. In a Canadian forest, researchers **enclosed** paper birch and Douglas fir **seedlings** **in** them, then **bathed** each species in carbon dioxide **laced** with a different **tracer**. Carbon **shuttled** both ways, **apparently** via **fungi** **linking** the trees' roots, yet the firs ran a **slight** **surplus**, larger in deeper **shade**.
 
 Most **terrestrial** plants **harbour** such fungi, whose **filaments** **forage** for water and **nutrients** including nitrogen, **swapping** them for plant sugars. One fungus can **knit** plants into a shared network. The journal Nature **unveiled** the study on 7 August 1997, its cover offering a **catchy** **coinage**: the "wood-wide web".
 
@@ -14,7 +14,7 @@ None of this **disproves** the networks' existence. In January 2025, defenders f
 
 ## 中文
 
-**生态学**(ecology)中最**浪漫**(romantic)的观念之一，**萌生于**(grew out of)塑料袋之中。研究人员在加拿大的一片森林里，**把**(enclosed in)纸桦和花旗松的**幼苗**(seedlings)**罩进**(enclosed in)袋**里**(enclosed in)，再让两种幼苗分别**沐浴**(bathed)在**掺有**(laced)不同**示踪物**(tracer)的二氧化碳中。碳在两种树之间双向**穿梭**(shuttled)，**似乎**(apparently)是经由连接两者根系的**真菌**(fungi)；不过，花旗松最终出现了碳的**小幅**(slight)**盈余**(surplus)，而且所受**遮荫**(shade)越重，盈余越大。
+**生态学**(ecology)中最**浪漫**(romantic)的观念之一，**萌生于**(grew out of)塑料袋之中。研究人员在加拿大的一片森林里，**把**(enclosed in)纸桦和花旗松的**幼苗**(seedlings)**罩进**(enclosed in)袋**里**(enclosed in)，再让两种幼苗分别**沐浴**(bathed)在**掺有**(laced)不同**示踪物**(tracer)的二氧化碳中。碳在两种树之间双向**穿梭**(shuttled)，**似乎**(apparently)是经由**连接**(linking)两者根系的**真菌**(fungi)；不过，花旗松最终出现了碳的**小幅**(slight)**盈余**(surplus)，在更深的**遮荫**(shade)下盈余更大。
 
 大多数**陆生**(terrestrial)植物身上都**栖居着**(harbour)这类真菌，它们的**菌丝**(filaments)四处**搜寻**(forage)水分和氮等**养分**(nutrients)，再拿去**换取**(swapping)植物的糖分。单个真菌就能把多株植物**编织**(knit)进同一张共享网络。1997年8月7日，《自然》杂志**推出**(unveiled)了这项研究，当期封面还送上一个**响亮好记的**(catchy)**新造词**(coinage)——“林木万维网”（wood-wide web）。
 
@@ -38,6 +38,7 @@ None of this **disproves** the networks' existence. In January 2025, defenders f
 | shuttled | v. (shuttle) 往返穿梭，来回运送（shuttle between A and B；shuttle back and forth；shuttle passengers to the airport）；n. 往返班车或班机；航天飞机（space shuttle） | 1 |
 | apparently | adv. 看来，似乎，据说（依据现有迹象推断，未经证实；本文指碳经由真菌转移只是推断）；注意：表推断时不宜译作“显然” | 1 |
 | fungi | n. (fungus 的复数) 真菌（mycorrhizal fungi 菌根真菌；fungi and bacteria）；fungal adj. 真菌的 | 1 |
+| linking | v. (link) 连接，连通（link A to/with B；fungi linking the roots，本文指真菌把两种树的根连在一起）；n. 联系，关联（a link between A and B） | 1 |
 | slight | adj. 小幅的，轻微的（a slight gain/increase/difference；not in the slightest 一点也不）；纤细的；v./n. 怠慢，轻视 | 1 |
 | surplus | n. 盈余，剩余额，过剩（run a surplus 出现盈余；a trade/budget surplus 贸易顺差/预算盈余；本文指花旗松收到的碳多于送出的碳）；adj. 过剩的（surplus food） | 1 |
 | shade | n. 遮荫，阴凉处，树荫（in the shade；in deep shade 在浓荫下；provide shade）；色度；细微差别（shades of meaning）；v. 遮蔽，遮挡（光线） | 1 |

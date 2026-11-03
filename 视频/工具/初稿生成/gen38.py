@@ -10,11 +10,11 @@ S=[
      "（each species：指纸桦和花旗松两种幼苗；\nlaced with…：过去分词短语作后置定语，修饰 carbon dioxide；\n科学家给两棵树吸了加了不同“追踪器”的二氧化碳，\n就是为了看清楚它们有没有在地下互相交换碳元素）"]]),
 (1,[[[("Carbon","碳"),("**shuttled** both ways,","在两种树之间双向**穿梭**(shuttled)，")],
      "（both ways：双向，来回）"],
-    [[("**apparently**","**似乎**(apparently)是"),("via","经由"),("**fungi** linking the trees' roots,","连接两者根系的**真菌**(fungi)；")],
+    [[("**apparently**","**似乎**(apparently)是"),("via","经由"),("**fungi** **linking** the trees' roots,","**连接**(linking)两者根系的**真菌**(fungi)；")],
      "（linking the trees' roots：现在分词短语作后置定语，修饰 fungi）"],
     [[("yet","不过，"),("the firs","花旗松"),("ran a","最终出现了碳的"),("**slight**","**小幅**(slight)"),("**surplus**,","**盈余**(surplus)，")],
      "（run a surplus：出现盈余）"],
-    [[("larger in deeper **shade**.","而且所受**遮荫**(shade)越重，盈余越大。")],
+    [[("larger in deeper **shade**.","在更深的**遮荫**(shade)下盈余更大。")],
      "（larger in deeper shade：省略结构，\n即 the surplus was larger in deeper shade）"]]),
 (2,[[[("Most","大多数"),("**terrestrial**","**陆生**(terrestrial)"),("plants","植物身上都"),("**harbour**","**栖居着**(harbour)"),("such fungi,","这类真菌，")],
      "（harbour：英式拼写，美式 harbor）"],
@@ -77,7 +77,7 @@ CONF={
  "S2 in carbon dioxide laced with":"对齐不了：laced with… 是后置定语修饰 carbon dioxide，中文“在掺有不同示踪物的二氧化碳中”定语必须提前，“二氧化碳”落在最后一组",
  "S3 shuttled both ways":"对齐不了：both ways 是方式状语，中文“在两种树之间双向穿梭”必须放到动词前",
  "S3 fungi linking the trees' roots":"对齐不了：linking the trees' roots 是现在分词作后置定语修饰 fungi，中文“连接两者根系的真菌”定语必须提前",
- "S3 larger in deeper shade":"对齐不了：省略结构（the surplus was larger in deeper shade），中文用“遮荫越重，盈余越大”的越……越……句式，比较的两头必须换序",
+ "S3 larger in deeper shade":"对齐不了：省略结构（the surplus was larger in deeper shade），中文“在更深的遮荫下盈余更大”（用户 2026-11-03 原话“在更深的遮荫下盈余更大”），地点状语 in deeper shade 必须放到“盈余更大”前面",
  "S4 nutrients including nitrogen":"对齐不了：including nitrogen 后置修饰 nutrients，中文“氮等养分”必须提前",
  "S6 the \"wood-wide web\"":"对齐不了：wood-wide web 是一个新造术语，整体译“林木万维网”，括号保留英文（文章定稿），拆开没意思",
  "S8 told readers that":"对齐不了：tell sb that… 中文“向读者讲述”，间接宾语必须放到动词前",
@@ -135,7 +135,7 @@ CONF={
 #  S13 [3.18, 3.355792, 紧贴词头]（原自动切点 [3.18, 3.32]，纯人声报 噗声 109.65–109.67s）：3.325–3.3525 是 -49～-57 dB 的低频残声（低频 -0.3～-2.5 dB），是 trees 后吸气的尾巴；favouring 的 /f/ 3.355 起（重心 4.2→6.2 kHz），右头切在过零点 3.355792，/f/ 完整保留
 #  S18 [5.432792, 5.751125, 紧贴词头]：saga 的 ə 到 5.39 收尾（-39 dB），5.40–5.43 静音 -57～-63 dB（左头 5.432792 过零点，外侧 5 ms -56～-60 dB）；5.44–5.68 是 -44～-52 dB 的吸气（重心 2.0–2.7 kHz、低频 -5～-24 dB），5.69–5.74 是 -45～-53 dB 的低频残声，和 that 之间隔着 5.745–5.75 的 -58～-60 dB 低谷，不连着词；右头切在 5.751125 过零点，之后 5.755 起一路升进 that 的 /ð/（5.77 -32.8、5.80 -8.6 dB），保留
 #  S18 [8.357667, 8.556167, 紧贴词头]：convey 的 eɪ 到 8.325 收尾，8.3575 低谷 -57.5 dB（左头）；8.37–8.55 是 -40～-50 dB 的吸气（重心 2.5–3.0 kHz、低频 -5～-26 dB）；8.555 低谷 -54.6 dB（右头），8.5575–8.59 低频 -1 dB 是 and 的浊音起音（保留），8.595 起 and 的元音
-out={"no":"38","title_en":"The Web Beneath the Woods","title_zh":"林下之网","title_fx":{"hl":["Web","Woods"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+out={"no":"38","title_en":"The Web Beneath the Woods","title_zh":"林下之网","title_fx":{"hl":["Web","Woods"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["linking"],
      "说明放宽特批":{"S18":{"倍数":"整屏","依据":"用户 2026-10-25 看 25 简述截图：“以后以后一定要合理的安排，不要压缩成这个样子……这个地方特批一下”（用户同意记录：原话适用以后各篇，26 起沿用）"}},
      "非人声区间":{"S11":[[2.767958,2.990125,"紧贴两头"]],"S12":[[1.737542,2.0475,"紧贴词尾"],[5.505,5.774917,"紧贴词头"]],"S13":[[3.18,3.355792,"紧贴词头"]],"S18":[[5.432792,5.751125,"紧贴词头"],[8.357667,8.556167,"紧贴词头"]]},
      "停顿处除阻":{"S11":{"2":[2.76,2.990125,"t"]}},
