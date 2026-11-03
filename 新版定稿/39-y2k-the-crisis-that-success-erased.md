@@ -2,7 +2,7 @@
 # ZH: 千年虫：被成功抹去的危机
 ## 英文
 
-The Y2K **bug**, or **millennium** bug, began as a **shortcut**. When memory and **hardware** were **costly**, **programmers** stored years as two **digits**, writing "99" for 1999. That **compact** **code** hid an **ambiguity**: a machine might read "00" as 1900, **corrupting** calculations of interest, ages or **deadlines**.
+The Y2K **bug**, or **millennium** bug, began as a **shortcut**. When memory and **hardware** were **costly**, **programmers** stored years as two **digits**, writing "99" for 1999. That **compact** **code** hid an **ambiguity**: a machine might read "00" as 1900, **corrupting** calculations of interest, ages, or **deadlines**.
 
 Governments and firms **braced** for **chaos**. In February 1998 President Clinton created a **council** to **coordinate** America's effort. **Consultants** **audited** **legacy** systems and **patched** **faulty** date logic. In November 1999 the Commerce Department estimated American governments and **enterprises** would spend about $100bn; **projections** of the **global** bill ran to hundreds of billions.
 
