@@ -8,13 +8,11 @@ T = os.path.dirname(os.path.abspath(__file__)); V = os.path.dirname(T); sys.path
 nos = sys.argv[1:] or sorted(os.path.basename(p)[:2] for p in glob.glob(f'{V}/脚本/[0-9][0-9].json'))
 bad = 0
 import hashlib, json, datetime
-from 重查记录 import STAMP, 程序指纹, _sha, 已出片, 键, 欠着
+from 重查记录 import STAMP, 程序指纹, _sha, 已出片, 键, 欠着, 记
 if sys.argv[1:2] == ['--欠着']: sys.exit(0 if 欠着() else 1)
 if sys.argv[1:2] == ['--视频']:   # 铁4：用现行程序把欠着的篇目逐屏、逐样本重查（定稿视频核对），一篇过了记一篇
     fp = 程序指纹(); mp = 已出片(); todo = 欠着(); bad = []
-    try: st = json.load(open(STAMP))
-    except Exception: st = {}
-    st.setdefault('篇', {}); print(f'要重查 {len(todo)} 篇：{" ".join(todo) or "无"}', flush=True)
+    print(f'要重查 {len(todo)} 篇：{" ".join(todo) or "无"}', flush=True)
     for no in todo:
         k0 = 键(no, mp[no], fp)   # 查之前先取键：查的过程中脚本或视频被别的会话改了，就不能记成查过（2026-10-23 20 篇就差点被记错）
         r = subprocess.run(['python3', f'{T}/定稿视频核对.py', no], capture_output=True, text=True)
@@ -22,8 +20,7 @@ if sys.argv[1:2] == ['--视频']:   # 铁4：用现行程序把欠着的篇目�
         print(f'{no} ' + ('✔' if not r.returncode else '✘ ' + ' ｜ '.join(x)[:300]), flush=True)
         if r.returncode: bad.append(no); continue
         if 键(no, mp[no], fp) != k0: print(f'{no} 查的过程中脚本或视频变了，不记，下次重查', flush=True); continue
-        st['篇'][no] = k0; st['时间'] = f'{datetime.datetime.utcnow():%Y-%m-%dT%H:%M}（UTC）'
-        json.dump(st, open(STAMP, 'w'), ensure_ascii=False, indent=0)
+        记({no: k0}, fp=fp)   # K158：并进记录、写回合法 JSON（merge=union 拼坏的也照读）
     if bad: sys.exit(f'【欠着】全篇重查没过（铁4）：{" ".join(bad)} 存的视频与现行程序、现行脚本出的不一致')
     print(f'全篇重查通过（铁4）：已出片 {len(mp)} 篇都与现行程序一致'); sys.exit(0)
 import 工作稿核对 as _G

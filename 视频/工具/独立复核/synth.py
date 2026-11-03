@@ -110,14 +110,15 @@ if __name__ == '__main__':
                 for s0, c0, e0 in fd_:      # A22：连读处插停顿的淡出/淡入（与出片同一条曲线、同一位置；其余样本照旧逐样本比对）
                     a[s0:c0] *= (0.5 + 0.5 * np.cos(np.linspace(0, np.pi, c0 - s0))).astype(np.float32)
                     a[c0:e0] *= (0.5 - 0.5 * np.cos(np.linspace(0, np.pi, e0 - c0))).astype(np.float32)
+                # K157：分段增益、段内渐变按出片程序记的原始位置先乘（停顿处除阻换供体会把后面的样本往后挪，原来先挪后乘，位置错开）；供体在停顿里，不乘增益，与出片同
+                for p0_, p1_, g_ in pr_: a[p0_:min(p1_, len(a))] *= np.float32(10 ** (g_ / 20))
+                for p0_, p1_, g0_, g1_ in rg_: q_ = min(p1_, len(a)); a[p0_:q_] *= (10 ** (np.linspace(g0_, g1_, q_ - p0_) / 20)).astype(np.float32)   # 末段的原始终点是“到句尾”的占位数，按实际长度渐变   # 段内渐变dB（与出片同一个数）
                 if pg:      # A21 连读处补除阻：原始合成里 w[p:q) 换成同一段供体（出片程序的 _pdonor，同一个函数）；停顿插在供体之后，复核照常认插入的静音
                     a0 = np.asarray(_ending_raw(text, en_) if en_ else k.create(spoken(text), voice=V, speed=0.95, lang='en-us')[0], np.float32)
                     w0 = clean_tail(a0); st = _head_offset(a0, w0); w0 = _keep_tail(a0, w0, st)
                     for p_, q_, kd in sorted(pg.values(), key=lambda v: -float(v[0])):
                         p0 = st + int(round(float(p_) * SR)); q0 = st + int(round(float(q_) * SR))
                         a = np.concatenate([a[:p0], _pdonor(w0, kd), a[q0:]])
-                for p0_, p1_, g_ in pr_: a[p0_:min(p1_, len(a))] *= np.float32(10 ** (g_ / 20))
-                for p0_, p1_, g0_, g1_ in rg_: q_ = min(p1_, len(a)); a[p0_:q_] *= (10 ** (np.linspace(g0_, g1_, q_ - p0_) / 20)).astype(np.float32)   # 末段的原始终点是“到句尾”的占位数，按实际长度渐变   # 段内渐变dB（与出片同一个数）
                 if sg_: a = a * np.float32(10 ** (sg_ / 20))
                 np.save(fn, a)
             meta[no].append({'idx': idx, 'text': text, 'file': fn,

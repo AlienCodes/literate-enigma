@@ -710,14 +710,13 @@ def 句增益(d,no,si,sent,pieces,gaps,clips,tmap,a):
         if _agn: a=np.concatenate(clips)
     _pgn=d.get('分段增益dB',{}).get(f'S{si+1}')   # 2026-10-25 句内分段增益（用户看 25 S2：“这块这个声音在这一块声响是不是变小了？”）：句内一段比相邻段轻/响，只给这一段乘一个增益
     if _pgn:                                                    # 段 = 按 , ; : 切的第几段（从 1 数）；接点在标点停顿的静音里，只调音量、不改音色；句内响度.py --写入 自动算
-        if sent in PGRAFT: raise SystemExit(f'【停止】分段增益dB 不能和 停顿处除阻 用在同一句（独立复核的位置会错开）：S{si+1}')
+        # K157（41 S6 expert,：有真需要的停顿处除阻，后半句轻 4.1 LU）：独立复核改成先按原始位置乘分段增益、再换供体，位置不再错开，这一句也许用分段增益（供体在停顿里，不乘增益，与出片同）
         for k_,g_ in _pgn.items():
             if not (str(k_).isdigit() and 1<=int(k_)<=len(pieces)) or abs(float(g_))>6: raise SystemExit(f'【停止】分段增益dB 写法不对（段号按 , ; : 从 1 数，共 {len(pieces)} 段；增益 ±6 dB 以内）：S{si+1} {k_}:{g_}')
             clips[2*(int(k_)-1)]=clips[2*(int(k_)-1)]*np.float32(10**(float(g_)/20))
         a=np.concatenate(clips)
     _rgn=d.get('段内渐变dB',{}).get(f'S{si+1}')   # 2026-11-03 段内渐变（用户听 37 S13：“前后大小不太一致”，to avoid frightening 偏响、pharmacists or the public 偏轻，同一段内前响后轻）：段内从 g0 线性渐变到 g1 dB
     if _rgn:
-        if sent in PGRAFT: raise SystemExit(f'【停止】段内渐变dB 不能和 停顿处除阻 用在同一句：S{si+1}')
         for k_,gg_ in _rgn.items():
             if not (str(k_).isdigit() and 1<=int(k_)<=len(pieces)) or len(gg_)!=2 or max(abs(float(x)) for x in gg_)>6: raise SystemExit(f'【停止】段内渐变dB 写法不对（{{"段号": [开头dB, 结尾dB]}}，±6 dB 以内）：S{si+1} {k_}:{gg_}')
             c_=clips[2*(int(k_)-1)]; clips[2*(int(k_)-1)]=(c_*10**(np.linspace(float(gg_[0]),float(gg_[1]),len(c_))/20)).astype(np.float32)
