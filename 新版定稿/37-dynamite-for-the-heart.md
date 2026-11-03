@@ -16,7 +16,7 @@ In 1977 Murad **ascertained** that nitroglycerin releases nitric oxide, which **
 
 1847年前后，意大利化学家索布雷罗首次制得硝酸甘油。这是一种**无色**(colourless)、**油状**(oily)的**液体**(liquid)，具有**极度**(acute)的**不稳定性**(instability)。他报告说，**仅仅**(mere)一**小滴**(droplet)放在舌头上，就让他头部**剧烈**(violently)地**抽痛**(throbbing)了好几个小时。1864年9月3日，斯德哥尔摩的一间**硝酸甘油**(nitroglycerin)**棚屋**(shed)发生爆炸。这场**悲惨**(tragic)的爆炸造成五人死亡，其中包括阿尔弗雷德·诺贝尔的弟弟埃米尔。
 
-诺贝尔把这种液体与硅藻土这种**多孔**(porous)的土**混合**(blending)，制成**糊状物**(paste)，再塑造成**棒条**(rods)状，从而**驯服**(tamed)了它。1867年，它作为炸药获得专利，被**控制并且用来**(harnessed)**采矿**(mining)、**采石**(quarrying)和**拆除工程**(demolition)，**使**(enriching)他**变得**(enriching)**极其**(immensely)**富有**(enriching)。他在1895年立下的**遗嘱**(testament)把这笔财产变成设立奖项的**基金**(endowment)，奖项于1901年首次颁发。
+诺贝尔把这种液体与硅藻土这种**多孔**(porous)的土**混合**(blending)，制成**糊状物**(paste)，再塑造成**棒条**(rods)状，从而**驯服**(tamed)了它。1867年，它作为炸药获得专利，被**控制并且用来**(harnessed)**采矿**(mining)、**采石**(quarrying)和**拆除工程**(demolition)，**使**(enriching)他**变得**(enriching)**极其**(immensely)**富有**(enriching)。他在1895年立下的**遗嘱**(testament)把这一大笔钱变成设立奖项的**捐赠基金**(endowment)，奖项于1901年首次颁发。
 
 硝酸甘油有**副作用**(side-effects)。工厂**工人**(operatives)饱受**折磨人**(racking)的头痛，他们的**耐受性**(tolerance)在一周中逐渐建立，到周末又**减退**(ebbed)。每逢星期一，头痛便**复发**(recurrence)，还伴有**眩晕**(dizziness)和**心悸**(palpitations)，**因此**(hence)得名"星期一病"。1879年，威廉·默雷尔在《柳叶刀》上报告了它对心绞痛的**治疗**(therapeutic)用途，心绞痛即阵发性的胸痛。
 

@@ -22,7 +22,7 @@ S=[
      "（be harnessed for…：被用于……）"],
     [[("**enriching**","**使**(enriching)"),("him","他"),("**immensely**.","**变得**(enriching)**极其**(immensely)**富有**(enriching)。")],
      "（enriching…：现在分词短语作结果状语）"]]),
-(2,[[[("His","他"),("1895","在1895年立下的"),("**testament**","**遗嘱**(testament)"),("made","使"),("the fortune","这笔财产"),("an **endowment**","成为一笔**基金**(endowment)，"),("for prizes,","用来设立奖项，")],
+(2,[[[("His","他"),("1895","在1895年立下的"),("**testament**","**遗嘱**(testament)"),("made","使"),("the fortune","这一大笔钱"),("an **endowment**","成为一笔**捐赠基金**(endowment)，"),("for prizes,","用来设立奖项，")],
      "（make A B：使 A 成为 B）"],
     [[("first","奖项首次"),("awarded","颁发"),("in 1901.","于1901年。")],
      "（first awarded…：过去分词短语作后置定语，修饰 prizes）"]]),
