@@ -4,7 +4,7 @@
 ## 英文
 Around 1847 the Italian chemist Sobrero first made nitroglycerin, a **colourless**, **oily** **liquid** of **acute** **instability**. A **mere** **droplet** on the tongue, he reported, left his head **throbbing** **violently** for hours. On 3 September 1864 a **nitroglycerin** **shed** in Stockholm exploded. The **tragic** blast killed five, including Alfred Nobel's younger brother Emil.
 
-Nobel **tamed** the liquid by **blending** it with kieselguhr, a **porous** earth, into a **paste** shaped into **rods**. Patented in 1867 as dynamite, it was **harnessed** for mining, **quarrying**, and demolition, **enriching** him **immensely**. His 1895 **testament** made the fortune an **endowment** for prizes, first awarded in 1901.
+Nobel **tamed** the liquid by **blending** it with kieselguhr, a **porous** earth, into a **paste** shaped into **rods**. Patented in 1867 as dynamite, it was **harnessed** for **mining**, **quarrying**, and **demolition**, **enriching** him **immensely**. His 1895 **testament** made the fortune an **endowment** for prizes, first awarded in 1901.
 
 Nitroglycerin had **side-effects**. Factory **operatives** suffered **racking** headaches, and their **tolerance**, built over the week, **ebbed** at weekends. Mondays brought a **recurrence**, with **dizziness** and **palpitations**, **hence** the name Monday disease. In 1879 William Murrell reported in The Lancet on its **therapeutic** use against angina pectoris, attacks of chest pain.
 
@@ -16,7 +16,7 @@ In 1977 Murad **ascertained** that nitroglycerin releases nitric oxide, which **
 
 1847年前后，意大利化学家索布雷罗首次制得硝酸甘油。这是一种**无色**(colourless)、**油状**(oily)的**液体**(liquid)，具有**极度**(acute)的**不稳定性**(instability)。他报告说，**仅仅**(mere)一**小滴**(droplet)放在舌头上，就让他头部**剧烈**(violently)地**抽痛**(throbbing)了好几个小时。1864年9月3日，斯德哥尔摩的一间**硝酸甘油**(nitroglycerin)**棚屋**(shed)发生爆炸。这场**悲惨**(tragic)的爆炸造成五人死亡，其中包括阿尔弗雷德·诺贝尔的弟弟埃米尔。
 
-诺贝尔把这种液体与硅藻土这种**多孔**(porous)的土**混合**(blending)，制成**糊状物**(paste)，再塑造成**棒条**(rods)状，从而**驯服**(tamed)了它。1867年，它作为炸药获得专利，被**用于**(harnessed)采矿、**采石**(quarrying)和拆除工程，让他**获利**(enriching)十分**丰厚**(immensely)。他在1895年立下的**遗嘱**(testament)把这笔财产变成设立奖项的**基金**(endowment)，奖项于1901年首次颁发。
+诺贝尔把这种液体与硅藻土这种**多孔**(porous)的土**混合**(blending)，制成**糊状物**(paste)，再塑造成**棒条**(rods)状，从而**驯服**(tamed)了它。1867年，它作为炸药获得专利，被**控制并且用来**(harnessed)**采矿**(mining)、**采石**(quarrying)和**拆除工程**(demolition)，**使**(enriching)他**变得**(enriching)**极其**(immensely)**富有**(enriching)。他在1895年立下的**遗嘱**(testament)把这笔财产变成设立奖项的**基金**(endowment)，奖项于1901年首次颁发。
 
 硝酸甘油有**副作用**(side-effects)。工厂**工人**(operatives)饱受**折磨人**(racking)的头痛，他们的**耐受性**(tolerance)在一周中逐渐建立，到周末又**减退**(ebbed)。每逢星期一，头痛便**复发**(recurrence)，还伴有**眩晕**(dizziness)和**心悸**(palpitations)，**因此**(hence)得名"星期一病"。1879年，威廉·默雷尔在《柳叶刀》上报告了它对心绞痛的**治疗**(therapeutic)用途，心绞痛即阵发性的胸痛。
 
@@ -45,8 +45,10 @@ In 1977 Murad **ascertained** that nitroglycerin releases nitric oxide, which **
 | paste | n. 糊状物，膏（tomato paste；toothpaste） | 2 |
 | rods | n. (rod) 杆，棒（a fishing rod；steel rods） | 2 |
 | harnessed | v. (harness) 利用，控制（harness solar energy） | 2 |
+| mining | n. 采矿，矿业（the mining industry） | 2 |
 | quarrying | n. 采石（quarrying for granite） | 2 |
 | enriching | v. (enrich) 使富裕，使获利；充实（enrich oneself；enrich one's life） | 2 |
+| demolition | n. 拆除，拆毁（the demolition of old buildings） | 2 |
 | immensely | adv. 极大地（immensely popular/rich） | 2 |
 | testament | n. 遗嘱；证明（last will and testament；a testament to sb's skill） | 2 |
 | endowment | n. 捐赠基金，捐款（a university endowment） | 2 |
