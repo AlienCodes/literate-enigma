@@ -1,0 +1,123 @@
+import json,re,glob,os
+# 第43篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-03 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；短语型用法整体标（T22）；三项并列加牛津逗号（T18）；不用破折号（T36）。
+S=[
+(1,[[[("In May 1985,","1985年5月，"),("after","经过"),("a **bruising**","一场**激烈的**(bruising)"),("**confrontation**,","**交锋**(confrontation)，")],
+     "（after…：介词短语作时间状语）"],
+    [[("Apple's board","苹果公司董事会"),("**ultimately**","**最终**(ultimately)"),("backed","支持"),("chief **executive**","首席**执行官**(executive)"),("John Sculley.","约翰·斯卡利。")],
+     "（back：支持；chief executive：首席执行官，\n作 John Sculley 的头衔）"]]),
+(1,[[[("Steve Jobs, 30,","时年30岁的史蒂夫·乔布斯")],
+     "（30：插入语，说明他当时的年龄）"],
+    [[("was **stripped of** his **managerial** duties at the company he had **co-founded**.","在他参与**创办**(co-founded)的公司里被**剥夺了**(stripped of)**管理**(managerial)职务。")],
+     "（be stripped of…：被剥夺……；\nhe had co-founded：定语从句，\n省略了关系代词，修饰 company）"]]),
+(1,[[[("That September,","同年9月，"),("**sidelined**","已被**架空**(sidelined)、"),("and **alienated**,","与公司心生**隔阂**(alienated)的"),("he **resigned**.","乔布斯**辞职**(resigned)。")],
+     "（sidelined and alienated：分词短语作状语，说明他辞职时的处境）"]]),
+(2,[[[("**Rewind**","**回溯**(Rewind)"),("three decades.","三十年。")],
+     "（rewind：本义倒带；\n从1985年往回倒三十年，\n正是乔布斯出生的1955年）"]]),
+(2,[[[("Born in San Francisco on 24 February 1955, Jobs","1955年2月24日，乔布斯生于旧金山，")],
+     "（Born in…：过去分词短语作状语）"],
+    [[("was adopted as a **newborn**.","还是**新生儿**(newborn)时就被人收养。")],
+     "（as a newborn：作为新生儿，指刚出生不久）"]]),
+(2,[[[("On 1 April 1976","1976年4月1日，"),("he","他"),("founded Apple with Steve Wozniak,","与史蒂夫·沃兹尼亚克创办了苹果公司；")]],
+    [[("the **electronics** engineer","沃兹尼亚克是一名**电子**(electronics)工程师，"),("behind its first **prototypes**.","苹果最早的**样机**(prototypes)出自他手。")],
+     "（the electronics engineer…：同位语，补充说明 Steve Wozniak；\nbehind…：介词短语作后置定语，修饰 engineer）"]]),
+(2,[[[("Apple's garage **origins**","苹果的车库**起家**(origins)史"),("are largely","在很大程度上只具"),("**symbolic**;","**象征**(symbolic)意义；")],
+     "（largely：在很大程度上）"],
+    [[("Wozniak","沃兹尼亚克"),("calls","认为"),("their **significance**","它的**分量**(significance)"),("**inflated**.","被**夸大了**(inflated)。")],
+     "（call A B：认为 A 是 B；their 指 Apple's garage origins）"]]),
+(2,[[[("Apple **floated** on 12 December 1980;","1980年12月12日，苹果公司**上市**(floated)；")],
+     "（float：使公司上市）"],
+    [[("the","1984年1月24日，"),("**flagship**","**旗舰**(flagship)"),("Macintosh","产品 Macintosh"),("**debuted** on 24 January 1984.","**亮相**(debuted)。")],
+     "（debut：首次亮相，首次推出）"]]),
+(3,[[[("**Exile**","这段**放逐**(Exile)岁月"),("proved **productive**.","**成果丰硕**(productive)。")],
+     "（prove＋形容词：结果是……，\n事实证明……）"]]),
+(3,[[[("Later in 1985","1985年晚些时候，"),("Jobs founded","乔布斯创办了"),("NeXT, a computer **start-up**.","电脑**初创公司**(start-up) NeXT。")],
+     "（a computer start-up：同位语，补充说明 NeXT）"]]),
+(3,[[[("In February 1986","1986年2月，"),("he **acquired**","他**收购了**(acquired)"),("Lucasfilm's","卢卡斯影业的"),("computer-**graphics**","电脑**图形**(graphics)"),("**outfit**,","**团队**(outfit)，")],
+     "（outfit：口语，团队，小机构）"],
+    [[("which became Pixar.","这个团队后来成为皮克斯。")],
+     "（which…：非限制性定语从句，补充说明 outfit）"]]),
+(3,[[[("It began as","皮克斯起初是"),("a **manufacturer**","一家**制造商**(manufacturer)，"),("of **specialised** hardware,","生产**专用**(specialised)硬件，")],
+     "（begin as…：起初是……；\nof specialised hardware：of 结构作后置定语，修饰 manufacturer）"],
+    [[("not chiefly","主要并不是"),("an **animation** studio.","**动画**(animation)工作室。")],
+     "（not chiefly…：主要并不是……，与 a manufacturer 对照）"]]),
+(3,[[[("Toy Story,","《玩具总动员》"),("released on 22 November 1995,","于1995年11月22日上映，")],
+     "（released on…：过去分词短语作后置定语，补充说明 Toy Story）"],
+    [[("was the first","是第一部"),("**feature-length**","**长篇**(feature-length)"),("**computer-animated**","**电脑动画**(computer-animated)"),("film.","电影。")]]]),
+(4,[[[("The **reversal** came on 20 December 1996:","1996年12月20日，局面出现**转机**(reversal)。")],
+     "（冒号后具体说明转机的内容）"],
+    [[("Apple","当天苹果公司"),("agreed","同意"),("to buy","买下"),("NeXT,","NeXT，")],
+     "（agree to do：同意做……）"],
+    [[("gaining","得到了"),("the **core** software of the **eventual** Mac OS X","**日后**(eventual) Mac OS X 的**核心**(core)软件，")],
+     "（gaining… and reuniting…：现在分词短语作结果状语）"],
+    [[("and **reuniting with** its **estranged** co-founder.","并**与**(reuniting with)那位**关系疏远的**(estranged)联合创始人**重聚**(reuniting with)。")],
+     "（reunite with…：与……重聚；its estranged co-founder：指乔布斯）"]]),
+(4,[[[("In August 1997","1997年8月，"),("Microsoft","微软"),("**invested** $150 million **in** its **distressed** **competitor**;","**向**(invested in)这个**陷入困境的**(distressed)**竞争对手**(competitor)**投资**(invested in)1.5亿美元；")],
+     "（invest A in B：向 B 投资 A）"],
+    [[("that September","同年9月，"),("Jobs","乔布斯"),("**took the reins**","**接掌大权**(took the reins)，"),("as **interim** chief.","出任**临时**(interim)负责人。")],
+     "（take the reins：接掌大权，reins 本义缰绳；as：作为）"]]),
+(4,[[[("Apple, he later said,","他后来说，苹果当时"),("had been weeks from **ruin**.","离**破产**(ruin)只差几周。")],
+     "（he later said：插入语；weeks from ruin：离破产只有几周）"]]),
+(4,[[[("The iMac,","iMac、"),("iPod,","iPod"),("and iPhone","和 iPhone"),("followed,","相继问世，")]],
+    [[("the iPhone","iPhone"),("**showcased** on 9 January 2007.","于2007年1月9日公开**展示**(showcased)。")],
+     "（the iPhone showcased…：独立主格结构，补充说明 iPhone）"]]),
+(5,[[[("In October 2003","2003年10月，"),("Jobs","乔布斯"),("received a **diagnosis**:","被**诊断**(diagnosis)出患有")],
+     "（receive a diagnosis：被诊断出；冒号后说明诊断结果）"],
+    [[("an **uncommon**,","一种**罕见的**(uncommon)"),("**cancerous**","**恶性**(cancerous)"),("**pancreatic**","**胰腺**(pancreatic)"),("**tumour**.","**肿瘤**(tumour)。")]]]),
+(5,[[[("In August 2011","2011年8月，"),("Apple","苹果公司"),("**briefly**","**一度**(briefly)"),("**overtook** Exxon Mobil","**超越**(overtook)埃克森美孚，")]],
+    [[("as","成为"),("the world's","全球"),("most valuable","市值最高的"),("company.","公司。")],
+     "（overtake A as…：超过 A，成为……）"]]),
+(5,[[[("His **tenure** ended on 24 August 2011;","2011年8月24日，他的**任期**(tenure)结束；")]],
+    [[("he died on 5 October 2011,","2011年10月5日，他去世，"),("aged 56.","终年56岁。")],
+     "（aged 56：作状语，说明去世时的年龄）"]]),
+(5,[[[("He","他"),("had spent nearly fourteen years **at the helm of** the company that **ousted** him.","已在那家曾把他**逐出**(ousted)的公司**掌舵**(at the helm of)近十四年。")],
+     "（at the helm of…：执掌……，helm 本义船舵；\nthat ousted him：定语从句，修饰 company）\n"
+     "（简述：1985年，苹果董事会在激烈交锋后支持斯卡利，\n"
+     "乔布斯被剥夺管理职务，同年9月辞职。\n"
+     "他1955年生于旧金山，1976年与沃兹尼亚克创办苹果，\n"
+     "1980年苹果上市，1984年 Macintosh 亮相。\n"
+     "离开苹果后，他创办 NeXT，收购了后来的皮克斯，\n"
+     "1995年《玩具总动员》成为第一部长篇电脑动画电影。\n"
+     "1996年苹果同意买下 NeXT，1997年乔布斯出任临时负责人，\n"
+     "随后 iMac、iPod 和 iPhone 相继问世。\n"
+     "2003年他被诊断出罕见的恶性胰腺肿瘤，\n"
+     "2011年8月卸任，10月去世，终年56岁。）"]]),
+]
+CONF={
+"合组":{
+ "S2 was stripped of his managerial duties at the company he had co-founded":"对齐不了：at the company 是地点状语、he had co-founded 是省略关系代词的定语从句，中文“在他参与创办的公司里”必须整体放到动词前（沿用文章定稿语序），duties、company 拆开后中文语序全乱",
+ "S16 Apple, he later said":"对齐不了：he later said 是插入语，中文“他后来说”必须放到句首，主语“苹果当时”放在它后面（沿用文章定稿语序）",
+ "S21 had spent nearly fourteen years at the helm of the company that ousted him":"对齐不了：spend 时长 at…中文“在那家……的公司掌舵近十四年”语序必须倒过来：地点（含定语从句 that ousted him）提前、时长放到最后（沿用文章定稿语序）"},
+"对齐":{
+ "S2-2 was stripped of his managerial":"at the company he had co-founded 是地点状语加定语从句，中文“在他参与创办的公司里”必须整体提前",
+ "S5-1 Born in San Francisco on 24 Fe":"过去分词短语作状语，日期在中文必须提前（“1955年2月24日，乔布斯生于旧金山”），主语 Jobs 中文放进这一组，沿用文章定稿语序",
+ "S5-2 was adopted as a newborn.":"as a newborn 是提前的介词短语，中文“还是新生儿时就被人收养”时间必须放到动词前",
+ "S6-1 founded Apple with Steve Wozni":"with Steve Wozniak 是提前的介词短语，中文“与史蒂夫·沃兹尼亚克创办了苹果公司”必须放到动词前",
+ "S8-1 Apple floated on 12 December 1":"on 12 December 1980 是时间状语，中文“1980年12月12日，苹果公司上市”时间必须提前",
+ "S8-2 debuted on 24 January 1984.":"on 24 January 1984 是时间状语，中文“1984年1月24日，旗舰产品 Macintosh 亮相”时间必须提前，日期放在句首 the 下面",
+ "S13-1 released on 22 November 1995,":"released on… 中文“于1995年11月22日上映”时间必须放到动词前",
+ "S14-1 The reversal came on 20 Decemb":"on 20 December 1996 是时间状语，中文“1996年12月20日，局面出现转机”时间必须提前",
+ "S14-3 the core software of the event":"of 结构：中文“日后 Mac OS X 的核心软件”of 后面的部分必须提前",
+ "S14-4 and reuniting with its estrang":"with its estranged co-founder 是提前的介词短语，中文“并与那位关系疏远的联合创始人重聚”必须放到动词前",
+ "S15-1 invested $150 million in its d":"in its distressed competitor 是提前的介词短语，中文“向这个陷入困境的竞争对手投资1.5亿美元”必须放到动词前",
+ "S16-1 had been weeks from ruin.":"from ruin 是提前的介词短语，中文“离破产只差几周”必须放到前面",
+ "S17-2 showcased on 9 January 2007.":"on 9 January 2007 是时间状语，中文“于2007年1月9日公开展示”时间必须放到动词前",
+ "S20-1 His tenure ended on 24 August ":"on 24 August 2011 是时间状语，中文“2011年8月24日，他的任期结束”时间必须提前",
+ "S20-2 he died on 5 October 2011,":"on 5 October 2011 是时间状语，中文“2011年10月5日，他去世”时间必须提前",
+ "S21-1 had spent nearly fourteen year":"at the helm of the company that ousted him 是提前的介词短语加定语从句，中文地点必须提前、时长放最后"},
+"牛津逗号":{"S3 That September, sidelined and":"不是三项并列：sidelined and alienated 只有两项"},
+"数字":{"S15-1 150":"$150 million 中文写“1.5亿美元”，数值相同（150百万=1.5亿）；英文读 one hundred and fifty million dollars"},
+"方向":{"S1-1 after→经过":"after a bruising confrontation 中文“经过一场激烈的交锋”，“经过”表示在交锋之后，方向一致"},
+"同词异译":{"invested in：向/投资":"不是异译：invest A in B 短语整体标，被隔开的中文“向……投资”两处都标同一个英文（T22/T23）","reuniting with：与/重聚":"不是异译：reunite with 短语整体标，被隔开的中文“与……重聚”两处都标同一个英文（T22/T23）"},
+"短语":{"S8 floated … on":"不是搭配：on 12 December 1980 只引出日期，不是 float on 的固定用法",
+ "S8 debuted … on":"不是搭配：on 24 January 1984 只引出日期，不是 debut on 的固定用法",
+ "S14 core … of":"不是搭配：of the eventual Mac OS X 只表示所属，core 在这里是形容词修饰 software，不是 core of 的固定用法",
+ "S17 showcased … on":"不是搭配：on 9 January 2007 只引出日期，不是 showcase on 的固定用法",
+ "S19 overtook … as":"不是搭配：as the world's most valuable company 表示超越之后的身份（成为……），不是 overtake as 的固定用法"},
+}
+out={"no":"43","title_en":"From a Garage to the Top of the World","title_zh":"从车库到世界之巅","title_fx":{"hl":["Garage","Top"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+     "高亮按实际开口":True,"高亮开口门槛":40,
+     "术语":{"Apple":"苹果","John Sculley":"约翰·斯卡利","Sculley":"斯卡利","Steve Jobs":"史蒂夫·乔布斯","Jobs":"乔布斯","San Francisco":"旧金山","Steve Wozniak":"史蒂夫·沃兹尼亚克","Wozniak":"沃兹尼亚克","Macintosh":"Macintosh","NeXT":"NeXT","Lucasfilm":"卢卡斯影业","Pixar":"皮克斯","Toy Story":"玩具总动员","Mac OS X":"Mac OS X","Microsoft":"微软","iMac":"iMac","iPod":"iPod","iPhone":"iPhone","Exxon Mobil":"埃克森美孚"}}
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from 核对 import 生成并核对
+生成并核对(S, out)
