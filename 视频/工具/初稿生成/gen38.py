@@ -16,7 +16,7 @@ S=[
      "（run a surplus：出现盈余）"],
     [[("larger in deeper **shade**.","在更深的**遮荫**(shade)下盈余更大。")],
      "（larger in deeper shade：省略结构，\n即 the surplus was larger in deeper shade）"]]),
-(2,[[[("Most","大多数"),("**terrestrial**","**陆生**(terrestrial)"),("plants","植物身上都"),("**harbour**","**栖居着**(harbour)"),("such fungi,","这类真菌，")],
+(2,[[[("Most","大多数"),("**terrestrial**","**陆生**(terrestrial)"),("plants","植物身上都"),("**harbour**","**包含/携带着**(harbour)"),("such **fungi**,","这类**真菌**(fungi)，")],
      "（harbour：英式拼写，美式 harbor）"],
     [[("whose **filaments**","它们的**菌丝**(filaments)"),("**forage** for","四处**搜寻**(forage)"),("water","水分"),("and","和"),("**nutrients** including nitrogen,","氮等**养分**(nutrients)，")],
      "（whose…：非限制性定语从句，修饰 such fungi；\nincluding nitrogen：介词短语，修饰 nutrients）"],
