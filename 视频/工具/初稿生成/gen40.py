@@ -16,7 +16,7 @@ S=[
      "（peel off：揭下；be reapplied：被重新贴上，被动语态）"]]),
 (1,[[[("To an **inventor** chasing strength,","对一个追求强度的**发明者**(inventor)来说，"),("the **formulation**","这种**配方**(formulation)"),("was","是"),("a **setback**.","一次**挫折**(setback)。")],
      "（to sb：对某人来说；\nchasing strength：现在分词短语作后置定语，\n修饰 inventor）"]]),
-(2,[[[("For five years","五年间，"),("Silver","西尔弗"),("acted as its **promoter** within 3M's **corporate** ranks,","在3M的**企业**(corporate)上下充当它的**推广者**(promoter)，")],
+(2,[[[("For five years","五年间，"),("Silver","西尔弗"),("**acted as** its **promoter** within 3M's **corporate** ranks,","在3M的**企业**(corporate)上下**充当**(acted as)它的**推广者**(promoter)，")],
      "（act as：充当；within…ranks：在……内部上下）"],
     [[("in **informal** chats","在**非正式的**(informal)闲谈中、"),("and at **seminars**.","也在**研讨会**(seminars)上介绍它。")]]]),
 (2,[[[("In his own **summary**,","按他自己的**概括**(summary)，"),("it was","这是"),("a solution without a problem.","一个找不到问题的解决方案。")],
