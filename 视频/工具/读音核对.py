@@ -278,7 +278,7 @@ def selftest(no):
         phonemes_of = fake; got = {line for _, line, bad in check(no) if bad}; phonemes_of = orig
         res.append((f'把 {w} 的重音挪成 /{bad_ph}/', any(f'] {w} ' in l_ for l_ in got - base)))
     # ② 关掉读音改正（K102 2026-10-28：逐个词单独关掉，只有在本篇句子里关掉会变读音的才当样本；一个都没有就造假样本，不许跳过；另查改正确实生效）
-    used = [w for w in PRON_WORDS if re.search(r'(?<![A-Za-z])' + re.escape(w) + r'(?![A-Za-z])', text, flags=re.I)
+    used = [w for w in PRON_WORDS if re.search(r'(?<![A-Za-z])' + re.escape(w) + r'(?![A-Za-z])', text, flags=_wf(w))   # K148
             and re.sub(r'\s', '', PRON_WORDS[w]) != re.sub(r'\s|[,;:.!?]', '', KT.tokenizer.phonemize(w, 'en-us'))   # McArthur 只差一个空格，听不出，不拿来测
             and not (w[0].islower() and str(_FIXJ.get(w, {}).get('判定', '')).startswith('可接受'))]   # 普通词的“可接受但改”（10 glazier）关掉改正本来就不算读错
     _nz = lambda x: re.sub(r'[\s,;:.!?"“”]', '', x)   # 重音符号要留着（Tambora 只差重音）
