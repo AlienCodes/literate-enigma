@@ -4,23 +4,23 @@
 ## 英文
 On 3 June 1952 Rosario Mazzeo **released** a Manx shearwater in Boston. It came by **rail** and **airliner** from its **burrow** on Skokholm, an **isle** off Wales, and Mazzeo **posted a letter** **at once**. After a roughly 3,200-mile **odyssey** across the **unbroken** Atlantic, the **feathered** **traveller** was back on its **doorstep** twelve and a half days later. The letter arrived **afterwards**.
 
-The first **hints** of a compass were **celestial**. In the 1950s Kramer kept starlings **cooped** in cages and moved the apparent sun with mirrors. The **duped** birds **swivelled** to match, allowing for the sun's daily **arc**. In the 1960s Emlen **curtained** off stars in a planetarium's **vault**. His buntings steered by stars around the **pole-star**, the **axis** of the **nightly** **whirl**.
+The first **hints** of a compass were **celestial**. In the 1950s Kramer kept starlings **cooped** in cages and moved the **apparent sun** with mirrors. The **duped** birds **swivelled** to match, **allowing for** the sun's daily **arc**. In the 1960s Emlen **curtained** off stars in a planetarium's **vault**. His buntings **steered** by stars around the **pole-star**, the **axis** of the **nightly** **whirl**.
 
-In 1972 the Wiltschkos showed that **robins** read Earth's **magnetic** field by **inclination**, not **polarity**, unlike a **sailor**'s **needle**. In 1978 Schulten proposed a **light-triggered** reaction to **decode** the field. Proposed in 2000, cryptochrome, a protein in the **retina**, is now the **foremost** suspect. In 2021 robin cryptochrome proved more **finely** **tuned** in the laboratory than that of chickens or **pigeons**. Proof in a living bird is **awaited**.
+In 1972 the Wiltschkos showed that **robins** read Earth's **magnetic** field by **inclination**, not **polarity**, unlike a **sailor**'s **needle**. In 1978 Schulten proposed a **light-triggered** reaction to **decode** the field. Proposed in 2000, cryptochrome, a protein in the **retina**, is now the **foremost** **suspect**. In 2021 robin cryptochrome proved more **finely** **tuned** in the laboratory than that of chickens or **pigeons**. Proof in a living bird is **awaited**.
 
-In 2014 came an **eerie**, **man-made** twist. At Oldenburg University, robins in campus **huts** lost that sense. In huts **clad** in grounded aluminium, they **reclaimed** their **bearings**. Removing the grounding, or **piping** radio noise in, **bewildered** them again in double-blind tests. The **interference**, a **murmur** from everyday **appliances**, sat far below WHO safety limits.
+In 2014 came an **eerie**, **man-made** **twist**. At Oldenburg University, robins in campus **huts** lost that **sense**. In huts **clad** in grounded aluminium, they **reclaimed** their **bearings**. Removing the grounding, or **piping** radio noise in, **bewildered** them again in double-blind tests. The **interference**, a **murmur** from everyday **appliances**, sat far below WHO safety limits.
 
 How a **wanderer** knows where it is remains **unanswered**. The compass code is partly **cracked**, but the **atlas** that steered the shearwater has yet to be read.
 
 ## 中文
 
-1952年6月3日，罗萨里奥·马泽奥在波士顿**放飞**(released)了一只大西洋鹱。它乘**火车**(rail)和**客机**(airliner)，从斯科克霍姆岛上的**洞穴**(burrow)来到这里——那是威尔士外海的一座**小岛**(isle)；而马泽奥**随即**(at once)**寄出了一封信**(posted a letter)。这位**披着羽毛**(feathered)的**旅行者**(traveller)飞越约三千二百英里**一望无际**(unbroken)的大西洋，完成了一场**远征**(odyssey)，十二天半后回到自家**门口**(doorstep)。那封信是**随后**(afterwards)才到的。
+1952年6月3日，罗萨里奥·马泽奥在波士顿**放飞**(released)了一只大西洋鹱。它乘**火车**(rail)和**客机**(airliner)，从斯科克霍姆岛上的**洞穴**(burrow)来到这里——那是威尔士外海的一座**小岛**(isle)；而马泽奥**随即**(at once)**寄出了一封信**(posted a letter)。这位**披着羽毛**(feathered)的**旅行者**(traveller)飞越约三千二百英里**连绵不断**(unbroken)的大西洋之后，完成了一场**远征**(odyssey)，十二天半后回到自家**门口**(doorstep)。那封信是**随后**(afterwards)才到的。
 
-最初的罗盘**线索**(hints)来自**天上**(celestial)。20世纪50年代，克雷默把椋鸟**关进**(cooped)笼子里，再用镜子挪动太阳的视位置。**受骗**(duped)的鸟随之**转身**(swivelled)，而且会顾及太阳每天划过的**弧线**(arc)。20世纪60年代，埃姆伦在天文馆的**穹顶**(vault)上把星星一片片**遮住**(curtained)。他的靛蓝彩鹀依靠**北极星**(pole-star)周围的星星辨向，北极星正是星空**每夜**(nightly)都绕着**旋转**(whirl)的**轴心**(axis)。
+关于这种罗盘的最初**迹象**(hints)，是**和天体有关的**(celestial)。20世纪50年代，克雷默把椋鸟**关进**(cooped)笼子里，再用镜子挪动**太阳的视位置**(apparent sun)。**受骗**(duped)的鸟儿随之**转动**(swivelled)以与之匹配，并且还会**考虑到**(allowing for)太阳每天运行的**弧线**(arc)。20世纪60年代，埃姆伦在天文馆的**穹顶**(vault)内，**用帘子遮挡住了**(curtained off)星星。他的靛蓝彩鹀依靠**北极星**(pole-star)周围的星星**控制方向**(steered)，北极星正是星空**每夜**(nightly)都绕着**旋转**(whirl)的**轴心**(axis)。
 
-1972年，维尔奇科夫妇证明，**知更鸟**(robins)读取地球**磁场**(magnetic)时，看的是**倾角**(inclination)，而不是**极性**(polarity)，这一点和**水手**(sailor)的罗盘**指针**(needle)不同。1978年，舒尔滕提出，一种**由光触发**(light-triggered)的化学反应可以**解读**(decode)磁场。2000年，**视网膜**(retina)中的一种蛋白质隐花色素被提了出来，如今它是**头号**(foremost)嫌疑对象。2021年的实验室测试表明，知更鸟的隐花色素比鸡和**鸽子**(pigeons)的**调校**(tuned)得更**精细**(finely)。在活鸟身上的证据，仍**有待**(awaited)取得。
+1972年，维尔奇科夫妇证明，**知更鸟**(robins)读取地球**磁场**(magnetic)时，看的是**倾角**(inclination)，而不是**极性**(polarity)，这一点和**水手**(sailor)的罗盘**指针**(needle)不同。1978年，舒尔滕提出了一种**由光触发**(light-triggered)、用于**解码**(decode)地球磁场的反应。2000年，**视网膜**(retina)中的一种蛋白质隐花色素被提了出来，如今它是**头号**(foremost)**嫌疑对象**(suspect)。2021年的实验室测试表明，知更鸟的隐花色素比鸡和**鸽子**(pigeons)的**调校**(tuned)得更**精细**(finely)。在活鸟身上的证据，仍**有待**(awaited)获取。
 
-2014年，事情出现了一个**诡异**(eerie)的、**人为**(man-made)的转折。在奥尔登堡大学，校园**小木屋**(huts)里的知更鸟失去了这种感知。在**包覆**(clad)接地铝板的小屋里，它们**找回**(reclaimed)了**方向感**(bearings)。在双盲实验中，拆掉接地，或往屋里**灌入**(piping)无线电噪声，又让它们**晕头转向**(bewildered)。这种**干扰**(interference)只是日常**电器**(appliances)发出的一阵电磁**低语**(murmur)，强度远低于世卫组织的安全限值。
+2014年，事情出现了一个**诡异**(eerie)的、**人为**(man-made)的**转折**(twist)。在奥尔登堡大学，校园**小木屋**(huts)里的知更鸟失去了这种**感知/感官**(sense)。在**包覆**(clad)接地铝板的小屋里，它们**找回**(reclaimed)了**方向感**(bearings)。在双盲实验中，拆掉接地，或往屋里**灌入**(piping)无线电噪声，又让它们**晕头转向**(bewildered)。这种**干扰**(interference)只是日常**电器**(appliances)发出的一阵电磁**低语**(murmur)，强度远低于世卫组织的安全限值。
 
 一位**漫游者**(wanderer)如何知道自己身在何处，至今仍**没有答案**(unanswered)。罗盘的密码已**破解**(cracked)了一部分，但指引那只大西洋鹱的那张**地图**(atlas)，还没有人读懂。
 
@@ -43,11 +43,14 @@ How a **wanderer** knows where it is remains **unanswered**. The compass code is
 | hints | n. (hint) 线索，暗示（drop a hint；a hint of sth） | 2 |
 | celestial | adj. 天上的，天体的（celestial bodies） | 2 |
 | cooped | v. (coop up) 关进笼子，困住（cooped up indoors） | 2 |
+| apparent sun | n. phr. 太阳的视位置（从地面看到的太阳位置） | 2 |
 | duped | v. (dupe) 欺骗，愚弄（be duped into signing） | 2 |
 | swivelled | v. (swivel) 转动，旋转（swivel round in one's chair） | 2 |
+| allowing for | v. phr. (allow for) 考虑到（allow for delays） | 2 |
 | arc | n. 弧，弧线（the arc of a rainbow） | 2 |
 | curtained | v. (curtain off) 用帘子遮挡（curtain off part of a room） | 2 |
 | vault | n. 拱顶，穹顶；保险库（the vault of heaven；a bank vault） | 2 |
+| steered | v. (steer) 控制方向，掌舵（steer a boat） | 2 |
 | pole-star | n. 北极星（steer by the pole-star） | 2 |
 | axis | n. 轴，轴心（the earth's axis） | 2 |
 | nightly | adj./adv. 每夜的（a nightly news programme） | 2 |
@@ -62,13 +65,16 @@ How a **wanderer** knows where it is remains **unanswered**. The compass code is
 | decode | v. 解码，解读（decode a message） | 3 |
 | retina | n. 视网膜（damage to the retina） | 3 |
 | foremost | adj. 最重要的，首要的（the foremost expert；first and foremost） | 3 |
+| suspect | n. 嫌疑对象，嫌疑人（the prime suspect） | 3 |
 | finely | adv. 精细地（finely balanced；finely chopped） | 3 |
 | tuned | adj./v. (tune) 调校好的（a finely tuned engine） | 3 |
 | pigeons | n. (pigeon) 鸽子（homing pigeons） | 3 |
 | awaited | v. (await) 等待（eagerly awaited results） | 3 |
 | eerie | adj. 怪异的，诡异的（an eerie silence） | 4 |
 | man-made | adj. 人造的，人为的（man-made fibres/disasters） | 4 |
+| twist | n. 转折，意外的变化（a twist of fate；a dramatic twist） | 4 |
 | huts | n. (hut) 小屋，棚屋（a wooden hut） | 4 |
+| sense | n. 感知，感官（a sense of direction；the five senses） | 4 |
 | clad | adj. 包覆着……的（ivy-clad walls；clad in steel） | 4 |
 | reclaimed | v. (reclaim) 找回，收回（reclaim one's title） | 4 |
 | bearings | n. (bearing) 方位，方向感（lose/find one's bearings） | 4 |
