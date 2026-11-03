@@ -22,7 +22,7 @@ S=[
 (2,[[[("In his own **summary**,","用他自己的话**总结**(summary)，"),("it was","这完全是"),("a **solution** without a problem.","一个**解决**(solution)“不存在的问题”的**方案**(solution)。")],
      "（solution：解决方案；\nwithout a problem：介词短语作后置定语，\n修饰 solution，\n指这种胶找不到能用它来解决的问题）"]]),
 (2,[[[("His **perseverance**","他的**坚持不懈**(perseverance)"),("met","换来的是"),("**indifference**.","**冷漠**(indifference)。")]]]),
-(2,[[[("The **unconventional** material","这种**非常规的**(unconventional)材料"),("found no","找不到"),("use,","用途，")]],
+(2,[[[("The **unconventional** material","这种**非常规的**(unconventional)材料"),("**found no use**,","**找不到用途**(found no use)，")]],
     [[("and the **pursuit**","这番**追求**(pursuit)"),("proved","终究"),("**fruitless**.","**一无所获**(fruitless)。")],
      "（prove＋形容词：结果是……）"]]),
 (3,[[[("In 1974","1974年，"),("Art Fry,","阿特·弗莱，"),("a colleague who had heard one of those talks,","一位听过其中一次讲座的同事，")],
