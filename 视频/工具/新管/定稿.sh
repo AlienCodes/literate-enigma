@@ -54,5 +54,5 @@ python3 $H/合回镜像.py $P $L || stop "镜像上有只在镜像的改动和 m
 flock -u 7
 python3 $T/定稿视频核对.py --只查清点和镜像 > "$LOG/镜像核对.log" 2>&1 || { tail -10 "$LOG/镜像核对.log"; stop "镜像核对不通过"; }
 python3 $T/缓存进仓库核对.py $no || stop "这一篇用到的配音缓存没全进仓库（G51）"
-if python3 $T/全篇核查.py --欠着; then step "⑦ 出片程序改过：全篇重查（铁4）"; python3 $T/全篇核查.py --视频 > "$LOG/全篇重查.log" 2>&1 && tail -1 "$LOG/全篇重查.log" || { tail -6 "$LOG/全篇重查.log"; echo "【欠着】全篇重查没过（铁4）"; }; fi
+if python3 $T/全篇核查.py --欠着; then echo "【提醒】⑦ 出片程序改过，已定稿的篇目欠着全篇重查（铁4）：$(cd $T && python3 -c 'from 重查记录 import 欠着; print(" ".join(欠着()))')——只提醒不拦，主会话统一并行重查（K159：40 定稿时这一步跑 1.5 小时被后台掐断，每个会话定稿都重复跑一遍）"; fi
 echo "第${no}篇 定稿完成（$(( $(date +%s) - t0 )) 秒）：4K 已归档替换，两个仓库已推送，镜像一致"
