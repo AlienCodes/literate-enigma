@@ -700,6 +700,13 @@ def 句增益(d,no,si,sent,pieces,gaps,clips,tmap,a):
             if not (str(k_).isdigit() and 1<=int(k_)<=len(pieces)) or abs(float(g_))>6: raise SystemExit(f'【停止】分段增益dB 写法不对（段号按 , ; : 从 1 数，共 {len(pieces)} 段；增益 ±6 dB 以内）：S{si+1} {k_}:{g_}')
             clips[2*(int(k_)-1)]=clips[2*(int(k_)-1)]*np.float32(10**(float(g_)/20))
         a=np.concatenate(clips)
+    _rgn=d.get('段内渐变dB',{}).get(f'S{si+1}')   # 2026-11-03 段内渐变（用户听 37 S13：“前后大小不太一致”，to avoid frightening 偏响、pharmacists or the public 偏轻，同一段内前响后轻）：段内从 g0 线性渐变到 g1 dB
+    if _rgn:
+        if sent in PGRAFT: raise SystemExit(f'【停止】段内渐变dB 不能和 停顿处除阻 用在同一句：S{si+1}')
+        for k_,gg_ in _rgn.items():
+            if not (str(k_).isdigit() and 1<=int(k_)<=len(pieces)) or len(gg_)!=2 or max(abs(float(x)) for x in gg_)>6: raise SystemExit(f'【停止】段内渐变dB 写法不对（{{"段号": [开头dB, 结尾dB]}}，±6 dB 以内）：S{si+1} {k_}:{gg_}')
+            c_=clips[2*(int(k_)-1)]; clips[2*(int(k_)-1)]=(c_*10**(np.linspace(float(gg_[0]),float(gg_[1]),len(c_))/20)).astype(np.float32)
+        a=np.concatenate(clips)
     _sg=float(d.get('句子增益dB',{}).get(f'S{si+1}',0))   # 2026-10-21 用户同意的例外：19 S5 短句比全片响 2.0 LU，只这一句整体调轻（≤1 dB，不改音色）
     if _sg:
         if abs(_sg)>1: raise SystemExit(f'【停止】句子增益dB 只许 ±1 dB 以内（S{si+1}：{_sg}）')

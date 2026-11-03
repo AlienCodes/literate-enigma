@@ -85,7 +85,13 @@ if __name__ == '__main__':
                 pr_ = [(r['原始'][0], r['原始'][1], float(r['增益'])) for r in sr2_ if r.get('增益')]
                 if pn_ and any(abs(float(r.get('增益', 0)) - float(pn_.get(str(r['段']), 0))) > 1e-6 for r in sr2_) and not (str(d.get('no', no)).isdigit() and int(d.get('no', no)) >= 26):
                     raise SystemExit(f'【停止】分段记录的增益与脚本 分段增益dB 对不上（26 前没有自动调平）：S{idx + 1}')
-            key_ = _hl.md5(repr((phonemes_of(spoken(text)), gr, en_, fd_, 0.95) + ((pg,) if pg else ()) + ((('加强', bo),) if bo else ()) + ((('增益', sg_),) if sg_ else ()) + ((('分段增益', pr_),) if pr_ else ()) + ((('合成标点', d.get('合成标点', {}).get(f'S{idx + 1}')),) if idx >= 0 and d.get('合成标点', {}).get(f'S{idx + 1}') else ())).encode()).hexdigest()[:10]
+            rgn_ = d.get('段内渐变dB', {}).get(f'S{idx + 1}') if idx >= 0 else None   # 2026-11-03 段内渐变：段内线性渐变，乘在分段记录的原始区间
+            rg_ = []
+            if rgn_:
+                sr3_ = SEGS.get(no, {}).get(f'S{idx + 1}') or []
+                rg_ = [(r['原始'][0], r['原始'][1], float(rgn_[str(r['段'])][0]), float(rgn_[str(r['段'])][1])) for r in sr3_ if str(r['段']) in rgn_]
+                if len(rg_) != len(rgn_): raise SystemExit(f'【停止】段内渐变dB 的段号在分段记录里找不到：S{idx + 1}')
+            key_ = _hl.md5(repr((phonemes_of(spoken(text)), gr, en_, fd_, 0.95) + ((pg,) if pg else ()) + ((('加强', bo),) if bo else ()) + ((('增益', sg_),) if sg_ else ()) + ((('分段增益', pr_),) if pr_ else ()) + ((('段内渐变', rg_),) if rg_ else ()) + ((('合成标点', d.get('合成标点', {}).get(f'S{idx + 1}')),) if idx >= 0 and d.get('合成标点', {}).get(f'S{idx + 1}') else ())).encode()).hexdigest()[:10]
             fn = f'{OUT}/{no}_{"T" if idx < 0 else "%02d" % idx}_{key_}.npy'
             if not os.path.exists(fn):
                 if en_: a, sr = _ending_raw(text, en_), 24000     # 结尾句：两遍合成在接点接起来（与出片同一个函数，接点两侧必须是静音）
@@ -111,6 +117,7 @@ if __name__ == '__main__':
                         p0 = st + int(round(float(p_) * SR)); q0 = st + int(round(float(q_) * SR))
                         a = np.concatenate([a[:p0], _pdonor(w0, kd), a[q0:]])
                 for p0_, p1_, g_ in pr_: a[p0_:min(p1_, len(a))] *= np.float32(10 ** (g_ / 20))
+                for p0_, p1_, g0_, g1_ in rg_: q_ = min(p1_, len(a)); a[p0_:q_] *= (10 ** (np.linspace(g0_, g1_, q_ - p0_) / 20)).astype(np.float32)   # 末段的原始终点是“到句尾”的占位数，按实际长度渐变   # 段内渐变dB（与出片同一个数）
                 if sg_: a = a * np.float32(10 ** (sg_ / 20))
                 np.save(fn, a)
             meta[no].append({'idx': idx, 'text': text, 'file': fn,
