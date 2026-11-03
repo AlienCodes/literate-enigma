@@ -1,13 +1,15 @@
 import json,re,glob,os
 # 第41篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-03 用户改稿 S2：“bulky 意思对应 庞大笨重的”“Native to 标注重点词汇”“那就按照你说的来，原产于美洲”
+# 2026-11-03 用户改稿 S1：“的 改为 它的”；“最后一句改为 此种植园位于澳大利亚东北部的昆士兰州。把前面那个正困扰着后面的澳大利亚东北部昆士兰州给去掉。”
 # 2026-11-03 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；短语型用法整体标（T22）；不用破折号（T36）。
 S=[
-(1,[[[("Greyback","灰背"),("cane","蔗"),("**beetles**,","**甲虫**(beetles)"),("whose","的"),("**larvae**","**幼虫**(larvae)"),("**devour**","**啃食**(devour)"),("roots,","根系，")],
+(1,[[[("Greyback","灰背"),("cane","蔗"),("**beetles**,","**甲虫**(beetles)"),("whose","它的"),("**larvae**","**幼虫**(larvae)"),("**devour**","**啃食**(devour)"),("roots,","根系，")],
      "（whose larvae devour roots：定语从句，修饰 beetles）"],
-    [[("were **plaguing**","正**困扰**(plaguing)着"),("**lucrative**","澳大利亚东北部昆士兰州**利润丰厚的**(lucrative)"),("sugar","甘蔗"),("**plantations** in Queensland, north-eastern Australia.","**种植园**(plantations)。")],
+    [[("were **plaguing**","正**困扰**(plaguing)着"),("**lucrative**","**利润丰厚的**(lucrative)"),("sugar","甘蔗"),("**plantations**","**种植园**(plantations)，"),("in Queensland, north-eastern Australia.","此种植园位于澳大利亚东北部的昆士兰州。")],
      "（in Queensland：后置定语，修饰 plantations；\nnorth-eastern Australia：同位语，补充说明 Queensland）"]]),
 (1,[[[("In June 1935","1935年6月，"),("Queensland","昆士兰州"),("**imported**","从夏威夷**引进了**(imported)"),("102","102只"),("cane","甘蔗"),("toads,","蟾蜍，")]],
-    [[("**bulky**","这是一种原产美洲、**体型粗壮的**(bulky)"),("**amphibians** native to the Americas, from Hawaii.","**两栖动物**(amphibians)。")],
+    [[("**bulky**","这是一种**原产于**(native to)美洲、**庞大笨重的**(bulky)"),("**amphibians** **native to** the Americas, from Hawaii.","**两栖动物**(amphibians)。")],
      "（bulky amphibians native to the Americas：同位语，补充说明 cane toads；\nnative to…：原产于……；from Hawaii：修饰 imported）"]]),
 (1,[[[("That August","同年8月，"),("about 2,400 of their young","它们的约2,400只后代"),("were **released**.","被**释放**(released)到野外。")],
      "（young：名词，指动物的幼崽、后代）"]]),
@@ -88,7 +90,6 @@ CONF={
  "S18 recruits now":"对齐不了：now 是时间状语，中文沿用文章定稿“如今新兵”，“如今”放到主语前",
  "S19 sealed by lobbying that overrode a warning":"对齐不了：by lobbying that overrode a warning 是方式状语加定语从句，中文“游说压过了警告而成定局”必须放到 sealed 前"},
 "对齐":{
- "S1-2 plantations in Queensland, nor":"in Queensland, north-eastern Australia 是后置定语（地点），中文“澳大利亚东北部昆士兰州”必须提前（放到 lucrative 下面）",
  "S2-2 amphibians native to the Ameri":"native to the Americas 是后置定语，中文“原产美洲”必须提前（放到 bulky 下面）；from Hawaii 修饰 imported，中文“从夏威夷”放到“引进了”前",
  "S3-1 about 2,400 of their young":"of 结构：about 2,400 of their young，中文“它们的约2,400只后代”语序必须倒过来",
  "S7-2 high up on cane stalks.":"high up on cane stalks 是地点状语，中文“甘蔗茎秆的高处”方位词必须放到后面",
@@ -104,6 +105,7 @@ CONF={
 "方向":{"S6-2 after→经":"after Queensland's lobbying 中文“经昆士兰州游说”，“经”就是经过……之后，方向一致（沿用文章定稿）"},
 "词性":{"S9-2 unchecked 不受遏制地":"unchecked 是 adj.，在 multiplied unchecked 里作状语（说明繁殖的状态），中文“不受遏制地”作状语，沿用文章定稿"},
 "即":{"S4-1 即":"沿用文章定稿中文“即用一个物种去对付一种害虫”，同位说明 Biological control，用“即”简洁准确"},
+"中文意思":{"S2 native to":"不是被隔开的两处：用户 2026-11-03 原话定的“原产于美洲”，native to 只对应“原产于”，后面直接接“美洲、”，没有“……的”"},
 "短语":{
  "S2 imported … from":"不是搭配：from Hawaii 只引出来源（从夏威夷），imported 本身就是“引进”（同 40 dispensed … to 的判法）",
  "S2 imported … to":"不是搭配：to 属于 native to the Americas，和 imported 无关",
@@ -113,7 +115,7 @@ CONF={
  "S9 spawning … of":"不是搭配：of 属于 thousands of eggs，和 spawning 无关",
  "S10 accelerated … to":"不是搭配：to 只引出加快后达到的速度（到每年约50公里），accelerated 本身就是“加快”"}}
 out={"no":"41","title_en":"The Toad That Invaded Australia","title_zh":"入侵澳洲的毒蟾","title_fx":{"hl":["Toad","Invaded"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
-     "高亮按实际开口":True,"高亮开口门槛":40,
+     "换行变更已获同意":{"S1":"用户 2026-11-03 原话：“最后一句，最后一句。改为 此种植园位于澳大利亚东北部的昆士兰州。把前面那个正困扰着 后面的澳大利亚东北部昆士兰州给去掉。”"},"高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Biological":"生物","Queensland":"昆士兰州","Australia":"澳大利亚","Hawaii":"夏威夷","Americas":"美洲","Walter Froggatt":"沃尔特·弗罗格特","Western Australia":"西澳大利亚州","goannas":"巨蜥","northern quolls":"北袋鼬","quoll":"袋鼬","Cactoblastis":"仙人掌螟","New South Wales":"新南威尔士州","prickly pear":"刺梨"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对

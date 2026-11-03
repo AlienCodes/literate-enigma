@@ -2,7 +2,7 @@
 # ZH: 入侵澳洲的毒蟾
 ## 英文
 
-Greyback cane **beetles**, whose **larvae** **devour** roots, were **plaguing** **lucrative** sugar **plantations** in Queensland, north-eastern Australia. In June 1935 Queensland **imported** 102 cane toads, **bulky** **amphibians** native to the Americas, from Hawaii. That August about 2,400 of their young were **released**. **Biological** control, setting one **species** against a **pest**, had an **ambitious** new **recruit**.
+Greyback cane **beetles**, whose **larvae** **devour** roots, were **plaguing** **lucrative** sugar **plantations** in Queensland, north-eastern Australia. In June 1935 Queensland **imported** 102 cane toads, **bulky** **amphibians** **native to** the Americas, from Hawaii. That August about 2,400 of their young were **released**. **Biological** control, setting one **species** against a **pest**, had an **ambitious** new **recruit**.
 
 The **hasty** plan met **opposition**. In November 1935 an insect expert, Walter Froggatt, **persuaded** officials to **halt** releases; after Queensland's **lobbying**, they **resumed** in September 1936. The **scheme** **flopped**: the toads barely **dented** beetle numbers, perhaps because the insects stayed high up on cane **stalks**.
 
@@ -14,7 +14,7 @@ Biological control can **triumph**. From 1926 the cactus **moth**, Cactoblastis,
 
 ## 中文
 
-灰背蔗**甲虫**(beetles)的**幼虫**(larvae)**啃食**(devour)根系，正**困扰**(plaguing)着澳大利亚东北部昆士兰州**利润丰厚的**(lucrative)甘蔗**种植园**(plantations)。1935年6月，昆士兰州从夏威夷**引进**(imported)了102只甘蔗蟾蜍，这是一种原产美洲、**体型粗壮的**(bulky)**两栖动物**(amphibians)。同年8月，它们的约2,400只后代被**释放**(released)到野外。**生物**(Biological)防治，即用一个**物种**(species)去对付一种**害虫**(pest)，就此迎来了一名**雄心勃勃的**(ambitious)**新兵**(recruit)。
+灰背蔗**甲虫**(beetles)它的**幼虫**(larvae)**啃食**(devour)根系，正**困扰**(plaguing)着**利润丰厚的**(lucrative)甘蔗**种植园**(plantations)，此种植园位于澳大利亚东北部的昆士兰州。1935年6月，昆士兰州从夏威夷**引进**(imported)了102只甘蔗蟾蜍，这是一种**原产于**(native to)美洲、**庞大笨重的**(bulky)**两栖动物**(amphibians)。同年8月，它们的约2,400只后代被**释放**(released)到野外。**生物**(Biological)防治，即用一个**物种**(species)去对付一种**害虫**(pest)，就此迎来了一名**雄心勃勃的**(ambitious)**新兵**(recruit)。
 
 这个**草率的**(hasty)计划遭到了**反对**(opposition)。1935年11月，昆虫专家沃尔特·弗罗格特**说服**(persuaded)官员**叫停**(halt)释放；经昆士兰州**游说**(lobbying)，释放于1936年9月**恢复**(resumed)。这套**方案**(scheme)**以失败告终**(flopped)：蟾蜍几乎没能**削减**(dented)甲虫的数量，或许是因为这些昆虫一直待在甘蔗**茎秆**(stalks)的高处。
 
@@ -34,8 +34,9 @@ Biological control can **triumph**. From 1926 the cactus **moth**, Cactoblastis,
 | lucrative | adj. 赚钱的，获利丰厚的（a lucrative business/contract/market） | 1 |
 | plantations | n. (plantation) 种植园，大农场（a sugar/rubber/tea plantation）；人造林 | 1 |
 | imported | v. (import) 进口，引进（import goods from abroad；import sth into…）；n. 进口；进口商品（imports 进口额）；反义 export | 1 |
-| bulky | adj. 体积大的，笨重的（a bulky parcel）；（人）魁梧的，粗壮的；bulk n. 大块，大部分（the bulk of 大部分；in bulk 大批） | 1 |
+| bulky | adj. 庞大笨重的，体积大的（a bulky parcel）；（人）魁梧的，粗壮的；bulk n. 大块，大部分（the bulk of 大部分；in bulk 大批） | 1 |
 | amphibians | n. (amphibian) 两栖动物（蛙、蟾蜍、蝾螈等）；水陆两用飞机/车辆；amphibious adj. 两栖的；水陆两用的 | 1 |
+| native to | phr. 原产于……的，土生土长的（be native to 原产于；plants native to China 原产中国的植物）；native adj. 本地的，母语的（a native speaker 说母语的人）；n. 本地人 | 1 |
 | released | v. (release) 释放（release animals into the wild 把动物放到野外）；发布，发行（release a report/film）；排放（release gases）；n. 释放；发行 | 1 |
 | biological | adj. 生物的，生物学的（biological control 生物防治；biological weapons）；亲生的（biological parents）；biology n. 生物学 | 1 |
 | species | n. (单复数同形) 物种，种（endangered/native/invasive species） | 1 |
