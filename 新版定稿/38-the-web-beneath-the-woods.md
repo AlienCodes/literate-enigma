@@ -22,7 +22,7 @@ None of this **disproves** the networks' **existence**. In January 2025, **defen
 
 2023年2月，三位研究者**梳理**(combed through)了野外证据。他们认为，这些证据或过于**稀少**(sparse)，或**互不一致**(inconsistent)，或**含糊不清**(ambiguous)，不足以**证明**(demonstrate)共享网络**普遍存在**(widespread)。在26项野外研究中，网络帮助和**阻碍**(hindered)幼苗的频率大致相同，并且**中性的**(neutral)效应**占据大多数**(predominating)。没有任何一项经**同行评审**(peer-reviewed)的野外研究表明，**成年**(mature)树木会**偏爱**(favouring)自己的**后代**(offspring)。在后来的论文中，**缺乏依据的**(unsupported)**论断/断言**(assertions)在25年间**增加了一倍/翻了一倍**(doubled)，**引用**(citations)也**偏向**(skewed towards)**于**(skewed towards)**正面结果**(positive results)。
 
-这一切都不能**否定**(disproves)这些网络的**存在**(existence)。2025年1月，共享网络说的**拥护者**(defenders)指摘了这篇批评文章的方法。批评者也**承认**(concede)，碳和养分可以经由地下在树与树之间**迁移**(migrate)。网络究竟**输送**(convey)了多少、这又是否要紧，必须由在真实森林中**发掘**(unearthed)出的证据来裁定，而不能凭一部家族**传奇**(saga)的**魅力**(allure)来决定。
+这一切都不能**否定**(disproves)这些网络的**存在**(existence)。2025年1月，共享网络说的**拥护者**(defenders)挑出了这篇批评文章方法上的问题。批评者也**承认**(concede)，碳和养分可以经由地下在树与树之间**迁移**(migrate)。网络究竟**输送**(convey)了多少、这又是否要紧，必须由在真实森林中**发掘**(unearthed)出的证据来裁定，而不能凭一部家族**传奇**(saga)的**魅力**(allure)来决定。
 
 ## 速查表
 | 词 | 释义 | 段 |
