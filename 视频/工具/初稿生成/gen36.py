@@ -2,13 +2,13 @@ import json,re,glob,os
 # 第36篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-10-29 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；三项并列加牛津逗号（T18）；不用破折号（T36）。
 S=[
-(1,[[[("In 1975","1975年，"),("Kodak","柯达"),("engineer","工程师"),("Steven Sasson","史蒂文·萨松"),("built","造出了"),("the first","第一台"),("digital","数码"),("camera.","相机。")],
+(1,[[[("In 1975","1975年，"),("Kodak","柯达"),("engineer","工程师"),("Steven Sasson","史蒂文·萨松"),("built","造出了"),("the first","第一台"),("**digital camera**.","**数码相机**(digital camera)。")],
      "（Kodak engineer Steven Sasson：职务 + 人名，作主语）"]]),
-(1,[[[("The **toaster**-sized","这台**烤面包机**(toaster)大小的"),("**gadget**,","**装置**(gadget)，")],
+(1,[[[("The **toaster**-sized","这台**烤面包机**(toaster)大小的"),("**gadget**,","**小器械/小装置**(gadget)，")],
      "（toaster-sized：烤面包机大小的，复合形容词）"],
     [[("a **cumbersome**","是个**笨重的**(cumbersome)"),("**heavyweight**","**大块头**(heavyweight)，"),("of about","重约"),("eight pounds,","八磅，")],
      "（a cumbersome heavyweight…：同位语，补充说明 the gadget）"],
-    [[("was hardly","很难说是"),("**portable**,","**便携的**(portable)，"),("let alone","更谈不上"),("**handheld**.","**手持**(handheld)。")],
+    [[("was hardly","很难说是"),("**portable**,","**便携的**(portable)，"),("**let alone**","**更谈不上**(let alone)"),("**handheld**.","**手持**(handheld)。")],
      "（hardly：几乎不；let alone：更不用说）"]]),
 (1,[[[("Its first","它拍下的第一张"),("**rudimentary**","**粗糙的**(rudimentary)"),("picture","照片，"),("held","只有"),("10,000","1万个"),("black-and-white","黑白"),("**pixels**.","**像素**(pixels)。")],
      "（10,000 pixels：1万像素，即 100×100）"]]),
@@ -16,7 +16,7 @@ S=[
      "（Recording it on a cassette：动名词短语作主语）"],
     [[("and","再由"),("a **playback** unit","一台**回放**(playback)装置"),("showed it on a television.","在电视上显示出来。")],
      "（playback unit：回放装置）"]]),
-(2,[[[("Kodak's **revenues**","柯达的**收入**(revenues)"),("showed","显示出"),("its **dependence on** film,","公司对胶卷的**依赖**(dependence on)，")],
+(2,[[[("Kodak's **revenues**","柯达的**收入**(revenues)"),("showed","显示出"),("its **dependence on** film,","公司**对**(dependence on)胶卷的**依赖**(dependence on)，")],
      "（dependence on…：对……的依赖）"],
     [[("the **profitable**","胶卷是其业务中**赚钱的**(profitable)"),("**pillar** of its business.","**支柱**(pillar)。")],
      "（the profitable pillar of its business：同位语，补充说明 film）"]]),
@@ -27,15 +27,15 @@ S=[
      "（By Sasson's recollection：据萨松的回忆，交代说法的来源）"],
     [[("his **superiors** at **headquarters**","他在**总部**(headquarters)的**上司**(superiors)"),("called it","说它"),("cute","挺可爱，")],
      "（at headquarters：介词短语作后置定语，修饰 superiors）"],
-    [[("and urged him","又让他"),("to **keep it hushed**.","对此**秘而不宣**(keep it hushed)。")],
+    [[("and urged him","并敦促他"),("to **keep it hushed**.","对此**秘而不宣**(keep it hushed)。")],
      "（urge sb to do：催促某人做；\nkeep it hushed：让它保持不声张，即保密）"]]),
-(2,[[[("A patent followed in 1978.","1978年，这台相机获得专利，")],
+(2,[[[("A **patent** followed in 1978.","1978年，这台相机获得**专利**(patent)，")],
      "（A patent followed：随后获得了专利）"]]),
-(2,[[[("Production","却始终没有"),("never did.","投产。")],
+(2,[[[("Production","生产部门"),("never did.","却从未这样做过（跟进）。")],
      "（never did：省略了 follow）"]]),
-(3,[[[("The **advent** of digital photography","数码摄影的**问世**(advent)"),("proved","带来了"),("**disruptive**.","**颠覆性的**(disruptive)冲击。")],
+(3,[[[("The **advent** of digital photography","数码摄影的**问世**(advent)"),("proved","，结果证明是"),("**disruptive**.","**颠覆性的**(disruptive)。")],
      "（the advent of…：……的出现；\nprove + 形容词：结果证明是……）"]]),
-(3,[[[("In June 2009","2009年6月，"),("Kodak","柯达"),("said","宣布"),("it would stop making","停产"),("Kodachrome,","Kodachrome"),("its **analogue** film,","这种**模拟**(analogue)胶卷，")],
+(3,[[[("In June 2009","2009年6月，"),("Kodak","柯达"),("said","宣布"),("it would stop making","将停产"),("Kodachrome,","Kodachrome"),("its **analogue** film,","这种**模拟**(analogue)胶卷，")],
      "（its analogue film：同位语，补充说明 Kodachrome；\nKodachrome：柯达的胶卷品牌）"],
     [[("citing","理由是"),("**lessened** demand in the digital **era**.","数码**时代**(era)里需求**减少**(lessened)。")],
      "（citing…：现在分词短语作伴随状语，交代理由）"]]),
@@ -47,9 +47,9 @@ S=[
      "（alongside…：与……同时；the shutdown of…：……的关闭）"]]),
 (4,[[[("On 19 January 2012","2012年1月19日，"),("the 131-year-old","这家已有131年历史的"),("firm","公司"),("sought","申请"),("Chapter 11 protection","《破产法》第11章保护，"),("from its **creditors**,","以免受**债权人**(creditors)追讨，")],
      "（Chapter 11：美国《破产法》第11章；\nprotection from…：免受……的保护）"],
-    [[("**sapped** by **pension** costs and years of **slowness** in going digital.","它受**养老金**(pension)负担和多年来转向数码的**迟缓**(slowness)所**拖累**(sapped)。")],
+    [[("**sapped** by **pension** costs and years of **slowness** in going digital.","它受**养老金**(pension)负担和多年来转向数码的**迟缓**(slowness)所**慢慢抽空/消耗**(sapped)。")],
      "（sapped by…：过去分词短语作原因状语，被……削弱；\ngoing digital：转向数码）"]]),
-(4,[[[("Citigroup, a **lender**,","**贷款方**(lender)花旗集团"),("provided","提供了"),("$950 million","9.5亿美元，"),("for its **restructuring**.","用于其**重组**(restructuring)。")],
+(4,[[[("Citigroup, a **lender**,","**贷款方（借出钱的人）**(lender)花旗集团"),("provided","提供了"),("$950 million","9.5亿美元，"),("for its **restructuring**.","用于其**重组**(restructuring)。")],
      "（a lender：同位语，补充说明 Citigroup）"]]),
 (4,[[[("A **portfolio** of 1,100 digital imaging patents","由1,100项数字成像专利构成的**组合**(portfolio)")],
      "（a portfolio of…：……的组合）"],
@@ -61,11 +61,11 @@ S=[
      "（left bankruptcy：走出破产）"],
     [[("**downsized**,","规模已**缩小**(downsized)，"),("**streamlined**,","业务经过**精简**(streamlined)，"),("and **refocused as**","**重新定位为**(refocused as)"),("a commercial **printer**","商业**印刷商**(printer)，"),("for business **clients**.","面向企业**客户**(clients)。")],
      "（downsized, streamlined, and refocused…：三个过去分词并列，\n补充说明 Kodak 走出破产时的样子；refocus as…：重新定位为……）"]]),
-(5,[[[("In November 2009","2009年11月，"),("President Obama","奥巴马总统"),("had **decorated** Sasson with national **laurels**,","曾以国家级**荣誉**(laurels)来**嘉奖**(decorated)萨松，授予他国家技术与创新奖章，")],
-     "（decorate sb with…：以……嘉奖某人；\nnational laurels：国家级荣誉，即国家技术与创新奖章）"],
-    [[("**commending**","**表彰**(commending)"),("his","他的"),("digital","数码"),("camera.","相机。")],
+(5,[[[("In November 2009","2009年11月，"),("President Obama","奥巴马总统"),("had **decorated**","**授予**(decorated)"),("Sasson","萨松"),("with national **laurels**,","国家级**荣誉**(laurels)，")],
+     "（decorate：授给（某人）勋章（或奖章）；\nnational laurels：国家级荣誉，即国家技术与创新奖章）"],
+    [[("**commending**","来**表彰**(commending)"),("his","他的"),("digital","数码"),("camera.","相机。")],
      "（commending…：现在分词短语作伴随状语）"]]),
-(5,[[[("That medal's year","颁发这枚奖章的那一年，"),("also saw Kodak announce","柯达也宣布了"),("the end of Kodachrome.","Kodachrome 的停产。")],
+(5,[[[("That **medal**'s year","那枚**奖章**(medal)颁发的同年，"),("also saw Kodak announce","柯达也宣布了"),("**the end of** Kodachrome.","Kodachrome 的**终结**(the end of)。")],
      "（That medal's year also saw…：以时间作主语，那一年发生了……）\n"
      "（简述：1975年，柯达工程师萨松造出第一台数码相机，重约八磅，\n"
      "第一张照片只有1万个像素，录到磁带上要23秒。柯达靠胶卷赚钱，\n"
@@ -87,7 +87,6 @@ CONF={
  "S7 4.517542-4.677917":"2026-10-29 实测（S7 w）：cute 的 /t/ 除阻在 4.50–4.515（-33～-45 dB），4.52–4.675 是 -43～-53 dB 的吸气（重心 2.2–2.7 kHz、低频 -7～-20 dB、周期 0.15–0.31）；两头都没有 -55 dB 低谷，切在过零点；切点后 4.68–4.72 低频 -0.7～-5 dB 的浊音是 and 的起音，保留，and 的元音 4.73 起完整",
  "S16 4.290042-4.58":"2026-10-29 实测（S16 w）：patents 的 /s/ 在 4.25–4.28（重心 5.3–5.6 kHz）收尾，4.30–4.54 是 -42～-46 dB 的吸气（重心 2.6–3.4 kHz、低频 -14～-26 dB、周期 0.14–0.31），4.55–4.57 衰减到 -52 dB；左头紧贴 /s/ 尾切在过零点 4.290042，右头 4.58 外侧 -57.5 dB；fetched 的 /f/ 4.72 起，没碰"},
 "合组":{
- "S2 let alone":"对齐不了：let alone 是固定短语“更不用说”，拆开 let、alone 都没有这个意思",
  "S4 showed it on a television":"对齐不了：on a television 是地点状语，中文“在电视上显示出来”地点必须放到动词前，拆开语序就乱（同 31 wrote in cafés）",
  "S8 A patent followed in 1978":"对齐不了：A patent followed 是“专利随之而来”，中文“这台相机获得专利”把 patent 和 followed 合成一个动宾；in 1978 按中文习惯放到句首",
  "S10 The advent of digital photography":"对齐不了：the advent of A 中文“A 的问世”，of 结构语序必须倒过来",
@@ -98,7 +97,6 @@ CONF={
  "S14 sapped by pension costs and years of slowness in going digital":"对齐不了：被动 sapped by A 中文“受 A 所拖累”，施动者必须放到“拖累”前面（同 31 rejected by twelve publishers）；in going digital 后置定语修饰 slowness，中文“转向数码的迟缓”也要提前",
  "S16 A portfolio of 1,100 digital imaging patents":"对齐不了：a portfolio of A 中文“由 A 构成的组合”，of 结构语序必须倒过来",
  "S17 left bankruptcy in September 2013":"对齐不了：in September 2013 是时间状语，中文“于2013年9月走出破产”时间必须放到动词前",
- "S18 had decorated Sasson with national laurels":"对齐不了：decorate A with B 中文“以 B 嘉奖 A”，with 结构必须放到动词前；“授予他国家技术与创新奖章”是文章定稿按主编要求补出的奖章全称（史实 T6）",
  "S19 That medal's year":"对齐不了：medal's year 是“奖章的那一年”，中文要说“颁发这枚奖章的那一年”才通",
  "S19 also saw Kodak announce":"对齐不了：A saw B do 是“A 见证 B 做”，中文以“那一年”作时间状语、柯达作主语“柯达也宣布了”，saw 不单独译"},
 "对齐":{
@@ -118,7 +116,7 @@ CONF={
  "S16 consortium of twelve buyers, including the giants Apple and":"不是三项并列：including… 是补充说明 buyers 的介词短语，and 只连接 Apple 和 Google 两项"},
 "数字":{"S3-1 10,000":"10,000 中文按文章定稿写作“1万”，数值相同","S12-1 145,000":"145,000 中文按文章定稿写作“14.5万”，数值相同","S12-1 1980":"the 1980s 中文按文章定稿写作“20世纪80年代”，读作 nineteen eighties","S13-1 47,000":"47,000 中文按文章定稿写作“4.7万”，数值相同","S15-1 950":"950 million 中文按文章定稿写作“9.5亿”，数值相同（950 million = 9.5亿），读作 nine hundred fifty million",
  "S16-2 525":"525 million 中文按文章定稿写作“5.25亿”，数值相同（525 million = 5.25亿）"},
-"是的":{"S2-3 是**便携的**":"文章定稿“很难说是便携的”（铁律：定稿中文意思不改）；hardly portable 是“很难说是……的”判断句，去掉“是……的”变成“很难说便携”反而不通"},
+"是的":{"S10-1 是**颠覆性的**":"用户 2026-11-03 原话：“数码摄影的问世，结果证明是颠覆性的。”（proved disruptive：结果证明是颠覆性的），按用户原话","S2-3 是**便携的**":"文章定稿“很难说是便携的”（铁律：定稿中文意思不改）；hardly portable 是“很难说是……的”判断句",},
 "方向":{"S17-1 after→经过":"After 19 months of… 中文“经过19个月的……”，“经过”就是在这段时间之后，方向一致（文章定稿）"},
 "短语":{
  "S5 pillar … of":"不是搭配：pillar of its business 里 of 只引出所属（业务的支柱），pillar 本身就是“支柱”（同 16 hub … of 的判法）",
@@ -172,13 +170,14 @@ _D={
  "S16 raw 4.3100-4.6200":("紧贴词尾的非人声","非人声区间 S16 [4.290042, 4.58, 紧贴词尾] 加 patents fetched 之间的空隙压缩：patents 的 /s/ 在 w 4.25–4.28（重心 5.3–5.6 kHz）收尾，4.30–4.54 是 -42～-46 dB 的吸气（重心 2.6–3.4 kHz、低频 -14～-26 dB），4.55–4.57 衰减到 -52 dB；左头切在过零点 4.290042，/s/ 本身没动；fetched 的 /f/ w 4.72 起，没碰"),
  "S17 raw 2.5242-2.8800":("紧贴词尾的非人声","reorganisation, 的停顿删除：/n/ 在 w 2.39 后衰减（2.40–2.42 -47～-53 dB），2.43 -68 dB；2.45–2.71 是 -36～-55 dB 的吸气（重心 2.0–3.0 kHz、低频 -9～-32 dB），2.72–2.75 是 -40～-47 dB 的低频杂声（低频 -0.3～-2.6 dB），2.77 -65.7 dB；左头 w 2.4242 在 /n/ 衰减尾（-53 dB），右头 2.78 之后是 the 的 /ð/（2.79 起，重心 5.3 kHz），没碰"),
  "S18 raw 1.8542-2.0649":("紧贴词尾的非人声","2009 与 President 之间的吸气（无标点）：nine 的 /n/ 在 w 1.80–1.82 衰减（-23→-44 dB，低频 -2～-3 dB），1.83–1.96 是 -40～-50 dB 的吸气（重心 2.2–3.0 kHz、低频 -7～-23 dB），1.97–2.00 是 -44～-50 dB 的低频杂声，2.01–2.04 降到 -55～-66 dB；左头 w 1.8342 在 /n/ 衰减尾（-47 dB），右头 2.0449 外侧 -60.9 dB，President 的 /p/ 2.055 起，没碰")}
+CONF.setdefault("同词异译",{})["dependence on：依赖/对"]="S5 dependence on“对……的依赖”被“胶卷的”隔开，“对”和“依赖”是同一个意思的两部分（T22/T23，用户 2026-11-03 原话“意思里面这个对，也要标注颜色”），不是两种译法"
 CONF["删除段"].update({k:{"类型":t,"配音指纹":FP,"依据":_A+v} for k,(t,v) in _D.items()})
 CONF["机器复听"]={k:{"配音指纹":FP,"依据":v} for k,v in {
  "S5":"2026-10-29 实测（配音指纹 "+FP+"）：Kodak's 配音音标 kˈoʊdæks，读音核对 0；第二个元音（原始合成 0.417–0.442）LPC 共振峰 F1 605–692 Hz、F2 1755–1825 Hz，与 S1 里机器复听通过的 Kodak 的 æ（F1 461–604、F2 1728–1881）同一类，是 æ 不是 codex 的 ɛ；只有 small.en 一路听成 codex（Kodak's 与 codex 只差这个元音，small.en 的语言模型偏向常用词），parakeet 一路对；交用户听",
  "S12":"2026-10-29 实测（配音指纹 "+FP+"）：Kodak's 配音音标 kˈoʊdæks，读音核对 0；第二个元音（原始合成 0.372–0.397）LPC 共振峰 F1 479–596 Hz、F2 1705–1750 Hz，与 S1 里机器复听通过的 Kodak（F1 461–604、F2 1728–1881）同一类，是 æ；只有 small.en 一路听成 codex，parakeet 一路对；交用户听"}.items()}
 CONF["高亮"]={"S11 第2块":{"开始读":68.52,"配音指纹":FP,"依据":"2026-10-29 直接读 work_36/a.wav 逐 10 ms：film, 后的停顿到 68.50 是插入的全静音（-180 dB），68.52 起 citing 的 /s/ 开口（-60→-45→-35 dB，重心 3.7→5.7 kHz），68.67 起 /aɪ/ 元音（-14.6 dB、重心 1.8 kHz）；乙（68.52）对，高亮 68.51 比 /s/ 开口早 0.01 秒，甲（68.67）落在元音上偏晚"}}
 
-out={"no":"36","title_en":"The Company That Invented Its Own Killer","title_zh":"发明了数码相机，却被它打败","title_fx":{"hl":["Invented","Killer"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["keep it hushed"],
+out={"no":"36","title_en":"The Company That Invented Its Own Killer","title_zh":"发明了数码相机，却被它打败","title_fx":{"hl":["Invented","Killer"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["keep it hushed","patent"],
      "说明放宽特批":{"S19":{"倍数":"整屏","依据":"用户 2026-10-25 看 25 简述截图：“以后以后一定要合理的安排，不要压缩成这个样子……这个地方特批一下”（用户同意记录：原话适用以后各篇，26 起沿用）"}},
      "非人声区间":{"S1":[[1.615,1.7125],[3.937542,4.18,"紧贴词尾"]],"S2":[[1.71,1.915],[4.495083,4.585,"紧贴词尾"]],"S3":[[1.757542,1.965,"紧贴词尾"]],"S7":[[4.517542,4.677917,"紧贴两头"]],"S16":[[4.290042,4.58,"紧贴词尾"]]},
      "停顿插入点":{"S17":{"4":[9.970875,"交界"]}},
