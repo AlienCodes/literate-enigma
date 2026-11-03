@@ -4,7 +4,7 @@
 ## 英文
 In late summer 1977, NASA **fastened** a **disc** **wrought** from **gilded** copper, 30 **centimetres** wide, to each Voyager **spaceship** before **takeoff**. Nobody could **foresee** who, if anyone, would play one.
 
-**Advisers** under Carl Sagan of Cornell **distilled** our **earthly** **abode** into this **compendium**. Voices **greet** the **listener** in 55 languages, followed by the **rumble** of **thunder**, the **whistle** of wind, whales, footsteps, **laughter** and a **rhythmic** **heartbeat**. About 90 minutes of **eclectic** music cover a **spectrum** of cultures and eras, **notably** Bach and Chuck Berry's Johnny B. Goode.
+**Advisers** under Carl Sagan of Cornell **distilled** our **earthly** **abode** into this **compendium**. Voices **greet** the **listener** in 55 languages, followed by the **rumble** of **thunder**, the **whistle** of wind, whales, footsteps, **laughter**, and a **rhythmic** **heartbeat**. About 90 minutes of **eclectic** music cover a **spectrum** of cultures and eras, **notably** Bach and Chuck Berry's Johnny B. Goode.
 
 An **array** of 115 images, **encoded** in analogue form, sits beside printed words from two **statesmen**, Jimmy Carter and Kurt Waldheim. The **sleeve** gives **guidance** on playing the disc, plus a **diagram** fixing the Sun with pulsars as **beacons**.
 
