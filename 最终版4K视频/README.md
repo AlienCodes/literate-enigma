@@ -39,3 +39,4 @@
 | 32 | The Planet That Was Demoted | 被降级的冥王星 | 12.2 MB |
 | 33 | Thirteen in the Cave | 洞穴里的十三个人 | 12.9 MB |
 | 34 | The Game That Escaped the Soviet Union | 走出苏联的俄罗斯方块 | 14.3 MB |
+| 35 | The Bird That Beat the Letter Home | 比信先到家的鸟 | 13.3 MB |
