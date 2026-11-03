@@ -2,7 +2,7 @@
 # ZH: 从车库到世界之巅
 
 ## 英文
-In May 1985, after a **bruising** **confrontation**, Apple's board **ultimately** backed chief **executive** John Sculley. Steve Jobs, 30, was **stripped** of his **managerial** duties at the company he had **co-founded**. That September, **sidelined** and **alienated**, he **resigned**.
+In May 1985, after a **bruising** **confrontation**, Apple's **board** **ultimately** backed chief **executive** John Sculley. Steve Jobs, 30, was **stripped** of his **managerial** duties at the company he had **co-founded**. That September, **sidelined** and **alienated**, he **resigned**.
 
 **Rewind** three decades. Born in San Francisco on 24 February 1955, Jobs was adopted as a **newborn**. On 1 April 1976 he founded Apple with Steve Wozniak, the **electronics** engineer behind its first **prototypes**. Apple's garage **origins** are largely **symbolic**; Wozniak calls their **significance** **inflated**. Apple **floated** on 12 December 1980; the **flagship** Macintosh **debuted** on 24 January 1984.
 
@@ -14,7 +14,7 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 
 ## 中文
 
-1985年5月，经过一场**激烈**(bruising)的**交锋**(confrontation)，苹果公司董事会**最终**(ultimately)支持首席**执行官**(executive)约翰·斯卡利。时年30岁的史蒂夫·乔布斯在他参与**创办**(co-founded)的公司里被**剥夺**(stripped)了**管理**(managerial)职务。同年9月，已被**架空**(sidelined)、与公司心生**隔阂**(alienated)的乔布斯**辞职**(resigned)。
+1985年5月，经过一场**十分激烈**(bruising)的**争执/交锋**(confrontation)，苹果公司**董事会**(board)**最终**(ultimately)支持首席**执行官**(executive)约翰·斯卡利。时年30岁的史蒂夫·乔布斯在他参与**创办**(co-founded)的公司里被**剥夺**(stripped)了**管理的**(managerial)职务。同年9月，已被**架空**(sidelined)、与公司心生**隔阂**(alienated)的乔布斯**辞职**(resigned)。
 
 **回溯**(rewind)三十年。1955年2月24日，乔布斯生于旧金山，还是**新生儿**(newborn)时就被人收养。1976年4月1日，他与史蒂夫·沃兹尼亚克创办了苹果公司；沃兹尼亚克是一名**电子**(electronics)工程师，苹果最早的**样机**(prototypes)出自他手。苹果的车库**起家**(origins)史在很大程度上只具**象征**(symbolic)意义；沃兹尼亚克认为它的**分量**(significance)被**夸大**(inflated)了。1980年12月12日，苹果公司**上市**(floated)；1984年1月24日，**旗舰**(flagship)产品 Macintosh **亮相**(debuted)。
 
@@ -28,6 +28,7 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 | 词 | 释义 | 段 |
 |---|---|---|
 | bruising | adj. 激烈的，令人身心受创的（a bruising battle/defeat） | 1 |
+| board | n. 董事会；木板（the board of directors；a notice board） | 1 |
 | confrontation | n. 冲突，对抗（a violent confrontation；avoid confrontation with sb） | 1 |
 | ultimately | adv. 最终，终究（ultimately responsible；the plan ultimately failed） | 1 |
 | executive | n. 高级管理人员，主管（a senior executive；chief executive officer） | 1 |
