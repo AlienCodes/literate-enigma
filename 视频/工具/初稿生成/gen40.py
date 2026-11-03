@@ -35,7 +35,7 @@ S=[
 (3,[[[("The **frustration**","这份**懊恼**(frustration)"),("gave Fry","让弗莱"),("an idea.","想到一个主意。")],
      "（give sb an idea：让某人想到一个主意）"]]),
 (3,[[[("The **unwanted** adhesive","这种**没人要的**(unwanted)黏合剂"),("could make","可以做成"),("a marker","一种书签，")]],
-    [[("that would **cling to**","**附着在**(cling to)"),("a page,","书页上"),("stay put,","不会移动，"),("and leave it","还能让书页"),("**undamaged**.","**完好无损**(undamaged)。")],
+    [[("that would **cling to**","**附着在**(cling to)"),("a page,","书页上"),("**stay put**,","**不会移动**(stay put)，"),("and leave it","还能让书页"),("**undamaged**.","**完好无损**(undamaged)。")],
      "（that would…：定语从句，修饰 marker；\ncling to：附着在……上；stay put：待在原处不动；\nleave it＋形容词：让它保持……）"]]),
 (4,[[[("In 1977","1977年，"),("the notes","这种便条"),("were test-marketed as Press 'n Peel in four American cities,","以 Press 'n Peel 之名在美国四个城市试销，")],
      "（be test-marketed as…：以……之名试销）"],

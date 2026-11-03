@@ -6,7 +6,7 @@ In 1968 Spencer Silver, a scientist at 3M, **set out to** make a **super-strong*
 
 For five years Silver **acted as** its **promoter** within 3M's **corporate** ranks, in **informal** chats and at **seminars**. In his own **summary**, it was a **solution** without a problem. His **perseverance** met **indifference**. The **unconventional** material **found no use**, and the **pursuit** proved **fruitless**.
 
-In 1974 Art Fry, a colleague who had heard one of those talks, faced a small **annoyance** at church. The paper **bookmarks** **wedged** in his **choir**'s **hymn** book kept getting **dislodged** and **falling out**. The **frustration** gave Fry an idea. The **unwanted** adhesive could make a marker that would **cling** to a page, stay put, and leave it **undamaged**.
+In 1974 Art Fry, a colleague who had heard one of those talks, faced a small **annoyance** at church. The paper **bookmarks** **wedged** in his **choir**'s **hymn** book kept getting **dislodged** and **falling out**. The **frustration** gave Fry an idea. The **unwanted** adhesive could make a marker that would **cling** to a page, **stay put**, and leave it **undamaged**.
 
 In 1977 the notes were test-marketed as Press 'n Peel in four American cities, where **purchasers** showed little **enthusiasm**. In 1978 3M's **marketers** staged a **blitz** in Boise, Idaho, and **dispensed** **complimentary** **packets** of notes to offices. More than 90 per cent of **respondents** who tried them said they would buy. After the **coolness** came a **turnaround**.
 
@@ -18,7 +18,7 @@ On 6 April 1980 the **pads**, **rebranded** as Post-it Notes, went on sale **nat
 
 五年间，西尔弗在3M的**企业**(corporate)上下**充当**(acted as)它的**推广者**(promoter)，在**非正式**(informal)的闲谈中、也在**研讨会**(seminars)上介绍它。用他自己的话**总结**(summary)，这完全是一个**解决**(solution)“不存在的问题”的**方案**(solution)。他的**坚持不懈**(perseverance)换来的是**冷漠**(indifference)。这种**非常规**(unconventional)的材料**找不到用途**(found no use)，这番**追求**(pursuit)终究**一无所获**(fruitless)。
 
-1974年，听过其中一次讲座的同事阿特·弗莱在教堂里遇到了一件小小的**烦心事**(annoyance)。他所在**唱诗班**(choir)的**赞美诗**(hymn)集里**夹着**(wedged)的纸**书签**(bookmarks)总是**移位**(dislodged)，**掉出来**(falling out)。这份**懊恼**(frustration)让弗莱想到一个主意。这种**没人要**(unwanted)的黏合剂可以做成一种书签，**附着**(cling)在书页上不会移动，还能让书页**完好无损**(undamaged)。
+1974年，听过其中一次讲座的同事阿特·弗莱在教堂里遇到了一件小小的**烦心事**(annoyance)。他所在**唱诗班**(choir)的**赞美诗**(hymn)集里**夹着**(wedged)的纸**书签**(bookmarks)总是**移位**(dislodged)，**掉出来**(falling out)。这份**懊恼**(frustration)让弗莱想到一个主意。这种**没人要**(unwanted)的黏合剂可以做成一种书签，**附着**(cling)在书页上**不会移动**(stay put)，还能让书页**完好无损**(undamaged)。
 
 1977年，这种便条以"Press 'n Peel"之名在美国四个城市试销，**购买者**(purchasers)的**热情**(enthusiasm)不高。1978年，3M的**营销人员**(marketers)在爱达荷州博伊西发起一场**闪电攻势**(blitz)，向各办公室**分发**(dispensed)一**小包**(packets)一小包的**免费**(complimentary)便条。试用过的**受访者**(respondents)中，超过90%表示会购买。**冷遇**(coolness)之后，迎来了**转机**(turnaround)。
 
@@ -64,6 +64,7 @@ On 6 April 1980 the **pads**, **rebranded** as Post-it Notes, went on sale **nat
 | frustration | n. 懊恼，挫败感（shout in frustration） | 3 |
 | unwanted | adj. 不需要的，没人要的（unwanted gifts/pregnancy） | 3 |
 | cling | v. 黏附，紧贴；紧抓（wet clothes cling to the body） | 3 |
+| stay put | v. 待在原处不动（the bookmark stays put） | 3 |
 | undamaged | adj. 未受损的（arrive undamaged） | 3 |
 | purchasers | n. (purchaser) 购买者（first-time purchasers） | 4 |
 | enthusiasm | n. 热情，热忱（show little enthusiasm） | 4 |
