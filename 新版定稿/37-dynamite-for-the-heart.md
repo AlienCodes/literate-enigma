@@ -4,7 +4,7 @@
 ## 英文
 Around 1847 the Italian chemist Sobrero first made nitroglycerin, a **colourless**, **oily** **liquid** of **acute** **instability**. A **mere** **droplet** on the tongue, he reported, left his head **throbbing** **violently** for hours. On 3 September 1864 a nitroglycerin shed in Stockholm exploded. The **tragic** blast killed five, including Alfred Nobel's younger brother Emil.
 
-Nobel **tamed** the liquid by **blending** it with kieselguhr, a **porous** earth, into a **paste** shaped into **rods**. Patented in 1867 as dynamite, it was **harnessed** for mining, **quarrying** and demolition, **enriching** him **immensely**. His 1895 **testament** made the fortune an **endowment** for prizes, first awarded in 1901.
+Nobel **tamed** the liquid by **blending** it with kieselguhr, a **porous** earth, into a **paste** shaped into **rods**. Patented in 1867 as dynamite, it was **harnessed** for mining, **quarrying**, and demolition, **enriching** him **immensely**. His 1895 **testament** made the fortune an **endowment** for prizes, first awarded in 1901.
 
 Nitroglycerin had **side-effects**. Factory **operatives** suffered **racking** headaches, and their **tolerance**, built over the week, **ebbed** at weekends. Mondays brought a **recurrence**, with **dizziness** and **palpitations**, **hence** the name Monday disease. In 1879 William Murrell reported in The Lancet on its **therapeutic** use against angina pectoris, attacks of chest pain.
 
