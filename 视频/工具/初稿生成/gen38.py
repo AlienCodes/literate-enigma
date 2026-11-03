@@ -27,7 +27,7 @@ S=[
 (2,[[[("The journal Nature","《自然》杂志"),("**unveiled** the study on 7 August 1997,","于1997年8月7日**公布/发表了**(unveiled)这项研究，")],
      "（The journal Nature：杂志名 Nature，即《自然》）"],
     [[("its cover","当期封面还"),("offering a","送上一个"),("**catchy**","**响亮好记的**(catchy)"),("**coinage**:","**新造词**(coinage)："),("the \"wood-wide web\".","“林木万维网”（wood-wide web）。")],
-     "（its cover offering…：独立主格结构，补充说明当期封面；\nwood-wide web：仿 world wide web（万维网）造的词）"]]),
+     "（its cover offering…：独立主格结构，补充说明当期封面；\nwood-wide web：仿 world wide web（万维网）造的词；\ncatchy：非常吸引人，并且容易让人记住。\n比如说我们平时说的洗脑音乐就是 catchy music。\n换句话来说就是容易洗脑的，\n这里的洗脑说的是容易让人们记住，并且在大脑里面会不断循环）"]]),
 (3,[[[("The **metaphor**","结果，这个**比喻**(metaphor)"),("proved **irresistible**.","**令人难以抗拒**(irresistible)。")],
      "（prove＋形容词：结果是……，事实证明……）"]]),
 (3,[[[("Between 2015 and 2021,","2015年至2021年间，"),("a forester's **bestseller**,","一位护林人的**畅销书**(bestseller)、"),("an **acclaimed** novel,","一部**广受赞誉的**(acclaimed)小说"),("and an ecologist's **memoir**","和一位生态学家的**回忆录**(memoir)")],
