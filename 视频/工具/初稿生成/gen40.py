@@ -4,11 +4,11 @@ import json,re,glob,os
 S=[
 (1,[[[("In 1968","1968年，"),("Spencer Silver,","斯潘塞·西尔弗，"),("a scientist at 3M,","3M公司的一位科学家，")],
      "（a scientist at 3M：同位语，补充说明 Spencer Silver）"],
-    [[("set out to","着手"),("make","研制"),("a super-strong","一种超强"),("**adhesive**.","**黏合剂**(adhesive)。")],
+    [[("**set out to**","**着手**(set out to)"),("make","研制"),("a **super-strong**","一种**超强**(super-strong)"),("**adhesive**.","**黏合剂**(adhesive)。")],
      "（set out to do：着手做……）"]]),
-(1,[[[("The **polymer** he produced","然而他制成的**聚合物**(polymer)"),("did something else.","却是另一回事。")],
+(1,[[[("The **polymer** he produced","然而他制成的**聚合物**(polymer)"),("did","却做了"),("**something else**.","**其他的事情**(something else)。")],
      "（he produced：定语从句，省略了关系代词，修饰 polymer）"]]),
-(1,[[[("Its tiny **spheres**","它的微小**球体**(spheres)"),("formed","形成"),("a layer with little **tack**,","一层**初黏力**(tack)很小的涂层，")],
+(1,[[[("Its tiny **spheres**","它的微小的**球状颗粒**(spheres)"),("formed","形成"),("a layer with little **tack**,","一层**初黏力**(tack)很小的涂层，")],
      "（with little tack：介词短语作后置定语，修饰 layer）"],
     [[("giving","让"),("paper","纸张"),("a **temporary** hold,","获得**暂时的**(temporary)黏着，")],
      "（giving…：现在分词短语作结果状语）"],
@@ -72,7 +72,6 @@ CONF={
 "合组":{
  "S1 a scientist at 3M":"对齐不了：at 3M 是后置定语，修饰 scientist，中文“3M公司的一位科学家”定语必须提前",
  "S2 The polymer he produced":"对齐不了：he produced 是省略关系代词的定语从句，修饰 polymer，中文“他制成的聚合物”从句必须提前",
- "S2 did something else":"对齐不了：did something else 是整体说法“结果是另一回事”，拆开 did、something、else 中文不通",
  "S3 a layer with little tack":"对齐不了：with little tack 是后置定语，修饰 layer，中文“一层初黏力很小的涂层”定语必须提前",
  "S4 To an inventor chasing strength":"对齐不了：chasing strength 是现在分词短语作后置定语，修饰 inventor，中文“对一个追求强度的发明者来说”定语必须提前，“来说”放最后",
  "S5 acted as its promoter within 3M's corporate ranks":"对齐不了：within 3M's corporate ranks 是地点状语，中文“在3M的企业上下充当它的推广者”地点必须放到动词前（沿用文章定稿语序）",
@@ -140,7 +139,7 @@ CONF["非人声"]={
  "127.45–127.58s":{"配音指纹":"01e55201e44a","依据":"2026-11-03 40 逐 2.5/10 ms 看实际声音（逐段看声音、dossier_40）：S19 w 1.345–1.465：door 的 ɹ 收尾后接 had 的 /h/：1.345–1.455 -36～-43 dB 送气（重心 1.8–2.6 kHz），1.465–1.505 一路升到 -14 dB，1.515 起 æ 元音，中间没有 -55 dB 的低谷（K125：不切 /h/），属于 had","词头":"h"}}
 CONF["高亮"]={"S10 第2块":{"开始读":64.14,"配音指纹":"01e55201e44a","依据":"2026-11-03 直接读 work_40/a.wav 逐 10 ms：book 的 /k/ 除阻 63.91（-37.6 dB、重心 3.4 kHz）衰减到 63.96，63.97–64.12 是删掉吸气后的数字静音（-180 dB），64.13 -74.6、64.14 起 kept 的 /k/ 送气（-30.6 dB、重心 4.3 kHz），64.19 起 ɛ 元音 -15→-10 dB；kept 在 64.14 开始读，高亮 64.12 提前 0.02 秒；甲法 63.97 落在静音开头"}}
 CONF["机器复听"]={"S13":{"配音指纹":"01e55201e44a","依据":"2026-11-03 实测（配音指纹 01e55201e44a）：Press 'n Peel 的 'n 是 and 的缩写，按 按语境读音.json 弱读，配音音标 pɹˈɛs ən pˈiːl，读音核对 0；small.en 听成 and（正是 'n 的意思），parakeet 听成 in（ən/ɪn 弱读近音），两路前后的 Press、Peel 都对；交用户听"}}
-out={"no":"40","title_en":"The Glue That Failed Its Way to Success","title_zh":"失败的胶水，成功的便利贴","title_fx":{"hl":["Failed","Success"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+out={"no":"40","title_en":"The Glue That Failed Its Way to Success","title_zh":"失败的胶水，成功的便利贴","title_fx":{"hl":["Failed","Success"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["set out to"],
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Spencer Silver":"斯潘塞·西尔弗","Silver":"西尔弗","3M":"3M","Art Fry":"阿特·弗莱","Fry":"弗莱","Press 'n Peel":"Press 'n Peel","Boise":"博伊西","Idaho":"爱达荷州","Post-it Notes":"便利贴","US":"美国","American":"美国","Canada":"加拿大","Europe":"欧洲"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
