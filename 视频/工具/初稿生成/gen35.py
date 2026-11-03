@@ -2,7 +2,7 @@ import json,re,glob,os
 # 第35篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-10-29 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；短语型用法整体标（T22）；不用破折号（T36）。
 S=[
-(1,[[[("On 3 June 1952","1952年6月3日，"),("Rosario Mazzeo","罗萨里奥·马泽奥"),("released a Manx shearwater in Boston.","在波士顿放飞了一只大西洋鹱。")],
+(1,[[[("On 3 June 1952","1952年6月3日，"),("Rosario Mazzeo","罗萨里奥·马泽奥"),("**released** a Manx shearwater in Boston.","在波士顿**放飞了**(released)一只大西洋鹱。")],
      "（Manx shearwater：大西洋鹱，一种海鸟；\nin Boston：地点状语）"]]),
 (1,[[[("It","它"),("came by **rail**","先坐**火车**(rail)，"),("and **airliner**","再搭**客机**(airliner)，"),("from its **burrow**","从自己的**洞巢**(burrow)一路被带到这里；"),("on Skokholm,","洞巢在斯科克霍姆，"),("an **isle** off Wales,","那是威尔士外海的一座**小岛**(isle)。")],
      "（come by rail and airliner：乘火车和客机来，by 表示交通方式；\nan isle off Wales：同位语，补充说明 Skokholm；off：在……外海）"],
@@ -111,7 +111,7 @@ CONF.setdefault("即",{}).update({"S2-2 即": "“随即”是现代汉语常用
 out={"no":"35","title_en":"The Bird That Beat the Letter Home","title_zh":"比信先到家的鸟","title_fx":{"hl":["Bird","Letter"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "说明放宽特批":{"S21":{"倍数":"整屏","依据":"用户 2026-10-25 看 25 简述截图：“以后以后一定要合理的安排，不要压缩成这个样子……这个地方特批一下”（用户同意记录：原话适用以后各篇，26 起沿用）"}},
      "非人声区间":{"S1":[[2.45,2.725]],"S2":[[3.755,4.043792,"紧贴词头"]],"S6":[[1.2525,1.34],[4.13,4.443708,"紧贴词头"]],"S8":[[1.325,1.655]],"S10":[[6.61,6.97]],"S11":[[1.45,1.645]],"S12":[[4.0,4.2275]],"S13":[[1.855,2.075],[6.225,6.585]],"S15":[[2.04,2.21]],"S18":[[3.39,3.685]],"S19":[[3.4875,3.69]],"S21":[[2.565,2.585]]},
-     "高亮按实际开口":True,"高亮开口门槛":40,
+     "allow_clash":["released"],"高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Rosario Mazzeo":"罗萨里奥·马泽奥","Mazzeo":"马泽奥","Manx shearwater":"大西洋鹱","shearwater":"大西洋鹱","Boston":"波士顿","Skokholm":"斯科克霍姆","Wales":"威尔士","Atlantic":"大西洋","Kramer":"克雷默","Emlen":"埃姆伦","buntings":"靛蓝彩鹀","Wiltschkos":"维尔奇科夫妇","Schulten":"舒尔滕","cryptochrome":"隐花色素","Oldenburg University":"奥尔登堡大学","WHO":"世卫组织"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
