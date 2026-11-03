@@ -37,7 +37,7 @@ S=[
 (3,[[[("The **unwanted** adhesive","这种**没人要的**(unwanted)黏合剂"),("could make","可以做成"),("a marker","一种书签，")]],
     [[("that would **cling to**","**附着在**(cling to)"),("a page,","书页上"),("**stay put**,","**不会移动**(stay put)，"),("and leave it","还能让书页"),("**undamaged**.","**完好无损**(undamaged)。")],
      "（that would…：定语从句，修饰 marker；\ncling to：附着在……上；stay put：待在原处不动；\nleave it＋形容词：让它保持……）"]]),
-(4,[[[("In 1977","1977年，"),("the notes","这种便条"),("were test-marketed as Press 'n Peel in four American cities,","以 Press 'n Peel 之名在美国四个城市试销，")],
+(4,[[[("In 1977","1977年，"),("the **notes**","这种**便条**(notes)"),("were **test-marketed** as Press 'n Peel in four American cities,","以 Press 'n Peel 之名在美国四个城市**试销**(test-marketed)，")],
      "（be test-marketed as…：以……之名试销）"],
     [[("where **purchasers**","**购买者**(purchasers)的"),("showed little **enthusiasm**.","**热情**(enthusiasm)不高。")],
      "（where…：非限制性定语从句，修饰 four American cities）"]]),
@@ -114,6 +114,7 @@ CONF={
  "S14 dispensed … of":"不是搭配：of 属于 packets of notes，和 dispensed 无关",
  "S14 dispensed … to":"不是搭配：to 只引出接受的对象（向各办公室），dispensed 本身就是“分发”",
  "S14 packets … of":"不是搭配：packets of notes 里 of 只引出所装的东西，packets 本身就是“小包”（同 16 beads … of 的判法）",
+ "S13 test-marketed … as":"不是搭配：as 只引出试销时用的名称（以 Press 'n Peel 之名），test-marketed 本身就是“试销”",
  "S17 rebranded … on":"不是搭配：on 属于后面的 went on sale，和 rebranded 无关"},
 "已告诉用户被去掉的重点词":"2026-11-03 已在会话中把 stationery（与21 stationery 撞词，用户 2026-10-17 定留在先做的21，40 改回普通词）原样告诉用户（经主会话转告）"}
 CONF["停顿位置"]={"S3 off, / and @7.370":"2026-11-03 逐 5 ms 看声音实测（S3 w，配音指纹 67f86bdba50c）：off 的 /f/ 摩擦 7.28–7.365（-24～-29 dB、重心 5.1–7.0 kHz、低频 -22～-40 dB、周期 ≤0.16），7.370 降到全段最低 -36.7 dB（过零 7.370583），7.375 起 and 的声门起音（低频 -5 dB），7.38 起 æ 浊音（周期 0.19→0.45、重心 1.2–2.5 kHz）；两词之间没有静音，7.370 是交界最低处，插在这里不切 /f/ 也不切 and（A42）；程序“后词开头 7.456”是带时长模型估的，实际 and 在 7.375 开口"}

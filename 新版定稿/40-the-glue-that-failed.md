@@ -8,7 +8,7 @@ For five years Silver **acted as** its **promoter** within 3M's **corporate** ra
 
 In 1974 Art Fry, a colleague who had heard one of those talks, faced a small **annoyance** at church. The paper **bookmarks** **wedged** in his **choir**'s **hymn** book kept getting **dislodged** and **falling out**. The **frustration** gave Fry an idea. The **unwanted** adhesive could make a marker that would **cling** to a page, **stay put**, and leave it **undamaged**.
 
-In 1977 the notes were test-marketed as Press 'n Peel in four American cities, where **purchasers** showed little **enthusiasm**. In 1978 3M's **marketers** staged a **blitz** in Boise, Idaho, and **dispensed** **complimentary** **packets** of notes to offices. More than 90 per cent of **respondents** who tried them said they would buy. After the **coolness** came a **turnaround**.
+In 1977 the **notes** were **test-marketed** as Press 'n Peel in four American cities, where **purchasers** showed little **enthusiasm**. In 1978 3M's **marketers** staged a **blitz** in Boise, Idaho, and **dispensed** **complimentary** **packets** of notes to offices. More than 90 per cent of **respondents** who tried them said they would buy. After the **coolness** came a **turnaround**.
 
 On 6 April 1980 the **pads**, **rebranded** as Post-it Notes, went on sale **nationally** in the US, and Canada and Europe followed in 1981. The stationery **staple** owes its **signature** **canary** **tone** to an **unplanned** twist. The laboratory next door had only **leftover** yellow paper.
 
@@ -20,7 +20,7 @@ On 6 April 1980 the **pads**, **rebranded** as Post-it Notes, went on sale **nat
 
 1974年，听过其中一次讲座的同事阿特·弗莱在教堂里遇到了一件小小的**烦心事**(annoyance)。他所在**唱诗班**(choir)的**赞美诗**(hymn)集里**夹着**(wedged)的纸**书签**(bookmarks)总是**移位**(dislodged)，**掉出来**(falling out)。这份**懊恼**(frustration)让弗莱想到一个主意。这种**没人要**(unwanted)的黏合剂可以做成一种书签，**附着**(cling)在书页上**不会移动**(stay put)，还能让书页**完好无损**(undamaged)。
 
-1977年，这种便条以"Press 'n Peel"之名在美国四个城市试销，**购买者**(purchasers)的**热情**(enthusiasm)不高。1978年，3M的**营销人员**(marketers)在爱达荷州博伊西发起一场**闪电攻势**(blitz)，向各办公室**分发**(dispensed)一**小包**(packets)一小包的**免费**(complimentary)便条。试用过的**受访者**(respondents)中，超过90%表示会购买。**冷遇**(coolness)之后，迎来了**转机**(turnaround)。
+1977年，这种**便条**(notes)以"Press 'n Peel"之名在美国四个城市**试销**(test-marketed)，**购买者**(purchasers)的**热情**(enthusiasm)不高。1978年，3M的**营销人员**(marketers)在爱达荷州博伊西发起一场**闪电攻势**(blitz)，向各办公室**分发**(dispensed)一**小包**(packets)一小包的**免费**(complimentary)便条。试用过的**受访者**(respondents)中，超过90%表示会购买。**冷遇**(coolness)之后，迎来了**转机**(turnaround)。
 
 1980年4月6日，这种**便笺本**(pads)**更名**(rebranded)为"便利贴"，在美国**全国**(nationally)上市；1981年，便利贴又进入加拿大和欧洲。这款文具**必备品**(staple)那**标志性**(signature)的**金丝雀黄**(canary)**色调**(tone)，源于一次**计划外**(unplanned)的转折。隔壁实验室手头只有**剩下的**(leftover)黄纸。
 
@@ -66,6 +66,8 @@ On 6 April 1980 the **pads**, **rebranded** as Post-it Notes, went on sale **nat
 | cling | v. 黏附，紧贴；紧抓（wet clothes cling to the body） | 3 |
 | stay put | v. 待在原处不动（the bookmark stays put） | 3 |
 | undamaged | adj. 未受损的（arrive undamaged） | 3 |
+| notes | n. (note) 便条，短笺（leave a note） | 4 |
+| test-marketed | v. (test-market) 试销（test-market a new product） | 4 |
 | purchasers | n. (purchaser) 购买者（first-time purchasers） | 4 |
 | enthusiasm | n. 热情，热忱（show little enthusiasm） | 4 |
 | marketers | n. (marketer) 营销人员（online marketers） | 4 |
