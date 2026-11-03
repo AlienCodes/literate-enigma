@@ -110,6 +110,11 @@ CONF.setdefault("短语",{}).update({"S2 by … rail": "不是搭配：by 是普
 CONF.setdefault("方向",{}).update({"S3-1 after→经过约": "After a … odyssey 中文“经过约三千二百英里的远征”，“经过”表示经历完这段远征之后，与 after 同方向（远征在前、回家在后）"})
 CONF.setdefault("数字",{}).update({"S3-1 3,200": "3,200-mile 中文按文章定稿写作“三千二百英里”，数值相同（配音读 three thousand two hundred）", "S6-1 1950": "the 1950s 中文“20世纪50年代”，同一个年代（配音读 nineteen fifties）", "S8-1 1960": "the 1960s 中文“20世纪60年代”，同一个年代（配音读 nineteen sixties）"})
 CONF.setdefault("即",{}).update({"S2-2 即": "“随即”是现代汉语常用词（立刻、马上，对应 at once），不是文言的“即”"})
+CONF.setdefault("对齐",{}).update({"S2-1 from its burrow on Skokholm,": "on Skokholm 是后置定语，修饰 burrow，中文“从斯科克霍姆岛上的洞穴来到这里”定语必须提前（用户 2026-11-03 定的译法）", "S11-1 reaction to decode the field.": "to decode the field 是不定式作后置定语，修饰 reaction，中文“用于解码地球磁场的反应”定语必须提前（用户 2026-11-03 定的译法）", "S18-2 bewildered them again in doubl": "in double-blind tests 是状语，中文“在双盲实验中都再次让它们不知所措”状语必须放到动词前（用户 2026-11-03 选的语序）"})
+CONF.setdefault("短语",{}).update({"S9 steered … by": "不是搭配：用户 2026-11-03 只要 steered 标为“控制方向”；by stars 是方式状语（依靠星星），中文“依靠……”已译出", "S9 steered … of": "不是搭配：of 属于 the axis of the nightly whirl，和 steered 无关"})
+CONF.setdefault("同词异译",{}).update({"clad in：的/覆有": "被隔开的同一个意思“覆有……的”两部分（T22/T23，用户 2026-11-03 原话“所对应中文意思为 覆有......的”），不是两种译法"})
+CONF.setdefault("口述",{}).update({"S5-1 就是说": "用户 2026-11-03 原话要加的小字里就是“也就是说”（“发现最早的线索指向了“天体”——也就是说，……”），是用户本意，不是口述多出来的词"})
+CONF.setdefault("是的",{}).update({"S5-1 是**和天体有关的**": "用户 2026-11-03 原话定的译文“关于这种罗盘的最初迹象，是和天体有关的”，celestial 对应“和天体有关的”，照用户原话"})
 out={"no":"35","title_en":"The Bird That Beat the Letter Home","title_zh":"比信先到家的鸟","title_fx":{"hl":["Bird","Letter"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "说明放宽特批":{"S21":{"倍数":"整屏","依据":"用户 2026-10-25 看 25 简述截图：“以后以后一定要合理的安排，不要压缩成这个样子……这个地方特批一下”（用户同意记录：原话适用以后各篇，26 起沿用）"}},
      "非人声区间":{"S1":[[2.45,2.725]],"S2":[[3.755,4.043792,"紧贴词头"]],"S6":[[1.2525,1.34],[4.13,4.443708,"紧贴词头"]],"S8":[[1.325,1.655]],"S10":[[6.61,6.97]],"S11":[[1.45,1.645]],"S12":[[4.0,4.2275]],"S13":[[1.855,2.075],[6.225,6.585]],"S15":[[2.04,2.21]],"S18":[[3.39,3.685]],"S19":[[3.4875,3.69]],"S21":[[2.565,2.585]]},
