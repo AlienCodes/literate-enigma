@@ -2,94 +2,94 @@
 # ZH: 从车库到世界之巅
 
 ## 英文
-In May 1985, after a **bruising** **confrontation**, Apple's **board** **ultimately** backed chief **executive** John Sculley. Steve Jobs, 30, was **stripped** of his **managerial** duties at the company he had **co-founded**. That September, **sidelined** and **alienated**, he **resigned**.
+In May 1985, after a **bruising** **confrontation**, Apple's **board** **ultimately** backed chief **executive** John Sculley. Steve Jobs, 30, was **stripped of** his **managerial** duties at the company he had **co-founded**. That September, **sidelined** and **alienated**, he **resigned**.
 
 **Rewind** three decades. Born in **San Francisco** on 24 February 1955, Jobs was **adopted** as a **newborn**. On 1 April 1976 he **founded** Apple with Steve Wozniak, the **electronics** engineer behind its first **prototypes**. Apple's garage **origins** are largely **symbolic**; Wozniak calls their **significance** **inflated**. Apple **floated** on 12 December 1980; the **flagship** Macintosh **debuted** on 24 January 1984.
 
 **Exile** proved **productive**. Later in 1985 Jobs **founded** NeXT, a computer **start-up**. In February 1986 he **acquired** Lucasfilm's computer-**graphics** **outfit**, which became **Pixar**. It began as a **manufacturer** of **specialised** **hardware**, not chiefly an **animation** **studio**. Toy Story, **released** on 22 November 1995, was the first **feature-length** **computer-animated** film.
 
-The **reversal** came on 20 December 1996: Apple agreed to buy NeXT, gaining the **core** software of the **eventual** Mac OS X and **reuniting** with its **estranged** co-founder. In August 1997 Microsoft **invested** $150 million in its **distressed** **competitor**; that September Jobs took the **reins** as **interim** chief. Apple, he later said, had been weeks from **ruin**. The iMac, iPod, and iPhone followed, the iPhone **showcased** on 9 January 2007.
+The **reversal** came on 20 December 1996: Apple agreed to buy NeXT, gaining the **core** software of the **eventual** Mac OS X and **reuniting with** its **estranged** co-founder. In August 1997 Microsoft **invested** $150 million **in** its **distressed** **competitor**; that September Jobs **took the reins** as **interim** chief. Apple, he later said, had been weeks from **ruin**. The iMac, iPod, and iPhone followed, the iPhone **showcased** on 9 January 2007.
 
-In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **pancreatic** **tumour**. In August 2011 Apple **briefly** **overtook** Exxon Mobil as the world's **most valuable** company. His **tenure** ended on 24 August 2011; he died on 5 October 2011, aged 56. He had spent nearly fourteen years at the **helm** of the company that **ousted** him.
+In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **pancreatic** **tumour**. In August 2011 Apple **briefly** **overtook** Exxon Mobil as the world's **most valuable** company. His **tenure** ended on 24 August 2011; he died on 5 October 2011, aged 56. He had spent nearly fourteen years **at the helm of** the company that **ousted** him.
 
 ## 中文
 
-1985年5月，经过一场**十分激烈**(bruising)的**争执/交锋**(confrontation)，苹果公司**董事会**(board)**最终**(ultimately)支持首席**执行官**(executive)约翰·斯卡利。时年30岁的史蒂夫·乔布斯在他参与**创办**(co-founded)的公司里被**剥夺**(stripped)了**管理的**(managerial)职务。同年9月，已被**架空**(sidelined)、**被疏远的**(alienated)乔布斯**辞职了**(resigned)。
+1985年5月，经过一场**十分激烈的**(bruising)**争执/交锋**(confrontation)，苹果公司**董事会**(board)**最终**(ultimately)支持首席**执行官**(executive)约翰·斯卡利。（after…：介词短语作时间状语）（back：支持；chief executive：首席执行官，作 John Sculley 的头衔）时年30岁的史蒂夫·乔布斯在他参与**创办**(co-founded)的公司里被**剥夺了**(stripped of)**管理的**(managerial)职务。（30：插入语，说明他当时的年龄）（be stripped of…：被剥夺……；he had co-founded：定语从句，省略了关系代词，修饰 company）同年9月，已被**架空**(sidelined)、**被疏远的**(alienated)乔布斯**辞职了**(resigned)。（sidelined and alienated：分词短语作状语，说明他辞职时的处境）（sidelined：指被排挤出核心圈子，剥夺实权、靠边站）（alienated：指感到被疏远、排斥，从而觉得格格不入、失去归属感）
 
-**回溯**(rewind)三十年。1955年2月24日，乔布斯生于**旧金山**(San Francisco)，还是**新生儿**(newborn)时就**被收养**(adopted)。1976年4月1日，他与史蒂夫·沃兹尼亚克**创办**(founded)了苹果公司；沃兹尼亚克是苹果首批**样机**(prototypes)背后的**电子**(electronics)工程师。苹果的车库**起源**(origins)在很大程度上只是具有**象征**(symbolic)意义的；沃兹尼亚克称其**意义**(significance)被**夸大**(inflated)了。1980年12月12日，苹果公司**上市**(floated)；而**旗舰**(flagship)产品 Macintosh **首次推出**(debuted)于1984年1月24号。
+**回溯**(Rewind)三十年。（rewind：本义倒带；从1985年往回倒三十年，正是乔布斯出生的1955年）1955年2月24日，乔布斯生于**旧金山**(San Francisco)，还是**新生儿**(newborn)时就**被收养**(adopted)。（Born in…：过去分词短语作状语）（as a newborn：作为新生儿，指刚出生不久）1976年4月1日，他与史蒂夫·沃兹尼亚克**创办了**(founded)苹果公司；沃兹尼亚克是苹果首批**样机**(prototypes)背后的**电子**(electronics)工程师。（the electronics engineer…：同位语，补充说明 Steve Wozniak；behind…：介词短语作后置定语，修饰 engineer）苹果的车库**起源**(origins)在很大程度上只是具有**象征**(symbolic)意义的；沃兹尼亚克称其**意义**(significance)被**夸大了**(inflated)。（largely：在很大程度上）（call A B：认为 A 是 B；their 指 Apple's garage origins）1980年12月12日，苹果公司**上市**(floated)；而**旗舰**(flagship)产品 Macintosh**首次推出**(debuted)于1984年1月24号。（float：使公司上市）（debut：首次亮相，首次推出）
 
-这段**放逐**(exile)岁月**成果丰硕**(productive)。1985年晚些时候，乔布斯**创办**(founded)了 NeXT，一家电脑**初创公司**(start-up)。1986年2月，他**收购**(acquired)了卢卡斯影业的电脑**图形**(graphics)**团队**(outfit)，这个团队后来成为**皮克斯**(Pixar)。皮克斯起初是一家**制造商**(manufacturer)，生产**专用**(specialised)**硬件**(hardware)，主要并不是**动画**(animation)**工作室**(studio)。《玩具总动员》于1995年11月22日**上映**(released)，是第一部**长篇**(feature-length)**电脑动画**(computer-animated)电影。
+这段**放逐**(Exile)岁月**成果丰硕**(productive)。（prove＋形容词：结果是……，事实证明……）1985年晚些时候，乔布斯**创办了**(founded) NeXT，一家电脑**初创公司**(start-up)。（a computer start-up：同位语，补充说明 NeXT）1986年2月，他**收购了**(acquired)卢卡斯影业的电脑**图形**(graphics)**团队**(outfit)，这个团队后来成为**皮克斯**(Pixar)。（outfit：口语，团队，小机构）（which…：非限制性定语从句，补充说明 outfit）皮克斯起初是一家**制造商**(manufacturer)，生产**专用**(specialised)**硬件**(hardware)，主要并不是**动画**(animation)**工作室**(studio)。（begin as…：起初是……；of specialised hardware：of 结构作后置定语，修饰 manufacturer）（not chiefly…：主要并不是……，与 a manufacturer 对照）《玩具总动员》于1995年11月22日**上映**(released)，是第一部**长篇**(feature-length)**电脑动画**(computer-animated)电影。（released on…：过去分词短语作后置定语，补充说明 Toy Story）
 
-1996年12月20日，局面出现**彻底转变**(reversal)。苹果同意收购 NeXT，从而获得了**最终版**(eventual) Mac OS X 的**核心**(core)软件，并与**关系疏远**(estranged)的联合创始人**重聚**(reuniting)。1997年8月，微软向这个**陷入困境**(distressed)的**竞争对手**(competitor)**投资**(invested)1.5亿美元；同年9月，乔布斯**接掌大权**(reins)，出任**临时**(interim)负责人。他后来说，苹果当时离**破产**(ruin)只差几周。iMac、iPod 和 iPhone 相继问世，iPhone 于2007年1月9日公开**展示**(showcased)。
+1996年12月20日，局面出现**彻底转变**(reversal)。苹果同意收购NeXT，从而获得了**最终版**(eventual) Mac OS X 的**核心**(core)软件，并**与**(reuniting with)**关系疏远的**(estranged)联合创始人**重聚**(reuniting with)。（冒号后具体说明彻底转变的内容）（reversal：局势、决定或状态彻底转向了相反的方向（即：逆转/反转））（agree to do：同意做……）（gaining… and reuniting…：现在分词短语作结果状语）（reunite with…：与……重聚；its estranged co-founder：指乔布斯）1997年8月，微软**向**(invested in)这个**陷入困境的**(distressed)**竞争对手**(competitor)**投资**(invested in)1.5亿美元；同年9月，乔布斯**接掌大权**(took the reins)，出任**临时**(interim)负责人。（invest A in B：向 B 投资 A）（take the reins：接掌大权，reins 本义缰绳；as：作为）他后来说，苹果当时离**破产**(ruin)只差几周。（he later said：插入语；weeks from ruin：离破产只有几周）iMac、iPod和 iPhone相继问世，iPhone于2007年1月9日公开**展示**(showcased)。（the iPhone showcased…：独立主格结构，补充说明 iPhone）
 
-2003年10月，乔布斯收到了一份**诊断**(diagnosis)：一种**罕见**(uncommon)的**恶性**(cancerous)**胰腺**(pancreatic)**肿瘤**(tumour)。2011年8月，苹果公司**一度**(briefly)**超越**(overtook)埃克森美孚，成为全球**市值最高的**(most valuable)公司。2011年8月24日，他的**任期**(tenure)结束；2011年10月5日，他去世，终年56岁。（在他最终离开时）他已在那家曾把他**逐出**(ousted)的公司**掌舵**(helm)近十四年。
+2003年10月，乔布斯收到了一份**诊断**(diagnosis)：一种**罕见的**(uncommon)**恶性**(cancerous)**胰腺**(pancreatic)**肿瘤**(tumour)。（receive a diagnosis：被诊断出；冒号后说明诊断结果）2011年8月，苹果公司**一度**(briefly)**超越**(overtook)埃克森美孚，成为全球**市值最高的**(most valuable)公司。（overtake A as…：超过 A，成为……）2011年8月24日，他的**任期**(tenure)结束；2011年10月5日，他去世，终年56岁。（aged 56：作状语，说明去世时的年龄）（在他最终离开时）他已在那家曾把他**逐出**(ousted)的公司**掌舵**(at the helm of)近十四年。（at the helm of…：执掌……，helm 本义船舵；that ousted him：定语从句，修饰 company）（简述：1985年，苹果董事会在激烈交锋后支持斯卡利，乔布斯被剥夺管理职务，同年9月辞职。他1955年生于旧金山，1976年与沃兹尼亚克创办苹果，1980年苹果上市，1984年 Macintosh 亮相。离开苹果后，他创办 NeXT，收购了后来的皮克斯，1995年《玩具总动员》成为第一部长篇电脑动画电影。1996年苹果同意买下 NeXT，1997年乔布斯出任临时负责人，随后 iMac、iPod 和 iPhone 相继问世。2003年他被诊断出罕见的恶性胰腺肿瘤，2011年8月卸任，10月去世，终年56岁。）
 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
-| bruising | adj. 激烈的，令人身心受创的（a bruising battle/defeat） | 1 |
-| board | n. 董事会；木板（the board of directors；a notice board） | 1 |
-| confrontation | n. 冲突，对抗（a violent confrontation；avoid confrontation with sb） | 1 |
-| ultimately | adv. 最终，终究（ultimately responsible；the plan ultimately failed） | 1 |
-| executive | n. 高级管理人员，主管（a senior executive；chief executive officer） | 1 |
-| stripped | v. (strip) 剥夺，夺去（be stripped of a title/medal） | 1 |
-| managerial | adj. 管理的，经理的（managerial skills/experience） | 1 |
-| co-founded | v. (co-found) 共同创办（co-found a charity/band） | 1 |
-| sidelined | v. (sideline) 使靠边站，排挤（feel sidelined；be sidelined by injury） | 1 |
-| alienated | adj./v. (alienate) 疏离的，心生隔阂的（feel alienated from society；alienate voters） | 1 |
-| resigned | v. (resign) 辞职（resign from a post；resign as captain） | 1 |
-| rewind | v. 倒回（磁带、视频等）；回顾（rewind the tape；press rewind） | 2 |
-| San Francisco | n. 旧金山（美国加利福尼亚州城市）（born in San Francisco；the San Francisco Bay Area） | 2 |
-| adopted | v. (adopt) 收养；采用（be adopted as a baby；adopt a policy） | 2 |
-| newborn | n./adj. 新生儿；新生的（care for a newborn；a newborn calf） | 2 |
-| founded | v. (found) 创办，创建（found a company/school；be founded in 1976） | 2 |
-| electronics | n. 电子学；电子产品（consumer electronics；an electronics company） | 2 |
-| prototypes | n. (prototype) 原型，样机（build/test a prototype） | 2 |
-| origins | n. (origin) 起源，起家；出身（the origins of the universe；of humble origins） | 2 |
-| symbolic | adj. 象征性的（a symbolic gesture；of symbolic importance） | 2 |
-| significance | n. 意义，重要性（of great significance；the significance of a discovery） | 2 |
-| inflated | adj. 夸大的；（价格）虚高的（an inflated opinion of oneself；inflated prices） | 2 |
-| floated | v. (float) 使（公司）上市；漂浮（float a company on the stock market） | 2 |
-| flagship | n./adj. 旗舰；最重要的（产品）（a flagship store/model） | 2 |
-| debuted | v. (debut) 首次亮相，首次推出（debut at a festival；debut on Broadway） | 2 |
-| exile | n. 流放，放逐（live in exile；go into exile） | 3 |
-| productive | adj. 富有成效的，多产的（a productive meeting；productive land） | 3 |
-| start-up | n. 初创公司（a tech start-up；start-up costs） | 3 |
-| acquired | v. (acquire) 收购，获得（acquire a stake/company；acquire a skill） | 3 |
-| graphics | n. 图形，图像（computer graphics；graphics card） | 3 |
-| outfit | n. 团队，小机构（口语）；全套服装（a small consulting outfit） | 3 |
-| Pixar | n. 皮克斯（美国电脑动画工作室）（Pixar Animation Studios；a Pixar film） | 3 |
-| manufacturer | n. 制造商，生产商（a car manufacturer；the manufacturer's instructions） | 3 |
-| specialised | adj. 专门的，专用的（specialised equipment/knowledge） | 3 |
-| hardware | n. 硬件；五金器具（computer hardware；a hardware store） | 3 |
-| animation | n. 动画，动画制作（an animation studio；stop-motion animation） | 3 |
-| studio | n. 工作室；（电影）制片厂（an animation studio；a recording studio） | 3 |
-| released | v. (release) 上映，发行；释放（be released in cinemas；release a film） | 3 |
-| feature-length | adj. 长片的，正片长度的（a feature-length documentary） | 3 |
-| computer-animated | adj. 电脑动画的（a computer-animated series/character） | 3 |
-| reversal | n. 逆转，转变（a reversal of fortune；a policy reversal） | 4 |
-| core | adj./n. 核心的；核心（core values/business；the core of the problem） | 4 |
-| eventual | adj. 最终的，后来的（the eventual winner；its eventual collapse） | 4 |
-| reuniting | v. (reunite) （使）重聚（be reunited with one's family；reunite after years apart） | 4 |
-| estranged | adj. 疏远的，分居的（an estranged wife；be estranged from one's family） | 4 |
-| invested | v. (invest) 投资（invest in property；invest money in shares） | 4 |
-| distressed | adj. 陷入困境的；苦恼的（distressed assets/companies；deeply distressed） | 4 |
-| competitor | n. 竞争对手（a major competitor；competitors in a race） | 4 |
-| reins | n. (rein) 缰绳；控制权（take/hand over the reins；hold the reins of power） | 4 |
-| interim | adj. 临时的，暂时的（an interim report/government） | 4 |
-| ruin | n. 毁灭；（经济上的）破产（financial ruin；be on the brink of ruin） | 4 |
-| showcased | v. (showcase) 展示，展现（showcase new products/talent） | 4 |
-| diagnosis | n. 诊断（make a diagnosis；an early diagnosis） | 5 |
-| uncommon | adj. 不常见的，罕见的（not uncommon；an uncommon name） | 5 |
-| cancerous | adj. 癌的，恶性的（cancerous cells/growths） | 5 |
-| pancreatic | adj. 胰腺的（pancreatic juice/enzymes） | 5 |
-| tumour | n. 肿瘤（a brain tumour；a benign tumour） | 5 |
-| briefly | adv. 短暂地；简要地（pause briefly；briefly describe） | 5 |
-| overtook | v. (overtake) 超过，赶上（overtake a lorry；sales overtook last year's） | 5 |
-| most valuable | adj. (valuable 的最高级) 最有价值的；（公司）市值最高的（the world's most valuable company；most valuable player） | 5 |
-| tenure | n. 任期，任职（during her tenure as mayor；security of tenure） | 5 |
-| helm | n. 舵；领导地位（take the helm；at the helm of a team） | 5 |
-| ousted | v. (oust) 罢免，逐出（oust a leader from power） | 5 |
+| bruising | 本文：十分激烈的；adj. 激烈的，令人身心受创的（a bruising battle/defeat） | 1 |
+| confrontation | 本文：争执/交锋；n. 冲突，对抗（a violent confrontation；avoid confrontation with sb） | 1 |
+| board | 本文：董事会；n. 董事会；木板（the board of directors；a notice board） | 1 |
+| ultimately | 本文：最终；adv. 最终，终究（ultimately responsible；the plan ultimately failed） | 1 |
+| executive | 本文：执行官；n. 高级管理人员，主管（a senior executive；chief executive officer） | 1 |
+| co-founded | 本文：创办；v. (co-found) 共同创办（co-found a charity/band） | 1 |
+| stripped of | 本文：剥夺了；v. (strip) 剥夺，夺去（be stripped of a title/medal） | 1 |
+| managerial | 本文：管理的；adj. 管理的，经理的（managerial skills/experience） | 1 |
+| sidelined | 本文：架空；v. (sideline) 使靠边站，排挤（feel sidelined；be sidelined by injury） | 1 |
+| alienated | 本文：被疏远的；adj./v. (alienate) 疏离的，心生隔阂的（feel alienated from society；alienate voters） | 1 |
+| resigned | 本文：辞职了；v. (resign) 辞职（resign from a post；resign as captain） | 1 |
+| Rewind | 本文：回溯；v. 倒回（磁带、视频等）；回顾（rewind the tape；press rewind） | 2 |
+| San Francisco | 本文：旧金山；n. 旧金山（美国加利福尼亚州城市）（born in San Francisco；the San Francisco Bay Area） | 2 |
+| newborn | 本文：新生儿；n./adj. 新生儿；新生的（care for a newborn；a newborn calf） | 2 |
+| adopted | 本文：被收养；v. (adopt) 收养；采用（be adopted as a baby；adopt a policy） | 2 |
+| founded | 本文：创办了；v. (found) 创办，创建（found a company/school；be founded in 1976） | 2 |
+| prototypes | 本文：样机；n. (prototype) 原型，样机（build/test a prototype） | 2 |
+| electronics | 本文：电子；n. 电子学；电子产品（consumer electronics；an electronics company） | 2 |
+| origins | 本文：起源；n. (origin) 起源，起家；出身（the origins of the universe；of humble origins） | 2 |
+| symbolic | 本文：象征；adj. 象征性的（a symbolic gesture；of symbolic importance） | 2 |
+| significance | 本文：意义；n. 意义，重要性（of great significance；the significance of a discovery） | 2 |
+| inflated | 本文：夸大了；adj. 夸大的；（价格）虚高的（an inflated opinion of oneself；inflated prices） | 2 |
+| floated | 本文：上市；v. (float) 使（公司）上市；漂浮（float a company on the stock market） | 2 |
+| flagship | 本文：旗舰；n./adj. 旗舰；最重要的（产品）（a flagship store/model） | 2 |
+| debuted | 本文：首次推出；v. (debut) 首次亮相，首次推出（debut at a festival；debut on Broadway） | 2 |
+| Exile | 本文：放逐；n. 流放，放逐（live in exile；go into exile） | 3 |
+| productive | 本文：成果丰硕；adj. 富有成效的，多产的（a productive meeting；productive land） | 3 |
+| start-up | 本文：初创公司；n. 初创公司（a tech start-up；start-up costs） | 3 |
+| acquired | 本文：收购了；v. (acquire) 收购，获得（acquire a stake/company；acquire a skill） | 3 |
+| graphics | 本文：图形；n. 图形，图像（computer graphics；graphics card） | 3 |
+| outfit | 本文：团队；n. 团队，小机构（口语）；全套服装（a small consulting outfit） | 3 |
+| Pixar | 本文：皮克斯；n. 皮克斯（美国电脑动画工作室）（Pixar Animation Studios；a Pixar film） | 3 |
+| manufacturer | 本文：制造商；n. 制造商，生产商（a car manufacturer；the manufacturer's instructions） | 3 |
+| specialised | 本文：专用；adj. 专门的，专用的（specialised equipment/knowledge） | 3 |
+| hardware | 本文：硬件；n. 硬件；五金器具（computer hardware；a hardware store） | 3 |
+| animation | 本文：动画；n. 动画，动画制作（an animation studio；stop-motion animation） | 3 |
+| studio | 本文：工作室；n. 工作室；（电影）制片厂（an animation studio；a recording studio） | 3 |
+| released | 本文：上映；v. (release) 上映，发行；释放（be released in cinemas；release a film） | 3 |
+| feature-length | 本文：长篇；adj. 长片的，正片长度的（a feature-length documentary） | 3 |
+| computer-animated | 本文：电脑动画；adj. 电脑动画的（a computer-animated series/character） | 3 |
+| reversal | 本文：彻底转变；n. 逆转，转变（a reversal of fortune；a policy reversal） | 4 |
+| eventual | 本文：最终版；adj. 最终的，后来的（the eventual winner；its eventual collapse） | 4 |
+| core | 本文：核心；adj./n. 核心的；核心（core values/business；the core of the problem） | 4 |
+| reuniting with | 本文：与……重聚；v. (reunite) （使）重聚（be reunited with one's family；reunite after years apart） | 4 |
+| estranged | 本文：关系疏远的；adj. 疏远的，分居的（an estranged wife；be estranged from one's family） | 4 |
+| invested in | 本文：向……投资；v. (invest) 投资（invest in property；invest money in shares） | 4 |
+| distressed | 本文：陷入困境的；adj. 陷入困境的；苦恼的（distressed assets/companies；deeply distressed） | 4 |
+| competitor | 本文：竞争对手；n. 竞争对手（a major competitor；competitors in a race） | 4 |
+| took the reins | 本文：接掌大权；n. (rein) 缰绳；控制权（take/hand over the reins；hold the reins of power） | 4 |
+| interim | 本文：临时；adj. 临时的，暂时的（an interim report/government） | 4 |
+| ruin | 本文：破产；n. 毁灭；（经济上的）破产（financial ruin；be on the brink of ruin） | 4 |
+| showcased | 本文：展示；v. (showcase) 展示，展现（showcase new products/talent） | 4 |
+| diagnosis | 本文：诊断；n. 诊断（make a diagnosis；an early diagnosis） | 5 |
+| uncommon | 本文：罕见的；adj. 不常见的，罕见的（not uncommon；an uncommon name） | 5 |
+| cancerous | 本文：恶性；adj. 癌的，恶性的（cancerous cells/growths） | 5 |
+| pancreatic | 本文：胰腺；adj. 胰腺的（pancreatic juice/enzymes） | 5 |
+| tumour | 本文：肿瘤；n. 肿瘤（a brain tumour；a benign tumour） | 5 |
+| briefly | 本文：一度；adv. 短暂地；简要地（pause briefly；briefly describe） | 5 |
+| overtook | 本文：超越；v. (overtake) 超过，赶上（overtake a lorry；sales overtook last year's） | 5 |
+| most valuable | 本文：市值最高的；adj. (valuable 的最高级) 最有价值的；（公司）市值最高的（the world's most valuable company；most valuable player） | 5 |
+| tenure | 本文：任期；n. 任期，任职（during her tenure as mayor；security of tenure） | 5 |
+| ousted | 本文：逐出；v. (oust) 罢免，逐出（oust a leader from power） | 5 |
+| at the helm of | 本文：掌舵；n. 舵；领导地位（take the helm；at the helm of a team） | 5 |
 
 ## 史实与来源
 - 【T1】1955年2月24日生于旧金山，由保罗与克拉拉·乔布斯收养（正文不写养父母姓名）。S1
