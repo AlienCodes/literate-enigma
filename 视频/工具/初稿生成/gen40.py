@@ -54,7 +54,7 @@ S=[
     [[("went on sale **nationally** in the US,","在美国**全国**(nationally)上市；")],
      "（go on sale：上市）"],
     [[("and Canada and Europe followed in 1981.","1981年，便利贴又进入加拿大和欧洲。")]]]),
-(5,[[[("The stationery **staple**","这款文具**必备品**(staple)"),("owes its","那"),("**signature**","**标志性的**(signature)"),("**canary**","**金丝雀黄**(canary)"),("**tone**","**色调**(tone)，"),("to an **unplanned** twist.","源于一次**计划外的**(unplanned)转折。")],
+(5,[[[("The **stationery**","这款**文具的**(stationery)"),("**staple**","**必备品**(staple)"),("owes its","那"),("**signature**","**标志性的**(signature)"),("**canary**","**金丝雀黄**(canary)"),("**tone**","**色调**(tone)，"),("to an **unplanned** twist.","源于一次**计划外的**(unplanned)转折。")],
      "（owe A to B：A 源于 B）"]]),
 (5,[[[("The laboratory next door","隔壁实验室"),("had only","手头只有"),("**leftover**","**剩下的**(leftover)"),("yellow","黄"),("paper.","纸。")],
      "（next door：作后置定语，隔壁的）\n"
@@ -146,7 +146,7 @@ CONF["机器复听"]={"S13":{"配音指纹":"01e55201e44a","依据":"2026-11-03 
 CONF["引号"]={"S6-1 “”":"用户原话“用他自己的话总结，这完全是一个解决“不存在的问题”的方案。”（2026-11-03，已记进 用户同意记录.json）自带引号（见 40_待改清单 第7条），照用户原话"}
 CONF.setdefault("同词异译",{}).update({"solution：方案/解决":"S6 solution“解决方案”被“不存在的问题”隔开，“解决”和“方案”是同一个意思的两部分（T22/T23，用户 2026-11-03 原话“这完全是一个解决“不存在的问题”的方案……Solution 标注重点词汇。解决方案”），不是两种译法"})
 CONF["换行变更已获同意"]={"S14":"用户原话“可以，按拆开的换行”（2026-11-03，问 S14 staged 标重点词后拆成三组、换行会变时用户选的）"}
-out={"no":"40","title_en":"The Glue That Failed Its Way to Success","title_zh":"失败的胶水，成功的便利贴","title_fx":{"hl":["Failed","Success"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["set out to"],"换行变更已获同意":CONF["换行变更已获同意"],
+out={"no":"40","title_en":"The Glue That Failed Its Way to Success","title_zh":"失败的胶水，成功的便利贴","title_fx":{"hl":["Failed","Success"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["set out to","stationery"],"换行变更已获同意":CONF["换行变更已获同意"],
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Spencer Silver":"斯潘塞·西尔弗","Silver":"西尔弗","3M":"3M","Art Fry":"阿特·弗莱","Fry":"弗莱","Press 'n Peel":"Press 'n Peel","Boise":"博伊西","Idaho":"爱达荷州","Post-it Notes":"便利贴","US":"美国","American":"美国","Canada":"加拿大","Europe":"欧洲"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
