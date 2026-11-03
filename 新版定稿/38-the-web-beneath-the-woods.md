@@ -6,7 +6,7 @@ One of **ecology**'s most **romantic** ideas **grew out of** plastic bags. In a 
 
 Most **terrestrial** plants **harbour** such **fungi**, whose **filaments** **forage for** water and **nutrients** including **nitrogen**, **swapping** them for plant sugars. One fungus can **knit** plants **into** a **shared network**. The journal Nature **unveiled** the study on 7 August 1997, its cover offering a **catchy** **coinage**: the "wood-wide web".
 
-The **metaphor** proved **irresistible**. Between 2015 and 2021, a forester's **bestseller**, an **acclaimed** novel, and an ecologist's **memoir** told readers that trees **converse**, warn one another, and, as "mother trees", **nurture** their **kin**. Yet the 1997 trees were seedlings, not **elderly** mothers.
+The **metaphor** proved **irresistible**. Between 2015 and 2021, a forester's **bestseller**, an **acclaimed** novel, and an ecologist's **memoir** told readers that trees **converse**, **warn one another**, and, as "mother trees", **nurture** their **kin**. Yet the 1997 trees were seedlings, not **elderly** mothers.
 
 In February 2023, three researchers **combed through** the field evidence. They judged it too **sparse**, **inconsistent**, or **ambiguous** to **demonstrate** that shared networks are **widespread**. In 26 field studies, networks helped and **hindered** seedlings about equally often, with **neutral** effects **predominating**. No **peer-reviewed** field study showed **mature** trees **favouring** their own offspring. **Unsupported** **assertions** in later papers had doubled over 25 years, with **citations** **skewed** towards positive results.
 
@@ -18,7 +18,7 @@ None of this **disproves** the networks' existence. In January 2025, defenders f
 
 大多数**陆生**(terrestrial)植物身上都**包含/携带着**(harbour)这类**真菌**(fungi)，它们的**菌丝**(filaments)四处**搜寻/寻找**(forage for)水分和**氮**(nitrogen)等**养分**(nutrients)，再拿去**换取**(swapping)植物的糖分。单个真菌就能**把**(knit into)多株植物**编织进**(knit into)同一张**共享网络**(shared network)。1997年8月7日，《自然》杂志**公布/发表了**(unveiled)这项研究，当期封面还送上一个**响亮好记的**(catchy)**新造词**(coinage)——“林木万维网”（wood-wide web）。
 
-结果，这个**比喻**(metaphor)**令人难以抗拒**(irresistible)。2015年至2021年间，一位护林人的**畅销书**(bestseller)、一部**广受赞誉的**(acclaimed)小说和一位生态学家的**回忆录**(memoir)都向读者讲述，树木会**交谈**(converse)，会互相示警，还会作为“母树”**哺育/养育**(nurture)自己的**亲族**(kin)。然而，1997年实验里的树都还是幼苗，并非**年迈的**(elderly)母亲。
+结果，这个**比喻**(metaphor)**令人难以抗拒**(irresistible)。2015年至2021年间，一位护林人的**畅销书**(bestseller)、一部**广受赞誉的**(acclaimed)小说和一位生态学家的**回忆录**(memoir)都向读者讲述，树木会**交谈**(converse)，会**互相示警**(warn one another)，还会作为“母树”**哺育/养育**(nurture)自己的**亲族**(kin)。然而，1997年实验里的树都还是幼苗，并非**年迈的**(elderly)母亲。
 
 2023年2月，三位研究者**梳理**(combed through)了野外证据。他们认为，这些证据或过于**稀少**(sparse)，或**互不一致**(inconsistent)，或**含糊不清**(ambiguous)，不足以**证明**(demonstrate)共享网络**普遍存在**(widespread)。在26项野外研究中，网络对幼苗有所助益和有所**妨碍**(hindered)的情形大致一样多，而以**中性**(neutral)效应**居多**(predominating)。没有任何一项经**同行评审**(peer-reviewed)的野外研究表明，**成年**(mature)树木会**偏爱**(favouring)自己的后代。在后来的论文中，**缺乏依据的**(unsupported)**论断**(assertions)在25年间增加了一倍，**引用**(citations)也**偏向**(skewed)正面结果。
 
@@ -60,6 +60,7 @@ None of this **disproves** the networks' existence. In January 2025, defenders f
 | acclaimed | adj. 广受赞誉的（a critically acclaimed novel/film）；v. (acclaim) 称赞；n. 赞誉（win critical acclaim） | 3 |
 | memoir | n. 回忆录（常用复数 memoirs；write/publish a memoir）；传记 | 3 |
 | converse | v. 交谈，谈话（converse with sb about sth；converse in English）；adj. 相反的，反面的（the converse view）；n. 相反的事物（the converse is true 反之亦然）；动词重音在后，形容词、名词重音在前 | 3 |
+| warn one another | v. 互相示警，互相发出警告（warn sb of/about sth；warn sb to do sth；本文指书里说树会互相报警） | 3 |
 | nurture | v. 养育，照料，呵护（成长中的人或物）（nurture children/the young/seedlings）；培养，扶植（nurture talent/an idea）；n. 养育（nature and nurture 先天与后天） | 3 |
 | kin | n. 亲族，亲属（统称，作复数；next of kin 近亲；kin selection 亲缘选择）；本文指树木自己的后代与近亲 | 3 |
 | elderly | adj. 年迈的，上了年纪的（elderly people/parents，比 old 委婉）；the elderly 老年人 | 3 |
