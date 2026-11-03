@@ -72,7 +72,7 @@ S=[
 (5,[[[("His **tenure** ended on 24 August 2011;","2011年8月24日，他的**任期**(tenure)结束；")]],
     [[("he died on 5 October 2011,","2011年10月5日，他去世，"),("aged 56.","终年56岁。")],
      "（aged 56：作状语，说明去世时的年龄）"]]),
-(5,[[[("He","他"),("had spent nearly fourteen years **at the helm of** the company that **ousted** him.","已在那家曾把他**逐出**(ousted)的公司**掌舵**(at the helm of)近十四年。")],
+(5,[[[("He","（在他最终离开时）他"),("had spent nearly fourteen years **at the helm of** the company that **ousted** him.","已在那家曾把他**逐出**(ousted)的公司**掌舵**(at the helm of)近十四年。")],
      "（at the helm of…：执掌……，helm 本义船舵；\nthat ousted him：定语从句，修饰 company）\n"
      "（简述：1985年，苹果董事会在激烈交锋后支持斯卡利，\n"
      "乔布斯被剥夺管理职务，同年9月辞职。\n"
