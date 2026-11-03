@@ -8,7 +8,7 @@ S=[
      "（come by rail and airliner：乘火车和客机来，by 表示交通方式；\nan isle off Wales：同位语，补充说明 Skokholm；off：在……外海）"],
     [[("and Mazzeo","而马泽奥"),("**posted a letter** **at once**.","**随即**(at once)**寄出了一封信**(posted a letter)。")],
      "（at once：立刻，马上）"]]),
-(1,[[[("After a roughly","经过约"),("3,200-mile","三千二百英里的"),("**odyssey**","**远征**(odyssey)，"),("across","飞越"),("the **unbroken** Atlantic,","**连绵不断的**(unbroken)大西洋之后，")],
+(1,[[[("After a roughly","经过约"),("3,200-mile","三千二百英里的"),("**odyssey**","**远征**(odyssey)，"),("across","飞越"),("the **unbroken**","**连绵不断的**(unbroken)"),("**Atlantic**,","**大西洋**(Atlantic)之后，")],
      "（After…：时间状语；\nacross the unbroken Atlantic：后置定语，修饰 odyssey）"],
     [[("the **feathered**","这位**披着羽毛的**(feathered)"),("**traveller**","**旅行者**(traveller)"),("was back on its **doorstep** twelve and a half days later.","十二天半后回到了自家**门口**(doorstep)。")],
      "（the feathered traveller：披着羽毛的旅行者，指这只鹱；\nbe back on its doorstep：回到自家门口）"]]),
@@ -16,7 +16,7 @@ S=[
      "（afterwards：之后，随后，\n这里指鸟回到洞巢之后）"]]),
 (2,[[[("The first **hints** of a compass","关于这种罗盘的最初**迹象**(hints)，"),("were **celestial**.","是**和天体有关的**(celestial)。")],
      "（hints of a compass：关于鸟的罗盘的线索；\ncelestial：天上的，这里指太阳和星星）\n（科学家为了搞清楚这只鸟跨越3200英里不迷路的原因，发现最早的线索指向了“天体”——也就是说，这只鸟很可能是在靠白天看太阳、晚上看星星来导航认路的。）"]]),
-(2,[[[("In the 1950s","20世纪50年代，"),("Kramer","克雷默"),("kept starlings","把椋鸟"),("**cooped**","**关进**(cooped)"),("in cages","笼子里，")],
+(2,[[[("In the 1950s","20世纪50年代，"),("Kramer","克雷默"),("kept starlings","把椋鸟"),("**cooped**","**关进**(cooped)"),("in **cages**","**笼子**(cages)里，")],
      "（keep A cooped in…：把 A 关在……里；\ncooped：过去分词作宾语补足语）"],
     [[("and","再"),("moved the **apparent sun** with mirrors.","用镜子挪动**太阳的视位置**(apparent sun)。")],
      "（the apparent sun：太阳的视位置，\n即从地面看到的太阳位置）"]]),
@@ -32,7 +32,7 @@ S=[
      "（the axis of the nightly whirl：同位语，补充说明 the pole-star；\nwhirl：旋转，这里指星空整夜绕北极星转动）"]]),
 (3,[[[("In 1972","1972年，"),("the Wiltschkos","维尔奇科夫妇"),("showed that","证明，")],
      "（the Wiltschkos：维尔奇科夫妇；\nthat 引导宾语从句）"],
-    [[("**robins**","**知更鸟**(robins)"),("read","读取"),("Earth's","地球"),("**magnetic** field","**磁场**(magnetic)时，"),("by **inclination**,","看的是**倾角**(inclination)，"),("not **polarity**,","而不是**极性**(polarity)，")],
+    [[("**robins**","**知更鸟**(robins)"),("read","读取"),("Earth's","地球"),("**magnetic field**","**磁场**(magnetic field)时，"),("by **inclination**,","看的是**倾角**(inclination)，"),("not **polarity**,","而不是**极性**(polarity)，")],
      "（by inclination：靠倾角，by 表示方式；\ninclination：倾角，磁力线与地面的夹角）"],
     [[("unlike","这一点和"),("a **sailor**'s","**水手**(sailor)的"),("**needle**.","罗盘**指针**(needle)不同。")],
      "（unlike…：介词短语，和……不同）"]]),
@@ -50,7 +50,7 @@ S=[
      "（In 2014 came…：倒装句，\n主语是 an eerie, man-made twist）"]]),
 (4,[[[("At Oldenburg University,","在奥尔登堡大学，"),("robins in campus **huts**","校园**小木屋**(huts)里的知更鸟"),("lost","失去了"),("that **sense**.","这种**感知/感官**(sense)。")],
      "（in campus huts：后置定语，修饰 robins；\nthat sense：指读取磁场的能力）"]]),
-(4,[[[("In huts **clad in** grounded aluminium,","在**覆有**(clad in)接地铝板**的**(clad in)小屋里，")],
+(4,[[[("In huts **clad in** grounded **aluminium**,","在**覆有**(clad in)接地**铝**(aluminium)板**的**(clad in)小屋里，")],
      "（clad in 覆盖着……的：\n指建筑物或物体表面用某种材料覆盖或作饰面；\ngrounded：接地的）"],
     [[("they","它们"),("**reclaimed**","**找回了**(reclaimed)"),("their **bearings**.","它们的**方向**(bearings)。")],
      "（reclaim one's bearings：找回方向感；\nbearings：方位，方向感）"]]),
@@ -66,7 +66,7 @@ S=[
      "（How a wanderer knows…：主语从句；\nwhere it is：宾语从句，作 knows 的宾语）\n（这只鸟到底是怎么在大脑里\n算出自己在地球上的确切位置的？\n科学家至今也没完全搞懂。）"]]),
 (5,[[[("The compass","罗盘的"),("code","密码"),("is partly **cracked**,","已**破解了**(cracked)一部分，")],
      "（is partly cracked：被动，已被部分破解）"],
-    [[("but","但"),("the **atlas** that steered the shearwater","指引那只大西洋鹱的那张**地图**(atlas)，"),("has yet to be read.","还没有人读懂。")],
+    [[("but","但"),("the **atlas** that steered the shearwater","指引那只大西洋鹱的那张**地图**(atlas)，"),("**has yet to** be read.","**还没有**(has yet to)人读懂。")],
      "（that steered the shearwater：定语从句，修饰 atlas；\nhas yet to do：“尚未……” / “还有待……”\n（表示某件事到现在为止还没发生，或者还没做完））\n"
      "（简述：1952年6月3日，马泽奥在波士顿放飞了一只来自威尔士外海斯科克霍姆岛的大西洋鹱，\n"
      "它飞越约三千二百英里的大西洋，十二天半后回到洞巢，比他随即寄出的信还早。\n"
@@ -118,7 +118,7 @@ CONF.setdefault("是的",{}).update({"S5-1 是**和天体有关的**": "用户 2
 out={"no":"35","title_en":"The Bird That Beat the Letter Home","title_zh":"比信先到家的鸟","title_fx":{"hl":["Bird","Letter"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "说明放宽特批":{"S21":{"倍数":"整屏","依据":"用户 2026-10-25 看 25 简述截图：“以后以后一定要合理的安排，不要压缩成这个样子……这个地方特批一下”（用户同意记录：原话适用以后各篇，26 起沿用）"}},
      "非人声区间":{"S1":[[2.45,2.725]],"S2":[[3.755,4.043792,"紧贴词头"]],"S6":[[1.2525,1.34],[4.13,4.443708,"紧贴词头"]],"S8":[[1.325,1.655]],"S10":[[6.61,6.97]],"S11":[[1.45,1.645]],"S12":[[4.0,4.2275]],"S13":[[1.855,2.075],[6.225,6.585]],"S15":[[2.04,2.21]],"S18":[[3.39,3.685]],"S19":[[3.4875,3.69]],"S21":[[2.565,2.585]]},
-     "allow_clash":["released","steered","suspect"],"换行变更已获同意":{"S11":"用户 2026-11-03 原话：“同意换行变”（问的是：S11 按用户新译文，reaction to decode the field 放一组，英文换行跟上一版不同，同意吗）","S2":"用户 2026-11-03 原话：“同意换行变”（问的是：S2 按用户新译文，on Skokholm 和 from its burrow 放一组，英文换行跟上一版不同，同意吗）"},"高亮按实际开口":True,"高亮开口门槛":40,
+     "allow_clash":["released","steered","suspect","aluminium"],"换行变更已获同意":{"S11":"用户 2026-11-03 原话：“同意换行变”（问的是：S11 按用户新译文，reaction to decode the field 放一组，英文换行跟上一版不同，同意吗）","S2":"用户 2026-11-03 原话：“同意换行变”（问的是：S2 按用户新译文，on Skokholm 和 from its burrow 放一组，英文换行跟上一版不同，同意吗）"},"高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Rosario Mazzeo":"罗萨里奥·马泽奥","Mazzeo":"马泽奥","Manx shearwater":"大西洋鹱","shearwater":"大西洋鹱","Boston":"波士顿","Skokholm":"斯科克霍姆","Wales":"威尔士","Atlantic":"大西洋","Kramer":"克雷默","Emlen":"埃姆伦","buntings":"靛蓝彩鹀","Wiltschkos":"维尔奇科夫妇","Schulten":"舒尔滕","cryptochrome":"隐花色素","Oldenburg University":"奥尔登堡大学","WHO":"世卫组织"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
