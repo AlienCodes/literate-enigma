@@ -6,7 +6,7 @@ In May 1985, after a **bruising** **confrontation**, Apple's **board** **ultimat
 
 **Rewind** three decades. Born in **San Francisco** on 24 February 1955, Jobs was **adopted** as a **newborn**. On 1 April 1976 he **founded** Apple with Steve Wozniak, the **electronics** engineer behind its first **prototypes**. Apple's garage **origins** are largely **symbolic**; Wozniak calls their **significance** **inflated**. Apple **floated** on 12 December 1980; the **flagship** Macintosh **debuted** on 24 January 1984.
 
-**Exile** proved **productive**. Later in 1985 Jobs **founded** NeXT, a computer **start-up**. In February 1986 he **acquired** Lucasfilm's computer-**graphics** **outfit**, which became **Pixar**. It began as a **manufacturer** of **specialised** **hardware**, not chiefly an **animation** studio. Toy Story, released on 22 November 1995, was the first **feature-length** **computer-animated** film.
+**Exile** proved **productive**. Later in 1985 Jobs **founded** NeXT, a computer **start-up**. In February 1986 he **acquired** Lucasfilm's computer-**graphics** **outfit**, which became **Pixar**. It began as a **manufacturer** of **specialised** **hardware**, not chiefly an **animation** **studio**. Toy Story, **released** on 22 November 1995, was the first **feature-length** **computer-animated** film.
 
 The **reversal** came on 20 December 1996: Apple agreed to buy NeXT, gaining the **core** software of the **eventual** Mac OS X and **reuniting** with its **estranged** co-founder. In August 1997 Microsoft **invested** $150 million in its **distressed** **competitor**; that September Jobs took the **reins** as **interim** chief. Apple, he later said, had been weeks from **ruin**. The iMac, iPod, and iPhone followed, the iPhone **showcased** on 9 January 2007.
 
@@ -18,7 +18,7 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 
 **回溯**(rewind)三十年。1955年2月24日，乔布斯生于**旧金山**(San Francisco)，还是**新生儿**(newborn)时就**被收养**(adopted)。1976年4月1日，他与史蒂夫·沃兹尼亚克**创办**(founded)了苹果公司；沃兹尼亚克是苹果首批**样机**(prototypes)背后的**电子**(electronics)工程师。苹果的车库**起源**(origins)在很大程度上只是具有**象征**(symbolic)意义的；沃兹尼亚克称其**意义**(significance)被**夸大**(inflated)了。1980年12月12日，苹果公司**上市**(floated)；而**旗舰**(flagship)产品 Macintosh **首次推出**(debuted)于1984年1月24号。
 
-这段**放逐**(exile)岁月**成果丰硕**(productive)。1985年晚些时候，乔布斯**创办**(founded)了 NeXT，一家电脑**初创公司**(start-up)。1986年2月，他**收购**(acquired)了卢卡斯影业的电脑**图形**(graphics)**团队**(outfit)，这个团队后来成为**皮克斯**(Pixar)。皮克斯起初是一家**制造商**(manufacturer)，生产**专用**(specialised)**硬件**(hardware)，主要并不是**动画**(animation)工作室。《玩具总动员》于1995年11月22日上映，是第一部**长篇**(feature-length)**电脑动画**(computer-animated)电影。
+这段**放逐**(exile)岁月**成果丰硕**(productive)。1985年晚些时候，乔布斯**创办**(founded)了 NeXT，一家电脑**初创公司**(start-up)。1986年2月，他**收购**(acquired)了卢卡斯影业的电脑**图形**(graphics)**团队**(outfit)，这个团队后来成为**皮克斯**(Pixar)。皮克斯起初是一家**制造商**(manufacturer)，生产**专用**(specialised)**硬件**(hardware)，主要并不是**动画**(animation)**工作室**(studio)。《玩具总动员》于1995年11月22日**上映**(released)，是第一部**长篇**(feature-length)**电脑动画**(computer-animated)电影。
 
 1996年12月20日，局面出现**转机**(reversal)。当天苹果公司同意买下 NeXT，得到了**日后**(eventual) Mac OS X 的**核心**(core)软件，并与那位**关系疏远**(estranged)的联合创始人**重聚**(reuniting)。1997年8月，微软向这个**陷入困境**(distressed)的**竞争对手**(competitor)**投资**(invested)1.5亿美元；同年9月，乔布斯**接掌大权**(reins)，出任**临时**(interim)负责人。他后来说，苹果当时离**破产**(ruin)只差几周。iMac、iPod 和 iPhone 相继问世，iPhone 于2007年1月9日公开**展示**(showcased)。
 
@@ -63,6 +63,8 @@ In October 2003 Jobs received a **diagnosis**: an **uncommon**, **cancerous** **
 | specialised | adj. 专门的，专用的（specialised equipment/knowledge） | 3 |
 | hardware | n. 硬件；五金器具（computer hardware；a hardware store） | 3 |
 | animation | n. 动画，动画制作（an animation studio；stop-motion animation） | 3 |
+| studio | n. 工作室；（电影）制片厂（an animation studio；a recording studio） | 3 |
+| released | v. (release) 上映，发行；释放（be released in cinemas；release a film） | 3 |
 | feature-length | adj. 长片的，正片长度的（a feature-length documentary） | 3 |
 | computer-animated | adj. 电脑动画的（a computer-animated series/character） | 3 |
 | reversal | n. 逆转，转变（a reversal of fortune；a policy reversal） | 4 |
