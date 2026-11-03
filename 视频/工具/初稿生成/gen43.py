@@ -144,7 +144,7 @@ CONF={
 }
 out={"no":"43","title_en":"From a Garage to the Top of the World","title_zh":"从车库到世界之巅","title_fx":{"hl":["Garage","Top"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮按实际开口":True,"高亮开口门槛":40,
-     "句子增益dB":{"S2":-2.5},"分段增益dB":{"S16":{"1":1.5,"2":-2.0}},
+     "分段增益dB":{"S2":{"1":-2.0,"2":-2.0,"3":-2.5},"S16":{"1":1.5,"2":-2.0}},
      "合成标点":{"S2":[["Jobs, 30","Jobs; 30"]],"S16":[["Apple, he","Apple; he"]],"S17":[["iPod, and","iPod; and"]]},
      "非人声区间":{"S3":[[0.80575,0.915042,"紧贴两头"],[2.505083,2.532625,"紧贴两头"]],"S15":[[2.140333,2.323,"紧贴两头"],[7.88,8.098708,"紧贴词头"]],"S18":[[1.752667,1.934333,"紧贴两头"]],"S17":[[1.945,2.142917,"紧贴词头"]],"S19":[[2.072792,2.363833]]},
      "术语":{"Apple":"苹果","John Sculley":"约翰·斯卡利","Sculley":"斯卡利","Steve Jobs":"史蒂夫·乔布斯","Jobs":"乔布斯","San Francisco":"旧金山","Steve Wozniak":"史蒂夫·沃兹尼亚克","Wozniak":"沃兹尼亚克","Macintosh":"Macintosh","NeXT":"NeXT","Lucasfilm":"卢卡斯影业","Pixar":"皮克斯","Toy Story":"玩具总动员","Mac OS X":"Mac OS X","Microsoft":"微软","iMac":"iMac","iPod":"iPod","iPhone":"iPhone","Exxon Mobil":"埃克森美孚"}}
