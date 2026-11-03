@@ -36,7 +36,7 @@ How a **wanderer** knows where it is remains **unanswered**. The compass code is
 | posted a letter | 本文：寄出了一封信；v. phr. (post a letter) 寄出一封信，寄信（post a letter to sb） | 1 |
 | odyssey | 本文：远征；n. 漫长的历险，远征（a spiritual odyssey） | 1 |
 | unbroken | 本文：连绵不断的；adj. 连续不断的，一望无际的（an unbroken line/view） | 1 |
-| Atlantic | n. 大西洋（cross the Atlantic） | 1 |
+| Atlantic | 本文：大西洋；n. 大西洋（cross the Atlantic） | 1 |
 | feathered | 本文：披着羽毛的；adj. 长羽毛的（our feathered friends） | 1 |
 | traveller | 本文：旅行者；n. 旅行者（a seasoned traveller） | 1 |
 | doorstep | 本文：门口；n. 门口，门阶（on sb's doorstep） | 1 |
@@ -44,8 +44,8 @@ How a **wanderer** knows where it is remains **unanswered**. The compass code is
 | hints | 本文：迹象；n. (hint) 线索，暗示（drop a hint；a hint of sth） | 2 |
 | celestial | 本文：和天体有关的；adj. 天上的，天体的（celestial bodies） | 2 |
 | cooped | 本文：关进；v. (coop up) 关进笼子，困住（cooped up indoors） | 2 |
+| cages | 本文：笼子；n. (cage) 笼子（a bird cage） | 2 |
 | apparent sun | 本文：太阳的视位置；n. phr. 太阳的视位置（从地面看到的太阳位置） | 2 |
-| cages | n. (cage) 笼子（a bird cage） | 2 |
 | duped | 本文：受骗的；v. (dupe) 欺骗，愚弄（be duped into signing） | 2 |
 | swivelled | 本文：转动；v. (swivel) 转动，旋转（swivel round in one's chair） | 2 |
 | allowing for | 本文：考虑到；v. phr. (allow for) 考虑到（allow for delays） | 2 |
@@ -58,7 +58,7 @@ How a **wanderer** knows where it is remains **unanswered**. The compass code is
 | whirl | 本文：旋转；n./v. 旋转（a whirl of activity；leaves whirled） | 2 |
 | axis | 本文：轴心；n. 轴，轴心（the earth's axis） | 2 |
 | robins | 本文：知更鸟；n. (robin) 知更鸟，欧亚鸲（a robin redbreast） | 3 |
-| magnetic field | n. phr. 磁场（Earth's magnetic field） | 3 |
+| magnetic field | 本文：磁场；n. phr. 磁场（Earth's magnetic field） | 3 |
 | inclination | 本文：倾角；n. 倾角；倾向（an inclination to agree；angle of inclination） | 3 |
 | polarity | 本文：极性；n. 极性（reverse the polarity） | 3 |
 | sailor | 本文：水手；n. 水手（an experienced sailor） | 3 |
@@ -77,8 +77,8 @@ How a **wanderer** knows where it is remains **unanswered**. The compass code is
 | twist | 本文：转折；n. 转折，意外的变化（a twist of fate；a dramatic twist） | 4 |
 | huts | 本文：小木屋；n. (hut) 小屋，棚屋（a wooden hut） | 4 |
 | sense | 本文：感知/感官；n. 感知，感官（a sense of direction；the five senses） | 4 |
-| aluminium | n. 铝（aluminium foil） | 4 |
 | clad in | 本文：覆有……的；adj. phr. 覆有……的，覆盖着……的（clad in steel；ivy-clad walls） | 4 |
+| aluminium | 本文：铝；n. 铝（aluminium foil） | 4 |
 | reclaimed | 本文：找回了；v. (reclaim) 找回，收回（reclaim one's title） | 4 |
 | bearings | 本文：方向；n. (bearing) 方位，方向感（lose/find one's bearings） | 4 |
 | piping in | 本文：灌入；v. (pipe) 用管道输送；播放（pipe music into a store） | 4 |
@@ -90,8 +90,8 @@ How a **wanderer** knows where it is remains **unanswered**. The compass code is
 | wanderer | 本文：漫游者；n. 漫游者，流浪者（a lonely wanderer） | 5 |
 | unanswered | 本文：没有答案；adj. 未答复的，悬而未决的（unanswered questions） | 5 |
 | cracked | 本文：破解了；v. (crack) 破解；破裂（crack a code/case） | 5 |
-| has yet to | phr. 尚未，还有待（has yet to be decided） | 5 |
 | atlas | 本文：地图；n. 地图集（a world atlas） | 5 |
+| has yet to | 本文：还没有；phr. 尚未，还有待（has yet to be decided） | 5 |
 
 ## 史实与来源
 - 【T1】1952年，罗萨里奥·马泽奥把环号 AX6587 的大西洋鹱从威尔士外海斯科克霍姆岛经火车带到伦敦、再乘飞机到波士顿；6月3日上午8:15在洛根机场放飞；6月16日它已回到岛上的洞巢，约3,200英里开阔大西洋，用时12.5天；他放飞后立刻寄信，信比鸟晚到。环号、放飞时刻与洛克利的误会正文不写。S1
