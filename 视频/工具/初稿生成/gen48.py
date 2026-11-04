@@ -55,7 +55,7 @@ S=[
     [[("that hybrid rice","杂交稻"),("can **yield** up to a fifth more **grain** than **conventional** **varieties**.","比**常规**(conventional)**品种**(varieties)最多可多**产**(yield)五分之一的**稻谷**(grain)。")],
      "（up to a fifth more…than…：比……最多多五分之一）"]]),
 (4,[[[("By the early 2000s","到21世纪初，"),("it","杂交稻"),("**covered**","已**覆盖**(covered)"),("almost half","近一半的"),("of China's **rice fields**.","中国**稻田**(rice fields)。")]]]),
-(5,[[[("Yuan,","袁隆平"),("who shared the 2004 World Food Prize with Sierra Leone's Monty Jones,","曾与塞拉利昂的蒙蒂·琼斯共获2004年世界粮食奖，")],
+(5,[[[("Yuan,","袁隆平"),("who shared the 2004 **World Food Prize** with Sierra Leone's Monty Jones,","曾与塞拉利昂的蒙蒂·琼斯共获2004年**世界粮食奖**(World Food Prize)，")],
      "（who…：非限制性定语从句，补充说明 Yuan）"],
     [[("died in Changsha on 22 May 2021,","2021年5月22日在长沙逝世，"),("aged 91.","享年91岁。")]]]),
 (5,[[[("Yet","然而，"),("popular **myth**","一种流传甚广的**误解**(myth)"),("**portrays** him **as**","把他**描绘成**(portrays as)"),("a **solitary**","一个**单枪匹马的**(solitary)"),("**genius**.","**天才**(genius)。")],
