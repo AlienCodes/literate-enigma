@@ -8,7 +8,7 @@ The **specimen** **launched** a six-year **hunt**: Yuan and his **colleagues** c
 
 Then came Yuan's **decisive** move: rather than **withhold** the **strain**, he **distributed** it to **collaborators** **nationwide**. Hybrids need three **distinct** lines: a sterile line, one to **maintain** its **sterility**, and one to **restore** **fertility** in the hybrids. Yan Longan's team in Jiangxi bred sterile lines and Zhang Xiancheng in Guangxi first **identified** a restorer line. In October 1973, at a **national conference** in Suzhou, Yuan **declared** the three-line system complete.
 
-By 1976 hybrids were **under cultivation** on about 140,000 **hectares**. The World Food Prize Foundation **estimates** that hybrid rice can **yield** up to a fifth more **grain** than **conventional** **varieties**. By the early 2000s it covered almost half of China's rice fields.
+By 1976 hybrids were **under cultivation** on about 140,000 **hectares**. The World Food Prize Foundation **estimates** that hybrid rice can **yield** up to a fifth more **grain** than **conventional** **varieties**. By the early 2000s it **covered** almost half of China's **rice fields**.
 
 Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones, died in Changsha on 22 May 2021, aged 91. Yet popular **myth** **portrays** him as a **solitary** **genius**. His eye began the search; his **generosity** let many hands bring in the **harvest**.
 
@@ -20,7 +20,7 @@ Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones, died
 
 随后，袁隆平迈出了**决定性**(decisive)的一步：而非**扣留**(withhold)这个**品种**(strain)在自己手里，他把它**分给**(distributed)**全国各地**(nationwide)的**协作者**(collaborators)。杂交稻需要三个**各不相同**(distinct)的系：不育系，**保持**(maintain)其**不育性**(sterility)的保持系，以及使杂交种**恢复**(restore)**育性**(fertility)的恢复系。江西颜龙安的团队育成了不育系，广西的张先程率先**找出**(identified)了恢复系。1973年10月，在苏州召开的**全国性会议**(national conference)上，袁隆平**宣布**(declared)三系已经配套。
 
-到1976年，杂交水稻已经处于大面积**种植**(under cultivation)，占地面积大约140000**公顷**(hectares)。据世界粮食奖基金会**估计**(estimates)，杂交稻比**常规**(conventional)**品种**(varieties)最多可多**产**(yield)五分之一的**稻谷**(grain)。到21世纪初，杂交稻已覆盖中国近一半的稻田。
+到1976年，杂交水稻已经处于大面积**种植**(under cultivation)，占地面积大约140000**公顷**(hectares)。据世界粮食奖基金会**估计**(estimates)，杂交稻比**常规**(conventional)**品种**(varieties)最多可多**产**(yield)五分之一的**稻谷**(grain)。到21世纪初，杂交稻已**覆盖**(covered)中国近一半的**稻田**(rice fields)。
 
 袁隆平曾与塞拉利昂的蒙蒂·琼斯共获2004年世界粮食奖，2021年5月22日在长沙逝世，享年91岁。然而，一种流传甚广的**误解**(myth)把他**描绘**(portrays)成一个**单枪匹马**(solitary)的**天才**(genius)。他的慧眼开启了这场搜寻；他的**慷慨**(generosity)，让许多双手一起迎来了**丰收**(harvest)。
 
@@ -75,6 +75,8 @@ Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones, died
 | grain | n. 谷物，粮食；谷粒，颗粒；（木材等的）纹理（go against the grain 违背本意） | 4 |
 | conventional | adj. 常规的，传统的（conventional methods/weapons）；习惯的，墨守成规的（convention n. 惯例；大会；公约） | 4 |
 | varieties | n. (variety) （动植物的）品种（a new rice variety）；多样性，变化；种类（a variety of 各种各样的） | 4 |
+| covered | v. (cover) 覆盖；占（面积）；涉及，包括（cover a topic）；报道；支付（费用） | 4 |
+| rice fields | n. (rice field) 稻田（= paddy field） | 4 |
 | myth | n. 神话；（流传甚广的）错误观念，荒诞说法（dispel/explode a myth 破除谬见；a popular myth 流传甚广的误解）；mythical adj. | 5 |
 | portrays | v. (portray) 描绘，描写；把……描绘成（portray A as B）；扮演（角色）（portrait n. 肖像） | 5 |
 | solitary | adj. 独自的，单独的，孤独的（solitary confinement 单独监禁）；单个的，唯一的（a solitary example）；（地方）偏僻的 | 5 |

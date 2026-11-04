@@ -54,7 +54,7 @@ S=[
      "（estimate that…：估计……）"],
     [[("that hybrid rice","杂交稻"),("can **yield** up to a fifth more **grain** than **conventional** **varieties**.","比**常规**(conventional)**品种**(varieties)最多可多**产**(yield)五分之一的**稻谷**(grain)。")],
      "（up to a fifth more…than…：比……最多多五分之一）"]]),
-(4,[[[("By the early 2000s","到21世纪初，"),("it","杂交稻"),("covered","已覆盖"),("almost half","近一半的"),("of China's rice fields.","中国稻田。")]]]),
+(4,[[[("By the early 2000s","到21世纪初，"),("it","杂交稻"),("**covered**","已**覆盖**(covered)"),("almost half","近一半的"),("of China's **rice fields**.","中国**稻田**(rice fields)。")]]]),
 (5,[[[("Yuan,","袁隆平"),("who shared the 2004 World Food Prize with Sierra Leone's Monty Jones,","曾与塞拉利昂的蒙蒂·琼斯共获2004年世界粮食奖，")],
      "（who…：非限制性定语从句，补充说明 Yuan）"],
     [[("died in Changsha on 22 May 2021,","2021年5月22日在长沙逝世，"),("aged 91.","享年91岁。")]]]),
@@ -83,7 +83,7 @@ G={
  "S11 at a national conference in Suzhou":"对齐不了：in Suzhou 是后置定语，修饰 conference，中文“在苏州召开的全国性会议上”定语必须提前",
  "S11 the three-line system":"对齐不了：three-line system 是育种术语“三系”，拆开不通",
  "S13 that hybrid rice":"对齐不了：hybrid rice 是术语“杂交稻”，拆开不通",
- "S14 of China's rice fields":"对齐不了：rice fields 中文“稻田”是一个词，拆开不通",
+ "S14 of China's rice fields":"对齐不了：of China's rice fields 是 of 结构，中文“中国稻田”，China's 必须在前",
 }
 CONF={"合组":G,"对齐":{
  "S1-2 inspecting rice ear by ear":"ear by ear 是方式状语，中文“一穗一穗地检查”（用户 2026-11-04 改稿）必须放到动词前",
@@ -100,7 +100,7 @@ CONF={"合组":G,"对齐":{
  "中文意思":{"S3 pollinates itself":"本文是 pollinate itself 整体“自花授粉”（用户 2026-11-04 改稿原话“翻译改为：水稻自花授粉”），没有宾语，速查表“给……授粉”的被隔开用法这里用不上，中文一处连着标"},
  "们":{"S5-2 **同事们**":"colleagues 是复数，沿用文章定稿“同事们”，们在加粗内"},
  "数字":{"S12-1 140,000":"about 140,000 中文按用户 2026-11-04 改稿写作“大约140000”，数值相同；英文读 one hundred forty thousand","S14-1 2000":"the early 2000s 中文按文章定稿写作“21世纪初”（2000年代初 = 21世纪初）；英文读 the early two thousands"},
- "短语":{"S6 breakthrough … in":"不是搭配：in a marsh 是地点状语，不是 breakthrough in 搭配（文中没有“在……方面的突破”）",
+ "短语":{"S14 covered … of":"不是搭配：of 属于 almost half of China's rice fields（……的一半），covered 直接带宾语","S6 breakthrough … in":"不是搭配：in a marsh 是地点状语，不是 breakthrough in 搭配（文中没有“在……方面的突破”）",
   "S8 withhold … to":"不是搭配：to 属于后面的 distributed it to，withhold 后面只有宾语 the strain",
   "S9 maintain … to":"不是搭配：to 是下一项 one to restore 的不定式符号，不是 maintain 的搭配",
   "S13 estimates … to":"不是搭配：to 属于 up to a fifth，estimates 只接 that 从句",
