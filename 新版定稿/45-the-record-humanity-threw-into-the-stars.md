@@ -4,7 +4,7 @@
 ## 英文
 In late summer 1977, NASA **fastened** a **disc** **wrought** from **gilded** **copper**, 30 **centimetres** wide, to each Voyager **spaceship** before **takeoff**. Nobody could **foresee** who, if anyone, would play one.
 
-**Advisers** under Carl Sagan of Cornell **distilled** our **earthly** **abode** into this **compendium**. Voices **greet** the **listener** in 55 languages, followed by the **rumble** of **thunder**, the **whistle** of wind, whales, footsteps, **laughter**, and a **rhythmic** **heartbeat**. About 90 minutes of **eclectic** music cover a **spectrum** of cultures and eras, **notably** Bach and Chuck Berry's Johnny B. Goode.
+**Advisers** under Carl Sagan of Cornell **distilled** our **earthly** **abode** into this **compendium**. Voices **greet** the **listener** in 55 languages, followed by the **rumble** of **thunder**, the **whistle** of wind, whales, footsteps, **laughter**, and a **rhythmic** **heartbeat**. About 90 minutes of **eclectic** music cover **a spectrum of** cultures and **eras**, **notably** Bach and Chuck Berry's Johnny B. Goode.
 
 An **array** of 115 images, **encoded** in analogue form, sits beside printed words from two **statesmen**, Jimmy Carter and Kurt Waldheim. The **sleeve** gives **guidance** on playing the disc, plus a **diagram** fixing the Sun with pulsars as **beacons**.
 
@@ -58,7 +58,8 @@ The Voyagers' discs will **glide** on **outwards** through the **void** as **mes
 | rhythmic | adj. 有节奏的（rhythmic breathing） | 2 |
 | heartbeat | n. 心跳（a steady heartbeat） | 2 |
 | eclectic | adj. 兼收并蓄的（eclectic tastes） | 2 |
-| spectrum | n. 范围，谱系；光谱（a wide spectrum of opinion） | 2 |
+| a spectrum of | phr. 一系列，各种各样的（a spectrum of cultures） | 2 |
+| eras | n. (era) 时代，年代（the Victorian era） | 2 |
 | notably | adv. 尤其，特别是（notably in Asia） | 2 |
 | array | n. 一系列，大量（an array of options） | 3 |
 | encoded | v. (encode) 编码（encode data） | 3 |
