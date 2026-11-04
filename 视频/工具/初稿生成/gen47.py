@@ -124,7 +124,11 @@ CONF={"合组":G,"对齐":{
 "方向":{"S2-2 more→随后又来了六只。":"six more 中文“又……六只”，“又”就是 more（再多），方向一致",
  "S6-3 before→狼还没来就已日渐减少；":"before wolves arrived 中文“狼还没来”，“还没来”就是在狼来之前，方向一致"}}
 CONF.setdefault("同词异译",{})["excluded：把/挡在外面"]="S10 exclude A“把 A 挡在外面”被“麋鹿”隔开，“把”和“挡在外面”是同一个意思的两部分（T22/T23），不是两种译法"
+CONF["停顿位置"]={
+ "S2 Alberta, / Canada, @5.260":"2026-11-04 逐 2.5 ms 实测（S2 w）：Alberta 的 ə 浊音到 5.20（-22 dB、周期 0.3、低频 -1 dB），5.215 -40、5.24 -51～-57 dB 衰减，5.255–5.2625 降到 -67～-68.5 dB，是两词之间最低处（过零 5.260292）；5.265 起回升，5.2675–5.27 是 Canada 的 /k/ 除阻（-22～-14 dB、重心 3.9 kHz、低频 -33 dB）。插在 5.260 前后两词都没切到",
+ "S5 plant-eaters, / and @5.590":"2026-11-04 逐 2.5 ms 实测（S5 w）：eaters 的 /z/ 5.54–5.58（-17～-22 dB、重心 5.1–5.7 kHz），5.5825 -26、5.585 -28、5.5875 -30 dB 是 /z/ 的尾巴；5.590 -34.2 dB 是两词交界最低处（过零 5.590125）；5.5925 起 -18 dB、重心 1.6 kHz、5.595 周期 0.41，是 and 的起音。程序原插 5.585 落在 /z/ 尾巴上，改插 5.590125，/z/ 整段留给 eaters"}
 out={"no":"47","title_en":"Shadows of Wolves Over Yellowstone","title_zh":"黄石公园狼影再现","title_fx":{"hl":["Wolves","Yellowstone"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+     "停顿插入点":{"S5":{"2":[5.590125,"交界"]}},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Yellowstone":"黄石公园","Alberta":"艾伯塔省","Canada":"加拿大","George Monbiot":"乔治·蒙比奥特","Arthur Middleton":"阿瑟·米德尔顿","University of Wyoming":"怀俄明大学","Utah State University":"犹他州立大学","Elaine Brice":"伊莱恩·布赖斯","Colorado State University":"科罗拉多州立大学","Tom Hobbs":"汤姆·霍布斯","David Cooper":"戴维·库珀","Oregon State University":"俄勒冈州立大学","William Ripple":"威廉·里普尔"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
