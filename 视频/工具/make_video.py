@@ -725,7 +725,20 @@ def 句增益(d,no,si,sent,pieces,gaps,clips,tmap,a):
     if _sg:
         if abs(_sg)>1: raise SystemExit(f'【停止】句子增益dB 只许 ±1 dB 以内（S{si+1}：{_sg}）')
         a=a*10**(_sg/20)
+    if str(no).isdigit() and int(no)>=46 and (_agn or _pgn or _rgn or _sg):   # K123（46 S4 level.：句尾在增益前按 -55 dB 切，第 4 段再加 2.5 dB，切口抬到 -46 dB，体检报句尾截断）：增益乘完，句尾按增益后的最响帧收到 -55 dB 以下换成数字静音、最后 15 ms 淡出（长度不变）
+        a=_收句尾(a); clips[-1]=a[len(a)-len(clips[-1]):]
     return clips,a,_agn,_pgn
+def _收句尾(a):
+    F_=int(0.005*SR); x=np.asarray(a,np.float32).copy(); n_=len(x)//F_
+    if n_==0: return x
+    r_=np.sqrt(np.mean(x[:n_*F_].reshape(n_,F_)**2,axis=1)); q_=20*np.log10(r_/(r_.max()+1e-12)+1e-9)
+    f_=n_-1
+    while f_>0 and q_[f_]<AUD_DB: f_-=1
+    x[(f_+1)*F_:]=0
+    nz=np.nonzero(x)[0]
+    if len(nz):   # 收口：最后 15 ms 平方淡出（增益把切口抬到听得见时，让声音落下去再停）
+        e_=int(nz[-1])+1; g_=min(int(0.015*SR),e_); x[e_-g_:e_]*=np.linspace(1,0,g_,dtype=np.float32)**2
+    return x
 def _停顿候选(e,pe,ns,lo,hi,floor):
     """标点处的停顿候选：比本句最响帧低 PAUSE_DB 以上的连续段（含模型停顿里的底噪），往两头延伸，必须在逗号前后这两个词之间（帧号，5 ms 一帧）。
     出片程序取其中 ≥16 帧最长的一段删成标准停顿；结尾句接点.py 用同一个函数，让接点落在出片程序要删的那段里（G53 27 S16）"""
