@@ -3,7 +3,7 @@ import json,re,glob,os
 # 2026-11-04 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；形容词的“的”标进粗体；三项并列加牛津逗号（T18）；不用破折号（T36）。
 S=[
 (1,[[[("In July 1964,","1964年7月，")]],
-    [[("**inspecting** rice ear by ear","逐穗**察看**(inspecting)水稻时，")],
+    [[("**inspecting** rice ear by ear","一穗一穗地**检查**(inspecting)水稻时，")],
      "（inspecting…：现在分词短语作伴随状语；\near by ear：一穗一穗地）"],
     [[("{{=}}in a **paddy** at Anjiang Agricultural School in Hunan province,","在湖南省安江农校的一块**稻田**(paddy)里，")]],
     [[("the **instructor**","**教员**(instructor)"),("Yuan Longping","袁隆平"),("spotted","发现了"),("a **peculiar**","一株**奇特的**(peculiar)"),("plant.","稻子。")],
@@ -64,7 +64,7 @@ S=[
      "他不是单枪匹马的天才，丰收靠的是许多双手。）"]]),
 ]
 G={
- "S1 inspecting rice ear by ear":"对齐不了：ear by ear 是方式状语，中文“逐穗察看水稻时”（沿用文章定稿“逐穗察看”）“逐穗”必须放到动词前",
+ "S1 inspecting rice ear by ear":"对齐不了：ear by ear 是方式状语，中文“一穗一穗地检查水稻时”（用户 2026-11-04 改稿原话“翻译改为 一穗一穗地 检查水道时”）“一穗一穗地”必须放到动词前",
  "S3 breeding hybrid seed in bulk":"对齐不了：in bulk 是方式状语，中文“大批地”必须放到动词“培育”前，拆开 breeding、seed 中文不通",
  "S5 a sterile line":"对齐不了：sterile line 是育种术语“不育系”，拆开不通",
  "S7 wild rice":"对齐不了：wild rice 是术语“野生稻”，拆开不通",
@@ -77,7 +77,7 @@ G={
  "S14 of China's rice fields":"对齐不了：rice fields 中文“稻田”是一个词，拆开不通",
 }
 CONF={"合组":G,"对齐":{
- "S1-2 inspecting rice ear by ear":"ear by ear 是方式状语，中文“逐穗察看”（沿用文章定稿）必须放到动词前",
+ "S1-2 inspecting rice ear by ear":"ear by ear 是方式状语，中文“一穗一穗地检查”（用户 2026-11-04 改稿）必须放到动词前",
  "S1-3 in a paddy at Anjiang Agricult":"at Anjiang Agricultural School in Hunan province 是后置定语，修饰 paddy，中文“在湖南省安江农校的一块稻田里”（沿用文章定稿）定语必须提前；in Hunan province 也要提到校名前，修饰 Anjiang Agricultural School，中文“湖南省安江农校”省名必须提前；专名不能拆",
  "S7-1 and Feng Keshan, a farm techni":"a farm technician 是同位语，补充说明 Feng Keshan，中文“农场技术员冯克珊”（沿用文章定稿）身份必须放到人名前",
  "S3-2 breeding hybrid seed in bulk":"in bulk 是方式状语，中文“要大批地培育杂交种子”必须放到动词前",

@@ -14,7 +14,7 @@ Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones, died
 
 ## 中文
 
-1964年7月，湖南省安江农校的**教员**(instructor)袁隆平在一块**稻田**(paddy)里逐穗**察看**(inspecting)，发现了一株**奇特**(peculiar)的稻子。它是雄性**不育**(sterile)株，**散**(shedding)不出**有活力的**(viable)**花粉**(pollen)。水稻是自花授粉的，要**大批**(bulk)培育**杂交**(hybrid)种子，就得靠这样的植株。1966年2月，他在**期刊**(journal)《科学通报》上**详细描述**(detailed)了这一**反常现象**(anomaly)。
+1964年7月，湖南省安江农校的**教员**(instructor)袁隆平在一块**稻田**(paddy)里一穗一穗地**检查**(inspecting)水稻，发现了一株**奇特**(peculiar)的稻子。它是雄性**不育**(sterile)株，**散**(shedding)不出**有活力的**(viable)**花粉**(pollen)。水稻是自花授粉的，要**大批**(bulk)培育**杂交**(hybrid)种子，就得靠这样的植株。1966年2月，他在**期刊**(journal)《科学通报》上**详细描述**(detailed)了这一**反常现象**(anomaly)。
 
 这株**标本**(specimen)**开启**(launched)了一场长达六年的**搜寻**(hunt)：袁隆平和**同事们**(colleagues)始终**培育**(breed)不出一个不育系，能让**后代**(offspring)**稳定地**(reliably)**遗传**(inherited)这一**性状**(trait)。**突破**(breakthrough)出现在1970年11月23日，地点是海南三亚南红农场附近的一片**沼泽**(marsh)。袁隆平的助手李必湖和农场**技术员**(technician)冯克珊在那里找到了一种野生稻，它的花粉**败育**(abortive)。
 
