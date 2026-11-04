@@ -2,7 +2,7 @@
 # ZH: 稻济天下
 ## 英文
 
-In July 1964, **inspecting** rice ear by ear in a **paddy** at Anjiang Agricultural School in Hunan province, the **instructor** Yuan Longping spotted a **peculiar** plant. It was male-**sterile**, **shedding** no **viable** **pollen**. Rice pollinates itself, so breeding **hybrid** seed in **bulk** depends on such plants. In February 1966 he **detailed** the **anomaly** in the **journal** Chinese Science Bulletin.
+In July 1964, **inspecting** rice ear by ear in a **paddy** at Anjiang Agricultural School in Hunan province, the **instructor** Yuan Longping spotted a **peculiar** plant. It was male-**sterile**, **shedding** no **viable** **pollen**. Rice **pollinates itself**, so breeding **hybrid** seed in **bulk** depends on such plants. In February 1966 he **detailed** the **anomaly** in the **journal** Chinese Science Bulletin.
 
 The **specimen** **launched** a six-year **hunt**: Yuan and his **colleagues** could not **breed** a sterile line whose **offspring** **reliably** **inherited** the **trait**. The **breakthrough** came on 23 November 1970, in a **marsh** near Nanhong Farm in Sanya, Hainan. Yuan's assistant, Li Bihu, and Feng Keshan, a farm **technician**, found wild rice whose pollen was **abortive**.
 
@@ -14,7 +14,7 @@ Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones, died
 
 ## 中文
 
-1964年7月，湖南省安江农校的**教员**(instructor)袁隆平在一块**稻田**(paddy)里一穗一穗地**检查**(inspecting)水稻，发现了一株**奇特**(peculiar)的稻子。它是雄性**不育**(sterile)株，**散**(shedding)不出**有活力的**(viable)**花粉**(pollen)。水稻是自花授粉的，要**大批**(bulk)培育**杂交**(hybrid)种子，就得靠这样的植株。1966年2月，他在**期刊**(journal)《科学通报》上**详细描述**(detailed)了这一**反常现象**(anomaly)。
+1964年7月，湖南省安江农校的**教员**(instructor)袁隆平在一块**稻田**(paddy)里一穗一穗地**检查**(inspecting)水稻，发现了一株**奇特的/奇怪的**(peculiar)稻子。它是雄性**不育**(sterile)株，**散播**(shedding)不出**能生长发育的**(viable)**花粉**(pollen)。水稻**自花授粉**(pollinates itself)，要**大批**(bulk)培育**杂交**(hybrid)种子，就得靠这样的植株。1966年2月，他在**期刊**(journal)《科学通报》上**详细描述**(detailed)了这一**反常现象**(anomaly)。
 
 这株**标本**(specimen)**开启**(launched)了一场长达六年的**搜寻**(hunt)：袁隆平和**同事们**(colleagues)始终**培育**(breed)不出一个不育系，能让**后代**(offspring)**稳定地**(reliably)**遗传**(inherited)这一**性状**(trait)。**突破**(breakthrough)出现在1970年11月23日，地点是海南三亚南红农场附近的一片**沼泽**(marsh)。袁隆平的助手李必湖和农场**技术员**(technician)冯克珊在那里找到了一种野生稻，它的花粉**败育**(abortive)。
 
@@ -30,10 +30,11 @@ Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones, died
 | inspecting | v. (inspect) 检查，察看，视察（inspect sth for defects 检查有无缺陷）；inspection n. 检查；inspector n. 检查员 | 1 |
 | paddy | n. 稻田（= paddy field）；稻谷 | 1 |
 | instructor | n. 教员，教师；（技能的）教练（a driving instructor）；instruct v. 指导，命令 | 1 |
-| peculiar | adj. 奇怪的，异样的；特有的，独特的（be peculiar to 为……所特有） | 1 |
+| peculiar | adj. 奇特的，奇怪的，异样的；特有的，独特的（be peculiar to 为……所特有） | 1 |
 | sterile | adj. 不育的，不结果实的；无菌的，消过毒的；（思想等）枯燥的，无新意的 | 1 |
-| shedding | v. (shed) 脱落，散落（花粉、叶子、皮毛）；摆脱，去除（shed jobs/weight）；流（泪、血）；散发（光）（shed light on 阐明）；n. 棚，小屋 | 1 |
-| viable | adj. （种子、花粉等）能存活的，有活力的；可行的，切实可行的（a viable option/plan）；viability n. | 1 |
+| shedding | v. (shed) 散播，脱落，散落（花粉、叶子、皮毛）；摆脱，去除（shed jobs/weight）；流（泪、血）；散发（光）（shed light on 阐明）；n. 棚，小屋 | 1 |
+| viable | adj. （种子、花粉等）能生长发育的，能存活的，有活力的；可行的，切实可行的（a viable option/plan）；viability n. | 1 |
+| pollinates itself | v. (pollinate) 给……授粉，传粉；pollinate itself 自花授粉；pollination n. 授粉；pollinator n. 传粉者 | 1 |
 | pollen | n. 花粉（pollen count 花粉指数） | 1 |
 | hybrid | n. 杂交种，杂种；混合物（a hybrid of A and B）；adj. 杂交的；混合的（a hybrid car 混合动力汽车） | 1 |
 | bulk | n. 大量，大批（in bulk 大批，大量地）；主体，大部分（the bulk of）；体积，巨大的身躯 | 1 |
