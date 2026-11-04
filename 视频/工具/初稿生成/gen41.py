@@ -1,5 +1,8 @@
 import json,re,glob,os
 # 第41篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-03 用户改稿 S19：“lobbying   overrode ally loose  都标为重点词汇”；loose 与 61 撞车用户“特批保留”；简述“改成停止……改成带刺的梨”；S13 括号“可以可以”
+# 2026-11-03 用户改稿 S18：“你把这个审查改成 认真彻底的审查。”
+# 2026-11-03 用户改稿 S17：“幼虫和饿死在这地方都标注为重点词汇。Larve 和starve。”；prickly：“多刺的特皮，特皮，特皮。特批，特批，特批。prickly”
 # 2026-11-03 用户改稿 S16：“在10年内清除了大部分 “带刺的梨”，这是一种外来入侵的仙人掌。……仙人掌标注为重点词汇。prickly 也标注重点词汇。对应中文意思，带刺的。”；from/within 的译法用户选“清除范围遍及昆士兰州和新南威尔士州”“约十年”
 # 2026-11-03 用户改稿 S14：“wreaked 为重点词汇为重点词汇。”（wreak havoc 整体标，T22）；“蟾蜍造成了严重破坏，但损害并不均衡；有些物种反而繁荣了起来。……改一下翻译”
 # 2026-11-03 用户改稿 S13：“Lizard 没重点词汇标注为重点词汇。……marsupial 也标注重点词汇”
@@ -60,26 +63,26 @@ S=[
 (5,[[[("Biological control","生物防治"),("can **triumph**.","也能**大获成功**(triumph)。")]]]),
 (5,[[[("From 1926","从1926年起，"),("the cactus **moth**, Cactoblastis,","仙人掌螟这种**蛾子**(moth)")],
      "（Cactoblastis：同位语，补充说明 the cactus moth，即仙人掌螟）"],
-    [[("cleared","在约十年内清除了"),("most","大部分"),("**prickly** pear,","“**带刺的**(prickly)梨”，"),("an","这是一种"),("**invasive**","**外来入侵的**(invasive)"),("**cactus**,","**仙人掌**(cactus)，"),("from Queensland and New South Wales within about a decade.","清除范围遍及昆士兰州和新南威尔士州。")],
+    [[("cleared","在约十年内清除了"),("most","大部分"),("**prickly** pear,","“**带刺的**(prickly)梨”，"),("an","这是一种"),("**invasive**","**外来入侵的**(invasive)"),("**cactus**,","**仙人掌**(cactus)，"),("{{=}}from Queensland and New South Wales within about a decade.","清除范围遍及昆士兰州和新南威尔士州。")],
      "（an invasive cactus：同位语，补充说明 prickly pear；\nclear A from B：把 A 从 B 清除掉）"]]),
-(5,[[[("Tested first,","这种蛾子放出前经过检验，"),("its larvae","其幼虫"),("starved rather than eat","宁可饿死也不吃"),("fifteen other","另外十五种"),("plants;","植物；")],
+(5,[[[("Tested first,","这种蛾子放出前经过检验，"),("its **larvae**","其**幼虫**(larvae)"),("**starved** rather than eat","宁可**饿死**(starved)也不吃"),("fifteen other","另外十五种"),("plants;","植物；")],
      "（Tested first：过去分词短语作状语，逻辑主语是这种蛾子；\nrather than：宁可……也不……）"],
     [[("the toads","蟾蜍却"),("faced no such","从未受过这样的"),("test.","检验。")],
      "（no such…：没有这样的……）"]]),
 (5,[[[("Under an October 1984 law,","根据1984年10月通过的一部法律，"),("recruits now","如今新兵")],
      "（Under…law：依据……法律；\nrecruits：新兵，这里指准备引进来做生物防治的物种）"],
-    [[("face **stringent**","都要经过**严格的**(stringent)"),("**scrutiny**.","**审查**(scrutiny)。")]]]),
-(5,[[[("The **blunder**","这个**大错**(blunder)"),("was born of **haste**","起于**仓促**(haste)，"),("and","又因"),("sealed by lobbying that overrode a warning:","游说压过了警告而成定局：")],
+    [[("face **stringent**","都要经过**严格的**(stringent)"),("**scrutiny**.","**认真彻底的审查**(scrutiny)。")]]]),
+(5,[[[("The **blunder**","这个**大错**(blunder)"),("was born of **haste**","起于**仓促**(haste)，"),("and","又因"),("sealed by **lobbying**","**游说**(lobbying)"),("that **overrode** a warning:","**压过了**(overrode)警告而成定局：")],
      "（be born of…：源于……；\nthat overrode a warning：定语从句，修饰 lobbying）"],
-    [[("an **untested** ally,","**未经检验的**(untested)盟友"),("once","一旦"),("loose,","放出，"),("may never be **recalled**.","就可能再也**召不回来**(recalled)。")],
+    [[("an **untested**","**未经检验的**(untested)"),("**ally**,","**盟友**(ally)"),("once","一旦"),("**loose**,","**放出**(loose)，"),("may never be **recalled**.","就可能再也**召不回来**(recalled)。")],
      "（once loose：省略的状语从句，等于 once it is loose）\n"
      "（简述：1935年，为对付啃食甘蔗根系的灰背蔗甲虫，\n"
      "昆士兰州从夏威夷引进了102只甘蔗蟾蜍，同年放出约2,400只后代。\n"
-     "昆虫专家弗罗格特说服官员叫停，但经昆士兰州游说，释放于1936年恢复。\n"
+     "昆虫专家弗罗格特说服官员停止，但经昆士兰州游说，释放于1936年恢复。\n"
      "蟾蜍几乎没能削减甲虫，自己却天敌寥寥、大量繁殖，\n"
      "入侵前沿越推越快，2009年突破了西澳大利亚州的边界。\n"
      "它们皮肤有毒，巨蜥和北袋鼬在一些地方锐减。\n"
-     "相比之下，仙人掌螟放出前经过检验，约十年就清除了大部分刺梨。\n"
+     "相比之下，仙人掌螟放出前经过检验，约十年就清除了大部分带刺的梨。\n"
      "根据1984年的一部法律，如今新引进的物种都要经过严格审查。）"]]),
 ]
 CONF={
@@ -100,17 +103,20 @@ CONF={
  "S7-2 high up on cane stalks.":"high up on cane stalks 是地点状语，中文“甘蔗茎秆的高处”方位词必须放到后面",
  "S10-1 creeping about ten kilometres ":"a year、at first 是时间状语，中文“起初每年”必须放到动词前",
  "S10-2 accelerated to about 50 a year":"in the tropical north 是地点状语，中文“到了热带北部”必须放到“加快”前",
+ "S16-2 from Queensland and New South ":"用户 2026-11-03 选定的译文“清除范围遍及昆士兰州和新南威尔士州”，from 两州化成“清除范围遍及”，within about a decade 已提到前面“在约十年内”",
  "S18-1 Under an October 1984 law,":"Under…law 中文“根据1984年10月通过的一部法律”，时间定语 October 1984 必须放到“一部法律”前",
- "S19-1 sealed by lobbying that overro":"by lobbying that overrode a warning 是方式状语加定语从句，中文必须放到 sealed（而成定局）前"},
+},
 "牛津逗号":{
  "S16 an invasive cactus, from Queensland and":"不是三项并列：an invasive cactus 是 prickly pear 的同位语，逗号后 from Queensland and New South Wales 是地点状语，and 只连接两个州"},
 "方向":{"S6-2 after→经":"after Queensland's lobbying 中文“经昆士兰州游说”，“经”就是经过……之后，方向一致（沿用文章定稿）"},
 "词性":{"S9-2 unchecked 不受遏制地":"unchecked 是 adj.，在 multiplied unchecked 里作状语（说明繁殖的状态），中文“不受遏制地”作状语，沿用文章定稿"},
 "即":{"S4-1 即":"沿用文章定稿中文“即用一个物种去对付一种害虫”，同位说明 Biological control，用“即”简洁准确"},
+"引号":{"S16-2 “”":"用户 2026-11-03 原话自带引号：“在10年内清除了大部分 “带刺的梨”，这是一种外来入侵的仙人掌。来自于昆士兰和新南威尔士州。仙人掌，仙人掌标注为重点词汇。prickly 也标注重点词汇。对应中文意思，带刺的。Invasive 后面那个仙人掌要标注为重点词汇。”（“带刺的梨”）"},
 "同词异译":{"wreaked havoc：严重破坏/造成了":"不是两种译法：wreak havoc 的意思“造成了严重破坏”，wreaked 对“造成了”、havoc 对“严重破坏”，整体标同一个英文（T22/T23，用户 2026-11-03 原话“wreaked 为重点词汇”）"},
 "括号含重点词":{"S13-1 （大型**蜥蜴**(lizards)）":"英文原文就是括号 (large lizards)，中文照英文括号对应，不是补充说明；用户原话：“Lizard 没重点词汇标注为重点词汇。标注意重点词汇。 marsupial 也标注重点词汇，也标注重点词汇。”——lizards 在英文括号里，按用户原话标重点词","S13-1 （一种小型**有袋类**(marsupial)猎手）":"英文原文就是括号 (small marsupial hunters)，中文照英文括号对应（沿用文章定稿），不是补充说明；用户原话：“Lizard 没重点词汇标注为重点词汇。标注意重点词汇。 marsupial 也标注重点词汇，也标注重点词汇。”——marsupial 在英文括号里，按用户原话标重点词"},
 "中文意思":{"S2 native to":"不是被隔开的两处：用户 2026-11-03 原话定的“原产于美洲”，native to 只对应“原产于”，后面直接接“美洲、”，没有“……的”"},
 "短语":{
+ "S19 by … lobbying":"不是搭配：by 只引出 sealed 的方式（被游说定局），lobbying 本身就是“游说”（同 S2 imported … from 的判法）",
  "S2 imported … from":"不是搭配：from Hawaii 只引出来源（从夏威夷），imported 本身就是“引进”（同 40 dispensed … to 的判法）",
  "S2 imported … to":"不是搭配：to 属于 native to the Americas，和 imported 无关",
  "S4 species … against":"不是搭配：against 属于 setting one species against a pest（set A against B 用 A 对付 B），和 species 无关",
@@ -119,8 +125,8 @@ CONF={
  "S9 spawning … of":"不是搭配：of 属于 thousands of eggs，和 spawning 无关",
  "S10 accelerated … to":"不是搭配：to 只引出加快后达到的速度（到每年约50公里），accelerated 本身就是“加快”"}}
 out={"no":"41","title_en":"The Toad That Invaded Australia","title_zh":"入侵澳洲的毒蟾","title_fx":{"hl":["Toad","Invaded"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
-     "换行变更已获同意":{"S1":"用户 2026-11-03 原话：“最后一句，最后一句。改为 此种植园位于澳大利亚东北部的昆士兰州。把前面那个正困扰着 后面的澳大利亚东北部昆士兰州给去掉。”"},"allow_clash":["prickly"],"重点词颜色":{"multiplied":"#FBBF24","unchecked":"#2DD4BF"},"高亮按实际开口":True,"高亮开口门槛":40,
-     "术语":{"Biological":"生物","Queensland":"昆士兰州","Australia":"澳大利亚","Hawaii":"夏威夷","Americas":"美洲","Walter Froggatt":"沃尔特·弗罗格特","Western Australia":"西澳大利亚州","goannas":"巨蜥","northern quolls":"北袋鼬","quoll":"袋鼬","Cactoblastis":"仙人掌螟","New South Wales":"新南威尔士州"}}
+     "换行变更已获同意":{"S16":"用户 2026-11-03 原话：“在10年内清除了大部分 “带刺的梨”，这是一种外来入侵的仙人掌。来自于昆士兰和新南威尔士州。仙人掌，仙人掌标注为重点词汇。prickly 也标注重点词汇。对应中文意思，带刺的。Invasive 后面那个仙人掌要标注为重点词汇。”，并选定译文“在约十年内清除了大部分“带刺的梨”，这是一种外来入侵的仙人掌，清除范围遍及昆士兰州和新南威尔士州。”","S1":"用户 2026-11-03 原话：“最后一句，最后一句。改为 此种植园位于澳大利亚东北部的昆士兰州。把前面那个正困扰着 后面的澳大利亚东北部昆士兰州给去掉。”"},"allow_clash":["prickly","starved","loose","ally"],"重点词颜色":{"multiplied":"#FBBF24","unchecked":"#2DD4BF"},"高亮按实际开口":True,"高亮开口门槛":40,
+     "术语":{"Biological":"生物","Queensland":"昆士兰州","Australia":"澳大利亚","Hawaii":"夏威夷","Americas":"美洲","Walter Froggatt":"沃尔特·弗罗格特","Western Australia":"西澳大利亚州","goannas":"巨蜥","northern quolls":"北袋鼬","quoll":"袋鼬","Cactoblastis":"仙人掌螟","prickly pear":"梨","New South Wales":"新南威尔士州"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)
