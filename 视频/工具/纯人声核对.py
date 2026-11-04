@@ -165,7 +165,7 @@ def 贴词尾擦音(a, f):
     return False
 def 确认可收(no, f, cf, a=None):
     if not (str(no).isdigit() and int(no) >= 25): return True, ''
-    h_ = 像吸气(f) and a is not None and isinstance(cf, dict) and ((cf.get('词头') == 'h' and 贴词头(a, f)) or (cf.get('词尾') in ('p', 't', 'k', 'tʃ') and 爆破起(a, f)) or (cf.get('词尾') in ('v', 'f', 'z', 's', 'θ', 'ð', 'ʃ') and 贴词尾擦音(a, f)))   # K139：词尾擦音清化收尾（连着前面的词、有 >3.3 kHz 的擦音核心）   # K135：词尾塞音的除阻 + 送气（写明 词尾=k，程序量得到从闭塞里爆出、无缝衰减）   # K127：词头 /h/ 的送气，声学上落在吸气范围里；确认写明 词头=h、程序量得到紧连着后面的词，才收（照样要实测、交用户听）
+    h_ = 像吸气(f) and a is not None and isinstance(cf, dict) and ((cf.get('词头') == 'h' and 贴词头(a, f)) or (cf.get('词尾') in ('p', 't', 'k', 'tʃ', 'b', 'd', 'ɡ', 'g', 'dʒ') and 爆破起(a, f)) or (cf.get('词尾') in ('v', 'f', 'z', 's', 'θ', 'ð', 'ʃ') and 贴词尾擦音(a, f)))   # K165（49 S7 recognised 的 /d/ 除阻 -30.9 dB 3.3 kHz）：词尾浊塞音的除阻声学上同清塞音，同一条 爆破起 实测才收   # K139：词尾擦音清化收尾（连着前面的词、有 >3.3 kHz 的擦音核心）   # K135：词尾塞音的除阻 + 送气（写明 词尾=k，程序量得到从闭塞里爆出、无缝衰减）   # K127：词头 /h/ 的送气，声学上落在吸气范围里；确认写明 词头=h、程序量得到紧连着后面的词，才收（照样要实测、交用户听）
     if 像吸气(f) and not h_: return False, f'实测像可闻吸气（{实测(f)}），确认不收，用 非人声区间 去掉（G43）'
     m = cf.get('实测') if isinstance(cf, dict) else None
     if not isinstance(m, dict): return False, '确认里没有实测数据（G43：python3 纯人声核对.py NN --写实测）'
@@ -195,6 +195,8 @@ def 确认自检():
     if not 确认可收('25', fk, {'词尾': 'k', '实测': 实测(fk)}, K_)[0]: e.append('误报：词尾 /k/ 从闭塞里爆出、无缝衰减，写明 词尾=k 也不收（K135）')
     L_ = K_.copy(); L_[i5:i5 + n6] = 0.02 * rng_.standard_normal(n6) * np.linspace(0.05, 1, n6)
     if 确认可收('25', fk, {'词尾': 'k', '实测': 实测(fk)}, L_)[0]: e.append('没抓到：慢慢起来的吸气，写了 词尾=k 照样收了（K135）')
+    if not 确认可收('25', fk, {'词尾': 'd', '实测': 实测(fk)}, K_)[0]: e.append('误报：词尾 /d/ 从闭塞里爆出、无缝衰减，写明 词尾=d 也不收（K165 49 S7 recognised）')
+    if 确认可收('25', fk, {'词尾': 'd', '实测': 实测(fk)}, L_)[0]: e.append('没抓到：慢慢起来的吸气，写了 词尾=d 照样收了（K165）')
     # K139：词尾 /v/ 清化：紧连着前面的浊音、有 4 kHz 擦音核心 → 写明 词尾=v 收；和前面的词隔着静音、重心只有 2 kHz（吸气）→ 不收
     V_ = np.zeros(SR); t_ = np.arange(int(0.3 * SR)) / SR; V_[int(0.1 * SR):int(0.4 * SR)] = 0.5 * np.sin(2 * np.pi * 200 * t_)
     nf = int(0.1 * SR); Xf = np.fft.rfft(rng_.standard_normal(nf)); ff_ = np.fft.rfftfreq(nf, 1 / SR); Xf[(ff_ < 3500) | (ff_ > 5000)] = 0; hiss = np.fft.irfft(Xf, nf); hiss *= 0.03 / (np.sqrt(np.mean(hiss ** 2)) + 1e-12)
