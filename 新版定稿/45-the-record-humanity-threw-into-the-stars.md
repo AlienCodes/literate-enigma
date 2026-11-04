@@ -8,7 +8,7 @@ In late summer 1977, NASA **fastened** a **disc** **wrought** from **gilded** **
 
 An **array** of 115 images, **encoded** in analogue form, sits beside printed words from two **statesmen**, Jimmy Carter and Kurt Waldheim. The **sleeve** gives **guidance** on playing the disc, plus a **diagram** fixing the Sun with pulsars as **beacons**.
 
-On 14 February 1990, at Sagan's request, Voyager 1 **pivoted** its camera for a **glance** **backwards** across about six billion kilometres. Sixty frames formed a **panorama** of the solar system, a **mosaic** in which Earth was a **glimmer** about an eighth of a pixel across. They reached Earth's **receivers** between March and 1 May, each signal taking five and a half hours.
+On 14 February 1990, **at** Sagan's **request**, Voyager 1 **pivoted** its camera for a **glance** **backwards** across about six billion kilometres. Sixty **frames** formed a **panorama** of the solar system, a **mosaic** in which Earth was a **glimmer** about an eighth of a **pixel** **across**. They reached Earth's **receivers** between March and 1 May, each **signal** taking five and a half hours.
 
 In a 1994 book, Sagan offered that **pale** dot as a **perspective** on our small and **ephemeral** place amid cosmic **vastness**.
 
@@ -69,12 +69,17 @@ The Voyagers' discs will **glide** on **outwards** through the **void** as **mes
 | diagram | n. 示意图（draw a diagram） | 3 |
 | beacons | n. (beacon) 信标，灯塔（a radio beacon） | 3 |
 | pivoted | v. (pivot) 转动（pivot on one foot） | 4 |
+| at … request | phr. (at one's request) 应……的请求（at his request） | 4 |
 | glance | n. 一瞥（at a glance） | 4 |
 | backwards | adv. 向后（look backwards） | 4 |
+| frames | n. (frame) 画面，帧（a single frame） | 4 |
 | panorama | n. 全景（a panorama of the city） | 4 |
 | mosaic | n. 拼图，马赛克（a mosaic floor） | 4 |
 | glimmer | n. 微光（a glimmer of hope） | 4 |
+| pixel | n. 像素（a million pixels） | 4 |
+| across | adv. 宽，横过（two metres across） | 4 |
 | receivers | n. (receiver) 接收器（a radio receiver） | 4 |
+| signal | n. 信号（a radio signal） | 4 |
 | pale | adj. 暗淡的，苍白的（pale blue） | 5 |
 | perspective | n. 视角，看法（from a different perspective） | 5 |
 | ephemeral | adj. 短暂的（ephemeral fame） | 5 |
@@ -92,6 +97,6 @@ The Voyagers' discs will **glide** on **outwards** through the **void** as **mes
 - 【T1】1977年两艘旅行者号先后发射（8月20日、9月5日，英文写作 late summer 1977），各带一张相同的唱片，直径30厘米，镀金铜盘（英文 gilded copper，wrought 指制作）。来源只说唱片在飞船上（aboard）；英文 would play one 指两张中的任意一张，英文 fastened … before takeoff 据此推出。英文 Nobody could foresee 为合理推断，来源未写。内容由康奈尔大学卡尔·萨根主持的委员会为NASA挑选，英文写作 Advisers under Carl Sagan。distilled our earthly abode into this compendium 为比喻性概括。S1
 - 【T2】内容包括55种语言的问候（英文 greet the listener 为描写）；雷、风、鸟、鲸等自然之声（英文 rumble、whistle 为描写声音）；脚步、笑声、心跳等人类之声（rhythmic 为描写）；约90分钟来自多种文化和年代的音乐（英文 eclectic、spectrum 即此意），含巴赫（英文 notably Bach）和查克·贝里的《Johnny B. Goode》；115幅以模拟方式编码的图像；卡特总统与联合国秘书长瓦尔德海姆的书面讯息。封面（英文 sleeve）刻有播放方法和借助脉冲星标示太阳位置的图（英文 beacons 为比喻）。S2
 - 【T3】2012年8月旅行者1号进入星际空间，是第一个做到的人造物；旅行者2号2018年进入。两者至今仍在工作，是NASA运行最久的任务（英文 a longevity unmatched at NASA）；预计几年内电力耗尽（英文 depletion of their power should silence them，should 对应"预计"）。S3
-- 【T4】1990年2月14日，应萨根之请，约60亿公里外（英文 about six billion kilometres）的旅行者1号把相机转向身后（英文 pivoted、glance 为描写），拍下60帧太阳系"全家福"（英文 panorama、mosaic 即此）；地球约0.12像素，英文写作 about an eighth of a pixel，中文作八分之一个像素。照片于3月至5月1日经深空网（英文 receivers）多次通信陆续传回，信号单程约五个半小时（英文 each signal taking five and a half hours）。萨根在1994年的书《暗淡蓝点》中把它作为一种视角（英文 offered … as a perspective），解读为人类在宇宙中渺小而短暂的位置，正文只作转述，不加引号；pale 取自书名。S4
+- 【T4】1990年2月14日，应萨根之请，约60亿公里外（英文 about six billion kilometres）的旅行者1号把相机转向身后（英文 pivoted、glance 为描写），拍下60帧太阳系"全家福"（英文 panorama、mosaic 即此）；地球约0.12像素，英文写作 about an eighth of a pixel，中文作八分之一个像素。照片于3月至5月1日经深空网（英文 receivers）多次通信陆续传回，信号单程约五个半小时（英文 each **signal** taking five and a half hours）。萨根在1994年的书《暗淡蓝点》中把它作为一种视角（英文 offered … as a perspective），解读为人类在宇宙中渺小而短暂的位置，正文只作转述，不加引号；pale 取自书名。S4
 - 【补】结尾"作为信使……携着一幅指回太阳的地图"中，messenger 为比喻，地图即封套上借脉冲星标示太阳位置的示意图（T2），字面属实；"会继续滑行"指探测器失去电力后仍沿轨道外飞，不写唱片寿命，不断言外星人能否听到。
 - 【说明】所有来源均为检索摘要，正文无直接引语；中文不加冒号，不添英文以外的信息，数字不用小数。
