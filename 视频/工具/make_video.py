@@ -978,7 +978,7 @@ def sentence_audio(sent,pieces,gaps):
                 q_=p_-a0; q_-=sum(min(q_,y)-x for x,y in rm if x<q_); gts.append((g_,t0+q_/SR,t0+(q_+n_)/SR)); break
         else: raise SystemExit(f'【停止】移植段不在保留的声音里（A21）：{sent[:60]} {g_}')
     gts+=[(g_,a_-sh,b_-sh) for g_,a_,b_ in pgts]
-    LAST.clear(); LAST.update(toks=toks,scale=scale,head=_head_offset(raw,w),segs=segs,total=len(pur)/SR,cuts=cuts,grafts=gts,gaps=list(gaps),fades=fades_)
+    LAST.clear(); LAST.update(toks=toks,scale=scale,head=_head_offset(raw,w),segs=segs,total=len(pur)/SR,cuts=cuts,grafts=gts,gaps=list(gaps),fades=fades_,hs=hs)
     return clips,tmap
 def _split_audio(sent,pieces,gaps):
     clips=[];tmap=[];t=0.0
@@ -1045,6 +1045,8 @@ def build(js,out):
         _hd=LAST['head']; _ct=LAST['cuts']
         _gall={k2:_agn.get(k2+1,0.0)+float((_pgn or {}).get(str(k2+1),0)) for k2 in range(len(tmap))}
         seg_rec[f'S{si+1}']=[{'段':k2+1,'增益':round(_gall[k2],3),'原始':[_hd+(_ct[k2-1][1] if k2 else 0),_hd+(_ct[k2][0] if k2<len(_ct) else 10**9)],'停顿':(round(float(gaps[k2]),3) if k2<len(gaps) else None),'时刻':[t0_,t1_]} for k2,(_,_,t0_,t1_) in enumerate(tmap)]
+        if d.get('段内渐变dB',{}).get(f'S{si+1}'):   # K168（49 S14）：独立复核按出片的 clip 样本渐变——记下这一段压掉的句中停顿（段内样本位置）、句首去掉的样本、clip 长度；只记录，声音不变
+            for k2,r_ in enumerate(seg_rec[f'S{si+1}']): r_['段内']={'压缩':[[int(x_),int(y_)] for x_,y_ in LAST['segs'][k2][3]],'去头':int(LAST['hs']) if k2==0 else 0,'长':int(len(clips[2*k2]))}
         # L14：每一块的高亮在这一块开始读时切换（原来按字母个数平均分，数字、长词处会提前或推后 1 秒多）
         # 逗号、分号、冒号后开始的块：从停顿结束处往后找真正开口的时刻——第一个比本句最响 10 ms 低不到 30 dB 的 10 ms
         # （停顿后常有 0.3–0.45 秒的吸气声，比最响处低 38 dB 以上，不算开口；01–04 共 48 处标定，与独立对齐相差 -0.03～+0.05 秒）；

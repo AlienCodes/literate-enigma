@@ -50,10 +50,12 @@ def 算增益(m, TM, old, seg_rec=None, old_rg=None):
                 if str(k) in sh.get(s, {}): continue
                 g = max(-6.0, min(6.0, float(old.get(s, {}).get(str(k), 0)) + dlt))
                 if g: new.setdefault(s, {})[str(k)] = g
-        for k, hs in sh.get(s, {}).items():   # 段内从第一组的差渐变到最后一组的差（不外推，偏保守；不够时下一轮在原渐变上再加）
-            hs = sorted(hs); d0, d1 = [(I - L[j]) if L[j] is not None else 0.0 for _, j in (hs[0], hs[-1])]
-            o0, o1 = (old_rg or {}).get(s, {}).get(k, [0, 0])
-            g0, g1 = [max(-6.0, min(6.0, round((float(o) + x) * 2) / 2)) for o, x in ((o0, d0), (o1, d1))]
+        for k, hs in sh.get(s, {}).items():   # K168（49 S14 每跑一次加一档 ±1.5→±3→±4.5）：原来把差直接加在段两头，组中点只拿到一半，要好几轮；现在让第一组、最后一组的中点正好补上差，一轮到位
+            hs = sorted(hs); (c0, j0), (c1, j1) = hs[0], hs[-1]; d0, d1 = [(I - L[j]) if L[j] is not None else 0.0 for j in (j0, j1)]
+            o0, o1 = [float(x) for x in (old_rg or {}).get(s, {}).get(k, [0, 0])]
+            if c1 - c0 < 0.05: continue
+            G0 = o0 + (o1 - o0) * c0 + d0; G1 = o0 + (o1 - o0) * c1 + d1; sl = (G1 - G0) / (c1 - c0)   # 两组中点要的增益，直线过这两点
+            g0, g1 = [max(-6.0, min(6.0, round(x * 2) / 2)) for x in (G0 - sl * c0, G0 + sl * (1 - c0))]
             if (g0, g1) != (float(o0), float(o1)): rg.setdefault(s, {})[k] = [g0, g1]
     return (new, rg) if seg_rec is not None else new
 
@@ -96,11 +98,24 @@ def 自检():
         sr = {'S1': [{'段': 1, '原始': [0, 0], '停顿': None, '时刻': [2.0, 4.8]}]}
         m, TM = 量(w, sr); g, rgk = 算增益(m, TM, {}, sr, {})
         if g or not rgk.get('S1', {}).get('1') or not rgk['S1']['1'][0] < 0 < rgk['S1']['1'][1]: f.append(f'没抓到：无标点一句前半响 3.5 dB，算出 分段增益 {g}、段内渐变 {rgk}（应只有段内渐变、前低后高，K163 49 S14）')
+        if rgk.get('S1', {}).get('1'):   # K168 坏样本（49 S14 累加）：按算出的渐变乘好再量，前后差必须 ≤1 dB、不再加档
+            g0_, g1_ = rgk['S1']['1']; x_ = np.concatenate(a2); i0, i1 = 2 * SR, int(4.8 * SR); x_[i0:i1] = x_[i0:i1] * 10 ** (np.linspace(g0_, g1_, i1 - i0) / 20)
+            w2 = os.path.join(td, 'k168.wav'); subprocess.run([R.FF, '-loglevel', 'error', '-y', '-f', 's16le', '-ar', str(SR), '-ac', '1', '-i', '-', w2], input=(x_ * 32767).astype(np.int16).tobytes(), check=True)
+            m2, TM2 = 量(w2, sr); L2 = [q[3] for q in m2['S1']]; g2_, rg2_ = 算增益(m2, TM2, {}, sr, rgk)
+            if len(L2) != 2 or abs(L2[0] - L2[1]) > 1.0 or rg2_: f.append(f'没抓到：段内渐变 {rgk} 乘好后前后还差 {L2}、又算出 {rg2_}（一轮要到位，K168 49 S14 累加）')
         wd = tempfile.mkdtemp(prefix='句内响度K163_'); os.makedirs(f'{wd}/work_99'); os.makedirs(f'{wd}/scripts')
         shutil.copy(w, f'{wd}/work_99/a.wav'); json.dump(sr, open(f'{wd}/work_99/分段.json', 'w')); json.dump({'no': '99', '分段增益dB': {'S1': {'1': 3.0}}}, open(f'{wd}/scripts/99.json', 'w'))
         subprocess.run([sys.executable, os.path.abspath(__file__), '99', '--写入'], cwd=wd, capture_output=True, text=True); d9 = json.load(open(f'{wd}/scripts/99.json'))
         if d9.get('分段增益dB', {}).get('S1', {}).get('1') or not d9.get('段内渐变dB', {}).get('S1', {}).get('1'): f.append(f'没抓到：--写入 没撤掉误写的整段增益或没写段内渐变（{d9}）')
         shutil.rmtree(wd, ignore_errors=True)
+    import ast as _ast   # K168 坏样本（49 S14 独立复核对不上）：段里压掉了句中停顿、句首去了头，独立复核的段内渐变必须和出片的 clip 渐变逐样本一样
+    _t = _ast.parse(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '独立复核', 'synth.py')).read()); _ns = {'np': np}
+    exec(compile(_ast.Module([n for n in _t.body if isinstance(n, _ast.FunctionDef) and n.name == '段内渐变'], []), 'synth', 'exec'), _ns); 段内渐变 = _ns['段内渐变']
+    o = np.random.default_rng(3).standard_normal(5000).astype(np.float32); p0, hs, rm = 300, 120, [(1500, 1900)]
+    sg = o[p0:4600]; cl = np.concatenate([sg[:1500], sg[1900:]])[hs:]; out = (cl * 10 ** (np.linspace(-3, 3, len(cl)) / 20)).astype(np.float32)
+    def 切(x): y = x[p0:4600]; return np.concatenate([y[:1500], y[1900:]])[hs:]
+    if np.abs(切(段内渐变(o.copy(), p0, 10 ** 9, -3.0, 3.0, len(cl), hs, rm)) - out).max() > 1e-6: f.append('没抓到：独立复核的段内渐变和出片 clip 渐变对不上（压缩停顿、去头，K168 49 S14）')
+    if np.abs(切(段内渐变(o.copy(), p0, 4600, -3.0, 3.0)) - out).max() < 1e-3: f.append('自检前提不成立：旧算法（按原始区间渐变）也对得上')
     import subprocess as _sp, tempfile as _tf   # 缺前提（没出过声音、没有 分段.json）必须停，不许接着量（G79 门变异）
     r = _sp.run([sys.executable, os.path.abspath(__file__), '99'], cwd=_tf.mkdtemp(prefix='句内响度自检_'), capture_output=True, text=True)
     if '【停止】没有 work_99/分段.json' not in r.stdout + r.stderr: f.append('没抓到：没有 work_NN/分段.json 也开量（缺前提要停）')
