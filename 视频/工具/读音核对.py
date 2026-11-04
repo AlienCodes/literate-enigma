@@ -167,7 +167,9 @@ def _虚(w): return w.lower() in FUNC and not (w.isupper() and len(w) > 1)   # K
 
 def words_of(text):
     # 带数字的（12th、62nd、1990s）不在这里查——数字读法由 交付核查 的数字读法清单（A11）逐个核对
-    return [w for w in re.findall(r"[A-Za-zÀ-ÖØ-öø-ÿ0-9]+(?:['’][A-Za-z]+)*(?:-[A-Za-zÀ-ÖØ-öø-ÿ0-9]+)*", text) if not re.search(r'\d', w)]
+    # K162（49 S? Skłodowska）：原来只认西欧字母 À–ÿ，波兰语 ł 不在里面，整词被切成 Sk / odowska 两半误报；现在认全部拉丁字母（À–ɏ、Ḁ–ỿ）
+    L_ = 'A-Za-zÀ-ÖØ-öø-ɏḀ-ỿ'
+    return [w for w in re.findall(rf"[{L_}0-9]+(?:['’][{L_}]+)*(?:-[{L_}0-9]+)*", text) if not re.search(r'\d', w)]
 
 
 def check(no):
@@ -254,6 +256,8 @@ def selftest(no):
     """阳性对照：① 把本篇一个查词典合格的多音节实词的重音挪到别的音节（模拟 hippocampus 那种重音错），必须报出；
     ② 本篇用到读音改正表里的词时，关掉改正，必须报出（模拟 Inky 读错）。原样不得因这两步多报。"""
     global phonemes_of
+    if words_of('Marie Skłodowska-Curie and Dvořák, Łódź') != ['Marie', 'Skłodowska-Curie', 'and', 'Dvořák', 'Łódź']:   # K162 好样本：带 ł ř Ł ó ź 的整词不切开
+        print('读音核对 自检：误报重放 49 Skłodowska：带 ł 的词被切开', words_of('Marie Skłodowska-Curie and Dvořák, Łódź')); return False
     base = {line for _, line, bad in check(no) if bad}
     d = json.load(open(f'scripts/{no}.json'))
     text = ' '.join([d['title_en']] + [' '.join(c['en'] for c in s_['chunks']) for s_ in d['sentences']])
