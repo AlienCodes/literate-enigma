@@ -6,9 +6,9 @@ In July 1964, **inspecting** rice ear by ear in a **paddy** at Anjiang Agricultu
 
 The **specimen** **launched** a six-year **hunt**: Yuan and his **colleagues** could not **breed** a sterile line whose **offspring** **reliably** **inherited** the **trait**. The **breakthrough** came on 23 November 1970, in a **marsh** near Nanhong Farm in Sanya, Hainan. Yuan's assistant, Li Bihu, and Feng Keshan, a farm **technician**, found wild rice whose pollen was **abortive**.
 
-Then came Yuan's **decisive** move: rather than **withhold** the **strain**, he **distributed** it to **collaborators** **nationwide**. Hybrids need three **distinct** lines: a sterile line, one to **maintain** its **sterility**, and one to **restore** **fertility** in the hybrids. Yan Longan's team in Jiangxi bred sterile lines and Zhang Xiancheng in Guangxi first **identified** a restorer line. In October 1973, at a national conference in Suzhou, Yuan declared the three-line system complete.
+Then came Yuan's **decisive** move: rather than **withhold** the **strain**, he **distributed** it to **collaborators** **nationwide**. Hybrids need three **distinct** lines: a sterile line, one to **maintain** its **sterility**, and one to **restore** **fertility** in the hybrids. Yan Longan's team in Jiangxi bred sterile lines and Zhang Xiancheng in Guangxi first **identified** a restorer line. In October 1973, at a **national conference** in Suzhou, Yuan **declared** the three-line system complete.
 
-By 1976 hybrids were under **cultivation** on about 140,000 **hectares**. The World Food Prize Foundation **estimates** that hybrid rice can **yield** up to a fifth more **grain** than **conventional** **varieties**. By the early 2000s it covered almost half of China's rice fields.
+By 1976 hybrids were **under cultivation** on about 140,000 **hectares**. The World Food Prize Foundation **estimates** that hybrid rice can **yield** up to a fifth more **grain** than **conventional** **varieties**. By the early 2000s it covered almost half of China's rice fields.
 
 Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones, died in Changsha on 22 May 2021, aged 91. Yet popular **myth** **portrays** him as a **solitary** **genius**. His eye began the search; his **generosity** let many hands bring in the **harvest**.
 
@@ -18,9 +18,9 @@ Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones, died
 
 这株**标本**(specimen)**开启**(launched)了一场长达六年的**搜寻**(hunt)：袁隆平和**同事们**(colleagues)始终**培育**(breed)不出一个不育系，其**后代**(offspring)能**稳定地**(reliably)**遗传**(inherited)这一**性状**(trait)。**突破**(breakthrough)出现在1970年11月23日，地点是海南三亚南红农场附近的一片**沼泽**(marsh)。袁隆平的助手李必湖和农场**技术员**(technician)冯克珊在那里找到了一种野生稻，它的花粉**败育**(abortive)。
 
-随后，袁隆平迈出了**决定性**(decisive)的一步：而非**扣留**(withhold)这个**品种**(strain)在自己手里，他把它**分给**(distributed)**全国各地**(nationwide)的**协作者**(collaborators)。杂交稻需要三个**各不相同**(distinct)的系：不育系，**保持**(maintain)其**不育性**(sterility)的保持系，以及使杂交种**恢复**(restore)**育性**(fertility)的恢复系。江西颜龙安的团队育成了不育系，广西的张先程率先**找出**(identified)了恢复系。1973年10月，在苏州召开的全国性会议上，袁隆平宣布三系已经配套。
+随后，袁隆平迈出了**决定性**(decisive)的一步：而非**扣留**(withhold)这个**品种**(strain)在自己手里，他把它**分给**(distributed)**全国各地**(nationwide)的**协作者**(collaborators)。杂交稻需要三个**各不相同**(distinct)的系：不育系，**保持**(maintain)其**不育性**(sterility)的保持系，以及使杂交种**恢复**(restore)**育性**(fertility)的恢复系。江西颜龙安的团队育成了不育系，广西的张先程率先**找出**(identified)了恢复系。1973年10月，在苏州召开的**全国性会议**(national conference)上，袁隆平**宣布**(declared)三系已经配套。
 
-到1976年，杂交稻的**种植**(cultivation)面积已达约14万**公顷**(hectares)。据世界粮食奖基金会**估计**(estimates)，杂交稻比**常规**(conventional)**品种**(varieties)最多可多**产**(yield)五分之一的**稻谷**(grain)。到21世纪初，杂交稻已覆盖中国近一半的稻田。
+到1976年，杂交水稻已经处于大面积**种植**(under cultivation)，占地面积大约140000**公顷**(hectares)。据世界粮食奖基金会**估计**(estimates)，杂交稻比**常规**(conventional)**品种**(varieties)最多可多**产**(yield)五分之一的**稻谷**(grain)。到21世纪初，杂交稻已覆盖中国近一半的稻田。
 
 袁隆平曾与塞拉利昂的蒙蒂·琼斯共获2004年世界粮食奖，2021年5月22日在长沙逝世，享年91岁。然而，一种流传甚广的**误解**(myth)把他**描绘**(portrays)成一个**单枪匹马**(solitary)的**天才**(genius)。他的慧眼开启了这场搜寻；他的**慷慨**(generosity)，让许多双手一起迎来了**丰收**(harvest)。
 
@@ -66,6 +66,8 @@ Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones, died
 | restore | v. 恢复（能力、秩序、健康）（restore sb's sight 使复明）；修复，整修（restore a painting）；归还，交还 | 3 |
 | fertility | n. 生育能力，（植物的）育性；（土地的）肥沃，富饶（fertile adj. 能生育的；肥沃的） | 3 |
 | identified | v. (identify) 找出，发现，鉴定（identify a problem/the cause）；认出，确认（身份）；identify with 认同；identification n. | 3 |
+| national conference | n. 全国性会议，全国代表大会（national adj. 全国的，国家的；conference n. 会议，大会） | 3 |
+| declared | v. (declare) 宣布，宣称（declare sth complete/open 宣布……完成/开幕）；申报（纳税品）；declaration n. | 3 |
 | cultivation | n. 种植，耕作（under cultivation 在耕种中）；培养，培育（cultivate v.） | 4 |
 | hectares | n. (hectare) 公顷（= 10,000 平方米，约合 15 亩） | 4 |
 | estimates | v. (estimate) 估计，估算（estimate that…/be estimated at）；n. 估计，估价；（施工等的）报价 | 4 |
