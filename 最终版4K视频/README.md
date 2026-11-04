@@ -42,6 +42,7 @@
 | 35 | The Bird That Beat the Letter Home | 比信先到家的鸟 | 13.4 MB |
 | 36 | The Company That Invented Its Own Killer | 发明了数码相机，却被它打败 | 13.4 MB |
 | 37 | Dynamite for the Heart | 炸药大王的救心药 | 13.4 MB |
+| 38 | The Web Beneath the Woods | 林下之网 | 12.8 MB |
 | 39 | Y2K The Crisis That Success Erased | 千年虫：被成功抹去的危机 | 13.1 MB |
 | 40 | The Glue That Failed Its Way to Success | 失败的胶水，成功的便利贴 | 11.1 MB |
 | 41 | The Toad That Invaded Australia | 入侵澳洲的毒蟾 | 12.6 MB |

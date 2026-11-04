@@ -738,8 +738,23 @@ def _收句尾(a):
     while f_>0 and q_[f_]<AUD_DB: f_-=1
     x[(f_+1)*F_:]=0
     nz=np.nonzero(x)[0]
-    if len(nz):   # 收口：最后 15 ms 平方淡出（增益把切口抬到听得见时，让声音落下去再停）
-        e_=int(nz[-1])+1; g_=min(int(0.015*SR),e_); x[e_-g_:e_]*=np.linspace(1,0,g_,dtype=np.float32)**2
+    if len(nz):   # 收口（46 第 5 遍 S4 分段增益 -3.5/+2.5：15 ms 淡出体检仍 -46；淡出到听不见又让可听句尾前移、句间停顿 +15 ms）：
+        # 倒数 20 ms 压到约 -52.5 dB、前 30 ms 过渡（体检口径：比全句最响 10 ms；10 ms 窗任意对齐都 < -51.5），不压到听不见（句间停顿按 -55 dB 算可听句尾）
+        e_=int(nz[-1])+1; T_=2*F_; m_=e_//T_
+        mx_=np.sqrt(np.mean(x[:m_*T_].reshape(m_,T_)**2,axis=1)).max()+1e-12
+        lv_=lambda z: 20*np.log10(np.sqrt(np.mean(z**2))/mx_+1e-12)
+        st_=range(max(0,e_-4*F_),max(1,e_-T_+1),SR//1000)
+        坏_=lambda z: max(lv_(z[k:k+T_]) for k in st_)
+        if 坏_(x)<-51.5: return x
+        R_=6*F_; z_=e_-4*F_; m5_=r_.max()+1e-12
+        if z_-R_<0: return x
+        L5_=[20*np.log10(np.sqrt(np.mean(x[z_+k*F_:z_+(k+1)*F_]**2))/m5_+1e-12) for k in range(4)]
+        for T5_ in (-53.5,-54.0,-54.5):   # 倒数 20 ms 逐 5 ms 调到 T5_（比全句最响 5 ms，停顿核对口径：仍 ≥ -55 算听得见，可听句尾不前移），帧中心之间按 dB 线性插值，前 30 ms 从 0 dB 过渡；体检窗仍 ≥ -51.5 再低 0.5 dB
+            g5_=[float(np.clip(T5_-l_,-40,6)) for l_ in L5_]
+            gd_=np.concatenate([np.linspace(0,g5_[0],R_,endpoint=False),np.interp(np.arange(4*F_),np.arange(4)*F_+F_/2,g5_)])
+            y_=x.copy(); y_[z_-R_:e_]*=(10**(gd_/20)).astype(np.float32)
+            if 坏_(y_)<-51.5: break
+        x=y_
     return x
 def _停顿候选(e,pe,ns,lo,hi,floor):
     """标点处的停顿候选：比本句最响帧低 PAUSE_DB 以上的连续段（含模型停顿里的底噪），往两头延伸，必须在逗号前后这两个词之间（帧号，5 ms 一帧）。

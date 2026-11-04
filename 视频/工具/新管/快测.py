@@ -184,7 +184,7 @@ if os.environ.get('K123_BAD'):
     if "a=_收句尾(a); clips[-1]" not in src: print('NOHOOK'); sys.exit(0)
     src=src.replace("a=_收句尾(a); clips[-1]","a=a; clips[-1]")
 exec(src)
-d=json.load(open('scripts/46.json')); no=d['no']; R.apply_script(d); si=int(os.environ.get('K123_SI','3')); s=d['sentences'][si]
+d=json.load(open(os.environ.get('K123_JS','scripts/46.json'))); no=d['no']; R.apply_script(d); si=int(os.environ.get('K123_SI','3')); s=d['sentences'][si]
 texts=[re.sub(r'\*\*','',R.strip_gloss(c['en'])).strip() for c in s['chunks']]; sent=' '.join(texts)
 lst=list_commas(sent); pieces=[];p0=0;gaps=[]
 for mm in re.finditer(r'[,;:](?=\s)',sent):
@@ -193,7 +193,8 @@ pieces.append((p0,len(sent)))
 clips,tmap=sentence_audio(sent,pieces,gaps); a=np.concatenate(clips)
 clips,a,_,_=句增益(d,no,si,sent,pieces,gaps,clips,tmap,a)
 F=int(0.01*SR); n=len(a)//F; r=np.sqrt(np.mean(a[:n*F].reshape(n,F)**2,axis=1))
-print('K123DB', float(20*np.log10(r[-1]/r.max()+1e-12)))
+F5=int(0.005*SR); nz=np.nonzero(a)[0]; b=a[nz[0]:nz[-1]+1]; m5=(len(b)+F5-1)//F5; b=np.pad(b,(0,m5*F5-len(b))); r5=np.sqrt(np.mean(b.reshape(m5,F5)**2,axis=1))
+print('K123DB', float(20*np.log10(r[-1]/r.max()+1e-12)), float(20*np.log10(r5[-1]/r5.max()+1e-12)))
 """
 
 def 句尾样本():
@@ -208,20 +209,24 @@ def 句尾样本():
         for f in os.listdir(W):
             if f.endswith('.py') or f in ('scripts', 'fonts'): (shutil.copytree if os.path.isdir(f'{W}/{f}') else shutil.copy)(f'{W}/{f}', f'{td}/{f}')
         shutil.copy(样, f'{td}/scripts/46.json'); open(f'{td}/_k123.py', 'w').write(K123_PY)
-        def 量(坏, si=3):
-            e = {**env0, 'K123_SI': str(si), **({'K123_BAD': '1'} if 坏 else {})}
+        def 量(坏, si=3, js='scripts/46.json'):
+            e = {**env0, 'K123_SI': str(si), 'K123_JS': js, **({'K123_BAD': '1'} if 坏 else {})}
             r = subprocess.run(['python3', '_k123.py'], capture_output=True, text=True, cwd=td, env=e, timeout=600); o = r.stdout + r.stderr
             if 'NOHOOK' in o: return 'NOHOOK'
             m = [l for l in o.splitlines() if l.startswith('K123DB')]
-            return float(m[-1].split()[1]) if m else o.strip()[-160:]
-        g, b = 量(False), 量(True)
-        if not isinstance(g, float): bad.append(f'K123 好样本跑不出：{g}')
-        elif g >= -49.2: bad.append(f'K123 好样本不过：46 S4 句尾末 10 ms {g:.1f} dB（应 < -49.2，_收句尾 没生效）')
-        if b == 'NOHOOK': bad.append('K123：make_video.py 里找不到 _收句尾 那一行（坏样本造不出）')
-        elif not isinstance(b, float): bad.append(f'K123 坏样本跑不出：{b}')
-        elif b < -49.2: bad.append(f'K123 没抓到：拆掉 _收句尾 后 46 S4 句尾末 10 ms 仍 {b:.1f} dB（坏样本不成立）')
-        g9, b9 = 量(False, 8), 量(True, 8)   # 好样本 2：46 S9 句尾没被抬起来（-54.6 dB），收句尾必须原样不动（淡出曾把可听结尾前移 15 ms，句间停顿报 1.015 s）
-        if not (isinstance(g9, float) and isinstance(b9, float)) or abs(g9 - b9) > 1e-6: bad.append(f'K123 好样本 2 不过：46 S9 句尾没抬起来却被改了（{g9} vs 原样 {b9}）')
+            return tuple(map(float, m[-1].split()[1:])) if m else o.strip()[-160:]
+        for 源, 名 in ((样, '截断版（分段增益 -0.5/0.5）'), (f'{T}/样本/46_scripts_第5遍.json', '第 5 遍（分段增益 -3.5/+1.5）')):
+            if not os.path.exists(源): bad.append(f'K123 样本缺：{名}'); continue
+            shutil.copy(源, f'{td}/scripts/46.json')   # 出片程序开头读入 scripts/ 全部稿子，一次只放一版
+            g, b = 量(False), 量(True)
+            if not isinstance(g, tuple): bad.append(f'K123 好样本跑不出（{名}）：{g}')
+            elif g[0] >= -49.2: bad.append(f'K123 好样本不过：46 S4 {名} 句尾末 10 ms {g[0]:.1f} dB（应 < -49.2，_收句尾 没收住）')
+            elif g[1] < -55: bad.append(f'K123 好样本不过：46 S4 {名} 最后 5 ms {g[1]:.1f} dB 压到听不见（可听句尾前移，句间停顿会多出来）')
+            if b == 'NOHOOK': bad.append('K123：make_video.py 里找不到 _收句尾 那一行（坏样本造不出）')
+            elif not isinstance(b, tuple): bad.append(f'K123 坏样本跑不出（{名}）：{b}')
+            elif b[0] < -49.2: bad.append(f'K123 没抓到：拆掉 _收句尾 后 46 S4 {名} 句尾末 10 ms 仍 {b[0]:.1f} dB（坏样本不成立）')
+        shutil.copy(样, f'{td}/scripts/46.json'); g9, b9 = 量(False, 8), 量(True, 8)   # 好样本：46 S9 句尾没被抬起来（-54.6 dB），收句尾必须原样不动（淡出曾把可听结尾前移 15 ms，句间停顿报 1.015 s）
+        if not (isinstance(g9, tuple) and isinstance(b9, tuple)) or g9 != b9: bad.append(f'K123 好样本 2 不过：46 S9 句尾没抬起来却被改了（{g9} vs 原样 {b9}）')
     return bad
 
 def 挂钩():
@@ -270,7 +275,7 @@ def main():
             b, _ = fr.result(); bad += b; out.append(f'④ {NO} 回归：{"记了基准" if "--记基准" in a else ("a.wav、分段.json 逐字节、每屏像素一致" if not b else "不一致")}')
             b = 读音自检样本(); bad += b; out.append(f'⑥ K102 读音自检：29 不误停、拆读音改正必停：{"过" if not b else "不过"}')
             b, n = fs.result(); bad += b; out.append(f'⑤ 交付核查 出片前/出片后 + 出片守门自检：{"全过" if not b else f"{len(b)} 处不过"}')
-            b = 句尾样本(); bad += b; out.append(f'⑧ K123 句尾（46 S4 增益后收句尾）：S4 好样本 < -49.2 dB、拆掉必抓、S9 原样不动：{"过" if not b else "不过"}')
+            b = 句尾样本(); bad += b; out.append(f'⑧ K123 句尾（46 S4 增益后收句尾）：S4 两版好样本 < -49.2 dB 且最后 5 ms 仍可听、拆掉必抓、S9 原样不动：{"过" if not b else "不过"}')
             b = 草稿路径样本(); bad += b; out.append(f'⑦ 草稿篇路径（K109：脚本只在工作目录，音频体检自检过、语速突变量得出）：{"过" if not b else "不过"}')
     if not bad and '--只文本' not in a and '--记基准' not in a:
         subprocess.run(['python3', f'{H}/印章.py', '--盖'], env={**env0, 'XG_TOOLS': T}, capture_output=True)
