@@ -40,9 +40,10 @@ elif stage == '出片前':
            '"Hello," she said.': 'Hello, she said.', "he didn't": "he didn't", '‘Yes’ he said': 'Yes he said', 'paid $105,000 for': 'paid one hundred five thousand dollars for', 'a fine of £1 each': 'a fine of one pound each', 'sold for $950 million in': 'sold for nine hundred fifty million dollars in', 'about $100bn; projects': 'about one hundred billion dollars; projects', 'a £2.5bn deal': 'a two point five billion pounds deal', 'cost $5m in': 'cost five million dollars in', 'ran the 100m in': 'ran the 100m in'}   # K141   # K114、K130
     def _未处理(x, m):   # K150（42 S? $1.5 billion：单独转 “$1.5” 判成未处理，误报）：连着后面的 million/billion/trillion 一起转
         q = re.match(r'\s+(?:million|billion|trillion)\b', x[m.end():])
-        return bool(re.search(r'\d+\.\d+|%|\$|£|€|\d+/\d+', spoken(m.group(0) + (q.group(0) if q else ''))))
+        # K164（46 47%、9.6%：配音读 forty-seven percent，读音核对逐个对过；紧跟在数字后的 % 读作 percent，不算未处理，照常列进清单）
+        return bool(re.search(r'\d+\.\d+|%|\$|£|€|\d+/\d+', re.sub(r'(?<=\w)%(?=[^\w%]|$)', '', spoken(m.group(0) + (q.group(0) if q else '')))))
     _spbad = [f'{k} → {spoken(k)}（应为 {v}）' for k, v in _sp.items() if spoken(k) != v]
-    for x_, 应 in (('cost about $1.5 billion, a', False), ('sold for $950 million in', False), ('cost about $1.5, a', True), ('a 2/3 share', True)):   # K150 好/坏样本
+    for x_, 应 in (('cost about $1.5 billion, a', False), ('sold for $950 million in', False), ('cost about $1.5, a', True), ('a 2/3 share', True), ('about 47% of', False), ('fell 9.6% in', False), ('rose 62%.', False), ('a 47%x rise', True)):   # K150 好/坏样本
         m_ = re.search(r'\S*\d\S*', x_)
         if _未处理(x_, m_) != 应: _spbad.append(f'K150 “{x_}” {"该报没报" if 应 else "误报未处理"}')
     step('数字读法、引号自检（A11/A37/A17：年份、年代、日期、时刻、小数读法；引号不读、撇号保留）', not _spbad, '没抓到：' + '；'.join(_spbad) if _spbad else '')
