@@ -16,7 +16,7 @@ Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones, died
 
 1964年7月，湖南省安江农校的**教员**(instructor)袁隆平在一块**稻田**(paddy)里一穗一穗地**检查**(inspecting)水稻，发现了一株**奇特的/奇怪的**(peculiar)稻子。它是雄性**不育**(sterile)株，**散播**(shedding)不出**能生长发育的**(viable)**花粉**(pollen)。水稻**自花授粉**(pollinates itself)，要**大批**(bulk)培育**杂交**(hybrid)种子，就得靠这样的植株。1966年2月，他在**期刊**(journal)《科学通报》上**详细描述**(detailed)了这一**反常现象**(anomaly)。
 
-这株**标本**(specimen)**开启**(launched)了一场长达六年的**搜寻**(hunt)：袁隆平和**同事们**(colleagues)始终**培育**(breed)不出一个不育系，能让**后代**(offspring)**稳定地**(reliably)**遗传**(inherited)这一**性状**(trait)。**突破**(breakthrough)出现在1970年11月23日，地点是海南三亚南红农场附近的一片**沼泽**(marsh)。袁隆平的助手李必湖和农场**技术员**(technician)冯克珊在那里找到了一种野生稻，它的花粉**败育**(abortive)。
+这株**标本**(specimen)**开启**(launched)了一场长达六年的**搜寻**(hunt)：袁隆平和**同事们**(colleagues)始终**培育**(breed)不出一个不育系，其**后代**(offspring)能**稳定地**(reliably)**遗传**(inherited)这一**性状**(trait)。**突破**(breakthrough)出现在1970年11月23日，地点是海南三亚南红农场附近的一片**沼泽**(marsh)。袁隆平的助手李必湖和农场**技术员**(technician)冯克珊在那里找到了一种野生稻，它的花粉**败育**(abortive)。
 
 随后，袁隆平迈出了**决定性**(decisive)的一步：他没有把这个**品系**(strain)**扣在**(withhold)自己手里，而是**分给**(distributed)了**全国各地**(nationwide)的**协作者**(collaborators)。杂交稻需要三个**各不相同**(distinct)的系：不育系，**保持**(maintain)其不育性的保持系，以及使杂交种**恢复**(restore)**育性**(fertility)的恢复系。江西颜龙安的团队育成了不育系，广西的张先程率先**找出**(identified)了恢复系。1973年10月，在苏州召开的全国性会议上，袁隆平宣布三系已经配套。
 

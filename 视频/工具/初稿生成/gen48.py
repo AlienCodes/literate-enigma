@@ -17,8 +17,16 @@ S=[
      "（Chinese Science Bulletin：《科学通报》，\n中国的学术期刊）"]]),
 (2,[[[("The **specimen**","这株**标本**(specimen)"),("**launched**","**开启了**(launched)"),("a six-year **hunt**:","一场长达六年的**搜寻**(hunt)：")]],
     [[("Yuan and his **colleagues**","袁隆平和**同事们**(colleagues)"),("could not **breed**","始终**培育**(breed)不出"),("a sterile line","一个不育系，")]],
-    [[("whose **offspring**","能让**后代**(offspring)"),("**reliably**","**稳定地**(reliably)"),("**inherited**","**遗传**(inherited)"),("the **trait**.","这一**性状**(trait)。")],
-     "（whose…：定语从句，修饰 a sterile line）"]]),
+    [[("whose **offspring**","其**后代**(offspring)"),("**reliably**","能**稳定地**(reliably)"),("**inherited**","**遗传**(inherited)"),("the **trait**.","这一**性状**(trait)。")],
+     "（whose…：定语从句，修饰 a sterile line）\n"
+     "1. 想要超级高产的水稻 -> 必须让两种水稻杂交（A和B结合）。\n"
+     "2. 想杂交但做不到 -> 水稻自己给自己授粉，B的花粉进不去。\n"
+     "3. 怎么破解 -> 必须找到一种“自己没花粉的A（不育水稻）”。\n"
+     "4. 找到之后干嘛 -> 种在田里，让B的花粉吹过来给它授粉。\n"
+     "5. 结果如何 -> 结出超级高产的杂交种子。\n"
+     "因为杂交必须要有不育的母本，袁隆平找到了这株标本；\n"
+     "但花了6年发现，这株标本的后代无法稳定遗传，\n"
+     "实验陷入了死胡同（卡在了这里）"]]),
 (2,[[[("The **breakthrough**","**突破**(breakthrough)"),("came","出现在"),("on 23 November 1970,","1970年11月23日，")]],
     [[("in a **marsh**","地点是一片**沼泽**(marsh)，"),("near Nanhong Farm in Sanya, Hainan.","在海南三亚南红农场附近。")]]]),
 (2,[[[("Yuan's assistant, Li Bihu,","袁隆平的助手李必湖"),("and Feng Keshan, a farm **technician**,","和农场**技术员**(technician)冯克珊")],
