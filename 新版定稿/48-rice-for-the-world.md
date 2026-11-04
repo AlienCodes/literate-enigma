@@ -6,7 +6,7 @@ In July 1964, **inspecting** rice ear by ear in a **paddy** at Anjiang Agricultu
 
 The **specimen** **launched** a six-year **hunt**: Yuan and his **colleagues** could not **breed** a sterile line whose **offspring** **reliably** **inherited** the **trait**. The **breakthrough** came on 23 November 1970, in a **marsh** near Nanhong Farm in Sanya, Hainan. Yuan's assistant, Li Bihu, and Feng Keshan, a farm **technician**, found wild rice whose pollen was **abortive**.
 
-Then came Yuan's **decisive** move: rather than **withhold** the **strain**, he **distributed** it to **collaborators** **nationwide**. Hybrids need three **distinct** lines: a sterile line, one to **maintain** its sterility and one to **restore** **fertility** in the hybrids. Yan Longan's team in Jiangxi bred sterile lines and Zhang Xiancheng in Guangxi first **identified** a restorer line. In October 1973, at a national conference in Suzhou, Yuan declared the three-line system complete.
+Then came Yuan's **decisive** move: rather than **withhold** the **strain**, he **distributed** it to **collaborators** **nationwide**. Hybrids need three **distinct** lines: a sterile line, one to **maintain** its sterility, and one to **restore** **fertility** in the hybrids. Yan Longan's team in Jiangxi bred sterile lines and Zhang Xiancheng in Guangxi first **identified** a restorer line. In October 1973, at a national conference in Suzhou, Yuan declared the three-line system complete.
 
 By 1976 hybrids were under **cultivation** on about 140,000 **hectares**. The World Food Prize Foundation **estimates** that hybrid rice can **yield** up to a fifth more **grain** than **conventional** **varieties**. By the early 2000s it covered almost half of China's rice fields.
 
