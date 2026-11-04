@@ -6,7 +6,7 @@ Yellowstone's **iconic** grey wolves had been **exterminated** by 1926. On 12 Ja
 
 In February 2014 a **viral** video narrated by writer George Monbiot **spun** a **compelling** **narrative**: elk, thinned by wolves and **wary** of them, **retreated** from valleys, letting **willows** **flourish** and riverbanks **stabilise**. Ecologists call this a trophic **cascade**: **predators** eat or **deter** plant-eaters, and **vegetation** **rebounds**.
 
-Yet the **census** **undermined** the thinning claim: elk on the park's northern range peaked at about 19,000 in January 1994 and were **dwindling** before wolves arrived, **depleted** by **hunters**, **drought** and bears. Fear looked weak too: in June 2013 Arthur Middleton's University of Wyoming team found that **collared** elk east of the park kept **grazing** unless wolves **ventured** within half a mile.
+Yet the **census** **undermined** the thinning claim: elk on the park's northern range peaked at about 19,000 in January 1994 and were **dwindling** before wolves arrived, **depleted** by **hunters**, **drought**, and bears. Fear looked weak too: in June 2013 Arthur Middleton's University of Wyoming team found that **collared** elk east of the park kept **grazing** unless wolves **ventured** within half a mile.
 
 Trees **fared** no better: in November 2021 Utah State University's Elaine Brice showed that **sampling** only the tallest **aspens** **overstated** **regrowth** four- to sevenfold. The deeper **flaw** was water. Colorado State University's Tom Hobbs and David Cooper had **excluded** elk with fences and built **artificial** beaver **dams**. In January 2024 they reported: **eroding** streams had cut so deep that **stunted** willows no longer reached water.
 
