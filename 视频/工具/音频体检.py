@@ -73,12 +73,22 @@ def 指标(a, no=None):
     elif txt: m['语速突变'] = (None, f'句数对不上（声音 {len(seg)} 段、脚本 {len(txt)} 句）')
     return m
 
-def 超限(m, base):
+def 确认(no):
+    """K166（47 S9 “The deeper flaw was water.”：/ð/ 天然起得快，A20 切掉 -55 dB 以下的头后句首 -33.8，比 01–24 最差多 0.6 dB）：
+    脚本 核对确认.句首突起 {"第9句": "实测……"}，只认超出 01–24 最差 ≤1 dB 的，照样列出交用户听；超得多照停。"""
+    js = next((p for p in (f'scripts/{no}.json', f'{V}/脚本/{no}.json') if no and os.path.exists(p)), None)
+    return (json.load(open(js)).get('核对确认', {}).get('句首突起') or {}) if js else {}
+
+def 超限(m, base, ok=None, note=None):
     bad = []
     for k in 项:
         v, w = m.get(k, (None, ''))
         if v is None: bad.append(f'{k}：量不出来（{w}）') if w else None; continue
-        if v > base[k]['上限'] + 1e-6: bad.append(f'{k} {v:.3g}（{w}）超过 01–24 最差 {base[k]["上限"]:.3g}（{base[k]["篇"]}）')
+        if v > base[k]['上限'] + 1e-6:
+            if k == '句首突起' and ok and w in ok and v <= base[k]['上限'] + 1.0:
+                if note is not None: note.append(f'{k} {v:.3g}（{w}）超过 01–24 最差 {base[k]["上限"]:.3g} 不到 1 dB，已实测确认：{str(ok[w])[:80]}（交用户听）')
+                continue
+            bad.append(f'{k} {v:.3g}（{w}）超过 01–24 最差 {base[k]["上限"]:.3g}（{base[k]["篇"]}）')
     return bad
 
 def 造坑(a, no):
@@ -101,9 +111,14 @@ def 造坑(a, no):
     return out
 
 def 自检(src, no):
-    base = json.load(open(BASE)); a = 读(src); m0 = 指标(a, no); bad0 = {x.split(' ')[0].split('：')[0] for x in 超限(m0, base)}; f = []
+    base = json.load(open(BASE)); a = 读(src); m0 = 指标(a, no); ok = 确认(no); bad0 = {x.split(' ')[0].split('：')[0] for x in 超限(m0, base, ok)}; f = []
+    # K166 好/坏样本：超 0.6 dB 有确认放；超 1.5 dB 有确认照停；超 0.6 dB 没确认照停
+    B = base['句首突起']['上限']; t_ = lambda v, o: bool(超限({'句首突起': (B + v, '第9句')}, {k: {'上限': 1e9, '篇': ''} for k in 项} | {'句首突起': base['句首突起']}, o))
+    if t_(0.6, {'第9句': '实测'}): f.append('误报：句首突起超 0.6 dB、已实测确认，照样报（K166）')
+    if not t_(1.5, {'第9句': '实测'}): f.append('没抓到：句首突起超 1.5 dB，写了确认就放了（K166）')
+    if not t_(0.6, {}): f.append('没抓到：句首突起超 0.6 dB、没有确认也放了（K166）')
     for k, b in 造坑(a, no).items():
-        got = {x.split(' ')[0].split('：')[0] for x in 超限(指标(b, no), base)}
+        got = {x.split(' ')[0].split('：')[0] for x in 超限(指标(b, no), base, ok)}
         if k in bad0: f.append(f'自检前提不成立：原样 {k} 已超限，造坑看不出来')
         elif k not in got: f.append(f'没抓到：造了“{k}”，体检没报（报了 {sorted(got - bad0)}）')
     return f, sorted(bad0)
@@ -134,7 +149,8 @@ if __name__ == '__main__':
     if a_[0] == '--自检':
         e, b0 = 自检(a_[1], a_[2] if len(a_) > 2 else None)
         print(('✘ ' if e else '✔ ') + '音频体检 自检：' + ('；'.join(e) if e else f'{len(项)} 项各造一种毛病全部报出、原样不误报')); sys.exit(1 if e else 0)
-    base = json.load(open(BASE)); m = 指标(读(a_[0]), a_[1] if len(a_) > 1 else None); bad = 超限(m, base)
+    base = json.load(open(BASE)); nt = []; m = 指标(读(a_[0]), a_[1] if len(a_) > 1 else None); bad = 超限(m, base, 确认(a_[1] if len(a_) > 1 else None), nt)
     print(f'音频体检 {len(项)} 项：超过 01–24 最差的 {len(bad)} 处')
     for x in bad: print('  ' + x)
+    for x in nt: print('  已确认 ' + x)
     sys.exit(1 if bad else 0)
