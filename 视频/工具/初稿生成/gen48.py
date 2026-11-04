@@ -40,7 +40,7 @@ S=[
     [[("he","他"),("**distributed** it **to**","把它**分给**(distributed to)"),("**collaborators** **nationwide**.","**全国各地的**(nationwide)**协作者**(collaborators)。")],
      "（distribute A to B：把 A 分给 B）"]]),
 (3,[[[("Hybrids","杂交稻"),("need","需要"),("three","三个"),("**distinct**","**各不相同的**(distinct)"),("lines:","系：")]],
-    [[("a sterile line,","不育系，"),("one to **maintain**","**保持**(maintain)"),("its sterility,","其不育性的保持系，"),("and one","以及使杂交种"),("to **restore**","**恢复**(restore)"),("**fertility** in the hybrids.","**育性**(fertility)的恢复系。")],
+    [[("a sterile line,","不育系，"),("one to **maintain**","**保持**(maintain)"),("its **sterility**,","其**不育性**(sterility)的保持系，"),("and one","以及使杂交种"),("to **restore**","**恢复**(restore)"),("**fertility** in the hybrids.","**育性**(fertility)的恢复系。")],
      "（one to…：不定式作后置定语，修饰 one（= line））"]]),
 (3,[[[("Yan Longan's team","颜龙安的团队"),("in Jiangxi","在江西"),("bred","育成了"),("sterile lines","不育系，")]],
     [[("and Zhang Xiancheng","张先程"),("in Guangxi","在广西"),("first **identified**","率先**找出了**(identified)"),("a restorer line.","恢复系。")]]]),

@@ -6,7 +6,7 @@ In July 1964, **inspecting** rice ear by ear in a **paddy** at Anjiang Agricultu
 
 The **specimen** **launched** a six-year **hunt**: Yuan and his **colleagues** could not **breed** a sterile line whose **offspring** **reliably** **inherited** the **trait**. The **breakthrough** came on 23 November 1970, in a **marsh** near Nanhong Farm in Sanya, Hainan. Yuan's assistant, Li Bihu, and Feng Keshan, a farm **technician**, found wild rice whose pollen was **abortive**.
 
-Then came Yuan's **decisive** move: rather than **withhold** the **strain**, he **distributed** it to **collaborators** **nationwide**. Hybrids need three **distinct** lines: a sterile line, one to **maintain** its sterility, and one to **restore** **fertility** in the hybrids. Yan Longan's team in Jiangxi bred sterile lines and Zhang Xiancheng in Guangxi first **identified** a restorer line. In October 1973, at a national conference in Suzhou, Yuan declared the three-line system complete.
+Then came Yuan's **decisive** move: rather than **withhold** the **strain**, he **distributed** it to **collaborators** **nationwide**. Hybrids need three **distinct** lines: a sterile line, one to **maintain** its **sterility**, and one to **restore** **fertility** in the hybrids. Yan Longan's team in Jiangxi bred sterile lines and Zhang Xiancheng in Guangxi first **identified** a restorer line. In October 1973, at a national conference in Suzhou, Yuan declared the three-line system complete.
 
 By 1976 hybrids were under **cultivation** on about 140,000 **hectares**. The World Food Prize Foundation **estimates** that hybrid rice can **yield** up to a fifth more **grain** than **conventional** **varieties**. By the early 2000s it covered almost half of China's rice fields.
 
@@ -18,7 +18,7 @@ Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones, died
 
 这株**标本**(specimen)**开启**(launched)了一场长达六年的**搜寻**(hunt)：袁隆平和**同事们**(colleagues)始终**培育**(breed)不出一个不育系，其**后代**(offspring)能**稳定地**(reliably)**遗传**(inherited)这一**性状**(trait)。**突破**(breakthrough)出现在1970年11月23日，地点是海南三亚南红农场附近的一片**沼泽**(marsh)。袁隆平的助手李必湖和农场**技术员**(technician)冯克珊在那里找到了一种野生稻，它的花粉**败育**(abortive)。
 
-随后，袁隆平迈出了**决定性**(decisive)的一步：而非**扣留**(withhold)这个**品种**(strain)在自己手里，他把它**分给**(distributed)**全国各地**(nationwide)的**协作者**(collaborators)。杂交稻需要三个**各不相同**(distinct)的系：不育系，**保持**(maintain)其不育性的保持系，以及使杂交种**恢复**(restore)**育性**(fertility)的恢复系。江西颜龙安的团队育成了不育系，广西的张先程率先**找出**(identified)了恢复系。1973年10月，在苏州召开的全国性会议上，袁隆平宣布三系已经配套。
+随后，袁隆平迈出了**决定性**(decisive)的一步：而非**扣留**(withhold)这个**品种**(strain)在自己手里，他把它**分给**(distributed)**全国各地**(nationwide)的**协作者**(collaborators)。杂交稻需要三个**各不相同**(distinct)的系：不育系，**保持**(maintain)其**不育性**(sterility)的保持系，以及使杂交种**恢复**(restore)**育性**(fertility)的恢复系。江西颜龙安的团队育成了不育系，广西的张先程率先**找出**(identified)了恢复系。1973年10月，在苏州召开的全国性会议上，袁隆平宣布三系已经配套。
 
 到1976年，杂交稻的**种植**(cultivation)面积已达约14万**公顷**(hectares)。据世界粮食奖基金会**估计**(estimates)，杂交稻比**常规**(conventional)**品种**(varieties)最多可多**产**(yield)五分之一的**稻谷**(grain)。到21世纪初，杂交稻已覆盖中国近一半的稻田。
 
@@ -62,6 +62,7 @@ Yuan, who shared the 2004 World Food Prize with Sierra Leone's Monty Jones, died
 | nationwide | adj./adv. 全国范围的（地），全国性的（地）（a nationwide survey） | 3 |
 | distinct | adj. 截然不同的，有区别的（be distinct from 与……不同）；清楚的，明显的（a distinct possibility） | 3 |
 | maintain | v. 保持，维持（maintain order/contact）；维修，保养；坚持认为，主张（maintain that…） | 3 |
+| sterility | n. 不育，不育性；无菌（sterile adj. 不育的；无菌的）| 3 |
 | restore | v. 恢复（能力、秩序、健康）（restore sb's sight 使复明）；修复，整修（restore a painting）；归还，交还 | 3 |
 | fertility | n. 生育能力，（植物的）育性；（土地的）肥沃，富饶（fertile adj. 能生育的；肥沃的） | 3 |
 | identified | v. (identify) 找出，发现，鉴定（identify a problem/the cause）；认出，确认（身份）；identify with 认同；identification n. | 3 |
