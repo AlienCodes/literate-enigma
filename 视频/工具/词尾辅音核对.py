@@ -35,7 +35,7 @@ def release(x, hp, P, ref, deep=True):
     while q < len(L) and L[q] < AUD_DB: q += 1
     if q == len(L): return None
     q0 = q
-    for _try in range(3):   # K152（41 S10 first,：除阻衰减末尾 5 ms -52 dB 的一小截后面隔着一帧 -60 dB 的小凹口，被当成闭塞，判“没除阻”、自动又补了一个，成片双爆破）
+    for _try in range(5):   # K152（41 S10 first,：除阻衰减末尾 5 ms -52 dB 的一小截后面隔着一帧 -60 dB 的小凹口，被当成闭塞，判“没除阻”、自动又补了一个，成片双爆破）
         pk = L[q]; c = None; r = q
         while r < len(L):
             if c is None:
@@ -48,6 +48,8 @@ def release(x, hp, P, ref, deep=True):
             r += 1
         # 找到的“除阻”不到 -45 dB、“闭塞”只有一帧低于 -55 dB（前一帧又能听见）：这是除阻衰减里的凹口，接着往前找真正的除阻
         if c is not None and L[q0:c].max() < AUD_DB + 10 and c + 1 < len(L) and L[c + 1] >= AUD_DB and (c == 0 or L[c - 1] >= AUD_DB): q = c + 1; continue
+        # K167（46 S5 lamp, 的 /p/：除阻是两下连着的送气 -28.9 → 凹口 -35.5 → -20.5，再往前 -57 才是闭塞）：找到的“闭塞”不到 -50 dB、后面又起来，是除阻里的凹口，接着往前找真闭塞（除阻从 q0 算起，时长、重心照样查）
+        if deep and c is not None and L[c] >= -50 and c + 1 < len(L) and L[c + 1] >= L[c] + 6: q = c + 1; continue
         break
     q = q0
     # 闭塞必须是真正的静音（< -50 dB）：04 自检查出，first, 的 /t/ 除阻被换成静音后，前面 /s/ 擦音与元音之间的小低谷（不是闭塞）
@@ -288,6 +290,12 @@ if __name__ == '__main__':
         fr_ = [np.ones(F5)] + [np.zeros(F5) if v < -200 else (lambda f: f / (np.sqrt(np.mean(f ** 2)) + 1e-20) * 10 ** (v / 20))(ss.sosfiltfilt(HP, rng_.standard_normal(3 * F5))[F5:2 * F5]) for v in reversed(sq_)]
         x_ = np.concatenate(fr_); m_ = len(x_) // F5; ref_ = np.sqrt(np.mean(x_[:m_ * F5].reshape(m_, F5) ** 2, axis=1)).max()
         if not judge(x_, release(x_, ss.sosfiltfilt(HP, x_), len(x_), ref_), 't'): miss.append('K152 除阻衰减里一帧凹口当成闭塞（41 S10 first,）判错拦')
+        # K167 好样本（46 S5 lamp, 实测帧电平，从停顿往回）：两下连着的送气中间 6 dB 凹口，再往前 -57 dB 才是闭塞；必须判合格。坏样本：同样两下送气，前面没有 -50 dB 以下的闭塞（元音连着），必须照报
+        for sq_, want_, nm_ in (([-65.4, -56.4, -49.7, -40.0, -37.8, -34.5, -29.1, -28.9, -34.0, -35.5, -25.7, -20.5, -28.4, -57.2, -58.7, -54.8, -60.2, -240.0, -240.0, -30.0, -20.0, -15.0, -12.0, -11.0, -10.0, -10.0], True, '两下送气中间凹口'),
+                                ([-65.4, -56.4, -49.7, -40.0, -37.8, -34.5, -29.1, -28.9, -34.0, -35.5, -25.7, -20.5, -28.4, -36.0, -30.0, -20.0, -15.0, -12.0, -11.0, -10.0, -10.0, -10.0, -10.0, -10.0, -10.0, -10.0], False, '凹口前面没有闭塞')):
+            fr_ = [np.ones(F5)] + [np.zeros(F5) if v < -200 else (lambda f: f / (np.sqrt(np.mean(f ** 2)) + 1e-20) * 10 ** (v / 20))(ss.sosfiltfilt(HP, rng_.standard_normal(3 * F5))[F5:2 * F5]) for v in reversed(sq_)]
+            x_ = np.concatenate(fr_); m_ = len(x_) // F5; ref_ = np.sqrt(np.mean(x_[:m_ * F5].reshape(m_, F5) ** 2, axis=1)).max()
+            if bool(judge(x_, release(x_, ss.sosfiltfilt(HP, x_), len(x_), ref_), 'p')) != want_: miss.append(f'K167 {nm_}（46 S5 lamp,）判{"错拦" if want_ else "错放"}')
         ok = n_ok > 0 and not miss
         print(f"{'✔' if ok else '✘'} 词尾辅音核对 自检：{no} 原样 {n_ok} 处全部合格；逐处把除阻换成静音、压低 20 dB，共 {2 * n_ok} 次" + ('全部报出' if not miss else f'，没报出 {len(miss)} 次：' + '；'.join(miss)))
         sys.exit(0 if ok else 1)
