@@ -46,13 +46,16 @@ On the following Monday, 125 accidents were reported, against 130 to 198 on earl
 | overtaking | v. (overtake) 超车；超过（overtake a lorry） | 2 |
 | lane | n. 车道；小巷（the fast lane；a country lane） | 2 |
 | highways | n. (highway) 公路，干道（a busy highway） | 2 |
-| head-on | adj./adv. 迎面的，正面的（a head-on crash；tackle a problem head-on） | 2 |
+| head-on collisions | n. (head-on collision) 迎头相撞，正面碰撞（a head-on collision between two cars） | 2 |
 | mammoth | adj. 巨大的，浩大的（a mammoth task） | 3 |
 | preparation | n. 准备（in preparation for the exam） | 3 |
 | logo | n. 标志，徽标（a company logo） | 3 |
+| arrow | n. 箭头；箭（follow the arrows；a bow and arrow） | 3 |
 | propaganda | n. 宣传（political propaganda；a propaganda campaign） | 3 |
+| contest | n. 比赛，竞赛（a singing contest；enter a contest） | 3 |
 | jingle | n. 广告歌，短歌（an advertising jingle） | 3 |
 | lyrics | n. (lyric) 歌词（write the lyrics for a song） | 3 |
+| chart | n. 排行榜；图表（top the charts；a pie chart） | 3 |
 | signage | n. 标识，标志牌（road signage） | 3 |
 | massive | adj. 巨大的，大规模的（a massive explosion） | 3 |
 | fleet | n. 车队，船队（a fleet of taxis） | 3 |
@@ -66,15 +69,18 @@ On the following Monday, 125 accidents were reported, against 130 to 198 on earl
 | dawn | n. 黎明（at dawn；from dawn to dusk） | 4 |
 | flipped | v. (flip) 翻转（flip a coin；flip the pancake） | 4 |
 | closure | n. 关闭，封闭（road closures；the closure of a factory） | 4 |
+| reconfigured | v. (reconfigure) 重新设定，重新配置（reconfigure the network） | 4 |
 | junctions | n. (junction) 交叉路口，枢纽（a busy junction；a railway junction） | 4 |
 | statistical | adj. 统计的（statistical data/analysis） | 5 |
 | improvement | n. 改善，改进（a marked improvement in health） | 5 |
+| put down to | phr. v. 把……归因于（put sth down to bad luck） | 5 |
 | heightened | adj. 增强的，提高的（heightened awareness/security） | 5 |
 | hesitant | adj. 犹豫的（be hesitant to ask for help） | 5 |
 | nervousness | n. 紧张，不安（hide one's nervousness） | 5 |
 | subsided | v. (subside) 平息，减退（the storm/pain subsided） | 5 |
 | prudent | adj. 谨慎的，审慎的（a prudent decision） | 5 |
 | faded | v. (fade) 逐渐消失，褪色（hopes faded；colours fade） | 5 |
+| fatality rates | n. (fatality rate) 死亡率（road fatality rates） | 5 |
 | reverted | v. (revert) 恢复，回到（revert to old habits） | 5 |
 | baseline | n. 基准，基线（a baseline for comparison） | 5 |
 
