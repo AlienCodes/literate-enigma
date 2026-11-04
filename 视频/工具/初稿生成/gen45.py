@@ -2,17 +2,17 @@ import json,re,glob,os
 # 第45篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-11-03 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；三项并列加牛津逗号（T18）；不用破折号（T36）。
 S=[
-(1,[[[("In late summer 1977,","1977年夏末，"),("NASA","NASA"),("**fastened**","**固定了**(fastened)"),("a **disc**","一张**圆盘**(disc)，")],
+(1,[[[("In late summer 1977,","1977年夏末，"),("NASA","NASA"),("**fastened**","**固定了**(fastened)"),("a **disc**","一张**唱片**(disc)，")],
      "（fasten A to B：把 A 固定在 B 上）"],
-    [[("**wrought** from **gilded** copper,","圆盘用**镀金的**(gilded)铜**打造**(wrought)而成，"),("30 **centimetres** wide,","宽30**厘米**(centimetres)，")],
+    [[("**wrought** from **gilded** **copper**,","这个圆盘用**镀金的**(gilded)**铜**(copper)**锻造**(wrought)而成，"),("30 **centimetres** wide,","宽30**厘米**(centimetres)，")],
      "（wrought from gilded copper：过去分词短语作后置定语，修饰 disc；\nwrought：work 的旧式过去分词；\n30 centimetres wide：补充说明 disc 的大小）"],
     [[("to each","装在每艘"),("Voyager **spaceship**","旅行者号**宇宙飞船**(spaceship)上，"),("before **takeoff**.","在**起飞**(takeoff)之前。")]]]),
 (1,[[[("Nobody","谁也"),("could **foresee**","无法**预见**(foresee)，"),("who, if anyone,","究竟会不会有人、又会是谁"),("would play one.","来播放其中一张。")],
      "（if anyone：插入语，如果有人的话；\none：指两张唱片中的任意一张）"]]),
 (2,[[[("**Advisers** under Carl Sagan of Cornell","康奈尔大学卡尔·萨根手下的**顾问**(Advisers)们，")],
      "（under Carl Sagan of Cornell：后置定语，修饰 Advisers）"],
-    [[("**distilled** our **earthly** **abode**","把我们在**尘世**(earthly)的**家园**(abode)，**提炼**(distilled)"),("into this **compendium**.","成这部**汇编**(compendium)。")],
-     "（distil A into B：把 A 提炼成 B）"]]),
+    [[("**distilled** our **earthly** **abode**","把我们在**尘世的**(earthly)**家园**(abode)，**提炼**(distilled)"),("into this **compendium**.","成这部**汇编**(compendium)。")],
+     "（distil A into B：把 A 提炼成 B）\n（康奈尔大学的卡尔·萨根（著名天文学家）带领顾问团队，\n把整个地球（包括各种声音、图像、人类文明）浓缩、打包，\n刻录到了这张薄薄的“金唱片”里。\n萨根的团队把整个地球的“灵魂”，提纯、浓缩成了一张写给外星人的“名片”。）"]]),
 (2,[[[("Voices","人声"),("**greet** the **listener** in 55 languages,","用55种语言向**听者**(listener)致以**问候**(greet)，")],
      "（in 55 languages：方式状语）"],
     [[("followed by","接着是"),("the **rumble**","**隆隆**(rumble)的"),("of **thunder**,","**雷声**(thunder)、"),("the **whistle** of wind,","风的**呼啸声**(whistle)、")],
@@ -78,7 +78,7 @@ G={
  "S14 glide on":"对齐不了：glide on 是固定搭配“继续滑行”，on 化成“继续”放到动词前，整体标",
  "S13 should":"对齐不了：should 表推测，中文沿用文章定稿“预计会”",
  "S1 In late summer 1977":"对齐不了：英文先季节后年份，中文“1977年夏末”年份必须在前",
- "S1 wrought from gilded copper":"对齐不了：from gilded copper 是材料状语，中文“用镀金的铜打造而成”（沿用文章定稿）必须放到动词前",
+ "S1 wrought from gilded copper":"对齐不了：from gilded copper 是材料状语，中文“这个圆盘用镀金的铜锻造而成”（用户 2026-11-04 改）必须放到动词前",
  "S1 30 centimetres wide":"对齐不了：30 centimetres wide 中文“宽30厘米”，wide 必须放到数量前",
  "S3 Advisers under Carl Sagan of Cornell":"对齐不了：under Carl Sagan of Cornell 是后置定语，修饰 Advisers，中文“康奈尔大学卡尔·萨根手下的顾问们”定语必须提前，of Cornell 也要提到人名前",
  "S3 distilled our earthly abode":"对齐不了：distil A into B 中文“把 A 提炼成 B”（沿用文章定稿），动词必须放到宾语后",
@@ -109,7 +109,7 @@ CONF={"合组":G,"对齐":{
 "短语":{
  "S1 fastened … from":"不是搭配：from 属于 wrought from gilded copper（材料），和 fastened 无关",
  "S1 fastened … to":"不是搭配：fasten 本身就是“固定”，to 只引出固定的位置（每艘飞船），中文“装在……上”已译出",
- "S1 wrought … from":"不是搭配：wrought 本身就是“打造的”，from 引出材料（镀金的铜），中文“用……打造而成”已译出",
+ "S1 wrought … from":"不是搭配：wrought 本身就是“锻造的”，from 引出材料（镀金的铜），中文“用……锻造而成”已译出",
  "S3 distilled … into":"不是搭配：distil 本身就是“提炼”，into 只引出结果（这部汇编），中文“提炼成”的“成”已译出",
  "S4 greet … of":"不是搭配：of 属于 the rumble of thunder，和 greet 无关",
  "S4 rumble … of":"不是搭配：of thunder 是后置定语，说明是什么的隆隆声，rumble 单独就是“隆隆声”",
@@ -140,6 +140,8 @@ CONF["非人声"].update({"2.53–2.62s": {"配音指纹": "601ad4a25436", "实�
 CONF["高亮"]={"S3 第2块": {"开始读": 23.29, "配音指纹": "601ad4a25436", "依据": "2026-11-03 直接读 work_45/a.wav 逐 10 ms：第1块 Cornell 的尾音 23.10 -42.6、23.12 -64 dB，23.13–23.28 是删掉吸气后的数字静音（-180 dB），23.29 -65.6、23.30 起 distilled 的 /d/ 爆破（-23.5 dB、重心 3.8 kHz），23.32 起 ɪ（-13→-7 dB）；distilled 在 23.29 开始读，高亮 23.29 对；甲法 23.13 落在静音开头"}}
 out={"no":"45","title_en":"The Record Humanity Threw into the Stars","title_zh":"写给外星人的一张唱片","title_fx":{"hl":["Record","Stars"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      
+     "换行变更已获同意":{"S1":"用户 2026-11-04 原话：“打造 改为 锻造 copper 注意重点词汇标注，重点词汇对应意思为同”“这句话圆盘前面加上这个，这个圆盘用镀金的铜锻造而成。”“disc 下面的圆盘 改为 唱片”（S1 中文、重点词变，换行随之变）","S3":"用户 2026-11-04 原话：“尘世的 三个字都要标色”“小字加上下面这些：康奈尔大学的卡尔·萨根（著名天文学家）带领顾问团队……萨根的团队把整个地球的“灵魂”，提纯、浓缩成了一张写给外星人的“名片”。”（S3 说明加两行，换行随之变）"},
+     "allow_clash":["copper"],
      "合成标点":{"S5":[["B. Goode","B Goode"]]},
      "停顿插入点":{"S2":{"2":[2.393667,"交界"]},"S4":{"3":[6.931542,"交界"],"4":[7.5175,"交界"]}},
      "非人声区间":{"S12":[[7.65525,7.925083,"紧贴词头"]],"S11":[[7.072625,7.237542,"紧贴两头"]],"S7":[[2.815,3.019917]]},

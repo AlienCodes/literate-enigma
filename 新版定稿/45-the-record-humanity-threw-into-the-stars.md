@@ -2,7 +2,7 @@
 # ZH: 写给外星人的一张唱片
 
 ## 英文
-In late summer 1977, NASA **fastened** a **disc** **wrought** from **gilded** copper, 30 **centimetres** wide, to each Voyager **spaceship** before **takeoff**. Nobody could **foresee** who, if anyone, would play one.
+In late summer 1977, NASA **fastened** a **disc** **wrought** from **gilded** **copper**, 30 **centimetres** wide, to each Voyager **spaceship** before **takeoff**. Nobody could **foresee** who, if anyone, would play one.
 
 **Advisers** under Carl Sagan of Cornell **distilled** our **earthly** **abode** into this **compendium**. Voices **greet** the **listener** in 55 languages, followed by the **rumble** of **thunder**, the **whistle** of wind, whales, footsteps, **laughter**, and a **rhythmic** **heartbeat**. About 90 minutes of **eclectic** music cover a **spectrum** of cultures and eras, **notably** Bach and Chuck Berry's Johnny B. Goode.
 
@@ -39,6 +39,7 @@ The Voyagers' discs will **glide** on **outwards** through the **void** as **mes
 | disc | n. 圆盘；唱片（a compact disc） | 1 |
 | wrought | adj./v. (work 旧式过去分词) 制作的，锻造的（wrought iron） | 1 |
 | gilded | adj. 镀金的（a gilded frame） | 1 |
+| copper | n. 铜（a copper pipe） | 1 |
 | centimetres | n. (centimetre) 厘米（ten centimetres long） | 1 |
 | spaceship | n. 宇宙飞船（board a spaceship） | 1 |
 | takeoff | n. 起飞（during takeoff） | 1 |
