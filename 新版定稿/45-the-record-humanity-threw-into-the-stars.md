@@ -10,9 +10,9 @@ An **array** of 115 images, **encoded** in analogue form, sits beside printed wo
 
 On 14 February 1990, **at** Sagan's **request**, Voyager 1 **pivoted** its camera for a **glance** **backwards** across about six billion kilometres. Sixty **frames** formed a **panorama** of the solar system, a **mosaic** in which Earth was a **glimmer** about an eighth of a **pixel** **across**. They reached Earth's **receivers** between March and 1 May, each **signal** taking five and a half hours.
 
-In a 1994 book, Sagan offered that **pale** dot as a **perspective** on our small and **ephemeral** place amid cosmic **vastness**.
+In a 1994 book, Sagan offered that **pale** dot as a **perspective** on our small and **ephemeral** place amid **cosmic** **vastness**.
 
-Voyager 1 crossed into **interstellar** space in August 2012, the first **human-made** object there, and Voyager 2 followed in 2018. Both work on with a **longevity** unmatched at NASA, but **depletion** of their power should silence them within a few years.
+Voyager 1 crossed into **interstellar** space in August 2012, the first **human-made** object there, and Voyager 2 followed in 2018. Both work on with a **longevity** **unmatched** at NASA, but **depletion** of their power should silence them within a few years.
 
 The Voyagers' discs will **glide** on **outwards** through the **void** as **messengers** with a map leading back to the Sun.
 
@@ -69,7 +69,7 @@ The Voyagers' discs will **glide** on **outwards** through the **void** as **mes
 | diagram | n. 示意图（draw a diagram） | 3 |
 | beacons | n. (beacon) 信标，灯塔（a radio beacon） | 3 |
 | pivoted | v. (pivot) 转动（pivot on one foot） | 4 |
-| at … request | phr. (at one's request) 应……的请求（at his request） | 4 |
+| at request | phr. (at one's request) 应……的请求（at his request） | 4 |
 | glance | n. 一瞥（at a glance） | 4 |
 | backwards | adv. 向后（look backwards） | 4 |
 | frames | n. (frame) 画面，帧（a single frame） | 4 |
@@ -83,10 +83,12 @@ The Voyagers' discs will **glide** on **outwards** through the **void** as **mes
 | pale | adj. 暗淡的，苍白的（pale blue） | 5 |
 | perspective | n. 视角，看法（from a different perspective） | 5 |
 | ephemeral | adj. 短暂的（ephemeral fame） | 5 |
+| cosmic | adj. 宇宙的（cosmic rays） | 5 |
 | vastness | n. 浩瀚，广阔（the vastness of space） | 5 |
 | interstellar | adj. 星际的（interstellar travel） | 6 |
 | human-made | adj. 人造的，人为的（human-made climate change） | 6 |
 | longevity | n. 长寿，持久（the longevity of a product） | 6 |
+| unmatched | adj. 无可匹敌的，无与伦比的（unmatched skill） | 6 |
 | depletion | n. 耗尽，枯竭（ozone depletion） | 6 |
 | glide | v. 滑行（glide across the ice） | 7 |
 | outwards | adv. 向外（open outwards） | 7 |

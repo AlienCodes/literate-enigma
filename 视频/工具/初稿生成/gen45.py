@@ -44,20 +44,20 @@ S=[
      "（each signal taking…：独立主格结构，补充说明）"]]),
 (5,[[[("In a 1994 book,","在1994年的一本书中，"),("Sagan","萨根"),("offered that **pale** dot","把那个**暗淡的**(pale)小点"),("as a **perspective**","作为一种**视角**(perspective)，")],
      "（offer A as B：把 A 作为 B 提出来；\n1994年的这本书即《暗淡蓝点》）"],
-    [[("on our small","借以审视我们渺小"),("and **ephemeral** place","而**短暂的**(ephemeral)位置，"),("amid cosmic **vastness**.","处在宇宙的**浩瀚**(vastness)之中。")],
+    [[("on our small","借以审视我们渺小"),("and **ephemeral** place","而**短暂的**(ephemeral)位置，"),("amid **cosmic**","处在**宇宙的**(cosmic)"),("**vastness**.","**浩瀚**(vastness)之中。")],
      "（a perspective on…：看待……的视角；\namid cosmic vastness：在宇宙的浩瀚之中）"]]),
 (6,[[[("Voyager 1","旅行者1号"),("crossed into","进入"),("**interstellar** space","**星际**(interstellar)空间，"),("in August 2012,","时间是2012年8月，")],
      "（cross into…：越过边界进入……）"],
     [[("the first","成为第一个"),("**human-made** object there,","到达那里的**人造**(human-made)物体；")],
      "（同位语，补充说明 Voyager 1）"],
     [[("and Voyager 2","旅行者2号"),("followed in 2018.","于2018年跟进。")]]]),
-(6,[[[("Both","两者"),("work on","仍在工作，"),("with a **longevity**","其**长寿**(longevity)"),("unmatched at NASA,","在NASA无可匹敌，")],
+(6,[[[("Both","两者"),("work on","仍在工作，"),("with a **longevity**","其**长寿**(longevity)"),("**unmatched** at NASA,","在NASA**无可匹敌**(unmatched)，")],
      "（work on：继续工作；\nunmatched at NASA：过去分词短语作后置定语，修饰 longevity）"],
     [[("but","但"),("**depletion** of their power","电力**耗竭**(depletion)"),("should","预计会"),("silence them within a few years.","让它们在几年之内沉寂。")],
      "（should：表推测，预计会；silence：使沉寂）"]]),
 (7,[[[("The Voyagers' discs","两艘旅行者号的唱片"),("will","将"),("**glide on**","**继续滑行**(glide on)，"),("**outwards**","**向外**(outwards)"),("through the **void**","穿过**虚空**(void)，")],
      "（glide on：继续滑行）"],
-    [[("as **messengers**","作为**信使**(messengers)，"),("with a map","携着一幅地图，"),("leading back to the Sun.","指回太阳。")],
+    [[("as **messengers**","作为**信使**(messengers)，"),("with a map","携着一幅地图，"),("leading back to the Sun.","上面的坐标指向太阳。")],
      "（leading back to the Sun：现在分词短语作后置定语，修饰 map）\n"
      "（简述：1977年，NASA给两艘旅行者号各装上一张镀金铜唱片。\n"
      "萨根手下的顾问们选进了55种语言的问候、\n"
@@ -66,15 +66,15 @@ S=[
      "1990年，旅行者1号回望，地球只是一点微光；\n"
      "萨根在1994年的书中借这个暗淡的小点审视人类渺小而短暂的位置。\n"
      "两艘探测器先后进入星际空间，电力预计几年内耗竭，\n"
-     "唱片仍会带着指回太阳的地图继续滑行。）"]]),
+     "唱片仍会带着一幅地图继续滑行，上面的坐标指向太阳。）"]]),
 ]
 G={
  "S6 sits beside":"对齐不了：sit beside 中文“旁边是”，beside 化成“旁边”放在前面，拆开 sits、beside 中文不通",
  "S10 between March":"对齐不了：时间状语 between March and 1 May 中文“时间在3月至5月1日间”，between 化成“在……间”，“间”放到最后",
  "S11 and ephemeral place":"对齐不了：ephemeral place 中文“短暂的位置”，and 化成“而”，place 是名词放最后，不能再拆",
- "S11 amid cosmic vastness":"对齐不了：amid cosmic vastness 中文“处在宇宙的浩瀚之中”，amid 化成“处在……之中”，包住后面的词",
+ "S11 amid cosmic":"对齐不了：amid 中文“处在……之中”，包住后面的词，“处在”放这一组、“之中”放下一组",
  "S12 human-made object there":"对齐不了：there 是后置定语，中文“到达那里的人造物体”定语必须提前",
- "S14 leading back to the Sun":"对齐不了：leading back to the Sun 中文“指回太阳”，back to 化成“回”，拆开不通",
+ "S14 leading back to the Sun":"对齐不了：leading back to the Sun 中文“上面的坐标指向太阳”（用户 2026-11-04 改），拆开不通",
  "S14 glide on":"对齐不了：glide on 是固定搭配“继续滑行”，on 化成“继续”放到动词前，整体标",
  "S13 should":"对齐不了：should 表推测，中文沿用文章定稿“预计会”",
  "S1 In late summer 1977":"对齐不了：英文先季节后年份，中文“1977年夏末”年份必须在前",
@@ -104,8 +104,9 @@ CONF={"合组":G,"对齐":{
  "S9-2 about an eighth of a pixel acr":"across 放在数量后表宽度，中文“宽约八分之一个像素”，宽必须提前；an eighth of a pixel 是 of 结构",
  "S10-2 five and a half hours.":"five and a half hours 中文“五个半小时”，“半”必须放到量词后，拆开不通",
  "S13-2 silence them within a few year":"within a few years 是时间状语，中文“让它们在几年之内沉寂”时间必须放到动词前",
- "S14-2 leading back to the Sun.":"leading back to the Sun 是现在分词短语作后置定语，修饰 map，中文“指回太阳”，back to 化成“回”，拆开不通"},
+ "S14-2 leading back to the Sun.":"leading back to the Sun 是现在分词短语作后置定语，修饰 map，中文“上面的坐标指向太阳”（用户 2026-11-04 改），拆开不通"},
 "短语":{
+ "S13 unmatched … at":"不是搭配：at NASA 是地点状语（在NASA），unmatched 单独就是“无可匹敌”",
  "S1 fastened … from":"不是搭配：from 属于 wrought from gilded copper（材料），和 fastened 无关",
  "S1 fastened … to":"不是搭配：fasten 本身就是“固定”，to 只引出固定的位置（每艘飞船），中文“装在……上”已译出",
  "S1 wrought … from":"不是搭配：wrought 本身就是“锻造的”，from 引出材料（镀金的铜），中文“用……锻造而成”已译出",
@@ -140,8 +141,8 @@ CONF["同词异译"]={"greet：向/问候":"不是两种译法：S4 greet 的意
 CONF["同词异译"]["at request：应/请求"]="不是两种译法：S8 at … request 的意思“应……的请求”被“萨根的”隔开，“应”和“请求”是同一个意思的两段；用户 2026-11-04 原话“at request  这里 标为重点词汇  应.....的请求  翻译改为  应萨根的请求”（T23 被隔开的中文意思每处都标）"
 out={"no":"45","title_en":"The Record Humanity Threw into the Stars","title_zh":"写给外星人的一张唱片","title_fx":{"hl":["Record","Stars"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      
-     "换行变更已获同意":{"S10":"用户 2026-11-04 原话：“Signal标注重点词词汇。 信号，信号，对应信号。”（signal 标色，换行随之变）","S9":"用户 2026-11-04 原话：“Frames, frames. 标注重点词汇，标注重点词汇对应画面。”“across 都是重点词汇对应宽……这些全都特批，如果重复的全都特批。”“pixel 标注为重点词汇  对应像素”（中文、重点词变，换行随之变）","S8":"用户 2026-11-04 原话：“at request  这里 标为重点词汇  应.....的请求  翻译改为  应萨根的请求”（中文、重点词变，换行随之变）","S7":"用户 2026-11-04 原话：“封套 改为 (唱片的) 套子”（中文、重点词变，换行随之变）","S6":"用户 2026-11-04 原话：“出自于 两位政治家    自后面加上一个 于”（中文、重点词变，换行随之变）","S5":"用户 2026-11-04 原话：“约90分钟的兼收并蓄的音乐，涵盖了一系列的 文化和 时代，尤其是巴赫和查克·贝里的《Johnny B. Goode》。按照这个翻译来，按照这个翻译来。Notably notably对应尤其 eras 点词汇，重点词汇标注为时代。 A spectrum of整体标注重点词汇。”（S5 中文、重点词变，换行随之变）","S4":"用户 2026-11-04 原话：“向.....问候  把这个向 也标色。”“thunder 的意思 对应 雷 改成 雷的 隆隆声 隆隆声 三个字都得标”（S4 中文、重点词变，换行随之变）","S1":"用户 2026-11-04 原话：“打造 改为 锻造 copper 注意重点词汇标注，重点词汇对应意思为同”“这句话圆盘前面加上这个，这个圆盘用镀金的铜锻造而成。”“disc 下面的圆盘 改为 唱片”（S1 中文、重点词变，换行随之变）","S3":"用户 2026-11-04 原话：“尘世的 三个字都要标色”“小字加上下面这些：康奈尔大学的卡尔·萨根（著名天文学家）带领顾问团队……萨根的团队把整个地球的“灵魂”，提纯、浓缩成了一张写给外星人的“名片”。”（S3 说明加两行，换行随之变）"},
-     "allow_clash":["copper","eras","frames","pixel","across","at request","signal"],
+     "换行变更已获同意":{"S14":"用户 2026-11-04 原话：“指回太阳 -> 改为：上面的坐标指向太阳”“下面的小字也改为同样的表达”（换行随之变）","S13":"用户 2026-11-04 原话：“Unmatched标准动词unmatched  重点词汇，重点词汇。”（换行随之变）","S11":"用户 2026-11-04 原话：“Cosmic 重点词汇，重点词汇。”（换行随之变）","S10":"用户 2026-11-04 原话：“Signal标注重点词词汇。 信号，信号，对应信号。”（signal 标色，换行随之变）","S9":"用户 2026-11-04 原话：“Frames, frames. 标注重点词汇，标注重点词汇对应画面。”“across 都是重点词汇对应宽……这些全都特批，如果重复的全都特批。”“pixel 标注为重点词汇  对应像素”（中文、重点词变，换行随之变）","S8":"用户 2026-11-04 原话：“at request  这里 标为重点词汇  应.....的请求  翻译改为  应萨根的请求”（中文、重点词变，换行随之变）","S7":"用户 2026-11-04 原话：“封套 改为 (唱片的) 套子”（中文、重点词变，换行随之变）","S6":"用户 2026-11-04 原话：“出自于 两位政治家    自后面加上一个 于”（中文、重点词变，换行随之变）","S5":"用户 2026-11-04 原话：“约90分钟的兼收并蓄的音乐，涵盖了一系列的 文化和 时代，尤其是巴赫和查克·贝里的《Johnny B. Goode》。按照这个翻译来，按照这个翻译来。Notably notably对应尤其 eras 点词汇，重点词汇标注为时代。 A spectrum of整体标注重点词汇。”（S5 中文、重点词变，换行随之变）","S4":"用户 2026-11-04 原话：“向.....问候  把这个向 也标色。”“thunder 的意思 对应 雷 改成 雷的 隆隆声 隆隆声 三个字都得标”（S4 中文、重点词变，换行随之变）","S1":"用户 2026-11-04 原话：“打造 改为 锻造 copper 注意重点词汇标注，重点词汇对应意思为同”“这句话圆盘前面加上这个，这个圆盘用镀金的铜锻造而成。”“disc 下面的圆盘 改为 唱片”（S1 中文、重点词变，换行随之变）","S3":"用户 2026-11-04 原话：“尘世的 三个字都要标色”“小字加上下面这些：康奈尔大学的卡尔·萨根（著名天文学家）带领顾问团队……萨根的团队把整个地球的“灵魂”，提纯、浓缩成了一张写给外星人的“名片”。”（S3 说明加两行，换行随之变）"},
+     "allow_clash":["copper","eras","frames","pixel","across","at request","signal","cosmic","unmatched"],
      "合成标点":{"S5":[["B. Goode","B Goode"]]},
      "停顿插入点":{"S2":{"2":[2.393667,"交界"]},"S4":{"3":[6.931542,"交界"],"4":[7.5175,"交界"]}},
      "非人声区间":{"S12":[[7.65525,7.925083,"紧贴词头"]],"S11":[[7.072625,7.237542,"紧贴两头"]],"S7":[[2.815,3.019917]]},
