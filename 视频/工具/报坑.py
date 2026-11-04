@@ -270,6 +270,7 @@ def 自检():
 
 def main():
     a = sys.argv[1:]
+    if a[:1] in (['-h'], ['--help']): print(__doc__); return 0   # 2026-11-04 主会话：-h 被当成坑登记成 K122
     def opt(k, dft=''):
         return a[a.index(k) + 1] if k in a and a.index(k) + 1 < len(a) else dft
     会话 = opt('--会话') or 本会话() or '（没写会话：报坑时加 --会话 session_…）'

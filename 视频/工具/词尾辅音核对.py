@@ -198,7 +198,7 @@ def check(no, d, mutate=None):
                 info.append(f"{no} {lab} {where} {word}（浊塞音，不判）{desc}{'  ← 偏弱，需试听：剪成试听交用户确认' if weak else ''}"); continue
             ok = judge(out, z, ph)
             gk_ = '句末' if g == len(fin) - 1 else str(g + 1)
-            gr_ = gk_ in d.get('词尾除阻', {}).get(lab, {})
+            gr_ = gk_ in d.get('词尾除阻', {}).get(lab, {}) or gk_ in d.get('停顿处除阻', {}).get(lab, {})   # 46 S4/S8：停顿处除阻也是移植，双爆破按移植报（删掉这条移植）
             db_ = 双爆破(out, hp, z, ref) if ph in 'tkp' and (gr_ or 元音前(word)) else None   # 没移植的只查元音后的塞音：-pt -kt -st 前一下是 /p k s/ 自己的声音（03 scraped、15 slept、30 east 等 8 处实测），不是重复
             if db_ and not d.get('核对确认', {}).get('双爆破', {}).get(f'{lab} {where}'):   # K172（46 S8 back,：原始合成就有两下 /k/ 爆破，隔 20 ms 静音）：没有移植的也查；用户听过说没问题的写 核对确认.双爆破 {"S8 第2个标点": "用户原话"}
                 if gr_: line = f"{no} {lab} {where} {word} /{ph}/ BAD 双爆破：移植的除阻前 {db_[1]:.0f} ms 原声已有一下除阻（{db_[0]:.1f} dB），会听成两个 {ph}（{db_[2]} ms、重心 {db_[3]} Hz）；删掉这条移植，改用 除阻加强 加强原声那一下（46 S4）"

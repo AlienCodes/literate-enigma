@@ -10,5 +10,5 @@ echo "【开工必做】只读 视频/工具/新管/写稿须知.md；做片子�
 # 装上 git 提交钩子（提交前只查快测印章）
 for r in /home/user/postgraduate-vocabulary /home/user/literate-enigma; do [ -d $r/视频/工具/githooks ] && git -C $r config core.hooksPath 视频/工具/githooks; done
 python3 $P/工具/报坑.py --状态 2>/dev/null   # G54：待入表、超期的报坑登记
-python3 -c "import sys; sys.path.insert(0,'$P/工具'); import 重查记录 as R; q=[n for n in R.欠着() if n in R.已出片()]; print('【存的视频】欠重查或欠重出 4K（G9/G22）：'+(' '.join(q) if q else '无'))" 2>/dev/null
+python3 -c "import sys; sys.path.insert(0,'$P/工具'); import 重查记录 as R; q=[] if R.用户免重查() else [n for n in R.欠着() if n in R.已出片()]; print('【存的视频】欠重查或欠重出 4K（G9/G22）：'+(' '.join(q) if q else '无'))" 2>/dev/null
 exit 0

@@ -824,11 +824,12 @@ def KZ_同意():
 KZ_ns = lambda x: re.sub(r'[\s，。、；：:,.;!?！？…“”"\'（）()—\-]', '', x)
 
 def KZ_有原话(text, rec=None):
-    """结论里引的“……”在 用户同意记录.json 里有（至少一句、去标点后 ≥4 字、是某条原话的一段）"""
+    """结论里引的“……”在 用户同意记录.json 里有（至少一句：去标点后 ≥4 字、是某条原话的一段；或不到 4 字、但和某条原话整句一样，如用户只回“可以”）"""
     rec = KZ_同意() if rec is None else rec; ys = [KZ_ns(r['原话']) for r in rec]
-    for q in re.findall(r'“([^”]{4,})”', text):
+    for q in re.findall(r'“([^”]+)”', text):
         q = KZ_ns(q)
         if len(q) >= 4 and any(q[:30] in y for y in ys): return True
+        if q and q in ys: return True   # K122（48：用户换行变更只回“可以”两个字，被拦）：短回答按整句对
     return False
 
 def KZ_判(cat, val, rec=None, 规=None, no=None):
@@ -885,6 +886,8 @@ def KZ_自检():
     if KZ_判('短语', '不是搭配：in 是普通介词“在……里”', rec, no='24'): fails.append('T22 误报：“不是搭配：……”被报出')
     if KZ_判('牛津逗号', '不是三项并列：upright and intact 是两项', rec): fails.append('G24 误报：牛津逗号“不是三项并列：……”被报出')
     if KZ_判('引号', '用户 2026-10-24：“这个地方可以不加，我同意”', rec): fails.append('G24 误报：引了用户同意记录里原话的例外被报出')
+    if KZ_判('引号', '用户 2026-11-04：“可以”', rec + [{'篇': '48', '日期': '2026-11-04', '原话': '可以', '用于': '自检'}]): fails.append('K122 误报：用户整句只回“可以”被拦（48）')
+    if KZ_判('引号', '用户 2026-11-04：“可以”', rec) is None: fails.append('没抓到：“可以”只是某条原话的一段、不是整句（K122 坏样本）')
     if KZ_判('引号', '用户 2026-10-24：“我编的一句话不在记录里”', rec) is None: fails.append('没抓到：引的“原话”不在用户同意记录里（AI 编的）')
     if KZ_判('非人声', {'配音指纹': 'c81ce56b1f49', '依据': '2026-10-09 实际声音（逐 5 ms 电平）'}, rec): fails.append('G24 误报：正常的非人声核实被报出')
     if KZ_判('新类别XYZ', '随便', rec) is None: fails.append('没抓到：没登记的确认类别')
