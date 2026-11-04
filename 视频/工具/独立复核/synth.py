@@ -101,7 +101,7 @@ if __name__ == '__main__':
                 sr3_ = SEGS.get(no, {}).get(f'S{idx + 1}') or []
                 rg_ = [(r['原始'][0], r['原始'][1], float(rgn_[str(r['段'])][0]), float(rgn_[str(r['段'])][1])) + ((r['段内']['长'], r['段内']['去头'], tuple(map(tuple, r['段内']['压缩']))) if '段内' in r else ()) for r in sr3_ if str(r['段']) in rgn_]
                 if len(rg_) != len(rgn_): raise SystemExit(f'【停止】段内渐变dB 的段号在分段记录里找不到：S{idx + 1}')
-            key_ = _hl.md5(repr((phonemes_of(spoken(text)), gr, en_, fd_, 0.95) + ((pg,) if pg else ()) + ((('加强', bo),) if bo else ()) + ((('增益', sg_),) if sg_ else ()) + ((('分段增益', pr_),) if pr_ else ()) + ((('段内渐变', rg_),) if rg_ else ()) + ((('合成标点', d.get('合成标点', {}).get(f'S{idx + 1}')),) if idx >= 0 and d.get('合成标点', {}).get(f'S{idx + 1}') else ())).encode()).hexdigest()[:10]
+            key_ = _hl.md5(repr((phonemes_of(spoken(text)), gr, en_, fd_, 0.95) + ((pg,) if pg else ()) + (('K124',) if pg and pr_ else ()) + ((('加强', bo),) if bo else ()) + ((('增益', sg_),) if sg_ else ()) + ((('分段增益', pr_),) if pr_ else ()) + ((('段内渐变', rg_),) if rg_ else ()) + ((('合成标点', d.get('合成标点', {}).get(f'S{idx + 1}')),) if idx >= 0 and d.get('合成标点', {}).get(f'S{idx + 1}') else ())).encode()).hexdigest()[:10]
             fn = f'{OUT}/{no}_{"T" if idx < 0 else "%02d" % idx}_{key_}.npy'
             if not os.path.exists(fn):
                 if en_: a, sr = _ending_raw(text, en_), 24000     # 结尾句：两遍合成在接点接起来（与出片同一个函数，接点两侧必须是静音）
@@ -128,7 +128,8 @@ if __name__ == '__main__':
                     w0 = clean_tail(a0); st = _head_offset(a0, w0); w0 = _keep_tail(a0, w0, st)
                     for p_, q_, kd in sorted(pg.values(), key=lambda v: -float(v[0])):
                         p0 = st + int(round(float(p_) * SR)); q0 = st + int(round(float(q_) * SR))
-                        a = np.concatenate([a[:p0], _pdonor(w0, kd), a[q0:]])
+                        gp_ = float(np.prod([10 ** (g_ / 20) for p0_, p1_, g_ in pr_ if p0_ <= p0 < p1_])) if pr_ else 1.0   # K124（46 S4 fact, 的 /t/ 在第 1 段词尾、不在停顿里：出片随第 1 段乘 -3.5 dB，复核没乘，报 lost -27 dB + 多余 68 ms）：供体落在哪一段就乘那一段的增益，落在停顿里不乘
+                        a = np.concatenate([a[:p0], _pdonor(w0, kd) * np.float32(gp_), a[q0:]])
                 if sg_: a = a * np.float32(10 ** (sg_ / 20))
                 np.save(fn, a)
             meta[no].append({'idx': idx, 'text': text, 'file': fn,
