@@ -731,6 +731,8 @@ def 句增益(d,no,si,sent,pieces,gaps,clips,tmap,a):
 def _收句尾(a):
     F_=int(0.005*SR); x=np.asarray(a,np.float32).copy(); n_=len(x)//F_
     if n_==0: return x
+    T_=2*F_; m_=len(x)//T_   # 只收真被抬起来的句尾（末 10 ms ≥ -50 dB，体检同窗）；没抬起来的原样不动（46 S9 末 10 ms -54.6 dB，淡出把可听结尾前移 15 ms，句间停顿报 1.015 s）
+    if m_ and 20*np.log10(np.sqrt(np.mean(x[(m_-1)*T_:m_*T_]**2))/(np.sqrt(np.mean(x[:m_*T_].reshape(m_,T_)**2,axis=1)).max()+1e-12)+1e-12)<-50: return x
     r_=np.sqrt(np.mean(x[:n_*F_].reshape(n_,F_)**2,axis=1)); q_=20*np.log10(r_/(r_.max()+1e-12)+1e-9)
     f_=n_-1
     while f_>0 and q_[f_]<AUD_DB: f_-=1
