@@ -47,3 +47,4 @@
 | 41 | The Toad That Invaded Australia | 入侵澳洲的毒蟾 | 12.6 MB |
 | 42 | The Telescope That Needed Glasses | 需要戴眼镜的望远镜 | 12.4 MB |
 | 43 | From a Garage to the Top of the World | 从车库到世界之巅 | 13.4 MB |
+| 44 | The Night Sweden Switched Sides | 一夜之间换边开车 | 12.2 MB |
