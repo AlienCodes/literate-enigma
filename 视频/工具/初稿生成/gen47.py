@@ -11,8 +11,8 @@ S=[
 (1,[[[("Released from **enclosures** in late March,","3月下旬，它们被放出**围栏**(enclosures)，")],
      "（Released from enclosures：过去分词短语作状语，\n逻辑主语是 they）"],
     [[("they **roamed** the **wilderness**.","得以在**荒野**(wilderness)中**四处游荡**(roamed)。")]]]),
-(2,[[[("In February 2014","2014年2月，"),("a **viral** video narrated by writer George Monbiot","一段由作家乔治·蒙比奥特解说的视频在网上**疯传**(viral)，")],
-     "（narrated by writer George Monbiot：过去分词短语作后置定语，修饰 video）"],
+(2,[[[("In February 2014","2014年2月，"),("a **viral video**","一段**火了的视频**(viral video)，"),("**narrated by** writer George Monbiot","**由**(narrated by)作家乔治·蒙比奥特**解说**(narrated by)，")],
+     "（Viral videos 指代的是那些在互联网上火了的视频。）"],
     [[("**spun**","**编织**(spun)出"),("a","一个"),("**compelling**","**引人入胜的**(compelling)"),("**narrative**:","**故事**(narrative)。")],
      "（spin a narrative：编织出一个故事）"],
     [[("elk,","片中说，麋鹿"),("thinned by wolves","被狼捕杀得数量变少，"),("and","又"),("**wary of** them,","处处**提防**(wary of)着狼，"),("**retreated from** valleys,","便**撤离了**(retreated from)河谷，")],
@@ -73,7 +73,6 @@ S=[
      "问题仍悬而未决，肯修正自己珍视案例的学科更值得信赖。）"]]),
 ]
 G={
- "S4 a viral video narrated by writer George Monbiot":"对齐不了：narrated by writer George Monbiot 是过去分词短语作后置定语，中文“由作家乔治·蒙比奥特解说的视频”定语必须提前；viral 中文沿用文章定稿“在网上疯传”，作谓语放到最后",
  "S4 thinned by wolves":"对齐不了：被动 thinned by wolves 中文“被狼捕杀得数量变少”，by wolves 化成“被狼”必须放到动词前",
  "S6 the thinning claim":"对齐不了：thinning claim 中文沿用文章定稿“鹿被狼吃少了这一说法”，thinning 化成一整句说法的内容放在“说法”前",
  "S6 elk on the park's northern range":"对齐不了：on the park's northern range 是后置定语，修饰 elk，中文“黄石北部草场的麋鹿”定语必须提前",
@@ -94,7 +93,6 @@ CONF={"合组":G,"对齐":{
  "S2-1 wolves captured in Alberta, Ca":"captured in Alberta, Canada 是过去分词短语作后置定语，修饰 wolves，中文“在加拿大艾伯塔省捕获的狼”定语必须提前",
  "S2-2 were hauled to the park in cra":"in crates 是方式状语，中文“装在板条箱里，一路拖运进了公园”（沿用文章定稿）方式必须放到动词前",
  "S3-1 Released from enclosures in la":"in late March 是时间状语，中文“3月下旬，它们被放出围栏”时间必须提到句首，主语 they 也要提前",
- "S4-1 a viral video narrated by writ":"narrated by writer George Monbiot 是后置定语，修饰 video，中文定语必须提前，viral 化成谓语“在网上疯传”放到最后",
  "S6-2 elk on the park's northern ran":"on the park's northern range 是后置定语，修饰 elk，中文“黄石北部草场的麋鹿”定语必须提前",
  "S6-2 peaked at about 19,000 in Janu":"in January 1994 是时间状语，中文“在1994年1月达到约19,000头的峰值”时间必须放到动词前，peak at 化成“达到……的峰值”包住数量",
  "S6-3 and were dwindling before wolv":"before wolves arrived 是时间状语从句，中文“狼还没来就已日渐减少”时间必须放到动词前",
@@ -123,7 +121,9 @@ CONF={"合组":G,"对齐":{
  "S4 retreated from valleys, letting willows flourish and":"不是三项并列：willows flourish and riverbanks stabilise 只有两项，都是 letting 的宾语"},
 "方向":{"S2-2 more→随后又来了六只。":"six more 中文“又……六只”，“又”就是 more（再多），方向一致",
  "S6-3 before→狼还没来就已日渐减少；":"before wolves arrived 中文“狼还没来”，“还没来”就是在狼来之前，方向一致"}}
+CONF.setdefault("同词异译",{})["narrated by：由/解说"]="S4 narrated by A“由 A 解说”被“作家乔治·蒙比奥特”隔开，“由”和“解说”是同一个意思的两部分（T22/T23，用户 2026-11-04 原话“narrated by 也标注为重点词汇……对应的意思: 由..... 解说”），不是两种译法"
 CONF.setdefault("同词异译",{})["excluded：把/挡在外面"]="S10 exclude A“把 A 挡在外面”被“麋鹿”隔开，“把”和“挡在外面”是同一个意思的两部分（T22/T23），不是两种译法"
+CONF["对齐"]["S4-1 narrated by writer George Monb"]="narrated by A 中文“由 A 解说”（用户 2026-11-04 原话），A 夹在“由”和“解说”中间，拆开不通"
 CONF["停顿位置"]={
  "S2 Alberta, / Canada, @5.260":"2026-11-04 逐 2.5 ms 实测（S2 w）：Alberta 的 ə 浊音到 5.20（-22 dB、周期 0.3、低频 -1 dB），5.215 -40、5.24 -51～-57 dB 衰减，5.255–5.2625 降到 -67～-68.5 dB，是两词之间最低处（过零 5.260292）；5.265 起回升，5.2675–5.27 是 Canada 的 /k/ 除阻（-22～-14 dB、重心 3.9 kHz、低频 -33 dB）。插在 5.260 前后两词都没切到",
  "S5 plant-eaters, / and @5.590":"2026-11-04 逐 2.5 ms 实测（S5 w）：eaters 的 /z/ 5.54–5.58（-17～-22 dB、重心 5.1–5.7 kHz），5.5825 -26、5.585 -28、5.5875 -30 dB 是 /z/ 的尾巴；5.590 -34.2 dB 是两词交界最低处（过零 5.590125）；5.5925 起 -18 dB、重心 1.6 kHz、5.595 周期 0.41，是 and 的起音。程序原插 5.585 落在 /z/ 尾巴上，改插 5.590125，/z/ 整段留给 eaters"}
@@ -140,6 +140,7 @@ CONF["机器复听"]={"S5":{"配音指纹":"1b9156c4758b","依据":"2026-11-04 �
 # S4 第2块 高亮开始 31.71：2026-11-04 逐 10 ms 看 a.wav（配音指纹 1b9156c4758b）：31.60–31.70 是 Monbiot 的 oʊ 尾音（-19～-24 dB、重心 0.7–1.4 kHz），31.71 起重心跳到 3.6、5.9 kHz，是 spun 的 /s/（31.73 起 -11～-15 dB）；乙 31.73、甲 31.76
 out={"no":"47","title_en":"Shadows of Wolves Over Yellowstone","title_zh":"黄石公园狼影再现","title_fx":{"hl":["Wolves","Yellowstone"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮开始":{"S4 第2块":31.71},
+     "换行变更已获同意":{"S4":"用户原话“这句话的翻译改成：一段火了的视频，由作家 乔治蒙比奥特解说 narrated by  也标注为重点词汇……viral video 一起标注重点词汇。”（2026-11-04，S4 第1块拆成三组，换行随之变）"},
      "停顿插入点":{"S5":{"2":[5.590125,"交界"]}},
      "非人声区间":{"S1":[[2.5125,2.7825]],"S2":[[2.87,3.245],[5.776417,6.03,"紧贴词尾"]],"S4":[[10.87,11.065],[12.47,12.745]],"S6":[[9.235,9.513667,"紧贴词头"]],"S7":[[3.898792,4.135,"紧贴词尾"],[7.285958,7.540042,"紧贴两头"]],"S8":[[4.31,4.62],[7.287917,7.5425,"紧贴词尾"]],"S10":[[3.978542,4.210042,"紧贴两头"]],"S11":[[2.398417,2.59,"紧贴词尾"]],"S12":[[2.491708,2.735,"紧贴词尾"],[5.475,5.72875,"紧贴词头"]],"S14":[[3.305,3.565]]},
      "高亮按实际开口":True,"高亮开口门槛":40,

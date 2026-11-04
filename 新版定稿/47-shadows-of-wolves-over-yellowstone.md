@@ -4,7 +4,7 @@
 
 Yellowstone's **iconic** grey wolves had been **exterminated** by 1926. On 12 January 1995 eight wolves **captured** in Alberta, Canada, were **hauled** to the park in **crates**; six more followed. Released from **enclosures** in late March, they **roamed** the **wilderness**.
 
-In February 2014 a **viral** video narrated by writer George Monbiot **spun** a **compelling** **narrative**: elk, thinned by wolves and **wary** of them, **retreated** from valleys, letting **willows** **flourish** and riverbanks **stabilise**. Ecologists call this a trophic **cascade**: **predators** eat or **deter** plant-eaters, and **vegetation** **rebounds**.
+In February 2014 a **viral video** **narrated by** writer George Monbiot **spun** a **compelling** **narrative**: elk, thinned by wolves and **wary** of them, **retreated** from valleys, letting **willows** **flourish** and riverbanks **stabilise**. Ecologists call this a trophic **cascade**: **predators** eat or **deter** plant-eaters, and **vegetation** **rebounds**.
 
 Yet the **census** **undermined** the thinning claim: elk on the park's northern range peaked at about 19,000 in January 1994 and were **dwindling** before wolves arrived, **depleted** by **hunters**, **drought**, and bears. Fear looked weak too: in June 2013 Arthur Middleton's University of Wyoming team found that **collared** elk east of the park kept **grazing** unless wolves **ventured** within half a mile.
 
@@ -16,7 +16,7 @@ In January 2025 Oregon State University's William Ripple, an **advocate** of the
 
 黄石公园那些**标志性的**(iconic)灰狼，到1926年已遭**赶尽杀绝**(exterminated)。1995年1月12日，八只在加拿大艾伯塔省**捕获**(captured)的狼装在**板条箱**(crates)里，一路**拖运**(hauled)进了公园；随后又来了六只。3月下旬，它们被放出**围栏**(enclosures)，得以在**荒野**(wilderness)中**四处游荡**(roamed)。
 
-2014年2月，一段由作家乔治·蒙比奥特解说的视频在网上**疯传**(viral)，**编织**(spun)出一个**引人入胜的**(compelling)**故事**(narrative)。片中说，麋鹿被狼捕杀得数量变少，又处处**提防**(wary)着狼，便**撤离**(retreated)了河谷，于是**柳树**(willows)**繁茂**(flourish)起来，河岸也**稳固**(stabilise)下来。生态学家把这称为营养**级联**(cascade)：**捕食者**(predators)吃掉或**吓阻**(deter)食草动物，**植被**(vegetation)便**恢复生长**(rebounds)。
+2014年2月，一段**火了的视频**(viral video)，**由**(narrated by)作家乔治·蒙比奥特**解说**(narrated by)，**编织**(spun)出一个**引人入胜的**(compelling)**故事**(narrative)。片中说，麋鹿被狼捕杀得数量变少，又处处**提防**(wary)着狼，便**撤离**(retreated)了河谷，于是**柳树**(willows)**繁茂**(flourish)起来，河岸也**稳固**(stabilise)下来。生态学家把这称为营养**级联**(cascade)：**捕食者**(predators)吃掉或**吓阻**(deter)食草动物，**植被**(vegetation)便**恢复生长**(rebounds)。
 
 然而，**普查**(census)结果首先就**削弱**(undermined)了“鹿被狼吃少了”这一说法。黄石北部草场的麋鹿在1994年1月达到约19,000头的峰值，狼还没来就已**日渐减少**(dwindling)；**猎人**(hunters)、**干旱**(drought)和熊不断**削减**(depleted)着鹿群。“恐惧”一说看来也站不住。2013年6月，阿瑟·米德尔顿领导的怀俄明大学团队发现，园区东侧**戴项圈的**(collared)麋鹿照样**吃草**(grazing)，除非狼**闯**(ventured)进半英里以内。
 
