@@ -1,0 +1,106 @@
+import json,re,glob,os
+# 第50篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-04 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；三项并列加牛津逗号（T18）；不用破折号（T36）；形容词的“的”进粗体。
+S=[
+(1,[[[("In May 2004","2004年5月，"),("Richard Thompson,","理查德·汤普森，"),("a **marine**","一位**海洋**(marine)"),("**biologist**","**生物学家**(biologist)，"),("at the University of Plymouth,","任职于普利茅斯大学，")],
+     "（a marine biologist at the University of Plymouth：\n同位语，补充说明 Richard Thompson）"],
+    [[("and colleagues","和同事一起"),("described","介绍了"),("an overlooked","一种此前少有人注意的"),("**pollutant**","**污染物**(pollutant)，"),("in the journal Science.","文章发表在《科学》杂志上。")],
+     "（overlooked：被忽视的，此前少有人注意的）"]]),
+(1,[[[("**Sifting through**","**细细筛查**(Sifting through)"),("**plankton** samples kept since the 1960s,","自20世纪60年代起保存下来的**浮游生物**(plankton)样本，")],
+     "（Sifting through…：现在分词短语作状语，逻辑主语是 they；\nkept since the 1960s：过去分词短语作后置定语，修饰 samples）"],
+    [[("they found that","他们发现，"),("**microscopic**","**极其微小的**(microscopic)"),("plastic","塑料"),("**fragments**","**碎片**(fragments)"),("and **synthetic**","和**合成**(synthetic)"),("**fibres**","**纤维**(fibres)"),("had grown","变得"),("more **abundant**.","越来越**多**(abundant)。")],
+     "（grow＋形容词：变得……）"]]),
+(1,[[[("They","他们"),("**labelled**","**把**(labelled)"),("the **particles**","这些**颗粒**(particles)"),("microplastics.","**称为**(labelled)微塑料。")],
+     "（label A B：把 A 称为 B）"]]),
+(2,[[[("Since then","此后，"),("the **durable**","这些**经久不烂的**(durable)"),("**debris**","**碎屑**(debris)"),("has proved","被证明"),("**ubiquitous**,","**无所不在**(ubiquitous)，")],
+     "（prove＋形容词：结果是……，事实证明……）"],
+    [[("turning up","出现在"),("on **shorelines**,","**海岸线**(shorelines)上、"),("in deep-sea **sediment**,","深海**沉积物**(sediment)里、"),("in **rainfall**,","**雨水**(rainfall)中，"),("and in Arctic ice.","以及北极的冰层中。")],
+     "（turning up…：现在分词短语作状语，补充说明结果；\nturn up：出现）"]]),
+(2,[[[("**Regulation**","**监管**(Regulation)"),("came before","先于"),("proof of harm to people:","人体受害的证据出现：")],
+     "（come before…：先于……到来；\nproof of harm to people：人体受害的证据）"],
+    [[("in December 2015","2015年12月，"),("America","美国"),("passed","通过了"),("a law","一项法律，"),("banning","禁止把"),("plastic","塑料"),("microbeads","微珠"),("from **scrubs**","用在**磨砂膏**(scrubs)"),("and other **cosmetics**","等**化妆品**(cosmetics)里，"),("**rinsed down** drains.","这类产品用后会被**冲进**(rinsed down)下水道。")],
+     "（banning…：现在分词短语作后置定语，修饰 law；\nban A from B：禁止在 B 中使用 A；\nrinsed down drains：过去分词短语作后置定语，修饰 cosmetics）"]]),
+(3,[[[("The search","人们的搜寻随后"),("**turned inward**.","**转向了体内**(turned inward)。")],
+     "（turn inward：转向内部，\n这里指转向人体内部）"]]),
+(3,[[[("In March 2022","2022年3月，"),("a small","一项小规模的"),("Dutch","荷兰"),("study","研究"),("found","发现，"),("plastic in the blood of about three-quarters of 22 healthy **donors**.","22名健康**献血者**(donors)中，约四分之三的人血液里有塑料。")],
+     "（about three-quarters of 22 healthy donors：\n22名健康献血者中的约四分之三，即17人）"]]),
+(3,[[[("In March 2024","2024年3月，"),("a study in the New England Journal of Medicine","《新英格兰医学杂志》上的一项研究")],
+     "（in the New England Journal of Medicine：后置定语，修饰 study）"],
+    [[("linked","发现，"),("plastic","塑料"),("in the **fatty** **plaque** of neck **arteries**","存在于颈部**动脉**(arteries)的**脂肪性**(fatty)**斑块**(plaque)中，"),("to a higher risk of","与更高的"),("heart","心脏病"),("attack,","发作、"),("**stroke**,","**中风**(stroke)"),("or death.","或死亡风险有关。")],
+     "（link A to B：把 A 与 B 联系起来；\nof neck arteries：of 结构作后置定语，修饰 plaque）"]]),
+(3,[[[("Its authors","该研究的作者"),("**cautioned** that","**提醒**(cautioned)，"),("**correlation**","**相关性**(correlation)"),("is not","并不等于"),("**causation**.","**因果关系**(causation)。")]]]),
+(4,[[[("The most **sensational**","最**耸人听闻的**(sensational)"),("figures","数字，"),("are the **shakiest**.","也最**站不住脚**(shakiest)。")],
+     "（the shakiest：shaky 的最高级，最不可靠的）"]]),
+(4,[[[("In June 2019","2019年6月，"),("a report for WWF, a **conservation** group,","一份为**自然保护**(conservation)组织世界自然基金会（WWF）撰写的报告"),("**reckoned**","**估算**(reckoned)，")],
+     "（a conservation group：同位语，补充说明 WWF）"],
+    [[("people","人们"),("might swallow a credit card's worth of plastic a week;","每周可能吞下相当于一张信用卡的塑料；")],
+     "（a credit card's worth of…：相当于一张信用卡（重量）的……）"],
+    [[("critics","批评者则"),("call that","说这是"),("an **overestimate**.","**高估**(overestimate)。")],
+     "（call A B：把 A 称作 B）"]]),
+(4,[[[("Two months","两个月"),("later","后，"),("the World Health Organization","世界卫生组织的结论"),("was **reassuring**","**令人安心**(reassuring)，"),("but **tentative**:","却只是**初步的**(tentative)：")]],
+    [[("on","依据"),("limited","有限的"),("evidence,","证据，"),("microplastics in drinking water","饮用水中的微塑料"),("posed no **apparent** risk at current levels.","按目前的含量，并无**明显**(apparent)风险。")],
+     "（on limited evidence：依据有限的证据；\npose a risk：构成风险）"]]),
+(4,[[[("In February 2025","2025年2月，"),("a study in Nature Medicine","医学期刊《自然·医学》上的一项研究"),("reported","报告"),("plastic in brain **tissue**","在脑**组织**(tissue)中发现了塑料，")]],
+    [[("in an amount","其含量"),("popularised as a **spoonful**;","后来被传成脑中有**一勺**(spoonful)塑料；")],
+     "（popularised as…：过去分词短语作后置定语，修饰 amount，\n被广泛传成……）"],
+    [[("others","另有学者"),("**queried** its **methodology**.","对它的**研究方法**(methodology)提出了**质疑**(queried)。")]]]),
+(5,[[[("**Detection**","**检测**(Detection)"),("has outrun","走在了"),("understanding;","认识前面；"),("human","针对人体的"),("studies","研究"),("remain","仍然"),("small","规模较小，"),("or **observational**.","或只是**观察性的**(observational)。")],
+     "（outrun：跑得比……快，这里指超过；\nremain＋形容词：仍然……）"]]),
+(5,[[[("Harm","说它有害"),("is **plausible**","**合乎情理**(plausible)，"),("but **unproven**,","却**尚未证实**(unproven)；")]],
+    [[("and until","而在"),("the **verdict** is in,","**定论**(verdict)出来之前，"),("better **measurement**","依据更好的**测量**(measurement)"),("may guide","来指导"),("policy","政策，"),("more safely","或许会更稳妥，"),("than **panic**.","胜过任由**恐慌**(panic)左右。")],
+     "（the verdict is in：定论已出；\nthan panic：比较的是 panic 指导政策）\n"
+     "（简述：2004年，汤普森等人在存档的浮游生物样本中发现塑料碎片和纤维增多，称之为微塑料。\n"
+     "此后海岸、深海、雨水和北极冰中都发现了它，美国2015年立法禁用化妆品塑料微珠。\n"
+     "研究转向人体：血液、动脉斑块、脑组织里都检出塑料，\n"
+     "但相关不等于因果，最惊人的数字和一些研究方法都受到质疑，\n"
+     "世卫组织也认为目前饮用水中的微塑料没有明显风险。\n"
+     "危害合乎情理却未证实，在定论出来之前，靠更好的测量来制定政策比恐慌更稳妥。）"]]),
+]
+G={
+ "S2 plankton samples kept since the 1960s":"对齐不了：kept since the 1960s 是过去分词短语作后置定语，修饰 samples，中文“自20世纪60年代起保存下来的浮游生物样本”定语必须提前",
+ "S5 came before":"对齐不了：come before 是固定说法“先于”，拆开 came、before 中文不通",
+ "S5 proof of harm to people":"对齐不了：proof of harm to people 是 of 结构，中文“人体受害的证据”语序必须倒过来",
+ "S7 plastic in the blood of about three-quarters of 22 healthy donors":"对齐不了：plastic in the blood of… 层层后置的 of 结构，中文“22名健康献血者中，约四分之三的人血液里有塑料”语序必须整个倒过来",
+ "S8 linked plastic in the fatty plaque of neck arteries":"对齐不了：link A to B 中文“发现 A 与 B 有关”，of neck arteries 是后置定语，中文“颈部动脉的脂肪性斑块”必须提前",
+ "S8 to a higher risk of":"对齐不了：a higher risk of… 是 of 结构，中文“与更高的心脏病发作、中风或死亡风险有关”，“风险”必须放到病名后",
+ "S11 a report for WWF, a conservation group":"对齐不了：for WWF 是后置定语、a conservation group 是 WWF 的同位语，中文“一份为自然保护组织世界自然基金会（WWF）撰写的报告”定语必须提前",
+ "S11 people might swallow a credit card's worth of plastic a week":"对齐不了：a week 是频度状语，中文“每周”必须放到动词前；a credit card's worth of plastic 是 of 结构，中文“相当于一张信用卡的塑料”",
+ "S11 might swallow a credit card's worth of plastic a week":"对齐不了：a week 是频度状语，中文“每周”必须放到动词前；a credit card's worth of plastic 是 of 结构，中文“相当于一张信用卡的塑料”",
+ "S12 microplastics in drinking water":"对齐不了：in drinking water 是后置定语，修饰 microplastics，中文“饮用水中的微塑料”定语必须提前",
+ "S12 posed no apparent risk at current levels":"对齐不了：at current levels 是条件状语，中文“按目前的含量”必须提前；pose no risk 化成“并无风险”，拆开不通",
+ "S13 plastic in brain tissue":"对齐不了：in brain tissue 是地点状语，中文“在脑组织中发现了塑料”地点必须放到动词前",
+ "S13 reported plastic in brain tissue":"对齐不了：in brain tissue 是地点状语，中文“在脑组织中发现了塑料”地点必须放到动词前",
+}
+CONF={"合组":G,"对齐":{
+ "S2-1 plankton samples kept since th":"kept since the 1960s 是后置定语，修饰 samples，中文定语必须提前",
+ "S5-1 proof of harm to people:":"proof of harm to people 是 of 结构，中文“人体受害的证据”语序必须倒过来",
+ "S7-1 plastic in the blood of about ":"层层后置的 of 结构，中文“22名健康献血者中，约四分之三的人血液里有塑料”语序必须整个倒过来",
+ "S8-1 a study in the New England Jou":"in the New England Journal of Medicine 是后置定语，修饰 study，中文“《新英格兰医学杂志》上的一项研究”定语必须提前，刊名不能拆",
+ "S8-2 in the fatty plaque of neck ar":"of neck arteries 是 of 结构作后置定语，修饰 plaque，中文“颈部动脉的脂肪性斑块”必须提前",
+ "S11-1 a report for WWF, a conservati":"for WWF 是后置定语、a conservation group 是同位语，中文定语必须提前",
+ "S11-2 might swallow a credit card's ":"a week 是频度状语，中文“每周”必须放到动词前；a credit card's worth of… 是 of 结构",
+ "S12-2 posed no apparent risk at curr":"at current levels 是条件状语，中文“按目前的含量”必须提前",
+ "S13-1 a study in Nature Medicine":"in Nature Medicine 是后置定语，修饰 study，中文“医学期刊《自然·医学》上的一项研究”定语必须提前",
+ "S13-1 plastic in brain tissue":"in brain tissue 是地点状语，中文地点必须放到动词前","S1-1 at the University of Plymouth,":"University of Plymouth 是专名“普利茅斯大学”，不能拆","S8-2 to a higher risk of":"a higher risk of… 是 of 结构，“风险”必须放到病名后","S13-1 plastic in brain tissue X":"in brain tissue 是地点状语，中文“在脑组织中发现了塑料”地点必须放到动词前"},
+"短语":{
+ "S1 biologist … at":"不是搭配：at the University of Plymouth 只说明任职单位，biologist 单独就是“生物学家”",
+ "S4 on … shorelines":"不是搭配：on 只表示地点（在海岸线上），和 in deep-sea sediment、in rainfall 并列，shorelines 单独就是“海岸线”",
+ "S4 in … rainfall":"不是搭配：in 只表示地点（在雨水中），和前后几处并列，rainfall 单独就是“雨水”",
+ "S5 Regulation … of":"不是搭配：of 属于 proof of harm to people，和 Regulation 无关",
+ "S11 conservation … of":"不是搭配：of 属于 a credit card's worth of plastic，和 conservation 无关",
+ "S11 reckoned … of":"不是搭配：of 属于 a credit card's worth of plastic，和 reckoned 无关",
+ "S9 cautioned that":"不是搭配：that 只引出宾语从句，caution 单独就是“告诫，提醒”，本文“提醒”正是这个意思",
+ "S11 a conservation group":"不是搭配：conservation 单独就是“（自然）保护”（速查表第一个意思），group 是普通名词“组织”",
+ "S13 brain tissue":"不是搭配：tissue 单独就是“（生物的）组织”（速查表第一个意思），brain 是普通名词“脑”",
+ "S15 the verdict is in":"不是搭配：verdict 单独就是“（最终）结论”（速查表第一个意思），本文“定论”即此义；is in 中文“出来”已译出，标 verdict 一个词即可"},
+"数字":{"S2-1 1960":"since the 1960s 中文按文章定稿写作“自20世纪60年代起”，年代相同（1960s = 20世纪60年代）；英文读 the nineteen-sixties"},
+"数字写法":{"S7-1 three":"three-quarters 中文写作“四分之三”（汉字分数），数值相同；22 英文本来就是阿拉伯数字"},
+"是的":{"S12-1 是**初步的**":"“是”属于“只是”（but tentative：却只是初步的），不是“是……的”判断句式；文章定稿原文",
+ "S14-1 是**观察性的**":"“是”属于“只是”（or observational：或只是观察性的），不是“是……的”判断句式；文章定稿原文"},
+"同词异译":{"labelled：把/称为":"不是两种译法：S3 labelled 的意思“把……称为”被“这些颗粒”隔开，“把”和“称为”是同一个意思的两部分（T23）"},"已告诉用户被去掉的重点词":"2026-11-04 已在会话中把 critics（批评者）因与第22篇撞词被去掉的话原样告诉用户"}
+out={"no":"50","title_en":"Microplastics: Everywhere, but How Harmful?","title_zh":"微塑料：无处不在，危害几何？","title_fx":{"hl":["Microplastics","Harmful"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+     "高亮按实际开口":True,"高亮开口门槛":40,
+     "术语":{"Richard Thompson":"理查德·汤普森","University of Plymouth":"普利茅斯大学","Plymouth":"普利茅斯","Science":"《科学》","Dutch":"荷兰","America":"美国","Arctic":"北极","New England Journal of Medicine":"《新英格兰医学杂志》","WWF":"世界自然基金会","World Health Organization":"世界卫生组织","Nature Medicine":"《自然·医学》"}}
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from 核对 import 生成并核对
+生成并核对(S, out)
