@@ -46,7 +46,8 @@ MSG="第${no}篇 4K 定稿（定稿.sh）：出片前/出片后核查全部通�
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 exec 7>"${PUSH_LOCK:-/tmp/推送两仓库.lock}"; flock 7   # 与 推送两仓库.sh 同一把锁排队（G17）
-(cd $L && git checkout -q -- 视频 新版定稿 2>/dev/null; git pull -q --no-rebase --no-edit origin $BR) || stop "拉镜像分支失败"
+(cd $P && { git symbolic-ref -q HEAD >/dev/null || git checkout -q -B main; } && git add -A && { git diff --cached --quiet || git commit -q -m "$MSG"; } && { git pull -q --no-rebase --no-edit origin main || python3 $H/合并追加.py; }) || stop "合并 main 失败"   # 46 11-05：没先拉 main，别篇刚推的改动在镜像上、本地 main 还是旧的，被 合回镜像 当成冲突（推送两仓库.sh 第 20 行同一做法）
+(cd $L && git checkout -q -- 视频 新版定稿 2>/dev/null; { git pull -q --no-rebase --no-edit origin $BR || python3 $H/合并追加.py; }) || stop "拉镜像分支失败"
 python3 $H/合回镜像.py $P $L || stop "镜像上有只在镜像的改动和 main 冲突（不许盖掉，先人工合）"   # 主会话 2026-10-29：31 被冲两次
 (cd $P && { git symbolic-ref -q HEAD >/dev/null || git checkout -q -B main; } && git add -A && { git diff --cached --quiet || git commit -q -m "$MSG"; } && push main) || stop "postgraduate-vocabulary 提交或推送失败"   # K128（33 定稿）：主仓库是分离 HEAD 时，push main 推的是落后的本地 main、被拒：先把 main 挪到 HEAD（镜像那边同一写法）
 (cd $P && python3 视频/工具/镜像同步.py > "$LOG/镜像.log" 2>&1 && cp CLAUDE.md $L/CLAUDE.md && cp 新版定稿/*.md $L/新版定稿/) || stop "镜像同步失败"
