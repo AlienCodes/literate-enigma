@@ -33,7 +33,7 @@ S=[
 (3,[[[("On 10 December 1903","1903年12月10日，"),("she","她"),("**jointly** won the physics Nobel with Pierre and Becquerel,","与皮埃尔和贝克勒尔**共同**(jointly)获得诺贝尔物理学奖，")]],
     [[("the first woman","第一位"),("so **recognised**.","**获此认可的**(recognised)女性。")],
      "（the first woman so recognised：同位语，\n补充说明 she；\nso：指获得诺贝尔奖这件事）"]]),
-(3,[[[("The nomination","提名"),("had **initially**","**最初**(initially)"),("**left** her **out**;","把她**排除在外了**(left out)；")],
+(3,[[[("The nomination","提名"),("had **initially**","**最初**(initially)"),("**left** her **out**;","**把**(left out)她**排除在外了**(left out)；")],
      "（leave sb out：把某人排除在外）"],
     [[("at Pierre's **insistence**,","在皮埃尔的**坚持**(insistence)下，"),("the **omission**","这一**疏漏**(omission)"),("was **rectified**.","得到了**纠正**(rectified)。")],
      "（at one's insistence：在某人的坚持下）"]]),
