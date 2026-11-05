@@ -112,8 +112,8 @@ CONF={"合组":G,"非人声":{
  "S12 flickered … of":"不是搭配：of 属于 a source of warmth，和 flickered 无关",
  "S14 withstood … for":"不是搭配：for 属于 pressure for an inquiry（要求调查的压力），withstand 单独就是“顶住”",
  "S17 empowered … to":"不是搭配：to 是不定式 to create 的符号，empower 单独就是“授权”（速查表第一个意思），说明里已写 empower sb to do sth",
- "S1 stagnant air":"不是靠搭配成义：stagnant 单独就是“不流动的，凝滞的”（速查表第一条释义里的第二个说法），本文“凝滞的”即此义，air 是普通名词“空气”",
- "S17 municipal councils":"不是靠搭配成义：municipal 单独就是“市政的，市镇的”（速查表第一条释义里的第二个说法），本文“市镇”即此义，councils 是普通名词“议会”"},
+ "S1 stagnant air":"不是搭配：stagnant 单独就是“不流动的，凝滞的”（速查表第一条释义里的第二个说法），本文“凝滞的”即此义，air 是普通名词“空气”",
+ "S17 municipal councils":"不是搭配：municipal 单独就是“市政的，市镇的”（速查表第一条释义里的第二个说法），本文“市镇”即此义，councils 是普通名词“议会”"},
 "响度骤降":{"113.0–113.5s":{"配音指纹":"ef5d4c15ba86","低":6.5,"句子":"S14 It withstood pressure for an inquiry until May 1953.","依据":"2026-11-05 逐 50 ms 实测（w，配音指纹 ef5d4c15ba86）：句末 nineteen fifty-three 的 three，/θ/ 3.80–3.85（2 kHz 以上占 -0.1～-3 dB，清楚）、ɹiː 3.90–4.10 是 -12～-23 dB、低频 -4～-8 dB 的正常浊音元音，4.05 起句末降调自然衰减到 4.15 -59 dB；读音清楚、不闷不哑，是句末降调变轻，机器复听两路识别都通过","用户原话":"用户 2026-11-04（CLAUDE.md 守则22，主会话是总负责人）：“你拥有最高决策权……你是总负责人……你来帮我做最好的决定，但是前提是这个决定他能够是最好的。”声音按实测定，交主会话核定"}},
 "牛津逗号":{
  "S12 in their own grates, a source of warmth and":"不是三项并列：a source of warmth and comfort 是 villain 的同位语，and 只连接 warmth、comfort 两项",
