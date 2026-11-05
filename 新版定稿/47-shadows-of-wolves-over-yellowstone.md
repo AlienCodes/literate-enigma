@@ -18,7 +18,7 @@ In January 2025 Oregon State University's William Ripple, an **advocate** of the
 
 2014年2月，一段**火了的视频**(viral video)，**由**(narrated by)作家乔治·蒙比奥特**解说**(narrated by)，**编织**(spun)出一个**引人入胜的**(compelling)**故事**(narrative)。片中说，麋鹿被狼捕杀得数量变少，又处处**提防**(wary)着狼，便**撤离**(retreated)了河谷，于是**柳树**(willows)**繁茂**(flourish)起来，河岸也**稳固**(stabilise)下来。生态学家把这称为营养**级联**(cascade)：**捕食者**(predators)吃掉或**吓阻**(deter)食草动物，然后**植被**(vegetation)得以**恢复生长**(rebounds)。
 
-然而，**普查**(census)结果首先就**动摇了**(undermined)“鹿被狼吃少了”这一说法。黄石北部草场的麋鹿在1994年1月**达到**(peaked at)约19,000头**的峰值**(peaked at)，狼还没来就已**日渐减少**(dwindling)；鹿群被**猎人**(hunters)、**干旱**(drought)和熊不断地**消耗**(depleted)着。“恐惧”一说看来也站不住。2013年6月，阿瑟·米德尔顿领导的怀俄明大学团队发现，园区东侧**戴项圈的**(collared)麋鹿照样**吃草**(grazing)，除非狼**闯**(ventured)进半英里以内。
+然而，**普查**(census)结果首先就**动摇了**(undermined)“鹿被狼吃少了”这一说法。黄石北部草场的麋鹿在1994年1月**达到**(peaked at)约19,000头**的峰值**(peaked at)，狼还没来就已**日渐减少**(dwindling)；鹿群被**猎人**(hunters)、**干旱**(drought)和熊不断地**消耗**(depleted)着。“恐惧”一说看来也站不住。2013年6月，阿瑟·米德尔顿领导的怀俄明大学团队发现，园区东侧**戴项圈的**(collared)麋鹿照样**吃草**(grazing)，除非狼**胆敢踏入**(ventured)进半英里以内。
 
 树木方面的证据也**好不到哪里去**(fared)：2021年11月，犹他州立大学的伊莱恩·布赖斯指出，只**抽样测量**(sampling)最高的**山杨**(aspens)，会把它们的**再生**(regrowth)程度**夸大**(overstated)四到七倍。更根本的**漏洞**(flaw)出在水上。科罗拉多州立大学的汤姆·霍布斯和戴维·库珀用围栏把麋鹿**挡在外面**(excluded)，并修建**人工**(artificial)海狸**坝**(dams)。2024年1月，他们报告说，**不断冲蚀**(eroding)河床的溪流下切太深，那些**矮小的**(stunted)柳树已经够不着水了。
 
