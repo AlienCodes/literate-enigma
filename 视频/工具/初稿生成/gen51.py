@@ -79,6 +79,9 @@ CONF={"合组":{
  "S11 votes … to":"不是搭配：to 是比分里的“对”（234 对 60），和 votes 无关",
  "S19 derivation … of":"不是搭配：of 属于同位语 a pedigree of…，derivation 单独就是“词源”（速查表第一个意思）"},
 "停顿位置":{
+ "S12 Jackson, / a @8.363":"2026-11-05 逐 2.5 ms 实测（S12 w）：Jackson 的 ən 收尾到 8.36（-38 dB），8.365–8.415 -45～-51 dB、低频占 0～-7 dB 是 a 的声门预发声，8.43 起 a 元音（-10.7 dB）；停顿插入点 8.362625 是收尾与预发声交界的过零点，停顿在两词之间",
+ "S12 speller, / had @10.288":"2026-11-05 逐 2.5 ms 实测（S12 w）：speller 的 ɚ 浊音到 10.265（周期 0.48、低频 -2 dB），10.27–10.285 衰减（低频 -3～-6 dB），10.29 起 had 的 /h/ 送气（低频 -12～-25 dB、重心 2.0–2.8 kHz），10.38 起 æ；停顿插入点 10.28825 是 ɚ 与 /h/ 交界的过零点，停顿在两词之间",
+ "S10 Club, / making @8.646":"2026-11-05 逐 2.5 ms 实测（S10 w）：Club 的 ʌ 和 /b/ 除阻衰减到 8.635（-39 dB），8.64–8.66 -53～-69 dB 静音，8.665 起 making 的 /m/（-15.8 dB）；停顿插入点 8.645667 在这段静音里，停顿在两词之间（DTW 把 making 开头算到 8.512 落在 Club 里，是偏差）",
  "S10 Kinderhook', / after @3.845":"2026-11-05 逐 2.5 ms 实测（S10 w）：Kinderhook 的 ʊ 浊音到 3.77，3.775–3.825 是 /k/ 除阻送气（重心 6–7 kHz、-18～-24 dB），3.83–3.86 -43～-61 dB 静音，3.865 起 after 的 æ 起音（-22→-9 dB）；停顿 3.845–3.850 落在 /k/ 除阻之后、after 之前的静音里，两词都完整（DTW 把 after 开头算到 3.737 落在 ʊ 元音里，是偏差）",
  "S10 birthplace, / formed @5.120":"2026-11-05 逐 2.5 ms 实测（S10 w）：birthplace 的 /s/ 5.09–5.115（重心 6.4–7.4 kHz、-22～-24 dB），5.12 起 /f/ 弱擦音（重心 5.8→3.6 kHz、-25～-29 dB），5.135 起 ɔ（-15→-4 dB、重心 0.75 kHz）；停顿插入点 5.120042 是 /s/ 与 /f/ 交界的过零点，停顿在两词之间",
  "S2 misspellings: / O.W. @8.495":"2026-11-05 逐 2.5 ms 实测（S2 w）：misspellings 的 /z/ 衰减到 8.49 -63 dB，8.495–8.965 全段 -55～-69 dB 静音，8.97 起 O 的元音（-45→-7.5 dB）；删掉的静音正好落在 misspellings: 与 O.W. 之间，没碰两边的词（DTW 把 O.W. 开头算到 9.040 是偏差）",
@@ -89,7 +92,7 @@ CONF={"合组":{
 "词性":{"S10-1 birthplace 出生地":"birthplace 是 n.，“出生地”的“地”是名词“地方”，不是副词标记“地”"}}
 out={"no":"51","title_en":"The Joke That Became OK","title_zh":"OK 原本是个玩笑","title_fx":{"hl":["Joke","OK"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "停顿删除区间":{"S2":{"1":[4.8,5.15]}},
-     "停顿插入点":{"S10":{"3":[5.120042,"交界"]},"S12":{"2":[8.362625,"交界"],"3":[10.28825,"交界"]}},
+     "停顿插入点":{"S10":{"3":[5.120042,"交界"],"4":[8.645667,"交界"]},"S12":{"2":[8.362625,"交界"],"3":[10.28825,"交界"]}},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Boston":"波士顿","Boston Morning Post":"《波士顿晨邮报》","Providence Journal":"《普罗维登斯日报》","Charles Gordon Greene":"查尔斯·戈登·格林","Martin Van Buren":"马丁·范布伦","New York":"纽约","Democratic O.K. Club":"民主党 O.K. 俱乐部","William Henry Harrison":"威廉·亨利·哈里森","New York Morning Herald":"《纽约先驱晨报》","Andrew Jackson":"安德鲁·杰克逊","Jackson":"杰克逊","Choctaw":"乔克托语","Greek":"希腊语","Allen Walker Read":"艾伦·沃克·里德","American Speech":"《美国语言》"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
