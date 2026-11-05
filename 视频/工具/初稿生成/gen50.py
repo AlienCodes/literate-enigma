@@ -89,6 +89,7 @@ CONF={"合组":G,"对齐":{
  "S13-1 a study in Nature Medicine":"in Nature Medicine 是后置定语，修饰 study，中文“医学期刊《自然·医学》上的一项研究”定语必须提前",
  "S13-1 plastic in brain tissue":"in brain tissue 是地点状语，中文地点必须放到动词前","S1-1 at the University of Plymouth,":"University of Plymouth 是专名“普利茅斯大学”，不能拆","S8-2 to a higher risk of":"a higher risk of… 是 of 结构，“风险”必须放到病名后","S13-1 plastic in brain tissue X":"in brain tissue 是地点状语，中文“在脑组织中发现了塑料”地点必须放到动词前"},
 "短语":{
+ "S11 swallow … of":"不是搭配：of 属于 a credit card's worth of plastic，swallow 单独就是“吞下”",
  "S5 a … from":"不是搭配：from 属于 banning plastic microbeads from scrubs（ban A from B），和 passed a law 无关",
  "S1 biologist … at":"不是搭配：at the University of Plymouth 只说明任职单位，biologist 单独就是“生物学家”",
  "S4 on … shorelines":"不是搭配：on 只表示地点（在海岸线上），和 in deep-sea sediment、in rainfall 并列，shorelines 单独就是“海岸线”",
