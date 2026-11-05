@@ -20,7 +20,7 @@ S=[
      "（some of them seven times…：省略句，\n即 some of them recorded it seven times）"]]),
 (2,[[[("**Restless** since 20 May,","自5月20日起便**躁动不安**(Restless)，")],
      "（Restless since 20 May：形容词短语作状语，\n逻辑主语是 the volcano）"],
-    [[("the volcano","这座火山"),("reached","达到"),("a **catastrophic**","**灾难性的**(catastrophic)"),("**climax**","**高潮**(climax)"),("on 26 and 27 August.","是在8月26日至27日。")],
+    [[("the volcano","这座火山"),("reached","达到"),("a **catastrophic**","**灾难性的**(catastrophic)"),("**climax**","**高潮**(climax)"),("on 26–27 August.","是在8月26日至27日。")],
      "（reach a climax：达到高潮）"]]),
 (2,[[[("About","约"),("two-thirds","三分之二"),("of the island","的岛体"),("collapsed into","塌入"),("its emptied","已被排空的"),("**magma** chamber,","**岩浆**(magma)房，")],
      "（emptied：过去分词作定语，已被排空的；\nmagma chamber：岩浆房）"],
@@ -89,7 +89,7 @@ G={
 CONF={"合组":G,"对齐":{
  "S1-2 a volcanic island in the Sunda":"in the Sunda Strait 是后置定语，修饰 island，中文“位于巽他海峡的火山岛”定语必须提前",
  "S1-1 Shortly after ten in the morni":"中文日期时间按“年月日、上午、钟点”排，“1883年8月27日上午10时刚过”语序必须整个倒过来",
- "S4-2 on 26 and 27 August.":"on 26 and 27 August 是日期状语，中文“8月26日至27日”月份必须放到日期前，拆开不通",
+ "S4-2 on 26–27 August.":"on 26–27 August 是日期状语，中文“8月26日至27日”月份必须放到日期前，拆开不通",
  "S6-1 over 30 metres high in places,":"in places 是状语，中文“局部”必须提前；over…high 中文“高逾”是一个整体",
  "S10-2 the magnitude of the devastati":"the magnitude of the devastation 是 of 结构，中文“浩劫的规模”语序必须倒过来",
  "S12-2 firefighters in New York and C":"in New York and Connecticut 是后置定语，修饰 firefighters，中文“纽约州和康涅狄格州的消防员”定语必须提前",

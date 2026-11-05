@@ -4,7 +4,7 @@
 
 Shortly after ten in the morning on 27 August 1883, Krakatoa, a **volcanic** island in the Sunda **Strait**, **unleashed** its most **thunderous** explosion. About four hours later, **islanders** on Rodrigues, nearly 4,800 kilometres across the Indian Ocean, took the **roar** for **distant** **gunfire**. **Barometers** worldwide recorded the **atmospheric** pressure wave, some of them seven times in about five days.
 
-**Restless** since 20 May, the volcano reached a **catastrophic** **climax** on 26 and 27 August. About two-thirds of the island collapsed into its emptied **magma** chamber, vanishing beneath the sea. **Tsunamis**, **reportedly** over 30 metres high in places, **swamped** **coastal** **settlements** on Java and Sumatra. Dutch **colonial** **administrators** counted 36,417 dead, mostly **drowned**, perhaps **underestimating** the toll.
+**Restless** since 20 May, the volcano reached a **catastrophic** **climax** on 26–27 August. About two-thirds of the island collapsed into its emptied **magma** chamber, vanishing beneath the sea. **Tsunamis**, **reportedly** over 30 metres high in places, **swamped** **coastal** **settlements** on Java and Sumatra. Dutch **colonial** **administrators** counted 36,417 dead, mostly **drowned**, perhaps **underestimating** the toll.
 
 **Telegrams** from Batavia (now Jakarta), **relayed** by **submarine** **cable**, reached London within hours. Western newspapers soon began **chronicling** what is often called the first global news event. Yet early **dispatches** were **terse**; the **magnitude** of the **devastation** emerged **piecemeal** over days.
 
