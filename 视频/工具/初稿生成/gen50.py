@@ -2,9 +2,9 @@ import json,re,glob,os
 # 第50篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-11-04 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；三项并列加牛津逗号（T18）；不用破折号（T36）；形容词的“的”进粗体。
 S=[
-(1,[[[("In May 2004","2004年5月，"),("Richard Thompson,","理查德·汤普森，"),("a **marine**","一位**海洋**(marine)"),("**biologist**","**生物学家**(biologist)，"),("at the University of Plymouth,","任职于普利茅斯大学，")],
+(1,[[[("In May 2004","2004年5月，"),("Richard Thompson,","理查德·汤普森，"),("a **marine**","一位**海洋的**(marine)"),("**biologist**","**生物学家**(biologist)，"),("at the University of Plymouth,","任职于普利茅斯大学，")],
      "（a marine biologist at the University of Plymouth：\n同位语，补充说明 Richard Thompson）"],
-    [[("and colleagues","和同事一起"),("described","介绍了"),("an overlooked","一种此前少有人注意的"),("**pollutant**","**污染物**(pollutant)，"),("in the journal Science.","文章发表在《科学》杂志上。")],
+    [[("and colleagues described an overlooked **pollutant** in the journal Science.","在《科学》杂志上，他和同事们描述了一种被忽视的**污染物**(pollutant)。")],
      "（overlooked：被忽视的，此前少有人注意的）"]]),
 (1,[[[("**Sifting through**","**细细筛查**(Sifting through)"),("**plankton** samples kept since the 1960s,","自20世纪60年代起保存下来的**浮游生物**(plankton)样本，")],
      "（Sifting through…：现在分词短语作状语，逻辑主语是 they；\nkept since the 1960s：过去分词短语作后置定语，修饰 samples）"],
@@ -57,6 +57,7 @@ S=[
      "危害合乎情理却未证实，在定论出来之前，靠更好的测量来制定政策比恐慌更稳妥。）"]]),
 ]
 G={
+ "S1 and colleagues described an overlooked pollutant in the journal Science":"对齐不了：用户 2026-11-05 原话“下面的翻译改为 在《科学》杂志上，他和同事们描述了一种被忽视的污染物”，地点状语 in the journal Science 放到句首，语序整句倒过来，只能整组",
  "S2 plankton samples kept since the 1960s":"对齐不了：kept since the 1960s 是过去分词短语作后置定语，修饰 samples，中文“自20世纪60年代起保存下来的浮游生物样本”定语必须提前",
  "S5 came before":"对齐不了：come before 是固定说法“先于”，拆开 came、before 中文不通",
  "S5 proof of harm to people":"对齐不了：proof of harm to people 是 of 结构，中文“人体受害的证据”语序必须倒过来",
@@ -72,6 +73,7 @@ G={
  "S13 reported plastic in brain tissue":"对齐不了：in brain tissue 是地点状语，中文“在脑组织中发现了塑料”地点必须放到动词前",
 }
 CONF={"合组":G,"对齐":{
+ "S1-2 and colleagues described an ov":"用户 2026-11-05 原话定的译文“在《科学》杂志上，他和同事们描述了一种被忽视的污染物”，地点状语提到句首，整句语序倒过来",
  "S2-1 plankton samples kept since th":"kept since the 1960s 是后置定语，修饰 samples，中文定语必须提前",
  "S5-1 proof of harm to people:":"proof of harm to people 是 of 结构，中文“人体受害的证据”语序必须倒过来",
  "S7-1 plastic in the blood of about ":"层层后置的 of 结构，中文“22名健康献血者中，约四分之三的人血液里有塑料”语序必须整个倒过来",

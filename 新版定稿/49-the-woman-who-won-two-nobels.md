@@ -39,13 +39,15 @@ She died on 4 July 1934 of a blood **disorder**, probably caused by **prolonged*
 | forging | v. (forge) 建立，缔造（forge a relationship/an alliance/links）；伪造；锻造 | 1 |
 | partnership | n. 合作关系，伙伴关系（in partnership with；form a business partnership） | 1 |
 | elements | n. (element) 元素（a chemical element；the periodic table of the elements）；要素 | 2 |
-| property | n. 性质，特性（the chemical properties of water；healing properties）；财产 | 2 |
+| rays | n. (ray) 射线，光线（X-rays；rays of light；cosmic rays 宇宙射线） | 2 |
+| property | n. 性质，属性，特性（the chemical properties of water；healing properties）；财产 | 2 |
 | radioactivity | n. 放射性；放射现象（levels of radioactivity；measure radioactivity） | 2 |
 | tribute | n. 致敬，颂扬（pay tribute to sb；a fitting tribute to his work） | 2 |
 | motherland | n. 祖国（defend the motherland；return to one's motherland） | 2 |
 | radium | n. 镭（radium paint；the discovery of radium） | 2 |
 | painstakingly | adv. 费尽心力地，煞费苦心地（painstakingly restored/researched） | 2 |
 | tonnes | n. (tonne) 公吨（a ten-tonne truck；tonnes of rubbish） | 2 |
+| leaky | adj. 漏的，漏水的，漏雨的（a leaky roof/tap/boat） | 2 |
 | ore | n. 矿石（iron/copper ore；mine and smelt ore） | 2 |
 | recovered | v. (recover) 回收，提取（recover metal from scrap；recover oil from sand）；恢复 | 2 |
 | gram | n. 克（100 grams of flour；a gram of gold） | 2 |
@@ -53,6 +55,7 @@ She died on 4 July 1934 of a blood **disorder**, probably caused by **prolonged*
 | jointly | adv. 共同地，联合地（jointly owned/run；be jointly responsible） | 3 |
 | recognised | v. (recognise) 认可，表彰（be recognised for one's work；recognise an achievement）；认出 | 3 |
 | initially | adv. 起初，最初（initially reluctant；the plan initially failed） | 3 |
+| left out | v. (leave out) 把……排除在外，遗漏（leave sb out；feel left out 感到被冷落） | 3 |
 | insistence | n. 坚持，坚决要求（at sb's insistence；insistence on quality） | 3 |
 | omission | n. 遗漏，疏漏（a serious omission；errors and omissions） | 3 |
 | rectified | v. (rectify) 纠正，矫正（rectify a mistake/situation/problem） | 3 |
@@ -73,9 +76,9 @@ She died on 4 July 1934 of a blood **disorder**, probably caused by **prolonged*
 | disorder | n. 疾病，失调（a mental/genetic disorder；an eating disorder）；混乱 | 5 |
 | prolonged | adj. 长期的，持续很久的（a prolonged period/illness；prolonged applause） | 5 |
 | preserved | v. (preserve) 保存，保护（preserve old buildings/food；well preserved） | 5 |
-| lead-lined | adj. 衬铅的（a lead-lined room/container；lead-lined walls） | 5 |
-| liability | n. （法律）责任（accept/deny liability；limited liability）；累赘 | 5 |
-| waiver | n. 弃权声明，免责书（sign a waiver；a fee waiver） | 5 |
+| radioactive | adj. 放射性的，有放射性的（radioactive waste/material） | 5 |
+| lead | n. 铅（lead pipes；lead poisoning 铅中毒）；本文 lead-lined 衬铅的 | 5 |
+| liability waiver | n. 免责协议，弃权声明（sign a liability waiver；liability 责任，waiver 弃权书） | 5 |
 | don | v. 穿上，戴上（don a coat/hat/uniform）；书面用语 | 5 |
 | protective | adj. 防护的，保护的（protective clothing/gloves；protective of one's children） | 5 |
 | garments | n. (garment) 衣服，服装（woollen garments；a garment factory） | 5 |
