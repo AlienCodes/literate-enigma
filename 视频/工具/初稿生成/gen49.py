@@ -394,6 +394,7 @@ CONF["们"]={"S6-1 **(leaky)棚屋里，他们**":"们不在加粗里，是代�
 G["S7 so recognised"]="对齐不了：the first woman so recognised 中文“第一位获此认可的女性”（用户原话），so recognised 是后置定语，中文“获此认可的”必须提到“女性”前，“女性”随之放最后"
 G["S16 in lead-lined boxes at the National Library of France"]="对齐不了：at the National Library of France 是后置定语，修饰 boxes，中文“法国国家图书馆的铅衬的盒子里”定语必须提前；lead-lined 只标 lead（用户原话），lined 化在“衬的”里"
 CONF.setdefault("短语",{})["S16 in … lead"]="不是搭配：in 属于 in lead-lined boxes（在……盒子里），lead 只修饰 lined，in lead 不是固定用法"
+CONF["同词异译"]={"left out：把/排除在外了":"不是两种译法：用户 2026-11-05 原话“提名最初把她排除在外了 left out 这里标注为重点词汇”，left out 的意思分在“把……排除在外了”两处，按 T23 意思标全，两处是同一个译法"}
 out={"no":"49","title_en":"The Woman Who Won Two Nobels","title_zh":"两度摘得诺奖的女人","title_fx":{"hl":["Two","Nobels"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "停顿插入点":{"S12":{"1":[0.7125,"交界"]}},
      "非人声区间":{"S8":[[4.242208,4.414375,"紧贴词尾"]],"S10":[[1.2575,1.418042,"紧贴词尾"]],"S11":[[1.76225,1.889208,"紧贴词尾"]],"S14":[[1.377208,1.642042],[5.218958,5.502333,"紧贴词尾"]],"S17":[[1.938,2.136042]]},
