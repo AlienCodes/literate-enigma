@@ -4,7 +4,7 @@
 
 On the morning of 7 November 1940, a **sustained** wind of about 40 miles an hour set the Tacoma Narrows Bridge **twisting**. Its **deck** **tilted** from side to side in ever more **violent** **oscillations** until most of the main span **tore apart** and **tumbled** into the water. No one died. **Footage** of the **spectacle** would later **fascinate** students worldwide.
 
-The bridge had opened in July 1940 as the third-longest **suspension** **span** in the world at the time, its roadway hung from steel cables. Girders only eight feet deep stiffened the deck, making it **slender**, **elegant** and **economical**, but far from **rigid**. Even **faint** **breezes** made it **heave**, earning the **nickname** Galloping Gertie.
+The bridge had opened in July 1940 as the third-longest **suspension** **span** in the world at the time, its roadway hung from steel cables. Girders only eight feet deep stiffened the deck, making it **slender**, **elegant**, and **economical**, but far from **rigid**. Even **faint** **breezes** made it **heave**, earning the **nickname** Galloping Gertie.
 
 **Textbooks** have long **invoked** **resonance**: a **periodic** push that matches an object's natural **frequency** can **amplify** its motion, as when well-timed shoves **propel** a child on a swing. The **analogy** is **intuitive** but **deceptive**. That morning's wind did not **pulse** in time with the bridge; it blew fairly **steadily**.
 
