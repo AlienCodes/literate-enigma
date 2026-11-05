@@ -232,8 +232,16 @@ def main():
             try: MV._boost(w_, items, '自检'); return False
             except SystemExit as e: return 'K154' in str(e)
         b1 = 停({'1': [0.1, 0.2, -3.0]}); b2 = 停({'1': [a_, b_, -7.0]})
-        ok = g1 and b1 and b2
-        print(f"{'✔' if ok else '✘'} K154擦音压低：/s/ 压 3 dB → {dd_ if isinstance(dd_, str) else f'{dd_:+.2f} dB'}；罩到元音{'停' if b1 else '没停'}；-7 dB {'停' if b2 else '没停'}")
+        # 51 S10 假擦音：≤60 ms、重心 ≥5 kHz、后面是静音的词尾段许压 -30 dB；不写“假擦音”或后面不是静音的照停
+        f_ = (ss_.sosfiltfilt(ss_.butter(6, 6000, 'highpass', fs=SR_, output='sos'), rg_.standard_normal(int(0.05 * SR_))) * 0.4).astype(np_.float32)
+        w2_ = np_.concatenate([vow_, f_, np_.zeros(int(0.03 * SR_), np_.float32), vow_])
+        try: MV._boost(w2_, {'1': [0.3, 0.35, -30.0, '假擦音 自检']}, '自检'); g2 = True
+        except SystemExit: g2 = False
+        b3 = 停({'1': [0.3, 0.35, -30.0]}); w3_ = np_.concatenate([vow_, f_, vow_]); b4 = False
+        try: MV._boost(w3_, {'1': [0.3, 0.35, -30.0, '假擦音']}, '自检')
+        except SystemExit as e: b4 = 'K154' in str(e)
+        ok = g1 and b1 and b2 and g2 and b3 and b4
+        print(f"{'✔' if ok else '✘'} K154擦音压低：假擦音放行{'对' if g2 else '错'}、不写假擦音{'停' if b3 else '没停'}、后面不是静音{'停' if b4 else '没停'}；/s/ 压 3 dB → {dd_ if isinstance(dd_, str) else f'{dd_:+.2f} dB'}；罩到元音{'停' if b1 else '没停'}；-7 dB {'停' if b2 else '没停'}")
         if not ok: fails.append('没抓到或误拦：擦音压低（K154）')
     if not only or 'A23大小写' in only:   # K148（43 NeXT）：读音改正的词中间有大写（ZorK），普通小写 zork 不许被当成它去换（原来不分大小写，换不到就停）；大小写对得上的照换
         sys.path.insert(0, W); import make_video as MV

@@ -502,8 +502,10 @@ def _boost(w,items,label,off=0):
         if float(gdb)<0:   # K154 擦音压低（44 S14 a statistical 的 /s/ 与元音一样响、发尖，音频体检齿音超 01–24 最差）：负增益只许罩住擦音
             seg_=np.asarray(w[p:q],np.float64); sp_=np.abs(np.fft.rfft(seg_*np.hanning(len(seg_))))**2 if len(seg_)>16 else np.zeros(2); f_=np.fft.rfftfreq(max(len(seg_),2),1/SR)[:len(sp_)]
             cen_=float((sp_*f_).sum()/(sp_.sum()+1e-20)); h=int(0.005*SR)
-            if not (-6<=float(gdb)<0 and F_<=p<q<=p+int(0.15*SR) and q-p>=2*h and cen_>=3000):
-                raise SystemExit(f'【停止】擦音压低的位置或增益不对（段长 10–150 ms、只许 -6～0 dB、段内声音重心要 ≥3 kHz 才是擦音，碰到元音就停；这段重心 {cen_:.0f} Hz）（K154）：{label[:60]} {g}')
+            假_=len(v)>3 and '假擦音' in str(v[3])   # 51 S10 Kinderhook：模型在 ʊ 后把词尾 k 发成无闭塞的 6–7 kHz 擦音（4 种注音、2 档语速都去不掉）；只许 ≤60 ms、重心 ≥5 kHz、后面 10 ms 是静音的词尾段压到 -40 dB，留出闭塞给补的 k 除阻
+            if 假_ and -40<=float(gdb)<0 and F_<=p<q<=p+int(0.06*SR) and q-p>=2*h and cen_>=5000 and lv(w[q:q+2*F_])<-40: pass
+            elif not (-6<=float(gdb)<0 and F_<=p<q<=p+int(0.15*SR) and q-p>=2*h and cen_>=3000):
+                raise SystemExit(f'【停止】擦音压低的位置或增益不对（段长 10–150 ms、只许 -6～0 dB、段内声音重心要 ≥3 kHz 才是擦音，碰到元音就停；第4项写“假擦音”的词尾段：≤60 ms、重心 ≥5 kHz、后面是静音才许压到 -40 dB；这段重心 {cen_:.0f} Hz）（K154）：{label[:60]} {g}')
             G=10**(float(gdb)/20); r=np.full(q-p,G,np.float32); r[:h]=np.linspace(1,G,h); r[-h:]=np.linspace(G,1,h)
             w[p:q]*=r; continue
         if not (0<float(gdb)<=cap and F_<=p<q<=p+int(0.08*SR) and lv(w[p-F_:p])<-40 and max(lv(w[x:min(x+F_,q)]) for x in range(p,q,F_))<-25):
