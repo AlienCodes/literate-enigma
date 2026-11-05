@@ -42,7 +42,9 @@ The most **sensational** figures are the **shakiest**. In June 2019 a report for
 | durable | adj. 耐用的，经久的（durable materials/goods 耐用品）；持久的（a durable peace）；durability n. 耐久性 | 2 |
 | debris | n. 碎片，残骸，垃圾（plastic/marine debris；debris from the crash） | 2 |
 | ubiquitous | adj. 无所不在的，随处可见的（the ubiquitous mobile phone）；ubiquity n. 普遍存在 | 2 |
+| turning up | v. (turn up) 出现，露面（turn up in/on…；plastic turns up everywhere 到处都能见到塑料）；（东西）被找到；把（音量、温度）调高 | 2 |
 | regulation | n. 监管，管理（government regulation；the regulation of sth）；规章，条例（safety/environmental regulations）；regulate v. 管理，调控；regulator n. 监管机构 | 2 |
+| passed a law | v. (pass a law) 通过一项法律（pass a law banning sth 通过法律禁止某物）；pass v. 通过（法案、考试）；经过；传递 | 2 |
 | shorelines | n. (shoreline) 海岸线，湖岸线（along the shoreline）；shore n. 岸，海滨 | 2 |
 | sediment | n. 沉积物，沉淀物（river/ocean sediment；layers of sediment）；sedimentary adj. 沉积的 | 2 |
 | rainfall | n. 降雨，降雨量（heavy/annual rainfall） | 2 |
@@ -62,6 +64,7 @@ The most **sensational** figures are the **shakiest**. In June 2019 a report for
 | shakiest | adj. (shaky 最高级) 不可靠的，站不住脚的（shaky evidence/argument）；摇晃的，不稳的；（身体）发抖的；shake v. | 4 |
 | conservation | n. （自然、文物的）保护（wildlife/nature conservation；a conservation group）；节约，节省（energy conservation）；（物理）守恒（the conservation of energy）；conserve v. | 4 |
 | reckoned | v. (reckon) 估算，测算（reckon sth at…；be reckoned to be…）；认为，料想（I reckon that…）；reckon with 对付，考虑到；reckon on 指望；reckoning n. 估算 | 4 |
+| swallow | v. 吞下，咽下（swallow food/pills）；轻信（swallow a story）；忍住，抑制（swallow one's pride）；n. 燕子 | 4 |
 | overestimate | n./v. 高估，估计过高（overestimate the cost/risk）；反义 underestimate 低估 | 4 |
 | reassuring | adj. 令人安心的，使人宽慰的（a reassuring smile/message；it is reassuring to know…）；reassure v. 使安心；reassurance n. | 4 |
 | tentative | adj. 初步的，试探性的，暂定的（a tentative conclusion/agreement）；犹豫的，不确定的（a tentative smile）；tentatively adv. | 4 |
