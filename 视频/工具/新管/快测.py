@@ -266,28 +266,29 @@ def 供体增益样本():
     return bad
 
 def 双爆破自动补样本():
-    """K124（47 S6 drought, 的 /t/：原声已有一下弱除阻 -36 dB，词尾辅音 --写入 在它后面补停顿处除阻，下一步报双爆破，删了又自动写回，打转）：
-    真片 47 S6 单句（样本/47_S6_双爆破.json，去掉了那条移植）。好样本：--写入 后供体从原声那一下之前换起（≤ 14.235 s），再核对问题数 0；
-    坏样本：拆掉 K124 那一支，照旧在原声之后补，核对必报双爆破"""
+    """K124（原声已有一下弱除阻，词尾辅音 --写入 在它后面再补移植 → 双爆破，删了又自动写回，打转）：真片单句样本（去掉了那条移植）。
+    47 S6 drought,（停顿处除阻那一支）：好样本 供体从原声那一下之前换起（≤ 14.235 s）、核对 0；49 S12 outright,（词尾除阻那一支，闭塞没认出）：好样本 写 除阻加强、不移植、核对 0。
+    坏样本：各拆掉那一支，照旧在原声之后补，核对必报双爆破"""
     import shutil, tempfile
     if not W or not os.path.exists(f'{W}/make_video.py'): return []
-    样 = f'{T}/样本/47_S6_双爆破.json'
-    if not os.path.exists(样): return ['K124 样本：没有 样本/47_S6_双爆破.json']
-    src = open(f'{T}/词尾辅音核对.py').read(); hook = "if deep and ma_ and float(ma_.group(1)) >= -40:"
-    if hook not in src: return ['K124：词尾辅音核对.py 里找不到原声已有除阻那一支（坏样本造不出）']
-    bad = []
-    for 名, code in (('好', src), ('坏', src.replace(hook, 'if False:'))):
-        with tempfile.TemporaryDirectory(dir=os.path.dirname(W)) as td:   # 和工作目录同级：../tts 照样找得到
-            os.makedirs(f'{td}/scripts')
-            for f in os.listdir(W):
-                if f.endswith('.py') or f == 'fonts': (shutil.copytree if os.path.isdir(f'{W}/{f}') else shutil.copy)(f'{W}/{f}', f'{td}/{f}')
-            shutil.copy(样, f'{td}/scripts/47.json'); open(f'{td}/_核.py', 'w').write(code)
-            e = {**env0, 'XG_TOOLS': T}
-            o1 = subprocess.run(['python3', f'{td}/_核.py', '47', '--写入'], capture_output=True, text=True, cwd=td, env=e, timeout=600)
-            o2 = subprocess.run(['python3', f'{td}/_核.py', '47'], capture_output=True, text=True, cwd=td, env=e, timeout=600); o = o2.stdout + o2.stderr
-            pg = json.load(open(f'{td}/scripts/47.json')).get('停顿处除阻', {}).get('S1', {}).get('4')
-            if 名 == '好' and not (pg and float(pg[0]) <= 14.235 and '问题数 0' in o): bad.append(f'K124 好样本不过：47 S6 drought, 应从原声那一下之前换起、核对问题数 0，实得 {pg}，{(o.strip().splitlines() or ["无输出"])[-1][:120]}')
-            if 名 == '坏' and '双爆破' not in o: bad.append(f'K124 没抓到：拆掉 K124 后 47 S6 drought, 应报双爆破，实得 {(o.strip().splitlines() or ["无输出"])[-1][:120]}（{(o1.stdout + o1.stderr)[-160:]}）')
+    src = open(f'{T}/词尾辅音核对.py').read(); bad = []
+    例 = (('47', '47_S6_双爆破.json', "if deep and ma_ and float(ma_.group(1)) >= -40:", lambda d: (lambda pg: pg and float(pg[0]) <= 14.235)(d.get('停顿处除阻', {}).get('S1', {}).get('4'))),
+          ('49', '49_S12_双爆破.json', "if ph in 'tk' and ma2_ and float(ma2_.group(1)) >= -40:", lambda d: '3' in d.get('除阻加强', {}).get('S1', {}) and '3' not in d.get('词尾除阻', {}).get('S1', {})))
+    for no, fn, hook, 好 in 例:
+        样 = f'{T}/样本/{fn}'
+        if not os.path.exists(样): bad.append(f'K124 样本：没有 样本/{fn}'); continue
+        if hook not in src: bad.append(f'K124：词尾辅音核对.py 里找不到 {no} 那一支（坏样本造不出）'); continue
+        for 名, code in (('好', src), ('坏', src.replace(hook, 'if False:'))):
+            with tempfile.TemporaryDirectory(dir=os.path.dirname(W)) as td:   # 和工作目录同级：../tts 照样找得到
+                os.makedirs(f'{td}/scripts')
+                for f in os.listdir(W):
+                    if f.endswith('.py') or f == 'fonts': (shutil.copytree if os.path.isdir(f'{W}/{f}') else shutil.copy)(f'{W}/{f}', f'{td}/{f}')
+                shutil.copy(样, f'{td}/scripts/{no}.json'); open(f'{td}/_核.py', 'w').write(code); e = {**env0, 'XG_TOOLS': T}
+                subprocess.run(['python3', f'{td}/_核.py', no, '--写入'], capture_output=True, text=True, cwd=td, env=e, timeout=600)
+                r = subprocess.run(['python3', f'{td}/_核.py', no], capture_output=True, text=True, cwd=td, env=e, timeout=600); o = r.stdout + r.stderr
+                末 = (o.strip().splitlines() or ['无输出'])[-1][:120]; d = json.load(open(f'{td}/scripts/{no}.json'))
+                if 名 == '好' and not (好(d) and '问题数 0' in o): bad.append(f'K124 好样本不过：{fn} 自动补不对或核对不过：{末}')
+                if 名 == '坏' and '双爆破' not in o: bad.append(f'K124 没抓到：拆掉 K124 后 {fn} 应报双爆破，实得 {末}')
     return bad
 
 def 挂钩():
@@ -338,7 +339,7 @@ def main():
             b, n = fs.result(); bad += b; out.append(f'⑤ 交付核查 出片前/出片后 + 出片守门自检：{"全过" if not b else f"{len(b)} 处不过"}')
             b = 句尾样本(); bad += b; out.append(f'⑧ K123 句尾（46 S4 增益后收句尾）：S4 两版好样本 < -49.2 dB 且最后 5 ms 仍可听、拆掉必抓、S9 原样不动：{"过" if not b else "不过"}')
             b = 供体增益样本(); bad += b; out.append(f'⑨ K125 停顿处除阻的供体随所在段乘增益（46 S4 fact,）：原样复核放过、供体不乘必抓：{"过" if not b else "不过"}')
-            b = 双爆破自动补样本(); bad += b; out.append(f'⑩ K124 原声已有弱除阻不在后面再补（47 S6 drought,）：从原声之前换起、核对过，拆掉必报双爆破：{"过" if not b else "不过"}')
+            b = 双爆破自动补样本(); bad += b; out.append(f'⑩ K124 原声已有弱除阻不在后面再补（47 S6 drought,、49 S12 outright,）：换起点/改加强、核对过，拆掉必报双爆破：{"过" if not b else "不过"}')
             b = 草稿路径样本(); bad += b; out.append(f'⑦ 草稿篇路径（K109：脚本只在工作目录，音频体检自检过、语速突变量得出）：{"过" if not b else "不过"}')
     if not bad and '--只文本' not in a and '--记基准' not in a:
         subprocess.run(['python3', f'{H}/印章.py', '--盖'], env={**env0, 'XG_TOOLS': T}, capture_output=True)

@@ -312,6 +312,14 @@ def write_grafts(no, d, bad):
             # 淡出开始到移植点之间被淡出的那一帧夹在中间，与原始合成不同（独立复核报“多余声音”）。移植点最晚放在淡出开始处
             fs_ = len(w) - (F5 if len(w) != len(clean_tail(raw)) else int(0.05 * SR))
             if on * F5 > fs_: sec = round(fs_ / SR, 6); print(f'  {lab} 句末：移植点提前到句尾淡出开始处 {sec:.6f}s')
+        ma2_ = re.search(r'除阻全频 (-?[\d.]+) dB', line)
+        if ph in 'tk' and ma2_ and float(ma2_.group(1)) >= -40:   # K124 第二处（49 S12 outright,：原声已有一下 -28.6 dB 的除阻，闭塞没认出来，词尾除阻移植在它后面 15 ms，双爆破、删了又写回）：改加强原声那一下，不够就交人看
+            if deep: pr2_ = pos_r
+            else:   # 闭塞没认出：用核对同一个 release() 在 w 里量原声那一下的位置
+                m2_ = len(w) // F5; rf2_ = np.sqrt(np.mean(np.asarray(w[:m2_ * F5], np.float64).reshape(m2_, F5) ** 2, axis=1)).max()
+                z2_ = release(w, ss.sosfiltfilt(HP, np.asarray(w, np.float64)), len(w) if g == last else ca, rf2_)
+                pr2_ = (z2_[3][0] // F5, -(-z2_[3][1] // F5)) if z2_ else None
+            n += 加强代替(lab, '句末' if g == last else str(g + 1), pr2_, line, f'原声已有一下除阻 {float(ma2_.group(1)):.1f} dB'); continue
         gj.setdefault('标题' if lab == '标题' else lab, {})[('句末' if g == last else str(g + 1))] = [sec, ph]; n += 1
         print(f'写入 {no} {lab} {"句末" if g == last else "第%d个标点" % (g + 1)} /{ph}/ 位置 w {sec:.6f}s（{"闭塞最低点之后" if deep else "没有真正的闭塞：词的声音衰减到 -55 dB 后再留 15 ms 闭塞"}）')
     if n:
