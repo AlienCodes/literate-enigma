@@ -57,20 +57,20 @@ S=[
      "（than the fable suggested：比较状语从句）"],
     [[("and the science","相关研究也要"),("**messier**.","**复杂纠结**(messier)得多。")],
      "（the science messier：省略了 looks）"]]),
-(5,[[[("A **discipline** willing to **revise** its **cherished** example","一门肯**修正**(revise)自己**珍视的**(cherished)案例的**学科**(discipline)，")],
+(5,[[[("A **discipline** willing to **revise** its **cherished** example","一门**学科**(discipline)如果愿意去**修正**(revise)（甚至推翻）自己最**珍视的**(cherished)完美案例，")],
      "（willing to revise its cherished example：\n形容词短语作后置定语，修饰 discipline）"],
-    [[("may","或许"),("deserve more trust than the fable ever did.","比那则寓言更值得信赖。")],
+    [[("may deserve more trust than the fable ever did.","那么这门学科，比那个完美的谣传本身更值得信任。")],
      "（than the fable ever did：比较状语从句，did 代替 deserved trust）\n"
-     "（简述：黄石的灰狼1926年前已被消灭，\n"
-     "1995年从加拿大运来的狼又放归公园。\n"
-     "2014年一段走红的视频讲了个动人的故事：\n"
-     "狼让麋鹿变少、变得警惕，柳树和河岸随之恢复。\n"
-     "可普查显示，麋鹿在狼来之前就已减少；\n"
-     "戴项圈的麋鹿只要狼不靠近，照样吃草；\n"
-     "只量最高的山杨，会把再生夸大四到七倍；\n"
-     "溪流下切太深，柳树够不着水。\n"
-     "2025年里普尔称黄石的级联位居世界最强之列，批评者质疑他的方法。\n"
-     "问题仍悬而未决，肯修正自己珍视案例的学科更值得信赖。）"]]),
+     "（简述：黄石公园的狼在1926年就灭绝了，直到1995年才从加拿大重新引进。\n"
+     "2014年，网上爆火了一个动人的“生态神话”：\n"
+     "说狼来了以后，吓得麋鹿不敢吃树，结果柳树长出来了，河岸也稳固了。\n"
+     "但真实情况却被科学数据无情打脸：其实在狼来之前，麋鹿就已经开始减少了；\n"
+     "科学家给麋鹿戴上追踪项圈后发现，只要狼没凑到跟前，麋鹿照样该吃吃该喝喝；\n"
+     "而且所谓“树木重新繁茂”的数据，被查出严重夸大了4到7倍；\n"
+     "柳树长不出来，其实是因为河水水位下降，树根根本喝不到水，跟鹿吃不吃没关系。\n"
+     "直到2025年，依然有专家坚称黄石公园的“狼群连锁效应”是世界上最强的，\n"
+     "但也遭到了同行的质疑。这事至今没个定论。\n"
+     "不过，一个敢于推翻自己完美案例的学科，比那个编出来的童话，更值得信任。）"]]),
 ]
 G={
  "S4 thinned by wolves":"对齐不了：被动 thinned by wolves 中文“被狼捕杀得数量变少”，by wolves 化成“被狼”必须放到动词前",
