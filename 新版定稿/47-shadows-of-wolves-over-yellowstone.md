@@ -6,7 +6,7 @@ Yellowstone's **iconic** grey wolves had been **exterminated** by 1926. On 12 Ja
 
 In February 2014 a **viral video** **narrated by** writer George Monbiot **spun** a **compelling** **narrative**: elk, thinned by wolves and **wary** of them, **retreated** from valleys, letting **willows** **flourish** and riverbanks **stabilise**. Ecologists call this a trophic **cascade**: **predators** eat or **deter** plant-eaters, and **vegetation** **rebounds**.
 
-Yet the **census** **undermined** the thinning claim: elk on the park's northern range peaked at about 19,000 in January 1994 and were **dwindling** before wolves arrived, **depleted** by **hunters**, **drought**, and bears. Fear looked weak too: in June 2013 Arthur Middleton's University of Wyoming team found that **collared** elk east of the park kept **grazing** unless wolves **ventured** within half a mile.
+Yet the **census** **undermined** the thinning claim: elk on the park's northern range **peaked at** about 19,000 in January 1994 and were **dwindling** before wolves arrived, **depleted** by **hunters**, **drought**, and bears. Fear looked weak too: in June 2013 Arthur Middleton's University of Wyoming team found that **collared** elk east of the park kept **grazing** unless wolves **ventured** within half a mile.
 
 Trees **fared** no better: in November 2021 Utah State University's Elaine Brice showed that **sampling** only the tallest **aspens** **overstated** **regrowth** four- to sevenfold. The deeper **flaw** was water. Colorado State University's Tom Hobbs and David Cooper had **excluded** elk with fences and built **artificial** beaver **dams**. In January 2024 they reported: **eroding** streams had cut so deep that **stunted** willows no longer reached water.
 
@@ -16,9 +16,9 @@ In January 2025 Oregon State University's William Ripple, an **advocate** of the
 
 黄石公园那些**标志性的**(iconic)灰狼，到1926年已遭**赶尽杀绝**(exterminated)。1995年1月12日，八只在加拿大艾伯塔省**捕获**(captured)的狼装在**板条箱**(crates)里，一路**拖运**(hauled)进了公园；随后又来了六只。3月下旬，它们被放出**围栏**(enclosures)，得以在**荒野**(wilderness)中**四处游荡**(roamed)。
 
-2014年2月，一段**火了的视频**(viral video)，**由**(narrated by)作家乔治·蒙比奥特**解说**(narrated by)，**编织**(spun)出一个**引人入胜的**(compelling)**故事**(narrative)。片中说，麋鹿被狼捕杀得数量变少，又处处**提防**(wary)着狼，便**撤离**(retreated)了河谷，于是**柳树**(willows)**繁茂**(flourish)起来，河岸也**稳固**(stabilise)下来。生态学家把这称为营养**级联**(cascade)：**捕食者**(predators)吃掉或**吓阻**(deter)食草动物，**植被**(vegetation)便**恢复生长**(rebounds)。
+2014年2月，一段**火了的视频**(viral video)，**由**(narrated by)作家乔治·蒙比奥特**解说**(narrated by)，**编织**(spun)出一个**引人入胜的**(compelling)**故事**(narrative)。片中说，麋鹿被狼捕杀得数量变少，又处处**提防**(wary)着狼，便**撤离**(retreated)了河谷，于是**柳树**(willows)**繁茂**(flourish)起来，河岸也**稳固**(stabilise)下来。生态学家把这称为营养**级联**(cascade)：**捕食者**(predators)吃掉或**吓阻**(deter)食草动物，然后**植被**(vegetation)得以**恢复生长**(rebounds)。
 
-然而，**普查**(census)结果首先就**削弱**(undermined)了“鹿被狼吃少了”这一说法。黄石北部草场的麋鹿在1994年1月达到约19,000头的峰值，狼还没来就已**日渐减少**(dwindling)；**猎人**(hunters)、**干旱**(drought)和熊不断**削减**(depleted)着鹿群。“恐惧”一说看来也站不住。2013年6月，阿瑟·米德尔顿领导的怀俄明大学团队发现，园区东侧**戴项圈的**(collared)麋鹿照样**吃草**(grazing)，除非狼**闯**(ventured)进半英里以内。
+然而，**普查**(census)结果首先就**动摇了**(undermined)“鹿被狼吃少了”这一说法。黄石北部草场的麋鹿在1994年1月**达到**(peaked at)约19,000头**的峰值**(peaked at)，狼还没来就已**日渐减少**(dwindling)；鹿群被**猎人**(hunters)、**干旱**(drought)和熊不断地**消耗**(depleted)着。“恐惧”一说看来也站不住。2013年6月，阿瑟·米德尔顿领导的怀俄明大学团队发现，园区东侧**戴项圈的**(collared)麋鹿照样**吃草**(grazing)，除非狼**闯**(ventured)进半英里以内。
 
 树木方面的证据也**好不到哪里去**(fared)：2021年11月，犹他州立大学的伊莱恩·布赖斯指出，只**抽样测量**(sampling)最高的**山杨**(aspens)，会把它们的**再生**(regrowth)程度**夸大**(overstated)四到七倍。更根本的**漏洞**(flaw)出在水上。科罗拉多州立大学的汤姆·霍布斯和戴维·库珀用围栏把麋鹿**挡在外面**(excluded)，并修建**人工**(artificial)海狸**坝**(dams)。2024年1月，他们报告说，**不断冲蚀**(eroding)河床的溪流下切太深，那些**矮小的**(stunted)柳树已经够不着水了。
 
