@@ -1035,8 +1035,8 @@ def build(js,out):
     d=json.load(open(js)); no=d['no']
     if os.environ.get('OLD_IV_VOID') and not os.environ.get('AUDIO_ONLY'): raise SystemExit('【停止】OLD_IV_VOID（跳过旧区间）只许 草稿声音.sh 只出声音时用，出正式视频不许带（A45 开关）')
     if str(no).isdigit() and int(no)>=24:                            # T36 破折号禁用（用户 2026-10-24：“以后我们坚决不可以使用破折号……一定一定一定要保证这个规矩绝对要跑起来”），24 起；单词内连字符不算
-        _pz=[(f'S{i}-{k}',f,m.group(0)) for i,s_ in enumerate(d['sentences'],1) for k,c_ in enumerate(s_['chunks'],1) for f in ('en','zh','note') for m in re.finditer(r'[—–―─⸺⸻﹘－]+|--|(?<=\s)-(?=\s)',c_.get(f) or '')]
-        _pz+=[('标题',f,m.group(0)) for f in ('title_en','title_zh') for m in re.finditer(r'[—–―─⸺⸻﹘－]+|--|(?<=\s)-(?=\s)',d.get(f,''))]
+        _pz=[(f'S{i}-{k}',f,m.group(0)) for i,s_ in enumerate(d['sentences'],1) for k,c_ in enumerate(s_['chunks'],1) for f in ('en','zh','note') for m in re.finditer(r'(?!(?<=\d)–(?=\d))[—–―─⸺⸻﹘－]+|--|(?<=\s)-(?=\s)',c_.get(f) or '')]
+        _pz+=[('标题',f,m.group(0)) for f in ('title_en','title_zh') for m in re.finditer(r'(?!(?<=\d)–(?=\d))[—–―─⸺⸻﹘－]+|--|(?<=\s)-(?=\s)',d.get(f,''))]
         if _pz: raise SystemExit('【停止】画面或配音文字里有破折号（T36）：'+'；'.join(f'{a} {b}“{c}”' for a,b,c in _pz)+'。中文换成“，”“：”或括号（字义不改）；英文换成逗号、冒号或括号并同步文章')
     R.apply_script(d)                                              # 画面相关的脚本设置（词下说明对齐等），与定稿视频核对同一个入口
     work=f'work_{no}'; os.makedirs(work,exist_ok=True)

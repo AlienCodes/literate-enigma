@@ -19,6 +19,7 @@ def 改(d, path, val):
 
 CASES = [   # (编号, 篇, 改法说明, 改法, 环境变量, 停止信息里必须有的字)
     ('原样', '20', '不改（不得误拦）', lambda d: None, {}, None),
+    ('T36放行', '20', '24 起两数字紧挨的年份范围短横 1963–64 不算破折号（51 S18）：完整出完', lambda d: (改(d, ['no'], '24'), [c_.__setitem__('zh', c_['zh'].replace('——', '，')) for s_ in d['sentences'] for c_ in s_['chunks']], d['sentences'][0]['chunks'][0].__setitem__('zh', d['sentences'][0]['chunks'][0]['zh'] + '1963–64')), {}, None),   # 20 篇自己 S14-2 中文有“——”（24 前不管），先换掉
     ('T36', '20', '24 起中文里出现破折号', lambda d: (改(d, ['no'], '24'), d['sentences'][0]['chunks'][0].__setitem__('zh', d['sentences'][0]['chunks'][0]['zh'] + '——')), {}, '（T36）'),
     ('A45', '20', '区间声音指纹对不上（读音/语速改过，旧区间没作废）', lambda d: 改(d, ['区间声音指纹'], {k: '000000000000' for k in d.get('非人声区间', {})}), {}, '（A45）'),
     ('A45放行', '20', '指纹对不上但带 OLD_IV_VOID=1（草稿声音.sh）：跳过旧区间、完整出完', lambda d: 改(d, ['区间声音指纹'], {k: '000000000000' for k in d.get('非人声区间', {})}), {'OLD_IV_VOID': '1'}, None),
