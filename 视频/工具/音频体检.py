@@ -99,7 +99,8 @@ def 造坑(a, no):
     b = a.copy(); b[s:e] += 0.05; out['直流偏移'] = b
     b = a.copy(); p = s + L // 2; b[p] = np.clip(b[p] + 0.9 * np.sign(-b[p] or 1), -0.99, 0.99); out['咔哒'] = b
     b = a.copy(); n = int(0.03 * SR); t = np.arange(n) / SR; b[s + L // 2:s + L // 2 + n] += 0.5 * np.sin(2 * np.pi * 7000 * t); out['齿音'] = b
-    b = a.copy(); q = int(0.01 * SR); src = a[s + L // 2:s + L // 2 + 3 * q]; b[e - 3 * q:e] = src / (np.abs(src).max() + 1e-9) * np.abs(a[s:e]).max(); out['句尾截断'] = b
+    b = a.copy(); q = int(0.01 * SR); pk = s + int(np.argmax(np.convolve(a[s:e] ** 2, np.ones(3 * q), 'valid'))); src = a[pk:pk + 3 * q];   # 51 S2 删了吸气：句子正中间正好是数字静音，造出的突起也是静音、没报；取本句最响的 30 ms
+    b[e - 3 * q:e] = src / (np.abs(src).max() + 1e-9) * np.abs(a[s:e]).max(); out['句尾截断'] = b
     b = a.copy(); b[s:s + 3 * q] = src / (np.abs(src).max() + 1e-9) * np.abs(a[s:e]).max(); out['句首突起'] = b
     s2, e2, L2 = s, e, L   # K142（38 自检没抓到语速突变）：造坑放在语速最接近全片中位数的那句；原来固定放中间那句，那句本来就慢（38 第9句），切掉 45% 还没超过 01–24 上限
     txt = 文本(no)

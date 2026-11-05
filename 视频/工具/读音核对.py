@@ -306,8 +306,8 @@ def selftest(no):
         PRON_WORDS.pop(w); got = {line for _, line, bad in check(no) if bad}; phonemes_of = orig
         res.append((f'假改正 {w}（本篇改正在句子里都不起作用，造样本）', ok0 and any(f'] {w} ' in l_ for l_ in got - base)))
     if not any(n_.startswith(('关掉读音改正', '假改正')) for n_, _ in res): res.append(('关掉读音改正：没有样本，也造不出假样本（K102：不许跳过）', False))
-    # ②b 关掉按语境读音（13 S4 过去式 read）：必须报出
-    usedc = [c_ for c_ in PRON_CTX if re.search(r'(?<![A-Za-z])' + re.escape(c_) + r'(?![A-Za-z])', re.sub(r'\*\*', '', R.strip_gloss(text)), flags=re.I)]   # 去掉粗体和中文说明再找（13 S4 是 **press coverage**）
+    # ②b 关掉按语境读音（13 S4 过去式 read）：必须报出；标了 "补音": true 的不算（53 S6 stiffened：标准读音不变、只为合成补发被连读吞掉的 /d/，关掉回到标准读音本来就对）
+    usedc = [c_ for c_ in PRON_CTX if not PRON_CTX[c_].get('补音') and re.search(r'(?<![A-Za-z])' + re.escape(c_) + r'(?![A-Za-z])', re.sub(r'\*\*', '', R.strip_gloss(text)), flags=re.I)]   # 去掉粗体和中文说明再找（13 S4 是 **press coverage**）
     if usedc:
         keep = dict(PRON_CTX); PRON_CTX.clear()
         got = {line for _, line, bad in check(no) if bad}; PRON_CTX.update(keep)
