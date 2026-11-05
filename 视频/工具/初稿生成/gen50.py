@@ -18,7 +18,7 @@ S=[
      "（turning up…：现在分词短语作状语，补充说明结果；\nturn up：出现）"]]),
 (2,[[[("**Regulation**","**监管**(Regulation)"),("came before","先于"),("proof of harm to people:","人体受害的证据出现：")],
      "（come before…：先于……到来；\nproof of harm to people：人体受害的证据）"],
-    [[("in December 2015","2015年12月，"),("America","美国"),("passed","通过了"),("a law","一项法律，"),("banning","禁止把"),("plastic","塑料"),("microbeads","微珠"),("from **scrubs**","用在**磨砂膏**(scrubs)"),("and other **cosmetics**","等**化妆品**(cosmetics)里，"),("**rinsed down** drains.","这类产品用后会被**冲进**(rinsed down)下水道。")],
+    [[("in December 2015","2015年12月，"),("America","美国"),("**passed a law**","**通过了一项法律**(passed a law)，"),("banning","禁止把"),("plastic","塑料"),("microbeads","微珠"),("from **scrubs**","用在**磨砂膏**(scrubs)"),("and other **cosmetics**","等**化妆品**(cosmetics)里，"),("**rinsed down** drains.","这类产品用后会被**冲进**(rinsed down)下水道。")],
      "（banning…：现在分词短语作后置定语，修饰 law；\nban A from B：禁止在 B 中使用 A；\nrinsed down drains：过去分词短语作后置定语，修饰 cosmetics）"]]),
 (3,[[[("The search","人们的搜寻随后"),("**turned inward**.","**转向了体内**(turned inward)。")],
      "（turn inward：转向内部，\n这里指转向人体内部）"]]),
