@@ -78,11 +78,16 @@ CONF={"合组":{
  "S19 embrace … of":"不是搭配：of 属于同位语 a pedigree of…，和 embrace 无关",
  "S11 votes … to":"不是搭配：to 是比分里的“对”（234 对 60），和 votes 无关",
  "S19 derivation … of":"不是搭配：of 属于同位语 a pedigree of…，derivation 单独就是“词源”（速查表第一个意思）"},
+"停顿位置":{
+ "S2 misspellings: / O.W. @8.495":"2026-11-05 逐 2.5 ms 实测（S2 w）：misspellings 的 /z/ 衰减到 8.49 -63 dB，8.495–8.965 全段 -55～-69 dB 静音，8.97 起 O 的元音（-45→-7.5 dB）；删掉的静音正好落在 misspellings: 与 O.W. 之间，没碰两边的词（DTW 把 O.W. 开头算到 9.040 是偏差）",
+ "S2 wright', / K.Y. @11.405":"2026-11-05 逐 2.5 ms 实测（S2 w）：wright 的 /t/ 收尾 11.345–11.36（-27～-33 dB），11.365–11.455 -53～-69 dB 静音，11.46 起 K 的 /k/ 除阻（-21 dB）；停顿 11.405–11.410 落在这段静音中间，两边的词都完整"},
 "同词异译":{"unseated：把/赶下台":"不是两种译法：S11 unseated 的意思“把……赶下台”被“他”隔开，“把”和“赶下台”是同一个意思的两部分（T23）"},
 "对齐":{"S2-3 O.W. for 'oll wright',": "'oll wright' 是故意错拼的引语，整体照录；X for Y 中文“用 X 代表 Y”，“用”必须提前", "S2-3 K.Y. for 'know yuse'.": "'know yuse' 是故意错拼的引语，整体照录；X for Y 中文“用 X 代表 Y”，“用”必须提前", "S3-1 the persona of an uneducated b": "the persona of an uneducated bumpkin 是 of 结构，中文“没受过教育的乡巴佬人设”定语必须提前", "S4-1 a Boston Morning Post satire": "Boston Morning Post 是报名“《波士顿晨邮报》”，不能拆；报名作定语，中文“《波士顿晨邮报》的一篇讽刺文章”", "S4-3 an ordinance against ringing d": "against ringing dinner bells 是后置定语，修饰 ordinance，中文“禁止敲开饭铃的法令”定语必须提前", "S5-1 the first known 'o.k.',": "first known 中文“已知最早的”语序倒过来，'o.k.' 是引语，整体照录", "S9-1 Martin Van Buren, the incumben": "the incumbent president 是同位语，中文“在任总统马丁·范布伦”同位语必须提前，人名不能拆", "S10-1 punning on his nickname 'Old K": "pun on A 中文“拿 A 玩双关”，宾语必须夹在中间；'Old Kinderhook' 是引语，整体照录", "S10-2 the Democratic O.K. Club,": "Democratic O.K. Club 是专名“民主党 O.K. 俱乐部”，不能拆", "S11-1 234 electoral votes to 60.": "234 electoral votes to 60 中文“选举人票为234张对60张”，名词必须提前到比分前", "S12-1 the New York Morning Herald": "New York Morning Herald 是报名“《纽约先驱晨报》”，不能拆", "S12-2 had marked paperwork O.K.,": "mark A B 中文“在 A 上批 B”，A 必须提前到动词前", "S17-1 favoured Choctaw as late as 19": "as late as 1961 是时间状语，中文“直到1961年还”必须放到动词前", "S18-2 excavated the neglected Boston": "from archival newspapers 是提前的介词短语，中文“从档案报纸中发掘出……”地点必须放到动词前", "S18-3 in six influential American Sp": "in six … articles 是介词短语作状语，American Speech 是刊名“《美国语言》”，中文“发表在《美国语言》杂志的六篇……文章里”语序必须倒过来", "S19-1 a pedigree of bad spelling and": "a pedigree of… 是 of 结构作同位语，中文“由错误拼写和开饭铃讽刺文构成的来历”定语必须提前"},
 "方向":{"S10-1 after→这个绰号得名于他的出生地":"after his birthplace 是 named after（以……命名），不是时间先后；中文“得名于他的出生地”意思一致（沿用文章定稿）"},
 "词性":{"S10-1 birthplace 出生地":"birthplace 是 n.，“出生地”的“地”是名词“地方”，不是副词标记“地”"}}
 out={"no":"51","title_en":"The Joke That Became OK","title_zh":"OK 原本是个玩笑","title_fx":{"hl":["Joke","OK"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+     "停顿删除区间":{"S2":{"1":[4.8,5.15]}},
+     "停顿插入点":{"S10":{"3":[5.120042,"交界"]},"S12":{"2":[8.362625,"交界"],"3":[10.28825,"交界"]}},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Boston":"波士顿","Boston Morning Post":"《波士顿晨邮报》","Providence Journal":"《普罗维登斯日报》","Charles Gordon Greene":"查尔斯·戈登·格林","Martin Van Buren":"马丁·范布伦","New York":"纽约","Democratic O.K. Club":"民主党 O.K. 俱乐部","William Henry Harrison":"威廉·亨利·哈里森","New York Morning Herald":"《纽约先驱晨报》","Andrew Jackson":"安德鲁·杰克逊","Jackson":"杰克逊","Choctaw":"乔克托语","Greek":"希腊语","Allen Walker Read":"艾伦·沃克·里德","American Speech":"《美国语言》"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
