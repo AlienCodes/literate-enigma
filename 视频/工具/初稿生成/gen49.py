@@ -398,6 +398,7 @@ out={"no":"49","title_en":"The Woman Who Won Two Nobels","title_zh":"两度摘�
      "停顿插入点":{"S12":{"1":[0.7125,"交界"]}},
      "非人声区间":{"S8":[[4.242208,4.414375,"紧贴词尾"]],"S10":[[1.2575,1.418042,"紧贴词尾"]],"S11":[[1.76225,1.889208,"紧贴词尾"]],"S14":[[1.377208,1.642042],[5.218958,5.502333,"紧贴词尾"]],"S17":[[1.938,2.136042]]},
      "allow_clash":["radioactive"],
+     "除阻加强":{"S12":{"3":[3.89,3.935,5.0]}},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Marie Curie":"玛丽·居里","Maria Skłodowska":"玛丽亚·斯克沃多夫斯卡","Warsaw":"华沙","Paris":"巴黎","Sorbonne":"索邦大学","Pierre Curie":"皮埃尔·居里","Pierre":"皮埃尔","Henri Becquerel":"亨利·贝克勒尔","Becquerel":"贝克勒尔","Curies":"居里夫妇","Nobel":"诺贝尔","First World War":"第一次世界大战","National Library of France":"法国国家图书馆"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

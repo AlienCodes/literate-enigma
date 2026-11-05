@@ -14,7 +14,7 @@ S=[
      "（label A B：把 A 称为 B）"]]),
 (2,[[[("Since then","此后，"),("the **durable**","这些**经久不烂的**(durable)"),("**debris**","**碎屑**(debris)"),("has proved","被证明"),("**ubiquitous**,","**无所不在**(ubiquitous)，")],
      "（prove＋形容词：结果是……，事实证明……）"],
-    [[("turning up","出现在"),("on **shorelines**,","**海岸线**(shorelines)上、"),("in deep-sea **sediment**,","深海**沉积物**(sediment)里、"),("in **rainfall**,","**雨水**(rainfall)中，"),("and in Arctic ice.","以及北极的冰层中。")],
+    [[("**turning up**","**出现**(turning up)在"),("on **shorelines**,","**海岸线**(shorelines)上、"),("in deep-sea **sediment**,","深海**沉积物**(sediment)里、"),("in **rainfall**,","**雨水**(rainfall)中，"),("and in Arctic ice.","以及北极的冰层中。")],
      "（turning up…：现在分词短语作状语，补充说明结果；\nturn up：出现）"]]),
 (2,[[[("**Regulation**","**监管**(Regulation)"),("came before","先于"),("proof of harm to people:","人体受害的证据出现：")],
      "（come before…：先于……到来；\nproof of harm to people：人体受害的证据）"],
