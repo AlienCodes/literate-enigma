@@ -10,8 +10,8 @@ T = os.environ.get('XG_TOOLS') or (os.path.dirname(H) if os.path.exists(f'{os.pa
 sys.path.insert(0, T)
 import 破折号 as PZ
 
-ZH = re.compile(r'\s*(?:[—–―─⸺⸻﹘－]+|--)\s*')
-EN = re.compile(r'\s*(?:[—–―─⸺⸻﹘－]+|--|(?<=\s)-(?=\s))\s*')
+ZH = re.compile(r'\s*(?:(?!(?<=\d)–(?=\d))[—–―─⸺⸻﹘－]+|--)\s*')
+EN = re.compile(r'\s*(?:(?!(?<=\d)–(?=\d))[—–―─⸺⸻﹘－]+|--|(?<=\s)-(?=\s))\s*')
 ns = lambda x: re.sub(r'[\*\s]', '', re.sub(r'\{\{.*?\}\}', '', x))
 
 def 破折号(d):

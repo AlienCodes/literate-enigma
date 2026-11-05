@@ -6,7 +6,7 @@ H=$(cd "$(dirname "$0")" && pwd); [ -f "$(dirname $H)/推送两仓库.sh" ] && S
 for i in 1 2 3 4 5; do
   o=$(bash "$S" "$1" 2>&1); rc=$?; echo "$o" > "${TMPDIR:-/tmp}/推送_第${i}遍.log"; echo "$o" | tail -3
   [ $rc -eq 0 ] && exit 0
-  echo "$o" | grep -qE "【停止】两|rejected|fetch first|non-fast-forward|cannot lock ref|Could not read from remote|unable to access" || exit $rc   # 只有“别人正好在中间推了”（G2 两边不一致、推送被拒）和网络这几种自动重推
+  echo "$o" | grep -qE "【停止】两|【停止】镜像上有只在镜像的改动|rejected|fetch first|non-fast-forward|cannot lock ref|Could not read from remote|unable to access" || exit $rc   # 只有“别人正好在中间推了”（G2 两边不一致、推送被拒、镜像比 main 新一截：46 11-05 撞上 52 推到一半）和网络这几种自动重推
   P=${PUSH_P:-/home/user/postgraduate-vocabulary}; L=${PUSH_L:-/home/user/literate-enigma}
   for r in $P $L; do git -C $r merge --abort 2>/dev/null; done   # 上一遍停在半截合并：先退回，再从头推
   echo "（第 $i 遍：两边一致核对没过，多半是别的会话正好在中间推了，自动重推）"; sleep $((i * 2 + RANDOM % 3))

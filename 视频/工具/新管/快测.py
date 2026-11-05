@@ -47,6 +47,8 @@ def 声音():
     """交付核查 出片前 / 出片后（看门停用后只剩真检查，内含每个声音核查的 --自检、数字读法自检、独立复核造 5 处瑕疵、高亮自检）
     + 出片守门自检（出片程序每道守门造错必停），三个并行。回归篇只出了声音时，只放过 G12 那一行实查（它的自检照样要过）"""
     import shutil
+    if os.path.exists(f'{W}/{NO}.mp4') and subprocess.run(['python3', f'{T}/出片指纹.py', NO], capture_output=True, cwd=W).returncode:   # 上次快测留的样片是旧程序出的（11-05 撤回改动后 G26 误报）：删掉重出
+        os.remove(f'{W}/{NO}.mp4')
     if not os.path.exists(f'{W}/{NO}.mp4'):   # 回归篇还没出过片：先只出声音（出片后核查要 NN.mp4）
         subprocess.run(['python3', 'make_video.py', f'scripts/{NO}.json', f'{NO}.mp4'], capture_output=True, cwd=W, env={**env0, 'AUDIO_ONLY': '1'})
     cmds = [['交付核查.py', NO, '出片前'], ['交付核查.py', NO, '出片后'], ['出片守门自检.py']]
