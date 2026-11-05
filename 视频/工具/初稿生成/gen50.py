@@ -29,7 +29,7 @@ S=[
     [[("linked","将"),("plastic in the **fatty** **plaque** of neck **arteries**","颈部**动脉**(arteries)**脂肪性**(fatty)**斑块**(plaque)中的塑料，"),("to a higher risk of","与"),("heart","心脏病"),("attack,","发作、"),("**stroke**,","**中风**(stroke)"),("or death.","或死亡的更高风险联系了起来。")],
      "（link A to B：把 A 与 B 联系起来；\nof neck arteries：of 结构作后置定语，修饰 plaque）"]]),
 (3,[[[("Its authors","该研究的作者"),("**cautioned**","**警告**(cautioned)"),("that","称，"),("**correlation**","**相关性**(correlation)"),("is not","并不等于"),("**causation**.","**因果关系**(causation)。")]]]),
-(4,[[[("The most **sensational**","最**耸人听闻的**(sensational)"),("figures","数字，"),("are the **shakiest**.","也最**站不住脚**(shakiest)。")],
+(4,[[[("The most **sensational**","最**耸人听闻的**(sensational)"),("figures","数字，"),("are the","就是"),("**shakiest**.","**最不可靠的**(shakiest)。")],
      "（the shakiest：shaky 的最高级，最不可靠的）"]]),
 (4,[[[("In June 2019","2019年6月，"),("a report for WWF, a **conservation** group,","一份为**自然保护**(conservation)组织世界自然基金会（WWF）撰写的报告"),("**reckoned**","**估算**(reckoned)，")],
      "（a conservation group：同位语，补充说明 WWF）"],
