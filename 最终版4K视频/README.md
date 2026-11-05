@@ -50,4 +50,5 @@
 | 43 | From a Garage to the Top of the World | 从车库到世界之巅 | 13.4 MB |
 | 44 | The Night Sweden Switched Sides | 一夜之间换边开车 | 12.2 MB |
 | 45 | The Record Humanity Threw into the Stars | 写给外星人的一张唱片 | 12.7 MB |
+| 47 | Shadows of Wolves Over Yellowstone | 黄石公园狼影再现 | 14.4 MB |
 | 48 | Rice for the World | 稻济天下 | 12.2 MB |
