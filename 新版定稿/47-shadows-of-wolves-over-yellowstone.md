@@ -10,7 +10,7 @@ Yet the **census** **undermined** the thinning claim: elk on the park's northern
 
 Trees **fared** no better: in November 2021 Utah State University's Elaine Brice showed that **sampling** only the tallest **aspens** **overstated** **regrowth** four- to sevenfold. The deeper **flaw** was water. Colorado State University's Tom Hobbs and David Cooper had **excluded** elk with fences and built **artificial** beaver **dams**. In January 2024 they reported: **eroding** streams had cut so deep that **stunted** willows no longer reached water.
 
-In January 2025 Oregon State University's William Ripple, an **advocate** of the **hypothesis**, reported one of the world's strongest cascades; critics **disputed** his methods. The question is **unresolved**, but the wolves' shadow looks fainter than the **fable** suggested, and the science **messier**. A **discipline** willing to **revise** its **cherished** example may deserve more trust than the fable ever did.
+In January 2025 Oregon State University's William Ripple, an **advocate** of the **hypothesis**, reported one of the world's strongest cascades; critics **disputed** his methods. The question is **unresolved**, but the wolves' shadow looks **fainter** than the **fable** suggested, and the science **messier**. A **discipline** willing to **revise** its **cherished** example may deserve more trust than the fable ever did.
 
 ## 中文
 
@@ -20,9 +20,9 @@ In January 2025 Oregon State University's William Ripple, an **advocate** of the
 
 然而，**普查**(census)结果首先就**动摇了**(undermined)“鹿被狼吃少了”这一说法。黄石北部草场的麋鹿在1994年1月**达到**(peaked at)约19,000头**的峰值**(peaked at)，狼还没来就已**日渐减少**(dwindling)；鹿群被**猎人**(hunters)、**干旱**(drought)和熊不断地**消耗**(depleted)着。“恐惧”一说看来也站不住。2013年6月，阿瑟·米德尔顿领导的怀俄明大学团队发现，园区东侧**戴项圈的**(collared)麋鹿照样**吃草**(grazing)，除非狼**胆敢踏入**(ventured)进半英里以内。
 
-树木方面的证据也**好不到哪里去**(fared)：2021年11月，犹他州立大学的伊莱恩·布赖斯指出，只**抽样测量**(sampling)最高的**山杨**(aspens)，会把它们的**再生**(regrowth)程度**夸大**(overstated)四到七倍。更根本的**漏洞**(flaw)出在水上。科罗拉多州立大学的汤姆·霍布斯和戴维·库珀用围栏把麋鹿**挡在外面**(excluded)，并修建**人工**(artificial)海狸**坝**(dams)。2024年1月，他们报告说，**不断冲蚀**(eroding)河床的溪流下切太深，那些**矮小的**(stunted)柳树已经够不着水了。
+树木方面的证据也**好不到哪里去**(fared)：2021年11月，犹他州立大学的伊莱恩·布赖斯指出，只**抽样测量**(sampling)最高的**山杨**(aspens)，会把它们的**再生**(regrowth)程度**夸大**(overstated)四到七倍。更根本的**缺陷**(flaw)出在水上。科罗拉多州立大学的汤姆·霍布斯和戴维·库珀用围栏把麋鹿**挡在外面**(excluded)，并修建**人工**(artificial)海狸**坝**(dams)。2024年1月，他们报告说，**不断冲蚀**(eroding)河床的溪流下切太深，那些**矮小的**(stunted)柳树已经够不着水了。
 
-2025年1月，这一**假说**(hypothesis)的**倡导者**(advocate)、俄勒冈州立大学的威廉·里普尔发文称，黄石的级联效应位居世界最强之列；批评者则对他的方法提出**质疑**(disputed)。问题仍**悬而未决**(unresolved)，但狼投下的影子比**寓言**(fable)所说的要淡，相关研究也要**复杂纠结**(messier)得多。一门肯**修正**(revise)自己**珍视的**(cherished)案例的**学科**(discipline)，或许比那则寓言更值得信赖。
+2025年1月，这一**假说**(hypothesis)的**倡导者**(advocate)、俄勒冈州立大学的威廉·里普尔发文称，黄石的级联效应位居世界最强之列；批评者则**对**(disputed)他的方法提出**质疑**(disputed)。问题仍**悬而未决**(unresolved)，但狼投下的影子比**谣传**(fable)所暗示的**更加无力**(fainter)，相关研究也要**复杂纠结**(messier)得多。一门肯**修正**(revise)自己**珍视的**(cherished)案例的**学科**(discipline)，或许比那则寓言更值得信赖。
 
 ## 速查表
 | 词 | 释义 | 段 |

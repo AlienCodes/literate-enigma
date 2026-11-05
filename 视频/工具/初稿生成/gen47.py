@@ -40,7 +40,7 @@ S=[
     [[("in November 2021","2021年11月，"),("Utah State University's","犹他州立大学的"),("Elaine Brice","伊莱恩·布赖斯"),("showed that","指出，")]],
     [[("**sampling** only","只**抽样测量**(sampling)"),("the tallest","最高的"),("**aspens**","**山杨**(aspens)，"),("**overstated** **regrowth**","会**把**(overstated)它们的**再生**(regrowth)程度**夸大**(overstated)"),("four- to sevenfold.","四到七倍。")],
      "（sampling only the tallest aspens：动名词短语作主语；\nfour- to sevenfold：四到七倍）"]]),
-(4,[[[("The deeper","更根本的"),("**flaw**","**漏洞**(flaw)"),("was water.","出在水上。")]]]),
+(4,[[[("The deeper","更根本的"),("**flaw**","**缺陷**(flaw)"),("was water.","出在水上。")]]]),
 (4,[[[("Colorado State University's","科罗拉多州立大学的"),("Tom Hobbs","汤姆·霍布斯"),("and","和"),("David Cooper","戴维·库珀")]],
     [[("had **excluded** elk with fences","用围栏**把**(excluded)麋鹿**挡在外面**(excluded)，"),("and built","并修建"),("**artificial**","**人工**(artificial)"),("beaver","海狸"),("**dams**.","**坝**(dams)。")],
      "（with fences：方式状语，用围栏）"]]),
@@ -51,9 +51,9 @@ S=[
      "（an advocate of the hypothesis：同位语，补充说明 William Ripple）"],
     [[("reported","发文称，"),("one of the world's strongest cascades;","黄石的级联效应位居世界最强之列；")],
      "（one of the＋最高级＋复数名词：最……之一）"],
-    [[("critics","批评者则"),("**disputed** his methods.","对他的方法提出**质疑**(disputed)。")]]]),
+    [[("critics","批评者则"),("**disputed** his methods.","**对**(disputed)他的方法提出**质疑**(disputed)。")]]]),
 (5,[[[("The question","问题"),("is **unresolved**,","仍**悬而未决**(unresolved)，")]],
-    [[("but","但"),("the wolves'","狼投下的"),("shadow","影子"),("looks fainter than the **fable** suggested,","比**寓言**(fable)所说的要淡，")],
+    [[("but","但"),("the wolves'","狼投下的"),("shadow","影子"),("looks **fainter** than the **fable** suggested,","比**谣传**(fable)所暗示的**更加无力**(fainter)，")],
      "（than the fable suggested：比较状语从句）"],
     [[("and the science","相关研究也要"),("**messier**.","**复杂纠结**(messier)得多。")],
      "（the science messier：省略了 looks）"]]),
@@ -121,6 +121,7 @@ CONF={"合组":G,"对齐":{
  "S4 retreated from valleys, letting willows flourish and":"不是三项并列：willows flourish and riverbanks stabilise 只有两项，都是 letting 的宾语"},
 "方向":{"S2-2 more→随后又来了六只。":"six more 中文“又……六只”，“又”就是 more（再多），方向一致",
  "S6-3 before→狼还没来就已日渐减少；":"before wolves arrived 中文“狼还没来”，“还没来”就是在狼来之前，方向一致"}}
+CONF.setdefault("同词异译",{})["disputed：对/质疑"]="S12 dispute A“对 A 提出质疑”被“他的方法提出”隔开，“对”和“质疑”是同一个意思的两部分（T23，用户 2026-11-05 原话“对  质疑 这三个字都要标色。 对应dispute”），不是两种译法"
 CONF.setdefault("同词异译",{})["overstated：把/夸大"]="S8 overstate A“把 A 夸大”被“它们的再生程度”隔开，“把”和“夸大”是同一个意思的两部分（T23，用户 2026-11-05 原话“把....夸大 都要标色 对应 overstate”），不是两种译法"
 CONF.setdefault("同词异译",{})["narrated by：由/解说"]="S4 narrated by A“由 A 解说”被“作家乔治·蒙比奥特”隔开，“由”和“解说”是同一个意思的两部分（T22/T23，用户 2026-11-04 原话“narrated by 也标注为重点词汇……对应的意思: 由..... 解说”），不是两种译法"
 CONF.setdefault("同词异译",{})["excluded：把/挡在外面"]="S10 exclude A“把 A 挡在外面”被“麋鹿”隔开，“把”和“挡在外面”是同一个意思的两部分（T22/T23），不是两种译法"
