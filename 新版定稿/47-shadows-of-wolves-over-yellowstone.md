@@ -36,6 +36,7 @@ In January 2025 Oregon State University's William Ripple, an **advocate** of the
 | roamed | v. (roam) 漫游，闲逛，四处游荡（roam the streets/countryside）；（目光等）扫视；（手机）漫游（roaming n.） | 1 |
 | wilderness | n. 荒野，荒原，未开发地区（in the wilderness 被冷落，不得志） | 1 |
 | viral | adj. 病毒的，病毒性的（a viral infection）；（网上）迅速传播的，爆红的（go viral 在网上疯传） | 2 |
+| narrated by | v. (narrate) 由……讲述，由……解说（a film narrated by sb）；narrate 叙述，讲述；narrator n. 解说员，叙述者；narration n. 解说 | 2 |
 | spun | v. (spin, spun, spun) 旋转；纺（纱）；（蜘蛛）结（网）；编造，讲述（故事）（spin a story/tale/yarn）；n. 旋转；（对事实的）有利解释（put a positive spin on） | 2 |
 | compelling | adj. 令人信服的（compelling evidence/reasons）；引人入胜的，扣人心弦的（a compelling story）；compel v. 强迫 | 2 |
 | narrative | n. 叙述，故事；（对事件的）说法，叙事（a national narrative）；adj. 叙述的，叙事的 | 2 |
@@ -51,6 +52,7 @@ In January 2025 Oregon State University's William Ripple, an **advocate** of the
 | rebounds | v. (rebound) （数量、价格等）回升，恢复（prices rebound）；弹回，反弹；n. 回升；篮板球（on the rebound） | 2 |
 | census | n. 人口普查；（动物等的）数量统计，普查（take/conduct a census） | 3 |
 | undermined | v. (undermine) 削弱，动摇（论点、信心、权威）（undermine a claim/confidence）；暗中破坏；挖……的墙脚 | 3 |
+| peaked at | v. (peak) 达到峰值，达到最高点（peak at 达到……的峰值）；n. 山峰；顶峰，高峰（at its peak 处于巅峰）；adj. 高峰的（peak hours 高峰时段） | 3 |
 | dwindling | v. (dwindle) 逐渐减少，缩小（dwindle to/away）；adj. dwindling 日渐减少的（dwindling resources） | 3 |
 | depleted | v. (deplete) 耗尽，大量消耗，使（数量、储量）减少（deplete resources/stocks/a population）；depletion n. 耗减 | 3 |
 | hunters | n. (hunter) 猎人；搜寻者（job hunter 求职者；bargain hunter 淘便宜货的人） | 3 |
@@ -73,6 +75,7 @@ In January 2025 Oregon State University's William Ripple, an **advocate** of the
 | hypothesis | n. （复 hypotheses）假说，假设（test/confirm a hypothesis）；hypothetical adj. 假设的 | 5 |
 | disputed | v. (dispute) 对……提出异议，质疑（dispute a claim/the figures）；争论；n. 争论，争端（in dispute 有争议）；disputed adj. 有争议的 | 5 |
 | unresolved | adj. 未解决的，悬而未决的（an unresolved issue）；resolve v. 解决；决心 | 5 |
+| fainter | adj. (faint 的比较级) 微弱的，淡的，模糊的；无力的（a faint hope 一线希望）；v. 昏厥 | 5 |
 | fable | n. 寓言（Aesop's Fables 《伊索寓言》）；无稽之谈，虚构的故事 | 5 |
 | messier | adj. (messy 的比较级) 凌乱的，脏乱的；（局面、问题）棘手的，复杂难理的（a messy divorce） | 5 |
 | discipline | n. 学科（an academic discipline）；纪律，自律；惩罚；v. 惩戒；约束（discipline oneself） | 5 |
