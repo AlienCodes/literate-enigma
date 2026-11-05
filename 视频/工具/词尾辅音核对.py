@@ -214,6 +214,19 @@ def check(no, d, mutate=None):
 def write_grafts(no, d, bad):
     """不合格的 t/k：在 w（clean_tail + _keep_tail + 非人声区间之后、移植之前）里找闭塞最低点之后的位置，写进 scripts/NN.json 的"词尾除阻\""""
     gj = d.setdefault('词尾除阻', {}); n = 0
+    def 加强代替(lab, pos_, pos_r, line, 因, 静=False):
+        """K124（47 S6 drought, 的 /t/）：原声已有一下除阻（或这一处已写 除阻加强）时再移植会听成两个 t（双爆破），改为加强原声那一下：
+        增益 = 已有的 + 2 kHz 以上差多少再多 3 dB，合计最多 6 dB；重心、时长不合格或加到 6 dB 也不够的，交人看。返回写入条数（0 = 交人看）"""
+        hf_ = re.search(r'2 kHz 以上 (-?[\d.]+) dB', line); ms_ = re.search(r'、(\d+) ms', line); ce_ = re.search(r'重心 (\d+) Hz', line)
+        old_ = d.get('除阻加强', {}).get(lab, {}).get(pos_)
+        if pos_r is None or not hf_ or (ms_ and int(ms_.group(1)) > DUR_MAX) or (ce_ and int(ce_.group(1)) < CEN_MIN):
+            静 or print(f'不能自动补（{因}，再移植会听成两个音；原声那一下不是高频不够，加强没用），交人看：', line); return 0
+        og_ = float(old_[2]) if old_ else 0.0; ra, rb = pos_r[0], min(pos_r[1] + 2, pos_r[0] + 16)
+        gdb = min(6.0, round((og_ + TH_HF - float(hf_.group(1)) + 3) * 2) / 2)
+        if float(hf_.group(1)) - og_ + gdb < TH_HF + 1 or gdb <= og_:
+            静 or print(f'不能自动补（{因}，再移植会听成两个音；原声那一下加到 6 dB 也不够），交人看：', line); return 0
+        d.setdefault('除阻加强', {}).setdefault(lab, {})[pos_] = [round(ra * F5 / SR, 6), round(rb * F5 / SR, 6), gdb]
+        print(f'写入 {no} {lab} {pos_} /{line.split("/")[1] if "/" in line else "?"}/ 除阻加强 w {ra * F5 / SR:.3f}–{rb * F5 / SR:.3f}s +{gdb} dB（{因}，不移植）'); return 1
     for lab, g, last, ph, line in bad:
         if g < 0: print('多余的移植，不能自动处理（删掉这条移植后重跑）：', line); continue
         if ph not in 'tkp': print('不能自动补（只有 t、k 有供体，p 用除阻加强）：', line); continue
@@ -263,6 +276,8 @@ def write_grafts(no, d, bad):
             ra, rb = pos_r[0], min(pos_r[1] + 2, pos_r[0] + 16)
             d.setdefault('除阻加强', {}).setdefault(lab, {})['句末' if g == last else str(g + 1)] = [round(ra * F5 / SR, 6), round(rb * F5 / SR, 6), gdb] + ([str(ok8_)] if gdb > 6 else []); n += 1
             print(f'写入 {no} {lab} {"句末" if g == last else "第%d个标点" % (g + 1)} /p/ 除阻加强 w {ra * F5 / SR:.3f}–{rb * F5 / SR:.3f}s +{gdb} dB'); continue
+        if ph in 'tk' and ('句末' if g == last else str(g + 1)) in d.get('除阻加强', {}).get(lab, {}):   # K124：这一处已写 除阻加强（原声有除阻），不再移植
+            n += 加强代替(lab, '句末' if g == last else str(g + 1), pos_r if deep else None, line, '这一处已有 除阻加强'); continue
         if deep: on = pos_c + 1
         else:
             on = fL + 1
@@ -281,6 +296,15 @@ def write_grafts(no, d, bad):
                     print('放不下、也找不到停顿处除阻的位置，交人看（逐段看声音找闭塞，写 停顿处除阻）：', line); continue
                 if str(g + 1) in d.get('停顿删除区间', {}).get(lab, {}):   # K134（34 S5 state, not）：这个标点已有停顿删除区间，出片程序不许再加停顿处除阻（A21 守门），自动写了必停；交人看：删除段起点放在原有除阻之后，或改用除阻加强
                     print('这个标点已有停顿删除区间，不能再加停顿处除阻（出片程序不收），交人看（把删除段起点放在原有除阻之后，或用 除阻加强）：', line); continue
+                ma_ = re.search(r'除阻全频 (-?[\d.]+) dB', line)
+                if deep and ma_ and float(ma_.group(1)) >= -40:   # K124（47 S6 drought,）：停顿处除阻的供体接在原声除阻之后，原声那一下 ≥ -40 dB 就成了两下（双爆破），改加强原声那一下
+                    因_ = f'原声已有一下除阻 {float(ma_.group(1)):.1f} dB'
+                    if (k_ := 加强代替(lab, str(g + 1), pos_r, line, 因_, 静=True)): n += k_; continue
+                    # 加强不够：供体从原声那一下前面的闭塞起换（把弱的那一下一起换掉，只剩一下）；出片守门同 A21：换掉的部分 < -30 dB、前 5 ms < -40 dB
+                    if pos_c >= 1 and e[pos_c - 1] < -40 and max(e[pos_c:max(pos_c + 1, ca // F5)]) < -30:
+                        d.setdefault('停顿处除阻', {}).setdefault(lab, {})[str(g + 1)] = [round(pos_c * F5 / SR, 6), round(ca / SR, 6), ph]; n += 1
+                        print(f'写入 {no} {lab} 第{g + 1}个标点 /{ph}/ 停顿处除阻 w {pos_c * F5 / SR:.3f}–{ca / SR:.3f}s（{因_}，加强 6 dB 也不够：连原声那一下一起换掉）'); continue
+                    print(f'不能自动补（{因_}，加强不够、也换不掉原声那一下），交人看：', line); continue
                 d.setdefault('停顿处除阻', {}).setdefault(lab, {})[str(g + 1)] = [round(pf * F5 / SR, 6), round(ca / SR, 6), ph]; n += 1
                 print(f'写入 {no} {lab} 第{g + 1}个标点 /{ph}/ 停顿处除阻 w {pf * F5 / SR:.3f}–{ca / SR:.3f}s（连读，供体放不进停顿之前）'); continue
         if g == last:
