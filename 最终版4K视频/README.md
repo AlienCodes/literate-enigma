@@ -52,3 +52,4 @@
 | 45 | The Record Humanity Threw into the Stars | 写给外星人的一张唱片 | 12.7 MB |
 | 47 | Shadows of Wolves Over Yellowstone | 黄石公园狼影再现 | 14.4 MB |
 | 48 | Rice for the World | 稻济天下 | 12.2 MB |
+| 49 | The Woman Who Won Two Nobels | 两度摘得诺奖的女人 | 13.2 MB |
