@@ -11,16 +11,11 @@ cp $V/工具/配音/* $B/tts/ ; mkdir -p $B/tts/cache_tts ; cp $V/配音缓存/*
 # 模型全部来自 kokoro-onnx 官方发布页，按地址下载、按校验码核对：出片模型 = model-files-v1.0 的 kokoro-v1.0.onnx；
 # 带时长模型 kokoro-v1.0-timed.onnx = model-files-v1.1 的 kokoro-v1.0.onnx 改名（2026-10-17 重新下载，与本地那份逐字节相同）
 G=https://github.com/thewh1teagle/kokoro-onnx/releases/download
+# 52 11-05：下了一半的模型、没下到的音色，原来见文件在就跳过、只报校验码不对；现在三个都按校验码核对，不对就重下（最多 3 次）
+核模型() { python3 -c "import sys,json,hashlib;j=json.load(open(sys.argv[3]));h=hashlib.sha256(open(sys.argv[1],'rb').read()).hexdigest()[:16];sys.exit(h!=j[sys.argv[2]].split(':')[1])" "$B/tts/$1" "$1" "$V/工具/环境/模型校验码.json" 2>/dev/null; }
 for p in "kokoro-v1.0.onnx model-files-v1.0/kokoro-v1.0.onnx" "kokoro-v1.0-timed.onnx model-files-v1.1/kokoro-v1.0.onnx" "voices-v1.0.bin model-files-v1.0/voices-v1.0.bin"; do
-  set -- $p; [ -f $B/tts/$1 ] || curl -sSL --retry 3 -o $B/tts/$1 $G/$2; done
-python3 - "$B/tts" "$V/工具/环境/模型校验码.json" <<'PY2'
-import sys,json,hashlib,os
-d,j=sys.argv[1],json.load(open(sys.argv[2])); bad=0
-for f in ('kokoro-v1.0.onnx','kokoro-v1.0-timed.onnx'):
-    h=hashlib.sha256(open(os.path.join(d,f),'rb').read()).hexdigest()[:16]; want=j[f].split(':')[1]
-    print(f, h, '✔ 与本地同一个模型' if h==want else '✘ 与本地模型不同'); bad|=(h!=want)
-sys.exit(bad)
-PY2
+  set -- $p; for _i in 1 2 3; do 核模型 $1 && break; rm -f $B/tts/$1; curl -sSL --retry 3 -o $B/tts/$1.下载 $G/$2 && mv $B/tts/$1.下载 $B/tts/$1; done
+  if 核模型 $1; then echo "$1 ✔ 与本地同一个模型"; else echo "$1 ✘ 下了 3 次校验码仍不对（网络截断？重跑本脚本）"; exit 1; fi; done
 # 2026-10-23（13 重新对齐）：新容器缺 imageio_ffmpeg 等包，定稿流水线⓪就停；按固定版本装好
 python3 -c "import imageio_ffmpeg,kokoro_onnx,parselmouth,pyloudnorm,soundfile,scipy" 2>/dev/null || pip install -q -r $V/工具/环境/requirements.txt; python3 -c "import pymupdf,docx" 2>/dev/null || pip install -q pymupdf python-docx   # 生成文本.py（Word/PDF 读回核对）要用
 # 2026-10-25 机器复听（音频保障第 4 层）：离线语音识别 sherpa-onnx + whisper small.en（huggingface 被网络挡，GitHub release 通），下载到 ~/asr 并核对校验码
