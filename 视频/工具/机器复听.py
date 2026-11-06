@@ -113,7 +113,8 @@ def _比(ref, hyp):
     # 读音改正表里的连字符复合词（Walkie-Scorchie）在脚本一侧当一个词，按改正后的读音比
     for k in 复合词():
         ref = re.sub(r'(?i)(?<![^\W_])' + re.escape(k) + r'(?![^\W_])', lambda m_: m_.group(0).replace('-', ''), ref)
-    R, H = 词(ref), 词(hyp); pr = [音标(w) for w in R]; ph = [音标(w) for w in H]
+    R, H = 词(ref), 词(hyp if re.search(r'\.{3}|…', ref) else re.sub(r'\.{3,}|…', ' 漏 ', hyp));   # 51 S10：small.en 把吞掉的一截写成“...”，原来当标点丢了、自检没报；脚本没有省略号时，听到的省略号算漏词
+    pr = [音标(w) for w in R]; ph = [音标(w) for w in H]
     专名 = {w.lower() for w in re.findall(r"(?<![.!?]\s)(?<!^)\b[A-Z][A-Za-z]+(?:'[a-z]+)?", ref)}
     核专名 = {w.lower() for w in re.findall(r"[^\W_]+", ref) if w in 已核实(专名=True)}   # 脚本里原样大写、且已核实表里就是这样大写的词（句首也算）
     sm = difflib.SequenceMatcher(None, pr, ph, autojunk=False); out = []
@@ -229,6 +230,8 @@ def 比较自检():
     for r_, h_ in (('Tu was named a Lasker Award', 'Tu was named Laska Award'), ('Tu was named a Lasker Award', 'Tu was named a Award'), ('On 5 October 2015 she won', 'On October 2015 she won'),
                    ('On 5 October 2015 she won', 'On October 6, 2015 she won'), ('she won the prize', 'she won the the prize')):   # G122：冠词漏读、专名漏掉、日子漏读读错、叠读照报
         if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
+    if not 比('formed the club for the purpose of making', 'formed the... ...of making'): f.append('没抓到：识别器把吞掉的一截写成“...”（51 S10）')
+    if 比('he paused… then went on', 'he paused... then went on'): f.append('误报：脚本本来就有省略号，听到“...”也报了')
     for r_, h_ in (('the cat sat on the mat', 'the cat on the mat'), ('the cabbies waited', 'the cabins waited'), ('He sat there', 'He set there')):
         if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
     global MD, PD, _tk, sf   # 前提门（G79 门变异：以前只有真听声音的主流程走得到）：没有识别模型、有声音程序却没有注音程序，都必须停
