@@ -6,7 +6,7 @@ On Friday 5 December 1952, cold, **stagnant** air **descended on** London. **Ove
 
 That smoke, from coal burned in **domestic** **fireplaces** and **power stations**, was **laden with** soot and **noxious** sulphur dioxide. In places, **visibility** fell to a few metres. **Ambulance** services were **suspended**, an opera at the Sadler's Wells theatre was abandoned at the **interval**, and prize **cattle** at the Smithfield **agricultural** show died or had to be **slaughtered**.
 
-The smog **dissipated** on Tuesday 9 December. Officials at the time put the **excess** deaths at about 4,000, but a 1954 Ministry of Health report blamed later deaths on **influenza**. A study published in Environmental Health Perspectives in 2001 **reassessed** the evidence and cast doubt on that **explanation**, estimating about 12,000 excess deaths between December 1952 and February 1953.
+The smog **dissipated** on Tuesday 9 December. Officials at the time put the **excess** deaths at about 4,000, but a 1954 Ministry of Health report blamed later deaths on **influenza**. A study published in Environmental Health Perspectives in 2001 **reassessed** the evidence and **cast doubt on** that **explanation**, estimating about 12,000 excess deaths between December 1952 and February 1953.
 
 For decades Londoners had **tolerated** the smoke as a **nuisance**. One **villain** **flickered** in their own grates, a source of **warmth** and **comfort** so **habitual** that few thought to **accuse** it. Such **complacency** may help to explain the government's **grudging** **response**. It **withstood** pressure for an inquiry until May 1953.
 
@@ -18,7 +18,7 @@ Reform proved **protracted**, slowed by official **inertia**. The Clean Air Act 
 
 这些煤烟来自煤，是在**家庭**(domestic)**壁炉**(fireplaces)和**发电厂**(power stations)里烧的，**满含**(laden with)烟尘和**有毒的**(noxious)二氧化硫。（from coal…：介词短语作后置定语，修饰 smoke；burned in…：过去分词短语作后置定语，修饰 coal）（be laden with…：满载……，充满……）有些地方，**能见度**(visibility)降到只有几米。**救护车**(Ambulance)服务**暂停**(suspended)；一场歌剧在萨德勒之井剧院演到**幕间休息**(interval)被迫中止；而获奖的**牛**(cattle)，在史密斯菲尔德**农业**(agricultural)展会上有的死去，有的只得**宰杀**(slaughtered)。（an opera at…：介词短语作后置定语，修饰 opera；at the interval：在幕间休息时）（at the Smithfield agricultural show：后置定语，修饰 cattle；had to be slaughtered：不得不被宰杀）
 
-烟雾**消散**(dissipated)于12月9日，星期二。当时的官员估计**超额**(excess)死亡约4,000人，但卫生部1954年的一份报告把后来的死亡归因于**流感**(influenza)。（put A at B：估计 A 为 B）（blame A on B：把 A 归咎于 B）2001年发表于《环境健康展望》的一项研究**重新评估了**(reassessed)证据，并质疑了这一**解释**(explanation)，估计约12,000人超额死亡，时间在1952年12月至1953年2月间。（published in…：过去分词短语作后置定语，修饰 study）（cast doubt on…：对……提出质疑，质疑……）（estimating…：现在分词短语作状语，补充说明研究结论）
+烟雾**消散**(dissipated)于12月9日，星期二。当时的官员估计**超额**(excess)死亡约4,000人，但卫生部1954年的一份报告把后来的死亡归因于**流感**(influenza)。（put A at B：估计 A 为 B）（blame A on B：把 A 归咎于 B）2001年发表于《环境健康展望》的一项研究**重新评估了**(reassessed)证据，并**对**(cast doubt on)这一**解释**(explanation)**提出了质疑**(cast doubt on)，估计约12,000人超额死亡，时间在1952年12月至1953年2月间。（published in…：过去分词短语作后置定语，修饰 study）（cast doubt on…：对……提出质疑，质疑……）（estimating…：现在分词短语作状语，补充说明研究结论）
 
 几十年来，伦敦人一直**容忍**(tolerated)煤烟，把它看成一种**麻烦**(nuisance)。（tolerate A as B：把 A 当作 B 来容忍）有一个**元凶**(villain)就**摇曳**(flickered)在他们自家的炉栅里，它带来**温暖**(warmth)与**舒适**(comfort)，人们早已**习以为常**(habitual)，很少有人想到要**指责**(accuse)它。（grates：炉栅，壁炉里放煤的铁架）（a source of…：同位语，补充说明 villain；so… that…：如此……以至于……）这种**麻痹大意**(complacency)或许有助于说明，政府为何**勉强**(grudging)作出**回应**(response)。（the government's grudging response：政府勉强作出的回应）政府一直**顶住**(withstood)要求调查的压力，直到1953年5月才松口。（pressure for an inquiry：要求调查的压力）
 
@@ -57,6 +57,7 @@ Reform proved **protracted**, slowed by official **inertia**. The Clean Air Act 
 | influenza | 本文：流感；n. 流行性感冒（正式用语，口语作 flu）（an influenza epidemic） | 3 |
 | reassessed | 本文：重新评估了；v. (reassess) 重新评估（reassess the situation/risks） | 3 |
 | explanation | 本文：解释；n. 解释，说法（offer/give an explanation for sth；a plausible explanation） | 3 |
+| cast doubt on | 本文：对……提出质疑；phr. 对……提出质疑，使人怀疑（cast doubt on a claim/an explanation） | 3 |
 | tolerated | 本文：容忍；v. (tolerate) 容忍，忍受（tolerate noise/dissent） | 4 |
 | nuisance | 本文：麻烦；n. 令人烦恼的事物，麻烦（make a nuisance of oneself；a public nuisance 妨害公众的行为） | 4 |
 | villain | 本文：元凶；n. 罪魁，元凶；（戏剧中的）反派（the villain of the piece） | 4 |
