@@ -50,7 +50,7 @@ S=[
 (4,[[[("**Undeterred**,","她并**没有被吓住**(Undeterred)，")],
      "（Undeterred：形容词作状语，说明 she 的状态）"],
     [[("she collected the chemistry Nobel, won **outright**, on 10 December.","于12月10日，领取了**完全**(outright)属于她的诺贝尔化学奖。")],
-     "（won outright：过去分词短语作插入语，修饰 Nobel；\nwin outright：独得，完胜）"]]),
+     "（won outright：过去分词短语作插入语，修饰 Nobel；\nwin outright：完全赢得）"]]),
 (4,[[[("Her **distinction** in two sciences","她在两门科学中双双获得诺贝尔奖，这份**荣誉**(distinction)"),("remains **unmatched**.","至今仍**无人企及**(unmatched)。")],
      "（in two sciences：后置定语，修饰 distinction）"]]),
 (4,[[[("In the First World War","第一次世界大战期间，"),("she","她"),("**mobilised**","**动员/调用了**(mobilised)"),("X-ray **vans**","X光**面包车**(vans)"),("and **stationary** posts","和**固定**(stationary)站点，")],
@@ -73,7 +73,7 @@ S=[
      "居里夫妇1898年宣布发现钋和镭，又在漏雨的棚屋里处理成吨矿石提取镭。\n"
      "1903年她与皮埃尔和贝克勒尔共同获得诺贝尔物理学奖；\n"
      "1906年皮埃尔被马车撞死，她接任成为索邦大学第一位女教授。\n"
-     "1911年她不顾丑闻领取独得的诺贝尔化学奖，一战中又调集X光车为伤员做检查。\n"
+     "1911年她不顾丑闻领取完全属于她的诺贝尔化学奖，一战中又动员X光面包车为伤员做检查。\n"
      "1934年她死于很可能由辐射引起的血液疾病，她的笔记本至今仍有放射性。）"]]),
 ]
 G={
@@ -82,7 +82,7 @@ G={
  "S8 left her out":"对齐不了：left her out 中文“把她排除在外了”（用户原话），her 化成“把她”放到动词前",
  "S10 gave her inaugural lecture as his successor":"对齐不了：as his successor 表身份，中文“作为他的继任者发表了就职演讲”必须放到动词前",
  "S11 a press scandal about her private life":"对齐不了：about her private life 是后置定语，修饰 scandal，中文“关于她私生活的媒体丑闻”定语必须提前",
- "S12 she collected the chemistry Nobel, won outright, on 10 December":"对齐不了：on 10 December 是时间状语，中文“于12月10日”必须放到动词前；won outright 是插入的后置修饰，中文“她独得的”必须放到“诺贝尔化学奖”前",
+ "S12 she collected the chemistry Nobel, won outright, on 10 December":"对齐不了：on 10 December 是时间状语，中文“于12月10日”必须放到动词前；won outright 是插入的后置修饰，中文“完全属于她的”必须放到“诺贝尔化学奖”前",
  "S15 probably caused by":"对齐不了：caused by 中文“是由……所导致的”（用户原话）包住后面的“长期暴露于辐射”，“所导致的”只能放最后",
  "S15 exposure to radiation":"对齐不了：exposure to radiation 中文“暴露于辐射”，“所导致的”属于前面的 caused by，拆开不通",
 }
@@ -94,7 +94,7 @@ CONF={"合组":G,"对齐":{
  "S7-1 jointly won the physics Nobel ":"with Pierre and Becquerel 是伴随状语，中文必须放到动词前",
  "S10-1 gave her inaugural lecture as ":"as his successor 表身份，中文必须放到动词前",
  "S11-1 a press scandal about her priv":"about her private life 是后置定语，中文定语必须提前",
- "S12-2 she collected the chemistry No":"on 10 December 是时间状语，中文必须放到动词前；won outright 中文“独得的”作定语提前",
+ "S12-2 she collected the chemistry No":"on 10 December 是时间状语，中文必须放到动词前；won outright 中文“完全属于她的”作定语提前",
  "S13-1 Her distinction in two science":"in two sciences 是后置定语，修饰 distinction，中文沿用文章定稿“她在两门科学中双双获得诺贝尔奖，这份荣誉”，必须提前",
  "S14-1 In the First World War":"the First World War 是专名“第一次世界大战”，in 化成“期间”放最后，拆开不通",
  "S15-1 She died on 4 July 1934":"on 4 July 1934 是时间状语，中文“1934年7月4日，她死于”时间必须放到句首",

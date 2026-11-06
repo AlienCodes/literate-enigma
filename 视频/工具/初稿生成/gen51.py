@@ -17,7 +17,7 @@ S=[
      "（take a swipe at…：抨击；\nthe Providence Journal：同位语，补充说明 a contemporary）"],
     [[("over a **mock** society","话题是一个**恶搞的**(mock)社团，"),("**parodying**","它**戏仿**(parodying)"),("an **ordinance** against ringing dinner bells.","一项禁止敲开饭铃的**法令**(ordinance)。")],
      "（over…：就……，关于……；\nparodying…：现在分词短语作后置定语，修饰 society）"]]),
-(2,[[[("It carried","文中出现了"),("the first known 'o.k.',","已知最早的 'o.k.'，"),("**glossed as** 'all correct'.","并**注明意为**(glossed as) 'all correct'。")],
+(2,[[[("It carried","它刊载了"),("the first known 'o.k.',","已知最早的“o.k.”，"),("**glossed as** 'all correct'.","**被注释为**(glossed as)“all correct”（完全正确）。")],
      "（glossed as…：过去分词短语作后置定语，修饰 'o.k.'，\n被注释为……）"]]),
 (2,[[[("The letters","这两个字母"),("stood for","代表的是"),("a **knowingly**","**有意**(knowingly)写成"),("**illiterate**","**文盲**(illiterate)拼法的"),("'oll korrect'.","'oll korrect'。")],
      "（stand for：代表；\n'oll korrect'：故意拼错的 all correct）"]]),
