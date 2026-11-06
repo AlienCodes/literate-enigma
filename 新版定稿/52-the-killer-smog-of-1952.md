@@ -4,7 +4,7 @@
 ## 英文
 On Friday 5 December 1952, cold, **stagnant** air **descended on** London. **Overhead**, warmer air pressed down like a **lid**, holding the **chill** **captive** beneath. Londoners were **accustomed to** **murky**, **dreary** winters. This time, though, the capital's smoke was trapped too, thickening into a **choking** **smog**, a mix of **smoke** and **fog**.
 
-That smoke, from coal burned in **domestic** **fireplaces** and **power stations**, was **laden with** soot and **noxious** sulphur dioxide. In places, **visibility** fell to a few metres. **Ambulance** services were suspended, an opera at the Sadler's Wells theatre was abandoned at the **interval**, and prize **cattle** at the Smithfield **agricultural** show died or had to be **slaughtered**.
+That smoke, from coal burned in **domestic** **fireplaces** and **power stations**, was **laden with** soot and **noxious** sulphur dioxide. In places, **visibility** fell to a few metres. **Ambulance** services were **suspended**, an opera at the Sadler's Wells theatre was abandoned at the **interval**, and prize **cattle** at the Smithfield **agricultural** show died or had to be **slaughtered**.
 
 The smog **dissipated** on Tuesday 9 December. Officials at the time put the **excess** deaths at about 4,000, but a 1954 Ministry of Health report blamed later deaths on **influenza**. A study published in Environmental Health Perspectives in 2001 **reassessed** the evidence and cast doubt on that **explanation**, estimating about 12,000 excess deaths between December 1952 and February 1953.
 
@@ -16,7 +16,7 @@ Reform proved **protracted**, slowed by official **inertia**. The Clean Air Act 
 
 1952年12月5日，星期五，寒冷而**凝滞的**(stagnant)空气**降临**(descended on)伦敦。（descend on…：降临，笼罩（某地））**头顶上方**(Overhead)，较暖的空气压了下来，像**盖子**(lid)一样，把**寒气**(chill)**困**(captive)在下面。（holding…：现在分词短语作状语，表结果；hold sth captive：把……困住）伦敦人早已**习惯**(accustomed to)**昏暗的**(murky)、**阴沉的**(dreary)冬天。（be accustomed to…：习惯于……）不过这一次，首都的煤烟也被困住了，越积越浓，成了**令人窒息的**(choking)**烟雾**(smog)，也就是**烟**(smoke)与**雾**(fog)的混合物。（thickening into…：现在分词短语作状语，表结果；a mix of smoke and fog：同位语，补充说明 smog）
 
-这些煤烟来自煤，是在**家庭**(domestic)**壁炉**(fireplaces)和**发电厂**(power stations)里烧的，**满含**(laden with)烟尘和**有毒的**(noxious)二氧化硫。（from coal…：介词短语作后置定语，修饰 smoke；burned in…：过去分词短语作后置定语，修饰 coal）（be laden with…：满载……，充满……）有些地方，**能见度**(visibility)降到只有几米。**救护车**(Ambulance)服务暂停；一场歌剧在萨德勒之井剧院演到**幕间休息**(interval)被迫中止；而获奖的**牛**(cattle)，在史密斯菲尔德**农业**(agricultural)展会上有的死去，有的只得**宰杀**(slaughtered)。（an opera at…：介词短语作后置定语，修饰 opera；at the interval：在幕间休息时）（at the Smithfield agricultural show：后置定语，修饰 cattle；had to be slaughtered：不得不被宰杀）
+这些煤烟来自煤，是在**家庭**(domestic)**壁炉**(fireplaces)和**发电厂**(power stations)里烧的，**满含**(laden with)烟尘和**有毒的**(noxious)二氧化硫。（from coal…：介词短语作后置定语，修饰 smoke；burned in…：过去分词短语作后置定语，修饰 coal）（be laden with…：满载……，充满……）有些地方，**能见度**(visibility)降到只有几米。**救护车**(Ambulance)服务**暂停**(suspended)；一场歌剧在萨德勒之井剧院演到**幕间休息**(interval)被迫中止；而获奖的**牛**(cattle)，在史密斯菲尔德**农业**(agricultural)展会上有的死去，有的只得**宰杀**(slaughtered)。（an opera at…：介词短语作后置定语，修饰 opera；at the interval：在幕间休息时）（at the Smithfield agricultural show：后置定语，修饰 cattle；had to be slaughtered：不得不被宰杀）
 
 烟雾**消散**(dissipated)于12月9日，星期二。当时的官员估计**超额**(excess)死亡约4,000人，但卫生部1954年的一份报告把后来的死亡归因于**流感**(influenza)。（put A at B：估计 A 为 B）（blame A on B：把 A 归咎于 B）2001年发表于《环境健康展望》的一项研究**重新评估了**(reassessed)证据，并质疑了这一**解释**(explanation)，估计约12,000人超额死亡，时间在1952年12月至1953年2月间。（published in…：过去分词短语作后置定语，修饰 study）（cast doubt on…：对……提出质疑，质疑……）（estimating…：现在分词短语作状语，补充说明研究结论）
 
@@ -47,6 +47,7 @@ Reform proved **protracted**, slowed by official **inertia**. The Clean Air Act 
 | noxious | 本文：有毒的；adj. 有毒的，有害的（noxious fumes/gases） | 2 |
 | visibility | 本文：能见度；n. 能见度（poor/good visibility；visibility fell to 10 metres）；可见性 | 2 |
 | Ambulance | 本文：救护车；n. 救护车（call an ambulance；ambulance service/crew） | 2 |
+| suspended | 本文：暂停；v. (suspend) 暂停，中止（suspend a service/flights）；悬挂 | 2 |
 | interval | 本文：幕间休息；n. 〈英〉（演出的）幕间休息（during the interval）；间隔（at regular intervals） | 2 |
 | cattle | 本文：牛；n. 牛（集合名词，复数用）（beef/dairy cattle；a herd of cattle） | 2 |
 | agricultural | 本文：农业；adj. 农业的（an agricultural show/college；agricultural land） | 2 |
