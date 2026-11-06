@@ -47,6 +47,9 @@ open(f'{DST}/README.md', 'w').write('# 最终版 4K 视频\n\n> 这里只放已�
 print(f'共 {len(rows)} 篇，目录已写入 最终版4K视频/README.md')
 sys.path.insert(0, T); import importlib; K = importlib.import_module('踩坑核查')
 vf = K.video_folders(ROOT)
+_want = [a.zfill(2) for a in sys.argv[1:]]; _别 = [x for x in vf if _want and (m_ := re.match(r'\[G7\] 第(\d\d)篇已定稿，旧草稿', x)) and m_.group(1) not in _want]   # 52/51 11-06：别篇正在重做的草稿只提醒，不拦本篇（同 定稿视频核对）
+for x in _别: print('  【提醒】', x, '（别篇正在重做的草稿，不拦本篇）')
+vf = [x for x in vf if x not in _别]
 print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
 # G9：存的必须是最终版——逐屏、逐样本与现行定稿脚本比对（镜像仓库这时还没同步；同步推送后再跑 定稿视频核对.py --只查清点和镜像）
 from 重查记录 import 记, 键, 程序指纹   # K160（43 定稿）：这道核对和全篇重查是同一套判法，通过就记进 全篇重查通过.json，刚定稿的篇目不再被列成欠着、主会话不用再重查一遍
