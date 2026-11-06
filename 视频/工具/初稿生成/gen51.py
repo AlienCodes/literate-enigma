@@ -27,7 +27,7 @@ S=[
      "（当时正值美国大选，总统候选人范布伦的外号叫“老金德胡克（Old Kinderhook）”，缩写刚好是 O.K.。\n党派报纸疯狂传播这两个字母，就是搞政治营销，暗示“选他，就是完全正确（all correct）！”）"]]),
 (3,[[[("In 1840","1840年，"),("Martin Van Buren, the **incumbent** president,","**在任**(incumbent)总统马丁·范布伦"),("sought **re-election**.","寻求**连任**(re-election)。")],
      "（the incumbent president：同位语，补充说明 Martin Van Buren）"]]),
-(3,[[[("His New York **backers**,","他在纽约的**拥护者**(backers)"),("punning on his nickname 'Old Kinderhook',","拿他的绰号 'Old Kinderhook' 玩双关，"),("after his **birthplace**,","这个绰号得名于他的**出生地**(birthplace)，")],
+(3,[[[("His New York **backers**,","他在纽约的**拥护者**(backers)"),("**punning on** his nickname 'Old Kinderhook',","**拿**(punning on)他的绰号 'Old Kinderhook' **玩双关**(punning on)，"),("after his **birthplace**,","这个绰号得名于他的**出生地**(birthplace)，")],
      "（punning on…：现在分词短语作状语，拿……玩双关；\nafter his birthplace：以他的出生地金德胡克命名）"],
     [[("formed","他们成立了"),("the Democratic O.K. Club,","民主党 O.K. 俱乐部，"),("making","让"),("the letters","这两个字母"),("a **double-meaning**","成了一句**一语双关的**(double-meaning)"),("**slogan**.","**口号**(slogan)。")],
      "（making…：现在分词短语作状语，表示结果；\nmake A B：让 A 成为 B）"]]),
