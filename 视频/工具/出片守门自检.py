@@ -216,7 +216,7 @@ def main():
         if not ok: fails.append('误拦：按语境读音只改重音（K145）')
     if not only or 'K155合成标点' in only:   # K155（45 S5 Johnny B. Goode）：合成标点许去掉人名首字母后的点；改字、去句末句号、加点、U.S. 的点、删逗号照停
         sys.path.insert(0, W); import make_video as MV
-        cs_ = [('B. Goode', 'B Goode', True), ('Johnny B. Goode, and', 'Johnny B. Goode; and', True), ('birds, and', 'birds; and', True), ('the', 'teh', False), ('Goode.', 'Goode', False), ('B Goode', 'B. Goode', False), ('U.S. Army', 'U.S Army', False), ('Goode, and', 'Goode and', False)]
+        cs_ = [('B. Goode', 'B Goode', True), ('Johnny B. Goode, and', 'Johnny B. Goode; and', True), ('birds, and', 'birds; and', True), ('the', 'teh', False), ('Goode.', 'Goode', False), ('B Goode', 'B. Goode', False), ('U.S. Army', 'U.S Army', False), ('Goode, and', 'Goode and', False), ("Kinderhook', after", "Kinderhook'. after", True), ('a, b', 'a. b. c', False), ('a b', 'a. b', False), ('a, cat', 'a. bat', False)]   # 51 S10：逗号↔句号原位互换放行；多加点、无标点处加点、改字照停
         bad_ = [f'{a}→{b}' for a, b, want in cs_ if MV._合成标点可收(a, b) != want]
         print(f"{'✔' if not bad_ else '✘'} K155合成标点：{len(cs_)} 个样本" + ('全对' if not bad_ else f'判错 {bad_}'))
         if bad_: fails.append(f'合成标点判错（K155）：{bad_}')

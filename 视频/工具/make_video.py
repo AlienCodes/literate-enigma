@@ -143,7 +143,9 @@ SYNTH_PUNCT={}
 _ini=lambda x_: re.sub(r'(?<![A-Za-z.])([A-Z])\.(?=\s+[A-Z])',r'\1',x_)
 def _合成标点可收(a_,b_):
     """G57 合成标点只许把逗号换成分号；K155（45 S5 Johnny B. Goode：配音把人名首字母 B. 当句号读，降调、停 0.5 秒）：还许去掉人名中间首字母后的点
-    （B. Goode → B Goode，后面紧跟大写开头的词），只在合成时，屏幕照旧；不许改字、不许去句末句号、不许加点、不许删逗号"""
+    （B. Goode → B Goode，后面紧跟大写开头的词），只在合成时，屏幕照旧；不许改字、不许去句末句号、不许加点、不许删逗号；
+    51 S10：逗号、分号、句号可以在原位置互换（个数、位置不变）"""
+    if re.sub(r'[,;.]','',a_)==re.sub(r'[,;.]','',b_) and len(re.findall(r'[,;.]',a_))==len(re.findall(r'[,;.]',b_)) and [m.start() for m in re.finditer(r'[,;.]',a_)]==[m.start() for m in re.finditer(r'[,;.]',b_)]: return True   # 51 S10 Kinderhook'.：逗号、分号、句号原位互换（字不改、个数和位置不变），让模型在停顿前自己发出带闭塞的词尾塞音
     return re.sub(r'[,;]','',_ini(a_))==re.sub(r'[,;]','',_ini(b_)) and b_.count('.')<=a_.count('.') and a_.count(',')+a_.count(';')==b_.count(',')+b_.count(';')
 for _p_ in sorted(__import__('glob').glob('scripts/*.json')):
     try: _d_=json.load(open(_p_))
