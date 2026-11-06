@@ -1,5 +1,6 @@
 import json,re,glob,os
 # 第52篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-06 S16 按用户原话改：“《清洁空气法》于1956年7月5日成为法律，此时距那场烟雾已过去三年半。”“Act 重点词汇，做重点词汇。并且在下面的小字中解释一下，act经常作为某某法的用法”
 # 2026-11-06 S15 按用户原话改：“翻译改为：改革被证明是旷日持久的，并被官方的惰性拖慢了。”
 # 2026-11-06 S14 按用户原话改：“政府顶住了要求调查的压力，直到1953年的5月。inquiry 重点词汇”（inquiry 与第08篇撞词，用户点名要标，写进 allow_clash）
 # 2026-11-06 S13 按用户原话改：“这种自满，或许有助于解释政府勉强的回应。”（complacency 中文由“麻痹大意”改“自满”）
@@ -60,8 +61,9 @@ S=[
      "（pressure for an inquiry：要求调查的压力）"]]),
 (5,[[[("Reform","改革"),("proved **protracted**,","被证明是**旷日持久的**(protracted)，"),("slowed by","并被"),("official","官方的"),("**inertia**.","**惰性**(inertia)拖慢了。")],
      "（prove＋形容词：结果是……，\n事实证明……；\nslowed by…：过去分词短语作状语）"]]),
-(5,[[[("The Clean Air Act","《清洁空气法》"),("became","成为"),("law","法律，"),("on 5 July 1956,","时间是1956年7月5日，")]],
-    [[("three and a half years after the smog.","距那场烟雾已有三年半。")],
+(5,[[[("The Clean Air **Act**","《清洁空气**法**(Act)》"),("became law on 5 July 1956,","于1956年7月5日成为法律，")],
+     "（Act：法案，法令；常作“某某法”，\n如 the Clean Air Act《清洁空气法》）"],
+    [[("three and a half years after the smog.","此时距那场烟雾已过去三年半。")],
      "（three and a half years after the smog：\n补充说明时间）"]]),
 (5,[[[("It","该法"),("**empowered**","**授权**(empowered)"),("**municipal**","**市镇**(municipal)"),("councils","议会"),("to create","设立"),("**smokeless** zones,","**无烟**(smokeless)区，")],
      "（empower sb to do sth：授权某人做某事）"],
@@ -90,6 +92,7 @@ G={
  "S10 cast doubt on that explanation":"对齐不了：用户 2026-11-06 原话定的译文“并对这一解释提出了质疑”，cast doubt on 被 that explanation 隔开，中文“对……提出了质疑”两处都标 cast doubt on（T23），解释夹在中间，只能整组",
  "S10 about 12,000 excess deaths between December 1952 and February 1953":"对齐不了：用户 2026-11-06 原话定的译文“估计在1952年12月至1953年2月期间约有12,000例超额死亡”，between… 是时间状语，中文必须放到“约有12,000例超额死亡”前，语序整个倒过来，只能整组",
  "S12 flickered in their own grates":"对齐不了：用户 2026-11-06 原话定的译文“就在他们自家的炉栅里闪烁”，in their own grates 是地点状语，中文地点必须放到动词“闪烁”前，只能整组",
+ "S16 became law on 5 July 1956":"对齐不了：用户 2026-11-06 原话定的译文“于1956年7月5日成为法律”，on 5 July 1956 是时间状语，中文必须放到“成为法律”前，只能整组",
  "S14 pressure for an inquiry":"对齐不了：for an inquiry 是介词短语作后置定语，修饰 pressure，中文“要求调查的压力”定语必须提前",
  "S18 all along":"对齐不了：all along 是固定短语“一直，始终”，拆开 all、along 中文不通",
  "S16 three and a half years after the smog":"对齐不了：three and a half years after the smog 是时间状语，中文“距那场烟雾已有三年半”语序必须倒过来",
