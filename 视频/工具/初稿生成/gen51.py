@@ -6,7 +6,7 @@ S=[
      "（often said to be…：过去分词短语作插入语，\n补充说明 OK；\nbegin as…：起初是……）"]]),
 (1,[[[("From 1838","从1838年起，"),("**abbreviations**","**缩写**(abbreviations)"),("were **all the vogue**","**风靡**(all the vogue)"),("in Boston's papers,","于波士顿各大报纸，")],
      "（be all the vogue：风靡一时，非常流行）"],
-    [[("and the **craze**","这股**热潮**(craze)"),("turned **comic**","变得**滑稽**(comic)起来，"),("through","靠的是"),("**deliberate**","**故意的**(deliberate)"),("**misspellings**:","**错拼**(misspellings)：")],
+    [[("and the **craze**","而且这股**狂热**(craze)"),("turned **comic**","也变得**滑稽**(comic)起来，"),("through","通过"),("**deliberate**","**故意的**(deliberate)"),("**misspellings**:","**错误拼写**(misspellings)：")],
      "（turn＋形容词：变得……；\nthrough…：借助……）"],
     [[("O.W. for 'oll wright',","用 O.W. 代表 'oll wright'，"),("K.Y. for 'know yuse'.","用 K.Y. 代表 'know yuse'。")],
      "（'oll wright'：故意拼错的 all right；\n'know yuse'：故意拼错的 no use）"]]),
