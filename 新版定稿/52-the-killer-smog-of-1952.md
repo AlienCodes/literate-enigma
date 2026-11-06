@@ -14,21 +14,21 @@ Reform proved **protracted**, slowed by official **inertia**. The Clean Air **Ac
 
 ## 中文
 
-1952年12月5日，星期五，寒冷而**凝滞的**(stagnant)空气**降临**(descended on)伦敦。（descend on…：降临，笼罩（某地））**头顶上方**(Overhead)，较暖的空气压了下来，像**盖子**(lid)一样，把**寒气**(chill)**困**(captive)在下面。（holding…：现在分词短语作状语，表结果；hold sth captive：把……困住）伦敦人早已**习惯**(accustomed to)**昏暗的**(murky)、**阴沉的**(dreary)冬天。（be accustomed to…：习惯于……）不过这一次，首都的煤烟也被困住了，越积越浓，成了**令人窒息的**(choking)**烟雾**(smog)，也就是**烟**(smoke)与**雾**(fog)的混合物。（thickening into…：现在分词短语作状语，表结果；a mix of smoke and fog：同位语，补充说明 smog）
+1952年12月5日星期五，寒冷、**凝滞的**(stagnant)空气**笼罩降临了**(descended on)伦敦。（descend on…：降临，笼罩（某地））**头顶上方**(Overhead)，较暖的空气压了下来，像**盖子**(lid)一样，把**寒气**(chill)**困**(captive)在下面。（holding…：现在分词短语作状语，表结果；hold sth captive：把……困住）伦敦人早已**习惯**(accustomed to)**昏暗的**(murky)、**阴沉的**(dreary)冬天。（be accustomed to…：习惯于……）不过这一次，首都的煤烟也被困住了，越积越浓，成了**令人窒息的**(choking)**烟雾**(smog)，也就是**烟**(smoke)与**雾**(fog)的混合物。（thickening into…：现在分词短语作状语，表结果；a mix of smoke and fog：同位语，补充说明 smog）
 
-这些煤烟来自煤，是在**家庭**(domestic)**壁炉**(fireplaces)和**发电厂**(power stations)里烧的，**满含**(laden with)烟尘和**有毒的**(noxious)二氧化硫。（from coal…：介词短语作后置定语，修饰 smoke；burned in…：过去分词短语作后置定语，修饰 coal）（be laden with…：满载……，充满……）有些地方，**能见度**(visibility)降到只有几米。**救护车**(Ambulance)服务**暂停**(suspended)；一场歌剧在萨德勒之井剧院演到**幕间休息**(interval)被迫中止；而获奖的**牛**(cattle)，在史密斯菲尔德**农业**(agricultural)展会上有的死去，有的只得**宰杀**(slaughtered)。（an opera at…：介词短语作后置定语，修饰 opera；at the interval：在幕间休息时）（at the Smithfield agricultural show：后置定语，修饰 cattle；had to be slaughtered：不得不被宰杀）
+这些煤烟来自于烧的煤，在**家庭**(domestic)**壁炉**(fireplaces)和**发电厂**(power stations)里，**充满了**(laden with)煤烟和**有毒的**(noxious)二氧化硫。（from coal…：介词短语作后置定语，修饰 smoke；burned in…：过去分词短语作后置定语，修饰 coal）（be laden with…：满载……，充满……）有些地方，**能见度**(visibility)降到只有几米。**救护车**(Ambulance)服务被**暂停**(suspended)，萨德勒之井剧院的一场歌剧在**幕间休息**(interval)时被中止，而史密斯菲尔德**农业**(agricultural)展上的获奖**牛**(cattle)则死亡或不得不被**宰杀**(slaughtered)。（an opera at…：介词短语作后置定语，修饰 opera；at the interval：在幕间休息时）（at the Smithfield agricultural show：后置定语，修饰 cattle；had to be slaughtered：不得不被宰杀）
 
-烟雾**消散**(dissipated)于12月9日，星期二。当时的官员估计**超额**(excess)死亡约4,000人，但卫生部1954年的一份报告把后来的死亡归因于**流感**(influenza)。（put A at B：估计 A 为 B）（blame A on B：把 A 归咎于 B）2001年发表于《环境健康展望》的一项研究**重新评估了**(reassessed)证据，并**对**(cast doubt on)这一**解释**(explanation)**提出了质疑**(cast doubt on)，估计约12,000人超额死亡，时间在1952年12月至1953年2月间。（published in…：过去分词短语作后置定语，修饰 study）（cast doubt on…：对……提出质疑，质疑……）（estimating…：现在分词短语作状语，补充说明研究结论）
+烟雾**消散**(dissipated)于12月9日，星期二。当时的官员估计**超额**(excess)死亡约4,000人，但卫生部1954年的一份报告把后来的死亡归因于**流感**(influenza)。（put A at B：估计 A 为 B）（blame A on B：把 A 归咎于 B）2001年发表于《环境健康展望》的一项研究**重新评估了**(reassessed)证据，并**对**(cast doubt on)这一**解释**(explanation)**提出了质疑**(cast doubt on)，估计在1952年12月至1953年2月期间约有12,000例超额死亡。（published in…：过去分词短语作后置定语，修饰 study）（cast doubt on…：对……提出质疑）（estimating…：现在分词短语作状语，补充说明研究结论）
 
-几十年来，伦敦人一直**容忍**(tolerated)煤烟，把它看成一种**麻烦**(nuisance)。（tolerate A as B：把 A 当作 B 来容忍）有一个**元凶**(villain)就**摇曳**(flickered)在他们自家的炉栅里，它带来**温暖**(warmth)与**舒适**(comfort)，人们早已**习以为常**(habitual)，很少有人想到要**指责**(accuse)它。（grates：炉栅，壁炉里放煤的铁架）（a source of…：同位语，补充说明 villain；so… that…：如此……以至于……）这种**麻痹大意**(complacency)或许有助于说明，政府为何**勉强**(grudging)作出**回应**(response)。（the government's grudging response：政府勉强作出的回应）政府一直**顶住**(withstood)要求**调查**(inquiry)的压力，直到1953年5月才松口。（pressure for an inquiry：要求调查的压力）
+几十年来，伦敦人一直**容忍**(tolerated)着煤烟，只是把它当成一种**让人讨厌的事情**(nuisance)。（tolerate A as B：把 A 当作 B 来容忍）一个**元凶**(villain)就在他们自家的炉栅里**闪烁**(flickered)，一个**温暖**(warmth)与**舒适**(comfort)的来源，如此**习以为常**(habitual)，以至于很少有人想到去**指责**(accuse)它。（grates：炉栅，壁炉里放煤的铁架）（a source of…：同位语，补充说明 villain；so… that…：如此……以至于……）这种**自满**(complacency)，或许有助于解释政府**勉强的**(grudging)**回应**(response)。政府**顶住了**(withstood)要求**调查**(inquiry)的压力，直到1953年的5月。（pressure for an inquiry：要求调查的压力）
 
-改革**旷日持久**(protracted)，又因官方的**惰性**(inertia)而进展迟缓。（prove＋形容词：结果是……，事实证明……；slowed by…：过去分词短语作状语）《清洁空气**法**(Act)》成为法律，时间是1956年7月5日，距那场烟雾已有三年半。（three and a half years after the smog：补充说明时间）该法**授权**(empowered)**市镇**(municipal)议会设立**无烟**(smokeless)区，从**源头**(source)上**遏制**(combating)煤烟。（empower sb to do sth：授权某人做某事）（combating…：现在分词短语作状语；at source：从源头）英国家庭**深受喜爱的**(beloved of)、**温馨的**(cosy)**炉膛**(hearth)，原来一直都在主要的**肇事者**(offenders)之列。（beloved of…：受……喜爱，作后置定语，修饰 hearth）（all along：一直，始终；be among…：在……之列，是……之一）（简述：1952年12月5日，冷空气被上方的暖空气压住，伦敦的煤烟散不出去，成了令人窒息的烟雾。煤烟来自家庭壁炉和发电厂，能见度只有几米，救护车停运，歌剧中止，展会上的获奖牛死去或被宰杀。12月9日烟雾散去，当时估计超额死亡约4,000人，1954年的报告却归因于流感，2001年的研究对此提出质疑，估计超额死亡约12,000人。伦敦人对自家炉火习以为常，政府也回应勉强，直到1953年5月才不再顶住调查的压力。1956年《清洁空气法》授权市镇议会设立无烟区，原来温馨的炉膛一直是主要肇事者之一。）
+改革被证明是**旷日持久的**(protracted)，并被官方的**惰性**(inertia)拖慢了。（prove＋形容词：结果是……，事实证明……；slowed by…：过去分词短语作状语）《清洁空气**法**(Act)》于1956年7月5日成为法律，此时距那场烟雾已过去三年半。（Act：法案，法令；常作“某某法”，如 the Clean Air Act《清洁空气法》）（three and a half years after the smog：补充说明时间）该法**授权**(empowered)**市镇**(municipal)议会设立**无烟**(smokeless)区，从**源头**(source)上**遏制**(combating)煤烟。（empower sb to do sth：授权某人做某事）（combating…：现在分词短语作状语；at source：从源头）英国家庭**深受喜爱的**(beloved of)、**温馨的**(cosy)**炉膛**(hearth)，原来一直都在主要的**肇事者**(offenders)之列。（beloved of…：受……喜爱，作后置定语，修饰 hearth）（all along：一直，始终；be among…：在……之列，是……之一）（简述：1952年12月5日，冷空气被上方的暖空气压住，伦敦的煤烟散不出去，成了令人窒息的烟雾。煤烟来自家庭壁炉和发电厂，能见度只有几米，救护车停运，歌剧中止，展会上的获奖牛死去或被宰杀。12月9日烟雾散去，当时估计超额死亡约4,000人，1954年的报告却归因于流感，2001年的研究对此提出质疑，估计超额死亡约12,000人。伦敦人对自家炉火习以为常，政府也回应勉强，直到1953年5月才不再顶住调查的压力。1956年《清洁空气法》授权市镇议会设立无烟区，原来温馨的炉膛一直是主要肇事者之一。）
 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
 | stagnant | 本文：凝滞的；adj. 不流动的，凝滞的（stagnant air/water）；停滞的（a stagnant economy） | 1 |
-| descended on | 本文：降临；v. (descend) 降临，笼罩（descend on/upon a place）；下降 | 1 |
+| descended on | 本文：笼罩降临了；v. (descend) 降临，笼罩（descend on/upon a place）；下降 | 1 |
 | Overhead | 本文：头顶上方；adv. 在头顶上方（planes flying overhead）；n. 〈英〉overheads 经常性开支 | 1 |
 | lid | 本文：盖子；n. 盖子（put the lid on）；keep a lid on sth 控制住 | 1 |
 | chill | 本文：寒气；n. 寒冷，寒气（a chill in the air）；着凉（catch a chill）；v. 使变冷 | 1 |
@@ -43,35 +43,35 @@ Reform proved **protracted**, slowed by official **inertia**. The Clean Air **Ac
 | domestic | 本文：家庭；adj. 家庭的（domestic appliances/chores）；国内的（domestic flights） | 2 |
 | fireplaces | 本文：壁炉；n. (fireplace) 壁炉（an open fireplace；sit by the fireplace） | 2 |
 | power stations | 本文：发电厂；n. (power station) 发电厂，发电站（a coal-fired/nuclear power station） | 2 |
-| laden with | 本文：满含；adj. 满载的，充满的（be laden with sth；a lorry laden with goods） | 2 |
+| laden with | 本文：充满了；adj. 满载的，充满的（be laden with sth；a lorry laden with goods） | 2 |
 | noxious | 本文：有毒的；adj. 有毒的，有害的（noxious fumes/gases） | 2 |
 | visibility | 本文：能见度；n. 能见度（poor/good visibility；visibility fell to 10 metres）；可见性 | 2 |
 | Ambulance | 本文：救护车；n. 救护车（call an ambulance；ambulance service/crew） | 2 |
 | suspended | 本文：暂停；v. (suspend) 暂停，中止（suspend a service/flights）；悬挂 | 2 |
 | interval | 本文：幕间休息；n. 〈英〉（演出的）幕间休息（during the interval）；间隔（at regular intervals） | 2 |
-| cattle | 本文：牛；n. 牛（集合名词，复数用）（beef/dairy cattle；a herd of cattle） | 2 |
 | agricultural | 本文：农业；adj. 农业的（an agricultural show/college；agricultural land） | 2 |
+| cattle | 本文：牛；n. 牛（集合名词，复数用）（beef/dairy cattle；a herd of cattle） | 2 |
 | slaughtered | 本文：宰杀；v. (slaughter) 宰杀（牲畜）（be slaughtered for meat）；屠杀 | 2 |
 | dissipated | 本文：消散；v. (dissipate) （雾、烟等）消散（the fog/tension dissipated）；挥霍（dissipate a fortune） | 3 |
 | excess | 本文：超额；adj. 超额的，过量的（excess deaths/baggage）；n. 过度（in excess of） | 3 |
 | influenza | 本文：流感；n. 流行性感冒（正式用语，口语作 flu）（an influenza epidemic） | 3 |
 | reassessed | 本文：重新评估了；v. (reassess) 重新评估（reassess the situation/risks） | 3 |
+| cast doubt on | 本文：对……提出了质疑；phr. 对……提出质疑，使人怀疑（cast doubt on a claim/an explanation） | 3 |
 | explanation | 本文：解释；n. 解释，说法（offer/give an explanation for sth；a plausible explanation） | 3 |
-| cast doubt on | 本文：对……提出质疑；phr. 对……提出质疑，使人怀疑（cast doubt on a claim/an explanation） | 3 |
 | tolerated | 本文：容忍；v. (tolerate) 容忍，忍受（tolerate noise/dissent） | 4 |
-| nuisance | 本文：麻烦；n. 令人烦恼的事物，麻烦（make a nuisance of oneself；a public nuisance 妨害公众的行为） | 4 |
+| nuisance | 本文：让人讨厌的事情；n. 令人烦恼的事物，麻烦（make a nuisance of oneself；a public nuisance 妨害公众的行为） | 4 |
 | villain | 本文：元凶；n. 罪魁，元凶；（戏剧中的）反派（the villain of the piece） | 4 |
-| flickered | 本文：摇曳；v. (flicker) （火光）摇曳，闪烁（candles flickering in the dark）；n. 一丝 | 4 |
+| flickered | 本文：闪烁；v. (flicker) （火光）摇曳，闪烁（candles flickering in the dark）；n. 一丝 | 4 |
 | warmth | 本文：温暖；n. 温暖（the warmth of the fire）；热情（warmth of welcome） | 4 |
 | comfort | 本文：舒适；n. 舒适（live in comfort）；安慰（take comfort from）；v. 安慰 | 4 |
 | habitual | 本文：习以为常；adj. 习以为常的，惯常的（habitual behaviour；a habitual smoker） | 4 |
 | accuse | 本文：指责；v. 指责，指控（accuse sb of sth；stand accused of） | 4 |
-| complacency | 本文：麻痹大意；n. 麻痹大意，安于现状（there is no room for complacency） | 4 |
-| grudging | 本文：勉强；adj. 勉强的，不情愿的（grudging respect/admiration/acceptance） | 4 |
+| complacency | 本文：自满；n. 麻痹大意，安于现状（there is no room for complacency） | 4 |
+| grudging | 本文：勉强的；adj. 勉强的，不情愿的（grudging respect/admiration/acceptance） | 4 |
 | response | 本文：回应；n. 回应，反应（in response to；a swift response） | 4 |
-| withstood | 本文：顶住；v. (withstand) 顶住，经受住（withstand pressure/criticism/an attack） | 4 |
+| withstood | 本文：顶住了；v. (withstand) 顶住，经受住（withstand pressure/criticism/an attack） | 4 |
 | inquiry | 本文：调查；n. 调查，调查委员会（hold/launch an inquiry；a public inquiry）；询问 | 4 |
-| protracted | 本文：旷日持久；adj. 旷日持久的，拖延的（protracted negotiations/dispute） | 5 |
+| protracted | 本文：旷日持久的；adj. 旷日持久的，拖延的（protracted negotiations/dispute） | 5 |
 | inertia | 本文：惰性；n. 惰性，迟滞不前（bureaucratic/institutional inertia）；（物理）惯性 | 5 |
 | Act | 本文：法；n. 法案，法令（常作“某某法”：the Clean Air Act《清洁空气法》；pass an Act） | 5 |
 | empowered | 本文：授权；v. (empower) 授权（be empowered to do sth）；使有能力 | 5 |
