@@ -35,7 +35,7 @@ elif stage == '出片前':
     # 1 数字读法（A11）：列出全文所有数字及配音实际读法，供人工逐个核对；出现未处理的格式即不合格
     src = open('make_video.py').read(); exec(src[src.index('# 朗读用的数字读法'):src.index('def say(t):')])
     # 数字读法、引号自检（A11/A37/A17）：标准读法必须一字不差，引号必须不读、撇号必须保留
-    _sp = {'in 1995 he': 'in nineteen ninety-five he', 'the Democratic O.K. Club, making': 'the Democratic OK Club, making', 'documents O.K.': 'documents OK.', "known 'o.k.' glossed": 'known o.k. glossed', 'the 1960s were': 'the nineteen sixties were', 'on 6 January': 'on the sixth of January',
+    _sp = {'in 1995 he': 'in nineteen ninety-five he', 'the Democratic O.K. Club, making': 'the Democratic OK Club, making', 'documents O.K.': 'documents OK.', "known 'o.k.' glossed": 'known OK glossed', 'the 1960s were': 'the nineteen sixties were', 'on 6 January': 'on the sixth of January',
            'at 11.40pm': 'at eleven forty PM', 'was 264.4 km': 'was two hundred sixty-four point four km',
            '"Hello," she said.': 'Hello, she said.', "he didn't": "he didn't", '‘Yes’ he said': 'Yes he said', 'paid $105,000 for': 'paid one hundred five thousand dollars for', 'a fine of £1 each': 'a fine of one pound each', 'sold for $950 million in': 'sold for nine hundred fifty million dollars in', 'about $100bn; projects': 'about one hundred billion dollars; projects', 'a £2.5bn deal': 'a two point five billion pounds deal', 'cost $5m in': 'cost five million dollars in', 'ran the 100m in': 'ran the 100m in'}   # K141   # K114、K130
     def _未处理(x, m):   # K150（42 S? $1.5 billion：单独转 “$1.5” 判成未处理，误报）：连着后面的 million/billion/trillion 一起转
