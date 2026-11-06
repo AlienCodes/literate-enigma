@@ -125,7 +125,7 @@ def _比(ref, hyp):
         if ''.join(pr[a1:a2]) == ''.join(ph[b1:b2]): continue   # 连写/拆写（switches / switch is 读音一样不算；every one / everyone）
         if R[a1:a2] and ''.join(R[a1:a2]) == ''.join(H[b1:b2]): continue   # 拼写连起来相同（脚本 walkiescorchie / 听到 walkie scorchie）
         if R[a1:a2] and ''.join(改.get(w, pr[a1 + j]) for j, w in enumerate(R[a1:a2])) == ''.join(ph[b1:b2]): continue   # 读音改正表：配音读的是改正后的读音（22 S11 Walkie-Scorchie 听成 scorchy）
-        if op == 'replace' and all(w in 核专名 or w in 已核实() and w in 专名 for w in R[a1:a2]): continue   # 已核实表里大写开头的键（专名），句首也豁免（20 S17 Ötzi）   # A23 已对权威来源查过读音（读音核对 出片前把关）的专名（脚本里大写）：识别器不认识、听成别的不算；漏掉、多出照报
+        if op == 'replace' and all(w in 核专名 or w in 已核实() and w in 专名 for w in R[a1:a2]) and '漏' not in H[b1:b2] and len(''.join(ph[b1:b2])) >= 0.5 * len(''.join(pr[a1:a2])): continue   # 51 S10：专名整段被吞、只剩“of”或省略号的，不再豁免（听错的专名读音长度相近照放）   # 已核实表里大写开头的键（专名），句首也豁免（20 S17 Ötzi）   # A23 已对权威来源查过读音（读音核对 出片前把关）的专名（脚本里大写）：识别器不认识、听成别的不算；漏掉、多出照报
         if op == 'replace' and 专名夹带(R[a1:a2], pr[a1:a2], ''.join(ph[b1:b2]), lambda w: w in 核专名 or w in 已核实() and w in 专名): continue   # G122（K81 28 S14 a Lasker → alaska）
         out.append((' '.join(R[a1:a2]) or '（多出）', ' '.join(H[b1:b2]) or '（没听到）'))
     return out
@@ -231,6 +231,7 @@ def 比较自检():
                    ('On 5 October 2015 she won', 'On October 6, 2015 she won'), ('she won the prize', 'she won the the prize')):   # G122：冠词漏读、专名漏掉、日子漏读读错、叠读照报
         if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
     if not 比('formed the club for the purpose of making', 'formed the... ...of making'): f.append('没抓到：识别器把吞掉的一截写成“...”（51 S10）')
+    if not 比('Tu was named a Lasker Award recipient', 'Tu was named a of recipient'): f.append('没抓到：已核实专名整段被吞、只剩一个虚词（51 S10 Democratic O.K. Club → of）')
     if 比('he paused… then went on', 'he paused... then went on'): f.append('误报：脚本本来就有省略号，听到“...”也报了')
     for r_, h_ in (('the cat sat on the mat', 'the cat on the mat'), ('the cabbies waited', 'the cabins waited'), ('He sat there', 'He set there')):
         if not 比(r_, h_): f.append(f'没抓到：“{r_}”听成“{h_}”')
