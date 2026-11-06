@@ -307,9 +307,11 @@ def _cap_inner(seg,ref=None):
     return _cut(seg,_cap_spans(seg,ref))
 def _head_offset(raw,w):
     """clean_tail 在句首裁掉了多少样本（w = raw[st:...]，开头 10 ms 有淡入，从第 10 ms 起逐样本相同）"""
-    raw=np.asarray(raw,np.float32); g=int(0.01*SR)+5
-    for i in np.where(raw==w[g])[0]-g:
-        if 0<=i and i+g+200<=len(raw) and np.array_equal(raw[i+g:i+g+200],w[g:g+200]): return int(i)
+    raw=np.asarray(raw,np.float32)
+    for g in [int(0.01*SR)+5]+list(range(int(0.06*SR),min(len(w)-200,int(0.5*SR)),int(0.02*SR))):   # 51 S12：句首 非人声区间 把前 10 ms 起换成了静音，比对窗口全是 0、对不上；往后找有声音的窗口比
+        if g+200>len(w) or not np.any(w[g:g+200]): continue
+        for i in np.where(raw==w[g])[0]-g:
+            if 0<=i and i+g+200<=len(raw) and np.array_equal(raw[i+g:i+g+200],w[g:g+200]): return int(i)
     raise SystemExit('【停止】找不到句首裁剪位置（高亮时间无法换算，L14）')
 LAST={}
 _NOSOUND=set(' ,;:.!?"\'“”‘’()—–-…')
