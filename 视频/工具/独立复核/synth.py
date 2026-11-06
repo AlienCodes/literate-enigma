@@ -126,10 +126,10 @@ if __name__ == '__main__':
                 if pg:      # A21 连读处补除阻：原始合成里 w[p:q) 换成同一段供体（出片程序的 _pdonor，同一个函数）；停顿插在供体之后，复核照常认插入的静音
                     a0 = np.asarray(_ending_raw(text, en_) if en_ else k.create(spoken(text), voice=V, speed=0.95, lang='en-us')[0], np.float32)
                     w0 = clean_tail(a0); st = _head_offset(a0, w0); w0 = _keep_tail(a0, w0, st)
-                    for p_, q_, kd in sorted(pg.values(), key=lambda v: -float(v[0])):
+                    for p_, q_, kd, *ex_ in sorted(pg.values(), key=lambda v: -float(v[0])):   # 51 S10：第4项“短供体”，与出片同一个 _pdonor(short=True)
                         p0 = st + int(round(float(p_) * SR)); q0 = st + int(round(float(q_) * SR))
                         gp_ = float(np.prod([10 ** (g_ / 20) for p0_, p1_, g_ in pr_ if p0_ < p0 <= p1_])) if pr_ else 1.0   # K124 第二次（46 第 7 遍：S4 第 1 段原始 [240,15240)、供体正好从 15240 起，原来 p0 < p1_ 差一个样本没乘）：出片把供体接在前一段末尾一起乘，所以段终点算这一段。K124（46 S4 fact, 的 /t/ 在第 1 段词尾、不在停顿里：出片随第 1 段乘 -3.5 dB，复核没乘，报 lost -27 dB + 多余 68 ms）：供体落在哪一段就乘那一段的增益，落在停顿里不乘
-                        a = np.concatenate([a[:p0], _pdonor(w0, kd) * np.float32(gp_), a[q0:]])
+                        a = np.concatenate([a[:p0], _pdonor(w0, kd, bool(ex_) and '短供体' in str(ex_[0])) * np.float32(gp_), a[q0:]])
                 if sg_: a = a * np.float32(10 ** (sg_ / 20))
                 np.save(fn, a)
             meta[no].append({'idx': idx, 'text': text, 'file': fn,

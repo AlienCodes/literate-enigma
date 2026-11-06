@@ -278,7 +278,7 @@ if __name__ == '__main__':
         if g:
             rows.append(f"{no} OK（A21 移植的词尾除阻：{g['句']} {g['位置']}，{g['开始']:.3f}–{g['结束']:.3f}s）{f[0]} {key(f)} 最响 {f[3]:.1f} dB"); continue
         cf = conf.get(key(f)); ok = isinstance(cf, dict) and cf.get('配音指纹') == fp
-        if ok and '--写实测' in sys.argv and isinstance(cf, dict) and (not 像吸气(f) or cf.get('词头') == 'h'): cf['实测'] = 实测(f); 写_ = True
+        if ok and '--写实测' in sys.argv and isinstance(cf, dict) and (not 像吸气(f) or cf.get('词头') == 'h' or cf.get('词尾')): cf['实测'] = 实测(f); 写_ = True   # 53 S12 twist:、51 S14 earnest.：标了 词尾 的也写实测（收不收照旧由 确认可收 的 爆破起 实测判）
         if ok:
             ok, why_ = 确认可收(no, f, cf, a)
             if ok and 像吸气(f): rows.append(f'{no} 人看（K127 词头 /h/ 送气，确认已收，交用户听）{f[0]} {key(f)}')
