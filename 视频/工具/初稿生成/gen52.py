@@ -1,5 +1,6 @@
 import json,re,glob,os
 # 第52篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-06 S13 按用户原话改：“这种自满，或许有助于解释政府勉强的回应。”（complacency 中文由“麻痹大意”改“自满”）
 # 2026-11-06 S12 按用户原话改：“翻译修改为：一个元凶就在他们自家的炉栅里闪烁——一个温暖与舒适的来源，如此习以为常，以至于很少有人想到去指责它。”（破折号按 T36 换成逗号；flickered 中文由“摇曳”改“闪烁”）
 # 2026-11-06 S11 按用户原话改：“修改一下翻译：一直容忍着煤烟，只是把它当成一种 让人讨厌的事情”（nuisance 中文由“麻烦”改“让人讨厌的事情”）
 # 2026-11-06 S10 末块按用户原话改：“翻译改为：估计在1952年12月至1953年2月期间约有12,000例超额死亡。”
@@ -52,8 +53,7 @@ S=[
     [[("a source of","一个"),("**warmth**","**温暖**(warmth)"),("and **comfort**","与**舒适**(comfort)的来源，"),("so **habitual**","如此**习以为常**(habitual)，")],
      "（a source of…：同位语，补充说明 villain；\nso… that…：如此……以至于……）"],
     [[("that few","以至于很少有人"),("thought to **accuse** it.","想到去**指责**(accuse)它。")]]]),
-(4,[[[("Such **complacency**","这种**麻痹大意**(complacency)"),("may","或许"),("help to","有助于"),("explain","说明，"),("the government's","政府为何"),("**grudging**","**勉强**(grudging)"),("**response**.","作出**回应**(response)。")],
-     "（the government's grudging response：\n政府勉强作出的回应）"]]),
+(4,[[[("Such **complacency**","这种**自满**(complacency)，"),("may","或许"),("help to","有助于"),("explain","解释"),("the government's","政府"),("**grudging**","**勉强的**(grudging)"),("**response**.","**回应**(response)。")]]]),
 (4,[[[("It","政府"),("**withstood**","一直**顶住**(withstood)"),("pressure for an inquiry","要求调查的压力，"),("until May 1953.","直到1953年5月才松口。")],
      "（pressure for an inquiry：要求调查的压力）"]]),
 (5,[[[("Reform","改革"),("proved **protracted**,","**旷日持久**(protracted)，"),("slowed by","又因"),("official","官方的"),("**inertia**.","**惰性**(inertia)而进展迟缓。")],
