@@ -258,6 +258,19 @@ def main():
         ok = len(s_) <= int(0.025 * MV.SR) and lo_ <= -15 and len(MV._pdonor(w_, 'k')) == len(d_) and len(MV._pdonor(w_, 'k', True)) == len(s_)
         print(f"{'✔' if ok else '✘'} A21短供体：{len(s_) / MV.SR * 1000:.0f} ms、1 kHz 以下 {lo_:.1f} dB；不写短供体的照旧整段")
         if not ok: fails.append('短供体不对（A21）')
+    if not only or 'G43吸气' in only:   # 51 S10：非人声区间第4项写“吸气”、≥-30 dB 的每帧都是吸气频谱的许到 -24 dB；不写“吸气”、或那一下是元音照停
+        sys.path.insert(0, W); import make_video as MV, numpy as np_, scipy.signal as ss_
+        SR_ = MV.SR; t_ = np_.arange(int(0.3 * SR_)) / SR_; vw_ = (0.5 * np_.sin(2 * np_.pi * 180 * t_)).astype(np_.float32); z_ = np_.zeros(int(0.05 * SR_), np_.float32)
+        rr_ = np_.sqrt(np_.mean(vw_[:int(0.005 * SR_)] ** 2)) * 1.0
+        br_ = ss_.sosfiltfilt(ss_.butter(4, [2500, 4500], 'bandpass', fs=SR_, output='sos'), np_.random.default_rng(5).standard_normal(int(0.1 * SR_))); br_ = (br_ / np_.sqrt(np_.mean(br_ ** 2)) * rr_ * 10 ** (-26.5 / 20)).astype(np_.float32)
+        tv_ = (np_.sin(2 * np_.pi * 180 * np_.arange(int(0.1 * SR_)) / SR_) * rr_ * 10 ** (-26.5 / 20) * np_.sqrt(2)).astype(np_.float32)
+        def 停_(mid, lab):
+            w_ = np_.concatenate([vw_, z_, mid, z_, vw_]); a_ = (len(vw_) + len(z_) // 2) / SR_; b_ = (len(vw_) + len(z_) + len(mid) + len(z_) // 2) / SR_
+            try: MV._nonvoice(w_, [[a_, b_, '', lab] if lab else [a_, b_]], '自检'); return False
+            except SystemExit: return True
+        g_ = not 停_(br_, '吸气 自检'); b1_ = 停_(br_, None); b2_ = 停_(tv_, '吸气')
+        print(f"{'✔' if g_ and b1_ and b2_ else '✘'} G43吸气：-26.5 dB 吸气写“吸气”放行{'对' if g_ else '错'}、不写{'停' if b1_ else '没停'}、元音写“吸气”{'停' if b2_ else '没停'}")
+        if not (g_ and b1_ and b2_): fails.append('没抓到或误拦：非人声区间“吸气”（G43）')
     if not only or 'A23大小写' in only:   # K148（43 NeXT）：读音改正的词中间有大写（ZorK），普通小写 zork 不许被当成它去换（原来不分大小写，换不到就停）；大小写对得上的照换
         sys.path.insert(0, W); import make_video as MV
         try: p_ = _读音(MV, {'ZorK': 'zˈuːk'}, {}, {}, 'the zork day', {'the zork day': 'ðə zˈɔːk dˈeɪ', 'ZorK': 'zˈiː ˈoʊ'})

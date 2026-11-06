@@ -428,6 +428,15 @@ def list_commas(sent):
     for ml in re.finditer(r"(?:\b[\w'-]+(?: [\w'-]+){0,4}, ){2,}(?:and|or) ",sent):
         for mc in re.finditer(r',',ml.group(0)): lst.add(ml.start()+mc.start())
     return lst
+def _像吸气帧(x,e,F0):
+    """非人声区间里 ≥-30 dB 的每个 5 ms 帧都是吸气的频谱：1 kHz 以下占比 < -10 dB、幅度谱重心 2–5 kHz（带元音、浊音就不是）"""
+    for i in np.where(e>=-30)[0]:
+        y=np.asarray(x[i*F0:(i+1)*F0],np.float64)
+        if len(y)<F0: return False
+        X=np.abs(np.fft.rfft(y*np.hanning(len(y)))); f=np.fft.rfftfreq(len(y),1/SR); P=X**2
+        lo=10*np.log10(P[f<1000].sum()/(P.sum()+1e-20)+1e-12); cen=float((X*f).sum()/(X.sum()+1e-20))
+        if not (lo<-10 and 2000<=cen<=5000): return False
+    return True
 def _nonvoice(w,ivs,label):
     """非人声区间换成数字静音（长度不变）。守门：区间里不能有 ≥-30 dB 的声音；不紧贴词的一头，外侧紧挨着的 5 ms 必须 <-55 dB；
     紧贴词尾/词头的一头必须在过零点（词本身不动）。"""
@@ -436,7 +445,8 @@ def _nonvoice(w,ivs,label):
     w=w.copy()
     for iv in ivs:
         x0,x1=int(round(float(iv[0])*SR)),int(round(float(iv[1])*SR)); flag=iv[2] if len(iv)>2 else ''
-        if not (0<x0<x1<len(w)) or lv0(w[x0:x1])>-30 or e0[x0//F0:x1//F0].max()>=-30 \
+        吸_=len(iv)>3 and '吸气' in str(iv[3]) and _像吸气帧(w[x0:x1],e0[x0//F0:x1//F0],F0)   # 51 S10 birthplace,/formed 之间吸气最响一下 -26.6 dB：第4项写“吸气”、≥-30 dB 的每帧都是吸气频谱的，许到 -24 dB
+        if not (0<x0<x1<len(w)) or lv0(w[x0:x1])>(-24 if 吸_ else -30) or e0[x0//F0:x1//F0].max()>=(-24 if 吸_ else -30) \
            or (flag not in ('紧贴词尾','紧贴两头') and lv0(w[x0-F0:x0])>=AUD_DB) or (flag not in ('紧贴词头','紧贴两头') and lv0(w[x1:x1+F0])>=AUD_DB) \
            or (flag in ('紧贴词尾','紧贴两头') and w[x0-1]*w[x0]>0 and abs(w[x0])>1e-4) or (flag in ('紧贴词头','紧贴两头') and w[x1-1]*w[x1]>0 and abs(w[x1])>1e-4):
             raise SystemExit(f'【停止】非人声区间不对（有词的声音、两头不够安静，或紧贴词尾/词头的一头不在过零点）：{label[:60]} {iv}')
