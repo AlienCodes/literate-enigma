@@ -209,6 +209,7 @@ def _int2w(n):
     if n<1000: return _ONES[n//100]+' hundred'+('' if n%100==0 else ' '+_n2w(n%100))
     return _int2w(n//1000)+' thousand'+('' if n%1000==0 else ' '+_int2w(n%1000))
 def spoken(t):
+    t=re.sub(r'\bO\.K\.(?=\s*$)','OK.',t); t=re.sub(r'\bO\.K\.','OK',t)   # 51 S10 用户 2026-11-06：O.K. 的两个点让配音在 O、K 后各停一下、“往外蹦字”；只在配音文字里读成 OK（连读），画面不变；句末的保留句号
     t=re.sub(r'([$£€])(\d{1,3}(?:\.\d+)?)(?: ?(bn|tn)|(m))\b',lambda m:m.group(1)+m.group(2)+' '+{'bn':'billion','tn':'trillion','m':'million'}[m.group(3) or m.group(4)],t)   # K141（39 S7 $100bn 读成 one hundred dollarsbn）：bn/tn/m 缩写先展开成 billion/trillion/million，再走下一行（币名放最后）；m 只认紧贴数字的（$5m），100m 这类不带币号的是米，不动
     t=re.sub(r'(?<![\w$£€.,])(\d{1,3}(?:\.\d+)?) ?(bn|tn)\b',lambda m:m.group(1)+' '+{'bn':'billion','tn':'trillion'}[m.group(2)],t)   # K141：不带币号的 3bn people → 3 billion people
     t=re.sub(r'([$£€])(\d{1,3}(?:\.\d+)?) (million|billion|trillion)\b',lambda m:(_int2w(int(m.group(2))) if '.' not in m.group(2) else m.group(2))+' '+m.group(3)+' '+{'$':'dollars','£':'pounds','€':'euros'}[m.group(1)],t)   # K130（36 S15 $950 million 读成 nine hundred fifty dollars million）：金额带 million/billion，币名放在最后；小数（$1.5 million）交下面的小数规则读
