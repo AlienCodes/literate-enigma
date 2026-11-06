@@ -1,5 +1,6 @@
 import json,re,glob,os
 # 第52篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-06 S15 按用户原话改：“翻译改为：改革被证明是旷日持久的，并被官方的惰性拖慢了。”
 # 2026-11-06 S14 按用户原话改：“政府顶住了要求调查的压力，直到1953年的5月。inquiry 重点词汇”（inquiry 与第08篇撞词，用户点名要标，写进 allow_clash）
 # 2026-11-06 S13 按用户原话改：“这种自满，或许有助于解释政府勉强的回应。”（complacency 中文由“麻痹大意”改“自满”）
 # 2026-11-06 S12 按用户原话改：“翻译修改为：一个元凶就在他们自家的炉栅里闪烁——一个温暖与舒适的来源，如此习以为常，以至于很少有人想到去指责它。”（破折号按 T36 换成逗号；flickered 中文由“摇曳”改“闪烁”）
@@ -57,7 +58,7 @@ S=[
 (4,[[[("Such **complacency**","这种**自满**(complacency)，"),("may","或许"),("help to","有助于"),("explain","解释"),("the government's","政府"),("**grudging**","**勉强的**(grudging)"),("**response**.","**回应**(response)。")]]]),
 (4,[[[("It","政府"),("**withstood**","**顶住了**(withstood)"),("pressure for an **inquiry**","要求**调查**(inquiry)的压力，"),("until May 1953.","直到1953年的5月。")],
      "（pressure for an inquiry：要求调查的压力）"]]),
-(5,[[[("Reform","改革"),("proved **protracted**,","**旷日持久**(protracted)，"),("slowed by","又因"),("official","官方的"),("**inertia**.","**惰性**(inertia)而进展迟缓。")],
+(5,[[[("Reform","改革"),("proved **protracted**,","被证明是**旷日持久的**(protracted)，"),("slowed by","并被"),("official","官方的"),("**inertia**.","**惰性**(inertia)拖慢了。")],
      "（prove＋形容词：结果是……，\n事实证明……；\nslowed by…：过去分词短语作状语）"]]),
 (5,[[[("The Clean Air Act","《清洁空气法》"),("became","成为"),("law","法律，"),("on 5 July 1956,","时间是1956年7月5日，")]],
     [[("three and a half years after the smog.","距那场烟雾已有三年半。")],
