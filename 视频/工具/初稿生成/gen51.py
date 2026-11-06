@@ -18,13 +18,13 @@ S=[
     [[("over a **mock** society","话题是一个**恶搞的**(mock)社团，"),("**parodying**","它**戏仿**(parodying)"),("an **ordinance** against ringing dinner bells.","一项禁止敲开饭铃的**法令**(ordinance)。")],
      "（over…：就……，关于……；\nparodying…：现在分词短语作后置定语，修饰 society）"]]),
 (2,[[[("It carried","它刊载了"),("the first known 'o.k.',","已知最早的“o.k.”，"),("**glossed as** 'all correct'.","**被注释为**(glossed as)“all correct”（完全正确）。")],
-     "（glossed as…：过去分词短语作后置定语，修饰 'o.k.'，\n被注释为……）"]]),
+     "（glossed as…：过去分词短语作后置定语，\n修饰 'o.k.'，\n被注释为……）"]]),
 (2,[[[("The letters","这两个字母"),("stood for","代表的是"),("a **knowingly**","**有意**(knowingly)写成"),("**illiterate**","**文盲**(illiterate)拼法的"),("'oll korrect'.","'oll korrect'。")],
      "（stand for：代表；\n'oll korrect'：故意拼错的 all correct）"]]),
 (2,[[[("The **presumed** writer","**推定的**(presumed)作者"),("was","是"),("the **editor**,","该报纸的**编辑**(editor)"),("Charles Gordon Greene.","查尔斯·戈登·格林。")],
      "（Charles Gordon Greene：同位语，\n补充说明 the editor）"]]),
 (3,[[[("**Partisan** politics","**党派**(Partisan)政治"),("**propagated** the letters nationwide.","在全国**宣传了**(propagated)这些字母。")],
-     "（当时正值美国大选，总统候选人范布伦的外号叫“老金德胡克（Old Kinderhook）”，缩写刚好是 O.K.。\n党派报纸疯狂传播这两个字母，就是搞政治营销，暗示“选他，就是完全正确（all correct）！”）"]]),
+     "（当时正值美国大选，\n总统候选人范布伦的外号叫“老金德胡克（Old Kinderhook）”，缩写刚好是 O.K.。\n党派报纸疯狂传播这两个字母，就是搞政治营销，\n暗示“选他，就是完全正确（all correct）！”）"]]),
 (3,[[[("In 1840","1840年，"),("Martin Van Buren, the **incumbent** president,","**在任**(incumbent)总统马丁·范布伦"),("sought **re-election**.","寻求**连任**(re-election)。")],
      "（the incumbent president：同位语，补充说明 Martin Van Buren）"]]),
 (3,[[[("His New York **backers**,","他在纽约的**拥护者**(backers)"),("**punning on** his nickname 'Old Kinderhook',","**拿**(punning on)他的绰号 'Old Kinderhook' **玩双关**(punning on)，"),("after his **birthplace**,","这个绰号得名于他的**出生地**(birthplace)，")],
@@ -50,11 +50,11 @@ S=[
      "（in six … articles：in 结构作状语，指成果发表在六篇文章中）"]]),
 (5,[[[("Most dictionaries now","如今大多数词典都"),("**embrace**","**采纳了**(embrace)"),("his **derivation**,","他的**词源**(derivation)解释，"),("a pedigree of bad spelling and dinner-bell satire.","那是一段由错误拼写和开饭铃讽刺文构成的来历。")],
      "（a pedigree of…：同位语，补充说明 derivation）\n"
-     "（简述：1838年起，波士顿各报流行故意拼错的滑稽缩写。\n"
-     "1839年《波士顿晨邮报》的一篇讽刺文章首次用了 o.k.，代表故意拼错的 all correct。\n"
-     "1840年范布伦竞选连任，支持者借他的绰号 Old Kinderhook 成立 O.K. 俱乐部，让这两个字母传遍全国。\n"
-     "同年一则捏造的消息说杰克逊在公文上批 O.K.，约二十年内人们真的这样批了。\n"
-     "乔克托语、希腊语等来源说法曾经流行，里德从档案报纸中考证出波士顿起源，如今多数词典都采纳了他的说法。）"]]),
+     "（简述：OK这个词是怎么来的？这是一个“恶搞变爆款”的故事。\n"
+     "第一步：恶搞造梗。1838年起，波士顿的报纸流行故意拼错字来搞笑。1839年，有报纸在开玩笑时，第一次把“all correct（完全正确）”故意错拼成了“o.k.”。\n"
+     "第二步：政客疯狂带节奏。1840年美国大选，候选人的外号叫“老金德霍克（Old Kinderhook）”，缩写正好是O.K.。他的支持者立刻成立“O.K.俱乐部”，用这个双关语到处拉票，直接把这两个字母传遍了全国。\n"
+     "第三步：一个乌龙事件。当时对手为了抹黑前总统杰克逊，造谣说他把O.K.写在公文上。其实根本没这事。\n"
+     "第四步：最终盖棺定论。后来虽然有各种奇葩说法（比如说是印第安语、希腊语），但学者里德翻烂了当年的旧报纸，硬核证明了它确确实实起源于波士顿的那次恶搞。现在，绝大多数词典都认准了这个说法。）"]]),
 ]
 CONF={"合组":{
  "S2 O.W. for 'oll wright'":"对齐不了：'oll wright' 是故意错拼的引语，整体照录，不能拆",
@@ -89,7 +89,8 @@ CONF={"合组":{
  "S10 birthplace, / formed @5.013":"2026-11-06 逐 5 ms 重新实测（S10 w）：birthplace 的 /s/ 4.80–4.87（重心 5.7–6.1 kHz、-11～-13 dB），4.88–5.01 是一口吸气（-31～-47 dB、低频 -10～-26 dB、重心 2.6–4.5 kHz），formed 的 /f/ 从 5.015 起（重心升到 5–7.6 kHz、-45→-22 dB），5.135 起 ɔː；停顿插入点 5.012542 是吸气与 /f/ 交界的过零点，停顿在两词之间（原来写的 5.120042 落在 /f/ 末尾，把 formed 的 f 留在停顿前，定稿 4K 出片后核查的响度骤降 74.2–74.6s 查出，已改）",
  "S2 misspellings: / O.W. @8.495":"2026-11-05 逐 2.5 ms 实测（S2 w）：misspellings 的 /z/ 衰减到 8.49 -63 dB，8.495–8.965 全段 -55～-69 dB 静音，8.97 起 O 的元音（-45→-7.5 dB）；删掉的静音正好落在 misspellings: 与 O.W. 之间，没碰两边的词（DTW 把 O.W. 开头算到 9.040 是偏差）",
  "S2 wright', / K.Y. @11.405":"2026-11-05 逐 2.5 ms 实测（S2 w）：wright 的 /t/ 收尾 11.345–11.36（-27～-33 dB），11.365–11.455 -53～-69 dB 静音，11.46 起 K 的 /k/ 除阻（-21 dB）；停顿 11.405–11.410 落在这段静音中间，两边的词都完整"},
-"同词异译":{"unseated：把/赶下台":"不是两种译法：S11 unseated 的意思“把……赶下台”被“他”隔开，“把”和“赶下台”是同一个意思的两部分（T23）"},
+"引号":{"S5-1 “”":"用户 2026-11-06 原话：“它刊载了已知最早的“o.k.”，被注释为“all correct”（完全正确）。”英文 'o.k.'、'all correct' 本有单引号，中文引号照用户原话（T10）","S12-2 “”":"用户 2026-11-06 原话：“1840年3月30日，《纽约先驱晨报》刊登了一则捏造的抹黑：前总统安德鲁·杰克逊——一个据称拼写笨拙的人——曾在公文上标注O.K.，用以代表“Ole Kurrek”。”英文 'Ole Kurrek' 本有单引号，中文引号照用户原话（T10）"},
+"同词异译":{"punning on：拿/玩双关":"不是两种译法：S10 punning on 的意思“拿……玩双关”被宾语隔开，“拿”和“玩双关”是同一个意思的两部分（T23，用户 2026-11-06“punning on 重点词汇”）","unseated：把/赶下台":"不是两种译法：S11 unseated 的意思“把……赶下台”被“他”隔开，“把”和“赶下台”是同一个意思的两部分（T23）"},
 "对齐":{"S2-3 O.W. for 'oll wright',": "'oll wright' 是故意错拼的引语，整体照录；X for Y 中文“用 X 代表 Y”，“用”必须提前", "S2-3 K.Y. for 'know yuse'.": "'know yuse' 是故意错拼的引语，整体照录；X for Y 中文“用 X 代表 Y”，“用”必须提前", "S3-1 the persona of an uneducated b": "the persona of an uneducated bumpkin 是 of 结构，中文“没受过教育的乡巴佬人设”定语必须提前", "S4-1 a Boston Morning Post satire": "Boston Morning Post 是报名“《波士顿晨邮报》”，不能拆；报名作定语，中文“《波士顿晨邮报》的一篇讽刺文章”", "S4-3 an ordinance against ringing d": "against ringing dinner bells 是后置定语，修饰 ordinance，中文“禁止敲开饭铃的法令”定语必须提前", "S5-1 the first known 'o.k.',": "first known 中文“已知最早的”语序倒过来，'o.k.' 是引语，整体照录", "S9-1 Martin Van Buren, the incumben": "the incumbent president 是同位语，中文“在任总统马丁·范布伦”同位语必须提前，人名不能拆", "S10-1 punning on his nickname 'Old K": "pun on A 中文“拿 A 玩双关”，宾语必须夹在中间；'Old Kinderhook' 是引语，整体照录", "S10-2 the Democratic O.K. Club,": "Democratic O.K. Club 是专名“民主党 O.K. 俱乐部”，不能拆", "S11-1 234 electoral votes to 60.": "234 electoral votes to 60 中文“选举人票为234张对60张”，名词必须提前到比分前", "S12-1 the New York Morning Herald": "New York Morning Herald 是报名“《纽约先驱晨报》”，不能拆", "S12-2 had marked paperwork O.K.,": "mark A B 中文“在 A 上批 B”，A 必须提前到动词前", "S17-1 favoured Choctaw as late as 19": "as late as 1961 是时间状语，中文“直到1961年还”必须放到动词前", "S18-2 excavated the neglected Boston": "from archival newspapers 是提前的介词短语，中文“从档案报纸中发掘出……”地点必须放到动词前", "S18-3 in six influential American Sp": "in six … articles 是介词短语作状语，American Speech 是刊名“《美国语言》”，中文“发表在《美国语言》杂志的六篇……文章里”语序必须倒过来", "S19-1 a pedigree of bad spelling and": "a pedigree of… 是 of 结构作同位语，中文“由错误拼写和开饭铃讽刺文构成的来历”定语必须提前"},
 "比较结构":{"S17 as late as":"as late as 1961 整组译成“直到1961年还”，放在动词“倾向于”之前（不单独放一格），整句“权威词典直到1961年还倾向于乔克托语一说”读得通"},
 "方向":{"S10-1 after→这个绰号得名于他的出生地":"after his birthplace 是 named after（以……命名），不是时间先后；中文“得名于他的出生地”意思一致（沿用文章定稿）"},
@@ -98,6 +99,8 @@ out={"no":"51","title_en":"The Joke That Became OK","title_zh":"OK 原本是个�
      "除阻加强":{"S10": {"x": [3.783583, 3.843042, -40, "假擦音：51 S10 Kinderhook 词尾，模型在 ʊ 后把 k 发成无闭塞的擦音（w 3.785–3.825 及其衰减尾 3.825–3.843，-18～-24 dB，重心 6.2–7.2 kHz，ʊ 与它之间没有 < -50 dB 闭塞）；4 种注音（kˈɪndɚhˌʊk、kˈɪndɚhʊk、kˈɪndəɹhˌʊk、kˈɪndɚhˌʊkh）、2 档语速（0.9、1.05）都去不掉（2026-11-05 实测）；压 -40 dB，让 3.83–3.86 的静音当闭塞，k 除阻由 停顿处除阻 S10“2”补"]}},
      "停顿删除区间":{"S2":{"1":[4.8,5.15]},"S12":{"2":[8.25,8.355]},"S10":{"3":[4.905,5.005]}},
      "停顿插入点":{"S10":{"4":[8.645667,"交界"]},"S12":{"3":[10.28825,"交界"]}},
+     "换行变更已获同意":{"S5":"用户 2026-11-06 原话：“它刊载了已知最早的“o.k.”，被注释为“all correct”（完全正确）。”（S5 译文按用户原话改，分组和换行随之变；已记 用户同意记录）"},
+     "allow_clash":["lay in"],
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Boston":"波士顿","Boston Morning Post":"《波士顿晨邮报》","Providence Journal":"《普罗维登斯日报》","Charles Gordon Greene":"查尔斯·戈登·格林","Martin Van Buren":"马丁·范布伦","New York":"纽约","Democratic O.K. Club":"民主党 O.K. 俱乐部","William Henry Harrison":"威廉·亨利·哈里森","New York Morning Herald":"《纽约先驱晨报》","Andrew Jackson":"安德鲁·杰克逊","Jackson":"杰克逊","Choctaw":"乔克托语","Greek":"希腊语","Allen Walker Read":"艾伦·沃克·里德","American Speech":"《美国语言》"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
