@@ -1,5 +1,6 @@
 import json,re,glob,os
 # 第52篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-06 S12 按用户原话改：“翻译修改为：一个元凶就在他们自家的炉栅里闪烁——一个温暖与舒适的来源，如此习以为常，以至于很少有人想到去指责它。”（破折号按 T36 换成逗号；flickered 中文由“摇曳”改“闪烁”）
 # 2026-11-06 S11 按用户原话改：“修改一下翻译：一直容忍着煤烟，只是把它当成一种 让人讨厌的事情”（nuisance 中文由“麻烦”改“让人讨厌的事情”）
 # 2026-11-06 S10 末块按用户原话改：“翻译改为：估计在1952年12月至1953年2月期间约有12,000例超额死亡。”
 # 2026-11-06 S10 按用户原话改：“and cast doubt on that explanation 单独成为一行, 翻译为：并对这一解释提出了质疑”“cast doubt on 为重点词汇，标注为重点词汇。”
@@ -46,11 +47,11 @@ S=[
      "（estimating…：现在分词短语作状语，补充说明研究结论）"]]),
 (4,[[[("For decades","几十年来，"),("Londoners","伦敦人"),("had **tolerated**","一直**容忍**(tolerated)着"),("the smoke","煤烟，"),("as a **nuisance**.","只是把它当成一种**让人讨厌的事情**(nuisance)。")],
      "（tolerate A as B：把 A 当作 B 来容忍）"]]),
-(4,[[[("One **villain**","有一个**元凶**(villain)"),("**flickered**","就**摇曳**(flickered)在"),("in their own","他们自家的"),("grates,","炉栅里，")],
+(4,[[[("One **villain**","一个**元凶**(villain)"),("**flickered** in their own grates,","就在他们自家的炉栅里**闪烁**(flickered)，")],
      "（grates：炉栅，壁炉里放煤的铁架）"],
-    [[("a source of","它带来"),("**warmth**","**温暖**(warmth)"),("and **comfort**","与**舒适**(comfort)，"),("so **habitual**","人们早已**习以为常**(habitual)，")],
+    [[("a source of","一个"),("**warmth**","**温暖**(warmth)"),("and **comfort**","与**舒适**(comfort)的来源，"),("so **habitual**","如此**习以为常**(habitual)，")],
      "（a source of…：同位语，补充说明 villain；\nso… that…：如此……以至于……）"],
-    [[("that few","很少有人"),("thought to **accuse** it.","想到要**指责**(accuse)它。")]]]),
+    [[("that few","以至于很少有人"),("thought to **accuse** it.","想到去**指责**(accuse)它。")]]]),
 (4,[[[("Such **complacency**","这种**麻痹大意**(complacency)"),("may","或许"),("help to","有助于"),("explain","说明，"),("the government's","政府为何"),("**grudging**","**勉强**(grudging)"),("**response**.","作出**回应**(response)。")],
      "（the government's grudging response：\n政府勉强作出的回应）"]]),
 (4,[[[("It","政府"),("**withstood**","一直**顶住**(withstood)"),("pressure for an inquiry","要求调查的压力，"),("until May 1953.","直到1953年5月才松口。")],
@@ -86,6 +87,7 @@ G={
  "S10 A study published in Environmental Health Perspectives in 2001":"对齐不了：published in… in 2001 是过去分词短语作后置定语，修饰 study，中文“2001年发表于《环境健康展望》的一项研究”定语必须提前，刊名不能拆",
  "S10 cast doubt on that explanation":"对齐不了：用户 2026-11-06 原话定的译文“并对这一解释提出了质疑”，cast doubt on 被 that explanation 隔开，中文“对……提出了质疑”两处都标 cast doubt on（T23），解释夹在中间，只能整组",
  "S10 about 12,000 excess deaths between December 1952 and February 1953":"对齐不了：用户 2026-11-06 原话定的译文“估计在1952年12月至1953年2月期间约有12,000例超额死亡”，between… 是时间状语，中文必须放到“约有12,000例超额死亡”前，语序整个倒过来，只能整组",
+ "S12 flickered in their own grates":"对齐不了：用户 2026-11-06 原话定的译文“就在他们自家的炉栅里闪烁”，in their own grates 是地点状语，中文地点必须放到动词“闪烁”前，只能整组",
  "S14 pressure for an inquiry":"对齐不了：for an inquiry 是介词短语作后置定语，修饰 pressure，中文“要求调查的压力”定语必须提前",
  "S18 all along":"对齐不了：all along 是固定短语“一直，始终”，拆开 all、along 中文不通",
  "S16 three and a half years after the smog":"对齐不了：three and a half years after the smog 是时间状语，中文“距那场烟雾已有三年半”语序必须倒过来",
