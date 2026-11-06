@@ -1,8 +1,9 @@
 import json,re,glob,os
 # 第52篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-06 S1 译文按用户原话改：“翻译改为：1952年12月5日星期五，寒冷、凝滞的空气笼罩降临了伦敦。”（先不生成视频，最后统一生成）
 # 2026-11-05 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；三项并列加牛津逗号（T18）；不用破折号（T36）；形容词的“的”进粗体。
 S=[
-(1,[[[("On Friday 5 December 1952,","1952年12月5日，星期五，"),("cold,","寒冷而"),("**stagnant**","**凝滞的**(stagnant)"),("air","空气"),("**descended on** London.","**降临**(descended on)伦敦。")],
+(1,[[[("On Friday 5 December 1952,","1952年12月5日星期五，"),("cold,","寒冷、"),("**stagnant**","**凝滞的**(stagnant)"),("air","空气"),("**descended on** London.","**笼罩降临了**(descended on)伦敦。")],
      "（descend on…：降临，笼罩（某地））"]]),
 (1,[[[("**Overhead**,","**头顶上方**(Overhead)，"),("warmer","较暖的"),("air","空气"),("pressed down","压了下来，"),("like a **lid**,","像**盖子**(lid)一样，")]],
     [[("holding","把"),("the **chill**","**寒气**(chill)"),("**captive**","**困**(captive)"),("beneath.","在下面。")],
