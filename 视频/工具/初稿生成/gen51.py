@@ -36,7 +36,7 @@ S=[
 (4,[[[("On 30 March 1840","1840年3月30日，"),("the New York Morning Herald","《纽约先驱晨报》"),("printed a **fabricated**","刊登了一则**捏造的**(fabricated)"),("**smear**:","**抹黑**(smear)：")]],
     [[("the former","前"),("president","总统"),("Andrew Jackson,","安德鲁·杰克逊，"),("a **supposedly**","一个**据称**(supposedly)"),("**inept** speller,","拼写**笨拙的**(inept)人，"),("had marked **paperwork** O.K.,","曾在**公文**(paperwork)上标注 O.K.，"),("for 'Ole Kurrek'.","用以代表“Ole Kurrek”。")],
      "（a supposedly inept speller：同位语，补充说明 Andrew Jackson；\nmark A B：在 A 上标注 B；\n'Ole Kurrek'：故意拼错的 all correct）"]]),
-(4,[[[("Jackson","其实杰克逊"),("spelled","拼写得"),("**reasonably**","**还算**(reasonably)"),("well","不错，"),("and never","也从没"),("marked documents O.K.","在文件上批过 O.K.。")]]]),
+(4,[[[("Jackson","杰克逊"),("spelled","拼写得"),("**reasonably**","**还算/尚且**(reasonably)"),("well","不错，"),("and never","并且从没"),("marked documents O.K.","在文件上批注过 O.K.。")]]]),
 (4,[[[("Within about twenty years,","大约二十年内，"),("people","人们"),("did so **in earnest**.","就**当真**(in earnest)这样批了。")],
      "（do so：这样做，指在文件上批 O.K.）"]]),
 (4,[[[("The","这个"),("**bogus**","**子虚乌有的**(bogus)"),("**notation**","**批注**(notation)"),("was merely **premature**.","不过是出现得**过早**(premature)。")]]]),
