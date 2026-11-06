@@ -243,6 +243,14 @@ def main():
         ok = g1 and b1 and b2 and g2 and b3 and b4
         print(f"{'✔' if ok else '✘'} K154擦音压低：假擦音放行{'对' if g2 else '错'}、不写假擦音{'停' if b3 else '没停'}、后面不是静音{'停' if b4 else '没停'}；/s/ 压 3 dB → {dd_ if isinstance(dd_, str) else f'{dd_:+.2f} dB'}；罩到元音{'停' if b1 else '没停'}；-7 dB {'停' if b2 else '没停'}")
         if not ok: fails.append('没抓到或误拦：擦音压低（K154）')
+    if not only or 'L14句首' in only:   # 51 S12：句首 非人声区间 盖住前 10 ms 起的比对窗口，_head_offset 要往后找有声音的窗口；对不上的照停
+        sys.path.insert(0, W); import make_video as MV, numpy as np_
+        r_ = np_.random.default_rng(1).standard_normal(MV.SR).astype(np_.float32) * 0.1; st_ = 1234; w_ = r_[st_:].copy(); w_[int(0.015 * MV.SR):int(0.055 * MV.SR)] = 0
+        g_ = MV._head_offset(r_, w_) == st_
+        try: MV._head_offset(r_, np_.random.default_rng(2).standard_normal(MV.SR).astype(np_.float32)); b_ = False
+        except SystemExit: b_ = True
+        print(f"{'✔' if g_ and b_ else '✘'} L14句首：句首静音后找得到裁剪位置{'对' if g_ else '错'}；对不上{'停' if b_ else '没停'}")
+        if not (g_ and b_): fails.append('没抓到或误拦：句首裁剪位置（L14）')
     if not only or 'A23大小写' in only:   # K148（43 NeXT）：读音改正的词中间有大写（ZorK），普通小写 zork 不许被当成它去换（原来不分大小写，换不到就停）；大小写对得上的照换
         sys.path.insert(0, W); import make_video as MV
         try: p_ = _读音(MV, {'ZorK': 'zˈuːk'}, {}, {}, 'the zork day', {'the zork day': 'ðə zˈɔːk dˈeɪ', 'ZorK': 'zˈiː ˈoʊ'})
