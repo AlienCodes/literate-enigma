@@ -92,8 +92,8 @@ CONF={"合组":{
 "词性":{"S10-1 birthplace 出生地":"birthplace 是 n.，“出生地”的“地”是名词“地方”，不是副词标记“地”"}}
 out={"no":"51","title_en":"The Joke That Became OK","title_zh":"OK 原本是个玩笑","title_fx":{"hl":["Joke","OK"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "除阻加强":{"S10": {"x": [3.783583, 3.843042, -40, "假擦音：51 S10 Kinderhook 词尾，模型在 ʊ 后把 k 发成无闭塞的擦音（w 3.785–3.825 及其衰减尾 3.825–3.843，-18～-24 dB，重心 6.2–7.2 kHz，ʊ 与它之间没有 < -50 dB 闭塞）；4 种注音（kˈɪndɚhˌʊk、kˈɪndɚhʊk、kˈɪndəɹhˌʊk、kˈɪndɚhˌʊkh）、2 档语速（0.9、1.05）都去不掉（2026-11-05 实测）；压 -40 dB，让 3.83–3.86 的静音当闭塞，k 除阻由 停顿处除阻 S10“2”补"]}},
-     "停顿删除区间":{"S2":{"1":[4.8,5.15]}},
-     "停顿插入点":{"S10":{"3":[5.120042,"交界"],"4":[8.645667,"交界"]},"S12":{"2":[8.362625,"交界"],"3":[10.28825,"交界"]}},
+     "停顿删除区间":{"S2":{"1":[4.8,5.15]},"S12":{"2":[8.25,8.355]}},
+     "停顿插入点":{"S10":{"3":[5.120042,"交界"],"4":[8.645667,"交界"]},"S12":{"3":[10.28825,"交界"]}},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Boston":"波士顿","Boston Morning Post":"《波士顿晨邮报》","Providence Journal":"《普罗维登斯日报》","Charles Gordon Greene":"查尔斯·戈登·格林","Martin Van Buren":"马丁·范布伦","New York":"纽约","Democratic O.K. Club":"民主党 O.K. 俱乐部","William Henry Harrison":"威廉·亨利·哈里森","New York Morning Herald":"《纽约先驱晨报》","Andrew Jackson":"安德鲁·杰克逊","Jackson":"杰克逊","Choctaw":"乔克托语","Greek":"希腊语","Allen Walker Read":"艾伦·沃克·里德","American Speech":"《美国语言》"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
