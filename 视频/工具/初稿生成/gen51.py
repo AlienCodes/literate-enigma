@@ -2,9 +2,9 @@ import json,re,glob,os
 # 第51篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-11-05 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；不用破折号（T36）；形容词的“的”进粗体（T38）。
 S=[
-(1,[[[("OK,","OK，"),("often","常"),("said to be","被说成是"),("the planet's","全世界"),("most frequently","最常"),("spoken","说出的"),("word,","词，"),("began as","起初只是"),("a newspaper","报纸上的一个"),("**gag**.","**噱头**(gag)。")],
+(1,[[[("OK,","OK，"),("often","常"),("said to be","被说成是"),("the planet's","全世界"),("**most frequently**","**最常**(most frequently)"),("spoken","说出的"),("word,","词，"),("began as","起初只是"),("a newspaper","报纸上的一个"),("**gag**.","**噱头**(gag)。")],
      "（often said to be…：过去分词短语作插入语，\n补充说明 OK；\nbegin as…：起初是……）"]]),
-(1,[[[("From 1838","从1838年起，"),("**abbreviations**","**缩写**(abbreviations)"),("were **all the vogue**","**风靡**(all the vogue)"),("in Boston's papers,","波士顿各报，")],
+(1,[[[("From 1838","从1838年起，"),("**abbreviations**","**缩写**(abbreviations)"),("were **all the vogue**","**风靡**(all the vogue)"),("in Boston's papers,","于波士顿各大报纸，")],
      "（be all the vogue：风靡一时，非常流行）"],
     [[("and the **craze**","这股**热潮**(craze)"),("turned **comic**","变得**滑稽**(comic)起来，"),("through","靠的是"),("**deliberate**","**故意的**(deliberate)"),("**misspellings**:","**错拼**(misspellings)：")],
      "（turn＋形容词：变得……；\nthrough…：借助……）"],
