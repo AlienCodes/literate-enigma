@@ -517,10 +517,21 @@ def _boost(w,items,label,off=0):
         G=10**(float(gdb)/20); h=int(0.002*SR); r=np.full(q-p,G,np.float32); r[:h]=np.linspace(1,G,h); r[-h:]=np.linspace(G,1,h)
         w[p:q]*=r
     return w
-def _pdonor(w,kind):
-    """连读处补除阻用的供体：与 _graft 同一段供体、同一响度（本句最响 5 ms 帧 GRAFT_DB）、两头 2 ms 淡入淡出"""
+def _short_donor(d):
+    """51 S10 Kinderhook：供体 k（alike 尾）长 >100 ms、50–80 ms 带 <1 kHz 浊音尾，补在停顿前被听成“ak”。
+    只留爆破送气：滤掉 1 kHz 以下，截到 2 kHz 以上能量落到最响 -40 dB 为止、最长 25 ms，重新归一到最响 5 ms 帧 = 1"""
+    import scipy.signal as _ss
+    x=_ss.sosfiltfilt(_ss.butter(4,1000,'highpass',fs=SR,output='sos'),np.asarray(d,np.float64)); F_=int(0.0025*SR)
+    hf=_ss.sosfiltfilt(_ss.butter(4,2000,'highpass',fs=SR,output='sos'),np.asarray(d,np.float64)); m_=len(hf)//F_
+    lv=20*np.log10(np.sqrt(np.mean(hf[:m_*F_].reshape(m_,F_)**2,axis=1))+1e-12); lv-=lv.max(); pk=int(np.argmax(lv))
+    end=pk+1
+    while end<m_ and lv[end]>-40: end+=1
+    x=x[:min(end*F_,int(0.025*SR))]; F5=int(0.005*SR); m5=max(1,len(x)//F5)
+    return (x/(np.sqrt(np.mean(x[:m5*F5].reshape(m5,F5)**2,axis=1)).max()+1e-12)).astype(np.float32)
+def _pdonor(w,kind,short=False):
+    """连读处补除阻用的供体：与 _graft 同一段供体、同一响度（本句最响 5 ms 帧 GRAFT_DB）、两头 2 ms 淡入淡出；short：第4项写“短供体”的只留爆破送气（_short_donor）"""
     F_=int(0.005*SR); e=_env5(w); rr=np.sqrt(np.mean(w[:len(e)*F_].reshape(len(e),F_)**2,axis=1)).max()
-    d=_donor(kind); n=len(d); h=int(0.002*SR); r=np.ones(n,np.float32); r[:h]=np.linspace(0,1,h); r[-h:]=np.linspace(1,0,h)
+    d=_donor(kind); d=_short_donor(d) if short else d; n=len(d); h=int(0.002*SR); r=np.ones(n,np.float32); r[:h]=np.linspace(0,1,h); r[-h:]=np.linspace(1,0,h)
     return (d*rr*10**(GRAFT_DB/20)).astype(np.float32)*r
 def _keep_tail(raw,w,head):
     """A21：clean_tail 的句尾（最后一个比峰值低 48 dB 的 10 ms 帧往后 80 ms，最后 50 ms 淡出）会剪掉、压低听得见的词尾（06 intelligent. 的 /t/）。
@@ -850,7 +861,7 @@ def sentence_audio(sent,pieces,gaps):
                 raise SystemExit(f'【停止】连读处补除阻的位置不对（换掉的部分有词的声音、前面不是闭塞、不在该标点处，或与别的设置冲突）（A21）：{sent[:60]} 第{gi+1}个标点')
             fb_=q_//F
             while fb_<len(e) and e[fb_]<AUD_DB: fb_+=1
-            cuts.append((p_,q_,max(0.03,gaps[gi]-max(0,fb_*F-q_)/SR))); PDON[gi]=(_pdonor(w,pg[2]),str(gi+1)); continue
+            cuts.append((p_,q_,max(0.03,gaps[gi]-max(0,fb_*F-q_)/SR))); PDON[gi]=(_pdonor(w,pg[2],len(pg)>3 and '短供体' in str(pg[3])),str(gi+1)); continue
         ovj=INSERT_AT.get(sent,{}).get(gi+1)
         if isinstance(ovj,list):
             # A42 两词无缝连读的交界（2026-10-16，19 S2 petals, soared：/z/ 直接连 /s/，整段擦音没有低谷；S17 spread, and：/d/ 除阻直接连元音）：

@@ -251,6 +251,13 @@ def main():
         except SystemExit: b_ = True
         print(f"{'✔' if g_ and b_ else '✘'} L14句首：句首静音后找得到裁剪位置{'对' if g_ else '错'}；对不上{'停' if b_ else '没停'}")
         if not (g_ and b_): fails.append('没抓到或误拦：句首裁剪位置（L14）')
+    if not only or 'A21短供体' in only:   # 51 S10 Kinderhook：停顿处除阻第4项写“短供体”只留爆破送气（≤25 ms、1 kHz 以下占比 ≤-15 dB）；不写的照旧用整段供体
+        sys.path.insert(0, W); import make_video as MV, numpy as np_
+        d_ = MV._donor('k'); s_ = MV._short_donor(d_); X_ = np_.abs(np_.fft.rfft(s_)) ** 2; f_ = np_.fft.rfftfreq(len(s_), 1 / MV.SR)
+        lo_ = 10 * np_.log10(X_[f_ < 1000].sum() / X_.sum()); w_ = np_.ones(MV.SR, np_.float32) * 0.1
+        ok = len(s_) <= int(0.025 * MV.SR) and lo_ <= -15 and len(MV._pdonor(w_, 'k')) == len(d_) and len(MV._pdonor(w_, 'k', True)) == len(s_)
+        print(f"{'✔' if ok else '✘'} A21短供体：{len(s_) / MV.SR * 1000:.0f} ms、1 kHz 以下 {lo_:.1f} dB；不写短供体的照旧整段")
+        if not ok: fails.append('短供体不对（A21）')
     if not only or 'A23大小写' in only:   # K148（43 NeXT）：读音改正的词中间有大写（ZorK），普通小写 zork 不许被当成它去换（原来不分大小写，换不到就停）；大小写对得上的照换
         sys.path.insert(0, W); import make_video as MV
         try: p_ = _读音(MV, {'ZorK': 'zˈuːk'}, {}, {}, 'the zork day', {'the zork day': 'ðə zˈɔːk dˈeɪ', 'ZorK': 'zˈiː ˈoʊ'})
