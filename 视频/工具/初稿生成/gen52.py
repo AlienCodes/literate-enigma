@@ -1,5 +1,6 @@
 import json,re,glob,os
 # 第52篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-06 S11 按用户原话改：“修改一下翻译：一直容忍着煤烟，只是把它当成一种 让人讨厌的事情”（nuisance 中文由“麻烦”改“让人讨厌的事情”）
 # 2026-11-06 S10 末块按用户原话改：“翻译改为：估计在1952年12月至1953年2月期间约有12,000例超额死亡。”
 # 2026-11-06 S10 按用户原话改：“and cast doubt on that explanation 单独成为一行, 翻译为：并对这一解释提出了质疑”“cast doubt on 为重点词汇，标注为重点词汇。”
 # 2026-11-06 S7 译文按用户原话改：“救护车服务被暂停，萨德勒之井剧院的一场歌剧在幕间休息时被中止，而史密斯菲尔德农业展上的获奖牛则死亡或不得不被宰杀。”
@@ -43,7 +44,7 @@ S=[
      "（cast doubt on…：对……提出质疑）"],
     [[("estimating","估计"),("about 12,000 excess deaths between December 1952 and February 1953.","在1952年12月至1953年2月期间约有12,000例超额死亡。")],
      "（estimating…：现在分词短语作状语，补充说明研究结论）"]]),
-(4,[[[("For decades","几十年来，"),("Londoners","伦敦人"),("had **tolerated**","一直**容忍**(tolerated)"),("the smoke","煤烟，"),("as a **nuisance**.","把它看成一种**麻烦**(nuisance)。")],
+(4,[[[("For decades","几十年来，"),("Londoners","伦敦人"),("had **tolerated**","一直**容忍**(tolerated)着"),("the smoke","煤烟，"),("as a **nuisance**.","只是把它当成一种**让人讨厌的事情**(nuisance)。")],
      "（tolerate A as B：把 A 当作 B 来容忍）"]]),
 (4,[[[("One **villain**","有一个**元凶**(villain)"),("**flickered**","就**摇曳**(flickered)在"),("in their own","他们自家的"),("grates,","炉栅里，")],
      "（grates：炉栅，壁炉里放煤的铁架）"],
