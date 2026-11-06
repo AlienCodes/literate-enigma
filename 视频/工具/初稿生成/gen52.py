@@ -1,5 +1,6 @@
 import json,re,glob,os
 # 第52篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-06 S5 后半按用户原话改：“充满了煤烟和有毒的二氧化硫。”（laden with 中文由“满含”改“充满了”，soot 由“烟尘”改“煤烟”）
 # 2026-11-06 S5 power stations 按用户原话加为重点词：“Power station标注为重点词。对应对应发电厂。”（70 篇查过不撞车）
 # 2026-11-06 S5 译文按用户原话改：“这地方翻译改改：这些煤烟来自于烧的煤”
 # 2026-11-06 S4 smoke、fog 按用户原话加为重点词：“Smoke and fog 重点词汇，重点词”（70 篇查过不撞车）
@@ -18,7 +19,7 @@ S=[
      "（thickening into…：现在分词短语作状语，表结果；\na mix of smoke and fog：同位语，补充说明 smog）"]]),
 (2,[[[("That smoke,","这些煤烟"),("from","来自于"),("coal burned","烧的煤，"),("in **domestic**","在**家庭**(domestic)"),("**fireplaces**","**壁炉**(fireplaces)"),("and **power stations**,","和**发电厂**(power stations)里，")],
      "（from coal…：介词短语作后置定语，修饰 smoke；\nburned in…：过去分词短语作后置定语，修饰 coal）"],
-    [[("was **laden with**","**满含**(laden with)"),("soot","烟尘"),("and **noxious**","和**有毒的**(noxious)"),("sulphur dioxide.","二氧化硫。")],
+    [[("was **laden with**","**充满了**(laden with)"),("soot","煤烟"),("and **noxious**","和**有毒的**(noxious)"),("sulphur dioxide.","二氧化硫。")],
      "（be laden with…：满载……，充满……）"]]),
 (2,[[[("In places,","有些地方，"),("**visibility**","**能见度**(visibility)"),("fell to","降到只有"),("a few","几"),("metres.","米。")]]]),
 (2,[[[("**Ambulance** services","**救护车**(Ambulance)服务"),("were suspended,","暂停；")]],
