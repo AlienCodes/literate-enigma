@@ -1,5 +1,6 @@
 import json,re,glob,os
 # 第52篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-06 S5 power stations 按用户原话加为重点词：“Power station标注为重点词。对应对应发电厂。”（70 篇查过不撞车）
 # 2026-11-06 S5 译文按用户原话改：“这地方翻译改改：这些煤烟来自于烧的煤”
 # 2026-11-06 S4 smoke、fog 按用户原话加为重点词：“Smoke and fog 重点词汇，重点词”（70 篇查过不撞车）
 # 2026-11-06 S1 译文按用户原话改：“翻译改为：1952年12月5日星期五，寒冷、凝滞的空气笼罩降临了伦敦。”（先不生成视频，最后统一生成）
@@ -15,7 +16,7 @@ S=[
 (1,[[[("This time, though,","不过这一次，"),("the capital's","首都的"),("smoke","煤烟"),("was trapped too,","也被困住了，")]],
     [[("thickening into","越积越浓，成了"),("a **choking**","**令人窒息的**(choking)"),("**smog**,","**烟雾**(smog)，"),("a mix of","也就是"),("**smoke**","**烟**(smoke)"),("and **fog**.","与**雾**(fog)的混合物。")],
      "（thickening into…：现在分词短语作状语，表结果；\na mix of smoke and fog：同位语，补充说明 smog）"]]),
-(2,[[[("That smoke,","这些煤烟"),("from","来自于"),("coal burned","烧的煤，"),("in **domestic**","在**家庭**(domestic)"),("**fireplaces**","**壁炉**(fireplaces)"),("and power stations,","和发电厂里，")],
+(2,[[[("That smoke,","这些煤烟"),("from","来自于"),("coal burned","烧的煤，"),("in **domestic**","在**家庭**(domestic)"),("**fireplaces**","**壁炉**(fireplaces)"),("and **power stations**,","和**发电厂**(power stations)里，")],
      "（from coal…：介词短语作后置定语，修饰 smoke；\nburned in…：过去分词短语作后置定语，修饰 coal）"],
     [[("was **laden with**","**满含**(laden with)"),("soot","烟尘"),("and **noxious**","和**有毒的**(noxious)"),("sulphur dioxide.","二氧化硫。")],
      "（be laden with…：满载……，充满……）"]]),
@@ -71,7 +72,6 @@ G={
  "S4 This time, though":"对齐不了：though 是转折副词，中文“不过”必须放句首，“这一次”跟在后面，拆开语序不通",
  "S4 was trapped too":"对齐不了：too 中文“也”必须放到动词“被困住”前",
  "S5 coal burned":"对齐不了：用户 2026-11-06 原话“这地方翻译改改：这些煤烟来自于烧的煤”，burned 是过去分词作后置定语修饰 coal，中文“烧的煤”定语必须提前，只能整组",
- "S5 and power stations":"对齐不了：power stations 是一个词“发电厂”，拆开不通",
  "S5 sulphur dioxide":"对齐不了：sulphur dioxide 是化学名“二氧化硫”，一个词，拆开不通",
  "S7 was abandoned at the interval":"对齐不了：at the interval 是时间状语，中文“演到幕间休息”必须放到“被迫中止”前",
  "S10 A study published in Environmental Health Perspectives in 2001":"对齐不了：published in… in 2001 是过去分词短语作后置定语，修饰 study，中文“2001年发表于《环境健康展望》的一项研究”定语必须提前，刊名不能拆",
