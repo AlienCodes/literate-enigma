@@ -222,6 +222,10 @@ def main():
     flags = {a for a in sys.argv[1:] if a.startswith('--')}; want = [a.zfill(2) for a in sys.argv[1:] if not a.startswith('--')]
     quick = '--只查清点和镜像' in flags; no_mirror = '--不查镜像' in flags
     bad, final = inventory()
+    if want:   # 52 11-06：别篇（51 定稿后用户改稿、正在重做）的新草稿 1080p 不是本篇的质量问题，只提醒、不拦本篇定稿
+        别 = [x for x in bad if (m_ := re.match(r'\[G7\] 第(\d\d)篇已定稿，旧草稿', x)) and m_.group(1) not in want]
+        for x in 别: print('   【提醒】', x, '（别篇正在重做的草稿，不拦本篇）')
+        bad = [x for x in bad if x not in 别]
     print('① 清点（G7 + 文件名与定稿标题一致 + README 目录）：' + ('通过' if not bad else '✘'))
     for x in bad: print('   ✘', x)
     nos = [b[:2] for b in final]
