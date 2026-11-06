@@ -129,7 +129,12 @@ if __name__ == '__main__':
                     for p_, q_, kd, *ex_ in sorted(pg.values(), key=lambda v: -float(v[0])):   # 51 S10：第4项“短供体”，与出片同一个 _pdonor(short=True)
                         p0 = st + int(round(float(p_) * SR)); q0 = st + int(round(float(q_) * SR))
                         gp_ = float(np.prod([10 ** (g_ / 20) for p0_, p1_, g_ in pr_ if p0_ < p0 <= p1_])) if pr_ else 1.0   # K124 第二次（46 第 7 遍：S4 第 1 段原始 [240,15240)、供体正好从 15240 起，原来 p0 < p1_ 差一个样本没乘）：出片把供体接在前一段末尾一起乘，所以段终点算这一段。K124（46 S4 fact, 的 /t/ 在第 1 段词尾、不在停顿里：出片随第 1 段乘 -3.5 dB，复核没乘，报 lost -27 dB + 多余 68 ms）：供体落在哪一段就乘那一段的增益，落在停顿里不乘
-                        a = np.concatenate([a[:p0], _pdonor(w0, kd, bool(ex_) and '短供体' in str(ex_[0])) * np.float32(gp_), a[q0:]])
+                        dn_ = _pdonor(w0, kd, bool(ex_) and '短供体' in str(ex_[0])) * np.float32(gp_)
+                        for r_ in rg_:   # 51 S2：出片的供体接在这一段 clip 末尾、跟着段内渐变一起乘（clip 长含供体）；标准答案按同一条曲线的末尾乘
+                            if r_[0] < p0 <= r_[1]:
+                                L_ = r_[4] if len(r_) > 4 else None; n_ = len(dn_)
+                                dn_ = dn_ * (10 ** (np.linspace(r_[2], r_[3], L_)[L_ - n_:] / 20) if L_ and L_ >= n_ else np.float32(10 ** (r_[3] / 20))).astype(np.float32)
+                        a = np.concatenate([a[:p0], dn_, a[q0:]])
                 if sg_: a = a * np.float32(10 ** (sg_ / 20))
                 np.save(fn, a)
             meta[no].append({'idx': idx, 'text': text, 'file': fn,
