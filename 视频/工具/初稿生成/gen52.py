@@ -128,7 +128,7 @@ CONF={"合组":G,"非人声":{
  "S16-2 three and a half years after t":"three and a half years after the smog 是时间状语，中文“距那场烟雾已有三年半”语序必须倒过来",
  "S17-2 combating smoke at its source.":"at its source 是方式状语，中文“从源头上遏制煤烟”必须放到动词前",
  "S18-1 The cosy hearth, beloved of Br":"beloved of British families 是后置定语，修饰 hearth，中文“英国家庭深受喜爱的、温馨的炉膛”定语必须提前（文章定稿原文）"},
-"方向":{"S16-2 after→此时距那场烟雾已过去三年半。":"three and a half years after the smog 中文“此时距那场烟雾已过去三年半”（用户 2026-11-06 原话），“已过去”就是烟雾之后过了三年半，方向一致","S16-2 after→距那场烟雾已有三年半。":"three and a half years after the smog 中文“距那场烟雾已有三年半”，“距……已有”就是那场烟雾之后过了三年半，方向一致"},
+"方向":{"S16-2 after→此时距那场烟雾已过去三年":"three and a half years after the smog 中文“此时距那场烟雾已过去三年半”（用户 2026-11-06 原话），“已过去”就是烟雾之后过了三年半，方向一致","S16-2 after→距那场烟雾已有三年半。":"three and a half years after the smog 中文“距那场烟雾已有三年半”，“距……已有”就是那场烟雾之后过了三年半，方向一致"},
 "短语":{
  "S8 dissipated … on":"不是搭配：on 引出时间 on Tuesday 9 December，dissipate 单独就是“消散”",
  "S9 excess … of":"不是搭配：of 属于 a 1954 Ministry of Health report，和 excess 无关",
