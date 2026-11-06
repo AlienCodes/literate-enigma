@@ -8,7 +8,7 @@ That smoke, from coal burned in **domestic** **fireplaces** and **power stations
 
 The smog **dissipated** on Tuesday 9 December. Officials at the time put the **excess** deaths at about 4,000, but a 1954 Ministry of Health report blamed later deaths on **influenza**. A study published in Environmental Health Perspectives in 2001 **reassessed** the evidence and **cast doubt on** that **explanation**, estimating about 12,000 excess deaths between December 1952 and February 1953.
 
-For decades Londoners had **tolerated** the smoke as a **nuisance**. One **villain** **flickered** in their own grates, a source of **warmth** and **comfort** so **habitual** that few thought to **accuse** it. Such **complacency** may help to explain the government's **grudging** **response**. It **withstood** pressure for an inquiry until May 1953.
+For decades Londoners had **tolerated** the smoke as a **nuisance**. One **villain** **flickered** in their own grates, a source of **warmth** and **comfort** so **habitual** that few thought to **accuse** it. Such **complacency** may help to explain the government's **grudging** **response**. It **withstood** pressure for an **inquiry** until May 1953.
 
 Reform proved **protracted**, slowed by official **inertia**. The Clean Air Act became law on 5 July 1956, three and a half years after the smog. It **empowered** **municipal** councils to create **smokeless** zones, **combating** smoke at its **source**. The **cosy** **hearth**, **beloved of** British families, had, all along, been among the chief **offenders**.
 
@@ -20,7 +20,7 @@ Reform proved **protracted**, slowed by official **inertia**. The Clean Air Act 
 
 烟雾**消散**(dissipated)于12月9日，星期二。当时的官员估计**超额**(excess)死亡约4,000人，但卫生部1954年的一份报告把后来的死亡归因于**流感**(influenza)。（put A at B：估计 A 为 B）（blame A on B：把 A 归咎于 B）2001年发表于《环境健康展望》的一项研究**重新评估了**(reassessed)证据，并**对**(cast doubt on)这一**解释**(explanation)**提出了质疑**(cast doubt on)，估计约12,000人超额死亡，时间在1952年12月至1953年2月间。（published in…：过去分词短语作后置定语，修饰 study）（cast doubt on…：对……提出质疑，质疑……）（estimating…：现在分词短语作状语，补充说明研究结论）
 
-几十年来，伦敦人一直**容忍**(tolerated)煤烟，把它看成一种**麻烦**(nuisance)。（tolerate A as B：把 A 当作 B 来容忍）有一个**元凶**(villain)就**摇曳**(flickered)在他们自家的炉栅里，它带来**温暖**(warmth)与**舒适**(comfort)，人们早已**习以为常**(habitual)，很少有人想到要**指责**(accuse)它。（grates：炉栅，壁炉里放煤的铁架）（a source of…：同位语，补充说明 villain；so… that…：如此……以至于……）这种**麻痹大意**(complacency)或许有助于说明，政府为何**勉强**(grudging)作出**回应**(response)。（the government's grudging response：政府勉强作出的回应）政府一直**顶住**(withstood)要求调查的压力，直到1953年5月才松口。（pressure for an inquiry：要求调查的压力）
+几十年来，伦敦人一直**容忍**(tolerated)煤烟，把它看成一种**麻烦**(nuisance)。（tolerate A as B：把 A 当作 B 来容忍）有一个**元凶**(villain)就**摇曳**(flickered)在他们自家的炉栅里，它带来**温暖**(warmth)与**舒适**(comfort)，人们早已**习以为常**(habitual)，很少有人想到要**指责**(accuse)它。（grates：炉栅，壁炉里放煤的铁架）（a source of…：同位语，补充说明 villain；so… that…：如此……以至于……）这种**麻痹大意**(complacency)或许有助于说明，政府为何**勉强**(grudging)作出**回应**(response)。（the government's grudging response：政府勉强作出的回应）政府一直**顶住**(withstood)要求**调查**(inquiry)的压力，直到1953年5月才松口。（pressure for an inquiry：要求调查的压力）
 
 改革**旷日持久**(protracted)，又因官方的**惰性**(inertia)而进展迟缓。（prove＋形容词：结果是……，事实证明……；slowed by…：过去分词短语作状语）《清洁空气法》成为法律，时间是1956年7月5日，距那场烟雾已有三年半。（three and a half years after the smog：补充说明时间）该法**授权**(empowered)**市镇**(municipal)议会设立**无烟**(smokeless)区，从**源头**(source)上**遏制**(combating)煤烟。（empower sb to do sth：授权某人做某事）（combating…：现在分词短语作状语；at source：从源头）英国家庭**深受喜爱的**(beloved of)、**温馨的**(cosy)**炉膛**(hearth)，原来一直都在主要的**肇事者**(offenders)之列。（beloved of…：受……喜爱，作后置定语，修饰 hearth）（all along：一直，始终；be among…：在……之列，是……之一）（简述：1952年12月5日，冷空气被上方的暖空气压住，伦敦的煤烟散不出去，成了令人窒息的烟雾。煤烟来自家庭壁炉和发电厂，能见度只有几米，救护车停运，歌剧中止，展会上的获奖牛死去或被宰杀。12月9日烟雾散去，当时估计超额死亡约4,000人，1954年的报告却归因于流感，2001年的研究对此提出质疑，估计超额死亡约12,000人。伦敦人对自家炉火习以为常，政府也回应勉强，直到1953年5月才不再顶住调查的压力。1956年《清洁空气法》授权市镇议会设立无烟区，原来温馨的炉膛一直是主要肇事者之一。）
 
@@ -70,6 +70,7 @@ Reform proved **protracted**, slowed by official **inertia**. The Clean Air Act 
 | grudging | 本文：勉强；adj. 勉强的，不情愿的（grudging respect/admiration/acceptance） | 4 |
 | response | 本文：回应；n. 回应，反应（in response to；a swift response） | 4 |
 | withstood | 本文：顶住；v. (withstand) 顶住，经受住（withstand pressure/criticism/an attack） | 4 |
+| inquiry | 本文：调查；n. 调查，调查委员会（hold/launch an inquiry；a public inquiry）；询问 | 4 |
 | protracted | 本文：旷日持久；adj. 旷日持久的，拖延的（protracted negotiations/dispute） | 5 |
 | inertia | 本文：惰性；n. 惰性，迟滞不前（bureaucratic/institutional inertia）；（物理）惯性 | 5 |
 | empowered | 本文：授权；v. (empower) 授权（be empowered to do sth）；使有能力 | 5 |
