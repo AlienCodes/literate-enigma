@@ -6,35 +6,35 @@ S=[
      "（of about 40 miles an hour：后置定语，修饰 wind；\nset sth doing：使……（不停地）做某事）"]]),
 (1,[[[("Its **deck**","它的**桥面**(deck)"),("**tilted** from side to side","左右**倾侧**(tilted)，"),("in ever more **violent** **oscillations**","**振荡**(oscillations)愈发**剧烈**(violent)，")],
      "（ever more＋形容词：越来越……）"],
-    [[("until","直到"),("most of the main span","主跨大部分"),("**tore apart**","**断裂**(tore apart)、"),("and **tumbled** into the water.","**跌落**(tumbled)水中。")],
+    [[("until","直到"),("most of the main span","主跨大部分"),("**tore apart**","**断裂**(tore apart)、"),("and","并且"),("**tumbled**","**跌落**(tumbled)"),("into the water.","到水中。")],
      "（until…：时间状语从句，直到……）"]]),
 (1,[[[("No one died.","无人丧生。")]]]),
 (1,[[[("**Footage** of the **spectacle**","这一**奇观**(spectacle)的**影像**(Footage)"),("would later","后来"),("**fascinate**","**吸引了**(fascinate)"),("students worldwide.","世界各地的学生。")],
      "（would later do：过去将来，后来会……）"]]),
 (2,[[[("The bridge","这座桥"),("had opened in July 1940","于1940年7月通车，")],
      "（had opened：过去完成时，通车早于坍塌）"],
-    [[("as","其主跨是"),("the third-longest","当时世界上第三长的"),("**suspension**","**悬索**(suspension)桥"),("**span** in the world at the time,","**跨径**(span)，")],
+    [[("as","作为"),("the third-longest","当时世界上第三长的"),("**suspension**","**悬索**(suspension)桥"),("**span** in the world at the time,","**跨径**(span)，")],
      "（as…：作为……；at the time：在当时）"],
-    [[("its roadway","路面"),("hung from","悬挂在"),("steel","钢"),("cables.","缆上。")],
+    [[("its roadway","其路面"),("**hung from**","**悬挂在**(hung from)"),("steel","钢"),("cables.","缆上。")],
      "（its roadway hung from…：独立主格结构，\n补充说明桥的结构）"]]),
-(2,[[[("Girders only eight feet deep stiffened the deck,","加劲桥面的钢梁只有8英尺高，")],
+(2,[[[("**Girders** only eight feet deep","仅八英尺深的**钢梁**(Girders)"),("**stiffened**","**加固了**(stiffened)"),("the deck,","桥面，")],
      "（only eight feet deep：后置定语，修饰 Girders）"],
-    [[("making it","使桥身"),("**slender**,","**纤细**(slender)、"),("**elegant**,","**优雅**(elegant)"),("and **economical**,","而又**省钱**(economical)，"),("but far from **rigid**.","却远谈不上**刚硬**(rigid)。")],
+    [[("making it","使其变得"),("**slender**,","**纤细**(slender)、"),("**elegant**,","**优雅**(elegant)"),("and **economical**,","且**经济**(economical)，"),("but far from **rigid**.","但远非**刚硬**(rigid)。")],
      "（making it…：现在分词短语作结果状语；\nfar from：远非）"]]),
 (2,[[[("Even **faint**","哪怕**轻微的**(faint)"),("**breezes**","**微风**(breezes)"),("made it **heave**,","也会让它**起伏**(heave)，")],
      "（make sth do：使……做）"],
-    [[("earning the **nickname**","由此得了个**绰号**(nickname)："),("Galloping Gertie.","舞动的格蒂。")],
+    [[("earning","从而赢得了"),("the **nickname**","一个**绰号**(nickname)："),("Galloping Gertie.","“奔腾的格蒂”。")],
      "（earning…：现在分词短语作结果状语）"]]),
 (3,[[[("**Textbooks**","**教科书**(Textbooks)"),("have long","长期以来一直"),("**invoked**","**援引**(invoked)"),("**resonance**:","**共振**(resonance)来解释：")],
      "（have long done：现在完成时，长期以来一直……）"],
-    [[("{{=}}a **periodic** push that matches an object's natural **frequency**","与物体固有**频率**(frequency)相合的**周期性的**(periodic)推力"),("can **amplify**","能**放大**(amplify)"),("its motion,","其运动，")],
+    [[("{{=}}a **periodic** push that matches an object's natural **frequency**","与物体固有**频率**(frequency)相匹配的**周期性的**(periodic)推力"),("can **amplify**","能**放大**(amplify)"),("its motion,","其运动，")],
      "（that matches…：定语从句，修饰 push）"],
-    [[("as when","就像"),("well-timed","合拍的"),("shoves","一次次推送"),("**propel**","**推动**(propel)"),("a child on a swing.","秋千上的孩子越荡越高。")],
+    [[("as when","就像"),("**well-timed**","**时机恰到好处的**(well-timed)"),("**shoves**","一次次**猛推**(shoves)"),("**propel**","**推动**(propel)"),("a child on a swing.","秋千上的孩子一样。")],
      "（as when…：就像……的时候那样）"]]),
 (3,[[[("The **analogy**","这个**类比**(analogy)"),("is **intuitive**","**直观**(intuitive)"),("but **deceptive**.","却**具有迷惑性**(deceptive)。")]]]),
-(3,[[[("That morning's","那天上午的"),("wind","风"),("did not **pulse** in time with the bridge;","并没有合着大桥的节拍**一阵阵涌动**(pulse)；")],
+(3,[[[("That morning's","那天上午的"),("wind","风"),("did not **pulse** in time with the bridge;","没有与大桥**有节奏地跳动**(pulse)；")],
      "（in time with：合着……的节拍）"],
-    [[("it blew","它吹得"),("fairly **steadily**.","还算**平稳**(steadily)。")]]]),
+    [[("it blew","它吹得"),("fairly **steadily**.","相当**平稳**(steadily)。")]]]),
 (4,[[[("The **mechanism**","其**机理**(mechanism)"),("was **subtler**.","要**更为微妙**(subtler)。")]]]),
 (4,[[[("Each twist","每一次扭动都"),("**altered**","**改变了**(altered)"),("the passing","掠过的"),("airflow,","气流，")]],
     [[("which","而气流又"),("**reinforced**","**加强了**(reinforced)"),("the next","下一次"),("twist:","扭动：")],
@@ -56,7 +56,7 @@ S=[
     [[("the wind","风"),("never kept time with the bridge,","从未合着大桥的节拍，"),("the bridge's","是大桥"),("own","自身的"),("motion","运动"),("turned","让"),("a sustained","持续不断的"),("wind","风"),("destructive.","变得具有破坏力。")],
      "（keep time with：合着……的节拍；\nturn A＋形容词：使 A 变得……）\n"
      "（简述：1940年11月7日，一股持续的大风让塔科马海峡大桥扭动起来，振荡越来越剧烈，主跨断裂坠入水中，无人丧生。\n"
-     "这座悬索桥当年7月才通车，桥身纤细、省钱却不够刚硬，微风就能让它起伏，人称舞动的格蒂。\n"
+     "这座悬索桥当年7月才通车，桥身纤细、省钱却不够刚硬，微风就能让它起伏，人称奔腾的格蒂。\n"
      "教科书常用共振来解释，但那天的风吹得平稳，并没有合着大桥的节拍涌动。\n"
      "真正的机理是扭动改变气流、气流又加强扭动的反馈回路，后来称为颤振，1991年两位工程师指出教科书错了。\n"
      "此后风洞模型试验成为惯例，1950年更坚固的新桥通车。）"]]),
@@ -67,10 +67,10 @@ G={
  "S2 most of the main span":"对齐不了：most of… 是 of 结构，中文“主跨大部分”语序必须倒过来",
  "S4 students worldwide":"对齐不了：worldwide 后置修饰 students，中文“世界各地的”必须提前",
  "S5 span in the world at the time":"对齐不了：in the world at the time 是后置的地点、时间限定，中文“当时世界上”必须提到“第三长的”前面",
- "S6 Girders only eight feet deep stiffened the deck":"对齐不了：only eight feet deep 是后置定语，中文把 stiffened the deck 化成定语“加劲桥面的”、把 only eight feet deep 化成谓语“只有8英尺高”，整句结构倒过来",
- "S8 a periodic push that matches an object's natural frequency":"对齐不了：that matches… 是定语从句，修饰 push，中文“与物体固有频率相合的”必须提前",
+ "S6 Girders only eight feet deep":"对齐不了：only eight feet deep 是后置定语，修饰 Girders，中文“仅八英尺深的”必须提到“钢梁”前面（用户 2026-11-06 原话定译文）",
+ "S8 a periodic push that matches an object's natural frequency":"对齐不了：that matches… 是定语从句，修饰 push，中文“与物体固有频率相匹配的”必须提前",
  "S8 a child on a swing":"对齐不了：on a swing 是后置定语，修饰 child，中文“秋千上的”必须提前",
- "S10 did not pulse in time with the bridge":"对齐不了：in time with the bridge 是方式状语，中文“合着大桥的节拍”必须放到动词前",
+ "S10 did not pulse in time with the bridge":"对齐不了：in time with the bridge 是方式状语，中文“与大桥”必须放到动词“有节奏地跳动”前（用户 2026-11-06 原话定译文）",
  "S12 a feedback loop that kept tapping the wind for energy":"对齐不了：that kept tapping… 是定语从句，修饰 loop，中文“不断从风中汲取能量的”必须提前",
  "S14 called the mechanism flutter":"对齐不了：call A B 中文“把 A 称为 B”，语序必须变",
  "S14 asserted in a physics journal":"对齐不了：in a physics journal 是地点状语，中文“在一份物理学期刊上”必须放到动词前",
@@ -104,10 +104,10 @@ CONF["对齐"]={
  "S2-2 and tumbled into the water.":"tumbled into the water 中文“跌落水中”，into the water 化成“水中”直接跟在动词后，into 没有单独的中文；and 化成上一组末尾的顿号",
  "S5-1 had opened in July 1940":"in July 1940 是时间状语，中文“于1940年7月”必须放到动词“通车”前",
  "S5-2 span in the world at the time,":"in the world at the time 是后置的地点、时间限定，中文“当时世界上”必须提到“第三长的”前面",
- "S6-1 Girders only eight feet deep s":"only eight feet deep 是后置定语，中文把 stiffened the deck 化成定语“加劲桥面的”、把 only eight feet deep 化成谓语“只有8英尺高”，整句结构倒过来",
- "S8-2 a periodic push that matches a":"that matches an object's natural frequency 是定语从句，修饰 push，中文“与物体固有频率相合的”必须提到“周期性的推力”前",
- "S8-3 a child on a swing.":"on a swing 是后置定语，修饰 child，中文“秋千上的”必须提前；“越荡越高”是 propel 推动的结果",
- "S10-1 did not pulse in time with the":"in time with the bridge 是方式状语，中文“合着大桥的节拍”必须放到动词“一阵阵涌动”前",
+ "S6-1 Girders only eight feet deep":"only eight feet deep 是后置定语，修饰 Girders，中文“仅八英尺深的”必须提到“钢梁”前面（用户 2026-11-06 原话定译文）",
+ "S8-2 a periodic push that matches a":"that matches an object's natural frequency 是定语从句，修饰 push，中文“与物体固有频率相匹配的”必须提到“周期性的推力”前",
+ "S8-3 a child on a swing.":"on a swing 是后置定语，修饰 child，中文“秋千上的”必须提前；“就像……一样”的“一样”收尾（用户 2026-11-06 原话定译文）",
+ "S10-1 did not pulse in time with the":"in time with the bridge 是方式状语，中文“与大桥”必须放到动词“有节奏地跳动”前（用户 2026-11-06 原话定译文）",
  "S12-3 a feedback loop that kept tapp":"that kept tapping the wind for energy 是定语从句，修饰 loop，中文“不断从风中汲取能量的”必须提到“反馈回路”前",
  "S14-2 asserted in a physics journal":"in a physics journal 是地点状语，中文“在一份物理学期刊上”必须放到动词“断言”前",
  "S17-2 never kept time with the bridg":"keep time with 是固定说法“合着……的节拍”，the bridge 夹在中间，中文“从未合着大桥的节拍”拆开不通"}
@@ -118,13 +118,13 @@ CONF["短语"]={
  "S2 tumbled … into":"不是搭配：into the water 只表示去向（落入水中），tumble 单独就是“跌落，坠落”（速查表第一个意思）",
  "S8 amplify … on":"不是搭配：on 属于 a child on a swing（秋千上的孩子），和 amplify 无关",
  "S8 propel … on":"不是搭配：on 属于 a child on a swing（秋千上的孩子），propel 单独就是“推动，推进”（速查表第一个意思）",
- "S10 pulse … in":"不是搭配：in time with the bridge 是方式状语“合着大桥的节拍”，pulse 单独就是“有节奏地涌动”（速查表第一个意思），本文“一阵阵涌动”即此义",
+ "S10 pulse … in":"不是搭配：in time with the bridge 是方式状语“合着大桥的节拍”，pulse 单独就是“有节奏地涌动”（速查表第一个意思），本文“有节奏地跳动”即此义",
  "S10 pulse … with":"不是搭配：with 属于 in time with the bridge（合着大桥的节拍），pulse 单独就是“有节奏地涌动”",
- "S10 pulse in time with":"不是搭配：pulse 本文“一阵阵涌动”就是速查表第一个意思“有节奏地涌动，搏动”，不靠搭配成义；in time with the bridge 单独译成“合着大桥的节拍”",
+ "S10 pulse in time with":"不是搭配：pulse 本文“有节奏地跳动”就是速查表第一个意思“有节奏地涌动，搏动”，不靠搭配成义；in time with the bridge 单独译成“合着大桥的节拍”",
  "S12 tapping … for":"不是搭配：tap A for B 的 for 只引出汲取的东西（能量），中文“从风中汲取能量”已整体译出；tap 单独就是“汲取，利用（资源、能量）”（速查表第一个意思），标 tapping 一个词即可"}
 CONF["方向"]={"S2-1 more→振荡愈发剧烈，":"ever more violent 译“愈发剧烈”，“愈发”就是 more（更加），和英文同方向"}
 CONF["中文意思"]={"S7 nickname":"不是“给……起绰号”这个义项：earning the nickname Galloping Gertie 里 nickname 是名词“绰号”（速查表第一个意思），只有一处中文“绰号”"}
-CONF["数字写法"]={"S6-1 eight":"only eight feet deep 沿用文章定稿中文“只有8英尺高”（已发给用户的中文没有用户原话不改，T10/守则4），数值相同","S14-2 two":"two engineers 中文写“两位工程师”（汉字）；这一组里的阿拉伯数字是 in February 1991 的“1991年2月”，年份月份用阿拉伯数字（英文本来就是数字）"}
+CONF["数字写法"]={"S14-2 two":"two engineers 中文写“两位工程师”（汉字）；这一组里的阿拉伯数字是 in February 1991 的“1991年2月”，年份月份用阿拉伯数字（英文本来就是数字）"}
 CONF["响度骤降"]={
  "63.7–64.1s":{"配音指纹":"30984056eceb","低":6.7,"句子":"S8 …an object's natural frequency can amplify…","依据":"2026-11-05 成片时刻对照（分段.json：S8 第2段原始样本 76080 = 成片 60.06s）：63.7–64.1 = S8 w 约 6.74–7.14，是 frequency 的 -kwənsi（f、k、w、s 擦音塞音多、元音弱读 ə），本来就轻；逐 5 ms 实测这一段 -22～-46 dB 连续，没有闷音、断续（i 收尾 7.10–7.26 连续衰减，接 can 的 /k/）；原报 7.2 dB 超上限，已给 S8 第2段 分段增益 +0.6 dB，现低 6.7 dB，在 01–24 认可范围（≤7.1）内"},
  "104.5–104.9s":{"配音指纹":"30984056eceb","低":6.3,"句子":"S14 …in February 1991 two engineers…","依据":"2026-11-05 成片时刻对照（分段.json：S14 第2段原始样本 83160 = 成片 102.875s）：104.5–104.9 = S14 w 约 5.02–5.42，是 nineteen ninety-one 的 -ty one 收尾和 1991 与 two 之间无标点的短停顿（压到 ≤0.22 秒），窗口里有一截静音，所以平均比全片低；one 的 wʌn 和 two 的 /t/ 除阻都完整，没有发闷，低 6.3 dB 在 01–24 认可范围（≤7.1）内"}}
@@ -133,7 +133,7 @@ out={"no":"53","title_en":"The Wind That Kept No Time: The Fall of Galloping Ger
      "停顿插入点":{"S12":{"1":[2.443375,"交界"]}},
      "分段增益dB":{"S8":{"2":0.6}},
      "高亮按实际开口":True,"高亮开口门槛":40,
-     "术语":{"Tacoma Narrows Bridge":"塔科马海峡大桥","Galloping Gertie":"舞动的格蒂","Gertie":"格蒂"}}
+     "术语":{"Tacoma Narrows Bridge":"塔科马海峡大桥","Galloping Gertie":"奔腾的格蒂","Gertie":"格蒂"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)
