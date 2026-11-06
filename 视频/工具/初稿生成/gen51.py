@@ -39,7 +39,7 @@ S=[
 (4,[[[("Jackson","杰克逊"),("spelled","拼写得"),("**reasonably**","**还算/尚且**(reasonably)"),("well","不错，"),("and never","并且从没"),("marked documents O.K.","在文件上批注过 O.K.。")]]]),
 (4,[[[("Within about twenty years,","在大约二十年内，"),("people","人们"),("did so **in earnest**.","就**认真地**(in earnest)这样做了。")],
      "（do so：这样做，指在文件上批 O.K.）"]]),
-(4,[[[("The","这个"),("**bogus**","**子虚乌有的**(bogus)"),("**notation**","**批注**(notation)"),("was merely **premature**.","不过是出现得**过早**(premature)。")]]]),
+(4,[[[("The","这个"),("**bogus**","**伪造的**(bogus)"),("**notation**","**批注**(notation)，"),("was merely **premature**.","不过是出现**过早**(premature)而已。")]]]),
 (5,[[[("Rival stories","与之竞争的说法"),("offered **exotic**","给出了种种**异域的**(exotic)"),("**pedigrees**:","**来历**(pedigrees)，"),("Choctaw 'okeh'","比如乔克托语的 'okeh'"),("and Greek 'ola kala'.","和希腊语的 'ola kala'。")]]]),
 (5,[[[("**Authoritative** dictionaries","**权威**(Authoritative)词典"),("favoured Choctaw as late as 1961.","直到1961年还倾向于乔克托语一说。")],
      "（as late as…：直到……还）"]]),
