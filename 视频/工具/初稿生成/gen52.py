@@ -1,5 +1,6 @@
 import json,re,glob,os
 # 第52篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-06 S7 译文按用户原话改：“救护车服务被暂停，萨德勒之井剧院的一场歌剧在幕间休息时被中止，而史密斯菲尔德农业展上的获奖牛则死亡或不得不被宰杀。”
 # 2026-11-06 S7 suspended 按用户原话加回重点词：“重点词汇。Suspended, suspended.”（与第22篇 suspended 撞词，用户点名要标，写进 allow_clash 保留）
 # 2026-11-06 S5 后半按用户原话改：“充满了煤烟和有毒的二氧化硫。”（laden with 中文由“满含”改“充满了”，soot 由“烟尘”改“煤烟”）
 # 2026-11-06 S5 power stations 按用户原话加为重点词：“Power station标注为重点词。对应对应发电厂。”（70 篇查过不撞车）
@@ -23,10 +24,10 @@ S=[
     [[("was **laden with**","**充满了**(laden with)"),("soot","煤烟"),("and **noxious**","和**有毒的**(noxious)"),("sulphur dioxide.","二氧化硫。")],
      "（be laden with…：满载……，充满……）"]]),
 (2,[[[("In places,","有些地方，"),("**visibility**","**能见度**(visibility)"),("fell to","降到只有"),("a few","几"),("metres.","米。")]]]),
-(2,[[[("**Ambulance** services","**救护车**(Ambulance)服务"),("were **suspended**,","**暂停**(suspended)；")]],
-    [[("an opera","一场歌剧"),("at the Sadler's Wells","在萨德勒之井"),("theatre","剧院"),("was abandoned at the **interval**,","演到**幕间休息**(interval)被迫中止；")],
+(2,[[[("**Ambulance** services","**救护车**(Ambulance)服务"),("were **suspended**,","被**暂停**(suspended)，")]],
+    [[("an opera at the Sadler's Wells theatre","萨德勒之井剧院的一场歌剧"),("was abandoned at the **interval**,","在**幕间休息**(interval)时被中止，")],
      "（an opera at…：介词短语作后置定语，修饰 opera；\nat the interval：在幕间休息时）"],
-    [[("and prize","而获奖的"),("**cattle**","**牛**(cattle)，"),("at the Smithfield","在史密斯菲尔德"),("**agricultural**","**农业**(agricultural)"),("show","展会上"),("died","有的死去，"),("or","有的"),("had to be","只得"),("**slaughtered**.","**宰杀**(slaughtered)。")],
+    [[("and","而"),("prize **cattle** at the Smithfield **agricultural** show","史密斯菲尔德**农业**(agricultural)展上的获奖**牛**(cattle)"),("died","则死亡"),("or","或"),("had to be","不得不被"),("**slaughtered**.","**宰杀**(slaughtered)。")],
      "（at the Smithfield agricultural show：后置定语，修饰 cattle；\nhad to be slaughtered：不得不被宰杀）"]]),
 (3,[[[("The smog","烟雾"),("**dissipated**","**消散**(dissipated)于"),("on Tuesday 9 December.","12月9日，星期二。")]]]),
 (3,[[[("Officials at the time","当时的官员"),("put","估计"),("the **excess**","**超额**(excess)"),("deaths","死亡"),("at about 4,000,","约4,000人，")],
@@ -75,6 +76,8 @@ G={
  "S4 was trapped too":"对齐不了：too 中文“也”必须放到动词“被困住”前",
  "S5 coal burned":"对齐不了：用户 2026-11-06 原话“这地方翻译改改：这些煤烟来自于烧的煤”，burned 是过去分词作后置定语修饰 coal，中文“烧的煤”定语必须提前，只能整组",
  "S5 sulphur dioxide":"对齐不了：sulphur dioxide 是化学名“二氧化硫”，一个词，拆开不通",
+ "S7 an opera at the Sadler's Wells theatre":"对齐不了：用户 2026-11-06 原话定的译文“萨德勒之井剧院的一场歌剧”，at the Sadler's Wells theatre 是介词短语作后置定语，修饰 opera，中文定语必须提前，剧院名不能拆",
+ "S7 prize cattle at the Smithfield agricultural show":"对齐不了：用户 2026-11-06 原话定的译文“史密斯菲尔德农业展上的获奖牛”，at the Smithfield agricultural show 是后置定语，修饰 cattle，中文定语必须提前；两个重点词中文先后与英文相反（农业在前、牛在后），只能整组",
  "S7 was abandoned at the interval":"对齐不了：at the interval 是时间状语，中文“演到幕间休息”必须放到“被迫中止”前",
  "S10 A study published in Environmental Health Perspectives in 2001":"对齐不了：published in… in 2001 是过去分词短语作后置定语，修饰 study，中文“2001年发表于《环境健康展望》的一项研究”定语必须提前，刊名不能拆",
  "S14 pressure for an inquiry":"对齐不了：for an inquiry 是介词短语作后置定语，修饰 pressure，中文“要求调查的压力”定语必须提前",
