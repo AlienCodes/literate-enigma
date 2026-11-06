@@ -9,7 +9,7 @@ no=$(printf '%02d' "$((10#$1))"); W=$(pwd); LOG=$W/定稿_$no; mkdir -p "$LOG"; 
 t0=$(date +%s)
 stop() { echo "【停】$1（$(( $(date +%s) - t0 )) 秒；记录在 $LOG）"; exit 1; }
 step() { echo "== $(date +%H:%M:%S) $1"; }
-push() { for t in 0 2 4 8 16; do sleep $t; git pull -q --no-rebase --no-edit origin "$1"; git push -q -u origin "$1" && return 0; done; return 1; }
+push() { for t in 0 2 4 8 16; do sleep $t; git pull -q --no-rebase --no-edit origin "$1" || python3 $H/合并追加.py; git push -q -u origin "$1" && return 0; done; return 1; }
 exec 9>"$W/.做_$no.lock"; flock -n 9 || stop "第${no}篇已经有一条 做/定稿 在跑"
 [ -f make_video.py ] && [ -f "scripts/$no.json" ] && [ -d fonts ] || stop "请在出片工作目录下运行（要有 make_video.py、scripts/$no.json、fonts/）"
 XG_WORK=$W python3 $H/印章.py --自动 > "$LOG/印章.log" 2>&1 || { grep -E "✘|不通过" "$LOG/印章.log" | tail -12; stop "快测不通过（有检查坏了，先修好）"; }   # 印章对不上自动跑快测，过了接着做

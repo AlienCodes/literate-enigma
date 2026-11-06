@@ -47,6 +47,12 @@ def 合(f):
         ol = o.splitlines(); seen = set(ol); bl = set((b or '').splitlines())
         out = [l for l in ol if not (l in bl and l not in t.splitlines())] + [l for l in t.splitlines() if l not in seen and l not in bl]
         return '\n'.join(out) + '\n'
+    if f == '最终版4K视频/README.md':   # 53、54 11-05 同时定稿各加一行撞冲突：两边的行都留，表格行按篇号排
+        import re as _re; ol = o.splitlines(); seen = set(ol); bl = set((b or '').splitlines())
+        out = [l for l in ol if not (l in bl and l not in t.splitlines())] + [l for l in t.splitlines() if l not in seen and l not in bl]
+        行 = sorted({l for l in out if _re.match(r'^\| \d+ \|', l)}, key=lambda l: int(l.split('|')[1])); 头 = [l for l in out if l not in 行]
+        k = max(i for i, l in enumerate(头) if l.startswith('|---')) + 1 if any(l.startswith('|---') for l in 头) else len(头)
+        return '\n'.join(头[:k] + 行 + 头[k:]) + '\n'
     if f.endswith('.json'):
         r = 合json(json.loads(b) if b else None, json.loads(o), json.loads(t)); ind = 缩进(o)
         return json.dumps(r, ensure_ascii=False, indent=ind) + ('\n' if o.endswith('\n') else '')
