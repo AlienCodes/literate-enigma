@@ -21,7 +21,7 @@ S=[
      "（glossed as…：过去分词短语作后置定语，修饰 'o.k.'，\n被注释为……）"]]),
 (2,[[[("The letters","这两个字母"),("stood for","代表的是"),("a **knowingly**","**有意**(knowingly)写成"),("**illiterate**","**文盲**(illiterate)拼法的"),("'oll korrect'.","'oll korrect'。")],
      "（stand for：代表；\n'oll korrect'：故意拼错的 all correct）"]]),
-(2,[[[("The **presumed** writer","一般**推定的**(presumed)作者"),("was","是"),("the editor,","该报编辑"),("Charles Gordon Greene.","查尔斯·戈登·格林。")],
+(2,[[[("The **presumed** writer","**推定的**(presumed)作者"),("was","是"),("the **editor**,","该报纸的**编辑**(editor)"),("Charles Gordon Greene.","查尔斯·戈登·格林。")],
      "（Charles Gordon Greene：同位语，\n补充说明 the editor）"]]),
 (3,[[[("**Partisan** politics","**党派**(Partisan)政治"),("**propagated** the letters nationwide.","把这两个字母**传遍**(propagated)全国。")],
      "（propagate…nationwide：把……传遍全国）"]]),
