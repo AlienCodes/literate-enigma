@@ -2,82 +2,82 @@
 # ZH: 罗马混凝土的千年之谜
 
 ## 英文
-Nearly 1,900 years after its **completion**, in about AD 125–128, the Pantheon's **dome** still **crowns** the **vast** **chamber** below. About 43 metres in **diameter**, it remains the world's largest unreinforced concrete dome. It is an **astonishing** **feat** of **architecture**, and a **stubborn** **puzzle**.
+Nearly 1,900 years after its **completion**, in about AD 125–128, the Pantheon's **dome** still **crowns** the **vast** **chamber** below. About 43 metres **in diameter**, it remains the world's largest unreinforced concrete dome. It is an **astonishing** **feat** of **architecture**, and a **stubborn** **puzzle**.
 
-Modern concrete is usually reinforced with **embedded** steel bars, which are **prone** to **corrosion**. As the steel **rusts**, it **swells** and **fractures** the concrete around it, and many structures are designed for a **lifespan** of around 50 years. Roman concrete is not stronger than its modern **counterpart**; its **merit** lies in **durability**.
+Modern concrete is usually reinforced with **embedded** steel bars, which are **prone to** **corrosion**. As the steel **rusts**, it **swells** and **fractures** the concrete around it, and many structures are designed for a **lifespan** of around 50 years. Roman concrete is not stronger than its modern **counterpart**; its **merit** lies in **durability**.
 
-Yet the ancient material seemed to have a **shortcoming**. It is **dotted** with white **chunks** of lime, known as lime clasts. Experts long **ascribed** these **lumps** to **sloppy** mixing or **inferior** raw **ingredients**, a **defect** that, they assumed, a more **conscientious** builder would have avoided.
+Yet the ancient material seemed to have a **shortcoming**. It is **dotted with** white **chunks** of lime, known as lime clasts. Experts long **ascribed** these **lumps** **to** **sloppy** mixing or **inferior** raw **ingredients**, a **defect** that, they assumed, a more **conscientious** builder would have avoided.
 
-A study published in Science Advances in January 2023 offered a different **interpretation**. The clasts, it suggested, were a **by-product** of "hot mixing" with quicklime, a **reactive** lime that heats up in water. When water **seeps** into a crack, the clasts **dissolve** and their **calcium** recrystallises as calcium carbonate, **plugging** the gap. In tests, water **ceased** to **trickle** through cracked hot-mixed samples within weeks, but kept flowing through samples without quicklime.
+A study published in Science Advances in January 2023 offered a different **interpretation**. The clasts, it suggested, were a **by-product** of "hot mixing" with quicklime, a **reactive** lime that heats up in water. When water **seeps into** a crack, the clasts **dissolve** and their **calcium** recrystallises as calcium carbonate, **plugging** the gap. In tests, water **ceased to** **trickle** through cracked hot-mixed samples within weeks, but kept flowing through samples without quicklime.
 
-The **implications** **extend** beyond **archaeology**. Cement **manufacture** accounts for about 8 per cent of global carbon dioxide **emissions**, the think-tank Chatham House reported in June 2018. Concrete that mends its cracks could last longer, making **demolition** and rebuilding rarer and **trimming** emissions. The white lumps once **scorned** as signs of **clumsy** workmanship have **prompted** a **rethink** of construction.
+The **implications** **extend beyond** **archaeology**. Cement **manufacture** accounts for about 8 per cent of global carbon dioxide **emissions**, the think-tank Chatham House reported in June 2018. Concrete that mends its cracks could last longer, making **demolition** and rebuilding rarer and **trimming** emissions. The white lumps once **scorned** as signs of **clumsy** workmanship have **prompted** a **rethink** of construction.
 
 ## 中文
 
-万神殿约于公元125至128年**竣工**(completion)，近1,900年后的今天，它的**穹顶**(dome)依然**高踞**(crowns)于下方**宏大的**(vast)**殿堂**(chamber)之上。穹顶**直径**(diameter)约43米，至今仍是世界上最大的无钢筋混凝土穹顶。它是**建筑**(architecture)史上**令人惊叹的**(astonishing)**壮举**(feat)，也是一道**久解不开的**(stubborn)**谜题**(puzzle)。
+万神殿约于公元125至128年**竣工**(completion)，近1,900年后的今天，它的**穹顶**(dome)依然**高踞**(crowns)于下方**宏大的**(vast)**殿堂**(chamber)**之上**(crowns)。（its completion：its 指 the Pantheon；in about AD 125–128：插入语，补充竣工的年代）（crown：位于……顶部，高踞……之上；below：副词作后置定语，修饰 chamber）穹顶**直径**(in diameter)约43米，至今仍是世界上最大的无钢筋混凝土穹顶。（About 43 metres in diameter：形容词短语作状语，说明穹顶的大小；unreinforced：没有用钢筋加固的）它是**建筑**(architecture)史上**令人惊叹的**(astonishing)**壮举**(feat)，也是一道**久解不开的**(stubborn)**谜题**(puzzle)。（a feat of architecture：建筑上的壮举）
 
-现代混凝土通常靠**嵌入**(embedded)其中的钢筋加固，而钢筋**容易**(prone)发生**锈蚀**(corrosion)。钢筋**生锈**(rusts)时会**膨胀**(swells)，把周围的混凝土**撑裂**(fractures)；许多建筑的设计**使用寿命**(lifespan)约为50年。罗马混凝土并不比现代的**同类材料**(counterpart)更坚固，它的**长处**(merit)在于**耐久性**(durability)。
+现代混凝土通常靠**嵌入**(embedded)其中的钢筋加固，而钢筋**容易**(prone to)发生**锈蚀**(corrosion)。（be reinforced with…：用……加固）（which…：非限制性定语从句，修饰 steel bars；be prone to…：容易……）钢筋**生锈**(rusts)时会**膨胀**(swells)，把周围的混凝土**撑裂**(fractures)；许多建筑的设计**使用寿命**(lifespan)约为50年。（As…：时间状语从句，当……时；around it：后置定语，修饰 concrete，it 指 the steel）（be designed for…：按……设计）罗马混凝土并不比现代的**同类材料**(counterpart)更坚固，它的**长处**(merit)在于**耐久性**(durability)。（its modern counterpart：现代的同类材料，即现代混凝土）（lie in…：在于……）
 
-然而，这种古代材料似乎有个**缺点**(shortcoming)。它的内部**散布**(dotted)着白色的石灰**小块**(chunks)，称为"石灰团块"。长期以来，专家把这些**块状物**(lumps)**归因于**(ascribed)搅拌**马虎**(sloppy)或原料**成分**(ingredients)**低劣**(inferior)。他们认为，换一个更**认真负责的**(conscientious)工匠，就不会出这种**瑕疵**(defect)。
+然而，这种古代材料似乎有个**缺点**(shortcoming)。它的内部**散布**(dotted with)着白色的石灰**小块**(chunks)，称为石灰团块。（be dotted with…：散布着……，布满……）（known as…：过去分词短语作后置定语，修饰 chunks）长期以来，专家**把**(ascribed to)这些**块状物**(lumps)**归因于**(ascribed to)搅拌**马虎**(sloppy)或原料**成分**(ingredients)**低劣**(inferior)。他们认为，换一个更**认真负责的**(conscientious)工匠，就不会出这种**瑕疵**(defect)。（ascribe A to B：把 A 归因于 B）（a defect that…：同位语，补充说明前面说的情况；they assumed：插入语，他们认为；would have avoided：虚拟语气，本可以避免）
 
-2023年1月发表于《科学进展》（Science Advances）的一项研究提出了不同的**解释**(interpretation)。该研究认为，这些团块是用生石灰"热混合"留下的**副产品**(by-product)；生石灰是一种遇水会发热、**活性强的**(reactive)石灰。水**渗入**(seeps)裂缝时，团块会**溶解**(dissolve)，其中的**钙**(calcium)重新结晶为碳酸钙，**堵住**(plugging)缝隙。试验中，几周之内，水就**不再**(ceased)从开裂的热混合样本中**细细流过**(trickle)；而在不含生石灰的样本中，水却一直流个不停。
+2023年1月发表于《科学进展》（Science Advances）的一项研究提出了不同的**解释**(interpretation)。（published in…：过去分词短语作后置定语，修饰 study）该研究认为，这些团块是用生石灰“热混合”留下的**副产品**(by-product)；生石灰是一种遇水会发热、**活性强的**(reactive)石灰。（it suggested：插入语，it 指这项研究；a by-product of…：……的副产品）（a reactive lime…：同位语，补充说明 quicklime；that heats up in water：定语从句，修饰 lime）水**渗入**(seeps into)裂缝时，团块会**溶解**(dissolve)，其中的**钙**(calcium)重新结晶为碳酸钙，**堵住**(plugging)缝隙。（When…：时间状语从句）（recrystallise as…：重新结晶为……；plugging the gap：现在分词短语作状语，表示结果）试验中，水**不再**(ceased to)**细细流过**(trickle)开裂的热混合样本，只用了几周；而水一直从不含生石灰的样本中流过。（cease to do：不再做……；within weeks：几周之内）（keep doing：一直做……；without quicklime：介词短语作后置定语，修饰 samples）
 
-这项发现的**意义**(implications)**超出**(extend)了**考古学**(archaeology)的范围。据智库查塔姆研究所（Chatham House）2018年6月的报告，水泥**生产**(manufacture)约占全球二氧化碳**排放**(emissions)的8%。能自行修补裂缝的混凝土可能更经久耐用，**拆除**(demolition)与重建因而减少，排放也随之**削减**(trimming)。这些白色块状物曾被**轻视**(scorned)为手艺**拙劣的**(clumsy)痕迹，如今却**促使**(prompted)人们**重新思考**(rethink)建造之道。
+这项发现的**意义**(implications)**超出了**(extend beyond)**考古学**(archaeology)**的范围**(extend beyond)。（extend beyond…：超出……的范围）水泥**生产**(manufacture)约占全球二氧化碳**排放**(emissions)的8%，智库查塔姆研究所（Chatham House）2018年6月报告称。（account for…：（在数量上）占……）能自行修补裂缝的混凝土可能更经久耐用，从而使**拆除**(demolition)与重建减少，并**削减**(trimming)排放。（that mends its cracks：定语从句，修饰 Concrete）（making… and trimming…：两个现在分词短语作状语，表示结果；make A rarer：使 A 更少见）这些白色块状物曾被**轻视**(scorned)为手艺**拙劣的**(clumsy)痕迹，如今却**促使**(prompted)人们**重新思考**(rethink)建造之道。（once scorned as…：过去分词短语作后置定语，修饰 lumps；scorn A as B：把 A 轻视为 B）（a rethink of…：对……的重新思考）（简述：万神殿穹顶建成近1,900年依然屹立，是世界上最大的无钢筋混凝土穹顶。现代混凝土里的钢筋会生锈膨胀、撑裂混凝土，许多建筑设计寿命约50年；罗马混凝土并不更坚固，长处在于耐久。它里面的白色石灰团块，过去被专家当作搅拌马虎或原料低劣的瑕疵。2023年《科学进展》的研究认为，团块是生石灰热混合的副产品：水渗入裂缝时团块溶解，钙重新结晶为碳酸钙，堵住缝隙。水泥生产约占全球二氧化碳排放的8%，能自行修补裂缝的混凝土可能减少拆建和排放，这些曾被轻视的团块因此促使人们重新思考建造之道。）
 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
-| completion | n. 完成，竣工（on completion；the completion of the bridge） | 1 |
-| dome | n. 穹顶，圆屋顶（the dome of St Paul's；a glass dome） | 1 |
-| crowns | v. (crown) 位于……顶部，高踞……之上（a castle crowns the hill）；为……加冕 | 1 |
-| vast | adj. 巨大的，广阔的（a vast hall/area；the vast majority） | 1 |
-| chamber | n. 房间，室；（宫殿等的）大厅，殿堂（a burial chamber 墓室；the council chamber 会议厅；the great chamber of the palace） | 1 |
-| diameter | n. 直径（10 metres in diameter；the diameter of a circle） | 1 |
-| astonishing | adj. 令人惊叹的（an astonishing achievement/success） | 1 |
-| feat | n. 壮举，非凡的成就（a feat of engineering；no mean feat） | 1 |
-| architecture | n. 建筑学，建筑（Gothic architecture；study architecture） | 1 |
-| stubborn | adj. 难以解决的，顽固的（a stubborn problem/stain）；固执的（a stubborn child） | 1 |
-| puzzle | n. 谜，难题（remain a puzzle；solve a puzzle）；v. 使困惑 | 1 |
-| embedded | adj./v. (embed) 嵌入的（be embedded in rock/concrete） | 2 |
-| prone | adj. 易于……的（be prone to injury/flooding；accident-prone） | 2 |
-| corrosion | n. 腐蚀，锈蚀（resistant to corrosion；metal corrosion） | 2 |
-| rusts | v. (rust) 生锈（iron rusts in damp air）；n. 铁锈 | 2 |
-| swells | v. (swell) 膨胀，肿胀（the wood swells when wet；her ankle swelled up） | 2 |
-| fractures | v. (fracture) 使断裂，使破裂（fracture a bone/pipe）；n. 骨折，裂缝 | 2 |
-| lifespan | n. 寿命，使用期限（a lifespan of 50 years；extend the lifespan of sth） | 2 |
-| counterpart | n. 对应的人或物（the French minister and her British counterpart） | 2 |
-| merit | n. 长处，优点（the merits of a plan；judge sth on its merits） | 2 |
-| durability | n. 耐久性，经久性（the durability of a material） | 2 |
-| shortcoming | n. 缺点，短处（have/overcome shortcomings） | 3 |
-| dotted | adj. (be dotted with) 散布着，布满（a sky dotted with stars；a field dotted with trees） | 3 |
-| chunks | n. (chunk) 块，厚块（chunks of meat/ice；a chunk of rock） | 3 |
-| ascribed | v. (ascribe) 把……归因于（ascribe sth to sth：ascribe failure to bad luck） | 3 |
-| lumps | n. (lump) 块，团，疙瘩（a lump of sugar/clay；lumps in the sauce） | 3 |
-| sloppy | adj. 马虎的，草率的（sloppy work/thinking） | 3 |
-| inferior | adj. 低劣的，次的（inferior goods/quality；be inferior to） | 3 |
-| ingredients | n. (ingredient) 原料，成分（mix the ingredients；the key ingredient） | 3 |
-| defect | n. 缺陷，瑕疵（a manufacturing defect；a birth defect） | 3 |
-| conscientious | adj. 认真负责的，一丝不苟的（a conscientious worker/student） | 3 |
-| interpretation | n. 解释，诠释（offer a new interpretation；open to interpretation） | 4 |
-| by-product | n. 副产品（a by-product of oil refining）；附带结果 | 4 |
-| reactive | adj. （化学）活性强的，易反应的（a highly reactive metal/gas） | 4 |
-| seeps | v. (seep) 渗，渗入（water seeps into/through the walls） | 4 |
-| dissolve | v. 溶解（sugar dissolves in water）；解散（dissolve parliament） | 4 |
-| calcium | n. 钙（calcium carbonate 碳酸钙；rich in calcium） | 4 |
-| plugging | v. (plug) 堵塞，塞住（plug a hole/leak/gap）；n. 插头 | 4 |
-| ceased | v. (cease) 停止（cease to do sth；cease fire；cease operations） | 4 |
-| trickle | v. 细细地流，滴流（tears trickled down her face）；n. 细流（a trickle of water） | 4 |
-| implications | n. (implication) 可能的影响，含义（have implications for；serious implications） | 5 |
-| extend | v. 延伸，扩及（extend beyond/to；the problem extends beyond the city） | 5 |
-| archaeology | n. 考古学（a professor of archaeology；industrial archaeology） | 5 |
-| manufacture | n./v. （大规模）生产，制造（the manufacture of cars/cement） | 5 |
-| emissions | n. (emission) 排放，排放物（carbon/greenhouse gas emissions；cut emissions） | 5 |
-| demolition | n. 拆除（the demolition of old buildings；a demolition order） | 5 |
-| trimming | v. (trim) 削减（trim costs/the budget）；修剪（trim a hedge） | 5 |
-| scorned | v. (scorn) 轻视，鄙视（scorn an idea/offer）；n. 蔑视（pour scorn on） | 5 |
-| clumsy | adj. 笨拙的，拙劣的（a clumsy attempt/design）；（动作）笨手笨脚的 | 5 |
-| prompted | v. (prompt) 促使，引起（prompt a debate/an investigation；prompt sb to do sth） | 5 |
-| rethink | n. 重新思考（a radical rethink of policy；a rethink of sth）；v. 重新考虑 | 5 |
+| completion | 本文：竣工；n. 完成，竣工（on completion；the completion of the bridge） | 1 |
+| dome | 本文：穹顶；n. 穹顶，圆屋顶（the dome of St Paul's；a glass dome） | 1 |
+| crowns | 本文：高踞……之上；v. (crown) 位于……顶部，高踞……之上（a castle crowns the hill）；为……加冕 | 1 |
+| vast | 本文：宏大的；adj. 巨大的，广阔的（a vast hall/area；the vast majority） | 1 |
+| chamber | 本文：殿堂；n. 房间，室；（宫殿等的）大厅，殿堂（a burial chamber 墓室；the council chamber 会议厅；the great chamber of the palace） | 1 |
+| in diameter | 本文：直径；n. 直径（10 metres in diameter；the diameter of a circle） | 1 |
+| architecture | 本文：建筑；n. 建筑学，建筑（Gothic architecture；study architecture） | 1 |
+| astonishing | 本文：令人惊叹的；adj. 令人惊叹的（an astonishing achievement/success） | 1 |
+| feat | 本文：壮举；n. 壮举，非凡的成就（a feat of engineering；no mean feat） | 1 |
+| stubborn | 本文：久解不开的；adj. 难以解决的，顽固的（a stubborn problem/stain）；固执的（a stubborn child） | 1 |
+| puzzle | 本文：谜题；n. 谜，难题（remain a puzzle；solve a puzzle）；v. 使困惑 | 1 |
+| embedded | 本文：嵌入；adj./v. (embed) 嵌入的（be embedded in rock/concrete） | 2 |
+| prone to | 本文：容易；adj. 易于……的（be prone to injury/flooding；accident-prone） | 2 |
+| corrosion | 本文：锈蚀；n. 腐蚀，锈蚀（resistant to corrosion；metal corrosion） | 2 |
+| rusts | 本文：生锈；v. (rust) 生锈（iron rusts in damp air）；n. 铁锈 | 2 |
+| swells | 本文：膨胀；v. (swell) 膨胀，肿胀（the wood swells when wet；her ankle swelled up） | 2 |
+| fractures | 本文：撑裂；v. (fracture) 使断裂，使破裂（fracture a bone/pipe）；n. 骨折，裂缝 | 2 |
+| lifespan | 本文：使用寿命；n. 寿命，使用期限（a lifespan of 50 years；extend the lifespan of sth） | 2 |
+| counterpart | 本文：同类材料；n. 对应的人或物（the French minister and her British counterpart） | 2 |
+| merit | 本文：长处；n. 长处，优点（the merits of a plan；judge sth on its merits） | 2 |
+| durability | 本文：耐久性；n. 耐久性，经久性（the durability of a material） | 2 |
+| shortcoming | 本文：缺点；n. 缺点，短处（have/overcome shortcomings） | 3 |
+| dotted with | 本文：散布；adj. (be dotted with) 散布着，布满（a sky dotted with stars；a field dotted with trees） | 3 |
+| chunks | 本文：小块；n. (chunk) 块，厚块（chunks of meat/ice；a chunk of rock） | 3 |
+| ascribed to | 本文：把……归因于；v. (ascribe) 把……归因于（ascribe sth to sth：ascribe failure to bad luck） | 3 |
+| lumps | 本文：块状物；n. (lump) 块，团，疙瘩（a lump of sugar/clay；lumps in the sauce） | 3 |
+| sloppy | 本文：马虎；adj. 马虎的，草率的（sloppy work/thinking） | 3 |
+| ingredients | 本文：成分；n. (ingredient) 原料，成分（mix the ingredients；the key ingredient） | 3 |
+| inferior | 本文：低劣；adj. 低劣的，次的（inferior goods/quality；be inferior to） | 3 |
+| conscientious | 本文：认真负责的；adj. 认真负责的，一丝不苟的（a conscientious worker/student） | 3 |
+| defect | 本文：瑕疵；n. 缺陷，瑕疵（a manufacturing defect；a birth defect） | 3 |
+| interpretation | 本文：解释；n. 解释，诠释（offer a new interpretation；open to interpretation） | 4 |
+| by-product | 本文：副产品；n. 副产品（a by-product of oil refining）；附带结果 | 4 |
+| reactive | 本文：活性强的；adj. （化学）活性强的，易反应的（a highly reactive metal/gas） | 4 |
+| seeps into | 本文：渗入；v. (seep) 渗，渗入（water seeps into/through the walls） | 4 |
+| dissolve | 本文：溶解；v. 溶解（sugar dissolves in water）；解散（dissolve parliament） | 4 |
+| calcium | 本文：钙；n. 钙（calcium carbonate 碳酸钙；rich in calcium） | 4 |
+| plugging | 本文：堵住；v. (plug) 堵塞，塞住（plug a hole/leak/gap）；n. 插头 | 4 |
+| ceased to | 本文：不再；v. (cease) 停止（cease to do sth；cease fire；cease operations） | 4 |
+| trickle | 本文：细细流过；v. 细细地流，滴流（tears trickled down her face）；n. 细流（a trickle of water） | 4 |
+| implications | 本文：意义；n. (implication) 可能的影响，含义（have implications for；serious implications） | 5 |
+| extend beyond | 本文：超出了……的范围；v. 延伸，扩及（extend beyond/to；the problem extends beyond the city） | 5 |
+| archaeology | 本文：考古学；n. 考古学（a professor of archaeology；industrial archaeology） | 5 |
+| manufacture | 本文：生产；n./v. （大规模）生产，制造（the manufacture of cars/cement） | 5 |
+| emissions | 本文：排放；n. (emission) 排放，排放物（carbon/greenhouse gas emissions；cut emissions） | 5 |
+| demolition | 本文：拆除；n. 拆除（the demolition of old buildings；a demolition order） | 5 |
+| trimming | 本文：削减；v. (trim) 削减（trim costs/the budget）；修剪（trim a hedge） | 5 |
+| scorned | 本文：轻视；v. (scorn) 轻视，鄙视（scorn an idea/offer）；n. 蔑视（pour scorn on） | 5 |
+| clumsy | 本文：拙劣的；adj. 笨拙的，拙劣的（a clumsy attempt/design）；（动作）笨手笨脚的 | 5 |
+| prompted | 本文：促使；v. (prompt) 促使，引起（prompt a debate/an investigation；prompt sb to do sth） | 5 |
+| rethink | 本文：重新思考；n. 重新思考（a radical rethink of policy；a rethink of sth）；v. 重新考虑 | 5 |
 
 ## 史实与来源
 - 【T1】万神殿约建成于公元125—128年（古代史，只写到年代；正文 in about AD 125–128，中文"约于"），距今近1,900年。https://en.wikipedia.org/wiki/Pantheon,_Rome ；https://www.history.com/articles/pantheon
