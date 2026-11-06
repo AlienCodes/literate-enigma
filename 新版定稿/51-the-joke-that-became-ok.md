@@ -77,6 +77,12 @@ OK，常被说成是全世界最常说出的词，起初只是报纸上的一个
 | influential | 本文：影响深远的；adj. 有影响力的（an influential book/figure） | 5 |
 | embrace | 本文：采纳了；v. 采纳，接受；拥抱（embrace a new idea） | 5 |
 | derivation | 本文：词源；n. 词源，起源；派生（the derivation of a word） | 5 |
+| most frequently | 本文：最常；adv. 最频繁地，最经常（the most frequently used words） | 1 |
+| lay in | 本文：在于；短语. (lie in 的过去式) 在于，存在于（The problem lies in… 问题在于……） | 1 |
+| bumpkin | n. 乡巴佬，土包子（a country bumpkin） | 1 |
+| took a swipe at | 本文：抨击；短语. (take a swipe at) 抨击，挖苦（take a swipe at sb） | 2 |
+| editor | n. 编辑，主编（a newspaper editor） | 2 |
+| punning on | 本文：拿……玩双关；短语. (pun on) 用……玩双关语（pun on a name） | 3 |
 
 ## 史实与来源
 - 【T1】1838年起波士顿各报风行缩写，继而转向故意错拼的滑稽缩写：O.W.（oll wright，即故意拼错的 all right）、K.Y.（know yuse，即 no use）、N.G.（no go）、N.C.（nuff ced，即 enough said）；O.W. 于1839年2月7日见报；错拼让作者扮演没受过教育的乡巴佬。正文只举 O.W. 与 K.Y.。S1
