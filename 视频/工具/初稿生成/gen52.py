@@ -1,5 +1,6 @@
 import json,re,glob,os
 # 第52篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-06 S4 smoke、fog 按用户原话加为重点词：“Smoke and fog 重点词汇，重点词”（70 篇查过不撞车）
 # 2026-11-06 S1 译文按用户原话改：“翻译改为：1952年12月5日星期五，寒冷、凝滞的空气笼罩降临了伦敦。”（先不生成视频，最后统一生成）
 # 2026-11-05 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；三项并列加牛津逗号（T18）；不用破折号（T36）；形容词的“的”进粗体。
 S=[
@@ -11,7 +12,7 @@ S=[
 (1,[[[("Londoners","伦敦人"),("were **accustomed to**","早已**习惯**(accustomed to)"),("**murky**,","**昏暗的**(murky)、"),("**dreary**","**阴沉的**(dreary)"),("winters.","冬天。")],
      "（be accustomed to…：习惯于……）"]]),
 (1,[[[("This time, though,","不过这一次，"),("the capital's","首都的"),("smoke","煤烟"),("was trapped too,","也被困住了，")]],
-    [[("thickening into","越积越浓，成了"),("a **choking**","**令人窒息的**(choking)"),("**smog**,","**烟雾**(smog)，"),("a mix of","也就是"),("smoke","烟"),("and fog.","与雾的混合物。")],
+    [[("thickening into","越积越浓，成了"),("a **choking**","**令人窒息的**(choking)"),("**smog**,","**烟雾**(smog)，"),("a mix of","也就是"),("**smoke**","**烟**(smoke)"),("and **fog**.","与**雾**(fog)的混合物。")],
      "（thickening into…：现在分词短语作状语，表结果；\na mix of smoke and fog：同位语，补充说明 smog）"]]),
 (2,[[[("That smoke,","这些煤烟"),("from","来自"),("coal","煤，"),("burned","是"),("in **domestic**","在**家庭**(domestic)"),("**fireplaces**","**壁炉**(fireplaces)"),("and power stations,","和发电厂里烧的，")],
      "（from coal…：介词短语作后置定语，修饰 smoke；\nburned in…：过去分词短语作后置定语，修饰 coal）"],
