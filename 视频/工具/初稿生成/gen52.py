@@ -1,5 +1,6 @@
 import json,re,glob,os
 # 第52篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-06 S10 末块按用户原话改：“翻译改为：估计在1952年12月至1953年2月期间约有12,000例超额死亡。”
 # 2026-11-06 S10 按用户原话改：“and cast doubt on that explanation 单独成为一行, 翻译为：并对这一解释提出了质疑”“cast doubt on 为重点词汇，标注为重点词汇。”
 # 2026-11-06 S7 译文按用户原话改：“救护车服务被暂停，萨德勒之井剧院的一场歌剧在幕间休息时被中止，而史密斯菲尔德农业展上的获奖牛则死亡或不得不被宰杀。”
 # 2026-11-06 S7 suspended 按用户原话加回重点词：“重点词汇。Suspended, suspended.”（与第22篇 suspended 撞词，用户点名要标，写进 allow_clash 保留）
@@ -40,7 +41,7 @@ S=[
     [[("**reassessed**","**重新评估了**(reassessed)"),("the evidence","证据，")]],
     [[("and","并"),("**cast doubt on** that **explanation**,","**对**(cast doubt on)这一**解释**(explanation)**提出了质疑**(cast doubt on)，")],
      "（cast doubt on…：对……提出质疑）"],
-    [[("estimating","估计"),("about 12,000","约12,000人"),("excess","超额"),("deaths","死亡，"),("between December 1952","时间在1952年12月"),("and February 1953.","至1953年2月间。")],
+    [[("estimating","估计"),("about 12,000 excess deaths between December 1952 and February 1953.","在1952年12月至1953年2月期间约有12,000例超额死亡。")],
      "（estimating…：现在分词短语作状语，补充说明研究结论）"]]),
 (4,[[[("For decades","几十年来，"),("Londoners","伦敦人"),("had **tolerated**","一直**容忍**(tolerated)"),("the smoke","煤烟，"),("as a **nuisance**.","把它看成一种**麻烦**(nuisance)。")],
      "（tolerate A as B：把 A 当作 B 来容忍）"]]),
@@ -83,6 +84,7 @@ G={
  "S7 was abandoned at the interval":"对齐不了：at the interval 是时间状语，中文“演到幕间休息”必须放到“被迫中止”前",
  "S10 A study published in Environmental Health Perspectives in 2001":"对齐不了：published in… in 2001 是过去分词短语作后置定语，修饰 study，中文“2001年发表于《环境健康展望》的一项研究”定语必须提前，刊名不能拆",
  "S10 cast doubt on that explanation":"对齐不了：用户 2026-11-06 原话定的译文“并对这一解释提出了质疑”，cast doubt on 被 that explanation 隔开，中文“对……提出了质疑”两处都标 cast doubt on（T23），解释夹在中间，只能整组",
+ "S10 about 12,000 excess deaths between December 1952 and February 1953":"对齐不了：用户 2026-11-06 原话定的译文“估计在1952年12月至1953年2月期间约有12,000例超额死亡”，between… 是时间状语，中文必须放到“约有12,000例超额死亡”前，语序整个倒过来，只能整组",
  "S14 pressure for an inquiry":"对齐不了：for an inquiry 是介词短语作后置定语，修饰 pressure，中文“要求调查的压力”定语必须提前",
  "S18 all along":"对齐不了：all along 是固定短语“一直，始终”，拆开 all、along 中文不通",
  "S16 three and a half years after the smog":"对齐不了：three and a half years after the smog 是时间状语，中文“距那场烟雾已有三年半”语序必须倒过来",
