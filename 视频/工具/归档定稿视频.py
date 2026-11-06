@@ -47,8 +47,8 @@ open(f'{DST}/README.md', 'w').write('# 最终版 4K 视频\n\n> 这里只放已�
 print(f'共 {len(rows)} 篇，目录已写入 最终版4K视频/README.md')
 sys.path.insert(0, T); import importlib; K = importlib.import_module('踩坑核查')
 vf = K.video_folders(ROOT)
-_want = [a.zfill(2) for a in sys.argv[1:]]; _别 = [x for x in vf if _want and (m_ := re.match(r'\[G7\] 第(\d\d)篇已定稿，旧草稿', x)) and m_.group(1) not in _want]   # 52/51 11-06：别篇正在重做的草稿只提醒，不拦本篇（同 定稿视频核对）
-for x in _别: print('  【提醒】', x, '（别篇正在重做的草稿，不拦本篇）')
+_want = [a.zfill(2) for a in sys.argv[1:]]; _号 = lambda x: next((g for g in (re.search(r'(?:第(\d\d)篇|视频/视频/(\d\d)\.mp4|里第(\d\d)篇)', x) or re.match('$','')).groups() if g), None) if re.search(r'(?:第(\d\d)篇|视频/视频/(\d\d)\.mp4|里第(\d\d)篇)', x) else None; _别 = [x for x in vf if _want and _号(x) and _号(x) not in _want]   # 51 重做中途 视频/视频/51.mp4 与归档不一致也拦了 52：写明别篇篇号的 G7 项一律只提醒   # 52/51 11-06：别篇正在重做的草稿只提醒，不拦本篇（同 定稿视频核对）
+for x in _别: print('  【提醒】', x, '（别篇的事，不拦本篇）')
 vf = [x for x in vf if x not in _别]
 print('存视频的文件夹只存定稿（G7）：' + ('通过' if not vf else '\n  ✘ ' + '\n  ✘ '.join(vf)))
 # G9：存的必须是最终版——逐屏、逐样本与现行定稿脚本比对（镜像仓库这时还没同步；同步推送后再跑 定稿视频核对.py --只查清点和镜像）
