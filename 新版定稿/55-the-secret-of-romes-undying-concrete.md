@@ -16,7 +16,7 @@ The **implications** **extend beyond** **archaeology**. Cement **manufacture** a
 
 万神殿约于公元125至128年**竣工**(completion)，近1,900年后的今天，它的**穹顶**(dome)依然**高踞**(crowns)于下方**宏大的**(vast)**殿堂**(chamber)**之上**(crowns)。（its completion：its 指 the Pantheon；in about AD 125–128：插入语，补充竣工的年代）（crown：位于……顶部，高踞……之上；below：副词作后置定语，修饰 chamber）穹顶**直径**(in diameter)约43米，至今仍是世界上最大的无钢筋混凝土穹顶。（About 43 metres in diameter：形容词短语作状语，说明穹顶的大小；unreinforced：没有用钢筋加固的）它是**建筑**(architecture)史上**令人惊叹的**(astonishing)**壮举**(feat)，也是一道**难以解开的**(stubborn)**谜题**(puzzle)。（a feat of architecture：建筑上的壮举）
 
-现代混凝土通常靠**嵌入**(embedded)其中的钢筋加固，而钢筋**容易**(prone to)发生**锈蚀**(corrosion)。（be reinforced with…：用……加固）（which…：非限制性定语从句，修饰 steel bars；be prone to…：容易……）钢筋**生锈**(rusts)时会**膨胀**(swells)，把周围的混凝土**撑裂**(fractures)；许多建筑的设计**使用寿命**(lifespan)约为50年。（As…：时间状语从句，当……时；around it：后置定语，修饰 concrete，it 指 the steel）（be designed for…：按……设计）罗马混凝土并不比现代的**同类材料**(counterpart)更坚固，它的**长处**(merit)在于**耐久性**(durability)。（its modern counterpart：现代的同类材料，即现代混凝土）（lie in…：在于……）
+现代混凝土通常靠**嵌入**(embedded)其中的钢筋加固，而钢筋**容易**(prone to)发生**锈蚀**(corrosion)。（be reinforced with…：用……加固）（which…：非限制性定语从句，修饰 steel bars；be prone to…：容易……）随着钢筋**生锈**(rusts)，它会**膨胀**(swells)，并**使**(fractures)周围的混凝土**断裂**(fractures)；而且许多**建筑**(structures)被设计为约50年的**使用寿命**(lifespan)。（As…：时间状语从句，当……时；around it：后置定语，修饰 concrete，it 指 the steel）（be designed for…：按……设计）罗马混凝土并不比现代的**同类材料**(counterpart)更坚固，它的**长处**(merit)在于**耐久性**(durability)。（its modern counterpart：现代的同类材料，即现代混凝土）（lie in…：在于……）
 
 然而，这种古代材料似乎有个**缺点**(shortcoming)。它的内部**散布**(dotted with)着白色的石灰**小块**(chunks)，称为石灰团块。（be dotted with…：散布着……，布满……）（known as…：过去分词短语作后置定语，修饰 chunks）长期以来，专家**把**(ascribed to)这些**块状物**(lumps)**归因于**(ascribed to)搅拌**马虎**(sloppy)或原料**成分**(ingredients)**低劣**(inferior)。他们认为，换一个更**认真负责的**(conscientious)工匠，就不会出这种**瑕疵**(defect)。（ascribe A to B：把 A 归因于 B）（a defect that…：同位语，补充说明前面说的情况；they assumed：插入语，他们认为；would have avoided：虚拟语气，本可以避免）
 
@@ -46,7 +46,8 @@ The **implications** **extend beyond** **archaeology**. Cement **manufacture** a
 | corrosion | 本文：锈蚀；n. 腐蚀，锈蚀（resistant to corrosion；metal corrosion） | 2 |
 | rusts | 本文：生锈；v. (rust) 生锈（iron rusts in damp air）；n. 铁锈 | 2 |
 | swells | 本文：膨胀；v. (swell) 膨胀，肿胀（the wood swells when wet；her ankle swelled up） | 2 |
-| fractures | 本文：撑裂；v. (fracture) 使断裂，使破裂（fracture a bone/pipe）；n. 骨折，裂缝 | 2 |
+| fractures | 本文：使……断裂；v. (fracture) 使断裂，使破裂（fracture a bone/pipe）；n. 骨折，裂缝 | 2 |
+| structures | 本文：建筑；n. (structure) 建筑物，结构物（ancient structures）；结构，构造 | 2 |
 | lifespan | 本文：使用寿命；n. 寿命，使用期限（a lifespan of 50 years；extend the lifespan of sth） | 2 |
 | counterpart | 本文：同类材料；n. 对应的人或物（the French minister and her British counterpart） | 2 |
 | merit | 本文：长处；n. 长处，优点（the merits of a plan；judge sth on its merits） | 2 |

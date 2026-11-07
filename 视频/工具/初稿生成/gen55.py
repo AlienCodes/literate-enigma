@@ -14,10 +14,10 @@ S=[
      "（be reinforced with…：用……加固）"],
     [[("which","而钢筋"),("are **prone to**","**容易**(prone to)发生"),("**corrosion**.","**锈蚀**(corrosion)。")],
      "（which…：非限制性定语从句，修饰 steel bars；\nbe prone to…：容易……）"]]),
-(2,[[[("As the steel **rusts**,","钢筋**生锈**(rusts)时"),("it **swells**","会**膨胀**(swells)，"),("and **fractures** the concrete around it,","把周围的混凝土**撑裂**(fractures)；")],
+(2,[[[("As the steel **rusts**,","随着钢筋**生锈**(rusts)，"),("it **swells**","它会**膨胀**(swells)，"),("and **fractures**","并**使**(fractures)"),("the concrete around it,","周围的混凝土**断裂**(fractures)；")],
      "（As…：时间状语从句，当……时；\naround it：后置定语，修饰 concrete，it 指 the steel）"],
-    [[("and many structures","许多建筑的"),("are designed for","设计"),("a **lifespan**","**使用寿命**(lifespan)"),("of around 50 years.","约为50年。")],
-     "（be designed for…：按……设计）"]]),
+    [[("and many **structures**","而且许多**建筑**(structures)"),("are designed for","被设计为"),("a **lifespan** of around 50 years.","约50年的**使用寿命**(lifespan)。")],
+     "（be designed for…：被设计为……）"]]),
 (2,[[[("Roman concrete","罗马混凝土"),("is not stronger than its modern **counterpart**;","并不比现代的**同类材料**(counterpart)更坚固，")],
      "（its modern counterpart：现代的同类材料，即现代混凝土）"],
     [[("its **merit**","它的**长处**(merit)"),("lies in **durability**.","在于**耐久性**(durability)。")],
@@ -59,7 +59,7 @@ S=[
     [[("have **prompted**","如今却**促使**(prompted)人们"),("a **rethink** of construction.","**重新思考**(rethink)建造之道。")],
      "（a rethink of…：对……的重新思考）\n"
      "（简述：万神殿穹顶建成近1,900年依然屹立，是世界上最大的无钢筋混凝土穹顶。\n"
-     "现代混凝土里的钢筋会生锈膨胀、撑裂混凝土，许多建筑设计寿命约50年；\n"
+     "现代混凝土里的钢筋会生锈膨胀、使混凝土断裂，许多建筑设计寿命约50年；\n"
      "罗马混凝土并不更坚固，长处在于耐久。它里面的白色石灰团块，\n"
      "过去被专家当作搅拌马虎或原料低劣的瑕疵。2023年《科学进展》的研究认为，\n"
      "团块是生石灰热混合的副产品：水渗入裂缝时团块溶解，钙重新结晶为碳酸钙，堵住缝隙。\n"
@@ -75,6 +75,8 @@ G={
  "S11 The clasts, it suggested":"对齐不了：it suggested 是插入语，中文“该研究认为”必须放到句首",
  "S11 a by-product of \"hot mixing\" with quicklime":"对齐不了：a by-product of… 是 of 结构，中文“用生石灰“热混合”留下的副产品”定语必须提前",
  "S11 a reactive lime that heats up in water":"对齐不了：that heats up in water 是定语从句，修饰 lime，中文“遇水会发热、活性强的石灰”定语必须提前；同位语里补出主语“生石灰是”",
+ "S5 the concrete around it":"对齐不了：around it 是后置定语，修饰 concrete，中文“周围的混凝土”定语必须提前",
+ "S5 a lifespan of around 50 years":"对齐不了：a lifespan of… 是 of 结构，中文“约50年的使用寿命”，“使用寿命”必须放到最后",
  "S12 calcium carbonate":"对齐不了：calcium carbonate 是化学名“碳酸钙”，一个词，不能拆",
  "S13 flowing through samples without quicklime":"对齐不了：without quicklime 是后置定语，修饰 samples，中文“从不含生石灰的样本中流过”，“流过”必须放到最后",
  "S15 about 8 per cent of global carbon dioxide emissions":"对齐不了：8 per cent of… 是 of 结构，中文“全球二氧化碳排放的8%”百分数必须放到后面",
@@ -84,7 +86,7 @@ G={
 }
 CONF={"合组":G,
 "响度骤降":{"110.6–111.0s":{"配音指纹":"ed59953f5c3d","低":6.8,"句子":"S13 …but kept flowing through samples without quicklime.","依据":"2026-11-05 逐 2.5 ms 实测（S13 w，配音指纹 ed59953f5c3d）：句末 quicklime，quick 的 ɪ 7.57 -3.3 dB，/k/ 闭塞 7.63–7.70（-50～-59 dB）、7.71 除阻（重心 3.1 kHz），lime 的 /l/ 7.75–7.80 -10～-14 dB（低频 -2～-3 dB），aɪ 7.81–7.99 -15～-33 dB 降调衰减（周期 0.3–0.44、重心 1.0–1.8 kHz），/m/ 8.05–8.13 -34～-48 dB 低频 -1～-7 dB，8.17 起静音；每个音都在、清楚，是复合词次重音音节加句末降调，不是发闷或吞音；低 6.8 dB 在 01–24 认可上限 7.1 dB 以内"}},
-"对齐":{"S1-1 Nearly 1,900 years after its c": "after its completion 是时间状语、in about AD 125–128 是插入语，中文“万神殿约于公元125至128年竣工，近1,900年后的今天”先说竣工年代、再说时间，整组语序倒过来", "S2-1 About 43 metres in diameter,": "in diameter 是“直径”（整体标），中文“穹顶直径约43米”，“直径”必须放到数字前", "S3-1 an astonishing feat of archite": "a feat of architecture 是 of 结构，中文“建筑史上令人惊叹的壮举”，“建筑”必须提前", "S4-1 reinforced with embedded steel": "be reinforced with… 中文“靠嵌入其中的钢筋加固”，“加固”必须放到“钢筋”后面", "S5-1 and fractures the concrete aro": "fracture the concrete around it 中文用把字句“把周围的混凝土撑裂”，around it 是后置定语要提前，“撑裂”必须放到最后", "S6-1 is not stronger than its moder": "not stronger than… 是比较句，中文“并不比现代的同类材料更坚固”，“更坚固”必须放到比较对象后面", "S9-2 a defect that, they assumed, a": "同位语带定语从句，they assumed 是插入语，中文“他们认为，换一个更认真负责的工匠，就不会出这种瑕疵”整句语序倒过来", "S10-1 A study published in Science A": "published in… 是过去分词短语作后置定语，修饰 study，中文“2023年1月发表于《科学进展》的一项研究”定语必须提前", "S11-1 a by-product of \"hot mixing\" w": "a by-product of… 是 of 结构，中文“用生石灰“热混合”留下的副产品”定语必须提前", "S11-2 a reactive lime that heats up ": "that heats up in water 是定语从句，中文“遇水会发热、活性强的石灰”定语必须提前", "S13-2 flowing through samples withou": "without quicklime 是后置定语，修饰 samples，中文“从不含生石灰的样本中流过”，“流过”必须放到最后", "S15-1 about 8 per cent of global car": "8 per cent of… 是 of 结构，中文“全球二氧化碳排放的8%”，百分数必须放到后面", "S16-1 Concrete that mends its cracks": "that mends its cracks 是定语从句，修饰 Concrete，中文“能自行修补裂缝的混凝土”定语必须提前"},
+"对齐":{"S1-1 Nearly 1,900 years after its c": "after its completion 是时间状语、in about AD 125–128 是插入语，中文“万神殿约于公元125至128年竣工，近1,900年后的今天”先说竣工年代、再说时间，整组语序倒过来", "S2-1 About 43 metres in diameter,": "in diameter 是“直径”（整体标），中文“穹顶直径约43米”，“直径”必须放到数字前", "S3-1 an astonishing feat of archite": "a feat of architecture 是 of 结构，中文“建筑史上令人惊叹的壮举”，“建筑”必须提前", "S4-1 reinforced with embedded steel": "be reinforced with… 中文“靠嵌入其中的钢筋加固”，“加固”必须放到“钢筋”后面", "S6-1 is not stronger than its moder": "not stronger than… 是比较句，中文“并不比现代的同类材料更坚固”，“更坚固”必须放到比较对象后面", "S9-2 a defect that, they assumed, a": "同位语带定语从句，they assumed 是插入语，中文“他们认为，换一个更认真负责的工匠，就不会出这种瑕疵”整句语序倒过来", "S10-1 A study published in Science A": "published in… 是过去分词短语作后置定语，修饰 study，中文“2023年1月发表于《科学进展》的一项研究”定语必须提前", "S11-1 a by-product of \"hot mixing\" w": "a by-product of… 是 of 结构，中文“用生石灰“热混合”留下的副产品”定语必须提前", "S11-2 a reactive lime that heats up ": "that heats up in water 是定语从句，中文“遇水会发热、活性强的石灰”定语必须提前", "S13-2 flowing through samples withou": "without quicklime 是后置定语，修饰 samples，中文“从不含生石灰的样本中流过”，“流过”必须放到最后", "S15-1 about 8 per cent of global car": "8 per cent of… 是 of 结构，中文“全球二氧化碳排放的8%”，百分数必须放到后面", "S16-1 Concrete that mends its cracks": "that mends its cracks 是定语从句，修饰 Concrete，中文“能自行修补裂缝的混凝土”定语必须提前"},
 "牛津逗号":{"S5 As the steel rusts, it swells and": "不是三项并列：swells and fractures 只有两个动词", "S12 seeps into a crack, the clasts dissolve and": "不是三项并列：the clasts dissolve 和 their calcium recrystallises 只有两个分句", "S16 cracks could last longer, making demolition and": "不是三项并列：demolition and rebuilding 只有两项；making… and trimming… 也只有两个分词短语"},
 "们":{"S17-2 **(prompted)人们**": "们在加粗外，不是名词重点词带们：prompted 是动词“促使”，“人们”是补出的宾语（促使人们重新思考），沿用文章定稿"},
 "同词异译":{"ascribed to：归因于/把": "不是两种译法：ascribe A to B 的意思“把……归因于”被“这些块状物”隔开，“把”和“归因于”是同一个意思的两部分（T23）", "crowns：高踞/之上": "不是两种译法：crown 的意思“高踞……之上”被“下方宏大的殿堂”隔开，“高踞”和“之上”是同一个意思的两部分（T23）", "crowns：之上/高踞": "不是两种译法：crown 的意思“高踞……之上”被“下方宏大的殿堂”隔开，“高踞”和“之上”是同一个意思的两部分（T23）", "extend beyond：超出了/的范围": "不是两种译法：extend beyond 的意思“超出了……的范围”被“考古学”隔开，两处是同一个意思的两部分（T23）", "extend beyond：的范围/超出了": "不是两种译法：extend beyond 的意思“超出了……的范围”被“考古学”隔开，两处是同一个意思的两部分（T23）"},
