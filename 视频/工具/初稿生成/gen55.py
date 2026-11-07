@@ -2,11 +2,11 @@ import json,re,glob,os
 # 第55篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-11-05 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；短语型用法整体标（T22）；不用破折号（T36）；形容词的“的”进粗体。
 S=[
-(1,[[[("Nearly 1,900 years after its **completion**, in about AD 125–128,","万神殿约于公元125至128年**竣工**(completion)，近1,900年后的今天，")],
+(1,[[[("Nearly 1,900 years after its **completion**, in about AD 125–128,","万神殿约于公元125至128年**竣工**(completion)，在其竣工近1,900年后，")],
      "（its completion：its 指 the Pantheon；\nin about AD 125–128：插入语，补充竣工的年代）"],
     [[("the Pantheon's **dome**","它的**穹顶**(dome)"),("still","依然"),("**crowns**","**高踞**(crowns)于"),("the **vast**","下方**宏大的**(vast)"),("**chamber** below.","**殿堂**(chamber)**之上**(crowns)。")],
      "（crown：位于……顶部，高踞……之上；\nbelow：副词作后置定语，修饰 chamber）"]]),
-(1,[[[("About 43 metres **in diameter**,","穹顶**直径**(in diameter)约43米，"),("it remains","至今仍是"),("the world's","世界上"),("largest","最大的"),("unreinforced","无钢筋"),("concrete","混凝土"),("dome.","穹顶。")],
+(1,[[[("About 43 metres **in diameter**,","穹顶**直径**(in diameter)约43米，"),("it remains","至今仍是"),("the world's","世界上"),("largest","最大的"),("**unreinforced concrete**","**无钢筋混凝土**(unreinforced concrete)"),("dome.","穹顶。")],
      "（About 43 metres in diameter：形容词短语作状语，说明穹顶的大小；\nunreinforced：没有用钢筋加固的）"]]),
 (1,[[[("It is","它是"),("an **astonishing** **feat** of **architecture**,","**建筑**(architecture)史上**令人惊叹的**(astonishing)**壮举**(feat)，"),("and a **stubborn**","也是一道**久解不开的**(stubborn)"),("**puzzle**.","**谜题**(puzzle)。")],
      "（a feat of architecture：建筑上的壮举）"]]),

@@ -33,6 +33,7 @@ The **implications** **extend beyond** **archaeology**. Cement **manufacture** a
 | vast | 本文：宏大的；adj. 巨大的，广阔的（a vast hall/area；the vast majority） | 1 |
 | chamber | 本文：殿堂；n. 房间，室；（宫殿等的）大厅，殿堂（a burial chamber 墓室；the council chamber 会议厅；the great chamber of the palace） | 1 |
 | in diameter | 本文：直径；n. 直径（10 metres in diameter；the diameter of a circle） | 1 |
+| unreinforced concrete | 本文：无钢筋混凝土；n. 不用钢筋加固的混凝土（对比 reinforced concrete 钢筋混凝土） | 1 |
 | architecture | 本文：建筑；n. 建筑学，建筑（Gothic architecture；study architecture） | 1 |
 | astonishing | 本文：令人惊叹的；adj. 令人惊叹的（an astonishing achievement/success） | 1 |
 | feat | 本文：壮举；n. 壮举，非凡的成就（a feat of engineering；no mean feat） | 1 |
