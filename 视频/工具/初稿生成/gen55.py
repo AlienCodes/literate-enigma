@@ -14,7 +14,7 @@ S=[
      "（be reinforced with…：用……加固）"],
     [[("which","而钢筋"),("are **prone to**","**容易**(prone to)发生"),("**corrosion**.","**锈蚀**(corrosion)。")],
      "（which…：非限制性定语从句，修饰 steel bars；\nbe prone to…：容易……）"]]),
-(2,[[[("As the steel **rusts**,","随着钢筋**生锈**(rusts)，"),("it **swells**","它会**膨胀**(swells)，"),("and **fractures**","并**使**(fractures)"),("the concrete around it,","周围的混凝土**断裂**(fractures)；")],
+(2,[[[("As","随着"),("the steel","钢筋"),("**rusts**,","**生锈**(rusts)，"),("it **swells**","它会**膨胀**(swells)，"),("and **fractures**","并**使**(fractures)"),("the concrete around it,","周围的混凝土**断裂**(fractures)；")],
      "（As…：时间状语从句，当……时；\naround it：后置定语，修饰 concrete，it 指 the steel）"],
     [[("and many **structures**","而且许多**建筑**(structures)"),("are designed for","被设计为"),("a **lifespan** of around 50 years.","约50年的**使用寿命**(lifespan)。")],
      "（be designed for…：被设计为……）"]]),
@@ -27,7 +27,7 @@ S=[
      "（be dotted with…：散布着……，布满……）"],
     [[("known as","称为"),("lime","石灰"),("**clasts**.","**碎屑**(clasts)。")],
      "（known as…：过去分词短语作后置定语，修饰 chunks）"]]),
-(3,[[[("Experts long","长期以来，专家"),("**ascribed** these **lumps** **to**","**把**(ascribed to)这些**块状物**(lumps)**归因于**(ascribed to)"),("**sloppy** mixing","搅拌**马虎**(sloppy)"),("or **inferior** raw **ingredients**,","或原料**成分**(ingredients)**低劣**(inferior)。")],
+(3,[[[("Experts long","长期以来，专家"),("**ascribed**","**把**(ascribed to)"),("these **lumps**","这些**块状物**(lumps)"),("**to**","**归因于**(ascribed to)"),("**sloppy** mixing","搅拌**马虎**(sloppy)"),("or **inferior** raw **ingredients**,","或原料**成分**(ingredients)**低劣**(inferior)。")],
      "（ascribe A to B：把 A 归因于 B）"],
     [[("a **defect** that, they assumed, a more **conscientious** builder would have avoided.","他们认为，换一个更**认真负责的**(conscientious)工匠，就不会出这种**瑕疵**(defect)。")],
      "（a defect that…：同位语，补充说明前面说的情况；\nthey assumed：插入语，他们认为；\nwould have avoided：虚拟语气，本可以避免）"]]),
@@ -37,7 +37,7 @@ S=[
      "（it suggested：插入语，it 指这项研究；\na by-product of…：……的副产品）"],
     [[("a **reactive** lime that heats up in water.","生石灰是一种遇水会发热、**活性强的**(reactive)石灰。")],
      "（a reactive lime…：同位语，补充说明 quicklime；\nthat heats up in water：定语从句，修饰 lime）"]]),
-(4,[[[("When water","水"),("**seeps into** a crack,","**渗入**(seeps into)裂缝时，")],
+(4,[[[("When water","水"),("**seeps into**","**渗入**(seeps into)"),("a crack,","裂缝时，")],
      "（When…：时间状语从句）"],
     [[("the clasts","碎屑"),("**dissolve**","会**溶解**(dissolve)，"),("and their **calcium**","其中的**钙**(calcium)"),("recrystallises as","重新结晶为"),("calcium carbonate,","碳酸钙，"),("**plugging** the gap.","**堵住**(plugging)缝隙。")],
      "（recrystallise as…：重新结晶为……；\nplugging the gap：现在分词短语作状语，表示结果）"]]),
@@ -49,14 +49,14 @@ S=[
      "（extend beyond…：超出……的范围）"]]),
 (5,[[[("Cement **manufacture**","水泥**生产**(manufacture)"),("accounts for","约占"),("about 8 per cent of global carbon dioxide **emissions**,","全球二氧化碳**排放**(emissions)的8%，")],
      "（account for…：（在数量上）占……）"],
-    [[("the think-tank Chatham House","智库查塔姆研究所（Chatham House）"),("reported in June 2018.","2018年6月报告称。")]]]),
+    [[("the think-tank","智库"),("Chatham House","查塔姆研究所（Chatham House）"),("reported in June 2018.","2018年6月报告称。")]]]),
 (5,[[[("Concrete that mends its cracks","能自行修补裂缝的混凝土"),("could","可能"),("last longer,","更经久耐用，")],
      "（that mends its cracks：定语从句，修饰 Concrete）"],
     [[("making","从而使"),("**demolition**","**拆除**(demolition)"),("and rebuilding","与重建"),("rarer","减少，"),("and **trimming**","并**削减**(trimming)"),("emissions.","排放。")],
      "（making… and trimming…：两个现在分词短语作状语，表示结果；\nmake A rarer：使 A 更少见）"]]),
 (5,[[[("The white","这些白色"),("lumps","块状物"),("once **scorned** as","曾被**轻视**(scorned)为"),("signs of **clumsy** workmanship","手艺**拙劣的**(clumsy)痕迹，")],
      "（once scorned as…：过去分词短语作后置定语，修饰 lumps；\nscorn A as B：把 A 轻视为 B）"],
-    [[("have **prompted**","如今却**促使**(prompted)人们"),("a **rethink** of construction.","**重新思考**(rethink)建造之道。")],
+    [[("have **prompted**","如今却**促使**(prompted)人们"),("a **rethink**","**重新思考**(rethink)"),("of construction.","建造之道。")],
      "（a rethink of…：对……的重新思考）\n"
      "（简述：万神殿穹顶建成近1,900年依然屹立，是世界上最大的无钢筋混凝土穹顶。\n"
      "现代混凝土里的钢筋会生锈膨胀、使混凝土断裂，许多建筑设计寿命约50年；\n"
@@ -99,7 +99,7 @@ out={"no":"55","title_en":"The Secret of Rome's Undying Concrete","title_zh":"�
      "停顿插入点":{"S11":{"1":[0.736125,"交界"]}},
      "词尾除阻":{"S6":{"1":[3.779,"t"]}},
      "allow_clash":["reinforced with"],
-     "换行变更已获同意":{"S6":"用户 2026-11-07：“尽可能的就是上面的英文和如果说ok的话能那就跟下面的这个中文对应好，对吧？尽可能的不论是哪个单词”"},
+     "换行变更已获同意":{"S6":"用户 2026-11-07：“尽可能的就是上面的英文和如果说ok的话能那就跟下面的这个中文对应好，对吧？尽可能的不论是哪个单词”","S15":"用户 2026-11-07：“尽可能的就是上面的英文和如果说ok的话能那就跟下面的这个中文对应好，对吧？尽可能的不论是哪个单词”"},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Pantheon":"万神殿","Roman":"罗马","Science Advances":"《科学进展》","Chatham House":"查塔姆研究所","AD":"公元"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
