@@ -707,11 +707,14 @@ def _auto_level(clips,tmap,gaps,no='',rounds=2):
     # 算过的增益按“篇号 + 调平前的声音 + 分段 + 停顿”的指纹存成（篇号：演练、守门自检改号用的样本不会和真实篇目共用缓存） 调平_<指纹>.json（和配音缓存一起进仓库），先读存的，不重算；严格缓存模式缺了就停
     _k=_hl.sha1(b''.join(np.ascontiguousarray(c_,np.float32).tobytes() for c_ in clips)+repr((str(no),list(gaps),[(round(t[2],4),round(t[3],4)) for t in tmap])).encode()).hexdigest()
     _fs=[f'{_CACHE}/调平_{_k}.json',os.path.join(_REPO_CACHE,f'调平_{_k}.json')]
+    # K130（60 S11 That law,：调平按整段响度压了 -6 dB，重读的短段压太多，用户听出“声音突然变小”）：61 起往下压最多 -4 dB（缓存里存的旧值读出来也按这个收）；56–60 已出片不动
+    _lo=-4.0 if str(no).isdigit() and int(no)>=61 else -6.0
     if os.environ.get('CACHE_LOG'):
         with open(os.environ['CACHE_LOG'],'a') as f_: f_.write(f'调平_{_k}.json\n')
     for _f in _fs:
         if os.path.exists(_f):
-            _r={int(a_):float(b_) for a_,b_ in json.load(open(_f)).items()}; _to_repo(_f); return _r
+            _r={int(a_):float(b_) for a_,b_ in json.load(open(_f)).items()}; _to_repo(_f)
+            return {k_:max(_lo,v_) for k_,v_ in _r.items()} if _lo>-6.0 else _r
     if os.environ.get('STRICT_CACHE'): raise SystemExit(f'【停止】严格缓存模式缺调平缓存 调平_{_k}.json（G51：别的机器重算的调平增益可能翻档，不逐样本相同）：先在出过这一篇的机器上推送 视频/配音缓存/')
     tot={}; cur=list(clips)
     for _ in range(rounds):
@@ -724,7 +727,7 @@ def _auto_level(clips,tmap,gaps,no='',rounds=2):
             if v is None or abs(med-v)<=1.0: continue
             dl=round((med-v)*2)/2
             for k2 in g:
-                nv=max(-6.0,min(6.0,tot.get(k2+1,0.0)+dl)); f_=10**((nv-tot.get(k2+1,0.0))/20)
+                nv=max(_lo,min(6.0,tot.get(k2+1,0.0)+dl)); f_=10**((nv-tot.get(k2+1,0.0))/20)
                 if nv!=tot.get(k2+1,0.0): cur[2*k2]=cur[2*k2]*np.float32(f_); tot[k2+1]=nv; ch=True
         if not ch: break
     _r={k:v for k,v in tot.items() if v}

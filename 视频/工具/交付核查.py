@@ -150,6 +150,10 @@ elif stage == '出片后':
             c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4', '--句内', '--自检', '--分段', sj]); step(o.strip().lstrip('✔✘ ') or '句内分段响度 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的句内响度结果不可信，不得交付】')
             c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4', '--句内', '--分段', sj]); step('句内分段响度（相邻两段 ≤2.5 LU）：' + (o.strip().splitlines() or ['没有输出'])[0], c == 0,
                  '\n    '.join(o.strip().splitlines()[1:] + ([f'→ python3 {T}/句内响度.py {no} --写入（自动算分段增益dB），重出后再核'] if c else [])))
+            # K130（用户 2026-11-07 听 60 S11 That law, 被调平压 -6 dB：“这个地方声音突然变小了”）：整段差没过 2.5 LU，但最响处低 5 LU；61 起查“被压小”
+            if int(no) >= 61:
+                c, o = run(['python3', f'{T}/响度一致性核对.py', '--压小自检']); step(o.strip().lstrip('✔✘ ') or '句内被压小 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的句内被压小结果不可信】')
+                c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4', '--压小', '--分段', sj]); step((o.strip().splitlines() or ['句内被压小 没有输出'])[0], c == 0, '\n    '.join(o.strip().splitlines()[1:]))
     # G41 音频体检（用户 2026-10-25：“做音频这个环节，坚决不可以出任何问题，你要想方设法……把我们这个音频做好”）：能测的全测，超过 01–24 最差的就停（25 起）
     if int(no) >= 25:
         c, o = run(['python3', f'{T}/音频体检.py', '--自检', f'{no}.mp4', no]); step(o.strip().lstrip('✔✘ ') or '音频体检 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的体检结果不可信】')

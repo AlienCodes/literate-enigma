@@ -103,6 +103,34 @@ def 句内(src, a=None, TM=None, seg_json=None):
             rs.append((nm, j, cur[j - 1], cur[j], L[j] - L[j - 1]))
     return rs
 def 句内报(rs): return [r for r in rs if abs(r[4]) > IN_ADJ]
+# K130（用户 2026-11-07 听 60 S11：“这个地方声音突然变小了……坚决不要出现这种情况”“that law 这块”）：源头调平给短段 That law, 压了 -6 dB，
+# 和后一段整段只差 2.06 LU（没过 IN_ADJ 2.5），但这一段最响的 400 ms 比后一段最响处低 5.0 LU，重读词被压小、听着像突然变小。
+# 61 起：相邻段整段响 IN_DIP_G 以上、且最响处高 IN_DIP_PK 以上 = 这一段被压小，报出。只看整段或只看最响处都会误报
+# （55/56/58/59 定稿片里最响处差 4.3–4.9 LU 的 4 处，整段差都 ≤0.6 LU；60 现版补 +2 dB 后是 0.06 / 3.0）。
+IN_DIP_G = 1.5; IN_DIP_PK = 4.0; 压小起 = 61
+def 段量(TM, x, y):
+    blk = TM[(TM[:, 0] >= x + 0.4 - 1e-6) & (TM[:, 0] <= y + 0.05), 1]
+    if not len(blk): blk = TM[[int(np.argmin(np.abs(TM[:, 0] - min(y + 0.05, x + 0.4))))], 1]
+    return gated(blk), float(blk.max())
+def 压小(src, a=None, TM=None, seg_json=None):
+    """返回 [(句名, 第几段, (起, 止), 邻段整段响多少 LU, 邻段最响处高多少 LU)]"""
+    a = pcm(src) if a is None else a
+    TM = momentary(src) if TM is None else TM
+    rg = 句范围(a, seg_json); out = []
+    for (nm, _, _), cur in zip(rg, 分段(a, [(x, y) for _, x, y in rg])):
+        S = [段量(TM, x, y) for x, y in cur]
+        for j, (g, pk) in enumerate(S):
+            for k in (j - 1, j + 1):
+                if 0 <= k < len(S) and g is not None and S[k][0] is not None and S[k][0] - g > IN_DIP_G and S[k][1] - pk > IN_DIP_PK:
+                    out.append((nm, j + 1, cur[j], S[k][0] - g, S[k][1] - pk)); break
+    return out
+def 压小自检():
+    """坏样本 60 S11 That law, 压 -6 dB 那版必抓；好样本 补 +2 dB 后的现版必放"""
+    D = os.path.join(os.path.dirname(os.path.abspath(__file__)), '样本'); sj = f'{D}/K130_分段.json'; f = []
+    bad = 压小(f'{D}/K130_坏.wav', seg_json=sj); good = 压小(f'{D}/K130_好.wav', seg_json=sj)
+    if not any(r[0] == 'S11' and r[1] == 1 for r in bad): f.append(f'没抓到：60 S11 That law, 被调平压 -6 dB（K130 坏样本），报了 {bad}')
+    if good: f.append(f'误报：60 S11 补 +2 dB 后的现版（K130 好样本）被报 {good}')
+    return f
 def 句内自检(src, seg_json=None):
     """阳性对照：挑一句相邻段都不超标的，把它的第 2 段调到与前一段差 IN_ADJ+1 LU，必须报出这一处；原样的报出不变（不误报）。
     原样和改过的都先写成同样的 wav 再量（原来原样按成片 AAC 量、改过的按 wav 量，瞬时响度差一点，20 改号 25 的 S7 在门槛边上翻过去、多报，G79 原样自检揭出）"""
@@ -172,6 +200,13 @@ if __name__ == '__main__':
             bad = 句内报(句内(f)); tot += len(bad)
             print(f'- **{nn}**：{len(bad)} 处' + ''.join(f'\n  - {nm} 第{j}→{j + 1}段 {px:.1f}–{py:.1f}s → {x:.1f}–{y:.1f}s 后段{"响" if dv > 0 else "轻"} {abs(dv):.1f} LU' for nm, j, (px, py), (x, y), dv in bad))
         print(f'\n共 {tot} 处。要改哪篇，用户说了再改（改了就要重出 4K、过交付核查、重新归档，G9）。'); sys.exit(0)
+    if src == '--压小自检':
+        e = 压小自检(); print('\n'.join(e) or '✔ 句内被压小 自检：60 S11 That law, 压 -6 dB 的坏样本报出、补 +2 dB 的好样本放过（K130）'); sys.exit(1 if e else 0)
+    if '--压小' in sys.argv:
+        rs = 压小(src, seg_json=sj)
+        print(f'句内被压小（K130：邻段整段响 >{IN_DIP_G} LU 且最响处高 >{IN_DIP_PK} LU）：{len(rs)} 处')
+        for nm, j, (x, y), dg, dp in rs: print(f'  {nm} 第{j}段（{x:.1f}–{y:.1f}s）比邻段整段轻 {dg:.1f} LU、最响处低 {dp:.1f} LU：这一段被压小了，用 分段增益dB 补回')
+        sys.exit(1 if rs else 0)
     if '--句内' in sys.argv:
         if '--自检' in sys.argv:
             ok, msg = 句内自检(src, sj); print(('✔ ' if ok else '✘ ') + '句内分段响度 自检：' + msg); sys.exit(0 if ok else 1)
