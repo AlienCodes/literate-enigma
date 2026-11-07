@@ -56,14 +56,15 @@ S=[
 (5,[[[("The sky's","天空得以"),("**rescue**","**拯救**(rescue)，"),("began with","始于"),("**diligent** observers","一群**勤勉的**(diligent)观测者，")]],
     [[("who trusted that","他们相信，"),("a **baffling** number","一个**令人费解的**(baffling)数字"),("was no **glitch**,","并不是**小故障**(glitch)，"),("and published it.","于是把它发表了出来。")],
      "（who…：定语从句，修饰 observers；\nwas no glitch：并不是小故障；\nand published it：与 trusted 并列，it 指那个数字）\n"
-     "（简述：臭氧层为地球遮挡太阳的大部分紫外辐射。1974年，莫利纳和罗兰警告，\n"
-     "冰箱和喷雾罐里的氯氟烃会飘到平流层释放氯，慢慢破坏臭氧。\n"
-     "1985年，法曼团队用地面仪器发现南极哈雷湾上空的臭氧每年春季骤降；\n"
-     "NASA 卫星也记录到了这些低值，却被软件标为可疑。各国随后迅速行动：\n"
-     "1987年签署《蒙特利尔议定书》，修正案又要求富裕国家在2000年前淘汰氯氟烃，\n"
-     "2009年它和《维也纳公约》成为联合国首批获普遍批准的条约。\n"
-     "2023年的评估预测臭氧层将在几十年内恢复。拯救天空，\n"
-     "靠的是相信异常数字不是故障、并把它发表出来的观测者。）"]]),
+     "（简述：\n"
+     "1. 预警（1974年）\n"
+     "科学家发现，咱们冰箱和喷雾罐里用的“氟利昂”（CFCs），飘到天上后会破坏臭氧层（臭氧层是替地球挡紫外线的保护伞）。\n"
+     "2. 发现与乌龙（1985年）\n"
+     "法曼团队在南极发现，天上的臭氧居然破了个大洞！最搞笑的是，NASA的卫星其实早就拍到了这个异常，但电脑软件觉得数据太离谱，把它当成“机器故障”给自动屏蔽了。\n"
+     "3. 人类反击（1987年起）\n"
+     "各国政府一看，天塌了，赶紧签协议（《蒙特利尔议定书》），全面禁用这种化学物质。\n"
+     "4. 奇迹般的好结局（现在）\n"
+     "因为全球行动，2023年评估说，臭氧层估计再过几十年就能长好、恢复原样了。）"]]),
 ]
 G={
  "S1 much of the sun's":"对齐不了：much of the sun's… 是 of 结构，中文“太阳的大部分”语序倒过来",
@@ -84,12 +85,14 @@ G={
 }
 CONF={"合组":G,
 "牛津逗号":{},
+"中文重复":{"南极":"用户 2026-11-07 分别点名：S6 British Antarctic Survey 的 Antarctic（形容词“南极的”，原话“Antarctic 重点词汇”）和 S17 over Antarctica 的 Antarctica（名词“南极洲”，原话“这两个都要标注重点词汇”），中文都只能译“南极”，同根的形容词和名词"},
 "词性":{"S3-1 intact 完好无损地":"intact 是 adj.，本句 drift intact 里形容词作状语，用户原话译“完好无损地”，“地”标出的是状语用法，意思仍是形容词“完好无损的”"},
 "停顿位置":{
  "S5 alarm, / when @0.655":"2026-11-07 逐 2.5 ms 实测（S5 w）：alarm 的 /m/ 0.58–0.655（-8～-24 dB、重心 520–1050 Hz、周期 0.50–0.60 的鼻音），0.6575 一个 -24.3 dB 低谷（重心 1906 Hz）是两词交界，0.66 起 when 的 /w/（重心 850–1300 Hz），0.685 起升到 1400–2100 Hz 进 ɛ；插入点 0.655 落在 /m/ 收尾、低谷之前 2.5 ms，在 alarm 与 when 之间，不切词",
  "S13 Remarkably, / the @0.695":"2026-11-07 逐 2.5 ms 实测（S13 w）：Remarkably 的 /i/ 到 0.6925（-8～-23 dB、重心 1500–3800 Hz），0.695 起电平降到 -21～-27 dB、重心 460–1100 Hz、周期 0.42–0.57，是 the 的 /ð/ 浊音（0.7525 有 3.3–3.8 kHz 擦音成分），0.7725 起 ə（-5～-9 dB）；程序原插在 0.705 已进 /ð/ 10 ms，停顿插入点改到交界 0.695",
 },
 "短语":{
+ "S16 universal ratification":"不是搭配：ratification 单独就是“批准”（速查表第一义），universal 是普通形容词“普遍”，两个都按用户 2026-11-07 原话各自标为重点词",
  "S1 layer … of":"不是搭配：a layer of ozone 是“一层臭氧”，of 引出层的内容，layer 单独就是“层”",
  "S1 shields … of":"不是搭配：shields … from 已整体标；of 属于 much of the sun's ultraviolet radiation（太阳的大部分紫外辐射）",
  "S7 gauged … from":"不是搭配：from the ground 是方式状语（从地面），gauge 单独就是“测量”",
@@ -104,7 +107,7 @@ CONF={"合组":G,
 "中文意思":{"S1 layer":"不是这个义项：本文 layer 是名词“层”（a layer of ozone 一层臭氧），不是动词“把……分层堆放”，没有被隔开的另一半"},
 "对齐":{'S2-1 Mario Molina and Sherwood Rowl': '两个人名，中文“马里奥·莫利纳和舍伍德·罗兰”人名不能拆', 'S3-4 that destroys ozone molecule a': '中文用把字句“会把臭氧分子一个接一个地破坏掉”，destroys 化成“把……破坏掉”，molecule after molecule 化成“一个接一个地”，拆开不通', 'S6-1 and colleagues at the British ': 'at the British Antarctic Survey 是后置定语，修饰 colleagues，中文“英国南极调查局的同事”定语必须提前，机构名不能拆', 'S6-2 had plummeted each southern sp': 'since the mid-1970s 和 each southern spring 是时间状语，中文“自20世纪70年代中期起，每到南半球春季就骤降”时间必须放到动词前', 'S7-1 gauged ozone from the ground.': 'from the ground 是方式状语，中文“从地面测量臭氧”必须放到动词前', 'S15-2 phase out CFCs by 2000.': 'by 2000 是时间状语，中文“在2000年前逐步淘汰CFCs”时间必须放到动词前', 'S16-1 and its parent Vienna Conventi': 'its parent 修饰 Vienna Convention，中文“与其所依据的《维也纳公约》一道”，公约名不能拆', "S16-2 the UN's first treaties to win": 'to win… 是不定式作后置定语，修饰 treaties，中文“联合国首批获得普遍批准的条约”定语必须提前'},
 "数字":{"S6-2 1970":"since the mid-1970s 中文按文章定稿写作“自20世纪70年代中期起”，年代相同（mid-1970s = 20世纪70年代中期）；英文读 the mid-nineteen-seventies"},
-"口述":{"S19-2 那个":"note “it 指那个数字”是正常的指代说明（it 指前面 a baffling number），不是语音输入多出来的词"},
+"口述":{"S19-2 觉得":"结尾简述“电脑软件觉得数据太离谱”是用户 2026-11-07 给的简述原话（“简述改为：……”），不是语音输入多出来的词","S19-2 那个":"note “it 指那个数字”是正常的指代说明（it 指前面 a baffling number），不是语音输入多出来的词"},
 "方向":{"S3-4 after→会把臭氧分子一个接一个地":"molecule after molecule 是“一个接一个的分子”，不是时间先后；中文“一个接一个地”意思一致"},
 "同词异译":{"flagged as：把/标记为":"不是两种译法：S10 flagged as 的意思“把……标记为”被“这些读数”隔开，“把”和“标记为”是同一个意思的两部分（T23，用户 2026-11-07 原话“Flag as 重点词汇，重点词汇。把...标记为”）","shields from：为/遮挡了":"不是两种译法：S1 shields from 的意思“为……遮挡了”被“地球”隔开，“为”和“遮挡了”是同一个意思的两部分（T23）"},
 }

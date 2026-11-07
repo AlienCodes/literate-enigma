@@ -1,0 +1,107 @@
+import json,re,glob,os
+# 第63篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-07 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；中英对齐按用户 11-07 原话（篇“61-65”）：标色优先逐词对齐，没标色的尽量；
+# 为对齐只调中文语序、不改意思；短语型用法整体标（T22）；不用破折号（T36）；形容词的“的”进粗体。
+S=[
+(1,[[[("On 10 February 2009,","2009年2月10日，"),("nearly 790 kilometres above Siberia,","在西伯利亚上空近790公里处，")]],
+    [[("two satellites","两颗卫星"),("**slammed**","**猛撞**(slammed)"),("together","在一起，"),("at about 42,000 kilometres an hour.","时速约42,000公里。")],
+     "（at about 42,000 kilometres an hour：表示速度；\nan hour：每小时）"]]),
+(1,[[[("Iridium 33","铱星33号"),("belonged to","隶属于"),("an American","美国的一个"),("satellite-phone","卫星电话"),("**constellation**;","**星座**(constellation)；")],
+     "（constellation：卫星星座，\n指由多颗协同工作的卫星组成的网络）"],
+    [[("Kosmos 2251,","宇宙2251号"),("a Russian","是一颗俄罗斯"),("military","军用"),("satellite,","卫星，"),("had been **derelict** since about 1995.","约自1995年起便已**废弃**(derelict)。")],
+     "（a Russian military satellite：同位语，补充说明 Kosmos 2251；\nhad been…since：过去完成时，表示一直处于废弃状态）"]]),
+(1,[[[("Both","两星双双"),("**shattered**","**粉碎**(shattered)，")]],
+    [[("in the first","这是首次有"),("**accidental**","**意外**(accidental)"),("**collision**","**相撞**(collision)"),("between","发生在"),("two","两颗"),("intact","完整"),("satellites.","卫星之间。")],
+     "（between two intact satellites：后置定语，\n修饰 collision；\nintact：完好无损的）"]]),
+(2,[[[("Neither craft","两颗卫星都没有"),("**swerved**.","**转向避让**(swerved)。")],
+     "（neither：两者都不）"]]),
+(2,[[[("The Russian","那具俄罗斯"),("**hulk**,","**空壳**(hulk)"),("lacking","没有"),("**propulsion**,","**推进**(propulsion)装置，"),("could not.","想躲也躲不了。")],
+     "（hulk：本文指失效卫星的空壳；\nlacking propulsion：现在分词短语作原因状语；\ncould not 后省略了 swerve）"]]),
+(2,[[[("A public","一项公开的"),("collision-warning","碰撞预警"),("service","服务"),("had forecast","曾预报，"),("a **narrow miss**","两星将**惊险擦过**(narrow miss)，"),("of about 584 metres,","相距约584米，")],
+     "（a narrow miss：惊险擦过，险些相撞；\nof about 584 metres：后置定语，修饰 miss）"],
+    [[("yet","但"),("the predicted","预测中的这次"),("**encounter**","**交会**(encounter)"),("was not among","并未排进"),("the week's","当周"),("closest;","距离最近的几次之列；")],
+     "（the week's closest：当周预测中距离最近的几次，\nclosest 后省略了 encounters）"],
+    [[("such warnings were","这类预警既"),("**frequent**","**频繁**(frequent)"),("and","又"),("**imprecise**.","**不精确**(imprecise)。")]]]),
+(2,[[[("One owner's","一方"),("**discarded**","**弃置的**(discarded)"),("**relic**","**遗物**(relic)，"),("**demolished**","**撞毁了**(demolished)"),("another's","另一方"),("working","仍在工作的"),("**asset**.","**资产**(asset)。")],
+     "（another's：another owner's，省略了 owner）"]]),
+(3,[[[("The","这些"),("**wreckage**,","**残骸**(wreckage)"),("however,","却"),("**endangered**","**危及了**(endangered)"),("everyone","所有"),("else.","其他人。")],
+     "（however：插入语，表示转折）"]]),
+(3,[[[("The **impact**","**撞击**(impact)"),("**flung out**","**抛出了**(flung out)"),("more than 2,000","2,000多块"),("**catalogued**","**已编目的**(catalogued)"),("fragments","碎片，")],
+     "（fling out：猛抛出，flung 是 fling 的过去式）"],
+    [[("and","另有"),("a **multitude** of","**大量**(multitude)"),("others","碎片"),("too","太"),("small","小，"),("to **pinpoint**.","无法**精确定位**(pinpoint)。")],
+     "（a multitude of others：大量其他碎片，others 指 fragments；\ntoo…to…：太……而不能……）"]]),
+(3,[[[("At that height","在那个高度，"),("air","空气"),("**drag**","**阻力**(drag)"),("is **feeble**,","**微弱**(feeble)，")]],
+    [[("so","因此"),("many","许多碎片"),("would **linger**","会在轨道上**滞留**(linger)"),("for decades.","数十年。")],
+     "（many：many fragments，省略了 fragments）"]]),
+(3,[[[("In January 2012,","2012年1月，"),("the International Space Station","国际空间站"),("fired","启动"),("its **thrusters**","**推进器**(thrusters)，")]],
+    [[("to **dodge**","**躲开了**(dodge)"),("an Iridium 33","一块铱星33号的"),("**remnant**.","**残片**(remnant)。")],
+     "（to dodge…：不定式作目的状语）"]]),
+(4,[[[("In June 1978,","1978年6月，"),("two NASA scientists","两位美国国家航空航天局（NASA）的科学家"),("**envisaged**","**设想了**(envisaged)"),("a","一种"),("**vicious**","**恶性**(vicious)"),("**spiral**,","**螺旋**(spiral)，")],
+     "（a vicious spiral：恶性循环）"],
+    [[("later","后来"),("named","被称为"),("the Kessler","凯斯勒"),("**syndrome**:","**综合征**(syndrome)：")],
+     "（later named…：过去分词短语作后置定语，修饰 spiral；\n冒号后面说明这一设想的内容）"],
+    [[("each","每次"),("collision","相撞"),("would **scatter**","都会**散布**(scatter)"),("fragments,","碎片，")]],
+    [[("**raising the odds of**","**使**(raising the odds of)"),("**subsequent**","**后续**(subsequent)"),("crashes.","撞击**更有可能发生**(raising the odds of)。")],
+     "（raising the odds of…：现在分词短语作结果状语，\n使……更有可能）"]]),
+(4,[[[("The 2009 crash","2009年的这次相撞"),("**illustrated**","**例证了**(illustrated)"),("that **premise**","这一**前提**(premise)，")]],
+    [[("without","却并未"),("**triggering**","**引发**(triggering)"),("a **runaway**","**失控的**(runaway)"),("**chain reaction**.","**连锁反应**(chain reaction)。")],
+     "（without＋动名词：而没有……）"]]),
+(4,[[[("By","截至"),("the end of 2024,","2024年底，"),("**surveillance** networks","太空**监视**(surveillance)网络"),("tracked","跟踪了"),("about 40,000 objects,","约40,000个物体，")]],
+    [[("only some 11,000 of them","其中只有约11,000个"),("**functional**.","能**正常运行**(functional)。")],
+     "（only some 11,000 of them functional：独立主格结构，\n补充说明 objects；some＋数字：大约）"]]),
+(5,[[[("Such a cascade","不过，这样的连锁效应"),("would **unfold**","会逐步**展开**(unfold)，"),("over decades, though,","历时几十年，")],
+     "（though：放在句中，表示转折“不过”）"],
+    [[("and is not","而且并非"),("**inevitable**;","**不可避免**(inevitable)，"),("the risk","风险"),("can be **mitigated**.","也可以**加以缓解**(mitigated)。")]]]),
+(5,[[[("Operators","运营方"),("now","如今会"),("**routinely**","**例行**(routinely)"),("**manoeuvre**","**操纵**(manoeuvre)"),("satellites","卫星"),("**out of harm's way**.","**避开危险**(out of harm's way)。")],
+     "（manoeuvre A out of harm's way：操纵 A 避开危险）"]]),
+(5,[[[("In September 2022,","2022年9月，"),("America's Federal Communications Commission, which licenses satellites,","负责为卫星发放许可的美国联邦通信委员会")],
+     "（which licenses satellites：非限制性定语从句，\n修饰 Commission）"],
+    [[("**mandated**","**强制要求**(mandated)"),("**disposal**","**处置**(disposal)"),("of low-orbit","低轨"),("craft","航天器，")],
+     "（disposal：本文指卫星退役后离轨销毁）"],
+    [[("within five years of **retirement**","须在**退役**(retirement)后五年内完成，"),("instead of 25.","而非原先的25年。")],
+     "（within five years of…：……后五年内；\n25 后省略了 years）"]]),
+(5,[[[("Years after the crash,","相撞多年之后，"),("spacecraft whose owners had no part in it","那些主人与此事毫无瓜葛的航天器，")],
+     "（whose owners…：定语从句，修饰 spacecraft；\nhave no part in：与……无关；it 指 the crash）"],
+    [[("kept","仍不得不一再"),("swerving","转向，"),("around its","绕开那次相撞留下的"),("**splinters**.","**碎屑**(splinters)。")],
+     "（keep doing：一再做……；its 指 the crash's）\n"
+     "（简述：2009年2月10日，美国铱星33号与废弃的俄罗斯宇宙2251号在西伯利亚上空相撞，\n两星粉碎，这是两颗完整卫星之间的首次意外相撞。\n"
+     "俄罗斯卫星没有推进装置，躲不了；预警服务预报两星将擦过，但这类预警频繁又不精确。\n"
+     "相撞抛出2,000多块已编目的碎片和大量更小的碎片，许多会滞留数十年，2012年国际空间站就曾躲开一块残片。\n"
+     "1978年两位NASA科学家设想的凯斯勒综合征说，相撞会散布碎片、引发更多相撞；这次相撞是例证，但并未引发失控的连锁反应。\n"
+     "这种风险可以缓解：运营方例行避让，美国联邦通信委员会2022年要求低轨航天器退役后五年内处置，\n可多年之后，航天器仍在绕开这次相撞的碎屑。）"]]),
+]
+G={
+ "S1 nearly 790 kilometres above Siberia":"对齐不了：above Siberia 修饰 790 kilometres，中文“在西伯利亚上空近790公里处”地点必须提前",
+ "S1 at about 42,000 kilometres an hour":"对齐不了：an hour（每小时）中文“时速”必须放到数字前，拆开不通",
+ "S2 had been derelict since about 1995":"对齐不了：since about 1995 是时间状语，中文“约自1995年起便已废弃”时间必须放到动词前",
+ "S15 over decades, though":"对齐不了：though 是句中插入的转折词，与上一段转折，中文“不过”必须放在句首（已在 Such a cascade 一组），这一组只剩“历时几十年”",
+ "S17 within five years of retirement":"对齐不了：within five years of retirement 中文“在退役后五年内”，退役必须提前",
+ "S17 America's Federal Communications Commission, which licenses satellites":"对齐不了：which licenses satellites 是非限制性定语从句，中文“负责为卫星发放许可的美国联邦通信委员会”定语必须提前，机构名不能拆",
+ "S18 spacecraft whose owners had no part in it":"对齐不了：whose 引导的定语从句修饰 spacecraft，中文“那些主人与此事毫无瓜葛的航天器”定语必须提前",
+ "S18 Years after the crash":"对齐不了：Years after the crash 中文“相撞多年之后”，after 的宾语必须提前",
+}
+CONF={"合组":G,
+"对齐":{
+ "S1-1 nearly 790 kilometres above Si":"above Siberia 修饰 790 kilometres，中文“在西伯利亚上空近790公里处”地点必须提前",
+ "S1-2 at about 42,000 kilometres an ":"an hour（每小时）中文“时速”必须放到数字前",
+ "S2-2 had been derelict since about ":"since about 1995 是时间状语，中文“约自1995年起便已废弃”时间必须放到动词前",
+ "S14-2 only some 11,000 of them":"only some 11,000 of them functional 是独立主格结构，of them 中文“其中”必须提前",
+ "S17-1 America's Federal Communicatio":"which licenses satellites 是非限制性定语从句，中文定语必须提前，机构名不能拆",
+ "S17-3 within five years of retiremen":"within five years of retirement 中文“在退役后五年内”，退役必须提前",
+ "S18-1 spacecraft whose owners had no":"whose 引导的定语从句修饰 spacecraft，中文定语必须提前"},
+"短语":{
+ "S9 flung … of":"不是搭配：of 属于 a multitude of others，和 flung 无关；fling out 已整体标",
+ "S9 multitude … of":"不是搭配：multitude 本文就是速查表第一个意思“大量，众多”，of 只把 others 连上",
+ "S10 linger … for":"不是搭配：for decades 只表示时长，linger 单独就是“滞留”",
+ "S12 scatter … of":"不是搭配：of 属于 raising the odds of，已整体标",
+ "S15 unfold … over":"不是搭配：over decades 只表示时长，unfold 本文就是速查表第一个意思“（事态）逐步展开”",
+ "S17 mandated … of":"不是搭配：of 属于 disposal of low-orbit craft，和 mandated 无关",
+ "S10 air drag":"不是搭配：drag 本文就是速查表第一个意思“（空气）阻力”，air 单独译“空气”",
+ "S15 unfold over decades":"不是搭配：unfold 本文就是速查表第一个意思“（事态）逐步展开”，over decades 单独译“历时几十年”"},
+"同词异译":{"raising the odds of：使/更有可能发生":"不是两种译法：raise the odds of 的意思“使……更有可能发生”被“后续撞击”隔开，“使”和“更有可能发生”是同一个意思的两部分（T23）"}}
+out={"no":"63","title_en":"The Crowded Heavens","title_zh":"拥挤的苍穹","title_fx":{"hl":["Crowded","Heavens"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+     "高亮按实际开口":True,"高亮开口门槛":40,
+     "术语":{"Siberia":"西伯利亚","Iridium 33":"铱星33号","Kosmos 2251":"宇宙2251号","Russian":"俄罗斯","American":"美国","International Space Station":"国际空间站","NASA":"美国国家航空航天局","Kessler":"凯斯勒","Federal Communications Commission":"联邦通信委员会","America":"美国"}}
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from 核对 import 生成并核对
+生成并核对(S, out)
