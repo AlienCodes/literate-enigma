@@ -1,0 +1,135 @@
+import json,re,glob,os
+# 第56篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-07 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；不用破折号（T36）；形容词的“的”进粗体（T38）。
+S=[
+(1,[[[("Charles Darwin **disembarked** from HMS Beagle in October 1836.","1836年10月，查尔斯·达尔文从小猎犬号上**登岸**(disembarked)。")],
+     "（disembark from…：从（船、飞机）上下来；\nHMS Beagle：英国皇家海军舰船小猎犬号）"]]),
+(1,[[[("In September 1838","1838年9月，"),("he","他"),("began","开始"),("**formulating**","**提出**(formulating)"),("the **principle** of natural **selection**:","自然**选择**(selection)的**原理**(principle)：")],
+     "（began formulating：begin doing，开始做某事；\nthe principle of natural selection：of 结构，自然选择的原理）"],
+    [[("individuals better **adapted** to their **surroundings**","对**环境**(surroundings)**适应**(adapted)得更好的个体"),("survive","得以存活，"),("and pass on their **hereditary** traits.","并把自身的**遗传**(hereditary)性状传递下去。")],
+     "（better adapted to…：过去分词短语作后置定语，\n修饰 individuals；be adapted to…：适应……；\npass on：传递下去）"]]),
+(1,[[[("By 1844","到1844年，"),("he","他"),("had **composed**","已**写成**(composed)"),("a 230-page","一份230页的"),("**manuscript**,","**手稿**(manuscript)，")],
+     "（By 1844：到1844年为止；\nhad composed：过去完成时，表示到那时已经完成）"],
+    [[("yet","却"),("kept it **unpublished**,","一直**未予发表**(unpublished)，"),("**cautiously**","**谨慎地**(cautiously)"),("**amassing**","**积累**(amassing)"),("evidence.","证据。")],
+     "（keep it unpublished：keep + 宾语 + 补语，使它保持未发表；\ncautiously amassing evidence：现在分词短语作伴随状语）"]]),
+(2,[[[("In February 1858,","1858年2月，"),("two decades after Darwin's first insight,","距达尔文最初的设想已有二十年，")],
+     "（two decades after…：插入的时间说明，\n补充这时距达尔文最初的设想已有多久）"],
+    [[("Alfred Russel Wallace, a **naturalist**","**博物学家**(naturalist)阿尔弗雷德·拉塞尔·华莱士"),("**afflicted** by fever in the Malay Archipelago,","在马来群岛**身患**(afflicted)热病，")],
+     "（a naturalist…：同位语，说明 Wallace；\nafflicted by…：过去分词短语作后置定语，\nbe afflicted by 受……折磨）"],
+    [[("**independently**","**独立地**(independently)"),("**conceived**","**构想**(conceived)出了"),("the same","同一个"),("idea.","想法。")]]]),
+(2,[[[("His","华莱士那篇"),("**concise**","**简明的**(concise)"),("essay","文章"),("reached Darwin on 18 June 1858.","于1858年6月18日寄到达尔文手中。")],
+     "（His：指华莱士；reach sb：送到某人手中）"]]),
+(2,[[[("Its","文中的"),("argument","论证"),("**paralleled** Darwin's own almost **precisely**;","与达尔文本人的论证几乎**完全**(precisely)**相合**(paralleled)；")],
+     "（Its：指华莱士的文章；\nDarwin's own：达尔文本人的论证，own 后面省略了 argument）"],
+    [[("he told","达尔文告诉"),("Charles Lyell","查尔斯·莱尔，"),("he","自己"),("had never","从未"),("seen","见过"),("a more","比这更"),("**remarkable**","**惊人的**(remarkable)"),("**coincidence**.","**巧合**(coincidence)。")],
+     "（he had never seen…：宾语从句，省略了 that；\nhad never seen：过去完成时）"]]),
+(2,[[[("His claim to **priority**","他对**优先权**(priority)的主张"),("seemed","似乎"),("**threatened**.","**受到了威胁**(threatened)。")],
+     "（claim to…：对……的主张、要求；\nseem + 过去分词：似乎被……）"]]),
+(3,[[[("Lyell","莱尔"),("and the botanist","和植物学家"),("Joseph Hooker","约瑟夫·胡克"),("**arranged for**","**促成**(arranged for)"),("both","两篇"),("papers","论文")],
+     "（arrange for sth to be done：安排、促成某事被做）"],
+    [[("to be read **simultaneously** at the Linnean Society, a scientific **institution** in London, on 1 July 1858.","于1858年7月1日在伦敦的科学**机构**(institution)林奈学会**同时**(simultaneously)宣读。")],
+     "（to be read：不定式的被动式；\na scientific institution in London：同位语，\n说明 the Linnean Society）"]]),
+(3,[[[("Neither author","两位作者都没有"),("attended","出席"),("the **proceedings**.","当天的**会议**(proceedings)。")],
+     "（Neither…：两者都不）"]]),
+(3,[[[("Wallace","华莱士"),("was abroad,","身在海外，"),("and Darwin","达尔文则"),("was **grieving**:","处于**哀痛**(grieving)之中：")],
+     "（was grieving：过去进行时，当时正处于悲痛中）"],
+    [[("**scarlet** fever","**猩红**(scarlet)热"),("had killed his **infant** son on 28 June.","在6月28日夺去了他**幼子**(infant)的生命。")],
+     "（scarlet fever：猩红热；\nhad killed：过去完成时，发生在会议之前）"]]),
+(3,[[[("The **compromise**,","这一**折中办法**(compromise)"),("struck without Wallace,","在华莱士未参与的情况下达成，")],
+     "（struck without Wallace：过去分词短语作后置定语，\n修饰 compromise；strike a compromise：达成折中办法）"],
+    [[("may have kept **rivalry** over **precedence** at bay.","或许避免了围绕**先后次序**(precedence)的**竞争**(rivalry)。")],
+     "（may have done：对过去的推测；\nkeep sth at bay：使……无法逼近，避免……；\nrivalry over…：围绕……的竞争）"]]),
+(4,[[[("The papers' **publication** on 20 August 1858","1858年8月20日，两篇论文**刊出**(publication)，"),("met a **muted** **reception**.","得到的**反响**(reception)却很**平淡**(muted)。")],
+     "（The papers' publication：名词化结构，\n相当于 the papers were published；\nmeet a … reception：得到……的反响）"]]),
+(4,[[[("In May 1859","1859年5月，"),("the Society's","学会"),("president","会长"),("**remarked** in his **yearly** address","在**年度**(yearly)致辞中**谈到**(remarked)，")],
+     "（the Society：指林奈学会；\nremark that…：说到、评论……）"],
+    [[("that the year","这一年"),("had been **barren of**","**毫无**(barren of)"),("**revolutionary**","**革命性的**(revolutionary)"),("discoveries.","发现。")],
+     "（that…：宾语从句，作 remarked 的宾语；\nbe barren of…：缺乏……，毫无……）"]]),
+(4,[[[("The **sensation** came","**轰动**(sensation)出现在"),("on 24 November 1859","1859年11月24日，"),("with Darwin's **treatise**,","随达尔文的**专著**(treatise)"),("On the Origin of Species:","《物种起源》问世而来：")],
+     "（The sensation came with…：轰动随……而来；\nOn the Origin of Species：同位语，说明 treatise，\n即书名《物种起源》）"],
+    [[("booksellers","书商们"),("had **subscribed for**","已**认购了**(subscribed for)"),("every copy of its first **impression**,","该书第一**次印刷**(impression)的每一册，"),("1,250 in all.","共1,250册。")],
+     "（subscribe for…：认购……；\nits first impression：该书的第一次印刷；in all：总共）"]]),
+(5,[[[("Wallace","华莱士"),("had **readily**","早已**欣然**(readily)"),("**signified**","**表明了**(signified)"),("his **acceptance**","**接受**(acceptance)的态度，"),("in October 1858,","那是在1858年10月；")],
+     "（had signified：过去完成时，表示早在那之前；\nsignify one's acceptance：表示接受）"],
+    [[("**assuring** Hooker in a **cordial** letter","他在一封**亲切的**(cordial)信中**向**(assuring)胡克**保证**(assuring)，"),("of his","自己"),("**satisfaction** with the **arrangement**.","对这一**安排**(arrangement)感到**满意**(satisfaction)。")],
+     "（assuring…：现在分词短语作伴随状语；\nassure sb of sth：向某人保证某事；\nsatisfaction with…：对……满意）"]]),
+(5,[[[("In 1889","1889年，"),("he","他"),("published","出版了"),("a **lengthy**","一部**长篇**(lengthy)"),("**exposition**","**论述**(exposition)"),("of the idea","阐释这一思想，"),("and **entitled** it","并将其**定名**(entitled)为"),("Darwinism.","《达尔文主义》。")],
+     "（an exposition of…：对……的阐述；\nentitle A B：给 A 题名为 B）"]]),
+(5,[[[("Wallace","华莱士"),("never","从未"),("named the theory after himself.","用自己的名字为这一理论命名。")],
+     "（name A after B：以 B 的名字给 A 命名）\n"
+     "（简述：1836年10月，达尔文从小猎犬号上登岸；1838年9月开始提出自然选择的原理，\n"
+     "1844年写成230页的手稿，却一直未予发表。1858年2月，华莱士在马来群岛独立构想出同一个想法，\n"
+     "他的文章6月18日寄到达尔文手中，论证与达尔文的几乎完全相合，达尔文的优先权似乎受到威胁。\n"
+     "7月1日，莱尔和胡克促成两篇论文在林奈学会同时宣读，两位作者都没有出席：\n"
+     "华莱士身在海外，达尔文的幼子6月28日死于猩红热。论文8月刊出，反响平淡；\n"
+     "1859年11月24日《物种起源》问世，引起轰动，第一次印刷的1,250册被书商全部认购。\n"
+     "华莱士1858年10月就欣然表示接受这一安排，1889年把阐述这一思想的著作定名为《达尔文主义》，\n"
+     "从未用自己的名字为这一理论命名。）"]]),
+]
+G={
+ "S1 Charles Darwin disembarked from HMS Beagle in October 1836":"对齐不了：in October 1836 是时间状语，中文“1836年10月”必须放到句首；disembark from… 中文“从……上登岸”，“登岸”必须放到船名后面",
+ "S2 the principle of natural selection":"对齐不了：the principle of… 是 of 结构，中文“自然选择的原理”，“原理”必须放到最后",
+ "S2 individuals better adapted to their surroundings":"对齐不了：better adapted to… 是过去分词短语作后置定语，修饰 individuals，中文“对环境适应得更好的个体”定语必须提前",
+ "S2 and pass on their hereditary traits":"对齐不了：pass on… 中文“把……传递下去”，“传递下去”必须放到宾语后面",
+ "S4 Alfred Russel Wallace, a naturalist":"对齐不了：a naturalist 是同位语，中文“博物学家阿尔弗雷德·拉塞尔·华莱士”身份必须放到人名前",
+ "S4 afflicted by fever in the Malay Archipelago":"对齐不了：in the Malay Archipelago 是地点状语，中文“在马来群岛身患热病”地点必须放到动词前",
+ "S5 reached Darwin on 18 June 1858":"对齐不了：on 18 June 1858 是时间状语，中文“于1858年6月18日寄到达尔文手中”时间必须放到动词前",
+ "S6 paralleled Darwin's own almost precisely":"对齐不了：paralleled… almost precisely 中文“与达尔文本人的论证几乎完全相合”，比较对象和程度必须放到动词“相合”前",
+ "S6 a more remarkable coincidence":"对齐不了：a more remarkable coincidence 中文“比这更惊人的巧合”，“比这”是 more 的比较对象，必须一起放在前面",
+ "S7 His claim to priority":"对齐不了：claim to priority 中文“对优先权的主张”，介词短语必须提前",
+ "S8 to be read simultaneously at the Linnean Society, a scientific institution in London, on 1 July 1858":"对齐不了：时间状语 on 1 July 1858、地点状语 at the Linnean Society 和同位语 a scientific institution in London，中文“于1858年7月1日在伦敦的科学机构林奈学会同时宣读”都必须放到动词“宣读”前，整组语序倒过来",
+ "S10 had killed his infant son on 28 June":"对齐不了：on 28 June 是时间状语，中文“在6月28日”必须放到动词前；kill his son 中文“夺去了他幼子的生命”，“生命”必须放到最后",
+ "S4 two decades after Darwin's first insight":"对齐不了：two decades after… 中文“距达尔文最初的设想已有二十年”，after 引出的起算点必须放到“二十年”前，整组语序倒过来",
+ "S11 struck without Wallace":"对齐不了：without Wallace 中文“在华莱士未参与的情况下”必须放到动词“达成”前",
+ "S14 On the Origin of Species":"对齐不了：书名《物种起源》，不能拆",
+ "S17 named the theory after himself":"对齐不了：name A after B 中文“用 B 的名字为 A 命名”，after himself 必须放到动词前，the theory 化成“为这一理论”也在动词前",
+ "S11 may have kept rivalry over precedence at bay":"对齐不了：keep A at bay 中文“避免了 A”，at bay 不能单独成组；rivalry over precedence 中文“围绕先后次序的竞争”定语必须提前",
+ "S12 The papers' publication on 20 August 1858":"对齐不了：on 20 August 1858 是后置的时间说明，中文“1858年8月20日，两篇论文刊出”时间必须放到句首",
+ "S12 met a muted reception":"对齐不了：met a muted reception 中文“得到的反响却很平淡”，muted 必须改成谓语放到最后",
+ "S13 remarked in his yearly address":"对齐不了：in his yearly address 是地点状语，中文“在年度致辞中谈到”必须放到动词前",
+ "S14 The sensation came on 24 November 1859 with Darwin's treatise, On the Origin of Species":"对齐不了：时间状语 on 24 November 1859 和 with Darwin's treatise… 中文“1859年11月24日，达尔文的专著《物种起源》问世，引起轰动”都必须放到 sensation 前，整组语序倒过来",
+ "S14 every copy of its first impression":"对齐不了：every copy of… 是 of 结构，中文“该书第一次印刷的每一册”，“每一册”必须放到最后",
+ "S15 Wallace had readily signified his acceptance in October 1858":"对齐不了：in October 1858 是时间状语，中文“1858年10月”必须放到句首",
+ "S15 assuring Hooker in a cordial letter":"对齐不了：in a cordial letter 是方式状语，中文“在一封亲切的信中向胡克保证”必须放到动词前",
+ "S15 of his satisfaction with the arrangement":"对齐不了：satisfaction with… 中文“对这一安排感到满意”，“满意”必须放到最后",
+ "S16 a lengthy exposition of the idea":"对齐不了：an exposition of… 中文“一部长篇论述阐释这一思想”，of the idea 必须化成后面的“阐释这一思想”",
+ "S16 and entitled it Darwinism":"对齐不了：entitle A B 中文“将 A 定名为 B”，“为”必须放到书名前，不能拆",
+ "S17 never named the theory after himself":"对齐不了：name A after B 中文“用 B 的名字为 A 命名”，after himself 必须放到动词前",
+}
+CONF={"合组":G,
+"数字写法":{"S4-1 two":"two decades 中文“二十年”，数值相同（two decades = 20年）"},
+"方向":{},
+"对齐":{},
+"短语":{"S1 disembarked … from":"不是搭配：from 只引出从哪条船上下来，disembarked 单独就是“登岸”",
+ "S2 formulating … of":"不是搭配：of 属于 the principle of natural selection（of 结构），和 formulating 无关",
+ "S2 principle … of":"不是搭配：of natural selection 是 of 结构的后置修饰（自然选择的原理），principle 单独就是“原理”",
+ "S2 adapted … to":"不是搭配：to 引出适应的对象（对环境），adapted 单独就是“适应”，沿用文章定稿只标 adapted",
+ "S4 afflicted … by":"不是搭配：by 是被动句引出施动者（热病），afflicted 单独就是“身患”（受……折磨）",
+ "S8 arranged … to":"不是搭配：短语已整体标 arranged for（促成）；to be read 是 for 后面引出的不定式，不属于短语本身",
+ "S8 for … to":"不是搭配：to be read 是 arranged for 后面的不定式宾补，for 已随 arranged for 整体标",
+ "S8 institution … in":"不是搭配：in London 只说明机构在哪里，institution 单独就是“机构”",
+ "S11 rivalry … over":"不是搭配：over precedence 引出竞争的内容（围绕先后次序），rivalry 单独就是“竞争”",
+ "S14 treatise … on":"不是搭配：On the Origin of Species 是书名（同位语），和 treatise 无关",
+ "S14 subscribed … of":"不是搭配：短语已整体标 subscribed for（认购）；of 属于 every copy of its first impression（of 结构）",
+ "S15 acceptance … of":"不是搭配：of 属于后面的 assuring Hooker … of his satisfaction，和 acceptance 无关",
+ "S15 assuring … of":"不是搭配：assure sb of sth 的 of 只引出保证的内容（自己对安排满意），assure 单独就是“保证”；意思“向……保证”被“胡克”隔开，“向”和“保证”两处都标 assuring（T23）",
+ "S15 assuring … with":"不是搭配：with 属于 satisfaction with the arrangement（对安排满意），和 assuring 无关",
+ "S15 satisfaction … with":"不是搭配：with 引出满意的对象（对这一安排），satisfaction 单独就是“满意”",
+ "S16 exposition … of":"不是搭配：of the idea 是 of 结构，说明阐述的内容，exposition 单独就是“论述”"},
+"同词异译":{"assuring：向/保证":"不是两种译法：assure sb 的意思“向……保证”被“胡克”隔开，“向”和“保证”是同一个意思的两部分（T23）","assuring：保证/向":"不是两种译法：assure sb 的意思“向……保证”被“胡克”隔开，“向”和“保证”是同一个意思的两部分（T23）"}}
+# 对齐、方向：按组自动生成键（与核查程序同一取法），原因取 G
+def _en(x): return re.sub(r"\*\*","",x).strip()
+for si,(pa,chunks) in enumerate(S,1):
+    for ci,ch in enumerate(chunks,1):
+        for en,zh in ch[0]:
+            e=_en(en); k=f"S{si} "+e.rstrip(",.;:")
+            if len(e.split())>=5 and k in G: CONF["对齐"][f"S{si}-{ci} {e[:30]}"]=G[k].replace("对齐不了：","")
+            z=re.sub(r"\*\*|\([^)]*\)","",zh)
+            if re.search(r"\bafter\b",e):
+                CONF["方向"][f"S{si}-{ci} after→{z[:12]}"]={"S4":"two decades after… 的 after 表示“在……之后”，中文“距……已有二十年”的“距……已有”就是从那之后算起，方向一致","S17":"name A after B 的 after 是“以……命名”的固定用法（按照），不是时间先后，中文“用自己的名字为……命名”意思一致"}[f"S{si}"]
+out={"no":"56","title_en":"The Letter That Startled Darwin","title_zh":"一封信惊醒了达尔文","title_fx":{"hl":["Letter","Startled"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+     "高亮按实际开口":True,"高亮开口门槛":40,
+     "术语":{"Charles Darwin":"查尔斯·达尔文","HMS Beagle":"小猎犬号","Alfred Russel Wallace":"阿尔弗雷德·拉塞尔·华莱士","Malay Archipelago":"马来群岛","Charles Lyell":"查尔斯·莱尔","Joseph Hooker":"约瑟夫·胡克","Linnean Society":"林奈学会","London":"伦敦","On the Origin of Species":"《物种起源》","Darwinism":"《达尔文主义》"}}
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from 核对 import 生成并核对
+生成并核对(S, out)
