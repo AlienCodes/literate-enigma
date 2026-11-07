@@ -15,13 +15,13 @@ The panel urged **wind-tunnel** tests, and trials on **scaled-down** **replicas*
 
 1940年11月7日上午，一股时速约40英里的**持续**(sustained)大风使塔科马海峡大桥**扭动**(twisting)起来。（of about 40 miles an hour：后置定语，修饰 wind；set sth doing：使……（不停地）做某事）它的**桥面**(deck)左右**倾侧**(tilted)，**振荡**(oscillations)愈发**剧烈**(violent)，直到主跨大部分**断裂**(tore apart)、**跌落**(tumbled)水中。（ever more＋形容词：越来越……）（until…：时间状语从句，直到……）无人丧生。这一**奇观**(spectacle)的**影像**(Footage)后来**吸引了**(fascinate)世界各地的学生。（would later do：过去将来，后来会……）
 
-这座桥于1940年7月通车，其主跨是当时世界上第三长的**悬索**(suspension)桥**跨径**(span)，路面**悬挂在**(hung from)钢缆上。（had opened：过去完成时，通车早于坍塌）（as…：作为……；at the time：在当时）（its roadway hung from…：独立主格结构，补充说明桥的结构）仅八英尺深的**钢梁**(Girders)**加固了**(stiffened)桥面，使其变得**纤细**(slender)、**优雅**(elegant)且**经济**(economical)，但远非**刚硬**(rigid)。（only eight feet deep：后置定语，修饰 Girders）（making it…：现在分词短语作结果状语；far from：远非）哪怕**轻微的**(faint)**微风**(breezes)也会让它**起伏**(heave)，从而赢得了一个**绰号**(nickname)：“奔腾的格蒂”。（make sth do：使……做）（earning…：现在分词短语作结果状语）
+这座桥于1940年7月通车，其主跨是当时世界上第三长的**悬索**(suspension)桥**跨径**(span)，路面**悬挂在**(hung from)钢缆**上**(hung from)。（had opened：过去完成时，通车早于坍塌）（as…：作为……；at the time：在当时）（its roadway hung from…：独立主格结构，补充说明桥的结构）仅八英尺深的**钢梁**(Girders)**加固了**(stiffened)桥面，使其变得**纤细**(slender)、**优雅**(elegant)且**经济**(economical)，但远非**刚硬**(rigid)。（only eight feet deep：后置定语，修饰 Girders）（making it…：现在分词短语作结果状语；far from：远非）哪怕**轻微的**(faint)**微风**(breezes)也会让它**起伏**(heave)，从而赢得了一个**绰号**(nickname)：“奔腾的格蒂”。（make sth do：使……做）（earning…：现在分词短语作结果状语）
 
 **教科书**(Textbooks)长期以来一直**援引**(invoked)**共振**(resonance)来解释：与物体固有**频率**(frequency)相匹配的**周期性的**(periodic)推力能**放大**(amplify)其运动，就像**时机恰到好处的**(well-timed)一次次**猛推**(shoves)**推动**(propel)秋千上的孩子一样。（have long done：现在完成时，长期以来一直……）（that matches…：定语从句，修饰 push）（as when…：就像……的时候那样）这个**类比**(analogy)**直观**(intuitive)却**具有迷惑性**(deceptive)。那天上午的风没有与大桥**有节奏地跳动**(pulse)；它吹得相当**平稳**(steadily)。（in time with：合着……的节拍）
 
-其**机理**(mechanism)要**更为微妙**(subtler)。每一次扭动都**改变了**(altered)掠过的气流，而气流又**加强了**(reinforced)下一次扭动：这是一个不断从风中**汲取**(tapping)能量的**反馈**(feedback)回路。（which…：非限制性定语从句，指代 the passing airflow）（a feedback loop：同位语，概括前面的过程；keep doing：不断做；tap A for B：从 A 汲取 B）1941年3月，一个联邦**调查委员会**(panel)把原因归于桥面的**柔性**(flexibility)和类似机翼的升力。（blame…：把（事故）归咎于……）后来的分析把这一机理称为颤振；1991年2月，两位工程师在一份物理学期刊上**断言**(asserted)，教科书**说错了**(erred)。（call A B：把 A 称为 B）（that…：宾语从句，作 asserted 的宾语；had erred：过去完成时）
+其**机理**(mechanism)要**更为微妙**(subtler)。每一次扭动都**改变了**(altered)掠过的气流，而气流又**加强了**(reinforced)下一次扭动：这是一个不断从风中**汲取**(tapping)能量的**反馈**(feedback)回路。（which…：非限制性定语从句，指代 the passing airflow）（a feedback loop：同位语，概括前面的过程；keep doing：不断做；tap A for B：从 A 汲取 B）1941年3月，一个联邦**调查委员会**(panel)把原因归于桥面的**柔性**(flexibility)和类似机翼的升力。（blame…：把（事故）归咎于……）后来的分析把这一机理称为颤振；1991年2月，两位工程师在一份物理学期刊上**断言**(asserted)，教科书**出错了**(erred)。（call A B：把 A 称为 B）（that…：宾语从句，作 asserted 的宾语；had erred：过去完成时）
 
-该委员会力主进行**风洞**(wind-tunnel)试验，而用**按比例缩小的**(scaled-down)**模型**(replicas)做试验也**逐渐**(gradually)成为悬索桥的**惯例**(customary)。（trials on…：用……做的试验；become customary：成为惯例）一座**更坚固的**(sturdier)**替代**(replacement)桥于1950年10月通车。格蒂的倒塌或许至今仍能给工程师以**教益**(instruct)，只要解读得**准确**(accurately)：风从未合着大桥的节拍，是大桥自身的运动让持续不断的风变得具有破坏力。（if read accurately：省略形式，= if it is read accurately）（keep time with：合着……的节拍；turn A＋形容词：使 A 变得……）（简述：1940年11月7日，一股持续的大风让塔科马海峡大桥扭动起来，振荡越来越剧烈，主跨断裂坠入水中，无人丧生。这座悬索桥当年7月才通车，桥身纤细、省钱却不够刚硬，微风就能让它起伏，人称奔腾的格蒂。教科书常用共振来解释，但那天的风吹得平稳，并没有合着大桥的节拍涌动。真正的机理是扭动改变气流、气流又加强扭动的反馈回路，后来称为颤振，1991年两位工程师指出教科书错了。此后风洞模型试验成为惯例，1950年更坚固的新桥通车。）
+该委员会力主进行**风洞**(wind-tunnel)试验，并且对**按比例缩小的**(scaled-down)**复制品**(replicas)进行试验，对于悬索桥而言也**渐渐**(gradually)成为了**惯例**(customary)。（trials on…：用……做的试验；become customary：成为惯例）一座**更坚固的**(sturdier)**替代**(replacement)桥于1950年10月通车。格蒂的倒塌或许至今仍能给工程师以**教益**(instruct)，只要解读得**准确**(accurately)：风从未合着大桥的节拍，是大桥自身的运动让持续不断的风变得具有破坏力。（if read accurately：省略形式，= if it is read accurately）（keep time with：合着……的节拍；turn A＋形容词：使 A 变得……）（简述：1940年11月7日，一股持续的大风让塔科马海峡大桥扭动起来，振荡越来越剧烈，主跨断裂坠入水中，无人丧生。这座悬索桥当年7月才通车，桥身纤细、省钱却不够刚硬，微风就能让它起伏，人称奔腾的格蒂。教科书常用共振来解释，但那天的风吹得平稳，并没有合着大桥的节拍涌动。真正的机理是扭动改变气流、气流又加强扭动的反馈回路，后来称为颤振，1991年两位工程师指出教科书错了。此后风洞模型试验成为惯例，1950年更坚固的新桥通车。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -76,8 +76,8 @@ The panel urged **wind-tunnel** tests, and trials on **scaled-down** **replicas*
 | erred | 本文：说错了；v. (err) 犯错，出错（err on the side of caution 宁可过于谨慎）；To err is human. 人非圣贤 | 4 |
 | wind-tunnel | 本文：风洞；n./adj. (wind tunnel) 风洞（的）（wind-tunnel tests 风洞试验） | 5 |
 | scaled-down | 本文：按比例缩小的；adj. 按比例缩小的（a scaled-down model/version）；scale down v. 缩减规模 | 5 |
-| replicas | 本文：模型；n. (replica) 复制品，模型（an exact replica of sth）；replicate v. 复制，重复（实验） | 5 |
-| gradually | 本文：逐渐；adv. 逐渐地，逐步地（gradually become/improve）；gradual adj. | 5 |
+| replicas | 本文：复制品；n. (replica) 复制品，模型（an exact replica of sth）；replicate v. 复制，重复（实验） | 5 |
+| gradually | 本文：渐渐；adv. 逐渐地，逐步地（gradually become/improve）；gradual adj. | 5 |
 | customary | 本文：惯例；adj. 惯常的，习惯的（it is customary to do sth；become customary 成为惯例）；custom n. 习俗 | 5 |
 | sturdier | 本文：更坚固的；adj. (sturdy 比较级) 更坚固的，更结实的（a sturdy bridge/table）；（人）健壮的；坚定的 | 5 |
 | replacement | 本文：替代；n. 替代物，替换者（a replacement for sth）；替换，更换（hip replacement 髋关节置换）；replace v. | 5 |
