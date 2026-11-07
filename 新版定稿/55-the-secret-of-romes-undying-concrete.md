@@ -14,7 +14,7 @@ The **implications** **extend beyond** **archaeology**. Cement **manufacture** a
 
 ## 中文
 
-万神殿约于公元125至128年**竣工**(completion)，近1,900年后的今天，它的**穹顶**(dome)依然**高踞**(crowns)于下方**宏大的**(vast)**殿堂**(chamber)**之上**(crowns)。（its completion：its 指 the Pantheon；in about AD 125–128：插入语，补充竣工的年代）（crown：位于……顶部，高踞……之上；below：副词作后置定语，修饰 chamber）穹顶**直径**(in diameter)约43米，至今仍是世界上最大的无钢筋混凝土穹顶。（About 43 metres in diameter：形容词短语作状语，说明穹顶的大小；unreinforced：没有用钢筋加固的）它是**建筑**(architecture)史上**令人惊叹的**(astonishing)**壮举**(feat)，也是一道**久解不开的**(stubborn)**谜题**(puzzle)。（a feat of architecture：建筑上的壮举）
+万神殿约于公元125至128年**竣工**(completion)，近1,900年后的今天，它的**穹顶**(dome)依然**高踞**(crowns)于下方**宏大的**(vast)**殿堂**(chamber)**之上**(crowns)。（its completion：its 指 the Pantheon；in about AD 125–128：插入语，补充竣工的年代）（crown：位于……顶部，高踞……之上；below：副词作后置定语，修饰 chamber）穹顶**直径**(in diameter)约43米，至今仍是世界上最大的无钢筋混凝土穹顶。（About 43 metres in diameter：形容词短语作状语，说明穹顶的大小；unreinforced：没有用钢筋加固的）它是**建筑**(architecture)史上**令人惊叹的**(astonishing)**壮举**(feat)，也是一道**难以解开的**(stubborn)**谜题**(puzzle)。（a feat of architecture：建筑上的壮举）
 
 现代混凝土通常靠**嵌入**(embedded)其中的钢筋加固，而钢筋**容易**(prone to)发生**锈蚀**(corrosion)。（be reinforced with…：用……加固）（which…：非限制性定语从句，修饰 steel bars；be prone to…：容易……）钢筋**生锈**(rusts)时会**膨胀**(swells)，把周围的混凝土**撑裂**(fractures)；许多建筑的设计**使用寿命**(lifespan)约为50年。（As…：时间状语从句，当……时；around it：后置定语，修饰 concrete，it 指 the steel）（be designed for…：按……设计）罗马混凝土并不比现代的**同类材料**(counterpart)更坚固，它的**长处**(merit)在于**耐久性**(durability)。（its modern counterpart：现代的同类材料，即现代混凝土）（lie in…：在于……）
 

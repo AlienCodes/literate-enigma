@@ -8,7 +8,7 @@ S=[
      "（crown：位于……顶部，高踞……之上；\nbelow：副词作后置定语，修饰 chamber）"]]),
 (1,[[[("About 43 metres **in diameter**,","穹顶**直径**(in diameter)约43米，"),("it remains","至今仍是"),("the world's","世界上"),("largest","最大的"),("**unreinforced concrete**","**无钢筋混凝土**(unreinforced concrete)"),("dome.","穹顶。")],
      "（About 43 metres in diameter：形容词短语作状语，说明穹顶的大小；\nunreinforced：没有用钢筋加固的）"]]),
-(1,[[[("It is","它是"),("an **astonishing** **feat** of **architecture**,","**建筑**(architecture)史上**令人惊叹的**(astonishing)**壮举**(feat)，"),("and a **stubborn**","也是一道**久解不开的**(stubborn)"),("**puzzle**.","**谜题**(puzzle)。")],
+(1,[[[("It is","它是"),("an **astonishing** **feat** of **architecture**,","**建筑**(architecture)史上**令人惊叹的**(astonishing)**壮举**(feat)，"),("and a **stubborn**","也是一道**难以解开的**(stubborn)"),("**puzzle**.","**谜题**(puzzle)。")],
      "（a feat of architecture：建筑上的壮举）"]]),
 (2,[[[("Modern","现代"),("concrete","混凝土"),("is usually","通常"),("reinforced with **embedded** steel bars,","靠**嵌入**(embedded)其中的钢筋加固，")],
      "（be reinforced with…：用……加固）"],
