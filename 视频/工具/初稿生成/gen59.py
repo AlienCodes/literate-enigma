@@ -45,7 +45,7 @@ S=[
     [[("a **binding**","这是一项具有**约束力**(binding)的"),("**accord**","**协定**(accord)，"),("to **curb** CFCs.","用来**限制**(curb)CFCs。")],
      "（a binding accord…：同位语，补充说明议定书；\nto curb CFCs：不定式作后置定语，修饰 accord）"]]),
 (4,[[[("**Amendments**","此后的**修正案**(Amendments)"),("**tightened** it:","又**收紧了**(tightened)它的管控：")]],
-    [[("in June 1990","1990年6月，"),("**affluent** countries","**富裕**(affluent)国家"),("**pledged** to","**承诺**(pledged)"),("**phase out** CFCs by 2000.","在2000年前**逐步淘汰**(phase out)CFCs。")],
+    [[("in June 1990","1990年6月，"),("**affluent**","**富裕**(affluent)"),("countries","国家"),("**pledged** to","**承诺**(pledged)"),("**phase out** CFCs by 2000.","在2000年前**逐步淘汰**(phase out)CFCs。")],
      "（pledge to do：承诺做……；\nphase out：逐步淘汰）"]]),
 (4,[[[("In September 2009","2009年9月，"),("the Protocol","该议定书"),("and its parent Vienna Convention","与其所依据的《维也纳公约》一道，")],
      "（its parent Vienna Convention：\n议定书所依据的母公约《维也纳公约》）"],
@@ -57,7 +57,7 @@ S=[
      "（recovery to 1980 levels：恢复到1980年的水平）"],
     [[("around 2066","约2066年"),("over Antarctica,","在南极上空，"),("2045","2045年"),("over the Arctic,","在北极上空，"),("and 2040","其他地区"),("elsewhere.","则在2040年。")]]]),
 (5,[[[("**Healing**","臭氧层的**愈合**(Healing)"),("will take","还需要"),("decades.","数十年。")]]]),
-(5,[[[("The sky's **rescue**","天空得以**拯救**(rescue)，"),("began with","始于"),("**diligent** observers","一群**勤勉的**(diligent)观测者，")]],
+(5,[[[("The sky's","天空得以"),("**rescue**","**拯救**(rescue)，"),("began with","始于"),("**diligent** observers","一群**勤勉的**(diligent)观测者，")]],
     [[("who trusted that","他们相信，"),("a **baffling** number","一个**令人费解的**(baffling)数字"),("was no **glitch**,","并不是**小故障**(glitch)，"),("and published it.","于是把它发表了出来。")],
      "（who…：定语从句，修饰 observers；\nwas no glitch：并不是小故障；\nand published it：与 trusted 并列，it 指那个数字）\n"
      "（简述：臭氧层为地球遮挡太阳的大部分紫外辐射。1974年，莫利纳和罗兰警告，\n"
