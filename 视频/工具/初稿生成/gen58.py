@@ -15,7 +15,7 @@ S=[
      "（if less frequently than…：= though less frequently than…，\n虽然不如……频繁）"]]),
 (2,[[[("**Rustic**","**乡间**(Rustic)"),("**lore**","**传说**(lore)"),("held that","认为，")],
      "（hold that…：认为……）"],
-    [[("milkmaids","挤奶女工"),("with cowpox,","若得过牛痘"),("a **mild** **ailment** of **livestock**,","这种**牲畜**(livestock)的**轻微**(mild)**病症**(ailment)，"),("were **immune to** smallpox.","就**对**(immune to)天花**免疫**(immune to)。")],
+    [[("milkmaids","挤奶女工"),("with cowpox,","若得过牛痘"),("a **mild** **ailment** of **livestock**,","这种**牲畜**(livestock)的**轻微**(mild)**病症**(ailment)，\n{{（一般指牛的牛痘，轻微病症）|ailment}}"),("were **immune to** smallpox.","就**对**(immune to)天花**免疫**(immune to)。")],
      "（a mild ailment of livestock：同位语，补充说明 cowpox）"]]),
 (2,[[[("In 1774","1774年，"),("Benjamin Jesty,","本杰明·杰斯蒂，"),("a Dorset farmer,","一位多塞特郡农夫，")],
      "（a Dorset farmer：同位语，补充说明 Benjamin Jesty；\nDorset：多塞特郡，在英格兰西南部）"],
