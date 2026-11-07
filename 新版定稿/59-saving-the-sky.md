@@ -10,7 +10,7 @@ Yet NASA's Nimbus-7 **satellite**, a **sophisticated** eye in **orbit**, had rec
 
 **Remarkably**, the response was **swift**. In September 1987 **diplomats** signed the Montreal **Protocol**, a **binding** **accord** to **curb** CFCs. **Amendments** **tightened** it: in June 1990 **affluent** countries **pledged** to **phase out** CFCs by 2000. In September 2009 the Protocol and its parent Vienna Convention became the UN's first treaties to win **universal** ratification.
 
-In January 2023 a UN-backed **assessment** **forecast** **recovery** to 1980 levels around 2066 over Antarctica, 2045 over the Arctic and 2040 elsewhere. **Healing** will take decades. The sky's **rescue** began with **diligent** observers who trusted that a **baffling** number was no **glitch**, and published it.
+In January 2023 a UN-backed **assessment** **forecast** **recovery** to 1980 levels around 2066 over Antarctica, 2045 over the Arctic, and 2040 elsewhere. **Healing** will take decades. The sky's **rescue** began with **diligent** observers who trusted that a **baffling** number was no **glitch**, and published it.
 
 ## 中文
 
