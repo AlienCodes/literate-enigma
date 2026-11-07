@@ -11,7 +11,7 @@ S=[
     [[("Crommelin and Davidson","克罗姆林和戴维森则"),("from Sobral,","在索布拉尔，"),("in north-eastern Brazil.","位于巴西东北部。")],
      "（Crommelin and Davidson from Sobral：\n承前省略了 observed）"]]),
 (1,[[[("They","他们"),("were testing","要检验"),("general relativity's","广义相对论的一个"),("**bold**","**大胆的**(bold)"),("prediction","预言，")]],
-    [[("that the sun's","即太阳的"),("**gravity**","**引力**(gravity)"),("would **deflect** starlight.","会使经过它附近的星光**偏折**(deflect)。")],
+    [[("that the sun's","也就是太阳的"),("**gravity**","**引力**(gravity)"),("would **deflect** starlight.","会使经过它附近的星光**偏折**(deflect)。")],
      "（that the sun's gravity…：同位语从句，\n说明 prediction 的内容）"]]),
 (2,[[[("On 6 November,","11月6日，"),("at a **joint** meeting of the Royal Society and the Royal Astronomical Society,","英国皇家学会与皇家天文学会召开**联席**(joint)会议，")],
      "（of the Royal Society…：of 结构作后置定语，修饰 meeting）"],
@@ -38,7 +38,7 @@ S=[
     [[("**citing**","**表彰**(citing)"),("his services to theoretical physics,","他对理论物理学的贡献，"),("especially","尤其是"),("his discovery of the law of the photoelectric effect.","他发现了光电效应定律。")],
      "（citing…：现在分词短语作伴随状语；\nespecially his discovery…：补充说明 services）"]]),
 (4,[[[("That law,","这条定律"),("which **governs**","**决定了**(governs)"),("how light","光如何"),("**ejects** **electrons** from metal,","把**电子**(electrons)从金属中**打出**(ejects)，")],
-     "（which governs…：非限制性定语从句，修饰 That law；\nhow light…：宾语从句）"],
+     "（which governs…：非限制性定语从句，\n修饰 That law；\nhow light…：宾语从句）"],
     [[("helped","曾帮助"),("**underpin**","**奠定**(underpin)"),("**quantum** theory.","**量子**(quantum)理论的基础。")],
      "（help underpin：帮助奠定……的基础）"]]),
 (4,[[[("A letter the next day","第二天的一封信"),("**clarified**","**说明**(clarified)，"),("that the prize","此奖"),("took no account of","并未考虑"),("relativity.","相对论。")],
@@ -67,6 +67,8 @@ G={
  "S3 would deflect starlight":"对齐不了：deflect starlight 中文“使星光偏折”，宾语必须放到动词前（文章定稿原文“会使经过它附近的星光偏折”）",
  "S4 at a joint meeting of the Royal Society and the Royal Astronomical Society":"对齐不了：of the Royal Society… 是 of 结构作后置定语，中文“英国皇家学会与皇家天文学会召开联席会议”机构名必须提前，机构名不能拆",
  "S6 Einstein, eminent among physicists":"对齐不了：eminent among physicists 是插入语，中文“在物理学家中声望卓著的爱因斯坦”定语必须提前；两个重点词中文先后与英文相反",
+ "S7 proved harder":"对齐不了：prove＋形容词比较级（proved harder to…），中文“没那么容易”是整体说法，拆开不通",
+ "S8 and committee member":"对齐不了：committee member 是一个词“委员”，拆开不通",
  "S8 The Nobel physics committee":"对齐不了：机构名“诺贝尔物理学委员会”，拆开不通",
  "S8 the empirical support for relativity":"对齐不了：for relativity 是后置定语，修饰 support，中文“相对论的实证支持”必须提前",
  "S10 the Royal Swedish Academy of Sciences":"对齐不了：机构名“瑞典皇家科学院”，拆开不通",
@@ -83,7 +85,13 @@ G={
  "S15 reached a Nobel podium after all":"对齐不了：after all 中文“终究”必须放到动词前",
  "S15 carried there by the man the prize had honoured":"对齐不了：被动结构加定语从句，中文“把它带上去的，正是这个奖所嘉奖的人”语序必须整个倒过来",
 }
-CONF={"合组":G}
+CONF={"合组":G,"对齐":{"S1-2 stars in its apparent vicinity": "in its apparent vicinity 是后置定语，修饰 stars，中文定语必须提前", "S4-1 at a joint meeting of the Roya": "of the Royal Society… 是 of 结构作后置定语，修饰 meeting，机构名必须提前，不能拆", "S5-2 \"Lights All Askew in the Heave": "报纸标题原文，中文“天上的光全歪了”整句意译，标题不能拆", "S8-3 the empirical support for rela": "for relativity 是后置定语，修饰 support，中文“相对论的实证支持”必须提前", "S10-1 the Royal Swedish Academy of S": "机构名“瑞典皇家科学院”，拆开不通", "S10-2 his services to theoretical ph": "to theoretical physics 是后置定语，修饰 services，中文“对理论物理学的贡献”必须提前", "S10-2 his discovery of the law of th": "层层后置的 of 结构，中文“他发现了光电效应定律”语序必须倒过来，术语不能拆", "S12-1 A letter the next day": "the next day 是后置定语，修饰 letter，中文“第二天的一封信”必须提前", "S13-1 a steamer bound for Japan,": "bound for Japan 是后置定语，修饰 steamer，中文“开往日本的轮船”必须提前", "S14-2 before a congress of Nordic sc": "of Nordic scientists 是 of 结构作后置定语，修饰 congress，中文必须提前", "S14-3 the fundamental ideas and prob": "of relativity 是 of 结构作后置定语，中文“相对论的基本思想与问题”必须提前", "S15-1 The theory the committee looke": "省略关系代词的定语从句修饰 theory，中文“委员会绕开不看的那个理论”定语必须提前", "S15-1 reached a Nobel podium after a": "after all 中文“终究”必须放到动词前", "S15-2 carried there by the man the p": "被动结构加定语从句，中文“把它带上去的，正是这个奖所嘉奖的人”语序必须整个倒过来"},"方向":{"S14-2 before→面向北欧自然科学家大会，": "before a congress 的 before 是“在……面前”（场合），不是时间先后；中文“面向……大会”，方向一致", "S15-1 after→终究登上了诺贝尔的讲台，": "after all 是“终究，毕竟”，不是时间先后；中文“终究”，方向一致"},
+"短语":{
+ "S2 observed … from":"不是搭配：from Príncipe 只表示观测地点（从普林西比岛观测），observe 单独就是“观测”",
+ "S8 deemed … for":"不是搭配：for 属于 support for relativity（对相对论的支持），和 deemed 无关",
+ "S9 fulfilled … for":"不是搭配：for 属于 reserved for a year，和 fulfilled 无关",
+ "S9 reserved … for":"不是搭配：for a year 只表示时长（保留一年），reserve 单独就是“保留”"},
+"同词异译":{"eminent among：中声望卓著的/在":"不是两种译法：eminent among 的意思“在……中声望卓著的”被“物理学家”隔开，“在”和“中声望卓著的”是同一个意思的两部分（T23）"}}
 out={"no":"60","title_en":"The Scientific Giant Who Changed the World","title_zh":"改变世界的科学巨匠","title_fx":{"hl":["Giant","World"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Arthur Eddington":"阿瑟·爱丁顿","Príncipe":"普林西比","West Africa":"西非","Crommelin":"克罗姆林","Davidson":"戴维森","Sobral":"索布拉尔","Brazil":"巴西","British":"英国","Royal Society":"皇家学会","Royal Astronomical Society":"皇家天文学会","The Times":"《泰晤士报》","New York Times":"《纽约时报》","Einstein":"爱因斯坦","Stockholm":"斯德哥尔摩","Allvar Gullstrand":"阿尔瓦·古尔斯特兰德","Royal Swedish Academy of Sciences":"瑞典皇家科学院","Japan":"日本","Gothenburg":"哥德堡","Sweden":"瑞典","Nordic":"北欧"}}
