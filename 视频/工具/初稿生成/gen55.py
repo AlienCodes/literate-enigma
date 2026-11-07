@@ -18,8 +18,8 @@ S=[
      "（As…：时间状语从句，当……时；\naround it：后置定语，修饰 concrete，it 指 the steel）"],
     [[("and many **structures**","而且许多**建筑**(structures)"),("are designed for","被设计为"),("a **lifespan** of around 50 years.","约50年的**使用寿命**(lifespan)。")],
      "（be designed for…：被设计为……）"]]),
-(2,[[[("Roman concrete","罗马混凝土"),("is not stronger than its modern **counterpart**;","并不比现代的**同类材料**(counterpart)更坚固，")],
-     "（its modern counterpart：现代的同类材料，即现代混凝土）"],
+(2,[[[("Roman","罗马"),("concrete","混凝土"),("is not","并不"),("stronger than","比"),("its modern","现代的"),("**counterpart**;","**同等对应物**(counterpart)更坚固；")],
+     "（its modern counterpart：现代的同等对应物，\n即现代混凝土）"],
     [[("its **merit**","它的**长处**(merit)"),("lies in **durability**.","在于**耐久性**(durability)。")],
      "（lie in…：在于……）"]]),
 (3,[[[("Yet","然而，"),("the ancient","这种古代"),("material","材料"),("seemed to have","似乎有个"),("a **shortcoming**.","**缺点**(shortcoming)。")]]]),
@@ -69,7 +69,6 @@ S=[
 G={
  "S1 Nearly 1,900 years after its completion, in about AD 125–128":"对齐不了：after its completion 是时间状语，中文要先说“竣工”再说“近1,900年后”；in about AD 125–128 是插入语，中文“约于公元125至128年竣工”年代必须放到动词前，整组语序倒过来",
  "S4 reinforced with embedded steel bars":"对齐不了：be reinforced with… 中文“靠……加固”，“加固”必须放到“钢筋”后面；embedded 是前置定语，中文“嵌入其中的钢筋”",
- "S6 is not stronger than its modern counterpart":"对齐不了：not stronger than… 是比较句，中文“并不比……更坚固”，“更坚固”必须放到比较对象后面",
  "S9 a defect that, they assumed, a more conscientious builder would have avoided":"对齐不了：a defect that… 是同位语带定语从句，they assumed 是插入语，中文“他们认为，换一个更认真负责的工匠，就不会出这种瑕疵”整句语序倒过来",
  "S10 A study published in Science Advances in January 2023":"对齐不了：published in… 是过去分词短语作后置定语，修饰 study，中文“2023年1月发表于《科学进展》的一项研究”定语必须提前",
  "S11 The clasts, it suggested":"对齐不了：it suggested 是插入语，中文“该研究认为”必须放到句首",
@@ -100,6 +99,7 @@ out={"no":"55","title_en":"The Secret of Rome's Undying Concrete","title_zh":"�
      "停顿插入点":{"S11":{"1":[0.736125,"交界"]}},
      "词尾除阻":{"S6":{"1":[3.779,"t"]}},
      "allow_clash":["reinforced with"],
+     "换行变更已获同意":{"S6":"用户 2026-11-07：“尽可能的就是上面的英文和如果说ok的话能那就跟下面的这个中文对应好，对吧？尽可能的不论是哪个单词”"},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Pantheon":"万神殿","Roman":"罗马","Science Advances":"《科学进展》","Chatham House":"查塔姆研究所","AD":"公元"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
