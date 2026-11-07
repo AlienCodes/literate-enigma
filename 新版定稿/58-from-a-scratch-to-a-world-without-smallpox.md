@@ -29,6 +29,7 @@ In 1967 the WHO launched an **intensified**, **concerted** campaign to **eradica
 |---|---|---|
 | contagious | adj. 传染性的，接触传染的（a contagious disease；highly contagious） | 1 |
 | affliction | n. 病痛，苦难（a painful affliction；suffer from an affliction） | 1 |
+| smallpox | n. 天花（smallpox vaccine；eradicate smallpox） | 1 |
 | sufferers | n. (sufferer) 患者，受害者（asthma sufferers；hay fever sufferers） | 1 |
 | safeguard | n. 保护措施，防护手段（a safeguard against fraud；legal safeguards） | 1 |
 | deliberately | adv. 故意地，有意地（deliberately mislead；act deliberately） | 1 |
