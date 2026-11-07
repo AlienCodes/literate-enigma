@@ -38,7 +38,7 @@ S=[
 (3,[[[("**Telegrams**","**电报**(Telegrams)"),("from Batavia","从巴达维亚"),("(now Jakarta),","（今雅加达）发出，")]],
     [[("**relayed** by **submarine** **cable**,","经**海底**(submarine)**电缆**(cable)**转发**(relayed)，")],
      "（relayed by submarine cable：\n过去分词短语作后置定语，修饰 Telegrams）"],
-    [[("reached","传到了"),("London","伦敦，"),("within","前后只用了"),("hours.","几小时。")]]]),
+    [[("reached London within hours.","在几小时内到达了伦敦。")]]]),
 (3,[[[("Western newspapers","西方报纸"),("soon","很快便"),("began","开始"),("**chronicling**","**记述**(chronicling)")]],
     [[("what","这起"),("is often","常"),("called","被称为"),("the first","首个"),("global","全球"),("news","新闻"),("event.","事件的灾难。")],
      "（what is often called…：what 引导的宾语从句，\n作 chronicling 的宾语）"]]),
@@ -85,9 +85,11 @@ G={
  "S13 the following year":"对齐不了：the following year 中文“次年”是一个词，拆开不通",
  "S13 a few tenths of a degree":"对齐不了：a few tenths of a degree 是 of 结构的数量说法，中文“零点几度”是一个整体，拆开不通",
  "S3 seven times in about five days":"对齐不了：用户 2026-11-07 原话定的译文“其中一些在大约五天之内记录到七次”，in about five days 是时间状语，中文必须提到动词前",
+ "S8 reached London within hours":"对齐不了：用户 2026-11-07 原话定的译文“在几小时内到达了伦敦”，within hours 是时间状语，中文必须提到动词前",
  "S16 how interconnected the planet already was":"对齐不了：how＋形容词＋主语＋谓语 的宾语从句，中文“这颗星球早已何等紧密相连”语序必须整个倒过来",
 }
 CONF={"合组":G,"对齐":{
+ "S8-3 reached London within hours.":"用户 2026-11-07 原话定的译文“在几小时内到达了伦敦”，时间状语 within hours 中文必须提到动词前，语序倒过来",
  "S3-2 seven times in about five days":"用户 2026-11-07 原话定的译文“在大约五天之内记录到七次”，时间状语 in about five days 中文必须提到动词前，语序倒过来",
  "S1-2 a volcanic island in the Sunda":"in the Sunda Strait 是后置定语，修饰 island，中文“位于巽他海峡的火山岛”定语必须提前",
  "S1-1 Shortly after ten in the morni":"中文日期时间按“年月日、上午、钟点”排，“1883年8月27日上午10时刚过”语序必须整个倒过来",
