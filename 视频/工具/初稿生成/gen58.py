@@ -114,8 +114,10 @@ CONF={"合组":G,"对齐":{
 "同词异译":{"immune to：免疫/对":"不是两种译法：S4 be immune to 的意思“对……免疫”被“天花”隔开，“对”和“免疫”是同一个意思的两部分（T23）"},
 "数字":{"S1-2 300":"300 million 中文写作“3亿”，数值相同（300百万 = 3亿）；英文读 three hundred million"},
 "数字写法":{"S1-2 three":"three in ten 中文写作“三成”（十分之三），数值相同","S6-2 eight":"eight-year-old 中文按文章定稿写作“8岁”，数值相同（eight = 8）"}}
+G["S3 frequently than natural smallpox"]="对齐不了：less frequently than… 比较结构，中文“尽管不如自然天花那样频繁”，比较对象“自然天花那样”必须放在“频繁”前面（用户 2026-11-07 给的译文）"
+G["S18 almost 184 years after Phipps was vaccinated"]="对齐不了：after 引导的时间状语，中文“菲普斯接种疫苗之后的近184年”，时间“之后”必须放在“近184年”前面（用户 2026-11-07 给的译文）"
 CONF["中文重复"]={"疾病":"用户 2026-11-07 原话（问 S1 affliction 与 S3 sickness 都译“疾病”怎么处理）：“疾病都保留”；两处都指天花这类病，S1 是天花本身，S3 是接种可能引起的病"}
-out={"no":"58","title_en":"From a Scratch to a World Without Smallpox","title_zh":"从一道划痕到天花绝迹","title_fx":{"hl":["Scratch","Smallpox"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+out={"no":"58","allow_clash":["exposed to","matter"],"换行变更已获同意":{"S4":"用户 2026-11-07：“中文这个中文翻译的正下方加上：一般指牛的牛痘，轻微病症。”","S18":"用户 2026-11-07：“那一宣告，出现在菲普斯接种疫苗之后的近184年。”；“4K 定稿”"},"title_en":"From a Scratch to a World Without Smallpox","title_zh":"从一道划痕到天花绝迹","title_fx":{"hl":["Scratch","Smallpox"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Benjamin Jesty":"本杰明·杰斯蒂","Dorset":"多塞特郡","Edward Jenner":"爱德华·詹纳","Jenner":"詹纳","James Phipps":"詹姆斯·菲普斯","Phipps":"菲普斯","Royal Society":"皇家学会","Inquiry":"《探究》","WHO":"世界卫生组织","Somalia":"索马里","World Health Assembly":"世界卫生大会","China":"中国","England":"英国","Latin":"拉丁语"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
