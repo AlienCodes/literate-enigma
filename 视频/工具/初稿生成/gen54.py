@@ -47,7 +47,7 @@ S=[
      "（the magnitude of the devastation：of 结构，\n浩劫的规模；\nover days：在几天的时间里）"]]),
 (4,[[[("**Ash**","**火山灰**(Ash)"),("and **sulphur** dioxide,","和二氧化**硫**(sulphur)"),("**hurled**","被**抛射**(hurled)到"),("tens of","数十"),("kilometres","公里的"),("high,","高空，")],
      "（hurled tens of kilometres high：\n过去分词短语作后置定语，\n修饰 Ash and sulphur dioxide）"],
-    [[("formed","形成"),("a **haze**","一层**薄雾**(haze)，"),("that circled the **equator** in about two weeks.","在两个星期内环绕了**赤道**(equator)一周。")],
+    [[("formed","形成"),("a **haze**","一层**薄雾**(haze)，"),("that circled the **equator** in about two weeks.","在大约两个星期内环绕了**赤道**(equator)一周。")],
      "（that circled…：定语从句，修饰 haze）"]]),
 (4,[[[("In November 1883,","1883年11月，"),("**crimson**","**深红色的**(crimson)"),("sunsets","晚霞"),("**glowed**","**灼灼发亮**(glowed)，"),("over","照耀着"),("Europe","欧洲"),("and North America,","和北美，")]],
     [[("**summoning**","**招来**(summoning)"),("**firefighters** in New York and Connecticut","纽约州和康涅狄格州的**消防员**(firefighters)"),("to","赶去扑救"),("**phantom**","**子虚乌有的**(phantom)"),("**blazes**.","**大火**(blazes)。")],
@@ -86,11 +86,11 @@ G={
  "S13 a few tenths of a degree":"对齐不了：a few tenths of a degree 是 of 结构的数量说法，中文“零点几度”是一个整体，拆开不通",
  "S3 seven times in about five days":"对齐不了：用户 2026-11-07 原话定的译文“其中一些在大约五天之内记录到七次”，in about five days 是时间状语，中文必须提到动词前",
  "S8 reached London within hours":"对齐不了：用户 2026-11-07 原话定的译文“在几小时内到达了伦敦”，within hours 是时间状语，中文必须提到动词前",
- "S11 that circled the equator in about two weeks":"对齐不了：用户 2026-11-07 原话定的译文“在两个星期内环绕了赤道一周”，in about two weeks 是时间状语，中文必须提到动词前",
+ "S11 that circled the equator in about two weeks":"对齐不了：用户 2026-11-07 原话定的译文“在大约两个星期内环绕了赤道一周”，in about two weeks 是时间状语，中文必须提到动词前",
  "S16 how interconnected the planet already was":"对齐不了：how＋形容词＋主语＋谓语 的宾语从句，中文“这颗星球早已何等紧密相连”语序必须整个倒过来",
 }
 CONF={"合组":G,"对齐":{
- "S11-2 that circled the equator in ab":"用户 2026-11-07 原话定的译文“在两个星期内环绕了赤道一周”，定语从句里的时间状语 in about two weeks 中文必须提到动词前",
+ "S11-2 that circled the equator in ab":"用户 2026-11-07 原话定的译文“在大约两个星期内环绕了赤道一周”，定语从句里的时间状语 in about two weeks 中文必须提到动词前",
  "S8-3 reached London within hours.":"用户 2026-11-07 原话定的译文“在几小时内到达了伦敦”，时间状语 within hours 中文必须提到动词前，语序倒过来",
  "S3-2 seven times in about five days":"用户 2026-11-07 原话定的译文“在大约五天之内记录到七次”，时间状语 in about five days 中文必须提到动词前，语序倒过来",
  "S1-2 a volcanic island in the Sunda":"in the Sunda Strait 是后置定语，修饰 island，中文“位于巽他海峡的火山岛”定语必须提前",
@@ -127,6 +127,7 @@ CONF={"合组":G,"对齐":{
 out={"no":"54","title_en":"The Sound That Shook the World","title_zh":"震动世界的一声巨响","title_fx":{"hl":["Sound","Shook"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "非人声区间":{"S4":[[2.065,2.305],[7.626167,7.664958,"紧贴词尾"]]},
      "高亮开始":{"S16 第2块":152.09,"S16 第3块":155.29},
+     "换行变更已获同意":{"S11":"用户 2026-11-07（主会话按守则22 引用户在 53 会话的对齐原话定）：“我说过就是我们的这个汉语意思尽量和这个英文去对齐说过吧。就是尽量和你看教科书，它就尽量在这个textbooks下面。嗯，就是能尽可能的啊，如果说可以的话，所以说再重新生成4k的话，要注意一下这个问题。”"},
      "allow_clash":["collapsed into","vanishing"],
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Krakatoa":"喀拉喀托","Sunda":"巽他","Rodrigues":"罗德里格斯岛","Indian Ocean":"印度洋","Java":"爪哇岛","Sumatra":"苏门答腊岛","Dutch":"荷兰","Batavia":"巴达维亚","Jakarta":"雅加达","London":"伦敦","Europe":"欧洲","North America":"北美","New York":"纽约州","Connecticut":"康涅狄格州","Britain":"英国","Royal Society":"英国皇家学会","The Times":"《泰晤士报》"}}
