@@ -3,7 +3,7 @@
 ## 英文
 Shortly after ten in the morning on 27 August 1883, Krakatoa, a **volcanic** island in the Sunda **Strait**, **unleashed** its most **thunderous** explosion. About four hours later, **islanders** on Rodrigues, nearly 4,800 kilometres across the Indian Ocean, took the **roar** for **distant** **gunfire**. **Barometers** worldwide recorded the **atmospheric** pressure wave, some of them seven times in about five days.
 
-**Restless** since 20 May, the volcano reached a **catastrophic** **climax** on 26–27 August. About two-thirds of the island collapsed into its **emptied** **magma** chamber, vanishing beneath the sea. **Tsunamis**, **reportedly** over 30 metres high in places, **swamped** **coastal** **settlements** on Java and Sumatra. Dutch **colonial** **administrators** counted 36,417 dead, mostly **drowned**, perhaps **underestimating** the toll.
+**Restless** since 20 May, the volcano reached a **catastrophic** **climax** on 26–27 August. About two-thirds of the island collapsed into its **emptied** **magma** chamber, vanishing beneath the sea. **Tsunamis**, **reportedly** over 30 metres high in places, **swamped** **coastal** **settlements** on Java and Sumatra. Dutch **colonial** **administrators** counted 36,417 dead, mostly **drowned**, perhaps **underestimating** the **toll**.
 
 **Telegrams** from Batavia (now Jakarta), **relayed** by **submarine** **cable**, reached London within hours. Western newspapers soon began **chronicling** what is often called the first global news event. Yet early **dispatches** were **terse**; the **magnitude** of the **devastation** emerged **piecemeal** over days.
 
@@ -15,7 +15,7 @@ Some experts **discounted** the volcanic explanation, blaming the sunsets on **m
 
 1883年8月27日上午10时刚过，喀拉喀托，一座位于巽他**海峡**(Strait)的**火山**(volcanic)岛，**迸发出**(unleashed)其最为**震耳欲聋的**(thunderous)一声爆炸。（Shortly after ten in the morning：上午10时刚过；on 27 August 1883：日期状语）（a volcanic island in the Sunda Strait：同位语，补充说明 Krakatoa）（most thunderous：thunderous 的最高级，最为震耳欲聋的）约四小时后，罗德里格斯岛上的**岛民**(islanders)，相距近4,800公里，远隔印度洋，把这声**轰鸣**(roar)当成了**远处的**(distant)**炮火声**(gunfire)。（on Rodrigues：后置定语，修饰 islanders）（nearly 4,800 kilometres across the Indian Ocean：补充说明 Rodrigues 的位置）（take A for B：把 A 误当成 B）世界各地的**气压计**(Barometers)都记录到了这次**大气**(atmospheric)压力波，其中一些记录到七次，前后约五天。（worldwide：副词作后置定语，修饰 Barometers）（some of them seven times…：省略句，即 some of them recorded it seven times）
 
-自5月20日起便**躁动不安**(Restless)，这座火山达到**灾难性的**(catastrophic)**高潮**(climax)是在8月26日至27日。（Restless since 20 May：形容词短语作状语，逻辑主语是 the volcano）（reach a climax：达到高潮）约三分之二的岛体塌入**已被排空的**(emptied)**岩浆**(magma)房，消失在海面之下。（emptied：过去分词作定语，已被排空的；magma chamber：岩浆房）（vanishing…：现在分词短语作状语，补充说明结果）**海啸**(Tsunamis)**据报道**(reportedly)局部高逾30米，**淹没了**(swamped)**沿海**(coastal)**居民点**(settlements)，遍及爪哇岛和苏门答腊岛。（reportedly over 30 metres high in places：插入的形容词短语，补充说明 Tsunamis；in places：在某些地方，局部）荷兰**殖民地**(colonial)**行政官员**(administrators)统计出36,417名死者，其中大多数是**溺亡**(drowned)的，而他们或许**低估了**(underestimating)死亡人数。（dead：这里作名词，死者）（mostly drowned：省略结构，即 most of them had drowned）（underestimating the toll：现在分词短语作状语，补充说明；toll：死亡人数）
+自5月20日起便**躁动不安**(Restless)，这座火山达到**灾难性的**(catastrophic)**高潮**(climax)是在8月26日至27日。（Restless since 20 May：形容词短语作状语，逻辑主语是 the volcano）（reach a climax：达到高潮）约三分之二的岛体塌入**已被排空的**(emptied)**岩浆**(magma)房，消失在海面之下。（emptied：过去分词作定语，已被排空的；magma chamber：岩浆房）（vanishing…：现在分词短语作状语，补充说明结果）**海啸**(Tsunamis)**据报道**(reportedly)局部高逾30米，**淹没了**(swamped)**沿海**(coastal)**居民点**(settlements)，遍及爪哇岛和苏门答腊岛。（reportedly over 30 metres high in places：插入的形容词短语，补充说明 Tsunamis；in places：在某些地方，局部）荷兰**殖民地**(colonial)**行政官员**(administrators)统计出36,417名死者，其中大多数是**溺亡**(drowned)的，而他们或许**低估了**(underestimating)**死亡人数**(toll)。（dead：这里作名词，死者）（mostly drowned：省略结构，即 most of them had drowned）（underestimating the toll：现在分词短语作状语，补充说明；toll：死亡人数）
 
 **电报**(Telegrams)从巴达维亚（今雅加达）发出，经**海底**(submarine)**电缆**(cable)**转发**(relayed)，传到了伦敦，前后只用了几小时。（relayed by submarine cable：过去分词短语作后置定语，修饰 Telegrams）西方报纸很快便开始**记述**(chronicling)这起常被称为首个全球新闻事件的灾难。（what is often called…：what 引导的宾语从句，作 chronicling 的宾语）然而，早期的**电讯**(dispatches)都十分**简短**(terse)；**浩劫**(devastation)的**规模**(magnitude)**一点一点地**(piecemeal)显露出来，前后历经数日。（the magnitude of the devastation：of 结构，浩劫的规模；over days：在几天的时间里）
 
@@ -50,6 +50,7 @@ Some experts **discounted** the volcanic explanation, blaming the sunsets on **m
 | administrators | 本文：行政官员；n. (administrator) 行政官员，管理人员（colonial/hospital administrators） | 2 |
 | drowned | 本文：溺亡；v. (drown) 溺亡，淹死（be drowned in a flood）；（声音）盖过（drown out the noise） | 2 |
 | underestimating | 本文：低估了；v. (underestimate) 低估（underestimate the toll/cost/difficulty）；反义 overestimate | 2 |
+| toll | n. 死亡人数，伤亡人数（the death toll；the toll rose to…）；损失，代价（take a heavy toll on 对……造成严重损害）；（道路、桥梁）通行费 | 2 |
 | Telegrams | 本文：电报；n. (telegram) 电报（send/receive a telegram）；telegraph n. 电报系统，电报机 | 3 |
 | submarine | 本文：海底；adj. 海底的（a submarine cable 海底电缆）；n. 潜水艇 | 3 |
 | cable | 本文：电缆；n. 电缆，缆绳（lay a cable 铺设电缆）；（旧）海底电报；有线电视（cable TV） | 3 |
