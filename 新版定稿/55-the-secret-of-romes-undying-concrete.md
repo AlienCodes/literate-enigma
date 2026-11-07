@@ -8,7 +8,7 @@ Modern concrete is usually reinforced with **embedded** steel bars, which are **
 
 Yet the ancient material seemed to have a **shortcoming**. It is **dotted with** white **chunks** of lime, known as lime **clasts**. Experts long **ascribed** these **lumps** **to** **sloppy** mixing or **inferior** raw **ingredients**, a **defect** that, they **assumed**, a more **conscientious** builder would have avoided.
 
-A study published in Science Advances in January 2023 offered a different **interpretation**. The clasts, it suggested, were a **by-product** of "hot mixing" with **quicklime**, a **reactive** lime that **heats up** in water. When water **seeps into** a crack, the clasts **dissolve** and their **calcium** recrystallises as calcium carbonate, **plugging** the gap. In tests, water **ceased to** **trickle** through cracked hot-mixed samples within weeks, but kept flowing through samples without quicklime.
+A study published in Science Advances in January 2023 offered a different **interpretation**. The clasts, it suggested, were a **by-product** of "hot mixing" with **quicklime**, a **reactive** lime that **heats up** in water. When water **seeps into** a **crack**, the clasts **dissolve** and their **calcium** recrystallises as calcium carbonate, **plugging** the **gap**. In tests, water **ceased to** **trickle** through cracked hot-mixed samples within weeks, but kept flowing through samples without quicklime.
 
 The **implications** **extend beyond** **archaeology**. Cement **manufacture** accounts for about 8 per cent of global carbon dioxide **emissions**, the think-tank Chatham House reported in June 2018. Concrete that mends its cracks could last longer, making **demolition** and rebuilding rarer and **trimming** emissions. The white lumps once **scorned** as signs of **clumsy** workmanship have **prompted** a **rethink** of construction.
 
@@ -20,7 +20,7 @@ The **implications** **extend beyond** **archaeology**. Cement **manufacture** a
 
 然而，这种古代材料似乎有个**缺点**(shortcoming)。它的内部**散布**(dotted with)着白色的石灰**小块**(chunks)，称为石灰**碎屑**(clasts)。（be dotted with…：散布着……，布满……）（known as…：过去分词短语作后置定语，修饰 chunks）专家长期以来**把**(ascribed to)这些**块状物**(lumps)**归因于**(ascribed to)**马马虎虎的**(sloppy)搅拌或者是**比较次的**(inferior)**原材料**(raw ingredients)。这种**缺陷**(defect)，他们**认为**(assumed)，换一个更加**认真负责的**(conscientious)建筑工就能避免。（ascribe A to B：把 A 归因于 B）（a defect that…：同位语，补充说明前面说的情况；they assumed：插入语，他们认为；would have avoided：虚拟语气，本可以避免）
 
-2023年1月发表于《科学进展》（Science Advances）的一项研究提出了不同的**解释**(interpretation)。（published in…：过去分词短语作后置定语，修饰 study）这些碎屑，该研究认为，是与**生石灰**(quicklime)“热混合”的**副产品**(by-product)：一种遇水会**变热**(heats up)的**活性强的**(reactive)石灰。（it suggested：插入语，it 指这项研究；a by-product of…：……的副产品）（a reactive lime…：同位语，补充说明 quicklime；that heats up in water：定语从句，修饰 lime）水**渗入**(seeps into)裂缝时，碎屑会**溶解**(dissolve)，其中的**钙**(calcium)重新结晶为碳酸钙，**堵住**(plugging)缝隙。（When…：时间状语从句）（recrystallise as…：重新结晶为……；plugging the gap：现在分词短语作状语，表示结果）试验中，水**不再**(ceased to)**细细流过**(trickle)开裂的热混合样本，只用了几周；而水一直从不含生石灰的样本中流过。（cease to do：不再做……；within weeks：几周之内）（keep doing：一直做……；without quicklime：介词短语作后置定语，修饰 samples）
+2023年1月发表于《科学进展》（Science Advances）的一项研究提出了不同的**解释**(interpretation)。（published in…：过去分词短语作后置定语，修饰 study）这些碎屑，该研究认为，是与**生石灰**(quicklime)“热混合”的**副产品**(by-product)：一种遇水会**变热**(heats up)的**活性强的**(reactive)石灰。（it suggested：插入语，it 指这项研究；a by-product of…：……的副产品）（a reactive lime…：同位语，补充说明 quicklime；that heats up in water：定语从句，修饰 lime）当水**渗入**(seeps into)**裂缝**(crack)时，碎屑会**溶解**(dissolve)，它们的**钙**(calcium)会重新结晶为碳酸钙，从而**堵住**(plugging)**缝隙**(gap)。（When…：时间状语从句）（recrystallise as…：重新结晶为……；plugging the gap：现在分词短语作状语，表示结果）试验中，水**不再**(ceased to)**细细流过**(trickle)开裂的热混合样本，只用了几周；而水一直从不含生石灰的样本中流过。（cease to do：不再做……；within weeks：几周之内）（keep doing：一直做……；without quicklime：介词短语作后置定语，修饰 samples）
 
 这项发现的**意义**(implications)**超出了**(extend beyond)**考古学**(archaeology)**的范围**(extend beyond)。（extend beyond…：超出……的范围）水泥**生产**(manufacture)约占全球二氧化碳**排放**(emissions)的8%，智库查塔姆研究所（Chatham House）2018年6月报告称。（account for…：（在数量上）占……）能自行修补裂缝的混凝土可能更经久耐用，从而使**拆除**(demolition)与重建减少，并**削减**(trimming)排放。（that mends its cracks：定语从句，修饰 Concrete）（making… and trimming…：两个现在分词短语作状语，表示结果；make A rarer：使 A 更少见）这些白色块状物曾被**轻视**(scorned)为手艺**拙劣的**(clumsy)痕迹，如今却**促使**(prompted)人们**重新思考**(rethink)建造之道。（once scorned as…：过去分词短语作后置定语，修饰 lumps；scorn A as B：把 A 轻视为 B）（a rethink of…：对……的重新思考）（简述：万神殿穹顶建成近1,900年依然屹立，是世界上最大的无钢筋混凝土穹顶。现代混凝土里的钢筋会生锈膨胀、撑裂混凝土，许多建筑设计寿命约50年；罗马混凝土并不更坚固，长处在于耐久。它里面的白色石灰碎屑，过去被专家当作搅拌马虎或原料低劣的瑕疵。2023年《科学进展》的研究认为，碎屑是生石灰热混合的副产品：水渗入裂缝时碎屑溶解，钙重新结晶为碳酸钙，堵住缝隙。水泥生产约占全球二氧化碳排放的8%，能自行修补裂缝的混凝土可能减少拆建和排放，这些曾被轻视的碎屑因此促使人们重新思考建造之道。）
 
@@ -70,9 +70,11 @@ The **implications** **extend beyond** **archaeology**. Cement **manufacture** a
 | reactive | 本文：活性强的；adj. （化学）活性强的，易反应的（a highly reactive metal/gas） | 4 |
 | heats up | 本文：变热；v. (heat up) 变热，升温（the water heats up quickly）；使变热，加热 | 4 |
 | seeps into | 本文：渗入；v. (seep) 渗，渗入（water seeps into/through the walls） | 4 |
+| crack | 本文：裂缝；n. 裂缝，裂纹（a crack in the wall）；v. 破裂，使破裂 | 4 |
 | dissolve | 本文：溶解；v. 溶解（sugar dissolves in water）；解散（dissolve parliament） | 4 |
 | calcium | 本文：钙；n. 钙（calcium carbonate 碳酸钙；rich in calcium） | 4 |
 | plugging | 本文：堵住；v. (plug) 堵塞，塞住（plug a hole/leak/gap）；n. 插头 | 4 |
+| gap | 本文：缝隙；n. 缝隙，缺口（a gap in the fence；fill/plug a gap） | 4 |
 | ceased to | 本文：不再；v. (cease) 停止（cease to do sth；cease fire；cease operations） | 4 |
 | trickle | 本文：细细流过；v. 细细地流，滴流（tears trickled down her face）；n. 细流（a trickle of water） | 4 |
 | implications | 本文：意义；n. (implication) 可能的影响，含义（have implications for；serious implications） | 5 |
