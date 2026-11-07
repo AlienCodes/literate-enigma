@@ -2,7 +2,7 @@
 # ZH: 一封信惊醒了达尔文
 
 ## 英文
-Charles Darwin **disembarked** from HMS Beagle in October 1836. In September 1838 he began **formulating** the **principle** of natural **selection**: individuals better **adapted** to their **surroundings** survive and pass on their **hereditary** traits. By 1844 he had **composed** a 230-page **manuscript**, yet kept it **unpublished**, **cautiously** **amassing** evidence.
+Charles Darwin **disembarked** from HMS Beagle in October 1836. In September 1838 he began **formulating** the **principle** of natural **selection**: individuals better **adapted to** their **surroundings** survive and **pass on** their **hereditary** **traits**. By 1844 he had **composed** a 230-page **manuscript**, yet kept it **unpublished**, **cautiously** **amassing** evidence.
 
 In February 1858, two decades after Darwin's first insight, Alfred Russel Wallace, a **naturalist** **afflicted** by fever in the Malay Archipelago, **independently** **conceived** the same idea. His **concise** essay reached Darwin on 18 June 1858. Its argument **paralleled** Darwin's own almost **precisely**; he told Charles Lyell he had never seen a more **remarkable** **coincidence**. His claim to **priority** seemed **threatened**.
 
@@ -14,7 +14,7 @@ Wallace had **readily** **signified** his **acceptance** in October 1858, **assu
 
 ## 中文
 
-1836年10月，查尔斯·达尔文从小猎犬号上**登岸**(disembarked)。1838年9月，他开始**构想出**(formulating)自然**选择**(selection)的**原理**(principle)：对**环境**(surroundings)**适应**(adapted)得更好的个体得以存活，并把自身的**遗传**(hereditary)性状传递下去。到1844年，他已**写成**(composed)一份230页的**手稿**(manuscript)，却一直**未予发表**(unpublished)，**谨慎地**(cautiously)**积累**(amassing)证据。
+1836年10月，查尔斯·达尔文从小猎犬号上**登岸**(disembarked)。1838年9月，他开始**构想出**(formulating)自然**选择**(selection)的**原理**(principle)：**对**(adapted to)**周围环境**(surroundings)**适应**(adapted to)得更好的个体存活下来，并将**传递**(pass on)他们自身**遗传的**(hereditary)**性状**(traits)（给后代）。到1844年，他已**撰写了**(composed)一份230页的**手稿**(manuscript)，却一直**未予发表**(unpublished)，**谨慎地**(cautiously)**积累着**(amassing)证据。
 
 1858年2月，距达尔文最初的设想已有二十年，**博物学家**(naturalist)阿尔弗雷德·拉塞尔·华莱士在马来群岛**身患**(afflicted)热病，**独立地**(independently)**构想**(conceived)出了同一个想法。华莱士那篇**简明**(concise)的文章于1858年6月18日寄到达尔文手中。文中的论证与达尔文本人的论证几乎**完全**(precisely)**相合**(paralleled)；达尔文告诉查尔斯·莱尔，自己从未见过比这更**惊人**(remarkable)的**巧合**(coincidence)。他对**优先权**(priority)的主张似乎**受到了威胁**(threatened)。
 
@@ -31,7 +31,9 @@ Wallace had **readily** **signified** his **acceptance** in October 1858, **assu
 | formulating | v. (formulate) 构想，系统地提出（formulate a theory/plan/policy） | 1 |
 | principle | n. 原理，法则（the principle of gravity；basic scientific principles）；原则 | 1 |
 | selection | n. 选择，挑选（natural selection 自然选择；a careful selection process） | 1 |
-| adapted | adj./v. (adapt) 适应（be well adapted to cold climates；adapt to a new school） | 1 |
+| adapted to | v. phr. (adapt to) 适应（be well adapted to cold climates；adapt to a new school） | 1 |
+| traits | n. (trait) 性状，特征（genetic traits；personality traits） | 1 |
+| pass on | v. phr. 传递，传给（pass on genes/traits to offspring；pass on a message） | 1 |
 | surroundings | n. 环境，周围事物（familiar/pleasant surroundings；adjust to new surroundings） | 1 |
 | hereditary | adj. 遗传的；世袭的（a hereditary disease；a hereditary title） | 1 |
 | composed | v. (compose) 撰写，创作（compose a letter/poem/symphony）；组成 | 1 |
