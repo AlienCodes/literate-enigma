@@ -33,7 +33,7 @@ S=[
      "（dead：这里作名词，死者）"],
     [[("mostly","其中大多数"),("**drowned**,","是**溺亡**(drowned)的，")],
      "（mostly drowned：省略结构，\n即 most of them had drowned）"],
-    [[("perhaps","而他们或许"),("**underestimating**","**低估了**(underestimating)"),("the toll.","死亡人数。")],
+    [[("perhaps","而他们或许"),("**underestimating**","**低估了**(underestimating)"),("the **toll**.","**死亡人数**(toll)。")],
      "（underestimating the toll：现在分词短语作状语，补充说明；\ntoll：死亡人数）"]]),
 (3,[[[("**Telegrams**","**电报**(Telegrams)"),("from Batavia","从巴达维亚"),("(now Jakarta),","（今雅加达）发出，")]],
     [[("**relayed** by **submarine** **cable**,","经**海底**(submarine)**电缆**(cable)**转发**(relayed)，")],
