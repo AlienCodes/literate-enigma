@@ -19,7 +19,7 @@ Some experts **discounted** the volcanic explanation, blaming the sunsets on **m
 
 **电报**(Telegrams)从巴达维亚（今雅加达）发出，经**海底**(submarine)**电缆**(cable)**转发**(relayed)，传到了伦敦，前后只用了几小时。（relayed by submarine cable：过去分词短语作后置定语，修饰 Telegrams）西方报纸很快便开始**记述**(chronicling)这起常被称为首个全球新闻事件的灾难。（what is often called…：what 引导的宾语从句，作 chronicling 的宾语）然而，早期的**电讯**(dispatches)都十分**简短**(terse)；**浩劫**(devastation)的**规模**(magnitude)**一点一点地**(piecemeal)显露出来，前后历经数日。（the magnitude of the devastation：of 结构，浩劫的规模；over days：在几天的时间里）
 
-**火山灰**(Ash)和二氧化**硫**(sulphur)被**抛射**(hurled)到数十公里的高空，形成一层**薄雾**(haze)，它绕**赤道**(equator)一圈约用了两个星期。（hurled tens of kilometres high：过去分词短语作后置定语，修饰 Ash and sulphur dioxide）（that circled…：定语从句，修饰 haze）1883年11月，**深红色的**(crimson)晚霞**发出暗淡的光**(glowed)，照耀着欧洲和北美，**招来**(summoning)纽约州和康涅狄格州的**消防员**(firefighters)赶去扑救**子虚乌有的**(phantom)**大火**(blazes)。（summoning…：现在分词短语作状语，补充说明结果；summon A to B：把 A 召到 B 处）后来的气候**重建**(reconstructions)研究推测，全球气温**下降了**(dipped)零点几度，就在次年。（climate reconstructions：气候重建，根据各种证据推算过去的气候）（suggest 后面省略了 that，引导宾语从句；a few tenths of a degree：零点几度）
+**火山灰**(Ash)和二氧化**硫**(sulphur)被**抛射**(hurled)到数十公里的高空，形成一层**薄雾**(haze)，它绕**赤道**(equator)一圈约用了两个星期。（hurled tens of kilometres high：过去分词短语作后置定语，修饰 Ash and sulphur dioxide）（that circled…：定语从句，修饰 haze）1883年11月，**深红色的**(crimson)晚霞**发出暗淡的光**(glowed)，照耀着欧洲和北美，**召唤着**(summoning)纽约州和康涅狄格州的**消防员**(firefighters)赶去扑救**子虚乌有的**(phantom)**大火**(blazes)。（summoning…：现在分词短语作状语，补充说明结果；summon A to B：把 A 召到 B 处）后来的气候**重建**(reconstructions)研究推测，全球气温**下降了**(dipped)零点几度，就在次年。（climate reconstructions：气候重建，根据各种证据推算过去的气候）（suggest 后面省略了 that，引导宾语从句；a few tenths of a degree：零点几度）
 
 一些专家**不予采信**(discounted)火山之说，而把晚霞归因于**高空**(at high altitude)的**水汽**(moisture)或**宇宙**(cosmic)尘埃。（blaming…：现在分词短语作状语；blame A on B：把 A 归咎于 B）1884年2月，英国皇家学会发出呼吁，在《泰晤士报》上征集注明日期的观测记录，**引来了**(eliciting)世界各地的回信；学会1888年发表的报告把这片红霞归于喀拉喀托火山。（appeal for…：呼吁，征求……；dated：注明日期的）（eliciting…：现在分词短语作状语，补充说明结果）（tie A to B：把 A 与 B 联系起来）借助气压计、电缆和深红色的天空，**相隔遥远的**(far-flung)**观察者**(observers)开始**隐约看出**(glimpse)，这颗星球早已何等**紧密相连**(interconnected)。（how interconnected…：how 引导的宾语从句，作 glimpse 的宾语，语序为 how＋形容词＋主语＋谓语）（简述：1883年8月27日，喀拉喀托火山猛烈爆炸，近4,800公里外的岛民以为是炮声，世界各地的气压计都记录到了压力波。约三分之二的岛体塌入海中，海啸淹没爪哇岛和苏门答腊岛沿岸，官方统计死亡36,417人。电报经海底电缆几小时内传到伦敦，这常被称为首个全球新闻事件。火山灰和二氧化硫形成的薄雾绕赤道扩散，欧美出现深红色晚霞，消防员误以为失火，次年全球气温略降。有专家不信火山之说，皇家学会征集各地观测，1888年的报告把红霞归于喀拉喀托，人们由此看到这颗星球早已紧密相连。）
 
@@ -70,7 +70,7 @@ Some experts **discounted** the volcanic explanation, blaming the sunsets on **m
 | equator | 本文：赤道；n. 赤道（at/near/around the equator）；equatorial adj. 赤道的 | 4 |
 | crimson | 本文：深红色的；adj./n. 深红色（的），绯红（a crimson sunset/sky）；v. （脸）涨红 | 4 |
 | glowed | 本文：发出暗淡的光；v. (glow) 发光，发亮（the sky glowed red；glow in the dark）；（脸）发红；n. 光亮，余晖 | 4 |
-| summoning | 本文：招来；v. (summon) 召来，招来，召唤（summon help/the police/firefighters）；传唤（be summoned to court）；召集（summon a meeting）；鼓起（summon up courage） | 4 |
+| summoning | 本文：召唤着；v. (summon) 召来，招来，召唤（summon help/the police/firefighters）；传唤（be summoned to court）；召集（summon a meeting）；鼓起（summon up courage） | 4 |
 | firefighters | 本文：消防员；n. (firefighter) 消防员（同 fireman） | 4 |
 | phantom | 本文：子虚乌有的；adj. 子虚乌有的，虚幻的（phantom blazes；a phantom ship 幽灵船）；n. 幽灵，幻影 | 4 |
 | blazes | 本文：大火；n. (blaze) 大火，火焰（fight/put out a blaze）；（光、色彩的）光辉；v. 熊熊燃烧 | 4 |
