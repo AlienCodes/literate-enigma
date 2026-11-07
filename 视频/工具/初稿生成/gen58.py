@@ -53,7 +53,7 @@ S=[
      "（declare A free of B：宣布 A 已摆脱 B）"],
     [[("the only human disease ever **wiped out**.","天花也成为迄今唯一被**彻底消灭**(wiped out)的人类疾病。")],
      "（the only human disease ever wiped out：\n同位语，补充说明 smallpox；wipe out：彻底消灭）"]]),
-(5,[[[("That **pronouncement**","这一**宣告**(pronouncement)"),("came almost 184 years after Phipps was **vaccinated**.","距菲普斯**接种**(vaccinated)已近184年。")],
+(5,[[[("That **pronouncement**","那一**宣告**(pronouncement)，"),("came","出现在"),("almost 184 years after Phipps was **vaccinated**.","菲普斯**接种疫苗**(vaccinated)之后的近184年。")],
      "（after Phipps was vaccinated：时间状语从句）\n"
      "（简述：天花传染性强、死亡率高。早在16世纪，中国就已施行人痘接种，1721年传入英国，但接种本身也有危险。\n"
      "民间相传得过牛痘就不得天花，1774年农夫杰斯蒂用牛痘保护家人。\n"
