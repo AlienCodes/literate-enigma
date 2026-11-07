@@ -127,7 +127,12 @@ for si,(pa,chunks) in enumerate(S,1):
             z=re.sub(r"\*\*|\([^)]*\)","",zh)
             if re.search(r"\bafter\b",e):
                 CONF["方向"][f"S{si}-{ci} after→{z[:12]}"]={"S4":"two decades after… 的 after 表示“在……之后”，中文“距……已有二十年”的“距……已有”就是从那之后算起，方向一致","S17":"name A after B 的 after 是“以……命名”的固定用法（按照），不是时间先后，中文“用自己的名字为……命名”意思一致"}[f"S{si}"]
+CONF["停顿位置"]={
+ "S11 compromise, / struck @1.100":"2026-11-07 逐 2.5 ms 实测（S11 w）：compromise 的 /z/（重心 5.0–5.5 kHz）衰减到 1.09（-57 dB），1.095–1.105 -60 dB 静音，1.108 起 struck 的 /s/（-36.6 dB、重心 2.7 kHz）；对齐器把后词开头标在 1.076（还在 /z/ 里），插入点改到静音里的过零点 1.100208，停顿在两词之间",
+ "S15 1858, / assuring @5.005":"2026-11-07 逐 2.5 ms 实测（S15 w）：1858 的 eight 闭塞 4.91–4.94（-63 dB）、/t/ 除阻 4.945–4.97（-43～-49 dB），4.975–5.43 全是 -60～-72 dB 静音，5.435 起 assuring 的 ə（-28 dB、周期 0.55）；对齐器把前词末音素起点标在 5.044（已在静音里），停顿 5.005–5.425 在两词之间"}
 out={"no":"56","title_en":"The Letter That Startled Darwin","title_zh":"一封信惊醒了达尔文","title_fx":{"hl":["Letter","Startled"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+     "停顿插入点":{"S11":{"1":1.100208}},
+     "词尾除阻":{"S4":{"1":[1.955,"t"],"2":[4.81,"t"]},"S5":{"句末":[4.805,"t"]},"S8":{"句末":[13.28,"t"]},"S15":{"1":[4.93,"t"],"句末":[9.76,"t"]}},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Charles Darwin":"查尔斯·达尔文","HMS Beagle":"小猎犬号","Alfred Russel Wallace":"阿尔弗雷德·拉塞尔·华莱士","Malay Archipelago":"马来群岛","Charles Lyell":"查尔斯·莱尔","Joseph Hooker":"约瑟夫·胡克","Linnean Society":"林奈学会","London":"伦敦","On the Origin of Species":"《物种起源》","Darwinism":"《达尔文主义》"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

@@ -13,15 +13,15 @@ Some experts **discounted** the volcanic explanation, blaming the **sunsets** on
 
 ## 中文
 
-1883年8月27日上午10时刚过，喀拉喀托，一座位于巽他**海峡**(Strait)的**火山**(volcanic)岛，**迸发出**(unleashed)其最为**震耳欲聋的**(thunderous)一声爆炸。（Shortly after ten in the morning：上午10时刚过；on 27 August 1883：日期状语）（a volcanic island in the Sunda Strait：同位语，补充说明 Krakatoa）（most thunderous：thunderous 的最高级，最为震耳欲聋的）约四小时后，罗德里格斯岛上的**岛民**(islanders)，相距近4,800公里，远隔印度洋，把这声**轰鸣**(roar)当成了**远处的**(distant)**炮火声**(gunfire)。（on Rodrigues：后置定语，修饰 islanders）（nearly 4,800 kilometres across the Indian Ocean：补充说明 Rodrigues 的位置）（take A for B：把 A 误当成 B）世界各地的**气压计**(Barometers)都记录到了这次**大气**(atmospheric)压力波，其中一些记录到七次，前后约五天。（worldwide：副词作后置定语，修饰 Barometers）（some of them seven times…：省略句，即 some of them recorded it seven times）
+1883年8月27日上午10时刚过，喀拉喀托，一座位于巽他**海峡**(Strait)的**火山**(volcanic)岛，**迸发出**(unleashed)其最为**震耳欲聋的**(thunderous)一声爆炸。（Shortly after ten in the morning：上午10时刚过；on 27 August 1883：日期状语）（a volcanic island in the Sunda Strait：同位语，补充说明 Krakatoa）（most thunderous：thunderous 的最高级，最为震耳欲聋的）约四小时后，罗德里格斯岛上的**岛民**(islanders)，离着将近4800公里，远隔着一个印度洋，把这声**轰鸣**(roar)当成了**远处的**(distant)**炮火声**(gunfire)。（on Rodrigues：后置定语，修饰 islanders）（nearly 4,800 kilometres across the Indian Ocean：补充说明 Rodrigues 的位置）（take A for B：把 A 误当成 B）世界各地的**气压计**(Barometers)都记录到了这次**大气**(atmospheric)压力波，其中一些在大约五天之内记录到七次。（worldwide：副词作后置定语，修饰 Barometers）（some of them seven times…：省略句，即 some of them recorded it seven times）
 
 自5月20日起便**躁动不安**(Restless)，这座火山达到**灾难性的**(catastrophic)**高潮**(climax)是在8月26日至27日。（Restless since 20 May：形容词短语作状语，逻辑主语是 the volcano）（reach a climax：达到高潮）约三分之二的岛体**塌入**(collapsed into)**已被排空的**(emptied)**岩浆**(magma)房，**消失**(vanishing)在海面之下。（emptied：过去分词作定语，已被排空的；magma chamber：岩浆房）（vanishing…：现在分词短语作状语，补充说明结果）**海啸**(Tsunamis)**据报道**(reportedly)局部高逾30米，**淹没了**(swamped)**沿海**(coastal)**居民点**(settlements)，遍及爪哇岛和苏门答腊岛。（reportedly over 30 metres high in places：插入的形容词短语，补充说明 Tsunamis；in places：在某些地方，局部）荷兰**殖民地**(colonial)**行政官员**(administrators)统计出36,417名死者，其中大多数是**溺亡**(drowned)的，而他们或许**低估了**(underestimating)**死亡人数**(toll)。（dead：这里作名词，死者）（mostly drowned：省略结构，即 most of them had drowned）（underestimating the toll：现在分词短语作状语，补充说明；toll：死亡人数）
 
-**电报**(Telegrams)从巴达维亚（今雅加达）发出，经**海底**(submarine)**电缆**(cable)**转发**(relayed)，传到了伦敦，前后只用了几小时。（relayed by submarine cable：过去分词短语作后置定语，修饰 Telegrams）西方报纸很快便开始**记述**(chronicling)这起常被称为首个全球新闻事件的灾难。（what is often called…：what 引导的宾语从句，作 chronicling 的宾语）然而，早期的**电讯**(dispatches)都十分**简短**(terse)；**浩劫**(devastation)的**规模**(magnitude)**一点一点地**(piecemeal)显露出来，前后历经数日。（the magnitude of the devastation：of 结构，浩劫的规模；over days：在几天的时间里）
+**电报**(Telegrams)从巴达维亚（今雅加达）发出，经**海底**(submarine)**电缆**(cable)**转发**(relayed)，在几小时内到达了伦敦。（relayed by submarine cable：过去分词短语作后置定语，修饰 Telegrams）西方报纸很快便开始**记述**(chronicling)这起常被称为首个全球新闻事件的灾难。（what is often called…：what 引导的宾语从句，作 chronicling 的宾语）然而，早期的**电讯**(dispatches)都十分**简短**(terse)；**浩劫**(devastation)的**规模**(magnitude)**一点一点地**(piecemeal)显露出来，前后历经数日。（the magnitude of the devastation：of 结构，浩劫的规模；over days：在几天的时间里）
 
-**火山灰**(Ash)和二氧化**硫**(sulphur)被**抛射**(hurled)到数十公里的高空，形成一层**薄雾**(haze)，它绕**赤道**(equator)一圈约用了两个星期。（hurled tens of kilometres high：过去分词短语作后置定语，修饰 Ash and sulphur dioxide）（that circled…：定语从句，修饰 haze）1883年11月，**深红色的**(crimson)晚霞**发出暗淡的光**(glowed)，照耀着欧洲和北美，**召唤着**(summoning)纽约州和康涅狄格州的**消防员**(firefighters)赶去扑救**子虚乌有的**(phantom)**大火**(blazes)。（summoning…：现在分词短语作状语，补充说明结果；summon A to B：把 A 召到 B 处）后来的气候**重建**(reconstructions)研究推测，全球气温**下降了**(dipped)零点几度，就在次年。（climate reconstructions：气候重建，根据各种证据推算过去的气候）（suggest 后面省略了 that，引导宾语从句；a few tenths of a degree：零点几度）
+**火山灰**(Ash)和二氧化**硫**(sulphur)被**抛射**(hurled)到数十公里的高空，形成一层**薄雾**(haze)，在大约两个星期内环绕了**赤道**(equator)一周。（hurled tens of kilometres high：过去分词短语作后置定语，修饰 Ash and sulphur dioxide）（that circled…：定语从句，修饰 haze）1883年11月，**深红色的**(crimson)晚霞**发出暗淡的光**(glowed)，照耀着欧洲和北美，**召唤着**(summoning)纽约州和康涅狄格州的**消防员**(firefighters)赶去扑救**子虚乌有的**(phantom)**大火**(blazes)。（summoning…：现在分词短语作状语，补充说明结果；summon A to B：把 A 召到 B 处）后来的气候**重建**(reconstructions)研究推测，全球气温**下降了**(dipped)零点几度，就在次年。（climate reconstructions：气候重建，根据各种证据推算过去的气候）（suggest 后面省略了 that，引导宾语从句；a few tenths of a degree：零点几度）
 
-一些专家**不予采信**(discounted)火山之说，而把**晚霞**(sunsets)归因于**高空**(at high altitude)的**水汽**(moisture)或**宇宙**(cosmic)尘埃。（blaming…：现在分词短语作状语；blame A on B：把 A 归咎于 B）1884年2月，英国**皇家学会**(Royal Society)发出**呼吁**(appealed)，在《泰晤士报》上征集注明日期的观测记录，**引起了**(eliciting)世界各地的回应；学会1888年发表的报告**把**(tied to)这片红霞**归于**(tied to)喀拉喀托火山。（appeal for…：呼吁，征求……；dated：注明日期的）（eliciting…：现在分词短语作状语，补充说明结果）（tie A to B：把 A 与 B 联系起来）借助气压计、电缆和深红色的天空，**相隔遥远的**(far-flung)**观察者**(observers)们开始**认识到**(glimpse)，这颗星球上的各个地方早已**相互关联**(interconnected)在一起。（how interconnected…：how 引导的宾语从句，作 glimpse 的宾语，语序为 how＋形容词＋主语＋谓语）（简述：1883年8月27日，喀拉喀托火山猛烈爆炸，近4,800公里外的岛民以为是炮声，世界各地的气压计都记录到了压力波。约三分之二的岛体塌入海中，海啸淹没爪哇岛和苏门答腊岛沿岸，官方统计死亡36,417人。电报经海底电缆几小时内传到伦敦，这常被称为首个全球新闻事件。火山灰和二氧化硫形成的薄雾绕赤道扩散，欧美出现深红色晚霞，消防员误以为失火，次年全球气温略降。有专家不信火山之说，皇家学会征集各地观测，1888年的报告把红霞归于喀拉喀托，人们由此看到这颗星球早已紧密相连。）
+一些专家**不予采信**(discounted)火山之说，而把**晚霞**(sunsets)归因于**高空**(at high altitude)的**水汽**(moisture)或**宇宙**(cosmic)尘埃。（blaming…：现在分词短语作状语；blame A on B：把 A 归咎于 B）1884年2月，英国**皇家学会**(Royal Society)发出**呼吁**(appealed)，在《泰晤士报》上征集注明日期的观测记录，**引起了**(eliciting)世界各地的回应；学会1888年发表的报告**把**(tied to)这片红霞**归于**(tied to)喀拉喀托火山。（appeal for…：呼吁，征求……；dated：注明日期的）（eliciting…：现在分词短语作状语，补充说明结果）（tie A to B：把 A 与 B 联系起来）借助气压计、电缆和深红色的天空，**相隔遥远的**(far-flung)**观察者**(observers)们开始**认识到**(glimpse)，这颗星球上的各个地方早已**相互关联**(interconnected)在一起。（how interconnected…：how 引导的宾语从句，作 glimpse 的宾语，语序为 how＋形容词＋主语＋谓语）（简述：1. 大爆炸：1883年8月27日，喀拉喀托火山猛烈爆炸。声音大到离谱，将近4800公里外的岛民还以为是打仗的炮声。世界各地的气压计都记下了这股压力波。2. 惨烈后果：巨大的爆炸让约三分之二的岛体直接塌进了海里，引发了海啸，淹没了爪哇岛和苏门答腊岛的海岸，官方统计死了36,417人。3. 首个全球新闻：当时电报通过海底电缆，仅仅几个小时就把消息传到了伦敦，这在历史上常被称为“首个全球新闻事件”。4. 全球连环反应：喷到天上的火山灰和二氧化硫形成薄雾，绕着赤道散开。这让欧美那边出现了深红色的晚霞，当地消防员甚至误以为哪里失火了。到了第二年，全球气温还稍微降了一点。5. 科学界的破案：一开始有专家不信是火山干的，于是英国皇家学会登报征集各地的观测记录。直到1888年，学会发布报告，正式把红霞归因于喀拉喀托火山。6. 最终的意义：经历了这件事，人们开始明白：这个星球上各地早就紧密的连接在了一起。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -39,10 +39,10 @@ Some experts **discounted** the volcanic explanation, blaming the **sunsets** on
 | Restless | 本文：躁动不安；adj. 躁动不安的，不平静的（a restless volcano/crowd/night） | 2 |
 | catastrophic | 本文：灾难性的；adj. 灾难性的（catastrophic consequences/failure）；catastrophe n. 灾难 | 2 |
 | climax | 本文：高潮；n. 高潮，顶点（reach a climax；the climax of a career）；v. 达到高潮 | 2 |
-| collapsed into | v. (collapse into) 塌入，坍塌进（collapse into a hole/the sea）；collapse 倒塌，崩溃 | 2 |
-| emptied | adj. 被排空的，空了的（an emptied magma chamber 已被排空的岩浆房）；v. (empty) 排空，倒空（empty a bin/tank） | 2 |
+| collapsed into | 本文：塌入；v. (collapse into) 塌入，坍塌进（collapse into a hole/the sea）；collapse 倒塌，崩溃 | 2 |
+| emptied | 本文：已被排空的；adj. 被排空的，空了的（an emptied magma chamber 已被排空的岩浆房）；v. (empty) 排空，倒空（empty a bin/tank） | 2 |
 | magma | 本文：岩浆；n. 岩浆（a magma chamber 岩浆房）；喷出地表后称 lava（熔岩） | 2 |
-| vanishing | v. (vanish) 消失，不见（vanish beneath the sea/without trace）；灭绝，消亡 | 2 |
+| vanishing | 本文：消失；v. (vanish) 消失，不见（vanish beneath the sea/without trace）；灭绝，消亡 | 2 |
 | Tsunamis | 本文：海啸；n. (tsunami) 海啸（trigger a tsunami；a tsunami warning） | 2 |
 | reportedly | 本文：据报道；adv. 据报道，据说（表示消息未经证实） | 2 |
 | swamped | 本文：淹没了；v. (swamp) 淹没（waves swamped the boat）；使应接不暇（be swamped with work/calls）；n. 沼泽 | 2 |
@@ -52,7 +52,7 @@ Some experts **discounted** the volcanic explanation, blaming the **sunsets** on
 | administrators | 本文：行政官员；n. (administrator) 行政官员，管理人员（colonial/hospital administrators） | 2 |
 | drowned | 本文：溺亡；v. (drown) 溺亡，淹死（be drowned in a flood）；（声音）盖过（drown out the noise） | 2 |
 | underestimating | 本文：低估了；v. (underestimate) 低估（underestimate the toll/cost/difficulty）；反义 overestimate | 2 |
-| toll | n. 死亡人数，伤亡人数（the death toll；the toll rose to…）；损失，代价（take a heavy toll on 对……造成严重损害）；（道路、桥梁）通行费 | 2 |
+| toll | 本文：死亡人数；n. 死亡人数，伤亡人数（the death toll；the toll rose to…）；损失，代价（take a heavy toll on 对……造成严重损害）；（道路、桥梁）通行费 | 2 |
 | Telegrams | 本文：电报；n. (telegram) 电报（send/receive a telegram）；telegraph n. 电报系统，电报机 | 3 |
 | submarine | 本文：海底；adj. 海底的（a submarine cable 海底电缆）；n. 潜水艇 | 3 |
 | cable | 本文：电缆；n. 电缆，缆绳（lay a cable 铺设电缆）；（旧）海底电报；有线电视（cable TV） | 3 |
@@ -77,14 +77,14 @@ Some experts **discounted** the volcanic explanation, blaming the **sunsets** on
 | reconstructions | 本文：重建；n. (reconstruction) 重建，复原（据证据推算过去的情形，如 climate reconstructions 气候重建）；（灾后）重建 | 4 |
 | dipped | 本文：下降了；v. (dip) （小幅）下降，下跌（temperatures/prices dipped）；蘸，浸；n. 下降 | 4 |
 | discounted | 本文：不予采信；v. (discount) 不予采信，不予考虑（discount a possibility/a theory/sb's claims）；打折；n. 折扣 | 5 |
+| sunsets | 本文：晚霞；n. (sunset) 晚霞，落日余晖；日落（时分）（at sunset 日落时）；反义 sunrise | 5 |
 | at high altitude | 本文：高空；n. 高度，海拔（at high altitude 在高空；altitude sickness 高原反应） | 5 |
-| sunsets | n. (sunset) 晚霞，落日余晖；日落（时分）（at sunset 日落时）；反义 sunrise | 5 |
 | moisture | 本文：水汽；n. 水汽，潮气，水分（absorb/retain moisture） | 5 |
 | cosmic | 本文：宇宙；adj. 宇宙的（cosmic dust/rays）；巨大的（of cosmic proportions） | 5 |
-| Royal Society | n. （英国）皇家学会（1660年成立的英国国家科学院，the Royal Society） | 5 |
+| Royal Society | 本文：皇家学会；n. （英国）皇家学会（1660年成立的英国国家科学院，the Royal Society） | 5 |
 | appealed | 本文：呼吁；v. (appeal) 呼吁，恳求（appeal for help/information/observations）；上诉；吸引（appeal to sb）；n. 呼吁，吸引力 | 5 |
 | eliciting | 本文：引起了；v. (elicit) 引出，探出，诱出（信息、回应等）（elicit information/a response/replies from sb）；辨析：solicit 才是“征求、恳求” | 5 |
-| tied to | v. (tie A to B) 把 A 归于 B，把 A 与 B 联系起来（tie the glow to Krakatoa）；tie 系，捆 | 5 |
+| tied to | 本文：把……归于；v. (tie A to B) 把 A 归于 B，把 A 与 B 联系起来（tie the glow to Krakatoa）；tie 系，捆 | 5 |
 | far-flung | 本文：相隔遥远的；adj. 相隔遥远的，分布广的（far-flung corners of the world/empire） | 5 |
 | observers | 本文：观察者；n. (observer) 观察者，观测者；观察员（UN observers） | 5 |
 | glimpse | 本文：认识到；v. 瞥见；隐约看出（glimpse sb/sth；glimpse how…）；n. 一瞥，短暂的感受（catch a glimpse of sth 瞥见某物） | 5 |
