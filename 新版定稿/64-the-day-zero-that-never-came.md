@@ -10,7 +10,7 @@ The city paired **mandatory** **restrictions** with **unprecedented** **transpar
 
 Other forces **intervened**. In February 2018, **upstream** farmers released water from their **irrigation** dams; with farms drawing less, Day Zero was **postponed** to July. In March 2018, officials judged Day Zero **unlikely** that year. Winter rains **subsequently** **replenished** the reservoirs, which were about half full by July. The 50-litre limit was **eased** in October 2018.
 
-The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **segregated** by race under **apartheid**, had long made do with **scant** water, yet **steeper** **tariffs** **squeezed** them hardest. Others blamed **alarmist** warnings for tourist **cancellations**. Households, farmers and rain kept the collection points **idle**, but the **sacrifice** weighed heaviest on those with the least to give.
+The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **segregated** by race under **apartheid**, had long made do with **scant** water, yet **steeper** **tariffs** **squeezed** them hardest. Others blamed **alarmist** warnings for tourist **cancellations**. Households, farmers, and rain kept the collection points **idle**, but the **sacrifice** weighed heaviest on those with the least to give.
 
 ## 中文
 
