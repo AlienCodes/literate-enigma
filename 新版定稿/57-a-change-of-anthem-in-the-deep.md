@@ -40,6 +40,7 @@ Such rapid change, too fast for genetic **evolution**, points to **imitation** r
 | rendition | n. 演唱，演奏，表演（a rendition of a song） | 1 |
 | recur | v. (recur) 反复出现，重现（a recurring theme/problem） | 1 |
 | courtship | n. 求偶；求爱（courtship display/behaviour） | 1 |
+| population | n. 种群；人口（a population of whales；the whole population） | 1 |
 | identical | adj. 完全相同的（be identical to/with；identical twins） | 1 |
 | evolves | v. (evolve) 演变，逐步发展（evolve over time；evolve into） | 1 |
 | subtly | adv. 细微地，微妙地（subtly different/change）；subtle adj. | 1 |
