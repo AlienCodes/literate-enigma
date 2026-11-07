@@ -14,7 +14,7 @@ Wallace had **readily** **signified** his **acceptance** in October 1858, **assu
 
 ## 中文
 
-1836年10月，查尔斯·达尔文从小猎犬号上**登岸**(disembarked)。1838年9月，他开始**提出**(formulating)自然**选择**(selection)的**原理**(principle)：对**环境**(surroundings)**适应**(adapted)得更好的个体得以存活，并把自身的**遗传**(hereditary)性状传递下去。到1844年，他已**写成**(composed)一份230页的**手稿**(manuscript)，却一直**未予发表**(unpublished)，**谨慎地**(cautiously)**积累**(amassing)证据。
+1836年10月，查尔斯·达尔文从小猎犬号上**登岸**(disembarked)。1838年9月，他开始**构想出**(formulating)自然**选择**(selection)的**原理**(principle)：对**环境**(surroundings)**适应**(adapted)得更好的个体得以存活，并把自身的**遗传**(hereditary)性状传递下去。到1844年，他已**写成**(composed)一份230页的**手稿**(manuscript)，却一直**未予发表**(unpublished)，**谨慎地**(cautiously)**积累**(amassing)证据。
 
 1858年2月，距达尔文最初的设想已有二十年，**博物学家**(naturalist)阿尔弗雷德·拉塞尔·华莱士在马来群岛**身患**(afflicted)热病，**独立地**(independently)**构想**(conceived)出了同一个想法。华莱士那篇**简明**(concise)的文章于1858年6月18日寄到达尔文手中。文中的论证与达尔文本人的论证几乎**完全**(precisely)**相合**(paralleled)；达尔文告诉查尔斯·莱尔，自己从未见过比这更**惊人**(remarkable)的**巧合**(coincidence)。他对**优先权**(priority)的主张似乎**受到了威胁**(threatened)。
 
