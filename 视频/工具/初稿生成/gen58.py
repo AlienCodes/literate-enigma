@@ -27,7 +27,7 @@ S=[
 (3,[[[("On 1 July 1796","1796年7月1日，"),("Jenner","詹纳"),("**exposed** the boy **to** smallpox;","**让**(exposed to)这个男孩**接触**(exposed to)天花；")],
      "（expose A to B：使 A 接触 B）"],
     [[("no **symptoms**","任何**症状**(symptoms)都没有"),("**ensued**.","**随之出现**(ensued)。")]]]),
-(3,[[[("In 1797","1797年，"),("the Royal Society","皇家学会"),("declined to","不予"),("**publish**","**发表**(publish)"),("his paper,","他的论文，")]],
+(3,[[[("In 1797","1797年，"),("the Royal Society","皇家学会"),("declined","拒绝"),("to","去"),("**publish**","**发表**(publish)"),("his paper,","他的论文，")]],
     [[("judging","认为"),("his evidence","他的证据"),("**unconvincing**.","**缺乏说服力**(unconvincing)。")],
      "（judging his evidence unconvincing：现在分词短语作原因状语；\njudge＋宾语＋形容词：认为……）"]]),
 (3,[[[("In June 1798","1798年6月，"),("he","他"),("**privately**","**私人**(privately)"),("**funded**","**出资**(funded)出版了"),("his book,","他的著作"),("the Inquiry,","《探究》，")],
@@ -109,7 +109,7 @@ CONF={"合组":G,"对齐":{
  "S18 vaccinated":"不是被隔开的两处：本文“距菲普斯接种”，被动 was vaccinated 只对应“接种”，没有“给……”"},
 "方向":{
  "S3-2 less→虽然不像自然感染的天花那":"less frequently than… 是比较结构，中文“不像……那样频繁”，less 化成“不像……那样”，不是方向词",
- "S8-1 declined→不予":"decline 本文是“拒绝，不予”，中文“不予发表”，不是方向（下降）义",
+ "S8-1 declined→拒绝":"decline 本文是“拒绝”，中文“拒绝去发表”，不是方向（下降）义",
  "S18-1 after→距菲普斯接种已近184年":"after 化成“距……已近”，中文“距菲普斯接种已近184年”就是“在那之后近184年”，方向一致"},
 "同词异译":{"immune to：免疫/对":"不是两种译法：S4 be immune to 的意思“对……免疫”被“天花”隔开，“对”和“免疫”是同一个意思的两部分（T23）"},
 "数字":{"S1-2 300":"300 million 中文写作“3亿”，数值相同（300百万 = 3亿）；英文读 three hundred million"},
