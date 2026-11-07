@@ -330,10 +330,11 @@ def term_checks(d):
     names = {w for s in d['sentences'] for c in s['chunks'] for w in re.findall(r"[A-Z][A-Za-z]+", re.sub(r'\*\*|\{\{.*?\}\}', '', c['en'])) if re.search(r'(?<![A-Za-z])' + w + r'(?![A-Za-z])', allzh)}   # 单独出现才算（AlphaGo 里的 Go 不算）
     for i, s in enumerate(d['sentences'], 1):
         en = re.sub(r'\*\*|\{\{.*?\}\}', '', ' '.join(c['en'] for c in s['chunks'])); zh = ''.join(c['zh'] for c in s['chunks'])
+        zhp = re.sub(r'\*\*', '', re.sub(r'\*\*([^*]+)\*\*\([^)]*\)', r'\1', zh))   # 57 S12：术语里的词本身是重点词（南**太平洋**(Pacific)），去掉标记再认
         盖 = set()   # K121（31 S14）：这句英文里已由术语表整个专名译出的词（Sorcerer's Stone → 魔法石），不再按单个专名查
         for e, z in d.get('术语', {}).items():
             if re.search(r'\b' + re.escape(e) + r'\b', en, re.I):
-                if z not in zh: out.append(f'[T30] S{i} 英文有 {e}，中文这一句没有“{z}”（漏译）')
+                if z not in zh and z not in zhp: out.append(f'[T30] S{i} 英文有 {e}，中文这一句没有“{z}”（漏译）')
                 else: 盖 |= set(re.findall(r'[A-Za-z]+', e))
         for w in names:
             if w in 盖: continue
@@ -359,6 +360,10 @@ def selftest_term():
     k121b = {'术语': {"Sorcerer's Stone": '魔法石'}, 'sentences': k121['sentences'][:1] + [{'chunks': [{'en': "The renamed Sorcerer's Stone appeared there.", 'zh': '更名后的书在那里问世。'}]}]}
     if not term_checks(k121b): fails.append('没抓到：术语 Sorcerer\'s Stone 漏译 魔法石（K121 不许放过）')
     if term_checks(ok_): fails.append('T30 误报：术语、专名都在的被报出')
+    k57 = {'术语': {'South Pacific': '南太平洋'}, 'sentences': [{'chunks': [{'en': 'from six South **Pacific** populations.', 'zh': '南**太平洋**(Pacific)六个种群'}]}]}
+    if term_checks(k57): fails.append('T30 误报：术语里的词标成重点词（南**太平洋**(Pacific)）还报漏译（57 S12）')
+    k57b = copy.deepcopy(k57); k57b['sentences'][0]['chunks'][0]['zh'] = '**太平洋**(Pacific)六个种群'
+    if not term_checks(k57b): fails.append('没抓到：术语 South Pacific 漏了“南”（57 S12 修误报后不许放过）')
     if not term_checks(b1): fails.append('没抓到：漏了术语“肩冲”（T30，11 S17）')
     if not term_checks(b2): fails.append('没抓到：漏了专名 AlphaGo（T30）')
     return fails

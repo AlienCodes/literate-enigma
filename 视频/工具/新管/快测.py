@@ -86,6 +86,12 @@ R.apply_script(d24)
 if R.NOTE_WIDE.get(key(d24, -1)) == "整屏": bad.append("误放：24（25 前）没特批也整屏了")
 b = copy.deepcopy(d27); b.pop("说明放宽特批", None); b["sentences"][-1]["chunks"][-1]["note"] = "（结局：x）"; R.apply_script(b)
 if R.NOTE_WIDE.get(key(b, -1)) == "整屏": bad.append("误放：最后一句不是简述也整屏了")
+c = copy.deepcopy(d27); c["sentences"][0]["chunks"][-1]["note"] = "（" + "测" * 120 + "）"; c["说明放宽特批"] = {"S1": {"倍数": "屏宽", "依据": "用户 特批 屏宽样本"}}; R.apply_script(c)
+if R.NOTE_WIDE.get(key(c, 0)) != "屏宽": bad.append("没放：57 S5 屏宽特批（用户原话）没生效")
+e_ = copy.deepcopy(c); e_["说明放宽特批"] = {"S1": {"倍数": "屏宽", "依据": "会话自己写的理由"}}
+try:
+    R.apply_script(e_); bad.append("没抓到：屏宽特批依据没有用户原话也放行了（57 S5）")
+except SystemExit: pass
 print("\\n".join(bad))''', T, os.path.dirname(T)], capture_output=True, text=True, cwd=T, env=env0)
     out = [f'G35 常规规则：{x}' for x in (r.stdout.strip().splitlines() if r.returncode == 0 else [r.stderr.strip()[-200:]])]
     # G65 方法进化（用户原话立的规矩，照跑）+ K97 误拦修正：排队中的篇不拦；变差没写进化落地必拦

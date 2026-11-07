@@ -66,13 +66,16 @@ Such rapid change, too fast for genetic **evolution**, points to **imitation** r
 | performers | n. (performer) 表演者，歌手（street performers） | 3 |
 | freak | n. 怪事，反常现象（a freak of nature）；adj. 反常的（a freak accident） | 4 |
 | analysed | v. (analyse) 分析（英式拼写；analyse data/recordings） | 4 |
+| Pacific | n. 太平洋；adj. 太平洋的（the Pacific Ocean；the South Pacific） | 4 |
 | recordings | n. (recording) 录音，录像（make/analyse recordings） | 4 |
 | primarily | adv. 主要地，首要地（be primarily concerned with） | 4 |
 | rippled | v. (ripple) 如涟漪般扩散，泛起涟漪（ripple through/across）；n. 涟漪（ripple effect） | 4 |
 | eastward | adv./adj. 向东（move/spread eastward） | 4 |
+| Polynesia | n. 波利尼西亚（太平洋中南部的群岛区；French Polynesia 法属波利尼西亚） | 4 |
 | successive | adj. 相继的，连续的（successive generations/governments） | 4 |
 | generally | adv. 通常，一般地（generally speaking；generally accepted） | 4 |
 | region | n. 地区，区域（a coastal region；in the region of 约） | 4 |
+| rapid change | phr. 快速的变化（rapid adj. 快速的；undergo rapid change） | 5 |
 | evolution | n. 演化，进化；演变（genetic evolution；the evolution of language） | 5 |
 | imitation | n. 模仿；仿制品（learn by imitation；a cheap imitation） | 5 |
 | inheritance | n. 遗传；遗产，继承（genetic inheritance） | 5 |
@@ -82,6 +85,7 @@ Such rapid change, too fast for genetic **evolution**, points to **imitation** r
 | overhaul | v. 彻底改换，全面检修（overhaul a system/an engine）；n. 大修 | 5 |
 | controversial | adj. 有争议的（a controversial issue/decision） | 5 |
 | novelty | n. 新奇，新颖；新奇事物（the novelty wears off） | 5 |
+| spurs | v. (spur) 促使，推动（spur growth/change；spur sb to do sth） | 5 |
 | scholars | n. (scholar) 学者（a classical scholar） | 5 |
 | reluctant | adj. 不情愿的（be reluctant to do sth） | 5 |
 | define | v. 界定，定义（define A as B；clearly defined） | 5 |

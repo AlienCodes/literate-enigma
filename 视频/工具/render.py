@@ -228,9 +228,11 @@ def apply_script(d):
             ok_ = ('用户' in v_.get('依据', '') and '特批' in v_.get('依据', '') and str(d.get('no', '0')).isdigit() and int(d['no']) >= 25
                    and k_ == f"S{len(d['sentences'])}" and '（简述：' in (d['sentences'][-1]['chunks'][-1].get('note') or ''))
             if not ok_: raise SystemExit(f'【停止】说明放宽特批 {k_} 整屏不合规：只给 25 起最后一句的结尾简述，依据要写用户原话（含“用户”“特批”）（G35）')
+        elif v_.get('倍数') == '屏宽':   # 57 S5（用户 2026-11-07 选“S5 小字放宽到全屏宽”）：英文很短、小字很长的一句，小字只受屏宽限制；只认依据里有用户原话（含“用户”“特批”）
+            if not ('用户' in v_.get('依据', '') and '特批' in v_.get('依据', '')): raise SystemExit(f'【停止】说明放宽特批 {k_} 屏宽不合规：依据要写用户原话（含“用户”“特批”）')
         elif not ('用户' in v_.get('依据', '') and '特批' in v_.get('依据', '') and 1 < float(v_.get('倍数', 0)) <= 1.5):
             raise SystemExit(f'【停止】说明放宽特批 {k_} 不合规：依据要写用户原话（含“用户”“特批”），倍数在 1–1.5 之间（用户：“不要过于宽”）')
-        NOTE_WIDE[' '.join(p[0] for c in d['sentences'][int(k_[1:]) - 1]['chunks'] for p in c['align'])] = v_['倍数'] if v_['倍数'] == '整屏' else float(v_['倍数'])
+        NOTE_WIDE[' '.join(p[0] for c in d['sentences'][int(k_[1:]) - 1]['chunks'] for p in c['align'])] = v_['倍数'] if v_['倍数'] in ('整屏', '屏宽') else float(v_['倍数'])
     _n = len(d.get('sentences', []))   # G35 常规规则（用户 2026-10-25 看 26：“以后以后一定要合理的安排，不要压缩成这个样子”，27 又说一次；用户同意记录 篇 26）：25 起结尾简述一律整屏，不再要每篇特批；写了特批的照特批
     if _n and str(d.get('no', '0')).isdigit() and int(d['no']) >= 25 and f'S{_n}' not in d.get('说明放宽特批', {}) and '（简述：' in (d['sentences'][-1]['chunks'][-1].get('note') or ''):
         NOTE_WIDE[' '.join(p[0] for c in d['sentences'][-1]['chunks'] for p in c['align'])] = '整屏'
@@ -323,7 +325,7 @@ def wide_notes(chunks,colors,notes,es):
     rowsets,_,_,(zs,ef,zf,gapx,*_)=_measure(chunks,colors,notes,es,_grouping(chunks,colors)); nf=ZH(int(zs*0.9),400); out=[]
     ew=max([max(sum(uw(ef,u) for u,_ in ln) for ln in layout(r[1]['se'],ef,MAXW2)) if isinstance(r,tuple) else sum(c['we'] for c in r)+gapx*(len(r)-1) for rs in rowsets for r in rs]+[1])
     mul=NOTE_WIDE.get(' '.join(p[0] for ch in chunks for p in ch),1.0)   # 用户特批放宽的句子（apply_script 读 说明放宽特批）
-    zp=mul=='整屏'; ew*=(1.0 if zp else mul)   # G35：整屏特批的结尾简述（从“（简述：”那一行起）只受整屏宽限制（max_es 按屏宽缩字号），不比正文
+    zp=mul=='整屏'; ew=MAXW2 if mul=='屏宽' else ew*(1.0 if zp else mul)   # 屏宽特批：这一句的说明只比屏宽   # G35：整屏特批的结尾简述（从“（简述：”那一行起）只受整屏宽限制（max_es 按屏宽缩字号），不比正文
     rt=_rt(rowsets,notes,_右(chunks,colors,notes))
     for i,n in enumerate(notes):
         sk=False
