@@ -57,7 +57,7 @@ S=[
     [[("global","全球"),("temperatures","气温"),("**dipped**","**下降了**(dipped)"),("a few tenths of a degree","零点几度，"),("the following year.","就在次年。")],
      "（suggest 后面省略了 that，引导宾语从句；\na few tenths of a degree：零点几度）"]]),
 (5,[[[("Some experts","一些专家"),("**discounted**","**不予采信**(discounted)"),("the volcanic","火山"),("explanation,","之说，")]],
-    [[("blaming","而把"),("the sunsets","晚霞"),("on","归因于"),("**moisture** **at high altitude**","**高空**(at high altitude)的**水汽**(moisture)"),("or","或"),("**cosmic**","**宇宙**(cosmic)"),("dust.","尘埃。")],
+    [[("blaming","而把"),("the **sunsets**","**晚霞**(sunsets)"),("on","归因于"),("**moisture** **at high altitude**","**高空**(at high altitude)的**水汽**(moisture)"),("or","或"),("**cosmic**","**宇宙**(cosmic)"),("dust.","尘埃。")],
      "（blaming…：现在分词短语作状语；\nblame A on B：把 A 归咎于 B）"]]),
 (5,[[[("In February 1884,","1884年2月，"),("Britain's Royal Society","英国皇家学会"),("appealed","发出呼吁，"),("in The Times","在《泰晤士报》上"),("for","征集"),("dated","注明日期的"),("observations,","观测记录，")],
      "（appeal for…：呼吁，征求……；\ndated：注明日期的）"],
