@@ -125,6 +125,16 @@ CONF["合组"].update({"S18 a few outsiders off eastern Australia":"对齐不了
 out["说明放宽特批"]={"S5":{"倍数":"屏宽","依据":"用户 2026-11-07 特批：问“S5 小字放不下，怎么处理？”时用户选“S5 小字放宽到全屏宽”（只对 S5 这段小字，不受“不比英文宽”限制，按屏宽折行）"},"S11":{"倍数":"屏宽","依据":"用户 2026-11-07 特批：问“S11 详细语法小字太宽，怎么处理？”时用户选“S11 也放宽到全屏宽”（只对 S11 这段小字，按屏宽折行）"}}
 out["allow_clash"]=["spurs"]   # 用户 2026-11-07 选“留，照样标”（spurs 与 03 篇 Spurred on 撞车）
 out["换行变更已获同意"]={"S18":"用户 2026-11-07（看 S18 a few outsiders / off eastern Australia 两块截图）：“两块合并为一行，这两块合并为一行。并且把意思改为下面的意思”","S13":"用户 2026-11-07：问“S13 按你的译法重新分组后，英文换行和上次发给你的版本不一样了。同意 S13 改换行吗？”时用户选“同意 S13 改换行”"}
+D="2026-11-07 逐 25 ms 实测（w，配音指纹 aef0bfe46750）："
+CONF.setdefault("对齐",{})["S18-1 a few outsiders off eastern Au"]="用户 2026-11-07 要求 a few outsiders 与 off eastern Australia 两块合并为一组；中文“澳大利亚东部海域的一小批外来者”地点作定语提前，语序必须倒过来"
+CONF.setdefault("口述",{})["S5-1 觉得"]="用户 2026-11-07 给的小字原文“其他鲸鱼觉得：‘哎？这个改版挺帅啊！’”，照用户原话抄，不是口述多出来的词"
+CONF.setdefault("即",{})["S14-3 即"]="用户 2026-11-07 给的译法“即文化传递的一个有说服力的例证”，照用户原话"
+CONF.setdefault("同词异译",{}).update({"off：在/海域":"不是两种译法：off 的意思“在……海域”被“澳大利亚东部”隔开，“在”和“海域”是同一个意思的两部分（T23，用户 2026-11-07 要求标）","off：海域/在":"同上，“在……海域”被隔开的两部分"})
+CONF["合组"]["S13 to French Polynesia"]="对齐不了：French Polynesia 是专名“法属波利尼西亚”，French 对“法属”嵌在专名里，拆开不通"
+CONF.setdefault("短语",{}).update({"S10 by … a":"不是搭配：by 引出施动者（由……），用户 2026-11-07 要求标的是 a handful of（已整体标）","S16 spurs change":"不是搭配：change 是 spurs 的宾语，用户 2026-11-07 只让标 spur（推动了），中文“推动了变化”已对应"})
+CONF.setdefault("响度骤降",{}).update({
+ "43.7–44.2s":{"配音指纹":"aef0bfe46750","低":7.7,"句子":"S7 From 1995 to 1998, researchers used hydrophones, or underwater microphones, to record humpbacks on their seasonal migration along the coastline.","依据":"%sS7 microphones, 的后半：m-aɪ -10～-12 dB，/k/ 闭塞后除阻（2.4 kHz），ɹ-ə -13～-16 dB，/f/ 7.17–7.25（重心 7–9 kHz），/oʊ/ 从 -12 衰减到 -32 dB，鼻音 /n/ 7.45–7.55 本来就弱（-35～-40 dB、低频为主），7.575 起句中逗号前的 /z/（-17～-22 dB、重心 5 kHz）清楚；骤降是 /oʊn/ 的自然收尾加逗号停顿，不闷、不断"%D},
+ "57.7–58.3s":{"配音指纹":"aef0bfe46750","低":6.1,"句子":"S8 In the mid-1990s, merely two of 82 singers emitted a distinctive new song, utterly unlike the reigning chorus.","依据":"%sS8 句末 chorus.：/k/ 7.875 除阻，ɔː -11～-17 dB，ɹ-ə 衰减到 -35 dB，/s/ 8.25–8.375（-17～-22 dB、重心 4–5 kHz）完整，随后自然收尾进句末静音；骤降是句末收尾，不闷、不断"%D}})
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)
