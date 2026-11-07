@@ -1,0 +1,92 @@
+import json,re,glob,os
+# 第60篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-07 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；短语型用法整体标（T22）；不用破折号（T36）；形容词的“的”进粗体。
+S=[
+(1,[[[("On 29 May 1919,","1919年5月29日，"),("as a total","一次全"),("**eclipse**","**日食**(eclipse)"),("**obscured**","**遮蔽了**(obscured)"),("the sun,","太阳，")],
+     "（as…：引导时间状语从句，“当……时”）"],
+    [[("two British","两支英国"),("**expeditions**","**考察队**(expeditions)"),("photographed","拍摄了"),("stars in its apparent **vicinity**.","天空中看似位于太阳**附近**(vicinity)的恒星。")],
+     "（in its apparent vicinity：后置定语，修饰 stars；\nits 指 the sun）"]]),
+(1,[[[("Arthur Eddington","阿瑟·爱丁顿"),("**observed**","**观测**(observed)"),("from Príncipe,","于普林西比岛，"),("an island","这是一座岛，"),("off West Africa;","位于西非外海；")],
+     "（an island off West Africa：同位语，补充说明 Príncipe）"],
+    [[("Crommelin and Davidson","克罗姆林和戴维森则"),("from Sobral,","在索布拉尔，"),("in north-eastern Brazil.","位于巴西东北部。")],
+     "（Crommelin and Davidson from Sobral：\n承前省略了 observed）"]]),
+(1,[[[("They","他们"),("were testing","要检验"),("general relativity's","广义相对论的一个"),("**bold**","**大胆的**(bold)"),("prediction","预言，")]],
+    [[("that the sun's","即太阳的"),("**gravity**","**引力**(gravity)"),("would **deflect** starlight.","会使经过它附近的星光**偏折**(deflect)。")],
+     "（that the sun's gravity…：同位语从句，\n说明 prediction 的内容）"]]),
+(2,[[[("On 6 November,","11月6日，"),("at a **joint** meeting of the Royal Society and the Royal Astronomical Society,","英国皇家学会与皇家天文学会召开**联席**(joint)会议，")],
+     "（of the Royal Society…：of 结构作后置定语，修饰 meeting）"],
+    [[("the **findings**","观测**结果**(findings)"),("were **hailed as**","被**盛赞为**(hailed as)"),("confirming it.","证实了这一预言。")],
+     "（be hailed as：被盛赞为，被誉为；\nit 指上文的预言）"]]),
+(2,[[[("The Times","《泰晤士报》"),("**proclaimed**","**宣告了**(proclaimed)"),("a \"Revolution in Science\";","一场“科学革命”；")]],
+    [[("a New York Times","《纽约时报》的"),("**headline**","**标题**(headline)"),("read","写着"),("\"Lights All Askew in the Heavens\".","“天上的光全歪了”。")],
+     "（read：（文字）写着）"]]),
+(2,[[[("Almost **overnight**,","几乎**一夜之间**(overnight)，"),("Einstein, **eminent among** **physicists**,","**在**(eminent among)**物理学家**(physicists)**中声望卓著的**(eminent among)爱因斯坦")],
+     "（eminent among physicists：插入语，补充说明 Einstein；\neminent among：在……中声望卓著）"],
+    [[("became","成了"),("a global","举世皆知的"),("**celebrity**.","**名人**(celebrity)。")]]]),
+(3,[[[("Stockholm","斯德哥尔摩却"),("proved harder","没那么容易"),("to **dazzle**.","被**眩惑**(dazzle)。")],
+     "（Stockholm：指斯德哥尔摩的诺贝尔奖评审机构；\nprove＋形容词：结果是……）"]]),
+(3,[[[("The Nobel physics committee","诺贝尔物理学委员会"),("valued","看重的是"),("**rigorous**","**严格的**(rigorous)"),("**experimental**","**实验**(experimental)"),("**confirmation**,","**证实**(confirmation)，")]],
+    [[("and committee member","而委员"),("Allvar Gullstrand,","阿尔瓦·古尔斯特兰德，"),("a Nobel-winning","一位获得过诺贝尔奖的"),("eye","眼科"),("**specialist**,","**专家**(specialist)，")],
+     "（a Nobel-winning eye specialist：同位语，\n补充说明 Allvar Gullstrand）"],
+    [[("**deemed**","**认定**(deemed)"),("the **empirical** support for relativity","相对论的**实证**(empirical)支持"),("**insufficient**.","**不足**(insufficient)。")],
+     "（deem A insufficient：认定 A 不足；\nfor relativity：后置定语，修饰 support）"]]),
+(3,[[[("Since","由于"),("no **nomination**","没有一项**提名**(nomination)"),("**fulfilled**","**符合**(fulfilled)"),("Nobel's","诺贝尔定下的"),("**criteria**,","**标准**(criteria)，")]],
+    [[("the 1921 prize","1921年的奖"),("was **reserved**","被**保留**(reserved)"),("for a year,","一年，"),("as the **statutes**","这是**章程**(statutes)"),("**permit**.","所**允许**(permit)的。")],
+     "（as the statutes permit：as 引导方式状语从句，\n按照章程所允许的办法）"]]),
+(4,[[[("On 9 November 1922","1922年11月9日，"),("the Royal Swedish Academy of Sciences","瑞典皇家科学院"),("**conferred** it **on** Einstein,","把这个奖**授予**(conferred on)爱因斯坦，")],
+     "（confer A on B：把 A 授予 B；it 指1921年的奖）"],
+    [[("**citing**","**表彰**(citing)"),("his services to theoretical physics,","他对理论物理学的贡献，"),("especially","尤其是"),("his discovery of the law of the photoelectric effect.","他发现了光电效应定律。")],
+     "（citing…：现在分词短语作伴随状语；\nespecially his discovery…：补充说明 services）"]]),
+(4,[[[("That law,","这条定律"),("which **governs**","**决定了**(governs)"),("how light","光如何"),("**ejects** **electrons** from metal,","把**电子**(electrons)从金属中**打出**(ejects)，")],
+     "（which governs…：非限制性定语从句，修饰 That law；\nhow light…：宾语从句）"],
+    [[("helped","曾帮助"),("**underpin**","**奠定**(underpin)"),("**quantum** theory.","**量子**(quantum)理论的基础。")],
+     "（help underpin：帮助奠定……的基础）"]]),
+(4,[[[("A letter the next day","第二天的一封信"),("**clarified**","**说明**(clarified)，"),("that the prize","此奖"),("took no account of","并未考虑"),("relativity.","相对论。")],
+     "（the next day：后置定语，修饰 letter；\ntake no account of：不考虑）"]]),
+(4,[[[("Einstein,","爱因斯坦"),("then","当时正"),("**aboard**","**乘**(aboard)"),("a **steamer** **bound for** Japan,","一艘**开往**(bound for)日本的**轮船**(steamer)，")],
+     "（then aboard…：插入语，补充说明 Einstein；\nbound for Japan：后置定语，修饰 steamer）"],
+    [[("would miss","将错过"),("the December","12月的颁奖"),("**ceremony**.","**典礼**(ceremony)。")]]]),
+(5,[[[("On 11 July 1923,","1923年7月11日，"),("in Gothenburg, Sweden,","在瑞典哥德堡，"),("he","他"),("**delivered**","**发表了**(delivered)"),("his Nobel","他的诺贝尔"),("**lecture**","**演讲**(lecture)，")]],
+    [[("before a **congress** of Nordic scientists,","面向北欧自然科学家**大会**(congress)，")],
+     "（before：在……面前；\nof Nordic scientists：of 结构作后置定语，修饰 congress）"],
+    [[("**devoting** it **to**","**专门**(devoting to)讲"),("the **fundamental** ideas and problems of relativity.","相对论的**基本**(fundamental)思想与问题。")],
+     "（devote A to B：把 A 专门用于 B；it 指 lecture）"]]),
+(5,[[[("The theory the committee looked past","委员会绕开不看的那个理论，"),("reached a Nobel **podium** after all,","终究登上了诺贝尔的**讲台**(podium)，")],
+     "（the committee looked past：定语从句，省略了关系代词，修饰 theory；\nlook past：忽视，绕开不看）"],
+    [[("carried there by the man the prize had **honoured**.","把它带上去的，正是这个奖所**嘉奖**(honoured)的人。")],
+     "（carried there by…：过去分词短语作状语；\nthe prize had honoured：定语从句，修饰 man）\n"
+     "（简述：1919年5月日全食时，两支英国考察队拍下太阳附近的恒星，检验广义相对论关于引力使星光偏折的预言。\n"
+     "11月，英国两大学会盛赞结果证实了预言，报纸争相报道，爱因斯坦一夜成名。\n"
+     "但诺贝尔委员会看重严格的实验证实，古尔斯特兰德认为相对论证据不足，1921年的奖被保留一年。\n"
+     "1922年11月，科学院把奖授予爱因斯坦，表彰的是光电效应定律，并说明不考虑相对论，他当时在去日本的船上。\n"
+     "1923年7月，他在哥德堡的诺贝尔演讲专讲相对论，被委员会绕开的理论终究登上了诺贝尔讲台。）"]]),
+]
+G={
+ "S1 stars in its apparent vicinity":"对齐不了：in its apparent vicinity 是后置定语，修饰 stars，中文“看似位于太阳附近的恒星”定语必须提前",
+ "S3 general relativity's":"对齐不了：general relativity 是术语“广义相对论”，拆开不通",
+ "S3 would deflect starlight":"对齐不了：deflect starlight 中文“使星光偏折”，宾语必须放到动词前（文章定稿原文“会使经过它附近的星光偏折”）",
+ "S4 at a joint meeting of the Royal Society and the Royal Astronomical Society":"对齐不了：of the Royal Society… 是 of 结构作后置定语，中文“英国皇家学会与皇家天文学会召开联席会议”机构名必须提前，机构名不能拆",
+ "S6 Einstein, eminent among physicists":"对齐不了：eminent among physicists 是插入语，中文“在物理学家中声望卓著的爱因斯坦”定语必须提前；两个重点词中文先后与英文相反",
+ "S8 The Nobel physics committee":"对齐不了：机构名“诺贝尔物理学委员会”，拆开不通",
+ "S8 the empirical support for relativity":"对齐不了：for relativity 是后置定语，修饰 support，中文“相对论的实证支持”必须提前",
+ "S10 the Royal Swedish Academy of Sciences":"对齐不了：机构名“瑞典皇家科学院”，拆开不通",
+ "S10 conferred it on Einstein":"对齐不了：confer A on B 被 it 隔开，中文“把这个奖授予爱因斯坦”，只能整组",
+ "S10 his services to theoretical physics":"对齐不了：to theoretical physics 是后置定语，修饰 services，中文“他对理论物理学的贡献”必须提前",
+ "S10 his discovery of the law of the photoelectric effect":"对齐不了：层层后置的 of 结构，中文“他发现了光电效应定律”语序必须倒过来，术语不能拆",
+ "S11 ejects electrons from metal":"对齐不了：eject A from B 中文“把电子从金属中打出”，动词必须放到最后；两个重点词中文先后与英文相反",
+ "S12 A letter the next day":"对齐不了：the next day 是后置定语，修饰 letter，中文“第二天的一封信”必须提前",
+ "S12 took no account of":"对齐不了：take no account of 是固定说法“不考虑”，拆开不通",
+ "S13 a steamer bound for Japan":"对齐不了：bound for Japan 是后置定语，修饰 steamer，中文“一艘开往日本的轮船”必须提前；两个重点词中文先后与英文相反",
+ "S14 before a congress of Nordic scientists":"对齐不了：of Nordic scientists 是 of 结构作后置定语，修饰 congress，中文“北欧自然科学家大会”必须提前",
+ "S14 the fundamental ideas and problems of relativity":"对齐不了：of relativity 是 of 结构作后置定语，中文“相对论的基本思想与问题”必须提前",
+ "S15 The theory the committee looked past":"对齐不了：the committee looked past 是省略关系代词的定语从句，修饰 theory，中文“委员会绕开不看的那个理论”必须提前",
+ "S15 reached a Nobel podium after all":"对齐不了：after all 中文“终究”必须放到动词前",
+ "S15 carried there by the man the prize had honoured":"对齐不了：被动结构加定语从句，中文“把它带上去的，正是这个奖所嘉奖的人”语序必须整个倒过来",
+}
+CONF={"合组":G}
+out={"no":"60","title_en":"The Scientific Giant Who Changed the World","title_zh":"改变世界的科学巨匠","title_fx":{"hl":["Giant","World"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+     "高亮按实际开口":True,"高亮开口门槛":40,
+     "术语":{"Arthur Eddington":"阿瑟·爱丁顿","Príncipe":"普林西比","West Africa":"西非","Crommelin":"克罗姆林","Davidson":"戴维森","Sobral":"索布拉尔","Brazil":"巴西","British":"英国","Royal Society":"皇家学会","Royal Astronomical Society":"皇家天文学会","The Times":"《泰晤士报》","New York Times":"《纽约时报》","Einstein":"爱因斯坦","Stockholm":"斯德哥尔摩","Allvar Gullstrand":"阿尔瓦·古尔斯特兰德","Royal Swedish Academy of Sciences":"瑞典皇家科学院","Japan":"日本","Gothenburg":"哥德堡","Sweden":"瑞典","Nordic":"北欧"}}
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from 核对 import 生成并核对
+生成并核对(S, out)
