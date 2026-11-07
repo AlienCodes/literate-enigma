@@ -47,9 +47,9 @@ S=[
      "（keep doing：一直做……；\nwithout quicklime：介词短语作后置定语，修饰 samples）"]]),
 (5,[[[("The **implications**","这项发现的**意义**(implications)"),("**extend beyond**","**超出了**(extend beyond)"),("**archaeology**.","**考古学**(archaeology)**的范围**(extend beyond)。")],
      "（extend beyond…：超出……的范围）"]]),
-(5,[[[("Cement **manufacture**","水泥**生产**(manufacture)"),("accounts for","约占"),("about 8 per cent of global carbon dioxide **emissions**,","全球二氧化碳**排放**(emissions)的8%，")],
+(5,[[[("Cement","水泥"),("**manufacture**","**生产**(manufacture)"),("**accounts for**","**占据**(accounts for)"),("about 8 per cent of global carbon dioxide **emissions**,","全球二氧化碳**排放**(emissions)量的约8%，")],
      "（account for…：（在数量上）占……）"],
-    [[("the think-tank","智库"),("Chatham House","查塔姆研究所（Chatham House）"),("reported in June 2018.","2018年6月报告称。")]]]),
+    [[("the **think-tank**","**智囊团**(think-tank)"),("Chatham House","查塔姆研究所"),("reported in June 2018.","于2018年6月报告说。")]]]),
 (5,[[[("Concrete that mends its cracks","能自行修补裂缝的混凝土"),("could","可能"),("last longer,","更经久耐用，")],
      "（that mends its cracks：定语从句，修饰 Concrete）"],
     [[("making","从而使"),("**demolition**","**拆除**(demolition)"),("and rebuilding","与重建"),("rarer","减少，"),("and **trimming**","并**削减**(trimming)"),("emissions.","排放。")],
@@ -63,7 +63,7 @@ S=[
      "罗马混凝土并不更坚固，长处在于耐久。它里面的白色石灰碎屑，\n"
      "过去被专家当作搅拌马虎或原料低劣的缺陷。2023年《科学进展》的研究认为，\n"
      "碎屑是生石灰热混合的副产品：水渗入裂缝时碎屑溶解，钙重新结晶为碳酸钙，堵住缝隙。\n"
-     "水泥生产约占全球二氧化碳排放的8%，能自行修补裂缝的混凝土可能减少拆建和排放，\n"
+     "水泥生产占据全球二氧化碳排放量的约8%，能自行修补裂缝的混凝土可能减少拆建和排放，\n"
      "这些曾被轻视的碎屑因此促使人们重新思考建造之道。）"]]),
 ]
 G={
@@ -76,7 +76,8 @@ G={
  "S5 a lifespan of around 50 years":"对齐不了：a lifespan of… 是 of 结构，中文“约50年的使用寿命”，“使用寿命”必须放到最后",
  "S12 calcium carbonate":"对齐不了：calcium carbonate 是化学名“碳酸钙”，一个词，不能拆",
  "S13 samples without quicklime":"对齐不了：without quicklime 是后置定语，修饰 samples，中文“不含生石灰的样本”定语必须提前",
- "S15 about 8 per cent of global carbon dioxide emissions":"对齐不了：8 per cent of… 是 of 结构，中文“全球二氧化碳排放的8%”百分数必须放到后面",
+ "S15 about 8 per cent of global carbon dioxide emissions":"对齐不了：8 per cent of… 是 of 结构，中文“全球二氧化碳排放量的约8%”百分数必须放到后面",
+ "S15 reported in June 2018":"对齐不了：in June 2018 是时间状语，中文“于2018年6月报告说”时间必须放到动词前",
  "S16 Concrete that mends its cracks":"对齐不了：that mends its cracks 是定语从句，修饰 Concrete，中文“能自行修补裂缝的混凝土”定语必须提前",
  "S16 last longer":"对齐不了：last longer 中文“更经久耐用”是一个说法，拆开不通",
  "S17 signs of clumsy workmanship":"对齐不了：signs of… 是 of 结构，中文“手艺拙劣的痕迹”，“痕迹”必须放到最后",
