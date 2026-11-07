@@ -22,9 +22,9 @@ S=[
      "（Restless since 20 May：形容词短语作状语，\n逻辑主语是 the volcano）"],
     [[("the volcano","这座火山"),("reached","达到"),("a **catastrophic**","**灾难性的**(catastrophic)"),("**climax**","**高潮**(climax)"),("on 26–27 August.","是在8月26日至27日。")],
      "（reach a climax：达到高潮）"]]),
-(2,[[[("About","约"),("two-thirds","三分之二"),("of the island","的岛体"),("collapsed into","塌入"),("its **emptied**","**已被排空的**(emptied)"),("**magma** chamber,","**岩浆**(magma)房，")],
+(2,[[[("About","约"),("two-thirds","三分之二"),("of the island","的岛体"),("**collapsed into**","**塌入**(collapsed into)"),("its **emptied**","**已被排空的**(emptied)"),("**magma** chamber,","**岩浆**(magma)房，")],
      "（emptied：过去分词作定语，已被排空的；\nmagma chamber：岩浆房）"],
-    [[("vanishing","消失在"),("beneath the sea.","海面之下。")],
+    [[("**vanishing**","**消失**(vanishing)在"),("beneath the sea.","海面之下。")],
      "（vanishing…：现在分词短语作状语，补充说明结果）"]]),
 (2,[[[("**Tsunamis**,","**海啸**(Tsunamis)"),("**reportedly**","**据报道**(reportedly)"),("over 30 metres high in places,","局部高逾30米，")],
      "（reportedly over 30 metres high in places：\n插入的形容词短语，补充说明 Tsunamis；\nin places：在某些地方，局部）"],
@@ -125,6 +125,7 @@ CONF={"合组":G,"对齐":{
 out={"no":"54","title_en":"The Sound That Shook the World","title_zh":"震动世界的一声巨响","title_fx":{"hl":["Sound","Shook"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "非人声区间":{"S4":[[2.065,2.305],[7.626167,7.664958,"紧贴词尾"]]},
      "高亮开始":{"S16 第2块":152.09,"S16 第3块":155.29},
+     "allow_clash":["collapsed into","vanishing"],
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Krakatoa":"喀拉喀托","Sunda":"巽他","Rodrigues":"罗德里格斯岛","Indian Ocean":"印度洋","Java":"爪哇岛","Sumatra":"苏门答腊岛","Dutch":"荷兰","Batavia":"巴达维亚","Jakarta":"雅加达","London":"伦敦","Europe":"欧洲","North America":"北美","New York":"纽约州","Connecticut":"康涅狄格州","Britain":"英国","Royal Society":"英国皇家学会","The Times":"《泰晤士报》"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
