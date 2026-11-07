@@ -10,7 +10,7 @@ S=[
      "（an island off West Africa：同位语，补充说明 Príncipe）"],
     [[("Crommelin and Davidson","克罗姆林和戴维森则"),("from Sobral,","在索布拉尔，"),("in north-eastern Brazil.","位于巴西东北部。")],
      "（Crommelin and Davidson from Sobral：\n承前省略了 observed）"]]),
-(1,[[[("They","他们"),("were testing","要检验"),("general relativity's","广义相对论的一个"),("**bold**","**大胆的**(bold)"),("prediction","预言，")]],
+(1,[[[("They","他们"),("were testing","要检验"),("**general relativity**'s","**广义相对论**(general relativity)的一个"),("**bold**","**大胆的**(bold)"),("prediction","预言，")]],
     [[("that the sun's","也就是太阳的"),("**gravity**","**引力**(gravity)"),("would **deflect** starlight.","会使经过它附近的星光**偏折**(deflect)。")],
      "（that the sun's gravity…：同位语从句，\n说明 prediction 的内容）"]]),
 (2,[[[("On 6 November,","11月6日，"),("at a **joint** meeting of the Royal Society and the Royal Astronomical Society,","英国皇家学会与皇家天文学会召开**联席**(joint)会议，")],
@@ -20,13 +20,13 @@ S=[
 (2,[[[("The Times","《泰晤士报》"),("**proclaimed**","**宣告了**(proclaimed)"),("a \"Revolution in Science\";","一场“科学革命”；")]],
     [[("a New York Times","《纽约时报》的"),("**headline**","**标题**(headline)"),("read","写着"),("\"Lights All Askew in the Heavens\".","“天上的光全歪了”。")],
      "（read：（文字）写着）"]]),
-(2,[[[("Almost","几乎"),("**overnight**,","**一夜之间**(overnight)，"),("Einstein, **eminent among** **physicists**,","**在**(eminent among)**物理学家**(physicists)**中声望卓著的**(eminent among)爱因斯坦")],
-     "（eminent among physicists：插入语，补充说明 Einstein；\neminent among：在……中声望卓著）"],
+(2,[[[("Almost","几乎"),("**overnight**,","**一夜之间**(overnight)，"),("Einstein, **eminent** among **physicists**,","在**物理学家**(physicists)中**卓越的**(eminent)爱因斯坦")],
+     "（eminent among physicists：插入语，补充说明 Einstein）"],
     [[("became","成了"),("a global","举世皆知的"),("**celebrity**.","**名人**(celebrity)。")]]]),
 (3,[[[("Stockholm","斯德哥尔摩却"),("proved harder","没那么容易"),("to **dazzle**.","被**眩惑**(dazzle)。")],
      "（Stockholm：指斯德哥尔摩的诺贝尔奖评审机构；\nprove＋形容词：结果是……）"]]),
 (3,[[[("The Nobel physics committee","诺贝尔物理学委员会"),("valued","看重的是"),("**rigorous**","**严格的**(rigorous)"),("**experimental**","**实验**(experimental)"),("**confirmation**,","**证实**(confirmation)，")]],
-    [[("and committee member","而委员"),("Allvar Gullstrand,","阿尔瓦·古尔斯特兰德，"),("a Nobel-winning","一位获得过诺贝尔奖的"),("eye","眼科"),("**specialist**,","**专家**(specialist)，")],
+    [[("and","而"),("**committee**","**委员会**(committee)"),("member","成员"),("Allvar Gullstrand,","阿尔瓦·古尔斯特兰德，"),("a Nobel-winning","一位获得过诺贝尔奖的"),("eye","眼科"),("**specialist**,","**专家**(specialist)，")],
      "（a Nobel-winning eye specialist：同位语，\n补充说明 Allvar Gullstrand）"],
     [[("**deemed**","**认定**(deemed)"),("the **empirical** support for relativity","相对论的**实证**(empirical)支持"),("**insufficient**.","**不足**(insufficient)。")],
      "（deem A insufficient：认定 A 不足；\nfor relativity：后置定语，修饰 support）"]]),
@@ -63,12 +63,10 @@ S=[
 ]
 G={
  "S1 stars in its apparent vicinity":"对齐不了：in its apparent vicinity 是后置定语，修饰 stars，中文“看似位于太阳附近的恒星”定语必须提前",
- "S3 general relativity's":"对齐不了：general relativity 是术语“广义相对论”，拆开不通",
  "S3 would deflect starlight":"对齐不了：deflect starlight 中文“使星光偏折”，宾语必须放到动词前（文章定稿原文“会使经过它附近的星光偏折”）",
  "S4 at a joint meeting of the Royal Society and the Royal Astronomical Society":"对齐不了：of the Royal Society… 是 of 结构作后置定语，中文“英国皇家学会与皇家天文学会召开联席会议”机构名必须提前，机构名不能拆",
- "S6 Einstein, eminent among physicists":"对齐不了：eminent among physicists 是插入语，中文“在物理学家中声望卓著的爱因斯坦”定语必须提前；两个重点词中文先后与英文相反",
+ "S6 Einstein, eminent among physicists":"对齐不了：eminent among physicists 是插入语，中文“在物理学家中卓越的爱因斯坦”定语必须提前；两个重点词中文先后与英文相反",
  "S7 proved harder":"对齐不了：prove＋形容词比较级（proved harder to…），中文“没那么容易”是整体说法，拆开不通",
- "S8 and committee member":"对齐不了：committee member 是一个词“委员”，拆开不通",
  "S8 The Nobel physics committee":"对齐不了：机构名“诺贝尔物理学委员会”，拆开不通",
  "S8 the empirical support for relativity":"对齐不了：for relativity 是后置定语，修饰 support，中文“相对论的实证支持”必须提前",
  "S10 the Royal Swedish Academy of Sciences":"对齐不了：机构名“瑞典皇家科学院”，拆开不通",
@@ -111,7 +109,7 @@ CONF={"合组":G,"对齐":{"S1-2 stars in its apparent vicinity": "in its appare
 "删除段":{"S1 raw 2.6613-2.9537": {"类型": "紧贴两头的非人声", "配音指纹": "bd6dda0342c8", "依据": "1919, 后停顿里的吸气（自动切点 非人声区间 S1 [2.59125, 2.88375, 紧贴两头]，删掉的最响 -35.9 dB、无周期），切点在过零点、词本身不动"}, "S2 raw 2.5650-2.8786": {"类型": "紧贴词头的非人声", "配音指纹": "bd6dda0342c8", "依据": "Príncipe, 后停顿里的吸气（非人声区间 S2 [2.54, 2.818667, 紧贴词头]，最响 -38.1 dB），一直贴到 an 的起音，词头切在过零点"}, "S3 raw 2.1401-2.3700": {"类型": "紧贴词尾的非人声", "配音指纹": "bd6dda0342c8", "依据": "2026-11-07 逐 2.5 ms 实测（S3 w）：relativity's 的 /z/ 到 2.11（重心 4–5.6 kHz），2.115–2.26 是吸气（-43～-51 dB、重心 2.0–2.6 kHz、低频 -15.7 dB、周期 0.23，145 ms），2.26–2.345 残尾 -51～-62 dB，2.355 起 bold 的 /b/ 浊音杠；/z/ 与吸气之间没有 -55 dB 低谷，起点切在过零点 2.120083，/z/ 本身不动"}, "S8 raw 4.4900-4.9633": {"类型": "紧贴词头的非人声", "配音指纹": "bd6dda0342c8", "依据": "confirmation, 后停顿里的吸气（非人声区间 S8 [4.745, 4.963333, 紧贴词头]，最响 -39.6 dB），贴到 and 的起音，词头切在过零点"}, "S9 raw 3.3900-3.8100": "2026-11-07 逐 10 ms 实测（S9 w）：criteria, 的 ə 到 3.37，3.38–3.42 静音（-55～-61 dB），3.43–3.73 是吸气（-39～-51 dB、低频 -12～-24 dB 无周期），3.74–3.79 是孤立的声门噪声（-42～-55 dB），3.80–3.81 -60～-64 dB 低谷，3.82 起 the 的 /ð/；删掉的是吸气，两侧都在静音里", "S10 raw 2.6250-2.8650": "2026-11-07 逐 10 ms 实测（S10 w）：1922 的 uː 衰减到 2.61（-55.7 dB 低谷），2.62–2.80 是吸气（-40～-48 dB、低频 -10～-22 dB 无周期），2.81–2.87 孤立声门噪声（-46～-56 dB），2.88 -60 dB，2.89 起 the 的 /ð/；删掉的是吸气，两侧都在静音里"},
 "高亮":{"S3 第2块": {"开始读": 28.94, "配音指纹": "bd6dda0342c8", "依据": "2026-11-07 直接读 work_60/a.wav 逐 5 ms：prediction 衰减到 28.74（-65～-78 dB），28.745–28.935 是删掉吸气后的数字静音（非人声区间 S3 [3.361375, 3.6]），28.940 起 that 的 /ð/（-69→-49→-36 dB），28.965 起元音 -18 dB；开始读 28.94，高亮 28.93 差 0.01 s。办法甲 28.76 落在数字静音里，不对"}},
 "机器复听":{"S2": {"配音指纹": "bd6dda0342c8", "依据": "2026-11-07：Príncipe 配音按读音改正 ˈpɹɪnsɪpə 读，识别器拼成 iprincipe / ipríncipa（专名拼写，前面的 i 是 Island 后连读）；Crommelin 读 kɹˈɑːməlɪn，识别器拼成 cromelin（少一个 m，同音）。读音按已核实读音，非读错"}, "S5": {"配音指纹": "bd6dda0342c8", "依据": "2026-11-07：headline read 是过去式，按语境读音读 /rɛd/，两个识别器都听成 red，正是要的读法（多音词核对 60 S5 read）"}, "S8": {"配音指纹": "bd6dda0342c8", "依据": "2026-11-07：Allvar Gullstrand 按读音改正 ˈɑːlvɑːɹ ɡˈʊlstɹænd 读，识别器拼成 alvar gholstrand / alvar goldstrand（瑞典专名拼写，读音同已核实读音），非读错"}},
-"同词异译":{"eminent among：中声望卓著的/在":"不是两种译法：eminent among 的意思“在……中声望卓著的”被“物理学家”隔开，“在”和“中声望卓著的”是同一个意思的两部分（T23）"}}
+"同词异译":{}}
 out={"no":"60","title_en":"The Scientific Giant Who Changed the World","title_zh":"改变世界的科学巨匠","title_fx":{"hl":["Giant","World"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Arthur Eddington":"阿瑟·爱丁顿","Príncipe":"普林西比","West Africa":"西非","Crommelin":"克罗姆林","Davidson":"戴维森","Sobral":"索布拉尔","Brazil":"巴西","British":"英国","Royal Society":"皇家学会","Royal Astronomical Society":"皇家天文学会","The Times":"《泰晤士报》","New York Times":"《纽约时报》","Einstein":"爱因斯坦","Stockholm":"斯德哥尔摩","Allvar Gullstrand":"阿尔瓦·古尔斯特兰德","Royal Swedish Academy of Sciences":"瑞典皇家科学院","Japan":"日本","Gothenburg":"哥德堡","Sweden":"瑞典","Nordic":"北欧"}}
