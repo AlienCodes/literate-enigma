@@ -9,7 +9,7 @@ The bridge had opened in July 1940 as the third-longest **suspension** **span** 
 
 The **mechanism** was **subtler**. Each twist **altered** the passing airflow, which **reinforced** the next twist: a **feedback** loop that kept **tapping** the wind for energy. In March 1941 a federal **panel** blamed the deck's **flexibility** and wing-like lift. Later analysis called the mechanism flutter; in February 1991 two engineers **asserted** in a physics journal that textbooks had **erred**.
 
-The panel urged **wind-tunnel** tests, and trials on **scaled-down** **replicas** **gradually** became **customary** for suspension bridges. A **sturdier** **replacement** opened in October 1950. Gertie's fall may still **instruct** engineers, if read **accurately**: the wind never kept time with the bridge, the bridge's own motion turned a sustained wind destructive.
+The panel urged **wind-tunnel** tests, and trials on **scaled-down** **replicas** **gradually** became **customary** for suspension bridges. A **sturdier** **replacement** opened in October 1950. Gertie's fall may still **instruct** engineers, if read **accurately**: the wind never kept time with the bridge, the bridge's own motion turned a sustained wind **destructive**.
 
 ## 中文
 
@@ -21,7 +21,7 @@ The panel urged **wind-tunnel** tests, and trials on **scaled-down** **replicas*
 
 其**机理**(mechanism)要**更为微妙**(subtler)。每一次扭动都**改变了**(altered)掠过的气流，而气流又**加强了**(reinforced)下一次扭动：这是一个不断从风中**汲取**(tapping)能量的**反馈**(feedback)回路。（which…：非限制性定语从句，指代 the passing airflow）（a feedback loop：同位语，概括前面的过程；keep doing：不断做；tap A for B：从 A 汲取 B）1941年3月，一个联邦**调查委员会**(panel)把原因归于桥面的**柔性**(flexibility)和类似机翼的升力。（blame…：把（事故）归咎于……）后来的分析把这一机理称为颤振；1991年2月，两位工程师在一份物理学期刊上**断言**(asserted)，教科书**出错了**(erred)。（call A B：把 A 称为 B）（that…：宾语从句，作 asserted 的宾语；had erred：过去完成时）
 
-该委员会力主进行**风洞**(wind-tunnel)试验，并且对**按比例缩小的**(scaled-down)**复制品**(replicas)进行试验，对于悬索桥而言也**渐渐**(gradually)成为了**惯例**(customary)。（trials on…：用……做的试验；become customary：成为惯例）一座**更坚固的**(sturdier)**替代**(replacement)桥于1950年10月通车。格蒂的倒塌或许至今仍能给工程师以**教益**(instruct)，只要解读得**准确**(accurately)：风从未合着大桥的节拍，是大桥自身的运动让持续不断的风变得具有破坏力。（if read accurately：省略形式，= if it is read accurately）（keep time with：合着……的节拍；turn A＋形容词：使 A 变得……）（简述：1940年11月7日，一股持续的大风让塔科马海峡大桥扭动起来，振荡越来越剧烈，主跨断裂坠入水中，无人丧生。这座悬索桥当年7月才通车，桥身纤细、省钱却不够刚硬，微风就能让它起伏，人称奔腾的格蒂。教科书常用共振来解释，但那天的风吹得平稳，并没有合着大桥的节拍涌动。真正的机理是扭动改变气流、气流又加强扭动的反馈回路，后来称为颤振，1991年两位工程师指出教科书错了。此后风洞模型试验成为惯例，1950年更坚固的新桥通车。）
+该委员会力主进行**风洞**(wind-tunnel)试验，并且对**按比例缩小的**(scaled-down)**复制品**(replicas)进行试验，对于悬索桥而言也**渐渐**(gradually)成为了**惯例**(customary)。（trials on…：用……做的试验；become customary：成为惯例）一个**更坚固的**(sturdier)**替代品**(replacement)于1950年10月通车（开放）。格蒂的倒塌或许仍能**指导着**(instruct)工程师，如果解读得**精准**(accurately)：风从未与大桥合拍，是大桥自身的运动使一股持续的风**具有了破坏力**(destructive)。（if read accurately：省略形式，= if it is read accurately）（keep time with：合着……的节拍；turn A＋形容词：使 A 变得……）（简述：1940年11月7日，一股持续的大风让塔科马海峡大桥扭动起来，振荡越来越剧烈，主跨断裂坠入水中，无人丧生。这座悬索桥当年7月才通车，桥身纤细、省钱却不够刚硬，微风就能让它起伏，人称奔腾的格蒂。教科书常用共振来解释，但那天的风吹得平稳，并没有合着大桥的节拍涌动。真正的机理是扭动改变气流、气流又加强扭动的反馈回路，后来称为颤振，1991年两位工程师指出教科书错了。此后风洞模型试验成为惯例，1950年更坚固的新桥通车。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -80,9 +80,10 @@ The panel urged **wind-tunnel** tests, and trials on **scaled-down** **replicas*
 | gradually | 本文：渐渐；adv. 逐渐地，逐步地（gradually become/improve）；gradual adj. | 5 |
 | customary | 本文：惯例；adj. 惯常的，习惯的（it is customary to do sth；become customary 成为惯例）；custom n. 习俗 | 5 |
 | sturdier | 本文：更坚固的；adj. (sturdy 比较级) 更坚固的，更结实的（a sturdy bridge/table）；（人）健壮的；坚定的 | 5 |
-| replacement | 本文：替代；n. 替代物，替换者（a replacement for sth）；替换，更换（hip replacement 髋关节置换）；replace v. | 5 |
-| instruct | 本文：教益；v. 教导，给以教益；指示，命令（instruct sb to do sth）；instruction n.；instructive adj. 有教育意义的 | 5 |
-| accurately | 本文：准确；adv. 准确地，精确地（read/measure accurately）；accurate adj.；accuracy n. | 5 |
+| replacement | 本文：替代品；n. 替代物，替换者（a replacement for sth）；替换，更换（hip replacement 髋关节置换）；replace v. | 5 |
+| instruct | 本文：指导；v. 教导，给以教益；指示，命令（instruct sb to do sth）；instruction n.；instructive adj. 有教育意义的 | 5 |
+| accurately | 本文：精准；adv. 准确地，精确地（read/measure accurately）；accurate adj.；accuracy n. | 5 |
+| destructive | 本文：具有破坏力；adj. 破坏性的，毁灭性的（a destructive storm/force）；destruction n.；destroy v. | 5 |
 
 ## 史实与来源
 - 【T1/T4】1940年11月7日上午，约40 mph（约64 km/h）风中，桥面交替扭转、幅度渐增直至撕裂；约11:02起桥面陆续坠落，约六分钟内中跨几乎全部坠入普吉特海湾（正文写 most of the main span，不写分钟）。WSDOT TNB History：https://wsdot.wa.gov/TNBHistory/collapse.htm ；Wikipedia "Tacoma Narrows Bridge (1940)"。

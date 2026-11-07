@@ -50,11 +50,11 @@ S=[
 (5,[[[("The panel","该委员会"),("urged","力主进行"),("**wind-tunnel**","**风洞**(wind-tunnel)"),("tests,","试验，")]],
     [[("and","并且"),("trials on","对"),("**scaled-down**","**按比例缩小的**(scaled-down)"),("**replicas**","**复制品**(replicas)进行试验，"),("**gradually**","对于悬索桥而言也**渐渐**(gradually)"),("became","成为了"),("**customary** for suspension bridges.","**惯例**(customary)。")],
      "（trials on…：对……进行的试验；\nbecome customary：成为惯例）"]]),
-(5,[[[("A **sturdier**","一座**更坚固的**(sturdier)"),("**replacement**","**替代**(replacement)桥"),("opened in October 1950.","于1950年10月通车。")]]]),
-(5,[[[("Gertie's fall","格蒂的倒塌"),("may still **instruct** engineers,","或许至今仍能给工程师以**教益**(instruct)，"),("if","只要"),("read","解读得"),("**accurately**:","**准确**(accurately)：")],
+(5,[[[("A","一个"),("**sturdier**","**更坚固的**(sturdier)"),("**replacement**","**替代品**(replacement)"),("opened in October 1950.","于1950年10月通车（开放）。")]]]),
+(5,[[[("Gertie's fall","格蒂的倒塌"),("may still","或许仍能"),("**instruct**","**指导着**(instruct)"),("engineers,","工程师，"),("if","如果"),("read","解读得"),("**accurately**:","**精准**(accurately)：")],
      "（if read accurately：省略形式，= if it is read accurately）"],
-    [[("the wind","风"),("never kept time with the bridge,","从未合着大桥的节拍，"),("the bridge's","是大桥"),("own","自身的"),("motion","运动"),("turned","让"),("a sustained","持续不断的"),("wind","风"),("destructive.","变得具有破坏力。")],
-     "（keep time with：合着……的节拍；\nturn A＋形容词：使 A 变得……）\n"
+    [[("the wind","风"),("never","从未"),("kept time with the bridge,","与大桥合拍，"),("the bridge's","是大桥"),("own","自身的"),("motion","运动"),("turned","使"),("a sustained","一股持续的"),("wind","风"),("**destructive**.","**具有了破坏力**(destructive)。")],
+     "（keep time with：与……合拍；\nturn A＋形容词：使 A 变得……）\n"
      "（简述：1940年11月7日，一股持续的大风让塔科马海峡大桥扭动起来，振荡越来越剧烈，主跨断裂坠入水中，无人丧生。\n"
      "这座悬索桥当年7月才通车，桥身纤细、省钱却不够刚硬，微风就能让它起伏，人称奔腾的格蒂。\n"
      "教科书常用共振来解释，但那天的风吹得平稳，并没有合着大桥的节拍涌动。\n"
@@ -74,7 +74,7 @@ G={
  "S12 a feedback loop that kept tapping the wind for energy":"对齐不了：that kept tapping… 是定语从句，修饰 loop，中文“不断从风中汲取能量的”必须提前",
  "S14 called the mechanism":"对齐不了：call A B 中文“把 A 称为 B”，语序必须变",
  "S14 asserted in a physics journal that":"对齐不了：in a physics journal 是地点状语，中文“在一份物理学期刊上”必须放到动词前",
- "S17 never kept time with the bridge":"对齐不了：keep time with 是固定说法“合着……的节拍”，the bridge 夹在中间，拆开中文不通",
+ "S17 kept time with the bridge":"对齐不了：keep time with 是固定说法“与……合拍”，the bridge 的中文“与大桥”必须放到“合拍”前（用户 2026-11-07 原话定译文）",
 }
 CONF={"合组":G}
 CONF["非人声"]={
@@ -94,6 +94,7 @@ CONF["非人声"]["S6 2.8675–3.090542"]="2026-11-05 逐 10 ms 实测（S6 按 
 CONF["机器复听"]={"S2":{"配音指纹":"30984056eceb","依据":"2026-11-05 实测（S2 w）：main 配音音标 mˈeɪn，读音核对 0；/m/ 5.71–5.83（重心 0.45–0.7 kHz、周期 0.5–0.6），eɪ 5.84–6.08（重心 1.6–2.3 kHz），/n/ 6.09–6.15（重心 0.65–0.95 kHz、低频 -1 dB），6.17–6.26 是 span 的 /s/（重心 5.3–6.4 kHz、低频只占 -30～-51 dB，清音，不是 /z/），6.27–6.29 /p/ 闭塞；main 读全，small.en 把 main + span 的 /s/ 并听成 manes，parakeet 听对"},
  "S6":{"配音指纹":"30984056eceb","依据":"2026-11-05 实测（S6 w，按 stˈɪfənddd 重合成后）：girders 配音音标 ɡˈɜːdɚz，读音核对 0；0.015–0.075 /ɡ/ 浊音闭塞（低频 -1～-4 dB、重心 0.3–0.7 kHz），0.08 /ɡ/ 除阻（重心 2.7–3.1 kHz），接 ɜ；首音是硬音 /ɡ/，small.en 写成同音拼法 gerders（不是读错），parakeet 听成 girders；stiffened 两路都听对（/d/ 闭塞 2.32–2.35、除阻 2.36–2.37）"}}
 CONF["删除段"]={'S7 raw 1.9750-2.3350': '2026-11-05 逐 10 ms 实测（S7 w）：heave 的 /v/ 1.85–1.96（重心 3.7–5.6 kHz）衰减，1.97–2.00 静音（-58～-61 dB）；2.01–2.23 是 -40～-53 dB、重心 1.9–2.4 kHz、低频 -13～-29 dB 的吸气（heave, 后自然停顿）；2.27–2.33 静音（-62～-69 dB），2.34 起 earning 的 ɜ；程序删掉的是这段自然停顿（静音+吸气+静音），两侧 -59.5/-55.7 dB，词的声音一点没碰', 'S13 raw 4.0350-4.0400': {'类型': '紧贴词头的非人声', '配音指纹': '30984056eceb', '依据': "2026-11-05 逐 10 ms 实测（S13 w）：deck's 的 ɛ 3.95–4.01 衰减，4.02–4.03 /k/ 闭塞静音（-60～-63 dB），4.04 /k/ 除阻（-22 dB）；删掉的 5 ms 是闭塞里的静音（最响 -64 dB），后侧 -54.4 dB 就是 /k/ 除阻起点，除阻本身完整"}, 'S13 raw 4.3700-4.3750': {'类型': '紧贴词尾的非人声', '配音指纹': '30984056eceb', '依据': '2026-11-05 逐 10 ms 实测（S13 w）：flexibility 的 ɛ 4.30–4.34 衰减，4.35–4.37 /k/ 闭塞（-53～-58 dB），4.38 /k/ 除阻；删掉的 5 ms 是闭塞里的静音（最响 -57.4 dB），前侧 -54.2 dB 是 ɛ 衰减末端，除阻完整'}, 'S13 raw 5.0350-5.1000': {'类型': '紧贴词头的非人声', '配音指纹': '30984056eceb', '依据': '2026-11-05 逐 10 ms 实测（S13 w）：flexibility 的词尾 i 4.95–5.00 衰减到 5.02 -60 dB，5.02–5.09 静音（-55～-70 dB），5.10 起 and（-28→-13 dB）；flexibility 与 and 之间无标点，删掉的 65 ms 是这段静音（最响 -52 dB），后侧 -54.1 dB 是 and 的起音，and 完整'}}
+CONF["合组"]["S16 opened in October 1950"]="对齐不了：in October 1950 是时间状语，中文“于1950年10月”必须放到动词“通车（开放）”前（用户 2026-11-07 原话定译文）"
 CONF["合组"]["S15 customary for suspension bridges"]="对齐不了：用户 2026-11-07 原话定译文“……对于悬索桥而言也渐渐成为了惯例”，for suspension bridges 的中文“对于悬索桥而言”必须放在最前面（gradually 那一组），这一组只剩“惯例”"
 CONF["对齐"]={"S14-2 asserted in a physics journal ":"in a physics journal 是地点状语，中文“在一份物理学期刊上”必须放到动词“断言”前；that 只引出宾语从句，并进这一组（用户 2026-11-07 要求 textbooks 下面单独放“教科书”）",
  "S15-2 customary for suspension bri":"for suspension bridges 的中文“对于悬索桥而言”按用户 2026-11-07 原话放在句首，这一组只剩“惯例”",
@@ -111,7 +112,7 @@ CONF["对齐"]={"S14-2 asserted in a physics journal ":"in a physics journal 是
  "S10-1 did not pulse in time with the":"in time with the bridge 是方式状语，中文“与大桥”必须放到动词“有节奏地跳动”前（用户 2026-11-06 原话定译文）",
  "S12-3 a feedback loop that kept tapp":"that kept tapping the wind for energy 是定语从句，修饰 loop，中文“不断从风中汲取能量的”必须提到“反馈回路”前",
  "S14-2 asserted in a physics journal t":"in a physics journal 是地点状语，中文“在一份物理学期刊上”必须放到动词“断言”前",
- "S17-2 never kept time with the bridg":"keep time with 是固定说法“合着……的节拍”，the bridge 夹在中间，中文“从未合着大桥的节拍”拆开不通"}
+ "S17-2 kept time with the bridge,":"keep time with 是固定说法“与……合拍”，the bridge 的中文“与大桥”必须放到“合拍”前（用户 2026-11-07 原话定译文）"}
 CONF["短语"]={"S6 stiffened the deck":"不是搭配：stiffen 单独就是“使变硬，加固”（速查表第一个意思），本文“加固了”即此义，the deck 是普通宾语“桥面”，用户 2026-11-06 原话只标 stiffened",
  "S2 tilted … from":"不是搭配：from side to side 是方式状语“左右”，tilt 单独就是“倾斜，倾侧”（速查表第一个意思），本文“倾侧”即此义",
  "S2 tilted … to":"不是搭配：to 属于 from side to side（左右），tilt 单独就是“倾斜，倾侧”",
@@ -135,7 +136,8 @@ out={"no":"53","title_en":"The Wind That Kept No Time: The Fall of Galloping Ger
      "非人声区间":{"标题":[[1.6,1.78]],"S2":[[4.555,4.940542,"紧贴词头"]],"S15":[[2.65,2.83875,"紧贴词头"],[5.21975,5.3975,"紧贴词尾"]],"S6":[[2.8675,3.090542,"紧贴词头"],[5.93,6.251208,"紧贴词头"]],"S13":[[1.920708,2.280042,"紧贴词头"]],"S17":[[5.925,5.97],[7.24525,7.605667,"紧贴词尾"]]},
      "停顿插入点":{"S12":{"1":[2.443375,"交界"]}},
      "分段增益dB":{"S8":{"2":0.6}},
-     "换行变更已获同意":{"S6":"用户 2026-11-07 原话：“我说过就是我们的这个汉语意思尽量和这个英文去对齐说过吧。就是尽量和你看教科书，它就尽量在这个textbooks下面。嗯，就是能尽可能的啊，如果说可以的话”（S6 按此拆组对齐，换行随之变）"},
+     "allow_clash":["destructive"],
+     "换行变更已获同意":{"S17":"用户 2026-11-07 原话：“我说过就是我们的这个汉语意思尽量和这个英文去对齐说过吧。就是尽量和你看教科书，它就尽量在这个textbooks下面。嗯，就是能尽可能的啊，如果说可以的话，所以说再重新生成4k的话，要注意一下这个问题。”（S17 按用户原话改译文并拆组对齐，换行随之变）","S6":"用户 2026-11-07 原话：“我说过就是我们的这个汉语意思尽量和这个英文去对齐说过吧。就是尽量和你看教科书，它就尽量在这个textbooks下面。嗯，就是能尽可能的啊，如果说可以的话”（S6 按此拆组对齐，换行随之变）"},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Tacoma Narrows Bridge":"塔科马海峡大桥","Galloping Gertie":"奔腾的格蒂","Gertie":"格蒂"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
