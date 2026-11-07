@@ -313,12 +313,14 @@ def 双爆破自动补样本():
           # K126（58 S4 livestock,）：往后找越过停顿删除开始处，把 were 起音前噪声当除阻（w 5.44），加强写进被删的停顿；好样本 写在真除阻 5.12–5.185、核对 0，坏样本 核对仍报
           ('58', '58_S4_除阻位置.json', "if deep and g != last and pos_r[0] * F5 >= ca:", lambda d: (lambda b: b and float(b[0]) < 5.3)(d.get('除阻加强', {}).get('S1', {}).get('2'))),
           # 59 S12 worked;（11-07）：已有词尾除阻的标点又写停顿处除阻（两下 /t/，每轮写回）；好样本 不写、交人看，坏样本 写了
+          # K124 放行（63 S11 remnant.，11-07）：闭塞是数字静音、原声弱除阻整个落在移植换掉的段里，照常移植（换掉后只剩一下）；好样本 写词尾除阻、核对 0，坏样本 交人看、核对仍报
+          ('63', '63_S11_数字静音闭塞.json', "换掉_ = bool(deep and mc_", lambda d: '句末' in d.get('词尾除阻', {}).get('S1', {})),
           ('59', '59_S12_已有词尾除阻.json', "if str(g + 1) in d.get('词尾除阻', {}).get(lab, {}):", lambda d: '1' not in d.get('停顿处除阻', {}).get('S1', {})))
     for no, fn, hook, 好 in 例:
         样 = f'{T}/样本/{fn}'
         if not os.path.exists(样): bad.append(f'K124 样本：没有 样本/{fn}'); continue
         if hook not in src: bad.append(f'K124：词尾辅音核对.py 里找不到 {no} 那一支（坏样本造不出）'); continue
-        for 名, code in (('好', src), ('坏', src.replace(hook, 'if False:'))):
+        for 名, code in (('好', src), ('坏', src.replace(hook, '换掉_ = False and bool(deep and mc_' if no == '63' else 'if False:'))):
             with tempfile.TemporaryDirectory(dir=os.path.dirname(W)) as td:   # 和工作目录同级：../tts 照样找得到
                 os.makedirs(f'{td}/scripts')
                 for f in os.listdir(W):
@@ -331,6 +333,10 @@ def 双爆破自动补样本():
                     if not 好(d) if 名 == '好' else 好(d): bad.append(f'59 S12 {"好样本不过：不该再写停顿处除阻" if 名 == "好" else "没抓到：拆掉后应又写停顿处除阻"}：{末}')
                     continue
                 if 名 == '好' and not (好(d) and '问题数 0' in o): bad.append(f'K124 好样本不过：{fn} 自动补不对或核对不过：{末}')
+                if no == '63':
+                    if 名 == '好' and not (好(d) and '问题数 0' in o): bad.append(f'K124 放行 好样本不过：63 S11 数字静音闭塞应照常移植、核对 0：{末}')
+                    if 名 == '坏' and '问题数 0' in o: bad.append(f'K124 放行 没抓到：拆掉后 63 S11 应交人看、核对仍报，实得 {末}')
+                    continue
                 if 名 == '坏' and no != '58' and '双爆破' not in o: bad.append(f'K124 没抓到：拆掉 K124 后 {fn} 应报双爆破，实得 {末}')
                 if 名 == '坏' and no == '58' and '问题数 0' in o: bad.append(f'K126 没抓到：拆掉 K126 后 {fn} 除阻加强应写错位置、核对仍报，实得 {末}')
     return bad

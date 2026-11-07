@@ -325,13 +325,19 @@ def write_grafts(no, d, bad):
             fs_ = len(w) - (F5 if len(w) != len(clean_tail(raw)) else int(0.05 * SR))
             if on * F5 > fs_: sec = round(fs_ / SR, 6); print(f'  {lab} 句末：移植点提前到句尾淡出开始处 {sec:.6f}s')
         ma2_ = re.search(r'除阻全频 (-?[\d.]+) dB', line)
+        # K124 放行（63 S5 not. 等 4 处、56 的 1858 三处，11-07）：闭塞是数字静音（≤ -200 dB）、原声那一下整个落在移植要换掉的那段里（段内 < -30 dB、前 5 ms < -40 dB），
+        # 移植把它整段换掉，只剩一下，不是双爆破，照常移植，不交人看
+        mc_ = re.search(r'闭塞最低 (-?[\d.]+) dB', line); p_ = int(round(sec * SR)); nd2_ = len(_donor(ph)) if ph in 'tk' else 0
+        换掉_ = bool(deep and mc_ and float(mc_.group(1)) <= -200 and nd2_ and p_ >= F5 and pos_r[1] * F5 <= p_ + nd2_ and e[p_ // F5 - 1] < -40 and max(e[p_ // F5:min(len(e), (p_ + nd2_) // F5 + 1)]) < -30)
         if ph in 'tk' and ma2_ and float(ma2_.group(1)) >= -40:   # K124 第二处（49 S12 outright,：原声已有一下 -28.6 dB 的除阻，闭塞没认出来，词尾除阻移植在它后面 15 ms，双爆破、删了又写回）：改加强原声那一下，不够就交人看
             if deep: pr2_ = pos_r
             else:   # 闭塞没认出：用核对同一个 release() 在 w 里量原声那一下的位置
                 m2_ = len(w) // F5; rf2_ = np.sqrt(np.mean(np.asarray(w[:m2_ * F5], np.float64).reshape(m2_, F5) ** 2, axis=1)).max()
                 z2_ = release(w, ss.sosfiltfilt(HP, np.asarray(w, np.float64)), len(w) if g == last else ca, rf2_)
                 pr2_ = (z2_[3][0] // F5, -(-z2_[3][1] // F5)) if z2_ else None
-            n += 加强代替(lab, '句末' if g == last else str(g + 1), pr2_, line, f'原声已有一下除阻 {float(ma2_.group(1)):.1f} dB'); continue
+            k2_ = 加强代替(lab, '句末' if g == last else str(g + 1), pr2_, line, f'原声已有一下除阻 {float(ma2_.group(1)):.1f} dB', 静=换掉_)
+            if k2_ or not 换掉_: n += k2_; continue
+            print(f'  {lab} {"句末" if g == last else "第%d个标点" % (g + 1)}：加强不够；闭塞是数字静音、原声那一下整段被供体换掉，照常移植（K124 放行）')
         gj.setdefault('标题' if lab == '标题' else lab, {})[('句末' if g == last else str(g + 1))] = [sec, ph]; n += 1
         print(f'写入 {no} {lab} {"句末" if g == last else "第%d个标点" % (g + 1)} /{ph}/ 位置 w {sec:.6f}s（{"闭塞最低点之后" if deep else "没有真正的闭塞：词的声音衰减到 -55 dB 后再留 15 ms 闭塞"}）')
     if n:
