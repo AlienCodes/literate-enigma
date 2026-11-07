@@ -275,7 +275,9 @@ def 双爆破自动补样本():
     if not W or not os.path.exists(f'{W}/make_video.py'): return []
     src = open(f'{T}/词尾辅音核对.py').read(); bad = []
     例 = (('47', '47_S6_双爆破.json', "if deep and ma_ and float(ma_.group(1)) >= -40:", lambda d: (lambda pg: pg and float(pg[0]) <= 14.235)(d.get('停顿处除阻', {}).get('S1', {}).get('4'))),
-          ('49', '49_S12_双爆破.json', "if ph in 'tk' and ma2_ and float(ma2_.group(1)) >= -40:", lambda d: '3' in d.get('除阻加强', {}).get('S1', {}) and '3' not in d.get('词尾除阻', {}).get('S1', {})))
+          ('49', '49_S12_双爆破.json', "if ph in 'tk' and ma2_ and float(ma2_.group(1)) >= -40:", lambda d: '3' in d.get('除阻加强', {}).get('S1', {}) and '3' not in d.get('词尾除阻', {}).get('S1', {})),
+          # K126（58 S4 livestock,）：往后找越过停顿删除开始处，把 were 起音前噪声当除阻（w 5.44），加强写进被删的停顿；好样本 写在真除阻 5.12–5.185、核对 0，坏样本 核对仍报
+          ('58', '58_S4_除阻位置.json', "if deep and g != last and pos_r[0] * F5 >= ca:", lambda d: (lambda b: b and float(b[0]) < 5.3)(d.get('除阻加强', {}).get('S1', {}).get('2'))))
     for no, fn, hook, 好 in 例:
         样 = f'{T}/样本/{fn}'
         if not os.path.exists(样): bad.append(f'K124 样本：没有 样本/{fn}'); continue
@@ -290,7 +292,8 @@ def 双爆破自动补样本():
                 r = subprocess.run(['python3', f'{td}/_核.py', no], capture_output=True, text=True, cwd=td, env=e, timeout=600); o = r.stdout + r.stderr
                 末 = (o.strip().splitlines() or ['无输出'])[-1][:120]; d = json.load(open(f'{td}/scripts/{no}.json'))
                 if 名 == '好' and not (好(d) and '问题数 0' in o): bad.append(f'K124 好样本不过：{fn} 自动补不对或核对不过：{末}')
-                if 名 == '坏' and '双爆破' not in o: bad.append(f'K124 没抓到：拆掉 K124 后 {fn} 应报双爆破，实得 {末}')
+                if 名 == '坏' and no != '58' and '双爆破' not in o: bad.append(f'K124 没抓到：拆掉 K124 后 {fn} 应报双爆破，实得 {末}')
+                if 名 == '坏' and no == '58' and '问题数 0' in o: bad.append(f'K126 没抓到：拆掉 K126 后 {fn} 除阻加强应写错位置、核对仍报，实得 {末}')
     return bad
 
 def 挂钩():
@@ -319,6 +322,10 @@ def 回归(记):
 
 def main():
     t0 = time.time(); a = sys.argv[1:]; out = []
+    if W:   # 56（11-07）：提交钩子和做.sh 各跑一份快测，共用 _回归 副本和临时目录，互相干扰报假失败；同一台机器一次只跑一份，后来的等前一份跑完
+        import fcntl; 锁 = open(f'{os.path.dirname(W.rstrip("/"))}/.快测.lock', 'w')
+        try: fcntl.flock(锁, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError: print('另一份快测在跑，等它跑完再跑', flush=True); fcntl.flock(锁, fcntl.LOCK_EX)
     if '--只记基准' in a:   # 基准用旧管（没打补丁的工具）出：回归证明新管和旧管逐字节一致
         b, cur = 回归(True); print('\n'.join(b) or f'{NO} 基准已记：a.wav {cur["a.wav"][:8]}、分段.json {cur["分段.json"][:8]}、{len(cur["画面"])} 屏（{time.time() - t0:.0f} 秒）'); sys.exit(1 if b else 0)
     bad, 表 = 规则表()

@@ -263,6 +263,13 @@ def write_grafts(no, d, bad):
                 pos_c = c; deep = True; pos_r = (rel, y)
                 if y >= end_lim: break
                 f = y
+        if deep and g != last and pos_r[0] * F5 >= ca:
+            # K126（58 S4 livestock, 的 /k/）：往后逐对找时越过了停顿删除开始处，把下一个词 were 起音前的噪声（w 5.44）当成除阻，
+            # 除阻加强写在被删掉的停顿里，等于没加；真除阻在 5.13–5.18。除阻一定在停顿开始之前：改用核对同一个 release() 在 w 里量
+            m3_ = len(w) // F5; rf3_ = np.sqrt(np.mean(np.asarray(w[:m3_ * F5], np.float64).reshape(m3_, F5) ** 2, axis=1)).max()
+            z3_ = release(w, ss.sosfiltfilt(HP, np.asarray(w, np.float64)), ca, rf3_, deep=ph in 'tkp')
+            if z3_: pos_r = (z3_[3][0] // F5, -(-z3_[3][1] // F5)); pos_c = pos_r[0] - 1
+            else: deep = False
         if ph == 'p':
             # /p/ 没有供体（这个配音停顿前的 /p/ 几乎从不清楚除阻）：原声闭塞之后有除阻、只是偏弱的，写“除阻加强”（make_video._boost），
             # 增益 = 差多少补多少再多 3 dB（最多 6 dB）；20 S3 slope,（-33.7 dB）、19 S6 up.（-33.7 dB）
