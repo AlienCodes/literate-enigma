@@ -22,7 +22,7 @@ S=[
      "（Restless since 20 May：形容词短语作状语，\n逻辑主语是 the volcano）"],
     [[("the volcano","这座火山"),("reached","达到"),("a **catastrophic**","**灾难性的**(catastrophic)"),("**climax**","**高潮**(climax)"),("on 26–27 August.","是在8月26日至27日。")],
      "（reach a climax：达到高潮）"]]),
-(2,[[[("About","约"),("two-thirds","三分之二"),("of the island","的岛体"),("collapsed into","塌入"),("its emptied","已被排空的"),("**magma** chamber,","**岩浆**(magma)房，")],
+(2,[[[("About","约"),("two-thirds","三分之二"),("of the island","的岛体"),("collapsed into","塌入"),("its **emptied**","**已被排空的**(emptied)"),("**magma** chamber,","**岩浆**(magma)房，")],
      "（emptied：过去分词作定语，已被排空的；\nmagma chamber：岩浆房）"],
     [[("vanishing","消失在"),("beneath the sea.","海面之下。")],
      "（vanishing…：现在分词短语作状语，补充说明结果）"]]),
