@@ -25,7 +25,7 @@ S=[
 (3,[[[("Yet","然而，"),("the ancient","这种古代"),("material","材料"),("seemed to have","似乎有个"),("a **shortcoming**.","**缺点**(shortcoming)。")]]]),
 (3,[[[("It","它的内部"),("is **dotted with**","**散布**(dotted with)着"),("white","白色的"),("**chunks** of lime,","石灰**小块**(chunks)，")],
      "（be dotted with…：散布着……，布满……）"],
-    [[("known as","称为"),("lime","石灰"),("clasts.","团块。")],
+    [[("known as","称为"),("lime","石灰"),("**clasts**.","**碎屑**(clasts)。")],
      "（known as…：过去分词短语作后置定语，修饰 chunks）"]]),
 (3,[[[("Experts long","长期以来，专家"),("**ascribed** these **lumps** **to**","**把**(ascribed to)这些**块状物**(lumps)**归因于**(ascribed to)"),("**sloppy** mixing","搅拌**马虎**(sloppy)"),("or **inferior** raw **ingredients**,","或原料**成分**(ingredients)**低劣**(inferior)。")],
      "（ascribe A to B：把 A 归因于 B）"],
@@ -33,13 +33,13 @@ S=[
      "（a defect that…：同位语，补充说明前面说的情况；\nthey assumed：插入语，他们认为；\nwould have avoided：虚拟语气，本可以避免）"]]),
 (4,[[[("A study published in Science Advances in January 2023","2023年1月发表于《科学进展》（Science Advances）的一项研究"),("offered","提出了"),("a different **interpretation**.","不同的**解释**(interpretation)。")],
      "（published in…：过去分词短语作后置定语，\n修饰 study）"]]),
-(4,[[[("The clasts, it suggested,","该研究认为，这些团块"),("were","是"),("a **by-product** of \"hot mixing\" with quicklime,","用生石灰“热混合”留下的**副产品**(by-product)；")],
+(4,[[[("The clasts, it suggested,","该研究认为，这些碎屑"),("were","是"),("a **by-product** of \"hot mixing\" with quicklime,","用生石灰“热混合”留下的**副产品**(by-product)；")],
      "（it suggested：插入语，it 指这项研究；\na by-product of…：……的副产品）"],
     [[("a **reactive** lime that heats up in water.","生石灰是一种遇水会发热、**活性强的**(reactive)石灰。")],
      "（a reactive lime…：同位语，补充说明 quicklime；\nthat heats up in water：定语从句，修饰 lime）"]]),
 (4,[[[("When water","水"),("**seeps into** a crack,","**渗入**(seeps into)裂缝时，")],
      "（When…：时间状语从句）"],
-    [[("the clasts","团块"),("**dissolve**","会**溶解**(dissolve)，"),("and their **calcium**","其中的**钙**(calcium)"),("recrystallises as","重新结晶为"),("calcium carbonate,","碳酸钙，"),("**plugging** the gap.","**堵住**(plugging)缝隙。")],
+    [[("the clasts","碎屑"),("**dissolve**","会**溶解**(dissolve)，"),("and their **calcium**","其中的**钙**(calcium)"),("recrystallises as","重新结晶为"),("calcium carbonate,","碳酸钙，"),("**plugging** the gap.","**堵住**(plugging)缝隙。")],
      "（recrystallise as…：重新结晶为……；\nplugging the gap：现在分词短语作状语，表示结果）"]]),
 (4,[[[("In tests,","试验中，"),("water","水"),("**ceased to**","**不再**(ceased to)"),("**trickle**","**细细流过**(trickle)"),("through cracked","开裂的"),("hot-mixed","热混合"),("samples","样本，"),("within","只用了"),("weeks,","几周；")],
      "（cease to do：不再做……；\nwithin weeks：几周之内）"],
@@ -60,11 +60,11 @@ S=[
      "（a rethink of…：对……的重新思考）\n"
      "（简述：万神殿穹顶建成近1,900年依然屹立，是世界上最大的无钢筋混凝土穹顶。\n"
      "现代混凝土里的钢筋会生锈膨胀、使混凝土断裂，许多建筑设计寿命约50年；\n"
-     "罗马混凝土并不更坚固，长处在于耐久。它里面的白色石灰团块，\n"
+     "罗马混凝土并不更坚固，长处在于耐久。它里面的白色石灰碎屑，\n"
      "过去被专家当作搅拌马虎或原料低劣的瑕疵。2023年《科学进展》的研究认为，\n"
-     "团块是生石灰热混合的副产品：水渗入裂缝时团块溶解，钙重新结晶为碳酸钙，堵住缝隙。\n"
+     "碎屑是生石灰热混合的副产品：水渗入裂缝时碎屑溶解，钙重新结晶为碳酸钙，堵住缝隙。\n"
      "水泥生产约占全球二氧化碳排放的8%，能自行修补裂缝的混凝土可能减少拆建和排放，\n"
-     "这些曾被轻视的团块因此促使人们重新思考建造之道。）"]]),
+     "这些曾被轻视的碎屑因此促使人们重新思考建造之道。）"]]),
 ]
 G={
  "S1 Nearly 1,900 years after its completion, in about AD 125–128":"对齐不了：after its completion 是时间状语，中文要先说“竣工”再说“近1,900年后”；in about AD 125–128 是插入语，中文“约于公元125至128年竣工”年代必须放到动词前，整组语序倒过来",
