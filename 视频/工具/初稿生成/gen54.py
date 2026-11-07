@@ -66,8 +66,8 @@ S=[
     [[("the Society's","学会"),("1888 report","1888年发表的报告"),("**tied**","**把**(tied to)"),("the glow","这片红霞"),("**to**","**归于**(tied to)"),("Krakatoa.","喀拉喀托火山。")],
      "（tie A to B：把 A 与 B 联系起来）"]]),
 (5,[[[("Through","借助"),("barometers,","气压计、"),("cables,","电缆"),("and crimson","和深红色的"),("skies,","天空，")]],
-    [[("**far-flung**","**相隔遥远的**(far-flung)"),("**observers**","**观察者**(observers)"),("began to","开始"),("**glimpse**","**隐约看出**(glimpse)，")]],
-    [[("how **interconnected** the planet already was.","这颗星球早已何等**紧密相连**(interconnected)。")],
+    [[("**far-flung**","**相隔遥远的**(far-flung)"),("**observers**","**观察者**(observers)们"),("began to","开始"),("**glimpse**","**认识到**(glimpse)，")]],
+    [[("how **interconnected** the planet already was.","这颗星球上的各个地方早已**相互关联**(interconnected)在一起。")],
      "（how interconnected…：how 引导的宾语从句，作 glimpse 的宾语，\n语序为 how＋形容词＋主语＋谓语）\n"
      "（简述：1883年8月27日，喀拉喀托火山猛烈爆炸，近4,800公里外的岛民以为是炮声，\n"
      "世界各地的气压计都记录到了压力波。\n"
@@ -87,7 +87,7 @@ G={
  "S3 seven times in about five days":"对齐不了：用户 2026-11-07 原话定的译文“其中一些在大约五天之内记录到七次”，in about five days 是时间状语，中文必须提到动词前",
  "S8 reached London within hours":"对齐不了：用户 2026-11-07 原话定的译文“在几小时内到达了伦敦”，within hours 是时间状语，中文必须提到动词前",
  "S11 that circled the equator in about two weeks":"对齐不了：用户 2026-11-07 原话定的译文“在大约两个星期内环绕了赤道一周”，in about two weeks 是时间状语，中文必须提到动词前",
- "S16 how interconnected the planet already was":"对齐不了：how＋形容词＋主语＋谓语 的宾语从句，中文“这颗星球早已何等紧密相连”语序必须整个倒过来",
+ "S16 how interconnected the planet already was":"对齐不了：how＋形容词＋主语＋谓语 的宾语从句，中文“这颗星球上的各个地方早已相互关联在一起”（用户 2026-11-07 原话定）语序必须整个倒过来",
 }
 CONF={"合组":G,"对齐":{
  "S11-2 that circled the equator in ab":"用户 2026-11-07 原话定的译文“在大约两个星期内环绕了赤道一周”，定语从句里的时间状语 in about two weeks 中文必须提到动词前",
@@ -100,7 +100,7 @@ CONF={"合组":G,"对齐":{
  "S10-2 the magnitude of the devastati":"the magnitude of the devastation 是 of 结构，中文“浩劫的规模”语序必须倒过来",
  "S12-2 firefighters in New York and C":"in New York and Connecticut 是后置定语，修饰 firefighters，中文“纽约州和康涅狄格州的消防员”定语必须提前",
  "S13-2 a few tenths of a degree":"a few tenths of a degree 是 of 结构的数量说法，中文“零点几度”是一个整体",
- "S16-3 how interconnected the planet ":"how＋形容词＋主语＋谓语 的宾语从句，中文“这颗星球早已何等紧密相连”语序必须整个倒过来"},
+ "S16-3 how interconnected the planet ":"how＋形容词＋主语＋谓语 的宾语从句，中文“这颗星球上的各个地方早已相互关联在一起”（用户 2026-11-07 原话定）语序必须整个倒过来"},
 "短语":{
  "S15 appealed … for":"不是搭配：用户 2026-11-07 原话只点 appeal、中文“呼吁”，appeal 单独就是“呼吁”（速查表第一个意思）；for 引出呼吁的内容，中文“征集”已译出",
  "S3 Barometers … of":"不是搭配：of 属于 some of them，和 Barometers 无关",

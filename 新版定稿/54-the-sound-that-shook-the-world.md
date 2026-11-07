@@ -21,7 +21,7 @@ Some experts **discounted** the volcanic explanation, blaming the **sunsets** on
 
 **火山灰**(Ash)和二氧化**硫**(sulphur)被**抛射**(hurled)到数十公里的高空，形成一层**薄雾**(haze)，它绕**赤道**(equator)一圈约用了两个星期。（hurled tens of kilometres high：过去分词短语作后置定语，修饰 Ash and sulphur dioxide）（that circled…：定语从句，修饰 haze）1883年11月，**深红色的**(crimson)晚霞**发出暗淡的光**(glowed)，照耀着欧洲和北美，**召唤着**(summoning)纽约州和康涅狄格州的**消防员**(firefighters)赶去扑救**子虚乌有的**(phantom)**大火**(blazes)。（summoning…：现在分词短语作状语，补充说明结果；summon A to B：把 A 召到 B 处）后来的气候**重建**(reconstructions)研究推测，全球气温**下降了**(dipped)零点几度，就在次年。（climate reconstructions：气候重建，根据各种证据推算过去的气候）（suggest 后面省略了 that，引导宾语从句；a few tenths of a degree：零点几度）
 
-一些专家**不予采信**(discounted)火山之说，而把**晚霞**(sunsets)归因于**高空**(at high altitude)的**水汽**(moisture)或**宇宙**(cosmic)尘埃。（blaming…：现在分词短语作状语；blame A on B：把 A 归咎于 B）1884年2月，英国**皇家学会**(Royal Society)发出**呼吁**(appealed)，在《泰晤士报》上征集注明日期的观测记录，**引起了**(eliciting)世界各地的回应；学会1888年发表的报告**把**(tied to)这片红霞**归于**(tied to)喀拉喀托火山。（appeal for…：呼吁，征求……；dated：注明日期的）（eliciting…：现在分词短语作状语，补充说明结果）（tie A to B：把 A 与 B 联系起来）借助气压计、电缆和深红色的天空，**相隔遥远的**(far-flung)**观察者**(observers)开始**隐约看出**(glimpse)，这颗星球早已何等**紧密相连**(interconnected)。（how interconnected…：how 引导的宾语从句，作 glimpse 的宾语，语序为 how＋形容词＋主语＋谓语）（简述：1883年8月27日，喀拉喀托火山猛烈爆炸，近4,800公里外的岛民以为是炮声，世界各地的气压计都记录到了压力波。约三分之二的岛体塌入海中，海啸淹没爪哇岛和苏门答腊岛沿岸，官方统计死亡36,417人。电报经海底电缆几小时内传到伦敦，这常被称为首个全球新闻事件。火山灰和二氧化硫形成的薄雾绕赤道扩散，欧美出现深红色晚霞，消防员误以为失火，次年全球气温略降。有专家不信火山之说，皇家学会征集各地观测，1888年的报告把红霞归于喀拉喀托，人们由此看到这颗星球早已紧密相连。）
+一些专家**不予采信**(discounted)火山之说，而把**晚霞**(sunsets)归因于**高空**(at high altitude)的**水汽**(moisture)或**宇宙**(cosmic)尘埃。（blaming…：现在分词短语作状语；blame A on B：把 A 归咎于 B）1884年2月，英国**皇家学会**(Royal Society)发出**呼吁**(appealed)，在《泰晤士报》上征集注明日期的观测记录，**引起了**(eliciting)世界各地的回应；学会1888年发表的报告**把**(tied to)这片红霞**归于**(tied to)喀拉喀托火山。（appeal for…：呼吁，征求……；dated：注明日期的）（eliciting…：现在分词短语作状语，补充说明结果）（tie A to B：把 A 与 B 联系起来）借助气压计、电缆和深红色的天空，**相隔遥远的**(far-flung)**观察者**(observers)们开始**认识到**(glimpse)，这颗星球上的各个地方早已**相互关联**(interconnected)在一起。（how interconnected…：how 引导的宾语从句，作 glimpse 的宾语，语序为 how＋形容词＋主语＋谓语）（简述：1883年8月27日，喀拉喀托火山猛烈爆炸，近4,800公里外的岛民以为是炮声，世界各地的气压计都记录到了压力波。约三分之二的岛体塌入海中，海啸淹没爪哇岛和苏门答腊岛沿岸，官方统计死亡36,417人。电报经海底电缆几小时内传到伦敦，这常被称为首个全球新闻事件。火山灰和二氧化硫形成的薄雾绕赤道扩散，欧美出现深红色晚霞，消防员误以为失火，次年全球气温略降。有专家不信火山之说，皇家学会征集各地观测，1888年的报告把红霞归于喀拉喀托，人们由此看到这颗星球早已紧密相连。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -87,8 +87,8 @@ Some experts **discounted** the volcanic explanation, blaming the **sunsets** on
 | tied to | v. (tie A to B) 把 A 归于 B，把 A 与 B 联系起来（tie the glow to Krakatoa）；tie 系，捆 | 5 |
 | far-flung | 本文：相隔遥远的；adj. 相隔遥远的，分布广的（far-flung corners of the world/empire） | 5 |
 | observers | 本文：观察者；n. (observer) 观察者，观测者；观察员（UN observers） | 5 |
-| glimpse | 本文：隐约看出；v. 瞥见；隐约看出（glimpse sb/sth；glimpse how…）；n. 一瞥，短暂的感受（catch a glimpse of sth 瞥见某物） | 5 |
-| interconnected | 本文：紧密相连；adj. 紧密相连的，相互关联的（an interconnected world/system）；interconnect v. | 5 |
+| glimpse | 本文：认识到；v. 瞥见；隐约看出（glimpse sb/sth；glimpse how…）；n. 一瞥，短暂的感受（catch a glimpse of sth 瞥见某物） | 5 |
+| interconnected | 本文：相互关联；adj. 紧密相连的，相互关联的（an interconnected world/system）；interconnect v. | 5 |
 
 ## 史实与来源
 - 【T1/T3】1883年8月27日当地时间约05:30、06:44、10:02、10:41发生四次巨大爆炸，10时02分那一次最大（正文只写"上午10时刚过"，不写钟点）；喀拉喀托位于爪哇与苏门答腊之间的巽他海峡，时属荷属东印度（今印度尼西亚）。Wikipedia：https://en.wikipedia.org/wiki/1883_eruption_of_Krakatoa ；WorldAtlas：https://www.worldatlas.com/articles/when-did-krakatoa-erupt.html ；History.com：https://www.history.com/this-day-in-history/krakatau-explodes ；Harvard 博客：https://archive.blogs.harvard.edu/wheredisasterstrikes/?p=19
