@@ -39,7 +39,7 @@ S=[
 (4,[[[("His contribution","他的贡献"),("was a test,","是一项试验，"),("with results","其结果"),("**accessible** in print,","可在已出版的书籍中**可以获得**(accessible)，")],
      "（with results accessible in print：with 复合结构，\n结果印成书、人人可以查阅）"],
     [[("so","以便"),("other","其他"),("doctors","医生"),("could **replicate**","能够**复制**(replicate)"),("and **disseminate**","并**传播**(disseminate)"),("the **technique**.","这项**技术**(technique)。")]]]),
-(4,[[[("By","按"),("today's","今天的"),("standards,","标准，"),("**experimentation** on a child","拿孩子做**实验**(experimentation)"),("without","而不取得"),("**informed**","**知情**(informed)"),("**consent**","**同意**(consent)，")],
+(4,[[[("By","按"),("today's","今天的"),("standards,","标准，"),("**experimentation** on a child","拿孩子做**实验**(experimentation)"),("without","在没有取得"),("**informed**","**知情**(informed)"),("**consent**","**同意**(consent)的情况下，")],
      "（informed consent：知情同意，医学伦理术语）"],
     [[("would be","属于"),("**unethical**.","**不道德**(unethical)行为。")]]]),
 (4,[[[("Jenner","詹纳"),("died on 26 January 1823,","于1823年1月26日去世，")]],
