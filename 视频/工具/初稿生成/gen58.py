@@ -51,7 +51,7 @@ S=[
     [[("was **diagnosed** in Somalia on 26 October 1977.","于1977年10月26日在索马里**确诊**(diagnosed)。")]]]),
 (5,[[[("On 8 May 1980","1980年5月8日，"),("the World Health Assembly","世界卫生大会"),("**formally**","**正式**(formally)"),("declared","宣布"),("the world","全世界"),("free of","已摆脱"),("smallpox,","天花，")],
      "（declare A free of B：宣布 A 已摆脱 B）"],
-    [[("the only human disease ever **wiped out**.","天花也成为迄今唯一被**消灭**(wiped out)的人类疾病。")],
+    [[("the only human disease ever **wiped out**.","天花也成为迄今唯一被**彻底消灭**(wiped out)的人类疾病。")],
      "（the only human disease ever wiped out：\n同位语，补充说明 smallpox；wipe out：彻底消灭）"]]),
 (5,[[[("That **pronouncement**","这一**宣告**(pronouncement)"),("came almost 184 years after Phipps was **vaccinated**.","距菲普斯**接种**(vaccinated)已近184年。")],
      "（after Phipps was vaccinated：时间状语从句）\n"
