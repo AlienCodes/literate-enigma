@@ -44,6 +44,7 @@ Such rapid change, too fast for genetic **evolution**, points to **imitation** r
 | identical | adj. 完全相同的（be identical to/with；identical twins） | 1 |
 | evolves | v. (evolve) 演变，逐步发展（evolve over time；evolve into） | 1 |
 | subtly | adv. 细微地，微妙地（subtly different/change）；subtle adj. | 1 |
+| Off | prep. 在……附近的海域，离（海岸）不远的海上（off the coast；off eastern Australia） | 2 |
 | researchers | n. (researcher) 研究人员（medical researchers） | 2 |
 | microphones | n. (microphone) 麦克风，话筒（underwater microphone） | 2 |
 | seasonal | adj. 季节性的（seasonal migration/work/changes） | 2 |
