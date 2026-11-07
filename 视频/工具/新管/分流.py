@@ -9,7 +9,7 @@ def _块(o, c): return o.split('\n✘ ')[1:] if c else []
 
 def _崩(o, c, 块): return ['交付核查返回 %d 却没有任何 ✘（程序出错）：%s' % (c, ' / '.join(o.strip().splitlines()[-3:])[:300])] if c and not 块 else []
 
-def 出片后(o, c):
+def 出片后(o, c, no=None):
     """返回 (疑点行, 停的块)"""
     疑, 停 = [], []
     块 = _块(o, c)
@@ -18,7 +18,8 @@ def 出片后(o, c):
         for l in b.split('\n')[1:]:   # 只看标题下面缩进的说明行：块一直延到下一个 ✘，后面的“✔ 响度一致性…”“全部通过”这些顶格行不是这一项的（K112 漏了这一点）
             if l.strip() and l[:1] not in (' ', '\t'): break   # 空行跳过，不当成截止
             if l.strip(): ls.append(l.strip())
-        if b.startswith('自动音频检查') and any('响度比全片低' in l for l in ls) and all('响度比全片低' in l or l.startswith('→ 标出的位置必须剪成试听') for l in ls):
+        _严 = str(no).isdigit() and int(no) >= 61   # K129：61 起响度骤降不再算疑点，直接停，补响（分段增益dB/句子增益dB 或重合成）后再出
+        if not _严 and b.startswith('自动音频检查') and any('响度比全片低' in l for l in ls) and all('响度比全片低' in l or l.startswith('→ 标出的位置必须剪成试听') for l in ls):
             疑 += [l for l in ls if '响度比全片低' in l]
         else: 停.append(b)
     return 疑, 停 + _崩(o, c, 块)
@@ -37,6 +38,8 @@ def 自检():
     for 名, 行 in (('骤降+削波', 骤 + '\n    削波：峰值 1.000'), ('片中停顿过长', '片中停顿过长：61.2s 处 1.85s'), ('骤降+片中停顿过长', 骤 + '\n    片中停顿过长：61.2s 处 1.85s'),
                    ('骤降+电流音', 骤 + '\n    4800 Hz 电流音突出 14.2 dB'), ('程序出错', 'audio_qc 返回 1 却没有输出（程序出错）')):
         if not 出片后('x\n' + T + 行 + 尾, 1)[1]: f.append(f'{名} 应停，却没停')
+    if not 出片后('第61篇 出片后核查：\n' + T + 骤 + 尾, 1, '61')[1]: f.append('61 起响度骤降应停，却只进了疑点（K129）')
+    if 出片后('第60篇 出片后核查：\n' + T + 骤 + 尾, 1, '60')[1]: f.append('60 的响度骤降误停（K129 只管 61 起）')
     if not 出片后('Traceback (most recent call last):\n  File x\nKeyError: 1', 1)[1]: f.append('交付核查崩了（返回 1、没有 ✘）应停，却当成通过')
     if 出片后('x\n✔ 全部\n全部通过', 0) != ([], []): f.append('全部通过的误停')
     if not 出片后('x\n✘ 机器复听（逐词读音与脚本一致）：问题数 1\n    S3 x', 1)[1]: f.append('机器复听不过应停')

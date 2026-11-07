@@ -1,11 +1,15 @@
 """音频交付前自动检查（对应踩坑总表 A1–A8 中能用程序查的部分）：python3 audio_qc.py NN.mp4
 人耳试听仍是必须步骤，本程序只防"已知的坑"再犯。"""
-import sys, subprocess, numpy as np, soundfile as sf, imageio_ffmpeg, tempfile, os, warnings
+import sys, re, subprocess, numpy as np, soundfile as sf, imageio_ffmpeg, tempfile, os, warnings
 warnings.filterwarnings('ignore')   # 造错时的空段均值警告不许混进结论行（交付核查取最后一行当步骤名）
 FF = imageio_ffmpeg.get_ffmpeg_exe()
 src = [x for x in sys.argv[1:] if not x.startswith('--')][0]; tmp = tempfile.mktemp(suffix='.wav')
 subprocess.run([FF, '-v', 'error', '-y', '-i', src, '-vn', '-ac', '1', '-ar', '48000', tmp], check=True)
 a, sr = sf.read(tmp); os.remove(tmp)
+# K129（用户 2026-11-07：“千万不要出现声音大小不一致，有的这个地方声音小的”）：61 起一段比全片低 5 dB 就报（以前 6 dB），且不收确认、必须补响
+def 骤降阈(path):
+    m = re.match(r'(\d+)', os.path.basename(path)); return 5.0 if m and int(m.group(1)) >= 61 else 6.0
+DIP = 骤降阈(src)
 
 
 def 查(a, sr):
@@ -36,7 +40,7 @@ def 查(a, sr):
     lv = [20 * np.log10(np.sqrt(np.mean(a[int(x * sr):int(y * sr)] ** 2)) + 1e-9) for x, y in segs]
     med = np.median(lv)
     for (x, y), v in zip(segs, lv):
-        if v < med - 6: bad.append(f'{x:.1f}–{y:.1f}s 响度比全片低 {med-v:.1f} dB（疑似发闷/变小，需试听）')
+        if v < med - DIP: bad.append(f'{x:.1f}–{y:.1f}s 响度比全片低 {med-v:.1f} dB（疑似发闷/变小，需试听）')
     return bad
 
 
@@ -53,6 +57,7 @@ if '--自检' in sys.argv:
     if n(查(b, sr), '停顿过长') <= n(base, '停顿过长'): fails.append('没抓到：片中停顿过长')
     b = a.copy(); b[mid - L5:mid + L5] *= 10 ** (-10 / 20)
     if n(查(b, sr), '响度比全片低') <= n(base, '响度比全片低'): fails.append('没抓到：一段突然变轻（A8 发闷）')
+    if 骤降阈('61.mp4') != 5.0 or 骤降阈('60.mp4') != 6.0 or 骤降阈('/x/61_1080p.mp4') != 5.0: fails.append('没抓到：61 起骤降阈应为 5 dB、60 以前 6 dB（K129）')
     print(('✔ audio_qc 自检：削波、4800 Hz 电流音、片中停顿过长、一段变轻全部报出' if not fails else '✘ audio_qc 自检失灵：' + '；'.join(fails)))
     sys.exit(1 if fails else 0)
 bad = 查(a, sr)
