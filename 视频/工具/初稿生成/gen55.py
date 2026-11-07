@@ -54,7 +54,7 @@ S=[
      "（that mends its cracks：定语从句，修饰 Concrete）"],
     [[("making","从而使"),("**demolition**","**拆除**(demolition)"),("and rebuilding","与重建"),("rarer","减少，"),("and **trimming**","并**削减**(trimming)"),("emissions.","排放。")],
      "（making… and trimming…：两个现在分词短语作状语，表示结果；\nmake A rarer：使 A 更少见）"]]),
-(5,[[[("The white","这些白色"),("lumps","块状物"),("once **scorned** as","曾被**轻视**(scorned)为"),("signs of **clumsy** workmanship","手艺**拙劣的**(clumsy)痕迹，")],
+(5,[[[("The white","这些白色"),("lumps","块状物"),("once **scorned** as","曾被**轻视**(scorned)为"),("signs of **clumsy** workmanship","**拙劣的**(clumsy)手艺的标志，")],
      "（once scorned as…：过去分词短语作后置定语，修饰 lumps；\nscorn A as B：把 A 轻视为 B）"],
     [[("have **prompted**","如今却**促使**(prompted)人们"),("a **rethink**","**重新思考**(rethink)"),("of construction.","建造之道。")],
      "（a rethink of…：对……的重新思考）\n"
@@ -80,7 +80,7 @@ G={
  "S15 reported in June 2018":"对齐不了：in June 2018 是时间状语，中文“于2018年6月报告说”时间必须放到动词前",
  "S16 Concrete that mends its cracks":"对齐不了：that mends its cracks 是定语从句，修饰 Concrete，中文“能自行修补裂缝的混凝土”定语必须提前",
  "S16 last longer":"对齐不了：last longer 中文“更经久耐用”是一个说法，拆开不通",
- "S17 signs of clumsy workmanship":"对齐不了：signs of… 是 of 结构，中文“手艺拙劣的痕迹”，“痕迹”必须放到最后",
+ "S17 signs of clumsy workmanship":"对齐不了：signs of… 是 of 结构，中文“拙劣的手艺的标志”，“标志”必须放到最后",
 }
 CONF={"合组":G,
 "中文重复":{"建筑":"用户 2026-11-07：“不要 Structure就是建筑的意思。”（问 architecture 和 structures 都译“建筑”要不要换，用户说不换）"},
