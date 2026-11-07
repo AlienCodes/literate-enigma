@@ -56,7 +56,7 @@ def 生成并核对(S, out):
         for w in re.findall(r"\*\*(.+?)\*\*",c["en"]):
             sb.append(w); assert "("+w+")" in c["zh"] or any(w.lower() in k.lower().split() or w.lower() in k.lower() for k in keys),w   # K137（34 S8 **In** his **ignorance** **of**）：句首大写的 In 对小写标签 (in ignorance of)，不分大小写（踩坑核查 D4、render 上色本来就不分）
         sen=" ".join(x["en"] for x in s["chunks"])               # 被隔开的短语可以跨块（elevated … to 分在两块）
-        for w in keys: assert "**"+w+"**" in c["en"] or all("**"+x+"**" in sen or x in plain(sen) for x in w.split()),w
+        for w in keys: assert "**"+w.lower()+"**" in c["en"].lower() or all("**"+x+"**" in sen.lower() or x in plain(sen).lower() for x in w.lower().split()),w   # 61 S2 句首 **Clamped** 对小写标签 (clamped)：不分大小写，同 K137
     miss=缺的重点词(abold, sb)
     print('英文与文章逐字一致（不计加粗）' if ok else '英文不一致', '| 文章重点词', len(abold), '个，对照里都在' if not miss else ('缺：'+str(miss)))
     zh=[(e, z) for s in out["sentences"] for c in s["chunks"] for e, z in dict((e_, z_) for z_, e_ in re.findall(r"\*\*([^*]+)\*\*\(([^)]+)\)", c["zh"])).items()]
