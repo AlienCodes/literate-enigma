@@ -13,6 +13,7 @@ def 版本(stage, f):
     except UnicodeDecodeError: raise 真冲突('二进制文件')
 
 class 真冲突(Exception): pass
+印章 = ('视频/工具/出片守门自检通过.json', '视频/工具/新管/快测通过.json')
 
 def 合json(b, o, t):
     if o == t: return o
@@ -43,6 +44,9 @@ def 缩进(s):
 def 合(f):
     b, o, t = 版本(1, f), 版本(2, f), 版本(3, f)
     if o is None or t is None: raise 真冲突('一边删了文件')
+    if f in 印章:   # 11-07（56/60/主会话 推送反复停）：几个会话各自快测通过都改印章，时间戳必冲突；取“时间”较新的一份（没有时间取自己的），印章对不对仍由哈希核对管
+        oj, tj = json.loads(o), json.loads(t)
+        return t if str(tj.get('时间', '')) > str(oj.get('时间', '')) else o
     if f.endswith('.jsonl') or (f.startswith('视频/制作记录/') and f.endswith('.md')):   # K100：制作记录 NN.md 几个会话都往后追加
         ol = o.splitlines(); seen = set(ol); bl = set((b or '').splitlines())
         out = [l for l in ol if not (l in bl and l not in t.splitlines())] + [l for l in t.splitlines() if l not in seen and l not in bl]
@@ -70,4 +74,20 @@ def main():
     r = g('commit', '-q', '--no-edit')
     print(f'自动合并追加型记录 {len(fs)} 个：' + '、'.join(fs)); return r.returncode
 
-if __name__ == '__main__': sys.exit(main())
+def 自检():
+    """好样本：两边各改 出片守门自检通过.json 的时间 → 自动取较新的、合并提交；坏样本：普通 .json 同一个值两边改得不一样 → 必停"""
+    import tempfile, os
+    bad = []; me = os.path.abspath(__file__)
+    for 名, f in (('好', '视频/工具/出片守门自检通过.json'), ('坏', '视频/工具/别的.json')):
+        with tempfile.TemporaryDirectory() as td:
+            def G(*a): return subprocess.run(['git', '-c', 'user.name=t', '-c', 'user.email=t@t', '-c', 'core.hooksPath=/dev/null', *a], cwd=td, capture_output=True, text=True)
+            os.makedirs(f'{td}/视频/工具'); w = lambda x: open(f'{td}/{f}', 'w').write(json.dumps({'程序': 'a', '时间': x}, ensure_ascii=False, indent=1) + '\n')
+            G('init', '-q', '-b', 'main'); w('2026-11-07T10:00'); G('add', '-A'); G('commit', '-q', '-m', 'b')
+            G('checkout', '-q', '-b', 'x'); w('2026-11-07T12:05'); G('commit', '-qam', 'x')
+            G('checkout', '-q', 'main'); w('2026-11-07T11:52'); G('commit', '-qam', 'o'); G('merge', '-q', 'x')
+            r = subprocess.run([sys.executable, me], cwd=td, capture_output=True, text=True)
+            if 名 == '好' and (r.returncode or json.load(open(f'{td}/{f}'))['时间'] != '2026-11-07T12:05'): bad.append(f'好样本不过：印章时间冲突应自动取较新的 12:05：{r.stdout.strip()[-80:]}')
+            if 名 == '坏' and r.returncode == 0: bad.append('坏样本没停：普通 .json 同一个值两边改得不一样应停')
+    print('\n'.join(bad) or '合并追加 自检：印章取较新放过、普通值冲突必停：过'); return 1 if bad else 0
+
+if __name__ == '__main__': sys.exit(自检() if '--自检' in sys.argv else main())
