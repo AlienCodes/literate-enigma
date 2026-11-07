@@ -104,10 +104,14 @@ CONF={"合组":G,"对齐":{"S1-2 stars in its apparent vicinity": "in its appare
 "中文意思":{
  "S5 headline":"不是这个义项：本文 headline 是名词“（报纸的）标题”，不是动词“给……加标题”",
  "S13 bound for":"不是被隔开：“开往日本的轮船”里的“的”是中文定语标记（对应 bound for Japan 作后置定语），意思“开往”已标全，沿用文章定稿"},
+"停顿位置":{
+ "S11 law, / which @0.640":"2026-11-07 逐 2.5 ms 实测（S11 w）：law 的 ɔː 到 0.63（-14～-20 dB），0.64–0.66 是两词交界的低谷（-21～-25 dB），0.67 起 which 的 /w/ 电平回升（-12.8→-7.6 dB）；law 元音结尾、which 滑音开头，两词浊音连读没有静音，停顿 0.640 落在低谷里，在两词之间",
+ "S13 Einstein, / then @0.795":"2026-11-07 逐 2.5 ms 实测（S13 w）：Einstein 的 n 衰减到 0.79（-38 dB），0.795–0.805 -52.5～-53.8 dB 低谷，0.81 起 then 的 /ð/（-34 dB）；停顿 0.795 正落在两词之间的低谷"},
 "同词异译":{"eminent among：中声望卓著的/在":"不是两种译法：eminent among 的意思“在……中声望卓著的”被“物理学家”隔开，“在”和“中声望卓著的”是同一个意思的两部分（T23）"}}
 out={"no":"60","title_en":"The Scientific Giant Who Changed the World","title_zh":"改变世界的科学巨匠","title_fx":{"hl":["Giant","World"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Arthur Eddington":"阿瑟·爱丁顿","Príncipe":"普林西比","West Africa":"西非","Crommelin":"克罗姆林","Davidson":"戴维森","Sobral":"索布拉尔","Brazil":"巴西","British":"英国","Royal Society":"皇家学会","Royal Astronomical Society":"皇家天文学会","The Times":"《泰晤士报》","New York Times":"《纽约时报》","Einstein":"爱因斯坦","Stockholm":"斯德哥尔摩","Allvar Gullstrand":"阿尔瓦·古尔斯特兰德","Royal Swedish Academy of Sciences":"瑞典皇家科学院","Japan":"日本","Gothenburg":"哥德堡","Sweden":"瑞典","Nordic":"北欧"}}
+out.update({"非人声区间": {"S1": [[2.59125, 2.88375, "紧贴两头"]], "S2": [[2.54, 2.818667, "紧贴词头"], [7.855, 8.03]], "S3": [[3.361375, 3.6, "紧贴词尾"]], "S8": [[4.745, 4.963333, "紧贴词头"], [9.96, 10.28]], "S9": [[3.415, 3.79], [9.0725, 9.135]], "S10": [[2.615, 2.85]], "S6": [[1.0675, 1.39]]}, "词尾除阻": {"S3": {"句末": [6.244667, "t"]}, "S4": {"句末": [9.47, "t"]}, "S6": {"1": [1.075, "t"]}, "S9": {"句末": [9.035, "t"]}}})   # 声音程序写进脚本的区间、除阻（实测后并进 gen60）
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)
