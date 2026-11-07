@@ -754,7 +754,7 @@ def 句增益(d,no,si,sent,pieces,gaps,clips,tmap,a):
     if _sg:
         if abs(_sg)>1: raise SystemExit(f'【停止】句子增益dB 只许 ±1 dB 以内（S{si+1}：{_sg}）')
         a=a*10**(_sg/20)
-    if str(no).isdigit() and int(no)>=46 and (int(no)>=56 or _agn or _pgn or _rgn or _sg):   # 59 S16（11-07）：没有增益的句子句尾也会抬起来（末 10 ms -47.6 dB 截断），56 起每句都收（_收句尾 只动末 10 ms ≥ -50 dB 的句尾，别的原样）。K123（46 S4 level.：句尾在增益前按 -55 dB 切，第 4 段再加 2.5 dB，切口抬到 -46 dB，体检报句尾截断）：增益乘完，句尾按增益后的最响帧收到 -55 dB 以下换成数字静音、最后 15 ms 淡出（长度不变）
+    if str(no).isdigit() and int(no)>=46 and (int(no)>=61 or _agn or _pgn or _rgn or _sg):   # 59 S16（11-07）：没有增益的句子句尾也会抬起来（末 10 ms -47.6 dB 截断），61 起每句都收（56–60 已出 1080p，程序不许改它们的声音：57 重出指纹变了）（_收句尾 只动末 10 ms ≥ -50 dB 的句尾，别的原样）。K123（46 S4 level.：句尾在增益前按 -55 dB 切，第 4 段再加 2.5 dB，切口抬到 -46 dB，体检报句尾截断）：增益乘完，句尾按增益后的最响帧收到 -55 dB 以下换成数字静音、最后 15 ms 淡出（长度不变）
         a=_收句尾(a); clips[-1]=a[len(a)-len(clips[-1]):]
     return clips,a,_agn,_pgn
 def _收句尾(a):
