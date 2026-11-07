@@ -125,12 +125,13 @@ def phonemes_of(text):
         ph,cnt=re.subn("(?<![^\\s,;:.!?])"+_stress_free_re(bad)+"([sz]?)(?=[\\s,;:.!?]|$)",_sub,ph)
         # ↑ 所有格（09 S18 Meredith's）：词后的 's 按改正后读音的最后一个音定清浊——清辅音 p t k f θ 后读 /s/，其余读 /z/（配音原来把 Meredith's 读成 …ɪθz）
         if cnt!=n_: raise SystemExit(f'【停止】读音改正没有全部换到（A23）：{w_} 出现 {n_} 次，换了 {cnt} 次：{text[:60]}')
+    # 59 S3（CFCs）：语境读音的词边界也认括号，“(CFCs)”括号里漏读复数 z 才换得到
     for c_,v_ in PRON_CTX.items():
         n_=len(re.findall(r"(?<![A-Za-z])"+re.escape(c_)+r"(?![A-Za-z])",text,flags=re.I))
         if not n_: continue
         w_=v_['词']; m_=len(re.findall(r"(?<![A-Za-z])"+re.escape(w_)+r"(?![A-Za-z])",text,flags=re.I))
         if m_!=n_: raise SystemExit(f'【停止】按语境读音（A24）：{w_} 句中出现 {m_} 次，语境“{c_}”只有 {n_} 处，分不清换哪个：{text[:60]}')
-        B_="(?<![^\\s,;:.!?])"; E_="(?=[\\s,;:.!?]|$)"; bad=re.sub(r'[,;:.!?]','',KT.tokenizer.phonemize(w_,'en-us')).strip()
+        B_="(?<![^\\s,;:.!?(])"; E_="(?=[\\s,;:.!?)]|$)"; bad=re.sub(r'[,;:.!?]','',KT.tokenizer.phonemize(w_,'en-us')).strip()
         sf_=lambda x_:re.sub('[ˈˌ]','',x_); cands_=[bad]+[g_ for k_,g_ in PRON_WORDS.items() if k_.lower()==w_.lower() and sf_(g_)!=sf_(bad)]   # K147（19 S9 Dutch commerce：全局读音改正 Commerce 后来改成卷舌，用户定 19 保持原读法）：这个词在读音改正表里时，句子里已是改正后的读音，语境读音也要能把它换掉
         ok_=0 if any(sf_(c2_)==sf_(v_['读音']) for c2_ in cands_) else len(re.findall(B_+_stress_free_re(v_['读音'])+E_,ph)); cnt=0   # K145（39 S1 Y2K 只改重音）：只差重音号时同一处会既算“换了”又算“原本就对”，只差重音时一律按换算
         for c2_ in cands_: ph,k2_=re.subn(B_+_stress_free_re(c2_)+E_,v_['读音'],ph); cnt+=k2_

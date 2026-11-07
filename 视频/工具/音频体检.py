@@ -95,7 +95,8 @@ def 造坑(a, no):
     """每一项造一种毛病（成片副本上），返回 {项: 副本}"""
     seg = 句段(a); s, e = seg[len(seg) // 2]; L = e - s; out = {}
     rng = np.random.default_rng(3)
-    b = a.copy(); r = slice(s + L // 3, s + L // 3 + int(0.2 * SR)); b[r] = np.clip(b[r] * 50, -1, 1); out["削波"] = b
+    n2 = int(0.2 * SR); c0 = s + int(np.argmax(np.convolve(a[s:e] ** 2, np.ones(n2), 'valid'))) if L > n2 else s   # 60 S8：固定位置 L/3 正好是删掉吸气后的数字静音，×50 还是静音，造不出削波；改放本句最响的 0.2 s
+    b = a.copy(); r = slice(c0, c0 + n2); b[r] = np.clip(b[r] * 50, -1, 1); out["削波"] = b
     b = a.copy(); b[s:e] += 0.05; out['直流偏移'] = b
     b = a.copy(); p = s + L // 2; b[p] = np.clip(b[p] + 0.9 * np.sign(-b[p] or 1), -0.99, 0.99); out['咔哒'] = b
     b = a.copy(); n = int(0.03 * SR); t = np.arange(n) / SR; b[s + L // 2:s + L // 2 + n] += 0.5 * np.sin(2 * np.pi * 7000 * t); out['齿音'] = b

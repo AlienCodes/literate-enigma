@@ -232,9 +232,12 @@ def write_grafts(no, d, bad):
         if ph not in 'tkp': print('不能自动补（只有 t、k 有供体，p 用除阻加强）：', line); continue
         if lab == '标题' and g != last: print('标题句中标点，不能自动补，交人听：', line); continue
         text = d['title_en'] if lab == '标题' else ' '.join(re.sub(r'\*\*', '', R.strip_gloss(c['en'])).strip() for c in d['sentences'][int(lab[1:]) - 1]['chunks'])
-        raw, _ = k.create(spoken(re.sub(r'\*\*', '', R.strip_gloss(text))), voice=V, speed=SPEED, lang='en-us'); raw = np.asarray(raw, np.float32)
-        w = clean_tail(raw); w = _keep_tail(raw, w, _head_offset(raw, w))
         key = '标题::' + text if lab == '标题' else text
+        E_ = ENDING.get(key)   # 57 S18：结尾句是两遍合成接起来的，与 sentence_audio 同一取法，否则这一句的非人声区间套在单遍合成上、守门停止，整次写入丢失
+        if E_: raw = _ending_raw(key, E_)
+        else: raw, _ = k.create(spoken(re.sub(r'\*\*', '', R.strip_gloss(text))), voice=V, speed=SPEED, lang='en-us')
+        raw = np.asarray(raw, np.float32)
+        w = clean_tail(raw); w = _keep_tail(raw, w, _head_offset(raw, w))
         if key in NONVOICE: w = _nonvoice(w, NONVOICE[key], key)
         e = _env5(w)
         if g == last: lim = len(e)
