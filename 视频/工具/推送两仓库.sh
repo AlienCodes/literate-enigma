@@ -11,6 +11,7 @@ cd $P
 git symbolic-ref -q HEAD >/dev/null || git checkout -q -B main   # K130（36 推送连被拒 5 遍）：主仓库分离 HEAD 时 main 落后，先把 main 挪到 HEAD（定稿.sh K128 同一写法）
 # git 提交钩子装上（新容器、别的会话同样生效）：提交前只查快测印章，对不上自动跑快测
 git -C $P config core.hooksPath 视频/工具/githooks; git -C $L config core.hooksPath 视频/工具/githooks 2>/dev/null
+for _rb in "$P:main" "$L:$B"; do _r=${_rb%%:*}; _b=${_rb#*:}; git -C $_r config --get-all remote.origin.fetch 2>/dev/null | grep -qxF "+refs/heads/$_b:refs/remotes/origin/$_b" || git -C $_r config --add remote.origin.fetch "+refs/heads/$_b:refs/remotes/origin/$_b"; done   # 59 11-07：单分支浅克隆镜像拉取规则不含要推的分支，fetch 不更新 origin/分支、核对必停：缺就补
 [ ! -f $P/视频/工具/新管/印章.py ] || python3 $P/视频/工具/新管/印章.py --自动 || { echo "【停止】快测不通过（有检查坏了，属于质量问题）：先修好再推"; exit 1; }   # 印章对不上自动跑快测，过了接着推（用户 2026-10-29）
 python3 $P/视频/工具/报坑.py --查 > /dev/null 2>&1 || echo "（提醒：报坑登记有撞号或总表新行没取号，python3 视频/工具/报坑.py --查 看；只提醒，不拦）"
 git add -A 视频 CLAUDE.md 新版定稿   # 新版定稿：文章本身也会改（撞词去掉重点词等）；路径不存在 git 会报错，set -e 当场停（G3：不许悄悄没提交）

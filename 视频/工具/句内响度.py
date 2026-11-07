@@ -49,7 +49,7 @@ def 算增益(m, TM, old, seg_rec=None, old_rg=None):
             for k in ks:
                 if str(k) in sh.get(s, {}): continue
                 g = max(-6.0, min(6.0, float(old.get(s, {}).get(str(k), 0)) + dlt))
-                if g: new.setdefault(s, {})[str(k)] = g
+                new.setdefault(s, {})[str(k)] = g   # 59 S12（11-07）：旧增益+修正=0 也要记下（写入时撤掉旧的），原来丢掉、报 0 句、旧 ±1.5 一直留着
         for k, hs in sh.get(s, {}).items():   # K168（49 S14 每跑一次加一档 ±1.5→±3→±4.5）：原来把差直接加在段两头，组中点只拿到一半，要好几轮；现在让第一组、最后一组的中点正好补上差，一轮到位
             hs = sorted(hs); (c0, j0), (c1, j1) = hs[0], hs[-1]; d0, d1 = [(I - L[j]) if L[j] is not None else 0.0 for j in (j0, j1)]
             o0, o1 = [float(x) for x in (old_rg or {}).get(s, {}).get(k, [0, 0])]
@@ -58,6 +58,14 @@ def 算增益(m, TM, old, seg_rec=None, old_rg=None):
             g0, g1 = [max(-6.0, min(6.0, round(x * 2) / 2)) for x in (G0 - sl * c0, G0 + sl * (1 - c0))]
             if (g0, g1) != (float(o0), float(o1)): rg.setdefault(s, {})[k] = [g0, g1]
     return (new, rg) if seg_rec is not None else new
+
+def 并入(d, new):
+    """把新算的分段增益逐段并进脚本：0 = 撤掉这一段的旧增益；没算到的段保留旧值"""
+    t = d.setdefault('分段增益dB', {})
+    for s, v in new.items():
+        for k, g in v.items():
+            if g: t.setdefault(s, {})[k] = g
+            else: t.get(s, {}).pop(k, None)
 
 def 自检():
     """造一句四段的“声音”（0.4 秒停顿隔开），第 3 段轻 4 dB：必须只给第 3 段算出约 +4 dB（别的段不动）；四段一样响的句子不算增益。"""
@@ -78,6 +86,10 @@ def 自检():
         if not 4.0 <= g2.get('S1', {}).get('3', 0) <= 5.5: f.append(f'没抓到：已有 +1 dB 时没有累加（{g2}）')
         w, sr = mk([0, 0, 0, 0]); m, TM = 量(w, sr)
         if 算增益(m, TM, {}): f.append('误报：四段一样响也算出了增益')
+        # 59 S12（11-07）：第 3 段已有 +3、现在响 3（59 实为 ±1.5） → 修正 -1.5、合计 0：必须记成 0、写入时撤掉旧的 +1.5（别的段旧值保留）
+        w, sr = mk([0, 0, 3, 0]); m, TM = 量(w, sr); g0 = 算增益(m, TM, {'S1': {'1': 0.5, '3': 3.0}})
+        d0 = {'分段增益dB': {'S1': {'1': 0.5, '3': 3.0}}}; 并入(d0, g0)
+        if g0.get('S1', {}).get('3') != 0 or d0['分段增益dB'] != {'S1': {'1': 0.5}}: f.append(f'没抓到：旧增益+修正=0 没撤掉旧的（算出 {g0}，写入后 {d0}）')
         # K157 好样本：第 3 段轻 4 dB，这一句有停顿处除阻 → --写入 照常写分段增益（K156 时不写，K157 起出片程序和独立复核都收）
         import shutil
         w, sr = mk([0, 0, -4, 0]); wd = tempfile.mkdtemp(prefix='句内响度K157_'); os.makedirs(f'{wd}/work_99'); os.makedirs(f'{wd}/scripts')
@@ -134,11 +146,12 @@ if __name__ == '__main__':
     for s, v in new.items(): print(f'{no} {s} 分段增益dB {old.get(s, {})} → {v}')
     for s, v in rg.items(): print(f'{no} {s} 段内渐变dB {org.get(s, {})} → {v}' + (f'（撤掉误写的分段增益dB 段 {drop[s]}）' if drop[s] else ''))
     if '--写入' in sys.argv and (new or rg):
-        d.setdefault('分段增益dB', {}).update(new)
+        并入(d, new)
         for s, v in rg.items():
             d.setdefault('段内渐变dB', {}).setdefault(s, {}).update(v)
             for k in drop[s]: d['分段增益dB'].get(s, {}).pop(k, None)
             if s in d['分段增益dB'] and not d['分段增益dB'][s]: del d['分段增益dB'][s]
+        for s in [s for s, v in d['分段增益dB'].items() if not v]: del d['分段增益dB'][s]
         if not d['分段增益dB']: del d['分段增益dB']
         json.dump(d, open(f'scripts/{no}.json', 'w'), ensure_ascii=False, indent=1)
         print(f'{no} 已写入 {len(set(new) | set(rg))} 句的分段增益dB/段内渐变dB：重建后再查')

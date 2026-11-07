@@ -28,6 +28,12 @@ def 自检():
         subprocess.run([sys.executable, os.path.abspath(__file__), '99'], cwd=td, capture_output=True)
         c = json.load(open(f'{td}/scripts/99.json'))['核对确认']['非人声']
         if c.get('33.13–33.22s', {}).get('实测', {}).get('最响dB') != -36.2 or c.get('33.17–33.19s', {}).get('实测', {}).get('最响dB') != -39.1: f.append(f'迁移把两条确认的实测弄混了（K136 28 S3）：{c}')
+        # 59 11-07：依据不带 s（“S3 w 9.785–9.800：”）、单点（“S5 w 2.13：”）也要迁
+        json.dump({'核对确认': {'非人声': {'33.13–33.22s': {'配音指纹': 'old', '依据': '2026-11-07 逐 2.5 ms 实测（dossier_99，配音指纹 old）：S3 w 9.785–9.800：吸气'}, '40.00–40.05s': {'配音指纹': 'old', '依据': '实测：S5 w 2.13：s 尾'}}}}, open(f'{td}/scripts/99.json', 'w'), ensure_ascii=False)
+        json.dump([{'si': 3, 'w0': 9.78, 'w1': 9.81, 't0': 33.13, 't1': 33.22}, {'si': 5, 'w0': 2.12, 'w1': 2.14, 't0': 40.01, 't1': 40.05}], open(f'{td}/dossier_99.json', 'w'))
+        subprocess.run([sys.executable, os.path.abspath(__file__), '99'], cwd=td, capture_output=True)
+        c = json.load(open(f'{td}/scripts/99.json'))['核对确认']['非人声']
+        if set(c) != {'33.13–33.22s', '40.01–40.05s'}: f.append(f'没迁：依据不带 s 或单点写法的确认被整篇清空（59 11-07）：{list(c)}')
     return f
 
 if sys.argv[1:2] == ['--自检']:
@@ -37,9 +43,9 @@ fp = hashlib.md5(open(f'work_{no}/a.wav', 'rb').read()).hexdigest()[:12]
 cf = d['核对确认'].get('非人声', {}); keep = {k: v for k, v in cf.items() if v.get('配音指纹') == fp}; moved = 0; drop = []; 候选 = {}
 for k, v in cf.items():
     if v.get('配音指纹') == fp: continue
-    m = re.search(r'S(\d+) w ([\d.]+)–([\d.]+)s', v.get('依据', ''))
+    m = re.search(r'S(\d+) w (\d+(?:\.\d+)?)(?:[–-](\d+(?:\.\d+)?))?', v.get('依据', ''))   # 59 11-07：各篇依据写“S12 w 1.05–1.085：”（不带 s）、单点“S2 w 8.095：”，原来只认带 s 的，整篇 0 条迁移
     if not m: drop.append(k); continue
-    si, a, b = int(m.group(1)), float(m.group(2)), float(m.group(3))
+    si, a = int(m.group(1)), float(m.group(2)); b = float(m.group(3)) if m.group(3) else a + 0.005
     ivs = [x[:2] for x in d.get('非人声区间', {}).get(f'S{si}', [])] + [x[:2] for x in d.get('停顿删除区间', {}).get(f'S{si}', {}).values() if isinstance(x, list)]
     ivs += [[x[0] - 0.01, x[0] + 0.08] for x in d.get('词尾除阻', {}).get(f'S{si}', {}).values() if isinstance(x, list)]   # 移植的除阻也改了声音
     if any(碰到(a, b, x, y) for x, y in ivs): drop.append(k + '（碰到删除区间）'); continue

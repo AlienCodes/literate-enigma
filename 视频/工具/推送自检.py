@@ -50,6 +50,10 @@ try:
     git('reset', '-q', cwd=P)
     if git('rev-parse', 'HEAD', cwd=P).stdout != git('rev-parse', 'main', cwd=f'{tmp}/P.git').stdout or \
        git('rev-parse', 'HEAD', cwd=L).stdout != git('rev-parse', 'tb', cwd=f'{tmp}/L.git').stdout: fails.append('没抓到：云端与本地不一致（G2）')
+    # 59 11-07：单分支浅克隆镜像，拉取规则只对着别的分支，fetch origin tb 不更新 origin/tb，两边一致核对必停（坏样本）；修后照推（好样本）
+    git('push', '-q', 'origin', 'tb:别的', cwd=L); git('config', '--replace-all', 'remote.origin.fetch', '+refs/heads/别的:refs/remotes/origin/别的', cwd=L); 写(f'{P}/视频/单分支.md', 's\n')
+    r = run(); o = r.stdout + r.stderr
+    if r.returncode != 0 or '云端已含这次提交' not in o: fails.append(f'误停：单分支镜像 fetch 不更新 origin/分支{o.strip()[-80:]}')
     # 合回镜像（主会话 2026-10-29：31 的配音缓存、31.md 被冲了两次）：只能推镜像的会话推到镜像上的文件，主仓库推送不许盖掉，要合回主仓库
     L2 = f'{tmp}/L2'; git('clone', '-q', '-b', 'tb', f'{tmp}/L.git', L2); git('config', 'user.name', '镜像会话', cwd=L2); git('config', 'user.email', 'm@example.com', cwd=L2)
     写(f'{L2}/视频/制作记录/31.md', '31 交接\n'); 写(f'{L2}/视频/a.md', 'a 镜像改\n'); git('add', '-A', cwd=L2); git('commit', '-qm', '31 交接（只在镜像）', cwd=L2); git('push', '-q', 'origin', 'tb', cwd=L2)

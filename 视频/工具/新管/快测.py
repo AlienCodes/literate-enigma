@@ -250,6 +250,13 @@ def 句尾样本():
             elif b[0] < -49.2: bad.append(f'K123 没抓到：拆掉 _收句尾 后 46 S4 {名} 句尾末 10 ms 仍 {b[0]:.1f} dB（坏样本不成立）')
         shutil.copy(样, f'{td}/scripts/46.json'); g9, b9 = 量(False, 8), 量(True, 8)   # 好样本：46 S9 句尾没被抬起来（-54.6 dB），收句尾必须原样不动（淡出曾把可听结尾前移 15 ms，句间停顿报 1.015 s）
         if not (isinstance(g9, tuple) and isinstance(b9, tuple)) or g9 != b9: bad.append(f'K123 好样本 2 不过：46 S9 句尾没抬起来却被改了（{g9} vs 原样 {b9}）')
+        # 59 S16（11-07）：没有任何增益的句子句尾也抬起来（末 10 ms -47.6 dB），原来只在有增益的句子收；好样本 收到 < -49.2，坏样本（不收）≥ -49.2
+        样59 = f'{T}/样本/59_S16_无增益句尾.json'
+        if not os.path.exists(样59): bad.append('K123 样本缺：样本/59_S16_无增益句尾.json')
+        else:
+            shutil.copy(样59, f'{td}/scripts/46.json'); g6, b6 = 量(False, 15), 量(True, 15)
+            if not isinstance(g6, tuple) or g6[0] >= -49.2 or g6[1] < -55: bad.append(f'K123 好样本不过：59 S16 无增益句尾没收住或压到听不见（{g6}）')
+            if not isinstance(b6, tuple) or b6[0] < -49.2: bad.append(f'K123 没抓到：59 S16 不收句尾时末 10 ms 应 ≥ -49.2（{b6}）')
     return bad
 
 def 供体增益样本():
@@ -298,7 +305,9 @@ def 双爆破自动补样本():
     例 = (('47', '47_S6_双爆破.json', "if deep and ma_ and float(ma_.group(1)) >= -40:", lambda d: (lambda pg: pg and float(pg[0]) <= 14.235)(d.get('停顿处除阻', {}).get('S1', {}).get('4'))),
           ('49', '49_S12_双爆破.json', "if ph in 'tk' and ma2_ and float(ma2_.group(1)) >= -40:", lambda d: '3' in d.get('除阻加强', {}).get('S1', {}) and '3' not in d.get('词尾除阻', {}).get('S1', {})),
           # K126（58 S4 livestock,）：往后找越过停顿删除开始处，把 were 起音前噪声当除阻（w 5.44），加强写进被删的停顿；好样本 写在真除阻 5.12–5.185、核对 0，坏样本 核对仍报
-          ('58', '58_S4_除阻位置.json', "if deep and g != last and pos_r[0] * F5 >= ca:", lambda d: (lambda b: b and float(b[0]) < 5.3)(d.get('除阻加强', {}).get('S1', {}).get('2'))))
+          ('58', '58_S4_除阻位置.json', "if deep and g != last and pos_r[0] * F5 >= ca:", lambda d: (lambda b: b and float(b[0]) < 5.3)(d.get('除阻加强', {}).get('S1', {}).get('2'))),
+          # 59 S12 worked;（11-07）：已有词尾除阻的标点又写停顿处除阻（两下 /t/，每轮写回）；好样本 不写、交人看，坏样本 写了
+          ('59', '59_S12_已有词尾除阻.json', "if str(g + 1) in d.get('词尾除阻', {}).get(lab, {}):", lambda d: '1' not in d.get('停顿处除阻', {}).get('S1', {})))
     for no, fn, hook, 好 in 例:
         样 = f'{T}/样本/{fn}'
         if not os.path.exists(样): bad.append(f'K124 样本：没有 样本/{fn}'); continue
@@ -312,6 +321,9 @@ def 双爆破自动补样本():
                 subprocess.run(['python3', f'{td}/_核.py', no, '--写入'], capture_output=True, text=True, cwd=td, env=e, timeout=600)
                 r = subprocess.run(['python3', f'{td}/_核.py', no], capture_output=True, text=True, cwd=td, env=e, timeout=600); o = r.stdout + r.stderr
                 末 = (o.strip().splitlines() or ['无输出'])[-1][:120]; d = json.load(open(f'{td}/scripts/{no}.json'))
+                if no == '59':
+                    if not 好(d) if 名 == '好' else 好(d): bad.append(f'59 S12 {"好样本不过：不该再写停顿处除阻" if 名 == "好" else "没抓到：拆掉后应又写停顿处除阻"}：{末}')
+                    continue
                 if 名 == '好' and not (好(d) and '问题数 0' in o): bad.append(f'K124 好样本不过：{fn} 自动补不对或核对不过：{末}')
                 if 名 == '坏' and no != '58' and '双爆破' not in o: bad.append(f'K124 没抓到：拆掉 K124 后 {fn} 应报双爆破，实得 {末}')
                 if 名 == '坏' and no == '58' and '问题数 0' in o: bad.append(f'K126 没抓到：拆掉 K126 后 {fn} 除阻加强应写错位置、核对仍报，实得 {末}')
@@ -392,9 +404,9 @@ def main():
             b = 读音自检样本(); bad += b; out.append(f'⑥ K102 读音自检：29 不误停、拆读音改正必停：{"过" if not b else "不过"}')
             b = 括号语境样本(); bad += b; out.append(f'⑥b 59 括号里的语境读音（(CFCs) 补复数 z）：原样换到、不双 z，拆掉括号边界必停：{"过" if not b else "不过"}')
             b, n = fs.result(); bad += b; out.append(f'⑤ 交付核查 出片前/出片后 + 出片守门自检：{"全过" if not b else f"{len(b)} 处不过"}')
-            b = 句尾样本(); bad += b; out.append(f'⑧ K123 句尾（46 S4 增益后收句尾）：S4 两版好样本 < -49.2 dB 且最后 5 ms 仍可听、拆掉必抓、S9 原样不动：{"过" if not b else "不过"}')
+            b = 句尾样本(); bad += b; out.append(f'⑧ K123 句尾（46 S4 增益后收句尾）：S4 两版好样本 < -49.2 dB 且最后 5 ms 仍可听、拆掉必抓、S9 原样不动、59 S16 无增益句也收：{"过" if not b else "不过"}')
             b = 供体增益样本(); bad += b; out.append(f'⑨ K125 停顿处除阻的供体随所在段乘增益（46 S4 fact,）：原样复核放过、供体不乘必抓：{"过" if not b else "不过"}')
-            b = 双爆破自动补样本(); bad += b; out.append(f'⑩ K124 原声已有弱除阻不在后面再补（47 S6 drought,、49 S12 outright,）：换起点/改加强、核对过，拆掉必报双爆破：{"过" if not b else "不过"}')
+            b = 双爆破自动补样本(); bad += b; out.append(f'⑩ K124 原声已有弱除阻不在后面再补（47 S6 drought,、49 S12 outright,）：换起点/改加强、核对过，拆掉必报双爆破；59 S12 已有词尾除阻不再加停顿处除阻：{"过" if not b else "不过"}')
             b = 结尾句写入样本(); bad += b; out.append(f'⑪ 57 结尾句 词尾辅音 --写入 与出片同一取 w（两遍合成）：S7/S11 移植存上、核对 0，换回单遍必报守门停止：{"过" if not b else "不过"}')
             b = 草稿路径样本(); bad += b; out.append(f'⑦ 草稿篇路径（K109：脚本只在工作目录，音频体检自检过、语速突变量得出）：{"过" if not b else "不过"}')
     if not bad and '--只文本' not in a and '--记基准' not in a:

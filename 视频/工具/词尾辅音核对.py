@@ -304,6 +304,8 @@ def write_grafts(no, d, bad):
                 pf = next((f for f in range(ca // F5 - 1, max(1, ca // F5 - 12), -1) if e[f - 1] < -40 and max(e[f:max(f + 1, ca // F5)]) < -30), None)
                 if pf is None or str(g + 1) in d.get('停顿插入点', {}).get(lab, {}):
                     print('放不下、也找不到停顿处除阻的位置，交人看（逐段看声音找闭塞，写 停顿处除阻）：', line); continue
+                if str(g + 1) in d.get('词尾除阻', {}).get(lab, {}):   # 59 S12 worked;（11-07）：这个标点已有词尾除阻，再写停顿处除阻就是两下 /t/（每轮删了又写回）；交人看：原声已有除阻就删掉词尾除阻、切掉后面的杂音
+                    print('这个标点已有词尾除阻，不能再加停顿处除阻（会成两下除阻），交人看（原声已有除阻就删掉这条词尾除阻；没有就改词尾除阻的位置）：', line); continue
                 if str(g + 1) in d.get('停顿删除区间', {}).get(lab, {}):   # K134（34 S5 state, not）：这个标点已有停顿删除区间，出片程序不许再加停顿处除阻（A21 守门），自动写了必停；交人看：删除段起点放在原有除阻之后，或改用除阻加强
                     print('这个标点已有停顿删除区间，不能再加停顿处除阻（出片程序不收），交人看（把删除段起点放在原有除阻之后，或用 除阻加强）：', line); continue
                 ma_ = re.search(r'除阻全频 (-?[\d.]+) dB', line)
