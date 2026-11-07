@@ -10,7 +10,7 @@ S=[
      "（About 43 metres in diameter：形容词短语作状语，说明穹顶的大小；\nunreinforced：没有用钢筋加固的）"]]),
 (1,[[[("It is","它是"),("an **astonishing** **feat** of **architecture**,","**建筑**(architecture)史上**令人惊叹的**(astonishing)**壮举**(feat)，"),("and a **stubborn**","也是一道**难以解开的**(stubborn)"),("**puzzle**.","**谜题**(puzzle)。")],
      "（a feat of architecture：建筑上的壮举）"]]),
-(2,[[[("Modern","现代"),("concrete","混凝土"),("is usually","通常"),("reinforced with **embedded** steel bars,","靠**嵌入**(embedded)其中的钢筋加固，")],
+(2,[[[("Modern","现代"),("concrete","混凝土"),("is usually","通常"),("reinforced with **embedded**","靠**嵌入**(embedded)其中的"),("**steel bars**,","**钢筋**(steel bars)加固，")],
      "（be reinforced with…：用……加固）"],
     [[("which","而钢筋"),("are **prone to**","**容易**(prone to)发生"),("**corrosion**.","**锈蚀**(corrosion)。")],
      "（which…：非限制性定语从句，修饰 steel bars；\nbe prone to…：容易……）"]]),
