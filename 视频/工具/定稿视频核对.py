@@ -195,15 +195,18 @@ def selftest(no, d, vids, va, ref, outdir):
     # 画面：第1句中文里第一个汉字换成“囗”、第一个中文逗号换成顿号（暗字里最细微的改动），这一句的每一屏都必须找不到
     vpool = mkpool([f for _, f in vids])
     for label, pat, new in (('改一个字', r'[一-鿿]', '囗'), ('逗号换顿号', '，', '、')):
-        d2 = copy.deepcopy(d); hit = None
-        for c in d2['sentences'][0]['chunks']:
-            m = re.search(pat, c['zh'])
-            if not m: continue
-            ch = m.group(0); k_ = next((i for i, (_, z) in enumerate(c['align']) if ch in z), None)
-            if k_ is None: continue
-            c['zh'] = c['zh'].replace(ch, new, 1); c['align'][k_] = [c['align'][k_][0], c['align'][k_][1].replace(ch, new, 1)]; hit = ch; break
-        if hit is None: fails.append(f'自检样本找不到：第{no}篇 S1 {label}'); continue
-        for name, g in render_screens(d2, outdir + '_自检', only={1}):
+        d2 = copy.deepcopy(d); hit = None; si_ = 1
+        # 59（11-07）：S1 中文里没有逗号（“一层臭氧为地球遮挡了……辐射。”），自检样本造不出、定稿被卡；改成从 S1 起找第一句有这个字符的句子
+        for si_, s_x in enumerate(d2['sentences'], 1):
+            for c in s_x['chunks']:
+                m = re.search(pat, c['zh'])
+                if not m: continue
+                ch = m.group(0); k_ = next((i for i, (_, z) in enumerate(c['align']) if ch in z), None)
+                if k_ is None: continue
+                c['zh'] = c['zh'].replace(ch, new, 1); c['align'][k_] = [c['align'][k_][0], c['align'][k_][1].replace(ch, new, 1)]; hit = ch; break
+            if hit is not None: break
+        if hit is None: fails.append(f'自检样本找不到：第{no}篇 全篇 {label}'); continue
+        for name, g in render_screens(d2, outdir + '_自检', only={si_}):
             s_, _ = best(g, vpool)
             if s_ <= THR: fails.append(f'没抓到：第{no}篇 {name} {label}（{hit}→{new}）仍判为同一屏（差 {s_:.1f}）')
         shutil.rmtree(outdir + '_自检', ignore_errors=True)
