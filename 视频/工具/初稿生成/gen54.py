@@ -47,7 +47,7 @@ S=[
      "（the magnitude of the devastation：of 结构，\n浩劫的规模；\nover days：在几天的时间里）"]]),
 (4,[[[("**Ash**","**火山灰**(Ash)"),("and **sulphur** dioxide,","和二氧化**硫**(sulphur)"),("**hurled**","被**抛射**(hurled)到"),("tens of","数十"),("kilometres","公里的"),("high,","高空，")],
      "（hurled tens of kilometres high：\n过去分词短语作后置定语，\n修饰 Ash and sulphur dioxide）"],
-    [[("formed","形成"),("a **haze**","一层**薄雾**(haze)，"),("that","它"),("circled","绕"),("the **equator**","**赤道**(equator)一圈"),("in about two weeks.","约用了两个星期。")],
+    [[("formed","形成"),("a **haze**","一层**薄雾**(haze)，"),("that circled the **equator** in about two weeks.","在两个星期内环绕了**赤道**(equator)一周。")],
      "（that circled…：定语从句，修饰 haze）"]]),
 (4,[[[("In November 1883,","1883年11月，"),("**crimson**","**深红色的**(crimson)"),("sunsets","晚霞"),("**glowed**","**灼灼发亮**(glowed)，"),("over","照耀着"),("Europe","欧洲"),("and North America,","和北美，")]],
     [[("**summoning**","**招来**(summoning)"),("**firefighters** in New York and Connecticut","纽约州和康涅狄格州的**消防员**(firefighters)"),("to","赶去扑救"),("**phantom**","**子虚乌有的**(phantom)"),("**blazes**.","**大火**(blazes)。")],
@@ -86,9 +86,11 @@ G={
  "S13 a few tenths of a degree":"对齐不了：a few tenths of a degree 是 of 结构的数量说法，中文“零点几度”是一个整体，拆开不通",
  "S3 seven times in about five days":"对齐不了：用户 2026-11-07 原话定的译文“其中一些在大约五天之内记录到七次”，in about five days 是时间状语，中文必须提到动词前",
  "S8 reached London within hours":"对齐不了：用户 2026-11-07 原话定的译文“在几小时内到达了伦敦”，within hours 是时间状语，中文必须提到动词前",
+ "S11 that circled the equator in about two weeks":"对齐不了：用户 2026-11-07 原话定的译文“在两个星期内环绕了赤道一周”，in about two weeks 是时间状语，中文必须提到动词前",
  "S16 how interconnected the planet already was":"对齐不了：how＋形容词＋主语＋谓语 的宾语从句，中文“这颗星球早已何等紧密相连”语序必须整个倒过来",
 }
 CONF={"合组":G,"对齐":{
+ "S11-2 that circled the equator in ab":"用户 2026-11-07 原话定的译文“在两个星期内环绕了赤道一周”，定语从句里的时间状语 in about two weeks 中文必须提到动词前",
  "S8-3 reached London within hours.":"用户 2026-11-07 原话定的译文“在几小时内到达了伦敦”，时间状语 within hours 中文必须提到动词前，语序倒过来",
  "S3-2 seven times in about five days":"用户 2026-11-07 原话定的译文“在大约五天之内记录到七次”，时间状语 in about five days 中文必须提到动词前，语序倒过来",
  "S1-2 a volcanic island in the Sunda":"in the Sunda Strait 是后置定语，修饰 island，中文“位于巽他海峡的火山岛”定语必须提前",
