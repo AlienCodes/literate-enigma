@@ -70,7 +70,7 @@ In January 2023 a UN-backed **assessment** **forecast** **recovery** to 1980 lev
 | tightened | v. (tighten) 使（规定等）更严格（tighten rules/controls/security）；拉紧，绷紧，使牢固（tighten a screw）；tight adj. | 4 |
 | affluent | adj. 富裕的，富足的（an affluent society/area；affluent countries）；affluence n. | 4 |
 | pledged | v. (pledge) 承诺，保证（pledge to do sth；pledge support/money）；抵押；n. 誓言，承诺（make a pledge） | 4 |
-| phase out | 逐步淘汰，逐步停止使用（phase out leaded petrol/CFCs）；对比 phase in 逐步采用；phase n. 阶段，时期 | 4 |
+| phase out | phr. v. 逐步淘汰，逐步停止使用（phase out leaded petrol/CFCs）；对比 phase in 逐步采用；phase n. 阶段，时期 | 4 |
 | universal | adj. 普遍的，全体的（universal ratification/suffrage 普遍批准／普选权）；通用的，万能的（a universal remedy）；全世界的；universally adv. | 4 |
 | assessment | n. 评估，评价（make an assessment of；risk assessment 风险评估）；（应付金额的）核定；assess v. | 5 |
 | forecast | v. （forecast/forecasted）预测，预报（forecast rain/growth）；n. 预测，预报（weather forecast）；forecaster n. | 5 |
