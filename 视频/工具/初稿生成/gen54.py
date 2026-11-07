@@ -49,7 +49,7 @@ S=[
      "（hurled tens of kilometres high：\n过去分词短语作后置定语，\n修饰 Ash and sulphur dioxide）"],
     [[("formed","形成"),("a **haze**","一层**薄雾**(haze)，"),("that circled the **equator** in about two weeks.","在大约两个星期内环绕了**赤道**(equator)一周。")],
      "（that circled…：定语从句，修饰 haze）"]]),
-(4,[[[("In November 1883,","1883年11月，"),("**crimson**","**深红色的**(crimson)"),("sunsets","晚霞"),("**glowed**","**灼灼发亮**(glowed)，"),("over","照耀着"),("Europe","欧洲"),("and North America,","和北美，")]],
+(4,[[[("In November 1883,","1883年11月，"),("**crimson**","**深红色的**(crimson)"),("sunsets","晚霞"),("**glowed**","**发出暗淡的光**(glowed)，"),("over","照耀着"),("Europe","欧洲"),("and North America,","和北美，")]],
     [[("**summoning**","**招来**(summoning)"),("**firefighters** in New York and Connecticut","纽约州和康涅狄格州的**消防员**(firefighters)"),("to","赶去扑救"),("**phantom**","**子虚乌有的**(phantom)"),("**blazes**.","**大火**(blazes)。")],
      "（summoning…：现在分词短语作状语，补充说明结果；\nsummon A to B：把 A 召到 B 处）"]]),
 (4,[[[("Later","后来的"),("climate","气候"),("**reconstructions**","**重建**(reconstructions)研究"),("suggest","推测，")],
