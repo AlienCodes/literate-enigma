@@ -242,11 +242,13 @@ def export(no):
 # 罗马数字（10 S13 King Francis I 读成 Francis eye；spoken() 原来不转罗马数字，数字读法清单只认阿拉伯数字，读音核对把单独的 I 当虚词跳过——三处都漏）：
 # 朗读文字里“大写人名 + 罗马数字”还在，就报出（单独的 I 只在后面紧跟标点时算，避免把代词 I 当成罗马数字）
 ROMAN_RE = re.compile(r'\b([A-Z][a-z]+) ((?:XVI|XV|XIV|XIII|XII|XI|X|IX|VIII|VII|VI|V|IV|III|II)\b|I(?=[.,;:!?]|$))')
+_NOTROMAN = {p_ for v_ in json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '发音词典', '已核实读音.json'))).values() if isinstance(v_, dict) for p_ in v_.get('不是罗马数字', [])}
 def roman_left(no):
     d = json.load(open(f'scripts/{no}.json')); out = []
     for i, s_ in enumerate(d['sentences'], 1):
         sp = spoken(re.sub(r'\*\*', '', R.strip_gloss(' '.join(c['en'] for c in s_['chunks']))))
         for m in ROMAN_RE.finditer(sp):
+            if m.group(0) in _NOTROMAN: continue   # 61 Ideal X：船名里的字母 X，已核实读音.X.不是罗马数字 登记的才放
             out.append(('罗马数字', f'{no} 待核实 [罗马数字] S{i} “{m.group(0)}” 朗读文字里还是罗马数字，会读成字母（Francis I 读成 Francis eye）；要读成 the + 序数词，补 spoken() 的规则', True))
     return out
 
@@ -318,6 +320,7 @@ def selftest(no):
         keep = HETCONF.pop(hk); got = {line for _, line, bad in check(no) if bad}; HETCONF[hk] = keep
         res.append((f'去掉多音词核对记录（{hk}）', any(f'[多音词] {hk.split(" ", 2)[2]} ' in l_ for l_ in got - base)))
     # ④ 罗马数字：没转的必须报出，spoken() 转过的不报
+    res.append(('登记的不是罗马数字只放那一个词组', 'King Francis I' not in _NOTROMAN and 'Ideal X' in _NOTROMAN))
     res.append(('“King Francis I.”没转成序数词', bool(ROMAN_RE.search('King Francis I.')) and not ROMAN_RE.search(spoken('King Francis I.')) and not ROMAN_RE.search(spoken('Then I went home, and I said so.'))))
     ok = bool(res) and all(h for _, h in res)
     print(f"{'✔' if ok else '✘'} 读音核对 自检：{no} " + '；'.join(f"{n}{'报出' if h else '没报出'}" for n, h in res) if res else f'✘ 读音核对 自检：{no} 找不到可用来自检的词')
