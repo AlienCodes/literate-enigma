@@ -10,7 +10,7 @@ S=[
      "（About 43 metres in diameter：形容词短语作状语，说明穹顶的大小；\nunreinforced：没有用钢筋加固的）"]]),
 (1,[[[("It is","它是"),("an **astonishing** **feat** of **architecture**,","**建筑**(architecture)史上**令人惊叹的**(astonishing)**壮举**(feat)，"),("and a **stubborn**","也是一道**难以解开的**(stubborn)"),("**puzzle**.","**谜题**(puzzle)。")],
      "（a feat of architecture：建筑上的壮举）"]]),
-(2,[[[("Modern","现代"),("concrete","混凝土"),("is usually","通常"),("reinforced with **embedded**","靠**嵌入**(embedded)其中的"),("**steel bars**,","**钢筋**(steel bars)加固，")],
+(2,[[[("Modern","现代"),("concrete","混凝土"),("is usually","通常"),("**reinforced with**","**靠**(reinforced with)"),("**embedded**","**嵌入**(embedded)其中的"),("**steel bars**,","**钢筋**(steel bars)**加固**(reinforced with)，")],
      "（be reinforced with…：用……加固）"],
     [[("which","而钢筋"),("are **prone to**","**容易**(prone to)发生"),("**corrosion**.","**锈蚀**(corrosion)。")],
      "（which…：非限制性定语从句，修饰 steel bars；\nbe prone to…：容易……）"]]),
@@ -97,6 +97,7 @@ CONF={"合组":G,
 out={"no":"55","title_en":"The Secret of Rome's Undying Concrete","title_zh":"罗马混凝土的千年之谜","title_fx":{"hl":["Secret","Undying"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "停顿插入点":{"S11":{"1":[0.736125,"交界"]}},
      "词尾除阻":{"S6":{"1":[3.779,"t"]}},
+     "allow_clash":["reinforced with"],
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Pantheon":"万神殿","Roman":"罗马","Science Advances":"《科学进展》","Chatham House":"查塔姆研究所","AD":"公元"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

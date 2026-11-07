@@ -39,6 +39,7 @@ The **implications** **extend beyond** **archaeology**. Cement **manufacture** a
 | feat | 本文：壮举；n. 壮举，非凡的成就（a feat of engineering；no mean feat） | 1 |
 | stubborn | 本文：久解不开的；adj. 难以解决的，顽固的（a stubborn problem/stain）；固执的（a stubborn child） | 1 |
 | puzzle | 本文：谜题；n. 谜，难题（remain a puzzle；solve a puzzle）；v. 使困惑 | 1 |
+| reinforced with | 本文：靠……加固；v. (reinforce) 用……加固（be reinforced with steel bars）；加强，强化 | 2 |
 | embedded | 本文：嵌入；adj./v. (embed) 嵌入的（be embedded in rock/concrete） | 2 |
 | steel bars | 本文：钢筋；n. (steel bar) 钢筋，钢条（reinforced with steel bars 用钢筋加固） | 2 |
 | prone to | 本文：容易；adj. 易于……的（be prone to injury/flooding；accident-prone） | 2 |
