@@ -6,7 +6,7 @@ S=[
      "（a contagious affliction：同位语，补充说明 Smallpox）"],
     [[("killed","夺去了"),("about three in ten","约三成"),("of its **sufferers**","**患者**(sufferers)的生命，"),("and an estimated","并且估计有"),("300 million","3亿人"),("in the 20th century.","在20世纪丧命。")],
      "（three in ten：十分之三，即约三成；\nkilled 的宾语有两个：three in ten of its sufferers 和 300 million）"]]),
-(1,[[[("An early","一种早期的"),("**safeguard**,","**防护手段**(safeguard)，"),("**deliberately**","是**有意**(deliberately)"),("**implanting** matter from its **sores** in the healthy,","把天花**脓疮**(sores)中的物质**植入**(implanting)健康人体内，")],
+(1,[[[("An early","一种早期的"),("**safeguard**,","**防护手段**(safeguard)，"),("**deliberately**","是**有意**(deliberately)"),("**implanting** **matter** from its **sores** in the healthy,","把天花**脓疮**(sores)中的**物质**(matter)**植入**(implanting)健康人体内，")],
      "（deliberately implanting…：现在分词短语作同位语，\n说明 safeguard 的内容；\nimplant A in B：把 A 植入 B；the healthy：健康的人）"],
     [[("was **practised** in China by the 16th century","到16世纪，中国已在**施行**(practised)这种方法，"),("and reached England in 1721.","1721年又传入英国。")],
      "（by the 16th century：到16世纪时（已经））"]]),
@@ -22,7 +22,7 @@ S=[
     [[("**employed**","**使用**(employed)"),("cowpox","牛痘"),("to protect","来保护"),("his wife","他的妻子"),("and two sons.","和两个儿子。")]]]),
 (2,[[[("On 14 May 1796","1796年5月14日，"),("Edward Jenner,","爱德华·詹纳，"),("a **provincial**","一位**地方**(provincial)"),("**practitioner**,","**执业医师**(practitioner)，")],
      "（a provincial practitioner：同位语，补充说明 Edward Jenner）"],
-    [[("**inserted** **fluid** from a milkmaid's cowpox sore","将取自一名挤奶女工牛痘疮的**液体**(fluid)，**植入**(inserted)"),("into a **scratch** on eight-year-old James Phipps.","8岁的詹姆斯·菲普斯的一道**划痕**(scratch)中。")],
+    [[("**inserted** **fluid** from a milkmaid's cowpox sore","将取自一名挤奶女工牛痘疮的**液体**(fluid)，**注入**(inserted)"),("into a **scratch** on eight-year-old James Phipps.","8岁的詹姆斯·菲普斯的一道**划痕**(scratch)中。")],
      "（insert A into B：把 A 注入 B；\non eight-year-old James Phipps：后置定语，修饰 scratch）"]]),
 (3,[[[("On 1 July 1796","1796年7月1日，"),("Jenner","詹纳"),("**exposed** the boy **to** smallpox;","**让**(exposed to)这个男孩**接触**(exposed to)天花；")],
      "（expose A to B：使 A 接触 B）"],
@@ -36,7 +36,7 @@ S=[
 (3,[[[("The word **vaccine**","表示**疫苗**(vaccine)的英文词"),("**derives from**","**源自**(derives from)"),("the **Latin**","**拉丁语**(Latin)的"),("vacca,","vacca，"),("cow.","意思是牛。")],
      "（vacca, cow：cow 是 vacca 的同位语，说明词义）"]]),
 (4,[[[("Jenner","詹纳"),("was not","并不是"),("the idea's","这一想法的"),("**originator**.","**首创者**(originator)。")]]]),
-(4,[[[("His contribution","他的贡献"),("was a test,","是一项试验，"),("with results","其结果"),("**accessible** in print,","可在已出版的书籍中**可以获得**(accessible)，")],
+(4,[[[("His contribution","他的贡献"),("was a test,","是一项试验，"),("with results","其结果"),("**accessible** in print,","在已出版的书籍中**可以获得**(accessible)，")],
      "（with results accessible in print：with 复合结构，\n结果印成书、人人可以查阅）"],
     [[("so","以便"),("other","其他"),("doctors","医生"),("could **replicate**","能够**复制**(replicate)"),("and **disseminate**","并**传播**(disseminate)"),("the **technique**.","这项**技术**(technique)。")]]]),
 (4,[[[("By","按"),("today's","今天的"),("standards,","标准，"),("**experimentation** on a child","拿孩子做**实验**(experimentation)"),("without","在没有取得"),("**informed**","**知情**(informed)"),("**consent**","**同意**(consent)的情况下，")],
@@ -114,6 +114,7 @@ CONF={"合组":G,"对齐":{
 "同词异译":{"immune to：免疫/对":"不是两种译法：S4 be immune to 的意思“对……免疫”被“天花”隔开，“对”和“免疫”是同一个意思的两部分（T23）"},
 "数字":{"S1-2 300":"300 million 中文写作“3亿”，数值相同（300百万 = 3亿）；英文读 three hundred million"},
 "数字写法":{"S1-2 three":"three in ten 中文写作“三成”（十分之三），数值相同","S6-2 eight":"eight-year-old 中文按文章定稿写作“8岁”，数值相同（eight = 8）"}}
+CONF["中文重复"]={"疾病":"用户 2026-11-07 原话（问 S1 affliction 与 S3 sickness 都译“疾病”怎么处理）：“疾病都保留”；两处都指天花这类病，S1 是天花本身，S3 是接种可能引起的病"}
 out={"no":"58","title_en":"From a Scratch to a World Without Smallpox","title_zh":"从一道划痕到天花绝迹","title_fx":{"hl":["Scratch","Smallpox"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Benjamin Jesty":"本杰明·杰斯蒂","Dorset":"多塞特郡","Edward Jenner":"爱德华·詹纳","Jenner":"詹纳","James Phipps":"詹姆斯·菲普斯","Phipps":"菲普斯","Royal Society":"皇家学会","Inquiry":"《探究》","WHO":"世界卫生组织","Somalia":"索马里","World Health Assembly":"世界卫生大会","China":"中国","England":"英国","Latin":"拉丁语"}}

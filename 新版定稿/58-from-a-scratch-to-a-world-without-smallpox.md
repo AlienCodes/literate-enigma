@@ -30,6 +30,7 @@ In 1967 the WHO launched an **intensified**, **concerted** campaign to **eradica
 | contagious | adj. 传染性的，接触传染的（a contagious disease；highly contagious） | 1 |
 | affliction | n. 病痛，苦难（a painful affliction；suffer from an affliction） | 1 |
 | smallpox | n. 天花（smallpox vaccine；eradicate smallpox） | 1 |
+| matter | 本文：物质；n. 物质，东西；事情，问题（organic matter 有机物；a matter of time 迟早的事） | 1 |
 | exposed to | 本文：expose A to B 让 A 接触 B；v. 使暴露，使接触（be exposed to 暴露于；expose sb to risk 使某人面临风险） | 3 |
 | sufferers | n. (sufferer) 患者，受害者（asthma sufferers；hay fever sufferers） | 1 |
 | safeguard | n. 保护措施，防护手段（a safeguard against fraud；legal safeguards） | 1 |
