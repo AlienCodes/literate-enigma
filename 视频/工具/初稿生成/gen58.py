@@ -45,7 +45,7 @@ S=[
 (4,[[[("Jenner","詹纳"),("died on 26 January 1823,","于1823年1月26日去世，")]],
     [[("with smallpox","那时天花"),("far from","还远未被"),("**eliminated**.","**消除**(eliminated)。")],
      "（with smallpox far from eliminated：\nwith 复合结构作伴随状语；\nfar from…：远未……）"]]),
-(5,[[[("In 1967","1967年，"),("the WHO","世界卫生组织"),("launched","发起了"),("an **intensified**,","一场**强化**(intensified)、"),("**concerted**","**协同的**(concerted)"),("campaign","运动，"),("to **eradicate** smallpox.","要**根除**(eradicate)天花。")]]]),
+(5,[[[("In 1967","1967年，"),("the WHO","世界卫生组织"),("launched","发起了"),("an **intensified**,","一场**强化**(intensified)、"),("**concerted**","**共同筹划的**(concerted)"),("campaign","运动，"),("to **eradicate** smallpox.","要**根除**(eradicate)天花。")]]]),
 (5,[[[("The last","最后一例"),("**naturally**","**自然**(naturally)"),("**occurring**","**发生**(occurring)的"),("case","病例")],
      "（naturally occurring：自然发生的，\n区别于后来的实验室感染）"],
     [[("was **diagnosed** in Somalia on 26 October 1977.","于1977年10月26日在索马里**确诊**(diagnosed)。")]]]),
