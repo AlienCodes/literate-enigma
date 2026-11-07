@@ -79,7 +79,7 @@ Such rapid change, too fast for genetic **evolution**, points to **imitation** r
 | scholars | n. (scholar) 学者（a classical scholar） | 5 |
 | reluctant | adj. 不情愿的（be reluctant to do sth） | 5 |
 | define | v. 界定，定义（define A as B；clearly defined） | 5 |
-| outsiders | n. (outsider) 外来者，局外人（an outsider to the group；feel like an outsider）| 5 |
+| outsiders | n. (outsider) 外来者，局外人（an outsider to the group；feel like an outsider） | 5 |
 | reshaped | v. (reshape) 重塑，改造（reshape the economy/landscape） | 5 |
 
 ## 史实与来源
