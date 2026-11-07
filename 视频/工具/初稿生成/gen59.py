@@ -90,6 +90,10 @@ G={
 }
 CONF={"合组":G,
 "牛津逗号":{},
+"停顿位置":{
+ "S5 alarm, / when @0.655":"2026-11-07 逐 2.5 ms 实测（S5 w）：alarm 的 /m/ 0.58–0.655（-8～-24 dB、重心 520–1050 Hz、周期 0.50–0.60 的鼻音），0.6575 一个 -24.3 dB 低谷（重心 1906 Hz）是两词交界，0.66 起 when 的 /w/（重心 850–1300 Hz），0.685 起升到 1400–2100 Hz 进 ɛ；插入点 0.655 落在 /m/ 收尾、低谷之前 2.5 ms，在 alarm 与 when 之间，不切词",
+ "S13 Remarkably, / the @0.695":"2026-11-07 逐 2.5 ms 实测（S13 w）：Remarkably 的 /i/ 到 0.6925（-8～-23 dB、重心 1500–3800 Hz），0.695 起电平降到 -21～-27 dB、重心 460–1100 Hz、周期 0.42–0.57，是 the 的 /ð/ 浊音（0.7525 有 3.3–3.8 kHz 擦音成分），0.7725 起 ə（-5～-9 dB）；程序原插在 0.705 已进 /ð/ 10 ms，停顿插入点改到交界 0.695",
+},
 "短语":{
  "S1 layer … of":"不是搭配：a layer of ozone 是“一层臭氧”，of 引出层的内容，layer 单独就是“层”",
  "S1 shields … of":"不是搭配：shields … from 已整体标；of 属于 much of the sun's ultraviolet radiation（太阳的大部分紫外辐射）",
@@ -110,7 +114,7 @@ CONF={"合组":G,
 "同词异译":{"shields from：为/遮挡了":"不是两种译法：S1 shields from 的意思“为……遮挡了”被“地球”隔开，“为”和“遮挡了”是同一个意思的两部分（T23）"},
 }
 out={"no":"59","title_en":"Saving the Sky","title_zh":"拯救天空","title_fx":{"hl":["Saving","Sky"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
-     "高亮按实际开口":True,"高亮开口门槛":40,
+     "高亮按实际开口":True,"高亮开口门槛":40,"停顿插入点":{"S13":{"1":[0.695,"交界"]}},
      "术语":{"Mario Molina":"马里奥·莫利纳","Sherwood Rowland":"舍伍德·罗兰","California":"加州","Nature":"《自然》","Chlorofluorocarbons":"氯氟烃","CFCs":"CFCs","Joseph Farman":"约瑟夫·法曼","British Antarctic Survey":"英国南极调查局","Halley Bay":"哈雷湾","Dobson":"多布森","NASA":"NASA","Nimbus-7":"雨云7号","Montreal":"蒙特利尔","Protocol":"议定书","Vienna Convention":"《维也纳公约》","UN":"联合国","Antarctica":"南极","Arctic":"北极"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
