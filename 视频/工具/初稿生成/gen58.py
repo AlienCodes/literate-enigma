@@ -24,7 +24,7 @@ S=[
      "（a provincial practitioner：同位语，补充说明 Edward Jenner）"],
     [[("**inserted** **fluid** from a milkmaid's cowpox sore","将取自一名挤奶女工牛痘疮的**液体**(fluid)，**植入**(inserted)"),("into a **scratch** on eight-year-old James Phipps.","8岁的詹姆斯·菲普斯的一道**划痕**(scratch)中。")],
      "（insert A into B：把 A 注入 B；\non eight-year-old James Phipps：后置定语，修饰 scratch）"]]),
-(3,[[[("On 1 July 1796","1796年7月1日，"),("Jenner","詹纳"),("exposed the boy to smallpox;","让这个男孩接触天花；")],
+(3,[[[("On 1 July 1796","1796年7月1日，"),("Jenner","詹纳"),("**exposed** the boy **to** smallpox;","**让**(exposed to)这个男孩**接触**(exposed to)天花；")],
      "（expose A to B：使 A 接触 B）"],
     [[("no **symptoms**","任何**症状**(symptoms)都没有"),("**ensued**.","**随之出现**(ensued)。")]]]),
 (3,[[[("In 1797","1797年，"),("the Royal Society","皇家学会"),("declined to","不予"),("**publish**","**发表**(publish)"),("his paper,","他的论文，")]],
