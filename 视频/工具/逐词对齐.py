@@ -61,7 +61,71 @@ def 自检():
     if 查(d5, '26'): f.append('误报：带标记的旧键不认了（K143）')
     for en in ('came out', 'Apollo 13 crew', '**trade journal**', 'kept up', 'two days', 'Before the late 1970s', 'more often'):
         if len(实词(en)) >= 2: f.append(f'误报：{en} 不该算多实词（小品词、专名、数字、重点词本身不算）')
-    return ['逐词对齐 自检：' + x for x in f]
+    return ['逐词对齐 自检：' + x for x in f] + 同序自检()
+
+# K128（用户 2026-11-07 看 55 S6：“尽可能的就是上面的英文和如果说ok的话能那就跟下面的这个中文对应好，对吧？尽可能的不论是哪个单词”）：
+# G47 只管“除重点词外还剩 2 个以上实词”的组；重点词（或术语）+ 别的实词挤一组、而中文语序和英文一样的（55 S5 As the steel rusts／随着钢筋生锈），
+# 也能拆、也要拆。只提醒（疑点），不卡流程；对不了照样写 核对确认.合组 "对齐不了：原因"。55 起查。
+同序起 = 55
+def _锚(en, zh, 术语):
+    """英文里的锚（重点词加粗段、术语）按出现顺序：[(起, 止, 标签)]；中文里对应的锚：[(起, 止, 标签)]"""
+    ea = [(m.start(), m.end(), m.group(1).lower()) for m in re.finditer(r'\*\*([^*]+)\*\*', en)]
+    za = [(m.start(), m.end(), m.group(2).lower()) for m in re.finditer(r'\*\*([^*]+)\*\*\(([^)]+)\)', zh)]
+    for e_, z_ in (术语 or {}).items():
+        m = re.search(r'(?<![A-Za-z])' + re.escape(e_) + r'(?![A-Za-z])', re.sub(r'\*\*', '', en))
+        if m and '**' not in en and z_ in zh: ea.append((m.start(), m.end(), e_.lower())); i = zh.index(z_); za.append((i, i + len(z_), e_.lower()))
+    去 = lambda L: sorted(x for x in L if not any(y != x and y[0] <= x[0] and x[1] <= y[1] for y in L))
+    return 去(ea), 去(za)
+def _词(t): return [w for w in re.findall(r"[A-Za-z][A-Za-z'’-]*|\d+", re.sub(r"['’]s\b", '', t)) if w.lower() not in 虚 and len(w) > 1 or w.isdigit()]   # 专名、数字也算（所有格 's 不算）
+def _中实(t): return re.sub(r'（[^）]*）|\([^)]*\)|[\s，。；：、！？“”"‘’,.;:!?]', '', t)
+def _对(e_, z_): return e_ == z_ or e_ in z_.split() or e_ in z_
+def 同序组(d):
+    out = []
+    for si, s in enumerate(d['sentences'], 1):
+        for c in s['chunks']:
+            for en, zh in c['align']:
+                ea, za = _锚(en, zh, d.get('术语', {}))
+                if not ea or not za: continue
+                if len(ea) >= 2:   # 几个重点词挤一组、中文先后和英文一样（55 S9 ascribed these lumps to）；被隔开的同一个短语（left her out）不算
+                    if '**' in en and len(ea) == len(za) and len(set(x[2] for x in za)) >= 2 and all(_对(a[2], b[2]) for a, b in zip(ea, za)):
+                        out.append((si, en, zh, '几个重点词中文先后和英文一样'))
+                    continue
+                if len(za) != 1: continue
+                src = en if '**' in en else re.sub(r'\*\*', '', en)   # 术语锚的位置按去掉加粗的英文算
+                be, af = _词(src[:ea[0][0]]), _词(src[ea[0][1]:])
+                bz, az = _中实(zh[:za[0][0]]), _中实(zh[za[0][1]:])
+                if (be and not af and bz and not az) or (af and not be and az and not bz):
+                    out.append((si, en, zh, f'重点词前后的“{"、".join(be or af)}”和中文语序一样'))
+    return out
+def 同序(d, no):
+    if not str(no).isdigit() or int(no) < 同序起: return []
+    ok = d.get('核对确认', {}).get('合组', {}); out = []
+    for si, en, zh, why in 同序组(d):
+        k = 键(si, en); v = ok.get(k, '') or ok.get(旧键(si, en), '')
+        if not re.match(r'^对齐不了[：:].{4,}', v):
+            out.append(f'[K128] {k}「{zh}」{why}，能逐词拆开（用户 2026-11-07：“尽可能的不论是哪个单词”都对应好）；对不了写 核对确认.合组 "{k}": "对齐不了：原因"')
+    return out
+def 同序自检():
+    f = []; 术 = {'Chatham House': '查塔姆研究所'}
+    坏 = [['As the steel **rusts**,', '随着钢筋**生锈**(rusts)，'], ['**ascribed** these **lumps** **to**', '**把**(ascribed to)这些**块状物**(lumps)**归因于**(ascribed to)'],
+          ['**seeps into** a crack,', '**渗入**(seeps into)裂缝时，'], ['the think-tank Chatham House', '智库查塔姆研究所（Chatham House）'], ['a **rethink** of construction.', '**重新思考**(rethink)建造之道。']]
+    好 = [['As', '随着'], ['the steel', '钢筋'], ['**rusts**,', '**生锈**(rusts)，'], ['**ascribed**', '**把**(ascribed to)'], ['these **lumps**', '这些**块状物**(lumps)'], ['**to**', '**归因于**(ascribed to)'],
+          ['**seeps into**', '**渗入**(seeps into)'], ['a crack,', '裂缝时，'], ['the think-tank', '智库'], ['Chatham House', '查塔姆研究所（Chatham House）'], ['a **rethink**', '**重新思考**(rethink)'], ['of construction.', '建造之道。'],
+          ['a **lifespan** of around 50 years.', '约50年的**使用寿命**(lifespan)。'], ['**sloppy** mixing', '搅拌**马虎**(sloppy)'], ['About 43 metres **in diameter**,', '穹顶**直径**(in diameter)约43米，'],
+          ['or **inferior** raw **ingredients**,', '或原料**成分**(ingredients)**低劣**(inferior)。'], ['an **astonishing** **feat** of **architecture**,', '**建筑**(architecture)史上**令人惊叹的**(astonishing)**壮举**(feat)，'],
+          ['signs of **clumsy** workmanship', '手艺**拙劣的**(clumsy)痕迹，'], ['the **vast**', '下方**宏大的**(vast)'], ['and many **structures**', '而且许多**建筑**(structures)'], ['**reinforced with**', '**靠**(reinforced with)']]
+    术2 = {'Galloping Gertie': '奔腾的格蒂', 'Gertie': '格蒂', 'Ministry of Health': '卫生部', 'Sierra Leone': '塞拉利昂', 'Yuan': '袁隆平'}
+    for en, zh in [['Galloping Gertie.', '“奔腾的格蒂”。'], ['a 1954 Ministry of Health report', '卫生部1954年的一份报告'], ["Yuan's", '袁隆平迈出了'],
+                   ['**left** her **out**;', '**把**(left out)她**排除在外了**(left out)；'], ["who shared the 2004 **World Food Prize** with Sierra Leone's Monty Jones,", '曾与塞拉利昂的蒙蒂·琼斯共获2004年**世界粮食奖**(World Food Prize)，']]:
+        if 同序({'sentences': [{'chunks': [{'align': [[en, zh]]}]}], '术语': 术2}, '55'): f.append(f'误报：「{en}」（专名套专名、所有格、被隔开的同一短语、数字和专名在另一边，不该报，K128）')
+    for en, zh in 坏:
+        if not 同序({'sentences': [{'chunks': [{'align': [[en, zh]]}]}], '术语': 术}, '55'): f.append(f'没抓到：55 拆开前的「{en}」（K128）')
+    for en, zh in 好:
+        if 同序({'sentences': [{'chunks': [{'align': [[en, zh]]}]}], '术语': 术}, '55'): f.append(f'误报：「{en}」已拆开或中文语序倒过来，不该报（K128）')
+    d = {'sentences': [{'chunks': [{'align': [坏[0]]}]}], '核对确认': {'合组': {'S1 As the steel rusts': '对齐不了：测试用原因写够长'}}}
+    if 同序(d, '55'): f.append('误报：写了“对齐不了：原因”还报（K128）')
+    if 同序({'sentences': [{'chunks': [{'align': [坏[0]]}]}]}, '54'): f.append('误报：55 以前不回头查（K128）')
+    return ['逐词对齐 同序自检：' + x for x in f]
 if __name__ == '__main__':
     if '--自检' in sys.argv:
         e = 自检(); print('\n'.join(e) or '逐词对齐 自检通过（多实词合组没拆必停、拆开或写“对齐不了：原因”放行、01–25 不回头查）'); sys.exit(1 if e else 0)

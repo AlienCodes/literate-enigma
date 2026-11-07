@@ -6,9 +6,9 @@ Nearly 1,900 years after its **completion**, in about AD 125–128, the Pantheon
 
 Modern concrete is usually reinforced with **embedded** steel bars, which are **prone to** **corrosion**. As the steel **rusts**, it **swells** and **fractures** the concrete around it, and many structures are designed for a **lifespan** of around 50 years. Roman concrete is not stronger than its modern **counterpart**; its **merit** lies in **durability**.
 
-Yet the ancient material seemed to have a **shortcoming**. It is **dotted with** white **chunks** of lime, known as lime **clasts**. Experts long **ascribed** these **lumps** **to** **sloppy** mixing or **inferior** raw **ingredients**, a **defect** that, they assumed, a more **conscientious** builder would have avoided.
+Yet the ancient material seemed to have a **shortcoming**. It is **dotted with** white **chunks** of lime, known as lime **clasts**. Experts long **ascribed** these **lumps** **to** **sloppy** mixing or **inferior** raw **ingredients**, a **defect** that, they **assumed**, a more **conscientious** builder would have avoided.
 
-A study published in Science Advances in January 2023 offered a different **interpretation**. The clasts, it suggested, were a **by-product** of "hot mixing" with quicklime, a **reactive** lime that heats up in water. When water **seeps into** a crack, the clasts **dissolve** and their **calcium** recrystallises as calcium carbonate, **plugging** the gap. In tests, water **ceased to** **trickle** through cracked hot-mixed samples within weeks, but kept flowing through samples without quicklime.
+A study published in Science Advances in January 2023 offered a different **interpretation**. The clasts, it suggested, were a **by-product** of "hot mixing" with **quicklime**, a **reactive** lime that **heats up** in water. When water **seeps into** a crack, the clasts **dissolve** and their **calcium** recrystallises as calcium carbonate, **plugging** the gap. In tests, water **ceased to** **trickle** through cracked hot-mixed samples within weeks, but kept flowing through samples without quicklime.
 
 The **implications** **extend beyond** **archaeology**. Cement **manufacture** accounts for about 8 per cent of global carbon dioxide **emissions**, the think-tank Chatham House reported in June 2018. Concrete that mends its cracks could last longer, making **demolition** and rebuilding rarer and **trimming** emissions. The white lumps once **scorned** as signs of **clumsy** workmanship have **prompted** a **rethink** of construction.
 
@@ -18,9 +18,9 @@ The **implications** **extend beyond** **archaeology**. Cement **manufacture** a
 
 现代混凝土通常靠**嵌入**(embedded)其中的钢筋加固，而钢筋**容易**(prone to)发生**锈蚀**(corrosion)。（be reinforced with…：用……加固）（which…：非限制性定语从句，修饰 steel bars；be prone to…：容易……）随着钢筋**生锈**(rusts)，它会**膨胀**(swells)，并**使**(fractures)周围的混凝土**断裂**(fractures)；而且许多**建筑**(structures)被设计为约50年的**使用寿命**(lifespan)。（As…：时间状语从句，当……时；around it：后置定语，修饰 concrete，it 指 the steel）（be designed for…：按……设计）罗马混凝土并不比现代的**同等对应物**(counterpart)更坚固；它的**长处**(merit)在于**耐久性**(durability)。（its modern counterpart：现代的同类材料，即现代混凝土）（lie in…：在于……）
 
-然而，这种古代材料似乎有个**缺点**(shortcoming)。它的内部**散布**(dotted with)着白色的石灰**小块**(chunks)，称为石灰**碎屑**(clasts)。（be dotted with…：散布着……，布满……）（known as…：过去分词短语作后置定语，修饰 chunks）长期以来，专家**把**(ascribed to)这些**块状物**(lumps)**归因于**(ascribed to)搅拌**马虎**(sloppy)或原料**成分**(ingredients)**低劣**(inferior)。他们认为，换一个更**认真负责的**(conscientious)工匠，就不会出这种**瑕疵**(defect)。（ascribe A to B：把 A 归因于 B）（a defect that…：同位语，补充说明前面说的情况；they assumed：插入语，他们认为；would have avoided：虚拟语气，本可以避免）
+然而，这种古代材料似乎有个**缺点**(shortcoming)。它的内部**散布**(dotted with)着白色的石灰**小块**(chunks)，称为石灰**碎屑**(clasts)。（be dotted with…：散布着……，布满……）（known as…：过去分词短语作后置定语，修饰 chunks）专家长期以来**把**(ascribed to)这些**块状物**(lumps)**归因于**(ascribed to)**马马虎虎的**(sloppy)搅拌或者是**比较次的**(inferior)**原材料**(raw ingredients)。这种**缺陷**(defect)，他们**认为**(assumed)，换一个更加**认真负责的**(conscientious)建筑工就能避免。（ascribe A to B：把 A 归因于 B）（a defect that…：同位语，补充说明前面说的情况；they assumed：插入语，他们认为；would have avoided：虚拟语气，本可以避免）
 
-2023年1月发表于《科学进展》（Science Advances）的一项研究提出了不同的**解释**(interpretation)。（published in…：过去分词短语作后置定语，修饰 study）该研究认为，这些碎屑是用生石灰“热混合”留下的**副产品**(by-product)；生石灰是一种遇水会发热、**活性强的**(reactive)石灰。（it suggested：插入语，it 指这项研究；a by-product of…：……的副产品）（a reactive lime…：同位语，补充说明 quicklime；that heats up in water：定语从句，修饰 lime）水**渗入**(seeps into)裂缝时，碎屑会**溶解**(dissolve)，其中的**钙**(calcium)重新结晶为碳酸钙，**堵住**(plugging)缝隙。（When…：时间状语从句）（recrystallise as…：重新结晶为……；plugging the gap：现在分词短语作状语，表示结果）试验中，水**不再**(ceased to)**细细流过**(trickle)开裂的热混合样本，只用了几周；而水一直从不含生石灰的样本中流过。（cease to do：不再做……；within weeks：几周之内）（keep doing：一直做……；without quicklime：介词短语作后置定语，修饰 samples）
+2023年1月发表于《科学进展》（Science Advances）的一项研究提出了不同的**解释**(interpretation)。（published in…：过去分词短语作后置定语，修饰 study）这些碎屑，该研究认为，是与**生石灰**(quicklime)“热混合”的**副产品**(by-product)：一种遇水会**变热**(heats up)的**活性强的**(reactive)石灰。（it suggested：插入语，it 指这项研究；a by-product of…：……的副产品）（a reactive lime…：同位语，补充说明 quicklime；that heats up in water：定语从句，修饰 lime）水**渗入**(seeps into)裂缝时，碎屑会**溶解**(dissolve)，其中的**钙**(calcium)重新结晶为碳酸钙，**堵住**(plugging)缝隙。（When…：时间状语从句）（recrystallise as…：重新结晶为……；plugging the gap：现在分词短语作状语，表示结果）试验中，水**不再**(ceased to)**细细流过**(trickle)开裂的热混合样本，只用了几周；而水一直从不含生石灰的样本中流过。（cease to do：不再做……；within weeks：几周之内）（keep doing：一直做……；without quicklime：介词短语作后置定语，修饰 samples）
 
 这项发现的**意义**(implications)**超出了**(extend beyond)**考古学**(archaeology)**的范围**(extend beyond)。（extend beyond…：超出……的范围）水泥**生产**(manufacture)约占全球二氧化碳**排放**(emissions)的8%，智库查塔姆研究所（Chatham House）2018年6月报告称。（account for…：（在数量上）占……）能自行修补裂缝的混凝土可能更经久耐用，从而使**拆除**(demolition)与重建减少，并**削减**(trimming)排放。（that mends its cracks：定语从句，修饰 Concrete）（making… and trimming…：两个现在分词短语作状语，表示结果；make A rarer：使 A 更少见）这些白色块状物曾被**轻视**(scorned)为手艺**拙劣的**(clumsy)痕迹，如今却**促使**(prompted)人们**重新思考**(rethink)建造之道。（once scorned as…：过去分词短语作后置定语，修饰 lumps；scorn A as B：把 A 轻视为 B）（a rethink of…：对……的重新思考）（简述：万神殿穹顶建成近1,900年依然屹立，是世界上最大的无钢筋混凝土穹顶。现代混凝土里的钢筋会生锈膨胀、撑裂混凝土，许多建筑设计寿命约50年；罗马混凝土并不更坚固，长处在于耐久。它里面的白色石灰碎屑，过去被专家当作搅拌马虎或原料低劣的瑕疵。2023年《科学进展》的研究认为，碎屑是生石灰热混合的副产品：水渗入裂缝时碎屑溶解，钙重新结晶为碳酸钙，堵住缝隙。水泥生产约占全球二氧化碳排放的8%，能自行修补裂缝的混凝土可能减少拆建和排放，这些曾被轻视的碎屑因此促使人们重新思考建造之道。）
 
@@ -56,16 +56,19 @@ The **implications** **extend beyond** **archaeology**. Cement **manufacture** a
 | dotted with | 本文：散布；adj. (be dotted with) 散布着，布满（a sky dotted with stars；a field dotted with trees） | 3 |
 | clasts | 本文：碎屑；n. (clast) （岩石、矿物的）碎屑，碎块（lime clasts 石灰碎屑） | 3 |
 | chunks | 本文：小块；n. (chunk) 块，厚块（chunks of meat/ice；a chunk of rock） | 3 |
-| ascribed to | 本文：把……归因于；v. (ascribe) 把……归因于（ascribe sth to sth：ascribe failure to bad luck） | 3 |
+| ascribed to | 本文：把……归因于；v. (ascribe) 把……归因于，认为（某事）是由……造成（ascribe sth to sth：ascribe failure to bad luck） | 3 |
 | lumps | 本文：块状物；n. (lump) 块，团，疙瘩（a lump of sugar/clay；lumps in the sauce） | 3 |
-| sloppy | 本文：马虎；adj. 马虎的，草率的（sloppy work/thinking） | 3 |
-| ingredients | 本文：成分；n. (ingredient) 原料，成分（mix the ingredients；the key ingredient） | 3 |
-| inferior | 本文：低劣；adj. 低劣的，次的（inferior goods/quality；be inferior to） | 3 |
+| sloppy | 本文：马马虎虎的；adj. 马虎的，草率的（sloppy work/thinking） | 3 |
+| raw ingredients | 本文：原材料；n. 原材料，原料（raw 未加工的；ingredient 原料，成分：mix the ingredients；the key ingredient） | 3 |
+| inferior | 本文：比较次的；adj. 低劣的，次的（inferior goods/quality；be inferior to） | 3 |
+| assumed | 本文：认为；v. (assume) 认为，假定（assume that…；it is assumed that…）；承担（assume responsibility） | 3 |
 | conscientious | 本文：认真负责的；adj. 认真负责的，一丝不苟的（a conscientious worker/student） | 3 |
-| defect | 本文：瑕疵；n. 缺陷，瑕疵（a manufacturing defect；a birth defect） | 3 |
+| defect | 本文：缺陷；n. 缺陷，瑕疵（a manufacturing defect；a birth defect） | 3 |
 | interpretation | 本文：解释；n. 解释，诠释（offer a new interpretation；open to interpretation） | 4 |
 | by-product | 本文：副产品；n. 副产品（a by-product of oil refining）；附带结果 | 4 |
+| quicklime | 本文：生石灰；n. 生石灰（氧化钙，遇水发热；slaked lime 熟石灰） | 4 |
 | reactive | 本文：活性强的；adj. （化学）活性强的，易反应的（a highly reactive metal/gas） | 4 |
+| heats up | 本文：变热；v. (heat up) 变热，升温（the water heats up quickly）；使变热，加热 | 4 |
 | seeps into | 本文：渗入；v. (seep) 渗，渗入（water seeps into/through the walls） | 4 |
 | dissolve | 本文：溶解；v. 溶解（sugar dissolves in water）；解散（dissolve parliament） | 4 |
 | calcium | 本文：钙；n. 钙（calcium carbonate 碳酸钙；rich in calcium） | 4 |

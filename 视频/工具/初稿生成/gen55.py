@@ -27,15 +27,15 @@ S=[
      "（be dotted with…：散布着……，布满……）"],
     [[("known as","称为"),("lime","石灰"),("**clasts**.","**碎屑**(clasts)。")],
      "（known as…：过去分词短语作后置定语，修饰 chunks）"]]),
-(3,[[[("Experts long","长期以来，专家"),("**ascribed**","**把**(ascribed to)"),("these **lumps**","这些**块状物**(lumps)"),("**to**","**归因于**(ascribed to)"),("**sloppy** mixing","搅拌**马虎**(sloppy)"),("or **inferior** raw **ingredients**,","或原料**成分**(ingredients)**低劣**(inferior)。")],
-     "（ascribe A to B：把 A 归因于 B）"],
-    [[("a **defect** that, they assumed, a more **conscientious** builder would have avoided.","他们认为，换一个更**认真负责的**(conscientious)工匠，就不会出这种**瑕疵**(defect)。")],
+(3,[[[("Experts","专家"),("long","长期以来"),("**ascribed**","**把**(ascribed to)"),("these **lumps**","这些**块状物**(lumps)"),("**to**","**归因于**(ascribed to)"),("**sloppy**","**马马虎虎的**(sloppy)"),("mixing","搅拌"),("or","或者是"),("**inferior**","**比较次的**(inferior)"),("**raw ingredients**,","**原材料**(raw ingredients)。")],
+     "（ascribe A to B：把 A 归因于 B；\n认为（某事）是由……造成）"],
+    [[("a **defect** that,","这种**缺陷**(defect)，"),("they **assumed**,","他们**认为**(assumed)，"),("a more","换一个更加"),("**conscientious**","**认真负责的**(conscientious)"),("builder","建筑工"),("would have avoided.","就能避免。")],
      "（a defect that…：同位语，补充说明前面说的情况；\nthey assumed：插入语，他们认为；\nwould have avoided：虚拟语气，本可以避免）"]]),
 (4,[[[("A study published in Science Advances in January 2023","2023年1月发表于《科学进展》（Science Advances）的一项研究"),("offered","提出了"),("a different **interpretation**.","不同的**解释**(interpretation)。")],
      "（published in…：过去分词短语作后置定语，\n修饰 study）"]]),
-(4,[[[("The clasts, it suggested,","该研究认为，这些碎屑"),("were","是"),("a **by-product** of \"hot mixing\" with quicklime,","用生石灰“热混合”留下的**副产品**(by-product)；")],
+(4,[[[("The clasts,","这些碎屑，"),("it suggested,","该研究认为，"),("were","是"),("a **by-product** of \"hot mixing\" with **quicklime**,","与**生石灰**(quicklime)“热混合”的**副产品**(by-product)：")],
      "（it suggested：插入语，it 指这项研究；\na by-product of…：……的副产品）"],
-    [[("a **reactive** lime that heats up in water.","生石灰是一种遇水会发热、**活性强的**(reactive)石灰。")],
+    [[("a **reactive** lime that **heats up** in water.","一种遇水会**变热**(heats up)的**活性强的**(reactive)石灰。")],
      "（a reactive lime…：同位语，补充说明 quicklime；\nthat heats up in water：定语从句，修饰 lime）"]]),
 (4,[[[("When water","水"),("**seeps into**","**渗入**(seeps into)"),("a crack,","裂缝时，")],
      "（When…：时间状语从句）"],
@@ -61,7 +61,7 @@ S=[
      "（简述：万神殿穹顶建成近1,900年依然屹立，是世界上最大的无钢筋混凝土穹顶。\n"
      "现代混凝土里的钢筋会生锈膨胀、使混凝土断裂，许多建筑设计寿命约50年；\n"
      "罗马混凝土并不更坚固，长处在于耐久。它里面的白色石灰碎屑，\n"
-     "过去被专家当作搅拌马虎或原料低劣的瑕疵。2023年《科学进展》的研究认为，\n"
+     "过去被专家当作搅拌马虎或原料低劣的缺陷。2023年《科学进展》的研究认为，\n"
      "碎屑是生石灰热混合的副产品：水渗入裂缝时碎屑溶解，钙重新结晶为碳酸钙，堵住缝隙。\n"
      "水泥生产约占全球二氧化碳排放的8%，能自行修补裂缝的混凝土可能减少拆建和排放，\n"
      "这些曾被轻视的碎屑因此促使人们重新思考建造之道。）"]]),
@@ -69,11 +69,9 @@ S=[
 G={
  "S1 Nearly 1,900 years after its completion, in about AD 125–128":"对齐不了：after its completion 是时间状语，中文要先说“竣工”再说“近1,900年后”；in about AD 125–128 是插入语，中文“约于公元125至128年竣工”年代必须放到动词前，整组语序倒过来",
  "S4 reinforced with embedded steel bars":"对齐不了：be reinforced with… 中文“靠……加固”，“加固”必须放到“钢筋”后面；embedded 是前置定语，中文“嵌入其中的钢筋”",
- "S9 a defect that, they assumed, a more conscientious builder would have avoided":"对齐不了：a defect that… 是同位语带定语从句，they assumed 是插入语，中文“他们认为，换一个更认真负责的工匠，就不会出这种瑕疵”整句语序倒过来",
  "S10 A study published in Science Advances in January 2023":"对齐不了：published in… 是过去分词短语作后置定语，修饰 study，中文“2023年1月发表于《科学进展》的一项研究”定语必须提前",
- "S11 The clasts, it suggested":"对齐不了：it suggested 是插入语，中文“该研究认为”必须放到句首",
- "S11 a by-product of \"hot mixing\" with quicklime":"对齐不了：a by-product of… 是 of 结构，中文“用生石灰“热混合”留下的副产品”定语必须提前",
- "S11 a reactive lime that heats up in water":"对齐不了：that heats up in water 是定语从句，修饰 lime，中文“遇水会发热、活性强的石灰”定语必须提前；同位语里补出主语“生石灰是”",
+ "S11 a by-product of \"hot mixing\" with quicklime":"对齐不了：a by-product of… 是 of 结构，中文“与生石灰“热混合”的副产品”，“副产品”必须放到最后",
+ "S11 a reactive lime that heats up in water":"对齐不了：that heats up in water 是定语从句，修饰 lime，中文“遇水会变热的活性强的石灰”定语必须提前",
  "S5 the concrete around it":"对齐不了：around it 是后置定语，修饰 concrete，中文“周围的混凝土”定语必须提前",
  "S5 a lifespan of around 50 years":"对齐不了：a lifespan of… 是 of 结构，中文“约50年的使用寿命”，“使用寿命”必须放到最后",
  "S12 calcium carbonate":"对齐不了：calcium carbonate 是化学名“碳酸钙”，一个词，不能拆",
@@ -99,7 +97,7 @@ out={"no":"55","title_en":"The Secret of Rome's Undying Concrete","title_zh":"�
      "停顿插入点":{"S11":{"1":[0.736125,"交界"]}},
      "词尾除阻":{"S6":{"1":[3.779,"t"]}},
      "allow_clash":["reinforced with"],
-     "换行变更已获同意":{"S6":"用户 2026-11-07：“尽可能的就是上面的英文和如果说ok的话能那就跟下面的这个中文对应好，对吧？尽可能的不论是哪个单词”","S15":"用户 2026-11-07：“尽可能的就是上面的英文和如果说ok的话能那就跟下面的这个中文对应好，对吧？尽可能的不论是哪个单词”"},
+     "换行变更已获同意":{"S6":"用户 2026-11-07：“尽可能的就是上面的英文和如果说ok的话能那就跟下面的这个中文对应好，对吧？尽可能的不论是哪个单词”","S15":"用户 2026-11-07：“尽可能的就是上面的英文和如果说ok的话能那就跟下面的这个中文对应好，对吧？尽可能的不论是哪个单词”","S9":"用户 2026-11-07：“上面这个翻译不准换成这个翻译：这种缺陷，他们认为，换一个更加认真负责的建筑工就能避免”"},
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Pantheon":"万神殿","Roman":"罗马","Science Advances":"《科学进展》","Chatham House":"查塔姆研究所","AD":"公元"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

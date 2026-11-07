@@ -937,6 +937,7 @@ def main():
     e, conf, ref = text_checks(d, article_en(no), sent, no); err += e
     sys.path.insert(0, T); import 破折号 as _PZ; err += _PZ.查(d, no)
     import 逐词对齐 as _ZD; err += _ZD.查(d, no)
+    conf += _ZD.同序(d, no)                                          # K128 中文语序和英文一样的组能拆就拆（只提醒，55 起；用户 2026-11-07）
     import 意思个数 as _YS; err += _YS.查(d, no)   # 文36（27 起）：重点词中文最多两个意思
     import 颜色核对 as _YS; err += _YS.查(d, no)                       # G49 同屏重点词颜色分得开（用户 2026-10-25，25 起：2026-10-26 起点移到 25）                       # G47 非重点词也逐词对齐（用户 2026-10-25，25 起：2026-10-26 起点移到 25）          # T36 破折号禁用（用户 2026-10-24，24 起）
     err += KZ_查篇(d, no)                                           # G24：确认的结论合格式，保留违规、放宽、特批只认用户原话（24 起）
