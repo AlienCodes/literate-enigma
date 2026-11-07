@@ -2,27 +2,27 @@
 # ZH: 拯救天空
 ## 英文
 
-A **layer** of **ozone** **shields** Earth from much of the sun's **ultraviolet** **radiation**. In June 1974 Mario Molina and Sherwood Rowland, chemists in California, warned in Nature of a **menace** in fridges and **spray** cans. Chlorofluorocarbons (CFCs) are so **inert** that they drift intact into the stratosphere, high in the **atmosphere**, where they can **liberate** **chlorine**, a **catalyst** that destroys ozone **molecule** after molecule. The pair foresaw **gradual** **erosion**.
+A **layer** of **ozone** **shields** Earth from much of the sun's **ultraviolet** **radiation**. In June 1974 Mario Molina and Sherwood Rowland, chemists in California, warned in Nature of a **menace** in fridges and **spray** cans. Chlorofluorocarbons (CFCs) are so **inert** that they drift **intact** into the stratosphere, high in the **atmosphere**, where they can **liberate** **chlorine**, a **catalyst** that destroys ozone **molecule** after molecule. The pair foresaw **gradual** **erosion**.
 
-The **alarm**, when it sounded, was **abrupt**. In May 1985 Joseph Farman and colleagues at the British Antarctic Survey reported that ozone over Halley Bay, their Antarctic station, had **plummeted** each southern spring since the mid-1970s. Their **humble** Dobson spectrophotometer **gauged** ozone from the ground. The staff were **persistent**, reading it in a **painstaking** **routine** of **manual** **observation**.
+The **alarm**, when it sounded, was **abrupt**. In May 1985 Joseph Farman and colleagues at the British **Antarctic** Survey reported that **ozone** over Halley Bay, their Antarctic station, had **plummeted** each southern spring since the mid-1970s. Their **humble** Dobson spectrophotometer **gauged** ozone from the ground. The staff were **persistent**, reading it in a **painstaking** **routine** of **manual** **observation**.
 
-Yet NASA's Nimbus-7 **satellite**, a **sophisticated** eye in **orbit**, had recorded the same lows. Its software flagged them as **dubious**, since ozone that low had never been reliably measured. NASA says it was still **verifying** them when Farman published. The **sensor** had worked; **expectation** had not.
+Yet NASA's Nimbus-7 **satellite**, a **sophisticated** eye in **orbit**, had recorded the same lows. Its software **flagged** them **as** **dubious**, since ozone that low had never been reliably measured. NASA says it was still **verifying** them when Farman published. The **sensor** had worked; **expectation** had not.
 
-**Remarkably**, the response was **swift**. In September 1987 **diplomats** signed the Montreal **Protocol**, a **binding** **accord** to **curb** CFCs. **Amendments** **tightened** it: in June 1990 **affluent** countries **pledged** to **phase out** CFCs by 2000. In September 2009 the Protocol and its parent Vienna Convention became the UN's first treaties to win **universal** ratification.
+**Remarkably**, the response was **swift**. In September 1987 **diplomats** signed the Montreal **Protocol**, a **binding** **accord** to **curb** CFCs. **Amendments** **tightened** it: in June 1990 **affluent** countries **pledged** to **phase out** CFCs by 2000. In September 2009 the Protocol and its parent Vienna Convention became the UN's first **treaties** to win **universal** **ratification**.
 
-In January 2023 a UN-backed **assessment** **forecast** **recovery** to 1980 levels around 2066 over Antarctica, 2045 over the Arctic, and 2040 elsewhere. **Healing** will take decades. The sky's **rescue** began with **diligent** observers who trusted that a **baffling** number was no **glitch**, and published it.
+In January 2023 a UN-backed **assessment** **forecast** **recovery** to 1980 levels around 2066 over **Antarctica**, 2045 over the **Arctic**, and 2040 elsewhere. **Healing** will take decades. The sky's **rescue** began with **diligent** observers who trusted that a **baffling** number was no **glitch**, and published it.
 
 ## 中文
 
-一**层**(layer)**臭氧**(ozone)为地球**遮挡**(shields)了太阳的大部分**紫外**(ultraviolet)**辐射**(radiation)。1974年6月，加州的化学家马里奥·莫利纳和舍伍德·罗兰在《自然》杂志上撰文，警告冰箱和**喷雾**(spray)罐里藏着一种**威胁**(menace)。氯氟烃（CFCs）**惰性**(inert)极强，能完好无损地飘升到高层**大气**(atmosphere)中的平流层，在那里还可能**释放**(liberate)出**氯**(chlorine)，而氯是一种**催化剂**(catalyst)，会把臭氧**分子**(molecule)一个接一个地破坏掉。两人预料到的，是一场**缓慢的**(gradual)**侵蚀**(erosion)。
+一**层**(layer)**臭氧**(ozone)为地球**遮挡**(shields)了太阳的大部分**紫外**(ultraviolet)**辐射**(radiation)。1974年6月，加州的化学家马里奥·莫利纳和舍伍德·罗兰在《自然》杂志上撰文，警告冰箱和**喷雾**(spray)罐里藏着一种**威胁**(menace)。氯氟烃（CFCs）如此**惰性**(inert)，以至于它们能**完好无损地**(intact)飘入到高层**大气**(atmosphere)中的平流层，在那里还可能**释放**(liberate)出**氯**(chlorine)，而氯是一种**催化剂**(catalyst)，会把臭氧**分子**(molecule)一个接一个地破坏掉。两人预料到的，是一场**渐进式的**(gradual)**侵蚀**(erosion)。
 
-**警报**(alarm)真的拉响时，却来得十分**突然**(abrupt)。1985年5月，英国南极调查局的约瑟夫·法曼和同事报告称，他们的南极考察站哈雷湾上空的臭氧，自20世纪70年代中期起，每到南半球春季就**骤降**(plummeted)。他们那台**不起眼的**(humble)多布森分光光度计，从地面**测量**(gauged)臭氧。工作人员**持之以恒**(persistent)，按**例行**(routine)规程读数，靠**人工**(manual)**观测**(observation)，做得**一丝不苟**(painstaking)。
+**警报**(alarm)真的拉响时，却来得十分**突然**(abrupt)。1985年5月，英国**南极**(Antarctic)调查局的约瑟夫·法曼和同事报告称，他们的南极考察站哈雷湾上空的**臭氧**(ozone)，自20世纪70年代中期起，每到南半球春季就**骤降**(plummeted)。他们那台**不起眼的**(humble)多布森分光光度计，从地面**测量**(gauged)臭氧。工作人员**持之以恒**(persistent)，按**例行**(routine)规程读数，靠**人工**(manual)**观测**(observation)，做得**一丝不苟**(painstaking)。
 
-然而，美国国家航空航天局（NASA）的雨云7号**卫星**(satellite)——一只在**轨道**(orbit)上运行的**精密**(sophisticated)“眼睛”——也记录到了同样的低值。它的软件把这么低的读数标记为**可疑**(dubious)，因为此前从没有人可靠地测到过这么低的数值。据NASA的说法，法曼发表论文时，它还在**核实**(verifying)这些读数。**传感器**(sensor)并没有出问题；出问题的是**预期**(expectation)。
+然而，美国国家航空航天局（NASA）的雨云7号**卫星**(satellite)——一只在**轨道**(orbit)上运行的**精密**(sophisticated)“眼睛”——也记录到了同样的低值。它的软件**把**(flagged as)这么低的读数**标记为**(flagged as)**可疑**(dubious)，因为此前从没有人可靠地测到过这么低的数值。据NASA的说法，法曼发表论文时，它还在**核实**(verifying)这些读数。**传感器**(sensor)并没有出问题；出问题的是**预期**(expectation)。
 
-**令人称奇的是**(Remarkably)，各国的反应十分**迅速**(swift)。1987年9月，**外交官**(diplomats)们签署了《蒙特利尔**议定书**(Protocol)》，这是一项**限制**(curb)CFCs、具有**约束力**(binding)的**协定**(accord)。此后的**修正案**(Amendments)又**收紧**(tightened)了管控：1990年6月，**富裕**(affluent)国家**承诺**(pledged)在2000年前**逐步淘汰**(phase out)CFCs。2009年9月，该议定书与其所依据的《维也纳公约》一道，成为联合国首批获得**普遍**(universal)批准的条约。
+**引人注目的是**(Remarkably)，各国的反应十分**迅速**(swift)。1987年9月，**外交官**(diplomats)们签署了《蒙特利尔**议定书**(Protocol)》，这是一项**限制**(curb)CFCs、具有**约束力**(binding)的**协定**(accord)。此后的**修正案**(Amendments)又**收紧**(tightened)了管控：1990年6月，**富裕**(affluent)国家**承诺**(pledged)在2000年前**逐步淘汰**(phase out)CFCs。2009年9月，该议定书与其所依据的《维也纳公约》一道，成为联合国首批获得**普遍**(universal)**批准**(ratification)的**条约**(treaties)。
 
-2023年1月，一份由联合国支持的**评估**(assessment)报告**预测**(forecast)，臭氧层将**恢复**(recovery)到1980年的水平，南极上空约在2066年，北极上空约在2045年，其他地区约在2040年。臭氧层的**愈合**(Healing)还需要数十年。天空得以**拯救**(rescue)，始于一群**勤勉的**(diligent)观测者——他们相信，一个**令人费解的**(baffling)数字并不是**小故障**(glitch)，于是把它发表了出来。
+2023年1月，一份由联合国支持的**评估**(assessment)报告**预测**(forecast)，臭氧层将**恢复**(recovery)到1980年的水平，**南极**(Antarctica)上空约在2066年，**北极**(Arctic)上空约在2045年，其他地区约在2040年。臭氧层的**愈合**(Healing)还需要数十年。天空得以**拯救**(rescue)，始于一群**勤勉的**(diligent)观测者——他们相信，一个**令人费解的**(baffling)数字并不是**小故障**(glitch)，于是把它发表了出来。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -35,6 +35,7 @@ In January 2023 a UN-backed **assessment** **forecast** **recovery** to 1980 lev
 | menace | n. 威胁，危险的人或物（a menace to public health）；威胁的意味（a hint of menace）；v. 威胁，危及 | 1 |
 | spray | n. 喷雾，喷剂（a spray can 喷雾罐；hair spray）；浪花，飞沫；v. 喷，喷洒（spray A on B / spray B with A） | 1 |
 | inert | adj. （化学）惰性的，不起化学反应的（inert gases 惰性气体）；无活力的，迟钝的；不动的 | 1 |
+| intact | adj. 完好无损的，完整的（drift intact 完好无损地飘：形容词作状语）；an intact building / remain intact 保持完好 | 1 |
 | liberate | v. 解放，使获自由（liberate a city；liberate sb from sth）；（化学）释放，使游离（liberate chlorine）；liberation n. | 1 |
 | atmosphere | n. 大气，大气层（the upper atmosphere 高层大气）；气氛，氛围（a relaxed atmosphere）；atmospheric adj. | 1 |
 | chlorine | n. 氯，氯气（化学元素 Cl） | 1 |
@@ -44,6 +45,7 @@ In January 2023 a UN-backed **assessment** **forecast** **recovery** to 1980 lev
 | erosion | n. 侵蚀，腐蚀（soil/coastal erosion）；（权力、价值等的）削弱，逐渐丧失（the erosion of trust）；erode v. | 1 |
 | alarm | n. 警报，警报器（raise/sound the alarm 发出警报；a fire alarm）；惊恐，担忧（in alarm）；v. 使惊恐，使担心；alarming adj. | 2 |
 | abrupt | adj. 突然的，意外的（an abrupt change/end）；（言行）唐突的，生硬的；abruptly adv. | 2 |
+| Antarctic | adj. 南极的，南极洲的（the British Antarctic Survey 英国南极调查局；an Antarctic station 南极考察站）；n. the Antarctic 南极地区 | 2 |
 | plummeted | v. (plummet) 骤然下跌，暴跌（prices/temperatures plummeted）；（从高处）垂直落下 | 2 |
 | gauged | v. (gauge) 测量，计量（gauge rainfall/wind speed）；判断，估计（gauge public opinion）；n. 测量仪表（a fuel/pressure gauge）；（铁轨）轨距 | 2 |
 | humble | adj. 简陋的，不起眼的（a humble device）；卑微的（of humble origins 出身卑微）；谦逊的，谦卑的；v. 使谦卑；使（强者）落败 | 2 |
@@ -55,6 +57,7 @@ In January 2023 a UN-backed **assessment** **forecast** **recovery** to 1980 lev
 | satellite | n. 人造卫星（a weather/communications satellite；via satellite）；卫星；卫星国，附属机构（satellite town 卫星城） | 3 |
 | sophisticated | adj. 精密的，复杂先进的（sophisticated equipment/technology）；（人）老练的，见多识广的，有品位的；sophistication n. | 3 |
 | orbit | n. （天体、卫星的）运行轨道（in orbit 在轨道上运行；go into orbit）；（影响、活动的）范围；v. 绕……运行 | 3 |
+| flagged as | phr. v. (flag sb/sth as) 把……标记为，把……标为（flag A as B）；flag v. 标出，标记；n. 旗，旗帜 | 3 |
 | dubious | adj. 可疑的，靠不住的（dubious data/claims）；（对某事）怀疑的，拿不准的（be dubious about）；名声不好的 | 3 |
 | verifying | v. (verify) 核实，查证（verify data/a claim）；证明，证实（verify that…）；verification n. | 3 |
 | sensor | n. 传感器，感应器（a motion/heat sensor） | 3 |
@@ -71,10 +74,14 @@ In January 2023 a UN-backed **assessment** **forecast** **recovery** to 1980 lev
 | affluent | adj. 富裕的，富足的（an affluent society/area；affluent countries）；affluence n. | 4 |
 | pledged | v. (pledge) 承诺，保证（pledge to do sth；pledge support/money）；抵押；n. 誓言，承诺（make a pledge） | 4 |
 | phase out | phr. v. 逐步淘汰，逐步停止使用（phase out leaded petrol/CFCs）；对比 phase in 逐步采用；phase n. 阶段，时期 | 4 |
+| treaties | n. (treaty 的复数) 条约，协定（sign/ratify a treaty 签署/批准条约；peace treaty 和约） | 4 |
 | universal | adj. 普遍的，全体的（universal ratification/suffrage 普遍批准／普选权）；通用的，万能的（a universal remedy）；全世界的；universally adv. | 4 |
+| ratification | n. （条约等的）正式批准，认可（universal ratification 普遍批准）；ratify v. 批准 | 4 |
 | assessment | n. 评估，评价（make an assessment of；risk assessment 风险评估）；（应付金额的）核定；assess v. | 5 |
 | forecast | v. （forecast/forecasted）预测，预报（forecast rain/growth）；n. 预测，预报（weather forecast）；forecaster n. | 5 |
 | recovery | n. 恢复，复原（make a full recovery 完全康复；economic recovery 经济复苏）；找回，收回（the recovery of stolen goods）；recover v. | 5 |
+| Antarctica | n. 南极洲，南极大陆（over Antarctica 在南极上空）；Antarctic adj. 南极的 | 5 |
+| Arctic | n. the Arctic 北极地区（over the Arctic 在北极上空）；adj. 北极的（Arctic ice 北极冰）；Antarctic adj. 南极的 | 5 |
 | healing | n. 愈合，治愈，康复（the healing process）；adj. 有疗效的；heal v. 治愈；（伤口）愈合；（分歧）弥合 | 5 |
 | rescue | n./v. 营救，救援，挽救（come to sb's rescue 救助某人；rescue sb from sth；a rescue team） | 5 |
 | diligent | adj. 勤奋的，勤勉的；尽心尽力的（diligent in one's work）；diligence n. | 5 |
