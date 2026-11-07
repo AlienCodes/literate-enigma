@@ -8,7 +8,7 @@ On 6 November, at a **joint** meeting of the Royal Society and the Royal Astrono
 
 Stockholm proved harder to **dazzle**. The Nobel physics committee valued **rigorous** **experimental** **confirmation**, and **committee** member Allvar Gullstrand, a Nobel-winning eye **specialist**, **deemed** the **empirical** support for relativity **insufficient**. Since no **nomination** **fulfilled** Nobel's **criteria**, the 1921 prize was **reserved** for a year, as the **statutes** **permit**.
 
-On 9 November 1922 the Royal Swedish Academy of Sciences **conferred** it on Einstein, **citing** his services to theoretical physics, especially his discovery of the law of the photoelectric effect. That law, which **governs** how light **ejects** **electrons** from metal, helped **underpin** **quantum** theory. A letter the next day **clarified** that the prize took no account of relativity. Einstein, then **aboard** a **steamer** **bound for** Japan, would miss the December **ceremony**.
+On 9 November 1922 the Royal Swedish Academy of Sciences **conferred** it on Einstein, **citing** his services to theoretical physics, especially his discovery of the law of the photoelectric effect. That law, which **governs** how light **ejects** **electrons** from metal, helped **underpin** **quantum** theory. A letter the next day **clarified** that the prize **took no account of** relativity. Einstein, then **aboard** a **steamer** **bound for** Japan, would miss the December **ceremony**.
 
 On 11 July 1923, in Gothenburg, Sweden, he **delivered** his Nobel **lecture** before a **congress** of Nordic scientists, **devoting** it to the **fundamental** ideas and problems of relativity. The theory the committee looked past reached a Nobel **podium** after all, carried there by the man the prize had **honoured**.
 
@@ -20,9 +20,9 @@ On 11 July 1923, in Gothenburg, Sweden, he **delivered** his Nobel **lecture** b
 
 斯德哥尔摩却没那么容易被**眩惑**(dazzle)。诺贝尔物理学委员会看重的是**严格的**(rigorous)**实验**(experimental)**证实**(confirmation)。**委员会**(committee)成员阿尔瓦·古尔斯特兰德是眼科**专家**(specialist)，本人也是诺贝尔奖得主，他**认定**(deemed)相对论的**实证**(empirical)支持**不足**(insufficient)。由于没有一项**提名**(nomination)**符合**(fulfilled)诺贝尔定下的**标准**(criteria)，1921年的奖便依照**章程**(statutes)**允许**(permit)的办法**保留**(reserved)一年。
 
-1922年11月9日，瑞典皇家科学院把这个奖**授予**(conferred)爱因斯坦，**表彰**(citing)他对理论物理学的贡献，尤其是他发现了光电效应定律。这条定律**决定**(governs)了光如何把**电子**(electrons)从金属中**打出**(ejects)，曾帮助**奠定**(underpin)**量子**(quantum)理论的基础。第二天的一封信**说明**(clarified)，此奖并未考虑相对论。爱因斯坦当时正**乘**(aboard)一艘**开往**(bound for)日本的**轮船**(steamer)，将错过12月的颁奖**典礼**(ceremony)。
+1922年11月9日，瑞典皇家科学院把这个奖**授予**(conferred)爱因斯坦，**表彰**(citing)他对理论物理学的贡献，尤其是他发现了光电效应定律。这条定律**决定**(governs)了光如何把**电子**(electrons)从金属中**打出**(ejects)，曾帮助**奠定**(underpin)**量子**(quantum)理论的基础。第二天的一封信**澄清**(clarified)，此奖**并未考虑**(took no account of)相对论。爱因斯坦当时正**乘**(aboard)一艘**开往**(bound for)日本的**轮船**(steamer)，将错过12月的颁奖**典礼**(ceremony)。
 
-1923年7月11日，他在瑞典哥德堡向北欧自然科学家**大会**(congress)**发表**(delivered)诺贝尔**演讲**(lecture)，**专门**(devoting)讲相对论的**基本**(fundamental)思想与问题。委员会绕开不看的那个理论，终究登上了诺贝尔的**讲台**(podium)，把它带上去的，正是这个奖所**嘉奖**(honoured)的人。
+1923年7月11日，他在瑞典哥德堡向北欧自然科学家**大会**(congress)**发表**(delivered)诺贝尔**演讲**(lecture)，**专门**(devoting)讲相对论的**基本**(fundamental)思想与问题。委员会绕开不看的那个理论，终究登上了诺贝尔的**讲台**(podium)，把它带上去的，正是这个奖所**嘉奖**(honoured)的爱因斯坦。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -68,6 +68,7 @@ On 11 July 1923, in Gothenburg, Sweden, he **delivered** his Nobel **lecture** b
 | underpin | v. 构成……的基础，支撑，巩固（理论、论点等）；从下面加固（建筑） | 4 |
 | quantum | adj. 量子的（quantum theory/mechanics）；n. 量子；定量，份额；a quantum leap 巨大飞跃 | 4 |
 | clarified | v. (clarify) 澄清，阐明，说明（clarify that…）；（使液体）澄清 | 4 |
+| took no account of | 短语. (take no account of) 不考虑，不顾及，不把……计算在内（take account of / take … into account 考虑到） | 4 |
 | aboard | prep./adv. 在（船、飞机、车）上（go/come aboard 上船） | 4 |
 | steamer | n. 汽船，轮船（= steamship）；蒸锅 | 4 |
 | bound for | 短语. 开往……的，驶向……的（a ship bound for Japan）；（另：be bound to do 必然会；be bound by 受……约束） | 4 |
