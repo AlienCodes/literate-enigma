@@ -28,10 +28,14 @@ Such rapid change, too fast for genetic **evolution**, points to **imitation** r
 | 词 | 释义 | 段 |
 |---|---|---|
 | breeding grounds | n. 繁殖地（return to breeding grounds；winter breeding grounds） | 1 |
+| male | adj. 雄性的；n. 雄性动物（male and female；the males of the species） | 1 |
+| humpback whales | n. (humpback whale) 座头鲸（a humpback whale；humpback whales sing） | 1 |
 | haunting | adj. 萦绕心头的，令人难忘的（a haunting melody/image） | 1 |
 | melody | n. 旋律，曲调（a simple/haunting melody） | 1 |
+| Sound units | n. (sound unit) 声音单元（basic sound units） | 1 |
 | constitute | v. 构成，组成（constitute a majority/part of）；被视为 | 1 |
 | elaborate | adj. 精巧的，复杂详尽的（an elaborate design/plan）；v. 详细说明（elaborate on） | 1 |
+| themes | n. (theme) 主题（the main theme of the song） | 1 |
 | hierarchy | n. 层级，等级制度（a strict hierarchy；social hierarchy） | 1 |
 | rendition | n. 演唱，演奏，表演（a rendition of a song） | 1 |
 | recur | v. (recur) 反复出现，重现（a recurring theme/problem） | 1 |

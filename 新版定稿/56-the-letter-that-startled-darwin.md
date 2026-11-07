@@ -4,25 +4,25 @@
 ## 英文
 Charles Darwin **disembarked** from HMS Beagle in October 1836. In September 1838 he began **formulating** the **principle** of natural **selection**: individuals better **adapted to** their **surroundings** survive and **pass on** their **hereditary** **traits**. By 1844 he had **composed** a 230-page **manuscript**, yet kept it **unpublished**, **cautiously** **amassing** evidence.
 
-In February 1858, two decades after Darwin's first insight, Alfred Russel Wallace, a **naturalist** **afflicted** by fever in the Malay Archipelago, **independently** **conceived** the same idea. His **concise** essay reached Darwin on 18 June 1858. Its argument **paralleled** Darwin's own almost **precisely**; he told Charles Lyell he had never seen a more **remarkable** **coincidence**. His claim to **priority** seemed **threatened**.
+In February 1858, two decades after Darwin's first insight, Alfred Russel Wallace, a **naturalist** **afflicted by** fever in the Malay Archipelago, **independently** **conceived** the same idea. His **concise** essay reached Darwin on 18 June 1858. Its argument **paralleled** Darwin's own almost **precisely**; he told Charles Lyell he had never seen a more **remarkable** **coincidence**. His claim to **priority** seemed **threatened**.
 
-Lyell and the botanist Joseph Hooker **arranged** for both papers to be read **simultaneously** at the Linnean Society, a scientific **institution** in London, on 1 July 1858. Neither author attended the **proceedings**. Wallace was abroad, and Darwin was **grieving**: **scarlet** fever had killed his **infant** son on 28 June. The **compromise**, struck without Wallace, may have kept **rivalry** over **precedence** at bay.
+Lyell and the **botanist** Joseph Hooker **arranged** for both papers to be read **simultaneously** at the Linnean Society, a scientific **institution** in London, on 1 July 1858. Neither author attended the **proceedings**. Wallace was abroad, and Darwin was **grieving**: **scarlet** fever had killed his **infant** son on 28 June. The **compromise**, struck without Wallace, may have kept **rivalry** over **precedence** at bay.
 
-The papers' **publication** on 20 August 1858 met a **muted** **reception**. In May 1859 the Society's president **remarked** in his **yearly** address that the year had been **barren** of **revolutionary** discoveries. The **sensation** came on 24 November 1859 with Darwin's **treatise**, On the Origin of Species: booksellers had **subscribed** for every copy of its first **impression**, 1,250 in all.
+The papers' **publication** on 20 August 1858 met a **muted** **reception**. In May 1859 the Society's president **remarked** in his **yearly** address that the year had been **barren** of **revolutionary** discoveries. The **sensation** came on 24 November 1859 with Darwin's **treatise**, **On the Origin of Species**: booksellers had **subscribed** for every copy of its first **impression**, 1,250 in all.
 
-Wallace had **readily** **signified** his **acceptance** in October 1858, **assuring** Hooker in a **cordial** letter of his **satisfaction** with the **arrangement**. In 1889 he published a **lengthy** **exposition** of the idea and **entitled** it Darwinism. Wallace never named the theory after himself.
+Wallace had **readily** **signified** his **acceptance** in October 1858, **assuring** Hooker in a **cordial** letter of his **satisfaction** with the **arrangement**. In 1889 he published a **lengthy** **exposition** of the idea and **entitled** it Darwinism. Wallace never **named** the theory **after** himself.
 
 ## 中文
 
-1836年10月，查尔斯·达尔文从小猎犬号上**登岸**(disembarked)。1838年9月，他开始**构想出**(formulating)自然**选择**(selection)的**原理**(principle)：**对**(adapted to)**周围环境**(surroundings)**适应**(adapted to)得更好的个体存活下来，并将**传递**(pass on)他们自身**遗传的**(hereditary)**性状**(traits)（给后代）。到1844年，他已**撰写了**(composed)一份230页的**手稿**(manuscript)，却一直**未予发表**(unpublished)，**谨慎地**(cautiously)**积累着**(amassing)证据。
+1836年10月，查尔斯·达尔文从小猎犬号上**登岸**(disembarked)。1838年9月，他开始**构想并明确表述**(formulating)自然**选择**(selection)的**原理**(principle)：**对**(adapted to)**周围环境**(surroundings)**适应**(adapted to)得更好的个体存活下来，并将**传递**(pass on)他们自身**遗传的**(hereditary)**性状**(traits)（给后代）。到1844年，他已**撰写了**(composed)一份230页的**手稿**(manuscript)，却一直**未予发表**(unpublished)，**谨慎地**(cautiously)**积累着**(amassing)证据。
 
-1858年2月，距达尔文最初的设想已有二十年，**博物学家**(naturalist)阿尔弗雷德·拉塞尔·华莱士在马来群岛**身患**(afflicted)热病，**独立地**(independently)**构想**(conceived)出了同一个想法。华莱士那篇**简明**(concise)的文章于1858年6月18日寄到达尔文手中。文中的论证与达尔文本人的论证几乎**完全**(precisely)**相合**(paralleled)；达尔文告诉查尔斯·莱尔，自己从未见过比这更**惊人**(remarkable)的**巧合**(coincidence)。他对**优先权**(priority)的主张似乎**受到了威胁**(threatened)。
+1858年2月，达尔文最初的洞察出现后的二十年，**博物学家**(naturalist)阿尔弗雷德·拉塞尔·华莱士在马来群岛**饱受**(afflicted by)热病**的折磨**(afflicted by)，**独自一人**(independently)**构想出**(conceived)了同一个想法。华莱士这篇**简明**(concise)的文章于1858年6月18日到达了达尔文的手里。文中的论证**与**(paralleled)达尔文自己的几乎**完全**(precisely)**一样**(paralleled)；达尔文告诉查尔斯·莱尔，自己从未见过比这更**惊人**(remarkable)的**巧合**(coincidence)。他对**优先权**(priority)的主张似乎**受到了威胁**(threatened)。
 
-莱尔和植物学家约瑟夫·胡克**促成**(arranged)两篇论文于1858年7月1日在伦敦的科学**机构**(institution)林奈学会**同时**(simultaneously)宣读。两位作者都没有出席当天的**会议**(proceedings)。华莱士身在海外，达尔文则处于**哀痛**(grieving)之中：6月28日，**猩红**(scarlet)热夺去了他**幼子**(infant)的生命。这一**折中办法**(compromise)在华莱士未参与的情况下达成，或许避免了围绕**先后次序**(precedence)的**竞争**(rivalry)。
+莱尔和**植物学家**(botanist)约瑟夫·胡克**安排**(arranged)这两篇论文，于1858年7月1日在伦敦的科学**机构**(institution)林奈学会上被**同时**(simultaneously)宣读。两位作者都没有出席这场**会议**(proceedings)。华莱士身在海外，达尔文则处于**哀痛**(grieving)之中：6月28日，**猩红**(scarlet)热夺去了他**幼子**(infant)的生命。这一**折中办法**(compromise)在华莱士未参与的情况下达成，或许避免了围绕**先后次序**(precedence)的**竞争**(rivalry)。
 
-1858年8月20日，两篇论文**刊出**(publication)，得到的**反响**(reception)却很**平淡**(muted)。1859年5月，学会会长在**年度**(yearly)致辞中**谈到**(remarked)，这一年**毫无**(barren)**革命性**(revolutionary)的发现。1859年11月24日，达尔文的**专著**(treatise)《物种起源》问世，引起**轰动**(sensation)：书商们已**认购**(subscribed)了该书第一**次印刷**(impression)的每一册，共1,250册。
+这些论文于1858年8月20日的**发表**(publication)，遭遇了一个**很不热烈的**(muted)**反响**(reception)。1859年5月，学会会长在**年度**(yearly)致辞中**评论**(remarked)说，这一年一直**毫无**(barren)**革命性**(revolutionary)的发现。这场**轰动**(sensation)于1859年11月24日随着达尔文的**专著**(treatise)**《物种起源》**(On the Origin of Species)到来：书商们已**订购**(subscribed)了该书首**次印刷**(impression)的每一册，总计1,250册。
 
-1858年10月，华莱士就已**欣然**(readily)**表明**(signified)了**接受**(acceptance)的态度，在一封**亲切**(cordial)的信中向胡克**保证**(assuring)，自己对这一**安排**(arrangement)感到**满意**(satisfaction)。1889年，他出版了一部**长篇**(lengthy)**论述**(exposition)阐释这一思想，并将其**定名**(entitled)为《达尔文主义》。华莱士从未用自己的名字为这一理论命名。
+1858年10月，华莱士就已**欣然**(readily)**表明**(signified)了**接受**(acceptance)的态度，在一封**亲切**(cordial)的信中向胡克**保证**(assuring)，自己对这一**安排**(arrangement)感到**满意**(satisfaction)。1889年，他出版了一部**长篇的**(lengthy)**阐述**(exposition)解释这一思想，并**将**(entitled)其**命名为**(entitled)《达尔文主义》。华莱士从未**用**(named after)自己的名字**为**(named after)这一理论**命名**(named after)。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -42,7 +42,7 @@ Wallace had **readily** **signified** his **acceptance** in October 1858, **assu
 | cautiously | adv. 谨慎地，小心地（proceed cautiously；cautiously optimistic） | 1 |
 | amassing | v. (amass) 积累，聚集（amass a fortune/wealth/data） | 1 |
 | naturalist | n. 博物学家（an amateur naturalist；a keen naturalist） | 2 |
-| afflicted | v. (afflict) 折磨，使苦恼（be afflicted by/with arthritis；a region afflicted by drought） | 2 |
+| afflicted by | v. phr. (be afflicted by) 饱受……的折磨，使苦恼（be afflicted by/with arthritis；a region afflicted by drought） | 2 |
 | independently | adv. 独立地，各自地（work independently；two teams independently reached the same result） | 2 |
 | conceived | v. (conceive) 构想，想出（conceive a plan/an idea；conceive of a world without cars） | 2 |
 | concise | adj. 简明的，简洁的（a concise summary/answer；clear and concise） | 2 |
@@ -54,6 +54,7 @@ Wallace had **readily** **signified** his **acceptance** in October 1858, **assu
 | threatened | v. (threaten) 威胁，危及（threaten jobs/peace；feel threatened） | 2 |
 | arranged | v. (arrange) 安排，筹划（arrange a meeting；arrange for a taxi to collect sb） | 3 |
 | simultaneously | adv. 同时地（broadcast simultaneously；happen simultaneously） | 3 |
+| botanist | n. 植物学家（a famous botanist；botanists study plants） | 3 |
 | institution | n. 机构，团体（a financial/academic institution；research institutions） | 3 |
 | proceedings | n. 会议，会议过程；诉讼（open the proceedings；legal proceedings） | 3 |
 | grieving | v. (grieve) 悲痛，哀悼（grieve for/over a friend；a grieving widow） | 3 |
@@ -70,6 +71,8 @@ Wallace had **readily** **signified** his **acceptance** in October 1858, **assu
 | barren | adj. 缺乏……的（barren of ideas/interest）；贫瘠的（barren land） | 4 |
 | revolutionary | adj. 革命性的，彻底变革的（a revolutionary idea/technique） | 4 |
 | sensation | n. 轰动，引起轰动的事物（cause/create a sensation；an overnight sensation）；感觉 | 4 |
+| On the Origin of Species | 专名 《物种起源》（达尔文 1859 年出版的著作） | 4 |
+| named after | v. phr. (name A after B) 用 B 的名字为 A 命名（be named after his grandfather） | 6 |
 | treatise | n. 专著，论文（a treatise on economics/grammar） | 4 |
 | subscribed | v. (subscribe) 预订，认购（subscribe for shares；subscribe to a magazine） | 4 |
 | impression | n. （书的）一次印刷，印次（the second impression of the first edition）；印象 | 4 |
