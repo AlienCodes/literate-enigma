@@ -50,9 +50,10 @@ def 的并进(d, adj):
     名词、动词后面的“的”（**水手**(sailor)的）不动；的确、的话 不动"""
     ok = lambda m: m.group(2).lower() in adj and not m.group(1).endswith('的')
     sub = lambda z: DE.sub(lambda m: f'**{m.group(1)}的**({m.group(2)})' if ok(m) else m.group(0), z)
-    改 = []
+    改 = []; 不并 = (d.get('核对确认') or {}).get('的不并', {})   # 主会话 2026-11-07（56 S10“他**幼子**(infant)的生命”）：所属的“的”不是形容词的“的”，写了确认的那段不并
     for i, s in enumerate(d['sentences'], 1):
         for j, c in enumerate(s['chunks'], 1):
+            if f'S{i}-{j}' in 不并: continue
             z0 = c.get('zh', ''); al = c.get('align') or []
             if not al: c['zh'] = sub(z0)
             for k in range(len(al)):
@@ -75,6 +76,10 @@ def 自检():
     if c[1]['align'] != [['prudent', '**谨慎的**(prudent)'], ['people', '人']] or c[1]['zh'] != '**谨慎的**(prudent)人': f.append(f'“的”在下一段对齐开头没并过来：{c[1]["align"]}（T38）')
     if c[2]['zh'] != '**水手**(sailor)的船，**谨慎**(prudent)地，**必要的**(necessary)，**必要**(necessary)的确': f.append(f'误改：名词的“的”、“地”、已并好的、的确 不该动：{c[2]["zh"]}（T38）')
     if len(改) != 2: f.append(f'报告条数不对：{改}')
+    d2 = {'核对确认': {'的不并': {'S1-1': '所属的“的”'}}, 'sentences': [{'chunks': [{'zh': '他**幼子**(infant)的生命', 'align': []}, {'zh': '**幼小**(infant)的孩子', 'align': []}]}]}
+    的并进(d2, {'infant'}); c2 = d2['sentences'][0]['chunks']
+    if c2[0]['zh'] != '他**幼子**(infant)的生命': f.append(f'写了 核对确认.的不并 的段照样并了：{c2[0]["zh"]}')
+    if c2[1]['zh'] != '**幼小的**(infant)孩子': f.append(f'没写确认的段没并：{c2[1]["zh"]}')
     return f
 
 def main():
