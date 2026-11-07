@@ -8,7 +8,7 @@ S=[
      "（chemists in California：同位语，补充说明两人）"],
     [[("warned in Nature","在《自然》杂志上撰文警告，"),("of a **menace**","有一种**威胁**(menace)"),("in fridges","藏在冰箱"),("and **spray** cans.","和**喷雾**(spray)罐里。")],
      "（warn of…：警告……；\nin fridges and spray cans：后置定语，修饰 menace）"]]),
-(1,[[[("Chlorofluorocarbons (CFCs)","氯氟烃（CFCs）"),("are so **inert**","**惰性**(inert)极强，"),("that they","它们"),("drift","能飘升到"),("intact","完好无损地"),("into the stratosphere,","进入平流层，")],
+(1,[[[("Chlorofluorocarbons (CFCs)","氯氟烃（CFCs）"),("are so **inert**","**惰性**(inert)极强，"),("that they","它们"),("drift intact","能完好无损地飘升"),("into the stratosphere,","到平流层，")],
      "（so…that…：如此……以至于……；\nintact：形容词作状语，完好无损地）"],
     [[("high in the **atmosphere**,","也就是高层**大气**(atmosphere)中，")],
      "（high in the atmosphere：补充说明平流层的位置）"],
@@ -70,6 +70,7 @@ S=[
      "靠的是相信异常数字不是故障、并把它发表出来的观测者。）"]]),
 ]
 G={
+ "S3 drift intact":"对齐不了：intact 是形容词作状语（note 已写），中文“完好无损地飘升”状语必须放到动词前，拆开语序就乱（原来逐词拆成“能飘升到完好无损地”不通）",
  "S1 much of the sun's":"对齐不了：much of the sun's… 是 of 结构，中文“太阳的大部分”语序倒过来",
  "S2 Mario Molina and Sherwood Rowland":"对齐不了：两个人名，中文“马里奥·莫利纳和舍伍德·罗兰”人名不能拆",
  "S2 warned in Nature":"对齐不了：in Nature 是地点状语，中文“在《自然》杂志上撰文警告”地点必须放到动词前",
@@ -89,6 +90,24 @@ G={
 }
 CONF={"合组":G,
 "牛津逗号":{},
+"短语":{
+ "S1 layer … of":"不是搭配：a layer of ozone 是“一层臭氧”，of 引出层的内容，layer 单独就是“层”",
+ "S1 shields … of":"不是搭配：shields … from 已整体标；of 属于 much of the sun's ultraviolet radiation（太阳的大部分紫外辐射）",
+ "S7 gauged … from":"不是搭配：from the ground 是方式状语（从地面），gauge 单独就是“测量”",
+ "S8 routine … of":"不是搭配：of manual observation 是后置定语，说明规程的内容，routine 单独就是“例行规程”",
+ "S15 pledged … to":"不是搭配：to 是不定式符号，引出 phase out CFCs，pledge 单独就是“承诺”",
+ "S17 forecast … to":"不是搭配：to 1980 levels 属于 recovery（恢复到1980年的水平），forecast 单独就是“预测”",
+ "S17 recovery … to":"不是搭配：to 1980 levels 只引出恢复到的水平，recovery 单独就是“恢复”，中文“恢复到1980年的水平”已译出",
+ "S3 liberate chlorine":"不是搭配：liberate 在化学里就是“释放（气体、元素）”，chlorine 是普通宾语，liberate 单独就是“释放”",
+ "S8 manual observation":"不是搭配：manual 形容词就是“人工的、手工的”，observation 单独标为“观测”，两个词各自成义",
+ "S14 accord to curb":"不是搭配：accord 名词就是“协定”，to curb CFCs 是不定式作后置定语（note 已写）",
+},
+"中文意思":{"S1 layer":"不是这个义项：本文 layer 是名词“层”（a layer of ozone 一层臭氧），不是动词“把……分层堆放”，没有被隔开的另一半"},
+"对齐":{'S2-1 Mario Molina and Sherwood Rowl': '两个人名，中文“马里奥·莫利纳和舍伍德·罗兰”人名不能拆', 'S3-4 that destroys ozone molecule a': '中文用把字句“会把臭氧分子一个接一个地破坏掉”，destroys 化成“把……破坏掉”，molecule after molecule 化成“一个接一个地”，拆开不通', 'S6-1 and colleagues at the British ': 'at the British Antarctic Survey 是后置定语，修饰 colleagues，中文“英国南极调查局的同事”定语必须提前，机构名不能拆', 'S6-2 had plummeted each southern sp': 'since the mid-1970s 和 each southern spring 是时间状语，中文“自20世纪70年代中期起，每到南半球春季就骤降”时间必须放到动词前', 'S7-1 gauged ozone from the ground.': 'from the ground 是方式状语，中文“从地面测量臭氧”必须放到动词前', 'S15-2 phase out CFCs by 2000.': 'by 2000 是时间状语，中文“在2000年前逐步淘汰CFCs”时间必须放到动词前', 'S16-1 and its parent Vienna Conventi': 'its parent 修饰 Vienna Convention，中文“与其所依据的《维也纳公约》一道”，公约名不能拆', "S16-2 the UN's first treaties to win": 'to win… 是不定式作后置定语，修饰 treaties，中文“联合国首批获得普遍批准的条约”定语必须提前'},
+"数字":{"S6-2 1970":"since the mid-1970s 中文按文章定稿写作“自20世纪70年代中期起”，年代相同（mid-1970s = 20世纪70年代中期）；英文读 the mid-nineteen-seventies"},
+"口述":{"S19-2 那个":"note “it 指那个数字”是正常的指代说明（it 指前面 a baffling number），不是语音输入多出来的词"},
+"方向":{"S3-4 after→会把臭氧分子一个接一个地":"molecule after molecule 是“一个接一个的分子”，不是时间先后；中文“一个接一个地”意思一致"},
+"同词异译":{"shields from：为/遮挡了":"不是两种译法：S1 shields from 的意思“为……遮挡了”被“地球”隔开，“为”和“遮挡了”是同一个意思的两部分（T23）"},
 }
 out={"no":"59","title_en":"Saving the Sky","title_zh":"拯救天空","title_fx":{"hl":["Saving","Sky"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮按实际开口":True,"高亮开口门槛":40,
