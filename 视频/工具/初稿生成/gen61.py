@@ -15,6 +15,7 @@ import json,re,glob,os
 # 2026-11-08 用户改 S12：“1963年1月，海陆公司, 即理想X号更名后的运营方, 允许该委员会 使用其专利，不收取专利费，包括用于吊装的角配件上的那些专利。”“小字加上：corner fittings 集装箱八个角上的金属件，专门用来让吊车吊起箱子，并把箱子上下左右死死锁在一起。”“截图的这两行小字全都去掉，换上我给的这个小字。截图的这两行小字全都去掉。”（英文逗号换成中文逗号，“委员会 使用”空格去掉；删去 renamed operator、those 两条说明）
 # 2026-11-08 用户改 S14：“在下面简述一下At the expense of 的用法，简述一下它的用法。”
 # 2026-11-08 用户改 S15：“纽约海滨区的就业人数在1963年至1976年间缩减了约四分之三。”“Employment标记为重点词汇。”
+# 2026-11-08 用户改 S16：“翻译修改为：大量货物穿过港湾，前往伊丽莎白一处于1962年8月启用的新 码头/港区。”（“新 码头”空格去掉）
 # 2026-11-08 用户改 S1 中文（原话见 用户同意记录 篇 61）：说啥改啥
 S=[
 (1,[[[("On 26 April 1956","1956年4月26日，"),("a","一艘"),("**converted**","**改造过的**(converted)"),("Second World War","二战"),("**tanker**,","**油轮**(tanker)"),("the Ideal X,","“理想X号”，")],
@@ -60,8 +61,8 @@ S=[
      "（come at the expense of：以……为代价换来；\nat the expense of：以牺牲……为代价，后面接付出代价的人或物，\n用于“得到了一样东西，却损害了另一样”，\n如 at the expense of quality 以牺牲质量为代价、\nat the expense of others 让别人受损）"]]),
 (4,[[[("New York's","纽约"),("**waterfront**","**海滨区**(waterfront)的"),("**employment**","**就业人数**(employment)"),("**shrank**","在1963年至1976年间**缩减了**(shrank)"),("by about three quarters between 1963 and 1976.","约四分之三。")],
      "（shrink by：缩减了（幅度）；between 1963 and 1976：中文时间状语提前）"]]),
-(4,[[[("Much of the cargo","大量货物"),("crossed","越过"),("the harbour","港湾，")]],
-    [[("to a new **terminal** at Elizabeth, **inaugurated** in August 1962.","转往伊丽莎白港1962年8月**启用**(inaugurated)的新**货运站**(terminal)。")],
+(4,[[[("Much of the cargo","大量货物"),("crossed","穿过"),("the harbour","港湾，")]],
+    [[("to","前往"),("a new **terminal** at Elizabeth, **inaugurated** in August 1962.","伊丽莎白一处于1962年8月**启用**(inaugurated)的新**码头/港区**(terminal)。")],
      "（inaugurated in August 1962：过去分词短语作后置定语，\n修饰 terminal）"]]),
 (4,[[[("Most of London's","1967年到1980年，伦敦大部分"),("**historic**","**历史悠久的**(historic)"),("**docks**","**码头**(docks)"),("closed one after another from 1967 to 1980,","接连关闭，")],
      "（one after another：一个接一个地；from 1967 to 1980：中文时间状语提前）"],
@@ -98,7 +99,7 @@ G={
  "S12 those on corner fittings for hoisting":"对齐不了：for hoisting 是后置定语，修饰 fittings，中文“用于吊装的角配件上的那些专利”定语必须提前，those 的“那些专利”放到最后；两个重点词中文先后与英文相反",
  "S13 transferred smoothly between ship, lorry, and train":"对齐不了：between… 介词短语中文“在船舶、卡车和火车之间”必须提前到动词前，smoothly 中文“顺畅地”也在“转运”前；重点词中文先后与英文相反",
  "S14 came at the expense of livelihoods":"对齐不了：come at the expense of B 中文“是以 B 为代价换来的”，被“生计”隔开，只能整组",
- "S16 to a new terminal at Elizabeth, inaugurated in August 1962":"对齐不了：at Elizabeth 和 inaugurated in August 1962 都是后置定语，修饰 terminal，中文“伊丽莎白港1962年8月启用的新货运站”必须提前；两个重点词中文先后与英文相反",
+ "S16 a new terminal at Elizabeth, inaugurated in August 1962":"对齐不了：at Elizabeth 和 inaugurated in August 1962 都是后置定语，修饰 terminal，中文“伊丽莎白一处于1962年8月启用的新码头/港区”必须提前；两个重点词中文先后与英文相反",
  "S17 Felixstowe, on the Suffolk coast":"对齐不了：插入语 on the Suffolk coast 中文“萨福克海岸的”作定语必须提前",
  "S19 A study published in the Journal of International Economics in 2016":"对齐不了：published in… in 2016 是后置定语，修饰 study，中文“2016年发表于《国际经济学杂志》的一项研究”必须提前，刊名不能拆",
 }
@@ -110,7 +111,7 @@ DQ={
  "S13-2 transferred smoothly between s":"between… 介词短语中文必须提前到动词前",
  "S14-1 came at the expense of livelih":"come at the expense of B 中文“是以 B 为代价换来的”，被“生计”隔开，只能整组",
  "S15-1 by about three quarters betwee":"between 1963 and 1976 中文“在1963年至1976年间”提前到“缩减了”前（放在 shrank 下面）",
- "S16-2 to a new terminal at Elizabeth":"at Elizabeth、inaugurated in August 1962 都是后置定语，修饰 terminal，中文必须提前",
+ "S16-2 a new terminal at Elizabeth, ":"at Elizabeth、inaugurated in August 1962 都是后置定语，修饰 terminal，中文必须提前",
  "S17-1 closed one after another from ":"from 1967 to 1980 中文“1967年到1980年”提前到句首（放在 Most of London's 下面）",
  "S17-2 Felixstowe, on the Suffolk coa":"插入语 on the Suffolk coast 中文作定语必须提前",
  "S19-1 A study published in the Journ":"published in… in 2016 是后置定语，修饰 study，中文必须提前，刊名不能拆",
