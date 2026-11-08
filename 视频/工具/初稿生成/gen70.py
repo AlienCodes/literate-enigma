@@ -6,7 +6,7 @@ S=[
      "（according to A and B：按 A 和 B；its 指 letter）"]]),
 (1,[[[("The sum","这笔钱"),("was usually","通常"),("**payable** on **delivery**,","在**投递**(delivery)时**支付**(payable)，")]],
     [[("so","因此"),("the person receiving the **correspondence**, not the **sender**, settled it.","付钱的是收到**信件**(correspondence)的人，而不是**寄信人**(sender)。")],
-     "（receiving the correspondence：现在分词短语作后置定语，修饰 person；\nit 指 the sum）"]]),
+     "（receiving the correspondence：现在分词短语作后置定语，\n修饰 person；\nit 指 the sum）"]]),
 (1,[[[("Prices","价格"),("thus","也就"),("**fluctuated** from one **postal** item to the next.","随每件**邮政**(postal)物品而**波动**(fluctuated)。")],
      "（from one … to the next：从一件到下一件）"]]),
 (2,[[[("In 1837","1837年，"),("Rowland Hill","罗兰·希尔"),("published a **booklet**","出版了一本**小册子**(booklet)，"),("urging reform.","呼吁改革。")],
@@ -26,7 +26,7 @@ S=[
     [[("its **validity**","**有效期**(validity)"),("starting on 6 May.","从5月6日开始。")],
      "（its validity starting…：独立主格结构）"]]),
 (3,[[[("**Engraved** on it was","上面**雕刻**(engraved)着")],
-     "（倒装句：Engraved on it 提前，主语是 a youthful likeness…；\nit 指 Penny Black）"],
+     "（倒装句：Engraved on it 提前，\n主语是 a youthful likeness…；\nit 指 Penny Black）"],
     [[("a **youthful** **likeness** of Queen Victoria, the reigning **monarch**.","当时在位的**国君**(monarch)维多利亚女王**年轻的**(youthful)**肖像**(likeness)。")],
      "（the reigning monarch：同位语，补充说明 Queen Victoria）"]]),
 (3,[[[("An **aggregate** of 68,808,000 were printed.","印制**总数**(aggregate)为68,808,000枚。")],
@@ -49,7 +49,7 @@ S=[
      "（to deter…：不定式作目的状语）"]]),
 (5,[[[("As the **initiator** of postage stamps,","作为邮票的**首创者**(initiator)，"),("Britain","英国"),("set a **precedent**","开创了**先例**(precedent)，"),("and earned an **exemption**.","并赢得一项**豁免**(exemption)。")]]]),
 (5,[[[("Its stamps","英国邮票"),("are **nameless**,","是**无名的**(nameless)，"),("with no country **inscribed** on them.","上面没有**刻印**(inscribed)国名。")],
-     "（with no country inscribed on them：with 复合结构；Its 指 Britain）"]]),
+     "（with no country inscribed on them：with 复合结构；\nIts 指 Britain）"]]),
 (5,[[[("By international agreement,","根据国际协议，"),("the **sovereign**'s head","**君主**(sovereign)头像"),("**suffices** for **identification**,","就**足以**(suffices)作为**识别**(identification)标志，")]],
     [[("an **implicit** **designation**","这是一种**隐含的**(implicit)**标识**(designation)，"),("that other countries spell out in print.","其他国家则把国名印在邮票上。")],
      "（an implicit designation：同位语，补充说明前面整句；\nthat other countries spell out in print：定语从句，修饰 designation；\nspell out：明确写出）\n"
@@ -61,10 +61,12 @@ S=[
 ]
 G={}
 DZ={}
-CONF={"合组":G,"对齐":DZ}
+CONF={"合组":G,"对齐":DZ,
+"停顿位置":{"S2 correspondence, / not @5.550":"2026-11-08 逐 2.5 ms 实测（S2 w）：correspondence 的 /s/（-17～-22 dB、重心 5.5–6.2 kHz）到 5.385，5.395–5.545 是 /s/ 后的弱气声（-37～-48 dB、重心 2.0–2.9 kHz），5.545–5.550 低谷 -54 dB，5.550 起 not 的 /n/ 浊音前导（低频 -0.1～-0.3 dB），5.60 起 /n/ 主体；插入点写在低谷过零点 5.55（交界），停顿在两词之间，离后词 +115 ms 是 /n/ 前导前的弱声，不是词"}}
 out={"no":"70","title_en":"The Stamp That Changed the Post","title_zh":"一枚邮票改变通信","title_fx":{"hl":["Stamp","Post"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Rowland Hill":"罗兰·希尔","Parliament":"议会","Uniform Penny Post":"统一便士邮资","Britain":"英国","British":"英国的","Penny Black":"黑便士","Queen Victoria":"维多利亚女王","Penny Red":"红便士"}}
+out.update({"停顿插入点":{"S2":{"2":[5.55,"交界"]}}})   # 2026-11-08 逐 2.5 ms 实测 S2 w：correspondence 的 /s/（-17～-22 dB、重心 5.5–6.2 kHz）到 5.385，5.395–5.545 是 /s/ 后的弱气声（-37～-48 dB、重心 2.0–2.9 kHz），5.545–5.550 低谷 -54 dB，5.550–5.565 not 的 /n/ 浊音前导（低频 -0.1～-0.3 dB），5.60 起 /n/；原插入点 5.575 把 /n/ 前导切在停顿前，改到前导之前低谷的过零点 5.55（交界）
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)
