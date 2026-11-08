@@ -10,7 +10,7 @@ Containers were not new. The **hurdle** was **consensus**: **rival** firms' boxe
 
 This **efficiency** came at the **expense** of **livelihoods**. New York's **waterfront** **employment** **shrank** by about three quarters between 1963 and 1976. Much of the cargo crossed the harbour to a new **terminal** at Elizabeth, **inaugurated** in August 1962. Most of London's **historic** **docks** closed one after another from 1967 to 1980, while Felixstowe, on the Suffolk coast, **expanded**.
 
-The **rewards** were **substantial**. A study published in the Journal of International **Economics** in 2016 estimated that containerisation had lifted trade between **industrialised** countries by a **cumulative** 700 per cent over 20 years. **Tireless** cranes now lift identical containers into **orderly**, **immense** **stacks**.
+The **rewards** were **substantial**. A study published in the Journal of International **Economics** in 2016 estimated that containerisation had lifted trade between **industrialised** countries by a **cumulative** 700 per cent over 20 years. **Tireless** cranes now lift **identical** containers into **orderly**, **immense** **stacks**.
 
 ## 中文
 
@@ -22,7 +22,7 @@ The **rewards** were **substantial**. A study published in the Journal of Intern
 
 这种**效率**(efficiency)是以**生计**(livelihoods)为**代价**(expense)换来的。纽约**海滨区**(waterfront)的**就业人数**(employment)在1963年至1976年间**缩减了**(shrank)约四分之三。大量货物穿过港湾，前往伊丽莎白一处于1962年8月**启用**(inaugurated)的新**码头/港区**(terminal)。1967年到1980年，伦敦**历史悠久的**(historic)**码头**(docks)一个接一个地关闭，而位于萨福克海岸的费利克斯托则**扩张了**(expanded)。
 
-**回报**(rewards)相当**可观**(substantial)。一项2016年发表于《国际**经济学**(Economics)杂志》的研究估计，集装箱化在20年间使**工业化**(industrialised)国家之间的贸易提高了**累计**(cumulative)700%。如今，**不知疲倦的**(tireless)吊机把一模一样的集装箱吊起，码成**整齐的**(orderly)、**巨大的**(immense)**箱垛**(stacks)。
+**回报**(rewards)相当**可观**(substantial)。一项2016年发表于《国际**经济学**(Economics)杂志》的研究估计，集装箱化在20年间使**工业化**(industrialised)国家之间的贸易提高了**累计**(cumulative)700%。如今，**不知疲倦的**(tireless)吊机把**一模一样的**(identical)集装箱吊起，码成**整齐的**(orderly)、**巨大的**(immense)**箱垛**(stacks)。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -54,14 +54,14 @@ The **rewards** were **substantial**. A study published in the Journal of Intern
 | theft | n. 偷窃，盗窃（car theft；identity theft） | 2 |
 | rampant | adj. 猖獗的，泛滥的（rampant inflation/corruption） | 2 |
 | loading | n./v. (load) 装载，装货（loading and unloading 装卸；load A onto B） | 2 |
-| by one's reckoning | 据某人估算（by my reckoning；reckon v. 估算；认为） | 2 |
+| by reckoning | phr. 据……估算（by one's reckoning 根据某人的估算；by my reckoning；reckon v. 估算；认为） | 2 |
 | hurdle | n. 障碍，难关（clear/overcome a hurdle）；跨栏 | 3 |
 | consensus | n. 共识，一致意见（reach a consensus；a broad consensus） | 3 |
 | rival | adj. 相互竞争的，对立的（rival firms/teams）；n. 对手；v. 与……匹敌 | 3 |
 | incompatible | adj. 不兼容的，不相容的（incompatible with；incompatible systems） | 3 |
 | dimensions | n. (dimension) 尺寸，大小；方面（the dimensions of a room；a new dimension） | 3 |
 | latches | n. (latch) 门闩，锁扣（on the latch 闩上）；v. latch onto 抓住 | 3 |
-| international standards | 国际标准（set/meet international standards；an international standards body） | 3 |
+| international standards | n. 国际标准（set/meet international standards；an international standards body） | 3 |
 | patents | n. (patent) 专利（take out/hold a patent；patent on sth） | 3 |
 | royalties | n. (royalty) 专利使用费，版税（pay royalties on）；王室成员 | 3 |
 | fittings | n. (fitting) 配件，零件（pipe/light fittings）；试衣 | 3 |
@@ -87,6 +87,7 @@ The **rewards** were **substantial**. A study published in the Journal of Intern
 | cumulative | adj. 累计的，累积的（cumulative effect/total） | 5 |
 | industrialised | adj. 〈英〉工业化的（industrialised countries/nations）；v. (industrialise) 使工业化 | 5 |
 | tireless | adj. 不知疲倦的，孜孜不倦的（tireless efforts；a tireless campaigner） | 5 |
+| identical | adj. 一模一样的，完全相同的（identical twins 同卵双胞胎；be identical to/with） | 5 |
 | orderly | adj. 整齐的，有秩序的（an orderly queue/manner）；n. 勤务员 | 5 |
 | immense | adj. 巨大的，极大的（immense pressure/size） | 5 |
 | stacks | n. (stack) 堆，垛（a stack of boxes/papers）；v. 堆叠 | 5 |

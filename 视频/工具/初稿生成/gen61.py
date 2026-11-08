@@ -18,6 +18,7 @@ import json,re,glob,os
 # 2026-11-08 用户改 S16：“翻译修改为：大量货物穿过港湾，前往伊丽莎白一处于1962年8月启用的新 码头/港区。”（“新 码头”空格去掉）
 # 2026-11-08 用户改 S17：“翻译不准，上面翻译，不准改翻译：1967年到1980年，伦敦历史悠久的码头一个接一个地关闭，而位于萨福克海岸的费利克斯托则扩张了。”（用户原话没有“大部分”，照改，已提醒 Most of）
 # 2026-11-08 用户改 S19：“翻译不准改成这个翻译，改成这个翻译。：一项2016年发表于《国际经济学杂志》的研究估计，集装箱化在20年间使工业化国家之间的贸易提高了累计700%。”“Economics 经济学，经济学。标注为重点词汇，标注为重点词汇。”（刊名英文括号随改稿去掉）
+# 2026-11-08 用户改 S20：“Identical, identical. 重点词汇，重点词汇，重点词。然后出4k视频 定稿定稿，定。。”
 # 2026-11-08 用户改 S1 中文（原话见 用户同意记录 篇 61）：说啥改啥
 S=[
 (1,[[[("On 26 April 1956","1956年4月26日，"),("a","一艘"),("**converted**","**改造过的**(converted)"),("Second World War","二战"),("**tanker**,","**油轮**(tanker)"),("the Ideal X,","“理想X号”，")],
@@ -37,7 +38,7 @@ S=[
     [[("carried","一件件地搬运"),("**sacks**,","**麻袋**(sacks)、"),("**barrels**,","**桶**(barrels)"),("and **crates** piece by piece.","和**板条箱**(crates)。")],
      "（piece by piece：一件一件地）"]]),
 (2,[[[("It was","这是"),("**strenuous**","**繁重的/费力的**(strenuous)"),("**drudgery**.","**苦差事**(drudgery)。")],
-     "（strenuous：形容需要耗费大量体力或精力的，\n多用于体力活、运动或努力，\n如 strenuous work 繁重的工作、strenuous exercise 剧烈运动、\nmake strenuous efforts 尽力）"]]),
+     "（strenuous：\n形容需要耗费大量体力或精力的，\n多用于体力活、运动或努力，\n如 strenuous work 繁重的工作、\nstrenuous exercise 剧烈运动、\nmake strenuous efforts 尽力）"]]),
 (2,[[[("Ships","船舶"),("could","可能会"),("spend","花"),("**up to**","**多达**(up to)"),("half their time","一半的时间"),("**berthed**,","**停泊**(berthed)在港，")],
      "（spend time＋过去分词：花时间处于……状态；up to：多达）"],
     [[("and","而且"),("**theft**","**偷窃**(theft)"),("was **rampant**.","**猖獗**(rampant)。")]]]),
@@ -75,7 +76,7 @@ S=[
      "（published in…：过去分词短语作后置定语，修饰 study）"],
     [[("that containerisation","集装箱化在20年间"),("had lifted trade between","使"),("**industrialised**","**工业化**(industrialised)"),("countries","国家之间的贸易"),("by a **cumulative**","提高了**累计**(cumulative)"),("700 per cent over 20 years.","700%。")],
      "（that…：宾语从句；lift A by B：使 A 增长 B；over 20 years：20年间）"]]),
-(5,[[[("**Tireless**","如今，**不知疲倦的**(tireless)"),("cranes now","吊机"),("lift","把"),("identical","一模一样的"),("containers","集装箱吊起，"),("into","码成"),("**orderly**,","**整齐的**(orderly)、"),("**immense**","**巨大的**(immense)"),("**stacks**.","**箱垛**(stacks)。")],
+(5,[[[("**Tireless**","如今，**不知疲倦的**(tireless)"),("cranes now","吊机"),("lift","把"),("**identical**","**一模一样的**(identical)"),("containers","集装箱吊起，"),("into","码成"),("**orderly**,","**整齐的**(orderly)、"),("**immense**","**巨大的**(immense)"),("**stacks**.","**箱垛**(stacks)。")],
      "（lift A into B：把 A 吊起码成 B）\n"
      "（简述：1956年4月，改装的二战油轮理想X号载着58个集装箱驶离纽瓦克港，开往休斯敦。\n"
      "那时货物都是散装，码头工人逐件搬运，船舶多半时间停泊在港，偷窃猖獗；据公司估算，理想X号装货每吨只要约16美分。\n"
@@ -106,6 +107,7 @@ G={
  "S19 A study published in the Journal of International Economics in 2016":"对齐不了：published in… in 2016 是后置定语，修饰 study，中文“一项2016年发表于《国际经济学杂志》的研究”必须提前，刊名不能拆",
 }
 DQ={
+ "S5-2 and crates piece by piece.":"piece by piece 中文“一件件地”已随“搬运”提前（用户 11-08 译法），这里只剩“和板条箱”",
  "S2-2 trailer bodies detached from t":"detached from… 是后置定语，修饰 bodies，中文“从车轮和底盘上拆卸下来的挂车车厢”定语必须提前，重点词中文先后与英文相反",
  "S8-1 cost about $5.83 a ton;":"a ton 中文“每吨”必须提前到金额前",
  "S8-2 loading the Ideal X cost, by t":"插入语 by the company's reckoning 中文“据公司估算”必须提前到句首",
@@ -113,7 +115,7 @@ DQ={
  "S13-2 transferred smoothly between s":"between… 介词短语中文必须提前到动词前",
  "S14-1 came at the expense of livelih":"come at the expense of B 中文“是以 B 为代价换来的”，被“生计”隔开，只能整组",
  "S15-1 by about three quarters betwee":"between 1963 and 1976 中文“在1963年至1976年间”提前到“缩减了”前（放在 shrank 下面）",
- "S16-2 a new terminal at Elizabeth, ":"at Elizabeth、inaugurated in August 1962 都是后置定语，修饰 terminal，中文必须提前",
+ "S16-2 a new terminal at Elizabeth, i":"at Elizabeth、inaugurated in August 1962 都是后置定语，修饰 terminal，中文必须提前",
  "S17-1 closed one after another from ":"from 1967 to 1980 中文“1967年到1980年”提前到句首（放在 Most of London's 下面）",
  "S17-2 Felixstowe, on the Suffolk coa":"插入语 on the Suffolk coast 中文作定语必须提前",
  "S19-1 A study published in the Journ":"published in… in 2016 是后置定语，修饰 study，中文必须提前，刊名不能拆",
@@ -121,8 +123,10 @@ DQ={
 }
 CONF={"合组":G,"对齐":DQ,
 "引号":{"S1-1 “”":"用户 2026-11-08 原话（converted 后按用户“意思为改造过的”改成“改造过的”）“1956年4月26日，一艘改装过的二战油轮“理想X号”，悄然驶离新泽西州纽瓦克港，开往休斯敦。”自带引号，照用户原话保留（T10）"},
+"即":{"S12-1 即":"用户 2026-11-08 原话“1963年1月，海陆公司, 即理想X号更名后的运营方, 允许该委员会 使用其专利……”自带“即”，照用户原话（T10）"},
+"中文重复":{"货物":"用户 2026-11-08 原话：S3“极少数旁观者会把一批如此平淡无奇的货物当作一个里程碑。”、S4“那时，货物都是散装运输。”cargo、freight 都译“货物”，照用户原话（T10）"},
 "是的":{"S6-1 是**繁重的/费力的**":"“是”对应 was（这是），“的”是形容词 strenuous 的“的”（T38），不是“是……的”句式；文章定稿原文“这是繁重的苦差事”"},
-"方向":{"S5-1 more→二十多名或更多的":"or more 是“或更多”，中文“或更多的”，方向一致","S17-1 after→接连关闭，":"one after another 是“一个接一个”，不是时间先后；中文“接连”，方向一致"},
+"方向":{"S17-1 after→一个接一个地关闭，":"one after another 是“一个接一个”，不是时间先后；中文“一个接一个地”，方向一致（用户 11-08 译法）","S5-1 more→二十多名或更多的":"or more 是“或更多”，中文“或更多的”，方向一致","S17-1 after→接连关闭，":"one after another 是“一个接一个”，不是时间先后；中文“接连”，方向一致"},
 "停顿位置":{
  "S1 Jersey, / for @9.675":"2026-11-07 逐 2.5 ms 实测（S1 w）：Jersey 的 i 浊音到 9.665（周期 0.47），9.675–9.69 是两词之间的低谷（-39～-40 dB、周期 0.18），9.6975 起 for 的 /f/（重心 4.9–6.4 kHz）；停顿 9.675 落在低谷里，在两词之间",
  "S5 barrels, / and @3.800":"2026-11-07 逐 2.5 ms 实测（S5 w）：barrels 的 /z/ 擦音到 3.7975（重心 4.7–5.6 kHz），3.80 是低谷（-22.8 dB），3.805 起 and 的元音（周期 0.49、重心 2 kHz 以下）；停顿 3.800 正落在两词之间",
@@ -138,8 +142,8 @@ CONF={"合组":G,"对齐":DQ,
  "S19 raw 5.0312-5.5400":{"类型": "紧贴词尾的非人声", "配音指纹": "7499cce91ea3", "依据": "2026-11-07 逐 2.5 ms 实测（S19 w）：2016 的 n 到 5.02 收尾，5.04 一下 -47.5 dB 残声，5.25–5.455 约 210 ms -44～-56 dB、重心 2.0–2.9 kHz 的吸气（删掉最响 -41.3 dB 即此），5.47 一帧 -59 dB 残声，5.545 起 estimated；起点在过零点 5.03125 紧贴 2016 词尾，终点外侧 5 ms < -55 dB"},
  "S12 raw 3.1700-3.5850":"2026-11-07 逐 2.5 ms 实测（S12 w）：Sea-Land, 后停顿：3.17–3.19 -61 dB 静音，3.21–3.53 -42～-54 dB 的吸气（删掉最响 -39.5 dB 即此），3.55–3.57 -60～-61 dB，3.59 起 the（-31 dB）；两侧 -55.2/-61.6 dB 已衰减干净，删掉的是停顿中间的换气声",
  "S19 raw 10.8450-11.2300":"2026-11-07 逐 2.5 ms 实测（S19 w）：countries 后、by 前：10.85 -60 dB，10.87–11.15 -44～-53 dB 的吸气，11.17 一下 -37.7 dB 声门噪声，11.21–11.23 -64～-68 dB；两侧 -63.1/-61.4 dB 已衰减干净，删掉的是换气声"},
-"同词异译":{"at the expense of：为代价/以":"不是两种译法：at the expense of 的意思“以……为代价”被“生计”隔开，“以”和“为代价”是同一个意思的两部分（T23）"},
-"短语":{
+"同词异译":{"detached from：上拆卸下来的/从":"不是两种译法：detach from 的意思“从……上拆卸下来”被“车轮和底盘”隔开，“从”和“上拆卸下来的”是同一个意思的两部分（T23）","by reckoning：估算/据":"不是两种译法：by one's reckoning 的意思“据……估算”被“公司”隔开，“据”和“估算”是同一个意思的两部分（T23）","at the expense of：为代价/以":"不是两种译法：at the expense of 的意思“以……为代价”被“生计”隔开，“以”和“为代价”是同一个意思的两部分（T23）"},
+"短语":{"S10 rival firms":"不是搭配：rival 是形容词“竞争对手（的）”，修饰 firms；用户 2026-11-08 原话译“竞争对手公司的箱子”，firms 单独就是“公司”",
  "S1 slipped … for":"不是搭配：for Houston 只表示去向（开往休斯敦），slip out of 已整体标",
  "S2 Clamped … to":"不是搭配：to her deck 只表示固定的位置（甲板上），clamp 单独就是“固定”，同 60 S2 observed … from",
  "S5 Gangs … of":"不是搭配：of twenty or more dockworkers 只说明是什么人的一帮，gang 单独就是“（工人）一帮”",
@@ -149,8 +153,8 @@ CONF={"合组":G,"对齐":DQ,
  "S15 shrank … by":"不是搭配：by about three quarters 只表示幅度（缩减了约四分之三），shrink 单独就是“缩减”",
  "S16 inaugurated … in":"不是搭配：in August 1962 只表示时间"}}
 out={"no":"61","title_en":"The Steel Box That Remade the World","title_zh":"集装箱：重塑世界的铁盒子","title_fx":{"hl":["Box","World"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
-     "allow_clash":["converted","crates"],"高亮按实际开口":True,"高亮开口门槛":40,
-     "术语":{"Second World War":"二战","Ideal X":"理想X号","Port Newark":"纽瓦克港","New Jersey":"新泽西州","Houston":"休斯敦","Sea-Land":"海陆公司","New York":"纽约","Elizabeth":"伊丽莎白港","London":"伦敦","Felixstowe":"费利克斯托","Suffolk":"萨福克","Journal of International Economics":"《国际经济学杂志》"}}
+     "allow_clash":["converted","crates","identical"],"换行变更已获同意":{"S10":"上面的这个英文和它下面这个中文意思尽可能对齐……优先对齐标色的……其他的那种没有标色的能对齐的尽量对齐（用户 2026-11-07，篇“61-65”，对齐需要改换行算已同意）；2026-11-08 用户逐句改稿","S11":"上面的这个英文和它下面这个中文意思尽可能对齐……优先对齐标色的……其他的那种没有标色的能对齐的尽量对齐（用户 2026-11-07，篇“61-65”，对齐需要改换行算已同意）；2026-11-08 用户逐句改稿","S12":"上面的这个英文和它下面这个中文意思尽可能对齐……优先对齐标色的……其他的那种没有标色的能对齐的尽量对齐（用户 2026-11-07，篇“61-65”，对齐需要改换行算已同意）；2026-11-08 用户逐句改稿","S16":"上面的这个英文和它下面这个中文意思尽可能对齐……优先对齐标色的……其他的那种没有标色的能对齐的尽量对齐（用户 2026-11-07，篇“61-65”，对齐需要改换行算已同意）；2026-11-08 用户逐句改稿"},"高亮按实际开口":True,"高亮开口门槛":40,
+     "术语":{"Second World War":"二战","Ideal X":"理想X号","Port Newark":"纽瓦克港","New Jersey":"新泽西州","Houston":"休斯敦","Sea-Land":"海陆公司","New York":"纽约","Elizabeth":"伊丽莎白","London":"伦敦","Felixstowe":"费利克斯托","Suffolk":"萨福克","Journal of International Economics":"《国际经济学杂志》"}}
 out.update({"停顿插入点":{"S4":{"1":[0.642792,"交界"]}},"停顿删除区间":{"S7":{"1":[2.3725,2.6625]}},"除阻加强":{"S1":{"3":[8.8325,8.8475,4.5]}},"句子增益dB":{"S9":-0.3,"S6":-0.5,"S18":-0.5},"高亮开始":{"S19 第2块":134.64},"段内渐变dB":{"S12":{"2":[0,3]}},
  "非人声区间":{"S1":[[5.535,5.83]],"S15":[[5.5,5.7125,"紧贴词头"]],"S16":[[7.310625,7.3925,"紧贴词尾"]],"S17":[[6.245,6.510167,"紧贴词头"]],"S19":[[5.03125,5.54,"紧贴词尾"],[10.855,11.195]]}})
 # 2026-11-07 出片后核查逐 2.5 ms 实测（疑点清单 dossier_61，各句 w）：
