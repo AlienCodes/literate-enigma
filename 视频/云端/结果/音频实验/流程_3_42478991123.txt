@@ -1,0 +1,89 @@
+搭机器 27 秒
+== 第 3 遍，第 63 篇
+== bash /home/runner/work/literate-enigma/literate-enigma/视频/工具/草稿声音.sh 63 ：退出 0，72 秒
+  人看 #16 S13 噗声：要删的段里听得见的部分像呼吸的不到七成（0%）
+  人看 #17 S14 噗声：要删的段里听得见的部分像呼吸的不到七成（14%）
+  人看 #18 S15 噗声：左边贴着擦音（和吸气分不开）
+  人看 #19 S16 呼吸声：要删的段里听得见的部分像呼吸的不到七成（20%）
+  人看 #20 S17 噗声：要删的段里听得见的部分像呼吸的不到七成（0%）
+  人看 #21 S17 呼吸声：要删的段里有连续 20 ms 重心 >4 kHz（像 f/s/ʃ 擦音，可能是词的一部分）
+  人看 #22 S18 孤立杂音：紧跟在词后、听得见的不到 60 ms（可能是被闭塞隔开的词尾除阻）
+问题数 0
+== python3 /home/runner/work/literate-enigma/literate-enigma/视频/工具/机器复听.py --带自检 63 ：退出 0，48 秒
+[0;93m2026-11-08 12:15:34.565934948 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620
+✔ 机器复听 自检：吞掉一句最长一段的中间七成，small.en、parakeet 每一路都报
+机器复听 18 句：读音对不上的 0 句；实测写了依据交用户听 1 句（S2 “phone”听成“foam〔small.en〕”）
+== python3 /home/runner/work/literate-enigma/literate-enigma/视频/工具/读音核对.py 63 ：退出 0，2 秒
+63 OK（已核实） [专有名词] Kessler  配音读作 /kˈɛslɚ/  ｜词典：CMU: K EH1 S L ER0；CMU: K EH1 S L ER0｜出现在 S12
+63 OK（已核实） [专有名词] September  配音读作 /sɛptˈɛmbɚ/  ｜词典：misaki: sɛptˈɛmbəɹ；CMU: S EH0 P T EH1 M B ER0；misaki: sɛptˈɛmbəɹ；CMU: S EH0 P T EH1 M B ER0｜出现在 S17
+63 OK（已核实） [专有名词] America's  配音读作 /ɐmˈɛɹɪkəz/  ｜词典：misaki: əmˈɛɹəkə +s；CMU: AH0 M EH1 R AH0 K AH0 +s；CMU: AH0 M EH1 R IH0 K AH0 +s；misaki: əmˈɛɹəkə +s｜出现在 S17
+63 OK（已核实） [专有名词] Federal  配音读作 /fˈɛdɚɹəl/  ｜词典：CMU: F EH1 D ER0 AH0 L；CMU: F EH1 D R AH0 L；misaki: fˈɛdəɹəl；CMU: F EH1 D ER0 AH0 L｜出现在 S17
+63 OK（已核实） [专有名词] Communications  配音读作 /kəmjˌuːnɪkˈeɪʃənz/  ｜词典：CMU: K AH0 M Y UW2 N AH0 K EY1 SH AH0 N Z；CMU: K AH0 M Y UW2 N AH0 K EY1 SH AH0 N Z｜出现在 S17
+63 OK（已核实） [专有名词] Commission  配音读作 /kəmˈɪʃən/  ｜词典：CMU: K AH0 M IH1 SH AH0 N；misaki: kəmˈɪʃən；CMU: K AH0 M IH1 SH AH0 N｜出现在 S17
+63 读音核对 待核实 0 处（罗马数字 0、不一致 0、词典里没有 0、专有名词 0、多音词 0）
+问题数 0
+== python3 /home/runner/work/literate-enigma/literate-enigma/视频/工具/交付核查.py 63 出片前 ：退出 1，45 秒
+✔ 词头渐强核对 自检：通过（10 ms 擦音被 15 ms 渐强吃掉必抓；90 ms、22 ms 擦音配 8 ms 交界渐强、5 ms 擦音残尾、直接元音必放）
+✔ 词头渐强核对（K131：停顿后的短辅音不被渐强吃掉）
+    discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171" because filename "5620e0c7-806
+✔ [0;93m2026-11-08 12:16:41.220805025 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/56
+✔ 无标点处停顿 ≤ 0.22 秒
+✔ 音频体检 自检：8 项各造一种毛病全部报出、原样不误报
+✔ 音频体检（与 01–24 最差比）：音频体检 8 项：超过 01–24 最差的 0 处
+【不通过，不得交付】
+✘ 踩坑核查（核查程序自检、踩坑对照记录、逐条程序核查、换行比对）
+    Traceback (most recent call last):
+    SyntaxError: f-string expression part cannot include a backslash
+== env STRICT_CACHE=1 python3 make_video.py scripts/63.json 63.mp4 ：退出 0，44 秒
+[0;93m2026-11-08 12:17:02.291900251 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620
+sizes [84, 72, 96, 130, 78, 61, 102, 70, 81, 106, 80, 56, 85, 89, 73, 104, 61, 51]
+63.mp4 159.4 s 77 screens
+== python3 /home/runner/work/literate-enigma/literate-enigma/视频/工具/交付核查.py 63 出片后 ：退出 0，287 秒
+    S17 raw 0.3600-0.4049：已用实际声音确认——2026-11-08 实测（w 秒）：In 与 September 之间一下孤立杂音（w 0.355–0.365，-46 dB、重心 3.3 kHz，两边 -62/-64 dB），非人声区间 S17 [0.3525, 0.3675]
+    S17 raw 2.3188-2.6700：已用实际声音确认——2026-11-08 实测（w 秒）：2022, 后停顿里的吸气（-37～-50 dB，前 -56 dB、后 -59～-65 dB 低谷），非人声区间 S17 [2.29875, 2.62375]
+✔ 高亮同步核对 自检：S1 第2块故意提前 0.4 秒、S3 第2块故意推后 0.4 秒，必须正好报出这两处
+    报出：[('S1', '第2块'), ('S3', '第2块')]
+✔ 高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）
+    63 共核对 17 处合格，最大偏差 0.12s（配音指纹 9a06cf68038d）
+✔ 生成标点试听 标点试听_63.mp3（32 处，需交用户试听）
+全部通过
+✔ 出片指纹 自检（G26：旧视频配新脚本、出片后程序改了、视频被覆盖、没有指纹都要停）
+✔ 视频是现行脚本、现行程序出的（G26 出片指纹：与现行脚本、配音、出片程序逐项一致）
+✔ 成片有画面 自检（G12：只有声音的文件拦下、1920×1080 的视频放行）
+✔ 成片有画面（G12：有画面流、宽 ≥1920；只有声音的文件一律不得交付——快速重建核查.sh 会把 NN.mp4 覆盖成只有声音，出片要放在它之后）
+✔ audio_qc 自检：削波、4800 Hz 电流音、片中停顿过长、一段变轻全部报出
+✔ 自动音频检查（削波、电流音、停顿超长、响度骤降）
+✔ 响度一致性核对 自检：故意把第7段调到比全片响 3 LU、第13段调到比全片轻 3 LU，报出 [7, 13]
+✔ 响度一致性（逐句与全片 ±2 LU、相邻两句 ≤2.5 LU）：全片 -22.5 LUFS，峰值 -0.5 dBFS，18 句，逐句与全片差 -1.1～+1.8 LU
+✔ 句内分段响度 自检：故意把 S11 第 2 段（82.3–88.1s）调 -2.2 dB，报出；多报 []
+✔ 句内分段响度（相邻两段 ≤2.5 LU）：句内相邻两段 25 处，差超过 2.5 LU 的 0 处
+✔ 句内被压小 自检：60 S11 That law, 压 -6 dB 的坏样本报出、补 +2 dB 的好样本放过（K130）
+✔ 句内被压小（K130：邻段整段响 >1.5 LU 且最响处高 >4.0 LU）：0 处
+✔ 音频体检 自检：8 项各造一种毛病全部报出、原样不误报
+✔ 音频体检（与 01–24 最差比）：音频体检 8 项：超过 01–24 最差的 0 处
+✔ 机器复听 自检：吞掉一句最长一段的中间七成，small.en、parakeet 每一路都报
+✔ 机器复听（逐词读音与脚本一致）：机器复听 18 句：读音对不上的 0 句；实测写了依据交用户听 1 句（S2 “phone”听成“foam〔small.en〕”）
+✔ 纯人声核对 自检：49.33s 假呼吸声报出、97.39s 假噗声报出、76.94s 假咔哒声报出、66.50s 开口前假吸气声报出；别处没有多报
+✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：63 纯人声核对（配音指纹 9a06cf68038d）问题数 0
+✔ 句间停顿核对 自检：S6 后加长 0.05 秒、S12 后缩短 0.05 秒、S9 开头前放杂音，必须报 ['S12→S13', 'S6→S7', 'S8→S9']，报出 ['S12→S13', 'S6→S7', 'S8→S9']
+✔ 句间停顿核对（A20：片头 0.4、标题后 1.0、句号 1.0、换段 1.2、片尾 2 秒，词到词 ±0.01 秒）：63 句间停顿核对 问题数 0
+✔ 核查程序自检：词尾轻切（4.95s，剪 32 ms）抓到、词头轻切（5.34s，剪 10 ms）抓到、词尾重切（8.77s，剪 46 ms）抓到、词头重切（9.16s，剪 10 ms）抓到、杂音（151.22s）抓到
+✔ 独立复核：96 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['11']（未经实际声音确认的 0），多余声音 = ['0']
+✔ 高亮同步核对 自检：S1 第2块故意提前 0.4 秒、S3 第2块故意推后 0.4 秒，必须正好报出这两处
+✔ 高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）
+✔ 生成标点试听 标点试听_63.mp3（32 处，需交用户试听）
+全部通过
+== python3 /home/runner/work/literate-enigma/literate-enigma/视频/工具/对比成片.py 63.mp4 /home/runner/work/literate-enigma/literate-enigma/视频/视频/草稿1080p/63_1080p.mp4 ：退出 1，9 秒
+声音：✔ 逐采样相同（a988af512446 / a988af512446）
+画面：319 帧（两边 319/319），每帧最大差中位 0、最大 68，差超过 24 的 12 帧
+结论：✘ 不一致
+结论：✘ 不一致
+声音：✔ 逐采样相同（a988af512446 / a988af512446）
+画面：319 帧（两边 319/319），每帧最大差中位 0、最大 68，差超过 24 的 12 帧
+结论：✘ 不一致
+== 指纹
+1c5419fad6ed2ed1 work_63/a.wav
+7b48d341e38da87e work_63/分段.json
+f6534dccb10fb6d3 scripts/63.json
+ .../\345\210\266\344\275\234\350\256\260\345\275\225/63.md"          | 5 +++++
+ 1 file changed, 5 insertions(+)
