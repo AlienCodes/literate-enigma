@@ -1,3 +1,5 @@
+# S15：用户 2026-11-08 原话：“补充，补充，补充，改为重新装满了”
+# S14 note：用户 2026-11-08 原话：“下面的小字：到了2018年3月，官方终于松了一口气，对外宣布：今年这“零日”（彻底断水）应该是不会发生了。”
 # S11：用户 2026-11-08 原话：“翻译，翻译，翻译改一下，改成下面的这个内容：日常的用水量减少了一半以上，从2015年的约12亿升降至2018年初的约5亿升。”
 # S14：用户 2026-11-08 原话：“到来改成发生”
 # S10：用户 2026-11-08 原话：“Official official officials重点词汇。Consumption, consumption. 下面的中文意思改为消耗量。Benchmark，benchmark下面的意思改为对标。对标他们的用水量。对标他们的用水量。”],
@@ -43,8 +45,8 @@ S=[
     [[("with farms","加上农场"),("drawing","用水"),("less,","减少，"),("Day Zero","零日"),("was **postponed**","被**推迟**(postponed)"),("to July.","到7月。")],
      "（with farms drawing less：with 复合结构作状语，\n表示伴随的原因）"]]),
 (4,[[[("In March 2018,","2018年3月，"),("officials","官员们"),("judged","判断"),("Day Zero","零日"),("**unlikely**","**不太可能**(unlikely)"),("that year.","在当年发生。")],
-     "（judge A unlikely：判断 A 不太可能发生）"]]),
-(4,[[[("Winter rains","冬雨"),("**subsequently**","**随后**(subsequently)"),("**replenished**","**补充了**(replenished)"),("the reservoirs,","各水库，")]],
+     "（judge A unlikely：判断 A 不太可能发生）\n（到了2018年3月，\n官方终于松了一口气，对外宣布：\n今年这“零日”（彻底断水）应该是不会发生了。）"]]),
+(4,[[[("Winter rains","冬雨"),("**subsequently**","**随后**(subsequently)"),("**replenished**","**重新装满了**(replenished)"),("the reservoirs,","各水库，")]],
     [[("which were about half full by July.","到7月时水库已约半满。")],
      "（which were…：非限制性定语从句，修饰 the reservoirs）"]]),
 (4,[[[("The 50-litre","50升的"),("limit","限额"),("was **eased** in October 2018.","于2018年10月**放宽**(eased)。")]]]),

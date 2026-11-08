@@ -20,7 +20,7 @@ The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **s
 
 该市把**强制性的**(mandatory)**限制措施**(restrictions)与**前所未有的**(unprecedented)**透明度**(transparency)结合起来。自2018年2月1日起，每人每天**分配**(allotted)50**升**(litres)水。**官员们**(Officials)**公布**(disclosed)水库水位和**家庭**(household)**消耗量**(consumption)，公开的**统计数字**(tallies)让**节俭**(thrift)成效**一目了然**(visible)，也让邻里之间得以**对标**(benchmark)他们的用水量。日常的用水量**减少了一半**(halved)以上，从2015年的约12亿升降至2018年初的约5亿升。
 
-其他力量也**介入**(intervened)了。2018年2月，**上游**(upstream)的农民从他们的**灌溉**(irrigation)水坝中放出了水；加上农业用水减少，零日被**推迟**(postponed)到7月。2018年3月，官员们判断零日当年**不太可能**(unlikely)发生。**随后**(subsequently)，冬雨**补充了**(replenished)各水库，到7月时水库已约半满。50升的限额于2018年10月**放宽**(eased)。
+其他力量也**介入**(intervened)了。2018年2月，**上游**(upstream)的农民从他们的**灌溉**(irrigation)水坝中放出了水；加上农业用水减少，零日被**推迟**(postponed)到7月。2018年3月，官员们判断零日当年**不太可能**(unlikely)发生。**随后**(subsequently)，冬雨**重新装满了**(replenished)各水库，到7月时水库已约半满。50升的限额于2018年10月**放宽**(eased)。
 
 批评者认为，**负担**(burden)分配得**并不均衡**(unevenly)。**城镇区**(townships)——在**种族隔离制度**(apartheid)下按种族被**隔离**(segregated)出来的贫困地区——长期以来就靠**很少**(scant)的水勉强度日，然而**更高的**(steeper)**水价**(tariffs)让它们最**不堪重负**(squeezed)。另一些人则把游客**取消行程**(cancellations)归咎于**危言耸听的**(alarmist)警告。家庭、农民和雨水共同让取水点一直**闲置**(idle)，但这份**牺牲**(sacrifice)最沉重地压在了最拿不出余力的人身上。
 
@@ -71,7 +71,7 @@ The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **s
 | postponed | v. (postpone) 推迟，延期（postpone sth to/until July）；同 put off | 4 |
 | unlikely | adj. 不太可能的（It is unlikely that…；be unlikely to do） | 4 |
 | subsequently | adv. 随后，后来（subsequently become/be found）；subsequent adj. 随后的（subsequent events） | 4 |
-| replenished | v. (replenish) 补充，重新装满（replenish reservoirs/stocks） | 4 |
+| replenished | 本文：重新装满了；v. (replenish) 补充，重新装满（replenish reservoirs/stocks） | 4 |
 | eased | v. (ease) 放宽，缓和（ease restrictions/tension）；n. 容易（with ease） | 4 |
 | burden | n. 负担，重担（bear/share the burden；the burden fell on sb）；v. 使负担 | 5 |
 | unevenly | adv. 不均衡地（be unevenly distributed）；uneven adj. | 5 |
