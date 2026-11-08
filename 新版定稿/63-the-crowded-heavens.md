@@ -2,7 +2,7 @@
 # ZH: 拥挤的苍穹
 ## 英文
 
-On 10 February 2009, nearly 790 kilometres above Siberia, two satellites **slammed** together at about 42,000 kilometres an hour. Iridium 33 belonged to an American satellite-phone **constellation**; Kosmos 2251, a Russian military satellite, had been **derelict** since about 1995. Both **shattered** in the first **accidental** **collision** between two intact satellites.
+On 10 February 2009, nearly 790 kilometres above Siberia, two satellites **slammed** together at about 42,000 kilometres an hour. Iridium 33 **belonged to** an American satellite-phone **constellation**; Kosmos 2251, a Russian military satellite, had been **derelict** since about 1995. Both **shattered** in the first **accidental** **collision** between two intact satellites.
 
 Neither craft **swerved**. The Russian **hulk**, lacking **propulsion**, could not. A public collision-warning service had forecast a **narrow** miss of about 584 metres, yet the predicted **encounter** was not among the week's closest; such warnings were **frequent** and **imprecise**. One owner's **discarded** **relic** **demolished** another's working **asset**.
 
@@ -14,9 +14,9 @@ Such a cascade would **unfold** over decades, though, and is not **inevitable**;
 
 ## 中文
 
-2009年2月10日，在西伯利亚上空近790公里处，两颗卫星以约每小时42,000公里的速度**猛撞**(slammed)在一起。铱星33号隶属于美国的一个卫星电话**星座**(constellation)；宇宙2251号是一颗俄罗斯军用卫星，约自1995年起便已**废弃**(derelict)。在这起两颗完整卫星之间的首次**意外**(accidental)**相撞**(collision)中，两星双双**粉碎**(shattered)。
+2009年2月10日，在西伯利亚上空近790公里处，两颗卫星以约每小时42,000公里的速度**猛撞**(slammed)在一起。铱星33号**属于**(belonged to)美国的一个卫星电话**星座**(constellation)；宇宙2251号是一颗俄罗斯军用卫星，约自1995年起便已**废弃**(derelict)。在这起两颗完整卫星之间的首次**意外**(accidental)**相撞**(collision)中，两星双双**粉碎**(shattered)。
 
-两颗卫星都没有**转向避让**(swerved)。那具俄罗斯**空壳**(hulk)没有**推进**(propulsion)装置，想躲也躲不了。一项公开的碰撞预警服务曾预报，两星将相距约584米**惊险**(narrow)擦过，但在当周的预测中，这次**交会**(encounter)并未排进距离最近的几次之列；这类预警既**频繁**(frequent)又**不精确**(imprecise)。一方**弃置的**(discarded)**遗物**(relic)，**撞毁了**(demolished)另一方仍在工作的**资产**(asset)。
+两个飞行器都没有**紧急转向避让**(swerved)。那具俄罗斯**空壳**(hulk)没有**推进**(propulsion)装置，想躲也躲不了。一项公开的碰撞预警服务曾预报，两星将相距约584米**惊险**(narrow)擦过，但在当周的预测中，这次**交会**(encounter)并未排进距离最近的几次之列；这类预警既**频繁**(frequent)又**不精确**(imprecise)。一方**弃置的**(discarded)**遗物**(relic)，**撞毁了**(demolished)另一方仍在工作的**资产**(asset)。
 
 然而，这些**残骸**(wreckage)却**危及**(endangered)了其他所有人。**撞击**(impact)**抛出**(flung)了2,000多块**已编目的**(catalogued)碎片，另有**大量**(multitude)碎片小到无法**精确定位**(pinpoint)。在那个高度，空气**阻力**(drag)**微弱**(feeble)，因此许多碎片会在轨道上**滞留**(linger)数十年。2012年1月，国际空间站启动**推进器**(thrusters)，**躲开**(dodge)了一块铱星33号的**残片**(remnant)。
 
@@ -28,6 +28,7 @@ Such a cascade would **unfold** over decades, though, and is not **inevitable**;
 | 词 | 释义 | 段 |
 |---|---|---|
 | slammed | v. (slam) 猛撞，猛烈撞击（slam into a wall；two cars slammed together）；砰地关上（slam the door）；猛烈抨击（slam a decision） | 1 |
+| belonged to | v. phr. (belong to) 属于，归……所有（belong to sb/sth；the book belongs to me） | 1 |
 | constellation | n. 卫星星座（由多颗协同工作的卫星组成的网络，a satellite constellation）；（天文）星座；（一组）相关的人或事物（a constellation of problems） | 1 |
 | derelict | adj. 被遗弃的，废弃的，年久失修的（a derelict building/ship/satellite）；n. 无家可归者 | 1 |
 | shattered | v. (shatter) 粉碎，破碎（the glass shattered；shatter into pieces）；使破灭（shatter hopes/illusions） | 1 |

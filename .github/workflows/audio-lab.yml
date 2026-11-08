@@ -140,8 +140,9 @@ jobs:
       - name: 跑
         working-directory: /home/runner/work/video
         run: |
+          set +e   # 某一步不过也接着跑完，把每一步的 ✘ 全打出来
           T=$GITHUB_WORKSPACE/视频/工具; N=$(grep '^流程' $GITHUB_WORKSPACE/.github/音频实验/请求.txt | awk '{print $2}'); N=${N:-26}; mkdir -p /tmp/out; echo "== 第 ${{ matrix.run }} 遍，第 $N 篇" | tee -a /tmp/流程.txt
-          s() { T0=$(date +%s); "$@" > /tmp/l.txt 2>&1; rc=$?; echo "== $* ：退出 $rc，$(( $(date +%s)-T0 )) 秒" | tee -a /tmp/流程.txt; tail -8 /tmp/l.txt | cut -c1-200 | tee -a /tmp/流程.txt; }
+          s() { T0=$(date +%s); "$@" > /tmp/l.txt 2>&1; rc=$?; echo "== $* ：退出 $rc，$(( $(date +%s)-T0 )) 秒" | tee -a /tmp/流程.txt; tail -8 /tmp/l.txt | cut -c1-200 | tee -a /tmp/流程.txt; grep -E '✘|BAD|【停|Error|Traceback' /tmp/l.txt | head -40 | cut -c1-300 | tee -a /tmp/流程.txt; }
           s bash $T/草稿声音.sh $N
           s python3 $T/机器复听.py --带自检 $N
           s python3 $T/读音核对.py $N
