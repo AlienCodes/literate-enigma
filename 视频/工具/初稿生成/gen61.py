@@ -5,6 +5,7 @@ import json,re,glob,os
 # 2026-11-08 用户：“Converted 标注重点词汇，标注重点词汇，意思为改造过的。”（与 57 converted 撞车，用户坚持加，allow_clash）
 # 2026-11-08 用户改 S2：“固定在她甲板上的是58个集装箱——其实就是从车轮和底盘上拆卸下来的挂车车厢。”“wheel 标注重点词汇，标注重点词汇。”“下面的小字改成：trailor body 挂车车厢 就是在trailer body后面，就是加上挂车车厢这四个字。就整体翻译为挂车车厢。”“字小字部分额外附加: detach from 指将某物从原本附着、连接或所属的主体上分离或拆卸下来。”（破折号按 T36 由 做.sh 自动换）
 # 2026-11-08 用户改 S3：“翻译不准，改成这个翻译: 极少数旁观者会把一批如此平淡无奇的货物当作一个里程碑。”
+# 2026-11-08 用户改 S4：“那时，货物都是散装运输。”（freight 与 S3 cargo 中文都成“货物”，用户原话定）
 # 2026-11-08 用户改 S1 中文（原话见 用户同意记录 篇 61）：说啥改啥
 S=[
 (1,[[[("On 26 April 1956","1956年4月26日，"),("a","一艘"),("**converted**","**改造过的**(converted)"),("Second World War","二战"),("**tanker**,","**油轮**(tanker)"),("the Ideal X,","“理想X号”，")],
@@ -17,7 +18,7 @@ S=[
      "（trailer bodies 挂车车厢：同位语，补充说明 containers；\ndetached from…：过去分词短语作后置定语，修饰 bodies；\ndetach from：指将某物从原本附着、连接或所属的主体上分离或拆卸下来）"]]),
 (1,[[[("Few","极少数"),("**spectators**","**旁观者**(spectators)"),("would have taken","会把"),("so","一批如此"),("**unremarkable**","**平淡无奇的**(unremarkable)"),("a **cargo**","**货物**(cargo)"),("for a **landmark**.","当作一个**里程碑**(landmark)。")],
      "（take A for B：把 A 当作 B；\nso＋形容词＋a＋名词：这样……的一个；\nwould have done：对过去情况的推测）"]]),
-(2,[[[("At the time,","那时，"),("**freight**","**货品**(freight)"),("travelled **loose**.","都以**散装**(loose)方式运输。")],
+(2,[[[("At the time,","那时，"),("**freight**","**货物**(freight)"),("travelled **loose**.","都是**散装**(loose)运输。")],
      "（travelled loose：loose 作补语，\n说明货物运输时的状态）"]]),
 (2,[[[("**Gangs** of twenty or more","二十多人一**帮**(gangs)"),("dockworkers","的码头工人")],
      "（of twenty or more dockworkers：of 结构作后置定语，修饰 Gangs）"],
