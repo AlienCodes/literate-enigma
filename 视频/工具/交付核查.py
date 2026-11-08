@@ -74,6 +74,9 @@ elif stage == '出片前':
     step('词尾辅音核对（A21：停顿前和句末的词尾 t/k 听得清除阻，2 kHz 以上 ≥ -36 dB；/p/ 全频 ≥ -33 dB）', c == 0 and '问题数 0' in o, ('' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l or '停止' in l or 'Error' in l) + '\n    → 先跑 词尾辅音核对.py NN --写入 自动补位置，再重跑')
          + ('\n    '.join([''] + wk + ['→ 浊塞音偏弱处不判，但要剪成试听交用户确认（01 两处用户已确认）']) if wk else ''))
     c, o = run(['python3', f'{T}/停顿位置精确核对.py', no]); step('停顿位置核对（A9/A15：停顿正好落在标点处两个词之间）', '问题数 0' in o, '\n    '.join(l for l in o.splitlines() if 'BAD' in l or '插入' in l))
+    if int(no) >= 62:   # K131（62 S15 13 clones, | four：停顿插在 /z/→/f/ 交界，下一段 15 ms 渐强把 10 ms 的 /f/ 压低 20 dB，用户听成 our）：停顿后的短辅音不许被渐强吃掉（62 起；63–65 已出 1080p 的单独扫过报主会话）
+        c, o = run(['python3', f'{T}/词头渐强核对.py', '--自检']); step(o.strip().splitlines()[-1] if o.strip() else '词头渐强核对 自检没有输出', c == 0 and '通过' in o, '' if c == 0 else o.strip()[-300:])
+        c, o = run(['python3', f'{T}/词头渐强核对.py', no]); step('词头渐强核对（K131：停顿后的短辅音不被渐强吃掉）', c == 0 and '问题数 0' in o, '\n    '.join(l for l in o.splitlines() if 'BAD' in l) or o.strip()[-300:])
     c, o = run(['python3', f'{T}/无标点停顿核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '无标点停顿核对 自检没有输出', c == 0, '' if c == 0 else o.strip()[-300:])
     c, o = run(['python3', f'{T}/无标点停顿核对.py', no])
     long = [l for l in o.splitlines() if re.search(r'停顿 (\d+\.\d+)s', l) and float(re.search(r'停顿 (\d+\.\d+)s', l).group(1)) > 0.22]
