@@ -4,7 +4,7 @@
 ## 英文
 Dolly was born at Roslin, **Scotland**, on 5 July 1996. Her **genome** came from a Finn Dorset ewe's mammary cell, **fused** with a Blackface egg stripped of its **nucleus**. A Blackface **surrogate** carried the **embryo** through **pregnancy**, yet her white face was **proof** of a **genetically** different **lineage**. She alone survived from 277 attempts, an **extraordinary** failure rate.
 
-Dolly is **popularly** called the first clone, a **misconception**. Her **predecessors** included frogs cloned from **transplanted** nuclei in 1962 and Roslin's embryo-derived **duo**, Megan and Morag, in 1995. She was **genuinely** the first **mammal** cloned from an adult cell. Roslin's **announcement** on 22 February 1997 **coincided** with the paper, and her name, a mammary **pun**, honoured Dolly Parton.
+Dolly is **popularly** called the first **clone**, a **misconception**. Her **predecessors** included frogs cloned from **transplanted** nuclei in 1962 and Roslin's embryo-derived **duo**, Megan and Morag, in 1995. She was **genuinely** the first **mammal** cloned from an adult cell. Roslin's **announcement** on 22 February 1997 **coincided** with the paper, and her name, a mammary **pun**, honoured Dolly Parton.
 
 The news **provoked** **uproar** and **apprehension** about the **ethics** of human cloning. In March 1997 Clinton **prohibited** federal funding for such experiments. In 1999 her telomeres, or **chromosome** tips, were reported **shortened** by about 20% for her age. That fed **anxiety**; some **speculated** she was ageing **prematurely**.
 
@@ -14,9 +14,9 @@ She bore six lambs by natural **mating**; Bonnie, first of these **descendants**
 
 ## 中文
 
-1996年7月5日，多莉在**苏格兰**(Scotland)罗斯林出生。她的**基因组**(genome)来自一只芬兰多塞特母羊的乳腺细胞，这个细胞与一枚去除了**细胞核**(nucleus)的黑脸羊卵细胞**融合**(fused)。一只黑脸羊**代孕母羊**(surrogate)怀着这个**胚胎**(embryo)度过了**孕期**(pregnancy)，然而多莉的白脸**证明**(proof)她来自**遗传上**(genetically)不同的**血统**(lineage)。在277次尝试中只有她存活下来，失败率**惊人**(extraordinary)。
+1996年7月5日，多莉在**苏格兰**(Scotland)罗斯林出生。她的**基因组**(genome)来自一只芬兰多塞特母羊的乳腺细胞，这个细胞与一枚去除了**细胞核**(nucleus)的黑脸羊卵细胞**融合**(fused)。一只黑脸羊**代孕母羊**(surrogate)怀着这个**胚胎**(embryo)度过了**孕期**(pregnancy)，而多莉的白脸则是一个**基因上**(genetically)不同**血统**(lineage)的**证明**(proof)。只有她从277次尝试中存活了下来，一个**异乎寻常的**(extraordinary)失败率。
 
-多莉被**普遍**(popularly)称为第一个克隆体，这是一种**误解**(misconception)。她的**前辈**(predecessors)包括1962年用**移植**(transplanted)细胞核克隆的青蛙，以及罗斯林1995年用胚胎细胞培育的**一对**(duo)绵羊梅根和莫拉格。她**确实**(genuinely)是第一个用成年细胞克隆的**哺乳动物**(mammal)。1997年2月22日，罗斯林研究所的**公布**(announcement)与论文发表**同时**(coincided)进行；她的名字是一个关于乳腺的**双关语**(pun)，向多莉·帕顿致敬。
+多莉**一般**(popularly)被称为第一个**克隆体**(clone)，这是一个**错误的观念**(misconception)。她的**前几代**(predecessors)包括于1962年由**移植**(transplanted)的细胞核克隆出的青蛙，以及罗斯林于1995年由胚胎衍生的**一对**(duo)绵羊：梅根和莫拉格。她**确实**(genuinely)是第一个用成年细胞克隆出的**哺乳动物**(mammal)。1997年2月22日罗斯林的**公告**(announcement)与这篇论文**同时发生**(coincided)，而她的名字，一个关于乳腺的**双关语**(pun)，致敬了多莉·帕顿。
 
 这一消息**引发**(provoked)了**轩然大波**(uproar)，也让人们对人类克隆的**伦理**(ethics)问题深感**忧虑**(apprehension)。1997年3月，克林顿**禁止**(prohibited)联邦资金用于这类实验。1999年，有报道称她的端粒，即**染色体**(chromosome)末端，比同龄羊**缩短**(shortened)了约20%。这加剧了人们的**焦虑**(anxiety)，有人**推测**(speculated)她正在**过早**(prematurely)衰老。
 
@@ -29,7 +29,7 @@ She bore six lambs by natural **mating**; Bonnie, first of these **descendants**
 |---|---|---|
 | Scotland | n. 苏格兰（英国的组成部分之一） | 1 |
 | genome | n. 基因组（the human genome；sequence a genome） | 1 |
-| fused | v. (fuse) 融合，熔合（fuse two cells；be fused together） | 1 |
+| fused | v. (fuse) 融合，熔合（fuse two cells；be fused together；fuse with：与……融合） | 1 |
 | nucleus | n. 细胞核；核心（the nucleus of a cell/atom） | 1 |
 | surrogate | n./adj. 代孕者；替代的（a surrogate mother） | 1 |
 | embryo | n. 胚胎（a human embryo） | 1 |
@@ -37,15 +37,16 @@ She bore six lambs by natural **mating**; Bonnie, first of these **descendants**
 | proof | n. 证据，证明（proof of identity；living proof） | 1 |
 | genetically | adv. 遗传上，基因上（genetically modified；genetically identical） | 1 |
 | lineage | n. 血统，世系（of noble lineage） | 1 |
-| extraordinary | adj. 非凡的，惊人的（an extraordinary achievement） | 1 |
-| popularly | adv. 普遍地，通俗地（popularly known as…） | 2 |
-| misconception | n. 误解，错误观念（a common misconception） | 2 |
-| predecessors | n. (predecessor) 前任，前身（his predecessor in office） | 2 |
+| extraordinary | adj. 非凡的，异乎寻常的，惊人的（an extraordinary achievement） | 1 |
+| popularly | adv. 一般地，普遍地，通俗地（popularly known as…） | 2 |
+| clone | n. 克隆体，克隆（clone a sheep；the first clone） | 2 |
+| misconception | n. 错误的观念，误解（a common misconception） | 2 |
+| predecessors | n. (predecessor) 前几代，前任，前身（his predecessor in office） | 2 |
 | transplanted | v. (transplant) 移植（transplant a heart/seedlings） | 2 |
 | duo | n. 二人组，一对（a comedy duo） | 2 |
 | genuinely | adv. 真正地，确实（genuinely surprised/concerned） | 2 |
 | mammal | n. 哺乳动物（marine mammals） | 2 |
-| announcement | n. 宣布，公告（make an announcement） | 2 |
+| announcement | n. 公告，宣布（make an announcement） | 2 |
 | coincided | v. (coincide) 同时发生，巧合（coincide with a holiday） | 2 |
 | pun | n. 双关语（make a pun on a word） | 2 |
 | provoked | v. (provoke) 引起，激起（provoke anger/a debate） | 3 |

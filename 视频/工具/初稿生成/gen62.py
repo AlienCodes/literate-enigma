@@ -4,25 +4,25 @@ import json,re,glob,os
 S=[
 (1,[[[("Dolly was born at Roslin, **Scotland**, on 5 July 1996.","1996年7月5日，多莉在**苏格兰**(Scotland)罗斯林出生。")]]]),
 (1,[[[("Her","她的"),("**genome**","**基因组**(genome)"),("came from","来自"),("a Finn Dorset ewe's","一只芬兰多塞特母羊的"),("mammary","乳腺"),("cell,","细胞，")]],
-    [[("**fused** with","这个细胞**融合了**(fused)"),("a Blackface","一枚黑脸羊"),("egg","卵细胞，"),("stripped of","这枚卵已去除了"),("its **nucleus**.","**细胞核**(nucleus)。")],
+    [[("**fused with**","这个细胞**融合了**(fused with)"),("a Blackface","一枚黑脸羊"),("egg","卵细胞，"),("stripped of","这枚卵已去除了"),("its **nucleus**.","**细胞核**(nucleus)。")],
      "（fused with…：过去分词短语作后置定语，修饰 cell；\nstripped of…：过去分词短语作后置定语，修饰 egg；\nbe stripped of：被去除）"]]),
 (1,[[[("A Blackface","一只黑脸羊"),("**surrogate**","**代孕母羊**(surrogate)"),("carried","怀着"),("the **embryo**","这个**胚胎**(embryo)"),("through **pregnancy**,","度过了**孕期**(pregnancy)，")]],
-    [[("yet","然而"),("her","多莉的"),("white","白"),("face","脸"),("was **proof of**","**证明**(proof of)"),("a","她来自"),("**genetically**","**遗传上**(genetically)"),("different","不同的"),("**lineage**.","**血统**(lineage)。")],
+    [[("yet","而"),("her","多莉的"),("white","白"),("face","脸"),("was","则是"),("**proof of** a **genetically** different **lineage**.","一个**基因上**(genetically)不同**血统**(lineage)的**证明**(proof of)。")],
      "（proof of：……的证据；her 指 Dolly）"]]),
-(1,[[[("She alone survived from 277 attempts,","在277次尝试中只有她存活下来，"),("an **extraordinary**","这是**惊人的**(extraordinary)"),("failure","失败"),("rate.","率。")],
+(1,[[[("She alone","只有她"),("survived from 277 attempts,","从277次尝试中存活了下来，"),("an","一个"),("**extraordinary**","**异乎寻常的**(extraordinary)"),("failure","失败"),("rate.","率。")],
      "（an extraordinary failure rate：同位语，评述前面整件事）"]]),
-(2,[[[("Dolly","多莉"),("is **popularly**","被**普遍**(popularly)"),("called","称为"),("the first clone,","第一个克隆体，"),("a **misconception**.","这是一种**误解**(misconception)。")],
+(2,[[[("Dolly","多莉"),("is **popularly**","**一般**(popularly)被"),("called","称为"),("the first","第一个"),("**clone**,","**克隆体**(clone)，"),("a **misconception**.","这是一个**错误的观念**(misconception)。")],
      "（a misconception：同位语，评述前面整句）"]]),
-(2,[[[("Her **predecessors**","她的**前辈**(predecessors)"),("included","包括")]],
-    [[("frogs cloned from **transplanted** nuclei in 1962","1962年用**移植**(transplanted)细胞核克隆的青蛙，")],
+(2,[[[("Her **predecessors**","她的**前几代**(predecessors)"),("included","包括")]],
+    [[("frogs cloned from **transplanted** nuclei in 1962","于1962年由**移植**(transplanted)的细胞核克隆出的青蛙，")],
      "（cloned from…：过去分词短语作后置定语，修饰 frogs；\nnuclei 是 nucleus 的复数）"],
-    [[("and Roslin's","以及罗斯林"),("embryo-derived **duo**, Megan and Morag, in 1995.","1995年用胚胎细胞培育的**一对**(duo)绵羊梅根和莫拉格。")],
+    [[("and Roslin's","以及罗斯林"),("embryo-derived **duo**, Megan and Morag, in 1995.","于1995年由胚胎衍生的**一对**(duo)绵羊：梅根和莫拉格。")],
      "（Megan and Morag：同位语，补充说明 duo）"]]),
-(2,[[[("She","她"),("was **genuinely**","**确实**(genuinely)是"),("the first **mammal** cloned from an adult cell.","第一个用成年细胞克隆的**哺乳动物**(mammal)。")],
+(2,[[[("She","她"),("was **genuinely**","**确实**(genuinely)是"),("the first **mammal** cloned from an adult cell.","第一个用成年细胞克隆出的**哺乳动物**(mammal)。")],
      "（cloned from an adult cell：\n过去分词短语作后置定语，修饰 mammal）"]]),
-(2,[[[("Roslin's **announcement** on 22 February 1997","1997年2月22日，罗斯林研究所的**公布**(announcement)"),("**coincided with** the paper,","**与**(coincided with)论文发表**同时**(coincided with)进行；")],
+(2,[[[("Roslin's **announcement** on 22 February 1997","1997年2月22日罗斯林的**公告**(announcement)"),("**coincided with** the paper,","**与**(coincided with)这篇论文**同时发生**(coincided with)，")],
      "（coincide with：与……同时发生）"],
-    [[("and her name,","她的名字"),("a","是一个关于"),("mammary","乳腺的"),("**pun**,","**双关语**(pun)，"),("honoured Dolly Parton.","向多莉·帕顿致敬。")],
+    [[("and her name,","而她的名字，"),("a","一个关于"),("mammary","乳腺的"),("**pun**,","**双关语**(pun)，"),("honoured","致敬了"),("Dolly Parton.","多莉·帕顿。")],
      "（a mammary pun：同位语，补充说明 her name）"]]),
 (3,[[[("The news","这一消息"),("**provoked**","**引发了**(provoked)"),("**uproar**","**轩然大波**(uproar)，")]],
     [[("and **apprehension**","也引发了**忧虑**(apprehension)，"),("about the **ethics** of human cloning.","关乎人类克隆的**伦理**(ethics)问题。")],
@@ -67,7 +67,8 @@ S=[
 ]
 G={
  "S1 Dolly was born at Roslin, Scotland, on 5 July 1996":"对齐不了：时间状语 on 5 July 1996 放在句末，中文日期必须提前到句首；地名英文由小到大（Roslin, Scotland），中文由大到小“苏格兰罗斯林”（文章定稿原文，用户 11-08 只要求标 Scotland，中文不改）",
- "S4 She alone survived from 277 attempts":"对齐不了：from 277 attempts 是范围状语，中文“在277次尝试中”必须提前，“只有她存活下来”才通顺",
+ "S3 proof of a genetically different lineage":"对齐不了：proof of 后面的 of 结构是它的内容，中文“……的证明”必须把“证明”放到最后（用户 11-08 原话“一个基因上不同血统的证明”）；genetically、lineage 两个中文先后与英文一样",
+ "S4 survived from 277 attempts":"对齐不了：from 277 attempts 是范围状语，中文“从277次尝试中”必须放到动词“存活了下来”前（用户 11-08 原话）",
  "S6 frogs cloned from transplanted nuclei in 1962":"对齐不了：cloned from… in 1962 是过去分词短语作后置定语，修饰 frogs，中文定语“1962年用移植细胞核克隆的”必须提前",
  "S6 embryo-derived duo, Megan and Morag, in 1995":"对齐不了：in 1995 和 embryo-derived 都修饰 duo，中文“1995年用胚胎细胞培育的一对绵羊”定语必须提前，同位语人名跟在后面",
  "S7 the first mammal cloned from an adult cell":"对齐不了：cloned from an adult cell 是过去分词短语作后置定语，修饰 mammal，中文“用成年细胞克隆的”必须提前",
@@ -84,8 +85,9 @@ G={
 }
 CONF={"合组":G,
 "对齐":{
+ "S3-2 proof of a genetically differe":"proof of 的内容 a genetically different lineage 中文“一个基因上不同血统的证明”，“证明”必须放到最后（用户 11-08 原话）",
  "S1-1 Dolly was born at Roslin, Scot":"时间状语 on 5 July 1996 在句末，中文日期必须提前到句首；地名中文由大到小“苏格兰罗斯林”（文章定稿原文，中文不改）",
- "S4-1 She alone survived from 277 at":"from 277 attempts 是范围状语，中文“在277次尝试中”必须提前",
+ "S4-1 survived from 277 attempts,":"from 277 attempts 是范围状语，中文“从277次尝试中”必须放到动词前（用户 11-08 原话）",
  "S6-2 frogs cloned from transplanted":"cloned from… in 1962 是过去分词短语作后置定语，修饰 frogs，中文定语必须提前",
  "S6-3 embryo-derived duo, Megan and ":"embryo-derived、in 1995 都修饰 duo，中文定语“1995年用胚胎细胞培育的”必须提前",
  "S7-1 the first mammal cloned from a":"cloned from an adult cell 是后置定语，修饰 mammal，中文定语必须提前",
@@ -94,9 +96,8 @@ CONF={"合组":G,
  "S11-2 shortened by about 20% for her":"for her age 中文“比同龄羊”必须放到动词前",
  "S16-2 and fears of early onset":"of early onset 是 of 结构作后置定语，修饰 fears，中文“关节炎提早发病的担忧”必须提前",
  "S18-3 the National Museum of Scotlan":"机构名“苏格兰国家博物馆”，拆开不通"},
-"同词异译":{"coincided with：与/同时":"不是两种译法：coincide with 的意思“与……同时”被“论文发表”隔开，“与”和“同时”是同一个意思的两部分（T23）"},
+"同词异译":{"coincided with：与/同时发生":"不是两种译法：coincide with 的意思“与……同时发生”被“这篇论文”隔开，“与”和“同时发生”是同一个意思的两部分（T23）"},
 "短语":{
- "S2 fused … with":"不是搭配：with 只引出融合的另一方（与卵细胞融合），速查表搭配是 fuse two cells / be fused together，fuse 单独就是“融合”",
  "S2 fused … of":"不是搭配：of 属于 stripped of（被去除），和 fused 无关",
  "S6 predecessors … in":"不是搭配：in 属于 in 1962（时间），和 predecessors 无关",
  "S9 provoked … of":"不是搭配：of 属于 the ethics of human cloning（后置定语），和 provoked 无关",
@@ -111,7 +112,6 @@ CONF={"合组":G,
  "S13 on 14 February 2003, with arthritis and":"不是三项并列：arthritis 和 a progressive lung disease 两项",
  "S15 were ageing normally, without hypertension or":"不是三项并列：hypertension 和 diabetes 两项",
  "S18 2003 her stuffed body, now famously an icon and":"不是三项并列：icon 和 memorial 两项"},
-"是的":{"S4-1 是**惊人的**":"不是“是…的”句式：“这是惊人的失败率”是“是”带名词短语，“惊人的”修饰失败率，对应同位语 an extraordinary failure rate"},
 "即":{"S11-1 即":"文章定稿原文“她的端粒，即染色体末端”，对应 or（即，也就是），中文意思不改（守则4）"},
 "数字写法":{"S15-1 four":"文章定稿原文“其中4只”，与前面“13只”一致，读法“四只”对"}}
 out={"no":"62","title_en":"Dolly, the Copied Sheep","title_zh":"多莉：一只羊的复制","title_fx":{"hl":["Dolly","Sheep"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
@@ -127,6 +127,7 @@ CONF['停顿位置']={"S11 telomeres, / or @2.580": "2026-11-07 逐 2.5 ms 实�
 # S8/S13/S18 紧贴两头的非人声区间：A19 停顿后吸气（-44～-57 dB、重心 2–3 kHz、周期 0.1–0.3），起点接停顿删除段，终点在下一个词起音前的过零点（S8 and 6.685、S13 with 5.81、S18 now 2.93）
 # 2026-11-07 纯人声逐处实测（dossier_62）切掉的吸气：S3 yet 前 3.917–3.941（-51～-62 dB 孤立气声）、S7 genuinely/the 之间 1.026–1.226（无标点，-44～-56 dB、重心 2–2.6 kHz、周期 0.1–0.3，195 ms 吸气）、S8 1997/coincided 延到 4.663、S11 tips, 后 3.980–4.285（305 ms 吸气，/s/ 后紧贴）、S13 six, 后 2.716–2.810、S15 without 前 6.406–6.464、S17 descendants, 后 4.970–5.118（-36～-42 dB、低频 -14～-30 dB）
 # S10 [2.085, 2.42]：1997 与 Clinton 之间无标点的自然停顿，2.16–2.35 吸气（-47～-55 dB、重心 2–2.5 kHz），连同前面的静音一起换成静音，让程序把无标点长停顿压到 0.18 s
+out["换行变更已获同意"]={"S3":"用户 2026-11-08 原话“这个翻译不对，这个翻译不对，改成这个：一个基因上不同血统的证明”（中文按用户给的语序重排，“证明”移到最后）；另 11-07 原话“上面的这个英文和它下面这个中文意思尽可能对齐……”（对齐需要改换行算已同意，用户同意记录 篇“61-65”）"}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)
