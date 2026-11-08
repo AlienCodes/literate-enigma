@@ -1,0 +1,71 @@
+import json,re,glob,os
+# 第69篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-08 重点词中文沿用文章定稿（铁律）；短语型用法整体标（T22：presided over、counselled against、bestowed on、contrary to）；不用破折号（T36）。
+S=[
+(1,[[[("J. Robert Oppenheimer,","J·罗伯特·奥本海默"),("born in New York on 22 April 1904,","1904年4月22日生于纽约，")],
+     "（born in New York…：过去分词短语，补充说明 Oppenheimer）"],
+    [[("was an","是一位"),("**accomplished**","**卓有成就的**(accomplished)"),("physicist","物理学家，"),("and","也是"),("**prominent**","伯克利和加州理工学院的**知名**(prominent)"),("**lecturer** at Berkeley and Caltech.","**教师**(lecturer)。")],
+     "（at Berkeley and Caltech：后置定语，修饰 lecturer）"]]),
+(1,[[[("From April 1943","从1943年4月起，"),("he","他"),("**oversaw**","**主管**(oversaw)"),("a **secretive**","洛斯阿拉莫斯的一处**秘密**(secretive)"),("weapons","武器"),("**installation** at Los Alamos,","**设施**(installation)；")],
+     "（at Los Alamos：后置定语，修饰 installation）"],
+    [[("whose bombs","这里的炸弹，"),("were","是"),("the **collaborative** **creation** of a **thousands-strong** **workforce**.","**数千人的**(thousands-strong)**员工队伍**(workforce)**协作的**(collaborative)**成果**(creation)。")],
+     "（whose…：非限制性定语从句，修饰 installation；\nthe creation of A：A 的成果）"]]),
+(2,[[[("In the **pre-dawn** darkness of 16 July 1945,","1945年7月16日**黎明前的**(pre-dawn)黑暗中，")],
+     "（of 16 July 1945：后置定语，修饰 darkness）"],
+    [[("the first","第一次"),("nuclear","核"),("test","试验"),("**illuminated**","以刺眼的强光**照亮了**(illuminated)"),("the **desolate** New Mexico","新墨西哥州**荒凉的**(desolate)"),("**landscape** with a blinding glare,","**大地**(landscape)，")],
+     "（with a blinding glare：方式状语）"],
+    [[("its","其"),("**explosive**","**爆炸**(explosive)"),("force","威力"),("roughly","约合"),("20 kilotons.","2万吨TNT当量。")],
+     "（its explosive force roughly 20 kilotons：\n独立主格结构，补充说明 test）"]]),
+(2,[[[("On 6 and 9 August 1945","1945年8月6日和9日，"),("atomic","原子弹"),("**bombings**","**轰炸**(bombings)"),("**devastated**","**摧毁了**(devastated)"),("Hiroshima and Nagasaki,","广岛和长崎，")]],
+    [[("where year-end","到当年年底，两地的"),("**fatalities**","**死亡人数**(fatalities)"),("numbered well over 100,000 and about 70,000 **respectively**.","**分别**(respectively)远超十万和约七万。")],
+     "（where…：非限制性定语从句，修饰 Hiroshima and Nagasaki；\nA and B respectively：分别是 A 和 B）"]]),
+(3,[[[("Oppenheimer left Los Alamos in October 1945","1945年10月，奥本海默离开洛斯阿拉莫斯；")]],
+    [[("and from 1947","从1947年起，他"),("**presided over**","**执掌**(presided over)"),("Princeton's Institute for Advanced Study.","普林斯顿高等研究院。")],
+     "（preside over：主持，执掌）"]]),
+(3,[[[("In October 1949","1949年10月，"),("the **advisory** committee he chaired,","他主持的**顾问**(advisory)委员会")],
+     "（he chaired：定语从句，省略了关系代词，修饰 committee）"],
+    [[("expressing","表达了"),("**misgivings**,","**疑虑**(misgivings)，")],
+     "（expressing misgivings：现在分词短语作伴随状语）"],
+    [[("**unanimously**","**一致**(unanimously)"),("**counselled against**","**建议不要**(counselled against)推行"),("a crash programme for the **hydrogen** bomb,","**氢**(hydrogen)弹的仓促研制计划；")],
+     "（counsel against：建议不要……；\nfor the hydrogen bomb：后置定语，修饰 programme）"],
+    [[("a **vastly** more **destructive** weapon.","氢弹的**毁灭性**(destructive)要**大得多**(vastly)。")],
+     "（a vastly more destructive weapon：同位语，\n补充说明 the hydrogen bomb）"]]),
+(3,[[[("In December 1953","1953年12月，"),("a","一道"),("**presidential**","**总统**(presidential)"),("**directive**","**指令**(directive)"),("**severed**","**切断了**(severed)"),("his access to","他接触"),("**confidential**","**机密**(confidential)"),("**documentation**.","**文件**(documentation)的途径。")],
+     "（access to A：接触 A 的途径）"]]),
+(4,[[[("From 12 April to 6 May 1954","1954年4月12日至5月6日，"),("he","他"),("was **cross-examined** at a security hearing,","在一场安全听证会上接受**盘问**(cross-examined)。")],
+     "（was cross-examined：一般过去时的被动语态）"],
+    [[("an","这场听证会属于"),("**administrative**","**行政**(administrative)"),("**proceeding**,","**程序**(proceeding)，"),("not a","而不是"),("criminal","刑事"),("**prosecution**.","**起诉**(prosecution)。")],
+     "（an administrative proceeding…：同位语，补充说明 hearing）"]]),
+(4,[[[("On 29 June 1954","1954年6月29日，"),("the Atomic Energy Commission","原子能委员会"),("voted 4 to 1","以4比1投票，"),("against letting him","决定不让他"),("**regain**","**恢复**(regain)"),("his clearance,","安全许可；")],
+     "（vote against doing：投票反对做……）"],
+    [[("two days","两天"),("before","之后，"),("his","他的"),("**consultancy**","**咨询**(consultancy)"),("contract","合同"),("was due to","就要"),("**expire**.","**到期**(expire)。")],
+     "（be due to do：按期要做……）"]]),
+(4,[[[("The ruling","裁决"),("did not","没有"),("find him","认定他"),("**disloyal**,","**不忠**(disloyal)，"),("but","但"),("**nonetheless**","**仍然**(nonetheless)"),("questioned","质疑"),("his","他的"),("character","品格"),("and","和"),("**associates**.","**交往对象**(associates)。")],
+     "（find sb + adj.：认定某人……）"]]),
+(5,[[[("On 2 December 1963","1963年12月2日，"),("President Johnson","约翰逊总统"),("**bestowed on**","**授予**(bestowed on)"),("him","他"),("the Fermi Award,","费米奖；")],
+     "（bestow A on B：把 A 授予 B，这里 A 放在 B 后面）"],
+    [[("which Kennedy","肯尼迪"),("had **authorised** before his **assassination**.","在**遇刺**(assassination)前已**批准了**(authorised)这一奖项。")],
+     "（which…：非限制性定语从句，修饰 the Fermi Award；\nhad authorised：过去完成时）"]]),
+(5,[[[("Oppenheimer","奥本海默"),("died on 18 February 1967.","于1967年2月18日去世。")]]]),
+(5,[[[("In December 2022","2022年12月，"),("the energy","能源"),("secretary","部长"),("**officially**","**正式**(officially)"),("**vacated**","**撤销了**(vacated)"),("the 1954","1954年的"),("**determination**,","**裁定**(determination)，")]],
+    [[("calling","称"),("the process","当年的程序"),("flawed","存在缺陷，"),("and **contrary to**","**违背了**(contrary to)"),("the commission's","委员会的"),("rules.","规定。")],
+     "（calling…：现在分词短语作伴随状语；\ncall A + adj.：称 A……；contrary to：违背）"]]),
+(5,[[[("The **stigma** of the **revocation**","**吊销**(revocation)安全许可留下的**污名**(stigma)，")],
+     "（of the revocation：后置定语，修饰 stigma）"],
+    [[("had **persisted** for fifty-five years beyond his **lifetime**.","在他的**一生**(lifetime)结束后又**延续了**(persisted)五十五年。")],
+     "（had persisted：过去完成时；beyond his lifetime：在他身后）\n"
+     "（简述：J·罗伯特·奥本海默是知名物理学家，1943年起主管洛斯阿拉莫斯的秘密武器设施，数千人在这里协作造出了原子弹。\n"
+     "1945年7月16日，第一次核试验照亮了新墨西哥州的荒原；同年8月，广岛和长崎遭原子弹轰炸。\n"
+     "战后他执掌普林斯顿高等研究院；1949年，他主持的顾问委员会一致建议不要仓促研制氢弹。\n"
+     "1953年12月，总统指令切断了他接触机密文件的途径；1954年安全听证会后，原子能委员会决定不恢复他的安全许可，裁决没有认定他不忠，却质疑他的品格和交往对象。\n"
+     "1963年他获颁费米奖，1967年去世；2022年12月，能源部长正式撤销了1954年的裁定，这时距他去世已五十五年。）"]]),
+]
+G={'S3 landscape with a blinding glare': '对齐不了：with a blinding glare 是方式状语，中文“以刺眼的强光”必须放到动词“照亮了”前，这一组只剩“大地”', 'S4 numbered well over 100,000 and about 70,000 respectively': '对齐不了：respectively 中文“分别”必须放到数字前；numbered well over 中文“远超”是整体说法', 'S6 the advisory committee he chaired': '对齐不了：he chaired 是定语从句，修饰 committee，中文“他主持的”必须提前', 'S6 a crash programme for the hydrogen bomb': '对齐不了：for the hydrogen bomb 是后置定语，中文“氢弹的”必须提前；crash programme 中文“仓促研制计划”是整体说法', 'S8 was cross-examined at a security hearing': '对齐不了：地点状语 at a security hearing，中文“在一场安全听证会上”必须放到动词“接受盘问”前', 'S9 against letting him': '对齐不了：vote against doing 中文“决定不让他”是整体说法，against、letting 拆开不通', 'S14 had persisted for fifty-five years beyond his lifetime': '对齐不了：时间状语 beyond his lifetime 中文“在他的一生结束后”必须放到动词前；两个重点词中文先后与英文相反'}
+DZ={'S1-1 born in New York on 22 April 1': '时间状语 on 22 April 1904 中文“1904年4月22日”必须放到“生于纽约”前；日期中文年月日顺序与英文相反', 'S1-2 lecturer at Berkeley and Calte': 'at Berkeley and Caltech 是后置定语，修饰 lecturer，中文“伯克利和加州理工学院的”必须提前（已放到 prominent 下面），这一组只剩“教师”', 'S2-2 the collaborative creation of ': 'the creation of a workforce 是 of 结构，中文“员工队伍……的成果”必须倒过来；四个重点词中文先后与英文不同', 'S3-1 In the pre-dawn darkness of 16': 'of 16 July 1945 是后置定语，修饰 darkness，中文“1945年7月16日”必须放到句首；日期中文年月日顺序与英文相反', 'S3-2 landscape with a blinding glar': 'with a blinding glare 是方式状语，中文“以刺眼的强光”必须放到动词“照亮了”前（已放到 illuminated 下面），这一组只剩“大地”', 'S4-1 On 6 and 9 August 1945': '日期中文“1945年8月6日和9日”年月日顺序与英文相反，一个日期不能拆', 'S4-2 numbered well over 100,000 and': 'respectively 中文“分别”必须放到数字前；numbered well over 中文“远超”是整体说法；数字不能拆', 'S5-1 Oppenheimer left Los Alamos in': '时间状语 in October 1945 中文“1945年10月”必须放到句首', "S5-2 Princeton's Institute for Adva": "机构名 Princeton's Institute for Advanced Study 中文“普林斯顿高等研究院”，专名拆开不通", 'S6-1 the advisory committee he chai': 'he chaired 是定语从句，修饰 committee，中文“他主持的”必须提前', 'S6-3 a crash programme for the hydr': 'for the hydrogen bomb 是后置定语，修饰 programme，中文“氢弹的”必须提前；crash programme 中文“仓促研制计划”是整体说法', 'S6-4 a vastly more destructive weap': 'a vastly more destructive weapon 是比较结构，中文“氢弹的毁灭性要大得多”必须重组；两个重点词中文先后与英文相反', 'S8-1 From 12 April to 6 May 1954': '日期范围中文“1954年4月12日至5月6日”年月日顺序与英文相反，不能拆', 'S8-1 was cross-examined at a securi': '地点状语 at a security hearing 中文“在一场安全听证会上”必须放到动词“接受盘问”前', 'S11-2 had authorised before his assa': '时间状语 before his assassination 中文“在遇刺前”必须放到动词前；which 指费米奖，中文“这一奖项”放在最后；两个重点词中文先后与英文相反', 'S12-1 died on 18 February 1967.': '时间状语 on 18 February 1967 中文“于1967年2月18日”必须放到动词“去世”前', 'S14-1 The stigma of the revocation': 'of 结构 the stigma of the revocation 中文“吊销……留下的污名”必须倒过来；两个重点词中文先后与英文相反', 'S14-2 had persisted for fifty-five y': '时间状语 beyond his lifetime 中文“在他的一生结束后”必须放到动词前；两个重点词中文先后与英文相反'}
+CONF={'合组': {'S3 landscape with a blinding glare': '对齐不了：with a blinding glare 是方式状语，中文“以刺眼的强光”必须放到动词“照亮了”前，这一组只剩“大地”', 'S4 numbered well over 100,000 and about 70,000 respectively': '对齐不了：respectively 中文“分别”必须放到数字前；numbered well over 中文“远超”是整体说法', 'S6 the advisory committee he chaired': '对齐不了：he chaired 是定语从句，修饰 committee，中文“他主持的”必须提前', 'S6 a crash programme for the hydrogen bomb': '对齐不了：for the hydrogen bomb 是后置定语，中文“氢弹的”必须提前；crash programme 中文“仓促研制计划”是整体说法', 'S8 was cross-examined at a security hearing': '对齐不了：地点状语 at a security hearing，中文“在一场安全听证会上”必须放到动词“接受盘问”前', 'S9 against letting him': '对齐不了：vote against doing 中文“决定不让他”是整体说法，against、letting 拆开不通', 'S14 had persisted for fifty-five years beyond his lifetime': '对齐不了：时间状语 beyond his lifetime 中文“在他的一生结束后”必须放到动词前；两个重点词中文先后与英文相反'}, '对齐': {'S1-1 born in New York on 22 April 1': '时间状语 on 22 April 1904 中文“1904年4月22日”必须放到“生于纽约”前；日期中文年月日顺序与英文相反', 'S1-2 lecturer at Berkeley and Calte': 'at Berkeley and Caltech 是后置定语，修饰 lecturer，中文“伯克利和加州理工学院的”必须提前（已放到 prominent 下面），这一组只剩“教师”', 'S2-2 the collaborative creation of ': 'the creation of a workforce 是 of 结构，中文“员工队伍……的成果”必须倒过来；四个重点词中文先后与英文不同', 'S3-1 In the pre-dawn darkness of 16': 'of 16 July 1945 是后置定语，修饰 darkness，中文“1945年7月16日”必须放到句首；日期中文年月日顺序与英文相反', 'S3-2 landscape with a blinding glar': 'with a blinding glare 是方式状语，中文“以刺眼的强光”必须放到动词“照亮了”前（已放到 illuminated 下面），这一组只剩“大地”', 'S4-1 On 6 and 9 August 1945': '日期中文“1945年8月6日和9日”年月日顺序与英文相反，一个日期不能拆', 'S4-2 numbered well over 100,000 and': 'respectively 中文“分别”必须放到数字前；numbered well over 中文“远超”是整体说法；数字不能拆', 'S5-1 Oppenheimer left Los Alamos in': '时间状语 in October 1945 中文“1945年10月”必须放到句首', "S5-2 Princeton's Institute for Adva": "机构名 Princeton's Institute for Advanced Study 中文“普林斯顿高等研究院”，专名拆开不通", 'S6-1 the advisory committee he chai': 'he chaired 是定语从句，修饰 committee，中文“他主持的”必须提前', 'S6-3 a crash programme for the hydr': 'for the hydrogen bomb 是后置定语，修饰 programme，中文“氢弹的”必须提前；crash programme 中文“仓促研制计划”是整体说法', 'S6-4 a vastly more destructive weap': 'a vastly more destructive weapon 是比较结构，中文“氢弹的毁灭性要大得多”必须重组；两个重点词中文先后与英文相反', 'S8-1 From 12 April to 6 May 1954': '日期范围中文“1954年4月12日至5月6日”年月日顺序与英文相反，不能拆', 'S8-1 was cross-examined at a securi': '地点状语 at a security hearing 中文“在一场安全听证会上”必须放到动词“接受盘问”前', 'S11-2 had authorised before his assa': '时间状语 before his assassination 中文“在遇刺前”必须放到动词前；which 指费米奖，中文“这一奖项”放在最后；两个重点词中文先后与英文相反', 'S12-1 died on 18 February 1967.': '时间状语 on 18 February 1967 中文“于1967年2月18日”必须放到动词“去世”前', 'S14-1 The stigma of the revocation': 'of 结构 the stigma of the revocation 中文“吊销……留下的污名”必须倒过来；两个重点词中文先后与英文相反', 'S14-2 had persisted for fifty-five y': '时间状语 beyond his lifetime 中文“在他的一生结束后”必须放到动词前；两个重点词中文先后与英文相反'}, '牛津逗号': {'S1 on 22 April 1904, was an accomplished physicist and': '不是三项并列：born in New York on 22 April 1904 是插入的分词短语；accomplished physicist and prominent lecturer 只有两项', 'S13 vacated the 1954 determination, calling the process flawed and': '不是三项并列：calling… 是分词短语；flawed and contrary to the rules 只有两项'}, '是的': {'S2-2 是**数千人的**': '“是 + 数千人的员工队伍协作的成果”是“是 + 定语 + 名词”，不是“是……的”表语句式'}, '数字': {'S3-3 20': 'roughly 20 kilotons 译“约合2万吨TNT当量”，数值正确（20千吨＝2万吨），读法 twenty kilotons', 'S4-2 100,000': 'well over 100,000 译“远超十万”，数值正确，读法 one hundred thousand', 'S4-2 70,000': 'about 70,000 译“约七万”，数值正确，读法 seventy thousand'}, '方向': {'S9-2 before→之后，': 'two days before his contract was due to expire 指投票在合同到期前两天；中文从投票说起“两天之后，他的合同就要到期”，沿用文章定稿，方向一致'}, '词性': {'S3-2 landscape 大地': 'landscape 是 n.，“大地”是名词，“地”是词的一部分，不是状语标记'}, '短语': {'S2 creation … of': '不是搭配：the creation of a workforce 是普通 of 结构（……的成果），creation 单独就是“成果”', 'S3 illuminated … with': '不是搭配：with a blinding glare 是方式状语（以强光），illuminate 单独就是“照亮”', 'S5 presided … for': '不是搭配：presided over 已整体标；for 属于专名 Institute for Advanced Study', 'S6 counselled … for': '不是搭配：counselled against 已整体标；for 属于 a crash programme for the hydrogen bomb（后置定语）', 'S7 severed … to': '不是搭配：to 属于 access to（接触……的途径），sever 单独就是“切断”', 'S14 stigma … of': '不是搭配：the stigma of the revocation 是普通 of 结构（……留下的污名）', 'S14 persisted … for': '不是搭配：for fifty-five years 是时长状语，persist 单独就是“延续”'}, '已告诉用户被去掉的重点词': '2026-11-08 已在会话中把 glare（与第22篇 S16 glare 撞词，第69篇改回普通词）原样告诉用户'}
+out={"no":"69","title_en":"The Trial of the Father of the Atomic Bomb","title_zh":"原子弹之父的审判","title_fx":{"hl":["Trial","Atomic","Bomb"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+     "高亮按实际开口":True,"高亮开口门槛":40,
+     "术语":{"J. Robert Oppenheimer":"J·罗伯特·奥本海默","Oppenheimer":"奥本海默","New York":"纽约","Berkeley":"伯克利","Caltech":"加州理工学院","Los Alamos":"洛斯阿拉莫斯","New Mexico":"新墨西哥州","Hiroshima":"广岛","Nagasaki":"长崎","Princeton":"普林斯顿","Institute for Advanced Study":"高等研究院","Atomic Energy Commission":"原子能委员会","Johnson":"约翰逊","Fermi Award":"费米奖","Kennedy":"肯尼迪"}}
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from 核对 import 生成并核对
+生成并核对(S, out)

@@ -223,6 +223,7 @@ def spoken(t):
     t=re.sub(r'(?<!\d,)(?<!\d)\b(1[1-9]\d\d)\b(?!,\d)(?!\d)',lambda m:_year(int(m.group(1))),t)                       # 1995 → nineteen ninety-five
     t=re.sub(r'\b((?:King|Queen|Pope|Emperor|Empress|Tsar|Czar|Pharaoh|Prince|Princess|Duke) [A-Z][a-z]+) (XVI|XV|XIV|XIII|XII|XI|X|IX|VIII|VII|VI|V|IV|III|II|I)\b',
              lambda m:m.group(1)+' the '+_ordinal(_ROMAN[m.group(2)]),t)   # King Francis I → King Francis the First（10 S13：原来读成 Francis eye）
+    t=re.sub(r'\b(Lascaux) (IV|III|II)\b',lambda m:m.group(1)+' '+_n2w(_ROMAN[m.group(2)]),t)   # 67 S15/S17：复制洞窟名 Lascaux II/IV 官方读基数词 Lascaux Two/Four（不是 the Second）；只认登记的名字，别的名字+罗马数字照旧报
     # 引号不停顿（2026-10-08 用户定）：配音时不读引号（模型读到引号会把前一个词拖长、顿一下），屏幕照常显示；
     # 双引号一律去掉；单引号只去掉当引号用的（词中间的撇号 Stanford's、don't 保留）
     t=re.sub(r'["“”‘]|(?<![A-Za-z])[\'’]|[\'’](?![A-Za-z])','',t)
