@@ -10,7 +10,7 @@ The name Velcro **merged** two French words, velours, meaning **velvet**, and cr
 
 The **underdog** proved its **utility** in **outer** space. NASA used it in the Apollo programme to keep **gear** **anchored** in weightlessness, so that nothing would **hover** in **mid-air**. Apollo 11 was **equipped** with a **sizeable** amount, about 3,300 square inches. NASA did not invent the nylon **clasp**.
 
-When the patent ran out in 1978, **cut-price** **knock-offs** from Taiwan, China and South Korea **overran** the market, and a **niche** product went **mainstream**. In 2017, to stop its **brand-name** **melting** into a **generic** **noun**, the company asked people to call such **mimics** hook and loop fasteners. In effect, the firm was asking the public to stop using its own name for rivals' goods.
+When the patent ran out in 1978, **cut-price** **knock-offs** from Taiwan, China, and South Korea **overran** the market, and a **niche** product went **mainstream**. In 2017, to stop its **brand-name** **melting** into a **generic** **noun**, the company asked people to call such **mimics** hook and loop fasteners. In effect, the firm was asking the public to stop using its own name for rivals' goods.
 
 ## 中文
 
