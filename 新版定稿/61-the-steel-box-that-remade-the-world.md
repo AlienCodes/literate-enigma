@@ -10,7 +10,7 @@ Containers were not new. The **hurdle** was **consensus**: **rival** firms' boxe
 
 This **efficiency** came at the **expense** of **livelihoods**. New York's **waterfront** **employment** **shrank** by about three quarters between 1963 and 1976. Much of the cargo crossed the harbour to a new **terminal** at Elizabeth, **inaugurated** in August 1962. Most of London's **historic** **docks** closed one after another from 1967 to 1980, while Felixstowe, on the Suffolk coast, **expanded**.
 
-The **rewards** were **substantial**. A study published in the Journal of International Economics in 2016 estimated that containerisation had lifted trade between **industrialised** countries by a **cumulative** 700 per cent over 20 years. **Tireless** cranes now lift identical containers into **orderly**, **immense** **stacks**.
+The **rewards** were **substantial**. A study published in the Journal of International **Economics** in 2016 estimated that containerisation had lifted trade between **industrialised** countries by a **cumulative** 700 per cent over 20 years. **Tireless** cranes now lift identical containers into **orderly**, **immense** **stacks**.
 
 ## 中文
 
@@ -22,7 +22,7 @@ The **rewards** were **substantial**. A study published in the Journal of Intern
 
 这种**效率**(efficiency)是以**生计**(livelihoods)为**代价**(expense)换来的。纽约**海滨区**(waterfront)的**就业人数**(employment)在1963年至1976年间**缩减了**(shrank)约四分之三。大量货物穿过港湾，前往伊丽莎白一处于1962年8月**启用**(inaugurated)的新**码头/港区**(terminal)。1967年到1980年，伦敦**历史悠久的**(historic)**码头**(docks)一个接一个地关闭，而位于萨福克海岸的费利克斯托则**扩张了**(expanded)。
 
-**回报**(rewards)相当**可观**(substantial)。2016年发表于《国际经济学杂志》（Journal of International Economics）的一项研究估计，20年间，集装箱化使**工业化**(industrialised)国家之间的贸易**累计**(cumulative)增长了700%。如今，**不知疲倦的**(tireless)吊机把一模一样的集装箱吊起，码成**整齐的**(orderly)、**巨大的**(immense)**箱垛**(stacks)。
+**回报**(rewards)相当**可观**(substantial)。一项2016年发表于《国际**经济学**(Economics)杂志》的研究估计，集装箱化在20年间使**工业化**(industrialised)国家之间的贸易提高了**累计**(cumulative)700%。如今，**不知疲倦的**(tireless)吊机把一模一样的集装箱吊起，码成**整齐的**(orderly)、**巨大的**(immense)**箱垛**(stacks)。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -83,6 +83,7 @@ The **rewards** were **substantial**. A study published in the Journal of Intern
 | expanded | v. (expand) 扩张，扩大（expand rapidly；expand into new markets） | 4 |
 | rewards | n. (reward) 回报，报酬（reap the rewards；reward for） | 5 |
 | substantial | adj. 可观的，大量的（a substantial amount/increase） | 5 |
+| economics | n. 经济学；经济情况（home economics 家政学；the economics of sth 某事的经济效益） | 5 |
 | cumulative | adj. 累计的，累积的（cumulative effect/total） | 5 |
 | industrialised | adj. 〈英〉工业化的（industrialised countries/nations）；v. (industrialise) 使工业化 | 5 |
 | tireless | adj. 不知疲倦的，孜孜不倦的（tireless efforts；a tireless campaigner） | 5 |

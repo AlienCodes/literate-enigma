@@ -17,6 +17,7 @@ import json,re,glob,os
 # 2026-11-08 用户改 S15：“纽约海滨区的就业人数在1963年至1976年间缩减了约四分之三。”“Employment标记为重点词汇。”
 # 2026-11-08 用户改 S16：“翻译修改为：大量货物穿过港湾，前往伊丽莎白一处于1962年8月启用的新 码头/港区。”（“新 码头”空格去掉）
 # 2026-11-08 用户改 S17：“翻译不准，上面翻译，不准改翻译：1967年到1980年，伦敦历史悠久的码头一个接一个地关闭，而位于萨福克海岸的费利克斯托则扩张了。”（用户原话没有“大部分”，照改，已提醒 Most of）
+# 2026-11-08 用户改 S19：“翻译不准改成这个翻译，改成这个翻译。：一项2016年发表于《国际经济学杂志》的研究估计，集装箱化在20年间使工业化国家之间的贸易提高了累计700%。”“Economics 经济学，经济学。标注为重点词汇，标注为重点词汇。”（刊名英文括号随改稿去掉）
 # 2026-11-08 用户改 S1 中文（原话见 用户同意记录 篇 61）：说啥改啥
 S=[
 (1,[[[("On 26 April 1956","1956年4月26日，"),("a","一艘"),("**converted**","**改造过的**(converted)"),("Second World War","二战"),("**tanker**,","**油轮**(tanker)"),("the Ideal X,","“理想X号”，")],
@@ -70,9 +71,9 @@ S=[
     [[("while","而"),("Felixstowe, on the Suffolk coast,","位于萨福克海岸的费利克斯托"),("**expanded**.","则**扩张了**(expanded)。")],
      "（while：表示对比，而；on the Suffolk coast：插入语，补充说明 Felixstowe）"]]),
 (5,[[[("The **rewards**","**回报**(rewards)"),("were **substantial**.","相当**可观**(substantial)。")]]]),
-(5,[[[("A study published in the Journal of International Economics in 2016","2016年发表于《国际经济学杂志》（Journal of International Economics）的一项研究"),("estimated","估计，")],
+(5,[[[("A study published in the Journal of International **Economics** in 2016","一项2016年发表于《国际**经济学**(Economics)杂志》的研究"),("estimated","估计，")],
      "（published in…：过去分词短语作后置定语，修饰 study）"],
-    [[("that containerisation","20年间，集装箱化"),("had lifted trade between","使"),("**industrialised**","**工业化**(industrialised)"),("countries","国家之间的贸易"),("by a **cumulative**","**累计**(cumulative)"),("700 per cent over 20 years.","增长了700%。")],
+    [[("that containerisation","集装箱化在20年间"),("had lifted trade between","使"),("**industrialised**","**工业化**(industrialised)"),("countries","国家之间的贸易"),("by a **cumulative**","提高了**累计**(cumulative)"),("700 per cent over 20 years.","700%。")],
      "（that…：宾语从句；lift A by B：使 A 增长 B；over 20 years：20年间）"]]),
 (5,[[[("**Tireless**","如今，**不知疲倦的**(tireless)"),("cranes now","吊机"),("lift","把"),("identical","一模一样的"),("containers","集装箱吊起，"),("into","码成"),("**orderly**,","**整齐的**(orderly)、"),("**immense**","**巨大的**(immense)"),("**stacks**.","**箱垛**(stacks)。")],
      "（lift A into B：把 A 吊起码成 B）\n"
@@ -92,8 +93,8 @@ G={
  "S15 shrank":"对齐不了：between 1963 and 1976 中文“在1963年至1976年间”必须放到“缩减了”前",
  "S15 by about three quarters between 1963 and 1976":"对齐不了：between 1963 and 1976 中文已提前到“缩减了”前，这里只剩“约四分之三”",
  "S17 closed one after another from 1967 to 1980":"对齐不了：one after another 中文“一个接一个地”必须放到“关闭”前，from 1967 to 1980 中文提前到句首",
- "S19 had lifted trade between":"对齐不了：lift A by B 中文“使 A 增长了 B”，lifted 的“增长了”必须放到句末；trade between… 中文“国家之间的贸易”定语提前，trade 的“贸易”只能放到 countries 下面",
- "S19 700 per cent over 20 years":"对齐不了：700 per cent 中文“700%”是一个数；over 20 years 中文“20年间”提前到句首",
+ "S19 had lifted trade between":"对齐不了：lift A by B 中文“使 A 提高了 B”，lifted 的“提高了”放到 cumulative 下面；trade between… 中文“国家之间的贸易”定语提前，trade 的“贸易”只能放到 countries 下面",
+ "S19 700 per cent over 20 years":"对齐不了：700 per cent 中文“700%”是一个数；over 20 years 中文“在20年间”提前到“使”前（放在 that containerisation 下面）",
  "S20 cranes now":"对齐不了：now 中文“如今”必须提前到句首（在 Tireless 下面）",
  "S11 An":"对齐不了：in 1961 中文“1961年”必须提前到句首（放在 An 下面）",
  "S11 formed in 1961":"对齐不了：in 1961 中文已提前到句首，这里只剩“成立”",
@@ -102,7 +103,7 @@ G={
  "S14 came at the expense of livelihoods":"对齐不了：come at the expense of B 中文“是以 B 为代价换来的”，被“生计”隔开，只能整组",
  "S16 a new terminal at Elizabeth, inaugurated in August 1962":"对齐不了：at Elizabeth 和 inaugurated in August 1962 都是后置定语，修饰 terminal，中文“伊丽莎白一处于1962年8月启用的新码头/港区”必须提前；两个重点词中文先后与英文相反",
  "S17 Felixstowe, on the Suffolk coast":"对齐不了：插入语 on the Suffolk coast 中文“位于萨福克海岸的”作定语必须提前",
- "S19 A study published in the Journal of International Economics in 2016":"对齐不了：published in… in 2016 是后置定语，修饰 study，中文“2016年发表于《国际经济学杂志》的一项研究”必须提前，刊名不能拆",
+ "S19 A study published in the Journal of International Economics in 2016":"对齐不了：published in… in 2016 是后置定语，修饰 study，中文“一项2016年发表于《国际经济学杂志》的研究”必须提前，刊名不能拆",
 }
 DQ={
  "S2-2 trailer bodies detached from t":"detached from… 是后置定语，修饰 bodies，中文“从车轮和底盘上拆卸下来的挂车车厢”定语必须提前，重点词中文先后与英文相反",
@@ -116,7 +117,7 @@ DQ={
  "S17-1 closed one after another from ":"from 1967 to 1980 中文“1967年到1980年”提前到句首（放在 Most of London's 下面）",
  "S17-2 Felixstowe, on the Suffolk coa":"插入语 on the Suffolk coast 中文作定语必须提前",
  "S19-1 A study published in the Journ":"published in… in 2016 是后置定语，修饰 study，中文必须提前，刊名不能拆",
- "S19-2 700 per cent over 20 years.":"over 20 years 中文“20年间”提前到句首（放在 that containerisation 下面）",
+ "S19-2 700 per cent over 20 years.":"over 20 years 中文“在20年间”提前（放在 that containerisation 下面）",
 }
 CONF={"合组":G,"对齐":DQ,
 "引号":{"S1-1 “”":"用户 2026-11-08 原话（converted 后按用户“意思为改造过的”改成“改造过的”）“1956年4月26日，一艘改装过的二战油轮“理想X号”，悄然驶离新泽西州纽瓦克港，开往休斯敦。”自带引号，照用户原话保留（T10）"},
