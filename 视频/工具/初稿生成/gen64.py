@@ -12,9 +12,9 @@ S=[
 (1,[[[("Most taps","大部分水龙头"),("would then","届时将"),("be shut,","被关闭，")]],
     [[("and **residents**","**居民**(residents)"),("would queue at","要到"),("about 200","约200个"),("**designated**","**指定的**(designated)"),("collection points.","取水点排队取水。")]]]),
 (2,[[[("The **prospect**","这一**前景**(prospect)"),("was","是"),("**genuine**.","**真实存在的**(genuine)。")]]]),
-(2,[[[("Three **consecutive** years","**连续**(consecutive)三年"),("of **meagre** rainfall,","降雨**稀少**(meagre)，"),("from 2015 to 2017,","从2015到2017年，")]],
-    [[("had **diminished**","**日渐减少了**(diminished)"),("the reservoirs","各座水库的蓄水，")]],
-    [[("serving","这些水库供给"),("a **metropolitan** area","一个**大都市**(metropolitan)区"),("of about four million people.","约400万人口。")],
+(2,[[[("Three **consecutive** years","**连续**(consecutive)三年"),("of **meagre** rainfall,","**贫乏的**(meagre)降雨，"),("from 2015 to 2017,","从2015到2017年，")]],
+    [[("had **diminished**","**减少了**(diminished)"),("the reservoirs","水库的蓄水，")]],
+    [[("serving","这些水库给"),("a","一个"),("**metropolitan**","**大都市**(metropolitan)"),("area","区供水，"),("of about four million people.","大约400万人口。")],   # 用户 2026-11-08 原话：“连续三年贫乏的降雨，从2015到2017年，减少了水库的蓄水，这些水库给一个大都市区供水，大约400万人口。”
      "（serving…：现在分词短语作后置定语，修饰 reservoirs）"]]),
 (2,[[[("By early 2018","到2018年初，"),("the dams","水库"),("were roughly","只剩约"),("a fifth full.","五分之一的蓄水。")]]]),
 (2,[[[("The **countdown**","**倒计时**(countdown)"),("turned","把"),("a","一场"),("**chronic**","**长期的**(chronic)"),("**shortage**","**短缺**(shortage)")]],
@@ -135,6 +135,7 @@ CONF["机器复听"]={"S3": {"配音指纹": "15344c1da0c6", "依据": "2026-11-
 out["allow_clash"]=["capacity"]   # 用户 2026-11-08 点名把 capacity 标成重点词（第15篇也是重点词），见 用户同意记录
 CONF["即"]={"S2-2 即":"用户 2026-11-08 原话定的译文“即当该市水库的存水……时达到的门槛”，用“即”引出对 threshold 的说明"}
 CONF["短语"]["S2 capacity … to"]="不是搭配：to 属于 fell to（降至），和 capacity 无关"
+G["S5 of meagre rainfall"]="对齐不了：meagre rainfall 中文“贫乏的降雨”，of 结构“三年的贫乏降雨”中文只能整组（用户 2026-11-08 定的译文）"
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)

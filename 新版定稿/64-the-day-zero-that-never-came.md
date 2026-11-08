@@ -16,7 +16,7 @@ The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **s
 
 2018年1月，开普敦**发出**(issued)了一则**严峻的**(stark)**警报**(alert)，称零日可能在4月到来。这个词**指的是**(denoted)一道**严酷的**(grim)**门槛**(threshold)：即当该市**水库**(reservoirs)的存水按占水库**容量**(capacity)的**百分比**(percentage)降至13.5%时达到的门槛。届时大部分水龙头将被关闭，**居民**(residents)要到约200个**指定的**(designated)取水点排队取水。
 
-这一**前景**(prospect)是**真实存在的**(genuine)。2015至2017年**连续**(consecutive)三年降雨**稀少**(meagre)，使为约400万人口的**大都市**(metropolitan)区供水的各座水库蓄水**日渐减少**(diminished)。到2018年初，水库只剩约五分之一的蓄水。**倒计时**(countdown)把一场**长期的**(chronic)**短缺**(shortage)变成了一个**迫在眉睫的**(imminent)最后期限。
+这一**前景**(prospect)是**真实存在的**(genuine)。**连续**(consecutive)三年**贫乏的**(meagre)降雨，从2015到2017年，**减少了**(diminished)水库的蓄水，这些水库给一个**大都市**(metropolitan)区供水，大约400万人口。到2018年初，水库只剩约五分之一的蓄水。**倒计时**(countdown)把一场**长期的**(chronic)**短缺**(shortage)变成了一个**迫在眉睫的**(imminent)最后期限。
 
 该市把**强制性的**(mandatory)**限制措施**(restrictions)与**前所未有的**(unprecedented)**透明度**(transparency)结合起来。自2018年2月1日起，每人每天**分配**(allotted)50升水。官员们**公布**(disclosed)水库水位和**家庭**(household)**用水量**(consumption)，公开的**统计数字**(tallies)让**节俭**(thrift)成效**一目了然**(visible)，也让邻里之间得以**对照**(benchmark)用水量。日用水量**减半**(halved)有余，从2015年的约12亿升降至2018年初的约5亿升。
 
