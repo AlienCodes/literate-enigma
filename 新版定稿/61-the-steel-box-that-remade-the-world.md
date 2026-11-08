@@ -16,7 +16,7 @@ The **rewards** were **substantial**. A study published in the Journal of Intern
 
 1956年4月26日，一艘**改造过的**(converted)二战**油轮**(tanker)“理想X号”，**悄然驶离**(slipped)新泽西州纽瓦克港，开往休斯敦。**固定**(clamped)在她甲板上的是58个**集装箱**(containers)——其实就是**从**(detached from)**车轮**(wheels)和**底盘**(chassis)**上拆卸下来的**(detached from)**挂车**(trailer)车厢。极少数**旁观者**(spectators)会把一批如此**平淡无奇的**(unremarkable)**货物**(cargo)当作一个**里程碑**(landmark)。
 
-那时，**货物**(freight)都是**散装**(loose)运输。一**帮**(gangs)二十多名或更多的**码头工人**(dockworkers)，一件件地搬运**麻袋**(sacks)、**桶**(barrels)和**板条箱**(crates)。这是**繁重的**(strenuous)**苦差事**(drudgery)。船舶有时多达一半时间**停泊**(berthed)在港，**偷窃**(theft)**猖獗**(rampant)。1956年，装运散货每吨约需5.83美元；而据公司估算，给理想X号装货每吨只要约16美分。
+那时，**货物**(freight)都是**散装**(loose)运输。一**帮**(gangs)二十多名或更多的**码头工人**(dockworkers)，一件件地搬运**麻袋**(sacks)、**桶**(barrels)和**板条箱**(crates)。这是**繁重的/费力的**(strenuous)**苦差事**(drudgery)。船舶有时多达一半时间**停泊**(berthed)在港，**偷窃**(theft)**猖獗**(rampant)。1956年，装运散货每吨约需5.83美元；而据公司估算，给理想X号装货每吨只要约16美分。
 
 集装箱并不新鲜。真正的**障碍**(hurdle)在于**共识**(consensus)：**相互竞争的**(rival)各家公司，箱子**尺寸**(dimensions)和**锁扣**(latches)**互不兼容**(incompatible)。1961年，一个国际标准委员会成立。1963年1月，理想X号的运营方、已更名的海陆公司（Sea-Land）允许该委员会使用其**专利**(patents)，不收**专利费**(royalties)，其中包括用于**吊装**(hoisting)的角**配件**(fittings)。由**吊机**(crane)吊起，一只箱子便能在船舶、**卡车**(lorry)和火车之间**顺畅地**(smoothly)**转运**(transferred)。
 
