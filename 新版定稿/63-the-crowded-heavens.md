@@ -16,7 +16,7 @@ Such a cascade would **unfold** over decades, though, and is not **inevitable**;
 
 2009年2月10日，在西伯利亚上空近790公里处，两颗卫星以约每小时42,000公里的速度**猛撞**(slammed)在一起。铱星33号**属于**(belonged to)美国的一个卫星电话**星座**(constellation)；宇宙2251号是一颗俄罗斯军用卫星，约自1995年起便已**废弃**(derelict)。在这起两颗完整卫星之间的首次**意外**(accidental)**相撞**(collision)中，两星双双**粉碎**(shattered)。
 
-两个飞行器都没有**紧急转向避让**(swerved)。那个俄罗斯的（卫星）**残骸**(hulk)，由于缺乏**推进力**(propulsion)，无法转向。一项公开的碰撞预警服务曾预报，两星将相距约584米**惊险**(narrow)擦过，但在当周的预测中，这次**交会**(encounter)并未排进距离最近的几次之列；这类预警既**频繁**(frequent)又**不精确**(imprecise)。一方**弃置的**(discarded)**遗物**(relic)，**撞毁了**(demolished)另一方仍在工作的**资产**(asset)。
+两个飞行器都没有**紧急转向避让**(swerved)。那个俄罗斯的（卫星）**残骸**(hulk)，由于缺乏**推进力**(propulsion)，无法转向。一项公开的碰撞预警服务曾预报，两星将相距约584米**惊险**(narrow)擦过，但在当周的预测中，这次**交会**(encounter)并未排进距离最近的几次之列；这类预警既**频繁**(frequent)又**不精确**(imprecise)。一方**弃置的**(discarded)**遗物**(relic)，**意外毁坏了**(demolished)另一方仍在工作的**资产**(asset)。
 
 然而，这些**残骸**(wreckage)却**危及**(endangered)了其他所有人。**撞击**(impact)**抛出**(flung)了2,000多块**已编目的**(catalogued)碎片，另有**大量**(multitude)碎片小到无法**精确定位**(pinpoint)。在那个高度，空气**阻力**(drag)**微弱**(feeble)，因此许多碎片会在轨道上**滞留**(linger)数十年。2012年1月，国际空间站启动**推进器**(thrusters)，**躲开**(dodge)了一块铱星33号的**残片**(remnant)。
 

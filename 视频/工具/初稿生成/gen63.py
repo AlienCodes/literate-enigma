@@ -22,7 +22,7 @@ S=[
     [[("yet","但"),("the predicted","预测中的这次"),("**encounter**","**交会**(encounter)"),("was not among","并未排进"),("the week's","当周"),("closest;","距离最近的几次之列；")],
      "（the week's closest：当周预测中距离最近的几次，\nclosest 后省略了 encounters）"],
     [[("such warnings were","这类预警既"),("**frequent**","**频繁**(frequent)"),("and","又"),("**imprecise**.","**不精确**(imprecise)。")]]]),
-(2,[[[("One owner's","一方"),("**discarded**","**弃置的**(discarded)"),("**relic**","**遗物**(relic)，"),("**demolished**","**撞毁了**(demolished)"),("another's","另一方"),("working","仍在工作的"),("**asset**.","**资产**(asset)。")],
+(2,[[[("One owner's","一方"),("**discarded**","**弃置的**(discarded)"),("**relic**","**遗物**(relic)，"),("**demolished**","**意外毁坏了**(demolished)"),("another's","另一方"),("working","仍在工作的"),("**asset**.","**资产**(asset)。")],
      "（another's：another owner's，省略了 owner）"]]),
 (3,[[[("The","这些"),("**wreckage**,","**残骸**(wreckage)"),("however,","却"),("**endangered**","**危及了**(endangered)"),("everyone","所有"),("else.","其他人。")],
      "（however：插入语，表示转折）"]]),
