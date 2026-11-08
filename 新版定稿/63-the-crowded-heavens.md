@@ -8,7 +8,7 @@ Neither craft **swerved**. The Russian **hulk**, lacking **propulsion**, could n
 
 The **wreckage**, however, **endangered** everyone else. The **impact** **flung** out more than 2,000 **catalogued** fragments and **a multitude of** others too small to **pinpoint**. At that height **air drag** is **feeble**, so many would **linger** for decades. In January 2012, the International **Space Station** **fired** its **thrusters** to **dodge** an Iridium 33 **remnant**.
 
-In June 1978, two NASA scientists **envisaged** a **vicious** **spiral**, later named the Kessler **syndrome**: each collision would **scatter** fragments, **raising the odds** of **subsequent** crashes. The 2009 crash **illustrated** that **premise** without **triggering** a **runaway** **chain reaction**. By the end of 2024, **surveillance** networks tracked about 40,000 objects, only some 11,000 of them **functional**.
+In June 1978, two NASA scientists **envisaged** a **vicious spiral**, later named the Kessler **syndrome**: each collision would **scatter** fragments, **raising the odds** of **subsequent** crashes. The 2009 crash **illustrated** that **premise** without **triggering** a **runaway** **chain reaction**. By the end of 2024, **surveillance** networks tracked about 40,000 objects, only some 11,000 of them **functional**.
 
 Such a cascade would **unfold** over decades, though, and is not **inevitable**; the risk can be **mitigated**. Operators now **routinely** **manoeuvre** satellites **out of harm's way**. In September 2022, America's Federal Communications Commission, which licenses satellites, **mandated** **disposal** of low-orbit craft within five years of **retirement** instead of 25. Years after the crash, spacecraft whose owners had no part in it kept swerving around its **splinters**.
 
@@ -20,7 +20,7 @@ Such a cascade would **unfold** over decades, though, and is not **inevitable**;
 
 然而，这些**残骸**(wreckage)却**危及**(endangered)了其他所有人。**撞击**(impact)**抛出**(flung)了2,000多块**已编目的**(catalogued)碎片，另有**大量**(a multitude of)碎片小到无法**精确定位**(pinpoint)。在那个高度，**空气阻力**(air drag)**微弱**(feeble)，因此许多碎片会在轨道上**滞留**(linger)数十年。2012年1月，国际**空间站**(Space Station)**点火了**(fired)它的**推进器**(thrusters)，以**躲开/避开**(dodge)一块铱星33号的**残片**(remnant)。
 
-1978年6月，两位美国国家航空航天局（NASA）的科学家**设想**(envisaged)了一种**恶性**(vicious)**螺旋**(spiral)，后来被称为凯斯勒**综合征**(syndrome)，即每次相撞都会**散布**(scatter)碎片，使**后续**(subsequent)撞击**更有可能发生**(raising the odds)。2009年的这次相撞为这一**前提**(premise)提供了**例证**(illustrated)，却并未**引发**(triggering)**失控的**(runaway)**连锁反应**(chain reaction)。截至2024年底，太空**监视**(surveillance)网络跟踪的物体约有40,000个，其中能**正常运行**(functional)的只有约11,000个。
+1978年6月，两位美国国家航空航天局（NASA）的科学家**设想**(envisaged)了一种**恶性循环**(vicious spiral)，后来被称为凯斯勒**综合征**(syndrome)，即每次相撞都会**散布**(scatter)碎片，使**后续**(subsequent)撞击**更有可能发生**(raising the odds)。2009年的这次相撞为这一**前提**(premise)提供了**例证**(illustrated)，却并未**引发**(triggering)**失控的**(runaway)**连锁反应**(chain reaction)。截至2024年底，太空**监视**(surveillance)网络跟踪的物体约有40,000个，其中能**正常运行**(functional)的只有约11,000个。
 
 不过，这样的连锁效应会在几十年的时间里逐步**展开**(unfold)，而且并非**不可避免**(inevitable)，风险也可以**加以缓解**(mitigated)。如今，运营方会**例行**(routinely)**操纵**(manoeuvre)卫星**避开危险**(out of harm's way)。2022年9月，负责为卫星发放许可的美国联邦通信委员会**强制要求**(mandated)低轨航天器在**退役**(retirement)后五年内完成**处置**(disposal)，而非原先的25年。相撞多年之后，那些主人与此事毫无瓜葛的航天器，仍不得不一再转向，绕开那次相撞留下的**碎屑**(splinters)。
 
@@ -61,8 +61,7 @@ Such a cascade would **unfold** over decades, though, and is not **inevitable**;
 | dodge | v. 躲开，闪避（dodge a fragment/bullet/blow）；逃避（dodge a question/taxes）；n. 躲闪 | 3 |
 | remnant | n. 残片，残余部分（a remnant of the satellite/the past；remnants of the old city） | 3 |
 | envisaged | v. (envisage) 设想，预想（envisage a scenario/future；envisage doing sth）；美式多用 envision | 4 |
-| vicious | adj. 恶性的（a vicious circle/spiral 恶性循环）；凶残的，恶毒的（a vicious attack/rumour） | 4 |
-| spiral | n. 螺旋；（不断加剧的）螺旋式变化（a vicious spiral 恶性循环；a downward/inflationary spiral）；v. 螺旋式上升或下降（costs spiral） | 4 |
+| vicious spiral | n. phr. 恶性循环（a vicious spiral/circle；a downward spiral 每况愈下）；vicious adj. 恶性的，凶残的；spiral n. 螺旋，螺旋式变化 | 4 |
 | syndrome | n. 综合征（the Kessler syndrome 凯斯勒综合征；Down syndrome）；（某类）典型现象 | 4 |
 | scatter | v. 散布，撒；（使）分散，（使）四散（scatter fragments/seeds；the crowd scattered） | 4 |
 | raising the odds | v. phr. (raise the odds of sth) 使……更有可能，提高……的几率（odds n. 可能性，几率；against all odds 尽管困难重重） | 4 |

@@ -36,7 +36,7 @@ S=[
 (3,[[[("In January 2012,","2012年1月，"),("the International","国际"),("**Space Station**","**空间站**(Space Station)"),("**fired**","**点火了**(fired)"),("its","它的"),("**thrusters**","**推进器**(thrusters)，")]],
     [[("to","以"),("**dodge**","**躲开/避开**(dodge)"),("an Iridium 33","一块铱星33号的"),("**remnant**.","**残片**(remnant)。")],
      "（to dodge…：不定式作目的状语）"]]),
-(4,[[[("In June 1978,","1978年6月，"),("two NASA scientists","两位美国国家航空航天局（NASA）的科学家"),("**envisaged**","**设想了**(envisaged)"),("a","一种"),("**vicious**","**恶性**(vicious)"),("**spiral**,","**螺旋**(spiral)，")],
+(4,[[[("In June 1978,","1978年6月，"),("two NASA scientists","两位美国国家航空航天局（NASA）的科学家"),("**envisaged**","**设想了**(envisaged)"),("a","一种"),("**vicious spiral**,","**恶性循环**(vicious spiral)，")],
      "（a vicious spiral：恶性循环）"],
     [[("later","后来"),("named","被称为"),("the Kessler","凯斯勒"),("**syndrome**:","**综合征**(syndrome)：")],
      "（later named…：过去分词短语作后置定语，修饰 spiral；\n冒号后面说明这一设想的内容）"],
