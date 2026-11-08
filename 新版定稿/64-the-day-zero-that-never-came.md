@@ -4,7 +4,7 @@
 
 In January 2018, Cape Town **issued** a **stark** **alert**: Day Zero could arrive in April. The term **denoted** a **grim** **threshold**, reached when water in the city's **reservoirs**, as a **percentage** of **capacity**, fell to 13.5 per cent. Most taps would then be shut, and **residents** would queue at about 200 **designated** collection points.
 
-The **prospect** was **genuine**. Three **consecutive** years of **meagre** rainfall, from 2015 to 2017, had **diminished** the reservoirs serving a **metropolitan** area of about four million people. By early 2018 the dams were roughly a fifth full. The **countdown** turned a **chronic** **shortage** into an **imminent** deadline.
+The **prospect** was **genuine**. Three **consecutive** years of **meagre** rainfall, from 2015 to 2017, had **diminished** the reservoirs serving a **metropolitan** area of about four million people. By early 2018 the **dams** were **roughly** a fifth full. The **countdown** turned a **chronic** **shortage** into an **imminent** deadline.
 
 The city paired **mandatory** **restrictions** with **unprecedented** **transparency**. From 1 February 2018, each person was **allotted** 50 litres a day. Officials **disclosed** dam levels and **household** **consumption**; the published **tallies** made **thrift** **visible** and let neighbours **benchmark** their use. Daily use was more than **halved**, from about 1.2 billion litres in 2015 to about 500 million by early 2018.
 
@@ -16,7 +16,7 @@ The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **s
 
 2018年1月，开普敦**发出**(issued)了一则**严峻的**(stark)**警报**(alert)，称零日可能在4月到来。这个词**指的是**(denoted)一道**严酷的**(grim)**门槛**(threshold)：即当该市**水库**(reservoirs)的存水按占水库**容量**(capacity)的**百分比**(percentage)降至13.5%时达到的门槛。届时大部分水龙头将被关闭，**居民**(residents)要到约200个**指定的**(designated)取水点排队取水。
 
-这一**前景**(prospect)是**真实存在的**(genuine)。**连续**(consecutive)三年**贫乏的**(meagre)降雨，从2015到2017年，**减少了**(diminished)水库的蓄水，这些水库给一个**大都市**(metropolitan)区供水，大约400万人口。到2018年初，水库只剩约五分之一的蓄水。**倒计时**(countdown)把一场**长期的**(chronic)**短缺**(shortage)变成了一个**迫在眉睫的**(imminent)最后期限。
+这一**前景**(prospect)是**真实存在的**(genuine)。**连续**(consecutive)三年**贫乏的**(meagre)降雨，从2015到2017年，**减少了**(diminished)水库的蓄水，这些水库给一个**大都市**(metropolitan)区供水，大约400万人口。到2018年初，**水库**(dams)只剩**约**(roughly)五分之一的蓄水。**倒计时**(countdown)把一场**长期的**(chronic)**短缺**(shortage)变成了一个**迫在眉睫的**(imminent)最后期限。
 
 该市把**强制性的**(mandatory)**限制措施**(restrictions)与**前所未有的**(unprecedented)**透明度**(transparency)结合起来。自2018年2月1日起，每人每天**分配**(allotted)50升水。官员们**公布**(disclosed)水库水位和**家庭**(household)**用水量**(consumption)，公开的**统计数字**(tallies)让**节俭**(thrift)成效**一目了然**(visible)，也让邻里之间得以**对照**(benchmark)用水量。日用水量**减半**(halved)有余，从2015年的约12亿升降至2018年初的约5亿升。
 
@@ -44,6 +44,8 @@ The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **s
 | meagre | adj. 少量的，不足的（meagre rainfall/income/resources）；美式拼写 meager | 2 |
 | diminished | v. (diminish) 减少，削弱（diminish reserves/the importance of sth）；贬低 | 2 |
 | metropolitan | adj. 大都市的（a metropolitan area 都市区）；metropolis n. 大都市 | 2 |
+| dams | 本文：水库；n. (dam) 水坝，水库（build a dam；irrigation dams 灌溉水坝）；v. 筑坝拦水 | 2 |
+| roughly | 本文：约；adv. 大约，大致（roughly a fifth/half；roughly speaking 粗略地说）；粗暴地 | 2 |
 | countdown | n. 倒计时（the countdown to sth 迈向……的倒计时） | 2 |
 | chronic | adj. 长期的，慢性的（a chronic shortage/disease）；积习难改的 | 2 |
 | shortage | n. 短缺，不足（a water/labour shortage；a shortage of sth） | 2 |
