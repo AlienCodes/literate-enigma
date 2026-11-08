@@ -4,7 +4,7 @@ import json,re,glob,os
 S=[
 (1,[[[("Dolly was born at Roslin, **Scotland**, on 5 July 1996.","1996年7月5日，多莉在**苏格兰**(Scotland)罗斯林出生。")]]]),
 (1,[[[("Her","她的"),("**genome**","**基因组**(genome)"),("came from","来自"),("a Finn Dorset ewe's","一只芬兰多塞特母羊的"),("mammary","乳腺"),("cell,","细胞，")]],
-    [[("**fused with**","这个细胞**融合了**(fused with)"),("a Blackface","一枚黑脸羊"),("egg","卵细胞，"),("stripped of","这枚卵已去除了"),("its **nucleus**.","**细胞核**(nucleus)。")],
+    [[("**fused with**","这个细胞**融合了**(fused with)"),("a Blackface","一枚黑脸羊"),("egg","卵细胞，"),("**stripped of**","这枚卵已**去除了**(stripped of)"),("its **nucleus**.","**细胞核**(nucleus)。")],
      "（fused with…：过去分词短语作后置定语，修饰 cell；\nstripped of…：过去分词短语作后置定语，修饰 egg；\nbe stripped of：被去除）"]]),
 (1,[[[("A Blackface","一只黑脸羊"),("**surrogate**","**代孕母羊**(surrogate)"),("carried","怀着"),("the **embryo**","这个**胚胎**(embryo)"),("through **pregnancy**,","度过了**孕期**(pregnancy)，")]],
     [[("yet","而"),("her","多莉的"),("white","白"),("face","脸"),("was","则是"),("**proof of** a **genetically** different **lineage**.","一个**基因上**(genetically)不同**血统**(lineage)的**证明**(proof of)。")],
@@ -22,10 +22,10 @@ S=[
      "（cloned from an adult cell：\n过去分词短语作后置定语，修饰 mammal）"]]),
 (2,[[[("Roslin's **announcement** on 22 February 1997","1997年2月22日罗斯林的**公告**(announcement)"),("**coincided with** the paper,","**与**(coincided with)这篇论文**同时发生**(coincided with)，")],
      "（coincide with：与……同时发生）"],
-    [[("and her name,","而她的名字，"),("a","一个关于"),("mammary","乳腺的"),("**pun**,","**双关语**(pun)，"),("honoured","致敬了"),("Dolly Parton.","多莉·帕顿。")],
+    [[("and her name,","而她的名字，"),("a","一个关于"),("mammary","乳腺的"),("**pun**,","**双关语**(pun)，"),("**honoured**","**致敬了**(honoured)"),("Dolly Parton.","多莉·帕顿。")],
      "（a mammary pun：同位语，补充说明 her name）"]]),
 (3,[[[("The news","这一消息"),("**provoked**","**引发了**(provoked)"),("**uproar**","**轩然大波**(uproar)，")]],
-    [[("and **apprehension**","也引发了**忧虑**(apprehension)，"),("about the **ethics** of human cloning.","关乎人类克隆的**伦理**(ethics)问题。")],
+    [[("and","以及"),("**apprehension** about the **ethics** of human cloning.","关于人类克隆**伦理**(ethics)的**忧虑**(apprehension)。")],
      "（provoked 带两个宾语 uproar 和 apprehension；\nabout the ethics…：后置定语，修饰 apprehension）"]]),
 (3,[[[("In March 1997","1997年3月，"),("Clinton","克林顿"),("**prohibited**","**禁止**(prohibited)"),("federal","联邦"),("funding","资金"),("for such experiments.","用于这类实验。")]]]),
 (3,[[[("In 1999","1999年，"),("her telomeres,","她的端粒，"),("or **chromosome** tips,","即**染色体**(chromosome)末端，")],
@@ -73,7 +73,7 @@ G={
  "S6 embryo-derived duo, Megan and Morag, in 1995":"对齐不了：in 1995 和 embryo-derived 都修饰 duo，中文“1995年用胚胎细胞培育的一对绵羊”定语必须提前，同位语人名跟在后面",
  "S7 the first mammal cloned from an adult cell":"对齐不了：cloned from an adult cell 是过去分词短语作后置定语，修饰 mammal，中文“用成年细胞克隆的”必须提前",
  "S8 Roslin's announcement on 22 February 1997":"对齐不了：on 22 February 1997 是后置定语，修饰 announcement，中文日期必须提前",
- "S9 about the ethics of human cloning":"对齐不了：of human cloning 是 of 结构作后置定语，修饰 ethics，中文“人类克隆的伦理问题”必须提前",
+ "S9 apprehension about the ethics of human cloning":"对齐不了：about the ethics of human cloning 是后置定语，修饰 apprehension，中文“关于人类克隆伦理的忧虑”定语必须提前，两个重点词中文先后与英文相反（用户 11-08 原话）",
  "S11 shortened by about 20% for her age":"对齐不了：for her age 中文“比同龄羊”必须放到动词前",
  "S12 she was ageing prematurely":"对齐不了：副词 prematurely 中文“过早”必须放到动词“衰老”前",
  "S14 Indoor confinement":"对齐不了：Indoor confinement 中文“圈养在室内”，状语必须放到后面才通顺（文章定稿原文）",
@@ -92,13 +92,12 @@ CONF={"合组":G,
  "S6-3 embryo-derived duo, Megan and ":"embryo-derived、in 1995 都修饰 duo，中文定语“1995年用胚胎细胞培育的”必须提前",
  "S7-1 the first mammal cloned from a":"cloned from an adult cell 是后置定语，修饰 mammal，中文定语必须提前",
  "S8-1 Roslin's announcement on 22 Fe":"on 22 February 1997 是后置定语，修饰 announcement，中文日期必须提前",
- "S9-2 about the ethics of human clon":"of human cloning 是 of 结构作后置定语，中文“人类克隆的伦理问题”必须提前",
+ "S9-2 apprehension about the ethics ":"about the ethics of human cloning 是后置定语，修饰 apprehension，中文定语必须提前（用户 11-08 原话）",
  "S11-2 shortened by about 20% for her":"for her age 中文“比同龄羊”必须放到动词前",
  "S16-2 and fears of early onset":"of early onset 是 of 结构作后置定语，修饰 fears，中文“关节炎提早发病的担忧”必须提前",
  "S18-3 the National Museum of Scotlan":"机构名“苏格兰国家博物馆”，拆开不通"},
 "同词异译":{"coincided with：与/同时发生":"不是两种译法：coincide with 的意思“与……同时发生”被“这篇论文”隔开，“与”和“同时发生”是同一个意思的两部分（T23）"},
 "短语":{
- "S2 fused … of":"不是搭配：of 属于 stripped of（被去除），和 fused 无关",
  "S6 predecessors … in":"不是搭配：in 属于 in 1962（时间），和 predecessors 无关",
  "S9 provoked … of":"不是搭配：of 属于 the ethics of human cloning（后置定语），和 provoked 无关",
  "S10 prohibited … for":"不是搭配：for 属于 funding for such experiments（用于这类实验的资金），和 prohibited 无关",
@@ -127,6 +126,8 @@ CONF['停顿位置']={"S11 telomeres, / or @2.580": "2026-11-07 逐 2.5 ms 实�
 # S8/S13/S18 紧贴两头的非人声区间：A19 停顿后吸气（-44～-57 dB、重心 2–3 kHz、周期 0.1–0.3），起点接停顿删除段，终点在下一个词起音前的过零点（S8 and 6.685、S13 with 5.81、S18 now 2.93）
 # 2026-11-07 纯人声逐处实测（dossier_62）切掉的吸气：S3 yet 前 3.917–3.941（-51～-62 dB 孤立气声）、S7 genuinely/the 之间 1.026–1.226（无标点，-44～-56 dB、重心 2–2.6 kHz、周期 0.1–0.3，195 ms 吸气）、S8 1997/coincided 延到 4.663、S11 tips, 后 3.980–4.285（305 ms 吸气，/s/ 后紧贴）、S13 six, 后 2.716–2.810、S15 without 前 6.406–6.464、S17 descendants, 后 4.970–5.118（-36～-42 dB、低频 -14～-30 dB）
 # S10 [2.085, 2.42]：1997 与 Clinton 之间无标点的自然停顿，2.16–2.35 吸气（-47～-55 dB、重心 2–2.5 kHz），连同前面的静音一起换成静音，让程序把无标点长停顿压到 0.18 s
+out["allow_clash"]=["honoured","stripped of"]   # 用户 2026-11-08 原话“那都加，都加。”（已记 用户同意记录）
+CONF.setdefault("中文意思",{})["S8 honoured"]="不是被隔开：用户 11-08 原话译文“致敬了多莉·帕顿”不用“向”，honoured 的意思“致敬了”已标全"
 out["换行变更已获同意"]={"S3":"用户 2026-11-08 原话“这个翻译不对，这个翻译不对，改成这个：一个基因上不同血统的证明”（中文按用户给的语序重排，“证明”移到最后）；另 11-07 原话“上面的这个英文和它下面这个中文意思尽可能对齐……”（对齐需要改换行算已同意，用户同意记录 篇“61-65”）"}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对

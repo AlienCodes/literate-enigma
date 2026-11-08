@@ -2,9 +2,9 @@
 # ZH: 多莉：一只羊的复制
 
 ## 英文
-Dolly was born at Roslin, **Scotland**, on 5 July 1996. Her **genome** came from a Finn Dorset ewe's mammary cell, **fused** with a Blackface egg stripped of its **nucleus**. A Blackface **surrogate** carried the **embryo** through **pregnancy**, yet her white face was **proof** of a **genetically** different **lineage**. She alone survived from 277 attempts, an **extraordinary** failure rate.
+Dolly was born at Roslin, **Scotland**, on 5 July 1996. Her **genome** came from a Finn Dorset ewe's mammary cell, **fused** with a Blackface egg **stripped of** its **nucleus**. A Blackface **surrogate** carried the **embryo** through **pregnancy**, yet her white face was **proof** of a **genetically** different **lineage**. She alone survived from 277 attempts, an **extraordinary** failure rate.
 
-Dolly is **popularly** called the first **clone**, a **misconception**. Her **predecessors** included frogs cloned from **transplanted** nuclei in 1962 and Roslin's embryo-derived **duo**, Megan and Morag, in 1995. She was **genuinely** the first **mammal** cloned from an adult cell. Roslin's **announcement** on 22 February 1997 **coincided** with the paper, and her name, a mammary **pun**, honoured Dolly Parton.
+Dolly is **popularly** called the first **clone**, a **misconception**. Her **predecessors** included frogs cloned from **transplanted** nuclei in 1962 and Roslin's embryo-derived **duo**, Megan and Morag, in 1995. She was **genuinely** the first **mammal** cloned from an adult cell. Roslin's **announcement** on 22 February 1997 **coincided** with the paper, and her name, a mammary **pun**, **honoured** Dolly Parton.
 
 The news **provoked** **uproar** and **apprehension** about the **ethics** of human cloning. In March 1997 Clinton **prohibited** federal funding for such experiments. In 1999 her telomeres, or **chromosome** tips, were reported **shortened** by about 20% for her age. That fed **anxiety**; some **speculated** she was ageing **prematurely**.
 
@@ -14,11 +14,11 @@ She bore six lambs by natural **mating**; Bonnie, first of these **descendants**
 
 ## 中文
 
-1996年7月5日，多莉在**苏格兰**(Scotland)罗斯林出生。她的**基因组**(genome)来自一只芬兰多塞特母羊的乳腺细胞，这个细胞与一枚去除了**细胞核**(nucleus)的黑脸羊卵细胞**融合**(fused)。一只黑脸羊**代孕母羊**(surrogate)怀着这个**胚胎**(embryo)度过了**孕期**(pregnancy)，而多莉的白脸则是一个**基因上**(genetically)不同**血统**(lineage)的**证明**(proof)。只有她从277次尝试中存活了下来，一个**异乎寻常的**(extraordinary)失败率。
+1996年7月5日，多莉在**苏格兰**(Scotland)罗斯林出生。她的**基因组**(genome)来自一只芬兰多塞特母羊的乳腺细胞，这个细胞与一枚**去除了**(stripped of)**细胞核**(nucleus)的黑脸羊卵细胞**融合**(fused)。一只黑脸羊**代孕母羊**(surrogate)怀着这个**胚胎**(embryo)度过了**孕期**(pregnancy)，而多莉的白脸则是一个**基因上**(genetically)不同**血统**(lineage)的**证明**(proof)。只有她从277次尝试中存活了下来，一个**异乎寻常的**(extraordinary)失败率。
 
-多莉**一般**(popularly)被称为第一个**克隆体**(clone)，这是一个**错误的观念**(misconception)。她的**前几代**(predecessors)包括于1962年由**移植**(transplanted)的细胞核克隆出的青蛙，以及罗斯林于1995年由胚胎衍生的**一对**(duo)绵羊：梅根和莫拉格。她**确实**(genuinely)是第一个用成年细胞克隆出的**哺乳动物**(mammal)。1997年2月22日罗斯林的**公告**(announcement)与这篇论文**同时发生**(coincided)，而她的名字，一个关于乳腺的**双关语**(pun)，致敬了多莉·帕顿。
+多莉**一般**(popularly)被称为第一个**克隆体**(clone)，这是一个**错误的观念**(misconception)。她的**前几代**(predecessors)包括于1962年由**移植**(transplanted)的细胞核克隆出的青蛙，以及罗斯林于1995年由胚胎衍生的**一对**(duo)绵羊：梅根和莫拉格。她**确实**(genuinely)是第一个用成年细胞克隆出的**哺乳动物**(mammal)。1997年2月22日罗斯林的**公告**(announcement)与这篇论文**同时发生**(coincided)，而她的名字，一个关于乳腺的**双关语**(pun)，**致敬了**(honoured)多莉·帕顿。
 
-这一消息**引发**(provoked)了**轩然大波**(uproar)，也让人们对人类克隆的**伦理**(ethics)问题深感**忧虑**(apprehension)。1997年3月，克林顿**禁止**(prohibited)联邦资金用于这类实验。1999年，有报道称她的端粒，即**染色体**(chromosome)末端，比同龄羊**缩短**(shortened)了约20%。这加剧了人们的**焦虑**(anxiety)，有人**推测**(speculated)她正在**过早**(prematurely)衰老。
+这一消息**引发**(provoked)了**轩然大波**(uproar)，以及关于人类克隆**伦理**(ethics)的**忧虑**(apprehension)。1997年3月，克林顿**禁止**(prohibited)联邦资金用于这类实验。1999年，有报道称她的端粒，即**染色体**(chromosome)末端，比同龄羊**缩短**(shortened)了约20%。这加剧了人们的**焦虑**(anxiety)，有人**推测**(speculated)她正在**过早**(prematurely)衰老。
 
 2003年2月14日，多莉被实施安乐死，时年六岁；她患有**关节炎**(arthritis)和一种由绵羊**病毒**(virus)引起的**进行性**(progressive)**肺部**(lung)疾病。**圈养**(confinement)在室内很可能是**原因之一**(contributed)。2016年7月，13只克隆羊正在正常衰老，其中4只来自与她相同的细胞系；它们没有**高血压**(hypertension)，也没有**糖尿病**(diabetes)。2017年11月，她的**骨骼**(skeletal)X光片显示出普通的关节炎，关节炎提早发病的担忧被判定为**毫无根据**(unfounded)。
 
@@ -31,6 +31,7 @@ She bore six lambs by natural **mating**; Bonnie, first of these **descendants**
 | genome | n. 基因组（the human genome；sequence a genome） | 1 |
 | fused | v. (fuse) 融合，熔合（fuse two cells；be fused together；fuse with：与……融合） | 1 |
 | nucleus | n. 细胞核；核心（the nucleus of a cell/atom） | 1 |
+| stripped of | v. (strip of) 去除，剥夺（be stripped of its nucleus；be stripped of one's title） | 1 |
 | surrogate | n./adj. 代孕者；替代的（a surrogate mother） | 1 |
 | embryo | n. 胚胎（a human embryo） | 1 |
 | pregnancy | n. 怀孕，孕期（during pregnancy；a pregnancy test） | 1 |
@@ -48,6 +49,7 @@ She bore six lambs by natural **mating**; Bonnie, first of these **descendants**
 | mammal | n. 哺乳动物（marine mammals） | 2 |
 | announcement | n. 公告，宣布（make an announcement） | 2 |
 | coincided | v. (coincide) 同时发生，巧合（coincide with a holiday） | 2 |
+| honoured | v. (honour) 向……致敬，使荣耀（honour a promise；be honoured with an award） | 2 |
 | pun | n. 双关语（make a pun on a word） | 2 |
 | provoked | v. (provoke) 引起，激起（provoke anger/a debate） | 3 |
 | uproar | n. 骚动，轩然大波（cause an uproar） | 3 |
