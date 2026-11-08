@@ -9,6 +9,7 @@ import json,re,glob,os
 # 2026-11-08 用户改 S5：“一帮二十多名或更多的码头工人，一件件地搬运麻袋、 桶和板条箱。”“dockworker 标注重点词汇。”“crates 标注重点词汇。特批，特批，特批，特批。”（“、 桶”中间的空格去掉；crates 与 47 撞车，用户特批 allow_clash）
 # 2026-11-08 用户改 S6：“繁重的/费力的”“下面简单解释一下strenuous这个单词的意思。就下面这个附上小字，简单解释一下，这个单词就是用法，具体什么样的情况下使用。”
 # 2026-11-08 用户改 S7：“船舶可能会花多达一半的时间 停泊在港，而且偷窃猖獗。”“up to 重点词汇 多达”（“时间 停泊”中间空格去掉）
+# 2026-11-08 用户改 S8：“1956年，装载散货每吨花费约5.83美元；据公司估算，装载理想X号花费约16美分。”“loading 标注重点词汇。”“by company's reckoning 标注重点词汇，也标注重点词汇。 by one's reckoning 根据某人的估算，下面的小字，下面的小字。”（loading 标第一处）
 # 2026-11-08 用户改 S1 中文（原话见 用户同意记录 篇 61）：说啥改啥
 S=[
 (1,[[[("On 26 April 1956","1956年4月26日，"),("a","一艘"),("**converted**","**改造过的**(converted)"),("Second World War","二战"),("**tanker**,","**油轮**(tanker)"),("the Ideal X,","“理想X号”，")],
@@ -32,10 +33,10 @@ S=[
 (2,[[[("Ships","船舶"),("could","可能会"),("spend","花"),("**up to**","**多达**(up to)"),("half their time","一半的时间"),("**berthed**,","**停泊**(berthed)在港，")],
      "（spend time＋过去分词：花时间处于……状态；up to：多达）"],
     [[("and","而且"),("**theft**","**偷窃**(theft)"),("was **rampant**.","**猖獗**(rampant)。")]]]),
-(2,[[[("In 1956","1956年，"),("loading","装运"),("loose cargo","散货"),("cost about $5.83 a ton;","每吨约需5.83美元；")],
+(2,[[[("In 1956","1956年，"),("**loading**","**装载**(loading)"),("loose cargo","散货"),("cost about $5.83 a ton;","每吨花费约5.83美元；")],
      "（loading loose cargo：动名词短语作主语）"],
-    [[("loading the Ideal X cost, by the company's reckoning,","而据公司估算，给理想X号装货"),("about 16 cents.","每吨只要约16美分。")],
-     "（by the company's reckoning：插入语，据公司估算）"]]),
+    [[("loading the Ideal X cost, **by** the company's **reckoning**,","**据**(by reckoning)公司**估算**(by reckoning)，装载理想X号花费"),("about 16 cents.","约16美分。")],
+     "（by one's reckoning：根据某人的估算；\nby the company's reckoning 是插入语）"]]),
 (3,[[[("Containers","集装箱"),("were not new.","并不新鲜。")]]]),
 (3,[[[("The **hurdle**","真正的**障碍**(hurdle)"),("was **consensus**:","在于**共识**(consensus)：")]],
     [[("**rival**","**相互竞争的**(rival)"),("firms'","各家公司，"),("boxes","箱子"),("had **incompatible** **dimensions** and **latches**.","**尺寸**(dimensions)和**锁扣**(latches)**互不兼容**(incompatible)。")],
@@ -79,7 +80,7 @@ S=[
 G={
  "S2 trailer bodies detached from their wheels and chassis":"对齐不了：detached from their wheels and chassis 是后置定语，修饰 bodies，中文“从车轮和底盘上拆卸下来的挂车车厢”定语必须提前；detach from 被“车轮和底盘”隔开（T23 两处都标）；重点词中文先后与英文相反",
  "S8 cost about $5.83 a ton":"对齐不了：a ton 中文“每吨”必须提前到金额前",
- "S8 loading the Ideal X cost, by the company's reckoning":"对齐不了：插入语 by the company's reckoning 中文“据公司估算”必须提前到句首",
+ "S8 loading the Ideal X cost, by the company's reckoning":"对齐不了：插入语 by the company's reckoning 中文“据公司估算”必须提前到句首；by one's reckoning 被 the company's 隔开，“据”“估算”两处都标（T23）",
  "S10 had incompatible dimensions and latches":"对齐不了：incompatible 作定语修饰 dimensions and latches，中文“尺寸和锁扣互不兼容”放到最后作谓语；重点词中文先后与英文相反",
  "S5 carried":"对齐不了：piece by piece 中文“一件件地”提前到“搬运”前，只能和 carried 放一组",
  "S5 and crates piece by piece":"对齐不了：piece by piece 已随“搬运”提前，这里只剩“和板条箱”",
