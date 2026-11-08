@@ -1,3 +1,5 @@
+# S20 note：用户 2026-11-08 原话：“之前上面那个小字去掉，改成这个：(keep A idle: 因为省水成功没断水，取水点没用上，一直闲置)”（括号、冒号按注释格式用全角）
+# S20：用户 2026-11-08 原话：“家庭、农民和雨水让取水点一直闲置，但这份牺牲最沉重地落在了那些最没有能力付出的人身上。”
 # S18 末：用户 2026-11-08 原话：“这里的翻译改成：最大程度地压榨了他们。Squeeze对应的意思是压榨。”
 # S19：用户 2026-11-08 原话：“依旧于改成责备。因为他造成了游客取消行程。改成因为这些警告造成了游客取消行程。”（“依旧于”即画面上的“归咎于”）
 # S18：用户 2026-11-08 原话：“勉强度日改为 勉强对付。小字改成：make do with + 名词，意思是“靠……勉强凑合/将就着用”。”
@@ -63,9 +65,9 @@ S=[
      "（them 指 Townships）"]]),
 (5,[[[("Others","另一些人则"),("blamed","责备"),("**alarmist**","**危言耸听的**(alarmist)"),("warnings","警告，"),("for","因为这些警告造成了"),("tourist","游客"),("**cancellations**.","**取消行程**(cancellations)。")],
      "（blame A for B：把 B 归咎于 A）"]]),
-(5,[[[("Households,","家庭、"),("farmers,","农民"),("and rain","和雨水共同"),("kept","让"),("the collection points","取水点"),("**idle**,","一直**闲置**(idle)，")],
-     "（keep A idle：使 A 一直闲置）"],
-    [[("but","但"),("the **sacrifice**","这份**牺牲**(sacrifice)"),("weighed heaviest","最沉重地压在了"),("on those with the least to give.","最拿不出余力的人身上。")],
+(5,[[[("Households,","家庭、"),("farmers,","农民"),("and rain","和雨水"),("kept","让"),("the collection points","取水点"),("**idle**,","一直**闲置**(idle)，")],
+     "（keep A idle：因为省水成功没断水，\n取水点没用上，一直闲置）"],
+    [[("but","但"),("the **sacrifice**","这份**牺牲**(sacrifice)"),("weighed heaviest","最沉重地落在了"),("on those with the least to give.","那些最没有能力付出的人身上。")],
      "（weigh on：压在……身上；\nwith the least to give：后置定语，修饰 those）\n"
      "（简述：2018年1月，开普敦警告零日可能在4月到来，届时水库存水降到13.5%，大部分水龙头将关闭。\n"
      "2015至2017年连续三年少雨，水库到2018年初只剩约五分之一。\n"
@@ -85,8 +87,8 @@ G={
  "S18 poor areas segregated by race under apartheid":"对齐不了：segregated by race under apartheid 是过去分词短语作后置定语，修饰 areas，中文“在种族隔离制度下按种族被隔离出来的贫困地区”定语必须提前；两个重点词中文先后与英文相反",
  "S18 made do with scant water":"对齐不了：make do with 是固定说法“靠……勉强对付”，被宾语隔开，中文只能整组",
  "S20 the collection points":"对齐不了：collection points 是一个名词“取水点”，拆开不通",
- "S20 weighed heaviest":"对齐不了：weigh heaviest on 中文“最沉重地压在……身上”，副词必须放到动词前面",
- "S20 on those with the least to give":"对齐不了：with the least to give 是后置定语，修饰 those，中文“最拿不出余力的人”必须提前",
+ "S20 weighed heaviest":"对齐不了：weigh heaviest on 中文“最沉重地落在……身上”，副词必须放到动词前面",
+ "S20 on those with the least to give":"对齐不了：with the least to give 是后置定语，修饰 those，中文“那些最没有能力付出的人”必须提前",
 }
 CONF={"合组":G,
 "对齐":{
@@ -100,7 +102,7 @@ CONF={"合组":G,
  "S16-1 was eased in October 2018.":"in October 2018 是后置的时间状语，中文时间必须放到动词前面（于2018年10月……）",
  "S18-1 poor areas segregated by race ":"过去分词短语作后置定语，修饰 areas，中文定语必须提前",
  "S18-2 made do with scant water,":"make do with 是固定说法“靠……勉强对付”，被宾语隔开，只能整组",
- "S20-2 on those with the least to giv":"with the least to give 是后置定语，修饰 those，中文“最拿不出余力的人”必须提前"},
+ "S20-2 on those with the least to giv":"with the least to give 是后置定语，修饰 those，中文“那些最没有能力付出的人”必须提前"},
 "方向":{"S11-1 more→减少了一半以上，":"more than halved 是“减半还不止”，中文“减少了一半以上”的“以上”就是 more than，方向一致（用户 2026-11-08 定的译文）"},
 "数字":{"S11-2 500":"500 million 即5亿（5×10⁸），中文按文章定稿写“约5亿升”，数值正确；英文读 five hundred million"},
 "是的":{"S4-1 是**真实存在的**":"文章定稿原文“这一前景是真实存在的”；genuine 是形容词作表语，“是……的”对应 was genuine，去掉“是”不通顺"},
