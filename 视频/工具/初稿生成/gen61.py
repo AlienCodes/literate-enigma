@@ -16,6 +16,7 @@ import json,re,glob,os
 # 2026-11-08 用户改 S14：“在下面简述一下At the expense of 的用法，简述一下它的用法。”
 # 2026-11-08 用户改 S15：“纽约海滨区的就业人数在1963年至1976年间缩减了约四分之三。”“Employment标记为重点词汇。”
 # 2026-11-08 用户改 S16：“翻译修改为：大量货物穿过港湾，前往伊丽莎白一处于1962年8月启用的新 码头/港区。”（“新 码头”空格去掉）
+# 2026-11-08 用户改 S17：“翻译不准，上面翻译，不准改翻译：1967年到1980年，伦敦历史悠久的码头一个接一个地关闭，而位于萨福克海岸的费利克斯托则扩张了。”（用户原话没有“大部分”，照改，已提醒 Most of）
 # 2026-11-08 用户改 S1 中文（原话见 用户同意记录 篇 61）：说啥改啥
 S=[
 (1,[[[("On 26 April 1956","1956年4月26日，"),("a","一艘"),("**converted**","**改造过的**(converted)"),("Second World War","二战"),("**tanker**,","**油轮**(tanker)"),("the Ideal X,","“理想X号”，")],
@@ -64,9 +65,9 @@ S=[
 (4,[[[("Much of the cargo","大量货物"),("crossed","穿过"),("the harbour","港湾，")]],
     [[("to","前往"),("a new **terminal** at Elizabeth, **inaugurated** in August 1962.","伊丽莎白一处于1962年8月**启用**(inaugurated)的新**码头/港区**(terminal)。")],
      "（inaugurated in August 1962：过去分词短语作后置定语，\n修饰 terminal）"]]),
-(4,[[[("Most of London's","1967年到1980年，伦敦大部分"),("**historic**","**历史悠久的**(historic)"),("**docks**","**码头**(docks)"),("closed one after another from 1967 to 1980,","接连关闭，")],
+(4,[[[("Most of London's","1967年到1980年，伦敦"),("**historic**","**历史悠久的**(historic)"),("**docks**","**码头**(docks)"),("closed one after another from 1967 to 1980,","一个接一个地关闭，")],
      "（one after another：一个接一个地；from 1967 to 1980：中文时间状语提前）"],
-    [[("while","而"),("Felixstowe, on the Suffolk coast,","萨福克海岸的费利克斯托港"),("**expanded**.","则不断**扩张**(expanded)。")],
+    [[("while","而"),("Felixstowe, on the Suffolk coast,","位于萨福克海岸的费利克斯托"),("**expanded**.","则**扩张了**(expanded)。")],
      "（while：表示对比，而；on the Suffolk coast：插入语，补充说明 Felixstowe）"]]),
 (5,[[[("The **rewards**","**回报**(rewards)"),("were **substantial**.","相当**可观**(substantial)。")]]]),
 (5,[[[("A study published in the Journal of International Economics in 2016","2016年发表于《国际经济学杂志》（Journal of International Economics）的一项研究"),("estimated","估计，")],
@@ -90,7 +91,7 @@ G={
  "S8 loose cargo":"对齐不了：loose cargo 中文是一个词“散货”，拆开不通",
  "S15 shrank":"对齐不了：between 1963 and 1976 中文“在1963年至1976年间”必须放到“缩减了”前",
  "S15 by about three quarters between 1963 and 1976":"对齐不了：between 1963 and 1976 中文已提前到“缩减了”前，这里只剩“约四分之三”",
- "S17 closed one after another from 1967 to 1980":"对齐不了：one after another 中文“接连”必须放到“关闭”前，from 1967 to 1980 中文提前到句首",
+ "S17 closed one after another from 1967 to 1980":"对齐不了：one after another 中文“一个接一个地”必须放到“关闭”前，from 1967 to 1980 中文提前到句首",
  "S19 had lifted trade between":"对齐不了：lift A by B 中文“使 A 增长了 B”，lifted 的“增长了”必须放到句末；trade between… 中文“国家之间的贸易”定语提前，trade 的“贸易”只能放到 countries 下面",
  "S19 700 per cent over 20 years":"对齐不了：700 per cent 中文“700%”是一个数；over 20 years 中文“20年间”提前到句首",
  "S20 cranes now":"对齐不了：now 中文“如今”必须提前到句首（在 Tireless 下面）",
@@ -100,7 +101,7 @@ G={
  "S13 transferred smoothly between ship, lorry, and train":"对齐不了：between… 介词短语中文“在船舶、卡车和火车之间”必须提前到动词前，smoothly 中文“顺畅地”也在“转运”前；重点词中文先后与英文相反",
  "S14 came at the expense of livelihoods":"对齐不了：come at the expense of B 中文“是以 B 为代价换来的”，被“生计”隔开，只能整组",
  "S16 a new terminal at Elizabeth, inaugurated in August 1962":"对齐不了：at Elizabeth 和 inaugurated in August 1962 都是后置定语，修饰 terminal，中文“伊丽莎白一处于1962年8月启用的新码头/港区”必须提前；两个重点词中文先后与英文相反",
- "S17 Felixstowe, on the Suffolk coast":"对齐不了：插入语 on the Suffolk coast 中文“萨福克海岸的”作定语必须提前",
+ "S17 Felixstowe, on the Suffolk coast":"对齐不了：插入语 on the Suffolk coast 中文“位于萨福克海岸的”作定语必须提前",
  "S19 A study published in the Journal of International Economics in 2016":"对齐不了：published in… in 2016 是后置定语，修饰 study，中文“2016年发表于《国际经济学杂志》的一项研究”必须提前，刊名不能拆",
 }
 DQ={
@@ -148,7 +149,7 @@ CONF={"合组":G,"对齐":DQ,
  "S16 inaugurated … in":"不是搭配：in August 1962 只表示时间"}}
 out={"no":"61","title_en":"The Steel Box That Remade the World","title_zh":"集装箱：重塑世界的铁盒子","title_fx":{"hl":["Box","World"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "allow_clash":["converted","crates"],"高亮按实际开口":True,"高亮开口门槛":40,
-     "术语":{"Second World War":"二战","Ideal X":"理想X号","Port Newark":"纽瓦克港","New Jersey":"新泽西州","Houston":"休斯敦","Sea-Land":"海陆公司","New York":"纽约","Elizabeth":"伊丽莎白港","London":"伦敦","Felixstowe":"费利克斯托港","Suffolk":"萨福克","Journal of International Economics":"《国际经济学杂志》"}}
+     "术语":{"Second World War":"二战","Ideal X":"理想X号","Port Newark":"纽瓦克港","New Jersey":"新泽西州","Houston":"休斯敦","Sea-Land":"海陆公司","New York":"纽约","Elizabeth":"伊丽莎白港","London":"伦敦","Felixstowe":"费利克斯托","Suffolk":"萨福克","Journal of International Economics":"《国际经济学杂志》"}}
 out.update({"停顿插入点":{"S4":{"1":[0.642792,"交界"]}},"停顿删除区间":{"S7":{"1":[2.3725,2.6625]}},"除阻加强":{"S1":{"3":[8.8325,8.8475,4.5]}},"句子增益dB":{"S9":-0.3,"S6":-0.5,"S18":-0.5},"高亮开始":{"S19 第2块":134.64},"段内渐变dB":{"S12":{"2":[0,3]}},
  "非人声区间":{"S1":[[5.535,5.83]],"S15":[[5.5,5.7125,"紧贴词头"]],"S16":[[7.310625,7.3925,"紧贴词尾"]],"S17":[[6.245,6.510167,"紧贴词头"]],"S19":[[5.03125,5.54,"紧贴词尾"],[10.855,11.195]]}})
 # 2026-11-07 出片后核查逐 2.5 ms 实测（疑点清单 dossier_61，各句 w）：

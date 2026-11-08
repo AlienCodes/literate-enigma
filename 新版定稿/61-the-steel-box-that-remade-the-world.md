@@ -20,7 +20,7 @@ The **rewards** were **substantial**. A study published in the Journal of Intern
 
 集装箱并不新鲜。**障碍**(hurdle)在于**共识**(consensus)：**竞争对手**(rival)公司的箱子有**互不兼容的**(incompatible)**尺寸**(dimensions)和**门闩/锁扣**(latches)。1961年，一个**国际标准**(international standards)委员会成立。1963年1月，海陆公司，即理想X号更名后的运营方，允许该委员会使用其**专利**(patents)，不收取**专利费**(royalties)，包括用于**吊装**(hoisting)的角**配件**(fittings)上的那些专利。由**吊机**(crane)吊起，一只箱子便能在船舶、**卡车**(lorry)和火车之间**顺畅地**(smoothly)**转运**(transferred)。
 
-这种**效率**(efficiency)是以**生计**(livelihoods)为**代价**(expense)换来的。纽约**海滨区**(waterfront)的**就业人数**(employment)在1963年至1976年间**缩减了**(shrank)约四分之三。大量货物穿过港湾，前往伊丽莎白一处于1962年8月**启用**(inaugurated)的新**码头/港区**(terminal)。1967年到1980年，伦敦大部分**历史悠久的**(historic)**码头**(docks)接连关闭，而萨福克海岸的费利克斯托港则不断**扩张**(expanded)。
+这种**效率**(efficiency)是以**生计**(livelihoods)为**代价**(expense)换来的。纽约**海滨区**(waterfront)的**就业人数**(employment)在1963年至1976年间**缩减了**(shrank)约四分之三。大量货物穿过港湾，前往伊丽莎白一处于1962年8月**启用**(inaugurated)的新**码头/港区**(terminal)。1967年到1980年，伦敦**历史悠久的**(historic)**码头**(docks)一个接一个地关闭，而位于萨福克海岸的费利克斯托则**扩张了**(expanded)。
 
 **回报**(rewards)相当**可观**(substantial)。2016年发表于《国际经济学杂志》（Journal of International Economics）的一项研究估计，20年间，集装箱化使**工业化**(industrialised)国家之间的贸易**累计**(cumulative)增长了700%。如今，**不知疲倦的**(tireless)吊机把一模一样的集装箱吊起，码成**整齐的**(orderly)、**巨大的**(immense)**箱垛**(stacks)。
 
