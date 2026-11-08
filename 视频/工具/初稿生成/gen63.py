@@ -57,10 +57,9 @@ S=[
      "（manoeuvre A out of harm's way：操纵 A 避开危险）"]]),
 (5,[[[("In September 2022,","2022年9月，"),("America's Federal Communications Commission, which licenses satellites,","负责为卫星发放许可的美国联邦通信委员会")],
      "（which licenses satellites：非限制性定语从句，\n修饰 Commission）"],
-    [[("**mandated**","**强制要求**(mandated)"),("**disposal**","**处置**(disposal)"),("of low-orbit","低轨"),("craft","航天器，")],
-     "（disposal：本文指卫星退役后离轨销毁）"],
-    [[("within five years of **retirement**","须在**退役**(retirement)后五年内完成，"),("instead of 25.","而非原先的25年。")],
-     "（within five years of…：……后五年内；\n25 后省略了 years）"]]),
+    [[("**mandated**","**强制要求**(mandated)，")]],
+    [[("**disposal** of low-orbit craft within five years of **retirement**","低轨航天器须在**退役**(retirement)后五年内**处置**(disposal)，"),("**instead of**","**而不是**(instead of)"),("25.","25年。")],
+     "（disposal：本文指卫星退役后离轨销毁；\nwithin five years of…：……后五年内；\n25 后省略了 years）"]]),
 (5,[[[("Years after the crash,","相撞多年之后，"),("spacecraft whose owners had no part in it","那些主人与此事毫无瓜葛的航天器，")],
      "（whose owners…：定语从句，修饰 spacecraft；\nhave no part in：与……无关；it 指 the crash）"],
     [[("kept","仍不得不一再"),("swerving","转向，"),("around its","绕开那次相撞留下的"),("**splinters**.","**碎屑**(splinters)。")],
@@ -76,6 +75,7 @@ G={
  "S1 at about 42,000 kilometres an hour":"对齐不了：an hour（每小时）中文“时速”必须放到数字前，拆开不通",
  "S2 had been derelict since about 1995":"对齐不了：since about 1995 是时间状语，中文“约自1995年起便已废弃”时间必须放到动词前",
  "S15 over decades, though":"对齐不了：though 是句中插入的转折词，与上一段转折，中文“不过”必须放在句首（已在 Such a cascade 一组），这一组只剩“历时几十年”",
+ "S17 disposal of low-orbit craft within five years of retirement":"对齐不了：用户 11-08 原话语序“低轨航天器须在退役后五年内处置”把“处置”放到最后，disposal 与 of low-orbit craft、within…retirement 先后相反，只能整组",
  "S17 within five years of retirement":"对齐不了：within five years of retirement 中文“在退役后五年内”，退役必须提前",
  "S17 America's Federal Communications Commission, which licenses satellites":"对齐不了：which licenses satellites 是非限制性定语从句，中文“负责为卫星发放许可的美国联邦通信委员会”定语必须提前，机构名不能拆",
  "S18 spacecraft whose owners had no part in it":"对齐不了：whose 引导的定语从句修饰 spacecraft，中文“那些主人与此事毫无瓜葛的航天器”定语必须提前",
@@ -89,6 +89,7 @@ CONF={"合组":G,"中文重复":{"残骸":"用户 2026-11-08 原话把 S5 hulk �
  "S14-2 only some 11,000 of them":"only some 11,000 of them functional 是独立主格结构，of them 中文“其中”必须提前",
  "S17-1 America's Federal Communicatio":"which licenses satellites 是非限制性定语从句，中文定语必须提前，机构名不能拆",
  "S17-3 within five years of retiremen":"within five years of retirement 中文“在退役后五年内”，退役必须提前",
+ "S17-3 disposal of low-orbit craft wi":"用户 11-08 原话语序“低轨航天器须在退役后五年内处置”把“处置”放到最后，disposal 与后面的 of 结构、within…retirement 先后相反，只能整组",
  "S18-1 spacecraft whose owners had no":"whose 引导的定语从句修饰 spacecraft，中文定语必须提前"},
 "短语":{
  "S9 flung … of":"不是搭配：of 属于 a multitude of others，和 flung 无关；fling out 已整体标",
@@ -127,7 +128,7 @@ out_extra={"非人声区间":{"S5":[[0.925,1.12]],
 # S17 In 与 September 之间 0.355–0.365 一下孤立杂音（-46 dB、重心 3.3 kHz，两边 -62/-64 dB）。S17 句末 five 的 14.085–14.185（重心 3.4–4.2 kHz）同 S2，是 /v/ 清化摩擦，不切。
 # 句子增益 S4 -1.0 dB（上限 ±1）：响度一致性 第3段 36.2–37.4s（S4 Neither craft swerved.）比全片响 3.0 LU、和前后句差 3.3/3.0 LU。分段增益 S11 第2段 +1.0 dB：自动音频检查 83.9–84.3s（S11 Space Station 的 Station 自然收弱）比全片低 5.5 dB（K129），句中没有标点可分段，整段补 1 dB
 # S5 hulk, 的 /k/：2026-11-07 逐 2.5 ms 实测（S5 w，句首修剪 10 ms 后的时刻）：闭塞 0.80–0.855（-56～-67 dB），0.8575–0.90 是清楚的 /k/ 除阻（-21～-35 dB、重心 2.5–5 kHz），0.91–1.135 是停顿里的气声（-50～-60 dB、重心 2–3.7 kHz、无周期），1.14 起 lacking；气声挡在停顿前，核对把它当成除阻、判“没有除阻”，--写入 在 0.93 补供体也不生效。删掉这段气声（非人声区间 0.925–1.12，外侧 5 ms 为 -56.3、-57.8 dB），原声的 /k/ 原样留着，不补供体
-out["换行变更已获同意"]={"S11":"用户 2026-11-08 原话要 S11 整句改为“2012年1月，国际空间站启动了它的推进器，以躲开/避开一块铱星33号的残片。”、fired 标重点词、“space station 整体标注重点词汇”，字变多随之换行；另 11-07 原话（篇 61-65）“对齐需要改换行”视为同意"}
+out["换行变更已获同意"]={"S17":"用户 2026-11-08 原话把 S17 整句改为“2022年9月，负责为卫星发放许可的美国联邦通信委员会强制要求，低轨航天器须在退役后五年内处置，而不是25年。”并标 instead of，中文语序变了随之换行","S11":"用户 2026-11-08 原话要 S11 整句改为“2012年1月，国际空间站启动了它的推进器，以躲开/避开一块铱星33号的残片。”、fired 标重点词、“space station 整体标注重点词汇”，字变多随之换行；另 11-07 原话（篇 61-65）“对齐需要改换行”视为同意"}
 CONF["短语"]["S11 fired … to"]="不是搭配：to 是 to dodge 的不定式符号（目的状语），和 fired 无关"
 out.update(out_extra)   # 实测后并进 gen63（停顿插入点、hulk 的 /k/ 除阻由 词尾辅音核对 --写入）
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
