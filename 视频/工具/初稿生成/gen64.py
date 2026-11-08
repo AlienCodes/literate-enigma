@@ -2,9 +2,10 @@ import json,re,glob,os
 # 第64篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-11-07 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；中英对齐按用户 11-07 原话（标色优先逐词对齐，没标色的尽量）；三项并列加牛津逗号（T18）；不用破折号（T36）；形容词的“的”进粗体。
 S=[
+# S1 第2块 note： 用户 2026-11-08 原话：“小字部分加上这些：2018年初，南非开普敦发出了恐怖的警告：到了4月份，全城的水库可能就要彻底干涸，也就是“零日”要来了（届时全城将断水，只能排队领水）。”]]),
 (1,[[[("In January 2018,","2018年1月，"),("Cape Town","开普敦"),("**issued**","**发出了**(issued)"),("a","一则"),("**stark**","**严峻的**(stark)"),("**alert**:","**警报**(alert)，")]],
     [[("Day Zero","称零日"),("could arrive in April.","可能在4月到来。")],
-     "（Day Zero could arrive in April：冒号后补充说明 alert 的内容）"]]),
+     "（Day Zero could arrive in April：冒号后补充说明 alert 的内容）\n（2018年初，南非开普敦发出了恐怖的警告：到了4月份，\n全城的水库可能就要彻底干涸，也就是“零日”要来了\n（届时全城将断水，只能排队领水）。）"]]),
 (1,[[[("The term","这个词"),("**denoted**","**指的是**(denoted)"),("a","一道"),("**grim**","**严酷的**(grim)"),("**threshold**,","**门槛**(threshold)：")]],
     [[("reached when","一旦"),("water in the city's **reservoirs**,","该市**水库**(reservoirs)的存水"),("as a **percentage** of capacity,","按占库容的**百分比**(percentage)计，"),("fell to","降到"),("13.5 per cent.","13.5%，就跨过了这道门槛。")],
      "（reached when…：过去分词短语作后置定语，修饰 threshold；\nas a percentage of capacity：插入语）"]]),
