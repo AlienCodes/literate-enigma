@@ -14,7 +14,7 @@ The **rewards** were **substantial**. A study published in the Journal of Intern
 
 ## 中文
 
-1956年4月26日，一艘由二战**油轮**(tanker)改装而成的“理想X号”（Ideal X）**悄然驶离**(slipped)新泽西州纽瓦克港，开往休斯敦。甲板上**牢牢固定**(clamped)着58个**集装箱**(containers)，其实就是拆掉车轮和**底盘**(chassis)、**卸下**(detached)来的**挂车**(trailer)车厢。当时的**旁观者**(spectators)恐怕很少会把这样一批**平淡无奇的**(unremarkable)**货物**(cargo)当作**里程碑**(landmark)。
+1956年4月26日，一艘改装过的二战**油轮**(tanker)“理想X号”，**悄然驶离**(slipped)新泽西州纽瓦克港，开往休斯敦。甲板上**牢牢固定**(clamped)着58个**集装箱**(containers)，其实就是拆掉车轮和**底盘**(chassis)、**卸下**(detached)来的**挂车**(trailer)车厢。当时的**旁观者**(spectators)恐怕很少会把这样一批**平淡无奇的**(unremarkable)**货物**(cargo)当作**里程碑**(landmark)。
 
 那时，**货品**(freight)都以**散装**(loose)方式运输。二十多人一**帮**(gangs)的码头工人把**麻袋**(sacks)、**木桶**(barrels)和板条箱一件件扛上扛下。这是**繁重的**(strenuous)**苦差事**(drudgery)。船舶有时多达一半时间**停泊**(berthed)在港，**偷窃**(theft)**猖獗**(rampant)。1956年，装运散货每吨约需5.83美元；而据公司估算，给理想X号装货每吨只要约16美分。
 

@@ -2,8 +2,9 @@ import json,re,glob,os
 # 第61篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-11-07 重点词中文沿用文章定稿（铁律）；中英对齐按用户 11-07 原话（篇“61-65”）：标色的优先逐词对齐，没标色的尽量；
 # 两处三项并列加牛津逗号（T18）；at the expense of 整体标、被隔开两处都标（T22/T23）。
+# 2026-11-08 用户改 S1 中文（原话见 用户同意记录 篇 61）：说啥改啥
 S=[
-(1,[[[("On 26 April 1956","1956年4月26日，"),("a converted","一艘由"),("Second World War","二战"),("**tanker**,","**油轮**(tanker)改装而成的"),("the Ideal X,","理想X号（Ideal X）")],
+(1,[[[("On 26 April 1956","1956年4月26日，"),("a converted","一艘改装过的"),("Second World War","二战"),("**tanker**,","**油轮**(tanker)"),("the Ideal X,","“理想X号”，")],
      "（a converted…tanker：主语；the Ideal X：同位语，补充说明 tanker）"],
     [[("**slipped out of**","**悄然驶离**(slipped out of)"),("Port Newark, New Jersey,","新泽西州纽瓦克港，"),("for Houston.","开往休斯敦。")],
      "（slip out of：悄悄离开；for：表示去向，开往）"]]),
@@ -91,7 +92,6 @@ G={
  "S19 A study published in the Journal of International Economics in 2016":"对齐不了：published in… in 2016 是后置定语，修饰 study，中文“2016年发表于《国际经济学杂志》的一项研究”必须提前，刊名不能拆",
 }
 DQ={
- "S1-1 a converted Second World War t":"converted 中文“改装而成的”必须放到“油轮”后",
  "S2-2 trailer bodies detached from t":"detached from… 是后置定语，修饰 bodies，中文定语必须提前；三个重点词中文先后与英文相反",
  "S8-1 cost about $5.83 a ton;":"a ton 中文“每吨”必须提前到金额前",
  "S8-2 loading the Ideal X cost, by t":"插入语 by the company's reckoning 中文“据公司估算”必须提前到句首",
@@ -111,6 +111,7 @@ DQ={
  "S7-1 up to half their time":"up to half their time 是一个数量意群“多达一半时间”，拆开不通",
 }
 CONF={"合组":G,"对齐":DQ,
+"引号":{"S1-1 “”":"用户 2026-11-08 原话“1956年4月26日，一艘改装过的二战油轮“理想X号”，悄然驶离新泽西州纽瓦克港，开往休斯敦。”自带引号，照用户原话保留（T10）"},
 "是的":{"S6-1 是**繁重的**":"“是”对应 was（这是），“的”是形容词 strenuous 的“的”（T38），不是“是……的”句式；文章定稿原文“这是繁重的苦差事”"},
 "方向":{"S5-1 more→二十多人一**帮**(gangs)":"or more 是“……多”，中文“二十多人”有“多”，方向一致","S17-1 after→接连关闭，":"one after another 是“一个接一个”，不是时间先后；中文“接连”，方向一致"},
 "停顿位置":{
