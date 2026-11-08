@@ -2,7 +2,7 @@
 """词头渐强核对（K131，62 S15 13 clones, | four：人工插入点落在 /z/→/f/ 交界，下一段开头 15 ms 渐强把只有 10 ms 的 /f/ 压低 20 dB，用户听成 our）。
 每个停顿接点（work_NN/淡入淡出.json：原始合成里的 淡出起点、切点、淡入终点）：在原始合成里找切点后紧跟的辅音
 （从切点起、电平 ≥ -45 dB、直到幅度谱重心 < 1500 Hz 的元音开始），算渐强（余弦）把它压低 6 dB 以上的部分占多少：
-辅音最响 ≥ -40 dB、长 ≥ 5 ms，且被压掉的占 ≥ 40% → BAD（辅音整段被渐强吃掉，听不出来）。修法：插入点往前挪、写成 [秒,"交界"]（8 ms 渐变），让短辅音整段留在停顿后面。
+辅音最响 ≥ -40 dB、长 ≥ 7.5 ms（更短的是前一个词擦音的残尾，如 64 S20 farmers, | and），且被压掉的占 ≥ 40% → BAD（辅音整段被渐强吃掉，听不出来）。修法：插入点往前挪、写成 [秒,"交界"]（8 ms 渐变），让短辅音整段留在停顿后面。
 用法（出片工作目录）：python3 词头渐强核对.py NN ；python3 词头渐强核对.py --自检"""
 import sys, os, json, re
 import numpy as np
@@ -29,7 +29,7 @@ def 判(raw, c, b, ref=None):
     if not fr: return False, '切点后没有辅音（直接元音或静音）'
     n = len(fr) * 2.5; pk = max(L for L, _ in fr); 压 = sum(1 for _, d in fr if d <= -6) / len(fr)
     s = f'辅音 {n:.1f} ms、最响 {pk:.1f} dB，渐强 {n_in / SR * 1000:.0f} ms 压低 6 dB 以上的占 {压:.0%}'
-    return (pk >= -40 and n >= 5 and 压 >= 0.4), s
+    return (pk >= -40 and n >= 7.5 and 压 >= 0.4), s   # 7.5 ms：64 S20 farmers, | and 切点后只剩 /z/ 残尾 5 ms 就接元音（and 元音开头），压掉残尾是对的，不算
 
 def 自检():
     rng = np.random.default_rng(3); t = np.arange(int(0.2 * SR)) / SR
@@ -44,9 +44,11 @@ def 自检():
     if 判(x, c, c + int(0.008 * SR))[0]: e.append('误报：90 ms 擦音只被 8 ms 交界渐强压了开头（62 S1 Scotland 的 /s/）')
     x, c = 样(22)
     if 判(x, c, c + int(0.008 * SR))[0]: e.append('误报：22 ms 擦音、8 ms 交界渐强（62 S15 修好后）')
+    x, c = 样(4)   # 量出来约 5 ms（窗口跨到元音），同 64 S20
+    if 判(x, c, c + int(0.015 * SR))[0]: e.append('误报：切点后只剩 5 ms 擦音残尾就接元音（64 S20 farmers, | and）')
     x, c = 样(0)
     if 判(x, c, c + int(0.015 * SR))[0]: e.append('误报：切点后直接元音')
-    print('词头渐强核对 自检：' + ('通过（10 ms 擦音被 15 ms 渐强吃掉必抓；90 ms、22 ms 擦音配 8 ms 交界渐强、直接元音必放）' if not e else '；'.join(e)))
+    print('词头渐强核对 自检：' + ('通过（10 ms 擦音被 15 ms 渐强吃掉必抓；90 ms、22 ms 擦音配 8 ms 交界渐强、5 ms 擦音残尾、直接元音必放）' if not e else '；'.join(e)))
     return 1 if e else 0
 
 if __name__ == '__main__':
