@@ -18,7 +18,7 @@ The **rewards** were **substantial**. A study published in the Journal of Intern
 
 那时，**货物**(freight)都是**散装**(loose)运输。一**帮**(gangs)二十多名或更多的**码头工人**(dockworkers)，一件件地搬运**麻袋**(sacks)、**桶**(barrels)和**板条箱**(crates)。这是**繁重的/费力的**(strenuous)**苦差事**(drudgery)。船舶可能会花**多达**(up to)一半的时间**停泊**(berthed)在港，而且**偷窃**(theft)**猖獗**(rampant)。1956年，**装载**(loading)散货每吨花费约5.83美元；**据**(by reckoning)公司**估算**(by reckoning)，装载理想X号花费约16美分。
 
-集装箱并不新鲜。真正的**障碍**(hurdle)在于**共识**(consensus)：**相互竞争的**(rival)各家公司，箱子**尺寸**(dimensions)和**锁扣**(latches)**互不兼容**(incompatible)。1961年，一个国际标准委员会成立。1963年1月，理想X号的运营方、已更名的海陆公司（Sea-Land）允许该委员会使用其**专利**(patents)，不收**专利费**(royalties)，其中包括用于**吊装**(hoisting)的角**配件**(fittings)。由**吊机**(crane)吊起，一只箱子便能在船舶、**卡车**(lorry)和火车之间**顺畅地**(smoothly)**转运**(transferred)。
+集装箱并不新鲜。**障碍**(hurdle)在于**共识**(consensus)：**竞争对手**(rival)公司的箱子有**互不兼容的**(incompatible)**尺寸**(dimensions)和**门闩/锁扣**(latches)。1961年，一个国际标准委员会成立。1963年1月，理想X号的运营方、已更名的海陆公司（Sea-Land）允许该委员会使用其**专利**(patents)，不收**专利费**(royalties)，其中包括用于**吊装**(hoisting)的角**配件**(fittings)。由**吊机**(crane)吊起，一只箱子便能在船舶、**卡车**(lorry)和火车之间**顺畅地**(smoothly)**转运**(transferred)。
 
 这种**效率**(efficiency)是以**生计**(livelihoods)为**代价**(expense)换来的。1963年至1976年间，纽约**滨水区**(waterfront)的就业**缩减**(shrank)了约四分之三。大量货物越过港湾，转往伊丽莎白港1962年8月**启用**(inaugurated)的新**货运站**(terminal)。1967年到1980年，伦敦大部分**历史悠久的**(historic)**码头**(docks)接连关闭，而萨福克海岸的费利克斯托港则不断**扩张**(expanded)。
 
