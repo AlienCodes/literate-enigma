@@ -1,3 +1,5 @@
+# S11：用户 2026-11-08 原话：“翻译，翻译，翻译改一下，改成下面的这个内容：日常的用水量减少了一半以上，从2015年的约12亿升降至2018年初的约5亿升。”
+# S14：用户 2026-11-08 原话：“到来改成发生”
 # S10：用户 2026-11-08 原话：“Official official officials重点词汇。Consumption, consumption. 下面的中文意思改为消耗量。Benchmark，benchmark下面的意思改为对标。对标他们的用水量。对标他们的用水量。”],
 import json,re,glob,os
 # 第64篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
@@ -31,7 +33,7 @@ S=[
      "（make A visible：使 A 一目了然）"],
     [[("and let","也让"),("neighbours","邻里之间得以"),("**benchmark**","**对标**(benchmark)"),("their use.","他们的用水量。")],
      "（let sb do：让某人做……；\nlet 的主语仍是 the published tallies）"]]),
-(3,[[[("Daily use","日用水量"),("was more than **halved**,","**减半**(halved)有余，")],
+(3,[[[("Daily use","日常的用水量"),("was more than **halved**,","**减少了一半**(halved)以上，")],
      "（more than halved：减半还不止）"],
     [[("from about 1.2 billion litres in 2015","从2015年的约12亿升"),("to about 500 million by early 2018.","降至2018年初的约5亿升。")],
      "（from A to B：从 A 降到 B；\n500 million 后承前省略了 litres）"]]),
@@ -40,7 +42,7 @@ S=[
      "（release A from B：从 B 中放出 A）"],
     [[("with farms","加上农场"),("drawing","用水"),("less,","减少，"),("Day Zero","零日"),("was **postponed**","被**推迟**(postponed)"),("to July.","到7月。")],
      "（with farms drawing less：with 复合结构作状语，\n表示伴随的原因）"]]),
-(4,[[[("In March 2018,","2018年3月，"),("officials","官员们"),("judged","判断"),("Day Zero","零日"),("**unlikely**","**不太可能**(unlikely)"),("that year.","在当年到来。")],
+(4,[[[("In March 2018,","2018年3月，"),("officials","官员们"),("judged","判断"),("Day Zero","零日"),("**unlikely**","**不太可能**(unlikely)"),("that year.","在当年发生。")],
      "（judge A unlikely：判断 A 不太可能发生）"]]),
 (4,[[[("Winter rains","冬雨"),("**subsequently**","**随后**(subsequently)"),("**replenished**","**补充了**(replenished)"),("the reservoirs,","各水库，")]],
     [[("which were about half full by July.","到7月时水库已约半满。")],
@@ -94,7 +96,7 @@ CONF={"合组":G,
  "S18-1 poor areas segregated by race ":"过去分词短语作后置定语，修饰 areas，中文定语必须提前",
  "S18-2 made do with scant water,":"make do with 是固定说法“靠……勉强度日”，被宾语隔开，只能整组",
  "S20-2 on those with the least to giv":"with the least to give 是后置定语，修饰 those，中文“最拿不出余力的人”必须提前"},
-"方向":{"S11-1 more→减半有余，":"more than halved 是“减半还不止”，中文“减半有余”的“有余”就是 more than，方向一致"},
+"方向":{"S11-1 more→减少了一半以上，":"more than halved 是“减半还不止”，中文“减少了一半以上”的“以上”就是 more than，方向一致（用户 2026-11-08 定的译文）"},
 "数字":{"S11-2 500":"500 million 即5亿（5×10⁸），中文按文章定稿写“约5亿升”，数值正确；英文读 five hundred million"},
 "是的":{"S4-1 是**真实存在的**":"文章定稿原文“这一前景是真实存在的”；genuine 是形容词作表语，“是……的”对应 was genuine，去掉“是”不通顺"},
 "短语":{
