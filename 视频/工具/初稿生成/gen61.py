@@ -12,6 +12,7 @@ import json,re,glob,os
 # 2026-11-08 用户改 S8：“1956年，装载散货每吨花费约5.83美元；据公司估算，装载理想X号花费约16美分。”“loading 标注重点词汇。”“by company's reckoning 标注重点词汇，也标注重点词汇。 by one's reckoning 根据某人的估算，下面的小字，下面的小字。”（loading 标第一处）
 # 2026-11-08 用户改 S10：“障碍在于共识：竞争对手公司的箱子有互不兼容的尺寸和门闩/锁扣。”（原说明“中文把 incompatible 放到最后作谓语”随改稿不再成立，删去）
 # 2026-11-08 用户改 S11：“International standard 重点词汇，重点词汇。”
+# 2026-11-08 用户改 S12：“1963年1月，海陆公司, 即理想X号更名后的运营方, 允许该委员会 使用其专利，不收取专利费，包括用于吊装的角配件上的那些专利。”“小字加上：corner fittings 集装箱八个角上的金属件，专门用来让吊车吊起箱子，并把箱子上下左右死死锁在一起。”“截图的这两行小字全都去掉，换上我给的这个小字。截图的这两行小字全都去掉。”（英文逗号换成中文逗号，“委员会 使用”空格去掉；删去 renamed operator、those 两条说明）
 # 2026-11-08 用户改 S1 中文（原话见 用户同意记录 篇 61）：说啥改啥
 S=[
 (1,[[[("On 26 April 1956","1956年4月26日，"),("a","一艘"),("**converted**","**改造过的**(converted)"),("Second World War","二战"),("**tanker**,","**油轮**(tanker)"),("the Ideal X,","“理想X号”，")],
@@ -44,12 +45,11 @@ S=[
     [[("**rival**","**竞争对手**(rival)"),("firms'","公司的"),("boxes","箱子"),("had","有"),("**incompatible**","**互不兼容的**(incompatible)"),("**dimensions**","**尺寸**(dimensions)"),("and","和"),("**latches**.","**门闩/锁扣**(latches)。")]]]),
 (3,[[[("An","1961年，一个"),("**international standards**","**国际标准**(international standards)"),("committee","委员会"),("formed in 1961.","成立。")],
      "（form：（组织）成立）"]]),
-(3,[[[("In January 1963","1963年1月，"),("Sea-Land, the Ideal X's renamed operator,","理想X号的运营方、已更名的海陆公司（Sea-Land）")],
-     "（the Ideal X's renamed operator：同位语，补充说明 Sea-Land）"],
-    [[("let","允许"),("the committee","该委员会"),("use","使用"),("its **patents**","其**专利**(patents)，"),("free of","不收"),("**royalties**,","**专利费**(royalties)，")],
+(3,[[[("In January 1963","1963年1月，"),("Sea-Land,","海陆公司，"),("the Ideal X's","即理想X号"),("renamed","更名后的"),("operator,","运营方，")]],
+    [[("let","允许"),("the committee","该委员会"),("use","使用"),("its **patents**","其**专利**(patents)，"),("free of","不收取"),("**royalties**,","**专利费**(royalties)，")],
      "（let sb do：让某人做；free of：免除，不收）"],
-    [[("including","其中包括"),("those on corner **fittings** for **hoisting**.","用于**吊装**(hoisting)的角**配件**(fittings)。")],
-     "（those 指 patents；for hoisting：后置定语，修饰 fittings）"]]),
+    [[("including","包括"),("those on corner **fittings** for **hoisting**.","用于**吊装**(hoisting)的角**配件**(fittings)上的那些专利。")],
+     "（corner fittings：集装箱八个角上的金属件，\n专门用来让吊车吊起箱子，\n并把箱子上下左右死死锁在一起）"]]),
 (3,[[[("Lifted by **crane**,","由**吊机**(crane)吊起，"),("a box","一只箱子")],
      "（Lifted by crane：过去分词短语作状语）"],
     [[("could be","便能"),("**transferred** **smoothly** between ship, **lorry**, and train.","在船舶、**卡车**(lorry)和火车之间**顺畅地**(smoothly)**转运**(transferred)。")],
@@ -85,7 +85,6 @@ G={
  "S5 carried":"对齐不了：piece by piece 中文“一件件地”提前到“搬运”前，只能和 carried 放一组",
  "S5 and crates piece by piece":"对齐不了：piece by piece 已随“搬运”提前，这里只剩“和板条箱”",
  "S8 loose cargo":"对齐不了：loose cargo 中文是一个词“散货”，拆开不通",
- "S12 Sea-Land, the Ideal X's renamed operator":"对齐不了：同位语 the Ideal X's renamed operator 中文“理想X号的运营方、已更名的”必须提前到“海陆公司”前",
  "S15 by about three quarters between 1963 and 1976":"对齐不了：between 1963 and 1976 中文“1963年至1976年间”提前到句首（在 New York's 下面），这里只剩“约四分之三”",
  "S17 closed one after another from 1967 to 1980":"对齐不了：one after another 中文“接连”必须放到“关闭”前，from 1967 to 1980 中文提前到句首",
  "S19 had lifted trade between":"对齐不了：lift A by B 中文“使 A 增长了 B”，lifted 的“增长了”必须放到句末；trade between… 中文“国家之间的贸易”定语提前，trade 的“贸易”只能放到 countries 下面",
@@ -93,7 +92,7 @@ G={
  "S20 cranes now":"对齐不了：now 中文“如今”必须提前到句首（在 Tireless 下面）",
  "S11 An":"对齐不了：in 1961 中文“1961年”必须提前到句首（放在 An 下面）",
  "S11 formed in 1961":"对齐不了：in 1961 中文已提前到句首，这里只剩“成立”",
- "S12 those on corner fittings for hoisting":"对齐不了：for hoisting 是后置定语，修饰 fittings，中文“用于吊装的角配件”必须提前；两个重点词中文先后与英文相反",
+ "S12 those on corner fittings for hoisting":"对齐不了：for hoisting 是后置定语，修饰 fittings，中文“用于吊装的角配件上的那些专利”定语必须提前，those 的“那些专利”放到最后；两个重点词中文先后与英文相反",
  "S13 transferred smoothly between ship, lorry, and train":"对齐不了：between… 介词短语中文“在船舶、卡车和火车之间”必须提前到动词前，smoothly 中文“顺畅地”也在“转运”前；重点词中文先后与英文相反",
  "S14 came at the expense of livelihoods":"对齐不了：come at the expense of B 中文“是以 B 为代价换来的”，被“生计”隔开，只能整组",
  "S16 to a new terminal at Elizabeth, inaugurated in August 1962":"对齐不了：at Elizabeth 和 inaugurated in August 1962 都是后置定语，修饰 terminal，中文“伊丽莎白港1962年8月启用的新货运站”必须提前；两个重点词中文先后与英文相反",
@@ -104,7 +103,6 @@ DQ={
  "S2-2 trailer bodies detached from t":"detached from… 是后置定语，修饰 bodies，中文“从车轮和底盘上拆卸下来的挂车车厢”定语必须提前，重点词中文先后与英文相反",
  "S8-1 cost about $5.83 a ton;":"a ton 中文“每吨”必须提前到金额前",
  "S8-2 loading the Ideal X cost, by t":"插入语 by the company's reckoning 中文“据公司估算”必须提前到句首",
- "S12-1 Sea-Land, the Ideal X's rename":"同位语 the Ideal X's renamed operator 中文“理想X号的运营方、已更名的”必须提前到“海陆公司”前",
  "S12-3 those on corner fittings for h":"for hoisting 是后置定语，修饰 fittings，中文必须提前",
  "S13-2 transferred smoothly between s":"between… 介词短语中文必须提前到动词前",
  "S14-1 came at the expense of livelih":"come at the expense of B 中文“是以 B 为代价换来的”，被“生计”隔开，只能整组",
