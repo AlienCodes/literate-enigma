@@ -28,7 +28,7 @@ S=[
      "（however：插入语，表示转折）"]]),
 (3,[[[("The **impact**","**撞击**(impact)"),("**flung out**","**抛出了**(flung out)"),("more than 2,000","2,000多块"),("**catalogued**","**已编目的**(catalogued)"),("fragments","碎片，")],
      "（fling out：猛抛出，flung 是 fling 的过去式）"],
-    [[("and","另有"),("a **multitude** of","**大量**(multitude)"),("others","碎片"),("too","太"),("small","小，"),("to **pinpoint**.","无法**精确定位**(pinpoint)。")],
+    [[("and","另有"),("**a multitude of**","**大量**(a multitude of)"),("others","碎片"),("too","太"),("small","小，"),("to **pinpoint**.","无法**精确定位**(pinpoint)。")],
      "（a multitude of others：大量其他碎片，others 指 fragments；\ntoo…to…：太……而不能……）"]]),
 (3,[[[("At that height","在那个高度，"),("air","空气"),("**drag**","**阻力**(drag)"),("is **feeble**,","**微弱**(feeble)，")]],
     [[("so","因此"),("many","许多碎片"),("would **linger**","会在轨道上**滞留**(linger)"),("for decades.","数十年。")],
@@ -91,7 +91,6 @@ CONF={"合组":G,"中文重复":{"残骸":"用户 2026-11-08 原话把 S5 hulk �
  "S18-1 spacecraft whose owners had no":"whose 引导的定语从句修饰 spacecraft，中文定语必须提前"},
 "短语":{
  "S9 flung … of":"不是搭配：of 属于 a multitude of others，和 flung 无关；fling out 已整体标",
- "S9 multitude … of":"不是搭配：multitude 本文就是速查表第一个意思“大量，众多”，of 只把 others 连上",
  "S10 linger … for":"不是搭配：for decades 只表示时长，linger 单独就是“滞留”",
  "S12 scatter … of":"不是搭配：of 属于 raising the odds of，已整体标",
  "S15 unfold … over":"不是搭配：over decades 只表示时长，unfold 本文就是速查表第一个意思“（事态）逐步展开”",
