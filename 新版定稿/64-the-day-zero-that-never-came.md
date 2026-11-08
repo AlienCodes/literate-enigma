@@ -1,7 +1,6 @@
 # EN: The Day Zero That Never Came
 # ZH: 没有到来的零日
 ## 英文
-
 In January 2018, Cape Town **issued** a **stark** **alert**: Day Zero could arrive in April. The term **denoted** a **grim** **threshold**, reached when water in the city's **reservoirs**, as a **percentage** of **capacity**, fell to 13.5 per cent. Most taps would then be shut, and **residents** would queue at about 200 **designated** collection points.
 
 The **prospect** was **genuine**. Three **consecutive** years of **meagre** rainfall, from 2015 to 2017, had **diminished** the reservoirs serving a **metropolitan** area of about four million people. By early 2018 the **dams** were **roughly** a fifth full. The **countdown** turned a **chronic** **shortage** into an **imminent** deadline.
@@ -14,78 +13,78 @@ The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **s
 
 ## 中文
 
-2018年1月，开普敦**发出**(issued)了一则**严峻的**(stark)**警报**(alert)，称零日可能在4月到来。这个词**指的是**(denoted)一道**严酷的**(grim)**门槛**(threshold)：即当该市**水库**(reservoirs)的存水按占水库**容量**(capacity)的**百分比**(percentage)降至13.5%时达到的门槛。届时大部分水龙头将被关闭，**居民**(residents)要到约200个**指定的**(designated)取水点排队取水。
+2018年1月，开普敦**发出了**(issued)一则**严峻的**(stark)**警报**(alert)，称零日可能在4月到来。（Day Zero could arrive in April：冒号后补充说明 alert 的内容）（2018年初，南非开普敦发出了恐怖的警告：到了4月份，全城的水库可能就要彻底干涸，也就是“零日”要来了（届时全城将断水，只能排队领水）。）这个词**指的是**(denoted)一道**严酷的**(grim)**门槛**(threshold)：即当该市**水库**(reservoirs)的存水按占水库**容量**(capacity)的**百分比**(percentage)降至13.5%时达到的门槛。（reached when…：过去分词短语作后置定语，修饰 threshold；as a percentage of capacity：插入语）大部分水龙头届时将被关闭，**居民**(residents)要到约200个**指定的**(designated)取水点排队取水。
 
-这一**前景**(prospect)是**真实存在的**(genuine)。**连续**(consecutive)三年**贫乏的**(meagre)降雨，从2015到2017年，**减少了**(diminished)水库的蓄水，这些水库给一个**大都市**(metropolitan)区供水，大约400万人口。到2018年初，**水库**(dams)只剩**约**(roughly)五分之一的蓄水。**倒计时**(countdown)把一场**长期的**(chronic)**短缺**(shortage)变成了一个**迫在眉睫的**(imminent)最后期限。
+这一**前景**(prospect)是**真实存在的**(genuine)。**连续**(consecutive)三年**贫乏的**(meagre)降雨，从2015到2017年，**减少了**(diminished)水库的蓄水，这些水库给一个**大都市**(metropolitan)区供水，大约400万人口。（serving…：现在分词短语作后置定语，修饰 reservoirs）到2018年初，**水库**(dams)只剩**约**(roughly)五分之一的蓄水。**倒计时**(countdown)把一场**长期的**(chronic)**短缺**(shortage)变成了一个**迫在眉睫的**(imminent)最后期限。（turn A into B：把 A 变成 B）
 
-该市把**强制性的**(mandatory)**限制措施**(restrictions)与**前所未有的**(unprecedented)**透明度**(transparency)结合起来。自2018年2月1日起，每人每天**分配**(allotted)50**升**(litres)水。**官员们**(Officials)**公布**(disclosed)水库水位和**家庭**(household)**消耗量**(consumption)，公开的**统计数字**(tallies)让**节俭**(thrift)成效**一目了然**(visible)，也让邻里之间得以**对标**(benchmark)他们的用水量。日常的用水量**减少了一半**(halved)以上，从2015年的约12亿升降至2018年初的约5亿升。
+该市把**强制性的**(mandatory)**限制措施**(restrictions)与**前所未有的**(unprecedented)**透明度**(transparency)结合起来。（pair A with B：把 A 与 B 结合起来）（因为马上要全城断水，硬管怕老百姓暴乱，只能连哄带吓。强制手段：每人每天限用50升水，超额收十倍水费，不听话直接上门装限流器。透明度：每天公布水库真实水位和“断水倒计时”，吓得老百姓自己乖乖拼命省水。）自2018年2月1日起，每人被**分配**(allotted)每天50**升**(litres)水。**官员们**(Officials)**公布**(disclosed)水库水位和**家庭**(household)**消耗量**(consumption)；公开的**统计数字**(tallies)让**节俭**(thrift)成效**一目了然**(visible)，也让邻里之间得以**对标**(benchmark)他们的用水量。（make A visible：使 A 一目了然）（let sb do：让某人做……；let 的主语仍是 the published tallies）日常的用水量**减少了一半**(halved)以上，从2015年的约12亿升降至2018年初的约5亿升。（more than halved：减半还不止）（from A to B：从 A 降到 B；500 million 后承前省略了 litres）
 
-其他力量也**介入**(intervened)了。2018年2月，**上游**(upstream)的农民从他们的**灌溉**(irrigation)水坝中放出了水；加上农业用水减少，零日被**推迟**(postponed)到7月。2018年3月，官员们判断零日当年**不太可能**(unlikely)发生。**随后**(subsequently)，冬雨**重新装满了**(replenished)各水库，到7月时水库已约半满。50升的限额于2018年10月**放宽**(eased)。
+其他力量也**介入了**(intervened)。2018年2月，**上游的**(upstream)农民从他们的**灌溉**(irrigation)水坝中放出了水；加上农场用水减少，零日被**推迟**(postponed)到7月。（release A from B：从 B 中放出 A）（with farms drawing less：with 复合结构作状语，表示伴随的原因）2018年3月，官员们判断零日**不太可能**(unlikely)在当年发生。（judge A unlikely：判断 A 不太可能发生）（到了2018年3月，官方终于松了一口气，对外宣布：今年这“零日”（彻底断水）应该是不会发生了。）冬雨**随后**(subsequently)**重新装满了**(replenished)各水库，到7月时水库已约半满。（which were…：非限制性定语从句，修饰 the reservoirs）50升的限额于2018年10月**放宽**(eased)。
 
-批评者认为，**负担**(burden)分配得**并不均衡**(unevenly)。**城镇区**(townships)——在**种族隔离制度**(apartheid)下按种族被**隔离**(segregated)出来的贫困地区——长期以来就靠**很少**(scant)的水勉强对付，然而**更高的**(steeper)**水价**(tariffs)最大程度地**压榨了**(squeezed)他们。另一些人则责备**危言耸听的**(alarmist)警告，因为这些警告造成了游客**取消行程**(cancellations)。家庭、农民和雨水让取水点一直**闲置**(idle)，但这份**牺牲**(sacrifice)最沉重地落在了那些最没有能力付出的人身上。
+批评者认为，**负担**(burden)分配得**并不均衡**(unevenly)。（critics argued：插入语）**城镇区**(Townships)，在**种族隔离制度**(apartheid)下按种族被**隔离**(segregated)出来的贫困地区，长期以来就靠**很少的**(scant)水勉强对付，然而**更高的**(steeper)**水价**(tariffs)最大程度地**压榨了**(squeezed)他们。（poor areas segregated…：同位语，补充说明 Townships；segregated by race：过去分词短语作后置定语，修饰 areas）（make do with + 名词，意思是“靠……勉强凑合/将就着用”。）（them 指 Townships）另一些人则责备**危言耸听的**(alarmist)警告，因为这些警告造成了游客**取消行程**(cancellations)。（blame A for B：把 B 归咎于 A）家庭、农民和雨水让取水点一直**闲置**(idle)，但这份**牺牲**(sacrifice)最沉重地落在了那些最没有能力付出的人身上。（keep A idle：因为省水成功没断水，取水点没用上，一直闲置）（weigh on：压在……身上；with the least to give：后置定语，修饰 those）（简述：起因：南非开普敦连续三年大旱，水库见底。危机：2018年初发布警告，4月将迎来彻底断水的“零日”（水库跌破13.5%）。自救：全民硬核限水（每人每天50升），公开各家数据互相监督；加上农民放水和老天降雨。结局：危机解除，当年免于断水。真相：熬过了危机，但最残酷的现实是，底层穷人本来平时用水就少，却因为这次水费大涨，被高昂的水价压榨得最狠；同时，那些吓人的警告把游客全吓跑了，也重创了当地经济。）
 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
-| issued | v. (issue) 发出，发布（issue a warning/statement）；发行；n. 问题，议题（raise an issue） | 1 |
-| stark | adj. 严峻的，赤裸裸的（a stark warning/reminder/contrast）；荒凉的 | 1 |
-| alert | n. 警报（issue an alert；on high alert 高度戒备）；adj. 警觉的；v. 提醒 | 1 |
-| denoted | v. (denote) 表示，指代（The term denotes…）；注意与 connote（暗含）区分 | 1 |
-| grim | adj. 令人沮丧的，严酷的（a grim prospect/reality）；（表情）严肃的 | 1 |
-| threshold | n. 门槛，阈值（reach/cross a threshold；pain threshold 痛阈）；门口 | 1 |
-| reservoirs | n. (reservoir) 水库，蓄水池；（知识、人才的）储备，宝库（a reservoir of talent） | 1 |
-| percentage | n. 百分比，比例（as a percentage of capacity 占库容的百分比） | 1 |
+| issued | 本文：发出了；v. (issue) 发出，发布（issue a warning/statement）；发行；n. 问题，议题（raise an issue） | 1 |
+| stark | 本文：严峻的；adj. 严峻的，赤裸裸的（a stark warning/reminder/contrast）；荒凉的 | 1 |
+| alert | 本文：警报；n. 警报（issue an alert；on high alert 高度戒备）；adj. 警觉的；v. 提醒 | 1 |
+| denoted | 本文：指的是；v. (denote) 表示，指代（The term denotes…）；注意与 connote（暗含）区分 | 1 |
+| grim | 本文：严酷的；adj. 令人沮丧的，严酷的（a grim prospect/reality）；（表情）严肃的 | 1 |
+| threshold | 本文：门槛；n. 门槛，阈值（reach/cross a threshold；pain threshold 痛阈）；门口 | 1 |
+| reservoirs | 本文：水库；n. (reservoir) 水库，蓄水池；（知识、人才的）储备，宝库（a reservoir of talent） | 1 |
 | capacity | 本文：容量；n. 容量，容积；（可容纳的）最大数量（at full capacity 满负荷）；能力（capacity for/to do） | 1 |
-| residents | n. (resident) 居民，住户（local residents）；adj. 居住的；residence n. 住所 | 1 |
-| designated | adj./v. (designate) 指定的，选定的（designated collection points/areas）；任命 | 1 |
-| prospect | n. 前景，可能性（the prospect of sth；bright prospects 光明前景）；v. 勘探 | 2 |
-| genuine | adj. 真实的，真正的（a genuine threat/concern）；真诚的 | 2 |
-| consecutive | adj. 连续的（three consecutive years；for the fifth consecutive day） | 2 |
-| meagre | adj. 少量的，不足的（meagre rainfall/income/resources）；美式拼写 meager | 2 |
-| diminished | v. (diminish) 减少，削弱（diminish reserves/the importance of sth）；贬低 | 2 |
-| metropolitan | adj. 大都市的（a metropolitan area 都市区）；metropolis n. 大都市 | 2 |
+| percentage | 本文：百分比；n. 百分比，比例（as a percentage of capacity 占库容的百分比） | 1 |
+| residents | 本文：居民；n. (resident) 居民，住户（local residents）；adj. 居住的；residence n. 住所 | 1 |
+| designated | 本文：指定的；adj./v. (designate) 指定的，选定的（designated collection points/areas）；任命 | 1 |
+| prospect | 本文：前景；n. 前景，可能性（the prospect of sth；bright prospects 光明前景）；v. 勘探 | 2 |
+| genuine | 本文：真实存在的；adj. 真实的，真正的（a genuine threat/concern）；真诚的 | 2 |
+| consecutive | 本文：连续；adj. 连续的（three consecutive years；for the fifth consecutive day） | 2 |
+| meagre | 本文：贫乏的；adj. 少量的，不足的（meagre rainfall/income/resources）；美式拼写 meager | 2 |
+| diminished | 本文：减少了；v. (diminish) 减少，削弱（diminish reserves/the importance of sth）；贬低 | 2 |
+| metropolitan | 本文：大都市；adj. 大都市的（a metropolitan area 都市区）；metropolis n. 大都市 | 2 |
 | dams | 本文：水库；n. (dam) 水坝，水库（build a dam；irrigation dams 灌溉水坝）；v. 筑坝拦水 | 2 |
 | roughly | 本文：约；adv. 大约，大致（roughly a fifth/half；roughly speaking 粗略地说）；粗暴地 | 2 |
-| countdown | n. 倒计时（the countdown to sth 迈向……的倒计时） | 2 |
-| chronic | adj. 长期的，慢性的（a chronic shortage/disease）；积习难改的 | 2 |
-| shortage | n. 短缺，不足（a water/labour shortage；a shortage of sth） | 2 |
-| imminent | adj. 迫在眉睫的，即将发生的（an imminent threat/danger） | 2 |
-| mandatory | adj. 强制的，法定的（mandatory restrictions/retirement）；同 compulsory | 3 |
-| restrictions | n. (restriction) 限制，约束（impose/lift restrictions on sth） | 3 |
-| unprecedented | adj. 前所未有的，史无前例的（on an unprecedented scale） | 3 |
-| transparency | n. 透明度，公开（greater transparency in government）；transparent adj. | 3 |
-| allotted | v. (allot) 分配，配给（be allotted 50 litres；allotted time 规定时间） | 3 |
+| countdown | 本文：倒计时；n. 倒计时（the countdown to sth 迈向……的倒计时） | 2 |
+| chronic | 本文：长期的；adj. 长期的，慢性的（a chronic shortage/disease）；积习难改的 | 2 |
+| shortage | 本文：短缺；n. 短缺，不足（a water/labour shortage；a shortage of sth） | 2 |
+| imminent | 本文：迫在眉睫的；adj. 迫在眉睫的，即将发生的（an imminent threat/danger） | 2 |
+| mandatory | 本文：强制性的；adj. 强制的，法定的（mandatory restrictions/retirement）；同 compulsory | 3 |
+| restrictions | 本文：限制措施；n. (restriction) 限制，约束（impose/lift restrictions on sth） | 3 |
+| unprecedented | 本文：前所未有的；adj. 前所未有的，史无前例的（on an unprecedented scale） | 3 |
+| transparency | 本文：透明度；n. 透明度，公开（greater transparency in government）；transparent adj. | 3 |
+| allotted | 本文：分配；v. (allot) 分配，配给（be allotted 50 litres；allotted time 规定时间） | 3 |
 | litres | 本文：升；n. (litre) 升（容量单位；美式拼写 liter）（50 litres a day 每天50升） | 3 |
-| officials | 本文：官员们；n. (official) 官员，官方人员（government/city officials）；adj. 官方的，正式的 | 3 |
-| disclosed | v. (disclose) 公开，披露（disclose information/figures）；disclosure n. | 3 |
-| household | adj. 家庭的（household consumption/income）；n. 一户，家庭 | 3 |
-| consumption | n. 消耗量，消费（water/energy consumption）；consume v. | 3 |
-| thrift | n. 节俭，节约（practise thrift）；thrifty adj.；a thrift shop 二手慈善店 | 3 |
-| visible | adj. 看得见的，明显的（make sth visible；a visible effect）；visibility n. | 3 |
-| tallies | n. (tally) 计数，记录（keep a tally of sth）；v. 吻合（tally with） | 3 |
+| Officials | 本文：官员们；n. (official) 官员，官方人员（government/city officials）；adj. 官方的，正式的 | 3 |
+| disclosed | 本文：公布；v. (disclose) 公开，披露（disclose information/figures）；disclosure n. | 3 |
+| household | 本文：家庭；adj. 家庭的（household consumption/income）；n. 一户，家庭 | 3 |
+| consumption | 本文：消耗量；n. 消耗量，消费（water/energy consumption）；consume v. | 3 |
+| tallies | 本文：统计数字；n. (tally) 计数，记录（keep a tally of sth）；v. 吻合（tally with） | 3 |
+| thrift | 本文：节俭；n. 节俭，节约（practise thrift）；thrifty adj.；a thrift shop 二手慈善店 | 3 |
+| visible | 本文：一目了然；adj. 看得见的，明显的（make sth visible；a visible effect）；visibility n. | 3 |
 | benchmark | 本文：对标；v. 以……为基准比较，对标，对照（benchmark sth against sth）；n. 基准，标杆（set a benchmark） | 3 |
-| halved | v. (halve) 使减半（halve costs/use）；n. half | 3 |
-| intervened | v. (intervene) 介入，干预（intervene in a dispute）；（事件）发生而阻碍；intervention n. | 4 |
-| upstream | adj./adv. 上游的（upstream farmers）；反义 downstream | 4 |
-| irrigation | n. 灌溉（irrigation dams/systems）；irrigate v. | 4 |
-| postponed | v. (postpone) 推迟，延期（postpone sth to/until July）；同 put off | 4 |
-| unlikely | adj. 不太可能的（It is unlikely that…；be unlikely to do） | 4 |
-| subsequently | adv. 随后，后来（subsequently become/be found）；subsequent adj. 随后的（subsequent events） | 4 |
+| halved | 本文：减少了一半；v. (halve) 使减半（halve costs/use）；n. half | 3 |
+| intervened | 本文：介入了；v. (intervene) 介入，干预（intervene in a dispute）；（事件）发生而阻碍；intervention n. | 4 |
+| upstream | 本文：上游的；adj./adv. 上游的（upstream farmers）；反义 downstream | 4 |
+| irrigation | 本文：灌溉；n. 灌溉（irrigation dams/systems）；irrigate v. | 4 |
+| postponed | 本文：推迟；v. (postpone) 推迟，延期（postpone sth to/until July）；同 put off | 4 |
+| unlikely | 本文：不太可能；adj. 不太可能的（It is unlikely that…；be unlikely to do） | 4 |
+| subsequently | 本文：随后；adv. 随后，后来（subsequently become/be found）；subsequent adj. 随后的（subsequent events） | 4 |
 | replenished | 本文：重新装满了；v. (replenish) 补充，重新装满（replenish reservoirs/stocks） | 4 |
-| eased | v. (ease) 放宽，缓和（ease restrictions/tension）；n. 容易（with ease） | 4 |
-| burden | n. 负担，重担（bear/share the burden；the burden fell on sb）；v. 使负担 | 5 |
-| unevenly | adv. 不均衡地（be unevenly distributed）；uneven adj. | 5 |
-| townships | n. (township) （南非）种族隔离时期划给非白人的城镇区；（美）镇区 | 5 |
-| segregated | v./adj. (segregate) 隔离（racially segregated）；segregation n. | 5 |
-| apartheid | n. （南非）种族隔离制度（under apartheid） | 5 |
-| scant | adj. 很少的，不足的（scant attention/evidence/resources；make do with scant water） | 5 |
-| steeper | adj. (steep 比较级) （价格、涨幅）过高的，急剧的（steep prices/rise）；陡峭的 | 5 |
-| tariffs | n. (tariff) （水电等）收费标准，价目；关税（impose tariffs on imports） | 5 |
-| squeezed | 本文：压榨；v. (squeeze) 压榨，使拮据，挤压（squeeze households/budgets；be squeezed by rising costs）；n. 紧缩（a credit squeeze） | 5 |
-| alarmist | adj. 危言耸听的（alarmist warnings/reports）；n. 散布恐慌者 | 5 |
-| cancellations | n. (cancellation) 取消（booking cancellations）；cancel v. | 5 |
-| idle | adj. 闲置的，未被使用的（lie idle）；无所事事的；v. 空转 | 5 |
-| sacrifice | v./n. 牺牲，舍弃（sacrifice sth for sth；make sacrifices） | 5 |
+| eased | 本文：放宽；v. (ease) 放宽，缓和（ease restrictions/tension）；n. 容易（with ease） | 4 |
+| burden | 本文：负担；n. 负担，重担（bear/share the burden；the burden fell on sb）；v. 使负担 | 5 |
+| unevenly | 本文：并不均衡；adv. 不均衡地（be unevenly distributed）；uneven adj. | 5 |
+| Townships | 本文：城镇区；n. (township) （南非）种族隔离时期划给非白人的城镇区；（美）镇区 | 5 |
+| apartheid | 本文：种族隔离制度；n. （南非）种族隔离制度（under apartheid） | 5 |
+| segregated | 本文：隔离；v./adj. (segregate) 隔离（racially segregated）；segregation n. | 5 |
+| scant | 本文：很少的；adj. 很少的，不足的（scant attention/evidence/resources；make do with scant water） | 5 |
+| steeper | 本文：更高的；adj. (steep 比较级) （价格、涨幅）过高的，急剧的（steep prices/rise）；陡峭的 | 5 |
+| tariffs | 本文：水价；n. (tariff) （水电等）收费标准，价目；关税（impose tariffs on imports） | 5 |
+| squeezed | 本文：压榨了；v. (squeeze) 压榨，使拮据，挤压（squeeze households/budgets；be squeezed by rising costs）；n. 紧缩（a credit squeeze） | 5 |
+| alarmist | 本文：危言耸听的；adj. 危言耸听的（alarmist warnings/reports）；n. 散布恐慌者 | 5 |
+| cancellations | 本文：取消行程；n. (cancellation) 取消（booking cancellations）；cancel v. | 5 |
+| idle | 本文：闲置；adj. 闲置的，未被使用的（lie idle）；无所事事的；v. 空转 | 5 |
+| sacrifice | 本文：牺牲；v./n. 牺牲，舍弃（sacrifice sth for sth；make sacrifices） | 5 |
 
 ## 史实与来源
 - 【T3/T4/T5】2018年1月（18日市长讲话），开普敦警告零日"几乎不可避免"，预计2018年4月（21日）到来；零日指水库总蓄水降至13.5%，届时关闭大部分居民自来水，居民到约200个取水点领水。Al Jazeera 2018-01-16：https://www.aljazeera.com/news/2018/1/16/cape-town-confronts-looming-day-zero-water-crisis ；VOA Learning English：https://learningenglish.voanews.com/a/cape-town-day-zero-changed-city-forever/4364588.html
