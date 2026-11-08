@@ -15,8 +15,8 @@ S=[
      "（between two intact satellites：后置定语，\n修饰 collision；\nintact：完好无损的）"]]),
 (2,[[[("Neither craft","两个飞行器都没有"),("**swerved**.","**紧急转向避让**(swerved)。")],
      "（neither：两者都不）"]]),
-(2,[[[("The Russian","那具俄罗斯"),("**hulk**,","**空壳**(hulk)"),("lacking","没有"),("**propulsion**,","**推进**(propulsion)装置，"),("could not.","想躲也躲不了。")],
-     "（hulk：本文指失效卫星的空壳；\nlacking propulsion：现在分词短语作原因状语；\ncould not 后省略了 swerve）"]]),
+(2,[[[("The Russian","那个俄罗斯的（卫星）"),("**hulk**,","**残骸**(hulk)，"),("lacking","由于缺乏"),("**propulsion**,","**推进力**(propulsion)，"),("could not.","无法转向。")],
+     "（hulk：本文指失效卫星的残骸；\nlacking propulsion：现在分词短语作原因状语；\ncould not 后省略了 swerve）"]]),
 (2,[[[("A public","一项公开的"),("collision-warning","碰撞预警"),("service","服务"),("had forecast","曾预报，"),("a **narrow miss**","两星将**惊险擦过**(narrow miss)，"),("of about 584 metres,","相距约584米，")],
      "（a narrow miss：惊险擦过，险些相撞；\nof about 584 metres：后置定语，修饰 miss）"],
     [[("yet","但"),("the predicted","预测中的这次"),("**encounter**","**交会**(encounter)"),("was not among","并未排进"),("the week's","当周"),("closest;","距离最近的几次之列；")],
@@ -80,7 +80,7 @@ G={
  "S18 spacecraft whose owners had no part in it":"对齐不了：whose 引导的定语从句修饰 spacecraft，中文“那些主人与此事毫无瓜葛的航天器”定语必须提前",
  "S18 Years after the crash":"对齐不了：Years after the crash 中文“相撞多年之后”，after 的宾语必须提前",
 }
-CONF={"合组":G,
+CONF={"合组":G,"中文重复":{"残骸":"用户 2026-11-08 原话把 S5 hulk 改成“残骸”（“那个俄罗斯的 (卫星) 残骸，由于缺乏推进力，无法转向。”），与 S8 wreckage 同中文，按用户原话保留"},
 "对齐":{
  "S1-1 nearly 790 kilometres above Si":"above Siberia 修饰 790 kilometres，中文“在西伯利亚上空近790公里处”地点必须提前",
  "S1-2 at about 42,000 kilometres an ":"an hour（每小时）中文“时速”必须放到数字前",
