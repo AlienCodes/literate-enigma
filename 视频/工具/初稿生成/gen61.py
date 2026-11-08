@@ -13,6 +13,7 @@ import json,re,glob,os
 # 2026-11-08 用户改 S10：“障碍在于共识：竞争对手公司的箱子有互不兼容的尺寸和门闩/锁扣。”（原说明“中文把 incompatible 放到最后作谓语”随改稿不再成立，删去）
 # 2026-11-08 用户改 S11：“International standard 重点词汇，重点词汇。”
 # 2026-11-08 用户改 S12：“1963年1月，海陆公司, 即理想X号更名后的运营方, 允许该委员会 使用其专利，不收取专利费，包括用于吊装的角配件上的那些专利。”“小字加上：corner fittings 集装箱八个角上的金属件，专门用来让吊车吊起箱子，并把箱子上下左右死死锁在一起。”“截图的这两行小字全都去掉，换上我给的这个小字。截图的这两行小字全都去掉。”（英文逗号换成中文逗号，“委员会 使用”空格去掉；删去 renamed operator、those 两条说明）
+# 2026-11-08 用户改 S14：“在下面简述一下At the expense of 的用法，简述一下它的用法。”
 # 2026-11-08 用户改 S1 中文（原话见 用户同意记录 篇 61）：说啥改啥
 S=[
 (1,[[[("On 26 April 1956","1956年4月26日，"),("a","一艘"),("**converted**","**改造过的**(converted)"),("Second World War","二战"),("**tanker**,","**油轮**(tanker)"),("the Ideal X,","“理想X号”，")],
@@ -55,7 +56,7 @@ S=[
     [[("could be","便能"),("**transferred** **smoothly** between ship, **lorry**, and train.","在船舶、**卡车**(lorry)和火车之间**顺畅地**(smoothly)**转运**(transferred)。")],
      "（between A, B, and C：在 A、B 和 C 之间，中文状语提前）"]]),
 (4,[[[("This **efficiency**","这种**效率**(efficiency)"),("came **at the expense of** **livelihoods**.","是**以**(at the expense of)**生计**(livelihoods)**为代价**(at the expense of)换来的。")],
-     "（come at the expense of：以……为代价换来）"]]),
+     "（come at the expense of：以……为代价换来；\nat the expense of：以牺牲……为代价，后面接付出代价的人或物，\n用于“得到了一样东西，却损害了另一样”，\n如 at the expense of quality 以牺牲质量为代价、\nat the expense of others 让别人受损）"]]),
 (4,[[[("New York's","1963年至1976年间，纽约"),("**waterfront**","**滨水区**(waterfront)"),("employment","的就业"),("**shrank**","**缩减了**(shrank)"),("by about three quarters between 1963 and 1976.","约四分之三。")],
      "（shrink by：缩减了（幅度）；between 1963 and 1976：中文时间状语提前）"]]),
 (4,[[[("Much of the cargo","大量货物"),("crossed","越过"),("the harbour","港湾，")]],
