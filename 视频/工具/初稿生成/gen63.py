@@ -41,7 +41,7 @@ S=[
     [[("later","后来"),("named","被称为"),("the Kessler","凯斯勒"),("**syndrome**:","**综合征**(syndrome)：")],
      "（later named…：过去分词短语作后置定语，修饰 spiral；\n冒号后面说明这一设想的内容）"],
     [[("each","每次"),("collision","相撞"),("would **scatter**","都会**散布**(scatter)"),("fragments,","碎片，")]],
-    [[("**raising the odds of**","**使**(raising the odds of)"),("**subsequent**","**后续**(subsequent)"),("crashes.","撞击**更有可能发生**(raising the odds of)。")],
+    [[("**raising the odds of**","**提高了**(raising the odds of)"),("**subsequent**","**后续**(subsequent)"),("crashes.","相撞**的几率**(raising the odds of)。")],
      "（raising the odds of…：现在分词短语作结果状语，\n使……更有可能）"]]),
 (4,[[[("The 2009 crash","2009年的这次相撞"),("**illustrated**","**例证了**(illustrated)"),("that **premise**","这一**前提**(premise)，")]],
     [[("without","却并未"),("**triggering**","**引发**(triggering)"),("a **runaway**","**失控的**(runaway)"),("**chain reaction**.","**连锁反应**(chain reaction)。")],
@@ -96,7 +96,7 @@ CONF={"合组":G,"中文重复":{"残骸":"用户 2026-11-08 原话把 S5 hulk �
  "S15 unfold … over":"不是搭配：over decades 只表示时长，unfold 本文就是速查表第一个意思“（事态）逐步展开”",
  "S17 mandated … of":"不是搭配：of 属于 disposal of low-orbit craft，和 mandated 无关",
  "S15 unfold over decades":"不是搭配：unfold 本文就是速查表第一个意思“（事态）逐步展开”，over decades 单独译“历时几十年”"},
-"同词异译":{"raising the odds of：使/更有可能发生":"不是两种译法：raise the odds of 的意思“使……更有可能发生”被“后续撞击”隔开，“使”和“更有可能发生”是同一个意思的两部分（T23）"}}
+"同词异译":{"raising the odds of：提高了/的几率":"不是两种译法：raise the odds of 的意思“提高了……的几率”被“后续相撞”隔开，“提高了”和“的几率”是同一个意思的两部分（T23，用户 11-08 原话“提高了后续相撞的几率”）"}}
 out={"no":"63","title_en":"The Crowded Heavens","title_zh":"拥挤的苍穹","title_fx":{"hl":["Crowded","Heavens"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Siberia":"西伯利亚","Iridium 33":"铱星33号","Kosmos 2251":"宇宙2251号","Russian":"俄罗斯","American":"美国","International Space Station":"国际空间站","NASA":"美国国家航空航天局","Kessler":"凯斯勒","Federal Communications Commission":"联邦通信委员会","America":"美国"}}
