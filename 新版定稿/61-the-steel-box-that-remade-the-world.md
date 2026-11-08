@@ -6,7 +6,7 @@ On 26 April 1956 a **converted** Second World War **tanker**, the Ideal X, **sli
 
 At the time, **freight** travelled **loose**. **Gangs** of twenty or more **dockworkers** carried **sacks**, **barrels**, and **crates** piece by piece. It was **strenuous** **drudgery**. Ships could spend **up to** half their time **berthed**, and **theft** was **rampant**. In 1956 **loading** loose cargo cost about $5.83 a ton; loading the Ideal X cost, **by** the company's **reckoning**, about 16 cents.
 
-Containers were not new. The **hurdle** was **consensus**: **rival** firms' boxes had **incompatible** **dimensions** and **latches**. An international standards committee formed in 1961. In January 1963 Sea-Land, the Ideal X's renamed operator, let the committee use its **patents** free of **royalties**, including those on corner **fittings** for **hoisting**. Lifted by **crane**, a box could be **transferred** **smoothly** between ship, **lorry**, and train.
+Containers were not new. The **hurdle** was **consensus**: **rival** firms' boxes had **incompatible** **dimensions** and **latches**. An **international standards** committee formed in 1961. In January 1963 Sea-Land, the Ideal X's renamed operator, let the committee use its **patents** free of **royalties**, including those on corner **fittings** for **hoisting**. Lifted by **crane**, a box could be **transferred** **smoothly** between ship, **lorry**, and train.
 
 This **efficiency** came at the **expense** of **livelihoods**. New York's **waterfront** employment **shrank** by about three quarters between 1963 and 1976. Much of the cargo crossed the harbour to a new **terminal** at Elizabeth, **inaugurated** in August 1962. Most of London's **historic** **docks** closed one after another from 1967 to 1980, while Felixstowe, on the Suffolk coast, **expanded**.
 
@@ -18,7 +18,7 @@ The **rewards** were **substantial**. A study published in the Journal of Intern
 
 那时，**货物**(freight)都是**散装**(loose)运输。一**帮**(gangs)二十多名或更多的**码头工人**(dockworkers)，一件件地搬运**麻袋**(sacks)、**桶**(barrels)和**板条箱**(crates)。这是**繁重的/费力的**(strenuous)**苦差事**(drudgery)。船舶可能会花**多达**(up to)一半的时间**停泊**(berthed)在港，而且**偷窃**(theft)**猖獗**(rampant)。1956年，**装载**(loading)散货每吨花费约5.83美元；**据**(by reckoning)公司**估算**(by reckoning)，装载理想X号花费约16美分。
 
-集装箱并不新鲜。**障碍**(hurdle)在于**共识**(consensus)：**竞争对手**(rival)公司的箱子有**互不兼容的**(incompatible)**尺寸**(dimensions)和**门闩/锁扣**(latches)。1961年，一个国际标准委员会成立。1963年1月，理想X号的运营方、已更名的海陆公司（Sea-Land）允许该委员会使用其**专利**(patents)，不收**专利费**(royalties)，其中包括用于**吊装**(hoisting)的角**配件**(fittings)。由**吊机**(crane)吊起，一只箱子便能在船舶、**卡车**(lorry)和火车之间**顺畅地**(smoothly)**转运**(transferred)。
+集装箱并不新鲜。**障碍**(hurdle)在于**共识**(consensus)：**竞争对手**(rival)公司的箱子有**互不兼容的**(incompatible)**尺寸**(dimensions)和**门闩/锁扣**(latches)。1961年，一个**国际标准**(international standards)委员会成立。1963年1月，理想X号的运营方、已更名的海陆公司（Sea-Land）允许该委员会使用其**专利**(patents)，不收**专利费**(royalties)，其中包括用于**吊装**(hoisting)的角**配件**(fittings)。由**吊机**(crane)吊起，一只箱子便能在船舶、**卡车**(lorry)和火车之间**顺畅地**(smoothly)**转运**(transferred)。
 
 这种**效率**(efficiency)是以**生计**(livelihoods)为**代价**(expense)换来的。1963年至1976年间，纽约**滨水区**(waterfront)的就业**缩减**(shrank)了约四分之三。大量货物越过港湾，转往伊丽莎白港1962年8月**启用**(inaugurated)的新**货运站**(terminal)。1967年到1980年，伦敦大部分**历史悠久的**(historic)**码头**(docks)接连关闭，而萨福克海岸的费利克斯托港则不断**扩张**(expanded)。
 
@@ -61,6 +61,7 @@ The **rewards** were **substantial**. A study published in the Journal of Intern
 | incompatible | adj. 不兼容的，不相容的（incompatible with；incompatible systems） | 3 |
 | dimensions | n. (dimension) 尺寸，大小；方面（the dimensions of a room；a new dimension） | 3 |
 | latches | n. (latch) 门闩，锁扣（on the latch 闩上）；v. latch onto 抓住 | 3 |
+| international standards | 国际标准（set/meet international standards；an international standards body） | 3 |
 | patents | n. (patent) 专利（take out/hold a patent；patent on sth） | 3 |
 | royalties | n. (royalty) 专利使用费，版税（pay royalties on）；王室成员 | 3 |
 | fittings | n. (fitting) 配件，零件（pipe/light fittings）；试衣 | 3 |

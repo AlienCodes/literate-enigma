@@ -11,6 +11,7 @@ import json,re,glob,os
 # 2026-11-08 用户改 S7：“船舶可能会花多达一半的时间 停泊在港，而且偷窃猖獗。”“up to 重点词汇 多达”（“时间 停泊”中间空格去掉）
 # 2026-11-08 用户改 S8：“1956年，装载散货每吨花费约5.83美元；据公司估算，装载理想X号花费约16美分。”“loading 标注重点词汇。”“by company's reckoning 标注重点词汇，也标注重点词汇。 by one's reckoning 根据某人的估算，下面的小字，下面的小字。”（loading 标第一处）
 # 2026-11-08 用户改 S10：“障碍在于共识：竞争对手公司的箱子有互不兼容的尺寸和门闩/锁扣。”（原说明“中文把 incompatible 放到最后作谓语”随改稿不再成立，删去）
+# 2026-11-08 用户改 S11：“International standard 重点词汇，重点词汇。”
 # 2026-11-08 用户改 S1 中文（原话见 用户同意记录 篇 61）：说啥改啥
 S=[
 (1,[[[("On 26 April 1956","1956年4月26日，"),("a","一艘"),("**converted**","**改造过的**(converted)"),("Second World War","二战"),("**tanker**,","**油轮**(tanker)"),("the Ideal X,","“理想X号”，")],
@@ -41,7 +42,7 @@ S=[
 (3,[[[("Containers","集装箱"),("were not new.","并不新鲜。")]]]),
 (3,[[[("The **hurdle**","**障碍**(hurdle)"),("was **consensus**:","在于**共识**(consensus)：")]],
     [[("**rival**","**竞争对手**(rival)"),("firms'","公司的"),("boxes","箱子"),("had","有"),("**incompatible**","**互不兼容的**(incompatible)"),("**dimensions**","**尺寸**(dimensions)"),("and","和"),("**latches**.","**门闩/锁扣**(latches)。")]]]),
-(3,[[[("An international standards committee formed in 1961.","1961年，一个国际标准委员会成立。")],
+(3,[[[("An","1961年，一个"),("**international standards**","**国际标准**(international standards)"),("committee","委员会"),("formed in 1961.","成立。")],
      "（form：（组织）成立）"]]),
 (3,[[[("In January 1963","1963年1月，"),("Sea-Land, the Ideal X's renamed operator,","理想X号的运营方、已更名的海陆公司（Sea-Land）")],
      "（the Ideal X's renamed operator：同位语，补充说明 Sea-Land）"],
@@ -90,7 +91,8 @@ G={
  "S19 had lifted trade between":"对齐不了：lift A by B 中文“使 A 增长了 B”，lifted 的“增长了”必须放到句末；trade between… 中文“国家之间的贸易”定语提前，trade 的“贸易”只能放到 countries 下面",
  "S19 700 per cent over 20 years":"对齐不了：700 per cent 中文“700%”是一个数；over 20 years 中文“20年间”提前到句首",
  "S20 cranes now":"对齐不了：now 中文“如今”必须提前到句首（在 Tireless 下面）",
- "S11 An international standards committee formed in 1961":"对齐不了：in 1961 中文“1961年”必须提前到句首",
+ "S11 An":"对齐不了：in 1961 中文“1961年”必须提前到句首（放在 An 下面）",
+ "S11 formed in 1961":"对齐不了：in 1961 中文已提前到句首，这里只剩“成立”",
  "S12 those on corner fittings for hoisting":"对齐不了：for hoisting 是后置定语，修饰 fittings，中文“用于吊装的角配件”必须提前；两个重点词中文先后与英文相反",
  "S13 transferred smoothly between ship, lorry, and train":"对齐不了：between… 介词短语中文“在船舶、卡车和火车之间”必须提前到动词前，smoothly 中文“顺畅地”也在“转运”前；重点词中文先后与英文相反",
  "S14 came at the expense of livelihoods":"对齐不了：come at the expense of B 中文“是以 B 为代价换来的”，被“生计”隔开，只能整组",
@@ -102,7 +104,6 @@ DQ={
  "S2-2 trailer bodies detached from t":"detached from… 是后置定语，修饰 bodies，中文“从车轮和底盘上拆卸下来的挂车车厢”定语必须提前，重点词中文先后与英文相反",
  "S8-1 cost about $5.83 a ton;":"a ton 中文“每吨”必须提前到金额前",
  "S8-2 loading the Ideal X cost, by t":"插入语 by the company's reckoning 中文“据公司估算”必须提前到句首",
- "S11-1 An international standards com":"in 1961 中文“1961年”必须提前到句首",
  "S12-1 Sea-Land, the Ideal X's rename":"同位语 the Ideal X's renamed operator 中文“理想X号的运营方、已更名的”必须提前到“海陆公司”前",
  "S12-3 those on corner fittings for h":"for hoisting 是后置定语，修饰 fittings，中文必须提前",
  "S13-2 transferred smoothly between s":"between… 介词短语中文必须提前到动词前",
