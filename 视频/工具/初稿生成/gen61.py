@@ -4,6 +4,7 @@ import json,re,glob,os
 # 两处三项并列加牛津逗号（T18）；at the expense of 整体标、被隔开两处都标（T22/T23）。
 # 2026-11-08 用户：“Converted 标注重点词汇，标注重点词汇，意思为改造过的。”（与 57 converted 撞车，用户坚持加，allow_clash）
 # 2026-11-08 用户改 S2：“固定在她甲板上的是58个集装箱——其实就是从车轮和底盘上拆卸下来的挂车车厢。”“wheel 标注重点词汇，标注重点词汇。”“下面的小字改成：trailor body 挂车车厢 就是在trailer body后面，就是加上挂车车厢这四个字。就整体翻译为挂车车厢。”“字小字部分额外附加: detach from 指将某物从原本附着、连接或所属的主体上分离或拆卸下来。”（破折号按 T36 由 做.sh 自动换）
+# 2026-11-08 用户改 S3：“翻译不准，改成这个翻译: 极少数旁观者会把一批如此平淡无奇的货物当作一个里程碑。”
 # 2026-11-08 用户改 S1 中文（原话见 用户同意记录 篇 61）：说啥改啥
 S=[
 (1,[[[("On 26 April 1956","1956年4月26日，"),("a","一艘"),("**converted**","**改造过的**(converted)"),("Second World War","二战"),("**tanker**,","**油轮**(tanker)"),("the Ideal X,","“理想X号”，")],
@@ -14,7 +15,7 @@ S=[
      "（倒装句：表语 Clamped to her deck 提前，主语是 58 containers；\nclamp A to B：把 A 固定在 B 上；her 指船）"],
     [[("**trailer** bodies **detached from** their **wheels** and **chassis**.","其实就是**从**(detached from)**车轮**(wheels)和**底盘**(chassis)**上拆卸下来的**(detached from)**挂车**(trailer)车厢。")],
      "（trailer bodies 挂车车厢：同位语，补充说明 containers；\ndetached from…：过去分词短语作后置定语，修饰 bodies；\ndetach from：指将某物从原本附着、连接或所属的主体上分离或拆卸下来）"]]),
-(1,[[[("Few **spectators**","当时的**旁观者**(spectators)恐怕很少"),("would have taken","会把"),("so","这样一批"),("**unremarkable**","**平淡无奇的**(unremarkable)"),("a **cargo**","**货物**(cargo)"),("for a **landmark**.","当作**里程碑**(landmark)。")],
+(1,[[[("Few","极少数"),("**spectators**","**旁观者**(spectators)"),("would have taken","会把"),("so","一批如此"),("**unremarkable**","**平淡无奇的**(unremarkable)"),("a **cargo**","**货物**(cargo)"),("for a **landmark**.","当作一个**里程碑**(landmark)。")],
      "（take A for B：把 A 当作 B；\nso＋形容词＋a＋名词：这样……的一个；\nwould have done：对过去情况的推测）"]]),
 (2,[[[("At the time,","那时，"),("**freight**","**货品**(freight)"),("travelled **loose**.","都以**散装**(loose)方式运输。")],
      "（travelled loose：loose 作补语，\n说明货物运输时的状态）"]]),
@@ -72,7 +73,6 @@ S=[
 ]
 G={
  "S2 trailer bodies detached from their wheels and chassis":"对齐不了：detached from their wheels and chassis 是后置定语，修饰 bodies，中文“从车轮和底盘上拆卸下来的挂车车厢”定语必须提前；detach from 被“车轮和底盘”隔开（T23 两处都标）；重点词中文先后与英文相反",
- "S3 Few spectators":"对齐不了：Few 中文“恐怕很少”必须放到“旁观者”后作谓语",
  "S8 cost about $5.83 a ton":"对齐不了：a ton 中文“每吨”必须提前到金额前",
  "S8 loading the Ideal X cost, by the company's reckoning":"对齐不了：插入语 by the company's reckoning 中文“据公司估算”必须提前到句首",
  "S10 had incompatible dimensions and latches":"对齐不了：incompatible 作定语修饰 dimensions and latches，中文“尺寸和锁扣互不兼容”放到最后作谓语；重点词中文先后与英文相反",
