@@ -322,6 +322,7 @@ def selftest(no):
     # ④ 罗马数字：没转的必须报出，spoken() 转过的不报
     res.append(('登记的不是罗马数字只放那一个词组', 'King Francis I' not in _NOTROMAN and 'Ideal X' in _NOTROMAN))
     res.append(('“King Francis I.”没转成序数词', bool(ROMAN_RE.search('King Francis I.')) and not ROMAN_RE.search(spoken('King Francis I.')) and not ROMAN_RE.search(spoken('Then I went home, and I said so.'))))
+    res.append(('“Lascaux II/IV”读基数词、没登记的“Montignac II”照报', spoken('Lascaux II opened, then Lascaux IV.') == 'Lascaux two opened, then Lascaux four.' and bool(ROMAN_RE.search(spoken('Montignac II opened.')))))   # 67 S15/S17
     ok = bool(res) and all(h for _, h in res)
     print(f"{'✔' if ok else '✘'} 读音核对 自检：{no} " + '；'.join(f"{n}{'报出' if h else '没报出'}" for n, h in res) if res else f'✘ 读音核对 自检：{no} 找不到可用来自检的词')
     return ok
