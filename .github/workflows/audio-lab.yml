@@ -115,11 +115,14 @@ jobs:
           python3 .github/音频实验/实验.py 精度 ~/tts /tmp/out/精度.json
       - uses: actions/upload-artifact@v4
         with: {name: 精度, path: /tmp/out, retention-days: 7}
-  liucheng:   # 整条声音流程在 GitHub 机器上跑（26：缓存齐的已定稿篇）
+  liucheng:   # 整条声音流程在 GitHub 机器上跑（请求“流程 NN”指定篇号，不写是 26；2026-11-08 用户：63 在 GitHub 上跑几遍，确定整体音频没问题 → 3 台机器各跑一遍）
     needs: plan
     if: contains(needs.plan.outputs.req, '流程')
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix: {run: [1, 2, 3]}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -137,17 +140,23 @@ jobs:
       - name: 跑
         working-directory: /home/runner/work/video
         run: |
-          T=$GITHUB_WORKSPACE/视频/工具; N=26; mkdir -p /tmp/out
+          T=$GITHUB_WORKSPACE/视频/工具; N=$(grep '^流程' $GITHUB_WORKSPACE/.github/音频实验/请求.txt | awk '{print $2}'); N=${N:-26}; mkdir -p /tmp/out; echo "== 第 ${{ matrix.run }} 遍，第 $N 篇" | tee -a /tmp/流程.txt
           s() { T0=$(date +%s); "$@" > /tmp/l.txt 2>&1; rc=$?; echo "== $* ：退出 $rc，$(( $(date +%s)-T0 )) 秒" | tee -a /tmp/流程.txt; tail -8 /tmp/l.txt | cut -c1-200 | tee -a /tmp/流程.txt; }
           s bash $T/草稿声音.sh $N
           s python3 $T/机器复听.py --带自检 $N
           s python3 $T/读音核对.py $N
           s python3 $T/交付核查.py $N 出片前
+          if [ "$N" != 26 ]; then   # 出 1080p（只用仓库里的配音缓存，不现合成），再跑出片后核查：响度、纯人声、独立复核、机器复听、句间停顿、高亮同步
+            s env STRICT_CACHE=1 python3 make_video.py scripts/$N.json $N.mp4
+            s python3 $T/交付核查.py $N 出片后
+            grep -E '✘|✔|BAD|不通过|全部通过' /tmp/l.txt | cut -c1-220 | tee -a /tmp/流程.txt
+            A=$GITHUB_WORKSPACE/视频/视频/草稿1080p/${N}_1080p.mp4; [ -f "$A" ] && s python3 $T/对比成片.py $N.mp4 "$A" && tail -5 /tmp/l.txt | tee -a /tmp/流程.txt
+          fi
           { echo "== 指纹"; sha256sum work_$N/a.wav work_$N/分段.json scripts/$N.json | cut -c1-16,66-; git -C $GITHUB_WORKSPACE diff --stat | tail -3; } | tee -a /tmp/流程.txt
           cp work_$N/a.wav /tmp/out/a_$N.wav; cp /tmp/流程.txt /tmp/out/; cp scripts/$N.json /tmp/out/
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: 流程, path: /tmp/out, retention-days: 7}
+        with: {name: '流程_${{ matrix.run }}', path: /tmp/out, retention-days: 7}
   huizong:
     needs: [ting, dafen, jingdu, liucheng]
     if: always()
@@ -166,7 +175,7 @@ jobs:
           ls /tmp/a | grep -q '^听_' && python3 -u .github/音频实验/实验.py 汇总 /tmp/a > /tmp/w/机器复听_${{ github.run_id }}.md 2>&1
           ls /tmp/a | grep -q '^打分_' && python3 -u .github/音频实验/实验.py 打分汇总 /tmp/a > /tmp/w/打分_${{ github.run_id }}.md 2>&1
           [ -f /tmp/a/精度/精度.json ] && cp /tmp/a/精度/精度.json /tmp/w/
-          [ -d /tmp/a/流程 ] && cp /tmp/a/流程/流程.txt /tmp/w/ 2>/dev/null
+          for d in /tmp/a/流程*; do [ -f $d/流程.txt ] && cp $d/流程.txt /tmp/w/$(basename $d)_${{ github.run_id }}.txt; done
           python3 - <<'PY'
           import json,glob,os
           for pat,o in (('听_*/*.json','听全部_${{ github.run_id }}.json'),('打分_*/*.json','打分全部_${{ github.run_id }}.json')):
