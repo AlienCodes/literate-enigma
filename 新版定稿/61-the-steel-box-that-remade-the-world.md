@@ -2,7 +2,7 @@
 # ZH: 集装箱：重塑世界的铁盒子
 
 ## 英文
-On 26 April 1956 a **converted** Second World War **tanker**, the Ideal X, **slipped** out of Port Newark, New Jersey, for Houston. **Clamped** to her deck were 58 **containers**, **trailer** bodies **detached** from their wheels and **chassis**. Few **spectators** would have taken so **unremarkable** a **cargo** for a **landmark**.
+On 26 April 1956 a **converted** Second World War **tanker**, the Ideal X, **slipped** out of Port Newark, New Jersey, for Houston. **Clamped** to her deck were 58 **containers**, **trailer** bodies **detached** from their **wheels** and **chassis**. Few **spectators** would have taken so **unremarkable** a **cargo** for a **landmark**.
 
 At the time, **freight** travelled **loose**. **Gangs** of twenty or more dockworkers carried **sacks**, **barrels**, and crates piece by piece. It was **strenuous** **drudgery**. Ships could spend up to half their time **berthed**, and **theft** was **rampant**. In 1956 loading loose cargo cost about $5.83 a ton; loading the Ideal X cost, by the company's reckoning, about 16 cents.
 
@@ -14,7 +14,7 @@ The **rewards** were **substantial**. A study published in the Journal of Intern
 
 ## 中文
 
-1956年4月26日，一艘**改造过的**(converted)二战**油轮**(tanker)“理想X号”，**悄然驶离**(slipped)新泽西州纽瓦克港，开往休斯敦。甲板上**牢牢固定**(clamped)着58个**集装箱**(containers)，其实就是拆掉车轮和**底盘**(chassis)、**卸下**(detached)来的**挂车**(trailer)车厢。当时的**旁观者**(spectators)恐怕很少会把这样一批**平淡无奇的**(unremarkable)**货物**(cargo)当作**里程碑**(landmark)。
+1956年4月26日，一艘**改造过的**(converted)二战**油轮**(tanker)“理想X号”，**悄然驶离**(slipped)新泽西州纽瓦克港，开往休斯敦。**固定**(clamped)在她甲板上的是58个**集装箱**(containers)——其实就是**从**(detached from)**车轮**(wheels)和**底盘**(chassis)**上拆卸下来的**(detached from)**挂车**(trailer)车厢。当时的**旁观者**(spectators)恐怕很少会把这样一批**平淡无奇的**(unremarkable)**货物**(cargo)当作**里程碑**(landmark)。
 
 那时，**货品**(freight)都以**散装**(loose)方式运输。二十多人一**帮**(gangs)的码头工人把**麻袋**(sacks)、**木桶**(barrels)和板条箱一件件扛上扛下。这是**繁重的**(strenuous)**苦差事**(drudgery)。船舶有时多达一半时间**停泊**(berthed)在港，**偷窃**(theft)**猖獗**(rampant)。1956年，装运散货每吨约需5.83美元；而据公司估算，给理想X号装货每吨只要约16美分。
 
@@ -34,6 +34,7 @@ The **rewards** were **substantial**. A study published in the Journal of Intern
 | containers | n. (container) 集装箱；容器（a shipping container；container ship） | 1 |
 | trailer | n. 挂车，拖车（a trailer truck）；（电影）预告片 | 1 |
 | detached | v. (detach) 拆下，分离（detach A from B）；adj. 超然的；独立式的（a detached house） | 1 |
+| wheels | n. (wheel) 车轮，轮子（steering wheel 方向盘；on wheels 带轮子的）；v. 推动（有轮的东西） | 1 |
 | chassis | n. 底盘，车架（a car/truck chassis；复数同形） | 1 |
 | spectators | n. (spectator) 旁观者，观众（spectator sport） | 1 |
 | unremarkable | adj. 平淡无奇的，不起眼的（an unremarkable life/building） | 1 |
