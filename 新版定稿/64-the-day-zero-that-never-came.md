@@ -22,7 +22,7 @@ The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **s
 
 其他力量也**介入**(intervened)了。2018年2月，**上游**(upstream)的农民从他们的**灌溉**(irrigation)水坝中放出了水；加上农业用水减少，零日被**推迟**(postponed)到7月。2018年3月，官员们判断零日当年**不太可能**(unlikely)发生。**随后**(subsequently)，冬雨**重新装满了**(replenished)各水库，到7月时水库已约半满。50升的限额于2018年10月**放宽**(eased)。
 
-批评者认为，**负担**(burden)分配得**并不均衡**(unevenly)。**城镇区**(townships)——在**种族隔离制度**(apartheid)下按种族被**隔离**(segregated)出来的贫困地区——长期以来就靠**很少**(scant)的水勉强度日，然而**更高的**(steeper)**水价**(tariffs)让它们最**不堪重负**(squeezed)。另一些人则把游客**取消行程**(cancellations)归咎于**危言耸听的**(alarmist)警告。家庭、农民和雨水共同让取水点一直**闲置**(idle)，但这份**牺牲**(sacrifice)最沉重地压在了最拿不出余力的人身上。
+批评者认为，**负担**(burden)分配得**并不均衡**(unevenly)。**城镇区**(townships)——在**种族隔离制度**(apartheid)下按种族被**隔离**(segregated)出来的贫困地区——长期以来就靠**很少**(scant)的水勉强对付，然而**更高的**(steeper)**水价**(tariffs)让它们最**不堪重负**(squeezed)。另一些人则把游客**取消行程**(cancellations)归咎于**危言耸听的**(alarmist)警告。家庭、农民和雨水共同让取水点一直**闲置**(idle)，但这份**牺牲**(sacrifice)最沉重地压在了最拿不出余力的人身上。
 
 ## 速查表
 | 词 | 释义 | 段 |

@@ -1,3 +1,4 @@
+# S18：用户 2026-11-08 原话：“勉强度日改为 勉强对付。小字改成：make do with + 名词，意思是“靠……勉强凑合/将就着用”。”
 # S15：用户 2026-11-08 原话：“补充，补充，补充，改为重新装满了”
 # S14 note：用户 2026-11-08 原话：“下面的小字：到了2018年3月，官方终于松了一口气，对外宣布：今年这“零日”（彻底断水）应该是不会发生了。”
 # S11：用户 2026-11-08 原话：“翻译，翻译，翻译改一下，改成下面的这个内容：日常的用水量减少了一半以上，从2015年的约12亿升降至2018年初的约5亿升。”
@@ -54,8 +55,8 @@ S=[
      "（critics argued：插入语）"]]),
 (5,[[[("**Townships**,","**城镇区**(Townships)，"),("poor areas **segregated** by race under **apartheid**,","在**种族隔离制度**(apartheid)下按种族被**隔离**(segregated)出来的贫困地区，")],
      "（poor areas segregated…：同位语，补充说明 Townships；\nsegregated by race：过去分词短语作后置定语，修饰 areas）"],
-    [[("had long","长期以来就"),("made do with **scant** water,","靠**很少的**(scant)水勉强度日，")],
-     "（make do with：靠（不足的东西）凑合度日）"],
+    [[("had long","长期以来就"),("made do with **scant** water,","靠**很少的**(scant)水勉强对付，")],
+     "（make do with + 名词，意思是“靠……勉强凑合/将就着用”。）"],
     [[("yet","然而"),("**steeper**","**更高的**(steeper)"),("**tariffs**","**水价**(tariffs)"),("**squeezed** them hardest.","让它们最**不堪重负**(squeezed)。")],
      "（them 指 Townships）"]]),
 (5,[[[("Others","另一些人则"),("blamed","归咎于"),("**alarmist**","**危言耸听的**(alarmist)"),("warnings","警告，"),("for","认为它造成了"),("tourist","游客"),("**cancellations**.","**取消行程**(cancellations)。")],
@@ -80,7 +81,7 @@ G={
  "S13 released water from their irrigation dams":"对齐不了：release A from B 中文“从 B 中放出 A”，动词和宾语必须放到最后",
  "S17 The burden, critics argued":"对齐不了：critics argued 是插入语，中文“批评者认为”必须放到句首，否则不通顺",
  "S18 poor areas segregated by race under apartheid":"对齐不了：segregated by race under apartheid 是过去分词短语作后置定语，修饰 areas，中文“在种族隔离制度下按种族被隔离出来的贫困地区”定语必须提前；两个重点词中文先后与英文相反",
- "S18 made do with scant water":"对齐不了：make do with 是固定说法“靠……勉强度日”，被宾语隔开，中文只能整组",
+ "S18 made do with scant water":"对齐不了：make do with 是固定说法“靠……勉强对付”，被宾语隔开，中文只能整组",
  "S20 the collection points":"对齐不了：collection points 是一个名词“取水点”，拆开不通",
  "S20 weighed heaviest":"对齐不了：weigh heaviest on 中文“最沉重地压在……身上”，副词必须放到动词前面",
  "S20 on those with the least to give":"对齐不了：with the least to give 是后置定语，修饰 those，中文“最拿不出余力的人”必须提前",
@@ -96,7 +97,7 @@ CONF={"合组":G,
  "S15-2 which were about half full by ":"非限制性定语从句，by July 中文“到7月时”必须放到句首",
  "S16-1 was eased in October 2018.":"in October 2018 是后置的时间状语，中文时间必须放到动词前面（于2018年10月……）",
  "S18-1 poor areas segregated by race ":"过去分词短语作后置定语，修饰 areas，中文定语必须提前",
- "S18-2 made do with scant water,":"make do with 是固定说法“靠……勉强度日”，被宾语隔开，只能整组",
+ "S18-2 made do with scant water,":"make do with 是固定说法“靠……勉强对付”，被宾语隔开，只能整组",
  "S20-2 on those with the least to giv":"with the least to give 是后置定语，修饰 those，中文“最拿不出余力的人”必须提前"},
 "方向":{"S11-1 more→减少了一半以上，":"more than halved 是“减半还不止”，中文“减少了一半以上”的“以上”就是 more than，方向一致（用户 2026-11-08 定的译文）"},
 "数字":{"S11-2 500":"500 million 即5亿（5×10⁸），中文按文章定稿写“约5亿升”，数值正确；英文读 five hundred million"},
