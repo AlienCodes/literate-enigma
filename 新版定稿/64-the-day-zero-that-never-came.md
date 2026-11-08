@@ -2,7 +2,7 @@
 # ZH: 没有到来的零日
 ## 英文
 
-In January 2018, Cape Town **issued** a **stark** **alert**: Day Zero could arrive in April. The term **denoted** a **grim** **threshold**, reached when water in the city's **reservoirs**, as a **percentage** of capacity, fell to 13.5 per cent. Most taps would then be shut, and **residents** would queue at about 200 **designated** collection points.
+In January 2018, Cape Town **issued** a **stark** **alert**: Day Zero could arrive in April. The term **denoted** a **grim** **threshold**, reached when water in the city's **reservoirs**, as a **percentage** of **capacity**, fell to 13.5 per cent. Most taps would then be shut, and **residents** would queue at about 200 **designated** collection points.
 
 The **prospect** was **genuine**. Three **consecutive** years of **meagre** rainfall, from 2015 to 2017, had **diminished** the reservoirs serving a **metropolitan** area of about four million people. By early 2018 the dams were roughly a fifth full. The **countdown** turned a **chronic** **shortage** into an **imminent** deadline.
 
@@ -14,7 +14,7 @@ The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **s
 
 ## 中文
 
-2018年1月，开普敦**发出**(issued)了一则**严峻的**(stark)**警报**(alert)，称零日可能在4月到来。这个词**指的是**(denoted)一道**严酷的**(grim)**门槛**(threshold)：该市**水库**(reservoirs)存水占库容的**百分比**(percentage)一旦降到13.5%，便跨过了这道门槛。届时大部分水龙头将被关闭，**居民**(residents)要到约200个**指定的**(designated)取水点排队取水。
+2018年1月，开普敦**发出**(issued)了一则**严峻的**(stark)**警报**(alert)，称零日可能在4月到来。这个词**指的是**(denoted)一道**严酷的**(grim)**门槛**(threshold)：即当该市**水库**(reservoirs)的存水按占水库**容量**(capacity)的**百分比**(percentage)降至13.5%时达到的门槛。届时大部分水龙头将被关闭，**居民**(residents)要到约200个**指定的**(designated)取水点排队取水。
 
 这一**前景**(prospect)是**真实存在的**(genuine)。2015至2017年**连续**(consecutive)三年降雨**稀少**(meagre)，使为约400万人口的**大都市**(metropolitan)区供水的各座水库蓄水**日渐减少**(diminished)。到2018年初，水库只剩约五分之一的蓄水。**倒计时**(countdown)把一场**长期的**(chronic)**短缺**(shortage)变成了一个**迫在眉睫的**(imminent)最后期限。
 
@@ -35,6 +35,7 @@ The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **s
 | threshold | n. 门槛，阈值（reach/cross a threshold；pain threshold 痛阈）；门口 | 1 |
 | reservoirs | n. (reservoir) 水库，蓄水池；（知识、人才的）储备，宝库（a reservoir of talent） | 1 |
 | percentage | n. 百分比，比例（as a percentage of capacity 占库容的百分比） | 1 |
+| capacity | 本文：容量；n. 容量，容积；（可容纳的）最大数量（at full capacity 满负荷）；能力（capacity for/to do） | 1 |
 | residents | n. (resident) 居民，住户（local residents）；adj. 居住的；residence n. 住所 | 1 |
 | designated | adj./v. (designate) 指定的，选定的（designated collection points/areas）；任命 | 1 |
 | prospect | n. 前景，可能性（the prospect of sth；bright prospects 光明前景）；v. 勘探 | 2 |
