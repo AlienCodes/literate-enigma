@@ -55,20 +55,20 @@ S=[
      "（这就像高速公路上的连环追尾，虽然可怕，但它是个持续几十年的慢动作。\n既然不是瞬间毁灭，我们就有机会去清理垃圾、把风险摁住。）"]]),
 (5,[[[("Operators","运营方"),("now","如今会"),("**routinely**","**例行**(routinely)"),("**manoeuvre**","**操纵**(manoeuvre)"),("satellites","卫星"),("**out of harm's way**.","**避开危险**(out of harm's way)。")],
      "（manoeuvre A out of harm's way：操纵 A 避开危险）"]]),
-(5,[[[("In September 2022,","2022年9月，"),("America's Federal Communications Commission, which licenses satellites,","负责为卫星发放许可的美国联邦通信委员会")],
+(5,[[[("In September 2022,","2022年9月，"),("{{=}}America's Federal Communications Commission, which licenses satellites,","负责为卫星发放许可的美国联邦通信委员会")],
      "（which licenses satellites：非限制性定语从句，\n修饰 Commission）"],
     [[("**mandated**","**强制要求**(mandated)，")]],
     [[("**disposal** of low-orbit craft within five years of **retirement**","低轨航天器须在**退役**(retirement)后五年内**处置**(disposal)，"),("**instead of**","**而不是**(instead of)"),("25.","25年。")],
      "（disposal：本文指卫星退役后离轨销毁；\nwithin five years of…：……后五年内；\n25 后省略了 years）"]]),
-(5,[[[("Years after the crash,","相撞多年之后，"),("spacecraft whose owners had no part in it","那些主人与此事毫无瓜葛的航天器，")],
+(5,[[[("Years after the crash,","相撞多年之后，"),("spacecraft whose owners **had no part in** it","那些所有者**与**(had no part in)此事**毫无瓜葛**(had no part in)的航天器，")],
      "（whose owners…：定语从句，修饰 spacecraft；\nhave no part in：与……无关；it 指 the crash）"],
-    [[("kept","仍不得不一再"),("swerving","转向，"),("around its","绕开那次相撞留下的"),("**splinters**.","**碎屑**(splinters)。")],
+    [[("kept","仍不得不一再"),("swerving","转向，"),("around its","绕开那次相撞留下的"),("**splinters**.","**碎片**(splinters)。")],
      "（keep doing：一再做……；its 指 the crash's）\n"
      "（简述：2009年2月10日，美国铱星33号与废弃的俄罗斯宇宙2251号在西伯利亚上空相撞，\n两星粉碎，这是两颗完整卫星之间的首次意外相撞。\n"
      "俄罗斯卫星没有推进装置，躲不了；预警服务预报两星将擦过，但这类预警频繁又不精确。\n"
      "相撞抛出2,000多块已编目的碎片和大量更小的碎片，许多会滞留数十年，2012年国际空间站就曾躲开一块残片。\n"
      "1978年两位NASA科学家设想的凯斯勒综合征说，相撞会散布碎片、引发更多相撞；这次相撞是例证，但并未引发失控的连锁反应。\n"
-     "这种风险可以缓解：运营方例行避让，美国联邦通信委员会2022年要求低轨航天器退役后五年内处置，\n可多年之后，航天器仍在绕开这次相撞的碎屑。）"]]),
+     "这种风险可以缓解：运营方例行避让，美国联邦通信委员会2022年要求低轨航天器退役后五年内处置，\n可多年之后，航天器仍在绕开这次相撞的碎片。）"]]),
 ]
 G={
  "S1 nearly 790 kilometres above Siberia":"对齐不了：above Siberia 修饰 790 kilometres，中文“在西伯利亚上空近790公里处”地点必须提前",
@@ -98,7 +98,7 @@ CONF={"合组":G,"中文重复":{"残骸":"用户 2026-11-08 原话把 S5 hulk �
  "S15 unfold … over":"不是搭配：over decades 只表示时长，unfold 本文就是速查表第一个意思“（事态）逐步展开”",
  "S17 mandated … of":"不是搭配：of 属于 disposal of low-orbit craft，和 mandated 无关",
  "S15 unfold over decades":"不是搭配：unfold 本文就是速查表第一个意思“（事态）逐步展开”，over decades 单独译“历时几十年”"},
-"同词异译":{"raising the odds of：提高了/的几率":"不是两种译法：raise the odds of 的意思“提高了……的几率”被“后续相撞”隔开，“提高了”和“的几率”是同一个意思的两部分（T23，用户 11-08 原话“提高了后续相撞的几率”）"}}
+"同词异译":{"had no part in：与/毫无瓜葛":"不是两种译法：have no part in 的意思“与……毫无瓜葛”被“此事”隔开，“与”和“毫无瓜葛”是同一个意思的两部分（T23，用户 11-08 原话标 had no part in）","raising the odds of：提高了/的几率":"不是两种译法：raise the odds of 的意思“提高了……的几率”被“后续相撞”隔开，“提高了”和“的几率”是同一个意思的两部分（T23，用户 11-08 原话“提高了后续相撞的几率”）"}}
 out={"no":"63","title_en":"The Crowded Heavens","title_zh":"拥挤的苍穹","title_fx":{"hl":["Crowded","Heavens"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Siberia":"西伯利亚","Iridium 33":"铱星33号","Kosmos 2251":"宇宙2251号","Russian":"俄罗斯","American":"美国","International Space Station":"国际空间站","NASA":"美国国家航空航天局","Kessler":"凯斯勒","Federal Communications Commission":"联邦通信委员会","America":"美国"}}
@@ -130,6 +130,8 @@ out_extra={"非人声区间":{"S5":[[0.925,1.12]],
 # S5 hulk, 的 /k/：2026-11-07 逐 2.5 ms 实测（S5 w，句首修剪 10 ms 后的时刻）：闭塞 0.80–0.855（-56～-67 dB），0.8575–0.90 是清楚的 /k/ 除阻（-21～-35 dB、重心 2.5–5 kHz），0.91–1.135 是停顿里的气声（-50～-60 dB、重心 2–3.7 kHz、无周期），1.14 起 lacking；气声挡在停顿前，核对把它当成除阻、判“没有除阻”，--写入 在 0.93 补供体也不生效。删掉这段气声（非人声区间 0.925–1.12，外侧 5 ms 为 -56.3、-57.8 dB），原声的 /k/ 原样留着，不补供体
 out["换行变更已获同意"]={"S17":"用户 2026-11-08 原话把 S17 整句改为“2022年9月，负责为卫星发放许可的美国联邦通信委员会强制要求，低轨航天器须在退役后五年内处置，而不是25年。”并标 instead of，中文语序变了随之换行","S11":"用户 2026-11-08 原话要 S11 整句改为“2012年1月，国际空间站启动了它的推进器，以躲开/避开一块铱星33号的残片。”、fired 标重点词、“space station 整体标注重点词汇”，字变多随之换行；另 11-07 原话（篇 61-65）“对齐需要改换行”视为同意"}
 CONF["短语"]["S11 fired … to"]="不是搭配：to 是 to dodge 的不定式符号（目的状语），和 fired 无关"
+CONF["高亮"]={"S17 第3块":{"开始读":142.86,"配音指纹":"9a06cf68038d","依据":"2026-11-08 直接读 work_63/a.wav 逐 10 ms：mandated 的元音到 142.75，142.76–142.85 是 mandated 词尾 /d/ 与 disposal 词头 /d/ 连在一起的浊音闭塞（-22～-31 dB、重心 0.2–0.5 kHz），142.86 起 disposal 的 /d/ 爆破（重心 3.6 kHz），142.88 起元音 -17→-12 dB，142.94 起 /s/（4.3–5.9 kHz）；开始读 142.86，两种办法 142.85/142.86 一致，高亮 143.13 推后 0.28 s"}}
+out["高亮开始"]={"S17 第3块":142.86}   # 两种办法 142.85/142.86 一致、实测 disposal /d/ 爆破 142.86（见 核对确认.高亮）
 out.update(out_extra)   # 实测后并进 gen63（停顿插入点、hulk 的 /k/ 除阻由 词尾辅音核对 --写入）
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
