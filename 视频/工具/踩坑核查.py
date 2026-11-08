@@ -161,7 +161,7 @@ def text_checks(d, art=None, sent=None, no=None):
                     key = f'{C} {m.group(0)}'
                     if key not in d.get('核对确认', {}).get('口述', {}): conf.append(f'[T24] {key}  ← 用户口述（语音输入）里常多出来的词出现在括号说明或 note 里：{seg[:30]}，核对用户本意后改掉，或写进 核对确认.口述')
             # T19：第04篇初稿与 01–03 定稿写法不一致、经独立审校查出的几类（01–03 里从未出现或只出现过经用户认可的个例）
-            if re.search(r'\*\*\([^)]*\)了', c['zh']): err.append(f'[T19了] {C} "了"要放进加粗里（如 **扫描了**(scanned)）：{c["zh"][:30]}')
+            if re.search(r'\*\*\([^)]*\)了', c['zh']) and C not in d.get('核对确认', {}).get('了不并', {}): err.append(f'[T19了] {C} "了"要放进加粗里（如 **扫描了**(scanned)）：{c["zh"][:30]}')
             def ask(tag, what, hint):
                 key = f'{C} {what}'
                 if key not in ok.get(tag, {}): conf.append(f'[T19{tag}] {key}  ← {hint}，核对后写进 核对确认.{tag}')
@@ -540,6 +540,9 @@ def selftest():
             assert done
         return f
     mut('"了"放在加粗外（T19）', 'T19了', rep('**刮了下来**(scraped)', '**刮下来**(scraped)了'))
+    _f = rep('**刮了下来**(scraped)', '**刮下来**(scraped)了'); _d = copy.deepcopy(base); _f(_d)   # 好样本（56 S4 用户“把了加上 但是不要标色”）：写了 核对确认.了不并 的段不报
+    _key = next(x.split()[1] for x in text_checks(_d, art, base)[0] if x.startswith('[T19了]')); _d.setdefault('核对确认', {}).setdefault('了不并', {})[_key] = '用户原话要“了”在标色外'
+    if any(x.startswith('[T19了]') for x in text_checks(_d, art, base)[0]): fails.append('误报：写了 核对确认.了不并 的段照样报 T19了')
     mut('"是**…的**"生硬（T19）', 'T19是的', rep('**不利的**(hostile)', '是**不利的**(hostile)'))
     mut('英文单词数字写成阿拉伯数字（T19）', 'T19数字写法', rep('两个培养皿', '2个培养皿'))
     mut('英文没有引号、中文加了引号（T19）', 'T19引号', rep('**盛行的**(prevalent)', '“**盛行的**(prevalent)”'))

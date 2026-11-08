@@ -71,7 +71,7 @@ Wallace had **readily** **signified** his **acceptance** in October 1858, **assu
 | barren | adj. 缺乏……的（barren of ideas/interest）；贫瘠的（barren land） | 4 |
 | revolutionary | adj. 革命性的，彻底变革的（a revolutionary idea/technique） | 4 |
 | sensation | n. 轰动，引起轰动的事物（cause/create a sensation；an overnight sensation）；感觉 | 4 |
-| On the Origin of Species | 专名 《物种起源》（达尔文 1859 年出版的著作） | 4 |
+| On the Origin of Species | n. 《物种起源》（书名，达尔文 1859 年出版的著作） | 4 |
 | named after | v. phr. (name A after B) 用 B 的名字为 A 命名（be named after his grandfather） | 6 |
 | treatise | n. 专著，论文（a treatise on economics/grammar） | 4 |
 | subscribed | v. (subscribe) 预订，认购（subscribe for shares；subscribe to a magazine） | 4 |
