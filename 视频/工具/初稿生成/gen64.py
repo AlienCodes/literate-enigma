@@ -1,3 +1,5 @@
+# S18 末：用户 2026-11-08 原话：“这里的翻译改成：最大程度地压榨了他们。Squeeze对应的意思是压榨。”
+# S19：用户 2026-11-08 原话：“依旧于改成责备。因为他造成了游客取消行程。改成因为这些警告造成了游客取消行程。”（“依旧于”即画面上的“归咎于”）
 # S18：用户 2026-11-08 原话：“勉强度日改为 勉强对付。小字改成：make do with + 名词，意思是“靠……勉强凑合/将就着用”。”
 # S15：用户 2026-11-08 原话：“补充，补充，补充，改为重新装满了”
 # S14 note：用户 2026-11-08 原话：“下面的小字：到了2018年3月，官方终于松了一口气，对外宣布：今年这“零日”（彻底断水）应该是不会发生了。”
@@ -57,9 +59,9 @@ S=[
      "（poor areas segregated…：同位语，补充说明 Townships；\nsegregated by race：过去分词短语作后置定语，修饰 areas）"],
     [[("had long","长期以来就"),("made do with **scant** water,","靠**很少的**(scant)水勉强对付，")],
      "（make do with + 名词，意思是“靠……勉强凑合/将就着用”。）"],
-    [[("yet","然而"),("**steeper**","**更高的**(steeper)"),("**tariffs**","**水价**(tariffs)"),("**squeezed** them hardest.","让它们最**不堪重负**(squeezed)。")],
+    [[("yet","然而"),("**steeper**","**更高的**(steeper)"),("**tariffs**","**水价**(tariffs)"),("**squeezed** them hardest.","最大程度地**压榨了**(squeezed)他们。")],
      "（them 指 Townships）"]]),
-(5,[[[("Others","另一些人则"),("blamed","归咎于"),("**alarmist**","**危言耸听的**(alarmist)"),("warnings","警告，"),("for","认为它造成了"),("tourist","游客"),("**cancellations**.","**取消行程**(cancellations)。")],
+(5,[[[("Others","另一些人则"),("blamed","责备"),("**alarmist**","**危言耸听的**(alarmist)"),("warnings","警告，"),("for","因为这些警告造成了"),("tourist","游客"),("**cancellations**.","**取消行程**(cancellations)。")],
      "（blame A for B：把 B 归咎于 A）"]]),
 (5,[[[("Households,","家庭、"),("farmers,","农民"),("and rain","和雨水共同"),("kept","让"),("the collection points","取水点"),("**idle**,","一直**闲置**(idle)，")],
      "（keep A idle：使 A 一直闲置）"],
@@ -145,6 +147,7 @@ CONF["即"]={"S2-2 即":"用户 2026-11-08 原话定的译文“即当该市水�
 CONF["短语"]["S2 capacity … to"]="不是搭配：to 属于 fell to（降至），和 capacity 无关"
 G["S5 of meagre rainfall"]="对齐不了：meagre rainfall 中文“贫乏的降雨”，of 结构“三年的贫乏降雨”中文只能整组（用户 2026-11-08 定的译文）"
 CONF["中文重复"]={"水库":"dams 和 reservoirs 本文都指开普敦的蓄水水库（南非英语把水库叫 dams），画面原译都是“水库”；用户 2026-11-08 只要求把 dams 标成重点词、没给新译文，已发中文不改（守则4），建议改“水坝”已提给用户"}
+G["S18 squeezed them hardest"]="对齐不了：hardest 中文“最大程度地”必须放到动词前面，them 中文“他们”放到动词后面（用户 2026-11-08 定的译文）"
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)

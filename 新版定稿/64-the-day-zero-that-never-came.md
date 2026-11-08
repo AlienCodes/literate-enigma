@@ -22,7 +22,7 @@ The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **s
 
 其他力量也**介入**(intervened)了。2018年2月，**上游**(upstream)的农民从他们的**灌溉**(irrigation)水坝中放出了水；加上农业用水减少，零日被**推迟**(postponed)到7月。2018年3月，官员们判断零日当年**不太可能**(unlikely)发生。**随后**(subsequently)，冬雨**重新装满了**(replenished)各水库，到7月时水库已约半满。50升的限额于2018年10月**放宽**(eased)。
 
-批评者认为，**负担**(burden)分配得**并不均衡**(unevenly)。**城镇区**(townships)——在**种族隔离制度**(apartheid)下按种族被**隔离**(segregated)出来的贫困地区——长期以来就靠**很少**(scant)的水勉强对付，然而**更高的**(steeper)**水价**(tariffs)让它们最**不堪重负**(squeezed)。另一些人则把游客**取消行程**(cancellations)归咎于**危言耸听的**(alarmist)警告。家庭、农民和雨水共同让取水点一直**闲置**(idle)，但这份**牺牲**(sacrifice)最沉重地压在了最拿不出余力的人身上。
+批评者认为，**负担**(burden)分配得**并不均衡**(unevenly)。**城镇区**(townships)——在**种族隔离制度**(apartheid)下按种族被**隔离**(segregated)出来的贫困地区——长期以来就靠**很少**(scant)的水勉强对付，然而**更高的**(steeper)**水价**(tariffs)最大程度地**压榨了**(squeezed)他们。另一些人则责备**危言耸听的**(alarmist)警告，因为这些警告造成了游客**取消行程**(cancellations)。家庭、农民和雨水共同让取水点一直**闲置**(idle)，但这份**牺牲**(sacrifice)最沉重地压在了最拿不出余力的人身上。
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -81,7 +81,7 @@ The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **s
 | scant | adj. 很少的，不足的（scant attention/evidence/resources；make do with scant water） | 5 |
 | steeper | adj. (steep 比较级) （价格、涨幅）过高的，急剧的（steep prices/rise）；陡峭的 | 5 |
 | tariffs | n. (tariff) （水电等）收费标准，价目；关税（impose tariffs on imports） | 5 |
-| squeezed | v. (squeeze) 使拮据，挤压（squeeze households/budgets；be squeezed by rising costs）；n. 紧缩（a credit squeeze） | 5 |
+| squeezed | 本文：压榨；v. (squeeze) 压榨，使拮据，挤压（squeeze households/budgets；be squeezed by rising costs）；n. 紧缩（a credit squeeze） | 5 |
 | alarmist | adj. 危言耸听的（alarmist warnings/reports）；n. 散布恐慌者 | 5 |
 | cancellations | n. (cancellation) 取消（booking cancellations）；cancel v. | 5 |
 | idle | adj. 闲置的，未被使用的（lie idle）；无所事事的；v. 空转 | 5 |
