@@ -6,7 +6,7 @@ In January 2018, Cape Town **issued** a **stark** **alert**: Day Zero could arri
 
 The **prospect** was **genuine**. Three **consecutive** years of **meagre** rainfall, from 2015 to 2017, had **diminished** the reservoirs serving a **metropolitan** area of about four million people. By early 2018 the **dams** were **roughly** a fifth full. The **countdown** turned a **chronic** **shortage** into an **imminent** deadline.
 
-The city paired **mandatory** **restrictions** with **unprecedented** **transparency**. From 1 February 2018, each person was **allotted** 50 **litres** a day. Officials **disclosed** dam levels and **household** **consumption**; the published **tallies** made **thrift** **visible** and let neighbours **benchmark** their use. Daily use was more than **halved**, from about 1.2 billion litres in 2015 to about 500 million by early 2018.
+The city paired **mandatory** **restrictions** with **unprecedented** **transparency**. From 1 February 2018, each person was **allotted** 50 **litres** a day. **Officials** **disclosed** dam levels and **household** **consumption**; the published **tallies** made **thrift** **visible** and let neighbours **benchmark** their use. Daily use was more than **halved**, from about 1.2 billion litres in 2015 to about 500 million by early 2018.
 
 Other forces **intervened**. In February 2018, **upstream** farmers released water from their **irrigation** dams; with farms drawing less, Day Zero was **postponed** to July. In March 2018, officials judged Day Zero **unlikely** that year. Winter rains **subsequently** **replenished** the reservoirs, which were about half full by July. The 50-litre limit was **eased** in October 2018.
 
@@ -18,7 +18,7 @@ The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **s
 
 这一**前景**(prospect)是**真实存在的**(genuine)。**连续**(consecutive)三年**贫乏的**(meagre)降雨，从2015到2017年，**减少了**(diminished)水库的蓄水，这些水库给一个**大都市**(metropolitan)区供水，大约400万人口。到2018年初，**水库**(dams)只剩**约**(roughly)五分之一的蓄水。**倒计时**(countdown)把一场**长期的**(chronic)**短缺**(shortage)变成了一个**迫在眉睫的**(imminent)最后期限。
 
-该市把**强制性的**(mandatory)**限制措施**(restrictions)与**前所未有的**(unprecedented)**透明度**(transparency)结合起来。自2018年2月1日起，每人每天**分配**(allotted)50**升**(litres)水。官员们**公布**(disclosed)水库水位和**家庭**(household)**用水量**(consumption)，公开的**统计数字**(tallies)让**节俭**(thrift)成效**一目了然**(visible)，也让邻里之间得以**对照**(benchmark)用水量。日用水量**减半**(halved)有余，从2015年的约12亿升降至2018年初的约5亿升。
+该市把**强制性的**(mandatory)**限制措施**(restrictions)与**前所未有的**(unprecedented)**透明度**(transparency)结合起来。自2018年2月1日起，每人每天**分配**(allotted)50**升**(litres)水。**官员们**(Officials)**公布**(disclosed)水库水位和**家庭**(household)**消耗量**(consumption)，公开的**统计数字**(tallies)让**节俭**(thrift)成效**一目了然**(visible)，也让邻里之间得以**对标**(benchmark)他们的用水量。日用水量**减半**(halved)有余，从2015年的约12亿升降至2018年初的约5亿升。
 
 其他力量也**介入**(intervened)了。2018年2月，**上游**(upstream)的农民从他们的**灌溉**(irrigation)水坝中放出了水；加上农业用水减少，零日被**推迟**(postponed)到7月。2018年3月，官员们判断零日当年**不太可能**(unlikely)到来。**随后**(subsequently)，冬雨**补充了**(replenished)各水库，到7月时水库已约半满。50升的限额于2018年10月**放宽**(eased)。
 
@@ -56,13 +56,14 @@ The **burden**, critics argued, fell **unevenly**. **Townships**, poor areas **s
 | transparency | n. 透明度，公开（greater transparency in government）；transparent adj. | 3 |
 | allotted | v. (allot) 分配，配给（be allotted 50 litres；allotted time 规定时间） | 3 |
 | litres | 本文：升；n. (litre) 升（容量单位；美式拼写 liter）（50 litres a day 每天50升） | 3 |
+| officials | 本文：官员们；n. (official) 官员，官方人员（government/city officials）；adj. 官方的，正式的 | 3 |
 | disclosed | v. (disclose) 公开，披露（disclose information/figures）；disclosure n. | 3 |
 | household | adj. 家庭的（household consumption/income）；n. 一户，家庭 | 3 |
 | consumption | n. 消耗量，消费（water/energy consumption）；consume v. | 3 |
 | thrift | n. 节俭，节约（practise thrift）；thrifty adj.；a thrift shop 二手慈善店 | 3 |
 | visible | adj. 看得见的，明显的（make sth visible；a visible effect）；visibility n. | 3 |
 | tallies | n. (tally) 计数，记录（keep a tally of sth）；v. 吻合（tally with） | 3 |
-| benchmark | v. 以……为基准比较，对照（benchmark sth against sth）；n. 基准，标杆（set a benchmark） | 3 |
+| benchmark | 本文：对标；v. 以……为基准比较，对标，对照（benchmark sth against sth）；n. 基准，标杆（set a benchmark） | 3 |
 | halved | v. (halve) 使减半（halve costs/use）；n. half | 3 |
 | intervened | v. (intervene) 介入，干预（intervene in a dispute）；（事件）发生而阻碍；intervention n. | 4 |
 | upstream | adj./adv. 上游的（upstream farmers）；反义 downstream | 4 |
