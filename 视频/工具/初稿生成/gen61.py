@@ -6,6 +6,7 @@ import json,re,glob,os
 # 2026-11-08 用户改 S2：“固定在她甲板上的是58个集装箱——其实就是从车轮和底盘上拆卸下来的挂车车厢。”“wheel 标注重点词汇，标注重点词汇。”“下面的小字改成：trailor body 挂车车厢 就是在trailer body后面，就是加上挂车车厢这四个字。就整体翻译为挂车车厢。”“字小字部分额外附加: detach from 指将某物从原本附着、连接或所属的主体上分离或拆卸下来。”（破折号按 T36 由 做.sh 自动换）
 # 2026-11-08 用户改 S3：“翻译不准，改成这个翻译: 极少数旁观者会把一批如此平淡无奇的货物当作一个里程碑。”
 # 2026-11-08 用户改 S4：“那时，货物都是散装运输。”（freight 与 S3 cargo 中文都成“货物”，用户原话定）
+# 2026-11-08 用户改 S5：“一帮二十多名或更多的码头工人，一件件地搬运麻袋、 桶和板条箱。”“dockworker 标注重点词汇。”“crates 标注重点词汇。特批，特批，特批，特批。”（“、 桶”中间的空格去掉；crates 与 47 撞车，用户特批 allow_clash）
 # 2026-11-08 用户改 S1 中文（原话见 用户同意记录 篇 61）：说啥改啥
 S=[
 (1,[[[("On 26 April 1956","1956年4月26日，"),("a","一艘"),("**converted**","**改造过的**(converted)"),("Second World War","二战"),("**tanker**,","**油轮**(tanker)"),("the Ideal X,","“理想X号”，")],
@@ -20,9 +21,9 @@ S=[
      "（take A for B：把 A 当作 B；\nso＋形容词＋a＋名词：这样……的一个；\nwould have done：对过去情况的推测）"]]),
 (2,[[[("At the time,","那时，"),("**freight**","**货物**(freight)"),("travelled **loose**.","都是**散装**(loose)运输。")],
      "（travelled loose：loose 作补语，\n说明货物运输时的状态）"]]),
-(2,[[[("**Gangs** of twenty or more","二十多人一**帮**(gangs)"),("dockworkers","的码头工人")],
+(2,[[[("**Gangs**","一**帮**(gangs)"),("of twenty or more","二十多名或更多的"),("**dockworkers**","**码头工人**(dockworkers)，")],
      "（of twenty or more dockworkers：of 结构作后置定语，修饰 Gangs）"],
-    [[("carried","把"),("**sacks**,","**麻袋**(sacks)、"),("**barrels**,","**木桶**(barrels)"),("and crates","和板条箱"),("piece by piece.","一件件扛上扛下。")],
+    [[("carried","一件件地搬运"),("**sacks**,","**麻袋**(sacks)、"),("**barrels**,","**桶**(barrels)"),("and **crates** piece by piece.","和**板条箱**(crates)。")],
      "（piece by piece：一件一件地）"]]),
 (2,[[[("It was","这是"),("**strenuous**","**繁重的**(strenuous)"),("**drudgery**.","**苦差事**(drudgery)。")]]]),
 (2,[[[("Ships","船舶"),("could spend","有时"),("up to half their time","多达一半时间"),("**berthed**,","**停泊**(berthed)在港，")],
@@ -77,7 +78,8 @@ G={
  "S8 cost about $5.83 a ton":"对齐不了：a ton 中文“每吨”必须提前到金额前",
  "S8 loading the Ideal X cost, by the company's reckoning":"对齐不了：插入语 by the company's reckoning 中文“据公司估算”必须提前到句首",
  "S10 had incompatible dimensions and latches":"对齐不了：incompatible 作定语修饰 dimensions and latches，中文“尺寸和锁扣互不兼容”放到最后作谓语；重点词中文先后与英文相反",
- "S5 piece by piece":"对齐不了：piece by piece 是固定说法“一件件”，拆开不通",
+ "S5 carried":"对齐不了：piece by piece 中文“一件件地”提前到“搬运”前，只能和 carried 放一组",
+ "S5 and crates piece by piece":"对齐不了：piece by piece 已随“搬运”提前，这里只剩“和板条箱”",
  "S8 loose cargo":"对齐不了：loose cargo 中文是一个词“散货”，拆开不通",
  "S12 Sea-Land, the Ideal X's renamed operator":"对齐不了：同位语 the Ideal X's renamed operator 中文“理想X号的运营方、已更名的”必须提前到“海陆公司”前",
  "S15 by about three quarters between 1963 and 1976":"对齐不了：between 1963 and 1976 中文“1963年至1976年间”提前到句首（在 New York's 下面），这里只剩“约四分之三”",
@@ -109,13 +111,12 @@ DQ={
  "S17-2 Felixstowe, on the Suffolk coa":"插入语 on the Suffolk coast 中文作定语必须提前",
  "S19-1 A study published in the Journ":"published in… in 2016 是后置定语，修饰 study，中文必须提前，刊名不能拆",
  "S19-2 700 per cent over 20 years.":"over 20 years 中文“20年间”提前到句首（放在 that containerisation 下面）",
- "S5-1 Gangs of twenty or more":"twenty or more 中文“二十多人”必须放到“一帮”前",
  "S7-1 up to half their time":"up to half their time 是一个数量意群“多达一半时间”，拆开不通",
 }
 CONF={"合组":G,"对齐":DQ,
 "引号":{"S1-1 “”":"用户 2026-11-08 原话（converted 后按用户“意思为改造过的”改成“改造过的”）“1956年4月26日，一艘改装过的二战油轮“理想X号”，悄然驶离新泽西州纽瓦克港，开往休斯敦。”自带引号，照用户原话保留（T10）"},
 "是的":{"S6-1 是**繁重的**":"“是”对应 was（这是），“的”是形容词 strenuous 的“的”（T38），不是“是……的”句式；文章定稿原文“这是繁重的苦差事”"},
-"方向":{"S5-1 more→二十多人一**帮**(gangs)":"or more 是“……多”，中文“二十多人”有“多”，方向一致","S17-1 after→接连关闭，":"one after another 是“一个接一个”，不是时间先后；中文“接连”，方向一致"},
+"方向":{"S5-1 more→二十多名或更多的":"or more 是“或更多”，中文“或更多的”，方向一致","S17-1 after→接连关闭，":"one after another 是“一个接一个”，不是时间先后；中文“接连”，方向一致"},
 "停顿位置":{
  "S1 Jersey, / for @9.675":"2026-11-07 逐 2.5 ms 实测（S1 w）：Jersey 的 i 浊音到 9.665（周期 0.47），9.675–9.69 是两词之间的低谷（-39～-40 dB、周期 0.18），9.6975 起 for 的 /f/（重心 4.9–6.4 kHz）；停顿 9.675 落在低谷里，在两词之间",
  "S5 barrels, / and @3.800":"2026-11-07 逐 2.5 ms 实测（S5 w）：barrels 的 /z/ 擦音到 3.7975（重心 4.7–5.6 kHz），3.80 是低谷（-22.8 dB），3.805 起 and 的元音（周期 0.49、重心 2 kHz 以下）；停顿 3.800 正落在两词之间",
@@ -142,7 +143,7 @@ CONF={"合组":G,"对齐":DQ,
  "S15 shrank … by":"不是搭配：by about three quarters 只表示幅度（缩减了约四分之三），shrink 单独就是“缩减”",
  "S16 inaugurated … in":"不是搭配：in August 1962 只表示时间"}}
 out={"no":"61","title_en":"The Steel Box That Remade the World","title_zh":"集装箱：重塑世界的铁盒子","title_fx":{"hl":["Box","World"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
-     "allow_clash":["converted"],"高亮按实际开口":True,"高亮开口门槛":40,
+     "allow_clash":["converted","crates"],"高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Second World War":"二战","Ideal X":"理想X号","Port Newark":"纽瓦克港","New Jersey":"新泽西州","Houston":"休斯敦","Sea-Land":"海陆公司","New York":"纽约","Elizabeth":"伊丽莎白港","London":"伦敦","Felixstowe":"费利克斯托港","Suffolk":"萨福克","Journal of International Economics":"《国际经济学杂志》"}}
 out.update({"停顿插入点":{"S4":{"1":[0.642792,"交界"]}},"停顿删除区间":{"S7":{"1":[2.3725,2.6625]}},"除阻加强":{"S1":{"3":[8.8325,8.8475,4.5]}},"句子增益dB":{"S9":-0.3,"S6":-0.5,"S18":-0.5},"高亮开始":{"S19 第2块":134.64},"段内渐变dB":{"S12":{"2":[0,3]}},
  "非人声区间":{"S1":[[5.535,5.83]],"S15":[[5.5,5.7125,"紧贴词头"]],"S16":[[7.310625,7.3925,"紧贴词尾"]],"S17":[[6.245,6.510167,"紧贴词头"]],"S19":[[5.03125,5.54,"紧贴词尾"],[10.855,11.195]]}})

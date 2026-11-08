@@ -4,7 +4,7 @@
 ## 英文
 On 26 April 1956 a **converted** Second World War **tanker**, the Ideal X, **slipped** out of Port Newark, New Jersey, for Houston. **Clamped** to her deck were 58 **containers**, **trailer** bodies **detached** from their **wheels** and **chassis**. Few **spectators** would have taken so **unremarkable** a **cargo** for a **landmark**.
 
-At the time, **freight** travelled **loose**. **Gangs** of twenty or more dockworkers carried **sacks**, **barrels**, and crates piece by piece. It was **strenuous** **drudgery**. Ships could spend up to half their time **berthed**, and **theft** was **rampant**. In 1956 loading loose cargo cost about $5.83 a ton; loading the Ideal X cost, by the company's reckoning, about 16 cents.
+At the time, **freight** travelled **loose**. **Gangs** of twenty or more **dockworkers** carried **sacks**, **barrels**, and **crates** piece by piece. It was **strenuous** **drudgery**. Ships could spend up to half their time **berthed**, and **theft** was **rampant**. In 1956 loading loose cargo cost about $5.83 a ton; loading the Ideal X cost, by the company's reckoning, about 16 cents.
 
 Containers were not new. The **hurdle** was **consensus**: **rival** firms' boxes had **incompatible** **dimensions** and **latches**. An international standards committee formed in 1961. In January 1963 Sea-Land, the Ideal X's renamed operator, let the committee use its **patents** free of **royalties**, including those on corner **fittings** for **hoisting**. Lifted by **crane**, a box could be **transferred** **smoothly** between ship, **lorry**, and train.
 
@@ -16,7 +16,7 @@ The **rewards** were **substantial**. A study published in the Journal of Intern
 
 1956年4月26日，一艘**改造过的**(converted)二战**油轮**(tanker)“理想X号”，**悄然驶离**(slipped)新泽西州纽瓦克港，开往休斯敦。**固定**(clamped)在她甲板上的是58个**集装箱**(containers)——其实就是**从**(detached from)**车轮**(wheels)和**底盘**(chassis)**上拆卸下来的**(detached from)**挂车**(trailer)车厢。极少数**旁观者**(spectators)会把一批如此**平淡无奇的**(unremarkable)**货物**(cargo)当作一个**里程碑**(landmark)。
 
-那时，**货物**(freight)都是**散装**(loose)运输。二十多人一**帮**(gangs)的码头工人把**麻袋**(sacks)、**木桶**(barrels)和板条箱一件件扛上扛下。这是**繁重的**(strenuous)**苦差事**(drudgery)。船舶有时多达一半时间**停泊**(berthed)在港，**偷窃**(theft)**猖獗**(rampant)。1956年，装运散货每吨约需5.83美元；而据公司估算，给理想X号装货每吨只要约16美分。
+那时，**货物**(freight)都是**散装**(loose)运输。一**帮**(gangs)二十多名或更多的**码头工人**(dockworkers)，一件件地搬运**麻袋**(sacks)、**桶**(barrels)和**板条箱**(crates)。这是**繁重的**(strenuous)**苦差事**(drudgery)。船舶有时多达一半时间**停泊**(berthed)在港，**偷窃**(theft)**猖獗**(rampant)。1956年，装运散货每吨约需5.83美元；而据公司估算，给理想X号装货每吨只要约16美分。
 
 集装箱并不新鲜。真正的**障碍**(hurdle)在于**共识**(consensus)：**相互竞争的**(rival)各家公司，箱子**尺寸**(dimensions)和**锁扣**(latches)**互不兼容**(incompatible)。1961年，一个国际标准委员会成立。1963年1月，理想X号的运营方、已更名的海陆公司（Sea-Land）允许该委员会使用其**专利**(patents)，不收**专利费**(royalties)，其中包括用于**吊装**(hoisting)的角**配件**(fittings)。由**吊机**(crane)吊起，一只箱子便能在船舶、**卡车**(lorry)和火车之间**顺畅地**(smoothly)**转运**(transferred)。
 
@@ -43,8 +43,10 @@ The **rewards** were **substantial**. A study published in the Journal of Intern
 | freight | n. 货物，货运（freight train；by air freight） | 2 |
 | loose | adj. 散装的，未包装的（loose tea；sold loose 散装出售）；松的；break loose 挣脱 | 2 |
 | gangs | n. (gang) （工人）一帮，一班；帮派（a gang of workers；criminal gangs） | 2 |
+| dockworkers | n. (dockworker) 码头工人（= docker, longshoreman） | 2 |
 | sacks | n. (sack) 麻袋（a sack of flour/potatoes）；get the sack 被解雇 | 2 |
-| barrels | n. (barrel) 桶；（石油）桶（a barrel of oil/beer） | 2 |
+| barrels | n. (barrel) 桶，木桶；（石油）桶（a barrel of oil/beer） | 2 |
+| crates | n. (crate) 板条箱，大木箱（a crate of beer/apples）；v. 把……装箱 | 2 |
 | strenuous | adj. 繁重的，费力的（strenuous exercise/efforts） | 2 |
 | drudgery | n. 苦差事，单调乏味的苦活（the drudgery of housework） | 2 |
 | berthed | v. (berth) 停泊（be berthed at a quay）；n. 泊位；卧铺 | 2 |
