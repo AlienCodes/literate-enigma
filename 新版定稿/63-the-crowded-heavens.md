@@ -6,7 +6,7 @@ On 10 February 2009, nearly 790 kilometres above Siberia, two satellites **slamm
 
 Neither craft **swerved**. The Russian **hulk**, lacking **propulsion**, could not. A public collision-warning service had forecast a **narrow** miss of about 584 metres, yet the predicted **encounter** was not among the week's closest; such warnings were **frequent** and **imprecise**. One owner's **discarded** **relic** **demolished** another's working **asset**.
 
-The **wreckage**, however, **endangered** everyone else. The **impact** **flung** out more than 2,000 **catalogued** fragments and **a multitude of** others too small to **pinpoint**. At that height **air drag** is **feeble**, so many would **linger** for decades. In January 2012, the International Space Station fired its **thrusters** to **dodge** an Iridium 33 **remnant**.
+The **wreckage**, however, **endangered** everyone else. The **impact** **flung** out more than 2,000 **catalogued** fragments and **a multitude of** others too small to **pinpoint**. At that height **air drag** is **feeble**, so many would **linger** for decades. In January 2012, the International **Space Station** **fired** its **thrusters** to **dodge** an Iridium 33 **remnant**.
 
 In June 1978, two NASA scientists **envisaged** a **vicious** **spiral**, later named the Kessler **syndrome**: each collision would **scatter** fragments, **raising the odds** of **subsequent** crashes. The 2009 crash **illustrated** that **premise** without **triggering** a **runaway** **chain reaction**. By the end of 2024, **surveillance** networks tracked about 40,000 objects, only some 11,000 of them **functional**.
 
@@ -18,7 +18,7 @@ Such a cascade would **unfold** over decades, though, and is not **inevitable**;
 
 两个飞行器都没有**紧急转向避让**(swerved)。那个俄罗斯的（卫星）**残骸**(hulk)，由于缺乏**推进力**(propulsion)，无法转向。一项公开的碰撞预警服务曾预报，两星将相距约584米**惊险**(narrow)擦过，但在当周的预测中，这次**交会**(encounter)并未排进距离最近的几次之列；这类预警既**频繁**(frequent)又**不精确**(imprecise)。一方**弃置的**(discarded)**遗物**(relic)，**意外毁坏了**(demolished)另一方仍在工作的**资产**(asset)。
 
-然而，这些**残骸**(wreckage)却**危及**(endangered)了其他所有人。**撞击**(impact)**抛出**(flung)了2,000多块**已编目的**(catalogued)碎片，另有**大量**(a multitude of)碎片小到无法**精确定位**(pinpoint)。在那个高度，**空气阻力**(air drag)**微弱**(feeble)，因此许多碎片会在轨道上**滞留**(linger)数十年。2012年1月，国际空间站启动**推进器**(thrusters)，**躲开**(dodge)了一块铱星33号的**残片**(remnant)。
+然而，这些**残骸**(wreckage)却**危及**(endangered)了其他所有人。**撞击**(impact)**抛出**(flung)了2,000多块**已编目的**(catalogued)碎片，另有**大量**(a multitude of)碎片小到无法**精确定位**(pinpoint)。在那个高度，**空气阻力**(air drag)**微弱**(feeble)，因此许多碎片会在轨道上**滞留**(linger)数十年。2012年1月，国际**空间站**(Space Station)**点火了**(fired)它的**推进器**(thrusters)，以**躲开/避开**(dodge)一块铱星33号的**残片**(remnant)。
 
 1978年6月，两位美国国家航空航天局（NASA）的科学家**设想**(envisaged)了一种**恶性**(vicious)**螺旋**(spiral)，后来被称为凯斯勒**综合征**(syndrome)，即每次相撞都会**散布**(scatter)碎片，使**后续**(subsequent)撞击**更有可能发生**(raising the odds)。2009年的这次相撞为这一**前提**(premise)提供了**例证**(illustrated)，却并未**引发**(triggering)**失控的**(runaway)**连锁反应**(chain reaction)。截至2024年底，太空**监视**(surveillance)网络跟踪的物体约有40,000个，其中能**正常运行**(functional)的只有约11,000个。
 
@@ -55,6 +55,8 @@ Such a cascade would **unfold** over decades, though, and is not **inevitable**;
 | air drag | n. phr. 空气阻力（air/atmospheric drag；reduce drag）；drag n. （空气）阻力，拖曳力（air/atmospheric drag；reduce drag）；拖累，累赘（a drag on the economy）；v. 拖，拽 | 3 |
 | feeble | adj. 微弱的，无力的（a feeble signal/light/force）；（借口等）站不住脚的（a feeble excuse） | 3 |
 | linger | v. 滞留，久留，迟迟不散（linger for decades；doubts/smells linger） | 3 |
+| Space Station | n. phr. 空间站（the International Space Station 国际空间站） | 3 |
+| fired | v. (fire) 点火，启动（发动机、推进器等）（fire thrusters/engines/rockets）；开火，射击；解雇 | 3 |
 | thrusters | n. (thruster) 推进器，（航天器上调整姿态和轨道的）小型发动机（fire thrusters 启动推进器，推进器点火） | 3 |
 | dodge | v. 躲开，闪避（dodge a fragment/bullet/blow）；逃避（dodge a question/taxes）；n. 躲闪 | 3 |
 | remnant | n. 残片，残余部分（a remnant of the satellite/the past；remnants of the old city） | 3 |
