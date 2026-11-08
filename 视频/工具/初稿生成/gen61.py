@@ -8,6 +8,7 @@ import json,re,glob,os
 # 2026-11-08 用户改 S4：“那时，货物都是散装运输。”（freight 与 S3 cargo 中文都成“货物”，用户原话定）
 # 2026-11-08 用户改 S5：“一帮二十多名或更多的码头工人，一件件地搬运麻袋、 桶和板条箱。”“dockworker 标注重点词汇。”“crates 标注重点词汇。特批，特批，特批，特批。”（“、 桶”中间的空格去掉；crates 与 47 撞车，用户特批 allow_clash）
 # 2026-11-08 用户改 S6：“繁重的/费力的”“下面简单解释一下strenuous这个单词的意思。就下面这个附上小字，简单解释一下，这个单词就是用法，具体什么样的情况下使用。”
+# 2026-11-08 用户改 S7：“船舶可能会花多达一半的时间 停泊在港，而且偷窃猖獗。”“up to 重点词汇 多达”（“时间 停泊”中间空格去掉）
 # 2026-11-08 用户改 S1 中文（原话见 用户同意记录 篇 61）：说啥改啥
 S=[
 (1,[[[("On 26 April 1956","1956年4月26日，"),("a","一艘"),("**converted**","**改造过的**(converted)"),("Second World War","二战"),("**tanker**,","**油轮**(tanker)"),("the Ideal X,","“理想X号”，")],
@@ -28,9 +29,9 @@ S=[
      "（piece by piece：一件一件地）"]]),
 (2,[[[("It was","这是"),("**strenuous**","**繁重的/费力的**(strenuous)"),("**drudgery**.","**苦差事**(drudgery)。")],
      "（strenuous：形容需要耗费大量体力或精力的，\n多用于体力活、运动或努力，\n如 strenuous work 繁重的工作、strenuous exercise 剧烈运动、\nmake strenuous efforts 尽力）"]]),
-(2,[[[("Ships","船舶"),("could spend","有时"),("up to half their time","多达一半时间"),("**berthed**,","**停泊**(berthed)在港，")],
+(2,[[[("Ships","船舶"),("could","可能会"),("spend","花"),("**up to**","**多达**(up to)"),("half their time","一半的时间"),("**berthed**,","**停泊**(berthed)在港，")],
      "（spend time＋过去分词：花时间处于……状态；up to：多达）"],
-    [[("and **theft**","**偷窃**(theft)"),("was **rampant**.","**猖獗**(rampant)。")]]]),
+    [[("and","而且"),("**theft**","**偷窃**(theft)"),("was **rampant**.","**猖獗**(rampant)。")]]]),
 (2,[[[("In 1956","1956年，"),("loading","装运"),("loose cargo","散货"),("cost about $5.83 a ton;","每吨约需5.83美元；")],
      "（loading loose cargo：动名词短语作主语）"],
     [[("loading the Ideal X cost, by the company's reckoning,","而据公司估算，给理想X号装货"),("about 16 cents.","每吨只要约16美分。")],
@@ -113,7 +114,6 @@ DQ={
  "S17-2 Felixstowe, on the Suffolk coa":"插入语 on the Suffolk coast 中文作定语必须提前",
  "S19-1 A study published in the Journ":"published in… in 2016 是后置定语，修饰 study，中文必须提前，刊名不能拆",
  "S19-2 700 per cent over 20 years.":"over 20 years 中文“20年间”提前到句首（放在 that containerisation 下面）",
- "S7-1 up to half their time":"up to half their time 是一个数量意群“多达一半时间”，拆开不通",
 }
 CONF={"合组":G,"对齐":DQ,
 "引号":{"S1-1 “”":"用户 2026-11-08 原话（converted 后按用户“意思为改造过的”改成“改造过的”）“1956年4月26日，一艘改装过的二战油轮“理想X号”，悄然驶离新泽西州纽瓦克港，开往休斯敦。”自带引号，照用户原话保留（T10）"},
