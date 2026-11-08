@@ -2,7 +2,7 @@
 # ZH: 多莉：一只羊的复制
 
 ## 英文
-Dolly was born at Roslin, Scotland, on 5 July 1996. Her **genome** came from a Finn Dorset ewe's mammary cell, **fused** with a Blackface egg stripped of its **nucleus**. A Blackface **surrogate** carried the **embryo** through **pregnancy**, yet her white face was **proof** of a **genetically** different **lineage**. She alone survived from 277 attempts, an **extraordinary** failure rate.
+Dolly was born at Roslin, **Scotland**, on 5 July 1996. Her **genome** came from a Finn Dorset ewe's mammary cell, **fused** with a Blackface egg stripped of its **nucleus**. A Blackface **surrogate** carried the **embryo** through **pregnancy**, yet her white face was **proof** of a **genetically** different **lineage**. She alone survived from 277 attempts, an **extraordinary** failure rate.
 
 Dolly is **popularly** called the first clone, a **misconception**. Her **predecessors** included frogs cloned from **transplanted** nuclei in 1962 and Roslin's embryo-derived **duo**, Megan and Morag, in 1995. She was **genuinely** the first **mammal** cloned from an adult cell. Roslin's **announcement** on 22 February 1997 **coincided** with the paper, and her name, a mammary **pun**, honoured Dolly Parton.
 
@@ -14,7 +14,7 @@ She bore six lambs by natural **mating**; Bonnie, first of these **descendants**
 
 ## 中文
 
-1996年7月5日，多莉在苏格兰罗斯林出生。她的**基因组**(genome)来自一只芬兰多塞特母羊的乳腺细胞，这个细胞与一枚去除了**细胞核**(nucleus)的黑脸羊卵细胞**融合**(fused)。一只黑脸羊**代孕母羊**(surrogate)怀着这个**胚胎**(embryo)度过了**孕期**(pregnancy)，然而多莉的白脸**证明**(proof)她来自**遗传上**(genetically)不同的**血统**(lineage)。在277次尝试中只有她存活下来，失败率**惊人**(extraordinary)。
+1996年7月5日，多莉在**苏格兰**(Scotland)罗斯林出生。她的**基因组**(genome)来自一只芬兰多塞特母羊的乳腺细胞，这个细胞与一枚去除了**细胞核**(nucleus)的黑脸羊卵细胞**融合**(fused)。一只黑脸羊**代孕母羊**(surrogate)怀着这个**胚胎**(embryo)度过了**孕期**(pregnancy)，然而多莉的白脸**证明**(proof)她来自**遗传上**(genetically)不同的**血统**(lineage)。在277次尝试中只有她存活下来，失败率**惊人**(extraordinary)。
 
 多莉被**普遍**(popularly)称为第一个克隆体，这是一种**误解**(misconception)。她的**前辈**(predecessors)包括1962年用**移植**(transplanted)细胞核克隆的青蛙，以及罗斯林1995年用胚胎细胞培育的**一对**(duo)绵羊梅根和莫拉格。她**确实**(genuinely)是第一个用成年细胞克隆的**哺乳动物**(mammal)。1997年2月22日，罗斯林研究所的**公布**(announcement)与论文发表**同时**(coincided)进行；她的名字是一个关于乳腺的**双关语**(pun)，向多莉·帕顿致敬。
 
@@ -27,6 +27,7 @@ She bore six lambs by natural **mating**; Bonnie, first of these **descendants**
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
+| Scotland | n. 苏格兰（英国的组成部分之一） | 1 |
 | genome | n. 基因组（the human genome；sequence a genome） | 1 |
 | fused | v. (fuse) 融合，熔合（fuse two cells；be fused together） | 1 |
 | nucleus | n. 细胞核；核心（the nucleus of a cell/atom） | 1 |

@@ -2,7 +2,7 @@ import json,re,glob,os
 # 第62篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-11-07 重点词中文沿用文章定稿（铁律）；标色词优先逐词对齐（用户 11-07 原话，篇“61-65”），没标色的尽量；短语型用法整体标（T22）；不用破折号（T36）；形容词的“的”进粗体。
 S=[
-(1,[[[("Dolly was born at Roslin, Scotland, on 5 July 1996.","1996年7月5日，多莉在苏格兰罗斯林出生。")]]]),
+(1,[[[("Dolly was born at Roslin, **Scotland**, on 5 July 1996.","1996年7月5日，多莉在**苏格兰**(Scotland)罗斯林出生。")]]]),
 (1,[[[("Her","她的"),("**genome**","**基因组**(genome)"),("came from","来自"),("a Finn Dorset ewe's","一只芬兰多塞特母羊的"),("mammary","乳腺"),("cell,","细胞，")]],
     [[("**fused** with","这个细胞**融合了**(fused)"),("a Blackface","一枚黑脸羊"),("egg","卵细胞，"),("stripped of","这枚卵已去除了"),("its **nucleus**.","**细胞核**(nucleus)。")],
      "（fused with…：过去分词短语作后置定语，修饰 cell；\nstripped of…：过去分词短语作后置定语，修饰 egg；\nbe stripped of：被去除）"]]),
@@ -66,7 +66,7 @@ S=[
      "她自然产下六只小羊，如今她的标本陈列在苏格兰国家博物馆，白脸依然见证着她的祖源。）"]]),
 ]
 G={
- "S1 Dolly was born at Roslin, Scotland, on 5 July 1996":"对齐不了：时间状语 on 5 July 1996 放在句末，中文日期必须提前到句首（文章定稿原文“1996年7月5日，多莉在苏格兰罗斯林出生”）",
+ "S1 Dolly was born at Roslin, Scotland, on 5 July 1996":"对齐不了：时间状语 on 5 July 1996 放在句末，中文日期必须提前到句首；地名英文由小到大（Roslin, Scotland），中文由大到小“苏格兰罗斯林”（文章定稿原文，用户 11-08 只要求标 Scotland，中文不改）",
  "S4 She alone survived from 277 attempts":"对齐不了：from 277 attempts 是范围状语，中文“在277次尝试中”必须提前，“只有她存活下来”才通顺",
  "S6 frogs cloned from transplanted nuclei in 1962":"对齐不了：cloned from… in 1962 是过去分词短语作后置定语，修饰 frogs，中文定语“1962年用移植细胞核克隆的”必须提前",
  "S6 embryo-derived duo, Megan and Morag, in 1995":"对齐不了：in 1995 和 embryo-derived 都修饰 duo，中文“1995年用胚胎细胞培育的一对绵羊”定语必须提前，同位语人名跟在后面",
@@ -84,7 +84,7 @@ G={
 }
 CONF={"合组":G,
 "对齐":{
- "S1-1 Dolly was born at Roslin, Scot":"时间状语 on 5 July 1996 在句末，中文日期必须提前到句首（文章定稿原文）",
+ "S1-1 Dolly was born at Roslin, Scot":"时间状语 on 5 July 1996 在句末，中文日期必须提前到句首；地名中文由大到小“苏格兰罗斯林”（文章定稿原文，中文不改）",
  "S4-1 She alone survived from 277 at":"from 277 attempts 是范围状语，中文“在277次尝试中”必须提前",
  "S6-2 frogs cloned from transplanted":"cloned from… in 1962 是过去分词短语作后置定语，修饰 frogs，中文定语必须提前",
  "S6-3 embryo-derived duo, Megan and ":"embryo-derived、in 1995 都修饰 duo，中文定语“1995年用胚胎细胞培育的”必须提前",
