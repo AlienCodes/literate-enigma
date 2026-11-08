@@ -33,7 +33,7 @@ S=[
 (3,[[[("A US patent **duly** followed in 1955.","1955年，美国专利**顺理成章地**(duly)到手。")]]]),
 (3,[[[("In 1959","1959年，"),("a New York fashion show","纽约一场时装秀")]],
     [[("sent **apparel** **stitched** with the **fasteners** down the **runway**.","让**缝有**(stitched)这种**搭扣**(fasteners)的**服装**(apparel)走上**T台**(runway)。")],
-     "（stitched with…：过去分词短语作后置定语，修饰 apparel；\nsend A down B：让 A 走上 B）"]]),
+     "（stitched with…：过去分词短语作后置定语，\n修饰 apparel；\nsend A down B：让 A 走上 B）"]]),
 (3,[[[("The public","公众却"),("was less **charmed** than expected,","不如预期那样**着迷**(charmed)，")],
      "（less A than expected：不如预期那样 A）"],
     [[("**mostly**","**主要**(mostly)"),("because of","是因为"),("the **aesthetic**.","它的**外观**(aesthetic)。")]]]),
@@ -47,7 +47,7 @@ S=[
 (5,[[[("When the patent ran out in 1978,","1978年专利到期后，")],
      "（When…：时间状语从句；run out：到期）"],
     [[("**cut-price** **knock-offs** from Taiwan, China, and South Korea","来自台湾、中国大陆和韩国的**廉价的**(cut-price)**仿冒品**(knock-offs)"),("**overran** the market,","大量**涌入**(overran)市场，")],
-     "（from Taiwan, China, and South Korea：后置定语，修饰 knock-offs）"],
+     "（from Taiwan, China, and South Korea：后置定语，\n修饰 knock-offs）"],
     [[("and a **niche** product","一种**小众**(niche)产品"),("went **mainstream**.","成了**主流**(mainstream)。")],
      "（go mainstream：成为主流）"]]),
 (5,[[[("In 2017,","2017年，"),("to stop","为了不让"),("its **brand-name**","自己的**品牌名**(brand-name)"),("**melting** into","逐渐**消融**(melting)为"),("a **generic** **noun**,","一个**通用的**(generic)**名词**(noun)，")],
@@ -68,6 +68,7 @@ CONF={"合组":G,"对齐":DZ}
 out={"no":"66","title_en":"The Burrs That Became Velcro","title_zh":"一颗刺果钩出的发明","title_fx":{"hl":["Burrs","Velcro"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"George de Mestral":"乔治·德·梅斯特拉尔","Swiss":"瑞士","Alps":"阿尔卑斯山","Irish Pointer":"爱尔兰指示犬","Lyon":"里昂","Velcro":"Velcro","French":"法语","US":"美国","New York":"纽约","NASA":"美国航天局","Apollo":"阿波罗","Taiwan":"台湾","China":"中国大陆","South Korea":"韩国"}}
+out.update({"非人声区间": {"S1": [[2.7475, 3.013125, "紧贴词头"]], "S11": [[2.460125, 2.732417, "紧贴词头"]], "S17": [[1.663875, 1.890208]]}, "合成标点": {"S8": [["velvet, and", "velvet; and"]]}})   # 2026-11-08 逐 2.5 ms 实测（dossier_66 #2/#19/#30 A19 停顿后吸气）：S1 Mestral, 后 2.75–3.01 吸气（-38～-58 dB、重心 2.0–2.6 kHz、低频 -10～-22 dB），3.0175 起 a；S11 expected, 后 2.46–2.73 吸气（-47～-57 dB、重心 1.9–2.6 kHz、低频 -6～-19 dB），2.735 起 mostly 的 /m/ 浊音（周期 0.44）保留；S17 2017, 后 1.665–1.89 吸气（-43～-58 dB、重心 2.0–3.1 kHz、低频 -12～-24 dB），1.89–1.905 是 to 的闭塞静音，1.9075 起 /t/ 除阻；S8 velvet 的 /t/ 连进 and、没有闭塞（4.35–4.43 一直 -23～-40 dB），无处移植，合成时逗号换分号让配音自己停（G57 合成标点）
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)
