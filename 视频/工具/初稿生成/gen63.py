@@ -45,7 +45,7 @@ S=[
      "（raising the odds of…：现在分词短语作结果状语，\n使……更有可能）"]]),
 (4,[[[("The 2009 crash","2009年的这次相撞"),("**illustrated**","**例证了**(illustrated)"),("that **premise**","这一**前提**(premise)，")]],
     [[("without","却并未"),("**triggering**","**引发**(triggering)"),("a **runaway**","**失控的**(runaway)"),("**chain reaction**.","**连锁反应**(chain reaction)。")],
-     "（without＋动名词：而没有……）"]]),
+     "（without＋动名词：而没有……）\n（2009年那次卫星相撞事件，虽然验证了科学家之前的可怕猜想，\n但万幸的是，它并没有引发那种彻底失控的连环大爆炸。）"]]),
 (4,[[[("By","截至"),("the end of 2024,","2024年底，"),("**surveillance** networks","太空**监视**(surveillance)网络"),("tracked","跟踪了"),("about 40,000 objects,","约40,000个物体，")]],
     [[("only some 11,000 of them","其中只有约11,000个"),("**functional**.","能**正常运行**(functional)。")],
      "（only some 11,000 of them functional：独立主格结构，\n补充说明 objects；some＋数字：大约）"]]),
