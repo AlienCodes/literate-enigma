@@ -62,13 +62,13 @@ Such a cascade would **unfold** over decades, though, and is not **inevitable**;
 | spiral | n. 螺旋；（不断加剧的）螺旋式变化（a vicious spiral 恶性循环；a downward/inflationary spiral）；v. 螺旋式上升或下降（costs spiral） | 4 |
 | syndrome | n. 综合征（the Kessler syndrome 凯斯勒综合征；Down syndrome）；（某类）典型现象 | 4 |
 | scatter | v. 散布，撒；（使）分散，（使）四散（scatter fragments/seeds；the crowd scattered） | 4 |
-| raising the odds | 短语 (raise the odds of sth) 使……更有可能，提高……的几率（odds n. 可能性，几率；against all odds 尽管困难重重） | 4 |
+| raising the odds | v. phr. (raise the odds of sth) 使……更有可能，提高……的几率（odds n. 可能性，几率；against all odds 尽管困难重重） | 4 |
 | subsequent | adj. 后续的，随后的（subsequent crashes/events/years；subsequent to 在……之后） | 4 |
 | illustrated | v. (illustrate) 举例说明，阐明（illustrate a point/premise）；表明，显示；给（书）配插图 | 4 |
 | premise | n. 前提，基本设想（the premise of a theory；on the premise that 在……前提下）；pl. 房屋，场所（on the premises） | 4 |
 | triggering | v. (trigger) 引发，触发（trigger a chain reaction/crisis/alarm）；n. 扳机；诱因 | 4 |
 | runaway | adj. 失控的（a runaway reaction/train；runaway inflation）；（成功）迅速的（a runaway success）；n. 离家出走者 | 4 |
-| chain reaction | 短语 连锁反应（set off/trigger a chain reaction） | 4 |
+| chain reaction | n. phr. 连锁反应（set off/trigger a chain reaction） | 4 |
 | surveillance | n. 监视，监测（space surveillance 太空监视；under surveillance 受到监视；surveillance cameras） | 4 |
 | functional | adj. 正常运行的，在用的（本文义；fully functional）；功能性的，实用的（functional design） | 4 |
 | unfold | v. （事态）逐步展开，发生（events unfold；unfold over decades）；展开（折叠的东西） | 5 |
@@ -76,7 +76,7 @@ Such a cascade would **unfold** over decades, though, and is not **inevitable**;
 | mitigated | v. (mitigate) 缓解，减轻（mitigate risks/the effects of sth）；mitigation n. 缓解 | 5 |
 | routinely | adv. 例行地，惯常地（be routinely checked/used）；routine n./adj. 常规（的） | 5 |
 | manoeuvre | v. 操纵（使……移动），调动（manoeuvre a satellite/car into position）；n. 机动，（技巧性）动作（an avoidance manoeuvre 避让机动）；美式 maneuver | 5 |
-| out of harm's way | 短语 避开危险，在安全的地方（move/keep sb/sth out of harm's way） | 5 |
+| out of harm's way | phr. 避开危险，在安全的地方（move/keep sb/sth out of harm's way） | 5 |
 | mandated | v. (mandate) 强制要求，以法规规定（mandate that…；mandate the use of sth）；n. 授权，指令 | 5 |
 | disposal | n. 处置，处理（本文指卫星退役后离轨销毁；waste disposal 废物处理）；at sb's disposal 供某人支配 | 5 |
 | retirement | n. 退役（本文指卫星任务结束、停止使用）；退休（take early retirement；retirement age） | 5 |
