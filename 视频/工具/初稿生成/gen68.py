@@ -27,7 +27,7 @@ S=[
 (3,[[[("Of the 97 aboard, 62 survived,","艇上97人中有62人生还，")],
      "（Of the 97 aboard：97人之中；aboard 作后置定语）"],
     [[("a **proportion**","**比例**(proportion)"),("close to **two-thirds**,","接近**三分之二**(two-thirds)；")],
-     "（a proportion close to two-thirds：同位语，补充说明前面的数字）"],
+     "（a proportion close to two-thirds：同位语，\n补充说明前面的数字）"],
     [[("while a **minority** of 35 died,","遇难的35人是**少数**(minority)，")],
      "（while：表示对比）"],
     [[("as did one man on the ground.","地面上另有一名男子丧生。")],

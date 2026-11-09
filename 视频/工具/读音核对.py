@@ -324,6 +324,7 @@ def selftest(no):
     res.append(('“King Francis I.”没转成序数词', bool(ROMAN_RE.search('King Francis I.')) and not ROMAN_RE.search(spoken('King Francis I.')) and not ROMAN_RE.search(spoken('Then I went home, and I said so.'))))
     res.append(('“Lascaux II/IV”读基数词、没登记的“Montignac II”照报', spoken('Lascaux II opened, then Lascaux IV.') == 'Lascaux two opened, then Lascaux four.' and bool(ROMAN_RE.search(spoken('Montignac II opened.')))))   # 67 S15/S17
     res.append(('“6 and 9 August”两个日子都读序数（单个“6 January”照旧）', spoken('On 6 and 9 August 1945, and on 26 or 27 August.') == 'On the sixth and the ninth of August nineteen forty-five, and on the twenty-sixth or the twenty-seventh of August.' and spoken('6 January') == 'the sixth of January'))   # 69 S4、54 S4
+    res.append(('“7:25 pm”带空格也读成 seven twenty-five PM', spoken('At about 7:25 pm on 6 May.') == 'At about seven twenty-five PM on the sixth of May.' and spoken('11.40pm') == 'eleven forty PM'))   # 68 S7
     ok = bool(res) and all(h for _, h in res)
     print(f"{'✔' if ok else '✘'} 读音核对 自检：{no} " + '；'.join(f"{n}{'报出' if h else '没报出'}" for n, h in res) if res else f'✘ 读音核对 自检：{no} 找不到可用来自检的词')
     return ok
