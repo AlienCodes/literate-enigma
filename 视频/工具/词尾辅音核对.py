@@ -92,6 +92,13 @@ def periodicity(x, a, b):
     return float(r[int(SR / 400):int(SR / 70)].max())
 
 
+def 接受原声(d, key, z):
+    """67 S8 句末 rock /k/（11-09）：主会话按实测接受的原声除阻。写 核对确认.词尾辅音 {"S8 句末": {"除阻全频": -28.9, "依据": "..."}}；
+    只在这次实测的除阻全频和记下的差 ≤ 1 dB 时放行（配音一变就失效），没有除阻、或记录里没写 除阻全频 的不放"""
+    a_ = d.get('核对确认', {}).get('词尾辅音', {}).get(key)
+    return bool(isinstance(a_, dict) and z is not None and isinstance(a_.get('除阻全频'), (int, float)) and abs(z[0] - a_['除阻全频']) <= 1.0)
+
+
 def 双爆破(x, hp, z, ref):
     """K171（46 S4 brightest：原声 /t/ 除阻 -32 dB 不过高频门槛，程序又移植一下，中间只隔 10 ms 静音，听成两个 t）：
     有移植的位置，找到的除阻前 7.5–25 ms 静音之后还有一下 ≥ -40 dB 的非元音爆破 → 返回它 (全频, 隔 ms)，否则 None。
@@ -197,6 +204,8 @@ def check(no, d, mutate=None):
                 weak = z is None or z[0] < -40                      # 偏弱的（01 sixty-second, -43 dB、argued, 没有除阻）剪成试听交用户
                 info.append(f"{no} {lab} {where} {word}（浊塞音，不判）{desc}{'  ← 偏弱，需试听：剪成试听交用户确认' if weak else ''}"); continue
             ok = judge(out, z, ph)
+            acc_ = not ok and 接受原声(d, f'{lab} {where}', z)
+            if acc_: ok = True; desc += '（核对确认.词尾辅音：主会话按实测接受原声）'
             gk_ = '句末' if g == len(fin) - 1 else str(g + 1)
             gr_ = gk_ in d.get('词尾除阻', {}).get(lab, {}) or gk_ in d.get('停顿处除阻', {}).get(lab, {})   # 46 S4/S8：停顿处除阻也是移植，双爆破按移植报（删掉这条移植）
             db_ = 双爆破(out, hp, z, ref) if ph in 'tkp' and (gr_ or 元音前(word)) else None   # 没移植的只查元音后的塞音：-pt -kt -st 前一下是 /p k s/ 自己的声音（03 scraped、15 slept、30 east 等 8 处实测），不是重复
@@ -399,6 +408,11 @@ if __name__ == '__main__':
             x_ = np.load(_np46).astype(np.float64); m_ = len(x_) // F5; ref_ = np.sqrt(np.mean(x_[:m_ * F5].reshape(m_, F5) ** 2, axis=1)).max(); h_ = ss.sosfiltfilt(HP, x_)
             if not 双爆破(x_, h_, release(x_, h_, 79920, ref_), ref_): miss.append('K172 46 S8 back, 原声两下 /k/ 爆破没报双爆破')
         else: miss.append('K172 真片样本 样本/46_S8_back_out.npy 不见了')
+        # 67 S8 句末 接受原声：好样本（实测 -28.9、记录 -28.9）必放；坏样本（记录 -32、差 3 dB；没写 除阻全频；没有除阻）必拦
+        z_ = (-28.9, -41.3, 60, None, -240.0); dd_ = lambda v: {'核对确认': {'词尾辅音': {'S8 句末': v}}}
+        if not 接受原声(dd_({'除阻全频': -28.9}), 'S8 句末', z_): miss.append('67 S8 接受原声 好样本被拦')
+        for nm_, d_, zz_ in (('差 3 dB', dd_({'除阻全频': -32.0}), z_), ('没写除阻全频', dd_({'依据': 'x'}), z_), ('没有除阻', dd_({'除阻全频': -28.9}), None), ('别的位置', dd_({'除阻全频': -28.9}), z_)):
+            if 接受原声(d_, 'S9 句末' if nm_ == '别的位置' else 'S8 句末', zz_): miss.append(f'67 S8 接受原声 坏样本（{nm_}）被放')
         ok = n_ok > 0 and not miss
         print(f"{'✔' if ok else '✘'} 词尾辅音核对 自检：{no} 原样 {n_ok} 处全部合格；逐处把除阻换成静音、压低 20 dB，共 {2 * n_ok} 次" + ('全部报出' if not miss else f'，没报出 {len(miss)} 次：' + '；'.join(miss)))
         sys.exit(0 if ok else 1)

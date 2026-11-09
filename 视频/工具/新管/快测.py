@@ -132,6 +132,13 @@ def 读音自检样本():
         open(f'{td}/make_video.py', 'w').write(mv.replace(a, '    for w_,good in {}.items():'))
         rc, o, _ = 跑(['python3', f'{T}/读音核对.py', '29', '--自检'], td, 600)
         if rc == 0: bad.append('K102 没抓到：读音改正拆掉（PRON_WORDS 不生效）29 自检照样通过')
+    # 67 S18 in a recreation（11-09）：关掉按语境读音后读回词典里另一种读法，不当样本，67 自检必过；13 read press coverage 关掉必须报出
+    for n_, want in (('67', None), ('13', '关掉按语境读音（read press coverage）报出')):
+        if not os.path.exists(f'{W}/scripts/{n_}.json') and os.path.exists(f'{os.path.dirname(T)}/脚本/{n_}.json'): shutil.copy(f'{os.path.dirname(T)}/脚本/{n_}.json', f'{W}/scripts/{n_}.json')
+        if not os.path.exists(f'{W}/scripts/{n_}.json'): 跑(['python3', f'{T}/初稿生成/gen{n_}.py'], W, 300)
+        rc, o, _ = 跑(['python3', f'{T}/读音核对.py', n_, '--自检'], W, 600)
+        if rc: bad.append(f'按语境读音自检 {n_} 误停：{o.splitlines()[-1][:120] if o else ""}')
+        elif want and want not in o: bad.append(f'按语境读音自检 {n_} 没抓到：{want[:-2]}')
     return bad
 
 def 括号语境样本():

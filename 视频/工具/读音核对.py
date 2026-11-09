@@ -310,10 +310,14 @@ def selftest(no):
     if not any(n_.startswith(('关掉读音改正', '假改正')) for n_, _ in res): res.append(('关掉读音改正：没有样本，也造不出假样本（K102：不许跳过）', False))
     # ②b 关掉按语境读音（13 S4 过去式 read）：必须报出；标了 "补音": true 的不算（53 S6 stiffened：标准读音不变、只为合成补发被连读吞掉的 /d/，关掉回到标准读音本来就对）
     usedc = [c_ for c_ in PRON_CTX if not PRON_CTX[c_].get('补音') and re.search(r'(?<![A-Za-z])' + re.escape(c_) + r'(?![A-Za-z])', re.sub(r'\*\*', '', R.strip_gloss(text)), flags=re.I)]   # 去掉粗体和中文说明再找（13 S4 是 **press coverage**）
-    if usedc:
-        keep = dict(PRON_CTX); PRON_CTX.clear()
-        got = {line for _, line, bad in check(no) if bad}; PRON_CTX.update(keep)
-        res.append((f'关掉按语境读音（{"、".join(usedc)}）', all(any(f'] {keep[c_]["词"]} ' in l_ for l_ in got - base) for c_ in usedc)))
+    # 67 S18 in a recreation：逐条单独关掉；关掉后读回词典里的另一种正确读法（re-creation→recreation 消遣）本来就不报，不当样本（同 ② K102）
+    validc = []
+    for c_ in usedc:
+        keep_c = PRON_CTX.pop(c_); got = {line for _, line, bad in check(no) if bad}; PRON_CTX[c_] = keep_c
+        hit = any(f'] {keep_c["词"]} ' in l_ for l_ in got - base)
+        print(f'  ②b {c_}：单独关掉按语境读音 → ' + ('报 BAD（当样本）' if hit else '不报（关掉后是词典里的另一种读法，不当样本）'))
+        if hit: validc.append(c_)
+    if validc: res.append((f'关掉按语境读音（{"、".join(validc)}）', True))
     # ③ 去掉一条多音词核对记录
     hk = next((k_ for k_ in HETCONF if k_.startswith(no + ' ') and het_key(k_.split(' ', 2)[2])), None)   # K102：只挑 HET 表里的词（别的词去掉记录不会报）
     if hk:
