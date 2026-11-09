@@ -367,6 +367,8 @@ if __name__ == '__main__':
                 z = release(out, hp, starts[g], ref)
                 if (word and (gk_s := ('句末' if g == len(fin) - 1 else str(g + 1))) in d.get('词尾除阻', {}).get(lab, {}) or 元音前(word)) and 双爆破(out, hp, z, ref): continue   # K172：有两下除阻的位置正检查已报 BAD（或用户听过确认），去掉一下还剩一下，不能做阳性对照
                 if not judge(out, z, ph):
+                    wh_ = '句末' if g == len(fin) - 1 else f'第{g + 1}个标点'
+                    if 接受原声(d, f'{lab} {wh_}', release(out, hp, starts[g], ref, deep=True)): print(f'  {lab} {wh_} {word}：核对确认.词尾辅音 按实测接受的原声，不当阳性对照（67 S8）'); continue
                     print(f'✘ 词尾辅音核对 自检：{no} {lab} {word} 原样就不合格，自检前提不成立'); sys.exit(1)
                 n_ok += 1
                 for name, gain in (('换成静音', 0.0), ('压低 20 dB', 0.1)):
