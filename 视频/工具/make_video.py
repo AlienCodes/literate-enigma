@@ -219,6 +219,7 @@ def spoken(t):
     t=re.sub(r'\b(1[0-2]|[1-9])[.:]([0-5]\d)([ap])m\b',lambda m:_n2w(int(m.group(1)))+('' if m.group(2)=='00' else ' oh '+_ONES[int(m.group(2))] if m.group(2)[0]=='0' else ' '+_n2w(int(m.group(2))))+' '+m.group(3).upper()+'M',t)  # 11.40pm → eleven forty PM（15：原来读成 eleven point four zero；小写 am 会读成 ɐm，大写 AM/PM 读成字母）
     t=re.sub(r'(?<![\d.,])(\d{1,6})\.(\d+)(?![\d.])',lambda m:_int2w(int(m.group(1)))+' point '+' '.join(_ONES[int(c)] for c in m.group(2)),t)   # 264.4 → two hundred sixty-four point four（13；时间在上一行先转）
     t=re.sub(r'\b(1[1-9])(\d)0s\b',lambda m:_n2w(int(m.group(1)))+' '+_PL[_TENS[int(m.group(2))]],t)          # 1960s → nineteen sixties
+    t=re.sub(r'\b([1-9]|[12]\d|3[01]) (and|or) ([1-9]|[12]\d|3[01]) ('+_MONTHS+r')\b',lambda m:'the '+_ordinal(int(m.group(1)))+' '+m.group(2)+' the '+_ordinal(int(m.group(3)))+' of '+m.group(4),t)  # 69 S4 6 and 9 August → the sixth and the ninth of August（原来只换紧挨月份的 9，6 读成基数 six；54 S4 26 and 27 August 同样）
     t=re.sub(r'\b([1-9]|[12]\d|3[01]) ('+_MONTHS+r')\b',lambda m:'the '+_ordinal(int(m.group(1)))+' of '+m.group(2),t)  # 6 January → the sixth of January
     t=re.sub(r'(?<!\d,)(?<!\d)\b(1[1-9]\d\d)\b(?!,\d)(?!\d)',lambda m:_year(int(m.group(1))),t)                       # 1995 → nineteen ninety-five
     t=re.sub(r'\b((?:King|Queen|Pope|Emperor|Empress|Tsar|Czar|Pharaoh|Prince|Princess|Duke) [A-Z][a-z]+) (XVI|XV|XIV|XIII|XII|XI|X|IX|VIII|VII|VI|V|IV|III|II|I)\b',
