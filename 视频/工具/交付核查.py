@@ -36,14 +36,15 @@ elif stage == '出片前':
     src = open('make_video.py').read(); exec(src[src.index('# 朗读用的数字读法'):src.index('def say(t):')])
     # 数字读法、引号自检（A11/A37/A17）：标准读法必须一字不差，引号必须不读、撇号必须保留
     _sp = {'in 1995 he': 'in nineteen ninety-five he', 'the Democratic O.K. Club, making': 'the Democratic OK Club, making', 'documents O.K.': 'documents OK.', "known 'o.k.' glossed": 'known OK glossed', 'the 1960s were': 'the nineteen sixties were', 'on 6 January': 'on the sixth of January',
-           'at 11.40pm': 'at eleven forty PM', 'was 264.4 km': 'was two hundred sixty-four point four km',
+           'at 11.40pm': 'at eleven forty PM', 'on 26–27 August.': 'on the twenty-sixth to the twenty-seventh of August.', 'was 264.4 km': 'was two hundred sixty-four point four km',
            '"Hello," she said.': 'Hello, she said.', "he didn't": "he didn't", '‘Yes’ he said': 'Yes he said', 'paid $105,000 for': 'paid one hundred five thousand dollars for', 'a fine of £1 each': 'a fine of one pound each', 'sold for $950 million in': 'sold for nine hundred fifty million dollars in', 'about $100bn; projects': 'about one hundred billion dollars; projects', 'a £2.5bn deal': 'a two point five billion pounds deal', 'cost $5m in': 'cost five million dollars in', 'ran the 100m in': 'ran the 100m in', 'cost about $5.83 a ton': 'cost about five dollars eighty-three cents a ton', 'only £1.01 each': 'only one pound one penny each'}   # K141   # K114、K130
     def _未处理(x, m):   # K150（42 S? $1.5 billion：单独转 “$1.5” 判成未处理，误报）：连着后面的 million/billion/trillion 一起转
         q = re.match(r'\s+(?:million|billion|trillion)\b', x[m.end():])
         # K164（46 47%、9.6%：配音读 forty-seven percent，读音核对逐个对过；紧跟在数字后的 % 读作 percent，不算未处理，照常列进清单）
+        if re.match(r'\S*\d\s*(?:[–-]|and|or|to)\s*the [\w-]+(?:st|nd|rd|th) of ', spoken(x[m.start():m.end() + 40])): return True   # 54 S4：26–27 August 读成 26–the twenty-seventh（前一个日子没转序数）
         return bool(re.search(r'\d+\.\d+|%|\$|£|€|\d+/\d+', re.sub(r'(?<=\w)%(?=[^\w%]|$)', '', spoken(m.group(0) + (q.group(0) if q else '')))))
     _spbad = [f'{k} → {spoken(k)}（应为 {v}）' for k, v in _sp.items() if spoken(k) != v]
-    for x_, 应 in (('cost about $1.5 billion, a', False), ('sold for $950 million in', False), ('cost about $1.5, a', True), ('a 2/3 share', True), ('about 47% of', False), ('fell 9.6% in', False), ('rose 62%.', False), ('a 47%x rise', True)):   # K150 好/坏样本
+    for x_, 应 in (('on 26–the twenty-seventh of August.', True), ('on 26–27 August.', False), ('on 6 and 9 August', False), ('cost about $1.5 billion, a', False), ('sold for $950 million in', False), ('cost about $1.5, a', True), ('a 2/3 share', True), ('about 47% of', False), ('fell 9.6% in', False), ('rose 62%.', False), ('a 47%x rise', True)):   # K150 好/坏样本
         m_ = re.search(r'\S*\d\S*', x_)
         if _未处理(x_, m_) != 应: _spbad.append(f'K150 “{x_}” {"该报没报" if 应 else "误报未处理"}')
     step('数字读法、引号自检（A11/A37/A17：年份、年代、日期、时刻、小数读法；引号不读、撇号保留）', not _spbad, '没抓到：' + '；'.join(_spbad) if _spbad else '')
