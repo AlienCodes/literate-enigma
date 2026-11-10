@@ -80,6 +80,17 @@ J·罗伯特·奥本海默1904年4月22日生于纽约，是一位**卓有成就
 | revocation | n. 撤销，吊销（revocation of a licence/visa） | 5 |
 | persisted | v. (persist) 持续，存留（the pain/rain persisted） | 5 |
 | lifetime | n. 一生，终生（once in a lifetime；in one's lifetime） | 5 |
+| bombs | n. (bomb) 炸弹（an atomic bomb；a bomb attack） | 1 |
+| blinding glare | n. 刺眼的强光（blinding adj. 刺眼的；glare n. 强光，刺眼的光） | 2 |
+| year-end | adj./n. 年底（的）（year-end figures/results） | 2 |
+| Oppenheimer | n. 奥本海默（J. Robert Oppenheimer，美国理论物理学家，“原子弹之父”） | 3 |
+| crash programme | n. 紧急计划，应急计划（a crash programme to build ships） | 3 |
+| access to | n. 接触……的权限，使用……的权利（have/gain access to sth） | 3 |
+| hearing | n. 听证会；听力（a public hearing；a security hearing） | 4 |
+| Atomic Energy | n. 原子能（atomic energy；the Atomic Energy Commission 原子能委员会） | 4 |
+| clearance | n. 安全许可（接触机密的审查许可）；清除（security clearance） | 4 |
+| flawed | adj. 有缺陷的，有瑕疵的（a flawed argument/process） | 5 |
+| secretary | n. 部长，大臣；秘书（the energy secretary；the Secretary of State） | 5 |
 
 ## 史实与来源
 - 【T1】1904年4月22日生于纽约市；20世纪30年代同时在伯克利和加州理工学院任教理论物理。S1；S14
