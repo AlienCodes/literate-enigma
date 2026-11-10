@@ -79,6 +79,25 @@ The 1933 crash of USS Akron killed 73 yet won less **notoriety**. The filmed fir
 | epoch | n. 时代，纪元（mark a new epoch） | 5 |
 | aviation | n. 航空（civil aviation；aviation fuel） | 5 |
 
+| round trips | n. (round trip) 往返旅程，往返飞行（a round trip ticket；make a round trip） | 1 |
+| hydrogen | n. 氢，氢气（hydrogen gas；liquid hydrogen） | 1 |
+| smokers | n. (smoker) 吸烟者（a heavy smoker；non-smokers） | 1 |
+| sat behind | v. (sit behind) 坐在……后面（sit behind the desk；sit behind a screen） | 1 |
+| electric lighter | n. 电子点烟器，电点火器（an electric lighter in the car） | 1 |
+| airship | n. 飞艇（a passenger airship；airship travel） | 2 |
+| circled | v. (circle) 盘旋，绕圈（circle the airport；birds circled overhead） | 2 |
+| before | conj./prep. 在……之前；（译作）才（it was weeks before he replied） | 2 |
+| mooring mast | n. 系留塔架，系留塔（an airship mooring mast） | 2 |
+| a minority of | 少数的……（a minority of people；only a minority of） | 3 |
+| cabin boy | n. 船上的服务生，侍应生（work as a cabin boy） | 3 |
+| static electricity | n. 静电（build up static electricity） | 4 |
+| igniting | v. (ignite) 点燃，引燃（ignite the gas；ignite a debate） | 4 |
+| leading explanation | 最主要的解释（the leading explanation for） | 4 |
+| theory | n. 理论；（未被证实的）看法，说法（a theory about；in theory） | 4 |
+| rejected | v. (reject) 拒绝，不接受，否定（reject a theory/offer） | 4 |
+| soured | v. (sour) 变糟，恶化（relations soured；the mood soured） | 5 |
+| withdrawn | v. (withdraw) 撤回，退役，退出（withdraw from service；withdraw troops） | 5 |
+| doomed | adj. 注定失败的，注定毁灭的（a doomed attempt；doomed to fail） | 5 |
 ## 史实与来源
 - 【T1】1936年兴登堡号完成17次大西洋往返（34次横渡）。S6
 - 【T2】艇内有餐厅、休息厅等；三角钢琴1936年在艇上，1937年移走；吸烟室在气闸后，只有一个电点火器，不得有明火。S5
