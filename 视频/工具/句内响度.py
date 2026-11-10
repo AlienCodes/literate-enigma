@@ -40,15 +40,15 @@ def 算增益(m, TM, old, seg_rec=None, old_rg=None, 短=False):
     """{句: {段号: 新增益}}：只算有相邻两组超标的句子。给了 seg_rec 时第二个返回值是 段内渐变dB {句: {段号: [开头, 结尾]}}（K163 一段里有两组以上的段）。"""
     new = {}; rg = {}; sh = 共段(m, seg_rec) if seg_rec else {}
     for s, gs in m.items():
-        L = [g[3] for g in gs]
+        L = [R.等效(g[3], g[1], g[2], 短) for g in gs]   # K134：短段按等效响度（-2 LU）比
         if not any(x is not None and y is not None and abs(y - x) > R.IN_ADJ for x, y in zip(L, L[1:])): continue
         I = float(np.median([x for x in L if x is not None]))   # 参照：各段响度的中位数（整句综合响度会被段间静音块拉低）
-        for ks, x_, y_, v in gs:
+        for (ks, x_, y_, _), v in zip(gs, L):
             if v is None or abs(I - v) <= 1.0: continue
             dlt = round((I - v) * 2) / 2
             for k in ks:
                 if str(k) in sh.get(s, {}): continue
-                lo, hi = (0.0, 2.0) if 短 and y_ - x_ < 1.5 else (-6.0, 6.0)   # K134（66 S5 In Lyon,、67 S1 Marcel Ravidat,）：不到 1.5 秒的短段不往下压、往上最多 +2 dB（与 make_video._短段限 同一标准；出片程序合起来再收）
+                lo, hi = (-4.5, 6.0) if 短 and y_ - x_ < 1.5 else (-6.0, 6.0)   # K134：短段往下最多 -4.5（与 make_video._短段限 同一兜底）
                 g = max(lo, min(hi, float(old.get(s, {}).get(str(k), 0)) + dlt))
                 new.setdefault(s, {})[str(k)] = g   # 59 S12（11-07）：旧增益+修正=0 也要记下（写入时撤掉旧的），原来丢掉、报 0 句、旧 ±1.5 一直留着
         for k, hs in sh.get(s, {}).items():   # K168（49 S14 每跑一次加一档 ±1.5→±3→±4.5）：原来把差直接加在段两头，组中点只拿到一半，要好几轮；现在让第一组、最后一组的中点正好补上差，一轮到位

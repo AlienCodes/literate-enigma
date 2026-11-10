@@ -8,7 +8,7 @@
 标准：每一句与全片相差不超过 ±2 LU；相邻两句相差不超过 2.5 LU。片头（前 SKIP 秒）不算。
 自检（阳性对照）：把中间一句调到比全片响 3 LU、另一句调到比全片轻 3 LU（按这一句原来的响度算增益），必须正好报出这两句，其余不报；自检不过 = 核查失灵。
 """
-import sys, re, subprocess, tempfile, os, numpy as np
+import re, sys, re, subprocess, tempfile, os, numpy as np
 try:
     import imageio_ffmpeg; FF = imageio_ffmpeg.get_ffmpeg_exe()
 except Exception: FF = 'ffmpeg'
@@ -53,7 +53,7 @@ def check(src, a=None):
     L = []
     for x, y in segs:
         blk = TM[(TM[:, 0] >= x + 0.4 - 1e-6) & (TM[:, 0] <= y + 0.05), 1]
-        L.append(gated(blk) if len(blk) else None)
+        L.append(等效(gated(blk), x, y, 短起(篇号(src))) if len(blk) else None)
     bad = []
     for k, ((x, y), v) in enumerate(zip(segs, L), 1):
         if v is None: continue
@@ -68,6 +68,15 @@ def check(src, a=None):
 # 整句在 ±2 LU 内，句内逗号停顿前后两段却差 3～5 LU，听起来突然变小。按句内 ≥IN_GAP 秒的静音（逗号停顿 0.4 秒；列举逗号 0.2 秒不切）
 # 把每句切成段，每段按 BS.1770 门限算响度（不足 0.4 秒的段取最贴近的一块），相邻两段差超过 IN_ADJ 就报。
 IN_GAP = 0.3; IN_ADJ = 2.5   # 与“相邻两句 ≤2.5 LU”同一个标准；25 S2 用户听出变小的那处是 2.8
+# K134（用户 2026-11-10 听 66 S5 In Lyon,、67 S1 Marcel Ravidat,、65 S8 ICARDA,：短段“声音变小”）：不到 1.5 秒的短段（一两个重读词）没有词间低谷，
+# 门限均值比同样听感的长段高约 2 LU（66 In Lyon, 整段与邻段齐平时最响处低 6～7 dB、用户听出变小；65 ICARDA, 整段高 2.0 LU 时用户没再说）。
+# 54、65 起和 05：短段按“等效响度 = 量出来的 - 短偏”去比、去调平（make_video 源头调平、句内响度.py、这里的核查同一个口径）。
+短偏 = 2.0; 短长 = 1.5
+短起 = lambda no: str(no).isdigit() and (int(no) >= 65 or int(no) in (5, 54))
+def 篇号(path):
+    m = re.search(r'(?:work_|^|/)(\d{2})(?:\.mp4|\.m4a|\.wav|/|$)', path or ''); return m.group(1) if m else None
+def 等效(v, x, y, on):
+    return v - 短偏 if on and v is not None and y - x < 短长 else v
 def 分段(a, segs):
     n = int(0.01 * SR); m = len(a) // n
     e = 10 * np.log10(np.mean(a[:m * n].reshape(m, n) ** 2, axis=1) + 1e-20); quiet = e < e.max() - 50
@@ -95,9 +104,9 @@ def 句内(src, a=None, TM=None, seg_json=None):
     """返回 [(句名, 第几段→下一段, 前段时刻, 后段时刻, 差 LU)]，差 = 后段 - 前段；段按句内 ≥IN_GAP 秒的静音切（不看出片程序记的停顿）。"""
     a = pcm(src) if a is None else a
     TM = momentary(src) if TM is None else TM
-    rg = 句范围(a, seg_json); rs = []
+    rg = 句范围(a, seg_json); rs = []; on = 短起(篇号(seg_json) or 篇号(src))
     for (nm, _, _), cur in zip(rg, 分段(a, [(x, y) for _, x, y in rg])):
-        L = [段响度(TM, x, y) for x, y in cur]
+        L = [等效(段响度(TM, x, y), x, y, on) for x, y in cur]
         for j in range(1, len(cur)):
             if L[j] is None or L[j - 1] is None: continue
             rs.append((nm, j, cur[j - 1], cur[j], L[j] - L[j - 1]))
@@ -116,9 +125,9 @@ def 压小(src, a=None, TM=None, seg_json=None):
     """返回 [(句名, 第几段, (起, 止), 邻段整段响多少 LU, 邻段最响处高多少 LU)]"""
     a = pcm(src) if a is None else a
     TM = momentary(src) if TM is None else TM
-    rg = 句范围(a, seg_json); out = []
+    rg = 句范围(a, seg_json); out = []; on = 短起(篇号(seg_json) or 篇号(src))
     for (nm, _, _), cur in zip(rg, 分段(a, [(x, y) for _, x, y in rg])):
-        S = [段量(TM, x, y) for x, y in cur]
+        S = [(等效(g_, x, y, on), p_) for (x, y) in cur for g_, p_ in [段量(TM, x, y)]]
         for j, (g, pk) in enumerate(S):
             for k in (j - 1, j + 1):
                 if 0 <= k < len(S) and g is not None and S[k][0] is not None and S[k][0] - g > IN_DIP_G and S[k][1] - pk > IN_DIP_PK:

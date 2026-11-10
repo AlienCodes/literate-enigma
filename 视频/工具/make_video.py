@@ -709,7 +709,7 @@ def _auto_level(clips,tmap,gaps,no='',rounds=2):
     if len(gs)<2: return {}
     # G51（2026-10-25 撞车会话的容器重查 26 声音差 -39.6 dB）：调平增益靠 ffmpeg 量响度，换机器量出的数差一点，碰到 0.5 dB 档的边界增益就翻档。
     # 算过的增益按“篇号 + 调平前的声音 + 分段 + 停顿”的指纹存成（篇号：演练、守门自检改号用的样本不会和真实篇目共用缓存） 调平_<指纹>.json（和配音缓存一起进仓库），先读存的，不重算；严格缓存模式缺了就停
-    _k=_hl.sha1(b''.join(np.ascontiguousarray(c_,np.float32).tobytes() for c_ in clips)+repr((str(no),list(gaps),[(round(t[2],4),round(t[3],4)) for t in tmap])).encode()).hexdigest()
+    _k=_hl.sha1(b''.join(np.ascontiguousarray(c_,np.float32).tobytes() for c_ in clips)+repr((str(no),list(gaps),[(round(t[2],4),round(t[3],4)) for t in tmap])+(('K134等效',) if _短起(no) else ())).encode()).hexdigest()   # K134 篇目按新口径重算，不读旧缓存
     _fs=[f'{_CACHE}/调平_{_k}.json',os.path.join(_REPO_CACHE,f'调平_{_k}.json')]
     # K130（60 S11 That law,：调平按整段响度压了 -6 dB，重读的短段压太多，用户听出“声音突然变小”）：61 起往下压最多 -4 dB（缓存里存的旧值读出来也按这个收）；56–60 已出片不动
     _lo=-4.0 if str(no).isdigit() and int(no)>=61 else -6.0
@@ -725,7 +725,7 @@ def _auto_level(clips,tmap,gaps,no='',rounds=2):
         x=np.concatenate([np.zeros(int(0.5*SR),np.float32)]+cur+[np.zeros(int(0.5*SR),np.float32)])
         with tempfile.TemporaryDirectory() as td:
             p=os.path.join(td,'s.wav'); sf.write(p,x/max(1e-9,np.abs(x).max())*0.89,SR); TM=LQ.momentary(p)
-        L=[LQ.段响度(TM,0.5+tmap[g[0]][2],0.5+tmap[g[-1]][3]) for g in gs]
+        L=[LQ.等效(LQ.段响度(TM,0.5+tmap[g[0]][2],0.5+tmap[g[-1]][3]),tmap[g[0]][2],tmap[g[-1]][3],_短起(no)) for g in gs]   # K134：短段按等效响度（量出来的 -2 LU）调平
         med=float(np.median([v for v in L if v is not None])); ch=False
         for g,v in zip(gs,L):
             if v is None or abs(med-v)<=1.0: continue
@@ -740,8 +740,9 @@ def _auto_level(clips,tmap,gaps,no='',rounds=2):
 # K134（用户 2026-11-10 听 66 S5“In Lyon,”：“这个地方声音，它又变小了。怎么老是出现这种问题”；同类 60 S11 That law, -6、65 S8 ICARDA, -7.5、66 In Lyon, -4-2=-6）：
 # 不到 1.5 秒的短段（一两个重读词）响度计按整段门限均值量，没有词间低谷，量出来偏响，调平就往下压，耳朵听着突然变小；往上补也会补过头（66 S8 补响后偏响 2～3 LU）。
 # 67 S1 Marcel Ravidat,（K135）自动调平只压 -3.5 用户也听出“上来名字声音就变小”。用户听出的全是程序加工过的短段，原声没被投诉过。
-# 54、65 起（及 05）：短段的自动调平 + 分段增益 合起来不往下压（下限 0），往上补最多 +2 dB（自动收，不停）。
-_短下=0.0; _短上=2.0; _短长=1.5
+# 第一版“短段不往下压”太死（66 In Lyon、S18 In effect、54 S1/S2/S6、70 S8/S14 原声本来偏响 4～5 LU，冒出来）。改成：54、65 起（及 05）短段按等效响度
+# （量出来的 -2 LU，响度一致性核对.等效）调平，偏响的照样压、压到听着齐平就停；合计往下最多 -4.5 dB 兜底（用户听出的 -6、-7.5 都在外面）。
+_短下=4.5; _短上=6.0; _短长=1.5
 def _短起(no): return str(no).isdigit() and (int(no)>=65 or int(no) in (5,54))
 def _短段(no,tmap,gaps):
     """{段下标}：按 ≥IN_GAP 秒停顿分组（与调平同一切法），组长（首段起到末段止）不到 _短长 秒的组里的各段"""
