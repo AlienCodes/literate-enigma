@@ -29,6 +29,7 @@ As the **initiator** of postage stamps, Britain set a **precedent** and earned a
 |---|---|---|
 | postage | n. 邮费，邮资（postage and packing；postage stamps） | 1 |
 | levied | v. (levy) 征收（levy a tax/fine on sb） | 1 |
+| sheets | n. (sheet) （纸）张，页（a sheet of paper） | 1 |
 | mileage | n. 里程（low mileage；mileage allowance） | 1 |
 | carriage | n. 运送，运费；马车（carriage costs；a horse-drawn carriage） | 1 |
 | payable | adj. 应付的，可付的（payable on delivery；payable to sb） | 1 |
@@ -37,12 +38,14 @@ As the **initiator** of postage stamps, Britain set a **precedent** and earned a
 | sender | n. 寄件人，发送者（return to sender） | 1 |
 | fluctuated | v. (fluctuate) 波动，起伏不定（prices fluctuate；fluctuate between A and B） | 1 |
 | postal | adj. 邮政的（a postal worker；postal services） | 1 |
+| item | n. 物品，一件（an item of mail；items of clothing） | 1 |
 | booklet | n. 小册子（an information booklet） | 2 |
 | enacted | v. (enact) 通过（法律），制定（enact legislation） | 2 |
 | campaigner | n. 运动者，倡导者（an environmental campaigner） | 2 |
 | proposal | n. 提议，建议（put forward a proposal） | 2 |
 | ounce | n. 盎司（an ounce of gold；not an ounce of truth） | 2 |
 | destination | n. 目的地（a popular holiday destination） | 2 |
+| penny | n. 便士（cost one penny；pennies/pence） | 2 |
 | prepaid | adj. 预付的（a prepaid envelope/card） | 2 |
 | flat-rate | adj. 统一费率的（a flat-rate fee/tax） | 2 |
 | variation | n. 变化，差异（regional variations） | 2 |
@@ -53,6 +56,7 @@ As the **initiator** of postage stamps, Britain set a **precedent** and earned a
 | youthful | adj. 年轻的，青春的（a youthful appearance） | 3 |
 | likeness | n. 肖像，画像；相似（a good likeness of sb；a family likeness） | 3 |
 | monarch | n. 君主，国君（a reigning monarch） | 3 |
+| reigning | adj. 在位的，当政的（the reigning monarch/champion） | 3 |
 | aggregate | n./adj. 总数，合计（in aggregate；aggregate demand） | 3 |
 | separation | n. 分开，分隔（the separation of powers） | 3 |
 | individually | adv. 单独地，逐个地（wrapped individually） | 3 |
@@ -60,11 +64,13 @@ As the **initiator** of postage stamps, Britain set a **precedent** and earned a
 | mailings | n. (mailing) 邮件；邮寄（bulk mailings） | 4 |
 | items | n. (item) 物品，邮品；一件，一项（items of clothing；postal items） | 4 |
 | drawback | n. 缺点，不利条件（the main drawback of the plan） | 4 |
+| cancelling mark | n. 注销印记（邮戳）（a red cancelling mark） | 4 |
 | noticeable | adj. 显眼的，明显的（a noticeable improvement；barely noticeable） | 4 |
 | contrast | n. 对比，反差（in sharp contrast；colour contrast） | 4 |
 | erased | v. (erase) 擦除，抹去（erase a recording/memory） | 4 |
 | vulnerable | adj. 易受伤害的，易受影响的（vulnerable to attack） | 4 |
 | reuse | n./v. 重复使用（reuse plastic bags） | 4 |
+| deter | v. 防止，阻止（deter crime；deter sb from doing sth） | 4 |
 | tampering | n. 篡改，乱动（evidence of tampering） | 4 |
 | fraud | n. 欺诈（credit card fraud） | 4 |
 | initiator | n. 发起人，创始者（the initiator of the scheme） | 5 |

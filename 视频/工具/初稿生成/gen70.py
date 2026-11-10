@@ -1,70 +1,80 @@
 import json,re,glob,os
 # 第70篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
-# 2026-11-08 重点词中文沿用文章定稿（铁律）；中英尽量对齐、标色优先；不用破折号（T36）；三项并列加牛津逗号（T18）；英文没有引号中文不加。
+# 2026-11-10 deter（与 47 撞车）、reigning（与 57 撞车）是用户点名加的重点词：“在这个地方deter要deter，要标注为重点词汇”“Reigning重点词汇，重点词汇。在位的”，照加（allow_clash），已告诉用户
+# 2026-11-10 按用户修改建议 Word（70.docx，用户原话）改译文、加重点词（sheets、item、penny、flat-rate charge、reigning、cancelling mark、deter）、改小字和简述；2026-11-08 重点词中文沿用文章定稿（铁律）；中英尽量对齐、标色优先；不用破折号（T36）；三项并列加牛津逗号（T18）；英文没有引号中文不加。
 S=[
-(1,[[[("Before 1840,","1840年以前，"),("British **postage**","英国的**邮费**(postage)"),("was **levied** according to the number of sheets in a letter and the **mileage** of its **carriage**.","按信件的页数和**运送**(carriage)**里程**(mileage)**收取**(levied)。")],
+(1,[[[("Before 1840,","1840年以前，"),("British **postage**","英国的**邮费**(postage)"),("was **levied** according to the number of **sheets** in a letter and the **mileage** of its **carriage**.","是根据一封信件中的**纸张**(sheets)数量及其**运输**(carriage)的**里程**(mileage)来**征收**(levied)的。")],
      "（according to A and B：按 A 和 B；its 指 letter）"]]),
-(1,[[[("The sum","这笔钱"),("was usually","通常"),("**payable** on **delivery**,","在**投递**(delivery)时**支付**(payable)，")]],
-    [[("so","因此"),("the person receiving the **correspondence**, not the **sender**, settled it.","付钱的是收到**信件**(correspondence)的人，而不是**寄信人**(sender)。")],
+(1,[[[("The sum","这笔钱"),("was usually","通常是"),("**payable** on **delivery**,","在**投递**(delivery)时**应支付的**(payable)，")]],
+    [[("so","所以，"),("the person receiving the **correspondence**,","收到**信件**(correspondence)的人，"),("not the **sender**,","而非**寄信人**(sender)，"),("settled it.","结清邮费。")],
      "（receiving the correspondence：现在分词短语作后置定语，\n修饰 person；\nit 指 the sum）"]]),
-(1,[[[("Prices","价格"),("thus","也就"),("**fluctuated** from one **postal** item to the next.","随每件**邮政**(postal)物品而**波动**(fluctuated)。")],
-     "（from one … to the next：从一件到下一件）"]]),
-(2,[[[("In 1837","1837年，"),("Rowland Hill","罗兰·希尔"),("published a **booklet**","出版了一本**小册子**(booklet)，"),("urging reform.","呼吁改革。")],
+(1,[[[("Prices","价格"),("thus","此种方式"),("**fluctuated**","**波动**(fluctuated)，"),("from one","从一件"),("**postal**","**邮政**(postal)"),("**item**","**物品**(item)"),("to the next.","到下一件。")],
+     "（from one … to the next：从一件到下一件）\n（item：指一件具体的物品\n（在此处指“一件邮件/包裹”））"]]),
+(2,[[[("In 1837","1837年，"),("Rowland Hill","罗兰·希尔"),("published a **booklet**","出版了一本**小册子**(booklet)，"),("urging","呼吁"),("reform.","改革。")],
      "（urging reform：现在分词短语，补充说明 booklet）"]]),
-(2,[[[("Parliament **enacted** the **campaigner**'s **proposal** in 1839,","1839年，议会将这位**改革倡导者**(campaigner)的**提议**(proposal)**立法通过**(enacted)；")],
+(2,[[[("Parliament","议会"),("**enacted**","于1839年**立法通过了**(enacted)"),("the **campaigner**'s","这位**改革倡导者**(campaigner)的"),("**proposal** in 1839,","**提议**(proposal)，")],
      "（campaigner 指 Rowland Hill）"],
-    [[("and on 10 January 1840","1840年1月10日，"),("the Uniform Penny Post","统一便士邮资"),("began.","开始实行。")]]]),
-(2,[[[("A letter of up to half an **ounce**","重量不超过半**盎司**(ounce)的信"),("now cost one penny to any **destination** in Britain,","寄往英国境内任何**目的地**(destination)，都只需一便士，")],
+    [[("and on 10 January 1840","并且在1840年1月10日，"),("the Uniform Penny Post","“统一便士邮资”"),("began.","开始实行。")]]]),
+(2,[[[("A letter of up to half an **ounce**","一封重量不超过半**盎司**(ounce)的信，"),("now cost one **penny** to any **destination** in Britain,","现在寄往英国境内任何**目的地**(destination)都只花费一**便士**(penny)，")],
      "（of up to half an ounce：介词短语作后置定语，修饰 letter）"],
-    [[("and the fee","费用"),("was **prepaid** by whoever sent it.","由寄信的一方**预付**(prepaid)。")],
+    [[("and the fee","并且费用"),("was **prepaid** by whoever sent it.","由寄信的人**预付**(prepaid)。")],
      "（whoever sent it：名词性从句作 by 的宾语；it 指 letter）"]]),
-(2,[[[("One **flat-rate** charge","统一的**单一费率**(flat-rate)"),("replaced **variation** with **simplicity**.","以**简便**(simplicity)取代了**差异**(variation)。")],
+(2,[[[("One","一种"),("**flat-rate charge**","**统一收费**(flat-rate charge)"),("replaced **variation** with **simplicity**.","以**简便**(simplicity)取代了**差异**(variation)。")],
      "（replace A with B：以 B 取代 A）"]]),
-(3,[[[("The Penny Black,","黑便士"),("a one-penny **denomination**,","是一枚一便士**面值**(denomination)的邮票，")],
+(3,[[[("The Penny Black,","黑便士，"),("a one-penny **denomination**,","一枚**面值**(denomination)一便士的邮票，")],
      "（a one-penny denomination：同位语，补充说明 Penny Black）"],
-    [[("was released on 1 May 1840,","于1840年5月1日发行，")]],
-    [[("its **validity**","**有效期**(validity)"),("starting on 6 May.","从5月6日开始。")],
-     "（its validity starting…：独立主格结构）"]]),
-(3,[[[("**Engraved** on it was","上面**雕刻**(engraved)着")],
+    [[("was released on 1 May 1840,","发行于1840年5月1日，")]],
+    [[("its **validity**","它的**有效性**(validity)"),("starting on 6 May.","从5月6日开始。")],
+     "（validity：（票据、合同、证件等的）有效性、合法效力，\n在此处特指“正式生效、可被官方认可使用的状态”）"]]),
+(3,[[[("**Engraved** on it was","它的上面**雕刻**(engraved)着")],
      "（倒装句：Engraved on it 提前，\n主语是 a youthful likeness…；\nit 指 Penny Black）"],
-    [[("a **youthful** **likeness** of Queen Victoria, the reigning **monarch**.","当时在位的**国君**(monarch)维多利亚女王**年轻的**(youthful)**肖像**(likeness)。")],
+    [[("a **youthful**","维多利亚女王**年轻的**(youthful)"),("**likeness** of Queen Victoria,","**肖像**(likeness)，")]],
+    [[("the **reigning**","即这位**在位的**(reigning)"),("**monarch**.","**君主**(monarch)。")],
      "（the reigning monarch：同位语，补充说明 Queen Victoria）"]]),
-(3,[[[("An **aggregate** of 68,808,000 were printed.","印制**总数**(aggregate)为68,808,000枚。")],
-     "（an aggregate of：总共）"]]),
-(3,[[[("The sheets","整版邮票之间"),("had no holes for **separation**,","没有用于**分隔**(separation)的孔，")]],
-    [[("so each stamp","每枚"),("was cut out **individually** with **scissors**.","都要用**剪刀**(scissors)**逐一**(individually)剪下。")],
-     "（was cut out：被动语态；cut out：剪下）"]]),
-(4,[[[("**Mailings**","寄送的**邮件**(mailings)"),("doubled,","翻了一番，")]],
-    [[("from about 80 million **items** in 1839","从1839年的约8,000万件**邮品**(items)"),("to over 169 million in 1840.","增至1840年的1.69亿件以上。")],
+(3,[[[("An **aggregate** of 68,808,000","**总计**(aggregate)有68,808,000枚"),("were printed.","被印制。")],
+     "（aggregate：总数，合计，各项加起来的总量）"]]),
+(3,[[[("The sheets","这些整版邮票"),("had no holes for **separation**,","没有用于**分离**(separation)的孔，")]],
+    [[("so","所以"),("each","每枚"),("stamp","邮票"),("was cut out **individually**","都被**单独地**(individually)"),("with **scissors**.","用**剪刀**(scissors)剪下。")],
+     "（was cut out：被动语态；cut out：剪下）\n（individually：单独地、逐个地（强调作为独立的个体，\n而不是作为一个整体一起处理））"]]),
+(4,[[[("**Mailings**","**邮寄量**(mailings)"),("doubled,","翻了一番，")]],
+    [[("from about 80 million **items** in 1839","从1839年的约8000万件邮寄**物品**(items)"),("to over 169 million in 1840.","增至1840年的超过1.69亿件。")],
      "（from A to B：从 A 增至 B）"]]),
 (4,[[[("The design","这一设计"),("had a **drawback**.","有个**缺点**(drawback)。")]]]),
-(4,[[[("Against black,","在黑色底上，"),("the red cancelling mark","红色注销戳"),("was barely **noticeable**,","几乎不**显眼**(noticeable)，"),("lacking **contrast**,","缺乏**反差**(contrast)，")],
+(4,[[[("Against black,","在黑色底色上，"),("the red **cancelling mark**","红色**注销印记**(cancelling mark)"),("was barely **noticeable**,","几乎不**显眼**(noticeable)，"),("lacking **contrast**,","由于缺乏**反差**(contrast)，")],
      "（lacking contrast：现在分词短语，说明原因）"],
-    [[("and the ink","墨迹"),("could be **erased**,","又能被**擦除**(erased)，")]],
-    [[("leaving stamps","邮票"),("**vulnerable** to **reuse**.","**容易遭到**(vulnerable)**重复使用**(reuse)。")],
-     "（leaving…：现在分词短语作结果状语；\nleave A vulnerable to B：使 A 容易遭到 B）"]]),
-(4,[[[("In February 1841","1841年2月，"),("the Penny Red, cancelled in black ink,","改用黑色墨迹注销的红便士")],
+    [[("and the ink","且墨水"),("could be **erased**,","能被**擦除**(erased)，")]],
+    [[("leaving","导致"),("stamps","邮票"),("**vulnerable** to","**容易被**(vulnerable)"),("**reuse**.","**重复使用**(reuse)。")],
+     "（be vulnerable to：指“易受……伤害/攻击/影响”，\n后面直接接造成威胁的名词（或 doing））"]]),
+(4,[[[("In February 1841","1841年2月，"),("the Penny Red, cancelled in black ink,","用黑色墨水盖销的“红便士”")],
      "（cancelled in black ink：过去分词短语，补充说明 Penny Red）"],
-    [[("arrived","问世，"),("to deter **tampering** and **fraud**.","以防**篡改**(tampering)和**欺诈**(fraud)。")],
-     "（to deter…：不定式作目的状语）"]]),
+    [[("arrived","问世，"),("to **deter**","旨在**防止**(deter)"),("**tampering**","**篡改**(tampering)"),("and **fraud**.","与**欺诈**(fraud)。")],
+     "（to deter…：不定式作目的状语）\n（deter：通过增加难度或设置障碍，来“防止、阻止”某种不良行为发生）"]]),
 (5,[[[("As the **initiator** of postage stamps,","作为邮票的**首创者**(initiator)，"),("Britain","英国"),("set a **precedent**","开创了**先例**(precedent)，"),("and earned an **exemption**.","并赢得一项**豁免**(exemption)。")]]]),
 (5,[[[("Its stamps","英国邮票"),("are **nameless**,","是**无名的**(nameless)，"),("with no country **inscribed** on them.","上面没有**刻印**(inscribed)国名。")],
      "（with no country inscribed on them：with 复合结构；\nIts 指 Britain）"]]),
-(5,[[[("By international agreement,","根据国际协议，"),("the **sovereign**'s head","**君主**(sovereign)头像"),("**suffices** for **identification**,","就**足以**(suffices)作为**识别**(identification)标志，")]],
-    [[("an **implicit** **designation**","这是一种**隐含的**(implicit)**标识**(designation)，"),("that other countries spell out in print.","其他国家则把国名印在邮票上。")],
-     "（an implicit designation：同位语，补充说明前面整句；\nthat other countries spell out in print：定语从句，修饰 designation；\nspell out：明确写出）\n"
-     "（简述：1840年以前，英国邮费按页数和里程计算，通常在投递时由收信人支付。\n"
-     "1837年罗兰·希尔出版小册子呼吁改革，1839年议会立法，1840年1月10日统一便士邮资开始实行：半盎司以内的信寄往英国境内任何地方都是一便士，由寄信人预付。\n"
-     "1840年5月，印着年轻的维多利亚女王肖像的黑便士发行，共印68,808,000枚，要用剪刀逐枚剪下。\n"
-     "邮件量一年翻了一番，但红色注销戳在黑邮票上不显眼，墨迹还能擦掉，1841年2月改用黑墨注销的红便士。\n"
-     "作为邮票的首创者，英国邮票不印国名，只凭君主头像识别。）"]]),
+(5,[[[("By","根据"),("international","国际"),("agreement,","协议，"),("the **sovereign**'s","（英国的）**君主**(sovereign)"),("head","头像"),("**suffices** for","**足以**(suffices)用于进行"),("**identification**,","**识别**(identification)，")]],
+    [[("an **implicit**","这是一种**隐含的**(implicit)"),("**designation**","**标识**(designation)，"),("that other countries spell out in print.","然而其他国家则需要把国名印在邮票上。")],
+     "（英国邮票印个头像大家就知道是英国的，\n而其他国家必须把名字印出来才行。）\n"
+     "（简述：痛点：1840年前，邮费按纸张数和距离算，极其昂贵，且由收件人“货到付款”。\n"
+     "变革：罗兰·希尔力推改革，1840年确立“一便士邮政”：半盎司内寄全国统一一便士，改为寄件人预付。\n"
+     "首发：1840年5月，“黑便士”发行（印女王头像，无齿孔，需用剪刀逐枚剪下）。\n"
+     "迭代：因红戳盖在黑票上易擦除，1841年推出“红便士”搭配黑戳，成功防伪。\n"
+     "特权：作为邮票鼻祖，英国邮票至今不印国名，仅靠君主头像即可识别。）"]]),
 ]
-G={}
+G={
+ "S2 the person receiving the correspondence":"对齐不了：receiving the correspondence 是后置定语，修饰 person，中文“收到信件的人”须提前",
+ "S1 was levied according to the number of sheets in a letter and the mileage of its carriage":"对齐不了：被动结构 was levied according to…，用户译文“是根据……来征收的”方式状语提前、“征收”放到最后；the mileage of its carriage 中文“运输的里程”须倒过来",
+ "S6 now cost one penny to any destination in Britain":"对齐不了：地点状语 to any destination in Britain，中文“寄往英国境内任何目的地”须放到“只花费一便士”前",
+ "S6 was prepaid by whoever sent it":"对齐不了：被动结构，施事 whoever sent it 中文“由寄信的人”须放到动词“预付”前",
+ "S15 the Penny Red, cancelled in black ink":"对齐不了：cancelled in black ink 是后置定语，修饰 Penny Red，中文“用黑色墨水盖销的”须提前",
+ "S16 As the initiator of postage stamps":"对齐不了：the initiator of postage stamps 中文“邮票的首创者”须倒过来，postage stamps 是一个名词“邮票”",
+ "S18 that other countries spell out in print":"对齐不了：定语从句 that other countries spell out in print 修饰 designation，用户译成独立分句“然而其他国家则需要把国名印在邮票上”（待改清单第14条），spell out in print 中文补出“国名”并作“印在邮票上”，拆开不通",
+}
 DZ={}
 CONF={"合组":G,"对齐":DZ,
 "停顿位置":{"S2 correspondence, / not @5.550":"2026-11-08 逐 2.5 ms 实测（S2 w）：correspondence 的 /s/（-17～-22 dB、重心 5.5–6.2 kHz）到 5.385，5.395–5.545 是 /s/ 后的弱气声（-37～-48 dB、重心 2.0–2.9 kHz），5.545–5.550 低谷 -54 dB，5.550 起 not 的 /n/ 浊音前导（低频 -0.1～-0.3 dB），5.60 起 /n/ 主体；插入点写在低谷过零点 5.55（交界），停顿在两词之间，离后词 +115 ms 是 /n/ 前导前的弱声，不是词"}}
 out={"no":"70","title_en":"The Stamp That Changed the Post","title_zh":"一枚邮票改变通信","title_fx":{"hl":["Stamp","Post"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
-     "高亮按实际开口":True,"高亮开口门槛":40,
+     "高亮按实际开口":True,"allow_clash":["deter","reigning"],"换行变更已获同意":{"S2":"用户 2026-11-10 原话：“按照这个word文档里面的这个修改建议帮我修改这个视频，然后 4k 定稿，定稿，定稿。”（70.docx 第2条改译文，换行随之变）","S5":"用户 2026-11-10 原话：“按照这个word文档里面的这个修改建议帮我修改这个视频，然后 4k 定稿，定稿，定稿。”（70.docx 第4条改译文，换行随之变）","S3":"用户 2026-11-10 原话：“按照这个word文档里面的这个修改建议帮我修改这个视频，然后 4k 定稿，定稿，定稿。”（70.docx 第3条加 item 小字、改译文，换行随之变）","S18":"用户 2026-11-10 原话：“按照这个word文档里面的这个修改建议帮我修改这个视频，然后 4k 定稿，定稿，定稿。”（70.docx 第14、15条改译文、换小字、改简述，换行随之变）","S9":"用户 2026-11-10 原话（70.docx，看 S9 截图）：“下面这一部分他自己要占据一行，上面的就是你看着办。the reigning monarch 即这位在位的君主。”（用户原话：“下面这一部分他自己要占据一行，上面的就是你看着办。”）"},"高亮开口门槛":40,
      "术语":{"Rowland Hill":"罗兰·希尔","Parliament":"议会","Uniform Penny Post":"统一便士邮资","Britain":"英国","British":"英国的","Penny Black":"黑便士","Queen Victoria":"维多利亚女王","Penny Red":"红便士"}}
 out.update({"停顿删除区间":{"S2":{"2":[5.4005,5.5405]}}})   # 2026-11-08 改：S2 correspondence, 后的吸气 [5.395458, 5.545458] 已由非人声区间换成数字静音，原来再插 0.4 s 停顿实际听到 0.56 s；改成在这段数字静音里删 [5.4005, 5.5405]（两头紧贴的 5 ms 是数字静音），停顿落在 /s/ 尾与 not 的 /n/ 浊音前导之间   # 2026-11-08 逐 2.5 ms 实测 S2 w：correspondence 的 /s/（-17～-22 dB、重心 5.5–6.2 kHz）到 5.385，5.395–5.545 是 /s/ 后的弱气声（-37～-48 dB、重心 2.0–2.9 kHz），5.545–5.550 低谷 -54 dB，5.550–5.565 not 的 /n/ 浊音前导（低频 -0.1～-0.3 dB），5.60 起 /n/；原插入点 5.575 把 /n/ 前导切在停顿前，改到前导之前低谷的过零点 5.55（交界）
 out.update({"非人声区间": {"S1": [[5.685, 6.015]], "S2": [[2.86, 3.03], [5.395458, 5.545458, "紧贴两头"]], "S4": [[1.525, 1.755]], "S5": [[4.67, 4.81], [7.4, 7.65]], "S8": [[3.05125, 3.29, "紧贴词尾"]], "S12": [[5.021375, 5.255, "紧贴词尾"]], "S14": [[3.74, 4.05], [5.445, 5.70125, "紧贴词头"]], "S15": [[4.78, 5.046, "紧贴词头"]]}})   # 声音程序写进脚本的区间并进 gen70；S2 [5.395458, 5.545458, 紧贴两头] 2026-11-08 逐 2.5 ms 实测（dossier_70 #4）：correspondence 的 /s/ 到 5.385（5.39 降到 -47 dB），5.395–5.545 是吸气声（-36～-47 dB、重心 2.0–2.9 kHz、低频 -10～-24 dB、周期 ≤0.30），5.550 起 not 的 /n/ 浊音前导保留
