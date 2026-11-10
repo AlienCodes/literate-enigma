@@ -69,3 +69,4 @@
 | 62 | Dolly, the Copied Sheep | 多莉：一只羊的复制 | 12.2 MB |
 | 63 | The Crowded Heavens | 拥挤的苍穹 | 13.4 MB |
 | 64 | The Day Zero That Never Came | 没有到来的零日 | 12.4 MB |
+| 65 | The Day the Doomsday Vault Opened | 末日种子库的第一次取种 | 12.5 MB |
