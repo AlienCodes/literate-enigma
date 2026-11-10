@@ -2,15 +2,15 @@
 # ZH: 一颗刺果钩出的发明
 
 ## 英文
-In 1941 George de Mestral, a Swiss engineer, returned from hunting in the Alps with his **hound**, an Irish Pointer. **Prickly** burdock **seed-heads** had **hitched** themselves to his clothes and lay **tangled** in the dog's **fur**. Under a microscope he saw thousands of tiny **barbs**, each a **hook** **grasping** the small **loops** in cloth.
+In 1941 George de Mestral, a **Swiss** engineer, returned from hunting in the Alps with his **hound**, an Irish Pointer. **Prickly** burdock **seed-heads** had **hitched** themselves to his clothes and lay **tangled** in the dog's **fur**. Under a microscope he saw thousands of tiny **barbs**, each a **hook** **grasping** the small **loops** in cloth.
 
-Few took his idea **seriously** at first. In Lyon, then a **weaving** centre, a cotton version proved too **frail** to survive **abrasion**. Working with a **textiles** firm, he turned to **nylon**, whose hooks were **stiff** enough to hold yet easy to pull apart. The **trial-and-error** at the **looms** and **mills** lasted about ten years.
+Few **took** his idea **seriously** at first. In Lyon, then a **weaving** centre, a cotton version proved too **frail** to survive **abrasion**. Working with a **textiles** firm, he turned to **nylon**, whose hooks were **stiff** enough to hold yet easy to **pull apart**. The **trial-and-error** at the **looms** and **mills** lasted about ten years.
 
 The name Velcro **merged** two French words, velours, meaning **velvet**, and crochet, meaning hook. A US patent **duly** followed in 1955. In 1959 a New York fashion show sent **apparel** **stitched** with the **fasteners** down the **runway**. The public was less **charmed** than expected, **mostly** because of the **aesthetic**.
 
-The **underdog** proved its **utility** in **outer** space. NASA used it in the Apollo programme to keep **gear** **anchored** in weightlessness, so that nothing would **hover** in **mid-air**. Apollo 11 was **equipped** with a **sizeable** amount, about 3,300 square inches. NASA did not invent the nylon **clasp**.
+The **underdog** proved its **utility** in **outer space**. NASA used it in the **Apollo programme** to keep **gear** **anchored** **in weightlessness**, so that nothing would **hover** in **mid-air**. Apollo 11 was **equipped** with a **sizeable** amount, about 3,300 square inches. NASA did not invent the nylon **clasp**.
 
-When the patent ran out in 1978, **cut-price** **knock-offs** from Taiwan, China, and South Korea **overran** the market, and a **niche** product went **mainstream**. In 2017, to stop its **brand-name** **melting** into a **generic** **noun**, the company asked people to call such **mimics** hook and loop fasteners. In effect, the firm was asking the public to stop using its own name for rivals' goods.
+When the patent **ran out** in 1978, **cut-price** **knock-offs** from other countries **overran** the market, and a **niche** product went **mainstream**. In 2017, to stop its **brand-name** **melting** into a **generic** **noun**, the company asked people to call such **mimics** hook and loop fasteners. **In effect**, the firm was asking the public to stop using its own name for **rivals'** goods.
 
 ## 中文
 
@@ -31,7 +31,7 @@ Velcro 这个名字**合并**(merged)了两个法语词，velours 意为**天鹅
 | prickly | adj. 多刺的；易怒的（a prickly bush；a prickly character） | 1 |
 | seed-heads | n. (seed-head) 种子头，种穗（dandelion seed-heads） | 1 |
 | hitched | v. (hitch) 钩住，挂住；搭（便车）（hitch a ride；hitched to a post） | 1 |
-| tangled | adj./v. (tangle) 缠结的（tangled hair/wires） | 1 |
+| tangled | adj./v. (tangle) 缠结的，缠绕的（tangled hair/wires） | 1 |
 | fur | n. 毛皮（a fur coat；the cat's fur） | 1 |
 | barbs | n. (barb) 倒刺，倒钩（the barb of a fish-hook） | 1 |
 | hook | n. 钩子（a coat hook） | 1 |
@@ -68,8 +68,8 @@ Velcro 这个名字**合并**(merged)了两个法语词，velours 意为**天鹅
 | sizeable | adj. 相当大的（a sizeable amount/sum） | 4 |
 | clasp | n. 扣件，扣环（the clasp of a necklace） | 4 |
 | cut-price | adj. 廉价的，打折的（cut-price goods） | 5 |
-| knock-offs | n. (knock-off) 仿冒品（designer knock-offs） | 5 |
-| overran | v. (overrun) 涌入，泛滥；超时（overrun the town） | 5 |
+| knock-offs | n. (knock-off) 仿制品，山寨品（designer knock-offs） | 5 |
+| overran | v. (overrun) 泛滥于，涌入；超时（overrun the market） | 5 |
 | niche | n./adj. 小众市场；小众的（a niche product/market） | 5 |
 | mainstream | n./adj. 主流（the mainstream of society） | 5 |
 | brand-name | n. 品牌名称（a well-known brand-name；brand-name goods） | 5 |
@@ -77,6 +77,15 @@ Velcro 这个名字**合并**(merged)了两个法语词，velours 意为**天鹅
 | generic | adj. 通用的，泛指的（a generic term/drug） | 5 |
 | noun | n. 名词（a common noun） | 5 |
 | mimics | n. (mimic) 仿品；模仿者（a skilled mimic） | 5 |
+| Swiss | 本文：瑞士的；adj. 瑞士的（a Swiss watch；Swiss chocolate） | 1 |
+| took seriously | 本文：认真看待；短语. (take sb/sth seriously) 认真看待，重视（take the warning seriously） | 2 |
+| pull apart | 本文：拉开；短语. 拉开，扯开（pull the two pieces apart） | 2 |
+| outer space | 本文：外太空；n. 外太空，外层空间（travel in outer space） | 4 |
+| Apollo programme | 本文：阿波罗计划；n. 阿波罗计划，美国的载人登月计划（the Apollo programme） | 4 |
+| in weightlessness | 本文：在失重状态下；短语. weightlessness n. 失重（float in weightlessness） | 4 |
+| ran out | 本文：到期；v. (run out) 到期，期满；用完（the contract ran out；run out of time） | 5 |
+| In effect | 本文：实际上；短语. 实际上，事实上（In effect, the plan failed） | 5 |
+| rivals' | 本文：对手的；n. (rival) 对手，竞争者（a business rival） | 5 |
 
 ## 史实与来源
 - 【T1】1941年，瑞士工程师乔治·德·梅斯特拉尔带着他的爱尔兰指示犬在阿尔卑斯山打猎归来（来源为 hunting trip，不是遛狗），发现衣服和狗毛上粘着牛蒡刺果；出于好奇，他在显微镜下看到成千上万个细小的钩子挂在布料和毛皮的小线圈上。S1
@@ -84,6 +93,6 @@ Velcro 这个名字**合并**(merged)了两个法语词，velours 意为**天鹅
 - 【T3】名字由法语 velours（天鹅绒）和 crochet（钩子）合成；1955年获美国专利（瑞士专利1954或1955年，正文不写）。S3
 - 【T4】1959年纽约一场时装秀展示了带这种搭扣的服装，公众反应不如预期热烈，主要是因为外观。S4
 - 【T5】美国航天局在阿波罗计划中用它在失重状态下固定物品；阿波罗11号用了约3,300平方英寸；它不是美国航天局发明的。"不被看好的弱者"是对P3冷遇的概括。S5
-- 【T6】1978年专利到期后，台湾、中国大陆和韩国的廉价仿品涌入市场；此前它是小众产品。"成了主流"由此推出。S6
+- 【T6】1978年专利到期后，其他国家的廉价仿品涌入市场；此前它是小众产品。"成了主流"由此推出。S6
 - 【T7】2017年9月，公司发起"别说 Velcro"活动，请公众把仿品称作"钩毛搭扣"（hook and loop），以免商标变成通用词。英文 brand-name 指其品牌名；结尾"In effect"表明这是作者对此举的概括。S7
 - 【说明】所有来源均为检索摘要，正文未用直接引语。排除："美国航天局发明魔术贴"、"遛狗"之说、来源外数字（销量、年产量）、德·梅斯特拉尔的情绪描写。英文未写明的因果，中文不加"于是"之类连接词。

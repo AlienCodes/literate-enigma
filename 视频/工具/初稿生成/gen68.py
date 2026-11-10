@@ -13,12 +13,11 @@ S=[
      "（leave sb doing：使某人处于某种状态；had left：过去完成时）"]]),
 (1,[[[("Because that gas was **combustible**,","因为氢气**易燃**(combustible)，")],
      "（Because 引导原因状语从句；that gas 指 hydrogen）"],
-    [[("**smokers**","**吸烟者**(smokers)"),("**sat behind** an airlock with one **electric lighter**.","只能**坐在**(sat behind)一道带有**电子点烟器**(electric lighter)的气闸**后面**(sat behind)。")],
-     "（sit behind：坐在……后面，中文被“一道带有电子点烟器的气闸”隔开；\nwith one electric lighter：介词短语，修饰 airlock）"]]),
+    [[("**smokers**","**吸烟者**(smokers)"),("**sat behind** an airlock with one **electric lighter**.","只能**坐在**(sat behind)一道带有**电子点烟器**(electric lighter)的气闸**后面**(sat behind)。")]]]),
 (2,[[[("The **airship** left Frankfurt on 3 May 1937.","1937年5月3日，**飞艇**(airship)离开法兰克福。")]]]),
 (2,[[[("Hours behind its **timetable**,","它比**时刻表**(timetable)晚了几个小时，")],
      "（Hours behind its timetable：形容词短语作状语）"],
-    [[("it met **thunderstorms** at Lakehurst","在莱克赫斯特遇到**雷暴**(thunderstorms)，"),("and **circled** for over an hour","**盘旋**(circled)了一个多小时，")]],
+    [[("it met **thunderstorms** at Lakehurst","在莱克赫斯特遇到**雷暴**(thunderstorms)，"),("and **circled** for over an hour","**盘旋了**(circled)一个多小时，")]],
     [[("**before** its **descent** towards the **mooring mast**.","**才开始**(before)朝着**系留塔架**(mooring mast)**下降**(descent)。")],
      "（towards the mooring mast：介词短语，修饰 descent；\nmooring mast：地面上一根专门用来拴住飞艇机头、\n防止它被风吹跑的高大铁塔（系留塔））"]]),
 (2,[[[("At about 7:25 pm on 6 May,","5月6日晚上约7点25分，"),("**flames** appeared","**火焰**(flames)出现在了"),("near the **stern**.","飞艇的**尾部**(stern)附近。")]]]),
@@ -36,7 +35,7 @@ S=[
 (3,[[[("A 14-year-old **cabin boy**","一名14岁的**艇上的服务生**(cabin boy)"),("was **drenched** by a **deluge** from a **burst** water tank,","被一个**爆裂的**(burst)水箱里**涌出的水**(deluge)**浇透了**(drenched)，")],
      "（cabin boy：在客轮或商船上干杂活、伺候乘客的年轻男服务员（通常年纪很小）；\nwas drenched by…：被动语态）"],
     [[("and","而"),("the **soaking**","正是这一身**湿透**(soaking)"),("saved him.","救了他。")]]]),
-(3,[[[("He dropped through a **hatch**","他从一个**舱口**(hatch)掉落下去，"),("and **scrambled** clear,","**迅速而吃力地爬**(scrambled)了出来，")],
+(3,[[[("He dropped through a **hatch**","他从一个**舱口**(hatch)掉落下去，"),("and **scrambled** clear,","**迅速而吃力地爬了**(scrambled)出来，")],
      "（scramble clear：迅速而吃力地爬出来、脱身）"],
     [[("escaping only **narrowly**.","仅仅**勉强**(narrowly)逃脱。")],
      "（escaping…：现在分词短语作结果状语）"]]),
@@ -70,7 +69,21 @@ S=[
 ]
 G={}
 DZ={}
+G.update({
+ "S2 a grand piano":"对齐不了：grand piano 是一个名词“三角钢琴”，拆开不通",
+ "S3 had left the ship relying on hydrogen":"对齐不了：leave sb doing 中文用户定为“已经使得这艘飞艇只能依赖于氢气”，使役结构拆开不通",
+ "S8 incinerated the ship in about half a minute":"对齐不了：时间状语 in about half a minute 中文“在大约半分钟内”必须放到动词“焚毁了”前（用户译文）",
+ "S9 Of the 97 aboard, 62 survived":"对齐不了：Of the 97 aboard 中文“在艇上97人中”，aboard 作后置定语必须提前",
+ "S9 as did one man on the ground":"对齐不了：as did… 倒装，中文“地面上另有一名男子也丧生了”地点状语必须提前",
+ "S10 was drenched by a deluge from a burst water tank":"对齐不了：被动结构 was drenched by…，中文“被……浇透了”动词必须放最后；water tank 是一个名词“水箱”",
+ "S12 caught the disaster":"对齐不了：caught 中文“拍下了”，“拍下了这场灾难”动宾结构一个整体，拆开只剩“了这场”",
+ "S13 A radio correspondent's":"对齐不了：'s 是所有格，中文“的”接在“专题记者”后面；radio 中文“电台的”已在前",
+ "S13 heard it the next day":"对齐不了：时间状语 the next day 中文“在第二天”必须放到动词“听到”前",
+ "S16 yet won less notoriety":"对齐不了：won less notoriety 中文“恶名却没那么大”，名词作主语提前，动词 won 不译",
+ "S17 The filmed fire":"对齐不了：过去分词 filmed 作前置定语，中文“被拍下的大火”一个名词短语",
+ "S19 exactly a year before the fire":"对齐不了：a year before the fire 中文“那场大火的一年前”必须倒过来"})
 CONF={"合组":G,"对齐":DZ}
+CONF["换行变更已获同意"]={k:"用户 2026-11-10 上传 68.docx：“按照这个word文档里面的这个修改建议帮我修改这个视频”（逐句给了新译文，见 制作记录/68_待改清单.md）" for k in ("S1","S2","S4","S6","S7","S8","S9","S10","S11","S13","S14","S15","S17","S18","S19")}
 out={"no":"68","title_en":"The Last Flight of the Hindenburg","title_zh":"兴登堡号的 34 秒","title_fx":{"hl":["Hindenburg"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Hindenburg":"兴登堡号","Atlantic":"大西洋","Frankfurt":"法兰克福","Lakehurst":"莱克赫斯特","USS Akron":"阿克伦号","Graf Zeppelin":"格拉夫·齐柏林号","North America":"北美","American":"美国"}}
