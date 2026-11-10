@@ -750,6 +750,9 @@ def 句增益(d,no,si,sent,pieces,gaps,clips,tmap,a):
         for k_,g_ in _pgn.items():
             if not (str(k_).isdigit() and 1<=int(k_)<=len(pieces)) or abs(float(g_))>6: raise SystemExit(f'【停止】分段增益dB 写法不对（段号按 , ; : 从 1 数，共 {len(pieces)} 段；增益 ±6 dB 以内）：S{si+1} {k_}:{g_}')
             clips[2*(int(k_)-1)]=clips[2*(int(k_)-1)]*np.float32(10**(float(g_)/20))
+        # K133（用户 2026-11-10 听 65 S8 开头“ICARDA,”声音变小又变大）：手写分段增益 -3.5 叠在自动调平 -4 上，这一段共压 -7.5 dB；61 起两者合起来不许低于 -5.5 dB（65 实测：合计 -5.5 时整段响度差 +2.0、最响处低 1.3–1.9，两种量法都在门内；-7.5 时最响处低 3.3–3.9，用户听出变小）
+        _低=[(k_,_agn.get(int(k_),0.0)+float(g_)) for k_,g_ in _pgn.items() if str(no).isdigit() and int(no)>=61 and _agn.get(int(k_),0.0)+float(g_)<-5.5-1e-9]
+        if _低: raise SystemExit('【停止】分段增益叠在自动调平上压太多（K133）：'+'；'.join(f'S{si+1} 第{k_}段 自动调平 {_agn.get(int(k_),0.0):+.1f} + 分段增益 {float(g_):+.1f} = {t_:+.1f} dB' for k_,t_ in _低 for g_ in [_pgn[k_]])+'，合起来低于 -5.5 dB，这一段会听着突然变小：删掉或改小这个分段增益')
         a=np.concatenate(clips)
     _rgn=d.get('段内渐变dB',{}).get(f'S{si+1}')   # 2026-11-03 段内渐变（用户听 37 S13：“前后大小不太一致”，to avoid frightening 偏响、pharmacists or the public 偏轻，同一段内前响后轻）：段内从 g0 线性渐变到 g1 dB
     if _rgn:

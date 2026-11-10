@@ -94,7 +94,13 @@ def _nkey(w,colors):
     return next((c for c in (w,w.lower(),w.capitalize()) if c in colors),None) or (next((c for c in colors if c.lower().startswith(w.lower())),None) if w else None)
 def _note_txt(ln):
     """说明行实际显示的字：去掉 “@词|” 续行颜色标记和 “（@” 里的 @"""
-    return re.sub(r'^@[^|（]*\|','',ln).replace('（@','（')
+    return 简条显示(re.sub(r'^@[^|（]*\|','',ln).replace('（@','（'))
+def 简条显示(ln):
+    """简述新样子（用户 2026-11-10 样图：每条“加粗小标题：一句话”、一条一行）：▸ 开一条（显示“• ”），▹ 是这一条折下来的续行（缩进同“• ”宽）；
+    “（简述：”和末尾“）”在新样子里不显示（只留在脚本里给文本核对认）"""
+    if '▸' not in ln and '▹' not in ln: return ln
+    ln=re.sub(r'^（简述：(?=▸)','',ln); ln=re.sub(r'）$','',ln) if ln.startswith(('▸','▹')) else ln
+    return ln.replace('▸','• ').replace('▹','• ')
 def _link_under(d,units,fnt,y):
     """脚本“连线”里的词组：在这一行里找到（忽略空白），从第一个字到最后一个字下面画一条线，颜色取两头的词色的平均"""
     if not LINKS: return
@@ -234,7 +240,8 @@ def apply_script(d):
             raise SystemExit(f'【停止】说明放宽特批 {k_} 不合规：依据要写用户原话（含“用户”“特批”），倍数在 1–1.5 之间（用户：“不要过于宽”）')
         NOTE_WIDE[' '.join(p[0] for c in d['sentences'][int(k_[1:]) - 1]['chunks'] for p in c['align'])] = v_['倍数'] if v_['倍数'] in ('整屏', '屏宽') else float(v_['倍数'])
     _n = len(d.get('sentences', []))   # G35 常规规则（用户 2026-10-25 看 26：“以后以后一定要合理的安排，不要压缩成这个样子”，27 又说一次；用户同意记录 篇 26）：25 起结尾简述一律整屏，不再要每篇特批；写了特批的照特批
-    if _n and str(d.get('no', '0')).isdigit() and int(d['no']) >= 25 and f'S{_n}' not in d.get('说明放宽特批', {}) and '（简述：' in (d['sentences'][-1]['chunks'][-1].get('note') or ''):
+    _新简 = '（简述：▸' in (d['sentences'][-1]['chunks'][-1].get('note') or '').replace('\n', '') if _n else False   # 简述新样子（用户 2026-11-10：“最后一页空间要占满、字体尽量最大化”）：01–24 补的新样子简述也整屏
+    if _n and str(d.get('no', '0')).isdigit() and (int(d['no']) >= 25 or _新简) and f'S{_n}' not in d.get('说明放宽特批', {}) and '（简述：' in (d['sentences'][-1]['chunks'][-1].get('note') or ''):
         NOTE_WIDE[' '.join(p[0] for c in d['sentences'][-1]['chunks'] for p in c['align'])] = '整屏'
     NOTE_RIGHT.clear(); _RIGHT_USE.clear()   # G37（25 用户 2026-10-25：S17 ingenuity 说明放到正文右边，空间全部用上、字号再放大）：只认 25 起、依据带用户原话
     for k_, v_ in d.get('说明放右侧特批', {}).items():
@@ -369,11 +376,31 @@ def 简述整屏折行(chunks,colors,notes):
     结尾简述（从“（简述：”起）试 1–24 行的均匀折法，取整屏字号最大的（同字号取行少的）。返回 (字号, 新说明, 行数)"""
     i=next(i for i,n in enumerate(notes) if n and '（简述：' in n); n=notes[i]; a=n.index('（简述：'); head=n[:a]; t=n[a:].replace('\n','')
     nf=ZH(int(int(100*ZR)*0.9),400); pos=sorted(断点(t)); best=None
+    if '（简述：▸' in t: return _简条折行(chunks,colors,notes,i,head,t,nf)
     for k in range(1,25):
         seg=折成(t,k,nf,pos)
         if not seg: continue
         nn=list(notes); nn[i]=head+'\n'.join(seg); es=min(max_es(chunks,colors,nn),100*S)
         if best is None or es>best[0]: best=(es,nn[i],k)
+    return best
+def _简条折行(chunks,colors,notes,i,head,t,nf):
+    """简述新样子：每条（▸ 起）单独起行，一条太长才在标点处折（续行 ▹）；各条用同一个行宽上限，试遍候选行宽，取整屏字号最大的（同字号取行少的）"""
+    body=t[len('（简述：'):]; body=body[:-1] if body.endswith('）') else body
+    items=['▸'+x for x in body.split('▸') if x.strip()]; opts=[]
+    for it in items:
+        pos=sorted(断点(it)); o=[]
+        for k in range(1,9):
+            seg=折成(it,k,nf,pos)
+            if seg: o.append((max(nf.getlength(x) for x in seg),seg))
+        if not o: o=[(nf.getlength(it),[it])]
+        opts.append(o)
+    best=None
+    for Wd in sorted({w for o in opts for w,_ in o}):
+        ls=[]
+        for o in opts:
+            seg=next((sg for w,sg in o if w<=Wd+1e-6),o[-1][1]); ls+= [seg[0]]+['▹'+x for x in seg[1:]]
+        nn=list(notes); nn[i]=head+'（简述：'+'\n'.join(ls)+'）'; es=min(max_es(chunks,colors,nn),100*S)
+        if best is None or es>best[0] or (es==best[0] and len(ls)<best[2]): best=(es,nn[i],len(ls))
     return best
 def _scan(chunks,colors,notes,grps,right):
     for es in range(130*S,30,-1):
@@ -513,6 +540,12 @@ def frame_interlinear(chunks,colors,header,progress,out,active=None,maxw=1840,ma
                     ln=ln[0]+ln[2:]; w_=ln[1:].split(' ')[0]; k_=_nkey(w_,colors)
                     if k_: lc=colors[k_] if on else dim(colors[k_])
                 if i in rt and li_<nr_: d.text((x0_+rw_+int(es*0.6),ny_),ln,font=nf,fill=lc); ny_+=lhN; continue
+                if ln.lstrip('（简述：').startswith(('▸','▹')):   # 简述新样子：整块居中、块内左对齐；“• 小标题：”加粗
+                    bw_=max(nf.getlength(_note_txt(x)) for x in nt.split('\n') if x.lstrip('（简述：').startswith(('▸','▹'))); xx=(W-bw_)/2; sh=简条显示(ln)
+                    if '▸' in ln and '：' in sh:
+                        bf=ZH(nf.size,700); tt=sh[:sh.index('：')+1]; d.text((xx,y-rgap*0.3),tt,font=bf,fill=lc); xx+=nf.getlength(tt); sh=sh[len(tt):]
+                    elif '▹' in ln: xx+=nf.getlength('• '); sh=sh[2:]
+                    d.text((xx,y-rgap*0.3),sh,font=nf,fill=lc); y+=lhN; continue
                 d.text(((W-nf.getlength(ln))/2,y-rgap*0.3),ln,font=nf,fill=lc); y+=lhN
             if i in rt and nr_==len(nt.split('\n')): y=top_+M_+rgap
         y+=cgap-rgap

@@ -110,6 +110,10 @@ def _普通句(MV):   # 20 里一句有逗号、不是结尾句、没写人工�
     ps, p0, gs = [], 0, []
     for mm in re.finditer(r'[,;:](?=\s)', s): ps.append((p0, mm.end())); p0 = mm.end() + 1; gs.append(MV.P_COMMA)
     ps.append((p0, len(s))); return s, ps, gs
+def _叠压(MV, g):   # 自动调平给第 1 段 -4 dB，再手写分段增益 g：句增益 合起来低于 -5.5 必须停（K133）
+    import numpy as np
+    c = [np.ones(4800, np.float32) * 0.1, np.zeros(2400, np.float32), np.ones(4800, np.float32) * 0.1]
+    return _在(lambda: MV.句增益({'分段增益dB': {'S8': {'1': g}}}, '65', 7, 'ICARDA, a b.', ['ICARDA,', 'a b.'], [0.4], c, [], np.concatenate(c)), _换(MV, _auto_level=lambda *a, **k: {1: -4.0}, PGRAFT={}))
 def _自动删(MV, **kv):
     s, ps, gs = _普通句(MV); return _在(lambda: MV.sentence_audio(s, ps, gs), _换(MV, **kv))
 def _结尾(MV, no='10'):
@@ -148,6 +152,8 @@ def _画面运行(MV, ps):
     ('A23改正', '读音改正在句子里注出了没登记的写法，换不全', lambda MV: _读音(MV, {'zork': 'zˈuːk'}, {}, {}, 'a zork', {'zork': 'zˈɑːk'}), '读音改正没有全部换到'),
     ('A24语境个数', '按语境读音：词出现 2 次、语境只有 1 处', lambda MV: _读音(MV, {}, {}, {'zork it': {'词': 'zork', '读音': 'zˈuːk'}}, 'zork it and zork', {'zork': 'zˈɑːk'}), '按语境读音（A24）'),
     ('A24语境换到', '按语境读音：句子里注出的写法既不是错读也不是对读，换不到', lambda MV: _读音(MV, {}, {}, {'zork it': {'词': 'zork', '读音': 'zˈuːk'}}, 'zork it', {'zork': 'zˈɑːk'}), '按语境读音没有全部换到'),
+    ('K133', '65 起：分段增益 -3.5 叠在自动调平 -4 上（共 -7.5 dB，65 S8 ICARDA,）', lambda MV: _叠压(MV, -3.5), '（K133）'),
+    ('K133放行', '分段增益 -1.5 叠在自动调平 -4 上（共 -5.5 dB，65 S8 实测两种量法都过）：照常过', lambda MV: _叠压(MV, -1.5), '没停'),
     ('A20没声音', '一段全是静音', lambda MV: MV._edges(__import__('numpy').zeros(48000, 'float32')), '没有能听见的声音'),
     ('L14音素', '带时长模型的音素和朗读文字对不上', lambda MV: MV.chunk_token_starts(['hello'], [__import__('types').SimpleNamespace(phoneme='zzz')]), '带时长模型的音素与朗读文字对不上'),
     ('L14块序', '序列比对把第二块对到第一块前面', _块序, '不是递增的'),

@@ -89,7 +89,8 @@ def main():
     if PZ.查(d, no):
         改 += 破折号(d); json.dump(d, open(js, 'w'), ensure_ascii=False, indent=1)
     已发 = os.path.exists(f'{os.path.dirname(T)}/脚本/已发版本/{no}.json')
-    if int(no) >= 25 and not 已发 and '（简述：' in (d['sentences'][-1]['chunks'][-1].get('note') or ''):   # G35 常规：简述按整屏字号最大折行；只给第一稿（发过的版式是用户看过的，不自动动，L13）
+    _n = d['sentences'][-1]['chunks'][-1].get('note') or ''   # 简述新样子（▸，用户 2026-11-10）：内容是新写的、没有用户定过的换行，01–24、已发过的也按整屏最大折
+    if ((int(no) >= 25 and not 已发) or '（简述：▸' in _n.replace('\n', '')) and '（简述：' in _n:   # G35 常规：简述按整屏字号最大折行；只给第一稿（发过的版式是用户看过的，不自动动，L13）
         r = subprocess.run(['python3', f'{T}/说明分行.py', no, '--整屏', '--写入'], capture_output=True, text=True)
         if '已写入' in r.stdout: 改 += [f'结尾简述整屏折行（G35）：{l.strip()[:80]}' for l in r.stdout.splitlines() if '结尾简述' in l]
     import glob

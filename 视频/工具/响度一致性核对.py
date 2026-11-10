@@ -166,8 +166,15 @@ def 确认自检():
 
 def selftest(src):
     a = pcm(src); I, segs, L, bad, _ = check(src, a)
-    if bad or len(segs) < 6: return False, f'自检前提不成立：原片已有报警或句数太少（{len(segs)}）'
-    i1, i2 = len(segs) // 3, 2 * len(segs) // 3
+    if len(segs) < 6: return False, f'自检前提不成立：句数太少（{len(segs)}）'
+    # 05/66（2026-11-10）：原片已有报警时自检原来直接判“前提不成立”= 程序失灵，把真报警也卡成程序问题。改成避开已报的句子造坑，造的两处都报出才算灵；原有报警照常报给人修
+    原 = {k for k, m in bad if '比全片' in m}
+    def 挑(i0):
+        for i in list(range(i0, len(segs))) + list(range(i0 - 1, -1, -1)):
+            if i + 1 not in 原 and L[i] is not None: return i
+    i1 = 挑(len(segs) // 3); i2 = 挑(2 * len(segs) // 3)
+    if i2 == i1: i2 = next((i for i in range(len(segs)) if i != i1 and i + 1 not in 原 and L[i] is not None), None)
+    if i1 is None or i2 is None: return False, '自检前提不成立：没有未报警的句子可造坑'
     # 按这一句原来的响度算增益：把第 i1 句推到比全片响 3 LU、第 i2 句推到比全片轻 3 LU（2026-10-10 04：固定 ±3 dB 时，
     # 第 11 句原本比全片响 1.1 LU，调轻 3 dB 后只差 1.9 LU、没超过 ±2，自检误判“失灵”——阳性对照必须保证造出来的坑真的越线）
     if L[i1] is None or L[i2] is None: return False, '自检前提不成立：选中的句子没有响度'
@@ -180,8 +187,8 @@ def selftest(src):
         subprocess.run([FF, '-loglevel', 'error', '-f', 's16le', '-ar', str(SR), '-ac', '1', '-i', '-', w], input=(b * 32767).astype(np.int16).tobytes(), check=True)
         _, _, _, bad2, _ = check(w, b)
     got = sorted({k for k, _ in bad2 if '比全片' in _})
-    want = [i1 + 1, i2 + 1]
-    return got == want, f'故意把第{want[0]}段调到比全片响 3 LU、第{want[1]}段调到比全片轻 3 LU，报出 {got}'
+    want = sorted([i1 + 1, i2 + 1])
+    return set(want) <= set(got) and (bool(原) or got == want), f'故意把第{want[0]}段调到比全片响 3 LU、第{want[1]}段调到比全片轻 3 LU，报出 {got}'
 
 if __name__ == '__main__':
     src = sys.argv[1]

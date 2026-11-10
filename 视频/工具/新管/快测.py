@@ -86,6 +86,11 @@ R.apply_script(d24)
 if R.NOTE_WIDE.get(key(d24, -1)) == "整屏": bad.append("误放：24（25 前）没特批也整屏了")
 b = copy.deepcopy(d27); b.pop("说明放宽特批", None); b["sentences"][-1]["chunks"][-1]["note"] = "（结局：x）"; R.apply_script(b)
 if R.NOTE_WIDE.get(key(b, -1)) == "整屏": bad.append("误放：最后一句不是简述也整屏了")
+e = copy.deepcopy(d24); e["sentences"][-1]["chunks"][-1]["note"] = "（简述：▸起因：甲乙丙丁戊己庚辛。▸经过：壬癸子丑寅卯辰巳午未申酉戌亥，甲乙丙丁戊己庚辛壬癸。▸结果：子丑寅卯。）"; R.apply_script(e)
+if R.NOTE_WIDE.get(key(e, -1)) != "整屏": bad.append("没放：24 新样子简述（▸，用户 2026-11-10 样子）没整屏")
+ch_ = [[tuple(p) for p in c_["align"]] for c_ in e["sentences"][-1]["chunks"]]; nt_ = [c_.get("note") for c_ in e["sentences"][-1]["chunks"]]
+es_, nn_, k_ = R.简述整屏折行(ch_, {}, nt_); ls_ = nn_[nn_.index("（简述：") + 4:].split("\\n")
+if [x[0] for x in ls_ if x[:1] == "▸"] != ["▸"] * 3 or any(x[:1] not in "▸▹" for x in ls_) or k_ < 3: bad.append(f"新样子简述没有一条一行起头：{ls_}")
 c = copy.deepcopy(d27); c["sentences"][0]["chunks"][-1]["note"] = "（" + "测" * 120 + "）"; c["说明放宽特批"] = {"S1": {"倍数": "屏宽", "依据": "用户 特批 屏宽样本"}}; R.apply_script(c)
 if R.NOTE_WIDE.get(key(c, 0)) != "屏宽": bad.append("没放：57 S5 屏宽特批（用户原话）没生效")
 e_ = copy.deepcopy(c); e_["说明放宽特批"] = {"S1": {"倍数": "屏宽", "依据": "会话自己写的理由"}}
