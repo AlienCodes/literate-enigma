@@ -8,9 +8,9 @@ Few **took** his idea **seriously** at first. In Lyon, then a **weaving** centre
 
 The name Velcro **merged** two French words, velours, meaning **velvet**, and crochet, meaning hook. A US patent **duly** followed in 1955. In 1959 a New York fashion show sent **apparel** **stitched** with the **fasteners** down the **runway**. The public was less **charmed** than expected, **mostly** because of the **aesthetic**.
 
-The **underdog** proved its **utility** in **outer space**. NASA used it in the **Apollo programme** to keep **gear** **anchored** **in weightlessness**, so that nothing would **hover** in **mid-air**. Apollo 11 was **equipped** with a **sizeable** amount, about 3,300 square inches. NASA did not invent the nylon **clasp**.
+The **underdog** proved its **utility** in **outer space**. NASA used it in the **Apollo programme** to keep **gear** **anchored** **in weightlessness**, so that nothing would **hover** in **mid-air**. Apollo 11 was **equipped with** a **sizeable** amount, about 3,300 square inches. NASA did not invent the nylon **clasp**.
 
-When the patent **ran out** in 1978, **cut-price** **knock-offs** from other countries **overran** the market, and a **niche** product went **mainstream**. In 2017, to stop its **brand-name** **melting** into a **generic** **noun**, the company asked people to call such **mimics** hook and loop fasteners. **In effect**, the firm was asking the public to stop using its own name for **rivals'** goods.
+When the patent **ran out** in 1978, **cut-price** **knock-offs** from other countries **overran** the market, and a **niche** product went **mainstream**. In 2017, to stop its **brand-name** **melting into** a **generic** **noun**, the company asked people to call such **mimics** hook and loop fasteners. **In effect**, the firm was asking the public to stop using its own name for **rivals'** goods.
 
 ## 中文
 
@@ -64,8 +64,8 @@ Velcro 这个名字**合并**(merged)了两个法语词，velours 意为**天鹅
 | anchored | v. (anchor) 固定；抛锚（be anchored to the floor） | 4 |
 | hover | v. 悬停，盘旋（a helicopter hovered overhead） | 4 |
 | mid-air | n. 半空中（collide in mid-air） | 4 |
-| equipped | v. (equip) 配备，装备（be equipped with sth） | 4 |
-| sizeable | adj. 相当大的（a sizeable amount/sum） | 4 |
+| equipped with | v. (equip) 配备，装备（be equipped with sth） | 4 |
+| sizeable | adj. 相当多的，相当大的（a sizeable amount/sum） | 4 |
 | clasp | n. 扣件，扣环（the clasp of a necklace） | 4 |
 | cut-price | adj. 廉价的，打折的（cut-price goods） | 5 |
 | knock-offs | n. (knock-off) 仿制品，山寨品（designer knock-offs） | 5 |
@@ -73,7 +73,7 @@ Velcro 这个名字**合并**(merged)了两个法语词，velours 意为**天鹅
 | niche | n./adj. 小众市场；小众的（a niche product/market） | 5 |
 | mainstream | n./adj. 主流（the mainstream of society） | 5 |
 | brand-name | n. 品牌名称（a well-known brand-name；brand-name goods） | 5 |
-| melting | v. (melt) 融化；逐渐消融、消失（melt into the crowd；snow melting away） | 5 |
+| melting into | v. (melt) 融化；melt into 逐渐融入/消融为（melt into the crowd；snow melting away） | 5 |
 | generic | adj. 通用的，泛指的（a generic term/drug） | 5 |
 | noun | n. 名词（a common noun） | 5 |
 | mimics | n. (mimic) 仿品；模仿者（a skilled mimic） | 5 |
