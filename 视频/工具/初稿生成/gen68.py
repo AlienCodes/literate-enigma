@@ -111,6 +111,7 @@ CONF["短语"]={
  "S18 scrapped … of":"不是搭配：of 属于 epoch of aviation，和 scrapped 无关",
  "S19 doomed … to":"不是搭配：to 属于 journey to North America，和 doomed 无关",
  "S15 doped fabric":"不是搭配：doped 单独就是“上过涂料的”（速查表 adj. 涂过涂料的），fabric 单独就是“蒙皮织物”，两词各有本义，中文各在自己英文正下方"}
+out["分段增益dB"]={"S1":{"1":0.0,"2":0.0},"S2":{"1":2.0,"2":-1.0,"3":1.5}}   # 主会话 2026-11-10 定（守则22）：K134 新口径自动调平后 S2（Its amenities…，片 12.2–16.8s）三段合计 -3.5/-2.0/+1.5，整句比全片轻 2.7 LU；第1段手写 +2.0（合计 -1.5）、第2段合计 -1.0，第3段 +1.5 不变（上次误写到 S1，已撤）
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)
