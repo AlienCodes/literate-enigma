@@ -71,3 +71,5 @@
 | 64 | The Day Zero That Never Came | 没有到来的零日 | 12.4 MB |
 | 65 | The Day the Doomsday Vault Opened | 末日种子库的第一次取种 | 12.5 MB |
 | 68 | The Last Flight of the Hindenburg | 兴登堡号的 34 秒 | 12.4 MB |
+| 69 | The Trial of the Father of the Atomic Bomb | 原子弹之父的审判 | 12.8 MB |
+| 70 | The Stamp That Changed the Post | 一枚邮票改变通信 | 11.5 MB |

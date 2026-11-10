@@ -1,0 +1,121 @@
+第69篇 出片前核查：
+✔ 踩坑核查（核查程序自检、踩坑对照记录、逐条程序核查、换行比对）
+✔ 数字读法、引号自检（A11/A37/A17：年份、年代、日期、时刻、小数读法；引号不读、撇号保留）
+✔ 数字读法清单（请人工逐个确认读法）
+                22  →  New York on the twenty-second of April nineteen oh four,
+             1904,  →  on the twenty-second of April nineteen oh four, was an acco
+              1943  →  From April nineteen forty-three he oversaw 
+                16  →  darkness of the sixteenth of July nineteen forty-five, 
+             1945,  →   of the sixteenth of July nineteen forty-five, the first n
+                20  →  rce roughly 20 kilotons.
+                 6  →  On 6 and 9 Augus
+                 9  →  On the sixth and the ninth of August nineteen forty-five
+              1945  →  nd the ninth of August nineteen forty-five atomic bomb
+           100,000  →  d well over 100,000 and about 7
+            70,000  →  0 and about 70,000 respectivel
+              1945  →   in October nineteen forty-five and from 19
+              1947  →  45 and from nineteen forty-seven presided ov
+              1949  →  In October nineteen forty-nine the advisor
+              1953  →  In December nineteen fifty-three a president
+                12  →  From the twelfth of April to 6 
+                 6  →  the twelfth of April to the sixth of May nineteen fifty-four he
+              1954  →  il to the sixth of May nineteen fifty-four he was cros
+                29  →  On the twenty-ninth of June nineteen fifty-four t
+              1954  →  On the twenty-ninth of June nineteen fifty-four the Atomic 
+                 4  →  ssion voted 4 to 1 agains
+                 1  →   voted 4 to 1 against let
+                 2  →  On the second of December 19
+              1963  →   the second of December nineteen sixty-three President J
+                18  →  mer died on the eighteenth of February 19
+             1967.  →  the eighteenth of February nineteen sixty-seven.
+              2022  →  In December 2022 the energy 
+              1954  →  vacated the nineteen fifty-four determinati
+✔ 引号不停顿（A17）：0 句带引号，配音时都不读引号
+✔ A19 自检：J. Robert Oppenheimer, born in… 原样 0.030s（不报）、插入假吸气声 0.215s（必须报）
+✔ 标点停顿核对（A9/A10：停顿时长、不切词；A19：停顿后不留吸气声）
+✔ 句首句尾核对 自检：69 S1 原剪点 0.020s 不报；挪进起音 10 ms（0.050s）报出；句尾原样不报，剪进听得见的词尾 20 ms 并淡出报出
+✔ 句首句尾核对（clean_tail 修剪掉的部分没有剪到词：基准本句最响 5 ms 帧；剪掉的能听见的声音不得与词相连，句尾不得剪掉能听见的声音）
+✔ 读音核对 自检：69 把 accomplished 的重音挪成 /ˈɐkɑːmplɪʃt/报出；关掉读音改正（Oppenheimer、Caltech、Alamos、Nagasaki、presided、secretary）报出；关掉按语境读音（character and associates）报出；去掉多音词核对记录（69 S3 desolate）报出；登记的不是罗马数字只放那一个词组报出；“King Francis I.”没转成序数词报出；“Lascaux II/IV”读基数词、没登记的“Montignac II”照报报出；“6 and 9 August”两个日子都读序数（单个“6 January”照旧）报出；“7:25 pm”带空格也读成 seven twenty-five PM报出
+✔ 读音核对（A23：每个词的读音与独立发音词典一致；人名、地名、机构名、缩写逐个查证权威读音）
+✔ 词尾辅音核对 自检：69 原样 1 处全部合格；逐处把除阻换成静音、压低 20 dB，共 2 次全部报出
+✔ 词尾辅音核对（A21：停顿前和句末的词尾 t/k 听得清除阻，2 kHz 以上 ≥ -36 dB；/p/ 全频 ≥ -33 dB）
+✔ 停顿位置核对（A9/A15：停顿正好落在标点处两个词之间）
+✔ 词头渐强核对 自检：通过（10 ms 擦音被 15 ms 渐强吃掉必抓；90 ms、22 ms 擦音配 8 ms 交界渐强、5 ms 擦音残尾、直接元音必放）
+✔ 词头渐强核对（K131：停顿后的短辅音不被渐强吃掉）
+    69 词头渐强核对：没有渐变接点 问题数 0
+✔ 无标点停顿核对 自检：69 S1 原样不报、插入 0.25 秒静音报出（A4）；0.18+碎声+0.17 秒报出（K146，不并碎声时不报）、中间是真辅音不报、碎声贴着词不报
+✔ 无标点处停顿 ≤ 0.22 秒
+✔ 音频体检 自检：8 项各造一种毛病全部报出、原样不误报
+✔ 音频体检（与 01–24 最差比）：音频体检 8 项：超过 01–24 最差的 0 处
+全部通过
+第69篇 出片后核查：
+✔ 出片指纹 自检（G26：旧视频配新脚本、出片后程序改了、视频被覆盖、没有指纹都要停）
+✔ 视频是现行脚本、现行程序出的（G26 出片指纹：与现行脚本、配音、出片程序逐项一致）
+✔ 成片有画面 自检（G12：只有声音的文件拦下、1920×1080 的视频放行）
+    没抓到：只有声音的文件（G12）
+✔ 成片有画面（G12：有画面流、宽 ≥1920；只有声音的文件一律不得交付——快速重建核查.sh 会把 NN.mp4 覆盖成只有声音，出片要放在它之后）
+     时长 Duration: 00:02:41.99
+✔ audio_qc 自检：削波、4800 Hz 电流音、片中停顿过长、一段变轻全部报出
+✔ 自动音频检查（削波、电流音、停顿超长、响度骤降）
+    69.mp4：音频自动检查通过（仍需人耳逐句试听）
+✔ 响度一致性核对 自检：故意把第5段调到比全片响 3 LU、第9段调到比全片轻 3 LU，报出 [5, 9]
+✔ 响度一致性（逐句与全片 ±2 LU、相邻两句 ≤2.5 LU）：全片 -23.1 LUFS，峰值 -0.5 dBFS，13 句，逐句与全片差 -0.7～+1.1 LU
+✔ 句内分段响度 自检：故意把 S8 第 2 段（99.8–101.5s）调 -4.5 dB，报出；多报 []
+✔ 句内分段响度（相邻两段 ≤2.5 LU）：句内相邻两段 15 处，差超过 2.5 LU 的 0 处
+✔ 句内被压小 自检：60 S11 That law, 压 -6 dB 的坏样本报出、补 +2 dB 的好样本放过（K130）
+✔ 句内被压小（K130：邻段整段响 >1.5 LU 且最响处高 >4.0 LU）：0 处
+✔ 音频体检 自检：8 项各造一种毛病全部报出、原样不误报
+✔ 音频体检（与 01–24 最差比）：音频体检 8 项：超过 01–24 最差的 0 处
+✔ 机器复听 自检：吞掉一句最长一段的中间七成，small.en、parakeet 每一路都报
+✔ 机器复听（逐词读音与脚本一致）：机器复听 14 句：读音对不上的 0 句；实测写了依据交用户听 4 句（S2 “thousands”听成“thousand〔small.en〕”、“thousands”听成“thousand〔parakeet〕”；S4 “6”听成“sixth〔small.en〕”、“the”听成“（没听到）〔small.en〕”、“6”听成“sixth〔parakeet〕”；S6 “counselled”听成“count celled〔small.en〕”；S9 “to”听成“（没听到）〔parakeet〕”）
+✔ 纯人声核对 自检：39.48s 假呼吸声报出、99.59s 假噗声报出、76.25s 假咔哒声报出、84.27s 开口前假吸气声报出；别处没有多报
+✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：69 纯人声核对（配音指纹 f1d13389bbea）问题数 0
+    69 OK（已用实际声音核实是词的一部分） 噗声 2.32–2.35s 长 25 ms 最响 -31.6 dB 重心 849 Hz 周期 0.20 低频占比 -0.7 dB
+    69 OK（已用实际声音核实是词的一部分） 噗声 3.83–3.87s 长 45 ms 最响 -30.7 dB 重心 583 Hz 周期 0.69 低频占比 -0.4 dB
+    69 OK（已用实际声音核实是词的一部分） 噗声 6.09–6.11s 长 15 ms 最响 -31.6 dB 重心 966 Hz 周期 0.00 低频占比 -2.3 dB
+    69 OK（已用实际声音核实是词的一部分） 孤立杂音 14.71–14.76s 长 50 ms 最响 -33.5 dB 重心 4477 Hz 周期 0.18 低频占比 -14.3 dB
+    69 OK（已用实际声音核实是词的一部分） 呼吸声 21.86–21.95s 长 90 ms 最响 -35.4 dB 重心 1563 Hz 周期 0.19 低频占比 -3.4 dB
+    69 OK（已用实际声音核实是词的一部分） 呼吸声 39.27–39.35s 长 80 ms 最响 -35.0 dB 重心 1458 Hz 周期 0.20 低频占比 -4.8 dB
+    69 OK（已用实际声音核实是词的一部分） 噗声 42.45–42.47s 长 15 ms 最响 -41.1 dB 重心 1180 Hz 周期 0.00 低频占比 -2.0 dB
+    69 OK（已用实际声音核实是词的一部分） 呼吸声 57.91–58.00s 长 90 ms 最响 -35.8 dB 重心 3230 Hz 周期 0.18 低频占比 -6.0 dB
+    69 OK（已用实际声音核实是词的一部分） 噗声 51.49–51.53s 长 35 ms 最响 -44.6 dB 重心 2109 Hz 周期 0.42 低频占比 -0.2 dB
+    69 OK（已用实际声音核实是词的一部分） 孤立杂音 45.47–45.48s 长 10 ms 最响 -44.0 dB 重心 3516 Hz 周期 0.00 低频占比 -20.7 dB
+    69 OK（已用实际声音核实是词的一部分） 噗声 63.80–63.84s 长 30 ms 最响 -43.3 dB 重心 2618 Hz 周期 0.43 低频占比 -0.6 dB
+    69 OK（已用实际声音核实是词的一部分） 噗声 83.20–83.22s 长 15 ms 最响 -53.2 dB 重心 2437 Hz 周期 0.00 低频占比 -1.5 dB
+    69 OK（已用实际声音核实是词的一部分） 呼吸声 91.32–91.40s 长 80 ms 最响 -37.6 dB 重心 1502 Hz 周期 0.31 低频占比 -2.7 dB
+    69 OK（已用实际声音核实是词的一部分） 呼吸声 103.60–103.69s 长 90 ms 最响 -35.3 dB 重心 1362 Hz 周期 0.28 低频占比 -3.1 dB
+    69 OK（已用实际声音核实是词的一部分） 噗声 96.59–96.61s 长 15 ms 最响 -45.0 dB 重心 2095 Hz 周期 0.00 低频占比 -0.3 dB
+    69 OK（已用实际声音核实是词的一部分） 噗声 123.08–123.09s 长 15 ms 最响 -52.8 dB 重心 2070 Hz 周期 0.00 低频占比 -1.4 dB
+    69 OK（已用实际声音核实是词的一部分） 噗声 131.72–131.75s 长 30 ms 最响 -34.9 dB 重心 734 Hz 周期 0.54 低频占比 -1.8 dB
+    69 OK（已用实际声音核实是词的一部分） 孤立杂音 133.88–133.92s 长 35 ms 最响 -32.8 dB 重心 3008 Hz 周期 0.22 低频占比 -7.1 dB
+    69 OK（已用实际声音核实是词的一部分） 呼吸声 140.69–140.76s 长 80 ms 最响 -35.8 dB 重心 1413 Hz 周期 0.33 低频占比 -3.5 dB
+    69 OK（已用实际声音核实是词的一部分） 噗声 149.23–149.25s 长 15 ms 最响 -41.7 dB 重心 1224 Hz 周期 0.00 低频占比 -2.1 dB
+    69 OK（已用实际声音核实是词的一部分） 呼吸声 159.87–159.97s 长 100 ms 最响 -36.4 dB 重心 1466 Hz 周期 0.30 低频占比 -7.3 dB
+✔ 句间停顿核对 自检：S4 后加长 0.05 秒、S9 后缩短 0.05 秒、S7 开头前放杂音，必须报 ['S4→S5', 'S6→S7', 'S9→S10']，报出 ['S4→S5', 'S6→S7', 'S9→S10']
+✔ 句间停顿核对（A20：片头 0.4、标题后 1.0、句号 1.0、换段 1.2、片尾 2 秒，词到词 ±0.01 秒）：69 句间停顿核对 问题数 0
+✔ 核查程序自检：词尾轻切（5.68s，剪 11 ms）抓到、词头轻切（6.07s，剪 19 ms）抓到、词尾重切（9.79s，剪 31 ms）抓到、词头重切（22.48s，剪 23 ms）抓到、杂音（156.32s）抓到
+✔ 独立复核：119 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['13']（未经实际声音确认的 0），多余声音 = ['0']
+    edge pre_min=-55.0 post_min=-53.3 lost_max=-52.9 A10_VIOLATION(pre,post)
+    edge pre_min=-54.9 post_min=-62.2 lost_max=-43.1 A10_VIOLATION(pre)
+    edge pre_min=-59.2 post_min=-50.2 lost_max=-39.0 A10_VIOLATION(post,lost)
+    edge pre_min=-49.4 post_min=-47.2 lost_max=-42.9 A10_VIOLATION(pre,post)
+    edge pre_min=-58.7 post_min=-58.0 lost_max=-39.6 A10_VIOLATION(lost)
+    edge pre_min=-59.7 post_min=-47.6 lost_max=-37.7 A10_VIOLATION(post,lost)
+    edge pre_min=-58.8 post_min=-58.0 lost_max=-35.4 A10_VIOLATION(lost)
+    edge pre_min=-55.9 post_min=-41.4 lost_max=-39.2 A10_VIOLATION(post,lost)
+    edge pre_min=-50.6 post_min=-57.1 lost_max=-38.6 A10_VIOLATION(pre,lost)
+    edge pre_min=-57.1 post_min=-58.8 lost_max=-39.6 A10_VIOLATION(lost)
+    edge pre_min=-57.9 post_min=-58.5 lost_max=-35.9 A10_VIOLATION(lost)
+    edge pre_min=-59.0 post_min=-61.6 lost_max=-39.1 A10_VIOLATION(lost)
+    edge pre_min=-58.9 post_min=-30.2 lost_max=-45.8 A10_VIOLATION(post)
+    S3 raw 4.5400-4.9500：已用实际声音确认——2026-11-08 逐 10 ms 实测（S3 w）：1945, 的 /v/ 衰减到 4.53（-53 dB），4.54–4.56 数字静音（-60 dB）；4.57–4.89 是吸气声（-41～-56 dB、重心 2.0–2.7 kHz、低频 -12～-27 dB、周期 ≤0.26），4.90–4.93 弱浊音（-43～-54 dB），4.94–4.95 回到 -60 dB；the 的 /ð/ 4.96 起。删掉的是停顿里的吸气，两侧都在 -58 dB 以下，没有词的声音（原始合成里的区间不变，删掉的是同一段声音；配音指纹 05a7a4ff6f26 → 39e83c1930eb，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 39e83c1930eb → f1d13389bbea，复核仍逐处重算两侧）
+    S6 raw 10.8850-11.3000：已用实际声音确认——2026-10-15 删除段对应 非人声区间 [[10.95, 11.3]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词
+    S9 raw 3.0200-3.3600：已用实际声音确认——2026-10-15 删除段对应 非人声区间 [[2.96, 3.265]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词
+    S10 raw 2.4200-2.8050：已用实际声音确认——2026-10-15 删除段对应 非人声区间 [[2.520417, 2.76]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词
+    S11 raw 2.9900-3.3100：已用实际声音确认——2026-10-15 删除段对应 非人声区间 [[2.94, 3.22]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词
+✔ 高亮同步核对 自检：S1 第2块故意提前 0.4 秒、S5 第2块故意推后 0.4 秒，必须正好报出这两处
+    报出：[('S1', '第2块'), ('S5', '第2块')]
+✔ 高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）
+    69 共核对 14 处合格，最大偏差 0.09s（配音指纹 f1d13389bbea）
+✔ 生成标点试听 标点试听_69.mp3（26 处，需交用户试听）
+全部通过
