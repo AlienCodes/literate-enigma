@@ -69,7 +69,7 @@
 | 62 | Dolly, the Copied Sheep | 多莉：一只羊的复制 | 12.2 MB |
 | 63 | The Crowded Heavens | 拥挤的苍穹 | 13.4 MB |
 | 64 | The Day Zero That Never Came | 没有到来的零日 | 12.4 MB |
-| 65 | The Day the Doomsday Vault Opened | 末日种子库的第一次取种 | 12.5 MB |
+| 65 | The Day the Doomsday Vault Opened | 末日种子库的第一次取种 | 12.6 MB |
 | 66 | The Burrs That Became Velcro | 一颗刺果钩出的发明 | 11.1 MB |
 | 67 | The Cave Found by a Dog | 几个少年和一只狗发现的洞穴 | 11.4 MB |
 | 68 | The Last Flight of the Hindenburg | 兴登堡号的 34 秒 | 12.4 MB |
