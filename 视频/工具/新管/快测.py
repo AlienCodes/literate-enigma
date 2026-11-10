@@ -91,6 +91,8 @@ if R.NOTE_WIDE.get(key(e, -1)) != "整屏": bad.append("没放：24 新样子简
 ch_ = [[tuple(p) for p in c_["align"]] for c_ in e["sentences"][-1]["chunks"]]; nt_ = [c_.get("note") for c_ in e["sentences"][-1]["chunks"]]
 es_, nn_, k_ = R.简述整屏折行(ch_, {}, nt_); ls_ = nn_[nn_.index("（简述：") + 4:].split("\\n")
 if [x[0] for x in ls_ if x[:1] == "▸"] != ["▸"] * 3 or any(x[:1] not in "▸▹" for x in ls_) or k_ < 3: bad.append(f"新样子简述没有一条一行起头：{ls_}")
+nt2_ = list(nt_); nt2_[-1] = nn_; nn2_ = R.简述整屏折行(ch_, {}, nt2_)[1]
+if nn2_ != nn_: bad.append("新样子简述折两次结果不同（69：▹ 叠成 ▹▹，T10 误报）")
 c = copy.deepcopy(d27); c["sentences"][0]["chunks"][-1]["note"] = "（" + "测" * 120 + "）"; c["说明放宽特批"] = {"S1": {"倍数": "屏宽", "依据": "用户 特批 屏宽样本"}}; R.apply_script(c)
 if R.NOTE_WIDE.get(key(c, 0)) != "屏宽": bad.append("没放：57 S5 屏宽特批（用户原话）没生效")
 e_ = copy.deepcopy(c); e_["说明放宽特批"] = {"S1": {"倍数": "屏宽", "依据": "会话自己写的理由"}}

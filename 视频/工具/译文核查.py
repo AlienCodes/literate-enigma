@@ -24,6 +24,7 @@ PUN = '，。、：；！？（）《》“”‘’,.;:!?()…  '
 def 去标(x):
     """比内容用：去掉加粗、重点词英文标注、格内换行、空格、彩色说明的外壳"""
     x = re.sub(r'\{\{([^|{}]+)\|[^{}]+\}\}', r'\1', x or '')
+    x = x.replace('▸', '').replace('▹', '')   # 简述新样子的排版符号（分条、续行）不算改字（67、69 T10 误报）
     x = re.sub(r'\*\*([^*]+)\*\*\([^)]*\)', r'\1', x).replace('**', '')
     return re.sub(r'[\s ]|#Y|\\n', '', x)
 
@@ -267,6 +268,11 @@ def 自检():
     old = {'sentences': [句(('Prices soared', '价格一路飙升'))]}; new = copy.deepcopy(old); new['sentences'][0]['chunks'][0]['zh'] = '价格暴涨'
     if not 改稿门(new, old, '用户：这一句不用改'): fails.append('没抓到：没有用户原话就改了已发的中文（T10/铁13）')
     if 改稿门(new, old, '用户原话：“价格暴涨” 一路飙升 改为 暴涨'): fails.append('T10改稿 误报：用户原话里有的改动')
+    _o = {'sentences': [{'chunks': [{'zh': '甲', 'note': '（简述：痛点：邮费贵。\n变革：一便士。）'}]}]}
+    _n = {'sentences': [{'chunks': [{'zh': '甲', 'note': '（简述：▸痛点：邮费贵。\n▸变革：一便士▹。）'}]}]}
+    if 改稿门(_n, _o, '无'): fails.append('T10改稿 误报：只改成简述新样子（加 ▸▹）也报')
+    _n['sentences'][0]['chunks'][0]['note'] = '（简述：▸痛点：邮费很贵。▸变革：一便士。）'
+    if not 改稿门(_n, _o, '无'): fails.append('T10改稿 漏报：简述新样子里改了字（加“很”）没报')
     if 改稿门(old, old, ''): fails.append('T10改稿 误报：没改')
     re_ = copy.deepcopy(old); re_['sentences'][0]['chunks'][0]['zh'] = '一路飙升价格'
     if 改稿门(re_, old, '用户原话：汉译尽量跟英文对齐'): fails.append('T10改稿 误报：只为对齐调了中文先后')

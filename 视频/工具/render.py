@@ -374,7 +374,7 @@ def 折成(t,k,nf,pos):
 def 简述整屏折行(chunks,colors,notes):
     """G35（25 用户 2026-10-25：“想方设法能够让整个屏幕的字体就是变得最大的这个方案”“以后一定要合理的安排，不要压缩成这个样子”）：
     结尾简述（从“（简述：”起）试 1–24 行的均匀折法，取整屏字号最大的（同字号取行少的）。返回 (字号, 新说明, 行数)"""
-    i=next(i for i,n in enumerate(notes) if n and '（简述：' in n); n=notes[i]; a=n.index('（简述：'); head=n[:a]; t=n[a:].replace('\n','')
+    i=next(i for i,n in enumerate(notes) if n and '（简述：' in n); n=notes[i]; a=n.index('（简述：'); head=n[:a]; t=n[a:].replace('\n','').replace('▹','')   # 已折过的续行标记合回再折（69：▹ 叠成 ▹▹），幂等
     nf=ZH(int(int(100*ZR)*0.9),400); pos=sorted(断点(t)); best=None
     if '（简述：▸' in t: return _简条折行(chunks,colors,notes,i,head,t,nf)
     for k in range(1,25):
