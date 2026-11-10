@@ -4,13 +4,13 @@
 ## 英文
 On Spitsbergen, in Norway's Svalbard **archipelago**, a **corridor** has been **drilled** deep into a **frosted** **hillside**. At its end, **cartons** of **precious** seed sit **silently** in a **sub-zero** **repository**, **insulated** by **permanently** frozen ground.
 
-The Svalbard Global Seed Vault opened near Longyearbyen in February 2008 to **insure** crops such as **beans**, rice, and wheat against the **horrors** people **dread**, from **atomic** war to disease. It has **ample** room for about four and a half million samples. **Essentially** the planet's **ultimate** **backup**, it is run like a bank's **safe-deposit** box. **Depositors** keep **ownership**, and only they can take their seeds out.
+The Svalbard Global **Seed Vault** opened near Longyearbyen in February 2008 to **insure** crops such as **beans**, rice, and wheat against the **horrors** people **dread**, from **atomic** war to disease. It has **ample** room for about four and a half million samples. **Essentially** the planet's **ultimate** **backup**, it is run like a bank's **safe-deposit box**. **Depositors** keep **ownership**, and only they can take their seeds out.
 
-The first **retrieval** came not after an **asteroid** strike but amid **strife** on the ground. ICARDA, a research centre whose **gene** bank stood near Aleppo, had moved its headquarters to Beirut during Syria's civil war. In September 2015 it asked for about 116,000 samples, 130 of the 325 boxes it had sent to the Arctic before the **hostilities**. They included **robust** strains of wheat and **barley** **tolerant** of drought and heat.
+The first **retrieval** came not after an **asteroid** strike but amid **strife** on the ground. ICARDA, a research centre whose **gene bank** stood near Aleppo, had moved its headquarters to Beirut during Syria's **civil war**. In September 2015 it asked for about 116,000 samples, 130 of the 325 boxes it had sent to the Arctic before the **hostilities**. They included **robust** strains of wheat and **barley** **tolerant** of drought and heat.
 
 In Lebanon and Morocco, ICARDA **sowed** the seeds, and **vigorous** plants **sprouted** to **regenerate** its collection. Once **multiplication** had gone far enough, a **homecoming** began in 2017, **consignment** by consignment, **restocking** the Arctic **stronghold**.
 
-That same year brought a **scare**. After **record-breaking** warmth, meltwater ran into the roughly 100-metre entrance tunnel and **solidified**. The **intrusion** stopped short of the seeds, which stayed **safely** at minus 18 degrees Celsius. Norway **waterproofed** the tunnel and dug **drainage** **ditches**.
+That same year brought a **scare**. After **record-breaking** warmth, meltwater ran into the roughly 100-metre entrance tunnel and **solidified**. The **intrusion** **stopped short of** the seeds, which stayed **safely** at minus 18 degrees Celsius. Norway **waterproofed** the tunnel and dug **drainage** **ditches**.
 
 A **haven** built against the **apocalypse** had a **weakness** at its own entrance, and warmer weather found it.
 
@@ -52,13 +52,15 @@ A **haven** built against the **apocalypse** had a **weakness** at its own entra
 | essentially | adv. 本质上，基本上（essentially the same） | 2 |
 | ultimate | adj. 终极的，最后的（the ultimate goal） | 2 |
 | backup | n. 备份，后备（make a backup copy） | 2 |
-| safe-deposit | adj. 保险储存的（a safe-deposit box） | 2 |
+| Seed Vault | n. 种子库（the Svalbard Global Seed Vault） | 2 |
+| safe-deposit box | n. 保险箱（rent a safe-deposit box） | 2 |
 | depositors | n. (depositor) 存放者，存款人（bank depositors） | 2 |
 | ownership | n. 所有权（home ownership） | 2 |
 | retrieval | n. 取回，检索（information retrieval） | 3 |
 | asteroid | n. 小行星（an asteroid impact） | 3 |
 | strife | n. 冲突，纷争（civil/ethnic strife） | 3 |
-| gene | n. 基因（a gene bank） | 3 |
+| gene bank | n. 基因库（a national gene bank） | 3 |
+| civil war | n. 内战（the Syrian civil war） | 3 |
 | hostilities | n. (hostility) 战斗，战事；敌意（the outbreak of hostilities） | 3 |
 | robust | adj. 强健的，结实的（a robust plant/economy） | 3 |
 | barley | n. 大麦（fields of barley） | 3 |
@@ -76,6 +78,7 @@ A **haven** built against the **apocalypse** had a **weakness** at its own entra
 | record-breaking | adj. 破纪录的（record-breaking temperatures） | 5 |
 | solidified | v. (solidify) 凝固（the lava solidified） | 5 |
 | intrusion | n. 侵入，闯入（an intrusion into privacy） | 5 |
+| stopped short of | v. (stop short of) 没有到达，差一点就（stop short of the goal） | 5 |
 | safely | adv. 安全地（arrive safely） | 5 |
 | waterproofed | v. (waterproof) 使防水（waterproof a roof） | 5 |
 | drainage | n. 排水（drainage ditches/pipes） | 5 |

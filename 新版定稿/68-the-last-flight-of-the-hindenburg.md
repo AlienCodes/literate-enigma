@@ -88,11 +88,11 @@ The 1933 crash of USS Akron killed 73 yet won less **notoriety**. The filmed fir
 | circled | v. (circle) 盘旋，绕圈（circle the airport；birds circled overhead） | 2 |
 | before | conj./prep. 在……之前；（译作）才（it was weeks before he replied） | 2 |
 | mooring mast | n. 系留塔架，系留塔（an airship mooring mast） | 2 |
-| a minority of | 少数的……（a minority of people；only a minority of） | 3 |
+| a minority of | phr. 少数的……（a minority of people；only a minority of） | 3 |
 | cabin boy | n. 船上的服务生，侍应生（work as a cabin boy） | 3 |
 | static electricity | n. 静电（build up static electricity） | 4 |
 | igniting | v. (ignite) 点燃，引燃（ignite the gas；ignite a debate） | 4 |
-| leading explanation | 最主要的解释（the leading explanation for） | 4 |
+| leading explanation | phr. 最主要的解释（the leading explanation for） | 4 |
 | theory | n. 理论；（未被证实的）看法，说法（a theory about；in theory） | 4 |
 | rejected | v. (reject) 拒绝，不接受，否定（reject a theory/offer） | 4 |
 | soured | v. (sour) 变糟，恶化（relations soured；the mood soured） | 5 |
