@@ -274,6 +274,7 @@ elif stage == '出片后':
     # 高亮同步（L14：读到哪一块，哪一块高亮）。先做核查程序自检（阳性对照）：在时间表副本里故意把两处切换挪动 0.4 秒
     # （标点后的块提前、无标点处的块推后，各一处），高亮同步核对必须正好在这两处报出、其余不变；自检不过 = 核查失灵
     ent = re.findall(r"file '([^']+)'\nduration ([\d.]+)", open(f'work_{no}/list.txt').read())
+    ent = [e for e in ent if '简述' not in e[0]]   # L22：结尾简述单独一页不是正文屏（05 高亮整体错开一屏）
     dj = json.load(open(f'scripts/{no}.json')); nch = sum(len(s['chunks']) for s in dj['sentences']); base = len(ent) - nch
     cand = []; ix = base
     for si, s in enumerate(dj['sentences'], 1):

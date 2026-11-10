@@ -751,6 +751,7 @@ def _短段(no,tmap,gaps):
     for k2 in range(1,len(tmap)):
         if gaps[k2-1]>=LQ.IN_GAP: gs.append([k2])
         else: gs[-1].append(k2)
+    if len(gs)<2: return set()   # 整句只有一组（05 S13 None matched.）：分段增益就是整句音量，不收
     return {k2 for g in gs if tmap[g[-1]][3]-tmap[g[0]][2]<_短长 for k2 in g}
 def _短段限(no,tmap,gaps,agn):
     sh=_短段(no,tmap,gaps)
@@ -1187,7 +1188,7 @@ def build(js,out):
         # 只出声音（用户 2026-10-09：“先不要做成视频，我们确定最后的定稿再做成视频”）：写配音 a.wav、时间表 list.txt
         # （片头一项 + 每块一项，时长与正式出片完全相同；图片位置留空），再用同一套后期 AF 做成只有声音的 out，供全部声音核查使用。不画任何画面
         with open(f'{work}/list.txt','w') as f:
-            for (key,dur) in tl: f.write(f"file 'AUDIO_ONLY'\nduration {dur:.3f}\n")
+            for (key,dur) in tl: f.write(f"file 'AUDIO_ONLY{'_简述' if key[0]=='简述' else ''}'\nduration {dur:.3f}\n")   # L22 简述页在时间表里带“简述”标记，读时间表的核查跳过它
             f.write("file 'AUDIO_ONLY'\n")
         sf.write(f'{work}/a.wav',A,SR)
         subprocess.run([FF,'-y','-loglevel','error','-i',f'{work}/a.wav','-af',AF,'-c:a','aac','-b:a','256k','-movflags','+faststart',out],check=True)
@@ -1208,7 +1209,7 @@ def build(js,out):
     files=[]; t=0
     for (key,dur) in tl:
         prog=min(1,(t+dur)/total)
-        fn=f"{work}/{len(files):04d}.png"
+        fn=f"{work}/{len(files):04d}{'_简述' if key[0]=='简述' else ''}.png"
         if key[0]=='title':  # 片头：约 1.5 秒入场动画（title_anim），最后一帧停住到片头结束
             import title_anim as TA; fx=d.get('title_fx',{})
             af=TA.render_frames(d['title_en'],d['title_zh'],fx.get('hl',[]),fx.get('ghost',[]),work)

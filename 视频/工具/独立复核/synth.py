@@ -93,7 +93,7 @@ if __name__ == '__main__':
             sr2_ = SEGS.get(no, {}).get(f'S{idx + 1}') if idx >= 0 else None
             if sr2_ and any('增益' in r for r in sr2_):   # G36 源头调平（26 起）：出片程序自动算的增益 + 脚本写的，记在分段.json 的“增益”里；有它就以它为准
                 pr_ = [(r['原始'][0], r['原始'][1], float(r['增益'])) for r in sr2_ if r.get('增益')]
-                if pn_ and any(abs(float(r.get('增益', 0)) - float(pn_.get(str(r['段']), 0))) > 1e-6 for r in sr2_) and not (str(d.get('no', no)).isdigit() and int(d.get('no', no)) >= 26):
+                if pn_ and any(abs(float(r.get('增益', 0)) - float(pn_.get(str(r['段']), 0))) > 1e-6 for r in sr2_) and not (str(d.get('no', no)).isdigit() and (int(d.get('no', no)) >= 26 or int(d.get('no', no)) == 5)):   # 05：K134 短段收过的增益以分段记录为准
                     raise SystemExit(f'【停止】分段记录的增益与脚本 分段增益dB 对不上（26 前没有自动调平）：S{idx + 1}')
             rgn_ = d.get('段内渐变dB', {}).get(f'S{idx + 1}') if idx >= 0 else None   # 2026-11-03 段内渐变：段内线性渐变，乘在分段记录的原始区间
             rg_ = []

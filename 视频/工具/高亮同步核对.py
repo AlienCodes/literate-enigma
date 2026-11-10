@@ -92,6 +92,7 @@ bad = 0; rows = []
 for no in sys.argv[1:]:
     d = json.load(open(f'scripts/{no}.json'))
     ent = re.findall(r"file '([^']+)'\nduration ([\d.]+)", open(os.environ.get('HL_LIST', f'{WK}_{no}/list.txt')).read())
+    ent = [e for e in ent if '简述' not in e[0]]   # L22：结尾简述单独一页不是正文屏（05 高亮整体错开一屏）
     nch = sum(len(s['chunks']) for s in d['sentences'])
     scr = ent[-nch:]; t0 = sum(float(x) for _, x in ent[:-nch])        # 片头（动画帧 + 静帧）之后才是正文各屏
     starts = []
