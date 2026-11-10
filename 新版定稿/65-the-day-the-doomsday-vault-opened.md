@@ -6,11 +6,11 @@ On Spitsbergen, in Norway's Svalbard **archipelago**, a **corridor** has been **
 
 The Svalbard Global **Seed Vault** opened near Longyearbyen in February 2008 to **insure** crops such as **beans**, rice, and wheat **against** the **horrors** people **dread**, from **atomic** war to disease. It has **ample** room for about four and a half million samples. **Essentially** the planet's **ultimate** **backup**, it is run like a bank's **safe-deposit box**. **Depositors** keep **ownership**, and only they can take their seeds out.
 
-The first **retrieval** came not after an **asteroid** strike but amid **strife** on the ground. ICARDA, a research centre whose **gene bank** stood near Aleppo, had moved its headquarters to Beirut during Syria's **civil war**. In September 2015 it asked for about 116,000 samples, 130 of the 325 boxes it had sent to the Arctic before the **hostilities**. They included **robust** strains of wheat and **barley** **tolerant of** drought and heat.
+The first **retrieval** came not after an **asteroid** strike but amid **strife** on the ground. ICARDA, a research centre whose **gene bank** stood near Aleppo, had moved its **headquarters** to Beirut during Syria's **civil war**. In September 2015 it **asked for** about 116,000 samples, 130 of the 325 boxes it had sent to the **Arctic** before the **hostilities**. They included **robust** **strains** of wheat and **barley** **tolerant of** drought and heat.
 
 In Lebanon and Morocco, ICARDA **sowed** the seeds, and **vigorous** plants **sprouted** to **regenerate** its collection. Once **multiplication** had gone far enough, a **homecoming** began in 2017, **consignment** by consignment, **restocking** the Arctic **stronghold**.
 
-That same year brought a **scare**. After **record-breaking** warmth, meltwater ran into the roughly 100-metre entrance tunnel and **solidified**. The **intrusion** **stopped short of** the seeds, which stayed **safely** at minus 18 degrees Celsius. Norway **waterproofed** the tunnel and dug **drainage** **ditches**.
+That same year brought a **scare**. After **record-breaking** warmth, meltwater ran into the roughly 100-metre entrance **tunnel** and **solidified**. The **intrusion** **stopped short of** the seeds, which stayed **safely** at minus 18 degrees Celsius. Norway **waterproofed** the tunnel and dug **drainage** **ditches**.
 
 A **haven** built against the **apocalypse** had a **weakness** at its own entrance, and warmer weather found it.
 
@@ -61,6 +61,10 @@ A **haven** built against the **apocalypse** had a **weakness** at its own entra
 | strife | 本文：纷争；n. 冲突，纷争（civil/ethnic strife） | 3 |
 | gene bank | 本文：基因库；n. 基因库（a national gene bank） | 3 |
 | civil war | 本文：内战；n. 内战（the Syrian civil war） | 3 |
+| headquarters | 本文：总部；n. 总部（the company headquarters） | 3 |
+| Arctic | 本文：北极；n. 北极（地区）（the Arctic Ocean） | 3 |
+| strains | 本文：品种；n. (strain) （动植物的）品种，品系（a new strain of wheat） | 3 |
+| asked for | 本文：索要；v. (ask for) 索要，要求得到（ask for help） | 3 |
 | hostilities | 本文：战争；n. (hostility) 战斗，战事；敌意（the outbreak of hostilities） | 3 |
 | tolerant of | 本文：耐受；adj. 耐……的；宽容的（drought-tolerant；tolerant of others） | 3 |
 | robust | 本文：强健；adj. 强健的，结实的（a robust plant/economy） | 3 |
@@ -76,6 +80,7 @@ A **haven** built against the **apocalypse** had a **weakness** at its own entra
 | stronghold | 本文：堡垒；n. 堡垒，据点（a rebel stronghold） | 4 |
 | scare | 本文：虚惊；n. 恐慌，虚惊（a health scare） | 5 |
 | record-breaking | 本文：破纪录的；adj. 破纪录的（record-breaking temperatures） | 5 |
+| tunnel | 本文：隧道；n. 隧道（a railway tunnel） | 5 |
 | solidified | 本文：凝固；v. (solidify) 凝固（the lava solidified） | 5 |
 | intrusion | 本文：侵入；n. 侵入，闯入（an intrusion into privacy） | 5 |
 | stopped short of | 本文：没有到达；v. (stop short of) 没有到达，差一点就（stop short of the goal） | 5 |
