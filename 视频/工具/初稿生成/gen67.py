@@ -17,7 +17,7 @@ S=[
      "（embroider A with B：用 B 给 A 添油加醋）\n（anecdote：关于某人真事的、有趣的小故事\n（趣闻轶事））"]]),
 (2,[[[("Robot, he said,","他说，罗伯特"),("had **fallen into**","**掉进了**(fallen into)"),("the cave.","洞里。")],
      "（he said：插入语；\nhad fallen：过去完成时，掉洞在讲述之前）"]]),
-(2,[[[("That **fanciful**","这个**离奇**(fanciful)的"),("**mishap**","**意外**(mishap)"),("is a","纯属"),("**fabrication**.","**编造/虚构**(fabrication)。")]]]),
+(2,[[[("That **fanciful**","这个**离奇的**(fanciful)"),("**mishap**","**意外**(mishap)"),("is a","纯属"),("**fabrication**.","**编造/虚构**(fabrication)。")]]]),
 (2,[[[("The animal","那只狗"),("only","只是"),("nosed about the hole,","在洞口嗅了嗅，")],
      "（nose about：到处嗅）"],
     [[("and the **pivotal**","**关键的**(pivotal)"),("**initiative**","**主动行动**(initiative)"),("was the boys' own.","完全出自几个男孩。")],

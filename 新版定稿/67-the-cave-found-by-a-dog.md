@@ -16,7 +16,7 @@ Lascaux joined UNESCO's World Heritage List in 1979, and Lascaux II, a **meticul
 
 马塞尔·拉维达，18岁，正在和罗伯特在蒙蒂尼亚克附近的**林地**(woodland)里**散步**(stroll)。罗伯特是他**犬类的**(canine)小**伙伴**(companion)。这个时候罗伯特在一棵**倒下的**(toppled)树留下的（地面）**凹陷处**(hollow)**嗅来嗅去**(sniffing)。1940年9月12日，他带着另外三个男孩回到这里，来了一次**富于冒险的**(adventurous)**短途旅行**(excursion)，并且四个**探险者**(explorers)爬进了**黑暗**(darkness)之中。
 
-在后来的**复述**(retellings)中，拉维达给这段**轶事**(anecdote)**添油加醋**(embroidered)，加入了一个**戏剧性的**(dramatic)转折。他说，罗伯特**掉进了**(fallen into)洞里。这个**离奇**(fanciful)的**意外**(mishap)纯属**编造/虚构**(fabrication)。那只狗只是在洞口嗅了嗅，**关键的**(pivotal)**主动行动**(initiative)完全出自几个男孩。**讽刺的是**(ironically)，**虚构的**(invented)那一跤让狗成了故事的主角。
+在后来的**复述**(retellings)中，拉维达给这段**轶事**(anecdote)**添油加醋**(embroidered)，加入了一个**戏剧性的**(dramatic)转折。他说，罗伯特**掉进了**(fallen into)洞里。这个**离奇的**(fanciful)**意外**(mishap)纯属**编造/虚构**(fabrication)。那只狗只是在洞口嗅了嗅，**关键的**(pivotal)**主动行动**(initiative)完全出自几个男孩。**讽刺的是**(ironically)，**虚构的**(invented)那一跤让狗成了故事的主角。
 
 约680个**彩绘人像**(painted figures)和1,500幅**雕刻图案**(engravings)**布满了**(cover)这块岩石。这些**艺术作品**(artwork)通常可被追溯到1.7万至2.2万年之前；其**创作者**(creators)，是我们遥远的**祖先**(ancestors)，生活在**古时代**(antiquity)。马、**公牛**(bulls)和雄鹿都是**壁画**(murals)上用**颜料**(pigments)**描绘**(depicted)的动物。这些画作的**脆弱性**(fragility)很快就显现了出来。
 
