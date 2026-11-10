@@ -6,6 +6,7 @@ on:
     branches: ['claude/adoring-hamilton-5qskmm']
     paths: ['视频/批量/清单.txt']
   workflow_dispatch:
+concurrency: {group: 本项目GitHub名额, cancel-in-progress: false}   # 两个工作流同时只跑一个，合计不超过 10 台
 jobs:
   plan:
     runs-on: ubuntu-latest
@@ -28,6 +29,7 @@ jobs:
         shell: bash   # 带 pipefail：出片程序出错时，后面的 | tail 不会把错误盖住
     strategy:
       fail-fast: false
+      max-parallel: 10   # 用户 2026-11-10：一个 GitHub 账号最多 20 台，本项目同时最多 10 台（另一个对话用另 10 台）
       matrix:
         item: ${{ fromJson(needs.plan.outputs.items) }}
     steps:

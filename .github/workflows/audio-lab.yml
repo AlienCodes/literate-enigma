@@ -5,6 +5,7 @@ on:
   push:
     branches: ['claude/adoring-hamilton-5qskmm']
     paths: ['.github/音频实验/请求.txt']
+concurrency: {group: 本项目GitHub名额, cancel-in-progress: false}   # 两个工作流同时只跑一个，合计不超过 10 台
 permissions: {contents: write}
 defaults:
   run: {shell: bash}
@@ -55,6 +56,7 @@ jobs:
     timeout-minutes: 120
     strategy:
       fail-fast: false
+      max-parallel: 5   # 用户 2026-11-10：一个 GitHub 账号最多 20 台，本项目同时最多 10 台（另一个对话用另 10 台）
       matrix: {include: '${{ fromJson(needs.plan.outputs.ting) }}'}
     steps:
       - uses: actions/checkout@v4
@@ -88,6 +90,7 @@ jobs:
     timeout-minutes: 120
     strategy:
       fail-fast: false
+      max-parallel: 2   # 用户 2026-11-10：一个 GitHub 账号最多 20 台，本项目同时最多 10 台（另一个对话用另 10 台）
       matrix: {part: '${{ fromJson(needs.plan.outputs.dafen) }}'}
     steps:
       - uses: actions/checkout@v4
@@ -122,6 +125,7 @@ jobs:
     timeout-minutes: 180
     strategy:
       fail-fast: false
+      max-parallel: 2   # 用户 2026-11-10：一个 GitHub 账号最多 20 台，本项目同时最多 10 台（另一个对话用另 10 台）
       matrix: {run: [1, 2, 3]}
     steps:
       - uses: actions/checkout@v4
