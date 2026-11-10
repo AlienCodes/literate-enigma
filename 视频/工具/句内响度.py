@@ -36,19 +36,20 @@ def 共段(m, seg_rec):
             if len(hit) > 1 and t1 > t0: out.setdefault(s, {})[str(r['段'])] = [((c - t0) / (t1 - t0), j) for c, j in hit]
     return out
 
-def 算增益(m, TM, old, seg_rec=None, old_rg=None):
+def 算增益(m, TM, old, seg_rec=None, old_rg=None, 短=False):
     """{句: {段号: 新增益}}：只算有相邻两组超标的句子。给了 seg_rec 时第二个返回值是 段内渐变dB {句: {段号: [开头, 结尾]}}（K163 一段里有两组以上的段）。"""
     new = {}; rg = {}; sh = 共段(m, seg_rec) if seg_rec else {}
     for s, gs in m.items():
         L = [g[3] for g in gs]
         if not any(x is not None and y is not None and abs(y - x) > R.IN_ADJ for x, y in zip(L, L[1:])): continue
         I = float(np.median([x for x in L if x is not None]))   # 参照：各段响度的中位数（整句综合响度会被段间静音块拉低）
-        for ks, _, _, v in gs:
+        for ks, x_, y_, v in gs:
             if v is None or abs(I - v) <= 1.0: continue
             dlt = round((I - v) * 2) / 2
             for k in ks:
                 if str(k) in sh.get(s, {}): continue
-                g = max(-6.0, min(6.0, float(old.get(s, {}).get(str(k), 0)) + dlt))
+                lo, hi = (0.0, 2.0) if 短 and y_ - x_ < 1.5 else (-6.0, 6.0)   # K134（66 S5 In Lyon,、67 S1 Marcel Ravidat,）：不到 1.5 秒的短段不往下压、往上最多 +2 dB（与 make_video._短段限 同一标准；出片程序合起来再收）
+                g = max(lo, min(hi, float(old.get(s, {}).get(str(k), 0)) + dlt))
                 new.setdefault(s, {})[str(k)] = g   # 59 S12（11-07）：旧增益+修正=0 也要记下（写入时撤掉旧的），原来丢掉、报 0 句、旧 ±1.5 一直留着
         for k, hs in sh.get(s, {}).items():   # K168（49 S14 每跑一次加一档 ±1.5→±3→±4.5）：原来把差直接加在段两头，组中点只拿到一半，要好几轮；现在让第一组、最后一组的中点正好补上差，一轮到位
             hs = sorted(hs); (c0, j0), (c1, j1) = hs[0], hs[-1]; d0, d1 = [(I - L[j]) if L[j] is not None else 0.0 for j in (j0, j1)]
@@ -140,7 +141,7 @@ if __name__ == '__main__':
     if not os.path.exists(sj): raise SystemExit(f'【停止】没有 {sj}：先用现行出片程序出一次声音（快速重建核查.sh {no}）')
     d = json.load(open(f'scripts/{no}.json')); old = d.get('分段增益dB', {}); org = d.get('段内渐变dB', {}); rec = json.load(open(sj))
     with tempfile.TemporaryDirectory() as td: m, TM = 量(成片声(f'work_{no}/a.wav', td), rec)
-    new, rg = 算增益(m, TM, old, rec, org)
+    new, rg = 算增益(m, TM, old, rec, org, str(no).isdigit() and (int(no) >= 65 or int(no) in (5, 54)))
     # K156→K157：原来有停顿处除阻的句子出片程序不收分段增益（停下不重建，下一轮按旧声音再加，累加到 ±6 dB）；K157 起独立复核先乘增益再换供体，这种句子也照常写
     drop = {s: [k for k in v if k in old.get(s, {})] for s, v in rg.items()}   # K163：这种段原来写的整段增益是误算（整句抬压），撤掉；渐变按相对差算，撤掉不影响句内前后
     for s, v in new.items(): print(f'{no} {s} 分段增益dB {old.get(s, {})} → {v}')

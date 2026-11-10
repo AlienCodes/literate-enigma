@@ -737,14 +737,35 @@ def _auto_level(clips,tmap,gaps,no='',rounds=2):
     _r={k:v for k,v in tot.items() if v}
     q_=f'{_fs[0]}.{os.getpid()}'; json.dump({str(a_):b_ for a_,b_ in _r.items()},open(q_,'w')); os.replace(q_,_fs[0]); _to_repo(_fs[0])
     return _r
+# K134（用户 2026-11-10 听 66 S5“In Lyon,”：“这个地方声音，它又变小了。怎么老是出现这种问题”；同类 60 S11 That law, -6、65 S8 ICARDA, -7.5、66 In Lyon, -4-2=-6）：
+# 不到 1.5 秒的短段（一两个重读词）响度计按整段门限均值量，没有词间低谷，量出来偏响，调平就往下压，耳朵听着突然变小；往上补也会补过头（66 S8 补响后偏响 2～3 LU）。
+# 67 S1 Marcel Ravidat,（K135）自动调平只压 -3.5 用户也听出“上来名字声音就变小”。用户听出的全是程序加工过的短段，原声没被投诉过。
+# 54、65 起（及 05）：短段的自动调平 + 分段增益 合起来不往下压（下限 0），往上补最多 +2 dB（自动收，不停）。
+_短下=0.0; _短上=2.0; _短长=1.5
+def _短起(no): return str(no).isdigit() and (int(no)>=65 or int(no) in (5,54))
+def _短段(no,tmap,gaps):
+    """{段下标}：按 ≥IN_GAP 秒停顿分组（与调平同一切法），组长（首段起到末段止）不到 _短长 秒的组里的各段"""
+    import 响度一致性核对 as LQ
+    if not _短起(no) or not tmap: return set()
+    gs=[[0]]
+    for k2 in range(1,len(tmap)):
+        if gaps[k2-1]>=LQ.IN_GAP: gs.append([k2])
+        else: gs[-1].append(k2)
+    return {k2 for g in gs if tmap[g[-1]][3]-tmap[g[0]][2]<_短长 for k2 in g}
+def _短段限(no,tmap,gaps,agn):
+    sh=_短段(no,tmap,gaps)
+    return {k_:(max(-_短下,min(_短上,v_)) if k_-1 in sh else v_) for k_,v_ in agn.items()}
 def 句增益(d,no,si,sent,pieces,gaps,clips,tmap,a):
     """一句话拼好以后的全部增益（G36 源头调平 26 起、分段增益dB、句子增益dB），出片程序和 疑点清单/自动切点 的重建共用（25 会话 2026-10-25：重建漏了分段增益，疑点清单停）"""
     _agn={}
     if str(no).isdigit() and int(no)>=26 and len(pieces)>1 and not (int(no)>=36 and sent in PGRAFT):     # K138（36 S2 gadget, a）：有 停顿处除阻 的句子不做自动调平（和手写分段增益dB 同一条规矩：独立复核的位置会错开）；26 S9、30 S9 已定稿不动。G36 源头调平（主对话 2026-10-25 “用巧劲”：拼接前就把句内各段调平，句内忽大忽小根本产生不出来）：26 起自动做
         _agn=_auto_level(clips,tmap,gaps,no)
+        _agn=_短段限(no,tmap,gaps,_agn)
         for k_,g_ in _agn.items(): clips[2*(k_-1)]=clips[2*(k_-1)]*np.float32(10**(g_/20))
         if _agn: a=np.concatenate(clips)
     _pgn=d.get('分段增益dB',{}).get(f'S{si+1}')   # 2026-10-25 句内分段增益（用户看 25 S2：“这块这个声音在这一块声响是不是变小了？”）：句内一段比相邻段轻/响，只给这一段乘一个增益
+    if _pgn and _短段(no,tmap,gaps):   # K134：短段手写分段增益也收进 [0, +2] dB（和自动调平合起来算）
+        _pgn={k_:(max(-_短下-_agn.get(int(k_),0.0),min(_短上-_agn.get(int(k_),0.0),float(g_))) if str(k_).isdigit() and int(k_)-1 in _短段(no,tmap,gaps) else g_) for k_,g_ in _pgn.items()}
     if _pgn:                                                    # 段 = 按 , ; : 切的第几段（从 1 数）；接点在标点停顿的静音里，只调音量、不改音色；句内响度.py --写入 自动算
         # K157（41 S6 expert,：有真需要的停顿处除阻，后半句轻 4.1 LU）：独立复核改成先按原始位置乘分段增益、再换供体，位置不再错开，这一句也许用分段增益（供体在停顿里，不乘增益，与出片同）
         for k_,g_ in _pgn.items():
@@ -1077,6 +1098,12 @@ def build(js,out):
         _pz=[(f'S{i}-{k}',f,m.group(0)) for i,s_ in enumerate(d['sentences'],1) for k,c_ in enumerate(s_['chunks'],1) for f in ('en','zh','note') for m in re.finditer(r'(?!(?<=\d)–(?=\d))[—–―─⸺⸻﹘－]+|--|(?<=\s)-(?=\s)',c_.get(f) or '')]
         _pz+=[('标题',f,m.group(0)) for f in ('title_en','title_zh') for m in re.finditer(r'(?!(?<=\d)–(?=\d))[—–―─⸺⸻﹘－]+|--|(?<=\s)-(?=\s)',d.get(f,''))]
         if _pz: raise SystemExit('【停止】画面或配音文字里有破折号（T36）：'+'；'.join(f'{a} {b}“{c}”' for a,b,c in _pz)+'。中文换成“，”“：”或括号（字义不改）；英文换成逗号、冒号或括号并同步文章')
+    _简=None
+    if R.简述页起(no) and d.get('sentences'):   # 简述单独一页（用户 2026-11-10：“最后一页一定要尽可能的让字体绝对放大”）：简述从最后一句的说明里拿出来，最后 2 秒单独一页
+        _c=d['sentences'][-1]['chunks'][-1]; _r,_简=R.拆简述(_c.get('note'))
+        if _简:
+            if _r: _c['note']=_r
+            else: _c.pop('note',None)
     R.apply_script(d)                                              # 画面相关的脚本设置（词下说明对齐等），与定稿视频核对同一个入口
     work=f'work_{no}'; os.makedirs(work,exist_ok=True)
     # colors
@@ -1149,6 +1176,7 @@ def build(js,out):
             dur=starts[ci+1]-starts[ci]+(lead if ci==0 else 0)+(P_HOLD if ci==len(ch)-1 else 0)
             tl.append(((si,ci),dur))
     END=2.0-P_HOLD; audio.append(sil(END)); tl[-1]=(tl[-1][0],tl[-1][1]+END)  # 片尾：读完后共停 2 秒
+    if _简: tl[-1]=(tl[-1][0],tl[-1][1]-2.0); tl.append((('简述',),2.0))   # 读完后的 2 秒换成简述页（声音不变）
     A=np.concatenate(audio); A=A/np.abs(A).max()*0.89
     json.dump(graft_times,open(f'{work}/词尾除阻.json','w'),ensure_ascii=False,indent=1)   # A21：移植段在 a.wav 里的时刻
     json.dump(fade_rec,open(f'{work}/淡入淡出.json','w'),ensure_ascii=False,indent=1)
@@ -1185,6 +1213,7 @@ def build(js,out):
             import title_anim as TA; fx=d.get('title_fx',{})
             af=TA.render_frames(d['title_en'],d['title_zh'],fx.get('hl',[]),fx.get('ghost',[]),work)
             files+=af[:-1]; t+=sum(x for _,x in af[:-1]); files.append((af[-1][0],dur-sum(x for _,x in af[:-1]))); t+=dur-sum(x for _,x in af[:-1]); continue
+        elif key[0]=='简述': R.frame_简述(_简,prog,fn)
         else:
             si,ci=key; R.ES_FIXED=min(sizes[si],100*R.S); R.frame_interlinear([[tuple(p) for p in c['align']] for c in d['sentences'][si]['chunks']],R.sent_colors(colors,d['sentences'][si]),header,prog,fn,active=ci,notes=[c.get('note') for c in d['sentences'][si]['chunks']])
         files.append((fn,dur)); t+=dur

@@ -725,3 +725,65 @@ def 同屏色差(d,colors):
             if 远 and j-i>=远: continue
             if ca and cb and _hd(ca,cb)<同屏色相: out.append(f'S{si} 同屏 {a}↔{b} 色相只差 {_hd(ca,cb):.0f}°（要 ≥{同屏色相}°）')
     return sorted(set(out))
+# 简述单独一页（用户 2026-11-10 看 67 末页：“最后一页一定要尽可能的让字体绝对放大，就是尽可能充斥完整的屏幕”“千万千万不要溢出屏幕，就合理的完美的去利用起每个空间”）：
+# 原来简述和最后一句挤在同一页，字号跟着最后一句的英文走，怎么折行都大不起来（54、65–70 实测都小）。01–22（补简述）、05、54、65 起：
+# 最后一句读完后的 2 秒停顿换成单独一页，只放简述；每条（▸ 或原来的换行）单独起行，一条太长按屏宽折行，字号取放得下的最大值。声音不动。
+简述页=[False]
+def 简述页起(no): return str(no).isdigit() and (int(no)<=22 or int(no)==54 or int(no)>=65)
+def 拆简述(note):
+    """(去掉简述后的说明 或 None, 简述原文 或 None)"""
+    if not note or '（简述：' not in note: return note, None
+    a=note.index('（简述：'); rest=note[:a].rstrip('\n'); return (rest or None), note[a:]
+def 简述条目(t):
+    """简述原文 → [(小标题 或 '', 内容)]：▸ 分条；没有 ▸ 按原来的换行分条；“小标题：”取第一个冒号前不超过 8 个字"""
+    b=t.replace('▹','')
+    b=b[len('（简述：'):] if b.startswith('（简述：') else b
+    b=b[:-1] if b.endswith('）') else b
+    its=[x.replace('\n','').strip() for x in (b.split('▸') if '▸' in b else b.split('\n'))]
+    out=[]
+    for x in its:
+        x=re.sub(r'^\d+[.、．]\s*','',x)   # “1. 大爆炸：”这类编号：前面已有 •，去掉
+        if not x: continue
+        m=re.match(r'^([^：，。（）]{1,10})：(.+)$',x)
+        out.append((m.group(1)+'：',m.group(2)) if m else ('',x))
+    return out
+_禁首='，。、；：？！）》」』”’…·%'
+def _折简(segs,fnt,bf,maxw,ind):
+    """一条（小标题粗体 + 内容）按 maxw 逐字折行，续行缩进 ind；不让标点打头。返回 [[(字串, 粗?)]] 行列表"""
+    lines=[[]]; w=0
+    for txt,bold in segs:
+        f=bf if bold else fnt
+        for ch in txt:
+            cw=f.getlength(ch)
+            if w+cw>maxw and lines[-1] and ch not in _禁首:
+                lines.append([]); w=ind
+            lines[-1].append((ch,bold)); w+=cw
+    return lines
+def 简述排(t,maxw=None,maxh=None):
+    """(字号, 行列表, 每条首行下标集合)：试字号从大到小，取全部放得下（宽 ≤ maxw、高 ≤ maxh）的最大字号"""
+    maxw=maxw or W*0.92; maxh=maxh or (H-8*S)*0.9; its=简述条目(t); best=None
+    lo,hi=12*S,200*S
+    def 试(sz):
+        f=ZH(sz,400); bf=ZH(sz,700); ind=f.getlength('• '); L=[]; first=set()
+        for tt,body in its:
+            first.add(len(L)); L+=_折简([('• '+tt,True),(body,False)],f,bf,maxw,ind)
+        孤=any(len(L[e-1])<=2 for e in sorted(first)[1:]+[len(L)] if e-1 not in first)   # 一条的最后一行只剩一两个字（67“采。”）：换字号
+        return (not (孤 and 避孤[0]) and len(L)*sz*1.5<=maxh and all(sum((bf if b else f).getlength(c) for c,b in ln)+(ind if k not in first else 0)<=maxw+0.5 for k,ln in enumerate(L))), L, first
+    避孤=[False]; s0=lo
+    for sz in range(hi,lo-1,-1):   # 字号一变折行就变，放不放得下不随字号单调，逐个试（二分会漏掉更大的可用字号）
+        if 试(sz)[0]: s0=sz; break
+    避孤[0]=True
+    for sz in range(s0,int(s0*0.95)-1,-1):   # 孤字只用不超过 5% 的字号去换；换不到就保持最大字号（用户：字体尽量最大）
+        if 试(sz)[0]: return (sz,)+试(sz)[1:]
+    避孤[0]=False; return (s0,)+试(s0)[1:]
+def frame_简述(t,progress,out):
+    sz,L,first=简述排(t); f=ZH(sz,400); bf=ZH(sz,700); ind=f.getlength('• '); lh=sz*1.5
+    ws=[sum((bf if b else f).getlength(c) for c,b in ln)+(ind if k not in first else 0) for k,ln in enumerate(L)]
+    im=bg(); d=ImageDraw.Draw(im); x0=(W-max(ws))/2; y=(H-8*S-len(L)*lh)/2+(lh-sz)/2
+    for k,ln in enumerate(L):
+        x=x0+(ind if k not in first else 0)
+        for c,b in ln:
+            fn=bf if b else f; d.text((x,y),c,font=fn,fill=(251,191,36) if b else FG_ZH); x+=fn.getlength(c)
+        y+=lh
+    d.rectangle([0,H-8*S,W*progress,H],fill=(94,234,212))
+    im.save(out); return sz

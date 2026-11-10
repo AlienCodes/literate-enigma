@@ -114,6 +114,19 @@ def _叠压(MV, g):   # 自动调平给第 1 段 -4 dB，再手写分段增益 g
     import numpy as np
     c = [np.ones(4800, np.float32) * 0.1, np.zeros(2400, np.float32), np.ones(4800, np.float32) * 0.1]
     return _在(lambda: MV.句增益({'分段增益dB': {'S8': {'1': g}}}, '65', 7, 'ICARDA, a b.', ['ICARDA,', 'a b.'], [0.4], c, [], np.concatenate(c)), _换(MV, _auto_level=lambda *a, **k: {1: -4.0}, PGRAFT={}))
+def _短压(MV, dur, auto, man, no='66'):   # K134：第 1 段长 dur 秒，自动调平 auto、手写分段增益 man；量实际乘上的增益
+    import numpy as np
+    n0 = int(dur * 48000); c = [np.ones(n0, np.float32) * 0.1, np.zeros(19200, np.float32), np.ones(96000, np.float32) * 0.1]
+    tm = [(0, 0, 0.0, dur), (0, 0, dur + 0.4, dur + 2.4)]
+    cl = _在(lambda: MV.句增益({'分段增益dB': {'S5': {'1': man}}}, no, 4, 'In Lyon, a b.', ['In Lyon,', 'a b.'], [0.4], c, tm, np.concatenate(c))[0], _换(MV, _auto_level=lambda *a, **k: {1: auto}, PGRAFT={}))
+    g = 20 * np.log10(float(np.abs(cl[0]).max()) / 0.1)
+    raise SystemExit(f'（K134）短段收在 {g:+.1f} dB' if -1e-6 <= g <= 2.0 + 1e-6 and abs(g - auto - man) > 1e-3 else f'照原样 {g:+.1f} dB')
+def _简页(MV, t, 至少):   # L22：简述单独一页，整屏最大字号、不出屏
+    R_ = MV.R; sz, L, first = R_.简述排(t); f = R_.ZH(sz, 400); bf = R_.ZH(sz, 700); ind = f.getlength('• ')
+    w = max(sum((bf if b else f).getlength(c) for c, b in ln) + (ind if k not in first else 0) for k, ln in enumerate(L)); h = len(L) * sz * 1.5
+    出 = w > R_.W * 0.92 + 0.5 or h > (R_.H - 8 * R_.S) * 0.9 + 0.5
+    raise SystemExit(f'（L22）出屏 宽{w:.0f} 高{h:.0f}' if 出 else (f'字号 {sz} 太小（应 ≥{至少}）' if sz < 至少 * R_.S else f'放得下 字号 {sz}'))
+_简67 = '（简述：惊世发现：1940年，4个男孩（带狗）在法国蒙蒂尼亚克意外发现了一个洞穴，里面藏着约680幅彩绘和1500幅雕刻，距今约1.7万至2.2万年。（注：所谓“狗掉进洞”是后来的编造，男孩们的探险才是关键）。\n开放与破坏：1948年洞穴对公众开放，每天涌入1200名游客。人的呼吸、热量和湿气迅速导致壁画退化。\n封存与补救：1963年被迫闭洞，1979年列入世界遗产。\n复制与劫难：1983年开放复制品“拉斯科二号”。但2001年洞内爆发白色真菌，黑斑蔓延。2016年开放“拉斯科四号”。\n现状：如今为了保护真迹，游客只能在复制品中一睹史前公牛的风采。）'
 def _自动删(MV, **kv):
     s, ps, gs = _普通句(MV); return _在(lambda: MV.sentence_audio(s, ps, gs), _换(MV, **kv))
 def _结尾(MV, no='10'):
@@ -154,6 +167,13 @@ def _画面运行(MV, ps):
     ('A24语境换到', '按语境读音：句子里注出的写法既不是错读也不是对读，换不到', lambda MV: _读音(MV, {}, {}, {'zork it': {'词': 'zork', '读音': 'zˈuːk'}}, 'zork it', {'zork': 'zˈɑːk'}), '按语境读音没有全部换到'),
     ('K133', '65 起：分段增益 -3.5 叠在自动调平 -4 上（共 -7.5 dB，65 S8 ICARDA,）', lambda MV: _叠压(MV, -3.5), '（K133）'),
     ('K133放行', '分段增益 -1.5 叠在自动调平 -4 上（共 -5.5 dB，65 S8 实测两种量法都过）：照常过', lambda MV: _叠压(MV, -1.5), '没停'),
+    ('K134', '65 起：0.76 秒短段 自动调平 -4 + 分段增益 -2（66 S5 In Lyon, 共 -6，用户听出变小）：不往下压，收到 0', lambda MV: _短压(MV, 0.76, -4.0, -2.0), '短段收在 +0.0'),
+    ('K134名字', '1.3 秒短段 自动调平 -3.5（67 S1 Marcel Ravidat,，用户听出变小）：收到 0', lambda MV: _短压(MV, 1.3, -3.5, 0.0), '短段收在 +0.0'),
+    ('K134补响', '0.8 秒短段 自动调平 +4 + 分段增益 +2（补过头偏响）：收到 +2 dB', lambda MV: _短压(MV, 0.8, 4.0, 2.0), '短段收在 +2.0'),
+    ('K134放行', '2 秒长段 自动调平 -3 + 分段增益 -2：照原样 -5 dB', lambda MV: _短压(MV, 2.0, -3.0, -2.0), '照原样 -5.0'),
+    ('K134旧篇', '已定稿的 60 篇短段不动（只管 65 起和 05）：照原样 -6 dB', lambda MV: _短压(MV, 0.76, -4.0, -2.0, '60'), '照原样 -6.0'),
+    ('L22', '67 简述（用户 2026-11-10 看 67 末页字太小）：单独一页，字号 ≥50（原来同页约 24）', lambda MV: _简页(MV, _简67, 50), '放得下'),
+    ('L22出屏', '一条 600 字、没有标点的超长简述：字号再小也不许出屏', lambda MV: _简页(MV, '（简述：' + '长' * 600 + '）', 1), '放得下'),
     ('A20没声音', '一段全是静音', lambda MV: MV._edges(__import__('numpy').zeros(48000, 'float32')), '没有能听见的声音'),
     ('L14音素', '带时长模型的音素和朗读文字对不上', lambda MV: MV.chunk_token_starts(['hello'], [__import__('types').SimpleNamespace(phoneme='zzz')]), '带时长模型的音素与朗读文字对不上'),
     ('L14块序', '序列比对把第二块对到第一块前面', _块序, '不是递增的'),
