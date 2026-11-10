@@ -2,81 +2,79 @@ import json,re,glob,os
 # 第67篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
 # 2026-11-08 重点词中文沿用文章定稿（铁律）；中英尽量对齐；不用破折号（T36）；三项并列加牛津逗号（T18）。
 S=[
-(1,[[[("Marcel Ravidat, 18,","18岁的马塞尔·拉维达")],
+(1,[[[("Marcel Ravidat,","马塞尔·拉维达，"),("18,","18岁，")],
      "（18：插入语，补充说明年龄）"],
-    [[("was on a **woodland** **stroll** near Montignac with Robot, his **canine** companion,","带着他的**犬类**(canine)伙伴罗伯特在蒙蒂尼亚克附近的**林地**(woodland)里**散步**(stroll)，")],
+    [[("was on a","正在"),("**woodland**","和罗伯特在蒙蒂尼亚克附近的**林地**(woodland)里"),("**stroll** near Montignac with Robot,","**散步**(stroll)。"),("his **canine**","罗伯特是他**犬类的**(canine)小"),("**companion**,","**伙伴**(companion)。")],
      "（his canine companion：同位语，补充说明 Robot）"],
-    [[("when","这时"),("it began","罗伯特开始"),("**sniffing** at a **hollow** left by a **toppled** tree.","在一棵**倒伏**(toppled)的树留下的**坑洞**(hollow)边**嗅来嗅去**(sniffing)。")],
+    [[("when","这个时候"),("it began","罗伯特"),("**sniffing** at a **hollow** left by a **toppled** tree.","在一棵**倒下的**(toppled)树留下的（地面）**凹陷处**(hollow)**嗅来嗅去**(sniffing)。")],
      "（it 指 Robot；\nleft by a toppled tree：过去分词短语作后置定语，修饰 hollow）"]]),
 (1,[[[("On 12 September 1940","1940年9月12日，"),("he","他"),("came back with three other boys","带着另外三个男孩回到这里，")]],
-    [[("for","来了一次"),("an **adventurous**","**富于冒险的**(adventurous)"),("**excursion**,","**出游**(excursion)，")],
+    [[("for","来了一次"),("an **adventurous**","**富于冒险的**(adventurous)"),("**excursion**,","**短途旅行**(excursion)，")],
      "（for：表示目的）"],
-    [[("and the four","四个"),("**explorers**","**探险者**(explorers)"),("climbed down into","爬进了"),("the **darkness**.","**黑暗**(darkness)之中。")]]]),
+    [[("and","并且"),("the four","四个"),("**explorers**","**探险者**(explorers)"),("climbed down into","爬进了"),("the **darkness**.","**黑暗**(darkness)之中。")]]]),
 (2,[[[("In later","在后来的"),("**retellings**,","**复述**(retellings)中，")]],
     [[("Ravidat","拉维达"),("**embroidered** his **anecdote**","给这段**轶事**(anecdote)**添油加醋**(embroidered)，"),("with a","加入了一个"),("**dramatic**","**戏剧性的**(dramatic)"),("twist.","转折。")],
-     "（embroider A with B：用 B 给 A 添油加醋）"]]),
-(2,[[[("Robot, he said,","他说，罗伯特"),("had fallen into","掉进了"),("the cave.","洞里。")],
+     "（embroider A with B：用 B 给 A 添油加醋）\n（anecdote：关于某人真事的、有趣的小故事\n（趣闻轶事））"]]),
+(2,[[[("Robot, he said,","他说，罗伯特"),("had **fallen into**","**掉进了**(fallen into)"),("the cave.","洞里。")],
      "（he said：插入语；\nhad fallen：过去完成时，掉洞在讲述之前）"]]),
-(2,[[[("That **fanciful**","这个**离奇**(fanciful)的"),("**mishap**","**意外**(mishap)"),("is a","纯属"),("**fabrication**.","**编造**(fabrication)。")]]]),
+(2,[[[("That **fanciful**","这个**离奇**(fanciful)的"),("**mishap**","**意外**(mishap)"),("is a","纯属"),("**fabrication**.","**编造/虚构**(fabrication)。")]]]),
 (2,[[[("The animal","那只狗"),("only","只是"),("nosed about the hole,","在洞口嗅了嗅，")],
      "（nose about：到处嗅）"],
     [[("and the **pivotal**","**关键的**(pivotal)"),("**initiative**","**主动行动**(initiative)"),("was the boys' own.","完全出自几个男孩。")],
-     "（the boys' own：男孩们自己的，own 后省略了 initiative）"]]),
-(2,[[[("**Ironically**,","**讽刺的是**(Ironically)，"),("the invented","虚构的"),("fall","那一跤"),("made","让"),("the dog","狗"),("the hero of the story.","成了故事的主角。")],
+     "（the boys' own：男孩们自己的，own 后省略了 initiative）\n（那只狗只是在洞口随便闻了闻，并没有往里钻。\n真正决定往下爬去探险的，完全是那几个男孩自己的主意。）"]]),
+(2,[[[("**Ironically**,","**讽刺的是**(Ironically)，"),("the **invented**","**虚构的**(invented)"),("fall","那一跤"),("made","让"),("the dog","狗"),("the hero of the story.","成了故事的主角。")],
      "（make A B：使 A 成为 B）"]]),
-(3,[[[("Some 680","约680个"),("painted figures","彩绘形象"),("and","和"),("1,500 **engravings**","1,500幅**雕刻图案**(engravings)"),("cover","布满"),("the rock.","岩壁。")],
-     "（some：大约，用在数字前）"]]),
-(3,[[[("The **artwork**","这些**艺术作品**(artwork)"),("is usually","通常"),("dated to","被认为"),("between 17,000","距今1.7万"),("and 22,000 years ago;","至2.2万年；")],
+(3,[[[("Some 680","约680个"),("**painted figures**","**彩绘人像**(painted figures)"),("and","和"),("1,500 **engravings**","1,500幅**雕刻图案**(engravings)"),("**cover**","**布满了**(cover)"),("the rock.","这块岩石。")],
+     "（some：大约，用在数字前）\n（几个男孩爬进去一看，好家伙，\n整个岩壁上密密麻麻全都是画！\n大概有680个是用颜料彩绘上去的图案，\n还有1500个是用工具刻上去的图案。）"]]),
+(3,[[[("The **artwork**","这些**艺术作品**(artwork)"),("is usually","通常"),("dated to","可被追溯到"),("between 17,000","1.7万"),("and 22,000 years ago;","至2.2万年之前；")],
      "（be dated to：年代被断定为）"],
-    [[("its","它们的"),("**creators**,","**创作者**(creators)"),("our distant","是我们遥远的"),("**ancestors**,","**祖先**(ancestors)，"),("lived in","生活在"),("**antiquity**.","**远古**(antiquity)时代。")],
-     "（our distant ancestors：同位语，补充说明 creators）"]]),
+    [[("its","其"),("**creators**,","**创作者**(creators)，"),("our distant","是我们遥远的"),("**ancestors**,","**祖先**(ancestors)，"),("lived in","生活在"),("**antiquity**.","**古时代**(antiquity)。")],
+     "（our distant ancestors：同位语，补充说明 creators）\n（antiquity：古时代（特别指古埃及、古希腊、古罗马时期））"]]),
 (3,[[[("Horses,","马、"),("**bulls**,","**公牛**(bulls)"),("and stags","和雄鹿"),("are among the animals **depicted** in **pigments** on the **murals**.","都是**壁画**(murals)上用**颜料**(pigments)**描绘**(depicted)的动物。")],
      "（be among：是……之一；\ndepicted in pigments on the murals：\n过去分词短语作后置定语，修饰 animals）"]]),
-(3,[[[("The paintings'","这些画作的"),("**fragility**","**脆弱**(fragility)"),("soon","很快就"),("became clear.","显现出来。")]]]),
-(4,[[[("Lascaux opened to the public on 14 July 1948,","1948年7月14日，拉斯科向公众开放，")]],
+(3,[[[("The paintings'","这些画作的"),("**fragility**","**脆弱性**(fragility)"),("soon","很快就"),("became clear.","显现了出来。")]]]),
+(4,[[[("Lascaux **opened to the public** on 14 July 1948,","1948年7月14日，拉斯科**向公众开放**(opened to the public)，")]],
     [[("and **tourism**","**旅游业**(tourism)"),("brought","带来了"),("an **influx** of about 1,200 visitors a day.","每天约1,200名游客的**涌入**(influx)。")],
      "（an influx of A：A 的涌入）"]]),
-(4,[[[("The **throng**","**人群**(throng)"),("**exhaled**","**呼出**(exhaled)"),("carbon **dioxide**","**二氧化碳**(dioxide)，")]],
-    [[("and added","带来"),("heat,","热量、"),("**humidity**,","**湿气**(humidity)"),("and","和"),("**contaminants**,","**污染物**(contaminants)，")]],
-    [[("and the **deterioration** of the paintings","壁画的**退化**(deterioration)"),("became","变得"),("plain to see.","肉眼可见。")],
-     "（plain to see：一眼就能看到）"]]),
-(4,[[[("In 1963","1963年，"),("the site","洞穴"),("closed to the public,","对公众关闭，")]],
-    [[("followed by","随后进行了"),("**restoration**","**修复**(restoration)，"),("and daily","并开始每日"),("**inspection**.","**检查**(inspection)。")],
+(4,[[[("The **throng**","**人群**(throng)"),("**exhaled**","**呼出**(exhaled)"),("**carbon dioxide**","**二氧化碳**(carbon dioxide)，")]],
+    [[("and added","并增加了"),("heat,","热量、"),("**humidity**,","**湿度**(humidity)"),("and","和"),("**contaminants**,","**污染物**(contaminants)，")]],
+    [[("and the **deterioration** of the paintings","而壁画的**劣化/恶化**(deterioration)"),("became","变得"),("**plain to see**.","**显而易见**(plain to see)。")]]]),
+(4,[[[("In 1963","1963年，"),("the site","该遗址"),("closed to the public,","对公众关闭，")]],
+    [[("followed by","紧随其后的是"),("**restoration**","**修复**(restoration)"),("and daily","和每日"),("**inspection**.","**检查**(inspection)。")],
      "（followed by…：过去分词短语，表示随后发生的事）"]]),
-(5,[[[("Lascaux joined UNESCO's World Heritage List in 1979,","1979年，拉斯科被列入联合国教科文组织《世界遗产名录》；")]],
-    [[("and Lascaux II, a **meticulously**","1983年，**精心**(meticulously)"),("made","制作的"),("**partial**","**局部**(partial)"),("**facsimile**, opened in 1983.","**复制品**(facsimile)拉斯科二号开放。")],
-     "（a meticulously made partial facsimile：同位语，\n补充说明 Lascaux II）"]]),
+(5,[[[("Lascaux","拉斯科"),("joined UNESCO's World Heritage List in 1979,","于1979年加入了联合国教科文组织的《世界遗产名录》，")]],
+    [[("and","而"),("Lascaux II,","拉斯科二号，"),("a **meticulously**","一个**精心**(meticulously)"),("made","制作的"),("**partial**","**局部的**(partial)"),("**facsimile**,","**复制品**(facsimile)，"),("opened in 1983.","于1983年开放。")],
+     "（a meticulously made partial facsimile：同位语，\n补充说明 Lascaux II）\n（meticulously：极其仔细地、一丝不苟地（连一点细节都不放过））"]]),
 (5,[[[("A white **fungus** **invaded** the walls in a 2001 **outbreak**,","2001年，一种白色**真菌**(fungus)**爆发**(outbreak)，**侵入**(invaded)洞壁；")],
      "（in a 2001 outbreak：在2001年的一次爆发中）"],
-    [[("and black **stains** spread after chemical treatment.","化学处理后，黑色**污斑**(stains)蔓延开来。")]]]),
+    [[("and black **stains** spread after **chemical treatment**.","**化学处理**(chemical treatment)后，黑色**污斑**(stains)蔓延开来。")]]]),
 (5,[[[("Lascaux IV opened in December 2016.","2016年12月，拉斯科四号开放。")]]]),
 (5,[[[("**Admirers** now","如今**仰慕者**(Admirers)"),("meet the bulls only in a **recreation**,","只能在**复原品**(recreation)中见到那些公牛，")],
      "（only in…：只在……中）"],
     [[("the originals","原洞"),("being **inaccessible** to them.","对他们来说**无法进入**(inaccessible)。")],
      "（the originals being…：独立主格，补充说明原因）\n"
-     "（简述：1940年，18岁的马塞尔·拉维达带狗罗伯特在蒙蒂尼亚克附近散步，狗在倒伏的树留下的坑洞边嗅来嗅去；9月12日，他和另外三个男孩爬进了洞里。\n"
-     "拉维达后来说狗掉进了洞里，这是编造，关键的行动出自男孩们。\n"
-     "洞里约有680个彩绘形象和1,500幅雕刻，通常认为距今1.7万至2.2万年。\n"
-     "拉斯科1948年开放后，每天约1,200名游客带来二氧化碳、热量和湿气，壁画退化，1963年洞穴关闭。\n"
-     "1979年拉斯科列入世界遗产，1983年复制品拉斯科二号开放，2001年洞壁爆发白色真菌，2016年拉斯科四号开放，如今游客只能看复制品。）"]]),
+     "（简述：惊世发现：1940年，4个男孩（带狗）在法国蒙蒂尼亚克意外发现了一个洞穴，里面藏着约680幅彩绘和1500幅雕刻，距今约1.7万至2.2万年。（注：所谓“狗掉进洞”是后来的编造，男孩们的探险才是关键）。\n"
+     "开放与破坏：1948年洞穴对公众开放，每天涌入1200名游客。人的呼吸、热量和湿气迅速导致壁画退化。\n"
+     "封存与补救：1963年被迫闭洞，1979年列入世界遗产。\n"
+     "复制与劫难：1983年开放复制品“拉斯科二号”。但2001年洞内爆发白色真菌，黑斑蔓延。2016年开放“拉斯科四号”。\n"
+     "现状：如今为了保护真迹，游客只能在复制品中一睹史前公牛的风采。）"]]),
 ]
 G={
- "S1 was on a woodland stroll near Montignac with Robot, his canine companion":"对齐不了：伴随状语 with Robot, his canine companion 中文“带着他的犬类伙伴罗伯特”必须放到前面；地点状语 near Montignac 中文“在蒙蒂尼亚克附近”放到动词前；be on a stroll 中文“散步”放最后",
+ "S1 woodland":"对齐不了：伴随状语 with Robot 中文“和罗伯特”、地点状语 near Montignac 中文“在蒙蒂尼亚克附近的”都必须放到“林地里散步”前（用户 2026-11-10 改稿译文）",
+ "S1 stroll near Montignac with Robot":"对齐不了：near Montignac、with Robot 的中文已放到“林地”前（用户 2026-11-10 改稿译文），这里只剩“散步”",
  "S1 sniffing at a hollow left by a toppled tree":"对齐不了：left by a toppled tree 是后置定语，修饰 hollow，中文“一棵倒伏的树留下的坑洞”必须提前；at a hollow 中文“在……边”放到“嗅来嗅去”前",
  "S2 came back with three other boys":"对齐不了：伴随状语 with three other boys 中文“带着另外三个男孩”必须放到动词“回到这里”前",
  "S6 nosed about the hole":"对齐不了：地点 the hole 中文“在洞口”必须放到“嗅了嗅”前；nose about 是一个说法，拆开不通",
  "S6 was the boys' own":"对齐不了：be the boys' own 意思是“是男孩们自己的”，中文“完全出自几个男孩”是整体说法，拆开不通",
  "S7 the hero of the story":"对齐不了：the hero of the story 中文“故事的主角”必须倒过来",
  "S8 painted figures":"对齐不了：painted figures 中文“彩绘形象”是一个词组，拆开不通",
- "S9 and 22,000 years ago":"对齐不了：between A and B years ago 中文“距今 A 至 B 年”，“距今”(ago) 必须提前；数字中文写作“1.7万”“2.2万”，不能拆",
+ "S9 and 22,000 years ago":"对齐不了：数字中文写作“2.2万”，years ago 中文“年之前”，一个数和单位不能拆",
  "S10 are among the animals depicted in pigments on the murals":"对齐不了：depicted in pigments on the murals 是后置定语，修饰 animals，中文“壁画上用颜料描绘的动物”必须提前；be among 中文“都是”",
  "S11 became clear":"对齐不了：become clear 中文“显现出来”是一个说法，拆开不通",
- "S12 Lascaux opened to the public on 14 July 1948":"对齐不了：时间状语 on 14 July 1948 中文“1948年7月14日”必须放到句首；to the public 中文“向公众”放到动词“开放”前",
+ "S12 Lascaux opened to the public on 14 July 1948":"对齐不了：时间状语 on 14 July 1948 中文“1948年7月14日”必须放到句首；opened to the public 中文“向公众开放”是一个说法",
  "S12 an influx of about 1,200 visitors a day":"对齐不了：an influx of A 中文“A 的涌入”必须倒过来；a day 中文“每天”必须提前",
- "S13 plain to see":"对齐不了：plain to see 是固定说法，中文“肉眼可见”拆开不通",
  "S14 closed to the public":"对齐不了：to the public 中文“对公众”必须放到动词“关闭”前",
- "S15 and Lascaux II, a meticulously":"对齐不了：时间状语 in 1983 中文“1983年”必须放到句首；专名 Lascaux II 中文“拉斯科二号”放在同位语后面",
- "S15 facsimile, opened in 1983":"对齐不了：Lascaux II 是同位语 a … facsimile 的中心词，中文“复制品拉斯科二号”放在一起；时间“1983年”已提到句首",
+ "S15 joined UNESCO's World Heritage List in 1979":"对齐不了：时间状语 in 1979 中文“于1979年”必须放到动词“加入了”前；机构名、名录名不能拆",
  "S16 A white fungus invaded the walls in a 2001 outbreak":"对齐不了：时间状语 in a 2001 outbreak 中文“2001年”必须放到句首，“爆发”放到“侵入”前（先爆发、后侵入）",
  "S16 and black stains spread after chemical treatment":"对齐不了：时间状语 after chemical treatment 中文“化学处理后”必须放到句首",
  "S17 Lascaux IV opened in December 2016":"对齐不了：时间状语 in December 2016 中文“2016年12月”必须放到句首",
@@ -84,7 +82,7 @@ G={
 }
 DZ={}
 CONF={"合组":G,"对齐":DZ}
-out={"no":"67","title_en":"The Cave Found by a Dog","title_zh":"几个少年和一只狗发现的洞穴","title_fx":{"hl":["Cave","Dog"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+out={"no":"67","title_en":"The Cave Found by a Dog","title_zh":"几个少年和一只狗发现的洞穴","title_fx":{"hl":["Cave","Dog"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["carbon dioxide","companion","cover"],
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Marcel Ravidat":"马塞尔·拉维达","Ravidat":"拉维达","Montignac":"蒙蒂尼亚克","Robot":"罗伯特","Lascaux":"拉斯科","UNESCO":"联合国教科文组织","World Heritage List":"世界遗产名录","Lascaux II":"拉斯科二号","Lascaux IV":"拉斯科四号"}}
 out.update({"停顿插入点":{"S4":{"1":[0.64375,"交界"]},"S10":{"2":[1.272292,"交界"]},"S13":{"2":[4.566583,"交界"]}},
@@ -107,6 +105,7 @@ CONF["删除段"]={"S1 raw 7.5600-7.9812": {"类型": "紧贴词头的非人声"
 CONF["机器复听"]={"S1": {"配音指纹": "296267d0e938", "依据": "2026-11-09：Robot 按法语狗名读 ɹoʊbˈoʊ（读音改正表），两路识别器拼成 robeau，正是 roh-BOH；Ravidat 按法语读 ɹˌævidˈɑː（词尾 t 不发音），识别器拼成 ravidas/ravida；读音按脚本，非读错"}, "S3": {"配音指纹": "296267d0e938", "依据": "2026-11-09：Ravidat 读 ɹˌævidˈɑː（词尾 t 不发音），识别器拼成 ravidah/ravida；读音按脚本，非读错"}, "S4": {"配音指纹": "296267d0e938", "依据": "2026-11-09：Robot 读 ɹoʊbˈoʊ（法语狗名），small.en 拼成 robeau；读音按脚本，非读错"}, "S6": {"配音指纹": "296267d0e938", "依据": "2026-11-09：only nosed about：nosed 的 /zd/ 与 about 的 /ə/ 连读，small.en 听成 knows；the boys' own：boys' 的 /z/ 与 own 连读，small.en 拼成 bar's；parakeet 两个词都听对；读音按脚本，非读错"}, "S15": {"配音指纹": "296267d0e938", "依据": "2026-11-09：Lascaux II 按主会话规则读 Lascaux two，small.en 写成“lasko 2”（Lascaux 读 læskˈoʊ、II 读 two）；读音按脚本，非读错"}, "S17": {"配音指纹": "296267d0e938", "依据": "2026-11-09：Lascaux IV 读 Lascaux four，parakeet 写成“lasko 4”，small.en 把 Lascaux 拼成 let's go；读音按脚本，非读错"}}
 CONF["高亮"]={"S13 第2块": {"开始读": 96.42, "配音指纹": "296267d0e938", "依据": "2026-11-09 直接读 work_67/a.wav 逐 10 ms：dioxide 的 /d/ 到 96.37，96.385–96.415 数字静音，96.42 起 and 的元音（-59.5→-19.5 dB）；开始读 96.42，高亮 96.41 差 0.01 s；办法甲 96.24 落在 dioxide 里"}}
 out.update({"分段增益dB":{"S4":{"2":1.5}}})   # K130：S4 第2段 he said, 比邻段整段轻 1.7 LU、最响处低 5.1 LU，补 +1.5
+out.update({"换行变更已获同意":{"S1":"用户 2026-11-10 Word 文档 67.docx 原话：“这块的翻译改为：正在和Robot 在蒙迪尼亚克附近的林地里散步。his canine companion. Robot 是他 犬类的小伙伴。”“翻译不准，上面的翻译不准改成下面这个翻译。这个时候 罗伯特在一棵倒下的树 留下的 (地面)凹陷处  嗅来嗅去。”（S1 译文整句换掉，换行随之变）"}})
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)
