@@ -20,11 +20,11 @@ A **haven** built against the **apocalypse** had a **weakness** at its own entra
 
 斯瓦尔巴全球**种子库**(Seed Vault)于2008年2月在朗伊尔城附近启用，**为**(insure against)**豆类**(beans)、水稻和小麦等作物**投保**(insure against)，以**防范**(insure against)人们**非常害怕**(dread)的**可怕经历**(horrors)，从**原子核**(atomic)战争到疾病。（to insure…：不定式作目的状语；insure A against B：为 A 投保，防范 B（被隔开的搭配））（people dread：定语从句，省略了关系代词，修饰 horrors；from A to B：从 A 到 B）它有**充足的**(ample)空间，供约450万份样本使用。（这就是大名鼎鼎的“末日种子库”。建在北极冻土里，存着各种农作物的种子。万一以后发生核战争或者超级大瘟疫导致绝种了，人类还能靠它拿出来重新种地。）**本质上**(Essentially)，作为这颗星球**终极的**(ultimate)**备份**(backup)，它像银行的**保险箱**(safe-deposit box)一样被运营。（Essentially the planet's ultimate backup：名词短语作状语，补充说明 it）**存放者**(Depositors)保有**所有权**(ownership)，并且只有他们能取出他们的种子。（take A out：把 A 取出）
 
-第一次**取回**(retrieval)种子不是在**小行星**(asteroid)撞击后，而是在地面的**纷争**(strife)中发生的。（not A but B：不是 A，而是 B）ICARDA，一个研究中心，它的**基因库**(gene bank)坐落于阿勒颇附近，在叙利亚**内战**(civil war)期间已将其总部迁至贝鲁特。（bank：库，存放某类东西备用的地方，如 gene bank 基因库、seed bank 种子库、blood bank 血库、data bank 数据库）2015年9月，它索要了约11.6万份样本，也就是它在**战争**(hostilities)之前送往北极的325箱中的130箱。（130 of the 325 boxes：同位语，补充说明 samples；it had sent…：定语从句，修饰 boxes）它们包括**耐受**(tolerant of)干旱和高温的**强健**(robust)小麦和**大麦**(barley)品种。（tolerant of drought and heat：后置定语，修饰 strains；tolerant of：耐……的）
+第一次**取回**(retrieval)种子不是在**小行星**(asteroid)撞击后，而是在地面的**纷争**(strife)中发生的。（not A but B：不是 A，而是 B）ICARDA，一个研究中心，它的**基因库**(gene bank)坐落于阿勒颇附近，在叙利亚**内战**(civil war)期间已将其**总部**(headquarters)迁至贝鲁特。（bank：库，存放某类东西备用的地方，如 gene bank 基因库、seed bank 种子库、blood bank 血库、data bank 数据库）2015年9月，它**索要了**(asked for)约11.6万份样本，也就是它在**战争**(hostilities)之前送往**北极**(Arctic)的325箱中的130箱。（130 of the 325 boxes：同位语，补充说明 samples；it had sent…：定语从句，修饰 boxes）它们包括**耐受**(tolerant of)干旱和高温**的**(tolerant of)**强健**(robust)小麦和**大麦**(barley)**品种**(strains)。（tolerant of drought and heat：后置定语，修饰 strains；tolerant of：耐……的）
 
 在黎巴嫩和摩洛哥，ICARDA**种下了**(sowed)这些种子，而且**强健的**(vigorous)植株**发芽了**(sprouted)，从而**重建了**(regenerate)它的种子收藏库。（他们把这些种子种下去，长出了非常棒的新庄稼。靠着这些新庄稼结出的种子，他们原本被战火毁掉的“种子库存”，终于重新建起来了。）一旦**繁育**(multiplication)进行得足够充分，一场**回归之旅**(homecoming)便于2017年开始了，**一批**(consignment)接一批地**补充着**(restocking)这座北极**堡垒**(stronghold)。（once：一旦……就，引导时间状语从句）（consignment by consignment：一批接一批）（restocking…：现在分词短语作伴随状语）
 
-同一年还有过一场**虚惊**(scare)。在一段**破纪录的**(record-breaking)温暖天气之后，融水流进大约100米长的入口隧道，随后**凝固**(solidified)成冰。这次（冰水的）**侵入**(intrusion)**没有到达**(stopped short of)种子所在的位置，它们**安全地**(safely)保持在零下18摄氏度。（stop short of：没有到达）（which…：非限制性定语从句，修饰 seeds）挪威给隧道做了**防水**(waterproofed)，并挖了**排水**(drainage)用的**沟渠**(ditches)。
+同一年还有过一场**虚惊**(scare)。在一段**破纪录的**(record-breaking)温暖天气之后，融水流进大约100米长的入口**隧道**(tunnel)，随后**凝固**(solidified)成冰。这次（冰水的）**侵入**(intrusion)**没有到达**(stopped short of)种子所在的位置，它们**安全地**(safely)保持在零下18摄氏度。（stop short of：没有到达）（which…：非限制性定语从句，修饰 seeds）挪威给隧道做了**防水**(waterproofed)，并挖了**排水**(drainage)用的**沟渠**(ditches)。
 
 一座为抵御**世界末日**(apocalypse)而建的**避难所**(haven)，在自家入口处却有一个**弱点**(weakness)，而更暖的天气找到了它。（built against the apocalypse：过去分词短语作后置定语，修饰 haven）（it 指 weakness）（简述：建库：2008年，挪威建了这座“末日种子库”，如同银行顶级保险箱，只有存放者能取。首启：第一次取种不是为了防小行星，而是因为叙利亚内战。2015年，流亡的研究中心取走11.6万份种子。续命：他们在中东重新种下并繁育成功。2017年起，新种子被分批送还北极。意外：北极也遭异常高温，融水倒灌进隧道（万幸结冰没伤到种子）。挪威赶紧加做防水、挖排水沟补救。）
 
@@ -62,13 +62,13 @@ A **haven** built against the **apocalypse** had a **weakness** at its own entra
 | gene bank | 本文：基因库；n. 基因库（a national gene bank） | 3 |
 | civil war | 本文：内战；n. 内战（the Syrian civil war） | 3 |
 | headquarters | 本文：总部；n. 总部（the company headquarters） | 3 |
-| Arctic | 本文：北极；n. 北极（地区）（the Arctic Ocean） | 3 |
-| strains | 本文：品种；n. (strain) （动植物的）品种，品系（a new strain of wheat） | 3 |
-| asked for | 本文：索要；v. (ask for) 索要，要求得到（ask for help） | 3 |
+| asked for | 本文：索要了；v. (ask for) 索要，要求得到（ask for help） | 3 |
 | hostilities | 本文：战争；n. (hostility) 战斗，战事；敌意（the outbreak of hostilities） | 3 |
-| tolerant of | 本文：耐受；adj. 耐……的；宽容的（drought-tolerant；tolerant of others） | 3 |
+| Arctic | 本文：北极；n. 北极（地区）（the Arctic Ocean） | 3 |
+| tolerant of | 本文：耐受……的；adj. 耐……的；宽容的（drought-tolerant；tolerant of others） | 3 |
 | robust | 本文：强健；adj. 强健的，结实的（a robust plant/economy） | 3 |
 | barley | 本文：大麦；n. 大麦（fields of barley） | 3 |
+| strains | 本文：品种；n. (strain) （动植物的）品种，品系（a new strain of wheat） | 3 |
 | sowed | 本文：种下了；v. (sow) 播种（sow seeds） | 4 |
 | vigorous | 本文：强健的；adj. 茁壮的，有活力的（vigorous growth） | 4 |
 | sprouted | 本文：发芽了；v. (sprout) 发芽，萌发（seeds sprouted） | 4 |
