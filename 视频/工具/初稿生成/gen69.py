@@ -8,56 +8,56 @@ S=[
      "（at Berkeley and Caltech：后置定语，修饰 lecturer）"]]),
 (1,[[[("From April 1943","从1943年4月起，"),("he","他"),("**oversaw**","**主管**(oversaw)"),("a **secretive**","洛斯阿拉莫斯的一处**秘密**(secretive)"),("weapons","武器"),("**installation** at Los Alamos,","**设施**(installation)；")],
      "（at Los Alamos：后置定语，修饰 installation）"],
-    [[("whose bombs","这里的炸弹，"),("were","是"),("{{=}}the **collaborative** **creation** of a **thousands-strong** **workforce**.","**数千人的**(thousands-strong)**员工队伍**(workforce)**协作的**(collaborative)**成果**(creation)。")],
-     "（whose…：非限制性定语从句，修饰 installation；\nthe creation of A：A 的成果）"]]),
+    [[("whose","这里的"),("**bombs**","**炸弹**(bombs)"),("were","是"),("{{=}}the **collaborative** **creation** of a **thousands-strong** **workforce**.","**数千人的**(thousands-strong)**劳动力**(workforce)**共同协作的**(collaborative)**创造成果**(creation)。")],
+     "（whose…：非限制性定语从句，修饰 installation；\nthe creation of A：A 的创造成果）"]]),
 (2,[[[("In the **pre-dawn** darkness of 16 July 1945,","1945年7月16日**黎明前的**(pre-dawn)黑暗中，")],
      "（of 16 July 1945：后置定语，修饰 darkness）"],
-    [[("the first","第一次"),("nuclear","核"),("test","试验"),("**illuminated**","以刺眼的强光**照亮了**(illuminated)"),("the **desolate** New Mexico","新墨西哥州**荒凉的**(desolate)"),("**landscape** with a blinding glare,","**大地**(landscape)，")],
+    [[("the first","第一次"),("nuclear","核"),("test","试验"),("**illuminated**","以一道**刺眼的强光**(blinding glare)**照亮了**(illuminated)"),("the **desolate** New Mexico","新墨西哥州**荒凉的**(desolate)"),("**landscape** with a **blinding glare**,","**景观**(landscape)，")],
      "（with a blinding glare：方式状语）"],
     [[("its","其"),("**explosive**","**爆炸**(explosive)"),("force","威力"),("roughly","约合"),("20 kilotons.","2万吨TNT当量。")],
      "（its explosive force roughly 20 kilotons：\n独立主格结构，补充说明 test）"]]),
 (2,[[[("On 6 and 9 August 1945","1945年8月6日和9日，"),("atomic","原子弹"),("**bombings**","**轰炸**(bombings)"),("**devastated**","**摧毁了**(devastated)"),("Hiroshima and Nagasaki,","广岛和长崎，")]],
-    [[("where year-end","到当年年底，两地的"),("**fatalities**","**死亡人数**(fatalities)"),("{{=}}numbered well over 100,000 and about 70,000 **respectively**.","**分别**(respectively)远超十万和约七万。")],
+    [[("where","在这两地，"),("**year-end**","**年底的**(year-end)"),("**fatalities**","**死亡人数**(fatalities)"),("{{=}}numbered well over 100,000 and about 70,000 **respectively**.","**分别**(respectively)达到了远超十万和约七万。")],
      "（where…：非限制性定语从句，修饰 Hiroshima and Nagasaki；\nA and B respectively：分别是 A 和 B）"]]),
-(3,[[[("Oppenheimer left Los Alamos in October 1945","1945年10月，奥本海默离开洛斯阿拉莫斯；")]],
-    [[("and from 1947","从1947年起，他"),("**presided over**","**执掌**(presided over)"),("Princeton's Institute for Advanced Study.","普林斯顿高等研究院。")],
-     "（preside over：主持，执掌）"]]),
-(3,[[[("In October 1949","1949年10月，"),("the **advisory** committee he chaired,","他主持的**顾问**(advisory)委员会")],
+(3,[[[("**Oppenheimer** left Los Alamos in October 1945","1945年10月，**奥本海默**(Oppenheimer)离开洛斯阿拉莫斯；")]],
+    [[("and from 1947","从1947年起，他"),("**presided over**","**掌管/执掌**(presided over)"),("Princeton's Institute for Advanced Study.","普林斯顿高等研究院。")],
+     "（preside over：掌管，执掌）"]]),
+(3,[[[("In October 1949","1949年10月，"),("the **advisory** committee he chaired,","他担任主席的**顾问**(advisory)委员会")],
      "（he chaired：定语从句，省略了关系代词，修饰 committee）"],
     [[("expressing","表达了"),("**misgivings**,","**疑虑**(misgivings)，")],
      "（expressing misgivings：现在分词短语作伴随状语）"],
-    [[("**unanimously**","**一致**(unanimously)"),("**counselled against**","**建议不要**(counselled against)推行"),("a crash programme for the **hydrogen** bomb,","**氢**(hydrogen)弹的仓促研制计划；")],
-     "（counsel against：建议不要……；\nfor the hydrogen bomb：后置定语，修饰 programme）"],
-    [[("a **vastly** more **destructive** weapon.","氢弹的**毁灭性**(destructive)要**大得多**(vastly)。")],
+    [[("**unanimously**","并**一致**(unanimously)"),("**counselled against**","**建议拒绝**(counselled against)"),("a **crash programme** for the **hydrogen** bomb,","一项针对**氢**(hydrogen)弹的**紧急计划**(crash programme)，")],
+     "（counsel against：建议拒绝……；\nfor the hydrogen bomb：后置定语，修饰 programme）"],
+    [[("a","一种"),("**vastly**","**极其**(vastly)"),("more","更加具有"),("**destructive**","**毁灭性的**(destructive)"),("weapon.","武器。")],
      "（a vastly more destructive weapon：同位语，\n补充说明 the hydrogen bomb）"]]),
-(3,[[[("In December 1953","1953年12月，"),("a","一道"),("**presidential**","**总统**(presidential)"),("**directive**","**指令**(directive)"),("**severed**","**切断了**(severed)"),("his access to","他接触"),("**confidential**","**机密**(confidential)"),("**documentation**.","**文件**(documentation)的途径。")],
-     "（access to A：接触 A 的途径）"]]),
-(4,[[[("From 12 April to 6 May 1954","1954年4月12日至5月6日，"),("he","他"),("was **cross-examined** at a security hearing,","在一场安全听证会上接受**盘问**(cross-examined)。")],
+(3,[[[("In December 1953","1953年12月，"),("a","一道"),("**presidential**","**总统的**(presidential)"),("**directive**","**指令**(directive)"),("**severed**","**切断了**(severed)"),("his **access to**","他**接触**(access to)"),("**confidential**","**机密**(confidential)"),("**documentation**.","**文件**(documentation)**的权限**(access to)。")],
+     "（access to A：接触到 A 的权限）"]]),
+(4,[[[("From 12 April to 6 May 1954","1954年4月12日至5月6日，"),("he","他"),("was **cross-examined** at a security **hearing**,","在一场安全**听证会**(hearing)上接受**盘问**(cross-examined)，")],
      "（was cross-examined：一般过去时的被动语态）"],
-    [[("an","这场听证会属于"),("**administrative**","**行政**(administrative)"),("**proceeding**,","**程序**(proceeding)，"),("not a","而不是"),("criminal","刑事"),("**prosecution**.","**起诉**(prosecution)。")],
+    [[("an","这场听证会是"),("**administrative**","**行政的**(administrative)"),("**proceeding**,","**程序**(proceeding)，"),("not a","而非"),("criminal","刑事的"),("**prosecution**.","**起诉**(prosecution)。")],
      "（an administrative proceeding…：同位语，补充说明 hearing）"]]),
-(4,[[[("On 29 June 1954","1954年6月29日，"),("the Atomic Energy Commission","原子能委员会"),("voted 4 to 1","以4比1投票，"),("against letting him","决定不让他"),("**regain**","**恢复**(regain)"),("his clearance,","安全许可；")],
+(4,[[[("On 29 June 1954","1954年6月29日，"),("the **Atomic Energy**","**原子能**(Atomic Energy)"),("Commission","委员会"),("voted 4 to 1","以4比1投票"),("against letting him","反对让他"),("**regain**","**恢复**(regain)"),("his **clearance**,","**安全许可**(clearance)，")],
      "（vote against doing：投票反对做……）"],
-    [[("two days","两天"),("before","之后，"),("his","他的"),("**consultancy**","**咨询**(consultancy)"),("contract","合同"),("was due to","就要"),("**expire**.","**到期**(expire)。")],
+    [[("two days before his","在他的"),("**consultancy**","**咨询**(consultancy)"),("contract","合同"),("was due to","预计要"),("**expire**.","**到期**(expire)之前，还剩两天。")],
      "（be due to do：按期要做……）"]]),
-(4,[[[("The ruling","裁决"),("did not","没有"),("find him","认定他"),("**disloyal**,","**不忠**(disloyal)，"),("but","但"),("**nonetheless**","**仍然**(nonetheless)"),("questioned","质疑"),("his","他的"),("character","品格"),("and","和"),("**associates**.","**交往对象**(associates)。")],
+(4,[[[("The ruling","裁决"),("did not","没有"),("find him","认定他"),("**disloyal**,","**不忠**(disloyal)，"),("but","但"),("**nonetheless**","**仍然**(nonetheless)"),("questioned","质疑了"),("his","他的"),("character","品格"),("and","和"),("**associates**.","他所**结交的人**(associates)。")],
      "（find sb + adj.：认定某人……）"]]),
-(5,[[[("On 2 December 1963","1963年12月2日，"),("President Johnson","约翰逊总统"),("**bestowed on**","**授予**(bestowed on)"),("him","他"),("the Fermi Award,","费米奖；")],
+(5,[[[("On 2 December 1963","1963年12月2日，"),("President Johnson","约翰逊总统"),("**bestowed on**","**授予**(bestowed on)"),("him","他"),("the Fermi Award,","费米奖，")],
      "（bestow A on B：把 A 授予 B，这里 A 放在 B 后面）"],
-    [[("which Kennedy","肯尼迪"),("had **authorised** before his **assassination**.","在**遇刺**(assassination)前已**批准了**(authorised)这一奖项。")],
+    [[("which Kennedy","该奖项是肯尼迪"),("had **authorised** before his **assassination**.","在**遇刺**(assassination)前**批准**(authorised)的。")],
      "（which…：非限制性定语从句，修饰 the Fermi Award；\nhad authorised：过去完成时）"]]),
 (5,[[[("Oppenheimer","奥本海默"),("died on 18 February 1967.","于1967年2月18日去世。")]]]),
-(5,[[[("In December 2022","2022年12月，"),("the energy","能源"),("secretary","部长"),("**officially**","**正式**(officially)"),("**vacated**","**撤销了**(vacated)"),("the 1954","1954年的"),("**determination**,","**裁定**(determination)，")]],
-    [[("calling","称"),("the process","当年的程序"),("flawed","存在缺陷，"),("and **contrary to**","**违背了**(contrary to)"),("the commission's","委员会的"),("rules.","规定。")],
+(5,[[[("In December 2022","2022年12月，"),("the energy","能源"),("**secretary**","**部长**(secretary)"),("**officially**","**正式**(officially)"),("**vacated**","**撤销了**(vacated)"),("the 1954","1954年的"),("**determination**,","**裁定**(determination)，")]],
+    [[("calling","称"),("the process","当年的程序是"),("**flawed**","**有缺陷的**(flawed)"),("and **contrary to**","且**违背了**(contrary to)"),("the commission's","委员会的"),("rules.","规定。")],
      "（calling…：现在分词短语作伴随状语；\ncall A + adj.：称 A……；contrary to：违背）"]]),
-(5,[[[("The **stigma** of the **revocation**","**吊销**(revocation)安全许可留下的**污名**(stigma)，")],
+(5,[[[("The **stigma** of the **revocation**","**撤销**(revocation)安全许可带来的**污名**(stigma)，")],
      "（of the revocation：后置定语，修饰 stigma）"],
-    [[("had **persisted** for fifty-five years beyond his **lifetime**.","在他的**一生**(lifetime)结束后又**延续了**(persisted)五十五年。")],
+    [[("had **persisted** for fifty-five years beyond his **lifetime**.","在他的**一生**(lifetime)结束之后，又**持续了**(persisted)五十五年。")],
      "（had persisted：过去完成时；beyond his lifetime：在他身后）\n"
-     "（简述：J·罗伯特·奥本海默是知名物理学家，1943年起主管洛斯阿拉莫斯的秘密武器设施，数千人在这里协作造出了原子弹。\n"
+     "（简述：J·罗伯特·奥本海默是知名物理学家，1943年起主管洛斯阿拉莫斯的秘密武器设施，数千人的劳动力在这里共同协作造出了原子弹。\n"
      "1945年7月16日，第一次核试验照亮了新墨西哥州的荒原；同年8月，广岛和长崎遭原子弹轰炸。\n"
-     "战后他执掌普林斯顿高等研究院；1949年，他主持的顾问委员会一致建议不要仓促研制氢弹。\n"
-     "1953年12月，总统指令切断了他接触机密文件的途径；1954年安全听证会后，原子能委员会决定不恢复他的安全许可，裁决没有认定他不忠，却质疑他的品格和交往对象。\n"
+     "战后他掌管普林斯顿高等研究院；1949年，他担任主席的顾问委员会一致建议拒绝研制氢弹的紧急计划。\n"
+     "1953年12月，总统的指令切断了他接触机密文件的权限；1954年安全听证会后，原子能委员会投票反对让他恢复安全许可，裁决没有认定他不忠，却质疑他的品格和他所结交的人。\n"
      "1963年他获颁费米奖，1967年去世；2022年12月，能源部长正式撤销了1954年的裁定，这时距他去世已五十五年。）"]]),
 ]
 G={'S3 landscape with a blinding glare': '对齐不了：with a blinding glare 是方式状语，中文“以刺眼的强光”必须放到动词“照亮了”前，这一组只剩“大地”', 'S4 numbered well over 100,000 and about 70,000 respectively': '对齐不了：respectively 中文“分别”必须放到数字前；numbered well over 中文“远超”是整体说法', 'S6 the advisory committee he chaired': '对齐不了：he chaired 是定语从句，修饰 committee，中文“他主持的”必须提前', 'S6 a crash programme for the hydrogen bomb': '对齐不了：for the hydrogen bomb 是后置定语，中文“氢弹的”必须提前；crash programme 中文“仓促研制计划”是整体说法', 'S8 was cross-examined at a security hearing': '对齐不了：地点状语 at a security hearing，中文“在一场安全听证会上”必须放到动词“接受盘问”前', 'S9 against letting him': '对齐不了：vote against doing 中文“决定不让他”是整体说法，against、letting 拆开不通', 'S14 had persisted for fifty-five years beyond his lifetime': '对齐不了：时间状语 beyond his lifetime 中文“在他的一生结束后”必须放到动词前；两个重点词中文先后与英文相反'}
@@ -70,6 +70,13 @@ out.update({"非人声区间": {"S1": [[1.877042, 2.08], [5.875, 6.236208, "紧�
 out.update({"分段增益dB":{"S13":{"1":1.5}}})   # K130：S13 第1段（141.8–149.3s）比邻段整段轻 1.6 LU、最响处低 4.5 LU，补 +1.5
 out.update({"段内渐变dB":{"S1":{"1":[0.0,4.0]}}})   # K129（61 起响度骤降一律补响）：S1 第1段 J. Robert Oppenheimer, 的后半 -penheimer,（成片 5.1–5.7s）比全片低 7.0 dB，实测是非重读音节+鼻音+逗号前降调、无缺音；段内 0→+4 dB 渐升补响，开头 J. Robert 不动
 CONF["停顿位置"]={"S1 Oppenheimer, / born @2.095":"2026-11-08 逐 2.5 ms 实测（S1 w，dossier_69 #3–#6）：Oppenheimer 的 ɚ 衰减到 1.87（-57 dB 以下），1.877–2.08 的吸气声已写进非人声区间删掉，2.08–2.11 低于 -49 dB；born 的 /b/ 浊音杠 2.11 起（-49→-31 dB、重心 0.5 kHz），2.115 开口。停顿 2.095 正好落在两个词之间，不切词"}
+out["allow_clash"]=["flawed"]   # 用户 2026-11-10 Word 文档 69.docx：“Flawed 注意重点词汇，标注重点词汇，有缺陷的”（第47篇 flaw 加粗；用户点名加，照加，已告诉用户）
+CONF["合组"].update({"S9 two days before his":"对齐不了：two days before 中文“在……之前，还剩两天”拆成两头放在最后（用户 2026-11-10 定的译文），days、before 只能并进句末“之前，还剩两天”","S3 landscape with a blinding glare":"对齐不了：with a blinding glare 是方式状语，中文“以一道刺眼的强光”必须放到动词“照亮了”前（已放到 illuminated 下面，重点词 blinding glare 的中文与英文同一块），这一组只剩“景观”"})
+CONF["对齐"].update({"S3-2 illuminated the desolate New M":"with a blinding glare 是方式状语，中文“以一道刺眼的强光”必须放到动词“照亮了”前；New Mexico 中文“新墨西哥州”放到“荒凉的”前；四个重点词中文先后与英文不同"})
+CONF.setdefault("是的",{}).update({"S8-2 是**行政的**":"用户 2026-11-10 定的译文“这场听证会是行政的程序”：是 + 定语 + 名词（行政的程序），不是“是……的”表语句式","S13-2 是**有缺陷的**":"用户 2026-11-10 定的译文“称当年的程序是有缺陷的”（原话照用）"})
+CONF.setdefault("方向",{}).update({"S9-2 before→在他的":"two days before 中文“在……之前，还剩两天”：“之前”在 expire 那一组（到期之前），方向一致；用户 2026-11-10 定的译文"})
+CONF.setdefault("同词异译",{}).update({"access to：接触/的权限":"不是两种译法：access to A 的意思“接触 A 的权限”被“机密文件”隔开，“接触”“的权限”是同一个意思的两部分（T23），用户 2026-11-10 原话“Access to 也标注为重点词汇，意思为接触到a的权限”"})
+out["重点词颜色"]={"accomplished": "#bef264", "prominent": "#38bdf8", "lecturer": "#f472b6", "oversaw": "#bef264", "secretive": "#f472b6", "installation": "#7092ff", "bombs": "#f87171", "collaborative": "#4ade80", "creation": "#fbbf24", "thousands-strong": "#38bdf8", "workforce": "#e879f9", "pre-dawn": "#f87171", "illuminated": "#bef264", "desolate": "#2dd4bf", "landscape": "#fbbf24", "blinding glare": "#38bdf8", "explosive": "#e879f9", "bombings": "#f87171", "devastated": "#78f064", "year-end": "#fbbf24", "fatalities": "#38bdf8", "respectively": "#e879f9", "oppenheimer": "#78f064", "presided over": "#e879f9", "advisory": "#f87171", "misgivings": "#bef264", "unanimously": "#38bdf8", "counselled against": "#f472b6", "crash programme": "#fbbf24", "hydrogen": "#4ade80", "vastly": "#a78bfa", "destructive": "#2dd4bf", "presidential": "#f87171", "directive": "#bef264", "severed": "#2dd4bf", "access to": "#fbbf24", "confidential": "#38bdf8", "documentation": "#e879f9", "cross-examined": "#f87171", "hearing": "#78f064", "administrative": "#38bdf8", "proceeding": "#fbbf24", "prosecution": "#e879f9", "atomic energy": "#f87171", "regain": "#78f064", "clearance": "#fbbf24", "consultancy": "#38bdf8", "expire": "#e879f9", "disloyal": "#bef264", "nonetheless": "#38bdf8", "associates": "#f472b6", "bestowed on": "#bef264", "authorised": "#38bdf8", "assassination": "#f472b6", "secretary": "#f87171", "officially": "#bef264", "vacated": "#2dd4bf", "determination": "#fbbf24", "flawed": "#38bdf8", "contrary to": "#e879f9", "stigma": "#f87171", "revocation": "#2dd4bf", "persisted": "#fbbf24", "lifetime": "#7092ff"}   # 用户 2026-11-10 Word 文档：“Collaborative 和 Thousands- strong 这两个重点词汇用的颜色是一样的，所以要区分一下。”“注意颜色，注意颜色，一定要分明，千万不要都弄得差不多，分不出来。”全篇每屏用程序在色板里搜“同一行人眼色差 ΔE 最小值最大、再全屏最大”的配法（相邻 ≥60° 且 ΔE ≥25、同屏 ≥25° 照守）；S2 同行 bombs 红、collaborative 绿、creation 琥珀、thousands-strong 天蓝、workforce 品紫
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)
