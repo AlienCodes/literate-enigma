@@ -72,7 +72,8 @@ def to_gray(png):
 def render_screens(d, outdir, only=None):
     """用定稿脚本 d 画出视频里的每一屏（与 make_video.build 同一套画法；进度条画成 0，比对时去掉）。
     返回 [(名字, 灰度图)]：片头动画每一帧（'片头 k'，最后一帧是完整片头）+ 每句每块高亮（'S句-块'）。only=句号集合时只画这几句"""
-    os.makedirs(outdir, exist_ok=True); no = d['no']
+    os.makedirs(outdir, exist_ok=True); d = json.loads(json.dumps(d)); no = d['no']
+    简 = R.拆出简述页(d)   # L22：与出片程序同一入口，最后一句不带简述，简述单独一页（66 定稿核对误报）
     colors = R.分色(d)                                          # 与 make_video.build 相同（G49）
     R.unify_colors(colors, d['sentences'])
     R.apply_script(d)                                                 # 与出片程序同一个入口读画面设置（词下说明对齐等）
@@ -93,6 +94,8 @@ def render_screens(d, outdir, only=None):
             R.frame_interlinear([[tuple(p) for p in c['align']] for c in s['chunks']], R.sent_colors(colors, s), header, 0, fn, active=ci,
                                 notes=[c.get('note') for c in s['chunks']])
             out.append((f'S{si + 1}-{ci + 1}', to_gray(fn)))
+    if 简 and (only is None or len(d['sentences']) in only):
+        fn = f'{outdir}/简述.png'; R.frame_简述(简, 0, fn); out.append(('简述', to_gray(fn)))
     return out
 
 

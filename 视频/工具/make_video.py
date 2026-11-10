@@ -1100,12 +1100,7 @@ def build(js,out):
         _pz=[(f'S{i}-{k}',f,m.group(0)) for i,s_ in enumerate(d['sentences'],1) for k,c_ in enumerate(s_['chunks'],1) for f in ('en','zh','note') for m in re.finditer(r'(?!(?<=\d)–(?=\d))[—–―─⸺⸻﹘－]+|--|(?<=\s)-(?=\s)',c_.get(f) or '')]
         _pz+=[('标题',f,m.group(0)) for f in ('title_en','title_zh') for m in re.finditer(r'(?!(?<=\d)–(?=\d))[—–―─⸺⸻﹘－]+|--|(?<=\s)-(?=\s)',d.get(f,''))]
         if _pz: raise SystemExit('【停止】画面或配音文字里有破折号（T36）：'+'；'.join(f'{a} {b}“{c}”' for a,b,c in _pz)+'。中文换成“，”“：”或括号（字义不改）；英文换成逗号、冒号或括号并同步文章')
-    _简=None
-    if R.简述页起(no) and d.get('sentences'):   # 简述单独一页（用户 2026-11-10：“最后一页一定要尽可能的让字体绝对放大”）：简述从最后一句的说明里拿出来，最后 2 秒单独一页
-        _c=d['sentences'][-1]['chunks'][-1]; _r,_简=R.拆简述(_c.get('note'))
-        if _简:
-            if _r: _c['note']=_r
-            else: _c.pop('note',None)
+    _简=R.拆出简述页(d)   # 简述单独一页（用户 2026-11-10：“最后一页一定要尽可能的让字体绝对放大”）：简述从最后一句的说明里拿出来，最后 2 秒单独一页
     R.apply_script(d)                                              # 画面相关的脚本设置（词下说明对齐等），与定稿视频核对同一个入口
     work=f'work_{no}'; os.makedirs(work,exist_ok=True)
     # colors

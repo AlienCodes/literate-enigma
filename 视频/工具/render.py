@@ -787,3 +787,11 @@ def frame_简述(t,progress,out):
         y+=lh
     d.rectangle([0,H-8*S,W*progress,H],fill=(94,234,212))
     im.save(out); return sz
+def 拆出简述页(d):
+    """make_video 与 定稿视频核对 同一个入口：01–22、05、54、65 起把最后一句说明里的简述拿出来（改 d），返回简述原文或 None"""
+    if not (简述页起(d.get('no')) and d.get('sentences')): return None
+    c=d['sentences'][-1]['chunks'][-1]; r,j=拆简述(c.get('note'))
+    if j:
+        if r: c['note']=r
+        else: c.pop('note',None)
+    return j
