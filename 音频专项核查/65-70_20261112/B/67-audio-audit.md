@@ -1,11 +1,11 @@
 # 第67篇 MP4 音频实测
 
-状态：audit_incomplete
+状态：needs_audio_repair_or_investigation
 
 历史制作核查仅作历史证据；本次实测范围和未覆盖项目见 JSON。
 
 本次发现：
-- RuntimeError: Sentence mapping is uncertain: 20 voice spans for 19 expected title/body spans.
+- Segment suppression candidate: ('S15', 2, (116.58, 117.78), np.float64(2.3179372246722387), 4.800000000000001)
 
 原配音保全：None
 
