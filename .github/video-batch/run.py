@@ -382,14 +382,32 @@ def end_card(no):
     # Verify source body pixels outside the intentionally erased note.
     crop_h = 2*(removal['crop_height']//2)
     ssim = OUT / f'{no}-body-tail-ssim.txt'
-    graph = (f'[0:v]trim=end_frame={valid_body_frames},setpts=PTS-STARTPTS,crop=iw:{crop_h}[a];'
-             f'[1:v]trim=end_frame={valid_body_frames},setpts=PTS-STARTPTS,crop=iw:{crop_h}[b];'
+    graph = (f'[0:v]trim=end_frame={valid_body_frames},setpts=PTS-STARTPTS,crop=iw:{crop_h}:0:0[a];'
+             f'[1:v]trim=end_frame={valid_body_frames},setpts=PTS-STARTPTS,crop=iw:{crop_h}:0:0[b];'
              f'[a][b]ssim=stats_file={ssim}[out]')
     command(['ffmpeg','-v','error','-ss',f'{key_time:.9f}','-i',source,
              '-ss',f'{key_time:.9f}','-i',final,'-filter_complex',graph,
              '-map','[out]','-an','-f','null','-'])
     similarities = [float(x) for x in re.findall(r'All:([0-9.]+)',ssim.read_text())]
-    assert len(similarities)==valid_body_frames and min(similarities)>.995, similarities
+    assert len(similarities)==valid_body_frames and min(similarities)>.995, (len(similarities),valid_body_frames,min(similarities))
+    removal_check = {}
+    if removal['kind'] == 'inline':
+        background_ref = thumb(removal['patch'])
+        old_ref = thumb(sorted(OUT.glob(f'{no}-old-body-active*.png'))[-1])
+        erased_pixels = np.max(np.abs(old_ref.astype(np.int16)-background_ref.astype(np.int16)),axis=2)>8
+        erased_pixels[:math.ceil(removal['crop_height']/10)+1] = False
+        assert erased_pixels.sum()>20
+        values = [score(a, background_ref, erased_pixels)
+                  for f,a in thumbnail_frames(final, removal['change_start']) if f<transition_frame]
+        assert len(values)==transition_frame-removal['change_start']
+        assert max(values)<3, ('Old summary pixels remain visible.', max(values))
+        removal_check = {'erased_region_checked_frames':len(values),'background_match_max_error':max(values)}
+    elif body_tail_frames>valid_body_frames:
+        frozen_reference = frame_thumb(source, freeze_at-1)
+        held_frame = frame_thumb(final, transition_frame-1)
+        error=float(np.abs(frozen_reference.astype(float)-held_frame).mean())
+        assert error<2, ('Old summary may be flashing before the cut.',error)
+        removal_check = {'held_body_frame_match_error':error}
     for name,frame in [('转场前',transition_frame-1),('简述首帧',transition_frame),
                        ('简述末帧',transition_frame+59)]:
         command(['ffmpeg','-v','error','-y','-ss',f'{frame/30:.9f}','-i',final,
@@ -408,6 +426,7 @@ def end_card(no):
         'endpoint_threshold_checks':endpoint_checks,'summary_start_frame':transition_frame,
         'summary_start_seconds':transition,'delay_after_voice_seconds':transition-speech_end,
         'end_page_frames':60,'end_page_seconds':2,'old_summary_handling':removal,
+        'old_summary_pixel_verification':removal_check,
         'copied_original_frames':prefix_count,'reencoded_body_frames':body_tail_frames,
         'held_final_body_frames':body_tail_frames-valid_body_frames,
         'copied_prefix_coded_pictures_identical':True,'copied_prefix_packet_timings_identical':True,
