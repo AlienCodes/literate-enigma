@@ -319,7 +319,7 @@ def end_card(no):
     freeze_at = min(removal.get('old_card_start', transition_frame), transition_frame)
     change_start = removal['change_start']
     keys = [(i, float(p['pts_time'])) for i,p in enumerate(old_v)
-            if 'K' in p['flags'] and float(p['pts_time']) < change_start/30]
+            if 'K' in p['flags'] and round(float(p['pts_time']) * 30) < change_start]
     prefix_count, key_time = keys[-1]
     assert prefix_count == round(key_time * fps)
     body_tail_frames = transition_frame - prefix_count
@@ -352,8 +352,12 @@ def end_card(no):
     concat = OUT / f'{no}.ffconcat'
     concat.write_text("ffconcat version 1.0\nfile '"+str(prefix)+"'\nduration "+
                       f'{key_time:.9f}'+"\nfile '"+str(tail)+"'\n")
-    safe_title = data['title_en'].replace(':','：')
-    final = OUT / f'{no} - {safe_title} - {data["title_zh"]}.mp4'
+    filename = f'{no} - {data["title_en"]} - {data["title_zh"]}.mp4'
+    filename = filename.translate(str.maketrans({
+        '?':'？', ':':'：', '*':'＊', '<':'＜', '>':'＞',
+        '"':'＂', '|':'｜', '/':'／', '\\':'＼',
+    })).replace('\r','').replace('\n','')
+    final = OUT / filename
     command(['ffmpeg','-v','error','-y','-copyts','-f','concat','-safe','0','-i',concat,
              '-i',source,'-map','0:v:0','-map','1:a:0','-c','copy',
              '-avoid_negative_ts','disabled','-movflags','+faststart',final])
