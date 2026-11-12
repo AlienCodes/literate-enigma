@@ -1,4 +1,4 @@
-name: 单篇4K样片：简述独立末页2.6秒
+name: 单篇4K样片：读完即转简述2秒
 on:
   push:
     branches: [codex/finish-05-and-summaries-20261112]
@@ -29,15 +29,16 @@ jobs:
       - name: 保存样片供直接查看
         run: |
           mkdir -p 样片
-          cp completion-output/*.mp4 '样片/03-4K-简述2.6秒.mp4'
-          cp completion-output/03-简述.png '样片/03-简述末页.png'
-          cp completion-output/03-verification.json '样片/03-核验.json'
+          cp completion-output/*.mp4 '样片/03-4K-读完即转简述2秒.mp4'
+          cp completion-output/03-简述.png '样片/03-新版简述末页.png'
+          cp completion-output/03-verification.json '样片/03-新版核验.json'
           git add --sparse -- 样片
-          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '保存03篇4K样片：简述独占末页2.6秒'
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '保存03篇新版4K样片：读完即转简述并显示2秒'
           git push origin HEAD:codex/finish-05-and-summaries-20261112
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: Article03-4K-preview-2.6s
+          name: Article03-4K-immediate-summary-2s
           path: completion-output/
           if-no-files-found: error
           retention-days: 30

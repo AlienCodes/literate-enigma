@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
-"""Add only an end card, checking every original decoded frame and audio sample."""
+"""Replace the original silent end hold with an immediate two-second summary."""
 import argparse
+import array
 import ast
 import copy
+from fractions import Fraction
 import hashlib
 import importlib.util
 import json
+import math
 import os
 from pathlib import Path
-import shutil
+import re
 import subprocess
-import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 TASK = ROOT / '.github/video-preview'
@@ -60,12 +62,36 @@ def probe(p):
     return json.loads(get(['ffprobe', '-v', 'error', '-show_streams', '-show_format', '-of', 'json', p]))
 
 
-def frame_hashes(p, count=None):
-    args = ['ffmpeg', '-v', 'error', '-threads', '2', '-i', p, '-map', '0:v:0', '-an']
-    if count is not None:
-        args += ['-frames:v', str(count)]
-    raw = get(args + ['-fps_mode', 'passthrough', '-f', 'framehash', '-hash', 'sha256', '-'])
-    return [line.rsplit(',', 1)[-1].strip() for line in raw.splitlines() if line and not line.startswith('#')]
+def packet_times(path, stream):
+    return json.loads(get(['ffprobe', '-v', 'error', '-select_streams', stream, '-show_packets',
+                          '-show_entries', 'packet=pts_time,dts_time,duration_time,flags',
+                          '-of', 'json', path]))['packets']
+
+
+def coded_frames_hash(path, count):
+    args = ['ffmpeg', '-v', 'error', '-i', path, '-map', '0:v:0', '-an', '-c:v', 'copy',
+            '-frames:v', str(count), '-bsf:v', 'h264_mp4toannexb,filter_units=pass_types=1-5',
+            '-f', 'h264', '-']
+    return hashlib.sha256(command(args, capture_output=True).stdout).hexdigest()
+
+
+def voice_end(path, video_seconds):
+    # Inspect the existing audio; never synthesize, trim or re-encode the voice.
+    pcm = array.array('f', command(['ffmpeg', '-v', 'error', '-i', path, '-map', '0:a:0',
+                                  '-ac', '1', '-ar', '48000', '-f', 'f32le', '-'],
+                                 capture_output=True).stdout)
+    hop = 240  # 5 ms RMS windows, including the quiet final consonant/decay.
+    start = max(0, len(pcm) // hop - 1000)
+    ends = {}
+    for threshold in (-60, -70, -80):
+        audible = [i for i in range(start, len(pcm) // hop)
+                   if sum(v * v for v in pcm[i * hop:(i + 1) * hop]) / hop > 10 ** (threshold / 10)]
+        assert audible, 'No speech detected near the end.'
+        ends[str(threshold)] = (audible[-1] + 1) * hop / 48000
+    assert abs(ends['-80'] - ends['-70']) < .06, 'Uncertain voice endpoint; inspect rather than guess.'
+    end = max(ends.values())
+    assert 1.5 < video_seconds - end < 2.5, 'Unexpected original end hold.'
+    return end, ends
 
 
 def audio_hash(p):
@@ -117,98 +143,102 @@ def end_card(no):
     assert vs['codec_name'] == 'h264' and (vs['width'], vs['height']) == (3840, 2160)
     card = OUT / f'{no}-简述.png'
     layout = render_card(no, changed, vs['width'], vs['height'], card)
-    tail = OUT / f'{no}-endcard.mp4'
-    # User-confirmed specification: a separate, silent 2.6-second end page.
-    command(['ffmpeg', '-v', 'error', '-y', '-loop', '1', '-framerate', vs['r_frame_rate'], '-i', card,
-             '-t', '2.6', '-an', '-c:v', 'libx264', '-preset', 'fast', '-crf', '16', '-threads', '2',
-             '-pix_fmt', vs['pix_fmt'], '-profile:v', 'high', '-level:v', '5.1', tail])
+    fps = Fraction(vs['r_frame_rate'])
+    assert fps == 30
+    old_v = packet_times(source, 'v:0')
+    speech_end, endpoint_checks = voice_end(source, float(vs['duration']))
+    transition_frame = math.ceil(speech_end * fps)
+    transition = transition_frame / float(fps)
+    assert 0 <= transition - speech_end < 1 / fps
+    # Copy the complete original programme up to its final closed GOP. Re-encode
+    # only that GOP, replacing its silent end hold with the summary page.
+    keys = [(i, float(p['pts_time'])) for i, p in enumerate(old_v)
+            if 'K' in p['flags'] and float(p['pts_time']) < transition]
+    prefix_count, key_time = keys[-1]
+    assert prefix_count == round(key_time * fps)
+    body_tail_frames = transition_frame - prefix_count
+    card_frames = 60
+    print(f'Voice ends {speech_end:.3f}s; summary starts {transition:.6f}s; '
+          f'original end hold removed; summary {card_frames} frames.', flush=True)
+    prefix = OUT / f'{no}-prefix.mp4'
+    tail = OUT / f'{no}-replacement-tail.mp4'
+    command(['ffmpeg', '-v', 'error', '-y', '-copyts', '-i', source, '-map', '0:v:0',
+             '-an', '-c:v', 'copy', '-frames:v', prefix_count,
+             '-avoid_negative_ts', 'disabled', prefix])
+    graph = (f'[0:v]trim=end_frame={body_tail_frames},setpts=PTS-STARTPTS[b];'
+             f'[1:v]trim=end_frame={card_frames},setpts=PTS-STARTPTS[c];'
+             '[b][c]concat=n=2:v=1:a=0[out]')
+    command(['ffmpeg', '-v', 'error', '-y', '-ss', f'{key_time:.9f}', '-i', source,
+             '-loop', '1', '-framerate', str(fps), '-i', card,
+             '-filter_complex', graph, '-map', '[out]', '-an',
+             '-frames:v', body_tail_frames + card_frames, '-r', str(fps), '-fps_mode', 'cfr',
+             '-c:v', 'libx264', '-preset', 'fast', '-crf', '10', '-threads', '2',
+             '-pix_fmt', vs['pix_fmt'], '-profile:v', 'high', '-level:v', '5.1',
+             '-video_track_timescale', Fraction(vs['time_base']).denominator, tail])
     concat = OUT / f'{no}.ffconcat'
-    concat.write_text("ffconcat version 1.0\nfile '" + str(source) + "'\nduration " + vs["duration"] + "\nfile '" + str(tail) + "'\n")
+    concat.write_text("ffconcat version 1.0\nfile '" + str(prefix) + "'\nduration "
+                      + f'{key_time:.9f}' + "\nfile '" + str(tail) + "'\n")
     safe_title = data['title_en'].replace(':', '：')
     final = OUT / f'{no} - {safe_title} - {data["title_zh"]}.mp4'
-    # The complete original video is copied. Its original audio track is copied once.
-    # Adding a silent end page does not decode/re-encode or cut the existing programme.
     command(['ffmpeg', '-v', 'error', '-y', '-copyts', '-f', 'concat', '-safe', '0', '-i', concat,
-             '-i', source, '-map', '0:v:0', '-map', '1:a:0', '-c', 'copy', '-avoid_negative_ts', 'disabled', '-movflags', '+faststart', final])
-    def packet_times(path, stream):
-        args = ['ffprobe', '-v', 'error', '-select_streams', stream, '-show_packets',
-                '-show_entries', 'packet=pts_time,dts_time,duration_time', '-of', 'json', path]
-        return json.loads(get(args))['packets']
-    old_v = packet_times(source, 'v:0')
+             '-i', source, '-map', '0:v:0', '-map', '1:a:0', '-c', 'copy',
+             '-avoid_negative_ts', 'disabled', '-movflags', '+faststart', final])
     for attempt in range(3):
         new_v = packet_times(final, 'v:0')
         delta = float(new_v[0]['pts_time']) - float(old_v[0]['pts_time'])
-        if abs(delta) < 0.00001:
+        if abs(delta) < .00001:
             break
-        print('Correcting mux video timestamp offset:', delta, flush=True)
         fixed = OUT / f'{no}-timing-fixed.mp4'
         command(['ffmpeg', '-v', 'error', '-y', '-copyts', '-itsoffset', str(-delta), '-i', final,
                  '-i', source, '-map', '0:v:0', '-map', '1:a:0', '-c', 'copy',
                  '-avoid_negative_ts', 'disabled', '-movflags', '+faststart', fixed])
         os.replace(fixed, final)
-    for stream in ['v:0', 'a:0']:
-        old_times, new_times = packet_times(source, stream), packet_times(final, stream)
-        if new_times[:len(old_times)] != old_times:
-            mismatch = next((i for i, (a,b) in enumerate(zip(old_times,new_times)) if a!=b), -1)
-            print('Timing mismatch',stream,mismatch,old_times[mismatch],new_times[mismatch],flush=True)
-            raise AssertionError(f'{stream}: original timing changed')
-    def coded_frames_hash(path, count):
-        args = ['ffmpeg', '-v', 'error', '-i', path, '-map', '0:v:0', '-an', '-c:v', 'copy',
-                '-frames:v', str(count), '-bsf:v', 'h264_mp4toannexb,filter_units=pass_types=1-5',
-                '-f', 'h264', '-']
-        return hashlib.sha256(command(args,capture_output=True).stdout).hexdigest()
-    before = list(range(int(vs['nb_frames'])))
-    after_vs = next(x for x in probe(final)['streams'] if x['codec_type']=='video')
-    after = list(range(int(after_vs['nb_frames'])))
-    assert coded_frames_hash(source,len(before)) == coded_frames_hash(final,len(before)), 'Original coded picture data changed'
-    assert len(after) - len(before) == 78, 'The summary page must contain exactly 2.6 seconds at 30 fps.'
+    new_v = packet_times(final, 'v:0')
+    assert new_v[:prefix_count] == old_v[:prefix_count], 'Original programme prefix timing changed.'
+    assert packet_times(final, 'a:0') == packet_times(source, 'a:0'), 'Original audio timing changed.'
+    assert coded_frames_hash(source, prefix_count) == coded_frames_hash(final, prefix_count)
+    assert len(new_v) == transition_frame + card_frames
+    presentation_times = sorted(float(p['pts_time']) for p in new_v)
+    assert all(abs(t - i / float(fps)) < .000002 for i, t in enumerate(presentation_times))
     ah = audio_hash(source)
     assert audio_hash(final) == ah, 'Original decoded audio changed.'
-    updated = OUT / f'{no}-script.json'
-    updated.write_text(json.dumps(changed, ensure_ascii=False, indent=1) + '\n')
+    after_vs = next(x for x in probe(final)['streams'] if x['codec_type'] == 'video')
+    assert (after_vs['width'], after_vs['height']) == (3840, 2160)
+    assert abs(float(after_vs['duration']) - (transition + 2)) < .00001
+    # Verify the few body frames in the re-encoded GOP remain visually faithful.
+    ssim = OUT / f'{no}-body-tail-ssim.txt'
+    graph = (f'[0:v]trim=end_frame={body_tail_frames},setpts=PTS-STARTPTS[a];'
+             f'[1:v]trim=end_frame={body_tail_frames},setpts=PTS-STARTPTS[b];'
+             f'[a][b]ssim=stats_file={ssim}[out]')
+    command(['ffmpeg', '-v', 'error', '-ss', f'{key_time:.9f}', '-i', source,
+             '-ss', f'{key_time:.9f}', '-i', final, '-filter_complex', graph,
+             '-map', '[out]', '-an', '-f', 'null', '-'])
+    similarity = [float(x) for x in re.findall(r'All:([0-9.]+)', ssim.read_text())]
+    assert len(similarity) == body_tail_frames and min(similarity) > .995, similarity
+    # Save the two sides of the exact cut for a visual review.
+    for name, frame in [('转场前', transition_frame - 1), ('简述首帧', transition_frame),
+                        ('简述末帧', transition_frame + card_frames - 1)]:
+        command(['ffmpeg', '-v', 'error', '-y', '-ss', f'{frame / float(fps):.9f}',
+                 '-i', final, '-frames:v', '1', '-update', '1', OUT / f'{no}-{name}.png'])
+    (OUT / f'{no}-script.json').write_text(json.dumps(changed, ensure_ascii=False, indent=1) + '\n')
     (OUT / f'{no}-verification.json').write_text(json.dumps({
-        'article': no, 'kind': 'end-page-only', 'source': originals[0], 'source_frames': len(before),
-        'output_frames': len(after), 'all_original_frames_identical': True,
-        'original_audio_identical': True, 'audio_sha256': ah, 'body_script_identical': True,
-        'layout': layout, 'end_page_seconds': 2.6, 'original_packet_timings_identical': True,
+        'article': no, 'kind': 'replace-original-end-hold', 'source': originals[0],
+        'source_frames': int(vs['nb_frames']), 'output_frames': len(new_v),
+        'source_voice_endpoint_seconds': speech_end, 'endpoint_threshold_checks': endpoint_checks,
+        'summary_start_frame': transition_frame, 'summary_start_seconds': transition,
+        'delay_after_voice_seconds': transition - speech_end,
+        'end_page_frames': card_frames, 'end_page_seconds': 2,
+        'copied_original_frames': prefix_count, 'reencoded_body_frames': body_tail_frames,
+        'copied_prefix_coded_pictures_identical': True, 'copied_prefix_packet_timings_identical': True,
+        'body_tail_min_ssim': min(similarity), 'original_audio_identical': True,
+        'original_audio_packet_timings_identical': True, 'audio_sha256': ah,
+        'body_script_identical': True, 'layout': layout,
         'video_sha256': hashlib.sha256(final.read_bytes()).hexdigest()
     }, ensure_ascii=False, indent=2))
-    source.unlink()
-    tail.unlink()
-    concat.unlink()
-    print(f'{no}: completed; all {len(before)} original frames and original audio are identical.', flush=True)
-
-
-def create_five():
-    materialize(['视频/工具', '视频/脚本', '视频/配音缓存', '视频/制作记录', '视频/音频核对',
-                 '视频/*.md', '新版定稿', '视频/视频/27.mp4', '最终版4K视频/27*'])
-    machine = Path(os.environ['RUNNER_TEMP']) / 'completion-machine'
-    tools = ROOT / '视频/工具'
-    command(['bash', tools / '环境/准备机器.sh', ROOT, machine])
-    work = machine / 'video'
-    command([sys.executable, tools / '初稿生成/gen05.py'], cwd=work)
-    script = work / 'scripts/05.json'
-    d = json.loads(script.read_text())
-    c = d['sentences'][-1]['chunks'][-1]
-    original_note = (c.get('note') or '').split('（简述：', 1)[0].rstrip()
-    c['note'] = (original_note + '\n' if original_note else '') + summary('05')
-    script.write_text(json.dumps(d, ensure_ascii=False, indent=1) + '\n')
-    env = {**os.environ, 'XG_P': str(ROOT), 'XG_TOOLS': str(tools), 'XG_WORK': str(work)}
-    # --不推 keeps the existing backup/release branches untouched.
-    command(['bash', tools / '新管/做.sh', '05', '--不推'], cwd=work, env=env)
-    check = get([sys.executable, tools / '交付核查.py', '05', '出片后'], cwd=work, env=env)
-    (OUT / '05-delivery-check.txt').write_text(check)
-    assert '全部通过' in check and '【不通过' not in check
-    final = OUT / '05 - The Fingerprint in the Blood - 血里的指纹_1080p.mp4'
-    shutil.copy2(work / '05.mp4', final)
-    shutil.copy2(script, OUT / '05-script.json')
-    dossier = ROOT / '视频/制作记录/05_疑点.md'
-    if dossier.exists():
-        shutil.copy2(dossier, OUT / '05-疑点说明.md')
-    (OUT / '05-verification.json').write_text(json.dumps({
-        'article': '05', 'kind': 'new-1080p-video', 'delivery_check_passed': True,
-        'video_sha256': hashlib.sha256(final.read_bytes()).hexdigest()
-    }, ensure_ascii=False, indent=2))
+    for p in (source, prefix, tail, concat):
+        p.unlink()
+    print(f'{no}: verified; immediate transition, exactly 60 summary frames; '
+          'original audio samples and timing identical.', flush=True)
 
 
 if __name__ == '__main__':
@@ -217,4 +247,5 @@ if __name__ == '__main__':
     n = no.parse_args().article.zfill(2)
     os.chdir(ROOT)
     OUT.mkdir(exist_ok=True)
-    create_five() if n == '05' else end_card(n)
+    assert n == '03', 'This workflow is limited to the single requested preview.'
+    end_card(n)
