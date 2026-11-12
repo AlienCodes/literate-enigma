@@ -1,0 +1,64 @@
+第05篇 出片前核查：
+✘ 踩坑核查（核查程序自检、踩坑对照记录、逐条程序核查、换行比对）
+    Traceback (most recent call last):
+      File "/home/runner/work/literate-enigma/literate-enigma/视频/工具/踩坑核查.py", line 991, in <module>
+        sys.exit(main())
+                 ^^^^^^
+      File "/home/runner/work/literate-enigma/literate-enigma/视频/工具/踩坑核查.py", line 937, in main
+        fails = selftest() + _YW.自检() + KZ_自检() + selftest_record_human() + selftest_l19() + selftest_l20() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_note() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart() + __import__('破折号').自检()
+                ^^^^^^^^^^
+      File "/home/runner/work/literate-enigma/literate-enigma/视频/工具/踩坑核查.py", line 449, in selftest
+        e0, c0, _ = text_checks(base, art, base)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/home/runner/work/literate-enigma/literate-enigma/视频/工具/踩坑核查.py", line 181, in text_checks
+        a, b = layout(sent), layout(d); appr = d.get('换行变更已获同意', {})
+               ^^^^^^^^^^^^
+      File "/home/runner/work/literate-enigma/literate-enigma/视频/工具/踩坑核查.py", line 98, in layout
+        R = _render(); es = R.LAYOUT_ES; ef = R.EN(es, 600); zf = R.ZH(int(es * R.ZR), 500); gapx = int(es * 0.36)
+                                              ^^^^^^^^^^^^^
+      File "/home/runner/work/literate-enigma/literate-enigma/视频/工具/render.py", line 14, in <lambda>
+        EN=lambda s,w=600: _vf('Inter.ttf',s,w)
+                           ^^^^^^^^^^^^^^^^^^^^
+      File "/home/runner/work/literate-enigma/literate-enigma/视频/工具/render.py", line 17, in _vf
+        f=ImageFont.truetype(F+p,s)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/PIL/ImageFont.py", line 885, in truetype
+        return freetype(font)
+               ^^^^^^^^^^^^^^
+      File "/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/PIL/ImageFont.py", line 882, in freetype
+        return FreeTypeFont(font, size, index, encoding, layout_engine)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/PIL/ImageFont.py", line 298, in __init__
+        self.font = core.getfont(
+                    ^^^^^^^^^^^^^
+    OSError: cannot open resource
+✔ 数字读法、引号自检（A11/A37/A17：年份、年代、日期、时刻、小数读法；引号不读、撇号保留）
+✔ 数字读法清单（请人工逐个确认读法）
+              1983  →  In November nineteen eighty-three a 15-year-o
+       15-year-old  →  mber nineteen eighty-three a 15-year-old girl was mu
+              1986  →  e summer of nineteen eighty-six a second 15
+       15-year-old  →  86 a second 15-year-old was slain n
+       17-year-old  →  A 17-year-old local youth
+                10  →  On the tenth of September 1
+              1984  →  0 September nineteen eighty-four Alec Jeffre
+             1985.  →  er in March nineteen eighty-five.
+              1987  →  In January nineteen eighty-seven police comm
+             5,000  →  g more than 5,000 men in thre
+              1987  →  In August nineteen eighty-seven someone ove
+                19  →  detained on the nineteenth of September 1
+             1987,  →  the ninth of September nineteen eighty-seven, and his DNA
+              1988  →  In January nineteen eighty-eight he pleaded 
+✔ 引号不停顿（A17）：0 句带引号，配音时都不读引号
+✔ A19 自检：In November 1983 a 15-year-old… 原样 0.000s（不报）、插入假吸气声 0.185s（必须报）
+✔ 标点停顿核对（A9/A10：停顿时长、不切词；A19：停顿后不留吸气声）
+✔ 句首句尾核对 自检：05 S1 原剪点 0.000s 不报；挪进起音 10 ms（0.030s）报出；句尾原样不报，剪进听得见的词尾 20 ms 并淡出报出
+✔ 句首句尾核对（clean_tail 修剪掉的部分没有剪到词：基准本句最响 5 ms 帧；剪掉的能听见的声音不得与词相连，句尾不得剪掉能听见的声音）
+✔ 读音核对 自检：05 把 homicide 的重音挪成 /hɑːmɪsˌaˈɪd/报出；关掉读音改正（Narborough）报出；登记的不是罗马数字只放那一个词组报出；“King Francis I.”没转成序数词报出；“Lascaux II/IV”读基数词、没登记的“Montignac II”照报报出；“6 and 9 August”两个日子都读序数（单个“6 January”照旧）报出；“7:25 pm”带空格也读成 seven twenty-five PM报出
+✔ 读音核对（A23：每个词的读音与独立发音词典一致；人名、地名、机构名、缩写逐个查证权威读音）
+✔ 词尾辅音核对 自检：05 原样 2 处全部合格；逐处把除阻换成静音、压低 20 dB，共 4 次全部报出
+✔ 词尾辅音核对（A21：停顿前和句末的词尾 t/k 听得清除阻，2 kHz 以上 ≥ -36 dB；/p/ 全频 ≥ -33 dB）
+✔ 停顿位置核对（A9/A15：停顿正好落在标点处两个词之间）
+    05 S18 OK（已用实际声音核实） 插入 「tip-off, | not」 段长比 前 0.79 后 0.76 ｜ 前词末音素起 0.614s 后词开头 0.724s ｜ 停顿 0.650–0.650s（离前词末音素起点 +36 ms，离后词 +74 ms）对齐代价 1.85
+✔ 无标点停顿核对 自检：05 S1 原样不报、插入 0.25 秒静音报出（A4）；0.18+碎声+0.17 秒报出（K146，不并碎声时不报）、中间是真辅音不报、碎声贴着词不报
+✔ 无标点处停顿 ≤ 0.22 秒
+【不通过，不得交付】

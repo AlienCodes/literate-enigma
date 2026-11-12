@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "/home/runner/work/literate-enigma/literate-enigma/视频/工具/踩坑核查.py", line 991, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/runner/work/literate-enigma/literate-enigma/视频/工具/踩坑核查.py", line 937, in main
+    fails = selftest() + _YW.自检() + KZ_自检() + selftest_record_human() + selftest_l19() + selftest_l20() + selftest_record_meta() + selftest_folders() + selftest_phrase() + selftest_idiom() + selftest_note() + selftest_term() + selftest_meaning() + selftest_gloss() + selftest_zhdup() + selftest_meta() + selftest_ending() + selftest_linestart() + __import__('破折号').自检()
+            ^^^^^^^^^^
+  File "/home/runner/work/literate-enigma/literate-enigma/视频/工具/踩坑核查.py", line 449, in selftest
+    e0, c0, _ = text_checks(base, art, base)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/literate-enigma/literate-enigma/视频/工具/踩坑核查.py", line 181, in text_checks
+    a, b = layout(sent), layout(d); appr = d.get('换行变更已获同意', {})
+           ^^^^^^^^^^^^
+  File "/home/runner/work/literate-enigma/literate-enigma/视频/工具/踩坑核查.py", line 98, in layout
+    R = _render(); es = R.LAYOUT_ES; ef = R.EN(es, 600); zf = R.ZH(int(es * R.ZR), 500); gapx = int(es * 0.36)
+                                          ^^^^^^^^^^^^^
+  File "/home/runner/work/literate-enigma/literate-enigma/视频/工具/render.py", line 14, in <lambda>
+    EN=lambda s,w=600: _vf('Inter.ttf',s,w)
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/literate-enigma/literate-enigma/视频/工具/render.py", line 17, in _vf
+    f=ImageFont.truetype(F+p,s)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/PIL/ImageFont.py", line 885, in truetype
+    return freetype(font)
+           ^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/PIL/ImageFont.py", line 882, in freetype
+    return FreeTypeFont(font, size, index, encoding, layout_engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/PIL/ImageFont.py", line 298, in __init__
+    self.font = core.getfont(
+                ^^^^^^^^^^^^^
+OSError: cannot open resource
