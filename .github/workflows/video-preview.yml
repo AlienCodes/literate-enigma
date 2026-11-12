@@ -1,0 +1,34 @@
+name: 单篇4K样片：简述独立末页2.6秒
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/video-preview/**', '.github/workflows/video-preview.yml']
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: /.github/video-preview/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 准备工具与只读原片
+        run: |
+          python -m pip install --quiet pillow==12.3.0
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          git fetch --no-tags --depth=1 --filter=blob:none origin c9d52b26fe981ef8e4c412189ca289716ab8bf00
+      - name: 制作03篇4K样片并核验
+        run: python -u .github/video-preview/run.py 03
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Article03-4K-preview-2.6s
+          path: completion-output/
+          if-no-files-found: error
+          retention-days: 30
