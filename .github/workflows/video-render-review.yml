@@ -1,0 +1,51 @@
+name: 末页独立旧卡重放与画面对比
+on:
+  push:
+    branches: [codex/batch70-render-20261112]
+    paths: ['.github/video-render-tests/**', '.github/workflows/video-render-review.yml']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.github/video-batch/
+            /.github/video-render-tests/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 准备真实录像重放
+        run: |
+          python -m pip install --quiet pillow==12.3.0 numpy==2.2.6
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          git fetch --no-tags --depth=1 --filter=blob:none origin c9d52b26fe981ef8e4c412189ca289716ab8bf00
+      - name: 验证独立旧简述提前2帧时不会闪现
+        run: python -u .github/video-render-tests/replay.py replay
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 43305638354
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pattern: pilot-*
+          path: pilot-artifacts
+      - name: 保存可直接审阅的对比与核验
+        run: |
+          python .github/video-render-tests/replay.py prepare
+          git add --sparse pilot-review
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '保存末页四类型核验和转场前后对比'
+          git push origin HEAD:codex/batch70-render-20261112
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: independent-early-card-replay
+          path: completion-output/
+          if-no-files-found: error
+          compression-level: 1
+          retention-days: 14
