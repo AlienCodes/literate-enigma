@@ -1,0 +1,1715 @@
+{
+  "schema": 1,
+  "kind": "authorized_intentional_gain_repair",
+  "article": "70",
+  "source_commit": "c9d52b26fe981ef8e4c412189ca289716ab8bf00",
+  "source_video_path": "最终版4K视频/70 - The Stamp That Changed the Post - 一枚邮票改变通信.mp4",
+  "source_decoded_float32_sha256": "16f996ce915d684c79923bf291430280c118c4af355b4ffc66931574715beed1",
+  "processed_float32_sha256": "0dc1c2f1d22942b5c7151cce81a29f45c06121737afcabd2646c5d9de9a52734",
+  "final_decoded_float32_sha256": "d906717192aa9b2c939b0db7e9e9e98875bb724dbe4134bdccb113b30c5cfb36",
+  "sample_rate": 48000,
+  "channels": 1,
+  "source_sample_frames": 6739968,
+  "processed_sample_frames": 6739968,
+  "final_sample_frames": 6739968,
+  "gain_windows": [
+    {
+      "sentence": "S12",
+      "phrase": "Mailings doubled",
+      "part": 1,
+      "core_start": 84.17,
+      "core_end": 85.3,
+      "start": 84.0,
+      "attack_end": 84.05,
+      "release_start": 85.48,
+      "end": 85.53,
+      "prior_end": 83.044,
+      "next_start": 85.72,
+      "gain_db": 2.2,
+      "smoothing": "raised-cosine",
+      "role": "suppressed-phrase-repair"
+    },
+    {
+      "sentence": "S13",
+      "phrase": "The design had a drawback.",
+      "core_start": 93.81,
+      "core_end": 95.34,
+      "start": 93.6,
+      "attack_end": 93.65,
+      "release_start": 95.5,
+      "end": 95.55,
+      "gain_db": 0.4,
+      "smoothing": "raised-cosine",
+      "role": "adjacent-short-sentence-balance"
+    }
+  ],
+  "selected_strategy": "B",
+  "target_expected_net_core_gain_db": 2.2,
+  "outside_mask_definition": "Union of every listed raised-cosine gain window, including overlaps.",
+  "pre_encoding_outside_windows_identical": true,
+  "outside_source_float32_sha256": "1dbbd0a54596003eb433666c69a52af947155d91f868a14db08839896dda6bb0",
+  "outside_processed_float32_sha256": "1dbbd0a54596003eb433666c69a52af947155d91f868a14db08839896dda6bb0",
+  "fade_window_peak_dbfs": {
+    "attack_dbfs": -300.0,
+    "release_dbfs": -164.82092818695222,
+    "extra_attack_dbfs": -300.0,
+    "extra_release_dbfs": -300.0
+  },
+  "source_fade_5_10ms_measurements": {
+    "attack": [
+      {
+        "window_ms": 5,
+        "start": 84.0,
+        "end": 84.005,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 84.005,
+        "end": 84.01,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 84.01,
+        "end": 84.015,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 84.015,
+        "end": 84.02,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 84.02,
+        "end": 84.025,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 84.025,
+        "end": 84.03,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 84.03,
+        "end": 84.035,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 84.035,
+        "end": 84.04,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 84.04,
+        "end": 84.045,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 84.045,
+        "end": 84.05,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 10,
+        "start": 84.0,
+        "end": 84.01,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 10,
+        "start": 84.01,
+        "end": 84.02,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 10,
+        "start": 84.02,
+        "end": 84.03,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 10,
+        "start": 84.03,
+        "end": 84.04,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 10,
+        "start": 84.04,
+        "end": 84.05,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      }
+    ],
+    "release": [
+      {
+        "window_ms": 5,
+        "start": 85.48,
+        "end": 85.485,
+        "rms_dbfs": -176.34887939320856,
+        "peak_dbfs": -164.82092818695222
+      },
+      {
+        "window_ms": 5,
+        "start": 85.485,
+        "end": 85.49,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 85.49,
+        "end": 85.495,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 85.495,
+        "end": 85.5,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 85.5,
+        "end": 85.505,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 85.505,
+        "end": 85.51,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 85.51,
+        "end": 85.515,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 85.515,
+        "end": 85.52,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 85.52,
+        "end": 85.525,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 5,
+        "start": 85.525,
+        "end": 85.53,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 10,
+        "start": 85.48,
+        "end": 85.49,
+        "rms_dbfs": -179.35917934984838,
+        "peak_dbfs": -164.82092818695222
+      },
+      {
+        "window_ms": 10,
+        "start": 85.49,
+        "end": 85.5,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 10,
+        "start": 85.5,
+        "end": 85.51,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 10,
+        "start": 85.51,
+        "end": 85.52,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      },
+      {
+        "window_ms": 10,
+        "start": 85.52,
+        "end": 85.53,
+        "rms_dbfs": -300.0,
+        "peak_dbfs": -300.0
+      }
+    ]
+  },
+  "all_windows_fade_5_10ms_measurements": [
+    {
+      "sentence": "S12",
+      "role": "suppressed-phrase-repair",
+      "attack": [
+        {
+          "window_ms": 5,
+          "start": 84.0,
+          "end": 84.005,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 84.005,
+          "end": 84.01,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 84.01,
+          "end": 84.015,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 84.015,
+          "end": 84.02,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 84.02,
+          "end": 84.025,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 84.025,
+          "end": 84.03,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 84.03,
+          "end": 84.035,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 84.035,
+          "end": 84.04,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 84.04,
+          "end": 84.045,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 84.045,
+          "end": 84.05,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 84.0,
+          "end": 84.01,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 84.01,
+          "end": 84.02,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 84.02,
+          "end": 84.03,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 84.03,
+          "end": 84.04,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 84.04,
+          "end": 84.05,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        }
+      ],
+      "release": [
+        {
+          "window_ms": 5,
+          "start": 85.48,
+          "end": 85.485,
+          "rms_dbfs": -176.34887939320856,
+          "peak_dbfs": -164.82092818695222
+        },
+        {
+          "window_ms": 5,
+          "start": 85.485,
+          "end": 85.49,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 85.49,
+          "end": 85.495,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 85.495,
+          "end": 85.5,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 85.5,
+          "end": 85.505,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 85.505,
+          "end": 85.51,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 85.51,
+          "end": 85.515,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 85.515,
+          "end": 85.52,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 85.52,
+          "end": 85.525,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 85.525,
+          "end": 85.53,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 85.48,
+          "end": 85.49,
+          "rms_dbfs": -179.35917934984838,
+          "peak_dbfs": -164.82092818695222
+        },
+        {
+          "window_ms": 10,
+          "start": 85.49,
+          "end": 85.5,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 85.5,
+          "end": 85.51,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 85.51,
+          "end": 85.52,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 85.52,
+          "end": 85.53,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        }
+      ]
+    },
+    {
+      "sentence": "S13",
+      "role": "adjacent-short-sentence-balance",
+      "attack": [
+        {
+          "window_ms": 5,
+          "start": 93.6,
+          "end": 93.605,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 93.605,
+          "end": 93.61,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 93.61,
+          "end": 93.615,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 93.615,
+          "end": 93.62,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 93.62,
+          "end": 93.625,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 93.625,
+          "end": 93.63,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 93.63,
+          "end": 93.635,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 93.635,
+          "end": 93.64,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 93.64,
+          "end": 93.645,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 93.645,
+          "end": 93.65,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 93.6,
+          "end": 93.61,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 93.61,
+          "end": 93.62,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 93.62,
+          "end": 93.63,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 93.63,
+          "end": 93.64,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 93.64,
+          "end": 93.65,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        }
+      ],
+      "release": [
+        {
+          "window_ms": 5,
+          "start": 95.5,
+          "end": 95.505,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 95.505,
+          "end": 95.51,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 95.51,
+          "end": 95.515,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 95.515,
+          "end": 95.52,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 95.52,
+          "end": 95.525,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 95.525,
+          "end": 95.53,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 95.53,
+          "end": 95.535,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 95.535,
+          "end": 95.54,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 95.54,
+          "end": 95.545,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 5,
+          "start": 95.545,
+          "end": 95.55,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 95.5,
+          "end": 95.51,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 95.51,
+          "end": 95.52,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 95.52,
+          "end": 95.53,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 95.53,
+          "end": 95.54,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        },
+        {
+          "window_ms": 10,
+          "start": 95.54,
+          "end": 95.55,
+          "rms_dbfs": -300.0,
+          "peak_dbfs": -300.0
+        }
+      ]
+    }
+  ],
+  "source_global_peak_dbfs": -0.4558820198645875,
+  "processed_global_peak_dbfs": -0.4558820198645875,
+  "final_global_peak_dbfs": -0.4562361330203182,
+  "source_core_peak_dbfs": -3.7649724117899694,
+  "final_core_peak_dbfs": -1.5700400323486097,
+  "achieved_core_gain_db": 2.1958340167379133,
+  "core_waveform_correlation": 0.9999921826629884,
+  "before_target_sentence": {
+    "sentence": "S12",
+    "start": 84.16616666666667,
+    "end": 92.83235416666666,
+    "raw_lufs": -21.723926614185434,
+    "effective_lufs": -21.723926614185434,
+    "parts": [
+      {
+        "part": 1,
+        "start": 84.17,
+        "end": 85.3,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0
+      },
+      {
+        "part": 2,
+        "start": 85.72,
+        "end": 92.83,
+        "raw_lufs": -21.78412266985292,
+        "effective_lufs": -21.78412266985292,
+        "peak_momentary_lufs": -16.7
+      }
+    ]
+  },
+  "after_target_sentence": {
+    "sentence": "S12",
+    "start": 84.16616666666667,
+    "end": 92.83235416666666,
+    "raw_lufs": -21.410325794934014,
+    "effective_lufs": -21.410325794934014,
+    "parts": [
+      {
+        "part": 1,
+        "start": 84.17,
+        "end": 85.3,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8
+      },
+      {
+        "part": 2,
+        "start": 85.72,
+        "end": 92.83,
+        "raw_lufs": -21.78412266985292,
+        "effective_lufs": -21.78412266985292,
+        "peak_momentary_lufs": -16.7
+      }
+    ]
+  },
+  "boundary_sensitivity": {
+    "offset_seconds": [
+      -0.04,
+      -0.02,
+      0,
+      0.02,
+      0.04
+    ],
+    "before": [
+      {
+        "start": 84.13,
+        "end": 85.25999999999999,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.13,
+        "end": 85.28,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.13,
+        "end": 85.3,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.13,
+        "end": 85.32,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.13,
+        "end": 85.34,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.15,
+        "end": 85.25999999999999,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.15,
+        "end": 85.28,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.15,
+        "end": 85.3,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.15,
+        "end": 85.32,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.15,
+        "end": 85.34,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.17,
+        "end": 85.25999999999999,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.17,
+        "end": 85.28,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.17,
+        "end": 85.3,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.17,
+        "end": 85.32,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.17,
+        "end": 85.34,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.19,
+        "end": 85.25999999999999,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.19,
+        "end": 85.28,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.19,
+        "end": 85.3,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.19,
+        "end": 85.32,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.19,
+        "end": 85.34,
+        "raw_lufs": -22.009212128726233,
+        "effective_lufs": -24.009212128726233,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.225089458873313,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.21000000000001,
+        "end": 85.25999999999999,
+        "raw_lufs": -22.17462377685249,
+        "effective_lufs": -24.17462377685249,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.3905011069995687,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.21000000000001,
+        "end": 85.28,
+        "raw_lufs": -22.17462377685249,
+        "effective_lufs": -24.17462377685249,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.3905011069995687,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.21000000000001,
+        "end": 85.3,
+        "raw_lufs": -22.17462377685249,
+        "effective_lufs": -24.17462377685249,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.3905011069995687,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.21000000000001,
+        "end": 85.32,
+        "raw_lufs": -22.17462377685249,
+        "effective_lufs": -24.17462377685249,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.3905011069995687,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.21000000000001,
+        "end": 85.34,
+        "raw_lufs": -22.17462377685249,
+        "effective_lufs": -24.17462377685249,
+        "peak_momentary_lufs": -21.0,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 2.3905011069995687,
+            "peak_difference_lu": 4.300000000000001,
+            "suppressed": true,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      }
+    ],
+    "after": [
+      {
+        "start": 84.13,
+        "end": 85.25999999999999,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.13,
+        "end": 85.28,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.13,
+        "end": 85.3,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.13,
+        "end": 85.32,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.13,
+        "end": 85.34,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.15,
+        "end": 85.25999999999999,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.15,
+        "end": 85.28,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.15,
+        "end": 85.3,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.15,
+        "end": 85.32,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.15,
+        "end": 85.34,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.17,
+        "end": 85.25999999999999,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.17,
+        "end": 85.28,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.17,
+        "end": 85.3,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.17,
+        "end": 85.32,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.17,
+        "end": 85.34,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.19,
+        "end": 85.25999999999999,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.19,
+        "end": 85.28,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.19,
+        "end": 85.3,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.19,
+        "end": 85.32,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.19,
+        "end": 85.34,
+        "raw_lufs": -19.809212128726237,
+        "effective_lufs": -21.809212128726237,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.025089458873317483,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.21000000000001,
+        "end": 85.25999999999999,
+        "raw_lufs": -19.97462377685249,
+        "effective_lufs": -21.97462377685249,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.19050110699956946,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.21000000000001,
+        "end": 85.28,
+        "raw_lufs": -19.97462377685249,
+        "effective_lufs": -21.97462377685249,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.19050110699956946,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.21000000000001,
+        "end": 85.3,
+        "raw_lufs": -19.97462377685249,
+        "effective_lufs": -21.97462377685249,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.19050110699956946,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.21000000000001,
+        "end": 85.32,
+        "raw_lufs": -19.97462377685249,
+        "effective_lufs": -21.97462377685249,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.19050110699956946,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      },
+      {
+        "start": 84.21000000000001,
+        "end": 85.34,
+        "raw_lufs": -19.97462377685249,
+        "effective_lufs": -21.97462377685249,
+        "peak_momentary_lufs": -18.8,
+        "comparisons": [
+          {
+            "neighbour_part": 2,
+            "effective_difference_lu": 0.19050110699956946,
+            "peak_difference_lu": 2.1000000000000014,
+            "suppressed": false,
+            "adjacent_difference_exceeds": false
+          }
+        ]
+      }
+    ],
+    "before_finding_stable": true,
+    "after_pass_stable": true
+  },
+  "aac": {
+    "codec": "aac",
+    "bitrate": 256000,
+    "requested_bitrate": 256000,
+    "original_bitrate": 120410,
+    "packet_timings_identical": true,
+    "aligned_lag_samples": 0,
+    "lag_correlation": {
+      "-8": 0.802174130163859,
+      "-7": 0.823004306751478,
+      "-6": 0.8382421459173496,
+      "-5": 0.8529743946807368,
+      "-4": 0.8747097252214668,
+      "-3": 0.9084020702043311,
+      "-2": 0.9501763253621347,
+      "-1": 0.9859218207223863,
+      "0": 0.9999984873709111,
+      "1": 0.9858489314882991,
+      "2": 0.9498124200010929,
+      "3": 0.9078291367050594,
+      "4": 0.8744057158637132,
+      "5": 0.8534904650496873,
+      "6": 0.8395149476089482,
+      "7": 0.8242675044317347,
+      "8": 0.8029840406447328
+    },
+    "outside_windows_snr_db": 54.77521457986809,
+    "outside_windows_correlation": 0.9999983363350262,
+    "outside_windows_quality_passed": true,
+    "sample_alignment_passed": true,
+    "decoded_tail_sample_delta": 0,
+    "tail_delta_note": "At most one AAC padding frame after >0.8s silence; no spoken samples removed.",
+    "outside_final_pcm_identical": false,
+    "note": "Only pre-encoding PCM outside the gain window is bit-identical. Final AAC is re-encoded; its outside-window quantization differences are measured, not hidden."
+  },
+  "video": {
+    "all_coded_pictures_identical": true,
+    "packet_timings_identical": true,
+    "input_coded_sha256": "74fe489e8fef7b90c0b123b91857fa2aa4715f7931ae21659585d706b775ce75",
+    "final_coded_sha256": "74fe489e8fef7b90c0b123b91857fa2aa4715f7931ae21659585d706b775ce75",
+    "input_packet_timing_sha256": "2018c57404884fb6093ec537bde96dc5f24e301775b13bf8a9a7cfbd077cd706",
+    "final_packet_timing_sha256": "2018c57404884fb6093ec537bde96dc5f24e301775b13bf8a9a7cfbd077cd706",
+    "input_rendered_video_sha256": "ac8b67613d2d7a247542e1c8d5426d4fc954a1d1b94fcf4a61b7991e0b598794"
+  },
+  "numerical_audio_checks_passed": true,
+  "before_health_metrics": {
+    "削波": [
+      0,
+      ""
+    ],
+    "直流偏移": [
+      6.433355207544207e-05,
+      "第5句"
+    ],
+    "咔哒": [
+      1.1268601979359727,
+      "第9句"
+    ],
+    "句尾截断": [
+      -54.309637512438236,
+      "第4句"
+    ],
+    "句首突起": [
+      -43.902330752210275,
+      "第11句"
+    ],
+    "齿音": [
+      1.98520033959133,
+      "第12句"
+    ],
+    "音色突变": [
+      0.297354939859483,
+      "第10句"
+    ],
+    "语速突变": [
+      0.36707667405981614,
+      "第10句"
+    ]
+  },
+  "after_health_metrics": {
+    "削波": [
+      0,
+      ""
+    ],
+    "直流偏移": [
+      5.350556300595031e-05,
+      "第10句"
+    ],
+    "咔哒": [
+      1.1254710457133226,
+      "第9句"
+    ],
+    "句尾截断": [
+      -54.5331336000106,
+      "第13句"
+    ],
+    "句首突起": [
+      -43.900494781249805,
+      "第11句"
+    ],
+    "齿音": [
+      1.976987254936887,
+      "第12句"
+    ],
+    "音色突变": [
+      0.29735566422851223,
+      "第10句"
+    ],
+    "语速突变": [
+      0.36707667405981614,
+      "第10句"
+    ]
+  },
+  "canonical_tool_sha256": {
+    "响度一致性核对.py": "2bb89e427ec014a7fc1b4cc46ea6a11f91a786930f91e8cec720e0307940b85b",
+    "音频体检.py": "708a28bb13a270e250e2ba1354cd3856beac29f183e84e6f5bf469fe0ccb8757",
+    "音频体检基准.json": "5624187514c9ad391f155a315d771de4770ad64027a9ab05e416bedadcb2c7d1"
+  },
+  "audio_audit_report_sha256": "74f378f00338eb75924915d8df8b605c119eb747be3f8794559954cd900453d6",
+  "target_speech_check_sha256": "75c834cf280034bf53a65c62db10b5844a8f9ee7bb1afdbae644a3151c468e9f",
+  "asr_new_discrepancies": [],
+  "additional_speech_checks": [
+    {
+      "sentence": "S13",
+      "report": "70-S13-speech-check.json",
+      "sha256": "8e0a6d5c47a32e4d1aeff86a869bfb6ffa1185a11ddd93e4bcaa9c118111e83a",
+      "new_discrepancies": []
+    }
+  ],
+  "final_video_sha256": "49dbcbd57d7ccf542eda3798355707026305c281053bd5e472a77227c5485c79",
+  "no_clipped_samples": true
+}
