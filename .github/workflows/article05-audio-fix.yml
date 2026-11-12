@@ -1,0 +1,53 @@
+name: 05音频专项：实际声音诊断
+on:
+  push:
+    branches: [codex/article05-audio-20261112]
+    paths: ['.github/video05fix/**', '.github/workflows/article05-audio-fix.yml']
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: article05-audio-only
+  cancel-in-progress: false
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: /.github/video05fix/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+          restore-keys: completion-05-machine-
+      - uses: actions/download-artifact@v4
+        with:
+          name: diagnostics05
+          path: previous-diagnostics/
+          github-token: ${{ github.token }}
+          run-id: 43294745262
+      - name: 分析实际声音与导出文字证据
+        run: |
+          python -m pip install --quiet numpy==2.2.6
+          python -u .github/video05fix/inspect.py
+      - name: 保存诊断到05独立分支
+        if: always()
+        run: |
+          git add --sparse -- article05-diagnostics
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '05：导出实际音频与原有核查诊断'
+          git push origin HEAD:codex/article05-audio-20261112
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Article05-audio-evidence
+          path: article05-diagnostics/
+          retention-days: 30
