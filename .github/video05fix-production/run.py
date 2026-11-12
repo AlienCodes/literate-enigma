@@ -25,6 +25,15 @@ def run(args,cwd=W,env=E,log="run.log"):
 def md5(p):return hashlib.md5(Path(p).read_bytes()).hexdigest()[:12]
 try:
     assert (W/"work_05/a.wav").exists(),"The original 05 machine cache was not restored."
+    # Restored logs describe the OLD failed attempt. Keep them only internally;
+    # a failure below must report current checks rather than stale cached logs.
+    history=LOG/"restored-history";history.mkdir(exist_ok=True)
+    for group in ("做_05","定稿_05"):
+        if (W/group).exists():
+            destination=history/group
+            if destination.exists():shutil.rmtree(destination)
+            shutil.move(str(W/group),str(destination))
+    status["restored_old_logs_kept_internal"]=True
     # Fonts required by canonical checks; the work cache already includes all models.
     target=ROOT/"视频/资源/字体"
     if not target.exists():
@@ -89,23 +98,6 @@ print("27实际缓存预检：原a.wav、分段.json逐字节相同；67屏每�
 """
     run(["python3","-c",regression_code],env={**E,"XG_NO":"27"},log="preflight-original-regression27.log")
     status["preflight_three_real_input_checks_passed"]=True
-    # Reuse only our own previously successful cache of the real canonical
-    # stamp, and always validate it with the original checker first.
-    stamp_check=subprocess.run(["python3",str(T/"新管/印章.py")],cwd=W,env=E,
-        stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
-    reuse_stamp=E.get("VIDEO05_FASTCHECK_CACHE_HIT")=="true" and stamp_check.returncode==0
-    if not reuse_stamp:
-        run(["python3",T/"新管/快测.py"],env={**E,"XG_NO":"27"},log="canonical-full-quicktest.log")
-    run(["python3",T/"新管/印章.py"],log="canonical-fastcheck-stamp-verification.log")
-    stamp_path=T/"新管/快测通过.json"
-    status["canonical_fastcheck"]={
-        "passed":True,"reused_verified_canonical_stamp":reuse_stamp,
-        "stamp_sha256":hashlib.sha256(stamp_path.read_bytes()).hexdigest(),
-        "programs":len(json.loads(stamp_path.read_text())["程序"]),
-        "only_stamp_cached":True}
-    save()
-    if os.environ.get("GITHUB_OUTPUT"):
-        with open(os.environ["GITHUB_OUTPUT"],"a") as f:f.write("fastcheck_passed=true\n")
     current=W/"scripts/05.json";d=json.loads(current.read_text());startfp=md5(W/"work_05/a.wav")
     status["audio_input_md5"]=startfp;save()
     assert startfp=="1e25fbe69f6f",("Unexpected restored audio",startfp)
@@ -120,7 +112,7 @@ print("27实际缓存预检：原a.wav、分段.json逐字节相同；67屏每�
     # First reproduce the UNCHANGED full script as a strict positive control.
     (bw/"scripts/05.json").write_text(json.dumps(d,ensure_ascii=False,indent=1)+"\n")
     run(["python3","make_video.py","scripts/05.json","05-current-control.mp4"],cwd=bw,
-        env={**E,"AUDIO_ONLY":"1","XG_WORK":str(bw)},log="reproduce-current-control.log")
+        env={**E,"AUDIO_ONLY":"1","XG_WORK":str(bw),"CACHE_LOG":str(LOG/"05-protected-cache.keys")},log="reproduce-current-control.log")
     controlfp=md5(bw/"work_05/a.wav");status["reproduced_current_control_md5"]=controlfp;save()
     assert controlfp==startfp,"The original current voice did not reproduce; stop before migrating any evidence."
     # The current positive control passed. The presumed historical pre-boost
@@ -180,6 +172,33 @@ proof={"texts_compared":len(texts),"actual_phoneme_streams_identical":before==af
     rep=json.loads((M/"qc_independent/report2_05.json").read_text())
     assert not rep["extra_runs"],"Fresh audit found unexplained sound; do not confirm."
     assert min(t["anchor_ncc"] for t in rep["texts"])>.99999,"Reference does not match current original voice."
+    # Diagnose the exact original K125 before another full quicktest.
+    # Keep all raw source/reference/model material on this runner.
+    status["stage"]="k125-source-reference-diagnosis";save()
+    diagnostic_path=ROOT/".github/video05fix-production/diagnose_k125.py"
+    diagnostic_spec=importlib.util.spec_from_file_location("article05_k125_diagnosis",diagnostic_path)
+    diagnostic=importlib.util.module_from_spec(diagnostic_spec);diagnostic_spec.loader.exec_module(diagnostic)
+    status["k125_diagnosis"]=diagnostic.diagnose(ROOT,M,W,T,LOG,E)
+    save()
+    if status["k125_diagnosis"]["original"]["canonical_selftest_errors"]:
+        raise RuntimeError("The original K125 fixture failed; scalar in-place source/reference evidence collected. Stop before another full quicktest or any 05 production.")
+    # Reuse only our own previously successful cache of the real canonical
+    # stamp, and always validate it with the original checker first.
+    stamp_check=subprocess.run(["python3",str(T/"新管/印章.py")],cwd=W,env=E,
+        stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
+    reuse_stamp=E.get("VIDEO05_FASTCHECK_CACHE_HIT")=="true" and stamp_check.returncode==0
+    if not reuse_stamp:
+        run(["python3",T/"新管/快测.py"],env={**E,"XG_NO":"27"},log="canonical-full-quicktest.log")
+    run(["python3",T/"新管/印章.py"],log="canonical-fastcheck-stamp-verification.log")
+    stamp_path=T/"新管/快测通过.json"
+    status["canonical_fastcheck"]={
+        "passed":True,"reused_verified_canonical_stamp":reuse_stamp,
+        "stamp_sha256":hashlib.sha256(stamp_path.read_bytes()).hexdigest(),
+        "programs":len(json.loads(stamp_path.read_text())["程序"]),
+        "only_stamp_cached":True}
+    save()
+    if os.environ.get("GITHUB_OUTPUT"):
+        with open(os.environ["GITHUB_OUTPUT"],"a") as f:f.write("fastcheck_passed=true\n")
     renew={
       "S5 raw 10.6300-10.9170":("紧贴词头的非人声",[-56.6,-47.8,-35.9,0,0],
         "markers词尾擦音在raw10.625已到-55.1dB；删除段主要为换气（重心中位2.84kHz、周期0.207、150Hz以下-16.4dB），末端夹低频噗声。whose的/h/在保留侧raw10.92起逐渐增强；独立复核没有词头切失。"),
@@ -239,15 +258,6 @@ proof={"texts_compared":len(texts),"actual_phoneme_streams_identical":before==af
     c=d["sentences"][-1]["chunks"][-1];note=(c.get("note") or "").split("（简述：",1)[0].rstrip()
     c["note"]=(note+"\n" if note else "")+"（简述："+''.join("▸"+a+"："+b for a,b in points)+"）"
     current.write_text(json.dumps(d,ensure_ascii=False,indent=1)+"\n")
-    # Restored logs describe the OLD failed attempt. Keep them only internally;
-    # a failure below must report current checks rather than stale cached logs.
-    history=LOG/"restored-history";history.mkdir(exist_ok=True)
-    for group in ("做_05","定稿_05"):
-        if (W/group).exists():
-            destination=history/group
-            if destination.exists():shutil.rmtree(destination)
-            shutil.move(str(W/group),str(destination))
-    status["restored_old_logs_kept_internal"]=True
     run(["bash",T/"新管/做.sh","05","--不推"],log="canonical-draft.log")
     run(["bash",T/"新管/定稿.sh","05"],log="canonical-final4K.log")
     for group in ("做_05","定稿_05"):
