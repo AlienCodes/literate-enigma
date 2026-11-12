@@ -197,7 +197,7 @@ def allowed_file(name, role, no):
     if name in {f"{no}-script.json", f"{no}-verification.json", f"{no}-body-matching.json"}:
         return True
     if any(name == f"{no}-{kind}{suffix}"
-           for kind in ("audio-audit", "audio-repair", "target-speech-check", "candidate-comparison")
+           for kind in ("audio-audit", "before-audio-audit", "audio-repair", "target-speech-check", "candidate-comparison")
            for suffix in (".json", ".md")):
         return True
     if re.fullmatch(no + r"-S[1-9]\d*-speech-check\.json", name):
