@@ -1,0 +1,48 @@
+name: 现成69篇只读整合验证：原collector不改规则
+on:
+  push:
+    branches: [codex/verify69-artifacts-20261112]
+    paths: ['.github/verify69/**', '.github/workflows/verify69.yml']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: verify-existing69-artifacts-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          fetch-depth: 1
+          sparse-checkout: |
+            /.github/verify69/
+            /.github/video-batch/
+            /CLAUDE.md
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 仅准备只读成片核验工具
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          git fetch --no-tags --depth=1 --filter=blob:none origin c9d52b26fe981ef8e4c412189ca289716ab8bf00
+          python -m py_compile .github/verify69/run.py .github/video-batch/collect.py .github/video-batch/download_reviewed.py
+      - name: 现成69产物通过未修改collector只读入口
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -u .github/verify69/run.py
+      - name: 只保存精简汇总与首个接口错误日志
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: existing69-readonly-collector-report
+          path: |
+            verify69-report/summary.json
+            verify69-report/collector.log
+          retention-days: 14
+          if-no-files-found: error
