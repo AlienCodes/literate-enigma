@@ -1,0 +1,93 @@
+name: 67和70篇局部补响及4K最终核验
+on:
+  push:
+    branches: [codex/audio-fix67-70-20261112]
+    paths: ['.github/audio-fix/**', '.github/workflows/audio-fix67-70.yml']
+permissions:
+  contents: write
+jobs:
+  local-repairs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.github/audio-fix/
+            /.github/video-batch/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/audio-audit-models
+          key: audio-audit-models-c9d52b-v1
+      - name: 安装渲染及相同审计依赖
+        id: prepare
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet numpy==2.2.6 scipy==1.17.1 soundfile==0.14.0 sherpa-onnx==2.0.0 kokoro-onnx==0.6.1 pillow==12.3.0
+          git fetch --no-tags --depth=1 --filter=blob:none origin c9d52b26fe981ef8e4c412189ca289716ab8bf00
+          python -m py_compile .github/audio-fix/run.py .github/audio-fix/audit_audio.py .github/video-batch/run.py
+      - name: 第67篇边界诊断、局部补响与全部核验
+        id: repair67
+        run: python -u .github/audio-fix/run.py 67
+      - name: 第70篇边界诊断、局部补响与全部核验
+        id: repair70
+        if: always() && steps.prepare.outcome == 'success'
+        run: python -u .github/audio-fix/run.py 70
+      - name: 保存可审核QC文本
+        if: always()
+        env:
+          REPAIR67: ${{ steps.repair67.outcome }}
+          REPAIR70: ${{ steps.repair70.outcome }}
+        run: |
+          python - <<'PY'
+          import os,pathlib,shutil
+          for no in ('67','70'):
+              source=pathlib.Path('audio-repair-final')/no
+              target=pathlib.Path('音频专项修复/67-70_20261112')/no
+              target.mkdir(parents=True,exist_ok=True)
+              for parent in (source,pathlib.Path('audio-repair-work')/no):
+                  if parent.exists():
+                      for p in parent.rglob('*'):
+                          if p.is_file() and p.suffix in ('.json','.md') and 'rendered' not in p.parts:
+                              q=target/p.name
+                              shutil.copy2(p,q)
+              if os.environ['REPAIR'+no]=='success':
+                  for p in source.glob('*'):
+                      if p.suffix in ('.mp4','.png'):
+                          shutil.copy2(p,target/p.name)
+          PY
+          git add --sparse -- 音频专项修复
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '记录67和70篇局部补响实测与已通过成品'
+          git push origin HEAD:codex/audio-fix67-70-20261112
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.repair67.outcome == 'success'
+        with:
+          name: reviewed-video-67
+          path: audio-repair-final/67/
+          if-no-files-found: error
+          retention-days: 90
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.repair70.outcome == 'success'
+        with:
+          name: reviewed-video-70
+          path: audio-repair-final/70/
+          if-no-files-found: error
+          retention-days: 90
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: local-repair-QC-text-only
+          path: |
+            audio-repair-final/**/*.json
+            audio-repair-final/**/*.md
+            audio-repair-work/**/*audio-audit.json
+            audio-repair-work/**/*boundary-sensitivity.json
+          if-no-files-found: warn
+          retention-days: 14
