@@ -1,0 +1,57 @@
+name: 05篇完整制作与音频修复
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/video05/**', '.github/workflows/complete-video05.yml']
+permissions:
+  contents: read
+jobs:
+  article05:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.github/video-completion/
+            /.github/video05/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-${{ github.run_id }}
+          restore-keys: completion-05-machine-
+      - name: 安装工具
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+      - name: 制作与核查
+        run: python -u .github/video05/run.py
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-${{ github.run_id }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: diagnostics05
+          path: diagnostics05/
+          compression-level: 1
+          if-no-files-found: error
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: video-05
+          path: completion-output/
+          if-no-files-found: error
+          retention-days: 90
