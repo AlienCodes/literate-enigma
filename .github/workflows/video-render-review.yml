@@ -41,7 +41,7 @@ jobs:
           git add --sparse pilot-review
           if ! git diff --cached --quiet; then
             git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '保存末页四类型核验和转场前后对比'
-            git pull --rebase origin codex/batch70-render-20261112
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' pull --rebase origin codex/batch70-render-20261112
             git push origin HEAD:codex/batch70-render-20261112
           fi
       - uses: actions/upload-artifact@v4
