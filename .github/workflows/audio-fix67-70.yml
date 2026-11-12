@@ -51,15 +51,16 @@ jobs:
               source=pathlib.Path('audio-repair-final')/no
               target=pathlib.Path('音频专项修复/67-70_20261112')/no
               target.mkdir(parents=True,exist_ok=True)
-              for parent in (source,pathlib.Path('audio-repair-work')/no):
+              for parent in (pathlib.Path('audio-repair-work')/no,pathlib.Path('audio-repair-work')/(no+'-A'),pathlib.Path('audio-repair-work')/(no+'-B'),pathlib.Path('audio-repair-final')/(no+'-A'),pathlib.Path('audio-repair-final')/(no+'-B')):
                   if parent.exists():
                       for p in parent.rglob('*'):
                           if p.is_file() and p.suffix in ('.json','.md') and 'rendered' not in p.parts:
-                              q=target/p.name
+                              q=target/'diagnostics'/parent.name/p.relative_to(parent)
+                              q.parent.mkdir(parents=True,exist_ok=True)
                               shutil.copy2(p,q)
-              if os.environ['REPAIR'+no]=='success':
+              if source.exists():
                   for p in source.glob('*'):
-                      if p.suffix in ('.mp4','.png'):
+                      if p.suffix in ('.json','.md') or (os.environ['REPAIR'+no]=='success' and p.suffix in ('.mp4','.png')):
                           shutil.copy2(p,target/p.name)
           PY
           git add --sparse -- 音频专项修复

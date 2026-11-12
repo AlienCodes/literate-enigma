@@ -134,13 +134,19 @@ def render_card(no, data, width, height, destination):
     return {'font_px': size, 'lines': len(lines), 'items': len(first), 'max_text_width': max_width}
 
 
-def get_renderer(data):
+def get_renderer(data, reference_commit=None):
+    reference_commit = reference_commit or BASE
     os.environ['VIDEO_S'] = '2'
-    spec = importlib.util.spec_from_file_location('body_render', ROOT / '视频/工具/render.py')
+    cache = Path(os.environ.get('RUNNER_TEMP', str(ROOT / 'work')))
+    cache.mkdir(parents=True, exist_ok=True)
+    baseline_render = cache / f'source-render-{reference_commit}.py'
+    if not baseline_render.exists():
+        baseline_render.write_text(get(['git', 'show', reference_commit + ':视频/工具/render.py']))
+    spec = importlib.util.spec_from_file_location('body_render', baseline_render)
     r = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(r)
     r.F = str(ROOT / '视频/工具/fonts') + '/'
-    tree = ast.parse((ROOT / '视频/工具/make_video.py').read_text())
+    tree = ast.parse(get(['git', 'show', reference_commit + ':视频/工具/make_video.py']))
     node = next(n.value for n in tree.body if isinstance(n, ast.Assign)
                 and any(isinstance(t, ast.Name) and t.id == 'T' for t in n.targets)
                 and isinstance(n.value, ast.Call) and isinstance(n.value.func, ast.Name)
@@ -152,6 +158,45 @@ def get_renderer(data):
 
 
 TW, TH = 384, 216
+
+# These two source videos predate the later note-only bullet-format commits.
+# Their exact video-producing scripts/renderers are retained solely as pixel references.
+PICTURE_REFERENCES = {
+    '67': '35f90ba0552524301ce93831279155aa1984a61e',
+    '69': 'a140726316c4f918d57534e27dbdce0282583e16',
+}
+
+
+def picture_reference(no, source, data, total_frames):
+    commit = PICTURE_REFERENCES.get(no)
+    if not commit:
+        return data, BASE
+    available = subprocess.run(['git', 'cat-file', '-e', commit + '^{commit}'],
+                               capture_output=True).returncode == 0
+    if not available:
+        command(['git', 'fetch', '--no-tags', '--depth=1', '--filter=blob:none', 'origin', commit])
+    historical = json.loads(get(['git', 'show', commit + f':视频/脚本/{no}.json']))
+    current_chunks = data['sentences'][-1]['chunks']
+    old_chunks = historical['sentences'][-1]['chunks']
+    assert len(current_chunks) == len(old_chunks)
+    for current, old in zip(current_chunks, old_chunks):
+        for field in ('en', 'zh', 'align'):
+            assert current[field] == old[field], (no, 'Historical body differs.', field)
+        assert (current.get('note') or '').split('（简述：', 1)[0].rstrip() == (old.get('note') or '').split('（简述：', 1)[0].rstrip()
+    paths = get(['git', '-c', 'core.quotepath=off', 'ls-tree', '-rz', '--name-only', commit]).split('\0')
+    videos = [p for p in paths if p.startswith('最终版4K视频/' + no + ' - ') and p.endswith('.mp4')]
+    assert len(videos) == 1
+    reference_blob = get(['git', 'rev-parse', commit + ':' + videos[0]]).strip()
+    source_blob = get(['git', 'hash-object', source]).strip()
+    if source_blob != reference_blob:
+        # A separately corrected audio track may change the container; its
+        # encoded video must still be exactly the historical source pictures.
+        reference = OUT / f'{no}-historical-video-check.mp4'
+        with reference.open('wb') as f:
+            command(['git', 'show', commit + ':' + videos[0]], stdout=f)
+        assert coded_frames_hash(source, total_frames) == coded_frames_hash(reference, total_frames)
+        reference.unlink()
+    return historical, commit
 
 
 def thumb(path):
@@ -193,18 +238,21 @@ def thumbnail_frames(source, start):
 
 def find_old_summary(no, source, data, total_frames, transition_frame):
     """Classify the actual pixels, including older videos with an inline summary."""
+    data, reference_commit = picture_reference(no, source, data, total_frames)
     old_note = data['sentences'][-1]['chunks'][-1].get('note') or ''
     if '（简述：' not in old_note:
         return {'kind': 'absent', 'change_start': transition_frame, 'crop_height': 2144}
     old_summary = old_note[old_note.index('（简述：'):]
-    r = get_renderer(data)
+    r = get_renderer(data, reference_commit)
     background = r.bg()
     bg_thumb = np.asarray(background.resize((TW, TH), Image.Resampling.BOX))[:TH-2]
-    old_card = OUT / f'{no}-old-summary-reference.png'
-    r.frame_简述(old_summary, 1, old_card)
-    card_ref = thumb(old_card)
-    card_mask = np.max(np.abs(card_ref.astype(np.int16) - bg_thumb.astype(np.int16)), axis=2) > 8
-    last_score = score(frame_thumb(source, total_frames-1), card_ref, card_mask)
+    last_score = float('inf')
+    if hasattr(r, 'frame_简述'):
+        old_card = OUT / f'{no}-old-summary-reference.png'
+        r.frame_简述(old_summary, 1, old_card)
+        card_ref = thumb(old_card)
+        card_mask = np.max(np.abs(card_ref.astype(np.int16) - bg_thumb.astype(np.int16)), axis=2) > 8
+        last_score = score(frame_thumb(source, total_frames-1), card_ref, card_mask)
     if last_score < 8:
         start = max(0, total_frames - 210)
         scores = [(f, score(a, card_ref, card_mask)) for f, a in thumbnail_frames(source, start)]
@@ -214,6 +262,7 @@ def find_old_summary(no, source, data, total_frames, transition_frame):
         assert first > start and good == list(range(first, total_frames)), 'Old card is not one contiguous final page.'
         return {'kind': 'standalone', 'old_card_start': first,
                 'change_start': min(first, transition_frame), 'crop_height': 2144,
+                'reference_commit': reference_commit,
                 'reference_score': last_score, 'old_card_match_max': max(s for f,s in scores if f>=first)}
 
     # Preserve the original layout calculation. Record where the old summary
@@ -229,7 +278,7 @@ def find_old_summary(no, source, data, total_frames, transition_frame):
         es = min(es, float(cap) * r.S)
     r.ES_FIXED = es
     first_line = old_summary.split('\n')[0]
-    shown = r.简条显示(first_line)
+    shown = getattr(r, '简条显示', lambda line: line)(first_line)
     heading = shown[:shown.index('：')+1] if '▸' in first_line and '：' in shown else shown
     refs = []
     erase_y = None
@@ -286,6 +335,7 @@ def find_old_summary(no, source, data, total_frames, transition_frame):
         'matches': matches[pos:],
     }, ensure_ascii=False, indent=2))
     return {'kind': 'inline', 'change_start': first, 'patch': str(patch_path),
+            'reference_commit': reference_commit,
             'crop_height': erase_y, 'font_px_preserved': es,
             'match_max': max(v for f,v,i in matches[pos+1:]),
             'previous_frame_score': matches[pos][1]}
@@ -452,3 +502,4 @@ if __name__ == '__main__':
     os.chdir(ROOT)
     OUT.mkdir(exist_ok=True)
     end_card(no)
+
