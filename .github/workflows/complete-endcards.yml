@@ -2,12 +2,32 @@ name: 20篇简述末页：原片配色与逐帧核验
 on:
   push:
     branches: [codex/finish-05-and-summaries-20261112]
-    paths: ['.github/video-completion-final/**', '.github/workflows/complete-endcards.yml']
+    paths: ['.github/video-completion-final/request.json']
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      articles: ${{ steps.choose.outputs.articles }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: /.github/video-completion-final/
+          sparse-checkout-cone-mode: false
+      - id: choose
+        run: |
+          python - <<'PYTHON' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          p = Path('.github/video-completion-final/request.json')
+          articles = json.loads(p.read_text())['articles']
+          print('articles=' + json.dumps(articles))
+          PYTHON
   produce:
+    needs: plan
     name: 第${{ matrix.article }}篇
     runs-on: ubuntu-latest
     timeout-minutes: 120
@@ -15,7 +35,7 @@ jobs:
       fail-fast: false
       max-parallel: 20
       matrix:
-        article: ['01', '02', '03', '04', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '22']
+        article: ${{ fromJson(needs.plan.outputs.articles) }}
     steps:
       - uses: actions/checkout@v4
         with:

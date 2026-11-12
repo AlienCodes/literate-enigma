@@ -121,7 +121,8 @@ def end_card(no):
              '-pix_fmt', vs['pix_fmt'], '-profile:v', 'high', '-level:v', '5.1', tail])
     concat = OUT / f'{no}.ffconcat'
     concat.write_text("ffconcat version 1.0\nfile '" + str(source) + "'\nfile '" + str(tail) + "'\n")
-    final = OUT / f'{no} - {data["title_en"]} - {data["title_zh"]}.mp4'
+    safe_title = data['title_en'].replace(':', '：')
+    final = OUT / f'{no} - {safe_title} - {data["title_zh"]}.mp4'
     # The complete original video is copied. Its original audio track is copied once.
     # Adding a silent end page does not decode/re-encode or cut the existing programme.
     command(['ffmpeg', '-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', concat,
