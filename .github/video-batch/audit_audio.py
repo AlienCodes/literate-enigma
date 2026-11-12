@@ -189,7 +189,12 @@ def audit(no, video=None, out_dir=None, asr=False, baseline_only=False):
                 'summary': summary0, 'global_lufs': I0, 'failures': bad0,
                 'note': 'Unmodified canonical check skips the first 9 seconds; the independent mapping below also inspects S1.'}
             report['failures'] += [msg for _, msg in bad0]
-            spans = measured_spans(a)
+            report['relative_threshold_voice_spans'] = measured_spans(a)
+            # Use the canonical health check's absolute near-zero pauses. A relative
+            # -50 dB threshold can add a false break around a quiet phrase (66 S18,
+            # 67 S18); never merge or discard parts just to force the count.
+            spans = [(s / R.SR, e / R.SR) for s, e in Q.句段(a)]
+            report['sentence_mapping_method'] = 'Canonical audio-health 句段: >=0.7s at abs(sample)<1e-6'
             report['measured_voice_spans'] = spans
             report['expected_title_plus_sentences'] = len(data['sentences']) + 1
             report['sentence_mapping_valid'] = len(spans) == len(data['sentences']) + 1
