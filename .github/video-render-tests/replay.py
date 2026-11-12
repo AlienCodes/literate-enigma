@@ -31,16 +31,18 @@ def replay():
     r.end_card('03')
     fixture_report=json.loads((r.OUT/'03-verification.json').read_text())
     fixture_video=next(r.OUT.glob('*.mp4'))
-    env={**os.environ,'GIT_INDEX_FILE':str(ROOT/'pilot-fixture.index'),
-         'GIT_AUTHOR_NAME':'Timing replay','GIT_AUTHOR_EMAIL':'timing-replay@example.invalid',
+    env={**os.environ,'GIT_AUTHOR_NAME':'Timing replay','GIT_AUTHOR_EMAIL':'timing-replay@example.invalid',
          'GIT_COMMITTER_NAME':'Timing replay','GIT_COMMITTER_EMAIL':'timing-replay@example.invalid'}
-    r.command(['git','read-tree',r.BASE],env=env)
-    for destination,path in [(fixture_report['source'],fixture_video),
-                             ('视频/脚本/03.json',r.OUT/'03-script.json')]:
-        blob=r.get(['git','hash-object','-w',path]).strip()
-        r.command(['git','update-index','--add','--cacheinfo',f'100644,{blob},{destination}'],env=env)
-    tree=r.command(['git','write-tree'],env=env,capture_output=True,text=True).stdout.strip()
-    commit=r.command(['git','commit-tree',tree,'-m','Temporary old-independent-page fixture'],
+    video_blob=r.get(['git','hash-object','-w',fixture_video]).strip()
+    script_blob=r.get(['git','hash-object','-w',r.OUT/'03-script.json']).strip()
+    def tree(entries):
+        payload=''.join(f'{mode} {kind} {sha}\t{name}\0' for mode,kind,sha,name in entries)
+        return r.command(['git','mktree','-z'],input=payload,capture_output=True,text=True).stdout.strip()
+    videos=tree([('100644','blob',video_blob,Path(fixture_report['source']).name)])
+    scripts=tree([('100644','blob',script_blob,'03.json')])
+    video=tree([('040000','tree',scripts,'脚本')])
+    root=tree([('040000','tree',videos,'最终版4K视频'),('040000','tree',video,'视频')])
+    commit=r.command(['git','commit-tree',root,'-m','Temporary old-independent-page fixture'],
                      env=env,capture_output=True,text=True).stdout.strip()
     r.BASE=commit
     r.OUT=ROOT/'completion-output/independent-early-replay'
