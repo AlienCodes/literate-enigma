@@ -123,24 +123,44 @@ def end_card(no):
              '-t', '2.6', '-an', '-c:v', 'libx264', '-preset', 'fast', '-crf', '16', '-threads', '2',
              '-pix_fmt', vs['pix_fmt'], '-profile:v', 'high', '-level:v', '5.1', tail])
     concat = OUT / f'{no}.ffconcat'
-    concat.write_text("ffconcat version 1.0\nfile '" + str(source) + "'\nfile '" + str(tail) + "'\n")
+    concat.write_text("ffconcat version 1.0\nfile '" + str(source) + "'\nduration " + vs["duration"] + "\nfile '" + str(tail) + "'\n")
     safe_title = data['title_en'].replace(':', '：')
     final = OUT / f'{no} - {safe_title} - {data["title_zh"]}.mp4'
     # The complete original video is copied. Its original audio track is copied once.
     # Adding a silent end page does not decode/re-encode or cut the existing programme.
     command(['ffmpeg', '-v', 'error', '-y', '-copyts', '-f', 'concat', '-safe', '0', '-i', concat,
              '-i', source, '-map', '0:v:0', '-map', '1:a:0', '-c', 'copy', '-avoid_negative_ts', 'disabled', '-movflags', '+faststart', final])
-    before = frame_hashes(source)
-    after = frame_hashes(final)
-    assert after[:len(before)] == before, 'An original decoded frame changed.'
-    assert len(after) > len(before), 'End page is missing.'
     def packet_times(path, stream):
         args = ['ffprobe', '-v', 'error', '-select_streams', stream, '-show_packets',
                 '-show_entries', 'packet=pts_time,dts_time,duration_time', '-of', 'json', path]
         return json.loads(get(args))['packets']
+    old_v = packet_times(source, 'v:0')
+    for attempt in range(3):
+        new_v = packet_times(final, 'v:0')
+        delta = float(new_v[0]['pts_time']) - float(old_v[0]['pts_time'])
+        if abs(delta) < 0.00001:
+            break
+        print('Correcting mux video timestamp offset:', delta, flush=True)
+        fixed = OUT / f'{no}-timing-fixed.mp4'
+        command(['ffmpeg', '-v', 'error', '-y', '-copyts', '-itsoffset', str(-delta), '-i', final,
+                 '-i', source, '-map', '0:v:0', '-map', '1:a:0', '-c', 'copy',
+                 '-avoid_negative_ts', 'disabled', '-movflags', '+faststart', fixed])
+        os.replace(fixed, final)
     for stream in ['v:0', 'a:0']:
         old_times, new_times = packet_times(source, stream), packet_times(final, stream)
-        assert new_times[:len(old_times)] == old_times, f'{stream}: original timing changed'
+        if new_times[:len(old_times)] != old_times:
+            mismatch = next((i for i, (a,b) in enumerate(zip(old_times,new_times)) if a!=b), -1)
+            print('Timing mismatch',stream,mismatch,old_times[mismatch],new_times[mismatch],flush=True)
+            raise AssertionError(f'{stream}: original timing changed')
+    def coded_frames_hash(path, count):
+        args = ['ffmpeg', '-v', 'error', '-i', path, '-map', '0:v:0', '-an', '-c:v', 'copy',
+                '-frames:v', str(count), '-bsf:v', 'h264_mp4toannexb,filter_units=pass_types=1-5',
+                '-f', 'h264', '-']
+        return hashlib.sha256(command(args,capture_output=True).stdout).hexdigest()
+    before = list(range(int(vs['nb_frames'])))
+    after_vs = next(x for x in probe(final)['streams'] if x['codec_type']=='video')
+    after = list(range(int(after_vs['nb_frames'])))
+    assert coded_frames_hash(source,len(before)) == coded_frames_hash(final,len(before)), 'Original coded picture data changed'
     assert len(after) - len(before) == 78, 'The summary page must contain exactly 2.6 seconds at 30 fps.'
     ah = audio_hash(source)
     assert audio_hash(final) == ah, 'Original decoded audio changed.'

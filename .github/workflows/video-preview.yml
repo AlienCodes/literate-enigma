@@ -4,7 +4,7 @@ on:
     branches: [codex/finish-05-and-summaries-20261112]
     paths: ['.github/video-preview/**', '.github/workflows/video-preview.yml']
 permissions:
-  contents: read
+  contents: write
 jobs:
   preview:
     runs-on: ubuntu-latest
@@ -26,6 +26,15 @@ jobs:
           git fetch --no-tags --depth=1 --filter=blob:none origin c9d52b26fe981ef8e4c412189ca289716ab8bf00
       - name: 制作03篇4K样片并核验
         run: python -u .github/video-preview/run.py 03
+      - name: 保存样片供直接查看
+        run: |
+          mkdir -p 样片
+          cp completion-output/*.mp4 '样片/03-4K-简述2.6秒.mp4'
+          cp completion-output/03-简述.png '样片/03-简述末页.png'
+          cp completion-output/03-verification.json '样片/03-核验.json'
+          git add --sparse -- 样片
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '保存03篇4K样片：简述独占末页2.6秒'
+          git push origin HEAD:codex/finish-05-and-summaries-20261112
       - uses: actions/upload-artifact@v4
         with:
           name: Article03-4K-preview-2.6s
