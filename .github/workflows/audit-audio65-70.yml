@@ -1,0 +1,69 @@
+name: 65–70篇现有MP4音频专项实测
+on:
+  push:
+    branches: [codex/audio-audit65-70-20261112]
+    paths: ['.github/video-batch/audit_audio.py', '.github/workflows/audit-audio65-70.yml']
+permissions:
+  contents: write
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - group: A
+            articles: '65 68 70'
+          - group: B
+            articles: '66 67 69'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: /.github/video-batch/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/audio-audit-models
+          key: audio-audit-models-c9d52b-v1
+      - name: 安装只读审计依赖
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet numpy==2.2.6 scipy==1.17.1 soundfile==0.14.0 sherpa-onnx==2.0.0 kokoro-onnx==0.6.1
+          git fetch --no-tags --depth=1 --filter=blob:none origin c9d52b26fe981ef8e4c412189ca289716ab8bf00
+          python -m py_compile .github/video-batch/audit_audio.py
+      - name: 现有成片逐项实测并复听历史焦点句
+        run: |
+          status=0
+          for no in ${{ matrix.articles }}; do
+            python -u .github/video-batch/audit_audio.py "$no" --baseline-only --asr --out audit-results || status=$?
+          done
+          exit "$status"
+      - name: 保存本次实测文本报告
+        if: always()
+        run: |
+          if [ ! -d audit-results ]; then exit 0; fi
+          target='音频专项核查/65-70_20261112/${{ matrix.group }}'
+          mkdir -p "$target"
+          cp audit-results/*.json audit-results/*.md "$target/"
+          git add --sparse -- "$target"
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '保存65–70音频专项本次实测报告（${{ matrix.group }}组）'
+          for attempt in 1 2 3; do
+            git pull --rebase origin codex/audio-audit65-70-20261112
+            git push origin HEAD:codex/audio-audit65-70-20261112 && exit 0
+          done
+          exit 1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: audio-audit-${{ matrix.group }}
+          path: audit-results/
+          if-no-files-found: error
+          retention-days: 30
