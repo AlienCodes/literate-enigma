@@ -11,9 +11,9 @@ jobs:
     timeout-minutes: 30
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 2
       matrix:
-        article: ['50']
+        article: ['50', '67', '69']
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,3 +40,4 @@ jobs:
           if-no-files-found: error
           compression-level: 1
           retention-days: 14
+

@@ -1,0 +1,100 @@
+name: 简述词串完整性与原27画面回归
+on:
+  push:
+    branches: [codex/batch70-render-20261112]
+    paths: ['.github/video-render-tests/card-compat.py', '.github/workflows/card-compat.yml', '视频/工具/render.py']
+permissions:
+  contents: write
+jobs:
+  cards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.github/video-batch/
+            /.github/video-render-tests/
+            /视频/工具/render.py
+            /pilot-review/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 准备画面核查
+        run: |
+          python -m pip install --quiet pillow==12.3.0 numpy==2.2.6
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          git fetch --no-tags --depth=1 --filter=blob:none origin c9d52b26fe981ef8e4c412189ca289716ab8bf00
+          git fetch --no-tags --depth=1 --filter=blob:none origin 5756b8b10bd84ba54aa882febe65739652b21c89
+          python -m py_compile .github/video-batch/run.py .github/video-render-tests/card-compat.py 视频/工具/render.py
+      - name: 先保存67与69原始像素对比
+        run: |
+          python -u .github/video-render-tests/card-compat.py diagnose
+          git add --sparse pilot-review
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '保存67和69源末帧与旧版渲染参照'
+            git pull --rebase origin codex/batch70-render-20261112
+            git push origin HEAD:codex/batch70-render-20261112
+          fi
+      - name: 逐张审核70篇真实新旧简述折行
+        run: python -u .github/video-render-tests/card-compat.py cards
+      - name: 保存受影响清单及摘要画面JSON
+        run: |
+          git add --sparse pilot-review
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '保存70篇数字英文完整换行核验与可视审阅JSON'
+            git pull --rebase origin codex/batch70-render-20261112
+            git push origin HEAD:codex/batch70-render-20261112
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: summary-wrap-70-reviewed
+          path: card-compat-output/
+          if-no-files-found: error
+          retention-days: 30
+  canonical:
+    needs: cards
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/batch70-render-20261112
+          filter: blob:none
+          sparse-checkout: |
+            /.github/video-batch/
+            /.github/video-render-tests/
+            /视频/工具/render.py
+            /pilot-review/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 准备已有排版自检与原27回归
+        run: |
+          python -m pip install --quiet pillow==12.3.0 numpy==2.2.6 imageio-ffmpeg==0.6.0
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          git fetch --no-tags --depth=1 --filter=blob:none origin c9d52b26fe981ef8e4c412189ca289716ab8bf00
+      - name: 规则范围、失效特批、原27正文像素、既有排版自检
+        run: python -u .github/video-render-tests/card-compat.py canonical
+      - name: 保存原27与既有排版核验结果
+        if: always()
+        run: |
+          git add --sparse pilot-review
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '保存01至70简述范围与原27非末页像素回归'
+            git pull --rebase origin codex/batch70-render-20261112
+            git push origin HEAD:codex/batch70-render-20261112
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: canonical-summary-regression
+          path: card-compat-output/
+          if-no-files-found: error
+          retention-days: 30

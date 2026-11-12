@@ -729,7 +729,10 @@ def 同屏色差(d,colors):
 # 原来简述和最后一句挤在同一页，字号跟着最后一句的英文走，怎么折行都大不起来（54、65–70 实测都小）。01–22（补简述）、05、54、65 起：
 # 最后一句读完后的 2 秒停顿换成单独一页，只放简述；每条（▸ 或原来的换行）单独起行，一条太长按屏宽折行，字号取放得下的最大值。声音不动。
 简述页=[False]
-def 简述页起(no): return str(no).isdigit() and (int(no)<=22 or int(no)==54 or int(no)>=65)
+# 用户2026-11-12认可03样片：全部70篇读完立即转独立简述，显示2秒。
+def 简述页起(no):
+    value = str(no)
+    return value.isascii() and value.isdigit() and 1 <= int(value) <= 70
 def 拆简述(note):
     """(去掉简述后的说明 或 None, 简述原文 或 None)"""
     if not note or '（简述：' not in note: return note, None
@@ -749,15 +752,15 @@ def 简述条目(t):
     return out
 _禁首='，。、；：？！）》」』”’…·%'
 def _折简(segs,fnt,bf,maxw,ind):
-    """一条（小标题粗体 + 内容）按 maxw 逐字折行，续行缩进 ind；不让标点打头。返回 [[(字串, 粗?)]] 行列表"""
+    """一条（小标题粗体 + 内容）按 maxw 折行，数字串和英文词整体换行，续行缩进 ind；不让标点打头。返回 [[(字串, 粗?)]] 行列表"""
     lines=[[]]; w=0
     for txt,bold in segs:
         f=bf if bold else fnt
-        for ch in txt:
-            cw=f.getlength(ch)
-            if w+cw>maxw and lines[-1] and ch not in _禁首:
+        for unit in re.findall(r"[A-Za-z0-9]+(?:[.,:'’/-][A-Za-z0-9]+)*(?:[%％])?|.", txt, re.S):
+            cw=sum(f.getlength(ch) for ch in unit)
+            if w+cw>maxw and lines[-1] and unit[0] not in _禁首:
                 lines.append([]); w=ind
-            lines[-1].append((ch,bold)); w+=cw
+            lines[-1].extend((ch,bold) for ch in unit); w+=cw
     return lines
 def 简述排(t,maxw=None,maxh=None):
     """(字号, 行列表, 每条首行下标集合)：试字号从大到小，取全部放得下（宽 ≤ maxw、高 ≤ maxh）的最大字号"""
@@ -788,10 +791,15 @@ def frame_简述(t,progress,out):
     d.rectangle([0,H-8*S,W*progress,H],fill=(94,234,212))
     im.save(out); return sz
 def 拆出简述页(d):
-    """make_video 与 定稿视频核对 同一个入口：01–22、05、54、65 起把最后一句说明里的简述拿出来（改 d），返回简述原文或 None"""
+    """make_video 与 定稿视频核对 同一个入口：01–70 把最后一句说明里的简述拿出来（改 d），返回简述原文或 None"""
     if not (简述页起(d.get('no')) and d.get('sentences')): return None
     c=d['sentences'][-1]['chunks'][-1]; r,j=拆简述(c.get('note'))
     if j:
         if r: c['note']=r
         else: c.pop('note',None)
+        # 简述已转独立页，末句原有的“简述整屏”特批不再适用。
+        key = f"S{len(d['sentences'])}"
+        wide = d.get('说明放宽特批', {})
+        if wide.get(key, {}).get('倍数') == '整屏':
+            wide.pop(key)
     return j

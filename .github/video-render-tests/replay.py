@@ -40,7 +40,10 @@ def replay():
         return r.command(['git','mktree','-z'],input=payload,capture_output=True,text=True).stdout.strip()
     videos=tree([('100644','blob',video_blob,Path(fixture_report['source']).name)])
     scripts=tree([('100644','blob',script_blob,'03.json')])
-    video=tree([('040000','tree',scripts,'脚本')])
+    tool_blobs=[(name,r.get(['git','hash-object','-w',ROOT/'视频/工具'/name]).strip())
+                for name in ('render.py','make_video.py')]
+    tools=tree([('100644','blob',sha,name) for name,sha in tool_blobs])
+    video=tree([('040000','tree',scripts,'脚本'),('040000','tree',tools,'工具')])
     root=tree([('040000','tree',videos,'最终版4K视频'),('040000','tree',video,'视频')])
     commit=r.command(['git','commit-tree',root,'-m','Temporary old-independent-page fixture'],
                      env=env,capture_output=True,text=True).stdout.strip()
