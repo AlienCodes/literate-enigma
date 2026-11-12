@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render all seventy reviewed summaries using the approved Article03 layout."""
+"""Render all seventy reviewed summaries with complete numeric and Latin words."""
 import hashlib
 import importlib.util
 import json
