@@ -1,0 +1,79 @@
+name: 70篇4K重制：读完即转简述2秒
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/video-batch/run.py', '.github/video-batch/selection.json', '.github/workflows/summary70-videos.yml']
+concurrency:
+  group: reviewed-summary-70-${{ github.ref }}
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      articles: ${{ steps.plan.outputs.articles }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: /.github/video-batch/
+          sparse-checkout-cone-mode: false
+      - id: plan
+        run: |
+          python - <<'PY'
+          import json, os
+          p=json.load(open('.github/video-batch/selection.json'))
+          a=p['articles']
+          assert a and len(a)==len(set(a)) and all(x.isdigit() and 1<=int(x)<=70 and x!='05' for x in a)
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f: f.write('articles='+json.dumps(a)+'\n')
+          PY
+  video:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      max-parallel: 17
+      matrix:
+        article: ${{ fromJSON(needs.plan.outputs.articles) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.github/video-batch/
+            /.github/video-preview/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 准备4K原片与排版工具
+        run: |
+          python -m pip install --quiet numpy==2.2.6 pillow==12.3.0
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          git fetch --no-tags --depth=1 --filter=blob:none origin c9d52b26fe981ef8e4c412189ca289716ab8bf00
+      - name: 重制独立末页并核对原声与画面
+        env:
+          ARTICLE: ${{ matrix.article }}
+        run: python -u .github/video-batch/run.py "$ARTICLE"
+      - name: 最后六篇实际音频专项复核
+        if: ${{ contains(fromJSON('["65","66","67","68","69","70"]'), matrix.article) }}
+        env:
+          ARTICLE: ${{ matrix.article }}
+        run: |
+          python - <<'PY'
+          import os,pathlib,subprocess
+          files=list(pathlib.Path('completion-output').glob('*.mp4'))
+          assert len(files)==1,files
+          subprocess.run(['python','-u','.github/video-batch/audit_audio.py',os.environ['ARTICLE'],str(files[0])],check=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reviewed-video-${{ matrix.article }}
+          path: completion-output/
+          compression-level: 1
+          if-no-files-found: error
+          retention-days: 30
