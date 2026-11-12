@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Export real 05 diagnostic evidence without changing voice data or checks."""
-import hashlib,json,os,shutil,subprocess
+import hashlib,json,os,shutil,subprocess,wave
 from pathlib import Path
 import numpy as np
 ROOT=Path.cwd();OUT=ROOT/"article05-diagnostics";OUT.mkdir(exist_ok=True)
@@ -11,8 +11,9 @@ for p in SRC.rglob("*"):
     if p.is_file() and p.suffix in (".log",".txt",".json",".csv") and p.stat().st_size<4_000_000:
         dest=OUT/"previous"/p.relative_to(SRC);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(p,dest)
 a=next(SRC.rglob("a.wav"))
-raw=subprocess.check_output(["ffmpeg","-v","error","-i",str(a),"-ac","1","-ar","48000","-f","f32le","-"])
-x=np.frombuffer(raw,dtype=np.float32);sr=48000
+with wave.open(str(a)) as w:
+    assert w.getsampwidth()==2 and w.getnchannels()==1
+    sr=w.getframerate();x=np.frombuffer(w.readframes(w.getnframes()),dtype="<i2").astype(np.float64)/32768
 def rms(z):return float(20*np.log10(max(1e-12,float(np.sqrt(np.mean(z*z)))))) if len(z) else -240.
 def features(t):
     z=x[round(t*sr):round((t+.005)*sr)].astype(np.float64);w=x[max(0,round((t-.0075)*sr)):round((t+.0125)*sr)].astype(np.float64)
