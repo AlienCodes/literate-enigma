@@ -15,6 +15,11 @@ def run(args,cwd=W,env=E,log="run.log"):
         p=subprocess.run(list(map(str,args)),cwd=cwd,env=env,stdout=f,stderr=subprocess.STDOUT)
     txt=(LOG/log).read_text(errors="replace")
     status.setdefault("check_summaries",{})[log]=[s.strip()[:650] for s in txt.splitlines() if s.startswith(("✔","✘","第05篇","①","②","③","④","⑤","⑥","【","配音指纹")) or " BAD " in s][-55:]
+    if p.returncode:
+        rows=txt.splitlines()
+        marks=[i for i,s in enumerate(rows) if "【停】" in s]
+        excerpt=rows[marks[-1]:marks[-1]+31] if marks else rows[-18:]
+        status["failure_details"]={"step":log,"human_report":[s.strip()[:850] for s in excerpt if s.strip()]}
     save()
     if p.returncode:raise RuntimeError(f"{log}: exit {p.returncode}")
 def md5(p):return hashlib.md5(Path(p).read_bytes()).hexdigest()[:12]
@@ -159,6 +164,15 @@ proof={"texts_compared":len(texts),"actual_phoneme_streams_identical":before==af
     c=d["sentences"][-1]["chunks"][-1];note=(c.get("note") or "").split("（简述：",1)[0].rstrip()
     c["note"]=(note+"\n" if note else "")+"（简述："+''.join("▸"+a+"："+b for a,b in points)+"）"
     current.write_text(json.dumps(d,ensure_ascii=False,indent=1)+"\n")
+    # Restored logs describe the OLD failed attempt. Keep them only internally;
+    # a failure below must report current checks rather than stale cached logs.
+    history=LOG/"restored-history";history.mkdir(exist_ok=True)
+    for group in ("做_05","定稿_05"):
+        if (W/group).exists():
+            destination=history/group
+            if destination.exists():shutil.rmtree(destination)
+            shutil.move(str(W/group),str(destination))
+    status["restored_old_logs_kept_internal"]=True
     run(["bash",T/"新管/做.sh","05","--不推"],log="canonical-draft.log")
     run(["bash",T/"新管/定稿.sh","05"],log="canonical-final4K.log")
     for group in ("做_05","定稿_05"):
