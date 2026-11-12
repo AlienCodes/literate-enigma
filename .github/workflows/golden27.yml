@@ -1,0 +1,37 @@
+name: 原27黄金末页变更与坏好样本实证
+on:
+  push:
+    branches: [codex/batch70-render-20261112]
+    paths: ['.github/video-render-tests/golden27.py', '.github/workflows/golden27.yml']
+permissions:
+  contents: write
+jobs:
+  golden:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.github/video-render-tests/
+            /视频/工具/fonts/
+            /pilot-review/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 仅准备固定版本画面核验依赖和公开源
+        run: |
+          python -m pip install --quiet pillow==12.3.0 numpy==2.4.6 imageio-ffmpeg==0.6.0
+          git fetch --no-tags --depth=1 --filter=blob:none origin c9d52b26fe981ef8e4c412189ca289716ab8bf00
+          git fetch --no-tags --depth=1 --filter=blob:none origin 9408415b502f57f58ac7a795e38de4ae56cafd5e
+          python -m py_compile .github/video-render-tests/golden27.py
+      - name: 完整旧66屏和新67屏及四种真实坏样本
+        run: python -u .github/video-render-tests/golden27.py
+      - name: 保存最小合法黄金候选和实证
+        run: |
+          git add --sparse pilot-review/reference27.json pilot-review/golden27-proof.json pilot-review/golden27-updated-baseline.json
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '原27黄金前64与声音基准保持，仅更新获准末页三图'
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' pull --rebase origin codex/batch70-render-20261112
+          git push origin HEAD:codex/batch70-render-20261112
