@@ -51,6 +51,53 @@ try:
     d=json.loads(current.read_text());cf=d.setdefault("核对确认",{})
     status["evidence_mode"]="fresh-current-audio-review"
     status["historical_migration_performed"]=False
+    # audit.py's stale-reference guard uses the entire global dictionary's
+    # mtime. A fresh checkout is newer than restored metadata even if this
+    # article's pronunciation has not changed. Prove actual 05 inputs first.
+    compatibility_code = r"""
+import hashlib,json,os
+from pathlib import Path
+import make_video as P
+root=Path(os.environ["XG_P"]);m=Path(os.environ["RUNNER_TEMP"])/"completion-machine"
+d=json.loads(Path("scripts/05.json").read_text())
+texts=[d["title_en"]]+[" ".join(P.R.strip_gloss(c["en"]).replace("**","").strip() for c in s["chunks"]) for s in d["sentences"]]
+before=[P.phonemes_of(P.spoken(t)) for t in texts]
+jp=root/"视频/工具/发音词典/读音改正.json";current=json.loads(jp.read_text())
+P.PRON_WORDS={k:v["读音"] for k,v in current.items()}
+P.PRON_EXTRA={k:v["语境错读"] for k,v in current.items() if v.get("语境错读")}
+cp=root/"视频/工具/发音词典/按语境读音.json"
+P.PRON_CTX=json.loads(cp.read_text()) if cp.exists() else {}
+P.PRON_FIX={}
+after=[P.phonemes_of(P.spoken(t)) for t in texts]
+proof={"texts_compared":len(texts),"actual_phoneme_streams_identical":before==after,
+       "changed_text_indices":[("title" if i==0 else "S"+str(i)) for i,(a,b) in enumerate(zip(before,after)) if a!=b],
+       "working_05_phonemes_sha256":hashlib.sha256(json.dumps(before,ensure_ascii=False).encode()).hexdigest(),
+       "global_05_phonemes_sha256":hashlib.sha256(json.dumps(after,ensure_ascii=False).encode()).hexdigest(),
+       "global_dictionary_mtime_was_newer_than_restored_meta":jp.stat().st_mtime>(m/"qc_independent/gt/05_meta.json").stat().st_mtime}
+(m/"article05-local-logs/pronunciation-compatibility.json").write_text(json.dumps(proof,ensure_ascii=False,indent=2))
+"""
+    run(["python3","-c",compatibility_code],log="current-pronunciation-compatibility.log")
+    proof=json.loads((LOG/"pronunciation-compatibility.json").read_text())
+    status["pronunciation_compatibility"]=proof;save()
+    assert proof["actual_phoneme_streams_identical"],"05 actual pronunciation changed; old reference cannot be used."
+    gt_dir=M/"qc_independent/gt";meta_file=gt_dir/"05_meta.json"
+    def reference_signature():
+        items=json.loads(meta_file.read_text())
+        return [(it["idx"],it["text"],Path(it["file"]).name,
+                 hashlib.sha256(Path(it["file"]).read_bytes()).hexdigest()) for it in items]
+    old_reference=reference_signature()
+    # This is the original canonical preparation, not a timestamp touch.
+    # It recomputes every real phoneme/edit/gain input key before reusing GT.
+    run(["python3",T/"独立复核/synth.py","05"],log="canonical-reference-input-check.log")
+    new_reference=reference_signature()
+    keys_equal=[x[:3] for x in old_reference]==[x[:3] for x in new_reference]
+    content_equal=old_reference==new_reference
+    status["reference_compatibility"]={"method":"canonical synth.py actual-input key verification",
+        "texts":len(new_reference),"actual_input_keys_identical":keys_equal,
+        "all_original_reference_files_sha256_identical":content_equal,
+        "raw_data_exported":False}
+    save()
+    assert keys_equal and content_equal,"05 reference inputs or original files changed; do not use mismatched references."
     run(["python3",T/"独立复核/audit.py","05"],log="current-splice-numeric-control.log")
     rep=json.loads((M/"qc_independent/report2_05.json").read_text())
     assert not rep["extra_runs"],"Fresh audit found unexplained sound; do not confirm."
@@ -156,7 +203,9 @@ try:
     timing=json.loads((batch.OUT/"05-verification.json").read_text())
     timing.update({"source_kind":"new-canonical-4K","source":"canonical05 after original draft/final checks",
                    "source_commit":commit,"canonical_source_video_sha256":canonical_sha,
-                   "canonical_pipeline_passed":True})
+                   "canonical_pipeline_passed":True,
+                   "summary_png_sha256":hashlib.sha256((batch.OUT/"05-简述.png").read_bytes()).hexdigest(),
+                   "summary_text_sha256":hashlib.sha256(batch.summary("05").encode()).hexdigest()})
     assert timing["end_page_frames"]==60 and timing["end_page_seconds"]==2
     assert timing["original_audio_identical"] and timing["original_audio_packet_timings_identical"]
     final=OUT/"05-4K-读完即转简述2秒.mp4";shutil.copy2(processed[0],final)
