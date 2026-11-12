@@ -1,0 +1,49 @@
+name: 70篇中英对齐只读审计
+on:
+  push:
+    branches: [codex/alignment-audit70-20261112]
+    paths: ['.github/alignment-audit70/**', '.github/workflows/alignment-audit70.yml']
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.github/alignment-audit70/
+            /视频/脚本/
+            /视频/工具/render.py
+            /视频/工具/对正量.py
+            /视频/工具/逐词对齐.py
+            /视频/工具/fonts/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 准备固定版本字体测量环境
+        run: |
+          python -m pip install --quiet pillow==12.3.0
+          source_sha=$(python -c "import json; print(json.load(open('.github/alignment-audit70/source.json'))['source_sha'])")
+          git fetch --no-tags --depth=1 --filter=blob:none origin "$source_sha"
+      - name: 运行正式对齐门与只读测量
+        run: python -u .github/alignment-audit70/audit.py
+      - name: 只保存审计报告到独立分支
+        run: |
+          mkdir -p 审计/70篇中英对齐
+          cp alignment-audit70-output/report.json 审计/70篇中英对齐/report.json
+          cp alignment-audit70-output/summary.json 审计/70篇中英对齐/summary.json
+          cp alignment-audit70-output/canonical-selftest.txt 审计/70篇中英对齐/canonical-selftest.txt
+          git add --sparse -- 审计/70篇中英对齐
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '保存70篇中英对齐只读实测报告'
+          git push origin HEAD:codex/alignment-audit70-20261112
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alignment-audit70-report
+          path: alignment-audit70-output/
+          if-no-files-found: error
+          retention-days: 30
