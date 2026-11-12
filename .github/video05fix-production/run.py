@@ -34,9 +34,17 @@ try:
     # Reproduce the exact historical waveform before migrating its evidence.
     before=M/"preboost-reproduction";bw=before/"video";bw.mkdir(parents=True,exist_ok=True)
     if not (before/"tts").exists():(before/"tts").symlink_to(M/"tts",target_is_directory=True)
-    for p in W.glob("*.py"):shutil.copy2(p,bw/p.name)
+    for p in W.iterdir():
+        if p.is_file() and p.suffix in (".py",".json",".txt"):shutil.copy2(p,bw/p.name)
     if not (bw/"fonts").exists():(bw/"fonts").symlink_to(W/"fonts",target_is_directory=True)
-    (bw/"scripts").mkdir(exist_ok=True)
+    shutil.copytree(W/"scripts",bw/"scripts",dirs_exist_ok=True)
+    # The work-local pronunciation/context JSON files are part of the producer.
+    # First reproduce the UNCHANGED full script as a strict positive control.
+    (bw/"scripts/05.json").write_text(json.dumps(d,ensure_ascii=False,indent=1)+"\n")
+    run(["python3","make_video.py","scripts/05.json","05-current-control.mp4"],cwd=bw,
+        env={**E,"AUDIO_ONLY":"1","XG_WORK":str(bw)},log="reproduce-current-control.log")
+    controlfp=md5(bw/"work_05/a.wav");status["reproduced_current_control_md5"]=controlfp;save()
+    assert controlfp==startfp,"The original current voice did not reproduce; stop before migrating any evidence."
     original=copy.deepcopy(d);assert original.get("除阻加强")=={"S16":{"句末":[7.435,7.48,3.5]}}
     original.pop("除阻加强")
     (bw/"scripts/05.json").write_text(json.dumps(original,ensure_ascii=False,indent=1)+"\n")
