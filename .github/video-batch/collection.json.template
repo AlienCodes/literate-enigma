@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "repository": "AlienCodes/literate-enigma",
+  "destination_branch": "codex/finish-05-and-summaries-20261112",
+  "ordinary_runs": [],
+  "repair_runs": [],
+  "article05_run": null,
+  "_instructions": "Fill only completed run IDs and exact commits after final results pass. Multiple ordinary sources are processed in order to replace corrected card renders; the two repair artifacts always replace ordinary 67/70 last. Save the completed configuration as collection.json only when ready to activate collection.",
+  "_ordinary_source_example": {
+    "run_id": 0,
+    "commit": "REPLACE_WITH_EXACT_40_HEX_COMMIT",
+    "branch": "codex/finish-05-and-summaries-20261112",
+    "workflow_path": ".github/workflows/summary70-videos.yml",
+    "articles": ["01", "02"]
+  },
+  "_repair_source_example": {
+    "run_id": 0,
+    "commit": "REPLACE_WITH_EXACT_40_HEX_COMMIT",
+    "branch": "codex/audio-fix67-70-20261112",
+    "workflow_path": ".github/workflows/audio-fix67-70.yml",
+    "articles": ["67", "70"]
+  },
+  "_article05_source_example": {
+    "run_id": 0,
+    "commit": "REPLACE_WITH_EXACT_40_HEX_COMMIT",
+    "branch": "codex/finish-05-and-summaries-20261112",
+    "workflow_path": ".github/workflows/produce05-canonical4K.yml"
+  }
+}
