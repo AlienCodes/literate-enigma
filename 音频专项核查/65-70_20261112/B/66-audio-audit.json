@@ -1,0 +1,212 @@
+{
+  "schema": 1,
+  "article": "66",
+  "source_commit": "c9d52b26fe981ef8e4c412189ca289716ab8bf00",
+  "measured_at_utc": "2026-11-12T21:01:17.330904+00:00",
+  "workflow_run": "43305921547",
+  "workflow_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43305921547",
+  "limitations": [
+    "This is a read-only audit of the delivered AAC/MP4, not a rerun of the entire production pipeline.",
+    "Production edit-boundary and non-speech confirmations depend on original a.wav and work_NN evidence; they are historical, not newly certified here.",
+    "Speech boundaries below are independently measured from the MP4 and accepted only when title plus every script sentence maps one-to-one.",
+    "ASR disagreements are retained for review; no new human-listening confirmation is fabricated."
+  ],
+  "failures": [
+    "RuntimeError: Sentence mapping is uncertain: 20 voice spans for 19 expected title/body spans."
+  ],
+  "asr": {
+    "performed": false
+  },
+  "historical_qc": {
+    "commit": "c9d52b26fe981ef8e4c412189ca289716ab8bf00",
+    "path": "视频/音频核对/交付核查_66_4K定稿.txt",
+    "status": "historical_only_not_a_new_pass"
+  },
+  "source_video_path": "最终版4K视频/66 - The Burrs That Became Velcro - 一颗刺果钩出的发明.mp4",
+  "mode": "baseline_only_no_rendered_output_supplied",
+  "source_audio_hashes": {
+    "decoded_float32": "SHA256=fb0faaa9571f9352c4699a54ca259d868a30387ec5f2f58a155a266ecad9aeed",
+    "encoded_packets_and_timing_sha256": "edaa6158fb9f58da14a55dc58e39d93958eac7fae081559d661abe16d21caedd",
+    "audio_packet_count": 6101
+  },
+  "inspected_audio_hashes": {
+    "decoded_float32": "SHA256=fb0faaa9571f9352c4699a54ca259d868a30387ec5f2f58a155a266ecad9aeed",
+    "encoded_packets_and_timing_sha256": "edaa6158fb9f58da14a55dc58e39d93958eac7fae081559d661abe16d21caedd",
+    "audio_packet_count": 6101
+  },
+  "original_audio_preserved": null,
+  "canonical_tool_sha256": {
+    "响度一致性核对.py": "2bb89e427ec014a7fc1b4cc46ea6a11f91a786930f91e8cec720e0307940b85b",
+    "音频体检.py": "708a28bb13a270e250e2ba1354cd3856beac29f183e84e6f5bf469fe0ccb8757",
+    "音频体检基准.json": "5624187514c9ad391f155a315d771de4770ad64027a9ab05e416bedadcb2c7d1",
+    "机器复听.py": "40caf651184d50efeb8d3b4477cd7a2b85911a495360554db1b3cd09ab596229",
+    "环境/模型校验码.json": "dfde6c065a3558b74923ce82865a3b01dae1f839af4456b74de55dc3ff492312",
+    "发音词典/已核实读音.json": "362cac13835ef16bd2a84fa4aa066ffbbf87d20452547770a3a7ca72171daa56",
+    "发音词典/读音改正.json": "5f558c61f8ffb99009a89989afcc07a9ce168b2b70a6c9377289040d14ec402b"
+  },
+  "current_audio_health": {
+    "metrics": {
+      "削波": [
+        0,
+        ""
+      ],
+      "直流偏移": [
+        0.00011992181524941143,
+        "片头"
+      ],
+      "咔哒": [
+        1.7550484112503355,
+        "第1句"
+      ],
+      "句尾截断": [
+        -55.579323829332566,
+        "第10句"
+      ],
+      "句首突起": [
+        -50.67258995083586,
+        "第15句"
+      ],
+      "齿音": [
+        2.6431891765135163,
+        "第1句"
+      ],
+      "音色突变": [
+        0.5907766273168351,
+        "第18句"
+      ],
+      "语速突变": [
+        0.3141797946020891,
+        "第9句"
+      ]
+    },
+    "reference": {
+      "削波": {
+        "上限": 0.0,
+        "篇": "01 "
+      },
+      "直流偏移": {
+        "上限": 0.000147,
+        "篇": "10 片头"
+      },
+      "咔哒": {
+        "上限": 2.055405,
+        "篇": "01 第16句"
+      },
+      "齿音": {
+        "上限": 6.433548,
+        "篇": "24 第5句"
+      },
+      "句尾截断": {
+        "上限": -49.169023,
+        "篇": "02 第5句"
+      },
+      "句首突起": {
+        "上限": -34.386911,
+        "篇": "09 第7句"
+      },
+      "语速突变": {
+        "上限": 0.543702,
+        "篇": "20 第13句"
+      },
+      "音色突变": {
+        "上限": 0.905288,
+        "篇": "02 第12句"
+      },
+      "_说明": "01–24 已定稿（用户听过认可）每一项最差的一处；体检超过它就报。由 音频体检.py --基准 视频/视频 算出"
+    },
+    "failures": [],
+    "source_script_start_transient_confirmations_applied": []
+  },
+  "canonical_mp4_loudness_check": {
+    "summary": "全片 -22.7 LUFS，峰值 -0.7 dBFS，18 句，逐句与全片差 -0.9～+0.9 LU",
+    "global_lufs": -22.67556763436613,
+    "failures": [],
+    "note": "Unmodified canonical check skips the first 9 seconds; the independent mapping below also inspects S1."
+  },
+  "measured_voice_spans": [
+    [
+      0.43,
+      2.0300000000000002
+    ],
+    [
+      3.06,
+      12.22
+    ],
+    [
+      13.24,
+      18.85
+    ],
+    [
+      19.88,
+      26.400000000000002
+    ],
+    [
+      27.66,
+      29.87
+    ],
+    [
+      30.900000000000002,
+      37.08
+    ],
+    [
+      38.12,
+      45.5
+    ],
+    [
+      46.52,
+      50.57
+    ],
+    [
+      51.800000000000004,
+      58.11
+    ],
+    [
+      59.14,
+      62.440000000000005
+    ],
+    [
+      63.480000000000004,
+      69.83
+    ],
+    [
+      70.85000000000001,
+      75.53
+    ],
+    [
+      76.76,
+      79.59
+    ],
+    [
+      80.61,
+      87.66
+    ],
+    [
+      88.69,
+      95.06
+    ],
+    [
+      96.09,
+      98.36
+    ],
+    [
+      99.66,
+      108.76
+    ],
+    [
+      109.78,
+      119.72
+    ],
+    [
+      120.74000000000001,
+      121.39
+    ],
+    [
+      122.11,
+      128.12
+    ]
+  ],
+  "expected_title_plus_sentences": 19,
+  "sentence_mapping_valid": false,
+  "status": "audit_incomplete",
+  "waveform_checks_passed": false
+}
