@@ -1,0 +1,35 @@
+# Authorization/provenance verified before this retry:
+# Original user repository CLAUDE.md explicitly names literate-enigma as its media backup:
+# https://github.com/alienalgorithm/postgraduate-vocabulary/blob/main/CLAUDE.md#L19
+# Original 视频/工具/镜像同步.py#L2-L4 defines that mirror workflow.
+# BASE c9d52b... records original commit4f7dc83..., verified to exist in original repo.
+# User accepted this SAME repository's 4d999f9.../样片/03-4K-读完即转简述2秒.mp4, then authorized all70.
+# This job only recovers an existing numerical QC JSON from/to this same repository.
+# No GT, raw audio, model files, secrets, deployment or main/master changes.
+name: 恢复70篇修后真实文本QC
+on:
+  push:
+    branches: [codex/audio-fix67-70-20261112]
+    paths: ['.github/audio-recovery/**', '.github/workflows/audio-recovery.yml']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  recover-text:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: /.github/audio-recovery/
+          sparse-checkout-cone-mode: false
+      - name: 只恢复文本QC
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python .github/audio-recovery/recover.py
+      - name: 保存明确命名的修后报告
+        run: |
+          git add --sparse -- 音频专项修复
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '恢复70篇修后文本QC，明确区分修前与修后'
+          git push origin HEAD:codex/audio-fix67-70-20261112
