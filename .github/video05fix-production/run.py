@@ -31,7 +31,7 @@ try:
     current=W/"scripts/05.json";d=json.loads(current.read_text());startfp=md5(W/"work_05/a.wav")
     status["audio_input_md5"]=startfp;save()
     assert startfp=="1e25fbe69f6f",("Unexpected restored audio",startfp)
-    # Reproduce the exact historical waveform before migrating its evidence.
+    # Reproduce the unchanged current voice before renewing any evidence.
     before=M/"preboost-reproduction";bw=before/"video";bw.mkdir(parents=True,exist_ok=True)
     if not (before/"tts").exists():(before/"tts").symlink_to(M/"tts",target_is_directory=True)
     for p in W.iterdir():
@@ -45,15 +45,55 @@ try:
         env={**E,"AUDIO_ONLY":"1","XG_WORK":str(bw)},log="reproduce-current-control.log")
     controlfp=md5(bw/"work_05/a.wav");status["reproduced_current_control_md5"]=controlfp;save()
     assert controlfp==startfp,"The original current voice did not reproduce; stop before migrating any evidence."
-    original=copy.deepcopy(d);assert original.get("除阻加强")=={"S16":{"句末":[7.435,7.48,3.5]}}
-    original.pop("除阻加强")
-    (bw/"scripts/05.json").write_text(json.dumps(original,ensure_ascii=False,indent=1)+"\n")
-    run(["python3","make_video.py","scripts/05.json","05-beforeboost.mp4"],cwd=bw,env={**E,"AUDIO_ONLY":"1","XG_WORK":str(bw)},log="reproduce-preboost.log")
-    oldfp=md5(bw/"work_05/a.wav");status["reproduced_historical_waveform_md5"]=oldfp;save()
-    assert oldfp=="ac01d01fcee3","Historical waveform did not reproduce exactly. Old evidence must not be relabelled."
-    run(["python3",T/"确认平移.py","05",bw/"work_05/a.wav","--写入"],log="evidence-migration.log")
+    # The current positive control passed. The presumed historical pre-boost
+    # hash did not reproduce in a prior trial, so NO historical evidence is
+    # relabelled or migrated. Renew each confirmation from current real audio.
     d=json.loads(current.read_text());cf=d.setdefault("核对确认",{})
-    assert md5(W/"work_05/a.wav")==startfp
+    status["evidence_mode"]="fresh-current-audio-review"
+    status["historical_migration_performed"]=False
+    run(["python3",T/"独立复核/audit.py","05"],log="current-splice-numeric-control.log")
+    rep=json.loads((M/"qc_independent/report2_05.json").read_text())
+    assert not rep["extra_runs"],"Fresh audit found unexplained sound; do not confirm."
+    assert min(t["anchor_ncc"] for t in rep["texts"])>.99999,"Reference does not match current original voice."
+    renew={
+      "S5 raw 10.6300-10.9170":("紧贴词头的非人声",[-56.6,-47.8,-35.9,0,0],
+        "markers词尾擦音在raw10.625已到-55.1dB；删除段主要为换气（重心中位2.84kHz、周期0.207、150Hz以下-16.4dB），末端夹低频噗声。whose的/h/在保留侧raw10.92起逐渐增强；独立复核没有词头切失。"),
+      "S8 raw 1.7050-2.0537":("紧贴词头的非人声",[-55.8,-50.3,-39.6,0,0],
+        "Jeffreys词尾在raw1.700降到-55.7dB；所删主要换气（重心中位2.28kHz、周期0.224、低频-12.5dB），末端为低频噗声。下一词在保留侧raw2.065后起音、2.075达-21dB；未删除词头。"),
+      "S9 raw 1.9400-2.2312":("紧贴词头的非人声",[-59.6,-44.5,-37.4,0,0],
+        "perpetrator词尾在raw1.935低于-59dB；所删为两词间换气与末端噗声（重心中位2.43kHz、周期0.222、低频-14.4dB）。右侧弱过渡与下一词起音完整保留，独立复核onset_cut_ms=0。"),
+      "S11 raw 1.4055-1.5479":("紧贴两头的非人声",[-30.4,-52.0,-38.1,10,0],
+        "innovation尾/n/在raw1.385有周期0.50，至1.400降为-30.4dB、周期0.128；所删开头1.405是-40.3dB、周期0.063，随后为2.1–2.7kHz无周期换气。had的/h/从保留侧1.55后连续起音，1.58进入元音。被报10ms尾切的是相连换气前沿，不是/n/。"),
+      "S12 raw 1.3984-1.6550":("紧贴词尾的非人声",[-35.1,-68.2,-38.6,5,0],
+        "nineteen尾/n/在raw1.383周期0.48，1.393降到0.156；被删首帧1.398为-38.6dB、周期0.098，随后是无周期换气。右侧1.618–1.653已低于-64dB，eighty到1.663后才起音。报5ms尾切的是换气前沿，鼻音保留。"),
+      "S12 raw 6.4000-6.9950":("紧贴两头的非人声",[-42.6,-57.7,-34.4,30,0],
+        "screening之后这段声音无持续鼻音周期：raw6.395–6.440周期约0.15–0.27，频谱重心多为2.2–3.7kHz，属相连的换气与弱杂音；不是/ŋ/。后侧6.98–6.99低于-59dB，asking在保留侧7.00后起音。被报30ms尾切属于换气前沿；词头未切。"),
+      "S16 raw 4.8850-5.3106":("紧贴词头的非人声",[-57.2,-34.3,-39.9,0,0],
+        "seven尾/n/在raw4.880降至-56.6dB；删除段换气的中位重心2.58kHz、周期0.215、低频-16.5dB，末端夹噗声。and在保留侧5.31起进入元音，5.32约-18dB、周期0.49；报post是保留的词头，onset_cut_ms=0。"),
+      "S17 raw 3.5700-3.8588":("紧贴词头的非人声",[-56.3,-50.3,-36.7,0,10],
+        "前一词在raw3.565已到-56.3dB；删除段为两词间换气与末端低频噗声。3.845–3.855仍弱（-44至-50dB）、周期约0.19–0.30，3.875后保留侧才连续增强至词音。被报10ms起音切失是紧贴词前的非人声，实际词头保留。"),
+      "S18 raw 1.4935-1.6950":("紧贴词尾的非人声",[-33.8,-58.6,-42.0,10,0],
+        "screening尾鼻音在raw1.473周期0.50，1.488已降到0.266；删除首帧1.493为-42dB、周期0.118，随后为2.2–3.7kHz换气。后侧1.668–1.688低于-58dB，had的/h/从保留侧1.70后才起音。报10ms尾切是换气前沿，鼻音保留。"),
+      "S19 raw 1.8121-2.0103":("紧贴两头的非人声",[-39.1,-44.9,-40.4,5,0],
+        "beneficiary末元音在raw1.777–1.792周期约0.39–0.42；1.807降为-38.7dB、周期0.205，删除首帧1.812为-40.4dB、周期0.184，之后为无周期换气和噗声。had的/h/在保留侧2.012后连续增强，2.03约-28dB；只删了词间非人声。")
+    }
+    eds={(f"S{tr['idx']+1} raw {e['raw_k1']/24000:.4f}-{e['raw_k2']/24000:.4f}"):e
+         for tr in rep["texts"] for e in tr["edits"]}
+    records=[]
+    for key,(kind,want,why) in renew.items():
+        e=eds[key]
+        got=[e["pre_min_db"],e["post_min_db"],e["lost_max_db"],e["tail_cut_ms"],e["onset_cut_ms"]]
+        assert all(abs(a-b)<.16 for a,b in zip(got,want)),("Current edit evidence changed",key,got,want)
+        old=cf.setdefault("删除段",{}).get(key)
+        assert isinstance(old,dict) and old.get("类型")==kind,("Unexpected original edit type",key)
+        cf["删除段"][key]={"类型":kind,"配音指纹":startfp,
+             "依据":("2026-11-12 重新核实当前原始合成/成片，逐5ms电平、频谱、周期与逐样本剪口图均复核；"
+                    +why+f" 实测pre/post/lost={got[0]:.1f}/{got[1]:.1f}/{got[2]:.1f}dB，"
+                    +f"tail/onset标记={got[3]:.0f}/{got[4]:.0f}ms。按实际声学成分确认，不依赖近似词时间；不改音频。")}
+        records.append({"edit":key,"pre_post_lost_db":got[:3],"tail_onset_flags_ms":got[3:]})
+    status["fresh_splice_reviews"]=records
+    cf.setdefault("高亮",{})["S5 第4块"]={"开始读":43.9,"配音指纹":startfp,
+       "依据":"2026-11-12 核对当前a.wav：43.72–43.89为数字静音，43.895约-64.5dBFS，43.905约-54.0、43.915约-49.5dBFS，是whose的弱起音；43.935约-31.2、43.940约-21.2dBFS进入元音。原高亮43.90在实际开口处，甲43.72落在静音，保留原高亮，不移动正文时间。"}
     cf.setdefault("非人声",{}).update({
       "60.51–60.77s":{"配音指纹":startfp,"依据":"2026-11-12 核对当前 dossier_05.json id7 与原始声音逐2.5ms数值：S7 w 4.535–4.800s 位于 eighty-five 的 /v/ 词尾。4.535–4.695持续衰减且没有5ms低于-55dB的分界；4.705–4.775转为重心4.3–5.3kHz、150Hz以下-22至-38dB的清化擦音，4.800才降到-59.6dB。词尾摩擦完整保留，不作呼吸删除。主会话独立复核相同实际波形后认可此判定。"},
       "116.30–116.39s":{"配音指纹":startfp,"依据":"2026-11-12 核对当前 dossier_05.json id11 与原始声音逐2.5ms数值：S15 w 7.360–7.455s 在 police 的 /i:/ 到 /s/ 过渡内部；7.32元音-19.8dB后连续衰减至过渡-35至-48dB，7.45起摩擦连续增强，7.47重心5.3kHz，7.50为-22.1dB、5.9kHz。此段与后面的/s/连为一体，无静音边界，不删词内过渡。主会话独立复核相同实际波形后认可此判定。"}
