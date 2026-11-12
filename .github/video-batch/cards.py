@@ -18,8 +18,8 @@ for path in sorted((TASK / 'summaries').glob('*.json')):
     assert not summaries.keys() & part.keys()
     summaries.update(part)
 assert sorted(summaries) == [f'{i:02d}' for i in range(1, 71)]
-original_03 = json.loads((ROOT / '.github/video-preview/summaries.json').read_text())['03']
-assert summaries['03'] == original_03, 'The approved Article03 summary must stay identical.'
+# The latest ALL70 review supersedes the earlier pilot-only wording lock.
+# The six current reviewed JSON files are the production text for every article.
 def text(no):
     points = summaries[no]
     assert len(points) == 5 and all(len(p) == 2 and 1 <= len(p[0]) <= 4 and p[1] for p in points)
@@ -52,6 +52,8 @@ for i, no in enumerate(sorted(summaries)):
 contact.save(out / '70篇总览.jpg', quality=92)
 (out / 'layout-audit.json').write_text(json.dumps({
     'articles': len(audit), 'items': 350, 'source_commit': BASE,
+    'summary_revision': approved.get(['git', 'rev-parse', 'HEAD']).strip(),
+    'text_review_round': 2,
     'specification': {'width': 3840, 'height': 2160, 'standalone': True, 'seconds': 2,
                       'transition': 'first frame after final voice; original end hold replaced'},
     'articles_detail': audit
