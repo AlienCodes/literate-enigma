@@ -33,6 +33,79 @@ try:
     if not alias.exists():
         subprocess.run(["sudo","mkdir","-p",str(alias.parent)],check=True)
         subprocess.run(["sudo","ln","-s",str(ROOT),str(alias)],check=True)
+    # First repair two real checkout/test-environment mismatches, then test
+    # the actual cached 27 input against its independently reviewed reference.
+    # No canonical checker or expected behavior is changed.
+    article10=ROOT/"新版定稿/10-the-stolen-smile.md"
+    before10=article10.read_text()
+    text10=json.loads((ROOT/"视频/脚本/10.json").read_text())
+    note10=text10["sentences"][-1]["chunks"][-1].get("note","")
+    summary10=note10[note10.index("（简述：▸"):].replace("\n","").replace("#Y","")
+    run(["python3",T/"sync_article.py",ROOT/"视频/脚本/10.json",article10],
+        cwd=ROOT,log="preflight-sync-paired-article10.log")
+    after10=article10.read_text()
+    assert after10==before10 or after10.replace(summary10,"",1)==before10, \
+        "Pairing article 10 changed something other than its existing final summary."
+    status["paired_article10_only_added_existing_summary"]=True
+    run(["python3",T/"同步自检.py"],cwd=ROOT,log="preflight-sync-selftest.log")
+    run(["python3",T/"新管/合并追加.py","--自检"],cwd=ROOT,log="preflight-merge-selftest.log")
+    # This is exactly the original G27 module-copy operation, before the
+    # isolated regression; scripts and cached audio/reference data stay put.
+    run(["python3",T/"出片指纹.py","--拷",W],cwd=ROOT,log="preflight-current-canonical-modules.log")
+    cached27=W/"scripts/27.json"
+    input27=json.loads(cached27.read_text())
+    semantic27=hashlib.sha256(json.dumps(input27["sentences"],ensure_ascii=False,
+        sort_keys=True,separators=(",",":")).encode()).hexdigest()
+    candidates_file=ROOT/".github/video05fix-production/reference27.json"
+    candidates=json.loads(candidates_file.read_text())["candidates"]
+    matches=[c for c in candidates if c["sentences_sha256"]==semantic27]
+    status["cached_regression27_input"]={
+        "script_sha256":hashlib.sha256(cached27.read_bytes()).hexdigest(),
+        "sentences_sha256":semantic27,
+        "last_note_sha256":hashlib.sha256(input27["sentences"][-1]["chunks"][-1].get("note","").encode()).hexdigest(),
+        "matching_reviewed_reference_names":[c["name"] for c in matches]}
+    save()
+    assert len(matches)==1,"No unique independently reviewed reference matches the actual cached 27 input."
+    reference27=matches[0]["baseline"]
+    golden_path=T/"新管/回归基准_27.json"
+    old_golden=json.loads(golden_path.read_text())
+    assert all(reference27[k]==old_golden[k] for k in ("a.wav","分段.json")), \
+        "The original audio/segmentation regression references must be preserved."
+    assert reference27["画面"][:64]==old_golden["画面"][:64], \
+        "The first 64 original visual regression references must be preserved."
+    assert len(reference27["画面"])==67,"Reviewed 27 reference must cover all 67 current screens."
+    golden_path.write_text(json.dumps(reference27,ensure_ascii=False,indent=0)+"\n")
+    regression_code=r"""
+import importlib.util,json,os
+from pathlib import Path
+t=Path(os.environ["XG_TOOLS"])
+spec=importlib.util.spec_from_file_location("original_quicktest",t/"新管/快测.py")
+q=importlib.util.module_from_spec(spec);spec.loader.exec_module(q)
+assert q.NO=="27","Regression preflight must use article 27."
+bad,cur=q.回归(False)
+if bad:
+    print("\n".join(bad));raise SystemExit(1)
+print("27实际缓存预检：原a.wav、分段.json逐字节相同；67屏每屏像素哈希全同。")
+"""
+    run(["python3","-c",regression_code],env={**E,"XG_NO":"27"},log="preflight-original-regression27.log")
+    status["preflight_three_real_input_checks_passed"]=True
+    # Reuse only our own previously successful cache of the real canonical
+    # stamp, and always validate it with the original checker first.
+    stamp_check=subprocess.run(["python3",str(T/"新管/印章.py")],cwd=W,env=E,
+        stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
+    reuse_stamp=E.get("VIDEO05_FASTCHECK_CACHE_HIT")=="true" and stamp_check.returncode==0
+    if not reuse_stamp:
+        run(["python3",T/"新管/快测.py"],env={**E,"XG_NO":"27"},log="canonical-full-quicktest.log")
+    run(["python3",T/"新管/印章.py"],log="canonical-fastcheck-stamp-verification.log")
+    stamp_path=T/"新管/快测通过.json"
+    status["canonical_fastcheck"]={
+        "passed":True,"reused_verified_canonical_stamp":reuse_stamp,
+        "stamp_sha256":hashlib.sha256(stamp_path.read_bytes()).hexdigest(),
+        "programs":len(json.loads(stamp_path.read_text())["程序"]),
+        "only_stamp_cached":True}
+    save()
+    if os.environ.get("GITHUB_OUTPUT"):
+        with open(os.environ["GITHUB_OUTPUT"],"a") as f:f.write("fastcheck_passed=true\n")
     current=W/"scripts/05.json";d=json.loads(current.read_text());startfp=md5(W/"work_05/a.wav")
     status["audio_input_md5"]=startfp;save()
     assert startfp=="1e25fbe69f6f",("Unexpected restored audio",startfp)
@@ -154,13 +227,15 @@ proof={"texts_compared":len(texts),"actual_phoneme_streams_identical":before==af
       "类型":"紧贴词头的非人声","配音指纹":startfp,
       "依据":"2026-11-12 对当前原始合成与成片逐样本复核、逐5ms测量：S15 substitution 与 and 之间 raw 5.9500–6.16125s。前侧最低-59.6dB；被删除部分最响-43.0dB，主要是频谱重心2.2–2.7kHz、低频弱、周期大多<0.35的换气声，末端夹低频噗声。raw6.16125在过零点保留下一词；6.17开始的起音随后在6.18增强到约-22.6dB，是完整保留的and起音。post15ms最低-53.7dB的报警来自保留侧已经开始的词，不是被删去的词头；独立复核onset_cut_ms=0。只确认该已实际核实的非人声段，不改音频、不放宽任何门槛。"
     }
-    points=[
-      ["发现","杰弗里斯发现DNA标记的排列因人而异，提出DNA指纹，为辨认个人提供了新办法。"],
-      ["洗冤","两名少女遇害后，DNA检验推翻了一名少年的认罪供词，并确认两案出自同一凶手。"],
-      ["筛查","警方向五千多名男子采样，却无一吻合；真凶让同事冒名采样，躲过了筛查。"],
-      ["破案","有人听见同事谈及顶替而举报；警方由此找到皮奇福克，再用DNA确认其涉案。"],
-      ["结局","他认罪并获终身监禁，成为首位凭DNA证据被判谋杀罪者；这项技术先洗冤，后助定罪。"]
-    ]
+    approved05=ROOT/".github/video-batch/summaries/01-12.json"
+    points=json.loads(approved05.read_text())["05"]
+    assert isinstance(points,list) and len(points)==5 and all(
+        isinstance(row,list) and len(row)==2 and all(isinstance(s,str) and s.strip() for s in row)
+        for row in points),"The approved latest 05 summary must contain five label/body pairs."
+    status["approved_summary_source"]={
+        "path":str(approved05.relative_to(ROOT)),
+        "file_sha256":hashlib.sha256(approved05.read_bytes()).hexdigest(),
+        "article_points_sha256":hashlib.sha256(json.dumps(points,ensure_ascii=False,separators=(",",":")).encode()).hexdigest()}
     c=d["sentences"][-1]["chunks"][-1];note=(c.get("note") or "").split("（简述：",1)[0].rstrip()
     c["note"]=(note+"\n" if note else "")+"（简述："+''.join("▸"+a+"："+b for a,b in points)+"）"
     current.write_text(json.dumps(d,ensure_ascii=False,indent=1)+"\n")
