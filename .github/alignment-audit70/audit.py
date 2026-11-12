@@ -149,18 +149,26 @@ for no, (data, original_sha) in documents.items():
     detached = copy.deepcopy(data)
     last = detached["sentences"][-1]["chunks"][-1]
     old_note = last.get("note")
-    remainder, summary = R.拆简述(old_note)
-    if summary:
-        if remainder:
-            last["note"] = remainder
-        else:
-            last.pop("note", None)
-    # Outside the one final note, the detached simulation must remain identical.
+    # Use the newly fixed canonical entry point, including its narrowly scoped
+    # removal of an obsolete final-summary "整屏" approval.
+    summary = R.拆出简述页(detached)
+    final_key = f"S{len(data['sentences'])}"
+    old_approval = data.get("说明放宽特批", {})
+    new_approval = detached.get("说明放宽特批", {})
+    approval_removed = old_approval != new_approval
+    if approval_removed:
+        assert summary and old_approval.get(final_key, {}).get("倍数") == "整屏"
+        expected = copy.deepcopy(old_approval)
+        expected.pop(final_key)
+        assert new_approval == expected
+    # No translation, chunk, align group, line break or audio field may change.
     restored = copy.deepcopy(detached)
     if "note" in data["sentences"][-1]["chunks"][-1]:
         restored["sentences"][-1]["chunks"][-1]["note"] = old_note
     else:
         restored["sentences"][-1]["chunks"][-1].pop("note", None)
+    if approval_removed:
+        restored["说明放宽特批"] = copy.deepcopy(old_approval)
     assert restored == data
     before = case(no, data)
     after = case(no, detached) if summary else copy.deepcopy(before)
@@ -169,7 +177,9 @@ for no, (data, original_sha) in documents.items():
     item = dict(article=no, title=data["title_zh"], source_script_sha256=original_sha,
                 source_4k_video_exists=any(p.startswith("最终版4K视频/" + no + " - ") and p.endswith(".mp4") for p in video_paths),
                 original=before, detached_summary_simulation=after,
-                summary_was_removed=bool(summary), only_final_note_changed=True,
+                summary_was_removed=bool(summary), only_final_note_changed=not approval_removed,
+                obsolete_final_summary_approval_removed=approval_removed,
+                body_translation_groups_breaks_audio_fields_identical=True,
                 G47_gate_applies=int(no) >= ZD.起, G47_gate_errors=ZD.查(data, no),
                 multi_content_word_groups=multi,
                 T39_K128_warning_applies=int(no) >= ZD.同序起, T39_K128_warnings=ZD.同序(data, no),
@@ -209,7 +219,8 @@ summary = dict(source_sha=SOURCE, audit_kind=report["kind"], rules=report["rules
                    same_order_01_to_54_groups=sum(len(a["same_order_group_candidates"]) for a in report["articles"] if int(a["article"]) < ZD.同序起)),
                body_translation_grouping_breaks_audio_modified=False,
                data_audit_only_not_a_pixel_audit_of_all_published_MP4s=True,
-               final05_requires_its_own_followup=True)
+               final05_requires_its_own_followup=True,
+               obsolete_final_summary_approval_removed_articles=[a["article"] for a in report["articles"] if a["obsolete_final_summary_approval_removed"]])
 dump(OUT / "report.json", report)
 dump(OUT / "summary.json", summary)
 (OUT / "report.partial.json").unlink()
