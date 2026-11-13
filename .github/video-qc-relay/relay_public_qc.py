@@ -42,7 +42,7 @@ def main(request_path):
     listed = api('actions/runs/' + str(request['run_id']) + '/artifacts?per_page=100')['artifacts']
     updates = []
     observations = []
-    allowed = re.compile(r'^(\d{2})-(?:status|failed-working-source|user-authorization|source|summary-verification|canonical-fingerprint|approved-audio-qc|failed-draft-proof|failed-draft-fingerprint|reference-gain-diagnostic)\.json$|^\d{2}-failed-draft\.mp4$|^\d{2}-failed-draft-(?:opening-ok|oll-wright|ending|title|s5-highlight|norway-finland|last-sentence)\.wav$')
+    allowed = re.compile(r'^(\d{2})-(?:status|failed-working-source|user-authorization|source|summary-verification|canonical-fingerprint|approved-audio-qc|failed-draft-proof|failed-draft-fingerprint|reference-gain-diagnostic|checker-reference-preparation)\.json$|^\d{2}-failed-draft\.mp4$|^\d{2}-failed-draft-(?:opening-ok|oll-wright|ending|title|s5-highlight|norway-finland|last-sentence)\.wav$')
     for name in request['artifacts']:
         assert re.fullmatch(r'article\d{2}-revised-canonical-4K-final', name)
         found = next((item for item in listed if item['name'] == name and not item['expired']), None)
