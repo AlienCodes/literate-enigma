@@ -147,8 +147,17 @@ def export_failed_current_video():
         return
     fp = json.loads(fingerprint.read_text())
     hashes = {'视频': sha(candidate), '脚本': sha(source), '配音': sha(wav)}
-    if fp.get('只出声音') is not False or any(fp.get(key) != value for key, value in hashes.items()):
+    # The unchanged official fingerprint stores exactly the first 16 hex
+    # characters of SHA256; keep full hashes separately in the public proof.
+    expected_official_hashes = {key: value[:16] for key, value in hashes.items()}
+    if (fp.get('只出声音') is not False
+            or any(not isinstance(fp.get(key), str) or not re.fullmatch(r'[0-9a-f]{16}', fp[key])
+                   for key in expected_official_hashes)
+            or any(fp.get(key) != value for key, value in expected_official_hashes.items())):
         record['reason'] = 'Official fingerprint is audio-only or does not match current video/source/PCM.'
+        record['fingerprint_hash_format'] = 'official SHA256 first 16 hex characters'
+        record['mismatched_fingerprint_fields'] = [
+            key for key, value in expected_official_hashes.items() if fp.get(key) != value]
         return
     # Independent metadata proves that the completed render has picture and audio.
     info = json.loads(subprocess.check_output(
@@ -207,6 +216,7 @@ def export_failed_current_video():
              'fingerprint_mtime_ns': fingerprint.stat().st_mtime_ns,
              'failed_stage': status.get('stage'), 'failure_step': status.get('failure_details', {}).get('step'),
              'official_fingerprint_matches_current_video_source_and_pcm': True,
+             'official_fingerprint_hash_format': 'SHA256 first 16 hex characters',
              'official_current_render_stage_logs': render_logs,
              'official_fingerprint_sha256': sha(public_fp),
              'source_sha256': hashes['脚本'], 'internal_pcm_sha256': hashes['配音'],
@@ -397,9 +407,10 @@ try:
     accepted_aac = aac_hash(source_video)
     status['accepted_source'] = {**reference, 'aac_adts_sha256': accepted_aac}
     start_wav = sha(W / f'work_{NO}/a.wav') if (W / f'work_{NO}/a.wav').exists() else None
-    if NO in {'10', '11'}:
-        # This isolated preparation writes only the observed missing checker
-        # slice privately. Official production and every checker stay strict.
+    if NO in ALLOWED:
+        # Enumerate the original checker's complete punctuation-slice calls for
+        # any selected article. Prepare only missing references privately;
+        # official production and every checker remain STRICT_CACHE=1.
         reference_helper = TASK / 'prepare-checker-reference.py'
         reference_evidence = OUT / f'{NO}-checker-reference-preparation.json'
         reference_env = {k: v for k, v in ENV.items() if k != 'STRICT_CACHE'}
@@ -409,7 +420,7 @@ try:
             ['python3', str(reference_helper), '--article', NO, '--video-root', str(M),
              '--repository', str(ROOT), '--accepted-video', str(source_video),
              '--output', str(reference_evidence)], cwd=W, env=reference_env,
-            capture_output=True, text=True, errors='replace', timeout=240)
+            capture_output=True, text=True, errors='replace', timeout=600)
         (LOG / 'checker-reference-preparation.log').write_text(result.stdout + '\n' + result.stderr)
         if result.returncode:
             # Text errors only; never emit the reference arrays or cache bytes.
