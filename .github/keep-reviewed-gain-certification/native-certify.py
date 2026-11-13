@@ -1,0 +1,57 @@
+"""Independent core certification; never creates or accepts a production deliverable."""
+from pathlib import Path
+import argparse,os,sys,json,hashlib,shutil,subprocess,time,copy
+p=argparse.ArgumentParser();p.add_argument('--variant',choices=['original','keep-reviewed-gain'],required=True);a=p.parse_args()
+ROOT=Path.cwd();PKG=ROOT/'.github/keep-reviewed-gain-certification';REPO=ROOT/'official-main';T=REPO/'视频/工具';W=Path(os.environ['RUNNER_TEMP'])/'completion-machine/video';OUT=ROOT/'certification-public';OUT.mkdir(exist_ok=True)
+sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest();report={'variant':a.variant,'passed':False,'production_audio_or_video_acceptance':False,'official_main_commit':'fc0b56af9a0ac0e97015548b756d4e51d66dc2ea','stage':'start'}
+def save(): (OUT/'certification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+def run(args,label,cwd=REPO,env=None):
+ report['stage']=label;save();t=time.time();r=subprocess.run(list(map(str,args)),cwd=cwd,env=env or E,capture_output=True,text=True);(OUT/(label+'.log')).write_text(r.stdout+'\n'+r.stderr);report.setdefault('checks',[]).append({'name':label,'exit':r.returncode,'seconds':round(time.time()-t,2),'log_SHA256':sha(OUT/(label+'.log'))});save();return r
+E={**os.environ,'XG_P':str(REPO),'XG_TOOLS':str(T),'XG_WORK':str(W),'XG_NOPUSH':'1','STRICT_CACHE':'1','XG_KEEP_REVIEWED_GAIN':'1' if a.variant=='keep-reviewed-gain' else '0'}
+try:
+ assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=REPO,text=True).strip()==report['official_main_commit']
+ manifest=json.loads((PKG/'overlay-manifest.json').read_text());report['overlay_manifest']=manifest
+ for f in manifest['files']: assert sha(REPO/f['path'])==f['main_SHA256']
+ assert (W/'make_video.py').is_file() and (W.parent/'tts/kokoro-v1.0.onnx').is_file()
+ # New24 is independently tested against the current full-screen rule before legacy fixture setup.
+ current24=OUT/'current-24-structured.json';shutil.copyfile(REPO/'视频/脚本/24.json',current24)
+ code="import sys,json;sys.path.insert(0,sys.argv[1]);import render as R;d=json.load(open(sys.argv[2]));R.apply_script(d);k=' '.join(p[0] for c in d['sentences'][-1]['chunks'] for p in c['align']);assert R.NOTE_WIDE.get(k)=='整屏';print('Current structured24 full-screen positive passed')"
+ r=run([sys.executable,'-c',code,T,current24],'current24-positive',cwd=T);assert r.returncode==0
+ fixture=json.loads((PKG/'historical-fixtures-manifest.json').read_text());report['historical_fixture_provenance']=fixture
+ for f in fixture['files']:
+  src=PKG/'historical-fixtures'/f['path'];assert sha(src)==f['SHA256'];dst=REPO/f['path'];dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(src,dst)
+  if f['path'].startswith('视频/脚本/'):
+   (W/'scripts').mkdir(exist_ok=True);shutil.copyfile(src,W/'scripts'/Path(f['path']).name)
+ # Both modes use the same historical, immutable regression fixtures, never production requests.
+ if a.variant=='keep-reviewed-gain':
+  for f in manifest['files']:
+   src=PKG/'patch'/f['path'];assert sha(src)==f['patch_SHA256'];shutil.copyfile(src,REPO/f['path'])
+ report['actual_core_SHA256']={f['path']:sha(REPO/f['path']) for f in manifest['files']}
+ fonts=REPO/'视频/资源/字体';fonts.parent.mkdir(parents=True,exist_ok=True)
+ if not fonts.exists():fonts.symlink_to(T/'fonts',target_is_directory=True)
+ if not (W/'fonts').exists():(W/'fonts').symlink_to(T/'fonts',target_is_directory=True)
+ # The same canonical repository alias is required by original selftests; this job is isolated.
+ alias=Path('/home/user/postgraduate-vocabulary');subprocess.run(['sudo','mkdir','-p',str(alias.parent)],check=True)
+ if alias.is_symlink():subprocess.run(['sudo','rm',str(alias)],check=True)
+ if not alias.exists():subprocess.run(['sudo','ln','-s',str(REPO),str(alias)],check=True)
+ assert alias.resolve()==REPO.resolve()
+ r=run([sys.executable,T/'出片指纹.py','--拷',W],'canonical-module-copy',cwd=REPO);assert r.returncode==0
+ r=run([sys.executable,T/'新管/快测.py'],'original-full-fastcheck',cwd=W);assert r.returncode==0,'Original full quickcheck failed; no approval stamp invented'
+ report['original_full_fastcheck_passed']=True
+ stamp=T/'新管/快测通过.json';assert stamp.is_file();shutil.copyfile(stamp,OUT/'real-fastcheck-stamp.json');report['real_fastcheck_stamp_SHA256']=sha(stamp)
+ r=run([sys.executable,T/'新管/印章.py'],'real-stamp-validation',cwd=W);assert r.returncode==0
+ if a.variant=='keep-reviewed-gain':
+  r=run([sys.executable,PKG/'targeted-mode-tests.py','--tools',T,'--requests',PKG/'request-fixtures','--output',OUT/'targeted-mode-tests.json'],'new-mode-functional-tests',cwd=W);assert r.returncode==0
+  # Real frozen source + restored original TTS cache: measurement only, never auto-write gains.
+  real=[]
+  for no in ['10','11','12']:
+   src=PKG/'request-fixtures'/f'{no}.json';dst=W/'scripts'/f'{no}.json';shutil.copyfile(src,dst);source_sha=sha(dst)
+   r=run([sys.executable,'make_video.py',dst,f'_keep-gain-real-{no}.mp4'],f'real{no}-cached-audio',cwd=W,env={**E,'AUDIO_ONLY':'1'});assert r.returncode==0
+   wav=W/f'work_{no}/a.wav';seg=W/f'work_{no}/分段.json';before=sha(wav);assert sha(dst)==source_sha
+   r=run([sys.executable,T/'句内响度.py',no,'--写入','--保持已审增益'],f'real{no}-readonly-measurement',cwd=W);assert r.returncode==0;assert sha(dst)==source_sha and sha(wav)==before
+   gate=run([sys.executable,T/'响度一致性核对.py',wav,'--句内','--分段',seg],f'real{no}-unchanged-loudness-gate',cwd=W);assert gate.returncode in [0,1]
+   real.append({'article':no,'actual_frozen_request_source_SHA256':source_sha,'actual_cached_audio_PCM_file_SHA256':before,'source_JSON_and_approved_gain_byte_exact_after_measurement':True,'actual_audio_file_byte_exact_after_measurement':True,'original_loudness_gate_exit':gate.returncode,'article_audio_quality_rejected':gate.returncode==1,'article_audio_or_video_acceptance':False})
+  report['real_cached_source_measurements']=real
+ report.update({'passed':True,'stage':'independent-core-certification-passed'});save()
+except Exception as e:
+ report.update({'passed':False,'error':str(e)});save();raise
