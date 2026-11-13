@@ -1,0 +1,206 @@
+[
+  {
+    "op": "test",
+    "path": "/sentences/0/chunks/1/align",
+    "value": [
+      [
+        "inviting",
+        "邀请"
+      ],
+      [
+        "**shoppers**",
+        "**购物者**(shoppers)"
+      ],
+      [
+        "to **sip**",
+        "**啜饮**(sip)"
+      ],
+      [
+        "two",
+        "两种"
+      ],
+      [
+        "**unmarked**",
+        "**未标品牌的**(unmarked)"
+      ],
+      [
+        "**beverages**",
+        "**饮料**(beverages)，\n{{（小口喝；抿）|sip}}"
+      ]
+    ]
+  },
+  {
+    "op": "test",
+    "path": "/sentences/0/chunks/1/zh",
+    "value": "邀请**购物者**(shoppers)**啜饮**(sip)两种**未标品牌的**(unmarked)**饮料**(beverages)，\n{{（小口喝；抿）|sip}}"
+  },
+  {
+    "op": "test",
+    "path": "/sentences/0/chunks/1/en",
+    "value": "inviting **shoppers** to **sip** two **unmarked** **beverages**"
+  },
+  {
+    "op": "replace",
+    "path": "/sentences/0/chunks/1/align",
+    "value": [
+      [
+        "{{一行}}inviting",
+        "邀请"
+      ],
+      [
+        "**shoppers**",
+        "**购物者**(shoppers)"
+      ],
+      [
+        "to",
+        ""
+      ],
+      [
+        "**sip**",
+        "**啜饮**(sip)\n{{（小口喝；抿）|sip}}"
+      ],
+      [
+        "two",
+        "两种"
+      ],
+      [
+        "**unmarked**",
+        "**未标品牌的**(unmarked)"
+      ],
+      [
+        "**beverages**",
+        "**饮料**(beverages)，"
+      ]
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/sentences/0/chunks/1/zh",
+    "value": "邀请**购物者**(shoppers)**啜饮**(sip)\n{{（小口喝；抿）|sip}}两种**未标品牌的**(unmarked)**饮料**(beverages)，"
+  },
+  {
+    "op": "replace",
+    "path": "/sentences/0/chunks/1/en",
+    "value": "{{一行}}inviting **shoppers** to **sip** two **unmarked** **beverages**"
+  },
+  {
+    "op": "test",
+    "path": "/sentences/10/chunks/2/en",
+    "value": "stocked up on the original."
+  },
+  {
+    "op": "replace",
+    "path": "/sentences/10/chunks/2/en",
+    "value": "**stocked up on** the original."
+  },
+  {
+    "op": "test",
+    "path": "/sentences/10/chunks/2/zh",
+    "value": "囤积了原版可乐。"
+  },
+  {
+    "op": "replace",
+    "path": "/sentences/10/chunks/2/zh",
+    "value": "**囤积了**(stocked up on)原版可乐。"
+  },
+  {
+    "op": "test",
+    "path": "/sentences/10/chunks/2/align/0/0",
+    "value": "stocked up on"
+  },
+  {
+    "op": "replace",
+    "path": "/sentences/10/chunks/2/align/0/0",
+    "value": "**stocked up on**"
+  },
+  {
+    "op": "test",
+    "path": "/sentences/10/chunks/2/align/0/1",
+    "value": "囤积了"
+  },
+  {
+    "op": "replace",
+    "path": "/sentences/10/chunks/2/align/0/1",
+    "value": "**囤积了**(stocked up on)"
+  },
+  {
+    "op": "test",
+    "path": "/sentences/11/chunks/0/en",
+    "value": "In June 1985 one protester, Gay Mullins, filed a **lawsuit**"
+  },
+  {
+    "op": "replace",
+    "path": "/sentences/11/chunks/0/en",
+    "value": "In June 1985 one **protester**, Gay Mullins, filed a **lawsuit**"
+  },
+  {
+    "op": "test",
+    "path": "/sentences/11/chunks/0/zh",
+    "value": "1985年6月，一位抗议者盖伊·马林斯提起了**诉讼**(lawsuit)，"
+  },
+  {
+    "op": "replace",
+    "path": "/sentences/11/chunks/0/zh",
+    "value": "1985年6月，一位**抗议者**(protester)盖伊·马林斯提起了**诉讼**(lawsuit)，"
+  },
+  {
+    "op": "test",
+    "path": "/sentences/11/chunks/0/align/1/0",
+    "value": "one protester,"
+  },
+  {
+    "op": "replace",
+    "path": "/sentences/11/chunks/0/align/1/0",
+    "value": "one **protester**,"
+  },
+  {
+    "op": "test",
+    "path": "/sentences/11/chunks/0/align/1/1",
+    "value": "一位抗议者"
+  },
+  {
+    "op": "replace",
+    "path": "/sentences/11/chunks/0/align/1/1",
+    "value": "一位**抗议者**(protester)"
+  },
+  {
+    "op": "test",
+    "path": "/sentences/11/chunks/1/en",
+    "value": "to keep New Coke out of packaging like the original's."
+  },
+  {
+    "op": "replace",
+    "path": "/sentences/11/chunks/1/en",
+    "value": "to keep New Coke out of **packaging** like the original's."
+  },
+  {
+    "op": "test",
+    "path": "/sentences/11/chunks/1/zh",
+    "value": "要求禁止新可乐使用与原版相似的包装。"
+  },
+  {
+    "op": "replace",
+    "path": "/sentences/11/chunks/1/zh",
+    "value": "要求禁止新可乐使用与原版相似的**包装**(packaging)。"
+  },
+  {
+    "op": "test",
+    "path": "/sentences/11/chunks/1/align/2/0",
+    "value": "out of packaging like the original's."
+  },
+  {
+    "op": "replace",
+    "path": "/sentences/11/chunks/1/align/2/0",
+    "value": "out of **packaging** like the original's."
+  },
+  {
+    "op": "test",
+    "path": "/sentences/11/chunks/1/align/2/1",
+    "value": "使用与原版相似的包装。"
+  },
+  {
+    "op": "replace",
+    "path": "/sentences/11/chunks/1/align/2/1",
+    "value": "使用与原版相似的**包装**(packaging)。"
+  }
+]

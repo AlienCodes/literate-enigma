@@ -1,0 +1,33 @@
+{
+  "official_serialization_loop_source": "视频/工具/初稿生成/核对.py",
+  "generator_data_source": "视频/工具/初稿生成/gen12.py",
+  "checked_chunks": [
+    {
+      "sentence_1_based": 1,
+      "chunk_1_based": 2,
+      "en_zh_align_exact_match": true
+    },
+    {
+      "sentence_1_based": 11,
+      "chunk_1_based": 3,
+      "en_zh_align_exact_match": true
+    },
+    {
+      "sentence_1_based": 12,
+      "chunk_1_based": 1,
+      "en_zh_align_exact_match": true
+    },
+    {
+      "sentence_1_based": 12,
+      "chunk_1_based": 2,
+      "en_zh_align_exact_match": true
+    }
+  ],
+  "english_spoken_text_unchanged_all_chunks": true,
+  "chinese_body_text_unchanged_all_chunks": true,
+  "chunk_boundaries_unchanged": true,
+  "all_zh_equals_joined_align_zh": true,
+  "marker_in_c_en_matches_align": true,
+  "legacy_plain_checker_limitation": "核对.py plain removes ** only, so its informational article comparison prints literal inequality for {{一行}}. Official render and make_video strip_gloss remove this supported marker before display/audio. No checker or renderer change proposed.",
+  "execution_scope": "Only the official AST serialization loop ran against in-memory proposal data; no generator entry point, production write, video/PDF rendering, or audio generation."
+}

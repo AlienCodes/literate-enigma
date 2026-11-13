@@ -1,0 +1,504 @@
+{
+  "audit_scope": "articles01–24; independent source-only legacy recap audit",
+  "created_utc": "2026-11-13T20:09:32.084615+00:00",
+  "inventory": "/workspace/work/video-audit70-20261113/inventory.json",
+  "constraints_observed": [
+    "No video/PDF generation or rendering",
+    "No push",
+    "No production source changes",
+    "No spawned agents"
+  ],
+  "confirmed_remove_ids": [
+    "09",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "22"
+  ],
+  "retain_ids": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "10",
+    "21",
+    "23",
+    "24"
+  ],
+  "confirmed_remove_count": 12,
+  "ambiguous_cases_resolved": [
+    {
+      "id": "10",
+      "decision": "retain entire historical-background note",
+      "reason": "Directly explains bare wall and fame; original generator explicitly categorises it as 历史背景. Does not recap the theft/investigation/recovery arc."
+    },
+    {
+      "id": "06",
+      "decision": "retain penultimate conceptual note",
+      "reason": "Explains experimental expectancy rather than retelling the full story."
+    },
+    {
+      "id": "12",
+      "decision": "retain local CEO/concession note in this audit",
+      "reason": "Local sentence interpretation; possible historical/sequence inconsistency is separate from legacy-summary cleanup."
+    }
+  ],
+  "unresolved_legacy_recap_cases": [],
+  "tagged_summaries": "Existing current （简述：...） blocks are outside all removal spans and must be retained.",
+  "articles": [
+    {
+      "id": "01",
+      "title": "以为柠檬汁能隐身的劫匪",
+      "source_path": "视频/脚本/01.json",
+      "source_sha256": "a89b32fbfb313e0159184cbf096f2d3330e41f2fc0d6b781fa23855c0b447a3d",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/17/chunks/1/note",
+      "note_before_tagged_summary": "（双重负担：第一，他能力不足，没做好自拍测试；\n第二，正因为能力不足，他也缺少发现自己错误的能力，\n便把自拍没拍到自己，误当成了“隐身”成功。）",
+      "action": "retain",
+      "remove_spans": [],
+      "retain_prefix_exact": "（双重负担：第一，他能力不足，没做好自拍测试；\n第二，正因为能力不足，他也缺少发现自己错误的能力，\n便把自拍没拍到自己，误当成了“隐身”成功。）",
+      "rationale": "Retain the full user-approved final 双重负担 explanation: it maps the two theoretical burdens to the failed selfie and misjudged result. Earlier dual-burden, regression-to-the-mean example and ironic in-fairness notes also explain their attached sentences rather than summarising the entire article."
+    },
+    {
+      "id": "02",
+      "title": "一颗棉花糖的真相",
+      "source_path": "视频/脚本/02.json",
+      "source_sha256": "238f1711015441fe52b84d442f1482575444effb9633fe4f9089ac49c280e2c4",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/15/chunks/2/note",
+      "note_before_tagged_summary": "",
+      "action": "retain",
+      "remove_spans": [],
+      "retain_prefix_exact": "",
+      "rationale": "No pre-summary note remains on the final chunk. Complete-body/all-note review found no separate trailing old narrative recap."
+    },
+    {
+      "id": "03",
+      "title": "喝下细菌的医生",
+      "source_path": "视频/脚本/03.json",
+      "source_sha256": "a5235cf87e950db1c642369e05990cfd90c4a6ed6740b8334551129f06a41a37",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/18/chunks/2/note",
+      "note_before_tagged_summary": "（prize citation：颁奖时宣读的获奖理由）",
+      "action": "retain",
+      "remove_spans": [],
+      "retain_prefix_exact": "（prize citation：颁奖时宣读的获奖理由）",
+      "rationale": "Final pre-summary note only explains vocabulary, grammar or reference in its attached sentence. Complete-body/all-note review found no trailing old narrative recap."
+    },
+    {
+      "id": "04",
+      "title": "被街道重塑的大脑",
+      "source_path": "视频/脚本/04.json",
+      "source_sha256": "4192b23947da4f0a5906c38298cad9feeb7d793f4621f5eecb366ea3c423bc41",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/16/chunks/2/note",
+      "note_before_tagged_summary": "",
+      "action": "retain",
+      "remove_spans": [],
+      "retain_prefix_exact": "",
+      "rationale": "No pre-summary note remains on the final chunk. Complete-body/all-note review found no separate trailing old narrative recap."
+    },
+    {
+      "id": "05",
+      "title": "血里的指纹",
+      "source_path": "视频/脚本/05.json",
+      "source_sha256": "6593bda72089862204b044a5c596894696ac3414be6e9d2a57093319cc6cc90b",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/18/chunks/1/note",
+      "note_before_tagged_summary": "",
+      "action": "retain",
+      "remove_spans": [],
+      "retain_prefix_exact": "",
+      "rationale": "No pre-summary note remains on the final chunk. Complete-body/all-note review found no separate trailing old narrative recap."
+    },
+    {
+      "id": "06",
+      "title": "会算术的马",
+      "source_path": "视频/脚本/06.json",
+      "source_sha256": "527654612484693604bafbfc2a3bd889bb1735ae7de763c3e25fde4927553139",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/18/chunks/1/note",
+      "note_before_tagged_summary": "（still convinced that…：后置定语，修饰 jeweller）",
+      "action": "retain",
+      "remove_spans": [],
+      "retain_prefix_exact": "（still convinced that…：后置定语，修饰 jeweller）",
+      "rationale": "Final pre-summary note only explains vocabulary, grammar or reference in its attached sentence. Complete-body/all-note review found no trailing old narrative recap.",
+      "special_retain_notes": [
+        {
+          "location": "/sentences/17/chunks/1/note",
+          "reason": "Keep the 聪明汉斯效应 generalisation: it explains expectancy and shapes behavioural results in the experimental-bias passage. It is not a second whole-story ending recap."
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "title": "越狱的章鱼",
+      "source_path": "视频/脚本/07.json",
+      "source_sha256": "96ad5ac097dabf30aa7ee95243c7f7636e91590d2ec34cb480ed176418e2f4c1",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/15/chunks/1/note",
+      "note_before_tagged_summary": "（remain + 形容词：仍然处于某种状态；oblivious to：对……毫无察觉）",
+      "action": "retain",
+      "remove_spans": [],
+      "retain_prefix_exact": "（remain + 形容词：仍然处于某种状态；oblivious to：对……毫无察觉）",
+      "rationale": "Final pre-summary note only explains vocabulary, grammar or reference in its attached sentence. Complete-body/all-note review found no trailing old narrative recap."
+    },
+    {
+      "id": "08",
+      "title": "破解霍乱之谜的医生",
+      "source_path": "视频/脚本/08.json",
+      "source_sha256": "8c8390cf0c2bbcc8416429bef0ab2ed33d9d697d481f0c7a342b0d02e0c374e0",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/16/chunks/3/note",
+      "note_before_tagged_summary": "（succumb to：本义屈服于，这里指死于某病；vindicating…：现在分词短语作结果状语）",
+      "action": "retain",
+      "remove_spans": [],
+      "retain_prefix_exact": "（succumb to：本义屈服于，这里指死于某病；vindicating…：现在分词短语作结果状语）",
+      "rationale": "Final pre-summary note only explains vocabulary, grammar or reference in its attached sentence. Complete-body/all-note review found no trailing old narrative recap."
+    },
+    {
+      "id": "09",
+      "title": "向鸸鹋宣战",
+      "source_path": "视频/脚本/09.json",
+      "source_sha256": "0e6c6b67715d54e68f05e1ce959c3fe62e7ca298cc8e453c94a50fccc47f5dba",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/17/chunks/1/note",
+      "note_before_tagged_summary": "（claim：这里指申领；fifty-seven times + 名词：是……的五十七倍）\n（结局：军队打了五个星期，只打死986只；政府改成悬赏，\n让农民自己打、按只领赏金，1934年半年里就领了5.7万多笔，\n也就是打死了5.7万多只，是军队战果的五十七倍多。\n可见悬赏的效率远远高于出动军队：对农民是好结局，\n既拿到了补偿，又有了动力；对军队则是一场难堪的失败。）",
+      "action": "remove_confirmed_legacy_recap",
+      "remove_spans": [
+        {
+          "start_codepoint_in_note": 45,
+          "end_codepoint_in_note": 185,
+          "exact_text": "\n（结局：军队打了五个星期，只打死986只；政府改成悬赏，\n让农民自己打、按只领赏金，1934年半年里就领了5.7万多笔，\n也就是打死了5.7万多只，是军队战果的五十七倍多。\n可见悬赏的效率远远高于出动军队：对农民是好结局，\n既拿到了补偿，又有了动力；对军队则是一场难堪的失败。）",
+          "content_exact": "（结局：军队打了五个星期，只打死986只；政府改成悬赏，\n让农民自己打、按只领赏金，1934年半年里就领了5.7万多笔，\n也就是打死了5.7万多只，是军队战果的五十七倍多。\n可见悬赏的效率远远高于出动军队：对农民是好结局，\n既拿到了补偿，又有了动力；对军队则是一场难堪的失败。）",
+          "type": "trailing_结局_block"
+        }
+      ],
+      "retain_prefix_exact": "（claim：这里指申领；fifty-seven times + 名词：是……的五十七倍）",
+      "rationale": "The five-line 结局 block replays the army campaign, bounty and 1934 result from sentences 11–17 and adds the overall winner/loser conclusion. This is an article recap, while the preceding claim/times note directly explains the final sentence."
+    },
+    {
+      "id": "10",
+      "title": "被偷走的微笑",
+      "source_path": "视频/脚本/10.json",
+      "source_sha256": "03f5c3b3bea0ef45f46452eba99a3357518eee5399780ea8b836f543a911a8fe",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/16/chunks/0/note",
+      "note_before_tagged_summary": "（历史背景：1911年《蒙娜丽莎》被盗后，\n卢浮宫原本挂画的那面墙上只剩下几个钉子（即 bare wall）。\n在画作失窃的两年里，无数人慕名来到卢浮宫，\n专门去看那面空荡荡的墙，这反而极大地激发了公众的好奇心，\n将其推上了“世界第一名画”的神坛。）",
+      "action": "retain",
+      "remove_spans": [],
+      "retain_prefix_exact": "（历史背景：1911年《蒙娜丽莎》被盗后，\n卢浮宫原本挂画的那面墙上只剩下几个钉子（即 bare wall）。\n在画作失窃的两年里，无数人慕名来到卢浮宫，\n专门去看那面空荡荡的墙，这反而极大地激发了公众的好奇心，\n将其推上了“世界第一名画”的神坛。）",
+      "rationale": "Retain the complete 历史背景 note. It explains the final metaphor bare wall and how the painting acquired fame, rather than retelling the theft/investigation/recovery narrative. Original gen10.py lines60–61 attach it specifically to that final sentence; line71 explicitly identifies 结尾解说 as 历史背景 and records the earlier user instruction. Some content overlaps sentences1,3,15, but its scope and direct lexical link make it legitimate contextual explanation.",
+      "generator_evidence": {
+        "read_via": "git show HEAD:视频/工具/初稿生成/gen10.py",
+        "lines": [
+          60,
+          61,
+          71
+        ],
+        "metadata_exact": "\"结尾解说\":\"历史背景\"",
+        "comment_exact": "# T28 结尾解说（用户 2026-10-10 第14条）"
+      },
+      "confidence": "retain_high_after_context_review"
+    },
+    {
+      "id": "11",
+      "title": "第37手",
+      "source_path": "视频/脚本/11.json",
+      "source_sha256": "5e6d219fac9d334078abe3b77de3c8518b9d03d7bb7691328e63ad62a91d4d6a",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/16/chunks/2/note",
+      "note_before_tagged_summary": "（whose…：定语从句，修饰 a stone；by DeepMind's figures：插入语；\nas slim as those of…：those = the odds）\n（结局：第二局，AlphaGo 下出了人类只有万分之一可能会下的第37手；\n第四局，李世石也下出了职业棋手只有万分之一可能找到的第78手，\n并靠它赢下了五局里唯一的一局。李世石退役时说人工智能无法击败，\n可他唯一的胜利，恰恰来自一手和 AlphaGo 的肩冲一样罕见、\n一样大胆的棋：人类赢机器，用的正是机器赢人类的方式。）",
+      "action": "remove_confirmed_legacy_recap",
+      "remove_spans": [
+        {
+          "start_codepoint_in_note": 89,
+          "end_codepoint_in_note": 252,
+          "exact_text": "\n（结局：第二局，AlphaGo 下出了人类只有万分之一可能会下的第37手；\n第四局，李世石也下出了职业棋手只有万分之一可能找到的第78手，\n并靠它赢下了五局里唯一的一局。李世石退役时说人工智能无法击败，\n可他唯一的胜利，恰恰来自一手和 AlphaGo 的肩冲一样罕见、\n一样大胆的棋：人类赢机器，用的正是机器赢人类的方式。）",
+          "content_exact": "（结局：第二局，AlphaGo 下出了人类只有万分之一可能会下的第37手；\n第四局，李世石也下出了职业棋手只有万分之一可能找到的第78手，\n并靠它赢下了五局里唯一的一局。李世石退役时说人工智能无法击败，\n可他唯一的胜利，恰恰来自一手和 AlphaGo 的肩冲一样罕见、\n一样大胆的棋：人类赢机器，用的正是机器赢人类的方式。）",
+          "type": "trailing_结局_block"
+        }
+      ],
+      "retain_prefix_exact": "（whose…：定语从句，修饰 a stone；by DeepMind's figures：插入语；\nas slim as those of…：those = the odds）",
+      "rationale": "The 结局 block condenses game two, game four, retirement and the closing symmetry, covering sentences 3–16. It is a complete narrative interpretation, distinct from the preceding relative-clause/odds explanation.",
+      "special_retain_notes": [
+        {
+          "location": "/sentences/10/chunks/0/note",
+          "reason": "Keep the two-line 互换角色 note; it explains reversed the roles / neat symmetry locally rather than replacing the whole article summary."
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "title": "新可乐的 79 天",
+      "source_path": "视频/脚本/12.json",
+      "source_sha256": "faf256b2d06fe6db201963303c10cf5386c9b62bcd0af21061d9a55ba3cf2141",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/20/chunks/1/note",
+      "note_before_tagged_summary": "（hide A from B：不让B看到A；what…：宾语从句）\n（结局：近20万次盲测证明新配方更好喝，\n可盲测遮住了品牌，测不出人们对老可乐近百年的感情；\n新可乐一推出就引来抗议和诉讼，\n79天后原配方以可口可乐经典之名回归。\n口味赢了，感情输了，可口可乐最后还是向忠实的饮用者让了步。）",
+      "action": "remove_confirmed_legacy_recap",
+      "remove_spans": [
+        {
+          "start_codepoint_in_note": 33,
+          "end_codepoint_in_note": 147,
+          "exact_text": "\n（结局：近20万次盲测证明新配方更好喝，\n可盲测遮住了品牌，测不出人们对老可乐近百年的感情；\n新可乐一推出就引来抗议和诉讼，\n79天后原配方以可口可乐经典之名回归。\n口味赢了，感情输了，可口可乐最后还是向忠实的饮用者让了步。）",
+          "content_exact": "（结局：近20万次盲测证明新配方更好喝，\n可盲测遮住了品牌，测不出人们对老可乐近百年的感情；\n新可乐一推出就引来抗议和诉讼，\n79天后原配方以可口可乐经典之名回归。\n口味赢了，感情输了，可口可乐最后还是向忠实的饮用者让了步。）",
+          "type": "trailing_结局_block"
+        }
+      ],
+      "retain_prefix_exact": "（hide A from B：不让B看到A；what…：宾语从句）",
+      "rationale": "The 结局 block condenses blind testing, public opposition, the 79-day reversal and the emotional-attachment conclusion across sentences 4–20. The hide A from B/what note should remain.",
+      "special_retain_notes": [
+        {
+          "location": "/sentences/13/chunks/1/note",
+          "reason": "Keep during this recap-only audit: the CEO/concession note is an interpretation of one specific sentence, not a final narrative recap. Its mention of 改回老配方 appears inconsistent with this sentence’s placement before the79-day relaunch and should be flagged separately if semantic corrections are later authorised."
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "title": "十一天不睡觉的少年",
+      "source_path": "视频/脚本/13.json",
+      "source_sha256": "5ac8ad158ce8b932357490f5d91410c0afdf94c7cfd96816071d6ac17b3ebd5f",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/16/chunks/1/note",
+      "note_before_tagged_summary": "（who…：定语从句，修饰 the boy；\nbounce back from：从……中恢复过来；\ndoze off：打盹/打瞌睡/凑合着短睡一下）\n（结局：17岁的加德纳为一场科学展尝试不睡觉，\n历时264.4小时，项目获得了第一名；\n他随后睡了约14小时，醒来时似乎神清气爽，\n可在2017年的采访中，他说严重的失眠折磨了他约十年，\n他本人把它归咎于这次实验。）",
+      "action": "remove_confirmed_legacy_recap",
+      "remove_spans": [
+        {
+          "start_codepoint_in_note": 74,
+          "end_codepoint_in_note": 183,
+          "exact_text": "\n（结局：17岁的加德纳为一场科学展尝试不睡觉，\n历时264.4小时，项目获得了第一名；\n他随后睡了约14小时，醒来时似乎神清气爽，\n可在2017年的采访中，他说严重的失眠折磨了他约十年，\n他本人把它归咎于这次实验。）",
+          "content_exact": "（结局：17岁的加德纳为一场科学展尝试不睡觉，\n历时264.4小时，项目获得了第一名；\n他随后睡了约14小时，醒来时似乎神清气爽，\n可在2017年的采访中，他说严重的失眠折磨了他约十年，\n他本人把它归咎于这次实验。）",
+          "type": "trailing_结局_block"
+        }
+      ],
+      "retain_prefix_exact": "（who…：定语从句，修饰 the boy；\nbounce back from：从……中恢复过来；\ndoze off：打盹/打瞌睡/凑合着短睡一下）",
+      "rationale": "The 结局 block retells Gardner’s school-fair attempt, duration, recovery and later insomnia across sentences 0–16. The who/bounce back from/doze off note is a local language explanation and should remain."
+    },
+    {
+      "id": "14",
+      "title": "让蚂蚁变僵尸的真菌",
+      "source_path": "视频/脚本/14.json",
+      "source_sha256": "64dfe6c6b92b2c4d20016c1a4e82008f4cc824f283268bae526a43ae696c48cf",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/17/chunks/1/note",
+      "note_before_tagged_summary": "（bear：带有（痕迹、标记）；\n48-million-year-old：复合形容词，4800万年前的）\n（结局：受感染的蚂蚁正午前后咬住叶脉，黄昏时死去，\n死后上颚仍咬着不放；两三天后，真菌从它头部长出，\n把孢子撒向下方觅食的蚂蚁经过的地面。\n真菌在肌肉周围织成网格，却没有侵入大脑。\n德国梅塞尔4800万年前的叶子化石上已有同样的咬痕，\n说明这类真菌由来已久。）",
+      "action": "remove_confirmed_legacy_recap",
+      "remove_spans": [
+        {
+          "start_codepoint_in_note": 52,
+          "end_codepoint_in_note": 183,
+          "exact_text": "\n（结局：受感染的蚂蚁正午前后咬住叶脉，黄昏时死去，\n死后上颚仍咬着不放；两三天后，真菌从它头部长出，\n把孢子撒向下方觅食的蚂蚁经过的地面。\n真菌在肌肉周围织成网格，却没有侵入大脑。\n德国梅塞尔4800万年前的叶子化石上已有同样的咬痕，\n说明这类真菌由来已久。）",
+          "content_exact": "（结局：受感染的蚂蚁正午前后咬住叶脉，黄昏时死去，\n死后上颚仍咬着不放；两三天后，真菌从它头部长出，\n把孢子撒向下方觅食的蚂蚁经过的地面。\n真菌在肌肉周围织成网格，却没有侵入大脑。\n德国梅塞尔4800万年前的叶子化石上已有同样的咬痕，\n说明这类真菌由来已久。）",
+          "type": "trailing_结局_block"
+        }
+      ],
+      "retain_prefix_exact": "（bear：带有（痕迹、标记）；\n48-million-year-old：复合形容词，4800万年前的）",
+      "rationale": "The 结局 block retells the infection sequence, muscular network and ancient fossil across sentences 2–17. The bear/compound-adjective note directly explains the final sentence and should remain."
+    },
+    {
+      "id": "15",
+      "title": "永不沉没的神话",
+      "source_path": "视频/脚本/15.json",
+      "source_sha256": "4552ac68e799b9154432c560abac888db047714452eefdaf4f2e6ae4c19b1b36",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/17/chunks/1/note",
+      "note_before_tagged_summary": "（she sailed under：省略了 that 的定语从句，修饰 rules；\nstay afloat：浮在水上，没有沉没；也指维持下去；\nit took A to do B：直到有了A才做成B；\nher dead：她船上的死者）\n（结局：泰坦尼克号合乎1894年的规则，\n救生艇却只够船上一半的人；\n加州人号的报务员按惯例关了电台，没听到她的求救呼叫。\n1,500多人遇难后，\n美国1912年7月立法规定电台全天候值守，\n1914年13国签署了第一部《海上人命安全公约》，\n冰情巡逻也开展了起来。\n按法律足够，\n到了海上却不足：过时的规则直到这场灾难才信誉扫地。）",
+      "action": "remove_confirmed_legacy_recap",
+      "remove_spans": [
+        {
+          "start_codepoint_in_note": 118,
+          "end_codepoint_in_note": 286,
+          "exact_text": "\n（结局：泰坦尼克号合乎1894年的规则，\n救生艇却只够船上一半的人；\n加州人号的报务员按惯例关了电台，没听到她的求救呼叫。\n1,500多人遇难后，\n美国1912年7月立法规定电台全天候值守，\n1914年13国签署了第一部《海上人命安全公约》，\n冰情巡逻也开展了起来。\n按法律足够，\n到了海上却不足：过时的规则直到这场灾难才信誉扫地。）",
+          "content_exact": "（结局：泰坦尼克号合乎1894年的规则，\n救生艇却只够船上一半的人；\n加州人号的报务员按惯例关了电台，没听到她的求救呼叫。\n1,500多人遇难后，\n美国1912年7月立法规定电台全天候值守，\n1914年13国签署了第一部《海上人命安全公约》，\n冰情巡逻也开展了起来。\n按法律足够，\n到了海上却不足：过时的规则直到这场灾难才信誉扫地。）",
+          "type": "trailing_结局_block"
+        }
+      ],
+      "retain_prefix_exact": "（she sailed under：省略了 that 的定语从句，修饰 rules；\nstay afloat：浮在水上，没有沉没；也指维持下去；\nit took A to do B：直到有了A才做成B；\nher dead：她船上的死者）",
+      "rationale": "The 结局 block restates the capacity problem, radio practice, deaths, regulatory reform and final legal-rules irony across sentences 4–17. Keep all preceding grammatical and metaphor explanations.",
+      "special_retain_notes": [
+        {
+          "location": "/sentences/8/chunks/1/note",
+          "reason": "Keep the equally lawful contextual explanation; it explains the legal radio-watch practice and its contrast locally."
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "title": "从空气中造面包",
+      "source_path": "视频/脚本/16.json",
+      "source_sha256": "c677916acf1eb8ab7c3048ee247ebdfc901d4ebc4450a1d5e33a688a67b93c2a",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/17/chunks/1/note",
+      "note_before_tagged_summary": "（a little of Haber's chemistry：一点哈伯的化学，指经哈伯-博施工艺合成的氮）\n（结局：哈伯从空气中合成了氨，获得了1918年诺贝尔奖；\n氨做成化肥，到2008年养活了将近一半的人类，\n也为德国的弹药提供了硝酸盐，他本人统筹指挥了化学战。\n希特勒上台后，犹太裔的哈伯离开德国，1934年死于巴塞尔；\n他研究所催生的齐克隆，后来的变体齐克隆B被用于纳粹死亡营。）",
+      "action": "remove_confirmed_legacy_recap",
+      "remove_spans": [
+        {
+          "start_codepoint_in_note": 53,
+          "end_codepoint_in_note": 194,
+          "exact_text": "\n（结局：哈伯从空气中合成了氨，获得了1918年诺贝尔奖；\n氨做成化肥，到2008年养活了将近一半的人类，\n也为德国的弹药提供了硝酸盐，他本人统筹指挥了化学战。\n希特勒上台后，犹太裔的哈伯离开德国，1934年死于巴塞尔；\n他研究所催生的齐克隆，后来的变体齐克隆B被用于纳粹死亡营。）",
+          "content_exact": "（结局：哈伯从空气中合成了氨，获得了1918年诺贝尔奖；\n氨做成化肥，到2008年养活了将近一半的人类，\n也为德国的弹药提供了硝酸盐，他本人统筹指挥了化学战。\n希特勒上台后，犹太裔的哈伯离开德国，1934年死于巴塞尔；\n他研究所催生的齐克隆，后来的变体齐克隆B被用于纳粹死亡营。）",
+          "type": "trailing_结局_block"
+        }
+      ],
+      "retain_prefix_exact": "（a little of Haber's chemistry：一点哈伯的化学，指经哈伯-博施工艺合成的氮）",
+      "rationale": "The 结局 block condenses Haber’s synthesis, prize, fertiliser benefit, wartime role, exile and Zyklon legacy across sentences 0–16. The preceding chemistry phrase explanation belongs to the final English sentence."
+    },
+    {
+      "id": "17",
+      "title": "法老的诅咒",
+      "source_path": "视频/脚本/17.json",
+      "source_sha256": "fbd53b02b1dfed0fe5a10953a2428b3091839510f7f3332bccc53bb7857bc617",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/18/chunks/0/note",
+      "note_before_tagged_summary": "（leave sb unharmed：让某人未受伤害；conspicuously 修饰 unharmed）\n（结局：卡纳冯的过早离世让诅咒的说法传开，\n可墓中从未发现诅咒铭文，开罗停电也是常事；\n2002年的研究显示，接触过陵墓的人死亡年龄\n与其余的人相比，差距在统计上并不显著；\n亲手启封墓葬的卡特，在卡纳冯之后又活了近十六年。）",
+      "action": "remove_confirmed_legacy_recap",
+      "remove_spans": [
+        {
+          "start_codepoint_in_note": 53,
+          "end_codepoint_in_note": 166,
+          "exact_text": "\n（结局：卡纳冯的过早离世让诅咒的说法传开，\n可墓中从未发现诅咒铭文，开罗停电也是常事；\n2002年的研究显示，接触过陵墓的人死亡年龄\n与其余的人相比，差距在统计上并不显著；\n亲手启封墓葬的卡特，在卡纳冯之后又活了近十六年。）",
+          "content_exact": "（结局：卡纳冯的过早离世让诅咒的说法传开，\n可墓中从未发现诅咒铭文，开罗停电也是常事；\n2002年的研究显示，接触过陵墓的人死亡年龄\n与其余的人相比，差距在统计上并不显著；\n亲手启封墓葬的卡特，在卡纳冯之后又活了近十六年。）",
+          "type": "trailing_结局_block"
+        }
+      ],
+      "retain_prefix_exact": "（leave sb unharmed：让某人未受伤害；conspicuously 修饰 unharmed）",
+      "rationale": "The 结局 block recaps the origin of the curse story, missing inscription, blackout caveat, mortality study and Carter’s longevity across sentences 9–18. Keep the leave sb unharmed/conspicuously note."
+    },
+    {
+      "id": "18",
+      "title": "改变人类命运的霉菌",
+      "source_path": "视频/脚本/18.json",
+      "source_sha256": "dc291ec2e91b03b7745d61c10f08f2612816f6c0f3efa16348eee06dd52aaf96",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/15/chunks/1/note",
+      "note_before_tagged_summary": "（transform A into B：把A转化成B；years of toil：多年的辛劳）\n（结局：弗莱明发现了青霉素，可粗制的液体难以提纯，\n青霉素沉寂了约十年；\n牛津的弗洛里、钱恩和希特利把它提取出来，\n注射了青霉素的小鼠活了下来；\n皮奥里亚的实验室用玉米浆和发霉甜瓜里的菌株提高了产量，\n到诺曼底登陆时已能满足盟军的需求。\n1945年，弗莱明、弗洛里和钱恩共同获得诺贝尔奖，\n希特利却遭到忽视。）",
+      "action": "remove_confirmed_legacy_recap",
+      "remove_spans": [
+        {
+          "start_codepoint_in_note": 47,
+          "end_codepoint_in_note": 203,
+          "exact_text": "\n（结局：弗莱明发现了青霉素，可粗制的液体难以提纯，\n青霉素沉寂了约十年；\n牛津的弗洛里、钱恩和希特利把它提取出来，\n注射了青霉素的小鼠活了下来；\n皮奥里亚的实验室用玉米浆和发霉甜瓜里的菌株提高了产量，\n到诺曼底登陆时已能满足盟军的需求。\n1945年，弗莱明、弗洛里和钱恩共同获得诺贝尔奖，\n希特利却遭到忽视。）",
+          "content_exact": "（结局：弗莱明发现了青霉素，可粗制的液体难以提纯，\n青霉素沉寂了约十年；\n牛津的弗洛里、钱恩和希特利把它提取出来，\n注射了青霉素的小鼠活了下来；\n皮奥里亚的实验室用玉米浆和发霉甜瓜里的菌株提高了产量，\n到诺曼底登陆时已能满足盟军的需求。\n1945年，弗莱明、弗洛里和钱恩共同获得诺贝尔奖，\n希特利却遭到忽视。）",
+          "type": "trailing_结局_block"
+        }
+      ],
+      "retain_prefix_exact": "（transform A into B：把A转化成B；years of toil：多年的辛劳）",
+      "rationale": "The 结局 block retells discovery, purification difficulty, Oxford work, mice, industrial supply and Nobel recognition across sentences 0–14. Keep the transform/years of toil note."
+    },
+    {
+      "id": "19",
+      "title": "郁金香狂热：泡沫与传说",
+      "source_path": "视频/脚本/19.json",
+      "source_sha256": "049fa1177ce90c57c32ec937c8752f31881c76a7187e7ded05a987c71b1ccb25",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/16/chunks/1/note",
+      "note_before_tagged_summary": "（What spread…：主语从句；\nnearly four centuries on：近四个世纪之后；\na sermon…：同位语，说明 the moral；\ndrawn from… 和 retold by… 都是过去分词短语，修饰 sermon）\n（结局：1637年2月初，郁金香价格暴跌，许多买家违约；\n后来许多买家只付价格的一小部分就了结了合同，\n倾家荡产的人寥寥无几，\n荷兰经济也没有受到可以衡量的损害。\n两个世纪后，麦凯把它写成举国上下的集体歇斯底里，\n郁金香狂热从此成了泡沫的代名词。\n泡沫确有其事，却转瞬即逝；\n流传近四个世纪的，\n是取材于讽刺小册子、劝诫贪婪的寓意。）",
+      "action": "remove_confirmed_legacy_recap",
+      "remove_spans": [
+        {
+          "start_codepoint_in_note": 126,
+          "end_codepoint_in_note": 294,
+          "exact_text": "\n（结局：1637年2月初，郁金香价格暴跌，许多买家违约；\n后来许多买家只付价格的一小部分就了结了合同，\n倾家荡产的人寥寥无几，\n荷兰经济也没有受到可以衡量的损害。\n两个世纪后，麦凯把它写成举国上下的集体歇斯底里，\n郁金香狂热从此成了泡沫的代名词。\n泡沫确有其事，却转瞬即逝；\n流传近四个世纪的，\n是取材于讽刺小册子、劝诫贪婪的寓意。）",
+          "content_exact": "（结局：1637年2月初，郁金香价格暴跌，许多买家违约；\n后来许多买家只付价格的一小部分就了结了合同，\n倾家荡产的人寥寥无几，\n荷兰经济也没有受到可以衡量的损害。\n两个世纪后，麦凯把它写成举国上下的集体歇斯底里，\n郁金香狂热从此成了泡沫的代名词。\n泡沫确有其事，却转瞬即逝；\n流传近四个世纪的，\n是取材于讽刺小册子、劝诫贪婪的寓意。）",
+          "type": "trailing_结局_block"
+        }
+      ],
+      "retain_prefix_exact": "（What spread…：主语从句；\nnearly four centuries on：近四个世纪之后；\na sermon…：同位语，说明 the moral；\ndrawn from… 和 retold by… 都是过去分词短语，修饰 sermon）",
+      "rationale": "The 结局 block condenses collapse, contract settlement, small economic damage and the later Mackay moral across sentences 5–16. Keep all preceding subject-clause/apposition/participle explanations."
+    },
+    {
+      "id": "20",
+      "title": "冰里的五千年凶案",
+      "source_path": "视频/脚本/20.json",
+      "source_sha256": "d5fb7ea6e19a2ee19b95823791137e575cd6540e0028b8e51be6642f79101b5f",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/16/chunks/1/note",
+      "note_before_tagged_summary": "（while：而，表对比；none：指名字、最后一餐和死因，一样也没有）\n（结局：1991年，两名德国徒步者在冰川旁发现了一具尸体，\n起初人们以为是现代登山者遇难；\n他的随身物品却显示，他生活在约5,300年前，\n这具木乃伊后来被称为奥茨。\n2001年，X 光片在他左肩里发现了一枚燧石箭头，\n箭伤撕裂了动脉，研究者认为他几分钟内就死了。\n那名弓箭手的身份至今是个谜，动机也只能猜测。）",
+      "action": "remove_confirmed_legacy_recap",
+      "remove_spans": [
+        {
+          "start_codepoint_in_note": 36,
+          "end_codepoint_in_note": 193,
+          "exact_text": "\n（结局：1991年，两名德国徒步者在冰川旁发现了一具尸体，\n起初人们以为是现代登山者遇难；\n他的随身物品却显示，他生活在约5,300年前，\n这具木乃伊后来被称为奥茨。\n2001年，X 光片在他左肩里发现了一枚燧石箭头，\n箭伤撕裂了动脉，研究者认为他几分钟内就死了。\n那名弓箭手的身份至今是个谜，动机也只能猜测。）",
+          "content_exact": "（结局：1991年，两名德国徒步者在冰川旁发现了一具尸体，\n起初人们以为是现代登山者遇难；\n他的随身物品却显示，他生活在约5,300年前，\n这具木乃伊后来被称为奥茨。\n2001年，X 光片在他左肩里发现了一枚燧石箭头，\n箭伤撕裂了动脉，研究者认为他几分钟内就死了。\n那名弓箭手的身份至今是个谜，动机也只能猜测。）",
+          "type": "trailing_结局_block"
+        }
+      ],
+      "retain_prefix_exact": "（while：而，表对比；none：指名字、最后一餐和死因，一样也没有）",
+      "rationale": "The 结局 block recaps discovery, initial mistaken identity, prehistoric age, arrow evidence and the unknown killer across sentences 0–15. Keep the while/none note explaining the closing contrast."
+    },
+    {
+      "id": "21",
+      "title": "两次卖掉埃菲尔铁塔的骗子",
+      "source_path": "视频/脚本/21.json",
+      "source_sha256": "c9558fd88c197ce19afe965760c2f1eba696c6a8fe987c4395226039e9b0dda0",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/18/chunks/1/note",
+      "note_before_tagged_summary": "（Of…：在……之中；marks：行骗对象；keep mum：闭口不言）",
+      "action": "retain",
+      "remove_spans": [],
+      "retain_prefix_exact": "（Of…：在……之中；marks：行骗对象；keep mum：闭口不言）",
+      "rationale": "Final pre-summary note only explains vocabulary, grammar or reference in its attached sentence. Complete-body/all-note review found no trailing old narrative recap."
+    },
+    {
+      "id": "22",
+      "title": "会烤化汽车的大楼",
+      "source_path": "视频/脚本/22.json",
+      "source_sha256": "2deac5fdba960a2df200498b78856f27d794eb3f87d0ef18c900b1de3b444d32",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/18/chunks/0/note",
+      "note_before_tagged_summary": "（建筑师维诺利设计的伦敦芬丘奇街20号，\n南立面向内弯曲，像放大镜把阳光聚成光束，\n2013年9月烤坏了马丁·林赛停在对面的捷豹车。\n开发商道歉并赔付修理费，报纸叫它“烤焦机”。\n维诺利承认失算，据报道遮阳百叶为省钱被删。\n2014年2月，大楼宣布加装水平铝制鳍片散光；\n2015年，它被评为英国最糟糕的新建筑，获烂疮杯。）",
+      "action": "remove_confirmed_legacy_recap",
+      "remove_spans": [
+        {
+          "start_codepoint_in_note": 0,
+          "end_codepoint_in_note": 162,
+          "exact_text": "（建筑师维诺利设计的伦敦芬丘奇街20号，\n南立面向内弯曲，像放大镜把阳光聚成光束，\n2013年9月烤坏了马丁·林赛停在对面的捷豹车。\n开发商道歉并赔付修理费，报纸叫它“烤焦机”。\n维诺利承认失算，据报道遮阳百叶为省钱被删。\n2014年2月，大楼宣布加装水平铝制鳍片散光；\n2015年，它被评为英国最糟糕的新建筑，获烂疮杯。）",
+          "content_exact": "（建筑师维诺利设计的伦敦芬丘奇街20号，\n南立面向内弯曲，像放大镜把阳光聚成光束，\n2013年9月烤坏了马丁·林赛停在对面的捷豹车。\n开发商道歉并赔付修理费，报纸叫它“烤焦机”。\n维诺利承认失算，据报道遮阳百叶为省钱被删。\n2014年2月，大楼宣布加装水平铝制鳍片散光；\n2015年，它被评为英国最糟糕的新建筑，获烂疮杯。）",
+          "type": "whole_note_legacy_recap"
+        }
+      ],
+      "retain_prefix_exact": "",
+      "rationale": "The complete unlabelled seven-line final note retells the building design, damaged car, developer response, architect admission, fins and 2015 award across sentences 0–17. It is the user-confirmed legacy recap, with no local grammar or vocabulary explanation to preserve inside that block."
+    },
+    {
+      "id": "23",
+      "title": "为机器点燃思想的人",
+      "source_path": "视频/脚本/23.json",
+      "source_sha256": "438833dbebce556e1a0ce1dca3bb82cf7b68ae7b3e62d9b71a44ffdb857f0633",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/18/chunks/0/note",
+      "note_before_tagged_summary": "",
+      "action": "retain",
+      "remove_spans": [],
+      "retain_prefix_exact": "",
+      "rationale": "No pre-summary note remains on the final chunk. Complete-body/all-note review found no separate trailing old narrative recap."
+    },
+    {
+      "id": "24",
+      "title": "冰海求生：坚忍号传奇",
+      "source_path": "视频/脚本/24.json",
+      "source_sha256": "5bd506dd296391ea238619257e1b81ba4d8c4726867993a46bbb9fa391baf4d9",
+      "coverage": "Read complete English body and all pre-summary note content in frozen inventory; reviewed original generator only for article10.",
+      "final_note_location": "/sentences/17/chunks/1/note",
+      "note_before_tagged_summary": "",
+      "action": "retain",
+      "remove_spans": [],
+      "retain_prefix_exact": "",
+      "rationale": "No pre-summary note remains on the final chunk. Complete-body/all-note review found no separate trailing old narrative recap."
+    }
+  ]
+}

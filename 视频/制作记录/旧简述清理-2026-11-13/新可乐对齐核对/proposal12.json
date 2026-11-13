@@ -1,0 +1,63 @@
+{
+  "original_id": "12",
+  "new_playback_id": "05",
+  "root_cause": "The sip gloss token is attached to the beverages align cell. |sip selects the color only. _under_x searches the previous Chinese line in the same cell; there is no sip key in the beverages cell, so it falls back to the beverages column center.",
+  "renderer_unchanged": true,
+  "exact_fix": [
+    "Move the gloss token to the sip Chinese align value.",
+    "Split to with empty Chinese from **sip** so the English focus and Chinese focus share a column center.",
+    "Add the existing {{一行}} marker to the first align English token and c.en to retain the current visible line grouping.",
+    "Keep c.zh equal to concatenated align Chinese values."
+  ],
+  "recommended_overlay": "source12-exact-sip-and-focus-overlay.json",
+  "recommended_gen_patch": "gen12-sip-and-focus-proposal.diff",
+  "roundtrip_proof": "generator-roundtrip-check.json",
+  "pixel_proof": {
+    "before": {
+      "gloss_to_sip_english_center_difference": 836.28125,
+      "gloss_to_sip_chinese_center_difference": 882.046875
+    },
+    "after": {
+      "english_sip_center_x": 871.0078125,
+      "chinese_sip_center_x": 871.0078125,
+      "gloss_center_x": 871.0078125,
+      "english_difference_px": 0.0,
+      "chinese_difference_px": 0.0,
+      "chinese_line_to_gloss_line_y_difference_px": 70
+    }
+  },
+  "layout": {
+    "visible_english_rows_by_chunk_before": [
+      2,
+      1,
+      1
+    ],
+    "visible_english_rows_by_chunk_after": [
+      2,
+      1,
+      1
+    ],
+    "chunks_before": 3,
+    "chunks_after": 3,
+    "alignment_cells_in_second_chunk_before": 6,
+    "alignment_cells_in_second_chunk_after": 7,
+    "english_font_before": 76,
+    "english_font_after": 66,
+    "chinese_font_before": 54,
+    "chinese_font_after": 47,
+    "automatic_font_change_reason": "The whole explanatory phrase now determines the width of the sip align cell; official renderer fits the one-line chunk by reducing the S1 font size."
+  },
+  "preview": [
+    "exact-before-S1-active-sip.png",
+    "exact-after-S1-active-sip.png"
+  ],
+  "focus_metadata": "focus12-metadata.json",
+  "preserved": "English spoken/displayed words, Chinese body wording, sentence/chunk boundaries, and sip-only color mapping. No audio data was changed or regenerated.",
+  "integration_notes": [
+    "Legacy-recap edits touch the final sentence, while this overlay touches only S1, S11, S12.",
+    "New focus words use existing pre-25 sequential coloring; adding them can rotate colors of later existing focus words. The sip-only fix preserves every color.",
+    "The old generator informational article comparator removes bold only, so it prints a literal difference for the supported {{一行}} marker. Official display/audio strip it."
+  ],
+  "paused_generation_observed": true,
+  "production_edits_pushes_video_pdf_renders": false
+}

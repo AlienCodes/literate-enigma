@@ -1,0 +1,44 @@
+{
+  "original_id": "10",
+  "new_playback_id": "06",
+  "scope": "Isolated payload only; production source and real audio were not edited.",
+  "files": [
+    "/workspace/work/video-audit70-20261113/payload/视频/脚本/10.json",
+    "/workspace/work/video-audit70-20261113/payload/视频/工具/初稿生成/gen10.py"
+  ],
+  "base_source": "/workspace/work/video-audit70-20261113/sources/10.json",
+  "base_source_sha256": "03f5c3b3bea0ef45f46452eba99a3357518eee5399780ea8b836f543a911a8fe",
+  "actual_changed_source_keys": [
+    {
+      "path": "/结尾句/S17/前段增益dB",
+      "before": -5.5,
+      "after": -3.5
+    },
+    {
+      "path": "/句子增益dB/S17",
+      "before": "absent (0 dB)",
+      "after": 1.0
+    }
+  ],
+  "generator_change": "Added two literal metadata assignments after the legacy metadata merge and before json.dump; full S17 controls copied from the frozen source with only the prefix gain changed, plus sentence gain S17=1.0. No generator algorithm or checker change.",
+  "preservation_checks": {
+    "source_sentences_words_notes_align_groups_exactly_unchanged": true,
+    "legitimate_final_historical_background_and_new_summary_exactly_preserved": true,
+    "generator_S_AST_exactly_unchanged": true,
+    "all_other_source_data_exactly_unchanged": true,
+    "PSOLA_curve_stretch_range_speeds_pause_splice_points_exactly_unchanged": true,
+    "generator_metadata_override_roundtrip_exactly_matches_target_source": true
+  },
+  "effective_gain_change": {
+    "If so": "+3dB total",
+    "rest_of_S17": "+1dB",
+    "other_sentences": "0dB"
+  },
+  "verification_status": "Candidate gain controls only; pending official 4K reconstruction and actual reconstructed-audio LUFS/RMS/true-peak/onset measurements and listening. Not finalized.",
+  "no_audio_or_video_or_pdf_generated": true,
+  "no_production_edits_or_pushes": true,
+  "sha256_after": {
+    "视频/脚本/10.json": "192ff39d8dc7dce7cd403b72ae071b6a83c0e0fbfd772569b444444fd6bd97b1",
+    "视频/工具/初稿生成/gen10.py": "f2a75d60c44bb01ba3794c211a497fa6e2f51a1600cd961e31ea2f689ea7b537"
+  }
+}

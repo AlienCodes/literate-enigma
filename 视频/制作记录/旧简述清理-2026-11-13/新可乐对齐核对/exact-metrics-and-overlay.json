@@ -1,0 +1,274 @@
+{
+  "base": "/workspace/work/video-audit70-20261113/sources/12.json",
+  "base_sha256": "faf256b2d06fe6db201963303c10cf5386c9b62bcd0af21061d9a55ba3cf2141",
+  "renderer": "/workspace/work/video05-keywords/render.py",
+  "renderer_sha256": "477a516f7100ac05dab15d3b176e2d8c49779aa4bd8713087b737f4d25833b67",
+  "before": {
+    "font_size_en": 76,
+    "font_size_zh": 54,
+    "row_groups": [
+      [
+        2,
+        1
+      ],
+      [
+        6
+      ],
+      [
+        3
+      ]
+    ],
+    "total_height": 1012,
+    "max_width": 1846.21875,
+    "elements": [
+      {
+        "kind": "english",
+        "text": "sip",
+        "chunk": 1,
+        "row": 0,
+        "left": 799.078125,
+        "center_x": 853.609375,
+        "top": 431.0,
+        "width": 109.0625
+      },
+      {
+        "kind": "chinese",
+        "text": "啜饮",
+        "chunk": 1,
+        "row": 0,
+        "line": 0,
+        "left": 753.84375,
+        "center_x": 807.84375,
+        "top": 520.0,
+        "width": 108.0,
+        "under_x_applied": false
+      },
+      {
+        "kind": "english",
+        "text": "beverages",
+        "chunk": 1,
+        "row": 0,
+        "left": 1496.671875,
+        "center_x": 1689.890625,
+        "top": 431.0,
+        "width": 386.4375
+      },
+      {
+        "kind": "chinese",
+        "text": "饮料",
+        "chunk": 1,
+        "row": 0,
+        "line": 0,
+        "left": 1608.890625,
+        "center_x": 1662.890625,
+        "top": 520.0,
+        "width": 108.0,
+        "under_x_applied": false
+      },
+      {
+        "kind": "chinese",
+        "text": "（小口喝；抿）",
+        "chunk": 1,
+        "row": 0,
+        "line": 1,
+        "left": 1500.890625,
+        "center_x": 1689.890625,
+        "top": 601.0,
+        "width": 378.0,
+        "under_x_applied": false
+      }
+    ],
+    "gloss_minus_sip_zh_center_px": 882.046875,
+    "gloss_minus_sip_en_center_px": 836.28125,
+    "gloss_minus_beverages_zh_center_px": 27.0,
+    "gloss_below_sip_zh_one_line": true,
+    "sip_color": [
+      244,
+      114,
+      182
+    ],
+    "beverages_color": [
+      167,
+      139,
+      250
+    ],
+    "png": "/workspace/work/video-audit70-20261113/alignment12/exact-before-S1-active-sip.png"
+  },
+  "after": {
+    "font_size_en": 66,
+    "font_size_zh": 47,
+    "row_groups": [
+      [
+        2,
+        1
+      ],
+      [
+        7
+      ],
+      [
+        3
+      ]
+    ],
+    "total_height": 876,
+    "max_width": 1841.734375,
+    "elements": [
+      {
+        "kind": "english",
+        "text": "sip",
+        "chunk": 1,
+        "row": 0,
+        "left": 823.6484375,
+        "center_x": 871.0078125,
+        "top": 445.0,
+        "width": 94.71875
+      },
+      {
+        "kind": "chinese",
+        "text": "啜饮",
+        "chunk": 1,
+        "row": 0,
+        "line": 0,
+        "left": 824.0078125,
+        "center_x": 871.0078125,
+        "top": 522.0,
+        "width": 94.0,
+        "under_x_applied": false
+      },
+      {
+        "kind": "chinese",
+        "text": "（小口喝；抿）",
+        "chunk": 1,
+        "row": 0,
+        "line": 1,
+        "left": 706.5078125,
+        "center_x": 871.0078125,
+        "top": 592.0,
+        "width": 329.0,
+        "under_x_applied": true
+      },
+      {
+        "kind": "english",
+        "text": "beverages",
+        "chunk": 1,
+        "row": 0,
+        "left": 1545.2578125,
+        "center_x": 1713.0625,
+        "top": 445.0,
+        "width": 335.609375
+      },
+      {
+        "kind": "chinese",
+        "text": "饮料",
+        "chunk": 1,
+        "row": 0,
+        "line": 0,
+        "left": 1642.5625,
+        "center_x": 1689.5625,
+        "top": 522.0,
+        "width": 94.0,
+        "under_x_applied": false
+      }
+    ],
+    "gloss_minus_sip_zh_center_px": 0.0,
+    "gloss_minus_sip_en_center_px": 0.0,
+    "gloss_minus_beverages_zh_center_px": -818.5546875,
+    "gloss_below_sip_zh_one_line": true,
+    "sip_color": [
+      244,
+      114,
+      182
+    ],
+    "beverages_color": [
+      167,
+      139,
+      250
+    ],
+    "png": "/workspace/work/video-audit70-20261113/alignment12/exact-after-S1-active-sip.png"
+  },
+  "json_patch": [
+    {
+      "op": "test",
+      "path": "/sentences/0/chunks/1/align",
+      "value": [
+        [
+          "inviting",
+          "邀请"
+        ],
+        [
+          "**shoppers**",
+          "**购物者**(shoppers)"
+        ],
+        [
+          "to **sip**",
+          "**啜饮**(sip)"
+        ],
+        [
+          "two",
+          "两种"
+        ],
+        [
+          "**unmarked**",
+          "**未标品牌的**(unmarked)"
+        ],
+        [
+          "**beverages**",
+          "**饮料**(beverages)，\n{{（小口喝；抿）|sip}}"
+        ]
+      ]
+    },
+    {
+      "op": "test",
+      "path": "/sentences/0/chunks/1/zh",
+      "value": "邀请**购物者**(shoppers)**啜饮**(sip)两种**未标品牌的**(unmarked)**饮料**(beverages)，\n{{（小口喝；抿）|sip}}"
+    },
+    {
+      "op": "test",
+      "path": "/sentences/0/chunks/1/en",
+      "value": "inviting **shoppers** to **sip** two **unmarked** **beverages**"
+    },
+    {
+      "op": "replace",
+      "path": "/sentences/0/chunks/1/align",
+      "value": [
+        [
+          "{{一行}}inviting",
+          "邀请"
+        ],
+        [
+          "**shoppers**",
+          "**购物者**(shoppers)"
+        ],
+        [
+          "to",
+          ""
+        ],
+        [
+          "**sip**",
+          "**啜饮**(sip)\n{{（小口喝；抿）|sip}}"
+        ],
+        [
+          "two",
+          "两种"
+        ],
+        [
+          "**unmarked**",
+          "**未标品牌的**(unmarked)"
+        ],
+        [
+          "**beverages**",
+          "**饮料**(beverages)，"
+        ]
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/sentences/0/chunks/1/zh",
+      "value": "邀请**购物者**(shoppers)**啜饮**(sip)\n{{（小口喝；抿）|sip}}两种**未标品牌的**(unmarked)**饮料**(beverages)，"
+    },
+    {
+      "op": "replace",
+      "path": "/sentences/0/chunks/1/en",
+      "value": "{{一行}}inviting **shoppers** to **sip** two **unmarked** **beverages**"
+    }
+  ]
+}

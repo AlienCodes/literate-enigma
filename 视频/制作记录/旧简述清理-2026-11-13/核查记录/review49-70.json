@@ -1,0 +1,688 @@
+{
+  "reviewer": "audit_legacy_49_70",
+  "scope": "Read-only semantic review of original 49–70 source snapshots for an older narrative/story recap under the final body text in addition to the new tagged standalone summary. Reviewed full English body and every chunk note, with special attention to all chunks of each final sentence. No video or PDF generation, production edits, or pushes.",
+  "checked_ids": [
+    "49",
+    "50",
+    "51",
+    "52",
+    "53",
+    "54",
+    "55",
+    "56",
+    "57",
+    "58",
+    "59",
+    "60",
+    "61",
+    "62",
+    "63",
+    "64",
+    "65",
+    "66",
+    "67",
+    "68",
+    "69",
+    "70"
+  ],
+  "finding": "No removable duplicate legacy recap found in originals 49–70. Preserve genuine end-of-sentence explanations, including 70 country-identification note.",
+  "legacy_recap_ids": [],
+  "source_hashes_verified": true,
+  "records": [
+    {
+      "id": "49",
+      "title": "两度摘得诺奖的女人",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/49.json",
+      "source_sha256": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 17,
+      "note_count": 30,
+      "final_sentence_english": "The pages **retain** her **handwriting** and her radium.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 16,
+          "chunk_index_zero_based": 0,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [],
+      "confidence": "high",
+      "rationale": "No pre-summary note on the final chunk; all earlier notes explain local grammar, word meaning, or immediate context."
+    },
+    {
+      "id": "50",
+      "title": "微塑料：无处不在，危害几何？",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/50.json",
+      "source_sha256": "946329bfa5ef8d8e26a9c80433a88814b0cdac2de0d23b5fcc9281ea0d109f5c",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 15,
+      "note_count": 21,
+      "final_sentence_english": "Harm is **plausible** but **unproven**, and until the **verdict** is in, better **measurement** may guide policy more safely than **panic**.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 14,
+          "chunk_index_zero_based": 1,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/14/chunks/1/note",
+          "text_exact_before_tagged_summary": "（the verdict is in：定论已出；\nthan panic：比较的是 panic 指导政策）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final note defines “the verdict is in” and explains the comparison with panic; it does not retell the microplastics story."
+    },
+    {
+      "id": "51",
+      "title": "OK 原本是个玩笑",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/51.json",
+      "source_sha256": "7fca159025b86543fac322224ce756a1975813982168918714e7fbcd978bf404",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 19,
+      "note_count": 21,
+      "final_sentence_english": "Most dictionaries now **embrace** his **derivation**, a pedigree of bad spelling and dinner-bell satire.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 18,
+          "chunk_index_zero_based": 0,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/18/chunks/0/note",
+          "text_exact_before_tagged_summary": "（a pedigree of…：同位语，补充说明 derivation）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final note identifies the apposition explaining derivation. The earlier election-context note explains “Partisan politics” at its own sentence."
+    },
+    {
+      "id": "52",
+      "title": "夺命毒雾：伦敦1952",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/52.json",
+      "source_sha256": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 18,
+      "note_count": 24,
+      "final_sentence_english": "The **cosy** **hearth**, **beloved of** British families, had, all along, been among the chief **offenders**.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 17,
+          "chunk_index_zero_based": 1,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/17/chunks/0/note",
+          "text_exact_before_tagged_summary": "（beloved of…：受……喜爱，作后置定语，修饰 hearth）",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        },
+        {
+          "json_pointer": "/sentences/17/chunks/1/note",
+          "text_exact_before_tagged_summary": "（all along：一直，始终；\nbe among…：在……之列，是……之一）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final notes explain beloved of, all along, and be among; they do not summarize the fog, deaths, or reform narrative."
+    },
+    {
+      "id": "53",
+      "title": "不合拍的风：塔科马大桥的陨落",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/53.json",
+      "source_sha256": "ec4ac1b34b0187d9cbec986f2f42c8af583bfff39e44febf9f864944b3c8e28c",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 17,
+      "note_count": 23,
+      "final_sentence_english": "Gertie's fall may still **instruct** engineers, if read **accurately**: the wind never kept time with the bridge, the bridge's own motion turned a sustained wind **destructive**.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 16,
+          "chunk_index_zero_based": 1,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/16/chunks/0/note",
+          "text_exact_before_tagged_summary": "（if read accurately：省略形式，= if it is read accurately）",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        },
+        {
+          "json_pointer": "/sentences/16/chunks/1/note",
+          "text_exact_before_tagged_summary": "（keep time with：与……合拍；\nturn A＋形容词：使 A 变得……）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final notes explain the conditional ellipsis, keep time with, and turn A + adjective. The final English itself draws the article conclusion."
+    },
+    {
+      "id": "54",
+      "title": "震动世界的一声巨响",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/54.json",
+      "source_sha256": "ebc5c0753d77879d17eab096821c221fdb956404bb0adbb5387a131946c0831b",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 16,
+      "note_count": 29,
+      "final_sentence_english": "Through barometers, cables, and crimson skies, **far-flung** **observers** began to **glimpse** how **interconnected** the planet already was.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 15,
+          "chunk_index_zero_based": 2,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/15/chunks/2/note",
+          "text_exact_before_tagged_summary": "（how interconnected…：how 引导的宾语从句，作 glimpse 的宾语，\n语序为 how＋形容词＋主语＋谓语）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final note explains the how-clause complement of glimpse, not the volcanic-event narrative."
+    },
+    {
+      "id": "55",
+      "title": "罗马混凝土的千年之谜",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/55.json",
+      "source_sha256": "37c0316030bbbdcb59a9e03ac745011d968f30435b53ba6b238de3b11bbfecc5",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 17,
+      "note_count": 27,
+      "final_sentence_english": "The white lumps once **scorned** as signs of **clumsy** workmanship have **prompted** a **rethink** of construction.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 16,
+          "chunk_index_zero_based": 1,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/16/chunks/0/note",
+          "text_exact_before_tagged_summary": "（once scorned as…：过去分词短语作后置定语，修饰 lumps；\nscorn A as B：把 A 轻视为 B）",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        },
+        {
+          "json_pointer": "/sentences/16/chunks/1/note",
+          "text_exact_before_tagged_summary": "（a rethink of…：对……的重新思考）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final notes explain scorn A as B and a rethink of. They do not repeat the construction story."
+    },
+    {
+      "id": "56",
+      "title": "一封信惊醒了达尔文",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/56.json",
+      "source_sha256": "b3e57ee081576ccf3903bf0e9cf1a47416567f6fea13fc89a13e26572f412df4",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 17,
+      "note_count": 27,
+      "final_sentence_english": "Wallace never **named** the theory **after** himself.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 16,
+          "chunk_index_zero_based": 0,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/16/chunks/0/note",
+          "text_exact_before_tagged_summary": "（name A after B：以 B 的名字给 A 命名）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final note defines name A after B; it does not retell Darwin/Wallace events."
+    },
+    {
+      "id": "57",
+      "title": "鲸歌易帜",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/57.json",
+      "source_sha256": "518a142b4fa62cfd0e95d92e8ab8fdce222de08df598b40ad38ad4d1effadc16",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 18,
+      "note_count": 28,
+      "final_sentence_english": "Whatever the label, a few **outsiders** off eastern Australia **reshaped** an entire population's music.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 17,
+          "chunk_index_zero_based": 1,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/17/chunks/0/note",
+          "text_exact_before_tagged_summary": "（Whatever the label：让步状语，无论贴什么标签）",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final note explains Whatever the label. The long earlier hypothetical song-version example explains the local evolution rule, rather than being an ending story recap."
+    },
+    {
+      "id": "58",
+      "title": "从一道划痕到天花绝迹",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/58.json",
+      "source_sha256": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 18,
+      "note_count": 21,
+      "final_sentence_english": "That **pronouncement** came almost 184 years after Phipps was **vaccinated**.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 17,
+          "chunk_index_zero_based": 0,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/17/chunks/0/note",
+          "text_exact_before_tagged_summary": "（after Phipps was vaccinated：时间状语从句）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final note identifies after Phipps was vaccinated as a time clause; no independent legacy recap follows."
+    },
+    {
+      "id": "59",
+      "title": "拯救天空",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/59.json",
+      "source_sha256": "72933c56b74ee358e893e57720b6d4e81e50411cb7d34b1ad4f5860ebf468883",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 19,
+      "note_count": 21,
+      "final_sentence_english": "The sky's **rescue** began with **diligent** observers who trusted that a **baffling** number was no **glitch**, and published it.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 18,
+          "chunk_index_zero_based": 1,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/18/chunks/1/note",
+          "text_exact_before_tagged_summary": "（who…：定语从句，修饰 observers；\nwas no glitch：并不是小故障；\nand published it：与 trusted 并列，it 指那个数字）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final note explains the relative clause, no glitch, conjunction and pronoun reference; no narrative recap remains."
+    },
+    {
+      "id": "60",
+      "title": "改变世界的科学巨匠",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/60.json",
+      "source_sha256": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 15,
+      "note_count": 23,
+      "final_sentence_english": "The theory the committee looked past reached a Nobel **podium** after all, carried there by the man the prize had **honoured**.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 14,
+          "chunk_index_zero_based": 1,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/14/chunks/0/note",
+          "text_exact_before_tagged_summary": "（the committee looked past：定语从句，省略了关系代词，修饰 theory；\nlook past：忽视，绕开不看）",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        },
+        {
+          "json_pointer": "/sentences/14/chunks/1/note",
+          "text_exact_before_tagged_summary": "（carried there by…：过去分词短语作状语；\nthe prize had honoured：定语从句，修饰 man）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final notes explain the relative clauses, look past, and carried there by; no duplicated Einstein story remains."
+    },
+    {
+      "id": "61",
+      "title": "集装箱：重塑世界的铁盒子",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/61.json",
+      "source_sha256": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 20,
+      "note_count": 25,
+      "final_sentence_english": "**Tireless** cranes now lift **identical** containers into **orderly**, **immense** **stacks**.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 19,
+          "chunk_index_zero_based": 0,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/19/chunks/0/note",
+          "text_exact_before_tagged_summary": "（lift A into B：把 A 吊起码成 B）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final note defines lift A into B. Earlier longer notes define vocabulary and container components in their own context."
+    },
+    {
+      "id": "62",
+      "title": "多莉：一只羊的复制",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/62.json",
+      "source_sha256": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 19,
+      "note_count": 24,
+      "final_sentence_english": "Behind glass, her white face **plainly** **testifies to** her Finn Dorset **ancestry**.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 18,
+          "chunk_index_zero_based": 0,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/18/chunks/0/note",
+          "text_exact_before_tagged_summary": "（testify to：证明，见证）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final note defines testify to; no cloned-sheep narrative recap remains."
+    },
+    {
+      "id": "63",
+      "title": "拥挤的苍穹",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/63.json",
+      "source_sha256": "9ff1735eab262bd71045ec1ba20f88894613bdfa58cda378895a40006c49adc5",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 18,
+      "note_count": 26,
+      "final_sentence_english": "Years after the crash, spacecraft whose owners **had no part in** it kept swerving around its **splinters**.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 17,
+          "chunk_index_zero_based": 1,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/17/chunks/0/note",
+          "text_exact_before_tagged_summary": "（whose owners…：定语从句，修饰 spacecraft；\nhave no part in：与……无关；it 指 the crash）",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        },
+        {
+          "json_pointer": "/sentences/17/chunks/1/note",
+          "text_exact_before_tagged_summary": "（keep doing：一再做……；its 指 the crash's）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final notes explain whose, have no part in, keep doing, and pronoun reference. Earlier crash/cascade paraphrases clarify their local sentences and are not end recaps."
+    },
+    {
+      "id": "64",
+      "title": "没有到来的零日",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/64.json",
+      "source_sha256": "8cfcbe58c8f484d42814afe17d0860bec43262d3833dc0c98a3570f52352dceb",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 20,
+      "note_count": 20,
+      "final_sentence_english": "Households, farmers, and rain kept the collection points **idle**, but the **sacrifice** weighed heaviest on those with the least to give.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 19,
+          "chunk_index_zero_based": 1,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/19/chunks/0/note",
+          "text_exact_before_tagged_summary": "（keep A idle：因为省水成功没断水，\n取水点没用上，一直闲置）",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        },
+        {
+          "json_pointer": "/sentences/19/chunks/1/note",
+          "text_exact_before_tagged_summary": "（weigh on：压在……身上；\nwith the least to give：后置定语，修饰 those）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final first-chunk note explains why the collection points were idle; the last note explains weigh on and with the least to give. These clarify the final sentence rather than recounting the entire water crisis."
+    },
+    {
+      "id": "65",
+      "title": "末日种子库的第一次取种",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/65.json",
+      "source_sha256": "3ea29ce32384c4bd5e1a1c82c5ed446c9152e49c805cffa4e1f1e6a935b3a58b",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 17,
+      "note_count": 21,
+      "final_sentence_english": "A **haven** built against the **apocalypse** had a **weakness** at its own entrance, and warmer weather found it.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 16,
+          "chunk_index_zero_based": 1,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/16/chunks/0/note",
+          "text_exact_before_tagged_summary": "（built against the apocalypse：过去分词短语作后置定语，\n修饰 haven）",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        },
+        {
+          "json_pointer": "/sentences/16/chunks/1/note",
+          "text_exact_before_tagged_summary": "（it 指 weakness）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final notes explain the modifier built against the apocalypse and the antecedent of it. Earlier vault/replanting explanations occur at relevant body sentences."
+    },
+    {
+      "id": "66",
+      "title": "一颗刺果钩出的发明",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/66.json",
+      "source_sha256": "19fbf76dec1d0527d50b8e1a1cb4ffde83554b4683f089c19cad387e3bf84744",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 18,
+      "note_count": 25,
+      "final_sentence_english": "**In effect**, the firm was asking the public to stop using its own name for **rivals'** goods.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 17,
+          "chunk_index_zero_based": 0,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/17/chunks/0/note",
+          "text_exact_before_tagged_summary": "（use A for B：把 A 用于 B（或用 A 来做 B））\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final note defines use A for B; it does not duplicate the Velcro invention narrative."
+    },
+    {
+      "id": "67",
+      "title": "几个少年和一只狗发现的洞穴",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/67.json",
+      "source_sha256": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 18,
+      "note_count": 19,
+      "final_sentence_english": "**Admirers** now meet the bulls only in a **recreation**, the originals being **inaccessible** to them.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 17,
+          "chunk_index_zero_based": 1,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/17/chunks/0/note",
+          "text_exact_before_tagged_summary": "（only in…：只在……中）",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        },
+        {
+          "json_pointer": "/sentences/17/chunks/1/note",
+          "text_exact_before_tagged_summary": "（the originals being…：独立主格，补充说明原因）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final notes explain only in and the absolute construction; earlier story-like paraphrases explain individual body sentences."
+    },
+    {
+      "id": "68",
+      "title": "兴登堡号的 34 秒",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/68.json",
+      "source_sha256": "6eeb030a88838b3f946cab65cd33dbf29d608b316ec992726e43e006a2546981",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 19,
+      "note_count": 26,
+      "final_sentence_english": "The **doomed** airship's first journey to North America had begun on 6 May 1936, exactly a year before the fire.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 18,
+          "chunk_index_zero_based": 1,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/18/chunks/0/note",
+          "text_exact_before_tagged_summary": "（had begun：过去完成时）",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final first-chunk note identifies the past perfect had begun. The final chunk has only the tagged new summary; earlier commentary remains local to the relevant body sentences."
+    },
+    {
+      "id": "69",
+      "title": "原子弹之父的审判",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/69.json",
+      "source_sha256": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 14,
+      "note_count": 24,
+      "final_sentence_english": "The **stigma** of the **revocation** had **persisted** for fifty-five years beyond his **lifetime**.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 13,
+          "chunk_index_zero_based": 1,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/13/chunks/0/note",
+          "text_exact_before_tagged_summary": "（of the revocation：后置定语，修饰 stigma）",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        },
+        {
+          "json_pointer": "/sentences/13/chunks/1/note",
+          "text_exact_before_tagged_summary": "（had persisted：过去完成时；beyond his lifetime：在他身后）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final notes explain of the revocation, had persisted, and beyond his lifetime; no old Oppenheimer narrative recap follows."
+    },
+    {
+      "id": "70",
+      "title": "一枚邮票改变通信",
+      "source_snapshot": "/workspace/work/video-audit70-20261113/sources/70.json",
+      "source_sha256": "f70cfbe38509312d01f77b4863a3c5668ecbfda0cea407beaeba6987a8e3719b",
+      "checked_full_english_and_notes": true,
+      "sentence_count": 18,
+      "note_count": 21,
+      "final_sentence_english": "By international agreement, the **sovereign**'s head **suffices for** **identification**, an **implicit** **designation** that other countries spell out in print.",
+      "tagged_summary_occurrences": [
+        {
+          "sentence_index_zero_based": 17,
+          "chunk_index_zero_based": 1,
+          "count": 1
+        }
+      ],
+      "legacy_recap_found": false,
+      "remove_spans": [],
+      "preserved_final_notes": [
+        {
+          "json_pointer": "/sentences/17/chunks/1/note",
+          "text_exact_before_tagged_summary": "（英国邮票印个头像大家就知道是英国的，\n而其他国家必须把名字印出来才行。）\n",
+          "classification": "grammar_or_word_or_immediate_context_explanation"
+        }
+      ],
+      "confidence": "high",
+      "rationale": "The final note directly explains the sovereign-head identification exception: British stamps identify Britain by the monarch’s head, while other countries print the country name. This is immediate sentence context and must be preserved, not a recap of postal history."
+    }
+  ]
+}

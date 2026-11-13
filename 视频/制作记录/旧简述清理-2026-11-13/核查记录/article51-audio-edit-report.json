@@ -1,0 +1,46 @@
+{
+  "original_id": "51",
+  "new_playback_id": "08",
+  "status": "Audio controls merged into frozen isolated payload; candidate pending actual official4K audio reconstruction and QC. No listening acceptance or finalization claimed.",
+  "modified_files": [
+    "/workspace/work/video-audit70-20261113/payload/视频/脚本/51.json",
+    "/workspace/work/video-audit70-20261113/payload/视频/工具/初稿生成/gen51.py"
+  ],
+  "actual_source_key_changes": [
+    {
+      "path": "/分段增益dB/S1/1",
+      "before": "absent (0 dB)",
+      "after": 1.5
+    },
+    {
+      "path": "/段内渐变dB/S2/3",
+      "before": [
+        0.5,
+        -6.0
+      ],
+      "after": [
+        -1.5,
+        -3.5
+      ]
+    }
+  ],
+  "preservation_checks": {
+    "all_sentences_english_chinese_align_notes_exactly_preserved": true,
+    "latest_stood_for_and_pedigree_focus_election_note_and_5point_summary_preserved": true,
+    "all_other_source_keys_exactly_preserved": true,
+    "existing_other_gain_keys_exactly_preserved": true,
+    "generator_S_AST_exactly_preserved": true,
+    "generator_audio_metadata_exactly_matches_target": true,
+    "PSOLA_pitch_speed_pause_splice_timing_metadata_exactly_preserved": true
+  },
+  "generator_change": "Two literal metadata assignments added before the existing generator call; no algorithm, checker, or S-data changes. Existing modern recursive metadata merge keeps all other old script data.",
+  "gain_effect": "S1 opening OK +1.5 dB; S2 third spoken piece has a gentler slope, initial O.W. about -2 dB and tail about +2.5 dB relative to accepted controls. Other sentences unchanged.",
+  "accepted_source": "audio51/51-accepted-public.mp4",
+  "qc_report_pending": "audio51/audio51-public-qc.json",
+  "sha256_after": {
+    "视频/脚本/51.json": "f0d2d7b95b019c24c2d5a51975e89ff14cc373d9606d74f624410c898a4c656d",
+    "视频/工具/初稿生成/gen51.py": "233eaef305e1d6f9d65bdf4ad46f9222926eb1e843ff3169dbca9b74ccf0949b"
+  },
+  "no_local_audio_video_pdf_reconstruction": true,
+  "no_production_edits_or_pushes": true
+}
