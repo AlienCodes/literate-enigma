@@ -94,15 +94,17 @@ def clear_temporary_video():
 
 def failure_audio_diagnostics():
     """Read private reference data internally; export diagnostic scalars only."""
-    if NO != '51':
+    if NO not in {'12', '44', '51'}:
         return
     program = TASK / 'diagnose_reference_gain.py'
     qc = Path(ENV.get('QC_DIR', str(M / 'qc_independent')))
     meta = qc / 'gt' / f'{NO}_meta.json'
     wav = W / f'work_{NO}/a.wav'
-    post_log = W / f'做_{NO}/出片后.log'
-    current_post_check = (PRODUCTION_STARTED_NS is not None and post_log.is_file()
-                          and post_log.stat().st_mtime_ns >= PRODUCTION_STARTED_NS)
+    post_logs = [W / group / '出片后.log' for group in (f'做_{NO}', f'定稿_{NO}')]
+    current_logs = [path for path in post_logs if PRODUCTION_STARTED_NS is not None
+                    and path.is_file() and path.stat().st_mtime_ns >= PRODUCTION_STARTED_NS]
+    post_log = max(current_logs, key=lambda path: path.stat().st_mtime_ns) if current_logs else None
+    current_post_check = post_log is not None
     record = {'acceptance': False, 'diagnostic_only': True,
               'program_present': program.is_file(), 'reference_meta_present': meta.is_file(),
               'actual_pcm_present': wav.is_file(), 'current_post_check_present': current_post_check}

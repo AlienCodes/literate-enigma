@@ -12,6 +12,7 @@ import argparse
 import hashlib
 import importlib.metadata
 import json
+import math
 import os
 import platform
 from pathlib import Path
@@ -80,6 +81,76 @@ def summarize_official_report(path: Path):
         "edits_with_nonzero_tail_or_onset_cut": sum(bool(e.get("tail_cut_ms") or e.get("onset_cut_ms")) for e in edits),
         "a10_edge_violations": sum(bool(e.get("edge_bad")) for e in edits),
         "extra_nonzero_run_count": len(data.get("extra_runs", [])),
+    }
+
+
+def abnormal_edit_scalars(report_path: Path, script_path: Path, wav_path: Path, sr=24000):
+    """Whitelist scalar edit locations/levels from the unchanged audit report.
+
+    Do not export waveforms, alignment maps, GT metadata/paths, arrays of PCM,
+    cache bytes, or model bytes. Confirmation coverage is diagnostic only and
+    does not issue or replace an official QC verdict.
+    """
+    if not report_path.is_file():
+        return None
+    data = json.loads(report_path.read_text())
+    script = json.loads(script_path.read_text())
+    confirmations = script.get("核对确认", {}).get("删除段", {})
+    fpd = hashlib.md5(wav_path.read_bytes()).hexdigest()[:12]
+    scalar_fields = (
+        "raw_k1", "raw_k2", "A_k1", "A_k2", "tail_cut_ms", "onset_cut_ms",
+        "tail_cut_ms_spk", "onset_cut_ms_spk", "first5_db", "last5_db",
+        "lost_ms", "shift_ms", "ins_ms", "ins_nonzero", "lost_max_db",
+        "lost_max_db_spk", "pre_db", "post_db", "pre_min_db", "post_min_db",
+    )
+    def number(value):
+        if value is None:
+            return None
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            raise ValueError("non-numeric value in whitelisted official edit scalar")
+        return value if math.isfinite(value) else None
+    edits = []
+    for text in data.get("texts", []):
+        index = int(text["idx"])
+        label = "标题" if index == -1 else f"S{index + 1}"
+        for position, edit in enumerate(text.get("edits", [])):
+            if not (edit.get("edge_bad") or edit.get("tail_cut_ms") or edit.get("onset_cut_ms")):
+                continue
+            row = {key: number(edit.get(key)) for key in scalar_fields if key in edit}
+            row.update({"text_index": index, "sentence_label": label, "edit_index_in_text": position,
+                        "edge_bad": bool(edit.get("edge_bad")),
+                        "edge_sides": [side for side in edit.get("edge_sides", [])
+                                       if side in {"pre", "post", "lost"}]})
+            for begin, end, prefix in (("raw_k1", "raw_k2", "raw"), ("A_k1", "A_k2", "actual")):
+                row[prefix + "_start_seconds"] = number(edit[begin]) / sr
+                row[prefix + "_end_seconds"] = number(edit[end]) / sr
+            key = f"{label} raw {edit['raw_k1'] / sr:.4f}-{edit['raw_k2'] / sr:.4f}"
+            confirmation = confirmations.get(key)
+            typed = isinstance(confirmation, dict)
+            matches = typed and confirmation.get("配音指纹") == fpd
+            supplied_kind = confirmation.get("类型") if matches else None
+            kind = (supplied_kind if isinstance(supplied_kind, str)
+                    and supplied_kind in {"紧贴词尾的非人声", "紧贴词头的非人声", "紧贴两头的非人声"} else None)
+            legacy = key in confirmations and not typed
+            allowed = ({"lost"} if legacy else {"pre", "lost"} if kind == "紧贴词尾的非人声"
+                       else {"post", "lost"} if kind == "紧贴词头的非人声"
+                       else {"pre", "post", "lost"} if kind == "紧贴两头的非人声" else set())
+            row["source_deletion_confirmation"] = {
+                "lookup_key": key, "present": key in confirmations,
+                "legacy_untyped_entry": legacy, "current_pcm_fingerprint_matches": matches,
+                "current_valid_type": kind,
+                "covers_reported_edge_sides": set(row["edge_sides"]) <= allowed,
+                "covers_reported_tail_cut": not edit.get("tail_cut_ms") or kind in {"紧贴词尾的非人声", "紧贴两头的非人声"},
+                "covers_reported_onset_cut": not edit.get("onset_cut_ms") or kind in {"紧贴词头的非人声", "紧贴两头的非人声"},
+            }
+            edits.append(row)
+    return {
+        "purpose": "official abnormal edit scalar locations and existing confirmation coverage; diagnostic only",
+        "official_report_sha256": sha256(report_path), "current_pcm_md5_first12": fpd,
+        "sample_rate": sr, "abnormal_edits": edits,
+        "extra_nonzero_runs": [{"actual_start_seconds": number(row[0]), "duration_ms": number(row[1]),
+                                "absolute_peak": number(row[2])} for row in data.get("extra_runs", [])],
+        "private_waveforms_GT_cache_model_bytes_exported": False,
     }
 
 
@@ -153,6 +224,8 @@ def main():
         result["actual_pcm"] = {"sample_rate": sr, "samples": len(a), "duration_s": len(a) / sr,
                                 "sample_peak": float(np.abs(a).max()), "peak_time_s": float(np.abs(a).argmax() / sr)}
         result["official_audit"] = summarize_official_report(args.qc_dir / f"report2_{no}.json")
+        result["official_abnormal_edit_scalars"] = abnormal_edit_scalars(
+            args.qc_dir / f"report2_{no}.json", script, wav, sr)
         rows = []
         all_anchors = []
         for it, x in arrays:
