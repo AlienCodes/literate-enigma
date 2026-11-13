@@ -1,0 +1,85 @@
+name: 第05篇原缓存就地修复并制作4K
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/video05fix-production/**', '.github/workflows/produce05-canonical4K.yml']
+permissions:
+  contents: read
+jobs:
+  article05:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.github/video05fix-production/
+            /.github/video-batch/
+            /视频/工具/
+            /视频/脚本/
+            /视频/对照文本/05-*
+            /视频/制作记录/
+            /视频/音频核对/
+            /视频/资源/字体/
+            /视频/配音缓存/*.json
+            /视频/*.md
+            /新版定稿/
+            /CLAUDE.md
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - name: 确认原缓存仅用于本任务内就地核查
+        env:
+          CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
+        run: |
+          test "$CACHE_HIT" = true
+          test -f "$RUNNER_TEMP/completion-machine/video/work_05/a.wav"
+      - name: 准备既定配音与核查工具
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet -r 视频/工具/环境/requirements.txt
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: 恢复同版工具与夹具真正通过的单个快测印章
+        id: fastcheck-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: 视频/工具/新管/快测通过.json
+          key: ${{ runner.os }}-article05-fastcheck-v1-py311-original43294745262-${{ hashFiles('视频/工具/**', '视频/脚本/**', '视频/资源/字体/**', '新版定稿/**', '.github/video05fix-production/reference27.json', '!视频/工具/新管/快测通过.json') }}
+      - name: 原地核实修复并通过原有完整4K流程
+        id: production
+        env:
+          VIDEO05_FASTCHECK_CACHE_HIT: ${{ steps.fastcheck-cache.outputs.cache-hit }}
+        run: python -u .github/video05fix-production/run.py
+      - name: 用原程序再次核验实际通过的快测印章
+        id: stamp-validated
+        if: always() && steps.production.outputs.fastcheck_passed == 'true'
+        run: python 视频/工具/新管/印章.py
+      - name: 仅缓存原程序真实通过生成的工具哈希印章
+        uses: actions/cache/save@v4
+        if: always() && steps.stamp-validated.outcome == 'success' && steps.fastcheck-cache.outputs.cache-hit != 'true'
+        with:
+          path: 视频/工具/新管/快测通过.json
+          key: ${{ steps.fastcheck-cache.outputs.cache-primary-key }}
+      - name: 仅保存用户请求的成片及简要核验结果
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: article05-canonical-4K-final
+          path: |
+            article05-delivery/05-4K-读完即转简述2秒.mp4
+            article05-delivery/05-status.json
+            article05-delivery/05-summary-verification.json
+          compression-level: 1
+          retention-days: 30
+          if-no-files-found: error

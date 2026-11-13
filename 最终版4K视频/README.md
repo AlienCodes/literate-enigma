@@ -1,77 +1,80 @@
-# 最终版 4K 视频
+# 70部最终版4K视频
 
-> 这里只放已经定稿的 4K 视频（3840×2160），每篇都已通过《交付核查》出片前、出片后全部核查。
-> 每篇只存最后定稿的一个版本；有瑕疵的旧版本、草稿一律及时删除（用户 2026-10-08 要求）。
-> 文件名：序号 - 英文标题 - 中文标题。与 `视频/视频/NN.mp4` 逐字节相同，由 `视频/工具/归档定稿视频.py` 复制并核对。
+本目录完整保存70部已验收的最终MP4。全部为3840×2160、30帧/秒；配音结束下一帧转入独立简述页，停留60帧（2秒）。本次归档逐字节复制已验收版本，没有重新合成音频或重新编码。
 
-| 序号 | 英文标题 | 中文标题 | 大小 |
-|---|---|---|---|
-| 01 | The Robber Who Thought Lemon Juice Made Him Invisible | 以为柠檬汁能隐身的劫匪 | 11.7 MB |
-| 02 | The Truth About One Marshmallow | 一颗棉花糖的真相 | 11.9 MB |
-| 03 | The Doctor Who Drank Bacteria to Win an Argument | 喝下细菌的医生 | 12.3 MB |
-| 04 | The Brain That Learned London | 被街道重塑的大脑 | 12.8 MB |
-| 06 | The Horse That Could Count | 会算术的马 | 11.8 MB |
-| 07 | The Octopus That Escaped | 越狱的章鱼 | 10.8 MB |
-| 08 | The Doctor Who Solved the Cholera Mystery | 破解霍乱之谜的医生 | 12.1 MB |
-| 09 | The Great Emu War | 向鸸鹋宣战 | 12.1 MB |
-| 10 | The Stolen Smile | 被偷走的微笑 | 12.1 MB |
-| 11 | Move 37 | 第37手 | 11.5 MB |
-| 12 | The 79 Days of New Coke | 新可乐的 79 天 | 11.6 MB |
-| 13 | Eleven Days Without Sleep | 十一天不睡觉的少年 | 13.3 MB |
-| 14 | The Fungus That Turns Ants into Zombies | 让蚂蚁变僵尸的真菌 | 11.4 MB |
-| 15 | The Myth of the Unsinkable | 永不沉没的神话 | 12.5 MB |
-| 16 | The Bread Made from Air | 从空气中造面包 | 12.7 MB |
-| 17 | The Curse of the Pharaoh | 法老的诅咒 | 11.3 MB |
-| 18 | The Mould That Changed the World | 改变人类命运的霉菌 | 13.2 MB |
-| 19 | Tulip Mania The Bubble and the Legend | 郁金香狂热：泡沫与传说 | 11.9 MB |
-| 20 | The 5,000-Year-Old Murder in the Ice | 冰里的五千年凶案 | 12.0 MB |
-| 21 | The Man Who Sold the Eiffel Tower Twice | 两次卖掉埃菲尔铁塔的骗子 | 11.0 MB |
-| 22 | The Building That Melted a Car | 会烤化汽车的大楼 | 10.7 MB |
-| 23 | The Man Who Gave Machines a Mind | 为机器点燃思想的人 | 12.0 MB |
-| 24 | Survival in the Ice The Legend of Endurance | 冰海求生：坚忍号传奇 | 13.0 MB |
-| 25 | Apollo 13 The Successful Failure | 阿波罗13号：成功的失败 | 12.5 MB |
-| 26 | The Language the Children Invented | 孩子们发明的语言 | 12.1 MB |
-| 27 | Life in the Forbidden Zone | 禁区里的生机 | 13.4 MB |
-| 28 | A Handful of Wormwood That Saved Millions | 青蒿一握，济世千万 | 13.7 MB |
-| 29 | The Volcano That Gave Us Frankenstein | 一座火山，造出了《弗兰肯斯坦》 | 12.9 MB |
-| 30 | The Stink That Built London's Sewers | 大恶臭逼出了下水道 | 12.0 MB |
-| 31 | The Book Twelve Publishers Turned Down | 被拒绝了十二次的哈利·波特 | 12.4 MB |
-| 32 | The Planet That Was Demoted | 被降级的冥王星 | 12.2 MB |
-| 33 | Thirteen in the Cave | 洞穴里的十三个人 | 12.9 MB |
-| 34 | The Game That Escaped the Soviet Union | 走出苏联的俄罗斯方块 | 14.3 MB |
-| 35 | The Bird That Beat the Letter Home | 比信先到家的鸟 | 13.4 MB |
-| 36 | The Company That Invented Its Own Killer | 发明了数码相机，却被它打败 | 13.4 MB |
-| 37 | Dynamite for the Heart | 炸药大王的救心药 | 13.4 MB |
-| 38 | The Web Beneath the Woods | 林下之网 | 12.8 MB |
-| 39 | Y2K The Crisis That Success Erased | 千年虫：被成功抹去的危机 | 13.1 MB |
-| 40 | The Glue That Failed Its Way to Success | 失败的胶水，成功的便利贴 | 11.1 MB |
-| 41 | The Toad That Invaded Australia | 入侵澳洲的毒蟾 | 12.6 MB |
-| 42 | The Telescope That Needed Glasses | 需要戴眼镜的望远镜 | 12.4 MB |
-| 43 | From a Garage to the Top of the World | 从车库到世界之巅 | 13.4 MB |
-| 44 | The Night Sweden Switched Sides | 一夜之间换边开车 | 12.2 MB |
-| 45 | The Record Humanity Threw into the Stars | 写给外星人的一张唱片 | 12.7 MB |
-| 46 | Lost in the Glare | 光之殇 | 12.5 MB |
-| 47 | Shadows of Wolves Over Yellowstone | 黄石公园狼影再现 | 14.4 MB |
-| 48 | Rice for the World | 稻济天下 | 12.2 MB |
-| 49 | The Woman Who Won Two Nobels | 两度摘得诺奖的女人 | 13.2 MB |
-| 50 | Microplastics Everywhere, but How Harmful | 微塑料：无处不在，危害几何？ | 12.3 MB |
-| 51 | The Joke That Became OK | OK 原本是个玩笑 | 11.8 MB |
-| 52 | The Killer Smog of 1952 | 夺命毒雾：伦敦1952 | 11.9 MB |
-| 53 | The Wind That Kept No Time The Fall of Galloping Gertie | 不合拍的风：塔科马大桥的陨落 | 12.0 MB |
-| 54 | The Sound That Shook the World | 震动世界的一声巨响 | 14.6 MB |
-| 55 | The Secret of Rome's Undying Concrete | 罗马混凝土的千年之谜 | 12.5 MB |
-| 56 | The Letter That Startled Darwin | 一封信惊醒了达尔文 | 13.3 MB |
-| 57 | A Change of Anthem in the Deep | 鲸歌易帜 | 12.5 MB |
-| 58 | From a Scratch to a World Without Smallpox | 从一道划痕到天花绝迹 | 12.8 MB |
-| 59 | Saving the Sky | 拯救天空 | 13.0 MB |
-| 60 | The Scientific Giant Who Changed the World | 改变世界的科学巨匠 | 12.3 MB |
-| 61 | The Steel Box That Remade the World | 集装箱：重塑世界的铁盒子 | 12.1 MB |
-| 62 | Dolly, the Copied Sheep | 多莉：一只羊的复制 | 12.2 MB |
-| 63 | The Crowded Heavens | 拥挤的苍穹 | 13.4 MB |
-| 64 | The Day Zero That Never Came | 没有到来的零日 | 12.4 MB |
-| 65 | The Day the Doomsday Vault Opened | 末日种子库的第一次取种 | 12.6 MB |
-| 66 | The Burrs That Became Velcro | 一颗刺果钩出的发明 | 11.0 MB |
-| 67 | The Cave Found by a Dog | 几个少年和一只狗发现的洞穴 | 11.4 MB |
-| 68 | The Last Flight of the Hindenburg | 兴登堡号的 34 秒 | 12.4 MB |
-| 69 | The Trial of the Father of the Atomic Bomb | 原子弹之父的审判 | 12.8 MB |
-| 70 | The Stamp That Changed the Post | 一枚邮票改变通信 | 11.5 MB |
+所有文件SHA-256见[视频定稿文件清单](../成果归档/视频定稿文件清单.json)。[完整下载与分类下载](https://github.com/AlienCodes/literate-enigma/releases/tag/reading-complete-2026.11.13-v1)。
+
+当前带简述定稿以本目录为准；原制作音频和历史基准材料保留在原有制作目录。
+
+| 篇号 | 完整MP4 | 大小 | 核验报告 |
+| --- | --- | ---: | --- |
+| 01 | [01 - The Robber Who Thought Lemon Juice Made Him Invisible - 以为柠檬汁能隐身的劫匪.mp4](./01%20-%20The%20Robber%20Who%20Thought%20Lemon%20Juice%20Made%20Him%20Invisible%20-%20%E4%BB%A5%E4%B8%BA%E6%9F%A0%E6%AA%AC%E6%B1%81%E8%83%BD%E9%9A%90%E8%BA%AB%E7%9A%84%E5%8A%AB%E5%8C%AA.mp4) | 11.59 MiB | [报告](../简述重制核验/01.json) |
+| 02 | [02 - The Truth About One Marshmallow - 一颗棉花糖的真相.mp4](./02%20-%20The%20Truth%20About%20One%20Marshmallow%20-%20%E4%B8%80%E9%A2%97%E6%A3%89%E8%8A%B1%E7%B3%96%E7%9A%84%E7%9C%9F%E7%9B%B8.mp4) | 11.77 MiB | [报告](../简述重制核验/02.json) |
+| 03 | [03 - The Doctor Who Drank Bacteria to Win an Argument - 喝下细菌的医生.mp4](./03%20-%20The%20Doctor%20Who%20Drank%20Bacteria%20to%20Win%20an%20Argument%20-%20%E5%96%9D%E4%B8%8B%E7%BB%86%E8%8F%8C%E7%9A%84%E5%8C%BB%E7%94%9F.mp4) | 12.16 MiB | [报告](../简述重制核验/03.json) |
+| 04 | [04 - The Brain That Learned London - 被街道重塑的大脑.mp4](./04%20-%20The%20Brain%20That%20Learned%20London%20-%20%E8%A2%AB%E8%A1%97%E9%81%93%E9%87%8D%E5%A1%91%E7%9A%84%E5%A4%A7%E8%84%91.mp4) | 12.56 MiB | [报告](../简述重制核验/04.json) |
+| 05 | [05 - The Fingerprint in the Blood - 血里的指纹.mp4](./05%20-%20The%20Fingerprint%20in%20the%20Blood%20-%20%E8%A1%80%E9%87%8C%E7%9A%84%E6%8C%87%E7%BA%B9.mp4) | 11.80 MiB | [报告](../简述重制核验/05.json) |
+| 06 | [06 - The Horse That Could Count - 会算术的马.mp4](./06%20-%20The%20Horse%20That%20Could%20Count%20-%20%E4%BC%9A%E7%AE%97%E6%9C%AF%E7%9A%84%E9%A9%AC.mp4) | 11.76 MiB | [报告](../简述重制核验/06.json) |
+| 07 | [07 - The Octopus That Escaped - 越狱的章鱼.mp4](./07%20-%20The%20Octopus%20That%20Escaped%20-%20%E8%B6%8A%E7%8B%B1%E7%9A%84%E7%AB%A0%E9%B1%BC.mp4) | 10.78 MiB | [报告](../简述重制核验/07.json) |
+| 08 | [08 - The Doctor Who Solved the Cholera Mystery - 破解霍乱之谜的医生.mp4](./08%20-%20The%20Doctor%20Who%20Solved%20the%20Cholera%20Mystery%20-%20%E7%A0%B4%E8%A7%A3%E9%9C%8D%E4%B9%B1%E4%B9%8B%E8%B0%9C%E7%9A%84%E5%8C%BB%E7%94%9F.mp4) | 12.02 MiB | [报告](../简述重制核验/08.json) |
+| 09 | [09 - The Great Emu War - 向鸸鹋宣战.mp4](./09%20-%20The%20Great%20Emu%20War%20-%20%E5%90%91%E9%B8%B8%E9%B9%8B%E5%AE%A3%E6%88%98.mp4) | 11.97 MiB | [报告](../简述重制核验/09.json) |
+| 10 | [10 - The Stolen Smile - 被偷走的微笑.mp4](./10%20-%20The%20Stolen%20Smile%20-%20%E8%A2%AB%E5%81%B7%E8%B5%B0%E7%9A%84%E5%BE%AE%E7%AC%91.mp4) | 11.97 MiB | [报告](../简述重制核验/10.json) |
+| 11 | [11 - Move 37 - 第37手.mp4](./11%20-%20Move%2037%20-%20%E7%AC%AC37%E6%89%8B.mp4) | 11.38 MiB | [报告](../简述重制核验/11.json) |
+| 12 | [12 - The 79 Days of New Coke - 新可乐的 79 天.mp4](./12%20-%20The%2079%20Days%20of%20New%20Coke%20-%20%E6%96%B0%E5%8F%AF%E4%B9%90%E7%9A%84%2079%20%E5%A4%A9.mp4) | 11.46 MiB | [报告](../简述重制核验/12.json) |
+| 13 | [13 - Eleven Days Without Sleep - 十一天不睡觉的少年.mp4](./13%20-%20Eleven%20Days%20Without%20Sleep%20-%20%E5%8D%81%E4%B8%80%E5%A4%A9%E4%B8%8D%E7%9D%A1%E8%A7%89%E7%9A%84%E5%B0%91%E5%B9%B4.mp4) | 13.17 MiB | [报告](../简述重制核验/13.json) |
+| 14 | [14 - The Fungus That Turns Ants into Zombies - 让蚂蚁变僵尸的真菌.mp4](./14%20-%20The%20Fungus%20That%20Turns%20Ants%20into%20Zombies%20-%20%E8%AE%A9%E8%9A%82%E8%9A%81%E5%8F%98%E5%83%B5%E5%B0%B8%E7%9A%84%E7%9C%9F%E8%8F%8C.mp4) | 11.37 MiB | [报告](../简述重制核验/14.json) |
+| 15 | [15 - The Myth of the Unsinkable - 永不沉没的神话.mp4](./15%20-%20The%20Myth%20of%20the%20Unsinkable%20-%20%E6%B0%B8%E4%B8%8D%E6%B2%89%E6%B2%A1%E7%9A%84%E7%A5%9E%E8%AF%9D.mp4) | 12.35 MiB | [报告](../简述重制核验/15.json) |
+| 16 | [16 - The Bread Made from Air - 从空气中造面包.mp4](./16%20-%20The%20Bread%20Made%20from%20Air%20-%20%E4%BB%8E%E7%A9%BA%E6%B0%94%E4%B8%AD%E9%80%A0%E9%9D%A2%E5%8C%85.mp4) | 12.61 MiB | [报告](../简述重制核验/16.json) |
+| 17 | [17 - The Curse of the Pharaoh - 法老的诅咒.mp4](./17%20-%20The%20Curse%20of%20the%20Pharaoh%20-%20%E6%B3%95%E8%80%81%E7%9A%84%E8%AF%85%E5%92%92.mp4) | 11.21 MiB | [报告](../简述重制核验/17.json) |
+| 18 | [18 - The Mould That Changed the World - 改变人类命运的霉菌.mp4](./18%20-%20The%20Mould%20That%20Changed%20the%20World%20-%20%E6%94%B9%E5%8F%98%E4%BA%BA%E7%B1%BB%E5%91%BD%E8%BF%90%E7%9A%84%E9%9C%89%E8%8F%8C.mp4) | 13.10 MiB | [报告](../简述重制核验/18.json) |
+| 19 | [19 - Tulip Mania The Bubble and the Legend - 郁金香狂热：泡沫与传说.mp4](./19%20-%20Tulip%20Mania%20The%20Bubble%20and%20the%20Legend%20-%20%E9%83%81%E9%87%91%E9%A6%99%E7%8B%82%E7%83%AD%EF%BC%9A%E6%B3%A1%E6%B2%AB%E4%B8%8E%E4%BC%A0%E8%AF%B4.mp4) | 11.90 MiB | [报告](../简述重制核验/19.json) |
+| 20 | [20 - The 5,000-Year-Old Murder in the Ice - 冰里的五千年凶案.mp4](./20%20-%20The%205%2C000-Year-Old%20Murder%20in%20the%20Ice%20-%20%E5%86%B0%E9%87%8C%E7%9A%84%E4%BA%94%E5%8D%83%E5%B9%B4%E5%87%B6%E6%A1%88.mp4) | 11.93 MiB | [报告](../简述重制核验/20.json) |
+| 21 | [21 - The Man Who Sold the Eiffel Tower Twice - 两次卖掉埃菲尔铁塔的骗子.mp4](./21%20-%20The%20Man%20Who%20Sold%20the%20Eiffel%20Tower%20Twice%20-%20%E4%B8%A4%E6%AC%A1%E5%8D%96%E6%8E%89%E5%9F%83%E8%8F%B2%E5%B0%94%E9%93%81%E5%A1%94%E7%9A%84%E9%AA%97%E5%AD%90.mp4) | 10.67 MiB | [报告](../简述重制核验/21.json) |
+| 22 | [22 - The Building That Melted a Car - 会烤化汽车的大楼.mp4](./22%20-%20The%20Building%20That%20Melted%20a%20Car%20-%20%E4%BC%9A%E7%83%A4%E5%8C%96%E6%B1%BD%E8%BD%A6%E7%9A%84%E5%A4%A7%E6%A5%BC.mp4) | 10.66 MiB | [报告](../简述重制核验/22.json) |
+| 23 | [23 - The Man Who Gave Machines a Mind - 为机器点燃思想的人.mp4](./23%20-%20The%20Man%20Who%20Gave%20Machines%20a%20Mind%20-%20%E4%B8%BA%E6%9C%BA%E5%99%A8%E7%82%B9%E7%87%83%E6%80%9D%E6%83%B3%E7%9A%84%E4%BA%BA.mp4) | 11.84 MiB | [报告](../简述重制核验/23.json) |
+| 24 | [24 - Survival in the Ice The Legend of Endurance - 冰海求生：坚忍号传奇.mp4](./24%20-%20Survival%20in%20the%20Ice%20The%20Legend%20of%20Endurance%20-%20%E5%86%B0%E6%B5%B7%E6%B1%82%E7%94%9F%EF%BC%9A%E5%9D%9A%E5%BF%8D%E5%8F%B7%E4%BC%A0%E5%A5%87.mp4) | 12.26 MiB | [报告](../简述重制核验/24.json) |
+| 25 | [25 - Apollo 13 The Successful Failure - 阿波罗13号：成功的失败.mp4](./25%20-%20Apollo%2013%20The%20Successful%20Failure%20-%20%E9%98%BF%E6%B3%A2%E7%BD%9713%E5%8F%B7%EF%BC%9A%E6%88%90%E5%8A%9F%E7%9A%84%E5%A4%B1%E8%B4%A5.mp4) | 11.86 MiB | [报告](../简述重制核验/25.json) |
+| 26 | [26 - The Language the Children Invented - 孩子们发明的语言.mp4](./26%20-%20The%20Language%20the%20Children%20Invented%20-%20%E5%AD%A9%E5%AD%90%E4%BB%AC%E5%8F%91%E6%98%8E%E7%9A%84%E8%AF%AD%E8%A8%80.mp4) | 11.33 MiB | [报告](../简述重制核验/26.json) |
+| 27 | [27 - Life in the Forbidden Zone - 禁区里的生机.mp4](./27%20-%20Life%20in%20the%20Forbidden%20Zone%20-%20%E7%A6%81%E5%8C%BA%E9%87%8C%E7%9A%84%E7%94%9F%E6%9C%BA.mp4) | 12.44 MiB | [报告](../简述重制核验/27.json) |
+| 28 | [28 - A Handful of Wormwood That Saved Millions - 青蒿一握，济世千万.mp4](./28%20-%20A%20Handful%20of%20Wormwood%20That%20Saved%20Millions%20-%20%E9%9D%92%E8%92%BF%E4%B8%80%E6%8F%A1%EF%BC%8C%E6%B5%8E%E4%B8%96%E5%8D%83%E4%B8%87.mp4) | 13.26 MiB | [报告](../简述重制核验/28.json) |
+| 29 | [29 - The Volcano That Gave Us Frankenstein - 一座火山，造出了《弗兰肯斯坦》.mp4](./29%20-%20The%20Volcano%20That%20Gave%20Us%20Frankenstein%20-%20%E4%B8%80%E5%BA%A7%E7%81%AB%E5%B1%B1%EF%BC%8C%E9%80%A0%E5%87%BA%E4%BA%86%E3%80%8A%E5%BC%97%E5%85%B0%E8%82%AF%E6%96%AF%E5%9D%A6%E3%80%8B.mp4) | 12.47 MiB | [报告](../简述重制核验/29.json) |
+| 30 | [30 - The Stink That Built London's Sewers - 大恶臭逼出了下水道.mp4](./30%20-%20The%20Stink%20That%20Built%20London%27s%20Sewers%20-%20%E5%A4%A7%E6%81%B6%E8%87%AD%E9%80%BC%E5%87%BA%E4%BA%86%E4%B8%8B%E6%B0%B4%E9%81%93.mp4) | 11.55 MiB | [报告](../简述重制核验/30.json) |
+| 31 | [31 - The Book Twelve Publishers Turned Down - 被拒绝了十二次的哈利·波特.mp4](./31%20-%20The%20Book%20Twelve%20Publishers%20Turned%20Down%20-%20%E8%A2%AB%E6%8B%92%E7%BB%9D%E4%BA%86%E5%8D%81%E4%BA%8C%E6%AC%A1%E7%9A%84%E5%93%88%E5%88%A9%C2%B7%E6%B3%A2%E7%89%B9.mp4) | 11.87 MiB | [报告](../简述重制核验/31.json) |
+| 32 | [32 - The Planet That Was Demoted - 被降级的冥王星.mp4](./32%20-%20The%20Planet%20That%20Was%20Demoted%20-%20%E8%A2%AB%E9%99%8D%E7%BA%A7%E7%9A%84%E5%86%A5%E7%8E%8B%E6%98%9F.mp4) | 11.82 MiB | [报告](../简述重制核验/32.json) |
+| 33 | [33 - Thirteen in the Cave - 洞穴里的十三个人.mp4](./33%20-%20Thirteen%20in%20the%20Cave%20-%20%E6%B4%9E%E7%A9%B4%E9%87%8C%E7%9A%84%E5%8D%81%E4%B8%89%E4%B8%AA%E4%BA%BA.mp4) | 12.25 MiB | [报告](../简述重制核验/33.json) |
+| 34 | [34 - The Game That Escaped the Soviet Union - 走出苏联的俄罗斯方块.mp4](./34%20-%20The%20Game%20That%20Escaped%20the%20Soviet%20Union%20-%20%E8%B5%B0%E5%87%BA%E8%8B%8F%E8%81%94%E7%9A%84%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97.mp4) | 13.79 MiB | [报告](../简述重制核验/34.json) |
+| 35 | [35 - The Bird That Beat the Letter Home - 比信先到家的鸟.mp4](./35%20-%20The%20Bird%20That%20Beat%20the%20Letter%20Home%20-%20%E6%AF%94%E4%BF%A1%E5%85%88%E5%88%B0%E5%AE%B6%E7%9A%84%E9%B8%9F.mp4) | 12.43 MiB | [报告](../简述重制核验/35.json) |
+| 36 | [36 - The Company That Invented Its Own Killer - 发明了数码相机，却被它打败.mp4](./36%20-%20The%20Company%20That%20Invented%20Its%20Own%20Killer%20-%20%E5%8F%91%E6%98%8E%E4%BA%86%E6%95%B0%E7%A0%81%E7%9B%B8%E6%9C%BA%EF%BC%8C%E5%8D%B4%E8%A2%AB%E5%AE%83%E6%89%93%E8%B4%A5.mp4) | 12.96 MiB | [报告](../简述重制核验/36.json) |
+| 37 | [37 - Dynamite for the Heart - 炸药大王的救心药.mp4](./37%20-%20Dynamite%20for%20the%20Heart%20-%20%E7%82%B8%E8%8D%AF%E5%A4%A7%E7%8E%8B%E7%9A%84%E6%95%91%E5%BF%83%E8%8D%AF.mp4) | 12.82 MiB | [报告](../简述重制核验/37.json) |
+| 38 | [38 - The Web Beneath the Woods - 林下之网.mp4](./38%20-%20The%20Web%20Beneath%20the%20Woods%20-%20%E6%9E%97%E4%B8%8B%E4%B9%8B%E7%BD%91.mp4) | 12.39 MiB | [报告](../简述重制核验/38.json) |
+| 39 | [39 - Y2K The Crisis That Success Erased - 千年虫：被成功抹去的危机.mp4](./39%20-%20Y2K%20The%20Crisis%20That%20Success%20Erased%20-%20%E5%8D%83%E5%B9%B4%E8%99%AB%EF%BC%9A%E8%A2%AB%E6%88%90%E5%8A%9F%E6%8A%B9%E5%8E%BB%E7%9A%84%E5%8D%B1%E6%9C%BA.mp4) | 12.39 MiB | [报告](../简述重制核验/39.json) |
+| 40 | [40 - The Glue That Failed Its Way to Success - 失败的胶水，成功的便利贴.mp4](./40%20-%20The%20Glue%20That%20Failed%20Its%20Way%20to%20Success%20-%20%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%83%B6%E6%B0%B4%EF%BC%8C%E6%88%90%E5%8A%9F%E7%9A%84%E4%BE%BF%E5%88%A9%E8%B4%B4.mp4) | 10.86 MiB | [报告](../简述重制核验/40.json) |
+| 41 | [41 - The Toad That Invaded Australia - 入侵澳洲的毒蟾.mp4](./41%20-%20The%20Toad%20That%20Invaded%20Australia%20-%20%E5%85%A5%E4%BE%B5%E6%BE%B3%E6%B4%B2%E7%9A%84%E6%AF%92%E8%9F%BE.mp4) | 12.19 MiB | [报告](../简述重制核验/41.json) |
+| 42 | [42 - The Telescope That Needed Glasses - 需要戴眼镜的望远镜.mp4](./42%20-%20The%20Telescope%20That%20Needed%20Glasses%20-%20%E9%9C%80%E8%A6%81%E6%88%B4%E7%9C%BC%E9%95%9C%E7%9A%84%E6%9C%9B%E8%BF%9C%E9%95%9C.mp4) | 11.77 MiB | [报告](../简述重制核验/42.json) |
+| 43 | [43 - From a Garage to the Top of the World - 从车库到世界之巅.mp4](./43%20-%20From%20a%20Garage%20to%20the%20Top%20of%20the%20World%20-%20%E4%BB%8E%E8%BD%A6%E5%BA%93%E5%88%B0%E4%B8%96%E7%95%8C%E4%B9%8B%E5%B7%85.mp4) | 13.12 MiB | [报告](../简述重制核验/43.json) |
+| 44 | [44 - The Night Sweden Switched Sides - 一夜之间换边开车.mp4](./44%20-%20The%20Night%20Sweden%20Switched%20Sides%20-%20%E4%B8%80%E5%A4%9C%E4%B9%8B%E9%97%B4%E6%8D%A2%E8%BE%B9%E5%BC%80%E8%BD%A6.mp4) | 11.57 MiB | [报告](../简述重制核验/44.json) |
+| 45 | [45 - The Record Humanity Threw into the Stars - 写给外星人的一张唱片.mp4](./45%20-%20The%20Record%20Humanity%20Threw%20into%20the%20Stars%20-%20%E5%86%99%E7%BB%99%E5%A4%96%E6%98%9F%E4%BA%BA%E7%9A%84%E4%B8%80%E5%BC%A0%E5%94%B1%E7%89%87.mp4) | 11.94 MiB | [报告](../简述重制核验/45.json) |
+| 46 | [46 - Lost in the Glare - 光之殇.mp4](./46%20-%20Lost%20in%20the%20Glare%20-%20%E5%85%89%E4%B9%8B%E6%AE%87.mp4) | 11.93 MiB | [报告](../简述重制核验/46.json) |
+| 47 | [47 - Shadows of Wolves Over Yellowstone - 黄石公园狼影再现.mp4](./47%20-%20Shadows%20of%20Wolves%20Over%20Yellowstone%20-%20%E9%BB%84%E7%9F%B3%E5%85%AC%E5%9B%AD%E7%8B%BC%E5%BD%B1%E5%86%8D%E7%8E%B0.mp4) | 13.39 MiB | [报告](../简述重制核验/47.json) |
+| 48 | [48 - Rice for the World - 稻济天下.mp4](./48%20-%20Rice%20for%20the%20World%20-%20%E7%A8%BB%E6%B5%8E%E5%A4%A9%E4%B8%8B.mp4) | 11.47 MiB | [报告](../简述重制核验/48.json) |
+| 49 | [49 - The Woman Who Won Two Nobels - 两度摘得诺奖的女人.mp4](./49%20-%20The%20Woman%20Who%20Won%20Two%20Nobels%20-%20%E4%B8%A4%E5%BA%A6%E6%91%98%E5%BE%97%E8%AF%BA%E5%A5%96%E7%9A%84%E5%A5%B3%E4%BA%BA.mp4) | 12.83 MiB | [报告](../简述重制核验/49.json) |
+| 50 | [50 - Microplastics Everywhere, but How Harmful - 微塑料：无处不在，危害几何？.mp4](./50%20-%20Microplastics%20Everywhere%2C%20but%20How%20Harmful%20-%20%E5%BE%AE%E5%A1%91%E6%96%99%EF%BC%9A%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8%EF%BC%8C%E5%8D%B1%E5%AE%B3%E5%87%A0%E4%BD%95%EF%BC%9F.mp4) | 11.69 MiB | [报告](../简述重制核验/50.json) |
+| 51 | [51 - The Joke That Became OK - OK 原本是个玩笑.mp4](./51%20-%20The%20Joke%20That%20Became%20OK%20-%20OK%20%E5%8E%9F%E6%9C%AC%E6%98%AF%E4%B8%AA%E7%8E%A9%E7%AC%91.mp4) | 11.33 MiB | [报告](../简述重制核验/51.json) |
+| 52 | [52 - The Killer Smog of 1952 - 夺命毒雾：伦敦1952.mp4](./52%20-%20The%20Killer%20Smog%20of%201952%20-%20%E5%A4%BA%E5%91%BD%E6%AF%92%E9%9B%BE%EF%BC%9A%E4%BC%A6%E6%95%A61952.mp4) | 11.07 MiB | [报告](../简述重制核验/52.json) |
+| 53 | [53 - The Wind That Kept No Time The Fall of Galloping Gertie - 不合拍的风：塔科马大桥的陨落.mp4](./53%20-%20The%20Wind%20That%20Kept%20No%20Time%20The%20Fall%20of%20Galloping%20Gertie%20-%20%E4%B8%8D%E5%90%88%E6%8B%8D%E7%9A%84%E9%A3%8E%EF%BC%9A%E5%A1%94%E7%A7%91%E9%A9%AC%E5%A4%A7%E6%A1%A5%E7%9A%84%E9%99%A8%E8%90%BD.mp4) | 11.36 MiB | [报告](../简述重制核验/53.json) |
+| 54 | [54 - The Sound That Shook the World - 震动世界的一声巨响.mp4](./54%20-%20The%20Sound%20That%20Shook%20the%20World%20-%20%E9%9C%87%E5%8A%A8%E4%B8%96%E7%95%8C%E7%9A%84%E4%B8%80%E5%A3%B0%E5%B7%A8%E5%93%8D.mp4) | 13.78 MiB | [报告](../简述重制核验/54.json) |
+| 55 | [55 - The Secret of Rome's Undying Concrete - 罗马混凝土的千年之谜.mp4](./55%20-%20The%20Secret%20of%20Rome%27s%20Undying%20Concrete%20-%20%E7%BD%97%E9%A9%AC%E6%B7%B7%E5%87%9D%E5%9C%9F%E7%9A%84%E5%8D%83%E5%B9%B4%E4%B9%8B%E8%B0%9C.mp4) | 12.13 MiB | [报告](../简述重制核验/55.json) |
+| 56 | [56 - The Letter That Startled Darwin - 一封信惊醒了达尔文.mp4](./56%20-%20The%20Letter%20That%20Startled%20Darwin%20-%20%E4%B8%80%E5%B0%81%E4%BF%A1%E6%83%8A%E9%86%92%E4%BA%86%E8%BE%BE%E5%B0%94%E6%96%87.mp4) | 12.87 MiB | [报告](../简述重制核验/56.json) |
+| 57 | [57 - A Change of Anthem in the Deep - 鲸歌易帜.mp4](./57%20-%20A%20Change%20of%20Anthem%20in%20the%20Deep%20-%20%E9%B2%B8%E6%AD%8C%E6%98%93%E5%B8%9C.mp4) | 12.06 MiB | [报告](../简述重制核验/57.json) |
+| 58 | [58 - From a Scratch to a World Without Smallpox - 从一道划痕到天花绝迹.mp4](./58%20-%20From%20a%20Scratch%20to%20a%20World%20Without%20Smallpox%20-%20%E4%BB%8E%E4%B8%80%E9%81%93%E5%88%92%E7%97%95%E5%88%B0%E5%A4%A9%E8%8A%B1%E7%BB%9D%E8%BF%B9.mp4) | 12.49 MiB | [报告](../简述重制核验/58.json) |
+| 59 | [59 - Saving the Sky - 拯救天空.mp4](./59%20-%20Saving%20the%20Sky%20-%20%E6%8B%AF%E6%95%91%E5%A4%A9%E7%A9%BA.mp4) | 12.37 MiB | [报告](../简述重制核验/59.json) |
+| 60 | [60 - The Scientific Giant Who Changed the World - 改变世界的科学巨匠.mp4](./60%20-%20The%20Scientific%20Giant%20Who%20Changed%20the%20World%20-%20%E6%94%B9%E5%8F%98%E4%B8%96%E7%95%8C%E7%9A%84%E7%A7%91%E5%AD%A6%E5%B7%A8%E5%8C%A0.mp4) | 11.85 MiB | [报告](../简述重制核验/60.json) |
+| 61 | [61 - The Steel Box That Remade the World - 集装箱：重塑世界的铁盒子.mp4](./61%20-%20The%20Steel%20Box%20That%20Remade%20the%20World%20-%20%E9%9B%86%E8%A3%85%E7%AE%B1%EF%BC%9A%E9%87%8D%E5%A1%91%E4%B8%96%E7%95%8C%E7%9A%84%E9%93%81%E7%9B%92%E5%AD%90.mp4) | 11.78 MiB | [报告](../简述重制核验/61.json) |
+| 62 | [62 - Dolly, the Copied Sheep - 多莉：一只羊的复制.mp4](./62%20-%20Dolly%2C%20the%20Copied%20Sheep%20-%20%E5%A4%9A%E8%8E%89%EF%BC%9A%E4%B8%80%E5%8F%AA%E7%BE%8A%E7%9A%84%E5%A4%8D%E5%88%B6.mp4) | 11.64 MiB | [报告](../简述重制核验/62.json) |
+| 63 | [63 - The Crowded Heavens - 拥挤的苍穹.mp4](./63%20-%20The%20Crowded%20Heavens%20-%20%E6%8B%A5%E6%8C%A4%E7%9A%84%E8%8B%8D%E7%A9%B9.mp4) | 12.84 MiB | [报告](../简述重制核验/63.json) |
+| 64 | [64 - The Day Zero That Never Came - 没有到来的零日.mp4](./64%20-%20The%20Day%20Zero%20That%20Never%20Came%20-%20%E6%B2%A1%E6%9C%89%E5%88%B0%E6%9D%A5%E7%9A%84%E9%9B%B6%E6%97%A5.mp4) | 12.05 MiB | [报告](../简述重制核验/64.json) |
+| 65 | [65 - The Day the Doomsday Vault Opened - 末日种子库的第一次取种.mp4](./65%20-%20The%20Day%20the%20Doomsday%20Vault%20Opened%20-%20%E6%9C%AB%E6%97%A5%E7%A7%8D%E5%AD%90%E5%BA%93%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8F%96%E7%A7%8D.mp4) | 11.95 MiB | [报告](../简述重制核验/65.json) |
+| 66 | [66 - The Burrs That Became Velcro - 一颗刺果钩出的发明.mp4](./66%20-%20The%20Burrs%20That%20Became%20Velcro%20-%20%E4%B8%80%E9%A2%97%E5%88%BA%E6%9E%9C%E9%92%A9%E5%87%BA%E7%9A%84%E5%8F%91%E6%98%8E.mp4) | 10.56 MiB | [报告](../简述重制核验/66.json) |
+| 67 | [67 - The Cave Found by a Dog - 几个少年和一只狗发现的洞穴.mp4](./67%20-%20The%20Cave%20Found%20by%20a%20Dog%20-%20%E5%87%A0%E4%B8%AA%E5%B0%91%E5%B9%B4%E5%92%8C%E4%B8%80%E5%8F%AA%E7%8B%97%E5%8F%91%E7%8E%B0%E7%9A%84%E6%B4%9E%E7%A9%B4.mp4) | 10.93 MiB | [报告](../简述重制核验/67.json) |
+| 68 | [68 - The Last Flight of the Hindenburg - 兴登堡号的 34 秒.mp4](./68%20-%20The%20Last%20Flight%20of%20the%20Hindenburg%20-%20%E5%85%B4%E7%99%BB%E5%A0%A1%E5%8F%B7%E7%9A%84%2034%20%E7%A7%92.mp4) | 12.01 MiB | [报告](../简述重制核验/68.json) |
+| 69 | [69 - The Trial of the Father of the Atomic Bomb - 原子弹之父的审判.mp4](./69%20-%20The%20Trial%20of%20the%20Father%20of%20the%20Atomic%20Bomb%20-%20%E5%8E%9F%E5%AD%90%E5%BC%B9%E4%B9%8B%E7%88%B6%E7%9A%84%E5%AE%A1%E5%88%A4.mp4) | 12.39 MiB | [报告](../简述重制核验/69.json) |
+| 70 | [70 - The Stamp That Changed the Post - 一枚邮票改变通信.mp4](./70%20-%20The%20Stamp%20That%20Changed%20the%20Post%20-%20%E4%B8%80%E6%9E%9A%E9%82%AE%E7%A5%A8%E6%94%B9%E5%8F%98%E9%80%9A%E4%BF%A1.mp4) | 11.10 MiB | [报告](../简述重制核验/70.json) |

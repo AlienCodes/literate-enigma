@@ -1,0 +1,42 @@
+{
+  "campaign": "20261112-direct-summary-2s",
+  "source_commit": "c9d52b26fe981ef8e4c412189ca289716ab8bf00",
+  "approved_preview_commit": "4d999f9d69fb8872a13a3cb2b726b9a54168b887",
+  "summary_commit": "39ca0643bb8298f31743bd97c4ed6d6446873c30",
+  "layout_commit": "5756b8b10bd84ba54aa882febe65739652b21c89",
+  "summary_blobs": {
+    "01-12": "bb3434c344d4126df1ebd6403d11d29c1fdccb5d",
+    "25-36": "b3891f6b14c81c4579e185c3643b8583d8f43dd5",
+    "37-48": "dd22f6ff1c853d1fb4eb6288459798f7a5aa7415",
+    "61-70": "005b0db663e30a11c29700442afd6ffe68df4a3b",
+    "13-24": "015280364555a5df64660e1c20326493f5145d28",
+    "49-60": "5e207a124c241f0721102b66385a823d249ac168"
+  },
+  "review": {
+    "articles": 70,
+    "points": 350,
+    "complete_english_and_chinese_read": true,
+    "cross_review": true,
+    "article03_unchanged": true
+  },
+  "specification": {
+    "width": 3840,
+    "height": 2160,
+    "fps": 30,
+    "summary_seconds": 2,
+    "summary_frames": 60,
+    "transition": "next video frame after final spoken sound; replace existing silent hold",
+    "body_text": "unchanged",
+    "existing_embedded_summary": "move to standalone end page",
+    "audio": "preserve original complete audio samples and packet times except Article05 under independent creation"
+  },
+  "production": {
+    "existing_originals": 69,
+    "missing_original": "05",
+    "article05_branch": "codex/article05-audio-20261112",
+    "renderer_pilot_branch": "codex/batch70-render-20261112",
+    "audio_audit_branch": "codex/audio-audit65-70-20261112",
+    "matrix_max_parallel": 19,
+    "article05_parallel": 1
+  }
+}

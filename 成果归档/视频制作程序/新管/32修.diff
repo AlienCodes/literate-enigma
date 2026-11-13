@@ -1,0 +1,81 @@
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\210\235\347\250\277\347\224\237\346\210\220/\346\240\270\345\257\271.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\210\235\347\250\277\347\224\237\346\210\220/\346\240\270\345\257\271.py"
+index 54c476d..991f829 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\210\235\347\250\277\347\224\237\346\210\220/\346\240\270\345\257\271.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\345\210\235\347\250\277\347\224\237\346\210\220/\346\240\270\345\257\271.py"
+@@ -10,6 +10,23 @@ def 缺的重点词(abold, sb):
+     return sorted(w for w in {p_(x) for x in abold} if not (w in sw or any(w in x for x in low) or any(w in x for x in sw) or all(t in sw for t in w.split())))
+ 
+ 
++def _深合(旧, 新):
++    """旧脚本的值并进新的：两边都是 dict 就逐键往下合，别的一律新的（genNN 里写的）为准；只在旧的里有的键保留"""
++    if isinstance(旧, dict) and isinstance(新, dict):
++        return {**{k: v for k, v in 旧.items() if k not in 新}, **{k: (_深合(旧[k], v) if k in 旧 else v) for k, v in 新.items()}}
++    return 新
++
++
++def 合并旧脚本(out, old):
++    """重新生成时合进旧 scripts/NN.json：后来程序写进去的键（核对确认、非人声区间、词尾除阻、结尾句接点……）留着；
++    genNN 里写了的值一律以 genNN 为准（32 报：说明、放宽、特批在 gen 里改了，旧 json 的同名键盖回去，改稿悄悄不生效）。
++    句子、篇号、标题只认 genNN。"""
++    for k_, v_ in old.items():
++        if k_ in ("no", "title_en", "title_zh", "title_fx", "sentences"): continue
++        out[k_] = _深合(v_, out[k_]) if k_ in out else v_
++    return out
++
++
+ def 生成并核对(S, out):
+     no = out["no"]
+     sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")); import 重点词被去掉 as _QD
+@@ -22,14 +39,7 @@ def 生成并核对(S, out):
+             if len(c)>1: d["note"]=c[1]
+             cs.append(d)
+         out["sentences"].append({"para":p,"chunks":cs})
+-    if os.path.exists(f"scripts/{no}.json"):                      # 保留后来写进脚本的核对确认、列举逗号、结尾句等（初稿程序只管句子）；核对确认合并，程序里写的这几条为准
+-        old=json.load(open(f"scripts/{no}.json"))
+-        for k_,v_ in old.items():
+-            if k_ == "核对确认":
+-                for kk,vv in v_.items():
+-                    if isinstance(vv,dict) and isinstance(out[k_].get(kk,{}),dict): out[k_][kk]={**vv,**out[k_].get(kk,{})}
+-                    else: out[k_].setdefault(kk,vv)   # 字符串值的确认（已告诉用户被去掉的重点词）：程序里写的为准（21 重跑生成时这里报 TypeError）
+-            elif k_ not in ("no","title_en","title_zh","title_fx","sentences"): out[k_]=v_
++    if os.path.exists(f"scripts/{no}.json"): 合并旧脚本(out, json.load(open(f"scripts/{no}.json")))   # 保留后来程序写进脚本的键（切点、确认、结尾句接点……），genNN 里写的为准
+     json.dump(out,open(f"scripts/{no}.json","w"),ensure_ascii=False,indent=1)
+     art=open(glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "新版定稿", f"{no}-*.md"))[0]).read()   # 按本程序所在仓库找文章（演练镜像里读冻结拷贝）
+     eng=art.split("## 英文")[1].split("## 中文")[0].strip().split("\n\n")
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py"
+index 8c696b7..baa2d7e 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\346\265\201\347\250\213\350\207\252\346\243\200.py"
+@@ -118,6 +118,10 @@ if 'OLD_IV_VOID=1' not in open(f'{T}/草稿声音.sh').read() or '区间作废.p
+ sys.path.insert(0, f'{T}/初稿生成'); import 核对 as _HD   # T37 核对.py 多词重点词误报“缺”
+ if _HD.缺的重点词(['**hinge on**', '**dead reckoning**'], ['hinge on', 'dead reckoning']): fails.append('T37 误报：多词重点词（hinge on、dead reckoning）整体在却报“缺”')
+ if _HD.缺的重点词(['**dead reckoning**'], ['dead', 'reckoning']): fails.append('T37 误报：多词重点词每个词都加粗了却报“缺”')
++_old = {'说明放宽特批': {'S1': '旧'}, '结尾句': {'S17': {'接点样本': 123, '前段语速': 0.9}}, '非人声区间': {'S3': [[1, 2, '']]}, '核对确认': {'短语': {'a': '旧a', 'b': '旧b'}, 'x': '旧'}, 'sentences': ['旧'], 'no': '99'}
++_new = _HD.合并旧脚本({'no': '32', 'sentences': ['新'], '说明放宽特批': {'S1': '新'}, '结尾句': {'S17': {'前段语速': 0.95}}, '核对确认': {'短语': {'a': '新a'}, 'x': '新'}}, _old)   # 32 报：gen 改了值，旧 json 同名键盖回去
++if _new['说明放宽特批'] != {'S1': '新'} or _new['结尾句']['S17'].get('前段语速') != 0.95 or _new['核对确认']['短语']['a'] != '新a' or _new['核对确认']['x'] != '新' or _new['sentences'] != ['新']: fails.append(f'没抓到：重新生成时旧 scripts/NN.json 的同名键盖掉了 genNN 的新值（改稿不生效）：{_new}')
++if _new['结尾句']['S17'].get('接点样本') != 123 or '非人声区间' not in _new or _new['核对确认']['短语'].get('b') != '旧b': fails.append(f'重新生成丢了后来程序写进脚本的键（接点、非人声区间、别的确认）：{_new}')
+ if _HD.缺的重点词(['**vast**', '**hinge on**'], ['hinge on']) != ['vast']: fails.append('没抓到：文章重点词在对照里真的缺了（T37）')
+ def 管道解压(txt):   # K54：curl 下载直接管道给 tar 解压，下载被截断就留半截文件、重跑跳过下载；必须先下到文件、解压成功才算
+     return [l.strip()[:80] for l in txt.splitlines() if not l.lstrip().startswith('#') and re.search(r'curl\b[^|#]*\|\s*tar\b', l)]
+diff --git "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\270\251\345\235\221\346\240\270\346\237\245.py" "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\270\251\345\235\221\346\240\270\346\237\245.py"
+index 54b6a78..10d2b60 100644
+--- "a/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\270\251\345\235\221\346\240\270\346\237\245.py"
++++ "b/\350\247\206\351\242\221/\345\267\245\345\205\267/\350\270\251\345\235\221\346\240\270\346\237\245.py"
+@@ -43,7 +43,7 @@ def record_gate(no, stage):
+ def record_gate_text(txt, no, stage):
+     if '## 踩坑对照记录' not in txt:
+         return [f'制作记录/{no}.md 没有"## 踩坑对照记录"（先运行：交付核查.py {no} 对照表，再逐条填写）']
+-    sec = txt[txt.index('## 踩坑对照记录'):]
++    _m = re.search(r'^## 踩坑对照记录[^\n]*\n(.*?)(?=^## |\Z)', txt, re.S | re.M); sec = _m.group(1) if _m else txt[txt.index('## 踩坑对照记录'):]   # 只到下一个“## ”标题（32 报：后面“做事对照记录”表的 T15 行被当成踩坑对照行）
+     rows = {m.group(1): [c.strip() for c in m.group(2).split('|')] for m in re.finditer(r'^\| *([A-Z]\d+b?) *\|(.*)\|\s*$', sec, re.M)}
+     need = [i for i, _, _ in pit_rows() if i[0] in STAGE_PREFIX[stage]]
+     miss = [i for i in need if i not in rows]
+@@ -72,6 +72,8 @@ def selftest_record_human():
+     if not any('只认固定格式' in x for x in record_gate_text(rec2('本篇有：合并成一次改了'), '25', '文本')): fails.append('没抓到：25 起“本篇有”却没引用户原话')
+     if record_gate_text(rec2('本篇无：用户没有提互相冲突的要求，也没有插话'), '25', '文本'): fails.append('G6/C3/C4 误报：固定格式“本篇无：……”')
+     if record_gate_text(rec2('本篇有：两次插话合并成一次改，用户原话“这两处一起改”'), '25', '文本'): fails.append('G6/C3/C4 误报：固定格式“本篇有：……“原话””')
++    _t = rec('用户两次要求不冲突，没有需要问的') + '\n\n## 做事对照记录\n| T15 | z | 待填 | 待填 |\n'   # 32 报：做事对照记录表放在后面，T15 行被当成踩坑对照行
++    if any('T15' in x for x in record_gate_text(_t, '21', '文本')): fails.append('误报：做事对照记录里的 T15 行被当成踩坑对照行（只该看到下一个“## ”标题为止）')
+     return fails
+ 
+ 

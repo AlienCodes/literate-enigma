@@ -1,0 +1,53 @@
+name: 完成05与21篇简述（最多20台）
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/video-completion/**', '.github/workflows/complete-videos.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  produce:
+    name: 第${{ matrix.article }}篇
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        article: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '22']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: /.github/video-completion/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 安装末页渲染依赖
+        run: |
+          python -m pip install --quiet pillow==12.3.0
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+      - name: 制作并严格核验
+        run: python -u .github/video-completion/run.py '${{ matrix.article }}'
+      - name: 保存视频、末页与逐项核验结果
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: video-${{ matrix.article }}
+          path: completion-output/
+          if-no-files-found: error
+          retention-days: 30
+      - name: 保存失败诊断
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: diagnostic-${{ matrix.article }}
+          path: |
+            completion-output/*verification.json
+            completion-output/*简述.png
+            /tmp/completion-diagnostics/
+          if-no-files-found: ignore
+          retention-days: 7

@@ -1,0 +1,1095 @@
+{
+  "scope": "Independent review of fresh GHA-delivered MP4 audit and verification evidence; no rerender and no repository ref changes.",
+  "normal_run": "43331936014",
+  "normal_head": "74850a46d3dd8668e6724cbe7462f2d4efa8d673",
+  "repair_run": "43329396989",
+  "articles": {
+    "65": {
+      "artifact_id": 13995727840,
+      "measured_at_utc": "2026-11-13T00:02:11.322194+00:00",
+      "checks": {
+        "current_run": true,
+        "audio_hashes_all_equal": true,
+        "renderer_pcm_hash_matches_audit": true,
+        "preservation_true": true,
+        "numeric_true": true,
+        "waveform_true": true,
+        "sentence_map_valid": true,
+        "no_failures": true,
+        "renderer_preservation": true,
+        "summary_2_seconds": true
+      },
+      "checks_passed": true,
+      "source_and_final_audio_hashes": {
+        "decoded_float32": "SHA256=cf3753719d2951af1484ca37e1981dce97157d28d3294cf737fc140beed817d6",
+        "decoded_pcm_s16le_sha256": "25fc24de02d125573b27d5988999e493897d0b0249df11059f029c2d21e296a8",
+        "encoded_packets_and_timing_sha256": "98c52fd45ac7b28c5969640bb91129021d7a12738be1501ec2ebe9cf28c24ec9",
+        "audio_packet_count": 6530
+      },
+      "loudness_summary": "全片 -23.4 LUFS，峰值 -0.7 dBFS，17 句，逐句与全片差 -1.0～+1.2 LU",
+      "all_script_texts_mapped": 18,
+      "within_comparison_count": 16,
+      "largest_within_effective_difference_lu": 2.0066650585699612,
+      "short_segment_effective_adjustment_lu": 2.0,
+      "historically_reported_focus_now_measured": {
+        "sentence": "S8",
+        "phrase": "ICARDA",
+        "measured_first_part": {
+          "part": 1,
+          "start": 59.370000000000005,
+          "end": 59.96,
+          "raw_lufs": -22.196930428957483,
+          "effective_lufs": -24.196930428957483,
+          "peak_momentary_lufs": -22.0
+        },
+        "next_parts": [
+          {
+            "part": 2,
+            "start": 60.370000000000005,
+            "end": 63.36,
+            "raw_lufs": -24.09732543323924,
+            "effective_lufs": -24.09732543323924,
+            "peak_momentary_lufs": -20.6
+          },
+          {
+            "part": 3,
+            "start": 63.79,
+            "end": 67.56,
+            "raw_lufs": -24.718860703827172,
+            "effective_lufs": -24.718860703827172,
+            "peak_momentary_lufs": -19.7
+          }
+        ],
+        "effective_differences_lu": [
+          0.09960499571824144,
+          -0.521930274869689
+        ],
+        "peak_differences_lu": [
+          1.3999999999999986,
+          2.3000000000000007
+        ],
+        "method": "Measured first acoustical group of the mapped sentence, not a claim to forced word-level alignment."
+      },
+      "new_asr_performed": false,
+      "delay_after_voice_seconds": 0.028333333333335986,
+      "summary_seconds": 2,
+      "audit_json_sha256": "11bddb0fcc116ebc173bd50f4480c496e88066d01e046754c320e3eaef2a3043",
+      "all_mapped_sentence_adjacent_max": {
+        "left": "S9",
+        "right": "S10",
+        "difference_lu": 1.3698423956664847
+      },
+      "S1_to_S2_effective_lu": 0.5720752666453528,
+      "all_mapped_sentence_vs_global_deviation_lu": [
+        -1.0034335823108016,
+        1.2382332063400199
+      ],
+      "title_count": 1,
+      "body_sentence_count": 17,
+      "all_body_sentence_labels": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S17"
+      ],
+      "all_body_rows_cover_every_script_sentence": true,
+      "quoted_source_loudness_summary": {
+        "text": "全片 -23.4 LUFS，峰值 -0.7 dBFS，17 句，逐句与全片差 -1.0～+1.2 LU",
+        "reported_count": 17,
+        "count_unit": "经起点和长度过滤的声学响度段，非脚本句数",
+        "excluded_script_items": [
+          "title",
+          "S1"
+        ],
+        "body_sentences_split_into_multiple_acoustic_groups": [
+          "S17"
+        ],
+        "note": "原summary未含标题和S1；末句被相对静音检测分成两段，故声学段数恰与正文句数相同。完整覆盖以title_count/body_sentence_count及all-body标签为准。"
+      },
+      "first_sentence_supplement": {
+        "analysis_mode": "Arithmetic review of already measured current after-report values; no waveform extraction, ASR or rerender.",
+        "workflow_run": "43331936014",
+        "measured_at_utc": "2026-11-13T00:02:11.322194+00:00",
+        "source_report": "artifact 13995727840/65-audio-audit.json",
+        "S1_start_end_seconds": [
+          3.2913958333333335,
+          11.147833333333333
+        ],
+        "S1_raw_lufs": -23.378626209202036,
+        "S1_effective_lufs": -23.378626209202036,
+        "S2_effective_lufs": -23.95070147584739,
+        "all_body_global_lufs": -23.40155953810626,
+        "S1_minus_all_body_global_lu": 0.02293332890422306,
+        "canonical_global_lufs": -23.43915690742134,
+        "S1_minus_canonical_global_lu": 0.06053069821930279,
+        "S1_to_S2_absolute_effective_difference_lu": 0.5720752666453528,
+        "S1_parts": [
+          {
+            "part": 1,
+            "start": 3.29,
+            "end": 4.34,
+            "raw_lufs": -22.27290791835642,
+            "effective_lufs": -24.27290791835642,
+            "peak_momentary_lufs": -19.6
+          },
+          {
+            "part": 2,
+            "start": 4.75,
+            "end": 7.04,
+            "raw_lufs": -23.130371270889377,
+            "effective_lufs": -23.130371270889377,
+            "peak_momentary_lufs": -19.9
+          },
+          {
+            "part": 3,
+            "start": 7.44,
+            "end": 11.15,
+            "raw_lufs": -23.38231914329662,
+            "effective_lufs": -23.38231914329662,
+            "peak_momentary_lufs": -17.3
+          }
+        ],
+        "S1_within_comparisons_as_reported": [
+          [
+            "S1",
+            1,
+            [
+              3.29,
+              4.34
+            ],
+            [
+              4.75,
+              7.04
+            ],
+            1.1425366474670433
+          ],
+          [
+            "S1",
+            2,
+            [
+              4.75,
+              7.04
+            ],
+            [
+              7.44,
+              11.15
+            ],
+            -0.2519478724072428
+          ]
+        ],
+        "S1_within_max_absolute_effective_difference_lu": 1.1425366474670433,
+        "within_difference_sign": "next part minus previous part",
+        "whole_report_within_failures": [],
+        "whole_report_short_suppression_candidates": [],
+        "existing_limits_lu": {
+          "sentence_to_global": 2.0,
+          "adjacent_sentence": 2.5,
+          "within_sentence_adjacent": 2.5
+        },
+        "all_first_sentence_checks_passed": true,
+        "note": "原canonical响度summary排除S1，故这里用完整all-body映射中的真实S1/S2及句内已测值显式补核；两种全片基准都列出，避免混淆。"
+      }
+    },
+    "66": {
+      "artifact_id": 13996995767,
+      "measured_at_utc": "2026-11-13T00:01:56.001053+00:00",
+      "checks": {
+        "current_run": true,
+        "audio_hashes_all_equal": true,
+        "renderer_pcm_hash_matches_audit": true,
+        "preservation_true": true,
+        "numeric_true": true,
+        "waveform_true": true,
+        "sentence_map_valid": true,
+        "no_failures": true,
+        "renderer_preservation": true,
+        "summary_2_seconds": true
+      },
+      "checks_passed": true,
+      "source_and_final_audio_hashes": {
+        "decoded_float32": "SHA256=fb0faaa9571f9352c4699a54ca259d868a30387ec5f2f58a155a266ecad9aeed",
+        "decoded_pcm_s16le_sha256": "9e3f757cbb8bbfa38b683037983b30976a1844af2e34de244c30276007a6ea27",
+        "encoded_packets_and_timing_sha256": "edaa6158fb9f58da14a55dc58e39d93958eac7fae081559d661abe16d21caedd",
+        "audio_packet_count": 6101
+      },
+      "loudness_summary": "全片 -22.7 LUFS，峰值 -0.7 dBFS，18 句，逐句与全片差 -0.9～+0.9 LU",
+      "all_script_texts_mapped": 19,
+      "within_comparison_count": 17,
+      "largest_within_effective_difference_lu": 1.6010902425609572,
+      "short_segment_effective_adjustment_lu": 2.0,
+      "historically_reported_focus_now_measured": {
+        "sentence": "S5",
+        "phrase": "In Lyon",
+        "measured_first_part": {
+          "part": 1,
+          "start": 30.89,
+          "end": 31.66,
+          "raw_lufs": -21.701125852299914,
+          "effective_lufs": -23.701125852299914,
+          "peak_momentary_lufs": -20.9
+        },
+        "next_parts": [
+          {
+            "part": 2,
+            "start": 32.09,
+            "end": 33.2,
+            "raw_lufs": -21.201974622083043,
+            "effective_lufs": -23.201974622083043,
+            "peak_momentary_lufs": -20.0
+          },
+          {
+            "part": 3,
+            "start": 33.62,
+            "end": 37.12,
+            "raw_lufs": -23.456135052245845,
+            "effective_lufs": -23.456135052245845,
+            "peak_momentary_lufs": -19.2
+          }
+        ],
+        "effective_differences_lu": [
+          0.4991512302168708,
+          0.2449908000540688
+        ],
+        "peak_differences_lu": [
+          0.8999999999999986,
+          1.6999999999999993
+        ],
+        "method": "Measured first acoustical group of the mapped sentence, not a claim to forced word-level alignment."
+      },
+      "new_asr_performed": false,
+      "delay_after_voice_seconds": 0.030000000000001137,
+      "summary_seconds": 2,
+      "audit_json_sha256": "18c5608be720a8bc7071c987ab30573eff6411c7b0a425c5ff51d0cdca141c6b",
+      "all_mapped_sentence_adjacent_max": {
+        "left": "S4",
+        "right": "S5",
+        "difference_lu": 1.1861454166546466
+      },
+      "S1_to_S2_effective_lu": 0.5821532155797051,
+      "all_mapped_sentence_vs_global_deviation_lu": [
+        -0.6398303615553012,
+        0.889833503049573
+      ],
+      "title_count": 1,
+      "body_sentence_count": 18,
+      "all_body_sentence_labels": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "all_body_rows_cover_every_script_sentence": true,
+      "quoted_source_loudness_summary": {
+        "text": "全片 -22.7 LUFS，峰值 -0.7 dBFS，18 句，逐句与全片差 -0.9～+0.9 LU",
+        "reported_count": 18,
+        "count_unit": "经起点和长度过滤的声学响度段，非脚本句数",
+        "excluded_script_items": [
+          "title",
+          "S1"
+        ],
+        "body_sentences_split_into_multiple_acoustic_groups": [
+          "S18"
+        ],
+        "note": "原summary未含标题和S1；末句被相对静音检测分成两段，故声学段数恰与正文句数相同。完整覆盖以title_count/body_sentence_count及all-body标签为准。"
+      },
+      "first_sentence_supplement": {
+        "analysis_mode": "Arithmetic review of already measured current after-report values; no waveform extraction, ASR or rerender.",
+        "workflow_run": "43331936014",
+        "measured_at_utc": "2026-11-13T00:01:56.001053+00:00",
+        "source_report": "artifact 13996995767/66-audio-audit.json",
+        "S1_start_end_seconds": [
+          3.0409375,
+          12.252083333333333
+        ],
+        "S1_raw_lufs": -23.332827616821895,
+        "S1_effective_lufs": -23.332827616821895,
+        "S2_effective_lufs": -22.75067440124219,
+        "all_body_global_lufs": -22.692997255266594,
+        "S1_minus_all_body_global_lu": -0.6398303615553012,
+        "canonical_global_lufs": -22.67556763436613,
+        "S1_minus_canonical_global_lu": -0.6572599824557663,
+        "S1_to_S2_absolute_effective_difference_lu": 0.5821532155797051,
+        "S1_parts": [
+          {
+            "part": 1,
+            "start": 3.04,
+            "end": 5.7700000000000005,
+            "raw_lufs": -24.16083462850243,
+            "effective_lufs": -24.16083462850243,
+            "peak_momentary_lufs": -21.8
+          },
+          {
+            "part": 2,
+            "start": 6.18,
+            "end": 7.48,
+            "raw_lufs": -22.238624974461175,
+            "effective_lufs": -24.238624974461175,
+            "peak_momentary_lufs": -19.2
+          },
+          {
+            "part": 3,
+            "start": 7.94,
+            "end": 10.6,
+            "raw_lufs": -23.375548068501093,
+            "effective_lufs": -23.375548068501093,
+            "peak_momentary_lufs": -19.1
+          },
+          {
+            "part": 4,
+            "start": 11.03,
+            "end": 12.25,
+            "raw_lufs": -22.634343297194583,
+            "effective_lufs": -24.634343297194583,
+            "peak_momentary_lufs": -20.0
+          }
+        ],
+        "S1_within_comparisons_as_reported": [
+          [
+            "S1",
+            1,
+            [
+              3.04,
+              5.7700000000000005
+            ],
+            [
+              6.18,
+              7.48
+            ],
+            -0.07779034595874634
+          ],
+          [
+            "S1",
+            2,
+            [
+              6.18,
+              7.48
+            ],
+            [
+              7.94,
+              10.6
+            ],
+            0.8630769059600816
+          ],
+          [
+            "S1",
+            3,
+            [
+              7.94,
+              10.6
+            ],
+            [
+              11.03,
+              12.25
+            ],
+            -1.25879522869349
+          ]
+        ],
+        "S1_within_max_absolute_effective_difference_lu": 1.25879522869349,
+        "within_difference_sign": "next part minus previous part",
+        "whole_report_within_failures": [],
+        "whole_report_short_suppression_candidates": [],
+        "existing_limits_lu": {
+          "sentence_to_global": 2.0,
+          "adjacent_sentence": 2.5,
+          "within_sentence_adjacent": 2.5
+        },
+        "all_first_sentence_checks_passed": true,
+        "note": "原canonical响度summary排除S1，故这里用完整all-body映射中的真实S1/S2及句内已测值显式补核；两种全片基准都列出，避免混淆。"
+      }
+    },
+    "68": {
+      "artifact_id": 13995404085,
+      "measured_at_utc": "2026-11-13T00:02:22.871427+00:00",
+      "checks": {
+        "current_run": true,
+        "audio_hashes_all_equal": true,
+        "renderer_pcm_hash_matches_audit": true,
+        "preservation_true": true,
+        "numeric_true": true,
+        "waveform_true": true,
+        "sentence_map_valid": true,
+        "no_failures": true,
+        "renderer_preservation": true,
+        "summary_2_seconds": true
+      },
+      "checks_passed": true,
+      "source_and_final_audio_hashes": {
+        "decoded_float32": "SHA256=e66c50af2181ebd0b0664e8a700f81e97d14fbfa70ad061ccae4704ce8351d65",
+        "decoded_pcm_s16le_sha256": "1ae8122d6e36357b4e4eb4282f0136d30b5151d13e06bbc0bea229f8ee79da41",
+        "encoded_packets_and_timing_sha256": "6c0c7d57682ffc2e003e226b3bd369bd9f9498833d4fb3a9486e25466b32f26e",
+        "audio_packet_count": 6685
+      },
+      "loudness_summary": "全片 -22.6 LUFS，峰值 -0.4 dBFS，19 句，逐句与全片差 -1.8～+0.7 LU",
+      "all_script_texts_mapped": 20,
+      "within_comparison_count": 16,
+      "largest_within_effective_difference_lu": 2.0955806799406034,
+      "short_segment_effective_adjustment_lu": 2.0,
+      "historically_reported_focus_now_measured": null,
+      "new_asr_performed": false,
+      "delay_after_voice_seconds": 0.028333333333335986,
+      "summary_seconds": 2,
+      "audit_json_sha256": "1559bb04302be25ec77aa167bd83182be9e7f34407dd7f48a1d927c74059b6fc",
+      "all_mapped_sentence_adjacent_max": {
+        "left": "S2",
+        "right": "S3",
+        "difference_lu": 1.596176252532704
+      },
+      "S1_to_S2_effective_lu": 1.4970697819907777,
+      "all_mapped_sentence_vs_global_deviation_lu": [
+        -1.7470746061229718,
+        0.6805180887913487
+      ],
+      "title_count": 1,
+      "body_sentence_count": 19,
+      "all_body_sentence_labels": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S18",
+        "S19"
+      ],
+      "all_body_rows_cover_every_script_sentence": true,
+      "quoted_source_loudness_summary": {
+        "text": "全片 -22.6 LUFS，峰值 -0.4 dBFS，19 句，逐句与全片差 -1.8～+0.7 LU",
+        "reported_count": 19,
+        "count_unit": "经起点和长度过滤的声学响度段，非脚本句数",
+        "excluded_script_items": [
+          "title",
+          "S1"
+        ],
+        "body_sentences_split_into_multiple_acoustic_groups": [
+          "S19"
+        ],
+        "note": "原summary未含标题和S1；末句被相对静音检测分成两段，故声学段数恰与正文句数相同。完整覆盖以title_count/body_sentence_count及all-body标签为准。"
+      },
+      "first_sentence_supplement": {
+        "analysis_mode": "Arithmetic review of already measured current after-report values; no waveform extraction, ASR or rerender.",
+        "workflow_run": "43331936014",
+        "measured_at_utc": "2026-11-13T00:02:22.871427+00:00",
+        "source_report": "artifact 13995404085/68-audio-audit.json",
+        "S1_start_end_seconds": [
+          3.0657083333333333,
+          11.17875
+        ],
+        "S1_raw_lufs": -22.831825574815944,
+        "S1_effective_lufs": -22.831825574815944,
+        "S2_effective_lufs": -24.328895356806722,
+        "all_body_global_lufs": -22.58182075068375,
+        "S1_minus_all_body_global_lu": -0.25000482413219416,
+        "canonical_global_lufs": -22.570636047199486,
+        "S1_minus_canonical_global_lu": -0.26118952761645886,
+        "S1_to_S2_absolute_effective_difference_lu": 1.4970697819907777,
+        "S1_parts": [
+          {
+            "part": 1,
+            "start": 3.0700000000000003,
+            "end": 8.52,
+            "raw_lufs": -22.982292204791467,
+            "effective_lufs": -22.982292204791467,
+            "peak_momentary_lufs": -18.7
+          },
+          {
+            "part": 2,
+            "start": 8.950000000000001,
+            "end": 11.18,
+            "raw_lufs": -22.337192096138065,
+            "effective_lufs": -22.337192096138065,
+            "peak_momentary_lufs": -17.0
+          }
+        ],
+        "S1_within_comparisons_as_reported": [
+          [
+            "S1",
+            1,
+            [
+              3.0700000000000003,
+              8.52
+            ],
+            [
+              8.950000000000001,
+              11.18
+            ],
+            0.6451001086534021
+          ]
+        ],
+        "S1_within_max_absolute_effective_difference_lu": 0.6451001086534021,
+        "within_difference_sign": "next part minus previous part",
+        "whole_report_within_failures": [],
+        "whole_report_short_suppression_candidates": [],
+        "existing_limits_lu": {
+          "sentence_to_global": 2.0,
+          "adjacent_sentence": 2.5,
+          "within_sentence_adjacent": 2.5
+        },
+        "all_first_sentence_checks_passed": true,
+        "note": "原canonical响度summary排除S1，故这里用完整all-body映射中的真实S1/S2及句内已测值显式补核；两种全片基准都列出，避免混淆。"
+      }
+    },
+    "69": {
+      "artifact_id": 13996342225,
+      "measured_at_utc": "2026-11-13T00:02:31.768079+00:00",
+      "checks": {
+        "current_run": true,
+        "audio_hashes_all_equal": true,
+        "renderer_pcm_hash_matches_audit": true,
+        "preservation_true": true,
+        "numeric_true": true,
+        "waveform_true": true,
+        "sentence_map_valid": true,
+        "no_failures": true,
+        "renderer_preservation": true,
+        "summary_2_seconds": true
+      },
+      "checks_passed": true,
+      "source_and_final_audio_hashes": {
+        "decoded_float32": "SHA256=b330b467eda0d0735ef25363fb448dc4a597de6406d8563be223e6d3962d02bb",
+        "decoded_pcm_s16le_sha256": "ee502a7843c4f788745cab84b788dec9f1f813af41ab5dae66d7739daeae68fe",
+        "encoded_packets_and_timing_sha256": "9da0d3df27fb38f5da5e2db0488aec9f9e51dfe836976eeccfd7da9235b520d9",
+        "audio_packet_count": 7595
+      },
+      "loudness_summary": "全片 -23.1 LUFS，峰值 -0.5 dBFS，13 句，逐句与全片差 -0.7～+1.1 LU",
+      "all_script_texts_mapped": 15,
+      "within_comparison_count": 15,
+      "largest_within_effective_difference_lu": 1.9911356393315636,
+      "short_segment_effective_adjustment_lu": 2.0,
+      "historically_reported_focus_now_measured": null,
+      "new_asr_performed": false,
+      "delay_after_voice_seconds": 0.01833333333334508,
+      "summary_seconds": 2,
+      "audit_json_sha256": "b818b3e06cb43bf1a89dccad03c6b034af8a23e3017cd103ce6f74f9778a4ebb",
+      "all_mapped_sentence_adjacent_max": {
+        "left": "S12",
+        "right": "S13",
+        "difference_lu": 1.3077370856030903
+      },
+      "S1_to_S2_effective_lu": 0.18427668372524764,
+      "all_mapped_sentence_vs_global_deviation_lu": [
+        -0.6695642954959631,
+        1.1234105117699293
+      ],
+      "title_count": 1,
+      "body_sentence_count": 14,
+      "all_body_sentence_labels": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14"
+      ],
+      "all_body_rows_cover_every_script_sentence": true,
+      "quoted_source_loudness_summary": {
+        "text": "全片 -23.1 LUFS，峰值 -0.5 dBFS，13 句，逐句与全片差 -0.7～+1.1 LU",
+        "reported_count": 13,
+        "count_unit": "经起点和长度过滤的声学响度段，非脚本句数",
+        "excluded_script_items": [
+          "title",
+          "S1"
+        ],
+        "body_sentences_split_into_multiple_acoustic_groups": [],
+        "note": "原summary的13段对应S2–S14，未含S1。完整映射含1标题+14正文=15，all-body补充复核覆盖S1–S14，S1→S2也已核。"
+      },
+      "first_sentence_supplement": {
+        "analysis_mode": "Arithmetic review of already measured current after-report values; no waveform extraction, ASR or rerender.",
+        "workflow_run": "43331936014",
+        "measured_at_utc": "2026-11-13T00:02:31.768079+00:00",
+        "source_report": "artifact 13996342225/69-audio-audit.json",
+        "S1_start_end_seconds": [
+          3.8461875,
+          14.790916666666666
+        ],
+        "S1_raw_lufs": -23.49399618780322,
+        "S1_effective_lufs": -23.49399618780322,
+        "S2_effective_lufs": -23.30971950407797,
+        "all_body_global_lufs": -23.09416022204152,
+        "S1_minus_all_body_global_lu": -0.39983596576169944,
+        "canonical_global_lufs": -23.091828569933078,
+        "S1_minus_canonical_global_lu": -0.4021676178701412,
+        "S1_to_S2_absolute_effective_difference_lu": 0.18427668372524764,
+        "S1_parts": [
+          {
+            "part": 1,
+            "start": 3.85,
+            "end": 5.69,
+            "raw_lufs": -22.319314135829043,
+            "effective_lufs": -22.319314135829043,
+            "peak_momentary_lufs": -19.9
+          },
+          {
+            "part": 2,
+            "start": 6.12,
+            "end": 9.790000000000001,
+            "raw_lufs": -24.137714516745252,
+            "effective_lufs": -24.137714516745252,
+            "peak_momentary_lufs": -18.7
+          },
+          {
+            "part": 3,
+            "start": 10.23,
+            "end": 14.790000000000001,
+            "raw_lufs": -24.090279685277352,
+            "effective_lufs": -24.090279685277352,
+            "peak_momentary_lufs": -20.1
+          }
+        ],
+        "S1_within_comparisons_as_reported": [
+          [
+            "S1",
+            1,
+            [
+              3.85,
+              5.69
+            ],
+            [
+              6.12,
+              9.790000000000001
+            ],
+            -1.8184003809162093
+          ],
+          [
+            "S1",
+            2,
+            [
+              6.12,
+              9.790000000000001
+            ],
+            [
+              10.23,
+              14.790000000000001
+            ],
+            0.04743483146789984
+          ]
+        ],
+        "S1_within_max_absolute_effective_difference_lu": 1.8184003809162093,
+        "within_difference_sign": "next part minus previous part",
+        "whole_report_within_failures": [],
+        "whole_report_short_suppression_candidates": [],
+        "existing_limits_lu": {
+          "sentence_to_global": 2.0,
+          "adjacent_sentence": 2.5,
+          "within_sentence_adjacent": 2.5
+        },
+        "all_first_sentence_checks_passed": true,
+        "note": "原canonical响度summary排除S1，故这里用完整all-body映射中的真实S1/S2及句内已测值显式补核；两种全片基准都列出，避免混淆。"
+      }
+    },
+    "67": {
+      "workflow_run": "43329396989",
+      "report_commit": "123e97f88518157f734a7bbb6c676747ba30d0d2",
+      "waveform_passed": true,
+      "numeric_passed": true,
+      "failures": [],
+      "source_to_final_audio_identical": false,
+      "reason": "Authorized local gain repairs; final decoded PCM exactly equals previously independently approved repaired version.",
+      "same_as_previous_approved_repair": true,
+      "final_decoded_float32_sha256": "0347440cbd04e62e6c5e68d0cd69b547d9ad382f53661d3887e434e475ff1392",
+      "source_sample_frames": 7021568,
+      "final_sample_frames": 7021568,
+      "final_global_peak_dbfs": -0.9794025313135548,
+      "gain_windows": [
+        {
+          "sentence": "S15",
+          "phrase": "and Lascaux II",
+          "part": 2,
+          "core_start": 116.58,
+          "core_end": 117.78,
+          "start": 116.35,
+          "attack_end": 116.4,
+          "release_start": 117.95,
+          "end": 118,
+          "prior_end": 116.15,
+          "next_start": 118.19,
+          "gain_db": 2.1,
+          "smoothing": "raised-cosine",
+          "role": "suppressed-phrase-repair"
+        }
+      ],
+      "after_boundary_cases": 25,
+      "after_boundary_failures": 0,
+      "aac_zero_lag": true,
+      "tail_sample_delta": 0,
+      "outside_windows_snr_db": 54.89665410719493,
+      "outside_windows_correlation": 0.9999983819093698,
+      "new_asr_discrepancies": [],
+      "models_verified": true,
+      "title_count": 1,
+      "body_sentence_count": 18,
+      "all_script_texts_mapped": 19,
+      "all_body_sentence_labels": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "all_body_rows_cover_every_script_sentence": true,
+      "quoted_source_loudness_summary": {
+        "text": "全片 -23.9 LUFS，峰值 -1.0 dBFS，18 句，逐句与全片差 -0.7～+1.2 LU",
+        "reported_count": 18,
+        "count_unit": "经起点和长度过滤的声学响度段，非脚本句数",
+        "excluded_script_items": [
+          "title",
+          "S1"
+        ],
+        "body_sentences_split_into_multiple_acoustic_groups": [
+          "S18"
+        ],
+        "note": "原summary未含标题和S1；末句被相对静音检测分成两段，故声学段数恰与正文句数相同。完整覆盖以title_count/body_sentence_count及all-body标签为准。"
+      },
+      "first_sentence_supplement": {
+        "analysis_mode": "Arithmetic review of already measured current after-report values; no waveform extraction, ASR or rerender.",
+        "workflow_run": "43329396989",
+        "measured_at_utc": "2026-11-12T23:58:10.416473+00:00",
+        "source_report": "123e97f88518157f734a7bbb6c676747ba30d0d2:音频专项修复/67-70_20261112/67/67-audio-audit.json",
+        "S1_start_end_seconds": [
+          2.9195625,
+          14.772895833333333
+        ],
+        "S1_raw_lufs": -25.04408116188888,
+        "S1_effective_lufs": -25.04408116188888,
+        "S2_effective_lufs": -24.10689614203081,
+        "all_body_global_lufs": -23.928702992785993,
+        "S1_minus_all_body_global_lu": -1.1153781691028861,
+        "canonical_global_lufs": -23.892239063379613,
+        "S1_minus_canonical_global_lu": -1.1518420985092668,
+        "S1_to_S2_absolute_effective_difference_lu": 0.9371850198580702,
+        "S1_parts": [
+          {
+            "part": 1,
+            "start": 2.92,
+            "end": 4.17,
+            "raw_lufs": -24.772747386302207,
+            "effective_lufs": -26.772747386302207,
+            "peak_momentary_lufs": -21.8
+          },
+          {
+            "part": 2,
+            "start": 4.58,
+            "end": 5.17,
+            "raw_lufs": -24.352159949203582,
+            "effective_lufs": -26.352159949203582,
+            "peak_momentary_lufs": -21.3
+          },
+          {
+            "part": 3,
+            "start": 5.59,
+            "end": 8.88,
+            "raw_lufs": -24.944044667460613,
+            "effective_lufs": -24.944044667460613,
+            "peak_momentary_lufs": -21.6
+          },
+          {
+            "part": 4,
+            "start": 9.31,
+            "end": 10.77,
+            "raw_lufs": -25.266423096733273,
+            "effective_lufs": -27.266423096733273,
+            "peak_momentary_lufs": -22.8
+          },
+          {
+            "part": 5,
+            "start": 11.19,
+            "end": 14.77,
+            "raw_lufs": -25.204464909508122,
+            "effective_lufs": -25.204464909508122,
+            "peak_momentary_lufs": -21.9
+          }
+        ],
+        "S1_within_comparisons_as_reported": [
+          [
+            "S1",
+            1,
+            [
+              2.92,
+              4.17
+            ],
+            [
+              4.58,
+              5.17
+            ],
+            0.4205874370986251
+          ],
+          [
+            "S1",
+            2,
+            [
+              4.58,
+              5.17
+            ],
+            [
+              5.59,
+              8.88
+            ],
+            1.408115281742969
+          ],
+          [
+            "S1",
+            3,
+            [
+              5.59,
+              8.88
+            ],
+            [
+              9.31,
+              10.77
+            ],
+            -2.3223784292726606
+          ],
+          [
+            "S1",
+            4,
+            [
+              9.31,
+              10.77
+            ],
+            [
+              11.19,
+              14.77
+            ],
+            2.0619581872251516
+          ]
+        ],
+        "S1_within_max_absolute_effective_difference_lu": 2.3223784292726606,
+        "within_difference_sign": "next part minus previous part",
+        "whole_report_within_failures": [],
+        "whole_report_short_suppression_candidates": [],
+        "existing_limits_lu": {
+          "sentence_to_global": 2.0,
+          "adjacent_sentence": 2.5,
+          "within_sentence_adjacent": 2.5
+        },
+        "all_first_sentence_checks_passed": true,
+        "note": "原canonical响度summary排除S1，故这里用完整all-body映射中的真实S1/S2及句内已测值显式补核；两种全片基准都列出，避免混淆。"
+      }
+    },
+    "70": {
+      "workflow_run": "43329396989",
+      "report_commit": "123e97f88518157f734a7bbb6c676747ba30d0d2",
+      "waveform_passed": true,
+      "numeric_passed": true,
+      "failures": [],
+      "source_to_final_audio_identical": false,
+      "reason": "Authorized local gain repairs; final decoded PCM exactly equals previously independently approved repaired version.",
+      "same_as_previous_approved_repair": true,
+      "final_decoded_float32_sha256": "d906717192aa9b2c939b0db7e9e9e98875bb724dbe4134bdccb113b30c5cfb36",
+      "source_sample_frames": 6739968,
+      "final_sample_frames": 6739968,
+      "final_global_peak_dbfs": -0.45623613302031807,
+      "gain_windows": [
+        {
+          "sentence": "S12",
+          "phrase": "Mailings doubled",
+          "part": 1,
+          "core_start": 84.17,
+          "core_end": 85.3,
+          "start": 84,
+          "attack_end": 84.05,
+          "release_start": 85.48,
+          "end": 85.53,
+          "prior_end": 83.044,
+          "next_start": 85.72,
+          "gain_db": 2.2,
+          "smoothing": "raised-cosine",
+          "role": "suppressed-phrase-repair"
+        },
+        {
+          "sentence": "S13",
+          "phrase": "The design had a drawback.",
+          "core_start": 93.81,
+          "core_end": 95.34,
+          "start": 93.6,
+          "attack_end": 93.65,
+          "release_start": 95.5,
+          "end": 95.55,
+          "gain_db": 0.4,
+          "smoothing": "raised-cosine",
+          "role": "adjacent-short-sentence-balance"
+        }
+      ],
+      "after_boundary_cases": 25,
+      "after_boundary_failures": 0,
+      "aac_zero_lag": true,
+      "tail_sample_delta": 0,
+      "outside_windows_snr_db": 54.77521457986809,
+      "outside_windows_correlation": 0.9999983363350022,
+      "new_asr_discrepancies": [],
+      "models_verified": true,
+      "title_count": 1,
+      "body_sentence_count": 18,
+      "all_script_texts_mapped": 19,
+      "all_body_sentence_labels": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "all_body_rows_cover_every_script_sentence": true,
+      "quoted_source_loudness_summary": {
+        "text": "全片 -22.8 LUFS，峰值 -0.5 dBFS，18 句，逐句与全片差 -1.0～+1.4 LU",
+        "reported_count": 18,
+        "count_unit": "经起点和长度过滤的声学响度段，非脚本句数",
+        "excluded_script_items": [
+          "title",
+          "S1"
+        ],
+        "body_sentences_split_into_multiple_acoustic_groups": [
+          "S18"
+        ],
+        "note": "原summary未含标题和S1；末句被相对静音检测分成两段，故声学段数恰与正文句数相同。完整覆盖以title_count/body_sentence_count及all-body标签为准。"
+      },
+      "first_sentence_supplement": {
+        "analysis_mode": "Arithmetic review of already measured current after-report values; no waveform extraction, ASR or rerender.",
+        "workflow_run": "43329396989",
+        "measured_at_utc": "2026-11-13T00:02:15.930575+00:00",
+        "source_report": "123e97f88518157f734a7bbb6c676747ba30d0d2:音频专项修复/67-70_20261112/70/70-audio-audit.json",
+        "S1_start_end_seconds": [
+          2.9546666666666668,
+          10.720270833333334
+        ],
+        "S1_raw_lufs": -22.78607912461558,
+        "S1_effective_lufs": -22.78607912461558,
+        "S2_effective_lufs": -22.84472069215451,
+        "all_body_global_lufs": -22.8228156294231,
+        "S1_minus_all_body_global_lu": 0.03673650480752144,
+        "canonical_global_lufs": -22.8382865031315,
+        "S1_minus_canonical_global_lu": 0.052207378515920055,
+        "S1_to_S2_absolute_effective_difference_lu": 0.05864156753893113,
+        "S1_parts": [
+          {
+            "part": 1,
+            "start": 2.95,
+            "end": 4.23,
+            "raw_lufs": -21.285897685633035,
+            "effective_lufs": -23.285897685633035,
+            "peak_momentary_lufs": -18.9
+          },
+          {
+            "part": 2,
+            "start": 4.65,
+            "end": 10.72,
+            "raw_lufs": -23.36146469197981,
+            "effective_lufs": -23.36146469197981,
+            "peak_momentary_lufs": -18
+          }
+        ],
+        "S1_within_comparisons_as_reported": [
+          [
+            "S1",
+            1,
+            [
+              2.95,
+              4.23
+            ],
+            [
+              4.65,
+              10.72
+            ],
+            -0.07556700634677327
+          ]
+        ],
+        "S1_within_max_absolute_effective_difference_lu": 0.07556700634677327,
+        "within_difference_sign": "next part minus previous part",
+        "whole_report_within_failures": [],
+        "whole_report_short_suppression_candidates": [],
+        "existing_limits_lu": {
+          "sentence_to_global": 2.0,
+          "adjacent_sentence": 2.5,
+          "within_sentence_adjacent": 2.5
+        },
+        "all_first_sentence_checks_passed": true,
+        "note": "原canonical响度summary排除S1，故这里用完整all-body映射中的真实S1/S2及句内已测值显式补核；两种全片基准都列出，避免混淆。"
+      }
+    }
+  },
+  "limitations": [
+    "65/66/68/69 had fresh waveform/loudness checks and exact source-to-final audio preservation checks; no new ASR or human listening is claimed for those four.",
+    "Production raw a.wav edit-boundary confirmations remain historical evidence, not newly certified here.",
+    "67/70 final decoded PCM equals the previously approved repaired PCM; new targeted two-engine ASR has no added discrepancies."
+  ],
+  "all_six_pass_current_stated_scope": true,
+  "counting_conventions": {
+    "title_and_body_mapping": "完整覆盖数按原审计的近零静音分界逐一映射：1个标题，加脚本S1至末句的全部正文；此数才用于判断是否覆盖每条正文。",
+    "quoted_canonical_summary_count": "原始响度summary中的“句”实际是程序len(segs)：按相对最响10ms帧低50dB、至少0.7秒静音分段，仅保留起点>=9秒且长度>=0.5秒的声学段。标题和起点早于9秒的S1整段被排除；同一句正文也可能分成两个声学段。因此不能把该数当成脚本正文覆盖数。",
+    "full_body_supplement": "all_body_sentences_including_S1保留S1至末句全部正文的实测响度与句内短段；独立复审另外使用这些已有实测值核对全部相邻正文句，包括S1→S2。未重新提取音频、重算视频或修改原始audit。",
+    "source_program": "c9d52b26fe981ef8e4c412189ca289716ab8bf00:视频/工具/响度一致性核对.py:35–64",
+    "mapping_program": "74850a46d3dd8668e6724cbe7462f2d4efa8d673:.github/video-batch/audit_audio.py:198–232"
+  },
+  "source_audits_unchanged_by_count_clarification": true,
+  "first_sentence_supplement_complete_for_all_six": true
+}

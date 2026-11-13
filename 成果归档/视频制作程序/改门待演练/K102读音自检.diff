@@ -1,0 +1,48 @@
+--- a/视频/工具/读音核对.py
++++ b/视频/工具/读音核对.py
+@@ -276,14 +276,30 @@
+             return r.replace(_ph, _bad) if re.search(r'(?<![A-Za-z])' + re.escape(_w) + r'(?![A-Za-z])', t) else r
+         phonemes_of = fake; got = {line for _, line, bad in check(no) if bad}; phonemes_of = orig
+         res.append((f'把 {w} 的重音挪成 /{bad_ph}/', any(f'] {w} ' in l_ for l_ in got - base)))
+-    # ② 关掉读音改正
++    # ② 关掉读音改正（K102 2026-10-28：逐个词单独关掉，只有在本篇句子里关掉会变读音的才当样本；一个都没有就造假样本，不许跳过；另查改正确实生效）
+     used = [w for w in PRON_WORDS if re.search(r'(?<![A-Za-z])' + re.escape(w) + r'(?![A-Za-z])', text, flags=re.I)
+             and re.sub(r'\s', '', PRON_WORDS[w]) != re.sub(r'\s|[,;:.!?]', '', KT.tokenizer.phonemize(w, 'en-us'))   # McArthur 只差一个空格，听不出，不拿来测
+-            and not (w[0].islower() and str(_FIXJ.get(w, {}).get('判定', '')).startswith('可接受'))]   # 普通词的“可接受但改”（10 glazier：原读法词典也收）关掉改正本来就不算读错，不拿来测
+-    if used:
+-        keep = dict(PRON_WORDS); PRON_WORDS.clear()
+-        got = {line for _, line, bad in check(no) if bad}; PRON_WORDS.update(keep)
+-        res.append((f'关掉读音改正（{"、".join(used)}）', all(any(re.search(r'\] ' + re.escape(w) + r"(['’]s)? ", l_) for l_ in got - base) for w in used)))   # 文中只有所有格的（10 Uffizi's）也算
++            and not (w[0].islower() and str(_FIXJ.get(w, {}).get('判定', '')).startswith('可接受'))]   # 普通词的“可接受但改”（10 glazier）关掉改正本来就不算读错
++    _nz = lambda x: re.sub(r'[\s,;:.!?"“”]', '', x)   # 重音符号要留着（Tambora 只差重音）
++    dead = [w for w in used if _nz(phonemes_of(w)) == _nz(KT.tokenizer.phonemize(w, 'en-us'))]   # 门在：表里有改正，单读却还是 espeak 原读法 = 改正没生效
++    if dead: res.append((f'读音改正生效（{"、".join(dead)} 有改正却照 espeak 原样读）', False))
++    valid = []
++    for w in used:   # 样本照真门判（主会话 2026-10-28）：单独关掉这个词的改正，check() 在本篇对这个词报 BAD，就是样本
++        keep_w = PRON_WORDS.pop(w); got = {line for _, line, bad in check(no) if bad}; PRON_WORDS[w] = keep_w
++        hit = any(re.search(r'\] ' + re.escape(w) + r"(['’]s)? ", l_) for l_ in got - base)   # 文中只有所有格的（10 Uffizi's）也算
++        print(f'  K102 ② {w}：单独关掉改正 → ' + ('报 BAD（当样本）' if hit else '不报（关掉后仍读对，不当样本）'))
++        if hit: valid.append(w)
++    if valid:
++        res.append((f'关掉读音改正（{"、".join(valid)}）', True))
++    elif tgt:   # 本篇没有在句子里起作用的改正：照 ① 造一条假改正（单读对、整句被“模型”读坏，改正关掉必须报出）
++        w, ph = tgt; bad_ph = _moved(ph)
++        def fake2(t, _w=w, _ph=ph, _bad=bad_ph):
++            r = orig(t)
++            return r if _w in PRON_WORDS else (r.replace(_ph, _bad) if re.search(r'(?<![A-Za-z])' + re.escape(_w) + r'(?![A-Za-z])', t) else r)
++        PRON_WORDS[w] = ph; phonemes_of = fake2; ok0 = not ({line for _, line, bad in check(no) if bad} - base)
++        PRON_WORDS.pop(w); got = {line for _, line, bad in check(no) if bad}; phonemes_of = orig
++        res.append((f'假改正 {w}（本篇改正在句子里都不起作用，造样本）', ok0 and any(f'] {w} ' in l_ for l_ in got - base)))
++    if not any(n_.startswith(('关掉读音改正', '假改正')) for n_, _ in res): res.append(('关掉读音改正：没有样本，也造不出假样本（K102：不许跳过）', False))
+     # ②b 关掉按语境读音（13 S4 过去式 read）：必须报出
+     usedc = [c_ for c_ in PRON_CTX if re.search(r'(?<![A-Za-z])' + re.escape(c_) + r'(?![A-Za-z])', re.sub(r'\*\*', '', R.strip_gloss(text)), flags=re.I)]   # 去掉粗体和中文说明再找（13 S4 是 **press coverage**）
+     if usedc:
+@@ -291,7 +307,7 @@
+         got = {line for _, line, bad in check(no) if bad}; PRON_CTX.update(keep)
+         res.append((f'关掉按语境读音（{"、".join(usedc)}）', all(any(f'] {keep[c_]["词"]} ' in l_ for l_ in got - base) for c_ in usedc)))
+     # ③ 去掉一条多音词核对记录
+-    hk = next((k_ for k_ in HETCONF if k_.startswith(no + ' ')), None)
++    hk = next((k_ for k_ in HETCONF if k_.startswith(no + ' ') and het_key(k_.split(' ', 2)[2])), None)   # K102：只挑 HET 表里的词（别的词去掉记录不会报）
+     if hk:
+         keep = HETCONF.pop(hk); got = {line for _, line, bad in check(no) if bad}; HETCONF[hk] = keep
+         res.append((f'去掉多音词核对记录（{hk}）', any(f'[多音词] {hk.split(" ", 2)[2]} ' in l_ for l_ in got - base)))

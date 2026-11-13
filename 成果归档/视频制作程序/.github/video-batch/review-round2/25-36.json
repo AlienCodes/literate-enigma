@@ -1,0 +1,1851 @@
+{
+  "schema": 1,
+  "status": "cross_review_closed_final_text_proposal_no_ref_update_no_video_trigger",
+  "reviewer": "summaries_13_24",
+  "scope": [
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30",
+    "31",
+    "32",
+    "33",
+    "34",
+    "35",
+    "36"
+  ],
+  "baseline_commit": "bd8e8fcd38877d407fa4284fc9088e7325307f12",
+  "baseline_text_origin_commit": "39ca0643bb8298f31743bd97c4ed6d6446873c30",
+  "baseline_verified_equal_to_text_origin": true,
+  "source": "Actual EN/ZH sentences in 视频/脚本/NN.json at baseline_commit; only summary proposal changed.",
+  "method": "Full reread; enumerate source cores, map existing/proposed coverage, then repair unresolved referents/causal steps/terms/limits; do not add external story facts.",
+  "articles": {
+    "25": {
+      "title": "阿波罗13号：成功的失败",
+      "source_core_coverage": [
+        {
+          "id": "25C1",
+          "source_sentences": "S1–3",
+          "core_information": "1970年登月任务因服务舱氧气罐爆炸中止；主体是三名宇航员。",
+          "baseline_points": [
+            1
+          ],
+          "proposal_points": [
+            1
+          ],
+          "coverage_and_understanding_assessment": "补明三人的角色。"
+        },
+        {
+          "id": "25C2",
+          "source_sentences": "S4",
+          "core_information": "三人以登月舱避难，而它原设计只支撑两人约两天。",
+          "baseline_points": [
+            1
+          ],
+          "proposal_points": [
+            1
+          ],
+          "coverage_and_understanding_assessment": "旧稿保留两人却漏掉两天，补回生存资源的限制。"
+        },
+        {
+          "id": "25C3",
+          "source_sentences": "S5",
+          "core_information": "登月舱发动机改变轨迹，绕月并借月球引力返航。",
+          "baseline_points": [],
+          "proposal_points": [
+            5
+          ],
+          "coverage_and_understanding_assessment": "高影响遗漏：旧稿只说应急后返回，缺少真正的返航手段。"
+        },
+        {
+          "id": "25C4",
+          "source_sentences": "S6–9",
+          "core_information": "缺水缺电、严寒及CO2积聚；方形滤芯与圆槽不匹配，地面用现有材料设计转接器。",
+          "baseline_points": [
+            2,
+            3
+          ],
+          "proposal_points": [
+            2,
+            3
+          ],
+          "coverage_and_understanding_assessment": "明确滤芯清除的是CO2，远程指导只解决过滤难题，并非修复爆炸部件。"
+        },
+        {
+          "id": "25C5",
+          "source_sentences": "S11–15",
+          "core_information": "65伏地面加热电源与未升级的28伏恒温开关不匹配；长时间加热中疑似开关失灵，绝缘受热损伤，飞行中起火。",
+          "baseline_points": [
+            4
+          ],
+          "proposal_points": [
+            4
+          ],
+          "coverage_and_understanding_assessment": "补足地面损伤与飞行起火的因果链，并保留疑似判断。"
+        },
+        {
+          "id": "25C6",
+          "source_sentences": "S10,16–17",
+          "core_information": "爆炸四天后安全溅落太平洋；任务失败而人员获救的反差。",
+          "baseline_points": [
+            5
+          ],
+          "proposal_points": [
+            1,
+            5
+          ],
+          "coverage_and_understanding_assessment": "保留四天，补具体归航结局；首末点呈现失败与获救的反差。"
+        }
+      ],
+      "changes": [
+        {
+          "point": 1,
+          "before": [
+            "事故",
+            "1970年，阿波罗13号氧气罐爆炸，登月取消，三人躲进原本只供两人使用的登月舱。"
+          ],
+          "after": [
+            "事故",
+            "1970年，阿波罗13号氧气罐爆炸，登月取消，三名宇航员转入原本只供两人约两天的登月舱。"
+          ],
+          "reason": "补宇航员角色和两天容量，避免只知道三人躲入一个舱而不知资源为何吃紧。",
+          "source_sentence_groups": [
+            "S1–3",
+            "S4",
+            "S10,16–17"
+          ]
+        },
+        {
+          "point": 2,
+          "before": [
+            "险情",
+            "机组缺水缺电、忍受严寒，二氧化碳又不断积聚，方形滤芯还装不进圆形插槽。"
+          ],
+          "after": [
+            "险情",
+            "机组缺水缺电、忍受严寒，二氧化碳不断积聚，清除它的方形滤芯却装不进圆形插槽。"
+          ],
+          "reason": "明确方形滤芯清除CO2，避免读成水或氧气滤芯。",
+          "source_sentence_groups": [
+            "S6–9"
+          ]
+        },
+        {
+          "point": 3,
+          "before": [
+            "解围",
+            "地面工程师用塑料袋、纸板和胶带设计转接器，指导机组装好，解决了过滤难题。"
+          ],
+          "after": [
+            "解围",
+            "地面工程师用船上的塑料袋、纸板和胶带设计转接器，指导机组组装，让滤芯接上圆形插槽。"
+          ],
+          "reason": "明确地面是指导组装，所解问题是CO2过滤，并非修好了爆炸舱。",
+          "source_sentence_groups": [
+            "S6–9"
+          ]
+        },
+        {
+          "point": 4,
+          "before": [
+            "祸根",
+            "恒温开关仍按28伏设计，却用了65伏地面电源；可能失灵导致过热，烧坏线路绝缘层。"
+          ],
+          "after": [
+            "祸根",
+            "发射前，加热器用65伏地面电源，温控开关仍按28伏设计；开关疑失灵，约八小时加热损伤线路绝缘层，飞行中起火。"
+          ],
+          "reason": "区分地面供电/开关规格，串接加热损伤与飞行起火，保留疑似与约数。 补发射前时间和温控开关性质，保留65/28伏不匹配、约八小时损伤、飞行起火的因果与疑似限定。",
+          "source_sentence_groups": [
+            "S11–15"
+          ],
+          "cross_review_closure_source_sentences": [
+            "S12",
+            "S13",
+            "S14",
+            "S15"
+          ]
+        },
+        {
+          "point": 5,
+          "before": [
+            "结局",
+            "登月毁于五年前的工程疏忽；地面与机组协力应急，三人在爆炸四天后安全返回。"
+          ],
+          "after": [
+            "返航",
+            "机组用登月舱发动机调整绕月路线，借月球引力返航；爆炸四天后，三人安全溅落太平洋。"
+          ],
+          "reason": "补实际返航手段和溅落地点，完成脱险主线。",
+          "source_sentence_groups": [
+            "S5",
+            "S10,16–17"
+          ]
+        }
+      ],
+      "secondary_details_not_on_card": [
+        "第三次登月任务、发射/爆炸/溅落的月日、距地20万英里、登月舱名Aquarius、1965改规格的年份；不影响爆炸→避难→两条救援链→四天归航的理解。"
+      ],
+      "old_characters": 197,
+      "proposed_characters": 227,
+      "layout_note": "Only character/structure review performed. Actual 4K card/font/10-line fit must be verified on GitHub after root accepts proposal; no local render or video job started.",
+      "uncovered_essential_cores": [],
+      "known_layout_risk": "文字保持5点；没有通过排版实跑前不宣称仍为10行。",
+      "cross_review_status": "passed_after_listed_precise_clarifications"
+    },
+    "26": {
+      "title": "孩子们发明的语言",
+      "source_core_coverage": [
+        {
+          "id": "26C1",
+          "source_sentences": "S3–6",
+          "core_information": "原先聋童多与家人使用家庭手势；1977年学校使他们聚集。",
+          "baseline_points": [
+            1
+          ],
+          "proposal_points": [
+            1
+          ],
+          "coverage_and_understanding_assessment": "用具体家庭手势替代仅说孤立，说明语言形成的输入。"
+        },
+        {
+          "id": "26C2",
+          "source_sentences": "S7–8",
+          "core_information": "口语西语与唇读教育成效不佳，多数学生连西语词都未掌握。",
+          "baseline_points": [
+            2
+          ],
+          "proposal_points": [
+            2
+          ],
+          "coverage_and_understanding_assessment": "将学不会的对象说清楚。"
+        },
+        {
+          "id": "26C3",
+          "source_sentences": "S9–10",
+          "core_information": "儿童在课间、街头、公车交流，混合家庭手势，形成共同语言。",
+          "baseline_points": [
+            3
+          ],
+          "proposal_points": [
+            3
+          ],
+          "coverage_and_understanding_assessment": "原稿主线完整，保持。"
+        },
+        {
+          "id": "26C4",
+          "source_sentences": "S11,16–17",
+          "core_information": "老师看不懂，请来语言学者；研究者观察语言成长，创造者是儿童同伴。",
+          "baseline_points": [
+            5
+          ],
+          "proposal_points": [
+            5
+          ],
+          "coverage_and_understanding_assessment": "补明专家的角色是观察而非传授。"
+        },
+        {
+          "id": "26C5",
+          "source_sentences": "S12–15",
+          "core_information": "更年幼及后入学者语法更统一复杂；原先同一动作表达方式与方向，后来拆成顺序手势。",
+          "baseline_points": [
+            4
+          ],
+          "proposal_points": [
+            4
+          ],
+          "coverage_and_understanding_assessment": "保留年幼入学与后续批次两维度；再明确后续手语者把同一手势中的运动方式/方向拆为先后手势。"
+        }
+      ],
+      "changes": [
+        {
+          "point": 1,
+          "before": [
+            "相聚",
+            "1970年代末以前，尼加拉瓜聋人大多各自孤立；学校的开办让大批聋童聚在一起。"
+          ],
+          "after": [
+            "相聚",
+            "1977年，尼加拉瓜学校把聋童聚在一起；此前他们多只与家人用自创手势交流。"
+          ],
+          "reason": "补1977聚集与此前家庭手势，使自创语言的材料来源清楚。",
+          "source_sentence_groups": [
+            "S3–6"
+          ]
+        },
+        {
+          "point": 2,
+          "before": [
+            "受阻",
+            "学校主要教西班牙语口语和唇读，学生普遍学不会，却在课堂之外找到了交流办法。"
+          ],
+          "after": [
+            "受阻",
+            "学校教西班牙语口语和唇读，多数学生未能掌握；课外，孩子们开始用手势相互交流。"
+          ],
+          "reason": "明确未掌握的是课堂口语/唇读，并衔接课外同伴交流。",
+          "source_sentence_groups": [
+            "S7–8"
+          ]
+        },
+        {
+          "point": 4,
+          "before": [
+            "演变",
+            "年龄更小、后来入学的孩子让语法更统一复杂，还把动作方式和方向拆成顺序片段。"
+          ],
+          "after": [
+            "演变",
+            "入学年龄更小的孩子和后来几批新生使语法更统一复杂；后来的孩子还把同一手势里的怎么动、往哪去拆开，按先后顺序表达。"
+          ],
+          "reason": "把抽象顺序片段改成一个手势中两类信息的拆分，保留语法演变。 区分年幼入学与后续批次两维度；动作方式/方向拆分仍明确归后来的手语者，不把两个研究的观察混成同一结论。",
+          "source_sentence_groups": [
+            "S12–15"
+          ],
+          "cross_review_closure_source_sentences": [
+            "S12",
+            "S13",
+            "S14",
+            "S15"
+          ]
+        },
+        {
+          "point": 5,
+          "before": [
+            "意义",
+            "这门语言不是专家教出来的，而是在同伴交流和一批批儿童的使用中逐渐生长成熟。"
+          ],
+          "after": [
+            "意义",
+            "这门语言出自孩子的同伴交流，而非专家传授；语言学家得以观察它逐渐成熟。"
+          ],
+          "reason": "补专家观察角色，避免误会新手语由语言学家教给孩子。",
+          "source_sentence_groups": [
+            "S11,16–17"
+          ]
+        }
+      ],
+      "secondary_details_not_on_card": [
+        "学校50人至400多人、1986年专家朱迪·凯格尔、2001/2004研究年份；手语由孩子形成、专家观察及语法分化证据均已表达。"
+      ],
+      "old_characters": 196,
+      "proposed_characters": 213,
+      "layout_note": "Only character/structure review performed. Actual 4K card/font/10-line fit must be verified on GitHub after root accepts proposal; no local render or video job started.",
+      "uncovered_essential_cores": [],
+      "known_layout_risk": "文字保持5点；没有通过排版实跑前不宣称仍为10行。",
+      "cross_review_status": "passed_after_listed_precise_clarifications"
+    },
+    "27": {
+      "title": "禁区里的生机",
+      "source_core_coverage": [
+        {
+          "id": "27C1",
+          "source_sentences": "S2–4",
+          "core_information": "核事故后居民撤离，地区封禁，成为生态调查对象。",
+          "baseline_points": [
+            1
+          ],
+          "proposal_points": [
+            1
+          ],
+          "coverage_and_understanding_assessment": "原稿已清楚。"
+        },
+        {
+          "id": "27C2",
+          "source_sentences": "S5–9",
+          "core_information": "白俄罗斯一侧与四个未污染保护区比较，多种兽类密度相当，狼数量七倍多；后续相机支持兽类繁盛。",
+          "baseline_points": [
+            2
+          ],
+          "proposal_points": [
+            2
+          ],
+          "coverage_and_understanding_assessment": "保留四个对照区及七倍；相机与调查年份属支持性方法细节，未在卡面逐一展开。"
+        },
+        {
+          "id": "27C3",
+          "source_sentences": "S10",
+          "core_information": "农耕、林业和狩猎消失是可能原因，不是辐射促进繁殖的证明。",
+          "baseline_points": [
+            3
+          ],
+          "proposal_points": [
+            3
+          ],
+          "coverage_and_understanding_assessment": "可能一词保留，不能写成已证因果。"
+        },
+        {
+          "id": "27C4",
+          "source_sentences": "S11–14",
+          "core_information": "部分研究见鸟类、传粉者、蜘蛛减少；最重污染处落叶分解量少约40%，养分回土受阻。",
+          "baseline_points": [
+            4
+          ],
+          "proposal_points": [
+            4
+          ],
+          "coverage_and_understanding_assessment": "修正分解慢40%到分解量少约40%，补为什么这是生态代价。"
+        },
+        {
+          "id": "27C5",
+          "source_sentences": "S15–16",
+          "core_information": "数量不能证明个体健康；争议是长期低剂量造成多大伤害，而非可以据此断言无害。",
+          "baseline_points": [
+            5
+          ],
+          "proposal_points": [
+            5
+          ],
+          "coverage_and_understanding_assessment": "收紧争议范围，避免读成是否有任何伤害都未知。"
+        }
+      ],
+      "changes": [
+        {
+          "point": 2,
+          "before": [
+            "繁盛",
+            "白俄罗斯一侧多种兽类密度与未污染保护区相当，狼的密度为对照保护区的七倍多。"
+          ],
+          "after": [
+            "繁盛",
+            "白俄罗斯一侧多种兽类密度与四个未污染保护区相当，狼的数量为对照区的七倍多。"
+          ],
+          "reason": "恢复四个对照区，并把英文numerous的数量指标写清，避免无来源地改统计含义。",
+          "source_sentence_groups": [
+            "S5–9"
+          ]
+        },
+        {
+          "point": 4,
+          "before": [
+            "代价",
+            "部分研究发现，高辐射地点鸟类、传粉昆虫和蜘蛛较少，落叶分解也慢了约40%。"
+          ],
+          "after": [
+            "代价",
+            "部分研究发现高辐射处筑巢鸟数量及鸟种较少，传粉昆虫和蜘蛛也少；最重污染处落叶少分解约40%，阻碍养分回土。"
+          ],
+          "reason": "分解40%是量的差异；补养分回土受阻，说明该生态指标为何重要。 限定筑巢鸟及鸟种，不扩大为全部鸟类；保留昆虫蜘蛛及分解量减少40%的机制。",
+          "source_sentence_groups": [
+            "S11–14"
+          ],
+          "cross_review_closure_source_sentences": [
+            "S12",
+            "S13",
+            "S14"
+          ]
+        },
+        {
+          "point": 5,
+          "before": [
+            "限度",
+            "数量多不代表个体健康，更不证明辐射无害；持续低剂量辐射的损害仍有争议。"
+          ],
+          "after": [
+            "限度",
+            "动物多不等于个体健康；长期低剂量辐射造成多大伤害仍有争议，不能据此说辐射无害。"
+          ],
+          "reason": "争议是损害幅度，不能推到是否有害毫无证据。",
+          "source_sentence_groups": [
+            "S15–16"
+          ]
+        }
+      ],
+      "secondary_details_not_on_card": [
+        "撤离4.5万人、30公里半径、各研究年月及相机物种清单；正反生态证据和比较范围保留，未把局部结果普遍化。"
+      ],
+      "old_characters": 195,
+      "proposed_characters": 215,
+      "layout_note": "Only character/structure review performed. Actual 4K card/font/10-line fit must be verified on GitHub after root accepts proposal; no local render or video job started.",
+      "uncovered_essential_cores": [],
+      "known_layout_risk": "文字保持5点；没有通过排版实跑前不宣称仍为10行。",
+      "cross_review_status": "passed_after_listed_precise_clarifications"
+    },
+    "28": {
+      "title": "青蒿一握，济世千万",
+      "source_core_coverage": [
+        {
+          "id": "28C1",
+          "source_sentences": "S1–4",
+          "core_information": "523多机构攻关耐氯喹疟疾，屠呦呦团队筛查2000多药方、约380提取物。",
+          "baseline_points": [
+            1
+          ],
+          "proposal_points": [
+            1
+          ],
+          "coverage_and_understanding_assessment": "解释抗药性并恢复关键试验规模，避免只有古方灵感。"
+        },
+        {
+          "id": "28C2",
+          "source_sentences": "S5–9",
+          "core_information": "青蒿效果不稳；葛洪古方浸泡而不煮沸，引出高温破坏成分的怀疑，改用低沸乙醚。",
+          "baseline_points": [
+            2,
+            3
+          ],
+          "proposal_points": [
+            2,
+            3
+          ],
+          "coverage_and_understanding_assessment": "将古籍指令与实验推理接起来，35℃解释低温路线。"
+        },
+        {
+          "id": "28C3",
+          "source_sentences": "S10–11",
+          "core_information": "1971年第191号样品完全抑制感染小鼠的疟原虫，但这不能证明人体安全。",
+          "baseline_points": [
+            3,
+            4
+          ],
+          "proposal_points": [
+            3
+          ],
+          "coverage_and_understanding_assessment": "同一点明确动物有效与人体安全的边界。"
+        },
+        {
+          "id": "28C4",
+          "source_sentences": "S12–13",
+          "core_information": "1972年屠与两位同事试服提取物，随后用于21名患者，团队再得到青蒿素纯晶体。",
+          "baseline_points": [
+            4
+          ],
+          "proposal_points": [
+            4
+          ],
+          "coverage_and_understanding_assessment": "写明试服的是提取物，不能混成先有纯药再试服；不声称21例构成充分安全证明。"
+        },
+        {
+          "id": "28C5",
+          "source_sentences": "S14–17",
+          "core_information": "药物挽救大量生命；WHO推荐以青蒿素为基础的联合疗法，2015年屠获诺奖。",
+          "baseline_points": [
+            5
+          ],
+          "proposal_points": [
+            5
+          ],
+          "coverage_and_understanding_assessment": "把联合疗法解释成多药合用，保留科学和社会结局。"
+        }
+      ],
+      "changes": [
+        {
+          "point": 1,
+          "before": [
+            "任务",
+            "为应对耐氯喹疟疾，523项目开展联合攻关，屠呦呦带队筛查了大量药方和提取物。"
+          ],
+          "after": [
+            "任务",
+            "523项目联合攻关，目标是对旧药氯喹有抗药性的疟疾；屠呦呦带队查2000多药方，试约380种提取物。"
+          ],
+          "reason": "解释耐药并保留2000多药方/约380提取物，避免仅凭一句古方就得药。",
+          "source_sentence_groups": [
+            "S1–4"
+          ]
+        },
+        {
+          "point": 2,
+          "before": [
+            "线索",
+            "青蒿药效起伏不定；葛洪古籍只浸泡、不煮沸，让她怀疑高温破坏了有效成分。"
+          ],
+          "after": [
+            "线索",
+            "青蒿药效不稳；葛洪古方浸泡青蒿而不煮沸，启发屠呦呦怀疑高温会破坏有效成分。"
+          ],
+          "reason": "明确葛洪的方法对象是青蒿，古方是低温提取的线索而非已证疗效。",
+          "source_sentence_groups": [
+            "S5–9"
+          ]
+        },
+        {
+          "point": 3,
+          "before": [
+            "突破",
+            "她改用低沸点乙醚提取，1971年的第191号样品完全抑制了小鼠体内的疟原虫。"
+          ],
+          "after": [
+            "突破",
+            "改用沸点约35℃的乙醚低温提取，1971年第191号样品完全抑制小鼠疟原虫；人体安全仍待验证。"
+          ],
+          "reason": "35℃解释低沸点与提取路线，同点保留人体安全边界。",
+          "source_sentence_groups": [
+            "S5–9",
+            "S10–11"
+          ]
+        },
+        {
+          "point": 4,
+          "before": [
+            "验证",
+            "小鼠结果不能证明人体安全；她与同事自愿试服，随后开展患者治疗并提纯青蒿素。"
+          ],
+          "after": [
+            "验证",
+            "1972年，她与两名同事试服提取物，再用于21名疟疾患者，随后得到青蒿素晶体。"
+          ],
+          "reason": "恢复1972、2同事、21患者与提取物→晶体先后，不越级声称安全已证实。",
+          "source_sentence_groups": [
+            "S12–13"
+          ]
+        },
+        {
+          "point": 5,
+          "before": [
+            "影响",
+            "青蒿素联合疗法获世卫组织推荐，挽救众多生命；屠呦呦于2015年获得诺贝尔奖。"
+          ],
+          "after": [
+            "影响",
+            "以青蒿素为基础的多药合用疗法获世卫推荐，挽救众多生命；屠呦呦2015年获诺奖。"
+          ],
+          "reason": "解释联合为多药合用，不让观众把单用青蒿或单药等同WHO推荐。",
+          "source_sentence_groups": [
+            "S14–17"
+          ]
+        }
+      ],
+      "secondary_details_not_on_card": [
+        "1967启动日与越战背景、1969任组长、640处方/200草药、海南地点、2011拉斯克奖/2015半份诺奖/首位中国女性、WHO2006起推荐；保留研究者、古方、筛查规模、低温机制、鼠/人边界、21患者及多药疗法。"
+      ],
+      "old_characters": 196,
+      "proposed_characters": 222,
+      "layout_note": "Only character/structure review performed. Actual 4K card/font/10-line fit must be verified on GitHub after root accepts proposal; no local render or video job started.",
+      "uncovered_essential_cores": [],
+      "known_layout_risk": "文字保持5点；没有通过排版实跑前不宣称仍为10行。",
+      "cross_review_status": "passed_without_further_changes"
+    },
+    "29": {
+      "title": "一座火山，造出了《弗兰肯斯坦》",
+      "source_core_coverage": [
+        {
+          "id": "29C1",
+          "source_sentences": "S4–6",
+          "core_information": "1815年坦博拉喷发，约一万人当场死亡，随后数万人死于饥饿疾病；气体进入高空。",
+          "baseline_points": [
+            1
+          ],
+          "proposal_points": [
+            1,
+            2
+          ],
+          "coverage_and_understanding_assessment": "恢复数量而非大量死亡的空泛概括。"
+        },
+        {
+          "id": "29C2",
+          "source_sentences": "S6–9",
+          "core_information": "SO2形成硫酸盐气溶胶反射太阳光，全球降温，1816欧美无夏；欧洲寒冷多雨损害粮食供应。",
+          "baseline_points": [
+            2,
+            3
+          ],
+          "proposal_points": [
+            2,
+            3
+          ],
+          "coverage_and_understanding_assessment": "将气溶胶解释为高空微粒，并把持续多雨限定到文中欧洲。"
+        },
+        {
+          "id": "29C3",
+          "source_sentences": "S1–2,10–11",
+          "core_information": "坏天气把拜伦与玛丽等困在别墅，拜伦发起写超自然故事的挑战。",
+          "baseline_points": [
+            4
+          ],
+          "proposal_points": [
+            4
+          ],
+          "coverage_and_understanding_assessment": "把玛丽放进现场，消除文学结果与天气段落之间的角色断口。"
+        },
+        {
+          "id": "29C4",
+          "source_sentences": "S12–15",
+          "core_information": "玛丽18岁开始写Frankenstein，1818匿名出版，常被称作科幻开山作；其他人也有作品。",
+          "baseline_points": [
+            5
+          ],
+          "proposal_points": [
+            5
+          ],
+          "coverage_and_understanding_assessment": "主要文学结果、匿名和评价限定齐全；其他作品作为旁支未挤入主体。"
+        }
+      ],
+      "changes": [
+        {
+          "point": 1,
+          "before": [
+            "喷发",
+            "1815年，印尼坦博拉火山猛烈喷发，造成大量死亡，并向平流层释放二氧化硫。"
+          ],
+          "after": [
+            "喷发",
+            "1815年，印尼坦博拉火山喷发，当场约一万人死亡，随后又有数万人死于饥饿和疾病。"
+          ],
+          "reason": "恢复约一万及数万，替换含糊大量。",
+          "source_sentence_groups": [
+            "S4–6"
+          ]
+        },
+        {
+          "point": 2,
+          "before": [
+            "降温",
+            "二氧化硫形成硫酸盐气溶胶，反射阳光，使1816年成为欧美的“无夏之年”。"
+          ],
+          "after": [
+            "降温",
+            "火山喷出的二氧化硫在高空形成硫酸盐微粒，反射阳光降温，使1816年成为欧美无夏之年。"
+          ],
+          "reason": "用微粒解释气溶胶，补喷出气体→反光→降温链。",
+          "source_sentence_groups": [
+            "S4–6",
+            "S6–9"
+          ]
+        },
+        {
+          "point": 3,
+          "before": [
+            "灾情",
+            "寒冷多雨造成庄稼歉收、粮价上涨，饥饿、疾病与社会动荡接踵而来。"
+          ],
+          "after": [
+            "灾情",
+            "欧洲夏季寒冷多雨，庄稼歉收、粮价上涨，饥饿、疾病与社会动荡接踵而来。"
+          ],
+          "reason": "冷湿/庄稼损失按原文限定欧洲，避免扩大到整个欧美。",
+          "source_sentence_groups": [
+            "S6–9"
+          ]
+        },
+        {
+          "point": 4,
+          "before": [
+            "契机",
+            "大雨把拜伦和友人困在日内瓦郊外的别墅，拜伦提议每人写一篇超自然故事。"
+          ],
+          "after": [
+            "契机",
+            "大雨把拜伦、玛丽·雪莱等人困在日内瓦郊外的别墅，拜伦提议每人写一篇恐怖故事。"
+          ],
+          "reason": "把玛丽明确放进被雨困住的群体，使写作契机与结果接上。",
+          "source_sentence_groups": [
+            "S1–2,10–11"
+          ]
+        },
+        {
+          "point": 5,
+          "before": [
+            "成果",
+            "18岁的玛丽·雪莱开始写《弗兰肯斯坦》，1818年出版，后来常被视为科幻小说的开山之作。"
+          ],
+          "after": [
+            "成果",
+            "18岁的玛丽开始写《弗兰肯斯坦》，1818年匿名出版，这部作品后来常被视为科幻小说的开山之作。"
+          ],
+          "reason": "保留年龄/1818并补匿名，常被视为继续限制评价。",
+          "source_sentence_groups": [
+            "S12–15"
+          ]
+        }
+      ],
+      "secondary_details_not_on_card": [
+        "喷发月日、别墅名、1831序言、波利多里《吸血鬼》和拜伦《黑暗》；属于文学旁支与记录来历，不影响气候→受困→创作→出版主线。"
+      ],
+      "old_characters": 192,
+      "proposed_characters": 211,
+      "layout_note": "Only character/structure review performed. Actual 4K card/font/10-line fit must be verified on GitHub after root accepts proposal; no local render or video job started.",
+      "uncovered_essential_cores": [],
+      "known_layout_risk": "文字保持5点；没有通过排版实跑前不宣称仍为10行。",
+      "cross_review_status": "passed_without_further_changes"
+    },
+    "30": {
+      "title": "大恶臭逼出了下水道",
+      "source_core_coverage": [
+        {
+          "id": "30C1",
+          "source_sentences": "S1–5",
+          "core_information": "1858炎夏，伦敦污水排入泰晤士河，恶臭波及议会。",
+          "baseline_points": [
+            1
+          ],
+          "proposal_points": [
+            1
+          ],
+          "coverage_and_understanding_assessment": "原稿已清楚。"
+        },
+        {
+          "id": "30C2",
+          "source_sentences": "S6–8",
+          "core_information": "财政大臣公开抨击后，拨款法案约18天获通过，工程师巴泽尔杰特主持。",
+          "baseline_points": [
+            2
+          ],
+          "proposal_points": [
+            2
+          ],
+          "coverage_and_understanding_assessment": "补工程师身份及拨款用途。"
+        },
+        {
+          "id": "30C3",
+          "source_sentences": "S9–13",
+          "core_information": "82英里主截流管在污水入河前拦截，改送下游；管径算好后加倍，1875基本完工，许多仍用。",
+          "baseline_points": [
+            3
+          ],
+          "proposal_points": [
+            3,
+            5
+          ],
+          "coverage_and_understanding_assessment": "截流的对象、位置和去向说明白；补关键规模及完工时间。"
+        },
+        {
+          "id": "30C4",
+          "source_sentences": "S14–16",
+          "core_information": "当时错误地认为臭气致病；工程实际减少饮水污染而奏效。",
+          "baseline_points": [
+            4
+          ],
+          "proposal_points": [
+            4
+          ],
+          "coverage_and_understanding_assessment": "把少闻臭气与减少饮水污染的机制分开。"
+        },
+        {
+          "id": "30C5",
+          "source_sentences": "S17–18",
+          "core_information": "1866霍乱在唯一未接管网的东区造成约5600人死亡，构成对照。",
+          "baseline_points": [
+            5
+          ],
+          "proposal_points": [
+            5
+          ],
+          "coverage_and_understanding_assessment": "保留唯一、未接网及约5600人，不以空泛启示替代证据。"
+        }
+      ],
+      "changes": [
+        {
+          "point": 2,
+          "before": [
+            "行动",
+            "财政大臣公开抨击后，资助新下水道的法案约18天获通过，巴泽尔杰特主持建设。"
+          ],
+          "after": [
+            "行动",
+            "财政大臣公开抨击后，为新下水道拨款的法案约18天获通过，工程师巴泽尔杰特主持建设。"
+          ],
+          "reason": "补工程师身份和拨款用途。",
+          "source_sentence_groups": [
+            "S6–8"
+          ]
+        },
+        {
+          "point": 3,
+          "before": [
+            "工程",
+            "截流管道把污水引向城市下游；管径算好后再加倍，许多设施至今仍在使用。"
+          ],
+          "after": [
+            "工程",
+            "82英里截流管拦下原本入河的污水，改送城市下游；按需要算出的管径再加倍。"
+          ],
+          "reason": "解释截流的对象/位置/去向并恢复82英里主干。",
+          "source_sentence_groups": [
+            "S9–13"
+          ]
+        },
+        {
+          "point": 4,
+          "before": [
+            "误判",
+            "当时人们以为臭气致病，修下水道主要为了除臭，真正奏效的却是保护了饮用水。"
+          ],
+          "after": [
+            "误判",
+            "修下水道本为消除人们误认为会致病的臭气；实际作用是减少饮用水遭污水污染。"
+          ],
+          "reason": "明确实际降低的是饮水污染风险，不是因为除臭而治病。",
+          "source_sentence_groups": [
+            "S14–16"
+          ]
+        },
+        {
+          "point": 5,
+          "before": [
+            "对照",
+            "1866年霍乱再起，唯一尚未接入管网的东区约5600人死亡，凸显了饮水保护的重要性。"
+          ],
+          "after": [
+            "对照",
+            "1866年，唯一尚未接网的东区有约5600人死于霍乱；管网1875年基本完工，多数设施至今仍用。"
+          ],
+          "reason": "将1866对照放回1875完工前，补沿用结果并保持约5600。",
+          "source_sentence_groups": [
+            "S9–13",
+            "S17–18"
+          ]
+        }
+      ],
+      "secondary_details_not_on_card": [
+        "财政大臣迪斯雷利姓名、1100英里街管和3.18亿砖、河堤名称；保留决策、主干规模/机制、设计余量、时间、疾病对照与沿用结局。"
+      ],
+      "old_characters": 197,
+      "proposed_characters": 209,
+      "layout_note": "Only character/structure review performed. Actual 4K card/font/10-line fit must be verified on GitHub after root accepts proposal; no local render or video job started.",
+      "uncovered_essential_cores": [],
+      "known_layout_risk": "文字保持5点；没有通过排版实跑前不宣称仍为10行。",
+      "cross_review_status": "passed_without_further_changes"
+    },
+    "31": {
+      "title": "被拒绝了十二次的哈利·波特",
+      "source_core_coverage": [
+        {
+          "id": "31C1",
+          "source_sentences": "S1–6",
+          "core_information": "罗琳1990得到孤儿巫师灵感，经历丧母、单亲与福利生活仍在写作。",
+          "baseline_points": [
+            1,
+            2
+          ],
+          "proposal_points": [
+            1,
+            2
+          ],
+          "coverage_and_understanding_assessment": "原稿角色和处境清楚，保持。"
+        },
+        {
+          "id": "31C2",
+          "source_sentences": "S7–10",
+          "core_information": "书稿据报连遭十二家出版社拒绝；布卢姆斯伯里董事长的八岁女儿爱丽丝读首章后想看后续，该社接纳。",
+          "baseline_points": [
+            3
+          ],
+          "proposal_points": [
+            3,
+            4
+          ],
+          "coverage_and_understanding_assessment": "催更含糊且像连载；恢复首章、爱丽丝身份和先后顺序，不把女孩反馈写成唯一原因。"
+        },
+        {
+          "id": "31C3",
+          "source_sentences": "S11–13",
+          "core_information": "出版方担心男孩忽略女作家，选择J.K.缩写；1997年首印500册。",
+          "baseline_points": [
+            4
+          ],
+          "proposal_points": [
+            4
+          ],
+          "coverage_and_understanding_assessment": "补缩写署名的原因，避免只说隐去性别而读者不知为什么。"
+        },
+        {
+          "id": "31C4",
+          "source_sentences": "S14–16",
+          "core_information": "1998年美国版问世，系列及衍生书合计超五亿册、80种语言，回应最初读者的喜爱。",
+          "baseline_points": [
+            5
+          ],
+          "proposal_points": [
+            5
+          ],
+          "coverage_and_understanding_assessment": "销量范围和译种范围保持不扩大。"
+        }
+      ],
+      "changes": [
+        {
+          "point": 3,
+          "before": [
+            "转机",
+            "书稿据报遭十二家出版社拒绝；布卢姆斯伯里董事长的女儿读后催更，出版社最终接纳。"
+          ],
+          "after": [
+            "转机",
+            "书稿据报遭十二家出版社拒绝；布卢姆斯伯里董事长的八岁女儿爱丽丝，读首章后急着看后续。"
+          ],
+          "reason": "催更改成读首章欲看后续，补女儿身份/爱丽丝，不暗示连载追更。",
+          "source_sentence_groups": [
+            "S7–10"
+          ]
+        },
+        {
+          "point": 4,
+          "before": [
+            "问世",
+            "为隐去作者性别，出版方采用J.K.署名；1997年英国首版仅印500册精装本。"
+          ],
+          "after": [
+            "问世",
+            "该社接纳书稿，因担心男孩忽略女作者的书，采用J.K.缩写署名；1997年首册《魔法石》在英国首印500册精装本。"
+          ],
+          "reason": "明确接纳、署名与担忧的不同关系，保留首印500册及1997。 500册限定为英国精装本，避免误读为各版本总首印量。",
+          "source_sentence_groups": [
+            "S7–10",
+            "S11–13"
+          ],
+          "cross_review_closure_source_sentences": [
+            "S12",
+            "S13",
+            "S14"
+          ]
+        }
+      ],
+      "secondary_details_not_on_card": [
+        "波尔图教英语与婚育月日、经纪人利特尔、1500英镑预付款、K取祖母名、300册入图书馆、美国版权10.5万美元及书名改动；不影响创作、困境、拒稿、儿童反馈、偏见与小首印到全球传播的主线。"
+      ],
+      "old_characters": 204,
+      "proposed_characters": 224,
+      "layout_note": "Only character/structure review performed. Actual 4K card/font/10-line fit must be verified on GitHub after root accepts proposal; no local render or video job started.",
+      "uncovered_essential_cores": [],
+      "known_layout_risk": "文字保持5点；没有通过排版实跑前不宣称仍为10行。",
+      "cross_review_status": "passed_after_listed_precise_clarifications"
+    },
+    "32": {
+      "title": "被降级的冥王星",
+      "source_core_coverage": [
+        {
+          "id": "32C1",
+          "source_sentences": "S1–3",
+          "core_information": "1930汤博发现冥王星，76年被列第九行星。",
+          "baseline_points": [
+            1
+          ],
+          "proposal_points": [
+            1
+          ],
+          "coverage_and_understanding_assessment": "原稿清楚。"
+        },
+        {
+          "id": "32C2",
+          "source_sentences": "S4–7",
+          "core_information": "厄里斯初被认为比冥王星大，预期更多同类天体促成定义需求。",
+          "baseline_points": [
+            2
+          ],
+          "proposal_points": [
+            2
+          ],
+          "coverage_and_understanding_assessment": "明确更大的比较对象与重订标准的缘由，保留起初而不导入后测大小。"
+        },
+        {
+          "id": "32C3",
+          "source_sentences": "S8–10",
+          "core_information": "2006三条件：绕日、近球形、清空轨道邻域；冥王星未过第三项改列矮行星，剩八行星，本体未变。",
+          "baseline_points": [
+            3,
+            4
+          ],
+          "proposal_points": [
+            3,
+            4
+          ],
+          "coverage_and_understanding_assessment": "清空释义成引力主导，避免误读为附近绝无其他天体；明确未过哪条和剩八颗。"
+        },
+        {
+          "id": "32C4",
+          "source_sentences": "S11–13",
+          "core_information": "IAU表决有效，但约一万成员只有424投票，正当性遭质疑。",
+          "baseline_points": [
+            4
+          ],
+          "proposal_points": [
+            4
+          ],
+          "coverage_and_understanding_assessment": "补机构、分母及有效限定；争议不等于法律上无效。"
+        },
+        {
+          "id": "32C5",
+          "source_sentences": "S14–17",
+          "core_information": "新视野号携汤博骨灰2015飞掠，传回以他命名的心形平原图像。",
+          "baseline_points": [
+            5
+          ],
+          "proposal_points": [
+            5
+          ],
+          "coverage_and_understanding_assessment": "明确新视野号是无人探测器，区域是心形区域，他指发现者汤博。"
+        }
+      ],
+      "changes": [
+        {
+          "point": 2,
+          "before": [
+            "重审",
+            "2005年发现的厄里斯起初被认为更大，促使天文学界重新明确行星的定义。"
+          ],
+          "after": [
+            "重审",
+            "2005年发现的厄里斯起初被认为比冥王星更大，预期还有更多同类天体，行星需要明确标准。"
+          ],
+          "reason": "更大补比较项，补更多同类可能出现的定义压力。",
+          "source_sentence_groups": [
+            "S4–7"
+          ]
+        },
+        {
+          "point": 3,
+          "before": [
+            "定义",
+            "2006年新标准要求行星绕日运行、形状接近球体，并清空自身轨道附近区域。"
+          ],
+          "after": [
+            "改类",
+            "2006年新规要求行星绕日、近球形并靠引力主导轨道邻域；冥王星未过第三条，改列矮行星，行星剩八颗。"
+          ],
+          "reason": "释义cleared为引力主导，避免以为近处必须绝无天体；明确未过第三条及剩八颗。",
+          "source_sentence_groups": [
+            "S8–10"
+          ]
+        },
+        {
+          "point": 4,
+          "before": [
+            "改类",
+            "冥王星不满足最后一条，被改列为矮行星，引发争议；改变的是分类，天体本身没有变。"
+          ],
+          "after": [
+            "争议",
+            "国际天文学联合会的表决有效，但约一万会员仅424人参与，正当性受质疑；冥王星本身未变。"
+          ],
+          "reason": "补表决机构、一万/424与表决有效，争议不等于决议无效。",
+          "source_sentence_groups": [
+            "S8–10",
+            "S11–13"
+          ]
+        },
+        {
+          "point": 5,
+          "before": [
+            "探访",
+            "2015年，新视野号带着汤博的少量骨灰飞掠冥王星，传回后来以他命名的心形区域图像。"
+          ],
+          "after": [
+            "探访",
+            "无人探测器新视野号携少量汤博骨灰，于2015年飞掠冥王星，传回以这位发现者命名的心形区域图像。"
+          ],
+          "reason": "明确探测器是无人、平原以汤博而非飞船命名。 将原文心形平原中性概括为心形区域，不引入原文外地貌区分；汤博命名对象仍明确为心形区域。",
+          "source_sentence_groups": [
+            "S14–17"
+          ],
+          "cross_review_closure_source_sentences": [
+            "S15",
+            "S16"
+          ]
+        }
+      ],
+      "secondary_details_not_on_card": [
+        "命名女孩/神话来源、plutoed与州决议、飞船发射早表决7个月；不影响重新定标的原因、判据、争议与纪念性探访。"
+      ],
+      "old_characters": 196,
+      "proposed_characters": 227,
+      "layout_note": "Only character/structure review performed. Actual 4K card/font/10-line fit must be verified on GitHub after root accepts proposal; no local render or video job started.",
+      "uncovered_essential_cores": [],
+      "known_layout_risk": "32的定义/分类信息增加；34含Elorg与Game Boy完整词；35多项实验对照；36多数字/产品名。不能拆数字/英文，接受前需重跑卡面排版。",
+      "cross_review_status": "passed_after_listed_precise_clarifications"
+    },
+    "33": {
+      "title": "洞穴里的十三个人",
+      "source_core_coverage": [
+        {
+          "id": "33C1",
+          "source_sentences": "S1–3",
+          "core_information": "2018年泰国12名少年和助教进洞，季风雨淹路而受困。",
+          "baseline_points": [
+            1
+          ],
+          "proposal_points": [
+            1
+          ],
+          "coverage_and_understanding_assessment": "保留人数及致困原因。"
+        },
+        {
+          "id": "33C2",
+          "source_sentences": "S4–6",
+          "core_information": "九天后两名英国潜水员在距洞口约4公里找到13人，全活着。",
+          "baseline_points": [
+            2
+          ],
+          "proposal_points": [
+            2
+          ],
+          "coverage_and_understanding_assessment": "原稿完整。"
+        },
+        {
+          "id": "33C3",
+          "source_sentences": "S7–9,13–14",
+          "core_information": "通道狭窄危险，需布放气瓶；约万人和100多潜水员参与多国协作。",
+          "baseline_points": [
+            3
+          ],
+          "proposal_points": [
+            3
+          ],
+          "coverage_and_understanding_assessment": "补后勤规模，解释接力救援的组织背景。"
+        },
+        {
+          "id": "33C4",
+          "source_sentences": "S10–12",
+          "core_information": "7月8–10日镇静、担架、潜水员接力与沿途医护，最后教练也出洞。",
+          "baseline_points": [
+            4
+          ],
+          "proposal_points": [
+            4,
+            5
+          ],
+          "coverage_and_understanding_assessment": "恢复沿途医护，男孩与全部13人的范围区分清楚。"
+        },
+        {
+          "id": "33C5",
+          "source_sentences": "S9,15–16",
+          "core_information": "萨曼古南布气瓶时死亡；另一救援者2019年死于此次救援染上的血液感染。",
+          "baseline_points": [
+            5
+          ],
+          "proposal_points": [
+            5
+          ],
+          "coverage_and_understanding_assessment": "恢复关键牺牲者身份和血液感染，避免2019被误读为另一场救援。"
+        }
+      ],
+      "changes": [
+        {
+          "point": 1,
+          "before": [
+            "被困",
+            "2018年，泰国12名少年球员和助理教练进入睡美人洞，因暴雨淹没通道而受困。"
+          ],
+          "after": [
+            "被困",
+            "2018年，泰国12名少年球员和助理教练进入睡美人洞，因季风雨淹没通道而受困。"
+          ],
+          "reason": "季风雨对应原文，保留直接致困原因。",
+          "source_sentence_groups": [
+            "S1–3"
+          ]
+        },
+        {
+          "point": 3,
+          "before": [
+            "难题",
+            "出口穿过数公里狭窄凶险的水下通道，多国团队沿途布放气瓶，组织潜水接力救援。"
+          ],
+          "after": [
+            "难题",
+            "救援需穿过数公里狭窄水道；约万人的多国队伍沿途布放气瓶，协调百余名潜水员。"
+          ],
+          "reason": "补万人与百余潜水员，说明复杂接力的后勤背景。",
+          "source_sentence_groups": [
+            "S7–9,13–14"
+          ]
+        },
+        {
+          "point": 4,
+          "before": [
+            "救出",
+            "7月8日至10日，男孩们被施用镇静药、裹入担架，由潜水员逐段护送出洞。"
+          ],
+          "after": [
+            "救出",
+            "7月8日至10日，男孩用镇静药后固定在担架中，由潜水员接力带出，沿途有医护协助。"
+          ],
+          "reason": "补沿途医护，仍只对文中男孩写镇静操作。",
+          "source_sentence_groups": [
+            "S10–12"
+          ]
+        },
+        {
+          "point": 5,
+          "before": [
+            "代价",
+            "十三名被困者全部生还；一名救援者作业时遇难，另一名于2019年死于救援中感染。"
+          ],
+          "after": [
+            "代价",
+            "十三人全获救；救援者萨曼·古南在前期布气瓶时遇难，另一名救援队员2019年死于救援时染上的血液感染。"
+          ],
+          "reason": "补萨曼及血液感染，2019是死亡时间而不是新一轮救援。 明确两位遇难者均为救援者，避免足球队与救援队的队员双指。",
+          "source_sentence_groups": [
+            "S10–12",
+            "S9,15–16"
+          ],
+          "cross_review_closure_source_sentences": [
+            "S9",
+            "S15",
+            "S16"
+          ]
+        }
+      ],
+      "secondary_details_not_on_card": [
+        "孩子11–16岁和教练25岁、2000军人/900警察、部分潜水员姓名/具体布气瓶月日；核心人数、路线风险、万人协作、操作过程及两位救援者代价已保留。"
+      ],
+      "old_characters": 194,
+      "proposed_characters": 211,
+      "layout_note": "Only character/structure review performed. Actual 4K card/font/10-line fit must be verified on GitHub after root accepts proposal; no local render or video job started.",
+      "uncovered_essential_cores": [],
+      "known_layout_risk": "文字保持5点；没有通过排版实跑前不宣称仍为10行。",
+      "cross_review_status": "passed_after_listed_precise_clarifications"
+    },
+    "34": {
+      "title": "走出苏联的俄罗斯方块",
+      "source_core_coverage": [
+        {
+          "id": "34C1",
+          "source_sentences": "S1–4",
+          "core_information": "1984帕基特诺夫在字符显示电脑上造出俄罗斯方块。",
+          "baseline_points": [
+            1
+          ],
+          "proposal_points": [
+            1
+          ],
+          "coverage_and_understanding_assessment": "原稿清楚。"
+        },
+        {
+          "id": "34C2",
+          "source_sentences": "S5–6",
+          "core_information": "国家拥有权利，作者无支配权；复制品经软盘传播。",
+          "baseline_points": [
+            2
+          ],
+          "proposal_points": [
+            2
+          ],
+          "coverage_and_understanding_assessment": "原稿正确，不把作者写成当时自由出售版权的人。"
+        },
+        {
+          "id": "34C3",
+          "source_sentences": "S7–9",
+          "core_information": "斯坦因不知真正授权机关Elorg而卖未合法持有的权利，造成西方重叠交易。",
+          "baseline_points": [
+            3
+          ],
+          "proposal_points": [
+            3
+          ],
+          "coverage_and_understanding_assessment": "恢复姓名及真正权利方的角色。"
+        },
+        {
+          "id": "34C4",
+          "source_sentences": "S10–13",
+          "core_information": "1989发行商罗杰斯直接找Elorg，任天堂得掌机及全球主机权；Game Boy版出货超3500万。",
+          "baseline_points": [
+            4
+          ],
+          "proposal_points": [
+            4
+          ],
+          "coverage_and_understanding_assessment": "直接谈判对象不再悬空，出货不偷换为终端销售。"
+        },
+        {
+          "id": "34C5",
+          "source_sentences": "S14–17",
+          "core_information": "作者多年无收入，约1995旧安排到期后开始获益，1996与罗杰斯建公司参与管理。",
+          "baseline_points": [
+            5
+          ],
+          "proposal_points": [
+            5
+          ],
+          "coverage_and_understanding_assessment": "不声称从此独占全部版权，结局为参与管理。"
+        }
+      ],
+      "changes": [
+        {
+          "point": 3,
+          "before": [
+            "混战",
+            "英国商人未获合法授权就转卖版权，西方公司之间出现重叠交易，引发版权争夺。"
+          ],
+          "after": [
+            "混战",
+            "英国软件商斯坦因不知Elorg掌管苏联软件出口，未获授权就转卖版权，造成西方公司权利重叠。"
+          ],
+          "reason": "恢复斯坦因及Elorg的国家出口机关角色，说明版权为何不合法。",
+          "source_sentence_groups": [
+            "S7–9"
+          ]
+        },
+        {
+          "point": 4,
+          "before": [
+            "突破",
+            "罗杰斯赴莫斯科直接谈判，任天堂取得掌机和主机版权；Game Boy版出货超3500万份。"
+          ],
+          "after": [
+            "突破",
+            "1989年，发行商罗杰斯找到Elorg谈判，任天堂获掌机及全球主机版权，Game Boy版出货3500多万份。"
+          ],
+          "reason": "补罗杰斯发行商身份、真正谈判对象、1989及全球主机权；出货不同于售出。",
+          "source_sentence_groups": [
+            "S10–13"
+          ]
+        },
+        {
+          "point": 5,
+          "before": [
+            "获益",
+            "旧协议约1995年到期，作者才开始获益；1996年，他与罗杰斯合办公司管理版权。"
+          ],
+          "after": [
+            "获益",
+            "帕基特诺夫到约1995年旧协议到期才开始获得游戏收益；1996年与罗杰斯成立公司，参与管理版权。"
+          ],
+          "reason": "明确约1995旧安排到期、1996合办管理，保持仅参与管理而非独占权利。 将此前未获游戏收益与领工资区分，保留约1995年协议到期及1996年合办管理。",
+          "source_sentence_groups": [
+            "S14–17"
+          ],
+          "cross_review_closure_source_sentences": [
+            "S5",
+            "S14",
+            "S15",
+            "S16"
+          ]
+        }
+      ],
+      "secondary_details_not_on_card": [
+        "Tetris词源、1986在匈牙利发现、马克斯韦尔父子和旅游签证；不影响国家所有→无权交易→直接取得授权→市场成功→作者后期获益的版权链。"
+      ],
+      "old_characters": 207,
+      "proposed_characters": 235,
+      "layout_note": "Only character/structure review performed. Actual 4K card/font/10-line fit must be verified on GitHub after root accepts proposal; no local render or video job started.",
+      "uncovered_essential_cores": [],
+      "known_layout_risk": "32的定义/分类信息增加；34含Elorg与Game Boy完整词；35多项实验对照；36多数字/产品名。不能拆数字/英文，接受前需重跑卡面排版。",
+      "cross_review_status": "passed_after_listed_precise_clarifications"
+    },
+    "35": {
+      "title": "比信先到家的鸟",
+      "source_core_coverage": [
+        {
+          "id": "35C1",
+          "source_sentences": "S1–4",
+          "core_information": "鸟先被运离老巢到波士顿再放飞，12.5天跨约3200英里回巢，比放飞时寄出的信更早。",
+          "baseline_points": [
+            1
+          ],
+          "proposal_points": [
+            1
+          ],
+          "coverage_and_understanding_assessment": "高影响遗漏：恢复人为移位前提，才能理解它在陌生地归巢的谜。"
+        },
+        {
+          "id": "35C2",
+          "source_sentences": "S5–9",
+          "core_information": "改太阳视位置和遮星实验显示不同鸟类可用太阳/星空辨向。",
+          "baseline_points": [
+            2
+          ],
+          "proposal_points": [
+            2
+          ],
+          "coverage_and_understanding_assessment": "恢复具体实验，不把观测结论写成无由来的罗列；镜子改变的是视位置。"
+        },
+        {
+          "id": "35C3",
+          "source_sentences": "S10–14",
+          "core_information": "知更鸟读磁倾角；光触发化学机制及视网膜蛋白隐花色素是候选，实验室见潜力，活鸟功能仍待证。",
+          "baseline_points": [
+            2,
+            3
+          ],
+          "proposal_points": [
+            3,
+            5
+          ],
+          "coverage_and_understanding_assessment": "明确蛋白是什么、证据处于哪一级，不写成已经找到活鸟感磁器官。"
+        },
+        {
+          "id": "35C4",
+          "source_sentences": "S15–19",
+          "core_information": "低于WHO限值的电器电磁干扰可扰乱辨向；接地屏蔽恢复，断接地或引噪再迷失，双盲验证。",
+          "baseline_points": [
+            4
+          ],
+          "proposal_points": [
+            4
+          ],
+          "coverage_and_understanding_assessment": "噪声是电磁干扰而非听觉噪音；恢复对照和强度限定。"
+        },
+        {
+          "id": "35C5",
+          "source_sentences": "S20–21",
+          "core_information": "方向罗盘只部分解开，知道方向不等于知道当前位置，长距离归巢定位仍未解。",
+          "baseline_points": [
+            5
+          ],
+          "proposal_points": [
+            5
+          ],
+          "coverage_and_understanding_assessment": "候选分子未定与位置地图未知分层，不笼统称一切尚未知。"
+        }
+      ],
+      "changes": [
+        {
+          "point": 1,
+          "before": [
+            "归巢",
+            "1952年，一只大西洋鹱从波士顿飞回威尔士外海，十二天半跨越约3200英里，比信还早。"
+          ],
+          "after": [
+            "归巢",
+            "大西洋鹱被运到波士顿放飞，12天半跨越约3200英里回巢，比放飞者随即寄出的信还早。"
+          ],
+          "reason": "恢复先运输后放飞及寄信者，体现陌生地点归巢而非普通迁徙。",
+          "source_sentence_groups": [
+            "S1–4"
+          ]
+        },
+        {
+          "point": 2,
+          "before": [
+            "罗盘",
+            "多种鸟类实验显示，鸟可借太阳、星空或地磁辨向；知更鸟感知的是磁场倾角。"
+          ],
+          "after": [
+            "罗盘",
+            "用镜子改变鸟看到的太阳位置、在天文馆遮星的实验，分别证实不同鸟类能借太阳和星空辨向。"
+          ],
+          "reason": "恢复镜子/遮星证据，并明确镜子改变所见太阳位置，不是移动太阳本身。",
+          "source_sentence_groups": [
+            "S5–9"
+          ]
+        },
+        {
+          "point": 3,
+          "before": [
+            "机制",
+            "视网膜中的隐花色素是磁感机制的重要候选，但实验室结果仍有待在活鸟身上证实。"
+          ],
+          "after": [
+            "机制",
+            "知更鸟按地磁倾角辨向；眼内隐花色素蛋白在实验室显示磁感潜力，可能通过光触发的反应感磁。"
+          ],
+          "reason": "解释隐花色素是眼内蛋白，将光反应与磁感限定为候选，补实验室证据层级。",
+          "source_sentence_groups": [
+            "S10–14"
+          ]
+        },
+        {
+          "point": 4,
+          "before": [
+            "干扰",
+            "实验中，微弱无线电噪声也能扰乱知更鸟辨向；接地铝板屏蔽干扰后，方向感恢复。"
+          ],
+          "after": [
+            "干扰",
+            "双盲实验中，低于世卫限值的电器电磁干扰也会使知更鸟迷向；接地铝板恢复辨向，断开接地又迷失。"
+          ],
+          "reason": "明确电磁而非听觉噪声，恢复低于WHO限值、双盲、接地与断接地对照。",
+          "source_sentence_groups": [
+            "S15–19"
+          ]
+        },
+        {
+          "point": 5,
+          "before": [
+            "未解",
+            "辨向罗盘已被部分破解，但能认方向不等于知道自己在哪，定位归巢的机制仍未弄清。"
+          ],
+          "after": [
+            "未解",
+            "隐花色素感磁尚待活鸟验证；能辨方向不等于知道自己在哪，鸟如何确定回巢路线仍未解。"
+          ],
+          "reason": "活鸟待证具体指蛋白感磁功能，不能误读为所有鸟辨向证据都未成立；方向与位置分开。",
+          "source_sentence_groups": [
+            "S10–14",
+            "S20–21"
+          ]
+        }
+      ],
+      "secondary_details_not_on_card": [
+        "1952放飞月日、人名/威尔士岛名、1950s/1960s/1972/1978/2000/2021研究年月，以及蛋白与鸡鸽比较的具体对象；保留关键移位实验、日星/地磁线索、蛋白候选层级、双盲干扰及定位未知。"
+      ],
+      "old_characters": 200,
+      "proposed_characters": 222,
+      "layout_note": "Only character/structure review performed. Actual 4K card/font/10-line fit must be verified on GitHub after root accepts proposal; no local render or video job started.",
+      "uncovered_essential_cores": [],
+      "known_layout_risk": "32的定义/分类信息增加；34含Elorg与Game Boy完整词；35多项实验对照；36多数字/产品名。不能拆数字/英文，接受前需重跑卡面排版。",
+      "cross_review_status": "passed_without_further_changes"
+    },
+    "36": {
+      "title": "发明了数码相机，却被它打败",
+      "source_core_coverage": [
+        {
+          "id": "36C1",
+          "source_sentences": "S1–4",
+          "core_information": "1975第一台数码相机约八磅、一万黑白像素、存图23秒，原型笨重而早期。",
+          "baseline_points": [
+            1
+          ],
+          "proposal_points": [
+            1
+          ],
+          "coverage_and_understanding_assessment": "恢复重要技术尺度，避免读成当时已有成熟可量产消费机。"
+        },
+        {
+          "id": "36C2",
+          "source_sentences": "S5–9",
+          "core_information": "依赖胶卷利润；按萨松回忆上司让其保密，1978有专利但该原型未投产。",
+          "baseline_points": [
+            2
+          ],
+          "proposal_points": [
+            2
+          ],
+          "coverage_and_understanding_assessment": "保留回忆限定和该原型范围，不说柯达此后完全不做数码。"
+        },
+        {
+          "id": "36C3",
+          "source_sentences": "S10–14",
+          "core_information": "数码压缩胶卷需求，转型迟缓、养老金负担等使2012申请破产保护。",
+          "baseline_points": [
+            3
+          ],
+          "proposal_points": [
+            3
+          ],
+          "coverage_and_understanding_assessment": "保留多重原因，不缩成某一决定直接杀死公司。"
+        },
+        {
+          "id": "36C4",
+          "source_sentences": "S15–17",
+          "core_information": "贷款9.5亿美元、1100专利约5.25亿美元，2013重组后转企业印刷。",
+          "baseline_points": [
+            4
+          ],
+          "proposal_points": [
+            4
+          ],
+          "coverage_and_understanding_assessment": "补重组的具体路径及数据，不把破产保护写成清算消失。"
+        },
+        {
+          "id": "36C5",
+          "source_sentences": "S18–19",
+          "core_information": "萨松2009因发明获美国国家荣誉，同年公司宣布停产Kodachrome。",
+          "baseline_points": [
+            5
+          ],
+          "proposal_points": [
+            5
+          ],
+          "coverage_and_understanding_assessment": "明确荣誉国家；停产对象是这个胶卷产品，不是全部胶卷。"
+        }
+      ],
+      "changes": [
+        {
+          "point": 1,
+          "before": [
+            "先机",
+            "1975年，柯达工程师萨松造出第一台数码相机，虽笨重、仅一万像素，却已不需胶卷。"
+          ],
+          "after": [
+            "先机",
+            "1975年，柯达工程师萨松造出第一台数码相机：约八磅重、一万黑白像素，存一张照片需23秒。"
+          ],
+          "reason": "恢复第一台、八磅、一万黑白像素和23秒，交代早期原型不成熟。",
+          "source_sentence_groups": [
+            "S1–4"
+          ]
+        },
+        {
+          "point": 2,
+          "before": [
+            "牵制",
+            "据萨松回忆，依赖胶卷利润的公司让他保密；1978年获专利的原型机没有投产。"
+          ],
+          "after": [
+            "牵制",
+            "胶卷是利润支柱；据萨松回忆，上司让他别声张。原型机1978年获专利，却未投产。"
+          ],
+          "reason": "保留回忆限定和该原型范围，利润/保密/未投产关系不扩成完全不做数字化。",
+          "source_sentence_groups": [
+            "S5–9"
+          ]
+        },
+        {
+          "point": 4,
+          "before": [
+            "重组",
+            "公司出售数字成像专利筹资，2013年走出破产，缩小规模并改以商业印刷服务企业客户。"
+          ],
+          "after": [
+            "重组",
+            "柯达获9.5亿美元贷款，并以约5.25亿美元出售1100项专利；2013年完成重组，转做企业印刷。"
+          ],
+          "reason": "补真实融资/专利金额和重组去向，解释公司如何继续存在。",
+          "source_sentence_groups": [
+            "S15–17"
+          ]
+        },
+        {
+          "point": 5,
+          "before": [
+            "反差",
+            "2009年，萨松因数码相机获国家荣誉；同年，柯达却宣布停产Kodachrome胶卷。"
+          ],
+          "after": [
+            "反差",
+            "2009年，萨松因数码相机获美国国家荣誉；同年，柯达宣布停产Kodachrome这一胶卷产品。"
+          ],
+          "reason": "明确美国荣誉及具体胶卷产品，避免停产全部胶卷的误读。",
+          "source_sentence_groups": [
+            "S18–19"
+          ]
+        }
+      ],
+      "secondary_details_not_on_card": [
+        "原型磁带/电视显示、裁员和关闭设施明细、花旗/买家姓名、19月重组时长和奥巴马姓名；保留技术原型尺度、利润约束、转型/养老金、2012与2013、贷款专利金额及2009反差。"
+      ],
+      "old_characters": 211,
+      "proposed_characters": 231,
+      "layout_note": "Only character/structure review performed. Actual 4K card/font/10-line fit must be verified on GitHub after root accepts proposal; no local render or video job started.",
+      "uncovered_essential_cores": [],
+      "known_layout_risk": "32的定义/分类信息增加；34含Elorg与Game Boy完整词；35多项实验对照；36多数字/产品名。不能拆数字/英文，接受前需重跑卡面排版。",
+      "cross_review_status": "passed_without_further_changes"
+    }
+  },
+  "terminology_checks": [
+    {
+      "article": "32",
+      "term": "cleared the neighbourhood around its orbit",
+      "purpose": "只校核术语释义，避免把清空误读为附近绝对没有其他天体，不引入新的故事事件。",
+      "reference": "https://science.nasa.gov/solar-system/planets/what-is-a-planet/",
+      "checked_statement": "It must be big enough that its gravity has cleared away any other objects of a similar size near its orbit around the Sun.",
+      "proposal_meaning": "在轨道邻域占引力主导的简明释义，仍对应原文第三项。"
+    }
+  ],
+  "proposal_supersedes_blob": "847968b9caa8159932d2d5f75a1e2b09dff2433d",
+  "independent_source_reviewer": "summaries_25_36 (original author; full EN/ZH cross-review)",
+  "cross_review_closure": [
+    {
+      "article": "25",
+      "point": 4,
+      "before": [
+        "祸根",
+        "加热器用65伏地面电源，开关仍按28伏设计；开关疑失灵，约八小时加热损伤线路绝缘层，飞行中起火。"
+      ],
+      "after": [
+        "祸根",
+        "发射前，加热器用65伏地面电源，温控开关仍按28伏设计；开关疑失灵，约八小时加热损伤线路绝缘层，飞行中起火。"
+      ],
+      "reason": "补发射前时间和温控开关性质，保留65/28伏不匹配、约八小时损伤、飞行起火的因果与疑似限定。",
+      "source_sentences": [
+        "S12",
+        "S13",
+        "S14",
+        "S15"
+      ]
+    },
+    {
+      "article": "26",
+      "point": 4,
+      "before": [
+        "演变",
+        "后来的孩子把一个手势里的怎么动、往哪去拆开，按先后顺序表达，语法更统一复杂。"
+      ],
+      "after": [
+        "演变",
+        "入学年龄更小的孩子和后来几批新生使语法更统一复杂；后来的孩子还把同一手势里的怎么动、往哪去拆开，按先后顺序表达。"
+      ],
+      "reason": "区分年幼入学与后续批次两维度；动作方式/方向拆分仍明确归后来的手语者，不把两个研究的观察混成同一结论。",
+      "source_sentences": [
+        "S12",
+        "S13",
+        "S14",
+        "S15"
+      ]
+    },
+    {
+      "article": "27",
+      "point": 4,
+      "before": [
+        "代价",
+        "部分研究发现高辐射处鸟类、传粉昆虫和蜘蛛较少；最重污染处落叶少分解约40%，阻碍养分回土。"
+      ],
+      "after": [
+        "代价",
+        "部分研究发现高辐射处筑巢鸟数量及鸟种较少，传粉昆虫和蜘蛛也少；最重污染处落叶少分解约40%，阻碍养分回土。"
+      ],
+      "reason": "限定筑巢鸟及鸟种，不扩大为全部鸟类；保留昆虫蜘蛛及分解量减少40%的机制。",
+      "source_sentences": [
+        "S12",
+        "S13",
+        "S14"
+      ]
+    },
+    {
+      "article": "31",
+      "point": 4,
+      "before": [
+        "问世",
+        "该社接纳书稿，因担心男孩忽略女作者的书，采用J.K.缩写署名；1997年首册《魔法石》首印500册。"
+      ],
+      "after": [
+        "问世",
+        "该社接纳书稿，因担心男孩忽略女作者的书，采用J.K.缩写署名；1997年首册《魔法石》在英国首印500册精装本。"
+      ],
+      "reason": "500册限定为英国精装本，避免误读为各版本总首印量。",
+      "source_sentences": [
+        "S12",
+        "S13",
+        "S14"
+      ]
+    },
+    {
+      "article": "32",
+      "point": 5,
+      "before": [
+        "探访",
+        "无人探测器新视野号携少量汤博骨灰，于2015年飞掠冥王星，传回以这位发现者命名的心形平原图像。"
+      ],
+      "after": [
+        "探访",
+        "无人探测器新视野号携少量汤博骨灰，于2015年飞掠冥王星，传回以这位发现者命名的心形区域图像。"
+      ],
+      "reason": "将原文心形平原中性概括为心形区域，不引入原文外地貌区分；汤博命名对象仍明确为心形区域。",
+      "source_sentences": [
+        "S15",
+        "S16"
+      ]
+    },
+    {
+      "article": "33",
+      "point": 5,
+      "before": [
+        "代价",
+        "十三人全获救；萨曼·古南在前期布气瓶时遇难，另一队员2019年死于救援时染上的血液感染。"
+      ],
+      "after": [
+        "代价",
+        "十三人全获救；救援者萨曼·古南在前期布气瓶时遇难，另一名救援队员2019年死于救援时染上的血液感染。"
+      ],
+      "reason": "明确两位遇难者均为救援者，避免足球队与救援队的队员双指。",
+      "source_sentences": [
+        "S9",
+        "S15",
+        "S16"
+      ]
+    },
+    {
+      "article": "34",
+      "point": 5,
+      "before": [
+        "获益",
+        "帕基特诺夫到约1995年旧协议到期才有收入；1996年与罗杰斯成立公司，参与管理版权。"
+      ],
+      "after": [
+        "获益",
+        "帕基特诺夫到约1995年旧协议到期才开始获得游戏收益；1996年与罗杰斯成立公司，参与管理版权。"
+      ],
+      "reason": "将此前未获游戏收益与领工资区分，保留约1995年协议到期及1996年合办管理。",
+      "source_sentences": [
+        "S5",
+        "S14",
+        "S15",
+        "S16"
+      ]
+    }
+  ]
+}

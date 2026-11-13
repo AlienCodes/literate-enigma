@@ -1,0 +1,72 @@
+# Inactive template: move to .github/workflows/finalize70.yml only after the
+# successful exact run selections have been filled in collection.json.
+# All sources/destinations are the existing AlienCodes/literate-enigma backup
+# work branches already used under CLAUDE rule 3 and the approved Article03
+# sample. No new mirror or third-party destination, GT/model/cache export.
+name: 70篇4K最终核验、保存与完整打包
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/video-batch/collection.json']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: finalize-reviewed-all70-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  finalize:
+    if: github.repository == 'AlienCodes/literate-enigma' && github.ref == 'refs/heads/codex/finish-05-and-summaries-20261112'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      TASK_BRANCH: codex/finish-05-and-summaries-20261112
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: AlienCodes/literate-enigma
+          ref: codex/finish-05-and-summaries-20261112
+          filter: blob:none
+          fetch-depth: 0
+          sparse-checkout: |
+            /.github/video-batch/
+            /CLAUDE.md
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 准备只读基准与媒体核查工具
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          git fetch --no-tags --filter=blob:none origin c9d52b26fe981ef8e4c412189ca289716ab8bf00
+          python -m py_compile .github/video-batch/collect.py .github/video-batch/download_reviewed.py .github/video-batch/finalize70.py
+      - name: 按固定run与commit下载最终媒体及公开QC
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -u .github/video-batch/download_reviewed.py --config .github/video-batch/collection.json --out batch-artifacts
+      - name: 独立核验69篇与新制作05篇、生成70篇完整包
+        run: python -u .github/video-batch/finalize70.py --artifacts batch-artifacts --config .github/video-batch/collection.json
+      - name: 一次保存到既定备份任务分支
+        run: |
+          git add --sparse -- 最终版4K视频 视频/脚本 简述重制核验 简述重制预览
+          git sparse-checkout add --stdin <<'DELIVERY_PATHS'
+          /最终版4K视频/
+          /视频/脚本/
+          /简述重制核验/
+          /简述重制预览/
+          DELIVERY_PATHS
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '完成70篇4K重制：读完即转简述2秒，归档真实音频核验'
+          git fetch --no-tags origin "$TASK_BRANCH"
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' rebase "origin/$TASK_BRANCH"
+          python -u .github/video-batch/finalize70.py --artifacts batch-artifacts --config .github/video-batch/collection.json --verify-final-only
+          git push origin "HEAD:refs/heads/$TASK_BRANCH"
+      - name: 上传用户可直接下载的完整70篇视频包
+        uses: actions/upload-artifact@v4
+        with:
+          name: postgraduate-vocabulary-ALL70-reviewed-4K-summary2s
+          path: complete-70-delivery/
+          compression-level: 1
+          retention-days: 90
+          if-no-files-found: error

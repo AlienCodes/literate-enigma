@@ -1,0 +1,78 @@
+# 出片搬到 GitHub 机器（2026-10-17）：推送 视频/批量/清单.txt 后，每篇一台机器——从仓库搭环境、只用仓库里的配音缓存拼装（不现合成）、
+# 出片；已有存档的，与存档逐采样、逐屏比对，不一致就失败。成片放进本次运行的下载区（Artifacts），不发布。
+name: render
+on:
+  push:
+    branches: ['claude/adoring-hamilton-5qskmm']
+    paths: ['视频/批量/清单.txt']
+  workflow_dispatch:
+concurrency: {group: 本项目GitHub名额, cancel-in-progress: false}   # 两个工作流同时只跑一个，合计不超过 10 台
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      items: ${{ steps.p.outputs.items }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {sparse-checkout: '视频/批量', sparse-checkout-cone-mode: true}
+      - id: p
+        run: |
+          items=$(grep -vE '^\s*(#|$)' 视频/批量/清单.txt | awk '{printf "%s{\"no\":\"%s\",\"res\":\"%s\"}", (NR>1?",":""), $1, ($2==""?"4K":$2)}')
+          echo "items=[$items]" >> $GITHUB_OUTPUT; echo "清单：[$items]"
+  render:
+    needs: plan
+    if: needs.plan.outputs.items != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    defaults:
+      run:
+        shell: bash   # 带 pipefail：出片程序出错时，后面的 | tail 不会把错误盖住
+    strategy:
+      fail-fast: false
+      max-parallel: 10   # 用户 2026-11-10：一个 GitHub 账号最多 20 台，本项目同时最多 10 台（另一个对话用另 10 台）
+      matrix:
+        item: ${{ fromJson(needs.plan.outputs.items) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q -r 视频/工具/环境/requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: ~/work/tts/*.onnx
+          key: kokoro-models-v1.0-v1.1
+      - run: bash 视频/工具/环境/准备机器.sh . ~/work
+      - name: 出片
+        working-directory: /home/runner/work/video
+        run: |
+          NO=${{ matrix.item.no }}; RES="${{ matrix.item.res }}"
+          if [ "$RES" = "声音重合成" ]; then   # 诊断：清空缓存从头合成（2026-10-17 结果：换机器合成不逐采样相同，A21 守门停；所以平时一律严格缓存）
+            rm -f ../tts/cache_tts/*.pkl; AUDIO_ONLY=1 python3 make_video.py scripts/$NO.json $NO.mp4 | tail -1
+          else
+            export STRICT_CACHE=1; [ "$RES" = "4K" ] && export VIDEO_S=2
+            python3 make_video.py scripts/$NO.json $NO.mp4 | tail -3
+          fi
+      - name: 与存档比对（有存档才比）
+        working-directory: /home/runner/work/video
+        run: |
+          NO=${{ matrix.item.no }}; RES="${{ matrix.item.res }}"; A=$GITHUB_WORKSPACE/视频/视频/$NO.mp4
+          [ "$RES" = "1080" ] && A=$GITHUB_WORKSPACE/视频/视频/草稿1080p/${NO}_1080p.mp4
+          if [ ! -f "$A" ]; then echo "没有存档，跳过比对"; exit 0; fi
+          if [ "$RES" = "声音重合成" ]; then
+            python3 - $NO.mp4 "$A" <<'PY'
+          import sys,subprocess,hashlib,numpy as np,imageio_ffmpeg
+          FF=imageio_ffmpeg.get_ffmpeg_exe()
+          a,b=[np.frombuffer(subprocess.run([FF,'-loglevel','error','-i',f,'-vn','-f','s16le','-'],capture_output=True,check=True).stdout,np.int16) for f in sys.argv[1:3]]
+          ha,hb=[hashlib.md5(x.tobytes()).hexdigest()[:12] for x in (a,b)]
+          if ha==hb: print(f'声音：✔ GitHub 从头合成与存档逐采样相同（{ha}）'); sys.exit(0)
+          n=min(len(a),len(b)); d=np.abs(a[:n].astype(int)-b[:n].astype(int))
+          print(f'声音：✘ 不同（{ha} / {hb}）长度 {len(a)}/{len(b)}，不同采样 {(d>0).sum()}，最大差 {d.max()}'); sys.exit(1)
+          PY
+          else python3 $GITHUB_WORKSPACE/视频/工具/对比成片.py $NO.mp4 "$A" | tee -a $GITHUB_STEP_SUMMARY; fi
+      - uses: actions/upload-artifact@v4
+        if: matrix.item.res != '声音重合成'
+        with:
+          if-no-files-found: error
+          name: ${{ matrix.item.no }}_${{ matrix.item.res }}
+          path: /home/runner/work/video/${{ matrix.item.no }}.mp4
+          retention-days: 30

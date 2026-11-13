@@ -1,0 +1,44 @@
+name: 单篇4K样片：读完即转简述2秒
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/video-preview/**', '.github/workflows/video-preview.yml']
+permissions:
+  contents: write
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: /.github/video-preview/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 准备工具与只读原片
+        run: |
+          python -m pip install --quiet pillow==12.3.0
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          git fetch --no-tags --depth=1 --filter=blob:none origin c9d52b26fe981ef8e4c412189ca289716ab8bf00
+      - name: 制作03篇4K样片并核验
+        run: python -u .github/video-preview/run.py 03
+      - name: 保存样片供直接查看
+        run: |
+          mkdir -p 样片
+          cp completion-output/*.mp4 '样片/03-4K-读完即转简述2秒.mp4'
+          cp completion-output/03-简述.png '样片/03-新版简述末页.png'
+          cp completion-output/03-verification.json '样片/03-新版核验.json'
+          git add --sparse -- 样片
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '保存03篇新版4K样片：读完即转简述并显示2秒'
+          git push origin HEAD:codex/finish-05-and-summaries-20261112
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Article03-4K-immediate-summary-2s
+          path: completion-output/
+          if-no-files-found: error
+          retention-days: 30

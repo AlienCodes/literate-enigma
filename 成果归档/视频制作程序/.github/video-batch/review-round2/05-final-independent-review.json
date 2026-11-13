@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "article": "05",
+  "passed": true,
+  "scope": "Read-only cross-review of the actual allowed final status/verification files and approved frozen summary; no rerender or new audio measurement.",
+  "execution": {
+    "repository": "AlienCodes/literate-enigma",
+    "run_id": 43336513995,
+    "job_id": 131593943480,
+    "artifact_id": 13998182784,
+    "source_commit": "d69e949f283d60f47f87d838689138b615ffbe2d",
+    "source_kind": "new-canonical-4K"
+  },
+  "checks": {
+    "three_checkout_reference_preflights_passed": true,
+    "k125_target": {
+      "scope": "K125 fixed raw regression; production synth default unchanged",
+      "manifest_sha256": "0a3541baf50620e587b3a47c6507f3b017d53e3539becca2610e418e9cbb479c",
+      "raw_inputs": 40,
+      "independent_gt_exact_raw_matches": 0,
+      "good": [
+        "ok",
+        0
+      ],
+      "bad": [
+        "A10_VIOLATION(lost)",
+        1
+      ],
+      "bad_raw_sha_rejected": true,
+      "missing_raw_rejected": true
+    },
+    "k125_full_quicktest": {
+      "scope": "K125 fixed raw regression; production synth default unchanged",
+      "manifest_sha256": "0a3541baf50620e587b3a47c6507f3b017d53e3539becca2610e418e9cbb479c",
+      "raw_inputs": 40,
+      "independent_gt_exact_raw_matches": 0,
+      "good": [
+        "ok",
+        0
+      ],
+      "bad": [
+        "A10_VIOLATION(lost)",
+        1
+      ],
+      "bad_raw_sha_rejected": true,
+      "missing_raw_rejected": true
+    },
+    "k125_scope": "Fixed immutable raw regression input only; does not claim cross-machine TTS resynthesis passed. Normal production synth.py remains unchanged.",
+    "protected_real05_inputs_unchanged_through_global_test": true,
+    "full_original_quicktest": {
+      "passed": true,
+      "rule_coverage": 448,
+      "fast_text_programs": 37,
+      "stamp_programs": 110,
+      "stamp_sha256": "7097b0f1359f602c274b2c40c33f73b119f242c00de4d40d4329659892515e4b",
+      "stamp_generated_by_original_program": true
+    },
+    "canonical_draft_and_final_audio_gates_passed": true,
+    "actual_production_selftest_faults_detected": 5,
+    "audio": {
+      "input_md5_12": "1e25fbe69f6f",
+      "positive_control_md5_12": "1e25fbe69f6f",
+      "final_md5_12": "1e25fbe69f6f",
+      "voice_unchanged": true,
+      "texts_and_actual_phonemes_compared": 20,
+      "reference_input_keys_and_original_files_unchanged": true,
+      "word_head_or_tail_cuts": 0,
+      "a10_numeric_flagged_positions": 14,
+      "a10_unreviewed_positions": 0,
+      "unexplained_audio_runs": 0,
+      "pure_voice_unresolved": 0,
+      "highlight_unresolved": 0,
+      "sentence_pause_unresolved": 0,
+      "integrated_lufs": -23.9,
+      "audio_packet_bytes_identical_to_passed_native_source": true,
+      "audio_packet_timings_identical_to_passed_native_source": true,
+      "peak_dbfs": -0.7,
+      "existing_edits_audited": 103
+    },
+    "video": {
+      "width": 3840,
+      "height": 2160,
+      "frames": 4483,
+      "body_script_identical_to_passed_native_source": true,
+      "copied_prefix_coded_pictures_identical": true,
+      "copied_prefix_packet_timings_identical": true,
+      "body_min_ssim": 0.999726
+    },
+    "summary": {
+      "frozen_text_sha256": "0cabc50b2cb918e259341565a6088db47f7d690c84bdea91fd3c81b3d46e7059",
+      "authoritative_png_sha256": "d2f6c691b5dff67979d8b17fb92f316532d4cfd773ba58879580f4cff48abca5",
+      "five_points_ten_lines": true,
+      "font_px": 120,
+      "voice_endpoint_seconds": 147.405,
+      "start_frame": 4423,
+      "start_seconds": 147.43333333333334,
+      "delay_seconds": 0.028333333333335986,
+      "frames": 60,
+      "seconds": 2
+    }
+  },
+  "delivery": {
+    "video_path": "/workspace/work/05-delivery-final/05-4K-读完即转简述2秒.mp4",
+    "status_path": "/workspace/work/05-delivery-final/05-status.json",
+    "verification_path": "/workspace/work/05-delivery-final/05-summary-verification.json",
+    "video_sha256": "216f567cca37e44bb5403d5b8d8aa7fcb0bf9aaf335f0c3d8516e996dcd42d9a",
+    "native_source_video_sha256": "2097d1e5bade2dde02ca8bff836be1ed7c92dae4f482f147a3aba7e0cb384c4d",
+    "artifact_contains_only_requested_video_and_two_qc_json": true,
+    "raw_gt_labels_or_models_exported": false
+  },
+  "remaining_unresolved_audio_findings": []
+}

@@ -1,0 +1,73 @@
+name: 20篇简述末页：原片配色与逐帧核验
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/video-completion-final/request.json']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      articles: ${{ steps.choose.outputs.articles }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: /.github/video-completion-final/
+          sparse-checkout-cone-mode: false
+      - id: choose
+        run: |
+          python - <<'PYTHON' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          p = Path('.github/video-completion-final/request.json')
+          articles = json.loads(p.read_text())['articles']
+          print('articles=' + json.dumps(articles))
+          PYTHON
+  produce:
+    needs: plan
+    name: 第${{ matrix.article }}篇
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        article: ${{ fromJson(needs.plan.outputs.articles) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: /.github/video-completion-final/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 安装末页渲染依赖
+        run: |
+          python -m pip install --quiet pillow==12.3.0
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+      - name: 制作并严格核验
+        run: python -u .github/video-completion-final/run.py '${{ matrix.article }}'
+      - name: 保存视频、末页与逐项核验结果
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: video-${{ matrix.article }}
+          path: completion-output/
+          if-no-files-found: error
+          retention-days: 30
+      - name: 保存失败诊断
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: diagnostic-${{ matrix.article }}
+          path: |
+            completion-output/*verification.json
+            completion-output/*简述.png
+            /tmp/completion-diagnostics/
+          if-no-files-found: ignore
+          retention-days: 7

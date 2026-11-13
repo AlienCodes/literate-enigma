@@ -1,0 +1,45 @@
+name: 70篇简述：全文审校后4K末页排版核验
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/video-batch/cards.py', '.github/workflows/summary70-cards.yml']
+permissions:
+  contents: write
+jobs:
+  cards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.github/video-batch/
+            /.github/video-preview/
+            /简述重制预览/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 准备已通过的排版工具
+        run: |
+          python -m pip install --quiet pillow==12.3.0
+          git fetch --no-tags --depth=1 --filter=blob:none origin c9d52b26fe981ef8e4c412189ca289716ab8bf00
+      - name: 逐篇检查五点简述和4K排版
+        run: python -u .github/video-batch/cards.py
+      - name: 保存70篇独立末页及排版核验
+        run: |
+          git add --sparse -- 简述重制预览
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '保存70篇审校后的4K独立简述页及排版核验'
+            git fetch origin codex/finish-05-and-summaries-20261112
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' rebase origin/codex/finish-05-and-summaries-20261112
+            git push origin HEAD:codex/finish-05-and-summaries-20261112
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reviewed-70-summary-cards-4K
+          path: 简述重制预览/
+          if-no-files-found: error
+          retention-days: 30
