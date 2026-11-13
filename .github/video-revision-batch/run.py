@@ -14,8 +14,9 @@ import subprocess
 ROOT = Path.cwd()
 TASK = ROOT / '.github/video-revision-batch'
 NO = os.environ.get('ARTICLE_NO', '12').zfill(2)
-ALLOWED = {'01','03','05','06','09','10','11','12','13','14','15','16','17','18','19','20','22','51'}
-assert NO in ALLOWED, f'Article {NO} is outside this revision scope.'
+ALLOWED = {f'{n:02d}' for n in range(1, 71)}
+SELECTED = json.loads((TASK / 'articles.json').read_text())
+assert NO in ALLOWED and NO in SELECTED, f'Article {NO} is outside the pinned revision scope.'
 M = Path(os.environ['RUNNER_TEMP']) / 'completion-machine'
 W = M / 'video'
 T = ROOT / '视频/工具'

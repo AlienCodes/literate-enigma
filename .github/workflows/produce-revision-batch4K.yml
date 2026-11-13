@@ -22,8 +22,8 @@ jobs:
           from pathlib import Path
           task = Path('.github/video-revision-batch')
           selected = json.loads((task / 'articles.json').read_text())
-          allowed = {'01','03','05','06','09','10','11','12','13','14','15','16','17','18','19','20','22','51'}
-          assert selected and len(selected) <= 20 and len(selected) == len(set(selected))
+          allowed = {f'{n:02d}' for n in range(1, 71)}
+          assert selected and len(selected) <= 70 and len(selected) == len(set(selected))
           assert all(no in allowed for no in selected)
           for no in selected:
               request = task / 'request' / no
@@ -109,6 +109,8 @@ jobs:
             article${{ matrix.article }}-delivery/*.mp4
             article${{ matrix.article }}-delivery/*.json
             article${{ matrix.article }}-delivery/*.png
+            article${{ matrix.article }}-delivery/*.wav
+            article${{ matrix.article }}-delivery/*.log
           compression-level: 1
           retention-days: 30
           if-no-files-found: error
