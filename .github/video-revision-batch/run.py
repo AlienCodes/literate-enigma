@@ -99,6 +99,35 @@ def official(args, label):
         missing = re.findall(r'缺(?:配音|调平)缓存\s+([A-Za-z0-9_\u4e00-\u9fff.-]+\.(?:pkl|json))', text)
         restored = [cache_entry(name) for name in sorted(set(missing))]
         if not any(restored):
+            # The legacy delivery wrapper drops checker exceptions unless they
+            # contain BAD. Preserve actual public diagnostics; never waive them.
+            diagnostics = {}
+            if (W / f'scripts/{NO}.json').exists():
+                shutil.copyfile(W / f'scripts/{NO}.json', OUT / f'{NO}-failed-working-source.json')
+            for group in (f'做_{NO}', f'定稿_{NO}'):
+                for source in (W / group).glob('*.log'):
+                    lines = source.read_text(errors='replace').splitlines()
+                    selected = [line[:1600] for line in lines
+                                if any(mark in line for mark in
+                                       ('✘', 'BAD', 'FAIL', 'Error', 'Exception',
+                                        '问题数', '缺配音缓存', '缺调平缓存', '指纹不符'))]
+                    if selected:
+                        diagnostics[f'{group}/{source.name}'] = selected[-100:]
+            if '停顿位置核对' in text and (W / f'work_{NO}/a.wav').exists():
+                for name in ('停顿位置精确核对.py', '标点停顿核对.py'):
+                    result = subprocess.run(['python3', str(T / name), NO], cwd=W,
+                                            env=ENV, capture_output=True, text=True,
+                                            errors='replace', timeout=240)
+                    lines = (result.stdout + '\n' + result.stderr).splitlines()
+                    exceptions = next((i for i, line in enumerate(lines)
+                                       if line.startswith('Traceback')), len(lines))
+                    evidence = [line[:1600] for line in lines
+                                if any(mark in line for mark in
+                                       ('BAD', 'FAIL', 'Error', 'Exception', '问题数', '插入'))]
+                    evidence += lines[exceptions:][-18:]
+                    diagnostics[name] = {'exit': result.returncode, 'actual_output': evidence}
+            status.setdefault('failure_details', {})['public_checker_diagnostics'] = diagnostics
+            save()
             raise RuntimeError(f'{label}: official quality check failed; see article status JSON')
     raise RuntimeError('Too many individual public cache misses.')
 
