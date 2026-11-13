@@ -1,0 +1,185 @@
+{
+  "article": "51",
+  "passed": false,
+  "stage": "canonical-draft-00.log",
+  "checks_unchanged": true,
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "① 文本：通过，自动修 1 处",
+      "② 声音：51 词尾辅音核对 问题数 0；51 纯人声核对（配音指纹 b86f2f88ba42）问题数 27；问题数 0；51 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "【停】⑤ 出片后核查（467 秒；全文在 /home/runner/work/_temp/completion-machine/video/做_51/）："
+    ]
+  },
+  "real_restored_stamp_validated": true,
+  "request_source_sha256": {
+    "视频/脚本/51.json": "5176b30ecc74c7dab6542bb29c351c8832773249bb264c3d23fd3039128d867f",
+    "视频/工具/初稿生成/gen51.py": "0ff481fffe023fa3ba70ac47cab0f5ec1df4fb6604b592234e8a83b045490a54",
+    "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+    "视频/制作记录/51_待改清单.md": "ecf5130374af884d88d2da2541364142d263194a04cd909fe6fb8734261cd142",
+    "视频/制作记录/逐句确认/51.json": "29feb66b629b87d2e5f289169a9d599584fd2f1bb1f6f5f5f9bdc8db8b568ec8"
+  },
+  "accepted_source": {
+    "id": "51",
+    "path": "最终版4K视频/51 - The Joke That Became OK - OK 原本是个玩笑.mp4",
+    "sha256": "791318f1d7408d738f4024088114386f4de7035a2e4663f4b8c8b815bd9550d2",
+    "git_blob_sha": "87f9a2c3365be06f229d1c62f99f02e2df6ee7e0",
+    "bytes": 11881102,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "56fc5f26412760d72144399ab8431a54d87e668f14cd960d65c32368a803feed"
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794609562402445403,
+    "repository_outputs_modified": false
+  },
+  "failure_details": {
+    "step": "canonical-draft-00.log",
+    "exit": 1,
+    "tail": [
+      "① 文本：通过，自动修 1 处",
+      "② 声音：51 词尾辅音核对 问题数 0；51 纯人声核对（配音指纹 b86f2f88ba42）问题数 27；问题数 0；51 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "【停】⑤ 出片后核查（467 秒；全文在 /home/runner/work/_temp/completion-machine/video/做_51/）：",
+      "  ✘ 机器复听（逐词读音与脚本一致）：机器复听 19 句：读音对不上的 6 句",
+      "      S2：脚本“oll” 听到“all〔small.en〕”；脚本“oll” 听到“all〔parakeet〕”",
+      "      S5：脚本“o k glossed as” 听到“ok glost is〔small.en〕”",
+      "      S6：脚本“letters” 听到“letter〔small.en〕”；脚本“oll korrect” 听到“all correct〔small.en〕”；脚本“oll korrect” 听到“all correct〔parakeet〕”",
+      "      S12：脚本“kurrek” 听到“correct〔small.en〕”；脚本“（多出）” 听到“ok for〔parakeet〕”；脚本“k for ole kurrek” 听到“correct〔parakeet〕”",
+      "      ",
+      "  ✘ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 1",
+      "    51 OK（已用实际声音核实是词的一部分） 呼吸声 9.62–9.77s 长 145 ms 最响 -37.7 dB 重心 2684 Hz 周期 0.17 低频占比 -2.6 dB",
+      "    51 OK（已用实际声音核实是词的一部分） 噗声 9.68–9.69s 长 15 ms 最响 -37.7 dB 重心 1484 Hz 周期 0.00 低频占比 -0.9 dB",
+      "    51 OK（已用实际声音核实是词的一部分） 噗声 9.70–9.72s 长 30 ms 最响 -39.7 dB 重心 1680 Hz 周期 0.31 低频占比 -2.8 dB",
+      "    51 OK（已用实际声音核实是词的一部分） 噗声 15.96–15.97s 长 15 ms 最响 -42",
+      "  ✘ 独立复核：111 处改动，词尾/词头被切 = 2，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['8']（未经实际声音确认的 8），多余声音 = ['0']",
+      "    edge pre_min=-55.1 post_min=-46.6 lost_max=-33.6 A10_VIOLATION(post,lost)",
+      "    edge pre_min=-61.2 post_min=-51.2 lost_max=-49.1 A10_VIOLATION(post)",
+      "    edge pre_min=-44.5 post_min=-55.4 lost_max=-34.1 A10_VIOLATION(pre,lost)",
+      "    edge pre_min=-53.8 post_min=-55.3 lost_max=-39.3 A10_VIOLATION(pre,lost)",
+      " ",
+      "  已自动修：",
+      "    结尾简述整屏折行（G35）：S19 结尾简述：现在字号 30，整屏最大 65（简述折成 9 行）"
+    ],
+    "public_checker_diagnostics": {
+      "做_51/出片后.log": [
+        "✘ 自动音频检查（削波、电流音、停顿超长、响度骤降）",
+        "✘ 机器复听（逐词读音与脚本一致）：机器复听 19 句：读音对不上的 6 句",
+        "✘ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：51 纯人声核对（配音指纹 b86f2f88ba42）问题数 1",
+        "    51 BAD 孤立杂音 21.93–22.02s 长 85 ms 最响 -30.5 dB 重心 4656 Hz 周期 0.16 低频占比 -26.0 dB",
+        "✔ 句间停顿核对（A20：片头 0.4、标题后 1.0、句号 1.0、换段 1.2、片尾 2 秒，词到词 ±0.01 秒）：51 句间停顿核对 问题数 0",
+        "✘ 独立复核：111 处改动，词尾/词头被切 = 2，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['8']（未经实际声音确认的 8），多余声音 = ['0']"
+      ],
+      "做_51/声音.log": [
+        "51 词尾辅音核对 问题数 0",
+        "51 纯人声核对（配音指纹 b86f2f88ba42）问题数 27",
+        "问题数 0",
+        "51 句间停顿核对 问题数 0",
+        "问题数 0"
+      ],
+      "停顿位置精确核对.py": {
+        "exit": 0,
+        "actual_output": [
+          "问题数 0"
+        ],
+        "actual_final_text_lines": [
+          "51 S1 OK  删静音 「OK, | often」 段长比 前 0.83 后 1.00 ｜ 前词末音素起 0.565s 后词开头 0.790s ｜ 停顿 0.665–0.705s（离前词末音素起点 +100 ms，离后词 +85 ms）对齐代价 0.89",
+          "51 S1 OK  删静音 「word, | began」 段长比 前 1.00 后 1.04 ｜ 前词末音素起 4.065s 后词开头 4.540s ｜ 停顿 4.105–4.500s（离前词末音素起点 +40 ms，离后词 +40 ms）对齐代价 0.89",
+          "51 S2 OK  删静音 「papers, | and」 段长比 前 0.95 后 1.05 ｜ 前词末音素起 4.740s 后词开头 5.240s ｜ 停顿 4.800–5.150s（离前词末音素起点 +60 ms，离后词 +90 ms）对齐代价 1.65",
+          "51 S2 OK（已用实际声音核实） 删静音 「misspellings: | O.W.」 段长比 前 1.05 后 1.45 ｜ 前词末音素起 8.415s 后词开头 9.040s ｜ 停顿 8.495–8.960s（离前词末音素起点 +80 ms，离后词 +80 ms）对齐代价 1.65",
+          "51 S2 OK（已用实际声音核实） 删静音 「wright', | K.Y.」 段长比 前 1.45 后 1.29 ｜ 前词末音素起 11.390s 后词开头 11.515s ｜ 停顿 11.405–11.410s（离前词末音素起点 +15 ms，离后词 +105 ms）对齐代价 1.65",
+          "51 S4 OK  删静音 「contemporary, | the」 段长比 前 0.96 后 0.89 ｜ 前词末音素起 6.954s 后词开头 7.479s ｜ 停顿 7.020–7.425s（离前词末音素起点 +66 ms，离后词 +54 ms）对齐代价 1.13",
+          "51 S4 OK  删静音 「Journal, | over」 段长比 前 0.89 后 0.99 ｜ 前词末音素起 8.629s 后词开头 9.129s ｜ 停顿 8.665–9.085s（离前词末音素起点 +36 ms，离后词 +44 ms）对齐代价 1.13",
+          "51 S5 OK  删静音 「'o.k.', | glossed」 段长比 前 0.97 后 1.06 ｜ 前词末音素起 1.748s 后词开头 2.148s ｜ 停顿 1.815–1.970s（离前词末音素起点 +67 ms，离后词 +178 ms）对齐代价 1.41",
+          "51 S7 OK  删静音 「editor, | Charles」 段长比 前 0.91 后 0.94 ｜ 前词末音素起 1.713s 后词开头 2.138s ｜ 停顿 1.790–2.055s（离前词末音素起点 +77 ms，离后词 +83 ms）对齐代价 1.12",
+          "51 S9 OK  删静音 「Buren, | the」 段长比 前 1.03 后 0.97 ｜ 前词末音素起 2.546s 后词开头 2.756s ｜ 停顿 2.660–2.680s（离前词末音素起点 +114 ms，离后词 +76 ms）对齐代价 1.28",
+          "51 S9 OK  删静音 「president, | sought」 段长比 前 0.97 后 1.00 ｜ 前词末音素起 3.906s 后词开头 4.306s ｜ 停顿 4.030–4.165s（离前词末音素起点 +124 ms，离后词 +141 ms）对齐代价 1.28",
+          "51 S10 OK  删静音 「backers, | punning」 段长比 前 1.04 后 1.08 ｜ 前词末音素起 1.289s 后词开头 1.689s ｜ 停顿 1.390–1.635s（离前词末音素起点 +101 ms，离后词 +54 ms）对齐代价 1.76",
+          "51 S10 OK  删静音 「Kinderhook', | after」 段长比 前 1.08 后 0.89 ｜ 前词末音素起 3.889s 后词开头 4.114s ｜ 停顿 3.990–4.035s（离前词末音素起点 +101 ms，离后词 +79 ms）对齐代价 1.76",
+          "51 S10 OK  删静音 「birthplace, | formed」 段长比 前 0.89 后 1.15 ｜ 前词末音素起 5.214s 后词开头 5.764s ｜ 停顿 5.305–5.600s（离前词末音素起点 +91 ms，离后词 +164 ms）对齐代价 1.76",
+          "51 S10 OK  删静音 「Club, | making」 段长比 前 1.15 后 1.02 ｜ 前词末音素起 7.939s 后词开头 8.314s ｜ 停顿 7.990–8.225s（离前词末音素起点 +51 ms，离后词 +89 ms）对齐代价 1.76",
+          "51 S11 OK  删静音 「him, | 234」 段长比 前 1.08 后 0.94 ｜ 前词末音素起 3.315s 后词开头 3.840s ｜ 停顿 3.355–3.775s（离前词末音素起点 +40 ms，离后词 +65 ms）对齐代价 0.67",
+          "51 S12 OK  删静音 「smear: | the」 段长比 前 0.96 后 1.09 ｜ 前词末音素起 5.844s 后词开头 6.544s ｜ 停顿 5.935–6.475s（离前词末音素起点 +91 ms，离后词 +69 ms）对齐代价 1.70",
+          "51 S12 OK  删静音 「Jackson, | a」 段长比 前 1.09 后 1.13 ｜ 前词末音素起 8.619s 后词开头 9.019s ｜ 停顿 8.680–8.925s（离前词末音素起点 +61 ms，离后词 +94 ms）对齐代价 1.70",
+          "51 S12 OK  删静音 「speller, | had」 段长比 前 1.13 后 1.15 ｜ 前词末音素起 10.694s 后词开头 11.144s ｜ 停顿 10.795–11.065s（离前词末音素起点 +101 ms，离后词 +79 ms）对齐代价 1.70",
+          "51 S12 OK  删静音 「O.K., | for」 段长比 前 1.15 后 0.94 ｜ 前词末音素起 12.944s 后词开头 13.294s ｜ 停顿 13.015–13.200s（离前词末音素起点 +71 ms，离后词 +94 ms）对齐代价 1.70",
+          "51 S14 OK  删静音 「years, | people」 段长比 前 0.88 后 0.93 ｜ 前词末音素起 1.338s 后词开头 1.663s ｜ 停顿 1.395–1.620s（离前词末音素起点 +57 ms，离后词 +43 ms）对齐代价 1.58",
+          "51 S16 OK  删静音 「pedigrees: | Choctaw」 段长比 前 0.96 后 1.08 ｜ 前词末音素起 2.540s 后词开头 3.040s ｜ 停顿 2.620–2.965s（离前词末音素起点 +80 ms，离后词 +75 ms）对齐代价 0.78",
+          "51 S19 OK  删静音 「derivation, | a」 段长比 前 0.95 后 1.45 ｜ 前词末音素起 2.844s 后词开头 3.419s ｜ 停顿 2.895–3.330s（离前词末音素起点 +51 ms，离后词 +89 ms）对齐代价 1.17",
+          "问题数 0",
+          ""
+        ]
+      },
+      "标点停顿核对.py": {
+        "exit": 0,
+        "actual_output": [
+          "问题数 0"
+        ],
+        "actual_final_text_lines": [
+          "51 S1 OK  「OK,」 标准 0.4s，实际听到 0.40s",
+          "51 S1 OK  「ntly spoken word,」 标准 0.4s，实际听到 0.40s",
+          "51 S2 OK  「 Boston's papers,」 标准 0.4s，实际听到 0.40s",
+          "51 S2 OK  「ate misspellings:」 标准 0.4s，实际听到 0.40s",
+          "51 S2 OK  「for 'oll wright',」 标准 0.4s，实际听到 0.41s",
+          "51 S4 OK  「t a contemporary,」 标准 0.4s，实际听到 0.40s",
+          "51 S4 OK  「ovidence Journal,」 标准 0.4s，实际听到 0.40s",
+          "51 S5 OK  「rst known 'o.k.',」 标准 0.4s，实际听到 0.40s",
+          "51 S7 OK  「r was the editor,」 标准 0.4s，实际听到 0.40s",
+          "51 S9 OK  「Martin Van Buren,」 标准 0.4s，实际听到 0.40s",
+          "51 S9 OK  「umbent president,」 标准 0.4s，实际听到 0.40s",
+          "51 S10 OK  「New York backers,」 标准 0.4s，实际听到 0.40s",
+          "51 S10 OK  「'Old Kinderhook',」 标准 0.4s，实际听到 0.40s",
+          "51 S10 OK  「r his birthplace,」 标准 0.4s，实际听到 0.40s",
+          "51 S10 OK  「cratic O.K. Club,」 标准 0.4s，实际听到 0.40s",
+          "51 S11 OK  「son unseated him,」 标准 0.4s，实际听到 0.40s",
+          "51 S12 OK  「fabricated smear:」 标准 0.4s，实际听到 0.40s",
+          "51 S12 OK  「t Andrew Jackson,」 标准 0.4s，实际听到 0.40s",
+          "51 S12 OK  「ly inept speller,」 标准 0.4s，实际听到 0.40s",
+          "51 S12 OK  「d paperwork O.K.,」 标准 0.4s，实际听到 0.40s",
+          "51 S14 OK  「out twenty years,」 标准 0.4s，实际听到 0.40s",
+          "51 S16 OK  「exotic pedigrees:」 标准 0.4s，实际听到 0.40s",
+          "51 S19 OK  「e his derivation,」 标准 0.7s，实际听到 0.70s",
+          "问题数 0",
+          ""
+        ]
+      }
+    }
+  },
+  "error": "canonical-draft: official quality check failed; see article status JSON",
+  "reference_gain_failure_diagnostic": {
+    "acceptance": false,
+    "diagnostic_only": true,
+    "program_present": true,
+    "reference_meta_present": true,
+    "actual_pcm_present": true,
+    "current_post_check_present": true,
+    "exit": 0,
+    "program_sha256": "55948369576933238afb713802b02e69368e2db008af9c207fbadc40788bd7ca",
+    "file": "51-reference-gain-diagnostic.json",
+    "sha256": "c95b57832179fd96ec34d6887ef4033ff92c8a329a040c1fe8ecf169410d8e60",
+    "anchor_summary": {
+      "count": 316,
+      "same_waveform_candidates": 307,
+      "median_fitted_gain": 0.8614915356257166,
+      "median_fitted_to_default_gain": 1.0000010749502863,
+      "fitted_gain_min": 0.8614175579045232,
+      "fitted_gain_max": 0.8615332967454162,
+      "inferred_kept_input_peak": 1.0330919843032205,
+      "default_gain_fails_original_2_2_lsb_limit_count": 0
+    },
+    "diagnostic_error": null
+  },
+  "failed_current_video": {
+    "exported": false,
+    "passed": false,
+    "acceptance": false,
+    "purpose": "failed current-attempt video for diagnosis; not a final deliverable",
+    "reason": "Official fingerprint is audio-only or does not match current video/source/PCM."
+  }
+}
