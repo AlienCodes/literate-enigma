@@ -2,7 +2,7 @@
 
 ## 一次下载全部
 
-[下载 ALL-MATERIALS-2026-11-13.zip](https://github.com/alienalgorithm/postgraduate-vocabulary/releases/download/reading-complete-2026.11.13-v1/ALL-MATERIALS-2026-11-13.zip)（约1.77GB）：完整视频、PDF、原图、PDF实页预览、双语文稿、词汇、题目、制作程序和核验记录。
+[下载 ALL-MATERIALS-2026-11-13.zip](https://github.com/alienalgorithm/postgraduate-vocabulary/releases/download/reading-complete-2026.11.13-v2/ALL-MATERIALS-2026-11-13.zip)（约1.77GB）：完整视频、PDF、原图、PDF实页预览、双语文稿、词汇、题目、制作程序和核验记录。
 
 ## 按需下载
 

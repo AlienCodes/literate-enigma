@@ -2,7 +2,7 @@
 
 本目录完整保存70部已验收的最终MP4。全部为3840×2160、30帧/秒；配音结束下一帧转入独立简述页，停留60帧（2秒）。本次归档逐字节复制已验收版本，没有重新合成音频或重新编码。
 
-所有文件SHA-256见[视频定稿文件清单](../成果归档/视频定稿文件清单.json)。[完整下载与分类下载](https://github.com/alienalgorithm/postgraduate-vocabulary/releases/tag/reading-complete-2026.11.13-v1)。
+所有文件SHA-256见[视频定稿文件清单](../成果归档/视频定稿文件清单.json)。[完整下载与分类下载](https://github.com/alienalgorithm/postgraduate-vocabulary/releases/tag/reading-complete-2026.11.13-v2)。
 
 当前带简述定稿以本目录为准；原制作音频和历史基准材料保留在原有制作目录。
 

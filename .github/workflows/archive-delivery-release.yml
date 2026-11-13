@@ -1,0 +1,55 @@
+name: Publish complete reading materials
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Immutable release tag
+        required: true
+        default: reading-complete-2026.11.13-v2
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reading-archive-${{ inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      RELEASE_TAG: ${{ inputs.tag }}
+      RELEASE_ASSET_DIR: /tmp/reading-release-assets
+    steps:
+      - name: Check out completed source and media
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout: |
+            .github/workflows
+            插图阅读小册
+            成果归档
+            最终版4K视频
+            简述重制核验
+            简述重制预览
+            视频/脚本
+            视频/制作记录
+            视频/音频核对
+            视频/工具
+      - name: Verify all reviewed booklet files
+        run: python3 插图阅读小册/verify_archive.py
+      - name: Build complete archives and verify CRC and Git hashes
+        run: python3 成果归档/发布程序/build_release.py
+      - name: Upload, verify SHA-256 and publish permanent Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 成果归档/发布程序/upload_release.py \
+            --repository "$GITHUB_REPOSITORY" \
+            --tag "$RELEASE_TAG" \
+            --commit "$GITHUB_SHA" \
+            --assets "$RELEASE_ASSET_DIR" \
+            --notes 成果归档/RELEASE-NOTES.md

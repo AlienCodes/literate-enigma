@@ -1,4 +1,4 @@
-> **2026-11-13 完整成果归档**：70部最终4K视频、70篇插图小册子、7册合订PDF及配套素材、源码和审校记录，见[完整下载Release](https://github.com/alienalgorithm/postgraduate-vocabulary/releases/tag/reading-complete-2026.11.13-v1)与[归档说明](成果归档/README.md)。保存规则见[AGENTS.md](AGENTS.md)。
+> **2026-11-13 完整成果归档**：70部最终4K视频、70篇插图小册子、7册合订PDF及配套素材、源码和审校记录，见[完整下载Release](https://github.com/alienalgorithm/postgraduate-vocabulary/releases/tag/reading-complete-2026.11.13-v2)与[归档说明](成果归档/README.md)。保存规则见[AGENTS.md](AGENTS.md)。
 
 # 记词 · 考研词汇双语读本
 

@@ -6,7 +6,7 @@
 
 ## 下载与阅读
 
-在[完整成果Release](https://github.com/alienalgorithm/postgraduate-vocabulary/releases/tag/reading-complete-2026.11.13-v1)下载全部材料或分类包。七册合订PDF也可单独下载。
+在[完整成果Release](https://github.com/alienalgorithm/postgraduate-vocabulary/releases/tag/reading-complete-2026.11.13-v2)下载全部材料或分类包。七册合订PDF也可单独下载。
 
 - `production/01`至`production/70`：每篇正式PDF、同一PDF的逐页PNG预览及版面核验记录。
 - `volumes/01`至`volumes/07`：合订PDF、目录实页预览及核验记录。
