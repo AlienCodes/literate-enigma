@@ -1,156 +1,157 @@
-# 按批准脚本固化的数据；共享生成与核对程序保持原样。
-import os, sys
+#!/usr/bin/env python3
+# Pure data frozen from the current approved JSON; shared helper/checkers unchanged.
+import os
+import sys
 
 S = [(1,
-  [[[['OK,', 'OK，'],
-     ['often', '常'],
-     ['said to be', '被说成是'],
-     ["the planet's", '全世界'],
-     ['**most frequently**', '**最常**(most frequently)'],
-     ['spoken', '说出的'],
-     ['word,', '词，'],
-     ['began as', '起初只是'],
-     ['a newspaper', '报纸上的一个'],
-     ['**gag**.', '**噱头**(gag)。']],
+  [[[('OK,', 'OK，'),
+     ('often', '常'),
+     ('said to be', '被说成是'),
+     ("the planet's", '全世界'),
+     ('**most frequently**', '**最常**(most frequently)'),
+     ('spoken', '说出的'),
+     ('word,', '词，'),
+     ('began as', '起初只是'),
+     ('a newspaper', '报纸上的一个'),
+     ('**gag**.', '**噱头**(gag)。')],
     '（often said to be…：过去分词短语作插入语，\n补充说明 OK；\nbegin as…：起初是……）']]),
  (1,
-  [[[['From 1838', '从1838年起，'],
-     ['**abbreviations**', '**缩写**(abbreviations)'],
-     ['were **all the vogue**', '**风靡**(all the vogue)'],
-     ["in Boston's papers,", '于波士顿各大报纸，']],
+  [[[('From 1838', '从1838年起，'),
+     ('**abbreviations**', '**缩写**(abbreviations)'),
+     ('were **all the vogue**', '**风靡**(all the vogue)'),
+     ("in Boston's papers,", '于波士顿各大报纸，')],
     '（be all the vogue：风靡一时，非常流行）'],
-   [[['and the **craze**', '而且这股**狂热**(craze)'],
-     ['turned **comic**', '也变得**滑稽**(comic)起来，'],
-     ['through', '通过'],
-     ['**deliberate**', '**故意的**(deliberate)'],
-     ['**misspellings**:', '**错误拼写**(misspellings)：']],
+   [[('and the **craze**', '而且这股**狂热**(craze)'),
+     ('turned **comic**', '也变得**滑稽**(comic)起来，'),
+     ('through', '通过'),
+     ('**deliberate**', '**故意的**(deliberate)'),
+     ('**misspellings**:', '**错误拼写**(misspellings)：')],
     '（turn＋形容词：变得……；\nthrough…：借助……）'],
-   [[["O.W. for 'oll wright',", "用 O.W. 代表 'oll wright'，"],
-     ["K.Y. for 'know yuse'.", "用 K.Y. 代表 'know yuse'。"]],
+   [[("O.W. for 'oll wright',", "用 O.W. 代表 'oll wright'，"),
+     ("K.Y. for 'know yuse'.", "用 K.Y. 代表 'know yuse'。")],
     "（'oll wright'：故意拼错的 all right；\n'know yuse'：故意拼错的 no use）"]]),
  (1,
-  [[[['The **humour**', '**幽默**(humour)'],
-     ['**lay in**', '**在于**(lay in)'],
-     ['the **persona** of an **uneducated** **bumpkin**.',
-      '一个**没受过教育的**(uneducated)**乡巴佬**(bumpkin)**人物角色**(persona)。']],
+  [[[('The **humour**', '**幽默**(humour)'),
+     ('**lay in**', '**在于**(lay in)'),
+     ('the **persona** of an **uneducated** **bumpkin**.',
+      '一个**没受过教育的**(uneducated)**乡巴佬**(bumpkin)**人物角色**(persona)。')],
     '（lie in…：在于……；\nthe persona of…：of 结构，……的人物角色）']]),
  (2,
-  [[[['On 23 March 1839', '1839年3月23日，'],
-     ['a Boston Morning Post **satire**', '《波士顿晨邮报》的一篇**讽刺文章**(satire)']]],
-   [[['**took a swipe at**', '**抨击了**(took a swipe at)'],
-     ['a **contemporary**,', '一个**同时期的**(contemporary)报纸'],
-     ['the Providence Journal,', '《普罗维登斯日报》，']],
+  [[[('On 23 March 1839', '1839年3月23日，'), ('a Boston Morning Post **satire**', '《波士顿晨邮报》的一篇**讽刺文章**(satire)')]],
+   [[('**took a swipe at**', '**抨击了**(took a swipe at)'),
+     ('a **contemporary**,', '一个**同时期的**(contemporary)报纸'),
+     ('the Providence Journal,', '《普罗维登斯日报》，')],
     '（take a swipe at…：抨击；\nthe Providence Journal：同位语，补充说明 a contemporary）'],
-   [[['over a **mock** society', '话题是一个**恶搞的**(mock)社团，'],
-     ['**parodying**', '它**戏仿**(parodying)'],
-     ['an **ordinance** against ringing dinner bells.', '一项禁止敲开饭铃的**法令**(ordinance)。']],
+   [[('over a **mock** society', '话题是一个**恶搞的**(mock)社团，'),
+     ('**parodying**', '它**戏仿**(parodying)'),
+     ('an **ordinance** against ringing dinner bells.', '一项禁止敲开饭铃的**法令**(ordinance)。')],
     '（over…：就……，关于……；\nparodying…：现在分词短语作后置定语，修饰 society）']]),
  (2,
-  [[[['It carried', '它刊载了'],
-     ["the first known 'o.k.',", '已知最早的“o.k.”，'],
-     ["**glossed as** 'all correct'.", '**被注释为**(glossed as)“all correct”（完全正确）。']],
+  [[[('It carried', '它刊载了'),
+     ("the first known 'o.k.',", '已知最早的“o.k.”，'),
+     ("**glossed as** 'all correct'.", '**被注释为**(glossed as)“all correct”（完全正确）。')],
     "（glossed as…：过去分词短语作后置定语，\n修饰 'o.k.'，\n被注释为……）"]]),
  (2,
-  [[[['The letters', '这两个字母'],
-     ['**stood for**', '**代表**(stood for)的是'],
-     ['a **knowingly**', '**有意**(knowingly)写成'],
-     ['**illiterate**', '**文盲**(illiterate)拼法的'],
-     ["'oll korrect'.", "'oll korrect'。"]],
+  [[[('The letters', '这两个字母'),
+     ('**stood for**', '**代表**(stood for)的是'),
+     ('a **knowingly**', '**有意**(knowingly)写成'),
+     ('**illiterate**', '**文盲**(illiterate)拼法的'),
+     ("'oll korrect'.", "'oll korrect'。")],
     "（stand for：代表；\n'oll korrect'：故意拼错的 all correct）"]]),
  (2,
-  [[[['The **presumed** writer', '**推定的**(presumed)作者'],
-     ['was', '是'],
-     ['the **editor**,', '该报纸的**编辑**(editor)'],
-     ['Charles Gordon Greene.', '查尔斯·戈登·格林。']],
+  [[[('The **presumed** writer', '**推定的**(presumed)作者'),
+     ('was', '是'),
+     ('the **editor**,', '该报纸的**编辑**(editor)'),
+     ('Charles Gordon Greene.', '查尔斯·戈登·格林。')],
     '（Charles Gordon Greene：同位语，\n补充说明 the editor）']]),
  (3,
-  [[[['**Partisan** politics', '**党派**(Partisan)政治'],
-     ['**propagated** the letters nationwide.', '在全国**宣传了**(propagated)这些字母。']],
+  [[[('**Partisan** politics', '**党派**(Partisan)政治'),
+     ('**propagated** the letters nationwide.', '在全国**宣传了**(propagated)这些字母。')],
     '（当时正值美国大选，\n'
     '总统候选人范布伦的外号叫“老金德胡克（Old Kinderhook）”，缩写刚好是 O.K.。\n'
     '党派报纸疯狂传播这两个字母，就是搞政治营销，\n'
     '暗示“选他，就是完全正确（all correct）！”）']]),
  (3,
-  [[[['In 1840', '1840年，'],
-     ['Martin Van Buren, the **incumbent** president,', '**在任**(incumbent)总统马丁·范布伦'],
-     ['sought **re-election**.', '寻求**连任**(re-election)。']],
+  [[[('In 1840', '1840年，'),
+     ('Martin Van Buren, the **incumbent** president,', '**在任**(incumbent)总统马丁·范布伦'),
+     ('sought **re-election**.', '寻求**连任**(re-election)。')],
     '（the incumbent president：同位语，补充说明 Martin Van Buren）']]),
  (3,
-  [[[['His New York **backers**,', '他在纽约的**拥护者**(backers)'],
-     ["**punning on** his nickname 'Old Kinderhook',",
-      "**拿**(punning on)他的绰号 'Old Kinderhook' **玩双关**(punning on)，"],
-     ['after his **birthplace**,', '这个绰号得名于他的**出生地**(birthplace)，']],
+  [[[('His New York **backers**,', '他在纽约的**拥护者**(backers)'),
+     ("**punning on** his nickname 'Old Kinderhook',",
+      "**拿**(punning on)他的绰号 'Old Kinderhook' **玩双关**(punning on)，"),
+     ('after his **birthplace**,', '这个绰号得名于他的**出生地**(birthplace)，')],
     '（punning on…：现在分词短语作状语，拿……玩双关；\nafter his birthplace：以他的出生地金德胡克命名）'],
-   [[['formed', '他们成立了'],
-     ['the Democratic O.K. Club,', '民主党 O.K. 俱乐部，'],
-     ['making', '让'],
-     ['the letters', '这两个字母'],
-     ['a **double-meaning**', '成了一句**一语双关的**(double-meaning)'],
-     ['**slogan**.', '**口号**(slogan)。']],
+   [[('formed', '他们成立了'),
+     ('the Democratic O.K. Club,', '民主党 O.K. 俱乐部，'),
+     ('making', '让'),
+     ('the letters', '这两个字母'),
+     ('a **double-meaning**', '成了一句**一语双关的**(double-meaning)'),
+     ('**slogan**.', '**口号**(slogan)。')],
     '（making…：现在分词短语作状语，表示结果；\nmake A B：让 A 成为 B）']]),
  (3,
-  [[[['That November', '那年11月，'],
-     ['William Henry Harrison', '威廉·亨利·哈里森'],
-     ['**unseated** him,', '**把**(unseated)他**赶下台**(unseated)，'],
-     ['234 **electoral votes** to 60.', '**选举人票**(electoral votes)为234张对60张。']],
+  [[[('That November', '那年11月，'),
+     ('William Henry Harrison', '威廉·亨利·哈里森'),
+     ('**unseated** him,', '**把**(unseated)他**赶下台**(unseated)，'),
+     ('234 **electoral votes** to 60.', '**选举人票**(electoral votes)为234张对60张。')],
     '（234 electoral votes to 60：选举人票234张对60张）\n'
     '（这里的“他”指时任总统范布伦。\n'
     '1840年总统大选，哈里森拿到234张选举人票，范布伦只有60张。\n'
     '哈里森因此获胜，范布伦没能连任。）']]),
  (4,
-  [[[['On 30 March 1840', '1840年3月30日，'],
-     ['the New York Morning Herald', '《纽约先驱晨报》'],
-     ['printed a **fabricated**', '刊登了一则**捏造的**(fabricated)'],
-     ['**smear**:', '**抹黑**(smear)：']]],
-   [[['the former', '前'],
-     ['president', '总统'],
-     ['Andrew Jackson,', '安德鲁·杰克逊，'],
-     ['a **supposedly**', '一个**据称**(supposedly)'],
-     ['**inept** speller,', '拼写**笨拙的**(inept)人，'],
-     ['had marked **paperwork** O.K.,', '曾在**公文**(paperwork)上标注 O.K.，'],
-     ["for 'Ole Kurrek'.", '用以代表“Ole Kurrek”。']],
+  [[[('On 30 March 1840', '1840年3月30日，'),
+     ('the New York Morning Herald', '《纽约先驱晨报》'),
+     ('printed a **fabricated**', '刊登了一则**捏造的**(fabricated)'),
+     ('**smear**:', '**抹黑**(smear)：')]],
+   [[('the former', '前'),
+     ('president', '总统'),
+     ('Andrew Jackson,', '安德鲁·杰克逊，'),
+     ('a **supposedly**', '一个**据称**(supposedly)'),
+     ('**inept** speller,', '拼写**笨拙的**(inept)人，'),
+     ('had marked **paperwork** O.K.,', '曾在**公文**(paperwork)上标注 O.K.，'),
+     ("for 'Ole Kurrek'.", '用以代表“Ole Kurrek”。')],
     '（a supposedly inept speller：同位语，补充说明 Andrew Jackson；\n'
     'mark A B：在 A 上标注 B；\n'
     "'Ole Kurrek'：故意拼错的 all correct）"]]),
  (4,
-  [[[['Jackson', '杰克逊'],
-     ['spelled', '拼写得'],
-     ['**reasonably**', '**还算/尚且**(reasonably)'],
-     ['well', '不错，'],
-     ['and never', '并且从没'],
-     ['marked documents O.K.', '在文件上批注过 O.K.。']]]]),
+  [[[('Jackson', '杰克逊'),
+     ('spelled', '拼写得'),
+     ('**reasonably**', '**还算/尚且**(reasonably)'),
+     ('well', '不错，'),
+     ('and never', '并且从没'),
+     ('marked documents O.K.', '在文件上批注过 O.K.。')]]]),
  (4,
-  [[[['Within about twenty years,', '在大约二十年内，'],
-     ['people', '人们'],
-     ['did so **in earnest**.', '就**认真地**(in earnest)这样做了。']],
+  [[[('Within about twenty years,', '在大约二十年内，'),
+     ('people', '人们'),
+     ('did so **in earnest**.', '就**认真地**(in earnest)这样做了。')],
     '（do so：这样做，指在文件上批 O.K.）']]),
  (4,
-  [[[['The', '这个'],
-     ['**bogus**', '**伪造的**(bogus)'],
-     ['**notation**', '**批注**(notation)，'],
-     ['was merely **premature**.', '不过是出现**过早**(premature)而已。']]]]),
+  [[[('The', '这个'),
+     ('**bogus**', '**伪造的**(bogus)'),
+     ('**notation**', '**批注**(notation)，'),
+     ('was merely **premature**.', '不过是出现**过早**(premature)而已。')]]]),
  (5,
-  [[[['Rival stories', '与之竞争的说法'],
-     ['offered **exotic**', '给出了种种**异域的**(exotic)'],
-     ['**pedigrees**:', '**来历**(pedigrees)，'],
-     ["Choctaw 'okeh'", "比如乔克托语的 'okeh'"],
-     ["and Greek 'ola kala'.", "和希腊语的 'ola kala'。"]]]]),
+  [[[('Rival stories', '与之竞争的说法'),
+     ('offered **exotic**', '给出了种种**异域的**(exotic)'),
+     ('**pedigrees**:', '**来历**(pedigrees)，'),
+     ("Choctaw 'okeh'", "比如乔克托语的 'okeh'"),
+     ("and Greek 'ola kala'.", "和希腊语的 'ola kala'。")]]]),
  (5,
-  [[[['**Authoritative** dictionaries', '**权威**(Authoritative)词典'],
-     ['favoured Choctaw as late as 1961.', '直到1961年还倾向于乔克托语一说。']],
+  [[[('**Authoritative** dictionaries', '**权威**(Authoritative)词典'),
+     ('favoured Choctaw as late as 1961.', '直到1961年还倾向于乔克托语一说。')],
     '（as late as…：直到……还）']]),
  (5,
-  [[[['In 1963–64', '1963至1964年，'], ['the linguist', '语言学家'], ['Allen Walker Read', '艾伦·沃克·里德']]],
-   [[['**excavated** the **neglected** Boston **provenance** from **archival** newspapers',
-      '从**档案**(archival)报纸中**发掘**(excavated)出长期被**忽视的**(neglected)波士顿**起源**(provenance)，']],
+  [[[('In 1963–64', '1963至1964年，'), ('the linguist', '语言学家'), ('Allen Walker Read', '艾伦·沃克·里德')]],
+   [[('**excavated** the **neglected** Boston **provenance** from **archival** newspapers',
+      '从**档案**(archival)报纸中**发掘**(excavated)出长期被**忽视的**(neglected)波士顿**起源**(provenance)，')],
     '（excavate A from B：从 B 中发掘出 A）'],
-   [[['in six **influential** American Speech articles.', '这些发现发表在《美国语言》杂志的六篇**影响深远的**(influential)文章里。']],
+   [[('in six **influential** American Speech articles.', '这些发现发表在《美国语言》杂志的六篇**影响深远的**(influential)文章里。')],
     '（in six … articles：in 结构作状语，指成果发表在六篇文章中）']]),
  (5,
-  [[[['Most dictionaries now', '如今大多数词典都'],
-     ['**embrace**', '**采纳了**(embrace)'],
-     ['his **derivation**,', '他的**词源**(derivation)解释，'],
-     ['a **pedigree** of bad spelling and dinner-bell satire.', '那是一段由错误拼写和开饭铃讽刺文构成的**来历**(pedigree)。']],
+  [[[('Most dictionaries now', '如今大多数词典都'),
+     ('**embrace**', '**采纳了**(embrace)'),
+     ('his **derivation**,', '他的**词源**(derivation)解释，'),
+     ('a **pedigree** of bad spelling and dinner-bell satire.', '那是一段由错误拼写和开饭铃讽刺文构成的**来历**(pedigree)。')],
     '（a pedigree of…：同位语，补充说明 derivation）\n'
     '（简述：▸起点：1838年起，波士顿报纸流行故意拼错英语再缩写开玩笑。1839年出现已知最早的o.k.，取自all correct（完全正确）的错拼oll '
     'korrect。▸竞选：1840年，范布伦阵营用他绰号Old '
@@ -160,6 +161,7 @@ out = {'no': '51',
  'title_en': 'The Joke That Became OK',
  'title_zh': 'OK 原本是个玩笑',
  'title_fx': {'hl': ['Joke', 'OK'], 'ghost': []},
+ 'sentences': [],
  '核对确认': {'合组': {"S2 O.W. for 'oll wright'": "对齐不了：'oll wright' 是故意错拼的引语，整体照录，不能拆",
                  "S2 K.Y. for 'know yuse'": "对齐不了：'know yuse' 是故意错拼的引语，整体照录，不能拆",
                  'S4 an ordinance against ringing dinner bells': '对齐不了：against ringing dinner bells 是后置定语，修饰 '
@@ -167,11 +169,9 @@ out = {'no': '51',
                  "S5 the first known 'o.k.'": "对齐不了：first known 中文“已知最早的”语序倒过来，'o.k.' 是引语，整体照录",
                  "S5 glossed as 'all correct'": "对齐不了：'all correct' 是引语，整体照录；gloss A as B 中文“注明意为 B”",
                  "S6 'oll korrect'": "对齐不了：'oll korrect' 是故意错拼的引语，整体照录，不能拆",
-                 'S8 propagated the letters nationwide': '对齐不了：propagate A nationwide 中文“把 A '
-                                                         '传遍全国”，宾语必须提前到动词前',
+                 'S8 propagated the letters nationwide': '对齐不了：propagate A nationwide 中文“把 A 传遍全国”，宾语必须提前到动词前',
                  "S10 punning on his nickname 'Old Kinderhook'": '对齐不了：pun on A 中文“拿 A '
-                                                                 "玩双关”，宾语必须夹在“拿”和“玩双关”中间；'Old Kinderhook' "
-                                                                 '是引语',
+                                                                 "玩双关”，宾语必须夹在“拿”和“玩双关”中间；'Old Kinderhook' 是引语",
                  'S13 marked documents O.K': '对齐不了：mark A B 中文“在 A 上批 B”，A 必须提前到动词前',
                  "S16 and Greek 'ola kala'": "对齐不了：'ola kala' 是希腊语引语，整体照录，不能拆",
                  'S17 favoured Choctaw as late as 1961': '对齐不了：as late as 1961 是时间状语，中文“直到1961年还”必须放到动词前',
@@ -186,8 +186,8 @@ out = {'no': '51',
                  'S19 derivation … of': '不是搭配：of 属于同位语 a pedigree of…，derivation 单独就是“词源”（速查表第一个意思）'},
           '响度骤降': {'9.2–9.7s': {'配音指纹': 'ff0728857c2d',
                                 '低': 6.0,
-                                '句子': "S1 OK, often said to be the planet's most frequently spoken word, "
-                                      'began as a newspaper gag.',
+                                '句子': "S1 OK, often said to be the planet's most frequently spoken word, began "
+                                      'as a newspaper gag.',
                                 '依据': '2026-11-06 逐 50 ms 实测（a.wav，配音指纹 ff0728857c2d）：句末 newspaper '
                                       'gag.：9.20、9.35 是 /p/ 除阻（2 kHz 以上占 -7.6～-10.4 dB，清楚），9.40–9.50 是 ɐ/æ '
                                       '浊音元音（-14.6～-22.7 dB、低频 -4.6～-6.7 dB），9.55 起句末降调自然衰减到 9.75 -60 '
@@ -196,25 +196,25 @@ out = {'no': '51',
                                         '守则22，主会话是总负责人）：“你拥有最高决策权……你是总负责人……你来帮我做最好的决定，但是前提是这个决定他能够是最好的。”声音按实测定，交主会话核定'}},
           '删除段': {'S10 raw 5.3200-5.6250': {'类型': '紧贴词尾的非人声',
                                             '配音指纹': 'ff0728857c2d',
-                                            '依据': '2026-11-06 逐 10 ms 实测（w，配音指纹 ff0728857c2d，O.K. '
-                                                  '改连读后重合成）：S10 w 5.30–5.595：birthplace 的 /s/（重心 5.1–5.7 '
-                                                  'kHz）衰减到 5.29，5.32–5.58 是吸气（-41～-53 dB、低频 -12～-25 dB、重心 '
-                                                  '2.0–2.8 kHz），5.59–5.62 -53～-57 dB，5.63 起 formed 的 /f/；/s/ '
-                                                  '尾与吸气之间没有 -55 dB 低谷，紧贴词尾切；被算作词尾被切的 5 ms 是 /s/ 衰减末端'},
+                                            '依据': '2026-11-06 逐 10 ms 实测（w，配音指纹 ff0728857c2d，O.K. 改连读后重合成）：S10 '
+                                                  'w 5.30–5.595：birthplace 的 /s/（重心 5.1–5.7 kHz）衰减到 '
+                                                  '5.29，5.32–5.58 是吸气（-41～-53 dB、低频 -12～-25 dB、重心 2.0–2.8 '
+                                                  'kHz），5.59–5.62 -53～-57 dB，5.63 起 formed 的 /f/；/s/ 尾与吸气之间没有 '
+                                                  '-55 dB 低谷，紧贴词尾切；被算作词尾被切的 5 ms 是 /s/ 衰减末端'},
                   'S10 raw 8.0013-8.2523': {'类型': '紧贴两头的非人声',
                                             '配音指纹': 'ff0728857c2d',
-                                            '依据': '2026-11-06 逐 10 ms 实测（w，配音指纹 ff0728857c2d，O.K. '
-                                                  '改连读后重合成）：S10 w 7.981–8.232：Club 的 /b/ 衰减到 7.97（低频 -2 '
-                                                  'dB），8.01–8.18 是吸气（-40～-47 dB、低频 -11～-29 dB、重心 2.1–3.5 '
-                                                  'kHz），8.19–8.22 低频 0～-3 dB 是一下声门声，8.23–8.25 静音，8.26 起 '
-                                                  'making 的 /m/；两头都没有 -55 dB 低谷，紧贴两头切在过零点'},
+                                            '依据': '2026-11-06 逐 10 ms 实测（w，配音指纹 ff0728857c2d，O.K. 改连读后重合成）：S10 '
+                                                  'w 7.981–8.232：Club 的 /b/ 衰减到 7.97（低频 -2 dB），8.01–8.18 '
+                                                  '是吸气（-40～-47 dB、低频 -11～-29 dB、重心 2.1–3.5 kHz），8.19–8.22 低频 '
+                                                  '0～-3 dB 是一下声门声，8.23–8.25 静音，8.26 起 making 的 /m/；两头都没有 -55 '
+                                                  'dB 低谷，紧贴两头切在过零点'},
                   'S12 raw 8.7587-9.0233': {'类型': '紧贴两头的非人声',
                                             '配音指纹': 'ff0728857c2d',
-                                            '依据': '2026-11-06 逐 10 ms 实测（w，配音指纹 ff0728857c2d，O.K. '
-                                                  '改连读后重合成）：S12 w 8.669–8.933：Jackson 的 /n/ 衰减到 8.67（-56 '
-                                                  'dB、低频 -1 dB），8.68–8.89 是吸气（-38～-53 dB、低频 -9～-23 dB、重心 '
-                                                  '2.2–3.0 kHz），8.90–8.93 低频 0～-6 dB 是 a 的声门预发声起头（8.94 '
-                                                  '起保留），8.96 起 ɐ；两头都没有 -55 dB 低谷，紧贴两头切在过零点'},
+                                            '依据': '2026-11-06 逐 10 ms 实测（w，配音指纹 ff0728857c2d，O.K. 改连读后重合成）：S12 '
+                                                  'w 8.669–8.933：Jackson 的 /n/ 衰减到 8.67（-56 dB、低频 -1 '
+                                                  'dB），8.68–8.89 是吸气（-38～-53 dB、低频 -9～-23 dB、重心 2.2–3.0 '
+                                                  'kHz），8.90–8.93 低频 0～-6 dB 是 a 的声门预发声起头（8.94 起保留），8.96 起 '
+                                                  'ɐ；两头都没有 -55 dB 低谷，紧贴两头切在过零点'},
                   'S12 raw 10.8740-11.1600': {'类型': '紧贴词尾的非人声',
                                               '配音指纹': 'ff0728857c2d',
                                               '依据': '2026-11-06 逐 10 ms 实测（w，配音指纹 ff0728857c2d，O.K. '
@@ -225,12 +225,12 @@ out = {'no': '51',
                   'S10 raw 5.0301-5.1625': {'类型': '紧贴两头的非人声',
                                             '配音指纹': 'ff0728857c2d',
                                             '依据': '2026-11-06 逐 5 ms 实测（w，配音指纹 ff0728857c2d）：S10 w '
-                                                  '4.880–5.0125：birthplace 的 /s/ 4.80–4.87（重心 5.7–6.1 '
-                                                  'kHz）衰减到 4.875（-34 dB），4.88–5.01 是一口吸气（-31～-47 dB、最响 4.895 '
-                                                  '-26.6 dB、重心 2.6–4.5 kHz、低频 -10～-26 dB），5.015 起 formed 的 '
-                                                  '/f/；吸气与 /s/ 尾、/f/ 头之间都没有 -55 dB '
-                                                  '低谷，紧贴两头切在过零点（非人声区间第4项“吸气”，主会话 2026-11-06 定），停顿删除区间 '
-                                                  '[4.905, 5.005] 删在换成静音的段里；被算作词尾被切的 125 ms 就是这口吸气本身'},
+                                                  '4.880–5.0125：birthplace 的 /s/ 4.80–4.87（重心 5.7–6.1 kHz）衰减到 '
+                                                  '4.875（-34 dB），4.88–5.01 是一口吸气（-31～-47 dB、最响 4.895 -26.6 '
+                                                  'dB、重心 2.6–4.5 kHz、低频 -10～-26 dB），5.015 起 formed 的 /f/；吸气与 '
+                                                  '/s/ 尾、/f/ 头之间都没有 -55 dB 低谷，紧贴两头切在过零点（非人声区间第4项“吸气”，主会话 '
+                                                  '2026-11-06 定），停顿删除区间 [4.905, 5.005] 删在换成静音的段里；被算作词尾被切的 125 '
+                                                  'ms 就是这口吸气本身'},
                   'S2 raw 4.8200-5.1786': {'类型': '紧贴两头的非人声',
                                            '配音指纹': 'ff0728857c2d',
                                            '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 w '
@@ -243,27 +243,26 @@ out = {'no': '51',
                                              '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 w '
                                                    '10.21–10.555：O.W. 的 uː 衰减到 10.20，10.21–10.38 -55～-66 dB '
                                                    '静音夹着 10.37/10.39 两下 -54 dB 碎声，10.40–10.55 是吸气（-48～-57 '
-                                                   'dB、低频 -12～-23 dB、重心 2–2.5 kHz），10.555 起 for 的 /f/（重心 '
-                                                   '4–4.9 kHz）；非人声区间 [10.350458, 10.5545] 紧贴 /f/ '
+                                                   'dB、低频 -12～-23 dB、重心 2–2.5 kHz），10.555 起 for 的 /f/（重心 4–4.9 '
+                                                   'kHz）；非人声区间 [10.350458, 10.5545] 紧贴 /f/ '
                                                    '词头切在过零点，整段成连续静音后压到标准长度'},
-                  'S2 raw 11.4263-11.5150': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 第3个标点 '
-                                            "wright', 后：停顿处除阻 S2“3”把 /t/ 闭塞后的弱除阻换成供体 t "
-                                            '除阻（11.405–11.41），换掉的原声是 -28.8 dB 以下的弱除阻和停顿里的静音，两侧 -65 dB '
-                                            '干净；词本身不动',
+                  'S2 raw 11.4263-11.5150': "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 第3个标点 wright', "
+                                            '后：停顿处除阻 S2“3”把 /t/ 闭塞后的弱除阻换成供体 t 除阻（11.405–11.41），换掉的原声是 -28.8 dB '
+                                            '以下的弱除阻和停顿里的静音，两侧 -65 dB 干净；词本身不动',
                   'S4 raw 2.8176-3.0800': {'类型': '紧贴词尾的非人声',
                                            '配音指纹': 'ff0728857c2d',
                                            '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S4 w '
                                                  '2.757–3.02：ordinance 的 /n/ 衰减到 2.76（-51 dB、低频 -3 '
                                                  'dB），2.78–2.98 是吸气（-37～-45 dB、低频 -8～-29 dB、重心 2.4–3.5 '
-                                                 'kHz），2.99–3.01 低频 0 dB 是 against 的 ɐ 声门预发声（保留），/n/ '
-                                                 '尾与吸气之间没有 -55 dB 低谷，紧贴词尾切在过零点'},
+                                                 'kHz），2.99–3.01 低频 0 dB 是 against 的 ɐ 声门预发声（保留），/n/ 尾与吸气之间没有 '
+                                                 '-55 dB 低谷，紧贴词尾切在过零点'},
                   'S10 raw 1.3650-1.5900': {'类型': '紧贴词尾的非人声',
                                             '配音指纹': 'ff0728857c2d',
                                             '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S10 w '
                                                   '1.235–1.41：backers, 的 /z/（重心 5.6 kHz）衰减到 1.23，1.235–1.36 '
-                                                  '是吸气（-40～-50 dB、低频 -15～-25 dB、重心 2.2–3.0 kHz），1.365–1.405 '
-                                                  '低频 0 dB 的一下声门噗声（punning 的 /p/ 是清音），1.41–1.46 静音，1.465 起 '
-                                                  '/p/ 除阻；/z/ 尾与吸气之间没有 -55 dB 低谷，紧贴词尾切在过零点'},
+                                                  '是吸气（-40～-50 dB、低频 -15～-25 dB、重心 2.2–3.0 kHz），1.365–1.405 低频 '
+                                                  '0 dB 的一下声门噗声（punning 的 /p/ 是清音），1.41–1.46 静音，1.465 起 /p/ '
+                                                  '除阻；/z/ 尾与吸气之间没有 -55 dB 低谷，紧贴词尾切在过零点'},
                   'S10 raw 4.0000-4.0050': {'类型': '紧贴词尾的非人声',
                                             '配音指纹': 'ff0728857c2d',
                                             '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S10 w '
@@ -275,8 +274,8 @@ out = {'no': '51',
                                             '配音指纹': 'ff0728857c2d',
                                             '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S12 w '
                                                   '5.84–6.181：smear: 停顿里，5.80–5.89 -52～-58 dB 余音，5.90–6.12 '
-                                                  '是吸气（-36～-52 dB、低频 -11～-25 dB、重心 2.1–3.9 kHz），6.14–6.17 低频 '
-                                                  '0 dB 是 the 的浊音预发声，6.19 起 /ð/；吸气与 the 之间没有 -55 dB '
+                                                  '是吸气（-36～-52 dB、低频 -11～-25 dB、重心 2.1–3.9 kHz），6.14–6.17 低频 0 '
+                                                  'dB 是 the 的浊音预发声，6.19 起 /ð/；吸气与 the 之间没有 -55 dB '
                                                   '低谷，紧贴词头切在过零点'},
                   'S12 raw 8.3052-8.4226': {'类型': '紧贴两头的非人声',
                                             '配音指纹': 'ff0728857c2d',
@@ -284,8 +283,8 @@ out = {'no': '51',
                                                   '8.245–8.363：Jackson, 的 ən 衰减到 8.24（-46 dB、低频 -1.6～-4.8 '
                                                   'dB），8.25–8.36 是吸气（-34～-42 dB、低频 -11～-39 dB、重心 2.3–3.1 '
                                                   'kHz），8.365–8.415 低频 0～-7 dB 是 a 的声门预发声（保留）；两头都没有 -55 dB '
-                                                  '低谷，紧贴两头切在过零点；被算作词头被切的 115 ms 就是这段吸气本身，停顿删除区间 [8.25, '
-                                                  '8.355] 删在换成静音的段里'},
+                                                  '低谷，紧贴两头切在过零点；被算作词头被切的 115 ms 就是这段吸气本身，停顿删除区间 [8.25, 8.355] '
+                                                  '删在换成静音的段里'},
                   'S13 raw 1.8900-2.1270': {'类型': '紧贴词头的非人声',
                                             '配音指纹': 'ff0728857c2d',
                                             '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S13 w '
@@ -326,9 +325,9 @@ out = {'no': '51',
                                          '-0.5～-3.6 dB，5.175 起 æ，连续无低谷，是 and 的声门预发声（词的一部分）'},
                   '20.22–20.26s': {'实测': {'最响dB': -30.5, '重心Hz': 760, '周期': 0.65, '低频dB': -0.9},
                                    '配音指纹': 'ff0728857c2d',
-                                   '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 w '
-                                         '9.505–9.54：O.W. 的 W（dˈʌbəljuː）开头，-31～-47 dB、低频占 -1.5～-2 dB、重心 '
-                                         '0.4–0.7 kHz、周期 0.65，接着 9.55 起元音（-25 dB），是 /d/ 的浊音闭塞（词的一部分）'},
+                                   '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 w 9.505–9.54：O.W. '
+                                         '的 W（dˈʌbəljuː）开头，-31～-47 dB、低频占 -1.5～-2 dB、重心 0.4–0.7 kHz、周期 0.65，接着 '
+                                         '9.55 起元音（-25 dB），是 /d/ 的浊音闭塞（词的一部分）'},
                   '21.93–22.01s': {'实测': {'最响dB': -33.0, '重心Hz': 4575, '周期': 0.16, '低频dB': -26.5},
                                    '配音指纹': 'ff0728857c2d',
                                    '依据': "2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S2 第3个标点（wright', "
@@ -352,8 +351,8 @@ out = {'no': '51',
                   '48.29–48.31s': {'实测': {'最响dB': -42.9, '重心Hz': 1740, '周期': 0.22, '低频dB': -6.0},
                                    '配音指纹': 'ff0728857c2d',
                                    '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S5 w '
-                                         '3.36–3.385：correct. 句尾，3.33–3.35 是 /t/ 闭塞（-57～-63 dB），3.37 除阻 '
-                                         '-40.8 dB、重心 1.7 kHz，衰减到 3.39 -64 dB，是 correct 词尾 t 的除阻（词的一部分）'},
+                                         '3.36–3.385：correct. 句尾，3.33–3.35 是 /t/ 闭塞（-57～-63 dB），3.37 除阻 -40.8 '
+                                         'dB、重心 1.7 kHz，衰减到 3.39 -64 dB，是 correct 词尾 t 的除阻（词的一部分）'},
                   '61.28–61.31s': {'实测': {'最响dB': -34.3, '重心Hz': 1228, '周期': 0.46, '低频dB': -1.9},
                                    '配音指纹': 'ff0728857c2d',
                                    '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S8 w '
@@ -361,9 +360,9 @@ out = {'no': '51',
                                          '1.2–2.5 kHz），是 nationwide 词尾的一部分'},
                   '65.39–65.41s': {'实测': {'最响dB': -32.8, '重心Hz': 2407, '周期': 0.28, '低频dB': -1.6},
                                    '配音指纹': 'ff0728857c2d',
-                                   '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S9 w '
-                                         '2.69–2.71：Buren, 停顿之后、the 开口前，-36～-52 dB 渐升、低频占 -1～-2.5 dB，2.73 起 '
-                                         '/ð/，连续无低谷，是 the 的浊音预发声（词的一部分）'},
+                                   '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S9 w 2.69–2.71：Buren, '
+                                         '停顿之后、the 开口前，-36～-52 dB 渐升、低频占 -1～-2.5 dB，2.73 起 /ð/，连续无低谷，是 the '
+                                         '的浊音预发声（词的一部分）'},
                   '68.07–68.15s': {'实测': {'最响dB': -35.4, '重心Hz': 1933, '周期': 0.34, '低频dB': -2.8},
                                    '配音指纹': 'ff0728857c2d',
                                    '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S9 w '
@@ -409,9 +408,8 @@ out = {'no': '51',
                   '113.49–113.55s': {'实测': {'最响dB': -33.4, '重心Hz': 3540, '周期': 0.21, '低频dB': -13.2},
                                      '配音指纹': 'ff0728857c2d',
                                      '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S14 w '
-                                           '3.12–3.18：earnest. 句尾 /t/ 除阻送气（-32～-53 dB、重心 2.0–3.8 kHz、低频 '
-                                           '-8～-31 dB），前面 3.10–3.11 是 /s/ 后的闭塞（-57～-65 dB），是 earnest 词尾 t '
-                                           '的一部分',
+                                           '3.12–3.18：earnest. 句尾 /t/ 除阻送气（-32～-53 dB、重心 2.0–3.8 kHz、低频 -8～-31 '
+                                           'dB），前面 3.10–3.11 是 /s/ 后的闭塞（-57～-65 dB），是 earnest 词尾 t 的一部分',
                                      '词尾': 't'},
                   '115.76–115.77s': {'实测': {'最响dB': -53.8, '重心Hz': 2119, '周期': 0.0, '低频dB': -1.4},
                                      '配音指纹': 'ff0728857c2d',
@@ -442,14 +440,14 @@ out = {'no': '51',
                   '151.97–152.06s': {'实测': {'最响dB': -36.1, '重心Hz': 1728, '周期': 0.21, '低频dB': -11.2},
                                      '配音指纹': 'ff0728857c2d',
                                      '依据': '2026-11-06 逐 2.5/10 ms 实测（w，配音指纹 ff0728857c2d）：S19 w '
-                                           '7.465–7.555：satire. 句尾 ɚ 的气声收尾（-25～-48 dB、低频 -6～-22 dB、重心 '
-                                           '1.1–2.2 kHz），紧接元音连续衰减到 7.58 -76 dB，无低谷，是 satire 词尾的一部分（结尾句慢速）'}},
+                                           '7.465–7.555：satire. 句尾 ɚ 的气声收尾（-25～-48 dB、低频 -6～-22 dB、重心 1.1–2.2 '
+                                           'kHz），紧接元音连续衰减到 7.58 -76 dB，无低谷，是 satire 词尾的一部分（结尾句慢速）'}},
           '机器复听': {'S2': {'配音指纹': 'ff0728857c2d',
                           '依据': '2026-11-06（配音指纹 ff0728857c2d）：oll 是 all 的故意错拼（Merriam-Webster OK 词源），已核实读音照 '
                                 'all 读 ˈɑːl，两路都听成 all 正是读对了'},
                    'S5': {'配音指纹': 'ff0728857c2d',
-                          '依据': '2026-11-06（配音指纹 ff0728857c2d）：只有 small.en 一路把 glossed as 的 as 听成 '
-                                "is，parakeet 听对；as 弱读 əz，读音核对通过；'o.k.' 按用户 2026-11-06 原话改连读 ˌoʊkˈeɪ"},
+                          '依据': '2026-11-06（配音指纹 ff0728857c2d）：只有 small.en 一路把 glossed as 的 as 听成 is，parakeet '
+                                "听对；as 弱读 əz，读音核对通过；'o.k.' 按用户 2026-11-06 原话改连读 ˌoʊkˈeɪ"},
                    'S6': {'配音指纹': 'ff0728857c2d',
                           '依据': '2026-11-06（配音指纹 ff0728857c2d）：oll korrect 是 all correct 的故意错拼，已核实读音照 all '
                                 'correct 读（korrect kəɹˈɛkt），两路听成 all correct 正是读对了；letters 只有 small.en 一路听成 '
@@ -461,8 +459,8 @@ out = {'no': '51',
                                  '正是读对了；small.en 也听成 correct'},
                    'S16': {'配音指纹': 'ff0728857c2d',
                            '依据': '2026-11-06（配音指纹 ff0728857c2d）：Choctaw tʃˈɑːktɔː、okeh、ola '
-                                 'kala（kɑːlˈɑː）都已核实读音；识别器词表里没有这几个外语/专名，small.en 写成 chakto '
-                                 'oke、olokala，parakeet 写成 oke，是拼写不同、读音对得上'},
+                                 'kala（kɑːlˈɑː）都已核实读音；识别器词表里没有这几个外语/专名，small.en 写成 chakto oke、olokala，parakeet '
+                                 '写成 oke，是拼写不同、读音对得上'},
                    'S18': {'配音指纹': 'ff0728857c2d',
                            '依据': '2026-11-06（配音指纹 ff0728857c2d）：只有 parakeet 一路把 provenance 听成 '
                                  'provence，small.en 听对；读音已按 Merriam-Webster 改正为 pɹˈɑːvənəns（读音核对通过）'}},
@@ -473,29 +471,29 @@ out = {'no': '51',
                                                  '0.48、低频 -2 dB），10.27–10.285 衰减（低频 -3～-6 dB），10.29 起 had 的 '
                                                  '/h/ 送气（低频 -12～-25 dB、重心 2.0–2.8 kHz），10.38 起 æ；停顿插入点 '
                                                  '10.28825 是 ɚ 与 /h/ 交界的过零点，停顿在两词之间',
-                   'S10 Club, / making @8.646': '2026-11-05 逐 2.5 ms 实测（S10 w）：Club 的 ʌ 和 /b/ 除阻衰减到 '
-                                                '8.635（-39 dB），8.64–8.66 -53～-69 dB 静音，8.665 起 making 的 '
-                                                '/m/（-15.8 dB）；停顿插入点 8.645667 在这段静音里，停顿在两词之间（DTW 把 making '
-                                                '开头算到 8.512 落在 Club 里，是偏差）',
+                   'S10 Club, / making @8.646': '2026-11-05 逐 2.5 ms 实测（S10 w）：Club 的 ʌ 和 /b/ 除阻衰减到 8.635（-39 '
+                                                'dB），8.64–8.66 -53～-69 dB 静音，8.665 起 making 的 /m/（-15.8 '
+                                                'dB）；停顿插入点 8.645667 在这段静音里，停顿在两词之间（DTW 把 making 开头算到 8.512 落在 '
+                                                'Club 里，是偏差）',
                    "S10 Kinderhook', / after @3.845": '2026-11-05 逐 2.5 ms 实测（S10 w）：Kinderhook 的 ʊ 浊音到 '
                                                       '3.77，3.775–3.825 是 /k/ 除阻送气（重心 6–7 kHz、-18～-24 '
-                                                      'dB），3.83–3.86 -43～-61 dB 静音，3.865 起 after 的 æ '
-                                                      '起音（-22→-9 dB）；停顿 3.845–3.850 落在 /k/ 除阻之后、after '
-                                                      '之前的静音里，两词都完整（DTW 把 after 开头算到 3.737 落在 ʊ 元音里，是偏差）',
+                                                      'dB），3.83–3.86 -43～-61 dB 静音，3.865 起 after 的 æ 起音（-22→-9 '
+                                                      'dB）；停顿 3.845–3.850 落在 /k/ 除阻之后、after 之前的静音里，两词都完整（DTW 把 '
+                                                      'after 开头算到 3.737 落在 ʊ 元音里，是偏差）',
                    'S10 birthplace, / formed @5.013': '2026-11-06 逐 5 ms 重新实测（S10 w）：birthplace 的 /s/ '
                                                       '4.80–4.87（重心 5.7–6.1 kHz、-11～-13 dB），4.88–5.01 '
-                                                      '是一口吸气（-31～-47 dB、低频 -10～-26 dB、重心 2.6–4.5 kHz），formed '
-                                                      '的 /f/ 从 5.015 起（重心升到 5–7.6 kHz、-45→-22 dB），5.135 起 '
-                                                      'ɔː；停顿插入点 5.012542 是吸气与 /f/ 交界的过零点，停顿在两词之间（原来写的 '
-                                                      '5.120042 落在 /f/ 末尾，把 formed 的 f 留在停顿前，定稿 4K '
-                                                      '出片后核查的响度骤降 74.2–74.6s 查出，已改）',
-                   'S2 misspellings: / O.W. @8.495': '2026-11-05 逐 2.5 ms 实测（S2 w）：misspellings 的 /z/ 衰减到 '
-                                                     '8.49 -63 dB，8.495–8.965 全段 -55～-69 dB 静音，8.97 起 O '
+                                                      '是一口吸气（-31～-47 dB、低频 -10～-26 dB、重心 2.6–4.5 kHz），formed 的 '
+                                                      '/f/ 从 5.015 起（重心升到 5–7.6 kHz、-45→-22 dB），5.135 起 '
+                                                      'ɔː；停顿插入点 5.012542 是吸气与 /f/ 交界的过零点，停顿在两词之间（原来写的 5.120042 '
+                                                      '落在 /f/ 末尾，把 formed 的 f 留在停顿前，定稿 4K 出片后核查的响度骤降 '
+                                                      '74.2–74.6s 查出，已改）',
+                   'S2 misspellings: / O.W. @8.495': '2026-11-05 逐 2.5 ms 实测（S2 w）：misspellings 的 /z/ 衰减到 8.49 '
+                                                     '-63 dB，8.495–8.965 全段 -55～-69 dB 静音，8.97 起 O '
                                                      '的元音（-45→-7.5 dB）；删掉的静音正好落在 misspellings: 与 O.W. '
                                                      '之间，没碰两边的词（DTW 把 O.W. 开头算到 9.040 是偏差）',
                    "S2 wright', / K.Y. @11.405": '2026-11-05 逐 2.5 ms 实测（S2 w）：wright 的 /t/ 收尾 '
-                                                 '11.345–11.36（-27～-33 dB），11.365–11.455 -53～-69 dB 静音，11.46 '
-                                                 '起 K 的 /k/ 除阻（-21 dB）；停顿 11.405–11.410 落在这段静音中间，两边的词都完整'},
+                                                 '11.345–11.36（-27～-33 dB），11.365–11.455 -53～-69 dB 静音，11.46 起 '
+                                                 'K 的 /k/ 除阻（-21 dB）；停顿 11.405–11.410 落在这段静音中间，两边的词都完整'},
           '引号': {'S5-1 “”': "用户 2026-11-06 原话：“它刊载了已知最早的“o.k.”，被注释为“all correct”（完全正确）。”英文 'o.k.'、'all "
                             "correct' 本有单引号，中文引号照用户原话（T10）",
                  'S12-2 “”': '用户 2026-11-06 '
@@ -558,10 +556,9 @@ out = {'no': '51',
                  '最后一段语速': 0.78,
                  '最后一段前停顿': 0.7,
                  '接点': [79980, 104100],
-                 '依据': '全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“a pedigree of bad spelling '
-                       'and dinner-bell satire.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（40 ms）的正中 '
-                       '3.333 s，0.78 那遍（60 ms）的正中 4.338 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 '
-                       '校准：与人工核实的接点落在同一段静音里）'}},
+                 '依据': '全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“a pedigree of bad spelling and '
+                       'dinner-bell satire.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（40 ms）的正中 3.333 '
+                       's，0.78 那遍（60 ms）的正中 4.338 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）'}},
  '词尾除阻': {'S9': {'2': [3.955, 't']}},
  '停顿处除阻': {'S2': {'3': [11.405, 11.41, 't']}},
  '非人声区间': {'S3': [[1.731875, 2.0, '紧贴词尾']],
@@ -591,8 +588,7 @@ out = {'no': '51',
             'S18': 'eb03977ca336'},
  '换行变更记录': [{'日期': '2026-11-06',
              'S5': '用户 2026-11-06 原话：“它刊载了已知最早的“o.k.”，被注释为“all correct”（完全正确）。”（S5 译文按用户原话改，分组和换行随之变；已记 '
-                   '用户同意记录）'}],
- 'sentences': []}
+                   '用户同意记录）'}]}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对

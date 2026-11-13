@@ -317,4 +317,5 @@ out = {'no': '12',
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
+out['字号上限'] = {'S19': 97}
 生成并核对(S, out)

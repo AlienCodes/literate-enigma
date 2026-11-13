@@ -92,6 +92,10 @@ def official(args, label):
     for attempt in range(100):
         code, text = run(args, f'{label}-{attempt:02}.log')
         if not code:
+            previous = status.pop('failure_details', None)
+            if previous:
+                status.setdefault('recovered_attempt_history', []).append(previous)
+                save()
             return
         for group in (f'做_{NO}', f'定稿_{NO}'):
             for path in (W / group).glob('*.log'):
@@ -123,11 +127,24 @@ def official(args, label):
                                        if line.startswith('Traceback')), len(lines))
                     evidence = [line[:1600] for line in lines
                                 if any(mark in line for mark in
-                                       ('BAD', 'FAIL', 'Error', 'Exception', '问题数', '插入'))]
+                                       ('BAD', 'FAIL', 'Error', 'Exception', '问题数', '插入',
+                                        '【停止】', '缺配音缓存', '缺调平缓存', '指纹不符'))]
                     evidence += lines[exceptions:][-18:]
-                    diagnostics[name] = {'exit': result.returncode, 'actual_output': evidence}
+                    # A bare SystemExit can have no traceback or BAD line.
+                    # These are text diagnostics, never cache/GT/model bytes.
+                    tail = [line[:1600] for line in lines
+                            if not any(mark in line for mark in ('onnxruntime:', 'VerifyEachNodeIsAssignedToAnEp'))][-30:]
+                    diagnostics[name] = {'exit': result.returncode, 'actual_output': evidence,
+                                         'actual_final_text_lines': tail}
+                    text += '\n' + '\n'.join(lines)
             status.setdefault('failure_details', {})['public_checker_diagnostics'] = diagnostics
             save()
+            # Restore only the exact existing public cache entry actually named
+            # by the direct unchanged checker; keep STRICT_CACHE for every retry.
+            missed = re.findall(r'缺(?:配音|调平)缓存\s+([A-Za-z0-9_\u4e00-\u9fff.-]+\.(?:pkl|json))', text)
+            recovered = [cache_entry(name) for name in sorted(set(missed))]
+            if any(recovered):
+                continue
             raise RuntimeError(f'{label}: official quality check failed; see article status JSON')
     raise RuntimeError('Too many individual public cache misses.')
 
@@ -231,7 +248,7 @@ try:
     status['final_wav_sha256'] = sha(W / f'work_{NO}/a.wav')
     save()
     canonical_aac = aac_hash(canonical)
-    if NO in {'10', '12', '51'}:
+    if NO in {'10', '12', '44', '51'}:
         # Root supplies actual approved audio-change validation. No gain/overlay implementation is assumed here.
         audio_qc = TASK / 'audio-qc.py'
         assert audio_qc.exists(), f'Root must attach approved audio QC for article {NO}.'
@@ -282,7 +299,7 @@ try:
     assert timing['end_page_frames'] == 60 and timing['end_page_seconds'] == 2
     assert timing['original_audio_identical'] and timing['original_audio_packet_timings_identical']
     assert aac_hash(processed[0]) == canonical_aac, 'Exact-card processing changed the canonical AAC stream.'
-    if NO not in {'10', '12', '51'}:
+    if NO not in {'10', '12', '44', '51'}:
         assert aac_hash(processed[0]) == accepted_aac, 'Final AAC differs from accepted prior voice.'
     final = OUT / f'{NO}-4K-读完即转简述2秒.mp4'
     shutil.copyfile(processed[0], final)

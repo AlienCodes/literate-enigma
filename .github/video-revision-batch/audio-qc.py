@@ -238,6 +238,41 @@ def audit(args):
             ts=np.arange(lo,hi)/SR;gain_db=-2.+4.5*(ts-start)/(end-start)
             predicted=old[lo:hi]*10**(gain_db/20);wave=fit(predicted,new[lo:hi]);unit_fits['OW_ramp']=wave
             check('actual-ramp-same-waveform-no-new-distortion',abs(wave['gain_db'])<=.45 and wave['correlation']>=.985 and wave['gain_compensated_residual_snr_db']>=20,**wave)
+    elif args.article=='44':
+        # Preserve the following two groups and natural within-group prosody.
+        first=actual['Norway_Finland'];following=actual['with_border_crossings']
+        mean_delta=first['crop_bs1770_lufs']-following['crop_bs1770_lufs']
+        active_delta=first['active_10ms_rms_dbfs']-following['active_10ms_rms_dbfs']
+        peak_delta=first['max_400ms_lufs']-following['max_400ms_lufs']
+        check('actual-S4-local-level-continuity',abs(mean_delta)<=.8 and abs(active_delta)<=1.2 and abs(peak_delta)<=2.8,
+              first_minus_following_mean_lu=mean_delta,first_minus_following_active_rms_db=active_delta,
+              first_minus_following_strongest400ms_lu=peak_delta)
+        if 'S4:1' in public_piece_ranges:
+            start,end=public_piece_ranges['S4:1']
+            check('actual-S4-first-piece-boundary-preserved',abs(start-33.97)<=.12 and abs(end-36.30)<=.12,
+                  actual_piece_range=[start,end],accepted_acoustic_range=[33.97,36.30])
+        # Original A21 pure functions only; no producer/model or private GT.
+        import ast
+        tools=Path(__file__).resolve().parents[2]/'视频/工具'
+        original=tools/'词尾辅音核对.py';tree=ast.parse(original.read_text())
+        names={'frames_back','release','centroid','lf_peak','periodicity','judge'}
+        nodes=[node for node in tree.body if isinstance(node,ast.FunctionDef) and node.name in names]
+        ns={'np':np,'ss':signal,'SR':24000,'F5':120,'AUD_DB':-55.,'TH_HF':-36.,'TH_P':-33.,
+            'CEN_MIN':1000,'DUR_MAX':110,'LF_MAX':-20.,'PER_MAX':.6,
+            'HP':signal.butter(6,2000,'highpass',fs=24000,output='sos'),
+            'LP8':signal.butter(6,800,'lowpass',fs=24000,output='sos')}
+        exec(compile(ast.Module(body=nodes,type_ignores=[]),str(original),'exec'),ns)
+        right_t=[]
+        value=signal.resample_poly(new[round(33.90*SR):round(44.98*SR)],1,2)
+        n=len(value)//120;reference=float(np.sqrt(np.mean(value[:n*120].reshape(n,120)**2,axis=1)).max())
+        hp=signal.sosfiltfilt(ns['HP'],value)
+        for endpoint in (36.295,36.300,36.305):
+            release=ns['release'](value,hp,round((endpoint-33.9)*24000),reference)
+            right_t.append({'endpoint_s':endpoint,'original_A21_passes':bool(ns['judge'](value,release,'t')),
+                            'release_metrics':release})
+        unit_fits['actual_right_t_A21']=right_t
+        check('actual-S4-right-t-release-preserved',all(row['original_A21_passes'] for row in right_t),
+              original_A21_actual_public_audio=right_t)
     # Voice/onset integrity is judged on decoded reconstructed samples, not the proposal model.
     try:
         import parselmouth
@@ -265,7 +300,7 @@ def audit(args):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('--article',choices=['10','12','51'],required=True)
+    parser.add_argument('--article',choices=['10','12','44','51'],required=True)
     parser.add_argument('--accepted-source',required=True)
     parser.add_argument('--canonical-video',required=True)
     parser.add_argument('--work',required=True)
