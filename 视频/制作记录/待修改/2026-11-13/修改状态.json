@@ -2,7 +2,7 @@
   "status": "SOURCE_REVISIONS_UNDER_VERIFICATION_4K_FINALIZATION_AUTHORIZED",
   "date": "2026-11-13",
   "render_allowed": true,
-  "pdf_build_allowed": false,
+  "pdf_build_allowed": true,
   "cancelled_github_run": 43492111461,
   "article01": {
     "original_number": "01",
@@ -118,9 +118,13 @@
   },
   "render_scope": [
     "01",
+    "02",
     "03",
+    "04",
     "05",
     "06",
+    "07",
+    "08",
     "09",
     "10",
     "11",
@@ -133,8 +137,56 @@
     "18",
     "19",
     "20",
+    "21",
     "22",
-    "51"
+    "23",
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30",
+    "31",
+    "32",
+    "33",
+    "34",
+    "35",
+    "36",
+    "37",
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50",
+    "51",
+    "52",
+    "53",
+    "54",
+    "55",
+    "56",
+    "57",
+    "58",
+    "59",
+    "60",
+    "61",
+    "62",
+    "63",
+    "64",
+    "65",
+    "66",
+    "67",
+    "68",
+    "69",
+    "70"
   ],
   "unmodified_article_regeneration_requested": false,
   "article12": {
@@ -155,7 +207,7 @@
     "date": "2026-11-13",
     "quote": "所有的这些东西改完之后，我们要重新生成视频定稿的呀。",
     "github_quote": "尤其是我们这个视频的改正，最终的定稿都要在GitHub上面，这个重新生成，重新保存。",
-    "scope": "全部受影响篇目，3840×2160，正式核验后定稿并归档主仓库、备份专用分支和新Release；PDF暂不重建。",
+    "scope": "全部70篇视频3840×2160重制，并按最新顺序排列；同步全部文字修订重建PDF，正式核验后定稿并归档主仓库、备份专用分支和新Release。",
     "supersedes": "Earlier pauses in this same conversation; historical quotes remain below."
   },
   "article03": {
@@ -221,13 +273,60 @@
   },
   "layout_audit": {
     "scope": "全部70篇所有正文页及独立简述页",
-    "status": "AUDITING_ACTUAL_VIDEO_FRAMES_AND_OFFICIAL_FONT_CALCULATION",
-    "user_quote": "看看还有哪些类似问题，有这种问题抓紧时间给我改正过来。"
+    "status": "SOURCE_STATIC_4K_AND_1080_VERIFICATION_IN_PROGRESS_ACTUAL_NEW_VIDEO_ACCEPTANCE_PENDING",
+    "user_quote": "最后这个字体一定要认认真真的去根据屏幕进行适当的放大，然后好好排版，一定要就是居中排版，弄得特别好看。",
+    "rebuild_all_70_required": true,
+    "reason": "旧视频删除内嵌解说后既有字号和y位置未重新计算；48篇旧末屏明显上偏，即使字号正常也需重渲。"
   },
   "summary_content_review": {
     "scope": "全部70篇",
-    "status": "IN_PROGRESS",
+    "status": "ALL_70_READ_AND_INDEPENDENTLY_REVIEWED_LATEST_USER_PRIORITY_DELTAS_BEING_MERGED",
     "user_quote": "你看还有哪些简述说不明白的统一改。要把话说明白，并且还可以结合我之前给的那些小字。",
-    "new_summary_videos_delivered": false
+    "new_summary_videos_delivered": false,
+    "approved_text_file": "summary-approved-70.json"
+  },
+  "latest_pdf_authorization": {
+    "date": "2026-11-13",
+    "quote": "修正完之后呢……重新弄一下我们这个PDF……视频一定要按照顺序，按照这个最新的顺序重新生成之后排列都是4k的……Pdfpdf一定要生成一个完美的版本。",
+    "quote_kind": "本会话最新口述节选，省略重复语气词；完整原话保留在会话中。",
+    "supersedes": "先前等待PDF排版意见的暂停；本轮用户现已明确要求重建PDF。",
+    "scope": "同步本轮所有文本修正、已批准B5插图版式、最新篇目顺序和默认隐藏的朋克英语来源图层；新PDF实际验收与归档另记。",
+    "pdfs_rebuilt_or_delivered_yet": false
+  },
+  "latest_streamed_requests": {
+    "02": {
+      "title": "棉花糖的真相",
+      "focus": {
+        "Stanford": "斯坦福大学",
+        "Psychology": "心理学",
+        "college-entrance exam": "高考"
+      },
+      "priority_summary": "实验做法、早期发现与后续研究的限制都要通俗清楚",
+      "explicit_4K_finalization": true
+    },
+    "20": {
+      "title": "冰里的五千年凶案",
+      "focus": {
+        "artery": "动脉",
+        "joints": "关节"
+      },
+      "line_break": "who lived about 5,300 years ago,整行；between另起下一行",
+      "old_recap_removed": true,
+      "priority_summary": "详细、直白地讲清古尸、死因及未知凶手；末屏重新居中放大"
+    },
+    "44": {
+      "focus": {
+        "Norway": "挪威",
+        "Finland": "芬兰",
+        "border crossings": "过境"
+      },
+      "audio_status": "accepted track measured; minimal S4C1 -1dB candidate pending actual rebuilt audio acceptance"
+    },
+    "50": {
+      "focus": {
+        "popularised as": "被大众传作"
+      },
+      "priority_summary": "检出不等于致病；关联不等于因果；一勺是有争议的估算，人体危害仍待更可靠证据"
+    }
   }
 }

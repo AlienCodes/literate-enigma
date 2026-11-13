@@ -1,0 +1,47 @@
+{
+  "article": "44",
+  "status": "Candidate gain staged; actual reconstructed canonical audio and listening remain pending.",
+  "changed_leaf_keys": [
+    {
+      "path": "/分段增益dB/S4/1",
+      "before": "absent (0 dB handwritten gain)",
+      "after": -1.0
+    }
+  ],
+  "selection": "-1dB instead of-1.5dB: original measured first-minus-next1.225LU mean/1.699dB active/3.1LU strongest400ms becomes predicted0.225/0.740/2.1; -1.5 predicts-0.275/0.260/1.6. The smaller correction already matches adjacent mean closely and retains natural emphasis.",
+  "before_sha256": {
+    "json": "0cfb073f9300873dba99ac39eb7fac447e7fd49e93c08f0ed57891944638255f",
+    "gen": "6ed077ab46b81f4fb94a5a811c6e86199b3ef68b04ec4958747e2dec934b4ca0"
+  },
+  "after_sha256": {
+    "json": "21d18dbe2b28cf9de3c18412bd9798d47fd6680b29e2ba9b1f91e5a3f597dbae",
+    "gen": "75d1af51cfccc6dfee1f5c055ee10cecb055b277343d32a81ed22974a041b22c"
+  },
+  "preservation": {
+    "all_sentences_exact_including_latest_translation_focus_summary": true,
+    "all_other_JSON_keys_deep_equal": true,
+    "generator_S_literal_exactly_unchanged": true,
+    "generator_metadata_only_new_gain": true,
+    "MD_and_approved_edit_ledger_untouched": true,
+    "all_existing_audio_controls_deep_equal": true
+  },
+  "actual_canonical_generator_roundtrip": [
+    {
+      "mode": "existing-script-merge",
+      "exit": 0,
+      "full_generated_JSON_exactly_equals_target": true,
+      "stdout": "英文与文章逐字一致（不计加粗） | 文章重点词 59 个，对照里都在\n不同英文用了同一个中文： 无\n重点词中文与文章定稿不同： 无（只有“的”“地”“了”进粗体的格式差别）\n短语整体标后英文标签变了（中文沿用文章）： []\n句数 15 chunk 29 组 118 每组英文词 2.29 note 22",
+      "stderr": ""
+    },
+    {
+      "mode": "fresh-no-existing-script",
+      "exit": 0,
+      "full_generated_JSON_exactly_equals_target": true,
+      "stdout": "英文与文章逐字一致（不计加粗） | 文章重点词 59 个，对照里都在\n不同英文用了同一个中文： 无\n重点词中文与文章定稿不同： 无（只有“的”“地”“了”进粗体的格式差别）\n短语整体标后英文标签变了（中文沿用文章）： []\n句数 15 chunk 29 组 118 每组英文词 2.29 note 22",
+      "stderr": ""
+    }
+  ],
+  "evidence": "audio44/audio44-public-qc.json",
+  "candidate_comparison": "audio44/source44-audio-overlay.json",
+  "no_TTS_render_push": true
+}

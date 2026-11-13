@@ -1,0 +1,102 @@
+{
+  "id": "42",
+  "user_exact": "巨大的/奢侈的",
+  "changed_json_leaves": [
+    {
+      "path": "/sentences/1/chunks/1/align/0/1",
+      "reason": "value",
+      "expected": "是一笔**巨额的**(lavish)",
+      "actual": "是一笔**巨大的/奢侈的**(lavish)"
+    },
+    {
+      "path": "/sentences/1/chunks/1/zh",
+      "reason": "value",
+      "expected": "是一笔**巨额的**(lavish)**投资**(investment)，旨在把**目光**(gaze)投向**宇宙**(cosmos)及其中的**星系**(galaxies)。",
+      "actual": "是一笔**巨大的/奢侈的**(lavish)**投资**(investment)，旨在把**目光**(gaze)投向**宇宙**(cosmos)及其中的**星系**(galaxies)。"
+    },
+    {
+      "path": "/sentences/10/chunks/2/align/5/0",
+      "reason": "value",
+      "expected": "before the light reached the instruments.",
+      "actual": "before the light reached the **instruments**."
+    },
+    {
+      "path": "/sentences/10/chunks/2/align/5/1",
+      "reason": "value",
+      "expected": "这些都需要在光线到达仪器之前完成。",
+      "actual": "这些都需要在光线到达**仪器**(instruments)之前完成。"
+    },
+    {
+      "path": "/sentences/10/chunks/2/en",
+      "reason": "value",
+      "expected": "that **intercepted** the light and **compensated for** the **imperfect** mirror's **distortion** before the light reached the instruments.",
+      "actual": "that **intercepted** the light and **compensated for** the **imperfect** mirror's **distortion** before the light reached the **instruments**."
+    },
+    {
+      "path": "/sentences/10/chunks/2/zh",
+      "reason": "value",
+      "expected": "**截住**(intercepted)光线，**抵消**(compensated for)**有缺陷的**(imperfect)主镜造成的**畸变**(distortion)，这些都需要在光线到达仪器之前完成。",
+      "actual": "**截住**(intercepted)光线，**抵消**(compensated for)**有缺陷的**(imperfect)主镜造成的**畸变**(distortion)，这些都需要在光线到达**仪器**(instruments)之前完成。"
+    }
+  ],
+  "old_source_sha256": "048cf5e1ab5457999e4162bd9e3d68c506edb77c1c5699c59c9ebc06d300bae6",
+  "source_sha256": "b185cd9c39045314f061388d2b982085720bd344e030416db078d57e5210d342",
+  "md_exact_replacements": 2,
+  "generator_candidate_path": "/workspace/work/video-audit70-20261113/lavish42-exact/gen42.candidate.py",
+  "official_helper_roundtrip_pending": false,
+  "helper_exit": 0,
+  "full_json_roundtrip_exact": true,
+  "roundtrip_differences": [],
+  "generator_published_after_exact_roundtrip": true,
+  "mechanical_repair_differences": [
+    {
+      "path": "/sentences/15/chunks/1/note",
+      "reason": "value",
+      "expected": "（it gathers：定语从句，省略了关系代词，修饰 light；\nonly after…：只有在……之后才）\n（简述：▸失焦：1990年，哈勃望远镜升空后拍出的照片却模糊。主镜边缘的形状仅差约一根头发宽度的五十分之一，就使光线无法准确聚焦。▸根源：检测主镜形状的装置有一块透镜装错位置，主镜便按错误曲线打磨。另一项测试早给出不同结果，却被认为不可靠，没有追查。▸办法：主镜无法在太空重磨，工程师便给望远镜配“眼镜”：用小镜子先矫正主镜反射出的光，再送进观测仪器。▸修复：1993年，七名宇航员通过五次太空行走，装上这套矫正装置和新相机，图像恢复清晰。▸关键：主镜本身始终没被修好，缺陷仍在；真正被校正的是经过主镜之后的光线，这就是“戴眼镜”的意思。）",
+      "actual": "（it gathers：定语从句，省略了关系代词，修饰 light；\nonly after…：只有在……之后才）\n（简述：▸失焦：1990年，哈勃望远镜升空后拍出的照片却模糊。\n▹主镜边缘的形状仅差约一根头发宽度的五十分之一，就使光线无法准确聚焦。\n▸根源：检测主镜形状的装置有一块透镜装错位置，主镜便按错误曲线打磨。\n▹另一项测试早给出不同结果，却被认为不可靠，没有追查。\n▸办法：主镜无法在太空重磨，工程师便给望远镜配“眼镜”：\n▹用小镜子先矫正主镜反射出的光，再送进观测仪器。\n▸修复：1993年，七名宇航员通过五次太空行走，装上这套矫正装置和新相机，图像恢复清晰。\n▸关键：主镜本身始终没被修好，缺陷仍在；\n▹真正被校正的是经过主镜之后的光线，这就是“戴眼镜”的意思。）"
+    }
+  ],
+  "T10_original_function_errors": [],
+  "POS_original_function_errors": [],
+  "text_gate_exit": 0,
+  "hard_errors": [],
+  "pending": [],
+  "core_hashes": {
+    "踩坑核查.py": "f6efb9df33705fadac3d78d588adb722b4f07eab134818983a869f1d9e0c748d",
+    "译文核查.py": "f68089bad35c5f41f7a08936a95f408da8a477b2b1cb1ca450bca6eacbd2dc5c",
+    "新管/修.py": "1a6662012752c2d2152d87e1690f1dbb1fd2ced583455a365c022b8b91bdd34d",
+    "初稿生成/核对.py": "c635aee82e0fe4dff9f70dcae03e2f797aadb670c8ebe6c8f202b82a35a87a74"
+  },
+  "core_unchanged": true,
+  "source_unchanged_during_validation": true,
+  "output_sha256": {
+    "视频/脚本/42.json": "b185cd9c39045314f061388d2b982085720bd344e030416db078d57e5210d342",
+    "新版定稿/42-the-telescope-that-needed-glasses.md": "c216a1f1ad9322c52378d33efb908dda716cda829a6b50c78bad7d50856be58d",
+    "视频/工具/初稿生成/gen42.py": "17ec3be53ff1f8bbedefca2f748baa158e800356f788906a5c3ba73b9f450558",
+    "视频/制作记录/42_待改清单.md": "ebcc5819e90b4b84bf75a1f804d77a172e3a537aa27ebb26c27d130a2a348c8c",
+    "视频/制作记录/逐句确认/42.json": "78589e97741c604344daf372594142bc9bbba3c390e915d2c41fa954e7b0bbd1"
+  },
+  "interim_lavish_only_validation": {
+    "source_sha256": "a922f72d8cb8808afd58a7a236f4ea012854adb68e292b36c9ca8e775b0cc798",
+    "full_json_roundtrip_exact": true,
+    "text_gate_exit": 0,
+    "hard_errors": [],
+    "pending": []
+  },
+  "instruments_added": true,
+  "clash_scan": [],
+  "allow_clash_unchanged": true,
+  "visible_english_words_unchanged": true,
+  "notes_summary_audio_unchanged": true,
+  "visible_english_notes_summary_audio_and_all_non_sentence_metadata_unchanged": true,
+  "layout_report": "layout-report.json",
+  "layout_passed_at_1080p_and_4k": true,
+  "human_visual_review": {
+    "viewed": [
+      "42-S02-1920x1080.png",
+      "42-S11-1920x1080.png"
+    ],
+    "conclusion": "lavish的两个的和斜杠完整显示且同色；instruments/仪器同色对应；两页居中，无可见裁切、重叠或孤词。",
+    "4K_evidence": "actual original renderer measurements and static PNGs; visual review above was the 1080p frames"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "part": 2,
+  "ids": [
+    "02"
+  ],
+  "scope": "actual original generator/full JSON exact, original repair, then original text gate; sentence records refreshed only with documented review or semantic-invariant body",
+  "core_hashes": {
+    "视频/工具/踩坑核查.py": "f6efb9df33705fadac3d78d588adb722b4f07eab134818983a869f1d9e0c748d",
+    "视频/工具/译文核查.py": "f68089bad35c5f41f7a08936a95f408da8a477b2b1cb1ca450bca6eacbd2dc5c",
+    "视频/工具/新管/修.py": "1a6662012752c2d2152d87e1690f1dbb1fd2ced583455a365c022b8b91bdd34d",
+    "视频/工具/初稿生成/核对.py": "c635aee82e0fe4dff9f70dcae03e2f797aadb670c8ebe6c8f202b82a35a87a74"
+  },
+  "articles": [
+    {
+      "article": "02",
+      "source_sha256": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "generator_issues": [],
+      "generator_exit": 0,
+      "generator_differences": [],
+      "generator_exact": true,
+      "repair_exit": 0,
+      "repair_differences": [
+        {
+          "path": "/sentences/7/chunks/2/align/2/1",
+          "reason": "value",
+          "expected": "斯坦福**教师**(faculty)（全体教员）和**研究生**(postgraduate)的子女。",
+          "actual": "斯坦福**教师**(faculty)（全体教员）和**研究生的**(postgraduate)子女。"
+        },
+        {
+          "path": "/sentences/7/chunks/2/zh",
+          "reason": "value",
+          "expected": "**主要**(predominantly)是斯坦福**教师**(faculty)（全体教员）和**研究生**(postgraduate)的子女。",
+          "actual": "**主要**(predominantly)是斯坦福**教师**(faculty)（全体教员）和**研究生的**(postgraduate)子女。"
+        },
+        {
+          "path": "/sentences/12/chunks/2/note",
+          "reason": "value",
+          "expected": "（即缩小了【等得更久】与【SAT分数更高】之间的相关性：100% → 约 33%，下降了约 2/3）",
+          "actual": "（即缩小了【等得更久】与【SAT分数更高】之间的相关性：100% → 约 33%，\n下降了约 2/3）"
+        },
+        {
+          "path": "/sentences/15/chunks/2/note",
+          "reason": "value",
+          "expected": "（简述：▸实验：四五岁孩子面前放一份零食，可以马上吃，也可以独自等约15分钟换两份。研究者记录等待时间，后来再追踪这些孩子。▸走红：早期追踪发现，等得久的孩子后来在美国大学入学考试SAT中成绩较高，于是这个测试被宣传成未来成功的预测器。▸局限：早期SAT分析只有数十名孩子，多来自斯坦福大学教职工和研究生家庭。家庭条件可能同时帮助孩子培养耐心、取得好成绩，不能把成绩全归功于自制力。▸复核：2018年研究追踪900多名不同背景儿童，先发现等待与成绩的关联只有早期的一半；再考虑家庭条件和原有理解、学习能力，关联又减弱约三分之二。结果削弱了原来的推论，却不等于两者毫无关系。▸信任：2013年实验发现，刚遇到不守信大人的孩子等得更短。等待也受周围环境和成人是否可信影响，不能凭一次测试断定孩子的命运。）",
+          "actual": "（简述：▸实验：四五岁孩子面前放一份零食，可以马上吃，\n▹也可以独自等约15分钟换两份。研究者记录等待时间，后来再追踪这些孩子。\n▸走红：早期追踪发现，等得久的孩子后来在美国大学入学考试SAT中成绩较高，\n▹于是这个测试被宣传成未来成功的预测器。\n▸局限：早期SAT分析只有数十名孩子，多来自斯坦福大学教职工和研究生家庭。\n▹家庭条件可能同时帮助孩子培养耐心、取得好成绩，不能把成绩全归功于自制力。\n▸复核：2018年研究追踪900多名不同背景儿童，先发现等待与成绩的关联只有早期的一半；\n▹再考虑家庭条件和原有理解、学习能力，关联又减弱约三分之二。结果削弱了原来的推论，却不等于两者毫无关系。\n▸信任：2013年实验发现，刚遇到不守信大人的孩子等得更短。\n▹等待也受周围环境和成人是否可信影响，不能凭一次测试断定孩子的命运。）"
+        }
+      ],
+      "normalized_sha256": "9131c90bf4eef4959933d3fafd3b91f323756f53de4acc71648b166279d5e6d6",
+      "extra_parent_requested_tail_confirmation": true,
+      "text_exit": 0,
+      "hard_errors": [],
+      "pending": [],
+      "exception_tail": [],
+      "source_unchanged": true
+    }
+  ],
+  "core_unchanged": true,
+  "status": "passed"
+}

@@ -1,0 +1,95 @@
+{
+  "article": "65",
+  "scope": "Isolated payload source clarification only; no production write, new TTS, audio reconstruction, video/PDF render or push.",
+  "base_selection": {
+    "json": "/workspace/work/video-audit70-20261113/sources/65.json",
+    "reason": "PAY had no65. Frozen source has the latest5-point summary; LOCAL differs only in the old final summary. LOCAL gen and MD match HEAD.",
+    "gen": "/workspace/work/audit-repo/视频/工具/初稿生成/gen65.py",
+    "md": "/workspace/work/audit-repo/新版定稿/65-the-day-the-doomsday-vault-opened.md"
+  },
+  "changed_json_locations": [
+    {
+      "path": "/sentences/13/chunks/1/note",
+      "before": "absent",
+      "after": "（年份说明：入口进水发生在2016年10月，\n2017年5月引发广泛报道；种子储藏区没有进水。）"
+    },
+    {
+      "path": "/sentences/16/chunks/1/note",
+      "preserved_prefix": "（it 指 weakness）",
+      "new_complete_summary": "（简述：▸备份：2008年启用的斯瓦尔巴种子库，为防战争、病害保存农作物种子备份；种子归存放者，只有他们能取回。▸取种：叙利亚内战中，农业研究中心ICARDA迁移总部；2015年请求取出自存的部分备份，这是种子库首次出库。▸重建：该中心在黎巴嫩、摩洛哥繁育种子，恢复自己的种子样本库，并从2017年起分批将种子存回北极。▸虚惊：2017年报道的入口进水，实际发生于2016年10月异常温暖、多雨的天气后；水在隧道中结冰，未触及种子，种子仍安全保存在零下18摄氏度。▸加固：挪威给隧道加做防水并开挖排水沟，修补这座全球种子保险箱因天气变暖而暴露的入口弱点。）"
+    }
+  ],
+  "facts": {
+    "event_date": "2016-10",
+    "widespread_report_date": "2017-05",
+    "water_reached_seed_storage": false,
+    "first_withdrawal_quantity": "Not asserted in revised summary;正文asked for116000 kept as request wording, not converted to a verified first actual withdrawal quantity."
+  },
+  "generator": "Two S-note data changes plus full frozen top-level metadata literal before the unchanged official generation call; no algorithm/checker change.",
+  "roundtrip": [
+    {
+      "mode": "existing-script-merge",
+      "exit_code": 0,
+      "entire_generated_json_exactly_matches_target": true,
+      "english_article_exact_match_reported": true,
+      "validation_output_tail": [
+        "英文与文章逐字一致（不计加粗） | 文章重点词 61 个，对照里都在",
+        "不同英文用了同一个中文： 无",
+        "重点词中文与文章定稿不同： [('insure against', '投保', '防范')]",
+        "短语整体标后英文标签变了（中文沿用文章）： []",
+        "句数 17 chunk 33 组 112 每组英文词 2.37 note 22"
+      ]
+    },
+    {
+      "mode": "fresh-no-existing-script",
+      "exit_code": 0,
+      "entire_generated_json_exactly_matches_target": true,
+      "english_article_exact_match_reported": true,
+      "validation_output_tail": [
+        "英文与文章逐字一致（不计加粗） | 文章重点词 61 个，对照里都在",
+        "不同英文用了同一个中文： 无",
+        "重点词中文与文章定稿不同： [('insure against', '投保', '防范')]",
+        "短语整体标后英文标签变了（中文沿用文章）： []",
+        "句数 17 chunk 33 组 112 每组英文词 2.37 note 22"
+      ]
+    }
+  ],
+  "preservation_checks": {
+    "all_english_audio_words_exactly_unchanged": true,
+    "all_chinese_meanings_focus_and_align_groups_exactly_unchanged": true,
+    "all_existing_grammar_notes_preserved": true,
+    "all_non_sentence_metadata_including_every_audio_control_exactly_unchanged": true,
+    "original_final_it_weakness_grammar_note_preserved": true,
+    "MD_English_section_exactly_unchanged": true,
+    "both_actual_generator_roundtrips_exact": true
+  },
+  "sources": [
+    {
+      "url": "https://www.popsci.com/seed-vault-flooding/",
+      "publication_date": "2017-05-22",
+      "read_date": "2026-11-13",
+      "evidence": "Statsbygg发言人明确October2016、异常高温与降雨、种子储藏区未受威胁；2017年当时没有新漏水。"
+    },
+    {
+      "url": "https://www.croptrust.org/what-we-do/programs/svalbard-global-seed-vault/",
+      "publication_date": "undated current operator page",
+      "read_date": "2026-11-13",
+      "evidence": "2015首次取出，2015–2019分次取种/重建/返存；不据此宣称首批实取116000份。"
+    }
+  ],
+  "files": {
+    "视频/脚本/65.json": {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/脚本/65.json",
+      "sha256": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede"
+    },
+    "视频/工具/初稿生成/gen65.py": {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/初稿生成/gen65.py",
+      "sha256": "7e39a0c6489001db5e0392929b1afcb38eb5c65a986f591cd5d744b652832b30"
+    },
+    "新版定稿/65-the-day-the-doomsday-vault-opened.md": {
+      "path": "/workspace/work/video-audit70-20261113/payload/新版定稿/65-the-day-the-doomsday-vault-opened.md",
+      "sha256": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89"
+    }
+  },
+  "status": "Frozen source correction complete; actual later official4K picture checks remain pending."
+}

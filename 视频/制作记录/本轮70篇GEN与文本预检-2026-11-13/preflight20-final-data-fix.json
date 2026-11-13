@@ -1,0 +1,129 @@
+{
+  "article": "20",
+  "time": "2026-11-13T22:50:19.801535+00:00",
+  "source_before_sha256": "ecdbd9c26a46c4f74269a80b176b1f78cd313a921a1b7b6bd452e4b847ce09b6",
+  "source_after_sha256": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+  "changes": [
+    {
+      "path": "/allow_clash",
+      "reason": "list_length",
+      "expected_length": 1,
+      "actual_length": 2
+    },
+    {
+      "path": "/allow_clash/1",
+      "reason": "unexpected_item",
+      "actual": "joints"
+    },
+    {
+      "path": "/sentences/5/chunks/1/align",
+      "reason": "list_length",
+      "expected_length": 3,
+      "actual_length": 4
+    },
+    {
+      "path": "/sentences/5/chunks/1/align/0/0",
+      "reason": "value",
+      "expected": "who lived about 5,300 years ago,",
+      "actual": "who lived"
+    },
+    {
+      "path": "/sentences/5/chunks/1/align/0/1",
+      "reason": "value",
+      "expected": "生活在约5,300年前，",
+      "actual": "生活在"
+    },
+    {
+      "path": "/sentences/5/chunks/1/align/1/0",
+      "reason": "value",
+      "expected": "\n",
+      "actual": "about 5,300 years ago,"
+    },
+    {
+      "path": "/sentences/5/chunks/1/align/1/1",
+      "reason": "value",
+      "expected": "",
+      "actual": "约5,300年前，"
+    },
+    {
+      "path": "/sentences/5/chunks/1/align/2/0",
+      "reason": "value",
+      "expected": "between 3350 and 3105 BC.",
+      "actual": "\n"
+    },
+    {
+      "path": "/sentences/5/chunks/1/align/2/1",
+      "reason": "value",
+      "expected": "也就是公元前3350年至前3105年之间。",
+      "actual": ""
+    },
+    {
+      "path": "/sentences/5/chunks/1/align/3",
+      "reason": "unexpected_item",
+      "actual": [
+        "between 3350 and 3105 BC.",
+        "也就是公元前3350年至前3105年之间。"
+      ]
+    },
+    {
+      "path": "/换行变更已获同意",
+      "reason": "unexpected_field",
+      "actual": {
+        "S6": "用户 2026-11-13 原话：“最后这个，最后这个字体，最后这个字体一定要认认真真的去根据屏幕进行适当的放大，然后好好排版，一定要就是居中排版，弄得特别好看。”本轮已审核任务摘录要求S6第二视觉行完整到ago，第三行从between开始；本字段只登记该既定视觉分行。"
+      }
+    },
+    {
+      "path": "/核对确认/对齐/S6-2 about 5,300 years ago,",
+      "reason": "unexpected_field",
+      "actual": "5,300 是一个数值，原词数正则在逗号处把它算成 5 和 300 两项；这一时间意群实际为 about / 5,300 / years / ago 四个单位，中文“约5,300年前”完整对应。who lived 已另拆一格；保留单个数字和“年前”的完整时间表达，符合用户要求约5,300年前不拆且ago留在第二视觉行。"
+    }
+  ],
+  "per_chunk_en_zh_exact": true,
+  "all_audio_and_unspecified_metadata_exact": true,
+  "same_requested_rows_at_1080p_and_4K": true,
+  "original_gate_after_specific_numeric_unit_review": 0,
+  "number_word_count_reason": "5,300 是一个数值，原词数正则在逗号处把它算成 5 和 300 两项；这一时间意群实际为 about / 5,300 / years / ago 四个单位，中文“约5,300年前”完整对应。who lived 已另拆一格；保留单个数字和“年前”的完整时间表达，符合用户要求约5,300年前不拆且ago留在第二视觉行。",
+  "static_layout": [
+    {
+      "scale": 1,
+      "font": 83,
+      "height": 786,
+      "width": 1859.390625,
+      "bounds": [
+        1860,
+        1020
+      ],
+      "fits": true,
+      "english_rows": [
+        "Known as Ötzi, the natural mummy was a man",
+        "who lived about 5,300 years ago,",
+        "between 3350 and 3105 BC."
+      ],
+      "exact_requested_rows": true,
+      "orphans": [],
+      "wide_notes": [],
+      "preview": "/workspace/work/video-audit70-20261113/preflight20-alignment-overlay-review/20-S6-split-1920x1080.png"
+    },
+    {
+      "scale": 2,
+      "font": 165,
+      "height": 1578,
+      "width": 3699.234375,
+      "bounds": [
+        3720,
+        2040
+      ],
+      "fits": true,
+      "english_rows": [
+        "Known as Ötzi, the natural mummy was a man",
+        "who lived about 5,300 years ago,",
+        "between 3350 and 3105 BC."
+      ],
+      "exact_requested_rows": true,
+      "orphans": [],
+      "wide_notes": [],
+      "preview": "/workspace/work/video-audit70-20261113/preflight20-alignment-overlay-review/20-S6-split-3840x2160.png"
+    }
+  ],
+  "checker_changes": false
+}
