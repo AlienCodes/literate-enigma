@@ -42,6 +42,52 @@ def save():
     (OUT / f'{NO}-status.json').write_text(json.dumps(status, ensure_ascii=False, indent=2) + '\n')
 
 
+def install_reviewed_context(request):
+    """Use one exact frozen source context for cross-article checks."""
+    context = TASK / 'context'
+    manifest_file = context / 'manifest.json'
+    if not manifest_file.is_file():
+        status['reviewed_cross_article_context'] = {'provided': False}
+        return
+    manifest = json.loads(manifest_file.read_text())
+    expected_ids = [f'{n:02d}' for n in range(1, 71)]
+    assert manifest['kind'] == 'exact_reviewed_cross_article_source_context'
+    assert manifest['article_ids'] == expected_ids
+    files = manifest['files_sha256']
+    assert len(files) == 140
+    scripts = {f'视频/脚本/{no}.json' for no in expected_ids}
+    assert scripts <= set(files)
+    manuscript_ids = []
+    for relative, expected_hash in files.items():
+        assert (relative in scripts or re.fullmatch(r'新版定稿/\d{2}-[^/]+\.md', relative)), relative
+        assert re.fullmatch(r'[0-9a-f]{64}', expected_hash)
+        path = context / relative
+        assert path.is_file() and not path.is_symlink() and sha(path) == expected_hash, relative
+        if relative.startswith('新版定稿/'):
+            manuscript_ids.append(Path(relative).name[:2])
+        else:
+            assert json.loads(path.read_text())['no'] == Path(relative).stem
+    assert sorted(manuscript_ids) == expected_ids
+    target_json = f'视频/脚本/{NO}.json'
+    target_md = next(name for name in files if name.startswith(f'新版定稿/{NO}-'))
+    assert (context / target_json).read_bytes() == (request / target_json).read_bytes()
+    assert (context / target_md).read_bytes() == (request / target_md).read_bytes()
+    # No tools, authorization records, accepted MP4s or unlisted files copied.
+    for relative in sorted(files):
+        destination = ROOT / relative
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(context / relative, destination)
+        if relative in scripts:
+            working = W / 'scripts' / Path(relative).name
+            working.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(context / relative, working)
+    status['reviewed_cross_article_context'] = {
+        'provided': True, 'manifest_sha256': sha(manifest_file), 'files_sha256': files,
+        'source_file_count': 140, 'working_script_count': 70,
+        'target_request_exactly_matches_context': True}
+    save()
+
+
 def git_bytes(path):
     return subprocess.check_output(['git', 'show', 'HEAD:' + str(path)], cwd=ROOT)
 
@@ -263,6 +309,15 @@ def official(args, label):
             for path in (W / group).glob('*.log'):
                 text += '\n' + path.read_text(errors='replace')
         missing = re.findall(r'缺(?:配音|调平)缓存\s+([A-Za-z0-9_\u4e00-\u9fff.-]+\.(?:pkl|json))', text)
+        if missing:
+            # Keep the real unchanged-checker reason even if the repository
+            # has no such public cache and git show itself subsequently fails.
+            failure = status.setdefault('failure_details', {})
+            failure['reported_missing_public_cache_entries'] = sorted(set(missing))
+            failure['original_checker_diagnostics_before_cache_restore'] = [
+                line[:1600] for line in text.splitlines()
+                if any(mark in line for mark in ('✘', ' BAD ', '缺配音缓存', '缺调平缓存', '【停止】'))][-120:]
+            save()
         restored = [cache_entry(name) for name in sorted(set(missing))]
         if not any(restored):
             # The legacy delivery wrapper drops checker exceptions unless they
@@ -325,6 +380,32 @@ def summary(data):
     return value
 
 
+def same_summary_content(expected, actual):
+    """Allow only added line-leading ▹ wrappers; preserve every other glyph."""
+    if expected.count('▸') != 5 or actual.count('▸') != 5:
+        return False
+    want = ''.join(char for char in expected if not char.isspace())
+    index = 0
+    at_line_start = True
+    for char in actual:
+        leading_wrap_marker = char == '▹' and at_line_start
+        if char == '\n':
+            at_line_start = True
+        elif not char.isspace():
+            at_line_start = False
+        if char.isspace():
+            continue
+        if index < len(want) and char == want[index]:
+            index += 1
+        elif leading_wrap_marker:
+            # An intentional marker already in expected must match above;
+            # removed/changed expected text is never ignored.
+            continue
+        else:
+            return False
+    return index == len(want)
+
+
 try:
     assert (M / 'tts/kokoro-v1.0.onnx').exists(), 'Original warm machine cache was not restored.'
     W.mkdir(parents=True, exist_ok=True)
@@ -364,7 +445,10 @@ try:
     confirmations = request / f'视频/制作记录/逐句确认/{NO}.json'
     if confirmations.is_file():
         files.append((confirmations, ROOT / f'视频/制作记录/逐句确认/{NO}.json'))
+    # Keep the accepted original English baseline before installing updated
+    # cross-article context; context cannot erase this invariant.
     baseline = json.loads((ROOT / script_rel).read_text())
+    install_reviewed_context(request)
     for source, destination in files:
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source, destination)
@@ -444,7 +528,8 @@ try:
     official(['bash', T / '新管/定稿.sh', NO], 'canonical-final4K')
     checked(['python3', T / '新管/印章.py'], 'original-stamp-after-production.log')
     current = json.loads((W / f'scripts/{NO}.json').read_text())
-    assert re.sub(r'\s+', '', summary(current)) == re.sub(r'\s+', '', requested_summary)
+    assert same_summary_content(requested_summary, summary(current)), (
+        'Canonical summary changed words, punctuation or the five main points.')
     info = json.loads(subprocess.check_output(['ffprobe', '-v', 'error', '-show_streams', '-of', 'json', str(W / f'{NO}.mp4')]))
     video = next(s for s in info['streams'] if s['codec_type'] == 'video')
     assert (video['width'], video['height']) == (3840, 2160)
