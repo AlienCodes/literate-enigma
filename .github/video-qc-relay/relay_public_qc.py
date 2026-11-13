@@ -11,6 +11,16 @@ import urllib.request
 import zipfile
 
 
+PUBLIC_JSON = re.compile(r'^(\d{2})-(?:status|failed-working-source|user-authorization|source|summary-verification|canonical-fingerprint|approved-audio-qc|failed-draft-proof|failed-draft-fingerprint|reference-gain-diagnostic|checker-reference-preparation)\.json$')
+PUBLIC_MEDIA = re.compile(r'^\d{2}-failed-draft\.mp4$|^\d{2}-failed-draft-(?:opening-ok|oll-wright|ending|title|s5-highlight|norway-finland|last-sentence)\.wav$')
+
+
+def allowed_member(name, status_only=False):
+    """Keep default draft retrieval; status-only never exports audio/video bytes."""
+    return bool(PUBLIC_JSON.fullmatch(name) or
+                (not status_only and PUBLIC_MEDIA.fullmatch(name)))
+
+
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, *args, **kwargs):
         return None
@@ -18,6 +28,8 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 
 def main(request_path):
     request = json.loads(Path(request_path).read_text())
+    status_only = request.get('status_only', False)
+    assert isinstance(status_only, bool)
     repo = request['repository']
     assert repo == os.environ['GITHUB_REPOSITORY'] == 'AlienCodes/literate-enigma'
     branch = request['debug_branch']
@@ -40,9 +52,9 @@ def main(request_path):
     assert run['head_branch'] == 'codex/finish-05-and-summaries-20261112'
     master_before = api('git/ref/heads/master')['object']['sha']
     listed = api('actions/runs/' + str(request['run_id']) + '/artifacts?per_page=100')['artifacts']
+    jobs = api('actions/runs/' + str(request['run_id']) + '/jobs?per_page=100')['jobs'] if status_only else []
     updates = []
     observations = []
-    allowed = re.compile(r'^(\d{2})-(?:status|failed-working-source|user-authorization|source|summary-verification|canonical-fingerprint|approved-audio-qc|failed-draft-proof|failed-draft-fingerprint|reference-gain-diagnostic|checker-reference-preparation)\.json$|^\d{2}-failed-draft\.mp4$|^\d{2}-failed-draft-(?:opening-ok|oll-wright|ending|title|s5-highlight|norway-finland|last-sentence)\.wav$')
     for name in request['artifacts']:
         assert re.fullmatch(r'article\d{2}-revised-canonical-4K-final', name)
         found = next((item for item in listed if item['name'] == name and not item['expired']), None)
@@ -63,14 +75,19 @@ def main(request_path):
             raw = response.read(64 * 1024 * 1024 + 1)
         assert len(raw) <= 64 * 1024 * 1024
         digest = 'sha256:' + hashlib.sha256(raw).hexdigest()
+        if status_only:
+            assert found.get('digest'), 'Status-only observation requires an artifact ZIP digest'
         if found.get('digest'):
             assert digest == found['digest'], 'Artifact ZIP digest mismatch'
         files = []
+        omitted_media = []
         with zipfile.ZipFile(io.BytesIO(raw)) as archive:
             for member in archive.infolist():
                 path = PurePosixPath(member.filename)
                 assert not path.is_absolute() and '..' not in path.parts
-                if member.is_dir() or not allowed.fullmatch(path.name):
+                if status_only and not member.is_dir() and path.name[:2] == name[7:9] and re.fullmatch(r'\d{2}-(?:4K-[^/\r\n]+|failed-draft(?:-[^/\r\n]+)?)\.(?:mp4|wav)', path.name):
+                    omitted_media.append({'name': path.name, 'bytes': member.file_size})
+                if member.is_dir() or not allowed_member(path.name, status_only):
                     continue
                 assert path.name[:2] == name[7:9]
                 assert member.file_size <= 40 * 1024 * 1024
@@ -83,10 +100,17 @@ def main(request_path):
                 updates.append({'path': destination, 'mode': '100644', 'type': 'blob', 'sha': blob['sha']})
                 files.append({'path': destination, 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()})
         observations.append({'name': name, 'available': True, 'artifact_id': found['id'],
-                             'zip_sha256': digest, 'files': files})
+                             'zip_sha256': digest, 'zip_digest_verified': bool(found.get('digest')),
+                             'omitted_public_media_metadata': omitted_media,
+                             'files': files})
     manifest = {'kind': 'public-observation-only-not-quality-acceptance',
                 'run_id': request['run_id'], 'source_commit': run['head_sha'],
                 'run_status_at_observation': run['status'], 'artifacts': observations,
+                'status_only': status_only,
+                'media_content_exported': not status_only,
+                'workflow_jobs_at_observation': [
+                    {k: job.get(k) for k in ('id', 'name', 'status', 'conclusion', 'started_at', 'completed_at', 'html_url')}
+                    for job in jobs if re.fullmatch(r'produce \(\d{2}\)', job['name'])],
                 'private_cache_GT_model_exports': False}
     data = (json.dumps(manifest, ensure_ascii=False, indent=2) + '\n').encode()
     blob = api('git/blobs', {'content': base64.b64encode(data).decode(), 'encoding': 'base64'}, 'POST')
@@ -111,5 +135,13 @@ def main(request_path):
 
 
 if __name__ == '__main__':
+    import argparse
     import sys
-    main(sys.argv[1])
+    parser = argparse.ArgumentParser()
+    parser.add_argument('request_path')
+    parser.add_argument('--status-only', action='store_true')
+    args = parser.parse_args()
+    if args.status_only:
+        request = json.loads(Path(args.request_path).read_text())
+        assert request.get('status_only') is True, 'CLI flag must match the reviewable request'
+    main(args.request_path)
