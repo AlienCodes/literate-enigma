@@ -81,6 +81,9 @@ Colin Pitchfork was **detained** on 19 September 1987, and his DNA **profile** m
 | juvenile | n./adj. 少年；少年的（juvenile crime；a juvenile court） | 5 |
 | falsely | adv. 虚假地，错误地，不实地（falsely accused；falsely claim credit） | 5 |
 | offence | n. 罪行，违法行为（commit an offence；a criminal offence） | 5 |
+| screening | n. 筛查；筛选（screen 的名词形式；DNA screening：DNA筛查） | 4 |
+| baker | n. 面包师，烘焙师 | 4 |
+| convicted of | v. (convict sb of sth 的被动形式) 被判……罪（be convicted of murder：被判谋杀罪） | 5 |
 
 ## 史实与来源
 - 【T1】1984年9月10日上午（约9时05分），莱斯特大学的杰弗里斯冲洗出一张X光片，看到DNA图案因人而异；正文不写钟点。S1

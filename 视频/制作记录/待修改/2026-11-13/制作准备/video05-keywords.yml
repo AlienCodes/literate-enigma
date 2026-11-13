@@ -1,0 +1,73 @@
+name: Article05 four keyword highlights 4K
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  article05:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.github/video05-keywords/
+            /.github/video05fix-production/
+            /.github/video-batch/
+            /视频/工具/
+            /视频/脚本/
+            /视频/对照文本/05-*
+            /视频/制作记录/
+            /视频/音频核对/
+            /视频/资源/字体/
+            /视频/配音缓存/*.json
+            /视频/*.md
+            /新版定稿/
+            /CLAUDE.md
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - name: Require the previously accepted original audio cache
+        env:
+          CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
+        run: |
+          test "$CACHE_HIT" = true
+          test -f "$RUNNER_TEMP/completion-machine/video/work_05/a.wav"
+      - name: Install canonical tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet -r 视频/工具/环境/requirements.txt
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - uses: actions/cache/restore@v4
+        id: fastcheck-cache
+        with:
+          path: 视频/工具/新管/快测通过.json
+          key: Linux-article05-fastcheck-v1-py311-original43294745262-99de41db540776b34faa8c3a8e9a5252c2327e43c2024a5428bc15245c688d3c
+      - name: Official draft and final4K pipeline with unchanged accepted voice
+        env:
+          VIDEO05_FASTCHECK_CACHE_HIT: ${{ steps.fastcheck-cache.outputs.cache-hit }}
+        run: python -u .github/video05-keywords/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: article05-four-keywords-4K
+          path: |
+            article05-delivery/*.mp4
+            article05-delivery/*status.json
+            article05-delivery/*verification.json
+            article05-delivery/keyword-request.json
+            article05-delivery/sources/
+          compression-level: 1
+          retention-days: 30
+          if-no-files-found: error

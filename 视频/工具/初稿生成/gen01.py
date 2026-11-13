@@ -40,6 +40,8 @@ S=[(1,[("On 6 January 1995, McArthur Wheeler and an accomplice","1995年1月6日
 ]
 out={"no":"01","title_en":"The Robber Who Thought Lemon Juice Made Him Invisible","title_zh":"以为柠檬汁能隐身的劫匪",
 "sentences":[{"para":p,"chunks":[{"en":e,"zh":z} for e,z in c]} for p,c in S]}
+# 用户2026-11-13：双重负担区分执行能力与自我评估能力；仅加小字，视频暂缓重出。
+out["sentences"][12]["chunks"][1]["note"]='（双重负担：\n第一，能力不够，容易把事情做错，属于执行能力不行；\n第二，也因为能力不够，自己还看不出错在哪儿，\n可能误以为做得很好，这属于自我评估能力不行。）'
 json.dump(out,open("scripts/01.json","w"),ensure_ascii=False,indent=1)
 # validate
 src=open("/home/user/postgraduate-vocabulary/新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md").read()
