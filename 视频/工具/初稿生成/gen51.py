@@ -19,7 +19,7 @@ S=[
      "（over…：就……，关于……；\nparodying…：现在分词短语作后置定语，修饰 society）"]]),
 (2,[[[("It carried","它刊载了"),("the first known 'o.k.',","已知最早的“o.k.”，"),("**glossed as** 'all correct'.","**被注释为**(glossed as)“all correct”（完全正确）。")],
      "（glossed as…：过去分词短语作后置定语，\n修饰 'o.k.'，\n被注释为……）"]]),
-(2,[[[("The letters","这两个字母"),("stood for","代表的是"),("a **knowingly**","**有意**(knowingly)写成"),("**illiterate**","**文盲**(illiterate)拼法的"),("'oll korrect'.","'oll korrect'。")],
+(2,[[[("The letters","这两个字母"),("**stood for**","**代表**(stood for)的是"),("a **knowingly**","**有意**(knowingly)写成"),("**illiterate**","**文盲**(illiterate)拼法的"),("'oll korrect'.","'oll korrect'。")],
      "（stand for：代表；\n'oll korrect'：故意拼错的 all correct）"]]),
 (2,[[[("The **presumed** writer","**推定的**(presumed)作者"),("was","是"),("the **editor**,","该报纸的**编辑**(editor)"),("Charles Gordon Greene.","查尔斯·戈登·格林。")],
      "（Charles Gordon Greene：同位语，\n补充说明 the editor）"]]),
@@ -32,7 +32,7 @@ S=[
     [[("formed","他们成立了"),("the Democratic O.K. Club,","民主党 O.K. 俱乐部，"),("making","让"),("the letters","这两个字母"),("a **double-meaning**","成了一句**一语双关的**(double-meaning)"),("**slogan**.","**口号**(slogan)。")],
      "（making…：现在分词短语作状语，表示结果；\nmake A B：让 A 成为 B）"]]),
 (3,[[[("That November","那年11月，"),("William Henry Harrison","威廉·亨利·哈里森"),("**unseated** him,","**把**(unseated)他**赶下台**(unseated)，"),("234 **electoral votes** to 60.","**选举人票**(electoral votes)为234张对60张。")],
-     "（234 electoral votes to 60：选举人票234张对60张）"]]),
+     "（234 electoral votes to 60：选举人票234张对60张）\n（这里的“他”指时任总统范布伦。\n1840年总统大选，哈里森拿到234张选举人票，范布伦只有60张。\n哈里森因此获胜，范布伦没能连任。）"]]),
 (4,[[[("On 30 March 1840","1840年3月30日，"),("the New York Morning Herald","《纽约先驱晨报》"),("printed a **fabricated**","刊登了一则**捏造的**(fabricated)"),("**smear**:","**抹黑**(smear)：")]],
     [[("the former","前"),("president","总统"),("Andrew Jackson,","安德鲁·杰克逊，"),("a **supposedly**","一个**据称**(supposedly)"),("**inept** speller,","拼写**笨拙的**(inept)人，"),("had marked **paperwork** O.K.,","曾在**公文**(paperwork)上标注 O.K.，"),("for 'Ole Kurrek'.","用以代表“Ole Kurrek”。")],
      "（a supposedly inept speller：同位语，补充说明 Andrew Jackson；\nmark A B：在 A 上标注 B；\n'Ole Kurrek'：故意拼错的 all correct）"]]),
@@ -48,13 +48,8 @@ S=[
      "（excavate A from B：从 B 中发掘出 A）"],
     [[("in six **influential** American Speech articles.","这些发现发表在《美国语言》杂志的六篇**影响深远的**(influential)文章里。")],
      "（in six … articles：in 结构作状语，指成果发表在六篇文章中）"]]),
-(5,[[[("Most dictionaries now","如今大多数词典都"),("**embrace**","**采纳了**(embrace)"),("his **derivation**,","他的**词源**(derivation)解释，"),("a pedigree of bad spelling and dinner-bell satire.","那是一段由错误拼写和开饭铃讽刺文构成的来历。")],
-     "（a pedigree of…：同位语，补充说明 derivation）\n"
-     "（简述：OK这个词是怎么来的？这是一个“恶搞变爆款”的故事。\n"
-     "第一步：恶搞造梗。1838年起，波士顿的报纸流行故意拼错字来搞笑。1839年，有报纸在开玩笑时，第一次把“all correct（完全正确）”故意错拼成了“o.k.”。\n"
-     "第二步：政客疯狂带节奏。1840年美国大选，候选人的外号叫“老金德霍克（Old Kinderhook）”，缩写正好是O.K.。他的支持者立刻成立“O.K.俱乐部”，用这个双关语到处拉票，直接把这两个字母传遍了全国。\n"
-     "第三步：一个乌龙事件。当时对手为了抹黑前总统杰克逊，造谣说他把O.K.写在公文上。其实根本没这事。\n"
-     "第四步：最终盖棺定论。后来虽然有各种奇葩说法（比如说是印第安语、希腊语），但学者里德翻烂了当年的旧报纸，硬核证明了它确确实实起源于波士顿的那次恶搞。现在，绝大多数词典都认准了这个说法。）"]]),
+(5,[[[("Most dictionaries now","如今大多数词典都"),("**embrace**","**采纳了**(embrace)"),("his **derivation**,","他的**词源**(derivation)解释，"),("a **pedigree** of bad spelling and dinner-bell satire.","那是一段由错误拼写和开饭铃讽刺文构成的**来历**(pedigree)。")],
+     "（a pedigree of…：同位语，补充说明 derivation）\n（简述：▸玩笑：1838年起，波士顿报纸流行故意拼错词再缩写；1839年出现已知最早的“o.k.”。▸原义：o.k.取自all correct的故意错拼oll korrect，意为“完全正确”，笑点在模仿文盲口吻。▸助推：1840年，范布伦阵营以绰号Old Kinderhook的缩写OK，兼指他本人和“完全正确”，用作竞选口号。▸流传：范布伦败选，OK仍流传；杰克逊用它批文件的传闻是捏造，但约二十年内人们已认真如此批注。▸考证：语言学家里德于1963至1964年查旧报，重建波士顿词源；多数词典采纳，取代早先乔克托语等说法。）"]]),
 ]
 CONF={"合组":{
  "S2 O.W. for 'oll wright'":"对齐不了：'oll wright' 是故意错拼的引语，整体照录，不能拆",
@@ -103,6 +98,9 @@ out={"no":"51","title_en":"The Joke That Became OK","title_zh":"OK 原本是个�
      "allow_clash":["lay in"],
      "高亮按实际开口":True,"高亮开口门槛":40,
      "术语":{"Boston":"波士顿","Boston Morning Post":"《波士顿晨邮报》","Providence Journal":"《普罗维登斯日报》","Charles Gordon Greene":"查尔斯·戈登·格林","Martin Van Buren":"马丁·范布伦","New York":"纽约","Democratic O.K. Club":"民主党 O.K. 俱乐部","William Henry Harrison":"威廉·亨利·哈里森","New York Morning Herald":"《纽约先驱晨报》","Andrew Jackson":"安德鲁·杰克逊","Jackson":"杰克逊","Choctaw":"乔克托语","Greek":"希腊语","Allen Walker Read":"艾伦·沃克·里德","American Speech":"《美国语言》"}}
+# 2026-11-13 实际accepted51音轨审计的最小增益候选，待官方4K重建实测；仅数据，不改词句、停顿、音调或时长。
+out["分段增益dB"] = {'S2': {'4': 1.5}, 'S10': {'1': -1.0, '4': -1.0}, 'S14': {'1': -1.5, '2': 1.5}, 'S1': {'1': 1.5}}
+out["段内渐变dB"] = {'S2': {'3': [-1.5, -3.5]}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)

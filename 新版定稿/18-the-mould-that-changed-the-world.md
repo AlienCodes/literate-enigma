@@ -21,7 +21,7 @@ In October 1945 Fleming, Florey, and Chain shared the Nobel prize; Heatley was *
 
 1941年2月，艾伯特·亚历山大，一名牛津**警员**(constable)，因**感染**(infection)而**病情危重**(gravely ill)，用上青霉素后**有所好转**(rallied)。（gravely ill with infection：形容词短语，补充说明他的病情；gravely ill：病情危重；ill with：因……患病）当**稀缺的**(scarce)（青霉素）供应**耗尽**(ran out)后，他于3月去世：**障碍**(obstacle)在于**数量**(quantity)。（run out：用完，耗尽）从1941年7月起，伊利诺伊州皮奥里亚的一家政府实验室把产量**提高了**(boosted)约**十倍**(tenfold)，靠的是**玉米浆**(corn-steep liquor)，一种**淀粉**(starch)生产的副产品；后来，市场上一只**发霉的**(mouldy)**甜瓜**(melon)又**为**(furnished with)这家实验室**提供了**(furnished with)一株更**高产的**(prolific)菌株。（in Peoria, Illinois：介词短语作后置定语，修饰 laboratory）（with corn-steep liquor：介词短语表方式；a starch by-product：同位语，补充说明玉米浆）（furnish A with B：为A提供B）到1944年6月诺曼底登陆时，**工业**(industrial)**发酵**(fermentation)已能满足**盟军的**(Allied)需求。（by：到……时为止；D-Day：诺曼底登陆日）
 
-1945年10月，弗莱明、弗洛里和钱恩共同获得了诺贝尔奖；希特利却**遭到忽视**(overlooked)。**机缘**(Fortune)把霉菌送进了弗莱明的培养皿；几支**锲而不舍的/坚持不懈的**(tenacious)团队加上多年的**辛劳/辛苦工作**(toil)，把它**转化成了**(transformed into)**良药**(remedy)。（transform A into B：把A转化成B；years of toil：多年的辛劳）（结局：弗莱明发现了青霉素，可粗制的液体难以提纯，青霉素沉寂了约十年；牛津的弗洛里、钱恩和希特利把它提取出来，注射了青霉素的小鼠活了下来；皮奥里亚的实验室用玉米浆和发霉甜瓜里的菌株提高了产量，到诺曼底登陆时已能满足盟军的需求。1945年，弗莱明、弗洛里和钱恩共同获得诺贝尔奖，希特利却遭到忽视。）
+1945年10月，弗莱明、弗洛里和钱恩共同获得了诺贝尔奖；希特利却**遭到忽视**(overlooked)。**机缘**(Fortune)把霉菌送进了弗莱明的培养皿；几支**锲而不舍的/坚持不懈的**(tenacious)团队加上多年的**辛劳/辛苦工作**(toil)，把它**转化成了**(transformed into)**良药**(remedy)。（transform A into B：把A转化成B；years of toil：多年的辛劳）（简述：▸偶然：1928年，弗莱明发现霉菌抑制细菌，把霉菌产物称作青霉素；孢子很可能来自楼下实验室，开窗说只是传闻。▸难关：粗制青霉素不稳定、难提纯，最初多用于分离微生物；约十年后，弗洛里、钱恩和希特利等接力研究。▸验证：8只感染小鼠中，只有用药的4只存活；1941年一名警员用药好转，却因药物耗尽死亡：瓶颈是产量。▸量产：玉米浆使产量提高约十倍，发霉甜瓜又提供高产菌株；到1944年，工业发酵已能满足盟军用药。▸归功：1945年弗莱明、弗洛里和钱恩获诺奖，希特利未入列；偶然发现经过多支团队多年攻关，才变成良药。）
 
 ## 速查表
 | 词 | 释义 | 段 |

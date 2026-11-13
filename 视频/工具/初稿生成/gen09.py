@@ -44,12 +44,12 @@ S=[
 (5,[[[("This **payout** per bird","这种按只计算的**钱款支出**(payout)（赏金）"),("gave farmers","给了农民"),("**compensation**","**补偿**(compensation)，")]],
     [[("and an **incentive** for **extermination**.","也成为**彻底消灭**(extermination)鸸鹋的**激励**(incentive)。")]]]),
 (5,[[[("Farmers","农民"),("claimed over 57,000 **payments** in six months of 1934,","在1934年的六个月里领取了5.7万多笔（赏金）**支付**(payments)，")]],
-    [[("more than fifty-seven times Meredith's 986 kills.","是梅雷迪思那986只战果的五十七倍多。")],"（claim：这里指申领；fifty-seven times + 名词：是……的五十七倍）\n（结局：军队打了五个星期，只打死986只；政府改成悬赏，\n让农民自己打、按只领赏金，1934年半年里就领了5.7万多笔，\n也就是打死了5.7万多只，是军队战果的五十七倍多。\n可见悬赏的效率远远高于出动军队：对农民是好结局，\n既拿到了补偿，又有了动力；对军队则是一场难堪的失败。）"]]),
+    [[("more than fifty-seven times Meredith's 986 kills.","是梅雷迪思那986只战果的五十七倍多。")],"（claim：这里指申领；fifty-seven times + 名词：是……的五十七倍）\n（简述：▸困境：1932年旱灾后，约两万只鸸鹋涌入西澳农田、践踏庄稼，当地退伍军人农户向军方求助。▸出兵：军方派一名少校和两名士兵，携两挺机枪、一万发子弹，试图控制鸟群。▸受挫：鸟群分散成灵活小群，机枪卡壳，车载射击也无效，行动受到媒体和议会嘲讽。▸撤军：部队一度撤离又复战，五周后被召回；报告称9860发子弹击杀986只，仍未解决鸟患。▸转向：政府拒绝增援，改按只发赏金；1934年半年内农民申领逾5.7万笔，远超军方战果。）"]]),
 ]
 # 2026-10-10 两视角独立审校后我逐条判定（见 制作记录/09.md）：采纳细切分组、注释分行与改准、恢复文章原话（结成鸟群…蜂拥而至、他在备忘录里开列的清单、已有四分之一的人放弃了土地）、
 # 作定语的形容词带“的”（浪费的射击、荒唐可笑的回报）；涉及定稿用词的（parcels/farmland、payments、swarmed in、撤出/撤退、走向/转向、（军队）干预）只作建议交用户定。
 CONF={}
-out={"no":"09","title_en":"The Great Emu War","title_zh":"向鸸鹋宣战","title_fx":{"hl":["Emu","War"],"ghost":[]},"sentences":[],"核对确认":CONF}
+out={"no":"09","title_en":"The Great Emu War","title_zh":"向鸸鹋宣战","title_fx":{"hl":["Emu","War"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述"}
 for p,chs in S:
     cs=[]
     for c in chs:

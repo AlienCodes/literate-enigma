@@ -1,0 +1,67 @@
+{
+  "status": "Proposal only; no production source or audio changed",
+  "minimal_data_changes": [
+    {
+      "path": "/结尾句/S17/前段增益dB",
+      "before": -5.5,
+      "after": -3.5,
+      "effect": "Raise If so by 2 dB relative to the remainder; preserve existing PSOLA F0 curve and durations."
+    },
+    {
+      "path": "/句子增益dB/S17",
+      "before": "absent (0 dB)",
+      "after": 1.0,
+      "effect": "Raise the complete last sentence by 1 dB. This is within the existing builder limit ±1 dB."
+    }
+  ],
+  "total_effect": {
+    "If so": "+3 dB",
+    "its fame began with a bare wall.": "+1 dB",
+    "other_sentences": "0 dB"
+  },
+  "selection_criterion": "Match the strongest 400ms window of If so and the remainder: existing deficit 2.147 LU, relative gain +2 dB predicts a remaining deficit 0.147 LU. The mean crop difference becomes +1.909 LU, within the existing 2.5 LU adjacent-phrase limit. Equal-length onset comparisons are supplementary because phoneme content differs.",
+  "predictions_before_rebuild": {
+    "If_so_crop_lufs": -22.488086483625924,
+    "last_main_crop_lufs": -24.397245188458502,
+    "If_so_active_rms_dbfs": -22.93072155397681,
+    "last_main_active_rms_dbfs": -23.533298588814993,
+    "active_rms_difference_If_so_minus_main_db": 0.602577034838184,
+    "strongest_400ms_difference_If_so_minus_main_lu": -0.14700000000000202,
+    "loudest_last_sentence_sample_peak_dbfs": -6.782512814330856,
+    "overall_sample_peak_dbfs_unchanged": -0.5451984327596021
+  },
+  "post_build_checks_required": [
+    "Repeat accepted-MP4 phrase LUFS, voiced RMS, true peak, and onset/timing verification after the later authorized build.",
+    "Listen to If so in context; gain predictions do not establish subjective voice quality."
+  ],
+  "why_not_master_boost": "The accepted file is -24.2 LUFS but already reaches about -0.5 dBTP. Raising the full track uniformly would consume peak headroom; a master target also requires comparison with other accepted chapters, which were outside this audit.",
+  "in_memory_candidate_measurements_no_repaired_audio_written": [
+    {
+      "If_so_total_gain_db": 2.0,
+      "main_total_gain_db": 1.0,
+      "predicted_final_sentence_crop_lufs": -24.77069652561877,
+      "predicted_mean_If_so_minus_main_lu": 0.9091587048325778,
+      "predicted_strongest400ms_If_so_minus_main_lu": -1.147000000000002,
+      "predicted_active_rms_If_so_minus_main_db": -0.39742296516181597,
+      "recommended": false
+    },
+    {
+      "If_so_total_gain_db": 3.0,
+      "main_total_gain_db": 1.0,
+      "predicted_final_sentence_crop_lufs": -24.536357615654715,
+      "predicted_mean_If_so_minus_main_lu": 1.9091587048325778,
+      "predicted_strongest400ms_If_so_minus_main_lu": -0.14700000000000202,
+      "predicted_active_rms_If_so_minus_main_db": 0.602577034838184,
+      "recommended": true
+    },
+    {
+      "If_so_total_gain_db": 4.0,
+      "main_total_gain_db": 1.0,
+      "predicted_final_sentence_crop_lufs": -24.25825764179365,
+      "predicted_mean_If_so_minus_main_lu": 2.9091587048325778,
+      "predicted_strongest400ms_If_so_minus_main_lu": 0.852999999999998,
+      "predicted_active_rms_If_so_minus_main_db": 1.602577034838184,
+      "recommended": false
+    }
+  ]
+}

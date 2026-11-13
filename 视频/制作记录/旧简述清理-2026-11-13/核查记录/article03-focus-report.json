@@ -1,0 +1,73 @@
+{
+  "article_original_id": "03",
+  "playback_id": "04",
+  "title": "喝下细菌的医生",
+  "status": "source_edits_saved_for_4k_regeneration_finalization_and_archival_queue",
+  "modified_occurrences": [
+    {
+      "sentence_number_one_based": 9,
+      "chunk_number_one_based": 1,
+      "english": "organism",
+      "chinese": "微生物"
+    },
+    {
+      "sentence_number_one_based": 15,
+      "chunk_number_one_based": 1,
+      "english": "germ",
+      "chinese": "病菌"
+    },
+    {
+      "sentence_number_one_based": 15,
+      "chunk_number_one_based": 1,
+      "english": "cultured",
+      "chinese": "培养",
+      "part_of_speech": "verb",
+      "base_form": "culture",
+      "meaning": "培养（微生物）"
+    },
+    {
+      "sentence_number_one_based": 17,
+      "chunk_number_one_based": 1,
+      "english": "Ulcers",
+      "chinese": "溃疡",
+      "capitalization_preserved": true
+    }
+  ],
+  "word_table_changes": [
+    "Added organism: 本文微生物；n.生物体 (paragraph 3).",
+    "Extended existing germ row to paragraphs 3、5; retained n.病菌.",
+    "Added cultured: 本文培养；v.(culture)培养（微生物） (paragraph 5).",
+    "Added capitalized Ulcers: 本文溃疡；n.(ulcer)溃疡 (paragraph 6)."
+  ],
+  "verified": {
+    "exact_four_requested_focus_additions_across_three_chunks": true,
+    "english_chinese_and_align_consistent": true,
+    "visible_english_chinese_body_unchanged_after_removing_focus_markup_and_new_focus_labels": true,
+    "existing_focus_notes_case_paragraph_chunk_and_alignment_pair_grouping_preserved": true,
+    "all_non_sentences_metadata_preserved": true,
+    "restored_generator_roundtrip_equals_full_accepted_json": true,
+    "roundtrip_sentence_count": 19,
+    "roundtrip_chunk_count": 46,
+    "parent_independently_verified_four_focus_additions_and_full_generator_roundtrip": true
+  },
+  "generator_restoration": "gen03.py was absent from the working tree and complete HEAD tree/history. Parent authorized a data-only restoration from accepted JSON using existing shared 生成并核对(S,out); no shared core code changed.",
+  "inherited_helper_messages": "Shared helper reports paragraph 1/4 comparison warnings for existing {{...}} display directives present in accepted JSON and absent in Markdown. Those approved source directives were preserved. All Markdown focus words are present, Chinese focus meanings match, and the entire JSON roundtrip equals accepted data.",
+  "outputs": [
+    {
+      "relative_path": "视频/脚本/03.json",
+      "payload_path": "/workspace/work/video-audit70-20261113/payload/视频/脚本/03.json",
+      "sha256": "54be3f37859491f2b7f444ce559753a74484eebf98b209a03e403edfb271f587"
+    },
+    {
+      "relative_path": "视频/工具/初稿生成/gen03.py",
+      "payload_path": "/workspace/work/video-audit70-20261113/payload/视频/工具/初稿生成/gen03.py",
+      "sha256": "749d551dd1654d6bd8feffc26379c01675fa39a00287aa88fc4db72736a09d2b"
+    },
+    {
+      "relative_path": "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md",
+      "payload_path": "/workspace/work/video-audit70-20261113/payload/新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md",
+      "sha256": "537615f00e2cfed1230562ad836bf11f06ac946083ee05faf1ad1dbd2f44fbd7"
+    }
+  ],
+  "execution_scope": "Wrote only the three isolated payload03 sources and this report. Generator JSON output was captured in memory. No production edits, audio, MP4/PDF generation, pushes, pending-state changes, or audit-metadata changes."
+}

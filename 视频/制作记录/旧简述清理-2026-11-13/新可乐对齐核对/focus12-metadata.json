@@ -1,0 +1,108 @@
+[
+  {
+    "lemma": "stock up on",
+    "actual_focus": "stocked up on",
+    "sentence_1_based": 11,
+    "chunk_1_based": 3,
+    "align_pair_0_based": 0,
+    "before_pair": [
+      "stocked up on",
+      "囤积了"
+    ],
+    "after_pair": [
+      "**stocked up on**",
+      "**囤积了**(stocked up on)"
+    ],
+    "body_text_unchanged": true,
+    "new_focus_en": "**stocked up on**",
+    "new_focus_zh": "**囤积了**(stocked up on)",
+    "gen12_before_literal": "(\"stocked up on the original.\",\"囤积了原版可乐。\")",
+    "gen12_after_canonical_pairs": [
+      [
+        "**stocked up on**",
+        "**囤积了**(stocked up on)"
+      ],
+      [
+        "the original.",
+        "原版可乐。"
+      ]
+    ],
+    "canonical_gen_patch": "gen12-sip-and-focus-proposal.diff"
+  },
+  {
+    "lemma": "protester",
+    "actual_focus": "protester",
+    "sentence_1_based": 12,
+    "chunk_1_based": 1,
+    "align_pair_0_based": 1,
+    "before_pair": [
+      "one protester,",
+      "一位抗议者"
+    ],
+    "after_pair": [
+      "one **protester**,",
+      "一位**抗议者**(protester)"
+    ],
+    "body_text_unchanged": true,
+    "new_focus_en": "**protester**",
+    "new_focus_zh": "**抗议者**(protester)",
+    "gen12_before_literal": "(\"one protester, Gay Mullins,\",\"一位抗议者盖伊·马林斯\")",
+    "gen12_after_canonical_pairs": [
+      [
+        "In June 1985",
+        "1985年6月，"
+      ],
+      [
+        "one **protester**,",
+        "一位**抗议者**(protester)"
+      ],
+      [
+        "Gay Mullins,",
+        "盖伊·马林斯"
+      ],
+      [
+        "filed",
+        "提起了"
+      ],
+      [
+        "a **lawsuit**",
+        "**诉讼**(lawsuit)，"
+      ]
+    ],
+    "canonical_gen_patch": "gen12-sip-and-focus-proposal.diff"
+  },
+  {
+    "lemma": "packaging",
+    "actual_focus": "packaging",
+    "sentence_1_based": 12,
+    "chunk_1_based": 2,
+    "align_pair_0_based": 2,
+    "before_pair": [
+      "out of packaging like the original's.",
+      "使用与原版相似的包装。"
+    ],
+    "after_pair": [
+      "out of **packaging** like the original's.",
+      "使用与原版相似的**包装**(packaging)。"
+    ],
+    "body_text_unchanged": true,
+    "new_focus_en": "**packaging**",
+    "new_focus_zh": "**包装**(packaging)",
+    "gen12_before_literal": "(\"to keep New Coke out of packaging like the original's.\",\"要求禁止新可乐使用与原版相似的包装。\")",
+    "gen12_after_canonical_pairs": [
+      [
+        "to keep",
+        "要求禁止"
+      ],
+      [
+        "New Coke",
+        "新可乐"
+      ],
+      [
+        "out of **packaging** like the original's.",
+        "使用与原版相似的**包装**(packaging)。"
+      ]
+    ],
+    "canonical_gen_patch": "gen12-sip-and-focus-proposal.diff"
+  }
+]

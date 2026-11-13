@@ -6,13 +6,13 @@ In 1984 Barry Marshall, a 32-year-old doctor at Fremantle Hospital, drank a **br
 
 The **prevalent** **doctrine** blamed **ulcers** on stress, **spicy** food, and excess **acid** **secretion**. No **bacterium**, the **profession** **firmly** held, could **withstand** so **caustic** and **hostile** a **habitat**.
 
-Yet Robin Warren, a **pathologist** at Royal Perth Hospital, had seen curved, **coiled** bacteria in **gastric** **biopsies** from patients with gastritis. Marshall began to **collaborate** with him. **Attempts** to **culture** the **germ** were **invariably** **unsuccessful** until Easter 1982, when plates sat **undisturbed** in the **incubator** for about five days. They were **ordinarily** **binned** after two. Colonies **blossomed**. The organism was later named Helicobacter pylori.
+Yet Robin Warren, a **pathologist** at Royal Perth Hospital, had seen curved, **coiled** bacteria in **gastric** **biopsies** from patients with gastritis. Marshall began to **collaborate** with him. **Attempts** to **culture** the **germ** were **invariably** **unsuccessful** until Easter 1982, when plates sat **undisturbed** in the **incubator** for about five days. They were **ordinarily** **binned** after two. Colonies **blossomed**. The **organism** was later named Helicobacter pylori.
 
 In 1983 **unimpressed** **assessors** at the Gastroenterological Society of Australia **relegated** the pair's paper to the bottom tenth of that year's **submissions**. **Efforts** to infect **swine** were **likewise** **in vain**. Marshall made himself the **guinea pig**.
 
-Within days Marshall was **vomiting**, his breath had a **disagreeable** **odour** and **weariness** **set in**. About ten days later an endoscopy **revealed** gastritis, an **inflammation** of the stomach's **mucous membrane** and a **precursor** to ulcers, **albeit** not an ulcer itself. The germ was cultured **directly** from his stomach.
+Within days Marshall was **vomiting**, his breath had a **disagreeable** **odour** and **weariness** **set in**. About ten days later an endoscopy **revealed** gastritis, an **inflammation** of the stomach's **mucous membrane** and a **precursor** to ulcers, **albeit** not an ulcer itself. The **germ** was **cultured** **directly** from his stomach.
 
-**Spurred on** by his **insistent** **spouse**, Marshall took **antibiotics**, which cleared the infection. Ulcers came to be treated with such **medication**.
+**Spurred on** by his **insistent** **spouse**, Marshall took **antibiotics**, which cleared the infection. **Ulcers** came to be treated with such **medication**.
 
 In 2005 Marshall and Warren shared the Nobel Prize in Physiology or Medicine for discovering Helicobacter pylori and its **role** in gastritis and peptic ulcer disease. Gastritis, the illness Marshall had **willingly** given himself, is named in the **prize citation**.
 
@@ -22,13 +22,13 @@ In 2005 Marshall and Warren shared the Nobel Prize in Physiology or Medicine for
 
 当时**盛行的**(prevalent)（主流的）**学说**(doctrine)把**溃疡**(ulcers)归咎于压力、**辛辣的**(spicy)食物以及过多的**胃酸**(acid)**分泌**(secretion)。（blame A on B：把 A 归咎于 B）**医学界**(profession)**坚定地**(firmly)认为，没有哪种**细菌**(bacterium)能**经受住**(withstand)如此**具有腐蚀性**(caustic)又**不利的**(hostile)**栖息环境**(habitat)。（the profession firmly held 是插入语；profession 此处指医学界全体从业者）（so + 形容词 + a + 名词：如此……的一个……；指胃里的强酸环境）
 
-然而，皇家珀斯医院的**病理学家**(pathologist)罗宾·沃伦早已在**胃部的**(gastric)**活检样本**(biopsies)中看到过弯曲、**盘绕的**(coiled)细菌，这些样本取自胃炎病人。（活检：从病人身上取下一小块组织做检查）马歇尔开始与他**合作**(collaborate)。**培养**(culture)这种**病菌**(germ)的**尝试**(Attempts)**无一例外地**(invariably)**未能成功**(unsuccessful)，直到1982年复活节，当时培养皿**原封不动的**(undisturbed)在**培养箱**(incubator)里放了约五天。这些培养皿**通常**(ordinarily)两天后就会**被扔掉**(binned)。（after two：两天后）菌落**蓬勃生长**(blossomed)起来。这种微生物后来被命名为幽门螺杆菌。
+然而，皇家珀斯医院的**病理学家**(pathologist)罗宾·沃伦早已在**胃部的**(gastric)**活检样本**(biopsies)中看到过弯曲、**盘绕的**(coiled)细菌，这些样本取自胃炎病人。（活检：从病人身上取下一小块组织做检查）马歇尔开始与他**合作**(collaborate)。**培养**(culture)这种**病菌**(germ)的**尝试**(Attempts)**无一例外地**(invariably)**未能成功**(unsuccessful)，直到1982年复活节，当时培养皿**原封不动的**(undisturbed)在**培养箱**(incubator)里放了约五天。这些培养皿**通常**(ordinarily)两天后就会**被扔掉**(binned)。（after two：两天后）菌落**蓬勃生长**(blossomed)起来。这种**微生物**(organism)后来被命名为幽门螺杆菌。
 
 1983年，澳大利亚胃肠病学会那些**不以为然的**(unimpressed)**评审**(assessors)（对他们的研究没什么印象）（评审研究和论文），把两人的论文**贬入**(relegated)当年**投稿**(submissions)中最差的10%。（relegate A to B：把A降级到B；bottom tenth：排名最末的十分之一）让**猪**(swine)（专门用来实验）感染（这种细菌）的多番**努力**(Efforts)**同样**(likewise)**徒劳无功**(in vain)。马歇尔把自己当成了**小白鼠**(guinea pig)。（guinea pig 原指豚鼠，喻指实验对象）
 
-几天之内，马歇尔就**呕吐**(vomiting)起来，他呼出的气带着**难闻的**(disagreeable)**气味**(odour)，**疲倦感**(weariness)也**出现了**(set in)（不好的事到来且持续）。约十天后，胃镜检查**显示出**(revealed)胃炎，也就是胃**黏膜**(mucous membrane)的**炎症**(inflammation)，也是溃疡的**前兆**(precursor)，**尽管**(albeit)它本身还不是溃疡。这种病菌是**直接**(directly)从他胃里培养出来的。
+几天之内，马歇尔就**呕吐**(vomiting)起来，他呼出的气带着**难闻的**(disagreeable)**气味**(odour)，**疲倦感**(weariness)也**出现了**(set in)（不好的事到来且持续）。约十天后，胃镜检查**显示出**(revealed)胃炎，也就是胃**黏膜**(mucous membrane)的**炎症**(inflammation)，也是溃疡的**前兆**(precursor)，**尽管**(albeit)它本身还不是溃疡。这种**病菌**(germ)是**直接**(directly)从他胃里**培养**(cultured)出来的。
 
-被他态度**坚决的**(insistent)**妻子**(spouse)（不断）**催促**(Spurred on)，马歇尔（终于）服用了**抗生素**(antibiotics)，并且清除了感染。（spur sb on：激励、催促某人）溃疡后来逐渐开始用这类**药物**(medication)来治疗。（come to do：逐渐开始做）
+被他态度**坚决的**(insistent)**妻子**(spouse)（不断）**催促**(Spurred on)，马歇尔（终于）服用了**抗生素**(antibiotics)，并且清除了感染。（spur sb on：激励、催促某人）**溃疡**(Ulcers)后来逐渐开始用这类**药物**(medication)来治疗。（come to do：逐渐开始做）
 
 2005年，马歇尔与沃伦共同获得了诺贝尔生理学或医学奖，以表彰他们发现了幽门螺杆菌及其在胃炎和消化性溃疡中的**作用**(role)。胃炎——马歇尔当年**心甘情愿地**(willingly)让自己染上的病——被写进了**奖项颁奖词**(prize citation)（获奖评语）。（the illness … given himself 是 Gastritis 的同位语）（prize citation：颁奖时宣读的获奖理由）
 
@@ -58,7 +58,7 @@ In 2005 Marshall and Warren shared the Nobel Prize in Physiology or Medicine for
 | coiled | 本文：盘绕的；adj. 盘绕的，螺旋状的（a coiled spring） | 3 |
 | collaborate | 本文：合作；v. 合作（collaborate with sb on sth） | 3 |
 | culture | 本文：培养；v. 培养（细菌、细胞等）（culture bacteria in the lab）；n. 文化 | 3 |
-| germ | 本文：病菌；n. 病菌（kill germs） | 3 |
+| germ | 本文：病菌；n. 病菌（kill germs） | 3、5 |
 | Attempts | 本文：尝试；n. (attempt) 尝试，企图（make an attempt to do sth） | 3 |
 | invariably | 本文：无一例外地；adv. 总是，一律（invariably late） | 3 |
 | unsuccessful | 本文：未能成功；adj. 不成功的（an unsuccessful attempt） | 3 |
@@ -67,6 +67,7 @@ In 2005 Marshall and Warren shared the Nobel Prize in Physiology or Medicine for
 | ordinarily | 本文：通常；adv. 通常，平常（ordinarily quiet） | 3 |
 | binned | 本文：被扔掉；v. (bin) 扔掉（bin old papers） | 3 |
 | blossomed | 本文：蓬勃生长；v. (blossom) 开花；蓬勃发展（the friendship blossomed） | 3 |
+| organism | 本文：微生物；n. 生物体 | 3 |
 | unimpressed | 本文：不以为然的；adj. 不以为然的，无好感的（be unimpressed by sth） | 4 |
 | assessors | 本文：评审；n. (assessor) 评审员，评估员（independent assessors） | 4 |
 | relegated | 本文：贬入；v. (relegate) 降级，贬入（be relegated to a minor role） | 4 |
@@ -86,12 +87,14 @@ In 2005 Marshall and Warren shared the Nobel Prize in Physiology or Medicine for
 | inflammation | 本文：炎症；n. 炎症（inflammation of the joints） | 5 |
 | precursor | 本文：前兆；n. 前兆，先驱（a precursor of/to sth） | 5 |
 | albeit | 本文：尽管；conj. 尽管，虽然（a small, albeit important, change） | 5 |
+| cultured | 本文：培养；v. (culture) 培养（微生物） | 5 |
 | directly | 本文：直接；adv. 直接地（directly from the source） | 5 |
 | insistent | 本文：坚决的；adj. 坚持的，坚决的（insistent demands） | 6 |
 | spouse | 本文：妻子；n. 配偶（the applicant's spouse） | 6 |
 | Spurred on | 本文：催促；v. (spur) 激励，促使（be spurred on by sb） | 6 |
 | antibiotics | 本文：抗生素；n. (antibiotic) 抗生素（a course of antibiotics） | 6 |
 | medication | 本文：药物；n. 药物（be on medication） | 6 |
+| Ulcers | 本文：溃疡；n. (ulcer) 溃疡 | 6 |
 | role | 本文：作用；n. 作用；角色（play a key role in sth） | 7 |
 | willingly | 本文：心甘情愿地；adv. 心甘情愿地（willingly agree） | 7 |
 | prize citation | 本文：奖项颁奖词；n. 颁奖词，获奖评语（citation：嘉奖令；颁奖词；另有"引用、引文"义） | 7 |

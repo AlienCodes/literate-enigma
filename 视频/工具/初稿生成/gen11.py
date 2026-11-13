@@ -11,7 +11,7 @@ S=[
     [[("a **daunting**","这是一项**艰巨的**(daunting)"),("**computational** challenge.","**计算**(computational)挑战。")],
      "（be said to do：据说……；a daunting … challenge：同位语，说明前面整句）"]]),
 (1,[[[("In October 2015","2015年10月，"),("DeepMind's AlphaGo","DeepMind 的 AlphaGo"),("reached a **milestone**,","达成了一个**里程碑**(milestone)，")]],
-    [[("becoming","成为"),("the first program to beat a professional on a full board without a **handicap**.","首个在全尺寸棋盘上不**让子**(handicap)击败职业棋手的程序。")],
+    [[("becoming","成为"),('the first **program** to beat a professional on a full board without a **handicap**.','首个在全尺寸棋盘上不**让子**(handicap)击败职业棋手的**程序**(program)。')],
      "（becoming…：现在分词短语，补充说明这个里程碑；\nthe first program to do：第一个做……的程序）"]]),
 (1,[[[("In March 2016","2016年3月，"),("its **opponent** in a **televised** Seoul **showdown**","在首尔一场**电视转播的**(televised)**对决**(showdown)中，它的**对手**(opponent)")]],
     [[("was Lee Sedol,","是李世石，"),("a South Korean **strategist**","一个韩国**战略家**(strategist)（围棋大师），"),("with 18 international titles.","拥有18个国际冠军头衔。")]]]),
@@ -50,7 +50,7 @@ S=[
 (5,[[[("Yet","然而，"),("his one win came from a stone","他唯一的一场胜局，却源自一着棋。")]],
     [[("whose odds, by DeepMind's figures,","根据 DeepMind 的数据，这手棋的胜率，")]],
     [[("were as **slim** as those of AlphaGo's **audacious** shoulder hit.","和 AlphaGo 那次**大胆的**(audacious)肩冲一样**极低/渺茫/非常微小**(slim)。")],
-     "（whose…：定语从句，修饰 a stone；by DeepMind's figures：插入语；\nas slim as those of…：those = the odds）\n（结局：第二局，AlphaGo 下出了人类只有万分之一可能会下的第37手；\n第四局，李世石也下出了职业棋手只有万分之一可能找到的第78手，\n并靠它赢下了五局里唯一的一局。李世石退役时说人工智能无法击败，\n可他唯一的胜利，恰恰来自一手和 AlphaGo 的肩冲一样罕见、\n一样大胆的棋：人类赢机器，用的正是机器赢人类的方式。）"]]),
+     "（whose…：定语从句，修饰 a stone；by DeepMind's figures：插入语；\nas slim as those of…：those = the odds）\n（简述：▸训练：围棋程序AlphaGo先模仿高水平业余棋手，再经数千万盘自我对弈提升，2016年迎战李世石。▸奇手：第二局第37手落在从棋盘边缘数的第五条线上，违背常规，起初被疑为失误，后来获得李世石赞赏。▸回应：第四局，李世石第78手扭转局势，被誉为神之一手，带来他在五局中唯一的胜利。▸赛果：AlphaGo最终4比1获胜；李世石2019年退役时称AI不可战胜，自己已难登顶。▸对照：AlphaGo估计人类下出第37手的概率约万分之一；团队对职业棋手下出第78手的估计相同，双方都有罕见创意。）"]]),
 ]
 CONF={"短语":{
  "S7 pause … for":"for deliberation 表目的（为思考而暂停），pause 本身就是“暂停”，意思不靠 for 产生（同 09 pleas for 的判法）",
@@ -61,7 +61,7 @@ CONF={"短语":{
  "口述":{"S6-2 觉得":"note 里“find + 宾语 + 形容词：觉得……怎么样”是句型说明本身，不是语音输入多出来的词"},
  "数字":{"S8-2 10,000":"one in 10,000 中文按习惯写“万分之一”（分数），读法 one in ten thousand","S13-2 10,000":"同 S8：about one in 10,000 → 约为万分之一"},
  "是的":{"S16-1 是**无法击败的**":"“是 + 无法击败的存在”是“是 + 定语 + 名词”（称A为B），不是“是……的”表语句式"}}
-out={"no":"11","title_en":"Move 37","title_zh":"第37手","title_fx":{"hl":["37"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","allow_clash":["turned the tide"],"高亮按实际开口":True,"术语":{"shoulder hit":"肩冲"},"词下说明对齐":{"（把人或物放到合适位置）":"人"}}   # T28
+out={"no":"11","title_en":"Move 37","title_zh":"第37手","title_fx":{"hl":["37"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["turned the tide"],"高亮按实际开口":True,"术语":{"shoulder hit":"肩冲"},"词下说明对齐":{"（把人或物放到合适位置）":"人"}}   # T28
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)

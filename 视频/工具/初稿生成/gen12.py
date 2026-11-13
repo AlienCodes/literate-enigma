@@ -4,7 +4,7 @@ import json,re,glob,os
 # 08–11 用户定下的规矩一开始就照做：过去时“了”、顺着英文语序排、代词译出（his→他的）、英文没有引号中文不加、结尾解说（T28）、术语不漏（T30）。
 S=[
 (1,[[[("Pepsi","百事可乐"),("had set up **booths** in shopping centres across the US,","曾在全美各地的购物中心设置了**摊位**(booths)，")]],
-    [[("inviting **shoppers**","邀请**购物者**(shoppers)"),("to **sip** two **unmarked** **beverages**","**啜饮**(sip)两种**未标品牌的**(unmarked)**饮料**(beverages)，\n{{（小口喝；抿）|sip}}")]],
+    [[('{{一行}}inviting','邀请'),('**shoppers**','**购物者**(shoppers)'),('to',''),('**sip**','**啜饮**(sip)\n{{（小口喝；抿）|sip}}'),('two','两种'),('**unmarked**','**未标品牌的**(unmarked)'),('**beverages**','**饮料**(beverages)，')]],
     [[("and state a **preference**.","并说出自己的**偏好**(preference)。")],
      "（inviting…：现在分词短语，补充说明设摊位的做法；invite sb to do：邀请某人做……）"]]),
 (1,[[[("Figures varied by region,","虽然数据会因为地区不同而出现差异，"),("but **tasters**","但**品尝者**(tasters)"),("generally","总体上"),("picked Pepsi more often.","更常选百事。")]]]),
@@ -31,16 +31,15 @@ S=[
      "（rise from A to B：从A增加到B；almost all…：补充说明这些电话）"]]),
 (3,[[[("**Protest groups**","**抗议团体**(Protest groups)"),("were **organised**,","**组织了**(organised)起来，")]],
     [[("and some **faithful** drinkers","一些**忠实的**(faithful)饮用者")]],
-    [[("stocked up on the original.","囤积了原版可乐。")],
+    [[('**stocked up on**','**囤积了**(stocked up on)'),('the original.','原版可乐。')],
      "（stock up on：大量储备，囤积）"]]),
-(3,[[[("In June 1985","1985年6月，"),("one protester, Gay Mullins,","一位抗议者盖伊·马林斯"),("filed a **lawsuit**","提起了**诉讼**(lawsuit)，")]],
-    [[("to keep New Coke out of packaging like the original's.","要求禁止新可乐使用与原版相似的包装。")],
+(3,[[[('In June 1985','1985年6月，'),('one **protester**,','一位**抗议者**(protester)'),('Gay Mullins,','盖伊·马林斯'),('filed','提起了'),('a **lawsuit**','**诉讼**(lawsuit)，')]],
+    [[('to keep','要求禁止'),('New Coke','新可乐'),("out of **packaging** like the original's.",'使用与原版相似的**包装**(packaging)。')],
      "（keep A out of B：不让A用上B；the original's = the original's packaging）"]]),
 (3,[[[("Its **dismissal**","这起诉讼被**驳回**(dismissal)，"),("came a week later.","是在一周之后。")],
      "（@dismissal （法律上）驳回案件或指控）"]]),
 (4,[[[("Pepsi's **chief executive**","百事可乐**首席执行官**(chief executive)"),("gave his **employees** a day off,","给他的**员工**(employees)放了一天假，")]],
-    [[("treating the change","把这次改变"),("as Coke's **concession**.","看作可口可乐的**让步**(concession)。")],
-     "（treating…：现在分词短语作伴随状语；treat A as B：把A看作B）\n（这句话是在描写百事可乐CEO的“幸灾乐祸”和“疯狂嘲讽”。\n他的潜台词是：“哈哈，可口可乐你终于认怂了！\n你改回老配方，就等于承认了新可乐彻底失败，\n百事视角：你当初改老配方，就是因为你在盲测里输给了我，你怕我了。\n也就是变相承认了我们百事可乐更好喝！\n兄弟们，咱们赢了，放假一天！”）"]]),
+    [[('treating the change', '把这次改变'), ('as', '看作'), ("Coke's", '可口可乐的'), ('**concession**.', '**让步**(concession)。')], '（treating…：现在分词短语作伴随状语；treat A as B：把A看作B）\n（盲测中，百事赢了老版可口可乐。\n可口可乐于是改用更甜、更接近百事口味的新配方。\n百事借机嘲讽：你输了盲测，现在又学我们的口味，\n不就是承认我们更好喝吗？\n我们赢了，放假一天庆祝！）']]),
 (4,[[[("After 79 days,","79天后，"),("on 11 July 1985,","1985年7月11日，")]],
     [[("the original formula","原配方"),("was **relaunched** as Coca-Cola Classic.","以可口可乐经典之名**重新上市了**(relaunched)。")]]]),
 (4,[[[("The **U-turn**","这种**180度大反转**(U-turn)，"),("was a **vindication** for **loyalists**.","**证明了**(vindication)这群**忠诚拥护者**(loyalists)**是正确的**(vindication)。")],
@@ -56,12 +55,12 @@ S=[
      "（@nostalgia 对过去的人、事、时代或生活状态产生的带有感伤意味的向往与怀念。）\n（@heritage 指从前人或历史中继承下来、并传给后代的财产、传统、文化或身份特征。）"]]),
 (5,[[[("The tests","测试"),("had hidden the brand from every taster,","对每位品尝者都遮住了品牌，")]],
     [[("so they could not **quantify**","所以它们无法**量化**(quantify)"),("what it meant to **fiercely** **loyal** drinkers.","品牌对那些**极其**(fiercely)**忠诚的**(loyal)饮用者意味着什么。")],
-     "（hide A from B：不让B看到A；what…：宾语从句）\n（结局：近20万次盲测证明新配方更好喝，\n可盲测遮住了品牌，测不出人们对老可乐近百年的感情；\n新可乐一推出就引来抗议和诉讼，\n79天后原配方以可口可乐经典之名回归。\n口味赢了，感情输了，可口可乐最后还是向忠实的饮用者让了步。）"]]),
+     "（hide A from B：不让B看到A；what…：宾语从句）\n（盲测只比味道，不告诉人喝的是什么牌子，\n所以测不出老顾客对可口可乐这个品牌的感情。\n新配方即使更受试饮者欢迎，\n也不代表老顾客愿意放弃熟悉的老可乐。）\n（简述：▸竞争：百事用不标品牌的试饮吸引消费者，通常更受青睐；可口可乐随后做了近20万次盲测。▸换方：更甜的新配方在盲测中胜过旧版和百事，公司于1985年用它替换已有99年历史的老配方。▸反弹：热线日来电从约400增至1500，几乎全是投诉；顾客囤积旧款、结社抗议，还有人起诉但被驳回。▸回归：仅79天后，老配方以经典可口可乐之名回归，成为电视新闻头条。▸漏测：盲测只比较一口饮料的味道，遗漏了品牌与熟悉口味承载的感情、怀旧和传统。）"]]),
 ]
 CONF={"短语":{"S3 by … palate":"judge by palate alone 里 by 只引出判断的依据（凭……），palate 本身就是“味觉”，不是 by + 名词的固定用法"},
  "数字":{"S5-1 200,000":"Nearly 200,000 → 近20万（中文万位写法，读法 two hundred thousand）"},
  "是的":{"S9-1 是**来自基层民众的**":"用户 2026-10-16 给的原话（这场反噬，是来自基层民众的强烈抗议），T10 照用","S10-2 是**暴怒的**":"用户 2026-10-16 给的原话（几乎全都是暴怒的投诉），T10 照用","S10-2 是**愤怒的**":"“几乎全是 + 愤怒的投诉”是“是 + 定语 + 名词”，不是“是……的”表语句式"}}
-out={"no":"12","title_en":"The 79 Days of New Coke","title_zh":"新可乐的 79 天","title_fx":{"hl":["79","Coke"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","连线":["emotional attachment","情感依恋"],"allow_clash":["chief executive"],"换行变更已获同意":{"S11":"用户 2026-10-16：“从那个stock up on the original……它作为第三行，这个作为第三行。”","S1":"用户 2026-10-16：“这个下面 小口喝；抿  sip 意思的下面”"},
+out={"no":"12","title_en":"The 79 Days of New Coke","title_zh":"新可乐的 79 天","title_fx":{"hl":["79","Coke"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","连线":["emotional attachment","情感依恋"],"allow_clash":["chief executive"],"换行变更已获同意":{'S11': '用户 2026-10-16：“从那个stock up on the original……它作为第三行，这个作为第三行。”', 'S1': '用户2026-11-13在当前会话要求修复sip词下说明对齐；位置要求沿用用户2026-10-16原话：“这个下面 小口喝；抿  sip 意思的下面”。本次让“小口喝；抿”对在sip的中文正下方，S1英文保持一行。'},
      "高亮按实际开口":True,"高亮开口门槛":40,"术语":{"Pepsi":"百事","Coca-Cola":"可口可乐","New Coke":"新可乐"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对

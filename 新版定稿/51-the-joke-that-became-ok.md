@@ -4,25 +4,28 @@
 ## 英文
 OK, often said to be the planet's **most frequently** spoken word, began as a newspaper **gag**. From 1838 **abbreviations** were **all the vogue** in Boston's papers, and the **craze** turned **comic** through **deliberate** **misspellings**: O.W. for 'oll wright', K.Y. for 'know yuse'. The **humour** **lay in** the **persona** of an **uneducated** **bumpkin**.
 
-On 23 March 1839 a Boston Morning Post **satire** **took a swipe at** a **contemporary**, the Providence Journal, over a **mock** society **parodying** an **ordinance** against ringing dinner bells. It carried the first known 'o.k.', **glossed as** 'all correct'. The letters stood for a **knowingly** **illiterate** 'oll korrect'. The **presumed** writer was the **editor**, Charles Gordon Greene.
+On 23 March 1839 a Boston Morning Post **satire** **took a swipe at** a **contemporary**, the Providence Journal, over a **mock** society **parodying** an **ordinance** against ringing dinner bells. It carried the first known 'o.k.', **glossed as** 'all correct'. The letters **stood for** a **knowingly** **illiterate** 'oll korrect'. The **presumed** writer was the **editor**, Charles Gordon Greene.
 
 **Partisan** politics **propagated** the letters nationwide. In 1840 Martin Van Buren, the **incumbent** president, sought **re-election**. His New York **backers**, **punning on** his nickname 'Old Kinderhook', after his **birthplace**, formed the Democratic O.K. Club, making the letters a **double-meaning** **slogan**. That November William Henry Harrison **unseated** him, 234 **electoral votes** to 60.
 
 On 30 March 1840 the New York Morning Herald printed a **fabricated** **smear**: the former president Andrew Jackson, a **supposedly** **inept** speller, had marked **paperwork** O.K., for 'Ole Kurrek'. Jackson spelled **reasonably** well and never marked documents O.K. Within about twenty years, people did so **in earnest**. The **bogus** **notation** was merely **premature**.
 
-Rival stories offered **exotic** **pedigrees**: Choctaw 'okeh' and Greek 'ola kala'. **Authoritative** dictionaries favoured Choctaw as late as 1961. In 1963–64 the linguist Allen Walker Read **excavated** the **neglected** Boston **provenance** from **archival** newspapers in six **influential** American Speech articles. Most dictionaries now **embrace** his **derivation**, a pedigree of bad spelling and dinner-bell satire.
+Rival stories offered **exotic** **pedigrees**: Choctaw 'okeh' and Greek 'ola kala'. **Authoritative** dictionaries favoured Choctaw as late as 1961. In 1963–64 the linguist Allen Walker Read **excavated** the **neglected** Boston **provenance** from **archival** newspapers in six **influential** American Speech articles. Most dictionaries now **embrace** his **derivation**, a **pedigree** of bad spelling and dinner-bell satire.
 
 ## 中文
 
 OK，常被说成是全世界**最常**(most frequently)说出的词，起初只是报纸上的一个**噱头**(gag)。（often said to be…：过去分词短语作插入语，补充说明 OK；begin as…：起初是……）从1838年起，**缩写**(abbreviations)**风靡**(all the vogue)于波士顿各大报纸，而且这股**狂热**(craze)也变得**滑稽**(comic)起来，通过**故意的**(deliberate)**错误拼写**(misspellings)：用 O.W. 代表 'oll wright'，用 K.Y. 代表 'know yuse'。（be all the vogue：风靡一时，非常流行）（turn＋形容词：变得……；through…：借助……）（'oll wright'：故意拼错的 all right；'know yuse'：故意拼错的 no use）**幽默**(humour)**在于**(lay in)一个**没受过教育的**(uneducated)**乡巴佬**(bumpkin)**人物角色**(persona)。（lie in…：在于……；the persona of…：of 结构，……的人物角色）
 
-1839年3月23日，《波士顿晨邮报》的一篇**讽刺文章**(satire)**抨击了**(took a swipe at)一个**同时期的**(contemporary)报纸《普罗维登斯日报》，话题是一个**恶搞的**(mock)社团，它**戏仿**(parodying)一项禁止敲开饭铃的**法令**(ordinance)。（take a swipe at…：抨击；the Providence Journal：同位语，补充说明 a contemporary）（over…：就……，关于……；parodying…：现在分词短语作后置定语，修饰 society）它刊载了已知最早的“o.k.”，**被注释为**(glossed as)“all correct”（完全正确）。（glossed as…：过去分词短语作后置定语，修饰 'o.k.'，被注释为……）这两个字母代表的是**有意**(knowingly)写成**文盲**(illiterate)拼法的'oll korrect'。（stand for：代表；'oll korrect'：故意拼错的 all correct）**推定的**(presumed)作者是该报纸的**编辑**(editor)查尔斯·戈登·格林。（Charles Gordon Greene：同位语，补充说明 the editor）
+1839年3月23日，《波士顿晨邮报》的一篇**讽刺文章**(satire)**抨击了**(took a swipe at)一个**同时期的**(contemporary)报纸《普罗维登斯日报》，话题是一个**恶搞的**(mock)社团，它**戏仿**(parodying)一项禁止敲开饭铃的**法令**(ordinance)。（take a swipe at…：抨击；the Providence Journal：同位语，补充说明 a contemporary）（over…：就……，关于……；parodying…：现在分词短语作后置定语，修饰 society）它刊载了已知最早的“o.k.”，**被注释为**(glossed as)“all correct”（完全正确）。（glossed as…：过去分词短语作后置定语，修饰 'o.k.'，被注释为……）这两个字母**代表**(stood for)的是**有意**(knowingly)写成**文盲**(illiterate)拼法的'oll korrect'。（stand for：代表；'oll korrect'：故意拼错的 all correct）**推定的**(presumed)作者是该报纸的**编辑**(editor)查尔斯·戈登·格林。（Charles Gordon Greene：同位语，补充说明 the editor）
 
 **党派**(Partisan)政治在全国**宣传了**(propagated)这些字母。（当时正值美国大选，总统候选人范布伦的外号叫“老金德胡克（Old Kinderhook）”，缩写刚好是 O.K.。党派报纸疯狂传播这两个字母，就是搞政治营销，暗示“选他，就是完全正确（all correct）！”）1840年，**在任**(incumbent)总统马丁·范布伦寻求**连任**(re-election)。（the incumbent president：同位语，补充说明 Martin Van Buren）他在纽约的**拥护者**(backers)**拿**(punning on)他的绰号 'Old Kinderhook' **玩双关**(punning on)，这个绰号得名于他的**出生地**(birthplace)，他们成立了民主党 O.K. 俱乐部，让这两个字母成了一句**一语双关的**(double-meaning)**口号**(slogan)。（punning on…：现在分词短语作状语，拿……玩双关；after his birthplace：以他的出生地金德胡克命名）（making…：现在分词短语作状语，表示结果；make A B：让 A 成为 B）那年11月，威廉·亨利·哈里森**把**(unseated)他**赶下台**(unseated)，**选举人票**(electoral votes)为234张对60张。（234 electoral votes to 60：选举人票234张对60张）
+（这里的“他”指时任总统范布伦。
+1840年总统大选，哈里森拿到234张选举人票，范布伦只有60张。
+哈里森因此获胜，范布伦没能连任。）
 
 1840年3月30日，《纽约先驱晨报》刊登了一则**捏造的**(fabricated)**抹黑**(smear)：前总统安德鲁·杰克逊，一个**据称**(supposedly)拼写**笨拙的**(inept)人，曾在**公文**(paperwork)上标注 O.K.，用以代表“Ole Kurrek”。（a supposedly inept speller：同位语，补充说明 Andrew Jackson；mark A B：在 A 上标注 B；'Ole Kurrek'：故意拼错的 all correct）杰克逊拼写得**还算/尚且**(reasonably)不错，并且从没在文件上批注过 O.K.。在大约二十年内，人们就**认真地**(in earnest)这样做了。（do so：这样做，指在文件上批 O.K.）这个**伪造的**(bogus)**批注**(notation)，不过是出现**过早**(premature)而已。
 
-与之竞争的说法给出了种种**异域的**(exotic)**来历**(pedigrees)，比如乔克托语的 'okeh'和希腊语的 'ola kala'。**权威**(Authoritative)词典直到1961年还倾向于乔克托语一说。（as late as…：直到……还）1963至1964年，语言学家艾伦·沃克·里德从**档案**(archival)报纸中**发掘**(excavated)出长期被**忽视的**(neglected)波士顿**起源**(provenance)，这些发现发表在《美国语言》杂志的六篇**影响深远的**(influential)文章里。（excavate A from B：从 B 中发掘出 A）（in six … articles：in 结构作状语，指成果发表在六篇文章中）如今大多数词典都**采纳了**(embrace)他的**词源**(derivation)解释，那是一段由错误拼写和开饭铃讽刺文构成的来历。（a pedigree of…：同位语，补充说明 derivation）（简述：OK这个词是怎么来的？这是一个“恶搞变爆款”的故事。第一步：恶搞造梗。1838年起，波士顿的报纸流行故意拼错字来搞笑。1839年，有报纸在开玩笑时，第一次把“all correct（完全正确）”故意错拼成了“o.k.”。第二步：政客疯狂带节奏。1840年美国大选，候选人的外号叫“老金德霍克（Old Kinderhook）”，缩写正好是O.K.。他的支持者立刻成立“O.K.俱乐部”，用这个双关语到处拉票，直接把这两个字母传遍了全国。第三步：一个乌龙事件。当时对手为了抹黑前总统杰克逊，造谣说他把O.K.写在公文上。其实根本没这事。第四步：最终盖棺定论。后来虽然有各种奇葩说法（比如说是印第安语、希腊语），但学者里德翻烂了当年的旧报纸，硬核证明了它确确实实起源于波士顿的那次恶搞。现在，绝大多数词典都认准了这个说法。）
+与之竞争的说法给出了种种**异域的**(exotic)**来历**(pedigrees)，比如乔克托语的 'okeh'和希腊语的 'ola kala'。**权威**(Authoritative)词典直到1961年还倾向于乔克托语一说。（as late as…：直到……还）1963至1964年，语言学家艾伦·沃克·里德从**档案**(archival)报纸中**发掘**(excavated)出长期被**忽视的**(neglected)波士顿**起源**(provenance)，这些发现发表在《美国语言》杂志的六篇**影响深远的**(influential)文章里。（excavate A from B：从 B 中发掘出 A）（in six … articles：in 结构作状语，指成果发表在六篇文章中）如今大多数词典都**采纳了**(embrace)他的**词源**(derivation)解释，那是一段由错误拼写和开饭铃讽刺文构成的**来历**(pedigree)。（a pedigree of…：同位语，补充说明 derivation）（简述：OK这个词是怎么来的？这是一个“恶搞变爆款”的故事。第一步：恶搞造梗。1838年起，波士顿的报纸流行故意拼错字来搞笑。1839年，有报纸在开玩笑时，第一次把“all correct（完全正确）”故意错拼成了“o.k.”。第二步：政客疯狂带节奏。1840年美国大选，候选人的外号叫“老金德霍克（Old Kinderhook）”，缩写正好是O.K.。他的支持者立刻成立“O.K.俱乐部”，用这个双关语到处拉票，直接把这两个字母传遍了全国。第三步：一个乌龙事件。当时对手为了抹黑前总统杰克逊，造谣说他把O.K.写在公文上。其实根本没这事。第四步：最终盖棺定论。后来虽然有各种奇葩说法（比如说是印第安语、希腊语），但学者里德翻烂了当年的旧报纸，硬核证明了它确确实实起源于波士顿的那次恶搞。现在，绝大多数词典都认准了这个说法。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -47,6 +50,7 @@ OK，常被说成是全世界**最常**(most frequently)说出的词，起初只
 | parodying | 本文：戏仿；v. (parody) 戏仿，滑稽模仿（parody a famous poem） | 2 |
 | ordinance | 本文：法令；n. 法令，条例（a city ordinance） | 2 |
 | glossed as | 本文：被注释为；v. (gloss) 注释，加注（a word glossed in the margin） | 2 |
+| stood for | 本文：代表；短语. (stand for) 代表，意味着 | 2 |
 | knowingly | 本文：有意；adv. 故意地，明知地；会意地（knowingly break the law；smile knowingly） | 2 |
 | illiterate | 本文：文盲；adj. 文盲的；（文字）错误百出的（an illiterate population；an illiterate letter） | 2 |
 | presumed | 本文：推定的；adj./v. (presume) 推定的（the presumed author；be presumed dead） | 2 |
@@ -82,6 +86,7 @@ OK，常被说成是全世界**最常**(most frequently)说出的词，起初只
 | influential | 本文：影响深远的；adj. 有影响力的（an influential book/figure） | 5 |
 | embrace | 本文：采纳了；v. 采纳，接受；拥抱（embrace a new idea） | 5 |
 | derivation | 本文：词源；n. 词源，起源；派生（the derivation of a word） | 5 |
+| pedigree | 本文：来历；n. 来历，起源 | 5 |
 
 ## 史实与来源
 - 【T1】1838年起波士顿各报风行缩写，继而转向故意错拼的滑稽缩写：O.W.（oll wright，即故意拼错的 all right）、K.Y.（know yuse，即 no use）、N.G.（no go）、N.C.（nuff ced，即 enough said）；O.W. 于1839年2月7日见报；错拼让作者扮演没受过教育的乡巴佬。正文只举 O.W. 与 K.Y.。S1

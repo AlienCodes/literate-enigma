@@ -2,7 +2,7 @@
 # ZH: 会算术的马
 
 ## 英文
-Wilhelm von Osten, a mathematics teacher and **trainer** in Berlin, owned a **stallion**, Hans. Asked to **calculate** a sum, attempt **subtraction**, or name a date, Hans tapped out the answer with a hoof. Such **aptitude** suggested **brilliance**, and **demonstrations** in his owner's **courtyard** made him seem **intelligent**. The New York Times reported the **stunning** act in 1904.
+Wilhelm von Osten, a mathematics teacher and **trainer** in Berlin, owned a **stallion**, Hans. Asked to **calculate** a sum, attempt **subtraction**, or name a date, Hans tapped out the answer with a **hoof**. Such **aptitude** suggested **brilliance**, and **demonstrations** in his owner's **courtyard** made him seem **intelligent**. The New York Times reported the **stunning** act in 1904.
 
 A **commission** of thirteen was formed to **investigate**. It included a **veterinarian**, a circus manager, a **cavalry** officer, schoolteachers, and the director of the Berlin **zoological** garden. Its members looked for **trickery** and **collusion**. In September 1904 they found no **deception**, in effect **certifying** the act **authentic**.
 
@@ -10,19 +10,20 @@ In 1907 the **psychologist** Oskar Pfungst tested the act **systematically**, al
 
 The **cues** came from the questioners. Each would **lean** forward as tapping began, and **tension** rose as the taps neared the answer. At the right tap it eased, and the questioner would **straighten** or **jerk** the head upward. Every **gesture** and **motion** was **subconscious**, made **unwittingly** by people with no wish to **deceive**.
 
-**Double-blind** designs in **psychology** and animal **cognition** guard against the Clever Hans effect, a **phenomenon** of **bias** in which **expectancy** shapes **behavioural** results. In the laboratory, Pfungst took the animal's place and proved **sensitive** to the cues of **attentive** volunteers. Hans went, on his owner's death in June 1909, to a **jeweller** still convinced that such animals reasoned.
+**Double-blind** designs in **psychology** and animal **cognition** **guard against** the Clever Hans effect, a **phenomenon** of **bias** in which **expectancy** shapes **behavioural** results. In the laboratory, Pfungst took the animal's place and proved **sensitive** to the cues of **attentive** volunteers. Hans went, on his owner's death in June 1909, to a **jeweller** still convinced that such animals **reasoned**.
 
 ## 中文
 
-威廉·冯·奥斯滕，一位数学教师兼**驯兽师**(trainer)（驯马）在柏林（任职），拥有一匹**公马**(stallion)，名叫汉斯。当（这匹马）被要求**计算**(calculate)一道算术题、试着做**减法**(subtraction)或说出一个日期时，汉斯就会用一只蹄子把答案敲出来。（Asked to…：过去分词短语作状语，= When he was asked to…）这样的**天资**(aptitude)暗示着**过人的才智**(brilliance)，在它主人**庭院**(courtyard)里的**演示/展示**(demonstrations)（马能算数）也让它显得很**聪明**(intelligent)。《纽约时报》在1904年报道了这场**令人惊叹的**(stunning)表演。
+威廉·冯·奥斯滕，一位数学教师兼**驯兽师**(trainer)（驯马）在柏林（任职），拥有一匹**公马**(stallion)，名叫汉斯。当（这匹马）被要求**计算**(calculate)一道算术题、试着做**减法**(subtraction)或说出一个日期时，汉斯就会用一只**蹄子**(hoof)把答案敲出来。（Asked to…：过去分词短语作状语，= When he was asked to…）这样的**天资**(aptitude)暗示着**过人的才智**(brilliance)，在它主人**庭院**(courtyard)里的**演示/展示**(demonstrations)（马能算数）也让它显得很**聪明**(intelligent)。《纽约时报》在1904年报道了这场**令人惊叹的**(stunning)表演。
 
 一个由十三人组成的**委员会**(commission)成立了，负责**调查**(investigate)。委员会成员包括一名**兽医**(veterinarian)、一名马戏团经理、一名**骑兵**(cavalry)军官、几名中小学教师以及柏林**动物**(zoological)园的园长。委员们查看有没有**诡计**(trickery)和**串通**(collusion)。1904年9月，他们没有发现任何**骗局**(deception)，这实际上等于**证实了**(certifying)这场表演**真实可信**(authentic)。（in effect：实际上；certify sth + 形容词：证明某物……；分词作结果状语）
 
 1907年，**心理学家**(psychologist)奥斯卡·普丰斯特**系统地**(systematically)检验了这场表演，一个接一个地改变了**变量**(variable)。（altering…：分词作伴随状语；one … after another：一个接一个）他不让围观者靠近，**轮换**(rotated)**提问者**(questioners)，（给马）戴上**眼罩**(blinders)，有时还使用对答案**一无所知的**(ignorant)人（当提问者）。（ignorant of sth：不知道某事的；people ignorant of… 是后置定语）当汉斯能看见提问者时，它在56次里有50次**正确地**(correctly)作答。当提问者**不可见**(invisible)时，它的**准确率**(accuracy)降到了35次里只对两次。（with + 名词 + 形容词：在……的情况下；指汉斯看不见提问者）
 
 （看来）这些**提示**(cues)来自提问者。每个提问者都会在敲击开始时向前**倾身**(lean)，敲击越接近答案，**紧张感**(tension)就越强。（前一个 as：当……时；后一个 as：随着，译成“越……越……”）敲到正确的那一下时，紧张感就缓和下来，提问者会**挺直**(straighten)身子或者把头向上**猛地一抬**(jerk)。（straighten 此处不及物：挺直身子；the head 只是 jerk 的宾语）每一个**姿势**(gesture)和**动作**(motion)都是**下意识的**(subconscious)，是那些并不想**欺骗**(deceive)别人的人**毫不知情地**(unwittingly)做出的。（made… 是过去分词短语，补充说明这些动作；with no wish to do：并不想做……）
+（提问者知道答案，马敲到正确次数时，他们会不自觉地改变姿势，汉斯察觉信号就停下。人们自己并不知道在给马提示，也没有故意骗人。）
 
-**双盲**(Double-blind)设计在**心理学**(psychology)和动物**认知**(cognition)研究中用来防范聪明汉斯效应，这是一种**偏差**(bias)**现象**(phenomenon)，在这种现象中，**预期**(expectancy)会影响**行为**(behavioural)结果。（双盲：实验者和受试者都不知道分组或答案，以免无意中影响结果）（a phenomenon of bias 是 the Clever Hans effect 的同位语）在实验室里，普丰斯特代替了那匹马，结果证明，他对**专注的**(attentive)志愿者（无意中）的提示也很**敏感**(sensitive)。（prove + 形容词：结果证明是……；sensitive to：对……敏感）（揭示“聪明汉斯效应”的普遍性：这不仅仅是一匹马的故事，这是一个关于人类心理学实验的警示。人类在实验中，如果期望某个结果（expectancy），就会不知不觉地通过微表情影响实验结果（shapes behavioural results）。）汉斯在它的主人于1909年6月去世后，归了一位**珠宝商**(jeweller)，这位珠宝商仍然坚信这类动物会推理。（went … to：归……所有；on his owner's death 插在 went 和 to 之间）（still convinced that…：后置定语，修饰 jeweller）
+**双盲**(Double-blind)设计在**心理学**(psychology)和动物**认知**(cognition)研究中用来**防范**(guard against)聪明汉斯效应，这是一种**偏差**(bias)**现象**(phenomenon)，在这种现象中，**预期**(expectancy)会影响**行为**(behavioural)结果。（双盲：实验者和受试者都不知道分组或答案，以免无意中影响结果）（a phenomenon of bias 是 the Clever Hans effect 的同位语）在实验室里，普丰斯特代替了那匹马，结果证明，他对**专注的**(attentive)志愿者（无意中）的提示也很**敏感**(sensitive)。（prove + 形容词：结果证明是……；sensitive to：对……敏感）（揭示“聪明汉斯效应”的普遍性：这不仅仅是一匹马的故事，这是一个关于人类心理学实验的警示。人类在实验中，如果期望某个结果（expectancy），就会不知不觉地通过微表情影响实验结果（shapes behavioural results）。）汉斯在它的主人于1909年6月去世后，归了一位**珠宝商**(jeweller)，这位珠宝商仍然坚信这类动物会**推理**(reasoned)。（went … to：归……所有；on his owner's death 插在 went 和 to 之间）（still convinced that…：后置定语，修饰 jeweller）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -31,6 +32,7 @@ The **cues** came from the questioners. Each would **lean** forward as tapping b
 | stallion | 本文：公马；n. 种马，公马（a black stallion） | 1 |
 | calculate | 本文：计算；v. 计算，估算（calculate the cost/distance） | 1 |
 | subtraction | 本文：减法；n. 减法（addition and subtraction） | 1 |
+| hoof | 本文：蹄子；n. 蹄，蹄子 | 1 |
 | aptitude | 本文：天资；n. 天资，才能（a natural aptitude for languages；an aptitude test） | 1 |
 | brilliance | 本文：过人的才智；n. 才华，聪慧；光辉（intellectual brilliance） | 1 |
 | courtyard | 本文：庭院；n. 庭院，院子（a cobbled courtyard；the courtyard of a castle） | 1 |
@@ -70,6 +72,7 @@ The **cues** came from the questioners. Each would **lean** forward as tapping b
 | Double-blind | 本文：双盲；adj. 双盲的（a double-blind trial/study） | 5 |
 | psychology | 本文：心理学；n. 心理学；心理（child psychology；crowd psychology） | 5 |
 | cognition | 本文：认知；n. 认知（human/animal cognition） | 5 |
+| guard against | 本文：防范；phr. 防范，防止 | 5 |
 | bias | 本文：偏差；n. 偏差，偏见（gender bias；a bias against sb） | 5 |
 | phenomenon | 本文：现象；n. 现象（a natural/social phenomenon） | 5 |
 | expectancy | 本文：预期；n. 预期，期待（life expectancy；an air of expectancy） | 5 |
@@ -77,6 +80,7 @@ The **cues** came from the questioners. Each would **lean** forward as tapping b
 | attentive | 本文：专注的；adj. 专注的，留心的（an attentive listener） | 5 |
 | sensitive | 本文：敏感；adj. 敏感的（sensitive to light/criticism） | 5 |
 | jeweller | 本文：珠宝商；n. 珠宝商（a jeweller's shop） | 5 |
+| reasoned | 本文：推理；v. (reason) 推理，推断 | 5 |
 
 ## 史实与来源
 - 【T1】冯·奥斯滕是柏林一所中学的数学教师、业余驯马师；他的公马汉斯用蹄子敲出算术、日期等答案；他曾在德国各地免费公开展示，并在自家庭院里表演，正文写"在主人庭院里的表演"。S1

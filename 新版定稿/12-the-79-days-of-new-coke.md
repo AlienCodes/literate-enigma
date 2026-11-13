@@ -6,7 +6,7 @@ Pepsi had set up **booths** in shopping centres across the US, inviting **shoppe
 
 Coca-Cola's testing was **thorough** and **extensive**. Nearly 200,000 blind taste tests showed a sweeter **formula** beating the original and Pepsi. On 23 April 1985 the company announced it would replace its 99-year-old **syrup**, a year short of its **centenary**. The public called the **soda** New Coke. Its **sweetness** had given it a winning **flavour**, but launching the **concoction** was a **wager**.
 
-The **backlash** was a **grassroots** **outcry**. Consumer **hotline** calls rose from about 400 a day to about 1,500, almost all **furious** **complaints**. **Protest groups** were **organised**, and some **faithful** drinkers stocked up on the original. In June 1985 one protester, Gay Mullins, filed a **lawsuit** to keep New Coke out of packaging like the original's. Its **dismissal** came a week later.
+The **backlash** was a **grassroots** **outcry**. Consumer **hotline** calls rose from about 400 a day to about 1,500, almost all **furious** **complaints**. **Protest groups** were **organised**, and some **faithful** drinkers **stocked up on** the original. In June 1985 one **protester**, Gay Mullins, filed a **lawsuit** to keep New Coke out of **packaging** like the original's. Its **dismissal** came a week later.
 
 Pepsi's **chief executive** gave his **employees** a day off, treating the change as Coke's **concession**. After 79 days, on 11 July 1985, the original formula was **relaunched** as Coca-Cola Classic. The **U-turn** was a **vindication** for **loyalists**. ABC **interrupted** a soap opera to **broadcast** the **comeback**, which led two network **news bulletins**.
 
@@ -14,15 +14,15 @@ Coca-Cola had **misjudged** what the tests measured. They captured a **mouthful*
 
 ## 中文
 
-百事可乐曾在全美各地的购物中心设置了**摊位**(booths)，邀请**购物者**(shoppers)**啜饮**(sip)两种**未标品牌的**(unmarked)**饮料**(beverages)，（小口喝；抿）并说出自己的**偏好**(preference)。（inviting…：现在分词短语，补充说明设摊位的做法；invite sb to do：邀请某人做……）虽然数据会因为地区不同而出现差异，但**品尝者**(tasters)总体上更常选百事。每个摊点让**消费者**(consumers)仅凭**味觉**(palate)作出判断，同时也成了一种**宣传**(publicity)。（letting…：现在分词短语作插入语，说明摊点的做法；double as：兼作，同时充当）
+百事可乐曾在全美各地的购物中心设置了**摊位**(booths)，邀请**购物者**(shoppers)**啜饮**(sip)（小口喝；抿）两种**未标品牌的**(unmarked)**饮料**(beverages)，并说出自己的**偏好**(preference)。（inviting…：现在分词短语，补充说明设摊位的做法；invite sb to do：邀请某人做……）虽然数据会因为地区不同而出现差异，但**品尝者**(tasters)总体上更常选百事。每个摊点让**消费者**(consumers)仅凭**味觉**(palate)作出判断，同时也成了一种**宣传**(publicity)。（letting…：现在分词短语作插入语，说明摊点的做法；double as：兼作，同时充当）
 
 可口可乐的测试既**深入透彻**(thorough)，又**覆盖面广**(extensive)。（@thorough 彻底的；完全的；深入的；细致的）（@extensive 常作形容词，表示范围广、规模大，或涉及的内容和数量很多，@extensive|可根据语境译为“广泛的、大量的、丰富的、全面的”。）近20万次盲测显示，一种更甜的**配方**(formula)胜过原版可乐和百事可乐。（show sth doing：显示某物在……；the original：原版可乐）1985年4月23日，公司宣布，将替换它那已有99年历史的**糖浆**(syrup)，此时距**百年**(centenary)只差一年。（a year short of…：离……还差一年，补充说明前面整件事）公众把这种**汽水**(soda)称为新可乐。它的**甜味**(sweetness)让它拥有了能（在盲测中）胜出的**口味**(flavour)，但推出这款**调制（饮）品**(concoction)是一场**赌注**(wager)。（launching…：动名词短语作主语）
 
-这场**反噬**(backlash)，是**来自基层民众的**(grassroots)**强烈抗议**(outcry)。（@backlash 针对某种行为、观点或变化@backlash|而出现的强烈反对或负面反应）消费者**热线**(hotline)来电从每天约400通激增到约1,500通，几乎全都是**暴怒的**(furious)**投诉**(complaints)。（rise from A to B：从A增加到B；almost all…：补充说明这些电话）**抗议团体**(Protest groups)**组织了**(organised)起来，一些**忠实的**(faithful)饮用者囤积了原版可乐。（stock up on：大量储备，囤积）1985年6月，一位抗议者盖伊·马林斯提起了**诉讼**(lawsuit)，要求禁止新可乐使用与原版相似的包装。（keep A out of B：不让A用上B；the original's = the original's packaging）这起诉讼被**驳回**(dismissal)，是在一周之后。（@dismissal （法律上）驳回案件或指控）
+这场**反噬**(backlash)，是**来自基层民众的**(grassroots)**强烈抗议**(outcry)。（@backlash 针对某种行为、观点或变化@backlash|而出现的强烈反对或负面反应）消费者**热线**(hotline)来电从每天约400通激增到约1,500通，几乎全都是**暴怒的**(furious)**投诉**(complaints)。（rise from A to B：从A增加到B；almost all…：补充说明这些电话）**抗议团体**(Protest groups)**组织了**(organised)起来，一些**忠实的**(faithful)饮用者**囤积了**(stocked up on)原版可乐。（stock up on：大量储备，囤积）1985年6月，一位**抗议者**(protester)盖伊·马林斯提起了**诉讼**(lawsuit)，要求禁止新可乐使用与原版相似的**包装**(packaging)。（keep A out of B：不让A用上B；the original's = the original's packaging）这起诉讼被**驳回**(dismissal)，是在一周之后。（@dismissal （法律上）驳回案件或指控）
 
-百事可乐**首席执行官**(chief executive)给他的**员工**(employees)放了一天假，把这次改变看作可口可乐的**让步**(concession)。（treating…：现在分词短语作伴随状语；treat A as B：把A看作B）（这句话是在描写百事可乐CEO的“幸灾乐祸”和“疯狂嘲讽”。他的潜台词是：“哈哈，可口可乐你终于认怂了！你改回老配方，就等于承认了新可乐彻底失败，百事视角：你当初改老配方，就是因为你在盲测里输给了我，你怕我了。也就是变相承认了我们百事可乐更好喝！兄弟们，咱们赢了，放假一天！”）79天后，1985年7月11日，原配方以可口可乐经典之名**重新上市了**(relaunched)。这种**180度大反转**(U-turn)，**证明了**(vindication)这群**忠诚拥护者**(loyalists)**是正确的**(vindication)。（vindication：证明……是对的，这里指拥趸坚持原版可乐是对的）ABC 电视台**中断了**(interrupted)一部肥皂剧，**播出**(broadcast)可口可乐**回归**(comeback)的消息，此事还领衔了两大电视网的**新闻快报**(news bulletins)。（which：非限制性定语从句，指这条消息；lead：在……中居首位，这里指成为头条）
+百事可乐**首席执行官**(chief executive)给他的**员工**(employees)放了一天假，把这次改变看作可口可乐的**让步**(concession)。（treating…：现在分词短语作伴随状语；treat A as B：把A看作B）（盲测中，百事赢了老版可口可乐。可口可乐于是改用更甜、更接近百事口味的新配方。百事借机嘲讽：你输了盲测，现在又学我们的口味，不就是承认我们更好喝吗？我们赢了，放假一天庆祝！）79天后，1985年7月11日，原配方以可口可乐经典之名**重新上市了**(relaunched)。这种**180度大反转**(U-turn)，**证明了**(vindication)这群**忠诚拥护者**(loyalists)**是正确的**(vindication)。（vindication：证明……是对的，这里指拥趸坚持原版可乐是对的）ABC 电视台**中断了**(interrupted)一部肥皂剧，**播出**(broadcast)可口可乐**回归**(comeback)的消息，此事还领衔了两大电视网的**新闻快报**(news bulletins)。（which：非限制性定语从句，指这条消息；lead：在……中居首位，这里指成为头条）
 
-可口可乐**误判了**(misjudged)这些测试衡量的是什么。测试捕捉到的只是**一小口**(mouthful)的味道，而不是近一个世纪的**熟悉**(familiarity)所建立起来的**情感**(emotional)**依恋**(attachment)。（that…：定语从句，修饰 attachment；nearly a century of familiarity：近一个世纪的熟悉）对许多人来说，老味道承载着**怀旧**(nostalgia)与**传统**(heritage)。（@nostalgia 对过去的人、事、时代或生活状态产生的带有感伤意味的向往与怀念。）（@heritage 指从前人或历史中继承下来、并传给后代的财产、传统、文化或身份特征。）测试对每位品尝者都遮住了品牌，所以它们无法**量化**(quantify)品牌对那些**极其**(fiercely)**忠诚的**(loyal)饮用者意味着什么。（hide A from B：不让B看到A；what…：宾语从句）（结局：近20万次盲测证明新配方更好喝，可盲测遮住了品牌，测不出人们对老可乐近百年的感情；新可乐一推出就引来抗议和诉讼，79天后原配方以可口可乐经典之名回归。口味赢了，感情输了，可口可乐最后还是向忠实的饮用者让了步。）
+可口可乐**误判了**(misjudged)这些测试衡量的是什么。测试捕捉到的只是**一小口**(mouthful)的味道，而不是近一个世纪的**熟悉**(familiarity)所建立起来的**情感**(emotional)**依恋**(attachment)。（that…：定语从句，修饰 attachment；nearly a century of familiarity：近一个世纪的熟悉）对许多人来说，老味道承载着**怀旧**(nostalgia)与**传统**(heritage)。（@nostalgia 对过去的人、事、时代或生活状态产生的带有感伤意味的向往与怀念。）（@heritage 指从前人或历史中继承下来、并传给后代的财产、传统、文化或身份特征。）测试对每位品尝者都遮住了品牌，所以它们无法**量化**(quantify)品牌对那些**极其**(fiercely)**忠诚的**(loyal)饮用者意味着什么。（hide A from B：不让B看到A；what…：宾语从句）（盲测只比味道，不告诉人喝的是什么牌子，所以测不出老顾客对可口可乐这个品牌的感情。新配方即使更受试饮者欢迎，也不代表老顾客愿意放弃熟悉的老可乐。）（简述：▸竞争：百事用不标品牌的试饮吸引消费者，通常更受青睐；可口可乐随后做了近20万次盲测。▸换方：更甜的新配方在盲测中胜过旧版和百事，公司于1985年用它替换已有99年历史的老配方。▸反弹：热线日来电从约400增至1500，几乎全是投诉；顾客囤积旧款、结社抗议，还有人起诉但被驳回。▸回归：仅79天后，老配方以经典可口可乐之名回归，成为电视新闻头条。▸漏测：盲测只比较一口饮料的味道，遗漏了品牌与熟悉口味承载的感情、怀旧和传统。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -79,6 +79,10 @@ Coca-Cola had **misjudged** what the tests measured. They captured a **mouthful*
 | quantify | 本文：量化；v. 量化，确定数量（difficult to quantify the benefits） | 5 |
 | fiercely | 本文：极其；adv. 激烈地，猛烈地（fiercely competitive；fiercely independent） | 5 |
 | loyal | 本文：忠诚的；adj. 忠诚的（loyal customers/fans） | 5 |
+
+| stocked up on | v. (stock up on) 大量储备，囤积（stock up on sth） | 3 |
+| protester | n. 抗议者，示威者 | 3 |
+| packaging | n. 包装，包装材料 | 3 |
 
 ## 史实与来源
 - 【T1】百事可乐在美国各地商场设"百事挑战"摊位，请路人品尝两杯（罐）不标品牌的可乐并说出偏好；各地数字不一，品尝者一般更常选百事。市场份额数字说法不一，正文不写。S2

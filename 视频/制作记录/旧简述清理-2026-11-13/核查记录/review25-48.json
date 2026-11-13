@@ -1,0 +1,786 @@
+{
+  "audit": "Read-only text audit for untagged legacy story recaps preceding the separate tagged summary card",
+  "scope": {
+    "original_ids": [
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45",
+      "46",
+      "47",
+      "48"
+    ],
+    "count": 24,
+    "inventory": "/workspace/work/video-audit70-20261113/inventory.json",
+    "snapshots_directory": "/workspace/work/video-audit70-20261113/sources",
+    "repo": "/workspace/work/github-publication/target",
+    "git_head": "64621068034f8b6e09836a6d97210a0e9b2f1ed6"
+  },
+  "method": [
+    "Read every English sentence and every note in all 24 frozen source entries, including the tagged summaries.",
+    "Classify by narrative function and placement, not note length. Preserve grammar, lexical definitions, and contextual explanations.",
+    "Parse S from git show HEAD:视频/工具/初稿生成/genNN.py without executing any generator and compare the pre-tag final note with the frozen snapshot."
+  ],
+  "limitations": [
+    "This report is a source-text audit; root handles actual video tail-frame inspection.",
+    "Video/PDF generation was paused. No rendering, production edits, or pushes were performed."
+  ],
+  "summary": {
+    "checked": 24,
+    "legacy_recap_candidates": 0,
+    "remove_count": 0,
+    "retain_all_existing_pre_summary_notes": true,
+    "gen_pre_summary_prefix_matches_snapshots": 24
+  },
+  "articles": [
+    {
+      "id": "25",
+      "title": "阿波罗13号：成功的失败",
+      "source_path": "视频/脚本/25.json",
+      "inventory_source_sha256": "bccd8894af51f1f910e90cf5042d0dc827af4ae0ddb2684a18828b4e21ac56fd",
+      "snapshot_sha256": "bccd8894af51f1f910e90cf5042d0dc827af4ae0ddb2684a18828b4e21ac56fd",
+      "sentence_count": 17,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "The **paradox** holds: a flight **undone by** a five-year-old engineering **oversight** was **salvaged** within four days by **ingenuity** on the ground.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/16/chunks/0/note",
+          "exact_text": "（hold：（论点、理论等）站得住脚；\nundone by…：被……毁掉）",
+          "decision": "retain"
+        },
+        {
+          "location": "/sentences/16/chunks/1/note",
+          "exact_text": "（ingenuity：巧思；足智多谋；\n独创性。手巧脑子活：意思是哪怕条件特别烂、限制特别多，\n这人也能靠自己的小聪明和奇思妙想，\n愣是找出办法把难题给解决了。）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [
+        {
+          "location": "/sentences/7/chunks/0/note",
+          "exact_text": "（一个极其致命的物理乌龙，直接引发了接下来最著名的太空救援行动。\n因为“方形的滤芯，插不进圆形的凹槽。”）",
+          "decision": "retain: local contextual or lexical explanation"
+        }
+      ],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending explains the lexical meaning of ingenuity in plain language; it does not retell Apollo 13. Retain the entire long definition, including the informal paraphrase. The separate tagged 简述 is the only narrative recap."
+    },
+    {
+      "id": "26",
+      "title": "孩子们发明的语言",
+      "source_path": "视频/脚本/26.json",
+      "inventory_source_sha256": "a02ecee2f538c56c3de0d4c65c42fe0d0c1070ba03f7b2c6932d5949ba683ee4",
+      "snapshot_sha256": "a02ecee2f538c56c3de0d4c65c42fe0d0c1070ba03f7b2c6932d5949ba683ee4",
+      "sentence_count": 17,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "Its **builders** were not teachers or experts but deaf **playmates** in playgrounds, streets, and buses.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/16/chunks/0/note",
+          "exact_text": "（not A but B：不是 A 而是 B；\nin playgrounds…：介词短语作后置定语，修饰 playmates）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending note explains not A but B and the postnominal modifier in playgrounds…; no legacy narrative recap is present."
+    },
+    {
+      "id": "27",
+      "title": "禁区里的生机",
+      "source_path": "视频/脚本/27.json",
+      "inventory_source_sha256": "e502be7d78651813bc9d599ac2a22e46a9f1a38e371bb7f8f8c16a48655e0a61",
+      "snapshot_sha256": "e502be7d78651813bc9d599ac2a22e46a9f1a38e371bb7f8f8c16a48655e0a61",
+      "sentence_count": 16,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "The **burgeoning** **herds** may **trumpet** the **dividend** of human **departure**, but the **sluggish** **rot** of fallen leaves keeps a quieter **ledger** of radiation's cost.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/15/chunks/0/note",
+          "exact_text": "（trumpet：大肆宣扬，与后面的 quieter 对比；\nthe dividend of…：……带来的红利）",
+          "decision": "retain"
+        },
+        {
+          "location": "/sentences/15/chunks/1/note",
+          "exact_text": "（keep a ledger of…：记下……的账，这里比喻记录代价）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [
+        {
+          "location": "/sentences/14/chunks/0/note",
+          "exact_text": "（切尔诺贝利这里的动物数量比较多，不一定就说明这里的环境更加健康和适合这群动物）",
+          "decision": "retain: local contextual or lexical explanation"
+        }
+      ],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending notes explain trumpet/dividend and the ledger metaphor in the final sentence. They are local lexical and contextual explanations, not a retelling."
+    },
+    {
+      "id": "28",
+      "title": "青蒿一握，济世千万",
+      "source_path": "视频/脚本/28.json",
+      "inventory_source_sha256": "1d72e53fabf63ea6ad21b719859de547d9422abbb5faaab2f660b3c5cfbdac80",
+      "snapshot_sha256": "1d72e53fabf63ea6ad21b719859de547d9422abbb5faaab2f660b3c5cfbdac80",
+      "sentence_count": 17,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "The **essence** of Ge Hong's line lay in the boiling it **skipped**.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/16/chunks/0/note",
+          "exact_text": "（lie in…：在于……，lay 是 lie 的过去式；\nit skipped：定语从句，\n修饰 the boiling，省略了 that）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending note explains lie in/lay and the relative clause it skipped. It contains no narrative recap."
+    },
+    {
+      "id": "29",
+      "title": "一座火山，造出了《弗兰肯斯坦》",
+      "source_path": "视频/脚本/29.json",
+      "inventory_source_sha256": "2ceb5171dce35431b44f94f91dbdcd5bc5156a546ca143b8a42f2fd2368655b8",
+      "snapshot_sha256": "2ceb5171dce35431b44f94f91dbdcd5bc5156a546ca143b8a42f2fd2368655b8",
+      "sentence_count": 16,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "A **tropical volcano** had supplied the rain, and a teenager the **monster**.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/15/chunks/0/note",
+          "exact_text": "（and a teenager the monster：省略句，\n省略了 had supplied）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending note identifies the omitted had supplied in the parallel clause. It contains no narrative recap."
+    },
+    {
+      "id": "30",
+      "title": "大恶臭逼出了下水道",
+      "source_path": "视频/脚本/30.json",
+      "inventory_source_sha256": "458af63b779299fa5bd242a8aff9a707062adde5fc80d6d3b3dedd5ba544de21",
+      "snapshot_sha256": "458af63b779299fa5bd242a8aff9a707062adde5fc80d6d3b3dedd5ba544de21",
+      "sentence_count": 18,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "A remedy **aimed at** the nose protected the **gut**.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/17/chunks/0/note",
+          "exact_text": "（aimed at…：过去分词短语作后置定语，修饰 remedy；\nthe gut：肠胃，与 the nose 对比）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending note explains the participial modifier aimed at and the nose/gut contrast. It contains no narrative recap."
+    },
+    {
+      "id": "31",
+      "title": "被拒绝了十二次的哈利·波特",
+      "source_path": "视频/脚本/31.json",
+      "inventory_source_sha256": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "snapshot_sha256": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "sentence_count": 16,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "Alice's **appetite** was **evidently** shared by millions.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/15/chunks/0/note",
+          "exact_text": "（be shared by…：被……共有；\nappetite：胃口，这里指对这本书的兴趣）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending note explains be shared by and appetite as interest in the book. It contains no narrative recap."
+    },
+    {
+      "id": "32",
+      "title": "被降级的冥王星",
+      "source_path": "视频/脚本/32.json",
+      "inventory_source_sha256": "08d6a72e568238fd5aa75cc144925951eaabe2b1f9df786dc4f369f2eb1e6abe",
+      "snapshot_sha256": "08d6a72e568238fd5aa75cc144925951eaabe2b1f9df786dc4f369f2eb1e6abe",
+      "sentence_count": 17,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "The **discoverer**'s ashes **swept past** the heart that bears his name.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/16/chunks/0/note",
+          "exact_text": "（that bears his name：定语从句，修饰 the heart；\nbear one's name：以某人的名字命名）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending note explains the relative clause and bear one’s name. It contains no narrative recap."
+    },
+    {
+      "id": "33",
+      "title": "洞穴里的十三个人",
+      "source_path": "视频/脚本/33.json",
+      "inventory_source_sha256": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "snapshot_sha256": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "sentence_count": 16,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "Every boy came home alive, and two rescuers were **mourned**.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/15/chunks/0/note",
+          "exact_text": "（alive：形容词，补充说明回家时的状态）",
+          "decision": "retain"
+        },
+        {
+          "location": "/sentences/15/chunks/1/note",
+          "exact_text": "（were mourned：被动语态，被悼念；\n两名救援者指萨曼·古南和2019年去世的海豹队员）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending notes explain alive and the passive were mourned. Identifying the two rescuers resolves the local referent and must remain; it does not recap the rescue."
+    },
+    {
+      "id": "34",
+      "title": "走出苏联的俄罗斯方块",
+      "source_path": "视频/脚本/34.json",
+      "inventory_source_sha256": "eb44bbae439983f30bd17696cc0bd976fc5b52cbc862ab843bd0756d4f6c185d",
+      "snapshot_sha256": "eb44bbae439983f30bd17696cc0bd976fc5b52cbc862ab843bd0756d4f6c185d",
+      "sentence_count": 17,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "The man whose **puzzle** once spread for nothing later helped decide who could sell it.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/16/chunks/0/note",
+          "exact_text": "（whose puzzle…：定语从句，修饰 The man；\nfor nothing：免费；\nwho could sell it：宾语从句）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [
+        {
+          "location": "/sentences/4/chunks/1/note",
+          "exact_text": "（因为在当时的苏联体制下，他作为领薪水的员工，\n在工作期间用单位电脑写出的游戏属于“职务发明”，\n按法律规定知识产权全归国家所有，他个人无权占有。）",
+          "decision": "retain: local contextual or lexical explanation"
+        },
+        {
+          "location": "/sentences/7/chunks/1/note",
+          "exact_text": "（hawk：叫卖，兜售；rights he did not yet…：\n定语从句，省略了关系代词，修饰 rights）\n（一个西方商人因为不懂苏联国情，\n连真正的版权老板是谁都没搞清楚，\n就开始满世界疯狂转卖版权，但他手里其实根本没有合法的版权。）",
+          "decision": "retain: local contextual or lexical explanation"
+        },
+        {
+          "location": "/sentences/9/chunks/0/note",
+          "exact_text": "（亨克·罗杰斯(Henk Rogers)是当年\n代表任天堂赴前苏联谈判、直接与官方机构（Elorg）\n拿下《俄罗斯方块》全球主机版权的关键商人，\n也是后来与帕基特诺夫合伙开公司、\n帮他夺回版权与收益的挚友。）",
+          "decision": "retain: local contextual or lexical explanation"
+        },
+        {
+          "location": "/sentences/10/chunks/0/note",
+          "exact_text": "（斯坦恩（Robert Stein）是英国软件商人。\n他最早在西方发现了《俄罗斯方块》的商机，\n但因为不懂苏联体制，在未拿到苏联官方（Elorg）合法授权的情况下，\n就草率地把版权倒卖给了多家西方公司，\n是引发后来游戏版权大混战的始作俑者。）",
+          "decision": "retain: local contextual or lexical explanation"
+        },
+        {
+          "location": "/sentences/13/chunks/0/note",
+          "exact_text": "（背景：帕基特诺夫是1984年在苏联科学院写出的这个游戏。\n因为当时苏联是公有制，他是在上班摸鱼写的，所以游戏版权归国家。\n后来这游戏火遍全球，赚了无数钱，作为发明者的他\n却因为身处苏联体制内，一分钱分红都拿不到。）",
+          "decision": "retain: local contextual or lexical explanation"
+        },
+        {
+          "location": "/sentences/14/chunks/0/note",
+          "exact_text": "（背景：苏联解体后，情况变了。\n但因为他早年签过一些关于授权的\n“协议（arrangement）”，\n这些协议的约束力一直持续到1995年左右。\n等这份束缚他的旧协议终于过期作废了，\n他才终于开始堂堂正正地拿到属于自己的钱。）",
+          "decision": "retain: local contextual or lexical explanation"
+        },
+        {
+          "location": "/sentences/15/chunks/0/note",
+          "exact_text": "（罗杰斯(Rogers)当年是代表任天堂去莫斯科，从苏联官方手里买下了版权；\n而他和帕基特诺夫因为这场谈判成了生死之交。\n多年后合同到期，两人合伙开公司，\n才真正把版权拿回了发明者自己手中。）",
+          "decision": "retain: local contextual or lexical explanation"
+        }
+      ],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending note explains whose, for nothing, and the object clause. Earlier person/copyright background notes explain their own sentences and are outside the ending recap issue; retain them."
+    },
+    {
+      "id": "35",
+      "title": "比信先到家的鸟",
+      "source_path": "视频/脚本/35.json",
+      "inventory_source_sha256": "da7e3afdb7b3befe6630819f9cb363f6b1ea7dd395a4ec4164392208dd0e2bdd",
+      "snapshot_sha256": "da7e3afdb7b3befe6630819f9cb363f6b1ea7dd395a4ec4164392208dd0e2bdd",
+      "sentence_count": 21,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "The compass code is partly **cracked**, but the **atlas** that steered the shearwater **has yet to** be read.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/20/chunks/0/note",
+          "exact_text": "（is partly cracked：被动，已被部分破解）",
+          "decision": "retain"
+        },
+        {
+          "location": "/sentences/20/chunks/1/note",
+          "exact_text": "（that steered the shearwater：定语从句，修饰 atlas；\nhas yet to do：“尚未……” / “还有待……”\n（表示某件事到现在为止还没发生，或者还没做完））",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [
+        {
+          "location": "/sentences/19/chunks/0/note",
+          "exact_text": "（How a wanderer knows…：主语从句；\nwhere it is：宾语从句，作 knows 的宾语）\n（这只鸟到底是怎么在大脑里\n算出自己在地球上的确切位置的？\n科学家至今也没完全搞懂。）",
+          "decision": "retain: local contextual or lexical explanation"
+        }
+      ],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending notes explain passive cracked, the relative clause, and has yet to. The nested plain-language explanation of has yet to is lexical, not a story recap."
+    },
+    {
+      "id": "36",
+      "title": "发明了数码相机，却被它打败",
+      "source_path": "视频/脚本/36.json",
+      "inventory_source_sha256": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "snapshot_sha256": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "sentence_count": 19,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "That **medal**'s year also saw Kodak announce **the end of** Kodachrome.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/18/chunks/0/note",
+          "exact_text": "（That medal's year also saw…：以时间作主语，那一年发生了……）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending note explains the year-as-subject construction year also saw. It contains no narrative recap."
+    },
+    {
+      "id": "37",
+      "title": "炸药大王的救心药",
+      "source_path": "视频/脚本/37.json",
+      "inventory_source_sha256": "b37f611533769d44a877589b6bd5e4ec454344a9ce98dbf5a953f837a0ee82fb",
+      "snapshot_sha256": "b37f611533769d44a877589b6bd5e4ec454344a9ce98dbf5a953f837a0ee82fb",
+      "sentence_count": 19,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "Its **presentation** speech, on 10 December, the **anniversary** of Nobel's death, **quoted** his **ironic** letter.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/18/chunks/0/note",
+          "exact_text": "（on 10 December：时间状语；\nthe anniversary of Nobel's death：同位语，补充说明 10 December）",
+          "decision": "retain"
+        },
+        {
+          "location": "/sentences/18/chunks/1/note",
+          "exact_text": "（quote：引用，引述）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending notes explain the date/apposition and quote. They contain no narrative recap."
+    },
+    {
+      "id": "38",
+      "title": "林下之网",
+      "source_path": "视频/脚本/38.json",
+      "inventory_source_sha256": "919e00a20daec28bcac46675e521ddee7653aebf6cdeaebda1fec7322b09eff7",
+      "snapshot_sha256": "919e00a20daec28bcac46675e521ddee7653aebf6cdeaebda1fec7322b09eff7",
+      "sentence_count": 18,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "It is evidence **unearthed** in real forests, not the **allure** of a family **saga**, that must settle how much the networks **convey**, and whether it **matters**.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/17/chunks/0/note",
+          "exact_text": "（It is…that…：强调句，强调 evidence…；\nunearthed in real forests：过去分词短语作后置定语）",
+          "decision": "retain"
+        },
+        {
+          "location": "/sentences/17/chunks/1/note",
+          "exact_text": "（how much… 和 whether…：两个宾语从句并列，作 settle 的宾语）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending notes explain the cleft sentence, participial modifier, and two coordinated object clauses. They contain no narrative recap."
+    },
+    {
+      "id": "39",
+      "title": "千年虫：被成功抹去的危机",
+      "source_path": "视频/脚本/39.json",
+      "inventory_source_sha256": "e2f227f9ae524582cbf4dd1df23894c51920bf25a065681bfed0e862abdee7f5",
+      "snapshot_sha256": "e2f227f9ae524582cbf4dd1df23894c51920bf25a065681bfed0e862abdee7f5",
+      "sentence_count": 19,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "**Prevention** that works may leave nothing but an **invoice**, to **be weighed against** a **catastrophe** that might have been.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/18/chunks/0/note",
+          "exact_text": "（that works：定语从句修饰 Prevention；\nnothing but：只有）",
+          "decision": "retain"
+        },
+        {
+          "location": "/sentences/18/chunks/1/note",
+          "exact_text": "（be weighed against A：与 A 相权衡；\nthat might have been：本可能发生的）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending notes explain relative clauses, nothing but, be weighed against, and the modal counterfactual. They contain no narrative recap."
+    },
+    {
+      "id": "40",
+      "title": "失败的胶水，成功的便利贴",
+      "source_path": "视频/脚本/40.json",
+      "inventory_source_sha256": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "snapshot_sha256": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "sentence_count": 19,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "The laboratory next door had only **leftover** yellow paper.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/18/chunks/0/note",
+          "exact_text": "（next door：作后置定语，隔壁的）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending note explains next door as a postnominal modifier. It contains no narrative recap."
+    },
+    {
+      "id": "41",
+      "title": "入侵澳洲的毒蟾",
+      "source_path": "视频/脚本/41.json",
+      "inventory_source_sha256": "6e9dd89acd40f6270484574e3214ec62c9d8a1999aad405007627bb00403a3f5",
+      "snapshot_sha256": "6e9dd89acd40f6270484574e3214ec62c9d8a1999aad405007627bb00403a3f5",
+      "sentence_count": 19,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "The **blunder** was born of **haste** and sealed by **lobbying** that **overrode** a warning: an **untested** **ally**, once **loose**, may never be **recalled**.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/18/chunks/0/note",
+          "exact_text": "（be born of…：源于……；\nthat overrode a warning：定语从句，修饰 lobbying）",
+          "decision": "retain"
+        },
+        {
+          "location": "/sentences/18/chunks/1/note",
+          "exact_text": "（once loose：省略的状语从句，等于 once it is loose）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending notes explain be born of, a relative clause, and the elliptical once loose. They contain no narrative recap."
+    },
+    {
+      "id": "42",
+      "title": "需要戴眼镜的望远镜",
+      "source_path": "视频/脚本/42.json",
+      "inventory_source_sha256": "f1496156570ebd599c3fd74e204dccfbdbca0a8fbdca33bd78176013c65d9d83",
+      "snapshot_sha256": "f1496156570ebd599c3fd74e204dccfbdbca0a8fbdca33bd78176013c65d9d83",
+      "sentence_count": 16,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "The mirror still carries that 2.2-micrometre flaw, and the light it **gathers** is corrected only after leaving it.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/15/chunks/1/note",
+          "exact_text": "（it gathers：定语从句，省略了关系代词，修饰 light；\nonly after…：只有在……之后才）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending note explains the relative clause it gathers and only after. It contains no narrative recap."
+    },
+    {
+      "id": "43",
+      "title": "从车库到世界之巅",
+      "source_path": "视频/脚本/43.json",
+      "inventory_source_sha256": "020bc11743b203f6bdb8d0f3e78b305675dfee60811faa61bf5eccb78627bf3d",
+      "snapshot_sha256": "020bc11743b203f6bdb8d0f3e78b305675dfee60811faa61bf5eccb78627bf3d",
+      "sentence_count": 21,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "He had spent nearly fourteen years **at the helm of** the company that **ousted** him.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/20/chunks/0/note",
+          "exact_text": "（at the helm of…：执掌……，helm 本义船舵；\nthat ousted him：定语从句，修饰 company）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending note explains at the helm of and the relative clause that ousted him. It contains no narrative recap."
+    },
+    {
+      "id": "44",
+      "title": "一夜之间换边开车",
+      "source_path": "视频/脚本/44.json",
+      "inventory_source_sha256": "12f5c300bf6ffeaa17cb269e98e0f97d4fb06cf9abd7fe286a7f5958370b9346",
+      "snapshot_sha256": "12f5c300bf6ffeaa17cb269e98e0f97d4fb06cf9abd7fe286a7f5958370b9346",
+      "sentence_count": 15,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "The **nervousness** apparently **subsided** and **prudent** habits **faded**, for by 1969 accident and **fatality rates** had **reverted to** their **baseline**.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/14/chunks/1/note",
+          "exact_text": "（for：连词，表示推断的依据；\nrevert to：回到原先的状态）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending note explains for as evidence for inference and the phrase revert to. It contains no narrative recap."
+    },
+    {
+      "id": "45",
+      "title": "写给外星人的一张唱片",
+      "source_path": "视频/脚本/45.json",
+      "inventory_source_sha256": "af724483dc28d9fce2158cfbac9f4c839294447e663c475c697012959529f17e",
+      "snapshot_sha256": "af724483dc28d9fce2158cfbac9f4c839294447e663c475c697012959529f17e",
+      "sentence_count": 14,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "The Voyagers' discs will **glide on** **outwards** through the **void** as **messengers** with a map leading back to the Sun.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/13/chunks/0/note",
+          "exact_text": "（glide on：继续滑行）",
+          "decision": "retain"
+        },
+        {
+          "location": "/sentences/13/chunks/1/note",
+          "exact_text": "（leading back to the Sun：现在分词短语作后置定语，修饰 map）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [
+        {
+          "location": "/sentences/2/chunks/1/note",
+          "exact_text": "（distil A into B：把 A 提炼成 B）\n（康奈尔大学的卡尔·萨根（著名天文学家）带领顾问团队，\n把整个地球（包括各种声音、图像、人类文明）浓缩、打包，\n刻录到了这张薄薄的“金唱片”里。\n萨根的团队把整个地球的“灵魂”，提纯、浓缩成了一张写给外星人的“名片”。）",
+          "decision": "retain: local contextual or lexical explanation"
+        }
+      ],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending notes explain glide on and the participial modifier leading back to the Sun. The earlier S3 paraphrase explains distil A into B locally; retain it."
+    },
+    {
+      "id": "46",
+      "title": "光之殇",
+      "source_path": "视频/脚本/46.json",
+      "inventory_source_sha256": "6b68660d8ae996ed26c6d8a54e6c31bc86635f8d43a8d140fa6ee7578ed32783",
+      "snapshot_sha256": "6b68660d8ae996ed26c6d8a54e6c31bc86635f8d43a8d140fa6ee7578ed32783",
+      "sentence_count": 17,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "At that **pace**, a child born where 250 stars **twinkle** would see about 100 by their eighteenth birthday.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/16/chunks/0/note",
+          "exact_text": "（born where…：过去分词短语作后置定语，修饰 child；\nwhere 250 stars twinkle：地点状语从句）",
+          "decision": "retain"
+        },
+        {
+          "location": "/sentences/16/chunks/1/note",
+          "exact_text": "（by their eighteenth birthday：到18岁生日时）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending notes explain born where and the time expression by their eighteenth birthday. They contain no narrative recap."
+    },
+    {
+      "id": "47",
+      "title": "黄石公园狼影再现",
+      "source_path": "视频/脚本/47.json",
+      "inventory_source_sha256": "bef7a83cef71a3b5565752b71b74ab442c5fb3dacbe35d82b7ab7d8b359ab09e",
+      "snapshot_sha256": "bef7a83cef71a3b5565752b71b74ab442c5fb3dacbe35d82b7ab7d8b359ab09e",
+      "sentence_count": 14,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "A **discipline** willing to **revise** its **cherished** example may deserve more trust than the fable ever did.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/13/chunks/0/note",
+          "exact_text": "（willing to revise its cherished example：\n形容词短语作后置定语，修饰 discipline）",
+          "decision": "retain"
+        },
+        {
+          "location": "/sentences/13/chunks/1/note",
+          "exact_text": "（than the fable ever did：比较状语从句，did 代替 deserved trust）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [
+        {
+          "location": "/sentences/3/chunks/3/note",
+          "exact_text": "（因为狼群的回归（威慑力） ->\n逼得麋鹿不敢在河边吃草（行为改变） ->\n柳树得以疯狂生长（植被恢复） ->\n最终固定了河岸的泥土（地貌重塑））",
+          "decision": "retain: local contextual or lexical explanation"
+        },
+        {
+          "location": "/sentences/6/chunks/2/note",
+          "exact_text": "（项圈是科学家给麋鹿戴的GPS追踪器，\n用来获取它们真实的活动数据，\n从而用铁证戳破了“狼一靠近鹿就吓得不敢吃草”的传说。）",
+          "decision": "retain: local contextual or lexical explanation"
+        }
+      ],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending notes explain willing to and the comparative clause with did substitution. Earlier causal-chain and GPS explanations are local context, not ending recaps."
+    },
+    {
+      "id": "48",
+      "title": "稻济天下",
+      "source_path": "视频/脚本/48.json",
+      "inventory_source_sha256": "27daa19b0ba73f560b3867be5057b01147dcc6c031610bd04c894b1a9de5907f",
+      "snapshot_sha256": "27daa19b0ba73f560b3867be5057b01147dcc6c031610bd04c894b1a9de5907f",
+      "sentence_count": 17,
+      "all_english_context_and_notes_read": true,
+      "last_sentence_en": "His eye began the search; his **generosity** let many hands **bring in the harvest**.",
+      "has_tagged_summary": true,
+      "decision": "no_legacy_recap_to_remove",
+      "removable_spans": [],
+      "retained_final_sentence_notes": [
+        {
+          "location": "/sentences/16/chunks/1/note",
+          "exact_text": "（bring in the harvest：收庄稼，这里指迎来丰收）",
+          "decision": "retain"
+        }
+      ],
+      "retained_nonfinal_context_examples": [
+        {
+          "location": "/sentences/4/chunks/2/note",
+          "exact_text": "（whose…：定语从句，修饰 a sterile line）\n1. 想要超级高产的水稻 -> 必须让两种水稻杂交（A和B结合）。\n2. 想杂交但做不到 -> 水稻自己给自己授粉，B的花粉进不去。\n3. 怎么破解 -> 必须找到一种“自己没花粉的A（不育水稻）”。\n4. 找到之后干嘛 -> 种在田里，让B的花粉吹过来给它授粉。\n5. 结果如何 -> 结出超级高产的杂交种子。\n因为杂交必须要有不育的母本，袁隆平找到了这株标本；\n但花了6年发现，这株标本的后代无法稳定遗传，\n实验陷入了死胡同（卡在了这里）",
+          "decision": "retain: local contextual or lexical explanation"
+        }
+      ],
+      "tagged_summary_decision": "retain as separate summary card; no tagged summary text is proposed for removal",
+      "genNN_pre_summary_prefix_equal_snapshot": true,
+      "confidence": 0.99,
+      "rationale": "The ending note explains the idiom bring in the harvest and its figurative use. Earlier numbered breeding explanation is attached to the technical breeding impasse and is not an ending recap."
+    }
+  ]
+}

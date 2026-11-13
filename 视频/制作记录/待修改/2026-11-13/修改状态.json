@@ -1,7 +1,7 @@
 {
-  "status": "PAUSED_BY_USER",
+  "status": "SOURCE_REVISIONS_UNDER_VERIFICATION_4K_FINALIZATION_AUTHORIZED",
   "date": "2026-11-13",
-  "render_allowed": false,
+  "render_allowed": true,
   "pdf_build_allowed": false,
   "cancelled_github_run": 43492111461,
   "article01": {
@@ -23,10 +23,10 @@
       "convicted of"
     ],
     "pdf": "deferred: waiting for user layout feedback; do not rebuild PDFs",
-    "article01_footnote": "proposal only; await user acceptance before rendering article01"
+    "article01_footnote": "User-approved notes are saved; all affected videos are authorized for 4K finalization."
   },
   "regression_to_mean_note": {
-    "status": "APPROVED_AND_SAVED_IN_SOURCE; render remains paused",
+    "status": "APPROVED_SOURCE_SAVED_4K_REBUILD_AUTHORIZED",
     "sentence": 14,
     "chunk": 2,
     "placement": "below existing trace A to B small note",
@@ -39,9 +39,9 @@
     "previous_note_preserved": true,
     "scope": "Only note content added. English, translation, alignment, audio, PDFs, and videos unchanged."
   },
-  "delivery": "Source edits only. Existing MP4 and PDF files and Releases stay unchanged.",
+  "delivery": "本批源稿和公开核验记录正在归档。旧MP4及旧Release保持原样；新MP4只有完成正式重建、音画核验与远程归档后才标记为交付。",
   "smaller_but_tangible_effect_note": {
-    "status": "APPROVED_AND_SAVED_IN_SOURCE; render remains paused",
+    "status": "APPROVED_SOURCE_SAVED_4K_REBUILD_AUTHORIZED",
     "sentence": 15,
     "chunk": 2,
     "approved_text": "（后来的研究尽量排除统计影响后，仍发现“表现差却高估自己”的现象，只是程度没有最初研究显示得那么大。）",
@@ -53,7 +53,7 @@
     }
   },
   "in_fairness_empirically_liberty_note": {
-    "status": "APPROVED_AND_SAVED_IN_SOURCE; render remains paused",
+    "status": "APPROVED_SOURCE_SAVED_4K_REBUILD_AUTHORIZED",
     "sentence": 17,
     "chunk": 2,
     "placement": "below existing stake A on B note",
@@ -61,20 +61,20 @@
     "key_clarification": "自拍时其实没拍到自己，不是真正隐身；未添加未获证实的具体拍摄失败原因。"
   },
   "final_camera_note": {
-    "status": "APPROVED_AND_SAVED_IN_SOURCE; render remains paused",
+    "status": "APPROVED_SOURCE_SAVED_4K_REBUILD_AUTHORIZED",
     "sentence": 18,
     "chunk": 2,
     "text": "（双重负担：第一，他能力不足，没做好自拍测试；第二，正因为能力不足，他也缺少发现自己错误的能力，便把自拍没拍到自己，误当成了“隐身”成功。）",
     "accepted_summary_preserved_exactly": true
   },
   "article01_final_video_request": {
-    "status": "requested 4K finalization and GitHub archival, then paused again by the user before a new render started",
+    "status": "4K_FINALIZATION_AND_GITHUB_ARCHIVAL_AUTHORIZED",
     "resolution": [
       3840,
       2160
     ],
     "summary_clarification_allowed": true,
-    "latest_instruction": "先不要着急生成视频，先不要着急生成视频。等我的建议，我还有其他的建议。"
+    "latest_instruction": "所有的这些东西改完之后，我们要重新生成视频定稿的呀。"
   },
   "article22": {
     "original_number": "22",
@@ -94,6 +94,140 @@
       "chinese": "把……戏称为",
       "all_separated_chinese_parts_marked": true
     },
-    "production": "source edits only; wait for the next explicit render instruction"
+    "production": "4K regeneration and finalization authorized; source and final-video status recorded separately."
+  },
+  "legacy_summary_cleanup": {
+    "status": "SOURCE_FIXED_4K_REGENERATION_REQUESTED",
+    "checked_articles": 70,
+    "confirmed": 12,
+    "original_ids": [
+      "09",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "22"
+    ],
+    "report": "视频/制作记录/旧简述清理-2026-11-13/清理核验.json"
+  },
+  "render_scope": [
+    "01",
+    "03",
+    "05",
+    "06",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "22",
+    "51"
+  ],
+  "unmodified_article_regeneration_requested": false,
+  "article12": {
+    "original_number": "12",
+    "playback_number": "05",
+    "title": "新可乐的79天",
+    "sip_gloss": "aligned directly under sip/啜饮",
+    "new_focus": [
+      "stocked up on",
+      "protester",
+      "packaging"
+    ],
+    "ceo_explanation": "（盲测中，百事赢了老版可口可乐。可口可乐于是改用更甜、更接近百事口味的新配方。百事借机嘲讽：你输了盲测，现在又学我们的口味，不就是承认我们更好喝吗？我们赢了，放假一天庆祝！）",
+    "final_sentence_explanation": "（盲测只比味道，不告诉人喝的是什么牌子，所以测不出老顾客对可口可乐这个品牌的感情。新配方即使更受试饮者欢迎，也不代表老顾客愿意放弃熟悉的老可乐。）",
+    "production": "4K regeneration and finalization explicitly requested"
+  },
+  "latest_authorization": {
+    "date": "2026-11-13",
+    "quote": "所有的这些东西改完之后，我们要重新生成视频定稿的呀。",
+    "github_quote": "尤其是我们这个视频的改正，最终的定稿都要在GitHub上面，这个重新生成，重新保存。",
+    "scope": "全部受影响篇目，3840×2160，正式核验后定稿并归档主仓库、备份专用分支和新Release；PDF暂不重建。",
+    "supersedes": "Earlier pauses in this same conversation; historical quotes remain below."
+  },
+  "article03": {
+    "original_number": "03",
+    "playback_number": "04",
+    "focus": {
+      "organism": "微生物",
+      "germ": "病菌",
+      "cultured": "培养",
+      "Ulcers": "溃疡"
+    },
+    "culture_part_of_speech": "v. 培养微生物",
+    "production": "SOURCE_FIXED_4K_REBUILD_AUTHORIZED"
+  },
+  "article06": {
+    "original_number": "06",
+    "playback_number": "07",
+    "focus": {
+      "hoof": "蹄子",
+      "guard against": "防范",
+      "reasoned": "推理"
+    },
+    "reason_part_of_speech": "v. 推理",
+    "note": "提问者在正确次数时不自觉改变姿势，汉斯察觉后停止；提问者自己也不知道在提示，并非故意骗人。",
+    "production": "SOURCE_FIXED_4K_REBUILD_AND_FINALIZATION_EXPLICITLY_AUTHORIZED"
+  },
+  "article10_audio": {
+    "original_number": "10",
+    "playback_number": "06",
+    "scope": "完整音轨实测，重点修复最后一句If so偏小",
+    "candidate_metadata_changes": {
+      "S17_prefix_gain_dB": [
+        -5.5,
+        -3.5
+      ],
+      "S17_sentence_gain_dB": [
+        0,
+        1
+      ]
+    },
+    "status": "CANDIDATE_SOURCE_SAVED; ACTUAL_REBUILT_AUDIO_VERIFICATION_PENDING",
+    "timing_pitch_and_other_sentences": "preserved"
+  },
+  "article51": {
+    "original_number": "51",
+    "playback_number": "08",
+    "focus": {
+      "stood for": "代表",
+      "pedigree": "来历"
+    },
+    "lemma": "stand for / pedigree",
+    "approved_note": "（这里的“他”指时任总统范布伦。1840年总统大选，哈里森拿到234张选举人票，范布伦只有60张。哈里森因此获胜，范布伦没能连任。）",
+    "audio_scope": "核查完整音轨，重点为开头OK和中间O.W. for oll wright突然偏小。",
+    "audio_status": "ACTUAL_ACCEPTED_MP4_AUDITED; CANDIDATE_GAIN_SOURCE_SAVED; REBUILT_AUDIO_VERIFICATION_PENDING",
+    "production": "4K_REBUILD_AND_GITHUB_ARCHIVAL_AUTHORIZED"
+  },
+  "article11_program": {
+    "focus": "program",
+    "chinese": "程序",
+    "sentence": 2,
+    "chunk": 2,
+    "status": "SOURCE_FIXED_4K_REBUILD_AUTHORIZED"
+  },
+  "layout_audit": {
+    "scope": "全部70篇所有正文页及独立简述页",
+    "status": "AUDITING_ACTUAL_VIDEO_FRAMES_AND_OFFICIAL_FONT_CALCULATION",
+    "user_quote": "看看还有哪些类似问题，有这种问题抓紧时间给我改正过来。"
+  },
+  "summary_content_review": {
+    "scope": "全部70篇",
+    "status": "IN_PROGRESS",
+    "user_quote": "你看还有哪些简述说不明白的统一改。要把话说明白，并且还可以结合我之前给的那些小字。",
+    "new_summary_videos_delivered": false
   }
 }

@@ -21,7 +21,7 @@ The **boom** was real but **fleeting**. What spread, and still **circulates** ne
 
 然而，**档案**(archives)讲述的故事要小得多。麦凯的故事主要**依据了**(relied on)1637年的**讽刺**(satirical)**小册子**(pamphlets)，这些小册子**宣传反对**(preached against)**贪婪**(greed)。（rely on：依靠，依据；that…：定语从句，修饰 pamphlets）伦敦国王学院的**历史学家**(historian)安妮·戈德加**彻底搜遍了**(scoured)荷兰的文献记录，然而只数出了几百名交易者，大多是商人和工匠。（a historian at King's College London：同位语，说明 Anne Goldgar；mostly merchants and craftsmen：补充说明这些交易者）她没有找到一桩因郁金香而起的**破产**(bankruptcy)，也没有发现荷兰**经济**(economy)受到任何**可以衡量的**(measurable)**损害**(harm)。（caused by tulips：过去分词短语作后置定语，修饰 bankruptcy；no … harm to sth：对某物没有……损害）许多买家后来获准只付价格的**一小部分**(a fraction of)，就能**结清**(settle)他们的合同，倾家荡产的人也寥寥无几。（be allowed to do：获准做……；settle a contract：结清合同/了结合同；few：很少的人，几乎没有人）
 
-这场**繁荣**(boom)确有其事，却**转瞬即逝**(fleeting)。传播开来、并在近四个世纪后依然**流传**(circulates)的，是这个**寓意**(moral)：一篇取材于那些小册子的**训诫**(sermon)，被麦凯当作历史重新讲了一遍。（What spread…：主语从句；nearly four centuries on：近四个世纪之后；a sermon…：同位语，说明 the moral；drawn from… 和 retold by… 都是过去分词短语，修饰 sermon）（结局：1637年2月初，郁金香价格暴跌，许多买家违约；后来许多买家只付价格的一小部分就了结了合同，倾家荡产的人寥寥无几，荷兰经济也没有受到可以衡量的损害。两个世纪后，麦凯把它写成举国上下的集体歇斯底里，郁金香狂热从此成了泡沫的代名词。泡沫确有其事，却转瞬即逝；流传近四个世纪的，是取材于讽刺小册子、劝诫贪婪的寓意。）
+这场**繁荣**(boom)确有其事，却**转瞬即逝**(fleeting)。传播开来、并在近四个世纪后依然**流传**(circulates)的，是这个**寓意**(moral)：一篇取材于那些小册子的**训诫**(sermon)，被麦凯当作历史重新讲了一遍。（What spread…：主语从句；nearly four centuries on：近四个世纪之后；a sermon…：同位语，说明 the moral；drawn from… 和 retold by… 都是过去分词短语，修饰 sermon）（简述：▸热潮：1636至1637年，荷兰商人和经纪人交易尚在土里的郁金香球茎合约，稀有品种价格暴涨。▸破裂：1637年2月买盘骤冷，仍有球茎卖5200盾、抵工匠十余年收入；随后价格崩落、违约堆积，原因仍有争议。▸传说：两个世纪后，麦凯主要依据讽刺贪婪的小册子，把它写成全民投机、商人破产、经济重创的故事。▸档案：戈德加查档只找到数百名交易者，未找到郁金香引发破产或经济遭受可衡量损害的证据。▸辨别：许多买家只付原价一小部分便结清合约，鲜有人倾家荡产；热潮真实，广传的全国灾难故事却被放大。）
 
 ## 速查表
 | 词 | 释义 | 段 |
