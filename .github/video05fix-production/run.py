@@ -11,6 +11,7 @@ status={"article":"05","passed":False,"stage":"start","checks_unchanged":True}
 def save(): (OUT/"05-status.json").write_text(json.dumps(status,ensure_ascii=False,indent=2)+"\n")
 def run(args,cwd=W,env=E,log="run.log"):
     status["stage"]=log;save()
+    print("05 check: "+log,flush=True)
     with (LOG/log).open("w") as f:
         p=subprocess.run(list(map(str,args)),cwd=cwd,env=env,stdout=f,stderr=subprocess.STDOUT)
     txt=(LOG/log).read_text(errors="replace")
@@ -172,16 +173,37 @@ proof={"texts_compared":len(texts),"actual_phoneme_streams_identical":before==af
     rep=json.loads((M/"qc_independent/report2_05.json").read_text())
     assert not rep["extra_runs"],"Fresh audit found unexplained sound; do not confirm."
     assert min(t["anchor_ncc"] for t in rep["texts"])>.99999,"Reference does not match current original voice."
-    # Diagnose the exact original K125 before another full quicktest.
-    # Keep all raw source/reference/model material on this runner.
-    status["stage"]="k125-source-reference-diagnosis";save()
-    diagnostic_path=ROOT/".github/video05fix-production/diagnose_k125.py"
-    diagnostic_spec=importlib.util.spec_from_file_location("article05_k125_diagnosis",diagnostic_path)
-    diagnostic=importlib.util.module_from_spec(diagnostic_spec);diagnostic_spec.loader.exec_module(diagnostic)
-    status["k125_diagnosis"]=diagnostic.diagnose(ROOT,M,W,T,LOG,E)
+    # The measured v8 failure was a fixed 46 regression using mixed raw
+    # generations. Keep real 05 inputs and normal independent synth immutable.
+    def protected05():
+        files=list((M/"qc_independent/gt").glob("05*"))+[W/"work_05/a.wav",T/"独立复核/synth.py"]
+        for key in sorted(set((LOG/"05-protected-cache.keys").read_text().splitlines())):
+            p=M/"tts/cache_tts"/key;files.append(p)
+            marker=Path(str(p)+".单线程")
+            if marker.exists():files.append(marker)
+        return {str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files if p.is_file()}
+    original05_state=protected05()
+    k125_code=r"""
+import importlib.util,json,os
+from pathlib import Path
+t=Path(os.environ["XG_TOOLS"])
+spec=importlib.util.spec_from_file_location("k125_preflight_current",t/"新管/快测.py")
+q=importlib.util.module_from_spec(spec);spec.loader.exec_module(q)
+assert q.NO=="27"
+bad=q.供体增益样本()
+print(json.dumps({"K125_fixed_raw_selftest_errors":bad},ensure_ascii=False))
+raise SystemExit(1 if bad else 0)
+"""
+    try:
+        run(["python3","-c",k125_code],env={**E,"XG_NO":"27"},log="k125-fixed-input-positive-negative-selftest.log")
+    finally:
+        unchanged=original05_state==protected05()
+        status["k125_actual05_protected_inputs_unchanged"]=unchanged;save()
+        assert unchanged,"The K125 regression changed protected real 05 source/reference data or normal synth.py."
+    scalar_path=M/"k125-fixed-raw-scalar.json"
+    status["k125_fixed_raw_preflight"]=json.loads(scalar_path.read_text())
+    status["k125_mixed_generation_evidence_run"]=43328879945
     save()
-    if status["k125_diagnosis"]["original"]["canonical_selftest_errors"]:
-        raise RuntimeError("The original K125 fixture failed; scalar in-place source/reference evidence collected. Stop before another full quicktest or any 05 production.")
     # Reuse only our own previously successful cache of the real canonical
     # stamp, and always validate it with the original checker first.
     stamp_check=subprocess.run(["python3",str(T/"新管/印章.py")],cwd=W,env=E,
@@ -199,6 +221,10 @@ proof={"texts_compared":len(texts),"actual_phoneme_streams_identical":before==af
     save()
     if os.environ.get("GITHUB_OUTPUT"):
         with open(os.environ["GITHUB_OUTPUT"],"a") as f:f.write("fastcheck_passed=true\n")
+    assert original05_state==protected05(),"Full quicktest changed protected original 05 source/reference data."
+    status["k125_fixed_raw_full_quicktest"]=json.loads(scalar_path.read_text())
+    status["normal_independent_synth_sha256"]=hashlib.sha256((T/"独立复核/synth.py").read_bytes()).hexdigest()
+    save()
     renew={
       "S5 raw 10.6300-10.9170":("紧贴词头的非人声",[-56.6,-47.8,-35.9,0,0],
         "markers词尾擦音在raw10.625已到-55.1dB；删除段主要为换气（重心中位2.84kHz、周期0.207、150Hz以下-16.4dB），末端夹低频噗声。whose的/h/在保留侧raw10.92起逐渐增强；独立复核没有词头切失。"),

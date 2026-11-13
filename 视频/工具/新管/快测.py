@@ -283,34 +283,50 @@ def 供体增益样本():
     """K125（46 S4 fact, 的 /t/ 停顿处除阻：出片把供体接在第 1 段末尾随段乘 -3.5 dB，独立复核没乘，报 lost -27 dB + 多余 68 ms；
     第 7 遍又因供体起点正好落在段终点 15240 没乘）：真片 46 第 6 遍稿子（样本/46_scripts_第6遍.json），只出声音，跑独立复核。
     好样本：原样，fact, 那一处边缘 ok、多余声音 0；坏样本：synth.py 供体不乘增益，fact, 必报 A10_VIOLATION"""
-    import shutil, tempfile, re
+    import shutil, tempfile, re, importlib.util
     if not W or not os.path.exists(f'{W}/make_video.py'): return []
     样 = f'{T}/样本/46_scripts_第6遍.json'
     if not os.path.exists(样): return ['K125 样本：没有 样本/46_scripts_第6遍.json']
-    gt = os.path.abspath(f'{W}/../qc_independent/gt'); os.makedirs(gt, exist_ok=True)
     bad = []
     with tempfile.TemporaryDirectory(dir=os.path.dirname(W)) as td:
         v = f'{td}/video'; os.makedirs(f'{v}/scripts'); os.symlink(os.path.abspath(f'{W}/../tts'), f'{td}/tts')
         for f in os.listdir(W):
             if f.endswith('.py') or f == 'fonts': (shutil.copytree if os.path.isdir(f'{W}/{f}') else shutil.copy)(f'{W}/{f}', f'{v}/{f}')
         shutil.copy(样, f'{v}/scripts/46.json')   # 出片程序开头读入 scripts/ 全部稿子，只放这一版
-        r = subprocess.run(['python3', 'make_video.py', 'scripts/46.json', '46.mp4'], capture_output=True, text=True, cwd=v, env={**env0, 'AUDIO_ONLY': '1'}, timeout=900)
+        raw_log = f'{td}/producer-raw.keys'
+        private_env = {k: val for k, val in env0.items() if k not in ('OLD_IV_VOID', 'VOICE', 'AFFILE')}
+        private_env.update({'STRICT_CACHE': '1', 'CACHE_LOG': raw_log})
+        r = subprocess.run(['python3', 'make_video.py', 'scripts/46.json', '46.mp4'], capture_output=True, text=True, cwd=v, env={**private_env, 'AUDIO_ONLY': '1'}, timeout=900)
         if r.returncode: return [f'K125 样本出不了声音：{(r.stdout + r.stderr).strip()[-160:]}']
+        fixture_helper = f'{T}/新管/k125固定原始输入.py'
+        sp = importlib.util.spec_from_file_location('k125_fixed_inputs', fixture_helper)
+        fixed = importlib.util.module_from_spec(sp); sp.loader.exec_module(fixed)
+        try:
+            manifest_path, manifest_lock, manifest = fixed.freeze(
+                os.path.abspath(f'{W}/../tts/cache_tts'), raw_log, f'{td}/fixed-raw',
+                T, os.path.abspath(f'{W}/../qc_independent/gt'), f'{v}/scripts/46.json')
+            integrity = fixed.integrity_controls(manifest_path.parent, manifest, T)
+        except (Exception, SystemExit) as ex:
+            return [f'K125 固定raw夹具完整性失败：{ex}']
         src = open(f'{T}/独立复核/synth.py').read(); hook = 'if p0_ < p0 <= p1_])) if pr_ else 1.0'
         if hook not in src: return ['K125：synth.py 里找不到供体乘增益那一行（坏样本造不出）']
         os.makedirs(f'{td}/坏'); open(f'{td}/坏/synth.py', 'w').write(src.replace(hook, 'if False])) if pr_ else 1.0'))
         def 复核(名, sy):
             q = f'{td}/qc_{名}'; os.makedirs(f'{q}/gt')
-            for f in os.listdir(gt):
-                if not f.startswith('46_03_') and f not in ('46_labels.json', '46_meta.json'): os.symlink(f'{gt}/{f}', f'{q}/gt/{f}')   # 别的句子用缓存，S4 每次重算
-            e = {**env0, 'VIDEO_ROOT': td, 'QC_DIR': q}; o = ''
+            # Both references start empty. Never reuse cross-generation 46 GT.
+            e = {**private_env, 'VIDEO_ROOT': td, 'QC_DIR': q}; o = ''
             if 名 == '坏': shutil.copy(f'{td}/qc_好/gt/46_labels.json', f'{q}/gt/46_labels.json')   # 标注只给报告贴词名、不判过不过（同长度），坏样本借好样本的，省 1.7 分钟
-            for c in (['python3', sy, '46'], *([] if 名 == '坏' else [['python3', f'{T}/独立复核/labels.py', '46']]), ['python3', f'{T}/独立复核/audit.py', '46']):
+            for c in (['python3', fixture_helper, '--synth', sy, '--manifest', str(manifest_path), '--lock', manifest_lock, '--tools', T], *([] if 名 == '坏' else [['python3', f'{T}/独立复核/labels.py', '46']]), ['python3', f'{T}/独立复核/audit.py', '46']):
                 r = subprocess.run(c, capture_output=True, text=True, cwd=v, env=e, timeout=1800); o = r.stdout + r.stderr
                 if r.returncode and 'audit.py' not in c[1]: return None, o.strip()[-160:]
             m = re.search(r'edit raw [^\n]*\| fact,[^\n]*\n\s*edge [^\n]*?(ok|A10_VIOLATION\([a-z,]*\))', o); x = re.findall(r'extra non-zero runs not explained by raw copies: (\d+)', o)
             return (m.group(1) if m else None, int(x[-1]) if x else None), o
         g, og = 复核('好', f'{T}/独立复核/synth.py'); b, ob = 复核('坏', f'{td}/坏/synth.py')
+        scalar = {'scope': 'K125 fixed raw regression; production synth default unchanged',
+                  'manifest_sha256': manifest_lock, 'raw_inputs': len(manifest['entries']),
+                  'independent_gt_exact_raw_matches': len(manifest['independent_gt_exact_raw_matches']),
+                  'good': g, 'bad': b, **integrity}
+        json.dump(scalar, open(f'{os.path.dirname(W)}/k125-fixed-raw-scalar.json', 'w'), ensure_ascii=False, indent=2)
         if g is None or g[0] != 'ok' or g[1] != 0: bad.append(f'K125 好样本不过：46 S4 fact, 应边缘 ok、多余 0，实得 {g}（{og if g is None else ""}）')
         if b is None or not (b[0] or '').startswith('A10_VIOLATION'): bad.append(f'K125 没抓到：synth.py 供体不乘增益，46 S4 fact, 应报 A10_VIOLATION，实得 {b}')
     return bad

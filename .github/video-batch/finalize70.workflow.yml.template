@@ -51,6 +51,12 @@ jobs:
       - name: 一次保存到既定备份任务分支
         run: |
           git add --sparse -- 最终版4K视频 视频/脚本 简述重制核验 简述重制预览
+          git sparse-checkout add --stdin <<'DELIVERY_PATHS'
+          /最终版4K视频/
+          /视频/脚本/
+          /简述重制核验/
+          /简述重制预览/
+          DELIVERY_PATHS
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m '完成70篇4K重制：读完即转简述2秒，归档真实音频核验'
           git fetch --no-tags origin "$TASK_BRANCH"
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' rebase "origin/$TASK_BRANCH"
