@@ -58,7 +58,10 @@ def main():
         if not changes:continue
         data=''.join(f'100644 {h}\t{p}\n' for p,h in changes)
         git('update-index','--add','--index-info',input=data)
-        tree=git('write-tree').strip()
+        # Unchanged baseline blobs are deliberately absent in this partial
+        # clone and already exist on the destination. Do not download them
+        # merely to repeat existence checks while writing the new tree.
+        tree=git('write-tree','--missing-ok').strip()
         commit=git('commit-tree',tree,'-p',parent,'-m',label+' [skip ci]').strip()
         git('update-ref','refs/heads/'+BRANCH,commit)
         git('-c','http.postBuffer=209715200','-c','pack.threads=2','push','--quiet','archive-backup','refs/heads/'+BRANCH+':refs/heads/'+BRANCH)
