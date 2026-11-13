@@ -1,105 +1,473 @@
-import json,re,glob,os
-# 第29篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
-# 2026-10-28 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；非重点词也逐词对齐（G47）；三项以上并列加牛津逗号（T35，S9 scarcity, disease, and unrest 已加并同步文章）。
-S=[
-(1,[[[("In June 1816","1816年6月，"),("a","一场"),("**ceaseless**","**持续的/无休止的**(ceaseless)"),("**downpour**","**倾盆大雨**(downpour)"),("kept","把"),("a party","一群人"),("**besieged**","**围困**(besieged)在"),("at the Villa Diodati,","迪奥达蒂别墅里。")],
-     "（keep sb besieged：使某人一直处于被围困的状态）"],
-    [[("a **mansion**","这座**宅邸**(mansion)"),("the **poet**","是**诗人**(poet)"),("Lord Byron","拜伦勋爵"),("had **leased**","**租下**(leased)的，"),("on","位于"),("the **outskirts** of Geneva.","日内瓦的**郊区**(outskirts)。")],
-     "（a mansion…：同位语，补充说明 the Villa Diodati；\nthe poet Lord Byron had leased：定语从句，\n省略了 that，修饰 a mansion；\non the outskirts of…：在……的郊外）"]]),
-(1,[[[("After reading","读完"),("an **anthology** of German **ghost stories**","一本德国**鬼故事**(ghost stories)的**选集**(anthology)"),("in French **translation**,","的法文**译本**(translation)之后，")],
-     "（an anthology of…：一本……的选集；\nin French translation：用法文翻译的，法文译本）"],
-    [[("Byron","拜伦"),("proposed","提议"),("that each","每位"),("guest","客人"),("write","各写"),("a","一个"),("**supernatural**","**超自然的**(supernatural)"),("tale.","故事。")],
-     "（propose that sb do：提议某人做……，从句里用动词原形 write）"]]),
-(2,[[[("The","这种"),("**melancholy**","**阴郁**(melancholy)的"),("weather","天气，"),("was **attributable to**","**归因于**(attributable to)"),("a","一次"),("distant","远方的"),("blast.","爆炸。")],
-     "（be attributable to…：可归因于……，由……引起）"]]),
-(2,[[[("On 10 April 1815","1815年4月10日，"),("Mount Tambora,","坦博拉火山，"),("on","位于"),("the **Indonesian**","**印度尼西亚的**(Indonesian)"),("island of Sumbawa,","松巴哇岛上，"),("**blew** itself","**炸**(blew apart)"),("**apart**","**裂开来**(blew apart)，")],
-     "（on the Indonesian island of Sumbawa：插入语，补充说明火山的位置；\nblow itself apart：把自己炸得四分五裂）"],
-    [[("in one of the","那是"),("most","最"),("**potent**","**猛烈**(potent)的"),("**eruptions**","**喷发**(eruptions)之一，"),("in recorded","在有记录的"),("history.","历史上。")],
-     "（one of the most…：最……的……之一；\nin recorded history：有记录以来，修饰最高级）"]]),
-(2,[[[("About","约"),("10,000","1万"),("people","人"),("died immediately,","当场死亡，")],
-     "（died immediately：当场死亡，指爆发直接致死）"],
-    [[("and","而"),("**tens of thousands** more","又有**数万**(tens of thousands)人"),("of **starvation**","死于**饥饿**(starvation)"),("and disease","和疾病，"),("in the **aftermath**.","发生在随后的**余波**(aftermath)中。")],
-     "（tens of thousands more 后面省略了 died；die of…：死于……；\nin the aftermath：在随后的余波中，指灾难过后的一段时间）"]]),
-(3,[[[("The **volcano**","这座**火山**(volcano)"),("**pumped**","**泵入了**(pumped)"),("**prodigious** quantities of","**庞大**(prodigious)数量的"),("**sulphur dioxide**","**二氧化硫**(sulphur dioxide)，"),("from its **crater**","从它的**火山口**(crater)"),("into the stratosphere,","送进平流层，")],
-     "（pump A from B into C：把 A 从 B 泵入 C；\nprodigious：（范围，规模，程度）巨大的，庞大的）"],
-    [[("where","在那里，"),("it","它们"),("formed","形成了"),("sulphate","硫酸盐"),("**aerosols**","**气溶胶**(aerosols)，"),("that **blanketed**","像毯子一样**笼罩了**(blanketed)"),("the globe,","全球，")],
-     "（where 引导非限制性定语从句，修饰 the stratosphere；\nthat blanketed the globe：定语从句，修饰 sulphate aerosols）"],
-    [[("reflecting","反射"),("**sunshine**","**阳光**(sunshine)，"),("and **thereby**","**从而**(thereby)"),("**lowering**","**降低了**(lowering)"),("temperatures **world-wide**.","**全世界**(world-wide)的气温。")],
-     "（reflecting… and thereby lowering…：两个现在分词短语作结果状语；\nworld-wide：副词，在全世界范围内）"]]),
-(3,[[[("Europe","欧洲"),("and North America","和北美"),("came to","后来"),("**know**","**把**(know as)"),("1816","1816年"),("**as**","**称作**(know as)"),("the Year Without a Summer.","无夏之年。")],
-     "（come to do：渐渐开始做……；know A as B：把 A 称作 B）"]]),
-(4,[[[("Europe's summer","欧洲的夏天"),("was **chilly**","**寒冷**(chilly)，"),("and **relentlessly** wet.","雨也**持续不断**(relentlessly)。")],
-     "（relentlessly wet：无休止地潮湿，这里指雨一直下个不停）"]]),
-(4,[[[("**Crops**","**庄稼**(Crops failed)"),("**failed**","要么**歉收**(Crops failed)，"),("or lay **rotten**","要么**腐烂**(rotten)"),("in","在"),("**saturated**","**浸透了水的**(saturated)"),("fields,","田地里，")],
-     "（lie rotten：烂在那里，lay 是 lie 的过去式；\nsaturated：湿透的，这里指被雨水浸透）"],
-    [[("**cereal**","**谷物**(cereal)"),("and bread","和面包"),("prices","价格"),("**escalated**,","**飞涨**(escalated)，")],
-     "（三个分句并列：Crops failed…, prices escalated, and … followed）"],
-    [[("and **scarcity**,","（物资）**短缺**(scarcity)、"),("disease,","疾病"),("and **unrest**","和**动荡**(unrest)"),("followed.","随之而来。")],
-     "（follow：接着发生，随之而来）"]]),
-(5,[[[("The **eighteen-year-old**","**十八岁的**(eighteen-year-old)"),("Mary Godwin,","玛丽·戈德温，"),("later Mary Shelley,","也就是后来的玛丽·雪莱，")],
-     "（later Mary Shelley：同位语，补充说明 Mary Godwin 后来的名字）"],
-    [[("had **set out** in May","5月间就已**启程**(set out)，"),("**alongside**","**结伴**(alongside)同行的有"),("Percy Bysshe Shelley","珀西·比希·雪莱"),("and Claire Clairmont.","和克莱尔·克莱蒙特。")],
-     "（had set out：过去完成时，出发在6月之前；set out：出发，启程；\nalongside：介词，与……一起）"]]),
-(5,[[[("In her 1831 **preface**","在她1831年的（书的）**序言**(preface)里，"),("she","她"),("would **recollect**","**回忆**(recollect)说，"),("a **damp**,","那是一个**潮湿**(damp)、"),("**gloomy** summer","**阴沉的**(gloomy)夏天，")],
-     "（would recollect：过去将来时，从1816年看，她要到1831年才写下这段回忆）"],
-    [[("whose **torrents**","那个夏天的**倾盆大雨**(torrents)"),("often","常常"),("kept","把"),("the group","大家"),("indoors","困在屋里"),("for days.","好几天。")],
-     "（whose 引导定语从句，修饰 summer；\nkeep sb indoors：使某人待在屋里）"]]),
-(6,[[[("Byron's challenge","拜伦的挑战"),("proved","结果"),("**fruitful**.","**成果丰硕**(fruitful)。")],
-     "（prove＋形容词：结果证明是……）"]]),
-(6,[[[("His physician","他的医生"),("John Polidori","约翰·波利多里"),("produced","写出了"),("The Vampyre,","《吸血鬼》，")],
-     "（The Vampyre：《吸血鬼》，Vampyre 是 vampire 的旧拼法）"],
-    [[("**whilst**","**与此同时**(whilst)，"),("Byron's","拜伦"),("**poetic**","**诗歌的**(poetic)"),("**output**","**产出**(output)"),("included","中有"),("Darkness.","《黑暗》。")],
-     "（whilst：连词，同 while，英式用法；\noutput：产出，这里指写出的作品；\npoetic output：关于诗歌作品）"]]),
-(6,[[[("Mary","玛丽"),("began","开始写"),("the **ghastly**","那个**恐怖**(ghastly)的"),("**yarn**","**故事**(yarn)，"),("that became","它后来成了"),("**Frankenstein**,","**《弗兰肯斯坦》**(Frankenstein)，")],
-     "（《弗兰肯斯坦》也就是我们所熟知的《科学怪人》；\nyarn：故事，多指离奇的故事）"],
-    [[("which","这部作品"),("appeared **anonymously** in 1818","1818年**匿名**(anonymously)出版，"),("and was later","后来又"),("**reissued** under her name.","以她的名字**重新发行**(reissued)。")],
-     "（which 引导非限制性定语从句，修饰 Frankenstein；\nunder her name：以她的名字，署她的名）"]]),
-(6,[[[("It","这部作品"),("is often","常"),("called","被称为"),("the **founding work** of the **science-fiction** **genre**.","**科幻**(science-fiction)**体裁/类型**(genre)的**开山之作**(founding work)。")],
-     "（the founding work：开山之作，奠基之作；\nscience-fiction：科幻的）"]]),
-(7,[[[("A","一座"),("**tropical volcano**","**热带的火山**(tropical volcano)"),("had supplied","提供了"),("the rain,","大雨，"),("and","然而"),("a teenager","一位少女却"),("the **monster**.","创造了**怪物**(monster)。")],
-     "（and a teenager the monster：省略句，\n省略了 had supplied）\n"
-     "（简述：1816年6月，连绵大雨把拜伦等人困在日内瓦郊外的迪奥达蒂别墅，\n"
-     "拜伦提议每人写一个超自然故事。这种坏天气源于1815年4月坦博拉火山的猛烈喷发：\n"
-     "约1万人当场死亡，数万人随后死于饥饿和疾病；\n"
-     "喷出的二氧化硫在平流层形成气溶胶笼罩全球，反射阳光，使全世界降温，\n"
-     "1816年成了无夏之年。欧洲阴冷多雨，庄稼歉收，粮价飞涨，短缺、疾病和动荡随之而来。\n"
-     "十八岁的玛丽·戈德温与雪莱结伴来到这里，后来在1831年的序言里回忆那年潮湿阴沉的夏天。\n"
-     "波利多里写出《吸血鬼》，拜伦写了《黑暗》，玛丽开始写《弗兰肯斯坦》，\n"
-     "1818年匿名出版，常被称为科幻小说的开山之作。火山提供了雨，少女提供了怪物。）"]]),
-]
-CONF={
-"牛津逗号":{"S6 that blanketed the globe, reflecting sunshine and":"不是三项并列：并列的只有 reflecting sunshine 和 thereby lowering temperatures world-wide 两个现在分词短语，that blanketed the globe 是定语从句",
- "S9 rotten in saturated fields, cereal and":"不是三项并列：cereal and bread 只有两项；这里三个分句并列（Crops failed…, prices escalated, and … followed），第三个分句前已有逗号"},
-"数字":{"S5-1 10,000":"10,000 读 ten thousand，中文按文章定稿写作“1万”，数值相同"},
-"方向":{"S2-1 after→读完":"After 的“之后”在本组最后一组（……的法文译本之后），中文“读完……之后”框架词必须放在后面，方向相同（之后）",
- "S5-2 more→又有数万人":"more 在这里是“另外还有”，中文“又有”同义，不是先后方向词"},
-"同词异译":{"blew apart：炸/裂开来":"不是异译：blew itself apart 被 itself 隔开，中文“炸裂开来”拆在两处，同一个意思（T23 被隔开的意思每处都标）",
- "know as：把/称作":"不是异译：know A as B 被 1816 隔开，中文“把……称作……”拆在两处，同一个意思（T23）",
- "crops failed：庄稼/歉收":"不是异译：crops failed 中文“庄稼……歉收”被“要么”隔开，同一个意思（T23）"},
-"中文重复":{"倾盆大雨":"用户 2026-10-29 特批：downpour（S1，用户原话“这个地方 downpour 的意思改为倾盆大雨。”）和 torrents（S11，文章定稿）同用“倾盆大雨”，用户原话“几个都是特批的，这几个都是特批的，全都全都标注为重点词汇”（用户同意记录）"},
-"短语":{
- "S10 set … in":"不是搭配：in 引出时间 in May（5月间），set out 已整体标","S1 leased … on":"不是搭配：on 属于 on the outskirts of Geneva（在日内瓦郊外），说明租的宅邸的位置，不是 lease on",
- "S1 leased … of":"不是搭配：of 属于 the outskirts of Geneva（日内瓦的郊外），和 leased 无关",
- "S1 outskirts … of":"不是搭配：the outskirts of A 是普通 of 结构（A 的郊外），outskirts 单独就是“郊外、郊区”",
- "S2 anthology … of":"不是搭配：an anthology of A 是普通 of 结构（A 的选集），anthology 单独就是“选集”",
- "S6 pumped … from":"不是搭配：from its crater 引出来源（从火山口），pump 单独就是“泵入”",
- "S6 pumped … into":"不是搭配：into the stratosphere 引出去向（送进平流层），pump 单独就是“泵入”，中文已译出“送进”",
- "S6 pumped … of":"不是搭配：of 属于 quantities of sulphur dioxide（大量的二氧化硫），和 pumped 无关",
- "S9 prices escalated":"不是搭配：escalate 本义就是“上升、加剧”，“飞涨”是文章定稿按语境译的急剧上升，单独成义；prices 是主语，已译“价格”"},
-"合组":{"S4 island of Sumbawa,":"对齐不了：the island of Sumbawa 中文“松巴哇岛”，岛名必须放在“岛”前面，of 结构语序倒过来",
- "S5 died immediately":"对齐不了：immediately 修饰 died，中文副词“当场”必须放在动词“死亡”前面",
- "S5 **tens of thousands** more":"对齐不了：tens of thousands more 是一个数量短语“另外数万”，中文“又有数万人”里 more（又）必须提到最前",
- "S6 **sulphur dioxide**":"对齐不了：sulphur dioxide 是化学名“二氧化硫”，sulphur 是“硫”、dioxide 是“二氧化”，中文语序倒过来",
- "S14 reissued under her name":"对齐不了：under her name 修饰 reissued，中文“以她的名字重新发行”状语必须放在动词前面",
- "S15 the **founding work** of the **science-fiction** **genre**.":"对齐不了：the founding work of A 中文“A 的开山之作”，of 结构语序必须倒过来"},
-"对齐":{"S1-2 the outskirts of Geneva.":"the outskirts of Geneva 中文“日内瓦的郊区”，of 结构语序必须倒过来",
- "S2-1 an anthology of German ghost s":"an anthology of German ghost stories 中文“一本德国鬼故事的选集”，of 结构语序必须倒过来；anthology、ghost stories 两个重点词因此同在一组（T34 倒装）",
- "S7-1 the Year Without a Summer.":"the Year Without a Summer 是专名“无夏之年”，整体对应",
- "S10-2 had **set out** in May":"in May 是时间状语，中文“5月间就已启程”时间必须放在动词前面",
- "S15-1 the founding work of the scien":"the founding work of the science-fiction genre 中文“科幻体裁/类型的开山之作”，of 结构语序必须倒过来；founding work、science-fiction、genre 三个重点词因此同在一组（T34 倒装）"}}
-out={"no":"29","title_en":"The Volcano That Gave Us Frankenstein","title_zh":"一座火山，造出了《弗兰肯斯坦》","title_fx":{"hl":["Volcano","Frankenstein"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["tropical volcano","set out","crops failed","Crops","crops","sulphur dioxide"],"说明放宽特批":{"S16":{"倍数":"整屏","依据":"用户 2026-10-28 特批：“29、30、31 结尾简述都整屏、字号放到最大”（用户同意记录）"}},
-     "高亮按实际开口":True,"高亮开口门槛":40,
-     "术语":{"Villa Diodati":"迪奥达蒂别墅","Lord Byron":"拜伦勋爵","Geneva":"日内瓦","Mount Tambora":"坦博拉火山","Indonesian":"印度尼西亚","Sumbawa":"松巴哇岛","sulphur dioxide":"二氧化硫","stratosphere":"平流层","sulphate":"硫酸盐","aerosols":"气溶胶","Europe":"欧洲","North America":"北美","Year Without a Summer":"无夏之年","Mary Godwin":"玛丽·戈德温","Mary Shelley":"玛丽·雪莱","Percy Bysshe Shelley":"珀西·比希·雪莱","Claire Clairmont":"克莱尔·克莱蒙特","John Polidori":"约翰·波利多里","The Vampyre":"《吸血鬼》","Darkness":"《黑暗》","Frankenstein":"《弗兰肯斯坦》"}}
-import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+#!/usr/bin/env python3
+# Pure data frozen from the current approved JSON; shared helper/checkers unchanged.
+import os
+import sys
+
+S = [(1,
+  [[[('In June 1816', '1816年6月，'),
+     ('a', '一场'),
+     ('**ceaseless**', '**持续的/无休止的**(ceaseless)'),
+     ('**downpour**', '**倾盆大雨**(downpour)'),
+     ('kept', '把'),
+     ('a party', '一群人'),
+     ('**besieged**', '**围困**(besieged)在'),
+     ('at the Villa Diodati,', '迪奥达蒂别墅里。')],
+    '（keep sb besieged：使某人一直处于被围困的状态）'],
+   [[('a **mansion**', '这座**宅邸**(mansion)'),
+     ('the **poet**', '是**诗人**(poet)'),
+     ('Lord Byron', '拜伦勋爵'),
+     ('had **leased**', '**租下**(leased)的，'),
+     ('on', '位于'),
+     ('the **outskirts** of Geneva.', '日内瓦的**郊区**(outskirts)。')],
+    '（a mansion…：同位语，补充说明 the Villa Diodati；\n'
+    'the poet Lord Byron had leased：定语从句，\n'
+    '省略了 that，修饰 a mansion；\n'
+    'on the outskirts of…：在……的郊外）']]),
+ (1,
+  [[[('After reading', '读完'),
+     ('an **anthology** of German **ghost stories**', '一本德国**鬼故事**(ghost stories)的**选集**(anthology)'),
+     ('in French **translation**,', '的法文**译本**(translation)之后，')],
+    '（an anthology of…：一本……的选集；\nin French translation：用法文翻译的，法文译本）'],
+   [[('Byron', '拜伦'),
+     ('proposed', '提议'),
+     ('that each', '每位'),
+     ('guest', '客人'),
+     ('write', '各写'),
+     ('a', '一个'),
+     ('**supernatural**', '**超自然的**(supernatural)'),
+     ('tale.', '故事。')],
+    '（propose that sb do：提议某人做……，从句里用动词原形 write）']]),
+ (2,
+  [[[('The', '这种'),
+     ('**melancholy**', '**阴郁**(melancholy)的'),
+     ('weather', '天气，'),
+     ('was **attributable to**', '**归因于**(attributable to)'),
+     ('a', '一次'),
+     ('distant', '远方的'),
+     ('blast.', '爆炸。')],
+    '（be attributable to…：可归因于……，由……引起）']]),
+ (2,
+  [[[('On 10 April 1815', '1815年4月10日，'),
+     ('Mount Tambora,', '坦博拉火山，'),
+     ('on', '位于'),
+     ('the **Indonesian**', '**印度尼西亚的**(Indonesian)'),
+     ('island of Sumbawa,', '松巴哇岛上，'),
+     ('**blew** itself', '**炸**(blew apart)'),
+     ('**apart**', '**裂开来**(blew apart)，')],
+    '（on the Indonesian island of Sumbawa：插入语，补充说明火山的位置；\nblow itself apart：把自己炸得四分五裂）'],
+   [[('in one of the', '那是'),
+     ('most', '最'),
+     ('**potent**', '**猛烈**(potent)的'),
+     ('**eruptions**', '**喷发**(eruptions)之一，'),
+     ('in recorded', '在有记录的'),
+     ('history.', '历史上。')],
+    '（one of the most…：最……的……之一；\nin recorded history：有记录以来，修饰最高级）']]),
+ (2,
+  [[[('About', '约'), ('10,000', '1万'), ('people', '人'), ('died immediately,', '当场死亡，')],
+    '（died immediately：当场死亡，指爆发直接致死）'],
+   [[('and', '而'),
+     ('**tens of thousands** more', '又有**数万**(tens of thousands)人'),
+     ('of **starvation**', '死于**饥饿**(starvation)'),
+     ('and disease', '和疾病，'),
+     ('in the **aftermath**.', '发生在随后的**余波**(aftermath)中。')],
+    '（tens of thousands more 后面省略了 died；die of…：死于……；\nin the aftermath：在随后的余波中，指灾难过后的一段时间）']]),
+ (3,
+  [[[('The **volcano**', '这座**火山**(volcano)'),
+     ('**pumped**', '**泵入了**(pumped)'),
+     ('**prodigious** quantities of', '**庞大**(prodigious)数量的'),
+     ('**sulphur dioxide**', '**二氧化硫**(sulphur dioxide)，'),
+     ('from its **crater**', '从它的**火山口**(crater)'),
+     ('into the stratosphere,', '送进平流层，')],
+    '（pump A from B into C：把 A 从 B 泵入 C；\nprodigious：（范围，规模，程度）巨大的，庞大的）'],
+   [[('where', '在那里，'),
+     ('it', '它们'),
+     ('formed', '形成了'),
+     ('sulphate', '硫酸盐'),
+     ('**aerosols**', '**气溶胶**(aerosols)，'),
+     ('that **blanketed**', '像毯子一样**笼罩了**(blanketed)'),
+     ('the globe,', '全球，')],
+    '（where 引导非限制性定语从句，修饰 the stratosphere；\nthat blanketed the globe：定语从句，修饰 sulphate aerosols）'],
+   [[('reflecting', '反射'),
+     ('**sunshine**', '**阳光**(sunshine)，'),
+     ('and **thereby**', '**从而**(thereby)'),
+     ('**lowering**', '**降低了**(lowering)'),
+     ('temperatures **world-wide**.', '**全世界**(world-wide)的气温。')],
+    '（reflecting… and thereby lowering…：两个现在分词短语作结果状语；\nworld-wide：副词，在全世界范围内）']]),
+ (3,
+  [[[('Europe', '欧洲'),
+     ('and North America', '和北美'),
+     ('came to', '后来'),
+     ('**know**', '**把**(know as)'),
+     ('1816', '1816年'),
+     ('**as**', '**称作**(know as)'),
+     ('the Year Without a Summer.', '无夏之年。')],
+    '（come to do：渐渐开始做……；know A as B：把 A 称作 B）']]),
+ (4,
+  [[[("Europe's summer", '欧洲的夏天'),
+     ('was **chilly**', '**寒冷**(chilly)，'),
+     ('and **relentlessly** wet.', '雨也**持续不断**(relentlessly)。')],
+    '（relentlessly wet：无休止地潮湿，这里指雨一直下个不停）']]),
+ (4,
+  [[[('**Crops**', '**庄稼**(Crops failed)'),
+     ('**failed**', '要么**歉收**(Crops failed)，'),
+     ('or lay **rotten**', '要么**腐烂**(rotten)'),
+     ('in', '在'),
+     ('**saturated**', '**浸透了水的**(saturated)'),
+     ('fields,', '田地里，')],
+    '（lie rotten：烂在那里，lay 是 lie 的过去式；\nsaturated：湿透的，这里指被雨水浸透）'],
+   [[('**cereal**', '**谷物**(cereal)'),
+     ('and bread', '和面包'),
+     ('prices', '价格'),
+     ('**escalated**,', '**飞涨**(escalated)，')],
+    '（三个分句并列：Crops failed…, prices escalated, and … followed）'],
+   [[('and **scarcity**,', '（物资）**短缺**(scarcity)、'),
+     ('disease,', '疾病'),
+     ('and **unrest**', '和**动荡**(unrest)'),
+     ('followed.', '随之而来。')],
+    '（follow：接着发生，随之而来）']]),
+ (5,
+  [[[('The **eighteen-year-old**', '**十八岁的**(eighteen-year-old)'),
+     ('Mary Godwin,', '玛丽·戈德温，'),
+     ('later Mary Shelley,', '也就是后来的玛丽·雪莱，')],
+    '（later Mary Shelley：同位语，补充说明 Mary Godwin 后来的名字）'],
+   [[('had **set out** in May', '5月间就已**启程**(set out)，'),
+     ('**alongside**', '**结伴**(alongside)同行的有'),
+     ('Percy Bysshe Shelley', '珀西·比希·雪莱'),
+     ('and Claire Clairmont.', '和克莱尔·克莱蒙特。')],
+    '（had set out：过去完成时，出发在6月之前；set out：出发，启程；\nalongside：介词，与……一起）']]),
+ (5,
+  [[[('In her 1831 **preface**', '在她1831年的（书的）**序言**(preface)里，'),
+     ('she', '她'),
+     ('would **recollect**', '**回忆**(recollect)说，'),
+     ('a **damp**,', '那是一个**潮湿**(damp)、'),
+     ('**gloomy** summer', '**阴沉的**(gloomy)夏天，')],
+    '（would recollect：过去将来时，从1816年看，她要到1831年才写下这段回忆）'],
+   [[('whose **torrents**', '那个夏天的**倾盆大雨**(torrents)'),
+     ('often', '常常'),
+     ('kept', '把'),
+     ('the group', '大家'),
+     ('indoors', '困在屋里'),
+     ('for days.', '好几天。')],
+    '（whose 引导定语从句，修饰 summer；\nkeep sb indoors：使某人待在屋里）']]),
+ (6,
+  [[[("Byron's challenge", '拜伦的挑战'), ('proved', '结果'), ('**fruitful**.', '**成果丰硕**(fruitful)。')],
+    '（prove＋形容词：结果证明是……）']]),
+ (6,
+  [[[('His physician', '他的医生'), ('John Polidori', '约翰·波利多里'), ('produced', '写出了'), ('The Vampyre,', '《吸血鬼》，')],
+    '（The Vampyre：《吸血鬼》，Vampyre 是 vampire 的旧拼法）'],
+   [[('**whilst**', '**与此同时**(whilst)，'),
+     ("Byron's", '拜伦'),
+     ('**poetic**', '**诗歌的**(poetic)'),
+     ('**output**', '**产出**(output)'),
+     ('included', '中有'),
+     ('Darkness.', '《黑暗》。')],
+    '（whilst：连词，同 while，英式用法；\noutput：产出，这里指写出的作品；\npoetic output：关于诗歌作品）']]),
+ (6,
+  [[[('Mary', '玛丽'),
+     ('began', '开始写'),
+     ('the **ghastly**', '那个**恐怖**(ghastly)的'),
+     ('**yarn**', '**故事**(yarn)，'),
+     ('that became', '它后来成了'),
+     ('**Frankenstein**,', '**《弗兰肯斯坦》**(Frankenstein)，')],
+    '（《弗兰肯斯坦》也就是我们所熟知的《科学怪人》；\nyarn：故事，多指离奇的故事）'],
+   [[('which', '这部作品'),
+     ('appeared **anonymously** in 1818', '1818年**匿名**(anonymously)出版，'),
+     ('and was later', '后来又'),
+     ('**reissued** under her name.', '以她的名字**重新发行**(reissued)。')],
+    '（which 引导非限制性定语从句，修饰 Frankenstein；\nunder her name：以她的名字，署她的名）']]),
+ (6,
+  [[[('It', '这部作品'),
+     ('is often', '常'),
+     ('called', '被称为'),
+     ('the **founding work** of the **science-fiction** **genre**.',
+      '**科幻**(science-fiction)**体裁/类型**(genre)的**开山之作**(founding work)。')],
+    '（the founding work：开山之作，奠基之作；\nscience-fiction：科幻的）']]),
+ (7,
+  [[[('A', '一座'),
+     ('**tropical volcano**', '**热带的火山**(tropical volcano)'),
+     ('had supplied', '提供了'),
+     ('the rain,', '大雨，'),
+     ('and', '然而'),
+     ('a teenager', '一位少女却'),
+     ('the **monster**.', '创造了**怪物**(monster)。')],
+    '（and a teenager the monster：省略句，\n'
+    '省略了 had supplied）\n'
+    '（简述：▸喷发：1815年，印尼坦博拉火山喷发，当场约一万人死亡，随后又有数万人死于饥饿和疾病。▸降温：火山喷出的二氧化硫在高空形成硫酸盐微粒，反射阳光降温，使1816年成为欧美无夏之年。▸灾情：欧洲夏季寒冷多雨，庄稼歉收、粮价上涨，饥饿、疾病与社会动荡接踵而来。▸契机：大雨把拜伦、玛丽·雪莱等人困在日内瓦郊外的别墅，拜伦提议每人写一篇恐怖故事。▸成果：18岁的玛丽开始写《弗兰肯斯坦》，1818年匿名出版，这部作品后来常被视为科幻小说的开山之作。）']])]
+
+out = {'no': '29',
+ 'title_en': 'The Volcano That Gave Us Frankenstein',
+ 'title_zh': '一座火山，造出了《弗兰肯斯坦》',
+ 'title_fx': {'hl': ['Volcano', 'Frankenstein'], 'ghost': []},
+ 'sentences': [],
+ '核对确认': {'牛津逗号': {'S6 that blanketed the globe, reflecting sunshine and': '不是三项并列：并列的只有 reflecting sunshine 和 '
+                                                                           'thereby lowering temperatures '
+                                                                           'world-wide 两个现在分词短语，that blanketed '
+                                                                           'the globe 是定语从句',
+                   'S9 rotten in saturated fields, cereal and': '不是三项并列：cereal and bread 只有两项；这里三个分句并列（Crops '
+                                                                'failed…, prices escalated, and … '
+                                                                'followed），第三个分句前已有逗号'},
+          '数字': {'S5-1 10,000': '10,000 读 ten thousand，中文按文章定稿写作“1万”，数值相同'},
+          '方向': {'S2-1 after→读完': 'After 的“之后”在本组最后一组（……的法文译本之后），中文“读完……之后”框架词必须放在后面，方向相同（之后）',
+                 'S5-2 more→又有数万人': 'more 在这里是“另外还有”，中文“又有”同义，不是先后方向词'},
+          '同词异译': {'blew apart：炸/裂开来': '不是异译：blew itself apart 被 itself 隔开，中文“炸裂开来”拆在两处，同一个意思（T23 被隔开的意思每处都标）',
+                   'know as：把/称作': '不是异译：know A as B 被 1816 隔开，中文“把……称作……”拆在两处，同一个意思（T23）',
+                   'crops failed：庄稼/歉收': '不是异译：crops failed 中文“庄稼……歉收”被“要么”隔开，同一个意思（T23）'},
+          '中文重复': {'倾盆大雨': '用户 2026-10-29 特批：downpour（S1，用户原话“这个地方 downpour 的意思改为倾盆大雨。”）和 '
+                           'torrents（S11，文章定稿）同用“倾盆大雨”，用户原话“几个都是特批的，这几个都是特批的，全都全都标注为重点词汇”（用户同意记录）'},
+          '短语': {'S1 leased … on': '不是搭配：on 属于 on the outskirts of Geneva（在日内瓦郊外），说明租的宅邸的位置，不是 lease on',
+                 'S1 leased … of': '不是搭配：of 属于 the outskirts of Geneva（日内瓦的郊外），和 leased 无关',
+                 'S1 outskirts … of': '不是搭配：the outskirts of A 是普通 of 结构（A 的郊外），outskirts 单独就是“郊外、郊区”',
+                 'S2 anthology … of': '不是搭配：an anthology of A 是普通 of 结构（A 的选集），anthology 单独就是“选集”',
+                 'S6 pumped … from': '不是搭配：from its crater 引出来源（从火山口），pump 单独就是“泵入”',
+                 'S6 pumped … into': '不是搭配：into the stratosphere 引出去向（送进平流层），pump 单独就是“泵入”，中文已译出“送进”',
+                 'S6 pumped … of': '不是搭配：of 属于 quantities of sulphur dioxide（大量的二氧化硫），和 pumped 无关',
+                 'S9 prices escalated': '不是搭配：escalate 本义就是“上升、加剧”，“飞涨”是文章定稿按语境译的急剧上升，单独成义；prices 是主语，已译“价格”',
+                 'S10 set … in': '不是搭配：in 引出时间 in May（5月间），set out 已整体标'},
+          '合组': {'S4 island of Sumbawa,': '对齐不了：the island of Sumbawa 中文“松巴哇岛”，岛名必须放在“岛”前面，of 结构语序倒过来',
+                 'S5 died immediately': '对齐不了：immediately 修饰 died，中文副词“当场”必须放在动词“死亡”前面',
+                 'S5 tens of thousands more': '对齐不了：tens of thousands more 是一个数量短语“另外数万”，中文“又有数万人”里 '
+                                              'more（又）必须提到最前',
+                 'S6 sulphur dioxide': '对齐不了：sulphur dioxide 是化学名“二氧化硫”，sulphur 是“硫”、dioxide 是“二氧化”，中文语序倒过来',
+                 'S7 came to know': '对齐不了：come to know A as B 是“后来把 A 称作 B”，know 和后面的 as 合成“称作”，放在 B '
+                                    '前面，“后来把”对应 came to know',
+                 'S14 reissued under her name': '对齐不了：under her name 修饰 reissued，中文“以她的名字重新发行”状语必须放在动词前面',
+                 'S15 the founding work of the science-fiction genre': '对齐不了：the founding work of A 中文“A '
+                                                                       '的开山之作”，of 结构语序必须倒过来',
+                 'S5 **tens of thousands** more': '对齐不了：tens of thousands more 是一个数量短语“另外数万”，中文“又有数万人”里 '
+                                                  'more（又）必须提到最前',
+                 'S15 the **founding work** of the **science-fiction** **genre**.': '对齐不了：the founding work of '
+                                                                                    'A 中文“A 的开山之作”，of '
+                                                                                    '结构语序必须倒过来',
+                 'S6 **sulphur dioxide**': '对齐不了：sulphur dioxide 是化学名“二氧化硫”，sulphur 是“硫”、dioxide '
+                                           '是“二氧化”，中文语序倒过来'},
+          '对齐': {'S1-2 the outskirts of Geneva.': 'the outskirts of Geneva 中文“日内瓦的郊区”，of 结构语序必须倒过来',
+                 'S2-1 an anthology of German ghost s': 'an anthology of German ghost stories '
+                                                        '中文“一本德国鬼故事的选集”，of 结构语序必须倒过来；anthology、ghost stories '
+                                                        '两个重点词因此同在一组（T34 倒装）',
+                 'S7-1 as the Year Without a Summer.': 'the Year Without a Summer 是专名“无夏之年”，整体对应；as 和 know '
+                                                       '合成“称作”',
+                 'S10-2 had set out in May': 'in May 是时间状语，中文“5月间就已启程”时间必须放在动词前面',
+                 'S15-1 the founding work of the scien': 'the founding work of the science-fiction genre '
+                                                         '中文“科幻体裁/类型的开山之作”，of 结构语序必须倒过来；founding '
+                                                         'work、science-fiction、genre 三个重点词因此同在一组（T34 倒装）',
+                 'S7-1 the Year Without a Summer.': 'the Year Without a Summer 是专名“无夏之年”，整体对应',
+                 'S10-2 had **set out** in May': 'in May 是时间状语，中文“5月间就已启程”时间必须放在动词前面'},
+          '非人声': {'7.08–7.10s': {'配音指纹': '937ab3727a40',
+                                 '依据': '2026-10-28 29（S1 w 3.560–3.575s，孤立杂音）：塞音除阻：kept 的 /p/ 除阻（kept w '
+                                       '3.42–3.64 之内），15 ms，低频弱（L -24）',
+                                 '实测': {'最响dB': -34.1, '重心Hz': 3545, '周期': 0.0, '低频dB': -24.3}},
+                  '7.23–7.25s': {'配音指纹': '937ab3727a40',
+                                 '依据': '2026-10-28 29（S1 w 3.710–3.725s，噗声）：元音收尾：冠词 a（w 3.66–3.69）的弱收尾、接 party '
+                                       '的 /p/ 闭塞，-51 dB，低频重（L -1），连着词',
+                                 '实测': {'最响dB': -51.0, '重心Hz': 2185, '周期': 0.0, '低频dB': -0.6}},
+                  '20.33–20.34s': {'配音指纹': '937ab3727a40',
+                                   '依据': '2026-10-28 29（S2 w 4.610–4.625s，噗声）：塞音除阻：translation 中间 /t/ 后的段（词内 w '
+                                         '3.89–5.13），15 ms，低频重（L -2）',
+                                   '实测': {'最响dB': -34.0, '重心Hz': 1070, '周期': 0.0, '低频dB': -2.3}},
+                  '21.95–21.97s': {'配音指纹': '937ab3727a40',
+                                   '依据': '2026-10-28 29（S2 w 6.265–6.290s，噗声）：塞音除阻：proposed 末尾 /d/ 除阻（proposed '
+                                         '到 w 6.30），25 ms',
+                                   '实测': {'最响dB': -32.6, '重心Hz': 3994, '周期': 0.41, '低频dB': -2.0}},
+                  '42.02–42.10s': {'配音指纹': '937ab3727a40',
+                                   '依据': '2026-10-28 29（S4 w 11.570–11.650s，呼吸声）：元音收尾：history. 末尾 /i/ 的气声收尾（词到 '
+                                         'w 11.71），低频重（L -3）、连着词，没有低谷断开',
+                                   '实测': {'最响dB': -37.0, '重心Hz': 3152, '周期': 0.24, '低频dB': -2.9}},
+                  '51.74–51.76s': {'配音指纹': '937ab3727a40',
+                                   '依据': '2026-10-28 29（S6 w 0.020–0.035s，噗声）：词头起始浊音：the 的 /ð/ 起音，逐段看声音实测 w '
+                                         '0.0175 起从 -57 dB 一路升到 0.06 的 -2 dB，没有低谷断开',
+                                   '实测': {'最响dB': -31.6, '重心Hz': 3536, '周期': 0.0, '低频dB': -2.2}},
+                  '61.63–61.65s': {'配音指纹': '937ab3727a40',
+                                   '依据': '2026-10-28 29（S6 w 10.010–10.025s，噗声）：塞音除阻：globe 的 /b/（词内 w '
+                                         '9.63–10.48），重心 624 Hz，低频重',
+                                   '实测': {'最响dB': -35.7, '重心Hz': 624, '周期': 0.0, '低频dB': -1.2}},
+                  '62.10–62.12s': {'配音指纹': '937ab3727a40',
+                                   '依据': '2026-10-28 29（S6 w 10.460–10.480s，噗声）：塞音除阻：globe, 末尾 /b/ 除阻（词到 w '
+                                         '10.48），20 ms，低频重（L -0）',
+                                   '实测': {'最响dB': -48.0, '重心Hz': 2361, '周期': 0.3, '低频dB': -0.2}},
+                  '66.17–66.28s': {'配音指纹': '937ab3727a40',
+                                   '依据': '2026-10-28 29（S6 w 14.530–14.645s，呼吸声）：塞音除阻：world-wide. 末尾 /d/ '
+                                         '除阻和收尾（词到 w 14.74），低频 L -5、连着词',
+                                   '实测': {'最响dB': -36.0, '重心Hz': 3150, '周期': 0.21, '低频dB': -4.5}},
+                  '66.24–66.25s': {'配音指纹': '937ab3727a40',
+                                   '依据': '2026-10-28 29（S6 w 14.600–14.615s，噗声）：塞音除阻：同上 world-wide. 末尾 /d/ '
+                                         '除阻的一段，15 ms',
+                                   '实测': {'最响dB': -38.3, '重心Hz': 2619, '周期': 0.0, '低频dB': -1.8}},
+                  '66.26–66.28s': {'配音指纹': '937ab3727a40',
+                                   '依据': '2026-10-28 29（S6 w 14.620–14.640s，噗声）：塞音除阻：同上 world-wide. 末尾 /d/ '
+                                         '除阻的一段，20 ms',
+                                   '实测': {'最响dB': -39.4, '重心Hz': 1274, '周期': 0.28, '低频dB': -1.6}},
+                  '84.53–84.58s': {'配音指纹': '937ab3727a40',
+                                   '依据': '2026-10-28 29（S9 w 7.520–7.570s，噗声）：元音收尾：scarcity, 末尾 /i/ 接 disease '
+                                         '的 /d/ 浊音，周期 0.67、重心 683 Hz，是浊音不是呼吸',
+                                   '实测': {'最响dB': -31.9, '重心Hz': 683, '周期': 0.67, '低频dB': -0.3}},
+                  '86.60–86.69s': {'配音指纹': '937ab3727a40',
+                                   '依据': '2026-10-28 29（S9 w 9.395–9.480s，呼吸声）：塞音除阻：followed. 末尾 /d/ 除阻（词到 w '
+                                         '9.57），低频重（L -4）',
+                                   '实测': {'最响dB': -38.0, '重心Hz': 1677, '周期': 0.27, '低频dB': -4.0}},
+                  '95.91–95.98s': {'配音指纹': '937ab3727a40',
+                                   '依据': '2026-10-28 29（S10 w 7.780–7.860s，呼吸声）：鼻音收尾：Clairmont. 末尾 /n/ 到 /t/ '
+                                         '的段（词到 w 7.99），低频 L -8、连着词',
+                                   '实测': {'最响dB': -36.3, '重心Hz': 2613, '周期': 0.27, '低频dB': -8.3}},
+                  '96.03–96.08s': {'配音指纹': '937ab3727a40',
+                                   '依据': '2026-10-28 29（S10 w 7.905–7.950s，孤立杂音）：塞音除阻：Clairmont. 末尾 /t/ 除阻，45 '
+                                         'ms，重心 3724 Hz',
+                                   '实测': {'最响dB': -31.7, '重心Hz': 3724, '周期': 0.13, '低频dB': -11.9}},
+                  '100.75–100.77s': {'配音指纹': '937ab3727a40',
+                                     '依据': '2026-10-28 29（S11 w 3.750–3.770s，噗声）：塞音除阻：damp, 的 /p/（词内 w '
+                                           '3.37–3.94），20 ms，-49 dB',
+                                     '实测': {'最响dB': -49.4, '重心Hz': 2106, '周期': 0.4, '低频dB': -0.3}},
+                  '105.22–105.31s': {'配音指纹': '937ab3727a40',
+                                     '依据': '2026-10-28 29（S11 w 8.035–8.135s，呼吸声）：擦音：days. 末尾 /z/（词到 w '
+                                           '8.33），低频重（L -2）、连着词',
+                                     '实测': {'最响dB': -35.2, '重心Hz': 3245, '周期': 0.23, '低频dB': -2.4}},
+                  '105.25–105.27s': {'配音指纹': '937ab3727a40',
+                                     '依据': '2026-10-28 29（S11 w 8.065–8.085s，噗声）：擦音：同上 days. 末尾 /z/ 的一段，20 ms',
+                                     '实测': {'最响dB': -38.1, '重心Hz': 3470, '周期': 0.29, '低频dB': -2.3}},
+                  '106.66–106.67s': {'配音指纹': '937ab3727a40',
+                                     '依据': "2026-10-28 29（S12 w 0.015–0.030s，噗声）：词头起始浊音：Byron's 的 /b/ "
+                                           '浊音起音，逐段看声音实测 w 0.0075 起从 -61 dB 连续升到 0.0975 的 +2.6 dB，没有低谷断开',
+                                     '实测': {'最响dB': -37.3, '重心Hz': 1166, '周期': 0.0, '低频dB': -1.9}},
+                  '121.40–121.42s': {'配音指纹': '937ab3727a40',
+                                     '依据': '2026-10-28 29（S14 w 4.095–4.110s，噗声）：鼻音收尾：Frankenstein, 末尾 /n/（词到 '
+                                           'w 4.10），15 ms，低频重（L -1）',
+                                     '实测': {'最响dB': -46.8, '重心Hz': 2353, '周期': 0.0, '低频dB': -0.6}}},
+          '停顿位置': {'S9 disease, / and @8.240': '2026-10-28 29 逐段看声音 S9 w 8.18–8.34 实测：disease 末尾 /z/ '
+                                               '8.18–8.235 约 -20 dB，8.240 处是两词交界的最低点 -28.3 dB（≤ -24 dB），8.250 '
+                                               '起 and 的元音升到 -11.7 dB；停顿插在 /z/ 结束、and 开口之前的交界最低处，没有插进词里'},
+          '删除段': {'S1 raw 1.7537-1.9863': {'类型': '紧贴两头的非人声',
+                                           '配音指纹': '937ab3727a40',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[1.73375, 1.96625, '紧贴两头']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['lost', 'post', 'pre'] 是删掉的呼吸声本身偏响（-34～-47 "
+                                                 'dB），不是词'},
+                  'S1 raw 6.5401-7.0107': {'类型': '紧贴词头的非人声',
+                                           '配音指纹': '937ab3727a40',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[6.8, 6.99075, '紧贴词头']]（w 秒）：自动切点.py "
+                                                 '用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < '
+                                                 '0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 '
+                                                 "['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S2 raw 4.6850-5.1150': {'类型': '紧贴词头的非人声',
+                                           '配音指纹': '937ab3727a40',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[4.795, 5.083667, '紧贴词头']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S4 raw 2.2141-2.4312': {'类型': '紧贴两头的非人声',
+                                           '配音指纹': '937ab3727a40',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[2.124042, 2.341208, '紧贴两头']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S5 raw 2.7050-3.1381': {'类型': '紧贴词头的非人声',
+                                           '配音指纹': '937ab3727a40',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[2.93, 3.118125, '紧贴词头']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S6 raw 5.9050-6.4010': {'类型': '紧贴词头的非人声',
+                                           '配音指纹': '937ab3727a40',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[6.145, 6.381042, '紧贴词头']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S11 raw 4.8989-5.2284': {'类型': '紧贴两头的非人声',
+                                            '配音指纹': '937ab3727a40',
+                                            '依据': "2026-10-15 删除段对应 非人声区间 [[4.888875, 5.19, '紧贴词尾'], [5.2, "
+                                                  "5.218417, '紧贴词头']]（w 秒）：自动切点.py "
+                                                  '用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < '
+                                                  '0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 '
+                                                  "['lost', 'post', 'pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S14 raw 3.7250-4.1061': {'类型': '紧贴词头的非人声',
+                                            '配音指纹': '937ab3727a40',
+                                            '依据': "2026-10-15 删除段对应 非人声区间 [[3.85, 4.096167, '紧贴词头']]（w "
+                                                  '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                  '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                  "内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S14 raw 7.0150-7.3062': {'类型': '紧贴词头的非人声',
+                                            '配音指纹': '937ab3727a40',
+                                            '依据': "2026-10-15 删除段对应 非人声区间 [[7.005, 7.29625, '紧贴词头']]（w "
+                                                  '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                  '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                  "内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S15 raw 2.0191-2.1800': {'类型': '紧贴词尾的非人声',
+                                            '配音指纹': '937ab3727a40',
+                                            '依据': "2026-10-15 删除段对应 非人声区间 [[1.999125, 2.16, '紧贴词尾']]（w "
+                                                  '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                  '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                  "内最安静处的过零点；复核报 ['pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S4 raw 6.6850-7.1050': '2026-10-29 29 逐段看声音 S4 w 6.60–7.20 实测：Sumbawa, 在 w 6.60 已收尾（-64.8 '
+                                          'dB），逗号停顿里 6.62–6.99 是一段独立的吸气声（从 -53 dB 慢慢鼓到 -39 dB 再落回 -50 '
+                                          'dB），6.99–7.02 有 -57～-62 dB 低谷和 blew 的 /b/（w 7.03 起音）隔开；复核报 '
+                                          'lost（删掉部分最响 -38.7 dB）就是这段吸气本身，两侧切点 pre -55.5、post -55.3 dB '
+                                          '都在静音里，没有切到词'},
+          '高亮': {'S9 第2块': {'开始读': 80.83,
+                            '配音指纹': '937ab3727a40',
+                            '依据': '2026-10-29 29 直接读 work_29/a.wav 逐 10 ms 响度：fields, 后的停顿 80.64–80.82 '
+                                  '是插入的全静音（-179 dB），80.83 起 cereal 的 /s/ 开口（-62→-49→-26 dB），80.99 已在 /s/ '
+                                  '之后的元音里；乙（80.83）对，甲（80.99）偏晚'}},
+          '中文意思': {'S3 attributable to': '本句was attributable to a distant '
+                                         'blast作谓语，中文“归因于一次远方的爆炸”完整表达归因关系；速查表“可归因于……的”是作定语时的通用释义，本句没有被隔开的“可…的”两处译义，句末无需硬加“的”。'}},
+ '结尾解说': '简述',
+ 'allow_clash': ['tropical volcano', 'set out', 'crops failed', 'Crops', 'crops', 'sulphur dioxide'],
+ '说明放宽特批': {'S16': {'倍数': '整屏', '依据': '用户 2026-10-28 特批：“29、30、31 结尾简述都整屏、字号放到最大”（用户同意记录）'}},
+ '高亮按实际开口': True,
+ '高亮开口门槛': 40,
+ '术语': {'Villa Diodati': '迪奥达蒂别墅',
+        'Lord Byron': '拜伦勋爵',
+        'Geneva': '日内瓦',
+        'Mount Tambora': '坦博拉火山',
+        'Indonesian': '印度尼西亚',
+        'Sumbawa': '松巴哇岛',
+        'sulphur dioxide': '二氧化硫',
+        'stratosphere': '平流层',
+        'sulphate': '硫酸盐',
+        'aerosols': '气溶胶',
+        'Europe': '欧洲',
+        'North America': '北美',
+        'Year Without a Summer': '无夏之年',
+        'Mary Godwin': '玛丽·戈德温',
+        'Mary Shelley': '玛丽·雪莱',
+        'Percy Bysshe Shelley': '珀西·比希·雪莱',
+        'Claire Clairmont': '克莱尔·克莱蒙特',
+        'John Polidori': '约翰·波利多里',
+        'The Vampyre': '《吸血鬼》',
+        'Darkness': '《黑暗》',
+        'Frankenstein': '《弗兰肯斯坦》'},
+ '结尾句': {'S16': {'前段语速': 0.9,
+                 '最后一段语速': 0.78,
+                 '最后一段前停顿': 0.7,
+                 '接点': [78780, 99900],
+                 '依据': '全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“and a teenager the monster.” '
+                       '0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（35 ms）的正中 3.283 s，0.78 那遍（40 ms）的正中 '
+                       '4.162 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）'}},
+ '非人声区间': {'S1': [[1.73375, 1.96625, '紧贴两头'], [6.8, 6.99075, '紧贴词头']],
+           'S2': [[4.795, 5.083667, '紧贴词头']],
+           'S4': [[2.124042, 2.341208, '紧贴两头']],
+           'S5': [[2.93, 3.118125, '紧贴词头']],
+           'S6': [[6.145, 6.381042, '紧贴词头']],
+           'S7': [[3.475, 3.78]],
+           'S10': [[3.615, 3.831083, '紧贴词头']],
+           'S11': [[2.035, 2.26], [4.888875, 5.19, '紧贴词尾'], [5.2, 5.218417, '紧贴词头']],
+           'S13': [[3.285, 3.52625, '紧贴词头']],
+           'S14': [[3.85, 4.096167, '紧贴词头'], [7.005, 7.29625, '紧贴词头']],
+           'S15': [[1.999125, 2.16, '紧贴词尾']],
+           'S3': [[1.365, 1.565]]},
+ '词尾除阻': {'S3': {'句末': [3.77, 't']}, 'S8': {'句末': [2.605, 't']}},
+ '区间声音指纹': {'S1': '9bbc329c23fe',
+            'S2': 'e155bb19308e',
+            'S3': '3b6911238969',
+            'S4': '596aafd75785',
+            'S5': '6d920bc9dba0',
+            'S6': '97da4271f857',
+            'S7': '8416505ae71d',
+            'S8': '7e1b8473f74b',
+            'S10': '67337986e66a',
+            'S11': 'fc8cf763503b',
+            'S13': '5af05fcd9658',
+            'S14': '3fc54c7c2c61',
+            'S15': '384eeb2fa7f7'}}
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)

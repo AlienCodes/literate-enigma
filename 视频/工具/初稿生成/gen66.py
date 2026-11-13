@@ -1,118 +1,429 @@
-import json,re,glob,os
-# 第66篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
-# 2026-11-08 重点词中文沿用文章定稿（铁律）；不用破折号（T36）；三项并列加牛津逗号（T18）；形容词的“的”进粗体（T38）。
-S=[
-(1,[[[("In 1941","1941年，"),("George de Mestral,","乔治·德·梅斯特拉尔，"),("a **Swiss**","一位**瑞士的**(Swiss)"),("engineer,","工程师，")],
-     "（a Swiss engineer：同位语，补充说明 George de Mestral）"],
-    [[("returned from hunting in the Alps with his **hound**, an Irish Pointer.","带着他的**猎犬**(hound)，一只爱尔兰的指示犬，从阿尔卑斯山的打猎中归来。")],
-     "（an Irish Pointer：同位语，补充说明 hound）"]]),
-(1,[[[("**Prickly**","**多刺的**(Prickly)"),("burdock","牛蒡"),("**seed-heads**","**种子头**(seed-heads)"),("had **hitched** themselves to","已把它们自己**钩在了**(hitched)"),("his clothes","他的衣服上，")],
-     "（had hitched：过去完成时；\nhitch oneself to：挂在……上）"],
-    [[("and","并"),("lay **tangled**","**缠绕**(tangled)"),("in the dog's **fur**.","在狗的**毛皮**(fur)里。")],
-     "（lay tangled：系表结构，lay 是 lie 的过去式）"]]),
-(1,[[[("Under a microscope","在显微镜下，"),("he saw","他看到"),("thousands of","成千上万个"),("tiny","细小的"),("**barbs**,","**倒刺**(barbs)，")]],
-    [[("each","每一个（如同）"),("a **hook**","一个**钩子**(hook)，"),("**grasping**","**抓住**(grasping)"),("the small **loops** in cloth.","布料上的小**圈**(loops)。")],
-     "（each a hook…：独立主格结构，补充说明 barbs；\ngrasping…：现在分词短语，修饰 hook）"]]),
-(2,[[[("Few **took** his idea **seriously** at first.","起初，很少有人**认真看待**(took seriously)他的想法。")],
-     "（take A seriously：认真看待 A）"]]),
-(2,[[[("In Lyon,","在里昂，"),("then","当时的"),("a **weaving** centre,","一个**纺织**(weaving)中心，")],
-     "（then a weaving centre：同位语，补充说明 Lyon）"],
-    [[("a cotton","一个棉制"),("version","版本"),("proved","被证明"),("too","太"),("**frail**","**脆弱**(frail)，"),("to survive **abrasion**.","以至于无法在**磨损**(abrasion)中存活下来。")],
-     "（too A to do：太 A 而不能……）"]]),
-(2,[[[("Working with a **textiles** firm,","与一家**纺织品**(textiles)公司合作，")],
-     "（Working with…：现在分词短语作伴随状语）"],
-    [[("he","他"),("turned to","转向了"),("**nylon**,","**尼龙**(nylon)，")],
-     "（turn to：转而采用）"],
-    [[("whose hooks","其钩子"),("were **stiff** enough","足够**坚硬且不易弯曲**(stiff)，"),("to hold","既能扣住，"),("yet","又"),("easy","容易"),("to **pull apart**.","**拉开**(pull apart)。")],
-     "（whose…：非限制性定语从句，修饰 nylon；\nA enough to do：足够 A，能……；\npull apart：拉开）"]]),
-(2,[[[("The **trial-and-error** at the **looms** and **mills**","在**织机**(looms)旁和**工厂**(mills)里的**反复试验**(trial-and-error)"),("lasted","持续了"),("about","约"),("ten years.","十年。")],
-     "（at the looms and mills：后置定语，修饰 trial-and-error）"]]),
-(3,[[[("The name Velcro","Velcro 这个名字"),("**merged**","**合并了**(merged)"),("two","两个"),("French","法语"),("words,","词，")]],
-    [[("velours, meaning","velours 意为"),("**velvet**,","**天鹅绒**(velvet)，"),("and crochet, meaning","crochet 意为"),("hook.","钩子。")],
-     "（velours… and crochet…：同位语，补充说明 words；\nmeaning…：现在分词短语，说明词义）"]]),
-(3,[[[("A US patent **duly** followed in 1955.","1955年，一项美国专利**如期**(duly)而至。")]]]),
-(3,[[[("In 1959","1959年，"),("a New York","纽约一场"),("fashion show","时装秀")]],
-    [[("sent **apparel** **stitched** with the **fasteners** down the **runway**.","让**缝有**(stitched)这种**搭扣**(fasteners)的**服装**(apparel)走上**T台**(runway)。")],
-     "（stitched with…：过去分词短语作后置定语，\n修饰 apparel；\nsend A down B：让 A 走上 B）"]]),
-(3,[[[("The public","公众却"),("was less **charmed** than expected,","不如预期那样**着迷**(charmed)，")],
-     "（less A than expected：不如预期那样 A）"],
-    [[("**mostly**","**主要**(mostly)"),("because of","是因为"),("the **aesthetic**.","它的**审美**(aesthetic)。")]]]),
-(4,[[[("The **underdog**","这个**不被看好的（发明）**(underdog)"),("proved its **utility** in **outer space**.","在**外太空**(outer space)证明了自己的**用处**(utility)。")],
-     "（underdog：不被看好的一方 / 处于劣势的弱者，\n同样也指大家不太看好的东西或者是发明等等）"]]),
-(4,[[[("NASA","美国航天局"),("used it in the **Apollo programme**","在**阿波罗计划**(Apollo programme)中使用了它，")]],
-    [[("to","以便"),("keep **gear** **anchored** **in weightlessness**,","在**失重状态下**(in weightlessness)保持**装备**(gear)**固定**(anchored)，")],
-     "（to keep…：不定式作目的状语；\nkeep A anchored：让 A 保持固定）"],
-    [[("so that","从而"),("nothing would","没有任何东西会"),("**hover** in **mid-air**.","在**半空**(mid-air)中**飘浮**(hover)。")],
-     "（so that…：引导目的状语从句）"]]),
-(4,[[[("Apollo 11","阿波罗11号"),("was **equipped with**","**配备了**(equipped with)"),("a **sizeable** amount,","**相当多的**(sizeable)用量，"),("about","约"),("3,300","3,300"),("square inches.","平方英寸。")],
-     "（be equipped with：配备有；\nabout 3,300 square inches：同位语，补充说明 amount）"]]),
-(4,[[[("NASA","美国航天局"),("did not invent","并没有发明"),("the","这种"),("nylon","尼龙"),("**clasp**.","**扣件**(clasp)。")]]]),
-(5,[[[("When the patent **ran out** in 1978,","1978年专利**到期**(ran out)后，")],
-     "（When…：时间状语从句；run out：到期）"],
-    [[("**cut-price**","来自其他国家的**廉价的**(cut-price)"),("**knock-offs** from other countries","**仿制品/山寨品**(knock-offs)"),("**overran**","**泛滥于**(overran)"),("the market,","市场，")],
-     "（from other countries：后置定语，修饰 knock-offs）"],
-    [[("and a **niche** product","一种**小众**(niche)产品"),("went","成了"),("**mainstream**.","**主流**(mainstream)。")],
-     "（go mainstream：成为主流）"]]),
-(5,[[[("In 2017,","2017年，"),("to stop","为了阻止"),("its **brand-name**","其**品牌名**(brand-name)"),("**melting into**","逐渐**消融为**(melting into)"),("a **generic**","一个**通用的**(generic)"),("**noun**,","**名词**(noun)，")],
-     "（melt into：逐渐融入/消融为（某某），\n强调失去原有的边界或独特性，完全变成另一事物）"],
-    [[("the company","该公司"),("asked","要求"),("people","人们"),("to call such **mimics** hook and loop fasteners.","把这类**仿品**(mimics)称作为“钩毛搭扣”。")],
-     "（ask A to do：请 A 做……；\ncall A B：把 A 称作 B）"]]),
-(5,[[[("**In effect**,","**实际上**(in effect)，"),("the firm","这家公司"),("was asking","是在请求"),("the public","公众"),("to stop","停止"),("using its own name for","将其自己的名字用在"),("**rivals'** goods.","**对手的**(rivals')商品上。")],
-     "（use A for B：把 A 用于 B（或用 A 来做 B））\n"
-     "（简述：1941年，瑞士工程师乔治·德·梅斯特拉尔打猎归来，发现牛蒡刺果挂在衣服和狗毛上，显微镜下是无数小钩钩住布料上的毛圈。\n"
-     "起初很少有人看好，棉制版本经不起磨损，他与纺织品公司合作改用尼龙，反复试验约十年。\n"
-     "名字由法语 velours 和 crochet 合成，1955年获美国专利，1959年纽约时装秀上公众反应不如预期，主要是因为审美。\n"
-     "美国航天局在阿波罗计划中用它在失重状态下固定装备，阿波罗11号用了约3,300平方英寸，但它不是美国航天局发明的。\n"
-     "1978年专利到期后廉价仿品涌入市场，小众产品成了主流；2017年公司请大家把仿品称作钩毛搭扣，免得品牌名变成通用名词。）"]]),
-]
-G={'S1 returned from hunting in the Alps with his hound, an Irish Pointer': '对齐不了：中文把 with his hound 提到 returned 前（带着他的猎犬，一只爱尔兰的指示犬，从阿尔卑斯山的打猎中归来），语序整体换了（用户 2026-11-10 改稿译文）',
- 'S3 the small loops in cloth': '对齐不了：in cloth 是后置定语，中文提到前面（布料上的小毛圈），拆开语序反了',
- 'S4 Few took his idea seriously at first': '对齐不了：at first 中文提到句首（起初），seriously 提到动词前（认真看待），语序整体换了',
- 'S5 In Lyon, then a weaving centre': '对齐不了：同位语 then a weaving centre 中文提到 Lyon 前（当时的纺织中心里昂），语序整体换了',
- 'S5 proved too frail': '对齐不了：proved 中文不单译（太脆弱），拆开 proved 下面没有中文',
- 'S8 velours, meaning': '对齐不了：velours 是法语原词照录，“velours 意为”中间的空格分组后会丢',
- 'S8 and crochet, meaning': '对齐不了：crochet 是法语原词照录，“crochet 意为”中间的空格分组后会丢',
- 'S9 A US patent duly followed in 1955': '对齐不了：in 1955 中文提到句首（1955年），A US patent duly followed 作“一项美国专利如期而至”（用户 2026-11-10 改稿译文），语序整体换了',
- 'S10 fashion show': '对齐不了：fashion show 是复合名词，整体译“时装秀”',
- 'S11 was less charmed than expected': '对齐不了：less … than expected 中文作“不如预期那样着迷”，比较结构语序整体换了',
- 'S12 proved its utility in outer space': '对齐不了：in outer space 中文提到动词前（在外太空证明了自己的用处），语序整体换了',
- 'S13 used it in the Apollo programme': '对齐不了：in the Apollo programme 中文提到动词前（在阿波罗计划中使用了它），语序整体换了',
- 'S14 square inches': '对齐不了：square inches 是面积单位，整体译“平方英寸”',
- 'S16 When the patent ran out in 1978': '对齐不了：in 1978 中文提到句首（1978年专利到期后），When 译“后”放句末，语序整体换了',
- 'S17 to call such mimics hook and loop fasteners': '对齐不了：call A B 中文作“把 A 称作 B”，call 挪到 A 后面；hook and loop fasteners 是一个名称，整体译“钩毛搭扣”',
- 'S13 keep gear anchored in weightlessness': '对齐不了：in weightlessness 中文提到 保持 前（在失重状态下保持装备固定，用户 2026-11-10 改稿译文），语序整体换了',
- 'S16 knock-offs from other countries': '对齐不了：from 短语是后置定语，中文提到 廉价的 前面（来自其他国家的），拆开语序反了',
- 'S18 using its own name for': '对齐不了：use A for B 中文作“将 A 用在 B 上”（用户 2026-11-10 改稿译文），拆开 using 与 for 下面中文不连',
- 'S14 Apollo 11': '对齐不了：Apollo 11 是一个专名（阿波罗11号），拆开 11 单独成组没有意义',
- 'S14 a sizeable amount': '对齐不了：a sizeable amount 是速查表里的固定搭配（相当多的用量），中文“相当多的”“用量”拆开 amount 单独成组不通顺'}
-DZ={'S1-2 returned from hunting in the A': '语序必须倒过来：with his hound（同位语 an Irish Pointer）和 in the Alps 在中文里提到 归来 前（带着他的猎犬……从阿尔卑斯山的打猎中归来），用户 2026-11-10 改稿译文', 'S3-2 the small loops in cloth.': '语序必须倒过来：in cloth 是后置定语，中文提到前面（布料上的小圈）', 'S4-1 Few took his idea seriously at': '语序必须倒过来：at first 提到句首（起初），take A seriously 是被隔开的短语（认真看待 A），整组才通顺', 'S6-1 Working with a textiles firm,': '语序必须倒过来：Working with A 中文作“与 A 合作”，合作 挪到 A 后面', 'S7-1 The trial-and-error at the loo': '语序必须倒过来：at the looms and mills 是后置定语，中文提到 反复试验 前（在织机旁和工厂里的反复试验）', 'S9-1 A US patent duly followed in 1': '语序必须倒过来：in 1955 提到句首（1955年），followed 作“而至”放句末（用户 2026-11-10 改稿译文）', 'S10-2 sent apparel stitched with the': '语序必须倒过来：stitched with the fasteners 是后置定语，中文提到 服装 前；send A down B 作“让 A 走上 B”', 'S11-1 was less charmed than expected': '语序必须倒过来：比较结构 less … than expected 中文作“不如预期那样着迷”，整组才通顺', 'S12-1 proved its utility in outer sp': '语序必须倒过来：in outer space 提前的介词短语，中文放在动词前（在外太空证明了自己的用处）', 'S13-1 used it in the Apollo programm': '语序必须倒过来：in the Apollo programme 提前的介词短语，中文放在动词前（在阿波罗计划中使用了它）', 'S13-2 keep gear anchored in weightle': '语序必须倒过来：in weightlessness 提前的介词短语，中文放在 保持 前（在失重状态下保持装备固定），用户 2026-11-10 改稿译文', 'S16-1 When the patent ran out in 197': '语序必须倒过来：时间状语从句 When…，in 1978 提到句首、When 作“后”放句末（1978年专利到期后）', 'S17-2 to call such mimics hook and l': '语序必须倒过来：call A B 中文作“把 A 称作 B”，hook and loop fasteners 是一个名称（“钩毛搭扣”）', 'S18-1 using its own name for': '语序必须倒过来：use A for B 中文作“将 A 用在 B 上”（用户 2026-11-10 改稿译文），for 的“上”在下一组末尾'}
-CONF={"合组":G,"对齐":DZ}
-out={"no":"66","title_en":"The Burrs That Became Velcro","title_zh":"一颗刺果钩出的发明","title_fx":{"hl":["Burrs","Velcro"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
-     "高亮按实际开口":True,"高亮开口门槛":40,
-     "allow_clash":["ran out","rivals'"],"换行变更已获同意":{"S13":"用户 2026-11-10 原话：“To keep gear anchored  in weightlessness 这个作为一行这个标这个弄一行。这个弄一行，这个弄一行，ok。后面的 so that  开头的那部分作为另外一行。”","S16":"用户 2026-11-10 原话：“这个地方不要说台湾，中国大陆和韩国……你这个from后面可以直接跟上一个其他国家……直接换成其他国家就行了”（英文改短，换行随之变）"},
-     "术语":{"George de Mestral":"乔治·德·梅斯特拉尔","Swiss":"瑞士","Alps":"阿尔卑斯山","Irish Pointer":"爱尔兰的指示犬","Lyon":"里昂","Velcro":"Velcro","French":"法语","US":"美国","New York":"纽约","NASA":"美国航天局","Apollo":"阿波罗"}}
-out.update({"非人声区间": {"S1": [[2.7475, 3.013125, "紧贴词头"]], "S11": [[2.460125, 2.732417, "紧贴词头"]], "S17": [[1.667125, 1.890208]], "S2": [[3.4585, 3.801333, "紧贴词头"]], "S10": [[3.312917, 3.43, "紧贴词尾"]], "S16": [[5.51525, 5.669, "紧贴词尾"], [8.67, 8.895583, "紧贴词头"]]}, "合成标点": {"S8": [["velvet, and", "velvet; and"], ["velours, meaning", "velours; meaning"]]}})   # 2026-11-08 逐 2.5 ms 实测（dossier_66 #2/#19/#30 A19 停顿后吸气）：S1 Mestral, 后 2.75–3.01 吸气（-38～-58 dB、重心 2.0–2.6 kHz、低频 -10～-22 dB），3.0175 起 a；S11 expected, 后 2.46–2.73 吸气（-47～-57 dB、重心 1.9–2.6 kHz、低频 -6～-19 dB），2.735 起 mostly 的 /m/ 浊音（周期 0.44）保留；S17 2017, 后 1.6675–1.89 吸气（起点挪到 1.667125，外侧 1.6625–1.667 为 -58 dB）（-43～-58 dB、重心 2.0–3.1 kHz、低频 -12～-24 dB），1.89–1.905 是 to 的闭塞静音，1.9075 起 /t/ 除阻；S8 velvet 的 /t/ 连进 and、没有闭塞（4.35–4.43 一直 -23～-40 dB），无处移植，合成时逗号换分号让配音自己停（G57 合成标点）
-# 2026-11-08 接手会话逐 2.5 ms 实测（⑤ 纯人声 #2/#3/#9/#14）：S2 clothes|and 之间 3.455–3.80 吸气 345 ms（-44～-52 dB、重心 2.0–2.7 kHz、周期 0.1–0.3、低频 -10～-20），左 3.455 是 -61 dB 低谷，右 3.8025 起 and 的元音（-33→-18 dB），and 不是 h 开头；S10 show|sent 之间 3.3125–3.43 吸气（-44～-49 dB、重心 1.6–2.6 kHz、低频 -9～-15），3.285–3.31 是 show 的 ʊ 浊音尾（低频 -1～-4）保留，右 3.43 是 -59 dB 低谷、3.44 起 sent 的 /s/；S16 Taiwan,|China 之间 5.515–5.669 吸气（-42～-52 dB、重心 2.4–3.3 kHz、低频 -10～-22），5.49–5.513 是 Taiwan 的 /n/ 鼻音尾（低频 -1～-2 dB）保留，左端紧贴词尾切在过零点，右 5.669 外侧 -56 dB；独立复核原报这段停顿删除 pre 侧 -52.9 dB 是吸气残留；S16 8.67–8.896 自动切点.py 判定（market|and 之间吸气，旧会话已实测）
-out.update({"句子增益dB":{"S18":-0.6}})   # K129：S8 第1段 French words, 的 words（53.9–54.3s）比全片低 5.6 dB（61 起门槛 5.0），整段补 +1.5；K130：补了第1段后，核查口径 S8 第2段（出片分段第5段 57.36–58.11 meaning hook.）比邻段整段轻 1.7 LU、最响处低 4.9 LU，补 +1.5；响度一致性：S18（含 In effect, 122.7–123.3s 那一小段）比全片响 2.1–2.3 LU、与 S17 差 2.6 LU，整句 -0.6
-CONF["非人声"]={'119.49–119.58s': {'配音指纹': 'b4ac745defc1', '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S17 w 9.635–9.73s：fasteners. 的 ɚ 衰减（浊音，低频 -1～-7 dB、周期 0.2–0.4），9.72 起 /z/ 擦音（重心 3.4–5.5 kHz）；词尾的一部分', '实测': {'最响dB': -36.7, '重心Hz': 1807, '周期': 0.23, '低频dB': -2.1}}, '122.97–122.98s': {'配音指纹': 'b4ac745defc1', '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S18 w 1.76–1.77s：was 的 /z/ 擦音尾（重心 4.0–4.8 kHz、-60～-65 dB，与 1.73–1.74 的 z 连着），后面 asking 1.87 起；词尾的一部分', '实测': {'最响dB': -41.4, '重心Hz': 5239, '周期': 0.0, '低频dB': -28.0}}, '7.88–7.92s': {'配音指纹': 'b4ac745defc1', '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S1 w 4.650–4.680s：returned 的 /ɹ/ 起音前的声门脉冲（约 10 ms 一个，4.6525/4.6625/4.6725 三下，低频占比 -0.4～-1 dB），与前面 engineer, 隔着 4.63 -58 dB 低谷，4.6825 起浊音升到 -31→-12 dB；词头的一部分', '实测': {'最响dB': -42.5, '重心Hz': 2724, '周期': 0.07, '低频dB': -0.6}}, '29.82–29.87s': {'配音指纹': 'b4ac745defc1', '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S4 w 2.225–2.270s：first. 的 /t/ 除阻（2.19–2.22 闭塞静音 -57～-68 dB，2.225 爆破 -33～-39 dB、2.26 后衰减到 -55）；词尾的一部分', '实测': {'最响dB': -36.8, '重心Hz': 2235, '周期': 0.22, '低频dB': -8.0}}, '37.00–37.08s': {'配音指纹': 'b4ac745defc1', '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S5 w 5.78–5.86s：abrasion. 末尾 /n/ 鼻音衰减（周期 0.34–0.43、低频 -6～-10 dB、重心 1.6–2.3 kHz，5.86 后 -59 dB）；词尾的一部分', '实测': {'最响dB': -35.6, '重心Hz': 1667, '周期': 0.33, '低频dB': -3.9}}, '45.45–45.49s': {'配音指纹': 'b4ac745defc1', '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S6 w 7.185–7.23s：apart. 的 /t/ 除阻（7.14–7.18 闭塞静音 -63～-68 dB，7.19 爆破 -28 dB、7.24 后 -60）；词尾的一部分', '实测': {'最响dB': -30.2, '重心Hz': 2690, '周期': 0.27, '低频dB': -11.6}}, '50.34–50.43s': {'配音指纹': 'b4ac745defc1', '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S7 w 3.91–4.005s：years. 的 ɪɹ→z 过渡（浊音，低频 -1～-3 dB、重心 0.85–1.5 kHz），4.00 起 /z/ 擦音（重心 3.9–5.8 kHz）；词的一部分', '实测': {'最响dB': -35.8, '重心Hz': 2160, '周期': 0.21, '低频dB': -3.6}}, '62.33–62.45s': {'配音指纹': 'b4ac745defc1', '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S9 w 3.23–3.36s：fifty-five. 的 aɪ→/v/：3.23–3.28 浊音尾（低频 -2～-5 dB），3.29–3.34 /v/ 擦音（重心 3.4–4.1 kHz），3.37 后 -66 dB；词尾的一部分', '实测': {'最响dB': -39.0, '重心Hz': 3804, '周期': 0.22, '低频dB': -9.9}}, '90.32–90.33s': {'配音指纹': 'b4ac745defc1', '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S14 w 1.68–1.695s：equipped 的 /p/ 除阻（1.67 闭塞 -61 dB，1.69 爆破 -49.5 dB），后接 /t/；词内的一部分', '实测': {'最响dB': -37.5, '重心Hz': 2907, '周期': 0.0, '低频dB': -16.8}}, '94.89–94.90s': {'配音指纹': 'b4ac745defc1', '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S14 w 6.28–6.295s：inches. 的 ᵻ 弱浊音（周期 0.40、低频 -2.1 dB），6.31 起 /z/ 擦音（重心 4.5 kHz）；词的一部分', '实测': {'最响dB': -40.3, '重心Hz': 1820, '周期': 0.0, '低频dB': -2.5}}, '98.39–98.42s': {'配音指纹': 'b4ac745defc1', '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S15 w 2.345–2.375s：clasp. 的 /p/ 除阻（2.30–2.34 闭塞静音 -59～-70 dB，2.35 爆破 -39.7 dB、2.38 后 -63）；词尾的一部分', '实测': {'最响dB': -41.9, '重心Hz': 1962, '周期': 0.31, '低频dB': -14.6}}, '106.73–106.75s': {'配音指纹': 'b4ac745defc1', '依据': '2026-11-10 接手会话逐 2.5 ms 实测（逐段看声音.py，S16 重合成后）：S16 w 7.030–7.055s：and 起音前的声门脉冲（低频占比 -0.5～-1.9 dB、周期 0.3），在非人声区间 6.77–7.0306 之后，7.06 起 æ -22 dB；词头的一部分', '实测': {'最响dB': -46.0, '重心Hz': 2471, '周期': 0.38, '低频dB': -0.3}}}
-CONF["删除段"]={'S1 raw 2.7575-3.0231': {'类型': '紧贴词头的非人声', '配音指纹': 'b4ac745defc1', '依据': "2026-10-15 删除段对应 非人声区间 [[2.7475, 3.013125, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, 'S2 raw 3.4685-3.8113': {'类型': '紧贴词头的非人声', '配音指纹': 'b4ac745defc1', '依据': "2026-10-15 删除段对应 非人声区间 [[3.4585, 3.801333, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, 'S6 raw 1.8966-2.1450': {'类型': '紧贴词尾的非人声', '配音指纹': 'b4ac745defc1', '依据': "2026-10-15 删除段对应 非人声区间 [[1.886583, 2.115, '紧贴词尾']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, 'S8 raw 2.9200-3.3112': {'类型': '紧贴词头的非人声', '配音指纹': 'b4ac745defc1', '依据': "2026-10-15 删除段对应 非人声区间 [[3.015, 3.291208, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, 'S10 raw 3.3229-3.4400': {'类型': '紧贴词尾的非人声', '配音指纹': 'b4ac745defc1', '依据': "2026-10-15 删除段对应 非人声区间 [[3.312917, 3.43, '紧贴词尾']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, 'S11 raw 2.4200-2.7524': {'类型': '紧贴词头的非人声', '配音指纹': 'b4ac745defc1', '依据': "2026-10-15 删除段对应 非人声区间 [[2.460125, 2.732417, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, 'S14 raw 3.1300-3.5611': {'类型': '紧贴词头的非人声', '配音指纹': 'b4ac745defc1', '依据': "2026-10-15 删除段对应 非人声区间 [[3.34, 3.561125, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, 'S17 raw 1.6771-1.9100': "2026-10-15 删除段对应 非人声区间 [[1.667125, 1.890208]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词", 'S16 raw 6.7500-7.0506': {'类型': '紧贴词头的非人声', '配音指纹': 'b4ac745defc1', '依据': "2026-10-15 删除段对应 非人声区间 [[6.77, 7.030583, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}}
-CONF["机器复听"]={'S8': {'配音指纹': 'b4ac745defc1', '依据': '2026-11-08 接手会话：velours 按 读音改正/已核实读音 /vəˈlʊr/ 读（法语词，词尾 s 不发音，dictionary.com），识别器拼成 velour / belur（同音、少不发音的 s）；读音按已核实读音，非读错'}, 'S10': {'配音指纹': 'b4ac745defc1', '依据': '2026-11-08 接手会话：apparel 按词典 əpˈɛɹəl 读，识别器拼成 a peril（əˈpɛɹəl，同音拆成两词）；读音按词典，非读错'}}
-out.update({"停顿插入点": {"S16": {"3": [6.310792, "交界"]}, "S8": {"1": [2.390708, "交界"], "4": [5.175958, "交界"]}}})   # K131（2026-11-08 逐 2.5 ms 实测）：S16 China, | and 连读，China 衰减到 6.31 的低谷（-46 dB），6.3175 起 and 的起音；原插入点 6.34 在 and 起音里、被渐强吃掉；插入点挪到低谷过零 6.310792，写成交界；S8（合成标点后 w）words, | velours 无缝：/z/ 2.27–2.39（重心 4.3–6 kHz），2.3925 起 /v/（重心降到 3.1→2.5 kHz），插在 2.390708；crochet, | meaning 无缝：eɪ 到 5.175（重心 1.5 kHz），5.177 起 /m/（重心 0.78→0.5 kHz），插在 5.175958
-CONF["停顿位置"]={
- "S8 words, / velours, @2.391":"2026-11-08 逐 2.5 ms 看声音实测（S8 w，合成标点后）：words 的 /z/ 2.27–2.39（-12～-28 dB、重心 4.3–6.0 kHz、低频 -2～-42 dB），2.3925 起 velours 的 /v/（重心降到 3.1、2.6、2.5 kHz，2.405 起 1.3 kHz 浊音），两词无缝连读；停顿插在 2.390708（交界过零点），正好在 words 与 velours 之间；带时长模型把 velours 开头算到 2.416，偏晚",
- "S16 China, / and @6.311":"2026-11-08 逐 2.5 ms 实测（S16 w）：China 的 ə 6.29–6.305（-24～-32 dB），衰减到 6.31 的低谷（-46 dB、周期 0.17），6.315 起 and 的起音（-39→-22 dB）；停顿插在 6.310792（交界过零点），正好在 China 与 and 之间；带时长模型把 and 开头算到 6.411，偏晚",
- "S16 market, / and @8.575":"2026-11-08 逐 10 ms 实测（S16 w）：market 的 /t/ 在 8.50 移植除阻（词尾除阻 4），8.50–8.66 是 -54～-66 dB 的闭塞后静音，8.66–8.895 吸气已按非人声区间换成静音，and 的起音 8.92 起（-38→-6.5 dB）；删静音 8.575–8.885 整段在 market 与 and 之间，没碰词；带时长模型把 market 末音素算到 8.651，是闭塞静音",
- "S8 crochet, / meaning @5.176":"2026-11-08 逐 2.5 ms 看声音实测（S8 w，合成标点后）：crochet 的 eɪ 到 5.175（-12～-19 dB、重心 1.4–3.0 kHz），5.177 起 meaning 的 /m/（周期 0.48、重心 0.78→0.44–0.66 kHz 的鼻音，一直到 5.265），两词无缝连读；停顿插在 5.175958（交界过零点），正好在 crochet 与 meaning 之间；带时长模型把 meaning 开头算到 5.291，是 m 之后的元音"}
-# 2026-11-10 用户 Word 改稿后 S16 重合成（from other countries）：旧 S16 非人声区间、停顿插入点（China, | and）、停顿位置随配音作废，下面按重合成后程序实测的最终值
-CONF["停顿位置"]={'S8 words, / velours, @2.391': '2026-11-08 逐 2.5 ms 看声音实测（S8 w，合成标点后）：words 的 /z/ 2.27–2.39（-12～-28 dB、重心 4.3–6.0 kHz、低频 -2～-42 dB），2.3925 起 velours 的 /v/（重心降到 3.1、2.6、2.5 kHz，2.405 起 1.3 kHz 浊音），两词无缝连读；停顿插在 2.390708（交界过零点），正好在 words 与 velours 之间；带时长模型把 velours 开头算到 2.416，偏晚', 'S8 crochet, / meaning @5.176': '2026-11-08 逐 2.5 ms 看声音实测（S8 w，合成标点后）：crochet 的 eɪ 到 5.175（-12～-19 dB、重心 1.4–3.0 kHz），5.177 起 meaning 的 /m/（周期 0.48、重心 0.78→0.44–0.66 kHz 的鼻音，一直到 5.265），两词无缝连读；停顿插在 5.175958（交界过零点），正好在 crochet 与 meaning 之间；带时长模型把 meaning 开头算到 5.291，是 m 之后的元音'}
-out["非人声区间"]={'S6': [[1.886583, 2.115, '紧贴词尾']], 'S7': [[2.335, 2.555]], 'S8': [[3.015, 3.291208, '紧贴词头']], 'S14': [[3.34, 3.561125, '紧贴词头']], 'S1': [[2.7475, 3.013125, '紧贴词头']], 'S11': [[2.460125, 2.732417, '紧贴词头']], 'S17': [[1.667125, 1.890208]], 'S2': [[3.4585, 3.801333, '紧贴词头']], 'S10': [[1.555, 1.795], [3.312917, 3.43, '紧贴词尾']], 'S16': [[6.77, 7.030583, '紧贴词头']]}
-out["停顿插入点"]={'S8': {'1': [2.390708, '交界'], '4': [5.175958, '交界']}}
-CONF["引号"]={"S17-2 “”":'用户 2026-11-10 原话：“这个翻译最后一个，最后要带上双引号“钩毛搭扣” “钩毛搭扣”……”，引号照用户原话保留（待改清单第12条）'}
-CONF["方向"]={"S11-1 less→不如预期那样着迷，":"less … than expected 中文“不如预期那样”，“不如”就是 less 的方向（比预期少），方向一致"}
-CONF["短语"]={"S2 hitched … to":"不是搭配：to his clothes 只表示挂到哪里，hitch 单独就是“钩住、挂住”（速查表 hitched to a post），中文“钩在了……上”按用户 2026-11-10 改稿译文","S10 stitched … with":"不是搭配：with the fasteners 引出缝上去的东西，stitch 单独就是“缝”","S11 charmed … of":"不是搭配：of 属于 because of（是因为），和 charmed 无关","S12 in … outer":"不是搭配：in 只表示位置，中文“在……”已译出，outer space 已整体标成重点词（外太空）","S13 in … mid-air":"不是搭配：in 只表示位置，中文“在……中”已译出，mid-air 单独就是“半空”（速查表 n. 半空中）"}
-# 2026-11-10 用户听出 S5 “In Lyon,” 声音变小（手写分段增益已按主会话撤掉，改由 K134 程序自动收：短段 <1.5 s 调平+分段增益合计 [0,+2] dB）（用户原话：“IN Lyon 这个地方音频又出问题了……这个地方声音，它又变小了”）。实测成片逐段 ebur128：S5-1 In Lyon, -23.7 LUFS（G36 源头调平 -4 + 句内响度 -2 = 共 -6 dB，峰值 -9.5 dBFS，比 S4/S6 低 6～7 dB）、S5-2 -23.1、S5-3 -23.2，前后 S4 -21.8、S6 -21.4；S8 反而偏响（S8-1 -20.4、S8-3 -19.2、S8-4 -20.4，全片中位 -22.5）。
-# 2026-11-10 主会话定（守则22）：K134 定版后残留处写手写分段增益（程序兜底照管）：S8-1/S8-2 +1.5（words 骤降 7.0 dB、S8-2 -24.4），S18-1 In effect, -1.5（-20.1，差中位 +2.3）
-out["分段增益dB"]={"S8":{"1":2.5,"2":1.5,"3":-1.0},"S18":{"1":-1.5}}   # S8-1 再 +1.0：+1.5 时 words 仍骤降 5.5 dB；S8-3 -1.0（-20.7，全片最响）
-import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+#!/usr/bin/env python3
+# Pure data frozen from the current approved JSON; shared helper/checkers unchanged.
+import os
+import sys
+
+S = [(1,
+  [[[('In 1941', '1941年，'),
+     ('George de Mestral,', '乔治·德·梅斯特拉尔，'),
+     ('a **Swiss**', '一位**瑞士的**(Swiss)'),
+     ('engineer,', '工程师，')],
+    '（a Swiss engineer：同位语，补充说明 George de Mestral）'],
+   [[('returned from hunting in the Alps with his **hound**, an Irish Pointer.',
+      '带着他的**猎犬**(hound)，一只爱尔兰的指示犬，从阿尔卑斯山的打猎中归来。')],
+    '（an Irish Pointer：同位语，补充说明 hound）']]),
+ (1,
+  [[[('**Prickly**', '**多刺的**(Prickly)'),
+     ('burdock', '牛蒡'),
+     ('**seed-heads**', '**种子头**(seed-heads)'),
+     ('had **hitched** themselves to', '已把它们自己**钩在了**(hitched)'),
+     ('his clothes', '他的衣服上，')],
+    '（had hitched：过去完成时；\nhitch oneself to：挂在……上）'],
+   [[('and', '并'), ('lay **tangled**', '**缠绕**(tangled)'), ("in the dog's **fur**.", '在狗的**毛皮**(fur)里。')],
+    '（lay tangled：系表结构，lay 是 lie 的过去式）']]),
+ (1,
+  [[[('Under a microscope', '在显微镜下，'),
+     ('he saw', '他看到'),
+     ('thousands of', '成千上万个'),
+     ('tiny', '细小的'),
+     ('**barbs**,', '**倒刺**(barbs)，')]],
+   [[('each', '每一个（如同）'),
+     ('a **hook**', '一个**钩子**(hook)，'),
+     ('**grasping**', '**抓住**(grasping)'),
+     ('the small **loops** in cloth.', '布料上的小**圈**(loops)。')],
+    '（each a hook…：独立主格结构，补充说明 barbs；\ngrasping…：现在分词短语，修饰 hook）']]),
+ (2,
+  [[[('Few **took** his idea **seriously** at first.', '起初，很少有人**认真看待**(took seriously)他的想法。')],
+    '（take A seriously：认真看待 A）']]),
+ (2,
+  [[[('In Lyon,', '在里昂，'), ('then', '当时的'), ('a **weaving** centre,', '一个**纺织**(weaving)中心，')],
+    '（then a weaving centre：同位语，补充说明 Lyon）'],
+   [[('a cotton', '一个棉制'),
+     ('version', '版本'),
+     ('proved', '被证明'),
+     ('too', '太'),
+     ('**frail**', '**脆弱**(frail)，'),
+     ('to survive **abrasion**.', '以至于无法在**磨损**(abrasion)中存活下来。')],
+    '（too A to do：太 A 而不能……）']]),
+ (2,
+  [[[('Working with a **textiles** firm,', '与一家**纺织品**(textiles)公司合作，')], '（Working with…：现在分词短语作伴随状语）'],
+   [[('he', '他'), ('turned to', '转向了'), ('**nylon**,', '**尼龙**(nylon)，')], '（turn to：转而采用）'],
+   [[('whose hooks', '其钩子'),
+     ('were **stiff** enough', '足够**坚硬且不易弯曲**(stiff)，'),
+     ('to hold', '既能扣住，'),
+     ('yet', '又'),
+     ('easy', '容易'),
+     ('to **pull apart**.', '**拉开**(pull apart)。')],
+    '（whose…：非限制性定语从句，修饰 nylon；\nA enough to do：足够 A，能……；\npull apart：拉开）']]),
+ (2,
+  [[[('The **trial-and-error** at the **looms** and **mills**',
+      '在**织机**(looms)旁和**工厂**(mills)里的**反复试验**(trial-and-error)'),
+     ('lasted', '持续了'),
+     ('about', '约'),
+     ('ten years.', '十年。')],
+    '（at the looms and mills：后置定语，修饰 trial-and-error）']]),
+ (3,
+  [[[('The name Velcro', 'Velcro 这个名字'),
+     ('**merged**', '**合并了**(merged)'),
+     ('two', '两个'),
+     ('French', '法语'),
+     ('words,', '词，')]],
+   [[('velours, meaning', 'velours 意为'),
+     ('**velvet**,', '**天鹅绒**(velvet)，'),
+     ('and crochet, meaning', 'crochet 意为'),
+     ('hook.', '钩子。')],
+    '（velours… and crochet…：同位语，补充说明 words；\nmeaning…：现在分词短语，说明词义）']]),
+ (3, [[[('A US patent **duly** followed in 1955.', '1955年，一项美国专利**如期**(duly)而至。')]]]),
+ (3,
+  [[[('In 1959', '1959年，'), ('a New York', '纽约一场'), ('fashion show', '时装秀')]],
+   [[('sent **apparel** **stitched** with the **fasteners** down the **runway**.',
+      '让**缝有**(stitched)这种**搭扣**(fasteners)的**服装**(apparel)走上**T台**(runway)。')],
+    '（stitched with…：过去分词短语作后置定语，\n修饰 apparel；\nsend A down B：让 A 走上 B）']]),
+ (3,
+  [[[('The public', '公众却'), ('was less **charmed** than expected,', '不如预期那样**着迷**(charmed)，')],
+    '（less A than expected：不如预期那样 A）'],
+   [[('**mostly**', '**主要**(mostly)'),
+     ('because of', '是因为'),
+     ('the **aesthetic**.', '它的**审美**(aesthetic)。')]]]),
+ (4,
+  [[[('The **underdog**', '这个**不被看好的（发明）**(underdog)'),
+     ('proved its **utility** in **outer space**.', '在**外太空**(outer space)证明了自己的**用处**(utility)。')],
+    '（underdog：不被看好的一方 / 处于劣势的弱者，\n同样也指大家不太看好的东西或者是发明等等）']]),
+ (4,
+  [[[('NASA', '美国航天局'), ('used it in the **Apollo programme**', '在**阿波罗计划**(Apollo programme)中使用了它，')]],
+   [[('to', '以便'),
+     ('keep **gear** **anchored** **in weightlessness**,',
+      '在**失重状态下**(in weightlessness)保持**装备**(gear)**固定**(anchored)，')],
+    '（to keep…：不定式作目的状语；\nkeep A anchored：让 A 保持固定）'],
+   [[('so that', '从而'),
+     ('nothing would', '没有任何东西会'),
+     ('**hover** in **mid-air**.', '在**半空**(mid-air)中**飘浮**(hover)。')],
+    '（so that…：引导目的状语从句）']]),
+ (4,
+  [[[('Apollo 11', '阿波罗11号'),
+     ('was **equipped with**', '**配备了**(equipped with)'),
+     ('a **sizeable** amount,', '**相当多的**(sizeable)用量，'),
+     ('about', '约'),
+     ('3,300', '3,300'),
+     ('square inches.', '平方英寸。')],
+    '（be equipped with：配备有；\nabout 3,300 square inches：同位语，补充说明 amount）']]),
+ (4,
+  [[[('NASA', '美国航天局'),
+     ('did not invent', '并没有发明'),
+     ('the', '这种'),
+     ('nylon', '尼龙'),
+     ('**clasp**.', '**扣件**(clasp)。')]]]),
+ (5,
+  [[[('When the patent **ran out** in 1978,', '1978年专利**到期**(ran out)后，')], '（When…：时间状语从句；run out：到期）'],
+   [[('**cut-price**', '来自其他国家的**廉价的**(cut-price)'),
+     ('**knock-offs** from other countries', '**仿制品/山寨品**(knock-offs)'),
+     ('**overran**', '**泛滥于**(overran)'),
+     ('the market,', '市场，')],
+    '（from other countries：后置定语，修饰 knock-offs）'],
+   [[('and a **niche** product', '一种**小众**(niche)产品'),
+     ('went', '成了'),
+     ('**mainstream**.', '**主流**(mainstream)。')],
+    '（go mainstream：成为主流）']]),
+ (5,
+  [[[('In 2017,', '2017年，'),
+     ('to stop', '为了阻止'),
+     ('its **brand-name**', '其**品牌名**(brand-name)'),
+     ('**melting into**', '逐渐**消融为**(melting into)'),
+     ('a **generic**', '一个**通用的**(generic)'),
+     ('**noun**,', '**名词**(noun)，')],
+    '（melt into：逐渐融入/消融为（某某），\n强调失去原有的边界或独特性，完全变成另一事物）'],
+   [[('the company', '该公司'),
+     ('asked', '要求'),
+     ('people', '人们'),
+     ('to call such **mimics** hook and loop fasteners.', '把这类**仿品**(mimics)称作为“钩毛搭扣”。')],
+    '（ask A to do：请 A 做……；\ncall A B：把 A 称作 B）']]),
+ (5,
+  [[[('**In effect**,', '**实际上**(in effect)，'),
+     ('the firm', '这家公司'),
+     ('was asking', '是在请求'),
+     ('the public', '公众'),
+     ('to stop', '停止'),
+     ('using its own name for', '将其自己的名字用在'),
+     ("**rivals'** goods.", "**对手的**(rivals')商品上。")],
+    '（use A for B：把 A 用于 B（或用 A 来做 B））\n'
+    '（简述：▸启发：瑞士工程师梅斯特拉尔发现，衣服和狗毛上的刺果靠小钩挂住毛圈，便仿照它设计出能反复扣合、拉开的搭扣，也就是常说的魔术贴。▸试制：棉制搭扣很快磨坏，他改用尼龙，反复试验约十年，1955年获得美国专利。▸应用：公众反应不如预期热烈，主要是它的样式不合审美；美国航天局后来在阿波罗计划中用它固定失重中的装备，但不是它的发明者。▸普及：1978年专利到期后，廉价仿品涌入市场，原本小众的搭扣逐渐成为日常用品。▸正名：Velcro是品牌名。2017年品牌方请公众把仿品叫作钩毛搭扣，避免大家拿自家品牌去称呼所有同类产品。）']])]
+
+out = {'no': '66',
+ 'title_en': 'The Burrs That Became Velcro',
+ 'title_zh': '一颗刺果钩出的发明',
+ 'title_fx': {'hl': ['Burrs', 'Velcro'], 'ghost': []},
+ 'sentences': [],
+ '核对确认': {'合组': {'S1 George de Mestral, a Swiss engineer': '对齐不了：同位语 a Swiss engineer '
+                                                           '中文提到人名前（瑞士工程师乔治·德·梅斯特拉尔），语序整体换了；人名 George de '
+                                                           'Mestral 是一个专名',
+                 'S6 to pull apart': '对齐不了：pull apart 是短语动词，整体译“拉开”',
+                 'S13 in weightlessness, so that nothing would hover': '对齐不了：in weightlessness 中文挪进 so that '
+                                                                       '从句（免得东西在失重状态下飘浮），语序整体换了',
+                 'S16 knock-offs from Taiwan, China, and South Korea': '对齐不了：from 短语是后置定语，中文提到 廉价的 '
+                                                                       '前面（来自台湾、中国大陆和韩国的），拆开语序反了',
+                 'S18 to stop using': '对齐不了：stop using 中文作“别再用”，拆开“别再”“用”不通顺',
+                 'S18 its own name': '对齐不了：its own 中文作“它自己的”，拆开 own 与 name 中文“自己的名字”不通顺',
+                 "S18 rivals' goods": "对齐不了：rivals' goods 所有格名词短语，整体译“对手的商品”",
+                 'S1 returned from hunting in the Alps with his hound, an Irish Pointer': '对齐不了：中文把 with his '
+                                                                                          'hound 提到 returned '
+                                                                                          '前（带着他的猎犬，一只爱尔兰的指示犬，从阿尔卑斯山的打猎中归来），语序整体换了（用户 '
+                                                                                          '2026-11-10 改稿译文）',
+                 'S3 the small loops in cloth': '对齐不了：in cloth 是后置定语，中文提到前面（布料上的小毛圈），拆开语序反了',
+                 'S4 Few took his idea seriously at first': '对齐不了：at first 中文提到句首（起初），seriously '
+                                                            '提到动词前（认真看待），语序整体换了',
+                 'S5 In Lyon, then a weaving centre': '对齐不了：同位语 then a weaving centre 中文提到 Lyon '
+                                                      '前（当时的纺织中心里昂），语序整体换了',
+                 'S5 proved too frail': '对齐不了：proved 中文不单译（太脆弱），拆开 proved 下面没有中文',
+                 'S8 velours, meaning': '对齐不了：velours 是法语原词照录，“velours 意为”中间的空格分组后会丢',
+                 'S8 and crochet, meaning': '对齐不了：crochet 是法语原词照录，“crochet 意为”中间的空格分组后会丢',
+                 'S9 A US patent duly followed in 1955': '对齐不了：in 1955 中文提到句首（1955年），A US patent duly followed '
+                                                         '作“一项美国专利如期而至”（用户 2026-11-10 改稿译文），语序整体换了',
+                 'S10 fashion show': '对齐不了：fashion show 是复合名词，整体译“时装秀”',
+                 'S11 was less charmed than expected': '对齐不了：less … than expected 中文作“不如预期那样着迷”，比较结构语序整体换了',
+                 'S12 proved its utility in outer space': '对齐不了：in outer space 中文提到动词前（在外太空证明了自己的用处），语序整体换了',
+                 'S13 used it in the Apollo programme': '对齐不了：in the Apollo programme '
+                                                        '中文提到动词前（在阿波罗计划中使用了它），语序整体换了',
+                 'S14 square inches': '对齐不了：square inches 是面积单位，整体译“平方英寸”',
+                 'S16 When the patent ran out in 1978': '对齐不了：in 1978 中文提到句首（1978年专利到期后），When 译“后”放句末，语序整体换了',
+                 'S17 to call such mimics hook and loop fasteners': '对齐不了：call A B 中文作“把 A 称作 B”，call 挪到 A '
+                                                                    '后面；hook and loop fasteners '
+                                                                    '是一个名称，整体译“钩毛搭扣”',
+                 'S13 keep gear anchored in weightlessness': '对齐不了：in weightlessness 中文提到 保持 前（在失重状态下保持装备固定，用户 '
+                                                             '2026-11-10 改稿译文），语序整体换了',
+                 'S16 knock-offs from other countries': '对齐不了：from 短语是后置定语，中文提到 廉价的 前面（来自其他国家的），拆开语序反了',
+                 'S18 using its own name for': '对齐不了：use A for B 中文作“将 A 用在 B 上”（用户 2026-11-10 改稿译文），拆开 using '
+                                               '与 for 下面中文不连',
+                 'S14 Apollo 11': '对齐不了：Apollo 11 是一个专名（阿波罗11号），拆开 11 单独成组没有意义',
+                 'S14 a sizeable amount': '对齐不了：a sizeable amount 是速查表里的固定搭配（相当多的用量），中文“相当多的”“用量”拆开 amount '
+                                          '单独成组不通顺'},
+          '对齐': {'S1-2 returned from hunting in the A': '语序必须倒过来：with his hound（同位语 an Irish Pointer）和 in the '
+                                                        'Alps 在中文里提到 归来 前（带着他的猎犬……从阿尔卑斯山的打猎中归来），用户 2026-11-10 '
+                                                        '改稿译文',
+                 'S3-2 the small loops in cloth.': '语序必须倒过来：in cloth 是后置定语，中文提到前面（布料上的小圈）',
+                 'S4-1 Few took his idea seriously at': '语序必须倒过来：at first 提到句首（起初），take A seriously '
+                                                        '是被隔开的短语（认真看待 A），整组才通顺',
+                 'S6-1 Working with a textiles firm,': '语序必须倒过来：Working with A 中文作“与 A 合作”，合作 挪到 A 后面',
+                 'S7-1 The trial-and-error at the loo': '语序必须倒过来：at the looms and mills 是后置定语，中文提到 反复试验 '
+                                                        '前（在织机旁和工厂里的反复试验）',
+                 'S9-1 A US patent duly followed in 1': '语序必须倒过来：in 1955 提到句首（1955年），followed 作“而至”放句末（用户 '
+                                                        '2026-11-10 改稿译文）',
+                 'S10-2 sent apparel stitched with the': '语序必须倒过来：stitched with the fasteners 是后置定语，中文提到 服装 '
+                                                         '前；send A down B 作“让 A 走上 B”',
+                 'S11-1 was less charmed than expected': '语序必须倒过来：比较结构 less … than expected '
+                                                         '中文作“不如预期那样着迷”，整组才通顺',
+                 'S12-1 proved its utility in outer sp': '语序必须倒过来：in outer space 提前的介词短语，中文放在动词前（在外太空证明了自己的用处）',
+                 'S13-1 used it in the Apollo programm': '语序必须倒过来：in the Apollo programme '
+                                                         '提前的介词短语，中文放在动词前（在阿波罗计划中使用了它）',
+                 'S13-2 keep gear anchored in weightle': '语序必须倒过来：in weightlessness 提前的介词短语，中文放在 保持 '
+                                                         '前（在失重状态下保持装备固定），用户 2026-11-10 改稿译文',
+                 'S16-1 When the patent ran out in 197': '语序必须倒过来：时间状语从句 When…，in 1978 提到句首、When '
+                                                         '作“后”放句末（1978年专利到期后）',
+                 'S17-2 to call such mimics hook and l': '语序必须倒过来：call A B 中文作“把 A 称作 B”，hook and loop '
+                                                         'fasteners 是一个名称（“钩毛搭扣”）',
+                 'S18-1 using its own name for': '语序必须倒过来：use A for B 中文作“将 A 用在 B 上”（用户 2026-11-10 改稿译文），for '
+                                                 '的“上”在下一组末尾'},
+          '非人声': {'119.49–119.58s': {'配音指纹': 'b4ac745defc1',
+                                     '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S17 w 9.635–9.73s：fasteners. '
+                                           '的 ɚ 衰减（浊音，低频 -1～-7 dB、周期 0.2–0.4），9.72 起 /z/ 擦音（重心 3.4–5.5 '
+                                           'kHz）；词尾的一部分',
+                                     '实测': {'最响dB': -36.7, '重心Hz': 1807, '周期': 0.23, '低频dB': -2.1}},
+                  '122.97–122.98s': {'配音指纹': 'b4ac745defc1',
+                                     '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S18 w 1.76–1.77s：was 的 /z/ '
+                                           '擦音尾（重心 4.0–4.8 kHz、-60～-65 dB，与 1.73–1.74 的 z 连着），后面 asking 1.87 '
+                                           '起；词尾的一部分',
+                                     '实测': {'最响dB': -41.4, '重心Hz': 5239, '周期': 0.0, '低频dB': -28.0}},
+                  '7.88–7.92s': {'配音指纹': 'b4ac745defc1',
+                                 '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S1 w 4.650–4.680s：returned 的 /ɹ/ '
+                                       '起音前的声门脉冲（约 10 ms 一个，4.6525/4.6625/4.6725 三下，低频占比 -0.4～-1 dB），与前面 '
+                                       'engineer, 隔着 4.63 -58 dB 低谷，4.6825 起浊音升到 -31→-12 dB；词头的一部分',
+                                 '实测': {'最响dB': -42.5, '重心Hz': 2724, '周期': 0.07, '低频dB': -0.6}},
+                  '29.82–29.87s': {'配音指纹': 'b4ac745defc1',
+                                   '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S4 w 2.225–2.270s：first. 的 /t/ '
+                                         '除阻（2.19–2.22 闭塞静音 -57～-68 dB，2.225 爆破 -33～-39 dB、2.26 后衰减到 '
+                                         '-55）；词尾的一部分',
+                                   '实测': {'最响dB': -36.8, '重心Hz': 2235, '周期': 0.22, '低频dB': -8.0}},
+                  '37.00–37.08s': {'配音指纹': 'b4ac745defc1',
+                                   '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S5 w 5.78–5.86s：abrasion. 末尾 '
+                                         '/n/ 鼻音衰减（周期 0.34–0.43、低频 -6～-10 dB、重心 1.6–2.3 kHz，5.86 后 -59 '
+                                         'dB）；词尾的一部分',
+                                   '实测': {'最响dB': -35.6, '重心Hz': 1667, '周期': 0.33, '低频dB': -3.9}},
+                  '45.45–45.49s': {'配音指纹': 'b4ac745defc1',
+                                   '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S6 w 7.185–7.23s：apart. 的 /t/ '
+                                         '除阻（7.14–7.18 闭塞静音 -63～-68 dB，7.19 爆破 -28 dB、7.24 后 -60）；词尾的一部分',
+                                   '实测': {'最响dB': -30.2, '重心Hz': 2690, '周期': 0.27, '低频dB': -11.6}},
+                  '50.34–50.43s': {'配音指纹': 'b4ac745defc1',
+                                   '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S7 w 3.91–4.005s：years. 的 ɪɹ→z '
+                                         '过渡（浊音，低频 -1～-3 dB、重心 0.85–1.5 kHz），4.00 起 /z/ 擦音（重心 3.9–5.8 '
+                                         'kHz）；词的一部分',
+                                   '实测': {'最响dB': -35.8, '重心Hz': 2160, '周期': 0.21, '低频dB': -3.6}},
+                  '62.33–62.45s': {'配音指纹': 'b4ac745defc1',
+                                   '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S9 w 3.23–3.36s：fifty-five. 的 '
+                                         'aɪ→/v/：3.23–3.28 浊音尾（低频 -2～-5 dB），3.29–3.34 /v/ 擦音（重心 3.4–4.1 '
+                                         'kHz），3.37 后 -66 dB；词尾的一部分',
+                                   '实测': {'最响dB': -39.0, '重心Hz': 3804, '周期': 0.22, '低频dB': -9.9}},
+                  '90.32–90.33s': {'配音指纹': 'b4ac745defc1',
+                                   '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S14 w 1.68–1.695s：equipped 的 '
+                                         '/p/ 除阻（1.67 闭塞 -61 dB，1.69 爆破 -49.5 dB），后接 /t/；词内的一部分',
+                                   '实测': {'最响dB': -37.5, '重心Hz': 2907, '周期': 0.0, '低频dB': -16.8}},
+                  '94.89–94.90s': {'配音指纹': 'b4ac745defc1',
+                                   '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S14 w 6.28–6.295s：inches. 的 ᵻ '
+                                         '弱浊音（周期 0.40、低频 -2.1 dB），6.31 起 /z/ 擦音（重心 4.5 kHz）；词的一部分',
+                                   '实测': {'最响dB': -40.3, '重心Hz': 1820, '周期': 0.0, '低频dB': -2.5}},
+                  '98.39–98.42s': {'配音指纹': 'b4ac745defc1',
+                                   '依据': '2026-11-08 接手会话逐 2.5 ms 实测（逐段看声音.py）：S15 w 2.345–2.375s：clasp. 的 /p/ '
+                                         '除阻（2.30–2.34 闭塞静音 -59～-70 dB，2.35 爆破 -39.7 dB、2.38 后 -63）；词尾的一部分',
+                                   '实测': {'最响dB': -41.9, '重心Hz': 1962, '周期': 0.31, '低频dB': -14.6}},
+                  '106.73–106.75s': {'配音指纹': 'b4ac745defc1',
+                                     '依据': '2026-11-10 接手会话逐 2.5 ms 实测（逐段看声音.py，S16 重合成后）：S16 w '
+                                           '7.030–7.055s：and 起音前的声门脉冲（低频占比 -0.5～-1.9 dB、周期 0.3），在非人声区间 '
+                                           '6.77–7.0306 之后，7.06 起 æ -22 dB；词头的一部分',
+                                     '实测': {'最响dB': -46.0, '重心Hz': 2471, '周期': 0.38, '低频dB': -0.3}}},
+          '删除段': {'S1 raw 2.7575-3.0231': {'类型': '紧贴词头的非人声',
+                                           '配音指纹': 'b4ac745defc1',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[2.7475, 3.013125, '紧贴词头']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S2 raw 3.4685-3.8113': {'类型': '紧贴词头的非人声',
+                                           '配音指纹': 'b4ac745defc1',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[3.4585, 3.801333, '紧贴词头']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S6 raw 1.8966-2.1450': {'类型': '紧贴词尾的非人声',
+                                           '配音指纹': 'b4ac745defc1',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[1.886583, 2.115, '紧贴词尾']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S8 raw 2.9200-3.3112': {'类型': '紧贴词头的非人声',
+                                           '配音指纹': 'b4ac745defc1',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[3.015, 3.291208, '紧贴词头']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S10 raw 3.3229-3.4400': {'类型': '紧贴词尾的非人声',
+                                            '配音指纹': 'b4ac745defc1',
+                                            '依据': "2026-10-15 删除段对应 非人声区间 [[3.312917, 3.43, '紧贴词尾']]（w "
+                                                  '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                  '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                  "内最安静处的过零点；复核报 ['pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S11 raw 2.4200-2.7524': {'类型': '紧贴词头的非人声',
+                                            '配音指纹': 'b4ac745defc1',
+                                            '依据': "2026-10-15 删除段对应 非人声区间 [[2.460125, 2.732417, '紧贴词头']]（w "
+                                                  '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                  '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                  "内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S14 raw 3.1300-3.5611': {'类型': '紧贴词头的非人声',
+                                            '配音指纹': 'b4ac745defc1',
+                                            '依据': "2026-10-15 删除段对应 非人声区间 [[3.34, 3.561125, '紧贴词头']]（w "
+                                                  '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                  '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                  "内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S17 raw 1.6771-1.9100': '2026-10-15 删除段对应 非人声区间 [[1.667125, 1.890208]]（w 秒）：自动切点.py '
+                                           '用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < '
+                                           "0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] "
+                                           '是删掉的呼吸声本身偏响（-34～-47 dB），不是词',
+                  'S16 raw 6.7500-7.0506': {'类型': '紧贴词头的非人声',
+                                            '配音指纹': 'b4ac745defc1',
+                                            '依据': "2026-10-15 删除段对应 非人声区间 [[6.77, 7.030583, '紧贴词头']]（w "
+                                                  '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                  '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                  "内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 "
+                                                  'dB），不是词'}},
+          '机器复听': {'S8': {'配音指纹': 'b4ac745defc1',
+                          '依据': '2026-11-08 接手会话：velours 按 读音改正/已核实读音 /vəˈlʊr/ 读（法语词，词尾 s '
+                                '不发音，dictionary.com），识别器拼成 velour / belur（同音、少不发音的 s）；读音按已核实读音，非读错'},
+                   'S10': {'配音指纹': 'b4ac745defc1',
+                           '依据': '2026-11-08 接手会话：apparel 按词典 əpˈɛɹəl 读，识别器拼成 a '
+                                 'peril（əˈpɛɹəl，同音拆成两词）；读音按词典，非读错'}},
+          '停顿位置': {'S8 words, / velours, @2.391': '2026-11-08 逐 2.5 ms 看声音实测（S8 w，合成标点后）：words 的 /z/ '
+                                                  '2.27–2.39（-12～-28 dB、重心 4.3–6.0 kHz、低频 -2～-42 dB），2.3925 起 '
+                                                  'velours 的 /v/（重心降到 3.1、2.6、2.5 kHz，2.405 起 1.3 kHz '
+                                                  '浊音），两词无缝连读；停顿插在 2.390708（交界过零点），正好在 words 与 velours '
+                                                  '之间；带时长模型把 velours 开头算到 2.416，偏晚',
+                   'S8 crochet, / meaning @5.176': '2026-11-08 逐 2.5 ms 看声音实测（S8 w，合成标点后）：crochet 的 eɪ 到 '
+                                                   '5.175（-12～-19 dB、重心 1.4–3.0 kHz），5.177 起 meaning 的 /m/（周期 '
+                                                   '0.48、重心 0.78→0.44–0.66 kHz 的鼻音，一直到 5.265），两词无缝连读；停顿插在 '
+                                                   '5.175958（交界过零点），正好在 crochet 与 meaning 之间；带时长模型把 meaning '
+                                                   '开头算到 5.291，是 m 之后的元音'},
+          '引号': {'S17-2 “”': '用户 2026-11-10 原话：“这个翻译最后一个，最后要带上双引号“钩毛搭扣” “钩毛搭扣”……”，引号照用户原话保留（待改清单第12条）'},
+          '方向': {'S11-1 less→不如预期那样着迷，': 'less … than expected 中文“不如预期那样”，“不如”就是 less 的方向（比预期少），方向一致'},
+          '短语': {'S2 hitched … to': '不是搭配：to his clothes 只表示挂到哪里，hitch 单独就是“钩住、挂住”（速查表 hitched to a '
+                                    'post），中文“钩在了……上”按用户 2026-11-10 改稿译文',
+                 'S10 stitched … with': '不是搭配：with the fasteners 引出缝上去的东西，stitch 单独就是“缝”',
+                 'S11 charmed … of': '不是搭配：of 属于 because of（是因为），和 charmed 无关',
+                 'S12 in … outer': '不是搭配：in 只表示位置，中文“在……”已译出，outer space 已整体标成重点词（外太空）',
+                 'S13 in … mid-air': '不是搭配：in 只表示位置，中文“在……中”已译出，mid-air 单独就是“半空”（速查表 n. 半空中）'}},
+ '结尾解说': '简述',
+ '高亮按实际开口': True,
+ '高亮开口门槛': 40,
+ 'allow_clash': ['ran out', "rivals'"],
+ '术语': {'Taiwan': '台湾',
+        'China': '中国大陆',
+        'South Korea': '韩国',
+        'George de Mestral': '乔治·德·梅斯特拉尔',
+        'Swiss': '瑞士',
+        'Alps': '阿尔卑斯山',
+        'Irish Pointer': '爱尔兰的指示犬',
+        'Lyon': '里昂',
+        'Velcro': 'Velcro',
+        'French': '法语',
+        'US': '美国',
+        'New York': '纽约',
+        'NASA': '美国航天局',
+        'Apollo': '阿波罗'},
+ '非人声区间': {'S6': [[1.886583, 2.115, '紧贴词尾']],
+           'S7': [[2.335, 2.555]],
+           'S8': [[3.015, 3.291208, '紧贴词头']],
+           'S14': [[3.34, 3.561125, '紧贴词头']],
+           'S1': [[2.7475, 3.013125, '紧贴词头']],
+           'S11': [[2.460125, 2.732417, '紧贴词头']],
+           'S17': [[1.667125, 1.890208]],
+           'S2': [[3.4585, 3.801333, '紧贴词头']],
+           'S10': [[1.555, 1.795], [3.312917, 3.43, '紧贴词尾']],
+           'S16': [[6.77, 7.030583, '紧贴词头']]},
+ '合成标点': {'S8': [['velvet, and', 'velvet; and'], ['velours, meaning', 'velours; meaning']]},
+ '句子增益dB': {'S18': -0.6},
+ '停顿插入点': {'S8': {'1': [2.390708, '交界'], '4': [5.175958, '交界']}},
+ '分段增益dB': {'S8': {'1': 2.5, '2': 1.5, '3': -1.0}, 'S18': {'1': -1.5}},
+ '结尾句': {'S18': {'前段语速': 0.9,
+                 '最后一段语速': 0.78,
+                 '最后一段前停顿': 0.7,
+                 '接点': [22140, 27180],
+                 '依据': '全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“the firm was asking the public '
+                       "to stop using its own name for rivals' goods.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 "
+                       '那遍最后一个标点后最长静音（70 ms）的正中 0.922 s，0.78 那遍（95 ms）的正中 1.133 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 '
+                       '08 校准：与人工核实的接点落在同一段静音里）'}},
+ '词尾除阻': {'S8': {'3': [4.18, 't']},
+          'S11': {'句末': [4.555, 'k']},
+          'S18': {'1': [0.62, 't']},
+          'S16': {'1': [2.75, 't'], '2': [6.66, 't']}},
+ '除阻加强': {'S4': {'句末': [2.225, 2.27, 6.0]},
+          'S14': {'1': [3.09, 3.125, 5.0]},
+          'S15': {'句末': [2.345, 2.37, 6.0]}},
+ '区间声音指纹': {'S1': '9c454715e37c',
+            'S2': 'dfbe2f7f6326',
+            'S4': '062063e6ac8e',
+            'S6': 'f028c202965f',
+            'S7': '98d69aba7e76',
+            'S8': 'df885a676010',
+            'S10': '519e20166400',
+            'S11': '0570480d0061',
+            'S14': '7e25d0c36fc6',
+            'S15': 'aa9377b8da07',
+            'S16': '74d159b7bdd0',
+            'S17': '857f20a4eca3',
+            'S18': '45ae00a6c136'},
+ '换行变更记录': [{'日期': '2026-11-10',
+             'S13': '用户 2026-11-10 原话：“To keep gear anchored  in weightlessness '
+                    '这个作为一行这个标这个弄一行。这个弄一行，这个弄一行，ok。后面的 so that  开头的那部分作为另外一行。”',
+             'S16': '用户 2026-11-10 原话：“这个地方不要说台湾，中国大陆和韩国……你这个from后面可以直接跟上一个其他国家……直接换成其他国家就行了”（英文改短，换行随之变）'},
+            {'日期': '2026-11-10',
+             'S13': '用户 2026-11-10 原话：“To keep gear anchored  in weightlessness '
+                    '这个作为一行这个标这个弄一行。这个弄一行，这个弄一行，ok。后面的 so that  开头的那部分作为另外一行。”',
+             'S16': '用户 2026-11-10 原话：“这个地方不要说台湾，中国大陆和韩国……你这个from后面可以直接跟上一个其他国家……直接换成其他国家就行了”（英文改短，换行随之变）'}]}
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)

@@ -6,7 +6,7 @@ One night in early 2016, after **keepers** at New Zealand's National Aquarium in
 
 Staff **reconstructed** that route from the **slime** **residue** it **deposited**. Inky had **resided** in **captivity** since 2014, when a fisherman **retrieved** it from a **crayfish pot** off Napier. The **breakout** went **unreported** for about three months. Made public in April 2016, the story travelled the **globe**.
 
-Such **agility** **stems** from an octopus's **pliable** body, which has no **skeleton** or shell. Its only hard part is its **beak**, so any **crevice** that **accommodates** the beak will do. Roughly two-thirds of its 500 million **neurons** lie in the **limbs**, which handle **sensory** input and react with some **autonomy**.
+Such **agility** **stems from** an octopus's **pliable** body, which has no **skeleton** or shell. Its only hard part is its **beak**, so any **crevice** that **accommodates** the beak will do. Roughly two-thirds of its 500 million **neurons** lie in the **limbs**, which handle **sensory input** and react with some **autonomy**.
 
 Its **wits** are as **versatile** as its **anatomy**. A giant Pacific octopus in Seattle learned to open screw-top **jars**, needing 15 minutes **at the outset**, later about two. In a 2010 study, octopuses came to **discriminate** between two strangers, a **feeder** and one who touched them with a bristly stick, **adopting** a different **hue** and **posture** for each.
 
@@ -16,13 +16,15 @@ In July 2012 the Cambridge Declaration on Consciousness listed octopuses among a
 
 2016年初的一个夜晚，新西兰内皮尔国家水族馆的**饲养员**(keepers)下班离开后，一只名叫 Inky 的章鱼从水箱**顶部**(atop)**网罩**(mesh)上的一道**开口**(aperture)**悄悄爬出**(crept)。这名**逃犯**(fugitive)**想必**(presumably)随后落到地面，爬过房间，把**富有弹性**(elastic)的身体**压扁**(compressed)，挤进一个排水口；排水口下面那条管道**延伸**(stretched)约50米，直通太平洋。
 
-工作人员根据它**留下**(deposited)的**黏液**(slime)**残迹**(residue)，**还原**(reconstructed)了这条路线。Inky 自2014年起就**生活**(resided)在**圈养**(captivity)环境中；那一年，一名渔民在内皮尔附近海域的捕龙虾**笼子**(pot)里**捞到**(retrieved)了它。这次**出逃**(breakout)约三个月都**无人报道**(unreported)。2016年4月消息公开后，这件事传遍了**全球**(globe)。
+工作人员根据它**留下**(deposited)的**黏液**(slime)**残迹**(residue)，**还原**(reconstructed)了这条路线。Inky 自2014年起就**生活**(resided)在**圈养**(captivity)环境中；那一年，一名渔民在内皮尔附近海域的**捕龙虾的笼子**(crayfish pot)里**捞到**(retrieved)了它。这次**出逃**(breakout)约三个月都**无人报道**(unreported)。2016年4月消息公开后，这件事传遍了**全球**(globe)。
 
-如此**灵巧的身手**(agility)**源于**(stems)章鱼**柔韧**(pliable)的身体，它没有**骨骼**(skeleton)，也没有外壳。它唯一坚硬的部位是**喙部**(beak)，所以任何**容得下**(accommodates)喙部的**裂缝**(crevice)都行。章鱼的5亿个**神经元**(neurons)中，约三分之二分布在**腕足**(limbs)里；腕足能处理**感官**(sensory)信息，并在一定程度上**自主**(autonomy)作出反应。
+如此**灵巧的身手**(agility)**源于**(stems from)章鱼**柔韧**(pliable)的身体，它没有**骨骼**(skeleton)，也没有外壳。它唯一坚硬的部位是**喙部**(beak)，所以任何**容得下**(accommodates)喙部的**裂缝**(crevice)都行。章鱼的5亿个**神经元**(neurons)中，约三分之二分布在**腕足**(limbs)里；腕足能处理**感官输入**(sensory input)，并在一定程度上**自主**(autonomy)作出反应。
 
-章鱼的**才智**(wits)和它的**身体构造**(anatomy)一样**灵活多变**(versatile)。西雅图的一只巨型太平洋章鱼学会了拧开螺旋盖**罐子**(jars)，**起初**(outset)要花15分钟，后来约两分钟。在2010年的一项研究中，章鱼逐渐学会**区分**(discriminate)两个陌生人，一个是**喂食者**(feeder)，另一个用带刺毛的棍子触碰它们；章鱼面对两人时**呈现**(adopting)出不同的**体色**(hue)和**姿态**(posture)。
+章鱼的**才智**(wits)和它的**身体构造**(anatomy)一样**灵活多变**(versatile)。西雅图的一只巨型太平洋章鱼学会了拧开螺旋盖**罐子**(jars)，**起初/最开始的时候**(at the outset)要花15分钟，后来约两分钟。在2010年的一项研究中，章鱼逐渐学会**区分**(discriminate)两个陌生人，一个是**喂食者**(feeder)，另一个用带刺毛的棍子触碰它们；章鱼面对两人时**呈现**(adopting)出不同的**体色**(hue)和**姿态**(posture)。
 
 2012年7月，《剑桥意识宣言》把章鱼列入**具备**(possessing)**有意识**(conscious)**觉知**(awareness)所需**神经**(neurological)**基础**(substrates)的动物之列。2021年11月，一份为英国政府所做的评估报告建议把章鱼视为**有感知力**(sentient)的动物；2022年4月，英国《动物福利（感知）法》将章鱼**纳入**(encompassed)其中。这些都不能证明章鱼有**内心**(inner)世界。Inky 身在管道另一头的某个地方，对这场争论**全然**(wholly)**不知**(oblivious)。
+
+（简述：▸出逃：2016年，新西兰水族馆的章鱼Inky逃出水箱。工作人员根据地上的黏液痕迹推测，它穿过房间，钻进约50米长、通往海洋的排水管。▸身体：章鱼没有骨骼或外壳，身体柔软，嘴部坚硬的喙限制了能钻过的缝隙大小；只要喙能通过，身体通常也能挤过去。▸能力：章鱼腕足分布着大量神经细胞，可以接收感觉并部分自主反应；章鱼还能学会开旋盖罐，区分喂食的人和拿刺毛棒碰自己的人。▸认定：2012年《剑桥意识宣言》把章鱼列为具有意识神经基础的动物；英国2022年法律也将章鱼纳入有感知能力的动物范围。▸限度：这些观察和认定，仍不能直接证明章鱼确有内心体验。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -44,12 +46,12 @@ In July 2012 the Cambridge Declaration on Consciousness listed octopuses among a
 | resided | v. (reside) 居住，定居（正式）（reside abroad；reside in London） | 2 |
 | captivity | n. 圈养；囚禁（animals bred in captivity；release sb from captivity） | 2 |
 | retrieved | v. (retrieve) 取回，找回（retrieve a lost bag；retrieve data） | 2 |
-| pot | n. 罐，锅；捕捉笼（a lobster pot；a cooking pot） | 2 |
+| crayfish pot | 本文：捕龙虾的笼子；n. 捕龙虾的笼子；pot n. 罐，锅；捕捉笼（a lobster pot；a cooking pot） | 2 |
 | breakout | n. 越狱，逃脱（a prison breakout） | 2 |
 | unreported | adj. 未报道的，未报告的（go unreported；unreported crimes） | 2 |
 | globe | n. 全球，世界；地球仪（travel the globe；around the globe） | 2 |
 | agility | n. 敏捷，灵活（physical/mental agility） | 3 |
-| stems | v. (stem from) 起源于，由……造成（problems that stem from poverty） | 3 |
+| stems from | 本文：源于；v. (stem from) 起源于，由……造成（problems that stem from poverty） | 3 |
 | pliable | adj. 柔韧的，易弯的；易受影响的（pliable leather/plastic） | 3 |
 | skeleton | n. 骨骼，骨架（the human skeleton） | 3 |
 | beak | n. 喙，鸟嘴（a bird with a long beak） | 3 |
@@ -57,13 +59,13 @@ In July 2012 the Cambridge Declaration on Consciousness listed octopuses among a
 | accommodates | v. (accommodate) 容纳；为……提供住处（the hall accommodates 500 people） | 3 |
 | neurons | n. (neuron) 神经元（motor neurons） | 3 |
 | limbs | n. (limb) 肢，臂，腿；（树的）大枝（break a limb；the limbs of a tree） | 3 |
-| sensory | adj. 感觉的，感官的（sensory organs/information） | 3 |
+| sensory input | 本文：感官输入；n. 感官输入，感觉信息；sensory adj. 感觉的，感官的（sensory organs/information） | 3 |
 | autonomy | n. 自主权，自治（regional autonomy；enjoy greater autonomy） | 3 |
 | wits | n. (wit) 才智，头脑（keep one's wits about one；live by one's wits） | 4 |
 | versatile | adj. 多才多艺的，用途广的（a versatile actor/material） | 4 |
 | anatomy | n. 解剖结构，身体构造；解剖学（human anatomy） | 4 |
 | jars | n. (jar) 罐子，广口瓶（a jam jar；unscrew a jar） | 4 |
-| outset | n. 开始，开端（at/from the outset） | 4 |
+| at the outset | 本文：起初/最开始的时候；adv. 起初，开始时；outset n. 开始，开端（at/from the outset） | 4 |
 | discriminate | v. 区分，辨别；歧视（discriminate between right and wrong） | 4 |
 | feeder | n. 喂食者；饲养器（a bird feeder） | 4 |
 | adopting | v. (adopt) 采取，呈现；收养（adopt a policy/an attitude） | 4 |

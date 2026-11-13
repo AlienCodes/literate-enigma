@@ -21,7 +21,7 @@ Yuan, who shared the 2004 **World Food Prize** with Sierra Leone's Monty Jones, 
 
 到1976年，杂交水稻已经处于大面积**种植**(under cultivation)，占地面积大约140000**公顷**(hectares)。（under cultivation：在耕种中，正被种植）据世界粮食奖基金会**估计**(estimates)，杂交稻比**常规**(conventional)**品种**(varieties)最多可多**产**(yield)五分之一的**稻谷**(grain)。（estimate that…：估计……）（up to a fifth more…than…：比……最多多五分之一）到21世纪初，杂交稻已**覆盖**(covered)近一半的中国**稻田**(rice fields)。
 
-袁隆平曾与塞拉利昂的蒙蒂·琼斯共获2004年**世界粮食奖**(World Food Prize)，2021年5月22日在长沙逝世，享年91岁。（who…：非限制性定语从句，补充说明 Yuan）然而，一种流传甚广的**错误的观点**(myth)**把**(portrays as)他**描绘成**(portrays as)一个**单枪匹马的**(solitary)**天才**(genius)。（portray A as B：把 A 描绘成 B）他的慧眼开启了这场搜寻；他的**慷慨**(generosity)，让许多双手一起**迎来了丰收**(bring in the harvest)。（bring in the harvest：收庄稼，这里指迎来丰收）（简述：1964年7月，袁隆平在安江农校的稻田里发现一株雄性不育的稻子。此后六年，他和同事们始终培育不出后代能稳定遗传不育性的不育系。1970年11月，李必湖和冯克珊在海南三亚找到花粉败育的野生稻。袁隆平把这个品系分给全国各地的协作者，颜龙安的团队育成不育系，张先程率先找出恢复系，1973年三系配套。杂交稻最多可比常规品种多产五分之一的稻谷，到21世纪初已覆盖中国近一半的稻田。他不是单枪匹马的天才，丰收靠的是许多双手。）
+袁隆平曾与塞拉利昂的蒙蒂·琼斯共获2004年**世界粮食奖**(World Food Prize)，2021年5月22日在长沙逝世，享年91岁。（who…：非限制性定语从句，补充说明 Yuan）然而，一种流传甚广的**错误的观点**(myth)**把**(portrays as)他**描绘成**(portrays as)一个**单枪匹马的**(solitary)**天才**(genius)。（portray A as B：把 A 描绘成 B）他的慧眼开启了这场搜寻；他的**慷慨**(generosity)，让许多双手一起**迎来了丰收**(bring in the harvest)。（bring in the harvest：收庄稼，这里指迎来丰收）（简述：▸难题：水稻通常自己授粉，要大批量杂交，得用不产有效花粉的母株，让它接受另一种稻的花粉。袁隆平1964年找到这种稻，却难让后代稳定保持这一特性。▸协作：1970年，李必湖、冯克珊找到关键野生稻。袁隆平把材料分给全国团队，颜龙安团队育成不育系，张先程率先找到恢复系。▸配套：1973年三类稻株配齐：不育系当母株；保持系给它授粉，繁殖出仍不产有效花粉的母株；恢复系再与母株杂交，得到能正常结实的下一代。▸推广：1976年已开始大面积种植，21世纪初覆盖中国近半稻田。世界粮食奖基金会估计，产量最多可比常规稻高两成。▸贡献：成果来自发现、材料共享与全国协作。袁隆平2004年共获世界粮食奖，2021年去世。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -35,7 +35,7 @@ Yuan, who shared the 2004 **World Food Prize** with Sierra Leone's Monty Jones, 
 | viable | 本文：能生长发育的；adj. （种子、花粉等）能生长发育的，能存活的，有活力的；可行的，切实可行的（a viable option/plan）；viability n. | 1 |
 | pollen | 本文：花粉；n. 花粉（pollen count 花粉指数） | 1 |
 | pollinates itself | 本文：自花授粉；v. (pollinate) 给……授粉，传粉；pollinate itself 自花授粉；pollination n. 授粉；pollinator n. 传粉者 | 1 |
-| in bulk | 本文：大批地；n. 大量，大批（in bulk 大批，大量地）；主体，大部分（the bulk of）；体积，巨大的身躯 | 1 |
+| in bulk | 本文：大批地；adv. 大批地，大量地；bulk 单词本身 n. 大量，主体，体积 | 1 |
 | hybrid | 本文：杂交；n. 杂交种，杂种；混合物（a hybrid of A and B）；adj. 杂交的；混合的（a hybrid car 混合动力汽车） | 1 |
 | detailed | 本文：详细描述了；v. (detail) 详细描述，详细列举；adj. 详细的；n. 细节（in detail 详细地） | 1 |
 | anomaly | 本文：反常现象；n. 反常现象，异常事物，不规则（anomalous adj. 反常的） | 1 |

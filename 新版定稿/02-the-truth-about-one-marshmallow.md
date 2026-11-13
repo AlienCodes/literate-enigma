@@ -2,9 +2,9 @@
 # ZH: 一颗棉花糖的真相
 
 ## 英文
-Picture a **nursery school** on Stanford's **campus** in the late 1960s and early 1970s. A child of about four or five sits **in solitude** before one treat, facing a **blunt** **bargain**: eat it now, or **resist** **temptation** for about 15 minutes and **earn** two. **Impulsive** children often **surrender** **instantly**; **resolute** ones **hold out**.
+Picture a **nursery school** on **Stanford**'s **campus** in the late 1960s and early 1970s. A child of about four or five sits **in solitude** before one treat, facing a **blunt** **bargain**: eat it now, or **resist** **temptation** for about 15 minutes and **earn** two. **Impulsive** children often **surrender** **instantly**; **resolute** ones **hold out**.
 
-**Follow-ups** made the test **legendary**. A 1990 study in Developmental Psychology found that, as **adolescents**, longer waiters tended to **attain** higher scores on the SAT, a US college-entrance exam. A **trivial** **snack** became an **emblem** of **virtue**, and **restraint** at four was **glorified** as a **predictor** of **destiny**.
+**Follow-ups** made the test **legendary**. A 1990 study in Developmental **Psychology**  found that, as **adolescents**, longer waiters tended to **attain** higher scores on the SAT, a US **college-entrance exam**.  A **trivial** **snack** became an **emblem** of **virtue**, and **restraint** at four was **glorified** as a **predictor** of **destiny**.
 
 Yet the **foundation** was **precarious**. Only **a few dozen** children entered the SAT analysis, **predominantly** the sons and daughters of Stanford **faculty** and **postgraduate** students. Such a **homogeneous**, **privileged** group could **scarcely** represent **ordinary** families, and **prosperous** homes may **foster** patience and academic success **alike**.
 
@@ -14,9 +14,9 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 
 ## 中文
 
-想象一下一所**幼儿园**(nursery school)，位于斯坦福大学**校园**(campus)里，时间是20世纪60年代末至70年代初。一个大约四五岁的孩子**独自**(in solitude)坐在一份零食前，面对一桩**直截了当的**(blunt)**交易**(bargain)：现在就吃，或者**抵挡**(resist)**诱惑**(temptation)约15分钟，就能**挣得**(earn)两份。**冲动的**(Impulsive)孩子往往**立刻**(instantly)**缴械投降**(surrender)；**意志坚定的**(resolute)孩子则**坚持抵抗，拒不妥协**(hold out)。
+想象一下一所**幼儿园**(nursery school)，位于**斯坦福大学**(Stanford)**校园**(campus)里，时间是20世纪60年代末至70年代初。一个大约四五岁的孩子**独自**(in solitude)坐在一份零食前，面对一桩**直截了当的**(blunt)**交易**(bargain)：现在就吃，或者**抵挡**(resist)**诱惑**(temptation)约15分钟，就能**挣得**(earn)两份。**冲动的**(Impulsive)孩子往往**立刻**(instantly)**缴械投降**(surrender)；**意志坚定的**(resolute)孩子则**坚持抵抗，拒不妥协**(hold out)。
 
-**后续研究**(Follow-ups)让这项测验**名声大噪**(legendary)（被传为经典）。1990年《发展心理学》上的一项研究发现，到了**青少年**(adolescents)时期，等得更久的孩子往往在SAT中**取得**(attain)更高分数，（也就是）美国的高考（大学录取考试）。一份**微不足道的**(trivial)**零食**(snack)成了**美德**(virtue)的**象征**(emblem)，而四岁时的**克制**(restraint)被**美化**(glorified)为**命运**(destiny)的**预测指标**(predictor)。
+**后续研究**(Follow-ups)让这项测验**名声大噪**(legendary)（被传为经典）。1990年《发展**心理学**(Psychology)》上的一项研究发现，到了**青少年**(adolescents)时期，等得更久的孩子往往在SAT中**取得**(attain)更高分数，（也就是）美国的**高考**(college-entrance exam)（大学录取考试）。一份**微不足道的**(trivial)**零食**(snack)成了**美德**(virtue)的**象征**(emblem)，而四岁时的**克制**(restraint)被**美化**(glorified)为**命运**(destiny)的**预测指标**(predictor)。
 
 然而，这种**根据**(foundation)（该研究结论的根基）**并不牢靠**(precarious)（站不住脚）。只有**几十个**(a few dozen)孩子进入了SAT分析，**主要**(predominantly)是斯坦福**教师**(faculty)（全体教员）和**研究生**(postgraduate)的子女。如此**同质的**(homogeneous)、**优越的**(privileged)群体**几乎不**(scarcely)能代表**普通的**(ordinary)家庭，而且**富裕的**(prosperous)家庭可能**既能培养**(foster)耐心也能促成学业成就（**二者兼顾**(alike)）。
 
@@ -24,10 +24,13 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 
 这项测验并非**毫无价值**(worthless)；它或许仍能**反映**(reflect)某些**实质性的**(substantive)东西。2013年1月发表于《认知》的研究补充了（一些）**背景**(context)：刚被成年人**辜负**(betrayed)信任的孩子，等待的时间**明显**(markedly)短于与守信的成年人相处的**同龄人**(peers)。孩子能**坚持**(perseveres)多久，部分**取决于**(depends on)身边的大人看起来有多**可信**(trustworthy)。
 
+（简述：▸实验：四五岁孩子面前放一份零食，可以马上吃，也可以独自等约15分钟换两份。研究者记录等待时间，后来再追踪这些孩子。▸走红：早期追踪发现，等得久的孩子后来在美国大学入学考试SAT中成绩较高，于是这个测试被宣传成未来成功的预测器。▸局限：早期SAT分析只有数十名孩子，多来自斯坦福大学教职工和研究生家庭。家庭条件可能同时帮助孩子培养耐心、取得好成绩，不能把成绩全归功于自制力。▸复核：2018年研究追踪900多名不同背景儿童，先发现等待与成绩的关联只有早期的一半；再考虑家庭条件和原有理解、学习能力，关联又减弱约三分之二。结果削弱了原来的推论，却不等于两者毫无关系。▸信任：2013年实验发现，刚遇到不守信大人的孩子等得更短。等待也受周围环境和成人是否可信影响，不能凭一次测试断定孩子的命运。）
+
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
 | nursery school | 本文：幼儿园；n. 幼儿园，托儿所（nursery school；a day nursery）；育婴室 | 1 |
+| Stanford | 本文：斯坦福大学；n. 斯坦福（美国大学名称的简称；Stanford University 斯坦福大学） | 1 |
 | campus | 本文：校园；n. 校园（on campus；a university campus） | 1 |
 | in solitude | 本文：独自；n. 独处，孤独（in solitude；peace and solitude） | 1 |
 | blunt | 本文：直截了当的；adj. 直截了当的，生硬的（a blunt question/refusal）；钝的 | 1 |
@@ -42,6 +45,8 @@ The test is not **worthless**; it may still **reflect** something **substantive*
 | hold out | 本文：坚持抵抗，拒不妥协；phr. 坚持，不屈服（hold out against pressure）；维持，够用 | 1 |
 | Follow-ups | 本文：后续研究；n. (follow-up) 后续研究，追踪（a follow-up study/visit） | 2 |
 | legendary | 本文：名声大噪；adj. 传奇的，非常著名的（a legendary figure/performance） | 2 |
+| Psychology | 本文：心理学；n. 心理学（developmental psychology 发展心理学；study psychology 学习心理学） | 2 |
+| college-entrance exam | 本文：高考；n. 大学入学考试（a college-entrance exam；take a college-entrance exam 参加大学入学考试） | 2 |
 | adolescents | 本文：青少年；n. (adolescent) 青少年（troubled adolescents）；adj. 青春期的 | 2 |
 | attain | 本文：取得；v. 获得，达到（attain a goal/level/success） | 2 |
 | trivial | 本文：微不足道的；adj. 微不足道的，琐碎的（a trivial matter/detail） | 2 |

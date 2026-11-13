@@ -1,130 +1,473 @@
-import json,re,glob,os
-# 第65篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
-# 2026-11-07 重点词中文沿用文章定稿（铁律）；中英尽量对齐、标色优先（用户 11-07 原话，篇“61-65”）；不用破折号（T36）；三项并列加牛津逗号（T18）。
-S=[
-(1,[[[("On Spitsbergen, in Norway's Svalbard **archipelago**,","在挪威斯瓦尔巴**群岛**(archipelago)的斯匹次卑尔根岛上，")],
-     "（in Norway's Svalbard archipelago：同位语，补充说明 Spitsbergen 的位置）"],
-    [[("a **corridor**","一条**通道**(corridor)"),("has been","已"),("**drilled** deep","深深地**钻入**(drilled)"),("into a","一面"),("**frosted**","**结霜的**(frosted)"),("**hillside**.","**山坡**(hillside)。")],
-     "（has been drilled：现在完成时的被动语态）"]]),
-(1,[[[("At its end,","在通道的尽头，"),("**cartons**","好几**纸箱**(cartons)"),("of **precious**","的**珍贵的**(precious)"),("seed","种子")],
-     "（its 指 corridor）"],
-    [[("sit **silently**","**静静地**(silently)坐落于"),("in a","一座"),("**sub-zero**","**零度以下的**(sub-zero)"),("**repository**,","**储藏库**(repository)中，")]],
-    [[("**insulated** by **permanently** frozen ground.","由**永久**(permanently)冻结的土层**隔热**(insulated)保存。")],
-     "（insulated by…：过去分词短语，补充说明 repository）"]]),
-(2,[[[("The Svalbard","斯瓦尔巴"),("Global","全球"),("**Seed Vault**","**种子库**(Seed Vault)"),("opened near Longyearbyen in February 2008","于2008年2月在朗伊尔城附近启用，")]],
-    [[("to **insure** crops such as **beans**, rice, and wheat","**为**(insure against)**豆类**(beans)、水稻和小麦等作物**投保**(insure against)，")],
-     "（to insure…：不定式作目的状语；\ninsure A against B：为 A 投保，防范 B（被隔开的搭配））"],
-    [[("**against**","以**防范**(insure against)"),("the **horrors** people **dread**,","人们**非常害怕**(dread)的**可怕经历**(horrors)，"),("from **atomic** war","从**原子核**(atomic)战争"),("to disease.","到疾病。")],
-     "（people dread：定语从句，省略了关系代词，修饰 horrors；\nfrom A to B：从 A 到 B）"]]),
-(2,[[[("It has","它有"),("**ample**","**充足的**(ample)"),("room","空间，"),("for about","供约"),("four and a half million","450万份"),("samples.","样本使用。")],
-     "（这就是大名鼎鼎的“末日种子库”。\n建在北极冻土里，存着各种农作物的种子。\n万一以后发生核战争或者超级大瘟疫导致绝种了，\n人类还能靠它拿出来重新种地。）"]]),
-(2,[[[("**Essentially**","**本质上**(Essentially)，"),("the planet's","作为这颗星球"),("**ultimate**","**终极的**(ultimate)"),("**backup**,","**备份**(backup)，")],
-     "（Essentially the planet's ultimate backup：\n名词短语作状语，补充说明 it）"],
-    [[("it","它"),("is run like","像"),("a bank's **safe-deposit box**.","银行的**保险箱**(safe-deposit box)一样被运营。")]]]),
-(2,[[[("**Depositors**","**存放者**(Depositors)"),("keep","保有"),("**ownership**,","**所有权**(ownership)，")]],
-    [[("and only they","并且只有他们"),("can take their seeds out.","能取出他们的种子。")],
-     "（take A out：把 A 取出）"]]),
-(3,[[[("The first","第一次"),("**retrieval**","**取回**(retrieval)种子"),("came not","不是在"),("after an **asteroid**","**小行星**(asteroid)"),("strike","撞击后，")],
-     "（not A but B：不是 A，而是 B）"],
-    [[("but","而是在"),("amid **strife** on the ground.","地面的**纷争**(strife)中发生的。")]]]),
-(3,[[[("ICARDA,","ICARDA，"),("a","一个"),("research","研究"),("centre","中心，"),("whose **gene bank**","它的**基因库**(gene bank)"),("stood","坐落于"),("near Aleppo,","阿勒颇附近，")],
-     "（bank：库，存放某类东西备用的地方，\n如 gene bank 基因库、seed bank 种子库、\nblood bank 血库、data bank 数据库）"],
-    [[("had moved its **headquarters** to Beirut during Syria's **civil war**.","在叙利亚**内战**(civil war)期间已将其**总部**(headquarters)迁至贝鲁特。")]]]),
-(3,[[[("In September 2015","2015年9月，"),("it **asked for**","它**索要了**(asked for)"),("about 116,000 samples,","约11.6万份样本，")]],
-    [[("130 of the 325 boxes it had sent to the **Arctic** before the **hostilities**.","也就是它在**战争**(hostilities)之前送往**北极**(Arctic)的325箱中的130箱。")],
-     "（130 of the 325 boxes：同位语，补充说明 samples；\nit had sent…：定语从句，修饰 boxes）"]]),
-(3,[[[("They included","它们包括"),("**robust** **strains** of wheat and **barley** **tolerant of** drought and heat.","**耐受**(tolerant of)干旱和高温**的**(tolerant of)**强健**(robust)小麦和**大麦**(barley)**品种**(strains)。")],
-     "（tolerant of drought and heat：后置定语，\n修饰 strains；\ntolerant of：耐……的）"]]),
-(4,[[[("In Lebanon and Morocco,","在黎巴嫩和摩洛哥，"),("ICARDA","ICARDA"),("**sowed**","**种下了**(sowed)"),("the seeds,","这些种子，")]],
-    [[("and **vigorous** plants","而且**强健的**(vigorous)植株"),("**sprouted**","**发芽了**(sprouted)，"),("to **regenerate**","从而**重建了**(regenerate)"),("its collection.","它的种子收藏库。")],
-     "（他们把这些种子种下去，长出了非常棒的新庄稼。\n靠着这些新庄稼结出的种子，\n他们原本被战火毁掉的“种子库存”，终于重新建起来了。）"]]),
-(4,[[[("Once","一旦"),("**multiplication**","**繁育**(multiplication)"),("had gone far enough,","进行得足够充分，")],
-     "（once：一旦……就，引导时间状语从句）"],
-    [[("a **homecoming**","一场**回归之旅**(homecoming)"),("began in 2017,","便于2017年开始了，"),("**consignment**","**一批**(consignment)"),("by consignment,","接一批地")],
-     "（consignment by consignment：一批接一批）"],
-    [[("**restocking**","**补充着**(restocking)"),("the Arctic","这座北极"),("**stronghold**.","**堡垒**(stronghold)。")],
-     "（restocking…：现在分词短语作伴随状语）"]]),
-(5,[[[("That same","同一"),("year","年"),("brought","还有过"),("a **scare**.","一场**虚惊**(scare)。")]]]),
-(5,[[[("After **record-breaking** warmth,","在一段**破纪录的**(record-breaking)温暖天气之后，")]],
-    [[("meltwater","融水"),("ran into","流进"),("the roughly","大约"),("100-metre","100米长的"),("entrance","入口"),("**tunnel**","**隧道**(tunnel)，"),("and **solidified**.","随后**凝固**(solidified)成冰。")]]]),
-(5,[[[("The **intrusion**","这次（冰水的）**侵入**(intrusion)"),("**stopped short of**","**没有到达**(stopped short of)"),("the seeds,","种子所在的位置，")],
-     "（stop short of：没有到达）"],
-    [[("which","它们"),("stayed **safely**","**安全地**(safely)保持在"),("at minus 18","零下18"),("degrees Celsius.","摄氏度。")],
-     "（which…：非限制性定语从句，修饰 seeds）"]]),
-(5,[[[("Norway","挪威"),("**waterproofed** the tunnel","给隧道做了**防水**(waterproofed)，"),("and dug","并挖了"),("**drainage**","**排水**(drainage)用的"),("**ditches**.","**沟渠**(ditches)。")]]]),
-(6,[[[("A **haven** built against the **apocalypse**","一座为抵御**世界末日**(apocalypse)而建的**避难所**(haven)，")],
-     "（built against the apocalypse：过去分词短语作后置定语，\n修饰 haven）"],
-    [[("had a **weakness** at its own entrance,","在自家入口处却有一个**弱点**(weakness)，"),("and","而"),("warmer","更暖的"),("weather","天气"),("found it.","找到了它。")],
-     "（it 指 weakness）\n"
-     "（简述：\n"
-     "建库：2008年，挪威建了这座“末日种子库”，如同银行顶级保险箱，只有存放者能取。\n"
-     "首启：第一次取种不是为了防小行星，而是因为叙利亚内战。2015年，流亡的研究中心取走11.6万份种子。\n"
-     "续命：他们在中东重新种下并繁育成功。2017年起，新种子被分批送还北极。\n"
-     "意外：北极也遭异常高温，融水倒灌进隧道（万幸结冰没伤到种子）。挪威赶紧加做防水、挖排水沟补救。）"]]),
-]
-G={
- "S2 insulated by permanently frozen ground":"对齐不了：被动结构 insulated by…，中文“四周永久冻结的土层为它们隔热保冷”施事提前作主语，“隔热”必须放到最后；两个重点词中文先后与英文相反",
- "S3 opened near Longyearbyen in February 2008":"对齐不了：地点、时间状语 near Longyearbyen、in February 2008，中文“于2008年2月在朗伊尔城附近”必须放到动词“启用”前",
- "S3 to insure crops such as beans, rice, and wheat":"对齐不了：insure A 中文“为 A 投保”，A 必须放到动词前；such as 列举中文“豆类、水稻、小麦等作物”必须提前",
- "S6 can take their seeds out":"对齐不了：take … out 被宾语隔开，中文“取出自己的种子”动词在前、宾语在后，只能整组",
- "S7 amid strife on the ground":"对齐不了：on the ground 是后置定语，修饰 strife，中文“地面上的纷争”必须提前；amid 中文“……之中”后置",
- "S8 ICARDA, a research centre":"对齐不了：a research centre 是 ICARDA 的同位语，中文机构全名“国际干旱地区农业研究中心”已含“研究中心”，名称不能拆",
- "S8 had moved its headquarters to Beirut during Syria's civil war":"对齐不了：时间状语 during Syria's civil war 中文“在叙利亚内战期间”必须放到句首；move A to B 中文“把 A 迁到 B”",
- "S9 130 of the 325 boxes it had sent to the Arctic before the hostilities":"对齐不了：130 of the 325 boxes 中文“325箱中的130箱”必须倒过来；it had sent… 是定语从句，修饰 boxes，中文必须提前",
- "S10 robust strains of wheat and barley tolerant of drought and heat":"对齐不了：tolerant of drought and heat 是后置定语，修饰 strains，中文“能耐受干旱和高温的……品种”必须提前；三个重点词中文先后与英文不同",
- "S11 In Lebanon and Morocco, ICARDA":"对齐不了：地点状语 In Lebanon and Morocco，中文“在黎巴嫩和摩洛哥”必须放到主语后；机构全名不能拆",
- "S12 had gone far enough":"对齐不了：go far enough 中文“达到足够规模”是整体说法，拆开不通；once 引导的从句中文“……后”后置",
- "S15 stopped short of":"对齐不了：stop short of 是固定说法“没有到达”，拆开不通",
- "S17 A haven built against the apocalypse":"对齐不了：built against the apocalypse 是后置定语，修饰 haven，中文“为抵御末日而建的避风港”必须提前；两个重点词中文先后与英文相反",
- "S17 had a weakness at its own entrance":"对齐不了：地点状语 at its own entrance，中文“在自家入口处”必须放到动词前",
-}
-DZ={
- "S1-1 On Spitsbergen, in Norway's Sv":"in Norway's Svalbard archipelago 是同位语，补充说明 Spitsbergen 的位置，中文“在挪威斯瓦尔巴群岛的斯匹次卑尔根岛上”大地名必须放前面",
- "S2-3 insulated by permanently froze":"被动结构 insulated by…，中文施事“永久冻结的土层”提前作主语，“隔热”必须放到最后",
- "S3-1 The Svalbard Global Seed Vault":"专名“斯瓦尔巴全球种子库”，拆开不通",
- "S3-1 opened near Longyearbyen in Fe":"地点、时间状语中文必须放到动词“启用”前",
- "S3-2 to insure crops such as beans,":"insure A 中文“为 A 投保”，such as 列举中文“豆类、水稻、小麦等作物”必须提前",
- "S6-2 can take their seeds out.":"take … out 被宾语隔开，中文“取出自己的种子”动词在前，只能整组",
- "S7-2 amid strife on the ground.":"on the ground 是后置定语，修饰 strife，中文“地面上的纷争”必须提前",
- "S8-2 had moved its headquarters to ":"时间状语 during Syria's civil war 中文“在叙利亚内战期间”必须放到句首",
- "S9-2 130 of the 325 boxes it had se":"130 of the 325 boxes 中文“325箱中的130箱”必须倒过来，定语从句 it had sent… 中文必须提前",
- "S10-1 robust strains of wheat and ba":"tolerant of drought and heat 是后置定语，修饰 strains，中文“能耐受干旱和高温的……品种”必须提前",
- "S11-1 In Lebanon and Morocco, ICARDA":"地点状语中文“在黎巴嫩和摩洛哥”必须放到主语后；机构全名不能拆",
- "S12-2 a homecoming began in 2017,":"时间状语 in 2017 中文“2017年”必须放到动词“开始了”前",
- "S17-1 A haven built against the apoc":"built against the apocalypse 是后置定语，修饰 haven，中文“为抵御末日而建的避风港”必须提前",
- "S4-1 four and a half million":"数词“四百五十万”中文写作“450万”，一个数不能拆",
- "S17-2 had a weakness at its own entr":"地点状语 at its own entrance 中文“在自家入口处”必须放到动词前",
-}
-G["S5 is run like"]="对齐不了：is run like 中文只剩“像”，“被运营”必须放到比较对象后，拆开不通"
-G["S5 a bank's safe-deposit box"]="对齐不了：is run like A 中文“像 A 一样被运营”，“一样被运营”必须放到比较对象后"
-DZ["S5-2 a bank's safe-deposit box."]="is run like A 中文“像 A 一样被运营”，“一样被运营”必须放到比较对象后；safe-deposit box 是一个词“保险箱”，不能拆"
-G["S12 a homecoming began in 2017"]="对齐不了：时间状语 in 2017，中文“2017年”必须放到动词“开始了”前"
-# S8 非人声 [3.865, 4.184625]：2026-11-07 逐 2.5 ms 实测（dossier_65 #14）：Aleppo, 后停顿 3.81–3.86 删除段之后，3.87–4.17 是吸气（-41～-55 dB、重心 2.2–3.0 kHz、低频 -12～-25 dB、周期 ≤0.3），4.1725–4.19 低谷 -55 dB，4.2025 起 had 的 /h/；止点过零 4.184625，h 不动
-# S9 非人声 [6.305, 6.480083]：同上（#18–#21）：samples, 后删除段止 6.305，6.315–6.475 吸气（-43～-55 dB、重心 1.8–2.3 kHz、低频 -13～-26 dB），6.48–6.55 是 one 的 /w/ 浊音前导（低频 -1～-2 dB）保留；止点过零 6.480083
-# S15 非人声 [2.215, 2.482542]：同上（#33–#36）：seeds, 后删除段止 2.215，2.22–2.48 吸气（-45～-57 dB、重心 1.7–2.3 kHz、低频 -10～-17 dB），2.49–2.54 是 which 的 /w/ 浊音前导（低频 -0.5～-3.5 dB）保留；止点过零 2.482542
-# S17 非人声 [6.732, 6.80] + 词尾除阻 句末 6.70 t：同上（#39）：found it. 的 /t/ 闭塞 6.70–6.73（-62～-67 dB），6.735–6.775 原声除阻只有 -41 dB、2 kHz 以上 -45.7 dB（A21 不合格），加强 6 dB 也不够；删掉这一下，再由 词尾辅音核对.py --写入 移植一下合格的 /t/，只剩一下除阻
-CONF={"合组":G,"对齐":DZ,
-"同词异译":{"tolerant of：的/耐受":"不是两种译法：tolerant of 的意思“耐……的”被“干旱和高温”隔开，“耐受”和“的”是同一个意思的两部分（T23）","insure against：为/投保/防范":"不是两种译法：insure A against B 的意思“为……投保，防范……”被“豆类、水稻、小麦等作物”隔开，“为”“投保”“防范”是同一个意思的三部分（T23）"},
-"们":{"S3-3 **(insure against)人们**":"们不在加粗里，是“人们”（people），用户原话“以防范人们非常害怕的”；被报出只因紧跟在 **防范**(insure against) 后面","S2-3 **(permanently)冻结的土层为它们**":"们不在加粗里，是代词“它们”（指种子），沿用文章定稿“为它们隔热保冷”；被报出只因紧跟在加粗后面"},
-"数字":{"S9-1 116,000":"about 116,000 samples 译作“约11.6万份样本”，数值正确，读法 one hundred and sixteen thousand"},
-"方向":{"S7-1 after→小行星":"after an asteroid strike 中文“小行星撞击之后”，“之后”在 strike 下面，方向一致"},
-"短语":{"S10 strains … of":"不是搭配：strains of wheat and barley 是“小麦和大麦品种”，of 引出品种所属的作物，strain 单独就是“品种”",
- "S1 drilled … into":"不是搭配：into a frosted hillside 只表示方向（钻进山坡），drill 单独就是“钻”，中文“钻进”沿用文章定稿",
- "S2 cartons … of":"不是搭配：cartons of seed 是“一箱箱种子”的量词结构，carton 单独就是“纸箱”",
- "S2 insulated … by":"不是搭配：by 引出被动的施事（永久冻土），insulate 单独就是“隔热”",
- "S3 dread … from":"不是搭配：from 属于 from atomic war to disease（从……到……），和 dread 无关",
- "S3 dread … to":"不是搭配：to 属于 from atomic war to disease，和 dread 无关",
- "S11 sowed … to":"不是搭配：to 属于不定式 to regenerate（结果状语），和 sowed 无关",
- "S11 sprouted … to":"不是搭配：to 属于不定式 to regenerate（结果状语），sprout 单独就是“萌发”",
- "S12 consignment … by":"不是搭配：consignment by consignment 是同一个名词重复（一批接一批），by 不和重点词组成短语，consignment 单独就是“一批货”"}}
-out={"no":"65","title_en":"The Day the Doomsday Vault Opened","title_zh":"末日种子库的第一次取种","title_fx":{"hl":["Doomsday","Vault"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
-     "高亮按实际开口":True,"高亮开口门槛":40,
-     "术语":{"Spitsbergen":"斯匹次卑尔根岛","Norway":"挪威","Svalbard":"斯瓦尔巴","Svalbard Global Seed Vault":"斯瓦尔巴全球种子库","Longyearbyen":"朗伊尔城","ICARDA":"ICARDA","Aleppo":"阿勒颇","Beirut":"贝鲁特","Syria":"叙利亚","Arctic":"北极","Lebanon":"黎巴嫩","Morocco":"摩洛哥","Celsius":"摄氏"}}
-out.update({"非人声区间": {"S1": [[3.565, 3.910792, "紧贴词头"]], "S3": [[5.46, 5.8]], "S6": [[1.815, 2.036125, "紧贴词头"]], "S7": [[3.46, 3.72]], "S9": [[2.03, 2.276, "紧贴词头"], [6.305, 6.480083, "紧贴词头"]], "S10": [[2.765, 3.045]], "S11": [[1.692, 1.98, "紧贴词尾"]], "S12": [[5.96, 6.275]], "S16": [[1.63, 1.875]], "S8": [[3.865, 4.184625, "紧贴词头"]], "S15": [[2.215, 2.482542, "紧贴词头"]], "S17": [[6.732, 6.8]]}, "词尾除阻": {"S6": {"句末": [4.235, "t"]}, "S12": {"3": [8.11, "t"]}, "S17": {"句末": [6.7, "t"]}}, "除阻加强": {"S5": {"1": [2.29, 2.34, 3.0]}}})   # 声音程序写进脚本的区间、除阻＋手动实测（S8/S9/S15 停顿后吸气、S17 句末 it 弱除阻删掉后移植），并进 gen65
-out.update({"分段增益dB":{"S1":{"3":1.5},"S3":{"4":1.5},"S10":{"1":1.5}},"高亮开始":{"S3 第3块":30.89}})   # 2026-11-10 主会话定（守则22）手写分段增益修残留：S2 按程序不动（手写 +2.0 被 句内响度.py 撤回，交主会话改程序）；S10 句子增益 +1 撤掉（叠上分段超 ±2 LU）；S3 第4段（核查口径第2段）+1.5；S1 第3段、S10 句末骤降 +1.5。2026-11-10 全片逐段比最响处：S2 第1段 At its end, 最响比邻段低约 7 dB（同类短段被自动调平 -4），试补 +2.0 被 句内响度.py 撤回且连带 S10 句末骤降 5.2 dB，退回（报主会话 K133 待修）。2026-11-10 用户听出 S8 开头 ICARDA 声音变小又变大：S8 第1段原有 分段增益 -3.5 叠上自动调平 -4 共 -7.5 dB，最响 -8.8 比邻段 -5.5／-4.9 低约 4 dB，改为 -1.5（合计 -5.5：段响度比邻段 +2.0 LU 过门、句内响度.py 不再自动写回 -3.5；最响 -6.8 比邻段低 1.3–1.9 dB。段响度 0.4 s 窗对 0.61 s 短段混进静音、量得偏低，是 -3.5 被反复写回的根因）；K129：S10 句末 and heat 比全片低 6.0 dB（S10 只有一段）整句补 +1.0（句子增益只许 ±1）；K130：S3 第2段（核查口径；出片分段第4段 33.56–35.67 from atomic war to disease）整段轻 1.6 LU、最响处低 5.1 LU 补 +1.5；L14：S3 第3块 against 实测 30.89 开口（30.70–30.88 数字静音，30.89 -40 dB、30.90 -19 dB），自动取到 31.38（the 前的低谷）晚 0.49 s
-CONF.update({"非人声": {"11.03–11.04s": {"配音指纹": "130d1dd4adb4", "依据": "S1 w 7.515–7.530s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #1 噗声）：S1 hillside. 的 /d/ 浊音闭塞（词的时长 6.941–7.651 内，低频占比 -1.4 dB）；词的一部分", "实测": {"最响dB": -33.0, "重心Hz": 2609, "周期": 0.0, "低频dB": -1.4}}, "20.81–20.90s": {"配音指纹": "130d1dd4adb4", "依据": "S2 w 8.545–8.630s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #2 呼吸声）：S2 ground. 词内 n→d 鼻音浊音（词 8.225–8.771 内，周期 0.28、低频 -4 dB）；词的一部分", "实测": {"最响dB": -36.3, "重心Hz": 1968, "周期": 0.28, "低频dB": -4.1}}, "20.95–20.98s": {"配音指纹": "130d1dd4adb4", "依据": "S2 w 8.680–8.710s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #3 孤立杂音）：S2 ground. 句末 /d/ 除阻（词 8.225–8.771 内）；词尾", "实测": {"最响dB": -36.0, "重心Hz": 2035, "周期": 0.21, "低频dB": -14.2}}, "35.41–35.53s": {"配音指纹": "130d1dd4adb4", "依据": "S3 w 13.370–13.495s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #4 呼吸声）：S3 disease. 句末 /z/ 清化擦音（重心 3.3 kHz，词 12.878–13.675 内）；词尾", "实测": {"最响dB": -35.0, "重心Hz": 3306, "周期": 0.19, "低频dB": -2.9}}, "43.20–43.22s": {"配音指纹": "130d1dd4adb4", "依据": "S5 w 2.265–2.285s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #5 噗声）：S5 backup, 词内 k→ʌ 过渡的弱声（-53 dB，词 1.869–2.725 内）；词的一部分", "实测": {"最响dB": -52.7, "重心Hz": 2642, "周期": 0.24, "低频dB": -1.2}}, "47.46–47.48s": {"配音指纹": "130d1dd4adb4", "依据": "S6 w 0.010–0.030s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #6 噗声）：S6 Depositors 词头 /d/ 浊音杠（周期 0.21、低频 -3 dB，紧接 0.079 起音）；词头的一部分", "实测": {"最响dB": -36.9, "重心Hz": 1834, "周期": 0.21, "低频dB": -3.1}}, "49.16–49.20s": {"配音指纹": "130d1dd4adb4", "依据": "S6 w 1.710–1.750s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #7 孤立杂音）：S6 ownership, 词内 ʃ→ɪ（词 1.134–2.065 内）；词的一部分", "实测": {"最响dB": -32.2, "重心Hz": 1965, "周期": 0.25, "低频dB": -6.3}}, "49.60–49.62s": {"配音指纹": "130d1dd4adb4", "依据": "S6 w 2.035–2.050s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #8 噗声）：S6 ownership, 的 /p/ 除阻（2.035–2.05，词结束 2.065 之前，无周期）；词尾塞音除阻", "实测": {"最响dB": -44.3, "重心Hz": 2625, "周期": 0.0, "低频dB": -0.8}}, "51.80–51.87s": {"配音指纹": "130d1dd4adb4", "依据": "S6 w 4.230–4.300s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #9 孤立杂音）：S6 out. 句末 /t/ 除阻（重心 4.7 kHz、低频 -26 dB，词 3.904–4.311 内）；词尾塞音除阻", "实测": {"最响dB": -31.0, "重心Hz": 4720, "周期": 0.15, "低频dB": -26.1}}, "53.06–53.08s": {"配音指纹": "130d1dd4adb4", "依据": "S7 w 0.020–0.035s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #10 噗声）：S7 The 词头 /ð/ 起音的浊擦前导（低频 -2.5 dB，紧接 0.07 起音）；词头的一部分", "实测": {"最响dB": -37.6, "重心Hz": 1946, "周期": 0.0, "低频dB": -2.5}}, "56.40–56.45s": {"配音指纹": "130d1dd4adb4", "依据": "S7 w 3.355–3.410s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #11 孤立杂音）：S7 strike 停顿前 /k/ 除阻（重心 4.4 kHz，词 2.959–3.656 内）；词尾塞音除阻", "实测": {"最响dB": -31.1, "重心Hz": 4370, "周期": 0.19, "低频dB": -13.5}}, "58.23–58.30s": {"配音指纹": "130d1dd4adb4", "依据": "S7 w 5.350–5.430s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #12 呼吸声）：S7 ground. 词内 n→d 鼻音浊音（重心 1.2 kHz、低频 -1.7 dB，词 4.926–5.515 内）；词的一部分", "实测": {"最响dB": -35.1, "重心Hz": 1230, "周期": 0.23, "低频dB": -1.7}}, "58.26–58.30s": {"配音指纹": "130d1dd4adb4", "依据": "S7 w 5.385–5.425s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #13 噗声）：S7 ground. 的 /d/ 浊音闭塞（周期 0.32、低频 -2.2 dB，词内）；词的一部分", "实测": {"最响dB": -35.1, "重心Hz": 1314, "周期": 0.32, "低频dB": -2.2}}, "65.90–65.93s": {"配音指纹": "130d1dd4adb4", "依据": "S8 w 6.335–6.365s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #14 噗声）：S8 Beirut→during：during 的 /d/ 浊音杠（周期 0.47、低频 -0.6 dB）；词头的一部分", "实测": {"最响dB": -48.8, "重心Hz": 2429, "周期": 0.47, "低频dB": -0.6}}, "74.94–75.00s": {"配音指纹": "130d1dd4adb4", "依据": "S9 w 6.500–6.555s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #15 噗声）：S9 one 的 /w/ 浊音前导（低频 -0.3 dB，紧接 6.555 起音；删吸气时有意保留）；词头的一部分", "实测": {"最响dB": -31.9, "重心Hz": 2400, "周期": 0.13, "低频dB": -0.3}}, "79.64–79.67s": {"配音指纹": "130d1dd4adb4", "依据": "S9 w 11.205–11.230s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #16 孤立杂音）：S9 Arctic 词内 /k/ 闭塞后的弱声（词 11.016–11.487 内）；词的一部分", "实测": {"最响dB": -44.8, "重心Hz": 1913, "周期": 0.17, "低频dB": -5.9}}, "79.87–79.91s": {"配音指纹": "130d1dd4adb4", "依据": "S9 w 11.430–11.465s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #17 孤立杂音）：S9 Arctic 句中 /k/ 除阻（词 11.016–11.487 内）；词尾塞音除阻", "实测": {"最响dB": -35.7, "重心Hz": 1136, "周期": 0.21, "低频dB": -5.2}}, "79.89–79.91s": {"配音指纹": "130d1dd4adb4", "依据": "S9 w 11.445–11.465s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #18 噗声）：S9 Arctic→before：before 的 /b/ 浊音杠（低频 -1.2 dB）；词头的一部分", "实测": {"最响dB": -44.0, "重心Hz": 1315, "周期": 0.25, "低频dB": -1.2}}, "81.04–81.14s": {"配音指纹": "130d1dd4adb4", "依据": "S9 w 12.600–12.700s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #19 呼吸声）：S9 hostilities. 句末 /z/ 清化擦音（重心 2.7 kHz，词 11.959–12.865 内）；词尾", "实测": {"最响dB": -35.2, "重心Hz": 2717, "周期": 0.22, "低频dB": -2.5}}, "94.94–95.02s": {"配音指纹": "130d1dd4adb4", "依据": "S11 w 7.120–7.205s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #20 呼吸声）：S11 collection. 句末 /n/ 鼻音收尾（周期 0.33、低频 -3.2 dB，词 6.642–7.275 内）；词尾", "实测": {"最响dB": -35.6, "重心Hz": 1605, "周期": 0.33, "低频dB": -3.2}}, "103.12–103.20s": {"配音指纹": "130d1dd4adb4", "依据": "S12 w 7.065–7.145s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #21 呼吸声）：S12 consignment 词尾 /nt/（词 6.342–7.142 内）；词的一部分", "实测": {"最响dB": -35.9, "重心Hz": 1218, "周期": 0.29, "低频dB": -3.9}}, "103.19–103.22s": {"配音指纹": "130d1dd4adb4", "依据": "S12 w 7.125–7.165s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #22 噗声）：S12 by 的 /b/ 浊音杠（周期 0.67、低频 -0.1 dB，重心 0.9 kHz，紧接 7.192）；词头的一部分", "实测": {"最响dB": -30.9, "重心Hz": 868, "周期": 0.67, "低频dB": -0.1}}, "106.56–106.59s": {"配音指纹": "130d1dd4adb4", "依据": "S12 w 10.310–10.340s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #23 噗声）：S12 stronghold. 的 /d/ 浊音闭塞（周期 0.52，词 9.692–10.455 内）；词尾的一部分", "实测": {"最响dB": -40.9, "重心Hz": 1937, "周期": 0.52, "低频dB": -2.2}}, "117.58–117.70s": {"配音指纹": "130d1dd4adb4", "依据": "S14 w 7.100–7.220s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #24 呼吸声）：S14 solidified. 词尾 aɪ→d 过渡（词 6.448–7.321 内）；词的一部分", "实测": {"最响dB": -35.8, "重心Hz": 3426, "周期": 0.26, "低频dB": -5.7}}, "117.67–117.70s": {"配音指纹": "130d1dd4adb4", "依据": "S14 w 7.195–7.220s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #25 噗声）：S14 solidified. 的 /d/ 浊音闭塞（周期 0.38、低频 -1.2 dB）；词尾的一部分", "实测": {"最响dB": -42.5, "重心Hz": 1647, "周期": 0.38, "低频dB": -1.2}}, "117.71–117.74s": {"配音指纹": "130d1dd4adb4", "依据": "S14 w 7.235–7.260s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #26 孤立杂音）：S14 solidified. 句末 /d/ 除阻（词 6.448–7.321 内）；词尾", "实测": {"最响dB": -41.1, "重心Hz": 2149, "周期": 0.25, "低频dB": -14.4}}, "121.28–121.31s": {"配音指纹": "130d1dd4adb4", "依据": "S15 w 2.485–2.525s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #27 噗声）：S15 which 的 /w/ 浊音前导（低频 -0.2 dB，紧接 2.573 起音；删吸气时有意保留）；词头的一部分", "实测": {"最响dB": -46.1, "重心Hz": 1978, "周期": 0.36, "低频dB": -0.2}}, "128.47–128.50s": {"配音指纹": "130d1dd4adb4", "依据": "S16 w 2.895–2.925s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #28 噗声）：S16 ditches 的 /d/ 浊音杠（周期 0.48、低频 -0.1 dB，drainage 后紧接）；词头的一部分", "实测": {"最响dB": -36.3, "重心Hz": 1398, "周期": 0.48, "低频dB": -0.1}}, "131.81–131.83s": {"配音指纹": "130d1dd4adb4", "依据": "S17 w 1.600–1.615s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #29 噗声）：S17 apocalypse 词内弱声（-50 dB，词 1.571–2.316 内）；词的一部分", "实测": {"最响dB": -50.0, "重心Hz": 2201, "周期": 0.0, "低频dB": -0.3}}, "137.22–137.28s": {"配音指纹": "130d1dd4adb4", "依据": "S17 w 6.705–6.765s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #30 孤立杂音）：S17 it. 句末 /t/：词尾辅音核对.py 移植的合格除阻（重心 4.8 kHz、低频 -25 dB，原声弱除阻已删）；词尾塞音除阻", "实测": {"最响dB": -31.0, "重心Hz": 4838, "周期": 0.15, "低频dB": -25.4}}}, "机器复听": {"S2": {"配音指纹": "130d1dd4adb4", "依据": "2026-11-07：precious seed sit：seed 的 /d/ 与 sit 的 /s/ 连读，small.en 听成 seeds；parakeet 听对；读音按脚本，非读错"}, "S3": {"配音指纹": "130d1dd4adb4", "依据": "2026-11-07：insure 美式读 /ɪnˈʃʊr/，与 ensure 同音（Merriam-Webster 两词同音），两路识别器按常见词拼成 ensure；读音正确"}, "S4": {"配音指纹": "130d1dd4adb4", "依据": "2026-11-07：four and a half million 两路识别器都写成数字“4.5 million”，and a half 已读出；读音正确"}, "S7": {"配音指纹": "130d1dd4adb4", "依据": "2026-11-07 实测 a.wav：amid 56.64–56.98，strife 的 /s/ 57.02–57.12（6 kHz）、/tr/ 57.14–57.20、aɪ 57.22–57.44、/f/ 57.46–57.52 全在；parakeet 把 amid strife 拼成 amidst，small.en 听对；非读错"}}, "高亮": {"S3 第2块": {"开始读": 27.78, "配音指纹": "130d1dd4adb4", "依据": "2026-11-07 直接读 work_65/a.wav 逐 10 ms：2008 的 /t/ 到 27.60，27.61–27.77 数字静音（逗号停顿），27.78 起 to 的 /t/（-54→-21 dB）；开始读 27.78，高亮 27.77 差 0.01 s；办法甲 27.60 落在上一词尾"}, "S3 第3块": {"开始读": 30.89, "配音指纹": "130d1dd4adb4", "依据": "2026-11-07 逐 10 ms：wheat 到 30.68，30.70–30.88 数字静音，30.89 起 against 的 ə（-40→-19 dB）；高亮 30.88 由 高亮开始 写定，差 0.01 s；办法甲 31.41 是 the 的开口，不对"}, "S7 第2块": {"开始读": 56.64, "配音指纹": "130d1dd4adb4", "依据": "2026-11-07 逐 10 ms：strike 的 /k/ 除阻到 56.46，56.47–56.62 数字静音，56.63–56.64 起 but 的 /b/（-58→-23 dB）；开始读 56.64，高亮 56.62 差 0.02 s；办法甲 56.44 落在 /k/ 除阻上"}}, "删除段": {"S1 raw 3.5450-3.9607": {"类型": "紧贴词头的非人声", "配音指纹": "130d1dd4adb4", "依据": "2026-10-15 删除段对应 非人声区间 [[3.565, 3.910792, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S3 raw 5.4450-5.8150": "2026-10-15 删除段对应 非人声区间 [[5.46, 5.8]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词", "S6 raw 1.7751-2.0561": {"类型": "紧贴词头的非人声", "配音指纹": "130d1dd4adb4", "依据": "2026-10-15 删除段对应 非人声区间 [[1.815, 2.036125, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S7 raw 3.4251-3.7650": "2026-10-15 删除段对应 非人声区间 [[3.46, 3.72]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词", "S9 raw 2.0500-2.2960": {"类型": "紧贴词头的非人声", "配音指纹": "130d1dd4adb4", "依据": "2026-10-15 删除段对应 非人声区间 [[2.03, 2.276, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S9 raw 6.1050-6.5000": {"类型": "紧贴词头的非人声", "配音指纹": "130d1dd4adb4", "依据": "2026-10-15 删除段对应 非人声区间 [[6.305, 6.480083, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S12 raw 5.9450-6.3200": "2026-10-15 删除段对应 非人声区间 [[5.96, 6.275]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}})   # 配音指纹 130d1dd4adb4 的逐处实测确认（疑点清单 dossier_65、删除段确认.py、高亮、机器复听）
-out["allow_clash"]=["tunnel","headquarters","Arctic","strains","asked for"]   # 用户 2026-11-10 原话（主会话转）：“我清点的词不用管，撞不撞车，全都留，全都留，全都特批。我专门说的这个加为重点词汇的这个所有的词全都这个重点特批。”
-CONF["删除段"]={"S1 raw 3.5450-3.9607": {"类型": "紧贴词头的非人声", "配音指纹": "130d1dd4adb4", "依据": "2026-10-15 删除段对应 非人声区间 [[3.565, 3.910792, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S3 raw 5.4450-5.8150": "2026-10-15 删除段对应 非人声区间 [[5.46, 5.8]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词", "S6 raw 1.7751-2.0561": {"类型": "紧贴词头的非人声", "配音指纹": "130d1dd4adb4", "依据": "2026-10-15 删除段对应 非人声区间 [[1.815, 2.036125, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S7 raw 3.4251-3.7650": "2026-10-15 删除段对应 非人声区间 [[3.46, 3.72]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词", "S9 raw 2.0500-2.2960": {"类型": "紧贴词头的非人声", "配音指纹": "130d1dd4adb4", "依据": "2026-10-15 删除段对应 非人声区间 [[2.03, 2.276, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S9 raw 6.1050-6.5000": {"类型": "紧贴词头的非人声", "配音指纹": "130d1dd4adb4", "依据": "2026-10-15 删除段对应 非人声区间 [[6.305, 6.480083, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S12 raw 5.9450-6.3200": "2026-10-15 删除段对应 非人声区间 [[5.96, 6.275]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}   # 130d1dd4adb4 删除段确认.py 重写
-import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+#!/usr/bin/env python3
+# Pure data frozen from the current approved JSON; shared helper/checkers unchanged.
+import os
+import sys
+
+S = [(1,
+  [[[("On Spitsbergen, in Norway's Svalbard **archipelago**,", '在挪威斯瓦尔巴**群岛**(archipelago)的斯匹次卑尔根岛上，')],
+    "（in Norway's Svalbard archipelago：同位语，补充说明 Spitsbergen 的位置）"],
+   [[('a **corridor**', '一条**通道**(corridor)'),
+     ('has been', '已'),
+     ('**drilled** deep', '深深地**钻入**(drilled)'),
+     ('into a', '一面'),
+     ('**frosted**', '**结霜的**(frosted)'),
+     ('**hillside**.', '**山坡**(hillside)。')],
+    '（has been drilled：现在完成时的被动语态）']]),
+ (1,
+  [[[('At its end,', '在通道的尽头，'),
+     ('**cartons**', '好几**纸箱**(cartons)'),
+     ('of **precious**', '的**珍贵的**(precious)'),
+     ('seed', '种子')],
+    '（its 指 corridor）'],
+   [[('sit **silently**', '**静静地**(silently)坐落于'),
+     ('in a', '一座'),
+     ('**sub-zero**', '**零度以下的**(sub-zero)'),
+     ('**repository**,', '**储藏库**(repository)中，')]],
+   [[('**insulated** by **permanently** frozen ground.', '由**永久**(permanently)冻结的土层**隔热**(insulated)保存。')],
+    '（insulated by…：过去分词短语，补充说明 repository）']]),
+ (2,
+  [[[('The Svalbard', '斯瓦尔巴'),
+     ('Global', '全球'),
+     ('**Seed Vault**', '**种子库**(Seed Vault)'),
+     ('opened near Longyearbyen in February 2008', '于2008年2月在朗伊尔城附近启用，')]],
+   [[('to **insure** crops such as **beans**, rice, and wheat',
+      '**为**(insure against)**豆类**(beans)、水稻和小麦等作物**投保**(insure against)，')],
+    '（to insure…：不定式作目的状语；\ninsure A against B：为 A 投保，防范 B（被隔开的搭配））'],
+   [[('**against**', '以**防范**(insure against)'),
+     ('the **horrors** people **dread**,', '人们**非常害怕**(dread)的**可怕经历**(horrors)，'),
+     ('from **atomic** war', '从**原子核**(atomic)战争'),
+     ('to disease.', '到疾病。')],
+    '（people dread：定语从句，省略了关系代词，修饰 horrors；\nfrom A to B：从 A 到 B）']]),
+ (2,
+  [[[('It has', '它有'),
+     ('**ample**', '**充足的**(ample)'),
+     ('room', '空间，'),
+     ('for about', '供约'),
+     ('four and a half million', '450万份'),
+     ('samples.', '样本使用。')],
+    '（这就是大名鼎鼎的“末日种子库”。\n建在北极冻土里，存着各种农作物的种子。\n万一以后发生核战争或者超级大瘟疫导致绝种了，\n人类还能靠它拿出来重新种地。）']]),
+ (2,
+  [[[('**Essentially**', '**本质上**(Essentially)，'),
+     ("the planet's", '作为这颗星球'),
+     ('**ultimate**', '**终极的**(ultimate)'),
+     ('**backup**,', '**备份**(backup)，')],
+    "（Essentially the planet's ultimate backup：\n名词短语作状语，补充说明 it）"],
+   [[('it', '它'),
+     ('is run like', '像'),
+     ("a bank's **safe-deposit box**.", '银行的**保险箱**(safe-deposit box)一样被运营。')]]]),
+ (2,
+  [[[('**Depositors**', '**存放者**(Depositors)'), ('keep', '保有'), ('**ownership**,', '**所有权**(ownership)，')]],
+   [[('and only they', '并且只有他们'), ('can take their seeds out.', '能取出他们的种子。')], '（take A out：把 A 取出）']]),
+ (3,
+  [[[('The first', '第一次'),
+     ('**retrieval**', '**取回**(retrieval)种子'),
+     ('came not', '不是在'),
+     ('after an **asteroid**', '**小行星**(asteroid)'),
+     ('strike', '撞击后，')],
+    '（not A but B：不是 A，而是 B）'],
+   [[('but', '而是在'), ('amid **strife** on the ground.', '地面的**纷争**(strife)中发生的。')]]]),
+ (3,
+  [[[('ICARDA,', 'ICARDA，'),
+     ('a', '一个'),
+     ('research', '研究'),
+     ('centre', '中心，'),
+     ('whose **gene bank**', '它的**基因库**(gene bank)'),
+     ('stood', '坐落于'),
+     ('near Aleppo,', '阿勒颇附近，')],
+    '（bank：库，存放某类东西备用的地方，\n如 gene bank 基因库、seed bank 种子库、\nblood bank 血库、data bank 数据库）'],
+   [[("had moved its **headquarters** to Beirut during Syria's **civil war**.",
+      '在叙利亚**内战**(civil war)期间已将其**总部**(headquarters)迁至贝鲁特。')]]]),
+ (3,
+  [[[('In September 2015', '2015年9月，'),
+     ('it **asked for**', '它**索要了**(asked for)'),
+     ('about 116,000 samples,', '约11.6万份样本，')]],
+   [[('130 of the 325 boxes it had sent to the **Arctic** before the **hostilities**.',
+      '也就是它在**战争**(hostilities)之前送往**北极**(Arctic)的325箱中的130箱。')],
+    '（130 of the 325 boxes：同位语，补充说明 samples；\nit had sent…：定语从句，修饰 boxes）']]),
+ (3,
+  [[[('They included', '它们包括'),
+     ('**robust** **strains** of wheat and **barley** **tolerant of** drought and heat.',
+      '**耐受**(tolerant of)干旱和高温**的**(tolerant of)**强健**(robust)小麦和**大麦**(barley)**品种**(strains)。')],
+    '（tolerant of drought and heat：后置定语，\n修饰 strains；\ntolerant of：耐……的）']]),
+ (4,
+  [[[('In Lebanon and Morocco,', '在黎巴嫩和摩洛哥，'),
+     ('ICARDA', 'ICARDA'),
+     ('**sowed**', '**种下了**(sowed)'),
+     ('the seeds,', '这些种子，')]],
+   [[('and **vigorous** plants', '而且**强健的**(vigorous)植株'),
+     ('**sprouted**', '**发芽了**(sprouted)，'),
+     ('to **regenerate**', '从而**重建了**(regenerate)'),
+     ('its collection.', '它的种子收藏库。')],
+    '（他们把这些种子种下去，长出了非常棒的新庄稼。\n靠着这些新庄稼结出的种子，\n他们原本被战火毁掉的“种子库存”，终于重新建起来了。）']]),
+ (4,
+  [[[('Once', '一旦'), ('**multiplication**', '**繁育**(multiplication)'), ('had gone far enough,', '进行得足够充分，')],
+    '（once：一旦……就，引导时间状语从句）'],
+   [[('a **homecoming**', '一场**回归之旅**(homecoming)'),
+     ('began in 2017,', '便于2017年开始了，'),
+     ('**consignment**', '**一批**(consignment)'),
+     ('by consignment,', '接一批地')],
+    '（consignment by consignment：一批接一批）'],
+   [[('**restocking**', '**补充着**(restocking)'),
+     ('the Arctic', '这座北极'),
+     ('**stronghold**.', '**堡垒**(stronghold)。')],
+    '（restocking…：现在分词短语作伴随状语）']]),
+ (5, [[[('That same', '同一'), ('year', '年'), ('brought', '还有过'), ('a **scare**.', '一场**虚惊**(scare)。')]]]),
+ (5,
+  [[[('After **record-breaking** warmth,', '在一段**破纪录的**(record-breaking)温暖天气之后，')]],
+   [[('meltwater', '融水'),
+     ('ran into', '流进'),
+     ('the roughly', '大约'),
+     ('100-metre', '100米长的'),
+     ('entrance', '入口'),
+     ('**tunnel**', '**隧道**(tunnel)，'),
+     ('and **solidified**.', '随后**凝固**(solidified)成冰。')],
+    '（年份说明：入口进水发生在2016年10月，\n2017年5月引发广泛报道；种子储藏区没有进水。）']]),
+ (5,
+  [[[('The **intrusion**', '这次（冰水的）**侵入**(intrusion)'),
+     ('**stopped short of**', '**没有到达**(stopped short of)'),
+     ('the seeds,', '种子所在的位置，')],
+    '（stop short of：没有到达）'],
+   [[('which', '它们'),
+     ('stayed **safely**', '**安全地**(safely)保持在'),
+     ('at minus 18', '零下18'),
+     ('degrees Celsius.', '摄氏度。')],
+    '（which…：非限制性定语从句，修饰 seeds）']]),
+ (5,
+  [[[('Norway', '挪威'),
+     ('**waterproofed** the tunnel', '给隧道做了**防水**(waterproofed)，'),
+     ('and dug', '并挖了'),
+     ('**drainage**', '**排水**(drainage)用的'),
+     ('**ditches**.', '**沟渠**(ditches)。')]]]),
+ (6,
+  [[[('A **haven** built against the **apocalypse**', '一座为抵御**世界末日**(apocalypse)而建的**避难所**(haven)，')],
+    '（built against the apocalypse：过去分词短语作后置定语，\n修饰 haven）'],
+   [[('had a **weakness** at its own entrance,', '在自家入口处却有一个**弱点**(weakness)，'),
+     ('and', '而'),
+     ('warmer', '更暖的'),
+     ('weather', '天气'),
+     ('found it.', '找到了它。')],
+    '（it 指 weakness）\n'
+    '（简述：▸备份：2008年启用的斯瓦尔巴种子库，为防战争、病害保存农作物种子备份；种子归存放者，只有他们能取回。▸取种：叙利亚内战中，农业研究中心ICARDA迁移总部；2015年请求取出自存的部分备份，这是种子库首次出库。▸重建：该中心在黎巴嫩、摩洛哥繁育种子，恢复自己的种子样本库，并从2017年起分批将种子存回北极。▸虚惊：2017年报道的入口进水，实际发生于2016年10月异常温暖、多雨的天气后；水在隧道中结冰，未触及种子，种子仍安全保存在零下18摄氏度。▸加固：挪威给隧道加做防水并开挖排水沟，修补这座全球种子保险箱因天气变暖而暴露的入口弱点。）']])]
+
+out = {'no': '65',
+ 'title_en': 'The Day the Doomsday Vault Opened',
+ 'title_zh': '末日种子库的第一次取种',
+ 'title_fx': {'hl': ['Doomsday', 'Vault'], 'ghost': []},
+ 'sentences': [],
+ '核对确认': {'合组': {'S2 insulated by permanently frozen ground': '对齐不了：被动结构 insulated '
+                                                              'by…，中文“四周永久冻结的土层为它们隔热保冷”施事提前作主语，“隔热”必须放到最后；两个重点词中文先后与英文相反',
+                 'S3 opened near Longyearbyen in February 2008': '对齐不了：地点、时间状语 near Longyearbyen、in February '
+                                                                 '2008，中文“于2008年2月在朗伊尔城附近”必须放到动词“启用”前',
+                 'S3 to insure crops such as beans, rice, and wheat': '对齐不了：insure A 中文“为 A 投保”，A 必须放到动词前；such '
+                                                                      'as 列举中文“豆类、水稻、小麦等作物”必须提前',
+                 'S6 can take their seeds out': '对齐不了：take … out 被宾语隔开，中文“取出自己的种子”动词在前、宾语在后，只能整组',
+                 'S7 amid strife on the ground': '对齐不了：on the ground 是后置定语，修饰 strife，中文“地面上的纷争”必须提前；amid '
+                                                 '中文“……之中”后置',
+                 'S8 ICARDA, a research centre': '对齐不了：a research centre 是 ICARDA '
+                                                 '的同位语，中文机构全名“国际干旱地区农业研究中心”已含“研究中心”，名称不能拆',
+                 "S8 had moved its headquarters to Beirut during Syria's civil war": "对齐不了：时间状语 during Syria's "
+                                                                                     'civil war '
+                                                                                     '中文“在叙利亚内战期间”必须放到句首；move '
+                                                                                     'A to B 中文“把 A 迁到 B”',
+                 'S9 130 of the 325 boxes it had sent to the Arctic before the hostilities': '对齐不了：130 of the '
+                                                                                             '325 boxes '
+                                                                                             '中文“325箱中的130箱”必须倒过来；it '
+                                                                                             'had sent… '
+                                                                                             '是定语从句，修饰 '
+                                                                                             'boxes，中文必须提前',
+                 'S10 robust strains of wheat and barley tolerant of drought and heat': '对齐不了：tolerant of '
+                                                                                        'drought and heat '
+                                                                                        '是后置定语，修饰 '
+                                                                                        'strains，中文“能耐受干旱和高温的……品种”必须提前；三个重点词中文先后与英文不同',
+                 'S11 In Lebanon and Morocco, ICARDA': '对齐不了：地点状语 In Lebanon and '
+                                                       'Morocco，中文“在黎巴嫩和摩洛哥”必须放到主语后；机构全名不能拆',
+                 'S12 had gone far enough': '对齐不了：go far enough 中文“达到足够规模”是整体说法，拆开不通；once 引导的从句中文“……后”后置',
+                 'S15 stopped short of': '对齐不了：stop short of 是固定说法“没有到达”，拆开不通',
+                 'S17 A haven built against the apocalypse': '对齐不了：built against the apocalypse 是后置定语，修饰 '
+                                                             'haven，中文“为抵御末日而建的避风港”必须提前；两个重点词中文先后与英文相反',
+                 'S17 had a weakness at its own entrance': '对齐不了：地点状语 at its own entrance，中文“在自家入口处”必须放到动词前',
+                 'S5 is run like': '对齐不了：is run like 中文只剩“像”，“被运营”必须放到比较对象后，拆开不通',
+                 "S5 a bank's safe-deposit box": '对齐不了：is run like A 中文“像 A 一样被运营”，“一样被运营”必须放到比较对象后',
+                 'S12 a homecoming began in 2017': '对齐不了：时间状语 in 2017，中文“2017年”必须放到动词“开始了”前'},
+          '对齐': {"S1-1 On Spitsbergen, in Norway's Sv": "in Norway's Svalbard archipelago 是同位语，补充说明 "
+                                                        'Spitsbergen 的位置，中文“在挪威斯瓦尔巴群岛的斯匹次卑尔根岛上”大地名必须放前面',
+                 'S2-3 insulated by permanently froze': '被动结构 insulated by…，中文施事“永久冻结的土层”提前作主语，“隔热”必须放到最后',
+                 'S3-1 The Svalbard Global Seed Vault': '专名“斯瓦尔巴全球种子库”，拆开不通',
+                 'S3-1 opened near Longyearbyen in Fe': '地点、时间状语中文必须放到动词“启用”前',
+                 'S3-2 to insure crops such as beans,': 'insure A 中文“为 A 投保”，such as 列举中文“豆类、水稻、小麦等作物”必须提前',
+                 'S6-2 can take their seeds out.': 'take … out 被宾语隔开，中文“取出自己的种子”动词在前，只能整组',
+                 'S7-2 amid strife on the ground.': 'on the ground 是后置定语，修饰 strife，中文“地面上的纷争”必须提前',
+                 'S8-2 had moved its headquarters to ': "时间状语 during Syria's civil war 中文“在叙利亚内战期间”必须放到句首",
+                 'S9-2 130 of the 325 boxes it had se': '130 of the 325 boxes 中文“325箱中的130箱”必须倒过来，定语从句 it had '
+                                                        'sent… 中文必须提前',
+                 'S10-1 robust strains of wheat and ba': 'tolerant of drought and heat 是后置定语，修饰 '
+                                                         'strains，中文“能耐受干旱和高温的……品种”必须提前',
+                 'S11-1 In Lebanon and Morocco, ICARDA': '地点状语中文“在黎巴嫩和摩洛哥”必须放到主语后；机构全名不能拆',
+                 'S12-2 a homecoming began in 2017,': '时间状语 in 2017 中文“2017年”必须放到动词“开始了”前',
+                 'S17-1 A haven built against the apoc': 'built against the apocalypse 是后置定语，修饰 '
+                                                         'haven，中文“为抵御末日而建的避风港”必须提前',
+                 'S4-1 four and a half million': '数词“四百五十万”中文写作“450万”，一个数不能拆',
+                 'S17-2 had a weakness at its own entr': '地点状语 at its own entrance 中文“在自家入口处”必须放到动词前',
+                 "S5-2 a bank's safe-deposit box.": 'is run like A 中文“像 A 一样被运营”，“一样被运营”必须放到比较对象后；safe-deposit '
+                                                    'box 是一个词“保险箱”，不能拆'},
+          '同词异译': {'tolerant of：的/耐受': '不是两种译法：tolerant of 的意思“耐……的”被“干旱和高温”隔开，“耐受”和“的”是同一个意思的两部分（T23）',
+                   'insure against：为/投保/防范': '不是两种译法：insure A against B '
+                                             '的意思“为……投保，防范……”被“豆类、水稻、小麦等作物”隔开，“为”“投保”“防范”是同一个意思的三部分（T23）'},
+          '们': {'S3-3 **(insure against)人们**': '们不在加粗里，是“人们”（people），用户原话“以防范人们非常害怕的”；被报出只因紧跟在 **防范**(insure '
+                                               'against) 后面',
+                'S2-3 **(permanently)冻结的土层为它们**': '们不在加粗里，是代词“它们”（指种子），沿用文章定稿“为它们隔热保冷”；被报出只因紧跟在加粗后面'},
+          '数字': {'S9-1 116,000': 'about 116,000 samples 译作“约11.6万份样本”，数值正确，读法 one hundred and sixteen '
+                                 'thousand'},
+          '方向': {'S7-1 after→小行星': 'after an asteroid strike 中文“小行星撞击之后”，“之后”在 strike 下面，方向一致'},
+          '短语': {'S10 strains … of': '不是搭配：strains of wheat and barley 是“小麦和大麦品种”，of 引出品种所属的作物，strain 单独就是“品种”',
+                 'S1 drilled … into': '不是搭配：into a frosted hillside 只表示方向（钻进山坡），drill 单独就是“钻”，中文“钻进”沿用文章定稿',
+                 'S2 cartons … of': '不是搭配：cartons of seed 是“一箱箱种子”的量词结构，carton 单独就是“纸箱”',
+                 'S2 insulated … by': '不是搭配：by 引出被动的施事（永久冻土），insulate 单独就是“隔热”',
+                 'S3 dread … from': '不是搭配：from 属于 from atomic war to disease（从……到……），和 dread 无关',
+                 'S3 dread … to': '不是搭配：to 属于 from atomic war to disease，和 dread 无关',
+                 'S11 sowed … to': '不是搭配：to 属于不定式 to regenerate（结果状语），和 sowed 无关',
+                 'S11 sprouted … to': '不是搭配：to 属于不定式 to regenerate（结果状语），sprout 单独就是“萌发”',
+                 'S12 consignment … by': '不是搭配：consignment by consignment 是同一个名词重复（一批接一批），by '
+                                         '不和重点词组成短语，consignment 单独就是“一批货”'},
+          '非人声': {'11.03–11.04s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S1 w 7.515–7.530s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #1 噗声）：S1 '
+                                         'hillside. 的 /d/ 浊音闭塞（词的时长 6.941–7.651 内，低频占比 -1.4 dB）；词的一部分',
+                                   '实测': {'最响dB': -33.0, '重心Hz': 2609, '周期': 0.0, '低频dB': -1.4}},
+                  '20.81–20.90s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S2 w 8.545–8.630s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #2 呼吸声）：S2 '
+                                         'ground. 词内 n→d 鼻音浊音（词 8.225–8.771 内，周期 0.28、低频 -4 dB）；词的一部分',
+                                   '实测': {'最响dB': -36.3, '重心Hz': 1968, '周期': 0.28, '低频dB': -4.1}},
+                  '20.95–20.98s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S2 w 8.680–8.710s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #3 孤立杂音）：S2 '
+                                         'ground. 句末 /d/ 除阻（词 8.225–8.771 内）；词尾',
+                                   '实测': {'最响dB': -36.0, '重心Hz': 2035, '周期': 0.21, '低频dB': -14.2}},
+                  '35.41–35.53s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S3 w 13.370–13.495s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #4 '
+                                         '呼吸声）：S3 disease. 句末 /z/ 清化擦音（重心 3.3 kHz，词 12.878–13.675 内）；词尾',
+                                   '实测': {'最响dB': -35.0, '重心Hz': 3306, '周期': 0.19, '低频dB': -2.9}},
+                  '43.20–43.22s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S5 w 2.265–2.285s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #5 噗声）：S5 '
+                                         'backup, 词内 k→ʌ 过渡的弱声（-53 dB，词 1.869–2.725 内）；词的一部分',
+                                   '实测': {'最响dB': -52.7, '重心Hz': 2642, '周期': 0.24, '低频dB': -1.2}},
+                  '47.46–47.48s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S6 w 0.010–0.030s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #6 噗声）：S6 '
+                                         'Depositors 词头 /d/ 浊音杠（周期 0.21、低频 -3 dB，紧接 0.079 起音）；词头的一部分',
+                                   '实测': {'最响dB': -36.9, '重心Hz': 1834, '周期': 0.21, '低频dB': -3.1}},
+                  '49.16–49.20s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S6 w 1.710–1.750s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #7 孤立杂音）：S6 '
+                                         'ownership, 词内 ʃ→ɪ（词 1.134–2.065 内）；词的一部分',
+                                   '实测': {'最响dB': -32.2, '重心Hz': 1965, '周期': 0.25, '低频dB': -6.3}},
+                  '49.60–49.62s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S6 w 2.035–2.050s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #8 噗声）：S6 '
+                                         'ownership, 的 /p/ 除阻（2.035–2.05，词结束 2.065 之前，无周期）；词尾塞音除阻',
+                                   '实测': {'最响dB': -44.3, '重心Hz': 2625, '周期': 0.0, '低频dB': -0.8}},
+                  '51.80–51.87s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S6 w 4.230–4.300s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #9 孤立杂音）：S6 '
+                                         'out. 句末 /t/ 除阻（重心 4.7 kHz、低频 -26 dB，词 3.904–4.311 内）；词尾塞音除阻',
+                                   '实测': {'最响dB': -31.0, '重心Hz': 4720, '周期': 0.15, '低频dB': -26.1}},
+                  '53.06–53.08s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S7 w 0.020–0.035s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #10 噗声）：S7 '
+                                         'The 词头 /ð/ 起音的浊擦前导（低频 -2.5 dB，紧接 0.07 起音）；词头的一部分',
+                                   '实测': {'最响dB': -37.6, '重心Hz': 1946, '周期': 0.0, '低频dB': -2.5}},
+                  '56.40–56.45s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S7 w 3.355–3.410s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #11 '
+                                         '孤立杂音）：S7 strike 停顿前 /k/ 除阻（重心 4.4 kHz，词 2.959–3.656 内）；词尾塞音除阻',
+                                   '实测': {'最响dB': -31.1, '重心Hz': 4370, '周期': 0.19, '低频dB': -13.5}},
+                  '58.23–58.30s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S7 w 5.350–5.430s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #12 呼吸声）：S7 '
+                                         'ground. 词内 n→d 鼻音浊音（重心 1.2 kHz、低频 -1.7 dB，词 4.926–5.515 内）；词的一部分',
+                                   '实测': {'最响dB': -35.1, '重心Hz': 1230, '周期': 0.23, '低频dB': -1.7}},
+                  '58.26–58.30s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S7 w 5.385–5.425s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #13 噗声）：S7 '
+                                         'ground. 的 /d/ 浊音闭塞（周期 0.32、低频 -2.2 dB，词内）；词的一部分',
+                                   '实测': {'最响dB': -35.1, '重心Hz': 1314, '周期': 0.32, '低频dB': -2.2}},
+                  '65.90–65.93s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S8 w 6.335–6.365s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #14 噗声）：S8 '
+                                         'Beirut→during：during 的 /d/ 浊音杠（周期 0.47、低频 -0.6 dB）；词头的一部分',
+                                   '实测': {'最响dB': -48.8, '重心Hz': 2429, '周期': 0.47, '低频dB': -0.6}},
+                  '74.94–75.00s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S9 w 6.500–6.555s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #15 噗声）：S9 '
+                                         'one 的 /w/ 浊音前导（低频 -0.3 dB，紧接 6.555 起音；删吸气时有意保留）；词头的一部分',
+                                   '实测': {'最响dB': -31.9, '重心Hz': 2400, '周期': 0.13, '低频dB': -0.3}},
+                  '79.64–79.67s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S9 w 11.205–11.230s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #16 '
+                                         '孤立杂音）：S9 Arctic 词内 /k/ 闭塞后的弱声（词 11.016–11.487 内）；词的一部分',
+                                   '实测': {'最响dB': -44.8, '重心Hz': 1913, '周期': 0.17, '低频dB': -5.9}},
+                  '79.87–79.91s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S9 w 11.430–11.465s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #17 '
+                                         '孤立杂音）：S9 Arctic 句中 /k/ 除阻（词 11.016–11.487 内）；词尾塞音除阻',
+                                   '实测': {'最响dB': -35.7, '重心Hz': 1136, '周期': 0.21, '低频dB': -5.2}},
+                  '79.89–79.91s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S9 w 11.445–11.465s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #18 '
+                                         '噗声）：S9 Arctic→before：before 的 /b/ 浊音杠（低频 -1.2 dB）；词头的一部分',
+                                   '实测': {'最响dB': -44.0, '重心Hz': 1315, '周期': 0.25, '低频dB': -1.2}},
+                  '81.04–81.14s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S9 w 12.600–12.700s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #19 '
+                                         '呼吸声）：S9 hostilities. 句末 /z/ 清化擦音（重心 2.7 kHz，词 11.959–12.865 内）；词尾',
+                                   '实测': {'最响dB': -35.2, '重心Hz': 2717, '周期': 0.22, '低频dB': -2.5}},
+                  '94.94–95.02s': {'配音指纹': '130d1dd4adb4',
+                                   '依据': 'S11 w 7.120–7.205s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #20 '
+                                         '呼吸声）：S11 collection. 句末 /n/ 鼻音收尾（周期 0.33、低频 -3.2 dB，词 6.642–7.275 '
+                                         '内）；词尾',
+                                   '实测': {'最响dB': -35.6, '重心Hz': 1605, '周期': 0.33, '低频dB': -3.2}},
+                  '103.12–103.20s': {'配音指纹': '130d1dd4adb4',
+                                     '依据': 'S12 w 7.065–7.145s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #21 '
+                                           '呼吸声）：S12 consignment 词尾 /nt/（词 6.342–7.142 内）；词的一部分',
+                                     '实测': {'最响dB': -35.9, '重心Hz': 1218, '周期': 0.29, '低频dB': -3.9}},
+                  '103.19–103.22s': {'配音指纹': '130d1dd4adb4',
+                                     '依据': 'S12 w 7.125–7.165s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #22 '
+                                           '噗声）：S12 by 的 /b/ 浊音杠（周期 0.67、低频 -0.1 dB，重心 0.9 kHz，紧接 '
+                                           '7.192）；词头的一部分',
+                                     '实测': {'最响dB': -30.9, '重心Hz': 868, '周期': 0.67, '低频dB': -0.1}},
+                  '106.56–106.59s': {'配音指纹': '130d1dd4adb4',
+                                     '依据': 'S12 w 10.310–10.340s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #23 '
+                                           '噗声）：S12 stronghold. 的 /d/ 浊音闭塞（周期 0.52，词 9.692–10.455 内）；词尾的一部分',
+                                     '实测': {'最响dB': -40.9, '重心Hz': 1937, '周期': 0.52, '低频dB': -2.2}},
+                  '117.58–117.70s': {'配音指纹': '130d1dd4adb4',
+                                     '依据': 'S14 w 7.100–7.220s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #24 '
+                                           '呼吸声）：S14 solidified. 词尾 aɪ→d 过渡（词 6.448–7.321 内）；词的一部分',
+                                     '实测': {'最响dB': -35.8, '重心Hz': 3426, '周期': 0.26, '低频dB': -5.7}},
+                  '117.67–117.70s': {'配音指纹': '130d1dd4adb4',
+                                     '依据': 'S14 w 7.195–7.220s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #25 '
+                                           '噗声）：S14 solidified. 的 /d/ 浊音闭塞（周期 0.38、低频 -1.2 dB）；词尾的一部分',
+                                     '实测': {'最响dB': -42.5, '重心Hz': 1647, '周期': 0.38, '低频dB': -1.2}},
+                  '117.71–117.74s': {'配音指纹': '130d1dd4adb4',
+                                     '依据': 'S14 w 7.235–7.260s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #26 '
+                                           '孤立杂音）：S14 solidified. 句末 /d/ 除阻（词 6.448–7.321 内）；词尾',
+                                     '实测': {'最响dB': -41.1, '重心Hz': 2149, '周期': 0.25, '低频dB': -14.4}},
+                  '121.28–121.31s': {'配音指纹': '130d1dd4adb4',
+                                     '依据': 'S15 w 2.485–2.525s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #27 '
+                                           '噗声）：S15 which 的 /w/ 浊音前导（低频 -0.2 dB，紧接 2.573 起音；删吸气时有意保留）；词头的一部分',
+                                     '实测': {'最响dB': -46.1, '重心Hz': 1978, '周期': 0.36, '低频dB': -0.2}},
+                  '128.47–128.50s': {'配音指纹': '130d1dd4adb4',
+                                     '依据': 'S16 w 2.895–2.925s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #28 '
+                                           '噗声）：S16 ditches 的 /d/ 浊音杠（周期 0.48、低频 -0.1 dB，drainage 后紧接）；词头的一部分',
+                                     '实测': {'最响dB': -36.3, '重心Hz': 1398, '周期': 0.48, '低频dB': -0.1}},
+                  '131.81–131.83s': {'配音指纹': '130d1dd4adb4',
+                                     '依据': 'S17 w 1.600–1.615s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #29 '
+                                           '噗声）：S17 apocalypse 词内弱声（-50 dB，词 1.571–2.316 内）；词的一部分',
+                                     '实测': {'最响dB': -50.0, '重心Hz': 2201, '周期': 0.0, '低频dB': -0.3}},
+                  '137.22–137.28s': {'配音指纹': '130d1dd4adb4',
+                                     '依据': 'S17 w 6.705–6.765s：2026-11-07 逐 2.5 ms 实测（疑点清单 dossier_65 #30 '
+                                           '孤立杂音）：S17 it. 句末 /t/：词尾辅音核对.py 移植的合格除阻（重心 4.8 kHz、低频 -25 '
+                                           'dB，原声弱除阻已删）；词尾塞音除阻',
+                                     '实测': {'最响dB': -31.0, '重心Hz': 4838, '周期': 0.15, '低频dB': -25.4}}},
+          '机器复听': {'S2': {'配音指纹': '130d1dd4adb4',
+                          '依据': '2026-11-07：precious seed sit：seed 的 /d/ 与 sit 的 /s/ 连读，small.en 听成 '
+                                'seeds；parakeet 听对；读音按脚本，非读错'},
+                   'S3': {'配音指纹': '130d1dd4adb4',
+                          '依据': '2026-11-07：insure 美式读 /ɪnˈʃʊr/，与 ensure 同音（Merriam-Webster 两词同音），两路识别器按常见词拼成 '
+                                'ensure；读音正确'},
+                   'S4': {'配音指纹': '130d1dd4adb4',
+                          '依据': '2026-11-07：four and a half million 两路识别器都写成数字“4.5 million”，and a half '
+                                '已读出；读音正确'},
+                   'S7': {'配音指纹': '130d1dd4adb4',
+                          '依据': '2026-11-07 实测 a.wav：amid 56.64–56.98，strife 的 /s/ 57.02–57.12（6 kHz）、/tr/ '
+                                '57.14–57.20、aɪ 57.22–57.44、/f/ 57.46–57.52 全在；parakeet 把 amid strife 拼成 '
+                                'amidst，small.en 听对；非读错'}},
+          '高亮': {'S3 第2块': {'开始读': 27.78,
+                            '配音指纹': '130d1dd4adb4',
+                            '依据': '2026-11-07 直接读 work_65/a.wav 逐 10 ms：2008 的 /t/ 到 27.60，27.61–27.77 '
+                                  '数字静音（逗号停顿），27.78 起 to 的 /t/（-54→-21 dB）；开始读 27.78，高亮 27.77 差 0.01 s；办法甲 '
+                                  '27.60 落在上一词尾'},
+                 'S3 第3块': {'开始读': 30.89,
+                            '配音指纹': '130d1dd4adb4',
+                            '依据': '2026-11-07 逐 10 ms：wheat 到 30.68，30.70–30.88 数字静音，30.89 起 against 的 '
+                                  'ə（-40→-19 dB）；高亮 30.88 由 高亮开始 写定，差 0.01 s；办法甲 31.41 是 the 的开口，不对'},
+                 'S7 第2块': {'开始读': 56.64,
+                            '配音指纹': '130d1dd4adb4',
+                            '依据': '2026-11-07 逐 10 ms：strike 的 /k/ 除阻到 56.46，56.47–56.62 数字静音，56.63–56.64 起 '
+                                  'but 的 /b/（-58→-23 dB）；开始读 56.64，高亮 56.62 差 0.02 s；办法甲 56.44 落在 /k/ 除阻上'}},
+          '删除段': {'S1 raw 3.5450-3.9607': {'类型': '紧贴词头的非人声',
+                                           '配音指纹': '130d1dd4adb4',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[3.565, 3.910792, '紧贴词头']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S3 raw 5.4450-5.8150': '2026-10-15 删除段对应 非人声区间 [[5.46, 5.8]]（w 秒）：自动切点.py '
+                                          '用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < '
+                                          "0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] "
+                                          '是删掉的呼吸声本身偏响（-34～-47 dB），不是词',
+                  'S6 raw 1.7751-2.0561': {'类型': '紧贴词头的非人声',
+                                           '配音指纹': '130d1dd4adb4',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[1.815, 2.036125, '紧贴词头']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S7 raw 3.4251-3.7650': '2026-10-15 删除段对应 非人声区间 [[3.46, 3.72]]（w 秒）：自动切点.py '
+                                          '用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < '
+                                          "0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] "
+                                          '是删掉的呼吸声本身偏响（-34～-47 dB），不是词',
+                  'S9 raw 2.0500-2.2960': {'类型': '紧贴词头的非人声',
+                                           '配音指纹': '130d1dd4adb4',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[2.03, 2.276, '紧贴词头']]（w 秒）：自动切点.py "
+                                                 '用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < '
+                                                 '0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 '
+                                                 "['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S9 raw 6.1050-6.5000': {'类型': '紧贴词头的非人声',
+                                           '配音指纹': '130d1dd4adb4',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[6.305, 6.480083, '紧贴词头']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S12 raw 5.9450-6.3200': '2026-10-15 删除段对应 非人声区间 [[5.96, 6.275]]（w 秒）：自动切点.py '
+                                           '用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < '
+                                           "0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] "
+                                           '是删掉的呼吸声本身偏响（-34～-47 dB），不是词'}},
+ '结尾解说': '简述',
+ '高亮按实际开口': True,
+ '高亮开口门槛': 40,
+ '术语': {'Spitsbergen': '斯匹次卑尔根岛',
+        'Norway': '挪威',
+        'Svalbard': '斯瓦尔巴',
+        'Svalbard Global Seed Vault': '斯瓦尔巴全球种子库',
+        'Longyearbyen': '朗伊尔城',
+        'ICARDA': 'ICARDA',
+        'Aleppo': '阿勒颇',
+        'Beirut': '贝鲁特',
+        'Syria': '叙利亚',
+        'Arctic': '北极',
+        'Lebanon': '黎巴嫩',
+        'Morocco': '摩洛哥',
+        'Celsius': '摄氏'},
+ '非人声区间': {'S1': [[3.565, 3.910792, '紧贴词头']],
+           'S3': [[5.46, 5.8]],
+           'S6': [[1.815, 2.036125, '紧贴词头']],
+           'S7': [[3.46, 3.72]],
+           'S9': [[2.03, 2.276, '紧贴词头'], [6.305, 6.480083, '紧贴词头']],
+           'S10': [[2.765, 3.045]],
+           'S11': [[1.692, 1.98, '紧贴词尾']],
+           'S12': [[5.96, 6.275]],
+           'S16': [[1.63, 1.875]],
+           'S8': [[3.865, 4.184625, '紧贴词头']],
+           'S15': [[2.215, 2.482542, '紧贴词头']],
+           'S17': [[6.732, 6.8]]},
+ '词尾除阻': {'S6': {'句末': [4.235, 't']}, 'S12': {'3': [8.11, 't']}, 'S17': {'句末': [6.7, 't']}},
+ '除阻加强': {'S5': {'1': [2.29, 2.34, 3.0]}},
+ '分段增益dB': {'S2': {'2': 1.0}, 'S1': {'3': 1.5}, 'S3': {'4': 1.5}, 'S10': {'1': 1.5}},
+ '高亮开始': {'S3 第3块': 30.89},
+ 'allow_clash': ['tunnel', 'headquarters', 'Arctic', 'strains', 'asked for'],
+ '结尾句': {'S17': {'前段语速': 0.88,
+                 '最后一段语速': 0.78,
+                 '最后一段前停顿': 0.7,
+                 '接点': [115860, 144900],
+                 '依据': '全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.88、最后一段“and warmer weather found it.” '
+                       '0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.88 那遍最后一个标点后最长静音（15 ms）的正中 4.827 s，0.78 那遍（35 ms）的正中 '
+                       '6.037 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）'}},
+ '区间声音指纹': {'S1': '39f964db962d',
+            'S3': '6d6fecce6768',
+            'S5': '20afe49151b1',
+            'S6': '4130017f2e0b',
+            'S7': 'dc0ef88d1de4',
+            'S8': '0f8de30ee231',
+            'S9': 'c2dea9963de3',
+            'S10': 'c95295aa1d10',
+            'S11': '79b8c151b4c5',
+            'S12': 'b80f2099248d',
+            'S15': 'f7e5df680bb5',
+            'S16': '012318336350',
+            'S17': 'e1eebb6a7952'}}
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)

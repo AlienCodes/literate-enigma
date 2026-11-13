@@ -4,7 +4,7 @@
 ## 英文
 In a 1955 **referendum**, about 83 per cent of voters chose to keep driving on the left, an **overwhelmingly** clear **rejection** of change. On 10 May 1963, however, **legislators** in **parliament** **overruled** the **electorate**, approving right-hand traffic from 1967 **in defiance of** a **populace** among whom the plan was **unpopular**.
 
-The case rested on **conformity**. Norway and Finland drove on the right, with about five million border crossings a year, so a left-hand **orientation** meant **isolation** and **inconvenient** journeys. Safety favoured **alignment** too. About 90 per cent of cars were left-hand drive, so **motorists** **overtaking** on narrow two-**lane** **highways** risked **head-on collisions**.
+The case rested on **conformity**. **Norway** and **Finland** drove on the right, with about five million **border crossings** a year, so a left-hand **orientation** meant **isolation** and **inconvenient** journeys. Safety favoured **alignment** too. About 90 per cent of cars were left-hand drive, so **motorists** **overtaking** on narrow two-**lane** **highways** risked **head-on collisions**.
 
 A state body ran the **mammoth** **preparation** under a **logo**, a large H with an **arrow**. Its **propaganda** included a song **contest** on television, and the winning **jingle**, whose **lyrics** urged people to keep right, reached fifth in the **chart**. Some 360,000 items of **signage** were changed, and a **massive** **fleet** of over 1,000 new buses with right-hand doors was **procured**.
 
@@ -14,21 +14,21 @@ On the following Monday, 125 accidents were reported, against 130 to 198 on earl
 
 ## 中文
 
-在1955年的一次**全民公投**(referendum)中，约83%的投票者选择继续靠左行驶，这是对改变的一次**压倒性**(overwhelmingly)且明确的**拒绝**(rejection)。（keep doing：继续做某事）（an overwhelmingly clear rejection of change：同位语，概括前面的投票结果）然而1963年5月10日，**议会**(parliament)中的**立法者**(legislators)**推翻了**(overruled)**全体选民**(electorate)的意见，批准从1967年起改为靠右行驶。他们全然**不顾**(in defiance of)这里的**民众**(populace)，在民众中这个计划**不得人心**(unpopular)。（in parliament：后置定语，修饰 legislators）（approving…：现在分词短语作状语，补充说明结果）（in defiance of：不顾，无视；among whom the plan was unpopular：定语从句，修饰 populace）
+在1955年的一次**全民公投**(referendum)中，约83%的投票者选择继续靠左行驶，这是一次对改变的**压倒性地**(overwhelmingly)明确的**拒绝**(rejection)。（keep doing：继续做某事）（an overwhelmingly clear rejection of change：同位语，概括前面的投票结果）然而1963年5月10日，**议会**(parliament)中的**立法者**(legislators)**推翻了**(overruled)**全体选民**(electorate)的意见，批准从1967年起改为靠右行驶。他们全然**不顾**(in defiance of)这里的**民众**(populace)，在民众中这个计划**不得人心**(unpopular)。（in parliament：后置定语，修饰 legislators）（approving…：现在分词短语作状语，补充说明结果）（in defiance of：不顾，无视；among whom the plan was unpopular：定语从句，修饰 populace）
 
-理由在于与邻国保持**一致**(conformity)。（rest on：基于，取决于）（这件事的根本理由，就是“从众/跟大家保持一致”（因为邻国都靠右，瑞典也得靠右））挪威和芬兰都靠右行驶，每年约有500万车次过境，因此靠左的**方向**(orientation)意味着**孤立**(isolation)和**不便的**(inconvenient)出行。（with＋名词：独立结构，补充说明情况）安全方面也支持**统一/一致**(alignment)。约90%的汽车是左舵驾驶，于是**驾车者**(motorists)在狭窄的双**车道**(lane)**公路**(highways)上**超车**(overtaking)时，有发生**迎头相撞**(head-on collisions)的危险。（left-hand drive：左舵，方向盘在车的左侧）（overtaking on…：现在分词短语作后置定语，修饰 motorists；risk＋名词：有……的危险）
+理由在于与邻国保持**一致**(conformity)。（rest on：基于，取决于）（这件事的根本理由，就是“从众/跟大家保持一致”（因为邻国都靠右，瑞典也得靠右））**挪威**(Norway)和**芬兰**(Finland)都靠右行驶，每年约有500万车次**过境**(border crossings)，因此靠左的**方向**(orientation)意味着**孤立**(isolation)和**不便的**(inconvenient)出行。（with＋名词：独立结构，补充说明情况）安全方面也支持**统一/一致**(alignment)。约90%的汽车是左舵驾驶，于是**驾车者**(motorists)在狭窄的双**车道**(lane)**公路**(highways)上**超车**(overtaking)时，有发生**迎头相撞**(head-on collisions)的危险。（left-hand drive：左舵，方向盘在车的左侧）（overtaking on…：现在分词短语作后置定语，修饰 motorists；risk＋名词：有……的危险）
 
 一个国家机关操办了这项**巨大的**(mammoth)**准备工作**(preparation)用了这么一个**图标/标识**(logo)，一个带**箭头**(arrow)的大写H。（under a logo：在……标志下；a large H with an arrow：同位语，补充说明 logo）它的**宣传**(propaganda)包括一场电视歌曲**比赛**(contest)，获胜的**广告歌**(jingle)它的**歌词**(lyrics)劝人们靠右行驶，登上了**歌曲排行榜**(chart)第五名。（propaganda：这里指政府的宣传活动，不含贬义）（whose lyrics…：非限制性定语从句，修饰 jingle）约36万件**标识**(signage)被更换，并且一支**庞大的**(massive)**车队**(fleet)由1,000多辆右侧开门的新公交车组成也**已购置到位**(procured)。（some＋数字：大约）（a fleet of…：由……组成的车队；with right-hand doors：后置定语，修饰 buses）
 
 **转变**(transition)于1967年9月3日星期日进行。**宵禁**(curfew)令**非必要**(non-essential)车辆在凌晨1点至6点不得驶上**柏油路**(asphalt)，必要车辆可以**豁免**(exempt)。（keep A off B：使 A 不进入 B）（with＋名词＋形容词：独立结构，补充说明情况）4点50分，所有车辆停下，**缓缓挪**(crawled)到另一侧，5点重新出发，此时还在**黎明**(dawn)之前，行驶方向已经**翻转**(flipped)。（ten to five：差十分五点，即4点50分）（restarting…：现在分词短语作状语；with＋名词＋过去分词：独立结构）斯德哥尔摩和马尔默的**封闭**(closure)时间更长，从星期六上午持续到星期日下午，工人们在此期间**重新设定了**(reconfigured)**交叉路口**(junctions)。（while：引导时间状语从句，在……期间）
 
-随后的星期一，报告的事故有125起，而此前几个星期一为130至198起；这一**统计上的**(statistical)**改善**(improvement)**被归因于**(put down to)**犹豫的**(hesitant)驾车人**更加的**(heightened)小心。（against：与……相比）（a statistical improvement：同位语，概括前面的事故数字；put down to：归因于，过去分词短语作后置定语）**紧张情绪**(nervousness)似乎逐渐**平息**(subsided)，**谨慎的**(prudent)习惯也慢慢**消退**(faded)，到1969年，事故率和**死亡率**(fatality rates)已**回到**(reverted to)原来的**基准**(baseline)水平。（for：连词，表示推断的依据；revert to：回到原先的状态）（简述：1955年瑞典全民公投，约83%的投票者选择继续靠左行驶。1963年，议会推翻民意，批准从1967年起改为靠右。理由是邻国挪威和芬兰都靠右，过境车辆多；而且大多数汽车是左舵车，超车容易迎头相撞。国家机构以大写H加箭头为标志主持准备，宣传歌曲登上排行榜第五，约36万件标识被更换，还购置了1,000多辆右侧开门的新公交车。1967年9月3日凌晨，所有车辆在4点50分停下换到另一侧，5点重新出发。随后的星期一事故反而减少，因为司机格外小心；但到1969年，事故率和死亡率又回到了原来的水平。）
+随后的星期一，报告的事故有125起，而此前几个星期一为130至198起；这一**统计上的**(statistical)**改善**(improvement)**被归因于**(put down to)**犹豫的**(hesitant)驾车人**更加的**(heightened)小心。（against：与……相比）（a statistical improvement：同位语，概括前面的事故数字；put down to：归因于，过去分词短语作后置定语）**紧张情绪**(nervousness)似乎逐渐**平息**(subsided)，**谨慎的**(prudent)习惯也慢慢**消退**(faded)，到1969年，事故率和**死亡率**(fatality rates)已**回到**(reverted to)原来的**基准**(baseline)水平。（for：连词，表示推断的依据；revert to：回到原先的状态）（简述：▸缘由：瑞典靠左，挪威和芬兰靠右，过境车流频繁；瑞典九成汽车又是左舵车，靠左行驶时司机坐在靠路边的一侧，超车前不易看清对向来车，有迎面相撞风险。▸决定：1955年公投约83%反对改靠右，议会仍于1963年批准改制，定在1967年实施。▸准备：政府广泛宣传，更换约36万件道路标识，购置1,000多辆右侧开门的公交车，并在切换期间限制非必要车辆上路。▸切换：1967年9月3日4点50分，车辆停下后缓缓移到另一侧，5点统一靠右出发；部分城市另封路改造路口。▸后续：切换后首个周一事故减少，被归因于司机格外谨慎；但到1969年，事故率和死亡率都回到原有水平。）
 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
 | referendum | 本文：全民公投；n. 全民公投（hold a referendum on sth） | 1 |
-| overwhelmingly | 本文：压倒性；adv. 压倒性地（vote overwhelmingly in favour） | 1 |
+| overwhelmingly | 本文：压倒性地；adv. 压倒性地（vote overwhelmingly in favour） | 1 |
 | rejection | 本文：拒绝；n. 拒绝，否决（the rejection of a proposal） | 1 |
 | parliament | 本文：议会；n. 议会，国会（a member of parliament） | 1 |
 | legislators | 本文：立法者；n. (legislator) 立法者，议员（state legislators） | 1 |
@@ -38,6 +38,9 @@ On the following Monday, 125 accidents were reported, against 130 to 198 on earl
 | populace | 本文：民众；n. 民众，平民百姓（the general populace） | 1 |
 | unpopular | 本文：不得人心；adj. 不受欢迎的，不得人心的（an unpopular decision） | 1 |
 | conformity | 本文：一致；n. 一致，遵从（conformity with the rules） | 2 |
+| Norway | 本文：挪威；n. 挪威（国家名） | 2 |
+| Finland | 本文：芬兰；n. 芬兰（国家名） | 2 |
+| border crossings | 本文：过境；n. pl. (border crossing) 过境，越过国境；过境次数（five million border crossings 五百万次过境） | 2 |
 | orientation | 本文：方向；n. 方向，取向（political orientation；the orientation of a building） | 2 |
 | isolation | 本文：孤立；n. 孤立，隔绝（diplomatic isolation；live in isolation） | 2 |
 | inconvenient | 本文：不便的；adj. 不方便的（an inconvenient time） | 2 |

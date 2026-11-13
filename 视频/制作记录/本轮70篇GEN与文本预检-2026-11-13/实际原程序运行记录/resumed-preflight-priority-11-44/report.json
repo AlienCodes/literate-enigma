@@ -1,0 +1,105 @@
+{
+  "part": 2,
+  "ids": [
+    "11",
+    "44"
+  ],
+  "scope": "actual original generator/full JSON exact, original repair, then original text gate; sentence records refreshed only with documented review or semantic-invariant body",
+  "core_hashes": {
+    "视频/工具/踩坑核查.py": "f6efb9df33705fadac3d78d588adb722b4f07eab134818983a869f1d9e0c748d",
+    "视频/工具/译文核查.py": "f68089bad35c5f41f7a08936a95f408da8a477b2b1cb1ca450bca6eacbd2dc5c",
+    "视频/工具/新管/修.py": "1a6662012752c2d2152d87e1690f1dbb1fd2ced583455a365c022b8b91bdd34d",
+    "视频/工具/初稿生成/核对.py": "c635aee82e0fe4dff9f70dcae03e2f797aadb670c8ebe6c8f202b82a35a87a74"
+  },
+  "articles": [
+    {
+      "article": "11",
+      "source_sha256": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "generator_issues": [],
+      "generator_exit": 0,
+      "generator_differences": [],
+      "generator_exact": true,
+      "generator_published": true,
+      "repair_exit": 0,
+      "repair_differences": [
+        {
+          "path": "/sentences/3/chunks/1/align/2/1",
+          "reason": "value",
+          "expected": "**与**(adjacent to)对方棋子的**斜对角**(diagonal)**相邻**(adjacent to)的地方。",
+          "actual": "**与**(adjacent to)对方棋子的**斜对角**(diagonal)**相邻的**(adjacent to)地方。"
+        },
+        {
+          "path": "/sentences/3/chunks/1/note",
+          "reason": "value",
+          "expected": "（shoulder hit：肩冲，围棋术语；\na tactic placing…：同位语，解释 shoulder hit，placing… 作后置定语）",
+          "actual": "（shoulder hit：肩冲，围棋术语；\na tactic placing…：同位语，\n解释 shoulder hit，placing… 作后置定语）"
+        },
+        {
+          "path": "/sentences/3/chunks/1/zh",
+          "reason": "value",
+          "expected": "这种**招数/手段**(tactic)，是将一枚棋子下在**与**(adjacent to)对方棋子的**斜对角**(diagonal)**相邻**(adjacent to)的地方。",
+          "actual": "这种**招数/手段**(tactic)，是将一枚棋子下在**与**(adjacent to)对方棋子的**斜对角**(diagonal)**相邻的**(adjacent to)地方。"
+        },
+        {
+          "path": "/sentences/5/chunks/1/note",
+          "reason": "value",
+          "expected": "（find + 宾语 + 形容词：觉得……怎么样；take A for B：把A当成B）",
+          "actual": "（find + 宾语 + 形容词：觉得……怎么样；\ntake A for B：把A当成B）"
+        },
+        {
+          "path": "/sentences/10/chunks/0/note",
+          "reason": "value",
+          "expected": "（互换角色：第二局 AlphaGo 靠万分之一的第37手赢了人类棋手；\n第四局反过来，人类棋手靠万分之一的第78手赢了 AlphaGo）",
+          "actual": "（互换角色：\n第二局 AlphaGo 靠万分之一的第37手赢了人类棋手；\n第四局反过来，人类棋手靠万分之一的第78手赢了 AlphaGo）"
+        },
+        {
+          "path": "/sentences/13/chunks/1/note",
+          "reason": "value",
+          "expected": "（amid：在……之中）\n（consolation：通常作名词，\n指失望、悲伤或遭受打击时得到的安慰和心理宽慰）",
+          "actual": "（amid：在……之中）\n（consolation：通常作名词，\n指失望、\n悲伤或遭受打击时得到的安慰和心理宽慰）"
+        },
+        {
+          "path": "/sentences/16/chunks/2/note",
+          "reason": "value",
+          "expected": "（whose…：定语从句，修饰 a stone；by DeepMind's figures：插入语；\nas slim as those of…：those = the odds）\n（简述：▸训练：围棋程序AlphaGo先模仿高水平业余者，再经数千万盘自我对弈提高棋力，2016年与韩国棋手李世石对弈。▸奇手：第二局第37手下在棋盘从边缘数第五条线上，出乎常规，解说员起初疑为失误；李世石后来赞赏这手棋的独创性。▸回应：第四局，李世石的第78手扭转局势，被许多棋手赞为神之一手，带来他在五局比赛中唯一的胜利。▸赛果：AlphaGo最终以4比1获胜；李世石2019年退役时说，AI已不可战胜，自己无法再登顶。▸对照：AlphaGo估计人类下出第37手的可能性约为万分之一，DeepMind团队估计职业棋手想到第78手的可能性也约为万分之一；两者衡量的是想出那一手棋的罕见程度。）",
+          "actual": "（whose…：定语从句，修饰 a stone；\nby DeepMind's figures：插入语；\nas slim as those of…：those = the odds）\n（简述：▸训练：围棋程序AlphaGo先模仿高水平业余者，再经数千万盘自我对弈提高棋力，2016年与韩国棋手李世石对弈。\n▸奇手：第二局第37手下在棋盘从边缘数第五条线上，出乎常规，\n▹解说员起初疑为失误；李世石后来赞赏这手棋的独创性。\n▸回应：第四局，李世石的第78手扭转局势，被许多棋手赞为神之一手，带来他在五局比赛中唯一的胜利。\n▸赛果：AlphaGo最终以4比1获胜；李世石2019年退役时说，AI已不可战胜，自己无法再登顶。\n▸对照：AlphaGo估计人类下出第37手的可能性约为万分之一，\n▹DeepMind团队估计职业棋手想到第78手的可能性也约为万分之一；两者衡量的是想出那一手棋的罕见程度。）"
+        }
+      ],
+      "normalized_sha256": "3a00e193a6fb5cedfacd5c538bfb4bd9bdd224fde5c33fe5632b7852ce114b05",
+      "text_exit": 0,
+      "hard_errors": [],
+      "pending": [],
+      "exception_tail": [],
+      "source_unchanged": true
+    },
+    {
+      "article": "44",
+      "source_sha256": "2f4bc52ad61fc5fc7f2dec3d25032a179e6c36d4bc360e6cd5a3ae5911b374b0",
+      "generator_issues": [],
+      "generator_exit": 0,
+      "generator_differences": [],
+      "generator_exact": true,
+      "generator_published": true,
+      "repair_exit": 0,
+      "repair_differences": [
+        {
+          "path": "/sentences/14/chunks/1/note",
+          "reason": "value",
+          "expected": "（for：连词，表示推断的依据；\nrevert to：回到原先的状态）\n（简述：▸缘由：瑞典靠左，挪威和芬兰靠右，过境车流频繁；瑞典九成汽车又是左舵车，靠左行驶时司机坐在靠路边的一侧，超车前不易看清对向来车，有迎面相撞风险。▸决定：1955年公投约83%反对改靠右，议会仍于1963年批准改制，定在1967年实施。▸准备：政府广泛宣传，更换约36万件道路标识，购置1,000多辆右侧开门的公交车，并在切换期间限制非必要车辆上路。▸切换：1967年9月3日4点50分，车辆停下后缓缓移到另一侧，5点统一靠右出发；部分城市另封路改造路口。▸后续：切换后首个周一事故减少，被归因于司机格外谨慎；但到1969年，事故率和死亡率都回到原有水平。）",
+          "actual": "（for：连词，表示推断的依据；\nrevert to：回到原先的状态）\n（简述：▸缘由：瑞典靠左，挪威和芬兰靠右，过境车流频繁；瑞典九成汽车又是左舵车，\n▹靠左行驶时司机坐在靠路边的一侧，超车前不易看清对向来车，有迎面相撞风险。\n▸决定：1955年公投约83%反对改靠右，议会仍于1963年批准改制，定在1967年实施。\n▸准备：政府广泛宣传，更换约36万件道路标识，购置1,000多辆右侧开门的公交车，并在切换期间限制非必要车辆上路。\n▸切换：1967年9月3日4点50分，车辆停下后缓缓移到另一侧，5点统一靠右出发；部分城市另封路改造路口。\n▸后续：切换后首个周一事故减少，被归因于司机格外谨慎；但到1969年，事故率和死亡率都回到原有水平。）"
+        }
+      ],
+      "normalized_sha256": "0d8f00f7bcba819cd2a21daa1169213fb8abc8344ead0cd25579f96c70723da4",
+      "tail_review_source_sha256": "21d18dbe2b28cf9de3c18412bd9798d47fd6680b29e2ba9b1f91e5a3f597dbae",
+      "confirmation_format_errors": [],
+      "confirmation_updates": [],
+      "text_exit": 0,
+      "hard_errors": [],
+      "pending": [],
+      "exception_tail": [],
+      "source_unchanged": true
+    }
+  ],
+  "core_unchanged": true,
+  "status": "passed"
+}

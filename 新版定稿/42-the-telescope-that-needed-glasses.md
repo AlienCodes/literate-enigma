@@ -8,21 +8,21 @@ Its first **snapshots** came back **blurred** and **fuzzy**. In June 1990 NASA a
 
 The trouble began with **calibration**. A **lens** in the **assembly** that checked the mirror's shape had been **offset** by about 1.3 **millimetres**, so the mirror **was ground to** the wrong **curve**. A second, **independent test** by the **contractor**, Perkin-Elmer, gave a **divergent** result, but engineers and NASA managers judged it less **reliable** and left the **contradictory** reading **unexplored**.
 
-The mirror could not be repaired in orbit, so engineers **prescribed** **tailored** glasses. COSTAR, a **corrective** **cabinet** the size of a **refrigerator**, carried small mirrors on **adjustable** arms that **intercepted** the light and **compensated for** the **imperfect** mirror's **distortion** before the light reached the instruments. The mirror itself would stay **untouched**, and a new main camera was prepared.
+The mirror could not be repaired in orbit, so engineers **prescribed** **tailored** glasses. COSTAR, a **corrective** **cabinet** the size of a **refrigerator**, carried small mirrors on **adjustable** arms that **intercepted** the light and **compensated for** the **imperfect** mirror's **distortion** before the light reached the **instruments**. The mirror itself would stay **untouched**, and a new main camera was prepared.
 
 On 2 December 1993 Endeavour **ascended** with seven astronauts. After a **rendezvous**, they worked **in tandem** across five **spacewalks**, about 35 and a half hours of **exertion**, **installing** COSTAR and the new camera. The **imagery** turned **crisp**, Hubble's **vision** **renewed**. The mirror still carries that 2.2-micrometre flaw, and the light it **gathers** is corrected only after leaving it.
 
 ## 中文
 
-1990年4月24日，发现号航天飞机**把**(lofted into)哈勃空间**望远镜**(Telescope)**送上**(lofted into)轨道。（loft A into orbit：把 A 送上轨道）这座**安放**(cradled)在**有效载荷**(payload)舱里的**天文台**(observatory)耗资约15亿美元，是一笔**巨额的**(lavish)**投资**(investment)，旨在把**目光**(gaze)投向**宇宙**(cosmos)及其中的**星系**(galaxies)。（cradle：像双手或摇篮一样，温柔地托着、兜住或护住某物）（a lavish investment…：同位语，补充说明前面这笔钱；meant to…：过去分词短语作后置定语，修饰 investment；fix one's gaze on…：把目光投向……）人们很快发现，金钱买不来**清晰度**(clarity)。（it soon emerged：插入语，人们很快发现）
+1990年4月24日，发现号航天飞机**把**(lofted into)哈勃空间**望远镜**(Telescope)**送上**(lofted into)轨道。（loft A into orbit：把 A 送上轨道）这座**安放**(cradled)在**有效载荷**(payload)舱里的**天文台**(observatory)耗资约15亿美元，是一笔**巨大的/奢侈的**(lavish)**投资**(investment)，旨在把**目光**(gaze)投向**宇宙**(cosmos)及其中的**星系**(galaxies)。（cradle：像双手或摇篮一样，温柔地托着、兜住或护住某物）（a lavish investment…：同位语，补充说明前面这笔钱；meant to…：过去分词短语作后置定语，修饰 investment；fix one's gaze on…：把目光投向……）人们很快发现，金钱买不来**清晰度**(clarity)。（it soon emerged：插入语，人们很快发现）
 
 它最初的**快照**(snapshots)传回来时**模糊不清**(blurred)、**很不清楚**(fuzzy)。（come back＋形容词：传回来时是……的样子）1990年6月，美国航天局宣布主镜的一个**缺陷**(flaw)，主镜**外侧的**(outer)**边缘**(rim)被**磨平了**(flattened)2.2微米，大约相当于头发丝**宽度**(width)的五十分之一。（in the main mirror：介词短语作后置定语，修饰 flaw；冒号后面具体说明缺陷）（by：表示相差的量）（a fiftieth：五十分之一；roughly a fiftieth of…：同位语，补充说明 2.2 micrometres）这一**偏差**(deviation)**损害了**(marred)**光学系统**(optics)，使光线无法形成**锐利的**(sharp)焦点。（leaving…：现在分词短语作结果状语；leave A without B：使 A 没有 B）
 
 问题始于**校准**(calibration)。（begin with…：始于……）检测主镜形状的那套**组件**(assembly)中，一块**透镜**(lens)**错位了/偏离了**(offset)约1.3**毫米**(millimetres)，主镜因此**被磨成了**(was ground to)错误的**曲面**(curve)。（in the assembly…：介词短语作后置定语，修饰 lens；that checked…：定语从句，修饰 assembly）（ground：grind 的过去分词，研磨；be ground to…：被磨成……）**承包商**(contractor)珀金-埃尔默公司做的第二次**独立测试**(independent test)给出了**不同的**(divergent)结果，但工程师和美国航天局的管理人员认为它不太**可靠**(reliable)，这一**相互矛盾的**(contradictory)读数也就**无人深究**(unexplored)。（by the contractor：介词短语作后置定语，修饰 test；Perkin-Elmer：同位语，补充说明 the contractor）（judge A＋形容词：认为 A……）（leave A＋形容词：使 A 处于某种状态）
 
-主镜无法在轨道上修复，于是工程师**开出了**(prescribed)一副**量身定制的**(tailored)眼镜。（in orbit：在轨道上）（prescribe：开（药方），这里把矫正装置比作眼镜）COSTAR 是一个**冰箱**(refrigerator)大小的**矫正**(corrective)**箱体**(cabinet)，**可调节的**(adjustable)机械臂上装着小镜子，**截住**(intercepted)光线，**抵消**(compensated for)**有缺陷的**(imperfect)主镜造成的**畸变**(distortion)，这些都需要在光线到达仪器之前完成。（a corrective cabinet…：同位语，补充说明 COSTAR；the size of…：……那么大）（on adjustable arms：介词短语作后置定语，修饰 mirrors）（that intercepted…and compensated for…：定语从句，修饰 small mirrors；compensate for…：抵消，弥补……；before…：时间状语从句）主镜本身将保持**原封不动**(untouched)，一台新的主相机也已准备就绪。（stay＋形容词：保持某种状态）（untouched：未被碰过的，因而保持原样、未受任何影响或改变）
+主镜无法在轨道上修复，于是工程师**开出了**(prescribed)一副**量身定制的**(tailored)眼镜。（in orbit：在轨道上）（prescribe：开（药方），这里把矫正装置比作眼镜）COSTAR 是一个**冰箱**(refrigerator)大小的**矫正**(corrective)**箱体**(cabinet)，**可调节的**(adjustable)机械臂上装着小镜子，**截住**(intercepted)光线，**抵消**(compensated for)**有缺陷的**(imperfect)主镜造成的**畸变**(distortion)，这些都需要在光线到达**仪器**(instruments)之前完成。（a corrective cabinet…：同位语，补充说明 COSTAR；the size of…：……那么大）（on adjustable arms：介词短语作后置定语，修饰 mirrors）（that intercepted…and compensated for…：定语从句，修饰 small mirrors；compensate for…：抵消，弥补……；before…：时间状语从句）主镜本身将保持**原封不动**(untouched)，一台新的主相机也已准备就绪。（stay＋形容词：保持某种状态）（untouched：未被碰过的，因而保持原样、未受任何影响或改变）
 
-1993年12月2日，奋进号载着七名宇航员**升空**(ascended)。（with seven astronauts：伴随状语）完成**交会**(rendezvous)后，他们**协同**(in tandem)进行了五次**太空行走**(spacewalks)，**辛苦作业**(exertion)共约35个半小时，**安装了**(installing)COSTAR 和新相机。（rendezvous：航天器在轨道上会合）（in tandem：协力，配合；across five spacewalks：在五次太空行走中）（exertion 核心的意思：发力、用力（或体力的消耗/付出）。它不是单纯指“工作（work）”，也不是指“辛苦（tired）”，而是特指你为了让某件事发生，实实在在使出去的那股劲儿（体力或脑力））（installing…：现在分词短语作伴随状语）**影像**(imagery)变得**清楚分明**(crisp)，哈勃的**视力**(vision)得以**恢复**(renewed)。（turn＋形容词：变得……）（Hubble's vision renewed：独立主格结构，相当于and Hubble's vision was renewed）主镜至今仍带着那2.2微米的缺陷，它**收集**(gathers)的光要离开镜面之后才会被矫正。（it gathers：定语从句，省略了关系代词，修饰 light；only after…：只有在……之后才）（简述：1990年，航天飞机把耗资约15亿美元的哈勃空间望远镜送上轨道，传回的照片却模糊不清。原来检测主镜的组件里有一块透镜错位，主镜外缘被磨平了2.2微米。另一次独立测试给出过不同结果，却没人追查。主镜无法在轨道上修复，工程师就给它配了一副眼镜：冰箱大小的矫正装置 COSTAR。1993年，七名宇航员经过五次太空行走，装好了 COSTAR 和新相机，哈勃的视力得以恢复。主镜至今仍带着原有的缺陷。）
+1993年12月2日，奋进号载着七名宇航员**升空**(ascended)。（with seven astronauts：伴随状语）完成**交会**(rendezvous)后，他们**协同**(in tandem)进行了五次**太空行走**(spacewalks)，**辛苦作业**(exertion)共约35个半小时，**安装了**(installing)COSTAR 和新相机。（rendezvous：航天器在轨道上会合）（in tandem：协力，配合；across five spacewalks：在五次太空行走中）（exertion 核心的意思：发力、用力（或体力的消耗/付出）。它不是单纯指“工作（work）”，也不是指“辛苦（tired）”，而是特指你为了让某件事发生，实实在在使出去的那股劲儿（体力或脑力））（installing…：现在分词短语作伴随状语）**影像**(imagery)变得**清楚分明**(crisp)，哈勃的**视力**(vision)得以**恢复**(renewed)。（turn＋形容词：变得……）（Hubble's vision renewed：独立主格结构，相当于and Hubble's vision was renewed）主镜至今仍带着那2.2微米的缺陷，它**收集**(gathers)的光要离开镜面之后才会被矫正。（it gathers：定语从句，省略了关系代词，修饰 light；only after…：只有在……之后才）（简述：▸失焦：1990年，耗资约15亿美元的哈勃望远镜升空，传回的照片却模糊。主镜边缘磨得过平，误差只有2.2微米，约为头发宽度的五十分之一，却让光线无法形成清晰的焦点。▸错检：地面检测装置里一块透镜错位约1.3毫米，主镜因此按错误的曲线打磨。另一项独立测试早给出不同结果，但工程师和美国航天局管理者认为它不够可靠，没有继续追查。▸办法：主镜无法在轨道上修复，工程师便给哈勃配“眼镜”：冰箱大小的COSTAR箱体伸出机械臂，用小镜子截住主镜反射的光，抵消畸变，让光线进入观测仪器。▸维修：1993年12月，七名宇航员乘奋进号升空，通过五次太空行走，协同工作约35个半小时，装上COSTAR和一台新的主相机。▸结果：照片恢复清晰，哈勃重新具备观察宇宙的能力；但原主镜没有被重磨，2.2微米的缺陷仍在。修复的关键，是让光线离开主镜后、进入仪器前得到矫正。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -32,7 +32,7 @@ On 2 December 1993 Endeavour **ascended** with seven astronauts. After a **rende
 | cradled | 本文：安放；v. (cradle) 轻轻抱着，稳妥安放（cradle a baby in one's arms） | 1 |
 | payload | 本文：有效载荷；n. 有效载荷（a satellite's payload；payload capacity） | 1 |
 | observatory | 本文：天文台；n. 天文台，观测站（an astronomical observatory） | 1 |
-| lavish | 本文：巨额的；adj. 奢华的，大手笔的（a lavish party；lavish spending） | 1 |
+| lavish | 本文：巨大的/奢侈的；adj. 奢华的，大手笔的（a lavish party；lavish spending） | 1 |
 | investment | 本文：投资；n. 投资（a sound investment；foreign investment） | 1 |
 | gaze | 本文：目光；n./v. 凝视，注视（a steady gaze；gaze at the stars） | 1 |
 | cosmos | 本文：宇宙；n. 宇宙（the origins of the cosmos） | 1 |
@@ -73,6 +73,7 @@ On 2 December 1993 Endeavour **ascended** with seven astronauts. After a **rende
 | compensated for | 本文：抵消；v. (compensate) 补偿，抵消（compensate for a loss/weakness） | 4 |
 | imperfect | 本文：有缺陷的；adj. 有缺陷的，不完美的（an imperfect world/understanding） | 4 |
 | distortion | 本文：畸变；n. 变形，畸变；歪曲（image distortion；a distortion of the facts） | 4 |
+| instruments | 本文：仪器；n. pl. (instrument) 仪器（此处指哈勃的精密观测仪器） | 4 |
 | untouched | 本文：原封不动；adj. 原封未动的，未受影响的（leave food untouched） | 4 |
 | ascended | 本文：升空；v. (ascend) 上升，登上（ascend a staircase；the plane ascended） | 5 |
 | rendezvous | 本文：交会；n. （航天器）交会；约会（a secret rendezvous；orbital rendezvous） | 5 |

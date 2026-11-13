@@ -24,9 +24,9 @@ A **haven** built against the **apocalypse** had a **weakness** at its own entra
 
 在黎巴嫩和摩洛哥，ICARDA**种下了**(sowed)这些种子，而且**强健的**(vigorous)植株**发芽了**(sprouted)，从而**重建了**(regenerate)它的种子收藏库。（他们把这些种子种下去，长出了非常棒的新庄稼。靠着这些新庄稼结出的种子，他们原本被战火毁掉的“种子库存”，终于重新建起来了。）一旦**繁育**(multiplication)进行得足够充分，一场**回归之旅**(homecoming)便于2017年开始了，**一批**(consignment)接一批地**补充着**(restocking)这座北极**堡垒**(stronghold)。（once：一旦……就，引导时间状语从句）（consignment by consignment：一批接一批）（restocking…：现在分词短语作伴随状语）
 
-同一年还有过一场**虚惊**(scare)。在一段**破纪录的**(record-breaking)温暖天气之后，融水流进大约100米长的入口**隧道**(tunnel)，随后**凝固**(solidified)成冰。这次（冰水的）**侵入**(intrusion)**没有到达**(stopped short of)种子所在的位置，它们**安全地**(safely)保持在零下18摄氏度。（stop short of：没有到达）（which…：非限制性定语从句，修饰 seeds）挪威给隧道做了**防水**(waterproofed)，并挖了**排水**(drainage)用的**沟渠**(ditches)。
+同一年还有过一场**虚惊**(scare)。在一段**破纪录的**(record-breaking)温暖天气之后，融水流进大约100米长的入口**隧道**(tunnel)，随后**凝固**(solidified)成冰。（年份说明：入口进水发生在2016年10月，2017年5月引发广泛报道；种子储藏区没有进水。）这次（冰水的）**侵入**(intrusion)**没有到达**(stopped short of)种子所在的位置，它们**安全地**(safely)保持在零下18摄氏度。（stop short of：没有到达）（which…：非限制性定语从句，修饰 seeds）挪威给隧道做了**防水**(waterproofed)，并挖了**排水**(drainage)用的**沟渠**(ditches)。
 
-一座为抵御**世界末日**(apocalypse)而建的**避难所**(haven)，在自家入口处却有一个**弱点**(weakness)，而更暖的天气找到了它。（built against the apocalypse：过去分词短语作后置定语，修饰 haven）（it 指 weakness）（简述：建库：2008年，挪威建了这座“末日种子库”，如同银行顶级保险箱，只有存放者能取。首启：第一次取种不是为了防小行星，而是因为叙利亚内战。2015年，流亡的研究中心取走11.6万份种子。续命：他们在中东重新种下并繁育成功。2017年起，新种子被分批送还北极。意外：北极也遭异常高温，融水倒灌进隧道（万幸结冰没伤到种子）。挪威赶紧加做防水、挖排水沟补救。）
+一座为抵御**世界末日**(apocalypse)而建的**避难所**(haven)，在自家入口处却有一个**弱点**(weakness)，而更暖的天气找到了它。（built against the apocalypse：过去分词短语作后置定语，修饰 haven）（it 指 weakness）（简述：▸备份：2008年启用的斯瓦尔巴种子库，为防战争、病害保存农作物种子备份；种子归存放者，只有他们能取回。▸取种：叙利亚内战中，农业研究中心ICARDA迁移总部；2015年请求取出自存的部分备份，这是种子库首次出库。▸重建：该中心在黎巴嫩、摩洛哥繁育种子，恢复自己的种子样本库，并从2017年起分批将种子存回北极。▸虚惊：2017年报道的入口进水，实际发生于2016年10月异常温暖、多雨的天气后；水在隧道中结冰，未触及种子，种子仍安全保存在零下18摄氏度。▸加固：挪威给隧道加做防水并开挖排水沟，修补这座全球种子保险箱因天气变暖而暴露的入口弱点。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -97,5 +97,7 @@ A **haven** built against the **apocalypse** had a **weakness** at its own entra
 - 【T2】它是备份：存放者保有所有权，只有存放者能取回自己的种子，像银行保险箱。S1
 - 【T3】2015年9月，叙利亚内战促成第一次取种；国际干旱地区农业研究中心（ICARDA）的基因库原在阿勒颇附近，因战争已把总部迁到贝鲁特；它申请取回约11.6万份样本，即战前存入的325箱中的130箱，包括耐旱、耐热的小麦、大麦等品种。战争只写到这一层，不作渲染。S2
 - 【T4】该中心在黎巴嫩和摩洛哥种下这些种子，重建收藏；繁育到足够数量后，从2017年起把新种子送回斯瓦尔巴。S3
-- 【T5】2017年5月报道：创纪录的暖天后，融水流进约100米长的入口隧道并结冰；没有到达种子，种子保持在零下18摄氏度；挪威随后给隧道做防水，并挖排水沟。S4
-- 【说明】所有来源均为检索摘要，正文未用直接引语。英文未写明的因果，中文不加"因此""于是"。
+- 【T5】年份校正：2017年5月广泛报道的入口进水实际发生在2016年10月。Statsbygg通讯主任Hege Njaa Aschim说明，斯瓦尔巴当时异常温暖且降雨很多，水进入入口隧道后冻结，未进入种子储藏区；2017年当时没有再次进水。S14新增短说明区分事件年与报道年，英文、中文释义和配音不改。见本轮实读T6。
+- 【T6｜实读核验2026-11-13】Mary Beth Griggs，[Turns out the Svalbard seed vault is probably fine](https://www.popsci.com/seed-vault-flooding/)，Popular Science，2017-05-22。文中引述Statsbygg发言人："This fall—October 2016—we had extreme weather in Svalbard with high temperatures and a lot of rain—very unusual." 同文说明水在入口隧道冻结，种子及储藏区未受威胁，并说2017年当时没有新漏水。
+- 【T7｜运营方实读核验2026-11-13】Crop Trust，[Svalbard Global Seed Vault](https://www.croptrust.org/what-we-do/programs/svalbard-global-seed-vault/)，现行网页未标单一发布日期。页面确认2015年首次取出，并在“Testing the Backup System”段说明："Between 2015 and 2019, ICARDA withdrew seed samples"，用于重建黎巴嫩、摩洛哥的收藏，繁育后再返存。正文asked for约116000份仅表述请求；本轮未据该页核定第一批实际取出份数，因此简述不再写成“2015首次实取11.6万份”。
+- 【说明】T1–T4保留既有检索摘要；本轮T5–T7增补实读网页核验。引用片段仅用于史实核验，不进入配音正文。英文未写明的因果，中文不加“因此”“于是”。

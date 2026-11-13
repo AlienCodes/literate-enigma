@@ -2,7 +2,7 @@
 # ZH: 两次卖掉埃菲尔铁塔的骗子
 
 ## 英文
-In 1925 six **scrap-metal** **traders** met **secretly** at the Hôtel de Crillon in Paris. A **deputy** **director-general** of the Ministry of Posts and Telegraphs shared the **momentous** news, **confidentially**, that the Eiffel Tower was to be sold for scrap. He invited **tenders** and made each dealer **solemnly** **vow** **secrecy**, **ostensibly** to spare the **public indignation**.
+In 1925 six **scrap-metal** **traders** met **secretly** at the Hôtel de Crillon in Paris. A **deputy** **director-general** of the Ministry of Posts and Telegraphs shared the **momentous** news, **confidentially**, that the Eiffel Tower was to be sold for **scrap**. He invited **tenders** and made each dealer **solemnly** **vow** **secrecy**, **ostensibly** to spare the **public indignation**.
 
 The **pretext** was not **absurd**. Built for the 1889 World's Fair, the **monument** had **originally** been **destined** to **come down** after twenty years. The **high-ranking** deputy was Victor Lustig, a **crook** whose **ministerial** **stationery** was a **forgery**. He had read a newspaper article in which the authorities **lamented** the **hefty cost** of the tower's **upkeep**.
 
@@ -18,7 +18,7 @@ Of Lustig's two marks, the one who paid **kept mum** and the one who kept his mo
 
 ## 中文
 
-1925年，六名经营**废金属**(scrap-metal)的**商人**(traders)在巴黎的克里雍酒店**秘密地**(secretly)会面了。（at the Hôtel de Crillon in Paris：地点状语，中文提到动词前）邮电部的一位**副的**(deputy)**总负责人**(director-general)向他们**私下地**(confidentially)分享了一个**重大的**(momentous)消息，埃菲尔铁塔将作为废铁出售。（of the Ministry…：介词短语作后置定语；confidentially：插入的副词，修饰 shared）（that…：同位语从句，说明 news 的内容；be to be done：将要被……）他请他们**投标**(tenders)，并让每位商人**郑重地**(solemnly)**发誓**(vow)要**保密**(secrecy)，**表面上**(ostensibly)是为了避免引起**公愤**(public indignation)。（make sb do：让某人做……；vow secrecy：发誓保密）（to spare…：不定式表目的；spare sb sth：使某人免受……）
+1925年，六名经营**废金属**(scrap-metal)的**商人**(traders)在巴黎的克里雍酒店**秘密地**(secretly)会面了。（at the Hôtel de Crillon in Paris：地点状语，中文提到动词前）邮电部的一位**副的**(deputy)**总负责人**(director-general)向他们**私下地**(confidentially)分享了一个**重大的**(momentous)消息，埃菲尔铁塔将作为**废铁**(scrap)出售。（of the Ministry…：介词短语作后置定语；confidentially：插入的副词，修饰 shared）（that…：同位语从句，说明 news 的内容；be to be done：将要被……）他请他们**投标**(tenders)，并让每位商人**郑重地**(solemnly)**发誓**(vow)要**保密**(secrecy)，**表面上**(ostensibly)是为了避免引起**公愤**(public indignation)。（make sb do：让某人做……；vow secrecy：发誓保密）（to spare…：不定式表目的；spare sb sth：使某人免受……）
 
 这个**借口**(pretext)并不**荒唐**(absurd)。这座为1889年世博会而建的**纪念建筑**(monument)，**原本**(originally)就**注定**(destined)要在二十年后**拆除**(come down)。（Built for…：过去分词短语，补充说明 the monument）（be destined to do：注定要……；come down：被拆除）那位**位高权重的**(high-ranking)副总长正是维克多·卢斯蒂格，一个**骗子**(crook)，他的那些**部长的**(ministerial)**信笺**(stationery)都是**伪造品**(forgery)。（a crook：同位语，说明 Victor Lustig；whose…：定语从句，修饰 crook）他曾读到过报纸上的一篇文章，文中当局**哀叹**(lamented)铁塔**维护**(upkeep)的**高昂费用**(hefty cost)。（in which…：定语从句，修饰 article）（hefty：（数目，数量）相当大的）
 
@@ -30,12 +30,13 @@ Of Lustig's two marks, the one who paid **kept mum** and the one who kept his mo
 
 后来，卢斯蒂格在美国被捕，因为制造**假**(fake)币，他在**关押**(detention)（期间）越狱，27天后又被**抓回**(recaptured)，并在恶魔岛这座“**刑罚**(penal)之岛”上**服刑**(served time)。（Later arrested…：过去分词短语作状语，主语是 Lustig）（broke out of、was recaptured、served time：三个并列谓语；break out of：从……逃出；serve time：服刑）1947年，他死于肺炎。
 
-卢斯蒂格的两个目标中，付了钱的那个**守口如瓶**(kept mum)，保住了钱的那个则去报了警。（Of…：在……之中；marks：行骗对象；keep mum：闭口不言）（简述：1925年，卢斯蒂格冒充邮电部副总长，把埃菲尔铁塔当作废铁卖给了普瓦松，还另收了一笔贿赂；普瓦松羞于报警，报纸上没有半点消息。约一个月后他故技重施，这次中标者起疑报警，他逃走了，流传的第二次出售并未成交。后来他在美国因伪造货币被捕，越狱后27天又被抓回，关进恶魔岛，1947年死于肺炎。）
+卢斯蒂格的两个目标中，付了钱的那个**守口如瓶**(kept mum)，保住了钱的那个则去报了警。（Of…：在……之中；marks：行骗对象；keep mum：闭口不言）（简述：▸冒充：1925年，卢斯蒂格伪造公文、冒充邮电部官员，邀六名废金属商秘密投标，谎称埃菲尔铁塔要卖废铁。▸借口：铁塔原拟在世博会20年后拆除，维护费又高；卢斯蒂格利用这些真背景，并以免引公愤为由要求保密。▸得手：急于在巴黎立足的普瓦松付了购塔款和贿赂，受骗后却羞于报警，让卢斯蒂格带钱逃走。▸再骗：约一月后，卢斯蒂格重演骗局，新买家起疑报警且未付款；所谓第二次卖成铁塔的故事并不成立。▸下场：卢斯蒂格后来在美国因造假币被捕，越狱27天后再落网，在恶魔岛监狱服刑，1947年死于肺炎。）
 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
 | scrap-metal | 本文：废金属；n. (scrap metal) 废金属（a scrap-metal dealer；连字符用于定语） | 1 |
+| scrap | 本文：废铁；n. 废铁，废金属；废料（sell sth for scrap 把某物当废料出售） | 1 |
 | traders | 本文：商人；n. (trader) 商人，交易者（market traders） | 1 |
 | secretly | 本文：秘密地；adv. 秘密地（meet secretly） | 1 |
 | deputy | 本文：副的；adj. 副的（a deputy director 副主任） | 1 |

@@ -1,31 +1,38 @@
 # EN: The Brain That Learned London
 # ZH: 被街道重塑的大脑
 ## 英文
-Name two addresses and a London cabbie will **rattle off** the quickest route. That **prowess** is **hard-won**. To earn a **licence**, **aspiring** drivers must **conquer** "the Knowledge", an **arduous** **examination** on about 25,000 streets within six miles of Charing Cross. **Hopefuls** **typically** spend three to four years **committing** this **labyrinth** to memory, and only about half **qualify**.
+Name two addresses and a London **cabbie** will **rattle off** the **quickest route**. That **prowess** is **hard-won**. To earn a **licence**, **aspiring** drivers must **conquer** "the Knowledge", an **arduous** **examination** on about 25,000 streets within six miles of Charing Cross. **Hopefuls** **typically** spend three to four years **committing** this **labyrinth** to memory, and only about half **qualify**.
 
-A study published in PNAS in April 2000 **scanned** 16 male cabbies and 50 other men. The **hippocampus** is a seahorse-shaped structure **vital** to memory and **navigation**. In the cabbies, its rear, or **posterior**, **portion** was larger than in the other men, and its front, or **anterior**, portion smaller. Longer service went with a larger rear portion.
+A study published in PNAS in April 2000 **scanned** 16 male cabbies and 50 other men. The **hippocampus** is a seahorse-shaped structure **vital** to memory and **navigation**. In the cabbies, its **rear**, or **posterior**, **portion** was larger than in the other men, and its front, or **anterior**, portion smaller. Longer service went with a larger rear portion.
 
-Yet the link left the cause **uncertain**. Perhaps an **innate** **flair** for **spatial** tasks **lured** people to the **occupation**, or perhaps **stressful** driving was the **culprit**. A December 2006 study **dispelled** the second **notion**: cabbies had more rear grey matter, the tissue **dense** with **nerve** cells, than bus drivers, **confined** to **predetermined** routes, of **equivalent** experience and stress.
+Yet the link left the cause **uncertain**. Perhaps an **innate** **flair** for **spatial** tasks **lured** people to the **occupation**, or perhaps **stressful** driving was the **culprit**. A December 2006 study **dispelled** the second **notion**: cabbies had more rear **grey matter**, the tissue **dense** with **nerve** cells, than bus drivers, **confined** to **predetermined** routes, of **equivalent** experience and stress.
 
-A December 2011 **longitudinal** study **tackled** the first, scanning 79 **trainees** and 31 non-trainees at **enrolment** and three to four years later. Their brains began alike. Only the 39 who qualified **exhibited** an **expansion** of rear grey matter, so the **sequence** suggests learning **preceded** the **enlargement**.
+A December 2011 **longitudinal** study **tackled** the first, scanning 79 **trainees** and 31 non-trainees at **enrolment** and three to four years later. Their brains began **alike**. Only the 39 who qualified **exhibited** an **expansion** of rear grey matter, so the **sequence** suggests learning **preceded** the **enlargement**.
 
 The gain appeared to **entail** a **trade-off**: qualified drivers **trailed** the non-trainees on one test of recalling an **intricate** figure. The **cohorts** were small and **exclusively** male, yet the studies **imply** the healthy adult brain can **remodel** itself through **intensive** learning. Every street learned, it seems, **occupied** room once **claimed** by something else.
 
 ## 中文
 
-随便说出两个地址，伦敦的出租车司机就能**脱口说出**(rattle off)最快的路线。（祈使句 + and：只要……就……）这份**本领**(prowess)**来之不易**(hard-won)。（hard-won：费尽辛苦才得来的）要拿到**执照**(licence)，**有志向的**(aspiring)司机必须**攻克**(conquer)“知识大考”，这是一场**艰巨的**(arduous)**考试**(examination)，考的是约25,000条街道，都在查令十字周边6英里以内。（The Knowledge：伦敦出租车执照考试的俗称）（查令十字：伦敦市中心的地标，常被当作伦敦的中心点）**考生们**(Hopefuls)（种子选手/有望成功的人）**通常**(typically)要花三到四年把这座**迷宫**(labyrinth)**记**(committing)在脑子里，而最终**合格**(qualify)的只有大约一半。（commit sth to memory：把……牢牢记住）
+随便说出两个地址，伦敦的**出租车司机**(cabbie)就能**脱口说出**(rattle off)**最快的路线**(quickest route)。（祈使句 + and：只要……就……）这份**本领**(prowess)**来之不易**(hard-won)。（hard-won：费尽辛苦才得来的）要拿到**执照**(licence)，**有志向的**(aspiring)司机必须**攻克**(conquer)“知识大考”，这是一场**艰巨的**(arduous)**考试**(examination)，考的是约25,000条街道，都在查令十字周边6英里以内。（The Knowledge：伦敦出租车执照考试的俗称）（查令十字：伦敦市中心的地标，常被当作伦敦的中心点）**考生们**(Hopefuls)（种子选手/有望成功的人）**通常**(typically)要花三到四年把这座**迷宫**(labyrinth)**记**(committing)在脑子里，并且只有大约一半，最终会**合格**(qualify)。（commit sth to memory：把……牢牢记住）
 
-一项研究发表于《美国国家科学院院刊》（2000年4月），**扫描了**(scanned)16名男性出租车司机和50名其他男性（的大脑）。**海马体**(hippocampus)是一个形似海马的结构，对记忆和**导航**(navigation)（认路）都是**至关重要的**(vital)。（海马体：大脑深处负责记忆的区域）在出租车司机身上，海马体靠后的（也就是**后面的**(posterior)）**部分**(portion)比其他男性的更大，而靠前的（也就是**前面的**(anterior)）部分则较小。从业时间越长，后部也越大。（go with：与……相伴；此处指两者相关，不是因果）
+一项研究发表于《美国国家科学院院刊》（2000年4月），**扫描了**(scanned)16名男性出租车司机和50名其他男性（的大脑）。**海马体**(hippocampus)是一个形似海马的结构，对记忆和**导航**(navigation)（认路）都是**至关重要的**(vital)。（海马体：大脑深处负责记忆的区域）在出租车司机身上，海马体**靠后的**(rear)（也就是**后面的**(posterior)）**部分**(portion)比其他男性的更大，而靠前的（也就是**前面的**(anterior)）部分则较小。从业时间越长，后部也越大。（go with：与……相伴；此处指两者相关，不是因果）
 
-然而，这种关联让原因仍然是**不确定的**(uncertain)。（leave + 宾语 + 形容词：使……处于某种状态；这里指只看出两者相关，看不出谁导致谁）也许是一种**天生的**(innate)、擅长**空间**(spatial)任务的**天赋**(flair)把人们**吸引**(lured)到了这个**职业**(occupation)里，又或许**紧张的**(stressful)驾驶才是**罪魁祸首**(culprit)。（culprit：本义“罪犯”，这里指造成大脑差异的原因）2006年12月的一项研究**打消了**(dispelled)第二种**想法**(notion)：出租车司机后部的灰质更多，灰质即**密布**(dense)**神经**(nerve)细胞的组织，比公交司机的多；这些公交司机**局限于**(confined)**预先确定的**(predetermined)线路，经验和压力（与出租车司机）都是**相当的**(equivalent)。（dense with：密布着……）（more … than bus drivers 中间插入了对灰质的解释；confined to… 和 of equivalent… 都修饰 bus drivers）
+然而，这种关联让原因仍然是**不确定的**(uncertain)。（leave + 宾语 + 形容词：使……处于某种状态；这里指只看出两者相关，看不出谁导致谁）也许是一种**天生的**(innate)、擅长**空间**(spatial)任务的**天赋**(flair)把人们**吸引**(lured)到了这个**职业**(occupation)里，又或许**紧张的**(stressful)驾驶才是**罪魁祸首**(culprit)。（culprit：本义“罪犯”，这里指造成大脑差异的原因）2006年12月的一项研究**打消了**(dispelled)第二种**想法**(notion)：出租车司机后部的**灰质**(grey matter)更多，灰质即**密布**(dense)**神经**(nerve)细胞的组织，比公交司机的多；这些公交司机**局限于**(confined)**预先确定的**(predetermined)线路，经验和压力（与出租车司机）都是**相当的**(equivalent)。（dense with：密布着……）（more … than bus drivers 中间插入了对灰质的解释；confined to… 和 of equivalent… 都修饰 bus drivers）
 
-2011年12月的一项**纵向的**(longitudinal)研究（着手）**处理**(tackled)第一种想法（即天赋把人吸引到这一行），扫描了79名**学员**(trainees)和31名非学员，分别在**入学**(enrolment)时和三到四年后（各扫描一次）。（纵向研究：长期追踪同一批人）他们的大脑一开始都一样。只有最终合格的39人**表现出**(exhibited)后部灰质的**扩大**(expansion)，因此这一**先后顺序**(sequence)表明，学习**先于**(preceded)（灰质的）**增大**(enlargement)发生。
+2011年12月的一项**纵向的**(longitudinal)研究（着手）**处理**(tackled)第一种想法（即天赋把人吸引到这一行），扫描了79名**学员**(trainees)和31名非学员，分别在**入学**(enrolment)时和三到四年后（各扫描一次）。（纵向研究：长期追踪同一批人）他们的大脑一开始都**一样**(alike)。只有最终合格的39人**表现出**(exhibited)后部灰质的**扩大**(expansion)，因此这一**先后顺序**(sequence)表明，学习**先于**(preceded)（灰质的）**增大**(enlargement)发生。
 
-这种收获似乎**必然带来**(entail)某种**代价**(trade-off)：合格的司机**落后于**(trailed)非学员，是在“回忆一幅**复杂的**(intricate)图形”这项测试上。（trade-off：权衡取舍、此消彼长；这里指有得必有失）这些研究的**样本群体**(cohorts)规模小，而且**专门**(exclusively)都是男性，但这些研究**暗示/意味着**(imply)，健康的成人大脑可以**重塑**(remodel)自身，靠的是**高强度的**(intensive)学习。（cohort：被一起追踪研究的一组人）看来，每记住一条街道，都**占据了**(occupied)一块空间，这块空间原本被别的东西**占用**(claimed)着。
+这种收获似乎**必然带来**(entail)某种**代价**(trade-off)：合格的司机**落后于**(trailed)非学员，是在“回忆一幅**复杂的**(intricate)图形”这项测试上。（trade-off：权衡取舍、此消彼长；这里指有得必有失）
+（通过考试的出租车司机更擅长记住街道，却在回忆复杂图形的测试中，
+不如没参加训练的人。这就是这里说的“代价”：认路能力提高了，
+另一类记忆表现却可能较弱，并不是所有记忆能力都一起变好了。）这些研究的**样本群体**(cohorts)规模小，而且**专门**(exclusively)都是男性，但这些研究**暗示/意味着**(imply)，健康的成人大脑可以**重塑**(remodel)自身，靠的是**高强度的**(intensive)学习。（cohort：被一起追踪研究的一组人）看来，每记住一条街道，都**占据了**(occupied)一块空间，这块空间原本被别的东西**占用**(claimed)着。
+
+（简述：▸训练：伦敦出租车司机通常花三四年记住约2.5万条街道，只有约一半学员通过执照考试。▸差异：海马体是参与记忆和认路的脑结构；出租车司机的海马体后部比其他男性大、前部小，但最初不知道这是天生差异还是工作造成的。▸排查：公交司机也要长期驾驶，却只走固定路线；与经验和压力相近的公交司机比较，出租车司机后部富含神经细胞的灰质仍更多。▸追踪：学员与未参训者起初脑部相似，三四年后只有考过者的后部灰质增加，说明学习发生在大脑变化之前，支持训练可能改变成人大脑。▸取舍：样本小且全为男性，考过者在一项复杂图形记忆测试中还落后于未参训者；认路能力增强，未必等于各种记忆都增强。）
 
 ## 速查表
 | 词 | 释义 | 段 |
 |---|---|---|
+| cabbie | 本文：出租车司机；n. 〈口语〉出租车司机 | 1 |
+| quickest route | 本文：最快的路线；n. 短语，最快的路线 | 1 |
 | rattle off | 本文：脱口说出；phr. v. 一口气说出，脱口而出（rattle off names/figures/a list） | 1 |
 | prowess | 本文：本领；n. 高超技艺，本领（navigational/athletic prowess） | 1 |
 | hard-won | 本文：来之不易；adj. 来之不易的，艰苦得来的（hard-won skills/victory） | 1 |
@@ -43,6 +50,7 @@ The gain appeared to **entail** a **trade-off**: qualified drivers **trailed** t
 | hippocampus | 本文：海马体；n. 海马体（大脑中与记忆、空间导航有关的结构；复数 hippocampi）（the hippocampus is vital to memory） | 2 |
 | navigation | 本文：导航；n. 导航，航行，找路（satellite navigation）；navigate v. | 2 |
 | vital | 本文：至关重要的；adj. 至关重要的（be vital to/for sth）；生命的（vital signs） | 2 |
+| rear | 本文：靠后的；adj. 后部的，靠后的 | 2 |
 | posterior | 本文：后面的；adj. 后部的（posterior hippocampus）；反义 anterior | 2 |
 | portion | 本文：部分；n. 部分，一份（a portion of sth；a large portion of the budget） | 2 |
 | anterior | 本文：前面的；adj. 前部的（anterior portion）；（时间上）先前的 | 2 |
@@ -56,6 +64,7 @@ The gain appeared to **entail** a **trade-off**: qualified drivers **trailed** t
 | culprit | 本文：罪魁祸首；n. 罪魁祸首，（问题的）根源；犯人（the main/real culprit） | 3 |
 | dispelled | 本文：打消了；v. (dispel) 打消，驱散（dispel a notion/myth/fears） | 3 |
 | notion | 本文：想法；n. 想法，观念（the notion that…；reject a notion） | 3 |
+| grey matter | 本文：灰质；n. 灰质（脑组织） | 3 |
 | dense | 本文：密布；adj. 密集的，稠密的（be dense with sth；dense forest/fog） | 3 |
 | nerve | 本文：神经；n. 神经（nerve cells 神经细胞）；勇气（lose one's nerve） | 3 |
 | confined | 本文：局限于；adj./v. (confine) 局限于，限制（be confined to sth） | 3 |
@@ -65,6 +74,7 @@ The gain appeared to **entail** a **trade-off**: qualified drivers **trailed** t
 | tackled | 本文：处理；v. (tackle) 着手处理，解决（tackle a problem/question）；（足球）抢断 | 4 |
 | trainees | 本文：学员；n. (trainee) 受训者，学员（a trainee teacher） | 4 |
 | enrolment | 本文：入学；n. 入学，注册（英式拼写；at enrolment；enrol v.） | 4 |
+| alike | 本文：一样；adj. 相似的，相同的 | 4 |
 | exhibited | 本文：表现出；v. (exhibit) 显示出，表现出（exhibit signs/symptoms）；展出 | 4 |
 | expansion | 本文：扩大；n. 增长，扩大，扩张（economic expansion；the expansion of grey matter） | 4 |
 | sequence | 本文：先后顺序；n. 顺序，先后次序（in sequence；a sequence of events） | 4 |

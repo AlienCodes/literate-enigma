@@ -7,7 +7,7 @@ Since then the **durable** **debris** has proved **ubiquitous**, **turning up** 
 
 The search **turned inward**. In March 2022 a small Dutch study found plastic in the blood of about three-quarters of 22 healthy **donors**. In March 2024 a study in the New England Journal of Medicine linked plastic in the **fatty** **plaque** of neck **arteries** to a higher risk of heart attack, **stroke**, or death. Its authors **cautioned** that **correlation** is not **causation**.
 
-The most **sensational** figures are the **shakiest**. In June 2019 a report for WWF, a **conservation** group, **reckoned** people might **swallow** a credit card's worth of plastic a week; critics call that an **overestimate**. Two months later the World Health Organization was **reassuring** but **tentative**: on limited evidence, microplastics in drinking water posed no **apparent** risk at current levels. In February 2025 a study in Nature Medicine reported plastic in brain **tissue** in an amount popularised as a **spoonful**; others **queried** its **methodology**.
+The most **sensational** figures are the **shakiest**. In June 2019 a report for WWF, a **conservation** group, **reckoned** people might **swallow** a credit card's worth of plastic a week; critics call that an **overestimate**. Two months later the World Health Organization was **reassuring** but **tentative**: on limited evidence, microplastics in drinking water posed no **apparent** risk at current levels. In February 2025 a study in Nature Medicine reported plastic in brain **tissue** in an amount **popularised as** a **spoonful**; others **queried** its **methodology**.
 
 **Detection** has outrun understanding; human studies remain small or **observational**. Harm is **plausible** but **unproven**, and until the **verdict** is in, better **measurement** may guide policy more safely than **panic**.
 
@@ -19,9 +19,9 @@ The most **sensational** figures are the **shakiest**. In June 2019 a report for
 
 人们的搜寻随后**转向了体内**(turned inward)。（turn inward：转向内部，这里指转向人体内部）2022年3月，一项小规模的荷兰研究发现，22名健康**献血者**(donors)中，约四分之三的人血液里有塑料。（about three-quarters of 22 healthy donors：22名健康献血者中的约四分之三，即17人）2024年3月，《新英格兰医学杂志》上的一项研究，将颈部**动脉**(arteries)**脂肪性**(fatty)**斑块**(plaque)中的塑料，与心脏病发作、**中风**(stroke)或死亡的更高风险联系了起来。（in the New England Journal of Medicine：后置定语，修饰 study）（link A to B：把 A 与 B 联系起来；of neck arteries：of 结构作后置定语，修饰 plaque）该研究的作者**警告**(cautioned)称，**相关性**(correlation)并不等于**因果关系**(causation)。
 
-最**耸人听闻的**(sensational)数字，就是**最不可靠的**(shakiest)。（the shakiest：shaky 的最高级，最不可靠的）2019年6月，一份和**自然保护**(conservation)组织 WWF 有关的报告**估算**(reckoned)，人们每周可能**吞下**(swallow)相当于一张信用卡分量的塑料；批评者称其**高估了**(overestimate)。（WWF：世界自然基金会）（a credit card's worth of…：相当于一张信用卡（重量）的……）（call A B：把 A 称作 B）两个月后，世界卫生组织的表态**令人安心**(reassuring)，但只是**试探性的**(tentative)：基于有限的证据，饮用水中的微塑料，按照当前的含量，并未构成**明显**(apparent)风险。（on limited evidence：依据有限的证据；pose a risk：构成风险）2025年2月，《自然·医学》上的一项研究报告了脑**组织**(tissue)中的塑料，其含量被大众传作“**一勺**(spoonful)”；其他人则**质疑了**(queried)其**研究方法**(methodology)。（popularised as…：过去分词短语作后置定语，修饰 amount，被广泛传成……）
+最**耸人听闻的**(sensational)数字，就是**最不可靠的**(shakiest)。（the shakiest：shaky 的最高级，最不可靠的）2019年6月，一份和**自然保护**(conservation)组织 WWF 有关的报告**估算**(reckoned)，人们每周可能**吞下**(swallow)相当于一张信用卡分量的塑料；批评者称其**高估了**(overestimate)。（WWF：世界自然基金会）（a credit card's worth of…：相当于一张信用卡（重量）的……）（call A B：把 A 称作 B）两个月后，世界卫生组织的表态**令人安心**(reassuring)，但只是**试探性的**(tentative)：基于有限的证据，饮用水中的微塑料，按照当前的含量，并未构成**明显**(apparent)风险。（on limited evidence：依据有限的证据；pose a risk：构成风险）2025年2月，《自然·医学》上的一项研究报告了脑**组织**(tissue)中的塑料，其含量**被大众传作**(popularised as)“**一勺**(spoonful)”；其他人则**质疑了**(queried)其**研究方法**(methodology)。（popularised as…：过去分词短语作后置定语，修饰 amount，被广泛传成……）
 
-**检测**(Detection)走在了认识前面；针对人体的研究仍然规模较小，或只是**观察性的**(observational)。（outrun：跑得比……快，这里指超过；remain＋形容词：仍然……）说它有害**合乎情理**(plausible)，却**尚未证实**(unproven)；而在**定论**(verdict)出来之前，依据更好的**测量**(measurement)来指导政策，或许会更稳妥，胜过任由**恐慌**(panic)左右。（the verdict is in：定论已出；than panic：比较的是 panic 指导政策）（简述：2004年，汤普森等人在存档的浮游生物样本中发现塑料碎片和纤维增多，称之为微塑料。此后海岸、深海、雨水和北极冰中都发现了它，美国2015年立法禁用化妆品塑料微珠。研究转向人体：血液、动脉斑块、脑组织里都检出塑料，但相关不等于因果，最惊人的数字和一些研究方法都受到质疑，世卫组织也认为目前饮用水中的微塑料没有明显风险。危害合乎情理却未证实，在定论出来之前，靠更好的测量来制定政策比恐慌更稳妥。）
+**检测**(Detection)走在了认识前面；针对人体的研究仍然规模较小，或只是**观察性的**(observational)。（outrun：跑得比……快，这里指超过；remain＋形容词：仍然……）说它有害**合乎情理**(plausible)，却**尚未证实**(unproven)；而在**定论**(verdict)出来之前，依据更好的**测量**(measurement)来指导政策，或许会更稳妥，胜过任由**恐慌**(panic)左右。（the verdict is in：定论已出；than panic：比较的是 panic 指导政策）（简述：▸来历：2004年，汤普森团队发现海洋样本中微小塑料碎片和合成纤维增多，称其为微塑料。如今从深海到北极都能找到它们。▸检出：2022年一项小研究在22名健康献血者中，约四分之三的人血中检出塑料。检出颗粒，不能直接证明它已造成疾病。▸风险：2024年研究发现，颈部血管内脂肪沉积物含塑料的患者，心梗、中风或死亡风险更高；但这只是关联，尚不能证明塑料就是病因。▸争议：每周吞下“一张信用卡”塑料的估算被批高估；2025年脑组织研究被媒体换算为“一勺”，这是含量估算，不能当作人人脑内的确定含量，测量方法也受质疑。▸判断：世卫2019年据有限证据，认为饮水微塑料在当时含量下无明显风险。这不等于所有接触都无害；对人体的危害仍需更可靠的研究确认。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -69,6 +69,7 @@ The most **sensational** figures are the **shakiest**. In June 2019 a report for
 | tentative | 本文：试探性的；adj. 初步的，试探性的，暂定的（a tentative conclusion/agreement）；犹豫的，不确定的（a tentative smile）；tentatively adv. | 4 |
 | apparent | 本文：明显；adj. 明显的，显而易见的（for no apparent reason 无明显原因；it is apparent that…）；表面上的，看似的（his apparent calm）；apparently adv. 看来，似乎 | 4 |
 | tissue | 本文：组织；n. （生物的）组织（brain/muscle/fatty tissue）；纸巾，面巾纸；薄纸（tissue paper）；a tissue of lies 一派谎言 | 4 |
+| popularised as | 本文：被大众传作；v. (popularise as) 广泛称作，把……宣传为（be popularised as sth） | 4 |
 | spoonful | 本文：一勺；n. 一匙，一勺（的量）（a spoonful of sugar）；spoon n. 勺子 | 4 |
 | queried | 本文：质疑了；v. (query) 质疑，对……表示怀疑（query a decision/figure）；询问；n. 疑问，询问（raise a query 提出疑问） | 4 |
 | methodology | 本文：研究方法；n. 研究方法，方法论（research methodology；flaws in the methodology）；method n. 方法 | 4 |

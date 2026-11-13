@@ -1,131 +1,483 @@
-import json,re,glob,os
-# 第54篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
-# 2026-11-05 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；三项并列加牛津逗号（T18）；不用破折号（T36）；形容词的“的”进粗体。
-S=[
-(1,[[[("Shortly after ten in the morning on 27 August 1883,","1883年8月27日上午10时刚过，")],
-     "（Shortly after ten in the morning：上午10时刚过；\non 27 August 1883：日期状语）"],
-    [[("Krakatoa,","喀拉喀托，"),("a **volcanic** island in the Sunda **Strait**,","一座位于巽他**海峡**(Strait)的**火山**(volcanic)岛，")],
-     "（a volcanic island in the Sunda Strait：\n同位语，补充说明 Krakatoa）"],
-    [[("**unleashed**","**迸发出**(unleashed)"),("its","其"),("most **thunderous**","最为**震耳欲聋的**(thunderous)"),("explosion.","一声爆炸。")],
-     "（most thunderous：thunderous 的最高级，最为震耳欲聋的）"]]),
-(1,[[[("About","约"),("four hours","四小时"),("later,","后，"),("**islanders** on Rodrigues,","罗德里格斯岛上的**岛民**(islanders)，")],
-     "（on Rodrigues：后置定语，修饰 islanders）"],
-    [[("nearly","离着将近"),("4,800 kilometres","4800公里，"),("across the Indian Ocean,","远隔着一个印度洋，")],
-     "（nearly 4,800 kilometres across the Indian Ocean：\n补充说明 Rodrigues 的位置）"],
-    [[("took","把"),("the **roar**","这声**轰鸣**(roar)"),("for","当成了"),("**distant**","**远处的**(distant)"),("**gunfire**.","**炮火声**(gunfire)。")],
-     "（take A for B：把 A 误当成 B）"]]),
-(1,[[[("**Barometers** worldwide","世界各地的**气压计**(Barometers)"),("recorded","都记录到了"),("the","这次"),("**atmospheric**","**大气**(atmospheric)"),("pressure","压力"),("wave,","波，")],
-     "（worldwide：副词作后置定语，修饰 Barometers）"],
-    [[("some of them","其中一些"),("seven times in about five days.","在大约五天之内记录到七次。")],
-     "（some of them seven times…：省略句，\n即 some of them recorded it seven times）"]]),
-(2,[[[("**Restless** since 20 May,","自5月20日起便**躁动不安**(Restless)，")],
-     "（Restless since 20 May：形容词短语作状语，\n逻辑主语是 the volcano）"],
-    [[("the volcano","这座火山"),("reached","达到"),("a **catastrophic**","**灾难性的**(catastrophic)"),("**climax**","**高潮**(climax)"),("on 26–27 August.","是在8月26日至27日。")],
-     "（reach a climax：达到高潮）"]]),
-(2,[[[("About","约"),("two-thirds","三分之二"),("of the island","的岛体"),("**collapsed into**","**塌入**(collapsed into)"),("its **emptied**","**已被排空的**(emptied)"),("**magma** chamber,","**岩浆**(magma)房，")],
-     "（emptied：过去分词作定语，已被排空的；\nmagma chamber：岩浆房）"],
-    [[("**vanishing**","**消失**(vanishing)在"),("beneath the sea.","海面之下。")],
-     "（vanishing…：现在分词短语作状语，补充说明结果）"]]),
-(2,[[[("**Tsunamis**,","**海啸**(Tsunamis)"),("**reportedly**","**据报道**(reportedly)"),("over 30 metres high in places,","局部高逾30米，")],
-     "（reportedly over 30 metres high in places：\n插入的形容词短语，补充说明 Tsunamis；\nin places：在某些地方，局部）"],
-    [[("**swamped**","**淹没了**(swamped)"),("**coastal**","**沿海**(coastal)"),("**settlements**","**居民点**(settlements)，"),("on Java and Sumatra.","遍及爪哇岛和苏门答腊岛。")]]]),
-(2,[[[("Dutch","荷兰"),("**colonial**","**殖民地**(colonial)"),("**administrators**","**行政官员**(administrators)"),("counted","统计出"),("36,417 dead,","36,417名死者，")],
-     "（dead：这里作名词，死者）"],
-    [[("mostly","其中大多数"),("**drowned**,","是**溺亡**(drowned)的，")],
-     "（mostly drowned：省略结构，\n即 most of them had drowned）"],
-    [[("perhaps","而他们或许"),("**underestimating**","**低估了**(underestimating)"),("the **toll**.","**死亡人数**(toll)。")],
-     "（underestimating the toll：现在分词短语作状语，补充说明；\ntoll：死亡人数）"]]),
-(3,[[[("**Telegrams**","**电报**(Telegrams)"),("from Batavia","从巴达维亚"),("(now Jakarta),","（今雅加达）发出，")]],
-    [[("**relayed** by **submarine** **cable**,","经**海底**(submarine)**电缆**(cable)**转发**(relayed)，")],
-     "（relayed by submarine cable：\n过去分词短语作后置定语，修饰 Telegrams）"],
-    [[("reached London within hours.","在几小时内到达了伦敦。")]]]),
-(3,[[[("Western newspapers","西方报纸"),("soon","很快便"),("began","开始"),("**chronicling**","**记述**(chronicling)")]],
-    [[("what","这起"),("is often","常"),("called","被称为"),("the first","首个"),("global","全球"),("news","新闻"),("event.","事件的灾难。")],
-     "（what is often called…：what 引导的宾语从句，\n作 chronicling 的宾语）"]]),
-(3,[[[("Yet","然而，"),("early","早期的"),("**dispatches**","**电讯**(dispatches)"),("were","都十分"),("**terse**;","**简短**(terse)；")]],
-    [[("the **magnitude** of the **devastation**","**浩劫**(devastation)的**规模**(magnitude)"),("emerged **piecemeal**","**一点一点地**(piecemeal)显露出来，"),("over days.","前后历经数日。")],
-     "（the magnitude of the devastation：of 结构，\n浩劫的规模；\nover days：在几天的时间里）"]]),
-(4,[[[("**Ash**","**火山灰**(Ash)"),("and **sulphur** dioxide,","和二氧化**硫**(sulphur)"),("**hurled**","被**抛射**(hurled)到"),("tens of","数十"),("kilometres","公里的"),("high,","高空，")],
-     "（hurled tens of kilometres high：\n过去分词短语作后置定语，\n修饰 Ash and sulphur dioxide）"],
-    [[("formed","形成"),("a **haze**","一层**薄雾**(haze)，"),("that circled the **equator** in about two weeks.","在大约两个星期内环绕了**赤道**(equator)一周。")],
-     "（that circled…：定语从句，修饰 haze）"]]),
-(4,[[[("In November 1883,","1883年11月，"),("**crimson**","**深红色的**(crimson)"),("sunsets","晚霞"),("**glowed**","**发出暗淡的光**(glowed)，"),("over","照耀着"),("Europe","欧洲"),("and North America,","和北美，")]],
-    [[("**summoning**","**召唤着**(summoning)"),("**firefighters** in New York and Connecticut","纽约州和康涅狄格州的**消防员**(firefighters)"),("to","赶去扑救"),("**phantom**","**子虚乌有的**(phantom)"),("**blazes**.","**大火**(blazes)。")],
-     "（summoning…：现在分词短语作状语，补充说明结果；\nsummon A to B：把 A 召到 B 处）"]]),
-(4,[[[("Later","后来的"),("climate","气候"),("**reconstructions**","**重建**(reconstructions)研究"),("suggest","推测，")],
-     "（climate reconstructions：气候重建，\n根据各种证据推算过去的气候）"],
-    [[("global","全球"),("temperatures","气温"),("**dipped**","**下降了**(dipped)"),("a few tenths of a degree","零点几度，"),("the following year.","就在次年。")],
-     "（suggest 后面省略了 that，引导宾语从句；\na few tenths of a degree：零点几度）"]]),
-(5,[[[("Some experts","一些专家"),("**discounted**","**不予采信**(discounted)"),("the volcanic","火山"),("explanation,","之说，")]],
-    [[("blaming","而把"),("the **sunsets**","**晚霞**(sunsets)"),("on","归因于"),("**moisture** **at high altitude**","**高空**(at high altitude)的**水汽**(moisture)"),("or","或"),("**cosmic**","**宇宙**(cosmic)"),("dust.","尘埃。")],
-     "（blaming…：现在分词短语作状语；\nblame A on B：把 A 归咎于 B）"]]),
-(5,[[[("In February 1884,","1884年2月，"),("Britain's **Royal Society**","英国**皇家学会**(Royal Society)"),("**appealed**","发出**呼吁**(appealed)，"),("in The Times","在《泰晤士报》上"),("for","征集"),("dated","注明日期的"),("observations,","观测记录，")],
-     "（appeal for…：呼吁，征求……；\ndated：注明日期的）"],
-    [[("**eliciting**","**引起了**(eliciting)"),("worldwide","世界各地的"),("replies;","回应；")],
-     "（eliciting…：现在分词短语作状语，补充说明结果）"],
-    [[("the Society's","学会"),("1888 report","1888年发表的报告"),("**tied**","**把**(tied to)"),("the glow","这片红霞"),("**to**","**归于**(tied to)"),("Krakatoa.","喀拉喀托火山。")],
-     "（tie A to B：把 A 与 B 联系起来）"]]),
-(5,[[[("Through","借助"),("barometers,","气压计、"),("cables,","电缆"),("and crimson","和深红色的"),("skies,","天空，")]],
-    [[("**far-flung**","**相隔遥远的**(far-flung)"),("**observers**","**观察者**(observers)们"),("began to","开始"),("**glimpse**","**认识到**(glimpse)，")]],
-    [[("how **interconnected** the planet already was.","这颗星球上的各个地方早已**相互关联**(interconnected)在一起。")],
-     "（how interconnected…：how 引导的宾语从句，作 glimpse 的宾语，\n语序为 how＋形容词＋主语＋谓语）\n"
-     "（简述：\n1. 大爆炸：1883年8月27日，喀拉喀托火山猛烈爆炸。声音大到离谱，将近4800公里外的岛民还以为是打仗的炮声。世界各地的气压计都记下了这股压力波。\n2. 惨烈后果：巨大的爆炸让约三分之二的岛体直接塌进了海里，引发了海啸，淹没了爪哇岛和苏门答腊岛的海岸，官方统计死了36,417人。\n3. 首个全球新闻：当时电报通过海底电缆，仅仅几个小时就把消息传到了伦敦，这在历史上常被称为“首个全球新闻事件”。\n4. 全球连环反应：喷到天上的火山灰和二氧化硫形成薄雾，绕着赤道散开。这让欧美那边出现了深红色的晚霞，当地消防员甚至误以为哪里失火了。到了第二年，全球气温还稍微降了一点。\n5. 科学界的破案：一开始有专家不信是火山干的，于是英国皇家学会登报征集各地的观测记录。直到1888年，学会发布报告，正式把红霞归因于喀拉喀托火山。\n6. 最终的意义：经历了这件事，人们开始明白：这个星球上各地早就紧密的连接在了一起。）"]]),
-]
-G={
- "S1 Shortly after ten in the morning on 27 August 1883":"对齐不了：中文日期时间按“年月日、上午、钟点”排，“1883年8月27日上午10时刚过”语序必须整个倒过来",
- "S6 over 30 metres high in places":"对齐不了：over…high 中文“高逾”是一个整体，in places 是状语，中文“局部”必须提前，拆开不通",
- "S5 beneath the sea":"对齐不了：beneath the sea 中文“海面之下”，方位词“之下”必须放到名词后面",
- "S13 the following year":"对齐不了：the following year 中文“次年”是一个词，拆开不通",
- "S13 a few tenths of a degree":"对齐不了：a few tenths of a degree 是 of 结构的数量说法，中文“零点几度”是一个整体，拆开不通",
- "S3 seven times in about five days":"对齐不了：用户 2026-11-07 原话定的译文“其中一些在大约五天之内记录到七次”，in about five days 是时间状语，中文必须提到动词前",
- "S8 reached London within hours":"对齐不了：用户 2026-11-07 原话定的译文“在几小时内到达了伦敦”，within hours 是时间状语，中文必须提到动词前",
- "S11 that circled the equator in about two weeks":"对齐不了：用户 2026-11-07 原话定的译文“在大约两个星期内环绕了赤道一周”，in about two weeks 是时间状语，中文必须提到动词前",
- "S16 how interconnected the planet already was":"对齐不了：how＋形容词＋主语＋谓语 的宾语从句，中文“这颗星球上的各个地方早已相互关联在一起”（用户 2026-11-07 原话定）语序必须整个倒过来",
-}
-CONF={"合组":G,"对齐":{
- "S11-2 that circled the equator in ab":"用户 2026-11-07 原话定的译文“在大约两个星期内环绕了赤道一周”，定语从句里的时间状语 in about two weeks 中文必须提到动词前",
- "S8-3 reached London within hours.":"用户 2026-11-07 原话定的译文“在几小时内到达了伦敦”，时间状语 within hours 中文必须提到动词前，语序倒过来",
- "S3-2 seven times in about five days":"用户 2026-11-07 原话定的译文“在大约五天之内记录到七次”，时间状语 in about five days 中文必须提到动词前，语序倒过来",
- "S1-2 a volcanic island in the Sunda":"in the Sunda Strait 是后置定语，修饰 island，中文“位于巽他海峡的火山岛”定语必须提前",
- "S1-1 Shortly after ten in the morni":"中文日期时间按“年月日、上午、钟点”排，“1883年8月27日上午10时刚过”语序必须整个倒过来",
- "S4-2 on 26–27 August.":"on 26–27 August 是日期状语，中文“8月26日至27日”月份必须放到日期前，拆开不通",
- "S6-1 over 30 metres high in places,":"in places 是状语，中文“局部”必须提前；over…high 中文“高逾”是一个整体",
- "S10-2 the magnitude of the devastati":"the magnitude of the devastation 是 of 结构，中文“浩劫的规模”语序必须倒过来",
- "S12-2 firefighters in New York and C":"in New York and Connecticut 是后置定语，修饰 firefighters，中文“纽约州和康涅狄格州的消防员”定语必须提前",
- "S13-2 a few tenths of a degree":"a few tenths of a degree 是 of 结构的数量说法，中文“零点几度”是一个整体",
- "S16-3 how interconnected the planet ":"how＋形容词＋主语＋谓语 的宾语从句，中文“这颗星球上的各个地方早已相互关联在一起”（用户 2026-11-07 原话定）语序必须整个倒过来"},
-"短语":{
- "S15 appealed … for":"不是搭配：用户 2026-11-07 原话只点 appeal、中文“呼吁”，appeal 单独就是“呼吁”（速查表第一个意思）；for 引出呼吁的内容，中文“征集”已译出",
- "S3 Barometers … of":"不是搭配：of 属于 some of them，和 Barometers 无关",
- "S6 reportedly … over":"不是搭配：over 属于 over 30 metres high（高逾30米），reportedly 单独就是“据报道”",
- "S6 swamped … on":"不是搭配：on 属于 on Java and Sumatra（表示地点），swamp 单独就是“淹没”",
- "S8 relayed … by":"不是搭配：by 表示方式（经由海底电缆），relay 单独就是“转发”",
- "S10 magnitude … of":"不是搭配：of 是普通的所属关系（浩劫的规模），magnitude 单独就是“规模”（速查表第一个意思）",
- "S11 hurled … of":"不是搭配：of 属于 tens of kilometres（数十公里），hurl 单独就是“抛射”",
- "S12 glowed … in":"不是搭配：in 属于 firefighters in New York and Connecticut，和 glowed 无关",
- "S12 summoning … to":"不是搭配：to 只表示去向（赶去扑救），summon 单独就是“召来，招来”（速查表第一个意思）",
- "S13 dipped … of":"不是搭配：of 属于 a few tenths of a degree（零点几度），dip 单独就是“（小幅）下降”",
- "S14 discounted … on":"不是搭配：on 属于 blame A on B（把 A 归因于 B），和 discounted 无关",
- "S14 on … moisture":"不是搭配：on 属于 blame A on B，中文“归因于”已译出，moisture 单独就是“水汽”",
- "S13 temperatures dipped":"不是搭配：dip 单独就是速查表第一个意思“（小幅）下降”，temperatures 是普通名词“气温”，“了”是格式",
- "S16 glimpse how":"不是搭配：how 引导宾语从句，中文“何等”已在从句里译出；glimpse 单独就有“隐约看出”（速查表所列词义），只标 glimpse"},
-"非人声":{"S4 7.626167–7.664958": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（S4 w，长 7.665）：August 的 /s/ 7.535–7.5775（-20～-25 dB，高频与全频同强），7.5775–7.59 衰减，7.5925–7.625 是 /t/ 闭塞（-56～-73 dB）；7.6275–7.665 是一下弱除阻（全频 -40～-51 dB、2 kHz 以上 -47～-70 dB、重心 1.3 kHz，词尾辅音核对报不合格，加强 6 dB 也不够，再移植会成双爆破）。主会话 2026-11-05 同意：删 7.626167–7.664958（起点过零点，紧贴闭塞后，到句末最后一个样本前），再由 词尾辅音核对 --写入 移植供体 /t/ 除阻（同 24 S11 August.）"}, "8.76–8.77s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S1 w 5.985–6.000：Krakatoa, 末尾 ə 的衰减（5.96–6.02 -31～-45 dB，周期 0.2–0.4，低频 -1～-9 dB，重心 1.3–2.3 kHz，有嗓音），程序算像呼吸的只占 4%；6.045 才是逗号处的删除段，是词的一部分"}, "14.65–14.75s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S1 w 11.785–11.880：explosion. 句末 /n/ 的鼻音衰减（低频占比 -2～-7 dB、周期 0.14–0.5，-36 一路降到 -58 dB），程序算像呼吸的只占 3%，是词尾自然衰减"}, "34.38–34.45s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S3 w 6.845–6.925：days. 里 eɪ 到词尾 /z/ 的过渡（-38～-55 dB、重心 2.8–4.8 kHz、低频 -2～-12 dB），6.965 起 /z/ 擦音升起（重心 4.8 kHz），像呼吸的只占 5%，是词的一部分"}, "40.33–40.34s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S4 w 4.475–4.485：catastrophic 词尾 /k/ 的除阻（-50 dB、重心 4.8–5.6 kHz、低频 -29 dB 的一下爆破），4.505 起 climax 的 /kl/（-18 dB），是词尾塞音除阻"}, "50.52–50.60s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S5 w 5.970–6.050：sea. 句末 iː 的衰减（6.0–6.05 周期 0.33–0.64、重心 2–3.5 kHz 即 iː 的高第二共振峰，-36 一路降到 -73 dB），是词尾自然衰减"}, "60.21–60.23s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S7 w 0.020–0.045：Dutch 开头 /d/ 的浊音杠（0.025 起 -43→-29 dB、周期 0.3–0.5、重心 0.3–0.6 kHz、低频 -1～-4 dB，连到 0.08 一直是稳定浊音），是词头的一部分"}, "76.19–76.21s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S8 w 5.245–5.260：cable, 停顿之后 reached 的 /ɹ/ 起音前的浊音（-48～-57 dB、低频占比 -0～-1 dB），5.265 起连续升到 5.28 的 -22 dB，是词头起音"}, "77.65–77.77s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S8 w 6.700–6.820：hours. 里 ɚ 到词尾 /z/ 的过渡（-34～-52 dB、重心 1–2.7 kHz），6.815 起 /z/ 擦音（低频 -33～-57 dB、重心 4.4–5.8 kHz）紧接着，是词的一部分"}, "81.81–81.86s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S9 w 3.085–3.125：what 的 /w/ 起音前的浊音（-44～-57 dB、低频占比 -0～-1 dB、周期 0.16–0.44），一直连到 3.13 起的 /w/（3.135 -36、3.14 -23 dB），是词头起音"}, "92.25–92.27s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S10 w 6.505–6.520：days. 词尾 /z/ 中间（6.465–6.545 一直是 -34～-51 dB、重心 2.5–4 kHz、周期 0.2–0.3 的弱浊擦音），是词的一部分"}, "106.46–106.50s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S12 w 3.485–3.525：sunsets 里 /t/ 闭塞到词尾 /s/ 之间的浊音（周期 0.31–0.39、低频 -1～-3 dB，-34～-49 dB），3.535 起词尾 /s/（低频 -28 dB、重心 3 kHz），是词的一部分"}, "113.28–113.38s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S12 w 10.345–10.445：blazes. 里 ᵻ 到词尾 /z/ 的过渡（-37～-54 dB、周期 0.18–0.49），10.44 起 /z/ 擦音（低频 -24～-64 dB、重心 4.7–5.6 kHz），是词的一部分"}, "118.78–118.79s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S13 w 4.470–4.480：dipped 词尾 /t/ 的除阻（-30 dB、低频 -24 dB、重心 3.6 kHz 的一下爆破，前面 4.43–4.465 是闭塞 -52～-62 dB），4.505 起 a，是词尾塞音除阻"}, "125.75–125.77s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S14 w 3.100–3.115：explanation, 词尾 /n/ 的衰减（3.06–3.12 -31～-58 dB、重心 0.8–1.9 kHz、低频 -1～-7 dB、周期到 0.48，有嗓音），3.15 起才是逗号处删除段，是词尾"}, "130.50–130.56s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S14 w 7.885–7.945：dust 开头 /d/ 的浊音杠（周期 0.4–0.49、低频 -1～-2 dB、重心 0.4–0.85 kHz，-46 升到 -31 dB），7.95 起 /d/ 除阻、7.965 元音，是词头的一部分"}, "139.10–139.12s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S15 w 7.010–7.025：observations, 里 ən 到词尾 /z/ 的过渡（-36～-61 dB、重心 1–3 kHz），7.065 起 /z/ 擦音（低频 -21 dB），7.2 才是逗号处删除段，是词的一部分"}, "141.47–141.58s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S15 w 9.385–9.500：replies; 里 aɪ 到词尾 /z/ 的过渡（-36～-53 dB、周期 0.1–0.47），9.50 起 /z/ 擦音（低频 -30～-55 dB、重心 4.7–5.6 kHz），是词的一部分"}, "141.53–141.54s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S15 w 9.445–9.465：同上一条 replies; 里 aɪ 到 /z/ 的过渡中间（9.455 周期 0.47 是嗓音），是词的一部分"}, "158.28–158.38s": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S16 w 10.060–10.165：was. 里 ʌ 到词尾 /z/ 的过渡（-34～-52 dB、周期 0.2–0.55），10.16 起 /z/ 擦音（低频 -18～-46 dB、重心 4.5–5.5 kHz），是词的一部分"}},
-"删除段":{"S1 raw 9.0350-9.3050": "2026-11-05 逐 10 ms 实测原始合成（S1）：Strait, 后停顿 9.035–9.21 是 -38～-49 dB、无周期（0.17–0.44）、重心 1.0–1.5 kHz、低频 -11～-31 dB、渐强的吸气；9.22–9.23 是 -50 dB 的低频声门噪声（重心 0.1–0.2 kHz）；9.24–9.30 回到 -56～-69 dB，9.31 起 unleashed（-8 dB）。删掉的最响 -36.4 dB 即吸气，两侧已到 -55 dB 以下", "S2 raw 8.0900-8.5000": "2026-11-05 逐 10 ms 实测原始合成（S2）：Ocean, 后停顿 8.09–8.40 是 -43～-59 dB、无周期（0.14–0.35）、重心 0.8–1.8 kHz、低频 -6～-27 dB、渐强的吸气；8.41–8.46 是 -42～-57 dB 的低频声门噪声（重心 0.05–0.3 kHz）；8.47–8.49 -66～-68 dB；8.50 起 took 的 /t/ 爆破。删掉的最响 -39.8 dB 即吸气，两侧已到 -55 dB 以下", "S15 raw 7.2150-7.6150": "2026-11-05 逐 10 ms 实测原始合成（S15）：observations, 的 /z/ 到 7.19 衰减到 -52 dB；7.22–7.55 是 -41～-55 dB、无周期（0.14–0.38）、重心 1.0–1.85 kHz、低频 -9～-37 dB、渐强的吸气；7.56–7.58 是低频声门噪声（-44～-50 dB、重心 0.2–0.3 kHz）；7.59–7.60 -53～-54 dB；7.61 起 eliciting 的 ɪ。删掉的最响 -38.7 dB 即吸气，两侧已到 -55 dB 以下", "S8 raw 5.0490-5.2500": {"类型": "紧贴词尾的非人声", "配音指纹": "fbdf698bc467", "依据": "2026-11-05 逐 10 ms 实测原始合成（S8）：cable, 的 /l/ 5.00–5.04 由 -16 降到 -42 dB（重心 0.1–0.35 kHz、低频 -1～-6 dB），5.05 起接上吸气：5.06–5.22 是 -40～-47 dB、无周期（0.13–0.34）、重心 1.1–2.0 kHz、低频 -8～-30 dB，中间没有 -55 dB 低谷，只能紧贴 /l/ 词尾切（非人声区间 S8 5.039–5.22 紧贴词尾，过零点）；5.23–5.27 -50～-57 dB，5.28 起 reached 的 /ɹ/。删掉的最响 -38.7 dB 即吸气"}},
-"高亮":{"S16 第2块": {"开始读": 152.09, "配音指纹": "fbdf698bc467", "依据": "2026-11-05 直接读 work_54/a.wav 逐 5 ms：152.06 之前是 glimpse 前的数字静音（逗号后插入的停顿），152.065 起 far-flung 的 /f/ 擦音（-57 dB 升到 152.125 的 -28 dB，重心 5.5–8.7 kHz），152.235 起 ɑ 元音（重心 0.5–0.9 kHz、-0～-6 dB）；/f/ 在 152.09 起 40 ms 内升到开口电平（-30 dB 以上、前 30 ms 都低于 -40 dB，程序 是开口 判定为真开口），152.09 是开始读的时刻（乙 152.07 量的是 /f/ 刚出声，甲 152.23 量的是元音）"}, "S16 第3块": {"开始读": 155.29, "配音指纹": "fbdf698bc467", "依据": "2026-11-05 直接读 work_54/a.wav 逐 5 ms：155.17–155.285 是 glimpse 词尾 /s/（-14～-28 dB、重心 4.7–6.3 kHz），155.29 起重心降到 1.4–2.0 kHz、-26～-32 dB 的 /h/ 送气（how），155.39 起 aʊ 元音（重心 0.6–1.0 kHz、-11～-23 dB）；glimpse 和 how 之间没有标点、没有停顿，这一块从 155.29 开始读（甲 155.36、乙 155.35 都在 0.07 秒内）"}},
-"机器复听":{"S2": {"配音指纹": "fbdf698bc467", "依据": "2026-11-05：Rodrigues 按读音改正读 MW rō-ˈdrē-gəs（ɹoʊdɹˈiɡəs），small.en 和 parakeet 都听到同音的常见拼法 rodriguez，读音本身对：两路都听出了这个词，只是识别器词表里写成 Rodriguez（姓氏拼法），不是读错"}},
-"响度骤降":{"95.2–95.7s": {"配音指纹": "fbdf698bc467", "低": 6.6, "句子": "S11 Ash and sulphur dioxide,（逗号前 dioxide 的 -ide）", "依据": "2026-11-05 逐 50 ms 实测 work_54/a.wav：95.15–95.25 是 dioxide 的 /ks/（2 kHz 以上占 -0～-2 dB，清楚），95.30 aɪ -13 dB，95.35–95.60 是 /d/ 和逗号前降调的浊音衰减（-18→-39 dB、500 Hz 以下占 -0～-3 dB），95.65 起停顿；读音清楚、不闷不哑，是逗号前降调变轻，机器复听两路都通过", "用户原话": "用户 2026-11-04（CLAUDE.md 守则22，主会话是总负责人）：“你拥有最高决策权……你是总负责人……你来帮我做最好的决定，但是前提是这个决定他能够是最好的。”声音按实测定，交主会话核定；主会话 2026-11-05 已按守则22 定稿 54"}, "118.0–118.4s": {"配音指纹": "fbdf698bc467", "低": 6.5, "句子": "S13 …global temperatures dipped…（temperatures 的非重读词尾 -tures）", "依据": "2026-11-05 逐 50 ms 实测 work_54/a.wav：117.90–118.00 是 temperatures 的 /tʃ/（2 kHz 以上占 -0 dB），118.05–118.20 非重读 ɚ（-17→-34 dB、低频占 -0～-1 dB 的正常浊音），118.25–118.30 词尾 /z/（-19～-21 dB、高频占 -0 dB，清楚），118.40–118.50 是已核实的非人声区间（数字静音），118.55 起 dipped；读音清楚、不闷不哑，是非重读音节变轻，机器复听两路都通过", "用户原话": "用户 2026-11-04（CLAUDE.md 守则22，主会话是总负责人）：“你拥有最高决策权……你是总负责人……你来帮我做最好的决定，但是前提是这个决定他能够是最好的。”声音按实测定，交主会话核定；主会话 2026-11-05 已按守则22 定稿 54"}},
-"同词异译":{"tied to：归于/把":"不是两种译法：S15 tied … to 被 the glow 隔开，“把……归于”是同一个意思的两部分（T23），同 50 篇 labelled：把/称为"},
-"停顿位置":{"S16 cables, / and @2.075":"2026-11-05 直接读 work_54/a.wav 逐 2.5 ms（S16 起点 147.825）：cables 的 /z/ 浊擦 1.94–1.96（-23～-35 dB、重心 0.3–0.6 kHz），1.9625–1.9775 衰减到 -39→-77 dB，1.98 起是插入的 0.2 秒停顿（全静音）；2.18 起 and 的声门起音 -63→-46→-18 dB（2.1875），7.5 ms 内升起、开头没被剪。停顿正好落在 cables, 词尾和 and 词头之间（原始切点 50280 前后两段相连、没删声音），位置对"},
-"数字写法":{"S1-1 ten":"ten 指钟点，文章定稿中文写“上午10时”，数值相同（ten = 10）"},
-"方向":{"S1-1 after→1883年8月27日上午":"after 译“刚过”（10时刚过），和英文同方向（之后），中文“刚过”在本组末尾"},
-"词性":{"S7-1 colonial 殖民地":"“殖民地”作定语修饰“行政官员”（殖民地行政官员），文章定稿原文；“地”是名词的一部分，不是副词词尾"}}
-out={"no":"54","title_en":"The Sound That Shook the World","title_zh":"震动世界的一声巨响","title_fx":{"hl":["Sound","Shook"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
-     "非人声区间":{"S4":[[2.065,2.305],[7.626167,7.664958,"紧贴词尾"]]},
-     "高亮开始":{"S16 第2块":152.09,"S16 第3块":155.29},
-     "换行变更已获同意":{"S11":"用户 2026-11-07（主会话按守则22 引用户在 53 会话的对齐原话定）：“我说过就是我们的这个汉语意思尽量和这个英文去对齐说过吧。就是尽量和你看教科书，它就尽量在这个textbooks下面。嗯，就是能尽可能的啊，如果说可以的话，所以说再重新生成4k的话，要注意一下这个问题。”"},
-     "allow_clash":["collapsed into","vanishing"],
-     "高亮按实际开口":True,"高亮开口门槛":40,
-     "术语":{"Krakatoa":"喀拉喀托","Sunda":"巽他","Rodrigues":"罗德里格斯岛","Indian Ocean":"印度洋","Java":"爪哇岛","Sumatra":"苏门答腊岛","Dutch":"荷兰","Batavia":"巴达维亚","Jakarta":"雅加达","London":"伦敦","Europe":"欧洲","North America":"北美","New York":"纽约州","Connecticut":"康涅狄格州","Britain":"英国","Royal Society":"皇家学会","The Times":"《泰晤士报》"}}
-import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+#!/usr/bin/env python3
+# Pure data frozen from the current approved JSON; shared helper/checkers unchanged.
+import os
+import sys
+
+S = [(1,
+  [[[('Shortly after ten in the morning on 27 August 1883,', '1883年8月27日上午10时刚过，')],
+    '（Shortly after ten in the morning：上午10时刚过；\non 27 August 1883：日期状语）'],
+   [[('Krakatoa,', '喀拉喀托，'),
+     ('a **volcanic** island in the Sunda **Strait**,', '一座位于巽他**海峡**(Strait)的**火山**(volcanic)岛，')],
+    '（a volcanic island in the Sunda Strait：\n同位语，补充说明 Krakatoa）'],
+   [[('**unleashed**', '**迸发出**(unleashed)'),
+     ('its', '其'),
+     ('most **thunderous**', '最为**震耳欲聋的**(thunderous)'),
+     ('explosion.', '一声爆炸。')],
+    '（most thunderous：thunderous 的最高级，最为震耳欲聋的）']]),
+ (1,
+  [[[('About', '约'),
+     ('four hours', '四小时'),
+     ('later,', '后，'),
+     ('**islanders** on Rodrigues,', '罗德里格斯岛上的**岛民**(islanders)，')],
+    '（on Rodrigues：后置定语，修饰 islanders）'],
+   [[('nearly', '离着将近'), ('4,800 kilometres', '4800公里，'), ('across the Indian Ocean,', '远隔着一个印度洋，')],
+    '（nearly 4,800 kilometres across the Indian Ocean：\n补充说明 Rodrigues 的位置）'],
+   [[('took', '把'),
+     ('the **roar**', '这声**轰鸣**(roar)'),
+     ('for', '当成了'),
+     ('**distant**', '**远处的**(distant)'),
+     ('**gunfire**.', '**炮火声**(gunfire)。')],
+    '（take A for B：把 A 误当成 B）']]),
+ (1,
+  [[[('**Barometers** worldwide', '世界各地的**气压计**(Barometers)'),
+     ('recorded', '都记录到了'),
+     ('the', '这次'),
+     ('**atmospheric**', '**大气**(atmospheric)'),
+     ('pressure', '压力'),
+     ('wave,', '波，')],
+    '（worldwide：副词作后置定语，修饰 Barometers）'],
+   [[('some of them', '其中一些'), ('seven times in about five days.', '在大约五天之内记录到七次。')],
+    '（some of them seven times…：省略句，\n即 some of them recorded it seven times）']]),
+ (2,
+  [[[('**Restless** since 20 May,', '自5月20日起便**躁动不安**(Restless)，')],
+    '（Restless since 20 May：形容词短语作状语，\n逻辑主语是 the volcano）'],
+   [[('the volcano', '这座火山'),
+     ('reached', '达到'),
+     ('a **catastrophic**', '**灾难性的**(catastrophic)'),
+     ('**climax**', '**高潮**(climax)'),
+     ('on 26–27 August.', '是在8月26日至27日。')],
+    '（reach a climax：达到高潮）']]),
+ (2,
+  [[[('About', '约'),
+     ('two-thirds', '三分之二'),
+     ('of the island', '的岛体'),
+     ('**collapsed into**', '**塌入**(collapsed into)'),
+     ('its **emptied**', '**已被排空的**(emptied)'),
+     ('**magma** chamber,', '**岩浆**(magma)房，')],
+    '（emptied：过去分词作定语，已被排空的；\nmagma chamber：岩浆房）'],
+   [[('**vanishing**', '**消失**(vanishing)在'), ('beneath the sea.', '海面之下。')],
+    '（vanishing…：现在分词短语作状语，补充说明结果）']]),
+ (2,
+  [[[('**Tsunamis**,', '**海啸**(Tsunamis)'),
+     ('**reportedly**', '**据报道**(reportedly)'),
+     ('over 30 metres high in places,', '局部高逾30米，')],
+    '（reportedly over 30 metres high in places：\n插入的形容词短语，补充说明 Tsunamis；\nin places：在某些地方，局部）'],
+   [[('**swamped**', '**淹没了**(swamped)'),
+     ('**coastal**', '**沿海**(coastal)'),
+     ('**settlements**', '**居民点**(settlements)，'),
+     ('on Java and Sumatra.', '遍及爪哇岛和苏门答腊岛。')]]]),
+ (2,
+  [[[('Dutch', '荷兰'),
+     ('**colonial**', '**殖民地**(colonial)'),
+     ('**administrators**', '**行政官员**(administrators)'),
+     ('counted', '统计出'),
+     ('36,417 dead,', '36,417名死者，')],
+    '（dead：这里作名词，死者）'],
+   [[('mostly', '其中大多数'), ('**drowned**,', '是**溺亡**(drowned)的，')],
+    '（mostly drowned：省略结构，\n即 most of them had drowned）'],
+   [[('perhaps', '而他们或许'),
+     ('**underestimating**', '**低估了**(underestimating)'),
+     ('the **toll**.', '**死亡人数**(toll)。')],
+    '（underestimating the toll：现在分词短语作状语，补充说明；\ntoll：死亡人数）']]),
+ (3,
+  [[[('**Telegrams**', '**电报**(Telegrams)'), ('from Batavia', '从巴达维亚'), ('(now Jakarta),', '（今雅加达）发出，')]],
+   [[('**relayed** by **submarine** **cable**,', '经**海底**(submarine)**电缆**(cable)**转发**(relayed)，')],
+    '（relayed by submarine cable：\n过去分词短语作后置定语，修饰 Telegrams）'],
+   [[('reached London within hours.', '在几小时内到达了伦敦。')]]]),
+ (3,
+  [[[('Western newspapers', '西方报纸'),
+     ('soon', '很快便'),
+     ('began', '开始'),
+     ('**chronicling**', '**记述**(chronicling)')]],
+   [[('what', '这起'),
+     ('is often', '常'),
+     ('called', '被称为'),
+     ('the first', '首个'),
+     ('global', '全球'),
+     ('news', '新闻'),
+     ('event.', '事件的灾难。')],
+    '（what is often called…：what 引导的宾语从句，\n作 chronicling 的宾语）']]),
+ (3,
+  [[[('Yet', '然而，'),
+     ('early', '早期的'),
+     ('**dispatches**', '**电讯**(dispatches)'),
+     ('were', '都十分'),
+     ('**terse**;', '**简短**(terse)；')]],
+   [[('the **magnitude** of the **devastation**', '**浩劫**(devastation)的**规模**(magnitude)'),
+     ('emerged **piecemeal**', '**一点一点地**(piecemeal)显露出来，'),
+     ('over days.', '前后历经数日。')],
+    '（the magnitude of the devastation：of 结构，\n浩劫的规模；\nover days：在几天的时间里）']]),
+ (4,
+  [[[('**Ash**', '**火山灰**(Ash)'),
+     ('and **sulphur** dioxide,', '和二氧化**硫**(sulphur)'),
+     ('**hurled**', '被**抛射**(hurled)到'),
+     ('tens of', '数十'),
+     ('kilometres', '公里的'),
+     ('high,', '高空，')],
+    '（hurled tens of kilometres high：\n过去分词短语作后置定语，\n修饰 Ash and sulphur dioxide）'],
+   [[('formed', '形成'),
+     ('a **haze**', '一层**薄雾**(haze)，'),
+     ('that circled the **equator** in about two weeks.', '在大约两个星期内环绕了**赤道**(equator)一周。')],
+    '（that circled…：定语从句，修饰 haze）']]),
+ (4,
+  [[[('In November 1883,', '1883年11月，'),
+     ('**crimson**', '**深红色的**(crimson)'),
+     ('sunsets', '晚霞'),
+     ('**glowed**', '**发出暗淡的光**(glowed)，'),
+     ('over', '照耀着'),
+     ('Europe', '欧洲'),
+     ('and North America,', '和北美，')]],
+   [[('**summoning**', '**召唤着**(summoning)'),
+     ('**firefighters** in New York and Connecticut', '纽约州和康涅狄格州的**消防员**(firefighters)'),
+     ('to', '赶去扑救'),
+     ('**phantom**', '**子虚乌有的**(phantom)'),
+     ('**blazes**.', '**大火**(blazes)。')],
+    '（summoning…：现在分词短语作状语，补充说明结果；\nsummon A to B：把 A 召到 B 处）']]),
+ (4,
+  [[[('Later', '后来的'),
+     ('climate', '气候'),
+     ('**reconstructions**', '**重建**(reconstructions)研究'),
+     ('suggest', '推测，')],
+    '（climate reconstructions：气候重建，\n根据各种证据推算过去的气候）'],
+   [[('global', '全球'),
+     ('temperatures', '气温'),
+     ('**dipped**', '**下降了**(dipped)'),
+     ('a few tenths of a degree', '零点几度，'),
+     ('the following year.', '就在次年。')],
+    '（suggest 后面省略了 that，引导宾语从句；\na few tenths of a degree：零点几度）']]),
+ (5,
+  [[[('Some experts', '一些专家'),
+     ('**discounted**', '**不予采信**(discounted)'),
+     ('the volcanic', '火山'),
+     ('explanation,', '之说，')]],
+   [[('blaming', '而把'),
+     ('the **sunsets**', '**晚霞**(sunsets)'),
+     ('on', '归因于'),
+     ('**moisture** **at high altitude**', '**高空**(at high altitude)的**水汽**(moisture)'),
+     ('or', '或'),
+     ('**cosmic**', '**宇宙**(cosmic)'),
+     ('dust.', '尘埃。')],
+    '（blaming…：现在分词短语作状语；\nblame A on B：把 A 归咎于 B）']]),
+ (5,
+  [[[('In February 1884,', '1884年2月，'),
+     ("Britain's **Royal Society**", '英国**皇家学会**(Royal Society)'),
+     ('**appealed**', '发出**呼吁**(appealed)，'),
+     ('in The Times', '在《泰晤士报》上'),
+     ('for', '征集'),
+     ('dated', '注明日期的'),
+     ('observations,', '观测记录，')],
+    '（appeal for…：呼吁，征求……；\ndated：注明日期的）'],
+   [[('**eliciting**', '**引起了**(eliciting)'), ('worldwide', '世界各地的'), ('replies;', '回应；')],
+    '（eliciting…：现在分词短语作状语，补充说明结果）'],
+   [[("the Society's", '学会'),
+     ('1888 report', '1888年发表的报告'),
+     ('**tied**', '**把**(tied to)'),
+     ('the glow', '这片红霞'),
+     ('**to**', '**归于**(tied to)'),
+     ('Krakatoa.', '喀拉喀托火山。')],
+    '（tie A to B：把 A 与 B 联系起来）']]),
+ (5,
+  [[[('Through', '借助'),
+     ('barometers,', '气压计、'),
+     ('cables,', '电缆'),
+     ('and crimson', '和深红色的'),
+     ('skies,', '天空，')]],
+   [[('**far-flung**', '**相隔遥远的**(far-flung)'),
+     ('**observers**', '**观察者**(observers)们'),
+     ('began to', '开始'),
+     ('**glimpse**', '**认识到**(glimpse)，')]],
+   [[('how **interconnected** the planet already was.', '这颗星球上的各个地方早已**相互关联**(interconnected)在一起。')],
+    '（how interconnected…：how 引导的宾语从句，作 glimpse 的宾语，\n'
+    '语序为 how＋形容词＋主语＋谓语）\n'
+    '（简述：▸巨响：1883年喀拉喀托火山喷发，声传近4800公里；全球气压计录到压力波，有些约5天记录到它经过7次。▸灾难：约三分之二岛体塌入地下原先储存岩浆、此时已排空的空间，并没入海中；海啸据报局部逾30米，官方记36417人死亡，多数溺亡，或仍低估。▸快讯：海底电缆让电报数小时到伦敦，消息迅速传遍全球；但早期报道简短，灾情规模数日后才逐渐清楚。▸余波：火山灰和二氧化硫形成高空薄雾，远方出现红霞；后人根据气候证据估算，1884年全球降温零点几度。▸考证：当时有人把红霞归于高空水汽或宇宙尘埃；皇家学会汇集全球观测，1888年报告将红霞与喷发联系起来。）']])]
+
+out = {'no': '54',
+ 'title_en': 'The Sound That Shook the World',
+ 'title_zh': '震动世界的一声巨响',
+ 'title_fx': {'hl': ['Sound', 'Shook'], 'ghost': []},
+ 'sentences': [],
+ '核对确认': {'合组': {'S1 Shortly after ten in the morning on 27 August 1883': '对齐不了：中文日期时间按“年月日、上午、钟点”排，“1883年8月27日上午10时刚过”语序必须整个倒过来',
+                 'S6 over 30 metres high in places': '对齐不了：over…high 中文“高逾”是一个整体，in places 是状语，中文“局部”必须提前，拆开不通',
+                 'S5 beneath the sea': '对齐不了：beneath the sea 中文“海面之下”，方位词“之下”必须放到名词后面',
+                 'S13 the following year': '对齐不了：the following year 中文“次年”是一个词，拆开不通',
+                 'S13 a few tenths of a degree': '对齐不了：a few tenths of a degree 是 of '
+                                                 '结构的数量说法，中文“零点几度”是一个整体，拆开不通',
+                 'S3 seven times in about five days': '对齐不了：用户 2026-11-07 原话定的译文“其中一些在大约五天之内记录到七次”，in about '
+                                                      'five days 是时间状语，中文必须提到动词前',
+                 'S8 reached London within hours': '对齐不了：用户 2026-11-07 原话定的译文“在几小时内到达了伦敦”，within hours '
+                                                   '是时间状语，中文必须提到动词前',
+                 'S11 that circled the equator in about two weeks': '对齐不了：用户 2026-11-07 '
+                                                                    '原话定的译文“在大约两个星期内环绕了赤道一周”，in about two '
+                                                                    'weeks 是时间状语，中文必须提到动词前',
+                 'S16 how interconnected the planet already was': '对齐不了：how＋形容词＋主语＋谓语 '
+                                                                  '的宾语从句，中文“这颗星球上的各个地方早已相互关联在一起”（用户 2026-11-07 '
+                                                                  '原话定）语序必须整个倒过来'},
+          '对齐': {'S4-2 on 26 and 27 August.': 'on 26 and 27 August 是日期状语，中文“8月26日至27日”月份必须放到日期前，拆开不通',
+                 'S3-2 seven times in about five day': '用户 2026-11-07 原话定的译文“在大约五天之内记录到七次”，时间状语 in about five '
+                                                       'days 中文必须提到动词前，语序倒过来',
+                 'S11-2 that circled the equator in ab': '用户 2026-11-07 原话定的译文“在大约两个星期内环绕了赤道一周”，定语从句里的时间状语 in '
+                                                         'about two weeks 中文必须提到动词前',
+                 'S8-3 reached London within hours.': '用户 2026-11-07 原话定的译文“在几小时内到达了伦敦”，时间状语 within hours '
+                                                      '中文必须提到动词前，语序倒过来',
+                 'S3-2 seven times in about five days': '用户 2026-11-07 原话定的译文“在大约五天之内记录到七次”，时间状语 in about five '
+                                                        'days 中文必须提到动词前，语序倒过来',
+                 'S1-2 a volcanic island in the Sunda': 'in the Sunda Strait 是后置定语，修饰 '
+                                                        'island，中文“位于巽他海峡的火山岛”定语必须提前',
+                 'S1-1 Shortly after ten in the morni': '中文日期时间按“年月日、上午、钟点”排，“1883年8月27日上午10时刚过”语序必须整个倒过来',
+                 'S4-2 on 26–27 August.': 'on 26–27 August 是日期状语，中文“8月26日至27日”月份必须放到日期前，拆开不通',
+                 'S6-1 over 30 metres high in places,': 'in places 是状语，中文“局部”必须提前；over…high 中文“高逾”是一个整体',
+                 'S10-2 the magnitude of the devastati': 'the magnitude of the devastation 是 of '
+                                                         '结构，中文“浩劫的规模”语序必须倒过来',
+                 'S12-2 firefighters in New York and C': 'in New York and Connecticut 是后置定语，修饰 '
+                                                         'firefighters，中文“纽约州和康涅狄格州的消防员”定语必须提前',
+                 'S13-2 a few tenths of a degree': 'a few tenths of a degree 是 of 结构的数量说法，中文“零点几度”是一个整体',
+                 'S16-3 how interconnected the planet ': 'how＋形容词＋主语＋谓语 的宾语从句，中文“这颗星球上的各个地方早已相互关联在一起”（用户 '
+                                                         '2026-11-07 原话定）语序必须整个倒过来'},
+          '短语': {'S15 appealed … for': '不是搭配：用户 2026-11-07 原话只点 appeal、中文“呼吁”，appeal 单独就是“呼吁”（速查表第一个意思）；for '
+                                       '引出呼吁的内容，中文“征集”已译出',
+                 'S3 Barometers … of': '不是搭配：of 属于 some of them，和 Barometers 无关',
+                 'S6 reportedly … over': '不是搭配：over 属于 over 30 metres high（高逾30米），reportedly 单独就是“据报道”',
+                 'S6 swamped … on': '不是搭配：on 属于 on Java and Sumatra（表示地点），swamp 单独就是“淹没”',
+                 'S8 relayed … by': '不是搭配：by 表示方式（经由海底电缆），relay 单独就是“转发”',
+                 'S10 magnitude … of': '不是搭配：of 是普通的所属关系（浩劫的规模），magnitude 单独就是“规模”（速查表第一个意思）',
+                 'S11 hurled … of': '不是搭配：of 属于 tens of kilometres（数十公里），hurl 单独就是“抛射”',
+                 'S12 glowed … in': '不是搭配：in 属于 firefighters in New York and Connecticut，和 glowed 无关',
+                 'S12 summoning … to': '不是搭配：to 只表示去向（赶去扑救），summon 单独就是“召来，招来”（速查表第一个意思）',
+                 'S13 dipped … of': '不是搭配：of 属于 a few tenths of a degree（零点几度），dip 单独就是“（小幅）下降”',
+                 'S14 discounted … on': '不是搭配：on 属于 blame A on B（把 A 归因于 B），和 discounted 无关',
+                 'S14 on … moisture': '不是搭配：on 属于 blame A on B，中文“归因于”已译出，moisture 单独就是“水汽”',
+                 'S13 temperatures dipped': '不是搭配：dip 单独就是速查表第一个意思“（小幅）下降”，temperatures 是普通名词“气温”，“了”是格式',
+                 'S16 glimpse how': '不是搭配：how 引导宾语从句，中文“何等”已在从句里译出；glimpse 单独就有“隐约看出”（速查表所列词义），只标 glimpse'},
+          '非人声': {'14.65–14.75s': {'实测': {'最响dB': -35.0, '重心Hz': 1438, '周期': 0.25, '低频dB': -3.7},
+                                   '配音指纹': 'd9e2abbede1a',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S1 w '
+                                         '11.785–11.880：explosion. 句末 /n/ 的鼻音衰减（低频占比 -2～-7 dB、周期 0.14–0.5，-36 '
+                                         '一路降到 -58 dB），程序算像呼吸的只占 3%，是词尾自然衰减'},
+                  '34.38–34.45s': {'实测': {'最响dB': -37.2, '重心Hz': 3410, '周期': 0.26, '低频dB': -3.4},
+                                   '配音指纹': 'd9e2abbede1a',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S3 w '
+                                         '6.845–6.925：days. 里 eɪ 到词尾 /z/ 的过渡（-38～-55 dB、重心 2.8–4.8 kHz、低频 '
+                                         '-2～-12 dB），6.965 起 /z/ 擦音升起（重心 4.8 kHz），像呼吸的只占 5%，是词的一部分'},
+                  '50.92–51.00s': {'实测': {'最响dB': -37.0, '重心Hz': 3264, '周期': 0.29, '低频dB': -2.8},
+                                   '配音指纹': 'd9e2abbede1a',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S5 w '
+                                         '5.970–6.050：sea. 句末 iː 的衰减（6.0–6.05 周期 0.33–0.64、重心 2–3.5 kHz 即 iː '
+                                         '的高第二共振峰，-36 一路降到 -73 dB），是词尾自然衰减'},
+                  '60.60–60.63s': {'实测': {'最响dB': -30.6, '重心Hz': 568, '周期': 0.45, '低频dB': -2.4},
+                                   '配音指纹': 'd9e2abbede1a',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S7 w '
+                                         '0.020–0.045：Dutch 开头 /d/ 的浊音杠（0.025 起 -43→-29 dB、周期 0.3–0.5、重心 '
+                                         '0.3–0.6 kHz、低频 -1～-4 dB，连到 0.08 一直是稳定浊音），是词头的一部分'},
+                  '76.59–76.61s': {'实测': {'最响dB': -47.9, '重心Hz': 2642, '周期': 0.0, '低频dB': -0.3},
+                                   '配音指纹': 'd9e2abbede1a',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S8 w '
+                                         '5.245–5.260：cable, 停顿之后 reached 的 /ɹ/ 起音前的浊音（-48～-57 dB、低频占比 -0～-1 '
+                                         'dB），5.265 起连续升到 5.28 的 -22 dB，是词头起音'},
+                  '78.05–78.17s': {'实测': {'最响dB': -35.8, '重心Hz': 2036, '周期': 0.21, '低频dB': -3.9},
+                                   '配音指纹': 'd9e2abbede1a',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S8 w '
+                                         '6.700–6.820：hours. 里 ɚ 到词尾 /z/ 的过渡（-34～-52 dB、重心 1–2.7 kHz），6.815 起 '
+                                         '/z/ 擦音（低频 -33～-57 dB、重心 4.4–5.8 kHz）紧接着，是词的一部分'},
+                  '82.21–82.25s': {'实测': {'最响dB': -46.1, '重心Hz': 2493, '周期': 0.43, '低频dB': -0.4},
+                                   '配音指纹': 'd9e2abbede1a',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S9 w '
+                                         '3.085–3.125：what 的 /w/ 起音前的浊音（-44～-57 dB、低频占比 -0～-1 dB、周期 '
+                                         '0.16–0.44），一直连到 3.13 起的 /w/（3.135 -36、3.14 -23 dB），是词头起音'},
+                  '92.64–92.66s': {'实测': {'最响dB': -38.8, '重心Hz': 2593, '周期': 0.0, '低频dB': -2.2},
+                                   '配音指纹': 'd9e2abbede1a',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S10 w '
+                                         '6.505–6.520：days. 词尾 /z/ 中间（6.465–6.545 一直是 -34～-51 dB、重心 2.5–4 '
+                                         'kHz、周期 0.2–0.3 的弱浊擦音），是词的一部分'},
+                  '106.86–106.89s': {'实测': {'最响dB': -33.1, '重心Hz': 3354, '周期': 0.61, '低频dB': -0.7},
+                                     '配音指纹': 'd9e2abbede1a',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S12 w '
+                                           '3.485–3.525：sunsets 里 /t/ 闭塞到词尾 /s/ 之间的浊音（周期 0.31–0.39、低频 -1～-3 '
+                                           'dB，-34～-49 dB），3.535 起词尾 /s/（低频 -28 dB、重心 3 kHz），是词的一部分'},
+                  '113.67–113.77s': {'实测': {'最响dB': -36.5, '重心Hz': 2361, '周期': 0.21, '低频dB': -2.8},
+                                     '配音指纹': 'd9e2abbede1a',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S12 w '
+                                           '10.345–10.445：blazes. 里 ᵻ 到词尾 /z/ 的过渡（-37～-54 dB、周期 '
+                                           '0.18–0.49），10.44 起 /z/ 擦音（低频 -24～-64 dB、重心 4.7–5.6 kHz），是词的一部分'},
+                  '119.17–119.19s': {'实测': {'最响dB': -32.7, '重心Hz': 2618, '周期': 0.0, '低频dB': -16.1},
+                                     '配音指纹': 'd9e2abbede1a',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S13 w '
+                                           '4.470–4.480：dipped 词尾 /t/ 的除阻（-30 dB、低频 -24 dB、重心 3.6 kHz 的一下爆破，前面 '
+                                           '4.43–4.465 是闭塞 -52～-62 dB），4.505 起 a，是词尾塞音除阻'},
+                  '126.15–126.17s': {'实测': {'最响dB': -37.2, '重心Hz': 1073, '周期': 0.0, '低频dB': -1.8},
+                                     '配音指纹': 'd9e2abbede1a',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S14 w '
+                                           '3.100–3.115：explanation, 词尾 /n/ 的衰减（3.06–3.12 -31～-58 dB、重心 '
+                                           '0.8–1.9 kHz、低频 -1～-7 dB、周期到 0.48，有嗓音），3.15 起才是逗号处删除段，是词尾'},
+                  '130.90–130.96s': {'实测': {'最响dB': -30.2, '重心Hz': 652, '周期': 0.76, '低频dB': -0.1},
+                                     '配音指纹': 'd9e2abbede1a',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S14 w '
+                                           '7.885–7.945：dust 开头 /d/ 的浊音杠（周期 0.4–0.49、低频 -1～-2 dB、重心 0.4–0.85 '
+                                           'kHz，-46 升到 -31 dB），7.95 起 /d/ 除阻、7.965 元音，是词头的一部分'},
+                  '139.50–139.51s': {'实测': {'最响dB': -39.7, '重心Hz': 1438, '周期': 0.0, '低频dB': -1.7},
+                                     '配音指纹': 'd9e2abbede1a',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S15 w '
+                                           '7.010–7.025：observations, 里 ən 到词尾 /z/ 的过渡（-36～-61 dB、重心 1–3 '
+                                           'kHz），7.065 起 /z/ 擦音（低频 -21 dB），7.2 才是逗号处删除段，是词的一部分'},
+                  '141.86–141.97s': {'实测': {'最响dB': -36.4, '重心Hz': 2934, '周期': 0.21, '低频dB': -2.4},
+                                     '配音指纹': 'd9e2abbede1a',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S15 w '
+                                           '9.385–9.500：replies; 里 aɪ 到词尾 /z/ 的过渡（-36～-53 dB、周期 0.1–0.47），9.50 '
+                                           '起 /z/ 擦音（低频 -30～-55 dB、重心 4.7–5.6 kHz），是词的一部分。2026-11-09：S4 '
+                                           '重新合成后整篇后移 0.66 秒，原 141.47–141.58s 这条移到这里；S15 的 w 没变（区间声音指纹 '
+                                           'fab958646997），确认迁移把 141.53–141.54s 那条的依据和实测错套到这条上，按原依据改回，实测是当场量的'},
+                  '141.92–141.94s': {'实测': {'最响dB': -39.5, '重心Hz': 2237, '周期': 0.4, '低频dB': -2.4},
+                                     '配音指纹': 'd9e2abbede1a',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S15 w '
+                                           '9.445–9.465：同上一条 replies; 里 aɪ 到 /z/ 的过渡中间（9.455 周期 0.47 '
+                                           '是嗓音），是词的一部分。2026-11-09：S15 的 w 没变，原 141.53–141.54s '
+                                           '后移到这里；确认迁移把上一条的实测错套到这条，按当场量的改回'},
+                  '158.68–158.78s': {'实测': {'最响dB': -35.3, '重心Hz': 2762, '周期': 0.26, '低频dB': -3.6},
+                                     '配音指纹': 'd9e2abbede1a',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_54，配音指纹 fbdf698bc467）：S16 w '
+                                           '10.060–10.165：was. 里 ʌ 到词尾 /z/ 的过渡（-34～-52 dB、周期 0.2–0.55），10.16 起 '
+                                           '/z/ 擦音（低频 -18～-46 dB、重心 4.5–5.5 kHz），是词的一部分'},
+                  '40.37–40.38s': {'实测': {'最响dB': -44.3, '重心Hz': 5932, '周期': 0.0, '低频dB': -29.6},
+                                   '配音指纹': 'd9e2abbede1a',
+                                   '依据': '2026-11-09 逐 2.5 ms 实测 S4 w 4.47–4.53：a 的元音 4.40–4.465 衰减到 -53 '
+                                         'dB，4.47–4.50 是 -57～-68 dB 的闭塞；4.505 一下 -41.4 dB、重心 5.8 kHz、低频 -32.5 '
+                                         'dB、无周期的爆破，之后 4.51–4.525 是 -55～-62 dB 的送气，4.53 起元音 æ（-17 dB，周期 '
+                                         '0.46）。爆破到元音 25 ms，是 catastrophic 开头 /k/ 的除阻，是词的一部分，不删'},
+                  '24.57–24.60s': {'实测': {'最响dB': -36.3, '重心Hz': 3520, '周期': 0.23, '低频dB': -14.7},
+                                   '配音指纹': 'd9e2abbede1a',
+                                   '依据': '2026-11-10 逐 2.5 ms 实测 S2 w 8.58–8.78（带时长模型 ʊ[8.595] k[8.644] '
+                                         'ð[8.744]）：took 的 ʊ 8.58–8.605 衰减到 -47 dB，8.61–8.64 是 -52～-59 dB '
+                                         '的闭塞，8.645 一下 -36.4 dB、重心 2.6–3.7 kHz、低频 -18 dB 的爆破（a.wav '
+                                         '24.575–24.585），之后 8.66–8.71 是 -45～-58 dB、重心 5–7 kHz 的 /ð/ 前擦音，8.715 '
+                                         '起 the。是 took 词尾 /k/ 的除阻，词的一部分，不删。K134 后 S2 第1段增益 '
+                                         '-3.5→-1.5，本句基准最响变高，这一下相对电平落到 -30 dB 以下才被当孤立杂音报出，声音本身没变'}},
+          '删除段': {'S1 raw 9.0350-9.3050': '2026-10-15 删除段对应 非人声区间 [[8.945, 9.24]]（w 秒）：自动切点.py '
+                                          '用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < '
+                                          "0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] "
+                                          '是删掉的呼吸声本身偏响（-34～-47 dB），不是词',
+                  'S2 raw 8.0900-8.5000': '2026-11-05 逐 10 ms 实测原始合成（S2）：Ocean, 后停顿 8.09–8.40 是 -43～-59 '
+                                          'dB、无周期（0.14–0.35）、重心 0.8–1.8 kHz、低频 -6～-27 dB、渐强的吸气；8.41–8.46 是 '
+                                          '-42～-57 dB 的低频声门噪声（重心 0.05–0.3 kHz）；8.47–8.49 -66～-68 dB；8.50 起 '
+                                          'took 的 /t/ 爆破。删掉的最响 -39.8 dB 即吸气，两侧已到 -55 dB 以下',
+                  'S15 raw 7.2150-7.6150': '2026-10-15 删除段对应 非人声区间 [[7.2, 7.59]]（w 秒）：自动切点.py '
+                                           '用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < '
+                                           "0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] "
+                                           '是删掉的呼吸声本身偏响（-34～-47 dB），不是词',
+                  'S8 raw 5.0490-5.2500': {'类型': '紧贴词尾的非人声',
+                                           '配音指纹': 'd9e2abbede1a',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[5.039, 5.22, '紧贴词尾']]（w 秒）：自动切点.py "
+                                                 '用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < '
+                                                 '0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 '
+                                                 "['lost', 'pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S4 raw 5.2855-5.4900': {'类型': '紧贴词尾的非人声',
+                                           '配音指纹': 'd9e2abbede1a',
+                                           '依据': '删除段对应 非人声区间 [5.265542, 5.47, 紧贴词尾]（w 秒），人用 逐段看声音 '
+                                                 '核实（2026-11-09 逐 2.5 ms 实测）：climax 的 /s/ 5.20–5.235 是 -17～-28 '
+                                                 'dB、重心 4.9–5.9 kHz、低频 -33～-44 dB，5.24–5.26 衰减到 -51 dB；5.265 '
+                                                 '低谷 -57.4 dB（前 5 ms -52.7 dB，没有 -55 dB 的空隙，所以标紧贴词尾，切在过零点 '
+                                                 '5.265542）。5.27–5.41 是 -42～-54 dB、周期 0.14–0.38、重心 1.7–2.9 '
+                                                 'kHz、低频 -9～-27 dB 的吸气（带时长模型 s[5.204] 之后、ɔ[5.528] '
+                                                 '之前，不是音素）；5.415–5.47 是 -50～-67 dB 的残余；5.475 起 on（-49.5→-15.6 '
+                                                 'dB，周期 0.40）。5.470–5.475 是 -59.6 dB。删掉的最响 -41.2 dB'}},
+          '高亮': {'S16 第2块': {'开始读': 152.485,
+                             '配音指纹': 'd9e2abbede1a',
+                             '依据': '2026-11-09 直接读 work_54/a.wav 逐 10 ms：S4 重新合成后整篇后移 0.39 秒（S15 141.47→141.86 '
+                                   '同量）；152.45 之前是数字静音，152.46 起 far-flung 的 /f/（-57 dB、重心 4.4–8 kHz，152.51 升到 '
+                                   '-32 dB），152.63 起 ɑ 元音（重心 2.6 kHz 以下）；与 11-05 依据同一处（原 152.09），152.485 '
+                                   '是开始读的时刻（程序 是开口 在 152.485 判为真开口，与原 152.09 同为 /f/ 起声后 25–30 ms）'},
+                 'S16 第3块': {'开始读': 155.68,
+                             '配音指纹': '8058ea5228f9',
+                             '依据': '2026-11-09 直接读 work_54/a.wav 逐 10 ms：155.57–155.67 是 glimpse 词尾 '
+                                   '/s/（-14～-26 dB、重心 4.9–6.4 kHz），155.68 起 -31 dB、重心降到 3.0 kHz 以下的 '
+                                   '/h/（how），155.79 起元音（-15 dB、1.7 kHz）；与 11-05 依据同一处（原 155.29，整篇后移 0.39 '
+                                   '秒），这一块从 155.68 开始读'}},
+          '机器复听': {'S2': {'配音指纹': 'd9e2abbede1a',
+                          '依据': '2026-11-05：Rodrigues 按读音改正读 MW rō-ˈdrē-gəs（ɹoʊdɹˈiɡəs），small.en 和 parakeet '
+                                '都听到同音的常见拼法 rodriguez，读音本身对：两路都听出了这个词，只是识别器词表里写成 Rodriguez（姓氏拼法），不是读错'},
+                   'S4': {'配音指纹': 'd9e2abbede1a',
+                          '依据': '2026-11-09：S4 配音文字是 on the twenty-sixth to the twenty-seventh of '
+                                'August（主会话定的读法，连接号读 to），parakeet 听到 the twenty sixth '
+                                'to，正是这几个词；脚本里是一个词“26–27”，逐词比对把它和 the twenty sixth to 对不上，读音本身对（误报已报主会话）'}},
+          '响度骤降': {'95.6–96.0s': {'配音指纹': '8058ea5228f9',
+                                  '低': 6.6,
+                                  '句子': 'S11 Ash and sulphur dioxide,（逗号前 dioxide 的 -ide）',
+                                  '依据': '2026-11-10 逐 50 ms 实测新 work_54/a.wav（S4 重新合成后整篇后移约 0.40 秒，S11 '
+                                        '声音本身没变）：95.55–95.65 是 dioxide 的 /ks/（2 kHz 以上占 -0～-1 dB，清楚），95.70 aɪ '
+                                        '-14 dB，95.75–96.00 是 /d/ 和逗号前降调的浊音衰减（-18→-39 dB、2 kHz 以上占 -12～-21 '
+                                        'dB），96.05 起停顿；与 11-05 实测（原 95.15–95.65）逐段对应，读音清楚、不闷不哑，是逗号前降调变轻',
+                                  '用户原话': '用户 2026-11-04（CLAUDE.md '
+                                          '守则22，主会话是总负责人）：“你拥有最高决策权……你是总负责人……你来帮我做最好的决定，但是前提是这个决定他能够是最好的。”声音按实测定，交主会话核定；主会话 '
+                                          '2026-11-05 已按守则22 定稿 54'},
+                   '118.3–118.8s': {'配音指纹': '8058ea5228f9',
+                                    '低': 6.5,
+                                    '句子': 'S13 …global temperatures dipped…（temperatures 的非重读词尾 -tures）',
+                                    '依据': '2026-11-10 逐 50 ms 实测新 work_54/a.wav（整篇后移约 0.40 秒，S13 '
+                                          '声音本身没变）：118.30–118.40 是 temperatures 的 /tʃ/（2 kHz 以上占 -0～-1 '
+                                          'dB），118.45–118.60 非重读 ɚ（-18→-35 dB、2 kHz 以上占 -10～-29 dB '
+                                          '的正常浊音），118.65–118.70 词尾 /z/（-20～-21 dB、高频占 -0 dB，清楚），118.80–118.85 '
+                                          '是已核实的非人声区间（数字静音），118.95 起 dipped；与 11-05 实测（原 '
+                                          '117.90–118.55）逐段对应，读音清楚、不闷不哑，是非重读音节变轻',
+                                    '用户原话': '用户 2026-11-04（CLAUDE.md '
+                                            '守则22，主会话是总负责人）：“你拥有最高决策权……你是总负责人……你来帮我做最好的决定，但是前提是这个决定他能够是最好的。”声音按实测定，交主会话核定；主会话 '
+                                            '2026-11-05 已按守则22 定稿 54'}},
+          '同词异译': {'tied to：归于/把': '不是两种译法：S15 tied … to 被 the glow 隔开，“把……归于”是同一个意思的两部分（T23），同 50 篇 '
+                                   'labelled：把/称为'},
+          '停顿位置': {'S16 cables, / and @2.075': '2026-11-05 直接读 work_54/a.wav 逐 2.5 ms（S16 起点 147.825）：cables 的 '
+                                               '/z/ 浊擦 1.94–1.96（-23～-35 dB、重心 0.3–0.6 kHz），1.9625–1.9775 衰减到 '
+                                               '-39→-77 dB，1.98 起是插入的 0.2 秒停顿（全静音）；2.18 起 and 的声门起音 '
+                                               '-63→-46→-18 dB（2.1875），7.5 ms 内升起、开头没被剪。停顿正好落在 cables, 词尾和 and '
+                                               '词头之间（原始切点 50280 前后两段相连、没删声音），位置对'},
+          '数字写法': {'S1-1 ten': 'ten 指钟点，文章定稿中文写“上午10时”，数值相同（ten = 10）'},
+          '方向': {'S1-1 after→1883年8月27日上午': 'after 译“刚过”（10时刚过），和英文同方向（之后），中文“刚过”在本组末尾'},
+          '词性': {'S7-1 colonial 殖民地': '“殖民地”作定语修饰“行政官员”（殖民地行政官员），文章定稿原文；“地”是名词的一部分，不是副词词尾'}},
+ '结尾解说': '简述',
+ '非人声区间': {'S1': [[8.945, 9.24]],
+           'S8': [[5.039, 5.22, '紧贴词尾']],
+           'S9': [[2.815, 3.08]],
+           'S13': [[3.905, 4.225]],
+           'S15': [[7.2, 7.59]],
+           'S4': [[2.065, 2.335], [5.265542, 5.47, '紧贴词尾']]},
+ '高亮开始': {'S16 第2块': 152.485, 'S16 第3块': 155.68},
+ 'allow_clash': ['collapsed into', 'vanishing'],
+ '高亮按实际开口': True,
+ '高亮开口门槛': 40,
+ '术语': {'Krakatoa': '喀拉喀托',
+        'Sunda': '巽他',
+        'Rodrigues': '罗德里格斯岛',
+        'Indian Ocean': '印度洋',
+        'Java': '爪哇岛',
+        'Sumatra': '苏门答腊岛',
+        'Dutch': '荷兰',
+        'Batavia': '巴达维亚',
+        'Jakarta': '雅加达',
+        'London': '伦敦',
+        'Europe': '欧洲',
+        'North America': '北美',
+        'New York': '纽约州',
+        'Connecticut': '康涅狄格州',
+        'Britain': '英国',
+        'Royal Society': '皇家学会',
+        'The Times': '《泰晤士报》'},
+ '结尾句': {'S16': {'前段语速': 0.9,
+                 '最后一段语速': 0.78,
+                 '最后一段前停顿': 0.7,
+                 '接点': [91980, 114420],
+                 '依据': '全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“far-flung observers began to '
+                       'glimpse how interconnected the planet already was.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py '
+                       '自动找：0.9 那遍最后一个标点后最长静音（45 ms）的正中 3.833 s，0.78 那遍（80 ms）的正中 4.768 s，所在帧和两侧各 5 ms 都低于 -55 '
+                       'dB（程序以 08 校准：与人工核实的接点落在同一段静音里）'}},
+ '词尾除阻': {'S1': {'3': [8.955, 't']}, 'S14': {'句末': [8.35, 't']}, 'S4': {'句末': [7.995, 't']}},
+ '除阻加强': {'S9': {'句末': [6.04, 6.09, 5.0]}},
+ '区间声音指纹': {'S1': '713c5ba86360',
+            'S4': '9a4e6a3a86f2',
+            'S8': '03b4e8ff03c4',
+            'S9': '22c5ce6ad6af',
+            'S13': '8e2b971aeacd',
+            'S14': 'e1ecd570053e',
+            'S15': 'fab958646997'},
+ '换行变更记录': [{'日期': '2026-11-07',
+             'S11': '用户 2026-11-07（主会话按守则22 引用户在 53 '
+                    '会话的对齐原话定）：“我说过就是我们的这个汉语意思尽量和这个英文去对齐说过吧。就是尽量和你看教科书，它就尽量在这个textbooks下面。嗯，就是能尽可能的啊，如果说可以的话，所以说再重新生成4k的话，要注意一下这个问题。”'}]}
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
 生成并核对(S, out)

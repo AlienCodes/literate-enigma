@@ -1,0 +1,56 @@
+{
+  "observed_at": "2026-11-13T22:52:16.596915+00:00",
+  "purpose": "runner diagnostic/export safety implementation; not acceptance of any article",
+  "quality_acceptance": false,
+  "programs": {
+    "run.py": "7754d23d3974fb6d61a7a47fe715d577b8ee2d7d7c25a8a7f452e91f37b7aed5",
+    "prepare-checker-reference.py": "84684162e08ebc0cf6d30b481f26c376b201ad71190fae0fb7ba409ca552d36a",
+    "diagnose_reference_gain.py": "55948369576933238afb713802b02e69368e2db008af9c207fbadc40788bd7ca"
+  },
+  "verification": {
+    "python_compile_all_three": true,
+    "observed_reference_keys_independently_recomputed_from_real_source_voice_model_id": true,
+    "temporary_synthetic_export_function_checks": "accepted file preservation; refuse stale/audio-only/source-mismatched/no-stage-proof candidates; failed public MP4 hash/ffprobe proof; MP4-derived excerpt only; no raw PCM export",
+    "actual_model_reference_preparation": "pending genuine GitHub cached environment execution",
+    "actual_failed_video_export": "pending next genuinely produced failed draft",
+    "official_gates_and_thresholds_modified": false,
+    "source_json_modified_by_this_agent": false,
+    "remote_push_or_dispatch_by_this_agent": false
+  },
+  "rules_basis": "视频/制作记录/改门_GitHub化.md line39: original single-thread cache preparation followed by strict production; checker-only reference generation is separate and private",
+  "actual_reference_preparation_run43520785753": {
+    "10": {
+      "original_slice_key": "1779cdbdd68560e1ecd50d812c5c8a8a0df6394c.pkl",
+      "passed_provenance": true
+    },
+    "11": {
+      "original_slice_key": "e4439b8ee6b2194812f91d988de7976fd5567207.pkl",
+      "passed_provenance": true
+    },
+    "existing_private_cache_count": 11514,
+    "existing_private_bytes_unchanged": true,
+    "accepted_aac_unchanged": true,
+    "public_cache_unchanged": true,
+    "producer_pcm_before_after": "absent",
+    "exported_pkl": false
+  },
+  "native_fingerprint_length_bug": {
+    "discovered_from_actual_failed_run": 43520785753,
+    "official_source": "出片指纹.py _sha returns hexdigest()[:16]",
+    "corrected_guard": "exact lowercase16hex equality to computed SHA256 first16; public proof retains64",
+    "isolated_test_only": true,
+    "actual_next_run_export_validation": "pending"
+  },
+  "reference_enumeration_dry_verification": {
+    "uses_original_tokenizer_and_pronunciation_wrapper": true,
+    "unique_keys": {
+      "10": 27,
+      "11": 34,
+      "12": 31,
+      "44": 36,
+      "51": 35
+    },
+    "all_four_actually_observed_missing_keys_included": true,
+    "new_full_enumeration_actual_synthesis": "pending next real run"
+  }
+}

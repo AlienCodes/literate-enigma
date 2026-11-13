@@ -21,7 +21,12 @@ Y2K **漏洞**(bug)，又称**千年**(millennium)虫，起初只是一条**捷�
 
 许多人却不这么看：在他们眼里，这一威胁被**夸大了**(exaggerated)，甚至是一场**骗局**(hoax)。（see A differently：对 A 看法不同；even a hoax：前面省略了 had been）然而，平静之所以**占据上风**(prevailed)，**很大程度上**(largely)正是因为大量问题早已修好。（prevail：冲突中“占上风”，环境中“盛行”，劝人时“成功说服”）这就是**防备悖论**(preparedness paradox)：**预防措施**(precautions)一旦奏效，它们所**抵御**(ward off)的危险就永远不会出现，于是看起来像是**虚构的**(imaginary)。（they ward off：定语从句，省略了关系代词，修饰 the danger）（look＋形容词：看起来……）那些**枯燥乏味的**(Tedious)修复工作换来的是**嘲笑**(mockery)，而不是**感激**(gratitude)。（A rather than B：是 A 而不是 B；因为你防范得太好，啥事都没发生，结果别人反而觉得你在瞎操心、无事生非。这就是防备悖论）
 
-批评者指出，意大利和**韩国**(South Korea)花得少得多，结果也**不比别国差**(fared no worse)。（that…：宾语从句；fare no worse：情况不比别人差）但这种**比较**(comparison)**具有误导性**(misleads)：那些低支出数字往往**遗漏了**(omitted)企业自己的花费，而且很大一部分**补救**(remedial)工作替换了**早该**(overdue for)升级的**过时的/淘汰的**(obsolete)系统。（what firms spent：what 引导宾语从句，企业花的钱）（overdue for upgrading：后置定语修饰 systems，早该升级的）谁也说不清哪些钱是**必不可少的**(essential)，哪些是**过度花费的**(excessive)。（and which excessive：省略了 dollars were；excessive：指“过度的、过多的”，即超出了合理或必要的限度；过度消费（excessive spending）、超速（excessive speed）、过度压力（excessive pressure）都属于超出了合理的限度）奏效的**预防**(Prevention)，可能只会留下一张**账单**(invoice)，用来**与**(be weighed against)一场本可能发生的**灾难**(catastrophe)**相权衡**(be weighed against)。（that works：定语从句修饰 Prevention；nothing but：只有）（be weighed against A：与 A 相权衡；that might have been：本可能发生的）（简述：早年内存和硬件昂贵，程序员只用两位数字记年份，“00”可能被读成1900年。1998年2月，克林顿设立委员会协调应对，美国商务部估计美国要花约1,000亿美元。1999年12月31日午夜过后，只出了零星的轻微故障，2000年2月参议院委员会认定开支合理。许多人却说威胁被夸大，这就是防备悖论：预防奏效，危险就不出现，看起来像是虚构的。意大利、韩国花得少也没出事，但这种比较有误导性。）
+批评者指出，意大利和**韩国**(South Korea)花得少得多，结果也**不比别国差**(fared no worse)。（that…：宾语从句；fare no worse：情况不比别人差）但这种**比较**(comparison)**具有误导性**(misleads)：那些低支出数字往往**遗漏了**(omitted)企业自己的花费，而且很大一部分**补救**(remedial)工作替换了**早该**(overdue for)升级的**过时的/淘汰的**(obsolete)系统。（what firms spent：what 引导宾语从句，企业花的钱）（overdue for upgrading：后置定语修饰 systems，早该升级的）谁也说不清哪些钱是**必不可少的**(essential)，哪些是**过度花费的**(excessive)。（and which excessive：省略了 dollars were；excessive：指“过度的、过多的”，即超出了合理或必要的限度；过度消费（excessive spending）、超速（excessive speed）、过度压力（excessive pressure）都属于超出了合理的限度）奏效的**预防**(Prevention)，可能只会留下一张**账单**(invoice)，用来**与**(be weighed against)一场本可能发生的**灾难**(catastrophe)**相权衡**(be weighed against)。（that works：定语从句修饰 Prevention；nothing but：只有）（be weighed against A：与 A 相权衡；that might have been：本可能发生的）（提前花钱修系统，
+可能正是后来没出大事的原因。
+不能因为灾难没发生，就说钱白花了；
+要看这笔费用与不修系统可能造成的损失相比，
+值不值得。）
+（简述：▸隐患：早期电脑为省内存，把1999年只记成“99”。跨入2000年时，“00”可能被当成1900年，导致年龄、利息和截止日期算错，这就是“千年虫”。▸修补：各国政府和企业提前排查旧系统、修正日期处理。美国估算本国政府和企业总共要花约1000亿美元，全球预计数千亿美元。▸跨年：2000年到来后，故障大多零星轻微。美国参议院委员会认为投入值得，也有人因此认为先前警告夸大，甚至是骗局。▸反差：很多问题已提前修好，可能正是没出大事的重要原因；修得越成功，危险越不显眼，反而像原本不存在，这叫“防备悖论”。▸权衡：不能只因灾难没发生就说钱白花了，要比较修复费用与不修可能造成的损失。但也不能据此断言每笔支出都必要；哪些钱确有用、哪些花多了，仍难逐笔确定。）
 
 ## 速查表
 | 词 | 释义 | 段 |
