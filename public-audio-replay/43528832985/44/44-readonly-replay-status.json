@@ -1,0 +1,110 @@
+{
+  "article": "44",
+  "purpose": "read-only exact failed-draft PCM replay for diagnosis",
+  "passed": false,
+  "quality_acceptance": false,
+  "final_deliverable": false,
+  "original_quality_thresholds_changed": false,
+  "private_GT_cache_model_PCM_exported": false,
+  "source_failed_run": 43522684973,
+  "replay_run": "43528832985",
+  "public_failed_binding": {
+    "source_sha256": "c187e1b0f9e9b9d8b5f3892ad6214e8a82df4ec9f52259fb9a8b8bdf91275cb8",
+    "proof_sha256": "7a50743611020d590fa685957713785b599853dacfb5b520acb152c416fe94ee",
+    "failed_public_video_sha256": "bad53de6fd89d028b5c24867e1f6183e70817aab894405f766df92a86647a19e",
+    "expected_exact_private_pcm_sha256": "13433aea28ccf9bd95fdfba14f87cc0aee52f1536ec4ca075d13f1d9138eb3c4"
+  },
+  "stage": "diagnostic-completed-no-acceptance",
+  "original_processes": {
+    "copy-original-modules": {
+      "exit": 0,
+      "public_scalar_error_lines": []
+    },
+    "exact-cached-audio-replay": {
+      "exit": 0,
+      "public_scalar_error_lines": []
+    },
+    "original-synth": {
+      "exit": 0,
+      "public_scalar_error_lines": []
+    },
+    "original-labels": {
+      "exit": 0,
+      "public_scalar_error_lines": []
+    },
+    "original-audit": {
+      "exit": 0,
+      "public_scalar_error_lines": [
+        "     cut tail=85ms onset=85ms (smpPk: 80/80) first5=-33.352176172857085 last5=-29.512640983893238",
+        "     edit raw 0.0458-0.1259 A 110.3008-110.3809 lost=80.1ms (max -12.5 dB re rmsPk, -20.2 re smpPk) shift=+0.0ms ins_nz=1922 pre=-40.0 post=-41.9 | Stockholm",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-64.50780791334687 last5=-51.27666330113381",
+        "     edit raw 0.1400-0.3382 A 110.3950-110.5932 lost=198.2ms (max 0.2 dB re rmsPk, -7.5 re smpPk) shift=+0.0ms ins_nz=4367 pre=-59.5 post=-53.0 | Stockholm",
+        "     cut tail=0ms onset=1610ms (smpPk: 0/0) first5=-61.40633904734707 last5=-44.34104175826896",
+        "     edit raw 0.3500-1.9786 A 110.6050-112.2336 lost=1628.6ms (max -7.2 dB re rmsPk, -15.0 re smpPk) shift=+0.0ms ins_nz=38710 pre=-56.2 post=-48.9 | Stockholm and Malmö had a longer",
+        "     cut tail=0ms onset=20ms (smpPk: 0/0) first5=-55.27261068873894 last5=-39.66392025193227",
+        "     edit raw 1.9900-2.5469 A 112.2450-112.8019 lost=556.9ms (max -6.7 dB re rmsPk, -14.4 re smpPk) shift=+0.0ms ins_nz=12507 pre=-56.4 post=-40.0 | longer closure,",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-58.09852106682021 last5=-57.6568668316823",
+        "     edit raw 2.5750-2.7700 A 112.8300-113.2200 lost=195.0ms (max -49.5 dB re rmsPk, -57.2 re smpPk) shift=+195.0ms ins_nz=0 pre=-57.8 post=-57.5 | closure,",
+        "     cut tail=1130ms onset=10ms (smpPk: 0/0) first5=-39.93913025372105 last5=-42.118083064471925",
+        "     edit raw 2.8010-5.2055 A 113.2510-115.6555 lost=2404.5ms (max -5.3 dB re rmsPk, -13.0 re smpPk) shift=+0.0ms ins_nz=56934 pre=-46.0 post=-45.7 | from Saturday morning to Sunday afternoon,",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-55.852373576364016 last5=-57.83694369287784",
+        "     edit raw 5.2300-5.5700 A 115.6800-116.0700 lost=340.0ms (max -45.1 dB re rmsPk, -52.9 re smpPk) shift=+50.0ms ins_nz=0 pre=-56.3 post=-60.3 | afternoon,",
+        "     cut tail=0ms onset=1055ms (smpPk: 0/0) first5=-54.7208386308576 last5=-42.687406036617254",
+        "     edit raw 5.6054-7.6564 A 116.1054-118.1564 lost=2051.0ms (max -3.1 dB re rmsPk, -10.8 re smpPk) shift=+0.0ms ins_nz=47976 pre=-53.3 post=-51.4 | afternoon, while crews reconfigured junctions.",
+        "     cut tail=5ms onset=5ms (smpPk: 0/0) first5=-41.94774090460034 last5=-42.02198232037045",
+        "     edit raw 7.6774-7.6811 A 118.1774-118.1811 lost=3.7ms (max -42.0 dB re rmsPk, -49.8 re smpPk) shift=+0.0ms ins_nz=87 pre=-50.9 post=-46.7 | junctions.",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-56.53496399078847 last5=-55.9613411326589",
+        "     edit raw 1.2150-1.5350 A 120.7500-121.1400 lost=320.0ms (max -43.8 dB re rmsPk, -52.0 re smpPk) shift=+70.0ms ins_nz=0 pre=-57.1 post=-55.5 | Monday,",
+        "     cut tail=640ms onset=360ms (smpPk: 0/0) first5=-43.143200659504615 last5=-37.53181419692769",
+        "     edit raw 1.5727-3.5439 A 121.1777-123.1489 lost=1971.2ms (max -1.0 dB re rmsPk, -9.2 re smpPk) shift=+0.0ms ins_nz=46640 pre=-50.5 post=-46.8 | Monday, 125 accidents",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-58.2402621458139 last5=-58.204043704034504",
+        "     edit raw 3.5600-3.5650 A 123.1650-123.1700 lost=5.0ms (max -58.2 dB re rmsPk, -66.5 re smpPk) shift=+0.0ms ins_nz=0 pre=-57.6 post=-58.1 | accidents were",
+        "     cut tail=220ms onset=220ms (smpPk: 0/0) first5=-43.36804880070231 last5=-43.93623039230633",
+        "     edit raw 3.5812-3.7996 A 123.1863-123.4046 lost=218.3ms (max -10.5 dB re rmsPk, -18.8 re smpPk) shift=+0.0ms ins_nz=5235 pre=-50.6 post=-46.7 | accidents were reported,",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-58.713781182431006 last5=-57.02578542400828",
+        "     edit raw 3.8300-3.8450 A 123.4350-123.4500 lost=15.0ms (max -57.0 dB re rmsPk, -65.3 re smpPk) shift=+0.0ms ins_nz=0 pre=-55.1 post=-55.9 | reported,",
+        "     cut tail=450ms onset=450ms (smpPk: 390/5) first5=-20.029787972790366 last5=-33.59372422287353",
+        "     edit raw 3.8607-4.3063 A 123.4657-123.9113 lost=445.6ms (max -3.3 dB re rmsPk, -11.5 re smpPk) shift=+0.0ms ins_nz=10688 pre=-47.3 post=-38.1 | reported,",
+        "     cut tail=5ms onset=5ms (smpPk: 5/5) first5=-30.37801819611591 last5=-25.11020244116533",
+        "     edit raw 4.3358-4.3370 A 123.9408-123.9420 lost=1.1ms (max -25.1 dB re rmsPk, -33.4 re smpPk) shift=+0.0ms ins_nz=27 pre=-42.0 post=-35.7 | reported,",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-54.944157261753716 last5=-55.631937314454845",
+        "     edit raw 4.3750-4.7750 A 123.9800-124.3700 lost=400.0ms (max -43.8 dB re rmsPk, -52.1 re smpPk) shift=-10.0ms ins_nz=0 pre=-55.7 post=-58.6 | reported, against",
+        "     cut tail=315ms onset=120ms (smpPk: 310/110) first5=-22.734981037583925 last5=-32.193762481188784",
+        "     edit raw 4.7986-8.9260 A 124.3936-128.5210 lost=4127.4ms (max -3.0 dB re rmsPk, -11.3 re smpPk) shift=+0.0ms ins_nz=96397 pre=-53.2 post=-40.3 | against 130 to 198 on earlier Mondays, a",
+        "     cut tail=0ms onset=155ms (smpPk: 0/155) first5=-66.44055244639641 last5=-35.964760923850754",
+        "     edit raw 8.9450-9.5394 A 128.5400-129.0944 lost=594.4ms (max -1.5 dB re rmsPk, -9.8 re smpPk) shift=-40.0ms ins_nz=3939 pre=-57.0 post=-46.5 | Mondays, a statistical",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-48.977409717969095 last5=-48.051891359443324",
+        "     edit raw 9.5575-10.8484 A 129.1125-130.4034 lost=1290.8ms (max -3.4 dB re rmsPk, -11.7 re smpPk) shift=+0.0ms ins_nz=30192 pre=-55.5 post=-52.3 | a statistical improvement",
+        "     cut tail=0ms onset=150ms (smpPk: 0/140) first5=-60.72555601038119 last5=-31.747964741644093",
+        "     edit raw 10.8650-14.0290 A 130.4200-133.5840 lost=3164.0ms (max -6.0 dB re rmsPk, -14.3 re smpPk) shift=+0.0ms ins_nz=74669 pre=-63.0 post=-42.2 | improvement put down to the heightened care of hesitant drivers.",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-61.38091214701457 last5=-58.90417969072435",
+        "     edit raw 0.8851-1.0350 A 135.4451-135.5950 lost=149.9ms (max -10.3 dB re rmsPk, -18.8 re smpPk) shift=+0.0ms ins_nz=2147 pre=-62.6 post=-60.0 | nervousness apparently",
+        "     cut tail=365ms onset=0ms (smpPk: 0/0) first5=-37.63617927410766 last5=-53.44334664209319",
+        "     edit raw 1.0518-2.8493 A 135.6118-137.4092 lost=1797.5ms (max -8.0 dB re rmsPk, -16.4 re smpPk) shift=+0.0ms ins_nz=43108 pre=-54.5 post=-54.2 | apparently subsided and",
+        "     cut tail=0ms onset=540ms (smpPk: 0/0) first5=-49.01455295934102 last5=-42.626450649800915",
+        "     edit raw 2.8615-4.0855 A 137.4215-138.6455 lost=1224.0ms (max -7.8 dB re rmsPk, -16.2 re smpPk) shift=+0.0ms ins_nz=29352 pre=-54.4 post=-42.2 | subsided and prudent habits faded,",
+        "     cut tail=5ms onset=5ms (smpPk: 5/5) first5=-35.240189347860216 last5=-29.903249423263155",
+        "     edit raw 4.1285-4.1296 A 138.6885-138.6896 lost=1.0ms (max -29.9 dB re rmsPk, -38.3 re smpPk) shift=+0.0ms ins_nz=25 pre=-44.9 post=-40.5 | faded,",
+        "     cut tail=0ms onset=0ms (smpPk: 0/0) first5=-62.1503714346709 last5=-60.702862634180164",
+        "     edit raw 4.1600-4.6337 A 138.7200-139.4100 lost=473.7ms (max -48.7 dB re rmsPk, -57.1 re smpPk) shift=+216.3ms ins_nz=0 pre=-57.5 post=-57.9 | faded, for",
+        "     cut tail=790ms onset=795ms (smpPk: 0/0) first5=-39.16384274057761 last5=-42.54726448200466",
+        "     edit raw 4.6540-5.4473 A 139.4303-140.2237 lost=793.4ms (max -0.0 dB re rmsPk, -8.4 re smpPk) shift=+0.0ms ins_nz=19033 pre=-43.5 post=-49.5 | for by 1969",
+        "     cut tail=0ms onset=10ms (smpPk: 0/10) first5=-64.38722893849476 last5=-34.676306329764515",
+        "     edit raw 5.4687-7.8554 A 140.2450-142.6317 lost=2386.7ms (max -8.7 dB re rmsPk, -17.1 re smpPk) shift=+0.0ms ins_nz=50578 pre=-58.5 post=-49.5 | by 1969 accident",
+        "     cut tail=0ms onset=20ms (smpPk: 0/0) first5=-63.44137925953136 last5=-38.485173337462484",
+        "     edit raw 7.8887-11.7795 A 142.6650-146.5558 lost=3890.8ms (max -7.7 dB re rmsPk, -16.2 re smpPk) shift=+0.0ms ins_nz=90766 pre=-60.1 post=-44.0 | 1969 accident and fatality rates had reverted to their baseline.",
+        "A10 edge violations (cut not inside -55 dB on both sides, or removed part above -40 dB): 116",
+        "extra non-zero runs not explained by raw copies: 175"
+      ]
+    },
+    "scalar-diagnostic": {
+      "exit": 0,
+      "public_scalar_error_lines": []
+    }
+  },
+  "original_failed_maker_modules_match": true,
+  "actual_private_pcm_sha256": "13433aea28ccf9bd95fdfba14f87cc0aee52f1536ec4ca075d13f1d9138eb3c4",
+  "exact_failed_pcm_reproduced": true,
+  "scalar_diagnostic_sha256": "0b496934f0cf0907869bd9f9f33d5559fb0483325b1e92e334f45664ab2a597f",
+  "scalar_diagnostic_error": null
+}
