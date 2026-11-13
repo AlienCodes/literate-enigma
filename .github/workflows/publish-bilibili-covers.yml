@@ -1,0 +1,36 @@
+name: Publish Bilibili covers
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Immutable cover release tag
+        required: true
+        default: bilibili-covers-2026.11.13-v1
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bilibili-covers-${{ inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      COVER_RELEASE_TAG: ${{ inputs.tag }}
+    steps:
+      - name: Check out finished cover images
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout: |
+            .github/workflows
+            B站封面
+      - name: Verify and publish both cover ratios
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 B站封面/考研学人-70篇/2026-11-13/publish_release.py
