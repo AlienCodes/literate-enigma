@@ -15,6 +15,7 @@ import json
 import math
 import os
 import platform
+import re
 from pathlib import Path
 
 import numpy as np
@@ -154,6 +155,53 @@ def abnormal_edit_scalars(report_path: Path, script_path: Path, wav_path: Path, 
     }
 
 
+def public_timing_metadata(work: Path):
+    """Read actual producer timing JSON; retain only explicit timing scalars."""
+    def number(value):
+        if value is None:
+            return None
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
+            raise ValueError("invalid numeric producer timing metadata")
+        return value
+    def sentence(value):
+        if value == "标题" or isinstance(value, str) and re.fullmatch(r"S[1-9]\d*", value):
+            return value
+        raise ValueError("invalid sentence label in producer timing metadata")
+    segment_path = work / "分段.json"
+    graft_path = work / "词尾除阻.json"
+    result = {"purpose": "actual public timeline metadata only; no raw sample arrays",
+              "segment_record_sha256": sha256(segment_path),
+              "graft_record_sha256": sha256(graft_path), "segments": {}, "consonant_grafts": []}
+    if segment_path.is_file():
+        for key, records in json.loads(segment_path.read_text()).items():
+            label = sentence(key)
+            rows = []
+            for record in records:
+                times = record["时刻"]
+                if not isinstance(times, list) or len(times) != 2:
+                    raise ValueError("invalid producer segment timing pair")
+                start, end = number(times[0]), number(times[1])
+                if start is None or end is None or end < start:
+                    raise ValueError("nonmonotonic producer segment timing pair")
+                piece = number(record["段"])
+                if int(piece) != piece or piece < 1:
+                    raise ValueError("invalid producer segment index")
+                rows.append({"段": int(piece), "增益": number(record.get("增益")),
+                             "停顿": number(record.get("停顿")), "时刻": [start, end]})
+            result["segments"][label] = rows
+    if graft_path.is_file():
+        for record in json.loads(graft_path.read_text()):
+            position = record["位置"]
+            if not isinstance(position, str) or not (position == "句末" or re.fullmatch(r"第[1-9]\d*个标点", position)):
+                raise ValueError("invalid consonant graft position label")
+            start, end = number(record["开始"]), number(record["结束"])
+            if start is None or end is None or end < start:
+                raise ValueError("invalid consonant graft time interval")
+            result["consonant_grafts"].append({"句": sentence(record["句"]), "位置": position,
+                                               "类型": "词尾辅音除阻移植", "开始": start, "结束": end})
+    return result
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--video-root", required=True, type=Path, help="Private root containing video/ and tts/.")
@@ -215,6 +263,7 @@ def main():
         records_path = work / "分段.json"
         records = json.loads(records_path.read_text()) if records_path.is_file() else {}
         result["segment_record_sha256"] = sha256(records_path)
+        result["public_producer_timing_metadata"] = public_timing_metadata(work)
         arrays = [(it, np.load(it["file"]).astype(np.float64)) for it in meta]
         raw_peak, raw_idx, raw_sample = max(
             (float(np.abs(x).max()), it["idx"], int(np.abs(x).argmax())) for it, x in arrays)

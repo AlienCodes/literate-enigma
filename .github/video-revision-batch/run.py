@@ -94,7 +94,7 @@ def clear_temporary_video():
 
 def failure_audio_diagnostics():
     """Read private reference data internally; export diagnostic scalars only."""
-    if NO not in {'12', '44', '51'}:
+    if NO not in {'10', '11', '12', '44', '51'}:
         return
     program = TASK / 'diagnose_reference_gain.py'
     qc = Path(ENV.get('QC_DIR', str(M / 'qc_independent')))

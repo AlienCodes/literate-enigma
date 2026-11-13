@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare exactly the original checker's punctuation slices, before production.
+"""Prepare exact independent checker references before strict production.
 
 Uses the unchanged maker's original say() and native single-thread cache writer.
 Private cache bytes stay under the private restored machine; output is scalar
@@ -18,9 +18,11 @@ import sys
 
 OBSERVED_MISSING = {
     '10': {'1779cdbdd68560e1ecd50d812c5c8a8a0df6394c.pkl',
-           '849001ae0dc6c1436d06f5c608358bcdca630f4b.pkl'},
+           '849001ae0dc6c1436d06f5c608358bcdca630f4b.pkl',
+           'd50d3642f8022ba1c409e7ef50fabe55b50d9c8e.pkl'},
     '11': {'e4439b8ee6b2194812f91d988de7976fd5567207.pkl',
-           '028265e74b4cc25c104edcc89ac79b6c02454ede.pkl'},
+           '028265e74b4cc25c104edcc89ac79b6c02454ede.pkl',
+           '54174f758622cfdd5771023fffb879634fac1f6a.pkl'},
 }
 
 
@@ -107,24 +109,52 @@ def main():
             assert options.intra_op_num_threads == options.inter_op_num_threads == 1
             sessions.append({'intra_op_num_threads': options.intra_op_num_threads,
                              'inter_op_num_threads': options.inter_op_num_threads})
-    # Exact sentence/slice enumeration from 停顿位置精确核对.py's ratio
-    # expression. A dry call through the original pronunciation wrapper
-    # captures the exact cache parameters without synthesizing any audio.
+    # Complete active callsite audit: title/whole raw at SPEED (首尾/可闻声/
+    # 疑点), title/whole timed at SPEED with zero model pauses (词尾/停顿/
+    # 高亮), punctuation slices (停顿 ratio), every display chunk of multi-
+    # chunk sentences (高亮乙). Word phonemize() calls only tokenize; they do
+    # not synthesize. Configured ending speeds/prefixes and donor consonants
+    # are producer inputs, preserved in the original existing cache; no new
+    # alternate ending speeds, donor words, or voice controls are invented.
     import numpy as np
-    model_id = module._portable_mid(str(tts / 'kokoro-v1.0.onnx'))
     captured = []
-    def capture(text, voice, speed=1.0, lang='en-us', **kwargs):
-        voice_id = (hashlib.sha1(np.ascontiguousarray(voice).tobytes()).hexdigest()
-                    if not isinstance(voice, str) else voice)
-        key = hashlib.sha1(repr(('create', model_id, text, voice_id, float(speed),
-                                 lang, sorted(kwargs.items()))).encode()).hexdigest() + '.pkl'
-        captured.append((key, hashlib.sha256(text.encode()).hexdigest(), kwargs.get('is_phonemes', False)))
-    probe = module._pron(capture)
+    def cache_probe(method):
+        filename = 'kokoro-v1.0.onnx' if method == 'create' else 'kokoro-v1.0-timed.onnx'
+        model_id = module._portable_mid(str(tts / filename))
+        def capture(text, voice, speed=1.0, lang='en-us', **kwargs):
+            voice_id = (hashlib.sha1(np.ascontiguousarray(voice).tobytes()).hexdigest()
+                        if not isinstance(voice, str) else voice)
+            key = hashlib.sha1(repr((method, model_id, text, voice_id, float(speed),
+                                     lang, sorted(kwargs.items()))).encode()).hexdigest() + '.pkl'
+            captured.append((key, hashlib.sha256(text.encode()).hexdigest(), kwargs.get('is_phonemes', False)))
+        return module._pron(capture)
+    probes = {method: cache_probe(method) for method in ('create', 'create_timed')}
     references = []
     unique = {}
+    def reference(text, label, kind, *, piece=None, method='create'):
+        spoken = module.spoken(re.sub(r'\*\*', '', module.R.strip_gloss(text)))
+        kwargs = {'clause_pause': 0, 'sentence_pause': 0} if method == 'create_timed' else {}
+        before_count = len(captured)
+        probes[method](spoken, voice=module.V, speed=module.SPEED, lang='en-us', **kwargs)
+        assert len(captured) == before_count + 1
+        key, input_hash, phonemes = captured[-1]
+        references.append({'sentence': label, 'piece': piece, 'reference_kind': kind,
+                           'method': method, 'source_slice': text,
+                           'exact_native_cache_key': key, 'cache_input_text_sha256': input_hash,
+                           'cache_input_is_phonemes': phonemes, 'cache_preexisted': key in private_before})
+        unique.setdefault(key, (method, text, kwargs))
+    reference(source_data['title_en'], '标题', 'title-default-raw')
+    reference(source_data['title_en'], '标题', 'title-default-timed', method='create_timed')
     for si, sentence_data in enumerate(source_data['sentences'], 1):
-        sentence = ' '.join(re.sub(r'\*\*', '', module.R.strip_gloss(c['en'])).strip()
-                            for c in sentence_data['chunks'])
+        texts = [re.sub(r'\*\*', '', module.R.strip_gloss(c['en'])).strip()
+                 for c in sentence_data['chunks']]
+        sentence = ' '.join(texts)
+        label = f'S{si}'
+        reference(sentence, label, 'whole-default-raw')
+        reference(sentence, label, 'whole-default-timed', method='create_timed')
+        if len(texts) > 1:
+            for ci, text in enumerate(texts, 1):
+                reference(text, label, 'highlight-display-chunk', piece=ci)
         punctuation = list(re.finditer(r'[,;:](?=\s)', sentence))
         if not punctuation:
             continue
@@ -135,25 +165,20 @@ def main():
             previous = item.end() + 1
         pieces.append((previous, len(sentence)))
         for pi, (begin, end) in enumerate(pieces, 1):
-            text_slice = sentence[begin:end]
-            spoken = module.spoken(re.sub(r'\*\*', '', module.R.strip_gloss(text_slice)))
-            before_count = len(captured)
-            probe(spoken, voice=module.V, speed=module.SPEED, lang='en-us')
-            assert len(captured) == before_count + 1
-            key, input_hash, phonemes = captured[-1]
-            references.append({'sentence': f'S{si}', 'piece': pi, 'source_slice': text_slice,
-                               'exact_native_cache_key': key, 'cache_input_text_sha256': input_hash,
-                               'cache_input_is_phonemes': phonemes, 'cache_preexisted': key in private_before})
-            unique.setdefault(key, text_slice)
+            reference(sentence[begin:end], label, 'pause-punctuation-slice', piece=pi)
     assert OBSERVED_MISSING.get(no, set()) <= set(unique), 'Actual observed missing keys are not in original checker enumeration.'
     missing_keys = set(unique) - set(private_before)
-    for key, text_slice in unique.items():
+    for key, (method, text_slice, kwargs) in unique.items():
         if key in private_before:
             module._条目核对(str(cache / key))
         else:
             # The unchanged native writer creates this exact pkl and marker.
             # No stand-in audio, alternate name, or PCM overlay is supplied.
-            module.say(text_slice)
+            if method == 'create':
+                module.say(text_slice)
+            else:
+                module.KT.create_timed(module.spoken(re.sub(r'\*\*', '', module.R.strip_gloss(text_slice))),
+                                       voice=module.V, speed=module.SPEED, lang='en-us', **kwargs)
     private_after = inventory(cache)
     public_after = inventory(public_cache)
     allowed_additions = missing_keys | {key + '.单线程' for key in missing_keys}
@@ -170,11 +195,13 @@ def main():
     accepted_aac_after = aac_hash(args.accepted_video)
     assert accepted_aac_before == accepted_aac_after, 'Accepted video AAC changed.'
     result = {
-        'article': no, 'purpose': 'prepare missing references from the original full punctuation-slice enumeration; not audio acceptance',
+        'article': no, 'purpose': 'prepare original checker title/whole/punctuation/chunk references; not audio acceptance',
         'reference_prepared': True, 'acceptance': False,
         'basis': '视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production',
         'source_sha256': source_before, 'maker_sha256': module_before,
-        'checker_program_sha256': sha(repository / '视频/工具/停顿位置精确核对.py'),
+        'checker_program_sha256': {name: sha(repository / '视频/工具' / name) for name in (
+            '停顿位置精确核对.py', '高亮同步核对.py', '句首句尾与停顿位置核对.py',
+            '可闻声保全核对.py', '词尾辅音核对.py', '疑点清单.py')},
         'reference_calls': references, 'unique_reference_key_count': len(unique),
         'missing_reference_key_count': len(missing_keys),
         'observed_missing_keys_covered': sorted(OBSERVED_MISSING.get(no, set())),
