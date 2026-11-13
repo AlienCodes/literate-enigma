@@ -1,0 +1,144 @@
+{
+  "selected": "B",
+  "selection_reason": "Prefer B when it passes: fewer changed seconds and greater adjacent-sentence margin; both tested from BASE without cumulative encoding.",
+  "candidates": [
+    {
+      "profile": "A",
+      "directory": "/home/runner/work/literate-enigma/literate-enigma/audio-repair-final/70-A",
+      "accepted": true,
+      "numerical_audio_checks_passed": true,
+      "source_hash": "16f996ce915d684c79923bf291430280c118c4af355b4ffc66931574715beed1",
+      "gain_windows": [
+        {
+          "sentence": "S12",
+          "phrase": "Mailings doubled",
+          "part": 1,
+          "core_start": 84.17,
+          "core_end": 85.3,
+          "start": 84.0,
+          "attack_end": 84.05,
+          "release_start": 85.48,
+          "end": 85.53,
+          "prior_end": 83.044,
+          "next_start": 85.72,
+          "gain_db": 2.2,
+          "smoothing": "raised-cosine",
+          "role": "suppressed-phrase-repair"
+        },
+        {
+          "sentence": "S12",
+          "phrase": "Mailings doubled, from about 80 million items in 1839 to over 169 million in 1840.",
+          "core_start": 84.1661666667,
+          "core_end": 92.8323541667,
+          "start": 84.0,
+          "attack_end": 84.05,
+          "release_start": 93.02,
+          "end": 93.07,
+          "gain_db": -0.314,
+          "smoothing": "raised-cosine",
+          "role": "sentence-integrated-loudness-compensation"
+        }
+      ],
+      "whole": {
+        "summary": "全片 -22.9 LUFS，峰值 -0.8 dBFS，18 句，逐句与全片差 -1.3～+1.1 LU",
+        "global_lufs": -22.878161249040804,
+        "failures": [],
+        "note": "Unmodified canonical check skips the first 9 seconds; the independent mapping below also inspects S1."
+      },
+      "after_target": {
+        "sentence": "S12",
+        "start": 84.16497916666667,
+        "end": 92.83335416666667,
+        "raw_lufs": -21.731690991146547,
+        "effective_lufs": -21.731690991146547,
+        "parts": [
+          {
+            "part": 1,
+            "start": 84.16,
+            "end": 85.3,
+            "raw_lufs": -20.138796910884068,
+            "effective_lufs": -22.138796910884068,
+            "peak_momentary_lufs": -19.1
+          },
+          {
+            "part": 2,
+            "start": 85.72,
+            "end": 92.83,
+            "raw_lufs": -22.105425352695548,
+            "effective_lufs": -22.105425352695548,
+            "peak_momentary_lufs": -17.1
+          }
+        ]
+      }
+    },
+    {
+      "profile": "B",
+      "directory": "/home/runner/work/literate-enigma/literate-enigma/audio-repair-final/70-B",
+      "accepted": true,
+      "numerical_audio_checks_passed": true,
+      "source_hash": "16f996ce915d684c79923bf291430280c118c4af355b4ffc66931574715beed1",
+      "gain_windows": [
+        {
+          "sentence": "S12",
+          "phrase": "Mailings doubled",
+          "part": 1,
+          "core_start": 84.17,
+          "core_end": 85.3,
+          "start": 84.0,
+          "attack_end": 84.05,
+          "release_start": 85.48,
+          "end": 85.53,
+          "prior_end": 83.044,
+          "next_start": 85.72,
+          "gain_db": 2.2,
+          "smoothing": "raised-cosine",
+          "role": "suppressed-phrase-repair"
+        },
+        {
+          "sentence": "S13",
+          "phrase": "The design had a drawback.",
+          "core_start": 93.81,
+          "core_end": 95.34,
+          "start": 93.6,
+          "attack_end": 93.65,
+          "release_start": 95.5,
+          "end": 95.55,
+          "gain_db": 0.4,
+          "smoothing": "raised-cosine",
+          "role": "adjacent-short-sentence-balance"
+        }
+      ],
+      "whole": {
+        "summary": "全片 -22.8 LUFS，峰值 -0.5 dBFS，18 句，逐句与全片差 -1.0～+1.4 LU",
+        "global_lufs": -22.8382865031315,
+        "failures": [],
+        "note": "Unmodified canonical check skips the first 9 seconds; the independent mapping below also inspects S1."
+      },
+      "after_target": {
+        "sentence": "S12",
+        "start": 84.16616666666667,
+        "end": 92.83235416666666,
+        "raw_lufs": -21.410325794934014,
+        "effective_lufs": -21.410325794934014,
+        "parts": [
+          {
+            "part": 1,
+            "start": 84.17,
+            "end": 85.3,
+            "raw_lufs": -19.809212128726237,
+            "effective_lufs": -21.809212128726237,
+            "peak_momentary_lufs": -18.8
+          },
+          {
+            "part": 2,
+            "start": 85.72,
+            "end": 92.83,
+            "raw_lufs": -21.78412266985292,
+            "effective_lufs": -21.78412266985292,
+            "peak_momentary_lufs": -16.7
+          }
+        ]
+      }
+    }
+  ]
+}

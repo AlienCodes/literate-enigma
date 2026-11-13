@@ -1,0 +1,329 @@
+{
+  "article": "05",
+  "passed": true,
+  "stage": "exact-transition-4K-passed",
+  "checks_unchanged": true,
+  "restored_old_logs_kept_internal": true,
+  "check_summaries": {
+    "preflight-sync-paired-article10.log": [],
+    "preflight-sync-selftest.log": [],
+    "preflight-merge-selftest.log": [],
+    "preflight-current-canonical-modules.log": [],
+    "preflight-original-regression27.log": [],
+    "reproduce-current-control.log": [],
+    "current-pronunciation-compatibility.log": [],
+    "canonical-reference-input-check.log": [],
+    "current-splice-numeric-control.log": [],
+    "k125-fixed-input-positive-negative-selftest.log": [],
+    "canonical-full-quicktest.log": [
+      "① 规则表 448 条：有坏样本由快测跑的 407、替代或已删 41；版本 db67f8c21de0",
+      "①b 坏样本覆盖：448 / 448",
+      "② 文本/画面/流程 快自检 37 个程序：全过",
+      "③ 挂钩检查：在",
+      "③b 常规规则（G35 简述整屏、G65 方法进化 K97）坏样本必抓、好样本必放：过",
+      "④ 27 回归：a.wav、分段.json 逐字节、每屏像素一致",
+      "⑥ K102 读音自检：29 不误停、拆读音改正必停：过",
+      "⑥b 59 括号里的语境读音（(CFCs) 补复数 z）：原样换到、不双 z，拆掉括号边界必停：过",
+      "⑤ 交付核查 出片前/出片后 + 出片守门自检：全过"
+    ],
+    "canonical-fastcheck-stamp-verification.log": [],
+    "canonical-draft.log": [
+      "第05篇 做完（186 秒）：修了 1 处、疑点 19 处",
+      "① 文本：通过，自动修 1 处",
+      "② 声音：05 词尾辅音核对 问题数 0；05 纯人声核对（配音指纹 1e25fbe69f6f）问题数 0；问题数 0；05 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/05_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K.log": [
+      "第05篇 用户定稿原话：有"
+    ]
+  },
+  "paired_article10_only_added_existing_summary": true,
+  "cached_regression27_input": {
+    "script_sha256": "335a95b17cbd6da61d736f93b21e9db95aae645578e7e3b0b844aa791f0adaad",
+    "sentences_sha256": "5cdb5467b2eb1578e1e41773e572fe0ebf09f59057baebe7b9bf743c1d71dbba",
+    "last_note_sha256": "446d2f7adc7783742b30d07d625ca7d1dc5efd4aff65da3e851ba3172b5647fd",
+    "matching_reviewed_reference_names": [
+      "public-original27-c9-and-940"
+    ]
+  },
+  "preflight_three_real_input_checks_passed": true,
+  "audio_input_md5": "1e25fbe69f6f",
+  "reproduced_current_control_md5": "1e25fbe69f6f",
+  "evidence_mode": "fresh-current-audio-review",
+  "historical_migration_performed": false,
+  "pronunciation_compatibility": {
+    "texts_compared": 20,
+    "actual_phoneme_streams_identical": true,
+    "changed_text_indices": [],
+    "working_05_phonemes_sha256": "b42dd99049593e1f5d2951dd2c61062e51c76ba92a0607b37f239d36150eebb9",
+    "global_05_phonemes_sha256": "b42dd99049593e1f5d2951dd2c61062e51c76ba92a0607b37f239d36150eebb9",
+    "global_dictionary_mtime_was_newer_than_restored_meta": true
+  },
+  "reference_compatibility": {
+    "method": "canonical synth.py actual-input key verification",
+    "texts": 20,
+    "actual_input_keys_identical": true,
+    "all_original_reference_files_sha256_identical": true,
+    "raw_data_exported": false
+  },
+  "k125_actual05_protected_inputs_unchanged": true,
+  "k125_fixed_raw_preflight": {
+    "scope": "K125 fixed raw regression; production synth default unchanged",
+    "manifest_sha256": "0a3541baf50620e587b3a47c6507f3b017d53e3539becca2610e418e9cbb479c",
+    "raw_inputs": 40,
+    "independent_gt_exact_raw_matches": 0,
+    "good": [
+      "ok",
+      0
+    ],
+    "bad": [
+      "A10_VIOLATION(lost)",
+      1
+    ],
+    "bad_raw_sha_rejected": true,
+    "missing_raw_rejected": true
+  },
+  "k125_mixed_generation_evidence_run": 43328879945,
+  "canonical_fastcheck": {
+    "passed": true,
+    "reused_verified_canonical_stamp": false,
+    "stamp_sha256": "7097b0f1359f602c274b2c40c33f73b119f242c00de4d40d4329659892515e4b",
+    "programs": 110,
+    "only_stamp_cached": true
+  },
+  "k125_fixed_raw_full_quicktest": {
+    "scope": "K125 fixed raw regression; production synth default unchanged",
+    "manifest_sha256": "0a3541baf50620e587b3a47c6507f3b017d53e3539becca2610e418e9cbb479c",
+    "raw_inputs": 40,
+    "independent_gt_exact_raw_matches": 0,
+    "good": [
+      "ok",
+      0
+    ],
+    "bad": [
+      "A10_VIOLATION(lost)",
+      1
+    ],
+    "bad_raw_sha_rejected": true,
+    "missing_raw_rejected": true
+  },
+  "normal_independent_synth_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+  "fresh_splice_reviews": [
+    {
+      "edit": "S5 raw 10.6300-10.9170",
+      "pre_post_lost_db": [
+        -56.58703691015663,
+        -47.76579434938142,
+        -35.92648435591502
+      ],
+      "tail_onset_flags_ms": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "edit": "S8 raw 1.7050-2.0537",
+      "pre_post_lost_db": [
+        -55.79353854760757,
+        -50.3301282065772,
+        -39.649284548498386
+      ],
+      "tail_onset_flags_ms": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "edit": "S9 raw 1.9400-2.2312",
+      "pre_post_lost_db": [
+        -59.55266180548398,
+        -44.469475173375315,
+        -37.369237894460035
+      ],
+      "tail_onset_flags_ms": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "edit": "S11 raw 1.4055-1.5479",
+      "pre_post_lost_db": [
+        -30.367586879857065,
+        -51.97485409791662,
+        -38.08663103148092
+      ],
+      "tail_onset_flags_ms": [
+        10.0,
+        0.0
+      ]
+    },
+    {
+      "edit": "S12 raw 1.3984-1.6550",
+      "pre_post_lost_db": [
+        -35.13997585505743,
+        -68.23316955814123,
+        -38.64272575066386
+      ],
+      "tail_onset_flags_ms": [
+        5.0,
+        0.0
+      ]
+    },
+    {
+      "edit": "S12 raw 6.4000-6.9950",
+      "pre_post_lost_db": [
+        -42.64135608589826,
+        -57.691394122629056,
+        -34.35390055279043
+      ],
+      "tail_onset_flags_ms": [
+        30.0,
+        0.0
+      ]
+    },
+    {
+      "edit": "S16 raw 4.8850-5.3106",
+      "pre_post_lost_db": [
+        -57.22772976953336,
+        -34.302726513069814,
+        -39.93461154864888
+      ],
+      "tail_onset_flags_ms": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "edit": "S17 raw 3.5700-3.8588",
+      "pre_post_lost_db": [
+        -56.28935241936404,
+        -50.3456181389361,
+        -36.68137692437557
+      ],
+      "tail_onset_flags_ms": [
+        0.0,
+        10.0
+      ]
+    },
+    {
+      "edit": "S18 raw 1.4935-1.6950",
+      "pre_post_lost_db": [
+        -33.812091794457636,
+        -58.57641974237748,
+        -42.04125371908397
+      ],
+      "tail_onset_flags_ms": [
+        10.0,
+        0.0
+      ]
+    },
+    {
+      "edit": "S19 raw 1.8121-2.0103",
+      "pre_post_lost_db": [
+        -39.06247533400044,
+        -44.860607609287946,
+        -40.37187142118462
+      ],
+      "tail_onset_flags_ms": [
+        5.0,
+        0.0
+      ]
+    }
+  ],
+  "approved_summary_source": {
+    "path": ".github/video-batch/summaries/01-12.json",
+    "file_sha256": "b5706b76f8ce95ae924b268451e3e9ed94ac4757da7a155daa3dd27119dc2ad6",
+    "article_points_sha256": "9c6c9ff1727f5cd4bc659a9c316d64e2dc7a9019a1f0404d559cfb38fc704e2f"
+  },
+  "canonical_checks": {
+    "做_05/出片前.log": [
+      "✔ 踩坑核查（核查程序自检、踩坑对照记录、逐条程序核查、换行比对）",
+      "✔ 数字读法、引号自检（A11/A37/A17：年份、年代、日期、时刻、小数读法；引号不读、撇号保留）",
+      "✔ 数字读法清单（请人工逐个确认读法）",
+      "✔ 引号不停顿（A17）：0 句带引号，配音时都不读引号",
+      "✔ \u001b[0;93m2026-11-13 00:31:48.160523552 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" because filename \"5620e0c7-8062-4dce-aeb7-520c7ef76171\" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+\u001b[m",
+      "✔ 标点停顿核对（A9/A10：停顿时长、不切词；A19：停顿后不留吸气声）",
+      "✔ \u001b[0;93m2026-11-13 00:31:50.996453800 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" because filename \"5620e0c7-8062-4dce-aeb7-520c7ef76171\" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+\u001b[m",
+      "✔ 句首句尾核对（clean_tail 修剪掉的部分没有剪到词：基准本句最响 5 ms 帧；剪掉的能听见的声音不得与词相连，句尾不得剪掉能听见的声音）",
+      "✔ \u001b[0;93m2026-11-13 00:31:53.859662552 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" because filename \"5620e0c7-8062-4dce-aeb7-520c7ef76171\" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+\u001b[m",
+      "✔ 读音核对（A23：每个词的读音与独立发音词典一致；人名、地名、机构名、缩写逐个查证权威读音）",
+      "✔ \u001b[0;93m2026-11-13 00:31:59.145795051 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" because filename \"5620e0c7-8062-4dce-aeb7-520c7ef76171\" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+\u001b[m",
+      "✔ 词尾辅音核对（A21：停顿前和句末的词尾 t/k 听得清除阻，2 kHz 以上 ≥ -36 dB；/p/ 全频 ≥ -33 dB）",
+      "✔ 停顿位置核对（A9/A15：停顿正好落在标点处两个词之间）",
+      "✔ \u001b[0;93m2026-11-13 00:32:05.325760008 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" because filename \"5620e0c7-8062-4dce-aeb7-520c7ef76171\" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+\u001b[m",
+      "✔ 无标点处停顿 ≤ 0.22 秒"
+    ],
+    "做_05/出片后.log": [
+      "✔ 出片指纹 自检（G26：旧视频配新脚本、出片后程序改了、视频被覆盖、没有指纹都要停）",
+      "✔ 视频是现行脚本、现行程序出的（G26 出片指纹：与现行脚本、配音、出片程序逐项一致）",
+      "✔ 成片有画面 自检（G12：只有声音的文件拦下、1920×1080 的视频放行）",
+      "✔ 成片有画面（G12：有画面流、宽 ≥1920；只有声音的文件一律不得交付——快速重建核查.sh 会把 NN.mp4 覆盖成只有声音，出片要放在它之后）",
+      "✔ audio_qc 自检：削波、4800 Hz 电流音、片中停顿过长、一段变轻全部报出",
+      "✔ 自动音频检查（削波、电流音、停顿超长、响度骤降）",
+      "✔ 响度一致性核对 自检：故意把第7段调到比全片响 3 LU、第13段调到比全片轻 3 LU，报出 [7, 13]",
+      "✔ 响度一致性（逐句与全片 ±2 LU、相邻两句 ≤2.5 LU）：全片 -23.9 LUFS，峰值 -0.7 dBFS，18 句，逐句与全片差 -1.6～+0.7 LU",
+      "✔ 纯人声核对 自检：51.37s 假呼吸声报出、103.21s 假噗声报出、70.61s 假咔哒声报出、74.38s 开口前假吸气声报出；别处没有多报",
+      "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：05 纯人声核对（配音指纹 1e25fbe69f6f）问题数 0",
+      "✔ 句间停顿核对 自检：S6 后加长 0.05 秒、S12 后缩短 0.05 秒、S9 开头前放杂音，必须报 ['S12→S13', 'S6→S7', 'S8→S9']，报出 ['S12→S13', 'S6→S7', 'S8→S9']",
+      "✔ 句间停顿核对（A20：片头 0.4、标题后 1.0、句号 1.0、换段 1.2、片尾 2 秒，词到词 ±0.01 秒）：05 句间停顿核对 问题数 0",
+      "✔ 核查程序自检：词尾轻切（4.76s，剪 10 ms）抓到、词头轻切（4.93s，剪 10 ms）抓到、词尾重切（9.34s，剪 33 ms）抓到、词头重切（9.73s，剪 10 ms）抓到、杂音（145.39s）抓到",
+      "✔ 独立复核：103 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['14']（未经实际声音确认的 0），多余声音 = ['0']",
+      "✔ 高亮同步核对 自检：S3 第2块故意提前 0.4 秒、S1 第2块故意推后 0.4 秒，必须正好报出这两处",
+      "✔ 高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）",
+      "✔ 生成标点试听 标点试听_05.mp3（31 处，需交用户试听）"
+    ],
+    "定稿_05/出片前.log": [
+      "✔ 踩坑核查（核查程序自检、踩坑对照记录、逐条程序核查、换行比对）",
+      "✔ 数字读法、引号自检（A11/A37/A17：年份、年代、日期、时刻、小数读法；引号不读、撇号保留）",
+      "✔ 数字读法清单（请人工逐个确认读法）",
+      "✔ 引号不停顿（A17）：0 句带引号，配音时都不读引号",
+      "✔ \u001b[0;93m2026-11-13 00:33:55.783464969 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" because filename \"5620e0c7-8062-4dce-aeb7-520c7ef76171\" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+\u001b[m",
+      "✔ 标点停顿核对（A9/A10：停顿时长、不切词；A19：停顿后不留吸气声）",
+      "✔ \u001b[0;93m2026-11-13 00:33:58.874629284 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" because filename \"5620e0c7-8062-4dce-aeb7-520c7ef76171\" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+\u001b[m",
+      "✔ 句首句尾核对（clean_tail 修剪掉的部分没有剪到词：基准本句最响 5 ms 帧；剪掉的能听见的声音不得与词相连，句尾不得剪掉能听见的声音）",
+      "✔ \u001b[0;93m2026-11-13 00:34:01.781991626 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" because filename \"5620e0c7-8062-4dce-aeb7-520c7ef76171\" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+\u001b[m",
+      "✔ 读音核对（A23：每个词的读音与独立发音词典一致；人名、地名、机构名、缩写逐个查证权威读音）",
+      "✔ \u001b[0;93m2026-11-13 00:34:07.235645199 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" because filename \"5620e0c7-8062-4dce-aeb7-520c7ef76171\" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+\u001b[m",
+      "✔ 词尾辅音核对（A21：停顿前和句末的词尾 t/k 听得清除阻，2 kHz 以上 ≥ -36 dB；/p/ 全频 ≥ -33 dB）",
+      "✔ 停顿位置核对（A9/A15：停顿正好落在标点处两个词之间）",
+      "✔ \u001b[0;93m2026-11-13 00:34:14.264219164 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" because filename \"5620e0c7-8062-4dce-aeb7-520c7ef76171\" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+\u001b[m",
+      "✔ 无标点处停顿 ≤ 0.22 秒"
+    ],
+    "定稿_05/出片后.log": [
+      "✔ 出片指纹 自检（G26：旧视频配新脚本、出片后程序改了、视频被覆盖、没有指纹都要停）",
+      "✔ 视频是现行脚本、现行程序出的（G26 出片指纹：与现行脚本、配音、出片程序逐项一致）",
+      "✔ 成片有画面 自检（G12：只有声音的文件拦下、1920×1080 的视频放行）",
+      "✔ 成片有画面（G12：有画面流、宽 ≥1920；只有声音的文件一律不得交付——快速重建核查.sh 会把 NN.mp4 覆盖成只有声音，出片要放在它之后）",
+      "✔ audio_qc 自检：削波、4800 Hz 电流音、片中停顿过长、一段变轻全部报出",
+      "✔ 自动音频检查（削波、电流音、停顿超长、响度骤降）",
+      "✔ 响度一致性核对 自检：故意把第7段调到比全片响 3 LU、第13段调到比全片轻 3 LU，报出 [7, 13]",
+      "✔ 响度一致性（逐句与全片 ±2 LU、相邻两句 ≤2.5 LU）：全片 -23.9 LUFS，峰值 -0.7 dBFS，18 句，逐句与全片差 -1.6～+0.7 LU",
+      "✔ 纯人声核对 自检：51.37s 假呼吸声报出、103.21s 假噗声报出、70.61s 假咔哒声报出、74.38s 开口前假吸气声报出；别处没有多报",
+      "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：05 纯人声核对（配音指纹 1e25fbe69f6f）问题数 0",
+      "✔ 句间停顿核对 自检：S6 后加长 0.05 秒、S12 后缩短 0.05 秒、S9 开头前放杂音，必须报 ['S12→S13', 'S6→S7', 'S8→S9']，报出 ['S12→S13', 'S6→S7', 'S8→S9']",
+      "✔ 句间停顿核对（A20：片头 0.4、标题后 1.0、句号 1.0、换段 1.2、片尾 2 秒，词到词 ±0.01 秒）：05 句间停顿核对 问题数 0",
+      "✔ 核查程序自检：词尾轻切（4.76s，剪 10 ms）抓到、词头轻切（4.93s，剪 10 ms）抓到、词尾重切（9.34s，剪 33 ms）抓到、词头重切（9.73s，剪 10 ms）抓到、杂音（145.39s）抓到",
+      "✔ 独立复核：103 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['14']（未经实际声音确认的 0），多余声音 = ['0']",
+      "✔ 高亮同步核对 自检：S3 第2块故意提前 0.4 秒、S1 第2块故意推后 0.4 秒，必须正好报出这两处",
+      "✔ 高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）",
+      "✔ 生成标点试听 标点试听_05.mp3（31 处，需交用户试听）"
+    ]
+  },
+  "canonical_pipeline_passed": true,
+  "canonical_video_sha256": "2097d1e5bade2dde02ca8bff836be1ed7c92dae4f482f147a3aba7e0cb384c4d",
+  "canonical_source_commit": "d69e949f283d60f47f87d838689138b615ffbe2d",
+  "source_kind": "new-canonical-4K",
+  "resolution": [
+    3840,
+    2160
+  ],
+  "audio_final_md5": "1e25fbe69f6f",
+  "voice_unchanged": true,
+  "video_sha256": "216f567cca37e44bb5403d5b8d8aa7fcb0bf9aaf335f0c3d8516e996dcd42d9a",
+  "video_frames": 4483,
+  "summary_seconds": 2,
+  "summary_start_seconds": 147.43333333333334,
+  "delay_after_voice_seconds": 0.028333333333335986
+}

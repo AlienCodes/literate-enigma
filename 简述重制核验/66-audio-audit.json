@@ -1,0 +1,1004 @@
+{
+  "schema": 1,
+  "article": "66",
+  "source_commit": "c9d52b26fe981ef8e4c412189ca289716ab8bf00",
+  "measured_at_utc": "2026-11-13T00:01:56.001053+00:00",
+  "workflow_run": "43331936014",
+  "workflow_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43331936014",
+  "limitations": [
+    "This is a read-only audit of the delivered AAC/MP4, not a rerun of the entire production pipeline.",
+    "Production edit-boundary and non-speech confirmations depend on original a.wav and work_NN evidence; they are historical, not newly certified here.",
+    "Speech boundaries below are independently measured from the MP4 and accepted only when title plus every script sentence maps one-to-one.",
+    "ASR disagreements are retained for review; no new human-listening confirmation is fabricated."
+  ],
+  "failures": [],
+  "preservation_failures": [],
+  "asr": {
+    "performed": false,
+    "reason": "No new ASR requested for this run; numerical and preservation checks only."
+  },
+  "historical_qc": {
+    "commit": "c9d52b26fe981ef8e4c412189ca289716ab8bf00",
+    "path": "视频/音频核对/交付核查_66_4K定稿.txt",
+    "status": "historical_only_not_a_new_pass"
+  },
+  "source_video_path": "最终版4K视频/66 - The Burrs That Became Velcro - 一颗刺果钩出的发明.mp4",
+  "mode": "rendered_output_compared_with_source",
+  "source_audio_hashes": {
+    "decoded_float32": "SHA256=fb0faaa9571f9352c4699a54ca259d868a30387ec5f2f58a155a266ecad9aeed",
+    "decoded_pcm_s16le_sha256": "9e3f757cbb8bbfa38b683037983b30976a1844af2e34de244c30276007a6ea27",
+    "encoded_packets_and_timing_sha256": "edaa6158fb9f58da14a55dc58e39d93958eac7fae081559d661abe16d21caedd",
+    "audio_packet_count": 6101
+  },
+  "inspected_audio_hashes": {
+    "decoded_float32": "SHA256=fb0faaa9571f9352c4699a54ca259d868a30387ec5f2f58a155a266ecad9aeed",
+    "decoded_pcm_s16le_sha256": "9e3f757cbb8bbfa38b683037983b30976a1844af2e34de244c30276007a6ea27",
+    "encoded_packets_and_timing_sha256": "edaa6158fb9f58da14a55dc58e39d93958eac7fae081559d661abe16d21caedd",
+    "audio_packet_count": 6101
+  },
+  "original_audio_preserved": true,
+  "canonical_tool_sha256": {
+    "响度一致性核对.py": "2bb89e427ec014a7fc1b4cc46ea6a11f91a786930f91e8cec720e0307940b85b",
+    "音频体检.py": "708a28bb13a270e250e2ba1354cd3856beac29f183e84e6f5bf469fe0ccb8757",
+    "音频体检基准.json": "5624187514c9ad391f155a315d771de4770ad64027a9ab05e416bedadcb2c7d1"
+  },
+  "current_audio_health": {
+    "metrics": {
+      "削波": [
+        0,
+        ""
+      ],
+      "直流偏移": [
+        0.00011992181524941143,
+        "片头"
+      ],
+      "咔哒": [
+        1.7550484112503355,
+        "第1句"
+      ],
+      "句尾截断": [
+        -55.579323829332566,
+        "第10句"
+      ],
+      "句首突起": [
+        -50.67258995083586,
+        "第15句"
+      ],
+      "齿音": [
+        2.6431891765135163,
+        "第1句"
+      ],
+      "音色突变": [
+        0.5907766273168351,
+        "第18句"
+      ],
+      "语速突变": [
+        0.3141797946020891,
+        "第9句"
+      ]
+    },
+    "reference": {
+      "削波": {
+        "上限": 0.0,
+        "篇": "01 "
+      },
+      "直流偏移": {
+        "上限": 0.000147,
+        "篇": "10 片头"
+      },
+      "咔哒": {
+        "上限": 2.055405,
+        "篇": "01 第16句"
+      },
+      "齿音": {
+        "上限": 6.433548,
+        "篇": "24 第5句"
+      },
+      "句尾截断": {
+        "上限": -49.169023,
+        "篇": "02 第5句"
+      },
+      "句首突起": {
+        "上限": -34.386911,
+        "篇": "09 第7句"
+      },
+      "语速突变": {
+        "上限": 0.543702,
+        "篇": "20 第13句"
+      },
+      "音色突变": {
+        "上限": 0.905288,
+        "篇": "02 第12句"
+      },
+      "_说明": "01–24 已定稿（用户听过认可）每一项最差的一处；体检超过它就报。由 音频体检.py --基准 视频/视频 算出"
+    },
+    "failures": [],
+    "source_script_start_transient_confirmations_applied": []
+  },
+  "canonical_mp4_loudness_check": {
+    "summary": "全片 -22.7 LUFS，峰值 -0.7 dBFS，18 句，逐句与全片差 -0.9～+0.9 LU",
+    "global_lufs": -22.67556763436613,
+    "failures": [],
+    "note": "Unmodified canonical check skips the first 9 seconds; the independent mapping below also inspects S1."
+  },
+  "relative_threshold_voice_spans": [
+    [
+      0.43,
+      2.0300000000000002
+    ],
+    [
+      3.06,
+      12.22
+    ],
+    [
+      13.24,
+      18.85
+    ],
+    [
+      19.88,
+      26.400000000000002
+    ],
+    [
+      27.66,
+      29.87
+    ],
+    [
+      30.900000000000002,
+      37.08
+    ],
+    [
+      38.12,
+      45.5
+    ],
+    [
+      46.52,
+      50.57
+    ],
+    [
+      51.800000000000004,
+      58.11
+    ],
+    [
+      59.14,
+      62.440000000000005
+    ],
+    [
+      63.480000000000004,
+      69.83
+    ],
+    [
+      70.85000000000001,
+      75.53
+    ],
+    [
+      76.76,
+      79.59
+    ],
+    [
+      80.61,
+      87.66
+    ],
+    [
+      88.69,
+      95.06
+    ],
+    [
+      96.09,
+      98.36
+    ],
+    [
+      99.66,
+      108.76
+    ],
+    [
+      109.78,
+      119.72
+    ],
+    [
+      120.74000000000001,
+      121.39
+    ],
+    [
+      122.11,
+      128.12
+    ]
+  ],
+  "sentence_mapping_method": "Canonical audio-health 句段: >=0.7s at abs(sample)<1e-6",
+  "measured_voice_spans": [
+    [
+      0.0,
+      2.0644375
+    ],
+    [
+      3.0409375,
+      12.252083333333333
+    ],
+    [
+      13.231416666666666,
+      18.89089583333333
+    ],
+    [
+      19.868833333333335,
+      26.495645833333334
+    ],
+    [
+      27.629520833333334,
+      29.929604166666667
+    ],
+    [
+      30.89,
+      37.12222916666666
+    ],
+    [
+      38.105604166666666,
+      45.52647916666667
+    ],
+    [
+      46.51058333333334,
+      50.67814583333333
+    ],
+    [
+      51.78847916666667,
+      58.15958333333333
+    ],
+    [
+      59.12820833333333,
+      62.4951875
+    ],
+    [
+      63.46641666666667,
+      69.854375
+    ],
+    [
+      70.84464583333333,
+      75.59052083333333
+    ],
+    [
+      76.7549375,
+      79.70814583333333
+    ],
+    [
+      80.60314583333333,
+      87.69660416666666
+    ],
+    [
+      88.67729166666666,
+      95.17027083333333
+    ],
+    [
+      96.084375,
+      98.50335416666667
+    ],
+    [
+      99.64497916666667,
+      108.78902083333334
+    ],
+    [
+      109.76508333333334,
+      119.81747916666667
+    ],
+    [
+      120.729875,
+      128.2451875
+    ]
+  ],
+  "expected_title_plus_sentences": 19,
+  "sentence_mapping_valid": true,
+  "current_within_sentence_loudness": {
+    "comparisons": [
+      [
+        "S1",
+        1,
+        [
+          3.04,
+          5.7700000000000005
+        ],
+        [
+          6.18,
+          7.48
+        ],
+        -0.07779034595874634
+      ],
+      [
+        "S1",
+        2,
+        [
+          6.18,
+          7.48
+        ],
+        [
+          7.94,
+          10.6
+        ],
+        0.8630769059600816
+      ],
+      [
+        "S1",
+        3,
+        [
+          7.94,
+          10.6
+        ],
+        [
+          11.03,
+          12.25
+        ],
+        -1.25879522869349
+      ],
+      [
+        "S3",
+        1,
+        [
+          19.87,
+          23.150000000000002
+        ],
+        [
+          23.57,
+          26.5
+        ],
+        -0.12102818415273475
+      ],
+      [
+        "S5",
+        1,
+        [
+          30.89,
+          31.66
+        ],
+        [
+          32.09,
+          33.2
+        ],
+        0.4991512302168708
+      ],
+      [
+        "S5",
+        2,
+        [
+          32.09,
+          33.2
+        ],
+        [
+          33.62,
+          37.12
+        ],
+        -0.254160430162802
+      ],
+      [
+        "S6",
+        1,
+        [
+          38.11,
+          39.96
+        ],
+        [
+          40.39,
+          41.69
+        ],
+        -1.1678714684941838
+      ],
+      [
+        "S6",
+        2,
+        [
+          40.39,
+          41.69
+        ],
+        [
+          42.12,
+          45.53
+        ],
+        -0.01768076146767328
+      ],
+      [
+        "S8",
+        1,
+        [
+          51.79,
+          56.99
+        ],
+        [
+          57.38,
+          58.160000000000004
+        ],
+        -1.1435648583636358
+      ],
+      [
+        "S11",
+        1,
+        [
+          70.84,
+          73.21000000000001
+        ],
+        [
+          73.64,
+          75.59
+        ],
+        -1.6010902425609572
+      ],
+      [
+        "S13",
+        1,
+        [
+          80.60000000000001,
+          85.24
+        ],
+        [
+          85.65,
+          87.7
+        ],
+        -0.5493574814765658
+      ],
+      [
+        "S14",
+        1,
+        [
+          88.68,
+          91.78
+        ],
+        [
+          92.19,
+          95.17
+        ],
+        -0.14341498507253192
+      ],
+      [
+        "S16",
+        1,
+        [
+          99.64,
+          102.43
+        ],
+        [
+          102.85000000000001,
+          106.34
+        ],
+        -0.29378927153903334
+      ],
+      [
+        "S16",
+        2,
+        [
+          102.85000000000001,
+          106.34
+        ],
+        [
+          106.77,
+          108.79
+        ],
+        0.8875284924551607
+      ],
+      [
+        "S17",
+        1,
+        [
+          109.77,
+          111.42
+        ],
+        [
+          111.83,
+          115.15
+        ],
+        -0.7062946812491049
+      ],
+      [
+        "S17",
+        2,
+        [
+          111.83,
+          115.15
+        ],
+        [
+          115.57000000000001,
+          119.82000000000001
+        ],
+        -0.41854758629551014
+      ],
+      [
+        "S18",
+        1,
+        [
+          120.73,
+          121.39
+        ],
+        [
+          122.11,
+          128.25
+        ],
+        1.302165007710549
+      ]
+    ],
+    "failures": [],
+    "suppressed_segment_candidates": [],
+    "short_segment_effective_adjustment_lu": 2.0
+  },
+  "all_body_sentences_including_S1": {
+    "global_lufs": -22.692997255266594,
+    "sentences": [
+      {
+        "sentence": "S1",
+        "start": 3.0409375,
+        "end": 12.252083333333333,
+        "raw_lufs": -23.332827616821895,
+        "effective_lufs": -23.332827616821895,
+        "parts": [
+          {
+            "part": 1,
+            "start": 3.04,
+            "end": 5.7700000000000005,
+            "raw_lufs": -24.16083462850243,
+            "effective_lufs": -24.16083462850243,
+            "peak_momentary_lufs": -21.8
+          },
+          {
+            "part": 2,
+            "start": 6.18,
+            "end": 7.48,
+            "raw_lufs": -22.238624974461175,
+            "effective_lufs": -24.238624974461175,
+            "peak_momentary_lufs": -19.2
+          },
+          {
+            "part": 3,
+            "start": 7.94,
+            "end": 10.6,
+            "raw_lufs": -23.375548068501093,
+            "effective_lufs": -23.375548068501093,
+            "peak_momentary_lufs": -19.1
+          },
+          {
+            "part": 4,
+            "start": 11.03,
+            "end": 12.25,
+            "raw_lufs": -22.634343297194583,
+            "effective_lufs": -24.634343297194583,
+            "peak_momentary_lufs": -20.0
+          }
+        ]
+      },
+      {
+        "sentence": "S2",
+        "start": 13.231416666666666,
+        "end": 18.89089583333333,
+        "raw_lufs": -22.75067440124219,
+        "effective_lufs": -22.75067440124219,
+        "parts": [
+          {
+            "part": 1,
+            "start": 13.23,
+            "end": 18.89,
+            "raw_lufs": -22.75067440124219,
+            "effective_lufs": -22.75067440124219,
+            "peak_momentary_lufs": -17.5
+          }
+        ]
+      },
+      {
+        "sentence": "S3",
+        "start": 19.868833333333335,
+        "end": 26.495645833333334,
+        "raw_lufs": -22.891723179813805,
+        "effective_lufs": -22.891723179813805,
+        "parts": [
+          {
+            "part": 1,
+            "start": 19.87,
+            "end": 23.150000000000002,
+            "raw_lufs": -22.796868078460314,
+            "effective_lufs": -22.796868078460314,
+            "peak_momentary_lufs": -17.6
+          },
+          {
+            "part": 2,
+            "start": 23.57,
+            "end": 26.5,
+            "raw_lufs": -22.91789626261305,
+            "effective_lufs": -22.91789626261305,
+            "peak_momentary_lufs": -19.7
+          }
+        ]
+      },
+      {
+        "sentence": "S4",
+        "start": 27.629520833333334,
+        "end": 29.929604166666667,
+        "raw_lufs": -21.80316375221702,
+        "effective_lufs": -21.80316375221702,
+        "parts": [
+          {
+            "part": 1,
+            "start": 27.63,
+            "end": 29.93,
+            "raw_lufs": -21.80316375221702,
+            "effective_lufs": -21.80316375221702,
+            "peak_momentary_lufs": -18.8
+          }
+        ]
+      },
+      {
+        "sentence": "S5",
+        "start": 30.89,
+        "end": 37.12222916666666,
+        "raw_lufs": -22.989309168871667,
+        "effective_lufs": -22.989309168871667,
+        "parts": [
+          {
+            "part": 1,
+            "start": 30.89,
+            "end": 31.66,
+            "raw_lufs": -21.701125852299914,
+            "effective_lufs": -23.701125852299914,
+            "peak_momentary_lufs": -20.9
+          },
+          {
+            "part": 2,
+            "start": 32.09,
+            "end": 33.2,
+            "raw_lufs": -21.201974622083043,
+            "effective_lufs": -23.201974622083043,
+            "peak_momentary_lufs": -20.0
+          },
+          {
+            "part": 3,
+            "start": 33.62,
+            "end": 37.12,
+            "raw_lufs": -23.456135052245845,
+            "effective_lufs": -23.456135052245845,
+            "peak_momentary_lufs": -19.2
+          }
+        ]
+      },
+      {
+        "sentence": "S6",
+        "start": 38.105604166666666,
+        "end": 45.52647916666667,
+        "raw_lufs": -22.658001721760495,
+        "effective_lufs": -22.658001721760495,
+        "parts": [
+          {
+            "part": 1,
+            "start": 38.11,
+            "end": 39.96,
+            "raw_lufs": -22.065202347513218,
+            "effective_lufs": -22.065202347513218,
+            "peak_momentary_lufs": -16.8
+          },
+          {
+            "part": 2,
+            "start": 40.39,
+            "end": 41.69,
+            "raw_lufs": -21.2330738160074,
+            "effective_lufs": -23.2330738160074,
+            "peak_momentary_lufs": -19.7
+          },
+          {
+            "part": 3,
+            "start": 42.12,
+            "end": 45.53,
+            "raw_lufs": -23.250754577475075,
+            "effective_lufs": -23.250754577475075,
+            "peak_momentary_lufs": -20.0
+          }
+        ]
+      },
+      {
+        "sentence": "S7",
+        "start": 46.51058333333334,
+        "end": 50.67814583333333,
+        "raw_lufs": -23.275470339809964,
+        "effective_lufs": -23.275470339809964,
+        "parts": [
+          {
+            "part": 1,
+            "start": 46.51,
+            "end": 50.68,
+            "raw_lufs": -23.275470339809964,
+            "effective_lufs": -23.275470339809964,
+            "peak_momentary_lufs": -18.8
+          }
+        ]
+      },
+      {
+        "sentence": "S8",
+        "start": 51.78847916666667,
+        "end": 58.15958333333333,
+        "raw_lufs": -22.440851002167772,
+        "effective_lufs": -22.440851002167772,
+        "parts": [
+          {
+            "part": 1,
+            "start": 51.79,
+            "end": 56.99,
+            "raw_lufs": -22.25635552223139,
+            "effective_lufs": -22.25635552223139,
+            "peak_momentary_lufs": -17.3
+          },
+          {
+            "part": 2,
+            "start": 57.38,
+            "end": 58.160000000000004,
+            "raw_lufs": -21.399920380595027,
+            "effective_lufs": -23.399920380595027,
+            "peak_momentary_lufs": -20.2
+          }
+        ]
+      },
+      {
+        "sentence": "S9",
+        "start": 59.12820833333333,
+        "end": 62.4951875,
+        "raw_lufs": -22.65490872934472,
+        "effective_lufs": -22.65490872934472,
+        "parts": [
+          {
+            "part": 1,
+            "start": 59.13,
+            "end": 62.5,
+            "raw_lufs": -22.65490872934472,
+            "effective_lufs": -22.65490872934472,
+            "peak_momentary_lufs": -17.0
+          }
+        ]
+      },
+      {
+        "sentence": "S10",
+        "start": 63.46641666666667,
+        "end": 69.854375,
+        "raw_lufs": -22.891693139374965,
+        "effective_lufs": -22.891693139374965,
+        "parts": [
+          {
+            "part": 1,
+            "start": 63.47,
+            "end": 69.85000000000001,
+            "raw_lufs": -22.891693139374965,
+            "effective_lufs": -22.891693139374965,
+            "peak_momentary_lufs": -17.4
+          }
+        ]
+      },
+      {
+        "sentence": "S11",
+        "start": 70.84464583333333,
+        "end": 75.59052083333333,
+        "raw_lufs": -21.9509297530815,
+        "effective_lufs": -21.9509297530815,
+        "parts": [
+          {
+            "part": 1,
+            "start": 70.84,
+            "end": 73.21000000000001,
+            "raw_lufs": -21.663343989202325,
+            "effective_lufs": -21.663343989202325,
+            "peak_momentary_lufs": -18.1
+          },
+          {
+            "part": 2,
+            "start": 73.64,
+            "end": 75.59,
+            "raw_lufs": -23.264434231763282,
+            "effective_lufs": -23.264434231763282,
+            "peak_momentary_lufs": -17.8
+          }
+        ]
+      },
+      {
+        "sentence": "S12",
+        "start": 76.7549375,
+        "end": 79.70814583333333,
+        "raw_lufs": -22.30221210951482,
+        "effective_lufs": -22.30221210951482,
+        "parts": [
+          {
+            "part": 1,
+            "start": 76.75,
+            "end": 79.71000000000001,
+            "raw_lufs": -22.30221210951482,
+            "effective_lufs": -22.30221210951482,
+            "peak_momentary_lufs": -17.2
+          }
+        ]
+      },
+      {
+        "sentence": "S13",
+        "start": 80.60314583333333,
+        "end": 87.69660416666666,
+        "raw_lufs": -22.8517296986657,
+        "effective_lufs": -22.8517296986657,
+        "parts": [
+          {
+            "part": 1,
+            "start": 80.60000000000001,
+            "end": 85.24,
+            "raw_lufs": -22.696578545221055,
+            "effective_lufs": -22.696578545221055,
+            "peak_momentary_lufs": -16.7
+          },
+          {
+            "part": 2,
+            "start": 85.65,
+            "end": 87.7,
+            "raw_lufs": -23.24593602669762,
+            "effective_lufs": -23.24593602669762,
+            "peak_momentary_lufs": -19.4
+          }
+        ]
+      },
+      {
+        "sentence": "S14",
+        "start": 88.67729166666666,
+        "end": 95.17027083333333,
+        "raw_lufs": -22.459304734971564,
+        "effective_lufs": -22.459304734971564,
+        "parts": [
+          {
+            "part": 1,
+            "start": 88.68,
+            "end": 91.78,
+            "raw_lufs": -22.553101309814483,
+            "effective_lufs": -22.553101309814483,
+            "peak_momentary_lufs": -17.7
+          },
+          {
+            "part": 2,
+            "start": 92.19,
+            "end": 95.17,
+            "raw_lufs": -22.696516294887015,
+            "effective_lufs": -22.696516294887015,
+            "peak_momentary_lufs": -17.9
+          }
+        ]
+      },
+      {
+        "sentence": "S15",
+        "start": 96.084375,
+        "end": 98.50335416666667,
+        "raw_lufs": -23.30747191679827,
+        "effective_lufs": -23.30747191679827,
+        "parts": [
+          {
+            "part": 1,
+            "start": 96.08,
+            "end": 98.5,
+            "raw_lufs": -23.30747191679827,
+            "effective_lufs": -23.30747191679827,
+            "peak_momentary_lufs": -19.1
+          }
+        ]
+      },
+      {
+        "sentence": "S16",
+        "start": 99.64497916666667,
+        "end": 108.78902083333334,
+        "raw_lufs": -22.971535858530526,
+        "effective_lufs": -22.971535858530526,
+        "parts": [
+          {
+            "part": 1,
+            "start": 99.64,
+            "end": 102.43,
+            "raw_lufs": -22.96259837044638,
+            "effective_lufs": -22.96259837044638,
+            "peak_momentary_lufs": -19.1
+          },
+          {
+            "part": 2,
+            "start": 102.85000000000001,
+            "end": 106.34,
+            "raw_lufs": -23.256387641985413,
+            "effective_lufs": -23.256387641985413,
+            "peak_momentary_lufs": -20.3
+          },
+          {
+            "part": 3,
+            "start": 106.77,
+            "end": 108.79,
+            "raw_lufs": -22.368859149530252,
+            "effective_lufs": -22.368859149530252,
+            "peak_momentary_lufs": -19.5
+          }
+        ]
+      },
+      {
+        "sentence": "S17",
+        "start": 109.76508333333334,
+        "end": 119.81747916666667,
+        "raw_lufs": -22.827199945237414,
+        "effective_lufs": -22.827199945237414,
+        "parts": [
+          {
+            "part": 1,
+            "start": 109.77,
+            "end": 111.42,
+            "raw_lufs": -22.109083420470395,
+            "effective_lufs": -22.109083420470395,
+            "peak_momentary_lufs": -20.3
+          },
+          {
+            "part": 2,
+            "start": 111.83,
+            "end": 115.15,
+            "raw_lufs": -22.8153781017195,
+            "effective_lufs": -22.8153781017195,
+            "peak_momentary_lufs": -18.0
+          },
+          {
+            "part": 3,
+            "start": 115.57000000000001,
+            "end": 119.82000000000001,
+            "raw_lufs": -23.23392568801501,
+            "effective_lufs": -23.23392568801501,
+            "peak_momentary_lufs": -18.6
+          }
+        ]
+      },
+      {
+        "sentence": "S18",
+        "start": 120.729875,
+        "end": 128.2451875,
+        "raw_lufs": -22.199508491726686,
+        "effective_lufs": -22.199508491726686,
+        "parts": [
+          {
+            "part": 1,
+            "start": 120.73,
+            "end": 121.39,
+            "raw_lufs": -21.581551832849048,
+            "effective_lufs": -23.581551832849048,
+            "peak_momentary_lufs": -20.7
+          },
+          {
+            "part": 2,
+            "start": 122.11,
+            "end": 128.25,
+            "raw_lufs": -22.2793868251385,
+            "effective_lufs": -22.2793868251385,
+            "peak_momentary_lufs": -16.8
+          }
+        ]
+      }
+    ]
+  },
+  "historically_reported_focus": {
+    "sentence": "S5",
+    "phrase": "In Lyon",
+    "measured_first_part": {
+      "part": 1,
+      "start": 30.89,
+      "end": 31.66,
+      "raw_lufs": -21.701125852299914,
+      "effective_lufs": -23.701125852299914,
+      "peak_momentary_lufs": -20.9
+    },
+    "next_parts": [
+      {
+        "part": 2,
+        "start": 32.09,
+        "end": 33.2,
+        "raw_lufs": -21.201974622083043,
+        "effective_lufs": -23.201974622083043,
+        "peak_momentary_lufs": -20.0
+      },
+      {
+        "part": 3,
+        "start": 33.62,
+        "end": 37.12,
+        "raw_lufs": -23.456135052245845,
+        "effective_lufs": -23.456135052245845,
+        "peak_momentary_lufs": -19.2
+      }
+    ],
+    "effective_differences_lu": [
+      0.4991512302168708,
+      0.2449908000540688
+    ],
+    "peak_differences_lu": [
+      0.8999999999999986,
+      1.6999999999999993
+    ],
+    "method": "Measured first acoustical group of the mapped sentence, not a claim to forced word-level alignment."
+  },
+  "numerical_audio_checks_passed": true,
+  "waveform_checks_passed": true,
+  "status": "measured_checks_passed_with_stated_scope"
+}
