@@ -1,0 +1,38 @@
+name: Publish Punk English attributed PDFs
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Immutable PDF release tag
+        required: true
+        default: punk-english-pdfs-2026.11.13-v1
+permissions:
+  contents: write
+concurrency:
+  group: punk-pdf-${{ inputs.tag }}
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      PDF_RELEASE_TAG: ${{ inputs.tag }}
+      PDF_ASSET_DIR: /tmp/punk-english-pdf-assets
+    steps:
+      - name: Check out the completed attributed PDF collection
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout: |
+            .github/workflows
+            朋克英语署名版
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the pinned PDF inspection dependency
+        run: python -m pip install --disable-pip-version-check PyMuPDF==1.26.6
+      - name: Verify every PDF, package PDF-only downloads, and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python 朋克英语署名版/2026-11-13-v1/publish_release.py

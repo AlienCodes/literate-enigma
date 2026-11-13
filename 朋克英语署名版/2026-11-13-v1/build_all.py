@@ -130,7 +130,7 @@ def process_one(task):
         assert '朋克英语' in b[0].get_text()
     result.update({'engine_revision':REVISION,'normal_text_unchanged':True,
                    'normal_page_pixels_unchanged':True,'layer_reveal_verified':True,
-                   'page_pixel_SHA256':page_pixels,'input_path':str(source)})
+                   'page_pixel_SHA256':page_pixels})
     write(report,result)
     return result
 
