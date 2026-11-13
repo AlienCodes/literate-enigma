@@ -55,6 +55,10 @@ def finite(value):
     return float(value) if np.isfinite(value) else None
 
 
+def difference(a,b):
+    return a-b if a is not None and b is not None else None
+
+
 def measure(audio,span,moments=None):
     start,end=span; value=audio[round(start*SR):round(end*SR)]
     n=len(value)//STEP
@@ -159,6 +163,9 @@ def audit(args):
         check('actual-canonical-original-A21-passes-all-settings',not title_a21['actual_canonical']['has_double_release_any_setting'] and title_a21['actual_canonical']['release_passes_all_settings'])
         check('title-removal-duration-shift-only',-.18<=lag/SR<=.01 and abs(duration_delta-lag/SR)<=.04 and abs(title_a21['actual_voice_endpoint_shift_s']-lag/SR)<=.025,duration_delta_s=duration_delta,body_shift_s=lag/SR,voice_endpoint_shift_s=title_a21['actual_voice_endpoint_shift_s'])
         check('unchanged-title-prefix-and-constant-body-timing',abs(prefix_lag)/SR<=.006 and max(local_lags)-min(local_lags)<=round(.006*SR),title_prefix_lag_samples=prefix_lag,body_lags_samples=local_lags)
+        lo=round(.4*SR);hi=round((ref['allowed_audio_changes'][0][0]-.01)*SR)
+        prefix=fit(old[lo:hi],new_raw[lo+prefix_lag:hi+prefix_lag])
+        check('actual-title-before-controlled-k-is-unchanged',abs(prefix['gain_db'])<=.35 and prefix['correlation']>=.985 and prefix['gain_compensated_residual_snr_db']>=22,**prefix)
     else:
         check('duration-preserved',abs(duration_delta)<=.06,delta_s=duration_delta)
         check('encoding-alignment-only',abs(lag)/SR<=.02 and max(local_lags)-min(local_lags)<=round(.006*SR),lag_samples=lag,local_lags_samples=local_lags)
@@ -177,6 +184,15 @@ def audit(args):
     outside=fit(old_frames[unmodified].ravel(),new_frames[unmodified].ravel())
     frame_deltas=new_db[unmodified]-old_db[unmodified]
     check('outside-approved-ranges-same-voice-timing-gain',abs(outside['gain_db'])<=.35 and outside['correlation']>=.985 and outside['gain_compensated_residual_snr_db']>=22 and np.percentile(abs(frame_deltas),95)<=.8,**outside,p95_absolute_frame_gain_db=float(np.percentile(abs(frame_deltas),95)))
+    outside_blocks=[]
+    for start in range(0,count,100):
+        keep=unmodified[start:start+100]
+        if int(keep.sum())<10:continue
+        block=fit(old_frames[start:start+100][keep].ravel(),new_frames[start:start+100][keep].ravel())
+        block['start_s']=start*.01
+        block['passed']=abs(block['gain_db'])<=.5 and block['correlation']>=.98 and block['gain_compensated_residual_snr_db']>=20
+        outside_blocks.append(block)
+    check('every-untouched-active-one-second-block-preserved',bool(outside_blocks) and all(b['passed'] for b in outside_blocks),checked_blocks=len(outside_blocks),failed_blocks=[b for b in outside_blocks if not b['passed']])
     changed_quiet=old_db<-70
     in_allowed=np.zeros(count,dtype=bool)
     for start,end in ref['allowed_audio_changes']:in_allowed|=(times>=start)&(times<=end)
@@ -201,18 +217,18 @@ def audit(args):
     for key,expected_gain in ref['constant_gain_units'].items():
         start,end=ref['units'][key];lo=round(start*SR);hi=round(end*SR)
         measured=fit(old[lo:hi],new[lo:hi]);unit_fits[key]=measured
-        delta_lu=actual[key]['crop_bs1770_lufs']-accepted[key]['crop_bs1770_lufs']
-        check('actual-gain-and-same-waveform:'+key,abs(measured['gain_db']-expected_gain)<=.45 and measured['correlation']>=.985 and measured['gain_compensated_residual_snr_db']>=20 and abs(delta_lu-expected_gain)<=.55,expected_gain_db=expected_gain,actual_lufs_delta=delta_lu,**measured)
+        delta_lu=difference(actual[key]['crop_bs1770_lufs'],accepted[key]['crop_bs1770_lufs'])
+        check('actual-gain-and-same-waveform:'+key,delta_lu is not None and abs(measured['gain_db']-expected_gain)<=.45 and measured['correlation']>=.985 and measured['gain_compensated_residual_snr_db']>=20 and abs(delta_lu-expected_gain)<=.55,expected_gain_db=expected_gain,actual_lufs_delta=delta_lu,**measured)
     if args.article=='10':
-        delta_peak=actual['If_so']['max_400ms_lufs']-actual['last_main']['max_400ms_lufs']
-        delta_mean=actual['If_so']['crop_bs1770_lufs']-actual['last_main']['crop_bs1770_lufs']
-        check('actual-final-phrase-strength-and-mean',abs(delta_peak)<=1.0 and abs(delta_mean)<=2.6,strongest400ms_delta_lu=delta_peak,mean_delta_lu=delta_mean)
+        delta_peak=difference(actual['If_so']['max_400ms_lufs'],actual['last_main']['max_400ms_lufs'])
+        delta_mean=difference(actual['If_so']['crop_bs1770_lufs'],actual['last_main']['crop_bs1770_lufs'])
+        check('actual-final-phrase-strength-and-mean',delta_peak is not None and delta_mean is not None and abs(delta_peak)<=1.0 and abs(delta_mean)<=2.6,strongest400ms_delta_lu=delta_peak,mean_delta_lu=delta_mean)
     elif args.article=='51':
         delta_peak=actual['opening_OK']['max_400ms_lufs']-actual['following_words']['max_400ms_lufs']
         check('actual-opening-OK-strength',abs(delta_peak)<=1.1,strongest400ms_delta_lu=delta_peak)
-        local_delta=actual['OW_letters']['active_10ms_rms_dbfs']-actual['oll_wright']['active_10ms_rms_dbfs']
-        parallel_delta=actual['OW_phrase']['crop_bs1770_lufs']-actual['KY_phrase']['crop_bs1770_lufs']
-        check('actual-OW-oll-wright-local-continuity',abs(local_delta)<=1.5 and abs(parallel_delta)<=2.5,letters_minus_oll_wright_active_rms_db=local_delta,OW_minus_KY_lufs=parallel_delta)
+        local_delta=difference(actual['OW_letters']['active_10ms_rms_dbfs'],actual['oll_wright']['active_10ms_rms_dbfs'])
+        parallel_delta=difference(actual['OW_phrase']['crop_bs1770_lufs'],actual['KY_phrase']['crop_bs1770_lufs'])
+        check('actual-OW-oll-wright-local-continuity',local_delta is not None and parallel_delta is not None and abs(local_delta)<=1.5 and abs(parallel_delta)<=2.5,letters_minus_oll_wright_active_rms_db=local_delta,OW_minus_KY_lufs=parallel_delta)
         if 'S2:3' in public_piece_ranges:
             start,end=public_piece_ranges['S2:3'];at=(times>=max(start,19.71))&(times<=min(end,22.02))&(old_db>-35)
             expected=-2.+4.5*(times[at]-start)/(end-start)
@@ -230,7 +246,7 @@ def audit(args):
             start,end=ref['units'][key];lo=round(start*SR);hi=round(end*SR)
             pitches=[parselmouth.Sound(v[lo:hi],sampling_frequency=SR).to_pitch_ac(time_step=.01,pitch_floor=60,pitch_ceiling=400).selected_array['frequency'] for v in (old,new)]
             size=min(map(len,pitches));a,b=(v[:size] for v in pitches);good=(a>0)&(b>0);cents=abs(1200*np.log2(b[good]/a[good]))
-            result={'voiced_pairs':int(good.sum()),'median_absolute_cents':float(np.median(cents)),'p90_absolute_cents':float(np.percentile(cents,90))};pitch_results[key]=result
+            result={'voiced_pairs':int(good.sum()),'median_absolute_cents':float(np.median(cents)) if len(cents) else None,'p90_absolute_cents':float(np.percentile(cents,90)) if len(cents) else None};pitch_results[key]=result
             check('actual-pitch-preserved:'+key,len(cents)>10 and result['median_absolute_cents']<=40 and result['p90_absolute_cents']<=150,**result)
     except ImportError:
         pitch_results={};check('actual-pitch-measurement-available',False)

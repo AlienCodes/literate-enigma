@@ -201,8 +201,8 @@ try:
     status['final_wav_sha256'] = sha(W / f'work_{NO}/a.wav')
     save()
     canonical_aac = aac_hash(canonical)
-    if NO in {'10', '51'}:
-        # Root supplies actual approved-gain validation. No gain/overlay implementation is assumed here.
+    if NO in {'10', '12', '51'}:
+        # Root supplies actual approved audio-change validation. No gain/overlay implementation is assumed here.
         audio_qc = TASK / 'audio-qc.py'
         assert audio_qc.exists(), f'Root must attach approved audio QC for article {NO}.'
         evidence = OUT / f'{NO}-approved-audio-qc.json'
@@ -224,6 +224,9 @@ try:
     spec.loader.exec_module(batch)
     commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
     batch.BASE = commit
+    # These videos have just been produced by the current official maker.
+    # Historical67/69 references describe old pictures and must not replace them.
+    batch.PICTURE_REFERENCES = {}
     batch.OUT = M / f'{NO}-exact-summary'
     batch.OUT.mkdir(exist_ok=True)
     batch.LOCAL_SOURCE = str(canonical)
@@ -249,7 +252,7 @@ try:
     assert timing['end_page_frames'] == 60 and timing['end_page_seconds'] == 2
     assert timing['original_audio_identical'] and timing['original_audio_packet_timings_identical']
     assert aac_hash(processed[0]) == canonical_aac, 'Exact-card processing changed the canonical AAC stream.'
-    if NO not in {'10', '51'}:
+    if NO not in {'10', '12', '51'}:
         assert aac_hash(processed[0]) == accepted_aac, 'Final AAC differs from accepted prior voice.'
     final = OUT / f'{NO}-4K-读完即转简述2秒.mp4'
     shutil.copyfile(processed[0], final)

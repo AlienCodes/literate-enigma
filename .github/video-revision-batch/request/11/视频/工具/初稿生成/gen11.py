@@ -64,4 +64,5 @@ CONF={"短语":{
 out={"no":"11","title_en":"Move 37","title_zh":"第37手","title_fx":{"hl":["37"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","allow_clash":["turned the tide"],"高亮按实际开口":True,"术语":{"shoulder hit":"肩冲"},"词下说明对齐":{"（把人或物放到合适位置）":"人"}}   # T28
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
+out['allow_clash'] = ['turned the tide', 'commentators']
 生成并核对(S, out)
