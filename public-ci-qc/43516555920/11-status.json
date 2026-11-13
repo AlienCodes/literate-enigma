@@ -1,0 +1,108 @@
+{
+  "article": "11",
+  "passed": false,
+  "stage": "canonical-draft-00.log",
+  "checks_unchanged": true,
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "① 文本：通过，疑点 1 处，自动修 7 处",
+      "② 声音：11 词尾辅音核对 问题数 0；11 纯人声核对（配音指纹 ddab1068f084）问题数 12；问题数 0；11 句间停顿核对 问题数 0；问题数 0",
+      "【停】③ 出片前核查（78 秒；全文在 /home/runner/work/_temp/completion-machine/video/做_11/）：",
+      "✔ \u001b[0;93m2026-11-13 22:10:10.791778233 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" because filename \"5620e0c7-8062-4dce-aeb7-520c7ef76171\" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+\u001b[m"
+    ]
+  },
+  "real_restored_stamp_validated": true,
+  "request_source_sha256": {
+    "视频/脚本/11.json": "d64ffb18be11793195756083ed2daeeb0e32eb54f9db346e676c3cb2c389980d",
+    "视频/工具/初稿生成/gen11.py": "135043fad373a0c3e76b242077c6c0d44d0688984b628c64dc1dd871dc84d84b",
+    "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+    "视频/制作记录/11_待改清单.md": "0231048f14c517cf30e820c0d5d3d78ddcd06fd4910d7103b023a533dbecc159"
+  },
+  "accepted_source": {
+    "id": "11",
+    "path": "最终版4K视频/11 - Move 37 - 第37手.mp4",
+    "sha256": "66e500302a1f175687470534c4df06113dc7f349b040cde174a3daef981c2b64",
+    "git_blob_sha": "6146042c21379ab2689c809e28c2b0f9dbd0e6d3",
+    "bytes": 11935636,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "bbb015df86171dab11bb2dc2c34e99610d853105d14065414980d2bc2121bae0"
+  },
+  "failure_details": {
+    "step": "canonical-draft-00.log",
+    "exit": 1,
+    "tail": [
+      "① 文本：通过，疑点 1 处，自动修 7 处",
+      "② 声音：11 词尾辅音核对 问题数 0；11 纯人声核对（配音指纹 ddab1068f084）问题数 12；问题数 0；11 句间停顿核对 问题数 0；问题数 0",
+      "【停】③ 出片前核查（78 秒；全文在 /home/runner/work/_temp/completion-machine/video/做_11/）：",
+      "  ✘ 停顿位置核对（A9/A15：停顿正好落在标点处两个词之间）",
+      "✔ \u001b[0;93m2026-11-13 22:10:10.791778233 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" because filename \"5620e0c7-8062-4dce-aeb7-520c7ef76171\" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+\u001b[m",
+      "  已自动修：",
+      "    结尾简述整屏折行（G35）：S17 结尾简述：现在字号 30，整屏最大 58（简述折成 7 行）",
+      "    S4-2 形容词的“的”并进标色（T38）：**相邻的**(adjacent to)",
+      "    说明折行（L19）：S4 超宽 2088>2057：a tactic placing…：同位语，解释 shoulder hit，pl… → 折成「a tactic placing…：同位语，」/「解释",
+      "    说明折行（L19）：S6 超宽 1942>1696：（find + 宾语 + 形容词：觉得……怎么样；take A for B：把A… → 折成「（find + 宾语 + 形容词：觉得……怎么样；」/",
+      "    说明折行（L19）：S11 超宽 1890>1769：（互换角色：第二局 AlphaGo 靠万分之一的第37手赢了人类棋手；… → 折成「（互换角色：」/「第二局 AlphaGo 靠万分之一的第37手",
+      "    说明折行（L19）：S14 超宽 1472>1459：指失望、悲伤或遭受打击时得到的安慰和心理宽慰）… → 折成「指失望、」/「悲伤或遭受打击时得到的安慰和心理宽慰）」",
+      "    说明折行（L19）：S17 超宽 2104>1766：（whose…：定语从句，修饰 a stone；by DeepMind's fi… → 折成「（whose…：定语从句，修饰 a stone；」/"
+    ],
+    "public_checker_diagnostics": {
+      "做_11/出片前.log": [
+        "✘ 踩坑核查（核查程序自检、踩坑对照记录、逐条程序核查、换行比对）",
+        "✘ 停顿位置核对（A9/A15：停顿正好落在标点处两个词之间）"
+      ],
+      "做_11/声音.log": [
+        "11 词尾辅音核对 问题数 0",
+        "11 纯人声核对（配音指纹 ddab1068f084）问题数 12",
+        "问题数 0",
+        "11 句间停顿核对 问题数 0",
+        "问题数 0"
+      ],
+      "停顿位置精确核对.py": {
+        "exit": 1,
+        "actual_output": [
+          "【停止】严格缓存模式（GitHub 出片）缺配音缓存 e4439b8ee6b2194812f91d988de7976fd5567207.pkl（create：Go is said to allow more configurations …）：别的机器现合成声音可能差一点点，绝不现合成——先在本地出一遍，把缓存提交进 视频/配音缓存/"
+        ],
+        "actual_final_text_lines": [
+          "",
+          "【停止】严格缓存模式（GitHub 出片）缺配音缓存 e4439b8ee6b2194812f91d988de7976fd5567207.pkl（create：Go is said to allow more configurations …）：别的机器现合成声音可能差一点点，绝不现合成——先在本地出一遍，把缓存提交进 视频/配音缓存/"
+        ]
+      },
+      "标点停顿核对.py": {
+        "exit": 0,
+        "actual_output": [
+          "问题数 0"
+        ],
+        "actual_final_text_lines": [
+          "11 S1 OK  「iverse has atoms,」 标准 0.4s，实际听到 0.40s",
+          "11 S2 OK  「ched a milestone,」 标准 0.4s，实际听到 0.40s",
+          "11 S3 OK  「wn was Lee Sedol,」 标准 0.4s，实际听到 0.40s",
+          "11 S4 OK  「In game two,」 标准 0.4s，实际听到 0.40s",
+          "11 S4 OK  「two, on 10 March,」 标准 0.4s，实际听到 0.40s",
+          "11 S4 OK  「s a shoulder hit,」 标准 0.4s，实际听到 0.40s",
+          "11 S5 OK  「rid's fifth line,」 标准 0.4s，实际听到 0.40s",
+          "11 S6 OK  「lacement bizarre;」 标准 0.4s，实际听到 0.39s",
+          "11 S7 OK  「ee left the room,」 标准 0.4s，实际听到 0.39s",
+          "11 S8 OK  「at one in 10,000,」 标准 0.4s，实际听到 0.39s",
+          "11 S9 OK  「 amateurs online,」 标准 0.4s，实际听到 0.40s",
+          "11 S11 OK  「The fourth game,」 标准 0.4s，实际听到 0.41s",
+          "11 S11 OK  「ame, on 13 March,」 标准 0.4s，实际听到 0.40s",
+          "11 S12 OK  「 turned the tide,」 标准 0.4s，实际听到 0.39s",
+          "11 S13 OK  「od of finding it:」 标准 0.4s，实际听到 0.40s",
+          "11 S15 OK  「essional circuit,」 标准 0.4s，实际听到 0.40s",
+          "11 S16 OK  「nvincible entity,」 标准 0.4s，实际听到 0.40s",
+          "11 S17 OK  「stone whose odds,」 标准 0.4s，实际听到 0.40s",
+          "11 S17 OK  「epMind's figures,」 标准 0.7s，实际听到 0.70s",
+          "问题数 0",
+          ""
+        ]
+      }
+    }
+  },
+  "error": "Command '['git', 'show', 'HEAD:视频/配音缓存/e4439b8ee6b2194812f91d988de7976fd5567207.pkl']' returned non-zero exit status 128."
+}

@@ -1,0 +1,103 @@
+{
+  "article": "10",
+  "passed": false,
+  "stage": "canonical-draft-00.log",
+  "checks_unchanged": true,
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "① 文本：通过，自动修 3 处",
+      "② 声音：10 词尾辅音核对 问题数 0；10 纯人声核对（配音指纹 dca710c71097）问题数 18；问题数 0；10 句间停顿核对 问题数 0；问题数 0",
+      "【停】③ 出片前核查（102 秒；全文在 /home/runner/work/_temp/completion-machine/video/做_10/）：",
+      "✔ 无标点停顿核对 自检：10 S1 原样不报、插入 0.25 秒静音报出（A4）；0.18+碎声+0.17 秒报出（K146，不并碎声时不报）、中间是真辅音不报、碎声贴着词不报",
+      "✔ 无标点处停顿 ≤ 0.22 秒",
+      "【不通过，不得交付】"
+    ]
+  },
+  "real_restored_stamp_validated": true,
+  "request_source_sha256": {
+    "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+    "视频/工具/初稿生成/gen10.py": "8bf8c79662f5342d56316b3a2f36c19ca269dd92796ca78e459b7955ade84d9d",
+    "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+    "视频/制作记录/10_待改清单.md": "df4c3479deb57bfa1400eeb6c99ce5f9fee59744e8a828bbe3fda42199dc5b59"
+  },
+  "accepted_source": {
+    "id": "10",
+    "path": "最终版4K视频/10 - The Stolen Smile - 被偷走的微笑.mp4",
+    "sha256": "c0cbc1eb2691e208fd827d264cc9b6bfb64fb74217c674d81e87b1ae71a055fa",
+    "git_blob_sha": "d5595dda081d842914fa9171609c92451d7f58bd",
+    "bytes": 12553849,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "ae7f8c1639ca03eb246cf0aa5f2ff885d8b368496b16acc6af4ef3c3a08dbb14"
+  },
+  "failure_details": {
+    "step": "canonical-draft-00.log",
+    "exit": 1,
+    "tail": [
+      "① 文本：通过，自动修 3 处",
+      "② 声音：10 词尾辅音核对 问题数 0；10 纯人声核对（配音指纹 dca710c71097）问题数 18；问题数 0；10 句间停顿核对 问题数 0；问题数 0",
+      "【停】③ 出片前核查（102 秒；全文在 /home/runner/work/_temp/completion-machine/video/做_10/）：",
+      "  ✘ 停顿位置核对（A9/A15：停顿正好落在标点处两个词之间）",
+      "✔ 无标点停顿核对 自检：10 S1 原样不报、插入 0.25 秒静音报出（A4）；0.18+碎声+0.17 秒报出（K146，不并碎声时不报）、中间是真辅音不报、碎声贴着词不报",
+      "✔ 无标点处停顿 ≤ 0.22 秒",
+      "【不通过，不得交付】",
+      "  已自动修：",
+      "    结尾简述整屏折行（G35）：S17 结尾简述：现在字号 30，整屏最大 58（简述折成 10 行）",
+      "    说明折行（L19）：S2 超宽 2080>1899：（the next day, when…：when 引导定语从句，补充说明 th… → 折成「（the next day, when…：when 引",
+      "    说明折行（L19）：S2 超宽 2096>1899：arriving to sketch：现在分词短语作后置定语，= who arr… → 折成「arriving to sketch：现在分词短语作后"
+    ],
+    "public_checker_diagnostics": {
+      "做_10/出片前.log": [
+        "✘ 停顿位置核对（A9/A15：停顿正好落在标点处两个词之间）"
+      ],
+      "做_10/声音.log": [
+        "10 词尾辅音核对 问题数 0",
+        "10 纯人声核对（配音指纹 dca710c71097）问题数 18",
+        "问题数 0",
+        "10 句间停顿核对 问题数 0",
+        "问题数 0"
+      ],
+      "停顿位置精确核对.py": {
+        "exit": 1,
+        "actual_output": [
+          "【停止】严格缓存模式（GitHub 出片）缺配音缓存 1779cdbdd68560e1ecd50d812c5c8a8a0df6394c.pkl（create：On Monday the twenty-first of August nin…）：别的机器现合成声音可能差一点点，绝不现合成——先在本地出一遍，把缓存提交进 视频/配音缓存/"
+        ],
+        "actual_final_text_lines": [
+          "",
+          "【停止】严格缓存模式（GitHub 出片）缺配音缓存 1779cdbdd68560e1ecd50d812c5c8a8a0df6394c.pkl（create：On Monday the twenty-first of August nin…）：别的机器现合成声音可能差一点点，绝不现合成——先在本地出一遍，把缓存提交进 视频/配音缓存/"
+        ]
+      },
+      "标点停顿核对.py": {
+        "exit": 0,
+        "actual_output": [
+          "问题数 0"
+        ],
+        "actual_final_text_lines": [
+          "10 S1 OK  「y 21 August 1911,」 标准 0.4s，实际听到 0.40s",
+          "10 S1 OK  「stomarily closed,」 标准 0.4s，实际听到 0.40s",
+          "10 S2 OK  「til the next day,」 标准 0.4s，实际听到 0.40s",
+          "10 S4 OK  「 museum reopened,」 标准 0.4s，实际听到 0.40s",
+          "10 S5 OK  「for about a week,」 标准 0.4s，实际听到 0.40s",
+          "10 S7 OK  「incenzo Peruggia,」 标准 0.4s，实际听到 0.40s",
+          "10 S8 OK  「reroom on Sunday,」 标准 0.4s，实际听到 0.40s",
+          "10 S8 OK  「 workman's smock,」 标准 0.4s，实际听到 0.40s",
+          "10 S10 OK  「ted Alfredo Geri,」 标准 0.4s，实际听到 0.40s",
+          "10 S11 OK  「Peruggia's hotel;」 标准 0.4s，实际听到 0.40s",
+          "10 S12 OK  「iting patriotism,」 标准 0.4s，实际听到 0.40s",
+          "10 S12 OK  「d it repatriated,」 标准 0.4s，实际听到 0.39s",
+          "10 S14 OK  「howings in Italy,」 标准 0.4s，实际听到 0.40s",
+          "10 S15 OK  「year and 15 days,」 标准 0.4s，实际听到 0.40s",
+          "10 S17 OK  「If so,」 标准 0.4s，实际听到 0.40s",
+          "问题数 0",
+          ""
+        ]
+      }
+    }
+  },
+  "error": "Command '['git', 'show', 'HEAD:视频/配音缓存/1779cdbdd68560e1ecd50d812c5c8a8a0df6394c.pkl']' returned non-zero exit status 128."
+}
