@@ -1,0 +1,4 @@
+本目录保留实际制作程序及冻结data。原制作环境为Python3.12、reportlab4.4.9、PyMuPDF1.26.6、Pillow12.3.0、numpy2.4.6；完整依赖见requirements.txt。
+程序中的原项目根路径用于对照生成时核验记录：/workspace/work/booklet70（批准版式cjk_layout.py、字体与原彩图）、/workspace/work/github-publication/target/朋克英语署名版/2026-11-13-v1（原署名引擎）。相同源码、所需字体/版式和70原彩图均已归档在本版本目录；在其他路径运行时需配置对应根路径或建立相同项目目录。
+prepare_sources.py读取当时PAY与文章词表生成data；build_print.py只印主册四项模块；assemble_print.py装订475页、重排全书连续页码并加入批准封面/序言/封底；build_volumes_current.py输出7册内部归档本。qa_text_sources.py、qa_binding.py、qa_print_fonts.py和qa_visible_language.py分别做真实文字回读、页码目录、嵌字字号和可见模板核验。
+源稿JSON中的视频小字、原语法说明与练习资料仅作为原始数据保留，本次主册不打印、也未另做解析书。恢复完整已验收PDF只需标准库reassemble_book.py，按分片SHA拼回原字节，无需安装上述制作依赖。
