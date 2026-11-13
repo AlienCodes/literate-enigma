@@ -1,0 +1,52 @@
+name: Read-only exact failed audio replay
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/video-audio-replay/**', '.github/workflows/readonly-failed-audio-replay.yml']
+permissions:
+  contents: write
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        article: ['10', '11', '12', '44', '51']
+    env:
+      ARTICLE_NO: ${{ matrix.article }}
+      STRICT_CACHE: '1'
+      XG_NOPUSH: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.github/video-audio-replay/
+            /视频/工具/
+            /视频/配音缓存/*.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - name: Require the genuine restored private machine
+        env:
+          CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
+        run: |
+          test "$CACHE_HIT" = true
+          test -f "$RUNNER_TEMP/completion-machine/tts/kokoro-v1.0.onnx"
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet -r 视频/工具/环境/requirements.txt
+      - name: Exact PCM hash before original read-only audit; publish scalars only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -u .github/video-audio-replay/replay.py
