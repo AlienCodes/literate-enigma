@@ -6,7 +6,7 @@ on:
       tag:
         description: Immutable cover release tag
         required: true
-        default: bilibili-covers-2026.11.13-v3
+        default: bilibili-covers-2026.11.13-v4
 
 permissions:
   contents: write
@@ -33,4 +33,4 @@ jobs:
       - name: Verify and publish both cover ratios
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python3 B站封面/考研学人-70篇/2026-11-13-v3/publish_release.py
+        run: python3 B站封面/考研学人-70篇/2026-11-13-v4/publish_release.py
