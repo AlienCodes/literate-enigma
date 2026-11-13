@@ -1,0 +1,166 @@
+{
+  "article": "44",
+  "passed": false,
+  "stage": "canonical-draft-00.log",
+  "checks_unchanged": true,
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "① 文本：通过，自动修 1 处",
+      "② 声音：44 词尾辅音核对 问题数 0；44 纯人声核对（配音指纹 22c5ec30299f）问题数 24；问题数 0；44 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "【停】⑤ 出片后核查（274 秒；全文在 /home/runner/work/_temp/completion-machine/video/做_44/）：",
+      "44 S2 BAD 第3块「in defiance of a populace am」 高亮   25.77s  开始读 乙   25.80s  甲   25.60s  推后 0.17s  ← 用实际声音找出这一块开始读的时刻，写进 核对确认.高亮[\"S2 第3块\"]（配音指纹 22c5ec30299f）",
+      "✔ 生成标点试听 标点试听_44.mp3（28 处，需交用户试听）",
+      "【不通过，不得交付】"
+    ]
+  },
+  "real_restored_stamp_validated": true,
+  "request_source_sha256": {
+    "视频/脚本/44.json": "2f4bc52ad61fc5fc7f2dec3d25032a179e6c36d4bc360e6cd5a3ae5911b374b0",
+    "视频/工具/初稿生成/gen44.py": "ee6a3efedf5cf8902cc74cb010328b755b39dd8cdc0f559a77072b96e46a2755",
+    "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+    "视频/制作记录/44_待改清单.md": "a4d1d9ec4786fb65541e191e04d8fc0d79b8e96e196919731a5c4f44283f7f15",
+    "视频/制作记录/逐句确认/44.json": "bb330d28afe6201599a7fecbac0c7b87bdaa98e57029f2382638f0e863c6c2bb"
+  },
+  "accepted_source": {
+    "id": "44",
+    "path": "最终版4K视频/44 - The Night Sweden Switched Sides - 一夜之间换边开车.mp4",
+    "sha256": "efb332cdaf0f09a6cd892c91b8f6cef6eba48ea540f83eaa70eccf19aa26e659",
+    "git_blob_sha": "b6f5b01f7f185492a204796c4aee8d988b565265",
+    "bytes": 12130178,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "9c5f254e0c4a6a0f4d4f796988d1289dc28d0805042eea82a8eb202f476b2678"
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794609554376639632,
+    "repository_outputs_modified": false
+  },
+  "failure_details": {
+    "step": "canonical-draft-00.log",
+    "exit": 1,
+    "tail": [
+      "① 文本：通过，自动修 1 处",
+      "② 声音：44 词尾辅音核对 问题数 0；44 纯人声核对（配音指纹 22c5ec30299f）问题数 24；问题数 0；44 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "【停】⑤ 出片后核查（274 秒；全文在 /home/runner/work/_temp/completion-machine/video/做_44/）：",
+      "  ✘ 机器复听（逐词读音与脚本一致）：机器复听 15 句：读音对不上的 1 句",
+      "      S5：脚本“favoured” 听到“favorite〔parakeet〕”",
+      "    \u001b[0;93m2026-11-13 22:41:35.237952497 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" because filename \"5620e0c7-8062-4dce-aeb7-520c7ef76171\" did not match expected p",
+      "  ✘ 独立复核：101 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['8']（未经实际声音确认的 4），多余声音 = ['0']",
+      "    edge pre_min=-55.5 post_min=-47.4 lost_max=-37.0 A10_VIOLATION(post,lost)",
+      "    edge pre_min=-47.9 post_min=-55.2 lost_max=-48.1 A10_VIOLATION(pre)",
+      "    edge pre_min=-57.4 post_min=-59.7 lost_max=-37.2 A10_VIOLATION(lost)",
+      "    edge pre_min=-52.1 post_min=-47.9 lost_max=-43.6 A10_VIOLATION(pre,post)",
+      "    ed",
+      "  ✘ 高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）",
+      "    44 S2 BAD 第3块「in defiance of a populace am」 高亮   25.77s  开始读 乙   25.80s  甲   25.60s  推后 0.17s  ← 用实际声音找出这一块开始读的时刻，写进 核对确认.高亮[\"S2 第3块\"]（配音指纹 22c5ec30299f）",
+      "    44 共核对 13 处合格，最大偏差 0.17s（配音指纹 22c5ec30299f）",
+      "✔ 生成标点试听 标点试听_44.mp3（28 处，需交用户试听）",
+      "【不通过，不得交付】",
+      "  已自动修：",
+      "    结尾简述整屏折行（G35）：S15 结尾简述：现在字号 30，整屏最大 54（简述折成 6 行）"
+    ],
+    "public_checker_diagnostics": {
+      "做_44/出片后.log": [
+        "✘ 机器复听（逐词读音与脚本一致）：机器复听 15 句：读音对不上的 1 句",
+        "✔ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：44 纯人声核对（配音指纹 22c5ec30299f）问题数 0",
+        "✔ 句间停顿核对（A20：片头 0.4、标题后 1.0、句号 1.0、换段 1.2、片尾 2 秒，词到词 ±0.01 秒）：44 句间停顿核对 问题数 0",
+        "✘ 独立复核：101 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['8']（未经实际声音确认的 4），多余声音 = ['0']",
+        "✘ 高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）",
+        "    44 S2 BAD 第3块「in defiance of a populace am」 高亮   25.77s  开始读 乙   25.80s  甲   25.60s  推后 0.17s  ← 用实际声音找出这一块开始读的时刻，写进 核对确认.高亮[\"S2 第3块\"]（配音指纹 22c5ec30299f）"
+      ],
+      "做_44/声音.log": [
+        "44 词尾辅音核对 问题数 0",
+        "44 纯人声核对（配音指纹 22c5ec30299f）问题数 24",
+        "问题数 0",
+        "44 句间停顿核对 问题数 0",
+        "问题数 0"
+      ],
+      "停顿位置精确核对.py": {
+        "exit": 0,
+        "actual_output": [
+          "44 S12 OK（已用实际声音核实） 插入 「five, | before」 段长比 前 1.02 后 0.95 ｜ 前词末音素起 5.248s 后词开头 5.348s ｜ 停顿 5.253–5.253s（离前词末音素起点 +5 ms，离后词 +95 ms）对齐代价 0.78",
+          "44 S12 OK（已用实际声音核实） 插入 「dawn, | with」 段长比 前 0.95 后 0.93 ｜ 前词末音素起 6.098s 后词开头 6.298s ｜ 停顿 6.195–6.195s（离前词末音素起点 +97 ms，离后词 +103 ms）对齐代价 0.78",
+          "问题数 0"
+        ],
+        "actual_final_text_lines": [
+          "44 S1 OK  删静音 「referendum, | about」 段长比 前 1.03 后 1.03 ｜ 前词末音素起 2.371s 后词开头 2.871s ｜ 停顿 2.415–2.785s（离前词末音素起点 +44 ms，离后词 +86 ms）对齐代价 1.40",
+          "44 S1 OK  删静音 「left, | an」 段长比 前 1.03 后 1.16 ｜ 前词末音素起 7.171s 后词开头 7.721s ｜ 停顿 7.215–7.640s（离前词末音素起点 +44 ms，离后词 +81 ms）对齐代价 1.40",
+          "44 S2 OK  删静音 「1963, | however,」 段长比 前 1.09 后 0.79 ｜ 前词末音素起 2.339s 后词开头 2.639s ｜ 停顿 2.390–2.545s（离前词末音素起点 +51 ms，离后词 +94 ms）对齐代价 1.78",
+          "44 S2 OK  删静音 「however, | legislators」 段长比 前 0.79 后 0.96 ｜ 前词末音素起 3.039s 后词开头 3.639s ｜ 停顿 3.130–3.510s（离前词末音素起点 +91 ms，离后词 +129 ms）对齐代价 1.78",
+          "44 S2 OK（已用实际声音核实） 删静音 「electorate, | approving」 段长比 前 0.96 后 0.97 ｜ 前词末音素起 6.799s 后词开头 7.239s ｜ 停顿 6.750–7.155s（离前词末音素起点 -49 ms，离后词 +84 ms）对齐代价 1.78",
+          "44 S4 OK  删静音 「right, | with」 段长比 前 1.10 后 1.13 ｜ 前词末音素起 2.321s 后词开头 2.756s ｜ 停顿 2.375–2.695s（离前词末音素起点 +54 ms，离后词 +61 ms）对齐代价 0.78",
+          "44 S4 OK  删静音 「year, | so」 段长比 前 1.13 后 0.97 ｜ 前词末音素起 5.606s 后词开头 6.181s ｜ 停顿 5.680–6.065s（离前词末音素起点 +74 ms，离后词 +116 ms）对齐代价 0.78",
+          "44 S6 OK  删静音 「drive, | so」 段长比 前 1.08 后 0.99 ｜ 前词末音素起 3.256s 后词开头 3.806s ｜ 停顿 3.300–3.690s（离前词末音素起点 +44 ms，离后词 +116 ms）对齐代价 1.10",
+          "44 S7 OK  删静音 「logo, | a」 段长比 前 0.94 后 1.10 ｜ 前词末音素起 3.264s 后词开头 3.789s ｜ 停顿 3.305–3.715s（离前词末音素起点 +41 ms，离后词 +74 ms）对齐代价 0.55",
+          "44 S8 OK  删静音 「television, | and」 段长比 前 0.97 后 0.95 ｜ 前词末音素起 3.604s 后词开头 4.154s ｜ 停顿 3.670–4.055s（离前词末音素起点 +66 ms，离后词 +99 ms）对齐代价 1.53",
+          "44 S8 OK  删静音 「jingle, | whose」 段长比 前 0.95 后 1.04 ｜ 前词末音素起 5.179s 后词开头 5.529s ｜ 停顿 5.250–5.475s（离前词末音素起点 +71 ms，离后词 +54 ms）对齐代价 1.53",
+          "44 S8 OK  删静音 「right, | reached」 段长比 前 1.04 后 1.06 ｜ 前词末音素起 7.764s 后词开头 8.229s ｜ 停顿 7.875–8.135s（离前词末音素起点 +111 ms，离后词 +94 ms）对齐代价 1.53",
+          "44 S9 OK  删静音 「changed, | and」 段长比 前 0.80 后 0.99 ｜ 前词末音素起 4.050s 后词开头 4.600s ｜ 停顿 4.080–4.515s（离前词末音素起点 +30 ms，离后词 +85 ms）对齐代价 1.22",
+          "44 S11 OK  删静音 「six, | with」 段长比 前 0.98 后 1.09 ｜ 前词末音素起 4.325s 后词开头 4.800s ｜ 停顿 4.400–4.700s（离前词末音素起点 +75 ms，离后词 +100 ms）对齐代价 1.44",
+          "44 S12 OK  删静音 「five, | all」 段长比 前 0.96 后 1.11 ｜ 前词末音素起 1.023s 后词开头 1.223s ｜ 停顿 1.100–1.145s（离前词末音素起点 +77 ms，离后词 +78 ms）对齐代价 0.78",
+          "44 S12 OK  删静音 「across, | restarting」 段长比 前 1.11 后 1.02 ｜ 前词末音素起 3.448s 后词开头 3.973s ｜ 停顿 3.550–3.880s（离前词末音素起点 +102 ms，离后词 +93 ms）对齐代价 0.78",
+          "44 S12 OK（已用实际声音核实） 插入 「five, | before」 段长比 前 1.02 后 0.95 ｜ 前词末音素起 5.248s 后词开头 5.348s ｜ 停顿 5.253–5.253s（离前词末音素起点 +5 ms，离后词 +95 ms）对齐代价 0.78",
+          "44 S12 OK（已用实际声音核实） 插入 「dawn, | with」 段长比 前 0.95 后 0.93 ｜ 前词末音素起 6.098s 后词开头 6.298s ｜ 停顿 6.195–6.195s（离前词末音素起点 +97 ms，离后词 +103 ms）对齐代价 0.78",
+          "44 S13 OK  删静音 「closure, | from」 段长比 前 1.08 后 0.99 ｜ 前词末音素起 2.495s 后词开头 2.845s ｜ 停顿 2.570–2.755s（离前词末音素起点 +75 ms，离后词 +90 ms）对齐代价 0.60",
+          "44 S13 OK  删静音 「afternoon, | while」 段长比 前 0.99 后 1.00 ｜ 前词末音素起 5.195s 后词开头 5.645s ｜ 停顿 5.225–5.555s（离前词末音素起点 +30 ms，离后词 +90 ms）对齐代价 0.60",
+          "44 S14 OK  删静音 「Monday, | 125」 段长比 前 0.87 后 1.03 ｜ 前词末音素起 1.146s 后词开头 1.646s ｜ 停顿 1.200–1.510s（离前词末音素起点 +54 ms，离后词 +136 ms）对齐代价 0.98",
+          "44 S14 OK  删静音 「reported, | against」 段长比 前 1.03 后 0.95 ｜ 前词末音素起 4.321s 后词开头 4.846s ｜ 停顿 4.360–4.750s（离前词末音素起点 +39 ms，离后词 +96 ms）对齐代价 0.98",
+          "44 S14 OK  删静音 「Mondays, | a」 段长比 前 0.95 后 0.96 ｜ 前词末音素起 8.846s 后词开头 9.421s ｜ 停顿 8.930–9.350s（离前词末音素起点 +84 ms，离后词 +71 ms）对齐代价 0.98",
+          "44 S15 OK  删静音 「faded, | for」 段长比 前 1.14 后 1.25 ｜ 前词末音素起 4.114s 后词开头 4.761s ｜ 停顿 4.145–4.630s（离前词末音素起点 +31 ms，离后词 +131 ms）对齐代价 1.47",
+          "问题数 0",
+          ""
+        ]
+      },
+      "标点停顿核对.py": {
+        "exit": 0,
+        "actual_output": [
+          "问题数 0"
+        ],
+        "actual_final_text_lines": [
+          "44 S1 OK  「 1955 referendum,」 标准 0.4s，实际听到 0.40s",
+          "44 S1 OK  「ving on the left,」 标准 0.4s，实际听到 0.40s",
+          "44 S2 OK  「On 10 May 1963,」 标准 0.4s，实际听到 0.40s",
+          "44 S2 OK  「ay 1963, however,」 标准 0.4s，实际听到 0.40s",
+          "44 S2 OK  「d the electorate,」 标准 0.4s，实际听到 0.40s",
+          "44 S4 OK  「ove on the right,」 标准 0.4s，实际听到 0.40s",
+          "44 S4 OK  「crossings a year,」 标准 0.4s，实际听到 0.40s",
+          "44 S6 OK  「 left-hand drive,」 标准 0.4s，实际听到 0.40s",
+          "44 S7 OK  「ion under a logo,」 标准 0.4s，实际听到 0.40s",
+          "44 S8 OK  「st on television,」 标准 0.4s，实际听到 0.40s",
+          "44 S8 OK  「e winning jingle,」 标准 0.4s，实际听到 0.40s",
+          "44 S8 OK  「le to keep right,」 标准 0.4s，实际听到 0.40s",
+          "44 S9 OK  「age were changed,」 标准 0.4s，实际听到 0.40s",
+          "44 S11 OK  「 from one to six,」 标准 0.4s，实际听到 0.40s",
+          "44 S12 OK  「At ten to five,」 标准 0.4s，实际听到 0.40s",
+          "44 S12 OK  「d crawled across,」 标准 0.4s，实际听到 0.40s",
+          "44 S12 OK  「starting at five,」 标准 0.4s，实际听到 0.40s",
+          "44 S12 OK  「ive, before dawn,」 标准 0.4s，实际听到 0.41s",
+          "44 S13 OK  「a longer closure,」 标准 0.4s，实际听到 0.40s",
+          "44 S13 OK  「Sunday afternoon,」 标准 0.4s，实际听到 0.40s",
+          "44 S14 OK  「following Monday,」 标准 0.4s，实际听到 0.40s",
+          "44 S14 OK  「ts were reported,」 标准 0.4s，实际听到 0.40s",
+          "44 S14 OK  「 earlier Mondays,」 标准 0.4s，实际听到 0.40s",
+          "44 S15 OK  「ent habits faded,」 标准 0.7s，实际听到 0.70s",
+          "问题数 0",
+          ""
+        ]
+      }
+    }
+  },
+  "error": "canonical-draft: official quality check failed; see article status JSON",
+  "failed_current_video": {
+    "exported": false,
+    "passed": false,
+    "acceptance": false,
+    "purpose": "failed current-attempt video for diagnosis; not a final deliverable",
+    "reason": "Official fingerprint is audio-only or does not match current video/source/PCM."
+  }
+}
