@@ -1,13 +1,14 @@
 {
-  "recorded_at_utc": "2026-11-13T22:48:26.113897+00:00",
+  "recorded_at_utc": "2026-11-13T23:26:06.197842+00:00",
   "task": "70篇精读视频及正式印刷书的全部修订、重建和GitHub交付",
-  "state": "SOURCE_TEXT_CHECKS_AND_STATIC_LAYOUT_NEAR_FREEZE; NEW_VIDEO_AUDIO_QC_NOT_PASSED; NEW_PDF_PREPARATION_STARTED",
+  "state": "ALL70_SOURCE_TEXT_AND_STATIC_LAYOUT_VERIFIED; PRIORITY_AUDIO_FIXES_AND_COMPACT_BOOK_REBUILD_IN_PROGRESS",
   "status_is_not_a_final_delivery_claim": true,
   "scope": {
+    "main_pdf_latest_correction": "799页含解析版本仅未发布本地历史草稿，主册改为v4-compact；小字/句析/语法/练习均从主册移除，解析材料源码留存供以后单独解析书，本轮不制作解析册",
     "video": "全部70篇真正重渲3840×2160，按书中最新顺序编号排列，不用旧片补数",
     "source": "重点词、指定译文、小字、全70简述、末页字号和居中、全篇排版核对",
     "audio": "实际新成片全轨检查，重点10/12/44/51；质量未通过则修复并重验",
-    "pdf": "用户现已解除先前暂停：正式B5印刷书，全书最新修订正文/词汇/注释/简述，保留批准插图；第2页序言和成套封底",
+    "pdf": "按用户最新纠正，沿原400多页B5规格：只插图、中英文章、重点词短语及篇末简述，保留先前批准第2页序言和成套封底；不额外增加解析/练习",
     "pdf_editorial": "删阅读小册、点击目录可跳转、新顺序版及模板/软件/制作说明；采用正式书名考研学人、副题70篇趣味英语阅读",
     "preface": "准确统计重点词与短语、解释类型与70篇选文；无官方考研词表时不得宣称全部标词都是大纲词",
     "attribution": "全部新PDF保留默认隐藏、可开启的朋克英语来源图层",
@@ -181,8 +182,8 @@
     "旧字面摘要锚保留历史记录，现行全文由请求源稿及实际排版归一化校验，原检查器不被绕过"
   ],
   "production": {
-    "current_github_run": 43520785753,
-    "commit": "6d97d91b8abde321a8dcf51977ac65555d87df37",
+    "current_github_run": 43526354790,
+    "commit": "3c7a09c25eee3df3e1ad9696e7cfb91d7d9e6893",
     "selected": [
       "10",
       "11",
@@ -192,9 +193,9 @@
     ],
     "new_final_videos_passed": 0,
     "observed_blockers": [
-      "10/11检查参考片段缓存尚未完整，原生单线程参考准备已证实不改已有声音",
+      "原生单线程参考准备已补全标题/整句raw和timed、标点切片及显示分块；已有声音未被此准备改动",
       "12/44/51独立声音复核与部分高亮仍需实际草稿诊断",
-      "诊断用草稿导出需修正原生16位指纹格式比较，不能据未取回声音作通过判断"
+      "草稿导出16位指纹比较已修；5篇真实新草稿已取回，按实际波形定位，不把局部确认当整篇通过"
     ],
     "new_final_pdfs_passed": 0
   },
@@ -202,24 +203,24 @@
     "primary": "alienalgorithm/postgraduate-vocabulary:main",
     "backup": "AlienCodes/literate-enigma:codex/all-deliverables-20261113",
     "backup_master_never_modified": "6355a02864ebae616b693200d9d26f74f5da80e9",
-    "first_saved_source_state": {
+    "latest_saved_source_state": {
       "asset_branch": "codex/review-source-fixes-20261113-v1",
-      "asset_commit": "8862556409a97701d3e750a94a6837b2e2e7e9cb",
-      "payload_files": 127,
-      "payload_bytes": 25765542,
+      "asset_commit": "cc3c711d4eeb3d18659840e4317578ca683a0fcb",
+      "payload_files": 952,
+      "payload_bytes": 44409692,
       "archives": [
         {
           "repository": "alienalgorithm/postgraduate-vocabulary",
           "branch": "main",
-          "source_commit": "b7938091bd927dab3663fa09e2aea863d7ceaaba",
-          "previous_commit": "e250a372f9009f9d6a7d9d5c361b1f3ea6e5638c",
+          "source_commit": "3780cfe73b8cca0b431c79b3402fe7a6f314fd16",
+          "previous_commit": "420897013321d60f6b867856efa616d8ce1f5ea7",
           "master_unchanged": false
         },
         {
           "repository": "AlienCodes/literate-enigma",
           "branch": "codex/all-deliverables-20261113",
-          "source_commit": "70ecc7cec57fca15c310a40b94b8f0a20d663cd0",
-          "previous_commit": "997e782c2099bb9fd927ac9c982cb3c9d4bd1d83",
+          "source_commit": "5652e0e783e49653198129f3a888dafe85d81438",
+          "previous_commit": "6c1be85800fea24a6bcd477d56814d22a95d730b",
           "master_unchanged": true
         }
       ]
@@ -237,7 +238,7 @@
     "09": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
     "10": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
     "11": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
-    "12": "b6a48daa6a5ff5345c2dff127e2d073ea956fc00d48f8657acf4214ef4ea9d7a",
+    "12": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
     "13": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
     "14": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
     "15": "95fd14da0704f4cb39120284bcd2c48836930ba3b9e9395edb0f4850d0eb0814",
@@ -245,7 +246,7 @@
     "17": "bd541a1b2881ea8ea7649cdfe571cc449672bde8792b50a2808a7832ce2a9ee1",
     "18": "c9469b18874c389f20a890b41491f1284e318e47d91c0f3d519b055d2c9ba752",
     "19": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
-    "20": "ecdbd9c26a46c4f74269a80b176b1f78cd313a921a1b7b6bd452e4b847ce09b6",
+    "20": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
     "21": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
     "22": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
     "23": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
@@ -267,16 +268,16 @@
     "39": "de2f83f5494d2218b0de6c6ede6b7b1e841e01988ec5ff6a3d7864be19a63494",
     "40": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
     "41": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
-    "42": "708136184b14c69cbefae274140785f4845fec62fa04b4067320ee978dd539fc",
+    "42": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
     "43": "f9a7e6b49e095b859de15b773a8560a5be917e5b066b5f4be95deb232bbe6645",
-    "44": "2f4bc52ad61fc5fc7f2dec3d25032a179e6c36d4bc360e6cd5a3ae5911b374b0",
+    "44": "de8e191aa9f383586189d21449d75c159866009dbd3b3e398a8070093f5fbcef",
     "45": "fb936d92e9f5a998cfefc2c26a7bb20829bc7a5b142c08fdb83ba7a48fdf2a98",
     "46": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
     "47": "0eb7b97ebb056249aa10d2c0d8950e4ae02e056d4772750d02a44ab7ee99c661",
     "48": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
     "49": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
     "50": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
-    "51": "5176b30ecc74c7dab6542bb29c351c8832773249bb264c3d23fd3039128d867f",
+    "51": "dc06b8312b8bcd2041e0a904caa95147b3d4274ed5dc87949ab5088c892fcc45",
     "52": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
     "53": "893a7789ddf5f5a79e2a9168011c1c23e2709975d1b07b6b023d6cf5988b2bef",
     "54": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
