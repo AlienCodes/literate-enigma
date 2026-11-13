@@ -1,0 +1,20 @@
+name: Copy public candidate QC to an isolated branch
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/video-qc-relay/**', '.github/workflows/relay-public-video-qc.yml']
+permissions:
+  actions: read
+  contents: write
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/video-qc-relay
+      - name: Copy only public diagnostic outputs, keeping failed status
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python .github/video-qc-relay/relay_public_qc.py .github/video-qc-relay/request.json
