@@ -34,6 +34,15 @@ def layer_xref(doc):
         raise ValueError(f'Expected one attribution layer, found {len(found)}')
     return found[0]
 
+def ensure_pdf_version(path):
+    """OCGs require PDF >= 1.5. Raise the same-length header to 1.7 when needed."""
+    with Path(path).open('r+b') as f:
+        header=f.read(8)
+        assert header.startswith(b'%PDF-'),header
+        version=tuple(int(n) for n in header[5:].split(b'.'))
+        if version<(1,7):
+            f.seek(0);f.write(b'%PDF-1.7')
+
 def show_copy(source, output):
     if Path(source).resolve() == Path(output).resolve():
         raise ValueError('Use a separate output file; keep the original download intact.')
@@ -46,6 +55,9 @@ def show_copy(source, output):
         doc.save(output, garbage=4, deflate=True)
 
 def inspect_pdf(path):
+    with Path(path).open('rb') as f:
+        header=f.read(8)
+    assert tuple(int(n) for n in header[5:].split(b'.'))>=(1,7),header
     with fitz.open(path) as doc:
         ocg = layer_xref(doc)
         conf = doc.get_layer(-1)
@@ -59,6 +71,7 @@ def inspect_pdf(path):
         assert OWNER in doc.get_xml_metadata()
         return {'pages':len(doc), 'pages_with_attribution':pages_with_layer,
                 'layer_name':LAYER_NAME, 'default_hidden':True,
+                'declared_pdf_version':header.decode().removeprefix('%PDF-'),
                 'metadata_author':doc.metadata.get('author',''),
                 'metadata_creator':doc.metadata.get('creator','')}
 
@@ -70,8 +83,8 @@ def stamp_pdf(source, output, *, preserve_original_author=False, source_commit='
     font = fitz.Font(fontfile=str(FONT))
     with fitz.open(source) as doc:
         if any(v['name'] == LAYER_NAME for v in doc.get_ocgs().values()):
-            inspect_pdf(source)
             if source.resolve() != output.resolve(): shutil.copy2(source, output)
+            ensure_pdf_version(output)
             return {'passed':True, 'idempotent_copy':True, 'source_sha256':original_sha,
                     'sha256':sha(output), **inspect_pdf(output)}
         bookmarks = doc.get_toc()
@@ -134,6 +147,7 @@ def stamp_pdf(source, output, *, preserve_original_author=False, source_commit='
         on = [x for x in previous_layer_state.get('on',[]) if x!=ocg]
         doc.set_layer(-1, off=off, on=on)
         doc.save(output, garbage=4, deflate=True, no_new_id=True)
+    ensure_pdf_version(output)
     with fitz.open(output) as d: assert d.get_toc() == bookmarks
     return {'passed':True, 'document_id':doc_id, 'source_sha256':original_sha,
             'sha256':sha(output), 'bytes':output.stat().st_size,

@@ -6,7 +6,7 @@
 
 新合订本共**475页**：书封1页、目录7页、正文小册子467页。沿用用户指定的新顺序，目录显示页码、70处跳转和书签已随新增封面调整。
 
-正式下载：[GitHub Release](https://github.com/alienalgorithm/postgraduate-vocabulary/releases/tag/punk-english-pdfs-2026.11.13-v1)。附件只含PDF或仅含PDF的ZIP：
+正式下载：[GitHub Release](https://github.com/alienalgorithm/postgraduate-vocabulary/releases/tag/punk-english-pdfs-2026.11.13-v2)。附件只含PDF或仅含PDF的ZIP：
 
 - `PUNK-ENGLISH-70-STORIES.pdf`：475页新封面合订本。
 - `70-PDF-BOOKLETS-PUNK-ENGLISH.zip`：新顺序的70份分篇小册子，文件名保持01—70及中英文标题。

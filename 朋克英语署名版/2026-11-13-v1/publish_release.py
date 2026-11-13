@@ -6,7 +6,7 @@ import argparse,base64,json,os,shutil,subprocess,zipfile
 from provenance import ROOT,sha,inspect_pdf
 
 REPO=os.environ.get('GITHUB_REPOSITORY','alienalgorithm/postgraduate-vocabulary')
-TAG=os.environ.get('PDF_RELEASE_TAG','punk-english-pdfs-2026.11.13-v1')
+TAG=os.environ.get('PDF_RELEASE_TAG','punk-english-pdfs-2026.11.13-v2')
 OUT=Path(os.environ.get('PDF_ASSET_DIR','/tmp/punk-english-pdf-assets'))
 
 def run(*args):
@@ -83,8 +83,8 @@ def publish(m,files):
     if r['draft']:send(f'repos/{REPO}/releases/{rid}',{'draft':False,'make_latest':'true'},'PATCH')
     actual=api(f'repos/{REPO}/releases/tags/{TAG}');assert not actual['draft']
     report={'passed':True,'repository':REPO,'tag':TAG,'archive_commit':commit,'input_source_commit':m['source_commit'],'release_url':actual['html_url'],'PDF_paths':180,'unique_PDFs':177,'pages_verified':2484,'default_hidden':True,'layer_name':m['layer_name'],'assets':assets,'guide_url':guide}
-    record='朋克英语署名版/2026-11-13-v1/核验/发布记录.json';body={'message':'保存全部PDF隐藏署名版的Release远程SHA256核验 [skip ci]','branch':'main','content':base64.b64encode((json.dumps(report,ensure_ascii=False,indent=2)+'\n').encode()).decode()}
-    rows=api(f'repos/{REPO}/contents/'+quote('朋克英语署名版/2026-11-13-v1/核验',safe='/'));old=next((x for x in rows if x['name']=='发布记录.json'),None)
+    record='朋克英语署名版/2026-11-13-v1/核验/'+TAG+'-发布记录.json';body={'message':'保存全部PDF隐藏署名版的Release远程SHA256核验 [skip ci]','branch':'main','content':base64.b64encode((json.dumps(report,ensure_ascii=False,indent=2)+'\n').encode()).decode()}
+    rows=api(f'repos/{REPO}/contents/'+quote('朋克英语署名版/2026-11-13-v1/核验',safe='/'));old=next((x for x in rows if x['name']==TAG+'-发布记录.json'),None)
     if old:body['sha']=old['sha']
     send(f'repos/{REPO}/contents/'+quote(record,safe='/'),body,'PUT')
     print(json.dumps({'published':True,'url':actual['html_url'],'assets':4,'all_remote_SHA256_verified':True},ensure_ascii=False),flush=True)
