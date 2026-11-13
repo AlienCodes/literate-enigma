@@ -16,11 +16,16 @@ def sha(p):
 def main():
     p=argparse.ArgumentParser();p.add_argument('--repository',required=True);p.add_argument('--tag',required=True);p.add_argument('--commit',required=True);p.add_argument('--assets',required=True);p.add_argument('--notes',required=True);a=p.parse_args()
     assets=Path(a.assets);repo=a.repository;tag=a.tag
-    q=subprocess.run(['gh','api',f'repos/{repo}/releases/tags/{tag}'],capture_output=True,text=True)
-    if q.returncode:
-        if '404' not in q.stderr:raise RuntimeError(q.stderr)
-        run('release','create',tag,'--repo',repo,'--target',a.commit,'--draft','--latest=false','--title','70篇完整成果：4K视频、插图阅读小册及全部配套材料','--notes-file',a.notes)
-    release=api(f'repos/{repo}/releases/tags/{tag}')
+    # GET /releases/tags does not return an unpublished draft without a tag.
+    # Locate the owner's draft by ID; never create a replacement blindly.
+    matches=[x for x in api(f'repos/{repo}/releases?per_page=100') if x['tag_name']==tag]
+    if len(matches)>1:raise ValueError('Multiple matching drafts require reconciliation')
+    if matches:release=matches[0]
+    else:
+        body={'tag_name':tag,'target_commitish':a.commit,'draft':True,'make_latest':'true' if repo=='alienalgorithm/postgraduate-vocabulary' else 'false','name':'70篇完整成果：4K视频、插图阅读小册及全部配套材料','body':Path(a.notes).read_text()}
+        created=subprocess.run(['gh','api','--method','POST',f'repos/{repo}/releases','--input','-'],input=json.dumps(body),capture_output=True,text=True)
+        if created.returncode:raise RuntimeError(created.stderr)
+        release=json.loads(created.stdout)
     if not release['draft']:raise RuntimeError('This version is already public; do not overwrite it')
     rid=release['id']
     prior={x['name']:x for x in api(f'repos/{repo}/releases/{rid}/assets?per_page=100')}
@@ -48,9 +53,9 @@ def main():
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
         futures=[pool.submit(upload,path) for path in files]
         for f in concurrent.futures.as_completed(futures):verified.append(f.result())
-    report={'repository':repo,'tag':tag,'source_commit':a.commit,'release_id':rid,'status':'all_assets_uploaded_and_remote_sha256_verified','assets':sorted(verified,key=lambda x:x['name']),'video_count':70,'individual_booklets':70,'combined_volumes':7,'original_illustrations':70,'PDF_page_previews':467,'primary_sync':'blocked_by_integration_403','primary_repository':'alienalgorithm/postgraduate-vocabulary'}
+    report={'repository':repo,'tag':tag,'source_commit':a.commit,'release_id':rid,'status':'all_assets_uploaded_and_remote_sha256_verified','assets':sorted(verified,key=lambda x:x['name']),'video_count':70,'individual_booklets':70,'combined_volumes':7,'original_illustrations':70,'PDF_page_previews':467,'primary_sync':'complete','primary_repository':'alienalgorithm/postgraduate-vocabulary'}
     result=assets/'PUBLISH-RESULT.json';result.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');receipt=upload(result)
-    run('release','edit',tag,'--repo',repo,'--draft=false','--latest=false','--target',a.commit)
+    run('release','edit',tag,'--repo',repo,'--draft=false','--latest='+('true' if repo=='alienalgorithm/postgraduate-vocabulary' else 'false'),'--target',a.commit)
     saved=api(f'repos/{repo}/releases/tags/{tag}')
     if saved['draft'] or saved['target_commitish']!=a.commit:raise ValueError('Final release not published at expected commit')
     final={**report,'status':'published','release_url':saved['html_url'],'receipt_asset':receipt}

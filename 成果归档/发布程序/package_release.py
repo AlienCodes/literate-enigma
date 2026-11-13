@@ -37,7 +37,7 @@ def main():
     files=[p for p in files if p!=manifest_path]
     inventory=[]
     for p in files:inventory.append({'path':str(p.relative_to(REPO)),'bytes':p.stat().st_size,'sha256':sha(p)})
-    inv={'schema_version':1,'release_tag':TAG,'repository':'AlienCodes/literate-enigma','branch':'codex/all-deliverables-20261113','intended_primary_repository':'alienalgorithm/postgraduate-vocabulary','primary_sync_status':'blocked_by_integration_403','scope':'All completed materials from this production session; pre-existing repository files are retained in Git.','videos':70,'individual_booklets':70,'combined_volumes':7,'original_illustrations':70,'PDF_page_previews':467,'video_summary_cards':70,'files':inventory,'self_excluded_from_file_hashes':True}
+    inv={'schema_version':1,'release_tag':TAG,'repository':'alienalgorithm/postgraduate-vocabulary','branch':'main','intended_primary_repository':'alienalgorithm/postgraduate-vocabulary','primary_sync_status':'complete','scope':'All completed materials from this production session; pre-existing repository files are retained in Git.','videos':70,'individual_booklets':70,'combined_volumes':7,'original_illustrations':70,'PDF_page_previews':467,'video_summary_cards':70,'files':inventory,'self_excluded_from_file_hashes':True}
     manifest_path.write_text(json.dumps(inv,ensure_ascii=False,indent=2)+'\n');files.append(manifest_path);files.sort()
     q=json.loads((REPO/'插图阅读小册/manifest.json').read_text())
     assets=[]
@@ -57,7 +57,7 @@ def main():
     for v,p in zip(q['volumes'],combined):
         dest=ASSETS/f'booklet-volume-{v["volume"]:02}.pdf';shutil.copy2(p,dest)
         assets.append({'name':dest.name,'bytes':dest.stat().st_size,'sha256':sha(dest),'volume':v['volume'],'pages':v['pages']})
-    out={'repository':'AlienCodes/literate-enigma','branch':'codex/all-deliverables-20261113','intended_primary_repository':'alienalgorithm/postgraduate-vocabulary','primary_sync_status':'blocked_by_integration_403','tag':TAG,'complete':True,'assets':assets,'file_inventory_sha256':sha(manifest_path),'individual_files':len(inventory)}
+    out={'repository':'alienalgorithm/postgraduate-vocabulary','branch':'main','intended_primary_repository':'alienalgorithm/postgraduate-vocabulary','primary_sync_status':'complete','tag':TAG,'complete':True,'assets':assets,'file_inventory_sha256':sha(manifest_path),'individual_files':len(inventory)}
     (ASSETS/'RELEASE-MANIFEST.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
     m=ASSETS/'RELEASE-MANIFEST.json'
     checks=''.join(f'{a["sha256"]}  {a["name"]}\n' for a in assets)+f'{sha(m)}  RELEASE-MANIFEST.json\n'

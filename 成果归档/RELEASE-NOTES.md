@@ -2,7 +2,7 @@
 
 ## 一次下载全部
 
-[下载 ALL-MATERIALS-2026-11-13.zip](https://github.com/AlienCodes/literate-enigma/releases/download/reading-complete-2026.11.13-v1/ALL-MATERIALS-2026-11-13.zip)（约1.77GB）：完整视频、PDF、原图、PDF实页预览、双语文稿、词汇、题目、制作程序和核验记录。
+[下载 ALL-MATERIALS-2026-11-13.zip](https://github.com/alienalgorithm/postgraduate-vocabulary/releases/download/reading-complete-2026.11.13-v1/ALL-MATERIALS-2026-11-13.zip)（约1.77GB）：完整视频、PDF、原图、PDF实页预览、双语文稿、词汇、题目、制作程序和核验记录。
 
 ## 按需下载
 
@@ -24,6 +24,6 @@
 
 ## GitHub保存位置
 
-完整文件同时保存在本仓库专用分支`codex/all-deliverables-20261113`。没有合并或改动本仓库`master`。本Release不替换软件项目的Latest版本。
+完整文件已提交至原项目主仓库`alienalgorithm/postgraduate-vocabulary`。所有重要成果及时保存GitHub、交付发布Release的要求已写入`AGENTS.md`。
 
-原项目仓库`alienalgorithm/postgraduate-vocabulary`的写入被当前GitHub连接以403（Resource not accessible by integration）拒绝，因此本次先完整保存到已有可写备份仓库。原仓库仍待连接获得写权限后同步；该限制和准备好的提交记录在`成果归档/主仓库同步状态.json`，未将备份冒称为原仓库已同步。
+备份仓库`AlienCodes/literate-enigma`的专用分支保留归档副本，没有合并或改动备份仓库的`master`。

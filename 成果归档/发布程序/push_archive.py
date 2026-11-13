@@ -30,7 +30,7 @@ def main():
     git('config','credential.helper','!gh auth git-credential')
     b=REPO/'插图阅读小册';records=json.loads(JOURNAL.read_text()) if JOURNAL.exists() else []
     initial=[REPO/x for x in ['README.md','CLAUDE.md','AGENTS.md']]
-    initial += [p for p in b.rglob('*') if p.is_file() and p.suffix in ['.py','.json','.txt','.md','.ttf'] and '__pycache__' not in p.parts]
+    initial += [p for p in b.rglob('*') if p.is_file() and p.suffix.lower() not in ['.pdf','.png','.jpg','.pyc'] and '__pycache__' not in p.parts]
     initial += [b/'.gitignore']
     for dirname in ['成果归档','简述重制核验','简述重制预览']:
         initial.extend(p for p in (REPO/dirname).rglob('*') if p.is_file())
