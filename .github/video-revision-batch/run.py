@@ -10,6 +10,7 @@ from pathlib import Path
 import re
 import shutil
 import subprocess
+import time
 
 ROOT = Path.cwd()
 TASK = ROOT / '.github/video-revision-batch'
@@ -30,6 +31,7 @@ for key in ('YAOWENBEN', 'OLD_IV_VOID', 'AUDIO_ONLY', 'VIDEO_S'):
     ENV.pop(key, None)
 status = {'article': NO, 'passed': False, 'stage': 'start', 'checks_unchanged': True,
           'strict_production_cache': True, 'pdf_requested': False}
+PRODUCTION_STARTED_NS = None
 
 
 def sha(path):
@@ -68,6 +70,154 @@ def checked(args, log, cwd=W):
     code, _ = run(args, log, cwd)
     if code:
         raise RuntimeError(f'{log}: exit {code}')
+
+
+def clear_temporary_video():
+    """Discard only the restored working output, never a repository video."""
+    global PRODUCTION_STARTED_NS
+    assert W.resolve().is_relative_to(M.resolve())
+    assert not W.resolve().is_relative_to(ROOT.resolve())
+    removed = []
+    for path in (W / f'{NO}.mp4', W / f'{NO}.mp4.指纹.json'):
+        if path.exists() or path.is_symlink():
+            assert path.parent.resolve() == W.resolve()
+            st = path.lstat()
+            removed.append({'name': path.name, 'mtime_ns': st.st_mtime_ns,
+                            'bytes': st.st_size, 'was_symlink': path.is_symlink()})
+            path.unlink()
+    PRODUCTION_STARTED_NS = time.time_ns()
+    status['temporary_output_reset'] = {'removed': removed,
+                                         'production_started_ns': PRODUCTION_STARTED_NS,
+                                         'repository_outputs_modified': False}
+    save()
+
+
+def failure_audio_diagnostics():
+    """Read private reference data internally; export diagnostic scalars only."""
+    if NO != '51':
+        return
+    program = TASK / 'diagnose_reference_gain.py'
+    qc = Path(ENV.get('QC_DIR', str(M / 'qc_independent')))
+    meta = qc / 'gt' / f'{NO}_meta.json'
+    wav = W / f'work_{NO}/a.wav'
+    post_log = W / f'做_{NO}/出片后.log'
+    current_post_check = (PRODUCTION_STARTED_NS is not None and post_log.is_file()
+                          and post_log.stat().st_mtime_ns >= PRODUCTION_STARTED_NS)
+    record = {'acceptance': False, 'diagnostic_only': True,
+              'program_present': program.is_file(), 'reference_meta_present': meta.is_file(),
+              'actual_pcm_present': wav.is_file(), 'current_post_check_present': current_post_check}
+    status['reference_gain_failure_diagnostic'] = record
+    if not all((program.is_file(), meta.is_file(), wav.is_file(), current_post_check)):
+        return
+    output = OUT / f'{NO}-reference-gain-diagnostic.json'
+    result = subprocess.run(
+        ['python3', str(program), '--video-root', str(M), '--qc-dir', str(qc),
+         '--no', NO, '--tools', str(T), '--post-log', str(post_log),
+         '--out', str(output)], cwd=W, env=ENV, capture_output=True,
+        text=True, errors='replace', timeout=240)
+    record.update({'exit': result.returncode, 'program_sha256': sha(program)})
+    if output.is_file():
+        data = json.loads(output.read_text())
+        assert data.get('article') == NO and 'passed' not in data
+        record.update({'file': output.name, 'sha256': sha(output),
+                       'anchor_summary': data.get('anchor_summary'),
+                       'diagnostic_error': data.get('diagnostic_error')})
+    elif result.returncode:
+        record['error'] = 'Scalar diagnostic did not create its JSON output.'
+
+
+def export_failed_current_video():
+    """Export a newly completed public MP4, with strict provenance, as failed."""
+    record = {'exported': False, 'passed': False, 'acceptance': False,
+              'purpose': 'failed current-attempt video for diagnosis; not a final deliverable'}
+    status['failed_current_video'] = record
+    if PRODUCTION_STARTED_NS is None:
+        record['reason'] = 'Production has not started.'
+        return
+    candidate = W / f'{NO}.mp4'
+    fingerprint = Path(str(candidate) + '.指纹.json')
+    source = W / f'scripts/{NO}.json'
+    wav = W / f'work_{NO}/a.wav'
+    if not all(path.is_file() and not path.is_symlink()
+               for path in (candidate, fingerprint, source, wav)):
+        record['reason'] = 'No complete current working video and official fingerprint.'
+        return
+    if any(path.stat().st_mtime_ns < PRODUCTION_STARTED_NS for path in (candidate, fingerprint)):
+        record['reason'] = 'Working video or fingerprint predates this production attempt.'
+        return
+    fp = json.loads(fingerprint.read_text())
+    hashes = {'视频': sha(candidate), '脚本': sha(source), '配音': sha(wav)}
+    if fp.get('只出声音') is not False or any(fp.get(key) != value for key, value in hashes.items()):
+        record['reason'] = 'Official fingerprint is audio-only or does not match current video/source/PCM.'
+        return
+    # Independent metadata proves that the completed render has picture and audio.
+    info = json.loads(subprocess.check_output(
+        ['ffprobe', '-v', 'error', '-show_streams', '-show_format', '-of', 'json', str(candidate)]))
+    videos = [s for s in info['streams'] if s.get('codec_type') == 'video']
+    audios = [s for s in info['streams'] if s.get('codec_type') == 'audio']
+    if len(videos) != 1 or not audios or (videos[0].get('width'), videos[0].get('height')) not in {
+            (1920, 1080), (3840, 2160)}:
+        record['reason'] = 'Candidate is not a completed 1080p/4K render with audio.'
+        return
+    duration = float(info['format']['duration'])
+    if not 0 < duration < 1800:
+        record['reason'] = 'Unexpected duration.'
+        return
+    render_logs = {}
+    for group in (f'做_{NO}', f'定稿_{NO}'):
+        render_log = W / group / '出片.log'
+        if render_log.is_file() and render_log.stat().st_mtime_ns >= PRODUCTION_STARTED_NS:
+            render_logs[f'{group}/出片.log'] = {'sha256': sha(render_log),
+                                               'mtime_ns': render_log.stat().st_mtime_ns}
+    if not render_logs:
+        record['reason'] = 'No current official picture-render stage log.'
+        return
+    video_out = OUT / f'{NO}-failed-draft.mp4'
+    shutil.copyfile(candidate, video_out)
+    assert sha(video_out) == hashes['视频']
+    # No private GT, TTS cache, model, raw a.wav, or raw speech arrays leave M.
+    public_fp = OUT / f'{NO}-failed-draft-fingerprint.json'
+    shutil.copyfile(fingerprint, public_fp)
+    source_out = OUT / f'{NO}-failed-working-source.json'
+    shutil.copyfile(source, source_out)
+    windows = {
+        '10': [('last-sentence', max(0.0, duration - 15), duration)],
+        '12': [('title', 0.0, 6.0), ('s5-highlight', 29.5, 36.5)],
+        '44': [('norway-finland', 32.5, 46.5)],
+        '51': [('opening-ok', 0.0, 9.0), ('oll-wright', 18.0, 24.5),
+               ('ending', max(0.0, duration - 13), duration)],
+    }.get(NO, [])
+    clips = []
+    for label, begin, end in windows:
+        begin, end = max(0.0, begin), min(duration, end)
+        if end <= begin:
+            continue
+        destination = OUT / f'{NO}-failed-draft-{label}.wav'
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', str(begin), '-i', str(video_out),
+                        '-t', str(end - begin), '-map', '0:a:0', '-vn', '-c:a', 'pcm_s16le',
+                        str(destination)], check=True, capture_output=True)
+        clips.append({'file': destination.name, 'sha256': sha(destination),
+                      'source_video_sha256': hashes['视频'], 'start_seconds': begin,
+                      'end_seconds': end, 'derived_from_public_mp4': True})
+    # ffprobe's filename is an internal absolute path; use only the public name.
+    info['format']['filename'] = video_out.name
+    proof = {'article': NO, 'passed': False, 'acceptance': False,
+             'production_started_ns': PRODUCTION_STARTED_NS,
+             'video_mtime_ns': candidate.stat().st_mtime_ns,
+             'fingerprint_mtime_ns': fingerprint.stat().st_mtime_ns,
+             'failed_stage': status.get('stage'), 'failure_step': status.get('failure_details', {}).get('step'),
+             'official_fingerprint_matches_current_video_source_and_pcm': True,
+             'official_current_render_stage_logs': render_logs,
+             'official_fingerprint_sha256': sha(public_fp),
+             'source_sha256': hashes['脚本'], 'internal_pcm_sha256': hashes['配音'],
+             'video_sha256': hashes['视频'], 'aac_adts_sha256': aac_hash(video_out),
+             'ffprobe': info, 'public_mp4_derived_clips': clips}
+    proof_out = OUT / f'{NO}-failed-draft-proof.json'
+    proof_out.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
+    record.update({'exported': True, 'file': video_out.name, 'sha256': hashes['视频'],
+                   'width': videos[0]['width'], 'height': videos[0]['height'],
+                   'proof': proof_out.name, 'proof_sha256': sha(proof_out),
+                   'derived_clip_count': len(clips)})
 
 
 def cache_entry(name):
@@ -199,6 +349,9 @@ try:
     pending = request / f'视频/制作记录/{NO}_待改清单.md'
     if pending.exists():
         files.append((pending, ROOT / f'视频/制作记录/{NO}_待改清单.md'))
+    confirmations = request / f'视频/制作记录/逐句确认/{NO}.json'
+    if confirmations.is_file():
+        files.append((confirmations, ROOT / f'视频/制作记录/逐句确认/{NO}.json'))
     baseline = json.loads((ROOT / script_rel).read_text())
     for source, destination in files:
         destination.parent.mkdir(parents=True, exist_ok=True)
@@ -217,6 +370,18 @@ try:
     assert '定稿' in authorization['用于'] and '撤回' not in authorization['用于']
     agreement = T / '用户同意记录.json'
     records = json.loads(agreement.read_text())
+    supplied_agreement = request / '视频/工具/用户同意记录.json'
+    if supplied_agreement.is_file():
+        supplied_records = json.loads(supplied_agreement.read_text())
+        assert {k: v for k, v in supplied_records.items() if k != '记录'} == {
+            k: v for k, v in records.items() if k != '记录'}
+        assert all(row in supplied_records['记录'] for row in records['记录'])
+        added_records = [row for row in supplied_records['记录'] if row not in records['记录']]
+        assert added_records and all(row == authorization for row in added_records), (
+            'Only the exact attached current user authorization may update the consent registry.')
+        agreement.write_bytes(supplied_agreement.read_bytes())
+        records = supplied_records
+        status['request_source_sha256']['视频/工具/用户同意记录.json'] = sha(supplied_agreement)
     if authorization not in records['记录']:
         records['记录'].append(authorization)
     agreement.write_text(json.dumps(records, ensure_ascii=False, indent=2) + '\n')
@@ -232,6 +397,36 @@ try:
     accepted_aac = aac_hash(source_video)
     status['accepted_source'] = {**reference, 'aac_adts_sha256': accepted_aac}
     start_wav = sha(W / f'work_{NO}/a.wav') if (W / f'work_{NO}/a.wav').exists() else None
+    if NO in {'10', '11'}:
+        # This isolated preparation writes only the observed missing checker
+        # slice privately. Official production and every checker stay strict.
+        reference_helper = TASK / 'prepare-checker-reference.py'
+        reference_evidence = OUT / f'{NO}-checker-reference-preparation.json'
+        reference_env = {k: v for k, v in ENV.items() if k != 'STRICT_CACHE'}
+        status['stage'] = 'checker-reference-preparation'
+        save()
+        result = subprocess.run(
+            ['python3', str(reference_helper), '--article', NO, '--video-root', str(M),
+             '--repository', str(ROOT), '--accepted-video', str(source_video),
+             '--output', str(reference_evidence)], cwd=W, env=reference_env,
+            capture_output=True, text=True, errors='replace', timeout=240)
+        (LOG / 'checker-reference-preparation.log').write_text(result.stdout + '\n' + result.stderr)
+        if result.returncode:
+            # Text errors only; never emit the reference arrays or cache bytes.
+            status['checker_reference_preparation_failure'] = {
+                'exit': result.returncode,
+                'diagnostics': [line[:1200].replace(str(M), '<private-machine>')
+                                for line in (result.stdout + '\n' + result.stderr).splitlines()
+                                if any(mark in line for mark in ('Error', 'Exception', '【停止】'))][-12:]}
+        assert result.returncode == 0, 'Original checker reference preparation failed; production remains strict.'
+        evidence = json.loads(reference_evidence.read_text())
+        assert evidence.get('reference_prepared') is True and evidence.get('private_cache_exported') is False
+        assert aac_hash(source_video) == accepted_aac
+        assert (sha(W / f'work_{NO}/a.wav') if (W / f'work_{NO}/a.wav').is_file() else None) == start_wav
+        status['checker_reference_preparation'] = evidence
+        status['checker_reference_preparation_program_sha256'] = sha(reference_helper)
+        save()
+    clear_temporary_video()
     official(['bash', T / '新管/做.sh', NO, '--不推'], 'canonical-draft')
     official(['bash', T / '新管/定稿.sh', NO], 'canonical-final4K')
     checked(['python3', T / '新管/印章.py'], 'original-stamp-after-production.log')
@@ -325,6 +520,14 @@ try:
 except Exception as exc:
     status['passed'] = False
     status['error'] = str(exc)
+    for collector in (failure_audio_diagnostics, export_failed_current_video):
+        try:
+            collector()
+        except Exception as collection_error:
+            # Evidence collection must not hide the original official failure.
+            status.setdefault('failure_evidence_collection_errors', []).append({
+                'collector': collector.__name__, 'type': type(collection_error).__name__,
+                'message': str(collection_error).replace(str(M), '<private-machine>')[:700]})
     save()
     print(json.dumps(status, ensure_ascii=False), flush=True)
     raise

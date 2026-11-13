@@ -124,7 +124,9 @@ out = {'no': '11',
                  'S13 likelihood … of': 'likelihood of doing 里 of 引出可能发生的事，likelihood 本身就是“可能性”，意思不靠 of 产生（同 '
                                         '10 involvement in 的判法）',
                  'S15 farewell … to': 'to 属于 he tied … to（tie A to B），与 farewell 无关，本句不是 bid farewell to',
-                 'S17 slim … as': 'as slim as 是 as … as 比较结构（和……一样渺茫），不是 slim 的固定搭配；中文“和……一样渺茫”与 slim 同组（T13）'},
+                 'S17 slim … as': 'as slim as 是 as … as 比较结构（和……一样渺茫），不是 slim 的固定搭配；中文“和……一样渺茫”与 slim 同组（T13）',
+                 'S2 program … to': '不是搭配：the first program to beat a professional 中 program 是名词“程序”，to beat '
+                                    '引导不定式后置定语，说明第一个实现该动作的程序；不是动词 program 与 to 组成的固定搭配。'},
           '口述': {'S6-2 觉得': 'note 里“find + 宾语 + 形容词：觉得……怎么样”是句型说明本身，不是语音输入多出来的词'},
           '数字': {'S8-2 10,000': 'one in 10,000 中文按习惯写“万分之一”（分数），读法 one in ten thousand',
                  'S13-2 10,000': '同 S8：about one in 10,000 → 约为万分之一'},

@@ -183,7 +183,9 @@ out = {'no': '51',
                  'S18 excavated … from': '不是搭配：from archival newspapers 只说明从哪里发掘，excavate 单独就是“发掘”（速查表第一个意思）',
                  'S19 embrace … of': '不是搭配：of 属于同位语 a pedigree of…，和 embrace 无关',
                  'S11 votes … to': '不是搭配：to 是比分里的“对”（234 对 60），和 votes 无关',
-                 'S19 derivation … of': '不是搭配：of 属于同位语 a pedigree of…，derivation 单独就是“词源”（速查表第一个意思）'},
+                 'S19 derivation … of': '不是搭配：of 属于同位语 a pedigree of…，derivation 单独就是“词源”（速查表第一个意思）',
+                 'S19 pedigree … of': '不是搭配：pedigree本身是名词“来历”；of bad spelling and dinner-bell '
+                                      'satire是普通of后置修饰语，说明这段来历的构成，不是使pedigree获得新义的固定短语。'},
           '响度骤降': {'9.2–9.7s': {'配音指纹': 'ff0728857c2d',
                                 '低': 6.0,
                                 '句子': "S1 OK, often said to be the planet's most frequently spoken word, began "
@@ -530,7 +532,9 @@ out = {'no': '51',
                                      '整组译成“直到1961年还”，放在动词“倾向于”之前（不单独放一格），整句“权威词典直到1961年还倾向于乔克托语一说”读得通'},
           '方向': {'S10-1 after→这个绰号得名于他的出生地': 'after his birthplace 是 named '
                                              'after（以……命名），不是时间先后；中文“得名于他的出生地”意思一致（沿用文章定稿）'},
-          '词性': {'S10-1 birthplace 出生地': 'birthplace 是 n.，“出生地”的“地”是名词“地方”，不是副词标记“地”'}},
+          '词性': {'S10-1 birthplace 出生地': 'birthplace 是 n.，“出生地”的“地”是名词“地方”，不是副词标记“地”'},
+          '中文重复': {'来历': 'S16 pedigrees与S19 '
+                         'pedigree是同一名词的复数和单数，本文均指词语来历，符合规则“同一个词的不同形式不算两个词”；S19“来历”也是用户本轮明确指定义项，不人为改成另一个中文。'}},
  '结尾解说': '简述',
  '停顿删除区间': {'S2': {'1': [4.8, 5.15]}},
  '停顿插入点': {},
