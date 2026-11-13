@@ -60,7 +60,7 @@ S=[
 CONF={"短语":{"S3 by … palate":"judge by palate alone 里 by 只引出判断的依据（凭……），palate 本身就是“味觉”，不是 by + 名词的固定用法"},
  "数字":{"S5-1 200,000":"Nearly 200,000 → 近20万（中文万位写法，读法 two hundred thousand）"},
  "是的":{"S9-1 是**来自基层民众的**":"用户 2026-10-16 给的原话（这场反噬，是来自基层民众的强烈抗议），T10 照用","S10-2 是**暴怒的**":"用户 2026-10-16 给的原话（几乎全都是暴怒的投诉），T10 照用","S10-2 是**愤怒的**":"“几乎全是 + 愤怒的投诉”是“是 + 定语 + 名词”，不是“是……的”表语句式"}}
-out={"no":"12","title_en":"The 79 Days of New Coke","title_zh":"新可乐的 79 天","title_fx":{"hl":["79","Coke"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"结局","连线":["emotional attachment","情感依恋"],"allow_clash":["chief executive"],"换行变更已获同意":{"S11":"用户 2026-10-16：“从那个stock up on the original……它作为第三行，这个作为第三行。”","S1":"用户 2026-10-16：“这个下面 小口喝；抿  sip 意思的下面”"},
+out={"no":"12","title_en":"The 79 Days of New Coke","title_zh":"新可乐的 79 天","title_fx":{"hl":["79","Coke"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述","连线":["emotional attachment","情感依恋"],"allow_clash":["chief executive"],"换行变更已获同意":{'S11': '用户 2026-10-16：“从那个stock up on the original……它作为第三行，这个作为第三行。”', 'S1': '用户2026-11-13在当前会话要求修复sip词下说明对齐；位置要求沿用用户2026-10-16原话：“这个下面 小口喝；抿  sip 意思的下面”。本次让“小口喝；抿”对在sip的中文正下方，S1英文保持一行。'},
      "高亮按实际开口":True,"高亮开口门槛":40,"术语":{"Pepsi":"百事","Coca-Cola":"可口可乐","New Coke":"新可乐"}}
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
