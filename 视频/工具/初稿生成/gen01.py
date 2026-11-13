@@ -46,6 +46,8 @@ out["sentences"][12]["chunks"][1]["note"]='（双重负担：\n第一，能力�
 out["sentences"][13]["chunks"][1]["note"]='（trace A to B：追溯 A 的来源到 B、查明 A 源于 B）\n例子：假设你平时都考80分，这次生病，只考了50分。别人问你的水平，你说：“80分左右。”\n拿你说的80分和这次的50分一比，就会说你“高估了自己30分”。\n可是，你并没有不了解自己，只是这次没考出平时的水平。\n批评者认为：研究里一部分“低分的人高估自己”，可能也是这种情况。'
 # 用户2026-11-13确认：此页it译为统计问题，追加效应仍存在但较弱的解释；暂停出片。
 out["sentences"][14]["chunks"][1]["note"]='（后来的研究尽量排除统计影响后，\n仍发现“表现差却高估自己”的现象，\n只是程度没有最初研究显示得那么大。）'
+# 用户2026-11-13确认：明确自拍时没有拍到自己，被误当成隐身证据；仅加小字，暂不出片。
+out["sentences"][16]["chunks"][1]["note"]='（stake A on B：把A赌在B上）\n（他自拍时其实没拍到自己，\n却误以为是柠檬汁让自己“隐身”了，\n便冒着坐牢的风险去抢银行。\n“平心而论”在这里带有调侃意味。）'
 json.dump(out,open("scripts/01.json","w"),ensure_ascii=False,indent=1)
 # validate
 src=open("/home/user/postgraduate-vocabulary/新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md").read()
