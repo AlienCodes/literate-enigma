@@ -42,6 +42,8 @@ out={"no":"01","title_en":"The Robber Who Thought Lemon Juice Made Him Invisible
 "sentences":[{"para":p,"chunks":[{"en":e,"zh":z} for e,z in c]} for p,c in S]}
 # 用户2026-11-13：双重负担区分执行能力与自我评估能力；仅加小字，视频暂缓重出。
 out["sentences"][12]["chunks"][1]["note"]='（双重负担：\n第一，能力不够，容易把事情做错，属于执行能力不行；\n第二，也因为能力不够，自己还看不出错在哪儿，\n可能误以为做得很好，这属于自我评估能力不行。）'
+# 用户2026-11-13确认：均值回归页，原trace A to B小字下方追加80/50分例子；暂不出片。
+out["sentences"][13]["chunks"][1]["note"]='（trace A to B：追溯 A 的来源到 B、查明 A 源于 B）\n例子：假设你平时都考80分，这次生病，只考了50分。别人问你的水平，你说：“80分左右。”\n拿你说的80分和这次的50分一比，就会说你“高估了自己30分”。\n可是，你并没有不了解自己，只是这次没考出平时的水平。\n批评者认为：研究里一部分“低分的人高估自己”，可能也是这种情况。'
 json.dump(out,open("scripts/01.json","w"),ensure_ascii=False,indent=1)
 # validate
 src=open("/home/user/postgraduate-vocabulary/新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md").read()
