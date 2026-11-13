@@ -30,7 +30,7 @@ S=[(1,[("On 6 January 1995, McArthur Wheeler and an accomplice","1995年1月6日
 (6,[("**Detractors** traced part of the Dunning-Kruger **disparity**","**批评者**(Detractors)把邓宁-克鲁格**差距**(disparity)部分地"),
 ("to regression to the mean,","归因于向均值回归，"),
 ("a statistical **mirage** the paper **partially** acknowledged.","这种统计**假象**(mirage)，论文本身也曾**部分地**(partially)承认过。")]),
-(6,[("Studies designed to avoid it","专为避开这一问题而设计的研究"),
+(6,[("Studies designed to avoid it","专为避开统计问题而设计的研究"),
 ("still find a smaller but **tangible** effect.","仍发现了一个较小但**确实存在的**(tangible)效应。")]),
 (6,[("In 2023 the pair **garnered** the Grawemeyer psychology award.","2023年，两人**赢得了**(garnered)格文美尔心理学奖。")]),
 (7,[("**In fairness**, Wheeler had tested his method **empirically**","**平心而论**(In fairness)，惠勒确实**用实验**(empirically)检验过他的方法，"),
@@ -44,6 +44,8 @@ out={"no":"01","title_en":"The Robber Who Thought Lemon Juice Made Him Invisible
 out["sentences"][12]["chunks"][1]["note"]='（双重负担：\n第一，能力不够，容易把事情做错，属于执行能力不行；\n第二，也因为能力不够，自己还看不出错在哪儿，\n可能误以为做得很好，这属于自我评估能力不行。）'
 # 用户2026-11-13确认：均值回归页，原trace A to B小字下方追加80/50分例子；暂不出片。
 out["sentences"][13]["chunks"][1]["note"]='（trace A to B：追溯 A 的来源到 B、查明 A 源于 B）\n例子：假设你平时都考80分，这次生病，只考了50分。别人问你的水平，你说：“80分左右。”\n拿你说的80分和这次的50分一比，就会说你“高估了自己30分”。\n可是，你并没有不了解自己，只是这次没考出平时的水平。\n批评者认为：研究里一部分“低分的人高估自己”，可能也是这种情况。'
+# 用户2026-11-13确认：此页it译为统计问题，追加效应仍存在但较弱的解释；暂停出片。
+out["sentences"][14]["chunks"][1]["note"]='（后来的研究尽量排除统计影响后，\n仍发现“表现差却高估自己”的现象，\n只是程度没有最初研究显示得那么大。）'
 json.dump(out,open("scripts/01.json","w"),ensure_ascii=False,indent=1)
 # validate
 src=open("/home/user/postgraduate-vocabulary/新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md").read()
