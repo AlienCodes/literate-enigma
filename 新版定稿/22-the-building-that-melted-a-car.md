@@ -6,7 +6,7 @@ On 2 September 2013 the news broke that a London **skyscraper** **under construc
 
 Rafael Viñoly curved the south face of 20 Fenchurch Street inward, **enlarging** the upper **storeys**, where **tenants** pay a **premium**. That **geometry** acted like a **magnifying** glass, focusing **sunlight** into a **beam** up to six times brighter than direct sun. It was measured at about 110 degrees Celsius, and a **reporter** fried an egg in a **pan** using the **reflection**.
 
-The **developers** issued an **apology** and **reimbursed** almost 1,000 pounds for repairs. Parking bays were **suspended** and a **provisional** **barrier** was **erected**. The beam struck for about two hours a day, two to three weeks **annually**, because of the sun's **angle of elevation**. Newspapers dubbed the Walkie-Talkie the Walkie-Scorchie, a **taunt**.
+The **developers** issued an **apology** and **reimbursed** almost 1,000 pounds for repairs. Parking bays were **suspended** and a **provisional** **barrier** was **erected**. The beam struck for about two hours a day, two to three weeks **annually**, because of the sun's **angle of elevation**. Newspapers **dubbed** the Walkie-Talkie the Walkie-Scorchie, a **taunt**.
 
 The **architect** was **candid**, admitting many mistakes. Viñoly had **anticipated** the focusing, he said, but not its **intensity**. **Sun louvres** in the original design were reportedly removed in **cost-cutting**. Nor was this his first **architectural** **miscalculation**. In 2010 the **infamous** **glare** from his curved, **reflective** Vdara hotel in Las Vegas burned a guest's **scalp** by the pool.
 
@@ -14,11 +14,11 @@ On 12 February 2014 a **permanent** **fixture** was announced: **horizontal** **
 
 ## 中文
 
-2013年9月2日，一则新闻传开，说伦敦一座**正在建设中的**(under construction)**摩天大楼**(skyscraper)损坏了一辆捷豹车。（that…：同位语从句，说明 news 的内容，被谓语 broke 隔开；under construction：在建）马丁·林赛把这辆**轿车**(saloon)停在伊斯特奇普街的**人行道**(pavement)旁边，正对着这座高楼的**正面**(frontage)。（leave sth somewhere：把某物停放在某处；opposite…：介词短语，补充说明位置）他回来时发现，车的后视镜已经**翘曲**(warped)，车身板**变形**(deformed)，并且**车标**(badge)也**扭曲了**(distorted)。（returned to find…：不定式表结果，回来后发现……；find sth done：发现某物处于……状态，三组并列）上方那面**镶玻璃的**(glazed)**正面墙**(facade)是罪魁祸首。（be to blame：应负责任，是……的原因）
+2013年9月2日，一则新闻传开，说伦敦一座**正在建设中的**(under construction)**摩天大楼**(skyscraper)损坏了一辆捷豹车。（that…：同位语从句，说明 news 的内容，被谓语 broke 隔开；under construction：在建）马丁·林赛把这辆**轿车**(saloon)停在伊斯特奇普街的**人行道**(pavement)旁边，正对着这座高楼的**正面**(frontage)。（leave sth somewhere：把某物停放在某处；opposite…：介词短语，补充说明位置）他回来时发现，车的后视镜已经**翘曲**(warped)，车身板**变形**(deformed)，并且**车标**(badge)也**扭曲了**(distorted)。（returned to find…：不定式表结果，回来后发现……；find sth done：发现某物处于……状态，三组并列）上方那面**镶玻璃的**(glazed)**正面墙**(facade)是罪魁祸首。（be to blame：应负责任，是……的原因）（这面玻璃外墙向内弯曲，像凹面镜一样，把阳光反射并集中到街面，造成局部高温，烤坏了停在那里的汽车，因此成了“罪魁祸首”。）
 
 拉斐尔·维诺利（在设计中）将芬丘奇街20号的南立面向内弯曲，**扩大了**(enlarging)上部**楼层**(storeys)，那里的**租户**(tenants)支付着**溢价**(premium)（更高的租金）。（curve sth inward：使……向内弯曲）（enlarging…：现在分词短语表结果；where…：非限制性定语从句，修饰 storeys）这种**几何形状**(geometry)就像一面**放大**(magnifying)镜，把**阳光**(sunlight)汇聚成一道**光束**(beam)，亮度可达直射阳光的六倍。（act like：起……的作用）（focusing…：现在分词短语表结果；focus A into B：把 A 汇聚成 B；up to…brighter…：形容词短语作后置定语，修饰 beam）测得的温度约为110摄氏度，一名**记者**(reporter)还在**平底锅**(pan)里利用**反射光**(reflection)煎熟了一个鸡蛋。（be measured at：测得为……）（using…：现在分词短语表方式）
 
-**开发商**(developers)作出了**道歉**(apology)，并**赔付了**(reimbursed)近1,000英镑的修理费。（issue an apology：公开道歉；reimburse…for…：赔付……的费用）路边停车位**暂停使用**(suspended)，并且一道**临时的**(provisional)**屏障**(barrier)被**搭建了起来**(erected)。这道光束**每年**(annually)会照射两到三周、每天约照射两小时，因为这是太阳的**仰角**(angle of elevation)。（for…, …：两个时间状语并列）（angle：角度）报纸把对讲机大楼戏称为“烤焦机大楼”，这是一句**嘲讽**(taunt)。（dub：把……戏称为、给……起绰号；Walkie-Talkie：大楼的俗称，原意是对讲机；Scorchie：由 scorch（烤焦）改字而来；a taunt：同位语，说明这个绰号）
+**开发商**(developers)作出了**道歉**(apology)，并**赔付了**(reimbursed)近1,000英镑的修理费。（issue an apology：公开道歉；reimburse…for…：赔付……的费用）路边停车位**暂停使用**(suspended)，并且一道**临时的**(provisional)**屏障**(barrier)被**搭建了起来**(erected)。这道光束**每年**(annually)会照射两到三周、每天约照射两小时，因为这是太阳的**仰角**(angle of elevation)。（for…, …：两个时间状语并列）（angle：角度）报纸**把**(dubbed)对讲机大楼**戏称为**(dubbed)“烤焦机大楼”，这是一句**嘲讽**(taunt)。（dub：把……戏称为、给……起绰号；Walkie-Talkie：大楼的俗称，原意是对讲机；Scorchie：由 scorch（烤焦）改字而来；a taunt：同位语，说明这个绰号）
 
 这位**建筑师**(architect)很**坦率**(candid)，承认犯了很多错误。（admitting…：现在分词短语作伴随状语）维诺利说，他**预料到了**(anticipated)外墙会聚光，却没想到聚光的**强度**(intensity)会这么大。（he said：插入语；but not its intensity：省略句，= but he had not anticipated its intensity）据报道，原设计中的**遮阳百叶**(Sun louvres)在**削减成本**(cost-cutting)时被删掉了。（Sun louvres：遮阳百叶，外墙上成排的斜板，用来遮挡直射阳光、减少强光和热量；reportedly：据报道，插入的副词；in cost-cutting：在削减成本时）这也不是他第一次出现**建筑上的**(architectural)**失算**(miscalculation)。（Nor 放句首：也不……，主谓倒装）2010年，他那座位于拉斯维加斯、弯曲**反光的**(reflective)维达拉酒店反射出**臭名昭著的**(infamous)**强光**(glare)，在泳池边灼伤了一位客人的**头皮**(scalp)。（from his…hotel：介词短语作后置定语，修饰 glare）
 
@@ -58,6 +58,7 @@ On 12 February 2014 a **permanent** **fixture** was announced: **horizontal** **
 | erected | 本文：搭建了起来；v. (erect) 竖立，搭建（erect a statue/fence） | 3 |
 | annually | 本文：每年；adv. 每年（held annually） | 3 |
 | angle of elevation | 本文：仰角；n. 仰角，太阳高度角（angle 角度；the sun's angle of elevation） | 3 |
+| dubbed | v. (dub) 把……称为，给……起绰号（dub A B；本文为“把……戏称为”） | 3 |
 | taunt | 本文：嘲讽；n./v. 嘲讽，奚落（racist taunts；taunt sb about sth） | 3 |
 | architect | 本文：建筑师；n. 建筑师（a famous architect） | 4 |
 | candid | 本文：坦率；adj. 坦率的（a candid interview/admission） | 4 |
