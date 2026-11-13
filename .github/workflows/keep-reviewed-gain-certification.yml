@@ -23,16 +23,16 @@ jobs:
           ref: fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
           path: official-main
           filter: blob:none
+          sparse-checkout-cone-mode: false
           sparse-checkout: |
-            视频/工具
-            视频/脚本
-            视频/制作记录
-            视频/音频核对
-            视频/对照文本
-            新版定稿
-            CLAUDE.md
-            视频/制作硬性标准与踩坑总结.md
-            视频/制作规矩.md
+            /视频/工具/
+            /视频/脚本/
+            /视频/制作记录/
+            /视频/音频核对/
+            /视频/对照文本/
+            /新版定稿/
+            /CLAUDE.md
+            /视频/*.md
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
