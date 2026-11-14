@@ -742,6 +742,26 @@ def collect_original_asr_target_evidence():
     status['original_asr_target_evidence'] = record
 
 
+def collect_actual67_original_two_route_texts():
+    if NO != '67':
+        return
+    video = W / '67.mp4'
+    if not video.is_file():
+        return
+    output = OUT / '67-actual-original-six-ASR-texts.json'
+    try:
+        result = subprocess.run(list(map(str, ['python3', TASK / 'collect67-actual-original-six-ASR-texts.py',
+            '--work', W, '--tools', T, '--video', video, '--output', output])),
+            cwd=W, env=ENV, capture_output=True, text=True, errors='replace', timeout=300)
+        record = {'diagnostic_only':True,'quality_acceptance':False,'automatic_confirmation':False,'exit':result.returncode}
+        if output.is_file():
+            record.update(file=output.name,sha256=sha(output))
+        status['actual67_original_six_ASR_texts'] = record
+    except Exception as exc:
+        status['actual67_original_six_ASR_texts'] = {'diagnostic_only':True,'quality_acceptance':False,
+            'diagnostic_error':type(exc).__name__}
+
+
 def cache_entry(name):
     assert re.fullmatch(r'[A-Za-z0-9_\u4e00-\u9fff.-]+\.(pkl|json)', name), name
     destination = M / 'tts/cache_tts' / name
@@ -952,13 +972,6 @@ try:
             assert actual_record['篇'] == NO
             if actual_record not in records['记录']:
                 records['记录'].append(actual_record)
-    if NO == '05':
-        supplement = request / '真实用户同意补充.json'
-        assert sha(supplement) == '9a78ca6fe2f8b3ed27592f4d7631f16f922a6acd0e5dec5e0af56353e709e104'
-        for actual_record in json.loads(supplement.read_text())['records']:
-            assert actual_record['篇'] == NO
-            if actual_record not in records['记录']:
-                records['记录'].append(actual_record)
     supplied_agreement = request / '视频/工具/用户同意记录.json'
     if supplied_agreement.is_file():
         supplied_records = json.loads(supplied_agreement.read_text())
@@ -1018,6 +1031,27 @@ try:
         save()
     prepare_approved_a21_derived_level(source_video, accepted_aac)
     prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac)
+    if NO == '67':
+        # Root-approved exact sentence transfer only; failed first native records stay unchanged.
+        installer = TASK / 'install67-exact-unchanged-machine-confirmations.py'
+        assert sha(installer) == '73a37918ebbda90f0a985d546d03e2a1de26b5c08887e606272b4031785db983'
+        assert sha(installer.with_name('install67-exact-unchanged-machine-confirmations-reference.json')) == 'b8379a27eb1c485afddbfbf8477ec48900644668d288f986eccc450a02076f7c'
+        exact_transfer = OUT / '67-six-exact-unchanged-machine-confirmation-transfer.json'
+        checked(['python3', installer, '--work', W, '--request', request,
+                 '--old-source', LOG / 'accepted-prior-source.json',
+                 '--old-wav', LOG / 'accepted-prior-a.wav',
+                 '--old-audio', W / '_accepted-prior-diagnostic-67.m4a',
+                 '--actual-audio', W / '67.mp4',
+                 '--baseline-proof', OUT / '67-accepted-prior-pcm-probe.json',
+                 '--output', exact_transfer, '--write-runtime'],
+                '67-six-exact-unchanged-machine-confirmation-transfer.log', W)
+        transfer = json.loads(exact_transfer.read_text())
+        assert transfer['passed'] and transfer['runtime_confirmation_transfer_applied']
+        assert transfer['S9_confirmation_unchanged'] and transfer['all_other_source_fields_exact']
+        status['root_approved_six_same_sentence_machine_confirmation_transfer'] = {
+            'file':exact_transfer.name, 'sha256':sha(exact_transfer),
+            'program_sha256':sha(installer), 'does_not_change_audio_or_ASR_rules':True}
+        save()
     clear_current_reference_cache()
     clear_temporary_video()
     activate_read_only_failure_probe()
@@ -1149,7 +1183,7 @@ try:
 except Exception as exc:
     status['passed'] = False
     status['error'] = str(exc)
-    for collector in (collect_confirmation_continuity, failure_audio_diagnostics, export_failed_current_video,
+    for collector in (collect_confirmation_continuity, failure_audio_diagnostics, export_failed_current_video, collect_actual67_original_two_route_texts,
                       collect_original_asr_target_evidence):
         try:
             collector()
