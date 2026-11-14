@@ -1,0 +1,2871 @@
+{
+  "article": "23",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+  "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+    "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+    "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "The Man Who Gave Machines a Mind",
+      "exact_native_cache_key": "fbd41a2cbb7ad1f6335460297dd8e304548f480e.pkl",
+      "cache_input_text_sha256": "22bb18790fa2ffe9dce9b66099fda175f298a2a2357a633fdd2ed3f74df8ae15",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "The Man Who Gave Machines a Mind",
+      "exact_native_cache_key": "5e10c4e1cd03367853d9882c96b207872d1f6ee0.pkl",
+      "cache_input_text_sha256": "22bb18790fa2ffe9dce9b66099fda175f298a2a2357a633fdd2ed3f74df8ae15",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Born in June 1912, Alan Turing had a formidable intellect by his early twenties.",
+      "exact_native_cache_key": "4e6ce282611eb363a3cba6d1fbbd75e2aa5b2081.pkl",
+      "cache_input_text_sha256": "48a5f75dc37f131552c7bd895e9955f7a6da9581afee9923c5df53c34f0ac785",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Born in June 1912, Alan Turing had a formidable intellect by his early twenties.",
+      "exact_native_cache_key": "b56dea112975d47a794d8ea1fa177d5fb65e378a.pkl",
+      "cache_input_text_sha256": "48a5f75dc37f131552c7bd895e9955f7a6da9581afee9923c5df53c34f0ac785",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Born in June 1912,",
+      "exact_native_cache_key": "4c4f898a4957bcaf26cd5ed01819aec4abfe5bad.pkl",
+      "cache_input_text_sha256": "306167a01f9cfc8081b1e2445db474d61293a5cf7e930e0034857cd4350fe5ea",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Alan Turing had a formidable intellect by his early twenties.",
+      "exact_native_cache_key": "f7fdbf8bf5aee40ebe4ed302cc7919353e5fe126.pkl",
+      "cache_input_text_sha256": "a9189189aa62ca727c3c7a762f7cb659af0b0cee98d18e2f587beefb05680091",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In a paper read in November 1936, he outlined a \"universal machine\": a device able to execute any computation, given the right instructions.",
+      "exact_native_cache_key": "e8e0c0e90cbede7fa7694dc7cece0018fe137c2c.pkl",
+      "cache_input_text_sha256": "353f79557fcffdd4197c7d6e6e191235ee40bcc93bf8436dab19b96efd046c55",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In a paper read in November 1936, he outlined a \"universal machine\": a device able to execute any computation, given the right instructions.",
+      "exact_native_cache_key": "64bd07a7cf242303df7e782e15dce919e4e88bb1.pkl",
+      "cache_input_text_sha256": "353f79557fcffdd4197c7d6e6e191235ee40bcc93bf8436dab19b96efd046c55",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In a paper read in November 1936, he outlined a \"universal machine\":",
+      "exact_native_cache_key": "c9d856f6169da55f927b18d7fcdf1b627faa5648.pkl",
+      "cache_input_text_sha256": "b80532853e4888a836b4bf67d9fa56f67b309009b8aec9334dc9c33007510283",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a device able to execute any computation, given the right instructions.",
+      "exact_native_cache_key": "56c07a5f2a3a45bb8732d612f9dde45aac1a1944.pkl",
+      "cache_input_text_sha256": "708903a82d0a34330788b5b312a5fe71f147db1b1de33bcaf13b5c84644bccb8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In a paper read in November 1936,",
+      "exact_native_cache_key": "98e51ba9dac2fd7c91fec0e0104396a622f02d9c.pkl",
+      "cache_input_text_sha256": "2025eb494305d8effc049ec635fe35e4fca903543aa0ae84d8d176e8f16fd771",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "he outlined a \"universal machine\":",
+      "exact_native_cache_key": "b0191ea0d2a4a052db97440338f9f655a344a5bf.pkl",
+      "cache_input_text_sha256": "b8cc43ef2ea31044a646c406643b16e378c37d514a3d3828924739161d9d4078",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a device able to execute any computation,",
+      "exact_native_cache_key": "735ef66fe7c31c513b70d7723b0f977fb19cf6e6.pkl",
+      "cache_input_text_sha256": "b2db4e4f54abfb1f9134c8b5b12aa82886d72c32f856769d8591f47aa1e492ca",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "given the right instructions.",
+      "exact_native_cache_key": "29e2c53d0d17aaf39ceb489959d098097ac5dd4a.pkl",
+      "cache_input_text_sha256": "ffe09f096ce08b282ef76828cc5bbb37693e366911f5b7dd687f01855ae5c16f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "That abstract construct, rooted in mathematical logic, became the theoretical blueprint of the modern computer.",
+      "exact_native_cache_key": "49835d647dbb7df768f1a0a9290b5d6f03d19672.pkl",
+      "cache_input_text_sha256": "527909f503d65a582608c1c8e3d1e4adcd38d460c4f56871410a06f9480784f6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "That abstract construct, rooted in mathematical logic, became the theoretical blueprint of the modern computer.",
+      "exact_native_cache_key": "8eaf70fa3c431bc7322d19cdbb5564c92e23c9da.pkl",
+      "cache_input_text_sha256": "527909f503d65a582608c1c8e3d1e4adcd38d460c4f56871410a06f9480784f6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "That abstract construct,",
+      "exact_native_cache_key": "d3d49df2e54284dd1ee33ae516a774a0916af1ac.pkl",
+      "cache_input_text_sha256": "6b138502031f7d890965225916da273d5aaf8b7d28fb148072fbcd2d447e7016",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "rooted in mathematical logic,",
+      "exact_native_cache_key": "8e670e25194f382dd0fed35c13344ec31cd095db.pkl",
+      "cache_input_text_sha256": "f86ff69fb9b705fd3418053827564dc697e61fcb830857ac1124603ebc7ca860",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "became the theoretical blueprint of the modern computer.",
+      "exact_native_cache_key": "dd5f6ecaa4e694438a4ebd6f4137d27a4e75c358.pkl",
+      "cache_input_text_sha256": "e7e6b097fc0a9f0c542261b03cc0d9b23a718b76b362620000e3e0396e60ab04",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 4 September 1939 he joined the classified codebreaking effort at Bletchley Park, leading work on naval Enigma, Germany's encryption machine.",
+      "exact_native_cache_key": "cb5fba7a0d7438bd876cf71305af75bdd58e6ddf.pkl",
+      "cache_input_text_sha256": "b0b5a4d0db039eabe66aaaaa570a8380d1a9448495d8d1d257d122564f544128",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 4 September 1939 he joined the classified codebreaking effort at Bletchley Park, leading work on naval Enigma, Germany's encryption machine.",
+      "exact_native_cache_key": "3d6f48c57502047468a18925b3d6a9042415ac00.pkl",
+      "cache_input_text_sha256": "b0b5a4d0db039eabe66aaaaa570a8380d1a9448495d8d1d257d122564f544128",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 4 September 1939 he joined the classified codebreaking effort at Bletchley Park,",
+      "exact_native_cache_key": "54e81b9d749e21ba3d51497555ffffc395b30dcd.pkl",
+      "cache_input_text_sha256": "38fa625e81142b641b199ad366256963282ceb59841cc78a38ad8eca3f902a4f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "leading work on naval Enigma, Germany's encryption machine.",
+      "exact_native_cache_key": "3fc7171f4d94606e104c7c4b72e1b96d498f2f70.pkl",
+      "cache_input_text_sha256": "f816ae9c95fdca3b0247d717e801bf5385526f7d3a0f1b2a407e394916aa7f5e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 4 September 1939 he joined the classified codebreaking effort at Bletchley Park,",
+      "exact_native_cache_key": "54e81b9d749e21ba3d51497555ffffc395b30dcd.pkl",
+      "cache_input_text_sha256": "38fa625e81142b641b199ad366256963282ceb59841cc78a38ad8eca3f902a4f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "leading work on naval Enigma,",
+      "exact_native_cache_key": "82b9d286e28f7efa3797217607d8f1a933a46dad.pkl",
+      "cache_input_text_sha256": "a662e350f8e089597d8a9b1faacc07a6ac213d141ee74102cc877d13608bbfdc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Germany's encryption machine.",
+      "exact_native_cache_key": "472122b31bb3566dce6a78377ddb6f97928d2d31.pkl",
+      "cache_input_text_sha256": "9e90d777f0d093169289dcc7adf2549f8fca555e1aa971277d59ed3f2f39e4a6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Polish mathematicians had deciphered Enigma by late 1932 and shared their insights with Britain and France in July 1939.",
+      "exact_native_cache_key": "2bb3b4dc9c4ba52a25926e64992954ce9948e5f4.pkl",
+      "cache_input_text_sha256": "5fb58938d34a1bfd5b86c00f1f380b8ffa5945e6573e07f01bcef84f80878e89",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Polish mathematicians had deciphered Enigma by late 1932 and shared their insights with Britain and France in July 1939.",
+      "exact_native_cache_key": "16df8f653453c64919994893a4ed08b68ef2473e.pkl",
+      "cache_input_text_sha256": "5fb58938d34a1bfd5b86c00f1f380b8ffa5945e6573e07f01bcef84f80878e89",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "His team's machines exploited them and, operational from March 1940, automated the laborious search for each day's rotor settings.",
+      "exact_native_cache_key": "a5debeaa4790faa863f862ba175c7e8db98991f7.pkl",
+      "cache_input_text_sha256": "b158ab16faf6c5244e9467078e78cab5adff74c921daa0caea57007d121ac2e5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "His team's machines exploited them and, operational from March 1940, automated the laborious search for each day's rotor settings.",
+      "exact_native_cache_key": "5b71326f0e2bd5ac43bbff61505dba99a4e4bc51.pkl",
+      "cache_input_text_sha256": "b158ab16faf6c5244e9467078e78cab5adff74c921daa0caea57007d121ac2e5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "His team's machines exploited them and, operational from March 1940,",
+      "exact_native_cache_key": "e907a53373296412a650db6eaa9e08a1233720a4.pkl",
+      "cache_input_text_sha256": "5a0013ff52595686fc7e226114a5ba742cebc0862547d41f572cc320c244780a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "automated the laborious search for each day's rotor settings.",
+      "exact_native_cache_key": "35dc172e58570c4993989ff1956b08c280903821.pkl",
+      "cache_input_text_sha256": "ac8aa4bcf70d81d58c2d57b6a4de4df1281c71d4eea187e08ea5463fe16148d2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "His team's machines exploited them and,",
+      "exact_native_cache_key": "c385a8b694d0c8dad5e93fdeaeef7a0551061d72.pkl",
+      "cache_input_text_sha256": "ca3aafbc17a75be3e4cdc2d79b89d2fce01efd21c387e0710e3d2bd2a6d8a77f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "operational from March 1940,",
+      "exact_native_cache_key": "7e08dfef591266440208ce35cd025e782f053496.pkl",
+      "cache_input_text_sha256": "c26fb2cb25d46905a35def20019228a3ba590061cb4ea0b22ab89e88046af1cb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "automated the laborious search for each day's rotor settings.",
+      "exact_native_cache_key": "35dc172e58570c4993989ff1956b08c280903821.pkl",
+      "cache_input_text_sha256": "ac8aa4bcf70d81d58c2d57b6a4de4df1281c71d4eea187e08ea5463fe16148d2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In October 1950, writing in the philosophy journal Mind, he posed a provocative question: \"Can machines think?\"",
+      "exact_native_cache_key": "00498735c27beeb137c447ad6c27b3f4b1c1be90.pkl",
+      "cache_input_text_sha256": "093b07b5d7f17cbd703d5a287c15bf2588be7f54b777e74b61c667c2a08943a6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In October 1950, writing in the philosophy journal Mind, he posed a provocative question: \"Can machines think?\"",
+      "exact_native_cache_key": "d9bbb1b91b972a9753dbb3e9439b9edd5454559c.pkl",
+      "cache_input_text_sha256": "093b07b5d7f17cbd703d5a287c15bf2588be7f54b777e74b61c667c2a08943a6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In October 1950, writing in the philosophy journal Mind,",
+      "exact_native_cache_key": "05740f2fe5a7e065232cb95fc42fa4d20c4aad63.pkl",
+      "cache_input_text_sha256": "7935e819a0bc2238cd95ed9787e26582641b7701bd65572543c02682f5550d65",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "he posed a provocative question: \"Can machines think?\"",
+      "exact_native_cache_key": "87835ccacd36084224bbd09ec435bf01f8cd90fd.pkl",
+      "cache_input_text_sha256": "9428f4ef495410bbb7f05b00d56e2829e8e09657216befc2602a18087055c6b6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In October 1950,",
+      "exact_native_cache_key": "9f5ba0eb3d7c105ff32a3dca0430c9b654585163.pkl",
+      "cache_input_text_sha256": "bb55390a73dccf2bd96176cce336a06bc72564c4c19206b7f5f2e9f7ab0e14fa",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "writing in the philosophy journal Mind,",
+      "exact_native_cache_key": "27a36aaac1ce8ccb5663ba0b398d76d56f21065f.pkl",
+      "cache_input_text_sha256": "3197811d2a84ad3f103ad8fa8e487d7f0745d8882caef8af3b9d666be10be9cb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "he posed a provocative question:",
+      "exact_native_cache_key": "aed89ab42311b8dbd22aa0f42cc881613431f33a.pkl",
+      "cache_input_text_sha256": "10450daebd88c2551cf655d609af2034ea982e415c84529c234de2f4b9b8faa8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "\"Can machines think?\"",
+      "exact_native_cache_key": "78098fab68c06e62cf678d24a1f13fadfd16c52a.pkl",
+      "cache_input_text_sha256": "b72e94b82be58686468c0db96bedd00c7b1fd6cb11e8bb8a88d047eb3e4310e4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "He proposed a practical substitute, the imitation game, now widely called the Turing test.",
+      "exact_native_cache_key": "435327f0d12d8b7937a35997d70f8ef3ae373301.pkl",
+      "cache_input_text_sha256": "c4c8edc8276d2f8ef98e34e83e36d05f547d6784c5d4ad9a71b799a2bece7d20",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "He proposed a practical substitute, the imitation game, now widely called the Turing test.",
+      "exact_native_cache_key": "d4c291ee15b4c643755e22358464b4e8ee52dfc0.pkl",
+      "cache_input_text_sha256": "c4c8edc8276d2f8ef98e34e83e36d05f547d6784c5d4ad9a71b799a2bece7d20",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "He proposed a practical substitute,",
+      "exact_native_cache_key": "f56ed0f3d17e377d7bca990549be954f13e7138d.pkl",
+      "cache_input_text_sha256": "ce0c268055eac7a66802238085456b9f2dd91c10dfac3a721ef22de28bf6f716",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the imitation game,",
+      "exact_native_cache_key": "1b2c9b4d412613fbcab4408bc257295eb0ceb7d0.pkl",
+      "cache_input_text_sha256": "d85356d8c7a133fc7bb8b747f152a3b7c463746a96a08da0e31ab34f6b1e38d8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "now widely called the Turing test.",
+      "exact_native_cache_key": "6fc86be90216ef92929ec10f35e2ee46a4ac99a8.pkl",
+      "cache_input_text_sha256": "7a154541ae30218ca15c84e5a3e3a77f53a22fa6ea4bc2eac7f53b49d27d1bba",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "An interrogator exchanges typed messages with two concealed players, one human and one machine.",
+      "exact_native_cache_key": "3614b2a901fb899c5fe60c702df864e1dd8184a8.pkl",
+      "cache_input_text_sha256": "15defd704a481babbdd69d62d64a074b18df0db1e901aedb4976553bbc4e2f2e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "An interrogator exchanges typed messages with two concealed players, one human and one machine.",
+      "exact_native_cache_key": "36e5e36354cdffd2c956bfe7788e2b52ac0bb33d.pkl",
+      "cache_input_text_sha256": "15defd704a481babbdd69d62d64a074b18df0db1e901aedb4976553bbc4e2f2e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "An interrogator exchanges typed messages with two concealed players,",
+      "exact_native_cache_key": "1fd457143948bd1b5db47acc70a70fe3982f15fd.pkl",
+      "cache_input_text_sha256": "a5899a4c94ba8c73b7e6d5c8a194d9e7a7aaf9c661434950c1c2f30de862d6aa",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "one human and one machine.",
+      "exact_native_cache_key": "e82c6b9c71efd3ef32059ae37787e8d92110f885.pkl",
+      "cache_input_text_sha256": "02903690002f6c4b6bb02311ee84f4099fa06a6c53000ec7a5ebfd9336e6e73d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "If the interrogator cannot consistently distinguish them, the machine passes.",
+      "exact_native_cache_key": "b5b9c91d1adb9bfa820ceab29dbcd2cce1413ee9.pkl",
+      "cache_input_text_sha256": "5d1b938b8776e7e1df737183d0eaaf89602c59289c28360cf38bb008d78bf407",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "If the interrogator cannot consistently distinguish them, the machine passes.",
+      "exact_native_cache_key": "55070695b0fd3d51add1c214b44cc9d2419ef0c7.pkl",
+      "cache_input_text_sha256": "5d1b938b8776e7e1df737183d0eaaf89602c59289c28360cf38bb008d78bf407",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "If the interrogator cannot",
+      "exact_native_cache_key": "f47052b3e2036abdaecdc7b2fc9095def9126dfa.pkl",
+      "cache_input_text_sha256": "d6e1ba945566c7b89323c598eea663311c5d0bf433849e935bf848a2874b5154",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "consistently distinguish them,",
+      "exact_native_cache_key": "18998569c5a078e95ac4c5382e08d49b3bea26c7.pkl",
+      "cache_input_text_sha256": "637a899176f1e22941aac423abece302d604781c5990147340664938ac94f686",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the machine passes.",
+      "exact_native_cache_key": "8bacd82986acbcafcd2725d822ef333e5f89a3c5.pkl",
+      "cache_input_text_sha256": "d6c2f6489dc8301c9aade9ef4061a22dda8a7d97e3a8e518e60c885d10d54262",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "If the interrogator cannot consistently distinguish them,",
+      "exact_native_cache_key": "f874456f1e9764cf2efbd40ba4786b433ec51946.pkl",
+      "cache_input_text_sha256": "3a2d105320bb4b561eee9621bd0e69280d4337dc565e15a44cf0c541d650d056",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the machine passes.",
+      "exact_native_cache_key": "8bacd82986acbcafcd2725d822ef333e5f89a3c5.pkl",
+      "cache_input_text_sha256": "d6c2f6489dc8301c9aade9ef4061a22dda8a7d97e3a8e518e60c885d10d54262",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "His exceptional wartime contribution did not protect him.",
+      "exact_native_cache_key": "fbc38611cdf796fa5d0fe645cb2251899f4101a4.pkl",
+      "cache_input_text_sha256": "5dfaae3c4d189210da83f1d909240b60d154cb49e0284b6fd6ecc4a8ac77feac",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "His exceptional wartime contribution did not protect him.",
+      "exact_native_cache_key": "1a9f40c1332bed7d0039b5bd8db71d6ad3acc9bc.pkl",
+      "cache_input_text_sha256": "5dfaae3c4d189210da83f1d909240b60d154cb49e0284b6fd6ecc4a8ac77feac",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 31 March 1952 he was convicted of \"gross indecency\", the charge then used against gay men.",
+      "exact_native_cache_key": "b8e18d3cd56bcdf2216794ae381138444d1d5844.pkl",
+      "cache_input_text_sha256": "4bbf897ed2567688bf720f3f1abd9322846b618fd0b12665197953efc035d745",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 31 March 1952 he was convicted of \"gross indecency\", the charge then used against gay men.",
+      "exact_native_cache_key": "799d42a3c1c17448797868b08f002e63745807ab.pkl",
+      "cache_input_text_sha256": "4bbf897ed2567688bf720f3f1abd9322846b618fd0b12665197953efc035d745",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 31 March 1952 he was convicted of \"gross indecency\",",
+      "exact_native_cache_key": "d23d794887c47dc2b3e2b6c6947f08bcf036bbc6.pkl",
+      "cache_input_text_sha256": "23fbccf5e6330ae21168b5a32b9f1a0246f9887962ba4406e9cbd8a8a1841c13",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the charge then used against gay men.",
+      "exact_native_cache_key": "18f5a6fdbcd4505b82860d40530661a2a5e99bbd.pkl",
+      "cache_input_text_sha256": "11496dab537a6b66c912e894c1ebf80e9017970d2ff94de2280a072fa5d70cf7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 31 March 1952 he was convicted of \"gross indecency\",",
+      "exact_native_cache_key": "d23d794887c47dc2b3e2b6c6947f08bcf036bbc6.pkl",
+      "cache_input_text_sha256": "23fbccf5e6330ae21168b5a32b9f1a0246f9887962ba4406e9cbd8a8a1841c13",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the charge then used against gay men.",
+      "exact_native_cache_key": "18f5a6fdbcd4505b82860d40530661a2a5e99bbd.pkl",
+      "cache_input_text_sha256": "11496dab537a6b66c912e894c1ebf80e9017970d2ff94de2280a072fa5d70cf7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "He forfeited his security clearance and, to avert imprisonment, submitted to hormone injections.",
+      "exact_native_cache_key": "7bc3058386aa6861e8253fd47209a439621b5be1.pkl",
+      "cache_input_text_sha256": "be51672e982c9a76dd61bd5221b956237a365302daaba116edf41d2ee084473a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "He forfeited his security clearance and, to avert imprisonment, submitted to hormone injections.",
+      "exact_native_cache_key": "5d1f07439785fd3a7eb457495caacf415773ec55.pkl",
+      "cache_input_text_sha256": "be51672e982c9a76dd61bd5221b956237a365302daaba116edf41d2ee084473a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "He forfeited his security clearance and,",
+      "exact_native_cache_key": "c024364eb847e91b0f22117e1de452b1ea038181.pkl",
+      "cache_input_text_sha256": "99d989f5311287fe2c729e8efaa5a615023d12fdeb9e4a68a40172694b80fe14",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "to avert imprisonment,",
+      "exact_native_cache_key": "09adedcf09a6206b353d27d720a60b9476246337.pkl",
+      "cache_input_text_sha256": "eaa1c591cdfd837b241a24a622d07468696a0c31865b0851bd04f2a7e8aad3dc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "submitted to hormone injections.",
+      "exact_native_cache_key": "7539c5a31b3fa4a4d5167c6fa74cfe680b55f514.pkl",
+      "cache_input_text_sha256": "f2ff19c148dd2cf2cae87a667ff1a1d477c3fa1166555d21eb0f68e532100494",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "He died of cyanide poisoning on 7 June 1954.",
+      "exact_native_cache_key": "dd44e289248a8b5b2317bae13a56ac3ffc9bb7c9.pkl",
+      "cache_input_text_sha256": "071cc1c000adb5f577512d62584aba8b3fda09821873d4bb5c8a6620f6c7d1d5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "He died of cyanide poisoning on 7 June 1954.",
+      "exact_native_cache_key": "970e84617eb1888a43eeee46468ea05fa37f8dff.pkl",
+      "cache_input_text_sha256": "071cc1c000adb5f577512d62584aba8b3fda09821873d4bb5c8a6620f6c7d1d5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "A coroner's inquest ruled it suicide, though some doubt it.",
+      "exact_native_cache_key": "f13e1fde5bc983841a9b2c8885cb20d7ce8a9ad0.pkl",
+      "cache_input_text_sha256": "5ac9ae5ae7cdbae8a2e0d565609cacf40f5f35e37bd534ac287a770264aac7c8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "A coroner's inquest ruled it suicide, though some doubt it.",
+      "exact_native_cache_key": "d5792411107aa5cb62b09f39799bd0faa0168d84.pkl",
+      "cache_input_text_sha256": "5ac9ae5ae7cdbae8a2e0d565609cacf40f5f35e37bd534ac287a770264aac7c8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "A coroner's inquest ruled it suicide,",
+      "exact_native_cache_key": "5af38cae7320c244347e1580d8be1fcdf7d28e61.pkl",
+      "cache_input_text_sha256": "8a7631663ae64ca21f4f1b038d14417d2d44af6054189ddb4d7fb4bed5d10f1f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "though some doubt it.",
+      "exact_native_cache_key": "8c0b81a127e1715b8dc06084dd85474274614347.pkl",
+      "cache_input_text_sha256": "942a2e0357f491755c582cc5943862fd1acd8ebd88a3e87de6877723a420aca9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Recognition lagged.",
+      "exact_native_cache_key": "bb29f4530d712660831a889d47dcd1e653707872.pkl",
+      "cache_input_text_sha256": "5ba03b4d68fa553bc230c816f180be679370e396228c1869f00414a6deec0a0e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Recognition lagged.",
+      "exact_native_cache_key": "175c0e3713ed680308f8568aa0d613e4b24b270a.pkl",
+      "cache_input_text_sha256": "5ba03b4d68fa553bc230c816f180be679370e396228c1869f00414a6deec0a0e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 10 September 2009 Britain's prime minister publicly apologised, and on 24 December 2013 Turing was posthumously granted a royal pardon.",
+      "exact_native_cache_key": "8bbfb44513867e4d6d8387c4a26052345c513bb1.pkl",
+      "cache_input_text_sha256": "1e8bc101119188955051578578543d59cd0de5946fc99c759169bf7c77bf2f4b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 10 September 2009 Britain's prime minister publicly apologised, and on 24 December 2013 Turing was posthumously granted a royal pardon.",
+      "exact_native_cache_key": "e6fe35b84b19ab480640deea468fac1d6abd43fc.pkl",
+      "cache_input_text_sha256": "1e8bc101119188955051578578543d59cd0de5946fc99c759169bf7c77bf2f4b",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 10 September 2009 Britain's prime minister publicly apologised,",
+      "exact_native_cache_key": "3d6a17410d35538fe95963d481558f07da9aa787.pkl",
+      "cache_input_text_sha256": "e663c7cf6ddd4872188cd660b64001e2c3255f3066f444976f14e8f36c0acc52",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and on 24 December 2013 Turing was posthumously granted a royal pardon.",
+      "exact_native_cache_key": "591d41e76c27065ba476304c0a00940b71387aa5.pkl",
+      "cache_input_text_sha256": "b14d03b1a9e8b427fed2a49dfb0feef353be6fbec27914ae2facebadf12f98ee",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 10 September 2009 Britain's prime minister publicly apologised,",
+      "exact_native_cache_key": "3d6a17410d35538fe95963d481558f07da9aa787.pkl",
+      "cache_input_text_sha256": "e663c7cf6ddd4872188cd660b64001e2c3255f3066f444976f14e8f36c0acc52",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and on 24 December 2013 Turing was posthumously granted a royal pardon.",
+      "exact_native_cache_key": "591d41e76c27065ba476304c0a00940b71387aa5.pkl",
+      "cache_input_text_sha256": "b14d03b1a9e8b427fed2a49dfb0feef353be6fbec27914ae2facebadf12f98ee",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 23 June 2021, his birthday, a fifty-pound note bearing his portrait entered circulation.",
+      "exact_native_cache_key": "76c931a2882a7089685b0ed46e1f624097040a42.pkl",
+      "cache_input_text_sha256": "81fd261af4e702cc3bc8f34e32344973568aba5146c61c26ead6fd72965f2542",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 23 June 2021, his birthday, a fifty-pound note bearing his portrait entered circulation.",
+      "exact_native_cache_key": "5ecc62f31a3b22c29f271d86751289d11b069560.pkl",
+      "cache_input_text_sha256": "81fd261af4e702cc3bc8f34e32344973568aba5146c61c26ead6fd72965f2542",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 23 June 2021,",
+      "exact_native_cache_key": "2abdb765945b94eb80fc6dff3f3101846b1f82dd.pkl",
+      "cache_input_text_sha256": "1b7b8bb857f34d01eb5d4dcc2a802e8a9fc7bcdd319d2528282d8da7e94c5664",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "his birthday,",
+      "exact_native_cache_key": "6dad079769f180b68ea7a9e171954862cdb705f8.pkl",
+      "cache_input_text_sha256": "5abfda855983635210f568beb00910b4a6c7271e83c3d01b4da653f798878e24",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a fifty-pound note bearing his portrait entered circulation.",
+      "exact_native_cache_key": "e064d95a23aecb3f9f0ded7acc13bb66bc58ae48.pkl",
+      "cache_input_text_sha256": "28349774881905b7f72ccc0e3da1e92138be69932c0653bcb0b1494375f6f6dc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The country that prosecuted him put his face on its money.",
+      "exact_native_cache_key": "e54da4531c1212a159ad9dd0e6c99d52ca9da948.pkl",
+      "cache_input_text_sha256": "855d9d05b22bc0e90f437979901f99e4a16ab505c8d7ae58322ccb50ad9d029a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The country that prosecuted him put his face on its money.",
+      "exact_native_cache_key": "6fd2835e308388f53f82545e5b5167997527ce7f.pkl",
+      "cache_input_text_sha256": "855d9d05b22bc0e90f437979901f99e4a16ab505c8d7ae58322ccb50ad9d029a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    }
+  ],
+  "unique_reference_key_count": 86,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "fbd41a2cbb7ad1f6335460297dd8e304548f480e.pkl",
+      "pkl_sha256": "d92625e0ba3dbb5960c033588bb951a31cc4825133d10aa2d571f3b7c93b62de",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The Man Who Gave Machines a Mind",
+          "exact_native_cache_key": "fbd41a2cbb7ad1f6335460297dd8e304548f480e.pkl",
+          "cache_input_text_sha256": "22bb18790fa2ffe9dce9b66099fda175f298a2a2357a633fdd2ed3f74df8ae15",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        46592
+      ],
+      "unprocessed_array_sha256": "80ce8bccfc56dbe83a2de47169f009273a550877287b623455b49eaff4897049"
+    },
+    {
+      "exact_native_cache_key": "4e6ce282611eb363a3cba6d1fbbd75e2aa5b2081.pkl",
+      "pkl_sha256": "a2fb82e297c5b363d9ab2730426c5b2742fd9eaadca37e82376d3892c1a22c8e",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Born in June 1912, Alan Turing had a formidable intellect by his early twenties.",
+          "exact_native_cache_key": "4e6ce282611eb363a3cba6d1fbbd75e2aa5b2081.pkl",
+          "cache_input_text_sha256": "48a5f75dc37f131552c7bd895e9955f7a6da9581afee9923c5df53c34f0ac785",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        149504
+      ],
+      "unprocessed_array_sha256": "09c38a7284e08ab227c46e89f095921dd2d41b391050c4a036808504cf42efc2"
+    },
+    {
+      "exact_native_cache_key": "4c4f898a4957bcaf26cd5ed01819aec4abfe5bad.pkl",
+      "pkl_sha256": "7db74a8c0a7d014cfeede3f99f135ee827c21bb8439340f34a78131b6f6be9ce",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Born in June 1912,",
+          "exact_native_cache_key": "4c4f898a4957bcaf26cd5ed01819aec4abfe5bad.pkl",
+          "cache_input_text_sha256": "306167a01f9cfc8081b1e2445db474d61293a5cf7e930e0034857cd4350fe5ea",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        47104
+      ],
+      "unprocessed_array_sha256": "eed75d1408f3789eea4d0e8be2c53605fcbea8348b90d7d8c52315aa61140f82"
+    },
+    {
+      "exact_native_cache_key": "f7fdbf8bf5aee40ebe4ed302cc7919353e5fe126.pkl",
+      "pkl_sha256": "a378467fe7abf88e170f61f3a98e060458c2fdebd65468b77aa75de6abb0f4d5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Alan Turing had a formidable intellect by his early twenties.",
+          "exact_native_cache_key": "f7fdbf8bf5aee40ebe4ed302cc7919353e5fe126.pkl",
+          "cache_input_text_sha256": "a9189189aa62ca727c3c7a762f7cb659af0b0cee98d18e2f587beefb05680091",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        89600
+      ],
+      "unprocessed_array_sha256": "4d958db98ef23cbc8e8d703d17e846cae25befcd456a449e348b19a43d92bf3c"
+    },
+    {
+      "exact_native_cache_key": "e8e0c0e90cbede7fa7694dc7cece0018fe137c2c.pkl",
+      "pkl_sha256": "9d228c297ab61a497b4252e72337017f60bf71d36e4c86f24b8e2b5dd50692ab",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In a paper read in November 1936, he outlined a \"universal machine\": a device able to execute any computation, given the right instructions.",
+          "exact_native_cache_key": "e8e0c0e90cbede7fa7694dc7cece0018fe137c2c.pkl",
+          "cache_input_text_sha256": "353f79557fcffdd4197c7d6e6e191235ee40bcc93bf8436dab19b96efd046c55",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        272384
+      ],
+      "unprocessed_array_sha256": "bfc4937c3ea2c9e0774f664f79f89f83d47c6aaa4c3450d056ac6fc505fcfbed"
+    },
+    {
+      "exact_native_cache_key": "c9d856f6169da55f927b18d7fcdf1b627faa5648.pkl",
+      "pkl_sha256": "fda5f647419f03412c416af9ce00cd259d96efac8c2a328ee4fc9cdf176a5b05",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In a paper read in November 1936, he outlined a \"universal machine\":",
+          "exact_native_cache_key": "c9d856f6169da55f927b18d7fcdf1b627faa5648.pkl",
+          "cache_input_text_sha256": "b80532853e4888a836b4bf67d9fa56f67b309009b8aec9334dc9c33007510283",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        136704
+      ],
+      "unprocessed_array_sha256": "604531c97cc59b0dcdecacf839f966451fb0c6fa3ff91948b9d9dd7cad238a8d"
+    },
+    {
+      "exact_native_cache_key": "56c07a5f2a3a45bb8732d612f9dde45aac1a1944.pkl",
+      "pkl_sha256": "927c897c85c99ac576af38f187935ae70213bc26b61e6350aeb5e46e439147ec",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a device able to execute any computation, given the right instructions.",
+          "exact_native_cache_key": "56c07a5f2a3a45bb8732d612f9dde45aac1a1944.pkl",
+          "cache_input_text_sha256": "708903a82d0a34330788b5b312a5fe71f147db1b1de33bcaf13b5c84644bccb8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        117248
+      ],
+      "unprocessed_array_sha256": "ceefce69028bc17d73d75f0eb37eb3fa68fb03681e824c49733e3e70fdae98e3"
+    },
+    {
+      "exact_native_cache_key": "98e51ba9dac2fd7c91fec0e0104396a622f02d9c.pkl",
+      "pkl_sha256": "929abf3da5b93ad1f37c59711f27b0650218b1a425f9d08eb1555693b9eed7ba",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In a paper read in November 1936,",
+          "exact_native_cache_key": "98e51ba9dac2fd7c91fec0e0104396a622f02d9c.pkl",
+          "cache_input_text_sha256": "2025eb494305d8effc049ec635fe35e4fca903543aa0ae84d8d176e8f16fd771",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        71680
+      ],
+      "unprocessed_array_sha256": "854e6222f0bc8751ca0deaa55001b7b930831b9a706075e241f23aa4465adbba"
+    },
+    {
+      "exact_native_cache_key": "b0191ea0d2a4a052db97440338f9f655a344a5bf.pkl",
+      "pkl_sha256": "8f57a4922d2a9dc21e23631de924b2d9fa2549aab1ba35c9c1af036d1c3ddbbe",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "he outlined a \"universal machine\":",
+          "exact_native_cache_key": "b0191ea0d2a4a052db97440338f9f655a344a5bf.pkl",
+          "cache_input_text_sha256": "b8cc43ef2ea31044a646c406643b16e378c37d514a3d3828924739161d9d4078",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        52224
+      ],
+      "unprocessed_array_sha256": "c459bb0d08fb568d154a9fee6299e3e944d1f20090be8eb9a59f59ea67317774"
+    },
+    {
+      "exact_native_cache_key": "735ef66fe7c31c513b70d7723b0f977fb19cf6e6.pkl",
+      "pkl_sha256": "aa77153280293687e8154ec7ecb9b1521fa579524010794ec834f5fec6516b7b",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a device able to execute any computation,",
+          "exact_native_cache_key": "735ef66fe7c31c513b70d7723b0f977fb19cf6e6.pkl",
+          "cache_input_text_sha256": "b2db4e4f54abfb1f9134c8b5b12aa82886d72c32f856769d8591f47aa1e492ca",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        71680
+      ],
+      "unprocessed_array_sha256": "52f6771755416e92cd3de95e3b990e38f69ec40321503d7a0de05f19231737e3"
+    },
+    {
+      "exact_native_cache_key": "29e2c53d0d17aaf39ceb489959d098097ac5dd4a.pkl",
+      "pkl_sha256": "cf43ffb94af4a2b3218026b98023ab8c3c33c6d49fe37250c2f71557e61c2020",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "given the right instructions.",
+          "exact_native_cache_key": "29e2c53d0d17aaf39ceb489959d098097ac5dd4a.pkl",
+          "cache_input_text_sha256": "ffe09f096ce08b282ef76828cc5bbb37693e366911f5b7dd687f01855ae5c16f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        39936
+      ],
+      "unprocessed_array_sha256": "a0aba7cb9617d5af8069cc09d8919d9e17fdae1e100f7813350cf79cb0272156"
+    },
+    {
+      "exact_native_cache_key": "49835d647dbb7df768f1a0a9290b5d6f03d19672.pkl",
+      "pkl_sha256": "6d2f8ab6f2cda8e7704a229e20d25713f6b82ef186cfa47ab1159e5f93364a18",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "That abstract construct, rooted in mathematical logic, became the theoretical blueprint of the modern computer.",
+          "exact_native_cache_key": "49835d647dbb7df768f1a0a9290b5d6f03d19672.pkl",
+          "cache_input_text_sha256": "527909f503d65a582608c1c8e3d1e4adcd38d460c4f56871410a06f9480784f6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        182272
+      ],
+      "unprocessed_array_sha256": "42ea2fbea1eaa800d3c35dae478014baa818448eaaa0b08618d8f90b86cd5505"
+    },
+    {
+      "exact_native_cache_key": "d3d49df2e54284dd1ee33ae516a774a0916af1ac.pkl",
+      "pkl_sha256": "37dd5c4ef19efe29931b759245c77fc4cd6d21b030a26251895545231063bccc",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "That abstract construct,",
+          "exact_native_cache_key": "d3d49df2e54284dd1ee33ae516a774a0916af1ac.pkl",
+          "cache_input_text_sha256": "6b138502031f7d890965225916da273d5aaf8b7d28fb148072fbcd2d447e7016",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        39424
+      ],
+      "unprocessed_array_sha256": "159f6d65dab16dd6b80f9e0b3d501b30d7c13fe684f4e6030992fb5a895ae27a"
+    },
+    {
+      "exact_native_cache_key": "8e670e25194f382dd0fed35c13344ec31cd095db.pkl",
+      "pkl_sha256": "15a10c807ffe6943d2ffcdf640d4375a79eb03b190c56dca96f8bcd053363ec1",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "rooted in mathematical logic,",
+          "exact_native_cache_key": "8e670e25194f382dd0fed35c13344ec31cd095db.pkl",
+          "cache_input_text_sha256": "f86ff69fb9b705fd3418053827564dc697e61fcb830857ac1124603ebc7ca860",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        51712
+      ],
+      "unprocessed_array_sha256": "5e102d89fa825b1871bae7b525f2e2515cd8814502beb3a052fa93c38727b7bc"
+    },
+    {
+      "exact_native_cache_key": "dd5f6ecaa4e694438a4ebd6f4137d27a4e75c358.pkl",
+      "pkl_sha256": "6841eea5592aaedf9e74404ace231fc269017de556506f4853b82cf66f0f9046",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "became the theoretical blueprint of the modern computer.",
+          "exact_native_cache_key": "dd5f6ecaa4e694438a4ebd6f4137d27a4e75c358.pkl",
+          "cache_input_text_sha256": "e7e6b097fc0a9f0c542261b03cc0d9b23a718b76b362620000e3e0396e60ab04",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        84480
+      ],
+      "unprocessed_array_sha256": "9166bdebf26715baf9763be015e0598365874f6d555a4b93e65446a70eb33c08"
+    },
+    {
+      "exact_native_cache_key": "cb5fba7a0d7438bd876cf71305af75bdd58e6ddf.pkl",
+      "pkl_sha256": "744a0a19fb8283574a8e767389903939daddfd8b3a422965fed796154e13f5b4",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 4 September 1939 he joined the classified codebreaking effort at Bletchley Park, leading work on naval Enigma, Germany's encryption machine.",
+          "exact_native_cache_key": "cb5fba7a0d7438bd876cf71305af75bdd58e6ddf.pkl",
+          "cache_input_text_sha256": "b0b5a4d0db039eabe66aaaaa570a8380d1a9448495d8d1d257d122564f544128",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        278528
+      ],
+      "unprocessed_array_sha256": "72abb1b1c91aaf756db3d464ccbac71d383af0f1bf8f1170cd7e5299b73d06c8"
+    },
+    {
+      "exact_native_cache_key": "54e81b9d749e21ba3d51497555ffffc395b30dcd.pkl",
+      "pkl_sha256": "627daab63b2882f82f92c58f7fa4d8d68499dcb7b7682467c9f85c78bc690abf",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 4 September 1939 he joined the classified codebreaking effort at Bletchley Park,",
+          "exact_native_cache_key": "54e81b9d749e21ba3d51497555ffffc395b30dcd.pkl",
+          "cache_input_text_sha256": "38fa625e81142b641b199ad366256963282ceb59841cc78a38ad8eca3f902a4f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 4 September 1939 he joined the classified codebreaking effort at Bletchley Park,",
+          "exact_native_cache_key": "54e81b9d749e21ba3d51497555ffffc395b30dcd.pkl",
+          "cache_input_text_sha256": "38fa625e81142b641b199ad366256963282ceb59841cc78a38ad8eca3f902a4f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        169472
+      ],
+      "unprocessed_array_sha256": "9def3f0b1d925acfdf809d7be0a247486e4b2322fdad41888ff5cdb37442c069"
+    },
+    {
+      "exact_native_cache_key": "3fc7171f4d94606e104c7c4b72e1b96d498f2f70.pkl",
+      "pkl_sha256": "c60e86ccce826efd866bbfd48b53a9fc49eb1393a1227f7b47680cfb748fd11e",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "leading work on naval Enigma, Germany's encryption machine.",
+          "exact_native_cache_key": "3fc7171f4d94606e104c7c4b72e1b96d498f2f70.pkl",
+          "cache_input_text_sha256": "f816ae9c95fdca3b0247d717e801bf5385526f7d3a0f1b2a407e394916aa7f5e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        94720
+      ],
+      "unprocessed_array_sha256": "c372fbd37c006a222457a22f61e738d94e838ae672ca9894e5abd6523861ffcb"
+    },
+    {
+      "exact_native_cache_key": "82b9d286e28f7efa3797217607d8f1a933a46dad.pkl",
+      "pkl_sha256": "173f2a7b17019199c12beda7fa8203c3fbe115b2db41f7c960a328052bc3c972",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "leading work on naval Enigma,",
+          "exact_native_cache_key": "82b9d286e28f7efa3797217607d8f1a933a46dad.pkl",
+          "cache_input_text_sha256": "a662e350f8e089597d8a9b1faacc07a6ac213d141ee74102cc877d13608bbfdc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        45568
+      ],
+      "unprocessed_array_sha256": "30246aa3e65afcb82305a64677d97602bd280e84e0b2d450897cd7feccd5f2e6"
+    },
+    {
+      "exact_native_cache_key": "472122b31bb3566dce6a78377ddb6f97928d2d31.pkl",
+      "pkl_sha256": "356e43d2cb8110ba16ca9016dce4fc9eaaa5cc353f49a068f7e69fb68ca4a6f5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Germany's encryption machine.",
+          "exact_native_cache_key": "472122b31bb3566dce6a78377ddb6f97928d2d31.pkl",
+          "cache_input_text_sha256": "9e90d777f0d093169289dcc7adf2549f8fca555e1aa971277d59ed3f2f39e4a6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        43520
+      ],
+      "unprocessed_array_sha256": "bdc6ca7d10e383e928d5c800cb7bcfa6a4ee89be0fa33dcc942353032f80a7e7"
+    },
+    {
+      "exact_native_cache_key": "2bb3b4dc9c4ba52a25926e64992954ce9948e5f4.pkl",
+      "pkl_sha256": "318e5c0cf8fbbb9594fd36ae92b325cb8045319f75b852bf27bf616e9cc9a562",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Polish mathematicians had deciphered Enigma by late 1932 and shared their insights with Britain and France in July 1939.",
+          "exact_native_cache_key": "2bb3b4dc9c4ba52a25926e64992954ce9948e5f4.pkl",
+          "cache_input_text_sha256": "5fb58938d34a1bfd5b86c00f1f380b8ffa5945e6573e07f01bcef84f80878e89",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        241152
+      ],
+      "unprocessed_array_sha256": "74fec6cff355554e1c4c3cf32ce758c8c70e30ea2188a91d6bf7b3cf3b7fd7c1"
+    },
+    {
+      "exact_native_cache_key": "a5debeaa4790faa863f862ba175c7e8db98991f7.pkl",
+      "pkl_sha256": "14ec8b6f9b948c2293aa4db5647f65ad3a6cfad185f9032fcb497f496c54d59d",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "His team's machines exploited them and, operational from March 1940, automated the laborious search for each day's rotor settings.",
+          "exact_native_cache_key": "a5debeaa4790faa863f862ba175c7e8db98991f7.pkl",
+          "cache_input_text_sha256": "b158ab16faf6c5244e9467078e78cab5adff74c921daa0caea57007d121ac2e5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        230912
+      ],
+      "unprocessed_array_sha256": "7bba79f8cbcb4a2e44a0ac8b4c6044bec82c1f49bda8ab2a66e19f329eb8f2f0"
+    },
+    {
+      "exact_native_cache_key": "e907a53373296412a650db6eaa9e08a1233720a4.pkl",
+      "pkl_sha256": "7bd9e05133b5357674cabd20636a3f0dd41bc5b3675a87c8d789b69f2c455171",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "His team's machines exploited them and, operational from March 1940,",
+          "exact_native_cache_key": "e907a53373296412a650db6eaa9e08a1233720a4.pkl",
+          "cache_input_text_sha256": "5a0013ff52595686fc7e226114a5ba742cebc0862547d41f572cc320c244780a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        134144
+      ],
+      "unprocessed_array_sha256": "834b74a81867d7341dcf34df4a27bcc7943a3839c41666a03bb1812b0778c46d"
+    },
+    {
+      "exact_native_cache_key": "35dc172e58570c4993989ff1956b08c280903821.pkl",
+      "pkl_sha256": "4a62c29044a18cd23c4f74a3e184f337f92e751d599c703aade5a938bc5adee5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "automated the laborious search for each day's rotor settings.",
+          "exact_native_cache_key": "35dc172e58570c4993989ff1956b08c280903821.pkl",
+          "cache_input_text_sha256": "ac8aa4bcf70d81d58c2d57b6a4de4df1281c71d4eea187e08ea5463fe16148d2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "automated the laborious search for each day's rotor settings.",
+          "exact_native_cache_key": "35dc172e58570c4993989ff1956b08c280903821.pkl",
+          "cache_input_text_sha256": "ac8aa4bcf70d81d58c2d57b6a4de4df1281c71d4eea187e08ea5463fe16148d2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        84480
+      ],
+      "unprocessed_array_sha256": "991ebc31bc34d74dc9bf51040aad7eb3c740a4aa412038b784220e04815f21de"
+    },
+    {
+      "exact_native_cache_key": "c385a8b694d0c8dad5e93fdeaeef7a0551061d72.pkl",
+      "pkl_sha256": "48807d1607dee1711e3a552135b9cda7d5bc84e4387d1ffd27c59b914be22732",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "His team's machines exploited them and,",
+          "exact_native_cache_key": "c385a8b694d0c8dad5e93fdeaeef7a0551061d72.pkl",
+          "cache_input_text_sha256": "ca3aafbc17a75be3e4cdc2d79b89d2fce01efd21c387e0710e3d2bd2a6d8a77f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        56832
+      ],
+      "unprocessed_array_sha256": "019d8e1a469f8fe10d9309bc0968b86727c733a48bd0d2b9138f60d4c9d99b24"
+    },
+    {
+      "exact_native_cache_key": "7e08dfef591266440208ce35cd025e782f053496.pkl",
+      "pkl_sha256": "324c89ae16f424ecb0399aa5b173724e61ab05f9a462274c73232cd558eeef31",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "operational from March 1940,",
+          "exact_native_cache_key": "7e08dfef591266440208ce35cd025e782f053496.pkl",
+          "cache_input_text_sha256": "c26fb2cb25d46905a35def20019228a3ba590061cb4ea0b22ab89e88046af1cb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        60416
+      ],
+      "unprocessed_array_sha256": "238a8d2dc1422d115dcc075055ce2a90b5cd5966818c4ba30841b0e53f41a507"
+    },
+    {
+      "exact_native_cache_key": "00498735c27beeb137c447ad6c27b3f4b1c1be90.pkl",
+      "pkl_sha256": "01e485c717941bede7c87b1ac1c1ee842a9e7f051b731892037fb92b3b190afc",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In October 1950, writing in the philosophy journal Mind, he posed a provocative question: \"Can machines think?\"",
+          "exact_native_cache_key": "00498735c27beeb137c447ad6c27b3f4b1c1be90.pkl",
+          "cache_input_text_sha256": "093b07b5d7f17cbd703d5a287c15bf2588be7f54b777e74b61c667c2a08943a6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        200192
+      ],
+      "unprocessed_array_sha256": "aefc6b70d20662d94799e04e175d5c615abbbde5913eed6831a9d51e5d76ff55"
+    },
+    {
+      "exact_native_cache_key": "05740f2fe5a7e065232cb95fc42fa4d20c4aad63.pkl",
+      "pkl_sha256": "b4189d050e80380b35a23ef2e62b8c8e998cc4845f17f477dbca70458f4f03ce",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In October 1950, writing in the philosophy journal Mind,",
+          "exact_native_cache_key": "05740f2fe5a7e065232cb95fc42fa4d20c4aad63.pkl",
+          "cache_input_text_sha256": "7935e819a0bc2238cd95ed9787e26582641b7701bd65572543c02682f5550d65",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        106496
+      ],
+      "unprocessed_array_sha256": "3f989c99bbea03ef0c1cc78bacaac8d9afecb81dff9ac68d75c814d446f9e652"
+    },
+    {
+      "exact_native_cache_key": "87835ccacd36084224bbd09ec435bf01f8cd90fd.pkl",
+      "pkl_sha256": "278ac0d934740cbaef99a21522ddef1668e1d6b36145f216b2a8ae4db02f62d0",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "he posed a provocative question: \"Can machines think?\"",
+          "exact_native_cache_key": "87835ccacd36084224bbd09ec435bf01f8cd90fd.pkl",
+          "cache_input_text_sha256": "9428f4ef495410bbb7f05b00d56e2829e8e09657216befc2602a18087055c6b6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        83456
+      ],
+      "unprocessed_array_sha256": "8a364b161f72a3524ed18b24d94637e0769a5b4b4f7265bf3d8ca8987dfa2f8c"
+    },
+    {
+      "exact_native_cache_key": "9f5ba0eb3d7c105ff32a3dca0430c9b654585163.pkl",
+      "pkl_sha256": "4a08438437b2003952e47ea06717202ea7990538ac1169651896805c800617f3",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In October 1950,",
+          "exact_native_cache_key": "9f5ba0eb3d7c105ff32a3dca0430c9b654585163.pkl",
+          "cache_input_text_sha256": "bb55390a73dccf2bd96176cce336a06bc72564c4c19206b7f5f2e9f7ab0e14fa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        41984
+      ],
+      "unprocessed_array_sha256": "0d59ec4d7b839a0217c6ecb6fa03809610092a756aa949eb0087f990d8a1e379"
+    },
+    {
+      "exact_native_cache_key": "27a36aaac1ce8ccb5663ba0b398d76d56f21065f.pkl",
+      "pkl_sha256": "d767b0fa9f4bbc030d9dc51810a96a6f34322fcb5ac1bbfaa521a9d79d740375",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "writing in the philosophy journal Mind,",
+          "exact_native_cache_key": "27a36aaac1ce8ccb5663ba0b398d76d56f21065f.pkl",
+          "cache_input_text_sha256": "3197811d2a84ad3f103ad8fa8e487d7f0745d8882caef8af3b9d666be10be9cb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        55808
+      ],
+      "unprocessed_array_sha256": "ff471ef5c699ac88429762202552fa4f4d0c3e2ffbb92cb3c5a1f861771dfdce"
+    },
+    {
+      "exact_native_cache_key": "aed89ab42311b8dbd22aa0f42cc881613431f33a.pkl",
+      "pkl_sha256": "5da5fb111482539ea0b68145eb37d4410f386095c7371fdfe95a261a9ae9b05c",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "he posed a provocative question:",
+          "exact_native_cache_key": "aed89ab42311b8dbd22aa0f42cc881613431f33a.pkl",
+          "cache_input_text_sha256": "10450daebd88c2551cf655d609af2034ea982e415c84529c234de2f4b9b8faa8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        50176
+      ],
+      "unprocessed_array_sha256": "a120a4119a8b7ac86f6e36416004d56f206ae5652d710957691da420151ddbbf"
+    },
+    {
+      "exact_native_cache_key": "78098fab68c06e62cf678d24a1f13fadfd16c52a.pkl",
+      "pkl_sha256": "01724bdd5ac768fbb4ca2d70c829a27ef38f2cb7df1c5cc649afd176d04f9e48",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "\"Can machines think?\"",
+          "exact_native_cache_key": "78098fab68c06e62cf678d24a1f13fadfd16c52a.pkl",
+          "cache_input_text_sha256": "b72e94b82be58686468c0db96bedd00c7b1fd6cb11e8bb8a88d047eb3e4310e4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        29696
+      ],
+      "unprocessed_array_sha256": "1308fbf8104a0d19baafa7366ab7a945e632a271f2e9beba22c56a10c80e3ffb"
+    },
+    {
+      "exact_native_cache_key": "435327f0d12d8b7937a35997d70f8ef3ae373301.pkl",
+      "pkl_sha256": "f3c3072cc9f51fc5f07c214114bf094739598f6d2cde60af294db1a23da09bc4",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "He proposed a practical substitute, the imitation game, now widely called the Turing test.",
+          "exact_native_cache_key": "435327f0d12d8b7937a35997d70f8ef3ae373301.pkl",
+          "cache_input_text_sha256": "c4c8edc8276d2f8ef98e34e83e36d05f547d6784c5d4ad9a71b799a2bece7d20",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        145408
+      ],
+      "unprocessed_array_sha256": "dcb387d29de2c2320c7c470d0d326a3625fbb6c74726eba96dc74fa4a731c622"
+    },
+    {
+      "exact_native_cache_key": "f56ed0f3d17e377d7bca990549be954f13e7138d.pkl",
+      "pkl_sha256": "b50acba4304dce5e7aa7c2ccd0ac89434db55fe73bae03d0df976bdd0309401b",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "He proposed a practical substitute,",
+          "exact_native_cache_key": "f56ed0f3d17e377d7bca990549be954f13e7138d.pkl",
+          "cache_input_text_sha256": "ce0c268055eac7a66802238085456b9f2dd91c10dfac3a721ef22de28bf6f716",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        53760
+      ],
+      "unprocessed_array_sha256": "bc23d6b223dd850f602cd96cc692bad41b6632ded43a20182b704c1e7e77d3d3"
+    },
+    {
+      "exact_native_cache_key": "1b2c9b4d412613fbcab4408bc257295eb0ceb7d0.pkl",
+      "pkl_sha256": "1d16afa793e30d1590d9e12b8ba9c507dee0d07d517f2648f5736557d8429c44",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the imitation game,",
+          "exact_native_cache_key": "1b2c9b4d412613fbcab4408bc257295eb0ceb7d0.pkl",
+          "cache_input_text_sha256": "d85356d8c7a133fc7bb8b747f152a3b7c463746a96a08da0e31ab34f6b1e38d8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        30720
+      ],
+      "unprocessed_array_sha256": "3045a8d0298b33a0a68a75e4bc9a7d2674cc1be9230c30d6ca5f59a128737e30"
+    },
+    {
+      "exact_native_cache_key": "6fc86be90216ef92929ec10f35e2ee46a4ac99a8.pkl",
+      "pkl_sha256": "40f173167163cd9a3d5158a724430077022743b36cb8acb4eab366e19bfb2ce5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "now widely called the Turing test.",
+          "exact_native_cache_key": "6fc86be90216ef92929ec10f35e2ee46a4ac99a8.pkl",
+          "cache_input_text_sha256": "7a154541ae30218ca15c84e5a3e3a77f53a22fa6ea4bc2eac7f53b49d27d1bba",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        48128
+      ],
+      "unprocessed_array_sha256": "f1bc794d3d3bf76bb8ace9ae1586da02be508128e28565a780b7aedb9125163f"
+    },
+    {
+      "exact_native_cache_key": "3614b2a901fb899c5fe60c702df864e1dd8184a8.pkl",
+      "pkl_sha256": "e2f7bac3ce1716cead9ee75c45f10a59566969c790160841ac626479d5e5b22d",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "An interrogator exchanges typed messages with two concealed players, one human and one machine.",
+          "exact_native_cache_key": "3614b2a901fb899c5fe60c702df864e1dd8184a8.pkl",
+          "cache_input_text_sha256": "15defd704a481babbdd69d62d64a074b18df0db1e901aedb4976553bbc4e2f2e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        160768
+      ],
+      "unprocessed_array_sha256": "cfbf12bb74b49473aac8f758346f21a58fd2de7a2574f2c9dddae94149631259"
+    },
+    {
+      "exact_native_cache_key": "1fd457143948bd1b5db47acc70a70fe3982f15fd.pkl",
+      "pkl_sha256": "5121cb8f7c959cafe15225df67b13c9e5b6b7b860bd39556bb4c783932378186",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "An interrogator exchanges typed messages with two concealed players,",
+          "exact_native_cache_key": "1fd457143948bd1b5db47acc70a70fe3982f15fd.pkl",
+          "cache_input_text_sha256": "a5899a4c94ba8c73b7e6d5c8a194d9e7a7aaf9c661434950c1c2f30de862d6aa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        111104
+      ],
+      "unprocessed_array_sha256": "5c09c373f1cf97f7e53233aa9f328d6c1e5263641786ad6f5f416b6d6430af56"
+    },
+    {
+      "exact_native_cache_key": "e82c6b9c71efd3ef32059ae37787e8d92110f885.pkl",
+      "pkl_sha256": "34f2bc5940e4508634cffc9f94d9b483cc7d447dfa30c90d532e6e5827876c41",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "one human and one machine.",
+          "exact_native_cache_key": "e82c6b9c71efd3ef32059ae37787e8d92110f885.pkl",
+          "cache_input_text_sha256": "02903690002f6c4b6bb02311ee84f4099fa06a6c53000ec7a5ebfd9336e6e73d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        43520
+      ],
+      "unprocessed_array_sha256": "4b50d80a99259e01c1a124936c6d9bc9993f410eedfb38d7b42789a4d3ef1830"
+    },
+    {
+      "exact_native_cache_key": "b5b9c91d1adb9bfa820ceab29dbcd2cce1413ee9.pkl",
+      "pkl_sha256": "4241fb71c5231c75a07b0066341f61654348c53dd9d63fced1e87df11d384734",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "If the interrogator cannot consistently distinguish them, the machine passes.",
+          "exact_native_cache_key": "b5b9c91d1adb9bfa820ceab29dbcd2cce1413ee9.pkl",
+          "cache_input_text_sha256": "5d1b938b8776e7e1df737183d0eaaf89602c59289c28360cf38bb008d78bf407",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        120320
+      ],
+      "unprocessed_array_sha256": "1b7b4561ef4892b966d0cb6acd2ac0c5f9ebb6d0f932de787f5224b5167110bd"
+    },
+    {
+      "exact_native_cache_key": "f47052b3e2036abdaecdc7b2fc9095def9126dfa.pkl",
+      "pkl_sha256": "c6a0ef325202047bbeb33236773f795825d94f9d825fe1c13976b0fb46010438",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "If the interrogator cannot",
+          "exact_native_cache_key": "f47052b3e2036abdaecdc7b2fc9095def9126dfa.pkl",
+          "cache_input_text_sha256": "d6e1ba945566c7b89323c598eea663311c5d0bf433849e935bf848a2874b5154",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        39424
+      ],
+      "unprocessed_array_sha256": "83f2b6939b447112d196a94623fcc35cfd8366afe34529e36ea61583ca229412"
+    },
+    {
+      "exact_native_cache_key": "18998569c5a078e95ac4c5382e08d49b3bea26c7.pkl",
+      "pkl_sha256": "a6e5f403348f2aa407626c2d66ec9854b565d3a873f2e84d4c72b67db8c0a970",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "consistently distinguish them,",
+          "exact_native_cache_key": "18998569c5a078e95ac4c5382e08d49b3bea26c7.pkl",
+          "cache_input_text_sha256": "637a899176f1e22941aac423abece302d604781c5990147340664938ac94f686",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        44032
+      ],
+      "unprocessed_array_sha256": "1b748295219a77ff3139977dd97e2251685366287d9c5190b516943ca59c0e79"
+    },
+    {
+      "exact_native_cache_key": "8bacd82986acbcafcd2725d822ef333e5f89a3c5.pkl",
+      "pkl_sha256": "bd99f80cb9137d51dfbb89e18e7b99ebac8fe7684e5960b67c2f499cac547685",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the machine passes.",
+          "exact_native_cache_key": "8bacd82986acbcafcd2725d822ef333e5f89a3c5.pkl",
+          "cache_input_text_sha256": "d6c2f6489dc8301c9aade9ef4061a22dda8a7d97e3a8e518e60c885d10d54262",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the machine passes.",
+          "exact_native_cache_key": "8bacd82986acbcafcd2725d822ef333e5f89a3c5.pkl",
+          "cache_input_text_sha256": "d6c2f6489dc8301c9aade9ef4061a22dda8a7d97e3a8e518e60c885d10d54262",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        31232
+      ],
+      "unprocessed_array_sha256": "0284e4737d10da12b5ff363fb458b8171215aa88f4750abaafa857ef1a5904a7"
+    },
+    {
+      "exact_native_cache_key": "f874456f1e9764cf2efbd40ba4786b433ec51946.pkl",
+      "pkl_sha256": "dcda6c96abd4566a553b2529b8de9225f9bc2d0c5c741ffcc39fb6f962ddff5b",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "If the interrogator cannot consistently distinguish them,",
+          "exact_native_cache_key": "f874456f1e9764cf2efbd40ba4786b433ec51946.pkl",
+          "cache_input_text_sha256": "3a2d105320bb4b561eee9621bd0e69280d4337dc565e15a44cf0c541d650d056",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        82432
+      ],
+      "unprocessed_array_sha256": "18ace16a0120b47dedcbcc99140cf60d466624b729682a85e31a62ff7a834e94"
+    },
+    {
+      "exact_native_cache_key": "fbc38611cdf796fa5d0fe645cb2251899f4101a4.pkl",
+      "pkl_sha256": "e5a8d5e5d24f2c3575bf0ab5876cc96a5efd0509ce374f2e7adbbdfbd1ea5fcc",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "His exceptional wartime contribution did not protect him.",
+          "exact_native_cache_key": "fbc38611cdf796fa5d0fe645cb2251899f4101a4.pkl",
+          "cache_input_text_sha256": "5dfaae3c4d189210da83f1d909240b60d154cb49e0284b6fd6ecc4a8ac77feac",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        89600
+      ],
+      "unprocessed_array_sha256": "586e7a3908cd86abe5c1fc536de52c3edf782fd2b86ea2ac6cedfbf761fd3479"
+    },
+    {
+      "exact_native_cache_key": "b8e18d3cd56bcdf2216794ae381138444d1d5844.pkl",
+      "pkl_sha256": "80ffd8380f3915dfbc617942b86202f4476587334c7524f55222d2032fbbfe6b",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 31 March 1952 he was convicted of \"gross indecency\", the charge then used against gay men.",
+          "exact_native_cache_key": "b8e18d3cd56bcdf2216794ae381138444d1d5844.pkl",
+          "cache_input_text_sha256": "4bbf897ed2567688bf720f3f1abd9322846b618fd0b12665197953efc035d745",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        212992
+      ],
+      "unprocessed_array_sha256": "3b917b4beacbbb9907ac87294529ca3352328d25a32be001449e1f0414c54713"
+    },
+    {
+      "exact_native_cache_key": "d23d794887c47dc2b3e2b6c6947f08bcf036bbc6.pkl",
+      "pkl_sha256": "5791ea4bf2de69666a6ea60b38a3723cb6d2bd39bd69757fc8933719bd7da623",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 31 March 1952 he was convicted of \"gross indecency\",",
+          "exact_native_cache_key": "d23d794887c47dc2b3e2b6c6947f08bcf036bbc6.pkl",
+          "cache_input_text_sha256": "23fbccf5e6330ae21168b5a32b9f1a0246f9887962ba4406e9cbd8a8a1841c13",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 31 March 1952 he was convicted of \"gross indecency\",",
+          "exact_native_cache_key": "d23d794887c47dc2b3e2b6c6947f08bcf036bbc6.pkl",
+          "cache_input_text_sha256": "23fbccf5e6330ae21168b5a32b9f1a0246f9887962ba4406e9cbd8a8a1841c13",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        140288
+      ],
+      "unprocessed_array_sha256": "f7cf37ea3aaf98fa17bd0d65d769a2114c1243954d5616bbe7a5b50455a2a626"
+    },
+    {
+      "exact_native_cache_key": "18f5a6fdbcd4505b82860d40530661a2a5e99bbd.pkl",
+      "pkl_sha256": "fe0f2b61e40394f28beaa1a09b0951e9a1291b27c2180bb04b9b97eb4fd9d92a",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the charge then used against gay men.",
+          "exact_native_cache_key": "18f5a6fdbcd4505b82860d40530661a2a5e99bbd.pkl",
+          "cache_input_text_sha256": "11496dab537a6b66c912e894c1ebf80e9017970d2ff94de2280a072fa5d70cf7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the charge then used against gay men.",
+          "exact_native_cache_key": "18f5a6fdbcd4505b82860d40530661a2a5e99bbd.pkl",
+          "cache_input_text_sha256": "11496dab537a6b66c912e894c1ebf80e9017970d2ff94de2280a072fa5d70cf7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        57856
+      ],
+      "unprocessed_array_sha256": "8535f3867bdc8629dfb76703c0677a3476d090cfb6f31c10e5984f487f29cac3"
+    },
+    {
+      "exact_native_cache_key": "7bc3058386aa6861e8253fd47209a439621b5be1.pkl",
+      "pkl_sha256": "d099297296fc531ec1b74765f7fb5c834bf1b2a767cb8567b015e65e1d7135bd",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "He forfeited his security clearance and, to avert imprisonment, submitted to hormone injections.",
+          "exact_native_cache_key": "7bc3058386aa6861e8253fd47209a439621b5be1.pkl",
+          "cache_input_text_sha256": "be51672e982c9a76dd61bd5221b956237a365302daaba116edf41d2ee084473a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        155648
+      ],
+      "unprocessed_array_sha256": "4c207bd43c032e98bb461bef4ade38f816b25045b939f38ecb8c820a26c44977"
+    },
+    {
+      "exact_native_cache_key": "c024364eb847e91b0f22117e1de452b1ea038181.pkl",
+      "pkl_sha256": "d9198178e46da90901d4d8201dd2473722e0dfe19f51cd085dbfafbf7e53848e",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "He forfeited his security clearance and,",
+          "exact_native_cache_key": "c024364eb847e91b0f22117e1de452b1ea038181.pkl",
+          "cache_input_text_sha256": "99d989f5311287fe2c729e8efaa5a615023d12fdeb9e4a68a40172694b80fe14",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        55808
+      ],
+      "unprocessed_array_sha256": "72813bcda64b8a13024e41c58fa1eb06259c95513a133732fa9a46a8531a09c4"
+    },
+    {
+      "exact_native_cache_key": "09adedcf09a6206b353d27d720a60b9476246337.pkl",
+      "pkl_sha256": "83fb05d12371c7bc906faaa6ce05140a04d3b0a2eae929735d5d57342b36acd8",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "to avert imprisonment,",
+          "exact_native_cache_key": "09adedcf09a6206b353d27d720a60b9476246337.pkl",
+          "cache_input_text_sha256": "eaa1c591cdfd837b241a24a622d07468696a0c31865b0851bd04f2a7e8aad3dc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        32768
+      ],
+      "unprocessed_array_sha256": "b58434a8e8fc89797e7ad9215a608dc6e99470b024c7c3a8c76f0cee15aed78e"
+    },
+    {
+      "exact_native_cache_key": "7539c5a31b3fa4a4d5167c6fa74cfe680b55f514.pkl",
+      "pkl_sha256": "657e0f83d3031787f55d76adc8c275691f5a1f11e7d081134bf6961b5204c361",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "submitted to hormone injections.",
+          "exact_native_cache_key": "7539c5a31b3fa4a4d5167c6fa74cfe680b55f514.pkl",
+          "cache_input_text_sha256": "f2ff19c148dd2cf2cae87a667ff1a1d477c3fa1166555d21eb0f68e532100494",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        48128
+      ],
+      "unprocessed_array_sha256": "52f9b85be4cb7465f38979cfe49a556e78a2f3608478b47ccbe4562bd46bd80d"
+    },
+    {
+      "exact_native_cache_key": "dd44e289248a8b5b2317bae13a56ac3ffc9bb7c9.pkl",
+      "pkl_sha256": "a9d62287e2fa03d8d993a14a43b84e890e6e5e7d26beb860d60153019e201236",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "He died of cyanide poisoning on 7 June 1954.",
+          "exact_native_cache_key": "dd44e289248a8b5b2317bae13a56ac3ffc9bb7c9.pkl",
+          "cache_input_text_sha256": "071cc1c000adb5f577512d62584aba8b3fda09821873d4bb5c8a6620f6c7d1d5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        117248
+      ],
+      "unprocessed_array_sha256": "c600480ee53df7cb182f67d8ed2578aacd779632199ed5763f3642ece7847536"
+    },
+    {
+      "exact_native_cache_key": "f13e1fde5bc983841a9b2c8885cb20d7ce8a9ad0.pkl",
+      "pkl_sha256": "643898edf7bd3b4d1ae61948a7d6db28bc5ea3c9d992ad195f979e3028b5b8f3",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A coroner's inquest ruled it suicide, though some doubt it.",
+          "exact_native_cache_key": "f13e1fde5bc983841a9b2c8885cb20d7ce8a9ad0.pkl",
+          "cache_input_text_sha256": "5ac9ae5ae7cdbae8a2e0d565609cacf40f5f35e37bd534ac287a770264aac7c8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        87552
+      ],
+      "unprocessed_array_sha256": "0e059165e20bb51d751271292f8451de719a5e00d291d09d5d22a2c0406e210a"
+    },
+    {
+      "exact_native_cache_key": "5af38cae7320c244347e1580d8be1fcdf7d28e61.pkl",
+      "pkl_sha256": "94416e2f5d930058fffc6ec1492fd1823dc59c5f74293cd3ede598ffa3343388",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A coroner's inquest ruled it suicide,",
+          "exact_native_cache_key": "5af38cae7320c244347e1580d8be1fcdf7d28e61.pkl",
+          "cache_input_text_sha256": "8a7631663ae64ca21f4f1b038d14417d2d44af6054189ddb4d7fb4bed5d10f1f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        54272
+      ],
+      "unprocessed_array_sha256": "83d12ea49b5c8870b343ae877750a02884446ab3d608499658bb1dbe4f57b4fd"
+    },
+    {
+      "exact_native_cache_key": "8c0b81a127e1715b8dc06084dd85474274614347.pkl",
+      "pkl_sha256": "663b973fde024e3be5dec550d032b0ddc81d14ebd91b092ec03b5caa58692073",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "though some doubt it.",
+          "exact_native_cache_key": "8c0b81a127e1715b8dc06084dd85474274614347.pkl",
+          "cache_input_text_sha256": "942a2e0357f491755c582cc5943862fd1acd8ebd88a3e87de6877723a420aca9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        28160
+      ],
+      "unprocessed_array_sha256": "15a24ec94a54f2f72cedd9757c4c15228db1e12a3c740aa58177409ff04b32f1"
+    },
+    {
+      "exact_native_cache_key": "bb29f4530d712660831a889d47dcd1e653707872.pkl",
+      "pkl_sha256": "1888bfbc2505c3cb1189aae087c23aa2d2255e6c7cb64e3ab0282135b22bf2a8",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Recognition lagged.",
+          "exact_native_cache_key": "bb29f4530d712660831a889d47dcd1e653707872.pkl",
+          "cache_input_text_sha256": "5ba03b4d68fa553bc230c816f180be679370e396228c1869f00414a6deec0a0e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        32256
+      ],
+      "unprocessed_array_sha256": "21d5b4aaffddca21ef4e76205ec0030cc17b7a5a0a35d564e45305fe3ac4d169"
+    },
+    {
+      "exact_native_cache_key": "8bbfb44513867e4d6d8387c4a26052345c513bb1.pkl",
+      "pkl_sha256": "a2b551af794b3fa06a024cabdf57da00cf0d2b198e5e93863454a8522ae616ac",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 10 September 2009 Britain's prime minister publicly apologised, and on 24 December 2013 Turing was posthumously granted a royal pardon.",
+          "exact_native_cache_key": "8bbfb44513867e4d6d8387c4a26052345c513bb1.pkl",
+          "cache_input_text_sha256": "1e8bc101119188955051578578543d59cd0de5946fc99c759169bf7c77bf2f4b",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        307200
+      ],
+      "unprocessed_array_sha256": "dbb3d7448f2957464e50e12a7750a68ed4a4fe2e5ed7442c7d469d0b81d0107d"
+    },
+    {
+      "exact_native_cache_key": "3d6a17410d35538fe95963d481558f07da9aa787.pkl",
+      "pkl_sha256": "c58b6ffd27ba8234046c86104c16e575feacc22734f67ef2670f90a15131ca4d",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 10 September 2009 Britain's prime minister publicly apologised,",
+          "exact_native_cache_key": "3d6a17410d35538fe95963d481558f07da9aa787.pkl",
+          "cache_input_text_sha256": "e663c7cf6ddd4872188cd660b64001e2c3255f3066f444976f14e8f36c0acc52",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 10 September 2009 Britain's prime minister publicly apologised,",
+          "exact_native_cache_key": "3d6a17410d35538fe95963d481558f07da9aa787.pkl",
+          "cache_input_text_sha256": "e663c7cf6ddd4872188cd660b64001e2c3255f3066f444976f14e8f36c0acc52",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        140288
+      ],
+      "unprocessed_array_sha256": "9642620fe50dc598988b6d1ca06f35e3e3715a6186dc69c8ad8044da6f846ef5"
+    },
+    {
+      "exact_native_cache_key": "591d41e76c27065ba476304c0a00940b71387aa5.pkl",
+      "pkl_sha256": "643e18a4139d6a4e9334fb4900466bf08d96762c726cdfe9b0ed1ef367430b20",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and on 24 December 2013 Turing was posthumously granted a royal pardon.",
+          "exact_native_cache_key": "591d41e76c27065ba476304c0a00940b71387aa5.pkl",
+          "cache_input_text_sha256": "b14d03b1a9e8b427fed2a49dfb0feef353be6fbec27914ae2facebadf12f98ee",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and on 24 December 2013 Turing was posthumously granted a royal pardon.",
+          "exact_native_cache_key": "591d41e76c27065ba476304c0a00940b71387aa5.pkl",
+          "cache_input_text_sha256": "b14d03b1a9e8b427fed2a49dfb0feef353be6fbec27914ae2facebadf12f98ee",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        163840
+      ],
+      "unprocessed_array_sha256": "a24d8adc47e34168fe2758fd67859e7dc7ec20b3036989222b28528fba191d4a"
+    },
+    {
+      "exact_native_cache_key": "76c931a2882a7089685b0ed46e1f624097040a42.pkl",
+      "pkl_sha256": "fa99858c2716cb7f0dae4b672ad1c011bae14b4d35aa116b57519935a5c51317",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 23 June 2021, his birthday, a fifty-pound note bearing his portrait entered circulation.",
+          "exact_native_cache_key": "76c931a2882a7089685b0ed46e1f624097040a42.pkl",
+          "cache_input_text_sha256": "81fd261af4e702cc3bc8f34e32344973568aba5146c61c26ead6fd72965f2542",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        206848
+      ],
+      "unprocessed_array_sha256": "8c27437f6b16d979d5209798432293ee26b7d8c3d201413f3e7f4dd739fde3d0"
+    },
+    {
+      "exact_native_cache_key": "2abdb765945b94eb80fc6dff3f3101846b1f82dd.pkl",
+      "pkl_sha256": "95a93617fe16d9fb865614f5ce7f938f93e17a0318d828ac0aa8726cfbfba6ac",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 23 June 2021,",
+          "exact_native_cache_key": "2abdb765945b94eb80fc6dff3f3101846b1f82dd.pkl",
+          "cache_input_text_sha256": "1b7b8bb857f34d01eb5d4dcc2a802e8a9fc7bcdd319d2528282d8da7e94c5664",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        66560
+      ],
+      "unprocessed_array_sha256": "a07043ecbd5815f781c660620ccaca6d71463895ddc082e3706d93a3f01c0b6b"
+    },
+    {
+      "exact_native_cache_key": "6dad079769f180b68ea7a9e171954862cdb705f8.pkl",
+      "pkl_sha256": "af3cd2f191b723cdc349b0dbc34337ae5123a3415553f64653ddd0cebd2b0a65",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "his birthday,",
+          "exact_native_cache_key": "6dad079769f180b68ea7a9e171954862cdb705f8.pkl",
+          "cache_input_text_sha256": "5abfda855983635210f568beb00910b4a6c7271e83c3d01b4da653f798878e24",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        23552
+      ],
+      "unprocessed_array_sha256": "9cc9d1bd6bec653009015616bf7ac3385968e01da238a25bba0dc55843f89856"
+    },
+    {
+      "exact_native_cache_key": "e064d95a23aecb3f9f0ded7acc13bb66bc58ae48.pkl",
+      "pkl_sha256": "ea9021dce2766e0916e069e7235ccf745b56417755c7c5cbb909a4cf2a41ce4b",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a fifty-pound note bearing his portrait entered circulation.",
+          "exact_native_cache_key": "e064d95a23aecb3f9f0ded7acc13bb66bc58ae48.pkl",
+          "cache_input_text_sha256": "28349774881905b7f72ccc0e3da1e92138be69932c0653bcb0b1494375f6f6dc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        94720
+      ],
+      "unprocessed_array_sha256": "2ef9b592b87636d2fb4d049389336be334733b8cb3799e32de0211b237f74aff"
+    },
+    {
+      "exact_native_cache_key": "e54da4531c1212a159ad9dd0e6c99d52ca9da948.pkl",
+      "pkl_sha256": "fa8ba1f1d2d32189eec6898cf08011cbe9ec8c9d44b03d2ab916bb2d3ca7d4b3",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S19",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The country that prosecuted him put his face on its money.",
+          "exact_native_cache_key": "e54da4531c1212a159ad9dd0e6c99d52ca9da948.pkl",
+          "cache_input_text_sha256": "855d9d05b22bc0e90f437979901f99e4a16ab505c8d7ae58322ccb50ad9d029a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        86016
+      ],
+      "unprocessed_array_sha256": "b7e09d49180c3f8ccee08a4fd98008d87181b46a03648ef1bd8f983beca6343e"
+    }
+  ],
+  "missing_reference_key_count": 0,
+  "observed_missing_keys_covered": [],
+  "new_private_cache_names": [],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11514,
+  "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "4aa3f2803479e82a03f6f6f067410dff0ba5ddf5cb2cf361db19338cc97ebad8",
+  "accepted_aac_adts_sha256_after": "4aa3f2803479e82a03f6f6f067410dff0ba5ddf5cb2cf361db19338cc97ebad8",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}

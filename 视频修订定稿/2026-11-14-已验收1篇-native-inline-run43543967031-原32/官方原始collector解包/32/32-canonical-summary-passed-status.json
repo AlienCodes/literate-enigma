@@ -1,0 +1,3460 @@
+{
+  "article": "32",
+  "passed": true,
+  "stage": "final4K-passed",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第32篇 做完（361 秒）：修了 1 处、疑点 9 处",
+      "① 文本：通过，自动修 1 处",
+      "② 声音：32 词尾辅音核对 问题数 0；32 纯人声核对（配音指纹 a784afd9344b）问题数 0；问题数 0；32 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/32_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第32篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43535822030,
+    "job_id": 132264443476,
+    "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 478.16,
+    "artifact_id": 14089812323,
+    "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+    "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+    "origin": "actual unmodified original full quickcheck, native run43535822030"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+  "reviewed_gain_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+    "视频/工具/初稿生成/gen32.py": "c20b1ee8cf47c51b148c6a4b9d89e0a58897411815716f4452dab4cd2052f850",
+    "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+    "视频/制作记录/32_待改清单.md": "c4390c10e947752ba3553a711426c59f6050bcb84c0796c0c43043a66fa9e366",
+    "视频/制作记录/逐句确认/32.json": "88e1bc9db29d5ea6f93c59b75f6d4f2896da2eeaed18cce83a170bcc0928188c"
+  },
+  "accepted_source": {
+    "id": "32",
+    "path": "最终版4K视频/32 - The Planet That Was Demoted - 被降级的冥王星.mp4",
+    "sha256": "d0e0cec8eccc305eb3e2fa9c42a25fb00fdac122bda0b189fcd21be53926fbc8",
+    "git_blob_sha": "79ab7b3cbaf0f49f872d428ad0a97a80fd1b66e9",
+    "bytes": 12398373,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "1df30ef3038de5db54ec57588a496ba08c56bd88cf9cca8097f4eff37607fafa"
+  },
+  "checker_reference_preparation": {
+    "article": "32",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Planet That Was Demoted",
+        "exact_native_cache_key": "fa21764799bf855c3e1f8d319e5e2772f2167296.pkl",
+        "cache_input_text_sha256": "9a84302d5080cb98eefdee213ec7aa23e1a35c62a07342f47d834ef3b2259e72",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Planet That Was Demoted",
+        "exact_native_cache_key": "6921a61b233c52d57278ba70dab9d0bea4b4c3a7.pkl",
+        "cache_input_text_sha256": "9a84302d5080cb98eefdee213ec7aa23e1a35c62a07342f47d834ef3b2259e72",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 18 February 1930, comparing photographic plates at the Lowell Observatory, the astronomer Clyde Tombaugh perceived a dim dot that shifted between them.",
+        "exact_native_cache_key": "fefdcef426fc81ad49735d7e41220f8f50dbfa9f.pkl",
+        "cache_input_text_sha256": "36037f42841e1f6e6727bee586fb2171fd4b94765983f7cd6866f4c9145eb42e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 18 February 1930, comparing photographic plates at the Lowell Observatory, the astronomer Clyde Tombaugh perceived a dim dot that shifted between them.",
+        "exact_native_cache_key": "1e5b2c39a190f09fe61325c3f920b88cc08f7ab2.pkl",
+        "cache_input_text_sha256": "36037f42841e1f6e6727bee586fb2171fd4b94765983f7cd6866f4c9145eb42e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 18 February 1930, comparing photographic plates at the Lowell Observatory,",
+        "exact_native_cache_key": "0cb6c3f6e7d1657a51c745b102a8582f447e3fb5.pkl",
+        "cache_input_text_sha256": "027a10a6d0104538ca8354ed523a393744c46e36db99ee8d0b3a9c90e94761c7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the astronomer Clyde Tombaugh perceived a dim dot",
+        "exact_native_cache_key": "b2c7ea23997c8f0f19e6dd43a03f7f73c3ade48a.pkl",
+        "cache_input_text_sha256": "dc5c72d9b7b4b8efb6cbe5feebe16067a152f4ce1729c0a6697d80313f779f17",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "that shifted between them.",
+        "exact_native_cache_key": "69862f80b50afb204c5bc37b92c6b02a50f0ea93.pkl",
+        "cache_input_text_sha256": "38351c0b8a51283905d228df7d477b2036519d37732456a28040e9bb8bb74d93",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 18 February 1930,",
+        "exact_native_cache_key": "24151fd06bcdaaa09f5f94e66f00f149463d82a0.pkl",
+        "cache_input_text_sha256": "8cdb3f2747b27000166a8752ae90ffddc692d30af5f1536f79e07538c899b7bf",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "comparing photographic plates at the Lowell Observatory,",
+        "exact_native_cache_key": "8d5f2aff15517284290049a7a8613c7da85854e0.pkl",
+        "cache_input_text_sha256": "1d8b8b0ef2194e71782515dfe31a03de4dc8de5b7d3a72841b964aa4acb478d8",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the astronomer Clyde Tombaugh perceived a dim dot that shifted between them.",
+        "exact_native_cache_key": "9d11555b7489463cb91a8760678be4e1e49ac461.pkl",
+        "cache_input_text_sha256": "c89cc7397df2bbc042aa7df4fd4900e24278370e996c4a6da28f41b15c041641",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "An eleven-year-old English girl put forward the name, after the Roman deity of the underworld.",
+        "exact_native_cache_key": "b9c46908c361d8045ffcc7ad0c02d681df060cf7.pkl",
+        "cache_input_text_sha256": "5037ab937bb1a8a82686bb2aa49c50dc3b9c6685d74739029804ba630ff4db8f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "An eleven-year-old English girl put forward the name, after the Roman deity of the underworld.",
+        "exact_native_cache_key": "d48965636e90e98c32c9be768c8da98c53b0c6b8.pkl",
+        "cache_input_text_sha256": "5037ab937bb1a8a82686bb2aa49c50dc3b9c6685d74739029804ba630ff4db8f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "An eleven-year-old English girl put forward the name,",
+        "exact_native_cache_key": "a091deec6afd37c0890ad27b237932114ac47b1a.pkl",
+        "cache_input_text_sha256": "299c714ac4367e6f2a8383f69926cd6fb5788b2a5aad77feb96c850bf5c899d3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "after the Roman deity of the underworld.",
+        "exact_native_cache_key": "226a9fe3cc38389d0127be666d817eb8eb3db804.pkl",
+        "cache_input_text_sha256": "6d3b5e32daca30962329f38106470fbba8bd90a9e08029263a77c0f1cb52c439",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "An eleven-year-old English girl put forward the name,",
+        "exact_native_cache_key": "a091deec6afd37c0890ad27b237932114ac47b1a.pkl",
+        "cache_input_text_sha256": "299c714ac4367e6f2a8383f69926cd6fb5788b2a5aad77feb96c850bf5c899d3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "after the Roman deity of the underworld.",
+        "exact_native_cache_key": "226a9fe3cc38389d0127be666d817eb8eb3db804.pkl",
+        "cache_input_text_sha256": "6d3b5e32daca30962329f38106470fbba8bd90a9e08029263a77c0f1cb52c439",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "For 76 years Pluto held the ninth slot on the planetary roster.",
+        "exact_native_cache_key": "1df2dff228c71b4e6a51b3048e27d1e7629c6606.pkl",
+        "cache_input_text_sha256": "a0d20fc32685d0ca8c3594f4fbe09932826e77177e9fef9d6517ddd3282b2a0e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "For 76 years Pluto held the ninth slot on the planetary roster.",
+        "exact_native_cache_key": "138126739f4aac26cd9f985995eceddbcda03ec7.pkl",
+        "cache_input_text_sha256": "a0d20fc32685d0ca8c3594f4fbe09932826e77177e9fef9d6517ddd3282b2a0e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In January 2005, astronomers found a far-off body, later named Eris, at first thought larger than Pluto.",
+        "exact_native_cache_key": "0385748755722bd57d56f242d2f6f99c152884f7.pkl",
+        "cache_input_text_sha256": "d61a6a79f0e36912deb53f5b931b935ce3641d48a7ce1e1b84a8ea9785c2b4b1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In January 2005, astronomers found a far-off body, later named Eris, at first thought larger than Pluto.",
+        "exact_native_cache_key": "008eefabe3ec395602e6976a033727f83a1ea288.pkl",
+        "cache_input_text_sha256": "d61a6a79f0e36912deb53f5b931b935ce3641d48a7ce1e1b84a8ea9785c2b4b1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In January 2005, astronomers found a far-off body,",
+        "exact_native_cache_key": "e1c94e2176509b29ddd9e17a8e8a53c37bee6d1b.pkl",
+        "cache_input_text_sha256": "b47eb1314b3844b502c61374fadc28e154aa62413ffe4fe03d6a06ae55de791b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "later named Eris, at first thought larger than Pluto.",
+        "exact_native_cache_key": "f9e0918f0b1a5d41468a13b26d85c5c1c92592bb.pkl",
+        "cache_input_text_sha256": "2f1d11cd14444153a5c761a135b37b3e372640b9d47d9896435ecccf368ba5a2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In January 2005,",
+        "exact_native_cache_key": "c8e9d3fc7bae287a949bbf867aa7dd224a7dbe5c.pkl",
+        "cache_input_text_sha256": "cde03e81ac162712185e2edfa3653ef29378fdf30a276859d34cccd22fb0e238",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "astronomers found a far-off body,",
+        "exact_native_cache_key": "00a6b4b1b76e3ff71294b99a86af4fbd8e87fbfe.pkl",
+        "cache_input_text_sha256": "cd429b023706542ad5d60db5611b398258f933dede63792b0878234f3ba53227",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "later named Eris,",
+        "exact_native_cache_key": "4b9c7a8000cb2b4fd716a69828c663838207ddf7.pkl",
+        "cache_input_text_sha256": "3087fe948da81ba5c838d537e34fef334126be757b1aa17ddf4ab96739d8aee6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "at first thought larger than Pluto.",
+        "exact_native_cache_key": "8a72afd1ad213688eadf8945bb2785a4568b77ce.pkl",
+        "cache_input_text_sha256": "d7fc3df5e0f2139ee26e6f32864233d8dd85f4924cf94f208e016473051b73ac",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "NASA briefly called it the tenth planet.",
+        "exact_native_cache_key": "920e22d3808b503aaaaab957e09aede4b763e815.pkl",
+        "cache_input_text_sha256": "77635e53483a9b65da249afcf1d2840a3c38ed434ecbf81a9c29c61fb2a22822",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "NASA briefly called it the tenth planet.",
+        "exact_native_cache_key": "1bb8b7f7a258730f04676d3a848ebe88e76bdafa.pkl",
+        "cache_input_text_sha256": "77635e53483a9b65da249afcf1d2840a3c38ed434ecbf81a9c29c61fb2a22822",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The contender posed an awkward dilemma.",
+        "exact_native_cache_key": "404ca09cc429ef25f23e2aad14afcfb5c44e369f.pkl",
+        "cache_input_text_sha256": "4bf36977323a8a3a2eab1eb82aa211683a259b0db03165e9bf7a808678879806",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The contender posed an awkward dilemma.",
+        "exact_native_cache_key": "103cff0bb5b0ccc601c46fa4a92af25becf7e7ba.pkl",
+        "cache_input_text_sha256": "4bf36977323a8a3a2eab1eb82aa211683a259b0db03165e9bf7a808678879806",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The term \"planet\" had hitherto been used loosely, and with more icy worlds likely to be found, a precise definition became a necessity.",
+        "exact_native_cache_key": "21ce74c07d79334b92fdb751ebd5a1b190fe727f.pkl",
+        "cache_input_text_sha256": "22e28377ea8f562f0e2d7ccf8760f706f2a3f65125b231f30fd8c489795c0e85",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The term \"planet\" had hitherto been used loosely, and with more icy worlds likely to be found, a precise definition became a necessity.",
+        "exact_native_cache_key": "330480fdf463797efda67bc7c62abca34157dba2.pkl",
+        "cache_input_text_sha256": "22e28377ea8f562f0e2d7ccf8760f706f2a3f65125b231f30fd8c489795c0e85",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The term \"planet\" had hitherto been used loosely,",
+        "exact_native_cache_key": "a9137008ede416501163d0f64ce483fd3fbc8021.pkl",
+        "cache_input_text_sha256": "057e5d3aadc9b8e0877737d2346d0a30f71bc63b52b06e1f2d4ac09acd487828",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and with more icy worlds likely to be found,",
+        "exact_native_cache_key": "00f8cae1dcb14fcde93722bf272af119da04540f.pkl",
+        "cache_input_text_sha256": "1ce0448128a75033353ee16d2511f638e41a555b58d1b04d45c8ff0bb57837e0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a precise definition became a necessity.",
+        "exact_native_cache_key": "99856ea00f5f7d6b41956f056d17076e37b7a7f3.pkl",
+        "cache_input_text_sha256": "c101adde35ae2dd46881651ae48e1a302c7ef5dcb5ac8c9176fbd6087de3ae97",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The term \"planet\" had hitherto been used loosely,",
+        "exact_native_cache_key": "a9137008ede416501163d0f64ce483fd3fbc8021.pkl",
+        "cache_input_text_sha256": "057e5d3aadc9b8e0877737d2346d0a30f71bc63b52b06e1f2d4ac09acd487828",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and with more icy worlds likely to be found,",
+        "exact_native_cache_key": "00f8cae1dcb14fcde93722bf272af119da04540f.pkl",
+        "cache_input_text_sha256": "1ce0448128a75033353ee16d2511f638e41a555b58d1b04d45c8ff0bb57837e0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a precise definition became a necessity.",
+        "exact_native_cache_key": "99856ea00f5f7d6b41956f056d17076e37b7a7f3.pkl",
+        "cache_input_text_sha256": "c101adde35ae2dd46881651ae48e1a302c7ef5dcb5ac8c9176fbd6087de3ae97",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 24 August 2006 the International Astronomical Union, convened in Prague, voted that a planet must revolve around the Sun, be nearly spherical, and have cleared the neighbourhood around its orbit.",
+        "exact_native_cache_key": "90a143cb7bcef53c5d97060940b152522bb299f4.pkl",
+        "cache_input_text_sha256": "68177539c8ea0f3b3e0e73b83df12e13cd1da5f72f014902156bfc62babde56d",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 24 August 2006 the International Astronomical Union, convened in Prague, voted that a planet must revolve around the Sun, be nearly spherical, and have cleared the neighbourhood around its orbit.",
+        "exact_native_cache_key": "247796a2c77247b92dda13bc94fac438d324c33a.pkl",
+        "cache_input_text_sha256": "68177539c8ea0f3b3e0e73b83df12e13cd1da5f72f014902156bfc62babde56d",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 24 August 2006 the International Astronomical Union, convened in Prague,",
+        "exact_native_cache_key": "17ab5a9df29cfa113c58f63f6aa53c2ffc4b10c7.pkl",
+        "cache_input_text_sha256": "1c9dc422c48a87754875f63bd27770091216ca1462bdb35928202b024ae06663",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "voted that a planet must revolve around the Sun,",
+        "exact_native_cache_key": "95c401115106a226d89cb7269b050be3628875cc.pkl",
+        "cache_input_text_sha256": "50f26e2ed3ad28d3eba404c1e74e2d4238769a38861c47896e1f2d4085f5582c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "be nearly spherical, and have cleared the neighbourhood around its orbit.",
+        "exact_native_cache_key": "dad163a9c69b7e508c06f155248930e06fe41a58.pkl",
+        "cache_input_text_sha256": "8c479903a5e13f64d34e5822211c75d44cf490ac229adcfe233019b0560c70be",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 24 August 2006 the International Astronomical Union,",
+        "exact_native_cache_key": "a760cdab6998da54a1acaa89b3de2519b762a723.pkl",
+        "cache_input_text_sha256": "3f571ad23577d44c720544235b617764dd970671c6961d74acd641c4bf84cab3",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "convened in Prague,",
+        "exact_native_cache_key": "935c4c49721b5c60efcf1a889f6153ed702f78ea.pkl",
+        "cache_input_text_sha256": "7295730cd4c849bcf452a2bc344178c346bec2d6eb8b94104ad25da4dd8ee65f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "voted that a planet must revolve around the Sun,",
+        "exact_native_cache_key": "95c401115106a226d89cb7269b050be3628875cc.pkl",
+        "cache_input_text_sha256": "50f26e2ed3ad28d3eba404c1e74e2d4238769a38861c47896e1f2d4085f5582c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "be nearly spherical,",
+        "exact_native_cache_key": "5f5adeb794ffba184c21771df8b29b47d3c28900.pkl",
+        "cache_input_text_sha256": "e9fb039e214a6f8a768ce5e847280344fb3b553e6efa9df016572c0f166c35e6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 5,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and have cleared the neighbourhood around its orbit.",
+        "exact_native_cache_key": "98e7d4169dd71ee5e05a4f535af7a7bd60ae84b8.pkl",
+        "cache_input_text_sha256": "fa29402c9165bec28fe9f7aeccc50a9ec28e2384fcf7ce15dbd2c3a3eef275bd",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Pluto failed that last criterion and was reclassified as a dwarf planet, leaving eight.",
+        "exact_native_cache_key": "2e03308a77606127acd37a7410c5ed13ba06f2b7.pkl",
+        "cache_input_text_sha256": "709aa9d4a58949c9bd437dbd28d52824e748563edf28c0569538fa0ebe36527b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Pluto failed that last criterion and was reclassified as a dwarf planet, leaving eight.",
+        "exact_native_cache_key": "b03563541f105244bc838fe681c117e97584bbc4.pkl",
+        "cache_input_text_sha256": "709aa9d4a58949c9bd437dbd28d52824e748563edf28c0569538fa0ebe36527b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Pluto failed that last criterion",
+        "exact_native_cache_key": "999562494711615b9943c40c38c0a0ca219e0151.pkl",
+        "cache_input_text_sha256": "092c29a91fc4c674472a4ae7012166bf144a0c1b2b454b836f6c44be0b925f27",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and was reclassified as a dwarf planet, leaving eight.",
+        "exact_native_cache_key": "4c82da2220da306caea442c964633f3622d6490e.pkl",
+        "cache_input_text_sha256": "b08a7495038667e528d619a3f5e6c64ac8896cb36e9f6a49c26fcffb89025f0b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Pluto failed that last criterion and was reclassified as a dwarf planet,",
+        "exact_native_cache_key": "8c0b38286c0897acfc2ba2a245c4d59ee073e61b.pkl",
+        "cache_input_text_sha256": "a15b3bcdb4c1db5b13f59b9e380af80df511889af7527aec23721849b9cd7b88",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "leaving eight.",
+        "exact_native_cache_key": "ad4f77301d9a54cca4d14ccf111b505af73f41c4.pkl",
+        "cache_input_text_sha256": "9d272ff269e83c66ddef8dab7f81f15db87bb7f60bd14bcbf2004684b94c1991",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Pluto was physically unaltered; only the boundary had moved.",
+        "exact_native_cache_key": "c6ab2fdf944e976c42238ff6aeb852ded886386e.pkl",
+        "cache_input_text_sha256": "233e516f618bcf8a798c3ba872582304cfc9af19ae57b60db4cc557b1283ad1c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Pluto was physically unaltered; only the boundary had moved.",
+        "exact_native_cache_key": "7c0eb9024a612f84653964b8814bcd3659891f4c.pkl",
+        "cache_input_text_sha256": "233e516f618bcf8a798c3ba872582304cfc9af19ae57b60db4cc557b1283ad1c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Pluto was physically unaltered;",
+        "exact_native_cache_key": "47b3dac5f4e80256cd7acb33fe4c35921f5b380a.pkl",
+        "cache_input_text_sha256": "cd25d6f9b9e7df749c72e54ea6e10ab53610819f3d78b4ecb8cee3b0c76a8b98",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "only the boundary had moved.",
+        "exact_native_cache_key": "721fe0c33eb8708f0bac22690459afddd746bb48.pkl",
+        "cache_input_text_sha256": "79d5f19a39f449c9ec4ff5b548dc18f8a2170431ee6f71b003b2480d1c211283",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Pluto was physically unaltered;",
+        "exact_native_cache_key": "47b3dac5f4e80256cd7acb33fe4c35921f5b380a.pkl",
+        "cache_input_text_sha256": "cd25d6f9b9e7df749c72e54ea6e10ab53610819f3d78b4ecb8cee3b0c76a8b98",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "only the boundary had moved.",
+        "exact_native_cache_key": "721fe0c33eb8708f0bac22690459afddd746bb48.pkl",
+        "cache_input_text_sha256": "79d5f19a39f449c9ec4ff5b548dc18f8a2170431ee6f71b003b2480d1c211283",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The vote was valid, yet its legitimacy drew criticism: only 424 of some 10,000 members took part.",
+        "exact_native_cache_key": "4a13b7e09affde571ed0117219127b6702fde3ef.pkl",
+        "cache_input_text_sha256": "f21c9fda333a8f47d2c4592685eb30dc2ef304cc106102d2259485ea45ba9940",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The vote was valid, yet its legitimacy drew criticism: only 424 of some 10,000 members took part.",
+        "exact_native_cache_key": "0888e28a65fe0aa82cdad9875fea3b266a4b5fce.pkl",
+        "cache_input_text_sha256": "f21c9fda333a8f47d2c4592685eb30dc2ef304cc106102d2259485ea45ba9940",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The vote was valid, yet its legitimacy drew criticism:",
+        "exact_native_cache_key": "ca60e89c0acd73e1f2daf67260b5be05c8a0bdc3.pkl",
+        "cache_input_text_sha256": "2d72b76b1b8700b725c87d18aa65ad309c3da0525b5c4ee82f5a452679045fc1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "only 424 of some 10,000 members took part.",
+        "exact_native_cache_key": "391fca61fc9bf27eec303265aa921807b1deb225.pkl",
+        "cache_input_text_sha256": "0cf3d62c80c3a70c02b5faa0407059b0e252bd77b3e8e4b92a27f2a48d015be1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The vote was valid,",
+        "exact_native_cache_key": "58649c76d9f94a2318060286a75758c111a766b4.pkl",
+        "cache_input_text_sha256": "a0dc49b7f7d7f0360014d1107a68193dfa43e5b98299e3277349d21eddc36c04",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "yet its legitimacy drew criticism:",
+        "exact_native_cache_key": "0a9c849e0012881eed6c0ba9e1f6503389d49725.pkl",
+        "cache_input_text_sha256": "f889a15841f003813c2fba5d6ac23ede4127931fff37ddec910e6be37e7ed031",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "only 424 of some 10,000 members took part.",
+        "exact_native_cache_key": "391fca61fc9bf27eec303265aa921807b1deb225.pkl",
+        "cache_input_text_sha256": "0cf3d62c80c3a70c02b5faa0407059b0e252bd77b3e8e4b92a27f2a48d015be1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Hundreds of dissenting astronomers signed a petition.",
+        "exact_native_cache_key": "450a264a8612de846298cd1ddf54010df3b7a46c.pkl",
+        "cache_input_text_sha256": "6b7caa96a73839e354cb3685815cb1c5f08228db51f8ca0ac5995c0dd07b79e3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Hundreds of dissenting astronomers signed a petition.",
+        "exact_native_cache_key": "9b92ce55817cb494aac5691e668b493c016836c2.pkl",
+        "cache_input_text_sha256": "6b7caa96a73839e354cb3685815cb1c5f08228db51f8ca0ac5995c0dd07b79e3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The American Dialect Society made \"plutoed\", playful slang for \"to devalue\", its word of 2006, and New Mexico and Illinois lawmakers passed resolutions affirming that Pluto was a planet.",
+        "exact_native_cache_key": "110baf32baccfdca6f817af2507ac9d0fd6b1c0e.pkl",
+        "cache_input_text_sha256": "cdc6e142276166e08aa3f5e2fdc43fa8504ca179b4f99aba829b44658483bab7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The American Dialect Society made \"plutoed\", playful slang for \"to devalue\", its word of 2006, and New Mexico and Illinois lawmakers passed resolutions affirming that Pluto was a planet.",
+        "exact_native_cache_key": "ff26353e521e8da7eaf162c0841aada669efac7d.pkl",
+        "cache_input_text_sha256": "cdc6e142276166e08aa3f5e2fdc43fa8504ca179b4f99aba829b44658483bab7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The American Dialect Society made \"plutoed\", playful slang for \"to devalue\", its word of 2006,",
+        "exact_native_cache_key": "6ee46a2fa9df12b9f3369f7f4438eaccc52f49af.pkl",
+        "cache_input_text_sha256": "69abd2aacf87120a1ede7b7e067d9d7c5e58da1090d882288cebb443180a0cd0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and New Mexico and Illinois lawmakers passed resolutions affirming that Pluto was a planet.",
+        "exact_native_cache_key": "8d83ecd8221c16b8bdb346a0bbe32188b1858fe5.pkl",
+        "cache_input_text_sha256": "75a087bc6a0efcd481f6d256f455b8986d3b23df41212758a0b9ab08ba50da1c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The American Dialect Society made \"plutoed\",",
+        "exact_native_cache_key": "9d4540feb94bc67a49736dd0804e2e6c6c38c257.pkl",
+        "cache_input_text_sha256": "1b49ab0c1708fc184711c819b217c31a1da9d1e1be478bcbeb3a8d9d9e7380ff",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "playful slang for \"to devalue\",",
+        "exact_native_cache_key": "8ff63afff89c8ad3759fa41677d52260cc3d3cf5.pkl",
+        "cache_input_text_sha256": "518956cc0ae1cc5eb6432aed5dcbe2747219b6a95993d3fcf661216cef05531d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "its word of 2006,",
+        "exact_native_cache_key": "dddfa06c058b9ccaa6bae6fdd076fba9c8a079c9.pkl",
+        "cache_input_text_sha256": "35c07cb3920593512d133c4117d000417c83cb9608d21e6a8c737a7860540f47",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and New Mexico and Illinois lawmakers passed resolutions affirming that Pluto was a planet.",
+        "exact_native_cache_key": "8d83ecd8221c16b8bdb346a0bbe32188b1858fe5.pkl",
+        "cache_input_text_sha256": "75a087bc6a0efcd481f6d256f455b8986d3b23df41212758a0b9ab08ba50da1c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Amid the controversy, an irony was already in transit.",
+        "exact_native_cache_key": "80dffbd7bf6eef09a935798ca00bfe5df7039795.pkl",
+        "cache_input_text_sha256": "79eb581cdae1618392dbdf971c7cae4ba51007cb451870b26dc8edce3706cfad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Amid the controversy, an irony was already in transit.",
+        "exact_native_cache_key": "1f1c374a2039ca1bfa55d1436df808f15b2616b3.pkl",
+        "cache_input_text_sha256": "79eb581cdae1618392dbdf971c7cae4ba51007cb451870b26dc8edce3706cfad",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Amid the controversy,",
+        "exact_native_cache_key": "38501ca8efcda57690eb24543342e43fdcd72b6e.pkl",
+        "cache_input_text_sha256": "230258dbc854fe79d639a28024075b1c4e23cc50b76aa937f4d54dc7252636e6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "an irony was already in transit.",
+        "exact_native_cache_key": "f759b9c3549789cdf90c08410a86da25c2be36cb.pkl",
+        "cache_input_text_sha256": "fb11f21f8150d69f59d7b994107423cbe0d1a492b9462f2f17b0b81f2b3d39dc",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "New Horizons was launched on 19 January 2006, seven months before the vote, carrying a pinch of Tombaugh's ashes.",
+        "exact_native_cache_key": "d17ee28f456ee75ae1c0e2f32d55fa4d6c501601.pkl",
+        "cache_input_text_sha256": "bf39b75dd4f271d4b3000f318b327b186f36b7272e6ecb4e24e20265c5c3f900",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "New Horizons was launched on 19 January 2006, seven months before the vote, carrying a pinch of Tombaugh's ashes.",
+        "exact_native_cache_key": "eb2dbff1a0b45a4fe129db7b42d3650e3b754cc2.pkl",
+        "cache_input_text_sha256": "bf39b75dd4f271d4b3000f318b327b186f36b7272e6ecb4e24e20265c5c3f900",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "New Horizons was launched on 19 January 2006, seven months before the vote,",
+        "exact_native_cache_key": "1e16bbde6cbb5b30ee0746b24893dfa250bdd26c.pkl",
+        "cache_input_text_sha256": "a5f3ba4b0cbd6d6ef743b468980437fce8f52632f1297597adbe414c913de73e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "carrying a pinch of Tombaugh's ashes.",
+        "exact_native_cache_key": "c7268a3ff3339f9c02b0cc41ca6706ac0e472f94.pkl",
+        "cache_input_text_sha256": "7cd9b9868991199a910755a1f8d78e5abcf9df90b9ddf2515fe16e377e18fec7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "New Horizons was launched on 19 January 2006,",
+        "exact_native_cache_key": "3fb4081514bf893ddc2817b2bc6c8baa9dc64355.pkl",
+        "cache_input_text_sha256": "353b2802106e7a3af630ec88d702b2c16cb473268eb8475468cd9e08913e2756",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "seven months before the vote,",
+        "exact_native_cache_key": "430f1fefbbe0b70cce33137c1878d4de4eff6c67.pkl",
+        "cache_input_text_sha256": "a6e81ca8fbaf5b1a1a4401e0c5809f828eb2b3934a5f198eb522a5cfe5cf0563",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "carrying a pinch of Tombaugh's ashes.",
+        "exact_native_cache_key": "c7268a3ff3339f9c02b0cc41ca6706ac0e472f94.pkl",
+        "cache_input_text_sha256": "7cd9b9868991199a910755a1f8d78e5abcf9df90b9ddf2515fe16e377e18fec7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "On 14 July 2015 the unmanned craft flew past Pluto, transmitting images of an enormous heart-shaped plain, fittingly named Tombaugh Regio.",
+        "exact_native_cache_key": "685850f8a4d5a45fbc7e015e67f0f59547b4c0ab.pkl",
+        "cache_input_text_sha256": "bc5c72027bcd2ca47427014fac7035bf01fdb0fc2e94bb67cf1f5892fe37f561",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "On 14 July 2015 the unmanned craft flew past Pluto, transmitting images of an enormous heart-shaped plain, fittingly named Tombaugh Regio.",
+        "exact_native_cache_key": "9b7087a90a0236d3d9ab3ef767a53b7b831a1ad6.pkl",
+        "cache_input_text_sha256": "bc5c72027bcd2ca47427014fac7035bf01fdb0fc2e94bb67cf1f5892fe37f561",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "On 14 July 2015 the unmanned craft flew past Pluto,",
+        "exact_native_cache_key": "c6803ee6bd8f81aabb34bd351ea472a0dbe76eff.pkl",
+        "cache_input_text_sha256": "ccc9126569731630c34e964e5aac9eaa5ffab81f336b533c1b2184f186bf359e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "transmitting images of an enormous heart-shaped plain,",
+        "exact_native_cache_key": "93f5de611a9b9446f0fc0420e338fc92bcc31354.pkl",
+        "cache_input_text_sha256": "1f120ad846bc7be1573958f3e22e3b3711502f69acbf513d9ba32d2ce73f9b77",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "fittingly named Tombaugh Regio.",
+        "exact_native_cache_key": "fc355a2032086d04dae7929a8fd622be1346c60d.pkl",
+        "cache_input_text_sha256": "6366d9ee9ca972cdc525aa09628f6ac35999309cc466d78a28f2a621113a409f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "On 14 July 2015 the unmanned craft flew past Pluto,",
+        "exact_native_cache_key": "c6803ee6bd8f81aabb34bd351ea472a0dbe76eff.pkl",
+        "cache_input_text_sha256": "ccc9126569731630c34e964e5aac9eaa5ffab81f336b533c1b2184f186bf359e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "transmitting images of an enormous heart-shaped plain,",
+        "exact_native_cache_key": "93f5de611a9b9446f0fc0420e338fc92bcc31354.pkl",
+        "cache_input_text_sha256": "1f120ad846bc7be1573958f3e22e3b3711502f69acbf513d9ba32d2ce73f9b77",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "fittingly named Tombaugh Regio.",
+        "exact_native_cache_key": "fc355a2032086d04dae7929a8fd622be1346c60d.pkl",
+        "cache_input_text_sha256": "6366d9ee9ca972cdc525aa09628f6ac35999309cc466d78a28f2a621113a409f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The discoverer's ashes swept past the heart that bears his name.",
+        "exact_native_cache_key": "6d6a91da59eabe19d2735bc6d9662056f773f059.pkl",
+        "cache_input_text_sha256": "e438b2cdec4c49bed709c58474f318a5faed33670a976a127586a272f1986eaf",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The discoverer's ashes swept past the heart that bears his name.",
+        "exact_native_cache_key": "2c8cd18fd33f63e01861f469793c0c1f808eaeb2.pkl",
+        "cache_input_text_sha256": "e438b2cdec4c49bed709c58474f318a5faed33670a976a127586a272f1986eaf",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 84,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "fa21764799bf855c3e1f8d319e5e2772f2167296.pkl",
+        "pkl_sha256": "b76fa0dc721f7327ba759571ee7caa001110ffc8b0029ab32d52bd5e9d683cd8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Planet That Was Demoted",
+            "exact_native_cache_key": "fa21764799bf855c3e1f8d319e5e2772f2167296.pkl",
+            "cache_input_text_sha256": "9a84302d5080cb98eefdee213ec7aa23e1a35c62a07342f47d834ef3b2259e72",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b76fa0dc721f7327",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39424
+        ],
+        "unprocessed_array_sha256": "e31686bf67304f2c18a06617db35147923651ad8741ed991c979a2818e221f89"
+      },
+      {
+        "exact_native_cache_key": "fefdcef426fc81ad49735d7e41220f8f50dbfa9f.pkl",
+        "pkl_sha256": "7865fdb3e4edc35d36c53598b5bd22b0c41d963b7c0305da32301c5235c024a9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 18 February 1930, comparing photographic plates at the Lowell Observatory, the astronomer Clyde Tombaugh perceived a dim dot that shifted between them.",
+            "exact_native_cache_key": "fefdcef426fc81ad49735d7e41220f8f50dbfa9f.pkl",
+            "cache_input_text_sha256": "36037f42841e1f6e6727bee586fb2171fd4b94765983f7cd6866f4c9145eb42e",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7865fdb3e4edc35d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          283136
+        ],
+        "unprocessed_array_sha256": "c37e57424d1d14362e6cb6dc8a652f891c5f831255dd3b06f38ae04af20c1d7d"
+      },
+      {
+        "exact_native_cache_key": "0cb6c3f6e7d1657a51c745b102a8582f447e3fb5.pkl",
+        "pkl_sha256": "ce330979cf84cd24aaf6141407418005c662b018ed8a5426deff4456fc922c0f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 18 February 1930, comparing photographic plates at the Lowell Observatory,",
+            "exact_native_cache_key": "0cb6c3f6e7d1657a51c745b102a8582f447e3fb5.pkl",
+            "cache_input_text_sha256": "027a10a6d0104538ca8354ed523a393744c46e36db99ee8d0b3a9c90e94761c7",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ce330979cf84cd24",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          160256
+        ],
+        "unprocessed_array_sha256": "9c5aab7409f8b1adb59239e7b414a89619e11372997640e5293e9d5f451ea122"
+      },
+      {
+        "exact_native_cache_key": "b2c7ea23997c8f0f19e6dd43a03f7f73c3ade48a.pkl",
+        "pkl_sha256": "480c183f60cfe004c827ed3301b89e7b66d85052e6065d595afa73e014628856",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the astronomer Clyde Tombaugh perceived a dim dot",
+            "exact_native_cache_key": "b2c7ea23997c8f0f19e6dd43a03f7f73c3ade48a.pkl",
+            "cache_input_text_sha256": "dc5c72d9b7b4b8efb6cbe5feebe16067a152f4ce1729c0a6697d80313f779f17",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "480c183f60cfe004",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          73216
+        ],
+        "unprocessed_array_sha256": "89e953b0a7bdce13e7711750a654e0cc8d905aff3ee55f897ae8a37ed1a7e6cd"
+      },
+      {
+        "exact_native_cache_key": "69862f80b50afb204c5bc37b92c6b02a50f0ea93.pkl",
+        "pkl_sha256": "c0a8fe727052ee9c6ab1ccf945de45997b797cfc9bea30f45e5c92907346ae59",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "that shifted between them.",
+            "exact_native_cache_key": "69862f80b50afb204c5bc37b92c6b02a50f0ea93.pkl",
+            "cache_input_text_sha256": "38351c0b8a51283905d228df7d477b2036519d37732456a28040e9bb8bb74d93",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c0a8fe727052ee9c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          37376
+        ],
+        "unprocessed_array_sha256": "c600c4c0c534b17d32433844d2b0802a98a714c7bf956148ee0c9217295eddfa"
+      },
+      {
+        "exact_native_cache_key": "24151fd06bcdaaa09f5f94e66f00f149463d82a0.pkl",
+        "pkl_sha256": "812948628b320d270904fe9b2baf2aa763cc643812355fc2b1ef0c14fa64dcb5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 18 February 1930,",
+            "exact_native_cache_key": "24151fd06bcdaaa09f5f94e66f00f149463d82a0.pkl",
+            "cache_input_text_sha256": "8cdb3f2747b27000166a8752ae90ffddc692d30af5f1536f79e07538c899b7bf",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "812948628b320d27",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          61440
+        ],
+        "unprocessed_array_sha256": "725eb0db8e4934bb49b937f93d3ae52a98186a59a07361698b4f221ce5b820d9"
+      },
+      {
+        "exact_native_cache_key": "8d5f2aff15517284290049a7a8613c7da85854e0.pkl",
+        "pkl_sha256": "66d797822036e0ac35b6e2bfec5fbc8713a7bc46bafe7abf45e26df575eb07bf",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "comparing photographic plates at the Lowell Observatory,",
+            "exact_native_cache_key": "8d5f2aff15517284290049a7a8613c7da85854e0.pkl",
+            "cache_input_text_sha256": "1d8b8b0ef2194e71782515dfe31a03de4dc8de5b7d3a72841b964aa4acb478d8",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "66d797822036e0ac",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          83456
+        ],
+        "unprocessed_array_sha256": "1a1610676988d4b85dad752f4f94c4592a10dd1ce0478c724def04ddc63f441f"
+      },
+      {
+        "exact_native_cache_key": "9d11555b7489463cb91a8760678be4e1e49ac461.pkl",
+        "pkl_sha256": "a8e72ca78aea3ba85555405e0f49581f873e9569895d4babd17be12999c043e7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the astronomer Clyde Tombaugh perceived a dim dot that shifted between them.",
+            "exact_native_cache_key": "9d11555b7489463cb91a8760678be4e1e49ac461.pkl",
+            "cache_input_text_sha256": "c89cc7397df2bbc042aa7df4fd4900e24278370e996c4a6da28f41b15c041641",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a8e72ca78aea3ba8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          118784
+        ],
+        "unprocessed_array_sha256": "211a5946c20dee7cf16b7f15b9fe3c2bc4094e096bdda008557704f7337c42a0"
+      },
+      {
+        "exact_native_cache_key": "b9c46908c361d8045ffcc7ad0c02d681df060cf7.pkl",
+        "pkl_sha256": "66cffaf727ada127427e5a207dd91c217b3b6e8c1e92aba8e9a40e59cd320037",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "An eleven-year-old English girl put forward the name, after the Roman deity of the underworld.",
+            "exact_native_cache_key": "b9c46908c361d8045ffcc7ad0c02d681df060cf7.pkl",
+            "cache_input_text_sha256": "5037ab937bb1a8a82686bb2aa49c50dc3b9c6685d74739029804ba630ff4db8f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "66cffaf727ada127",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          147968
+        ],
+        "unprocessed_array_sha256": "579adb3f3a7b973aff87962ce7e96e16724c8957f844f0d59514c3ec4be18fe2"
+      },
+      {
+        "exact_native_cache_key": "a091deec6afd37c0890ad27b237932114ac47b1a.pkl",
+        "pkl_sha256": "84943af264beff3c1224cd3ba2a231d8d989da15dfee9e9c14b26a7ec14e12a0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "An eleven-year-old English girl put forward the name,",
+            "exact_native_cache_key": "a091deec6afd37c0890ad27b237932114ac47b1a.pkl",
+            "cache_input_text_sha256": "299c714ac4367e6f2a8383f69926cd6fb5788b2a5aad77feb96c850bf5c899d3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "An eleven-year-old English girl put forward the name,",
+            "exact_native_cache_key": "a091deec6afd37c0890ad27b237932114ac47b1a.pkl",
+            "cache_input_text_sha256": "299c714ac4367e6f2a8383f69926cd6fb5788b2a5aad77feb96c850bf5c899d3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "84943af264beff3c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          74240
+        ],
+        "unprocessed_array_sha256": "55ee327d30d54e9ebbf6a877ae14faefb406bfae85c9a6dfb9dc8f1334dd226c"
+      },
+      {
+        "exact_native_cache_key": "226a9fe3cc38389d0127be666d817eb8eb3db804.pkl",
+        "pkl_sha256": "965f7b271f88db24ad608bc314fbefc55f919ac1fdb14a9d6a350db4d5adeff2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "after the Roman deity of the underworld.",
+            "exact_native_cache_key": "226a9fe3cc38389d0127be666d817eb8eb3db804.pkl",
+            "cache_input_text_sha256": "6d3b5e32daca30962329f38106470fbba8bd90a9e08029263a77c0f1cb52c439",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "after the Roman deity of the underworld.",
+            "exact_native_cache_key": "226a9fe3cc38389d0127be666d817eb8eb3db804.pkl",
+            "cache_input_text_sha256": "6d3b5e32daca30962329f38106470fbba8bd90a9e08029263a77c0f1cb52c439",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "965f7b271f88db24",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          65024
+        ],
+        "unprocessed_array_sha256": "1552526b3cd82177d9e9de2df93a6702233ca212765c0db95492c65421b5f6f9"
+      },
+      {
+        "exact_native_cache_key": "1df2dff228c71b4e6a51b3048e27d1e7629c6606.pkl",
+        "pkl_sha256": "c2871d7ab88491e2d71d39564e8d2dd701243b2932f2dbb7d0dd372bcfe85f45",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "For 76 years Pluto held the ninth slot on the planetary roster.",
+            "exact_native_cache_key": "1df2dff228c71b4e6a51b3048e27d1e7629c6606.pkl",
+            "cache_input_text_sha256": "a0d20fc32685d0ca8c3594f4fbe09932826e77177e9fef9d6517ddd3282b2a0e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c2871d7ab88491e2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          108544
+        ],
+        "unprocessed_array_sha256": "eefb75fc237928038920e282584826d0e49c3ed53bbac21f48eb0fe2cf1ba46c"
+      },
+      {
+        "exact_native_cache_key": "0385748755722bd57d56f242d2f6f99c152884f7.pkl",
+        "pkl_sha256": "777342a66f5d5a8fc3554ba664e58bb8b7b04ddac8ede71dafdaa92b04054b9d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In January 2005, astronomers found a far-off body, later named Eris, at first thought larger than Pluto.",
+            "exact_native_cache_key": "0385748755722bd57d56f242d2f6f99c152884f7.pkl",
+            "cache_input_text_sha256": "d61a6a79f0e36912deb53f5b931b935ce3641d48a7ce1e1b84a8ea9785c2b4b1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "777342a66f5d5a8f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          208384
+        ],
+        "unprocessed_array_sha256": "72ed901207a2404bc50f1124acbce9d2cff0b89ca6ab9eaf796272bf5ba4418a"
+      },
+      {
+        "exact_native_cache_key": "e1c94e2176509b29ddd9e17a8e8a53c37bee6d1b.pkl",
+        "pkl_sha256": "1e3cc09d71dd6a275502d102778041200e169ef9d8ea71b6e17bf832a38125c5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In January 2005, astronomers found a far-off body,",
+            "exact_native_cache_key": "e1c94e2176509b29ddd9e17a8e8a53c37bee6d1b.pkl",
+            "cache_input_text_sha256": "b47eb1314b3844b502c61374fadc28e154aa62413ffe4fe03d6a06ae55de791b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1e3cc09d71dd6a27",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          110592
+        ],
+        "unprocessed_array_sha256": "22a110e2213a781f9ebfed929408d390d7a27ffb81893023173ba6586ec02ba0"
+      },
+      {
+        "exact_native_cache_key": "f9e0918f0b1a5d41468a13b26d85c5c1c92592bb.pkl",
+        "pkl_sha256": "12db4ac5ed0788703df77c73a09297c22990f89ad51917477e0d2d3b5d35c0f4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "later named Eris, at first thought larger than Pluto.",
+            "exact_native_cache_key": "f9e0918f0b1a5d41468a13b26d85c5c1c92592bb.pkl",
+            "cache_input_text_sha256": "2f1d11cd14444153a5c761a135b37b3e372640b9d47d9896435ecccf368ba5a2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "12db4ac5ed078870",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          84992
+        ],
+        "unprocessed_array_sha256": "6759f05626d46476591fa4a0fe850c63aea2b6c8a138e2dfbfee044941365699"
+      },
+      {
+        "exact_native_cache_key": "c8e9d3fc7bae287a949bbf867aa7dd224a7dbe5c.pkl",
+        "pkl_sha256": "4a89a27b2cbaae727d02cd06fb7d5386b20f04a4b4af0742ab8ccfbc63d989c1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In January 2005,",
+            "exact_native_cache_key": "c8e9d3fc7bae287a949bbf867aa7dd224a7dbe5c.pkl",
+            "cache_input_text_sha256": "cde03e81ac162712185e2edfa3653ef29378fdf30a276859d34cccd22fb0e238",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4a89a27b2cbaae72",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          46080
+        ],
+        "unprocessed_array_sha256": "925d80982a63ef3563e9f1fa69b229de51694307772e8f852cabbd184e0ef7c4"
+      },
+      {
+        "exact_native_cache_key": "00a6b4b1b76e3ff71294b99a86af4fbd8e87fbfe.pkl",
+        "pkl_sha256": "5d7db07138428be4fe210ab69cc54edffa5323e534ebfb60534457d71563bb68",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "astronomers found a far-off body,",
+            "exact_native_cache_key": "00a6b4b1b76e3ff71294b99a86af4fbd8e87fbfe.pkl",
+            "cache_input_text_sha256": "cd429b023706542ad5d60db5611b398258f933dede63792b0878234f3ba53227",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5d7db07138428be4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          52224
+        ],
+        "unprocessed_array_sha256": "ae0ece3c76ffbd22e6b750aef64fdca10ea5d423da6243354533cdc9438e23df"
+      },
+      {
+        "exact_native_cache_key": "4b9c7a8000cb2b4fd716a69828c663838207ddf7.pkl",
+        "pkl_sha256": "4ea23771aec05fc5ef1550fd1090a4c9d8d520778644689e49d9dff93b2ccf1e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "later named Eris,",
+            "exact_native_cache_key": "4b9c7a8000cb2b4fd716a69828c663838207ddf7.pkl",
+            "cache_input_text_sha256": "3087fe948da81ba5c838d537e34fef334126be757b1aa17ddf4ab96739d8aee6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4ea23771aec05fc5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          31232
+        ],
+        "unprocessed_array_sha256": "5132808f956fe576a9deddcfac1698c3aac6e94d439050c0bf69b3b75421a53d"
+      },
+      {
+        "exact_native_cache_key": "8a72afd1ad213688eadf8945bb2785a4568b77ce.pkl",
+        "pkl_sha256": "4b111111662deb446d610a316f876fc9691cf985b3ec25e9b243d3df3697f883",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "at first thought larger than Pluto.",
+            "exact_native_cache_key": "8a72afd1ad213688eadf8945bb2785a4568b77ce.pkl",
+            "cache_input_text_sha256": "d7fc3df5e0f2139ee26e6f32864233d8dd85f4924cf94f208e016473051b73ac",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4b111111662deb44",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          49152
+        ],
+        "unprocessed_array_sha256": "e398fc26ced7b285f8a35dfd961ab0c04741020729ec882685dd7fa8bfd95d77"
+      },
+      {
+        "exact_native_cache_key": "920e22d3808b503aaaaab957e09aede4b763e815.pkl",
+        "pkl_sha256": "93da55d801bb8d357a29913fb422cbe32673deaece39ff3fb091f530814c65fb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "NASA briefly called it the tenth planet.",
+            "exact_native_cache_key": "920e22d3808b503aaaaab957e09aede4b763e815.pkl",
+            "cache_input_text_sha256": "77635e53483a9b65da249afcf1d2840a3c38ed434ecbf81a9c29c61fb2a22822",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "93da55d801bb8d35",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54784
+        ],
+        "unprocessed_array_sha256": "e3a6704f7e88845604711420d39a52c437accb44b777fe6a4ff241f667509e2f"
+      },
+      {
+        "exact_native_cache_key": "404ca09cc429ef25f23e2aad14afcfb5c44e369f.pkl",
+        "pkl_sha256": "02825dacd71c17eac087f2c4b8af628b023d58b2970015bc6534c3efce227b3a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The contender posed an awkward dilemma.",
+            "exact_native_cache_key": "404ca09cc429ef25f23e2aad14afcfb5c44e369f.pkl",
+            "cache_input_text_sha256": "4bf36977323a8a3a2eab1eb82aa211683a259b0db03165e9bf7a808678879806",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "02825dacd71c17ea",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54784
+        ],
+        "unprocessed_array_sha256": "b21ee9be7548a6d1061163855fc26920058742e7be96cf70d057d8a21e474f52"
+      },
+      {
+        "exact_native_cache_key": "21ce74c07d79334b92fdb751ebd5a1b190fe727f.pkl",
+        "pkl_sha256": "75d709ad3fd08848945ef8eaa46ea64e48cc5dc1ee6750fc59c481d15e15bce9",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The term \"planet\" had hitherto been used loosely, and with more icy worlds likely to be found, a precise definition became a necessity.",
+            "exact_native_cache_key": "21ce74c07d79334b92fdb751ebd5a1b190fe727f.pkl",
+            "cache_input_text_sha256": "22e28377ea8f562f0e2d7ccf8760f706f2a3f65125b231f30fd8c489795c0e85",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "75d709ad3fd08848",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          221696
+        ],
+        "unprocessed_array_sha256": "6328ef4d25b6dc83f3606bc2060d2b47ec788aef3316ede3499d09ab5981b6b4"
+      },
+      {
+        "exact_native_cache_key": "a9137008ede416501163d0f64ce483fd3fbc8021.pkl",
+        "pkl_sha256": "1ae162bdadd682adc27cf832aa9e8ea3b0b8dd4d1de6e7b40926a74d70cace04",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The term \"planet\" had hitherto been used loosely,",
+            "exact_native_cache_key": "a9137008ede416501163d0f64ce483fd3fbc8021.pkl",
+            "cache_input_text_sha256": "057e5d3aadc9b8e0877737d2346d0a30f71bc63b52b06e1f2d4ac09acd487828",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The term \"planet\" had hitherto been used loosely,",
+            "exact_native_cache_key": "a9137008ede416501163d0f64ce483fd3fbc8021.pkl",
+            "cache_input_text_sha256": "057e5d3aadc9b8e0877737d2346d0a30f71bc63b52b06e1f2d4ac09acd487828",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1ae162bdadd682ad",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67072
+        ],
+        "unprocessed_array_sha256": "e231bb287cdcd1c049a7a9b05619ab9314b78b45e1783621dc822148516bdb18"
+      },
+      {
+        "exact_native_cache_key": "00f8cae1dcb14fcde93722bf272af119da04540f.pkl",
+        "pkl_sha256": "e2bd411aca138975bf95c77f65f16cd88ad7daed27a7761b8b1fe7432aba13fb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and with more icy worlds likely to be found,",
+            "exact_native_cache_key": "00f8cae1dcb14fcde93722bf272af119da04540f.pkl",
+            "cache_input_text_sha256": "1ce0448128a75033353ee16d2511f638e41a555b58d1b04d45c8ff0bb57837e0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and with more icy worlds likely to be found,",
+            "exact_native_cache_key": "00f8cae1dcb14fcde93722bf272af119da04540f.pkl",
+            "cache_input_text_sha256": "1ce0448128a75033353ee16d2511f638e41a555b58d1b04d45c8ff0bb57837e0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e2bd411aca138975",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62464
+        ],
+        "unprocessed_array_sha256": "33795a1901db7708eae0757a12a6d44b0e8aa0e810e834c6bf135b6345a857a0"
+      },
+      {
+        "exact_native_cache_key": "99856ea00f5f7d6b41956f056d17076e37b7a7f3.pkl",
+        "pkl_sha256": "cbab8a0d10b6c2f9607bebc7f4faa829c0afa5e3ddf4312ca24798b6faa7c531",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a precise definition became a necessity.",
+            "exact_native_cache_key": "99856ea00f5f7d6b41956f056d17076e37b7a7f3.pkl",
+            "cache_input_text_sha256": "c101adde35ae2dd46881651ae48e1a302c7ef5dcb5ac8c9176fbd6087de3ae97",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S7",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a precise definition became a necessity.",
+            "exact_native_cache_key": "99856ea00f5f7d6b41956f056d17076e37b7a7f3.pkl",
+            "cache_input_text_sha256": "c101adde35ae2dd46881651ae48e1a302c7ef5dcb5ac8c9176fbd6087de3ae97",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "cbab8a0d10b6c2f9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          64512
+        ],
+        "unprocessed_array_sha256": "cb5baea984a304bc42b23124dc9a4ad2364241227567bcc94de0f3c5cb820cd8"
+      },
+      {
+        "exact_native_cache_key": "90a143cb7bcef53c5d97060940b152522bb299f4.pkl",
+        "pkl_sha256": "508f5768d7172ce322bcc6af2b486e162db699f6402804cf00241a3eeff83db1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 24 August 2006 the International Astronomical Union, convened in Prague, voted that a planet must revolve around the Sun, be nearly spherical, and have cleared the neighbourhood around its orbit.",
+            "exact_native_cache_key": "90a143cb7bcef53c5d97060940b152522bb299f4.pkl",
+            "cache_input_text_sha256": "68177539c8ea0f3b3e0e73b83df12e13cd1da5f72f014902156bfc62babde56d",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "508f5768d7172ce3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          358912
+        ],
+        "unprocessed_array_sha256": "40e5997424e962e66b36240ad7833ec8be73f951dd447b299ab9f9cea89157c2"
+      },
+      {
+        "exact_native_cache_key": "17ab5a9df29cfa113c58f63f6aa53c2ffc4b10c7.pkl",
+        "pkl_sha256": "a3876ba51ceca1e54f3f023c6a3683818f65890862b92a5aa2776897388cdaa6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 24 August 2006 the International Astronomical Union, convened in Prague,",
+            "exact_native_cache_key": "17ab5a9df29cfa113c58f63f6aa53c2ffc4b10c7.pkl",
+            "cache_input_text_sha256": "1c9dc422c48a87754875f63bd27770091216ca1462bdb35928202b024ae06663",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a3876ba51ceca1e5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          171520
+        ],
+        "unprocessed_array_sha256": "e6766d90f8525efdc1a5866ffa419d3568d40a54e2ed1afeb30e5e279bd9d7f0"
+      },
+      {
+        "exact_native_cache_key": "95c401115106a226d89cb7269b050be3628875cc.pkl",
+        "pkl_sha256": "f7a00a3186989ee5e09720656c5aa7480ee77954a826b8bfd5db9ff8ea2fa4bb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "voted that a planet must revolve around the Sun,",
+            "exact_native_cache_key": "95c401115106a226d89cb7269b050be3628875cc.pkl",
+            "cache_input_text_sha256": "50f26e2ed3ad28d3eba404c1e74e2d4238769a38861c47896e1f2d4085f5582c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "voted that a planet must revolve around the Sun,",
+            "exact_native_cache_key": "95c401115106a226d89cb7269b050be3628875cc.pkl",
+            "cache_input_text_sha256": "50f26e2ed3ad28d3eba404c1e74e2d4238769a38861c47896e1f2d4085f5582c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f7a00a3186989ee5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          69632
+        ],
+        "unprocessed_array_sha256": "2e990bed431735e7be63aadfc91ad5cd9575bd5dd513f6cc433b3c9d9472cd1e"
+      },
+      {
+        "exact_native_cache_key": "dad163a9c69b7e508c06f155248930e06fe41a58.pkl",
+        "pkl_sha256": "4a11bcadb7b5c0c7ac6f9f67c5a64e4d9f9c60e4a5896843cda7d2809d1f35b3",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "be nearly spherical, and have cleared the neighbourhood around its orbit.",
+            "exact_native_cache_key": "dad163a9c69b7e508c06f155248930e06fe41a58.pkl",
+            "cache_input_text_sha256": "8c479903a5e13f64d34e5822211c75d44cf490ac229adcfe233019b0560c70be",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4a11bcadb7b5c0c7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          93696
+        ],
+        "unprocessed_array_sha256": "8f82b88c8f959bc127a97e5685b798c89ebfc9c059dc1d110010d2b286c6a211"
+      },
+      {
+        "exact_native_cache_key": "a760cdab6998da54a1acaa89b3de2519b762a723.pkl",
+        "pkl_sha256": "e9344dff95ae22da3604a0698cc0940f3dd57da034fcb077b6c6f68c68e53269",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 24 August 2006 the International Astronomical Union,",
+            "exact_native_cache_key": "a760cdab6998da54a1acaa89b3de2519b762a723.pkl",
+            "cache_input_text_sha256": "3f571ad23577d44c720544235b617764dd970671c6961d74acd641c4bf84cab3",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e9344dff95ae22da",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          133632
+        ],
+        "unprocessed_array_sha256": "2138af0d40b748ccc1547e8a814162c7ef378f1c63e253d6b8d9f0eb1a529cf1"
+      },
+      {
+        "exact_native_cache_key": "935c4c49721b5c60efcf1a889f6153ed702f78ea.pkl",
+        "pkl_sha256": "f7e66cafe3232dd86d263f4e7f13192b866ffc981fcdb27bd9d33e59dedff667",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "convened in Prague,",
+            "exact_native_cache_key": "935c4c49721b5c60efcf1a889f6153ed702f78ea.pkl",
+            "cache_input_text_sha256": "7295730cd4c849bcf452a2bc344178c346bec2d6eb8b94104ad25da4dd8ee65f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f7e66cafe3232dd8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          31232
+        ],
+        "unprocessed_array_sha256": "46ebdbf70084df3ce0a0dc0964a0b01b9777a31df631c6e5cd6512d9c84dea26"
+      },
+      {
+        "exact_native_cache_key": "5f5adeb794ffba184c21771df8b29b47d3c28900.pkl",
+        "pkl_sha256": "2fd71051e688b948273e6d356e88c4cfc9a8345d1117ac1aa36cc8266165864d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "be nearly spherical,",
+            "exact_native_cache_key": "5f5adeb794ffba184c21771df8b29b47d3c28900.pkl",
+            "cache_input_text_sha256": "e9fb039e214a6f8a768ce5e847280344fb3b553e6efa9df016572c0f166c35e6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2fd71051e688b948",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          31232
+        ],
+        "unprocessed_array_sha256": "023f2daeac5603f8af0a5e6d9bacc0610a4d4f9d56e79800498aed2ce10719f9"
+      },
+      {
+        "exact_native_cache_key": "98e7d4169dd71ee5e05a4f535af7a7bd60ae84b8.pkl",
+        "pkl_sha256": "70fd6a3c3db182a99ff6ab0a89237dde91fb5c13decf189e5b2f421774509009",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 5,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and have cleared the neighbourhood around its orbit.",
+            "exact_native_cache_key": "98e7d4169dd71ee5e05a4f535af7a7bd60ae84b8.pkl",
+            "cache_input_text_sha256": "fa29402c9165bec28fe9f7aeccc50a9ec28e2384fcf7ce15dbd2c3a3eef275bd",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "70fd6a3c3db182a9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          58880
+        ],
+        "unprocessed_array_sha256": "df3586bf63275b15c0f8e3571c153b62ea8e77190ea7aa868806cf4fea4cd03b"
+      },
+      {
+        "exact_native_cache_key": "2e03308a77606127acd37a7410c5ed13ba06f2b7.pkl",
+        "pkl_sha256": "c5a0d603784e490890beec1d6788725093760685ee51ad488ffb4d043d4ead02",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Pluto failed that last criterion and was reclassified as a dwarf planet, leaving eight.",
+            "exact_native_cache_key": "2e03308a77606127acd37a7410c5ed13ba06f2b7.pkl",
+            "cache_input_text_sha256": "709aa9d4a58949c9bd437dbd28d52824e748563edf28c0569538fa0ebe36527b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c5a0d603784e4908",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          138752
+        ],
+        "unprocessed_array_sha256": "de1a469d978aa6f9660f8a8795c81093db86ba09e3922a195d079c9f36cf56ef"
+      },
+      {
+        "exact_native_cache_key": "999562494711615b9943c40c38c0a0ca219e0151.pkl",
+        "pkl_sha256": "8afe9db93666e1e4caca6f72d4c1b310f4e1cf40089de2fd98c4f4be51d61b93",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Pluto failed that last criterion",
+            "exact_native_cache_key": "999562494711615b9943c40c38c0a0ca219e0151.pkl",
+            "cache_input_text_sha256": "092c29a91fc4c674472a4ae7012166bf144a0c1b2b454b836f6c44be0b925f27",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8afe9db93666e1e4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50176
+        ],
+        "unprocessed_array_sha256": "ff7a233743205a068191761032a0e315df4539fb48ae88dab3444b6e6638386b"
+      },
+      {
+        "exact_native_cache_key": "4c82da2220da306caea442c964633f3622d6490e.pkl",
+        "pkl_sha256": "2241ea49669e73a940a4c3a719923813a95c0d735adf7f0fea4e806941bdc1d2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and was reclassified as a dwarf planet, leaving eight.",
+            "exact_native_cache_key": "4c82da2220da306caea442c964633f3622d6490e.pkl",
+            "cache_input_text_sha256": "b08a7495038667e528d619a3f5e6c64ac8896cb36e9f6a49c26fcffb89025f0b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2241ea49669e73a9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          82944
+        ],
+        "unprocessed_array_sha256": "e86d8bac48a6c20ed0e2cd5fefffc021c1dd98e3db85974fd57303f8a6064b1e"
+      },
+      {
+        "exact_native_cache_key": "8c0b38286c0897acfc2ba2a245c4d59ee073e61b.pkl",
+        "pkl_sha256": "69b3aed05ccad24351f23d6998d2cb96768efedb7b29b686365f42807f740741",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Pluto failed that last criterion and was reclassified as a dwarf planet,",
+            "exact_native_cache_key": "8c0b38286c0897acfc2ba2a245c4d59ee073e61b.pkl",
+            "cache_input_text_sha256": "a15b3bcdb4c1db5b13f59b9e380af80df511889af7527aec23721849b9cd7b88",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "69b3aed05ccad243",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          120320
+        ],
+        "unprocessed_array_sha256": "2031a596ba0e9e555be02e888b4e2a967373b124b246617cd4f550dbd5b72a6a"
+      },
+      {
+        "exact_native_cache_key": "ad4f77301d9a54cca4d14ccf111b505af73f41c4.pkl",
+        "pkl_sha256": "b4bbf1d22cc8d914b4a29d4af36c633d1cca86b9679b5ffe268aaafdb7c22ae7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "leaving eight.",
+            "exact_native_cache_key": "ad4f77301d9a54cca4d14ccf111b505af73f41c4.pkl",
+            "cache_input_text_sha256": "9d272ff269e83c66ddef8dab7f81f15db87bb7f60bd14bcbf2004684b94c1991",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b4bbf1d22cc8d914",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          23552
+        ],
+        "unprocessed_array_sha256": "22a03d2c9485492a153d8ad669e837a9c0424f36b9c5d1308458e95a95a2eea7"
+      },
+      {
+        "exact_native_cache_key": "c6ab2fdf944e976c42238ff6aeb852ded886386e.pkl",
+        "pkl_sha256": "eda7e01377677a874aa8d09eb2acd306f47ab10dfba10179a25f28bd34e5d25e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Pluto was physically unaltered; only the boundary had moved.",
+            "exact_native_cache_key": "c6ab2fdf944e976c42238ff6aeb852ded886386e.pkl",
+            "cache_input_text_sha256": "233e516f618bcf8a798c3ba872582304cfc9af19ae57b60db4cc557b1283ad1c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "eda7e01377677a87",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          96768
+        ],
+        "unprocessed_array_sha256": "d51408c0a26c8d7671319dc8b353e9a983db8e329766c57d713514892152d69e"
+      },
+      {
+        "exact_native_cache_key": "47b3dac5f4e80256cd7acb33fe4c35921f5b380a.pkl",
+        "pkl_sha256": "ff815f6568c9fa5a165d899622d65a2118a5e42290939e2446f6e7ee76817107",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Pluto was physically unaltered;",
+            "exact_native_cache_key": "47b3dac5f4e80256cd7acb33fe4c35921f5b380a.pkl",
+            "cache_input_text_sha256": "cd25d6f9b9e7df749c72e54ea6e10ab53610819f3d78b4ecb8cee3b0c76a8b98",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Pluto was physically unaltered;",
+            "exact_native_cache_key": "47b3dac5f4e80256cd7acb33fe4c35921f5b380a.pkl",
+            "cache_input_text_sha256": "cd25d6f9b9e7df749c72e54ea6e10ab53610819f3d78b4ecb8cee3b0c76a8b98",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ff815f6568c9fa5a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          43520
+        ],
+        "unprocessed_array_sha256": "15b4479f313948cc7ad8258abcb8720cd3a5e3d008058aee6723f86f2a232152"
+      },
+      {
+        "exact_native_cache_key": "721fe0c33eb8708f0bac22690459afddd746bb48.pkl",
+        "pkl_sha256": "05f2795221983495d21fed72923f026c8465b31c9ac25501eb10801379ad5a57",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "only the boundary had moved.",
+            "exact_native_cache_key": "721fe0c33eb8708f0bac22690459afddd746bb48.pkl",
+            "cache_input_text_sha256": "79d5f19a39f449c9ec4ff5b548dc18f8a2170431ee6f71b003b2480d1c211283",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "only the boundary had moved.",
+            "exact_native_cache_key": "721fe0c33eb8708f0bac22690459afddd746bb48.pkl",
+            "cache_input_text_sha256": "79d5f19a39f449c9ec4ff5b548dc18f8a2170431ee6f71b003b2480d1c211283",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "05f2795221983495",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          41472
+        ],
+        "unprocessed_array_sha256": "91a1c29ba6c504524203bd90939b9c3e45a111102d0eb56d4996d7f1037d1850"
+      },
+      {
+        "exact_native_cache_key": "4a13b7e09affde571ed0117219127b6702fde3ef.pkl",
+        "pkl_sha256": "24bca9e122da9a4f2e5e656441e6366ce24edab5bced0c9a8f7122108086f57d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The vote was valid, yet its legitimacy drew criticism: only 424 of some 10,000 members took part.",
+            "exact_native_cache_key": "4a13b7e09affde571ed0117219127b6702fde3ef.pkl",
+            "cache_input_text_sha256": "f21c9fda333a8f47d2c4592685eb30dc2ef304cc106102d2259485ea45ba9940",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "24bca9e122da9a4f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          209920
+        ],
+        "unprocessed_array_sha256": "3c2ee2c6b6b908f7c655a84e2724c932acb89bd2824020077d650d215980350e"
+      },
+      {
+        "exact_native_cache_key": "ca60e89c0acd73e1f2daf67260b5be05c8a0bdc3.pkl",
+        "pkl_sha256": "9bb8c85cb6a210b8728a68976b6a7a7ef1736a66cd7f2c3e7d6680539e9e5fae",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The vote was valid, yet its legitimacy drew criticism:",
+            "exact_native_cache_key": "ca60e89c0acd73e1f2daf67260b5be05c8a0bdc3.pkl",
+            "cache_input_text_sha256": "2d72b76b1b8700b725c87d18aa65ad309c3da0525b5c4ee82f5a452679045fc1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9bb8c85cb6a210b8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          89088
+        ],
+        "unprocessed_array_sha256": "be3821499d48e532f016ac16e7fcf37a16959be36132948980ea2970260d029f"
+      },
+      {
+        "exact_native_cache_key": "391fca61fc9bf27eec303265aa921807b1deb225.pkl",
+        "pkl_sha256": "0797a0193a518c171b097ac7a98a039a20fafc9ca5e5d7e0fd9efe7c68c957b3",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "only 424 of some 10,000 members took part.",
+            "exact_native_cache_key": "391fca61fc9bf27eec303265aa921807b1deb225.pkl",
+            "cache_input_text_sha256": "0cf3d62c80c3a70c02b5faa0407059b0e252bd77b3e8e4b92a27f2a48d015be1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "only 424 of some 10,000 members took part.",
+            "exact_native_cache_key": "391fca61fc9bf27eec303265aa921807b1deb225.pkl",
+            "cache_input_text_sha256": "0cf3d62c80c3a70c02b5faa0407059b0e252bd77b3e8e4b92a27f2a48d015be1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0797a0193a518c17",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          107520
+        ],
+        "unprocessed_array_sha256": "1ae17701a74cca9e5743b4845a77379da41b2c7e8505fd6c4fa9edd008e2a7bb"
+      },
+      {
+        "exact_native_cache_key": "58649c76d9f94a2318060286a75758c111a766b4.pkl",
+        "pkl_sha256": "d7368a792b22e43e51afa926391c249aa8ca1b97eb133fcb0acbd6ec8c4dc846",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The vote was valid,",
+            "exact_native_cache_key": "58649c76d9f94a2318060286a75758c111a766b4.pkl",
+            "cache_input_text_sha256": "a0dc49b7f7d7f0360014d1107a68193dfa43e5b98299e3277349d21eddc36c04",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d7368a792b22e43e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          30208
+        ],
+        "unprocessed_array_sha256": "49f8dab014ab1f212ff0eafe3641f48bc49a6000749e5106e69e8b8f4bb45efc"
+      },
+      {
+        "exact_native_cache_key": "0a9c849e0012881eed6c0ba9e1f6503389d49725.pkl",
+        "pkl_sha256": "21a4f9085af2099483b8088f9a24878dc17c8fc35fcbe247f3113766a0a07aac",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "yet its legitimacy drew criticism:",
+            "exact_native_cache_key": "0a9c849e0012881eed6c0ba9e1f6503389d49725.pkl",
+            "cache_input_text_sha256": "f889a15841f003813c2fba5d6ac23ede4127931fff37ddec910e6be37e7ed031",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "21a4f9085af20994",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          55808
+        ],
+        "unprocessed_array_sha256": "9e11190d6f76569515ed447b7bf0b60768b3dac08a36819d3c6fcaf17a6f419d"
+      },
+      {
+        "exact_native_cache_key": "450a264a8612de846298cd1ddf54010df3b7a46c.pkl",
+        "pkl_sha256": "c1fe729b896f93340c302e686402028e05f7806a75a0849d24b364d02dca5191",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Hundreds of dissenting astronomers signed a petition.",
+            "exact_native_cache_key": "450a264a8612de846298cd1ddf54010df3b7a46c.pkl",
+            "cache_input_text_sha256": "6b7caa96a73839e354cb3685815cb1c5f08228db51f8ca0ac5995c0dd07b79e3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c1fe729b896f9334",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          74240
+        ],
+        "unprocessed_array_sha256": "b9df705eb2a4764ed1fef6698badd06de0122302a7dacc3307e049f3096e48f7"
+      },
+      {
+        "exact_native_cache_key": "110baf32baccfdca6f817af2507ac9d0fd6b1c0e.pkl",
+        "pkl_sha256": "40c780e8f57007b62c090ba67cac76ed5f3fbdd9d50264b55ecf01fcaf0d7002",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The American Dialect Society made \"plutoed\", playful slang for \"to devalue\", its word of 2006, and New Mexico and Illinois lawmakers passed resolutions affirming that Pluto was a planet.",
+            "exact_native_cache_key": "110baf32baccfdca6f817af2507ac9d0fd6b1c0e.pkl",
+            "cache_input_text_sha256": "cdc6e142276166e08aa3f5e2fdc43fa8504ca179b4f99aba829b44658483bab7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "40c780e8f57007b6",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          335872
+        ],
+        "unprocessed_array_sha256": "06afc44bdfb5c9bad4907fd704f427299321950e1913f23192b6789c7a5f2d07"
+      },
+      {
+        "exact_native_cache_key": "6ee46a2fa9df12b9f3369f7f4438eaccc52f49af.pkl",
+        "pkl_sha256": "264218f14b0f6440edf3e4a546e28f10b5718c1f34c0c38c7ef18f2d2fe245e7",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The American Dialect Society made \"plutoed\", playful slang for \"to devalue\", its word of 2006,",
+            "exact_native_cache_key": "6ee46a2fa9df12b9f3369f7f4438eaccc52f49af.pkl",
+            "cache_input_text_sha256": "69abd2aacf87120a1ede7b7e067d9d7c5e58da1090d882288cebb443180a0cd0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "264218f14b0f6440",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          173056
+        ],
+        "unprocessed_array_sha256": "011c0882ee89d5ff848731be4e8f51d80d63a64d212307370c7b1714d5ffb7fc"
+      },
+      {
+        "exact_native_cache_key": "8d83ecd8221c16b8bdb346a0bbe32188b1858fe5.pkl",
+        "pkl_sha256": "1968521d359518fa434ad5854eb38b7245311919bc61cc25457b3f30a7adb346",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and New Mexico and Illinois lawmakers passed resolutions affirming that Pluto was a planet.",
+            "exact_native_cache_key": "8d83ecd8221c16b8bdb346a0bbe32188b1858fe5.pkl",
+            "cache_input_text_sha256": "75a087bc6a0efcd481f6d256f455b8986d3b23df41212758a0b9ab08ba50da1c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S13",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and New Mexico and Illinois lawmakers passed resolutions affirming that Pluto was a planet.",
+            "exact_native_cache_key": "8d83ecd8221c16b8bdb346a0bbe32188b1858fe5.pkl",
+            "cache_input_text_sha256": "75a087bc6a0efcd481f6d256f455b8986d3b23df41212758a0b9ab08ba50da1c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1968521d359518fa",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          150528
+        ],
+        "unprocessed_array_sha256": "b34a9c864028ddfbfae7bd5e719d4adc196884d970349c59ee3068ca4d2f2881"
+      },
+      {
+        "exact_native_cache_key": "9d4540feb94bc67a49736dd0804e2e6c6c38c257.pkl",
+        "pkl_sha256": "176c92d556449b596c53a95052281d399e0e7ffd5d690589b9089358be4d70bf",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The American Dialect Society made \"plutoed\",",
+            "exact_native_cache_key": "9d4540feb94bc67a49736dd0804e2e6c6c38c257.pkl",
+            "cache_input_text_sha256": "1b49ab0c1708fc184711c819b217c31a1da9d1e1be478bcbeb3a8d9d9e7380ff",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "176c92d556449b59",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          66048
+        ],
+        "unprocessed_array_sha256": "76b6fef6b37ad5c8e7a2a12a9b0c14005de42ab25d264b969da403455418a5ec"
+      },
+      {
+        "exact_native_cache_key": "8ff63afff89c8ad3759fa41677d52260cc3d3cf5.pkl",
+        "pkl_sha256": "b4050e31935fcbe967235dc02a2b79a143e4127e2d4fa5753bde929729bf16b5",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "playful slang for \"to devalue\",",
+            "exact_native_cache_key": "8ff63afff89c8ad3759fa41677d52260cc3d3cf5.pkl",
+            "cache_input_text_sha256": "518956cc0ae1cc5eb6432aed5dcbe2747219b6a95993d3fcf661216cef05531d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b4050e31935fcbe9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          43520
+        ],
+        "unprocessed_array_sha256": "36de7e6cf09dab399d3fcb0a931360bd8de30f39550193ea515102d05c7815ef"
+      },
+      {
+        "exact_native_cache_key": "dddfa06c058b9ccaa6bae6fdd076fba9c8a079c9.pkl",
+        "pkl_sha256": "13dcf21d45a4d790cf84648a3a7f977b80988e53d13e44499f7db26950ff5db4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "its word of 2006,",
+            "exact_native_cache_key": "dddfa06c058b9ccaa6bae6fdd076fba9c8a079c9.pkl",
+            "cache_input_text_sha256": "35c07cb3920593512d133c4117d000417c83cb9608d21e6a8c737a7860540f47",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "13dcf21d45a4d790",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          41984
+        ],
+        "unprocessed_array_sha256": "7065a0ea382ef6f1795326a0ecd96a83f5cc2fb55ac5ca7ecc5f5fdcff46e46e"
+      },
+      {
+        "exact_native_cache_key": "80dffbd7bf6eef09a935798ca00bfe5df7039795.pkl",
+        "pkl_sha256": "6d79b4ccbd5e1211f977b48be3b5ac3d2eee349d02b5e72ba3e1640cd7066c73",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Amid the controversy, an irony was already in transit.",
+            "exact_native_cache_key": "80dffbd7bf6eef09a935798ca00bfe5df7039795.pkl",
+            "cache_input_text_sha256": "79eb581cdae1618392dbdf971c7cae4ba51007cb451870b26dc8edce3706cfad",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6d79b4ccbd5e1211",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          89600
+        ],
+        "unprocessed_array_sha256": "143dffbcc1dba6bb05f4b86cf0c23dc9cbaa78a9c68b457d7b6c26f08914f548"
+      },
+      {
+        "exact_native_cache_key": "38501ca8efcda57690eb24543342e43fdcd72b6e.pkl",
+        "pkl_sha256": "94da68ad034404e102cc68d175774fdaca52222357354460debee46508329228",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Amid the controversy,",
+            "exact_native_cache_key": "38501ca8efcda57690eb24543342e43fdcd72b6e.pkl",
+            "cache_input_text_sha256": "230258dbc854fe79d639a28024075b1c4e23cc50b76aa937f4d54dc7252636e6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "94da68ad034404e1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          34816
+        ],
+        "unprocessed_array_sha256": "9f19a4a3421b39e750533a58729cd9be109325eac7b044561c571c6c31791844"
+      },
+      {
+        "exact_native_cache_key": "f759b9c3549789cdf90c08410a86da25c2be36cb.pkl",
+        "pkl_sha256": "66e2b917772af90bd2dc7bc39b4edce443b030b971ed2192b376d4c5a1b5d4b2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "an irony was already in transit.",
+            "exact_native_cache_key": "f759b9c3549789cdf90c08410a86da25c2be36cb.pkl",
+            "cache_input_text_sha256": "fb11f21f8150d69f59d7b994107423cbe0d1a492b9462f2f17b0b81f2b3d39dc",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "66e2b917772af90b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54272
+        ],
+        "unprocessed_array_sha256": "8b8cfcf689260c67771fedd54e439d2c1a8269837de0d160d7eb913935a3e223"
+      },
+      {
+        "exact_native_cache_key": "d17ee28f456ee75ae1c0e2f32d55fa4d6c501601.pkl",
+        "pkl_sha256": "4689c5e7bc48d147e6053bf00efd9824b71a7e8ea1acebca5b79b6979ed06611",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "New Horizons was launched on 19 January 2006, seven months before the vote, carrying a pinch of Tombaugh's ashes.",
+            "exact_native_cache_key": "d17ee28f456ee75ae1c0e2f32d55fa4d6c501601.pkl",
+            "cache_input_text_sha256": "bf39b75dd4f271d4b3000f318b327b186f36b7272e6ecb4e24e20265c5c3f900",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4689c5e7bc48d147",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          223744
+        ],
+        "unprocessed_array_sha256": "496555c6ab56c7923e1b1299dd428f8aaf5e71e31748050186bbc014950f9149"
+      },
+      {
+        "exact_native_cache_key": "1e16bbde6cbb5b30ee0746b24893dfa250bdd26c.pkl",
+        "pkl_sha256": "3508aa408c39bc4cd3b60bb75a0e2bb4c8e5a55da069f25e76402b4f1d7ae616",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "New Horizons was launched on 19 January 2006, seven months before the vote,",
+            "exact_native_cache_key": "1e16bbde6cbb5b30ee0746b24893dfa250bdd26c.pkl",
+            "cache_input_text_sha256": "a5f3ba4b0cbd6d6ef743b468980437fce8f52632f1297597adbe414c913de73e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3508aa408c39bc4c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          156672
+        ],
+        "unprocessed_array_sha256": "c54f485f062aafe0766e4680aa0f4113a344791a0c0e1dec83ed5c57d6cab3b8"
+      },
+      {
+        "exact_native_cache_key": "c7268a3ff3339f9c02b0cc41ca6706ac0e472f94.pkl",
+        "pkl_sha256": "ea1e121477f6c0200f8411d6df249ad4eb24ba1d50be673abf255b36b980a182",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "carrying a pinch of Tombaugh's ashes.",
+            "exact_native_cache_key": "c7268a3ff3339f9c02b0cc41ca6706ac0e472f94.pkl",
+            "cache_input_text_sha256": "7cd9b9868991199a910755a1f8d78e5abcf9df90b9ddf2515fe16e377e18fec7",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "carrying a pinch of Tombaugh's ashes.",
+            "exact_native_cache_key": "c7268a3ff3339f9c02b0cc41ca6706ac0e472f94.pkl",
+            "cache_input_text_sha256": "7cd9b9868991199a910755a1f8d78e5abcf9df90b9ddf2515fe16e377e18fec7",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ea1e121477f6c020",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          51200
+        ],
+        "unprocessed_array_sha256": "dc49001f040ac7d3f85692409d7bf4c2e9376a83b60ffe8ea149f8ea8f176298"
+      },
+      {
+        "exact_native_cache_key": "3fb4081514bf893ddc2817b2bc6c8baa9dc64355.pkl",
+        "pkl_sha256": "ea0a342b46d59051f20b0b4c34f89d5093cbf734c2b77bb28367c7850f70fe64",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "New Horizons was launched on 19 January 2006,",
+            "exact_native_cache_key": "3fb4081514bf893ddc2817b2bc6c8baa9dc64355.pkl",
+            "cache_input_text_sha256": "353b2802106e7a3af630ec88d702b2c16cb473268eb8475468cd9e08913e2756",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ea0a342b46d59051",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          112128
+        ],
+        "unprocessed_array_sha256": "2b28301b0c32aa3ceedd8e1fd342b873fbf4e86e9e49cc57a9dc885830f2e246"
+      },
+      {
+        "exact_native_cache_key": "430f1fefbbe0b70cce33137c1878d4de4eff6c67.pkl",
+        "pkl_sha256": "83af77ef634eaf4dcfb0290e584d50a13ecaf02ec0956c9bae00541d12520b38",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "seven months before the vote,",
+            "exact_native_cache_key": "430f1fefbbe0b70cce33137c1878d4de4eff6c67.pkl",
+            "cache_input_text_sha256": "a6e81ca8fbaf5b1a1a4401e0c5809f828eb2b3934a5f198eb522a5cfe5cf0563",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "83af77ef634eaf4d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39424
+        ],
+        "unprocessed_array_sha256": "5e0bb1fe9cc584957d31771de10542078e1423cea7fdbd78a3a94a457e754c36"
+      },
+      {
+        "exact_native_cache_key": "685850f8a4d5a45fbc7e015e67f0f59547b4c0ab.pkl",
+        "pkl_sha256": "f25ddc2510a54f4e87720bd6980852888c9222b357bcbdfdea92b8d6c3a7e77f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "On 14 July 2015 the unmanned craft flew past Pluto, transmitting images of an enormous heart-shaped plain, fittingly named Tombaugh Regio.",
+            "exact_native_cache_key": "685850f8a4d5a45fbc7e015e67f0f59547b4c0ab.pkl",
+            "cache_input_text_sha256": "bc5c72027bcd2ca47427014fac7035bf01fdb0fc2e94bb67cf1f5892fe37f561",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f25ddc2510a54f4e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          288256
+        ],
+        "unprocessed_array_sha256": "ba2ef293e649cbb52131cbf4529e4cd4b9b18719c9ea18e90ca408b59d6405fe"
+      },
+      {
+        "exact_native_cache_key": "c6803ee6bd8f81aabb34bd351ea472a0dbe76eff.pkl",
+        "pkl_sha256": "540723ba695394d5b69469061ca889a7d8f27c57f8123538a4352254f050d53f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "On 14 July 2015 the unmanned craft flew past Pluto,",
+            "exact_native_cache_key": "c6803ee6bd8f81aabb34bd351ea472a0dbe76eff.pkl",
+            "cache_input_text_sha256": "ccc9126569731630c34e964e5aac9eaa5ffab81f336b533c1b2184f186bf359e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "On 14 July 2015 the unmanned craft flew past Pluto,",
+            "exact_native_cache_key": "c6803ee6bd8f81aabb34bd351ea472a0dbe76eff.pkl",
+            "cache_input_text_sha256": "ccc9126569731630c34e964e5aac9eaa5ffab81f336b533c1b2184f186bf359e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "540723ba695394d5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          128512
+        ],
+        "unprocessed_array_sha256": "6e98189ae932472e09a0039a1d42d7c0cf7fc45815443b8e304705ef47d42752"
+      },
+      {
+        "exact_native_cache_key": "93f5de611a9b9446f0fc0420e338fc92bcc31354.pkl",
+        "pkl_sha256": "f00179953a0fbf714d8756718bad870eda9326ddb0d2ac5260a3b8bac9861133",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "transmitting images of an enormous heart-shaped plain,",
+            "exact_native_cache_key": "93f5de611a9b9446f0fc0420e338fc92bcc31354.pkl",
+            "cache_input_text_sha256": "1f120ad846bc7be1573958f3e22e3b3711502f69acbf513d9ba32d2ce73f9b77",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "transmitting images of an enormous heart-shaped plain,",
+            "exact_native_cache_key": "93f5de611a9b9446f0fc0420e338fc92bcc31354.pkl",
+            "cache_input_text_sha256": "1f120ad846bc7be1573958f3e22e3b3711502f69acbf513d9ba32d2ce73f9b77",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f00179953a0fbf71",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          78848
+        ],
+        "unprocessed_array_sha256": "3710ba152778e64eeacc775624857e9433895018aa1abd231165f63916f68569"
+      },
+      {
+        "exact_native_cache_key": "fc355a2032086d04dae7929a8fd622be1346c60d.pkl",
+        "pkl_sha256": "f1e8011482401b7242d21040990db2549b0f5d822a3b20cd1b56c08d7b5a2d65",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "fittingly named Tombaugh Regio.",
+            "exact_native_cache_key": "fc355a2032086d04dae7929a8fd622be1346c60d.pkl",
+            "cache_input_text_sha256": "6366d9ee9ca972cdc525aa09628f6ac35999309cc466d78a28f2a621113a409f",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S16",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "fittingly named Tombaugh Regio.",
+            "exact_native_cache_key": "fc355a2032086d04dae7929a8fd622be1346c60d.pkl",
+            "cache_input_text_sha256": "6366d9ee9ca972cdc525aa09628f6ac35999309cc466d78a28f2a621113a409f",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f1e8011482401b72",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          48128
+        ],
+        "unprocessed_array_sha256": "08de57dcb0736a32f04f4ad82484d732f36d48c13cad3ef318657bc8359261a9"
+      },
+      {
+        "exact_native_cache_key": "6d6a91da59eabe19d2735bc6d9662056f773f059.pkl",
+        "pkl_sha256": "a7f70c27cf272899241fcee2f16b1d61c343731d95614ed1d91d3b8fd2c64755",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The discoverer's ashes swept past the heart that bears his name.",
+            "exact_native_cache_key": "6d6a91da59eabe19d2735bc6d9662056f773f059.pkl",
+            "cache_input_text_sha256": "e438b2cdec4c49bed709c58474f318a5faed33670a976a127586a272f1986eaf",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a7f70c27cf272899",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          89600
+        ],
+        "unprocessed_array_sha256": "7b1f25668d127a7caf4cf99f1d50b5eb5bf3cb086b30ecbc638568d583d83899"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "1df30ef3038de5db54ec57588a496ba08c56bd88cf9cca8097f4eff37607fafa",
+    "accepted_aac_adts_sha256_after": "1df30ef3038de5db54ec57588a496ba08c56bd88cf9cca8097f4eff37607fafa",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "32",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794622849360492616,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {},
+      "actual_gain_controls": {},
+      "exactly_preserved": true
+    }
+  ],
+  "canonical_video_sha256": "599d13f8d0316850dde85eff98962ef23b99887794a0f1d8380ed367d6fe02b9",
+  "canonical_aac_adts_sha256": "1df30ef3038de5db54ec57588a496ba08c56bd88cf9cca8097f4eff37607fafa",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "a5aef8834de25f9eed991466f0f45f48149578c8296c8660a301ab78ffb03c35",
+  "accepted_prior_aac_identical": true,
+  "video_sha256": "474f1093e3e967003fa12ddd2c3d37d4cb1bec6989faf986d7341b252c2ed2ff",
+  "width": 3840,
+  "height": 2160,
+  "summary_seconds": 2,
+  "summary_frames": 60,
+  "summary_start_seconds": 143.13333333333333,
+  "delay_after_voice_seconds": 0.0033333333333303017,
+  "actual_source_collection": {
+    "article": "32",
+    "kind": "actual-production-source-collection",
+    "new_quality_gate": false,
+    "files": {
+      "request_json": {
+        "file": "32-request-source.json",
+        "sha256": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+        "origin": "immutable_request"
+      },
+      "request_generator": {
+        "file": "32-request-gen.py",
+        "sha256": "c20b1ee8cf47c51b148c6a4b9d89e0a58897411815716f4452dab4cd2052f850",
+        "origin": "immutable_request"
+      },
+      "used_generator": {
+        "file": "32-used-gen.py",
+        "sha256": "c20b1ee8cf47c51b148c6a4b9d89e0a58897411815716f4452dab4cd2052f850",
+        "origin": "actual_production_filesystem"
+      },
+      "actual_working_source": {
+        "file": "32-actual-working-source.json",
+        "sha256": "d779e5d400f2a11ce8e008efc0cafe3a36ca906eb016898dd8668780f266c065",
+        "origin": "actual_production_filesystem"
+      },
+      "request_manuscript": {
+        "file": "32-request-manuscript.md",
+        "sha256": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+        "origin": "immutable_request"
+      },
+      "actual_working_manuscript": {
+        "file": "32-actual-working-manuscript.md",
+        "sha256": "36165415124f00e2df8447fc21a3705147451b8431875c2a60984609978f6bc0",
+        "origin": "actual_production_filesystem"
+      }
+    },
+    "generator_execution_observed": false,
+    "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+    "source_differences": {
+      "file": "32-actual-source-differences.json",
+      "sha256": "571981eb700d9c0c0d3df55e26d48ea588367aa2cdd223449d2aeebbe5efe1f3"
+    }
+  }
+}
