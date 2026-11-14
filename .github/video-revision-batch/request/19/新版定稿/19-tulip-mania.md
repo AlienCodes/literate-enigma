@@ -3,9 +3,9 @@
 ## 英文
 In the winter of 1636–37, Dutch **merchants** and **brokers** met in **taverns** to trade **contracts** for **tulip** bulbs still in the ground, a **speculative** business they called windhandel, "trading in the wind". Prices of prized "broken" tulips, with **streaked** **petals**, **soared**.
 
-In early February 1637, at a sale in Haarlem, the **hub** of the trade, no one would **bid**. Days later, at an **auction** in Alkmaar, one bulb still **fetched** 5,200 guilders, the Dutch **currency** of the day, more than a decade's **wages** for a skilled craftsman. But the **frenzy** was over. Prices **collapsed**, many buyers **defaulted**, and **unsettled** contracts **piled up**. Why the market turned so **swiftly** is still **contested**.
+In early February 1637, at a sale in Haarlem, the **hub** of the trade, no one would **bid**. Days later, at an **auction** in Alkmaar, one bulb still **fetched** 5,200 guilders, the Dutch **currency** of the day, more than a decade's **wages** for a **skilled** **craftsman**. But the **frenzy** was over. Prices **collapsed**, many buyers **defaulted**, and **unsettled** contracts **piled up**. Why the market turned so **swiftly** is still **contested**.
 
-Two centuries later, Charles Mackay, a Scottish **journalist**, **recounted** the **episode** in a book on **popular delusions**, casting it as national **hysteria**. In his telling, rich and poor **gambled**, great merchants were reduced almost to begging, and Dutch **commerce** **reeled**. His **vivid** account made tulip **mania** **shorthand for** **bubbles** fuelled by **reckless** buying.
+Two centuries later, Charles Mackay, a **Scottish** **journalist**, **recounted** the **episode** in a book on **popular delusions**, **casting** it **as** national **hysteria**. In his telling, rich and poor **gambled**, great merchants were reduced almost to begging, and Dutch **commerce** **reeled**. His **vivid** account made tulip **mania** **shorthand for** **bubbles** fuelled by **reckless** buying.
 
 Yet the **archives** tell a smaller story. Mackay's story **relied** largely **on** **satirical** **pamphlets** of 1637 that **preached** **against** **greed**. Anne Goldgar, a **historian** at King's College London, **scoured** Dutch records and counted only a few hundred traders, mostly merchants and craftsmen. She found no **bankruptcy** caused by tulips and no **measurable** **harm** to the **economy**. Many buyers were later allowed to **settle** their contracts by paying **a** small **fraction** **of** the price, and few were ruined.
 
@@ -15,9 +15,9 @@ The **boom** was real but **fleeting**. What spread, and still **circulates** ne
 
 1636至1637年的冬天，荷兰的**商人**(merchants)和**经纪人**(brokers)聚在**小酒馆**(taverns)里，买卖尚埋在地下的**郁金香**(tulip)球茎的**合同**(contracts)。这是一门**投机**(speculative)生意，他们称之为windhandel，也就是“风中交易”。（still in the ground：后置定语，修饰 tulip bulbs；a speculative business…：同位语，补充说明这种买卖）名贵的“碎色”郁金香，有着**带条纹的**(streaked)**花瓣**(petals)，价格一路**飙升/猛涨**(soared)。（with streaked petals：介词短语作插入语，说明碎色郁金香的样子）
 
-1637年2月初，在交易**中心**(hub)哈勒姆的一场交易会上，无人**出价**(bid)。（the hub of the trade：同位语，说明 Haarlem；would：表示过去的意愿，no one would bid 即没有人愿意出价）几天后，在阿尔克马尔的一场**拍卖会**(auction)上，一只球茎仍**卖出了**(fetched)5,200荷兰盾——当时荷兰的**货币**(currency)——比一名熟练工匠十多年的**工钱**(wages)还多。（fetch：卖得某个价钱；the Dutch currency of the day：同位语，说明 guilders；more than…：同位语，换算这笔钱）但是这场**狂热**(frenzy)已经结束了。价格**暴跌**(collapsed)，大量买家**违约**(defaulted)，**未结算的**(unsettled)合同**越积越多**(piled up)。市场为何转向得如此**迅速**(swiftly)，至今仍**存在争议**(contested)。（Why…swiftly：主语从句，作句子的主语）
+1637年2月初，在交易**中心**(hub)哈勒姆的一场交易会上，无人**出价**(bid)。（the hub of the trade：同位语，说明 Haarlem；would：表示过去的意愿，no one would bid 即没有人愿意出价）几天后，在阿尔克马尔的一场**拍卖会**(auction)上，一只球茎仍**卖出了**(fetched)5,200荷兰盾——当时荷兰的**货币**(currency)——比一名**熟练**(skilled)**工匠**(craftsman)十多年的**工钱**(wages)还多。（fetch：卖得某个价钱；the Dutch currency of the day：同位语，说明 guilders；more than…：同位语，换算这笔钱）但是这场**狂热**(frenzy)已经结束了。价格**暴跌**(collapsed)，大量买家**违约**(defaulted)，**未结算的**(unsettled)合同**越积越多**(piled up)。市场为何转向得如此**迅速**(swiftly)，至今仍**存在争议**(contested)。（Why…swiftly：主语从句，作句子的主语）
 
-两个世纪后，查尔斯·麦凯，一位苏格兰**记者**(journalist)，在一本论述**大众错觉/群体性妄想**(popular delusions)的书中**讲述了**(recounted)这一**事件**(episode)，将其描绘为一场全国性的**歇斯底里**(hysteria)。（a Scottish journalist：同位语，说明 Charles Mackay；casting…：现在分词短语作伴随状语；cast A as B：把A描绘成B）照他的说法，富人和穷人都在**赌博**(gambled)，大商人几乎沦落到去乞讨，荷兰**商业**(commerce)仿佛**天旋地转**(reeled)。（In his telling：照他的说法，后面三件事都是麦凯的说法；be reduced to doing：沦落到……的地步）他**生动的**(vivid)描述，让郁金香**狂热**(mania)成了**泡沫**(bubbles)的**代名词**(shorthand for)——而这些泡沫由**不计后果的**(reckless)购买所助长。（make A B：使A成为B；shorthand for…：……的代名词，……的简称；fuelled by…：过去分词短语作后置定语，修饰 bubbles）
+两个世纪后，查尔斯·麦凯，一位**苏格兰的**(Scottish)**记者**(journalist)，在一本论述**大众错觉/群体性妄想**(popular delusions)的书中**讲述了**(recounted)这一**事件**(episode)，**将**(casting as)其**描绘为**(casting as)一场全国性的**歇斯底里**(hysteria)。（a Scottish journalist：同位语，说明 Charles Mackay；casting…：现在分词短语作伴随状语；cast A as B：把A描绘成B）照他的说法，富人和穷人都在**赌博**(gambled)，大商人几乎沦落到去乞讨，荷兰**商业**(commerce)仿佛**天旋地转**(reeled)。（In his telling：照他的说法，后面三件事都是麦凯的说法；be reduced to doing：沦落到……的地步）他**生动的**(vivid)描述，让郁金香**狂热**(mania)成了**泡沫**(bubbles)的**代名词**(shorthand for)——而这些泡沫由**不计后果的**(reckless)购买所助长。（make A B：使A成为B；shorthand for…：……的代名词，……的简称；fuelled by…：过去分词短语作后置定语，修饰 bubbles）
 
 然而，**档案**(archives)讲述的故事要小得多。麦凯的故事主要**依据了**(relied on)1637年的**讽刺**(satirical)**小册子**(pamphlets)，这些小册子**宣传反对**(preached against)**贪婪**(greed)。（rely on：依靠，依据；that…：定语从句，修饰 pamphlets）伦敦国王学院的**历史学家**(historian)安妮·戈德加**彻底搜遍了**(scoured)荷兰的文献记录，然而只数出了几百名交易者，大多是商人和工匠。（a historian at King's College London：同位语，说明 Anne Goldgar；mostly merchants and craftsmen：补充说明这些交易者）她没有找到一桩因郁金香而起的**破产**(bankruptcy)，也没有发现荷兰**经济**(economy)受到任何**可以衡量的**(measurable)**损害**(harm)。（caused by tulips：过去分词短语作后置定语，修饰 bankruptcy；no … harm to sth：对某物没有……损害）许多买家后来获准只付价格的**一小部分**(a fraction of)，就能**结清**(settle)他们的合同，倾家荡产的人也寥寥无几。（be allowed to do：获准做……；settle a contract：结清合同/了结合同；few：很少的人，几乎没有人）
 
@@ -40,6 +40,8 @@ The **boom** was real but **fleeting**. What spread, and still **circulates** ne
 | auction | 本文：拍卖会；n. 拍卖，拍卖会（sell sth at auction；put sth up for auction 将……拿去拍卖）；v. 拍卖（auction off）；auctioneer n. 拍卖人 | 2 |
 | fetched | 本文：卖出了；v. (fetch) 卖得（某价钱）；去拿来（the painting fetched £1 million） | 2 |
 | currency | 本文：货币；n. 货币，通货（foreign currency 外币；a single currency）；流行，通用（gain currency 开始流行） | 2 |
+| skilled | 本文：熟练；adj. 熟练的，有技能的（a skilled worker/craftsman） | 2 |
+| craftsman | 本文：工匠；n. 工匠，手艺人（复数 craftsmen） | 2 |
 | wages | 本文：工钱；n. (wage) 工资，工钱（多指按周、按日计的报酬；a minimum wage 最低工资；wage increases）；v. 开展，进行（战争、运动）（wage war/a campaign） | 2 |
 | frenzy | 本文：狂热；n. 狂热，狂乱，一阵疯狂（a buying frenzy 抢购狂潮；in a frenzy of…；a media frenzy）；frenzied adj. | 2 |
 | collapsed | 本文：暴跌；v. (collapse) （价格、价值）暴跌（prices collapsed）；（体制、计划等）崩溃，瓦解；（建筑等）倒塌；（人）倒下，昏倒；n. 崩溃，倒塌（economic collapse） | 2 |
@@ -48,10 +50,12 @@ The **boom** was real but **fleeting**. What spread, and still **circulates** ne
 | piled up | 本文：越积越多；phr. v. (pile up) 堆积，积压（work/debts/problems piled up）；pile v. 堆放（pile books on the desk）；n. 堆，摞（a pile of…）；pile-up n. 连环撞车 | 2 |
 | swiftly | 本文：迅速；adv. 迅速地，很快地（act/move swiftly）；swift adj. 迅速的，立即的（a swift response） | 2 |
 | contested | 本文：存在争议；adj. 有争议的（a hotly contested issue/claim）；v. (contest) 对……提出异议，争辩（contest a decision/will）；争夺，竞争（contest a seat）；n. 比赛，竞赛；争夺 | 2 |
+| Scottish | 本文：苏格兰的；adj. 苏格兰的，苏格兰人的 | 3 |
 | journalist | 本文：记者；n. 新闻记者，新闻工作者（a freelance journalist）；journalism n. 新闻业 | 3 |
 | popular delusions | 本文：大众错觉/群体性妄想；短语. 大众错觉，群体性妄想（Extraordinary Popular Delusions and the Madness of Crowds） | 3 |
 | recounted | 本文：讲述了；v. (recount) 讲述，叙述（recount a story/one's experiences）；另作 n./v. 重新计票（a recount of the votes）；比较 cast sth as… 把……描绘成 | 3 |
 | episode | 本文：事件；n. 一段经历，插曲，事件（a painful/sad episode）；（电视剧、连载的）一集（the final episode）；（疾病的）发作 | 3 |
+| casting as | 本文：将……描绘为；v. (cast A as B) 将A描绘为B；把A塑造成B（casting为cast的现在分词） | 3 |
 | hysteria | 本文：歇斯底里；n. 歇斯底里，（群体）狂热，过度激动（mass hysteria 集体歇斯底里）；癔症；hysterical adj. | 3 |
 | gambled | 本文：赌博；v. (gamble) 赌博，赌钱（gamble on horses；gamble away 赌光）；冒险，孤注一掷（gamble on the weather）；n. 冒险，赌博（a gamble that paid off 冒险成功）；gambler n. | 3 |
 | commerce | 本文：商业；n. 商业，贸易（e-commerce 电子商务；a chamber of commerce 商会）；commercial adj. | 3 |
