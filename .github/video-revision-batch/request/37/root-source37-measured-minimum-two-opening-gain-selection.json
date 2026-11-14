@@ -1,0 +1,150 @@
+{
+  "kind": "root-actual-read-measured-source37-two-opening-minimum-gain-selection",
+  "utc": "2026-11-14T19:43:21.250446+00:00",
+  "source_id": "37",
+  "book_order": "43",
+  "specific_user_authorities": [
+    "129",
+    "130",
+    "133"
+  ],
+  "proposal_path": "/dev/shm/source37-user129130-audio-audit-20261114/37-two-opening-gain-candidate-comparison-PRIVATE.json",
+  "proposal_sha256": "e5192d2a7bfa8f2c9423ebe638b22e951772984e2d2bbbcb8e5c93cd70b90ed0",
+  "selected_exact_changes": {
+    "/分段增益dB/S10/1": {
+      "before": "absent",
+      "after": 1.0
+    },
+    "/分段增益dB/S13/1": {
+      "before": "absent",
+      "after": 0.75
+    }
+  },
+  "merge_into_text_source_sha256": "5f19200a9047aa1ca7779935dac5c62e07c568e99b0db23b7a0fe314482b3dbf",
+  "merge_preserves_users131132_blood_vessels_focus_and_shared_translation": true,
+  "baseline_WAV_sha256": "e7a06c4300cb662793594b8c013b7e87442d38e529afe62f964bfe832771ef0c",
+  "baseline_AAC_sha256": "60f3893386a8fc86d9f72b08b0b7eada024dcb350a7bb9bad9a37588b771d572",
+  "expected_candidate_WAV_sha256": "7467340d87a8dfc67ca7ab9c8dea7f2ce9d5ca5d895e85651836a5fcf10f3c1b",
+  "expected_candidate_AAC_sha256": "408fce7746df68c8fe6aaf54dd09bea7466d7700d2491e8f647cec6db64cf1fd",
+  "actual_diagnostic_evidence": {
+    "gain_leaf_S10_1": 1.0,
+    "gain_leaf_S13_1": 0.75,
+    "candidate_source_sha256": "41ec7bb0fe23afb4bf5f9eb781d81a742151717c3d5cc85b4ef6edc5571029a0",
+    "private_WAV_sha256": "7467340d87a8dfc67ca7ab9c8dea7f2ce9d5ca5d895e85651836a5fcf10f3c1b",
+    "candidate_AAC_sha256": "408fce7746df68c8fe6aaf54dd09bea7466d7700d2491e8f647cec6db64cf1fd",
+    "full_duration_and_piece_timing_unchanged": true,
+    "outside_two_target_windows_float32_bitexact": true,
+    "source_target_windows_s": [
+      [
+        70.905,
+        72.48
+      ],
+      [
+        102.165,
+        102.975
+      ]
+    ],
+    "changed_preSF_samples": 56040,
+    "non_target_17_sentences_plus_title_pre_normalized_exact": [
+      "title",
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6",
+      "S7",
+      "S8",
+      "S9",
+      "S11",
+      "S12",
+      "S14",
+      "S15",
+      "S16",
+      "S17",
+      "S18",
+      "S19"
+    ],
+    "original_R_whole_flags": [],
+    "original_R_inside_flags": [],
+    "original_8_health_flags": [],
+    "original_8_health_metrics": {
+      "削波": [
+        0,
+        ""
+      ],
+      "直流偏移": [
+        0.00011736360451148416,
+        "第8句"
+      ],
+      "咔哒": [
+        1.2169573057185454,
+        "第13句"
+      ],
+      "句尾截断": [
+        -54.14447500186675,
+        "第18句"
+      ],
+      "句首突起": [
+        -43.208240491885576,
+        "第4句"
+      ],
+      "齿音": [
+        3.37530910274927,
+        "第6句"
+      ],
+      "音色突变": [
+        0.3153547352369339,
+        "第10句"
+      ],
+      "语速突变": [
+        0.3110025695999828,
+        "第8句"
+      ]
+    },
+    "original_R_summary": "全片 -23.2 LUFS，峰值 -0.5 dBFS，19 句，逐句与全片差 -0.6～+1.6 LU",
+    "Mondays_prefix_public_metrics": {
+      "LUFS": -22.89551516143026,
+      "max400ms_LUFS": -20.528959067444966,
+      "active10ms_RMS_dBFS": -21.748156958877146,
+      "peak_dBFS": -6.0973283429941825
+    },
+    "ItsAlias_prefix_public_metrics": {
+      "LUFS": -21.027890981899866,
+      "max400ms_LUFS": -19.965620588574893,
+      "active10ms_RMS_dBFS": -21.070130698881123,
+      "peak_dBFS": -7.739730974395539
+    },
+    "preserved_S13_piece5_ramp": [
+      -2.5,
+      3.0
+    ],
+    "preserved_S13_final_graft": {
+      "句末": [
+        6.48,
+        "k"
+      ]
+    },
+    "preserved_S19_ending": {
+      "前段语速": 0.9,
+      "最后一段语速": 0.78,
+      "最后一段前停顿": 0.7,
+      "接点": [
+        140700,
+        183060
+      ],
+      "依据": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“quoted his ironic letter.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（45 ms）的正中 5.862 s，0.78 那遍（55 ms）的正中 7.628 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）"
+    },
+    "no_new_source_control_or_CF_or_TTS_or_native_applied": true,
+    "original_ASR_not_run_in_diagnostic": true
+  },
+  "reason": "User-reported two light openings receive minimum tested local gains. Existing measurements do not establish clipped onsets or whole-piece quietness. Other 17 sentences/title and all non-target float32 PCM remain bitexact, clocks unchanged. Larger candidates retain actual original R failures and are rejected.",
+  "scope_limitations": [
+    "Diagnostic is not actual formal native acceptance.",
+    "No blanket CF refresh, no source rollback, no new TTS, no threshold change.",
+    "S13 piece5 ramp and final k graft and S19 ending remain exact.",
+    "Only sole sourcewriter merges into latest presentation source and paired GEN.",
+    "Then genuine original native full gates/ASR, actual audio continuity, final fullV3, 0.6s hold + approved original image2s+summary2s, and dual-cloud current archive are still required."
+  ],
+  "not_published": true
+}

@@ -10,7 +10,7 @@ Nobel **tamed** the liquid by **blending** it with kieselguhr, a **porous** eart
 
 On 25 October 1896 Nobel, who had angina, wrote to his **aide** that **by an irony of fate** doctors had **prescribed** him **nitroglycerin** to take **internally**. Its **alias**, Trinitrin, was chosen, he explained, to avoid **frightening** **pharmacists** or the public. He did not **comply**. **Partly** **paralysed** by a **cerebral haemorrhage**, he died at his San Remo **villa** on 10 December 1896.
 
-In 1977 Murad **ascertained** that **nitroglycerin** releases **nitric oxide**, which **widens** blood vessels. Furchgott found an **unidentified** relaxing **factor** in **vascular** **linings** in 1980, and Ignarro recognised it as **nitric oxide** in 1986. The **trio** shared the 1998 **Nobel Prize** in Physiology or Medicine. Its **presentation** speech, on 10 December, the **anniversary** of Nobel's death, **quoted** his **ironic** letter.
+In 1977 Murad **ascertained** that **nitroglycerin** releases **nitric oxide**, which **widens** **blood vessels**. Furchgott found an **unidentified** relaxing **factor** in **vascular** **linings** in 1980, and Ignarro recognised it as **nitric oxide** in 1986. The **trio** shared the 1998 **Nobel Prize** in Physiology or Medicine. Its **presentation** speech, on 10 December, the **anniversary** of Nobel's death, **quoted** his **ironic** letter.
 
 ## 中文
 
@@ -22,7 +22,7 @@ In 1977 Murad **ascertained** that **nitroglycerin** releases **nitric oxide**, 
 
 1896年10月25日，患有心绞痛的诺贝尔写信给他的**助手**(aide)，说**命运真是讽刺**(by an irony of fate)，医生竟给他**开具了**(prescribed)**硝酸甘油**(nitroglycerin)让他**内服**(internally)。（who had angina：非限制性定语从句，补充说明 Nobel）（that…：宾语从句，说明信的内容；by an irony of fate：说来讽刺，命运弄人）（prescribe sb sth：给某人开某药；to take internally：不定式表目的）这种药的**别名**(alias)Trinitrin是特意选的，他解释说，为的是避免**吓到**(frightening)那些**药剂师**(pharmacists)和公众。（Trinitrin：同位语，补充说明 alias；he explained：插入语）（avoid doing：避免做某事）他没有**遵从**(comply)医嘱。身体**部分**(Partly)**瘫痪**(paralysed)，是由**脑部出血**(cerebral haemorrhage)造成的，他于1896年12月10日在圣雷莫的**别墅**(villa)中去世。（Partly paralysed by…：过去分词短语作状语，说明他去世前的状况）（at his San Remo villa：地点状语；on 10 December 1896：时间状语）
 
-1977年，穆拉德**查明**(ascertained)**硝酸甘油**(nitroglycerin)会释放**一氧化氮**(nitric oxide)，它会**扩张**(widens)血管。（that…：宾语从句）（which…：非限制性定语从句，修饰 nitric oxide）弗奇戈特发现了一种**未经鉴定的**(unidentified)舒张**因子**(factor)，存在于**血管的**(vascular)**内壁**(linings)里，这是1980年的事；伊格纳罗认定它就是**一氧化氮**(nitric oxide)，这是1986年的事。（relaxing factor：舒张因子，能让血管放松的物质；in vascular linings：地点状语）（recognise A as B：认定 A 是 B）这个**三人组**(trio)分享了1998年**诺贝尔**(Nobel Prize)生理学或医学**奖**(Nobel Prize)。这个奖的**颁奖**(presentation)致辞在12月10日，也就是诺贝尔的逝世**纪念日**(anniversary)，**引述了**(quoted)他那封感叹命运**讽刺的**(ironic)信。（on 10 December：时间状语；the anniversary of Nobel's death：同位语，补充说明 10 December）（quote：引用，引述）（简述：▸危险：约1847年，索布雷罗制得极不稳定的硝酸甘油；1864年，一次爆炸夺去五人生命，包括诺贝尔的弟弟。▸致富：诺贝尔把这种液体与硅藻土混合，制成较易使用的炸药，1867年获专利，积累的财富后来用于设立诺贝尔奖。▸药用：接触硝酸甘油的工人会头痛，但医生又发现它能治疗心绞痛，1879年已有相关报告。▸反差：诺贝尔晚年也患心绞痛，医生竟把他用来造炸药的同一种物质开给他治病。他写信感叹命运讽刺，也没有遵医嘱；同年因脑出血去世。▸解释：后来研究查明，硝酸甘油会释放一氧化氮，使血管扩张。三位相关研究者获1998年医学诺奖，颁奖致辞在诺贝尔忌日引用了那封信。）
+1977年，穆拉德**查明**(ascertained)**硝酸甘油**(nitroglycerin)会释放**一氧化氮**(nitric oxide)，它会**扩张**(widens)**血管**(blood vessels)。（that…：宾语从句）（which…：非限制性定语从句，修饰 nitric oxide）弗奇戈特发现了一种**未经鉴定的**(unidentified)舒张**因子**(factor)，存在于**血管的**(vascular)**内壁**(linings)里，这是1980年的事；伊格纳罗认定它就是**一氧化氮**(nitric oxide)，这是1986年的事。（relaxing factor：舒张因子，能让血管放松的物质；in vascular linings：地点状语）（recognise A as B：认定 A 是 B）这个**三人组**(trio)共同获得了1998年**诺贝尔**(Nobel Prize)生理学或医学**奖**(Nobel Prize)。这个奖的**颁奖**(presentation)致辞在12月10日，也就是诺贝尔的逝世**纪念日**(anniversary)，**引述了**(quoted)他那封感叹命运**讽刺的**(ironic)信。（on 10 December：时间状语；the anniversary of Nobel's death：同位语，补充说明 10 December）（quote：引用，引述）（简述：▸危险：约1847年，索布雷罗制得极不稳定的硝酸甘油；1864年，一次爆炸夺去五人生命，包括诺贝尔的弟弟。▸致富：诺贝尔把这种液体与硅藻土混合，制成较易使用的炸药，1867年获专利，积累的财富后来用于设立诺贝尔奖。▸药用：接触硝酸甘油的工人会头痛，但医生又发现它能治疗心绞痛，1879年已有相关报告。▸反差：诺贝尔晚年也患心绞痛，医生竟把他用来造炸药的同一种物质开给他治病。他写信感叹命运讽刺，也没有遵医嘱；同年因脑出血去世。▸解释：后来研究查明，硝酸甘油会释放一氧化氮，使血管扩张。三位相关研究者获1998年医学诺奖，颁奖致辞在诺贝尔忌日引用了那封信。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -80,6 +80,7 @@ In 1977 Murad **ascertained** that **nitroglycerin** releases **nitric oxide**, 
 | ascertained | 本文：查明；v. (ascertain) 查明，确定（ascertain the facts/cause） | 5 |
 | nitric oxide | 本文：一氧化氮；n. 一氧化氮（release nitric oxide） | 5 |
 | widens | 本文：扩张；v. (widen) 加宽，扩大（widen a road；the gap widens） | 5 |
+| blood vessels | 本文：血管；n. pl. (blood vessel) 血管（动脉、静脉或毛细血管等输送血液的管道） | 5 |
 | unidentified | 本文：未经鉴定的；adj. 未经鉴定的，身份不明的（an unidentified substance/object） | 5 |
 | factor | 本文：因子；n. 因子；因素（a key factor；growth factor） | 5 |
 | vascular | 本文：血管的；adj. 血管的，脉管的（vascular disease） | 5 |
