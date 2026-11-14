@@ -9,7 +9,7 @@ import runpy
 import subprocess
 
 
-TARGETS = {'46': 'S6', '49': 'S8', '55': 'S11'}
+TARGETS = {'46': 'S6', '49': 'S8', '55': 'S11', '66': 'S9'}
 
 
 def sha(path):

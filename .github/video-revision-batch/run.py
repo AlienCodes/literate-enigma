@@ -646,7 +646,7 @@ def export_failed_current_video():
 
 def collect_original_asr_target_evidence():
     """A failed original ASR check remains failed; collect the two actual texts."""
-    if NO not in {'46', '49', '55'} or not status.get('failed_current_video', {}).get('exported'):
+    if NO not in {'46', '49', '55', '66'} or not status.get('failed_current_video', {}).get('exported'):
         return
     output = OUT / f'{NO}-original-ASR-target-evidence.json'
     process = subprocess.run(list(map(str, ['python3', TASK / 'collect_asr_target_evidence.py',
