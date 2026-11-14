@@ -1,0 +1,12 @@
+HTTP 401: Bad credentials (https://uploads.github.com/repos/alienalgorithm/postgraduate-vocabulary/releases/445087105/assets?label=&name=KAOYAN-XUEREN-24-4K.mp4)
+Try authenticating with:  gh auth login
+Traceback (most recent call last):
+  File "/workspace/work/book24-26-release-v1/publish.py", line 36, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/work/book24-26-release-v1/publish.py", line 24, in main
+    if not any(x['name']==name for x in assets):subprocess.run(['gh','release','upload',tag,a['local_release_file'],'--repo',REPO],check=True)
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['gh', 'release', 'upload', 'kaoyanxueren-book24-26-4k-v1', '/workspace/work/book24-26-release-v1/KAOYAN-XUEREN-24-4K.mp4', '--repo', 'alienalgorithm/postgraduate-vocabulary']' returned non-zero exit status 1.
