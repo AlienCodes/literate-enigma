@@ -114,7 +114,7 @@ S = [(1,
      ('offered no', '没有提供（给他）'),
      ('**sanctuary**.', '**庇护**(sanctuary)。')]]]),
  (5,
-  [[[('Of', '身为'), ('**Jewish**', '**犹太**(Jewish)'), ('origin,', '裔，'), ('Haber', '哈伯')]],
+  [[[('Of Jewish origin,', '身为犹太裔，'), ('Haber', '哈伯')]],
    [[("left Germany an **outcast** {{换行}}after Hitler's **regime** **seized** power,",
       '在希特勒**政权**(regime)**夺取了**(seized)权力之后，\n作为一个**被驱逐的人**(outcast)离开了德国，')],
     '（an outcast：补充说明他离开时的身份；\nafter…：时间状语从句）'],
@@ -129,8 +129,7 @@ S = [(1,
      ('Zyklon B,', '齐克隆B'),
      ('was used', '被用于'),
      ('in Nazi death camps,', '纳粹死亡营，')]],
-   [[('where **relatives** of his died.', '他的一些**亲属**(relatives)就死在那里。')],
-    '（where：非限制性定语从句，指在这些死亡营里；\nrelatives of his：他的亲属）']]),
+   [[('where relatives of his died.', '他的一些亲属就死在那里。')], '（where：非限制性定语从句，指在这些死亡营里；\nrelatives of his：他的亲属）']]),
  (6,
   [[[('About half the **nitrogen** in our **proteins** and DNA',
       '我们**蛋白质**(proteins)和DNA中约有一半的**氮**(nitrogen)，'),
@@ -154,11 +153,7 @@ out = {'no': '16',
           '牛津逗号': {'S2 bolted valves, nitrogen and': '不是三项并列：Behind its gleaming, bolted valves 是介词短语作状语，逗号后 '
                                                      'nitrogen and hydrogen 是两项主语'},
           '短语': {'S2 beads … of': 'beads of ammonia 里 of 只引出液珠的成分（同 beads of sweat），beads 本身就是“液珠”，意思不靠 of '
-                                  '产生（同 15 testimony … from 的判法）',
-                 'S17 relatives … of': 'relatives 在这里独立表示亲属；of his 是后置的双重属格限定语，relatives of his 相当于 his '
-                                       'relatives/他的一些亲属，不是靠 of 才形成整体新义的固定搭配。用户136点名 relatives 重点，保留普通 '
-                                       'where/of/his/died 和原 relatives of his 语法小字，不能把 relatives of '
-                                       '误标成一个固定搭配。'},
+                                  '产生（同 15 testimony … from 的判法）'},
           '非人声': {'4.66–4.67s': {'配音指纹': '630cbdf1eae2',
                                  '依据': '2026-10-16 用实际声音核实是词的一部分（S1 w 2.035–2.055s，噗声）：BASF 词头 /b/ 的浊音杠：w '
                                        '2.04–2.105 连续低频浊音 -25～-34 dB、重心 0.3–0.5 kHz、低频占比约 -1 dB、周期 0.4–0.5，直接接 '
@@ -401,9 +396,7 @@ out = {'no': '16',
                     '2026-10-23：“如果要是ok的话，尽可能的就是英文上下和它的汉译尽量能够就是位置对齐……我们设置好的标准，尽量一定要去执行啊……你看现在这个前后这个标准它又不统一了。”（重新对齐：组内拆开，中文字和先后不变）'},
             {'日期': '2026-10-23',
              'S6': '用户 2026-10-23 '
-                   '原话：“这个避免它还是没有完美的对应到这个avert的下面……才智也没有非常非常就是非常精准的放到这个intellect的下面……你认认真真的处理一下这件事儿，立一道闸好不好？”（T34：同序的重点词拆开，中文字不改）'}],
- '换行变更已获同意': {'S15': '用户原话：“这个是第45篇，这个是第45篇。在这个地方，Jewish 犹太犹太标注重点词汇。”（2026-11-14用户135；仅同序拆开原Of Jewish '
-                     'origin三小格，使犹太对应Jewish，原中英字与语音块不变）'}}
+                   '原话：“这个避免它还是没有完美的对应到这个avert的下面……才智也没有非常非常就是非常精准的放到这个intellect的下面……你认认真真的处理一下这件事儿，立一道闸好不好？”（T34：同序的重点词拆开，中文字不改）'}]}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对

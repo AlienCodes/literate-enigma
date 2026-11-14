@@ -152,7 +152,7 @@ S = [(1,
      ('releases', '会释放'),
      ('**nitric oxide**,', '**一氧化氮**(nitric oxide)，')],
     '（that…：宾语从句）'],
-   [[('which **widens**', '它会**扩张**(widens)'), ('blood vessels.', '血管。')],
+   [[('which **widens**', '它会**扩张**(widens)'), ('**blood vessels**.', '**血管**(blood vessels)。')],
     '（which…：非限制性定语从句，修饰 nitric oxide）']]),
  (5,
   [[[('Furchgott', '弗奇戈特'),
@@ -170,7 +170,7 @@ S = [(1,
     '（recognise A as B：认定 A 是 B）']]),
  (5,
   [[[('The **trio**', '这个**三人组**(trio)'),
-     ('shared', '分享了'),
+     ('shared', '共同获得了'),
      ('the 1998', '1998年'),
      ('**Nobel Prize**', '**诺贝尔**(Nobel Prize)'),
      ('in Physiology or Medicine.', '生理学或医学**奖**(Nobel Prize)。')]]]),
@@ -461,7 +461,8 @@ out = {'no': '37',
             'S16': '69fc851ff90d',
             'S17': '9ccf8de49aaa',
             'S18': 'abebbff8c26c',
-            'S19': 'f7516cb06610'}}
+            'S19': 'f7516cb06610'},
+ '分段增益dB': {'S10': {'1': 1.0}, 'S13': {'1': 0.75}}}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from 核对 import 生成并核对
