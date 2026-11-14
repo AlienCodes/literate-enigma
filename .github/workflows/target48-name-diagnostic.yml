@@ -1,0 +1,76 @@
+name: 原48仅S15全名原模型两母与实际音诊
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/target48-name-diagnostic/**', '.github/workflows/target48-name-diagnostic.yml']
+permissions:
+  contents: read
+jobs:
+  prepare-name:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/target48-name-diagnostic
+      - uses: actions/checkout@v4
+        with:
+          repository: alienalgorithm/postgraduate-vocabulary
+          ref: fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
+          path: official-main
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /视频/工具/
+            /视频/配音缓存/*.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - name: 确认原母模型缓存
+        env:
+          CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
+        run: |
+          test "$CACHE_HIT" = true
+          test -f "$RUNNER_TEMP/completion-machine/tts/kokoro-v1.0.onnx"
+      - name: 安装原核查依赖
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet -r official-main/视频/工具/环境/requirements.txt
+      - name: 原文件拷入临时工作目录
+        env:
+          XG_P: ${{ github.workspace }}/official-main
+          XG_NOPUSH: '1'
+        run: |
+          python official-main/视频/工具/出片指纹.py --拷 "$RUNNER_TEMP/completion-machine/video"
+      - name: 仅新S15原模型两母与实际原音诊
+        id: target
+        env:
+          XG_NOPUSH: '1'
+          VIDEO_ROOT: ${{ runner.temp }}/completion-machine
+        run: |
+          mkdir -p target48-public
+          python -u .github/target48-name-diagnostic/prepare_native48_name.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --video-root "$RUNNER_TEMP/completion-machine" --request "$GITHUB_WORKSPACE/.github/target48-name-diagnostic/48.json" --output "$GITHUB_WORKSPACE/target48-public/48-actual-S15-native-name-diagnostic.json" --public-output "$GITHUB_WORKSPACE/target48-public" --cache-path-output "$GITHUB_OUTPUT"
+      - name: 保存仅本句原母与精确派生增益到正常私有cache
+        if: always() && steps.target.outputs.cache_paths != ''
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ steps.target.outputs.cache_paths }}
+          key: Linux-native48-YuanLongping-${{ github.run_id }}
+      - name: 仅保存诊断AAC与安全标量报告
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native48-only-new-name-diagnostic
+          path: |
+            target48-public/*.json
+            target48-public/*.m4a
+          retention-days: 30
+          if-no-files-found: error
