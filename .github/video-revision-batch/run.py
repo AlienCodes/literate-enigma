@@ -358,14 +358,14 @@ def verify_correct_origin_reference_cache(request, after_references=False):
     save()
 
 
-def verify14_accepted_audio_packets(accepted_video, canonical_video):
-    """14's vocabulary/translation revision must preserve the accepted voice clock."""
-    if NO != '14':
+def verify_unchanged_review_audio_packets(accepted_video, canonical_video):
+    """Pure visual13/14 revisions must preserve their own accepted audio packets."""
+    if NO not in {'13', '14'}:
         return
-    status['stage'] = '14-accepted-audio-packet-preservation'
+    status['stage'] = f'{NO}-accepted-audio-packet-preservation'
     save()
     helper_path = TASK / 'illustrated_tail.py'
-    spec = importlib.util.spec_from_file_location('article14_existing_packet_reader', helper_path)
+    spec = importlib.util.spec_from_file_location('article' + NO + '_existing_packet_reader', helper_path)
     helper = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(helper)
     old_packets = helper.packets(accepted_video, 'a:0', payload=True)
@@ -377,7 +377,7 @@ def verify14_accepted_audio_packets(accepted_video, canonical_video):
         row = next(s for s in helper.probe(video)['streams'] if s['codec_type'] == 'audio')
         streams.append({key: row.get(key) for key in keys})
     encode = lambda rows: json.dumps(rows, sort_keys=True, separators=(',', ':')).encode()
-    evidence = {'article': NO, 'scope': 'This14 revision changes focus colours and Chinese explanations only.',
+    evidence = {'article': NO, 'scope': f'This{NO} revision changes focus colours and Chinese explanations only.',
                 'accepted_video_sha256': sha(accepted_video), 'canonical_video_sha256': sha(canonical_video),
                 'accepted_packet_count': len(old_packets), 'canonical_packet_count': len(new_packets),
                 'accepted_packet_records_sha256': hashlib.sha256(encode(old_packets)).hexdigest(),
@@ -385,12 +385,12 @@ def verify14_accepted_audio_packets(accepted_video, canonical_video):
                 'AAC_payload_side_data_and_absolute_PTS_DTS_duration_identical': old_packets == new_packets,
                 'codec_parameters_identical': streams[0] == streams[1], 'codec_parameters': streams,
                 'existing_packet_reader_sha256': sha(helper_path), 'private_PCM_or_cache_read': False}
-    output = OUT / '14-accepted-audio-packet-preservation.json'
+    output = OUT / f'{NO}-accepted-audio-packet-preservation.json'
     output.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n')
     status['accepted_prior_audio_packet_preservation'] = {'file': output.name, 'sha256': sha(output), **evidence}
     save()
-    assert old_packets and old_packets == new_packets, '14 canonical AAC payload or absolute clock differs from the accepted voice.'
-    assert streams[0] == streams[1], '14 canonical audio codec parameters differ from the accepted voice.'
+    assert old_packets and old_packets == new_packets, f'{NO} canonical AAC payload or absolute clock differs from the accepted voice.'
+    assert streams[0] == streams[1], f'{NO} canonical audio codec parameters differ from the accepted voice.'
 
 
 def collect_actual_public_sources(request, current_source):
@@ -1129,7 +1129,7 @@ try:
                 'whole_track_actual_audio_and_approved_unchanged_regions_required': True}
     else:
         assert canonical_aac == accepted_aac, 'Canonical AAC differs from the accepted prior voice.'
-    verify14_accepted_audio_packets(source_video, canonical)
+    verify_unchanged_review_audio_packets(source_video, canonical)
     status['accepted_prior_aac_identical'] = canonical_aac == accepted_aac
     save()
     # Original tested end_card algorithm, with only its explicit source/summary loader supplied.
