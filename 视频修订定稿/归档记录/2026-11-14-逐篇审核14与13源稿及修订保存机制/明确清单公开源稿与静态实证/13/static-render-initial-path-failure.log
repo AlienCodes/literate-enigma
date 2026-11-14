@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/workspace/work/video-audit70-20261113/article13-user-review-20261114/render13_static.py", line 16, in <module>
+    assert sha(before)==approved['source_json_sha256']
+           ^^^^^^^^^^^
+  File "/workspace/work/video-audit70-20261113/article13-user-review-20261114/render13_static.py", line 8, in <lambda>
+    sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+                                ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/work/video-audit70-20261113/article13-user-review-20261114/before/视频/脚本/14.json'

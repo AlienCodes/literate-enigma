@@ -1,0 +1,364 @@
+{
+  "article": "14",
+  "book_order": "21",
+  "source_freeze_complete": true,
+  "created_utc": "2026-11-14T06:42:25.512130+00:00",
+  "eight_user_feedback_implemented": true,
+  "source_JSON_sha256": "2889a9b31bc7945ee55c306d3507b8557bf1efe371af8a97483a61172be800b8",
+  "GEN_sha256": "149c3ac87fac970ce4a29d8334607e36386e873afa3e98995058a32cd517f64d",
+  "MD_sha256": "618900d05bd2cecc8d577c446146e4df98d71e070c0b779b40992820d1fdd332",
+  "GEN_sources_sha256": "149c3ac87fac970ce4a29d8334607e36386e873afa3e98995058a32cd517f64d",
+  "files_applied": [
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/脚本/14.json",
+      "before_sha256": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "after_sha256": "2889a9b31bc7945ee55c306d3507b8557bf1efe371af8a97483a61172be800b8",
+      "bytes": 42064
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/初稿生成/gen14.py",
+      "before_sha256": "9cd684eab11ef388d69a33a98aa173ce0b379205f395b2f63357274ce4e57f6a",
+      "after_sha256": "149c3ac87fac970ce4a29d8334607e36386e873afa3e98995058a32cd517f64d",
+      "bytes": 31060
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/新版定稿/14-the-fungus-that-turns-ants-into-zombies.md",
+      "before_sha256": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "after_sha256": "618900d05bd2cecc8d577c446146e4df98d71e070c0b779b40992820d1fdd332",
+      "bytes": 13917
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/gen-sources/gen14.py",
+      "before_sha256": "66b13ad6951d009ddcb0d2227b663aca4d26aa19d05a9aba48a00a78174edb37",
+      "after_sha256": "149c3ac87fac970ce4a29d8334607e36386e873afa3e98995058a32cd517f64d",
+      "bytes": 31060
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/用户同意记录.json",
+      "before_sha256": "9fd3a649627e3d878c6133007eef39730e1a73dafa7b31b0fe0eafe7a49719e9",
+      "after_sha256": "c92628031e388afc91b69b193999581e55f5187413b642ffd5ac4a827fff3c49",
+      "scope": "Only two exact article14 consent records appended; unrelated current records retained."
+    }
+  ],
+  "exact_JSON_diff": [
+    {
+      "path": "/allow_clash",
+      "reason": "unexpected_field",
+      "actual": [
+        "fungus",
+        "spores",
+        "foraging",
+        "imaging",
+        "muscle fibres",
+        "episode",
+        "parasite"
+      ]
+    },
+    {
+      "path": "/sentences/4/chunks/0/align/1/0",
+      "reason": "value",
+      "expected": "fungus",
+      "actual": "**fungus**"
+    },
+    {
+      "path": "/sentences/4/chunks/0/align/1/1",
+      "reason": "value",
+      "expected": "真菌",
+      "actual": "**真菌**(fungus)"
+    },
+    {
+      "path": "/sentences/4/chunks/0/en",
+      "reason": "value",
+      "expected": "A fungus has destroyed its jaw **muscles**,",
+      "actual": "A **fungus** has destroyed its jaw **muscles**,"
+    },
+    {
+      "path": "/sentences/4/chunks/0/zh",
+      "reason": "value",
+      "expected": "一种真菌摧毁了它的颚部**肌肉**(muscles)，",
+      "actual": "一种**真菌**(fungus)摧毁了它的颚部**肌肉**(muscles)，"
+    },
+    {
+      "path": "/sentences/5/chunks/0/align/3/1",
+      "reason": "value",
+      "expected": "**真菌**(fungal)",
+      "actual": "**真菌的**(fungal)"
+    },
+    {
+      "path": "/sentences/5/chunks/0/zh",
+      "reason": "value",
+      "expected": "两三天后，一根**真菌**(fungal)菌柄从它头部顶出，",
+      "actual": "两三天后，一根**真菌的**(fungal)菌柄从它头部顶出，"
+    },
+    {
+      "path": "/sentences/5/chunks/1/align",
+      "reason": "list_length",
+      "expected_length": 3,
+      "actual_length": 5
+    },
+    {
+      "path": "/sentences/5/chunks/1/align/0/0",
+      "reason": "value",
+      "expected": "and releases **infectious** spores",
+      "actual": "and releases"
+    },
+    {
+      "path": "/sentences/5/chunks/1/align/0/1",
+      "reason": "value",
+      "expected": "将**具有传染性的**(infectious)孢子释放",
+      "actual": "将"
+    },
+    {
+      "path": "/sentences/5/chunks/1/align/1/0",
+      "reason": "value",
+      "expected": "on to",
+      "actual": "**infectious**"
+    },
+    {
+      "path": "/sentences/5/chunks/1/align/1/1",
+      "reason": "value",
+      "expected": "到",
+      "actual": "**具有传染性的**(infectious)"
+    },
+    {
+      "path": "/sentences/5/chunks/1/align/2/0",
+      "reason": "value",
+      "expected": "the ground below,",
+      "actual": "**spores**"
+    },
+    {
+      "path": "/sentences/5/chunks/1/align/2/1",
+      "reason": "value",
+      "expected": "下方的地面上，",
+      "actual": "**孢子**(spores)释放"
+    },
+    {
+      "path": "/sentences/5/chunks/1/align/3",
+      "reason": "unexpected_item",
+      "actual": [
+        "on to",
+        "到"
+      ]
+    },
+    {
+      "path": "/sentences/5/chunks/1/align/4",
+      "reason": "unexpected_item",
+      "actual": [
+        "the ground below,",
+        "下方的地面上，"
+      ]
+    },
+    {
+      "path": "/sentences/5/chunks/1/en",
+      "reason": "value",
+      "expected": "and releases **infectious** spores on to the ground below,",
+      "actual": "and releases **infectious** **spores** on to the ground below,"
+    },
+    {
+      "path": "/sentences/5/chunks/1/zh",
+      "reason": "value",
+      "expected": "将**具有传染性的**(infectious)孢子释放到下方的地面上，",
+      "actual": "将**具有传染性的**(infectious)**孢子**(spores)释放到下方的地面上，"
+    },
+    {
+      "path": "/sentences/5/chunks/2/align/1/0",
+      "reason": "value",
+      "expected": "foraging",
+      "actual": "**foraging**"
+    },
+    {
+      "path": "/sentences/5/chunks/2/align/1/1",
+      "reason": "value",
+      "expected": "觅食的",
+      "actual": "**觅食的**(foraging)"
+    },
+    {
+      "path": "/sentences/5/chunks/2/en",
+      "reason": "value",
+      "expected": "where foraging ants **tread**.",
+      "actual": "where **foraging** ants **tread**."
+    },
+    {
+      "path": "/sentences/5/chunks/2/zh",
+      "reason": "value",
+      "expected": "那里有觅食的蚂蚁**行走**(tread)。",
+      "actual": "那里有**觅食的**(foraging)蚂蚁**行走**(tread)。"
+    },
+    {
+      "path": "/sentences/10/chunks/1/align/3/0",
+      "reason": "value",
+      "expected": "imaging.",
+      "actual": "**imaging**."
+    },
+    {
+      "path": "/sentences/10/chunks/1/align/3/1",
+      "reason": "value",
+      "expected": "成像。",
+      "actual": "**成像**(imaging)。"
+    },
+    {
+      "path": "/sentences/10/chunks/1/en",
+      "reason": "value",
+      "expected": "with **three-dimensional** **microscope** imaging.",
+      "actual": "with **three-dimensional** **microscope** **imaging**."
+    },
+    {
+      "path": "/sentences/10/chunks/1/zh",
+      "reason": "value",
+      "expected": "用的是**三维**(three-dimensional)**显微镜**(microscope)成像。",
+      "actual": "用的是**三维**(three-dimensional)**显微镜**(microscope)**成像**(imaging)。"
+    },
+    {
+      "path": "/sentences/11/chunks/1/align/0/0",
+      "reason": "value",
+      "expected": "around muscle fibres in the legs and jaw,",
+      "actual": "around **muscle fibres** in the legs and jaw,"
+    },
+    {
+      "path": "/sentences/11/chunks/1/align/0/1",
+      "reason": "value",
+      "expected": "围在腿部和颚部的肌肉纤维周围，",
+      "actual": "围在腿部和颚部的**肌肉纤维**(muscle fibres)周围，"
+    },
+    {
+      "path": "/sentences/11/chunks/1/en",
+      "reason": "value",
+      "expected": "around muscle fibres in the legs and jaw,",
+      "actual": "around **muscle fibres** in the legs and jaw,"
+    },
+    {
+      "path": "/sentences/11/chunks/1/zh",
+      "reason": "value",
+      "expected": "围在腿部和颚部的肌肉纤维周围，",
+      "actual": "围在腿部和颚部的**肌肉纤维**(muscle fibres)周围，"
+    },
+    {
+      "path": "/sentences/13/chunks/0/align/0/0",
+      "reason": "value",
+      "expected": "A Planet Earth episode,",
+      "actual": "A Planet Earth **episode**,"
+    },
+    {
+      "path": "/sentences/13/chunks/0/align/0/1",
+      "reason": "value",
+      "expected": "《地球脉动》的一集，",
+      "actual": "《地球脉动》的**一集**(episode)，"
+    },
+    {
+      "path": "/sentences/13/chunks/0/en",
+      "reason": "value",
+      "expected": "A Planet Earth episode, with David Attenborough's **narration**,",
+      "actual": "A Planet Earth **episode**, with David Attenborough's **narration**,"
+    },
+    {
+      "path": "/sentences/13/chunks/0/zh",
+      "reason": "value",
+      "expected": "《地球脉动》的一集，伴随着戴维·阿滕伯勒的**解说**(narration)，",
+      "actual": "《地球脉动》的**一集**(episode)，伴随着戴维·阿滕伯勒的**解说**(narration)，"
+    },
+    {
+      "path": "/sentences/14/chunks/1/align/2/0",
+      "reason": "value",
+      "expected": "the parasite",
+      "actual": "the **parasite**"
+    },
+    {
+      "path": "/sentences/14/chunks/1/align/2/1",
+      "reason": "value",
+      "expected": "这种寄生菌",
+      "actual": "这种**寄生菌**(parasite)"
+    },
+    {
+      "path": "/sentences/14/chunks/1/en",
+      "reason": "value",
+      "expected": "whose **makers** **envisioned** the parasite jumping to humans.",
+      "actual": "whose **makers** **envisioned** the **parasite** jumping to humans."
+    },
+    {
+      "path": "/sentences/14/chunks/1/note",
+      "reason": "value",
+      "expected": "（help (to) do：帮助做……，to 可省；\nwhose…：定语从句，修饰 a 2013 video game；\nenvision sb/sth doing：设想……做某事）",
+      "actual": "（help (to) do：帮助做……，to 可省；\nwhose…：定语从句，修饰 a 2013 video game；\nenvision sb/sth doing：设想……做某事）\n（parasite：泛指寄生生物，包括寄生虫、寄生菌和寄生植物；\n本文特指寄生真菌，所以译为寄生菌。）"
+    },
+    {
+      "path": "/sentences/14/chunks/1/zh",
+      "reason": "value",
+      "expected": "游戏的**制作者**(makers)们**设想**(envisioned)这种寄生菌跳到了人类身上。",
+      "actual": "游戏的**制作者**(makers)们**设想**(envisioned)这种**寄生菌**(parasite)跳到了人类身上。"
+    },
+    {
+      "path": "/sentences/16/chunks/0/align/1/0",
+      "reason": "value",
+      "expected": "parasite's",
+      "actual": "**parasite**'s"
+    },
+    {
+      "path": "/sentences/16/chunks/0/align/1/1",
+      "reason": "value",
+      "expected": "寄生菌，",
+      "actual": "**寄生菌**(parasite)，"
+    },
+    {
+      "path": "/sentences/16/chunks/0/en",
+      "reason": "value",
+      "expected": "The real parasite's roots run far deeper,",
+      "actual": "The real **parasite**'s roots run far deeper,"
+    },
+    {
+      "path": "/sentences/16/chunks/0/zh",
+      "reason": "value",
+      "expected": "现实中的寄生菌，其根源要深得多，",
+      "actual": "现实中的**寄生菌**(parasite)，其根源要深得多，"
+    }
+  ],
+  "original_GEN_JSON_text_checks": {
+    "path": "/workspace/work/video-audit70-20261113/article14-user-review-20261114/recheck-after-T34/report.json",
+    "sha256": "3c735a8ba08cb77c0a5f58569c692fd73e7049b7fb06977a9a651b617e67c454",
+    "all_passed": true
+  },
+  "actual_static_1080_and_4K": {
+    "path": "/workspace/work/video-audit70-20261113/article14-user-review-20261114/static-render-report.json",
+    "sha256": "c29f21a6dfb01b38eefd30582da0fb36b2935ce652f6578c5a3ed02b61fb1f23",
+    "all_passed": true,
+    "actual_changed_page_renders": 18,
+    "actually_visually_reviewed_all_18_changed_pages": true,
+    "actual_tail_and_summary_contact": "/workspace/work/video-audit70-20261113/article14-user-review-20261114/actual-4K-tail-summary-contact.jpg"
+  },
+  "CI_approved_manifest": {
+    "path": "/workspace/work/video-revision-batch-ci/.github/video-revision-batch/approved-video-layouts70.json",
+    "before_sha256": "40414bed8e2bf8ffc32c6fe24d0a9ac5c40fd6fe12571f8f66d6a39a736507b0",
+    "after_sha256": "15289acded565266384ffb44f3fc90a1e8402f5ec09b9ce515fbedaafcb6e968",
+    "before_row": {
+      "source_id": "14",
+      "new_id": "21",
+      "source_json_sha256": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "approved_summary_text_sha256": "74e0722fa1bd8727d0a773682c9526ef21c7b18e643825e4e9bf95c31e46ca06",
+      "summary_png_sha256": "d24572e55dbf84cbd1ccb3392cc8e3857ab8a4d3b936a256514b8c5c43f3a964",
+      "summary_rgb_sha256": "3023f6a23d952ede3cf31776301467af71e11125b4aeb58b040504979ae53d50",
+      "summary_font_4k_px": 112,
+      "source_layout_structural_sha256": "ea3773ad4b196f01ff1a93630993e5048cee26e0c18c709214573c6c61df9361"
+    },
+    "after_row": {
+      "source_id": "14",
+      "new_id": "21",
+      "source_json_sha256": "2889a9b31bc7945ee55c306d3507b8557bf1efe371af8a97483a61172be800b8",
+      "approved_summary_text_sha256": "74e0722fa1bd8727d0a773682c9526ef21c7b18e643825e4e9bf95c31e46ca06",
+      "summary_png_sha256": "d24572e55dbf84cbd1ccb3392cc8e3857ab8a4d3b936a256514b8c5c43f3a964",
+      "summary_rgb_sha256": "3023f6a23d952ede3cf31776301467af71e11125b4aeb58b040504979ae53d50",
+      "summary_font_4k_px": 112,
+      "source_layout_structural_sha256": "f91ba5fb9cd3429eefa06244a5054e30f2eb4e39c9caf99bfa907261119fdef6"
+    },
+    "only_two_article14_source_digest_leaves_changed": true,
+    "unchanged_approved_summary_text_RGB_font": true
+  },
+  "spoken_English_and_chunk_boundaries_exact": true,
+  "all_existing_DSP_and_audio_controls_exact": true,
+  "summary_five_points_and_full_last_note_exact": true,
+  "body_tail_geometry_and_font_exact": true,
+  "body_tail_RGB_identity_claimed": false,
+  "official_cyclic_color_shift_expected": true,
+  "official_core_or_renderer_modified": false,
+  "native_video_or_audio_generated_or_dispatched_by_this_agent": false,
+  "published40_review_bundle_modified": false,
+  "sole_next_native_launcher": "/root/resume_audio_ci"
+}

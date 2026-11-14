@@ -1,0 +1,44 @@
+{
+  "kind": "inventory-only-explicit-completed-review-revision-support",
+  "recorded_utc": "2026-11-14T06:49:14.839044+00:00",
+  "program_changes": [
+    {
+      "program": "prepare_operation.py",
+      "before_path": "/workspace/work/video-archive-batches-20261114/history/prepare_operation-before-user-review-revisions.py",
+      "sha256": "dd6501b2f8767e802be1075275f0abc29a54c9d33dee494488ba148645f12f7c",
+      "after_sha256": "e96fc39944718bf9c73e3369a9737fb5eb88ac615e3694207a9f18d2ef3336e8",
+      "after_path": "/workspace/work/video-archive-batches-20261114/prepare_operation.py"
+    },
+    {
+      "program": "integrate_verified_batch.py",
+      "before_path": "/workspace/work/video-archive-batches-20261114/history/integrate_verified_batch-before-user-review-revisions.py",
+      "sha256": "06091a81542932196aa6dc9708fd0a2abb7d502345fd505997cb61fbde3b8479",
+      "after_sha256": "83cb2b8536ccb75f73d553dabc9eae6840cdaf5ad5c41d5d7da80dec6034b6f5",
+      "after_path": "/workspace/work/video-archive-batches-20261114/integrate_verified_batch.py"
+    },
+    {
+      "program": "archive_revision_policy.py",
+      "after_path": "/workspace/work/video-archive-batches-20261114/archive_revision_policy.py",
+      "after_sha256": "b74f473c426f2817db14608f258cfb160061d0c36cac9b23e0e0a038f4f61404",
+      "added": true
+    },
+    {
+      "program": "test_archive_revision_policy.py",
+      "after_path": "/workspace/work/video-archive-batches-20261114/test_archive_revision_policy.py",
+      "after_sha256": "fb1b202fa40288e71c752469c7e06544e746e6ae6205611763ff7a9baf889523",
+      "added": true
+    }
+  ],
+  "12_actual_metadata_tests_passed": true,
+  "synthetic_fixture_not_new_native_pass": true,
+  "actual_media_or_QC_program_changed": false,
+  "archive_batch_prepare_push_stream_program_unchanged": true,
+  "canonical_refs_or_release_modified": false,
+  "approved_sources_only": [
+    "14",
+    "27",
+    "13"
+  ],
+  "revision_count_does_not_increment_unique_article_count": true,
+  "old_asset_trees_preserved_by_existing_fresh_head_append_only_graft": true
+}

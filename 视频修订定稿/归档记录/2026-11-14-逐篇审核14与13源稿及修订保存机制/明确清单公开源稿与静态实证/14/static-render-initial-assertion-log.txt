@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspace/work/video-audit70-20261113/article14-user-review-20261114/render14_static.py", line 54, in <module>
+    old,new=result['sources'];assert old['body_tail']['RGB_sha256']==new['body_tail']['RGB_sha256'];assert old['summary']==new['summary']or all(old['summary'][k]==new['summary'][k]for k in old['summary']if k!='path')
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

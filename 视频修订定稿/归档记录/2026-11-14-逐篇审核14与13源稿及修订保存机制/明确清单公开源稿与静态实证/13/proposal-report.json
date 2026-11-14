@@ -1,0 +1,123 @@
+{
+  "article": "13",
+  "book_order": "23",
+  "kind": "two-user-requested-focus-only-source-proposal",
+  "quality_acceptance": false,
+  "before_source_sha256": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+  "after_source_sha256": "c22ccc9eb34a92380ecbd2ea72189db492264c4730141c73024685b3fca5fd1e",
+  "generator_sha256": "1188b0bf86a5c0549a25c3e0aeb5cc27e9c2798ba3c3988e63c258a8bdaefb07",
+  "manuscript_sha256": "41998b355721703f761685dd351fbf4628b2be67dfed8b3d37276f9e8f929ecb",
+  "all_spoken_English_chunk_boundaries_exact": true,
+  "all_other_non_sentence_controls_exact": true,
+  "full_last_summary_note_exact": true,
+  "exact_JSON_diff": [
+    {
+      "path": "/allow_clash",
+      "reason": "list_length",
+      "expected_length": 2,
+      "actual_length": 4
+    },
+    {
+      "path": "/allow_clash/2",
+      "reason": "unexpected_item",
+      "actual": "logged"
+    },
+    {
+      "path": "/allow_clash/3",
+      "reason": "unexpected_item",
+      "actual": "Guinness World Records"
+    },
+    {
+      "path": "/sentences/1/chunks/2/align",
+      "reason": "list_length",
+      "expected_length": 2,
+      "actual_length": 3
+    },
+    {
+      "path": "/sentences/1/chunks/2/align/0/0",
+      "reason": "value",
+      "expected": "and logged",
+      "actual": "and"
+    },
+    {
+      "path": "/sentences/1/chunks/2/align/0/1",
+      "reason": "value",
+      "expected": "并记录了",
+      "actual": "并"
+    },
+    {
+      "path": "/sentences/1/chunks/2/align/1/0",
+      "reason": "value",
+      "expected": "his **mood**.",
+      "actual": "**logged**"
+    },
+    {
+      "path": "/sentences/1/chunks/2/align/1/1",
+      "reason": "value",
+      "expected": "他的**情绪**(mood)。",
+      "actual": "**记录了**(logged)"
+    },
+    {
+      "path": "/sentences/1/chunks/2/align/2",
+      "reason": "unexpected_item",
+      "actual": [
+        "his **mood**.",
+        "他的**情绪**(mood)。"
+      ]
+    },
+    {
+      "path": "/sentences/1/chunks/2/en",
+      "reason": "value",
+      "expected": "and logged his **mood**.",
+      "actual": "and **logged** his **mood**."
+    },
+    {
+      "path": "/sentences/1/chunks/2/zh",
+      "reason": "value",
+      "expected": "并记录了他的**情绪**(mood)。",
+      "actual": "并**记录了**(logged)他的**情绪**(mood)。"
+    },
+    {
+      "path": "/sentences/14/chunks/0/align/1/0",
+      "reason": "value",
+      "expected": "Guinness World Records",
+      "actual": "**Guinness World Records**"
+    },
+    {
+      "path": "/sentences/14/chunks/0/align/1/1",
+      "reason": "value",
+      "expected": "吉尼斯世界纪录",
+      "actual": "**吉尼斯世界纪录**(Guinness World Records)"
+    },
+    {
+      "path": "/sentences/14/chunks/0/en",
+      "reason": "value",
+      "expected": "In 1997 Guinness World Records",
+      "actual": "In 1997 **Guinness World Records**"
+    },
+    {
+      "path": "/sentences/14/chunks/0/zh",
+      "reason": "value",
+      "expected": "1997年，吉尼斯世界纪录",
+      "actual": "1997年，**吉尼斯世界纪录**(Guinness World Records)"
+    }
+  ],
+  "auth_entries": [
+    {
+      "篇": "13",
+      "日期": "2026-11-10",
+      "原话": "不用管，这个就是我清点的词，我清点的词不用管，撞不撞车，全都留，全都留，全都特批。我专门说的这个加为重点词汇的这个所有的词全都这个重点特批。",
+      "用于": "allow_clash.logged / Guinness World Records（2026-11-14用户本篇点名新增重点词；完整短语整体标注）",
+      "来源": "沿用真实通用特批；本轮具体截图和原话见USER-REVIEW-2026-11-14-009及010.json；其他篇原重点词不变"
+    },
+    {
+      "篇": "13",
+      "日期": "2026-11-14",
+      "原话": "Ok，然后这个11天不睡觉的这个实验就可以定稿了，可以定稿了。",
+      "用于": "本篇logged记录与Guinness World Records吉尼斯世界纪录整体重点修改后重新生成4K定稿；仅原13/书23",
+      "来源": "当前会话用户明确指令，root转交唯一13源编辑任务"
+    }
+  ],
+  "created_utc": "2026-11-14T06:44:28.321101+00:00",
+  "first_vocabulary_table_formal_POS_failure_and_fix": "Original table parser requires recognized n. label, so changed 专有名词. to n. and retained proper-name meaning."
+}
