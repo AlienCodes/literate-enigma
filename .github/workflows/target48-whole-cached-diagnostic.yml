@@ -1,4 +1,4 @@
-name: 原48整轨原缓存仅新姓名唯一语音域实际标量诊断
+name: 原48正确原生词典上下文仅新全名S15两原母与实测
 on:
   push:
     branches: [codex/finish-05-and-summaries-20261112]
@@ -81,11 +81,10 @@ jobs:
           XG_NOPUSH: '1'
         run: |
           python official-main/视频/工具/出片指纹.py --拷 "$RUNNER_TEMP/completion-machine/video"
-      - name: 严格原缓存全轨原声与新S15母实际身份诊断
+      - name: 正确原生上下文仅S15两母实做与原G36及两ASR标量诊断
         id: target
         env:
           XG_NOPUSH: '1'
-          STRICT_CACHE: '1'
           AUDIO_ONLY: '1'
           XG_KEEP_REVIEWED_GAIN: '1'
           XG_KEEP_REVIEWED_ENDING: '1'
@@ -105,12 +104,18 @@ jobs:
           else:
               work.symlink_to(tools,target_is_directory=True)
           PYENV
-          python -u .github/target48-whole-cached-diagnostic/native48_whole_audio_cached_scope.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --video-root "$RUNNER_TEMP/completion-machine" --request "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48.json" --baseline-source "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48-current-baseline.json" --cache-identity "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/native48-new-S15-private-cache-identity.json" --output "$GITHUB_WORKSPACE/target48-whole-public/48-whole-strict-cached-diagnostic.json"
+          python -u .github/target48-whole-cached-diagnostic/native48_correct_context_S15_two_mothers.py --tools "$GITHUB_WORKSPACE/official-main/视频/工具" --video-root "$RUNNER_TEMP/completion-machine" --request "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/48.json" --missing-witness "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/actual-correct-alias-STRICT-missing-new-S15-witness.json" --root-decision "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/root-source48-correct-native-dictionary-context-hold-and-only-S15-remeasurement-decision.json" --previous-cache-identity "$GITHUB_WORKSPACE/.github/target48-whole-cached-diagnostic/native48-new-S15-private-cache-identity.json" --output "$GITHUB_WORKSPACE/target48-whole-public/48-only-correct-context-S15-measurement.json" --cache-path-output "$GITHUB_OUTPUT"
+      - name: 仅私有保存正确context两母marker及原G36五小文件
+        if: always() && steps.target.outputs.cache_key != ''
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ steps.target.outputs.cache_paths }}
+          key: ${{ steps.target.outputs.cache_key }}
       - name: 仅保存安全标量JSON不导母料音频
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native48-strict-cached-whole-scope-diagnostic
+          name: native48-correct-native-context-only-S15-diagnostic
           path: |
             target48-whole-public/*.json
           retention-days: 30
