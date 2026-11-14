@@ -1,0 +1,35 @@
+{
+  "kind": "actual-source18-specific-v3-two-complete-original-stage-runtime-tests",
+  "program_SHA256": "8b7f0ccc9ed20840dc5ccb1a456cb20b51ced8ce08a63b322fd6a0e6985e4f35",
+  "reference_SHA256": "c62b7cd37126a503a80e19ebcb68a2ac56d0f2bb448647f1e69e9552c215d234",
+  "all_full_actual_voice_AAC_legacy_AAC_and_absolute_clock_locked": true,
+  "actual_private_positive_negative_tests": [
+    {
+      "case": "actual-post-draft-exact-stage",
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "actual_complete_stage_canonical_binding": "observed-post-draft",
+      "PV_rawfingerprint_note_and_body_all_exactly_preserved": true
+    },
+    {
+      "case": "actual-reproduced-pre-draft-exact-stage",
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "actual_complete_stage_canonical_binding": "original-pre-draft-mapper-replay",
+      "PV_rawfingerprint_note_and_body_all_exactly_preserved": true
+    },
+    {
+      "case": "reject-single-character-prestage-PV-mutation",
+      "exit": 1,
+      "expected_exit": 1,
+      "passed": true,
+      "actual_complete_stage_canonical_binding": null,
+      "PV_rawfingerprint_note_and_body_all_exactly_preserved": true
+    }
+  ],
+  "passed": true,
+  "formal_W_or_source_or_audio_or_CI_not_mutated": true,
+  "temp_private_test_W_removed": true
+}
