@@ -58,7 +58,7 @@ def main():
     assert video['width'] == spec['width'] and video['height'] == spec['height']
     assert len(config['validation_record_sha256']) == 64
     tag = config['tag']
-    marker = 'Article28 reviewed final video SHA-256: ' + spec['sha256']
+    marker = 'Article28 0.3-second review preview video SHA-256: ' + spec['sha256']
     release = api('releases/tags/' + tag, missing_ok=True)
     if release is None:
         matches = [item for item in api('releases?per_page=100') if item['tag_name'] == tag and marker in (item.get('body') or '')]
