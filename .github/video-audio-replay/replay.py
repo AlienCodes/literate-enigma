@@ -9,10 +9,14 @@ import hashlib
 import importlib.util
 import json
 import os
+import pickle
 from pathlib import Path
 import re
 import shutil
 import subprocess
+import textwrap
+import soundfile as sf
+import numpy as np
 
 ROOT = Path.cwd()
 TASK = ROOT / '.github/video-audio-replay'
@@ -29,6 +33,7 @@ ENV = {k: v for k, v in os.environ.items() if k not in {
     'GH_TOKEN', 'GITHUB_TOKEN', 'OLD_IV_VOID', 'AUDIO_ONLY', 'VIDEO_S', 'VOICE', 'AFFILE'}}
 ENV.update({'STRICT_CACHE': '1', 'XG_NOPUSH': '1', 'VIDEO_ROOT': str(M),
             'QC_DIR': str(M / 'qc_independent'), 'XG_P': str(ROOT), 'XG_TOOLS': str(T)})
+ENV['CACHE_LOG'] = str(PRIVATE_LOG / 'actual-maker-cache-keys.txt')
 status = {'article': NO, 'purpose': 'read-only exact failed-draft PCM replay for diagnosis',
           'passed': False, 'quality_acceptance': False, 'final_deliverable': False,
           'original_quality_thresholds_changed': False, 'private_GT_cache_model_PCM_exported': False,
@@ -85,7 +90,8 @@ def publish_public_scalars():
     assert master == '6355a02864ebae616b693200d9d26f74f5da80e9'
     commit = os.environ['GITHUB_SHA']
     prefix = f'public-audio-replay/{os.environ["GITHUB_RUN_ID"]}/{NO}'
-    allowed = {f'{NO}-readonly-replay-status.json', f'{NO}-reference-gain-diagnostic.json'}
+    allowed = {f'{NO}-readonly-replay-status.json', f'{NO}-reference-gain-diagnostic.json',
+               f'{NO}-native-cache-scalars.json'}
     updates, files = [], []
     for path in sorted(OUT.iterdir()):
         assert path.name in allowed and path.is_file() and not path.is_symlink()
@@ -98,7 +104,7 @@ def publish_public_scalars():
         updates.append({'path': name, 'mode': '100644', 'type': 'blob', 'sha': blob['sha']})
         files.append({'path': name, 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()})
     manifest = {'kind': 'public-observation-only-not-quality-acceptance', 'run_id': os.environ['GITHUB_RUN_ID'],
-                'source_failed_run': 43522684973, 'article': NO, 'quality_acceptance': False,
+                'source_failed_run': status['source_failed_run'], 'article': NO, 'quality_acceptance': False,
                 'private_cache_GT_model_exports': False, 'files': files}
     data = (json.dumps(manifest, ensure_ascii=False, indent=2) + '\n').encode()
     blob = api('git/blobs', {'content': base64.b64encode(data).decode(), 'encoding': 'base64'}, 'POST')
@@ -123,8 +129,74 @@ def publish_public_scalars():
                       'quality_acceptance': False, 'public_json_files': len(files)}))
 
 
+def export_native_cache_scalars():
+    """Read only the producer's genuine logged cache entries; export no arrays."""
+    key_log = Path(ENV['CACHE_LOG'])
+    keys = sorted(set(line for line in key_log.read_text().splitlines()
+                      if re.fullmatch(r'[0-9a-f]{40}\.pkl', line)))
+    rows = []
+    for key in keys:
+        path = M / 'tts/cache_tts' / key
+        assert path.is_file() and not path.is_symlink()
+        marker = path.with_name(path.name + '.单线程')
+        item = {'native_key': key, 'pkl_sha256': sha(path), 'single_thread_marker_present': marker.is_file()}
+        if marker.is_file():
+            item['single_thread_marker_value'] = marker.read_text().strip()
+            item['single_thread_marker_matches'] = item['single_thread_marker_value'] == item['pkl_sha256'][:16]
+        with path.open('rb') as stream:
+            value = pickle.load(stream)
+        item['container_type'] = type(value).__name__
+        item['container_length'] = len(value)
+        if isinstance(value, tuple) and len(value) in (2, 3) and isinstance(value[0], np.ndarray):
+            samples = value[0]
+            item.update({'unprocessed_array_dtype': str(samples.dtype), 'unprocessed_array_shape': list(samples.shape),
+                         'unprocessed_array_sha256': hashlib.sha256(np.ascontiguousarray(samples).tobytes()).hexdigest(),
+                         'sample_rate': int(value[1])})
+        rows.append(item)
+    output = {'purpose': 'native producer cache provenance scalars only; no raw mother material exported',
+              'article': NO, 'quality_acceptance': False, 'source_sha256': status['public_failed_binding']['source_sha256'],
+              'producer_pcm_sha256': status['actual_private_pcm_sha256'], 'maker_sha256': sha(W / 'make_video.py'),
+              'original_cache_key_log_sha256': sha(key_log),
+              'models_sha256': {name: sha(M / 'tts' / name) for name in ('kokoro-v1.0.onnx', 'kokoro-v1.0-timed.onnx', 'voices-v1.0.bin', 'voice_mb.npy')},
+              'cache_entries': rows}
+    (OUT / f'{NO}-native-cache-scalars.json').write_text(json.dumps(output, ensure_ascii=False, indent=2) + '\n')
+
+
+def original_independent_selftest():
+    """Execute the exact original five-defect block, with its original audit."""
+    path = T / '交付核查.py'
+    source = path.read_text()
+    start = source.index('    # 核查程序自检（阳性对照')
+    end = source.index("    c, o = run(['python3', f'{T}/独立复核/audit.py', no], env)", start)
+    block = textwrap.dedent(source[start:end])
+    steps = []
+    lines = []
+    def original_run(args, extra=None):
+        process = subprocess.run(list(map(str, args)), cwd=W, env={**ENV, **(extra or {})},
+                                 capture_output=True, text=True, errors='replace')
+        return process.returncode, process.stdout + process.stderr
+    def original_step(name, passed, detail=''):
+        steps.append({'name': name, 'original_step_passed': bool(passed)})
+        lines.append(('✔ ' if passed else '✘ ') + name + '\n' + detail)
+    previous = Path.cwd()
+    try:
+        os.chdir(W)
+        exec(compile(block, str(path) + '#unchanged-independent-selftest-block', 'exec'),
+             {'os': os, 'no': NO, 'T': str(T), 'run': original_run, 'step': original_step})
+    finally:
+        os.chdir(previous)
+    log = PRIVATE_LOG / 'original-independent-selftest.log'
+    log.write_text('\n'.join(lines))
+    status['original_independent_selftest'] = {
+        'original_checker_sha256': sha(path), 'unmodified_block_sha256': hashlib.sha256(block.encode()).hexdigest(),
+        'original_audit_sha256': sha(T / '独立复核/audit.py'), 'steps': steps,
+        'all_original_steps_passed': bool(steps) and all(row['original_step_passed'] for row in steps)}
+    return log
+
+
 try:
     request = TASK / 'request' / NO
+    status['source_failed_run'] = int(json.loads((request / 'source-run.json').read_text())['run_id'])
     proof = json.loads((request / 'failed-draft-proof.json').read_text())
     fp = json.loads((request / 'failed-draft-fingerprint.json').read_text())
     source = request / 'failed-working-source.json'
@@ -162,15 +234,47 @@ try:
     assert actual == proof['internal_pcm_sha256'], 'Replayed PCM differs from actual failed-draft proof; no independent diagnosis allowed.'
     assert sha(W / f'scripts/{NO}.json') == proof['source_sha256']
     status['exact_failed_pcm_reproduced'] = True
+    export_native_cache_scalars()
+    overlay = TASK / 'approved-reference-overlay/synth.py'
+    if overlay.is_file():
+        contract = json.loads((overlay.parent / 'contract.json').read_text())
+        actual = T / '独立复核/synth.py'
+        assert sha(actual) == contract['original_sha256'] and sha(overlay) == contract['patched_sha256']
+        shutil.copyfile(overlay, actual)
+        status['approved_reference_overlay'] = contract
+    # Fresh GT only: do not allow a cached, incompatible CPU reference to be reused.
+    removed_gt = []
+    for path in sorted((M / 'qc_independent/gt').glob(NO + '_*')):
+        assert path.is_file() and not path.is_symlink()
+        removed_gt.append({'name': path.name, 'sha256': sha(path)})
+        path.unlink()
+    status['fresh_reference_removed_previous_files'] = removed_gt
     for program in ('synth.py', 'labels.py'):
         assert run(['python3', T / '独立复核' / program, NO], 'original-' + program[:-3]) == 0
+    selftest_log = original_independent_selftest()
     # A non-zero audit verdict is expected for a failed candidate and remains a failure.
     run(['python3', T / '独立复核/audit.py', NO], 'original-audit')
     diagnostic = TASK / 'diagnose_reference_gain.py'
     assert run(['python3', diagnostic, '--video-root', M, '--qc-dir', M / 'qc_independent',
-                '--no', NO, '--tools', T, '--out', OUT / f'{NO}-reference-gain-diagnostic.json'],
+                '--no', NO, '--tools', T, '--post-log', selftest_log,
+                '--out', OUT / f'{NO}-reference-gain-diagnostic.json'],
                'scalar-diagnostic') == 0
     result = json.loads((OUT / f'{NO}-reference-gain-diagnostic.json').read_text())
+    reference = TASK / 'public-aac-reference' / f'{NO}.wav'
+    if reference.is_file():
+        contract = json.loads(reference.with_suffix('.json').read_text())
+        assert sha(reference) == contract['public_derived_wav_sha256']
+        a, sr = sf.read(W / f'work_{NO}/a.wav', dtype='float64')
+        public, public_sr = sf.read(reference, dtype='float64')
+        assert sr == public_sr == 24000
+        spec = importlib.util.spec_from_file_location('diagnostic_alignment', diagnostic)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        at, corr = module.ncc_search(a, public, 25 * sr, 26 * sr)
+        result['public_aac_to_actual_pcm_timing'] = {**contract, 'actual_pcm_sha256': sha(W / f'work_{NO}/a.wav'),
+            'best_actual_pcm_start_seconds': at / sr, 'ncc': corr,
+            'actual_pcm_minus_public_aac_seconds': at / sr - contract['public_video_start_seconds']}
+        (OUT / f'{NO}-reference-gain-diagnostic.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
     assert 'passed' not in result and result['wav_sha256'] == actual and result['source_sha256'] == proof['source_sha256']
     status['scalar_diagnostic_sha256'] = sha(OUT / f'{NO}-reference-gain-diagnostic.json')
     status['scalar_diagnostic_error'] = result.get('diagnostic_error')
