@@ -1,0 +1,149 @@
+name: 本轮改动篇目原缓存正式4K
+on:
+  push:
+    branches: [codex/finish-05-and-summaries-20261112]
+    paths: ['.github/video-revision-batch/**', '.github/workflows/produce-revision-batch4K.yml']
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      articles: ${{ steps.selection.outputs.articles }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/video-revision-batch
+      - name: 只选择本轮改动且已提供请求的篇目
+        id: selection
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          task = Path('.github/video-revision-batch')
+          selected = json.loads((task / 'articles.json').read_text())
+          allowed = {f'{n:02d}' for n in range(1, 71)}
+          assert selected and len(selected) <= 70 and len(selected) == len(set(selected))
+          assert all(no in allowed for no in selected)
+          for no in selected:
+              request = task / 'request' / no
+              assert (request / f'视频/脚本/{no}.json').is_file(), no
+              assert (request / f'视频/工具/初稿生成/gen{no}.py').is_file(), no
+              assert len(list((request / '新版定稿').glob(f'{no}-*.md'))) == 1, no
+              assert (request / 'user-authorization.json').is_file(), no
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
+              stream.write('articles=' + json.dumps(selected, separators=(',', ':')) + '\n')
+          PY
+  produce:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        article: ${{ fromJSON(needs.prepare.outputs.articles) }}
+    env:
+      ARTICLE_NO: ${{ matrix.article }}
+      STRICT_CACHE: '1'
+      XG_NOPUSH: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.github/video-revision-batch/
+            /.github/video-batch/
+            /视频/工具/
+            /视频/脚本/
+            /视频/对照文本/${{ matrix.article }}-*
+            /视频/制作记录/
+            /视频/音频核对/
+            /视频/资源/字体/
+            /视频/配音缓存/*.json
+            /视频/*.md
+            /新版定稿/
+            /最终版4K视频/${{ matrix.article }} - *
+            /CLAUDE.md
+          sparse-checkout-cone-mode: false
+      - name: 按批准的原图清单解析本篇原生文件名
+        id: approved-art-path
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          task = Path('.github/video-revision-batch')
+          manifest = json.loads((task / 'illustration-manifest70.json').read_text())
+          row, = [r for r in manifest['illustrations'] if r['source_id'] == os.environ['ARTICLE_NO']]
+          native = Path(row['approved_book_illustration_path']).name
+          assert native.endswith('.png') and '/' not in native and '\n' not in native
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
+              stream.write('path=插图阅读小册/illustrations/' + native + '\n')
+          PY
+      - name: 取固定主仓中已批准的本篇书中原图
+        uses: actions/checkout@v4
+        with:
+          repository: alienalgorithm/postgraduate-vocabulary
+          ref: 64621068034f8b6e09836a6d97210a0e9b2f1ed6
+          path: .approved-publication-illustrations
+          filter: blob:none
+          persist-credentials: false
+          sparse-checkout: /${{ steps.approved-art-path.outputs.path }}
+          sparse-checkout-cone-mode: false
+      - name: 先验本篇原图的主仓提交、原生blob和批准SHA
+        run: >-
+          python .github/video-revision-batch/approved_illustration_resource.py
+          --source-id "$ARTICLE_NO" --checkout .approved-publication-illustrations
+          --task .github/video-revision-batch
+          --out "article$ARTICLE_NO-delivery/$ARTICLE_NO-approved-illustration-resource.json"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: original-cache
+        with:
+          path: |
+            ${{ runner.temp }}/completion-machine
+            ~/asr
+          key: completion-05-machine-43294745262
+      - name: 确认恢复既有机器缓存
+        env:
+          CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
+        run: |
+          test "$CACHE_HIT" = true
+          test -f "$RUNNER_TEMP/completion-machine/tts/kokoro-v1.0.onnx"
+      - name: 准备原有核查工具
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install --quiet -r 视频/工具/环境/requirements.txt
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - uses: actions/cache/restore@v4
+        id: fastcheck-cache
+        with:
+          path: 视频/工具/新管/快测通过.json
+          key: Linux-article05-fastcheck-v1-py311-original43294745262-99de41db540776b34faa8c3a8e9a5252c2327e43c2024a5428bc15245c688d3c
+      - name: 确认原快测印章缓存命中
+        env:
+          STAMP_HIT: ${{ steps.fastcheck-cache.outputs.cache-hit }}
+        run: test "$STAMP_HIT" = true
+      - name: 原程序做稿并正式定稿4K
+        run: python -u .github/video-revision-batch/run.py
+      - name: 仅保留本篇公开成片和核验材料
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: article${{ matrix.article }}-revised-canonical-4K-final
+          path: |
+            article${{ matrix.article }}-delivery/*.mp4
+            article${{ matrix.article }}-delivery/*.json
+            article${{ matrix.article }}-delivery/*.png
+            article${{ matrix.article }}-delivery/*.wav
+            article${{ matrix.article }}-delivery/*.log
+            article${{ matrix.article }}-delivery/*.py
+            article${{ matrix.article }}-delivery/*.md
+            article${{ matrix.article }}-delivery/*-illustrated-tail-previews/*.jpg
+          compression-level: 1
+          retention-days: 30
+          if-no-files-found: error

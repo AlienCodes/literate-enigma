@@ -1,0 +1,82 @@
+{
+  "kind": "whole-public-audio-identity-and-difference-localization",
+  "passed_not_implied": true,
+  "accepted_aac_adts_sha256": "16b6293adfc7a3c35224408ae39d831317e1932f8d47876824e129129c9115d8",
+  "actual_aac_adts_sha256": "54db011901074db7960b44b119ccddf8535523a49560631be610c756cfd8312c",
+  "whole_AAC_identical": false,
+  "whole_decoded_float32_identical": false,
+  "decoded_sample_counts": [
+    6596608,
+    6596608
+  ],
+  "number_of_different_samples": 153600,
+  "first_differing_sample": 6354944,
+  "last_differing_sample_exclusive": 6508544,
+  "minimal_enclosing_differing_span_seconds": [
+    132.39466666666667,
+    135.59466666666665
+  ],
+  "differing_runs_merged_only_for_150ms_encoding_boundary_localization": [
+    [
+      132.39466666666667,
+      135.59466666666665
+    ]
+  ],
+  "bit_identical_prefix": {
+    "samples": 6354944,
+    "end_seconds": 132.39466666666667,
+    "accepted_sha256": "e244e1e0eaff4f15e24755fa369544ce55e55e8e37f3af8704b7de81111be8ba",
+    "actual_sha256": "e244e1e0eaff4f15e24755fa369544ce55e55e8e37f3af8704b7de81111be8ba",
+    "np_array_equal": true
+  },
+  "tail_template_alignment_diagnostic": [
+    {
+      "accepted_span": [
+        128,
+        129
+      ],
+      "best_lag_s": 0.0,
+      "NCC": 0.9999999999999999
+    },
+    {
+      "accepted_span": [
+        130,
+        131
+      ],
+      "best_lag_s": 0.0,
+      "NCC": 1.0000000000000002
+    },
+    {
+      "accepted_span": [
+        132.8,
+        133.2
+      ],
+      "best_lag_s": -0.00020833333333333335,
+      "NCC": 0.9999686305442842
+    },
+    {
+      "accepted_span": [
+        133.4,
+        133.8
+      ],
+      "best_lag_s": -0.00020833333333333335,
+      "NCC": 0.9999710775438327
+    },
+    {
+      "accepted_span": [
+        134.4,
+        134.8
+      ],
+      "best_lag_s": -0.00020833333333333335,
+      "NCC": 0.9999270844939387
+    },
+    {
+      "accepted_span": [
+        135,
+        135.4
+      ],
+      "best_lag_s": -0.00020833333333333335,
+      "NCC": 0.9999709476595874
+    }
+  ]
+}

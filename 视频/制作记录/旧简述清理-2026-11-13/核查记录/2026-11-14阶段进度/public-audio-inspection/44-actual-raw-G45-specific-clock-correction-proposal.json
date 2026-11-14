@@ -1,0 +1,45 @@
+{
+  "purpose": "Actual raw-PCM-specific clock correction for one existing reviewed highlight confirmation",
+  "article": "44",
+  "quality_acceptance": false,
+  "source_sha256_before": "eb11422f14274c8d1b7cdb27064a4db03624a1af07c66b820899e08cfb4c9940",
+  "raw_diagnostic_file_sha256": "8d0adcd5c473585e7a9768169ecd7048e907743774f9a097a23dc0ed36973638",
+  "exact_actual_PCM_sha256": "13433aea28ccf9bd95fdfba14f87cc0aee52f1536ec4ca075d13f1d9138eb3c4",
+  "exact_actual_PCM_md5_first12": "22c5ec30299f",
+  "original_checker_sha256": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+  "original_G45_at_proposed_time": {
+    "actual_pcm_time_s": 25.785,
+    "pre30ms_max_db": -49.63327593051267,
+    "post40ms_max_db": -6.204876186076579,
+    "this5ms_db": -39.364208700696885,
+    "original_G45_accepts": true
+  },
+  "native_raw_and_public_AAC_timing_correlation": {
+    "purpose": "Already publicly exported failed MP4 derived AAC excerpt for raw PCM timing comparison only",
+    "public_source_run": 43526354790,
+    "public_video_sha256": "86373400d36ff726cf00543bf992ec2c731f4f0efad73c34480f752a7e40e684",
+    "public_video_start_seconds": 25.4,
+    "public_video_duration_seconds": 0.8,
+    "public_derived_wav_sha256": "60d54caaf1a742483a9c036b562ff0223f2e6d1dd3752dc4002c681299b52ed4",
+    "no_private_audio_exported": true,
+    "actual_pcm_start_s": 25.375,
+    "ncc": 0.8555197343688152,
+    "actual_PCM_minus_public_AAC_seconds": -0.02499999999999858
+  },
+  "original_G45_at_old_time": {
+    "actual_pcm_time_s": 25.81,
+    "pre30ms_max_db": -19.84046917788479,
+    "post40ms_max_db": -3.804847255596815,
+    "this5ms_db": -7.726738360687624,
+    "original_G45_accepts": false
+  },
+  "proposal": {
+    "json_pointer": "/核对确认/高亮/S2 第3块/开始读",
+    "old": 25.81,
+    "new": 25.785,
+    "配音指纹": "22c5ec30299f",
+    "basis": "本轮真实a.wav全SHA13433aea28ccf9bd95fdfba14f87cc0aee52f1536ec4ca075d13f1d9138eb3c4，S2第三块in defiance开口在原始PCM约25.785秒；直接执行原是开口/确认可收：前30ms最大-49.63dB，后40ms最大-6.2dB，原G45通过。此前25.81秒依据公开AAC的时钟；当前raw该点前30ms已达-19.84dB、处于词中，原G45拒绝。公开AAC与原PCM局部对应存在约25ms差异（NCC .8555，波形经原AF/编码处理，非样本相同）；本项以实际raw直接量测为准。原高亮25.77秒和物理音轨均保持。"
+  },
+  "source_modified_by_proposal": false,
+  "highlight_position_and_audio_controls_changed": false
+}
