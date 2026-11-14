@@ -1,0 +1,153 @@
+import json,re,glob,os
+# 第46篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-04 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；形容词的“的”标进粗体；三项并列加牛津逗号（T18）；不用破折号（T36）。
+S=[
+(1,[[[("A moth","一只飞蛾"),("**skims over**","**掠过**(skims over)"),("an","一盏"),("ultraviolet","紫外"),("lamp","灯，")]],
+    [[("and","随即"),("flips upside down,","上下颠倒地翻过身来，"),("**belly**","**肚皮**(belly)"),("to the sky.","朝天。")],
+     "（flip upside down：翻个底朝天；\nbelly to the sky：独立结构，补充说明翻身后的样子）"]]),
+(1,[[[("In","在"),("Costa Rica's","哥斯达黎加"),("**misty** Monteverde","蒙特韦尔德**雾气缭绕的**(misty)"),("**cloud-forest**,","**云雾林**(cloud-forest)里，")],
+     "（cloud-forest：云雾林，常年被云雾笼罩的山地森林）"],
+    [[("**stereo**","**立体**(stereo)"),("cameras","摄像机"),("caught such **acrobatics** for a 2024 Imperial College study","为伦敦帝国理工学院2024年的一项研究拍下了这类**杂技**(acrobatics)动作。")],
+     "（for a 2024 Imperial College study：目的状语）"],
+    [[("that","这项研究"),("**unravelled**","**解开了**(unravelled)"),("an","一个"),("**age-old**","**由来已久的**(age-old)"),("puzzle,","谜团，")],
+     "（that unravelled…：定语从句，修饰 study）"],
+    [[("the **helpless** **swirl** of insects round **porch** lights.","那就是昆虫为什么会**身不由己地**(helpless)绕着**门廊**(porch)灯**打转**(swirl)。")],
+     "（the helpless swirl of…：同位语，补充说明 puzzle）"]]),
+(2,[[[("**Folk wisdom**","**民间的老说法**(Folk wisdom)"),("blames the circling on","把这种打转归咎于"),("**attraction**.","**吸引**(attraction)。")],
+     "（blame A on B：把 A 归咎于 B）"]]),
+(2,[[[("In fact,","事实上，"),("insects","昆虫会"),("**instinctively**","**本能地**(instinctively)"),("keep","让"),("their backs","背部"),("to","朝向"),("whatever shines brightest,","最亮的东西，")],
+     "（keep one's back to…：背朝……；\nwhatever shines brightest：名词性从句，作 to 的宾语）"],
+    [[("normally","那通常是"),("the sky,","天空，"),("to stay","以此保持"),("level.","平稳。")],
+     "（normally the sky：同位语，补充说明 whatever shines brightest；\nto stay level：目的状语）"]]),
+(2,[[[("A lamp,","灯"),("a","成了一片"),("**counterfeit**","**冒牌的**(counterfeit)"),("sky,","天空，")],
+     "（a counterfeit sky：同位语，补充说明 A lamp）"],
+    [[("**hijacks**","**劫持了**(hijacks)"),("this","这种"),("**built-in**","**与生俱来的**(built-in)"),("habit,","习性，")]],
+    [[("leaving","让"),("insects","昆虫"),("**eddying** in its **halo**","在它的**光晕**(halo)里**打着旋**(eddying)，"),("or","或"),("**inverted** above it.","在它上方**翻转**(inverted)过来。")],
+     "（leave sb doing/done：使某人处于某种状态；\nleaving…：现在分词短语作结果状语）"]]),
+(2,[[[("In","在"),("477","477段"),("field","野外"),("**clips**,","**视频片段**(clips)中，"),("**precious few** **darted** straight at the light.","**径直冲**(darted)向灯光的昆虫**寥寥无几**(precious few)。")],
+     "（precious few：极少，寥寥无几；\ndart at…：猛冲向……）"]]),
+(3,[[[("Many","许多"),("fireflies","萤火虫"),("**flirt** with their **lanterns**.","用自己的**灯笼**(lanterns)来**调情**(flirt)。")],
+     "（with their lanterns：方式状语，\nlanterns 比喻萤火虫的发光器）"]]),
+(3,[[[("A male","雄虫"),("**blinks**","**闪烁**(blinks)着奏出"),("an **overture**,","一段**序曲**(overture)，")],
+     "（blink an overture：用闪光“奏”出求偶的序曲）"],
+    [[("a female","雌虫"),("**winks**","**眨眼**(winks)般"),("back,","回应，")],
+     "（wink back：眨眼回应）"],
+    [[("and","而"),("bright","太亮的"),("nights","夜晚"),("**smother**","会**淹没**(smother)"),("the **banter**.","这番**调笑**(banter)。")]]]),
+(3,[[[("At","在"),("Tufts University,","塔夫茨大学，"),("**suitors** under artificial light","处在人造光下的**求偶者**(suitors)")],
+     "（under artificial light：后置定语，修饰 suitors）"],
+    [[("**mustered** about five flash patterns a minute","每分钟只**勉强打出**(mustered)约五组闪光，"),("instead of","而不是"),("ten.","十组。")],
+     "（a minute：每分钟；instead of：而不是）"]]),
+(3,[[[("Females","雌虫"),("**reciprocated** about half as often under red or blue light,","在红光或蓝光下**回应**(reciprocated)的次数约减半，")],
+     "（half as often：次数只有一半；\nunder red or blue light：条件状语）"],
+    [[("scarcely at all under white,","在白光下几乎不回应，"),("and never under **amber**.","在**琥珀色**(amber)光下则从不回应。")],
+     "（scarcely at all / never：前面都省略了 reciprocated）"]]),
+(4,[[[("The harm","危害"),("**spills into**","还会**蔓延到**(spills into)"),("the **ecosystem**.","整个**生态系统**(ecosystem)。")],
+     "（spill into…：蔓延到……）"]]),
+(4,[[[("Along","在"),("55 Thames Valley","泰晤士河谷的55处"),("**roadsides**,","**路边**(roadsides)，")],
+     "（Thames Valley：泰晤士河谷，在英格兰南部）"],
+    [[("**lamp-lit**","**有灯照明的**(lamp-lit)"),("**hedges**","**树篱**(hedges)里，"),("held 47% fewer moth **caterpillars** than dark ones,","蛾类**毛虫**(caterpillars)比没灯的地方少47%，")],
+     "（47% fewer A than B：A 比 B 少47%；\ndark ones：ones 指 hedges）"],
+    [[("with","而"),("**harsh**","**刺眼的**(harsh)"),("white","白色"),("LEDs","LED"),("worse than","比"),("**mellower**","**更柔和的**(mellower)"),("**sodium lamps**.","**钠灯**(sodium lamps)更糟。")],
+     "（with＋名词＋形容词：独立结构，补充说明情况）"]]),
+(4,[[[("Street lamps **rigged up** in seven of 14 Swiss **meadows**","在瑞士14片**草甸**(meadows)中的7片，**临时架起**(rigged up)的路灯")],
+     "（rig up：临时搭建，架设；\nrigged up in…：过去分词短语作后置定语，修饰 Street lamps）"],
+    [[("cut","让"),("**nocturnal**","**夜间**(nocturnal)"),("pollinator","传粉者的"),("visits","造访"),("by 62%.","减少了62%。")],
+     "（cut A by 62%：使 A 减少62%）"]]),
+(4,[[[("The plants","植物"),("set fewer fruit,","结的果实变少了，")],
+     "（set fruit：结果实）"],
+    [[("and","而"),("daytime","白天的"),("pollinators","传粉者"),("proved","也只是"),("poor","不称职的"),("**understudies**.","**替补**(understudies)。")],
+     "（prove＋名词：结果是……；\nunderstudy：替补演员，这里比喻顶替夜间传粉者的白天传粉者）"]]),
+(5,[[[("Over 80% of **humanity**","全球80%以上的**人类**(humanity)"),("lives beneath","生活在"),("a","一层"),("**luminous**","**发光的**(luminous)"),("**veil**,","**帷幕**(veil)之下，")],
+     "（beneath a luminous veil：\n比喻光污染像一层发光的帷幕）"],
+    [[("which","它"),("{{=}}hides the pale **ribbon** of the Milky Way from more than a third.","让三分之一以上的人看不见银河那条淡淡的**光带**(ribbon)。")],
+     "（which…：非限制性定语从句，修饰 veil；\nhide A from B：让 B 看不见 A）"]]),
+(5,[[[("**Citizen**","**公民**(Citizen)"),("scientists'","科学家"),("star counts from 2011 to 2022","2011年至2022年的数星记录"),("show","显示，"),("the sky","夜空"),("brightening about 9.6% a year.","每年约变亮9.6%。")],
+     "（citizen scientist：参与科研的普通公众；\nshow sth doing：显示某事正在发生）"]]),
+(5,[[[("At","按"),("that","这个"),("**pace**,","**速度**(pace)，"),("a child","若一个孩子"),("born","出生在"),("where 250 stars **twinkle**","能看到250颗星星**闪耀**(twinkle)的地方，")],
+     "（born where…：过去分词短语作后置定语，修饰 child；\nwhere 250 stars twinkle：地点状语从句）"],
+    [[("would see about 100 by their eighteenth birthday.","到18岁生日时只能看到约100颗。")],
+     "（by their eighteenth birthday：到18岁生日时）\n"
+     "（简述：2024年，伦敦帝国理工学院的研究用立体摄像机拍下昆虫在灯旁的飞行，\n"
+     "发现它们并不是被灯光吸引，而是本能地让背部朝向最亮的东西，\n"
+     "灯成了冒牌的天空，让它们打转或翻身。\n"
+     "太亮的夜晚还淹没萤火虫的闪光求偶：人造光下雄虫的闪光少了一半，雌虫的回应变少甚至全无。\n"
+     "路灯旁树篱里的蛾类毛虫少了47%，夜间传粉者的造访减少了62%，植物结的果实也变少了。\n"
+     "如今全球80%以上的人生活在发光的帷幕之下，夜空每年约变亮9.6%，\n"
+     "孩子们能看到的星星越来越少。）"]]),
+]
+def _k(s,c,e): return f"S{s}-{c} {e[:30]}"
+G={
+ "S1 flips upside down":"对齐不了：upside down 是方式状语，中文“上下颠倒地翻过身来”必须放到动词前",
+ "S2 caught such acrobatics for a 2024 Imperial College study":"对齐不了：for a 2024 Imperial College study 是目的状语，中文“为……的一项研究拍下了……”必须放到动词前",
+ "S2 the helpless swirl of insects round porch lights":"对齐不了：the helpless swirl of insects 是 of 结构，中文把名词 swirl 化成动词“打转”放到最后，insects 提到最前，round porch lights 放在“打转”前",
+ "S3 blames the circling on":"对齐不了：blame A on B 中文“把 A 归咎于 B”，“把”字句 A 必须提到动词前",
+ "S4 whatever shines brightest":"对齐不了：whatever shines brightest 是名词性从句，中文“最亮的东西”，whatever 化成“东西”放到最后",
+ "S6 precious few darted straight at the light":"对齐不了：precious few 作主语（指昆虫），中文“……的昆虫寥寥无几”，precious few 化成谓语放到最后，darted straight at the light 成了定语提前",
+ "S9 suitors under artificial light":"对齐不了：under artificial light 是后置定语，修饰 suitors，中文“处在人造光下的求偶者”必须提前",
+ "S9 mustered about five flash patterns a minute":"对齐不了：a minute（每分钟）是频率，中文“每分钟只勉强打出约五组闪光”必须放到动词前",
+ "S10 reciprocated about half as often under red or blue light":"对齐不了：under red or blue light 是条件状语，中文“在红光或蓝光下”必须提前；half as often 化成“次数约减半”放到最后",
+ "S10 scarcely at all under white":"对齐不了：省略了 reciprocated，under white 是条件状语，中文“在白光下几乎不回应”必须提前",
+ "S10 and never under amber":"对齐不了：省略了 reciprocated，under amber 是条件状语，中文“在琥珀色光下则从不回应”必须提前；and 化成“则”",
+ "S12 held 47% fewer moth caterpillars than dark ones":"对齐不了：A held 47% fewer B than C 中文“B 比 C 少47%”，比较结构语序必须倒过来",
+ "S14 set fewer fruit":"对齐不了：fewer 中文化成谓语“变少了”放到最后，“结的果实”在前",
+ "S15 lives beneath":"对齐不了：beneath A 中文“在 A 之下”，“之下”包住后面的词",
+ "S15 hides the pale ribbon of the Milky Way from more than a third":"对齐不了：hide A from B 中文“让 B 看不见 A”，语序必须倒过来；the pale ribbon of the Milky Way 是 of 结构",
+ "S16 star counts from 2011 to 2022":"对齐不了：from 2011 to 2022 是后置定语，修饰 star counts，中文“2011年至2022年的数星记录”必须提前",
+ "S16 brightening about 9.6% a year":"对齐不了：a year（每年）是频率，中文“每年约变亮9.6%”必须放到动词前",
+ "S17 would see about 100 by their eighteenth birthday":"对齐不了：by their eighteenth birthday 是时间状语，中文“到18岁生日时只能看到约100颗”必须放到动词前",
+ "S13 Street lamps rigged up in seven of 14 Swiss meadows":"对齐不了：rigged up in… 是过去分词短语作后置定语，修饰 Street lamps，中文“在瑞士14片草甸中的7片，临时架起的路灯”定语提前、地点放最前",
+}
+CONF={"合组":G,"对齐":{
+ _k(2,2,"caught such acrobatics for a 2024 Imperial College study"):G["S2 caught such acrobatics for a 2024 Imperial College study"],
+ _k(2,4,"the helpless swirl of insects round porch lights."):G["S2 the helpless swirl of insects round porch lights"],
+ _k(6,1,"precious few darted straight at the light."):G["S6 precious few darted straight at the light"],
+ _k(9,2,"mustered about five flash patterns a minute"):G["S9 mustered about five flash patterns a minute"],
+ _k(10,1,"reciprocated about half as often under red or blue light,"):G["S10 reciprocated about half as often under red or blue light"],
+ _k(10,2,"scarcely at all under white,"):G["S10 scarcely at all under white"],
+ _k(12,2,"held 47% fewer moth caterpillars than dark ones,"):G["S12 held 47% fewer moth caterpillars than dark ones"],
+ _k(13,1,"Street lamps rigged up in seven of 14 Swiss meadows"):G["S13 Street lamps rigged up in seven of 14 Swiss meadows"],
+ _k(15,2,"{{=}}hides the pale ribbon of the Milky Way from more than a third."):G["S15 hides the pale ribbon of the Milky Way from more than a third"],
+ _k(16,1,"star counts from 2011 to 2022"):G["S16 star counts from 2011 to 2022"],
+ _k(16,1,"brightening about 9.6% a year."):G["S16 brightening about 9.6% a year"],
+ _k(17,2,"would see about 100 by their eighteenth birthday."):G["S17 would see about 100 by their eighteenth birthday"]},
+"短语":{
+ "S1 skims … to":"不是搭配：to 属于 belly to the sky，和 skims 无关",
+ "S1 belly … to":"不是搭配：belly to the sky 是独立结构（肚皮朝天），to 表示朝向，中文“朝天”已译出",
+ "S2 unravelled … of":"不是搭配：of 属于 the helpless swirl of insects，和 unravelled 无关",
+ "S2 swirl … of":"不是搭配：swirl of insects 是普通 of 结构（昆虫的打转），of 引出动作者",
+ "S3 on … attraction":"不是搭配：on 属于 blame A on B（把 A 归咎于 B），中文“归咎于”已译出；attraction 是普通名词",
+ "S5 eddying … in":"不是搭配：in its halo 是地点状语（在它的光晕里），中文“在……里”已译出",
+ "S6 darted … at":"不是搭配：at 只引出方向（冲向灯光），中文“向”已译出",
+ "S7 flirt … with":"不是搭配：这里 with their lanterns 是工具（用灯笼），不是 flirt with sb（和某人调情）",
+ "S8 winks … back":"不是搭配：back 表示“回”，wink back 是 wink 加副词“回过来”，中文“回应”已译出",
+ "S9 mustered … of":"不是搭配：of 属于 instead of ten，和 mustered 无关",
+ "S10 under … amber":"不是搭配：under amber 是普通介词短语（在琥珀色光下），under 中文“在……下”已译出",
+ "S13 rigged … of":"不是搭配：of 属于 seven of 14（14片中的7片），和 rigged up 无关",
+ "S13 up … in":"不是搭配：rigged up 已整体标，in 引出地点（在瑞士草甸中）",
+ "S15 veil … of":"不是搭配：of 属于 the pale ribbon of the Milky Way，和 veil 无关",
+ "S15 ribbon … of":"不是搭配：ribbon of the Milky Way 是普通 of 结构（银河的光带）"},
+"即":{"S1-2 即":"“随即”是常用词（紧接着），不是文言的“即”，沿用文章定稿"},
+"数字写法":{"S13-1 seven":"沿用文章定稿“14片草甸中的7片”，和同组的14并列，统一写阿拉伯数字"},
+"方向":{"S15-2 more→让三分之一以上的人看不见":"more than a third 译“三分之一以上”，“以上”就是 more than，方向一致"},
+"词性":{"S2-4 helpless 身不由己地":"helpless 修饰名词 swirl，中文把 swirl 化成动词“打转”，helpless 随之作状语“身不由己地”，沿用文章定稿"}}
+CONF["停顿位置"]={"S8 back, / and @3.345":"2026-11-04 逐 5 ms 实测（S8 sentence w）：back 的 æ 到 3.185，/k/ 闭塞 3.205–3.255（-60～-65 dB），/k/ 除阻 3.26–3.32（-27～-46 dB、重心 2.3–4.8 kHz），3.325–3.36 降到 -45～-61 dB，3.365 起 and（-24→-13 dB）；停顿 3.345 落在 /k/ 除阻之后、and 之前，正好在两词之间。程序报离后词 -84 ms 是因为时长模型把 and 开头估在 3.429，实际 3.365 就开口（停顿处除阻已去掉，原声除阻单独合格）","S5 lamp, / a @0.594":"2026-11-04 逐 2.5 ms 实测（S5 w，合成标点 lamp; 重合成后）：lamp 的 æm 到 0.46，0.49–0.525 是 -53～-61 dB 的 /p/ 闭塞，0.53–0.57 是 /p/ 除阻（-25～-38 dB、重心 1.2–3.7 kHz），0.58–0.645 是 -55～-65 dB 的静音（配音在 lamp 后自己停的地方），0.65 起 a（-5 dB），0.74–0.765 是 counterfeit 的 /k/ 闭塞、0.77 /k/ 爆破。停顿放在 lamp 和 a 之间：把这段自然静音 0.593958–0.6425（两头外侧 5 ms 在 -57～-59 dB，过零点）删掉换成标准停顿；程序原来对到的 0.750 落在 counterfeit 的 /k/ 闭塞里，是 a 和 counterfeit 之间，错"}
+CONF["非人声"]=({"35.37–35.41s": {"配音指纹": "f51746024861", "依据": "2026-11-04 逐 2.5 ms 实测：S4 brightest, / normally：吸气已删到 w 4.895083（切在浊音起点前的过零点）；留下的 w 4.895–4.93 是 -41～-53 dB、150 Hz 以下低频占比 0～-3.5 dB（吸气是 -7～-28 dB）、周期 0.2–0.4 的声门起音，没有低谷直接接 normally 的 /n/（raw 5.04 起 -35→-9 dB、重心 0.1–0.2 kHz），是 normally 的一部分（鼻音前的预发声），同 S2 that、S14 and"}, "139.62–139.66s": {"配音指纹": "f51746024861", "依据": "2026-11-04 逐 2.5 ms 实测：S17 twinkle / would：吸气已删到 w 5.772708（切在浊音起点前的过零点）；留下的 w 5.7725–5.81 是 -42～-58 dB、150 Hz 以下低频占比 -0.3～-2.4 dB（吸气是 -8～-22 dB）、周期 0.3–0.5 的声门起音，没有低谷直接接 would 的 /w/（raw 5.895 起 -20→-2 dB、重心 0.2–0.4 kHz），是 would 的一部分（/w/ 前的预发声），同 S12 with、S15 which"}, "18.88–18.93s": {"配音指纹": "f51746024861", "依据": "2026-11-04 逐 2.5 ms 实测：S2 study / that：吸气已删到 10.017542；10.02–10.06 是 -35～-46 dB、低频占 -1～-4 dB、周期 0.3–0.53 的声门起音，10.07 只降到 -47 dB 就接 10.08 起 that 的 /ð/（-25 dB、重心 3.7 kHz）、10.10 起 æ，是 that 的一部分（浊擦音前的预发声），不是吸气（吸气低频占 -15 dB 以下）"}, "70.80–70.83s": {"配音指纹": "f51746024861", "依据": "2026-11-04 逐 2.5 ms 实测：S9 minute / instead：吸气已删到 6.405042；6.4075–6.45 是 -50～-54 dB、低频占 -2～-4 dB、周期 0.16–0.35 的声门起音，6.46 起 instead 的 ɪ（-24→-4 dB），是 instead 的一部分"}, "80.81–80.89s": {"配音指纹": "f51746024861", "依据": "2026-11-04 逐 2.5 ms 实测：S10 amber. 句末：ɚ 8.20–8.27（-15～-27 dB、低频 -17～-23 dB、周期 0.4–0.6）之后 8.28–8.31 是 -34～-38 dB、周期 0.31–0.43、重心 1.3–1.9 kHz 的嘎裂收尾，8.32–8.37 连续衰减到 -60 dB，中间没有低谷；是 amber 的 ɚ 尾音，不是吸气"}, "93.42–93.44s": {"配音指纹": "f51746024861", "依据": "2026-11-04 逐 2.5 ms 实测：S12 dark ones, 词中：ʌn 的 /n/ 8.08–8.20 是 -31～-49 dB、低频占 -3～-12 dB、周期 0.2–0.55、重心 1.1–2.0 kHz 的鼻音，8.15 一下 -48 dB 后 8.16 回到 -40 dB（低频 -3 dB），8.21 起词尾 /z/（重心 4.2→5.5 kHz）；在词中间（n 和 z 之间），是 ones 的 /n/"}, "93.98–94.02s": {"配音指纹": "f51746024861", "依据": "2026-11-04 逐 2.5 ms 实测：S12 ones, / with：停顿段 8.545–8.735 已删；8.74–8.78 是 -45～-51 dB、低频占 -1～-2 dB、周期 0.19–0.43 的声门起音，8.79 起 with 的 /w/（-12 dB、重心 580 Hz），中间没有低谷；是 with 的一部分"}, "106.34–106.36s": {"配音指纹": "f51746024861", "依据": "2026-11-04 逐 2.5 ms 实测：S13 percent. 句末：/n/ 7.405–7.465（-29～-44 dB、低频 -3～-12 dB）衰减进 /t/ 闭塞，7.485–7.495 是 -46～-50 dB、低频 -5～-8 dB、周期 0.28–0.39 的鼻音余尾，7.505–7.535 -57～-66 dB 闭塞，7.545 /t/ 爆破（程序已记词尾除阻）；是 percent 的 n→t"}, "109.44–109.45s": {"配音指纹": "f51746024861", "依据": "2026-11-04 逐 2.5 ms 实测：S14 fruit, / and：吸气已删到 1.842708；1.845–1.875 是 -40～-51 dB、低频占 -1～-8 dB、周期 0.2–0.3 的声门起音，1.885 起 and 的 æ（-15→-4 dB），是 and 的一部分"}, "118.14–118.19s": {"配音指纹": "f51746024861", "依据": "2026-11-04 逐 2.5 ms 实测：S15 veil, / which：停顿段 4.195–4.385 已删；4.395–4.435 是 -44～-50 dB、低频占 -1～-4 dB、周期 0.39–0.5 的声门起音，4.445 起 which 的 /w/（-12 dB、重心 740–1100 Hz），中间没有低谷；是 which 的一部分"}, "122.12–122.22s": {"配音指纹": "f51746024861", "依据": "2026-11-04 逐 2.5 ms 实测：S15 third. 句末：ɜː 8.29–8.37（-18～-38 dB），8.38–8.45 是 -35～-47 dB、低频占 -3～-16 dB、周期 0.2–0.45 的 /d/ 浊闭塞，8.46–8.47 降到 -58 dB，8.48–8.49 一下 -25～-32 dB、重心 1.9–2.1 kHz 的 /d/ 爆破，再衰减到 8.54 -65 dB；是 third 的 /d/"}, "122.19–122.22s": {"配音指纹": "f51746024861", "依据": "2026-11-04 逐 2.5 ms 实测：S15 third. 句末：同上一条，8.44–8.47 是 /d/ 浊闭塞里的声带振动（低频 -3～-5 dB、周期 0.45），紧接 8.48 的 /d/ 爆破，是 third 的 /d/"}, "132.45–132.53s": {"配音指纹": "f51746024861", "依据": "2026-11-04 逐 2.5 ms 实测：S16 year. 句末：ɪɹ 9.46–9.53（-18～-33 dB、周期 0.3–0.45）之后 9.54–9.62 是 -35～-54 dB、低频 -6～-13 dB、周期 0.21–0.28、重心 1.3–1.7 kHz 的嘎裂收尾，连续衰减到 9.66 -117 dB，中间没有低谷；是 year 的 ɹ 尾音，不是吸气"}})
+out={"no":"46","title_en":"Lost in the Glare","title_zh":"光之殇","title_fx":{"hl":["Glare"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+     "非人声区间":{"S4":[[4.605708,4.895083,"紧贴词头"]],"S17":[[5.455,5.772708,"紧贴词头"]],"S2":[[9.827875,10.017542,"紧贴两头"]],"S9":[[6.260458,6.405042,"紧贴两头"]],"S13":[[3.82,4.128042]],"S14":[[1.695458,1.842708,"紧贴词头"]]},
+     "合成标点":{"S5":[["A lamp, a","A lamp; a"]]},
+     "除阻加强":{"S4":{"2":[4.558208,4.601833,5.0]}},
+     "停顿删除区间":{"S5":{"1":[0.593958,0.6425]}},
+     "高亮按实际开口":True,"高亮开口门槛":40,
+     "术语":{"Costa Rica":"哥斯达黎加","Monteverde":"蒙特韦尔德","Imperial College":"伦敦帝国理工学院","Tufts University":"塔夫茨大学","Thames Valley":"泰晤士河谷","Swiss":"瑞士","Milky Way":"银河","LEDs":"LED"}}
+CONF["机器复听"]={"S2": {"配音指纹": "f51746024861", "依据": "2026-11-04 实测（配音指纹 f51746024861）：Monteverde 按 读音改正 读 mˌoʊntɛvˈɛɹdi（CMU M OW0 N T EH0 V EH1 R D IY0，四音节、重音在 ver），读音核对 0；small.en 整句逐词听对（Monteverde）；parakeet 听成 Mon Teverdi，正是 mon-te-ver-di 四个音节，只是拆成两个词拼写，不是读错"}, "S8": {"配音指纹": "f51746024861", "依据": "2026-11-04 实测（配音指纹 f51746024861）：整句注音 əmeɪlblɪŋksənoʊvəɹtjʊɹ，an 在句中是弱读 /ən/（blinks an overture 连读 blɪŋksən）；parakeet 整句听对 an overture，small.en 把弱读 ən 听成 in（近音），不是读错"}}
+CONF["删除段"]={"S5 raw 1.9700-2.2700": "2026-11-04 46 逐 10 ms 实测原声（S5 sky, / hijacks 的停顿）：删掉的 raw 1.97–2.27 是 -40～-55 dB、重心 0.9–1.7 kHz、低频占比 -3～-19 dB 的吸气声；左边 sky 的 aɪ 到 1.95 已降到 -45→-51 dB，右边 2.28 -52.6 dB，hijacks 的 /h/（2.29 起，重心 1.7–2.1 kHz、低频 -25 dB）没碰；复核报 lost 是吸气本身偏响，不是词",
+ "S8 raw 1.7550-2.0410": "2026-11-04 46 逐 10 ms 实测原声（S8 overture, / a female 的停顿）：删掉的 raw 1.755–2.04 主体是 -41～-61 dB、重心 0.8–1.4 kHz、低频 -3～-14 dB 的吸气声，末尾 2.015–2.035 是 -43～-49 dB 的低频声门杂音，之后 2.045 降到 -52.9 dB 的低谷，a 的元音 2.055 起才上来（没碰）；左边 overture 的 ɚ 到 1.745 已 -54 dB；复核报 lost 是吸气偏响，不是词",
+ "S10 raw 4.4650-4.8350": "2026-11-04 46 逐 10 ms 实测原声（S10 light, / scarcely 的停顿）：删掉的 raw 4.465–4.835 是 -40～-63 dB、重心 0.6–1.9 kHz、低频 -1～-15 dB 的吸气声；左边 light 的 /t/ 到 4.455 已 -54.5 dB，右边 4.835 -54.4 dB，scarcely 的 /s/（4.845 起，重心 3.7–6.1 kHz）没碰；复核报 lost 是吸气偏响，不是词",
+ "S16 raw 3.4900-3.8050": "2026-11-04 46 逐 10 ms 实测原声（S16 2011 / to 2022 的停顿）：删掉的 raw 3.49–3.805 前段 3.50–3.72 是 -41～-53 dB、重心 1.0–1.7 kHz、低频 -5～-16 dB 的吸气声，3.73–3.78 是 -38～-49 dB、0.1 kHz 的低频嗡声（停顿中间，左边 2011 的 /n/ 3.44 已结束并降到 -53 dB，右边 3.79 有 -62.7 dB 的低谷，to 的 /t/ 爆破 3.81 起才开始，都没碰），不属于哪个词；复核报 lost 是这段停顿里的杂音偏响，不是词"}
+CONF["删除段"]["S2 raw 9.8379-10.0275"]={"类型": "紧贴两头的非人声", "配音指纹": "f51746024861", "依据": "2026-11-04 46 逐 10 ms 实测原声（S2 study / that）：删掉的 raw 9.848–10.018 是 -38～-46 dB、重心 1.6–2.4 kHz、低频占比 -5～-14 dB 的吸气声；左边 study 的 i 浊音尾巴 9.80–9.84（-41～-49 dB、0.1 kHz、低频 0 dB）、右边 that 的预发声 10.028–10.07（0.1–0.3 kHz、低频 0 dB）都和吸气之间没有 -55 dB 低谷，只能两头紧贴切在过零点，study 和 that 本身没碰"}
+CONF["删除段"]["S4 raw 4.6907-4.9801"]={"类型": "紧贴两头的非人声", "配音指纹": "f51746024861", "依据": "2026-11-04 46 逐 10 ms / 2.5 ms 实测原声（S4 brightest, / normally）：删掉的 raw 4.70–4.98 是 -43～-58 dB、重心 0.8–1.4 kHz、低频占比 -3～-11 dB 的吸气声（w 4.605708–4.895083）；左边是 brightest 的 /t/ 除阻（raw 4.64–4.68，-29～-37 dB，除阻加强过）衰减到 -57 dB 就接吸气，右边 normally 的 /n/ 预发声（低频 0～-3.5 dB，w 4.895 起）留着没碰，切在它前面的过零点"}
+CONF["删除段"]["S9 raw 6.3405-6.4850"]={"类型": "紧贴两头的非人声", "配音指纹": "f51746024861", "依据": "2026-11-04 46 逐 10 ms 实测原声（S9 minute / instead）：删掉的 raw 6.35–6.48 是 -44～-53 dB、重心 0.8–1.4 kHz、低频占比 -2～-8 dB 的吸气声；左边 minute 的 /t/ 尾 6.31–6.33（-39～-43 dB、低频 0 dB）衰减进吸气、中间没有 -55 dB 低谷，只能紧贴切在过零点；右边 6.49–6.53 已 -51～-56 dB，instead 的 ɪ 6.54 起没碰"}
+CONF["删除段"]["S14 raw 1.6050-1.8727"]={"类型": "紧贴词头的非人声", "配音指纹": "f51746024861", "依据": "2026-11-04 46 逐 10 ms 实测原声（S14 fruit, / and）：删掉的 raw 1.605–1.87 是 -43～-65 dB、重心 0.6–1.8 kHz、低频占比 -2～-14 dB 的吸气声；左边 fruit 的 /t/ 到 1.595 已 -52.7 dB；右边 and 的预发声 1.875–1.905（-43～-51 dB、0.3–0.5 kHz、低频 0 dB）没有低谷直接接 and 的 æ（1.915 起），留着没碰，切在它前面的过零点"}
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from 核对 import 生成并核对
+生成并核对(S, out)

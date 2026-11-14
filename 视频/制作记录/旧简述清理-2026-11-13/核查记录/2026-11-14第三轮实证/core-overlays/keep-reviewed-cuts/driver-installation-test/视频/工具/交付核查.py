@@ -1,0 +1,314 @@
+#!/usr/bin/env python3
+"""每篇视频的交付核查（硬性条件：不通过不得交付）。在视频工作目录（含 make_video.py、scripts/、work_NN/）下运行：
+  python3 <工具目录>/交付核查.py NN 对照表     # 开工第一步：生成"踩坑对照记录"模板，逐条填写
+  python3 <工具目录>/交付核查.py NN 出片前     # 合成配音前：数字读法、读音（A23）、标点停顿、句首句尾、词尾辅音（A21）、无标点停顿
+  python3 <工具目录>/交付核查.py NN 出片后     # 出片后：自动音频检查、响度一致性（EBU R128 逐句）、纯人声核对、句间停顿核对（A20）、独立复核（逐样本比对原始合成）、高亮同步核对、生成标点试听
+对应踩坑：A8 分段合成发闷、A9 停顿放错、A10/A10b 词尾被切、A21 词尾 t/k 听不见、A11 数字读错、A12 连读处停顿越界、L13 换行、L14 高亮没跟上朗读。
+最高铁律（硬性条件第〇节）：出片前先过《踩坑核查》（踩坑对照记录逐条写全、能用程序查的坑逐条查、换行比对）；出片后先做核查程序自检（故意剪坏一份副本，必须全部抓到），自检不过 = 核查失灵，不得交付。"""
+import sys, os, re, json, subprocess
+T = os.path.dirname(os.path.abspath(__file__)); no, stage = sys.argv[1].zfill(2), sys.argv[2]
+if os.environ.get('OLD_IV_VOID'): sys.exit('【停止】环境里带着 OLD_IV_VOID（跳过旧区间的草稿开关），交付核查不许带：先 unset OLD_IV_VOID（A45 开关，G24）')
+ok = True; out = []
+def run(cmd, env=None):
+    r = subprocess.run(cmd, capture_output=True, text=True, env={**os.environ, **(env or {})})
+    return r.returncode, r.stdout + r.stderr
+def step(name, passed, detail=''):
+    global ok
+    ok &= passed; out.append(f"{'✔' if passed else '✘'} {name}" + (f"\n    {detail}" if detail else ''))
+
+def 提醒(name, detail=''):   # 用户 2026-10-29：不是声音、文字、画面的问题只提醒，不卡出片
+    out.append(f"△ {name}" + (f"\n    {detail}" if detail else ''))
+
+if stage == '对照表':
+    # 生成"踩坑对照记录"模板，追加到 制作记录/NN.md；逐条填"涉及/不涉及"和"怎么防的、核查结果"
+    rec = f'{T}/../制作记录/{no}.md'; txt = open(rec).read() if os.path.exists(rec) else f'# 第{no}篇制作记录\n'
+    if '## 踩坑对照记录' in txt: sys.exit(f'制作记录/{no}.md 已有"## 踩坑对照记录"，不覆盖')
+    sys.path.insert(0, T); from 坑表 import 坑行; rows = [(i, q) for i, q, _ in 坑行()]   # 总表只有一份
+    tab = ['', '## 踩坑对照记录', '', '> 开工前逐条重读《踩坑总表》后填写；交付前再对照一遍。第三列只写"涉及"或"不涉及"，第四列写怎么防的、核查结果。', '',
+           '| 编号 | 坑（摘要） | 本篇是否涉及 | 怎么防的、核查结果 |', '|---|---|---|---|']
+    tab += [f"| {i} | {re.sub(r'[*`]', '', d).strip()[:40]} | 待填 | 待填 |" for i, d in rows]
+    open(rec, 'w').write(txt.rstrip('\n') + '\n' + '\n'.join(tab) + '\n'); print(f'已生成 制作记录/{no}.md 的踩坑对照记录模板（{len(rows)} 条），逐条填完才能通过出片前核查'); sys.exit(0)
+elif stage == '出片前':
+    # 0 踩坑核查（最高铁律）：核查程序自检 + 踩坑对照记录逐条填完 + 能用程序查的坑逐条查 + 换行与用户看过的版本比对（L13）
+    c, o = run(['python3', f'{T}/踩坑核查.py', no, '出片'])
+    step('踩坑核查（核查程序自检、踩坑对照记录、逐条程序核查、换行比对）', c == 0, '' if c == 0 else '\n    '.join(o.strip().splitlines()))
+    # 1 数字读法（A11）：列出全文所有数字及配音实际读法，供人工逐个核对；出现未处理的格式即不合格
+    src = open('make_video.py').read(); exec(src[src.index('# 朗读用的数字读法'):src.index('def say(t):')])
+    # 数字读法、引号自检（A11/A37/A17）：标准读法必须一字不差，引号必须不读、撇号必须保留
+    _sp = {'in 1995 he': 'in nineteen ninety-five he', 'the Democratic O.K. Club, making': 'the Democratic OK Club, making', 'documents O.K.': 'documents OK.', "known 'o.k.' glossed": 'known OK glossed', 'the 1960s were': 'the nineteen sixties were', 'on 6 January': 'on the sixth of January',
+           'at 11.40pm': 'at eleven forty PM', 'on 26–27 August.': 'on the twenty-sixth to the twenty-seventh of August.', 'was 264.4 km': 'was two hundred sixty-four point four km',
+           '"Hello," she said.': 'Hello, she said.', "he didn't": "he didn't", '‘Yes’ he said': 'Yes he said', 'paid $105,000 for': 'paid one hundred five thousand dollars for', 'a fine of £1 each': 'a fine of one pound each', 'sold for $950 million in': 'sold for nine hundred fifty million dollars in', 'about $100bn; projects': 'about one hundred billion dollars; projects', 'a £2.5bn deal': 'a two point five billion pounds deal', 'cost $5m in': 'cost five million dollars in', 'ran the 100m in': 'ran the 100m in', 'cost about $5.83 a ton': 'cost about five dollars eighty-three cents a ton', 'only £1.01 each': 'only one pound one penny each'}   # K141   # K114、K130
+    def _未处理(x, m):   # K150（42 S? $1.5 billion：单独转 “$1.5” 判成未处理，误报）：连着后面的 million/billion/trillion 一起转
+        q = re.match(r'\s+(?:million|billion|trillion)\b', x[m.end():])
+        # K164（46 47%、9.6%：配音读 forty-seven percent，读音核对逐个对过；紧跟在数字后的 % 读作 percent，不算未处理，照常列进清单）
+        if re.match(r'\S*\d\s*(?:[–-]|and|or|to)\s*the [\w-]+(?:st|nd|rd|th) of ', spoken(x[m.start():m.end() + 40])): return True   # 54 S4：26–27 August 读成 26–the twenty-seventh（前一个日子没转序数）
+        return bool(re.search(r'\d+\.\d+|%|\$|£|€|\d+/\d+', re.sub(r'(?<=\w)%(?=[^\w%]|$)', '', spoken(m.group(0) + (q.group(0) if q else '')))))
+    _spbad = [f'{k} → {spoken(k)}（应为 {v}）' for k, v in _sp.items() if spoken(k) != v]
+    for x_, 应 in (('on 26–the twenty-seventh of August.', True), ('on 26–27 August.', False), ('on 6 and 9 August', False), ('cost about $1.5 billion, a', False), ('sold for $950 million in', False), ('cost about $1.5, a', True), ('a 2/3 share', True), ('about 47% of', False), ('fell 9.6% in', False), ('rose 62%.', False), ('a 47%x rise', True)):   # K150 好/坏样本
+        m_ = re.search(r'\S*\d\S*', x_)
+        if _未处理(x_, m_) != 应: _spbad.append(f'K150 “{x_}” {"该报没报" if 应 else "误报未处理"}')
+    step('数字读法、引号自检（A11/A37/A17：年份、年代、日期、时刻、小数读法；引号不读、撇号保留）', not _spbad, '没抓到：' + '；'.join(_spbad) if _spbad else '')
+    d = json.load(open(f'scripts/{no}.json'))
+    texts = [d['title_en']] + [' '.join(re.sub(r'\*\*|\{\{.*?\}\}', '', c['en']).strip() for c in s['chunks']) for s in d['sentences']]
+    rows = []; odd = []
+    for x in texts:
+        for m in re.finditer(r"\S*\d\S*", x):
+            ctx = x[max(0, m.start()-12):m.end()+12]
+            rows.append(f"{m.group(0):>14}  →  {spoken(ctx)}")
+            if _未处理(x, m): odd.append(m.group(0))   # spoken() 已转成读法的（如 11.40pm）不算未处理
+    step('数字读法清单（请人工逐个确认读法）', not odd, '\n    '.join(rows) + (f"\n    未处理的数字格式：{odd}" if odd else ''))
+    # 引号不停顿（A17）：带引号的句子，朗读文字里必须已经去掉引号
+    qbad = [x for x in texts if re.search(r'["“”‘’]|(?<![A-Za-z])\'|\'(?![A-Za-z])', x) and re.search(r'["“”‘]|(?<![A-Za-z])[\'’]|[\'’](?![A-Za-z])', spoken(x))]
+    qn = sum(1 for x in texts if re.search(r'["“”‘’]|(?<![A-Za-z])\'|\'(?![A-Za-z])', x))
+    step(f'引号不停顿（A17）：{qn} 句带引号，配音时都不读引号', not qbad, '\n    '.join(qbad))
+    # 2–4 停顿与词尾
+    c, o = run(['python3', f'{T}/标点停顿核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else 'A19 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的停顿核对不可信】\n    ' + o[-400:])
+    c, o = run(['python3', f'{T}/标点停顿核对.py', no]); step('标点停顿核对（A9/A10：停顿时长、不切词；A19：停顿后不留吸气声）', '问题数 0' in o, '' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l or 'FAIL' in l))
+    c, o = run(['python3', f'{T}/句首句尾与停顿位置核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '句首句尾核对 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的句首句尾核对不可信】\n    ' + o[-400:])
+    c, o = run(['python3', f'{T}/句首句尾与停顿位置核对.py', no]); step('句首句尾核对（clean_tail 修剪掉的部分没有剪到词：基准本句最响 5 ms 帧；剪掉的能听见的声音不得与词相连，句尾不得剪掉能听见的声音）', '问题数 0' in o, '' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l))
+    # 读音（A23）：每个词与两本独立发音词典比对；对不上的、词典里没有的、所有专有名词，必须查证后写进 工具/发音词典/已核实读音.json（带来源）
+    c, o = run(['python3', f'{T}/读音核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '读音核对 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的读音核对不可信】\n    ' + o[-400:])
+    c, o = run(['python3', f'{T}/读音核对.py', no]); step('读音核对（A23：每个词的读音与独立发音词典一致；人名、地名、机构名、缩写逐个查证权威读音）', c == 0 and '问题数 0' in o,
+         '' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if '待核实' in l or 'BAD' in l or 'Error' in l) + '\n    → 逐个查权威来源，写进 工具/发音词典/已核实读音.json；配音读错的写进 读音改正.json 后重跑')
+    c, o = run(['python3', f'{T}/词尾辅音核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '词尾辅音核对 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的词尾辅音核对不可信】\n    ' + o[-400:])
+    c, o = run(['python3', f'{T}/词尾辅音核对.py', no]); wk = [l for l in o.splitlines() if '需试听' in l]
+    step('词尾辅音核对（A21：停顿前和句末的词尾 t/k 听得清除阻，2 kHz 以上 ≥ -36 dB；/p/ 全频 ≥ -33 dB）', c == 0 and '问题数 0' in o, ('' if '问题数 0' in o else '\n    '.join(l for l in o.splitlines() if 'BAD' in l or '停止' in l or 'Error' in l) + '\n    → 先跑 词尾辅音核对.py NN --写入 自动补位置，再重跑')
+         + ('\n    '.join([''] + wk + ['→ 浊塞音偏弱处不判，但要剪成试听交用户确认（01 两处用户已确认）']) if wk else ''))
+    c, o = run(['python3', f'{T}/停顿位置精确核对.py', no]); step('停顿位置核对（A9/A15：停顿正好落在标点处两个词之间）', '问题数 0' in o, '\n    '.join(l for l in o.splitlines() if 'BAD' in l or '插入' in l))
+    if int(no) >= 62:   # K131（62 S15 13 clones, | four：停顿插在 /z/→/f/ 交界，下一段 15 ms 渐强把 10 ms 的 /f/ 压低 20 dB，用户听成 our）：停顿后的短辅音不许被渐强吃掉（62 起；63–65 已出 1080p 的单独扫过报主会话）
+        c, o = run(['python3', f'{T}/词头渐强核对.py', '--自检']); step(o.strip().splitlines()[-1] if o.strip() else '词头渐强核对 自检没有输出', c == 0 and '通过' in o, '' if c == 0 else o.strip()[-300:])
+        c, o = run(['python3', f'{T}/词头渐强核对.py', no]); step('词头渐强核对（K131：停顿后的短辅音不被渐强吃掉）', c == 0 and '问题数 0' in o, '\n    '.join(l for l in o.splitlines() if 'BAD' in l) or o.strip()[-300:])
+    c, o = run(['python3', f'{T}/无标点停顿核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '无标点停顿核对 自检没有输出', c == 0, '' if c == 0 else o.strip()[-300:])
+    c, o = run(['python3', f'{T}/无标点停顿核对.py', no])
+    long = [l for l in o.splitlines() if re.search(r'停顿 (\d+\.\d+)s', l) and float(re.search(r'停顿 (\d+\.\d+)s', l).group(1)) > 0.22]
+    step('无标点处停顿 ≤ 0.22 秒', not long, '\n    '.join(long))
+    # G41 音频体检（用户 2026-10-25：“做音频这个环节，坚决不可以出任何问题，你要想方设法……把我们这个音频做好”）：能测的全测，超过 01–24 最差的就停（25 起）
+    if int(no) >= 25:
+        c, o = run(['python3', f'{T}/音频体检.py', '--自检', f'work_{no}/a.wav', no]); step(o.strip().lstrip('✔✘ ') or '音频体检 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的体检结果不可信】')
+        c, o = run(['python3', f'{T}/音频体检.py', f'work_{no}/a.wav', no]); step('音频体检（与 01–24 最差比）：' + (o.strip().splitlines() or ['没有输出'])[0], c == 0, '\n    '.join(o.strip().splitlines()[1:]))
+elif stage == '出片后':
+    # G26 视频必须是现行脚本、现行程序出的（2026-10-24 24 第三稿：出片报错失败后，09:18 的旧 24.mp4 照样“全部通过”）
+    sys.path.insert(0, T); import 出片指纹 as _ZW; _ze = _ZW.自检()
+    step('出片指纹 自检（G26：旧视频配新脚本、出片后程序改了、视频被覆盖、没有指纹都要停）', not _ze, '；'.join(_ze)[:300])
+    _zp = _ZW.核(no); step('视频是现行脚本、现行程序出的（G26 出片指纹：与现行脚本、配音、出片程序逐项一致）', not _zp, '；'.join(_zp)[:400])
+    # G12 成片必须有画面（2026-10-22 第21篇：出片后又跑了 快速重建核查.sh，它用 AUDIO_ONLY 把同名 NN.mp4 覆盖成只有声音，
+    # 后面的核查只查声音，全部通过，只有声音的文件被存成草稿发给了用户）。有画面流、宽 ≥1920、画面与声音时长差 ≤0.5 秒，否则停
+    import imageio_ffmpeg as _iff, tempfile as _tf
+    def _有画面(p):
+        o_ = subprocess.run([_iff.get_ffmpeg_exe(), '-hide_banner', '-i', p], capture_output=True, text=True).stderr
+        v_ = re.search(r'Stream #\S+.*Video: .*?(\d{3,5})x(\d{3,5})', o_)
+        return bool(v_) and int(v_.group(1)) >= 1920
+    _td = _tf.mkdtemp(); _FF = _iff.get_ffmpeg_exe()   # G12 自检：只有声音的文件必须拦下，1920 宽的视频必须放行
+    subprocess.run([_FF, '-v', 'error', '-y', '-f', 'lavfi', '-i', 'anullsrc=r=48000:cl=mono', '-t', '1', f'{_td}/a.mp4'])
+    subprocess.run([_FF, '-v', 'error', '-y', '-f', 'lavfi', '-i', 'color=c=black:s=1920x1080:d=1', '-f', 'lavfi', '-i', 'anullsrc=r=48000:cl=mono', '-t', '1', '-c:v', 'libx264', '-c:a', 'aac', f'{_td}/v.mp4'])
+    step('成片有画面 自检（G12：只有声音的文件拦下、1920×1080 的视频放行）', not _有画面(f'{_td}/a.mp4') and _有画面(f'{_td}/v.mp4'), '没抓到：只有声音的文件（G12）')
+    _o = subprocess.run([_iff.get_ffmpeg_exe(), '-hide_banner', '-i', f'{no}.mp4'], capture_output=True, text=True).stderr
+    _v = re.search(r'Stream #\S+.*Video: .*?(\d{3,5})x(\d{3,5})', _o)
+    _vd = subprocess.run([_iff.get_ffmpeg_exe(), '-v', 'error', '-i', f'{no}.mp4', '-map', '0:v:0', '-f', 'null', '-'], capture_output=True, text=True) if _v else None
+    _d = re.search(r'Duration: (\d+):(\d+):([\d.]+)', _o)
+    step('成片有画面（G12：有画面流、宽 ≥1920；只有声音的文件一律不得交付——快速重建核查.sh 会把 NN.mp4 覆盖成只有声音，出片要放在它之后）',
+         bool(_v) and int(_v.group(1)) >= 1920 and _vd is not None and _vd.returncode == 0,
+         ('' if _v else f'{no}.mp4 没有画面流（只有声音），重新 python3 make_video.py scripts/{no}.json {no}.mp4，之后不要再跑 快速重建核查.sh') + (f' 时长 {_d.group(0)}' if _d else ''))
+    c, o = run(['python3', f'{T}/收工记录.py', no])
+    if c: 提醒('token 记录没写上（T31，只提醒）', o.strip()[-200:])
+    c, o = run(['python3', f'{T}/audio_qc.py', f'{no}.mp4', '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else 'audio_qc 自检没有输出', c == 0, '' if c == 0 else o.strip()[-300:])
+    c, o = run(['python3', f'{T}/audio_qc.py', f'{no}.mp4'])
+    # 标出的"响度骤降"要剪成试听交用户确认。确认过、并用实际声音核实的，写进 核对确认.响度骤降：
+    # {"108.7–109.3s": {"配音指纹": a.wav 的 md5 前 12 位, "低": 6.0（确认时 audio_qc 报的 dB）, "句子": …, "依据": …, "用户原话": …}}。
+    # 放行条件：时段、配音指纹都对上，且这次报的 dB 不超过确认时 +0.3；配音一变（指纹不同）确认就作废。只认这一类：削波、电流音、停顿超长、
+    # 程序出错（返回非 0 却没有输出）一律不能放行
+    import hashlib
+    fpa = hashlib.md5(open(f'work_{no}/a.wav', 'rb').read()).hexdigest()[:12]
+    okq = json.load(open(f'scripts/{no}.json')).get('核对确认', {}).get('响度骤降', {})
+    qlines = [l.strip() for l in o.splitlines() if l.strip()] if c else []
+    def _qkey(l):
+        """报出的时段对应的确认：键完全相同，或（整篇前面的句子变了、确认平移把位置挪过后，audio_qc 按 0.1 秒重新分段，时段边界会差一两格）
+        与已确认时段重叠一半以上的那一条；配音指纹必须对上（确认平移只在这一段声音逐样本相同时才换指纹）"""
+        m = re.match(r'(\d+\.\d)–(\d+\.\d)s 响度比全片低 ([\d.]+) dB', l)
+        if not m: return None
+        k0 = f'{m.group(1)}–{m.group(2)}s'
+        if k0 in okq: return k0
+        a, b = float(m.group(1)), float(m.group(2))
+        for k_ in okq:
+            q = re.match(r'(\d+\.\d)–(\d+\.\d)s$', k_)
+            if q and min(b, float(q.group(2))) - max(a, float(q.group(1))) >= 0.5 * min(b - a, float(q.group(2)) - float(q.group(1))): return k_
+        return None
+    def _qok(l):
+        m = re.match(r'(\d+\.\d–\d+\.\ds) 响度比全片低 ([\d.]+) dB', l); k_ = _qkey(l); cf = okq.get(k_, {}) if k_ else {}
+        import 响度一致性核对 as _LQ   # G40：25 起超过 01–24 认可最深处的骤降，确认不收
+        return bool(m) and cf.get('配音指纹') == fpa and isinstance(cf.get('低'), (int, float)) and float(m.group(2)) <= cf['低'] + 0.3 and _LQ.骤降确认可收(no, m.group(2))
+    qconf = [l for l in qlines if _qok(l)]
+    qrest = [l for l in qlines if l not in qconf]
+    step('自动音频检查（削波、电流音、停顿超长、响度骤降）', c == 0 or (bool(qconf) and not qrest),
+         (o.strip() if c == 0 else '\n    '.join(qrest + [f"{l}  → 已确认（配音指纹 {fpa}，确认时段 {_qkey(l)}）：{okq[_qkey(l)].get('句子', '')}" for l in qconf])
+          + ('' if qlines else f'audio_qc 返回 {c} 却没有输出（程序出错）')) + ('\n    → 标出的位置必须剪成试听交用户确认' if c and not (qconf and not qrest) else ''))
+    # 响度一致性（用户 2026-10-09：从头到尾响度一致，不能这儿突然大、那儿突然小）：EBU R128 逐句综合响度。先自检（阳性对照）再核对
+    c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4', '--自检']); step(o.strip().lstrip('✔✘ ') or '响度一致性核对 自检', c == 0, '' if c == 0 else '【核查程序失灵，下面的响度结果不可信，不得交付】')
+    c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4']); step('响度一致性（逐句与全片 ±2 LU、相邻两句 ≤2.5 LU）：' + o.strip().splitlines()[0], c == 0, '\n    '.join(o.strip().splitlines()[1:]))
+    # 句内分段响度（2026-10-25 用户看 25 S2：“这块这个声音在这一块声响是不是变小了？是不是没有统计起来？”）：整句在 ±2 LU 内，句内逗号前后两段差 3～5 LU。
+    # 25 起：先自检（把一段调到与前一段差 3.5 LU，必须报出、不多报），再按句内 ≥0.3 秒静音切段、相邻两段 ≤2.5 LU；01–24 不回头改，列在 制作记录/句内响度清单.md
+    if int(no) >= 25:
+        sj = f'work_{no}/分段.json'
+        if not os.path.exists(sj): step('句内分段响度', False, f'没有 {sj}（出片程序没记分段）：用现行出片程序重出')
+        else:
+            c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4', '--句内', '--自检', '--分段', sj]); step(o.strip().lstrip('✔✘ ') or '句内分段响度 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的句内响度结果不可信，不得交付】')
+            c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4', '--句内', '--分段', sj]); step('句内分段响度（相邻两段 ≤2.5 LU）：' + (o.strip().splitlines() or ['没有输出'])[0], c == 0,
+                 '\n    '.join(o.strip().splitlines()[1:] + ([f'→ python3 {T}/句内响度.py {no} --写入（自动算分段增益dB），重出后再核'] if c else [])))
+            # K130（用户 2026-11-07 听 60 S11 That law, 被调平压 -6 dB：“这个地方声音突然变小了”）：整段差没过 2.5 LU，但最响处低 5 LU；61 起查“被压小”
+            if int(no) >= 61:
+                c, o = run(['python3', f'{T}/响度一致性核对.py', '--压小自检']); step(o.strip().lstrip('✔✘ ') or '句内被压小 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的句内被压小结果不可信】')
+                c, o = run(['python3', f'{T}/响度一致性核对.py', f'{no}.mp4', '--压小', '--分段', sj]); step((o.strip().splitlines() or ['句内被压小 没有输出'])[0], c == 0, '\n    '.join(o.strip().splitlines()[1:]))
+    # G41 音频体检（用户 2026-10-25：“做音频这个环节，坚决不可以出任何问题，你要想方设法……把我们这个音频做好”）：能测的全测，超过 01–24 最差的就停（25 起）
+    if int(no) >= 25:
+        c, o = run(['python3', f'{T}/音频体检.py', '--自检', f'{no}.mp4', no]); step(o.strip().lstrip('✔✘ ') or '音频体检 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的体检结果不可信】')
+        c, o = run(['python3', f'{T}/音频体检.py', f'{no}.mp4', no]); step('音频体检（与 01–24 最差比）：' + (o.strip().splitlines() or ['没有输出'])[0], c == 0, '\n    '.join(o.strip().splitlines()[1:]))
+    # G42 机器复听（音频保障第 4 层）：离线语音识别把每一句转成文字，按读音（同一个注音程序）逐词和脚本比；漏词、多词、读错、吞音就停（25 起）
+    if int(no) >= 25:
+        c, o = run(['python3', f'{T}/机器复听.py', '--带自检', no]); ls_ = o.strip().splitlines() or ['没有输出']
+        step(ls_[0].lstrip('✔✘ '), c != 2, '' if c != 2 else '【核查程序失灵，下面的机器复听结果不可信】')
+        step('机器复听（逐词读音与脚本一致）：' + (ls_[1] if len(ls_) > 1 else '没有输出'), c == 0, '\n    '.join(ls_[2:]))
+    # 纯人声（用户 2026-10-09：“不要有任何的呼吸声 语气声……底噪也不要 就要绝对的纯人声”）：先自检（假呼吸声、假噗声必须抓到），再逐句核对
+    c, o = run(['python3', f'{T}/纯人声核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '纯人声核对 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的纯人声核对不可信】\n    ' + o[-400:])
+    c, o = run(['python3', f'{T}/纯人声核对.py', no]); step('纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：' + (o.strip().splitlines()[-1] if o.strip() else '没有输出'), c == 0 and '问题数 0' in o,
+         '\n    '.join(l for l in o.splitlines() if ' BAD ' in l or 'OK（' in l))
+    # A20：句号、段落、标题、片头片尾的停顿也按词到词量（停顿表）。先自检（加长、缩短、句首前放杂音，必须正好报出这三处），再核对
+    c, o = run(['python3', f'{T}/句间停顿核对.py', no, '--自检']); step(o.strip().splitlines()[-1].lstrip('✔✘ ') if o.strip() else '句间停顿核对 自检没有输出', c == 0, '' if c == 0 else '【核查程序失灵，下面的句间停顿核对不可信】\n    ' + o[-400:])
+    c, o = run(['python3', f'{T}/句间停顿核对.py', no]); step('句间停顿核对（A20：片头 0.4、标题后 1.0、句号 1.0、换段 1.2、片尾 2 秒，词到词 ±0.01 秒）：' + (o.strip().splitlines()[-1] if o.strip() else '没有输出'), c == 0 and '问题数 0' in o,
+         '\n    '.join(l for l in o.splitlines() if ' BAD ' in l or '分段数' in l))
+    env = {'VIDEO_ROOT': os.path.abspath('..')}
+    for sc in ('synth.py', 'labels.py'):
+        c, o = run(['python3', f'{T}/独立复核/{sc}', no], env); 
+        if c: step(f'独立复核准备 {sc}', False, o[-500:])
+    # 核查程序自检（阳性对照，防"自己检查自己""门槛靠估计"）：在 a.wav 副本上故意造 5 处瑕疵，独立复核必须在对应位置全部抓到：
+    #   词尾轻切 / 词头轻切：剪到还有 -52 dB 声音的地方（比 -55 dB 标准只高 3 dB，A10 那类弱音）
+    #   词尾重切 / 词头重切：剪进 -40 dB 以上的词音（gastritis、himself 那类）
+    #   杂音：在一处停顿里加 5 ms 杂音
+    import numpy as np, soundfile as sf, tempfile, shutil
+    a, sr = sf.read(f'work_{no}/a.wav', dtype='int16'); W = os.environ.get('QC_DIR', os.path.abspath('..') + '/qc_independent')
+    x = a.astype(float) / 32768; ms = sr // 1000; F5 = 5 * ms
+    cs = np.concatenate([[0], np.cumsum(x ** 2)])
+    def lv(p0, p1, ref):   # [p0,p1) 内每个 5 ms 窗（逐样本滑动）的 dB，返回 (最小, 最大)
+        e = (cs[p0 + F5:p1 + 1] - cs[p0:p1 - F5 + 1]) / F5; v = 10 * np.log10(np.maximum(e, 1e-20) / ref ** 2); return v.min(), v.max()
+    z = np.concatenate([[0], (a == 0).astype(np.int8), [0]]); d = np.diff(z); zs = list(zip(np.where(d == 1)[0], np.where(d == -1)[0]))
+    big = [r for r in zs if (r[1] - r[0]) / sr >= 0.85]                                   # 句与句之间
+    zr = [r for r in zs if 0.1 <= (r[1] - r[0]) / sr <= 0.8 and r[0] / sr > 1.0]        # 句内标点停顿（插入的静音）
+    def sref(r):           # 本句最响 5 ms（逐样本滑动的最大值 ≥ 复核用的分帧最大值，故这里算出的电平只会偏低，判定偏保守）
+        s0 = max([q[1] for q in big if q[1] <= r[0]] or [0]); s1 = min([q[0] for q in big if q[0] >= r[1]] or [len(a)])
+        e = (cs[s0 + F5:s1 + 1] - cs[s0:s1 - F5 + 1]) / F5; return np.sqrt(e.max())
+    def tail_cut(r, th):   # 从停顿起点往前找：剪掉 [p, 停顿起点)，使 p 之前 20 ms 每个 5 ms 窗都 > th dB
+        ref = sref(r)
+        if lv(r[0] - F5, r[0], ref)[1] > -52: return None                                # 连读插入处（没删声音），不用于自检
+        for p in range(r[0] - 10 * ms, r[0] - 150 * ms, -ms):
+            if lv(p - 20 * ms, p, ref)[0] > th: return p
+    def onset_cut(r, th):  # 从停顿终点往后找：剪掉 [停顿终点, p)
+        ref = sref(r)
+        if lv(r[1], r[1] + F5, ref)[1] > -52: return None
+        for p in range(r[1] + 10 * ms, r[1] + 150 * ms, ms):
+            if lv(p, p + 20 * ms, ref)[0] > th: return p
+    plan = {}; used_t = set(); used_o = set()
+    for name, kind, th in (('词尾轻切', 't', -52), ('词头轻切', 'o', -52), ('词尾重切', 't', -40), ('词头重切', 'o', -40)):
+        for k, r in enumerate(zr):
+            if k in (used_t if kind == 't' else used_o): continue
+            p = (tail_cut if kind == 't' else onset_cut)(r, th)
+            if p is not None: plan[name] = (kind, r, p); (used_t if kind == 't' else used_o).add(k); break
+    if len(plan) < 4 or not zr: step('核查程序自检', False, f'本篇找不到足够的标点停顿来造瑕疵（{list(plan)}），需人工处理')
+    else:
+        b = a.copy()
+        for kind, r, p in plan.values():
+            if kind == 't': b[p:r[0]] = 0
+            else: b[r[1]:p] = 0
+        rc = zr[-1]; m = (rc[0] + rc[1]) // 2; b[m:m + F5] = (600 * np.sin(2 * np.pi * 1000 * np.arange(F5) / sr)).astype(np.int16)
+        tmp = tempfile.mkdtemp(prefix='自检_', dir=f'work_{no}')
+        try:
+            os.makedirs(f'{tmp}/video/work_{no}'); os.makedirs(f'{tmp}/qc'); os.symlink(os.path.abspath(f'{W}/gt'), f'{tmp}/qc/gt')
+            sf.write(f'{tmp}/video/work_{no}/a.wav', b, sr, subtype='PCM_16')
+            c, o = run(['python3', f'{T}/独立复核/audit.py', no], {'VIDEO_ROOT': tmp, 'QC_DIR': f'{tmp}/qc'})
+        finally: shutil.rmtree(tmp)
+        # 只认复核程序自己的判定（词尾/词头被切 ms、A10_VIOLATION 标出的那一侧），不在这里另算门槛
+        ed = [(float(tl), float(on), float(p0), float(p1), v) for tl, on, p0, p1, v in re.findall(
+            r'cut tail=([\d.]+)ms onset=([\d.]+)ms.*\n\s*edit raw \S+ A ([\d.]+)-([\d.]+).*\n\s*edge .*? (ok|A10_VIOLATION\([a-z,]*\))', o)]
+        res = []
+        for name, (kind, r, p) in plan.items():
+            t0 = (r[0] if kind == 't' else r[1]) / sr
+            hit = any(p0 - 0.01 <= t0 <= p1 + 0.01 and ((tl > 0 or 'pre' in v) if kind == 't' else (on > 0 or 'post' in v)) for tl, on, p0, p1, v in ed)
+            res.append((f'{name}（{t0:.2f}s，剪 {abs(p - (r[0] if kind == "t" else r[1])) / ms:.0f} ms）', hit))
+        hitc = any(abs(float(t) - m / sr) < 0.02 for t in re.findall(r'extra at ([\d.]+) s', o)); res.append((f'杂音（{m / sr:.2f}s）', hitc))
+        allhit = all(h for _, h in res)
+        step('核查程序自检：' + '、'.join(f'{n}{"抓到" if h else "没抓到"}' for n, h in res), allhit,
+             '' if allhit else '【核查程序失灵，下面的独立复核结果不可信，不得交付】\n    ' + o[-800:])
+    c, o = run(['python3', f'{T}/独立复核/audit.py', no], env)
+    cuts = re.findall(r'cut tail=([\d.]+)ms onset=([\d.]+)ms', o)
+    extra = re.findall(r'extra non-zero runs not explained by raw copies: (\d+)', o)
+    edge = re.findall(r'A10 edge violations [^:]*: (\d+)', o); viol = '\n    '.join(l.strip() for l in o.splitlines() if 'A10_VIOLATION' in l)
+    # 删掉的部分偏响（只有 lost 一项、两侧都干净）的，必须用实际声音确认是停顿中间的换气声/底噪，写进 核对确认.删除段（键带位置）；
+    # 两侧没衰减完（pre/post）、词尾/词头被切的，一律不能放行（A10、A18）——只有一种例外（用户 2026-10-09“就要绝对的纯人声”）：
+    # 呼吸声/噗声与词尾或词头之间没有 -55 dB 低谷，只能紧贴着词切掉（切在过零点、词本身不动）。这一处必须用实际声音核实，写进
+    # 核对确认.删除段：{"S17 raw a-b": {"类型": "紧贴词尾的非人声" / "紧贴词头的非人声" / "紧贴两头的非人声", "配音指纹": a.wav 的 md5 前 12 位, "依据": …}}。
+    # 紧贴词尾只放行 词尾被切(tail) 与 pre/lost；紧贴词头只放行 词头被切(onset) 与 post/lost；紧贴两头放行两边；配音一变（指纹不同）确认作废
+    import hashlib
+    fpd = hashlib.md5(open(f'work_{no}/a.wav', 'rb').read()).hexdigest()[:12]
+    okd = json.load(open(f'scripts/{no}.json')).get('核对确认', {}).get('删除段', {}); idx = None; last = None; unconf = 0; bad = []; pend = None
+    def _typ(key):
+        v = okd.get(key)
+        return v.get('类型') if isinstance(v, dict) and v.get('配音指纹') == fpd else None
+    for l in o.splitlines():
+        m = re.match(r'\[\s*(-?\d+)\]', l)
+        if m: idx = int(m.group(1))
+        m = re.search(r'cut tail=([\d.]+)ms onset=([\d.]+)ms', l)
+        if m: pend = (float(m.group(1)), float(m.group(2)))
+        m = re.search(r'edit raw ([\d.]+)-([\d.]+)', l)
+        if m:
+            last = f"{'标题' if idx == -1 else 'S%d' % (idx + 1)} raw {m.group(1)}-{m.group(2)}"; t = _typ(last)
+            if pend and (pend[0] > 0 or pend[1] > 0):
+                if (pend[0] > 0 and t not in ('紧贴词尾的非人声', '紧贴两头的非人声')) or (pend[1] > 0 and t not in ('紧贴词头的非人声', '紧贴两头的非人声')): bad.append((last, pend))
+                else: viol += f"\n    {last}：{t}（词尾/词头被切 {pend[0]:.0f}/{pend[1]:.0f} ms 是切掉的呼吸声/噗声），已用实际声音确认——{okd[last]['依据']}"
+            pend = None
+        m = re.search(r'A10_VIOLATION\(([a-z,]*)\)', l)
+        if m:
+            sides = set(m.group(1).split(',')); t = _typ(last)
+            allow = {'lost'} if (last in okd and not isinstance(okd[last], dict)) else {'pre', 'lost'} if t == '紧贴词尾的非人声' else {'post', 'lost'} if t == '紧贴词头的非人声' else {'pre', 'post', 'lost'} if t == '紧贴两头的非人声' else set()
+            if not sides <= allow: unconf += 1
+            elif sides == {'lost'} and not isinstance(okd.get(last), dict): viol += f"\n    {last}：已用实际声音确认——{okd[last]}"
+    good = c == 0 and not bad and extra == ['0'] and unconf == 0
+    step(f'独立复核：{len(cuts)} 处改动，词尾/词头被切 = {len(bad)}，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = {edge}（未经实际声音确认的 {unconf}），多余声音 = {extra}', good, viol if good else (viol + '\n    ' + o[-800:]))
+    # 高亮同步（L14：读到哪一块，哪一块高亮）。先做核查程序自检（阳性对照）：在时间表副本里故意把两处切换挪动 0.4 秒
+    # （标点后的块提前、无标点处的块推后，各一处），高亮同步核对必须正好在这两处报出、其余不变；自检不过 = 核查失灵
+    ent = re.findall(r"file '([^']+)'\nduration ([\d.]+)", open(f'work_{no}/list.txt').read())
+    ent = [e for e in ent if '简述' not in e[0]]   # L22：结尾简述单独一页不是正文屏（05 高亮整体错开一屏）
+    dj = json.load(open(f'scripts/{no}.json')); nch = sum(len(s['chunks']) for s in dj['sentences']); base = len(ent) - nch
+    cand = []; ix = base
+    for si, s in enumerate(dj['sentences'], 1):
+        if len(s['chunks']) > 1: cand.append((si, ix, bool(re.search(r'[,;:]$', re.sub(r'\*\*|\{\{.*?\}\}', '', s['chunks'][0]['en']).strip()))))
+        ix += len(s['chunks'])
+    pP = next((c for c in cand if c[2]), cand[0]); pN = next((c for c in cand if not c[2] and c[0] != pP[0]), cand[-1])
+    du = [float(x) for _, x in ent]
+    du[pP[1]] -= 0.4; du[pP[1] + 1] += 0.4; du[pN[1]] += 0.4; du[pN[1] + 1] -= 0.4
+    bad_list = f'work_{no}/list_自检.txt'
+    open(bad_list, 'w').write(''.join(f"file '{f}'\nduration {x:.3f}\n" for (f, _), x in zip(ent, du)) + f"file '{ent[-1][0]}'\n")
+    c, o = run(['python3', f'{T}/高亮同步核对.py', no], {'HL_LIST': bad_list, 'HL_ONLY': f'{pP[0]},{pN[0]}'})
+    got = set(re.findall(rf'^{no} (S\d+) BAD (第\d+块)', o, re.M)); want = {(f'S{pP[0]}', '第2块'), (f'S{pN[0]}', '第2块')}
+    step(f'高亮同步核对 自检：S{pP[0]} 第2块故意提前 0.4 秒、S{pN[0]} 第2块故意推后 0.4 秒，必须正好报出这两处', got == want,
+         f'报出：{sorted(got)}' + ('' if got == want else '\n    ' + o[-600:]))
+    c, o = run(['python3', f'{T}/高亮同步核对.py', no])
+    step('高亮同步核对（L14：每一块的高亮在这一块开始读时切换，误差 ≤ 0.15 秒；两种独立办法都要满足，不一致处须用实际声音核实）',
+         c == 0 and '问题数 0' in o, '\n    '.join(l for l in o.splitlines() if 'BAD' in l or '核实' in l or '共核对' in l))
+    # 标点试听（交用户逐处听）
+    import imageio_ffmpeg
+    FF = imageio_ffmpeg.get_ffmpeg_exe(); a, sr = sf.read(f'work_{no}/a.wav')
+    subprocess.run([FF, '-v', 'error', '-y', '-i', f'{no}.mp4', '-vn', '-ac', '1', '-ar', str(sr), f'work_{no}/final.wav'], check=True)
+    f, _ = sf.read(f'work_{no}/final.wav'); z = np.append((a == 0).astype(np.int8), 0); runs = []; st = None
+    for i, v in enumerate(z):
+        if v and st is None: st = i
+        if not v and st is not None:
+            if 0.1 <= (i - st) / sr <= 0.5 and st / sr > 1.0: runs.append((st / sr, i / sr))
+            st = None
+    beep = 0.15 * np.sin(2 * np.pi * 880 * np.arange(int(0.12 * sr)) / sr) * np.hanning(int(0.12 * sr)); parts = []
+    for s0, s1 in runs: parts += [f[int((s0 - 1.6) * sr):int((s1 + 0.7) * sr)], np.zeros(int(0.35 * sr)), beep, np.zeros(int(0.35 * sr))]
+    if parts:
+        sf.write(f'work_{no}/punct.wav', np.concatenate(parts), sr)
+        subprocess.run([FF, '-v', 'error', '-y', '-i', f'work_{no}/punct.wav', '-c:a', 'libmp3lame', '-b:a', '192k', f'标点试听_{no}.mp3'], check=True)
+    step(f'生成标点试听 标点试听_{no}.mp3（{len(runs)} 处，需交用户试听）', True)
+if ok and stage == '出片后':   # 发文件闸门凭这个回执放行（守则7/A25：只发过了核查的那个文件）
+    sys.path.insert(0, f'{T}/钩子'); import 闸门; 闸门.记回执([f'{no}.mp4', f'标点试听_{no}.mp3'], f'交付核查 出片后 第{no}篇')
+print(f'第{no}篇 {stage}核查：\n' + '\n'.join(out) + f"\n{'全部通过' if ok else '【不通过，不得交付】'}")
+sys.exit(0 if ok else 1)

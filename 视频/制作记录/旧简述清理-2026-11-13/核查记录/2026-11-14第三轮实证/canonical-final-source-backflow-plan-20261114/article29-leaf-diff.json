@@ -1,0 +1,380 @@
+{
+  "source_id": "29",
+  "new_id": "39",
+  "name": "最终版4K视频/29 - The Volcano That Gave Us Frankenstein - 一座火山，造出了《弗兰肯斯坦》.mp4",
+  "source_run": 43532011110,
+  "passed_handoff": {
+    "path": "/workspace/work/video-revision-delivery/next-passed-validated/43532011110/29/archive-handoff.json",
+    "bytes": 23070,
+    "sha256": "5182f5abb510246822e7267dd7cc463960396220c324d9e55e29372e11a159c9"
+  },
+  "already_accepted_video_sha256": "5774c9a0e724fcec1906fef0d5445a645624d8b9b886875a675bc615f9f12684",
+  "source_files": {
+    "json": {
+      "current": {
+        "path": "/workspace/work/video-audit70-20261113/payload/视频/脚本/29.json",
+        "bytes": 51585,
+        "sha256": "e916f33df7cacafe7666f0d51af6116bdbc639bc5e9a7a5a92a3420050f227a1"
+      },
+      "effective_origin": "PAY",
+      "immutable_request": {
+        "path": "/workspace/work/video-revision-delivery/next-passed-validated/43532011110/29/request-source/视频/脚本/29.json",
+        "bytes": 51585,
+        "sha256": "e916f33df7cacafe7666f0d51af6116bdbc639bc5e9a7a5a92a3420050f227a1"
+      },
+      "final": {
+        "path": "/workspace/work/video-revision-delivery/next-passed-validated/43532011110/29/final-source/视频/脚本/29.json",
+        "bytes": 44901,
+        "sha256": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791"
+      },
+      "current_equals_request_bytes": true,
+      "final_origin": "official_artifact_working_copy"
+    },
+    "gen": {
+      "current": {
+        "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/初稿生成/gen29.py",
+        "bytes": 40531,
+        "sha256": "43beb9c22a2bc3a5ea4264fdfe0e8055f5ad020732b5708d7083136637243c12"
+      },
+      "effective_origin": "PAY",
+      "immutable_request": {
+        "path": "/workspace/work/video-revision-delivery/next-passed-validated/43532011110/29/request-source/视频/工具/初稿生成/gen29.py",
+        "bytes": 40531,
+        "sha256": "43beb9c22a2bc3a5ea4264fdfe0e8055f5ad020732b5708d7083136637243c12"
+      },
+      "final": {
+        "path": "/workspace/work/video-revision-delivery/next-passed-validated/43532011110/29/final-source/视频/工具/初稿生成/gen29.py",
+        "bytes": 40591,
+        "sha256": "a03333f1fbe6b8683d1eda572c9f533353a7a9bd5dc4bd6125dd5f03ff5710a5"
+      },
+      "current_equals_request_bytes": true,
+      "final_origin": "derived_after_final_QC"
+    },
+    "md": {
+      "current": {
+        "path": "/workspace/work/audit-repo/新版定稿/29-the-volcano-that-gave-us-frankenstein.md",
+        "bytes": 16657,
+        "sha256": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0"
+      },
+      "effective_origin": "audit-repo baseline, PAY has no override",
+      "immutable_request": {
+        "path": "/workspace/work/video-revision-delivery/next-passed-validated/43532011110/29/request-source/新版定稿/29-the-volcano-that-gave-us-frankenstein.md",
+        "bytes": 16657,
+        "sha256": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0"
+      },
+      "final": {
+        "path": "/workspace/work/video-revision-delivery/next-passed-validated/43532011110/29/final-source/新版定稿/29-the-volcano-that-gave-us-frankenstein.md",
+        "bytes": 16657,
+        "sha256": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0"
+      },
+      "current_equals_request_bytes": true,
+      "final_origin": "request_manuscript_with_verified_final_source_equivalence"
+    }
+  },
+  "native_final_JSON_member": "29-source.json",
+  "immutable_native_archive": {
+    "path": "/workspace/work/video-audit70-20261113/next-passed-native/43532011110/29/article29-passed-output.zip",
+    "bytes": 15316913,
+    "sha256": "6e5a81ab1386038346848aa16a9f60e737af74d52973220d01d926796c93da3b"
+  },
+  "source_provenance_verified_without_exporting_media": true,
+  "PAY_to_request_leaf_diff": [],
+  "PAY_to_final_leaf_diff": [
+    {
+      "pointer": "/sentences/13/chunks/0/align/2/1",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "那个**恐怖**(ghastly)的",
+      "after": "那个**恐怖的**(ghastly)",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    },
+    {
+      "pointer": "/sentences/13/chunks/0/zh",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "玛丽开始写那个**恐怖**(ghastly)的**故事**(yarn)，它后来成了**《弗兰肯斯坦》**(Frankenstein)，",
+      "after": "玛丽开始写那个**恐怖的**(ghastly)**故事**(yarn)，它后来成了**《弗兰肯斯坦》**(Frankenstein)，",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    },
+    {
+      "pointer": "/sentences/15/chunks/0/note",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "（and a teenager the monster：省略句，\n省略了 had supplied）\n（简述：▸喷发：1815年，印尼坦博拉火山喷发，当场约一万人死亡，随后又有数万人死于饥饿和疾病。▸降温：火山喷出的二氧化硫在高空形成硫酸盐微粒，反射阳光降温，使1816年成为欧美无夏之年。▸灾情：欧洲夏季寒冷多雨，庄稼歉收、粮价上涨，饥饿、疾病与社会动荡接踵而来。▸契机：大雨把拜伦、玛丽·雪莱等人困在日内瓦郊外的别墅，拜伦提议每人写一篇恐怖故事。▸成果：18岁的玛丽开始写《弗兰肯斯坦》，1818年匿名出版，这部作品后来常被视为科幻小说的开山之作。）",
+      "after": "（and a teenager the monster：省略句，\n省略了 had supplied）\n（简述：▸喷发：1815年，印尼坦博拉火山喷发，当场约一万人死亡，随后又有数万人死于饥饿和疾病。\n▸降温：火山喷出的二氧化硫在高空形成硫酸盐微粒，\n▹反射阳光降温，使1816年成为欧美无夏之年。\n▸灾情：欧洲夏季寒冷多雨，庄稼歉收、粮价上涨，饥饿、疾病与社会动荡接踵而来。\n▸契机：大雨把拜伦、玛丽·雪莱等人困在日内瓦郊外的别墅，拜伦提议每人写一篇恐怖故事。\n▸成果：18岁的玛丽开始写《弗兰肯斯坦》，\n▹1818年匿名出版，这部作品后来常被视为科幻小说的开山之作。）",
+      "category": "G35_summary_linebreaks",
+      "semantic_change": false,
+      "explanation": "仅把五点简述拆行，并按需加入行首▹续行标记；前置原小字、五点内容及标点完整不变。",
+      "original_note_prefix_exact": true,
+      "five_primary_points_retained": true,
+      "before_lines": 1,
+      "after_lines": 7,
+      "normalized_note_sha256": "25447e1033865003f6339d349c5a81ef13d1769a339b45ee89a48bfbe2a489fc"
+    },
+    {
+      "pointer": "/sentences/2/chunks/0/align/1/1",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "**阴郁**(melancholy)的",
+      "after": "**阴郁的**(melancholy)",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    },
+    {
+      "pointer": "/sentences/2/chunks/0/zh",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "这种**阴郁**(melancholy)的天气，**归因于**(attributable to)一次远方的爆炸。",
+      "after": "这种**阴郁的**(melancholy)天气，**归因于**(attributable to)一次远方的爆炸。",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    },
+    {
+      "pointer": "/sentences/3/chunks/1/align/2/1",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "**猛烈**(potent)的",
+      "after": "**猛烈的**(potent)",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    },
+    {
+      "pointer": "/sentences/3/chunks/1/zh",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "那是最**猛烈**(potent)的**喷发**(eruptions)之一，在有记录的历史上。",
+      "after": "那是最**猛烈的**(potent)**喷发**(eruptions)之一，在有记录的历史上。",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    },
+    {
+      "pointer": "/sentences/5/chunks/2/align/4/1",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "**全世界**(world-wide)的气温。",
+      "after": "**全世界的**(world-wide)气温。",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    },
+    {
+      "pointer": "/sentences/5/chunks/2/zh",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "反射**阳光**(sunshine)，**从而**(thereby)**降低了**(lowering)**全世界**(world-wide)的气温。",
+      "after": "反射**阳光**(sunshine)，**从而**(thereby)**降低了**(lowering)**全世界的**(world-wide)气温。",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    }
+  ],
+  "request_to_final_leaf_diff": [
+    {
+      "pointer": "/sentences/13/chunks/0/align/2/1",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "那个**恐怖**(ghastly)的",
+      "after": "那个**恐怖的**(ghastly)",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    },
+    {
+      "pointer": "/sentences/13/chunks/0/zh",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "玛丽开始写那个**恐怖**(ghastly)的**故事**(yarn)，它后来成了**《弗兰肯斯坦》**(Frankenstein)，",
+      "after": "玛丽开始写那个**恐怖的**(ghastly)**故事**(yarn)，它后来成了**《弗兰肯斯坦》**(Frankenstein)，",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    },
+    {
+      "pointer": "/sentences/15/chunks/0/note",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "（and a teenager the monster：省略句，\n省略了 had supplied）\n（简述：▸喷发：1815年，印尼坦博拉火山喷发，当场约一万人死亡，随后又有数万人死于饥饿和疾病。▸降温：火山喷出的二氧化硫在高空形成硫酸盐微粒，反射阳光降温，使1816年成为欧美无夏之年。▸灾情：欧洲夏季寒冷多雨，庄稼歉收、粮价上涨，饥饿、疾病与社会动荡接踵而来。▸契机：大雨把拜伦、玛丽·雪莱等人困在日内瓦郊外的别墅，拜伦提议每人写一篇恐怖故事。▸成果：18岁的玛丽开始写《弗兰肯斯坦》，1818年匿名出版，这部作品后来常被视为科幻小说的开山之作。）",
+      "after": "（and a teenager the monster：省略句，\n省略了 had supplied）\n（简述：▸喷发：1815年，印尼坦博拉火山喷发，当场约一万人死亡，随后又有数万人死于饥饿和疾病。\n▸降温：火山喷出的二氧化硫在高空形成硫酸盐微粒，\n▹反射阳光降温，使1816年成为欧美无夏之年。\n▸灾情：欧洲夏季寒冷多雨，庄稼歉收、粮价上涨，饥饿、疾病与社会动荡接踵而来。\n▸契机：大雨把拜伦、玛丽·雪莱等人困在日内瓦郊外的别墅，拜伦提议每人写一篇恐怖故事。\n▸成果：18岁的玛丽开始写《弗兰肯斯坦》，\n▹1818年匿名出版，这部作品后来常被视为科幻小说的开山之作。）",
+      "category": "G35_summary_linebreaks",
+      "semantic_change": false,
+      "explanation": "仅把五点简述拆行，并按需加入行首▹续行标记；前置原小字、五点内容及标点完整不变。",
+      "original_note_prefix_exact": true,
+      "five_primary_points_retained": true,
+      "before_lines": 1,
+      "after_lines": 7,
+      "normalized_note_sha256": "25447e1033865003f6339d349c5a81ef13d1769a339b45ee89a48bfbe2a489fc"
+    },
+    {
+      "pointer": "/sentences/2/chunks/0/align/1/1",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "**阴郁**(melancholy)的",
+      "after": "**阴郁的**(melancholy)",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    },
+    {
+      "pointer": "/sentences/2/chunks/0/zh",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "这种**阴郁**(melancholy)的天气，**归因于**(attributable to)一次远方的爆炸。",
+      "after": "这种**阴郁的**(melancholy)天气，**归因于**(attributable to)一次远方的爆炸。",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    },
+    {
+      "pointer": "/sentences/3/chunks/1/align/2/1",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "**猛烈**(potent)的",
+      "after": "**猛烈的**(potent)",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    },
+    {
+      "pointer": "/sentences/3/chunks/1/zh",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "那是最**猛烈**(potent)的**喷发**(eruptions)之一，在有记录的历史上。",
+      "after": "那是最**猛烈的**(potent)**喷发**(eruptions)之一，在有记录的历史上。",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    },
+    {
+      "pointer": "/sentences/5/chunks/2/align/4/1",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "**全世界**(world-wide)的气温。",
+      "after": "**全世界的**(world-wide)气温。",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    },
+    {
+      "pointer": "/sentences/5/chunks/2/zh",
+      "operation": "replace",
+      "before_exists": true,
+      "after_exists": true,
+      "before": "反射**阳光**(sunshine)，**从而**(thereby)**降低了**(lowering)**全世界**(world-wide)的气温。",
+      "after": "反射**阳光**(sunshine)，**从而**(thereby)**降低了**(lowering)**全世界的**(world-wide)气温。",
+      "category": "T38_highlight_includes_de",
+      "semantic_change": false,
+      "explanation": "既有重点词中文的末尾“的”并入同色粗体；可见汉字、英文重点键及语序不变。此为标色范围变化，非新增词义。",
+      "visible_Chinese_exact": true,
+      "English_focus_keys_exact": true
+    }
+  ],
+  "derived_GEN_full_JSON_leaf_diff_equals_JSON_diff": true,
+  "derived_GEN_is_data_after_final_QC_not_claimed_executed_originally": true,
+  "original_helper_roundtrip": {
+    "existing_true_proof": true,
+    "exit": 0,
+    "whole_JSON_deep_equal": true,
+    "original_helpers_sha256": {
+      "初稿生成/核对.py": "c635aee82e0fe4dff9f70dcae03e2f797aadb670c8ebe6c8f202b82a35a87a74",
+      "重点词被去掉.py": "b898e63bb0954f0f17b90f92c2af41b3264ca60b7fd264e1cfa632f3d1e86f93"
+    },
+    "reexecuted_media_or_QC_in_this_plan": false
+  },
+  "invariants": {
+    "English_exact_including_focus_markup": true,
+    "visible_Chinese_exact": true,
+    "Chinese_English_focus_lookup_keys_exact": true,
+    "notes_and_5point_summary_wording_exact_after_G35_normalization": true,
+    "all_other_runtime_and_audio_control_fields_identical": true,
+    "font_gain_cut_speech_timing_values_changed": false,
+    "MD_current_request_final_byte_exact_and_will_not_write": true
+  },
+  "root_attention": [],
+  "evidence_snapshots": {
+    "handoff": {
+      "path": "/workspace/work/video-audit70-20261113/canonical-final-source-backflow-plan-20261114/evidence/29/archive-handoff.json",
+      "bytes": 23070,
+      "sha256": "5182f5abb510246822e7267dd7cc463960396220c324d9e55e29372e11a159c9"
+    },
+    "derived-source-proof": {
+      "path": "/workspace/work/video-audit70-20261113/canonical-final-source-backflow-plan-20261114/evidence/29/derived-source-proof.json",
+      "bytes": 2127,
+      "sha256": "366bdf5fc8e685fb967b7e7d0c4430774bece71f3de784e51705b822f727575f"
+    },
+    "original-helper-roundtrip": {
+      "path": "/workspace/work/video-audit70-20261113/canonical-final-source-backflow-plan-20261114/evidence/29/original-helper-roundtrip.log",
+      "bytes": 398,
+      "sha256": "27775b372093156c9a95886b18064d6a719fc00607f1a08f67160e3c59a66120"
+    },
+    "roundtrip": {
+      "path": "/workspace/work/video-audit70-20261113/canonical-final-source-backflow-plan-20261114/evidence/29/29-roundtrip.json",
+      "bytes": 44900,
+      "sha256": "95679092c9b0f913ef8adef4d3e0a1c4e29cbb761e242c35faec5f3b94c97f44"
+    },
+    "V3-record": {
+      "path": "/workspace/work/video-audit70-20261113/canonical-final-source-backflow-plan-20261114/evidence/29/validated-article-record.json",
+      "bytes": 9230,
+      "sha256": "f6a6aa8086f554dcec25826d4cd0f04d8dcaa97e308b6a7b5f0608838a667c12"
+    },
+    "permanent-archive-receipt": {
+      "path": "/workspace/work/video-audit70-20261113/canonical-final-source-backflow-plan-20261114/evidence/29/final-archive-receipt.json",
+      "bytes": 2020,
+      "sha256": "e685a569180981b3155d37422430ab35e78e2fbc1d6f3476ac909505ae332f6f"
+    }
+  }
+}

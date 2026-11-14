@@ -1,0 +1,1037 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "input.schema.json",
+  "title": "V3 exact71 delivery: frozen complete PDF parts plus70 ordered actual4K videos",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "revision",
+    "requested_ids",
+    "catalog_path",
+    "order_map_path",
+    "catalog_repo_path",
+    "order_map_repo_path",
+    "finalization_manifest_repo_path",
+    "asset_branch",
+    "expected_heads",
+    "backup_master_expected",
+    "release",
+    "articles",
+    "unchanged_videos",
+    "request_source_root",
+    "final_source_root",
+    "audio_changed_articles",
+    "published_pdf",
+    "book_illustrations",
+    "illustration_composition_review",
+    "illustration_crop_review",
+    "video_layout_approval"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 3
+    },
+    "revision": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]+$"
+    },
+    "requested_ids": {
+      "type": "array",
+      "minItems": 70,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^(0[1-9]|[1-6][0-9]|70)$"
+      },
+      "maxItems": 70
+    },
+    "catalog_path": {
+      "type": "string"
+    },
+    "order_map_path": {
+      "type": "string"
+    },
+    "catalog_repo_path": {
+      "const": "顺序重排版/来源视频清单.json"
+    },
+    "order_map_repo_path": {
+      "const": "顺序重排版/篇号对照.json"
+    },
+    "finalization_manifest_repo_path": {
+      "type": "string"
+    },
+    "asset_branch": {
+      "type": "string",
+      "pattern": "^codex/video-assets-"
+    },
+    "expected_heads": {
+      "type": "object",
+      "required": [
+        "primary",
+        "backup"
+      ],
+      "properties": {
+        "primary": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "backup": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        }
+      }
+    },
+    "backup_master_expected": {
+      "type": "string",
+      "pattern": "^6355a0[0-9a-f]{34}$"
+    },
+    "release": {
+      "type": "object",
+      "required": [
+        "tag",
+        "title",
+        "asset_policy",
+        "expected_asset_count"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "tag": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "asset_policy": {
+          "const": "book_order_70_4k_plus_pinned_book_pdf"
+        },
+        "expected_asset_count": {
+          "const": 71
+        }
+      }
+    },
+    "articles": {
+      "type": "array",
+      "minItems": 70,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "mp4",
+          "canonical_mp4",
+          "qc",
+          "request_source",
+          "final_source",
+          "stills",
+          "evidence",
+          "illustration"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(0[1-9]|[1-6][0-9]|70)$"
+          },
+          "mp4": {
+            "type": "object",
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          },
+          "qc": {
+            "type": "object",
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          },
+          "stills": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "required": [
+                "path",
+                "sha256",
+                "kind",
+                "frame",
+                "video_sha256",
+                "decoded_from_actual_mp4"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "bytes": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "kind": {
+                  "enum": [
+                    "summary",
+                    "body_end",
+                    "illustration",
+                    "body"
+                  ]
+                },
+                "frame": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "video_sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "decoded_from_actual_mp4": {
+                  "const": true
+                }
+              }
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "bytes": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            }
+          },
+          "canonical_mp4": {
+            "type": "object",
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          },
+          "request_source": {
+            "type": "object",
+            "required": [
+              "json",
+              "gen",
+              "md"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "json": {
+                "type": "object",
+                "required": [
+                  "path",
+                  "sha256"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "bytes": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              },
+              "gen": {
+                "type": "object",
+                "required": [
+                  "path",
+                  "sha256"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "bytes": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              },
+              "md": {
+                "type": "object",
+                "required": [
+                  "path",
+                  "sha256"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "bytes": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              }
+            }
+          },
+          "final_source": {
+            "type": "object",
+            "required": [
+              "json",
+              "gen",
+              "md"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "json": {
+                "type": "object",
+                "required": [
+                  "path",
+                  "sha256",
+                  "origin",
+                  "artifact_id",
+                  "artifact_member"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "bytes": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "origin": {
+                    "const": "official_artifact_working_copy"
+                  },
+                  "artifact_id": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "artifact_member": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "gen": {
+                "type": "object",
+                "required": [
+                  "path",
+                  "sha256",
+                  "origin"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "bytes": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "origin": {
+                    "enum": [
+                      "official_artifact_working_copy",
+                      "used_generator",
+                      "derived_after_final_QC"
+                    ]
+                  },
+                  "artifact_id": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "artifact_member": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "derived_from_json_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "derivation_proof": {
+                    "type": "object",
+                    "required": [
+                      "path",
+                      "bytes",
+                      "sha256"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "path": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "bytes": {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "sha256": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{64}$"
+                      }
+                    }
+                  }
+                },
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "origin": {
+                          "const": "derived_after_final_QC"
+                        }
+                      }
+                    },
+                    "then": {
+                      "required": [
+                        "derived_from_json_sha256",
+                        "derivation_proof"
+                      ]
+                    },
+                    "else": {
+                      "required": [
+                        "artifact_id",
+                        "artifact_member"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "md": {
+                "type": "object",
+                "required": [
+                  "path",
+                  "sha256",
+                  "origin"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "bytes": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "origin": {
+                    "enum": [
+                      "official_artifact_working_copy",
+                      "actual_working_manuscript",
+                      "request_manuscript_with_verified_final_source_equivalence"
+                    ]
+                  },
+                  "artifact_id": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "artifact_member": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "derived_from_json_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "derivation_proof": {
+                    "type": "object",
+                    "required": [
+                      "path",
+                      "bytes",
+                      "sha256"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "path": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "bytes": {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "sha256": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{64}$"
+                      }
+                    }
+                  }
+                },
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "origin": {
+                          "const": "request_manuscript_with_verified_final_source_equivalence"
+                        }
+                      }
+                    },
+                    "then": {
+                      "required": [
+                        "derived_from_json_sha256",
+                        "derivation_proof"
+                      ]
+                    },
+                    "else": {
+                      "required": [
+                        "artifact_id",
+                        "artifact_member"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "illustration": {
+            "type": "object",
+            "required": [
+              "path",
+              "sha256",
+              "approved",
+              "book_source_sha256",
+              "source_id",
+              "new_id",
+              "native_source"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "approved": {
+                "const": true
+              },
+              "book_source_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "source_id": {
+                "type": "string",
+                "pattern": "^(0[1-9]|[1-6][0-9]|70)$"
+              },
+              "new_id": {
+                "type": "string",
+                "pattern": "^(0[1-9]|[1-6][0-9]|70)$"
+              },
+              "native_source": {
+                "type": "object",
+                "required": [
+                  "path",
+                  "bytes",
+                  "sha256"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "bytes": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "maxItems": 70
+    },
+    "unchanged_videos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "repository",
+          "commit",
+          "path",
+          "sha256",
+          "bytes",
+          "approved_unchanged"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(0[1-9]|[1-6][0-9]|70)$"
+          },
+          "repository": {
+            "enum": [
+              "alienalgorithm/postgraduate-vocabulary",
+              "AlienCodes/literate-enigma"
+            ]
+          },
+          "commit": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "approved_unchanged": {
+            "const": true
+          }
+        }
+      },
+      "maxItems": 0
+    },
+    "request_source_root": {
+      "type": "string"
+    },
+    "final_source_root": {
+      "type": "string"
+    },
+    "audio_changed_articles": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 3,
+      "items": {
+        "type": "string",
+        "pattern": "^(0[1-9]|[1-6][0-9]|70)$"
+      },
+      "$comment": "Must contain10/12/51. Add44 only if actual controlled repair applied;44 whole-track review is required either way."
+    },
+    "published_pdf": {
+      "type": "object",
+      "required": [
+        "repository",
+        "branch",
+        "pinned_commit",
+        "release_name",
+        "bytes",
+        "sha256",
+        "parts",
+        "edition_policy",
+        "approval",
+        "illustrations_manifest"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "repository": {
+          "const": "alienalgorithm/postgraduate-vocabulary"
+        },
+        "branch": {
+          "const": "main"
+        },
+        "pinned_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "release_name": {
+          "const": "考研学人.pdf"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1999999999
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "parts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "repo_path",
+              "bytes",
+              "sha256"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "repo_path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 94371840
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "index": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        "parts_manifest": {
+          "type": "object",
+          "required": [
+            "repo_path",
+            "bytes",
+            "sha256"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "repo_path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "pages": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "edition_policy": {
+          "const": "compact_illustrated_bilingual_vocab_summary"
+        },
+        "approval": {
+          "type": "object",
+          "required": [
+            "repo_path",
+            "bytes",
+            "sha256"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "repo_path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "illustrations_manifest": {
+          "type": "object",
+          "required": [
+            "repo_path",
+            "bytes",
+            "sha256"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "repo_path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        }
+      }
+    },
+    "cleanup_targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "repository",
+          "release_id",
+          "tag_name",
+          "html_url"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "repository": {
+            "enum": [
+              "alienalgorithm/postgraduate-vocabulary",
+              "AlienCodes/literate-enigma"
+            ]
+          },
+          "release_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "tag_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "html_url": {
+            "type": "string",
+            "pattern": "^https://github.com/"
+          }
+        }
+      }
+    },
+    "book_illustrations": {
+      "type": "object",
+      "required": [
+        "path",
+        "bytes",
+        "sha256"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "illustration_composition_review": {
+      "type": "object",
+      "required": [
+        "path",
+        "bytes",
+        "sha256"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "illustration_crop_review": {
+      "type": "object",
+      "required": [
+        "path",
+        "bytes",
+        "sha256"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "video_layout_approval": {
+      "type": "object",
+      "required": [
+        "path",
+        "bytes",
+        "sha256"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "source_derivation": {
+      "type": "object",
+      "required": [
+        "factory",
+        "original_tools_root"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "factory": {
+          "type": "object",
+          "required": [
+            "path",
+            "bytes",
+            "sha256"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "original_tools_root": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "$comment": "All70 actual new renders; exact canonical audio QC binding plus identical actual ADTS and rational packet timing/payload/priming. Request/final source snapshots, only official mechanical L19/T38 changes.",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "articles": {
+            "contains": {
+              "properties": {
+                "final_source": {
+                  "properties": {
+                    "gen": {
+                      "properties": {
+                        "origin": {
+                          "const": "derived_after_final_QC"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "source_derivation"
+        ]
+      }
+    }
+  ]
+}

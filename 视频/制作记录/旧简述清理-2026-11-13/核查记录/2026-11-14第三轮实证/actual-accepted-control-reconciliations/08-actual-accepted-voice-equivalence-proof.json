@@ -1,0 +1,73 @@
+{
+  "source_id": "08",
+  "kind": "actual_accepted_whole_audio_identical_original_locator_metadata_reconciliation",
+  "old_accepted_video": {
+    "id": "08",
+    "path": "最终版4K视频/08 - The Doctor Who Solved the Cholera Mystery - 破解霍乱之谜的医生.mp4",
+    "sha256": "510294e2f4e758d7f432648ef68fa120c2b32fc9d9f3dfd6c3db2494b4c8d97c",
+    "git_blob_sha": "967319cb382e2c7c32255caeca5c41f741d723a0",
+    "bytes": 12602173,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "8ff0a7e9a38270bca8557e5a42422ef1287f640922d372c9b001bcb85cbf1b22"
+  },
+  "old_accepted_video_git_ref": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+  "new_native_final_sha256": "9ce6fc8c0ed172d765286310c27a9b27635eb4a7b87bf6e61307582ce29d1ec0",
+  "request_json_sha256": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+  "final_json_sha256": "81fdf84f461b4258b29397d0b1ab17bedc7954c5b63492b826c0a79e20e6d921",
+  "request_structural_sha256": "9d08929027ad8fe4926a117794df2efcad71b9b8973fda7678d3635ae57b9119",
+  "final_structural_sha256": "f875e14a5faea0fed3684cabb27acab61ef8b7512b9290b942be7e05c665a04c",
+  "actual_packet_count": 6486,
+  "all_packet_payload_absolute_pts_dts_duration_flags_and_side_data_exact": true,
+  "packet_projection_sha256": "3a161ad2c6e072a8539b54f232bf35a7908327345648d37761f37d842d68f5a5",
+  "whole_public_decoded_float32_values": 6640640,
+  "whole_public_decoded_float32_bit_identical": true,
+  "whole_public_decoded_sha256": "51612e7e538b85aa5965922606ea715a05ec4c0366eae323d64f47345622c702",
+  "ending_key": "S17",
+  "request_ending": {
+    "前段语速": 0.9,
+    "最后一段语速": 0.78,
+    "最后一段前停顿": 0.7,
+    "接点": [
+      272100,
+      339300
+    ],
+    "依据": "全篇结尾句按 07 定下的标准（用户 2026-10-10 听了 07 结尾句试听后同意，并要求所有视频统一）：前段 0.90、最后一段 vindicating him. 0.78、前面停 0.70 秒。接点：0.90 那遍 others, 后的停顿里最安静处（11.34 s，静音段 11.04–11.43 s），0.78 那遍停顿里最安静处（14.14 s，静音段 13.81–14.26 s），两侧 10 ms 都低于 -55 dB"
+  },
+  "actual_original_locator_ending": {
+    "前段语速": 0.9,
+    "最后一段语速": 0.78,
+    "最后一段前停顿": 0.7,
+    "接点": [
+      272580,
+      340380
+    ],
+    "依据": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“vindicating him.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（150 ms）的正中 11.357 s，0.78 那遍（160 ms）的正中 14.182 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）"
+  },
+  "all_other_effective_controls_deep_equal": true,
+  "remaining_source_invariants": {
+    "visible_body_notes_summary_and_focus_unchanged": true,
+    "layout_only_newlines_and_T38_bold_allowed": true,
+    "audio_render_title_metadata_unchanged": false,
+    "effective_audio_render_title_controls_unchanged": true,
+    "official_regenerated_nonaudio_rationale_updates": [],
+    "observed_original_QC_interval_fingerprint_updates": [
+      {
+        "path": "/区间声音指纹",
+        "before": null,
+        "after": {
+          "S5": "e3d8b98cdbce",
+          "S6": "f2f65b2354d4",
+          "S13": "52be3975789f",
+          "S14": "b603d2207559",
+          "S16": "f5e6a543b7df",
+          "S17": "355b7925ae4d"
+        },
+        "basis": "Original maker A45 observed raw-synthesis validity hashes, not physical audio controls. Both immutable source versions and actual native QC remain in the artifact; original full sound gates and actual approved AAC/absolute timing validation remain mandatory."
+      }
+    ]
+  },
+  "source_or_video_or_audio_changed": false,
+  "private_PCM_GT_or_TTS_cache_exported": false
+}

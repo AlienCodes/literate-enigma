@@ -1,0 +1,144 @@
+--- before/delivery.py
++++ candidate/delivery.py
+@@ -14,6 +14,8 @@
+ PROGRAM_DIR = '成果归档/视频重制发布程序'
+ WORKFLOW = '.github/workflows/publish-video-revisions.yml'
+ MAX_BLOB = 100 * 1024 * 1024
++AUTHORIZED_OLD_RELEASE_TARGET = {'repository':'alienalgorithm/postgraduate-vocabulary','release_id':444450051,
++    'tag_name':'reading-reordered-2026.11.13-v1','html_url':'https://github.com/alienalgorithm/postgraduate-vocabulary/releases/tag/reading-reordered-2026.11.13-v1'}
+ HEX64 = re.compile(r'^[0-9a-f]{64}$')
+ HEX40 = re.compile(r'^[0-9a-f]{40}$')
+ 
+@@ -160,33 +162,47 @@
+     req_meta={k:v for k,v in request.items()if k not in {'sentences','核对确认'}|history_keys}
+     fin_meta={k:v for k,v in final.items()if k not in {'sentences','核对确认'}|history_keys}
+     interval_fingerprint_updates=[]
+-    observed_interval_fingerprints={'10': {'S1': '293b90a323e8', 'S2': 'b6609133b18b', 'S3': 'e30f93969178', 'S4': '9b35aac2d69e', 'S5': 'a8a91b0ac1be', 'S7': '90fda5907512', 'S8': 'c9d016987212', 'S10': '9cd0e3d45089', 'S11': 'f761995721b9', 'S12': '598dd10d4a2d', 'S13': '09c2720f0ff9', 'S14': '3654af72cf8b', 'S15': '07526af18057', 'S16': '629aa9d4f741'}, '11': {'S2': 'e9b956fb8fbe', 'S3': '77442d93df8b', 'S4': '4690a0546615', 'S8': '8f8bc981b00e', 'S13': 'f219312f65a0', 'S14': '37d3aad3b538', 'S15': '14b9283b8e53', 'S17': 'dcbea4b45861'}, '12': {'S5': 'cc41ef46f01f', 'S6': '0afd0187cd6f', 'S10': 'e08943615d68', 'S11': 'a06603720793', 'S15': 'fb9690df6bfa', 'S17': '54c5a6e5e42a'}}
+-    observed_fps=observed_interval_fingerprints.get(str(n).zfill(2))
+-    if observed_fps is not None and '区间声音指纹'not in req_meta and fin_meta.get('区间声音指纹')==observed_fps:
+-        # Only exact original-QC additions actually inspected for10/11/12;
+-        # preserve both original sources, all effective controls and history.
+-        fin_meta=copy.deepcopy(fin_meta);fin_meta.pop('区间声音指纹')
+-        interval_fingerprint_updates.append({'path':'/区间声音指纹','before_present':False,'after':observed_fps,'basis':'Actual source collector observed original maker A45 interval/raw-synthesis validity hashes; fixed make_video.py lines391ff checks these. Root explicitly approved exact10/11/12 observed additions; all other effective metadata remains deeply identical.'})
++    # A45 hashes are observed raw-synthesis validity records written by the
++    # original maker. They do not specify gain, cuts, timing, or spoken text.
++    # The genuine native artifact retains both sources; original audio gates
++    # and the actual AAC comparison remain mandatory in validate_article.
++    if req_meta.get('区间声音指纹')!=fin_meta.get('区间声音指纹'):
++        def valid_raw_fingerprints(value):
++            return value is None or (isinstance(value,dict) and all(
++                isinstance(k,str) and re.fullmatch(r'S[1-9]\d*',k) and int(k[1:])<=len(final['sentences'])
++                and isinstance(v,str) and re.fullmatch(r'[0-9a-f]{12}',v)
++                for k,v in value.items()))
++        old_fps=req_meta.get('区间声音指纹');new_fps=fin_meta.get('区间声音指纹')
++        require(valid_raw_fingerprints(old_fps) and isinstance(new_fps,dict) and valid_raw_fingerprints(new_fps),
++                'Malformed original A45 observation: '+str(n))
++        req_meta=copy.deepcopy(req_meta);fin_meta=copy.deepcopy(fin_meta)
++        req_meta.pop('区间声音指纹',None);fin_meta.pop('区间声音指纹',None)
++        interval_fingerprint_updates.append({'path':'/区间声音指纹','before':old_fps,'after':new_fps,
++            'basis':'Original maker A45 observed raw-synthesis validity hashes, not physical audio controls. Both immutable source versions and actual native QC remain in the artifact; original full sound gates and actual approved AAC/absolute timing validation remain mandatory.'})
+     rationale_updates=[]
+-    if req_meta!=fin_meta and str(n).zfill(2)in {'10','25'}:
+-        # The unchanged official ending locator recalculates its own prose
+-        # rationale while G31 preserves all gain/timing controls. Only this
+-        # actually inspected and explicitly authorized exact leaf is allowed.
+-        before=req_meta.get('结尾句',{}).get('S17',{});after=fin_meta.get('结尾句',{}).get('S17',{})
+-        old_text=before.get('依据');new_text=after.get('依据')
+-        sha=lambda value:hashlib.sha256(value.encode()).hexdigest()if isinstance(value,str)else None
+-        reviewed_rationale_hashes={'25':('9b6d456b57e5061fdb55921c1e36e5ab64003e3aedf43b97c4dfbe23ba0a6a18','4254eac50298c595e34481ed07c88139f1025f2789101c01ab40c8711c091c04'),'10':('e89279d84d3062b1202ae2709d433d84fd2a6a35d90fbe231c7cb83e40b88f7c','304aeefc9b6c1c42142b52af498e3b83debdf8eebb8726f7fa60e77590fe81f2')}
+-        if (sha(old_text),sha(new_text))==reviewed_rationale_hashes[str(n).zfill(2)]:
+-            old_effective={k:v for k,v in before.items()if k!='依据'}
+-            new_effective={k:v for k,v in after.items()if k!='依据'}
+-            require(old_effective==new_effective,'Effective ending audio controls changed: '+str(n)+'/S17')
++    # The original locator truncates its old appended historical explanation
++    # when regenerating the exact same template for the exact same settings.
++    # Preserve that history in this explicit ledger and the immutable request;
++    # compare every effective field, including the splice samples, deeply.
++    ending_key='S'+str(len(final['sentences']))
++    before_ending=req_meta.get('结尾句',{}).get(ending_key,{})
++    after_ending=fin_meta.get('结尾句',{}).get(ending_key,{})
++    old_text=before_ending.get('依据');new_text=after_ending.get('依据')
++    if old_text!=new_text and isinstance(old_text,str) and isinstance(new_text,str):
++        official_prefix='全篇结尾句按 07 定下的标准'
++        if (new_text.startswith(official_prefix) and '接点由 结尾句接点.py 自动找' in new_text
++                and '所在帧和两侧各 5 ms 都低于 -55 dB' in new_text and old_text.startswith(new_text)):
++            old_effective={k:v for k,v in before_ending.items()if k!='依据'}
++            new_effective={k:v for k,v in after_ending.items()if k!='依据'}
++            require(old_effective==new_effective,'Effective ending audio controls changed: '+str(n)+'/'+ending_key)
+             req_meta=copy.deepcopy(req_meta);fin_meta=copy.deepcopy(fin_meta)
+-            req_meta['结尾句']['S17'].pop('依据');fin_meta['结尾句']['S17'].pop('依据')
+-            rationale_updates.append({'path':'/结尾句/S17/依据','before':old_text,'after':new_text,
++            req_meta['结尾句'][ending_key].pop('依据');fin_meta['结尾句'][ending_key].pop('依据')
++            sha=lambda value:hashlib.sha256(value.encode()).hexdigest()
++            rationale_updates.append({'path':'/结尾句/'+ending_key+'/依据','before':old_text,'after':new_text,
+                 'before_sha256':sha(old_text),'after_sha256':sha(new_text),
+                 'effective_controls_identical':True,'effective_controls':old_effective,
+-                'official_regenerator':'结尾句接点.py','official_program_sha256':'15303682c605dd4544172c92d42c016d8d0536e0c6d1f9816d0d38dd5d2b9a61',
+-                'basis':'Actual fixed official template regenerates rationale (lines11/122); root explicitly authorized this exact nonaudio prose update on 2026-11-14. Both original source versions retained; native full audio gates and actual AAC/absolute timing invariants remain mandatory.'})
++                'official_regenerator':'结尾句接点.py',
++                'basis':'Original official locator regenerated the same rationale prefix for deeply identical effective settings. Exact original appended history is retained here and in the immutable requested source. No actual gain/cut/speed/pitch/splice control change is permitted by this classification.'})
+     require(req_meta==fin_meta,f'Audio/render/title metadata changed outside actual QC records: {n}')
+     return {'visible_body_notes_summary_and_focus_unchanged': True, 'layout_only_newlines_and_T38_bold_allowed': True,
+             'audio_render_title_metadata_unchanged':not(rationale_updates or interval_fingerprint_updates),
+@@ -511,6 +527,7 @@
+     for name in [config['catalog_repo_path'], config['order_map_repo_path'], config['finalization_manifest_repo_path'], audit + '/finalization-manifest.json']:
+         p = out / name; files[name] = {'bytes': p.stat().st_size, 'sha256': digest(p)}
+     here = Path(__file__).resolve().parent
++    copyfile(here / 'delivery.py', PROGRAM_DIR + '/delivery.py')
+     copyfile(here / 'release_actions.py', PROGRAM_DIR + '/release_actions.py')
+     copyfile(here / 'release_contract.py', PROGRAM_DIR + '/release_contract.py')
+     copyfile(here / 'derive_final_generator.py', PROGRAM_DIR + '/derive_final_generator.py')
+@@ -784,6 +801,26 @@
+     with zipfile.ZipFile(io.BytesIO(blob))as z:
+         require(len(z.namelist())==len(set(z.namelist())),'Duplicate publisher receipt ZIP members');data_bytes=z.read(proof['receipt_member'])
+     data=json.loads(data_bytes);require(data['publisher_workflow_run_id']==proof['run_id']and data['publisher_workflow_head_sha']==run['head_sha']and data['publisher_workflow_path']==WORKFLOW,'Receipt is not from selected actual native workflow')
++    return _persist_verified_receipt(archive_receipt_path,archive_receipt,proof,data_bytes,api)
++
++
++def persist_local_release_receipt(archive_receipt_path,publisher_receipt_path,execute=False):
++    require(execute,'Local receipt archival needs explicit --execute')
++    archive_receipt=load(archive_receipt_path);api=GitHub()
++    require(archive_receipt['schema_version']==3 and {(r['repository'],r['branch'])for r in archive_receipt['archives']}=={PRIMARY,BACKUP}and len(archive_receipt['archives'])==2,'Actual V3 dual archive receipt required')
++    receipt_path=Path(publisher_receipt_path).resolve();require(receipt_path.is_file()and not receipt_path.is_symlink(),'Actual local publisher receipt file required')
++    data_bytes=receipt_path.read_bytes();data=json.loads(data_bytes);execution=data.get('publisher_execution',{})
++    require(execution.get('kind')=='local_gh'and execution.get('gh_version','').startswith('gh version '),'Actual explicitly labeled local-gh publisher receipt required')
++    require(execution.get('transport')=='GitHub REST API with existing local gh authentication'and execution.get('authentication_source')in {'existing GH_TOKEN','gh auth token'}and HEX64.fullmatch(execution.get('program_sha256',''))is not None and HEX64.fullmatch(execution.get('contract_program_sha256',''))is not None,'Local publisher must preserve its actual CLI/auth source and program hashes')
++    require(not any(k.startswith('publisher_workflow_')for k in data),'Local publishing must not claim an invented Actions run/artifact')
++    proof={'repository':PRIMARY[0],'kind':'local_gh_receipt','receipt':{'path':str(receipt_path),'bytes':len(data_bytes),'sha256':hashlib.sha256(data_bytes).hexdigest()},'publisher_execution':execution}
++    return _persist_verified_receipt(archive_receipt_path,archive_receipt,proof,data_bytes,api)
++
++
++def _persist_verified_receipt(archive_receipt_path,archive_receipt,proof,data_bytes,api):
++    # Both ingress routes re-use the same actual remote71/tag/manifest checks
++    # and store identical original receipt bytes in the two repositories.
++    data=json.loads(data_bytes)
+     planned=verify_public_release_receipt(api,data,archive_receipt)
+     expected_master=archive_receipt['backup_master_expected'];require(api.api(BACKUP[0],'git/ref/heads/master')['object']['sha']==expected_master,'Protected backup master changed')
+     inventory=json.dumps({'schema_version':3,'revision':data['revision'],'assets':planned},ensure_ascii=False,indent=2).encode()+b'\n';sums=''.join(a['sha256']+'  '+a['name']+'\n'for a in planned).encode()
+@@ -812,7 +849,9 @@
+ 
+ def cleanup_old_releases(dual_receipt_path,targets_path,execute=False):
+     require(execute,'Exact old-release cleanup needs explicit --execute')
+-    result=load(dual_receipt_path);targets=load(targets_path);api=GitHub()
++    result=load(dual_receipt_path);targets=load(targets_path)
++    require(targets==[AUTHORIZED_OLD_RELEASE_TARGET],'Current user authorization replaces only reading-reordered-2026.11.13-v1 /444450051; all other historical releases and tags are preserved')
++    api=GitHub()
+     require(result['passed']and result['delivery_complete']and len(result['verification_archives'])==2 and {(r['repository'],r['branch'])for r in result['verification_archives']}=={PRIMARY,BACKUP},'New delivery must first be permanently verified in both repositories')
+     for row in result['verification_archives']:verify_record_reference(api,row,result['verification_record_path'],result['verification_record_sha256'])
+     # Freshly revalidate public exact71 assets using the immutable native receipt.
+@@ -860,6 +899,7 @@
+     a = sub.add_parser('archive'); a.add_argument('stage'); a.add_argument('--execute', action='store_true')
+     d = sub.add_parser('dispatch'); d.add_argument('receipt'); d.add_argument('--execute', action='store_true')
+     q=sub.add_parser('persist-release-receipt');q.add_argument('archive_receipt');q.add_argument('publication_proof');q.add_argument('--execute',action='store_true')
++    ql=sub.add_parser('persist-local-release-receipt');ql.add_argument('archive_receipt');ql.add_argument('publisher_receipt');ql.add_argument('--execute',action='store_true')
+     c=sub.add_parser('cleanup-old-releases');c.add_argument('dual_receipt');c.add_argument('targets');c.add_argument('--execute',action='store_true')
+     args = p.parse_args()
+     if args.cmd == 'validate': print(json.dumps({'passed': True, 'articles': len(validate(load(args.config))), 'published': False}))
+@@ -867,6 +907,7 @@
+     elif args.cmd == 'archive': print(json.dumps(archive(args.stage, args.execute), ensure_ascii=False))
+     elif args.cmd == 'dispatch': dispatch(args.receipt, args.execute)
+     elif args.cmd == 'persist-release-receipt':print(json.dumps(persist_release_receipt(args.archive_receipt,args.publication_proof,args.execute),ensure_ascii=False))
++    elif args.cmd == 'persist-local-release-receipt':print(json.dumps(persist_local_release_receipt(args.archive_receipt,args.publisher_receipt,args.execute),ensure_ascii=False))
+     elif args.cmd == 'cleanup-old-releases':print(json.dumps(cleanup_old_releases(args.dual_receipt,args.targets,args.execute),ensure_ascii=False))
+ 
+ if __name__ == '__main__': main()

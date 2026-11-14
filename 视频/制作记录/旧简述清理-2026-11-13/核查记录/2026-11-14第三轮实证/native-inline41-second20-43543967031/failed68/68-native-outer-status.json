@@ -1,0 +1,3456 @@
+{
+  "article": "68",
+  "passed": false,
+  "stage": "original-stamp-after-production.log",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "canonical-draft-00.log": [
+      "第68篇 做完（382 秒）：修了 1 处、疑点 24 处",
+      "① 文本：通过，自动修 1 处",
+      "② 声音：68 词尾辅音核对 问题数 0；68 纯人声核对（配音指纹 a4f76dab45bd）问题数 0；问题数 0；68 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "⑤ 出片后核查：全部通过",
+      "⑥ 已拷 视频/视频/草稿1080p/68_1080p.mp4（--不推）"
+    ],
+    "canonical-final4K-00.log": [
+      "第68篇 用户定稿原话：有"
+    ],
+    "original-stamp-after-production.log": []
+  },
+  "actual_native_core_certification": {
+    "run_id": 43535822030,
+    "job_id": 132264443476,
+    "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 478.16,
+    "artifact_id": 14089812323,
+    "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+    "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+    "origin": "actual unmodified original full quickcheck, native run43535822030"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+  "reviewed_gain_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+    "视频/工具/初稿生成/gen68.py": "0a964f368cb28898c1ff7fef8721e509e1de9ab890c8770bfabaa81029ef6deb",
+    "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+    "视频/制作记录/68_待改清单.md": "dfbb8db881a833f7c94490950ca002c59c4ae7514d461a67bd6d6c4c34380d8c",
+    "视频/制作记录/逐句确认/68.json": "3294f06466ccbb4a7f507d2f9b9d14b3e15fcce88b6e98bc8b18af448b1f7307"
+  },
+  "accepted_source": {
+    "id": "68",
+    "path": "最终版4K视频/68 - The Last Flight of the Hindenburg - 兴登堡号的 34 秒.mp4",
+    "sha256": "2f0714a25bde75b30a5af5273edad433467957baec359cca4b55b0a7b9a3b1ad",
+    "git_blob_sha": "a9759f2a67f8b2c6d2d1e4115ac159408af48fdc",
+    "bytes": 12596883,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "8e0b3f960413e498b1715e0006d5f3a848a0f4c3b29115547a8eee0cb2e7fc53"
+  },
+  "checker_reference_preparation": {
+    "article": "68",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Last Flight of the Hindenburg",
+        "exact_native_cache_key": "b4b9feb6ef31ce9931fc1c93a5a185e5e3cf8b98.pkl",
+        "cache_input_text_sha256": "1d4efb03e7a8f730385ce9fe0a8c6830754158b8af1bdf7d1406736f9a2b2014",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Last Flight of the Hindenburg",
+        "exact_native_cache_key": "d479dd5a598d116cc2cebece5dc147644c8c9044.pkl",
+        "cache_input_text_sha256": "1d4efb03e7a8f730385ce9fe0a8c6830754158b8af1bdf7d1406736f9a2b2014",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In 1936 the colossal Hindenburg made 17 Atlantic round trips, a marvel of luxury and glamour.",
+        "exact_native_cache_key": "65183ad912ef34539b00e2ba50a08a69d68a807b.pkl",
+        "cache_input_text_sha256": "fb486f2e99079f3ff759c2f234192b32d3c412be914fdfe6c1894d0ec770ccd9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In 1936 the colossal Hindenburg made 17 Atlantic round trips, a marvel of luxury and glamour.",
+        "exact_native_cache_key": "2ba05c3be12ebe44a758e42799f53bec04c90c01.pkl",
+        "cache_input_text_sha256": "fb486f2e99079f3ff759c2f234192b32d3c412be914fdfe6c1894d0ec770ccd9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In 1936 the colossal Hindenburg made 17 Atlantic round trips,",
+        "exact_native_cache_key": "9af0ed5392a304510ed7aa0ebda9aef548e0eb76.pkl",
+        "cache_input_text_sha256": "27e14b4ffdf75752ae49027f61fe7d3a5ac9e089fb635036ed575f82cafc7a86",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a marvel of luxury and glamour.",
+        "exact_native_cache_key": "d0cda3ae27c013b3d63e5baace42492845e9695a.pkl",
+        "cache_input_text_sha256": "63007caea67c4c54a1895ddcfef16df9e06e85c4282149e4d8076e13add04b63",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In 1936 the colossal Hindenburg made 17 Atlantic round trips,",
+        "exact_native_cache_key": "9af0ed5392a304510ed7aa0ebda9aef548e0eb76.pkl",
+        "cache_input_text_sha256": "27e14b4ffdf75752ae49027f61fe7d3a5ac9e089fb635036ed575f82cafc7a86",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a marvel of luxury and glamour.",
+        "exact_native_cache_key": "d0cda3ae27c013b3d63e5baace42492845e9695a.pkl",
+        "cache_input_text_sha256": "63007caea67c4c54a1895ddcfef16df9e06e85c4282149e4d8076e13add04b63",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Its amenities included a lounge and, that year, a grand piano.",
+        "exact_native_cache_key": "6b9ca6b297e45222f01cc2d17f5fb2da3e285758.pkl",
+        "cache_input_text_sha256": "d4cdde527ed4da045635bc863f3a806fa7b8c31197a6f7575b1a5d8c41573a7b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Its amenities included a lounge and, that year, a grand piano.",
+        "exact_native_cache_key": "ed54d7f7fa05d1f70703059b9e845fdc2ddec570.pkl",
+        "cache_input_text_sha256": "d4cdde527ed4da045635bc863f3a806fa7b8c31197a6f7575b1a5d8c41573a7b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Its amenities included a lounge and,",
+        "exact_native_cache_key": "6b3b4c28200f1d0378d9c1fd5226b27da1b258d2.pkl",
+        "cache_input_text_sha256": "4cc9ccc833d3fea0250218a24c0e46153cb5e92b430bdd04abfe1f0e12745671",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "that year,",
+        "exact_native_cache_key": "5eaa79df69e3bbd51e29ee8275b8aa684a7cea0d.pkl",
+        "cache_input_text_sha256": "7539cfd03f6fa6bd8125946c73ab45588fb24d0224b868ea2dce80ed31b3b20e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a grand piano.",
+        "exact_native_cache_key": "386013ba0316a756d0490e226c57a5021ec9659b.pkl",
+        "cache_input_text_sha256": "0a7f1fd531b63f9201efc30c21e59930c150d6fa719025b04ec1d41f359672be",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "An American embargo on helium export had left the ship relying on hydrogen.",
+        "exact_native_cache_key": "a48db8e6e4a6c0ac194f2e81c90f49368f260c75.pkl",
+        "cache_input_text_sha256": "9d38e89c02d6093b81637c20465a2ab44d9397ba4a2835cd95b169d0bb2fcf92",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "An American embargo on helium export had left the ship relying on hydrogen.",
+        "exact_native_cache_key": "fce6cceb37e4625a77eb4b370967560816d2f363.pkl",
+        "cache_input_text_sha256": "9d38e89c02d6093b81637c20465a2ab44d9397ba4a2835cd95b169d0bb2fcf92",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "An American embargo on helium export",
+        "exact_native_cache_key": "d4ec076b8705be9b6063669c7f9477d64b2caf91.pkl",
+        "cache_input_text_sha256": "48a6528f73c1059ebc07f02f03d06e8aba9fcd0ab7292488e738a4646fad23bb",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "had left the ship relying on hydrogen.",
+        "exact_native_cache_key": "4c766b2a59696e5f3a8e2aa333baeca012d24d79.pkl",
+        "cache_input_text_sha256": "8d38fe3c43a5dd7f5d8ba38b5875ed3ab4a82ca7311294b1e5c7725faec71cb3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Because that gas was combustible, smokers sat behind an airlock with one electric lighter.",
+        "exact_native_cache_key": "6c751f5682416c114ec9243888219e4706ef2ac5.pkl",
+        "cache_input_text_sha256": "487e3833f2ec0b6b31e957e4eb16f6c97e532daf7d22f4029278d60761434cce",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Because that gas was combustible, smokers sat behind an airlock with one electric lighter.",
+        "exact_native_cache_key": "844abacdc8c4fe85175f870aa5b32e535495973d.pkl",
+        "cache_input_text_sha256": "487e3833f2ec0b6b31e957e4eb16f6c97e532daf7d22f4029278d60761434cce",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Because that gas was combustible,",
+        "exact_native_cache_key": "d364b3747679d87c518de697e0642f64e6548864.pkl",
+        "cache_input_text_sha256": "723d14b05fd17858fcedfda5ab40f21e737be11b9e2ba505aa2640b77c8a9e4e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "smokers sat behind an airlock with one electric lighter.",
+        "exact_native_cache_key": "8683e8f4466298eed65c268dca693dbc69103679.pkl",
+        "cache_input_text_sha256": "ef0e2d9c12e1a9f6bbcd608159ed59f700ae528761dabeb55ec2c439e5028e8e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Because that gas was combustible,",
+        "exact_native_cache_key": "d364b3747679d87c518de697e0642f64e6548864.pkl",
+        "cache_input_text_sha256": "723d14b05fd17858fcedfda5ab40f21e737be11b9e2ba505aa2640b77c8a9e4e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "smokers sat behind an airlock with one electric lighter.",
+        "exact_native_cache_key": "8683e8f4466298eed65c268dca693dbc69103679.pkl",
+        "cache_input_text_sha256": "ef0e2d9c12e1a9f6bbcd608159ed59f700ae528761dabeb55ec2c439e5028e8e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The airship left Frankfurt on 3 May 1937.",
+        "exact_native_cache_key": "84a16ba76f0aec4738129b2f044804c01942b558.pkl",
+        "cache_input_text_sha256": "bb37c0206a6b40bb485159f1e28ca8180981af56c143f718c7cfd309a3205dda",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The airship left Frankfurt on 3 May 1937.",
+        "exact_native_cache_key": "3bf08047a5f39f8288fb621d6d0b406b1de696d3.pkl",
+        "cache_input_text_sha256": "bb37c0206a6b40bb485159f1e28ca8180981af56c143f718c7cfd309a3205dda",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Hours behind its timetable, it met thunderstorms at Lakehurst and circled for over an hour before its descent towards the mooring mast.",
+        "exact_native_cache_key": "6eb756c7c628e98139bb4d39244021484b0071b7.pkl",
+        "cache_input_text_sha256": "52a6c015da4e7fb7ad1fab4e6c8cd9b91605c94afa71f0eef027587ad0a0a3f0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Hours behind its timetable, it met thunderstorms at Lakehurst and circled for over an hour before its descent towards the mooring mast.",
+        "exact_native_cache_key": "60bb7900f97cfeadb4f61e038cb086be7860e678.pkl",
+        "cache_input_text_sha256": "52a6c015da4e7fb7ad1fab4e6c8cd9b91605c94afa71f0eef027587ad0a0a3f0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Hours behind its timetable,",
+        "exact_native_cache_key": "e530ea89791908907b54a01ca85b628ff1ee6579.pkl",
+        "cache_input_text_sha256": "8235774b31728378b54df6025b17105a2e4df9fb02003c574958abdbf94e7e37",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "it met thunderstorms at Lakehurst and circled for over an hour",
+        "exact_native_cache_key": "bc18fa3eef71c6c4469cfffadf40df2fe3802cbf.pkl",
+        "cache_input_text_sha256": "879cc75c49325ada2662f8322f0247dec94c102de59e82a382b9320dc826d124",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "before its descent towards the mooring mast.",
+        "exact_native_cache_key": "4de465fcf5c18e040fc1ba2eb4f84cb51919c8b2.pkl",
+        "cache_input_text_sha256": "52e28490dc7f38df5318d567a92cad717c89d270c7647e5227e8670b8f680ea4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Hours behind its timetable,",
+        "exact_native_cache_key": "e530ea89791908907b54a01ca85b628ff1ee6579.pkl",
+        "cache_input_text_sha256": "8235774b31728378b54df6025b17105a2e4df9fb02003c574958abdbf94e7e37",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "it met thunderstorms at Lakehurst and circled for over an hour before its descent towards the mooring mast.",
+        "exact_native_cache_key": "4975442de1f670f38fac327a9c1b401faf12d767.pkl",
+        "cache_input_text_sha256": "45e3f26181095e7cc754494d06b5f23b95e17f79fc86c46d0cd6e77950ff471d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "At about 7:25 pm on 6 May, flames appeared near the stern.",
+        "exact_native_cache_key": "d3e6cf2fd9d7418ee04de7f68b0f9fcef8dfd981.pkl",
+        "cache_input_text_sha256": "f193e6d064599d3aac02649105f2aceb854ab263efe136b8eb19fd4953b6a683",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "At about 7:25 pm on 6 May, flames appeared near the stern.",
+        "exact_native_cache_key": "223763f82b1b08c9325b92dd83b26e54e2651f06.pkl",
+        "cache_input_text_sha256": "f193e6d064599d3aac02649105f2aceb854ab263efe136b8eb19fd4953b6a683",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "At about 7:25 pm on 6 May,",
+        "exact_native_cache_key": "ddf16076e25b1fae8d62ffa15c317dc97a2e6ec8.pkl",
+        "cache_input_text_sha256": "7b59a94930a2c07bb3942eab16892175843f1234404c21d37a16eb049be51ff5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "flames appeared near the stern.",
+        "exact_native_cache_key": "7f57c3dede90e24107023c3cd9c5d5ce5edff1b4.pkl",
+        "cache_input_text_sha256": "1db6e7b177e1530ea5a58c5a874dd22907f4afcfd93e2f4d4c91aeb712a03c51",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The inferno incinerated the ship in about half a minute, leaving a crumpled frame.",
+        "exact_native_cache_key": "4fb7d00271c6388a30beb0317519e092548fa2d0.pkl",
+        "cache_input_text_sha256": "9cf075635483592e48f2018a6510af14f2db709b3fa9a549737a1fc0ff0a3b8c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The inferno incinerated the ship in about half a minute, leaving a crumpled frame.",
+        "exact_native_cache_key": "8336639641b660379c2427c0645ba9d17ffec04f.pkl",
+        "cache_input_text_sha256": "9cf075635483592e48f2018a6510af14f2db709b3fa9a549737a1fc0ff0a3b8c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The inferno incinerated the ship in about half a minute,",
+        "exact_native_cache_key": "696c40b95124d61fb99bd2f1bf5cb185db58ca6c.pkl",
+        "cache_input_text_sha256": "7b259a51ef750f6e4718d2ba7786335a99f8a1eb595701a531cb934fd26989d5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "leaving a crumpled frame.",
+        "exact_native_cache_key": "ce4dff5dc40cc6c58f836e431a3eb7861d584be8.pkl",
+        "cache_input_text_sha256": "79f55f9574ac14064ed761592196228778f1c2f79d86cfe96887d7bf5f60c6a6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The inferno incinerated the ship in about half a minute,",
+        "exact_native_cache_key": "696c40b95124d61fb99bd2f1bf5cb185db58ca6c.pkl",
+        "cache_input_text_sha256": "7b259a51ef750f6e4718d2ba7786335a99f8a1eb595701a531cb934fd26989d5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "leaving a crumpled frame.",
+        "exact_native_cache_key": "ce4dff5dc40cc6c58f836e431a3eb7861d584be8.pkl",
+        "cache_input_text_sha256": "79f55f9574ac14064ed761592196228778f1c2f79d86cfe96887d7bf5f60c6a6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Of the 97 aboard, 62 survived, a proportion close to two-thirds, while a minority of 35 died, as did one man on the ground.",
+        "exact_native_cache_key": "8a8d75f09ea62ab0586c97aaf485864b7a5f84ca.pkl",
+        "cache_input_text_sha256": "fd6b7427f3533b69667fc8ba300beb537c102a59ccc8e1babe068b8a25223e85",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Of the 97 aboard, 62 survived, a proportion close to two-thirds, while a minority of 35 died, as did one man on the ground.",
+        "exact_native_cache_key": "30697b1e3ba2775815f4c05880a35d9715ccc3cf.pkl",
+        "cache_input_text_sha256": "fd6b7427f3533b69667fc8ba300beb537c102a59ccc8e1babe068b8a25223e85",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Of the 97 aboard, 62 survived,",
+        "exact_native_cache_key": "dbdf704cefa87baff11eb31f3b44a0ce47c5ed9e.pkl",
+        "cache_input_text_sha256": "cf57f33a9d5daf50775af461bcb7a1c6ad62e8e12bc775478ac4ee51ff2707df",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a proportion close to two-thirds,",
+        "exact_native_cache_key": "725b634237c163ad854426bf0176945257f3afed.pkl",
+        "cache_input_text_sha256": "ea9b6076940b22e948642770138683d247d049e808c5084b170e464f75cbcfd9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "while a minority of 35 died,",
+        "exact_native_cache_key": "53699fecc73a3f6e97f7369510dc98bc99013bc7.pkl",
+        "cache_input_text_sha256": "8131f02920d9c8ddcfcb30278932ea17e93bab100d450b3eb28fa6f11999c258",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 4,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "as did one man on the ground.",
+        "exact_native_cache_key": "c2bd3b5ff557d6caae6285b011b8ff2713f51f2f.pkl",
+        "cache_input_text_sha256": "8f7184a3d6bfd320d8d12d3d43fe3af5854e6c41512b9192dee26db4743be828",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Of the 97 aboard,",
+        "exact_native_cache_key": "0f4fbeacc2a91586e8e20c998f6f9ce9acc6ebaf.pkl",
+        "cache_input_text_sha256": "72dc5775f7032c67760a3aaa5934f1e846e868a795d6176133ac2965f038f862",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "62 survived,",
+        "exact_native_cache_key": "2f6490bbb96c846a8221091ab4ed03b2a25e00a9.pkl",
+        "cache_input_text_sha256": "e0b4e02b63e7eace205fb15571871cb655140868636d97fec3b13eea0b949cc6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a proportion close to two-thirds,",
+        "exact_native_cache_key": "725b634237c163ad854426bf0176945257f3afed.pkl",
+        "cache_input_text_sha256": "ea9b6076940b22e948642770138683d247d049e808c5084b170e464f75cbcfd9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "while a minority of 35 died,",
+        "exact_native_cache_key": "53699fecc73a3f6e97f7369510dc98bc99013bc7.pkl",
+        "cache_input_text_sha256": "8131f02920d9c8ddcfcb30278932ea17e93bab100d450b3eb28fa6f11999c258",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 5,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "as did one man on the ground.",
+        "exact_native_cache_key": "c2bd3b5ff557d6caae6285b011b8ff2713f51f2f.pkl",
+        "cache_input_text_sha256": "8f7184a3d6bfd320d8d12d3d43fe3af5854e6c41512b9192dee26db4743be828",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A 14-year-old cabin boy was drenched by a deluge from a burst water tank, and the soaking saved him.",
+        "exact_native_cache_key": "3cccfa57c841a052818bde44f2031be4bb8d4889.pkl",
+        "cache_input_text_sha256": "f23d1ebacccfffb3cfc28d7197b209775a028a7693f9fb8d8a663e2e4df033ed",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A 14-year-old cabin boy was drenched by a deluge from a burst water tank, and the soaking saved him.",
+        "exact_native_cache_key": "a86893d800a5fb8a9ba8a92e288c06aa511ca586.pkl",
+        "cache_input_text_sha256": "f23d1ebacccfffb3cfc28d7197b209775a028a7693f9fb8d8a663e2e4df033ed",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "A 14-year-old cabin boy was drenched by a deluge from a burst water tank,",
+        "exact_native_cache_key": "17b72ad03d8e0ab4a47dc3c89ad3ecde0cf99e5f.pkl",
+        "cache_input_text_sha256": "952e51fa33ef150f22a2209fd4c14b074355f9d8de72047680bc723422b8688f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and the soaking saved him.",
+        "exact_native_cache_key": "e6dafe46029cdea6ff499770a7038fbab6f86116.pkl",
+        "cache_input_text_sha256": "eb8cf137f87046e946a57df694e44011a2cc2977e849368571de2a0dec6328d9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "A 14-year-old cabin boy was drenched by a deluge from a burst water tank,",
+        "exact_native_cache_key": "17b72ad03d8e0ab4a47dc3c89ad3ecde0cf99e5f.pkl",
+        "cache_input_text_sha256": "952e51fa33ef150f22a2209fd4c14b074355f9d8de72047680bc723422b8688f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and the soaking saved him.",
+        "exact_native_cache_key": "e6dafe46029cdea6ff499770a7038fbab6f86116.pkl",
+        "cache_input_text_sha256": "eb8cf137f87046e946a57df694e44011a2cc2977e849368571de2a0dec6328d9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "He dropped through a hatch and scrambled clear, escaping only narrowly.",
+        "exact_native_cache_key": "5ef92b061df80ca465e3057fbdf65dae8c6f5df7.pkl",
+        "cache_input_text_sha256": "553cade1ef4f618a808d7f7e5cedf482db24841f67a5a535456b76e9905971f6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "He dropped through a hatch and scrambled clear, escaping only narrowly.",
+        "exact_native_cache_key": "4a05a455f8b5bf2a3aef38e17d009a59891ec23b.pkl",
+        "cache_input_text_sha256": "553cade1ef4f618a808d7f7e5cedf482db24841f67a5a535456b76e9905971f6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "He dropped through a hatch and scrambled clear,",
+        "exact_native_cache_key": "257e7e7f0925fdaa353b6096202ac3bec1c04f0e.pkl",
+        "cache_input_text_sha256": "9bbf776982bbd9460efe1f4fc8b51f92b3d31ed7222655044420676765f9d42d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "escaping only narrowly.",
+        "exact_native_cache_key": "6c308af5e7d369b1c280478090dd240348c40214.pkl",
+        "cache_input_text_sha256": "acf34b485b8381a18db9bd7c73ee239800a26f59ae4df7fd45acf57585651c44",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "He dropped through a hatch and scrambled clear,",
+        "exact_native_cache_key": "257e7e7f0925fdaa353b6096202ac3bec1c04f0e.pkl",
+        "cache_input_text_sha256": "9bbf776982bbd9460efe1f4fc8b51f92b3d31ed7222655044420676765f9d42d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "escaping only narrowly.",
+        "exact_native_cache_key": "6c308af5e7d369b1c280478090dd240348c40214.pkl",
+        "cache_input_text_sha256": "acf34b485b8381a18db9bd7c73ee239800a26f59ae4df7fd45acf57585651c44",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Newsreel cameras and photographers caught the disaster.",
+        "exact_native_cache_key": "5429dd07f06dd2b2fb0affacd87505659e72e220.pkl",
+        "cache_input_text_sha256": "e62a69ebc4f2aa5668e114fd9e5fce579c445c1a4649229e4ffb94b2e312407c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Newsreel cameras and photographers caught the disaster.",
+        "exact_native_cache_key": "15143c1ff38d56f291a67dfd4d6cf1155d556c55.pkl",
+        "cache_input_text_sha256": "e62a69ebc4f2aa5668e114fd9e5fce579c445c1a4649229e4ffb94b2e312407c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A radio correspondent's eyewitness commentary was not live; audiences heard it the next day.",
+        "exact_native_cache_key": "7015ff2f048856421634e6d1b7d6cce7d1771e6d.pkl",
+        "cache_input_text_sha256": "255b963d67369660cc452459478fb69ccf08d3b9958d41ec507b61a81b14bd04",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A radio correspondent's eyewitness commentary was not live; audiences heard it the next day.",
+        "exact_native_cache_key": "4c8e055804f0ae658341a7d997ae4ce8fc247360.pkl",
+        "cache_input_text_sha256": "255b963d67369660cc452459478fb69ccf08d3b9958d41ec507b61a81b14bd04",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "A radio correspondent's eyewitness commentary was not live;",
+        "exact_native_cache_key": "94ac769e3c3399410544c9efa54286e836a73d40.pkl",
+        "cache_input_text_sha256": "f311e05d32b72a97f2b744334d103e9b254ea53cb306de653714b5aba7aec6c0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "audiences heard it the next day.",
+        "exact_native_cache_key": "45a4fa7252e16efda182d95a84ab18fa4c662d9c.pkl",
+        "cache_input_text_sha256": "c14101c58119a50e05afbf966da299c6469a49eb49ab172727e8df0c8f684f4b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "A radio correspondent's eyewitness commentary was not live;",
+        "exact_native_cache_key": "94ac769e3c3399410544c9efa54286e836a73d40.pkl",
+        "cache_input_text_sha256": "f311e05d32b72a97f2b744334d103e9b254ea53cb306de653714b5aba7aec6c0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "audiences heard it the next day.",
+        "exact_native_cache_key": "45a4fa7252e16efda182d95a84ab18fa4c662d9c.pkl",
+        "cache_input_text_sha256": "c14101c58119a50e05afbf966da299c6469a49eb49ab172727e8df0c8f684f4b",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The cause has not been definitively established, but static electricity igniting leaking hydrogen is the leading explanation.",
+        "exact_native_cache_key": "5bd07ab70959a95edde604319205e927276b14f9.pkl",
+        "cache_input_text_sha256": "2c9fede05b1b2cb0315533ae42e1cea2f59d790bfddb5f0570b0d46f157ae26e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The cause has not been definitively established, but static electricity igniting leaking hydrogen is the leading explanation.",
+        "exact_native_cache_key": "b4492a292cd49f5d6b9f1930c5470db21f13d7d8.pkl",
+        "cache_input_text_sha256": "2c9fede05b1b2cb0315533ae42e1cea2f59d790bfddb5f0570b0d46f157ae26e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The cause has not been definitively established,",
+        "exact_native_cache_key": "e93422b6eb39acb8c7819f804908817cea07b50c.pkl",
+        "cache_input_text_sha256": "ac648bc296482b23bc2dad5210115ad1fe2110c5be0106e4306888c19db3d5a5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "but static electricity igniting leaking hydrogen is the leading explanation.",
+        "exact_native_cache_key": "eaf87e28f745b7941f20ebd2f541b0ec9f897ad1.pkl",
+        "cache_input_text_sha256": "2eef0cec7520230499181c83f824c6196e1e598c85b25c339ddbbdc8656d172f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The cause has not been definitively established,",
+        "exact_native_cache_key": "e93422b6eb39acb8c7819f804908817cea07b50c.pkl",
+        "cache_input_text_sha256": "ac648bc296482b23bc2dad5210115ad1fe2110c5be0106e4306888c19db3d5a5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "but static electricity igniting leaking hydrogen is the leading explanation.",
+        "exact_native_cache_key": "eaf87e28f745b7941f20ebd2f541b0ec9f897ad1.pkl",
+        "cache_input_text_sha256": "2eef0cec7520230499181c83f824c6196e1e598c85b25c339ddbbdc8656d172f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A theory blaming the doped fabric has been rejected.",
+        "exact_native_cache_key": "dc4dedbd4eb5fcf4ef6ca8ff2338722f717fcf9e.pkl",
+        "cache_input_text_sha256": "00331da8aef905cf27d8fb6b3871f09c3177a3fea4d2ab81f6b6bd1eb169464a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A theory blaming the doped fabric has been rejected.",
+        "exact_native_cache_key": "407ea6ad82ac3a71ec7e986d1ad19fb3f7be32e8.pkl",
+        "cache_input_text_sha256": "00331da8aef905cf27d8fb6b3871f09c3177a3fea4d2ab81f6b6bd1eb169464a",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The 1933 crash of USS Akron killed 73 yet won less notoriety.",
+        "exact_native_cache_key": "b5546f15b812805a980badaae059f0c7e30796ef.pkl",
+        "cache_input_text_sha256": "55d3898ad848be8440e6863af0776e7a5b447f56414295af66e736fd3abd1399",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The 1933 crash of USS Akron killed 73 yet won less notoriety.",
+        "exact_native_cache_key": "01f67e5e020a8d86a08bd49df2f15578c95750b1.pkl",
+        "cache_input_text_sha256": "55d3898ad848be8440e6863af0776e7a5b447f56414295af66e736fd3abd1399",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The filmed fire left a fateful image that abruptly wrecked confidence.",
+        "exact_native_cache_key": "d30939850595b0e82fb635698b1814239b416c95.pkl",
+        "cache_input_text_sha256": "3043d1ec8365e66659003bdc3303994f999bf5f5717b9e4c3384bcce863f9da5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The filmed fire left a fateful image that abruptly wrecked confidence.",
+        "exact_native_cache_key": "a17cf10aa3781d0e8be485b60d77eec355b61b1e.pkl",
+        "cache_input_text_sha256": "3043d1ec8365e66659003bdc3303994f999bf5f5717b9e4c3384bcce863f9da5",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The filmed fire left a fateful image",
+        "exact_native_cache_key": "874b6f8da0239610ad68536aa1ae1e43abd3a19b.pkl",
+        "cache_input_text_sha256": "eb8078fdb75a382a9996ec4d50643e6812890b50b0b1afa88b20914e47159d90",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "that abruptly wrecked confidence.",
+        "exact_native_cache_key": "e0723ce99d07013cff3c8ceb2f836769cfc2e3fe.pkl",
+        "cache_input_text_sha256": "de057fdb60ec1004eb823c5d07982de87449a10b34747d67f557872fc73ab5d2",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "As public perception soured, Graf Zeppelin was withdrawn, later scrapped, and a glamorous epoch of aviation closed.",
+        "exact_native_cache_key": "fa34bb4d7e7883206b580e6b24fdfcb62885370d.pkl",
+        "cache_input_text_sha256": "91ef01390fd2157768b70f7620d8fa020412f675c7c39e8727cb80dc2c5ab9e7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "As public perception soured, Graf Zeppelin was withdrawn, later scrapped, and a glamorous epoch of aviation closed.",
+        "exact_native_cache_key": "520c1731d88638ccd991b9e9f8943e11e8a51cd2.pkl",
+        "cache_input_text_sha256": "91ef01390fd2157768b70f7620d8fa020412f675c7c39e8727cb80dc2c5ab9e7",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "As public perception soured,",
+        "exact_native_cache_key": "99ab1fd9c362d12bb8d87dc82217b7641c066985.pkl",
+        "cache_input_text_sha256": "b4ff80fc72a36ca6c0d9ae5a986ced3ae341d502781621939de2c5d77915cad7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Graf Zeppelin was withdrawn, later scrapped,",
+        "exact_native_cache_key": "e469e6ccee335d3d42ff195f69e2c365c1346760.pkl",
+        "cache_input_text_sha256": "7964e35a6cf4804d02d1398395d162f1fcaea897add44bddfccac715f44cc95e",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 3,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and a glamorous epoch of aviation closed.",
+        "exact_native_cache_key": "77d7ee385de249beca47bb26c1010a04ca82dc6a.pkl",
+        "cache_input_text_sha256": "615f42a4ced680dd9ec84c3ffadd3818f9cdf7e7a84d28296d5770f09e0446b9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "As public perception soured,",
+        "exact_native_cache_key": "99ab1fd9c362d12bb8d87dc82217b7641c066985.pkl",
+        "cache_input_text_sha256": "b4ff80fc72a36ca6c0d9ae5a986ced3ae341d502781621939de2c5d77915cad7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Graf Zeppelin was withdrawn,",
+        "exact_native_cache_key": "8b1a3ae000bb18f6cae6e3fda264eb87d20f8d35.pkl",
+        "cache_input_text_sha256": "ba5b414c532b8ddef478073a2c2ae87047c0b7002f6da744abf49598a381ab0c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "later scrapped,",
+        "exact_native_cache_key": "1b49f298c7149c7f7a52de40200e47be3db4dda9.pkl",
+        "cache_input_text_sha256": "2d6386e1fa448c87378d428e6138341056c9027f64cd5a8ae6a4d01fc79c0a3e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and a glamorous epoch of aviation closed.",
+        "exact_native_cache_key": "77d7ee385de249beca47bb26c1010a04ca82dc6a.pkl",
+        "cache_input_text_sha256": "615f42a4ced680dd9ec84c3ffadd3818f9cdf7e7a84d28296d5770f09e0446b9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The doomed airship's first journey to North America had begun on 6 May 1936, exactly a year before the fire.",
+        "exact_native_cache_key": "12a517046d15a5cc4c5e9485edc69af461acde4c.pkl",
+        "cache_input_text_sha256": "9ff7ea8ad2652a336d4c9a0ebdc229939999bfbad22d0abe9b8adba02c53a881",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The doomed airship's first journey to North America had begun on 6 May 1936, exactly a year before the fire.",
+        "exact_native_cache_key": "758faff818104939d53e62a5d3a051c0f2854cb9.pkl",
+        "cache_input_text_sha256": "9ff7ea8ad2652a336d4c9a0ebdc229939999bfbad22d0abe9b8adba02c53a881",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The doomed airship's first journey to North America had begun on 6 May 1936,",
+        "exact_native_cache_key": "ce3eca57cae8f0d4abcfb9bb6b5cd265ee79a8b3.pkl",
+        "cache_input_text_sha256": "66d076189f71d47d2c22d85a97a9132ad973a8c8d29e15756cc184ba380249a0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "exactly a year before the fire.",
+        "exact_native_cache_key": "bc2522db0d2055820245b80d9e42e5fc87b79d5a.pkl",
+        "cache_input_text_sha256": "d9ff6b84884754d3646c8013a0f8783517fb637d49a2d1c12b07331ccf414623",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The doomed airship's first journey to North America had begun on 6 May 1936,",
+        "exact_native_cache_key": "ce3eca57cae8f0d4abcfb9bb6b5cd265ee79a8b3.pkl",
+        "cache_input_text_sha256": "66d076189f71d47d2c22d85a97a9132ad973a8c8d29e15756cc184ba380249a0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S19",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "exactly a year before the fire.",
+        "exact_native_cache_key": "bc2522db0d2055820245b80d9e42e5fc87b79d5a.pkl",
+        "cache_input_text_sha256": "d9ff6b84884754d3646c8013a0f8783517fb637d49a2d1c12b07331ccf414623",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 80,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "b4b9feb6ef31ce9931fc1c93a5a185e5e3cf8b98.pkl",
+        "pkl_sha256": "b407909b73ed043a6a9390fe469fbd87aff377ab768f451dded1c2c991ffcb2e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Last Flight of the Hindenburg",
+            "exact_native_cache_key": "b4b9feb6ef31ce9931fc1c93a5a185e5e3cf8b98.pkl",
+            "cache_input_text_sha256": "1d4efb03e7a8f730385ce9fe0a8c6830754158b8af1bdf7d1406736f9a2b2014",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b407909b73ed043a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          41472
+        ],
+        "unprocessed_array_sha256": "391539b43b1d2490a207ced60a98d548be6c748b2966ba40978557e18bdf6e63"
+      },
+      {
+        "exact_native_cache_key": "65183ad912ef34539b00e2ba50a08a69d68a807b.pkl",
+        "pkl_sha256": "ca692e3da1df8ff18fd805944cf0ff06271b299db8d3a7f2bf53fbfa5816afeb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In 1936 the colossal Hindenburg made 17 Atlantic round trips, a marvel of luxury and glamour.",
+            "exact_native_cache_key": "65183ad912ef34539b00e2ba50a08a69d68a807b.pkl",
+            "cache_input_text_sha256": "fb486f2e99079f3ff759c2f234192b32d3c412be914fdfe6c1894d0ec770ccd9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ca692e3da1df8ff1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          196096
+        ],
+        "unprocessed_array_sha256": "2f9f2d2c68795262c99dac6b3060a7ccaf8201215f8d111e755da670a973d063"
+      },
+      {
+        "exact_native_cache_key": "9af0ed5392a304510ed7aa0ebda9aef548e0eb76.pkl",
+        "pkl_sha256": "eef97cb8676745e11a0136f3f11146248ec160d9ce6ad17a6f336d2d15c246e0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In 1936 the colossal Hindenburg made 17 Atlantic round trips,",
+            "exact_native_cache_key": "9af0ed5392a304510ed7aa0ebda9aef548e0eb76.pkl",
+            "cache_input_text_sha256": "27e14b4ffdf75752ae49027f61fe7d3a5ac9e089fb635036ed575f82cafc7a86",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In 1936 the colossal Hindenburg made 17 Atlantic round trips,",
+            "exact_native_cache_key": "9af0ed5392a304510ed7aa0ebda9aef548e0eb76.pkl",
+            "cache_input_text_sha256": "27e14b4ffdf75752ae49027f61fe7d3a5ac9e089fb635036ed575f82cafc7a86",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "eef97cb8676745e1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          132096
+        ],
+        "unprocessed_array_sha256": "ef7ca1d51a76ad6b3c0fc7cce16c25a022380bd05561db2185da401fcd7100ed"
+      },
+      {
+        "exact_native_cache_key": "d0cda3ae27c013b3d63e5baace42492845e9695a.pkl",
+        "pkl_sha256": "9edf2b0c543ba596b913b5bf18532d84b8e1aed94ec9b15667bf60764afbf57a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a marvel of luxury and glamour.",
+            "exact_native_cache_key": "d0cda3ae27c013b3d63e5baace42492845e9695a.pkl",
+            "cache_input_text_sha256": "63007caea67c4c54a1895ddcfef16df9e06e85c4282149e4d8076e13add04b63",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a marvel of luxury and glamour.",
+            "exact_native_cache_key": "d0cda3ae27c013b3d63e5baace42492845e9695a.pkl",
+            "cache_input_text_sha256": "63007caea67c4c54a1895ddcfef16df9e06e85c4282149e4d8076e13add04b63",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9edf2b0c543ba596",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          49152
+        ],
+        "unprocessed_array_sha256": "960e6eb47f17006b5fa90f1076a3ba11438c2b514a42ac83774659d346fb5a43"
+      },
+      {
+        "exact_native_cache_key": "6b9ca6b297e45222f01cc2d17f5fb2da3e285758.pkl",
+        "pkl_sha256": "fb71282e4173ce9b16124990ce275e430562ad451467e3713549e998e0609171",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Its amenities included a lounge and, that year, a grand piano.",
+            "exact_native_cache_key": "6b9ca6b297e45222f01cc2d17f5fb2da3e285758.pkl",
+            "cache_input_text_sha256": "d4cdde527ed4da045635bc863f3a806fa7b8c31197a6f7575b1a5d8c41573a7b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "fb71282e4173ce9b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          98304
+        ],
+        "unprocessed_array_sha256": "0a026dbd964e37d4336742fda1bd7f0bcce141bc127e453983c6b4b7853ea0be"
+      },
+      {
+        "exact_native_cache_key": "6b3b4c28200f1d0378d9c1fd5226b27da1b258d2.pkl",
+        "pkl_sha256": "c791597d1a83d721edaec0558620e122633f8be97034e3bd60cf0e230630990b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Its amenities included a lounge and,",
+            "exact_native_cache_key": "6b3b4c28200f1d0378d9c1fd5226b27da1b258d2.pkl",
+            "cache_input_text_sha256": "4cc9ccc833d3fea0250218a24c0e46153cb5e92b430bdd04abfe1f0e12745671",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c791597d1a83d721",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          55296
+        ],
+        "unprocessed_array_sha256": "fd647bb46737097e8e52aceb76e9d81b24e8708a218cfc209b254465a0b2bc9c"
+      },
+      {
+        "exact_native_cache_key": "5eaa79df69e3bbd51e29ee8275b8aa684a7cea0d.pkl",
+        "pkl_sha256": "b72d41781435415ccaa3dfc84f431969c0f64b9e72169115572ba70ab6ce6a02",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "that year,",
+            "exact_native_cache_key": "5eaa79df69e3bbd51e29ee8275b8aa684a7cea0d.pkl",
+            "cache_input_text_sha256": "7539cfd03f6fa6bd8125946c73ab45588fb24d0224b868ea2dce80ed31b3b20e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b72d41781435415c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          19456
+        ],
+        "unprocessed_array_sha256": "98d40ec28b32847c35a047cbda9ca25fa09bb1130036d2df8db45ca6bddc5eff"
+      },
+      {
+        "exact_native_cache_key": "386013ba0316a756d0490e226c57a5021ec9659b.pkl",
+        "pkl_sha256": "db9a28a1392d7ecbe24ccb2a7b5e409b7263ed02e89d54698d873eb010c51de1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a grand piano.",
+            "exact_native_cache_key": "386013ba0316a756d0490e226c57a5021ec9659b.pkl",
+            "cache_input_text_sha256": "0a7f1fd531b63f9201efc30c21e59930c150d6fa719025b04ec1d41f359672be",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "db9a28a1392d7ecb",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          28672
+        ],
+        "unprocessed_array_sha256": "bc56d0d9916121f37154d8f849815572c02d1b5c6bf022d9b559a23fa23a582a"
+      },
+      {
+        "exact_native_cache_key": "a48db8e6e4a6c0ac194f2e81c90f49368f260c75.pkl",
+        "pkl_sha256": "485ccd0ac955c6cf45e40d6b467b857306f0c26e6f5f64f019cbbbe9b52697dc",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "An American embargo on helium export had left the ship relying on hydrogen.",
+            "exact_native_cache_key": "a48db8e6e4a6c0ac194f2e81c90f49368f260c75.pkl",
+            "cache_input_text_sha256": "9d38e89c02d6093b81637c20465a2ab44d9397ba4a2835cd95b169d0bb2fcf92",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "485ccd0ac955c6cf",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          135680
+        ],
+        "unprocessed_array_sha256": "096e34d6552417ced8fb796c54eeff37c485c7fbd98a066298af818987209946"
+      },
+      {
+        "exact_native_cache_key": "d4ec076b8705be9b6063669c7f9477d64b2caf91.pkl",
+        "pkl_sha256": "f0886845d39b21041348e9fd023260e5541bf702a9720f014812f1e62d948aed",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "An American embargo on helium export",
+            "exact_native_cache_key": "d4ec076b8705be9b6063669c7f9477d64b2caf91.pkl",
+            "cache_input_text_sha256": "48a6528f73c1059ebc07f02f03d06e8aba9fcd0ab7292488e738a4646fad23bb",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f0886845d39b2104",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62976
+        ],
+        "unprocessed_array_sha256": "0f4420a9da34581510647c4640e8fd9b66e4bcb22229704cfebdfab78d7ec61e"
+      },
+      {
+        "exact_native_cache_key": "4c766b2a59696e5f3a8e2aa333baeca012d24d79.pkl",
+        "pkl_sha256": "398336cb5d11a400bd70dc36e57a585678f8ce32c642c94be6b6cee6c9d04f2d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "had left the ship relying on hydrogen.",
+            "exact_native_cache_key": "4c766b2a59696e5f3a8e2aa333baeca012d24d79.pkl",
+            "cache_input_text_sha256": "8d38fe3c43a5dd7f5d8ba38b5875ed3ab4a82ca7311294b1e5c7725faec71cb3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "398336cb5d11a400",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57344
+        ],
+        "unprocessed_array_sha256": "fd968cd2ecf789b1fbfab39467d5979059c2a1b03717389aa3263e0246116682"
+      },
+      {
+        "exact_native_cache_key": "6c751f5682416c114ec9243888219e4706ef2ac5.pkl",
+        "pkl_sha256": "0336643b8b0997cdcf3fc60ea7acd1bf240b1290cf6da4d83630e4d527084bc1",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Because that gas was combustible, smokers sat behind an airlock with one electric lighter.",
+            "exact_native_cache_key": "6c751f5682416c114ec9243888219e4706ef2ac5.pkl",
+            "cache_input_text_sha256": "487e3833f2ec0b6b31e957e4eb16f6c97e532daf7d22f4029278d60761434cce",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0336643b8b0997cd",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          139776
+        ],
+        "unprocessed_array_sha256": "972d35350b3e266d5b53d468005c61ebd2988eee002aa22eba19dbc9a8aea95c"
+      },
+      {
+        "exact_native_cache_key": "d364b3747679d87c518de697e0642f64e6548864.pkl",
+        "pkl_sha256": "e3d166a0801f5dd3a6ccf9d9f533654db92ca3ef00f89246e838c791f95f817f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Because that gas was combustible,",
+            "exact_native_cache_key": "d364b3747679d87c518de697e0642f64e6548864.pkl",
+            "cache_input_text_sha256": "723d14b05fd17858fcedfda5ab40f21e737be11b9e2ba505aa2640b77c8a9e4e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Because that gas was combustible,",
+            "exact_native_cache_key": "d364b3747679d87c518de697e0642f64e6548864.pkl",
+            "cache_input_text_sha256": "723d14b05fd17858fcedfda5ab40f21e737be11b9e2ba505aa2640b77c8a9e4e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e3d166a0801f5dd3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          46080
+        ],
+        "unprocessed_array_sha256": "9988ca55ff69a917ab23529510235f507dde51c67883f86ea3a3e2e5ced4e706"
+      },
+      {
+        "exact_native_cache_key": "8683e8f4466298eed65c268dca693dbc69103679.pkl",
+        "pkl_sha256": "ce670109ce133b097e64cab7afcfb5f5b2f83a453958496326657af101c69f52",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "smokers sat behind an airlock with one electric lighter.",
+            "exact_native_cache_key": "8683e8f4466298eed65c268dca693dbc69103679.pkl",
+            "cache_input_text_sha256": "ef0e2d9c12e1a9f6bbcd608159ed59f700ae528761dabeb55ec2c439e5028e8e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "smokers sat behind an airlock with one electric lighter.",
+            "exact_native_cache_key": "8683e8f4466298eed65c268dca693dbc69103679.pkl",
+            "cache_input_text_sha256": "ef0e2d9c12e1a9f6bbcd608159ed59f700ae528761dabeb55ec2c439e5028e8e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ce670109ce133b09",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          86528
+        ],
+        "unprocessed_array_sha256": "11e37c228c36566352677a6fd946cda8807ca0f0c3312eed9b8a8a534a9bccc7"
+      },
+      {
+        "exact_native_cache_key": "84a16ba76f0aec4738129b2f044804c01942b558.pkl",
+        "pkl_sha256": "b728bfec8164a51ff3c616d114867ddadccb3a7757f00a2c1656322a3491c345",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The airship left Frankfurt on 3 May 1937.",
+            "exact_native_cache_key": "84a16ba76f0aec4738129b2f044804c01942b558.pkl",
+            "cache_input_text_sha256": "bb37c0206a6b40bb485159f1e28ca8180981af56c143f718c7cfd309a3205dda",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b728bfec8164a51f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          102400
+        ],
+        "unprocessed_array_sha256": "99307217feb96db4c5d26d943614fd77b1f0c5e99553c55ed3ad0382f403dfaa"
+      },
+      {
+        "exact_native_cache_key": "6eb756c7c628e98139bb4d39244021484b0071b7.pkl",
+        "pkl_sha256": "43f67302edb98214fd523fc3c0a6e595abf095f41039f5de1ac11c453512e705",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Hours behind its timetable, it met thunderstorms at Lakehurst and circled for over an hour before its descent towards the mooring mast.",
+            "exact_native_cache_key": "6eb756c7c628e98139bb4d39244021484b0071b7.pkl",
+            "cache_input_text_sha256": "52a6c015da4e7fb7ad1fab4e6c8cd9b91605c94afa71f0eef027587ad0a0a3f0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "43f67302edb98214",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          219136
+        ],
+        "unprocessed_array_sha256": "f908a49aeaee334000317cd8dbd7b27edd81840d7e6594c37baeec55428a7356"
+      },
+      {
+        "exact_native_cache_key": "e530ea89791908907b54a01ca85b628ff1ee6579.pkl",
+        "pkl_sha256": "419e7b0c496db13a9c9330a9828e1ed2e9c9c85a36ff9425bee59ff14a108769",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Hours behind its timetable,",
+            "exact_native_cache_key": "e530ea89791908907b54a01ca85b628ff1ee6579.pkl",
+            "cache_input_text_sha256": "8235774b31728378b54df6025b17105a2e4df9fb02003c574958abdbf94e7e37",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Hours behind its timetable,",
+            "exact_native_cache_key": "e530ea89791908907b54a01ca85b628ff1ee6579.pkl",
+            "cache_input_text_sha256": "8235774b31728378b54df6025b17105a2e4df9fb02003c574958abdbf94e7e37",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "419e7b0c496db13a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          42496
+        ],
+        "unprocessed_array_sha256": "ff348498530b971c19333154369e703667a73bd107963be9a1fe4c43f5140cdc"
+      },
+      {
+        "exact_native_cache_key": "bc18fa3eef71c6c4469cfffadf40df2fe3802cbf.pkl",
+        "pkl_sha256": "a68a05710db3dff2ecd912bc6f1df6e21bbbf557e4101f7ac3893654d5243a3c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "it met thunderstorms at Lakehurst and circled for over an hour",
+            "exact_native_cache_key": "bc18fa3eef71c6c4469cfffadf40df2fe3802cbf.pkl",
+            "cache_input_text_sha256": "879cc75c49325ada2662f8322f0247dec94c102de59e82a382b9320dc826d124",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a68a05710db3dff2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          96256
+        ],
+        "unprocessed_array_sha256": "cfda79fbd90a249c9dfa4b1205556d92f80efcdbc7dc0060dab5ce1df3219513"
+      },
+      {
+        "exact_native_cache_key": "4de465fcf5c18e040fc1ba2eb4f84cb51919c8b2.pkl",
+        "pkl_sha256": "2494ec9d93748ce1af421dcf5ff0eaaa5b628205dbffa4c366e391800594c680",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "before its descent towards the mooring mast.",
+            "exact_native_cache_key": "4de465fcf5c18e040fc1ba2eb4f84cb51919c8b2.pkl",
+            "cache_input_text_sha256": "52e28490dc7f38df5318d567a92cad717c89d270c7647e5227e8670b8f680ea4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2494ec9d93748ce1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60416
+        ],
+        "unprocessed_array_sha256": "af354abbd43d07354f0f19a5f44084f3c750fbbb562921134acffaf687cc9617"
+      },
+      {
+        "exact_native_cache_key": "4975442de1f670f38fac327a9c1b401faf12d767.pkl",
+        "pkl_sha256": "a1817c8b2e8324bafe22e28b505c1c766e3e3d26a1d1eca9607e027c8e37d136",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "it met thunderstorms at Lakehurst and circled for over an hour before its descent towards the mooring mast.",
+            "exact_native_cache_key": "4975442de1f670f38fac327a9c1b401faf12d767.pkl",
+            "cache_input_text_sha256": "45e3f26181095e7cc754494d06b5f23b95e17f79fc86c46d0cd6e77950ff471d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a1817c8b2e8324ba",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          163328
+        ],
+        "unprocessed_array_sha256": "e1cd449667f170d27393f6c0e2bbc0b77fbf29ed36b9e338fdc871b07f3ed31b"
+      },
+      {
+        "exact_native_cache_key": "d3e6cf2fd9d7418ee04de7f68b0f9fcef8dfd981.pkl",
+        "pkl_sha256": "c939f08a1d04aaf630bffb214e45e3fb4a8189e4cea7d3cf370048f10c74e8b2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "At about 7:25 pm on 6 May, flames appeared near the stern.",
+            "exact_native_cache_key": "d3e6cf2fd9d7418ee04de7f68b0f9fcef8dfd981.pkl",
+            "cache_input_text_sha256": "f193e6d064599d3aac02649105f2aceb854ab263efe136b8eb19fd4953b6a683",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c939f08a1d04aaf6",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          131584
+        ],
+        "unprocessed_array_sha256": "a848606a766b1f65597d95ffc5ebbfdf9d8e561383e30e96df2f9c7c9db2f5cd"
+      },
+      {
+        "exact_native_cache_key": "ddf16076e25b1fae8d62ffa15c317dc97a2e6ec8.pkl",
+        "pkl_sha256": "128bfe42f388f708489f9ccb99b370e38cfbcba17cc1a55e2ac2827727fb1a4f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "At about 7:25 pm on 6 May,",
+            "exact_native_cache_key": "ddf16076e25b1fae8d62ffa15c317dc97a2e6ec8.pkl",
+            "cache_input_text_sha256": "7b59a94930a2c07bb3942eab16892175843f1234404c21d37a16eb049be51ff5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "128bfe42f388f708",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          74752
+        ],
+        "unprocessed_array_sha256": "047f52fe0790720590dfda9c264eb0fd40e2e07d60c20a08c7e92679cf1deb1a"
+      },
+      {
+        "exact_native_cache_key": "7f57c3dede90e24107023c3cd9c5d5ce5edff1b4.pkl",
+        "pkl_sha256": "9bf07a341e898a8f17afa60bb1c9e983c9ca613eaad7bd642e22d33f3b088a47",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "flames appeared near the stern.",
+            "exact_native_cache_key": "7f57c3dede90e24107023c3cd9c5d5ce5edff1b4.pkl",
+            "cache_input_text_sha256": "1db6e7b177e1530ea5a58c5a874dd22907f4afcfd93e2f4d4c91aeb712a03c51",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9bf07a341e898a8f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39936
+        ],
+        "unprocessed_array_sha256": "7fe5a3374a53dedc51998ff5e191b2d5b9bb09b877d1a22ec009649e2515048b"
+      },
+      {
+        "exact_native_cache_key": "4fb7d00271c6388a30beb0317519e092548fa2d0.pkl",
+        "pkl_sha256": "b65499d919ccaed4531eaa70eb950b3c03daff1a188deee0a66822659f238bec",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The inferno incinerated the ship in about half a minute, leaving a crumpled frame.",
+            "exact_native_cache_key": "4fb7d00271c6388a30beb0317519e092548fa2d0.pkl",
+            "cache_input_text_sha256": "9cf075635483592e48f2018a6510af14f2db709b3fa9a549737a1fc0ff0a3b8c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b65499d919ccaed4",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          125440
+        ],
+        "unprocessed_array_sha256": "7bfbdd625e876f88875c4a45cfb2cea12da41dbe4445a583fa6b9876e8905fdd"
+      },
+      {
+        "exact_native_cache_key": "696c40b95124d61fb99bd2f1bf5cb185db58ca6c.pkl",
+        "pkl_sha256": "0203015779af26a7c54206ef9d6164e2f5f2334d23e39683c183f76e32033835",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The inferno incinerated the ship in about half a minute,",
+            "exact_native_cache_key": "696c40b95124d61fb99bd2f1bf5cb185db58ca6c.pkl",
+            "cache_input_text_sha256": "7b259a51ef750f6e4718d2ba7786335a99f8a1eb595701a531cb934fd26989d5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The inferno incinerated the ship in about half a minute,",
+            "exact_native_cache_key": "696c40b95124d61fb99bd2f1bf5cb185db58ca6c.pkl",
+            "cache_input_text_sha256": "7b259a51ef750f6e4718d2ba7786335a99f8a1eb595701a531cb934fd26989d5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0203015779af26a7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          78848
+        ],
+        "unprocessed_array_sha256": "3fbad86a2df009132ffc5ad15b96708273c9a36bca8d40bff79a64b987aed972"
+      },
+      {
+        "exact_native_cache_key": "ce4dff5dc40cc6c58f836e431a3eb7861d584be8.pkl",
+        "pkl_sha256": "22f3e77672aaf5a12d593df7ca7ed84ba73eabff28136d061ba345a33f2fff64",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "leaving a crumpled frame.",
+            "exact_native_cache_key": "ce4dff5dc40cc6c58f836e431a3eb7861d584be8.pkl",
+            "cache_input_text_sha256": "79f55f9574ac14064ed761592196228778f1c2f79d86cfe96887d7bf5f60c6a6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S8",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "leaving a crumpled frame.",
+            "exact_native_cache_key": "ce4dff5dc40cc6c58f836e431a3eb7861d584be8.pkl",
+            "cache_input_text_sha256": "79f55f9574ac14064ed761592196228778f1c2f79d86cfe96887d7bf5f60c6a6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "22f3e77672aaf5a1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          38400
+        ],
+        "unprocessed_array_sha256": "a8e874097939ee23cc8346956aac4652339de816d660689d4f917fb5c46cb9ae"
+      },
+      {
+        "exact_native_cache_key": "8a8d75f09ea62ab0586c97aaf485864b7a5f84ca.pkl",
+        "pkl_sha256": "2b430b4ff5d9ca29f26317706db42a1e11cebcca1ddcf7fa51697ff02a1a3a55",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Of the 97 aboard, 62 survived, a proportion close to two-thirds, while a minority of 35 died, as did one man on the ground.",
+            "exact_native_cache_key": "8a8d75f09ea62ab0586c97aaf485864b7a5f84ca.pkl",
+            "cache_input_text_sha256": "fd6b7427f3533b69667fc8ba300beb537c102a59ccc8e1babe068b8a25223e85",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2b430b4ff5d9ca29",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          250880
+        ],
+        "unprocessed_array_sha256": "90cabb5af9b0d33eae7cc1b84b2ede51c64e5e05b5229517d234635f1bd93e0a"
+      },
+      {
+        "exact_native_cache_key": "dbdf704cefa87baff11eb31f3b44a0ce47c5ed9e.pkl",
+        "pkl_sha256": "517995f593bb3037633a557d873888128972e1d9753ccf673bd08eb28351797e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Of the 97 aboard, 62 survived,",
+            "exact_native_cache_key": "dbdf704cefa87baff11eb31f3b44a0ce47c5ed9e.pkl",
+            "cache_input_text_sha256": "cf57f33a9d5daf50775af461bcb7a1c6ad62e8e12bc775478ac4ee51ff2707df",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "517995f593bb3037",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          76800
+        ],
+        "unprocessed_array_sha256": "8e45c44439b467983796cd1ebce02ff7bdf58dc9a374b7820c8c22020c05c368"
+      },
+      {
+        "exact_native_cache_key": "725b634237c163ad854426bf0176945257f3afed.pkl",
+        "pkl_sha256": "a22c6dbb74a21a521d94237664055ddb4a9fe422f17e0cbfcd9ca4c7ec2b8457",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a proportion close to two-thirds,",
+            "exact_native_cache_key": "725b634237c163ad854426bf0176945257f3afed.pkl",
+            "cache_input_text_sha256": "ea9b6076940b22e948642770138683d247d049e808c5084b170e464f75cbcfd9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a proportion close to two-thirds,",
+            "exact_native_cache_key": "725b634237c163ad854426bf0176945257f3afed.pkl",
+            "cache_input_text_sha256": "ea9b6076940b22e948642770138683d247d049e808c5084b170e464f75cbcfd9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a22c6dbb74a21a52",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          47104
+        ],
+        "unprocessed_array_sha256": "f04a4f1d37f20734f5003cffe66f00f1be85a875af5559389e2b0ea5c96dd857"
+      },
+      {
+        "exact_native_cache_key": "53699fecc73a3f6e97f7369510dc98bc99013bc7.pkl",
+        "pkl_sha256": "61aa6d6139855836a39a368b3cee404213e7079a4f663d59da75678dacaa27ac",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "while a minority of 35 died,",
+            "exact_native_cache_key": "53699fecc73a3f6e97f7369510dc98bc99013bc7.pkl",
+            "cache_input_text_sha256": "8131f02920d9c8ddcfcb30278932ea17e93bab100d450b3eb28fa6f11999c258",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "while a minority of 35 died,",
+            "exact_native_cache_key": "53699fecc73a3f6e97f7369510dc98bc99013bc7.pkl",
+            "cache_input_text_sha256": "8131f02920d9c8ddcfcb30278932ea17e93bab100d450b3eb28fa6f11999c258",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "61aa6d6139855836",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          55808
+        ],
+        "unprocessed_array_sha256": "b84b9d23c97245ce68e0de80305eb6cbbc330d41b444aefa81636e5c03ea6174"
+      },
+      {
+        "exact_native_cache_key": "c2bd3b5ff557d6caae6285b011b8ff2713f51f2f.pkl",
+        "pkl_sha256": "4b294396b919d4da5b7719c3e21f922b625b81305cd7629532f59993ed901c2c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 4,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "as did one man on the ground.",
+            "exact_native_cache_key": "c2bd3b5ff557d6caae6285b011b8ff2713f51f2f.pkl",
+            "cache_input_text_sha256": "8f7184a3d6bfd320d8d12d3d43fe3af5854e6c41512b9192dee26db4743be828",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S9",
+            "piece": 5,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "as did one man on the ground.",
+            "exact_native_cache_key": "c2bd3b5ff557d6caae6285b011b8ff2713f51f2f.pkl",
+            "cache_input_text_sha256": "8f7184a3d6bfd320d8d12d3d43fe3af5854e6c41512b9192dee26db4743be828",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4b294396b919d4da",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          44544
+        ],
+        "unprocessed_array_sha256": "adddacbf6e816ed4f9b7168f015f7c19485a6fa3733bdb6589aaa42c3c0f8dd1"
+      },
+      {
+        "exact_native_cache_key": "0f4fbeacc2a91586e8e20c998f6f9ce9acc6ebaf.pkl",
+        "pkl_sha256": "6e227947311bbc5618a67f4739a662e2af64a983d8419051a2baae5010e4d4c6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Of the 97 aboard,",
+            "exact_native_cache_key": "0f4fbeacc2a91586e8e20c998f6f9ce9acc6ebaf.pkl",
+            "cache_input_text_sha256": "72dc5775f7032c67760a3aaa5934f1e846e868a795d6176133ac2965f038f862",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6e227947311bbc56",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          39936
+        ],
+        "unprocessed_array_sha256": "3a41ad9936ddc57e0a92fee16636f8e2c9ac1b004c66e1fdba487ec9019d2164"
+      },
+      {
+        "exact_native_cache_key": "2f6490bbb96c846a8221091ab4ed03b2a25e00a9.pkl",
+        "pkl_sha256": "b79fda7312252a46569613dd9a754d109bb8ba0b8be85f5aeb13c6622b79689a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "62 survived,",
+            "exact_native_cache_key": "2f6490bbb96c846a8221091ab4ed03b2a25e00a9.pkl",
+            "cache_input_text_sha256": "e0b4e02b63e7eace205fb15571871cb655140868636d97fec3b13eea0b949cc6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b79fda7312252a46",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35840
+        ],
+        "unprocessed_array_sha256": "1f041e2b7108f192516c749a4f1456e355914c185c331a3df0e045836ddb044b"
+      },
+      {
+        "exact_native_cache_key": "3cccfa57c841a052818bde44f2031be4bb8d4889.pkl",
+        "pkl_sha256": "8741cbdb35b0a71a224d7a3628ff7e33b772fe4d8e077e7582c065aea5e13595",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A 14-year-old cabin boy was drenched by a deluge from a burst water tank, and the soaking saved him.",
+            "exact_native_cache_key": "3cccfa57c841a052818bde44f2031be4bb8d4889.pkl",
+            "cache_input_text_sha256": "f23d1ebacccfffb3cfc28d7197b209775a028a7693f9fb8d8a663e2e4df033ed",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8741cbdb35b0a71a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          166912
+        ],
+        "unprocessed_array_sha256": "f745c0a5137f2d06048198689cbd7c763a26e3bb6b87acc35f40124df0df8f85"
+      },
+      {
+        "exact_native_cache_key": "17b72ad03d8e0ab4a47dc3c89ad3ecde0cf99e5f.pkl",
+        "pkl_sha256": "45ec7103da8796ff701b7b5d36bdc33f2210483600bc8e7c30deeb71dc28368d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "A 14-year-old cabin boy was drenched by a deluge from a burst water tank,",
+            "exact_native_cache_key": "17b72ad03d8e0ab4a47dc3c89ad3ecde0cf99e5f.pkl",
+            "cache_input_text_sha256": "952e51fa33ef150f22a2209fd4c14b074355f9d8de72047680bc723422b8688f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "A 14-year-old cabin boy was drenched by a deluge from a burst water tank,",
+            "exact_native_cache_key": "17b72ad03d8e0ab4a47dc3c89ad3ecde0cf99e5f.pkl",
+            "cache_input_text_sha256": "952e51fa33ef150f22a2209fd4c14b074355f9d8de72047680bc723422b8688f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "45ec7103da8796ff",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          127488
+        ],
+        "unprocessed_array_sha256": "73e7f98f1c058d1e174e7a8212ad167d3c64e665ab7c9b714249dbb777cdc03f"
+      },
+      {
+        "exact_native_cache_key": "e6dafe46029cdea6ff499770a7038fbab6f86116.pkl",
+        "pkl_sha256": "f0eaedcbab6ab5fdefe79ed5c5f349188273ccdbf135eb769dd7db865031d17f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and the soaking saved him.",
+            "exact_native_cache_key": "e6dafe46029cdea6ff499770a7038fbab6f86116.pkl",
+            "cache_input_text_sha256": "eb8cf137f87046e946a57df694e44011a2cc2977e849368571de2a0dec6328d9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and the soaking saved him.",
+            "exact_native_cache_key": "e6dafe46029cdea6ff499770a7038fbab6f86116.pkl",
+            "cache_input_text_sha256": "eb8cf137f87046e946a57df694e44011a2cc2977e849368571de2a0dec6328d9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f0eaedcbab6ab5fd",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          35328
+        ],
+        "unprocessed_array_sha256": "13b47986692bc47114ed6db9302f24cee3029de196833bba45f91a33a00e7ad4"
+      },
+      {
+        "exact_native_cache_key": "5ef92b061df80ca465e3057fbdf65dae8c6f5df7.pkl",
+        "pkl_sha256": "6e44de93dda1a4f3ffa474b8f99a6f8b86b2715b3f9acc546574a1bd509d2a5a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "He dropped through a hatch and scrambled clear, escaping only narrowly.",
+            "exact_native_cache_key": "5ef92b061df80ca465e3057fbdf65dae8c6f5df7.pkl",
+            "cache_input_text_sha256": "553cade1ef4f618a808d7f7e5cedf482db24841f67a5a535456b76e9905971f6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6e44de93dda1a4f3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          105472
+        ],
+        "unprocessed_array_sha256": "e4827b027cd99c3e9b616b26353c01a1de81f32b5e8a35a1bf3eb72735f49548"
+      },
+      {
+        "exact_native_cache_key": "257e7e7f0925fdaa353b6096202ac3bec1c04f0e.pkl",
+        "pkl_sha256": "19a59db99f36100c5879bbe5705d64a71bb935cdce2f39d1fcebcbffe281521c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "He dropped through a hatch and scrambled clear,",
+            "exact_native_cache_key": "257e7e7f0925fdaa353b6096202ac3bec1c04f0e.pkl",
+            "cache_input_text_sha256": "9bbf776982bbd9460efe1f4fc8b51f92b3d31ed7222655044420676765f9d42d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "He dropped through a hatch and scrambled clear,",
+            "exact_native_cache_key": "257e7e7f0925fdaa353b6096202ac3bec1c04f0e.pkl",
+            "cache_input_text_sha256": "9bbf776982bbd9460efe1f4fc8b51f92b3d31ed7222655044420676765f9d42d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "19a59db99f36100c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          56832
+        ],
+        "unprocessed_array_sha256": "854f565afd0441dc30b7776dac34127e25be1cd82dc7565186259d5821192913"
+      },
+      {
+        "exact_native_cache_key": "6c308af5e7d369b1c280478090dd240348c40214.pkl",
+        "pkl_sha256": "52dd040a5688f68047ecba34b8eeff238aa41a1b590c63baa2505d9a990c8b44",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "escaping only narrowly.",
+            "exact_native_cache_key": "6c308af5e7d369b1c280478090dd240348c40214.pkl",
+            "cache_input_text_sha256": "acf34b485b8381a18db9bd7c73ee239800a26f59ae4df7fd45acf57585651c44",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "escaping only narrowly.",
+            "exact_native_cache_key": "6c308af5e7d369b1c280478090dd240348c40214.pkl",
+            "cache_input_text_sha256": "acf34b485b8381a18db9bd7c73ee239800a26f59ae4df7fd45acf57585651c44",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "52dd040a5688f680",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          41472
+        ],
+        "unprocessed_array_sha256": "b9f55778c2f1dd9a86e21a10f0496494500ebd964d3872a6da596ac4f6ce4e0b"
+      },
+      {
+        "exact_native_cache_key": "5429dd07f06dd2b2fb0affacd87505659e72e220.pkl",
+        "pkl_sha256": "dcddf9fc2d10f1bdbd3cdb761eea8823f8004aec5fba6d6030b36232dae34ccc",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Newsreel cameras and photographers caught the disaster.",
+            "exact_native_cache_key": "5429dd07f06dd2b2fb0affacd87505659e72e220.pkl",
+            "cache_input_text_sha256": "e62a69ebc4f2aa5668e114fd9e5fce579c445c1a4649229e4ffb94b2e312407c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "dcddf9fc2d10f1bd",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          80384
+        ],
+        "unprocessed_array_sha256": "066a5a278eddf72e36dd4c5e67c71da43a87ef952e5299380901f666e5c66c25"
+      },
+      {
+        "exact_native_cache_key": "7015ff2f048856421634e6d1b7d6cce7d1771e6d.pkl",
+        "pkl_sha256": "4bb6cecc3bcbc0a93ffbbd6affa14187e719b2d2569391e95532d8f0e4f41143",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A radio correspondent's eyewitness commentary was not live; audiences heard it the next day.",
+            "exact_native_cache_key": "7015ff2f048856421634e6d1b7d6cce7d1771e6d.pkl",
+            "cache_input_text_sha256": "255b963d67369660cc452459478fb69ccf08d3b9958d41ec507b61a81b14bd04",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "4bb6cecc3bcbc0a9",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          153088
+        ],
+        "unprocessed_array_sha256": "7749d933e4bb13786bfd242ce2a67b8cc3c92a74c565e51c937cd84f21b792a2"
+      },
+      {
+        "exact_native_cache_key": "94ac769e3c3399410544c9efa54286e836a73d40.pkl",
+        "pkl_sha256": "6388e3a70732a0af901bbca2750abb6ecf530e3a2e7fdc528de072849185cc3e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "A radio correspondent's eyewitness commentary was not live;",
+            "exact_native_cache_key": "94ac769e3c3399410544c9efa54286e836a73d40.pkl",
+            "cache_input_text_sha256": "f311e05d32b72a97f2b744334d103e9b254ea53cb306de653714b5aba7aec6c0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "A radio correspondent's eyewitness commentary was not live;",
+            "exact_native_cache_key": "94ac769e3c3399410544c9efa54286e836a73d40.pkl",
+            "cache_input_text_sha256": "f311e05d32b72a97f2b744334d103e9b254ea53cb306de653714b5aba7aec6c0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6388e3a70732a0af",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          98304
+        ],
+        "unprocessed_array_sha256": "d42636e6c85ed1a385c8329786b5e481abe261ed9b23f421b6853341381023bb"
+      },
+      {
+        "exact_native_cache_key": "45a4fa7252e16efda182d95a84ab18fa4c662d9c.pkl",
+        "pkl_sha256": "5554fe6a4383bc76f33aff45fdc0c717fc54fc2d72099cb481a3deae8f7a4ef0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "audiences heard it the next day.",
+            "exact_native_cache_key": "45a4fa7252e16efda182d95a84ab18fa4c662d9c.pkl",
+            "cache_input_text_sha256": "c14101c58119a50e05afbf966da299c6469a49eb49ab172727e8df0c8f684f4b",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "audiences heard it the next day.",
+            "exact_native_cache_key": "45a4fa7252e16efda182d95a84ab18fa4c662d9c.pkl",
+            "cache_input_text_sha256": "c14101c58119a50e05afbf966da299c6469a49eb49ab172727e8df0c8f684f4b",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5554fe6a4383bc76",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          45568
+        ],
+        "unprocessed_array_sha256": "708a5152e198be2fec5facd6c1b747e6c3881341d22bbcda46a88f5a405bf160"
+      },
+      {
+        "exact_native_cache_key": "5bd07ab70959a95edde604319205e927276b14f9.pkl",
+        "pkl_sha256": "7120d8e61382313885774b2a5cc08227ac4d4d864afeb0605e6c4c217d5998eb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The cause has not been definitively established, but static electricity igniting leaking hydrogen is the leading explanation.",
+            "exact_native_cache_key": "5bd07ab70959a95edde604319205e927276b14f9.pkl",
+            "cache_input_text_sha256": "2c9fede05b1b2cb0315533ae42e1cea2f59d790bfddb5f0570b0d46f157ae26e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "7120d8e613823138",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          202240
+        ],
+        "unprocessed_array_sha256": "b2c8b00d6d013df9135f3c54160ad96b1e178cad61114a045984e68e7eb0f39e"
+      },
+      {
+        "exact_native_cache_key": "e93422b6eb39acb8c7819f804908817cea07b50c.pkl",
+        "pkl_sha256": "f86984253aef373686ab8019907361e9de243dc08e4f408f0a38fdbc6ca659ab",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The cause has not been definitively established,",
+            "exact_native_cache_key": "e93422b6eb39acb8c7819f804908817cea07b50c.pkl",
+            "cache_input_text_sha256": "ac648bc296482b23bc2dad5210115ad1fe2110c5be0106e4306888c19db3d5a5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S14",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The cause has not been definitively established,",
+            "exact_native_cache_key": "e93422b6eb39acb8c7819f804908817cea07b50c.pkl",
+            "cache_input_text_sha256": "ac648bc296482b23bc2dad5210115ad1fe2110c5be0106e4306888c19db3d5a5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f86984253aef3736",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67072
+        ],
+        "unprocessed_array_sha256": "415ed24128f3b3c33b5139db02518a721cece7b0240a9270936352ec5f32f18e"
+      },
+      {
+        "exact_native_cache_key": "eaf87e28f745b7941f20ebd2f541b0ec9f897ad1.pkl",
+        "pkl_sha256": "8d759c548e1fc02dd6eff249972d8c078f501fa32a6747cf22e87ffa4f1a3948",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "but static electricity igniting leaking hydrogen is the leading explanation.",
+            "exact_native_cache_key": "eaf87e28f745b7941f20ebd2f541b0ec9f897ad1.pkl",
+            "cache_input_text_sha256": "2eef0cec7520230499181c83f824c6196e1e598c85b25c339ddbbdc8656d172f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S14",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "but static electricity igniting leaking hydrogen is the leading explanation.",
+            "exact_native_cache_key": "eaf87e28f745b7941f20ebd2f541b0ec9f897ad1.pkl",
+            "cache_input_text_sha256": "2eef0cec7520230499181c83f824c6196e1e598c85b25c339ddbbdc8656d172f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8d759c548e1fc02d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          128512
+        ],
+        "unprocessed_array_sha256": "331d2df7872047f3c7b196418f424cdccb2b6bf43a9287221243209cf609b8b4"
+      },
+      {
+        "exact_native_cache_key": "dc4dedbd4eb5fcf4ef6ca8ff2338722f717fcf9e.pkl",
+        "pkl_sha256": "58453acc090f62acc24effcd529b44a0bf123010a48ffa738d4a5fccf56c272c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A theory blaming the doped fabric has been rejected.",
+            "exact_native_cache_key": "dc4dedbd4eb5fcf4ef6ca8ff2338722f717fcf9e.pkl",
+            "cache_input_text_sha256": "00331da8aef905cf27d8fb6b3871f09c3177a3fea4d2ab81f6b6bd1eb169464a",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "58453acc090f62ac",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          77824
+        ],
+        "unprocessed_array_sha256": "7edcbfa421e311ff4c1bc3f741d63a5b6c6730cee79d2fbf5339e04d4c38c248"
+      },
+      {
+        "exact_native_cache_key": "b5546f15b812805a980badaae059f0c7e30796ef.pkl",
+        "pkl_sha256": "2e13a265e2e82f6abc4809f0fb6011606d6b9bf33f3b2a6bbc3fd19b22146cd8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The 1933 crash of USS Akron killed 73 yet won less notoriety.",
+            "exact_native_cache_key": "b5546f15b812805a980badaae059f0c7e30796ef.pkl",
+            "cache_input_text_sha256": "55d3898ad848be8440e6863af0776e7a5b447f56414295af66e736fd3abd1399",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2e13a265e2e82f6a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          158208
+        ],
+        "unprocessed_array_sha256": "bc6e453d7903f4237772619f53e2faf0a61861e1c4e71f0794ec723a7406cb2b"
+      },
+      {
+        "exact_native_cache_key": "d30939850595b0e82fb635698b1814239b416c95.pkl",
+        "pkl_sha256": "5a31b9512d19f2104283c44b021b76e5b562b700bad2b3699054c5f0fc884086",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The filmed fire left a fateful image that abruptly wrecked confidence.",
+            "exact_native_cache_key": "d30939850595b0e82fb635698b1814239b416c95.pkl",
+            "cache_input_text_sha256": "3043d1ec8365e66659003bdc3303994f999bf5f5717b9e4c3384bcce863f9da5",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5a31b9512d19f210",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          106496
+        ],
+        "unprocessed_array_sha256": "6eb2f72edbc254d469eca616b9acfad0b62682faa89197e03d11d0ec0ac27a35"
+      },
+      {
+        "exact_native_cache_key": "874b6f8da0239610ad68536aa1ae1e43abd3a19b.pkl",
+        "pkl_sha256": "94ca5c5e26c3cc75af7d3b1982778aef74aa3093aaa737b6b18ef1ec67e49cbc",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The filmed fire left a fateful image",
+            "exact_native_cache_key": "874b6f8da0239610ad68536aa1ae1e43abd3a19b.pkl",
+            "cache_input_text_sha256": "eb8078fdb75a382a9996ec4d50643e6812890b50b0b1afa88b20914e47159d90",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "94ca5c5e26c3cc75",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          54784
+        ],
+        "unprocessed_array_sha256": "61f5db9a59837266cfb99770582bea0c21bec38a1b4b9af908c3fa10100e6c44"
+      },
+      {
+        "exact_native_cache_key": "e0723ce99d07013cff3c8ceb2f836769cfc2e3fe.pkl",
+        "pkl_sha256": "c6d900017c5f672a5bfb6fef4a7cb7e01fcdf9c8ff6da42b3350cdadee7ee554",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "that abruptly wrecked confidence.",
+            "exact_native_cache_key": "e0723ce99d07013cff3c8ceb2f836769cfc2e3fe.pkl",
+            "cache_input_text_sha256": "de057fdb60ec1004eb823c5d07982de87449a10b34747d67f557872fc73ab5d2",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c6d900017c5f672a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          45056
+        ],
+        "unprocessed_array_sha256": "15e95a80ad148475e84bf3c05cf8444ee384fd6c2e43f6de6886098e5193be0a"
+      },
+      {
+        "exact_native_cache_key": "fa34bb4d7e7883206b580e6b24fdfcb62885370d.pkl",
+        "pkl_sha256": "c1e2bf2ff50acdbfb494cd63d1cf6b9d04501388cb3a066c23281ad9ac304c02",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "As public perception soured, Graf Zeppelin was withdrawn, later scrapped, and a glamorous epoch of aviation closed.",
+            "exact_native_cache_key": "fa34bb4d7e7883206b580e6b24fdfcb62885370d.pkl",
+            "cache_input_text_sha256": "91ef01390fd2157768b70f7620d8fa020412f675c7c39e8727cb80dc2c5ab9e7",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c1e2bf2ff50acdbf",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          186880
+        ],
+        "unprocessed_array_sha256": "d501ad8ff867e8fa3ec5e83349a20b7728deb6938260c9e260682770673a200f"
+      },
+      {
+        "exact_native_cache_key": "99ab1fd9c362d12bb8d87dc82217b7641c066985.pkl",
+        "pkl_sha256": "d567d34404aa31edcec51010613c24800fcdcc214b40b5a17d10cf02d1966ecb",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "As public perception soured,",
+            "exact_native_cache_key": "99ab1fd9c362d12bb8d87dc82217b7641c066985.pkl",
+            "cache_input_text_sha256": "b4ff80fc72a36ca6c0d9ae5a986ced3ae341d502781621939de2c5d77915cad7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S18",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "As public perception soured,",
+            "exact_native_cache_key": "99ab1fd9c362d12bb8d87dc82217b7641c066985.pkl",
+            "cache_input_text_sha256": "b4ff80fc72a36ca6c0d9ae5a986ced3ae341d502781621939de2c5d77915cad7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d567d34404aa31ed",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          42496
+        ],
+        "unprocessed_array_sha256": "04d2c2d9d891556738404d98fe9b70e7a8035b1fa997d9ce5c5c502f6fefe16a"
+      },
+      {
+        "exact_native_cache_key": "e469e6ccee335d3d42ff195f69e2c365c1346760.pkl",
+        "pkl_sha256": "fbd260cd588e39b0f852ceeb457ae2e91c86b34818f9b02bc9f1d8f79ab7da36",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Graf Zeppelin was withdrawn, later scrapped,",
+            "exact_native_cache_key": "e469e6ccee335d3d42ff195f69e2c365c1346760.pkl",
+            "cache_input_text_sha256": "7964e35a6cf4804d02d1398395d162f1fcaea897add44bddfccac715f44cc95e",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "fbd260cd588e39b0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          60928
+        ],
+        "unprocessed_array_sha256": "ddf38a28d4c06f711d54337b6fbb738d493527807be8bc90cd8345f1bee46c80"
+      },
+      {
+        "exact_native_cache_key": "77d7ee385de249beca47bb26c1010a04ca82dc6a.pkl",
+        "pkl_sha256": "5d3f4f974874304e684a71fe70c41fc65feca25016e0b0b0117c18d64768fcb4",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 3,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and a glamorous epoch of aviation closed.",
+            "exact_native_cache_key": "77d7ee385de249beca47bb26c1010a04ca82dc6a.pkl",
+            "cache_input_text_sha256": "615f42a4ced680dd9ec84c3ffadd3818f9cdf7e7a84d28296d5770f09e0446b9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S18",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and a glamorous epoch of aviation closed.",
+            "exact_native_cache_key": "77d7ee385de249beca47bb26c1010a04ca82dc6a.pkl",
+            "cache_input_text_sha256": "615f42a4ced680dd9ec84c3ffadd3818f9cdf7e7a84d28296d5770f09e0446b9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5d3f4f974874304e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          61440
+        ],
+        "unprocessed_array_sha256": "12998fdf1cd95967ec7f684ffcb359b903df8d335db645b309472cb1f6626377"
+      },
+      {
+        "exact_native_cache_key": "8b1a3ae000bb18f6cae6e3fda264eb87d20f8d35.pkl",
+        "pkl_sha256": "65a1c26fbdf8791d730b2d2982ebb89c6567fbc0208902a1ac75e7de9eec3c85",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Graf Zeppelin was withdrawn,",
+            "exact_native_cache_key": "8b1a3ae000bb18f6cae6e3fda264eb87d20f8d35.pkl",
+            "cache_input_text_sha256": "ba5b414c532b8ddef478073a2c2ae87047c0b7002f6da744abf49598a381ab0c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "65a1c26fbdf8791d",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          41984
+        ],
+        "unprocessed_array_sha256": "818f21575fb63c8db417f032bd4f014a54b0620d6b19cfafd78d4e74aa5db1e2"
+      },
+      {
+        "exact_native_cache_key": "1b49f298c7149c7f7a52de40200e47be3db4dda9.pkl",
+        "pkl_sha256": "d2451f5cdc07caa579f7f592d899c91c495b9404fb355d18525e1cda45f3fb1e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "later scrapped,",
+            "exact_native_cache_key": "1b49f298c7149c7f7a52de40200e47be3db4dda9.pkl",
+            "cache_input_text_sha256": "2d6386e1fa448c87378d428e6138341056c9027f64cd5a8ae6a4d01fc79c0a3e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "d2451f5cdc07caa5",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          26112
+        ],
+        "unprocessed_array_sha256": "85bd4d2dbbadbeec766f75b0b56bbdc05f73724e2292dcfd88119180e4bc5828"
+      },
+      {
+        "exact_native_cache_key": "12a517046d15a5cc4c5e9485edc69af461acde4c.pkl",
+        "pkl_sha256": "e12d2b51e443b1b7ba18d443ca6fd2a2a4e93ef9e73e8f63af6658547623718f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The doomed airship's first journey to North America had begun on 6 May 1936, exactly a year before the fire.",
+            "exact_native_cache_key": "12a517046d15a5cc4c5e9485edc69af461acde4c.pkl",
+            "cache_input_text_sha256": "9ff7ea8ad2652a336d4c9a0ebdc229939999bfbad22d0abe9b8adba02c53a881",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e12d2b51e443b1b7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          205312
+        ],
+        "unprocessed_array_sha256": "e318e100d5451d9e82e0ecdf540cead3e62c7e3f6a8c98e56b9e83798074ac3e"
+      },
+      {
+        "exact_native_cache_key": "ce3eca57cae8f0d4abcfb9bb6b5cd265ee79a8b3.pkl",
+        "pkl_sha256": "2cba0d27e36636032e39d3a10e18382694903b5402fb0e85735116255c0adeea",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The doomed airship's first journey to North America had begun on 6 May 1936,",
+            "exact_native_cache_key": "ce3eca57cae8f0d4abcfb9bb6b5cd265ee79a8b3.pkl",
+            "cache_input_text_sha256": "66d076189f71d47d2c22d85a97a9132ad973a8c8d29e15756cc184ba380249a0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S19",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The doomed airship's first journey to North America had begun on 6 May 1936,",
+            "exact_native_cache_key": "ce3eca57cae8f0d4abcfb9bb6b5cd265ee79a8b3.pkl",
+            "cache_input_text_sha256": "66d076189f71d47d2c22d85a97a9132ad973a8c8d29e15756cc184ba380249a0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2cba0d27e3663603",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          151552
+        ],
+        "unprocessed_array_sha256": "23110db687ea511885baaeae2baa0146f1ce4d5e46d9aa5b3551bdc4e313fec8"
+      },
+      {
+        "exact_native_cache_key": "bc2522db0d2055820245b80d9e42e5fc87b79d5a.pkl",
+        "pkl_sha256": "96ef4ca9acc42ad8fc6bf119587e6cf54e2422c1420ec1d551356fb9c660c7c6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S19",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "exactly a year before the fire.",
+            "exact_native_cache_key": "bc2522db0d2055820245b80d9e42e5fc87b79d5a.pkl",
+            "cache_input_text_sha256": "d9ff6b84884754d3646c8013a0f8783517fb637d49a2d1c12b07331ccf414623",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S19",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "exactly a year before the fire.",
+            "exact_native_cache_key": "bc2522db0d2055820245b80d9e42e5fc87b79d5a.pkl",
+            "cache_input_text_sha256": "d9ff6b84884754d3646c8013a0f8783517fb637d49a2d1c12b07331ccf414623",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "96ef4ca9acc42ad8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          47104
+        ],
+        "unprocessed_array_sha256": "8582d20b75095c111e0d2ed55742727aebb6f8993e84844010521c87379b72c3"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "8e0b3f960413e498b1715e0006d5f3a848a0f4c3b29115547a8eee0cb2e7fc53",
+    "accepted_aac_adts_sha256_after": "8e0b3f960413e498b1715e0006d5f3a848a0f4c3b29115547a8eee0cb2e7fc53",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "fresh_current_article_reference": {
+    "article": "68",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794623831295056091,
+    "repository_outputs_modified": false
+  },
+  "reviewed_gain_control_preservation": [
+    {
+      "stage": "canonical-draft",
+      "requested_gain_controls": {
+        "/分段增益dB": {
+          "S1": {
+            "1": 0.0,
+            "2": 0.0
+          },
+          "S2": {
+            "1": 2.0,
+            "2": -1.0,
+            "3": 1.5
+          }
+        }
+      },
+      "actual_gain_controls": {
+        "/分段增益dB": {
+          "S1": {
+            "1": 0.0,
+            "2": 0.0
+          },
+          "S2": {
+            "1": 2.0,
+            "2": -1.0,
+            "3": 1.5
+          }
+        }
+      },
+      "exactly_preserved": true
+    },
+    {
+      "stage": "canonical-final4K",
+      "requested_gain_controls": {
+        "/分段增益dB": {
+          "S1": {
+            "1": 0.0,
+            "2": 0.0
+          },
+          "S2": {
+            "1": 2.0,
+            "2": -1.0,
+            "3": 1.5
+          }
+        }
+      },
+      "actual_gain_controls": {
+        "/分段增益dB": {
+          "S1": {
+            "1": 0.0,
+            "2": 0.0
+          },
+          "S2": {
+            "1": 2.0,
+            "2": -1.0,
+            "3": 1.5
+          }
+        }
+      },
+      "exactly_preserved": true
+    }
+  ],
+  "canonical_video_sha256": "84bb911a6739ecdf5edc45fef72f6636ad1dae65a358f37dc6793c16701d70ea",
+  "canonical_aac_adts_sha256": "25d35cb1eb11540ac282b575628ed94d2d9cdbb9dc528d6880adf946f93f5da9",
+  "canonical_pipeline_passed": true,
+  "cached_input_wav_sha256": null,
+  "final_wav_sha256": "91cdc512b6af36698f482052fe4499c3d4a25dfa42786f11aa71061c5e63313b",
+  "error": "Canonical AAC differs from the accepted prior voice.",
+  "reference_gain_failure_diagnostic": {
+    "acceptance": false,
+    "diagnostic_only": true,
+    "program_present": true,
+    "reference_meta_present": true,
+    "actual_pcm_present": true,
+    "current_post_check_present": true,
+    "exit": 0,
+    "program_sha256": "e9c6fa0ad2147ab6227919c2039406b87a4865567d1c0ceaa70c456c1bd02e60",
+    "file": "68-reference-gain-diagnostic.json",
+    "sha256": "11bf538f7c3253fa1ff40ba85b425e8ab675d3e550a9fea374bcd2d1bf86b5b3",
+    "anchor_summary": {
+      "count": 318,
+      "same_waveform_candidates": 303,
+      "median_fitted_gain": 0.9621892758995625,
+      "median_fitted_to_default_gain": 1.0000005484491423,
+      "fitted_gain_min": 0.9621596924576307,
+      "fitted_gain_max": 0.9622146398431717,
+      "inferred_kept_input_peak": 0.9249739342271593,
+      "default_gain_fails_original_2_2_lsb_limit_count": 0
+    },
+    "diagnostic_error": null
+  },
+  "failed_current_video": {
+    "exported": false,
+    "passed": false,
+    "acceptance": false,
+    "purpose": "failed current-attempt video for diagnosis; not a final deliverable",
+    "reason": "Official fingerprint is audio-only or does not match current video/source/PCM.",
+    "fingerprint_hash_format": "official SHA256 first 16 hex characters",
+    "mismatched_fingerprint_fields": [
+      "脚本"
+    ]
+  }
+}

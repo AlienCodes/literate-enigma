@@ -16,7 +16,12 @@ if [ "${XG_KEEP_REVIEWED_ENDING:-0}" = "1" ]; then
 else
     python3 $T/结尾句接点.py $no $ea --写入 2>&1 | grep -E "接点样本|停止|没有句中标点" | cut -c1-160
 fi
-for i in 1 2 3; do bash $T/快速重建核查.sh $no >/dev/null 2>&1; python3 $T/区间作废.py $no 2>&1 | grep -v "没有读音"; python3 $T/疑点清单.py $no >/dev/null 2>&1; python3 $T/自动切点.py $no --写入 2>&1 | grep -E "^$no 疑点|停止"; done
+cut_args=(--写入); cut_filter="^$no 疑点|停止"
+# 修订重制：原自动切点仍逐轮计算建议，显式模式只取消这一步写入；后续原声音门照跑。
+if [ "${XG_KEEP_REVIEWED_CUTS:-0}" = "1" ]; then
+    cut_args=(); cut_filter="^$no 疑点|^  删|^  人看|停止"
+fi
+for i in 1 2 3; do bash $T/快速重建核查.sh $no >/dev/null 2>&1; python3 $T/区间作废.py $no 2>&1 | grep -v "没有读音"; python3 $T/疑点清单.py $no >/dev/null 2>&1; python3 $T/自动切点.py $no "${cut_args[@]}" 2>&1 | grep -E "$cut_filter"; done
 python3 $T/词尾辅音核对.py $no --写入 2>&1 | grep -E "写入|问题数" | tail -3
 gain_args=(--写入); gain_filter="写入|停止"
 # 修订重制：保留请求中已审的增益；只量响度、打印原建议，后面的原声音核查照跑。

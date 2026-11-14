@@ -1,0 +1,117 @@
+import json,re,glob,os
+# 第68篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-08 重点词中文沿用文章定稿（铁律）；中英尽量对齐、标色优先；不用破折号（T36）；三项并列加牛津逗号（T18）；形容词“的”并进粗体（T38）。
+S=[
+(1,[[[("In 1936","1936年，"),("the **colossal**","**巨大的**(colossal)"),("Hindenburg","兴登堡号"),("made","完成了"),("17","17次"),("Atlantic","跨大西洋"),("**round trips**,","**往返飞行**(round trips)，")]],
+    [[("a **marvel** of **luxury** and **glamour**.","这是一个**奢华**(luxury)与**魅力**(glamour)的**奇观**(marvel)。")],
+     "（a marvel of…：同位语，补充说明前面整句）"]]),
+(1,[[[("Its **amenities**","它的**便利设施**(amenities)"),("included","包括"),("a **lounge**","一间**休息厅**(lounge)，"),("and,","以及，"),("that year,","在那一年，"),("a","一架"),("grand piano.","三角钢琴。")],
+     "（that year：插入语，指1936年）"]]),
+(1,[[[("An American **embargo** on **helium** **export**","美国对**氦气**(helium)**出口**(export)的**禁运**(embargo)")],
+     "（embargo on…：对……的禁运）"],
+    [[("had left the ship","已经使得这艘飞艇"),("relying on","只能依赖于"),("**hydrogen**.","**氢气**(hydrogen)。")],
+     "（leave sb doing：使某人处于某种状态；had left：过去完成时）"]]),
+(1,[[[("Because","因为"),("that gas","氢气"),("was **combustible**,","**易燃**(combustible)，")],
+     "（Because 引导原因状语从句；that gas 指 hydrogen）"],
+    [[("**smokers**","**吸烟者**(smokers)"),("**sat behind** an airlock with one **electric lighter**.","只能**坐在**(sat behind)一道带有**电子点烟器**(electric lighter)的气闸**后面**(sat behind)。")]]]),
+(2,[[[("The **airship** left Frankfurt on 3 May 1937.","1937年5月3日，**飞艇**(airship)离开法兰克福。")]]]),
+(2,[[[("Hours behind its **timetable**,","它比**时刻表**(timetable)晚了几个小时，")],
+     "（Hours behind its timetable：形容词短语作状语）"],
+    [[("it met **thunderstorms** at Lakehurst","在莱克赫斯特遇到**雷暴**(thunderstorms)，"),("and **circled**","**盘旋了**(circled)"),("for over an hour","一个多小时，")]],
+    [[("**before** its **descent** towards the **mooring mast**.","**才开始**(before)朝着**系留塔架**(mooring mast)**下降**(descent)。")],
+     "（towards the mooring mast：介词短语，修饰 descent）\n（mooring mast 地面上一根专门用来拴住飞艇机头、\n防止它被风吹跑的高大铁塔（系留塔））"]]),
+(2,[[[("At about 7:25 pm on 6 May,","5月6日晚上约7点25分，"),("**flames**","**火焰**(flames)"),("appeared","出现在了"),("near the **stern**.","飞艇的**尾部**(stern)附近。")]]]),
+(2,[[[("The **inferno**","这场**无法控制的大火**(inferno)"),("**incinerated** the ship in about half a minute,","在大约半分钟内就**焚毁了**(incinerated)这艘飞艇，")]],
+    [[("leaving","留下了"),("a **crumpled**","一副**扭曲变形的**(crumpled)"),("**frame**.","**骨架**(frame)。")],
+     "（leaving…：现在分词短语作结果状语）"]]),
+(3,[[[("Of the 97 aboard,","在艇上97人中，"),("62 survived,","62人生还，")],
+     "（Of the 97 aboard：97人之中；aboard 作后置定语）"],
+    [[("a **proportion**","这一**比例**(proportion)"),("close to","接近"),("**two-thirds**,","**三分之二**(two-thirds)；")],
+     "（a proportion close to two-thirds：同位语，\n补充说明前面的数字）"],
+    [[("while","而"),("**a minority of**","**少数的**(a minority of)"),("35","35人"),("died,","遇难，")],
+     "（while：表示对比）"],
+    [[("as did one man on the ground.","地面上另有一名男子也丧生了。")],
+     "（as did…：倒装，did 代替 died）"]]),
+(3,[[[("A","一名"),("14-year-old","14岁的"),("**cabin boy**","**艇上的服务生**(cabin boy)"),("was **drenched** by a **deluge** from a **burst** water tank,","被一个**爆裂的**(burst)水箱里**涌出的水**(deluge)**浇透了**(drenched)，")],
+     "（在客轮或商船上干杂活、伺候乘客的年轻男服务员（通常年纪很小））\n（was drenched by…：被动语态）"],
+    [[("and","而"),("the **soaking**","正是这一身**湿透**(soaking)"),("saved him.","救了他。")]]]),
+(3,[[[("He","他"),("dropped through a **hatch**","从一个**舱口**(hatch)掉落下去，"),("and **scrambled**","**迅速而吃力地爬了**(scrambled)"),("clear,","出来，")],
+     "（scramble clear：迅速而吃力地爬出来、脱身）"],
+    [[("escaping only **narrowly**.","仅仅**勉强**(narrowly)逃脱。")],
+     "（escaping…：现在分词短语作结果状语）"]]),
+(4,[[[("Newsreel cameras","新闻纪录片摄影机"),("and **photographers**","和**摄影师**(photographers)"),("caught","拍下了"),("the disaster.","这场灾难。")]]]),
+(4,[[[("A radio **correspondent**'s","一位电台的**专题记者**(correspondent)的"),("**eyewitness**","**目击**(eyewitness)"),("**commentary**","**实况报道**(commentary)"),("was not","并不是"),("live;","直播；")]],
+    [[("**audiences**","**听众**(audiences)"),("heard it the next day.","在第二天才听到。")],
+     "（it 指 commentary）\n（当时有个电台记者就在现场，\n一边看爆炸一边崩溃地录了解说。\n不过那年头没法搞现场直播，全美国的老百姓，\n是到了第二天才在收音机里听到他这段绝望的录音的。）"]]),
+(4,[[[("The cause","起火原因"),("has not been","尚未"),("**definitively**","**清楚地**(definitively)"),("established,","得到确认，")],
+     "（has not been established：现在完成时的被动语态）"],
+    [[("but","但"),("**static electricity**","**静电**(static electricity)"),("**igniting**","**点燃**(igniting)"),("**leaking**","**泄漏的**(leaking)"),("hydrogen","氢气"),("is the **leading explanation**.","是**最主要的解释**(leading explanation)。")],
+     "（igniting leaking hydrogen：现在分词短语作后置定语，\n修饰 static electricity）"]]),
+(4,[[[("A **theory** blaming the **doped** **fabric**","一种将责任归咎于**上过涂料的**(doped)**蒙皮织物**(fabric)的**未被证实的看法**(theory)，"),("has been **rejected**.","并**没有被接受**(rejected)。")],
+     "（blaming…：现在分词短语作后置定语，修饰 theory）"]]),
+(5,[[[("The 1933 crash of USS Akron","1933年阿克伦号失事"),("killed 73","造成73人死亡，"),("yet won less **notoriety**.","**恶名**(notoriety)却没那么大。")],
+     "（USS：United States Ship，美国海军舰艇名前缀）"]]),
+(5,[[[("The filmed fire","被拍下的大火"),("left a","留下了一幅"),("**fateful**","**带来厄运的**(fateful)"),("**image**","**画面**(image)，")]],
+    [[("that **abruptly**","**骤然**(abruptly)"),("wrecked","摧毁了人们的"),("**confidence**.","**信心**(confidence)。")],
+     "（that 引导定语从句，修饰 image）\n（飞艇烧毁的视频一传开，全世界都吓傻了。\n大家对飞艇的安全彻底失去了信心，再也没人敢坐，\n这个曾经风光无限的行业就这么完蛋了。）"]]),
+(5,[[[("As public","随着公众的"),("**perception**","**看法**(perception)"),("**soured**,","**变糟**(soured)，")],
+     "（As 引导时间状语从句）"],
+    [[("Graf Zeppelin","格拉夫·齐柏林号"),("was **withdrawn**,","**退役**(withdrawn)，"),("later","随后"),("**scrapped**,","被**报废处理**(scrapped)，")],
+     "（later scrapped：省略了 was）"],
+    [[("and a **glamorous** **epoch** of **aviation** closed.","而**航空业**(aviation)的一个**充满魅力的**(glamorous)**时代**(epoch)结束了。")],
+     "（of aviation：介词短语作后置定语，修饰 epoch）"]]),
+(5,[[[("The **doomed** airship's","这艘**注定毁灭的**(doomed)飞艇"),("first journey to North America","首次飞往北美的航程，"),("had begun","始于"),("on 6 May 1936,","1936年5月6日，")],
+     "（had begun：过去完成时）"],
+    [[("exactly a year before the fire.","恰好是那场大火的一年前。")],
+     "（简述：奢华隐患：曾完成17次大西洋往返的“兴登堡号”，因美国禁运氦气，被迫改用极易燃的氢气。\n"
+     "惨烈爆炸：1937年5月6日降落时尾部起火，仅半分钟便烧毁。万幸97人中62人生还，包括一名被水箱浇透的14岁侍应生。\n"
+     "时代落幕：起火原因至今成谜（主流推测为静电）。但被镜头完整拍下的惨状彻底摧毁了公众信心，直接导致飞艇退役，客运飞艇时代宣告终结。）"]]),
+]
+G={}
+DZ={}
+G.update({
+ "S3 had left the ship":"对齐不了：leave sb doing 使役结构，用户译文“已经使得这艘飞艇”，left 与 the ship 拆开中文只剩“已经使得”“这艘飞艇”，动词“使得”带宾语是一个整体",
+ "S2 grand piano":"对齐不了：grand piano 是一个名词“三角钢琴”，拆开不通",
+ "S8 incinerated the ship in about half a minute":"对齐不了：时间状语 in about half a minute 中文“在大约半分钟内”必须放到动词“焚毁了”前（用户译文）",
+ "S9 as did one man on the ground":"对齐不了：as did… 倒装，中文“地面上另有一名男子也丧生了”地点状语必须提前",
+ "S10 was drenched by a deluge from a burst water tank":"对齐不了：被动结构 was drenched by…，中文“被……浇透了”动词必须放最后；water tank 是一个名词“水箱”",
+ "S13 A radio correspondent's":"对齐不了：'s 是所有格，中文“的”接在“专题记者”后面；radio 中文“电台的”已在前",
+ "S13 heard it the next day":"对齐不了：时间状语 the next day 中文“在第二天”必须放到动词“听到”前",
+ "S16 yet won less notoriety":"对齐不了：won less notoriety 中文“恶名却没那么大”，名词作主语提前，动词 won 不译",
+ "S17 The filmed fire":"对齐不了：过去分词 filmed 作前置定语，中文“被拍下的大火”一个名词短语",
+ "S19 exactly a year before the fire":"对齐不了：a year before the fire 中文“那场大火的一年前”必须倒过来"})
+CONF={"合组":G,"对齐":DZ}
+out={"no":"68","title_en":"The Last Flight of the Hindenburg","title_zh":"兴登堡号的 34 秒","title_fx":{"hl":["Hindenburg"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+     "高亮按实际开口":True,"高亮开口门槛":40,
+     "术语":{"Hindenburg":"兴登堡号","Atlantic":"大西洋","Frankfurt":"法兰克福","Lakehurst":"莱克赫斯特","USS Akron":"阿克伦号","Graf Zeppelin":"格拉夫·齐柏林号","North America":"北美","American":"美国"}}
+out.update({"非人声区间":{"S1":[[1.465042,1.662542,"紧贴两头"]],"S2":[[1.922958,2.207708,"紧贴词头"]],"S5":[[1.515,1.74]],"S6":[[4.535,4.762125]],"S8":[[3.235542,3.610542,"紧贴词头"]],"S9":[[3.110083,3.441,"紧贴词头"],[5.49,5.80]],"S17":[[2.34275,2.6025,"紧贴词尾"]],"S18":[[1.762667,1.945],[4.792583,5.000417,"紧贴词头"]]},
+            "停顿插入点":{"S2":{"1":[2.345958,"交界"]}}})   # 2026-11-09 逐 2.5/10 ms 实测（w 秒）：纯人声核对 dossier_68：S1 thirty-six 的 /s/ 到 1.45，1.47–1.66 吸气（-41～-50 dB、重心 2.2–2.6 kHz、低频 -10～-21），1.665–1.70 低频浊音（低频 -0～-2）试删后 1936|the 无标点停顿超 0.22 s，是 the 的浊音前导，保留；S17 image 的 dʒ 擦音到 2.34，2.37–2.53 吸气（-45～-50 dB、重心 2.2–2.4 kHz、低频 -10～-27）、2.55–2.59 低频噗声（低频 -0～-1），2.612 起 that 的 ð：整段置零后由 _cap_inner 把无标点长静音压到标准（主会话 11-09 认定是声音问题必须修）；S5 Frankfurt 后 1.52–1.69 吸气（低频 -7～-25、重心 2 kHz）连同 1.695–1.73 一下 150 Hz 以下的噗声（低频 -1～-2），两头 -56/-60 dB；S6 Lakehurst 后 4.555–4.71 吸气（低频 -10～-24）连同 4.715–4.75 噗声（低频 -0～-3），4.78 起 and；S18 soured 后 1.785–1.935 吸气（低频 -7～-25）；S8 延到 leaving 的 l 前 3.6105（3.555–3.61 -50～-61 dB 杂声）；S9 延到 a 前 3.441（3.405–3.44 -48 dB 噗声）。S2 lounge 的 ʒ 到 1.91，1.92–2.16 吸气（-50～-55 dB、重心 2.3 kHz、低频 -10～-22 dB），2.21 起 and；配音把停顿放在 lounge|and，删掉吸气，标准停顿插到 and 的 d（到 2.343）与 that 的 ð（2.345 起 3–4 kHz）之间。S8 minute 的 /t/ 到 3.21，3.30–3.55 吸气（-45～-55、重心 2.2 kHz、低频 -10～-22），3.55 一下 5 kHz 咔声一起删，3.615 起 leaving。S9 survived 后 3.12–3.39 吸气（低频 -10～-28），3.40 起 a 的浊音；two-thirds 的 /z/ 到 5.45，5.50–5.79 吸气，5.80–5.85 while 的 /w/ 浊音前导（低频 -1～-5）保留。S18 scrapped 的 /t/ 除阻 4.60–4.64 保留，4.80–4.99 吸气，5.00–5.03 and 的浊音前导保留
+CONF["停顿位置"]={
+ "S2 and, / that @2.346":"2026-11-09 逐 2.5 ms 实测（S2 w）：and 的 æn 2.23–2.34（-8～-18 dB、周期 0.5–0.6），d 浊音到 2.343（-20 dB、重心 1.3 kHz），2.345 起 that 的 ð（重心 3.3→4.4 kHz、周期降到 0.2–0.35）；插入点 2.346 正好在 and 与 that 之间（DTW 把 that 开头放到 2.400 晚了 54 ms）",
+ "S8 minute, / leaving @3.280":"2026-11-09 逐 2.5 ms 实测（S8 w）：minute 的 /t/ 除阻到 3.21（-55 dB），3.215–3.30 数字静音级（-57～-70 dB），3.30–3.55 吸气已删（非人声区间），3.615 起 leaving 的 l（-32→-16 dB）；删静音 3.280–3.555 整段落在 minute 与 leaving 之间，没碰到两个词（DTW 把 minute 末音素起点放到 3.480 是对齐误差）",
+ "S9 aboard, / 62 @1.465":"2026-11-09 逐 5 ms 实测（S9 w）：aboard 的 ɹ 到 1.44，d 浊音 1.445–1.46（-37～-45 dB、低频 -1.5～-3.5），1.465 低谷 -52 dB，1.47 起 sixty 的 /s/（重心 2.8→6 kHz）；插入点 1.465 正好在两词之间",
+ "S18 withdrawn, / later @3.865":"2026-11-09 逐 10 ms 实测（S18 w）：withdrawn 的 n 3.76–3.86（-24 dB、低频 -1～-2 鼻音），3.87 起 later 的 l（-10.8 dB）；插入点 3.865 正好在两词之间"}
+CONF.update({"非人声":{"4.70–4.74s": {"配音指纹": "a4f76dab45bd", "依据": "S1 w 1.665–1.700s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #2 孤立杂音）：S1 the 的 ð 浊音前导（150 Hz 以下为主、低频 -0～-2；试删后 1936|the 无标点停顿超 0.22 s）；词头的一部分", "实测": {"最响dB": -47.1, "重心Hz": 2232, "周期": 0.38, "低频dB": -0.4}}, "23.13–23.21s": {"配音指纹": "a4f76dab45bd", "依据": "S3 w 5.435–5.515s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #3 呼吸声）：S3 hydrogen. 句末 /n/ 鼻音收尾（周期 0.33–0.44、低频 -3～-7，词 4.804–5.583 内）；词尾", "实测": {"最响dB": -35.7, "重心Hz": 1823, "周期": 0.33, "低频dB": -3.2}}, "45.19–45.24s": {"配音指纹": "a4f76dab45bd", "依据": "S6 w 9.025–9.085s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #4 孤立杂音）：S6 mast. 句末 /t/ 除阻（闭塞 9.008–9.023 -61～-68 dB 之后，重心 3–4 kHz）；词尾塞音除阻", "实测": {"最响dB": -31.0, "重心Hz": 3567, "周期": 0.15, "低频dB": -12.6}}, "54.66–54.67s": {"配音指纹": "a4f76dab45bd", "依据": "S8 w 2.035–2.050s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #5 噗声）：S8 ship 的 /p/ 闭塞中的浊音杠（-52～-62 dB、低频 -1），2.053 起 /p/ 除阻接 in；词的一部分", "实测": {"最响dB": -53.6, "重心Hz": 2473, "周期": 0.0, "低频dB": -0.2}}, "62.35–62.38s": {"配音指纹": "a4f76dab45bd", "依据": "S9 w 2.930–2.950s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #6 噗声）：S9 survived 词尾 v→d 浊音（-38～-48 dB、低频 -2～-9，词 2.406–3.473 内）；词的一部分", "实测": {"最响dB": -40.3, "重心Hz": 2172, "周期": 0.25, "低频dB": -3.2}}, "65.34–65.38s": {"配音指纹": "a4f76dab45bd", "依据": "S9 w 5.805–5.845s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #7 噗声）：S9 while 的 /w/ 浊音前导（低频 -0～-4，紧接 5.855 起音）；词头的一部分", "实测": {"最响dB": -47.1, "重心Hz": 2679, "周期": 0.45, "低频dB": -0.6}}, "69.99–70.08s": {"配音指纹": "a4f76dab45bd", "依据": "S9 w 10.210–10.295s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #8 呼吸声）：S9 ground. 词内 n→d 浊音（周期 0.2–0.47、低频 -2～-12，10.318 起 /d/ 除阻，词 9.821–10.403 内）；词的一部分", "实测": {"最响dB": -35.7, "重心Hz": 1563, "周期": 0.28, "低频dB": -5.7}}, "92.59–92.72s": {"配音指纹": "a4f76dab45bd", "依据": "S13 w 3.750–3.885s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #9 呼吸声）：S13 live 的 aɪ→v 过渡与 /v/ 擦音（3.845 起重心 4–5.4 kHz，词 3.453–4.372 内）；词的一部分", "实测": {"最响dB": -35.9, "重心Hz": 3225, "周期": 0.2, "低频dB": -3.6}}, "94.68–94.69s": {"配音指纹": "a4f76dab45bd", "依据": "S13 w 5.905–5.920s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #10 噗声）：S13 day 的 /d/ 浊音杠（重心 0.8–0.9 kHz、低频 -1～-3），5.925 起 d 除阻；词头的一部分", "实测": {"最响dB": -37.8, "重心Hz": 891, "周期": 0.0, "低频dB": -0.7}}, "94.95–95.05s": {"配音指纹": "a4f76dab45bd", "依据": "S13 w 6.175–6.270s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #11 呼吸声）：S13 day. 句末 eɪ 收尾（周期 0.2–0.43、低频 -3～-16 逐渐减弱，词 5.936–6.329 内）；词尾", "实测": {"最响dB": -35.7, "重心Hz": 3250, "周期": 0.21, "低频dB": -4.2}}, "97.11–97.14s": {"配音指纹": "a4f76dab45bd", "依据": "S14 w 1.070–1.110s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #12 噗声）：S14 not 的元音收尾（周期 0.3–0.7、低频 -2～-8），1.11 起 /t/ 除阻接 been；词的一部分", "实测": {"最响dB": -39.3, "重心Hz": 1219, "周期": 0.59, "低频dB": -0.6}}, "98.93–98.97s": {"配音指纹": "a4f76dab45bd", "依据": "S14 w 2.895–2.935s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #13 孤立杂音）：S14 established, 停顿前 /t/ 除阻（闭塞 2.875–2.89 -63～-72 dB 之后，重心 2.8–3.4 kHz）；词尾塞音除阻", "实测": {"最响dB": -33.2, "重心Hz": 3267, "周期": 0.16, "低频dB": -14.5}}, "115.92–116.01s": {"配音指纹": "a4f76dab45bd", "依据": "S16 w 6.445–6.530s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #14 呼吸声）：S16 notoriety. 句末 i 收尾（周期 0.1–0.49、低频 -3～-12，词 5.655–6.582 内）；词尾", "实测": {"最响dB": -37.7, "重心Hz": 3357, "周期": 0.25, "低频dB": -3.8}}, "126.95–126.96s": {"配音指纹": "a4f76dab45bd", "依据": "S18 w 4.555–4.565s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #15 孤立杂音）：S18 scrapped 的 /p/ 除阻（/pt/ 闭塞 4.53–4.59 中间一下，4.595 起 /t/）；词的一部分", "实测": {"最响dB": -34.5, "重心Hz": 2575, "周期": 0.0, "低频dB": -22.0}}, "127.23–127.27s": {"配音指纹": "a4f76dab45bd", "依据": "S18 w 5.000–5.030s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #16 噗声）：S18 and 的浊音前导（低频 -0～-2，紧接 5.035 起音；删吸气时有意保留）；词头的一部分", "实测": {"最响dB": -44.5, "重心Hz": 2823, "周期": 0.39, "低频dB": -0.4}}, "129.72–129.74s": {"配音指纹": "a4f76dab45bd", "依据": "S18 w 7.485–7.500s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #17 噗声）：S18 closed 的 z→d 浊音（周期 0.26–0.41、低频 -2～-4，词 7.090–7.727 内）；词的一部分", "实测": {"最响dB": -34.8, "重心Hz": 1478, "周期": 0.0, "低频dB": -1.6}}, "129.87–129.91s": {"配音指纹": "a4f76dab45bd", "依据": "S18 w 7.630–7.680s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #18 孤立杂音）：S18 closed. 句末 /d/ 除阻（闭塞 7.615–7.625 之后，重心 3.1–3.5 kHz）；词尾", "实测": {"最响dB": -39.8, "重心Hz": 3248, "周期": 0.23, "低频dB": -16.3}}, "130.91–130.94s": {"配音指纹": "a4f76dab45bd", "依据": "S19 w 0.015–0.035s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #19 噗声）：S19 The 词头 ð 起音（0.020 起逐渐升到 0.055 的 -9 dB）；词头的一部分", "实测": {"最响dB": -31.2, "重心Hz": 3070, "周期": 0.41, "低频dB": -1.9}}, "132.41–132.43s": {"配音指纹": "a4f76dab45bd", "依据": "S19 w 1.505–1.525s：2026-11-10 逐 2.5 ms 实测（疑点清单 dossier_68 #20 噗声）：S19 journey 的 /dʒ/ 浊音杠（重心 0.4–0.6 kHz、低频 -1～-2，紧接起音）；词头的一部分", "实测": {"最响dB": -32.9, "重心Hz": 659, "周期": 0.25, "低频dB": -1.5}}},"删除段":{"S1 raw 1.4850-1.6825": {"类型": "紧贴两头的非人声", "配音指纹": "a4f76dab45bd", "依据": "2026-10-15 删除段对应 非人声区间 [[1.465042, 1.662542, '紧贴两头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post', 'pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S2 raw 1.9300-2.2177": {"类型": "紧贴词头的非人声", "配音指纹": "a4f76dab45bd", "依据": "2026-10-15 删除段对应 非人声区间 [[1.922958, 2.207708, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S5 raw 1.5250-1.7649": "2026-10-15 删除段对应 非人声区间 [[1.515, 1.74]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词", "S8 raw 3.2950-3.6305": {"类型": "紧贴词头的非人声", "配音指纹": "a4f76dab45bd", "依据": "2026-10-15 删除段对应 非人声区间 [[3.235542, 3.610542, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S9 raw 3.1350-3.4910": {"类型": "紧贴词头的非人声", "配音指纹": "a4f76dab45bd", "依据": "2026-10-15 删除段对应 非人声区间 [[3.110083, 3.441, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S10 raw 5.1250-5.4850": "2026-10-15 删除段对应 非人声区间 [[5.28, 5.475]]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词", "S17 raw 2.3628-2.6225": {"类型": "紧贴词尾的非人声", "配音指纹": "a4f76dab45bd", "依据": "2026-10-15 删除段对应 非人声区间 [[2.34275, 2.6025, '紧贴词尾']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}, "S18 raw 4.7050-5.0604": {"类型": "紧贴词头的非人声", "配音指纹": "a4f76dab45bd", "依据": "2026-10-15 删除段对应 非人声区间 [[4.792583, 5.000417, '紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"}},"机器复听":{"S16": {"配音指纹": "a4f76dab45bd", "依据": "2026-11-10：notoriety 配音音标 nˌoʊɾɔːɹˈaɪəɾi（no-tə-RY-ə-tee，Merriam-Webster ˌnō-tə-ˈrī-ə-tē），no 之后的闪音 ɾ 被 small.en 断成 known + oriety；读音按脚本，非读错"}}})   # 配音指纹 a4f76dab45bd 的逐处实测确认（dossier_68、删除段确认.py、机器复听）
+out["换行变更已获同意"]={k:"用户 2026-11-10 上传 68.docx：“按照这个word文档里面的这个修改建议帮我修改这个视频”（逐句给了新译文，见 制作记录/68_待改清单.md）" for k in tuple(f"S{i}" for i in range(1,20))}
+out["allow_clash"]=["doomed","hydrogen","rejected"]   # 用户 2026-11-10 68.docx：“如果上面有，如果上面有冲突的话，那就特批，特批，特批。”（用户同意记录）
+DZ.update({"S1-2 a marvel of luxury and glamour":"of 结构：中文“奢华与魅力的奇观”，of 后面的 luxury、glamour 必须放到 marvel 前（用户译文）","S3-1 An American embargo on helium ":"embargo on…：中文“对氦气出口的禁运”，介词宾语必须提前到 embargo 前","S4-2 sat behind an airlock with one":"sit behind 中文“坐在……后面”被隔开；with one electric lighter 修饰 airlock，中文“带有电子点烟器的”必须提前（用户译文）","S5-1 The airship left Frankfurt on ":"时间状语 on 3 May 1937 中文“1937年5月3日”必须放句首","S6-2 it met thunderstorms at Lakehu":"地点状语 at Lakehurst 中文“在莱克赫斯特”必须放到动词“遇到”前","S6-3 before its descent towards the":"towards the mooring mast 修饰 descent，中文“朝着系留塔架下降”介词短语必须提前","S7-1 At about 7:25 pm on 6 May,":"日期时间中文从大到小“5月6日晚上约7点25分”，必须倒过来","S8-1 incinerated the ship in about ":"时间状语 in about half a minute 中文“在大约半分钟内”必须放到动词前","S9-4 as did one man on the ground.":"倒装 as did，中文“地面上另有一名男子也丧生了”地点状语提前、动词放最后","S10-1 was drenched by a deluge from ":"被动 was drenched by…：中文“被……浇透了”动词放最后；from a burst water tank 修饰 deluge，中文“爆裂的水箱里”提前","S13-2 heard it the next day.":"时间状语 the next day 中文“在第二天”必须放到动词“听到”前","S15-1 A theory blaming the doped fab":"blaming… 现在分词短语作后置定语，修饰 theory，中文“将责任归咎于……的未被证实的看法”必须提前","S16-1 The 1933 crash of USS Akron":"of 结构：中文“1933年阿克伦号失事”，of 后面的名称必须提前","S18-3 and a glamorous epoch of aviat":"of aviation 后置定语，中文“航空业的”必须提前到“时代”前","S19-1 first journey to North America":"to North America 后置定语，中文“飞往北美的航程”必须提前","S19-2 exactly a year before the fire":"a year before the fire 中文“那场大火的一年前”必须倒过来"})
+CONF["牛津逗号"]={"S1 17 Atlantic round trips, a marvel of luxury and":"不是三项并列：a marvel of luxury and glamour 是同位语，luxury and glamour 只有两项"}
+CONF["方向"]={"S6-3 before→才开始朝着系留塔架下降。":"before 用户 2026-11-10 定译“才开始”：先盘旋一个多小时，之后才开始下降，before 在“才开始”上面，先后方向一致",
+ "S16-1 less→恶名却没那么大。":"less 译作“没那么大”，比较的方向（更少）一致"}
+CONF["同词异译"]={"sat behind：后面/坐在":"不是两种译法：sit behind 的意思“坐在……后面”被“一道带有电子点烟器的气闸”隔开，“坐在”“后面”是同一个意思的两部分（T23；用户 2026-11-10 原话“坐在….. 后面 这几个字标色”）"}
+CONF["短语"]={
+ "S1 marvel … of":"不是搭配：of 引出奇观的内容（luxury and glamour），marvel 单独就是“奇观”；用户 2026-11-10 改稿只改中文“这是一个……奇观”",
+ "S3 embargo … on":"不是搭配：on 引出禁运对象 helium export，embargo 单独就是“禁运”",
+ "S3 on … helium":"不是搭配：on 属于 embargo on，helium 单独就是“氦气”",
+ "S3 on … hydrogen":"不是搭配：on 属于 relying on，hydrogen 单独就是“氢气”（用户 2026-11-10 点名只标 hydrogen）",
+ "S6 circled … for":"不是搭配：for 引出时长 for over an hour，circle 单独就是“盘旋”",
+ "S9 proportion … to":"不是搭配：to 属于 close to（接近），proportion 单独就是“比例”",
+ "S10 drenched … by":"不是搭配：by 引出被动的施事（a deluge），drench 单独就是“浇透”",
+ "S18 withdrawn … of":"不是搭配：of 属于 epoch of aviation，和 withdrawn 无关",
+ "S18 scrapped … of":"不是搭配：of 属于 epoch of aviation，和 scrapped 无关",
+ "S19 doomed … to":"不是搭配：to 属于 journey to North America，和 doomed 无关",
+ "S15 doped fabric":"不是搭配：doped 单独就是“上过涂料的”（速查表 adj. 涂过涂料的），fabric 单独就是“蒙皮织物”，两词各有本义，中文各在自己英文正下方"}
+out["分段增益dB"]={"S1":{"1":0.0,"2":0.0},"S2":{"1":2.0,"2":-1.0,"3":1.5}}   # 主会话 2026-11-10 定（守则22）：K134 新口径自动调平后 S2（Its amenities…，片 12.2–16.8s）三段合计 -3.5/-2.0/+1.5，整句比全片轻 2.7 LU；第1段手写 +2.0（合计 -1.5）、第2段合计 -1.0，第3段 +1.5 不变（上次误写到 S1，已撤）
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from 核对 import 生成并核对
+生成并核对(S, out)

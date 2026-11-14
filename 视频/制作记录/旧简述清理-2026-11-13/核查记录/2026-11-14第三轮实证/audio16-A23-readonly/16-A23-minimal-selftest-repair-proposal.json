@@ -1,0 +1,75 @@
+{
+  "kind": "16-A23-selftest-only-minimal-repair-proposal",
+  "run_id": 43543967031,
+  "native_job_id": 132290749437,
+  "article": "16",
+  "acceptance": false,
+  "source_or_pronunciation_dictionary_or_native_core_modified": false,
+  "original_failure": {
+    "stage": "canonical-draft-00.log / original pre-render check③",
+    "message": "【停止】读音改正没有全部换到（A23）：Haber 出现 2 次，换了 1 次：About half the nitrogen in our proteins and DNA has passed t",
+    "selftest_result_after_that_exception_is_not_trusted": true
+  },
+  "actual_trigger_sentence": "About half the nitrogen in our proteins and DNA has passed through a Haber-Bosch factory, so each of us carries a little of Haber's chemistry.",
+  "frozen_request_SHA256": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+  "real_original_tokenizer_proof_file": "16-real-tokenizer-A23-probe.json",
+  "normal_original_full_phoneme_input_matches_actual_native_prepared_SHA": true,
+  "exact_mechanism": [
+    "Production/full original dictionary retains both Haber and Haber-Bosch, and excludes the compound occurrence when counting replacements for single Haber. Actual original check normal path has0bad in isolated replay.",
+    "Original K102 fault injection removes the Haber-Bosch key via pop. This unintentionally changes the compound registry used by phonemes_of, so Haber is now counted twice (insideHaber-Bosch andHaber's).",
+    "Real espeak emits the compound hˈeɪbɚbˈɑːʃ without a word boundary between its halves. The original single-Haber pattern can match onlyHaber's. It raises2expected/1actual before the intended wrong-compound sample can be judged."
+  ],
+  "original_program": {
+    "path": "视频/工具/读音核对.py",
+    "SHA256": "0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41",
+    "original_K102_fault_injection_block": "keep_w = PRON_WORDS.pop(w); got = {line for _, line, bad in check(no) if bad}; PRON_WORDS[w] = keep_w"
+  },
+  "candidate": {
+    "file": "读音核对-selftest-candidate.py",
+    "SHA256": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c",
+    "minimal_diff_file": "selftest-candidate.diff",
+    "scope": "Only K102 fault-injection loop inside selftest. Keep registry key but assign its real original raw espeak pronunciation, then call the unchanged original check(); use finally to restore the exact original value.",
+    "production_phonemes_of_or_dictionary_or_original_check_thresholds_unchanged": true,
+    "no_catching_or_suppressing_checker_failures": true
+  },
+  "actual_isolated_tests": {
+    "kind": "isolated-real-tokenizer-original-A23-selftest-candidate",
+    "production_source_dictionary_core_or_cache_modified": false,
+    "TTS_model_inference_performed": false,
+    "quality_acceptance": false,
+    "original_program_SHA256": "0a3b97e1179e47c0593f69286f4206eecc123cc7ec5d5adf4f5e62457c228a41",
+    "candidate_program_SHA256": "50f4363bb2fc2930be59904cdccfa44fd46f14393a0385c7846028ee25b4e84c",
+    "patch_changes_only_selftest_fault_injection": true,
+    "unchanged_normal_path_original_bad_count": 0,
+    "original_selftest_exception_before_patch": {
+      "type": "SystemExit",
+      "message": "【停止】读音改正没有全部换到（A23）：Haber 出现 2 次，换了 1 次：About half the nitrogen in our proteins and DNA has passed t"
+    },
+    "candidate_full_original_selftest_returned_true": true,
+    "candidate_exact_normal_check_output_preserved": true,
+    "candidate_all_PRON_WORDS_original_keys_values_restored": true,
+    "candidate_full_selftest_raw_log_SHA256": "dee75784456b30ae2a81e0c4d947881d4e5386b5b716f3c70312afbf09ad3529",
+    "actual_K102_per_word_lines": [
+      "  K102 ② ammonia：单独关掉改正 → 报 BAD（当样本）",
+      "  K102 ② sanctuary：单独关掉改正 → 报 BAD（当样本）",
+      "  K102 ② Karlsruhe：单独关掉改正 → 报 BAD（当样本）",
+      "  K102 ② Immerwahr：单独关掉改正 → 报 BAD（当样本）",
+      "  K102 ② Zyklon：单独关掉改正 → 报 BAD（当样本）",
+      "  K102 ② Clara：单独关掉改正 → 报 BAD（当样本）",
+      "  K102 ② BASF：单独关掉改正 → 报 BAD（当样本）",
+      "  K102 ② Origin：单独关掉改正 → 不报（关掉后仍读对，不当样本）",
+      "  K102 ② Haber：单独关掉改正 → 报 BAD（当样本）",
+      "  K102 ② Haber-Bosch：单独关掉改正 → 报 BAD（当样本）"
+    ],
+    "actual_original_selftest_summary": "✔ 读音核对 自检：16 把 laboratory 的重音挪成 /læbɹətˌɔːɹˈi/报出；关掉读音改正（ammonia、sanctuary、Karlsruhe、Immerwahr、Zyklon、Clara、BASF、Haber、Haber-Bosch）报出；去掉多音词核对记录（16 S10 Allied）报出；登记的不是罗马数字只放那一个词组报出；“King Francis I.”没转成序数词报出；“Lascaux II/IV”读基数词、没登记的“Montignac II”照报报出；“6 and 9 August”两个日子都读序数（单个“6 January”照旧）报出；“7:25 pm”带空格也读成 seven twenty-five PM报出"
+  },
+  "actual_original_check_injected_wrong_compound_proof_file": "16-key-preserving-fault-original-check-proof.json",
+  "candidate_scope_exception_proof_file": "candidate-scope-and-exception-proof.json",
+  "native_followup_required": [
+    "Root review of exactdiff and source SHA.",
+    "Root decides existing original full fastcheck/native certification and genuine generated stamp. No local fixture pass is treated as native certification.",
+    "Run original complete16 production/checks against frozen source. No automatic CF/provenance waiver and no voice or TTS cache change authorized by this proposal."
+  ],
+  "accepted_old_video_or_PCM_source_binding_not_asserted_in_this_task": true,
+  "no_native_run_started_or_branch_pushed": true
+}

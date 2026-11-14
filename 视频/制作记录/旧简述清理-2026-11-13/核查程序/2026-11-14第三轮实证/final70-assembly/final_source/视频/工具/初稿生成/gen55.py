@@ -1,0 +1,497 @@
+#!/usr/bin/env python3
+# Pure data frozen from the current approved JSON; shared helper/checkers unchanged.
+import os
+import sys
+
+S = [(1,
+  [[[('Nearly 1,900 years after its **completion**, in about AD 125–128,',
+      '万神殿约于公元125至128年**竣工**(completion)，在其竣工近1,900年后，')],
+    '（its completion：its 指 the Pantheon；\nin about AD 125–128：插入语，补充竣工的年代）'],
+   [[("the Pantheon's", '它的'),
+     ('**dome**', '**穹顶**(dome)'),
+     ('still', '依然'),
+     ('**crowns**', '**位于**(crowns)'),
+     ('the **vast**', '下方**宏大的**(vast)'),
+     ('**chamber** below.', '**殿堂**(chamber)**的顶部**(crowns)。')],
+    '（crown：位于……顶部；\nbelow：副词作后置定语，修饰 chamber）']]),
+ (1,
+  [[[('About 43 metres **in diameter**,', '穹顶**直径**(in diameter)约43米，'),
+     ('it remains', '至今仍是'),
+     ("the world's", '世界上'),
+     ('largest', '最大的'),
+     ('**unreinforced concrete**', '**无钢筋混凝土**(unreinforced concrete)'),
+     ('dome.', '穹顶。')],
+    '（About 43 metres in diameter：形容词短语作状语，说明穹顶的大小；\nunreinforced：没有用钢筋加固的）']]),
+ (1,
+  [[[('It is', '它是'),
+     ('an **astonishing** **feat** of **architecture**,',
+      '**建筑**(architecture)史上**令人惊叹的**(astonishing)**壮举**(feat)，'),
+     ('and a **stubborn**', '也是一道**难以解开的**(stubborn)'),
+     ('**puzzle**.', '**谜题**(puzzle)。')],
+    '（a feat of architecture：建筑上的壮举）']]),
+ (2,
+  [[[('Modern', '现代'),
+     ('concrete', '混凝土'),
+     ('is usually', '通常'),
+     ('**reinforced with**', '**靠**(reinforced with)'),
+     ('**embedded**', '**嵌入**(embedded)其中的'),
+     ('**steel bars**,', '**钢筋**(steel bars)**加固**(reinforced with)，')],
+    '（be reinforced with…：用……加固）'],
+   [[('which', '而钢筋'), ('are **prone to**', '**容易**(prone to)发生'), ('**corrosion**.', '**锈蚀**(corrosion)。')],
+    '（which…：非限制性定语从句，修饰 steel bars；\nbe prone to…：容易……）']]),
+ (2,
+  [[[('As', '随着'),
+     ('the steel', '钢筋'),
+     ('**rusts**,', '**生锈**(rusts)，'),
+     ('it **swells**', '它会**膨胀**(swells)，'),
+     ('and **fractures**', '并**使**(fractures)'),
+     ('the concrete around it,', '周围的混凝土**断裂**(fractures)；')],
+    '（As…：时间状语从句，当……时；\naround it：后置定语，修饰 concrete，it 指 the steel）'],
+   [[('and many **structures**', '而且许多**建筑**(structures)'),
+     ('are designed for', '被设计为'),
+     ('a **lifespan** of around 50 years.', '约50年的**使用寿命**(lifespan)。')],
+    '（be designed for…：被设计为……）']]),
+ (2,
+  [[[('Roman', '罗马'),
+     ('concrete', '混凝土'),
+     ('is not', '并不'),
+     ('stronger than', '比'),
+     ('its modern', '现代的'),
+     ('**counterpart**;', '**同等对应物**(counterpart)更坚固；')],
+    '（its modern counterpart：现代的同等对应物，\n即现代混凝土）'],
+   [[('its **merit**', '它的**长处**(merit)'), ('lies in', '在于'), ('**durability**.', '**耐久性**(durability)。')],
+    '（lie in…：在于……）']]),
+ (3,
+  [[[('Yet', '然而，'),
+     ('the ancient', '这种古代'),
+     ('material', '材料'),
+     ('seemed to have', '似乎有个'),
+     ('a **shortcoming**.', '**缺点**(shortcoming)。')]]]),
+ (3,
+  [[[('It', '它的内部'),
+     ('is **dotted with**', '**散布**(dotted with)着'),
+     ('white', '白色的'),
+     ('**chunks** of lime,', '石灰**小块**(chunks)，')],
+    '（be dotted with…：散布着……，布满……）'],
+   [[('known as', '称为'), ('lime', '石灰'), ('**clasts**.', '**碎屑**(clasts)。')],
+    '（known as…：过去分词短语作后置定语，修饰 chunks）']]),
+ (3,
+  [[[('Experts', '专家'),
+     ('long', '长期以来'),
+     ('**ascribed**', '**把**(ascribed to)'),
+     ('these **lumps**', '这些**块状物**(lumps)'),
+     ('**to**', '**归因于**(ascribed to)'),
+     ('**sloppy**', '**马马虎虎的**(sloppy)'),
+     ('mixing', '搅拌'),
+     ('or', '或者是'),
+     ('**inferior**', '**比较次的**(inferior)'),
+     ('**raw ingredients**,', '**原材料**(raw ingredients)。')],
+    '（ascribe A to B：把 A 归因于 B；\n认为（某事）是由……造成）'],
+   [[('a **defect** that,', '这种**缺陷**(defect)，'),
+     ('they **assumed**,', '他们**认为**(assumed)，'),
+     ('a more', '换一个更加'),
+     ('**conscientious**', '**认真负责的**(conscientious)'),
+     ('builder', '建筑工'),
+     ('would have avoided.', '就能避免。')],
+    '（a defect that…：同位语，补充说明前面说的情况；\nthey assumed：插入语，他们认为；\nwould have avoided：虚拟语气，本可以避免）']]),
+ (4,
+  [[[('A study published in Science Advances in January 2023', '2023年1月发表于《科学进展》（Science Advances）的一项研究'),
+     ('offered', '提出了'),
+     ('a different', '不同的'),
+     ('**interpretation**.', '**解释**(interpretation)。')],
+    '（published in…：过去分词短语作后置定语，\n修饰 study）']]),
+ (4,
+  [[[('The clasts,', '这些碎屑，'),
+     ('it suggested,', '该研究认为，'),
+     ('were', '是'),
+     ('a **by-product** of "hot mixing" with **quicklime**,', '与**生石灰**(quicklime)“热混合”的**副产品**(by-product)：')],
+    '（it suggested：插入语，it 指这项研究；\na by-product of…：……的副产品）'],
+   [[('a **reactive** lime that **heats up** in water.', '一种遇水会**变热**(heats up)的**活性强的**(reactive)石灰。')],
+    '（a reactive lime…：同位语，补充说明 quicklime；\nthat heats up in water：定语从句，修饰 lime）']]),
+ (4,
+  [[[('When', '当'),
+     ('water', '水'),
+     ('**seeps into**', '**渗入**(seeps into)'),
+     ('a **crack**,', '**裂缝**(crack)时，')],
+    '（When…：时间状语从句）'],
+   [[('the clasts', '碎屑'),
+     ('**dissolve**', '会**溶解**(dissolve)，'),
+     ('and their', '它们的'),
+     ('**calcium**', '**钙**(calcium)'),
+     ('recrystallises as', '会重新结晶为'),
+     ('calcium carbonate,', '碳酸钙，'),
+     ('**plugging**', '从而**堵住**(plugging)'),
+     ('the **gap**.', '**缝隙**(gap)。')],
+    '（recrystallise as…：重新结晶为……；\nplugging the gap：现在分词短语作状语，表示结果）']]),
+ (4,
+  [[[('In tests,', '在试验中，'),
+     ('water', '水'),
+     ('**ceased to**', '**在几周之内**(within weeks)便**不再**(ceased to)'),
+     ('**trickle**', '**细细流过**(trickle)'),
+     ('through cracked', '开裂的'),
+     ('hot-mixed', '热混合'),
+     ('samples', '样本，'),
+     ('**within weeks**,', '')],
+    '（cease to do：不再做……；\nwithin weeks：几周之内）'],
+   [[('but', '但却'), ('kept', '持续'), ('flowing through', '流过'), ('samples without quicklime.', '不含生石灰的样本。')],
+    '（keep doing：一直做……；\nwithout quicklime：介词短语作后置定语，修饰 samples）']]),
+ (5,
+  [[[('The **implications**', '这项发现的**意义**(implications)'),
+     ('**extend beyond**', '**超出了**(extend beyond)'),
+     ('**archaeology**.', '**考古学**(archaeology)**的范围**(extend beyond)。')],
+    '（extend beyond…：超出……的范围）']]),
+ (5,
+  [[[('Cement', '水泥'),
+     ('**manufacture**', '**生产**(manufacture)'),
+     ('**accounts for**', '**占据**(accounts for)'),
+     ('about 8 per cent of global carbon dioxide **emissions**,', '全球二氧化碳**排放**(emissions)量的约8%，')],
+    '（account for…：（在数量上）占……）'],
+   [[('the **think-tank**', '**智囊团**(think-tank)'),
+     ('Chatham House', '查塔姆研究所'),
+     ('reported in June 2018.', '于2018年6月报告说。')]]]),
+ (5,
+  [[[('Concrete that **mends** its cracks', '能自行**修补**(mends)裂缝的混凝土'),
+     ('could', '可能'),
+     ('last longer,', '更经久耐用，')],
+    '（that mends its cracks：定语从句，修饰 Concrete）'],
+   [[('making', '从而使'),
+     ('**demolition**', '**拆除**(demolition)'),
+     ('and rebuilding', '与重建'),
+     ('rarer', '减少，'),
+     ('and **trimming**', '并**削减**(trimming)'),
+     ('emissions.', '排放。')],
+    '（making… and trimming…：两个现在分词短语作状语，表示结果；\nmake A rarer：使 A 更少见）']]),
+ (5,
+  [[[('The white', '这些白色'),
+     ('lumps', '块状物'),
+     ('once **scorned** as', '曾被**轻视**(scorned)为'),
+     ('signs of **clumsy** workmanship', '**拙劣的**(clumsy)手艺的标志，')],
+    '（once scorned as…：过去分词短语作后置定语，修饰 lumps；\nscorn A as B：把 A 轻视为 B）'],
+   [[('have **prompted**', '如今却**促使**(prompted)人们'),
+     ('a **rethink**', '**重新思考**(rethink)'),
+     ('of construction.', '建造之道。')],
+    '（a rethink of…：对……的重新思考）\n'
+    '（简述：▸耐久：万神殿直径约43米、没用钢筋加固的穹顶已存近1900年。\n'
+    '▹罗马混凝土的优势是能用得久，并非强度高于现代混凝土。\n'
+    '▸疑点：现代钢筋生锈后会膨胀，使周围的混凝土断裂；罗马材料中的白色石灰块，过去却被当成搅拌差或原料劣的缺陷。\n'
+    '▸新解：2023年研究认为，使用生石灰的热混合过程留下这些石灰块；\n'
+    '▹水渗入裂缝后，石灰块溶解，其中的钙重新形成碳酸钙结晶，堵住裂缝。\n'
+    '▸试验：开裂的热混合样本几周内不再渗水，未加生石灰的对照仍漏水，支持材料能自行补缝的解释。\n'
+    '▸前景：水泥生产占据全球二氧化碳排放量的约8%；若能延长建筑寿命，就有望减少拆除、重建及相关排放。）']])]
+
+out = {'no': '55',
+ 'title_en': "The Secret of Rome's Undying Concrete",
+ 'title_zh': '罗马混凝土的千年之谜',
+ 'title_fx': {'hl': ['Secret', 'Undying'], 'ghost': []},
+ 'sentences': [],
+ '核对确认': {'合组': {'S6 is not stronger than its modern counterpart': '对齐不了：not stronger than… '
+                                                                   '是比较句，中文“并不比……更坚固”，“更坚固”必须放到比较对象后面',
+                 'S9 a defect that, they assumed, a more conscientious builder would have avoided': '对齐不了：a '
+                                                                                                    'defect '
+                                                                                                    'that… '
+                                                                                                    '是同位语带定语从句，they '
+                                                                                                    'assumed '
+                                                                                                    '是插入语，中文“他们认为，换一个更认真负责的工匠，就不会出这种瑕疵”整句语序倒过来',
+                 'S11 The clasts, it suggested': '对齐不了：it suggested 是插入语，中文“该研究认为”必须放到句首',
+                 'S13 flowing through samples without quicklime': '对齐不了：without quicklime 是后置定语，修饰 '
+                                                                  'samples，中文“从不含生石灰的样本中流过”，“流过”必须放到最后',
+                 'S1 Nearly 1,900 years after its completion, in about AD 125–128': '对齐不了：after its completion '
+                                                                                    '是时间状语，中文要先说“竣工”再说“近1,900年后”；in '
+                                                                                    'about AD 125–128 '
+                                                                                    '是插入语，中文“约于公元125至128年竣工”年代必须放到动词前，整组语序倒过来',
+                 'S4 reinforced with embedded steel bars': '对齐不了：be reinforced with… '
+                                                           '中文“靠……加固”，“加固”必须放到“钢筋”后面；embedded '
+                                                           '是前置定语，中文“嵌入其中的钢筋”',
+                 'S10 A study published in Science Advances in January 2023': '对齐不了：published in… '
+                                                                              '是过去分词短语作后置定语，修饰 '
+                                                                              'study，中文“2023年1月发表于《科学进展》的一项研究”定语必须提前',
+                 'S11 a by-product of "hot mixing" with quicklime': '对齐不了：a by-product of… 是 of '
+                                                                    '结构，中文“与生石灰“热混合”的副产品”，“副产品”必须放到最后',
+                 'S11 a reactive lime that heats up in water': '对齐不了：that heats up in water 是定语从句，修饰 '
+                                                               'lime，中文“遇水会变热的活性强的石灰”定语必须提前',
+                 'S5 the concrete around it': '对齐不了：around it 是后置定语，修饰 concrete，中文“周围的混凝土”定语必须提前',
+                 'S5 a lifespan of around 50 years': '对齐不了：a lifespan of… 是 of 结构，中文“约50年的使用寿命”，“使用寿命”必须放到最后',
+                 'S12 calcium carbonate': '对齐不了：calcium carbonate 是化学名“碳酸钙”，一个词，不能拆',
+                 'S13 samples without quicklime': '对齐不了：without quicklime 是后置定语，修饰 samples，中文“不含生石灰的样本”定语必须提前',
+                 'S15 about 8 per cent of global carbon dioxide emissions': '对齐不了：8 per cent of… 是 of '
+                                                                            '结构，中文“全球二氧化碳排放量的约8%”百分数必须放到后面',
+                 'S15 reported in June 2018': '对齐不了：in June 2018 是时间状语，中文“于2018年6月报告说”时间必须放到动词前',
+                 'S16 Concrete that mends its cracks': '对齐不了：that mends its cracks 是定语从句，修饰 '
+                                                       'Concrete，中文“能自行修补裂缝的混凝土”定语必须提前',
+                 'S16 last longer': '对齐不了：last longer 中文“更经久耐用”是一个说法，拆开不通',
+                 'S17 signs of clumsy workmanship': '对齐不了：signs of… 是 of 结构，中文“拙劣的手艺的标志”，“标志”必须放到最后'},
+          '是的': {'S9-1 是**比较次的**': '“是”属于“或者是”（or：或者是），不是“是……的”判断句式；用户 2026-11-07 原话定的译文“或者是比较次的原材料”'},
+          '中文重复': {'建筑': '用户 2026-11-07：“不要 Structure就是建筑的意思。”（问 architecture 和 structures 都译“建筑”要不要换，用户说不换）'},
+          '响度骤降': {'110.6–111.0s': {'配音指纹': 'ed59953f5c3d',
+                                    '低': 6.8,
+                                    '句子': 'S13 …but kept flowing through samples without quicklime.',
+                                    '依据': '2026-11-05 逐 2.5 ms 实测（S13 w，配音指纹 ed59953f5c3d）：句末 quicklime，quick '
+                                          '的 ɪ 7.57 -3.3 dB，/k/ 闭塞 7.63–7.70（-50～-59 dB）、7.71 除阻（重心 3.1 '
+                                          'kHz），lime 的 /l/ 7.75–7.80 -10～-14 dB（低频 -2～-3 dB），aɪ 7.81–7.99 '
+                                          '-15～-33 dB 降调衰减（周期 0.3–0.44、重心 1.0–1.8 kHz），/m/ 8.05–8.13 -34～-48 '
+                                          'dB 低频 -1～-7 dB，8.17 起静音；每个音都在、清楚，是复合词次重音音节加句末降调，不是发闷或吞音；低 6.8 dB 在 '
+                                          '01–24 认可上限 7.1 dB 以内'}},
+          '对齐': {'S5-2 a lifespan of around 50 years.': 'a lifespan of… 是 of 结构，中文“约50年的使用寿命”，“使用寿命”必须放到最后',
+                 'S1-1 Nearly 1,900 years after its c': 'after its completion 是时间状语、in about AD 125–128 '
+                                                        '是插入语，中文“万神殿约于公元125至128年竣工，近1,900年后的今天”先说竣工年代、再说时间，整组语序倒过来',
+                 'S2-1 About 43 metres in diameter,': 'in diameter 是“直径”（整体标），中文“穹顶直径约43米”，“直径”必须放到数字前',
+                 'S3-1 an astonishing feat of archite': 'a feat of architecture 是 of '
+                                                        '结构，中文“建筑史上令人惊叹的壮举”，“建筑”必须提前',
+                 'S4-1 reinforced with embedded steel': 'be reinforced with… 中文“靠嵌入其中的钢筋加固”，“加固”必须放到“钢筋”后面',
+                 'S6-1 is not stronger than its moder': 'not stronger than… '
+                                                        '是比较句，中文“并不比现代的同类材料更坚固”，“更坚固”必须放到比较对象后面',
+                 'S9-2 a defect that, they assumed, a': '同位语带定语从句，they assumed '
+                                                        '是插入语，中文“他们认为，换一个更认真负责的工匠，就不会出这种瑕疵”整句语序倒过来',
+                 'S10-1 A study published in Science A': 'published in… 是过去分词短语作后置定语，修饰 '
+                                                         'study，中文“2023年1月发表于《科学进展》的一项研究”定语必须提前',
+                 'S11-1 a by-product of "hot mixing" w': 'a by-product of… 是 of 结构，中文“用生石灰“热混合”留下的副产品”定语必须提前',
+                 'S11-2 a reactive lime that heats up ': 'that heats up in water 是定语从句，中文“遇水会发热、活性强的石灰”定语必须提前',
+                 'S13-2 flowing through samples withou': 'without quicklime 是后置定语，修饰 '
+                                                         'samples，中文“从不含生石灰的样本中流过”，“流过”必须放到最后',
+                 'S15-1 about 8 per cent of global car': '8 per cent of… 是 of 结构，中文“全球二氧化碳排放的8%”，百分数必须放到后面',
+                 'S16-1 Concrete that mends its cracks': 'that mends its cracks 是定语从句，修饰 '
+                                                         'Concrete，中文“能自行修补裂缝的混凝土”定语必须提前'},
+          '牛津逗号': {'S5 As the steel rusts, it swells and': '不是三项并列：swells and fractures 只有两个动词',
+                   'S12 seeps into a crack, the clasts dissolve and': '不是三项并列：the clasts dissolve 和 their '
+                                                                      'calcium recrystallises 只有两个分句',
+                   'S16 cracks could last longer, making demolition and': '不是三项并列：demolition and rebuilding '
+                                                                          '只有两项；making… and trimming… '
+                                                                          '也只有两个分词短语'},
+          '们': {'S9-2 **(defect)，他们**': '们在加粗外，不是名词重点词带们：“他们”是代词，译 they（they assumed：他们认为）',
+                'S17-2 **(prompted)人们**': '们在加粗外，不是名词重点词带们：prompted 是动词“促使”，“人们”是补出的宾语（促使人们重新思考），沿用文章定稿'},
+          '同词异译': {'crowns：位于/的顶部': '不是两种译法：crown 的意思“位于……的顶部”被“下方宏大的殿堂”隔开，两处是同一个意思的两部分（T23）',
+                   'reinforced with：加固/靠': '不是两种译法：reinforced with 的意思“靠……加固”被“嵌入其中的钢筋”隔开，两处是同一个意思的两部分（T23）',
+                   'fractures：使/断裂': '不是两种译法：fracture 的意思“使……断裂”被“周围的混凝土”隔开，两处是同一个意思的两部分（T23）',
+                   'ascribed to：归因于/把': '不是两种译法：ascribe A to B 的意思“把……归因于”被“这些块状物”隔开，“把”和“归因于”是同一个意思的两部分（T23）',
+                   'crowns：高踞/之上': '不是两种译法：crown 的意思“高踞……之上”被“下方宏大的殿堂”隔开，“高踞”和“之上”是同一个意思的两部分（T23）',
+                   'crowns：之上/高踞': '不是两种译法：crown 的意思“高踞……之上”被“下方宏大的殿堂”隔开，“高踞”和“之上”是同一个意思的两部分（T23）',
+                   'extend beyond：超出了/的范围': '不是两种译法：extend beyond 的意思“超出了……的范围”被“考古学”隔开，两处是同一个意思的两部分（T23）',
+                   'extend beyond：的范围/超出了': '不是两种译法：extend beyond 的意思“超出了……的范围”被“考古学”隔开，两处是同一个意思的两部分（T23）'},
+          '短语': {'S11 up … in': '不是搭配：heats up 已整体标，in 属于 in water（遇水），和 heats up 不是一个搭配',
+                 'S3 feat … of': '不是搭配：of architecture 是 of 结构的后置修饰（建筑上的壮举），feat 单独就是“壮举”',
+                 'S5 fractures … for': '不是搭配：for 属于 are designed for，和 fractures 无关',
+                 'S5 lifespan … of': '不是搭配：of around 50 years 只说明寿命多长，lifespan 单独就是“使用寿命”',
+                 'S6 in … durability': '不是搭配：in 属于 lies in（在于），durability 单独就是“耐久性”',
+                 'S8 chunks … of': '不是搭配：of lime 说明是什么的小块，chunks 单独就是“小块”',
+                 'S11 by-product … of': '不是搭配：of "hot mixing" 说明是什么的副产品，by-product 单独就是“副产品”',
+                 'S15 manufacture … of': '不是搭配：of 属于 8 per cent of global carbon dioxide emissions，和 '
+                                         'manufacture 无关',
+                 'S17 scorned … as': '不是搭配：scorn 单独就是“轻视”（速查表第一个意思），as signs of… 是“当作……”的普通介词短语，中文“被轻视为”已译出',
+                 'S17 scorned … of': '不是搭配：of 属于 signs of clumsy workmanship，和 scorned 无关',
+                 'S17 prompted … of': '不是搭配：of 属于 a rethink of construction，和 prompted 无关',
+                 'S17 rethink … of': '不是搭配：of construction 说明重新思考的对象，rethink 单独就是名词“重新思考”'},
+          '非人声': {'7.42–7.50s': {'实测': {'最响dB': -36.2, '重心Hz': 1692, '周期': 0.16, '低频dB': -3.1},
+                                 '配音指纹': 'ed59953f5c3d',
+                                 '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S1 w '
+                                       '3.775–3.855：completion, 的 ən 尾，3.73 -28 dB 起逐渐衰减到 3.855 -56 dB，低频占 '
+                                       '-3～-11 dB、重心 1.1–2.2 kHz，连续无低谷，是词尾 /n/ 的浊音衰减（词的一部分）'},
+                  '12.11–12.12s': {'实测': {'最响dB': -48.1, '重心Hz': 2525, '周期': 0.0, '低频dB': -1.4},
+                                   '配音指纹': 'ed59953f5c3d',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S1 w '
+                                         '8.49–8.505：the 的 ə 8.445 -25 dB 起衰减（低频 -0.5～-3 dB 浊音），8.505 起 '
+                                         "Pantheon's 的 /p/ 除阻（-11 dB、重心 3.5 kHz），中间连续无低谷，是 ə 进 /p/ "
+                                         '闭塞的浊音尾（词的一部分）'},
+                  '23.19–23.25s': {'实测': {'最响dB': -34.4, '重心Hz': 723, '周期': 0.75, '低频dB': -0.5},
+                                   '配音指纹': 'ed59953f5c3d',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S2 w '
+                                         '6.50–6.56：concrete 的 /t/ 之后、dome 的 /d/ 除阻（6.56 -29→-16 dB、重心 3.2 '
+                                         'kHz）之前，6.505–6.555 -38～-44 dB、低频占 -1～-3 dB、重心 0.5–0.8 kHz，是 /d/ '
+                                         '的浊音预发声（词的一部分）'},
+                  '34.79–34.83s': {'实测': {'最响dB': -47.7, '重心Hz': 2714, '周期': 0.34, '低频dB': -0.6},
+                                   '配音指纹': 'ed59953f5c3d',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S4 w '
+                                         '4.825–4.865：bars, 停顿之后、which 开口前，-46～-58 dB、低频占 -0.4～-5 dB，4.875 起 '
+                                         '/w/（-33→-6 dB、重心 0.7–2 kHz），连续无低谷，是 /w/ 的浊音预发声（词的一部分）'},
+                  '46.38–46.48s': {'实测': {'最响dB': -35.1, '重心Hz': 1416, '周期': 0.24, '低频dB': -3.3},
+                                   '配音指纹': 'ed59953f5c3d',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S5 w '
+                                         '8.92–9.02：years. 内部，ɚ 浊音 8.875–9.00（-30～-50 dB、低频 -3～-10 dB、重心 0.9–2 '
+                                         'kHz）衰减，9.005 起 /z/ 擦音（重心 2.7→5 kHz、低频 -20～-46 dB），连续无低谷，是 ɚ 到词尾 /z/ '
+                                         '的过渡（词的一部分）'},
+                  '71.19–71.22s': {'实测': {'最响dB': -30.2, '重心Hz': 1053, '周期': 0.48, '低频dB': -2.4},
+                                   '配音指纹': 'ed59953f5c3d',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S9 w '
+                                         '6.92–6.945：that, 停顿之后（6.875–6.915 -61～-71 dB 静音），6.92 起电平 -53→-28 dB '
+                                         '渐升、低频占 -1～-2 dB、重心 0.8–1.9 kHz，一路连到 they 的 /ð/（6.98 -15 dB），是 /ð/ '
+                                         '的浊音起始（词的一部分）'},
+                  '86.45–86.47s': {'实测': {'最响dB': -44.1, '重心Hz': 1894, '周期': 0.24, '低频dB': -0.3},
+                                   '配音指纹': 'ed59953f5c3d',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S11 w '
+                                         '1.92–1.94：suggested, 停顿之后、were 开口前，-44～-56 dB、低频占 -0.3～-2.5 dB，1.945 '
+                                         '起渐升到 1.97 -14 dB（重心 0.5–0.6 kHz），连续无低谷，是 /w/ 的浊音预发声（词的一部分）'},
+                  '94.94–95.00s': {'实测': {'最响dB': -32.7, '重心Hz': 3896, '周期': 0.12, '低频dB': -14.2},
+                                   '配音指纹': 'ed59953f5c3d',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S12 w '
+                                         '1.81–1.865：crack, 的 /k/ 闭塞 1.77–1.805（-61～-71 dB）之后，1.81–1.86 '
+                                         '-31～-50 dB、重心 3.3–4.5 kHz、低频 -10～-22 dB 的爆破送气，衰减到 1.87 -64 dB，是词尾 '
+                                         '/k/ 的除阻（词的一部分）'},
+                  '96.06–96.07s': {'实测': {'最响dB': -34.6, '重心Hz': 1317, '周期': 0.0, '低频dB': -1.4},
+                                   '配音指纹': 'ed59953f5c3d',
+                                   '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S12 w '
+                                         '2.855–2.87：clasts 的 /s/ 到 2.83（重心 5.4–6 kHz），2.85–2.865 -43～-57 '
+                                         'dB、低频占 -1～-3 dB、重心 0.8–2.8 kHz，2.875 起 dissolve 的 /d/ 除阻（重心 2.8–4.2 '
+                                         'kHz），是 /d/ 的浊音预发声（词的一部分）'},
+                  '103.71–103.73s': {'实测': {'最响dB': -37.4, '重心Hz': 1453, '周期': 0.34, '低频dB': -1.3},
+                                     '配音指纹': 'ed59953f5c3d',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S13 w '
+                                           '0.875–0.895：tests, 停顿之后、water 开口前，-42～-51 dB 渐升、低频占 -1.4～-3 dB、重心 '
+                                           '0.9–2.3 kHz，0.895 起 /w/（-27→-14 dB、重心 0.35–0.5 kHz），连续无低谷，是 /w/ '
+                                           '的浊音预发声（词的一部分）'},
+                  '105.65–105.67s': {'实测': {'最响dB': -43.6, '重心Hz': 2166, '周期': 0.26, '低频dB': -0.8},
+                                     '配音指纹': 'ed59953f5c3d',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S13 w '
+                                           '2.815–2.835：cracked 内部（带时长模型 2.524–2.922），æ 2.77 -30 dB 之后 '
+                                           '2.775–2.84 -41～-59 dB、低频占 -1～-4 dB 的浊音闭塞，2.85 起 /t/ 除阻（-21 dB、重心 '
+                                           '2.7 kHz），是 /k/→/t/ 闭塞里的浊音尾（词的一部分）'},
+                  '108.17–108.19s': {'实测': {'最响dB': -51.3, '重心Hz': 2588, '周期': 0.31, '低频dB': -0.3},
+                                     '配音指纹': 'ed59953f5c3d',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S13 w '
+                                           '5.31–5.33：weeks, 停顿之后、but 的 /b/ 除阻（5.345 -24 dB、重心 3.5 '
+                                           'kHz）之前，-50～-58 dB、低频占 -0.3～-3.8 dB，连续无低谷，是 /b/ 的浊音预发声（词的一部分）'},
+                  '122.08–122.16s': {'实测': {'最响dB': -36.7, '重心Hz': 1483, '周期': 0.29, '低频dB': -3.3},
+                                     '配音指纹': 'ed59953f5c3d',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S15 w '
+                                           '5.80–5.88：emissions, 的 ən 尾，5.755–5.795 -24～-28 dB（低频 -2～-3 dB）衰减成 '
+                                           '5.80–5.875 -34～-45 dB、低频占 -1.4～-8 dB、重心 0.8–2.5 kHz 的浊音，是词尾 /nz/ '
+                                           '的浊音（词的一部分）'},
+                  '122.14–122.16s': {'实测': {'最响dB': -38.0, '重心Hz': 975, '周期': 0.0, '低频dB': -1.1},
+                                     '配音指纹': 'ed59953f5c3d',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S15 w '
+                                           '5.865–5.88：同上 emissions, 的 /nz/ 浊音尾（-36～-54 dB、低频占 -1.4～-5 '
+                                           'dB），连续衰减（词的一部分）'},
+                  '122.17–122.18s': {'实测': {'最响dB': -39.0, '重心Hz': 1108, '周期': 0.0, '低频dB': -2.3},
+                                     '配音指纹': 'ed59953f5c3d',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S15 w '
+                                           '5.89–5.905：emissions, 的 /z/ 浊音尾最后一下（-40～-43 dB、低频占 -2～-4 dB、重心 '
+                                           '1.0–1.4 kHz），之后衰减到 -50 dB，是词的一部分'},
+                  '126.60–126.69s': {'实测': {'最响dB': -37.4, '重心Hz': 1618, '周期': 0.26, '低频dB': -4.3},
+                                     '配音指纹': 'ed59953f5c3d',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S15 w '
+                                           '10.375–10.46：eighteen. 的 n 尾，10.33 -28 dB 起衰减到 10.505 -86 dB，低频占 '
+                                           '-1.5～-10 dB、重心 0.9–2.5 kHz，连续无低谷，是词尾 /n/ 的浊音衰减（词的一部分）'},
+                  '135.81–135.82s': {'实测': {'最响dB': -31.9, '重心Hz': 3244, '周期': 0.0, '低频dB': -1.9},
+                                     '配音指纹': 'ed59953f5c3d',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S17 w '
+                                           '0.03–0.045：句首 The 之前，0.025 -43 dB、0.03 -31.7 dB 低频占 -2～-3 dB '
+                                           '渐升，0.045 起 /ð/ 擦音（重心 3.9–4.5 kHz、-27→-16 dB），连续无低谷，是 /ð/ '
+                                           '的浊音起始（词的一部分）'},
+                  '137.52–137.53s': {'实测': {'最响dB': -53.2, '重心Hz': 2234, '周期': 0.0, '低频dB': -0.6},
+                                     '配音指纹': 'ed59953f5c3d',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S17 w '
+                                           '1.745–1.76：scorned 内部（带时长模型 1.166–1.886），n 1.705 -35 dB（低频 -2.7 '
+                                           'dB）之后 1.72–1.80 -48～-61 dB、低频占 -0.5～-4 dB 的浊音，是 /n/→/d/ '
+                                           '的浊音闭塞（词的一部分），1.985 起 as'},
+                  '139.57–139.59s': {'实测': {'最响dB': -48.6, '重心Hz': 1409, '周期': 0.0, '低频dB': -1.4},
+                                     '配音指纹': 'ed59953f5c3d',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S17 w '
+                                           '3.80–3.815：workmanship 的 ɪ 3.755 -23 dB 衰减，3.795–3.815 -51～-55 '
+                                           'dB、低频占 -1.7～-2.5 dB 的浊音，进 /p/ 闭塞（3.82 -66 dB），是 ɪ→/p/ '
+                                           '闭塞的浊音尾（词的一部分）'},
+                  '141.86–141.94s': {'实测': {'最响dB': -36.2, '重心Hz': 1444, '周期': 0.22, '低频dB': -2.3},
+                                     '配音指纹': 'ed59953f5c3d',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S17 w '
+                                           '6.18–6.26：construction. 的 ən 尾，6.17–6.235 -30～-52 dB、低频占 -1.5～-6 '
+                                           'dB、重心 0.7–2.2 kHz，衰减到 6.30 -115 dB，连续无低谷，是词尾 /n/ 的浊音衰减（词的一部分）'},
+                  '141.90–141.91s': {'实测': {'最响dB': -36.2, '重心Hz': 1338, '周期': 0.0, '低频dB': -1.9},
+                                     '配音指纹': 'ed59953f5c3d',
+                                     '依据': '2026-11-05 逐 2.5 ms 实测（dossier_55，配音指纹 ed59953f5c3d）：S17 w '
+                                           '6.215–6.23：同上 construction. 的 /n/ 尾里一下回升（-36～-48 dB、低频占 -1.5～-3.4 '
+                                           'dB、重心 1.1–2.0 kHz），是 /n/ 浊音的一部分'}},
+          '删除段': {'S1 raw 3.9000-4.2950': '2026-11-05 逐 2.5/10 ms 实测（S# w，配音指纹 ed59953f5c3d）：completion, 后停顿：n '
+                                          '尾衰减到 3.88 -63 dB，3.89–3.96 -52～-61 dB 底噪，3.96–4.20 渐升到 -39 '
+                                          'dB、平稳不衰减的吸气（非人声区间 3.925–4.245 即此，删掉最响 -39.3 dB 就是它），4.20–4.26 回落到 '
+                                          '-63 dB，4.27 起 in 的起音；两侧 -62.2/-59.2 dB 干净，没有词的声音',
+                  'S9 raw 5.6750-6.1000': '2026-11-05 逐 2.5/10 ms 实测（S# w，配音指纹 ed59953f5c3d）：ingredients, '
+                                          '后停顿：s 尾之后 5.67–5.77 -53～-58 dB 底噪，5.78–5.93 渐升到 -40.5 dB '
+                                          '的吸气，5.94–5.99 回落到 -62 dB，6.00 起 a 的起音（-7 dB）；删掉最响 -39.4 dB 是吸气，两侧 '
+                                          '-59.8/-60.0 dB 干净',
+                  'S9 raw 7.9400-8.3050': '2026-11-05 逐 2.5/10 ms 实测（S# w，配音指纹 ed59953f5c3d）：assumed, 后停顿：d '
+                                          '尾之后 7.92–7.97 -54～-57 dB，7.97–8.16 -41～-52 dB 的吸气，8.17–8.20 回落到 -64 '
+                                          'dB，8.21 起 a 的起音（-19→-3 dB）；删掉最响 -39.9 dB 是吸气，两侧 -62.4/-62.9 dB 干净',
+                  'S13 raw 4.9350-5.3080': '2026-11-05 逐 2.5/10 ms 实测（S# w，配音指纹 ed59953f5c3d）：weeks, 后停顿：s 尾之后 '
+                                           '4.92–5.12 -54～-60 dB 底噪，5.12–5.26 渐升到 -43.6 dB 的吸气，5.27–5.30 '
+                                           '-37～-41 dB 一下声门噗声（与 but 的 /b/ 除阻 5.345 之间隔着 5.30–5.34 的 -50～-58 '
+                                           'dB），删到 5.308（非人声区间 5.08–5.307958 紧贴词头），留下 5.308 起紧贴 /b/ 的弱预发声；两侧 '
+                                           '-62.6/-56.1 dB',
+                  'S5 raw 4.5700-4.9385': {'类型': '紧贴词头的非人声',
+                                           '配音指纹': 'ed59953f5c3d',
+                                           '依据': '2026-11-05 逐 2.5/10 ms 实测（S# w，配音指纹 ed59953f5c3d）：it, '
+                                                 '后停顿：4.47–4.66 -56～-69 dB 底噪，4.67–4.90 -41～-54 dB、重心 2.0–2.9 '
+                                                 'kHz、低频 -11～-22 dB 的吸气，4.91–4.935 -42～-45 dB 是吸气接 and '
+                                                 '声门起音的过渡，没有 -55 dB 低谷；切点 4.9385 紧贴 and 词头，4.94 起 -34 dB、4.95 '
+                                                 '起 æ（-18 dB）完整保留'},
+                  'S11 raw 1.6050-1.9287': {'类型': '紧贴词头的非人声',
+                                            '配音指纹': 'ed59953f5c3d',
+                                            '依据': '2026-11-05 逐 2.5/10 ms 实测（S# w，配音指纹 '
+                                                  'ed59953f5c3d）：suggested, 后停顿：1.60–1.89 -44～-49 dB、低频 '
+                                                  '-10～-18 dB 的吸气，1.895–1.915 -55 dB，1.92 起 were 的 /w/ '
+                                                  '浊音预发声（-44.7 dB、低频 -0.3 dB），吸气与 /w/ 预发声之间低谷只到 -55 dB；切点 '
+                                                  '1.9287 紧贴词头，1.945 起 /w/ 渐升到 1.97 -14 dB 完整保留'}},
+          '机器复听': {'S7': {'配音指纹': 'ed59953f5c3d',
+                          '依据': '2026-11-05 S7 Yet the ancient material seemed to have a shortcoming.：parakeet '
+                                '整句听对；同一段声音单独切出（55.145–57.845s）给 small.en 也听成 material seemed，只有放在整篇流程里 '
+                                'small.en 听成 materials seem；material 的 /l/ 直接连 seemed 的 /s/（同一个 s，不是复数 '
+                                's），seemed 的 /d/ 在 to 的 /t/ 前不完全除阻（自然连读），读音没错；识别器听不准，进疑点表'}},
+          '读音': {'rethink': {'标准读音': 'ɹˈiːθˌɪŋk',
+                             '可接受读音': [],
+                             '判定': '正确',
+                             '依据': '2026-11-05 55 S17 a rethink of construction：名词，Merriam-Webster 名词 '
+                                   'ˈrē-ˌthiŋk（动词 (ˌ)rē-ˈthiŋk），misaki NOUN ɹˈiθˌɪŋk；CMU 只收动词重音，配音经按语境读音改成名词读法',
+                             '来源': ['https://www.merriam-webster.com/dictionary/rethink']}},
+          '停顿位置': {'S11 clasts, / it @0.730': '2026-11-05 逐 2.5 ms 实测（S11 w）：clasts 的 /s t s/ 擦音 '
+                                              '0.60–0.7275（重心 5.7–6.9 kHz、低频 -18～-54 dB），0.730 起低频占比升到 -8 '
+                                              'dB、重心降到 4.8 kHz 是 it 的 ɪ 起音，0.7375 起 ɪ 浊音（-9.5 dB、周期 0.41、重心 '
+                                              '1.8 kHz）到 0.82，0.83 起 it 的 /t/ 闭塞，0.847 起 suggested 的 /s/；插入点 '
+                                              '0.730042（过零点）正落在 clasts 词尾和 it 词头的交界，带时长模型给的 it 开头 0.800 '
+                                              '偏后。原来自动插在 0.835 是 it 与 suggested 之间，错',
+                   'S11 clasts, / it @0.736': '2026-11-05 逐 2.5 ms 实测（S11 w）：机器复听两路在插入点 0.730 时都听成 clasts, as '
+                                              'it（0.730–0.735 还带 clasts 的 /s/ 余音，重心 4.8→2.6 '
+                                              'kHz，被拼到停顿后面），插入点后移到 0.736125（0.7375 起 ɪ 浊音）；clasts 的 /s t s/ 擦音 '
+                                              '0.60–0.7275（重心 5.7–6.9 kHz、低频 -18～-54 dB），0.730 起低频占比升到 -8 '
+                                              'dB、重心降到 4.8 kHz 是 it 的 ɪ 起音，0.7375 起 ɪ 浊音（-9.5 dB、周期 0.41、重心 '
+                                              '1.8 kHz）到 0.82，0.83 起 it 的 /t/ 闭塞，0.847 起 suggested 的 /s/；原插入点 '
+                                              '0.730042 落在 clasts 词尾和 it 词头的交界，带时长模型给的 it 开头 0.800 偏后。原来自动插在 '
+                                              '0.835 是 it 与 suggested 之间，错',
+                   'S5 it, / and @4.555': '2026-11-05 逐 2.5 ms 实测（S5 w，配音指纹 2a450ed79690）：it 的 /t/ '
+                                          '4.40–4.43（重心 3.1 kHz）后 4.4625 -40.7 dB 衰减，4.47–4.66 是 -56～-69 dB '
+                                          '底噪，4.67–4.92 是 -41～-54 dB、重心 2.0–2.9 kHz、低频 -11～-22 dB '
+                                          '的吸气（非人声区间已清掉），4.93 起 and 的起音（-34→-18 dB）；停顿 4.555–4.905 整段落在 it '
+                                          '词尾之后、and 词头之前，带时长模型给的 it 末音素 4.776 偏后（±0.05 秒以上），停顿位置正确'}},
+ '结尾解说': '简述',
+ '停顿插入点': {'S11': {'1': [0.736125, '交界']}},
+ '词尾除阻': {'标题': {'句末': [2.22, 't']},
+          'S5': {'2': [4.48, 't']},
+          'S9': {'2': [6.83, 't']},
+          'S12': {'2': [6.955, 't']},
+          'S6': {'1': [3.779, 't']}},
+ 'allow_clash': ['reinforced with', 'crack', 'gap'],
+ '高亮按实际开口': True,
+ '高亮开口门槛': 40,
+ '术语': {'Pantheon': '万神殿', 'Roman': '罗马', 'Science Advances': '《科学进展》', 'Chatham House': '查塔姆研究所', 'AD': '公元'},
+ '非人声区间': {'S1': [[3.925, 4.245]],
+           'S5': [[4.67, 4.9185, '紧贴词头']],
+           'S10': [[4.84, 5.275]],
+           'S11': [[1.595, 1.91875, '紧贴词头']],
+           'S13': [[5.08, 5.307958, '紧贴词头']],
+           'S17': [[3.82, 4.08]]},
+ '除阻加强': {'S1': {'2': [7.89, 7.955, 3.0]}},
+ '区间声音指纹': {'S1': 'ca441a4f89f0',
+            'S5': '3c43dd0715ed',
+            'S6': '32041d564228',
+            'S9': '5fa2d2332837',
+            'S10': 'c53bff73ac91',
+            'S11': '8e14184695f5',
+            'S12': 'bd86fa8f73f7',
+            'S13': '3bab3ff5417c',
+            'S17': '64d1d692ad62'},
+ '换行变更记录': [{'日期': '2026-11-07',
+             'S6': '用户 2026-11-07：“尽可能的就是上面的英文和如果说ok的话能那就跟下面的这个中文对应好，对吧？尽可能的不论是哪个单词”',
+             'S15': '用户 2026-11-07：“尽可能的就是上面的英文和如果说ok的话能那就跟下面的这个中文对应好，对吧？尽可能的不论是哪个单词”',
+             'S12': '用户 2026-11-07：“上面的意思翻译的不好，改为下面这个意思：当水渗入裂缝时，碎屑会溶解，它们的钙会重新结晶为碳酸钙，从而堵住缝隙。”',
+             'S13': '用户 2026-11-07：“在试验中，水在几周内便不再细细流过开裂的热混合样本，within weeks '
+                    '词汇，重点词汇，重点词汇。在几周之内标注为在几周之内，在几周之内，中文意思。”',
+             'S9': '用户 2026-11-07：“上面这个翻译不准换成这个翻译：这种缺陷，他们认为，换一个更加认真负责的建筑工就能避免”'}]}
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from 核对 import 生成并核对
+生成并核对(S, out)

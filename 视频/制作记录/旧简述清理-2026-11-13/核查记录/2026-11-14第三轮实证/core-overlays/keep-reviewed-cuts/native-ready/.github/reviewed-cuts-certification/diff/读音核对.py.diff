@@ -1,0 +1,20 @@
+--- original/视频/工具/读音核对.py
++++ candidate/视频/工具/读音核对.py
+@@ -293,7 +293,16 @@
+     if dead: res.append((f'读音改正生效（{"、".join(dead)} 有改正却照 espeak 原样读）', False))
+     valid = []
+     for w in used:   # 样本照真门判（主会话 2026-10-28）：单独关掉这个词的改正，check() 在本篇对这个词报 BAD，就是样本
+-        keep_w = PRON_WORDS.pop(w); got = {line for _, line, bad in check(no) if bad}; PRON_WORDS[w] = keep_w
++        # Keep the compound registry intact while injecting its real uncorrected
++        # espeak pronunciation. Popping Haber-Bosch also changes the replacement
++        # count for Haber inside that compound and aborts before check() can
++        # identify the intentionally wrong pronunciation.
++        keep_w = PRON_WORDS[w]
++        PRON_WORDS[w] = re.sub(r'[,;:.!?]', '', KT.tokenizer.phonemize(w, 'en-us')).strip()
++        try:
++            got = {line for _, line, bad in check(no) if bad}
++        finally:
++            PRON_WORDS[w] = keep_w
+         hit = any(re.search(r'\] ' + re.escape(w) + r"(['’]s)? ", l_) for l_ in got - base)   # 文中只有所有格的（10 Uffizi's）也算
+         print(f'  K102 ② {w}：单独关掉改正 → ' + ('报 BAD（当样本）' if hit else '不报（关掉后仍读对，不当样本）'))
+         if hit: valid.append(w)

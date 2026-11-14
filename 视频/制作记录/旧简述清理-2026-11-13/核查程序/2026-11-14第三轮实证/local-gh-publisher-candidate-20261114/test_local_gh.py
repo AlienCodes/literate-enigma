@@ -1,0 +1,106 @@
+"""Offline local-publisher fixtures; never uploads, publishes, deletes or writes GitHub."""
+import copy,datetime,hashlib,json,os,tempfile,unittest
+from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import Mock,patch
+import delivery as D
+import release_actions as R
+from release_contract import exact_assets
+import test_v3 as V
+from test_v3 import pdf_fixture,records_fixture,H
+
+class LocalGHPublisher(unittest.TestCase):
+    def publish_fixture(self,wrong_asset_plan=False,missing_video=False,missing_file=False):
+        with tempfile.TemporaryDirectory()as td:
+            root=Path(td)/'root';out=Path(td)/'out';root.mkdir();source=V.Native71BuildPublish().build(root,out);plan=json.loads((out/'upload-plan.json').read_text())
+            if missing_file:(out/plan['assets'][-1]['name']).unlink()
+            if missing_video:
+                plan['assets'].pop();R.write(out/'upload-plan.json',plan)
+            commit='b'*40;asset_commit='c'*40;release=None;rows=[];writes=[];uploaded=[]
+            def api(route,method='GET',data=None,missing_ok=False):
+                nonlocal release
+                if method!='GET':writes.append((route,method,data))
+                if route.startswith('releases/tags/'):return release
+                if route.startswith('git/ref/tags/'):return {'object':{'type':'commit','sha':commit}}if release else None
+                if route=='releases'and method=='POST':
+                    release={'id':9,'draft':True,'target_commitish':data['target_commitish'],'body':data['body'],'tag_name':data['tag_name'],'html_url':'https://github.com/'+R.REPO+'/releases/tag/fixture'};return release
+                if route=='releases/9'and method=='PATCH':release['draft']=False;return release
+                if route=='releases/9':return release
+                if '/assets?'in route:return rows
+                raise AssertionError((route,method))
+            def raw(path,revision):
+                if revision==commit:return (root/source['manifest_path']).read_bytes()
+                self.assertEqual(revision,asset_commit);self.assertEqual(path,R.PROGRAM+'/release-plan.json')
+                return b'wrong immutable source'if wrong_asset_plan else(root/path).read_bytes()
+            def upload(_,path):
+                uploaded.append(path.name);row={'name':path.name,'id':len(rows)+1,'state':'uploaded','size':path.stat().st_size,'digest':'sha256:'+R.sha(path),'browser_download_url':'https://example.invalid/'+path.name};rows.append(row);return row
+            with patch.dict(os.environ,{},clear=True),patch.object(R.subprocess,'run',return_value=SimpleNamespace(stdout='gh version 2.99.0 (offline fixture)\n')),patch.object(R,'api',side_effect=api),patch.object(R,'raw_primary',side_effect=raw),patch.object(R,'upload',side_effect=upload):
+                if wrong_asset_plan or missing_video or missing_file:
+                    with self.assertRaises(ValueError):R.publish(root,out,commit,'local-gh',asset_commit)
+                    self.assertEqual(writes,[]);self.assertEqual(uploaded,[]);return
+                result=R.publish(root,out,commit,'local-gh',asset_commit)
+            self.assertTrue(result['release_public']);self.assertFalse(result['delivery_complete']);self.assertEqual(len(uploaded),71)
+            self.assertEqual(uploaded,[a['name']for a in plan['assets']]);self.assertEqual({Path(n).suffix for n in uploaded},{'.pdf','.mp4'})
+            data=json.loads((out/'REMOTE-DELIVERY-VERIFICATION.json').read_text());self.assertEqual(data['publisher_execution']['kind'],'local_gh');self.assertEqual(data['asset_commit'],asset_commit)
+            self.assertFalse(any(k.startswith('publisher_workflow_')for k in data));self.assertEqual(data['publisher_execution']['program_sha256'],R.sha(R.__file__))
+            self.assertEqual(writes[0][1],'POST');self.assertEqual(writes[-1],('releases/9','PATCH',{'draft':False,'make_latest':'true'}))
+    def test_real_local_mode_does_not_need_or_invent_actions_env(self):self.publish_fixture()
+    def test_local_wrong_frozen_asset_plan_stops_before_any_write(self):self.publish_fixture(wrong_asset_plan=True)
+    def test_local_missing_video_stops_before_any_write(self):self.publish_fixture(missing_video=True)
+    def test_local_missing_physical_file_stops_before_any_write(self):self.publish_fixture(missing_file=True)
+    def test_repository_GET_has_no_invalid_trailing_slash(self):
+        with patch.object(R,'auth_token',return_value='offline-not-a-real-token'),patch.object(R.urllib.request,'urlopen',return_value=__import__('io').BytesIO(b'{"full_name":"alienalgorithm/postgraduate-vocabulary"}'))as opened:
+            R.api('');self.assertEqual(opened.call_args.args[0].full_url,'https://api.github.com/repos/'+R.REPO)
+    def test_inspect_local_calls_only_GET(self):
+        with tempfile.TemporaryDirectory()as td:
+            calls=[]
+            def api(route,method='GET',data=None,missing_ok=False):
+                calls.append(method);self.assertEqual(method,'GET')
+                return {'full_name':R.REPO}if route==''else[{'id':444450051,'tag_name':'reading-reordered-2026.11.13-v1','draft':False}]
+            with patch.dict(os.environ,{},clear=True),patch.object(R.subprocess,'run',return_value=SimpleNamespace(stdout='gh version 2.99.0\n')),patch.object(R,'api',side_effect=api):r=R.inspect_local(Path(td)/'inspection.json')
+            self.assertFalse(r['remote_mutation_executed']);self.assertEqual(calls,['GET','GET'])
+
+class LocalReceiptAndNarrowCleanup(unittest.TestCase):
+    def receipt_fixture(self,td):
+        _,pdf,_,_=pdf_fixture();records=records_fixture(td/'records');planned=exact_assets(records,pdf)
+        inv=json.dumps({'schema_version':3,'revision':'fixture','assets':planned},ensure_ascii=False,indent=2).encode()+b'\n';sums=''.join(a['sha256']+'  '+a['name']+'\n'for a in planned).encode()
+        data={'schema_version':3,'passed':True,'release_public':True,'delivery_complete':False,'revision':'fixture','repository':D.PRIMARY[0],'release_id':9,'tag_name':'fixture','release_url':'https://github.com/'+D.PRIMARY[0]+'/releases/tag/fixture','primary_archive_commit':'b'*40,'asset_commit':'c'*40,'repository_asset_inventory_path':'audit/release-assets.json','repository_asset_inventory_sha256':H(inv),'repository_sha256sums_path':'audit/SHA256SUMS.txt','repository_sha256sums_sha256':H(sums),'remote_receipt_repo_path':'audit/REMOTE.json','audit_path':'audit','publisher_execution':{'kind':'local_gh','gh_version':'gh version 2.99.0','transport':'GitHub REST API with existing local gh authentication','authentication_source':'gh auth token','program_sha256':'1'*64,'contract_program_sha256':'2'*64}}
+        archive={'schema_version':3,'revision':'fixture','asset_commit':'c'*40,'backup_master_expected':'e'*40,'archives':[{'role':'primary','repository':D.PRIMARY[0],'branch':D.PRIMARY[1],'commit':'b'*40},{'role':'backup','repository':D.BACKUP[0],'branch':D.BACKUP[1],'commit':'f'*40}]}
+        return data,archive,planned
+    def test_local_receipt_saved_identically_both_repos_without_workflow_artifact(self):
+        with tempfile.TemporaryDirectory()as temp:
+            td=Path(temp);data,archive,planned=self.receipt_fixture(td);ap=td/'archive.json';rp=td/'local-receipt.json';D.write(ap,archive);D.write(rp,data);raw=rp.read_bytes();seen=[];api=Mock();api.api.return_value={'object':{'sha':'e'*40}}
+            def commit(_,repo,branch,files,message):seen.append((repo,branch,files));return {'repository':repo,'branch':branch,'commit':'1'*40,'blobs':{k:H(v)for k,v in files.items()}}
+            with patch.object(D,'GitHub',return_value=api),patch.object(D,'verify_public_release_receipt',return_value=planned)as verify,patch.object(D,'commit_records',side_effect=commit):result=D.persist_local_release_receipt(ap,rp,True)
+            self.assertTrue(result['delivery_complete']);self.assertEqual(result['publisher_proof']['kind'],'local_gh_receipt');verify.assert_called_once();self.assertEqual(len(seen),4)
+            self.assertEqual(seen[0][2]['audit/REMOTE.json'],raw);self.assertEqual(seen[1][2]['audit/REMOTE.json'],raw);self.assertEqual({(a,b)for a,b,_ in seen[:2]},{D.PRIMARY,D.BACKUP})
+            self.assertFalse(any('actions/'in str(c.args)for c in api.api.call_args_list));api.raw_artifact.assert_not_called()
+    def test_local_receipt_rejects_fake_actions_fields_before_remote_write(self):
+        with tempfile.TemporaryDirectory()as temp:
+            td=Path(temp);data,archive,_=self.receipt_fixture(td);data['publisher_workflow_run_id']=123;ap=td/'archive.json';rp=td/'receipt.json';D.write(ap,archive);D.write(rp,data)
+            with patch.object(D,'GitHub'),patch.object(D,'commit_records')as commit:
+                with self.assertRaises(ValueError):D.persist_local_release_receipt(ap,rp,True)
+                commit.assert_not_called()
+    def test_only_one_named_old_release_can_be_deleted(self):
+        with tempfile.TemporaryDirectory()as temp:
+            td=Path(temp);ap=td/'ack.json';tp=td/'targets.json';D.write(ap,{})
+            # Historical reading/PDF, cover and unrelated backup software all remain protected.
+            for wrong in [444176582,444612278,444594759,444527820]:
+                t={**D.AUTHORIZED_OLD_RELEASE_TARGET,'release_id':wrong};D.write(tp,[t])
+                with patch.object(D,'GitHub')as api:
+                    with self.assertRaises(ValueError):D.cleanup_old_releases(ap,tp,True)
+                    api.assert_not_called()
+            D.write(tp,[D.AUTHORIZED_OLD_RELEASE_TARGET,copy.deepcopy(D.AUTHORIZED_OLD_RELEASE_TARGET)])
+            with patch.object(D,'GitHub')as api:
+                with self.assertRaises(ValueError):D.cleanup_old_releases(ap,tp,True)
+                api.assert_not_called()
+    def test_exact_named_release_cleanup_keeps_git_tags(self):
+        with tempfile.TemporaryDirectory()as temp:
+            td=Path(temp);ack=td/'ack.json';tp=td/'targets.json';rows=[{'repository':r,'branch':b,'commit':'a'*40,'blobs':{}}for r,b in(D.PRIMARY,D.BACKUP)]
+            data={'revision':'new','release_id':9,'tag_name':'new','asset_commit':'b'*40,'primary_archive_commit':'c'*40,'remote_receipt_repo_path':'audit/REMOTE.json','audit_path':'audit'}
+            D.write(ack,{'passed':True,'delivery_complete':True,'revision':'new','verification_archives':rows,'verification_record_path':'audit/ACK.json','verification_record_sha256':'d'*64,'receipt_archives':rows,'remote_receipt_path':'audit/REMOTE.json','remote_receipt_sha256':'e'*64,'asset_commit':'b'*40,'primary_archive_commit':'c'*40});D.write(tp,[D.AUTHORIZED_OLD_RELEASE_TARGET]);api=Mock();api.api.return_value={**D.AUTHORIZED_OLD_RELEASE_TARGET,'id':444450051};api.api.return_value.pop('release_id')
+            with patch.object(D,'GitHub',return_value=api),patch.object(D,'verify_record_reference',return_value=json.dumps(data).encode()),patch.object(D,'verify_public_release_receipt'),patch.object(D,'commit_records',return_value={}):result=D.cleanup_old_releases(ack,tp,True)
+            deletes=[c for c in api.api.call_args_list if len(c.args)>2 and c.args[2]=='DELETE'];self.assertEqual(len(deletes),1);self.assertEqual(deletes[0].args[1],'releases/444450051');self.assertFalse(result['git_tags_deleted'])
+            self.assertFalse(any('git/refs/tags'in str(c.args)for c in deletes))
+
+if __name__=='__main__':unittest.main()

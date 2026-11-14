@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v2-observation-metadata/ingest_inline_article.py", line 103, in <module>
+    else:D.require(a.boundary_review,'Actual five-frame review required');finalize(a)
+                                                                          ^^^^^^^^^^^
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v2-observation-metadata/ingest_inline_article.py", line 86, in finalize
+    import_one(root,n,out);D.write(out/n/'actual-boundary-frame-review.json',review)
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v2-observation-metadata/import_actual_article.py", line 141, in import_one
+    record=D.validate_article(config,item,old,reorder,images,compose,crop,changed_audio)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v2-observation-metadata/delivery.py", line 431, in validate_article
+    require(visible_tokens(req_md.split(heading, 1)[1].split(stop, 1)[0], heading == '## 中文') ==
+  File "/workspace/work/video-revision-delivery/native-inline-engine-frozen-20261114-v2-observation-metadata/delivery.py", line 23, in require
+    raise ValueError(message)
+ValueError: Markdown prose changed outside mechanical style: 62/## 中文

@@ -1,0 +1,77 @@
+{
+  "source_id": "03",
+  "kind": "actual_accepted_whole_audio_identical_original_locator_metadata_reconciliation",
+  "old_accepted_video": {
+    "id": "03",
+    "path": "最终版4K视频/03 - The Doctor Who Drank Bacteria to Win an Argument - 喝下细菌的医生.mp4",
+    "sha256": "5c55c34a6c2c21f6132498f6c6effe5357af8930e72543b4127ce14307915dc8",
+    "git_blob_sha": "affedc1f5d109499a9d42aec84ca38d3e75ace23",
+    "bytes": 12749163,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "208d3c923e86ddbf27d9a59f23b90c95949dbdb8664fe89fc605b12fdedd1aff"
+  },
+  "old_accepted_video_git_ref": "64621068034f8b6e09836a6d97210a0e9b2f1ed6",
+  "new_native_final_sha256": "e7459870165f69ddc4fc3009479b5606461525b5461bfc6339b8eba0c83f769e",
+  "request_json_sha256": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+  "final_json_sha256": "0bcc754fa8be80a5732890e8be770bff9d9b8226dbe6dfa53aeae6b52a4b858f",
+  "request_structural_sha256": "3cd0dc402e8876e01e1213386915255ef05bdeabd08c5fa6e17a4964319fed8f",
+  "final_structural_sha256": "fa8ccbf7b296453a81c3676f728f72db167948120b7d1c9725c935f4f0d1c06f",
+  "actual_packet_count": 6834,
+  "all_packet_payload_absolute_pts_dts_duration_flags_and_side_data_exact": true,
+  "packet_projection_sha256": "0cd35069c303139716d529d9bd1033f9f05ab973552af563725f05ab129bf45b",
+  "whole_public_decoded_float32_values": 6996992,
+  "whole_public_decoded_float32_bit_identical": true,
+  "whole_public_decoded_sha256": "0e4d6e74f16899c59df8e641cad4b70bf6c30c61b4ecca9b1025e1b2a6f822f1",
+  "ending_key": "S19",
+  "request_ending": {
+    "前段语速": 0.9,
+    "最后一段语速": 0.78,
+    "最后一段前停顿": 0.7,
+    "接点": [
+      101700,
+      125580
+    ],
+    "依据": "全篇结尾句按 07 定下的标准（用户 2026-10-10 听了 07 结尾句试听后同意，并要求所有视频统一）：前段 0.90、最后一段 0.78、前面停 0.70 秒。最后一段 is named in the prize citation.。接点：0.90 那遍 himself, 后的停顿里最安静处（4.24 s，静音段 4.175–4.26 s），0.78 那遍停顿里 is 之前最安静处（5.2325 s，静音段 4.74–5.245 s），两侧 10 ms 都低于 -55 dB；两遍都切在 is 前面那个空格音之后（带时长模型同一个音的位置），接起来音素一个不多、一个不少（L14）"
+  },
+  "actual_original_locator_ending": {
+    "前段语速": 0.9,
+    "最后一段语速": 0.78,
+    "最后一段前停顿": 0.7,
+    "接点": [
+      101820,
+      124740
+    ],
+    "依据": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“is named in the prize citation.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（45 ms）的正中 4.242 s，0.78 那遍（110 ms）的正中 5.197 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）"
+  },
+  "all_other_effective_controls_deep_equal": true,
+  "remaining_source_invariants": {
+    "visible_body_notes_summary_and_focus_unchanged": true,
+    "layout_only_newlines_and_T38_bold_allowed": true,
+    "audio_render_title_metadata_unchanged": false,
+    "effective_audio_render_title_controls_unchanged": true,
+    "official_regenerated_nonaudio_rationale_updates": [],
+    "observed_original_QC_interval_fingerprint_updates": [
+      {
+        "path": "/区间声音指纹",
+        "before": null,
+        "after": {
+          "S1": "d49bed1ef6d0",
+          "S2": "3c36f6a29c61",
+          "S3": "fb4db625d6c0",
+          "S4": "ac5296632edc",
+          "S6": "ce3d09274474",
+          "S9": "007317d05167",
+          "S10": "7f956b288eb8",
+          "S14": "059afa9daad4",
+          "S15": "adc8f9165feb",
+          "S18": "3e20fe250a19"
+        },
+        "basis": "Original maker A45 observed raw-synthesis validity hashes, not physical audio controls. Both immutable source versions and actual native QC remain in the artifact; original full sound gates and actual approved AAC/absolute timing validation remain mandatory."
+      }
+    ]
+  },
+  "source_or_video_or_audio_changed": false,
+  "private_PCM_GT_or_TTS_cache_exported": false
+}

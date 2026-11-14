@@ -1,0 +1,21 @@
+--- before/README.md
++++ candidate/README.md
+@@ -71,7 +71,7 @@
+ python3 delivery.py cleanup-old-releases DUAL_RECEIPT.json EXACT_TARGETS.json --execute
+ ```
+ 
+-只接受逐项`repository/release_id/tag_name/html_url`名单；先重新验证新Release和双仓永久回执，再逐项重读身份。新Release受到保护；不按标题、latest或全仓列表自动删除，不删除任何Git tag。实际部分失败也保存已做动作及双仓记录，不能宣称全部完成。
++本轮只接受主仓reading-reordered-2026.11.13-v1/444450051这一准确`repository/release_id/tag_name/html_url`对象；先重新验证新Release和双仓永久回执，再重读该对象身份。其余历史书/PDF、cover与备仓软件/模型Release均保留。新Release受到保护；不按标题、latest或全仓列表自动删除，不删除任何Git tag。实际部分失败也保存已做动作及双仓记录，不能宣称全部完成。
+ 
+ ## 本地验证与当前边界
+ 
+@@ -107,3 +107,9 @@
+ 10/12/44/51的原专门声学报告仍严格保留原canonical SHA。未导出原W/MP4时，原声学报告、不可变upstream status、原old2s音频复制证明、真实插图helper逐包证明及本地实际AAC形成同一证据链，不重写原报告指纹。声音是否修过按实际AAC变化记录；合法核心程序修复保留真实旧新SHA，不伪称全部程序字节未变。空job日志仅记为辅助证据不可用，不阻止已经实验证明合格的声画。
+ 
+ 所有局部恢复必须先完成实际5帧目视和完整V3单篇验证，才交双仓永久保存。每篇保存本次真正使用的code snapshot；历史冻结引擎和报告不回写。部分通过仍不能发布整套Release，正式附件仍严格为1本PDF与按书序排列的全部70部4K。
++
++## 本地发布来源
++
++新增显式`--publisher-mode local-gh --asset-commit ACTUAL_ASSET_COMMIT`可在整套71实物完成以后，本地使用既有gh认证发布，无须等待publisher workflow，也不会伪造Actions run/artifact。只读演练为`release_actions.py inspect-local --output REPORT.json`；永久回执入口为`delivery.py persist-local-release-receipt ARCHIVE_RECEIPT.json ACTUAL_LOCAL_RECEIPT.json --execute`。原native-actions默认入口保留。详情见`LOCAL-GH-PUBLISH.md`，当前仍未执行任何发布。
++
++当前最窄替换授权仅主仓reading-reordered-2026.11.13-v1（release ID444450051）。其他三个历史书/PDF版、全部cover及备仓软件/模型Release、所有Git tags均保留。cleanup代码不接受其他目标。

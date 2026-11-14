@@ -1,0 +1,3172 @@
+{
+  "article": "30",
+  "passed": false,
+  "stage": "canonical-draft-00.log",
+  "original_audit_and_quality_thresholds_unchanged": true,
+  "original_maker_unchanged": true,
+  "core_repairs": [
+    {
+      "target": "视频/工具/草稿声音.sh",
+      "file": "files/视频/工具/草稿声音.sh",
+      "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+      "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/句内响度.py",
+      "file": "files/视频/工具/句内响度.py",
+      "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+      "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+      "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+    },
+    {
+      "target": "视频/工具/独立复核/synth.py",
+      "file": "files/视频/工具/独立复核/synth.py",
+      "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+      "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+      "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+    }
+  ],
+  "strict_production_cache": true,
+  "pdf_requested": false,
+  "check_summaries": {
+    "approved-illustration-resource.log": [],
+    "certified-core-original-stamp-verification.log": [],
+    "original-restored-stamp.log": [],
+    "canonical-module-copy.log": [],
+    "approved30-derived-level-preparation.log": [],
+    "canonical-draft-00.log": [
+      "① 文本：通过，自动修 2 处",
+      "② 声音：30 词尾辅音核对 问题数 0；30 纯人声核对（配音指纹 5babe45ce87d）问题数 13；问题数 0；30 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "【停】⑤ 出片后核查（330 秒；全文在 /home/runner/work/_temp/completion-machine/video/做_30/）："
+    ]
+  },
+  "actual_native_core_certification": {
+    "run_id": 43535822030,
+    "job_id": 132264443476,
+    "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+    "actual_full_quickcheck_exit": 0,
+    "actual_full_quickcheck_seconds": 478.16,
+    "artifact_id": 14089812323,
+    "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+    "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+    "article_audio_or_video_passed_not_implied": true
+  },
+  "actual_native_fastcheck_stamp": {
+    "target": "视频/工具/新管/快测通过.json",
+    "file": "files/视频/工具/新管/快测通过.json",
+    "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+    "origin": "actual unmodified original full quickcheck, native run43535822030"
+  },
+  "reviewed_regression_resource": {
+    "target": "视频/工具/新管/回归基准_27.json",
+    "file": "files/视频/工具/新管/回归基准_27.json",
+    "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+    "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+  },
+  "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+  "reviewed_gain_preservation_mode": true,
+  "real_restored_stamp_validated": true,
+  "reviewed_cross_article_context": {
+    "provided": true,
+    "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+    "files_sha256": {
+      "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+      "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+      "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+      "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+      "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+      "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+      "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+      "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+      "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+      "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+      "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+      "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+      "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+      "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+      "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+      "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+      "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+      "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+      "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+      "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+      "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+      "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+      "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+      "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+      "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+      "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+      "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+      "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+      "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+      "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+      "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+      "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+      "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+      "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+      "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+      "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+      "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+      "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+      "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+      "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+      "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+      "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+      "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+      "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+      "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+      "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+      "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+      "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+      "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+      "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+      "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+      "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+      "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+      "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+      "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+      "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+      "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+      "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+      "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+      "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+      "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+      "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+      "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+      "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+      "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+      "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+      "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+      "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+      "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+      "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+      "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+      "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+      "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+      "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+      "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+      "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+      "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+      "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+      "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+      "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+      "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+      "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+      "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+      "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+      "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+      "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+      "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+      "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+      "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+      "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+      "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+      "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+      "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+      "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+      "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+      "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+      "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+      "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+      "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+      "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+      "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+      "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+      "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+      "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+      "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+      "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+      "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+      "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+      "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+      "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+      "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+      "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+      "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+      "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+      "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+      "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+      "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+      "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+      "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+      "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+      "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+      "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+      "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+      "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+      "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+      "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+      "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+      "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+      "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+      "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+      "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+      "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+      "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+      "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+      "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+      "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+    },
+    "source_file_count": 140,
+    "working_script_count": 70,
+    "target_request_exactly_matches_context": true
+  },
+  "request_source_sha256": {
+    "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+    "视频/工具/初稿生成/gen30.py": "c9f966ac0eca9aa553c57eab8d5c63532f9d01b7be6c9543f41829d355e6ce00",
+    "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+    "视频/制作记录/30_待改清单.md": "174b64daf5296e5d8d5e69b4f394d0870d7888d73ba4e766edb929fc6ebc279a",
+    "视频/制作记录/逐句确认/30.json": "ef61e1e144fdd5937464e6a8a90e63850694a1920ecdc6685de8dc174df826d8"
+  },
+  "accepted_source": {
+    "id": "30",
+    "path": "最终版4K视频/30 - The Stink That Built London's Sewers - 大恶臭逼出了下水道.mp4",
+    "sha256": "0f2f4c685f2f2646c12b8cf44631b5bd30140351351f9e1e12deed8495c26d48",
+    "git_blob_sha": "5e6e890b93e5323f4367f387de1a19e35adb0e73",
+    "bytes": 12108456,
+    "width": 3840,
+    "height": 2160,
+    "summary_frames": 60,
+    "aac_adts_sha256": "cbf1848eff1a5fdf6ea7ff57c6a1a7018e0ef2b5399efc402452ca1d7b13ece7"
+  },
+  "checker_reference_preparation": {
+    "article": "30",
+    "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+    "reference_prepared": true,
+    "acceptance": false,
+    "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+    "source_sha256": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+    "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "checker_program_sha256": {
+      "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+      "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+      "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+      "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+      "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+      "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+    },
+    "reference_calls": [
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-raw",
+        "method": "create",
+        "source_slice": "The Stink That Built London's Sewers",
+        "exact_native_cache_key": "587604306f9c40b2e77405e3a692295c4bd06626.pkl",
+        "cache_input_text_sha256": "1aa9f269459fd4f60f28a928ff2ce1954dec451cdd76f460903fcdd34c6e7125",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "标题",
+        "piece": null,
+        "reference_kind": "title-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Stink That Built London's Sewers",
+        "exact_native_cache_key": "a24bb4a09c8a312f083e206d38080740f61b22f0.pkl",
+        "cache_input_text_sha256": "1aa9f269459fd4f60f28a928ff2ce1954dec451cdd76f460903fcdd34c6e7125",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "In the fierce heat of summer 1858, the curtains of the new Houses of Parliament hung heavy with chloride of lime, a bleach to make the air tolerable.",
+        "exact_native_cache_key": "e6134b9182f005228f790b16f1888357e35a1159.pkl",
+        "cache_input_text_sha256": "01e9a9d5c4250385a0578b45e7ccb68045cd705ab8ab712dc6f06629b25176b1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "In the fierce heat of summer 1858, the curtains of the new Houses of Parliament hung heavy with chloride of lime, a bleach to make the air tolerable.",
+        "exact_native_cache_key": "2ac136aab7b5d328b55bed1eab7515997dd3479b.pkl",
+        "cache_input_text_sha256": "01e9a9d5c4250385a0578b45e7ccb68045cd705ab8ab712dc6f06629b25176b1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "In the fierce heat of summer 1858, the curtains of the new Houses of Parliament hung heavy with chloride of lime,",
+        "exact_native_cache_key": "a0728f04dfdf4e94f50fa3d23135bde08d0f7424.pkl",
+        "cache_input_text_sha256": "55136c1e7e28e35addc1d00d887b8f9ddb5d066f73a7609f376158986d2ea0c9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "a bleach to make the air tolerable.",
+        "exact_native_cache_key": "e86913a7858f8e0bdbfb36cb3ddbba5428482e4e.pkl",
+        "cache_input_text_sha256": "5c8cc754e3772cd3bca52cf3945e21661842816b64c05b550f8cb6dbc7e706e9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "In the fierce heat of summer 1858,",
+        "exact_native_cache_key": "5daaa4ee6b6b2a7831d8e26ad32b125865b94600.pkl",
+        "cache_input_text_sha256": "213385d883bcbc000114ace3939ebe20b7bee293866185e2bf16fc87577af5e6",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the curtains of the new Houses of Parliament hung heavy with chloride of lime,",
+        "exact_native_cache_key": "d7db673be20b5ffcbe805ebd9f2db9765885d644.pkl",
+        "cache_input_text_sha256": "9a57db316ae7a3c48966dfb668545b5e0d192271ff4c541605eefdbd65ac4066",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S1",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "a bleach to make the air tolerable.",
+        "exact_native_cache_key": "e86913a7858f8e0bdbfb36cb3ddbba5428482e4e.pkl",
+        "cache_input_text_sha256": "5c8cc754e3772cd3bca52cf3945e21661842816b64c05b550f8cb6dbc7e706e9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The Thames festered, and MPs contemplated moving out.",
+        "exact_native_cache_key": "c03e705f2b899aa18b73f372e053250c6f835ff7.pkl",
+        "cache_input_text_sha256": "402e7f8afdab2e9e7842872e0cc1b4c1933c4838515be0591f418be1c91694a1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The Thames festered, and MPs contemplated moving out.",
+        "exact_native_cache_key": "18652b49144c8e61529e54ec5c9d47520e2122dc.pkl",
+        "cache_input_text_sha256": "402e7f8afdab2e9e7842872e0cc1b4c1933c4838515be0591f418be1c91694a1",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The Thames festered,",
+        "exact_native_cache_key": "4d6345804029465f27799f9fa2e2e4a39b952e5b.pkl",
+        "cache_input_text_sha256": "5709a2911f6387dd9cf59258c85fc18b1d4d17a6964dca42e551339ba392edb9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S2",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and MPs contemplated moving out.",
+        "exact_native_cache_key": "4109f2a9ea7bb0f966f240ced1533ff1f434fe8e.pkl",
+        "cache_input_text_sha256": "a5474f5d47b3bd3cecf89f859d10a37d453328236b07fdf430f08de0ee14c496",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The river had become London's lavatory.",
+        "exact_native_cache_key": "f0bb88ceaf0473870dd69c549b9982996d98a8cc.pkl",
+        "cache_input_text_sha256": "6e859cdf75e39a10db08d54a9ae07bf19879967308da54331b193cda440df1d0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S3",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The river had become London's lavatory.",
+        "exact_native_cache_key": "2ebd6372ef364818b5cf917fcb8f620445abe523.pkl",
+        "cache_input_text_sha256": "6e859cdf75e39a10db08d54a9ae07bf19879967308da54331b193cda440df1d0",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Antiquated sewers and outlets discharged the untreated sewage of some three million city dwellers into its currents, where the excrement stewed and decayed.",
+        "exact_native_cache_key": "eceb3036901a449a305722d2133a9753223dc595.pkl",
+        "cache_input_text_sha256": "a0ca34335d969580f93be1f615ef64bcad5117475178b6e30e1a82689278261e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Antiquated sewers and outlets discharged the untreated sewage of some three million city dwellers into its currents, where the excrement stewed and decayed.",
+        "exact_native_cache_key": "aab977fd659ac07eec3ca3a168e8865d946b358a.pkl",
+        "cache_input_text_sha256": "a0ca34335d969580f93be1f615ef64bcad5117475178b6e30e1a82689278261e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Antiquated sewers and outlets discharged the untreated sewage of some three million city dwellers into its currents,",
+        "exact_native_cache_key": "0704549efaabc75c35d6077c448dbe43d20a844c.pkl",
+        "cache_input_text_sha256": "02dd324fbc784fd97ff018af738e28a94bae5d9c688d2ec7b2f598c2ac629f18",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "where the excrement stewed and decayed.",
+        "exact_native_cache_key": "18b62d5b91b10defd79c0e8fc665787d016c9165.pkl",
+        "cache_input_text_sha256": "9d6dc50f7d2c25a0df5eba6443556dc517c961d237f0f11eb05f20e5bf542420",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Antiquated sewers and outlets discharged the untreated sewage of some three million city dwellers into its currents,",
+        "exact_native_cache_key": "0704549efaabc75c35d6077c448dbe43d20a844c.pkl",
+        "cache_input_text_sha256": "02dd324fbc784fd97ff018af738e28a94bae5d9c688d2ec7b2f598c2ac629f18",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S4",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "where the excrement stewed and decayed.",
+        "exact_native_cache_key": "18b62d5b91b10defd79c0e8fc665787d016c9165.pkl",
+        "cache_input_text_sha256": "9d6dc50f7d2c25a0df5eba6443556dc517c961d237f0f11eb05f20e5bf542420",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The vile fumes grew so overpowering that the episode earned a name, the Great Stink.",
+        "exact_native_cache_key": "a5c113aac87bdda833390539dc5e79065c6382f0.pkl",
+        "cache_input_text_sha256": "ddc0947dfc40a47250f85a127ede6eb1dc0c1fe69e71cdec719f4666a518f959",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The vile fumes grew so overpowering that the episode earned a name, the Great Stink.",
+        "exact_native_cache_key": "1f040f53af1eaed910932d4eee0988dec5ce783f.pkl",
+        "cache_input_text_sha256": "ddc0947dfc40a47250f85a127ede6eb1dc0c1fe69e71cdec719f4666a518f959",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The vile fumes grew so overpowering that the episode earned a name,",
+        "exact_native_cache_key": "7ad9ea92a3b42c88576ae3fa008c2b13fea9f36b.pkl",
+        "cache_input_text_sha256": "954018c0122da52bf41abce4889627af25d07ca01bc3c78b811e3116f9b246b9",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S5",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the Great Stink.",
+        "exact_native_cache_key": "29eadd2a9ffb9d745665a3058f06aedc935a6902.pkl",
+        "cache_input_text_sha256": "ce76b6988441486f920884f52853cf3624f16bf7ba688737a896feaf340e8d16",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Disgust found a voice on 15 July, when the Chancellor of the Exchequer, Benjamin Disraeli, denounced the river as a hellish pool of unbearable horrors.",
+        "exact_native_cache_key": "fd3d9adaa81373e6cfbf6be5a92b132f4c239d7e.pkl",
+        "cache_input_text_sha256": "86cc26412dad301fb12859691af93dcf391e8aed9940736cf1be930c2c3b1fbc",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Disgust found a voice on 15 July, when the Chancellor of the Exchequer, Benjamin Disraeli, denounced the river as a hellish pool of unbearable horrors.",
+        "exact_native_cache_key": "b720ec3346132f572846523c651971a7aa595bbf.pkl",
+        "cache_input_text_sha256": "86cc26412dad301fb12859691af93dcf391e8aed9940736cf1be930c2c3b1fbc",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Disgust found a voice on 15 July,",
+        "exact_native_cache_key": "bcc8587a2761b978d3c495c2a6e7ec6140390618.pkl",
+        "cache_input_text_sha256": "dcb9698acbca520863569bd7c5de6849e65750bc47b2499cfc0ca30f282ff554",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "when the Chancellor of the Exchequer, Benjamin Disraeli, denounced the river as a hellish pool of unbearable horrors.",
+        "exact_native_cache_key": "500f0a9ae516f6f0ff25941b78b8daea1a3d7bda.pkl",
+        "cache_input_text_sha256": "af9fe0d18478028455235a4938ee9f1ed5d201b85332acbf183c58de82748455",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Disgust found a voice on 15 July,",
+        "exact_native_cache_key": "bcc8587a2761b978d3c495c2a6e7ec6140390618.pkl",
+        "cache_input_text_sha256": "dcb9698acbca520863569bd7c5de6849e65750bc47b2499cfc0ca30f282ff554",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "when the Chancellor of the Exchequer,",
+        "exact_native_cache_key": "407872a9763bde5b2d69c654139f075bb13dbe84.pkl",
+        "cache_input_text_sha256": "c7af0457b79e5bf0f5ba48ed1800ab0a28c8cd94a02ee92e659ce633d0f7a76f",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Benjamin Disraeli,",
+        "exact_native_cache_key": "ac15a199bdea4f39bf0313c9fca000cdd0b49087.pkl",
+        "cache_input_text_sha256": "621697471a622429adaf489be625988bf249a440395610788b585f74b2813d35",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S6",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "denounced the river as a hellish pool of unbearable horrors.",
+        "exact_native_cache_key": "43073601c96385348ce413fa416f22a0e055bc94.pkl",
+        "cache_input_text_sha256": "bee753f727c16f5a26e2ebb4efa49024315cd7108efe700024062f8601f4c29d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A bill funding new sewers was fast-tracked into law in about 18 days.",
+        "exact_native_cache_key": "40bed601c65eb4d192062479fd60e50173c79a8b.pkl",
+        "cache_input_text_sha256": "1948e3e1f54331fb8c4efa2b86d8f502894e817ca4d2af7f919c9ff188a06493",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S7",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A bill funding new sewers was fast-tracked into law in about 18 days.",
+        "exact_native_cache_key": "2842f31e0f5e64ecbadee0894f0b12f451e1e5ae.pkl",
+        "cache_input_text_sha256": "1948e3e1f54331fb8c4efa2b86d8f502894e817ca4d2af7f919c9ff188a06493",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The engineer Joseph Bazalgette masterminded the response.",
+        "exact_native_cache_key": "f2d978ade6278d87bc39d819c6f5b87c6fdbc67c.pkl",
+        "cache_input_text_sha256": "adef4e1fcf1de61b0b77ac7c873a20f23d18b4eb54c66617e8c328d3d9320130",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S8",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The engineer Joseph Bazalgette masterminded the response.",
+        "exact_native_cache_key": "a1f555967b299f1904a0a1d86cb71ae362e73de0.pkl",
+        "cache_input_text_sha256": "adef4e1fcf1de61b0b77ac7c873a20f23d18b4eb54c66617e8c328d3d9320130",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "His 82 miles of stout intercepting sewers caught the flow short of the river and diverted it east, downstream of the city.",
+        "exact_native_cache_key": "db11be9d4bba177fcc73342cbf31aeb03360b82f.pkl",
+        "cache_input_text_sha256": "5f798a5c5a32bc879c696f9898dfef9b574fb2021b094020b8ed09b5a7c99f8b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "His 82 miles of stout intercepting sewers caught the flow short of the river and diverted it east, downstream of the city.",
+        "exact_native_cache_key": "01cca2762762829a1acc752283244689bff76b71.pkl",
+        "cache_input_text_sha256": "5f798a5c5a32bc879c696f9898dfef9b574fb2021b094020b8ed09b5a7c99f8b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "His 82 miles of stout intercepting sewers caught the flow short of the river",
+        "exact_native_cache_key": "a416c456a3f127abaec014e4d784c7640b0a9149.pkl",
+        "cache_input_text_sha256": "cb4dfddefd17e78ac37b7005c41132aef200b84f8f9e9e1c7890d05f2fa4f375",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "and diverted it east, downstream of the city.",
+        "exact_native_cache_key": "d8369b88545dcb0025d61bd0482d17f75d167b34.pkl",
+        "cache_input_text_sha256": "cb28d956a301d08decdd7ad6e804c2b28cf6217283e68b92ba7244d8c7e0a4e4",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "His 82 miles of stout intercepting sewers caught the flow short of the river and diverted it east,",
+        "exact_native_cache_key": "594fab7d074f6ab627f1e7e56a75617b1efac36a.pkl",
+        "cache_input_text_sha256": "a904fb251483c19f130e8e4ea81c8e9f72f70e8ffdf33e61dbe4fd88133c7e3c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S9",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "downstream of the city.",
+        "exact_native_cache_key": "403d203c9c51691da74a0024f880314c5e569dd5.pkl",
+        "cache_input_text_sha256": "7915e8b9292f2ced8622a724ce1638aba9fb17225693dcda5894dc558be1639d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "With some 1,100 miles of street sewers as tributaries, the infrastructure took 318 million bricks.",
+        "exact_native_cache_key": "d6024fa32ab779bfa0959256c350b273781c8063.pkl",
+        "cache_input_text_sha256": "7f8d6936fdae0f20dd80258cab99276e9a2c112bd8fc942630f4182212623a55",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "With some 1,100 miles of street sewers as tributaries, the infrastructure took 318 million bricks.",
+        "exact_native_cache_key": "e58c7772244acf959199125ec37ec9ec8be9ae96.pkl",
+        "cache_input_text_sha256": "7f8d6936fdae0f20dd80258cab99276e9a2c112bd8fc942630f4182212623a55",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "With some 1,100 miles of street sewers as tributaries,",
+        "exact_native_cache_key": "1d203c37eaa4919dd4aaecf4e60cad764b403613.pkl",
+        "cache_input_text_sha256": "1dac2c5d099c1d810601f443eba2c5b294347ed6bac56e7a3bc5f49f97df0cde",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the infrastructure took 318 million bricks.",
+        "exact_native_cache_key": "5b45e642989ea6b760887fce7475055fa17a1838.pkl",
+        "cache_input_text_sha256": "3e502d71db8cd43d3c3dc07a11042469199959a322149a4f0e3c10c91a620452",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "With some 1,100 miles of street sewers as tributaries,",
+        "exact_native_cache_key": "1d203c37eaa4919dd4aaecf4e60cad764b403613.pkl",
+        "cache_input_text_sha256": "1dac2c5d099c1d810601f443eba2c5b294347ed6bac56e7a3bc5f49f97df0cde",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S10",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the infrastructure took 318 million bricks.",
+        "exact_native_cache_key": "5b45e642989ea6b760887fce7475055fa17a1838.pkl",
+        "cache_input_text_sha256": "3e502d71db8cd43d3c3dc07a11042469199959a322149a4f0e3c10c91a620452",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Having calculated an adequate calibre for each pipe, he doubled it.",
+        "exact_native_cache_key": "a69e3723a8dde953720d58b8eb7028ed85e8e0c9.pkl",
+        "cache_input_text_sha256": "22e5b2e3309554b5f516e180c2af3f0b563ed7d7185db8a811746dea4a03b8df",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Having calculated an adequate calibre for each pipe, he doubled it.",
+        "exact_native_cache_key": "bcaa0b57d83c9ada5a12bcc5723f5602ce5c6dbf.pkl",
+        "cache_input_text_sha256": "22e5b2e3309554b5f516e180c2af3f0b563ed7d7185db8a811746dea4a03b8df",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Having calculated an adequate calibre for each pipe,",
+        "exact_native_cache_key": "3404aa6370414c828a98e7c959ea834a119514b8.pkl",
+        "cache_input_text_sha256": "c13c2fab371709d19e9d48505429eac2e589d248e8719524c1613d0454085c54",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S11",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "he doubled it.",
+        "exact_native_cache_key": "7d2030954a13434203e312886ceed481d69af821.pkl",
+        "cache_input_text_sha256": "c1fcd2ba4a2e3fc84ebdcf82e187fb2f8cfffa87c5f26b4e805f33394b89f1a3",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The backbone lies buried underneath the newly built Victoria, Albert, and Chelsea Embankments.",
+        "exact_native_cache_key": "460e8672adb7243c112da2a406c53f54defc8f2f.pkl",
+        "cache_input_text_sha256": "d3e56f8bcc0bd3156881a2152538791e8d3f238c9609f91c8b1ef302d49df99b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The backbone lies buried underneath the newly built Victoria, Albert, and Chelsea Embankments.",
+        "exact_native_cache_key": "84ba41462019f4aa30a825ffe19c85b0207128d0.pkl",
+        "cache_input_text_sha256": "d3e56f8bcc0bd3156881a2152538791e8d3f238c9609f91c8b1ef302d49df99b",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The backbone lies buried underneath the newly built Victoria,",
+        "exact_native_cache_key": "d4eb50d8832d3724584ec1ad4bcc6be5383979e1.pkl",
+        "cache_input_text_sha256": "c10dfe99db07ca166b4878b068abf530853ce0f41cea13f011e686c9f6c49778",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Albert,",
+        "exact_native_cache_key": "87f94fcaec5eb416d0e26451b0f57bf08b516b6c.pkl",
+        "cache_input_text_sha256": "302dce9c21c5d50a175ea4da2b41c50d091413b7940d975d6ec9ccf39b5de199",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S12",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "and Chelsea Embankments.",
+        "exact_native_cache_key": "a7d759c1327fb9f47419e8c5eda870541ca847e5.pkl",
+        "cache_input_text_sha256": "7bfd14f8af78aaa639dca38360466c029e6b755969f0bf2880c8d0978a759c9f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Substantially complete by 1875, much of the network is in use today.",
+        "exact_native_cache_key": "346ce151502c6b0df62986b1aee142d55e69bb36.pkl",
+        "cache_input_text_sha256": "5a411eecc17a4f805b80a1237bfed466314bf4d4f1bb8489d860c55190642faa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Substantially complete by 1875, much of the network is in use today.",
+        "exact_native_cache_key": "b2647b9c1e73ca6158d0c8043aab40a2e46539e2.pkl",
+        "cache_input_text_sha256": "5a411eecc17a4f805b80a1237bfed466314bf4d4f1bb8489d860c55190642faa",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Substantially complete by 1875,",
+        "exact_native_cache_key": "a2a9714163899672adf9843c4858c2e61a968767.pkl",
+        "cache_input_text_sha256": "75f7b7f39c90d04534c1a14461c44a2711b3d873653f80b533c4e953a2ff0309",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S13",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "much of the network is in use today.",
+        "exact_native_cache_key": "4fbe56d9ab7e1d9a470e2ea7cbfa61b5691aa898.pkl",
+        "cache_input_text_sha256": "d5c97b41c7225063385ba39c6770d6fdad45cbad35604f569277a81858fc2015",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Yet that sanitation rested on a fallacy.",
+        "exact_native_cache_key": "4ba23a9f6ce5a2d5334ce5ce3026a8f4eafb4009.pkl",
+        "cache_input_text_sha256": "e15f01a7f1836db8a6c90cb6d41facf7666644005890b2f019a5a7a4d29b477d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S14",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Yet that sanitation rested on a fallacy.",
+        "exact_native_cache_key": "46ff811236a4a0095f23778fff683d66b0176b64.pkl",
+        "cache_input_text_sha256": "e15f01a7f1836db8a6c90cb6d41facf7666644005890b2f019a5a7a4d29b477d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "The predominant belief, miasma, blamed disease on foul air and vapours, so the sewers were intended principally to suppress the smell.",
+        "exact_native_cache_key": "c3eb1436c69ba432646a7d4040496b220395ea92.pkl",
+        "cache_input_text_sha256": "4a5d745093f2d807804442091770c9d8c435f32de410c1e637a60366aa3fb3ff",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "The predominant belief, miasma, blamed disease on foul air and vapours, so the sewers were intended principally to suppress the smell.",
+        "exact_native_cache_key": "e246a96842ec63919920cc64fe8ad0602861a13d.pkl",
+        "cache_input_text_sha256": "4a5d745093f2d807804442091770c9d8c435f32de410c1e637a60366aa3fb3ff",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "The predominant belief, miasma, blamed disease on foul air and vapours,",
+        "exact_native_cache_key": "4476dc2e4a38c9458d1a63e22c58b7c88cc0107d.pkl",
+        "cache_input_text_sha256": "9321d990bc4560818b0becb544b08700fcec290855c4bccf4b357185dffd2a81",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "so the sewers were intended principally to suppress the smell.",
+        "exact_native_cache_key": "14ac274fea6a0290074975fc974361fd0f6b86e2.pkl",
+        "cache_input_text_sha256": "094b325442cd8e47099705c9835ae77b57fe6fd520511dc392c473be70c5a086",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "The predominant belief,",
+        "exact_native_cache_key": "903b0f161626f3efedfc50e73fac5c6d35bc5668.pkl",
+        "cache_input_text_sha256": "70b74d1ac0ad63ddff30dae96473ef6fc787a7dcb7d056559d1c4d81eb5cf54c",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "miasma,",
+        "exact_native_cache_key": "2246e190d1f6ce59d8139dbb0fb11a848f9b8e55.pkl",
+        "cache_input_text_sha256": "22adf23ec282fdf177d2a397dd1471bd8392d196247f6bff7e360daaf75ccbdf",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 3,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "blamed disease on foul air and vapours,",
+        "exact_native_cache_key": "84fe1d6af750c39d15719306eac94cea15130caa.pkl",
+        "cache_input_text_sha256": "f3832e1e259da64d3abb8e4ed496a20c26ef699c659725e2b28edf2c9ece54a7",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S15",
+        "piece": 4,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "so the sewers were intended principally to suppress the smell.",
+        "exact_native_cache_key": "14ac274fea6a0290074975fc974361fd0f6b86e2.pkl",
+        "cache_input_text_sha256": "094b325442cd8e47099705c9835ae77b57fe6fd520511dc392c473be70c5a086",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "They worked for an unintended reason, guarding the purity of the water Londoners drank.",
+        "exact_native_cache_key": "067d741551d223585480df4855ca15db68af4d89.pkl",
+        "cache_input_text_sha256": "a3ad32c5cffad7aa441121568c6bab29309533f2af08c625a7398cf43cb6d31d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "They worked for an unintended reason, guarding the purity of the water Londoners drank.",
+        "exact_native_cache_key": "fa008891c0bed4ddedf663912a9642f4429c1431.pkl",
+        "cache_input_text_sha256": "a3ad32c5cffad7aa441121568c6bab29309533f2af08c625a7398cf43cb6d31d",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "They worked for an unintended reason,",
+        "exact_native_cache_key": "dfde899ac7d5e8b80731502b363d6b90e718ab0b.pkl",
+        "cache_input_text_sha256": "182854b28c16fb1473c5874749ef4cc8f0fd29db6126ceeab47b15389b113972",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "guarding the purity of the water Londoners drank.",
+        "exact_native_cache_key": "f79ecc257825bb43b7af4fd342750b7d7a674cd2.pkl",
+        "cache_input_text_sha256": "5334237ed86202507decf44aecee3c12caa3e0c484c641b8dc37a18c770ed18f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "They worked for an unintended reason,",
+        "exact_native_cache_key": "dfde899ac7d5e8b80731502b363d6b90e718ab0b.pkl",
+        "cache_input_text_sha256": "182854b28c16fb1473c5874749ef4cc8f0fd29db6126ceeab47b15389b113972",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S16",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "guarding the purity of the water Londoners drank.",
+        "exact_native_cache_key": "f79ecc257825bb43b7af4fd342750b7d7a674cd2.pkl",
+        "cache_input_text_sha256": "5334237ed86202507decf44aecee3c12caa3e0c484c641b8dc37a18c770ed18f",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "Cholera resurfaced in 1866 and killed about 5,600 people in the East End, the one locality not yet connected.",
+        "exact_native_cache_key": "6de8fb9f532d9d6ec96dd325d87c0d883919b6a9.pkl",
+        "cache_input_text_sha256": "0c0c65530b35b330b429eac59d8c5f4ebd4263afb90e25938d865233cad4671c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "Cholera resurfaced in 1866 and killed about 5,600 people in the East End, the one locality not yet connected.",
+        "exact_native_cache_key": "cbee11d4cea958ce8c935dbdedc2102b86551198.pkl",
+        "cache_input_text_sha256": "0c0c65530b35b330b429eac59d8c5f4ebd4263afb90e25938d865233cad4671c",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "Cholera resurfaced in 1866 and killed about 5,600 people in the East End,",
+        "exact_native_cache_key": "a6ac855f8623c747d7eccd170848089a05389c17.pkl",
+        "cache_input_text_sha256": "37e6831e3dc35dbf2a703812c7aa89c594bf79e8d79d52f8583cbbbe90ebdc52",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "highlight-display-chunk",
+        "method": "create",
+        "source_slice": "the one locality not yet connected.",
+        "exact_native_cache_key": "31d19a9c54bd5b4ba633b1dd7214acac8620d608.pkl",
+        "cache_input_text_sha256": "3be4b655eb9b04285d144a2497350f31325df73db3470a03f9c75b39f4f4e214",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 1,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "Cholera resurfaced in 1866 and killed about 5,600 people in the East End,",
+        "exact_native_cache_key": "a6ac855f8623c747d7eccd170848089a05389c17.pkl",
+        "cache_input_text_sha256": "37e6831e3dc35dbf2a703812c7aa89c594bf79e8d79d52f8583cbbbe90ebdc52",
+        "cache_input_is_phonemes": true,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S17",
+        "piece": 2,
+        "reference_kind": "pause-punctuation-slice",
+        "method": "create",
+        "source_slice": "the one locality not yet connected.",
+        "exact_native_cache_key": "31d19a9c54bd5b4ba633b1dd7214acac8620d608.pkl",
+        "cache_input_text_sha256": "3be4b655eb9b04285d144a2497350f31325df73db3470a03f9c75b39f4f4e214",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-raw",
+        "method": "create",
+        "source_slice": "A remedy aimed at the nose protected the gut.",
+        "exact_native_cache_key": "7c3f61cc218661e00e3134714640d44e4d9cbfbe.pkl",
+        "cache_input_text_sha256": "c63193eb37b1cc74215674e23cbf616f253b89ab2323fc5b6c41f120b9cabc9e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      },
+      {
+        "sentence": "S18",
+        "piece": null,
+        "reference_kind": "whole-default-timed",
+        "method": "create_timed",
+        "source_slice": "A remedy aimed at the nose protected the gut.",
+        "exact_native_cache_key": "6394c17c2af723db474d3848887559a122524d28.pkl",
+        "cache_input_text_sha256": "c63193eb37b1cc74215674e23cbf616f253b89ab2323fc5b6c41f120b9cabc9e",
+        "cache_input_is_phonemes": false,
+        "cache_preexisted": true
+      }
+    ],
+    "unique_reference_key_count": 75,
+    "raw_mother_cache_scalar_manifest": [
+      {
+        "exact_native_cache_key": "587604306f9c40b2e77405e3a692295c4bd06626.pkl",
+        "pkl_sha256": "b6b8dcaace82b8f707be306df990c9327b6678a8c540efd7cf26af4ab7ee115b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "标题",
+            "piece": null,
+            "reference_kind": "title-default-raw",
+            "method": "create",
+            "source_slice": "The Stink That Built London's Sewers",
+            "exact_native_cache_key": "587604306f9c40b2e77405e3a692295c4bd06626.pkl",
+            "cache_input_text_sha256": "1aa9f269459fd4f60f28a928ff2ce1954dec451cdd76f460903fcdd34c6e7125",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b6b8dcaace82b8f7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          46592
+        ],
+        "unprocessed_array_sha256": "f0e39415c3a3bfd5a4d92285793776b57154a070635554a2cbcda9198392e24f"
+      },
+      {
+        "exact_native_cache_key": "e6134b9182f005228f790b16f1888357e35a1159.pkl",
+        "pkl_sha256": "2586e4f0c0d26a304e0a8d04b92bb9aed4c2a8e13c0cedc9c57e72d17425df4d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "In the fierce heat of summer 1858, the curtains of the new Houses of Parliament hung heavy with chloride of lime, a bleach to make the air tolerable.",
+            "exact_native_cache_key": "e6134b9182f005228f790b16f1888357e35a1159.pkl",
+            "cache_input_text_sha256": "01e9a9d5c4250385a0578b45e7ccb68045cd705ab8ab712dc6f06629b25176b1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2586e4f0c0d26a30",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          248320
+        ],
+        "unprocessed_array_sha256": "2d8dcb8ac05e208d39d81bbc6b4fce26965593f2b33b673db2ebd9831acac977"
+      },
+      {
+        "exact_native_cache_key": "a0728f04dfdf4e94f50fa3d23135bde08d0f7424.pkl",
+        "pkl_sha256": "e50b432e44dd9c37d8ff9e24a7883baa370150c63cde7db2594f8ccc8daaaa78",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "In the fierce heat of summer 1858, the curtains of the new Houses of Parliament hung heavy with chloride of lime,",
+            "exact_native_cache_key": "a0728f04dfdf4e94f50fa3d23135bde08d0f7424.pkl",
+            "cache_input_text_sha256": "55136c1e7e28e35addc1d00d887b8f9ddb5d066f73a7609f376158986d2ea0c9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e50b432e44dd9c37",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          185344
+        ],
+        "unprocessed_array_sha256": "dfd397391c37a96deeeab8f443e004aa639ad7393ac5f06de0e970fa5e534f0e"
+      },
+      {
+        "exact_native_cache_key": "e86913a7858f8e0bdbfb36cb3ddbba5428482e4e.pkl",
+        "pkl_sha256": "a3a1a28d2f863c2559b161de1dd38c3942230ea9f75ef8b5da08b015f2d3a3db",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "a bleach to make the air tolerable.",
+            "exact_native_cache_key": "e86913a7858f8e0bdbfb36cb3ddbba5428482e4e.pkl",
+            "cache_input_text_sha256": "5c8cc754e3772cd3bca52cf3945e21661842816b64c05b550f8cb6dbc7e706e9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S1",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "a bleach to make the air tolerable.",
+            "exact_native_cache_key": "e86913a7858f8e0bdbfb36cb3ddbba5428482e4e.pkl",
+            "cache_input_text_sha256": "5c8cc754e3772cd3bca52cf3945e21661842816b64c05b550f8cb6dbc7e706e9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a3a1a28d2f863c25",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          49152
+        ],
+        "unprocessed_array_sha256": "e8a257213a6e0bce714d7603ef014c905d1cf665d56135f6687c0a26ab153206"
+      },
+      {
+        "exact_native_cache_key": "5daaa4ee6b6b2a7831d8e26ad32b125865b94600.pkl",
+        "pkl_sha256": "78105390488312ddccdbbd8a6338c495004dda04cbc7324cd72e33cd38e9cf27",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "In the fierce heat of summer 1858,",
+            "exact_native_cache_key": "5daaa4ee6b6b2a7831d8e26ad32b125865b94600.pkl",
+            "cache_input_text_sha256": "213385d883bcbc000114ace3939ebe20b7bee293866185e2bf16fc87577af5e6",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "78105390488312dd",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          61440
+        ],
+        "unprocessed_array_sha256": "d53672aa862d690aa33807f956bb7ea240e50db0d34f1dbc15a2f2a9e65cb4f5"
+      },
+      {
+        "exact_native_cache_key": "d7db673be20b5ffcbe805ebd9f2db9765885d644.pkl",
+        "pkl_sha256": "2beee8b5a9bd65d6ae6c190d820864abb5ef4f9fe9f920d15fecbc660f7a76b2",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S1",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the curtains of the new Houses of Parliament hung heavy with chloride of lime,",
+            "exact_native_cache_key": "d7db673be20b5ffcbe805ebd9f2db9765885d644.pkl",
+            "cache_input_text_sha256": "9a57db316ae7a3c48966dfb668545b5e0d192271ff4c541605eefdbd65ac4066",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2beee8b5a9bd65d6",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          117760
+        ],
+        "unprocessed_array_sha256": "5102d356a1176f3723341dc256c2d131a91060e61240b9776098e3aafb9d2664"
+      },
+      {
+        "exact_native_cache_key": "c03e705f2b899aa18b73f372e053250c6f835ff7.pkl",
+        "pkl_sha256": "602035492e729330455b1cfe82212496ee38fabc8fe16ce1cb1826a06c92a971",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The Thames festered, and MPs contemplated moving out.",
+            "exact_native_cache_key": "c03e705f2b899aa18b73f372e053250c6f835ff7.pkl",
+            "cache_input_text_sha256": "402e7f8afdab2e9e7842872e0cc1b4c1933c4838515be0591f418be1c91694a1",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "602035492e729330",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          86528
+        ],
+        "unprocessed_array_sha256": "f32667389f196c85b5c349a5e9600616373aaab51cbc772c5e1a6901679e0212"
+      },
+      {
+        "exact_native_cache_key": "4d6345804029465f27799f9fa2e2e4a39b952e5b.pkl",
+        "pkl_sha256": "6a6d7e43e414ef0f7e1936d72d27417e7aed42d0bf8a9f9eda45a24cfdda9bbe",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The Thames festered,",
+            "exact_native_cache_key": "4d6345804029465f27799f9fa2e2e4a39b952e5b.pkl",
+            "cache_input_text_sha256": "5709a2911f6387dd9cf59258c85fc18b1d4d17a6964dca42e551339ba392edb9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6a6d7e43e414ef0f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          29184
+        ],
+        "unprocessed_array_sha256": "61ea59c1ee3ce22e86200664878a4404827f25dc33777803a2af0432f3b178b8"
+      },
+      {
+        "exact_native_cache_key": "4109f2a9ea7bb0f966f240ced1533ff1f434fe8e.pkl",
+        "pkl_sha256": "e5049edc3e2773c27faf399b8395e73bfce757a5a094298929dddccdd1ec345f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S2",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and MPs contemplated moving out.",
+            "exact_native_cache_key": "4109f2a9ea7bb0f966f240ced1533ff1f434fe8e.pkl",
+            "cache_input_text_sha256": "a5474f5d47b3bd3cecf89f859d10a37d453328236b07fdf430f08de0ee14c496",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e5049edc3e2773c2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          55808
+        ],
+        "unprocessed_array_sha256": "ea07e820de6a9b2c172c91308b4fb246dd513139fee3db9e6aa05fd39bb6cedf"
+      },
+      {
+        "exact_native_cache_key": "f0bb88ceaf0473870dd69c549b9982996d98a8cc.pkl",
+        "pkl_sha256": "9a49a5ef5003257c8212fbe93b2643f9ebd3ed304af8069b88848038e0880549",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S3",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The river had become London's lavatory.",
+            "exact_native_cache_key": "f0bb88ceaf0473870dd69c549b9982996d98a8cc.pkl",
+            "cache_input_text_sha256": "6e859cdf75e39a10db08d54a9ae07bf19879967308da54331b193cda440df1d0",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9a49a5ef5003257c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          62464
+        ],
+        "unprocessed_array_sha256": "b94c50550687c508ee2de2108d59cb2781bc00362844dfcfda85a973c4892d2a"
+      },
+      {
+        "exact_native_cache_key": "eceb3036901a449a305722d2133a9753223dc595.pkl",
+        "pkl_sha256": "2b90fe6b7b25f9260ad69b1c3688c2285ad2b865d06331da78815f44f9d71767",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Antiquated sewers and outlets discharged the untreated sewage of some three million city dwellers into its currents, where the excrement stewed and decayed.",
+            "exact_native_cache_key": "eceb3036901a449a305722d2133a9753223dc595.pkl",
+            "cache_input_text_sha256": "a0ca34335d969580f93be1f615ef64bcad5117475178b6e30e1a82689278261e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2b90fe6b7b25f926",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          250880
+        ],
+        "unprocessed_array_sha256": "468df8cca5ea1647d76fb7ddb17050765e8354f4bf4c865ddf7c0ef79e98de01"
+      },
+      {
+        "exact_native_cache_key": "0704549efaabc75c35d6077c448dbe43d20a844c.pkl",
+        "pkl_sha256": "45b56e7b42bdca600c35a55d5a4634a8de644a43dc7e5fc7bbc53dd32e470dae",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Antiquated sewers and outlets discharged the untreated sewage of some three million city dwellers into its currents,",
+            "exact_native_cache_key": "0704549efaabc75c35d6077c448dbe43d20a844c.pkl",
+            "cache_input_text_sha256": "02dd324fbc784fd97ff018af738e28a94bae5d9c688d2ec7b2f598c2ac629f18",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S4",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Antiquated sewers and outlets discharged the untreated sewage of some three million city dwellers into its currents,",
+            "exact_native_cache_key": "0704549efaabc75c35d6077c448dbe43d20a844c.pkl",
+            "cache_input_text_sha256": "02dd324fbc784fd97ff018af738e28a94bae5d9c688d2ec7b2f598c2ac629f18",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "45b56e7b42bdca60",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          185856
+        ],
+        "unprocessed_array_sha256": "a800445bab24d876eb5e9b1b06874771767bbc63ff58bad46276ee9ff52d2443"
+      },
+      {
+        "exact_native_cache_key": "18b62d5b91b10defd79c0e8fc665787d016c9165.pkl",
+        "pkl_sha256": "27bac42b1069dca24cc3ce2860f36d11b413088db100ecc1ffc32a37d7e38aec",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "where the excrement stewed and decayed.",
+            "exact_native_cache_key": "18b62d5b91b10defd79c0e8fc665787d016c9165.pkl",
+            "cache_input_text_sha256": "9d6dc50f7d2c25a0df5eba6443556dc517c961d237f0f11eb05f20e5bf542420",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S4",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "where the excrement stewed and decayed.",
+            "exact_native_cache_key": "18b62d5b91b10defd79c0e8fc665787d016c9165.pkl",
+            "cache_input_text_sha256": "9d6dc50f7d2c25a0df5eba6443556dc517c961d237f0f11eb05f20e5bf542420",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "27bac42b1069dca2",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          50688
+        ],
+        "unprocessed_array_sha256": "de4b8062d7f9866d59275d40204cba63a1397a266a63254ef2a344ff239138fa"
+      },
+      {
+        "exact_native_cache_key": "a5c113aac87bdda833390539dc5e79065c6382f0.pkl",
+        "pkl_sha256": "c4ae6725d64e02ad7ad2836c0bafae1d4315e5ebe75461e6f0fa9453edf88810",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The vile fumes grew so overpowering that the episode earned a name, the Great Stink.",
+            "exact_native_cache_key": "a5c113aac87bdda833390539dc5e79065c6382f0.pkl",
+            "cache_input_text_sha256": "ddc0947dfc40a47250f85a127ede6eb1dc0c1fe69e71cdec719f4666a518f959",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c4ae6725d64e02ad",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          132096
+        ],
+        "unprocessed_array_sha256": "e6acbec7028c8ac748453382c3760c3b2aa9f51fd774ae449882f03ef4305a67"
+      },
+      {
+        "exact_native_cache_key": "7ad9ea92a3b42c88576ae3fa008c2b13fea9f36b.pkl",
+        "pkl_sha256": "6f760529c3795db7efc5e8cdb4dd2c75f941e36a2470eb483638757abedceee6",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The vile fumes grew so overpowering that the episode earned a name,",
+            "exact_native_cache_key": "7ad9ea92a3b42c88576ae3fa008c2b13fea9f36b.pkl",
+            "cache_input_text_sha256": "954018c0122da52bf41abce4889627af25d07ca01bc3c78b811e3116f9b246b9",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6f760529c3795db7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          103424
+        ],
+        "unprocessed_array_sha256": "088049bf04daae7e9311a4aefe659fc397d2b21f444a1bc2844398baf5af8a0b"
+      },
+      {
+        "exact_native_cache_key": "29eadd2a9ffb9d745665a3058f06aedc935a6902.pkl",
+        "pkl_sha256": "8ec7d007a9ad776eaa5ee97f7637baf50b6ddc62907daf4850a5792a785fc9a3",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S5",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the Great Stink.",
+            "exact_native_cache_key": "29eadd2a9ffb9d745665a3058f06aedc935a6902.pkl",
+            "cache_input_text_sha256": "ce76b6988441486f920884f52853cf3624f16bf7ba688737a896feaf340e8d16",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8ec7d007a9ad776e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          26624
+        ],
+        "unprocessed_array_sha256": "05de24d2ba730d1a8ff204a93b66aa34491378d71f2ad52129443b2f597d5325"
+      },
+      {
+        "exact_native_cache_key": "fd3d9adaa81373e6cfbf6be5a92b132f4c239d7e.pkl",
+        "pkl_sha256": "f7dcc19131fe9dcdb37a667649d2f6d6362ef09d615db1dca08a70b99daf831a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Disgust found a voice on 15 July, when the Chancellor of the Exchequer, Benjamin Disraeli, denounced the river as a hellish pool of unbearable horrors.",
+            "exact_native_cache_key": "fd3d9adaa81373e6cfbf6be5a92b132f4c239d7e.pkl",
+            "cache_input_text_sha256": "86cc26412dad301fb12859691af93dcf391e8aed9940736cf1be930c2c3b1fbc",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f7dcc19131fe9dcd",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          270848
+        ],
+        "unprocessed_array_sha256": "672457e10db9486b99707a411e8efb3b860633de60ddd77e06c4cfbef221ea48"
+      },
+      {
+        "exact_native_cache_key": "bcc8587a2761b978d3c495c2a6e7ec6140390618.pkl",
+        "pkl_sha256": "063e2c225758cbdb1e13be171f2a1c79882b27601b34364242ae4cea9f2acd27",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Disgust found a voice on 15 July,",
+            "exact_native_cache_key": "bcc8587a2761b978d3c495c2a6e7ec6140390618.pkl",
+            "cache_input_text_sha256": "dcb9698acbca520863569bd7c5de6849e65750bc47b2499cfc0ca30f282ff554",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S6",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Disgust found a voice on 15 July,",
+            "exact_native_cache_key": "bcc8587a2761b978d3c495c2a6e7ec6140390618.pkl",
+            "cache_input_text_sha256": "dcb9698acbca520863569bd7c5de6849e65750bc47b2499cfc0ca30f282ff554",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "063e2c225758cbdb",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67584
+        ],
+        "unprocessed_array_sha256": "5c297d10c6e509c88a75768e9d9208eb44b8dce01eb93c4f40dedbf5bf27ed4e"
+      },
+      {
+        "exact_native_cache_key": "500f0a9ae516f6f0ff25941b78b8daea1a3d7bda.pkl",
+        "pkl_sha256": "11f1d549332d8ce118eb1eb02a9f23f51ec7cd694b691fc9389b348d44898523",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "when the Chancellor of the Exchequer, Benjamin Disraeli, denounced the river as a hellish pool of unbearable horrors.",
+            "exact_native_cache_key": "500f0a9ae516f6f0ff25941b78b8daea1a3d7bda.pkl",
+            "cache_input_text_sha256": "af9fe0d18478028455235a4938ee9f1ed5d201b85332acbf183c58de82748455",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "11f1d549332d8ce1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          182272
+        ],
+        "unprocessed_array_sha256": "3beffa34cc250cb4f8da508731c4293e7f661771d8bc051fe0afe0cfee500787"
+      },
+      {
+        "exact_native_cache_key": "407872a9763bde5b2d69c654139f075bb13dbe84.pkl",
+        "pkl_sha256": "c2425896f5b11c574387769d785960678f7e60b806a69e49d7046779ae0f7f18",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "when the Chancellor of the Exchequer,",
+            "exact_native_cache_key": "407872a9763bde5b2d69c654139f075bb13dbe84.pkl",
+            "cache_input_text_sha256": "c7af0457b79e5bf0f5ba48ed1800ab0a28c8cd94a02ee92e659ce633d0f7a76f",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "c2425896f5b11c57",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          45568
+        ],
+        "unprocessed_array_sha256": "982ba64d01bfa5de782295da89886b8ffa11a6c10f79a0445ed100aa3f5bf15f"
+      },
+      {
+        "exact_native_cache_key": "ac15a199bdea4f39bf0313c9fca000cdd0b49087.pkl",
+        "pkl_sha256": "bdb5802740e8a630a0cf0e295422d45c7ab1ba6e4a4f3f17b36e7f150d32d232",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Benjamin Disraeli,",
+            "exact_native_cache_key": "ac15a199bdea4f39bf0313c9fca000cdd0b49087.pkl",
+            "cache_input_text_sha256": "621697471a622429adaf489be625988bf249a440395610788b585f74b2813d35",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "bdb5802740e8a630",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          31232
+        ],
+        "unprocessed_array_sha256": "987fbb59e196d9b1e01c311c25bbd6cd5910d9992c67328f6e2a8d2702a2cd20"
+      },
+      {
+        "exact_native_cache_key": "43073601c96385348ce413fa416f22a0e055bc94.pkl",
+        "pkl_sha256": "975a720f0350510aa065bf4aba9940c8a43e27db8be176fa07a61e85aa230a42",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S6",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "denounced the river as a hellish pool of unbearable horrors.",
+            "exact_native_cache_key": "43073601c96385348ce413fa416f22a0e055bc94.pkl",
+            "cache_input_text_sha256": "bee753f727c16f5a26e2ebb4efa49024315cd7108efe700024062f8601f4c29d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "975a720f0350510a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          88064
+        ],
+        "unprocessed_array_sha256": "9989f3f972b3f614fafb3af9af5cc43d8bbaac8bf5c2414113430bd5d00d14c7"
+      },
+      {
+        "exact_native_cache_key": "40bed601c65eb4d192062479fd60e50173c79a8b.pkl",
+        "pkl_sha256": "288cd28ae852f7fdb97d7f70ee481886ae6d3e83b0658516bdf914bb625c5abd",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S7",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A bill funding new sewers was fast-tracked into law in about 18 days.",
+            "exact_native_cache_key": "40bed601c65eb4d192062479fd60e50173c79a8b.pkl",
+            "cache_input_text_sha256": "1948e3e1f54331fb8c4efa2b86d8f502894e817ca4d2af7f919c9ff188a06493",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "288cd28ae852f7fd",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          114176
+        ],
+        "unprocessed_array_sha256": "4ea5dc9e4828f467fdf80826e9d72cb4b39849cb969832e1f1b680eac3cf3be1"
+      },
+      {
+        "exact_native_cache_key": "f2d978ade6278d87bc39d819c6f5b87c6fdbc67c.pkl",
+        "pkl_sha256": "0da44640b94d45ef3a57c4081da7107df460a7074a141fb7afc0043bf3cdff86",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S8",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The engineer Joseph Bazalgette masterminded the response.",
+            "exact_native_cache_key": "f2d978ade6278d87bc39d819c6f5b87c6fdbc67c.pkl",
+            "cache_input_text_sha256": "adef4e1fcf1de61b0b77ac7c873a20f23d18b4eb54c66617e8c328d3d9320130",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0da44640b94d45ef",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          97280
+        ],
+        "unprocessed_array_sha256": "64784fc536ee9e544267e8c3a8e8e60ee70081821926ac881132e33614083792"
+      },
+      {
+        "exact_native_cache_key": "db11be9d4bba177fcc73342cbf31aeb03360b82f.pkl",
+        "pkl_sha256": "33414f47494b110c6fdf1d378f27ff10ed7454709df9f58eccef38ea34874c92",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "His 82 miles of stout intercepting sewers caught the flow short of the river and diverted it east, downstream of the city.",
+            "exact_native_cache_key": "db11be9d4bba177fcc73342cbf31aeb03360b82f.pkl",
+            "cache_input_text_sha256": "5f798a5c5a32bc879c696f9898dfef9b574fb2021b094020b8ed09b5a7c99f8b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "33414f47494b110c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          196096
+        ],
+        "unprocessed_array_sha256": "9b82cd67bea96495ba924531748da97e06a96ccbfe1eac4ab0defd66d7b29982"
+      },
+      {
+        "exact_native_cache_key": "a416c456a3f127abaec014e4d784c7640b0a9149.pkl",
+        "pkl_sha256": "a4a68fa3bfa0e725e23ac145ae20523a65ba6b783199c3f7f6b862fa57949308",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "His 82 miles of stout intercepting sewers caught the flow short of the river",
+            "exact_native_cache_key": "a416c456a3f127abaec014e4d784c7640b0a9149.pkl",
+            "cache_input_text_sha256": "cb4dfddefd17e78ac37b7005c41132aef200b84f8f9e9e1c7890d05f2fa4f375",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "a4a68fa3bfa0e725",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          122880
+        ],
+        "unprocessed_array_sha256": "dca8bec2c9f8da477991b04ee7e7a9fb2f8ecbb5d2f05a128d7e0f69493fb14a"
+      },
+      {
+        "exact_native_cache_key": "d8369b88545dcb0025d61bd0482d17f75d167b34.pkl",
+        "pkl_sha256": "e113291004abc2272fce917df9ea9dfa3238c67ded441cdc6112acdf796a375d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "and diverted it east, downstream of the city.",
+            "exact_native_cache_key": "d8369b88545dcb0025d61bd0482d17f75d167b34.pkl",
+            "cache_input_text_sha256": "cb28d956a301d08decdd7ad6e804c2b28cf6217283e68b92ba7244d8c7e0a4e4",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e113291004abc227",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          67584
+        ],
+        "unprocessed_array_sha256": "6ef883698dd12fef344b879e5fda8b2ee61d083466ce1e281b15c26507be33d3"
+      },
+      {
+        "exact_native_cache_key": "594fab7d074f6ab627f1e7e56a75617b1efac36a.pkl",
+        "pkl_sha256": "b2d4d623f73b08b196010a3e13d91b407f5534858e9fbb24e7f57022092d7d6b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "His 82 miles of stout intercepting sewers caught the flow short of the river and diverted it east,",
+            "exact_native_cache_key": "594fab7d074f6ab627f1e7e56a75617b1efac36a.pkl",
+            "cache_input_text_sha256": "a904fb251483c19f130e8e4ea81c8e9f72f70e8ffdf33e61dbe4fd88133c7e3c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "b2d4d623f73b08b1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          157696
+        ],
+        "unprocessed_array_sha256": "aa402dadb5c79aac5fcd4f17a70e1a1213a640da0b161c0da089fea4054f5a1f"
+      },
+      {
+        "exact_native_cache_key": "403d203c9c51691da74a0024f880314c5e569dd5.pkl",
+        "pkl_sha256": "0f292cbb6f90376f6c8d90a70411721bf8b5ce0ca6c658e016d573119564858a",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S9",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "downstream of the city.",
+            "exact_native_cache_key": "403d203c9c51691da74a0024f880314c5e569dd5.pkl",
+            "cache_input_text_sha256": "7915e8b9292f2ced8622a724ce1638aba9fb17225693dcda5894dc558be1639d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0f292cbb6f90376f",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          34304
+        ],
+        "unprocessed_array_sha256": "70de47b0871f0adb05adb19bd8a09033e0d9ca3497b0d026fdb46e4100476fc2"
+      },
+      {
+        "exact_native_cache_key": "d6024fa32ab779bfa0959256c350b273781c8063.pkl",
+        "pkl_sha256": "1fe8258715f1b8868c8215890fbe1bc97c4e968f26e8630e2cf2c1f9201fa1ad",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "With some 1,100 miles of street sewers as tributaries, the infrastructure took 318 million bricks.",
+            "exact_native_cache_key": "d6024fa32ab779bfa0959256c350b273781c8063.pkl",
+            "cache_input_text_sha256": "7f8d6936fdae0f20dd80258cab99276e9a2c112bd8fc942630f4182212623a55",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "1fe8258715f1b886",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          211968
+        ],
+        "unprocessed_array_sha256": "4d65d108e19cb2b5c558310845dad255295a18d810c6eb9558fb2530c078d982"
+      },
+      {
+        "exact_native_cache_key": "1d203c37eaa4919dd4aaecf4e60cad764b403613.pkl",
+        "pkl_sha256": "e899b2f1c737e16abe96879b33ed48e4f02c6065a42fe664d0fb82965992c14d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "With some 1,100 miles of street sewers as tributaries,",
+            "exact_native_cache_key": "1d203c37eaa4919dd4aaecf4e60cad764b403613.pkl",
+            "cache_input_text_sha256": "1dac2c5d099c1d810601f443eba2c5b294347ed6bac56e7a3bc5f49f97df0cde",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "With some 1,100 miles of street sewers as tributaries,",
+            "exact_native_cache_key": "1d203c37eaa4919dd4aaecf4e60cad764b403613.pkl",
+            "cache_input_text_sha256": "1dac2c5d099c1d810601f443eba2c5b294347ed6bac56e7a3bc5f49f97df0cde",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "e899b2f1c737e16a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          95232
+        ],
+        "unprocessed_array_sha256": "bcfe0c60ead95e6a9e7df792480779695c5a611381e64f8a56653c8cef43f03d"
+      },
+      {
+        "exact_native_cache_key": "5b45e642989ea6b760887fce7475055fa17a1838.pkl",
+        "pkl_sha256": "eed9d293648ceae7ecf3c50ca9044974510610280857857d90c3326009aa5e9b",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the infrastructure took 318 million bricks.",
+            "exact_native_cache_key": "5b45e642989ea6b760887fce7475055fa17a1838.pkl",
+            "cache_input_text_sha256": "3e502d71db8cd43d3c3dc07a11042469199959a322149a4f0e3c10c91a620452",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S10",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the infrastructure took 318 million bricks.",
+            "exact_native_cache_key": "5b45e642989ea6b760887fce7475055fa17a1838.pkl",
+            "cache_input_text_sha256": "3e502d71db8cd43d3c3dc07a11042469199959a322149a4f0e3c10c91a620452",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "eed9d293648ceae7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          83968
+        ],
+        "unprocessed_array_sha256": "a8ec56b6957c48878500fd9c0c1d46e494290472243d44681c21c66529b408e0"
+      },
+      {
+        "exact_native_cache_key": "a69e3723a8dde953720d58b8eb7028ed85e8e0c9.pkl",
+        "pkl_sha256": "3c177bcc8e7c4c329735229c0bd1567c4e5800dcdf01c98342f42d3bcd5066ac",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Having calculated an adequate calibre for each pipe, he doubled it.",
+            "exact_native_cache_key": "a69e3723a8dde953720d58b8eb7028ed85e8e0c9.pkl",
+            "cache_input_text_sha256": "22e5b2e3309554b5f516e180c2af3f0b563ed7d7185db8a811746dea4a03b8df",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3c177bcc8e7c4c32",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          105472
+        ],
+        "unprocessed_array_sha256": "2faf94e0ab6d4cf99d7d654acda8da57610c884a83326257d6cf1369e3f87282"
+      },
+      {
+        "exact_native_cache_key": "3404aa6370414c828a98e7c959ea834a119514b8.pkl",
+        "pkl_sha256": "86624398fed3ed1355acd5e3d129bda029dc901e9ca186f3690b1132a4e50530",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Having calculated an adequate calibre for each pipe,",
+            "exact_native_cache_key": "3404aa6370414c828a98e7c959ea834a119514b8.pkl",
+            "cache_input_text_sha256": "c13c2fab371709d19e9d48505429eac2e589d248e8719524c1613d0454085c54",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "86624398fed3ed13",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          81408
+        ],
+        "unprocessed_array_sha256": "e4ab95eb3ad3c7b465ddd204000ba7f59e97951bbba6315476a6415c2ed7f503"
+      },
+      {
+        "exact_native_cache_key": "7d2030954a13434203e312886ceed481d69af821.pkl",
+        "pkl_sha256": "35659ed675eb949e7e4c790a4f5b472bd57aa0992acd0c39efaaf1e4bab45711",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S11",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "he doubled it.",
+            "exact_native_cache_key": "7d2030954a13434203e312886ceed481d69af821.pkl",
+            "cache_input_text_sha256": "c1fcd2ba4a2e3fc84ebdcf82e187fb2f8cfffa87c5f26b4e805f33394b89f1a3",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "35659ed675eb949e",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          23552
+        ],
+        "unprocessed_array_sha256": "a42de5211eb77885aa1306585e7a279126f65df0ff9247efba524e9ab721ff8c"
+      },
+      {
+        "exact_native_cache_key": "460e8672adb7243c112da2a406c53f54defc8f2f.pkl",
+        "pkl_sha256": "67b481ce098421233168e0b35cdc6dd509077d5b11f630ecf50aa7e26107e966",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The backbone lies buried underneath the newly built Victoria, Albert, and Chelsea Embankments.",
+            "exact_native_cache_key": "460e8672adb7243c112da2a406c53f54defc8f2f.pkl",
+            "cache_input_text_sha256": "d3e56f8bcc0bd3156881a2152538791e8d3f238c9609f91c8b1ef302d49df99b",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "67b481ce09842123",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          146944
+        ],
+        "unprocessed_array_sha256": "015949fda28cc71699d0bb2bdb1ffc386e3b664476807a662d9f433409206168"
+      },
+      {
+        "exact_native_cache_key": "d4eb50d8832d3724584ec1ad4bcc6be5383979e1.pkl",
+        "pkl_sha256": "dcf1705e47c66a4c39fb6f7b8d0fb29c2aeb2cc5fda77d3dc633a0e11ced3f7e",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The backbone lies buried underneath the newly built Victoria,",
+            "exact_native_cache_key": "d4eb50d8832d3724584ec1ad4bcc6be5383979e1.pkl",
+            "cache_input_text_sha256": "c10dfe99db07ca166b4878b068abf530853ce0f41cea13f011e686c9f6c49778",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "dcf1705e47c66a4c",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          88064
+        ],
+        "unprocessed_array_sha256": "1f9dbb7033a774e0a99fcf3b9ffd7117e322d8013942f43a1f2c3fb21cdc27dd"
+      },
+      {
+        "exact_native_cache_key": "87f94fcaec5eb416d0e26451b0f57bf08b516b6c.pkl",
+        "pkl_sha256": "60cae0d64830d3e71f95b342ba77b01de176d2e0b7b6fd26b84e304a71fb77df",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Albert,",
+            "exact_native_cache_key": "87f94fcaec5eb416d0e26451b0f57bf08b516b6c.pkl",
+            "cache_input_text_sha256": "302dce9c21c5d50a175ea4da2b41c50d091413b7940d975d6ec9ccf39b5de199",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "60cae0d64830d3e7",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          18432
+        ],
+        "unprocessed_array_sha256": "0c886be766f3b01a9d284bb2fbe03c145ddd3e9995ba463c74b3a09247193d01"
+      },
+      {
+        "exact_native_cache_key": "a7d759c1327fb9f47419e8c5eda870541ca847e5.pkl",
+        "pkl_sha256": "6ea1068efbf040d86302d7f2c8913ccb27f1551b82836a9551e2f39c8540c315",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S12",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "and Chelsea Embankments.",
+            "exact_native_cache_key": "a7d759c1327fb9f47419e8c5eda870541ca847e5.pkl",
+            "cache_input_text_sha256": "7bfd14f8af78aaa639dca38360466c029e6b755969f0bf2880c8d0978a759c9f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "6ea1068efbf040d8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          36352
+        ],
+        "unprocessed_array_sha256": "4bcdb920a2788d4d37e004dd95160d459842238e9552d5f819aefc6de447b265"
+      },
+      {
+        "exact_native_cache_key": "346ce151502c6b0df62986b1aee142d55e69bb36.pkl",
+        "pkl_sha256": "ad77fe761217b1751c20670a31292e93b321f063aa8dac9834b2ea06a8e66f15",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Substantially complete by 1875, much of the network is in use today.",
+            "exact_native_cache_key": "346ce151502c6b0df62986b1aee142d55e69bb36.pkl",
+            "cache_input_text_sha256": "5a411eecc17a4f805b80a1237bfed466314bf4d4f1bb8489d860c55190642faa",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "ad77fe761217b175",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          134144
+        ],
+        "unprocessed_array_sha256": "3fe96291869f147a6f8c9c3220d8775da2e5046a67c3012718d9c33a83dc27bc"
+      },
+      {
+        "exact_native_cache_key": "a2a9714163899672adf9843c4858c2e61a968767.pkl",
+        "pkl_sha256": "f10c523403c948aaecd1ab7d1e0421f998daeda99bccca1e897133a06dff2646",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Substantially complete by 1875,",
+            "exact_native_cache_key": "a2a9714163899672adf9843c4858c2e61a968767.pkl",
+            "cache_input_text_sha256": "75f7b7f39c90d04534c1a14461c44a2711b3d873653f80b533c4e953a2ff0309",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "f10c523403c948aa",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          71168
+        ],
+        "unprocessed_array_sha256": "b6ee826bb971c1b064f247a6f7d898a63d92ddb32a9d17881f91121f9f64e5c3"
+      },
+      {
+        "exact_native_cache_key": "4fbe56d9ab7e1d9a470e2ea7cbfa61b5691aa898.pkl",
+        "pkl_sha256": "5ce851a87b5d64aa85c4a7fc1638ecb077474605fe7b8711e9bcdbe280681365",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S13",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "much of the network is in use today.",
+            "exact_native_cache_key": "4fbe56d9ab7e1d9a470e2ea7cbfa61b5691aa898.pkl",
+            "cache_input_text_sha256": "d5c97b41c7225063385ba39c6770d6fdad45cbad35604f569277a81858fc2015",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "5ce851a87b5d64aa",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          55296
+        ],
+        "unprocessed_array_sha256": "5b75dce646d5836f964ec497bfe2cbbe12d5d054030e164ad65b927609d829a3"
+      },
+      {
+        "exact_native_cache_key": "4ba23a9f6ce5a2d5334ce5ce3026a8f4eafb4009.pkl",
+        "pkl_sha256": "9aca9d966308d6e08528674bbdbc5bb602d09a86da4bc5e5c47f87d6b46e7047",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S14",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Yet that sanitation rested on a fallacy.",
+            "exact_native_cache_key": "4ba23a9f6ce5a2d5334ce5ce3026a8f4eafb4009.pkl",
+            "cache_input_text_sha256": "e15f01a7f1836db8a6c90cb6d41facf7666644005890b2f019a5a7a4d29b477d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "9aca9d966308d6e0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          64000
+        ],
+        "unprocessed_array_sha256": "acc7410c64f3ae28ebd0f893936dd5922eafeae425268457a6834366933236ff"
+      },
+      {
+        "exact_native_cache_key": "c3eb1436c69ba432646a7d4040496b220395ea92.pkl",
+        "pkl_sha256": "3d37d4095322f960e22ed6f7c518c4e0631a695c9b7d690cd15459be0762757c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "The predominant belief, miasma, blamed disease on foul air and vapours, so the sewers were intended principally to suppress the smell.",
+            "exact_native_cache_key": "c3eb1436c69ba432646a7d4040496b220395ea92.pkl",
+            "cache_input_text_sha256": "4a5d745093f2d807804442091770c9d8c435f32de410c1e637a60366aa3fb3ff",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "3d37d4095322f960",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          219648
+        ],
+        "unprocessed_array_sha256": "a97205e9e84fe9c094a9384ddf68388e6baba7ca00dcdaa9da5af7634ecf0721"
+      },
+      {
+        "exact_native_cache_key": "4476dc2e4a38c9458d1a63e22c58b7c88cc0107d.pkl",
+        "pkl_sha256": "22c478ab1c7601687312c2086ca3f5a24089668cdee1482e2ce3d9e7e0500474",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "The predominant belief, miasma, blamed disease on foul air and vapours,",
+            "exact_native_cache_key": "4476dc2e4a38c9458d1a63e22c58b7c88cc0107d.pkl",
+            "cache_input_text_sha256": "9321d990bc4560818b0becb544b08700fcec290855c4bccf4b357185dffd2a81",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "22c478ab1c760168",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          118784
+        ],
+        "unprocessed_array_sha256": "3645b4dbee28e870e76331e379b45d8e434657f3163c2d3db5672e2e503dd0a6"
+      },
+      {
+        "exact_native_cache_key": "14ac274fea6a0290074975fc974361fd0f6b86e2.pkl",
+        "pkl_sha256": "85a3f9d66418abf07334f4c2b734f0c3a78fcc8e1cc570f170371c21bff2302f",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "so the sewers were intended principally to suppress the smell.",
+            "exact_native_cache_key": "14ac274fea6a0290074975fc974361fd0f6b86e2.pkl",
+            "cache_input_text_sha256": "094b325442cd8e47099705c9835ae77b57fe6fd520511dc392c473be70c5a086",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S15",
+            "piece": 4,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "so the sewers were intended principally to suppress the smell.",
+            "exact_native_cache_key": "14ac274fea6a0290074975fc974361fd0f6b86e2.pkl",
+            "cache_input_text_sha256": "094b325442cd8e47099705c9835ae77b57fe6fd520511dc392c473be70c5a086",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "85a3f9d66418abf0",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          89600
+        ],
+        "unprocessed_array_sha256": "12314643f526d354c7ea075dd05ed1b11f0ee102f7da224618e8fb92373e4ce9"
+      },
+      {
+        "exact_native_cache_key": "903b0f161626f3efedfc50e73fac5c6d35bc5668.pkl",
+        "pkl_sha256": "2229e7284914c42a511ff3ddbabcbaab51901a8074e85b0e20f2ef7018aa51c0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "The predominant belief,",
+            "exact_native_cache_key": "903b0f161626f3efedfc50e73fac5c6d35bc5668.pkl",
+            "cache_input_text_sha256": "70b74d1ac0ad63ddff30dae96473ef6fc787a7dcb7d056559d1c4d81eb5cf54c",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "2229e7284914c42a",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          36352
+        ],
+        "unprocessed_array_sha256": "05e3f5ac7d4c9b8f7f67547835740d83d06e8d989a8d0f7f1b1f9c654b2d588c"
+      },
+      {
+        "exact_native_cache_key": "2246e190d1f6ce59d8139dbb0fb11a848f9b8e55.pkl",
+        "pkl_sha256": "0a4d6b1f02fea1b3a186e5d75e892b158e111e9a659467bdd186dd9e68b876f0",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "miasma,",
+            "exact_native_cache_key": "2246e190d1f6ce59d8139dbb0fb11a848f9b8e55.pkl",
+            "cache_input_text_sha256": "22adf23ec282fdf177d2a397dd1471bd8392d196247f6bff7e360daaf75ccbdf",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "0a4d6b1f02fea1b3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          22528
+        ],
+        "unprocessed_array_sha256": "6c8526f187a3146131e4f9faae105e11fac2a65d7a76c7a1b053e6251b90c138"
+      },
+      {
+        "exact_native_cache_key": "84fe1d6af750c39d15719306eac94cea15130caa.pkl",
+        "pkl_sha256": "54a2ee4307e4d133b4777b4a2238f89b122802ca2f97ba204129d7f440f21a59",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S15",
+            "piece": 3,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "blamed disease on foul air and vapours,",
+            "exact_native_cache_key": "84fe1d6af750c39d15719306eac94cea15130caa.pkl",
+            "cache_input_text_sha256": "f3832e1e259da64d3abb8e4ed496a20c26ef699c659725e2b28edf2c9ece54a7",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "54a2ee4307e4d133",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          57856
+        ],
+        "unprocessed_array_sha256": "7a1fe2e32072efc3f0a5e0cb423324af6bb6a19a262ec9e97c62344f4e0ee009"
+      },
+      {
+        "exact_native_cache_key": "067d741551d223585480df4855ca15db68af4d89.pkl",
+        "pkl_sha256": "12e2040067b08497c25ddc8079261602597c0bfa0e1b75637f285a98e6c2b9c8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "They worked for an unintended reason, guarding the purity of the water Londoners drank.",
+            "exact_native_cache_key": "067d741551d223585480df4855ca15db68af4d89.pkl",
+            "cache_input_text_sha256": "a3ad32c5cffad7aa441121568c6bab29309533f2af08c625a7398cf43cb6d31d",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "12e2040067b08497",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          131072
+        ],
+        "unprocessed_array_sha256": "f82d56163b1f4b0ad632ec72feb04ede6e6dd11c25594ed77e447b3ce9b589d2"
+      },
+      {
+        "exact_native_cache_key": "dfde899ac7d5e8b80731502b363d6b90e718ab0b.pkl",
+        "pkl_sha256": "8e4ca104db415ff121e4b23b39f75a5c8c70f71abffb90521e2850c6f311c41d",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "They worked for an unintended reason,",
+            "exact_native_cache_key": "dfde899ac7d5e8b80731502b363d6b90e718ab0b.pkl",
+            "cache_input_text_sha256": "182854b28c16fb1473c5874749ef4cc8f0fd29db6126ceeab47b15389b113972",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S16",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "They worked for an unintended reason,",
+            "exact_native_cache_key": "dfde899ac7d5e8b80731502b363d6b90e718ab0b.pkl",
+            "cache_input_text_sha256": "182854b28c16fb1473c5874749ef4cc8f0fd29db6126ceeab47b15389b113972",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "8e4ca104db415ff1",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          51712
+        ],
+        "unprocessed_array_sha256": "30c3575339954ecc9d2728addd3acd10119b8cae26ee89837742987841d2abcf"
+      },
+      {
+        "exact_native_cache_key": "f79ecc257825bb43b7af4fd342750b7d7a674cd2.pkl",
+        "pkl_sha256": "eda9f6a6f73179e306c046602c7588dc7d0f4ac3cf8acc28a48c68e72ddc9159",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "guarding the purity of the water Londoners drank.",
+            "exact_native_cache_key": "f79ecc257825bb43b7af4fd342750b7d7a674cd2.pkl",
+            "cache_input_text_sha256": "5334237ed86202507decf44aecee3c12caa3e0c484c641b8dc37a18c770ed18f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S16",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "guarding the purity of the water Londoners drank.",
+            "exact_native_cache_key": "f79ecc257825bb43b7af4fd342750b7d7a674cd2.pkl",
+            "cache_input_text_sha256": "5334237ed86202507decf44aecee3c12caa3e0c484c641b8dc37a18c770ed18f",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "eda9f6a6f73179e3",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          70144
+        ],
+        "unprocessed_array_sha256": "f5bfe269d39c1202e11c31ad1860ed377869ff368791466162c166f07dd767b8"
+      },
+      {
+        "exact_native_cache_key": "6de8fb9f532d9d6ec96dd325d87c0d883919b6a9.pkl",
+        "pkl_sha256": "62fbea04fc82bddac1f93488efad150157c12592eb0c1df1e20c9a8fca3e0fb8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "Cholera resurfaced in 1866 and killed about 5,600 people in the East End, the one locality not yet connected.",
+            "exact_native_cache_key": "6de8fb9f532d9d6ec96dd325d87c0d883919b6a9.pkl",
+            "cache_input_text_sha256": "0c0c65530b35b330b429eac59d8c5f4ebd4263afb90e25938d865233cad4671c",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "62fbea04fc82bdda",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          236032
+        ],
+        "unprocessed_array_sha256": "dc04be28925762c3c42b0dd7b591b3b44f4bebe86bad0bb6c6d8fffd66ba821e"
+      },
+      {
+        "exact_native_cache_key": "a6ac855f8623c747d7eccd170848089a05389c17.pkl",
+        "pkl_sha256": "16bccf1bb4f995034b37eafc833df8bb5aaa53990ba137fda1223477e2b9331c",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "Cholera resurfaced in 1866 and killed about 5,600 people in the East End,",
+            "exact_native_cache_key": "a6ac855f8623c747d7eccd170848089a05389c17.pkl",
+            "cache_input_text_sha256": "37e6831e3dc35dbf2a703812c7aa89c594bf79e8d79d52f8583cbbbe90ebdc52",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S17",
+            "piece": 1,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "Cholera resurfaced in 1866 and killed about 5,600 people in the East End,",
+            "exact_native_cache_key": "a6ac855f8623c747d7eccd170848089a05389c17.pkl",
+            "cache_input_text_sha256": "37e6831e3dc35dbf2a703812c7aa89c594bf79e8d79d52f8583cbbbe90ebdc52",
+            "cache_input_is_phonemes": true,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "16bccf1bb4f99503",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          157696
+        ],
+        "unprocessed_array_sha256": "9441a4b015fc4b295604e80a60d94fbd938caf1df0202358079b35d0daa54788"
+      },
+      {
+        "exact_native_cache_key": "31d19a9c54bd5b4ba633b1dd7214acac8620d608.pkl",
+        "pkl_sha256": "66c06ff107bb472b0d4db1b346f7d59dbcdc89d65b7bd18f56f7ecc77d6a70c8",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "highlight-display-chunk",
+            "method": "create",
+            "source_slice": "the one locality not yet connected.",
+            "exact_native_cache_key": "31d19a9c54bd5b4ba633b1dd7214acac8620d608.pkl",
+            "cache_input_text_sha256": "3be4b655eb9b04285d144a2497350f31325df73db3470a03f9c75b39f4f4e214",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          },
+          {
+            "sentence": "S17",
+            "piece": 2,
+            "reference_kind": "pause-punctuation-slice",
+            "method": "create",
+            "source_slice": "the one locality not yet connected.",
+            "exact_native_cache_key": "31d19a9c54bd5b4ba633b1dd7214acac8620d608.pkl",
+            "cache_input_text_sha256": "3be4b655eb9b04285d144a2497350f31325df73db3470a03f9c75b39f4f4e214",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "66c06ff107bb472b",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          59392
+        ],
+        "unprocessed_array_sha256": "c8aa2609e6d8089f3c25f4aa1b596ef08d1111431723278b90e61d321f13c28f"
+      },
+      {
+        "exact_native_cache_key": "7c3f61cc218661e00e3134714640d44e4d9cbfbe.pkl",
+        "pkl_sha256": "49bc527b01d320f89a6a28e17309519f8cc225dd7fd8b9bdfb08fe6f629ccfba",
+        "native_single_thread_marker_present": true,
+        "input_proofs": [
+          {
+            "sentence": "S18",
+            "piece": null,
+            "reference_kind": "whole-default-raw",
+            "method": "create",
+            "source_slice": "A remedy aimed at the nose protected the gut.",
+            "exact_native_cache_key": "7c3f61cc218661e00e3134714640d44e4d9cbfbe.pkl",
+            "cache_input_text_sha256": "c63193eb37b1cc74215674e23cbf616f253b89ab2323fc5b6c41f120b9cabc9e",
+            "cache_input_is_phonemes": false,
+            "cache_preexisted": true
+          }
+        ],
+        "native_single_thread_marker_value": "49bc527b01d320f8",
+        "native_single_thread_marker_matches": true,
+        "container_type": "tuple",
+        "container_length": 2,
+        "sample_rate": 24000,
+        "dtype": "float32",
+        "shape": [
+          64000
+        ],
+        "unprocessed_array_sha256": "455f7347b439d0b5aef1a94ee935b6b214fff90b7b7e419552006a4415a0659d"
+      }
+    ],
+    "missing_reference_key_count": 0,
+    "observed_missing_keys_covered": [],
+    "new_private_cache_names": [],
+    "native_single_thread_marker_verified": true,
+    "single_thread_sessions": [
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      },
+      {
+        "intra_op_num_threads": 1,
+        "inter_op_num_threads": 1
+      }
+    ],
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "existing_private_cache_count": 11514,
+    "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_bytes_unchanged": true,
+    "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "public_repository_cache_unchanged": true,
+    "producer_pcm_existed_before": false,
+    "producer_pcm_sha256_before": null,
+    "producer_pcm_sha256_after": null,
+    "accepted_aac_adts_sha256_before": "cbf1848eff1a5fdf6ea7ff57c6a1a7018e0ef2b5399efc402452ca1d7b13ece7",
+    "accepted_aac_adts_sha256_after": "cbf1848eff1a5fdf6ea7ff57c6a1a7018e0ef2b5399efc402452ca1d7b13ece7",
+    "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+    "private_cache_exported": false
+  },
+  "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+  "approved_derived_level_preparation": {
+    "article": "30",
+    "kind": "one-exact-original-G36-derived-cache-preparation",
+    "derived_reference_prepared": true,
+    "acceptance": false,
+    "official_quality_gate_or_threshold_modified": false,
+    "private_PCM_GT_cache_arrays_or_models_exported": false,
+    "program_sha256": "ea2a0374366e41243b85ae2567789f8cb094c59fb07b88bfba308484c045f6bf",
+    "request_source_sha256": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+    "original_maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+    "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+    "models_sha256": {
+      "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    },
+    "actual_W_producer_PCM_before": {
+      "present": false,
+      "sha256": null
+    },
+    "exact_original_G36_key": "5684a76d239dd589c24e3483bd1e378b5dcf7a12",
+    "expected_filename": "调平_5684a76d239dd589c24e3483bd1e378b5dcf7a12.json",
+    "clip_float32_sha256": [
+      "f1feec87a7a1174555696abd7c0672df1e0974b3a2273664ec11e557bae587d9",
+      "1150614eeef2a65b28a3da2abfca749b4906da643a8f6e4737da2fd50916c1e6",
+      "3a3a2f169cf51d183757d5b5ee7b30689f9abae1aae577a542434a6bf0aa5316"
+    ],
+    "clip_sample_counts": [
+      151200,
+      9120,
+      34680
+    ],
+    "sample_rate": 24000,
+    "gaps_seconds": [
+      0.4
+    ],
+    "piece_times_seconds": [
+      [
+        0,
+        6.3
+      ],
+      [
+        6.68,
+        8.125
+      ]
+    ],
+    "created_exact_derived_JSON": true,
+    "cache_hit_before_measurement": false,
+    "derived_JSON_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "actual_original_returned_gain_dB": {},
+    "actual_original_stored_gain_dB": {},
+    "private_cache_additions": [
+      "调平_5684a76d239dd589c24e3483bd1e378b5dcf7a12.json"
+    ],
+    "preexisting_private_cache_bytes_unchanged": true,
+    "only_original_auto_level_temporarily_non_strict": true,
+    "strict_cache_restored_before_return": true,
+    "original_sentence_text": "His 82 miles of stout intercepting sewers caught the flow short of the river and diverted it east, downstream of the city.",
+    "original_pieces": [
+      [
+        0,
+        98
+      ],
+      [
+        99,
+        122
+      ]
+    ],
+    "original_auto_level_source_SHA256": "41ce6f2d607aedbef3d40ae260d7a002d6b3f38ffb98bbf42258db110f6279c5",
+    "original_loudness_program_SHA256": "2bb89e427ec014a7fc1b4cc46ea6a11f91a786930f91e8cec720e0307940b85b",
+    "original_loudness_ffmpeg_version": "ffmpeg version 7.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2024 the FFmpeg developers",
+    "original_mother_material_fullSHA_manifest": [
+      {
+        "exact_native_cache_key": "01cca2762762829a1acc752283244689bff76b71.pkl",
+        "pkl_sha256": "87e5814902cdd405e949b9c6be64803f47931b9c7f388717c7de71737686eecf",
+        "original_G72_provenance_checked": true
+      },
+      {
+        "exact_native_cache_key": "db11be9d4bba177fcc73342cbf31aeb03360b82f.pkl",
+        "pkl_sha256": "33414f47494b110c6fdf1d378f27ff10ed7454709df9f58eccef38ea34874c92",
+        "original_G72_provenance_checked": true
+      }
+    ],
+    "existing_private_cache_inventory_SHA256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "existing_private_cache_inventory_SHA256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+    "public_ROOT_cache_inventory_SHA256_unchanged": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+    "actual_W_producer_PCM_after": {
+      "present": false,
+      "sha256": null
+    },
+    "actual_W_source_producer_outputs_and_PCM_unchanged": true,
+    "accepted_video_SHA256_unchanged": "0f2f4c685f2f2646c12b8cf44631b5bd30140351351f9e1e12deed8495c26d48",
+    "accepted_AAC_ADTS_SHA256_unchanged": "cbf1848eff1a5fdf6ea7ff57c6a1a7018e0ef2b5399efc402452ca1d7b13ece7",
+    "all_preexisting_mother_and_derived_cache_bytes_unchanged": true
+  },
+  "approved_derived_level_preparation_program_sha256": "ea2a0374366e41243b85ae2567789f8cb094c59fb07b88bfba308484c045f6bf",
+  "fresh_current_article_reference": {
+    "article": "30",
+    "removed_temporary_gt_files": [],
+    "processed_pcm_or_raw_mother_cache_modified": false,
+    "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+  },
+  "temporary_output_reset": {
+    "removed": [],
+    "production_started_ns": 1794623439397494500,
+    "repository_outputs_modified": false
+  },
+  "failure_details": {
+    "step": "canonical-draft-00.log",
+    "exit": 1,
+    "tail": [
+      "① 文本：通过，自动修 2 处",
+      "② 声音：30 词尾辅音核对 问题数 0；30 纯人声核对（配音指纹 5babe45ce87d）问题数 13；问题数 0；30 句间停顿核对 问题数 0；问题数 0",
+      "③ 出片前核查：通过",
+      "【停】⑤ 出片后核查（330 秒；全文在 /home/runner/work/_temp/completion-machine/video/做_30/）：",
+      "  ✘ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：30 纯人声核对（配音指纹 5babe45ce87d）问题数 1",
+      "    30 OK（已用实际声音核实是词的一部分） 呼吸声 20.64–20.76s 长 125 ms 最响 -35.7 dB 重心 2122 Hz 周期 0.25 低频占比 -8.5 dB",
+      "    30 OK（已用实际声音核实是词的一部分） 呼吸声 27.80–27.92s 长 120 ms 最响 -36.7 dB 重心 3246 Hz 周期 0.18 低频占比 -9.0 dB",
+      "    30 OK（已用实际声音核实是词的一部分） 噗声 25.25–25.29s 长 35 ms 最响 -33.1 dB 重心 866 Hz 周期 0.63 低频占比 -0.6 dB",
+      "    30 OK（已用实际声音核实是词的一部分） 噗声 41.15–41.17s 长 25 ms",
+      "  ✘ 独立复核：98 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['6']（未经实际声音确认的 5），多余声音 = ['0']",
+      "    edge pre_min=-56.5 post_min=-35.4 lost_max=-44.3 A10_VIOLATION(post)",
+      "    edge pre_min=-57.2 post_min=-46.8 lost_max=-37.9 A10_VIOLATION(post,lost)",
+      "    edge pre_min=-57.5 post_min=-50.4 lost_max=-41.0 A10_VIOLATION(post)",
+      "    edge pre_min=-58.4 post_min=-60.3 lost_max=-34.5 A10_VIOLATION(lost)",
+      "    edge p",
+      "  已自动修：",
+      "    结尾简述整屏折行（G35）：S18 结尾简述：现在字号 30，整屏最大 74（简述折成 9 行）",
+      "    S1-1 形容词的“的”并进标色（T38）：**酷热的**(fierce heat)"
+    ],
+    "public_checker_diagnostics": {
+      "做_30/出片后.log": [
+        "✘ 自动音频检查（削波、电流音、停顿超长、响度骤降）",
+        "✘ 纯人声核对（呼吸声、噗声、底噪、孤立杂音、起音前过长、收尾过长）：30 纯人声核对（配音指纹 5babe45ce87d）问题数 1",
+        "    30 BAD 噗声 118.20–118.22s 长 15 ms 最响 -35.4 dB 重心 1600 Hz 周期 0.00 低频占比 -2.1 dB",
+        "✔ 句间停顿核对（A20：片头 0.4、标题后 1.0、句号 1.0、换段 1.2、片尾 2 秒，词到词 ±0.01 秒）：30 句间停顿核对 问题数 0",
+        "✘ 独立复核：98 处改动，词尾/词头被切 = 0，删除处两侧未衰减到 -55 dB 或删掉了 -40 dB 以上的声音 = ['6']（未经实际声音确认的 5），多余声音 = ['0']"
+      ],
+      "做_30/声音.log": [
+        "30 词尾辅音核对 问题数 0",
+        "30 纯人声核对（配音指纹 5babe45ce87d）问题数 13",
+        "问题数 0",
+        "30 句间停顿核对 问题数 0",
+        "问题数 0"
+      ],
+      "停顿位置精确核对.py": {
+        "exit": 0,
+        "actual_output": [
+          "30 S15 OK（已用实际声音核实） 插入 「belief, | miasma,」 段长比 前 0.83 后 0.87 ｜ 前词末音素起 1.239s 后词开头 1.364s ｜ 停顿 1.270–1.270s（离前词末音素起点 +31 ms，离后词 +94 ms）对齐代价 1.45",
+          "问题数 0"
+        ],
+        "actual_final_text_lines": [
+          "30 S1 OK  删静音 「1858, | the」 段长比 前 1.12 后 0.95 ｜ 前词末音素起 2.671s 后词开头 3.121s ｜ 停顿 2.880–3.070s（离前词末音素起点 +209 ms，离后词 +51 ms）对齐代价 0.59",
+          "30 S1 OK  删静音 「lime, | a」 段长比 前 0.95 后 1.10 ｜ 前词末音素起 7.646s 后词开头 8.196s ｜ 停顿 7.700–8.115s（离前词末音素起点 +54 ms，离后词 +81 ms）对齐代价 0.59",
+          "30 S2 OK  删静音 「festered, | and」 段长比 前 0.98 后 0.95 ｜ 前词末音素起 1.146s 后词开头 1.521s ｜ 停顿 1.190–1.445s（离前词末音素起点 +44 ms，离后词 +76 ms）对齐代价 1.83",
+          "30 S4 OK  删静音 「currents, | where」 段长比 前 0.99 后 1.16 ｜ 前词末音素起 7.550s 后词开头 8.050s ｜ 停顿 7.625–8.000s（离前词末音素起点 +75 ms，离后词 +50 ms）对齐代价 1.70",
+          "30 S5 OK  删静音 「name, | the」 段长比 前 0.97 后 0.87 ｜ 前词末音素起 4.119s 后词开头 4.569s ｜ 停顿 4.175–4.525s（离前词末音素起点 +56 ms，离后词 +44 ms）对齐代价 1.18",
+          "30 S6 OK  删静音 「July, | when」 段长比 前 1.07 后 1.07 ｜ 前词末音素起 2.911s 后词开头 3.404s ｜ 停顿 2.955–3.330s（离前词末音素起点 +44 ms，离后词 +74 ms）对齐代价 1.57",
+          "30 S6 OK  删静音 「Exchequer, | Benjamin」 段长比 前 1.07 后 1.06 ｜ 前词末音素起 5.229s 后词开头 5.629s ｜ 停顿 5.325–5.500s（离前词末音素起点 +96 ms，离后词 +129 ms）对齐代价 1.57",
+          "30 S6 OK  删静音 「Disraeli, | denounced」 段长比 前 1.06 后 1.09 ｜ 前词末音素起 6.754s 后词开头 7.279s ｜ 停顿 6.870–7.235s（离前词末音素起点 +116 ms，离后词 +44 ms）对齐代价 1.57",
+          "30 S9 OK  删静音 「east, | downstream」 段长比 前 0.96 后 1.02 ｜ 前词末音素起 6.266s 后词开头 6.741s ｜ 停顿 6.315–6.645s（离前词末音素起点 +49 ms，离后词 +96 ms）对齐代价 1.48",
+          "30 S10 OK  删静音 「tributaries, | the」 段长比 前 1.17 后 1.03 ｜ 前词末音素起 4.589s 后词开头 5.164s ｜ 停顿 4.645–5.125s（离前词末音素起点 +56 ms，离后词 +39 ms）对齐代价 0.94",
+          "30 S11 OK  删静音 「pipe, | he」 段长比 前 0.96 后 0.81 ｜ 前词末音素起 3.215s 后词开头 3.615s ｜ 停顿 3.265–3.540s（离前词末音素起点 +50 ms，离后词 +75 ms）对齐代价 1.28",
+          "30 S12 OK  删静音 「Victoria, | Albert,」 段长比 前 1.00 后 0.72 ｜ 前词末音素起 3.561s 后词开头 4.086s ｜ 停顿 3.640–4.005s（离前词末音素起点 +79 ms，离后词 +81 ms）对齐代价 0.82",
+          "30 S12 OK  删静音 「Albert, | and」 段长比 前 0.72 后 1.01 ｜ 前词末音素起 4.511s 后词开头 4.686s ｜ 停顿 4.525–4.610s（离前词末音素起点 +14 ms，离后词 +76 ms）对齐代价 0.82",
+          "30 S13 OK  删静音 「1875, | much」 段长比 前 1.02 后 0.95 ｜ 前词末音素起 2.956s 后词开头 3.456s ｜ 停顿 3.010–3.350s（离前词末音素起点 +54 ms，离后词 +106 ms）对齐代价 1.70",
+          "30 S15 OK（已用实际声音核实） 插入 「belief, | miasma,」 段长比 前 0.83 后 0.87 ｜ 前词末音素起 1.239s 后词开头 1.364s ｜ 停顿 1.270–1.270s（离前词末音素起点 +31 ms，离后词 +94 ms）对齐代价 1.45",
+          "30 S15 OK  删静音 「miasma, | blamed」 段长比 前 0.87 后 1.24 ｜ 前词末音素起 1.939s 后词开头 2.464s ｜ 停顿 2.020–2.350s（离前词末音素起点 +81 ms，离后词 +114 ms）对齐代价 1.45",
+          "30 S15 OK  删静音 「vapours, | so」 段长比 前 1.24 后 0.91 ｜ 前词末音素起 5.239s 后词开头 5.814s ｜ 停顿 5.320–5.710s（离前词末音素起点 +81 ms，离后词 +104 ms）对齐代价 1.45",
+          "30 S16 OK  删静音 「reason, | guarding」 段长比 前 1.02 后 1.00 ｜ 前词末音素起 2.155s 后词开头 2.655s ｜ 停顿 2.205–2.545s（离前词末音素起点 +50 ms，离后词 +110 ms）对齐代价 0.88",
+          "30 S17 OK  删静音 「End, | the」 段长比 前 1.08 后 0.92 ｜ 前词末音素起 7.092s 后词开头 7.592s ｜ 停顿 7.125–7.540s（离前词末音素起点 +33 ms，离后词 +52 ms）对齐代价 0.66",
+          "问题数 0",
+          ""
+        ]
+      },
+      "标点停顿核对.py": {
+        "exit": 0,
+        "actual_output": [
+          "问题数 0"
+        ],
+        "actual_final_text_lines": [
+          "30 S1 OK  「t of summer 1858,」 标准 0.4s，实际听到 0.40s",
+          "30 S1 OK  「chloride of lime,」 标准 0.4s，实际听到 0.40s",
+          "30 S2 OK  「 Thames festered,」 标准 0.4s，实际听到 0.40s",
+          "30 S4 OK  「nto its currents,」 标准 0.4s，实际听到 0.40s",
+          "30 S5 OK  「de earned a name,」 标准 0.4s，实际听到 0.40s",
+          "30 S6 OK  「voice on 15 July,」 标准 0.4s，实际听到 0.40s",
+          "30 S6 OK  「of the Exchequer,」 标准 0.4s，实际听到 0.40s",
+          "30 S6 OK  「enjamin Disraeli,」 标准 0.4s，实际听到 0.40s",
+          "30 S9 OK  「diverted it east,」 标准 0.4s，实际听到 0.40s",
+          "30 S10 OK  「s as tributaries,」 标准 0.4s，实际听到 0.40s",
+          "30 S11 OK  「re for each pipe,」 标准 0.4s，实际听到 0.40s",
+          "30 S12 OK  「y built Victoria,」 标准 0.2s，实际听到 0.20s",
+          "30 S12 OK  「Victoria, Albert,」 标准 0.2s，实际听到 0.20s",
+          "30 S13 OK  「complete by 1875,」 标准 0.4s，实际听到 0.40s",
+          "30 S15 OK  「edominant belief,」 标准 0.4s，实际听到 0.40s",
+          "30 S15 OK  「t belief, miasma,」 标准 0.4s，实际听到 0.40s",
+          "30 S15 OK  「 air and vapours,」 标准 0.4s，实际听到 0.40s",
+          "30 S16 OK  「nintended reason,」 标准 0.4s，实际听到 0.40s",
+          "30 S17 OK  「 in the East End,」 标准 0.4s，实际听到 0.40s",
+          "问题数 0",
+          ""
+        ]
+      }
+    }
+  },
+  "error": "canonical-draft: official quality check failed; see article status JSON",
+  "reference_gain_failure_diagnostic": {
+    "acceptance": false,
+    "diagnostic_only": true,
+    "program_present": true,
+    "reference_meta_present": true,
+    "actual_pcm_present": true,
+    "current_post_check_present": true,
+    "exit": 0,
+    "program_sha256": "e9c6fa0ad2147ab6227919c2039406b87a4865567d1c0ceaa70c456c1bd02e60",
+    "file": "30-reference-gain-diagnostic.json",
+    "sha256": "4e576e60d808aca85336698f2fbebb7c1d9bb92a0a18547ee2791f59fe155297",
+    "anchor_summary": {
+      "count": 302,
+      "same_waveform_candidates": 290,
+      "median_fitted_gain": 0.9559528495898895,
+      "median_fitted_to_default_gain": 1.000000980111915,
+      "fitted_gain_min": 0.9559166644675359,
+      "fitted_gain_max": 0.9559638302987747,
+      "inferred_kept_input_peak": 0.93100826090096,
+      "default_gain_fails_original_2_2_lsb_limit_count": 0
+    },
+    "diagnostic_error": null
+  },
+  "failed_current_video": {
+    "exported": true,
+    "passed": false,
+    "acceptance": false,
+    "purpose": "failed current-attempt video for diagnosis; not a final deliverable",
+    "file": "30-failed-draft.mp4",
+    "sha256": "ab19dc76182ffb261447e3761be3af01e4806521eea991be9f513f138952352e",
+    "width": 1920,
+    "height": 1080,
+    "proof": "30-failed-draft-proof.json",
+    "proof_sha256": "76449efa71f4aaa78ebc25dd0a06f9883cf7e18d3d1272441b676721850d3a1e",
+    "derived_clip_count": 0
+  }
+}

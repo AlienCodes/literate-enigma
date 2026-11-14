@@ -1,0 +1,153 @@
+import json,re,glob,os
+# 第45篇初稿（逐词对照）：S = [(段, [chunk, ...])]，chunk = ([(英文组, 中文组), ...], 可选 note)
+# 2026-11-03 重点词中文沿用文章定稿（铁律），只按《翻译风格》调格式；三项并列加牛津逗号（T18）；不用破折号（T36）。
+S=[
+(1,[[[("In late summer 1977,","1977年夏末，"),("NASA","NASA"),("**fastened**","**固定了**(fastened)"),("a **disc**","一张**唱片**(disc)，")],
+     "（fasten A to B：把 A 固定在 B 上）"],
+    [[("**wrought** from **gilded** **copper**,","这个圆盘用**镀金的**(gilded)**铜**(copper)**锻造**(wrought)而成，"),("30 **centimetres** wide,","宽30**厘米**(centimetres)，")],
+     "（wrought from gilded copper：过去分词短语作后置定语，修饰 disc；\nwrought：work 的旧式过去分词；\n30 centimetres wide：补充说明 disc 的大小）"],
+    [[("to each","装在每艘"),("Voyager **spaceship**","旅行者号**宇宙飞船**(spaceship)上，"),("before **takeoff**.","在**起飞**(takeoff)之前。")]]]),
+(1,[[[("Nobody","谁也"),("could **foresee**","无法**预见**(foresee)，"),("who, if anyone,","究竟会不会有人、又会是谁"),("would play one.","来播放其中一张。")],
+     "（if anyone：插入语，如果有人的话；\none：指两张唱片中的任意一张）"]]),
+(2,[[[("**Advisers** under Carl Sagan of Cornell","康奈尔大学卡尔·萨根手下的**顾问**(Advisers)们，")],
+     "（under Carl Sagan of Cornell：后置定语，修饰 Advisers）"],
+    [[("**distilled** our **earthly** **abode**","把我们在**尘世的**(earthly)**家园**(abode)，**提炼**(distilled)"),("into this **compendium**.","成这部**汇编**(compendium)。")],
+     "（distil A into B：把 A 提炼成 B）\n（康奈尔大学的卡尔·萨根（著名天文学家）带领顾问团队，\n把整个地球（包括各种声音、图像、人类文明）浓缩、打包，\n刻录到了这张薄薄的“金唱片”里。\n萨根的团队把整个地球的“灵魂”，提纯、浓缩成了一张写给外星人的“名片”。）"]]),
+(2,[[[("Voices","人声"),("**greet** the **listener** in 55 languages,","用55种语言**向**(greet)**听者**(listener)致以**问候**(greet)，")],
+     "（in 55 languages：方式状语）"],
+    [[("followed by","接着是"),("the **rumble** of **thunder**,","**雷**(thunder)的**隆隆声**(rumble)、"),("the **whistle** of wind,","风的**呼啸声**(whistle)、")],
+     "（followed by…：过去分词短语作状语，接着是……）"],
+    [[("whales,","鲸歌、"),("footsteps,","脚步声、"),("**laughter**,","**笑声**(laughter)"),("and","和"),("a **rhythmic**","**富有节奏的**(rhythmic)"),("**heartbeat**.","**心跳**(heartbeat)。")]]]),
+(2,[[[("About 90 minutes","约90分钟的"),("of **eclectic** music","**兼收并蓄的**(eclectic)音乐，"),("cover","涵盖了"),("**a spectrum of**","**一系列的**(a spectrum of)"),("cultures","文化"),("and **eras**,","和**时代**(eras)，")],
+     "（a spectrum of…：一系列……，广泛的……）"],
+    [[("**notably**","**尤其**(notably)是"),("Bach","巴赫"),("and Chuck Berry's","和查克·贝里的"),("Johnny B. Goode.","《Johnny B. Goode》。")],
+     "（notably：尤其，特别是，引出突出的例子；\nJohnny B. Goode：查克·贝里的一首歌）"]]),
+(3,[[[("An **array of**","一**系列**(array of)"),("115 images,","共115幅图像，"),("**encoded** in analogue form,","以模拟方式**编码**(encoded)，")],
+     "（an array of…：一系列……，固定搭配；\nencoded in analogue form：过去分词短语作插入语，补充说明 images）"],
+    [[("sits beside","旁边是"),("printed","印着的"),("words","文字，"),("from two **statesmen**,","出自于两位**政治家**(statesmen)，"),("Jimmy Carter","吉米·卡特"),("and Kurt Waldheim.","与库尔特·瓦尔德海姆。")],
+     "（sit beside…：位于……旁边；\nJimmy Carter and Kurt Waldheim：同位语，补充说明 two statesmen；\n卡特时任美国总统，瓦尔德海姆时任联合国秘书长）"]]),
+(3,[[[("The **sleeve**","**（唱片的）套子**(sleeve)上"),("gives","给出"),("**guidance** on playing the disc,","播放的**指引**(guidance)，")],
+     "（guidance on…：关于……的指引）"],
+    [[("plus","还有"),("a **diagram**","一幅**示意图**(diagram)，"),("fixing the Sun","标定太阳的位置，"),("with pulsars","以脉冲星"),("as **beacons**.","作**信标**(beacons)。")],
+     "（fixing the Sun…：现在分词短语作后置定语，修饰 diagram；\nwith pulsars as beacons：with 复合结构，以脉冲星作信标）"]]),
+(4,[[[("On 14 February 1990,","1990年2月14日，"),("**at** Sagan's **request**,","**应**(at request)萨根的**请求**(at request)，"),("Voyager 1","旅行者1号")],
+     "（at one's request：应某人之请）"],
+    [[("**pivoted**","**转动**(pivoted)"),("its camera","相机，"),("for a **glance** **backwards**","**向后**(backwards)投去**一瞥**(glance)，"),("across","跨越"),("about six billion kilometres.","约60亿公里。")],
+     "（for a glance backwards：表目的，为了向后看一眼）"]]),
+(4,[[[("Sixty **frames**","60帧**画面**(frames)"),("formed","拼成"),("a **panorama** of the solar system,","太阳系的**全景**(panorama)，")],
+     "（a panorama of…：……的全景）"],
+    [[("a **mosaic** in which","在这幅**拼图**(mosaic)中，"),("Earth","地球"),("was a **glimmer**","只是一点**微光**(glimmer)，"),("about an eighth of a **pixel** **across**.","**宽**(across)约八分之一个**像素**(pixel)。")],
+     "（a mosaic in which…：同位语，补充说明 panorama，\nin which 引导定语从句；\nacross：放在数量后，指宽度）"]]),
+(4,[[[("They","这些画面"),("reached","抵达"),("Earth's **receivers**","地球的**接收设备**(receivers)，"),("between March","时间在3月"),("and 1 May,","至5月1日间，")],
+     "（between March and 1 May：时间状语）"],
+    [[("each **signal** taking","**信号**(signal)单程要走"),("five and a half hours.","五个半小时。")],
+     "（each signal taking…：独立主格结构，补充说明）"]]),
+(5,[[[("In a 1994 book,","在1994年的一本书中，"),("Sagan","萨根"),("offered that **pale** dot","把那个**暗淡的**(pale)小点"),("as a **perspective**","作为一种**视角**(perspective)，")],
+     "（offer A as B：把 A 作为 B 提出来；\n1994年的这本书即《暗淡蓝点》）"],
+    [[("on our small","借以审视我们渺小"),("and **ephemeral** place","而**短暂的**(ephemeral)位置，"),("amid **cosmic**","处在**宇宙的**(cosmic)"),("**vastness**.","**浩瀚**(vastness)之中。")],
+     "（a perspective on…：看待……的视角；\namid cosmic vastness：在宇宙的浩瀚之中）"]]),
+(6,[[[("Voyager 1","旅行者1号"),("crossed into","进入"),("**interstellar** space","**星际**(interstellar)空间，"),("in August 2012,","时间是2012年8月，")],
+     "（cross into…：越过边界进入……）"],
+    [[("the first","成为第一个"),("**human-made** object there,","到达那里的**人造**(human-made)物体；")],
+     "（同位语，补充说明 Voyager 1）"],
+    [[("and Voyager 2","旅行者2号"),("followed in 2018.","于2018年跟进。")]]]),
+(6,[[[("Both","两者"),("work on","仍在工作，"),("with a **longevity**","其**长寿**(longevity)"),("**unmatched** at NASA,","在NASA**无可匹敌**(unmatched)，")],
+     "（work on：继续工作；\nunmatched at NASA：过去分词短语作后置定语，修饰 longevity）"],
+    [[("but","但"),("**depletion** of their power","电力**耗竭**(depletion)"),("should","预计会"),("silence them within a few years.","让它们在几年之内沉寂。")],
+     "（should：表推测，预计会；silence：使沉寂）"]]),
+(7,[[[("The Voyagers' discs","两艘旅行者号的唱片"),("will","将"),("**glide on**","**继续滑行**(glide on)，"),("**outwards**","**向外**(outwards)"),("through the **void**","穿过**虚空**(void)，")],
+     "（glide on：继续滑行）"],
+    [[("as **messengers**","作为**信使**(messengers)，"),("with a map","携着一幅地图，"),("leading back to the Sun.","上面的坐标指向太阳。")],
+     "（leading back to the Sun：现在分词短语作后置定语，修饰 map）\n"
+     "（简述：1977年，NASA给两艘旅行者号各装上一张镀金铜唱片。\n"
+     "萨根手下的顾问们选进了55种语言的问候、\n"
+     "自然与人类的声音、约90分钟音乐和115幅图像，\n"
+     "封套上还有借脉冲星标定太阳位置的示意图。\n"
+     "1990年，旅行者1号回望，地球只是一点微光；\n"
+     "萨根在1994年的书中借这个暗淡的小点审视人类渺小而短暂的位置。\n"
+     "两艘探测器先后进入星际空间，电力预计几年内耗竭，\n"
+     "唱片仍会带着一幅地图继续滑行，上面的坐标指向太阳。）"]]),
+]
+G={
+ "S6 sits beside":"对齐不了：sit beside 中文“旁边是”，beside 化成“旁边”放在前面，拆开 sits、beside 中文不通",
+ "S10 between March":"对齐不了：时间状语 between March and 1 May 中文“时间在3月至5月1日间”，between 化成“在……间”，“间”放到最后",
+ "S11 and ephemeral place":"对齐不了：ephemeral place 中文“短暂的位置”，and 化成“而”，place 是名词放最后，不能再拆",
+ "S11 amid cosmic":"对齐不了：amid 中文“处在……之中”，包住后面的词，“处在”放这一组、“之中”放下一组",
+ "S12 human-made object there":"对齐不了：there 是后置定语，中文“到达那里的人造物体”定语必须提前",
+ "S14 leading back to the Sun":"对齐不了：leading back to the Sun 中文“上面的坐标指向太阳”（用户 2026-11-04 改），拆开不通",
+ "S14 glide on":"对齐不了：glide on 是固定搭配“继续滑行”，on 化成“继续”放到动词前，整体标",
+ "S13 should":"对齐不了：should 表推测，中文沿用文章定稿“预计会”",
+ "S1 In late summer 1977":"对齐不了：英文先季节后年份，中文“1977年夏末”年份必须在前",
+ "S1 wrought from gilded copper":"对齐不了：from gilded copper 是材料状语，中文“这个圆盘用镀金的铜锻造而成”（用户 2026-11-04 改）必须放到动词前",
+ "S1 30 centimetres wide":"对齐不了：30 centimetres wide 中文“宽30厘米”，wide 必须放到数量前",
+ "S3 Advisers under Carl Sagan of Cornell":"对齐不了：under Carl Sagan of Cornell 是后置定语，修饰 Advisers，中文“康奈尔大学卡尔·萨根手下的顾问们”定语必须提前，of Cornell 也要提到人名前",
+ "S3 distilled our earthly abode":"对齐不了：distil A into B 中文“把 A 提炼成 B”（沿用文章定稿），动词必须放到宾语后",
+ "S4 greet the listener in 55 languages":"对齐不了：in 55 languages 是方式状语，中文“用55种语言向听者致以问候”方式必须放到动词前，greet 中文“致以问候”放到对象后",
+ "S4 the rumble of thunder":"对齐不了：the rumble of thunder 是 of 结构，中文“雷的隆隆声”（用户 2026-11-04 改）语序必须倒过来",
+ "S4 the whistle of wind":"对齐不了：the whistle of wind 是 of 结构，中文“风的呼啸声”语序必须倒过来",
+ "S6 encoded in analogue form":"对齐不了：in analogue form 是方式状语，中文“以模拟方式编码”方式必须放到动词前",
+ "S7 guidance on playing the disc":"对齐不了：on playing the disc 是后置定语，修饰 guidance，中文“播放的指引”定语必须提前",
+ "S8 about six billion kilometres":"对齐不了：six billion 中文按数值写作“60亿”，about 中文“约”，拆开数字不通",
+ "S9 a panorama of the solar system":"对齐不了：a panorama of… 是 of 结构，中文“太阳系的全景”语序必须倒过来",
+ "S9 about an eighth of a pixel across":"对齐不了：across 放在数量后表宽度，中文“宽约八分之一个像素”，宽必须放到最前，an eighth of a pixel 是 of 结构",
+ "S10 each signal taking":"对齐不了：独立主格 each signal taking…，中文沿用文章定稿“信号单程要走”（signal 用户 2026-11-04 标为重点词），each 化在“单程”里，拆开不通",
+ "S10 five and a half hours":"对齐不了：five and a half hours 中文“五个半小时”，“半”必须放到量词后",
+ "S11 offered that pale dot":"对齐不了：offer A as B 中文“把 A 作为 B”，offered 化成“把……作为”，dot 中文“小点”放在形容词后",
+ "S13 depletion of their power":"对齐不了：depletion of their power 是 of 结构，中文“电力耗竭”语序必须倒过来",
+ "S13 silence them within a few years":"对齐不了：within a few years 是时间状语，中文“让它们在几年之内沉寂”时间必须放到动词前",
+}
+CONF={"合组":G,"对齐":{
+ "S3-1 Advisers under Carl Sagan of C":"under Carl Sagan of Cornell 是后置定语，修饰 Advisers，中文“康奈尔大学卡尔·萨根手下的顾问们”定语必须提前",
+ "S4-1 greet the listener in 55 langu":"in 55 languages 是方式状语，中文“用55种语言向听者致以问候”方式必须放到动词前",
+ "S7-1 guidance on playing the disc,":"on playing the disc 是后置定语，修饰 guidance，中文“播放的指引”定语必须提前",
+ "S9-1 a panorama of the solar system":"a panorama of… 是 of 结构，中文“太阳系的全景”语序必须倒过来",
+ "S9-2 about an eighth of a pixel acr":"across 放在数量后表宽度，中文“宽约八分之一个像素”，宽必须提前；an eighth of a pixel 是 of 结构",
+ "S10-2 five and a half hours.":"five and a half hours 中文“五个半小时”，“半”必须放到量词后，拆开不通",
+ "S13-2 silence them within a few year":"within a few years 是时间状语，中文“让它们在几年之内沉寂”时间必须放到动词前",
+ "S14-2 leading back to the Sun.":"leading back to the Sun 是现在分词短语作后置定语，修饰 map，中文“上面的坐标指向太阳”（用户 2026-11-04 改），拆开不通"},
+"短语":{
+ "S13 unmatched … at":"不是搭配：at NASA 是地点状语（在NASA），unmatched 单独就是“无可匹敌”",
+ "S1 fastened … from":"不是搭配：from 属于 wrought from gilded copper（材料），和 fastened 无关",
+ "S1 fastened … to":"不是搭配：fasten 本身就是“固定”，to 只引出固定的位置（每艘飞船），中文“装在……上”已译出",
+ "S1 wrought … from":"不是搭配：wrought 本身就是“锻造的”，from 引出材料（镀金的铜），中文“用……锻造而成”已译出",
+ "S3 distilled … into":"不是搭配：distil 本身就是“提炼”，into 只引出结果（这部汇编），中文“提炼成”的“成”已译出",
+ "S4 greet … of":"不是搭配：of 属于 the rumble of thunder，和 greet 无关",
+ "S4 rumble … of":"不是搭配：of thunder 是后置定语，说明是什么的隆隆声，rumble 单独就是“隆隆声”",
+ "S4 whistle … of":"不是搭配：of wind 是后置定语，说明是什么的呼啸声，whistle 单独就是“呼啸声”",
+ "S6 encoded … from":"不是搭配：from 属于 printed words from two statesmen，和 encoded 无关",
+ "S6 encoded … in":"不是搭配：in analogue form 是方式状语（以模拟方式），encode 单独就是“编码”",
+ "S7 guidance … on":"不是搭配：on playing the disc 是后置定语，说明指引的内容，guidance 单独就是“指引”",
+ "S8 pivoted … for":"不是搭配：for a glance backwards 是目的状语，pivot 单独就是“转动”",
+ "S9 panorama … of":"不是搭配：of the solar system 是后置定语，panorama 单独就是“全景”",
+ "S9 mosaic … in":"不是搭配：in which 引导定语从句，修饰 mosaic",
+ "S9 glimmer … of":"不是搭配：of 属于 an eighth of a pixel，和 glimmer 无关",
+ "S11 perspective … on":"不是搭配：on our small and ephemeral place 是后置定语，说明视角的对象，perspective 单独就是“视角”，中文“借以审视”已译出",
+ "S13 longevity … of":"不是搭配：of 属于 depletion of their power，和 longevity 无关",
+ "S14 glide … with":"不是搭配：with a map 属于 messengers 的后置定语，和 glide 无关"},
+"牛津逗号":{"S5 of cultures and eras, notably Bach and":"不是三项并列：cultures and eras 只有两项，Bach and Chuck Berry's Johnny B. Goode 也只有两项，notably 引出例子",
+ "S6 words from two statesmen, Jimmy Carter and":"不是三项并列：Jimmy Carter and Kurt Waldheim 是 two statesmen 的同位语，只有两项",
+ "S10 March and 1 May, each signal taking five and":"不是三项并列：between March and 1 May 只有两项，five and a half 是数字读法"}}
+CONF["停顿位置"]={
+ "S2 anyone, / would @2.394":"2026-11-03 逐 5 ms 分频带实测（S2 w）：anyone 的 ʌ 到 2.28（400–1k Hz 占 -7 dB）；2.285–2.390 是 /n/（能量几乎全在 400 Hz 以下，1–2.5 kHz -20～-35 dB、周期 0.5–0.6）；2.395 起 400–1k Hz 升到 -7～-9 dB、1–2.5 kHz 仍 -32 dB，是 would 的 /w/，2.415 起 ʊ。程序原插 2.350 落在 /n/ 中间，改插 n→w 交界 2.393667（过零点）",
+ "S4 wind, / whales, @6.932":"2026-11-03 逐 5 ms 分频带实测（S4 w）：wind 的 /d/ 除阻 6.845–6.860（2.5 kHz 以上占 -2～-7 dB），6.865–6.925 是除阻后的浊音余音（1–2.5 kHz -19～-30 dB）；6.930 总能量全段最低，1–2.5 kHz 降到 -35 dB 以下，之后 400–1k Hz 主导、1–2.5 kHz -38～-46 dB，是 whales 的 /w/，7.03 起元音。程序原插 6.910 在余音里，改插 6.931542（过零点），除阻余音整段留给 wind",
+ "S4 whales, / footsteps, @7.518":"2026-11-03 逐 2.5 ms 实测（S4 w）：whales 的 /z/ 7.42–7.51（-13～-19 dB、重心 4.7–5.8 kHz、周期 0.2–0.39 带浊音）；7.5175 起降到 -28～-33 dB、周期 ≤0.17、重心 6.0–7.6 kHz，是 footsteps 的 /f/（弱、平），一直到 7.675，7.68 起 ʊ（-7 dB、周期 0.43+）。程序原插 7.590 落在 /f/ 中间，改插 /z/→/f/ 交界 7.5175"}
+CONF["非人声"]={"S11 7.072625–7.237542":"2026-11-03 逐 2.5 ms 实测（S11 w）：place 的 /s/ 6.975–7.04（-10～-18 dB、重心 5.5–6.1 kHz），7.065 衰减到 -49 dB；7.075–7.235 是 -36～-46 dB、重心 2.6–3.1 kHz、低频只占 -10～-29 dB、周期 ≤0.3 的声音，place 和 amid 之间没有标点，是一口吸气（A19）；7.24–7.28 低频占 -0.3～-2 dB，是 amid 元音前的声门起音，7.285 起 ɐ。删 7.072625–7.237542（两头过零点），不碰 /s/ 尾和起音",
+ "S7 2.815–3.019917":"2026-11-03 逐 2.5 ms 实测（S7 w）：程序已删 2.815–2.96（disc, 停顿里的吸气）；2.965–3.015 是 -39～-58 dB、低频占 -0.2～-1.4 dB、周期 0.25–0.58 的一下声门噗声，后面 3.02–3.06 是 -61～-67 dB 的 /p/ 闭塞，3.065 plus 的 /p/ 爆破；/p/ 是清音、不该有浊音预发声，这一下不是词，并进同一段删到 3.019917（过零点），/p/ 闭塞和爆破不动",
+ "S12 7.65525–7.925083":"2026-11-03 逐 2.5 ms 实测（S12 w）：there 的 /ɹ/ 7.50–7.535 -28～-31 dB，7.5625 降到 -58.7 dB；7.58–7.655 是程序已删的停顿段；7.655–7.925 由 -55 dB 渐升到 -36.6 dB、重心 2.0–3.1 kHz、低频只占 -8～-22 dB（不是浊音），是吸气声（A19）；7.9275 起低频占比升到 -4.2 dB、7.9375 -0.2 dB，是 and 的声门起音，7.965 起 æ（-33→-12 dB）。删 7.65525–7.925083（两头取过零点），紧贴 and 词头，不碰起音"}
+CONF["删除段"]={"S1 raw 2.2500-2.5996": {"类型": "紧贴词头的非人声", "配音指纹": "601ad4a25436", "依据": "2026-11-03 逐 2.5 ms 实测（S1 w）：1977, 的 /n/ 2.20–2.23 衰减到 -53 dB，2.235–2.25 -60～-67 dB；2.25–2.55 是 -42～-58 dB、重心 2.0–2.9 kHz、低频只占 -6～-25 dB、周期 ≤0.35 的吸气；2.555–2.605 低频占 -0.4～-3 dB（-43～-54 dB）是 NASA 的 /n/ 预发声，切点 2.5996 落在预发声里（过零点），2.61 起 /n/ 本身（-30→-15 dB）完整"}, "S4 raw 8.9793-9.2110": {"类型": "紧贴两头的非人声", "配音指纹": "601ad4a25436", "依据": "2026-11-03 逐 2.5 ms 实测（S4 w）：laughter, 的 ɚ 到 8.955（-30 dB），8.96–8.975 衰减到 -57 dB；8.98–9.18 是 -36～-49 dB、重心 2.0–3.4 kHz、低频只占 -9～-26 dB 的吸气（删掉最响 -37 dB 即此）；9.185–9.215 低频占 -0.5～-3 dB 是 and 元音前的声门起音，切点 9.2110 在起音里，9.22 起 æ（-33→-8 dB）完整"}, "S7 raw 2.7800-3.0550": "2026-11-03 逐 2.5 ms 实测（S7 w）：disc, 停顿里 2.885–2.96 是 -45～-51 dB、重心 2.0–2.4 kHz、低频 -12～-24 dB 的吸气，2.965–3.015 是 -39～-58 dB、低频 -0.2～-1.4 dB 的声门噗声（删掉最响 -39.4 dB 即此）；两侧 2.57–2.61、3.02–3.06 都是 -59～-70 dB 静音，plus 的 /p/ 爆破 3.065 不动", "S8 raw 2.5700-2.8262": {"类型": "紧贴词头的非人声", "配音指纹": "601ad4a25436", "依据": "2026-11-03 逐 2.5 ms 实测（S8 w）：1990, 之后 2.695–2.76 是 -40～-52 dB、重心 2.3–2.8 kHz、低频 -9～-26 dB 的吸气；2.765–2.795 低频占 -0.4～-2.7 dB（-41～-53 dB）是 at 元音前的声门起音，onset 10 ms 即切到起音开头（切点 2.77625 过零点）；2.80 起 æ（-42→-14 dB）完整"}, "S9 raw 3.4450-3.8900": "2026-11-03 逐 2.5 ms 实测（S9 w）：system, 的 /m/ 3.43 衰减到 -55 dB，3.44–3.62 -55～-72 dB；3.62–3.83 是 -40～-55 dB、重心 2.0–2.5 kHz、低频 -9～-31 dB 的吸气（删掉最响 -39.7 dB 即此）；3.83–3.87 低频占 -0.4～-2.5 dB 是 a 的声门起音，3.8975 起 ɐ（-26→-3 dB）不动", "S11 raw 7.0726-7.2375": {"类型": "紧贴两头的非人声", "配音指纹": "601ad4a25436", "依据": "2026-11-03 逐 2.5 ms 实测（S11 w）：place 的 /s/ 到 7.04（-10～-21 dB、重心 5.5–6.1 kHz），7.065 衰减到 -49 dB；7.075–7.235 是 -36～-46 dB、重心 2.6–3.1 kHz、低频 -10～-29 dB 的吸气（place、amid 之间无标点）；7.24–7.28 低频占 -0.3～-2 dB 是 amid 的声门起音，7.285 起 ɐ 完整；两头切在过零点"}, "S12 raw 7.5750-7.9251": {"类型": "紧贴词头的非人声", "配音指纹": "601ad4a25436", "依据": "2026-11-03 逐 2.5 ms 实测（S12 w）：there 的 /ɹ/ 7.5625 降到 -58.7 dB，7.58–7.655 -55～-66 dB；7.655–7.925 由 -55 渐升到 -36.6 dB、重心 2.0–3.1 kHz、低频 -8～-22 dB 的吸气；7.9275 起低频占 -4.2 dB 是 and 的声门起音，7.965 起 æ 完整，切点 7.925083 过零点"}}
+CONF["非人声"].update({"2.53–2.62s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -35.6, "重心Hz": 1309, "周期": 0.27, "低频dB": -2.8}, "依据": "2026-11-03 逐 2.5 ms 实测：标题 into the Stars：the 的 ə 到 2.13 衰减（-31～-45 dB），2.155–2.24 是 -34～-52 dB、低频占 -1～-3 dB、周期 0.25–0.39、重心 0.75–1.3 kHz 的嘎裂收尾（声门振动，不是吸气：吸气低频占 -15 dB 以下），紧接 2.245 起 Stars 的 /s/（重心 3.9→5.3 kHz），中间没有 -55 dB 低谷，是 the 连到 Stars 的嗓音"}, "2.56–2.58s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -37.0, "重心Hz": 1246, "周期": 0.32, "低频dB": -1.2}, "依据": "2026-11-03 逐 2.5 ms 实测：同上一条（标题 the→Stars），这 20 ms 在嘎裂收尾中间：低频占 -1.2 dB、周期 0.32，是 the 的声门振动"}, "9.23–9.25s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -53.3, "重心Hz": 2481, "周期": 0.0, "低频dB": -0.3}, "依据": "2026-11-03 逐 2.5 ms 实测：S1 copper：ɑː 5.395–5.43 衰减进 /p/ 闭塞（5.455 -55.6、5.47 -68 dB），5.475–5.49 一下 -50～-55 dB 是闭塞里的气流（15 ms），5.50 /p/ 爆破（-31 dB、重心 3.3 kHz），是 copper 的 /p/"}, "36.83–36.84s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -45.1, "重心Hz": 1899, "周期": 0.0, "低频dB": -0.4}, "依据": "2026-11-03 逐 2.5 ms 实测：S4 laughter, / and：吸气已删到 9.2110；9.185–9.215 低频占 -0.5～-3 dB 是 and 元音前的声门起音，9.22 起 æ（-33→-8 dB），是 and 的一部分"}, "58.85–58.93s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -35.5, "重心Hz": 1314, "周期": 0.28, "低频dB": -3.0}, "依据": "2026-11-03 逐 2.5 ms 实测：S6 Waldheim. 句末：/m/ 10.085–10.18 是 -34～-46 dB、低频占 -1.5～-5 dB、周期 0.3–0.46、重心 0.7–1.5 kHz 的鼻音收尾，之后 10.2 起衰减到 -60 dB 以下；是 Waldheim 的 /m/（浊鼻音），不是吸气（吸气低频占 -15 dB 以下）"}, "56.45–56.47s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -36.1, "重心Hz": 1116, "周期": 0.41, "低频dB": -1.5}, "依据": "2026-11-03 逐 2.5 ms 实测：S6 statesmen, 的词尾 /n/：7.715–7.775 是 -31～-46 dB、低频占 -0.7～-4 dB、周期 0.25–0.48、重心 0.8–1.5 kHz 的鼻音嘎裂收尾，7.78 起 -56 dB 以下静音；是 statesmen 的 /n/"}, "62.53–62.58s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -30.9, "重心Hz": 3340, "周期": 0.22, "低频dB": -13.3}, "依据": "2026-11-03 逐 2.5 ms 实测：S7 disc, 的词尾 /k/：/s/ 2.535–2.555（-16～-23 dB、重心 4.3–5.3 kHz），2.565–2.61 -52～-70 dB 闭塞，2.615 一下 -28 dB、重心 3.8 kHz、低频 -26 dB 的爆破，衰减到 2.655 -57 dB（40 ms）；是 disc 的 /k/ 除阻", "词尾": "k"}, "78.55–78.64s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -36.9, "重心Hz": 1673, "周期": 0.22, "低频dB": -2.4}, "依据": "2026-11-03 逐 2.5 ms 实测：S8 kilometres. 句末：ɚ 10.39–10.47（-22～-37 dB）之后 10.47–10.54 是 -37～-52 dB、低频占 -2～-9 dB、周期 0.1–0.36、重心 1.0–2.3 kHz 的嘎裂收尾，紧接 10.545 起词尾 /z/（重心 2.6→5.4 kHz），在词中间（ɚ 和 z 之间），不是吸气"}, "70.90–70.92s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -46.7, "重心Hz": 2558, "周期": 0.33, "低频dB": -0.3}, "依据": "2026-11-03 逐 2.5 ms 实测：S8 1990, / at：吸气已删到 2.77625；2.765–2.795 低频占 -0.4～-2.7 dB 是 at 元音前的声门起音，2.80 起 æ（-42→-14 dB），是 at 的一部分"}, "78.58–78.61s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -36.9, "重心Hz": 1528, "周期": 0.32, "低频dB": -2.0}, "依据": "2026-11-03 逐 2.5 ms 实测：同 78.58–78.67s（S8 kilometres 词中 ɚ→z 的嘎裂），低频占 -2.0 dB、周期 0.32，是嗓音"}, "72.22–72.27s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -33.5, "重心Hz": 3587, "周期": 0.18, "低频dB": -13.3}, "依据": "2026-11-03 逐 2.5 ms 实测：S8 request, 的词尾 /t/：/s/ 4.015–4.06（-14～-25 dB、重心 5.2–5.6 kHz），4.065–4.09 -48～-68 dB 闭塞，4.095–4.13 是 -32～-46 dB、重心 3.2–3.7 kHz 的爆破送气，4.14 衰减到 -56 dB（45 ms）；是 request 的 /t/ 除阻", "词尾": "t"}, "87.81–87.91s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -35.9, "重心Hz": 2132, "周期": 0.19, "低频dB": -11.1}, "依据": "2026-11-03 逐 2.5 ms 实测：S9 across. 句末：ɔː 8.035–8.09（-11～-31 dB）之后 8.115–8.215 是 -35～-46 dB、重心 1.5–2.8 kHz 的清化元音尾，紧接 8.22 起词尾 /s/（重心 5.2–5.9 kHz、-17～-30 dB），前面 60 ms 内是 ≥-30 dB 的元音、中间没有 -50 dB 低谷；在词中间（ɔː 和 s 之间），不是吸气", "词尾": "s"}, "95.44–95.55s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -36.4, "重心Hz": 1585, "周期": 0.26, "低频dB": -2.6}, "依据": "2026-11-03 逐 2.5 ms 实测：S10 hours. 句末：ɚ 6.335–6.41（-26～-40 dB）之后 6.415–6.50 是 -35～-52 dB、低频占 -1.6～-12 dB、周期 0.14–0.44、重心 0.7–2.7 kHz 的嘎裂收尾，紧接 6.505 起词尾 /z/（重心 3.5→5.4 kHz），在词中间，不是吸气"}, "95.47–95.50s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -38.8, "重心Hz": 1330, "周期": 0.43, "低频dB": -2.2}, "依据": "2026-11-03 逐 2.5 ms 实测：同 95.48–95.58s（S10 hours 词中 ɚ→z 的嘎裂），低频占 -2.2 dB、周期 0.43，是嗓音"}, "104.25–104.29s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -41.6, "重心Hz": 3493, "周期": 0.42, "低频dB": -0.6}, "依据": "2026-11-03 逐 2.5 ms 实测：S11 amid：吸气已删到 7.237542；7.24–7.28 是 -42～-58 dB、低频占 -0.3～-2 dB、周期 0.27–0.39 的声门起音，7.285 起 ɐ（-26→-6 dB），是 amid 的一部分"}, "114.06–114.08s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -32.8, "重心Hz": 3003, "周期": 0.0, "低频dB": -1.9}, "依据": "2026-11-03 逐 2.5 ms 实测：S12 object there：object 的 /t/ 闭塞 7.155–7.21（-56～-68 dB），7.215 一下 -38 dB、重心 3.7 kHz 的 /t/ 除阻，7.225 起 there 的 /ð/（-32→-9 dB），是 object 的 /t/ 除阻连到 /ð/", "词尾": "t"}, "114.63–114.65s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -43.3, "重心Hz": 2022, "周期": 0.35, "低频dB": -0.2}, "依据": "2026-11-03 逐 2.5 ms 实测：S12 there, / and：吸气已删到 7.925083；7.93–7.95 低频占 -0.4～-1.9 dB、周期 0.11–0.38 是 and 的声门起音，7.965 起 æ（-31→-7 dB），是 and 的一部分"}, "126.06–126.19s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -36.6, "重心Hz": 1774, "周期": 0.2, "低频dB": -2.2}, "依据": "2026-11-03 逐 2.5 ms 实测：S13 years. 句末：ɪɹ 7.23–7.31（-16～-37 dB）之后 7.315–7.42 是 -37～-57 dB、低频占 -1.4～-17 dB、周期 0.11–0.30、重心 0.9–2.8 kHz 的嘎裂收尾，紧接 7.425 起词尾 /z/（重心 2.8→5.7 kHz），在词中间，不是吸气"}, "118.85–118.89s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -30.1, "重心Hz": 422, "周期": 0.51, "低频dB": -1.0}, "依据": "2026-11-03 逐 2.5 ms 实测：S13 句首 Both：0.02–0.08 是 -30～-45 dB、重心 270–820 Hz、周期 0.25–0.49、低频占 -0.7～-2 dB 的浊音预发声，0.085 /b/ 爆破（重心 3.1 kHz），0.095 起 oʊ；是 Both 的 /b/（浊塞音预发声）"}, "126.11–126.12s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -42.2, "重心Hz": 1440, "周期": 0.0, "低频dB": -1.4}, "依据": "2026-11-03 逐 2.5 ms 实测：同 126.09–126.22s（S13 years 词中 ɪɹ→z 的嘎裂），低频占 -1.4 dB，是嗓音"}, "132.16–132.19s": {"配音指纹": "601ad4a25436", "实测": {"最响dB": -45.2, "重心Hz": 2191, "周期": 0.45, "低频dB": -0.1}, "依据": "2026-11-03 逐 2.5 ms 实测：S14 messengers / with：停顿段已删到 4.795；4.80–4.85 是 -43～-60 dB、低频占 -0.3～-3 dB、周期 0.15–0.51 的声门起音，4.855 起 with 的 /w/（-37→-9 dB、重心 640–820 Hz），是 with 的一部分"}})
+CONF["高亮"]={"S3 第2块": {"开始读": 23.29, "配音指纹": "601ad4a25436", "依据": "2026-11-03 直接读 work_45/a.wav 逐 10 ms：第1块 Cornell 的尾音 23.10 -42.6、23.12 -64 dB，23.13–23.28 是删掉吸气后的数字静音（-180 dB），23.29 -65.6、23.30 起 distilled 的 /d/ 爆破（-23.5 dB、重心 3.8 kHz），23.32 起 ɪ（-13→-7 dB）；distilled 在 23.29 开始读，高亮 23.29 对；甲法 23.13 落在静音开头"}}
+CONF["同词异译"]={"greet：向/问候":"不是两种译法：S4 greet 的意思“向……致以问候”被“听者”隔开，“向”和“问候”是同一个意思的两段；用户 2026-11-04 原话“向.....问候  把这个向 也标色。”（T23 被隔开的中文意思每处都标）"}
+CONF["同词异译"]["at request：应/请求"]="不是两种译法：S8 at … request 的意思“应……的请求”被“萨根的”隔开，“应”和“请求”是同一个意思的两段；用户 2026-11-04 原话“at request  这里 标为重点词汇  应.....的请求  翻译改为  应萨根的请求”（T23 被隔开的中文意思每处都标）"
+out={"no":"45","title_en":"The Record Humanity Threw into the Stars","title_zh":"写给外星人的一张唱片","title_fx":{"hl":["Record","Stars"],"ghost":[]},"sentences":[],"核对确认":CONF,"结尾解说":"简述",
+     
+     "换行变更已获同意":{"S14":"用户 2026-11-04 原话：“指回太阳 -> 改为：上面的坐标指向太阳”“下面的小字也改为同样的表达”（换行随之变）","S13":"用户 2026-11-04 原话：“Unmatched标准动词unmatched  重点词汇，重点词汇。”（换行随之变）","S11":"用户 2026-11-04 原话：“Cosmic 重点词汇，重点词汇。”（换行随之变）","S10":"用户 2026-11-04 原话：“Signal标注重点词词汇。 信号，信号，对应信号。”（signal 标色，换行随之变）","S9":"用户 2026-11-04 原话：“Frames, frames. 标注重点词汇，标注重点词汇对应画面。”“across 都是重点词汇对应宽……这些全都特批，如果重复的全都特批。”“pixel 标注为重点词汇  对应像素”（中文、重点词变，换行随之变）","S8":"用户 2026-11-04 原话：“at request  这里 标为重点词汇  应.....的请求  翻译改为  应萨根的请求”（中文、重点词变，换行随之变）","S7":"用户 2026-11-04 原话：“封套 改为 (唱片的) 套子”（中文、重点词变，换行随之变）","S6":"用户 2026-11-04 原话：“出自于 两位政治家    自后面加上一个 于”（中文、重点词变，换行随之变）","S5":"用户 2026-11-04 原话：“约90分钟的兼收并蓄的音乐，涵盖了一系列的 文化和 时代，尤其是巴赫和查克·贝里的《Johnny B. Goode》。按照这个翻译来，按照这个翻译来。Notably notably对应尤其 eras 点词汇，重点词汇标注为时代。 A spectrum of整体标注重点词汇。”（S5 中文、重点词变，换行随之变）","S4":"用户 2026-11-04 原话：“向.....问候  把这个向 也标色。”“thunder 的意思 对应 雷 改成 雷的 隆隆声 隆隆声 三个字都得标”（S4 中文、重点词变，换行随之变）","S1":"用户 2026-11-04 原话：“打造 改为 锻造 copper 注意重点词汇标注，重点词汇对应意思为同”“这句话圆盘前面加上这个，这个圆盘用镀金的铜锻造而成。”“disc 下面的圆盘 改为 唱片”（S1 中文、重点词变，换行随之变）","S3":"用户 2026-11-04 原话：“尘世的 三个字都要标色”“小字加上下面这些：康奈尔大学的卡尔·萨根（著名天文学家）带领顾问团队……萨根的团队把整个地球的“灵魂”，提纯、浓缩成了一张写给外星人的“名片”。”（S3 说明加两行，换行随之变）"},
+     "allow_clash":["copper","eras","frames","pixel","across","at request","signal","cosmic","unmatched"],
+     "合成标点":{"S5":[["B. Goode","B Goode"]]},
+     "停顿插入点":{"S2":{"2":[2.393667,"交界"]},"S4":{"3":[6.931542,"交界"],"4":[7.5175,"交界"]}},
+     "非人声区间":{"S12":[[7.65525,7.925083,"紧贴词头"]],"S11":[[7.072625,7.237542,"紧贴两头"]],"S7":[[2.815,3.019917]]},
+     "高亮按实际开口":True,"高亮开口门槛":40,
+     "术语":{"NASA":"NASA","Voyager 1":"旅行者1号","Voyager 2":"旅行者2号","Carl Sagan":"卡尔·萨根","Sagan":"萨根","Cornell":"康奈尔大学","Bach":"巴赫","Chuck Berry":"查克·贝里","Johnny B. Goode":"Johnny B. Goode","Jimmy Carter":"吉米·卡特","Kurt Waldheim":"库尔特·瓦尔德海姆","Sun":"太阳","Earth":"地球"}}
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from 核对 import 生成并核对
+生成并核对(S, out)
