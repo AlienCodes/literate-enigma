@@ -1,0 +1,2434 @@
+{
+  "article": "22",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+  "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+    "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+    "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "The Building That Melted a Car",
+      "exact_native_cache_key": "b233129e4d310b89f9bb13676ecb0b9bfaf4c992.pkl",
+      "cache_input_text_sha256": "4b0dd44d225275a80de7ac67f556d075125142c5f024a233de4bc97080fbba71",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "The Building That Melted a Car",
+      "exact_native_cache_key": "846e64981f083011d5be0d93dd991ee6af342efe.pkl",
+      "cache_input_text_sha256": "4b0dd44d225275a80de7ac67f556d075125142c5f024a233de4bc97080fbba71",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 2 September 2013 the news broke that a London skyscraper under construction had damaged a Jaguar.",
+      "exact_native_cache_key": "b3e0f74adbed024f55af68e19f0ff34f6730a438.pkl",
+      "cache_input_text_sha256": "c760f401b8f27d2ecefa16de98ab49289be2405e75121f97f503c4c11577d87e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 2 September 2013 the news broke that a London skyscraper under construction had damaged a Jaguar.",
+      "exact_native_cache_key": "55503686902f225af7375b20583c91cd18423375.pkl",
+      "cache_input_text_sha256": "c760f401b8f27d2ecefa16de98ab49289be2405e75121f97f503c4c11577d87e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Martin Lindsay had left the saloon by the pavement on Eastcheap, opposite the tower's frontage.",
+      "exact_native_cache_key": "34ffd250a28d4ec01afb0ee3f78ead5b8133bb93.pkl",
+      "cache_input_text_sha256": "ec128246d9f6a3bf66e7a1ca3055dcae6f55100e7db8fd53128efa9da99e075f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Martin Lindsay had left the saloon by the pavement on Eastcheap, opposite the tower's frontage.",
+      "exact_native_cache_key": "516b5a04109ca6fee9bf0310fdfd037cf523ed63.pkl",
+      "cache_input_text_sha256": "ec128246d9f6a3bf66e7a1ca3055dcae6f55100e7db8fd53128efa9da99e075f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Martin Lindsay had left the saloon by the pavement on Eastcheap,",
+      "exact_native_cache_key": "e657bbf83bc6ade541913db530894ac2ea0540aa.pkl",
+      "cache_input_text_sha256": "772a720f78ee59f2f45010ddcf9147ac60348fa11332202de8ebb44d78e08c6a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "opposite the tower's frontage.",
+      "exact_native_cache_key": "2d39613b781237f13ab55096d1354877a6b116c2.pkl",
+      "cache_input_text_sha256": "f0e2fea22136b3ed9352b6feaaf5bb4438b3ab8941568ff36b6a91d5c5df02ba",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "He returned to find its wing mirror warped, its panels deformed and its badge distorted.",
+      "exact_native_cache_key": "97d48cc9664e4383c171bfb8f52e987fd8e0ffaf.pkl",
+      "cache_input_text_sha256": "caff6eda25ef9bfe28dc76db194dec8d0a6e9404dfcc8af5b888dae938940ad0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "He returned to find its wing mirror warped, its panels deformed and its badge distorted.",
+      "exact_native_cache_key": "249808bd80b993b648a87a57f26775faec4ae0bc.pkl",
+      "cache_input_text_sha256": "caff6eda25ef9bfe28dc76db194dec8d0a6e9404dfcc8af5b888dae938940ad0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "He returned to find its wing mirror warped,",
+      "exact_native_cache_key": "0b6105f59f05102df35de7c2780d6aacf8658b97.pkl",
+      "cache_input_text_sha256": "f17be4ce408a64ca6250de5d8dba78fca2f59bc9646d0ac4ff064086d29a310e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "its panels deformed and its badge distorted.",
+      "exact_native_cache_key": "ab847ce79a557330f6005f55da5613e918b888e1.pkl",
+      "cache_input_text_sha256": "de38456fcfb011adcbfc44d6ed4f6734322d001ce71bbca3de71f1e7dd7ecff3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The glazed facade above was to blame.",
+      "exact_native_cache_key": "364b1bc0627589024a71077b19beba0292f284d1.pkl",
+      "cache_input_text_sha256": "0be3793af18ec6bd1b7d0dd3f5af56c96e83f9f5959b7abed86a381f9a6bf482",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The glazed facade above was to blame.",
+      "exact_native_cache_key": "486da5a525c8ce148f78ecd20fb54ee583ae142d.pkl",
+      "cache_input_text_sha256": "0be3793af18ec6bd1b7d0dd3f5af56c96e83f9f5959b7abed86a381f9a6bf482",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Rafael Viñoly curved the south face of 20 Fenchurch Street inward, enlarging the upper storeys, where tenants pay a premium.",
+      "exact_native_cache_key": "7352d98d86e34411191775ab017a558db9888773.pkl",
+      "cache_input_text_sha256": "9365fcfac09cbadee2c917fc5aad8cd52d994e3a6cfe445ce5066d9881a64bf5",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Rafael Viñoly curved the south face of 20 Fenchurch Street inward, enlarging the upper storeys, where tenants pay a premium.",
+      "exact_native_cache_key": "0b0c511b7d5bfccc8bd066fdd7d4d5422b9bf65c.pkl",
+      "cache_input_text_sha256": "9365fcfac09cbadee2c917fc5aad8cd52d994e3a6cfe445ce5066d9881a64bf5",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Rafael Viñoly curved the south face of 20 Fenchurch Street inward,",
+      "exact_native_cache_key": "22cc31f17c5ec29263ee90604e68091ff771ec9b.pkl",
+      "cache_input_text_sha256": "a7033e4064b73a06bd6818144163cdd50885a1b9899fd24399ef0ffc58735fb6",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "enlarging the upper storeys, where tenants pay a premium.",
+      "exact_native_cache_key": "bbd477b1eee312c300171f0bd0cc9301dd672640.pkl",
+      "cache_input_text_sha256": "612b029a1674d22e7a1ddf1eec2656210daa488d3d0b49e89ccc0a90679cffc2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Rafael Viñoly curved the south face of 20 Fenchurch Street inward,",
+      "exact_native_cache_key": "22cc31f17c5ec29263ee90604e68091ff771ec9b.pkl",
+      "cache_input_text_sha256": "a7033e4064b73a06bd6818144163cdd50885a1b9899fd24399ef0ffc58735fb6",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "enlarging the upper storeys,",
+      "exact_native_cache_key": "a5dbbbb7e5fe8e18474580989ba234985e97a80f.pkl",
+      "cache_input_text_sha256": "29994ee6b48e154dda44a20c7f403ebafb0f7c268d0b1bb560e0d2a84578f515",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "where tenants pay a premium.",
+      "exact_native_cache_key": "b36a4cb7f89a3809e436cbbc21dbad5e9f0103cd.pkl",
+      "cache_input_text_sha256": "55d47845362a73c9fd85390449f2a24bd4993df1ef68a8d7d1c20d183269bb69",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "That geometry acted like a magnifying glass, focusing sunlight into a beam up to six times brighter than direct sun.",
+      "exact_native_cache_key": "829b63d7bc7d731f90c4dfa322c44e0fef79753a.pkl",
+      "cache_input_text_sha256": "287db50db19e9454093f27771112db13f19ed8f63a1501e68b482dff508a5ce4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "That geometry acted like a magnifying glass, focusing sunlight into a beam up to six times brighter than direct sun.",
+      "exact_native_cache_key": "4e9019e70cabf10645d8744b5d2cbb326f40e9b1.pkl",
+      "cache_input_text_sha256": "287db50db19e9454093f27771112db13f19ed8f63a1501e68b482dff508a5ce4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "That geometry acted like a magnifying glass,",
+      "exact_native_cache_key": "74d706a626d78cb743099678e8160ad063a2f1d9.pkl",
+      "cache_input_text_sha256": "8db027ad1db65de1454fd7980e4d273253232f028871d56dffbd5839eaa883bc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "focusing sunlight into a beam up to six times brighter than direct sun.",
+      "exact_native_cache_key": "fc2ed512af57e4a4957fb91a31b34a18d3af00be.pkl",
+      "cache_input_text_sha256": "f1524da0def6a8744f9c1139b9f1cbec559b4f20bae167b5c57fc173615b0163",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "That geometry acted like a magnifying glass,",
+      "exact_native_cache_key": "74d706a626d78cb743099678e8160ad063a2f1d9.pkl",
+      "cache_input_text_sha256": "8db027ad1db65de1454fd7980e4d273253232f028871d56dffbd5839eaa883bc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "focusing sunlight into a beam up to six times brighter than direct sun.",
+      "exact_native_cache_key": "fc2ed512af57e4a4957fb91a31b34a18d3af00be.pkl",
+      "cache_input_text_sha256": "f1524da0def6a8744f9c1139b9f1cbec559b4f20bae167b5c57fc173615b0163",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "It was measured at about 110 degrees Celsius, and a reporter fried an egg in a pan using the reflection.",
+      "exact_native_cache_key": "ab8c730955037fe366e8db168803dfaf72fef5b6.pkl",
+      "cache_input_text_sha256": "2ee3c98a997418f2aee5bbc59a7f73b2b1321ff7c6e1f1dcb2eeba4c2e71e0ec",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "It was measured at about 110 degrees Celsius, and a reporter fried an egg in a pan using the reflection.",
+      "exact_native_cache_key": "ba3f3ddea0266af2fa5708f54acfc910d33fb982.pkl",
+      "cache_input_text_sha256": "2ee3c98a997418f2aee5bbc59a7f73b2b1321ff7c6e1f1dcb2eeba4c2e71e0ec",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "It was measured at about 110 degrees Celsius,",
+      "exact_native_cache_key": "03e558d9ee1382eebf2998836cc0c34a865c668a.pkl",
+      "cache_input_text_sha256": "054586eb0544e0cd1aeef9b8a7a714e42e6cac0b730b379263bf1c11c2ad019f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and a reporter fried an egg in a pan using the reflection.",
+      "exact_native_cache_key": "e836f8c2a13da981a62563e42030262ed0bf3289.pkl",
+      "cache_input_text_sha256": "fc43f8978c0aa528dcbe1b2f8e1dc17ae6d1290c0bdba195dd43f9a100893fab",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "It was measured at about 110 degrees Celsius,",
+      "exact_native_cache_key": "03e558d9ee1382eebf2998836cc0c34a865c668a.pkl",
+      "cache_input_text_sha256": "054586eb0544e0cd1aeef9b8a7a714e42e6cac0b730b379263bf1c11c2ad019f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and a reporter fried an egg in a pan using the reflection.",
+      "exact_native_cache_key": "e836f8c2a13da981a62563e42030262ed0bf3289.pkl",
+      "cache_input_text_sha256": "fc43f8978c0aa528dcbe1b2f8e1dc17ae6d1290c0bdba195dd43f9a100893fab",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The developers issued an apology and reimbursed almost 1,000 pounds for repairs.",
+      "exact_native_cache_key": "5c097a88107210e8b7d254387431ed31523c1bea.pkl",
+      "cache_input_text_sha256": "0c399edcf3e0bb2dcc9b254b4f30ab26b166b61d5d5f6fe0ef1fc8824787971b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The developers issued an apology and reimbursed almost 1,000 pounds for repairs.",
+      "exact_native_cache_key": "021de70aaed439a48fc5cae6e7f743d2a6f099ad.pkl",
+      "cache_input_text_sha256": "0c399edcf3e0bb2dcc9b254b4f30ab26b166b61d5d5f6fe0ef1fc8824787971b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Parking bays were suspended and a provisional barrier was erected.",
+      "exact_native_cache_key": "00da546229ca75891b955b7d2246dbccbb1324bd.pkl",
+      "cache_input_text_sha256": "a29949d0817a28102440ec93049ac0ec8439b5cb48442151a14e4fabefc89c55",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Parking bays were suspended and a provisional barrier was erected.",
+      "exact_native_cache_key": "0a599a6cd28f0663664acdedd925e6acd215748d.pkl",
+      "cache_input_text_sha256": "a29949d0817a28102440ec93049ac0ec8439b5cb48442151a14e4fabefc89c55",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The beam struck for about two hours a day, two to three weeks annually, because of the sun's angle of elevation.",
+      "exact_native_cache_key": "f71230860f69128510d31196f71b921d99e4294e.pkl",
+      "cache_input_text_sha256": "433476b07cf74c38271fbdff32ba7ecef455fa1172c3a69917026c2211a05e71",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The beam struck for about two hours a day, two to three weeks annually, because of the sun's angle of elevation.",
+      "exact_native_cache_key": "d571dbd6a29688aa5c3a8184b0fc902f3bec8b84.pkl",
+      "cache_input_text_sha256": "433476b07cf74c38271fbdff32ba7ecef455fa1172c3a69917026c2211a05e71",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The beam struck for about two hours a day, two to three weeks annually,",
+      "exact_native_cache_key": "bd9b39ed618ce6295101c2b4f329d8e9fbd8c60e.pkl",
+      "cache_input_text_sha256": "299af4344dae5774f0df2abafd2624352655a6f01995b1f95c49fa4f0f20fc01",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "because of the sun's angle of elevation.",
+      "exact_native_cache_key": "edfc574819f9216464c95bbc3b36641b87f91da9.pkl",
+      "cache_input_text_sha256": "c4a9f97b5432cda65eacd73d1d2c8aa555f81c55f8d508d38f8ebdcec8d560cb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The beam struck for about two hours a day,",
+      "exact_native_cache_key": "7ef2837328baed3a002f2000ccbd39f7f8cef038.pkl",
+      "cache_input_text_sha256": "82163b540bd270ec9c308794463d84832512a269accb1a9b79c3817ed1219ea6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "two to three weeks annually,",
+      "exact_native_cache_key": "892b02238eb1b7b7559557f7a22beabd0a29411f.pkl",
+      "cache_input_text_sha256": "8dcaf5bfa2564e71e58fc1c6a52bc2c8be6cf30167d65f72dff129faaed3c5c2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "because of the sun's angle of elevation.",
+      "exact_native_cache_key": "edfc574819f9216464c95bbc3b36641b87f91da9.pkl",
+      "cache_input_text_sha256": "c4a9f97b5432cda65eacd73d1d2c8aa555f81c55f8d508d38f8ebdcec8d560cb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Newspapers dubbed the Walkie-Talkie the Walkie-Scorchie, a taunt.",
+      "exact_native_cache_key": "049cbd4c32e847ca7f87de79ab14dcbae19c2f5a.pkl",
+      "cache_input_text_sha256": "650d344450c682975d79e24d3baea2ca68e213dd9075a3eead48c3683100e0d4",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Newspapers dubbed the Walkie-Talkie the Walkie-Scorchie, a taunt.",
+      "exact_native_cache_key": "34731d6dc7aab72fb26bd152e212212db489b211.pkl",
+      "cache_input_text_sha256": "650d344450c682975d79e24d3baea2ca68e213dd9075a3eead48c3683100e0d4",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Newspapers dubbed the Walkie-Talkie the Walkie-Scorchie,",
+      "exact_native_cache_key": "0e8e9e69fbaa79e4cc684174eaa5cb803f5af7d3.pkl",
+      "cache_input_text_sha256": "9ba31dc71908f2efec30565c36167059d3548b2881f4667fe02bc24c2f4f7561",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a taunt.",
+      "exact_native_cache_key": "9573c80fa6c479fa13763cca4ffdafb309b74495.pkl",
+      "cache_input_text_sha256": "7e951985b3410005a88ad55482ea6ca46e92e465e7abdf35137fce26e68bc1ed",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The architect was candid, admitting many mistakes.",
+      "exact_native_cache_key": "dfdc4ed9a2cc8d93ac85550c9fa6ee975995c24d.pkl",
+      "cache_input_text_sha256": "820488a24061ad469737ffeed7443a3ef04fbf176a01165eba9ac23240199aa6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The architect was candid, admitting many mistakes.",
+      "exact_native_cache_key": "2283bda5b1d5044d64141ba39fb8e15591c6988b.pkl",
+      "cache_input_text_sha256": "820488a24061ad469737ffeed7443a3ef04fbf176a01165eba9ac23240199aa6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The architect was candid,",
+      "exact_native_cache_key": "792b26ea6000d9bb0e76cdc84913ad9e36e3d6eb.pkl",
+      "cache_input_text_sha256": "6fafbf845768687b21fcfc54437915bee57ded7125c8c2df8451fe0a2c672282",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "admitting many mistakes.",
+      "exact_native_cache_key": "9d4f6d8a18fa191a64f085f5b74020b33a19745f.pkl",
+      "cache_input_text_sha256": "cdd013d719bab14f53c762f7c11675bcfb1278d190df748601dbedb4f93de175",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Viñoly had anticipated the focusing, he said, but not its intensity.",
+      "exact_native_cache_key": "a720112e991cf8f565ec371f8520da1f2d8b5193.pkl",
+      "cache_input_text_sha256": "b26a7cf3609621756fbdcc3901d3752507c6c978c86d67ff079a2beb16736aa5",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Viñoly had anticipated the focusing, he said, but not its intensity.",
+      "exact_native_cache_key": "a82a06044c04de04c6705d8585a98c40af96b5ab.pkl",
+      "cache_input_text_sha256": "b26a7cf3609621756fbdcc3901d3752507c6c978c86d67ff079a2beb16736aa5",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Viñoly had anticipated the focusing,",
+      "exact_native_cache_key": "6d665385d0e10a735d84fa25cd016db25d2696f1.pkl",
+      "cache_input_text_sha256": "f6336211d9ea0a91c633714233b9e80bebf831ca737154cdf87234efb07ed359",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "he said,",
+      "exact_native_cache_key": "be760765f59c1b4d326b7befce7622ead74e0443.pkl",
+      "cache_input_text_sha256": "7144daaa71361caf40cc57cc7f6fd85171d694e4953ea610370d65deb1bc80fc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "but not its intensity.",
+      "exact_native_cache_key": "6d37278eba0f831c168e2c52a15a116a98227e86.pkl",
+      "cache_input_text_sha256": "8cf18267eef222b1da6b1c2406f4f837a34d34cdb7f106e10e7b680b187d5125",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Sun louvres in the original design were reportedly removed in cost-cutting.",
+      "exact_native_cache_key": "fc77e9725d868714034f7386fa8248a76aef0f6d.pkl",
+      "cache_input_text_sha256": "03f352cd7296ed5a877056d9d509c8847341956043218abb506cfa2ba0b340b1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Sun louvres in the original design were reportedly removed in cost-cutting.",
+      "exact_native_cache_key": "df08975f09061586fc7c20fffb2a8635cf375746.pkl",
+      "cache_input_text_sha256": "03f352cd7296ed5a877056d9d509c8847341956043218abb506cfa2ba0b340b1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Nor was this his first architectural miscalculation.",
+      "exact_native_cache_key": "b39cfd8e72f4f168087fb61c93042ae5919fd5a6.pkl",
+      "cache_input_text_sha256": "a549acea54e84c76cceb1c54e743130642c7c6da8c1da8f4eb3f333a24bcc389",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Nor was this his first architectural miscalculation.",
+      "exact_native_cache_key": "3a6a4c97069889f48d6b198ecda6bc6474d96709.pkl",
+      "cache_input_text_sha256": "a549acea54e84c76cceb1c54e743130642c7c6da8c1da8f4eb3f333a24bcc389",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In 2010 the infamous glare from his curved, reflective Vdara hotel in Las Vegas burned a guest's scalp by the pool.",
+      "exact_native_cache_key": "6418d333c460089fbe91185848106f809e4b9966.pkl",
+      "cache_input_text_sha256": "38cf184e78e5e31bf097907229b3b718167c9d9303f464f730ca59b75d5ea8d7",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In 2010 the infamous glare from his curved, reflective Vdara hotel in Las Vegas burned a guest's scalp by the pool.",
+      "exact_native_cache_key": "625bf44ac0fb37bd651e150e16d4a659dee13d70.pkl",
+      "cache_input_text_sha256": "38cf184e78e5e31bf097907229b3b718167c9d9303f464f730ca59b75d5ea8d7",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In 2010 the infamous glare from his curved, reflective Vdara hotel in Las Vegas",
+      "exact_native_cache_key": "446ac78ae07b5342168b2a8013debe3d7a2b5f9c.pkl",
+      "cache_input_text_sha256": "ae5a3457120c779709ac3cb1dede846d4a0b710b3a14223ce0d04434e7efd8dc",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "burned a guest's scalp by the pool.",
+      "exact_native_cache_key": "74f311aaa3e154d1c7fb2ce828e5a6ce4c0ef43f.pkl",
+      "cache_input_text_sha256": "1fdc5f86abb747165391392f141de8953b6f39119859fb4d3deaf41177545860",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In 2010 the infamous glare from his curved,",
+      "exact_native_cache_key": "6cf72a99deb695b26b5ea53e025e116636a3d404.pkl",
+      "cache_input_text_sha256": "3d30e1913b81555f17359b6410b6e9745828908aad24a211125f3d9dbfb602aa",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "reflective Vdara hotel in Las Vegas burned a guest's scalp by the pool.",
+      "exact_native_cache_key": "37e8db63d64d25508893ac6642fe68bb2c706316.pkl",
+      "cache_input_text_sha256": "721e87d999296f72ae4b2511ed4361daffab8c55651e79e005eee59cf40c11dc",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 12 February 2014 a permanent fixture was announced: horizontal aluminium fins to diffuse the brightness, reportedly costing several million pounds.",
+      "exact_native_cache_key": "31037b3b42ce226440003579f2cbf505613a58da.pkl",
+      "cache_input_text_sha256": "5005d7ef1be636a409b5f193b5d80a91c0e51c6babf1354182e9432ef8dc671b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 12 February 2014 a permanent fixture was announced: horizontal aluminium fins to diffuse the brightness, reportedly costing several million pounds.",
+      "exact_native_cache_key": "9e3928d84c2950c570155a22958346f3412355a3.pkl",
+      "cache_input_text_sha256": "5005d7ef1be636a409b5f193b5d80a91c0e51c6babf1354182e9432ef8dc671b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 12 February 2014 a permanent fixture was announced:",
+      "exact_native_cache_key": "b6dbc949b49ec37c3fb7352fa2c6ed2bcc4babb2.pkl",
+      "cache_input_text_sha256": "7b8054783e33a2423a69deead6fabfc1e51b30746bf4e4f8aadb9c8bc08dec84",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "horizontal aluminium fins to diffuse the brightness, reportedly costing several million pounds.",
+      "exact_native_cache_key": "7cf4c3e7a454c69ba73f9450416f6b6fed20c030.pkl",
+      "cache_input_text_sha256": "581f17a8f8e0885ae9ed773a2d99596ec746ab9a7ecacd8f83ca800a71de9c1a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 12 February 2014 a permanent fixture was announced:",
+      "exact_native_cache_key": "b6dbc949b49ec37c3fb7352fa2c6ed2bcc4babb2.pkl",
+      "cache_input_text_sha256": "7b8054783e33a2423a69deead6fabfc1e51b30746bf4e4f8aadb9c8bc08dec84",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "horizontal aluminium fins to diffuse the brightness,",
+      "exact_native_cache_key": "58c8a150dea14f79b1b6c0f0a400c6b37f338e0c.pkl",
+      "cache_input_text_sha256": "33b43e514116940e24dd24e6ef5f14e58794945f0ecf7f1e26a15c2b1085f5da",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "reportedly costing several million pounds.",
+      "exact_native_cache_key": "7943001d4f656e9289fb15ed2171d090d5dffc80.pkl",
+      "cache_input_text_sha256": "4d60138941a1865828043a9a690c1a8acc54c4769d474523c3277cbaa0e2cb3a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In September 2015 Building Design's critics gave the notorious tower the Carbuncle Cup, a trophy for the UK's worst new building.",
+      "exact_native_cache_key": "797f57d54283657f3b6ace90d2ddf3b87259f765.pkl",
+      "cache_input_text_sha256": "d98da9d30de02aee87a20ea5601d7336169a699180c41e480f317af054f78b55",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In September 2015 Building Design's critics gave the notorious tower the Carbuncle Cup, a trophy for the UK's worst new building.",
+      "exact_native_cache_key": "5830c7a818fe7d8b4f1ae82475e5e0671abeb4ac.pkl",
+      "cache_input_text_sha256": "d98da9d30de02aee87a20ea5601d7336169a699180c41e480f317af054f78b55",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In September 2015 Building Design's critics gave the notorious tower the Carbuncle Cup,",
+      "exact_native_cache_key": "0fc06e2f25dae7eafb255ae6eeb8c05a616562e4.pkl",
+      "cache_input_text_sha256": "4524df776aa47effc169905eaa4fb46473623095a630c232eb18730aae112eaa",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a trophy for the UK's worst new building.",
+      "exact_native_cache_key": "379fa1e0f1567f30f15fc04165e7fd31d0352feb.pkl",
+      "cache_input_text_sha256": "994b328b1150e30a133807f85591eb5b9ce1c22a68aa16fcfaf804bca9d5c6ac",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In September 2015 Building Design's critics gave the notorious tower the Carbuncle Cup,",
+      "exact_native_cache_key": "0fc06e2f25dae7eafb255ae6eeb8c05a616562e4.pkl",
+      "cache_input_text_sha256": "4524df776aa47effc169905eaa4fb46473623095a630c232eb18730aae112eaa",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S18",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a trophy for the UK's worst new building.",
+      "exact_native_cache_key": "379fa1e0f1567f30f15fc04165e7fd31d0352feb.pkl",
+      "cache_input_text_sha256": "994b328b1150e30a133807f85591eb5b9ce1c22a68aa16fcfaf804bca9d5c6ac",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The ballot was unanimous.",
+      "exact_native_cache_key": "a997e575a3c58dffeff261e0c07fe38b742e9b78.pkl",
+      "cache_input_text_sha256": "9ce72bedec306db7687e67e171e80b3d3bd8fe978d28f8722de7f5ff189f5413",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S19",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The ballot was unanimous.",
+      "exact_native_cache_key": "03ba494f1d0acc82e1506673c2975ad67356a306.pkl",
+      "cache_input_text_sha256": "9ce72bedec306db7687e67e171e80b3d3bd8fe978d28f8722de7f5ff189f5413",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    }
+  ],
+  "unique_reference_key_count": 73,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "b233129e4d310b89f9bb13676ecb0b9bfaf4c992.pkl",
+      "pkl_sha256": "101bfce0501cdb597c91b3809b5ce06cfe14e304bf9868ee3212308e4343ef87",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The Building That Melted a Car",
+          "exact_native_cache_key": "b233129e4d310b89f9bb13676ecb0b9bfaf4c992.pkl",
+          "cache_input_text_sha256": "4b0dd44d225275a80de7ac67f556d075125142c5f024a233de4bc97080fbba71",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        34304
+      ],
+      "unprocessed_array_sha256": "6f6f61dde9b463dce3e352716e091901df2e33609dfecf97ca6dfaf95965d094"
+    },
+    {
+      "exact_native_cache_key": "b3e0f74adbed024f55af68e19f0ff34f6730a438.pkl",
+      "pkl_sha256": "b95eaad5e2058636ab0e9c29350485ddacaf2f3d77a6315deb0146c474c17883",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 2 September 2013 the news broke that a London skyscraper under construction had damaged a Jaguar.",
+          "exact_native_cache_key": "b3e0f74adbed024f55af68e19f0ff34f6730a438.pkl",
+          "cache_input_text_sha256": "c760f401b8f27d2ecefa16de98ab49289be2405e75121f97f503c4c11577d87e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        197632
+      ],
+      "unprocessed_array_sha256": "e0349a251fdfc04d1d69d8b7d866833c9ffb7e4dc71314baac2f3724255adda6"
+    },
+    {
+      "exact_native_cache_key": "34ffd250a28d4ec01afb0ee3f78ead5b8133bb93.pkl",
+      "pkl_sha256": "fc21787839b8ba0f331378692b00946c9095036c8b4f6357c090238c992825ac",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Martin Lindsay had left the saloon by the pavement on Eastcheap, opposite the tower's frontage.",
+          "exact_native_cache_key": "34ffd250a28d4ec01afb0ee3f78ead5b8133bb93.pkl",
+          "cache_input_text_sha256": "ec128246d9f6a3bf66e7a1ca3055dcae6f55100e7db8fd53128efa9da99e075f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        139776
+      ],
+      "unprocessed_array_sha256": "bebc5702e2852cb8e858d7a997e1497f03873be3b08ff7f0e30c810e3ca47861"
+    },
+    {
+      "exact_native_cache_key": "e657bbf83bc6ade541913db530894ac2ea0540aa.pkl",
+      "pkl_sha256": "b67fb3b7cc9f2062c0ad5919d1bbd7cb902fee00dda8f15c05a8770557176e69",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Martin Lindsay had left the saloon by the pavement on Eastcheap,",
+          "exact_native_cache_key": "e657bbf83bc6ade541913db530894ac2ea0540aa.pkl",
+          "cache_input_text_sha256": "772a720f78ee59f2f45010ddcf9147ac60348fa11332202de8ebb44d78e08c6a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        90112
+      ],
+      "unprocessed_array_sha256": "f4bd101e561c711489074a8b805ad8113ef18cba18aaf0cd16e34b8e20fa815b"
+    },
+    {
+      "exact_native_cache_key": "2d39613b781237f13ab55096d1354877a6b116c2.pkl",
+      "pkl_sha256": "e8de381d73cee9f2e86b20a21b181f8afde4624250ed2a49e9787f6028129293",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "opposite the tower's frontage.",
+          "exact_native_cache_key": "2d39613b781237f13ab55096d1354877a6b116c2.pkl",
+          "cache_input_text_sha256": "f0e2fea22136b3ed9352b6feaaf5bb4438b3ab8941568ff36b6a91d5c5df02ba",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        43008
+      ],
+      "unprocessed_array_sha256": "386b6f318f9311e878e25baa56f552e1b5caf847f1b676e73f4b80d9ebb8b90e"
+    },
+    {
+      "exact_native_cache_key": "97d48cc9664e4383c171bfb8f52e987fd8e0ffaf.pkl",
+      "pkl_sha256": "89f0aa946d9c5a4a0bdef116d724e8451ea598e61693781cbd35f0351ba3fcae",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "He returned to find its wing mirror warped, its panels deformed and its badge distorted.",
+          "exact_native_cache_key": "97d48cc9664e4383c171bfb8f52e987fd8e0ffaf.pkl",
+          "cache_input_text_sha256": "caff6eda25ef9bfe28dc76db194dec8d0a6e9404dfcc8af5b888dae938940ad0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        140288
+      ],
+      "unprocessed_array_sha256": "514cdf94163a3a216f363e2d3835e081fcf88eda057284fb7c7057f0faa96885"
+    },
+    {
+      "exact_native_cache_key": "0b6105f59f05102df35de7c2780d6aacf8658b97.pkl",
+      "pkl_sha256": "092c538129cc13622f485c213e5c1429eb7cd0fe30488b65e071d9b38772079c",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "He returned to find its wing mirror warped,",
+          "exact_native_cache_key": "0b6105f59f05102df35de7c2780d6aacf8658b97.pkl",
+          "cache_input_text_sha256": "f17be4ce408a64ca6250de5d8dba78fca2f59bc9646d0ac4ff064086d29a310e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        55808
+      ],
+      "unprocessed_array_sha256": "e61d82605796a6fe4360339f09e447c2d40d341a06badc8fd00f30040dde0414"
+    },
+    {
+      "exact_native_cache_key": "ab847ce79a557330f6005f55da5613e918b888e1.pkl",
+      "pkl_sha256": "a9264c1e76d5f1811a74b50b64580a9e7574329e21b19b1f9c87969c312bb430",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "its panels deformed and its badge distorted.",
+          "exact_native_cache_key": "ab847ce79a557330f6005f55da5613e918b888e1.pkl",
+          "cache_input_text_sha256": "de38456fcfb011adcbfc44d6ed4f6734322d001ce71bbca3de71f1e7dd7ecff3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        70656
+      ],
+      "unprocessed_array_sha256": "814f26b1b41c86564d1fffa5fb475c6975c0687195197bc2f16067bd42ab6a1f"
+    },
+    {
+      "exact_native_cache_key": "364b1bc0627589024a71077b19beba0292f284d1.pkl",
+      "pkl_sha256": "a2f8152b666ace5a78ce7e07b3b193f1d2db9e35b265143bead1b30dc5dcf0ec",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The glazed facade above was to blame.",
+          "exact_native_cache_key": "364b1bc0627589024a71077b19beba0292f284d1.pkl",
+          "cache_input_text_sha256": "0be3793af18ec6bd1b7d0dd3f5af56c96e83f9f5959b7abed86a381f9a6bf482",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        55296
+      ],
+      "unprocessed_array_sha256": "3e45cedd84ac4bea19803b9ffcd3317bd4283ec98aed28556d643ee8ad620396"
+    },
+    {
+      "exact_native_cache_key": "7352d98d86e34411191775ab017a558db9888773.pkl",
+      "pkl_sha256": "62a66b979147d7ae4c1d1f422b8e7ccdf5c047f64da08999d158c49325c77784",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Rafael Viñoly curved the south face of 20 Fenchurch Street inward, enlarging the upper storeys, where tenants pay a premium.",
+          "exact_native_cache_key": "7352d98d86e34411191775ab017a558db9888773.pkl",
+          "cache_input_text_sha256": "9365fcfac09cbadee2c917fc5aad8cd52d994e3a6cfe445ce5066d9881a64bf5",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        213504
+      ],
+      "unprocessed_array_sha256": "8ce718a91c792b5c3237e9ad1af0dbd99cef01f738b2f587e2defe93188dace1"
+    },
+    {
+      "exact_native_cache_key": "22cc31f17c5ec29263ee90604e68091ff771ec9b.pkl",
+      "pkl_sha256": "efd40586c330b3d76eee5873dd385cc2a5f6283f387cf14c2499d2bbe9624b75",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Rafael Viñoly curved the south face of 20 Fenchurch Street inward,",
+          "exact_native_cache_key": "22cc31f17c5ec29263ee90604e68091ff771ec9b.pkl",
+          "cache_input_text_sha256": "a7033e4064b73a06bd6818144163cdd50885a1b9899fd24399ef0ffc58735fb6",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Rafael Viñoly curved the south face of 20 Fenchurch Street inward,",
+          "exact_native_cache_key": "22cc31f17c5ec29263ee90604e68091ff771ec9b.pkl",
+          "cache_input_text_sha256": "a7033e4064b73a06bd6818144163cdd50885a1b9899fd24399ef0ffc58735fb6",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        114688
+      ],
+      "unprocessed_array_sha256": "924651bafe29427ef86c7e870a6e9fe306953ef764b153b0b86da93bf62884e8"
+    },
+    {
+      "exact_native_cache_key": "bbd477b1eee312c300171f0bd0cc9301dd672640.pkl",
+      "pkl_sha256": "eca87768ca63c581c2b82522dac50285b9f096db73091a0a869eacc04ddb8999",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "enlarging the upper storeys, where tenants pay a premium.",
+          "exact_native_cache_key": "bbd477b1eee312c300171f0bd0cc9301dd672640.pkl",
+          "cache_input_text_sha256": "612b029a1674d22e7a1ddf1eec2656210daa488d3d0b49e89ccc0a90679cffc2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        85504
+      ],
+      "unprocessed_array_sha256": "48f63cee36e5a09aafe2772c48dc5640c6394d5339a8ecaa77b2906403628fd5"
+    },
+    {
+      "exact_native_cache_key": "a5dbbbb7e5fe8e18474580989ba234985e97a80f.pkl",
+      "pkl_sha256": "854b68d12aa897cdfe4493717dc05f759765d27f5cd4388fb5aef57748d1b58a",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "enlarging the upper storeys,",
+          "exact_native_cache_key": "a5dbbbb7e5fe8e18474580989ba234985e97a80f.pkl",
+          "cache_input_text_sha256": "29994ee6b48e154dda44a20c7f403ebafb0f7c268d0b1bb560e0d2a84578f515",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        43008
+      ],
+      "unprocessed_array_sha256": "9c43d14cf4b2e39f2f4d057c7aad8858f0ea61c63335fc328f03240b33c43d8f"
+    },
+    {
+      "exact_native_cache_key": "b36a4cb7f89a3809e436cbbc21dbad5e9f0103cd.pkl",
+      "pkl_sha256": "f050105739f3c64da4e7eb771b8abebaf8fffcbc7623cb172a595c92ecbd99cd",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "where tenants pay a premium.",
+          "exact_native_cache_key": "b36a4cb7f89a3809e436cbbc21dbad5e9f0103cd.pkl",
+          "cache_input_text_sha256": "55d47845362a73c9fd85390449f2a24bd4993df1ef68a8d7d1c20d183269bb69",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        37888
+      ],
+      "unprocessed_array_sha256": "7d364d5eadf9ed44c55c29a90360272c15a37dc0549a1a04706d26068eaaf2a5"
+    },
+    {
+      "exact_native_cache_key": "829b63d7bc7d731f90c4dfa322c44e0fef79753a.pkl",
+      "pkl_sha256": "bc3607b01de05f4cc4ab4a350b9d646578d5a6b48b3a855598939e339b11f6df",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "That geometry acted like a magnifying glass, focusing sunlight into a beam up to six times brighter than direct sun.",
+          "exact_native_cache_key": "829b63d7bc7d731f90c4dfa322c44e0fef79753a.pkl",
+          "cache_input_text_sha256": "287db50db19e9454093f27771112db13f19ed8f63a1501e68b482dff508a5ce4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        200192
+      ],
+      "unprocessed_array_sha256": "b17b02cd0ef2fa89122dd295b84f84be7398d2502fc7f46d2335a9033208abca"
+    },
+    {
+      "exact_native_cache_key": "74d706a626d78cb743099678e8160ad063a2f1d9.pkl",
+      "pkl_sha256": "ce87758b207eebebab0b4cdaf364b1444999078711d99ae16cc1fe427353caea",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "That geometry acted like a magnifying glass,",
+          "exact_native_cache_key": "74d706a626d78cb743099678e8160ad063a2f1d9.pkl",
+          "cache_input_text_sha256": "8db027ad1db65de1454fd7980e4d273253232f028871d56dffbd5839eaa883bc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "That geometry acted like a magnifying glass,",
+          "exact_native_cache_key": "74d706a626d78cb743099678e8160ad063a2f1d9.pkl",
+          "cache_input_text_sha256": "8db027ad1db65de1454fd7980e4d273253232f028871d56dffbd5839eaa883bc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        75264
+      ],
+      "unprocessed_array_sha256": "71cc11b939ac1a65613c261119b948aa9c610f04c025fc3f6660112238e15d79"
+    },
+    {
+      "exact_native_cache_key": "fc2ed512af57e4a4957fb91a31b34a18d3af00be.pkl",
+      "pkl_sha256": "1706fabccc360d1ce363e9f1c27b0ba5e6623e652a57a11d24456da3daf32bf0",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "focusing sunlight into a beam up to six times brighter than direct sun.",
+          "exact_native_cache_key": "fc2ed512af57e4a4957fb91a31b34a18d3af00be.pkl",
+          "cache_input_text_sha256": "f1524da0def6a8744f9c1139b9f1cbec559b4f20bae167b5c57fc173615b0163",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "focusing sunlight into a beam up to six times brighter than direct sun.",
+          "exact_native_cache_key": "fc2ed512af57e4a4957fb91a31b34a18d3af00be.pkl",
+          "cache_input_text_sha256": "f1524da0def6a8744f9c1139b9f1cbec559b4f20bae167b5c57fc173615b0163",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        112128
+      ],
+      "unprocessed_array_sha256": "de38898d36e5fe105ec51af0c1c8a600ca027ed4ddeac05e6c177af3ace6eb51"
+    },
+    {
+      "exact_native_cache_key": "ab8c730955037fe366e8db168803dfaf72fef5b6.pkl",
+      "pkl_sha256": "c66349696e56847834651066630831d40c65772441de3c1df16e671cd8ab034c",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "It was measured at about 110 degrees Celsius, and a reporter fried an egg in a pan using the reflection.",
+          "exact_native_cache_key": "ab8c730955037fe366e8db168803dfaf72fef5b6.pkl",
+          "cache_input_text_sha256": "2ee3c98a997418f2aee5bbc59a7f73b2b1321ff7c6e1f1dcb2eeba4c2e71e0ec",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        177152
+      ],
+      "unprocessed_array_sha256": "8d7ade8d06d0a7c0f2146f459803df5e31edfb7edbb782606096f74923128ace"
+    },
+    {
+      "exact_native_cache_key": "03e558d9ee1382eebf2998836cc0c34a865c668a.pkl",
+      "pkl_sha256": "844019301abe39c60d03ad165b80ea15ca22ff33a9f0e0a09942ea7b1acd87f8",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "It was measured at about 110 degrees Celsius,",
+          "exact_native_cache_key": "03e558d9ee1382eebf2998836cc0c34a865c668a.pkl",
+          "cache_input_text_sha256": "054586eb0544e0cd1aeef9b8a7a714e42e6cac0b730b379263bf1c11c2ad019f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "It was measured at about 110 degrees Celsius,",
+          "exact_native_cache_key": "03e558d9ee1382eebf2998836cc0c34a865c668a.pkl",
+          "cache_input_text_sha256": "054586eb0544e0cd1aeef9b8a7a714e42e6cac0b730b379263bf1c11c2ad019f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        82432
+      ],
+      "unprocessed_array_sha256": "b8dac3e82ca60e4b4b3ee90e6fbe7da585781483078cc0da75ab982fd8b9aaa2"
+    },
+    {
+      "exact_native_cache_key": "e836f8c2a13da981a62563e42030262ed0bf3289.pkl",
+      "pkl_sha256": "77febeb2e6b4140bf109cc0b8474f70d73ac6a073bc8e88badea03b5bdb42716",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and a reporter fried an egg in a pan using the reflection.",
+          "exact_native_cache_key": "e836f8c2a13da981a62563e42030262ed0bf3289.pkl",
+          "cache_input_text_sha256": "fc43f8978c0aa528dcbe1b2f8e1dc17ae6d1290c0bdba195dd43f9a100893fab",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and a reporter fried an egg in a pan using the reflection.",
+          "exact_native_cache_key": "e836f8c2a13da981a62563e42030262ed0bf3289.pkl",
+          "cache_input_text_sha256": "fc43f8978c0aa528dcbe1b2f8e1dc17ae6d1290c0bdba195dd43f9a100893fab",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        83456
+      ],
+      "unprocessed_array_sha256": "5735f205c9b315507d2faab8d29139a99e7da7135546c2ddcdff8e00f83158ce"
+    },
+    {
+      "exact_native_cache_key": "5c097a88107210e8b7d254387431ed31523c1bea.pkl",
+      "pkl_sha256": "904cf03d9c1edb414c2615a4bf8111e4fce056e67ae78d720810a85fa525dc26",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The developers issued an apology and reimbursed almost 1,000 pounds for repairs.",
+          "exact_native_cache_key": "5c097a88107210e8b7d254387431ed31523c1bea.pkl",
+          "cache_input_text_sha256": "0c399edcf3e0bb2dcc9b254b4f30ab26b166b61d5d5f6fe0ef1fc8824787971b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        143872
+      ],
+      "unprocessed_array_sha256": "1fcec1c6bc592916ab599452124706f178352bc59b2f9fa7c3b50c56666bf946"
+    },
+    {
+      "exact_native_cache_key": "00da546229ca75891b955b7d2246dbccbb1324bd.pkl",
+      "pkl_sha256": "020088aee77c6bab7d842c9b6b9c10a5f2d430b42694b783b5e71a3d2b0af534",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Parking bays were suspended and a provisional barrier was erected.",
+          "exact_native_cache_key": "00da546229ca75891b955b7d2246dbccbb1324bd.pkl",
+          "cache_input_text_sha256": "a29949d0817a28102440ec93049ac0ec8439b5cb48442151a14e4fabefc89c55",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        100864
+      ],
+      "unprocessed_array_sha256": "f5025d3eaa27807336fa8c64fd6e7f577a47e4d5ff57f3015eabe0ba83defd16"
+    },
+    {
+      "exact_native_cache_key": "f71230860f69128510d31196f71b921d99e4294e.pkl",
+      "pkl_sha256": "a0cd6b587bccba1eff01234fde44eea19273a4703d33a19c9979463ce30af0e8",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The beam struck for about two hours a day, two to three weeks annually, because of the sun's angle of elevation.",
+          "exact_native_cache_key": "f71230860f69128510d31196f71b921d99e4294e.pkl",
+          "cache_input_text_sha256": "433476b07cf74c38271fbdff32ba7ecef455fa1172c3a69917026c2211a05e71",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        174080
+      ],
+      "unprocessed_array_sha256": "27d091fe71e1a769958b11da983d5726a13845edb59bd1c5761a96922c1e08c9"
+    },
+    {
+      "exact_native_cache_key": "bd9b39ed618ce6295101c2b4f329d8e9fbd8c60e.pkl",
+      "pkl_sha256": "44ac39b45356b7c06952fad49a4c442ebb0a2d363c8325fee189ee4f2dc77ebf",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The beam struck for about two hours a day, two to three weeks annually,",
+          "exact_native_cache_key": "bd9b39ed618ce6295101c2b4f329d8e9fbd8c60e.pkl",
+          "cache_input_text_sha256": "299af4344dae5774f0df2abafd2624352655a6f01995b1f95c49fa4f0f20fc01",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        104960
+      ],
+      "unprocessed_array_sha256": "3eb79753a0d54e8641a2ed54e1838ab15b85d49537c06a2ecbbf2e746cddfd3c"
+    },
+    {
+      "exact_native_cache_key": "edfc574819f9216464c95bbc3b36641b87f91da9.pkl",
+      "pkl_sha256": "a5d704a2573c22cb2dd0b6fec86d0c16bf26856845c3618f828acfbabd24bf69",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "because of the sun's angle of elevation.",
+          "exact_native_cache_key": "edfc574819f9216464c95bbc3b36641b87f91da9.pkl",
+          "cache_input_text_sha256": "c4a9f97b5432cda65eacd73d1d2c8aa555f81c55f8d508d38f8ebdcec8d560cb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "because of the sun's angle of elevation.",
+          "exact_native_cache_key": "edfc574819f9216464c95bbc3b36641b87f91da9.pkl",
+          "cache_input_text_sha256": "c4a9f97b5432cda65eacd73d1d2c8aa555f81c55f8d508d38f8ebdcec8d560cb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        54784
+      ],
+      "unprocessed_array_sha256": "d1e5fbe012ebe6e070ef204bba26e4d9b7d8714104b7584d65ac51ebd6231a4f"
+    },
+    {
+      "exact_native_cache_key": "7ef2837328baed3a002f2000ccbd39f7f8cef038.pkl",
+      "pkl_sha256": "78af5a815345b583bd51e701638a708e622a09719b6add61241f469dd66d973a",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The beam struck for about two hours a day,",
+          "exact_native_cache_key": "7ef2837328baed3a002f2000ccbd39f7f8cef038.pkl",
+          "cache_input_text_sha256": "82163b540bd270ec9c308794463d84832512a269accb1a9b79c3817ed1219ea6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        56320
+      ],
+      "unprocessed_array_sha256": "2ceef272e5e19f7adf0d103da14967656341273921171a706fda12d822fdd7dc"
+    },
+    {
+      "exact_native_cache_key": "892b02238eb1b7b7559557f7a22beabd0a29411f.pkl",
+      "pkl_sha256": "fead7fc06768772348fa73d07f4c2b3a8d43f17ba257b3a1a3f0bf7b42468610",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "two to three weeks annually,",
+          "exact_native_cache_key": "892b02238eb1b7b7559557f7a22beabd0a29411f.pkl",
+          "cache_input_text_sha256": "8dcaf5bfa2564e71e58fc1c6a52bc2c8be6cf30167d65f72dff129faaed3c5c2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        39424
+      ],
+      "unprocessed_array_sha256": "d531a0e2537b9cfc7a792996ff69d90563fecf753d4cb264f8bf195d1e880f07"
+    },
+    {
+      "exact_native_cache_key": "049cbd4c32e847ca7f87de79ab14dcbae19c2f5a.pkl",
+      "pkl_sha256": "645c64f234040a202e2060c3ab87ca3419790306dc7e429f110d15602acac87f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Newspapers dubbed the Walkie-Talkie the Walkie-Scorchie, a taunt.",
+          "exact_native_cache_key": "049cbd4c32e847ca7f87de79ab14dcbae19c2f5a.pkl",
+          "cache_input_text_sha256": "650d344450c682975d79e24d3baea2ca68e213dd9075a3eead48c3683100e0d4",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        91648
+      ],
+      "unprocessed_array_sha256": "8b1b095e406bbecaf00a3cf0239358d8c6973f9d680308ce019e38d30b511b27"
+    },
+    {
+      "exact_native_cache_key": "0e8e9e69fbaa79e4cc684174eaa5cb803f5af7d3.pkl",
+      "pkl_sha256": "d6f1fd3df5cabbed57964d25c87f4e24e1e1adc378ee0ce46e0bf2771e5a1204",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Newspapers dubbed the Walkie-Talkie the Walkie-Scorchie,",
+          "exact_native_cache_key": "0e8e9e69fbaa79e4cc684174eaa5cb803f5af7d3.pkl",
+          "cache_input_text_sha256": "9ba31dc71908f2efec30565c36167059d3548b2881f4667fe02bc24c2f4f7561",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        75776
+      ],
+      "unprocessed_array_sha256": "960958d09911eb50e9192fd8e5a70a09bf0f0b019b9435f3457bd7491569329f"
+    },
+    {
+      "exact_native_cache_key": "9573c80fa6c479fa13763cca4ffdafb309b74495.pkl",
+      "pkl_sha256": "d259605cac382be3cae8dafcaf56a9d629ed1426f1998f7f6a27150a36f22802",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a taunt.",
+          "exact_native_cache_key": "9573c80fa6c479fa13763cca4ffdafb309b74495.pkl",
+          "cache_input_text_sha256": "7e951985b3410005a88ad55482ea6ca46e92e465e7abdf35137fce26e68bc1ed",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        19968
+      ],
+      "unprocessed_array_sha256": "58013c46ad878d5c99381e5ba9389d5b7f34c90f2e3fd941d91b874e0bce48c9"
+    },
+    {
+      "exact_native_cache_key": "dfdc4ed9a2cc8d93ac85550c9fa6ee975995c24d.pkl",
+      "pkl_sha256": "4d2d06c757a1ea18c53018f4fc570cb837438df96484b83372f31b9bf38e024f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The architect was candid, admitting many mistakes.",
+          "exact_native_cache_key": "dfdc4ed9a2cc8d93ac85550c9fa6ee975995c24d.pkl",
+          "cache_input_text_sha256": "820488a24061ad469737ffeed7443a3ef04fbf176a01165eba9ac23240199aa6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        75776
+      ],
+      "unprocessed_array_sha256": "71ed98bfbc62d465472cf73411565e9de7d2f9bb81f2ba82aacb2b23279016f1"
+    },
+    {
+      "exact_native_cache_key": "792b26ea6000d9bb0e76cdc84913ad9e36e3d6eb.pkl",
+      "pkl_sha256": "98ef52ec94589d6e8baf6a7ccd838fe44c36f029a55d22eb7f6c59a18995ee77",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The architect was candid,",
+          "exact_native_cache_key": "792b26ea6000d9bb0e76cdc84913ad9e36e3d6eb.pkl",
+          "cache_input_text_sha256": "6fafbf845768687b21fcfc54437915bee57ded7125c8c2df8451fe0a2c672282",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        36864
+      ],
+      "unprocessed_array_sha256": "04e7ec1695fa5b8a48ce172c26197dd79ef9c58874c95dfc7c4abe37a5d3848d"
+    },
+    {
+      "exact_native_cache_key": "9d4f6d8a18fa191a64f085f5b74020b33a19745f.pkl",
+      "pkl_sha256": "6097442d7d0fc25f1086b818a48724726f4194769fecb0c8d243754785f21819",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "admitting many mistakes.",
+          "exact_native_cache_key": "9d4f6d8a18fa191a64f085f5b74020b33a19745f.pkl",
+          "cache_input_text_sha256": "cdd013d719bab14f53c762f7c11675bcfb1278d190df748601dbedb4f93de175",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        37376
+      ],
+      "unprocessed_array_sha256": "51f869165337aafc2505cb945484b008cf78ee4953c5c83b671067b69048f1b1"
+    },
+    {
+      "exact_native_cache_key": "a720112e991cf8f565ec371f8520da1f2d8b5193.pkl",
+      "pkl_sha256": "0a512295d34337f94b886fa8c1d21d1c6377e84a6505130eabe52ca6d709f7e9",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Viñoly had anticipated the focusing, he said, but not its intensity.",
+          "exact_native_cache_key": "a720112e991cf8f565ec371f8520da1f2d8b5193.pkl",
+          "cache_input_text_sha256": "b26a7cf3609621756fbdcc3901d3752507c6c978c86d67ff079a2beb16736aa5",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        117760
+      ],
+      "unprocessed_array_sha256": "00bd42e93552fc8b716a697f5cbdc3d14243fd7d1949350109a71ccd3891708d"
+    },
+    {
+      "exact_native_cache_key": "6d665385d0e10a735d84fa25cd016db25d2696f1.pkl",
+      "pkl_sha256": "0f99dc6891bd6c0441185e6dff81b75a87f8888161f5f05129ee31610ea8b5ef",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Viñoly had anticipated the focusing,",
+          "exact_native_cache_key": "6d665385d0e10a735d84fa25cd016db25d2696f1.pkl",
+          "cache_input_text_sha256": "f6336211d9ea0a91c633714233b9e80bebf831ca737154cdf87234efb07ed359",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        59904
+      ],
+      "unprocessed_array_sha256": "460c2beffb3e69368226a7548bc2261038223cda55829e22e2d06d0a0bac73b5"
+    },
+    {
+      "exact_native_cache_key": "be760765f59c1b4d326b7befce7622ead74e0443.pkl",
+      "pkl_sha256": "2dae1568ea4f46640734c26c1b54701b90a2c56f8efe1c4fec9d95af5b3f3052",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "he said,",
+          "exact_native_cache_key": "be760765f59c1b4d326b7befce7622ead74e0443.pkl",
+          "cache_input_text_sha256": "7144daaa71361caf40cc57cc7f6fd85171d694e4953ea610370d65deb1bc80fc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        18944
+      ],
+      "unprocessed_array_sha256": "a6bb7ddf329a92f3b97329bb710925ccf77590b809845b924805b32a2d0b56df"
+    },
+    {
+      "exact_native_cache_key": "6d37278eba0f831c168e2c52a15a116a98227e86.pkl",
+      "pkl_sha256": "c25476680da886f25cf946c2961bc3589374eb8b65eb0c18eb3cfe8dd08cbbb9",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "but not its intensity.",
+          "exact_native_cache_key": "6d37278eba0f831c168e2c52a15a116a98227e86.pkl",
+          "cache_input_text_sha256": "8cf18267eef222b1da6b1c2406f4f837a34d34cdb7f106e10e7b680b187d5125",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35328
+      ],
+      "unprocessed_array_sha256": "16506783ac15bcbd9661b4b125ae31d55e1f58e22843c277f86dba1bc07f74e0"
+    },
+    {
+      "exact_native_cache_key": "fc77e9725d868714034f7386fa8248a76aef0f6d.pkl",
+      "pkl_sha256": "8d115ee04a78b25be50cea1a6560f8ef383cf8975f690a64ee62b07c94017f52",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Sun louvres in the original design were reportedly removed in cost-cutting.",
+          "exact_native_cache_key": "fc77e9725d868714034f7386fa8248a76aef0f6d.pkl",
+          "cache_input_text_sha256": "03f352cd7296ed5a877056d9d509c8847341956043218abb506cfa2ba0b340b1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        121344
+      ],
+      "unprocessed_array_sha256": "516c48d47d0bc7ffb59f56edb6f7ce40e6439123b8cdc5e033c7bdb725f26452"
+    },
+    {
+      "exact_native_cache_key": "b39cfd8e72f4f168087fb61c93042ae5919fd5a6.pkl",
+      "pkl_sha256": "9a0ba1bc0d7a81c4752e688b6d9314118287366a9bc875f90b602428cab074f5",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Nor was this his first architectural miscalculation.",
+          "exact_native_cache_key": "b39cfd8e72f4f168087fb61c93042ae5919fd5a6.pkl",
+          "cache_input_text_sha256": "a549acea54e84c76cceb1c54e743130642c7c6da8c1da8f4eb3f333a24bcc389",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        86528
+      ],
+      "unprocessed_array_sha256": "d8bdb6c38495bbeba49cc03f9265a99d1b1a7d7f65e73062a1a365d54230a95a"
+    },
+    {
+      "exact_native_cache_key": "6418d333c460089fbe91185848106f809e4b9966.pkl",
+      "pkl_sha256": "40c0f4821b8906c482a63a8f52792154871c869e28a57070f75f53fdd7a25834",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 2010 the infamous glare from his curved, reflective Vdara hotel in Las Vegas burned a guest's scalp by the pool.",
+          "exact_native_cache_key": "6418d333c460089fbe91185848106f809e4b9966.pkl",
+          "cache_input_text_sha256": "38cf184e78e5e31bf097907229b3b718167c9d9303f464f730ca59b75d5ea8d7",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        218624
+      ],
+      "unprocessed_array_sha256": "c9da765fdf1ef3db92dce5428e21d7c37e8def3903d859ad1ccf4e655aa49405"
+    },
+    {
+      "exact_native_cache_key": "446ac78ae07b5342168b2a8013debe3d7a2b5f9c.pkl",
+      "pkl_sha256": "2fd088dcd17d7dd92dcd73b1bfeeb1bb678d12e2ab61b1d3c956c41ef929bc58",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 2010 the infamous glare from his curved, reflective Vdara hotel in Las Vegas",
+          "exact_native_cache_key": "446ac78ae07b5342168b2a8013debe3d7a2b5f9c.pkl",
+          "cache_input_text_sha256": "ae5a3457120c779709ac3cb1dede846d4a0b710b3a14223ce0d04434e7efd8dc",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        156672
+      ],
+      "unprocessed_array_sha256": "172d67df3f8fba7faf5a5d1273bfab649d32eda3537190957be95d0e32cc9990"
+    },
+    {
+      "exact_native_cache_key": "74f311aaa3e154d1c7fb2ce828e5a6ce4c0ef43f.pkl",
+      "pkl_sha256": "4334cae124d95c20cf542a3e23c89fbd18a104f559b8dae080bbf52f8300cd6c",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "burned a guest's scalp by the pool.",
+          "exact_native_cache_key": "74f311aaa3e154d1c7fb2ce828e5a6ce4c0ef43f.pkl",
+          "cache_input_text_sha256": "1fdc5f86abb747165391392f141de8953b6f39119859fb4d3deaf41177545860",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        44544
+      ],
+      "unprocessed_array_sha256": "6b853a543e56fa79d048cc6105859313d10721b07e52879e441199d2ba98ac29"
+    },
+    {
+      "exact_native_cache_key": "6cf72a99deb695b26b5ea53e025e116636a3d404.pkl",
+      "pkl_sha256": "e56e1b4d6354c0323588de87c8500371e83451bf243cdf8b937e7f6b90f433e0",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In 2010 the infamous glare from his curved,",
+          "exact_native_cache_key": "6cf72a99deb695b26b5ea53e025e116636a3d404.pkl",
+          "cache_input_text_sha256": "3d30e1913b81555f17359b6410b6e9745828908aad24a211125f3d9dbfb602aa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        83968
+      ],
+      "unprocessed_array_sha256": "793898f5ff368d15e157277a87ce05aab2af4b12622e65670c3d394de5ab803f"
+    },
+    {
+      "exact_native_cache_key": "37e8db63d64d25508893ac6642fe68bb2c706316.pkl",
+      "pkl_sha256": "633d1ac334644ec6cb0c28fa4afc026e0dc7ee15f2edba415cbd02e5b3ccfc3f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "reflective Vdara hotel in Las Vegas burned a guest's scalp by the pool.",
+          "exact_native_cache_key": "37e8db63d64d25508893ac6642fe68bb2c706316.pkl",
+          "cache_input_text_sha256": "721e87d999296f72ae4b2511ed4361daffab8c55651e79e005eee59cf40c11dc",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        117248
+      ],
+      "unprocessed_array_sha256": "10bcd6afdadd6ced8954975d26994c3bfb98aa520ff5e23e123fa3e98414d542"
+    },
+    {
+      "exact_native_cache_key": "31037b3b42ce226440003579f2cbf505613a58da.pkl",
+      "pkl_sha256": "80774b285c739e5dd26f497a552431268f2860aaa19cb3174ecd9d3ccff26e70",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 12 February 2014 a permanent fixture was announced: horizontal aluminium fins to diffuse the brightness, reportedly costing several million pounds.",
+          "exact_native_cache_key": "31037b3b42ce226440003579f2cbf505613a58da.pkl",
+          "cache_input_text_sha256": "5005d7ef1be636a409b5f193b5d80a91c0e51c6babf1354182e9432ef8dc671b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        297472
+      ],
+      "unprocessed_array_sha256": "11524e6b14ca70ff4b0423358c02fdcbc8b8b5ca535a38bd7310bc7eb6a12db9"
+    },
+    {
+      "exact_native_cache_key": "b6dbc949b49ec37c3fb7352fa2c6ed2bcc4babb2.pkl",
+      "pkl_sha256": "889998dcbeb9b9a574f29765738ae2943fe1589660d6f99a22309c8c24c90d04",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 12 February 2014 a permanent fixture was announced:",
+          "exact_native_cache_key": "b6dbc949b49ec37c3fb7352fa2c6ed2bcc4babb2.pkl",
+          "cache_input_text_sha256": "7b8054783e33a2423a69deead6fabfc1e51b30746bf4e4f8aadb9c8bc08dec84",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 12 February 2014 a permanent fixture was announced:",
+          "exact_native_cache_key": "b6dbc949b49ec37c3fb7352fa2c6ed2bcc4babb2.pkl",
+          "cache_input_text_sha256": "7b8054783e33a2423a69deead6fabfc1e51b30746bf4e4f8aadb9c8bc08dec84",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        121856
+      ],
+      "unprocessed_array_sha256": "6e74b52e57fd81f394436bd3d0892990a691bace142b241f5712972682a1e2e4"
+    },
+    {
+      "exact_native_cache_key": "7cf4c3e7a454c69ba73f9450416f6b6fed20c030.pkl",
+      "pkl_sha256": "38e8ccbcb787ee3eeff733751d8df90dcd2650f1a4278d9cc686266e7aed9168",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "horizontal aluminium fins to diffuse the brightness, reportedly costing several million pounds.",
+          "exact_native_cache_key": "7cf4c3e7a454c69ba73f9450416f6b6fed20c030.pkl",
+          "cache_input_text_sha256": "581f17a8f8e0885ae9ed773a2d99596ec746ab9a7ecacd8f83ca800a71de9c1a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        163840
+      ],
+      "unprocessed_array_sha256": "585d6ddc193472bd4c69970d99e3d914c8c80ba4554a2f6b333a324f5e45c53e"
+    },
+    {
+      "exact_native_cache_key": "58c8a150dea14f79b1b6c0f0a400c6b37f338e0c.pkl",
+      "pkl_sha256": "36a37663a3859f52c351f1d82d70f062540a41f1194c0005cfa16dc055627ecc",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "horizontal aluminium fins to diffuse the brightness,",
+          "exact_native_cache_key": "58c8a150dea14f79b1b6c0f0a400c6b37f338e0c.pkl",
+          "cache_input_text_sha256": "33b43e514116940e24dd24e6ef5f14e58794945f0ecf7f1e26a15c2b1085f5da",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        83456
+      ],
+      "unprocessed_array_sha256": "9c1aa6ba23558d4688c4630f85b8a4c69816cb0b91c8757f3e2289e9d7dcd184"
+    },
+    {
+      "exact_native_cache_key": "7943001d4f656e9289fb15ed2171d090d5dffc80.pkl",
+      "pkl_sha256": "cd31a4cdae822eb2ec2244bcfddecd3e8a44d5b542bbe989874ebf52b56cb023",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "reportedly costing several million pounds.",
+          "exact_native_cache_key": "7943001d4f656e9289fb15ed2171d090d5dffc80.pkl",
+          "cache_input_text_sha256": "4d60138941a1865828043a9a690c1a8acc54c4769d474523c3277cbaa0e2cb3a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        61440
+      ],
+      "unprocessed_array_sha256": "44cc863e44350d9881ac6f477ee119ddae27350fcde7680d8819408d244f2c28"
+    },
+    {
+      "exact_native_cache_key": "797f57d54283657f3b6ace90d2ddf3b87259f765.pkl",
+      "pkl_sha256": "4d23872ae403c5c0a1cf6e93e9414730ee359682aa876e670ec56a72bbb06537",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In September 2015 Building Design's critics gave the notorious tower the Carbuncle Cup, a trophy for the UK's worst new building.",
+          "exact_native_cache_key": "797f57d54283657f3b6ace90d2ddf3b87259f765.pkl",
+          "cache_input_text_sha256": "d98da9d30de02aee87a20ea5601d7336169a699180c41e480f317af054f78b55",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        246272
+      ],
+      "unprocessed_array_sha256": "38a1fdc882f747f57e82e9c005430247c96f6cee18d25ff90852c8af5218377a"
+    },
+    {
+      "exact_native_cache_key": "0fc06e2f25dae7eafb255ae6eeb8c05a616562e4.pkl",
+      "pkl_sha256": "40ef222f01c768b0118c0b5a8f7913e23474b037986e53a5bb47e0cb676c7e4f",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In September 2015 Building Design's critics gave the notorious tower the Carbuncle Cup,",
+          "exact_native_cache_key": "0fc06e2f25dae7eafb255ae6eeb8c05a616562e4.pkl",
+          "cache_input_text_sha256": "4524df776aa47effc169905eaa4fb46473623095a630c232eb18730aae112eaa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In September 2015 Building Design's critics gave the notorious tower the Carbuncle Cup,",
+          "exact_native_cache_key": "0fc06e2f25dae7eafb255ae6eeb8c05a616562e4.pkl",
+          "cache_input_text_sha256": "4524df776aa47effc169905eaa4fb46473623095a630c232eb18730aae112eaa",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        168960
+      ],
+      "unprocessed_array_sha256": "cb7f4de32b2c7b58457b436c376adbe0b21d345cd066815742a2d2f49b5d33ce"
+    },
+    {
+      "exact_native_cache_key": "379fa1e0f1567f30f15fc04165e7fd31d0352feb.pkl",
+      "pkl_sha256": "a97def29a847e48a7e77b289be4483abcb12e07ab7f95a5430253f31e0e9fae9",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S18",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a trophy for the UK's worst new building.",
+          "exact_native_cache_key": "379fa1e0f1567f30f15fc04165e7fd31d0352feb.pkl",
+          "cache_input_text_sha256": "994b328b1150e30a133807f85591eb5b9ce1c22a68aa16fcfaf804bca9d5c6ac",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S18",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a trophy for the UK's worst new building.",
+          "exact_native_cache_key": "379fa1e0f1567f30f15fc04165e7fd31d0352feb.pkl",
+          "cache_input_text_sha256": "994b328b1150e30a133807f85591eb5b9ce1c22a68aa16fcfaf804bca9d5c6ac",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        59392
+      ],
+      "unprocessed_array_sha256": "e4721bfd9bc1d05de3ea0a539e6eec69d80daad8efc99a1f8ddbb595561c83d5"
+    },
+    {
+      "exact_native_cache_key": "a997e575a3c58dffeff261e0c07fe38b742e9b78.pkl",
+      "pkl_sha256": "6d845dc263105b33658edb5538c5bcef1c02a604294c755f05c82f5cb5a0d8bc",
+      "native_single_thread_marker_present": false,
+      "input_proofs": [
+        {
+          "sentence": "S19",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The ballot was unanimous.",
+          "exact_native_cache_key": "a997e575a3c58dffeff261e0c07fe38b742e9b78.pkl",
+          "cache_input_text_sha256": "9ce72bedec306db7687e67e171e80b3d3bd8fe978d28f8722de7f5ff189f5413",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        37376
+      ],
+      "unprocessed_array_sha256": "c46002d26b97ea66cfe76f9c4ede6e2f3c03a0e3a6e4e10bdbbc5a8a84ed80f3"
+    }
+  ],
+  "missing_reference_key_count": 0,
+  "observed_missing_keys_covered": [],
+  "new_private_cache_names": [],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11514,
+  "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "b59a5b865e6fd830ddd7cdd9d316a15d55dda7a5e30ed3edf3245f7df1e030b7",
+  "accepted_aac_adts_sha256_after": "b59a5b865e6fd830ddd7cdd9d316a15d55dda7a5e30ed3edf3245f7df1e030b7",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}
