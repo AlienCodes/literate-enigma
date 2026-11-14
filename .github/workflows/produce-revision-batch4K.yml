@@ -106,6 +106,29 @@ jobs:
             ${{ runner.temp }}/completion-machine
             ~/asr
           key: completion-05-machine-43294745262
+      - uses: actions/cache/restore@v4
+        id: exact-spoken-whole-cache
+        with:
+          path: ${{ runner.temp }}/completion-machine/tts/spoken-comma-whole-reference-cache
+          key: Linux-spoken43-52-whole-reference-43643745207
+      - name: 真正读取全部14原母marker和原G36的完整SHA
+        env:
+          CACHE_HIT: ${{ steps.exact-spoken-whole-cache.outputs.cache-hit }}
+        run: |
+          test "$CACHE_HIT" = true
+          python - <<'PYCACHE'
+          import hashlib,json,os,shutil
+          from pathlib import Path
+          M=Path(os.environ['RUNNER_TEMP'])/'completion-machine/tts'
+          data=json.loads(Path('.github/video-revision-batch/actual-spoken-whole-reference-cache14.json').read_text())
+          assert len(data)==14
+          for name,h in data.items():
+              assert Path(name).name==name
+              src=M/'spoken-comma-whole-reference-cache'/name;dst=M/'cache_tts'/name
+              assert hashlib.sha256(src.read_bytes()).hexdigest()==h
+              if dst.exists():assert hashlib.sha256(dst.read_bytes()).hexdigest()==h
+              else:shutil.copyfile(src,dst)
+          PYCACHE
       - name: 确认恢复既有机器缓存
         env:
           CACHE_HIT: ${{ steps.original-cache.outputs.cache-hit }}
@@ -128,22 +151,7 @@ jobs:
         env:
           STAMP_HIT: ${{ steps.fastcheck-cache.outputs.cache-hit }}
         run: test "$STAMP_HIT" = true
-      - name: 解包唯一真实40原failed胶囊并核完整原ZIP身份
-        run: |
-          python - <<'PYCAPSULE'
-          from pathlib import Path
-          import hashlib,zipfile
-          cap=Path('.github/video-revision-batch/source40-original-capsule')
-          z=cap/'artifact.zip'
-          assert z.stat().st_size==10547132 and hashlib.sha256(z.read_bytes()).hexdigest()=='d0b930e0f07c89fdddb071790ea4139c62b454aac92a25b2b3910f8bd3cae05a'
-          with zipfile.ZipFile(z)as ar:
-              for name in ar.namelist():assert not name.startswith('/')and'..'not in Path(name).parts
-              assert ar.testzip() is None
-              ar.extractall(cap/'files')
-          PYCAPSULE
       - name: 原程序做稿并正式定稿4K
-        env:
-          SOURCE40_ORIGINAL_CAPSULE: ${{ github.workspace }}/.github/video-revision-batch/source40-original-capsule
         run: python -u .github/video-revision-batch/run.py
       - name: 仅保留本篇公开成片和核验材料
         uses: actions/upload-artifact@v4

@@ -1,0 +1,71 @@
+{
+  "kind": "controlled-source43-52-certified17-formal-QC-reviewable-handoff",
+  "state": "awaiting-root-actual-code-read-before-sole-CI-formal-native",
+  "standard_ABI": "--article --accepted-source --canonical-video --work --request --output; optional --actual-source --raw-pcm --tools --reference --numeric-utilities --official-status --diagnostic",
+  "runtime_files": {
+    "audio43-controlled-qc.py": {
+      "bytes": 16747,
+      "SHA256": "e791f54dc815214a74207a03e3481da90154df1255dbc50f878b7efa2a035d69"
+    },
+    "audio52-controlled-qc.py": {
+      "bytes": 16747,
+      "SHA256": "e791f54dc815214a74207a03e3481da90154df1255dbc50f878b7efa2a035d69"
+    },
+    "audio43-controlled-qc-reference.json": {
+      "bytes": 25706,
+      "SHA256": "62d53800bfda6b4b0c4f169738e26e1ad8e917c90731df2d8bc95e4640c48cd4"
+    },
+    "audio52-controlled-qc-reference.json": {
+      "bytes": 25032,
+      "SHA256": "1b0b7bd0337a668c7f81d87a4e7e046ce085be4a6fff1b1b81adbef3cf136d89"
+    },
+    "audio-qc.py": {
+      "bytes": 22072,
+      "SHA256": "3a2bd846386b16bd74e9785c548e97283131efcad9989b9e886f64e86e57c7c6"
+    },
+    "actual-whole-track-evidence.json": {
+      "bytes": 200872,
+      "SHA256": "5c4a2e62624ade5d119086c9525a8d90588efc7507fdbdd04678219dd8f4a156"
+    },
+    "actual-profile-guard-tests.json": {
+      "bytes": 4170,
+      "SHA256": "0e5472971bed9a38c80cf57637e4bb1ff89fc81a83f2c9f10a8b5bfce642fde8"
+    },
+    "test_controlled_profiles.py": {
+      "bytes": 4845,
+      "SHA256": "3d670a45758e52ee9193dec2fa7dc056d552614c2d6f3497a619b00c56a153d4"
+    }
+  },
+  "actual_whole_track_native_run": 43643745207,
+  "actual_six_mother_native_certification_run": 43638178374,
+  "source_pair_unchanged": {
+    "43": "bacc7abafe824031e0d85349f80327b66947839472008a18bd679cf6cdc3b53e",
+    "52": "c00eb5707f1b269d2ce88fed455f592962d674d46e3bf172ba00cfe6597245f3"
+  },
+  "actual_new_whole_RAW_AAC": {
+    "43": {
+      "request_source_sha256": "bacc7abafe824031e0d85349f80327b66947839472008a18bd679cf6cdc3b53e",
+      "request_generator_sha256": "e039bc6ee6b49acea7fc7cd35b1b8052891fc645742b7adb8b38137423ab06a5",
+      "actual_raw_WAV_sha256": "7e20f3e642d31bdd31baa0ac480098af8fdc0f0ba2936f93ce47aa431e533ea2",
+      "accepted_video_sha256": "8a47d5f83a33f6cc09f4844ec443292e3b1a7cd27a76f93a75184b38aabefb56",
+      "accepted_AAC_ADTS_sha256": "e68a0dd1514bb41bbf798893ad6b8855212c6755bd19efc6b580af26ec816b3a",
+      "canonical_AAC_ADTS_sha256": "d28d0504397cf1e9520b1e84599ff2dd9406df1519632b70d94b8961ce1c71bf"
+    },
+    "52": {
+      "request_source_sha256": "c00eb5707f1b269d2ce88fed455f592962d674d46e3bf172ba00cfe6597245f3",
+      "request_generator_sha256": "51e2723e1ac49ceac6c1db5e9f70a1fb3c0f4b41066daa153935a9996ea63776",
+      "actual_raw_WAV_sha256": "ad119eca768315a636608cf88a4220ed717c5866a9e46aa0ba20b0806dc360c5",
+      "accepted_video_sha256": "1d0cf6064c36ec7ed223956ebf98b7aabf21aa63241202f01d1895acc094b280",
+      "accepted_AAC_ADTS_sha256": "ecabdc3b21c705715a83ade00e644d2e8888b9a43443958078ffc15ab4d8cd2c",
+      "canonical_AAC_ADTS_sha256": "2491cfa8ab9262bd313fc224e48f1816e65cd562cb2c91fb01f5e48bc25ac29d"
+    }
+  },
+  "core_gate_scope": "Original Q8 health, R whole sentences and original within-sentence R; original native all-gate/status including both ASR must really pass first; actual canonical4K then final fullV3 remains separate required",
+  "outside_voice_preservation_basis": "Real native diagnostic pre-master array_equal for title/non-target sentences, measured unchanged master, and runtime full new RAW/AAC hash identity. New-mother pitch/time/AAC packet index identity to old not asserted.",
+  "exact_source_metadata_compatibility": "43 only real pendingS7→history exact content/date rule; 52 only actual observed S18C2 original G35 note variant; all other nonreview source and exact voice-controls strict",
+  "local_tests": "34 real immutable source/evidence/scope guard positives and negatives; no local new whole audio replay, inference, native-QA-positive or listening claim",
+  "formal_runtime_positive_still_required": true,
+  "automatically_renewed_ASR_CF": false,
+  "no_new_TTS_or_waveform_mutation": true,
+  "no_change_to_original_numeric_thresholds_or_suppressed_rule": true
+}
