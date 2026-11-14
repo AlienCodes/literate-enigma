@@ -1,0 +1,253 @@
+{
+  "observed_utc": "2026-11-14T06:04:01.732750+00:00",
+  "observer": "independent read-only records review",
+  "scope": "Transport and public-record consistency only. No media quality revalidation, source edit, GitHub mutation, or new acceptance gate.",
+  "record_consistency_observed": true,
+  "material_issues": [],
+  "video_pass_count_increment": 0,
+  "transport": {
+    "run_id": 43562380192,
+    "job_id": 132348683832,
+    "actual_run_and_job_status": "completed/success",
+    "actual_head_SHA": "689f2b9a1311232a6de391e574de9d42c81287d1",
+    "workflow_execution_bindings": [
+      {
+        "relative_path": "native-approved-assets-transport-20261114/transport-input.json",
+        "bytes": 83744,
+        "sha256": "200e03a2b3bfb336dd67e14f1fcebe89eabc8df466c28e23fbd5d0099e335d93"
+      },
+      {
+        "relative_path": "native-approved-assets-transport-20261114/transport_approved_assets.py",
+        "bytes": 4141,
+        "sha256": "b81dc902f4bb0e4c5fbd785bbf54432ad56200a81cfb19ec0bc6cf4fafb44c1d"
+      },
+      {
+        "relative_path": "native-approved-assets-transport-20261114/transport-approved-public-assets.yml",
+        "bytes": 1839,
+        "sha256": "f62c7a8e168f32f0816c59bf129c0c0debeb2d1b901cd5118bd5921992ecae42"
+      },
+      {
+        "relative_path": "native-approved-assets-transport-20261114/actual-native-run-completed.json",
+        "bytes": 12983,
+        "sha256": "fb627a52517cd6a422267e8bcb5319e029e2b47aa33012f7b3148dfab457b70b"
+      },
+      {
+        "relative_path": "native-approved-assets-transport-20261114/actual-native-jobs-completed.json",
+        "bytes": 1891,
+        "sha256": "2be70ed6f19825c386f72313a4437be8d8deca72136037a5ffb0ef4e0d6e20b7"
+      },
+      {
+        "relative_path": "native-approved-assets-transport-20261114/actual-native-artifacts.json",
+        "bytes": 774,
+        "sha256": "be725345b1a72f0af53a706f347a85dbf24181615788ab638c0c807209149598"
+      },
+      {
+        "relative_path": "native-approved-assets-transport-20261114/actual-native-transfer-receipt.json",
+        "bytes": 82796,
+        "sha256": "7cb1de1d04ef257ad544704b0629aabb3d18c2cd13e65ca22a3a99ee50263e8c"
+      },
+      {
+        "relative_path": "native-approved-assets-transport-20261114/artifact-retrieval-proof.json",
+        "bytes": 412,
+        "sha256": "18fbd04ef139e6b966a0aa13806697e2a2e697a986df64fa32df974f5e0fa92c"
+      }
+    ],
+    "input_program_workflow_hashes_exactly_match_prepared_manifest": true,
+    "assets": [
+      {
+        "source_id": "02",
+        "original_asset_commit": "b6e8118cb72d6a7fede5fa973c149fb3d4c0bf31",
+        "original_video_tree_SHA": "0aebcba8c96dbb4ac0d57a1a0fbb7837f6812620",
+        "file_rows": 112,
+        "logical_file_bytes": 108532538,
+        "receipt_matches_frozen_input_row_for_row": true
+      },
+      {
+        "source_id": "49",
+        "original_asset_commit": "3a6754a4ceea940883acea49fc9fea0222ea4d7c",
+        "original_video_tree_SHA": "07d377d785ca5209ba9c92e89edcf7d9b88b4338",
+        "file_rows": 116,
+        "logical_file_bytes": 115315232,
+        "receipt_matches_frozen_input_row_for_row": true
+      }
+    ],
+    "artifact_id": 14101176191,
+    "artifact_ZIP_binding": {
+      "relative_path": "native-approved-assets-transport-20261114/approved-public-transfer-receipt-43562380192.zip",
+      "bytes": 13610,
+      "sha256": "f5ac488a713e94508f2e00f2f377d307bf2e05bba52b7d36427f122112679469"
+    },
+    "artifact_ZIP_CRC_valid": true,
+    "artifact_ZIP_members": [
+      "approved-public-transfer-receipt.json"
+    ],
+    "artifact_JSON_exactly_equals_local_native_receipt": true,
+    "artifact_contains_metadata_rows_only_no_PCM_models_cache_or_secret_payload": true,
+    "workflow_logic_observed": "No checkout; exact frozen input/program SHA256; only two public orphan assets branches depth2 fetched; exact original blob rows verified; non-force exact asset-ref pushes; artifact upload path is sole public receipt JSON; no video generation.",
+    "new_video_quality_acceptance_claimed": false,
+    "empty_job_log_bytes": 0,
+    "empty_job_log_not_used_as_success_proof": true
+  },
+  "original_record53": {
+    "preservation_record_binding": {
+      "relative_path": "native-approved-assets-transport-20261114/owned-record53-history-preservation.json",
+      "bytes": 1270,
+      "sha256": "9c6f066565088f1fa1e798a8609d92327913429c78709aff952853d240e2f305"
+    },
+    "live_read_only_GitHub_GET": {
+      "scope": "read-only GitHub GET observations only",
+      "repository": "AlienCodes/literate-enigma",
+      "compare": {
+        "status": "ahead",
+        "ahead_by": 3,
+        "behind_by": 0,
+        "total_commits": 3
+      },
+      "actual_parent_chain": [
+        {
+          "commit": "4667895d604840a7afcbac481c8162db7aa4e31f",
+          "parents": [
+            "a4f8c2f497227940e0273e0a75b5caa723a049bd"
+          ]
+        },
+        {
+          "commit": "2381fe93a61bff6b8a5e38bcc6cd8fefc5086ae0",
+          "parents": [
+            "4667895d604840a7afcbac481c8162db7aa4e31f"
+          ]
+        },
+        {
+          "commit": "689f2b9a1311232a6de391e574de9d42c81287d1",
+          "parents": [
+            "2381fe93a61bff6b8a5e38bcc6cd8fefc5086ae0"
+          ]
+        }
+      ],
+      "compare_changed_paths": [
+        ".github/approved-asset-transport/input.json",
+        ".github/approved-asset-transport/transport.py",
+        ".github/workflows/transport-approved-public-assets.yml"
+      ],
+      "run": {
+        "id": 43562380192,
+        "head_sha": "689f2b9a1311232a6de391e574de9d42c81287d1",
+        "head_branch": "codex/passed4k-records-43554669373-53",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      "job": {
+        "id": 132348683832,
+        "run_id": 43562380192,
+        "head_sha": "689f2b9a1311232a6de391e574de9d42c81287d1",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      "observed_refs": {
+        "master": "6355a02864ebae616b693200d9d26f74f5da80e9",
+        "02": "b6e8118cb72d6a7fede5fa973c149fb3d4c0bf31",
+        "49": "3a6754a4ceea940883acea49fc9fea0222ea4d7c"
+      },
+      "old_record_prefix": "视频修订定稿/归档记录/2026-11-14-已验收1篇-native-inline-run43554669373-原46",
+      "prefix_tree_chain": [
+        {
+          "path_component": "视频修订定稿",
+          "tree_sha": "b316272b009d2f7411f3231f5c9b94eee31e0355"
+        },
+        {
+          "path_component": "归档记录",
+          "tree_sha": "e1a91f2a3acc889619e1265aa5a10f7b360bea39"
+        },
+        {
+          "path_component": "2026-11-14-已验收1篇-native-inline-run43554669373-原46",
+          "tree_sha": "25cf175c31b6a1c5a35af4c0cfe3d203f4784359"
+        }
+      ]
+    },
+    "ancestry_and_original_record_prefix_tree_exactly_retained": true
+  },
+  "diagnostics_public_snapshot": {
+    "manifest_binding": {
+      "relative_path": "readonly-audio48-67-68-70-safe-records-20261114/safe-public-evidence-manifest.json",
+      "bytes": 36546,
+      "sha256": "8d14399d45c3dc23f7dbd11243de41cb07ce639a9dd1e15ca611aa1ce24f912e"
+    },
+    "listed_file_count": 111,
+    "listed_total_bytes": 4112293,
+    "all_listed_bytes_and_SHA256_exact": true,
+    "extensions": {
+      ".json": 70,
+      ".log": 15,
+      ".md": 12,
+      ".py": 14
+    },
+    "only_unlisted_files": [
+      "diagnostics-only-not-acceptance.json",
+      "safe-public-evidence-manifest.json"
+    ],
+    "diagnostic_only_record_binding": {
+      "relative_path": "readonly-audio48-67-68-70-safe-records-20261114/diagnostics-only-not-acceptance.json",
+      "bytes": 561,
+      "sha256": "284d93ccbc58d68df0a56b4d878534d738c7bce6ec5ca520b2d19e666414ee4b"
+    },
+    "historical_failure_scope_sources": [
+      "48",
+      "67",
+      "68",
+      "70"
+    ],
+    "historical_run_id": 43543967031,
+    "record_does_not_claim_source_changes_or_new_media_acceptance": true,
+    "video_pass_count_increment": 0,
+    "no_media_or_private_binary_files_present": true
+  },
+  "review_release_public_small_snapshot": {
+    "manifest_binding": {
+      "relative_path": "first50-review-public-records-20261114/observed-public-small-record-inventory.json",
+      "bytes": 6897,
+      "sha256": "8ec82629d9f8ec91435ad7fd315a2911c2154a955c76c67bb9ede2c014e1b68a"
+    },
+    "listed_file_count": 26,
+    "listed_total_bytes": 149072,
+    "all_listed_bytes_and_SHA256_exact": true,
+    "extensions": {
+      ".json": 11,
+      ".log": 8,
+      ".py": 5,
+      ".yml": 1,
+      ".zip": 1
+    },
+    "only_unlisted_files": [
+      "observed-public-small-record-inventory.json"
+    ],
+    "verification_ZIP_binding": {
+      "relative_path": "first50-review-public-records-20261114/first50-review-native-verification.zip",
+      "bytes": 3151,
+      "sha256": "b2a55aec6471683f2d02f042400d8c2fb7f9f2b192d464ca10864c9b814a239d"
+    },
+    "verification_ZIP_CRC_valid": true,
+    "verification_ZIP_members": [
+      "NATIVE-RELEASE-VERIFICATION.json",
+      "NATIVE-DOWNLOAD-IDENTITY.json"
+    ],
+    "actual_review_video_count": 40,
+    "whole_PDF_pages": 475,
+    "pending_of_requested_first50": 10,
+    "not_claiming50_or_full70_completion": true,
+    "no_1GB_mediaZIP_PDF_or_MP4_duplicate_present": true,
+    "actual_native_receipt_binding": {
+      "relative_path": "first50-review-public-records-20261114/NATIVE-RELEASE-VERIFICATION.json",
+      "bytes": 1626,
+      "sha256": "ac3f09f5250801bbb17f399c85055f9225c3af3903bb235524a11f8349be7ba8"
+    },
+    "manifest_binding_for_release": {
+      "relative_path": "first50-review-public-records-20261114/MANIFEST.json",
+      "bytes": 27727,
+      "sha256": "5a3f21ff78b136c41127aa9ec9d0e6a33f3a8562783d6b3348a7fbc9dd296c26"
+    }
+  },
+  "public_text_content_scan": {
+    "scope": "All non-ZIP text in the three snapshots; explicit GitHub PAT, private key and signed-storage-download token patterns. Workflow github.token placeholder is a runtime reference, no token value.",
+    "literal_secret_patterns_observed": false,
+    "limitation": "Pattern scan and structural artifact inspection; not a general secret-detection guarantee."
+  }
+}

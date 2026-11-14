@@ -1,0 +1,115 @@
+{
+  "status": "passed_actual_native_case_consistent_producer_dispatch",
+  "original_maker_SHA256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "candidate_maker_SHA256": "6945e9bee6db143029bace6c04b4f4df7110c41ba647eee7236b0d0e5ed75203",
+  "all_other_AST_exact": true,
+  "only_AST_keyword_change_re_I_to_existing_wf": true,
+  "real_native_model_namespace_and_tokenizer": true,
+  "four_actual_callback_traces": [
+    {
+      "case": "ordinary-next",
+      "source_text": "The next day the widower left for the Eastern Front.",
+      "original_actual_dispatch": {
+        "input_text": "ðə nˈɛkst dˈeɪ ðə wˈɪdoʊɚ lˈɛft fɚðɪ ˈiːstɚn fɹˈʌnt.",
+        "input_text_SHA256": "6e4084322330c3cc6e3ec6ed92e0ae686ef41fb93667576e97136bc81583b853",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {
+          "is_phonemes": true
+        }
+      },
+      "candidate_dispatch": {
+        "input_text": "The next day the widower left for the Eastern Front.",
+        "input_text_SHA256": "2f19624f31e37e5598fe1ff0c0720242b0c9997b8a1399b9204279926f889511",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {}
+      }
+    },
+    {
+      "case": "correct-origin-Haber",
+      "source_text": "Of Jewish origin, Haber left Germany an outcast after Hitler's regime seized power, dying in Basel in nineteen thirty-four.",
+      "original_actual_dispatch": {
+        "input_text": "ʌv dʒˈuːɪʃ ˈɔːɹɪdʒɪn, hˈɑːbɚ lˈɛft dʒˈɜːməni ɐn ˈaʊtkæst ˈæftɚ hˈɪtlɚz ɹeɪʒˈiːm sˈiːzd pˈaʊɚ, dˈaɪɪŋ ɪn bˈɑːzəl ɪn nˈaɪntiːn θˈɜːɾifˈɔːɹ.",
+        "input_text_SHA256": "6b9bb1a229fbdbd8150ab8745b7e82d63e76fea334a2c6814f47ad9567e4d4a5",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {
+          "is_phonemes": true
+        }
+      },
+      "candidate_dispatch": {
+        "input_text": "ʌv dʒˈuːɪʃ ˈɔːɹɪdʒɪn, hˈɑːbɚ lˈɛft dʒˈɜːməni ɐn ˈaʊtkæst ˈæftɚ hˈɪtlɚz ɹeɪʒˈiːm sˈiːzd pˈaʊɚ, dˈaɪɪŋ ɪn bˈɑːzəl ɪn nˈaɪntiːn θˈɜːɾifˈɔːɹ.",
+        "input_text_SHA256": "6b9bb1a229fbdbd8150ab8745b7e82d63e76fea334a2c6814f47ad9567e4d4a5",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {
+          "is_phonemes": true
+        }
+      }
+    },
+    {
+      "case": "literal-company-NeXT",
+      "source_text": "He founded NeXT.",
+      "original_actual_dispatch": {
+        "input_text": "hiː fˈaʊndᵻd nˈɛkst.",
+        "input_text_SHA256": "27327eb32df1f30cf8d0812ccb97af1b45cb8c82847893b5e058999d2271d073",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {
+          "is_phonemes": true
+        }
+      },
+      "candidate_dispatch": {
+        "input_text": "hiː fˈaʊndᵻd nˈɛkst.",
+        "input_text_SHA256": "27327eb32df1f30cf8d0812ccb97af1b45cb8c82847893b5e058999d2271d073",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {
+          "is_phonemes": true
+        }
+      }
+    },
+    {
+      "case": "BASF-possessive",
+      "source_text": "BASF's Carl Bosch scaled the method up, and from nineteen thirteen a gigantic plant at Oppau mass-produced ammonia.",
+      "original_actual_dispatch": {
+        "input_text": "bˌiːˌeɪˌɛsˈɛfs kˈɑːɹl bˈɑːʃ skˈeɪld ðə mˈɛθəd ˈʌp, ænd fɹʌm nˈaɪntiːn θˈɜːtiːn ɐ dʒaɪɡˈæntɪk plˈænt æɾ ˈɑːpaʊ mˈæspɹədˈuːst əmˈoʊniə.",
+        "input_text_SHA256": "b798a65265d4ff44ba3561cc46c27ebb8b0970feb5b8f48cc404b0cb8165cde2",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {
+          "is_phonemes": true
+        }
+      },
+      "candidate_dispatch": {
+        "input_text": "bˌiːˌeɪˌɛsˈɛfs kˈɑːɹl bˈɑːʃ skˈeɪld ðə mˈɛθəd ˈʌp, ænd fɹʌm nˈaɪntiːn θˈɜːtiːn ɐ dʒaɪɡˈæntɪk plˈænt æɾ ˈɑːpaʊ mˈæspɹədˈuːst əmˈoʊniə.",
+        "input_text_SHA256": "b798a65265d4ff44ba3561cc46c27ebb8b0970feb5b8f48cc404b0cb8165cde2",
+        "speed": 0.95,
+        "lang": "en-us",
+        "kw": {
+          "is_phonemes": true
+        }
+      }
+    }
+  ],
+  "ordinary_next_restored_to_original_text_input": true,
+  "proper_NeXT_and_correct_Origin_Haber_and_BASF_inputs_exact": true,
+  "prior_bug_actual_negative_control_rejected_by_new_requirement": true,
+  "all_dictionary_files_byte_exact": {
+    "发音词典/LICENSE_misaki": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "发音词典/.写入.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "发音词典/读音改正.json": "5f558c61f8ffb99009a89989afcc07a9ce168b2b70a6c9377289040d14ec402b",
+    "发音词典/us_gold.json": "dc414872a49a28ae6c141463d502fd945f3b2fde040484fdc47d00cc4612686f",
+    "发音词典/按语境读音.json": "4d8905dc1a87f97b707270f03f41ea0fdf2b207ca218ed74608cdb134e3dc8e3",
+    "发音词典/cmudict.dict": "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22",
+    "发音词典/已核实读音.json": "362cac13835ef16bd2a84fa4aa066ffbbf87d20452547770a3a7ca72171daa56",
+    "发音词典/写入.py": "cf0cbc48b2e03eb382b54fe7b3e6f93efea96c8da58243024a2a4e70b2b704ef",
+    "发音词典/多音词核对.json": "1e15c4deb26d9979d538cfa160dc14286a0ff67cbf6b55eefdb8dc809195f00b",
+    "发音词典/us_silver.json": "de8f67be911bb6c659187b4a65fd966b6a30e56350e0f790d763210b053ac475",
+    "发音词典/LICENSE_cmudict": "bd4ce8e44170a5f9f481310ca85c51de3c4f851a65e679b40e603b143bd3542a"
+  },
+  "private_PCM_exported": false,
+  "audio_inference_in_this_dispatch_test": false,
+  "article_quality_accepted": false
+}

@@ -1,0 +1,32 @@
+name: 发布用户先行审核的40篇与完整PDF
+on:
+  push:
+    branches: [codex/first50-review-v1]
+    paths: [.github/first50-review/**, .github/workflows/publish-first50-review.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish-review:
+    if: github.repository == 'alienalgorithm/postgraduate-vocabulary'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 下载精确新成片与整本PDF，核验压缩包并发布审核版
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -u .github/first50-review/native_review.py
+      - name: 保留真实发布与成员核验记录
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: first50-review-verification-${{ github.run_id }}
+          path: |
+            review-output/NATIVE-RELEASE-VERIFICATION.json
+            review-output/NATIVE-DOWNLOAD-IDENTITY.json
+          if-no-files-found: warn
+          retention-days: 30

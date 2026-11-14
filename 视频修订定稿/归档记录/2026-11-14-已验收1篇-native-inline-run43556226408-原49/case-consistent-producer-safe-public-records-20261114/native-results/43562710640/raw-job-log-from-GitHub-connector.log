@@ -1,0 +1,1133 @@
+﻿2026-11-14T05:41:08.1934621Z Current runner version: '2.338.2'
+2026-11-14T05:41:08.1962026Z ##[group]Runner Image Provisioner
+2026-11-14T05:41:08.1962974Z Hosted Compute Agent
+2026-11-14T05:41:08.1963591Z Version: 20261103.629
+2026-11-14T05:41:08.1964240Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T05:41:08.1965226Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T05:41:08.1965957Z Worker ID: {471ca3e5-8d4e-4e28-a3fe-8689635a7a93}
+2026-11-14T05:41:08.1966705Z Region: westus2
+2026-11-14T05:41:08.1967268Z Cloud: Azure
+2026-11-14T05:41:08.1967790Z ##[endgroup]
+2026-11-14T05:41:08.1969319Z ##[group]Operating System
+2026-11-14T05:41:08.1970015Z Ubuntu
+2026-11-14T05:41:08.1970518Z 26.04.1
+2026-11-14T05:41:08.1971113Z LTS
+2026-11-14T05:41:08.1971657Z ##[endgroup]
+2026-11-14T05:41:08.1972240Z ##[group]Runner Image
+2026-11-14T05:41:08.1972923Z Image: ubuntu-26.04
+2026-11-14T05:41:08.1973462Z Version: 20261111.196.1
+2026-11-14T05:41:08.1974766Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261111.196/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-14T05:41:08.1976585Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261111.196
+2026-11-14T05:41:08.1977607Z ##[endgroup]
+2026-11-14T05:41:08.1978764Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T05:41:08.1980955Z Contents: read
+2026-11-14T05:41:08.1981552Z Metadata: read
+2026-11-14T05:41:08.1982211Z ##[endgroup]
+2026-11-14T05:41:08.1984381Z Secret source: Actions
+2026-11-14T05:41:08.1985822Z Cache mode: write
+2026-11-14T05:41:08.1986617Z Prepare workflow directory
+2026-11-14T05:41:08.2368802Z Prepare all required actions
+2026-11-14T05:41:08.2431475Z Getting action download info
+2026-11-14T05:41:08.5893592Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-14T05:41:08.7047687Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-14T05:41:08.7624167Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2026-11-14T05:41:08.8291161Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-14T05:41:09.0428772Z Complete job name: certify (case-consistent-producer)
+2026-11-14T05:41:09.1330634Z ##[group]Run actions/checkout@v4
+2026-11-14T05:41:09.1331922Z with:
+2026-11-14T05:41:09.1332510Z   sparse-checkout: .github/producer-dispatch-certification
+2026-11-14T05:41:09.1333227Z   repository: AlienCodes/literate-enigma
+2026-11-14T05:41:09.1337209Z   token: ***
+2026-11-14T05:41:09.1337648Z   ssh-strict: true
+2026-11-14T05:41:09.1338076Z   ssh-user: git
+2026-11-14T05:41:09.1338512Z   persist-credentials: true
+2026-11-14T05:41:09.1338998Z   clean: true
+2026-11-14T05:41:09.1339436Z   sparse-checkout-cone-mode: true
+2026-11-14T05:41:09.1339952Z   fetch-depth: 1
+2026-11-14T05:41:09.1340386Z   fetch-tags: false
+2026-11-14T05:41:09.1340828Z   show-progress: true
+2026-11-14T05:41:09.1341272Z   lfs: false
+2026-11-14T05:41:09.1341685Z   submodules: false
+2026-11-14T05:41:09.1342157Z   set-safe-directory: true
+2026-11-14T05:41:09.1342662Z   allow-unsafe-pr-checkout: false
+2026-11-14T05:41:09.1343492Z ##[endgroup]
+2026-11-14T05:41:09.4486716Z Syncing repository: AlienCodes/literate-enigma
+2026-11-14T05:41:09.4488589Z ##[group]Getting Git version info
+2026-11-14T05:41:09.4489662Z Working directory is '/home/runner/work/literate-enigma/literate-enigma'
+2026-11-14T05:41:09.4490774Z [command]/usr/bin/git version
+2026-11-14T05:41:09.4520035Z git version 2.56.1
+2026-11-14T05:41:09.4550639Z ##[endgroup]
+2026-11-14T05:41:09.4560573Z Temporarily overriding HOME='/home/runner/work/_temp/f82e58fe-fb67-48f1-b7ff-0d12f5b9435a' before making global git config changes
+2026-11-14T05:41:09.4562878Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T05:41:09.4564884Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/literate-enigma/literate-enigma
+2026-11-14T05:41:09.4629785Z Deleting the contents of '/home/runner/work/literate-enigma/literate-enigma'
+2026-11-14T05:41:09.4633153Z ##[group]Initializing the repository
+2026-11-14T05:41:09.4638709Z [command]/usr/bin/git init /home/runner/work/literate-enigma/literate-enigma
+2026-11-14T05:41:09.4777246Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T05:41:09.4778514Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T05:41:09.4779462Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T05:41:09.4780221Z hint: call:
+2026-11-14T05:41:09.4780619Z hint:
+2026-11-14T05:41:09.4781131Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T05:41:09.4781740Z hint:
+2026-11-14T05:41:09.4782307Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T05:41:09.4783222Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T05:41:09.4783949Z hint:
+2026-11-14T05:41:09.4784354Z hint: 	git branch -m <name>
+2026-11-14T05:41:09.4784833Z hint:
+2026-11-14T05:41:09.4785839Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T05:41:09.4793067Z Initialized empty Git repository in /home/runner/work/literate-enigma/literate-enigma/.git/
+2026-11-14T05:41:09.4805373Z [command]/usr/bin/git remote add origin https://github.com/AlienCodes/literate-enigma
+2026-11-14T05:41:09.4860971Z ##[endgroup]
+2026-11-14T05:41:09.4862189Z ##[group]Disabling automatic garbage collection
+2026-11-14T05:41:09.4864873Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T05:41:09.4901165Z ##[endgroup]
+2026-11-14T05:41:09.4902280Z ##[group]Setting up auth
+2026-11-14T05:41:09.4908949Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T05:41:09.4944131Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T05:41:09.5435764Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T05:41:09.5476119Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T05:41:09.5762284Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T05:41:09.5799338Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T05:41:09.6082756Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T05:41:09.6129581Z ##[endgroup]
+2026-11-14T05:41:09.6130806Z ##[group]Fetching the repository
+2026-11-14T05:41:09.6143051Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +be667c94aeaac75d9447004f28c3a99ae99e932c:refs/remotes/origin/codex/finish-05-and-summaries-20261112
+2026-11-14T05:41:09.9525670Z From https://github.com/AlienCodes/literate-enigma
+2026-11-14T05:41:09.9528119Z  * [new ref]         be667c94aeaac75d9447004f28c3a99ae99e932c -> origin/codex/finish-05-and-summaries-20261112
+2026-11-14T05:41:09.9533873Z ##[endgroup]
+2026-11-14T05:41:09.9536269Z ##[group]Determining the checkout info
+2026-11-14T05:41:09.9538707Z ##[endgroup]
+2026-11-14T05:41:09.9540765Z ##[group]Setting up sparse checkout
+2026-11-14T05:41:09.9543223Z [command]/usr/bin/git sparse-checkout set .github/producer-dispatch-certification
+2026-11-14T05:41:09.9603936Z ##[endgroup]
+2026-11-14T05:41:09.9605892Z ##[group]Checking out the ref
+2026-11-14T05:41:09.9610172Z [command]/usr/bin/git checkout --progress --force -B codex/finish-05-and-summaries-20261112 refs/remotes/origin/codex/finish-05-and-summaries-20261112
+2026-11-14T05:41:10.3783098Z Switched to a new branch 'codex/finish-05-and-summaries-20261112'
+2026-11-14T05:41:10.3789363Z branch 'codex/finish-05-and-summaries-20261112' set up to track 'origin/codex/finish-05-and-summaries-20261112'.
+2026-11-14T05:41:10.3802011Z ##[endgroup]
+2026-11-14T05:41:10.3871184Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T05:41:10.3896035Z be667c94aeaac75d9447004f28c3a99ae99e932c
+2026-11-14T05:41:10.4167597Z ##[group]Run actions/checkout@v4
+2026-11-14T05:41:10.4167948Z with:
+2026-11-14T05:41:10.4168269Z   repository: alienalgorithm/postgraduate-vocabulary
+2026-11-14T05:41:10.4168677Z   ref: fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
+2026-11-14T05:41:10.4169026Z   path: official-main
+2026-11-14T05:41:10.4169291Z   filter: blob:none
+2026-11-14T05:41:10.4169566Z   sparse-checkout-cone-mode: false
+2026-11-14T05:41:10.4170213Z   sparse-checkout: /视频/工具/
+/视频/脚本/
+/视频/制作记录/
+/视频/音频核对/
+/视频/对照文本/
+/视频/资源/字体/
+/视频/配音缓存/*.json
+/最终版4K视频/27 - *
+/最终版4K视频/16 - *
+/新版定稿/
+/CLAUDE.md
+/视频/*.md
+
+2026-11-14T05:41:10.4173042Z   token: ***
+2026-11-14T05:41:10.4173298Z   ssh-strict: true
+2026-11-14T05:41:10.4173580Z   ssh-user: git
+2026-11-14T05:41:10.4173849Z   persist-credentials: true
+2026-11-14T05:41:10.4174132Z   clean: true
+2026-11-14T05:41:10.4174383Z   fetch-depth: 1
+2026-11-14T05:41:10.4174643Z   fetch-tags: false
+2026-11-14T05:41:10.4175076Z   show-progress: true
+2026-11-14T05:41:10.4175345Z   lfs: false
+2026-11-14T05:41:10.4175627Z   submodules: false
+2026-11-14T05:41:10.4175894Z   set-safe-directory: true
+2026-11-14T05:41:10.4176197Z   allow-unsafe-pr-checkout: false
+2026-11-14T05:41:10.4176504Z ##[endgroup]
+2026-11-14T05:41:10.5032310Z Syncing repository: alienalgorithm/postgraduate-vocabulary
+2026-11-14T05:41:10.5033684Z ##[group]Getting Git version info
+2026-11-14T05:41:10.5034701Z Working directory is '/home/runner/work/literate-enigma/literate-enigma/official-main'
+2026-11-14T05:41:10.5059279Z [command]/usr/bin/git version
+2026-11-14T05:41:10.5103057Z git version 2.56.1
+2026-11-14T05:41:10.5124362Z ##[endgroup]
+2026-11-14T05:41:10.5138720Z Temporarily overriding HOME='/home/runner/work/_temp/ee0aa8f8-6f0c-4cf4-91d3-5bca36c371e6' before making global git config changes
+2026-11-14T05:41:10.5140383Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T05:41:10.5143046Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/literate-enigma/literate-enigma/official-main
+2026-11-14T05:41:10.5179814Z ##[group]Initializing the repository
+2026-11-14T05:41:10.5185869Z [command]/usr/bin/git init /home/runner/work/literate-enigma/literate-enigma/official-main
+2026-11-14T05:41:10.5237944Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T05:41:10.5239387Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T05:41:10.5255995Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T05:41:10.5256904Z hint: call:
+2026-11-14T05:41:10.5257390Z hint:
+2026-11-14T05:41:10.5258001Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T05:41:10.5258971Z hint:
+2026-11-14T05:41:10.5260253Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T05:41:10.5261897Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T05:41:10.5263062Z hint:
+2026-11-14T05:41:10.5263743Z hint: 	git branch -m <name>
+2026-11-14T05:41:10.5264449Z hint:
+2026-11-14T05:41:10.5265553Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T05:41:10.5267297Z Initialized empty Git repository in /home/runner/work/literate-enigma/literate-enigma/official-main/.git/
+2026-11-14T05:41:10.5270256Z [command]/usr/bin/git remote add origin https://github.com/alienalgorithm/postgraduate-vocabulary
+2026-11-14T05:41:10.5292952Z ##[endgroup]
+2026-11-14T05:41:10.5293841Z ##[group]Disabling automatic garbage collection
+2026-11-14T05:41:10.5297193Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T05:41:10.5334847Z ##[endgroup]
+2026-11-14T05:41:10.5336079Z ##[group]Setting up auth
+2026-11-14T05:41:10.5342745Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T05:41:10.5378250Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T05:41:10.5680123Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T05:41:10.5719630Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T05:41:10.6015496Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T05:41:10.6051830Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T05:41:10.6321953Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T05:41:10.6362548Z ##[endgroup]
+2026-11-14T05:41:10.6363130Z ##[group]Fetching the repository
+2026-11-14T05:41:10.6372261Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
+2026-11-14T05:41:12.2348661Z From https://github.com/alienalgorithm/postgraduate-vocabulary
+2026-11-14T05:41:12.2349310Z  * branch            fc0b56af9a0ac0e97015548b756d4e51d66dc2ea -> FETCH_HEAD
+2026-11-14T05:41:12.2360948Z ##[endgroup]
+2026-11-14T05:41:12.2362108Z ##[group]Determining the checkout info
+2026-11-14T05:41:12.2363086Z ##[endgroup]
+2026-11-14T05:41:12.2363855Z ##[group]Setting up sparse checkout
+2026-11-14T05:41:12.2364625Z [command]/usr/bin/git config core.sparseCheckout true
+2026-11-14T05:41:12.2412929Z [command]/usr/bin/git rev-parse --git-path info/sparse-checkout
+2026-11-14T05:41:12.2427037Z .git/info/sparse-checkout
+2026-11-14T05:41:12.2436157Z ##[endgroup]
+2026-11-14T05:41:12.2436974Z ##[group]Checking out the ref
+2026-11-14T05:41:12.2441947Z [command]/usr/bin/git checkout --progress --force fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
+2026-11-14T05:41:21.7159598Z Updating files:   0% (1/3306)
+2026-11-14T05:41:21.7201668Z Updating files:   1% (34/3306)
+2026-11-14T05:41:21.7223921Z Updating files:   2% (67/3306)
+2026-11-14T05:41:21.7243544Z Updating files:   3% (100/3306)
+2026-11-14T05:41:21.7991013Z Updating files:   4% (133/3306)
+2026-11-14T05:41:21.8036028Z Updating files:   5% (166/3306)
+2026-11-14T05:41:21.8064689Z Updating files:   6% (199/3306)
+2026-11-14T05:41:21.8125227Z Updating files:   7% (232/3306)
+2026-11-14T05:41:21.8175690Z Updating files:   8% (265/3306)
+2026-11-14T05:41:21.8211086Z Updating files:   9% (298/3306)
+2026-11-14T05:41:21.8241297Z Updating files:  10% (331/3306)
+2026-11-14T05:41:21.8488702Z Updating files:  11% (364/3306)
+2026-11-14T05:41:21.8622329Z Updating files:  12% (397/3306)
+2026-11-14T05:41:21.8688068Z Updating files:  13% (430/3306)
+2026-11-14T05:41:21.8701076Z Updating files:  14% (463/3306)
+2026-11-14T05:41:21.9455956Z Updating files:  15% (496/3306)
+2026-11-14T05:41:21.9480528Z Updating files:  16% (529/3306)
+2026-11-14T05:41:21.9556538Z Updating files:  17% (563/3306)
+2026-11-14T05:41:21.9896713Z Updating files:  18% (596/3306)
+2026-11-14T05:41:21.9960073Z Updating files:  19% (629/3306)
+2026-11-14T05:41:22.0052228Z Updating files:  20% (662/3306)
+2026-11-14T05:41:22.0132445Z Updating files:  21% (695/3306)
+2026-11-14T05:41:22.0159466Z Updating files:  22% (728/3306)
+2026-11-14T05:41:22.0179774Z Updating files:  23% (761/3306)
+2026-11-14T05:41:22.0194502Z Updating files:  24% (794/3306)
+2026-11-14T05:41:22.0206149Z Updating files:  25% (827/3306)
+2026-11-14T05:41:22.0219886Z Updating files:  26% (860/3306)
+2026-11-14T05:41:22.0232851Z Updating files:  27% (893/3306)
+2026-11-14T05:41:22.0244437Z Updating files:  28% (926/3306)
+2026-11-14T05:41:22.0257096Z Updating files:  29% (959/3306)
+2026-11-14T05:41:22.0269158Z Updating files:  30% (992/3306)
+2026-11-14T05:41:22.0283705Z Updating files:  31% (1025/3306)
+2026-11-14T05:41:22.0295498Z Updating files:  32% (1058/3306)
+2026-11-14T05:41:22.0338088Z Updating files:  33% (1091/3306)
+2026-11-14T05:41:22.0360646Z Updating files:  34% (1125/3306)
+2026-11-14T05:41:22.0385797Z Updating files:  35% (1158/3306)
+2026-11-14T05:41:22.0483922Z Updating files:  36% (1191/3306)
+2026-11-14T05:41:22.0830082Z Updating files:  37% (1224/3306)
+2026-11-14T05:41:22.1165325Z Updating files:  38% (1257/3306)
+2026-11-14T05:41:22.2937957Z Updating files:  39% (1290/3306)
+2026-11-14T05:41:22.2989124Z Updating files:  40% (1323/3306)
+2026-11-14T05:41:22.3052194Z Updating files:  41% (1356/3306)
+2026-11-14T05:41:22.3103258Z Updating files:  42% (1389/3306)
+2026-11-14T05:41:22.3485334Z Updating files:  43% (1422/3306)
+2026-11-14T05:41:22.3508750Z Updating files:  44% (1455/3306)
+2026-11-14T05:41:22.3563079Z Updating files:  45% (1488/3306)
+2026-11-14T05:41:22.3635937Z Updating files:  45% (1501/3306)
+2026-11-14T05:41:22.3735584Z Updating files:  46% (1521/3306)
+2026-11-14T05:41:22.3806059Z Updating files:  47% (1554/3306)
+2026-11-14T05:41:22.3859838Z Updating files:  48% (1587/3306)
+2026-11-14T05:41:22.3918870Z Updating files:  49% (1620/3306)
+2026-11-14T05:41:22.3958336Z Updating files:  50% (1653/3306)
+2026-11-14T05:41:22.5623179Z Updating files:  51% (1687/3306)
+2026-11-14T05:41:22.5632335Z Updating files:  52% (1720/3306)
+2026-11-14T05:41:22.5643823Z Updating files:  53% (1753/3306)
+2026-11-14T05:41:22.5655087Z Updating files:  54% (1786/3306)
+2026-11-14T05:41:22.5667004Z Updating files:  55% (1819/3306)
+2026-11-14T05:41:22.5678633Z Updating files:  56% (1852/3306)
+2026-11-14T05:41:22.5689733Z Updating files:  57% (1885/3306)
+2026-11-14T05:41:22.5701107Z Updating files:  58% (1918/3306)
+2026-11-14T05:41:22.5713007Z Updating files:  59% (1951/3306)
+2026-11-14T05:41:22.5724430Z Updating files:  60% (1984/3306)
+2026-11-14T05:41:22.5735658Z Updating files:  61% (2017/3306)
+2026-11-14T05:41:22.5747178Z Updating files:  62% (2050/3306)
+2026-11-14T05:41:22.5758403Z Updating files:  63% (2083/3306)
+2026-11-14T05:41:22.5770270Z Updating files:  64% (2116/3306)
+2026-11-14T05:41:22.5782036Z Updating files:  65% (2149/3306)
+2026-11-14T05:41:22.5794471Z Updating files:  66% (2182/3306)
+2026-11-14T05:41:22.5805690Z Updating files:  67% (2216/3306)
+2026-11-14T05:41:22.5817312Z Updating files:  68% (2249/3306)
+2026-11-14T05:41:22.5829266Z Updating files:  69% (2282/3306)
+2026-11-14T05:41:22.5840315Z Updating files:  70% (2315/3306)
+2026-11-14T05:41:22.5851544Z Updating files:  71% (2348/3306)
+2026-11-14T05:41:22.5863225Z Updating files:  72% (2381/3306)
+2026-11-14T05:41:22.5874336Z Updating files:  73% (2414/3306)
+2026-11-14T05:41:22.5886157Z Updating files:  74% (2447/3306)
+2026-11-14T05:41:22.5897297Z Updating files:  75% (2480/3306)
+2026-11-14T05:41:22.5908709Z Updating files:  76% (2513/3306)
+2026-11-14T05:41:22.5920232Z Updating files:  77% (2546/3306)
+2026-11-14T05:41:22.5932248Z Updating files:  78% (2579/3306)
+2026-11-14T05:41:22.5943311Z Updating files:  79% (2612/3306)
+2026-11-14T05:41:22.5955236Z Updating files:  80% (2645/3306)
+2026-11-14T05:41:22.5966665Z Updating files:  81% (2678/3306)
+2026-11-14T05:41:22.5978751Z Updating files:  82% (2711/3306)
+2026-11-14T05:41:22.5990217Z Updating files:  83% (2744/3306)
+2026-11-14T05:41:22.6001502Z Updating files:  84% (2778/3306)
+2026-11-14T05:41:22.6013019Z Updating files:  85% (2811/3306)
+2026-11-14T05:41:22.6024477Z Updating files:  86% (2844/3306)
+2026-11-14T05:41:22.6036249Z Updating files:  87% (2877/3306)
+2026-11-14T05:41:22.6047864Z Updating files:  88% (2910/3306)
+2026-11-14T05:41:22.6059085Z Updating files:  89% (2943/3306)
+2026-11-14T05:41:22.6070231Z Updating files:  90% (2976/3306)
+2026-11-14T05:41:22.6081881Z Updating files:  91% (3009/3306)
+2026-11-14T05:41:22.6101769Z Updating files:  92% (3042/3306)
+2026-11-14T05:41:22.6128277Z Updating files:  93% (3075/3306)
+2026-11-14T05:41:22.6153926Z Updating files:  94% (3108/3306)
+2026-11-14T05:41:22.6166837Z Updating files:  95% (3141/3306)
+2026-11-14T05:41:22.6375764Z Updating files:  96% (3174/3306)
+2026-11-14T05:41:22.8814218Z Updating files:  97% (3207/3306)
+2026-11-14T05:41:22.9292179Z Updating files:  98% (3240/3306)
+2026-11-14T05:41:22.9308061Z Updating files:  99% (3273/3306)
+2026-11-14T05:41:22.9308838Z Updating files: 100% (3306/3306)
+2026-11-14T05:41:22.9309299Z Updating files: 100% (3306/3306), done.
+2026-11-14T05:41:22.9469903Z Note: switching to 'fc0b56af9a0ac0e97015548b756d4e51d66dc2ea'.
+2026-11-14T05:41:22.9470564Z 
+2026-11-14T05:41:22.9470935Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T05:41:22.9471738Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T05:41:22.9472515Z state without impacting any branches by switching back to a branch.
+2026-11-14T05:41:22.9472977Z 
+2026-11-14T05:41:22.9473264Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T05:41:22.9474032Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T05:41:22.9474498Z 
+2026-11-14T05:41:22.9474675Z   git switch -c <new-branch-name>
+2026-11-14T05:41:22.9475178Z 
+2026-11-14T05:41:22.9475350Z Or undo this operation with:
+2026-11-14T05:41:22.9475619Z 
+2026-11-14T05:41:22.9475774Z   git switch -
+2026-11-14T05:41:22.9475958Z 
+2026-11-14T05:41:22.9476315Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T05:41:22.9476857Z 
+2026-11-14T05:41:22.9477713Z HEAD is now at fc0b56a 记录全部修订及最新印刷书、序言封底、书序4K和Release交付要求 [skip ci]
+2026-11-14T05:41:22.9524111Z ##[endgroup]
+2026-11-14T05:41:22.9568160Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T05:41:22.9595466Z fc0b56af9a0ac0e97015548b756d4e51d66dc2ea
+2026-11-14T05:41:22.9810563Z ##[group]Run actions/checkout@v4
+2026-11-14T05:41:22.9810847Z with:
+2026-11-14T05:41:22.9811103Z   repository: alienalgorithm/postgraduate-vocabulary
+2026-11-14T05:41:22.9811458Z   ref: 64621068034f8b6e09836a6d97210a0e9b2f1ed6
+2026-11-14T05:41:22.9811792Z   path: ending-reference-resources
+2026-11-14T05:41:22.9812046Z   filter: blob:none
+2026-11-14T05:41:22.9835262Z   sparse-checkout-cone-mode: false
+2026-11-14T05:41:22.9842834Z   sparse-checkout: /视频/配音缓存/5f93aa786be55c461e644507810b77990fa6e4da.pkl
+/视频/配音缓存/37112da59e215ce16f6352f7f133828c39d090a8.pkl
+/视频/配音缓存/d233608ddca4ac20f4479b70e048ff0cbf2618e1.pkl
+/视频/配音缓存/f001d896b4f92b9577f10482c220ac067fbb426b.pkl
+/视频/配音缓存/d03a2c1f97e50aec20a3aef41b45050441140926.pkl
+/视频/配音缓存/bd49172f93d3db7f0ee2b7225fd51c986f3fd53d.pkl
+/视频/配音缓存/fab17ab92ae466473aff402826941bf7dd1ac8e9.pkl
+/视频/配音缓存/1eadf08a7f82e7955c23a376434579b02fcfbe74.pkl
+/视频/配音缓存/571a8bf3ca794cc237ae6677290bf279717abe8d.pkl
+/视频/配音缓存/68fc2ea3fdf92dcfefee685677b827aebe2a8f21.pkl
+/视频/配音缓存/f9f5c239155dfd09b1ee68670e54d7da8d5b6e08.pkl
+/视频/配音缓存/305074278b22df853d763505888f35795fc1c815.pkl
+/视频/配音缓存/c011c66bbd319b36338106f6e4d734de86446d67.pkl
+/视频/配音缓存/f4306b237f955aa5e63ff85393f1c91e6873c32e.pkl
+/视频/配音缓存/347037cd369673df7eaa15b96299333ce604cfd2.pkl
+/视频/配音缓存/428ba199ec4f3d0c4d8bba1edc2936489d9779e2.pkl
+/视频/配音缓存/66e1c94e1649cd6265a80384e4209c1aefabb34d.pkl
+/视频/配音缓存/7b35684509e6776e90561e334fed3cf9b4c1481d.pkl
+/视频/配音缓存/c7a903c1886fdfe0c3e56acf477801f9f5c37fb9.pkl
+/视频/配音缓存/d22465e6b8b7cd323dd82b54bd40937ab08a23f2.pkl
+/视频/配音缓存/dde689b93c0d64c6afcd7608325127a66e14b1e0.pkl
+/视频/配音缓存/a5fb40b27c24b963692110256f1d1a0837466953.pkl
+/视频/配音缓存/eabd84255680114ea192814266d3e9577a265dfd.pkl
+/视频/配音缓存/86c2d99938a70e39e5e94b7996e0f32c2ef7d6d3.pkl
+/视频/配音缓存/7925e35db0462e7850f6ad293d94f4ed172609e0.pkl
+/视频/配音缓存/b9057b715d70365e4b2009aed1167922586eb249.pkl
+/视频/配音缓存/a3e385e2a2d075762de217bc7b0ca3b40bb362fb.pkl
+/视频/配音缓存/d9399d71e0322115e479c427297916e975a88d38.pkl
+/视频/配音缓存/3f938488cd3bb5f4d7ec76cda9955c5537e89fc4.pkl
+/视频/配音缓存/a497d42fa7a481efef4371e609daf1ab6949169b.pkl
+/视频/配音缓存/b24e2dc69fd31e1726b3d8cc3d2b2555376d763b.pkl
+/视频/配音缓存/966ff7ad051740971c258f09a501d6626f75982f.pkl
+/视频/配音缓存/509a03a5d21c2fd9fb6759ea9edac7a856a81881.pkl
+/视频/配音缓存/1380c4096ea7776f174d46f89bedc3bf8c175157.pkl
+/视频/配音缓存/e60f4a7caa731a999f6009f589e8cf5e7385ffcf.pkl
+/视频/配音缓存/e88c30e87f668c9f41276bfd9d76232f2a2681e9.pkl
+/视频/配音缓存/c202a983cf96ca86c6f87a1bbfbc2a50bd09cbb1.pkl
+/视频/配音缓存/2000b496ba23477007ac4af27915261c26121ecb.pkl
+/视频/配音缓存/7285a6f8d8ff1caa20027db02f319d42e56747f4.pkl
+/视频/配音缓存/6fbd37effda3edbf25d7e11c36ee710f26957c84.pkl
+/视频/配音缓存/e5791dbed8f3a1309891896c7e99c6d910b4dbb3.pkl
+
+2026-11-14T05:41:22.9853116Z   token: ***
+2026-11-14T05:41:22.9853328Z   ssh-strict: true
+2026-11-14T05:41:22.9853536Z   ssh-user: git
+2026-11-14T05:41:22.9853745Z   persist-credentials: true
+2026-11-14T05:41:22.9853979Z   clean: true
+2026-11-14T05:41:22.9854171Z   fetch-depth: 1
+2026-11-14T05:41:22.9854368Z   fetch-tags: false
+2026-11-14T05:41:22.9854584Z   show-progress: true
+2026-11-14T05:41:22.9854794Z   lfs: false
+2026-11-14T05:41:22.9855088Z   submodules: false
+2026-11-14T05:41:22.9855299Z   set-safe-directory: true
+2026-11-14T05:41:22.9855546Z   allow-unsafe-pr-checkout: false
+2026-11-14T05:41:22.9855793Z ##[endgroup]
+2026-11-14T05:41:23.0724768Z Syncing repository: alienalgorithm/postgraduate-vocabulary
+2026-11-14T05:41:23.0726725Z ##[group]Getting Git version info
+2026-11-14T05:41:23.0738679Z Working directory is '/home/runner/work/literate-enigma/literate-enigma/ending-reference-resources'
+2026-11-14T05:41:23.0766754Z [command]/usr/bin/git version
+2026-11-14T05:41:23.0815701Z git version 2.56.1
+2026-11-14T05:41:23.0835945Z ##[endgroup]
+2026-11-14T05:41:23.0849166Z Temporarily overriding HOME='/home/runner/work/_temp/7a7f6d24-cf33-48ff-815a-b1b700da9e28' before making global git config changes
+2026-11-14T05:41:23.0850558Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T05:41:23.0854535Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/literate-enigma/literate-enigma/ending-reference-resources
+2026-11-14T05:41:23.0891150Z ##[group]Initializing the repository
+2026-11-14T05:41:23.0896667Z [command]/usr/bin/git init /home/runner/work/literate-enigma/literate-enigma/ending-reference-resources
+2026-11-14T05:41:23.0957504Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T05:41:23.0958721Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T05:41:23.0959883Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T05:41:23.0960816Z hint: call:
+2026-11-14T05:41:23.0961438Z hint:
+2026-11-14T05:41:23.0962156Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T05:41:23.0962934Z hint:
+2026-11-14T05:41:23.0963600Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T05:41:23.0964610Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T05:41:23.0965707Z hint:
+2026-11-14T05:41:23.0968854Z hint: 	git branch -m <name>
+2026-11-14T05:41:23.0969372Z hint:
+2026-11-14T05:41:23.0970043Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T05:41:23.0972240Z Initialized empty Git repository in /home/runner/work/literate-enigma/literate-enigma/ending-reference-resources/.git/
+2026-11-14T05:41:23.0974628Z [command]/usr/bin/git remote add origin https://github.com/alienalgorithm/postgraduate-vocabulary
+2026-11-14T05:41:23.1015309Z ##[endgroup]
+2026-11-14T05:41:23.1015994Z ##[group]Disabling automatic garbage collection
+2026-11-14T05:41:23.1020157Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T05:41:23.1057784Z ##[endgroup]
+2026-11-14T05:41:23.1058450Z ##[group]Setting up auth
+2026-11-14T05:41:23.1065702Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T05:41:23.1100743Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T05:41:23.1407445Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T05:41:23.1446695Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T05:41:23.1741692Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T05:41:23.1777223Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T05:41:23.2045788Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T05:41:23.2087196Z ##[endgroup]
+2026-11-14T05:41:23.2087909Z ##[group]Fetching the repository
+2026-11-14T05:41:23.2097627Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin 64621068034f8b6e09836a6d97210a0e9b2f1ed6
+2026-11-14T05:41:23.7625361Z From https://github.com/alienalgorithm/postgraduate-vocabulary
+2026-11-14T05:41:23.7626306Z  * branch            64621068034f8b6e09836a6d97210a0e9b2f1ed6 -> FETCH_HEAD
+2026-11-14T05:41:23.7632828Z ##[endgroup]
+2026-11-14T05:41:23.7633413Z ##[group]Determining the checkout info
+2026-11-14T05:41:23.7636981Z ##[endgroup]
+2026-11-14T05:41:23.7637588Z ##[group]Setting up sparse checkout
+2026-11-14T05:41:23.7645789Z [command]/usr/bin/git config core.sparseCheckout true
+2026-11-14T05:41:23.7698387Z [command]/usr/bin/git rev-parse --git-path info/sparse-checkout
+2026-11-14T05:41:23.7727429Z .git/info/sparse-checkout
+2026-11-14T05:41:23.7735183Z ##[endgroup]
+2026-11-14T05:41:23.7735779Z ##[group]Checking out the ref
+2026-11-14T05:41:23.7739795Z [command]/usr/bin/git checkout --progress --force 64621068034f8b6e09836a6d97210a0e9b2f1ed6
+2026-11-14T05:41:24.8051711Z Updating files:  29% (12/41)
+2026-11-14T05:41:24.8078242Z Updating files:  31% (13/41)
+2026-11-14T05:41:24.8108402Z Updating files:  34% (14/41)
+2026-11-14T05:41:24.8155384Z Updating files:  36% (15/41)
+2026-11-14T05:41:24.8191915Z Updating files:  39% (16/41)
+2026-11-14T05:41:24.8200213Z Updating files:  41% (17/41)
+2026-11-14T05:41:24.8243579Z Updating files:  43% (18/41)
+2026-11-14T05:41:24.8293251Z Updating files:  46% (19/41)
+2026-11-14T05:41:24.8311178Z Updating files:  48% (20/41)
+2026-11-14T05:41:24.8355375Z Updating files:  51% (21/41)
+2026-11-14T05:41:24.8373456Z Updating files:  53% (22/41)
+2026-11-14T05:41:24.8423387Z Updating files:  56% (23/41)
+2026-11-14T05:41:24.8454439Z Updating files:  58% (24/41)
+2026-11-14T05:41:24.8465323Z Updating files:  60% (25/41)
+2026-11-14T05:41:24.8531353Z Updating files:  63% (26/41)
+2026-11-14T05:41:24.8541356Z Updating files:  65% (27/41)
+2026-11-14T05:41:24.8551243Z Updating files:  68% (28/41)
+2026-11-14T05:41:24.8561864Z Updating files:  70% (29/41)
+2026-11-14T05:41:24.8584255Z Updating files:  73% (30/41)
+2026-11-14T05:41:24.8616320Z Updating files:  75% (31/41)
+2026-11-14T05:41:24.8659925Z Updating files:  78% (32/41)
+2026-11-14T05:41:24.8687087Z Updating files:  80% (33/41)
+2026-11-14T05:41:24.8707877Z Updating files:  82% (34/41)
+2026-11-14T05:41:24.8767902Z Updating files:  85% (35/41)
+2026-11-14T05:41:24.8813928Z Updating files:  87% (36/41)
+2026-11-14T05:41:24.8841319Z Updating files:  90% (37/41)
+2026-11-14T05:41:24.8852466Z Updating files:  92% (38/41)
+2026-11-14T05:41:24.8874489Z Updating files:  95% (39/41)
+2026-11-14T05:41:24.8905873Z Updating files:  97% (40/41)
+2026-11-14T05:41:24.8906281Z Updating files: 100% (41/41)
+2026-11-14T05:41:24.8906699Z Updating files: 100% (41/41), done.
+2026-11-14T05:41:24.9051064Z Note: switching to '64621068034f8b6e09836a6d97210a0e9b2f1ed6'.
+2026-11-14T05:41:24.9051558Z 
+2026-11-14T05:41:24.9051919Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T05:41:24.9052795Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T05:41:24.9053601Z state without impacting any branches by switching back to a branch.
+2026-11-14T05:41:24.9054068Z 
+2026-11-14T05:41:24.9054376Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T05:41:24.9055776Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T05:41:24.9056215Z 
+2026-11-14T05:41:24.9056395Z   git switch -c <new-branch-name>
+2026-11-14T05:41:24.9056694Z 
+2026-11-14T05:41:24.9056855Z Or undo this operation with:
+2026-11-14T05:41:24.9057124Z 
+2026-11-14T05:41:24.9057257Z   git switch -
+2026-11-14T05:41:24.9057457Z 
+2026-11-14T05:41:24.9057815Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T05:41:24.9058352Z 
+2026-11-14T05:41:24.9058937Z HEAD is now at 6462106 保存新顺序版下载包、实际PDF下载及旧版保留核验 [skip ci]
+2026-11-14T05:41:24.9069366Z ##[endgroup]
+2026-11-14T05:41:24.9110984Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T05:41:24.9136483Z 64621068034f8b6e09836a6d97210a0e9b2f1ed6
+2026-11-14T05:41:24.9315682Z ##[group]Run actions/setup-python@v5
+2026-11-14T05:41:24.9316000Z with:
+2026-11-14T05:41:24.9316198Z   python-version: 3.11
+2026-11-14T05:41:24.9316425Z   check-latest: false
+2026-11-14T05:41:24.9318833Z   token: ***
+2026-11-14T05:41:24.9319044Z   update-environment: true
+2026-11-14T05:41:24.9319286Z   allow-prereleases: false
+2026-11-14T05:41:24.9319514Z   freethreaded: false
+2026-11-14T05:41:24.9319722Z ##[endgroup]
+2026-11-14T05:41:25.0684516Z ##[group]Installed versions
+2026-11-14T05:41:25.0796773Z (node:3146) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T05:41:25.0798050Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T05:41:25.0798818Z Successfully set up CPython (3.11.18)
+2026-11-14T05:41:25.0799565Z ##[endgroup]
+2026-11-14T05:41:25.0999890Z ##[group]Run actions/cache/restore@v4
+2026-11-14T05:41:25.1000192Z with:
+2026-11-14T05:41:25.1000463Z   path: /home/runner/work/_temp/completion-machine
+~/asr
+
+2026-11-14T05:41:25.1000821Z   key: completion-05-machine-43294745262
+2026-11-14T05:41:25.1001113Z   enableCrossOsArchive: false
+2026-11-14T05:41:25.1001383Z   fail-on-cache-miss: false
+2026-11-14T05:41:25.1001617Z   lookup-only: false
+2026-11-14T05:41:25.1001817Z env:
+2026-11-14T05:41:25.1002057Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:41:25.1002509Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-14T05:41:25.1002935Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:41:25.1003316Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:41:25.1003700Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:41:25.1004089Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-14T05:41:25.1004450Z ##[endgroup]
+2026-11-14T05:41:25.2109163Z (node:3154) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T05:41:25.2110162Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T05:41:25.4578166Z Cache hit for: completion-05-machine-43294745262
+2026-11-14T05:41:25.4697483Z (node:3154) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-14T05:41:26.7577963Z Received 12582912 of 4785267632 (0.3%), 12.0 MBs/sec
+2026-11-14T05:41:27.7586784Z Received 134217728 of 4785267632 (2.8%), 64.0 MBs/sec
+2026-11-14T05:41:28.7586850Z Received 306184192 of 4785267632 (6.4%), 97.3 MBs/sec
+2026-11-14T05:41:29.7632970Z Received 507510784 of 4785267632 (10.6%), 120.8 MBs/sec
+2026-11-14T05:41:30.7626087Z Received 671088640 of 4785267632 (14.0%), 127.9 MBs/sec
+2026-11-14T05:41:31.7630740Z Received 847249408 of 4785267632 (17.7%), 134.6 MBs/sec
+2026-11-14T05:41:32.7669520Z Received 1027604480 of 4785267632 (21.5%), 139.8 MBs/sec
+2026-11-14T05:41:33.7672893Z Received 1207959552 of 4785267632 (25.2%), 143.8 MBs/sec
+2026-11-14T05:41:34.7705838Z Received 1388314624 of 4785267632 (29.0%), 146.9 MBs/sec
+2026-11-14T05:41:35.7696129Z Received 1581252608 of 4785267632 (33.0%), 150.6 MBs/sec
+2026-11-14T05:41:36.7692784Z Received 1744830464 of 4785267632 (36.5%), 151.1 MBs/sec
+2026-11-14T05:41:37.7701043Z Received 1912602624 of 4785267632 (40.0%), 151.8 MBs/sec
+2026-11-14T05:41:38.7735751Z Received 2084569088 of 4785267632 (43.6%), 152.7 MBs/sec
+2026-11-14T05:41:39.8095829Z Received 2281701376 of 4785267632 (47.7%), 154.9 MBs/sec
+2026-11-14T05:41:40.8088530Z Received 2449473536 of 4785267632 (51.2%), 155.2 MBs/sec
+2026-11-14T05:41:41.8183891Z Received 2600468480 of 4785267632 (54.3%), 154.4 MBs/sec
+2026-11-14T05:41:42.8197724Z Received 2793406464 of 4785267632 (58.4%), 156.1 MBs/sec
+2026-11-14T05:41:43.8185248Z Received 2944401408 of 4785267632 (61.5%), 155.5 MBs/sec
+2026-11-14T05:41:44.8246256Z Received 3087007744 of 4785267632 (64.5%), 154.4 MBs/sec
+2026-11-14T05:41:45.8247143Z Received 3246391296 of 4785267632 (67.8%), 154.3 MBs/sec
+2026-11-14T05:41:46.8272151Z Received 3368026112 of 4785267632 (70.4%), 152.4 MBs/sec
+2026-11-14T05:41:47.8274098Z Received 3527409664 of 4785267632 (73.7%), 152.4 MBs/sec
+2026-11-14T05:41:48.8297522Z Received 3703570432 of 4785267632 (77.4%), 153.1 MBs/sec
+2026-11-14T05:41:49.8332761Z Received 3867148288 of 4785267632 (80.8%), 153.2 MBs/sec
+2026-11-14T05:41:50.8339899Z Received 4026531840 of 4785267632 (84.1%), 153.1 MBs/sec
+2026-11-14T05:41:51.8355773Z Received 4211081216 of 4785267632 (88.0%), 154.0 MBs/sec
+2026-11-14T05:41:52.8361317Z Received 4395630592 of 4785267632 (91.9%), 154.8 MBs/sec
+2026-11-14T05:41:53.8368658Z Received 4563402752 of 4785267632 (95.4%), 155.0 MBs/sec
+2026-11-14T05:41:54.8387071Z Received 4731174912 of 4785267632 (98.9%), 155.2 MBs/sec
+2026-11-14T05:41:55.0650560Z Received 4785267632 of 4785267632 (100.0%), 155.7 MBs/sec
+2026-11-14T05:41:55.0653241Z Cache Size: ~4564 MB (4785267632 B)
+2026-11-14T05:41:55.0735292Z [command]/usr/bin/tar -xf /home/runner/work/_temp/ea7508a8-7774-43ee-bbf4-a7f248a60f41/cache.tzst -P -C /home/runner/work/literate-enigma/literate-enigma --use-compress-program unzstd
+2026-11-14T05:42:07.0715690Z Cache restored successfully
+2026-11-14T05:42:07.2652884Z Cache restored from key: completion-05-machine-43294745262
+2026-11-14T05:42:07.3055178Z ##[group]Run test "$CACHE_HIT" = true
+2026-11-14T05:42:07.3055567Z [36;1mtest "$CACHE_HIT" = true[0m
+2026-11-14T05:42:07.3056082Z [36;1mtest -f "$RUNNER_TEMP/completion-machine/tts/kokoro-v1.0.onnx"[0m
+2026-11-14T05:42:07.3560151Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:42:07.3560424Z env:
+2026-11-14T05:42:07.3560704Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:42:07.3561167Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-14T05:42:07.3561611Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:42:07.3562007Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:42:07.3562397Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:42:07.3562985Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-14T05:42:07.3563469Z   CACHE_HIT: true
+2026-11-14T05:42:07.3563764Z ##[endgroup]
+2026-11-14T05:42:07.5096901Z ##[group]Run sudo apt-get update -qq
+2026-11-14T05:42:07.5097320Z [36;1msudo apt-get update -qq[0m
+2026-11-14T05:42:07.5097698Z [36;1msudo apt-get install -y -qq ffmpeg espeak-ng[0m
+2026-11-14T05:42:07.5098252Z [36;1mpython -m pip install --quiet -r official-main/视频/工具/环境/requirements.txt[0m
+2026-11-14T05:42:07.5098831Z [36;1mgit config --global user.name 'github-actions[bot]'[0m
+2026-11-14T05:42:07.5099466Z [36;1mgit config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'[0m
+2026-11-14T05:42:07.5147176Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:42:07.5147429Z env:
+2026-11-14T05:42:07.5147703Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:42:07.5148157Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-14T05:42:07.5148607Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:42:07.5149174Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:42:07.5149601Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:42:07.5150028Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-14T05:42:07.5150359Z ##[endgroup]
+2026-11-14T05:42:21.2818861Z Selecting previously unselected package libasyncns0:amd64.
+2026-11-14T05:42:21.3156076Z (Reading database ... 
+2026-11-14T05:42:21.3158490Z (Reading database ... 5%
+2026-11-14T05:42:21.3159135Z (Reading database ... 10%
+2026-11-14T05:42:21.3159653Z (Reading database ... 15%
+2026-11-14T05:42:21.3160045Z (Reading database ... 20%
+2026-11-14T05:42:21.3160482Z (Reading database ... 25%
+2026-11-14T05:42:21.3160878Z (Reading database ... 30%
+2026-11-14T05:42:21.3161259Z (Reading database ... 35%
+2026-11-14T05:42:21.3161601Z (Reading database ... 40%
+2026-11-14T05:42:21.3161829Z (Reading database ... 45%
+2026-11-14T05:42:21.3162048Z (Reading database ... 50%
+2026-11-14T05:42:21.4040182Z (Reading database ... 55%
+2026-11-14T05:42:21.5641527Z (Reading database ... 60%
+2026-11-14T05:42:21.7083572Z (Reading database ... 65%
+2026-11-14T05:42:21.9032516Z (Reading database ... 70%
+2026-11-14T05:42:22.0551901Z (Reading database ... 75%
+2026-11-14T05:42:22.2506066Z (Reading database ... 80%
+2026-11-14T05:42:22.4452871Z (Reading database ... 85%
+2026-11-14T05:42:22.6443496Z (Reading database ... 90%
+2026-11-14T05:42:22.7788817Z (Reading database ... 95%
+2026-11-14T05:42:22.7789355Z (Reading database ... 100%
+2026-11-14T05:42:22.7789965Z (Reading database ... 213946 files and directories currently installed.)
+2026-11-14T05:42:22.7830221Z Preparing to unpack .../00-libasyncns0_0.8-7_amd64v3.deb ...
+2026-11-14T05:42:22.8067160Z Unpacking libasyncns0:amd64 (0.8-7) ...
+2026-11-14T05:42:22.8312132Z Selecting previously unselected package libflac14:amd64.
+2026-11-14T05:42:22.8449841Z Preparing to unpack .../01-libflac14_1.5.0+ds-5_amd64v3.deb ...
+2026-11-14T05:42:22.8459570Z Unpacking libflac14:amd64 (1.5.0+ds-5) ...
+2026-11-14T05:42:22.8709028Z Selecting previously unselected package libmpg123-0t64:amd64.
+2026-11-14T05:42:22.8843674Z Preparing to unpack .../02-libmpg123-0t64_1.33.3-2_amd64v3.deb ...
+2026-11-14T05:42:22.8853048Z Unpacking libmpg123-0t64:amd64 (1.33.3-2) ...
+2026-11-14T05:42:22.9128808Z Selecting previously unselected package libmp3lame0:amd64.
+2026-11-14T05:42:22.9266797Z Preparing to unpack .../03-libmp3lame0_3.101~svn6525+dfsg-2ubuntu0.1_amd64v3.deb ...
+2026-11-14T05:42:22.9276487Z Unpacking libmp3lame0:amd64 (3.101~svn6525+dfsg-2ubuntu0.1) ...
+2026-11-14T05:42:22.9535570Z Selecting previously unselected package libopus0:amd64.
+2026-11-14T05:42:22.9672938Z Preparing to unpack .../04-libopus0_1.6.1-1_amd64v3.deb ...
+2026-11-14T05:42:22.9683821Z Unpacking libopus0:amd64 (1.6.1-1) ...
+2026-11-14T05:42:23.0112985Z Selecting previously unselected package libvorbisenc2:amd64.
+2026-11-14T05:42:23.0249763Z Preparing to unpack .../05-libvorbisenc2_1.3.7-3build2_amd64v3.deb ...
+2026-11-14T05:42:23.0261158Z Unpacking libvorbisenc2:amd64 (1.3.7-3build2) ...
+2026-11-14T05:42:23.0529203Z Selecting previously unselected package libsndfile1:amd64.
+2026-11-14T05:42:23.0665716Z Preparing to unpack .../06-libsndfile1_1.2.2-4_amd64v3.deb ...
+2026-11-14T05:42:23.0677268Z Unpacking libsndfile1:amd64 (1.2.2-4) ...
+2026-11-14T05:42:23.0946069Z Selecting previously unselected package libpulse0:amd64.
+2026-11-14T05:42:23.1082738Z Preparing to unpack .../07-libpulse0_1%3a17.0+dfsg1-2ubuntu4_amd64v3.deb ...
+2026-11-14T05:42:23.1095089Z Unpacking libpulse0:amd64 (1:17.0+dfsg1-2ubuntu4) ...
+2026-11-14T05:42:23.1378354Z Selecting previously unselected package libpcaudio0:amd64.
+2026-11-14T05:42:23.1516339Z Preparing to unpack .../08-libpcaudio0_1.3-1build1_amd64v3.deb ...
+2026-11-14T05:42:23.1565598Z Unpacking libpcaudio0:amd64 (1.3-1build1) ...
+2026-11-14T05:42:23.1804783Z Selecting previously unselected package libsonic0:amd64.
+2026-11-14T05:42:23.1940451Z Preparing to unpack .../09-libsonic0_0.2.0-13build2_amd64v3.deb ...
+2026-11-14T05:42:23.1950292Z Unpacking libsonic0:amd64 (0.2.0-13build2) ...
+2026-11-14T05:42:23.2175495Z Selecting previously unselected package espeak-ng-data:amd64.
+2026-11-14T05:42:23.2312282Z Preparing to unpack .../10-espeak-ng-data_1.52.0+dfsg-5build1_amd64v3.deb ...
+2026-11-14T05:42:23.2321311Z Unpacking espeak-ng-data:amd64 (1.52.0+dfsg-5build1) ...
+2026-11-14T05:42:23.4218575Z Selecting previously unselected package libespeak-ng1:amd64.
+2026-11-14T05:42:23.4358712Z Preparing to unpack .../11-libespeak-ng1_1.52.0+dfsg-5build1_amd64v3.deb ...
+2026-11-14T05:42:23.4368644Z Unpacking libespeak-ng1:amd64 (1.52.0+dfsg-5build1) ...
+2026-11-14T05:42:23.4621545Z Selecting previously unselected package espeak-ng.
+2026-11-14T05:42:23.4758619Z Preparing to unpack .../12-espeak-ng_1.52.0+dfsg-5build1_amd64v3.deb ...
+2026-11-14T05:42:23.4767068Z Unpacking espeak-ng (1.52.0+dfsg-5build1) ...
+2026-11-14T05:42:23.5476829Z Selecting previously unselected package libva2:amd64.
+2026-11-14T05:42:23.5613671Z Preparing to unpack .../13-libva2_2.23.0-1ubuntu1_amd64v3.deb ...
+2026-11-14T05:42:23.5623953Z Unpacking libva2:amd64 (2.23.0-1ubuntu1) ...
+2026-11-14T05:42:23.5859589Z Selecting previously unselected package libva-drm2:amd64.
+2026-11-14T05:42:23.5997413Z Preparing to unpack .../14-libva-drm2_2.23.0-1ubuntu1_amd64v3.deb ...
+2026-11-14T05:42:23.6007431Z Unpacking libva-drm2:amd64 (2.23.0-1ubuntu1) ...
+2026-11-14T05:42:23.6239015Z Selecting previously unselected package libva-x11-2:amd64.
+2026-11-14T05:42:23.6375986Z Preparing to unpack .../15-libva-x11-2_2.23.0-1ubuntu1_amd64v3.deb ...
+2026-11-14T05:42:23.6384383Z Unpacking libva-x11-2:amd64 (2.23.0-1ubuntu1) ...
+2026-11-14T05:42:23.6615460Z Selecting previously unselected package libvdpau1:amd64.
+2026-11-14T05:42:23.6751429Z Preparing to unpack .../16-libvdpau1_1.5-4_amd64v3.deb ...
+2026-11-14T05:42:23.6759694Z Unpacking libvdpau1:amd64 (1.5-4) ...
+2026-11-14T05:42:23.7001576Z Selecting previously unselected package libvpl2.
+2026-11-14T05:42:23.7138462Z Preparing to unpack .../17-libvpl2_1%3a2.16.0-1_amd64v3.deb ...
+2026-11-14T05:42:23.7147455Z Unpacking libvpl2 (1:2.16.0-1) ...
+2026-11-14T05:42:23.7388983Z Selecting previously unselected package ocl-icd-libopencl1:amd64.
+2026-11-14T05:42:23.7526183Z Preparing to unpack .../18-ocl-icd-libopencl1_2.3.4-1_amd64v3.deb ...
+2026-11-14T05:42:23.7535356Z Unpacking ocl-icd-libopencl1:amd64 (2.3.4-1) ...
+2026-11-14T05:42:23.7786559Z Selecting previously unselected package libavutil60:amd64.
+2026-11-14T05:42:23.7922847Z Preparing to unpack .../19-libavutil60_7%3a8.0.1-3ubuntu2_amd64v3.deb ...
+2026-11-14T05:42:23.7930811Z Unpacking libavutil60:amd64 (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:23.8204032Z Selecting previously unselected package libcodec2-1.2:amd64.
+2026-11-14T05:42:23.8340665Z Preparing to unpack .../20-libcodec2-1.2_1.2.0-4_amd64v3.deb ...
+2026-11-14T05:42:23.8349719Z Unpacking libcodec2-1.2:amd64 (1.2.0-4) ...
+2026-11-14T05:42:23.9149273Z Selecting previously unselected package libdav1d7:amd64.
+2026-11-14T05:42:23.9286203Z Preparing to unpack .../21-libdav1d7_1.5.3-1_amd64v3.deb ...
+2026-11-14T05:42:23.9295864Z Unpacking libdav1d7:amd64 (1.5.3-1) ...
+2026-11-14T05:42:23.9588045Z Selecting previously unselected package libgsm1:amd64.
+2026-11-14T05:42:23.9723452Z Preparing to unpack .../22-libgsm1_1.0.23-2_amd64v3.deb ...
+2026-11-14T05:42:23.9734273Z Unpacking libgsm1:amd64 (1.0.23-2) ...
+2026-11-14T05:42:23.9969880Z Selecting previously unselected package librav1e0.8:amd64.
+2026-11-14T05:42:24.0106791Z Preparing to unpack .../23-librav1e0.8_0.8.1-7_amd64v3.deb ...
+2026-11-14T05:42:24.0116311Z Unpacking librav1e0.8:amd64 (0.8.1-7) ...
+2026-11-14T05:42:24.0483844Z Selecting previously unselected package libshine3:amd64.
+2026-11-14T05:42:24.0620962Z Preparing to unpack .../24-libshine3_3.1.1-3build1_amd64v3.deb ...
+2026-11-14T05:42:24.0630768Z Unpacking libshine3:amd64 (3.1.1-3build1) ...
+2026-11-14T05:42:24.0861132Z Selecting previously unselected package libspeex1:amd64.
+2026-11-14T05:42:24.0997577Z Preparing to unpack .../25-libspeex1_1.2.1-3build1_amd64v3.deb ...
+2026-11-14T05:42:24.1007976Z Unpacking libspeex1:amd64 (1.2.1-3build1) ...
+2026-11-14T05:42:24.1242616Z Selecting previously unselected package libsvtav1enc2:amd64.
+2026-11-14T05:42:24.1379107Z Preparing to unpack .../26-libsvtav1enc2_2.3.0+dfsg-1build1_amd64v3.deb ...
+2026-11-14T05:42:24.1388073Z Unpacking libsvtav1enc2:amd64 (2.3.0+dfsg-1build1) ...
+2026-11-14T05:42:24.1925655Z Selecting previously unselected package libsoxr0:amd64.
+2026-11-14T05:42:24.2063222Z Preparing to unpack .../27-libsoxr0_0.1.3-4.1_amd64v3.deb ...
+2026-11-14T05:42:24.2073249Z Unpacking libsoxr0:amd64 (0.1.3-4.1) ...
+2026-11-14T05:42:24.2315101Z Selecting previously unselected package libswresample6:amd64.
+2026-11-14T05:42:24.2450901Z Preparing to unpack .../28-libswresample6_7%3a8.0.1-3ubuntu2_amd64v3.deb ...
+2026-11-14T05:42:24.2460997Z Unpacking libswresample6:amd64 (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:24.2719265Z Selecting previously unselected package libtheoradec2:amd64.
+2026-11-14T05:42:24.2856381Z Preparing to unpack .../29-libtheoradec2_1.2.0+dfsg-6_amd64v3.deb ...
+2026-11-14T05:42:24.2865829Z Unpacking libtheoradec2:amd64 (1.2.0+dfsg-6) ...
+2026-11-14T05:42:24.3098554Z Selecting previously unselected package libtheoraenc2:amd64.
+2026-11-14T05:42:24.3236167Z Preparing to unpack .../30-libtheoraenc2_1.2.0+dfsg-6_amd64v3.deb ...
+2026-11-14T05:42:24.3246748Z Unpacking libtheoraenc2:amd64 (1.2.0+dfsg-6) ...
+2026-11-14T05:42:24.3486794Z Selecting previously unselected package libtwolame0:amd64.
+2026-11-14T05:42:24.3622119Z Preparing to unpack .../31-libtwolame0_0.4.0-2build4_amd64v3.deb ...
+2026-11-14T05:42:24.3631779Z Unpacking libtwolame0:amd64 (0.4.0-2build4) ...
+2026-11-14T05:42:24.3883582Z Selecting previously unselected package libvpx12:amd64.
+2026-11-14T05:42:24.4018971Z Preparing to unpack .../32-libvpx12_1.16.0-3_amd64v3.deb ...
+2026-11-14T05:42:24.4029189Z Unpacking libvpx12:amd64 (1.16.0-3) ...
+2026-11-14T05:42:24.4393624Z Selecting previously unselected package libx264-165:amd64.
+2026-11-14T05:42:24.4531109Z Preparing to unpack .../33-libx264-165_2%3a0.165.3222+gitb35605ac-3build1_amd64v3.deb ...
+2026-11-14T05:42:24.4539554Z Unpacking libx264-165:amd64 (2:0.165.3222+gitb35605ac-3build1) ...
+2026-11-14T05:42:24.4855617Z Selecting previously unselected package libx265-215:amd64.
+2026-11-14T05:42:24.4992365Z Preparing to unpack .../34-libx265-215_4.1-4_amd64v3.deb ...
+2026-11-14T05:42:24.5001525Z Unpacking libx265-215:amd64 (4.1-4) ...
+2026-11-14T05:42:24.5698356Z Selecting previously unselected package libxvidcore4:amd64.
+2026-11-14T05:42:24.5834069Z Preparing to unpack .../35-libxvidcore4_2%3a1.3.7-3_amd64v3.deb ...
+2026-11-14T05:42:24.5843003Z Unpacking libxvidcore4:amd64 (2:1.3.7-3) ...
+2026-11-14T05:42:24.6087978Z Selecting previously unselected package libzvbi-common.
+2026-11-14T05:42:24.6223801Z Preparing to unpack .../36-libzvbi-common_0.2.44-1ubuntu2_all.deb ...
+2026-11-14T05:42:24.6231733Z Unpacking libzvbi-common (0.2.44-1ubuntu2) ...
+2026-11-14T05:42:24.6551194Z Selecting previously unselected package libzvbi0t64:amd64.
+2026-11-14T05:42:24.6687893Z Preparing to unpack .../37-libzvbi0t64_0.2.44-1ubuntu2_amd64v3.deb ...
+2026-11-14T05:42:24.6696392Z Unpacking libzvbi0t64:amd64 (0.2.44-1ubuntu2) ...
+2026-11-14T05:42:24.6962971Z Selecting previously unselected package libavcodec62:amd64.
+2026-11-14T05:42:24.7098898Z Preparing to unpack .../38-libavcodec62_7%3a8.0.1-3ubuntu2_amd64v3.deb ...
+2026-11-14T05:42:24.7108574Z Unpacking libavcodec62:amd64 (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:24.8409192Z Selecting previously unselected package libraw1394-11:amd64.
+2026-11-14T05:42:24.8547299Z Preparing to unpack .../39-libraw1394-11_2.1.2-2build4_amd64v3.deb ...
+2026-11-14T05:42:24.8555867Z Unpacking libraw1394-11:amd64 (2.1.2-2build4) ...
+2026-11-14T05:42:24.8787894Z Selecting previously unselected package libavc1394-0:amd64.
+2026-11-14T05:42:24.8924549Z Preparing to unpack .../40-libavc1394-0_0.5.4-5build4_amd64v3.deb ...
+2026-11-14T05:42:24.8933321Z Unpacking libavc1394-0:amd64 (0.5.4-5build4) ...
+2026-11-14T05:42:24.9166530Z Selecting previously unselected package libunibreak6:amd64.
+2026-11-14T05:42:24.9305786Z Preparing to unpack .../41-libunibreak6_6.1-3build1_amd64v3.deb ...
+2026-11-14T05:42:24.9315476Z Unpacking libunibreak6:amd64 (6.1-3build1) ...
+2026-11-14T05:42:24.9557531Z Selecting previously unselected package libass9:amd64.
+2026-11-14T05:42:24.9694530Z Preparing to unpack .../42-libass9_1%3a0.17.4-2_amd64v3.deb ...
+2026-11-14T05:42:24.9703752Z Unpacking libass9:amd64 (1:0.17.4-2) ...
+2026-11-14T05:42:24.9950589Z Selecting previously unselected package libudfread3:amd64.
+2026-11-14T05:42:25.0088599Z Preparing to unpack .../43-libudfread3_1.2.0-2_amd64v3.deb ...
+2026-11-14T05:42:25.0098346Z Unpacking libudfread3:amd64 (1.2.0-2) ...
+2026-11-14T05:42:25.0331092Z Selecting previously unselected package libbluray3:amd64.
+2026-11-14T05:42:25.0469211Z Preparing to unpack .../44-libbluray3_1%3a1.4.1-1_amd64v3.deb ...
+2026-11-14T05:42:25.0479838Z Unpacking libbluray3:amd64 (1:1.4.1-1) ...
+2026-11-14T05:42:25.0725200Z Selecting previously unselected package libchromaprint1:amd64.
+2026-11-14T05:42:25.0863009Z Preparing to unpack .../45-libchromaprint1_1.6.0-2build1_amd64v3.deb ...
+2026-11-14T05:42:25.0872145Z Unpacking libchromaprint1:amd64 (1.6.0-2build1) ...
+2026-11-14T05:42:25.1103365Z Selecting previously unselected package libdvdread8t64:amd64.
+2026-11-14T05:42:25.1240017Z Preparing to unpack .../46-libdvdread8t64_7.0.1-1_amd64v3.deb ...
+2026-11-14T05:42:25.1250716Z Unpacking libdvdread8t64:amd64 (7.0.1-1) ...
+2026-11-14T05:42:25.1497651Z Selecting previously unselected package libdvdnav4:amd64.
+2026-11-14T05:42:25.1636159Z Preparing to unpack .../47-libdvdnav4_7.0.0-2_amd64v3.deb ...
+2026-11-14T05:42:25.1645436Z Unpacking libdvdnav4:amd64 (7.0.0-2) ...
+2026-11-14T05:42:25.1878761Z Selecting previously unselected package libgme0:amd64.
+2026-11-14T05:42:25.2013858Z Preparing to unpack .../48-libgme0_0.6.4-1_amd64v3.deb ...
+2026-11-14T05:42:25.2022777Z Unpacking libgme0:amd64 (0.6.4-1) ...
+2026-11-14T05:42:25.2265543Z Selecting previously unselected package libopenmpt0t64:amd64.
+2026-11-14T05:42:25.2401185Z Preparing to unpack .../49-libopenmpt0t64_0.8.4-1_amd64v3.deb ...
+2026-11-14T05:42:25.2420174Z Unpacking libopenmpt0t64:amd64 (0.8.4-1) ...
+2026-11-14T05:42:25.2738785Z Selecting previously unselected package libcjson1:amd64.
+2026-11-14T05:42:25.2874181Z Preparing to unpack .../50-libcjson1_1.7.19-2_amd64v3.deb ...
+2026-11-14T05:42:25.2883509Z Unpacking libcjson1:amd64 (1.7.19-2) ...
+2026-11-14T05:42:25.3116273Z Selecting previously unselected package libmbedcrypto16:amd64.
+2026-11-14T05:42:25.3250452Z Preparing to unpack .../51-libmbedcrypto16_3.6.5-0.1ubuntu2_amd64v3.deb ...
+2026-11-14T05:42:25.3259825Z Unpacking libmbedcrypto16:amd64 (3.6.5-0.1ubuntu2) ...
+2026-11-14T05:42:25.3513878Z Selecting previously unselected package librist4:amd64.
+2026-11-14T05:42:25.3651482Z Preparing to unpack .../52-librist4_0.2.11+dfsg-1build1_amd64v3.deb ...
+2026-11-14T05:42:25.3661097Z Unpacking librist4:amd64 (0.2.11+dfsg-1build1) ...
+2026-11-14T05:42:25.3897263Z Selecting previously unselected package libsrt1.5-gnutls:amd64.
+2026-11-14T05:42:25.4033155Z Preparing to unpack .../53-libsrt1.5-gnutls_1.5.4-3_amd64v3.deb ...
+2026-11-14T05:42:25.4042557Z Unpacking libsrt1.5-gnutls:amd64 (1.5.4-3) ...
+2026-11-14T05:42:25.4303272Z Selecting previously unselected package libssh-4:amd64.
+2026-11-14T05:42:25.4438634Z Preparing to unpack .../54-libssh-4_0.11.3-1ubuntu2.1_amd64v3.deb ...
+2026-11-14T05:42:25.4447568Z Unpacking libssh-4:amd64 (0.11.3-1ubuntu2.1) ...
+2026-11-14T05:42:25.4697239Z Selecting previously unselected package libavformat62:amd64.
+2026-11-14T05:42:25.4834563Z Preparing to unpack .../55-libavformat62_7%3a8.0.1-3ubuntu2_amd64v3.deb ...
+2026-11-14T05:42:25.4846836Z Unpacking libavformat62:amd64 (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:25.5204170Z Selecting previously unselected package libbs2b0:amd64.
+2026-11-14T05:42:25.5338759Z Preparing to unpack .../56-libbs2b0_3.1.0+dfsg-8build1_amd64v3.deb ...
+2026-11-14T05:42:25.5347319Z Unpacking libbs2b0:amd64 (3.1.0+dfsg-8build1) ...
+2026-11-14T05:42:25.5603666Z Selecting previously unselected package libflite1:amd64.
+2026-11-14T05:42:25.5740113Z Preparing to unpack .../57-libflite1_2.2-7build1_amd64v3.deb ...
+2026-11-14T05:42:25.5750255Z Unpacking libflite1:amd64 (2.2-7build1) ...
+2026-11-14T05:42:25.6843313Z Selecting previously unselected package libserd-0-0:amd64.
+2026-11-14T05:42:25.6979238Z Preparing to unpack .../58-libserd-0-0_0.32.6-1_amd64v3.deb ...
+2026-11-14T05:42:25.6988118Z Unpacking libserd-0-0:amd64 (0.32.6-1) ...
+2026-11-14T05:42:25.7216972Z Selecting previously unselected package libzix-0-0:amd64.
+2026-11-14T05:42:25.7353727Z Preparing to unpack .../59-libzix-0-0_0.8.0-1_amd64v3.deb ...
+2026-11-14T05:42:25.7363505Z Unpacking libzix-0-0:amd64 (0.8.0-1) ...
+2026-11-14T05:42:25.7596448Z Selecting previously unselected package libsord-0-0:amd64.
+2026-11-14T05:42:25.7734028Z Preparing to unpack .../60-libsord-0-0_0.16.20-1_amd64v3.deb ...
+2026-11-14T05:42:25.7743956Z Unpacking libsord-0-0:amd64 (0.16.20-1) ...
+2026-11-14T05:42:25.7982254Z Selecting previously unselected package libsratom-0-0:amd64.
+2026-11-14T05:42:25.8118547Z Preparing to unpack .../61-libsratom-0-0_0.6.20-1_amd64v3.deb ...
+2026-11-14T05:42:25.8220283Z Unpacking libsratom-0-0:amd64 (0.6.20-1) ...
+2026-11-14T05:42:25.8454436Z Selecting previously unselected package liblilv-0-0:amd64.
+2026-11-14T05:42:25.8591007Z Preparing to unpack .../62-liblilv-0-0_0.26.2-1_amd64v3.deb ...
+2026-11-14T05:42:25.8606718Z Unpacking liblilv-0-0:amd64 (0.26.2-1) ...
+2026-11-14T05:42:25.8843601Z Selecting previously unselected package libmysofa1:amd64.
+2026-11-14T05:42:25.8979134Z Preparing to unpack .../63-libmysofa1_1.3.3+dfsg-1ubuntu2_amd64v3.deb ...
+2026-11-14T05:42:25.8988501Z Unpacking libmysofa1:amd64 (1.3.3+dfsg-1ubuntu2) ...
+2026-11-14T05:42:25.9275653Z Selecting previously unselected package libplacebo360:amd64.
+2026-11-14T05:42:25.9411972Z Preparing to unpack .../64-libplacebo360_7.360.0-3_amd64v3.deb ...
+2026-11-14T05:42:25.9422468Z Unpacking libplacebo360:amd64 (7.360.0-3) ...
+2026-11-14T05:42:26.0029534Z Selecting previously unselected package libsamplerate0:amd64.
+2026-11-14T05:42:26.0167673Z Preparing to unpack .../65-libsamplerate0_0.2.2-4build2_amd64v3.deb ...
+2026-11-14T05:42:26.0177508Z Unpacking libsamplerate0:amd64 (0.2.2-4build2) ...
+2026-11-14T05:42:26.0495269Z Selecting previously unselected package librubberband3:amd64.
+2026-11-14T05:42:26.0633463Z Preparing to unpack .../66-librubberband3_4.0.0+dfsg-2ubuntu1_amd64v3.deb ...
+2026-11-14T05:42:26.0643611Z Unpacking librubberband3:amd64 (4.0.0+dfsg-2ubuntu1) ...
+2026-11-14T05:42:26.0895532Z Selecting previously unselected package libswscale9:amd64.
+2026-11-14T05:42:26.1031944Z Preparing to unpack .../67-libswscale9_7%3a8.0.1-3ubuntu2_amd64v3.deb ...
+2026-11-14T05:42:26.1041769Z Unpacking libswscale9:amd64 (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:26.1350088Z Selecting previously unselected package libvidstab1.1:amd64.
+2026-11-14T05:42:26.1488004Z Preparing to unpack .../68-libvidstab1.1_1.1.0-2.1_amd64v3.deb ...
+2026-11-14T05:42:26.1498611Z Unpacking libvidstab1.1:amd64 (1.1.0-2.1) ...
+2026-11-14T05:42:26.1727668Z Selecting previously unselected package libzimg2:amd64.
+2026-11-14T05:42:26.1863309Z Preparing to unpack .../69-libzimg2_3.0.6+ds1-1_amd64v3.deb ...
+2026-11-14T05:42:26.1873706Z Unpacking libzimg2:amd64 (3.0.6+ds1-1) ...
+2026-11-14T05:42:26.2123762Z Selecting previously unselected package libavfilter11:amd64.
+2026-11-14T05:42:26.2262647Z Preparing to unpack .../70-libavfilter11_7%3a8.0.1-3ubuntu2_amd64v3.deb ...
+2026-11-14T05:42:26.2273059Z Unpacking libavfilter11:amd64 (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:26.3260130Z Selecting previously unselected package libcdio19t64:amd64.
+2026-11-14T05:42:26.3397467Z Preparing to unpack .../71-libcdio19t64_2.2.0-4build1_amd64v3.deb ...
+2026-11-14T05:42:26.3407354Z Unpacking libcdio19t64:amd64 (2.2.0-4build1) ...
+2026-11-14T05:42:26.3645448Z Selecting previously unselected package libcdio-cdda2t64:amd64.
+2026-11-14T05:42:26.3781998Z Preparing to unpack .../72-libcdio-cdda2t64_10.2+2.0.2-2_amd64v3.deb ...
+2026-11-14T05:42:26.3792539Z Unpacking libcdio-cdda2t64:amd64 (10.2+2.0.2-2) ...
+2026-11-14T05:42:26.4015670Z Selecting previously unselected package libcdio-paranoia2t64:amd64.
+2026-11-14T05:42:26.4151943Z Preparing to unpack .../73-libcdio-paranoia2t64_10.2+2.0.2-2_amd64v3.deb ...
+2026-11-14T05:42:26.4162001Z Unpacking libcdio-paranoia2t64:amd64 (10.2+2.0.2-2) ...
+2026-11-14T05:42:26.4386830Z Selecting previously unselected package libdc1394-25:amd64.
+2026-11-14T05:42:26.4521238Z Preparing to unpack .../74-libdc1394-25_2.2.6-6_amd64v3.deb ...
+2026-11-14T05:42:26.4530903Z Unpacking libdc1394-25:amd64 (2.2.6-6) ...
+2026-11-14T05:42:26.4792494Z Selecting previously unselected package libiec61883-0:amd64.
+2026-11-14T05:42:26.4928657Z Preparing to unpack .../75-libiec61883-0_1.2.0-8_amd64v3.deb ...
+2026-11-14T05:42:26.4937412Z Unpacking libiec61883-0:amd64 (1.2.0-8) ...
+2026-11-14T05:42:26.5151262Z Selecting previously unselected package libjack-jackd2-0:amd64.
+2026-11-14T05:42:26.5287304Z Preparing to unpack .../76-libjack-jackd2-0_1.9.22~dfsg-5build1_amd64v3.deb ...
+2026-11-14T05:42:26.5295495Z Unpacking libjack-jackd2-0:amd64 (1.9.22~dfsg-5build1) ...
+2026-11-14T05:42:26.5553471Z Selecting previously unselected package libopenal-data.
+2026-11-14T05:42:26.5689389Z Preparing to unpack .../77-libopenal-data_1%3a1.25.1-2_all.deb ...
+2026-11-14T05:42:26.5695805Z Unpacking libopenal-data (1:1.25.1-2) ...
+2026-11-14T05:42:26.5939849Z Selecting previously unselected package libopenal1:amd64.
+2026-11-14T05:42:26.6075233Z Preparing to unpack .../78-libopenal1_1%3a1.25.1-2_amd64v3.deb ...
+2026-11-14T05:42:26.6082738Z Unpacking libopenal1:amd64 (1:1.25.1-2) ...
+2026-11-14T05:42:26.6383613Z Selecting previously unselected package libxcb-shape0:amd64.
+2026-11-14T05:42:26.6519593Z Preparing to unpack .../79-libxcb-shape0_1.17.0-2ubuntu1_amd64v3.deb ...
+2026-11-14T05:42:26.6527315Z Unpacking libxcb-shape0:amd64 (1.17.0-2ubuntu1) ...
+2026-11-14T05:42:26.6742624Z Selecting previously unselected package libxv1:amd64.
+2026-11-14T05:42:26.6874462Z Preparing to unpack .../80-libxv1_2%3a1.0.13-1_amd64v3.deb ...
+2026-11-14T05:42:26.6881757Z Unpacking libxv1:amd64 (2:1.0.13-1) ...
+2026-11-14T05:42:26.7148853Z Selecting previously unselected package libavdevice62:amd64.
+2026-11-14T05:42:26.7283179Z Preparing to unpack .../81-libavdevice62_7%3a8.0.1-3ubuntu2_amd64v3.deb ...
+2026-11-14T05:42:26.7291684Z Unpacking libavdevice62:amd64 (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:26.7516409Z Selecting previously unselected package libdecor-0-0:amd64.
+2026-11-14T05:42:26.7652281Z Preparing to unpack .../82-libdecor-0-0_0.2.5-1_amd64v3.deb ...
+2026-11-14T05:42:26.7659234Z Unpacking libdecor-0-0:amd64 (0.2.5-1) ...
+2026-11-14T05:42:26.8254415Z Selecting previously unselected package libsdl2-classic:amd64.
+2026-11-14T05:42:26.8391045Z Preparing to unpack .../83-libsdl2-classic_2.32.10+dfsg-6_amd64v3.deb ...
+2026-11-14T05:42:26.8398421Z Unpacking libsdl2-classic:amd64 (2.32.10+dfsg-6) ...
+2026-11-14T05:42:26.8698811Z Selecting previously unselected package libsdl2-2.0-0:amd64.
+2026-11-14T05:42:26.8835135Z Preparing to unpack .../84-libsdl2-2.0-0_2.32.10+dfsg-6_amd64v3.deb ...
+2026-11-14T05:42:26.8841995Z Unpacking libsdl2-2.0-0:amd64 (2.32.10+dfsg-6) ...
+2026-11-14T05:42:26.9051897Z Selecting previously unselected package ffmpeg.
+2026-11-14T05:42:26.9189190Z Preparing to unpack .../85-ffmpeg_7%3a8.0.1-3ubuntu2_amd64v3.deb ...
+2026-11-14T05:42:26.9215356Z Unpacking ffmpeg (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:26.9637385Z Selecting previously unselected package libaacs0:amd64.
+2026-11-14T05:42:26.9774775Z Preparing to unpack .../86-libaacs0_0.11.1-4build1_amd64v3.deb ...
+2026-11-14T05:42:26.9782496Z Unpacking libaacs0:amd64 (0.11.1-4build1) ...
+2026-11-14T05:42:27.0012987Z Selecting previously unselected package libbdplus0:amd64.
+2026-11-14T05:42:27.0150473Z Preparing to unpack .../87-libbdplus0_0.2.0-4build1_amd64v3.deb ...
+2026-11-14T05:42:27.0157855Z Unpacking libbdplus0:amd64 (0.2.0-4build1) ...
+2026-11-14T05:42:27.0382634Z Selecting previously unselected package libdecor-0-plugin-1-gtk:amd64.
+2026-11-14T05:42:27.0522821Z Preparing to unpack .../88-libdecor-0-plugin-1-gtk_0.2.5-1_amd64v3.deb ...
+2026-11-14T05:42:27.0529385Z Unpacking libdecor-0-plugin-1-gtk:amd64 (0.2.5-1) ...
+2026-11-14T05:42:27.0763454Z Selecting previously unselected package libfftw3-single3:amd64.
+2026-11-14T05:42:27.0900562Z Preparing to unpack .../89-libfftw3-single3_3.3.10-2fakesync1build3_amd64v3.deb ...
+2026-11-14T05:42:27.0908397Z Unpacking libfftw3-single3:amd64 (3.3.10-2fakesync1build3) ...
+2026-11-14T05:42:27.1225965Z Selecting previously unselected package libwebrtc-audio-processing-1-3:amd64.
+2026-11-14T05:42:27.1363098Z Preparing to unpack .../90-libwebrtc-audio-processing-1-3_1.3-3build2_amd64v3.deb ...
+2026-11-14T05:42:27.1369851Z Unpacking libwebrtc-audio-processing-1-3:amd64 (1.3-3build2) ...
+2026-11-14T05:42:27.1623336Z Selecting previously unselected package libspa-0.2-modules:amd64.
+2026-11-14T05:42:27.1761509Z Preparing to unpack .../91-libspa-0.2-modules_1.6.2-1ubuntu1.2_amd64v3.deb ...
+2026-11-14T05:42:27.1768019Z Unpacking libspa-0.2-modules:amd64 (1.6.2-1ubuntu1.2) ...
+2026-11-14T05:42:27.2155998Z Selecting previously unselected package libpipewire-0.3-0t64:amd64.
+2026-11-14T05:42:27.2293433Z Preparing to unpack .../92-libpipewire-0.3-0t64_1.6.2-1ubuntu1.2_amd64v3.deb ...
+2026-11-14T05:42:27.2300712Z Unpacking libpipewire-0.3-0t64:amd64 (1.6.2-1ubuntu1.2) ...
+2026-11-14T05:42:27.2546504Z Selecting previously unselected package libpipewire-0.3-common.
+2026-11-14T05:42:27.2682099Z Preparing to unpack .../93-libpipewire-0.3-common_1.6.2-1ubuntu1.2_all.deb ...
+2026-11-14T05:42:27.2689008Z Unpacking libpipewire-0.3-common (1.6.2-1ubuntu1.2) ...
+2026-11-14T05:42:27.3117962Z Setting up libgme0:amd64 (0.6.4-1) ...
+2026-11-14T05:42:27.3143132Z Setting up libchromaprint1:amd64 (1.6.0-2build1) ...
+2026-11-14T05:42:27.3176354Z Setting up libpipewire-0.3-common (1.6.2-1ubuntu1.2) ...
+2026-11-14T05:42:27.3203683Z Setting up libdvdread8t64:amd64 (7.0.1-1) ...
+2026-11-14T05:42:27.3251681Z Setting up libraw1394-11:amd64 (2.1.2-2build4) ...
+2026-11-14T05:42:27.3275402Z Setting up libfftw3-single3:amd64 (3.3.10-2fakesync1build3) ...
+2026-11-14T05:42:27.3297347Z Setting up libudfread3:amd64 (1.2.0-2) ...
+2026-11-14T05:42:27.3323980Z Setting up libspeex1:amd64 (1.2.1-3build1) ...
+2026-11-14T05:42:27.3341651Z Setting up libshine3:amd64 (3.1.1-3build1) ...
+2026-11-14T05:42:27.3360545Z Setting up libvpl2 (1:2.16.0-1) ...
+2026-11-14T05:42:27.3381790Z Setting up libtwolame0:amd64 (0.4.0-2build4) ...
+2026-11-14T05:42:27.3408978Z Setting up libgsm1:amd64 (1.0.23-2) ...
+2026-11-14T05:42:27.3436622Z Setting up libsoxr0:amd64 (0.1.3-4.1) ...
+2026-11-14T05:42:27.3455361Z Setting up libzix-0-0:amd64 (0.8.0-1) ...
+2026-11-14T05:42:27.3474677Z Setting up libx264-165:amd64 (2:0.165.3222+gitb35605ac-3build1) ...
+2026-11-14T05:42:27.3494016Z Setting up libcodec2-1.2:amd64 (1.2.0-4) ...
+2026-11-14T05:42:27.3513211Z Setting up libmysofa1:amd64 (1.3.3+dfsg-1ubuntu2) ...
+2026-11-14T05:42:27.3530471Z Setting up libxcb-shape0:amd64 (1.17.0-2ubuntu1) ...
+2026-11-14T05:42:27.3548536Z Setting up libcdio19t64:amd64 (2.2.0-4build1) ...
+2026-11-14T05:42:27.3565871Z Setting up libmpg123-0t64:amd64 (1.33.3-2) ...
+2026-11-14T05:42:27.3585241Z Setting up libcjson1:amd64 (1.7.19-2) ...
+2026-11-14T05:42:27.3604728Z Setting up libxvidcore4:amd64 (2:1.3.7-3) ...
+2026-11-14T05:42:27.3640491Z Setting up libwebrtc-audio-processing-1-3:amd64 (1.3-3build2) ...
+2026-11-14T05:42:27.3688714Z Setting up libtheoraenc2:amd64 (1.2.0+dfsg-6) ...
+2026-11-14T05:42:27.3707898Z Setting up libcdio-cdda2t64:amd64 (10.2+2.0.2-2) ...
+2026-11-14T05:42:27.3725824Z Setting up librav1e0.8:amd64 (0.8.1-7) ...
+2026-11-14T05:42:27.3746267Z Setting up libtheoradec2:amd64 (1.2.0+dfsg-6) ...
+2026-11-14T05:42:27.3762430Z Setting up libvpx12:amd64 (1.16.0-3) ...
+2026-11-14T05:42:27.3788690Z Setting up libva2:amd64 (2.23.0-1ubuntu1) ...
+2026-11-14T05:42:27.3806490Z Setting up libsvtav1enc2:amd64 (2.3.0+dfsg-1build1) ...
+2026-11-14T05:42:27.3824380Z Setting up libopus0:amd64 (1.6.1-1) ...
+2026-11-14T05:42:27.3843458Z Setting up libcdio-paranoia2t64:amd64 (10.2+2.0.2-2) ...
+2026-11-14T05:42:27.3862130Z Setting up libdc1394-25:amd64 (2.2.6-6) ...
+2026-11-14T05:42:27.3879518Z Setting up libxv1:amd64 (2:1.0.13-1) ...
+2026-11-14T05:42:27.3897434Z Setting up libflac14:amd64 (1.5.0+ds-5) ...
+2026-11-14T05:42:27.3914641Z Setting up libaacs0:amd64 (0.11.1-4build1) ...
+2026-11-14T05:42:27.3932941Z Setting up libsonic0:amd64 (0.2.0-13build2) ...
+2026-11-14T05:42:27.3955200Z Setting up libssh-4:amd64 (0.11.3-1ubuntu2.1) ...
+2026-11-14T05:42:27.3972168Z Setting up libplacebo360:amd64 (7.360.0-3) ...
+2026-11-14T05:42:27.3992946Z Setting up libbdplus0:amd64 (0.2.0-4build1) ...
+2026-11-14T05:42:27.4010358Z Setting up libvidstab1.1:amd64 (1.1.0-2.1) ...
+2026-11-14T05:42:27.4028118Z Setting up libsrt1.5-gnutls:amd64 (1.5.4-3) ...
+2026-11-14T05:42:27.4048147Z Setting up libflite1:amd64 (2.2-7build1) ...
+2026-11-14T05:42:27.4065785Z Setting up libdav1d7:amd64 (1.5.3-1) ...
+2026-11-14T05:42:27.4086714Z Setting up libva-drm2:amd64 (2.23.0-1ubuntu1) ...
+2026-11-14T05:42:27.4113508Z Setting up ocl-icd-libopencl1:amd64 (2.3.4-1) ...
+2026-11-14T05:42:27.4134686Z Setting up libasyncns0:amd64 (0.8-7) ...
+2026-11-14T05:42:27.4154291Z Setting up libvdpau1:amd64 (1.5-4) ...
+2026-11-14T05:42:27.4180104Z Setting up libbs2b0:amd64 (3.1.0+dfsg-8build1) ...
+2026-11-14T05:42:27.4199949Z Setting up libdecor-0-0:amd64 (0.2.5-1) ...
+2026-11-14T05:42:27.4217506Z Setting up libzimg2:amd64 (3.0.6+ds1-1) ...
+2026-11-14T05:42:27.4239635Z Setting up libopenal-data (1:1.25.1-2) ...
+2026-11-14T05:42:27.4268882Z Setting up libbluray3:amd64 (1:1.4.1-1) ...
+2026-11-14T05:42:27.4286930Z Setting up libunibreak6:amd64 (6.1-3build1) ...
+2026-11-14T05:42:27.4307760Z Setting up libmbedcrypto16:amd64 (3.6.5-0.1ubuntu2) ...
+2026-11-14T05:42:27.4325108Z Setting up libx265-215:amd64 (4.1-4) ...
+2026-11-14T05:42:27.4347763Z Setting up libsamplerate0:amd64 (0.2.2-4build2) ...
+2026-11-14T05:42:27.4366864Z Setting up libva-x11-2:amd64 (2.23.0-1ubuntu1) ...
+2026-11-14T05:42:27.4384553Z Setting up libdecor-0-plugin-1-gtk:amd64 (0.2.5-1) ...
+2026-11-14T05:42:27.4405150Z Setting up libopenmpt0t64:amd64 (0.8.4-1) ...
+2026-11-14T05:42:27.4424085Z Setting up libzvbi-common (0.2.44-1ubuntu2) ...
+2026-11-14T05:42:27.4445383Z Setting up libmp3lame0:amd64 (3.101~svn6525+dfsg-2ubuntu0.1) ...
+2026-11-14T05:42:27.4464783Z Setting up espeak-ng-data:amd64 (1.52.0+dfsg-5build1) ...
+2026-11-14T05:42:27.4482721Z Setting up libvorbisenc2:amd64 (1.3.7-3build2) ...
+2026-11-14T05:42:27.4502009Z Setting up libdvdnav4:amd64 (7.0.0-2) ...
+2026-11-14T05:42:27.4520899Z Setting up libiec61883-0:amd64 (1.2.0-8) ...
+2026-11-14T05:42:27.4543079Z Setting up libserd-0-0:amd64 (0.32.6-1) ...
+2026-11-14T05:42:27.4560559Z Setting up libavc1394-0:amd64 (0.5.4-5build4) ...
+2026-11-14T05:42:27.4580608Z Setting up libzvbi0t64:amd64 (0.2.44-1ubuntu2) ...
+2026-11-14T05:42:27.4600623Z Setting up libavutil60:amd64 (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:27.4619067Z Setting up libopenal1:amd64 (1:1.25.1-2) ...
+2026-11-14T05:42:27.4638541Z Setting up librist4:amd64 (0.2.11+dfsg-1build1) ...
+2026-11-14T05:42:27.4657080Z Setting up libass9:amd64 (1:0.17.4-2) ...
+2026-11-14T05:42:27.4686897Z Setting up libswscale9:amd64 (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:27.4704767Z Setting up librubberband3:amd64 (4.0.0+dfsg-2ubuntu1) ...
+2026-11-14T05:42:27.4722707Z Setting up libswresample6:amd64 (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:27.4763296Z Setting up libjack-jackd2-0:amd64 (1.9.22~dfsg-5build1) ...
+2026-11-14T05:42:27.4781234Z Setting up libsord-0-0:amd64 (0.16.20-1) ...
+2026-11-14T05:42:27.4800490Z Setting up libsratom-0-0:amd64 (0.6.20-1) ...
+2026-11-14T05:42:27.4822311Z Setting up libsndfile1:amd64 (1.2.2-4) ...
+2026-11-14T05:42:27.4841363Z Setting up liblilv-0-0:amd64 (0.26.2-1) ...
+2026-11-14T05:42:27.4858679Z Setting up libpulse0:amd64 (1:17.0+dfsg1-2ubuntu4) ...
+2026-11-14T05:42:27.4887736Z Setting up libspa-0.2-modules:amd64 (1.6.2-1ubuntu1.2) ...
+2026-11-14T05:42:27.5159284Z Setting up libavcodec62:amd64 (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:27.5179755Z Setting up libpcaudio0:amd64 (1.3-1build1) ...
+2026-11-14T05:42:27.5197951Z Setting up libpipewire-0.3-0t64:amd64 (1.6.2-1ubuntu1.2) ...
+2026-11-14T05:42:27.5218915Z Setting up libsdl2-classic:amd64 (2.32.10+dfsg-6) ...
+2026-11-14T05:42:27.5240303Z Setting up libavformat62:amd64 (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:27.5259012Z Setting up libespeak-ng1:amd64 (1.52.0+dfsg-5build1) ...
+2026-11-14T05:42:27.5279207Z Setting up libavfilter11:amd64 (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:27.5295866Z Setting up espeak-ng (1.52.0+dfsg-5build1) ...
+2026-11-14T05:42:27.5314527Z Setting up libsdl2-2.0-0:amd64 (2.32.10+dfsg-6) ...
+2026-11-14T05:42:27.5335673Z Setting up libavdevice62:amd64 (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:27.5353185Z Setting up ffmpeg (7:8.0.1-3ubuntu2) ...
+2026-11-14T05:42:27.5379641Z Processing triggers for man-db (2.13.1-1build1) ...
+2026-11-14T05:42:27.5405534Z Not building database; man-db/auto-update is not 'true'.
+2026-11-14T05:42:27.5417417Z Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
+2026-11-14T05:42:28.2338692Z 
+2026-11-14T05:42:28.2339305Z Running kernel seems to be up-to-date.
+2026-11-14T05:42:28.2339785Z 
+2026-11-14T05:42:28.2339968Z Restarting services...
+2026-11-14T05:42:28.2432534Z 
+2026-11-14T05:42:28.2433334Z Service restarts being deferred:
+2026-11-14T05:42:28.2436297Z  systemctl restart hosted-compute-agent.service
+2026-11-14T05:42:28.2436726Z 
+2026-11-14T05:42:28.2437183Z No containers need to be restarted.
+2026-11-14T05:42:28.2437504Z 
+2026-11-14T05:42:28.2437728Z No user sessions are running outdated binaries.
+2026-11-14T05:42:28.2438091Z 
+2026-11-14T05:42:28.2438434Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-11-14T05:42:44.8136208Z ##[group]Run python -u .github/producer-dispatch-certification/native-certify.py --variant 'case-consistent-producer'
+2026-11-14T05:42:44.8137180Z [36;1mpython -u .github/producer-dispatch-certification/native-certify.py --variant 'case-consistent-producer'[0m
+2026-11-14T05:42:44.8188122Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:42:44.8188375Z env:
+2026-11-14T05:42:44.8188644Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:42:44.8189087Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-14T05:42:44.8189533Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:42:44.8189947Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:42:44.8190348Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:42:44.8190753Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-14T05:42:44.8191073Z ##[endgroup]
+2026-11-14T05:58:09.1429475Z ##[group]Run actions/cache/save@v4
+2026-11-14T05:58:09.1429779Z with:
+2026-11-14T05:58:09.1431403Z   path: /home/runner/work/_temp/completion-machine/tts/cache_tts/dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl
+/home/runner/work/_temp/completion-machine/tts/cache_tts/dce6d1ce3af5043cfc8b6d30acf416eab118b916.pkl.单线程
+/home/runner/work/_temp/completion-machine/tts/cache_tts/989b1c025c09eacfd989962aef8352fba7637aa6.pkl
+/home/runner/work/_temp/completion-machine/tts/cache_tts/989b1c025c09eacfd989962aef8352fba7637aa6.pkl.单线程
+
+2026-11-14T05:58:09.1433144Z   key: Linux-native16-origin-dce6d1-989b1c-43562710640
+2026-11-14T05:58:09.1433488Z   enableCrossOsArchive: false
+2026-11-14T05:58:09.1433736Z env:
+2026-11-14T05:58:09.1433991Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:58:09.1434422Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-14T05:58:09.1434856Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:58:09.1435604Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:58:09.1436010Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:58:09.1436626Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-14T05:58:09.1436977Z ##[endgroup]
+2026-11-14T05:58:09.2525787Z (node:11196) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T05:58:09.2526877Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T05:58:09.2774873Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/literate-enigma/literate-enigma --files-from manifest.txt --use-compress-program zstdmt
+2026-11-14T05:58:09.5401704Z (node:11196) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-14T05:58:10.2525777Z Sent 1598252 of 1598252 (100.0%), 2.1 MBs/sec
+2026-11-14T05:58:10.4196472Z Cache saved with key: Linux-native16-origin-dce6d1-989b1c-43562710640
+2026-11-14T05:58:10.4297268Z ##[group]Run python - <<'PYCODE'
+2026-11-14T05:58:10.4297623Z [36;1mpython - <<'PYCODE'[0m
+2026-11-14T05:58:10.4297884Z [36;1mimport json, os[0m
+2026-11-14T05:58:10.4298133Z [36;1mfrom pathlib import Path[0m
+2026-11-14T05:58:10.4298551Z [36;1mp=Path('certification-public/16-native-current-reference-cache.json')[0m
+2026-11-14T05:58:10.4299112Z [36;1mj=json.loads(p.read_text());j['normal_internal_Actions_cache_saved']=True[0m
+2026-11-14T05:58:10.4299770Z [36;1mj['normal_internal_Actions_cache_key']='Linux-native16-origin-dce6d1-989b1c-'+os.environ['GITHUB_RUN_ID'][0m
+2026-11-14T05:58:10.4300398Z [36;1mp.write_text(json.dumps(j,ensure_ascii=False,indent=2)+'\n')[0m
+2026-11-14T05:58:10.4300755Z [36;1mPYCODE[0m
+2026-11-14T05:58:10.4349393Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:58:10.4349652Z env:
+2026-11-14T05:58:10.4349918Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:58:10.4350422Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-14T05:58:10.4350877Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:58:10.4351274Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:58:10.4351688Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:58:10.4352104Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-14T05:58:10.4352441Z ##[endgroup]
+2026-11-14T05:58:10.4707873Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T05:58:10.4708199Z with:
+2026-11-14T05:58:10.4708508Z   name: core-producer-certification-case-consistent-producer
+2026-11-14T05:58:10.4708983Z   path: certification-public/*.json
+certification-public/*.log
+
+2026-11-14T05:58:10.4709353Z   retention-days: 30
+2026-11-14T05:58:10.4725998Z   if-no-files-found: error
+2026-11-14T05:58:10.4726419Z   compression-level: 6
+2026-11-14T05:58:10.4726783Z   overwrite: false
+2026-11-14T05:58:10.4727135Z   include-hidden-files: false
+2026-11-14T05:58:10.4727528Z env:
+2026-11-14T05:58:10.4727962Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:58:10.4728731Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-14T05:58:10.4729498Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:58:10.4730188Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:58:10.4730963Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-14T05:58:10.4731702Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-14T05:58:10.4732296Z ##[endgroup]
+2026-11-14T05:58:10.6420238Z (node:11220) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T05:58:10.6421062Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T05:58:10.6562859Z With the provided path, there will be 44 files uploaded
+2026-11-14T05:58:10.6569189Z Artifact name is valid!
+2026-11-14T05:58:10.6569901Z Root directory input is valid!
+2026-11-14T05:58:11.0364202Z Beginning upload of artifact content to blob storage
+2026-11-14T05:58:11.1138846Z (node:11220) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-14T05:58:11.5943394Z Uploaded bytes 175453
+2026-11-14T05:58:11.6728219Z Finished uploading artifact content to blob storage!
+2026-11-14T05:58:11.6729491Z SHA256 digest of uploaded artifact zip is 46d5123353a6d7fa2c0c5705ec9a2a5f0b3506c466fcdc09dec92ca7c0f19c44
+2026-11-14T05:58:11.6730825Z Finalizing artifact upload
+2026-11-14T05:58:12.0474246Z Artifact core-producer-certification-case-consistent-producer.zip successfully finalized. Artifact ID 14102045349
+2026-11-14T05:58:12.0476332Z Artifact core-producer-certification-case-consistent-producer has been successfully uploaded! Final size is 175453 bytes. Artifact ID is 14102045349
+2026-11-14T05:58:12.0482060Z Artifact download URL: https://github.com/AlienCodes/literate-enigma/actions/runs/43562710640/artifacts/14102045349
+2026-11-14T05:58:12.0682901Z Post job cleanup.
+2026-11-14T05:58:12.1881596Z (node:11232) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T05:58:12.1882853Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T05:58:12.2058545Z Post job cleanup.
+2026-11-14T05:58:12.3047747Z [command]/usr/bin/git version
+2026-11-14T05:58:12.3078485Z git version 2.56.1
+2026-11-14T05:58:12.3140769Z Copying '/home/runner/.gitconfig' to '/home/runner/work/_temp/1079be79-260c-4aa9-aea9-1fd6953c179f/.gitconfig'
+2026-11-14T05:58:12.3164410Z Temporarily overriding HOME='/home/runner/work/_temp/1079be79-260c-4aa9-aea9-1fd6953c179f' before making global git config changes
+2026-11-14T05:58:12.3166345Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T05:58:12.3168062Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/literate-enigma/literate-enigma/ending-reference-resources
+2026-11-14T05:58:12.3224458Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T05:58:12.3289463Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T05:58:12.3687462Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T05:58:12.3720631Z http.https://github.com/.extraheader
+2026-11-14T05:58:12.3733660Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T05:58:12.3774044Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T05:58:12.4082645Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T05:58:12.4119943Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T05:58:12.4585614Z Post job cleanup.
+2026-11-14T05:58:12.5474694Z [command]/usr/bin/git version
+2026-11-14T05:58:12.5526356Z git version 2.56.1
+2026-11-14T05:58:12.5562688Z Copying '/home/runner/.gitconfig' to '/home/runner/work/_temp/adcabad9-23e8-497c-830e-3f3d07afde1c/.gitconfig'
+2026-11-14T05:58:12.5573872Z Temporarily overriding HOME='/home/runner/work/_temp/adcabad9-23e8-497c-830e-3f3d07afde1c' before making global git config changes
+2026-11-14T05:58:12.5576287Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T05:58:12.5580979Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/literate-enigma/literate-enigma/official-main
+2026-11-14T05:58:12.5631798Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T05:58:12.5673484Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T05:58:12.6055667Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T05:58:12.6090258Z http.https://github.com/.extraheader
+2026-11-14T05:58:12.6106802Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T05:58:12.6146707Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T05:58:12.6479380Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T05:58:12.6516369Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T05:58:12.7065640Z Post job cleanup.
+2026-11-14T05:58:12.7971681Z [command]/usr/bin/git version
+2026-11-14T05:58:12.8018832Z git version 2.56.1
+2026-11-14T05:58:12.8054124Z Copying '/home/runner/.gitconfig' to '/home/runner/work/_temp/41bd6f91-3e19-4eb2-8f7a-b21ddc905ebb/.gitconfig'
+2026-11-14T05:58:12.8065166Z Temporarily overriding HOME='/home/runner/work/_temp/41bd6f91-3e19-4eb2-8f7a-b21ddc905ebb' before making global git config changes
+2026-11-14T05:58:12.8066493Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T05:58:12.8071687Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/literate-enigma/literate-enigma
+2026-11-14T05:58:12.8118517Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T05:58:12.8164598Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T05:58:12.8578292Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T05:58:12.8608582Z http.https://github.com/.extraheader
+2026-11-14T05:58:12.8624433Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T05:58:12.8674615Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T05:58:12.9056000Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T05:58:12.9100937Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T05:58:12.9563601Z Cleaning up orphan processes
+2026-11-14T05:58:12.9968998Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache/restore@v4, actions/cache/save@v4, actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
