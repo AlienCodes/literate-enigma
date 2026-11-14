@@ -2,14 +2,13 @@
   "kind": "validated-video-final-alias-plan-v1",
   "schema_version": 1,
   "requested_total": 70,
-  "current_count": 58,
-  "archived_passed_count": 61,
+  "current_count": 59,
+  "archived_passed_count": 62,
   "complete": false,
   "selection": "user146_latest_requests_bound_current_only",
   "validation_scope": "Existing canonical Git blob identity, mode and size; no new media validation or production",
   "catalog_validated": true,
   "missing_source_ids": [
-    "16",
     "18",
     "30",
     "40",
@@ -26,7 +25,6 @@
     "40",
     "41",
     "42",
-    "45",
     "46",
     "47",
     "50",
@@ -80,6 +78,7 @@
     "修改记录/39 一座火山，造出了《弗兰肯斯坦》.md",
     "修改记录/43 炸药大王的救心药.md",
     "修改记录/44 被拒绝了十二次的哈利·波特.md",
+    "修改记录/45 从空气中造面包.md",
     "修改记录/48 光之殇.md",
     "修改记录/49 冰海求生：坚忍号传奇.md",
     "修改记录/51 林下之网.md",
@@ -5428,6 +5427,98 @@
       "video_order_authority_review_sha256": "3120efc6893981436cb81458ce57f6aca7601edc5e7326cce1388b68de959001"
     },
     {
+      "source_id": "16",
+      "new_id": "45",
+      "title_zh": "从空气中造面包",
+      "bytes": 27246318,
+      "sha256": "f8aa6dccefe33788d796a5c102952dcf3198ad4b525012eedd7f245509517f3e",
+      "source_run": 43644041957,
+      "asset_commit": "aa601aed9ac9682d2f99f3ed0f9cb4a001dcccb7",
+      "original_path": "视频修订定稿/2026-11-14-审核原16-新native源QA与0.6秒定稿-来源43644041957-本地尾段v1/视频/45 从空气中造面包.mp4",
+      "alias_path": "最终定稿/视频/45 从空气中造面包.mp4",
+      "git_blob_sha": "09202101136ca73dc5a4f12531fce2c45ecd6b3a",
+      "previous_versions": [],
+      "missing_metadata_fields": [],
+      "evidence_pointers": {
+        "original_video_repo_path": "视频修订定稿/2026-11-14-审核原16-新native源QA与0.6秒定稿-来源43644041957-本地尾段v1/视频/45 从空气中造面包.mp4",
+        "archive_prefix": "视频修订定稿/2026-11-14-审核原16-新native源QA与0.6秒定稿-来源43644041957-本地尾段v1",
+        "asset_commit": "aa601aed9ac9682d2f99f3ed0f9cb4a001dcccb7",
+        "existing_archive_evidence_files": [
+          "视频修订定稿/2026-11-14-审核原16-新native源QA与0.6秒定稿-来源43644041957-本地尾段v1/archive-manifest.json",
+          "视频修订定稿/2026-11-14-审核原16-新native源QA与0.6秒定稿-来源43644041957-本地尾段v1/实际新native源QA原件非本轮最终片/report.json",
+          "视频修订定稿/2026-11-14-审核原16-新native源QA与0.6秒定稿-来源43644041957-本地尾段v1/本轮实际normal18完整核验/archive-handoff.json",
+          "视频修订定稿/2026-11-14-审核原16-新native源QA与0.6秒定稿-来源43644041957-本地尾段v1/本轮实际normal18完整核验/inherited-full-V3/report.json",
+          "视频修订定稿/2026-11-14-审核原16-新native源QA与0.6秒定稿-来源43644041957-本地尾段v1/本轮实际normal18完整核验/report.json"
+        ]
+      },
+      "current_inventory_row": {
+        "source_id": "16",
+        "new_id": "45",
+        "title_zh": "从空气中造面包",
+        "title_en": "The Bread Made from Air",
+        "video_repo_path": "视频修订定稿/2026-11-14-审核原16-新native源QA与0.6秒定稿-来源43644041957-本地尾段v1/视频/45 从空气中造面包.mp4",
+        "bytes": 27246318,
+        "sha256": "f8aa6dccefe33788d796a5c102952dcf3198ad4b525012eedd7f245509517f3e",
+        "passed_per_article": true,
+        "source_run": 43644041957,
+        "production_delivery_eligible": true,
+        "preview_only": false,
+        "media_origin": "actual_validated_normal18_local_tail_derivative_of_original_native_source",
+        "actual_runtime_GEN_or_voice_rerun_claimed": false,
+        "GEN_origin": "derived_after_final_QC",
+        "MD_origin": "actual_working_manuscript",
+        "final_GEN_claimed_as_runtime": false,
+        "canonical_audio_basis": "actual_new_native_source_QA_then_normal18_canonical_AAC_projection_identity",
+        "approved_audio_repair_applied": true,
+        "source_native_audio_repair_applied": true,
+        "local_tail_postprocessing_audio_repair_applied": false,
+        "local_postprocessing_only": true,
+        "post_reading_pause_seconds": 0.6,
+        "nominal_extra_hold_frames_at_30fps": 18,
+        "postprocessing_full_V3_handoff_sha256": "77598ea4bb129a077a320e11d5a0f7f031ed3135b3095d3b9d264a9b7f725fb7",
+        "actual_new_native_source_QA_observed": true,
+        "actual_new_native_source_QA_handoff": {
+          "path": "/dev/shm/review16-sourceQA/43644041957/archive-handoff.json",
+          "bytes": 35781,
+          "sha256": "09acb35f461533a8c6ffab84a738cda1ef615a0b1951cf871cc621d214d8666a"
+        },
+        "postprocessing_itself_claims_new_native_or_TTS": false,
+        "overall_native_matrix_success_claimed": false,
+        "source_native_audio_QC": {
+          "path": "/dev/shm/review16-sourceQA/43644041957/16/actual-qc-v3.json",
+          "bytes": 10068,
+          "sha256": "132d277e85929047e959e6300fdeb4070221e283a29c0d9ab059f6a65912ed5b"
+        },
+        "source_native_audio_lossless_copy": {
+          "canonical_video_sha256": "5d88d53509241724a815cde55058262a08e6322f9418c91d96bd636db17fa1be",
+          "final_video_sha256": "70fcf39f3941ec2c192a58046f15debfac2227c064d1dd97a033625edff43126",
+          "audio_packet_times_identical": true,
+          "canonical_aac_adts_sha256": "f858c0d2d9ed55a2c405609eda0e7fb4d7d8e38ee3bf4766cf4be2bf956be80f",
+          "canonical_packet_projection_sha256": "a39187203615b66a83da9de3a0a7ad2349e9b26462d17696c2c0a2d9414e467f",
+          "canonical_packet_count": 6814,
+          "final_aac_adts_sha256": "f858c0d2d9ed55a2c405609eda0e7fb4d7d8e38ee3bf4766cf4be2bf956be80f",
+          "final_packet_projection_sha256": "a39187203615b66a83da9de3a0a7ad2349e9b26462d17696c2c0a2d9414e467f",
+          "final_packet_count": 6814
+        },
+        "source_native_controlled_repair": {
+          "status": "passed",
+          "actual_new_output": true,
+          "canonical_video_sha256": "5d88d53509241724a815cde55058262a08e6322f9418c91d96bd636db17fa1be",
+          "reviewed_canonical_video_sha256": "3c1c90eb07cf293f5f2858c852b035d6245d24eba51f3b5b5c893ffa8e6e4a38",
+          "binding": "reviewed_native_pre_card_then_exact_audio_copy",
+          "report_sha256": "05078e6f935fd4aa9f2e7687d38ed854902b9ea51d613518eb6f660d4b679235",
+          "authorization": "Actual immutable native user-authorization/source request records and approved dedicated acoustic QC retained in evidence."
+        },
+        "asset_commit": "aa601aed9ac9682d2f99f3ed0f9cb4a001dcccb7",
+        "archive_prefix": "视频修订定稿/2026-11-14-审核原16-新native源QA与0.6秒定稿-来源43644041957-本地尾段v1"
+      },
+      "title_en": "The Bread Made from Air",
+      "current_video_order": "45",
+      "original_book_order": "45",
+      "quality_book_order_unchanged": true,
+      "video_order_authority_review_sha256": "3120efc6893981436cb81458ce57f6aca7601edc5e7326cce1388b68de959001"
+    },
+    {
       "source_id": "46",
       "new_id": "48",
       "title_zh": "光之殇",
@@ -6608,7 +6699,6 @@
     "40",
     "41",
     "42",
-    "45",
     "46",
     "47",
     "50",
@@ -6618,7 +6708,7 @@
     "57",
     "64"
   ],
-  "latest_deliverable_count": 58,
+  "latest_deliverable_count": 59,
   "latest_final_directory_policy": {
     "kind": "explicit-user146-unique-latest-final-video-directory",
     "authority_review_sha256": "e759548c0f1889fed996d8fd627e69eae26fe3c4ce0013a911a9f61ac61dd772",
@@ -6630,7 +6720,7 @@
     "new_current_and_raw_pending_updates_sync_directory_same_commit": true,
     "video_order090_and_frozen_quality_book_order_preserved": true
   },
-  "latest_requests_canonical_json_sha256": "f79b300debdb16d5c10c4c291fef9593643f2081df36dacdebd46b63626a6e07",
+  "latest_requests_canonical_json_sha256": "419858e4ca263c927ada35352b98b096441f1186d652675f961ac73af8694c00",
   "excluded_older_accepted": [
     {
       "source_id": "43",
@@ -6731,18 +6821,6 @@
       ]
     },
     {
-      "source_id": "16",
-      "current_video_order": "45",
-      "original_book_order": "45",
-      "title_zh": "从空气中造面包",
-      "status": "formal_finalization_pending_latest_source_complete_QA_and_dual_archive",
-      "latest_user_records": [
-        "135",
-        "136",
-        "137"
-      ]
-    },
-    {
       "source_id": "40",
       "current_video_order": "46",
       "original_book_order": "46",
@@ -6760,7 +6838,6 @@
     }
   ],
   "archived_missing_source_ids": [
-    "16",
     "18",
     "30",
     "48",
@@ -6772,7 +6849,6 @@
   ],
   "archived_missing_frozen_book_orders": [
     "42",
-    "45",
     "47",
     "50",
     "53",
