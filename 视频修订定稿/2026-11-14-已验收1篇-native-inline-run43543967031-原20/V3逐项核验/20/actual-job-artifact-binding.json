@@ -1,0 +1,3928 @@
+{
+  "actual_successful_job_verified": true,
+  "actual_genuine_upstream_pass_with_missing_art_recovery": false,
+  "actual_job_uploaded_selected_artifact": false,
+  "overall_matrix_success_required": false,
+  "acceptance_basis": "actual successful article job + immutable run artifact + actual native passed article/media/source identity; upload log is auxiliary",
+  "run": {
+    "id": 43543967031,
+    "name": "本轮改动篇目原缓存正式4K",
+    "node_id": "WFR_kwLODJcpM88AAAAKI2w1Nw",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "head_sha": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+    "path": ".github/workflows/produce-revision-batch4K.yml",
+    "display_title": "Rebuild revised articles in official4K: 01,02,03,04,05,06,08,09,13,14…",
+    "run_number": 14,
+    "event": "push",
+    "status": "queued",
+    "conclusion": null,
+    "workflow_id": 417752518,
+    "check_suite_id": 117906846498,
+    "check_suite_node_id": "CS_kwDODJcpM88AAAAbc8uzIg",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43543967031",
+    "pull_requests": [],
+    "created_at": "2026-11-14T02:01:39Z",
+    "updated_at": "2026-11-14T02:01:45Z",
+    "actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-14T02:01:39Z",
+    "triggering_actor": {
+      "login": "AlienCodes",
+      "id": 52247027,
+      "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlienCodes",
+      "html_url": "https://github.com/AlienCodes",
+      "followers_url": "https://api.github.com/users/AlienCodes/followers",
+      "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+      "repos_url": "https://api.github.com/users/AlienCodes/repos",
+      "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/attempts/1/jobs",
+    "logs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/attempts/1/logs",
+    "check_suite_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-suites/117906846498",
+    "artifacts_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/artifacts",
+    "cancel_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/cancel",
+    "rerun_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/workflows/417752518",
+    "head_commit": {
+      "id": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+      "tree_id": "0914f9e0bf4e159fafeea9ae61cad85548219250",
+      "message": "Rebuild revised articles in official4K: 01,02,03,04,05,06,08,09,13,14,16,19,20,21,22,23,24,28,32,33,36,37,41,44,46,48,49,54,55,57,59,60,61,62,63,65,66,67,68,69,70",
+      "timestamp": "2026-11-14T02:01:37Z",
+      "author": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      },
+      "committer": {
+        "name": "the Sword God",
+        "email": "52247027+AlienCodes@users.noreply.github.com"
+      }
+    },
+    "repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    },
+    "head_repository": {
+      "id": 211233075,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMTEyMzMwNzU=",
+      "name": "literate-enigma",
+      "full_name": "AlienCodes/literate-enigma",
+      "private": false,
+      "owner": {
+        "login": "AlienCodes",
+        "id": 52247027,
+        "node_id": "MDQ6VXNlcjUyMjQ3MDI3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52247027?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/AlienCodes",
+        "html_url": "https://github.com/AlienCodes",
+        "followers_url": "https://api.github.com/users/AlienCodes/followers",
+        "following_url": "https://api.github.com/users/AlienCodes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/AlienCodes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/AlienCodes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/AlienCodes/subscriptions",
+        "organizations_url": "https://api.github.com/users/AlienCodes/orgs",
+        "repos_url": "https://api.github.com/users/AlienCodes/repos",
+        "events_url": "https://api.github.com/users/AlienCodes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/AlienCodes/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/AlienCodes/literate-enigma",
+      "description": "I am exploring this world!",
+      "fork": false,
+      "url": "https://api.github.com/repos/AlienCodes/literate-enigma",
+      "forks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/forks",
+      "keys_url": "https://api.github.com/repos/AlienCodes/literate-enigma/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/AlienCodes/literate-enigma/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/AlienCodes/literate-enigma/teams",
+      "hooks_url": "https://api.github.com/repos/AlienCodes/literate-enigma/hooks",
+      "issue_events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/AlienCodes/literate-enigma/events",
+      "assignees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/AlienCodes/literate-enigma/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/tags",
+      "blobs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/AlienCodes/literate-enigma/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/AlienCodes/literate-enigma/languages",
+      "stargazers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/stargazers",
+      "contributors_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contributors",
+      "subscribers_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscribers",
+      "subscription_url": "https://api.github.com/repos/AlienCodes/literate-enigma/subscription",
+      "commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/AlienCodes/literate-enigma/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/AlienCodes/literate-enigma/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/AlienCodes/literate-enigma/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/AlienCodes/literate-enigma/merges",
+      "archive_url": "https://api.github.com/repos/AlienCodes/literate-enigma/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/AlienCodes/literate-enigma/downloads",
+      "issues_url": "https://api.github.com/repos/AlienCodes/literate-enigma/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/AlienCodes/literate-enigma/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/AlienCodes/literate-enigma/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/AlienCodes/literate-enigma/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/AlienCodes/literate-enigma/labels{/name}",
+      "releases_url": "https://api.github.com/repos/AlienCodes/literate-enigma/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/AlienCodes/literate-enigma/deployments"
+    }
+  },
+  "job": {
+    "id": 132290749472,
+    "run_id": 43543967031,
+    "workflow_name": "本轮改动篇目原缓存正式4K",
+    "head_branch": "codex/finish-05-and-summaries-20261112",
+    "run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/runs/43543967031",
+    "run_attempt": 1,
+    "node_id": "CR_kwDODJcpM88AAAAezSSkIA",
+    "head_sha": "751cbb58491b7918c7437f9cd91efe28d90fa32e",
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/jobs/132290749472",
+    "html_url": "https://github.com/AlienCodes/literate-enigma/actions/runs/43543967031/job/132290749472",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-14T02:01:45Z",
+    "started_at": "2026-11-14T02:05:51Z",
+    "completed_at": "2026-11-14T02:19:21Z",
+    "name": "produce (20)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T02:05:52Z",
+        "completed_at": "2026-11-14T02:05:52Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T02:05:52Z",
+        "completed_at": "2026-11-14T02:06:00Z"
+      },
+      {
+        "name": "按批准的原图清单解析本篇原生文件名",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-14T02:06:00Z",
+        "completed_at": "2026-11-14T02:06:00Z"
+      },
+      {
+        "name": "取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-14T02:06:00Z",
+        "completed_at": "2026-11-14T02:06:01Z"
+      },
+      {
+        "name": "先验本篇原图的主仓提交、原生blob和批准SHA",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T02:06:01Z",
+        "completed_at": "2026-11-14T02:06:01Z"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-14T02:06:01Z",
+        "completed_at": "2026-11-14T02:06:02Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T02:06:02Z",
+        "completed_at": "2026-11-14T02:06:33Z"
+      },
+      {
+        "name": "确认恢复既有机器缓存",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T02:06:33Z",
+        "completed_at": "2026-11-14T02:06:33Z"
+      },
+      {
+        "name": "准备原有核查工具",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-11-14T02:06:33Z",
+        "completed_at": "2026-11-14T02:07:14Z"
+      },
+      {
+        "name": "Run actions/cache/restore@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-11-14T02:07:14Z",
+        "completed_at": "2026-11-14T02:07:14Z"
+      },
+      {
+        "name": "确认原快测印章缓存命中",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-14T02:07:14Z",
+        "completed_at": "2026-11-14T02:07:14Z"
+      },
+      {
+        "name": "原程序做稿并正式定稿4K",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-14T02:07:14Z",
+        "completed_at": "2026-11-14T02:19:16Z"
+      },
+      {
+        "name": "仅保留本篇公开成片和核验材料",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-14T02:19:16Z",
+        "completed_at": "2026-11-14T02:19:18Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 24,
+        "started_at": "2026-11-14T02:19:18Z",
+        "completed_at": "2026-11-14T02:19:18Z"
+      },
+      {
+        "name": "Post 取固定主仓中已批准的本篇书中原图",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25,
+        "started_at": "2026-11-14T02:19:18Z",
+        "completed_at": "2026-11-14T02:19:19Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 26,
+        "started_at": "2026-11-14T02:19:19Z",
+        "completed_at": "2026-11-14T02:19:19Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 27,
+        "started_at": "2026-11-14T02:19:19Z",
+        "completed_at": "2026-11-14T02:19:19Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/AlienCodes/literate-enigma/check-runs/132290749472",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000008406,
+    "runner_name": "GitHub Actions 1000008406",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "artifact": {
+    "id": 14094445245,
+    "node_id": "MDg6QXJ0aWZhY3QxNDA5NDQ0NTI0NQ==",
+    "name": "article20-revised-canonical-4K-final",
+    "size_in_bytes": 39645446,
+    "url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14094445245",
+    "archive_download_url": "https://api.github.com/repos/AlienCodes/literate-enigma/actions/artifacts/14094445245/zip",
+    "expired": false,
+    "digest": "sha256:eab1c6ddbf7530908e65ed04016d5fb5dd16cc1269a8e717f3cc8003a8e0db21",
+    "created_at": "2026-11-14T02:19:18Z",
+    "updated_at": "2026-11-14T02:19:18Z",
+    "expires_at": "2026-12-14T02:19:16Z",
+    "workflow_run": {
+      "id": 43543967031,
+      "repository_id": 211233075,
+      "head_repository_id": 211233075,
+      "head_branch": "codex/finish-05-and-summaries-20261112",
+      "head_sha": "751cbb58491b7918c7437f9cd91efe28d90fa32e"
+    }
+  },
+  "upload_step_proof": {
+    "unambiguous_selected_step_upload": false,
+    "auxiliary_only": true,
+    "reason": "Upload action log block is missing or ambiguous in selected API step interval",
+    "acceptance_blocked_by_log": false
+  },
+  "native_status": {
+    "article": "20",
+    "passed": true,
+    "stage": "final4K-passed",
+    "original_audit_and_quality_thresholds_unchanged": true,
+    "original_maker_unchanged": true,
+    "core_repairs": [
+      {
+        "target": "视频/工具/草稿声音.sh",
+        "file": "files/视频/工具/草稿声音.sh",
+        "original_sha256": "0ce3277812cf16ed30438509b6dc97db0c26725db4c5db5d9b058c3ef6531aa2",
+        "patched_sha256": "957d7eb1598698ea33ff77d83379256ecae258d84d588753d561a902284be439",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/句内响度.py",
+        "file": "files/视频/工具/句内响度.py",
+        "original_sha256": "58735b7173a3c03efa61fb300b4aed4039c164fa970e0593a40bae2a3f3cbd27",
+        "patched_sha256": "9c5691cf59dc7776e822461044e50031ff118de29d7ae0769781a1cc66664bea",
+        "repair_scope": "keep reviewed source gain; original measurement and quality checks retained"
+      },
+      {
+        "target": "视频/工具/独立复核/synth.py",
+        "file": "files/视频/工具/独立复核/synth.py",
+        "original_sha256": "23e024232b98ea83a6782e548d2b5f69b31141761a2e7c8d372805bba3b57746",
+        "patched_sha256": "a0c9cad9ac953e68768470e8181f7e325c8ee8ff08ca57b68bbd136b99b83264",
+        "repair_scope": "validated unprocessed raw-mother reference input only; independent transforms/audit/thresholds retained"
+      }
+    ],
+    "strict_production_cache": true,
+    "pdf_requested": false,
+    "check_summaries": {
+      "approved-illustration-resource.log": [],
+      "certified-core-original-stamp-verification.log": [],
+      "original-restored-stamp.log": [],
+      "canonical-module-copy.log": [],
+      "canonical-draft-00.log": [
+        "第20篇 做完（316 秒）：修了 1 处、疑点 15 处",
+        "① 文本：通过，自动修 1 处",
+        "② 声音：20 词尾辅音核对 问题数 0；20 纯人声核对（配音指纹 0e78467a159d）问题数 0；问题数 0；20 句间停顿核对 问题数 0；问题数 0",
+        "③ 出片前核查：通过",
+        "⑤ 出片后核查：全部通过",
+        "⑥ 已拷 视频/视频/草稿1080p/20_1080p.mp4（--不推）"
+      ],
+      "canonical-final4K-00.log": [
+        "第20篇 用户定稿原话：有"
+      ],
+      "original-stamp-after-production.log": []
+    },
+    "actual_native_core_certification": {
+      "run_id": 43535822030,
+      "job_id": 132264443476,
+      "commit": "395e8da264fafa2453a42ee70a3f7aed8303a769",
+      "actual_full_quickcheck_exit": 0,
+      "actual_full_quickcheck_seconds": 478.16,
+      "artifact_id": 14089812323,
+      "artifact_zip_sha256": "5e396c84e4a6fc7c6cc737ceb8648d7f15f397e9551806e032c93db8ab0963b8",
+      "full_original_quickcheck_log_sha256": "dbe7f6e08d2b7c3a5f9a2f925bb75a662aed725c780e1bc6714706807552a294",
+      "article_audio_or_video_passed_not_implied": true
+    },
+    "actual_native_fastcheck_stamp": {
+      "target": "视频/工具/新管/快测通过.json",
+      "file": "files/视频/工具/新管/快测通过.json",
+      "sha256": "6ebc7aa41f79f77258fa333b665af258e007daa36a4ea290de972cd3da7b42f2",
+      "origin": "actual unmodified original full quickcheck, native run43535822030"
+    },
+    "reviewed_regression_resource": {
+      "target": "视频/工具/新管/回归基准_27.json",
+      "file": "files/视频/工具/新管/回归基准_27.json",
+      "sha256": "b8ddb4656ae27cbfc7ec8e3b99511983b4e568997bd4ad4ee33c364f3926ae94",
+      "origin": "pre-existing root-reviewed 67-screen data; original voice/segment MD5 unchanged"
+    },
+    "core_repair_manifest_sha256": "1b1558108d15603e5711e200135651d6c7700a583d8bcf53ad8753683ed05a5e",
+    "reviewed_gain_preservation_mode": true,
+    "real_restored_stamp_validated": true,
+    "reviewed_cross_article_context": {
+      "provided": true,
+      "manifest_sha256": "eddfbdceea4e25f2398a2198f94d9852f1e30e35b35c4075c5a5ff0c8e32c096",
+      "files_sha256": {
+        "视频/脚本/01.json": "2be2f80a69af28703992204ac95f987c745362c326e62ad81b3cd8e0e0735d3a",
+        "新版定稿/01-the-robber-who-thought-lemon-juice-made-him-invisible.md": "572054065b5bb65446bf8939a21c789c1e9c7664d82da5117c43efdded894351",
+        "视频/脚本/02.json": "0403368c77fd3e0f91e1ee3780e1c7c147894ad13c16b5f14707d700a8f717c8",
+        "新版定稿/02-the-truth-about-one-marshmallow.md": "91b92505aad03f963861bec39e96f0a472c126d1d57c9fc538676c32f65e545c",
+        "视频/脚本/03.json": "527f3bf4a11843f4d606188dabc6ebce6830da3fb454a49c782e3a595cb47407",
+        "新版定稿/03-the-doctor-who-drank-bacteria-to-win-an-argument.md": "6dfb56504882e24854a3584fd740e7f6601e3f2532818aee3a56d5330d317aa3",
+        "视频/脚本/04.json": "93cc1ff58d65ebe43a65ecb2fb2dbd2da262d80877c05740bbdf4eab4eaca1e8",
+        "新版定稿/04-the-brain-that-learned-london.md": "a8ccb31ffff50aaae77de4b83de1847fafae1d585981cf960c5880c409f6cfc3",
+        "视频/脚本/05.json": "2282acbfa4b82825f93261ec6c18359eb47fd3f7c639319ac5058d126643e136",
+        "新版定稿/05-the-fingerprint-in-the-blood.md": "612deac4ed066489e04e214ca969f8f27dda05856e0ef0ed2e540e7a4a52ae34",
+        "视频/脚本/06.json": "2cbf1d6cd6e66a59285298ea830f5ef914590b64286d40b2ae5f3168aa27a2e9",
+        "新版定稿/06-the-horse-that-could-count.md": "7fd21ba491c7596c53c486f2bb0b0f2f6da8e67bac75461a4649a7caff822f74",
+        "视频/脚本/07.json": "842e44e5aa19fddcfa239cb6530c5152341cd86e11db959543d02d8670ca13e8",
+        "新版定稿/07-the-octopus-that-escaped.md": "b8544281bb2ada88fce9d1082cbc30233dcb63ee3e9c2bbefafc22cb28b8cb39",
+        "视频/脚本/08.json": "254832e09f12759d950384dd9f31f671ad5a3bc1590b7466065dd3ef5fe4b8d5",
+        "新版定稿/08-the-doctor-who-solved-the-cholera-mystery.md": "0b2bfa68070ce585a452f6b7034d03c3683e710dcabec5e86d7b221950dc7bab",
+        "视频/脚本/09.json": "fa3e429351d629de188c184d04e9986200e16e80606fcbec82332b6433301dae",
+        "新版定稿/09-the-great-emu-war.md": "af5c3e844bad15f94bfc43aeed6d7417c4bfae85f026b194da667a7a3bdb6196",
+        "视频/脚本/10.json": "88ebab9bdbaae84351e99243e0710766e556403044740b5466244f805b46aafb",
+        "新版定稿/10-the-stolen-smile.md": "ff63cf94e4d2c835e2e2f1ffd3e6c5642f0916f0b13c012f1f13c3dff716d47a",
+        "视频/脚本/11.json": "665cbb80cc70b700ecc0cc5813209fd100ad4fa8f0eead3929b9e53778d9d07f",
+        "新版定稿/11-move-37.md": "7e0b49b346c1fa3ab994a11a2301167c0d6a1bb00916508bdc0b1acf71e68053",
+        "视频/脚本/12.json": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+        "新版定稿/12-the-79-days-of-new-coke.md": "5a23c1e0c81318527bcbf27573487d1845c5318905a2b1e020cc6e2eaf5d643f",
+        "视频/脚本/13.json": "3687b6c42a6d524d0d7e40a47ed02c37b18abe8d524db4f5914abad52019a63c",
+        "新版定稿/13-eleven-days-without-sleep.md": "72b842de127132e386e9e52a1719ec96765e94958f56687987f53e2801c69704",
+        "视频/脚本/14.json": "17141351875ddb8f0e308602c0b6ab85cbf5126a4d0118978c25c869db769fee",
+        "新版定稿/14-the-fungus-that-turns-ants-into-zombies.md": "e114c9e1783c80a2ffdb60af05e824f93a8ea8725905cb733560abe1c0ad01a8",
+        "视频/脚本/15.json": "0934aa067f19814028c398b0c70a400bb09e354f744bde4000742950d77f441e",
+        "新版定稿/15-the-myth-of-the-unsinkable.md": "68e236868c4b466928ff2a60358250b9592dfe9287b66561b1e5a80b4d14de4f",
+        "视频/脚本/16.json": "d25aa07f3fac316c26c2ae1006d3efa7eb82a396b66150432b50239c1628396d",
+        "新版定稿/16-the-bread-made-from-air.md": "4da63148111213f6d77451b0eb4193893e6fc2fc170400bc39ce5f5ffcaa0b20",
+        "视频/脚本/17.json": "2e9971ea5ce7857e119226fe95def06e6eb9c3ef9823d8e8c4f3456f46a3bbb0",
+        "新版定稿/17-the-curse-of-the-pharaoh.md": "a2e8d92f9136e1b22fcc0799f9a4d281092f0e547cc68242e090241d7b09e222",
+        "视频/脚本/18.json": "8cffbad6f0b8451e46ad1a65d5f629c450ceff2c771218445770c8cbfd77ebca",
+        "新版定稿/18-the-mould-that-changed-the-world.md": "ef41cea03f471fe3b9a53939c843e450da3325eb711f6414e108ae92a7518dd8",
+        "视频/脚本/19.json": "cc3c5eea0f7d9ec0712b2e58adba7e5ef8b61d6518a322f9b25a12fcc45282fb",
+        "新版定稿/19-tulip-mania.md": "3882d487383b759c31dda4785966091c362960cd873a5d83c530d08d52e2e97c",
+        "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+        "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+        "视频/脚本/21.json": "61c1569a26d7569ee0f586178be6b307b1c394c0a30c3cb02541c910038b0589",
+        "新版定稿/21-the-man-who-sold-the-eiffel-tower-twice.md": "e8e966b70f579235d696ba11fb01d3b2cae3fa26efb9071bbea95071be259e1f",
+        "视频/脚本/22.json": "e3027a42c532fee9935afcecdd0542713cbb907183802c2345b9472f93b75f59",
+        "新版定稿/22-the-building-that-melted-a-car.md": "49ae09483bc80bbc40a71551cd98aebec355d96d9ff7b2bcdea59a06fe599267",
+        "视频/脚本/23.json": "c4574a79fd3a58577a1402ce095ea9e4a0ea1f98883ce63e3cc60d126e819409",
+        "新版定稿/23-the-man-who-gave-machines-a-mind.md": "72ed3049e87fe75ce1e753d5e443bdbe6a7ab72f6e282e8467fbbb62be873169",
+        "视频/脚本/24.json": "f08620b534bb10b718f7515c805dcb541721427d855bd5a092b8954847a351b8",
+        "新版定稿/24-survival-in-the-ice.md": "cb7f810d9a74256e0c00625290be4f16207feb90f5719ca87d5d7c9912b91307",
+        "视频/脚本/25.json": "c73e854e052b3df9bd920d4a59fafb183dee19bd58765fa426af6ea3d7c9a329",
+        "新版定稿/25-apollo-13-the-successful-failure.md": "b6b7d55fe66e6e32116431ea955778fab779b8bda622df0ba1036c2f40a3969f",
+        "视频/脚本/26.json": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+        "新版定稿/26-the-language-the-children-invented.md": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+        "视频/脚本/27.json": "61cd724c5fab6f07a46aa5ac069101617c4c8350311eb11a43f9fefdddb31d8b",
+        "新版定稿/27-life-in-the-forbidden-zone.md": "e276bcf76225b9ae16cd8cfda8c9b726b442fbd625d3718f532b47b09b21b16f",
+        "视频/脚本/28.json": "a6a4befc0291727f5cc3f8b50857ee954ef9f936738f014a978ebb4d37a28ea8",
+        "新版定稿/28-a-handful-of-wormwood-that-saved-millions.md": "b9817d3429767d07b6a2eb14cce5422a20cb4e3b89f8b03e6b3d5da2daf91d91",
+        "视频/脚本/29.json": "1e5f1d9f0c22b5d14b757f029be694c2a3969666d732ca79bb695282763de791",
+        "新版定稿/29-the-volcano-that-gave-us-frankenstein.md": "69045ee19a170c7ea9d0008b468c7e947bc28b639b834c0192dc0aeafc3ef4d0",
+        "视频/脚本/30.json": "cdf727cb4c6832063421df9da6ab8ae7729cf9df01d6be089a8981c92c360f06",
+        "新版定稿/30-the-stink-that-built-londons-sewers.md": "84dbf19cee0045ea2608b13ee0677cb9623dd8fbb371c67093bf50c64186137a",
+        "视频/脚本/31.json": "d81f8645a1e5663ba8c84668e817cdb218bc6689079fbfd51326b3a7fd3cd384",
+        "新版定稿/31-the-book-twelve-publishers-turned-down.md": "7abd20fed44918dcf01586c056e9d0acd9d2ad3b90aa7d3d403762d9f06d2659",
+        "视频/脚本/32.json": "357aa59bed62154f7302a5efcf528859b303004e028657b93058138fe931bf85",
+        "新版定稿/32-the-planet-that-was-demoted.md": "1421f2b0921e7e9478ebc48777e3e8b2c979172de63d0124015107c3750a3542",
+        "视频/脚本/33.json": "ca51103c1a9d45c9159322765efc86c81f61f6ec78975f160019d21a1d9ee0d7",
+        "新版定稿/33-thirteen-in-the-cave.md": "9862078044ce45a9f6d51aa7d165afdfcf90066d1de98cbb317dd7e8f980610d",
+        "视频/脚本/34.json": "74921848a6bb25a2ba631813f60d4756c9ff90c64c03a2fb936ce34f310ce509",
+        "新版定稿/34-the-game-that-escaped-the-soviet-union.md": "e3244b67b21e283e67f4e88e932a1dbb85bf273a48ee009b3f435e1c5814831c",
+        "视频/脚本/35.json": "d8439077dc2c909b1c6cbd1347f31e9625f25fffe447d6f5945c9492561f1a16",
+        "新版定稿/35-the-bird-that-beat-the-letter-home.md": "ba8c38e38b21a3345624e2d44fd352561d3096cfb6f62214b48ea9b6e66faead",
+        "视频/脚本/36.json": "76daa28f421bd40d8e2744d4e785a34bb8ee67da1403b4b1546db9465c535cef",
+        "新版定稿/36-the-company-that-invented-its-own-killer.md": "411eeb96c8641ee7082b49a5abf4c7343d3f1dbb7ef331064d7c0f3c630fe58f",
+        "视频/脚本/37.json": "b1b8945ccf3581df48ade5714a2d0e93e4cc6812708f95bef6f5e44439106c99",
+        "新版定稿/37-dynamite-for-the-heart.md": "4933e24d2384471a96d9c8c26c15d5224a85dae98d9971a3fed15b4978dafc51",
+        "视频/脚本/38.json": "8d0379032000967c9f72e550574874949f798eefbfbfb58ab2b38e4e23ecbc6b",
+        "新版定稿/38-the-web-beneath-the-woods.md": "abb7eead9f3da0b2b326ceed5a649cfbf71fc28dad22e0d52f7b19caa798c54f",
+        "视频/脚本/39.json": "6c3e9539f624b192335312912572a05fba2c7bcfb821b44c3c1dbb21b42527a7",
+        "新版定稿/39-y2k-the-crisis-that-success-erased.md": "abbc9804661126aa006595031ed8f201ce55e8eb5fd9e1ad5669c0c6fcdb80ab",
+        "视频/脚本/40.json": "1c50d1a47ee6f8528d0f7299e8a45bc8c30312622f3f465a964d21cc1395ee7f",
+        "新版定稿/40-the-glue-that-failed.md": "dce9f78f3a0828307843dd667b7eeebf3380a3630f03d234bd5824870aba61a1",
+        "视频/脚本/41.json": "6b6673ffc1db986f4c355f3685de6a0faf2272cee042c5e917f26a8b3057c2be",
+        "新版定稿/41-the-toad-that-invaded-australia.md": "eca590f97120f4e76d719e29aa07b094f9117cd462f5a70c029331a63b85f710",
+        "视频/脚本/42.json": "eceb10ae92aa4b9cd23180d1138149a7fa7b674385462c898bc0d2283c8739e7",
+        "新版定稿/42-the-telescope-that-needed-glasses.md": "d4aa049779a0eba06c555d76ca14103648378eef90465df424120126fa771280",
+        "视频/脚本/43.json": "aa9da1246e293c80408edf94a7c9bed65ef3178ae7cb5265a8273e8c4396687f",
+        "新版定稿/43-from-a-garage-to-the-top-of-the-world.md": "bd70c83e5ac867238ca179f3c9f3548eb9cbdcae1f6df40994aef0bda721ae54",
+        "视频/脚本/44.json": "87f531203ca38d88ae5e71ffd88190b1530715cdc0adba146c2a4a78ebe9b976",
+        "新版定稿/44-the-night-sweden-switched-sides.md": "d3f7ad2ac43f02aae9205a15b9808280ca3db597d6ef3b36aca8ca6176c5f74a",
+        "视频/脚本/45.json": "569406607d2bf18dce5e916052d6460509450d97fe17ac9820be524f59c2c3cc",
+        "新版定稿/45-the-record-humanity-threw-into-the-stars.md": "27deabec4a8478fe570f7f237a2fb850ffdce3deebfd952f512d82a60cf7314f",
+        "视频/脚本/46.json": "804ecfddb6060288b05eda0e1027c65e9bff0c08a9d010c201bf39306c769b62",
+        "新版定稿/46-lost-in-the-glare.md": "7aaa06e875fe56c5d78210b90a8769b8b2051714025ef10df37c2fe89db7a68c",
+        "视频/脚本/47.json": "0417489c8a672e7e63d46c2239d847acabda2d93160cabed3b0fb14f701ac39a",
+        "新版定稿/47-shadows-of-wolves-over-yellowstone.md": "34c68cf4d0f0ef3545ad68edf3367fcb76ab500174b11ae7f83b782cd5a80a2a",
+        "视频/脚本/48.json": "4f146ce6a70bb0bf5d2c6e1f6b47bd6a2bcc2f311be7a948092d7bde1a08f449",
+        "新版定稿/48-rice-for-the-world.md": "76416be21f857e8a05c37baa33ac90f5785812291485231c249e38a1d0edf15f",
+        "视频/脚本/49.json": "640168eb8a17c5d53d266c6604ffe287919314947371c2ee239eeea952d73b77",
+        "新版定稿/49-the-woman-who-won-two-nobels.md": "1e4fb068aa9ae4513d01b199a074b84dc9d819f57b2134df32588a0e4a4b6b6a",
+        "视频/脚本/50.json": "1d4a41824dfa5e8d11e5990b2a4b802ba2fcc3231d85b15ed6630396c6f027bf",
+        "新版定稿/50-microplastics.md": "5439589bacf1abb2abbb184eb658492bc02bcc5bdd8dfd8ababcd80ab93621cb",
+        "视频/脚本/51.json": "39886d83593a31fb575b124ecf6457190773dca695b6ff78f8434d52aebd6d7c",
+        "新版定稿/51-the-joke-that-became-ok.md": "8de30ea4846f4e88d8b71c8d5ced3ee63a73955e39b7dc3c5adad0971b854fd0",
+        "视频/脚本/52.json": "832249bb44617d38ede75560a5e57af6ba79ec284c9609407cb30ce879f6f862",
+        "新版定稿/52-the-killer-smog-of-1952.md": "179500361e4a837d7edb2e0497e08677d5abd425e8ad542f788205a6f7667b4b",
+        "视频/脚本/53.json": "28b604bfa72896534736293f79e9b3aabd8e3678672f4dc6c66337c02a8f1518",
+        "新版定稿/53-the-wind-that-kept-no-time.md": "6fab302dcadb5a2c509436f5fbf8d9ef925c008a36f5b422749bd405aa4701d3",
+        "视频/脚本/54.json": "b1fcb8ae86045b3d35ccfa0f52eb9594b8921d43063835769ee3ecc4543be75e",
+        "新版定稿/54-the-sound-that-shook-the-world.md": "abd5f4bfe11ed73bcc5326a92cf99b0a8e5ad70adaca1ce8d0c8f622b57fa519",
+        "视频/脚本/55.json": "06344fc0ad5975cba2f4dbe5262a9957dd7c024f9a05b9abbfa327f32ea8c719",
+        "新版定稿/55-the-secret-of-romes-undying-concrete.md": "a7759eddcc7ec06dfd6dab7912e06b3b5ef8576df0c025a97812006669d0be61",
+        "视频/脚本/56.json": "22ca3b4180a8ae6a37b4c8e25f5e357d5696d9b23bf148fb7064425d1403e59c",
+        "新版定稿/56-the-letter-that-startled-darwin.md": "aad1e2aab9ff28f534a510362e807ef401e0b502475240f4b2531e9e518a8d7a",
+        "视频/脚本/57.json": "a0ba65b769430289a33ec1f7bc6dbf91dad8d2c3b1d725348851de546563cd6f",
+        "新版定稿/57-a-change-of-anthem-in-the-deep.md": "0731d925a98bafc222718c111985362e166b38b9189c516219a481e36d0d4b6e",
+        "视频/脚本/58.json": "8b0bd3d7d39000518789e9907aec53bd52fab1b9d6b4f22a152d158635b6e8ee",
+        "新版定稿/58-from-a-scratch-to-a-world-without-smallpox.md": "1aa2a0d2c51da76f9c9ebb88d049dd1a55ab530791566fdbf6476e5aa48c15ee",
+        "视频/脚本/59.json": "df1db4174d942371166048b220ef6d55b0b700b2ce31c866edf6dfdf33b92f0c",
+        "新版定稿/59-saving-the-sky.md": "7bf9c4661e733e7af23dc2f11bc820b809ec93dad75a94fb6a12748226e8722c",
+        "视频/脚本/60.json": "eed1655c0919db32a3a016b24791b93d25683f287c7ccb2523e168a69bddc562",
+        "新版定稿/60-the-scientific-giant-who-changed-the-world.md": "9d1578e7af085559922394a3db01de4eb22dc1c520ca17de5cad68e5a38a31a8",
+        "视频/脚本/61.json": "72378937501769dfb3d934fe65ab1a69afeb5420a15e19890c161433717d2435",
+        "新版定稿/61-the-steel-box-that-remade-the-world.md": "135cc9cfbcbd68d957f831cf55558112a45b1cc3749366cb9a304507355c7d2c",
+        "视频/脚本/62.json": "4b3a97f2b6404e1b091537c21f01fc60088902f596803345983c38be52ec79eb",
+        "新版定稿/62-dolly-the-copied-sheep.md": "62817546ae33824b57255f941135c503e41a41f905331ed4af1e32850fa00960",
+        "视频/脚本/63.json": "5d266d80f9cf29cce6f7e34531449cf75191a42f180102685a5bcd04849e75c5",
+        "新版定稿/63-the-crowded-heavens.md": "6ef79d4310019dfefa7364b8a428411a6bc337678c69fa5cbc89b84689e253a4",
+        "视频/脚本/64.json": "12a36862765922d72ce6e5a4c5fe85f548364eed65fe3b3b284f0b38899a965f",
+        "新版定稿/64-the-day-zero-that-never-came.md": "e0c83cbe36745adbbffd33a156fa8d0671704ea976cb13215cabb612639b37a5",
+        "视频/脚本/65.json": "78e60dd231df4ac71df83e21a26f82bbf706dc0bef80bee156a36bc287661ede",
+        "新版定稿/65-the-day-the-doomsday-vault-opened.md": "71a50d32e25955e713e6ca108ab68422a4fd5b77c914a9074eece1dc33cbff89",
+        "视频/脚本/66.json": "ad5324af4270834186285a5e7273a90213094077adc6f9e1d5c7b0ebff9cf035",
+        "新版定稿/66-the-burrs-that-became-velcro.md": "75dbe6c148ca97a7780ac1737f33f58bf8ee27a51aa729a83315705655b12b2a",
+        "视频/脚本/67.json": "8897cc1c2df1e4672eec3bbff2776d0565afb9c9fe84087a1758ebb15b2a233e",
+        "新版定稿/67-the-cave-found-by-a-dog.md": "10e37b81eeef4e3289448a6b4fd679f34d495a4fc087c57747e6dca949e00cf1",
+        "视频/脚本/68.json": "568f72dacac48e206811d35a57c7fa22e3da428783f64e507c184f2090e579f3",
+        "新版定稿/68-the-last-flight-of-the-hindenburg.md": "c25f58ffb0e3748336767bb7470dd7cef10374c53cbb48af89dba26f65b2dd5c",
+        "视频/脚本/69.json": "09fd3fdbbc834badd16a9b38d8c14e425193a6849d7db87253f26a782a1c4137",
+        "新版定稿/69-the-trial-of-the-father-of-the-atomic-bomb.md": "570eda5b7d979d71e9bcad1c67e295ed326ecdb8b61e663aba33272c8a9451bd",
+        "视频/脚本/70.json": "0f6827f02cef0d2416f9d7d69b7e1c5553acee7cf6dc89f3379201264587236c",
+        "新版定稿/70-the-stamp-that-changed-the-post.md": "edfd85cea33730ba67e4210e756da1f2945f1a21bce55c7e75497cb5f0095d80"
+      },
+      "source_file_count": 140,
+      "working_script_count": 70,
+      "target_request_exactly_matches_context": true
+    },
+    "request_source_sha256": {
+      "视频/脚本/20.json": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "视频/工具/初稿生成/gen20.py": "3487eddef829b226fe0520f1d1560836631595fdb7e81e8f547a26b18da1f6bd",
+      "新版定稿/20-the-5000-year-old-murder-in-the-ice.md": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+      "视频/制作记录/20_待改清单.md": "537af1d41bf1baf9f92e10ebd73a14821ac96e38162985265dd571a2222bc1b2"
+    },
+    "accepted_source": {
+      "id": "20",
+      "path": "最终版4K视频/20 - The 5,000-Year-Old Murder in the Ice - 冰里的五千年凶案.mp4",
+      "sha256": "3eac79c3c28c07b43fb36b4090559deb58cc187ee9af0feeac20b5638abc4d8f",
+      "git_blob_sha": "ccf602650b83916d39e91a5d1b5bca91f8dbbb03",
+      "bytes": 12508440,
+      "width": 3840,
+      "height": 2160,
+      "summary_frames": 60,
+      "aac_adts_sha256": "7e6b0afb0289c80be292bebbf5d3e52cd1dd1369af8928c7d5d7472d88c932d9"
+    },
+    "checker_reference_preparation": {
+      "article": "20",
+      "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+      "reference_prepared": true,
+      "acceptance": false,
+      "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+      "source_sha256": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+      "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+      "checker_program_sha256": {
+        "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+        "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+        "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+        "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+        "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+        "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+      },
+      "reference_calls": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "The 5,000-Year-Old Murder in the Ice",
+          "exact_native_cache_key": "6ad5b9e4984dc7b00a7ad5f0c496b60555eb3041.pkl",
+          "cache_input_text_sha256": "b470015c649f41ca286e6b81bc53115312be996e0ec28e58563521bf54c7ced7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-timed",
+          "method": "create_timed",
+          "source_slice": "The 5,000-Year-Old Murder in the Ice",
+          "exact_native_cache_key": "1cbc73bced2d37648308c5b7fc523ea67af6f2b8.pkl",
+          "cache_input_text_sha256": "b470015c649f41ca286e6b81bc53115312be996e0ec28e58563521bf54c7ced7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 19 September 1991 two German hikers on a trek in the Ötztal Alps found a corpse by a glacier.",
+          "exact_native_cache_key": "25d4e60de782d5987d9b8de965c408907f814e8e.pkl",
+          "cache_input_text_sha256": "ba89044b2fc89a48338a2ed00dd6fd4eb8f6661d277f1d4e5a89b1b9c4bfe8d5",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "On 19 September 1991 two German hikers on a trek in the Ötztal Alps found a corpse by a glacier.",
+          "exact_native_cache_key": "0b813bc63dcd69fa0aa8968c7d5adb113a0ad7c3.pkl",
+          "cache_input_text_sha256": "ba89044b2fc89a48338a2ed00dd6fd4eb8f6661d277f1d4e5a89b1b9c4bfe8d5",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 19 September 1991 two German hikers on a trek in the Ötztal Alps",
+          "exact_native_cache_key": "8488681bc5812a3ffce9a8d0a8ed64573f663107.pkl",
+          "cache_input_text_sha256": "2fce3286a31d65fe45b935f349df136549596ac04826ae027ac6be48eb4140a6",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "found a corpse by a glacier.",
+          "exact_native_cache_key": "1566bc89284f8e34577bf0776ff66f198fc336a7.pkl",
+          "cache_input_text_sha256": "48667527b3132b0d333de8ced85d99572056383997286d71a9e20eb536607b42",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "It lay on a ridge at about 3,210 metres, on the border between Austria and Italy.",
+          "exact_native_cache_key": "fb2371039b46cf35a35cb73f71ec01f002fa2ddd.pkl",
+          "cache_input_text_sha256": "34ed21f907fd2d9c35fc2b0819d991a0df20637c8f04f45d3f3df9d2e354f9a1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "It lay on a ridge at about 3,210 metres, on the border between Austria and Italy.",
+          "exact_native_cache_key": "bc9b802b090116653ce3d0d7dc85d65f3741da3f.pkl",
+          "cache_input_text_sha256": "34ed21f907fd2d9c35fc2b0819d991a0df20637c8f04f45d3f3df9d2e354f9a1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "It lay on a ridge at about 3,210 metres,",
+          "exact_native_cache_key": "d33aa2e82c6845372fc402b15088c987a9086f28.pkl",
+          "cache_input_text_sha256": "7a63f0aa29358be5d080d407195ca9e3ba69131a38093357c8804b04aa3dd5a9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "on the border between Austria and Italy.",
+          "exact_native_cache_key": "a08aa8032913e8081b32ef1b1aede1013154e73e.pkl",
+          "cache_input_text_sha256": "664990072f9e2e91cdbbcf3b13b5bb91f10cbb07f51fcceca7712e5c891c7d03",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The assumption was that a modern-day climber had died on an alpine slope, since glaciers sometimes yield frozen remains.",
+          "exact_native_cache_key": "0d1e5138968963b716d3a626743adf3da213166a.pkl",
+          "cache_input_text_sha256": "bc15b0350a17ed608c0d303a0a6f475d2110dd199783ca80114ab60a4c851aa6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The assumption was that a modern-day climber had died on an alpine slope, since glaciers sometimes yield frozen remains.",
+          "exact_native_cache_key": "ca3fd6cf17f80014b0b73396b31fd1134cf00e5e.pkl",
+          "cache_input_text_sha256": "bc15b0350a17ed608c0d303a0a6f475d2110dd199783ca80114ab60a4c851aa6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The assumption was that a modern-day climber had died on an alpine slope,",
+          "exact_native_cache_key": "ec275d3e09aa9f29819bbe853dc27199715f47db.pkl",
+          "cache_input_text_sha256": "a6c0b84377adaca1bc7b14024621fe39651b96ccd0ff6ad398cae4cc19c91ec2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "since glaciers sometimes yield frozen remains.",
+          "exact_native_cache_key": "f376f8866164fa15d61598827e92e36eb97a301e.pkl",
+          "cache_input_text_sha256": "33bfd2c15107b12e2e447186143c17204d118174457983c30d6543061118ebd9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The assumption was that a modern-day climber had died on an alpine slope,",
+          "exact_native_cache_key": "ec275d3e09aa9f29819bbe853dc27199715f47db.pkl",
+          "cache_input_text_sha256": "a6c0b84377adaca1bc7b14024621fe39651b96ccd0ff6ad398cae4cc19c91ec2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "since glaciers sometimes yield frozen remains.",
+          "exact_native_cache_key": "f376f8866164fa15d61598827e92e36eb97a301e.pkl",
+          "cache_input_text_sha256": "33bfd2c15107b12e2e447186143c17204d118174457983c30d6543061118ebd9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Taking it for a recent death, rescuers used a jackhammer that ripped flesh from his left hip.",
+          "exact_native_cache_key": "b131d0cef1ae4bca3ec13923f1ee4dac6dc6b3c0.pkl",
+          "cache_input_text_sha256": "f05e1543b54b20adba02338f27547f14c0c9f116d4fd91043c270446941a35e8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Taking it for a recent death, rescuers used a jackhammer that ripped flesh from his left hip.",
+          "exact_native_cache_key": "1ebef4c0923f66689f9244076e8925d8eb5397d8.pkl",
+          "cache_input_text_sha256": "f05e1543b54b20adba02338f27547f14c0c9f116d4fd91043c270446941a35e8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Taking it for a recent death, rescuers used a jackhammer",
+          "exact_native_cache_key": "98cef045852a780f9dbf9a525e8964b30b9061ad.pkl",
+          "cache_input_text_sha256": "1c39b82ed745ee499e18d73d48b2c6b1581f0cc47351cd0664dca8d12573992d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "that ripped flesh from his left hip.",
+          "exact_native_cache_key": "7aaddad3f3cc9431407e5dc415cf870040938337.pkl",
+          "cache_input_text_sha256": "c669e552db40223a8557cda50983bd4258e561a3156df3978959072a815a4a7e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Taking it for a recent death,",
+          "exact_native_cache_key": "aa40d023d6688ba3d839868999cacba12d13a3f5.pkl",
+          "cache_input_text_sha256": "a9c9e101dc340aa09697f4218729a36c70ce346105d7b4079d88be3ee0b6df27",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "rescuers used a jackhammer that ripped flesh from his left hip.",
+          "exact_native_cache_key": "1c1c4d6b8f89aa60349424bc8b16bac2966d678d.pkl",
+          "cache_input_text_sha256": "b6efc2715a0deac0cba7d7d5ecb9be75380617bd8680982f19b9e6b453759c51",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "His possessions told another story: leather and grass clothing, a copper axe, a bow and arrows, all prehistoric artefacts.",
+          "exact_native_cache_key": "4c6e3bc67cb56cef367906ab651c1d7bf7a7e0dc.pkl",
+          "cache_input_text_sha256": "d4726357567854625fd82bff1ed5bd036a31aad4613239810ca0868ba84d924a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "His possessions told another story: leather and grass clothing, a copper axe, a bow and arrows, all prehistoric artefacts.",
+          "exact_native_cache_key": "1efa762778ae96f5bfc08cd560868536650d6452.pkl",
+          "cache_input_text_sha256": "d4726357567854625fd82bff1ed5bd036a31aad4613239810ca0868ba84d924a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "His possessions told another story:",
+          "exact_native_cache_key": "dfa41fb978929e71a064b064b4cc351ec06e145d.pkl",
+          "cache_input_text_sha256": "bbd87498a7d7deccbcf0333f42a9abfcc88fbdd115ffb898bee15883d56c99ee",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "leather and grass clothing, a copper axe, a bow and arrows,",
+          "exact_native_cache_key": "072495e59e2e82365dfed5a2ae746468f9808e08.pkl",
+          "cache_input_text_sha256": "72d640a73239ee95e26bf4df87d2aad080327288868d20f9088ae84d49ba85f9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "all prehistoric artefacts.",
+          "exact_native_cache_key": "641bfe0ca0b03508981de93bab6eddee285defc7.pkl",
+          "cache_input_text_sha256": "cfcb5086273aa8690a2dfd92babbd1c715bee44afa8cc76e5397c676be84ebe5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "His possessions told another story:",
+          "exact_native_cache_key": "dfa41fb978929e71a064b064b4cc351ec06e145d.pkl",
+          "cache_input_text_sha256": "bbd87498a7d7deccbcf0333f42a9abfcc88fbdd115ffb898bee15883d56c99ee",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "leather and grass clothing,",
+          "exact_native_cache_key": "38e9e387f8b6c9a06c3a8212cc1751a889dc473a.pkl",
+          "cache_input_text_sha256": "08db4cf7d09083aa70271f2fbf61d959cbb146d32eed381aaf2b4483e6bbe26e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a copper axe,",
+          "exact_native_cache_key": "daca143db0d5a37f6c1ed019e25c78d79210c5a5.pkl",
+          "cache_input_text_sha256": "a4bf198b34ef15f6e6b4a723b0a937d44c0a01126153959131de770201738bd5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a bow and arrows,",
+          "exact_native_cache_key": "283fe22c703ac191f36bc06b3c23f20c3b836739.pkl",
+          "cache_input_text_sha256": "60c92a59814ee3f00356d901409ad3e92012e883ca2a6b922c7a06009338c15a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 5,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "all prehistoric artefacts.",
+          "exact_native_cache_key": "641bfe0ca0b03508981de93bab6eddee285defc7.pkl",
+          "cache_input_text_sha256": "cfcb5086273aa8690a2dfd92babbd1c715bee44afa8cc76e5397c676be84ebe5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Known as Ötzi, the natural mummy was a man who lived about 5,300 years ago, between 3350 and 3105 BC.",
+          "exact_native_cache_key": "7c364ae1c00a484b765d0d6451acf5c5884c1a0a.pkl",
+          "cache_input_text_sha256": "489370e2291f789f01d70f5fdf070d7da51642608ca540e3fc10024aeec91971",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Known as Ötzi, the natural mummy was a man who lived about 5,300 years ago, between 3350 and 3105 BC.",
+          "exact_native_cache_key": "4a37c4ac6b8c1c0fa3ff6675fb8e60f4899a8c1b.pkl",
+          "cache_input_text_sha256": "489370e2291f789f01d70f5fdf070d7da51642608ca540e3fc10024aeec91971",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Known as Ötzi, the natural mummy was a man",
+          "exact_native_cache_key": "706db74c3ab8207468d19b595c8a0bbf952672d6.pkl",
+          "cache_input_text_sha256": "9e5b9e404b212f337ed40ded057236448c8575d1b731a795ec5d28d0837cb505",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "who lived about 5,300 years ago, between 3350 and 3105 BC.",
+          "exact_native_cache_key": "81006c4e95dc54315d8819270e211d67b5d349d9.pkl",
+          "cache_input_text_sha256": "0d37225e84754d1646eca36dedd9a89db451f9b33efbcd1fcd7e25d65b58c38e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Known as Ötzi,",
+          "exact_native_cache_key": "967103d7246653b3cfb8b4c7f7a5926e2ceff32b.pkl",
+          "cache_input_text_sha256": "aa4acbb458880148fa6fd46530ac76d7de33916af74e997d84a6a3ee4c1f2da2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the natural mummy was a man who lived about 5,300 years ago,",
+          "exact_native_cache_key": "8923c370dd8b18ba66d33074c6cde54e0bf0c70a.pkl",
+          "cache_input_text_sha256": "8a57f59cf5bf130d2354d7a505c6162e9f878c9f32ab80a57eb96a0064e01be7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "between 3350 and 3105 BC.",
+          "exact_native_cache_key": "26c741931e383dad93a9c330d507955010f2cf3e.pkl",
+          "cache_input_text_sha256": "586ad5e243b1eb9541a45eaebcaca6e72afe4b7249e4267abd0c0aeaf0814e06",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 2001, X-rays revealed a flint arrowhead lodged in his left shoulder, unseen by examiners a decade earlier.",
+          "exact_native_cache_key": "c942a3f496f89e336e440e4bfab9fdce65b5ef3c.pkl",
+          "cache_input_text_sha256": "cab26ccd83fb533fa06953f4d22114540b5dd1cf92083ce0631645ebadcccfd2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "In 2001, X-rays revealed a flint arrowhead lodged in his left shoulder, unseen by examiners a decade earlier.",
+          "exact_native_cache_key": "9239d43de0d912dea6259c9706ee20d7f68b71cf.pkl",
+          "cache_input_text_sha256": "cab26ccd83fb533fa06953f4d22114540b5dd1cf92083ce0631645ebadcccfd2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In 2001, X-rays revealed",
+          "exact_native_cache_key": "a00c699013f21534f1a8bccd9f881173b186c020.pkl",
+          "cache_input_text_sha256": "9e9bb44136a02f74a4d351319e684db62369a05896cb78602f26a7544ea6ef73",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a flint arrowhead lodged in his left shoulder,",
+          "exact_native_cache_key": "8927a428a8634cd6684b096ca41914743506af9e.pkl",
+          "cache_input_text_sha256": "430d4e2deba2ac9b9c9aaba1c9e273683f8c571ad8f4e6dd826e3f4900bd541d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "unseen by examiners a decade earlier.",
+          "exact_native_cache_key": "535bffa322eff2aaaebdaa8f23d8d3908c6dc4d8.pkl",
+          "cache_input_text_sha256": "e09cc3fcad93eea09e55d5c8a13ef57d874fefe38b2709d7f60ff75803975f5a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In 2001,",
+          "exact_native_cache_key": "f50532653032670abedcbc88df639d0a7d39cb46.pkl",
+          "cache_input_text_sha256": "c9b119b0bbdfde107b40a3d217a9d870480a5f69b1a5b2d87348b332f2c8db47",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "X-rays revealed a flint arrowhead lodged in his left shoulder,",
+          "exact_native_cache_key": "95682139f6cc08b2601646ed9cf3a26495836fa9.pkl",
+          "cache_input_text_sha256": "858988a4dbc2a9a5b73308453d8269c9ec376be96eeb676e15504366ef897d18",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "unseen by examiners a decade earlier.",
+          "exact_native_cache_key": "535bffa322eff2aaaebdaa8f23d8d3908c6dc4d8.pkl",
+          "cache_input_text_sha256": "e09cc3fcad93eea09e55d5c8a13ef57d874fefe38b2709d7f60ff75803975f5a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A scanner showed that the puncture had ruptured an artery, a mortal injury causing heavy bleeding, and left a large clot.",
+          "exact_native_cache_key": "82fca1d0e0e7129f85f0bd5e85e91d8a13fd112e.pkl",
+          "cache_input_text_sha256": "5d32ec10bb955c7ea05dc10b4e87ffe3514fb1c9f35a77ae92afeb5b638c19be",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "A scanner showed that the puncture had ruptured an artery, a mortal injury causing heavy bleeding, and left a large clot.",
+          "exact_native_cache_key": "435af5724ba58dba8810133aff075645163e7d7a.pkl",
+          "cache_input_text_sha256": "5d32ec10bb955c7ea05dc10b4e87ffe3514fb1c9f35a77ae92afeb5b638c19be",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A scanner showed that the puncture had ruptured an artery,",
+          "exact_native_cache_key": "104575de956a6f4dfc419e1d162c6489bb69b1a6.pkl",
+          "cache_input_text_sha256": "6df43c464d7fbda1f6c2f59ebf0917534ea57d3c1a727503f5f14f72ecb835f1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a mortal injury causing heavy bleeding,",
+          "exact_native_cache_key": "c9235e0aa95e8693cbbc6daf34c23d54e4c8c364.pkl",
+          "cache_input_text_sha256": "68a37e5bc6593ad298f46f1236e0727f152412a185897c66d92e20fedc3353af",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and left a large clot.",
+          "exact_native_cache_key": "2c2a626d0df9cf1b53de4eda634d139297dc5540.pkl",
+          "cache_input_text_sha256": "fe2c5a8eeaaab24a1719f919ffd47b0733d96709dbb2597d6fe2986992b89e88",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A scanner showed that the puncture had ruptured an artery,",
+          "exact_native_cache_key": "104575de956a6f4dfc419e1d162c6489bb69b1a6.pkl",
+          "cache_input_text_sha256": "6df43c464d7fbda1f6c2f59ebf0917534ea57d3c1a727503f5f14f72ecb835f1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a mortal injury causing heavy bleeding,",
+          "exact_native_cache_key": "c9235e0aa95e8693cbbc6daf34c23d54e4c8c364.pkl",
+          "cache_input_text_sha256": "68a37e5bc6593ad298f46f1236e0727f152412a185897c66d92e20fedc3353af",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and left a large clot.",
+          "exact_native_cache_key": "2c2a626d0df9cf1b53de4eda634d139297dc5540.pkl",
+          "cache_input_text_sha256": "fe2c5a8eeaaab24a1719f919ffd47b0733d96709dbb2597d6fe2986992b89e88",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Researchers believe he died within minutes.",
+          "exact_native_cache_key": "8f371bb4097d60778088bbdd4a4f4c20cfc8258b.pkl",
+          "cache_input_text_sha256": "9ac07df57fda5d1e40a54b2c5ba1c2220df6e409eb5c187edb69df0e8c715e17",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Researchers believe he died within minutes.",
+          "exact_native_cache_key": "70b6d7667f7ff2d1135218d08f948e2088b5bb51.pkl",
+          "cache_input_text_sha256": "9ac07df57fda5d1e40a54b2c5ba1c2220df6e409eb5c187edb69df0e8c715e17",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "He was about 46.",
+          "exact_native_cache_key": "b5883f6e33bfb0b670a0f6446ec4956544b0c35b.pkl",
+          "cache_input_text_sha256": "820dec9bff6bf91e663b870e661ee4bf38d0e2690d4e9ffb6be03f93647047f4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "He was about 46.",
+          "exact_native_cache_key": "9f3c4d44ec1827adc43827884f937b8e748372d8.pkl",
+          "cache_input_text_sha256": "820dec9bff6bf91e663b870e661ee4bf38d0e2690d4e9ffb6be03f93647047f4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Another person, it is thought, killed him.",
+          "exact_native_cache_key": "0550853fde6a5256d115d9fd6085f8571c4c1f09.pkl",
+          "cache_input_text_sha256": "4b0b63111828cbf7185645ee89094749aee0121f8320219edf7338030257a869",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Another person, it is thought, killed him.",
+          "exact_native_cache_key": "2be9eb2159bada55b6ad7af655323fcc7c65b857.pkl",
+          "cache_input_text_sha256": "4b0b63111828cbf7185645ee89094749aee0121f8320219edf7338030257a869",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Another person,",
+          "exact_native_cache_key": "863182e8aef065d1be4db743588dcad556331ced.pkl",
+          "cache_input_text_sha256": "936fbcc25e87b2c42f6b52d4385b7931cdd326c1599a5a268daee9935ce5c45f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "it is thought,",
+          "exact_native_cache_key": "c2521b187dac01f12512e3a539289faf5743e811.pkl",
+          "cache_input_text_sha256": "7a3a487cacd930f13a8e5eabc4ab9cf72ac3eaa3ac0a115787c95228690123bf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "killed him.",
+          "exact_native_cache_key": "c87a7e726b25a80a9422b62a1a54f127e864ba8f.pkl",
+          "cache_input_text_sha256": "a6555dc888aeb38383766c85afe3e8504617e10baad05419f33a16ab37527142",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "From the wound's depth researchers inferred that an archer shot him from the rear, at about 30 metres.",
+          "exact_native_cache_key": "24a4938a3535c474e9ed94147aa279ca6336d2ea.pkl",
+          "cache_input_text_sha256": "c6d1bd016c3d92fcf05d9681c669df66953114b4c019ef1be9f1bec1a6169b5d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "From the wound's depth researchers inferred that an archer shot him from the rear, at about 30 metres.",
+          "exact_native_cache_key": "cc1eed97f6e8e8d75b6da5cb3fe361aed7fc099a.pkl",
+          "cache_input_text_sha256": "c6d1bd016c3d92fcf05d9681c669df66953114b4c019ef1be9f1bec1a6169b5d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "From the wound's depth researchers inferred",
+          "exact_native_cache_key": "69c81c6f1ea8bab68e6575a7f27ea29e0f633b80.pkl",
+          "cache_input_text_sha256": "d502dddd1336bfc52b5cbc0d4e257b7b49cd27e38a7c81ff59fbf00be93a90ad",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "that an archer shot him from the rear, at about 30 metres.",
+          "exact_native_cache_key": "2e8242c7d2440092e7ca9c93261fc32e1d49bb81.pkl",
+          "cache_input_text_sha256": "26016852d9ec44472a0a955ec0c4b992ecc18f7c26eb4ef52fc110873df1cb94",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "From the wound's depth researchers inferred that an archer shot him from the rear,",
+          "exact_native_cache_key": "68e137170ab37943d3f07a70115d3a025a0c79e8.pkl",
+          "cache_input_text_sha256": "708e676d25d71f97540bc2f0bbfbddb48c90f1775f02db93f83aaa4e16584399",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "at about 30 metres.",
+          "exact_native_cache_key": "683a7c78460cd91f7397bac025986d31174a2246.pkl",
+          "cache_input_text_sha256": "00db7034c7c38e5119f8de11ca50094bcad122106bb2cb2d3ca2143c3a1fbf39",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The shooter probably caught him unawares.",
+          "exact_native_cache_key": "3f22cff41f7299d8d90b31c0a8e0f8801226bfbe.pkl",
+          "cache_input_text_sha256": "38836c2b0e3129467c674d5f058558aebdb4bd756274bf9d7845731b0ccda8dd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The shooter probably caught him unawares.",
+          "exact_native_cache_key": "1726ccf2bff180b2272d863c0b5e8ce4dfe437f7.pkl",
+          "cache_input_text_sha256": "38836c2b0e3129467c674d5f058558aebdb4bd756274bf9d7845731b0ccda8dd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A 2018 study found he had dined on dried ibex meat and fat, red deer, and einkorn wheat, a hearty, nourishing meal reportedly consumed within two hours of his death.",
+          "exact_native_cache_key": "ed0a3fc46996aad9141c7baec7b75200bde5a8d7.pkl",
+          "cache_input_text_sha256": "d22080777204fc424212d5c7c790cdf3d77eda4164dcb2936c460ac1e834b777",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "A 2018 study found he had dined on dried ibex meat and fat, red deer, and einkorn wheat, a hearty, nourishing meal reportedly consumed within two hours of his death.",
+          "exact_native_cache_key": "bc520b86c53cee8b70889c2265f2f121680d4762.pkl",
+          "cache_input_text_sha256": "d22080777204fc424212d5c7c790cdf3d77eda4164dcb2936c460ac1e834b777",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A 2018 study found he had dined on",
+          "exact_native_cache_key": "4bc7ccacb97640532821e614d4b858ea4eb40ccb.pkl",
+          "cache_input_text_sha256": "5912d09469362659907ce3cf9ef93709de1792a4fb7540c6de919ce92c36155d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "dried ibex meat and fat, red deer, and einkorn wheat,",
+          "exact_native_cache_key": "3e8d184e855781f2c6c6bf3050468d2621cf0f85.pkl",
+          "cache_input_text_sha256": "c6fc7e55241e9e0477632ff54cf2dd125d8edea54397a14901d0c6ffb23e4359",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a hearty, nourishing meal reportedly consumed within two hours of his death.",
+          "exact_native_cache_key": "df83b7faa65dca02705ad003579b2e4e443632d7.pkl",
+          "cache_input_text_sha256": "4f743537f9b7c396ba33ca346bf09b26c2eadc2bc7b81d638ed969ac7bace4a5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A 2018 study found he had dined on dried ibex meat and fat,",
+          "exact_native_cache_key": "3cb450a4567f2094b10979118df5cb32b018a350.pkl",
+          "cache_input_text_sha256": "5118afa4b7fd32f4d9fac861b00b8c15a1f2995b779b49cf6dbbae9d7dda9995",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "red deer,",
+          "exact_native_cache_key": "ec35e0d19018d9aa7af75325ef3309cac7102546.pkl",
+          "cache_input_text_sha256": "fa24d2fa3b7de42f03544b111d6b74a122106e82cc92ba210162e138be011d65",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and einkorn wheat,",
+          "exact_native_cache_key": "35c113ff49042012bedf8658d0f258137a351711.pkl",
+          "cache_input_text_sha256": "02d65abfdfd1483836c0e69108dca95a6fcd627c2b239b5e0a41f89739b8c9e0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a hearty,",
+          "exact_native_cache_key": "9b071e4359a87142be000dca26f5c94e2b093a8c.pkl",
+          "cache_input_text_sha256": "92b63b18e9c3d152199f0bfe954029149c9ec11f6bcc7bf3a4afe2b883278e76",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 5,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "nourishing meal reportedly consumed within two hours of his death.",
+          "exact_native_cache_key": "0160896639774617adcc36d9c9bfc8120d701d77.pkl",
+          "cache_input_text_sha256": "d60327209f1683837f55f6f0ed918929a55479ad676670574b5e2490d41e22b8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Curators in Bolzano now keep Ötzi, whose 61 tattoos on joints and spine were perhaps an early form of acupuncture.",
+          "exact_native_cache_key": "bfb8ca37b84869924945700d6c76782ae1ac62ff.pkl",
+          "cache_input_text_sha256": "ccb1d95972031ea2ea63c6f4631e81caa3abca77bc33ae122d07d18f3ce00218",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Curators in Bolzano now keep Ötzi, whose 61 tattoos on joints and spine were perhaps an early form of acupuncture.",
+          "exact_native_cache_key": "e36bca499fa0c65c16b63cadc5b1f7972812743f.pkl",
+          "cache_input_text_sha256": "ccb1d95972031ea2ea63c6f4631e81caa3abca77bc33ae122d07d18f3ce00218",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Curators in Bolzano now keep Ötzi,",
+          "exact_native_cache_key": "32c8cc47178d4e681996dd0dca6411796a8bf13e.pkl",
+          "cache_input_text_sha256": "909be66c07ae983ec6002fbf2c7139128dbaf591759a85c0605dfa67daf49380",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "whose 61 tattoos on joints and spine were perhaps an early form of acupuncture.",
+          "exact_native_cache_key": "f83f6b4fb0d05f5bd1bd75395ad30b4dee02a346.pkl",
+          "cache_input_text_sha256": "f881f4aae7d1d5d6a0d39e7286ce99982969ffb06b827eb5c572d8e14e4c7018",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Curators in Bolzano now keep Ötzi,",
+          "exact_native_cache_key": "32c8cc47178d4e681996dd0dca6411796a8bf13e.pkl",
+          "cache_input_text_sha256": "909be66c07ae983ec6002fbf2c7139128dbaf591759a85c0605dfa67daf49380",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "whose 61 tattoos on joints and spine were perhaps an early form of acupuncture.",
+          "exact_native_cache_key": "f83f6b4fb0d05f5bd1bd75395ad30b4dee02a346.pkl",
+          "cache_input_text_sha256": "f881f4aae7d1d5d6a0d39e7286ce99982969ffb06b827eb5c572d8e14e4c7018",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The archer's identity is an enigma, and any motive is conjecture.",
+          "exact_native_cache_key": "1a902957da1315873a5eab893698813f68e174db.pkl",
+          "cache_input_text_sha256": "72dcb67da2fb8dff2cbc54f5750f048f24ba442bfcd26aaa02a282d497caeb25",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "The archer's identity is an enigma, and any motive is conjecture.",
+          "exact_native_cache_key": "42efbdaca08589cc696fb903c5a4d77035c289ac.pkl",
+          "cache_input_text_sha256": "72dcb67da2fb8dff2cbc54f5750f048f24ba442bfcd26aaa02a282d497caeb25",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The archer's identity is an enigma,",
+          "exact_native_cache_key": "8128a902a133315a940dd378d7042d1d27d41ec7.pkl",
+          "cache_input_text_sha256": "893b58490f5ae7de5ad2e01df1c8276db306182786186d943738e6cefacd2b77",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and any motive is conjecture.",
+          "exact_native_cache_key": "7754279231eb4d56e347151744190d3a2fe940b2.pkl",
+          "cache_input_text_sha256": "e8ace86c7e0e557bdfe4c86b6896462387a65e424b650c1b9de3f1d0f8ac125f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The archer's identity is an enigma,",
+          "exact_native_cache_key": "8128a902a133315a940dd378d7042d1d27d41ec7.pkl",
+          "cache_input_text_sha256": "893b58490f5ae7de5ad2e01df1c8276db306182786186d943738e6cefacd2b77",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and any motive is conjecture.",
+          "exact_native_cache_key": "7754279231eb4d56e347151744190d3a2fe940b2.pkl",
+          "cache_input_text_sha256": "e8ace86c7e0e557bdfe4c86b6896462387a65e424b650c1b9de3f1d0f8ac125f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Ötzi has a name, a last meal, and a cause of death, while his anonymous killer has none.",
+          "exact_native_cache_key": "15bca9e8e6e7c878561d637d5e8dd95994c122dc.pkl",
+          "cache_input_text_sha256": "015c4c95492d7f65f30883b86759f52a3ef7fd1f6c532ce836759aabefd2f66e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-timed",
+          "method": "create_timed",
+          "source_slice": "Ötzi has a name, a last meal, and a cause of death, while his anonymous killer has none.",
+          "exact_native_cache_key": "c2e13aa0b52e612e390700113a6ace750ba32162.pkl",
+          "cache_input_text_sha256": "015c4c95492d7f65f30883b86759f52a3ef7fd1f6c532ce836759aabefd2f66e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Ötzi has a name, a last meal, and a cause of death,",
+          "exact_native_cache_key": "93ba642b6f07abb7c23c680354855a8d5fed7980.pkl",
+          "cache_input_text_sha256": "5e0ff13ecb0d620e13a3c55fae254a726cac8400e05b1e93e1265a75b7d95e01",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "while his anonymous killer has none.",
+          "exact_native_cache_key": "81e808e94ced505553fb560e593d78179f102458.pkl",
+          "cache_input_text_sha256": "33e2ede03af7dc04c8a02d1e325ba801ee73762e2861662aba61dd624095a5ba",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Ötzi has a name,",
+          "exact_native_cache_key": "708db25c7a551fb5be1a0ee5db3c98c94fa4a4d1.pkl",
+          "cache_input_text_sha256": "89e1035d68e69ff02e935b7a9ca36a7dae43380630dbb9f88b28cba7d0496613",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a last meal,",
+          "exact_native_cache_key": "94005843f019ffd71ebb62a97a1fa044392508cd.pkl",
+          "cache_input_text_sha256": "e3680c9f8382b9ed1f1025e3ff85d4b7ffddf418eb8cb872b692d3f90360c66e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and a cause of death,",
+          "exact_native_cache_key": "5103732d0212449b92f6d27ddfb2e2415b047363.pkl",
+          "cache_input_text_sha256": "e2a5f1e736208ed19c52d116339a94f5f6ef52e13bcdfcc12d5ecfb2bcfe6089",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S17",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "while his anonymous killer has none.",
+          "exact_native_cache_key": "81e808e94ced505553fb560e593d78179f102458.pkl",
+          "cache_input_text_sha256": "33e2ede03af7dc04c8a02d1e325ba801ee73762e2861662aba61dd624095a5ba",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "unique_reference_key_count": 89,
+      "raw_mother_cache_scalar_manifest": [
+        {
+          "exact_native_cache_key": "6ad5b9e4984dc7b00a7ad5f0c496b60555eb3041.pkl",
+          "pkl_sha256": "512f76bf77055c8fe3a2d71a2cec3cfb09160d6427c97447a494623415df6272",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "标题",
+              "piece": null,
+              "reference_kind": "title-default-raw",
+              "method": "create",
+              "source_slice": "The 5,000-Year-Old Murder in the Ice",
+              "exact_native_cache_key": "6ad5b9e4984dc7b00a7ad5f0c496b60555eb3041.pkl",
+              "cache_input_text_sha256": "b470015c649f41ca286e6b81bc53115312be996e0ec28e58563521bf54c7ced7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            60928
+          ],
+          "unprocessed_array_sha256": "027a233b802902344cde066a7ec0ad99dd36e0ca68cbff57d2eb5687872cdbe9"
+        },
+        {
+          "exact_native_cache_key": "25d4e60de782d5987d9b8de965c408907f814e8e.pkl",
+          "pkl_sha256": "6b78fef83f2a84d39f72d56791c750857aa810ef2e327b6046672e65266ee219",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "On 19 September 1991 two German hikers on a trek in the Ötztal Alps found a corpse by a glacier.",
+              "exact_native_cache_key": "25d4e60de782d5987d9b8de965c408907f814e8e.pkl",
+              "cache_input_text_sha256": "ba89044b2fc89a48338a2ed00dd6fd4eb8f6661d277f1d4e5a89b1b9c4bfe8d5",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            204800
+          ],
+          "unprocessed_array_sha256": "ddd07cb7d98e2a297107ccb345d75a76266b0d9b30c311cfc072ae8e3ec2e4d6"
+        },
+        {
+          "exact_native_cache_key": "8488681bc5812a3ffce9a8d0a8ed64573f663107.pkl",
+          "pkl_sha256": "0e8650d65ac0e93345cd8327b0c41ee300852ffd99581589bfd994db8d7a6222",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "On 19 September 1991 two German hikers on a trek in the Ötztal Alps",
+              "exact_native_cache_key": "8488681bc5812a3ffce9a8d0a8ed64573f663107.pkl",
+              "cache_input_text_sha256": "2fce3286a31d65fe45b935f349df136549596ac04826ae027ac6be48eb4140a6",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            151552
+          ],
+          "unprocessed_array_sha256": "3c03f635f262cf872b2a14ebe0b653f744844b652d3e6b5383d1554d1dee97bc"
+        },
+        {
+          "exact_native_cache_key": "1566bc89284f8e34577bf0776ff66f198fc336a7.pkl",
+          "pkl_sha256": "9cde9f843ed011d9dff18c4674b199742c4f4a3b60775928f4fefd5e5798f3ca",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S1",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "found a corpse by a glacier.",
+              "exact_native_cache_key": "1566bc89284f8e34577bf0776ff66f198fc336a7.pkl",
+              "cache_input_text_sha256": "48667527b3132b0d333de8ced85d99572056383997286d71a9e20eb536607b42",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            39424
+          ],
+          "unprocessed_array_sha256": "e22a8d924b6e73a2d11030837488f58aa8420594707678275d1c77c0556382c6"
+        },
+        {
+          "exact_native_cache_key": "fb2371039b46cf35a35cb73f71ec01f002fa2ddd.pkl",
+          "pkl_sha256": "946c3eeca30ffb98dd196a04730dcff994d709b2356b0a2bc8cf55159fb7861d",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "It lay on a ridge at about 3,210 metres, on the border between Austria and Italy.",
+              "exact_native_cache_key": "fb2371039b46cf35a35cb73f71ec01f002fa2ddd.pkl",
+              "cache_input_text_sha256": "34ed21f907fd2d9c35fc2b0819d991a0df20637c8f04f45d3f3df9d2e354f9a1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            173056
+          ],
+          "unprocessed_array_sha256": "367fb050f626ac6ebe90b36f03bd1227bec450655beb98ba808c889cb4e60b6d"
+        },
+        {
+          "exact_native_cache_key": "d33aa2e82c6845372fc402b15088c987a9086f28.pkl",
+          "pkl_sha256": "a4052edb69466f4253451b0a8afe9faa253193240d5cf47b99ff4196b14365a5",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "It lay on a ridge at about 3,210 metres,",
+              "exact_native_cache_key": "d33aa2e82c6845372fc402b15088c987a9086f28.pkl",
+              "cache_input_text_sha256": "7a63f0aa29358be5d080d407195ca9e3ba69131a38093357c8804b04aa3dd5a9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            89600
+          ],
+          "unprocessed_array_sha256": "fa4e6b3bfaa30641b7fc86203489c6cabf882a68b5d4ffff6bc2b78d216e3e60"
+        },
+        {
+          "exact_native_cache_key": "a08aa8032913e8081b32ef1b1aede1013154e73e.pkl",
+          "pkl_sha256": "8ad1e049f5ea2c88b171e308191465cecbbac5c28df4525dd732855808f69214",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S2",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "on the border between Austria and Italy.",
+              "exact_native_cache_key": "a08aa8032913e8081b32ef1b1aede1013154e73e.pkl",
+              "cache_input_text_sha256": "664990072f9e2e91cdbbcf3b13b5bb91f10cbb07f51fcceca7712e5c891c7d03",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            55808
+          ],
+          "unprocessed_array_sha256": "95492ef0751338e8e8e0949b6a1f7112349f83331f8dd0ba9d84d6b450f5d027"
+        },
+        {
+          "exact_native_cache_key": "0d1e5138968963b716d3a626743adf3da213166a.pkl",
+          "pkl_sha256": "68032393e68b48666a226ecf995ec546e0fc4139d3c5fb13f9091a31fc007c38",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The assumption was that a modern-day climber had died on an alpine slope, since glaciers sometimes yield frozen remains.",
+              "exact_native_cache_key": "0d1e5138968963b716d3a626743adf3da213166a.pkl",
+              "cache_input_text_sha256": "bc15b0350a17ed608c0d303a0a6f475d2110dd199783ca80114ab60a4c851aa6",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            199680
+          ],
+          "unprocessed_array_sha256": "ae67b8b734863ee19f2db2c5d5e171ec2c7a5f0cf57694f1fcade5e53735f0d8"
+        },
+        {
+          "exact_native_cache_key": "ec275d3e09aa9f29819bbe853dc27199715f47db.pkl",
+          "pkl_sha256": "2ed39a04a92e4ac37bf5494b644d500213f500be6cbb64a4d64ea984ba53780a",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The assumption was that a modern-day climber had died on an alpine slope,",
+              "exact_native_cache_key": "ec275d3e09aa9f29819bbe853dc27199715f47db.pkl",
+              "cache_input_text_sha256": "a6c0b84377adaca1bc7b14024621fe39651b96ccd0ff6ad398cae4cc19c91ec2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S3",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The assumption was that a modern-day climber had died on an alpine slope,",
+              "exact_native_cache_key": "ec275d3e09aa9f29819bbe853dc27199715f47db.pkl",
+              "cache_input_text_sha256": "a6c0b84377adaca1bc7b14024621fe39651b96ccd0ff6ad398cae4cc19c91ec2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            106496
+          ],
+          "unprocessed_array_sha256": "4fb95c552944385aea0f848ff3acbdbc96f42eedcd0195402bf0c437770fd560"
+        },
+        {
+          "exact_native_cache_key": "f376f8866164fa15d61598827e92e36eb97a301e.pkl",
+          "pkl_sha256": "979267cd0c03ab21c8e8cabc9270ec7cb67d931bacbce545660cd980ab43e197",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "since glaciers sometimes yield frozen remains.",
+              "exact_native_cache_key": "f376f8866164fa15d61598827e92e36eb97a301e.pkl",
+              "cache_input_text_sha256": "33bfd2c15107b12e2e447186143c17204d118174457983c30d6543061118ebd9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S3",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "since glaciers sometimes yield frozen remains.",
+              "exact_native_cache_key": "f376f8866164fa15d61598827e92e36eb97a301e.pkl",
+              "cache_input_text_sha256": "33bfd2c15107b12e2e447186143c17204d118174457983c30d6543061118ebd9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            71168
+          ],
+          "unprocessed_array_sha256": "4d6e83d1b16252200b834faf71e373b41608264ce7b361fb7dfd1aaf8aea4da0"
+        },
+        {
+          "exact_native_cache_key": "b131d0cef1ae4bca3ec13923f1ee4dac6dc6b3c0.pkl",
+          "pkl_sha256": "e99aff59599c4ee9ad30939141869a6a0d9cd8cb7aabe4c8dd8672c3f8574fca",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Taking it for a recent death, rescuers used a jackhammer that ripped flesh from his left hip.",
+              "exact_native_cache_key": "b131d0cef1ae4bca3ec13923f1ee4dac6dc6b3c0.pkl",
+              "cache_input_text_sha256": "f05e1543b54b20adba02338f27547f14c0c9f116d4fd91043c270446941a35e8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            139264
+          ],
+          "unprocessed_array_sha256": "79f251bb87570ed4a8d001db6b4fc3639ebaa1a279e2da657e59f0c032eb4d95"
+        },
+        {
+          "exact_native_cache_key": "98cef045852a780f9dbf9a525e8964b30b9061ad.pkl",
+          "pkl_sha256": "b29c81ee7581f5dca5d5a3831ea0f59ca69f90b9d9355f4f4c81ca58405003c1",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Taking it for a recent death, rescuers used a jackhammer",
+              "exact_native_cache_key": "98cef045852a780f9dbf9a525e8964b30b9061ad.pkl",
+              "cache_input_text_sha256": "1c39b82ed745ee499e18d73d48b2c6b1581f0cc47351cd0664dca8d12573992d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            89088
+          ],
+          "unprocessed_array_sha256": "bc1f82c3ea14ccf9c0ed1af3a68de68252704633e5549583b43fe2df371965f5"
+        },
+        {
+          "exact_native_cache_key": "7aaddad3f3cc9431407e5dc415cf870040938337.pkl",
+          "pkl_sha256": "f4dfca4f5f4c83b288617a5a2e8537c3bb4b4b4fc084b002e8948d9ed2d9f153",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "that ripped flesh from his left hip.",
+              "exact_native_cache_key": "7aaddad3f3cc9431407e5dc415cf870040938337.pkl",
+              "cache_input_text_sha256": "c669e552db40223a8557cda50983bd4258e561a3156df3978959072a815a4a7e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            44544
+          ],
+          "unprocessed_array_sha256": "0669273592c848c8d0927d9f3951999bb4fc3b923c6b3dfd3e01362ecbca6244"
+        },
+        {
+          "exact_native_cache_key": "aa40d023d6688ba3d839868999cacba12d13a3f5.pkl",
+          "pkl_sha256": "0a52b0ae420ad9edb134bbf3bc219fba5ac2d2a40e37a111c840fcfd730c4943",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Taking it for a recent death,",
+              "exact_native_cache_key": "aa40d023d6688ba3d839868999cacba12d13a3f5.pkl",
+              "cache_input_text_sha256": "a9c9e101dc340aa09697f4218729a36c70ce346105d7b4079d88be3ee0b6df27",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            39936
+          ],
+          "unprocessed_array_sha256": "147c0a3f48620faec41b94c6519e6dbbcc48c27bbba3e804056463f47e55b32e"
+        },
+        {
+          "exact_native_cache_key": "1c1c4d6b8f89aa60349424bc8b16bac2966d678d.pkl",
+          "pkl_sha256": "8927858cb157d958eaf5940d80a66efd6017027c3c327dbbb2b9fd29299b256f",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S4",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "rescuers used a jackhammer that ripped flesh from his left hip.",
+              "exact_native_cache_key": "1c1c4d6b8f89aa60349424bc8b16bac2966d678d.pkl",
+              "cache_input_text_sha256": "b6efc2715a0deac0cba7d7d5ecb9be75380617bd8680982f19b9e6b453759c51",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            91136
+          ],
+          "unprocessed_array_sha256": "819a6195a176ea255a812221401cc1565057df5a9d4604edc0301c7b89641155"
+        },
+        {
+          "exact_native_cache_key": "4c6e3bc67cb56cef367906ab651c1d7bf7a7e0dc.pkl",
+          "pkl_sha256": "a4f2f8c472480edff7524e7cdd520bd738f96c647c083bf92bcacdb7ebce7e7d",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "His possessions told another story: leather and grass clothing, a copper axe, a bow and arrows, all prehistoric artefacts.",
+              "exact_native_cache_key": "4c6e3bc67cb56cef367906ab651c1d7bf7a7e0dc.pkl",
+              "cache_input_text_sha256": "d4726357567854625fd82bff1ed5bd036a31aad4613239810ca0868ba84d924a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            209920
+          ],
+          "unprocessed_array_sha256": "f36f4082c97c92c39cf89d3601cc248d2390fef004176a8ad2f6237dd122f61b"
+        },
+        {
+          "exact_native_cache_key": "dfa41fb978929e71a064b064b4cc351ec06e145d.pkl",
+          "pkl_sha256": "3c643f817dd8e2f27e82a01a4137a6ce6f40456b607cb1163975d7e07069b20a",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "His possessions told another story:",
+              "exact_native_cache_key": "dfa41fb978929e71a064b064b4cc351ec06e145d.pkl",
+              "cache_input_text_sha256": "bbd87498a7d7deccbcf0333f42a9abfcc88fbdd115ffb898bee15883d56c99ee",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S5",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "His possessions told another story:",
+              "exact_native_cache_key": "dfa41fb978929e71a064b064b4cc351ec06e145d.pkl",
+              "cache_input_text_sha256": "bbd87498a7d7deccbcf0333f42a9abfcc88fbdd115ffb898bee15883d56c99ee",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            50688
+          ],
+          "unprocessed_array_sha256": "e49a46f1e11f4b93fcea7f63c21a040c04cb570fba3c77babf504634499d0bce"
+        },
+        {
+          "exact_native_cache_key": "072495e59e2e82365dfed5a2ae746468f9808e08.pkl",
+          "pkl_sha256": "251f489eeb1f6dcc061baa573f18254382019c9a58c90bc0d788f708463ea2c8",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "leather and grass clothing, a copper axe, a bow and arrows,",
+              "exact_native_cache_key": "072495e59e2e82365dfed5a2ae746468f9808e08.pkl",
+              "cache_input_text_sha256": "72d640a73239ee95e26bf4df87d2aad080327288868d20f9088ae84d49ba85f9",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            90112
+          ],
+          "unprocessed_array_sha256": "9c3812ab5f74cbeae1d902be488a67df187c028a909bfe775009e2f5b4c1f9be"
+        },
+        {
+          "exact_native_cache_key": "641bfe0ca0b03508981de93bab6eddee285defc7.pkl",
+          "pkl_sha256": "293af16ee512d37ef01bd893145a95e19304df0b679d05d30fa4a5c27c5ca336",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "all prehistoric artefacts.",
+              "exact_native_cache_key": "641bfe0ca0b03508981de93bab6eddee285defc7.pkl",
+              "cache_input_text_sha256": "cfcb5086273aa8690a2dfd92babbd1c715bee44afa8cc76e5397c676be84ebe5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S5",
+              "piece": 5,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "all prehistoric artefacts.",
+              "exact_native_cache_key": "641bfe0ca0b03508981de93bab6eddee285defc7.pkl",
+              "cache_input_text_sha256": "cfcb5086273aa8690a2dfd92babbd1c715bee44afa8cc76e5397c676be84ebe5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            45568
+          ],
+          "unprocessed_array_sha256": "193cd92bc101bb19501edda9d216017d91d4970bfee21547e2ba7673117c90ec"
+        },
+        {
+          "exact_native_cache_key": "38e9e387f8b6c9a06c3a8212cc1751a889dc473a.pkl",
+          "pkl_sha256": "804a2227f8a60034d1e2573f0734cfff35ae2416108d5e3479a0c88ec7137d8b",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "leather and grass clothing,",
+              "exact_native_cache_key": "38e9e387f8b6c9a06c3a8212cc1751a889dc473a.pkl",
+              "cache_input_text_sha256": "08db4cf7d09083aa70271f2fbf61d959cbb146d32eed381aaf2b4483e6bbe26e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            35840
+          ],
+          "unprocessed_array_sha256": "f953fc1d1602fa84d750fef89bfdf96534a26697a10904aa65509d31759b9674"
+        },
+        {
+          "exact_native_cache_key": "daca143db0d5a37f6c1ed019e25c78d79210c5a5.pkl",
+          "pkl_sha256": "f8b13219a53ff1c89baf7dbd9ef5d0842a1645f76d075882cec4d8dad5e588d4",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a copper axe,",
+              "exact_native_cache_key": "daca143db0d5a37f6c1ed019e25c78d79210c5a5.pkl",
+              "cache_input_text_sha256": "a4bf198b34ef15f6e6b4a723b0a937d44c0a01126153959131de770201738bd5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            26624
+          ],
+          "unprocessed_array_sha256": "dca95ada4e3aedced57e61ae170c9de6590746f93830a53c99ad9050dcecac78"
+        },
+        {
+          "exact_native_cache_key": "283fe22c703ac191f36bc06b3c23f20c3b836739.pkl",
+          "pkl_sha256": "53f7fa88db8908e6669a5c462dc3d42d025d97ea935a23be6277eeffc192648f",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S5",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a bow and arrows,",
+              "exact_native_cache_key": "283fe22c703ac191f36bc06b3c23f20c3b836739.pkl",
+              "cache_input_text_sha256": "60c92a59814ee3f00356d901409ad3e92012e883ca2a6b922c7a06009338c15a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            26112
+          ],
+          "unprocessed_array_sha256": "2dffc5bb15b254253461bfee9d389aa0369c4afcfdffbca4d910759a1908bc61"
+        },
+        {
+          "exact_native_cache_key": "7c364ae1c00a484b765d0d6451acf5c5884c1a0a.pkl",
+          "pkl_sha256": "f23670d54362e99cb3a341b2e510e07613b25aa18ba5bec9cf7f39ae9ca94b48",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Known as Ötzi, the natural mummy was a man who lived about 5,300 years ago, between 3350 and 3105 BC.",
+              "exact_native_cache_key": "7c364ae1c00a484b765d0d6451acf5c5884c1a0a.pkl",
+              "cache_input_text_sha256": "489370e2291f789f01d70f5fdf070d7da51642608ca540e3fc10024aeec91971",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            289792
+          ],
+          "unprocessed_array_sha256": "0d261cf3733ef8bef141a01f11bbed78e6d68b1dfaa1c07883b3df83de25b795"
+        },
+        {
+          "exact_native_cache_key": "706db74c3ab8207468d19b595c8a0bbf952672d6.pkl",
+          "pkl_sha256": "9346bb1279a55e738d6e147d4438c9a71ff43b0cd038b874b4b5a29e4e5a0dee",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Known as Ötzi, the natural mummy was a man",
+              "exact_native_cache_key": "706db74c3ab8207468d19b595c8a0bbf952672d6.pkl",
+              "cache_input_text_sha256": "9e5b9e404b212f337ed40ded057236448c8575d1b731a795ec5d28d0837cb505",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            69120
+          ],
+          "unprocessed_array_sha256": "411f81ad45e4bfb18735f3390ba9aca303984b2253d209e2c6e3ff1c920ce486"
+        },
+        {
+          "exact_native_cache_key": "81006c4e95dc54315d8819270e211d67b5d349d9.pkl",
+          "pkl_sha256": "5929c758882d5f6978a57d48e37deced0f52905830027aacb63a24df47f69578",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "who lived about 5,300 years ago, between 3350 and 3105 BC.",
+              "exact_native_cache_key": "81006c4e95dc54315d8819270e211d67b5d349d9.pkl",
+              "cache_input_text_sha256": "0d37225e84754d1646eca36dedd9a89db451f9b33efbcd1fcd7e25d65b58c38e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            218112
+          ],
+          "unprocessed_array_sha256": "1c7f206c447bb153b32e3b97ff2c88feeed2e02eeb759a916ce0555f2f8a6a64"
+        },
+        {
+          "exact_native_cache_key": "967103d7246653b3cfb8b4c7f7a5926e2ceff32b.pkl",
+          "pkl_sha256": "f7cca6a8092d9a3867c516aab06875b05d82c88a7bc616c037ba2e5ab4758c47",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Known as Ötzi,",
+              "exact_native_cache_key": "967103d7246653b3cfb8b4c7f7a5926e2ceff32b.pkl",
+              "cache_input_text_sha256": "aa4acbb458880148fa6fd46530ac76d7de33916af74e997d84a6a3ee4c1f2da2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            28160
+          ],
+          "unprocessed_array_sha256": "17d2b421dcc9e179139b16a77698dacd53cf88e33fa26f5b9e5e24a4db994c7d"
+        },
+        {
+          "exact_native_cache_key": "8923c370dd8b18ba66d33074c6cde54e0bf0c70a.pkl",
+          "pkl_sha256": "e299d0c191cccc5a71a75f0f8bdce4c7c3402436dab77ed5eafbed905ee8d92d",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "the natural mummy was a man who lived about 5,300 years ago,",
+              "exact_native_cache_key": "8923c370dd8b18ba66d33074c6cde54e0bf0c70a.pkl",
+              "cache_input_text_sha256": "8a57f59cf5bf130d2354d7a505c6162e9f878c9f32ab80a57eb96a0064e01be7",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            107008
+          ],
+          "unprocessed_array_sha256": "87f6dea8af7bfcadee254bc503ea479319a3c382e54763e25ad4e891707b428c"
+        },
+        {
+          "exact_native_cache_key": "26c741931e383dad93a9c330d507955010f2cf3e.pkl",
+          "pkl_sha256": "cbecdad2195d5dfb3436663c14a2f515c7c6d1d807e78004fda60e032d58d45e",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S6",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "between 3350 and 3105 BC.",
+              "exact_native_cache_key": "26c741931e383dad93a9c330d507955010f2cf3e.pkl",
+              "cache_input_text_sha256": "586ad5e243b1eb9541a45eaebcaca6e72afe4b7249e4267abd0c0aeaf0814e06",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            133632
+          ],
+          "unprocessed_array_sha256": "f3d0ff7e8e6c42bf48eeab8bdeec452afa719be8267ffb9f0c3511c819c32444"
+        },
+        {
+          "exact_native_cache_key": "c942a3f496f89e336e440e4bfab9fdce65b5ef3c.pkl",
+          "pkl_sha256": "4ed8dce82233b8a042bfc0922e6e4c3d06e93aa66b6c27404db70a846cc2faca",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "In 2001, X-rays revealed a flint arrowhead lodged in his left shoulder, unseen by examiners a decade earlier.",
+              "exact_native_cache_key": "c942a3f496f89e336e440e4bfab9fdce65b5ef3c.pkl",
+              "cache_input_text_sha256": "cab26ccd83fb533fa06953f4d22114540b5dd1cf92083ce0631645ebadcccfd2",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            212992
+          ],
+          "unprocessed_array_sha256": "1c58b528c374abcde89efed80c3e8239f701ca8e8c8999601b4cb75a8ad31a8f"
+        },
+        {
+          "exact_native_cache_key": "a00c699013f21534f1a8bccd9f881173b186c020.pkl",
+          "pkl_sha256": "570b24ac7605e64cbfc18336e464f169393ea28209a98da0915a545375aa36f6",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "In 2001, X-rays revealed",
+              "exact_native_cache_key": "a00c699013f21534f1a8bccd9f881173b186c020.pkl",
+              "cache_input_text_sha256": "9e9bb44136a02f74a4d351319e684db62369a05896cb78602f26a7544ea6ef73",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            59904
+          ],
+          "unprocessed_array_sha256": "16af8486ec0c0027d5d919faecf730c0f37d9b821324ee3b2ea1ecda18abb459"
+        },
+        {
+          "exact_native_cache_key": "8927a428a8634cd6684b096ca41914743506af9e.pkl",
+          "pkl_sha256": "661e641a12ae01de10154eff692e5c0a2bfa630c171df15aa3f5c168f44a6232",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "a flint arrowhead lodged in his left shoulder,",
+              "exact_native_cache_key": "8927a428a8634cd6684b096ca41914743506af9e.pkl",
+              "cache_input_text_sha256": "430d4e2deba2ac9b9c9aaba1c9e273683f8c571ad8f4e6dd826e3f4900bd541d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            64512
+          ],
+          "unprocessed_array_sha256": "5c342dca3e69dbd3a4dea39a493b5b76f9fd305a000cbbd4d1ed59b862e7b25b"
+        },
+        {
+          "exact_native_cache_key": "535bffa322eff2aaaebdaa8f23d8d3908c6dc4d8.pkl",
+          "pkl_sha256": "df9200ac7044412ece25a7afb7fc2afae3eac501b5901d2dbd7a57ae8eb92fbe",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "unseen by examiners a decade earlier.",
+              "exact_native_cache_key": "535bffa322eff2aaaebdaa8f23d8d3908c6dc4d8.pkl",
+              "cache_input_text_sha256": "e09cc3fcad93eea09e55d5c8a13ef57d874fefe38b2709d7f60ff75803975f5a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S7",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "unseen by examiners a decade earlier.",
+              "exact_native_cache_key": "535bffa322eff2aaaebdaa8f23d8d3908c6dc4d8.pkl",
+              "cache_input_text_sha256": "e09cc3fcad93eea09e55d5c8a13ef57d874fefe38b2709d7f60ff75803975f5a",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            60928
+          ],
+          "unprocessed_array_sha256": "811e25d8ca08097a580e9b3ae84a9bdca1b0f1e9781b17baa3aac40bd491d4ff"
+        },
+        {
+          "exact_native_cache_key": "f50532653032670abedcbc88df639d0a7d39cb46.pkl",
+          "pkl_sha256": "35f0e520f67a883a9f7e1ff98b7e38cb4aa64fd5e62d012d63f753f589295a3a",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "In 2001,",
+              "exact_native_cache_key": "f50532653032670abedcbc88df639d0a7d39cb46.pkl",
+              "cache_input_text_sha256": "c9b119b0bbdfde107b40a3d217a9d870480a5f69b1a5b2d87348b332f2c8db47",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            33280
+          ],
+          "unprocessed_array_sha256": "a744b9b4f6d2ce89503ce40a8129216b12f72aebd60cb28ed011d49ecaadc43b"
+        },
+        {
+          "exact_native_cache_key": "95682139f6cc08b2601646ed9cf3a26495836fa9.pkl",
+          "pkl_sha256": "d2222fd89932a250676157bf1938de5c1d95f8d9804964ec522259fed99f203a",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S7",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "X-rays revealed a flint arrowhead lodged in his left shoulder,",
+              "exact_native_cache_key": "95682139f6cc08b2601646ed9cf3a26495836fa9.pkl",
+              "cache_input_text_sha256": "858988a4dbc2a9a5b73308453d8269c9ec376be96eeb676e15504366ef897d18",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            97280
+          ],
+          "unprocessed_array_sha256": "76f4471691dc9a0ef21e76737173633890d00aa8973b5bd94ff27d13e34a9fda"
+        },
+        {
+          "exact_native_cache_key": "82fca1d0e0e7129f85f0bd5e85e91d8a13fd112e.pkl",
+          "pkl_sha256": "c47e94c57e75cdbad90c1c91d8fd996df0fe28ba8bfede9e6216ad6fa14985e6",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "A scanner showed that the puncture had ruptured an artery, a mortal injury causing heavy bleeding, and left a large clot.",
+              "exact_native_cache_key": "82fca1d0e0e7129f85f0bd5e85e91d8a13fd112e.pkl",
+              "cache_input_text_sha256": "5d32ec10bb955c7ea05dc10b4e87ffe3514fb1c9f35a77ae92afeb5b638c19be",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            190464
+          ],
+          "unprocessed_array_sha256": "b17731007f23c3026e6e80264554c4f7f68fd821e2c1aa7c4a701a3b7a9e3d79"
+        },
+        {
+          "exact_native_cache_key": "104575de956a6f4dfc419e1d162c6489bb69b1a6.pkl",
+          "pkl_sha256": "39609b73c1294e318d9bdb2cbd27700114fdcc226f97c5c23385e3f10c5e7212",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "A scanner showed that the puncture had ruptured an artery,",
+              "exact_native_cache_key": "104575de956a6f4dfc419e1d162c6489bb69b1a6.pkl",
+              "cache_input_text_sha256": "6df43c464d7fbda1f6c2f59ebf0917534ea57d3c1a727503f5f14f72ecb835f1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "A scanner showed that the puncture had ruptured an artery,",
+              "exact_native_cache_key": "104575de956a6f4dfc419e1d162c6489bb69b1a6.pkl",
+              "cache_input_text_sha256": "6df43c464d7fbda1f6c2f59ebf0917534ea57d3c1a727503f5f14f72ecb835f1",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            76800
+          ],
+          "unprocessed_array_sha256": "cc4ab7ab97983f0b9d286e3e5a5f8be5574ee71b0cea3c196f4dda1441d533d8"
+        },
+        {
+          "exact_native_cache_key": "c9235e0aa95e8693cbbc6daf34c23d54e4c8c364.pkl",
+          "pkl_sha256": "50f6eefe8181147cd033ddfc80999018dc36f0dad8eedb90bdf6c3e034f3921b",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "a mortal injury causing heavy bleeding,",
+              "exact_native_cache_key": "c9235e0aa95e8693cbbc6daf34c23d54e4c8c364.pkl",
+              "cache_input_text_sha256": "68a37e5bc6593ad298f46f1236e0727f152412a185897c66d92e20fedc3353af",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a mortal injury causing heavy bleeding,",
+              "exact_native_cache_key": "c9235e0aa95e8693cbbc6daf34c23d54e4c8c364.pkl",
+              "cache_input_text_sha256": "68a37e5bc6593ad298f46f1236e0727f152412a185897c66d92e20fedc3353af",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            59392
+          ],
+          "unprocessed_array_sha256": "74325d64379f4f3c28bb11d50680b7591fbc3f8c900c86e16c479e094511fe0d"
+        },
+        {
+          "exact_native_cache_key": "2c2a626d0df9cf1b53de4eda634d139297dc5540.pkl",
+          "pkl_sha256": "0d081171334d951491eed9c1a5c5a939b2bf9e8a1b19aa93952ce90c7a608a31",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S8",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and left a large clot.",
+              "exact_native_cache_key": "2c2a626d0df9cf1b53de4eda634d139297dc5540.pkl",
+              "cache_input_text_sha256": "fe2c5a8eeaaab24a1719f919ffd47b0733d96709dbb2597d6fe2986992b89e88",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S8",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and left a large clot.",
+              "exact_native_cache_key": "2c2a626d0df9cf1b53de4eda634d139297dc5540.pkl",
+              "cache_input_text_sha256": "fe2c5a8eeaaab24a1719f919ffd47b0733d96709dbb2597d6fe2986992b89e88",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            36864
+          ],
+          "unprocessed_array_sha256": "9e3709bb3e971a3abf065a8cc78c1cf0707dd1d212be11326b48951f549cc860"
+        },
+        {
+          "exact_native_cache_key": "8f371bb4097d60778088bbdd4a4f4c20cfc8258b.pkl",
+          "pkl_sha256": "af9a686f651699b30117961fa67ac1c3c345a5414edd60bc9df376fdf8ae34f8",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S9",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Researchers believe he died within minutes.",
+              "exact_native_cache_key": "8f371bb4097d60778088bbdd4a4f4c20cfc8258b.pkl",
+              "cache_input_text_sha256": "9ac07df57fda5d1e40a54b2c5ba1c2220df6e409eb5c187edb69df0e8c715e17",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            59904
+          ],
+          "unprocessed_array_sha256": "efe223a4ea6a0e5ecc4aecdb3986941b6064cf76c4c82fad5699083ad55e8bc3"
+        },
+        {
+          "exact_native_cache_key": "b5883f6e33bfb0b670a0f6446ec4956544b0c35b.pkl",
+          "pkl_sha256": "5fa5a67298fad00c3e2c35ddeb00b307c8fc600c089e98eec18437b6cc2a722c",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S10",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "He was about 46.",
+              "exact_native_cache_key": "b5883f6e33bfb0b670a0f6446ec4956544b0c35b.pkl",
+              "cache_input_text_sha256": "820dec9bff6bf91e663b870e661ee4bf38d0e2690d4e9ffb6be03f93647047f4",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            36352
+          ],
+          "unprocessed_array_sha256": "a0ef73dcad878327f49513d8c938d06906b12013891b02a37eee130c603296da"
+        },
+        {
+          "exact_native_cache_key": "0550853fde6a5256d115d9fd6085f8571c4c1f09.pkl",
+          "pkl_sha256": "1244234d72ead8100f699a301c89e3d2746bf233b68de622d2b75a668218f645",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Another person, it is thought, killed him.",
+              "exact_native_cache_key": "0550853fde6a5256d115d9fd6085f8571c4c1f09.pkl",
+              "cache_input_text_sha256": "4b0b63111828cbf7185645ee89094749aee0121f8320219edf7338030257a869",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            53760
+          ],
+          "unprocessed_array_sha256": "e749e9518b9a11c82d0a5e557d2b4abfdd8ec96662ca1894ee8f25d545939d85"
+        },
+        {
+          "exact_native_cache_key": "863182e8aef065d1be4db743588dcad556331ced.pkl",
+          "pkl_sha256": "ca717c9f0e7dce4c69f933ed253c274ca22ce85aa392dbf7b9597db948e3ee22",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Another person,",
+              "exact_native_cache_key": "863182e8aef065d1be4db743588dcad556331ced.pkl",
+              "cache_input_text_sha256": "936fbcc25e87b2c42f6b52d4385b7931cdd326c1599a5a268daee9935ce5c45f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            24576
+          ],
+          "unprocessed_array_sha256": "014a181cdee53798ee762d419be4d9321fe4c9e80c8bbb8748cc3adc5ab68f7d"
+        },
+        {
+          "exact_native_cache_key": "c2521b187dac01f12512e3a539289faf5743e811.pkl",
+          "pkl_sha256": "8c4053d79387b831350a9f156b72514e2e3aa903ce07ec07ad6215a54c5c285d",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "it is thought,",
+              "exact_native_cache_key": "c2521b187dac01f12512e3a539289faf5743e811.pkl",
+              "cache_input_text_sha256": "7a3a487cacd930f13a8e5eabc4ab9cf72ac3eaa3ac0a115787c95228690123bf",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            23040
+          ],
+          "unprocessed_array_sha256": "a6a4393a48a1035c68de628dec2cc375b9a0d8743455b646789896df938ee254"
+        },
+        {
+          "exact_native_cache_key": "c87a7e726b25a80a9422b62a1a54f127e864ba8f.pkl",
+          "pkl_sha256": "610c89595e99282f43c35d3ca8165d681f4cef8a8e5dbccfb18fcc4ba0ca34bb",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S11",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "killed him.",
+              "exact_native_cache_key": "c87a7e726b25a80a9422b62a1a54f127e864ba8f.pkl",
+              "cache_input_text_sha256": "a6555dc888aeb38383766c85afe3e8504617e10baad05419f33a16ab37527142",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            20480
+          ],
+          "unprocessed_array_sha256": "41c44f1b111ae8c13de586a8b4d4832464fc42a64e89364fe245dfb0130b49b1"
+        },
+        {
+          "exact_native_cache_key": "24a4938a3535c474e9ed94147aa279ca6336d2ea.pkl",
+          "pkl_sha256": "2d310877a556747f5f4f2d0879fc140d4ea388e5cf8342a4a7e4976fdd04ec6c",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "From the wound's depth researchers inferred that an archer shot him from the rear, at about 30 metres.",
+              "exact_native_cache_key": "24a4938a3535c474e9ed94147aa279ca6336d2ea.pkl",
+              "cache_input_text_sha256": "c6d1bd016c3d92fcf05d9681c669df66953114b4c019ef1be9f1bec1a6169b5d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            156672
+          ],
+          "unprocessed_array_sha256": "3db1c03d9d66c688c9ae7868f5f1f431d3fe35812f893e15f2fda8ebab7341e6"
+        },
+        {
+          "exact_native_cache_key": "69c81c6f1ea8bab68e6575a7f27ea29e0f633b80.pkl",
+          "pkl_sha256": "0255f048546abeab17bf5e33bd2ed517d131b2c589c6f11df814cf2ecfd19cfa",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "From the wound's depth researchers inferred",
+              "exact_native_cache_key": "69c81c6f1ea8bab68e6575a7f27ea29e0f633b80.pkl",
+              "cache_input_text_sha256": "d502dddd1336bfc52b5cbc0d4e257b7b49cd27e38a7c81ff59fbf00be93a90ad",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            55296
+          ],
+          "unprocessed_array_sha256": "b832a24a4a134c6a13cdf5143111352b6241bbc93d3cfad3048de91e8be55556"
+        },
+        {
+          "exact_native_cache_key": "2e8242c7d2440092e7ca9c93261fc32e1d49bb81.pkl",
+          "pkl_sha256": "015c2f9b3452df888c101f0fdf42048b5735dd22f8e33c4800eac50b6a5ee1c2",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "that an archer shot him from the rear, at about 30 metres.",
+              "exact_native_cache_key": "2e8242c7d2440092e7ca9c93261fc32e1d49bb81.pkl",
+              "cache_input_text_sha256": "26016852d9ec44472a0a955ec0c4b992ecc18f7c26eb4ef52fc110873df1cb94",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            92160
+          ],
+          "unprocessed_array_sha256": "2a6a4c9db3b37c6cfd1519ff5c220edcaf620eeb42ec35de818163b7eb3041af"
+        },
+        {
+          "exact_native_cache_key": "68e137170ab37943d3f07a70115d3a025a0c79e8.pkl",
+          "pkl_sha256": "d898187951406b227d32bdf73ff0879f55b1dc60b0f69a1d43a378f902ea2b8c",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "From the wound's depth researchers inferred that an archer shot him from the rear,",
+              "exact_native_cache_key": "68e137170ab37943d3f07a70115d3a025a0c79e8.pkl",
+              "cache_input_text_sha256": "708e676d25d71f97540bc2f0bbfbddb48c90f1775f02db93f83aaa4e16584399",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            115712
+          ],
+          "unprocessed_array_sha256": "fb83003591a6d20d73479caa4f2a38b69b16637e705560f3dbf54486f638a916"
+        },
+        {
+          "exact_native_cache_key": "683a7c78460cd91f7397bac025986d31174a2246.pkl",
+          "pkl_sha256": "87178de6114f5c8fb4f4ab467175c10c6a3faea954eb52cdc34fc40b86c932a6",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S12",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "at about 30 metres.",
+              "exact_native_cache_key": "683a7c78460cd91f7397bac025986d31174a2246.pkl",
+              "cache_input_text_sha256": "00db7034c7c38e5119f8de11ca50094bcad122106bb2cb2d3ca2143c3a1fbf39",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            35328
+          ],
+          "unprocessed_array_sha256": "004bd29bdeb48f40be2c92870e465676555e3bdb1d136ee03ae3cdb77ce0d779"
+        },
+        {
+          "exact_native_cache_key": "3f22cff41f7299d8d90b31c0a8e0f8801226bfbe.pkl",
+          "pkl_sha256": "9edcf906485142b70c8a39cd5c19b9115669d49eaf936a976d894f819e4595e7",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S13",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The shooter probably caught him unawares.",
+              "exact_native_cache_key": "3f22cff41f7299d8d90b31c0a8e0f8801226bfbe.pkl",
+              "cache_input_text_sha256": "38836c2b0e3129467c674d5f058558aebdb4bd756274bf9d7845731b0ccda8dd",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            51712
+          ],
+          "unprocessed_array_sha256": "34bd89e987da4c9d4121942dc5e6d09d00caa418a2726a3645c2fa93e516e485"
+        },
+        {
+          "exact_native_cache_key": "ed0a3fc46996aad9141c7baec7b75200bde5a8d7.pkl",
+          "pkl_sha256": "c691cf79a5cdd97091a8b95ca7a1f8169bf4e3aa12027a5da479e4610efc9746",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "A 2018 study found he had dined on dried ibex meat and fat, red deer, and einkorn wheat, a hearty, nourishing meal reportedly consumed within two hours of his death.",
+              "exact_native_cache_key": "ed0a3fc46996aad9141c7baec7b75200bde5a8d7.pkl",
+              "cache_input_text_sha256": "d22080777204fc424212d5c7c790cdf3d77eda4164dcb2936c460ac1e834b777",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            312832
+          ],
+          "unprocessed_array_sha256": "191a717d10431990c205c92358343dac17ca1ea57e8351bc1b8adbd12b2d65f9"
+        },
+        {
+          "exact_native_cache_key": "4bc7ccacb97640532821e614d4b858ea4eb40ccb.pkl",
+          "pkl_sha256": "22bc4ab72e83597ee1e90a7372764191bb68aed191a5e91daf2d13e7ea8505df",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "A 2018 study found he had dined on",
+              "exact_native_cache_key": "4bc7ccacb97640532821e614d4b858ea4eb40ccb.pkl",
+              "cache_input_text_sha256": "5912d09469362659907ce3cf9ef93709de1792a4fb7540c6de919ce92c36155d",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            75776
+          ],
+          "unprocessed_array_sha256": "b8f78ab361b19fe8cd4f6fcfb6d57b4c01be691136fb08f331e395c3d6d4e475"
+        },
+        {
+          "exact_native_cache_key": "3e8d184e855781f2c6c6bf3050468d2621cf0f85.pkl",
+          "pkl_sha256": "b8891cd6a56c9ba62d7c8b3498a2096debc54433ccf235d36e9f33c33544e6da",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "dried ibex meat and fat, red deer, and einkorn wheat,",
+              "exact_native_cache_key": "3e8d184e855781f2c6c6bf3050468d2621cf0f85.pkl",
+              "cache_input_text_sha256": "c6fc7e55241e9e0477632ff54cf2dd125d8edea54397a14901d0c6ffb23e4359",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            84480
+          ],
+          "unprocessed_array_sha256": "b7de516ddf97ac2fb9f4dce8815da11aa35fdf22acf4f3b63d3cf85438669d54"
+        },
+        {
+          "exact_native_cache_key": "df83b7faa65dca02705ad003579b2e4e443632d7.pkl",
+          "pkl_sha256": "b1cfd2be5d491ec8cbcb41d95d8dca6509e77cbb4093cd176a2a373ea0023fb9",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 3,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "a hearty, nourishing meal reportedly consumed within two hours of his death.",
+              "exact_native_cache_key": "df83b7faa65dca02705ad003579b2e4e443632d7.pkl",
+              "cache_input_text_sha256": "4f743537f9b7c396ba33ca346bf09b26c2eadc2bc7b81d638ed969ac7bace4a5",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            121856
+          ],
+          "unprocessed_array_sha256": "214bd9e5dfa0b982d8eee62f89a768f9ffb2d13616090731955647c102bc3666"
+        },
+        {
+          "exact_native_cache_key": "3cb450a4567f2094b10979118df5cb32b018a350.pkl",
+          "pkl_sha256": "cb065102a6a0726f47643cccda05bfcef7278ea93c609654276a15d15d487d4d",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "A 2018 study found he had dined on dried ibex meat and fat,",
+              "exact_native_cache_key": "3cb450a4567f2094b10979118df5cb32b018a350.pkl",
+              "cache_input_text_sha256": "5118afa4b7fd32f4d9fac861b00b8c15a1f2995b779b49cf6dbbae9d7dda9995",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            121856
+          ],
+          "unprocessed_array_sha256": "08fdf2fd74b0012bb92ab12998f5c3e6a5d2b3406b70534368292cf2a28ce4df"
+        },
+        {
+          "exact_native_cache_key": "ec35e0d19018d9aa7af75325ef3309cac7102546.pkl",
+          "pkl_sha256": "5b038f129b653274e13656d903cba56a0e27ee3548a86d03163b32728c70928b",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "red deer,",
+              "exact_native_cache_key": "ec35e0d19018d9aa7af75325ef3309cac7102546.pkl",
+              "cache_input_text_sha256": "fa24d2fa3b7de42f03544b111d6b74a122106e82cc92ba210162e138be011d65",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            19456
+          ],
+          "unprocessed_array_sha256": "cc717fea97acd86600159c9b3ac92a83cafdd1a612b471de6e9d33062872ec51"
+        },
+        {
+          "exact_native_cache_key": "35c113ff49042012bedf8658d0f258137a351711.pkl",
+          "pkl_sha256": "53d413ff7686fa14cfab9ee25d43e0c8912c97af3a937702bb0f7764ecb77d8c",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and einkorn wheat,",
+              "exact_native_cache_key": "35c113ff49042012bedf8658d0f258137a351711.pkl",
+              "cache_input_text_sha256": "02d65abfdfd1483836c0e69108dca95a6fcd627c2b239b5e0a41f89739b8c9e0",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            30720
+          ],
+          "unprocessed_array_sha256": "f0bc6e0ae058cf4fc6faf6fbecaa087ad9475237331f3ea9880154d10853398b"
+        },
+        {
+          "exact_native_cache_key": "9b071e4359a87142be000dca26f5c94e2b093a8c.pkl",
+          "pkl_sha256": "00207f1ddcacd661202a2f4be83b93af904bc66ac1ddded6a4abb23a5126263e",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a hearty,",
+              "exact_native_cache_key": "9b071e4359a87142be000dca26f5c94e2b093a8c.pkl",
+              "cache_input_text_sha256": "92b63b18e9c3d152199f0bfe954029149c9ec11f6bcc7bf3a4afe2b883278e76",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            20480
+          ],
+          "unprocessed_array_sha256": "0c989c28d52e200786baeed71fb37df29b293b6bc5a873d0f112c3da534d92b2"
+        },
+        {
+          "exact_native_cache_key": "0160896639774617adcc36d9c9bfc8120d701d77.pkl",
+          "pkl_sha256": "f1da96172cb69e221f22a1d59e65d08e59ccf180852ead0b195441ed4595a28a",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S14",
+              "piece": 5,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "nourishing meal reportedly consumed within two hours of his death.",
+              "exact_native_cache_key": "0160896639774617adcc36d9c9bfc8120d701d77.pkl",
+              "cache_input_text_sha256": "d60327209f1683837f55f6f0ed918929a55479ad676670574b5e2490d41e22b8",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            105472
+          ],
+          "unprocessed_array_sha256": "9fc87d8ad29f997fd1a1973f5e060fa5023e62fd78b1fd07aa215fa72a762ce4"
+        },
+        {
+          "exact_native_cache_key": "bfb8ca37b84869924945700d6c76782ae1ac62ff.pkl",
+          "pkl_sha256": "fb86e7e4dc7b1e26549a7c8a27c97265a2209ec0ebc97f17d98404129c47e083",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Curators in Bolzano now keep Ötzi, whose 61 tattoos on joints and spine were perhaps an early form of acupuncture.",
+              "exact_native_cache_key": "bfb8ca37b84869924945700d6c76782ae1ac62ff.pkl",
+              "cache_input_text_sha256": "ccb1d95972031ea2ea63c6f4631e81caa3abca77bc33ae122d07d18f3ce00218",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            223232
+          ],
+          "unprocessed_array_sha256": "1145cecbd237a70574ec8ce6950767da28af7ff4bd84bb237a7bc7af28635f5f"
+        },
+        {
+          "exact_native_cache_key": "32c8cc47178d4e681996dd0dca6411796a8bf13e.pkl",
+          "pkl_sha256": "6fd6b90f9fb889fd5ba7f913cb243253c935ae0088cb9f61cd28ee57dd5ae1c8",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Curators in Bolzano now keep Ötzi,",
+              "exact_native_cache_key": "32c8cc47178d4e681996dd0dca6411796a8bf13e.pkl",
+              "cache_input_text_sha256": "909be66c07ae983ec6002fbf2c7139128dbaf591759a85c0605dfa67daf49380",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S15",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Curators in Bolzano now keep Ötzi,",
+              "exact_native_cache_key": "32c8cc47178d4e681996dd0dca6411796a8bf13e.pkl",
+              "cache_input_text_sha256": "909be66c07ae983ec6002fbf2c7139128dbaf591759a85c0605dfa67daf49380",
+              "cache_input_is_phonemes": true,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            60416
+          ],
+          "unprocessed_array_sha256": "21ca9a6f59bf44022995e6c3125c93cb0bdcdbc8aa144cd52f32317c27bda2d5"
+        },
+        {
+          "exact_native_cache_key": "f83f6b4fb0d05f5bd1bd75395ad30b4dee02a346.pkl",
+          "pkl_sha256": "aa20b41b564f903bec16d5917e9ddd3df88ab008a89abcbc5caa6ab1dcd59362",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S15",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "whose 61 tattoos on joints and spine were perhaps an early form of acupuncture.",
+              "exact_native_cache_key": "f83f6b4fb0d05f5bd1bd75395ad30b4dee02a346.pkl",
+              "cache_input_text_sha256": "f881f4aae7d1d5d6a0d39e7286ce99982969ffb06b827eb5c572d8e14e4c7018",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S15",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "whose 61 tattoos on joints and spine were perhaps an early form of acupuncture.",
+              "exact_native_cache_key": "f83f6b4fb0d05f5bd1bd75395ad30b4dee02a346.pkl",
+              "cache_input_text_sha256": "f881f4aae7d1d5d6a0d39e7286ce99982969ffb06b827eb5c572d8e14e4c7018",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            141824
+          ],
+          "unprocessed_array_sha256": "2153066104b4661ad1d7f05e70cac304c01224bb72795b236b38b118b9f52d16"
+        },
+        {
+          "exact_native_cache_key": "1a902957da1315873a5eab893698813f68e174db.pkl",
+          "pkl_sha256": "e42cfcbfa4d741dc0fbc408dfb1f93ad20cfef3c665e70f7505ef3c67a853b52",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "The archer's identity is an enigma, and any motive is conjecture.",
+              "exact_native_cache_key": "1a902957da1315873a5eab893698813f68e174db.pkl",
+              "cache_input_text_sha256": "72dcb67da2fb8dff2cbc54f5750f048f24ba442bfcd26aaa02a282d497caeb25",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            106496
+          ],
+          "unprocessed_array_sha256": "388c139de5ae568ad6dd96ab9e0f3c0ba81171afbd48ba1d7c4e00ed24c7c16b"
+        },
+        {
+          "exact_native_cache_key": "8128a902a133315a940dd378d7042d1d27d41ec7.pkl",
+          "pkl_sha256": "dc6f1beff7c8a7247c0094ce698d9604b1a6090f8bcf3e639f971c900f7900fb",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "The archer's identity is an enigma,",
+              "exact_native_cache_key": "8128a902a133315a940dd378d7042d1d27d41ec7.pkl",
+              "cache_input_text_sha256": "893b58490f5ae7de5ad2e01df1c8276db306182786186d943738e6cefacd2b77",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S16",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "The archer's identity is an enigma,",
+              "exact_native_cache_key": "8128a902a133315a940dd378d7042d1d27d41ec7.pkl",
+              "cache_input_text_sha256": "893b58490f5ae7de5ad2e01df1c8276db306182786186d943738e6cefacd2b77",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            56832
+          ],
+          "unprocessed_array_sha256": "556ae801e7f5bb9ff6fe4c87892185f9801e7c157970e44263cdc628fe49bd5d"
+        },
+        {
+          "exact_native_cache_key": "7754279231eb4d56e347151744190d3a2fe940b2.pkl",
+          "pkl_sha256": "a0e121b29a8f272b884a553f6802e8d30887517b92df60733423f0c274993142",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S16",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "and any motive is conjecture.",
+              "exact_native_cache_key": "7754279231eb4d56e347151744190d3a2fe940b2.pkl",
+              "cache_input_text_sha256": "e8ace86c7e0e557bdfe4c86b6896462387a65e424b650c1b9de3f1d0f8ac125f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S16",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and any motive is conjecture.",
+              "exact_native_cache_key": "7754279231eb4d56e347151744190d3a2fe940b2.pkl",
+              "cache_input_text_sha256": "e8ace86c7e0e557bdfe4c86b6896462387a65e424b650c1b9de3f1d0f8ac125f",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            41984
+          ],
+          "unprocessed_array_sha256": "58e1fe6856c5bd3edcd2dcc3362a1f92b953829007a434e32ac3908a3c247dd5"
+        },
+        {
+          "exact_native_cache_key": "15bca9e8e6e7c878561d637d5e8dd95994c122dc.pkl",
+          "pkl_sha256": "d178aff4bce523df90c0b002337f27c05a8d318ff1f0df49e66b186be102ec13",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": null,
+              "reference_kind": "whole-default-raw",
+              "method": "create",
+              "source_slice": "Ötzi has a name, a last meal, and a cause of death, while his anonymous killer has none.",
+              "exact_native_cache_key": "15bca9e8e6e7c878561d637d5e8dd95994c122dc.pkl",
+              "cache_input_text_sha256": "015c4c95492d7f65f30883b86759f52a3ef7fd1f6c532ce836759aabefd2f66e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            136192
+          ],
+          "unprocessed_array_sha256": "d74226bf1558e6d55170c7c9a28adcb2235bdc309ea9b421a492229ae2d193c0"
+        },
+        {
+          "exact_native_cache_key": "93ba642b6f07abb7c23c680354855a8d5fed7980.pkl",
+          "pkl_sha256": "1a7e29ed14a717dcdb9cba49dbc40a6d3712455caec20d8662cb4231986b4a37",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 1,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "Ötzi has a name, a last meal, and a cause of death,",
+              "exact_native_cache_key": "93ba642b6f07abb7c23c680354855a8d5fed7980.pkl",
+              "cache_input_text_sha256": "5e0ff13ecb0d620e13a3c55fae254a726cac8400e05b1e93e1265a75b7d95e01",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            75776
+          ],
+          "unprocessed_array_sha256": "03d4ff88369cec6330d6485b51bbb9431da1b95f0684dd7b72a4752b4471d1ed"
+        },
+        {
+          "exact_native_cache_key": "81e808e94ced505553fb560e593d78179f102458.pkl",
+          "pkl_sha256": "eda287af540dd8a9a83a1c77396b97eb6b1a2fed8b86551320ec172d331d1b11",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 2,
+              "reference_kind": "highlight-display-chunk",
+              "method": "create",
+              "source_slice": "while his anonymous killer has none.",
+              "exact_native_cache_key": "81e808e94ced505553fb560e593d78179f102458.pkl",
+              "cache_input_text_sha256": "33e2ede03af7dc04c8a02d1e325ba801ee73762e2861662aba61dd624095a5ba",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            },
+            {
+              "sentence": "S17",
+              "piece": 4,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "while his anonymous killer has none.",
+              "exact_native_cache_key": "81e808e94ced505553fb560e593d78179f102458.pkl",
+              "cache_input_text_sha256": "33e2ede03af7dc04c8a02d1e325ba801ee73762e2861662aba61dd624095a5ba",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            45056
+          ],
+          "unprocessed_array_sha256": "9286e2dd3d55a1e826e1e78c569396107e373b8e337edec287f0281728184fb2"
+        },
+        {
+          "exact_native_cache_key": "708db25c7a551fb5be1a0ee5db3c98c94fa4a4d1.pkl",
+          "pkl_sha256": "eaf7408d3074fb5d5b3e858f49f22dc80f5a1832135c9d2a216795598ff2ea72",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 1,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "Ötzi has a name,",
+              "exact_native_cache_key": "708db25c7a551fb5be1a0ee5db3c98c94fa4a4d1.pkl",
+              "cache_input_text_sha256": "89e1035d68e69ff02e935b7a9ca36a7dae43380630dbb9f88b28cba7d0496613",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            27136
+          ],
+          "unprocessed_array_sha256": "f44e6f32a71455854771a28a91643894f74ec2e9a91a503cf812a6d73f21a945"
+        },
+        {
+          "exact_native_cache_key": "94005843f019ffd71ebb62a97a1fa044392508cd.pkl",
+          "pkl_sha256": "09c9aaf399d3b3145ec45260a4e58763ca0d79a30adf2a9da91565bc9b3a04fe",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 2,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "a last meal,",
+              "exact_native_cache_key": "94005843f019ffd71ebb62a97a1fa044392508cd.pkl",
+              "cache_input_text_sha256": "e3680c9f8382b9ed1f1025e3ff85d4b7ffddf418eb8cb872b692d3f90360c66e",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            25600
+          ],
+          "unprocessed_array_sha256": "9b26900a499d6a7e8b435921a0e1918a4b18b392fdffcadeac4cef41a40bcd88"
+        },
+        {
+          "exact_native_cache_key": "5103732d0212449b92f6d27ddfb2e2415b047363.pkl",
+          "pkl_sha256": "087caa0bf30f9caafb60acf85171a501a837756e631222823269cdb5a91758a8",
+          "native_single_thread_marker_present": false,
+          "input_proofs": [
+            {
+              "sentence": "S17",
+              "piece": 3,
+              "reference_kind": "pause-punctuation-slice",
+              "method": "create",
+              "source_slice": "and a cause of death,",
+              "exact_native_cache_key": "5103732d0212449b92f6d27ddfb2e2415b047363.pkl",
+              "cache_input_text_sha256": "e2a5f1e736208ed19c52d116339a94f5f6ef52e13bcdfcc12d5ecfb2bcfe6089",
+              "cache_input_is_phonemes": false,
+              "cache_preexisted": true
+            }
+          ],
+          "container_type": "tuple",
+          "container_length": 2,
+          "sample_rate": 24000,
+          "dtype": "float32",
+          "shape": [
+            30208
+          ],
+          "unprocessed_array_sha256": "2be576e8378cbb1cc90fb0b543e773329b96184779905e02e2d8cee2a1e221fb"
+        }
+      ],
+      "missing_reference_key_count": 0,
+      "observed_missing_keys_covered": [],
+      "new_private_cache_names": [],
+      "native_single_thread_marker_verified": true,
+      "single_thread_sessions": [
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        },
+        {
+          "intra_op_num_threads": 1,
+          "inter_op_num_threads": 1
+        }
+      ],
+      "models_sha256": {
+        "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+        "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+        "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+      },
+      "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+      "existing_private_cache_count": 11514,
+      "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+      "existing_private_cache_bytes_unchanged": true,
+      "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+      "public_repository_cache_unchanged": true,
+      "producer_pcm_existed_before": false,
+      "producer_pcm_sha256_before": null,
+      "producer_pcm_sha256_after": null,
+      "accepted_aac_adts_sha256_before": "7e6b0afb0289c80be292bebbf5d3e52cd1dd1369af8928c7d5d7472d88c932d9",
+      "accepted_aac_adts_sha256_after": "7e6b0afb0289c80be292bebbf5d3e52cd1dd1369af8928c7d5d7472d88c932d9",
+      "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+      "private_cache_exported": false
+    },
+    "checker_reference_preparation_program_sha256": "f6f2a032e207085e7252d036e39430fb80b06e84a721c525b61196d021c5ca12",
+    "fresh_current_article_reference": {
+      "article": "20",
+      "removed_temporary_gt_files": [],
+      "processed_pcm_or_raw_mother_cache_modified": false,
+      "purpose": "Original synth/labels/audit rebuild fresh for this production; no old CPU GT reuse."
+    },
+    "temporary_output_reset": {
+      "removed": [],
+      "production_started_ns": 1794622044166512745,
+      "repository_outputs_modified": false
+    },
+    "reviewed_gain_control_preservation": [
+      {
+        "stage": "canonical-draft",
+        "requested_gain_controls": {
+          "/句子增益dB": {
+            "S10": -0.6
+          }
+        },
+        "actual_gain_controls": {
+          "/句子增益dB": {
+            "S10": -0.6
+          }
+        },
+        "exactly_preserved": true
+      },
+      {
+        "stage": "canonical-final4K",
+        "requested_gain_controls": {
+          "/句子增益dB": {
+            "S10": -0.6
+          }
+        },
+        "actual_gain_controls": {
+          "/句子增益dB": {
+            "S10": -0.6
+          }
+        },
+        "exactly_preserved": true
+      }
+    ],
+    "canonical_video_sha256": "99fbaa7f959aefdc421d614e29d0112d13c0efdb4444a16edb1c84447481c72b",
+    "canonical_aac_adts_sha256": "7e6b0afb0289c80be292bebbf5d3e52cd1dd1369af8928c7d5d7472d88c932d9",
+    "canonical_pipeline_passed": true,
+    "cached_input_wav_sha256": null,
+    "final_wav_sha256": "c334f6fdd95aa76d19fe16ba50f9aef58b371d036367ad5f9b996eb83000c9b2",
+    "accepted_prior_aac_identical": true,
+    "video_sha256": "43f4ebb83d770200cd38229d36d7a3b25badde7dddf84ea7b5eab97f64daecf1",
+    "width": 3840,
+    "height": 2160,
+    "summary_seconds": 2,
+    "summary_frames": 60,
+    "summary_start_seconds": 136.63333333333333,
+    "delay_after_voice_seconds": 0.0033333333333303017,
+    "actual_source_collection": {
+      "article": "20",
+      "kind": "actual-production-source-collection",
+      "new_quality_gate": false,
+      "files": {
+        "request_json": {
+          "file": "20-request-source.json",
+          "sha256": "cc5ed6d7be8767e5e7e9b098e8f3836821c0b3f51c17581b2746722da1cf3001",
+          "origin": "immutable_request"
+        },
+        "request_generator": {
+          "file": "20-request-gen.py",
+          "sha256": "3487eddef829b226fe0520f1d1560836631595fdb7e81e8f547a26b18da1f6bd",
+          "origin": "immutable_request"
+        },
+        "used_generator": {
+          "file": "20-used-gen.py",
+          "sha256": "3487eddef829b226fe0520f1d1560836631595fdb7e81e8f547a26b18da1f6bd",
+          "origin": "actual_production_filesystem"
+        },
+        "actual_working_source": {
+          "file": "20-actual-working-source.json",
+          "sha256": "7229c5bdad16ae49c8e8edefc805ccb73de2d5fced622d5548a3ae3f29d18c19",
+          "origin": "actual_production_filesystem"
+        },
+        "request_manuscript": {
+          "file": "20-request-manuscript.md",
+          "sha256": "8d55638070787f7ff5432c197292af1188c463a8b018e01bdefc32999b888e95",
+          "origin": "immutable_request"
+        },
+        "actual_working_manuscript": {
+          "file": "20-actual-working-manuscript.md",
+          "sha256": "4eb5601825f98a2ceff1d91a59e8e53056597bb363c407cfe3501caf0682e424",
+          "origin": "actual_production_filesystem"
+        }
+      },
+      "generator_execution_observed": false,
+      "generator_execution_evidence": "No fresh generator execution log; do not claim this GEN was executed during rendering.",
+      "source_differences": {
+        "file": "20-actual-source-differences.json",
+        "sha256": "86fcfc399bf4311e95a2e44f15f6ba244847a2dbb8e00f64cc9284fe1339233b"
+      }
+    }
+  },
+  "native_status_sha256": "9678df85bebe72baaa9251d380e9fd1adc883f86b3bb9d6b5a1e6ff689b44787"
+}
