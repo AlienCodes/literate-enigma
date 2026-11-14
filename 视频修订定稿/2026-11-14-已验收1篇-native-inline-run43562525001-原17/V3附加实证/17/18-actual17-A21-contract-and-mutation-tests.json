@@ -1,0 +1,86 @@
+{
+  "scope": "Actual immutable17 approved-A21 report/copy contract plus14 mutated bad cases; not full V3 or new acoustic acceptance",
+  "passed": true,
+  "actual_audio_report_sha256": "2ac2042e30aa9da36d32da5495eb5f3caa0fd28c7880bb990562b3cfdeb9ea4c",
+  "actual_native_old_AAC_identical": false,
+  "truthful_actual_program": "audio-a21-qc.py",
+  "actual_contract_basis": "actual_dedicated_audio_qc_then_verified_exact_AAC_copy",
+  "mutations_rejected": [
+    {
+      "case": "wrong_actual_program",
+      "rejected": true,
+      "reason": "Actual A21 QC program identity differs"
+    },
+    {
+      "case": "wrong_reference",
+      "rejected": true,
+      "reason": "A21 actual reference differs from the approved file"
+    },
+    {
+      "case": "wrong_request",
+      "rejected": true,
+      "reason": "A21 request differs from the exact approved reference"
+    },
+    {
+      "case": "wrong_repair_scope",
+      "rejected": true,
+      "reason": "Actual approved original-release repair scope absent"
+    },
+    {
+      "case": "original_full_pipeline_not_passed",
+      "rejected": true,
+      "reason": "Actual complete original pipeline/A21 report not passed"
+    },
+    {
+      "case": "wrong_original_A21_program",
+      "rejected": true,
+      "reason": "A21 report is not the approved actual public-MP4/original-function measurement"
+    },
+    {
+      "case": "one_original_phase_failed",
+      "rejected": true,
+      "reason": "Actual repaired release did not pass every unchanged original A21 phase"
+    },
+    {
+      "case": "double_release_in_one_phase",
+      "rejected": true,
+      "reason": "Actual repaired release did not pass every unchanged original A21 phase"
+    },
+    {
+      "case": "wrong_phase_offsets",
+      "rejected": true,
+      "reason": "Actual repaired release did not pass every unchanged original A21 phase"
+    },
+    {
+      "case": "untouched_voice_not_preserved",
+      "rejected": true,
+      "reason": "Actual A21 repair has failed checks"
+    },
+    {
+      "case": "missing_required_original_check",
+      "rejected": true,
+      "reason": "A21 actual control/five-phase/untouched-voice evidence is incomplete"
+    },
+    {
+      "case": "canonical_identity_changed",
+      "rejected": true,
+      "reason": "Do not relabel the original acoustic report canonical fingerprint"
+    },
+    {
+      "case": "copy_absolute_packet_clock_changed",
+      "rejected": true,
+      "reason": "Native processing changed reviewed audio payload or absolute timing"
+    },
+    {
+      "case": "selected_AAC_changed",
+      "rejected": true,
+      "reason": "A21 original reviewed canonical-to-card copy chain differs"
+    }
+  ],
+  "legacy_release_contract_function_AST_exact_after_removing_only_new_A21_branches": true,
+  "strict_delivery_program_byte_unchanged": true,
+  "actual_immutable17_approved_layout_copied_exactly": true,
+  "source_audio_GEN_original_report_or_quality_threshold_modified": false,
+  "contract_program_sha256": "31f41ac519193f1660ef1d2a2240712ca45b3577b4df9dd262d99482da548551",
+  "importer_program_sha256": "cbd9f4527e657ed369a204ff54dc63f100561da1c6389ca524ccbcc55c7f7aca"
+}
