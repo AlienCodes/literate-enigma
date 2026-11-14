@@ -1,0 +1,182 @@
+{
+  "article": "26",
+  "book_order": "27",
+  "source_freeze_complete": true,
+  "created_utc": "2026-11-14T07:02:32.982725+00:00",
+  "two_user_feedback_implemented": true,
+  "source_JSON_sha256": "22349b0a29f05689aae5bd5e9d0907846a68e6ad42949eb0b8cc392d6dce18d6",
+  "GEN_sha256": "c5a529ca845f3435f78522ab8b51319a8903839fbe1cb271e0afab4ad0d45475",
+  "MD_sha256": "f64089bc9487e756522746058fba2e27c45e56ffc339d8590038643012eb496d",
+  "GEN_sources_sha256": "c5a529ca845f3435f78522ab8b51319a8903839fbe1cb271e0afab4ad0d45475",
+  "GEN_sources_baseline_existed": false,
+  "files_applied": [
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/脚本/26.json",
+      "before_sha256": "ab663b240eb5e27923f38e2ff296c0196e3d820766d0c909adb9faf19aa3cac9",
+      "after_sha256": "22349b0a29f05689aae5bd5e9d0907846a68e6ad42949eb0b8cc392d6dce18d6",
+      "bytes": 56666
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/初稿生成/gen26.py",
+      "before_sha256": "766b6fb9ddce22e607f9bf75e37d43a32ed126211f67daa2655630d68a301dbd",
+      "after_sha256": "c5a529ca845f3435f78522ab8b51319a8903839fbe1cb271e0afab4ad0d45475",
+      "bytes": 46652
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/新版定稿/26-the-language-the-children-invented.md",
+      "before_sha256": "9e9ad8021ddabc17157d73dc739383f9676df3583cf965e470fcd773e26a3761",
+      "after_sha256": "f64089bc9487e756522746058fba2e27c45e56ffc339d8590038643012eb496d",
+      "bytes": 15432
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/制作记录/26_待改清单.md",
+      "before_sha256": "33a2ca826644adaf13ced1ccc6d645da00751f6492d2e8bc68945635a1f34c29",
+      "after_sha256": "80760a47f93a1b444c82102176035f6aa38ca1c54e72da15af2f9fa3a306f44a",
+      "bytes": 20965
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/制作记录/逐句确认/26.json",
+      "before_sha256": "4e7d19aa6eaaf14aa364d17aaa1e816217436ed1f817127c6c5fd144f4396c58",
+      "after_sha256": "31d9d90fc479ff66f46eebfdc1ebfdf1bc3bd139f20599fc0474f6008a39e72f",
+      "bytes": 11170
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/gen-sources/gen26.py",
+      "before_sha256": null,
+      "after_sha256": "c5a529ca845f3435f78522ab8b51319a8903839fbe1cb271e0afab4ad0d45475",
+      "bytes": 46652
+    },
+    {
+      "path": "/workspace/work/video-audit70-20261113/payload/视频/工具/用户同意记录.json",
+      "before_sha256": "afe833c89bf58dcb0913644026566f73d55a1e05f5998a1d9ecf9eecce50cca7",
+      "after_sha256": "196858a4401483c42a319b523ecfa19ce920bce7f335ef6299e09c22601edc41",
+      "scope": "Only two exact article26 consent records appended; all unrelated current records retained."
+    }
+  ],
+  "exact_JSON_diff": [
+    {
+      "path": "/allow_clash",
+      "reason": "list_length",
+      "expected_length": 1,
+      "actual_length": 3
+    },
+    {
+      "path": "/allow_clash/1",
+      "reason": "unexpected_item",
+      "actual": "gestures"
+    },
+    {
+      "path": "/allow_clash/2",
+      "reason": "unexpected_item",
+      "actual": "linguist"
+    },
+    {
+      "path": "/sentences/3/chunks/1/align/3/0",
+      "reason": "value",
+      "expected": "of gestures",
+      "actual": "of **gestures**"
+    },
+    {
+      "path": "/sentences/3/chunks/1/align/3/1",
+      "reason": "value",
+      "expected": "手势，",
+      "actual": "**手势**(gestures)，"
+    },
+    {
+      "path": "/sentences/3/chunks/1/en",
+      "reason": "value",
+      "expected": "sharing a **homemade** **repertoire** of gestures with parents and **siblings**.",
+      "actual": "sharing a **homemade** **repertoire** of **gestures** with parents and **siblings**."
+    },
+    {
+      "path": "/sentences/3/chunks/1/zh",
+      "reason": "value",
+      "expected": "共用**自制的**(homemade)**一整套/全部**(repertoire)手势，在父母和**兄弟姐妹**(siblings)之间。",
+      "actual": "共用**自制的**(homemade)**一整套/全部**(repertoire)**手势**(gestures)，在父母和**兄弟姐妹**(siblings)之间。"
+    },
+    {
+      "path": "/sentences/15/chunks/0/align/0/0",
+      "reason": "value",
+      "expected": "Linguists",
+      "actual": "**Linguists**"
+    },
+    {
+      "path": "/sentences/15/chunks/0/align/0/1",
+      "reason": "value",
+      "expected": "语言学家",
+      "actual": "**语言学家**(Linguists)"
+    },
+    {
+      "path": "/sentences/15/chunks/0/en",
+      "reason": "value",
+      "expected": "Linguists had a rare chance to watch a language grow from **infancy** to **maturity**.",
+      "actual": "**Linguists** had a rare chance to watch a language grow from **infancy** to **maturity**."
+    },
+    {
+      "path": "/sentences/15/chunks/0/zh",
+      "reason": "value",
+      "expected": "语言学家难得有机会看着一门语言从**婴儿期**(infancy)长到**成熟期**(maturity)。",
+      "actual": "**语言学家**(Linguists)难得有机会看着一门语言从**婴儿期**(infancy)长到**成熟期**(maturity)。"
+    }
+  ],
+  "original_GEN_JSON_text_checks": {
+    "path": "/workspace/work/video-audit70-20261113/article26-user-review-20261114/gen-text-validation-v2/report.json",
+    "sha256": "53e37c8a1257a5823c9e7deb6e6530f8ce5ead73bcb79f0aee1985c92187a3e1",
+    "all_passed": true
+  },
+  "independent_semantic_review": {
+    "path": "/workspace/work/video-revision-delivery/article26-review-intake-20261114/independent-two-feedback-candidate-review.json",
+    "sha256": "5504095b9966311036e1ed35973b4d6d9bd6d973a5382f5f5e96bd92892a27c4",
+    "passed": true
+  },
+  "original_text_confirmation_entrypoint": {
+    "path": "/workspace/work/video-audit70-20261113/article26-user-review-20261114/actual-text-two-sentence-confirmations.json",
+    "sha256": "2cb443eb5d35cb04620e97650a2b2864ab7fb3a7fdb039d9de6484cc43eba302",
+    "only_S4_S16_actual_text_reviews": true,
+    "audio_confirmations_added": false
+  },
+  "actual_static_1080_and_4K": {
+    "path": "/workspace/work/video-audit70-20261113/article26-user-review-20261114/static-render-report.json",
+    "sha256": "69bb989e58994cebb1f93f5192679a3805b0383f54f8942c4aed7cb777e6233b",
+    "all_passed": true,
+    "actual_changed_page_renders": 4,
+    "actually_viewed_four_changed_pages_and_4K_tail_summary": true
+  },
+  "CI_approved_manifest": {
+    "path": "/workspace/work/video-revision-batch-ci/.github/video-revision-batch/approved-video-layouts70.json",
+    "before_sha256": "3883cc98effd9731d9748bcca66ce9b1c1c4c5a39712dd4f17c7ffc38d6d3d4a",
+    "after_sha256": "dafd999321d787c5538c2d3addc0d64a06c5d6224b90b304970c59d3c056d9dd",
+    "before_row": {
+      "source_id": "26",
+      "new_id": "27",
+      "source_json_sha256": "456cf19082860ca5d4a1f88b68aa7c8303d901a980f1db50ca130de5288bc891",
+      "approved_summary_text_sha256": "5e89248af5994fd07eca6fcda9e8da76fda45803c43201658c326d8431baa6cd",
+      "summary_png_sha256": "576113bd7f2b43adb8fd957a99ea2b747999d6990af17219f0e14d8c1a28f273",
+      "summary_rgb_sha256": "316e39b3ac775b61009589c96071a976a3c3256d139ce755fb7c3a6ed6b0b16f",
+      "summary_font_4k_px": 113,
+      "source_layout_structural_sha256": "7110392ea4a787ed4dd67cf76080f70c92f29864b52789fd20698cd932c32689"
+    },
+    "after_row": {
+      "source_id": "26",
+      "new_id": "27",
+      "source_json_sha256": "22349b0a29f05689aae5bd5e9d0907846a68e6ad42949eb0b8cc392d6dce18d6",
+      "approved_summary_text_sha256": "5e89248af5994fd07eca6fcda9e8da76fda45803c43201658c326d8431baa6cd",
+      "summary_png_sha256": "576113bd7f2b43adb8fd957a99ea2b747999d6990af17219f0e14d8c1a28f273",
+      "summary_rgb_sha256": "316e39b3ac775b61009589c96071a976a3c3256d139ce755fb7c3a6ed6b0b16f",
+      "summary_font_4k_px": 113,
+      "source_layout_structural_sha256": "ffcd658045cd7c3a217d111f98a59623aa9afff31adf9d006bf4fbc9d13c4f5c"
+    },
+    "only_two_article26_source_digest_leaves_changed": true,
+    "unchanged_approved_summary_canonical_text_RGB_font": true,
+    "old_approved_reference_summary_wrap_difference_preserved_and_measured": true
+  },
+  "spoken_English_and_chunk_boundaries_exact": true,
+  "all_existing_DSP_and_audio_controls_exact": true,
+  "current_five_point_summary_and_full_last_note_exact": true,
+  "body_tail_geometry_and_font_exact": true,
+  "body_tail_RGB_identity_claimed": false,
+  "official_core_or_renderer_modified": false,
+  "native_video_or_audio_generated_or_dispatched_by_this_agent": false,
+  "published40_review_bundle_modified": false,
+  "sole_next_native_launcher": "/root/resume_audio_ci"
+}
