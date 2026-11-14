@@ -85,6 +85,12 @@ jobs:
           XG_KEEP_REVIEWED_ENDING: '1'
           XG_KEEP_REVIEWED_CUTS: '1'
         run: python .github/strict-cached-observer43/run_cached_observer.py
+      - name: 仅私有保存已测候选原数学新调平JSON
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/completion-machine/tts/source43-one-NV-candidate-reference-cache
+          key: Linux-source43-one-NV-candidate-reference-${{ github.run_id }}
       - name: 仅导实际安全标量JSON不导母音频
         if: always()
         uses: actions/upload-artifact@v4
