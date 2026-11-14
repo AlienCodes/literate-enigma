@@ -263,7 +263,11 @@ def add_approved_illustrated_tail(request, final, verification):
     # packet-preserving composition step; preserve it as a separate record.
     upstream_status = OUT / f'{NO}-canonical-summary-passed-status.json'
     shutil.copyfile(OUT / f'{NO}-status.json', upstream_status)
-    image = ROOT / '插图阅读小册/illustrations' / ('01-preview.png' if NO == '01' else f'{NO}.png')
+    resource_spec = importlib.util.spec_from_file_location('approved_illustration_resource', TASK / 'approved_illustration_resource.py')
+    resource_module = importlib.util.module_from_spec(resource_spec)
+    resource_spec.loader.exec_module(resource_module)
+    image, image_receipt = resource_module.resolve(NO, ROOT / '.approved-publication-illustrations', TASK)
+    status['approved_illustration_resource'] = image_receipt
     output = OUT / f'{NO}-4K-正文-书中插图2秒-简述2秒.mp4'
     report = OUT / f'{NO}-illustrated-tail-verification.json'
     checked(['python3', helper, '--source-id', NO, '--input', final,
@@ -454,7 +458,7 @@ def assert_reviewed_gain_controls(requested, stage):
 
 def failure_audio_diagnostics():
     """Read private reference data internally; export diagnostic scalars only."""
-    if NO not in {'10', '11', '12', '44', '51'}:
+    if NO not in ALLOWED:
         return
     program = TASK / 'diagnose_reference_gain.py'
     qc = Path(ENV.get('QC_DIR', str(M / 'qc_independent')))
@@ -592,6 +596,22 @@ def export_failed_current_video():
                    'derived_clip_count': len(clips)})
 
 
+def collect_original_asr_target_evidence():
+    """A failed original ASR check remains failed; collect the two actual texts."""
+    if NO not in {'46', '49', '55'} or not status.get('failed_current_video', {}).get('exported'):
+        return
+    output = OUT / f'{NO}-original-ASR-target-evidence.json'
+    process = subprocess.run(list(map(str, ['python3', TASK / 'collect_asr_target_evidence.py',
+        '--article', NO, '--work', W, '--tools', T,
+        '--public-video', OUT / f'{NO}-failed-draft.mp4', '--proof', OUT / f'{NO}-failed-draft-proof.json',
+        '--output', output])), cwd=W, env=ENV, capture_output=True, text=True, errors='replace', timeout=240)
+    record = {'diagnostic_only': True, 'acceptance': False, 'automatic_confirmation': False,
+              'exit': process.returncode}
+    if output.is_file():
+        record.update({'file': output.name, 'sha256': sha(output)})
+    status['original_asr_target_evidence'] = record
+
+
 def cache_entry(name):
     assert re.fullmatch(r'[A-Za-z0-9_\u4e00-\u9fff.-]+\.(pkl|json)', name), name
     destination = M / 'tts/cache_tts' / name
@@ -721,6 +741,11 @@ def same_summary_content(expected, actual):
 
 
 try:
+    # Check the exact publication resource before any costly voice or video work.
+    checked(['python3', TASK / 'approved_illustration_resource.py', '--source-id', NO,
+             '--checkout', ROOT / '.approved-publication-illustrations', '--task', TASK,
+             '--out', OUT / f'{NO}-approved-illustration-resource.json'],
+            'approved-illustration-resource.log', ROOT)
     assert (M / 'tts/kokoro-v1.0.onnx').exists(), 'Original warm machine cache was not restored.'
     W.mkdir(parents=True, exist_ok=True)
     install_certified_core_repairs()
@@ -944,7 +969,8 @@ try:
 except Exception as exc:
     status['passed'] = False
     status['error'] = str(exc)
-    for collector in (collect_confirmation_continuity, failure_audio_diagnostics, export_failed_current_video):
+    for collector in (collect_confirmation_continuity, failure_audio_diagnostics, export_failed_current_video,
+                      collect_original_asr_target_evidence):
         try:
             collector()
         except Exception as collection_error:
