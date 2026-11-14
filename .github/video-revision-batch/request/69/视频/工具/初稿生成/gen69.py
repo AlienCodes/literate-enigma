@@ -1,0 +1,566 @@
+#!/usr/bin/env python3
+# Pure data frozen from the current approved JSON; shared helper/checkers unchanged.
+import os
+import sys
+
+S = [(1,
+  [[[('J. Robert Oppenheimer,', 'J·罗伯特·奥本海默'), ('born in New York on 22 April 1904,', '1904年4月22日生于纽约，')],
+    '（born in New York…：过去分词短语，补充说明 Oppenheimer）'],
+   [[('was an', '是一位'),
+     ('**accomplished**', '**卓有成就的**(accomplished)'),
+     ('physicist', '物理学家，'),
+     ('and', '也是'),
+     ('**prominent**', '伯克利和加州理工学院的**知名**(prominent)'),
+     ('**lecturer** at Berkeley and Caltech.', '**教师**(lecturer)。')],
+    '（at Berkeley and Caltech：后置定语，修饰 lecturer）']]),
+ (1,
+  [[[('From April 1943', '从1943年4月起，'),
+     ('he', '他'),
+     ('**oversaw**', '**主管**(oversaw)'),
+     ('a **secretive**', '洛斯阿拉莫斯的一处**秘密**(secretive)'),
+     ('weapons', '武器'),
+     ('**installation** at Los Alamos,', '**设施**(installation)；')],
+    '（at Los Alamos：后置定语，修饰 installation）'],
+   [[('whose', '这里的'),
+     ('**bombs**', '**炸弹**(bombs)'),
+     ('were', '是'),
+     ('{{=}}the **collaborative** **creation** of a **thousands-strong** **workforce**.',
+      '**数千人的**(thousands-strong)**劳动力**(workforce)**共同协作的**(collaborative)**创造成果**(creation)。')],
+    '（whose…：非限制性定语从句，修饰 installation；\nthe creation of A：A 的创造成果）']]),
+ (2,
+  [[[('In the **pre-dawn** darkness of 16 July 1945,', '1945年7月16日**黎明前的**(pre-dawn)黑暗中，')],
+    '（of 16 July 1945：后置定语，修饰 darkness）'],
+   [[('the first', '第一次'),
+     ('nuclear', '核'),
+     ('test', '试验'),
+     ('**illuminated**', '以一道**刺眼的强光**(blinding glare)**照亮了**(illuminated)'),
+     ('the **desolate** New Mexico', '新墨西哥州**荒凉的**(desolate)'),
+     ('**landscape** with a **blinding glare**,', '**景观**(landscape)，')],
+    '（with a blinding glare：方式状语）'],
+   [[('its', '其'),
+     ('**explosive**', '**爆炸**(explosive)'),
+     ('force', '威力'),
+     ('roughly', '约合'),
+     ('20 kilotons.', '2万吨TNT当量。')],
+    '（its explosive force roughly 20 kilotons：\n独立主格结构，补充说明 test）']]),
+ (2,
+  [[[('On 6 and 9 August 1945', '1945年8月6日和9日，'),
+     ('atomic', '原子弹'),
+     ('**bombings**', '**轰炸**(bombings)'),
+     ('**devastated**', '**摧毁了**(devastated)'),
+     ('Hiroshima and Nagasaki,', '广岛和长崎，')]],
+   [[('where', '在这两地，'),
+     ('**year-end**', '**年底的**(year-end)'),
+     ('**fatalities**', '**死亡人数**(fatalities)'),
+     ('{{=}}numbered well over 100,000 and about 70,000 **respectively**.',
+      '**分别**(respectively)达到了远超十万和约七万。')],
+    '（where…：非限制性定语从句，修饰 Hiroshima and Nagasaki；\nA and B respectively：分别是 A 和 B）']]),
+ (3,
+  [[[('**Oppenheimer** left Los Alamos in October 1945', '1945年10月，**奥本海默**(Oppenheimer)离开洛斯阿拉莫斯；')]],
+   [[('and from 1947', '从1947年起，他'),
+     ('**presided over**', '**掌管/执掌**(presided over)'),
+     ("Princeton's Institute for Advanced Study.", '普林斯顿高等研究院。')],
+    '（preside over：掌管，执掌）']]),
+ (3,
+  [[[('In October 1949', '1949年10月，'), ('the **advisory** committee he chaired,', '他担任主席的**顾问**(advisory)委员会')],
+    '（he chaired：定语从句，省略了关系代词，修饰 committee）'],
+   [[('expressing', '表达了'), ('**misgivings**,', '**疑虑**(misgivings)，')], '（expressing misgivings：现在分词短语作伴随状语）'],
+   [[('**unanimously**', '并**一致**(unanimously)'),
+     ('**counselled against**', '**建议拒绝**(counselled against)'),
+     ('a **crash programme** for the **hydrogen** bomb,', '一项针对**氢**(hydrogen)弹的**紧急计划**(crash programme)，')],
+    '（counsel against：建议拒绝……；\nfor the hydrogen bomb：后置定语，修饰 programme）'],
+   [[('a', '一种'),
+     ('**vastly**', '**极其**(vastly)'),
+     ('more', '更加具有'),
+     ('**destructive**', '**毁灭性的**(destructive)'),
+     ('weapon.', '武器。')],
+    '（a vastly more destructive weapon：同位语，\n补充说明 the hydrogen bomb）']]),
+ (3,
+  [[[('In December 1953', '1953年12月，'),
+     ('a', '一道'),
+     ('**presidential**', '**总统的**(presidential)'),
+     ('**directive**', '**指令**(directive)'),
+     ('**severed**', '**切断了**(severed)'),
+     ('his **access to**', '他**接触**(access to)'),
+     ('**confidential**', '**机密**(confidential)'),
+     ('**documentation**.', '**文件**(documentation)**的权限**(access to)。')],
+    '（access to A：接触到 A 的权限）']]),
+ (4,
+  [[[('From 12 April to 6 May 1954', '1954年4月12日至5月6日，'),
+     ('he', '他'),
+     ('was **cross-examined** at a security **hearing**,', '在一场安全**听证会**(hearing)上接受**盘问**(cross-examined)，')],
+    '（was cross-examined：一般过去时的被动语态）'],
+   [[('an', '这场听证会是'),
+     ('**administrative**', '**行政的**(administrative)'),
+     ('**proceeding**,', '**程序**(proceeding)，'),
+     ('not a', '而非'),
+     ('criminal', '刑事的'),
+     ('**prosecution**.', '**起诉**(prosecution)。')],
+    '（an administrative proceeding…：同位语，补充说明 hearing）']]),
+ (4,
+  [[[('On 29 June 1954', '1954年6月29日，'),
+     ('the **Atomic Energy**', '**原子能**(Atomic Energy)'),
+     ('Commission', '委员会'),
+     ('voted 4 to 1', '以4比1投票'),
+     ('against letting him', '反对让他'),
+     ('**regain**', '**恢复**(regain)'),
+     ('his **clearance**,', '**安全许可**(clearance)，')],
+    '（vote against doing：投票反对做……）'],
+   [[('two days before his', '在他的'),
+     ('**consultancy**', '**咨询**(consultancy)'),
+     ('contract', '合同'),
+     ('was due to', '预计要'),
+     ('**expire**.', '**到期**(expire)之前，还剩两天。')],
+    '（be due to do：按期要做……）']]),
+ (4,
+  [[[('The ruling', '裁决'),
+     ('did not', '没有'),
+     ('find him', '认定他'),
+     ('**disloyal**,', '**不忠**(disloyal)，'),
+     ('but', '但'),
+     ('**nonetheless**', '**仍然**(nonetheless)'),
+     ('questioned', '质疑了'),
+     ('his', '他的'),
+     ('character', '品格'),
+     ('and', '和'),
+     ('**associates**.', '他所**结交的人**(associates)。')],
+    '（find sb + adj.：认定某人……）']]),
+ (5,
+  [[[('On 2 December 1963', '1963年12月2日，'),
+     ('President Johnson', '约翰逊总统'),
+     ('**bestowed on**', '**授予**(bestowed on)'),
+     ('him', '他'),
+     ('the Fermi Award,', '费米奖，')],
+    '（bestow A on B：把 A 授予 B，这里 A 放在 B 后面）'],
+   [[('which Kennedy', '该奖项是肯尼迪'),
+     ('had **authorised** before his **assassination**.', '在**遇刺**(assassination)前**批准**(authorised)的。')],
+    '（which…：非限制性定语从句，修饰 the Fermi Award；\nhad authorised：过去完成时）']]),
+ (5, [[[('Oppenheimer', '奥本海默'), ('died on 18 February 1967.', '于1967年2月18日去世。')]]]),
+ (5,
+  [[[('In December 2022', '2022年12月，'),
+     ('the energy', '能源'),
+     ('**secretary**', '**部长**(secretary)'),
+     ('**officially**', '**正式**(officially)'),
+     ('**vacated**', '**撤销了**(vacated)'),
+     ('the 1954', '1954年的'),
+     ('**determination**,', '**裁定**(determination)，')]],
+   [[('calling', '称'),
+     ('the process', '当年的程序是'),
+     ('**flawed**', '**有缺陷的**(flawed)'),
+     ('and **contrary to**', '且**违背了**(contrary to)'),
+     ("the commission's", '委员会的'),
+     ('rules.', '规定。')],
+    '（calling…：现在分词短语作伴随状语；\ncall A + adj.：称 A……；contrary to：违背）']]),
+ (5,
+  [[[('The **stigma** of the **revocation**', '**撤销**(revocation)安全许可带来的**污名**(stigma)，')],
+    '（of the revocation：后置定语，修饰 stigma）'],
+   [[('had **persisted** for fifty-five years beyond his **lifetime**.',
+      '在他的**一生**(lifetime)结束之后，又**持续了**(persisted)五十五年。')],
+    '（had persisted：过去完成时；beyond his lifetime：在他身后）\n'
+    '（简述：▸造弹：物理学家奥本海默领导数千人造出原子弹，1945年完成首次核试验，随后原子弹用于轰炸广岛、长崎。▸分歧：战后，他主持的顾问委员会一致反对紧急推进氢弹计划；氢弹是一种比原子弹破坏力更强的核武器。▸听证：1954年他接受安全听证，这是行政审查，并非刑事起诉；裁定也未认定他不忠。▸失权：原子能委员会以4比1拒绝恢复他接触机密资料的资格，质疑其品格和交往，使其背负污名。▸撤销：1963年虽获费米奖，1954年裁定直到2022年才由能源部长以程序违规为由撤销，距他去世已55年。）']])]
+
+out = {'no': '69',
+ 'title_en': 'The Trial of the Father of the Atomic Bomb',
+ 'title_zh': '原子弹之父的审判',
+ 'title_fx': {'hl': ['Trial', 'Atomic', 'Bomb'], 'ghost': []},
+ 'sentences': [],
+ '核对确认': {'非人声': {'3.83–3.87s': {'配音指纹': '8b8618454b80',
+                                 '依据': 'S1 w 0.020–0.065s：2026-11-08 逐 2.5 ms 实测（疑点清单 dossier_69 #2 噗声）：S1 J 的 '
+                                       '/dʒ/ 浊音闭塞（周期 0.5–0.7、低频 -1～-2 dB、重心 0.4 kHz，0.065 起接 /dʒ/ 擦音段 2–4 '
+                                       'kHz）；词头的一部分',
+                                 '实测': {'最响dB': -30.8, '重心Hz': 583, '周期': 0.69, '低频dB': -0.4}},
+                  '6.09–6.11s': {'配音指纹': '8b8618454b80',
+                                 '依据': 'S1 w 2.105–2.120s：2026-11-08 逐 2.5 ms 实测（疑点清单 dossier_69 #3 噗声）：S1 '
+                                       'born 的 /b/ 浊音杠（停顿后 2.11 起 -49→-31 dB、重心 0.5 kHz，2.115 开口）；词头的一部分',
+                                 '实测': {'最响dB': -31.6, '重心Hz': 966, '周期': 0.0, '低频dB': -2.3}},
+                  '14.71–14.76s': {'配音指纹': '8b8618454b80',
+                                   '依据': 'S1 w 10.760–10.810s：2026-11-08 逐 2.5 ms 实测（疑点清单 dossier_69 #4 '
+                                         '孤立杂音）：S1 Caltech. 句末 /k/ 除阻（闭塞 -65 dB 之后 10.76–10.80 爆破，重心 4.5 '
+                                         'kHz、低频 -14 dB）；词尾塞音除阻',
+                                   '实测': {'最响dB': -33.5, '重心Hz': 4477, '周期': 0.18, '低频dB': -14.3}},
+                  '21.86–21.95s': {'配音指纹': '8b8618454b80',
+                                   '依据': 'S2 w 6.185–6.275s：2026-11-08 逐 2.5 ms 实测（疑点清单 dossier_69 #5 呼吸声）：S2 '
+                                         'Alamos, 词内 oʊ→s 过渡（6.16–6.27 与元音连续，-35～-46 dB、重心 1.0–1.6 kHz，6.27 起接 '
+                                         '/s/ 4–5.8 kHz）；词的一部分',
+                                   '实测': {'最响dB': -35.4, '重心Hz': 1563, '周期': 0.19, '低频dB': -3.4}},
+                  '39.27–39.35s': {'配音指纹': '8b8618454b80',
+                                   '依据': 'S3 w 10.975–11.055s：2026-11-08 逐 2.5 ms 实测（疑点清单 dossier_69 #6 '
+                                         '呼吸声）：S3 glare, 词尾 ɹ 的衰减（10.965 -24.6 dB 起连续降到 11.055 -58.7 dB，低频 -5 '
+                                         'dB）；词尾',
+                                   '实测': {'最响dB': -35.0, '重心Hz': 1458, '周期': 0.2, '低频dB': -4.8}},
+                  '42.45–42.47s': {'配音指纹': '8b8618454b80',
+                                   '依据': 'S3 w 14.235–14.250s：2026-11-08 逐 2.5 ms 实测（疑点清单 dossier_69 #7 噗声）：S3 '
+                                         'kilotons. 词内 n→z 过渡（14.245 -38.6 dB，前后都是词的声音）；词的一部分',
+                                   '实测': {'最响dB': -41.1, '重心Hz': 1180, '周期': 0.0, '低频dB': -2.0}},
+                  '63.80–63.84s': {'配音指纹': '8b8618454b80',
+                                   '依据': 'S5 w 4.825–4.855s：2026-11-08 逐 2.5 ms 实测（疑点清单 dossier_69 #12 噗声）：S5 '
+                                         'and 的声门起音前导（删吸气后 4.825–4.855 -43～-50 dB、低频 -1 dB，4.86 起音）；词头的一部分',
+                                   '实测': {'最响dB': -43.3, '重心Hz': 2618, '周期': 0.43, '低频dB': -0.6}},
+                  '91.32–91.40s': {'配音指纹': '8b8618454b80',
+                                   '依据': 'S7 w 7.155–7.235s：2026-11-08 逐 2.5 ms 实测（疑点清单 dossier_69 #14 呼吸声）：S7 '
+                                         'documentation. 句末 /n/ 鼻音收尾（7.125 -34 dB 起连续降到 7.245 -67 dB，周期 '
+                                         '0.31、低频 -2.7 dB）；词尾',
+                                   '实测': {'最响dB': -37.6, '重心Hz': 1502, '周期': 0.31, '低频dB': -2.7}},
+                  '96.59–96.61s': {'配音指纹': '8b8618454b80',
+                                   '依据': 'S8 w 4.120–4.135s：2026-11-08 逐 2.5 ms 实测（疑点清单 dossier_69 #15 噗声）：S8 '
+                                         'he 的 /h/ 前声门起始（4.125 -48 dB、低频 -0.2 dB，紧接 4.14 /h/ 擦音 3.7–4.4 '
+                                         'kHz）；词头的一部分',
+                                   '实测': {'最响dB': -45.0, '重心Hz': 2095, '周期': 0.0, '低频dB': -0.3}},
+                  '103.60–103.69s': {'配音指纹': '8b8618454b80',
+                                     '依据': 'S8 w 11.135–11.225s：2026-11-08 逐 2.5 ms 实测（疑点清单 dossier_69 #16 '
+                                           '呼吸声）：S8 prosecution. 句末 /n/ 鼻音收尾（11.125 -34 dB 起连续降到 11.245 -70 '
+                                           'dB，低频 -3 dB）；词尾',
+                                     '实测': {'最响dB': -35.3, '重心Hz': 1362, '周期': 0.28, '低频dB': -3.1}},
+                  '123.08–123.09s': {'配音指纹': '8b8618454b80',
+                                     '依据': 'S10 w 4.585–4.600s：2026-11-08 逐 2.5 ms 实测（疑点清单 dossier_69 #17 '
+                                           '噗声）：S10 character 词尾 ɚ 的衰减（4.56 -42 dB 起连续降到 4.615 -69 dB）；词尾',
+                                     '实测': {'最响dB': -52.8, '重心Hz': 2070, '周期': 0.0, '低频dB': -1.4}},
+                  '131.72–131.75s': {'配音指纹': '8b8618454b80',
+                                     '依据': 'S11 w 6.485–6.515s：2026-11-08 逐 2.5 ms 实测（疑点清单 dossier_69 #18 '
+                                           '噗声）：S11 Award, 的 /d/ 浊音闭塞（周期 0.3–0.44、重心 0.5–0.8 kHz，6.53 '
+                                           '除阻）；词的一部分',
+                                     '实测': {'最响dB': -34.9, '重心Hz': 734, '周期': 0.54, '低频dB': -1.8}},
+                  '133.88–133.92s': {'配音指纹': '8b8618454b80',
+                                     '依据': 'S11 w 8.725–8.760s：2026-11-08 逐 2.5 ms 实测（疑点清单 dossier_69 #19 '
+                                           '孤立杂音）：S11 authorised 的 /d/ 除阻（8.725–8.74 -32 dB、重心 3.3 kHz、低频 -21 '
+                                           'dB，随后衰减）；词尾塞音除阻',
+                                     '实测': {'最响dB': -32.8, '重心Hz': 3008, '周期': 0.22, '低频dB': -7.1}},
+                  '140.69–140.76s': {'配音指纹': '8b8618454b80',
+                                     '依据': 'S12 w 4.380–4.460s：2026-11-08 逐 2.5 ms 实测（疑点清单 dossier_69 #20 '
+                                           '呼吸声）：S12 sixty-seven. 句末 /n/ 鼻音收尾（4.37 -36 dB 起连续降到 4.48 -81 dB，周期 '
+                                           '0.33）；词尾',
+                                     '实测': {'最响dB': -35.8, '重心Hz': 1413, '周期': 0.33, '低频dB': -3.5}},
+                  '159.87–159.97s': {'配音指纹': '8b8618454b80',
+                                     '依据': 'S14 w 5.270–5.370s：2026-11-08 逐 2.5 ms 实测（疑点清单 dossier_69 #22 '
+                                           '呼吸声）：S14 lifetime. 句末 /m/ 鼻音收尾（5.25 -32 dB 起连续降到 5.39 -71 dB，周期 '
+                                           '0.30、低频 -7 dB）；词尾',
+                                     '实测': {'最响dB': -36.4, '重心Hz': 1466, '周期': 0.3, '低频dB': -7.3}},
+                  '45.47–45.48s': {'配音指纹': '8b8618454b80',
+                                   '依据': 'S4 w 1.830–1.840s：2026-11-09 逐 2.5 ms 实测（疑点清单 dossier_69 #8 孤立杂音）：S4 '
+                                         'August 的 /t/ 除阻（/s/ 衰减到 -60 dB 之后 1.835 一下 -41 dB、重心 3.6 kHz、低频 -29 '
+                                         'dB）；词尾塞音除阻',
+                                   '实测': {'最响dB': -44.0, '重心Hz': 3516, '周期': 0.0, '低频dB': -20.7}},
+                  '51.49–51.53s': {'配音指纹': '8b8618454b80',
+                                   '依据': 'S4 w 7.950–7.985s：2026-11-09 逐 2.5 ms 实测（疑点清单 dossier_69 #9 噗声）：S4 '
+                                         '停顿后 where 的 /w/ 浊音前导（-43～-57 dB、低频 -0.3～-1.3 dB、周期 0.4–0.5，紧接 7.995 '
+                                         '起音、8.00 元音 -27 dB）；词头的一部分',
+                                   '实测': {'最响dB': -44.6, '重心Hz': 2109, '周期': 0.42, '低频dB': -0.2}},
+                  '57.91–58.00s': {'配音指纹': '8b8618454b80',
+                                   '依据': 'S4 w 14.475–14.565s：2026-11-09 逐 2.5 ms 实测（疑点清单 dossier_69 #10 '
+                                         '呼吸声）：S4 respectively. 句末 i 的衰减（14.465 -26 dB 起连续降到 14.565 -60 '
+                                         'dB、14.59 -85 dB，周期 0.15–0.44）；词尾',
+                                   '实测': {'最响dB': -35.8, '重心Hz': 3230, '周期': 0.18, '低频dB': -6.0}},
+                  '149.23–149.25s': {'配音指纹': '8b8618454b80',
+                                     '依据': 'S13 w 7.560–7.575s：2026-11-09 逐 2.5 ms 实测（疑点清单 dossier_69 #20 '
+                                           '噗声）：S13 determination, 停顿前 /n/ 鼻音收尾（7.565–7.58 -40～-47 dB、周期 '
+                                           '0.41、重心 1.1–1.2 kHz，与前面的 ən 连续）；词尾',
+                                     '实测': {'最响dB': -41.7, '重心Hz': 1224, '周期': 0.0, '低频dB': -2.1}},
+                  '2.32–2.35s': {'配音指纹': '8b8618454b80',
+                                 '依据': '标题 w 1.940–1.965s：2026-11-09 逐 2.5 ms 实测（疑点清单 dossier_69 #1 噗声）：标题 The '
+                                       'Trial… 里浊塞音的浊音杠（周期 0.4、低频 -1 dB、重心 0.4 kHz，-35→-30 dB 连续升起，紧接 1.995 '
+                                       '除阻、2.01 元音）；词的一部分',
+                                 '实测': {'最响dB': -31.6, '重心Hz': 849, '周期': 0.2, '低频dB': -0.7}}},
+          '删除段': {'S1 raw 5.8250-6.2562': {'类型': '紧贴词头的非人声',
+                                           '配音指纹': '8b8618454b80',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[5.875, 6.236208, '紧贴词头']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S2 raw 1.9902-2.2449': {'类型': '紧贴两头的非人声',
+                                           '配音指纹': '8b8618454b80',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[1.980125, 2.234917, '紧贴两头']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['post', 'pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S5 raw 4.4500-4.8237': {'类型': '紧贴词头的非人声',
+                                           '配音指纹': '8b8618454b80',
+                                           '依据': '2026-10-15 删除段对应 非人声区间 [[4.585, 4.615], [4.62, 4.82375, '
+                                                 "'紧贴词头']]（w 秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 "
+                                                 'kHz、低频 < -10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 '
+                                                 "40 ms 内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 "
+                                                 'dB），不是词'},
+                  'S6 raw 10.8850-11.3000': '2026-10-15 删除段对应 非人声区间 [[10.95, 11.3]]（w 秒）：自动切点.py '
+                                            '用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < '
+                                            '0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 '
+                                            "['lost'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词",
+                  'S7 raw 2.0950-2.4964': {'类型': '紧贴词头的非人声',
+                                           '配音指纹': '8b8618454b80',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[2.2525, 2.486375, '紧贴词头']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['lost', 'post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S8 raw 3.8513-4.1450': {'类型': '紧贴词尾的非人声',
+                                           '配音指纹': '8b8618454b80',
+                                           '依据': "2026-10-15 删除段对应 非人声区间 [[3.821333, 4.11, '紧贴词尾']]（w "
+                                                 '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                 '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                 "内最安静处的过零点；复核报 ['lost', 'pre'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S9 raw 3.0200-3.3600': '2026-10-15 删除段对应 非人声区间 [[2.96, 3.265]]（w 秒）：自动切点.py '
+                                          '用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < '
+                                          "0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] "
+                                          '是删掉的呼吸声本身偏响（-34～-47 dB），不是词',
+                  'S10 raw 2.4200-2.8050': '2026-10-15 删除段对应 非人声区间 [[2.520417, 2.76]]（w 秒）：自动切点.py '
+                                           '用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < '
+                                           "0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] "
+                                           '是删掉的呼吸声本身偏响（-34～-47 dB），不是词',
+                  'S11 raw 2.9900-3.3100': '2026-10-15 删除段对应 非人声区间 [[2.94, 3.22]]（w 秒）：自动切点.py '
+                                           '用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < '
+                                           "0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] "
+                                           '是删掉的呼吸声本身偏响（-34～-47 dB），不是词',
+                  'S12 raw 1.3000-1.6460': {'类型': '紧贴词头的非人声',
+                                            '配音指纹': '8b8618454b80',
+                                            '依据': "2026-10-15 删除段对应 非人声区间 [[1.325, 1.626042, '紧贴词头']]（w "
+                                                  '秒）：自动切点.py 用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < '
+                                                  '-10 dB、周期 < 0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms '
+                                                  "内最安静处的过零点；复核报 ['post'] 是删掉的呼吸声本身偏响（-34～-47 dB），不是词"},
+                  'S3 raw 4.5400-4.9500': '2026-11-08 逐 10 ms 实测（S3 w）：1945, 的 /v/ 衰减到 4.53（-53 dB），4.54–4.56 '
+                                          '数字静音（-60 dB）；4.57–4.89 是吸气声（-41～-56 dB、重心 2.0–2.7 kHz、低频 -12～-27 '
+                                          'dB、周期 ≤0.26），4.90–4.93 弱浊音（-43～-54 dB），4.94–4.95 回到 -60 dB；the 的 '
+                                          '/ð/ 4.96 起。删掉的是停顿里的吸气，两侧都在 -58 dB '
+                                          '以下，没有词的声音（原始合成里的区间不变，删掉的是同一段声音；配音指纹 05a7a4ff6f26 → '
+                                          '39e83c1930eb，复核仍逐处重算两侧）（原始合成里的区间不变，删掉的是同一段声音；配音指纹 39e83c1930eb → '
+                                          'f1d13389bbea，复核仍逐处重算两侧）',
+                  'S1 raw 1.2750-1.2899': {'类型': '紧贴两头的非人声',
+                                           '配音指纹': '8b8618454b80',
+                                           '依据': '2026-11-09 逐 20 ms 实测（S1 w）：Robert 的 /t/ 除阻 1.20 之后 '
+                                                 '1.22–1.28 是词间静音（-34→-58→-70 dB），删掉的 15 ms 最响 -52.9 '
+                                                 'dB（相对全句），在 Oppenheimer 起音（1.28 -47.8 dB、1.30 -14 dB）之前；独立复核 '
+                                                 'cut onset=0 ms、tail=0 ms，两个词都没被切。两侧 -53～-55 dB 是本段 0→+4 dB '
+                                                 '段内渐变（K129 补响）把间隙里的底噪抬高约 2.4 dB 所致（原始合成里的区间不变，删掉的是同一段声音；配音指纹 '
+                                                 'f1d13389bbea → 8b8618454b80，复核仍逐处重算两侧）'},
+                  'S1 raw 1.8950-2.1050': {'类型': '紧贴词尾的非人声',
+                                           '配音指纹': '8b8618454b80',
+                                           '依据': '2026-11-09：对应非人声区间 [1.877042, 2.08]（dossier_69 #3–#5 实测是 '
+                                                 'Oppenheimer, 后的吸气 + 停顿前弱浊音）与 2.095 处插入的停顿；Oppenheimer 的 ɚ '
+                                                 '衰减到 1.86–1.877（原 -52～-59 dB），本段 0→+4 dB 段内渐变（K129 补响）在这里约 '
+                                                 '+3.6 dB，前沿最低只到 -54.9 dB；cut tail=0 '
+                                                 'ms，词尾没被切（原始合成里的区间不变，删掉的是同一段声音；配音指纹 f1d13389bbea → '
+                                                 '8b8618454b80，复核仍逐处重算两侧）'}},
+          '机器复听': {'S2': {'配音指纹': '8b8618454b80',
+                          '依据': '2026-11-08 逐 5 ms 实测 S2 w：thousands-strong 的 n 到 10.26（-21 dB），10.265–10.29 '
+                                'd→z 过渡（浊音减弱、重心 1.7→5.5 kHz），10.29–10.40 一段 110 ms 的长擦音（-10～-18 dB、重心 5–5.8 '
+                                'kHz），比单个 /s/（60–80 ms）长，是 z 与 strong 的 s 连读成一个；10.40–10.43 /t/ 闭塞，10.435 /t/ '
+                                '除阻，10.49 起 ɹɔ。两路识别器把连读的 z 并进 strong 听成 thousand；读音正确'},
+                   'S6': {'配音指纹': '8b8618454b80',
+                          '依据': '2026-11-08：counselled 读 /ˈkaʊnsəld/（Merriam-Webster counsel '
+                                'ˈkau̇n(t)-səl），small.en 按音节拼成 count celled，parakeet 听对；读音正确；2026-11-10 K134 '
+                                '只给 S6 第2段 expressing misgivings, 整段 +1.5 dB，读音不变'},
+                   'S9': {'配音指纹': '8b8618454b80',
+                          '依据': '2026-11-08 逐 7.5 ms 实测 S9 w：four 之后 5.7075–5.715 /t/ 闭塞（-58～-64 '
+                                'dB），5.7225–5.76 /t/ 除阻送气（重心 4–5.4 kHz），5.7675–5.80 弱读 ə（-8～-13 dB、重心 1.1–1.3 '
+                                'kHz），5.80–5.89 one 的 /w/（重心 0.36–0.47 kHz）；to 读成弱读 /tə/，parakeet 没写出来；读音正确'},
+                   'S4': {'配音指纹': '8b8618454b80',
+                          '依据': '2026-11-09：出片程序已把 On 6 and 9 August 读成 On the sixth and the ninth of '
+                                'August（日期序数，主会话修 spoken()）；两路识别器都写成 the sixth，只是和脚本里的数字 6 字面对不上；读音正确'}},
+          '响度骤降': {'5.1–5.7s': {'配音指纹': '39e83c1930eb',
+                                '低': 7.0,
+                                '句子': 'S1 J. Robert Oppenheimer,（Oppenheimer 的非重读后半 -penheimer, 逗号前降调）',
+                                '依据': '2026-11-08 逐 20 ms 实测 S1 w：Op 的 ɑː 1.29–1.40（-13～-16 dB），pən '
+                                      '1.42–1.46（-19～-20 dB），haɪ 1.48–1.62（-9～-18 dB），m 1.64–1.70（-17～-22 '
+                                      'dB、重心 0.6 kHz 鼻音），ɚ 1.72–1.84（-16→-34 dB）平滑衰减到 1.86，没有断、没有缺音、不闷（周期 '
+                                      '0.3–0.5）；比全片低是非重读音节、鼻音和逗号前降调，属正常（a_old_05a7.wav → 新配音：这一段声音逐样本相同，位置挪了 '
+                                      '+0.000 秒；确认平移.py 自动挪，配音指纹 05a7a4ff6f26 → 39e83c1930eb）'}},
+          '合组': {'S3 illuminated the desolate New Mexico landscape with a blinding glare': '对齐不了：with a '
+                                                                                           'blinding glare '
+                                                                                           '是方式状语，中文“以一道刺眼的强光”必须放到动词“照亮了”前；四个重点词中文先后与英文不同',
+                 'S3 landscape with a blinding glare': '对齐不了：with a blinding glare '
+                                                       '是方式状语，中文“以一道刺眼的强光”必须放到动词“照亮了”前（已放到 illuminated 下面，重点词 '
+                                                       'blinding glare 的中文与英文同一块），这一组只剩“景观”',
+                 'S4 numbered well over 100,000 and about 70,000 respectively': '对齐不了：respectively '
+                                                                                '中文“分别”必须放到数字前；numbered well '
+                                                                                'over 中文“远超”是整体说法',
+                 'S6 the advisory committee he chaired': '对齐不了：he chaired 是定语从句，修饰 committee，中文“他主持的”必须提前',
+                 'S6 a crash programme for the hydrogen bomb': '对齐不了：for the hydrogen bomb '
+                                                               '是后置定语，中文“氢弹的”必须提前；crash programme '
+                                                               '中文“仓促研制计划”是整体说法',
+                 'S8 was cross-examined at a security hearing': '对齐不了：地点状语 at a security '
+                                                                'hearing，中文“在一场安全听证会上”必须放到动词“接受盘问”前',
+                 'S9 against letting him': '对齐不了：vote against doing 中文“决定不让他”是整体说法，against、letting 拆开不通',
+                 'S14 had persisted for fifty-five years beyond his lifetime': '对齐不了：时间状语 beyond his lifetime '
+                                                                               '中文“在他的一生结束后”必须放到动词前；两个重点词中文先后与英文相反',
+                 'S9 two days before his': '对齐不了：two days before 中文“在……之前，还剩两天”拆成两头放在最后（用户 2026-11-10 '
+                                           '定的译文），days、before 只能并进句末“之前，还剩两天”'},
+          '对齐': {'S1-1 born in New York on 22 April 1': '时间状语 on 22 April 1904 '
+                                                        '中文“1904年4月22日”必须放到“生于纽约”前；日期中文年月日顺序与英文相反',
+                 'S1-2 lecturer at Berkeley and Calte': 'at Berkeley and Caltech 是后置定语，修饰 '
+                                                        'lecturer，中文“伯克利和加州理工学院的”必须提前（已放到 prominent '
+                                                        '下面），这一组只剩“教师”',
+                 'S2-2 the collaborative creation of ': 'the creation of a workforce 是 of '
+                                                        '结构，中文“员工队伍……的成果”必须倒过来；四个重点词中文先后与英文不同',
+                 'S3-1 In the pre-dawn darkness of 16': 'of 16 July 1945 是后置定语，修饰 '
+                                                        'darkness，中文“1945年7月16日”必须放到句首；日期中文年月日顺序与英文相反',
+                 'S3-2 landscape with a blinding glar': 'with a blinding glare '
+                                                        '是方式状语，中文“以刺眼的强光”必须放到动词“照亮了”前（已放到 illuminated '
+                                                        '下面），这一组只剩“大地”',
+                 'S4-1 On 6 and 9 August 1945': '日期中文“1945年8月6日和9日”年月日顺序与英文相反，一个日期不能拆',
+                 'S4-2 numbered well over 100,000 and': 'respectively 中文“分别”必须放到数字前；numbered well over '
+                                                        '中文“远超”是整体说法；数字不能拆',
+                 'S5-1 Oppenheimer left Los Alamos in': '时间状语 in October 1945 中文“1945年10月”必须放到句首',
+                 "S5-2 Princeton's Institute for Adva": "机构名 Princeton's Institute for Advanced Study "
+                                                        '中文“普林斯顿高等研究院”，专名拆开不通',
+                 'S6-1 the advisory committee he chai': 'he chaired 是定语从句，修饰 committee，中文“他主持的”必须提前',
+                 'S6-3 a crash programme for the hydr': 'for the hydrogen bomb 是后置定语，修饰 '
+                                                        'programme，中文“氢弹的”必须提前；crash programme 中文“仓促研制计划”是整体说法',
+                 'S6-4 a vastly more destructive weap': 'a vastly more destructive weapon '
+                                                        '是比较结构，中文“氢弹的毁灭性要大得多”必须重组；两个重点词中文先后与英文相反',
+                 'S8-1 From 12 April to 6 May 1954': '日期范围中文“1954年4月12日至5月6日”年月日顺序与英文相反，不能拆',
+                 'S8-1 was cross-examined at a securi': '地点状语 at a security hearing 中文“在一场安全听证会上”必须放到动词“接受盘问”前',
+                 'S11-2 had authorised before his assa': '时间状语 before his assassination 中文“在遇刺前”必须放到动词前；which '
+                                                         '指费米奖，中文“这一奖项”放在最后；两个重点词中文先后与英文相反',
+                 'S12-1 died on 18 February 1967.': '时间状语 on 18 February 1967 中文“于1967年2月18日”必须放到动词“去世”前',
+                 'S14-1 The stigma of the revocation': 'of 结构 the stigma of the revocation '
+                                                       '中文“吊销……留下的污名”必须倒过来；两个重点词中文先后与英文相反',
+                 'S14-2 had persisted for fifty-five y': '时间状语 beyond his lifetime '
+                                                         '中文“在他的一生结束后”必须放到动词前；两个重点词中文先后与英文相反',
+                 'S3-2 illuminated the desolate New M': 'with a blinding glare '
+                                                        '是方式状语，中文“以一道刺眼的强光”必须放到动词“照亮了”前；New Mexico '
+                                                        '中文“新墨西哥州”放到“荒凉的”前；四个重点词中文先后与英文不同'},
+          '牛津逗号': {'S1 on 22 April 1904, was an accomplished physicist and': '不是三项并列：born in New York on 22 '
+                                                                             'April 1904 是插入的分词短语；accomplished '
+                                                                             'physicist and prominent lecturer '
+                                                                             '只有两项',
+                   'S13 vacated the 1954 determination, calling the process flawed and': '不是三项并列：calling… '
+                                                                                         '是分词短语；flawed and '
+                                                                                         'contrary to the '
+                                                                                         'rules 只有两项'},
+          '是的': {'S2-2 是**数千人的**': '“是 + 数千人的员工队伍协作的成果”是“是 + 定语 + 名词”，不是“是……的”表语句式',
+                 'S8-2 是**行政的**': '用户 2026-11-10 定的译文“这场听证会是行政的程序”：是 + 定语 + 名词（行政的程序），不是“是……的”表语句式',
+                 'S13-2 是**有缺陷的**': '用户 2026-11-10 定的译文“称当年的程序是有缺陷的”（原话照用）'},
+          '数字': {'S3-3 20': 'roughly 20 kilotons 译“约合2万吨TNT当量”，数值正确（20千吨＝2万吨），读法 twenty kilotons',
+                 'S4-2 100,000': 'well over 100,000 译“远超十万”，数值正确，读法 one hundred thousand',
+                 'S4-2 70,000': 'about 70,000 译“约七万”，数值正确，读法 seventy thousand'},
+          '方向': {'S9-2 before→之后，': 'two days before his contract was due to expire '
+                                    '指投票在合同到期前两天；中文从投票说起“两天之后，他的合同就要到期”，沿用文章定稿，方向一致',
+                 'S9-2 before→在他的': 'two days before 中文“在……之前，还剩两天”：“之前”在 expire 那一组（到期之前），方向一致；用户 2026-11-10 '
+                                    '定的译文'},
+          '词性': {'S3-2 landscape 大地': 'landscape 是 n.，“大地”是名词，“地”是词的一部分，不是状语标记'},
+          '短语': {'S2 creation … of': '不是搭配：the creation of a workforce 是普通 of 结构（……的成果），creation 单独就是“成果”',
+                 'S3 illuminated … with': '不是搭配：with a blinding glare 是方式状语（以强光），illuminate 单独就是“照亮”',
+                 'S5 presided … for': '不是搭配：presided over 已整体标；for 属于专名 Institute for Advanced Study',
+                 'S6 counselled … for': '不是搭配：counselled against 已整体标；for 属于 a crash programme for the '
+                                        'hydrogen bomb（后置定语）',
+                 'S7 severed … to': '不是搭配：to 属于 access to（接触……的途径），sever 单独就是“切断”',
+                 'S14 stigma … of': '不是搭配：the stigma of the revocation 是普通 of 结构（……留下的污名）',
+                 'S14 persisted … for': '不是搭配：for fifty-five years 是时长状语，persist 单独就是“延续”'},
+          '已告诉用户被去掉的重点词': '2026-11-08 已在会话中把 glare（与第22篇 S16 glare 撞词，第69篇改回普通词）原样告诉用户',
+          '停顿位置': {'S1 Oppenheimer, / born @2.095': '2026-11-08 逐 2.5 ms 实测（S1 w，dossier_69 #3–#6）：Oppenheimer '
+                                                    '的 ɚ 衰减到 1.87（-57 dB 以下），1.877–2.08 '
+                                                    '的吸气声已写进非人声区间删掉，2.08–2.11 低于 -49 dB；born 的 /b/ 浊音杠 2.11 '
+                                                    '起（-49→-31 dB、重心 0.5 kHz），2.115 开口。停顿 2.095 正好落在两个词之间，不切词'},
+          '同词异译': {'access to：接触/的权限': '不是两种译法：access to A 的意思“接触 A 的权限”被“机密文件”隔开，“接触”“的权限”是同一个意思的两部分（T23），用户 '
+                                       '2026-11-10 原话“Access to 也标注为重点词汇，意思为接触到a的权限”'}},
+ '结尾解说': '简述',
+ '高亮按实际开口': True,
+ '高亮开口门槛': 40,
+ '术语': {'J. Robert Oppenheimer': 'J·罗伯特·奥本海默',
+        'Oppenheimer': '奥本海默',
+        'New York': '纽约',
+        'Berkeley': '伯克利',
+        'Caltech': '加州理工学院',
+        'Los Alamos': '洛斯阿拉莫斯',
+        'New Mexico': '新墨西哥州',
+        'Hiroshima': '广岛',
+        'Nagasaki': '长崎',
+        'Princeton': '普林斯顿',
+        'Institute for Advanced Study': '高等研究院',
+        'Atomic Energy Commission': '原子能委员会',
+        'Johnson': '约翰逊',
+        'Fermi Award': '费米奖',
+        'Kennedy': '肯尼迪'},
+ '非人声区间': {'S4': [[12.51, 12.77]],
+           'S1': [[1.877042, 2.08], [5.875, 6.236208, '紧贴词头']],
+           'S2': [[1.980125, 2.234917, '紧贴两头']],
+           'S5': [[4.585, 4.615], [4.62, 4.82375, '紧贴词头'], [6.58, 6.83]],
+           'S6': [[10.95, 11.3]],
+           'S7': [[2.2525, 2.486375, '紧贴词头']],
+           'S8': [[3.821333, 4.11, '紧贴词尾']],
+           'S9': [[2.96, 3.265]],
+           'S10': [[2.520417, 2.76]],
+           'S11': [[2.94, 3.22]],
+           'S12': [[1.325, 1.626042, '紧贴词头']],
+           'S13': [[2.29, 2.53]],
+           'S14': [[1.645, 1.79]]},
+ '分段增益dB': {'S13': {'1': 1.5}},
+ '段内渐变dB': {'S1': {'1': [0.0, 4.0]}},
+ 'allow_clash': ['flawed'],
+ '重点词颜色': {'accomplished': '#bef264',
+           'prominent': '#38bdf8',
+           'lecturer': '#f472b6',
+           'oversaw': '#bef264',
+           'secretive': '#f472b6',
+           'installation': '#7092ff',
+           'bombs': '#f87171',
+           'collaborative': '#4ade80',
+           'creation': '#fbbf24',
+           'thousands-strong': '#38bdf8',
+           'workforce': '#e879f9',
+           'pre-dawn': '#f87171',
+           'illuminated': '#bef264',
+           'desolate': '#2dd4bf',
+           'landscape': '#fbbf24',
+           'blinding glare': '#38bdf8',
+           'explosive': '#e879f9',
+           'bombings': '#f87171',
+           'devastated': '#78f064',
+           'year-end': '#fbbf24',
+           'fatalities': '#38bdf8',
+           'respectively': '#e879f9',
+           'oppenheimer': '#78f064',
+           'presided over': '#e879f9',
+           'advisory': '#f87171',
+           'misgivings': '#bef264',
+           'unanimously': '#38bdf8',
+           'counselled against': '#f472b6',
+           'crash programme': '#fbbf24',
+           'hydrogen': '#4ade80',
+           'vastly': '#a78bfa',
+           'destructive': '#2dd4bf',
+           'presidential': '#f87171',
+           'directive': '#bef264',
+           'severed': '#2dd4bf',
+           'access to': '#fbbf24',
+           'confidential': '#38bdf8',
+           'documentation': '#e879f9',
+           'cross-examined': '#f87171',
+           'hearing': '#78f064',
+           'administrative': '#38bdf8',
+           'proceeding': '#fbbf24',
+           'prosecution': '#e879f9',
+           'atomic energy': '#f87171',
+           'regain': '#78f064',
+           'clearance': '#fbbf24',
+           'consultancy': '#38bdf8',
+           'expire': '#e879f9',
+           'disloyal': '#bef264',
+           'nonetheless': '#38bdf8',
+           'associates': '#f472b6',
+           'bestowed on': '#bef264',
+           'authorised': '#38bdf8',
+           'assassination': '#f472b6',
+           'secretary': '#f87171',
+           'officially': '#bef264',
+           'vacated': '#2dd4bf',
+           'determination': '#fbbf24',
+           'flawed': '#38bdf8',
+           'contrary to': '#e879f9',
+           'stigma': '#f87171',
+           'revocation': '#2dd4bf',
+           'persisted': '#fbbf24',
+           'lifetime': '#7092ff'},
+ '区间声音指纹': {'S1': '4d3d5acce01e',
+            'S2': 'b51d937c5a85',
+            'S4': '2a1fb29a18c6',
+            'S5': '477a3c40cf86',
+            'S6': '4569d55344dc',
+            'S7': 'd3f653eb859e',
+            'S8': 'dac80d8606b1',
+            'S9': 'a38f77c7c0af',
+            'S10': '9ed3e5346f26',
+            'S11': '8cbbf5107b3b',
+            'S12': '40a82da02e54',
+            'S13': 'b6cc81588afb',
+            'S14': 'c3aedad3dbab'}}
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from 核对 import 生成并核对
+生成并核对(S, out)
