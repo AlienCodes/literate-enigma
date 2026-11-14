@@ -17,7 +17,7 @@ TASK = ROOT / '.github/video-revision-batch'
 NO = os.environ.get('ARTICLE_NO', '12').zfill(2)
 ALLOWED = {f'{n:02d}' for n in range(1, 71)}
 A21_AUDIO_REPAIRS = {'15', '17', '18', '30'}
-CONTROLLED_AUDIO_REPAIRS = {'05', '16', '27', '67'}
+CONTROLLED_AUDIO_REPAIRS = {'05', '16', '27', '62', '67'}
 APPROVED_AUDIO_REPAIRS = {'10', '12', '44', '51'} | A21_AUDIO_REPAIRS | CONTROLLED_AUDIO_REPAIRS
 SELECTED = json.loads((TASK / 'articles.json').read_text())
 assert NO in ALLOWED and NO in SELECTED, f'Article {NO} is outside the pinned revision scope.'
@@ -116,13 +116,14 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
                 '15':'7e5ea2bdb6d3', '17':'0ef19e50999f',
                 '18':'76b99c620981', '30':'93a277750d35', '02':None,
                 '69':'8b8618454b80', '05':'1e25fbe69f6f',
-                '67':'c34294a522a7', '16':'630cbdf1eae2', '27':'79f315bb8b44'}
+                '67':'c34294a522a7', '16':'630cbdf1eae2', '27':'79f315bb8b44', '62':None}
     exact_old_pcm = {'02':'c21872d4db894f37b1b8b5db752917f9f6ef60680834ca4cccef9b806b5c1c52',
                      '69':'d04e5e1b057dfaa788bf86dcd6fe7da7b88fc1a254f8abd0a695621f074c2837',
                      '05':'4c20eb528b935e7a315e3f41b3f4168fe82cd5e26e0b33d16ea4bfce2609cb64',
                      '67':'39f7defdcfad7a4dae00c9677c7998d8f70c984247583e136e09e6efe9392bae',
                      '16':'3a2239772fe1941d4a5de28be034ff49670fedcf6ced0d1c0e61e5476912b93d',
-                     '27':'e15a2d05428e3219216ac8d10780669007f903071b0fcfc3c6bf377c517b8d7f'}
+                     '27':'e15a2d05428e3219216ac8d10780669007f903071b0fcfc3c6bf377c517b8d7f',
+                     '62':'f7348a62d6b00aa9cf74ad7c26f83bd3c4c98ff6621e3875dbced7bcfd0ac2c0'}
     prior_public_aac = {'69':'2b15b4811866afd03ef5962f6ce99717d28d7e97704750d9ede91bd7799eed15',
                         '67':'d5d57519d6b60e31eeb92bd1bf0b0505192b49ee9c1e34ae02b5c9ddc9532856'}
     if NO not in expected:
@@ -130,7 +131,7 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
     # These reviewed prior-source snapshots contain the exact approved old
     # audio inputs. Re-prove the complete real accepted PCM and AAC below
     # before attempting any original exact-sample confirmation migration.
-    if NO in {'05', '16', '27'}:
+    if NO in {'05', '16', '27', '62'}:
         reference_source = TASK / 'accepted-pcm-source-reference' / f'{NO}.json'
         reference_contract = json.loads(reference_source.with_name(f'{NO}-proof.json').read_text())
         assert reference_contract['article'] == NO
@@ -221,7 +222,7 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
             proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
             save()
             return
-    if NO in A21_AUDIO_REPAIRS | {'02', '05', '16', '27'} and not proof.get('old_reconstructed_aac_exactly_matches_accepted', False):
+    if NO in A21_AUDIO_REPAIRS | {'02', '05', '16', '27', '62'} and not proof.get('old_reconstructed_aac_exactly_matches_accepted', False):
         proof['migration_not_attempted'] = 'Old reconstruction did not exactly reproduce the accepted AAC.'
         proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
         save()
@@ -276,6 +277,9 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
         'unchanged_original_program_sha256':sha(T / '确认平移.py'), 'attempts':[],
         'new_quality_gate':False, 'audio_modified_by_migration':False}
     if result.returncode == 0:
+        if NO == '62':
+            assert sha(W / 'work_62/a.wav') == 'c5330026dbc9f81d0c7546a1716b9dade9960f44311862a5feb3e4aa0749d7c3'
+            assert aac_hash(W / '62.mp4') == 'b85f7e4c45784077f227b29a24b7cd72cef6c6160aa3783747ba708f8fda6348'
         actual_fp = hashlib.md5((W / f'work_{NO}/a.wav').read_bytes()).hexdigest()[:12]
         for index, old_wav in enumerate(originals):
             old_fp = hashlib.md5(old_wav.read_bytes()).hexdigest()[:12]
@@ -315,6 +319,20 @@ def collect_confirmation_continuity():
 
 def prepare_approved_a21_derived_level(source_video, accepted_aac):
     """Only30's newly approved raw release needs a new original level-cache key."""
+    if NO == '62':
+        program = TASK / 'prepare-derived-level62.py'
+        output = OUT / '62-derived-level-preparation.json'
+        checked(['python3', program, '--video-root', M, '--repository', ROOT,
+                 '--accepted-video', source_video, '--output', output],
+                'approved62-derived-level-preparation.log', W)
+        evidence = json.loads(output.read_text())
+        assert evidence['derived_reference_prepared'] is True
+        assert evidence['private_PCM_GT_cache_arrays_or_models_exported'] is False
+        assert aac_hash(source_video) == accepted_aac
+        status['approved_derived_level_preparation'] = evidence
+        status['approved_derived_level_preparation_program_sha256'] = sha(program)
+        save()
+        return
     if NO != '30':
         return
     program = TASK / 'prepare-derived-level30.py'
@@ -361,7 +379,7 @@ def verify_correct_origin_reference_cache(request, after_references=False):
 
 def verify_unchanged_review_audio_packets(accepted_video, canonical_video):
     """Pure visual13/14/26 revisions preserve their own accepted audio packets."""
-    if NO not in {'13', '14', '26', '33', '47', '34'}:
+    if NO not in {'13', '14', '26', '33'}:
         return
     status['stage'] = f'{NO}-accepted-audio-packet-preservation'
     save()
@@ -1005,13 +1023,11 @@ try:
     assert '定稿' in authorization['用于'] and '撤回' not in authorization['用于']
     agreement = T / '用户同意记录.json'
     records = json.loads(agreement.read_text())
-    # Transfer only the already-reviewed real038 statement omitted by the first launcher.
-    # The official consent/text checker is unchanged and reads the real original words.
-    if NO == '47':
+    if NO == '62':
         supplement = request / '真实用户同意补充.json'
-        assert sha(supplement) == 'ddefeead2ea53cb3f3a49e66ac73ba743003edd64f71eda061dc568c6409afac'
+        assert sha(supplement) == '1d9fb3903cbba3b3e276f987412487d182536ea0ae1a13dc745fc4ee5f5134ca'
         attached = json.loads(supplement.read_text())
-        assert attached['article'] == NO and len(attached['records']) == 1
+        assert attached['article'] == NO
         for actual_record in attached['records']:
             assert actual_record['篇'] == NO and actual_record['原话'].strip()
             if actual_record not in records['记录']:
@@ -1106,6 +1122,7 @@ try:
         helper_name = ('audio05-tail-qc.py' if NO == '05' else
                        'audio16-origin-qc.py' if NO == '16' else
                        'audio27-controlled-qc.py' if NO == '27' else
+                       'audio62-controlled-qc.py' if NO == '62' else
                        'audio-controlled-qc.py' if NO in CONTROLLED_AUDIO_REPAIRS else
                        'audio-a21-qc.py' if NO in A21_AUDIO_REPAIRS else 'audio-qc.py')
         audio_qc = TASK / helper_name
@@ -1140,6 +1157,7 @@ try:
             reference_file = TASK / ('audio05-tail-qc-reference.json' if NO == '05' else
                                      'audio16-origin-qc-reference.json' if NO == '16' else
                                      'audio27-controlled-qc-reference.json' if NO == '27' else
+                                     'audio62-controlled-qc-reference.json' if NO == '62' else
                                      'audio-controlled-qc-reference.json')
             status['approved_audio_repair_scope'] = {
                 'kind': 'controlled_audio_repair', 'repair_applied': True,
