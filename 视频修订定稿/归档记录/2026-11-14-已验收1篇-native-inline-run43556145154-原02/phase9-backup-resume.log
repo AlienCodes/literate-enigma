@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/workspace/work/video-audit70-20261113/resume_source_backup_phase9.py", line 18, in <module>
+    result['archives'].append(ns['attach']('AlienCodes/literate-enigma','codex/all-deliverables-20261113'))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-audit70-20261113/publish_sources.py", line 91, in attach
+    tree=graft(base,updates)
+         ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-audit70-20261113/publish_sources.py", line 90, in graft
+    return api(repo,'git/trees','POST',{'tree':list(existing.values())})['sha']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/video-audit70-20261113/resume_source_backup_phase9.py", line 11, in retry_api
+    try:return original_api(repo,path,method,data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<existing-api>", line 114, in api
+RuntimeError: gh: Sorry, your request timed out.  It's likely that your input was too large to process.  Consider building the tree incrementally, or building the commits you need in a local clone of the repository and then pushing them to GitHub. (HTTP 422)
+
