@@ -9,6 +9,7 @@ import ast
 import hashlib
 import json
 from pathlib import Path
+import sys
 
 p = argparse.ArgumentParser()
 p.add_argument('--tools', type=Path, required=True)
@@ -36,6 +37,7 @@ for node in ast.walk(fixed):
 assert ast.dump(fixed, include_attributes=False) == ast.dump(new_func, include_attributes=False)
 dicts = {str(x.relative_to(a.tools)): sha(x.read_bytes()) for x in (a.tools / '发音词典').glob('*') if x.is_file()}
 ns = {'__name__': 'real_dispatch_native_namespace', '__file__': str(a.tools / 'make_video.py')}
+sys.path.insert(0, str(Path.cwd()))
 exec(compile(new.split("if __name__")[0], str(a.tools / 'make_video.py'), 'exec'), ns)
 new_wrapper = ns['_pron']
 # Reload only the original function definition into the same genuine producer
