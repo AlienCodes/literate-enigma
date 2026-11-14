@@ -58,6 +58,10 @@ def main():
     marker = 'Article13 reviewed final video SHA-256: ' + spec['sha256']
     release = api('releases/tags/' + tag, missing_ok=True)
     if release is None:
+        matches = [item for item in api('releases?per_page=100') if item['tag_name'] == tag and marker in (item.get('body') or '')]
+        assert len(matches) <= 1
+        release = matches[0] if matches else None
+    if release is None:
         release = api('releases', 'POST', {
             'tag_name': tag,
             'target_commitish': spec['archived_commit'],
