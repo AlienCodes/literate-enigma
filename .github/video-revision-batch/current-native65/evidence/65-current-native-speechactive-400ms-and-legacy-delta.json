@@ -1,0 +1,720 @@
+{
+  "kind": "source65-current-native-objective-local-comparison-to-user-seen-legacy",
+  "current_whole_WAV_AAC_bound": {
+    "WAV_sha256": "c655cba20b97c97ca431a6e5eb43e8c250a67d6fc6ea92e695ff58139aa3ed41",
+    "WAV_md5_first12": "130d1dd4adb4",
+    "reconstructed_AAC_sha256": "e561c8319355ca7f96047b52c3a758cb89e92196553949e4532d06a2893a4125",
+    "actual_current_native_AAC_sha256": "e561c8319355ca7f96047b52c3a758cb89e92196553949e4532d06a2893a4125",
+    "whole_AAC_exact": true,
+    "samples": 3342720,
+    "rate": 24000
+  },
+  "current_repair_baseline_video_sha256": "1aaf139459ac9efe7530113dff2fa71349a8546ca0f3362b397c0a24369e9057",
+  "legacy_only_explains_user_heard_issue_sha256": "6bad7b012ccbad87a60ced23ada2c3162c7a561b4e72ad52362004ee3313ea8c",
+  "legacy_AAC_not_preserved_as_current": true,
+  "current_S2_controls": {
+    "text": "At its end, cartons of precious seed sit silently in a sub-zero repository, insulated by permanently frozen ground.",
+    "pieces": [
+      [
+        0,
+        11
+      ],
+      [
+        12,
+        75
+      ],
+      [
+        76,
+        115
+      ]
+    ],
+    "piece_texts": [
+      "At its end,",
+      "cartons of precious seed sit silently in a sub-zero repository,",
+      "insulated by permanently frozen ground."
+    ],
+    "gaps": [
+      0.4,
+      0.4
+    ],
+    "tmap": [
+      [
+        0,
+        11,
+        0.0,
+        0.775
+      ],
+      [
+        12,
+        75,
+        1.155,
+        5.73
+      ],
+      [
+        76,
+        115,
+        6.11,
+        8.86
+      ]
+    ],
+    "automatic_level": {
+      "1": -2.0
+    },
+    "manual_segment_level": {
+      "2": 1.0
+    },
+    "LAST": {
+      "head": 960,
+      "segs": [
+        [
+          0,
+          18960,
+          -0.015,
+          []
+        ],
+        [
+          22440,
+          132240,
+          1.155,
+          []
+        ],
+        [
+          143160,
+          210496,
+          6.11,
+          []
+        ]
+      ],
+      "total": 8.86,
+      "cuts": [
+        [
+          18960,
+          22440,
+          0.38
+        ],
+        [
+          132240,
+          143160,
+          0.38
+        ]
+      ],
+      "grafts": [],
+      "gaps": [
+        0.4,
+        0.4
+      ],
+      "hs": 360
+    }
+  },
+  "measurements_same_PCM16_48k_domain_as_legacy_report": true,
+  "target_metrics": {
+    "S2_At_its_end_first_phrase_approximate": {
+      "span_seconds": [
+        12.12,
+        12.91
+      ],
+      "sample_count": 37920,
+      "RMS_including_silence_dBFS": -22.872899751089847,
+      "peak_dBFS": -7.379616037756961,
+      "speech_active_20ms_frame_gate_dBFS": -42,
+      "speech_active_sample_ratio": 0.8607594936708861,
+      "speech_active_RMS_dBFS": -22.222172343983587,
+      "loudest_400ms_RMS_dBFS": -21.692945493714962,
+      "loudest_400ms_span_seconds": [
+        12.269395833333332,
+        12.669395833333333
+      ],
+      "crop_BS1770_LUFS": -23.159211477765265,
+      "oversampled4x_true_peak_dbtp": -7.374088662725891,
+      "spectral_centroid_Hz": 488.70881232761906,
+      "max_adjacent_sample_step": 0.115020751953125
+    },
+    "S2_first_300ms_approximate": {
+      "span_seconds": [
+        12.12,
+        12.42
+      ],
+      "sample_count": 14400,
+      "RMS_including_silence_dBFS": -22.11086069399411,
+      "peak_dBFS": -7.379616037756961,
+      "speech_active_20ms_frame_gate_dBFS": -42,
+      "speech_active_sample_ratio": 0.85,
+      "speech_active_RMS_dBFS": -21.405660299701527,
+      "loudest_400ms_RMS_dBFS": -22.11086069399411,
+      "loudest_400ms_span_seconds": [
+        12.12,
+        12.42
+      ],
+      "crop_BS1770_LUFS": null,
+      "oversampled4x_true_peak_dbtp": -7.374088662725891,
+      "spectral_centroid_Hz": 480.1485194156032,
+      "max_adjacent_sample_step": 0.115020751953125
+    },
+    "S2_later_speech_context": {
+      "span_seconds": [
+        13.05,
+        17.63
+      ],
+      "sample_count": 219840,
+      "RMS_including_silence_dBFS": -24.211277355496946,
+      "peak_dBFS": -0.6804327969031339,
+      "speech_active_20ms_frame_gate_dBFS": -42,
+      "speech_active_sample_ratio": 0.898471615720524,
+      "speech_active_RMS_dBFS": -23.746877493322707,
+      "loudest_400ms_RMS_dBFS": -17.820821889304426,
+      "loudest_400ms_span_seconds": [
+        13.391625000000001,
+        13.791625
+      ],
+      "crop_BS1770_LUFS": -24.166142866466572,
+      "oversampled4x_true_peak_dbtp": -0.6680538247005597,
+      "spectral_centroid_Hz": 1063.8294603603472,
+      "max_adjacent_sample_step": 0.157684326171875
+    },
+    "S1_initial_location_context": {
+      "span_seconds": [
+        3.275,
+        4.72
+      ],
+      "sample_count": 69360,
+      "RMS_including_silence_dBFS": -23.386908310042504,
+      "peak_dBFS": -6.380500420210453,
+      "speech_active_20ms_frame_gate_dBFS": -42,
+      "speech_active_sample_ratio": 0.6332179930795848,
+      "speech_active_RMS_dBFS": -21.402630551625986,
+      "loudest_400ms_RMS_dBFS": -18.715202694793305,
+      "loudest_400ms_span_seconds": [
+        3.3185208333333334,
+        3.7185208333333333
+      ],
+      "crop_BS1770_LUFS": -22.169064767650212,
+      "oversampled4x_true_peak_dbtp": -6.358038444219609,
+      "spectral_centroid_Hz": 764.8341336753726,
+      "max_adjacent_sample_step": 0.223388671875
+    },
+    "S2_exact_producer_first_phrase": {
+      "span_seconds": [
+        12.12,
+        12.895
+      ],
+      "sample_count": 37200,
+      "RMS_including_silence_dBFS": -22.789648440346188,
+      "peak_dBFS": -7.379616037756961,
+      "speech_active_20ms_frame_gate_dBFS": -42,
+      "speech_active_sample_ratio": 0.8774193548387097,
+      "speech_active_RMS_dBFS": -22.222172343983587,
+      "loudest_400ms_RMS_dBFS": -21.692945493714962,
+      "loudest_400ms_span_seconds": [
+        12.269395833333332,
+        12.669395833333333
+      ],
+      "crop_BS1770_LUFS": -23.159212763277218,
+      "oversampled4x_true_peak_dbtp": -7.374088662725891,
+      "spectral_centroid_Hz": 496.36169440887903,
+      "max_adjacent_sample_step": 0.115020751953125
+    },
+    "S2_exact_producer_next_piece": {
+      "span_seconds": [
+        13.275,
+        17.85
+      ],
+      "sample_count": 219600,
+      "RMS_including_silence_dBFS": -24.197511130361985,
+      "peak_dBFS": -0.6804327969031339,
+      "speech_active_20ms_frame_gate_dBFS": -42,
+      "speech_active_sample_ratio": 0.9289617486338798,
+      "speech_active_RMS_dBFS": -23.87846110801309,
+      "loudest_400ms_RMS_dBFS": -17.820821889304426,
+      "loudest_400ms_span_seconds": [
+        13.391625000000001,
+        13.791625
+      ],
+      "crop_BS1770_LUFS": -24.771522094851353,
+      "oversampled4x_true_peak_dbtp": -0.6680538247005597,
+      "spectral_centroid_Hz": 999.3661587100802,
+      "max_adjacent_sample_step": 0.157684326171875
+    },
+    "S2_exact_producer_last_piece": {
+      "span_seconds": [
+        18.23,
+        20.98
+      ],
+      "sample_count": 132000,
+      "RMS_including_silence_dBFS": -23.50628174849645,
+      "peak_dBFS": -6.707628681169994,
+      "speech_active_20ms_frame_gate_dBFS": -42,
+      "speech_active_sample_ratio": 0.8836363636363637,
+      "speech_active_RMS_dBFS": -22.96985986867641,
+      "loudest_400ms_RMS_dBFS": -18.47435810989078,
+      "loudest_400ms_span_seconds": [
+        18.27475,
+        18.67475
+      ],
+      "crop_BS1770_LUFS": -24.887199870698062,
+      "oversampled4x_true_peak_dbtp": -6.69379777555584,
+      "spectral_centroid_Hz": 401.5019343798244,
+      "max_adjacent_sample_step": 0.117828369140625
+    }
+  },
+  "current_minus_legacy_dB": {
+    "S2_At_its_end_first_phrase_approximate": {
+      "RMS_including_silence_dBFS": 1.0075947980847246,
+      "peak_dBFS": 0.9835421795994783,
+      "speech_active_RMS_dBFS": 0.9759291587583334,
+      "loudest_400ms_RMS_dBFS": 1.0089091430518593
+    },
+    "S2_first_300ms_approximate": {
+      "RMS_including_silence_dBFS": 1.0045738364879107,
+      "peak_dBFS": 0.9835421795994783,
+      "speech_active_RMS_dBFS": 1.0045623514609332,
+      "loudest_400ms_RMS_dBFS": 1.0045738364879107
+    },
+    "S2_later_speech_context": {
+      "RMS_including_silence_dBFS": -0.0007991199161665463,
+      "peak_dBFS": 0.00028667721632613663,
+      "speech_active_RMS_dBFS": -0.0007992067519460022,
+      "loudest_400ms_RMS_dBFS": -0.001974164444721538
+    },
+    "S1_initial_location_context": {
+      "RMS_including_silence_dBFS": 0.49877118875278725,
+      "peak_dBFS": 0.47935879097216194,
+      "speech_active_RMS_dBFS": 0.4749757114932045,
+      "loudest_400ms_RMS_dBFS": 0.49655588165908426
+    }
+  },
+  "whole_17_utterance_metrics": [
+    {
+      "sentence": "title",
+      "whole_utterance": {
+        "span_seconds": [
+          0.4,
+          2.275
+        ],
+        "sample_count": 90000,
+        "RMS_including_silence_dBFS": -22.75961923845946,
+        "peak_dBFS": -5.801779091741166,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.8293333333333334,
+        "speech_active_RMS_dBFS": -21.947656001378704,
+        "loudest_400ms_RMS_dBFS": -19.813321459809252,
+        "loudest_400ms_span_seconds": [
+          0.45856250000000004,
+          0.8585625
+        ],
+        "crop_BS1770_LUFS": -23.07966176640728,
+        "oversampled4x_true_peak_dbtp": -5.7962517167100955,
+        "spectral_centroid_Hz": 667.5973876269279,
+        "max_adjacent_sample_step": 0.127838134765625
+      }
+    },
+    {
+      "sentence": "S1",
+      "whole_utterance": {
+        "span_seconds": [
+          3.275,
+          11.12
+        ],
+        "sample_count": 376560,
+        "RMS_including_silence_dBFS": -23.769894188087065,
+        "peak_dBFS": -5.618653028940626,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.811344805608668,
+        "speech_active_RMS_dBFS": -22.862565011494475,
+        "loudest_400ms_RMS_dBFS": -16.931167109708618,
+        "loudest_400ms_span_seconds": [
+          7.685062500000001,
+          8.0850625
+        ],
+        "crop_BS1770_LUFS": -23.739894862717573,
+        "oversampled4x_true_peak_dbtp": -5.612579739875639,
+        "spectral_centroid_Hz": 519.5306610853423,
+        "max_adjacent_sample_step": 0.223388671875
+      }
+    },
+    {
+      "sentence": "S2",
+      "whole_utterance": {
+        "span_seconds": [
+          12.120000000000001,
+          20.98
+        ],
+        "sample_count": 425280,
+        "RMS_including_silence_dBFS": -24.192030349734317,
+        "peak_dBFS": -0.6804327969031339,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.8306997742663657,
+        "speech_active_RMS_dBFS": -23.38733413496692,
+        "loudest_400ms_RMS_dBFS": -17.820821889304426,
+        "loudest_400ms_span_seconds": [
+          13.391625000000001,
+          13.791625000000002
+        ],
+        "crop_BS1770_LUFS": -24.31595525029778,
+        "oversampled4x_true_peak_dbtp": -0.6680538247005597,
+        "spectral_centroid_Hz": 731.9842486739957,
+        "max_adjacent_sample_step": 0.157684326171875
+      }
+    },
+    {
+      "sentence": "S3",
+      "whole_utterance": {
+        "span_seconds": [
+          22.18,
+          35.67
+        ],
+        "sample_count": 647520,
+        "RMS_including_silence_dBFS": -24.219263064580865,
+        "peak_dBFS": -2.361323586048833,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.832468495181616,
+        "speech_active_RMS_dBFS": -23.42399800186055,
+        "loudest_400ms_RMS_dBFS": -17.647406416672755,
+        "loudest_400ms_span_seconds": [
+          22.47475,
+          22.87475
+        ],
+        "crop_BS1770_LUFS": -24.368582781472416,
+        "oversampled4x_true_peak_dbtp": -2.3557962110177617,
+        "spectral_centroid_Hz": 843.9035034210895,
+        "max_adjacent_sample_step": 0.2286376953125
+      }
+    },
+    {
+      "sentence": "S4",
+      "whole_utterance": {
+        "span_seconds": [
+          36.669999999999995,
+          39.955
+        ],
+        "sample_count": 157680,
+        "RMS_including_silence_dBFS": -24.287959943721937,
+        "peak_dBFS": -7.518973204476158,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.8645357686453576,
+        "speech_active_RMS_dBFS": -23.658087706685077,
+        "loudest_400ms_RMS_dBFS": -20.080838629832087,
+        "loudest_400ms_span_seconds": [
+          36.78460416666666,
+          37.18460416666666
+        ],
+        "crop_BS1770_LUFS": -24.9628115957866,
+        "oversampled4x_true_peak_dbtp": -7.469841907361606,
+        "spectral_centroid_Hz": 526.5355198617834,
+        "max_adjacent_sample_step": 0.14190673828125
+      }
+    },
+    {
+      "sentence": "S5",
+      "whole_utterance": {
+        "span_seconds": [
+          40.955,
+          46.46
+        ],
+        "sample_count": 264240,
+        "RMS_including_silence_dBFS": -24.232752707298783,
+        "peak_dBFS": -6.032270932688888,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.810172570390554,
+        "speech_active_RMS_dBFS": -23.319685033649293,
+        "loudest_400ms_RMS_dBFS": -19.50187904892031,
+        "loudest_400ms_span_seconds": [
+          44.0629375,
+          44.462937499999995
+        ],
+        "crop_BS1770_LUFS": -24.307250239364,
+        "oversampled4x_true_peak_dbtp": -6.012243812734065,
+        "spectral_centroid_Hz": 506.0634405982059,
+        "max_adjacent_sample_step": 0.17083740234375
+      }
+    },
+    {
+      "sentence": "S6",
+      "whole_utterance": {
+        "span_seconds": [
+          47.459999999999994,
+          51.864999999999995
+        ],
+        "sample_count": 211440,
+        "RMS_including_silence_dBFS": -23.90188731130799,
+        "peak_dBFS": -4.158222230408935,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.7639046538024972,
+        "speech_active_RMS_dBFS": -22.733130645065238,
+        "loudest_400ms_RMS_dBFS": -19.072034955013144,
+        "loudest_400ms_span_seconds": [
+          49.86166666666666,
+          50.26166666666666
+        ],
+        "crop_BS1770_LUFS": -23.77561234777596,
+        "oversampled4x_true_peak_dbtp": -4.152694855377864,
+        "spectral_centroid_Hz": 449.55296227475884,
+        "max_adjacent_sample_step": 0.15496826171875
+      }
+    },
+    {
+      "sentence": "S7",
+      "whole_utterance": {
+        "span_seconds": [
+          53.065,
+          58.345
+        ],
+        "sample_count": 253440,
+        "RMS_including_silence_dBFS": -24.019348037808342,
+        "peak_dBFS": -6.055127850773832,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.8257575757575758,
+        "speech_active_RMS_dBFS": -23.18915417281058,
+        "loudest_400ms_RMS_dBFS": -19.009672197650595,
+        "loudest_400ms_span_seconds": [
+          56.67689583333333,
+          57.07689583333333
+        ],
+        "crop_BS1770_LUFS": -24.082991590860782,
+        "oversampled4x_true_peak_dbtp": -6.0496004757427615,
+        "spectral_centroid_Hz": 933.2031537855354,
+        "max_adjacent_sample_step": 0.207763671875
+      }
+    },
+    {
+      "sentence": "S8",
+      "whole_utterance": {
+        "span_seconds": [
+          59.345,
+          67.53
+        ],
+        "sample_count": 392880,
+        "RMS_including_silence_dBFS": -25.236449451794456,
+        "peak_dBFS": -6.087656314853719,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.8252901649358583,
+        "speech_active_RMS_dBFS": -24.40333295561922,
+        "loudest_400ms_RMS_dBFS": -19.897396207738794,
+        "loudest_400ms_span_seconds": [
+          63.81545833333333,
+          64.21545833333333
+        ],
+        "crop_BS1770_LUFS": -25.29200321346017,
+        "oversampled4x_true_peak_dbtp": -6.082128939822649,
+        "spectral_centroid_Hz": 556.8377381083382,
+        "max_adjacent_sample_step": 0.1842041015625
+      }
+    },
+    {
+      "sentence": "S9",
+      "whole_utterance": {
+        "span_seconds": [
+          68.53,
+          81.265
+        ],
+        "sample_count": 611280,
+        "RMS_including_silence_dBFS": -24.380726986561967,
+        "peak_dBFS": -3.7937609928097538,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.8197879858657244,
+        "speech_active_RMS_dBFS": -23.519512172377492,
+        "loudest_400ms_RMS_dBFS": -17.944829134654658,
+        "loudest_400ms_span_seconds": [
+          75.03916666666667,
+          75.43916666666667
+        ],
+        "crop_BS1770_LUFS": -24.602622879997003,
+        "oversampled4x_true_peak_dbtp": -3.781170752801224,
+        "spectral_centroid_Hz": 522.0062919944074,
+        "max_adjacent_sample_step": 0.18353271484375
+      }
+    },
+    {
+      "sentence": "S10",
+      "whole_utterance": {
+        "span_seconds": [
+          82.265,
+          86.875
+        ],
+        "sample_count": 221280,
+        "RMS_including_silence_dBFS": -22.432720530255224,
+        "peak_dBFS": -4.773331005188986,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.8796095444685467,
+        "speech_active_RMS_dBFS": -21.876331963361256,
+        "loudest_400ms_RMS_dBFS": -18.481326552478087,
+        "loudest_400ms_span_seconds": [
+          82.707125,
+          83.107125
+        ],
+        "crop_BS1770_LUFS": -22.667615197365674,
+        "oversampled4x_true_peak_dbtp": -4.767803630157915,
+        "spectral_centroid_Hz": 744.6357763088059,
+        "max_adjacent_sample_step": 0.23089599609375
+      }
+    },
+    {
+      "sentence": "S11",
+      "whole_utterance": {
+        "span_seconds": [
+          88.075,
+          95.02000000000001
+        ],
+        "sample_count": 333360,
+        "RMS_including_silence_dBFS": -24.0754734180644,
+        "peak_dBFS": -6.02802511095553,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.843772498200144,
+        "speech_active_RMS_dBFS": -23.338494418902563,
+        "loudest_400ms_RMS_dBFS": -18.64068967510849,
+        "loudest_400ms_span_seconds": [
+          88.1080625,
+          88.50806250000001
+        ],
+        "crop_BS1770_LUFS": -24.291268836687053,
+        "oversampled4x_true_peak_dbtp": -6.019044330420841,
+        "spectral_centroid_Hz": 808.653913473733,
+        "max_adjacent_sample_step": 0.177398681640625
+      }
+    },
+    {
+      "sentence": "S12",
+      "whole_utterance": {
+        "span_seconds": [
+          96.02,
+          106.64999999999999
+        ],
+        "sample_count": 510240,
+        "RMS_including_silence_dBFS": -24.568640475527886,
+        "peak_dBFS": -4.63483491824505,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.7836312323612418,
+        "speech_active_RMS_dBFS": -23.51104059949801,
+        "loudest_400ms_RMS_dBFS": -18.010463666999108,
+        "loudest_400ms_span_seconds": [
+          99.04495833333333,
+          99.44495833333333
+        ],
+        "crop_BS1770_LUFS": -24.58139278999469,
+        "oversampled4x_true_peak_dbtp": -4.624696373934712,
+        "spectral_centroid_Hz": 665.2363061028668,
+        "max_adjacent_sample_step": 0.24468994140625
+      }
+    },
+    {
+      "sentence": "S13",
+      "whole_utterance": {
+        "span_seconds": [
+          107.85,
+          109.46
+        ],
+        "sample_count": 77280,
+        "RMS_including_silence_dBFS": -23.002976886798887,
+        "peak_dBFS": -4.032075947173788,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.8944099378881988,
+        "speech_active_RMS_dBFS": -22.51902469121877,
+        "loudest_400ms_RMS_dBFS": -20.37159592520343,
+        "loudest_400ms_span_seconds": [
+          107.91802083333333,
+          108.31802083333332
+        ],
+        "crop_BS1770_LUFS": -23.29135630030625,
+        "oversampled4x_true_peak_dbtp": -4.022652016812308,
+        "spectral_centroid_Hz": 550.8732538011994,
+        "max_adjacent_sample_step": 0.154266357421875
+      }
+    },
+    {
+      "sentence": "S14",
+      "whole_utterance": {
+        "span_seconds": [
+          110.46,
+          117.74
+        ],
+        "sample_count": 349440,
+        "RMS_including_silence_dBFS": -24.456501423469422,
+        "peak_dBFS": -4.230397413686987,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.8385989010989011,
+        "speech_active_RMS_dBFS": -23.693065494229742,
+        "loudest_400ms_RMS_dBFS": -18.33056515968063,
+        "loudest_400ms_span_seconds": [
+          112.72716666666666,
+          113.12716666666665
+        ],
+        "crop_BS1770_LUFS": -24.696555946772126,
+        "oversampled4x_true_peak_dbtp": -4.200160355357961,
+        "spectral_centroid_Hz": 560.1675559936816,
+        "max_adjacent_sample_step": 0.232421875
+      }
+    },
+    {
+      "sentence": "S15",
+      "whole_utterance": {
+        "span_seconds": [
+          118.74,
+          124.69
+        ],
+        "sample_count": 285600,
+        "RMS_including_silence_dBFS": -24.119837169886715,
+        "peak_dBFS": -3.9006719500709677,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.83109243697479,
+        "speech_active_RMS_dBFS": -23.31739128893975,
+        "loudest_400ms_RMS_dBFS": -20.143876466278286,
+        "loudest_400ms_span_seconds": [
+          121.38547916666666,
+          121.78547916666666
+        ],
+        "crop_BS1770_LUFS": -24.104272840870006,
+        "oversampled4x_true_peak_dbtp": -3.89071682800298,
+        "spectral_centroid_Hz": 759.40154267347,
+        "max_adjacent_sample_step": 0.227264404296875
+      }
+    },
+    {
+      "sentence": "S16",
+      "whole_utterance": {
+        "span_seconds": [
+          125.69,
+          129.035
+        ],
+        "sample_count": 160560,
+        "RMS_including_silence_dBFS": -23.120041700247995,
+        "peak_dBFS": -4.650668163291426,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.8535127055306427,
+        "speech_active_RMS_dBFS": -22.432533494843355,
+        "loudest_400ms_RMS_dBFS": -18.476350183617324,
+        "loudest_400ms_span_seconds": [
+          125.75814583333333,
+          126.15814583333334
+        ],
+        "crop_BS1770_LUFS": -23.569820588344804,
+        "oversampled4x_true_peak_dbtp": -4.640582264194979,
+        "spectral_centroid_Hz": 573.1703982950124,
+        "max_adjacent_sample_step": 0.1505126953125
+      }
+    },
+    {
+      "sentence": "S17",
+      "whole_utterance": {
+        "span_seconds": [
+          130.235,
+          137.28
+        ],
+        "sample_count": 338160,
+        "RMS_including_silence_dBFS": -24.403684558346157,
+        "peak_dBFS": -5.680116640845738,
+        "speech_active_20ms_frame_gate_dBFS": -42,
+        "speech_active_sample_ratio": 0.8190205819730305,
+        "speech_active_RMS_dBFS": -23.53736586328707,
+        "loudest_400ms_RMS_dBFS": -18.34747398805842,
+        "loudest_400ms_span_seconds": [
+          135.59308333333334,
+          135.99308333333335
+        ],
+        "crop_BS1770_LUFS": -24.59508605744559,
+        "oversampled4x_true_peak_dbtp": -5.674589265814667,
+        "spectral_centroid_Hz": 861.8024021067216,
+        "max_adjacent_sample_step": 0.205169677734375
+      }
+    }
+  ],
+  "new_TTS_audio_change_or_listening_claimed": false
+}
