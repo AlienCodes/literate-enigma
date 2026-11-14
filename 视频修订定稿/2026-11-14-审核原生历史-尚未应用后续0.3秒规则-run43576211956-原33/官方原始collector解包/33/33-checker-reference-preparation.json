@@ -1,0 +1,3076 @@
+{
+  "article": "33",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "da87d68fdee3401e499aa145c23d9b2c663ce3b27f79feec5eca1ddb0d794e72",
+  "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+    "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+    "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "Thirteen in the Cave",
+      "exact_native_cache_key": "c97ce2d1717d5be4bb6564256e0fdca3b3a155a5.pkl",
+      "cache_input_text_sha256": "f30df3fe086ee1b4d7f842057f20652970b8f368bc4c68ff12943fe869d056fd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "Thirteen in the Cave",
+      "exact_native_cache_key": "6a507a868096f336c71d2c8a38f173e050158b73.pkl",
+      "cache_input_text_sha256": "f30df3fe086ee1b4d7f842057f20652970b8f368bc4c68ff12943fe869d056fd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 23 June 2018, twelve boys aged 11 to 16 from a junior football squad went on an outing with their 25-year-old assistant coach.",
+      "exact_native_cache_key": "d9def0483be9c166675e5c72235fac30b721a7c1.pkl",
+      "cache_input_text_sha256": "a009ec0b5770f424dd0ad70b12d798fa2e67f2458242a46bf46ef1c789bb8f98",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 23 June 2018, twelve boys aged 11 to 16 from a junior football squad went on an outing with their 25-year-old assistant coach.",
+      "exact_native_cache_key": "4a2ed9c8f8e4915d842d86ba986d0e1e3a256f01.pkl",
+      "cache_input_text_sha256": "a009ec0b5770f424dd0ad70b12d798fa2e67f2458242a46bf46ef1c789bb8f98",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 23 June 2018, twelve boys aged 11 to 16 from a junior football squad",
+      "exact_native_cache_key": "9bcd3916be7a188be4367f8ac913c5e02bb96f9e.pkl",
+      "cache_input_text_sha256": "90cc3e118f531d6b4d3670fa9ec950f845fb06270b87f802098aa3fc7b0d0651",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "went on an outing with their 25-year-old assistant coach.",
+      "exact_native_cache_key": "aa382b646ae6e67f0ce0535fcf51b8883e418f1a.pkl",
+      "cache_input_text_sha256": "90017beeee51028e09f926aa359243452b5dde44b2ce79f47460869906eeff20",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 23 June 2018,",
+      "exact_native_cache_key": "3ecdd5741aff6c3f9992f65ba2d6b84992f0d4e0.pkl",
+      "cache_input_text_sha256": "b9614f99f45f6f6ccb0fef2895c159a9eb99c89ca96ef452a2e706335266f469",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "twelve boys aged 11 to 16 from a junior football squad went on an outing with their 25-year-old assistant coach.",
+      "exact_native_cache_key": "220fc9a8cff35692420fe8ddaa94106343176cf9.pkl",
+      "cache_input_text_sha256": "b6732167faf59946ca1fadbdbca685488ba69407687d18107a1a5805f712eb77",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "They entered Tham Luang, a sprawling maze of tunnels in northern Thailand, to penetrate its gloom.",
+      "exact_native_cache_key": "d424c54d8d311997057548570982fbde18a146a2.pkl",
+      "cache_input_text_sha256": "49527bf84ef225f484bb4e3c3be7493cc01fa48c80546dbff965ea726617d57d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "They entered Tham Luang, a sprawling maze of tunnels in northern Thailand, to penetrate its gloom.",
+      "exact_native_cache_key": "2220817a514927c67f768dc61b31f2fc8ba9835d.pkl",
+      "cache_input_text_sha256": "49527bf84ef225f484bb4e3c3be7493cc01fa48c80546dbff965ea726617d57d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "They entered Tham Luang,",
+      "exact_native_cache_key": "aaec20be98f5b6e9b2570f69e5d5a57d2932e348.pkl",
+      "cache_input_text_sha256": "006d70d1eac9dd0475bbbc4cc61417f9bc1c060ad5df0b80ff901152ed094005",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a sprawling maze of tunnels in northern Thailand,",
+      "exact_native_cache_key": "8d2a1d16a953da52d81e4cccb72528f2e7f1dc3d.pkl",
+      "cache_input_text_sha256": "8501a1c005436c1eba2addd293140583f9a91af31f143552634c3931948fb5e7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "to penetrate its gloom.",
+      "exact_native_cache_key": "9f82160f029da6cfa08fa9d1bdd87e634da67df2.pkl",
+      "cache_input_text_sha256": "195651662e2dfae743a3479ca7b284053597d68bf6c35353a2cb4f9899886c13",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "They entered Tham Luang,",
+      "exact_native_cache_key": "aaec20be98f5b6e9b2570f69e5d5a57d2932e348.pkl",
+      "cache_input_text_sha256": "006d70d1eac9dd0475bbbc4cc61417f9bc1c060ad5df0b80ff901152ed094005",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a sprawling maze of tunnels in northern Thailand,",
+      "exact_native_cache_key": "8d2a1d16a953da52d81e4cccb72528f2e7f1dc3d.pkl",
+      "cache_input_text_sha256": "8501a1c005436c1eba2addd293140583f9a91af31f143552634c3931948fb5e7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "to penetrate its gloom.",
+      "exact_native_cache_key": "9f82160f029da6cfa08fa9d1bdd87e634da67df2.pkl",
+      "cache_input_text_sha256": "195651662e2dfae743a3479ca7b284053597d68bf6c35353a2cb4f9899886c13",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Monsoon rain then flooded the passages, and the rising water trapped all of them.",
+      "exact_native_cache_key": "b9fdb92f17e7471410afaddd9be8d217342d9e53.pkl",
+      "cache_input_text_sha256": "1e155436ae11db4d1e7ad7dad6892bea113d9c31601fdf7ec13832553a6110a0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Monsoon rain then flooded the passages, and the rising water trapped all of them.",
+      "exact_native_cache_key": "1376d7b972adbea2fdcbae4da973febcd8b51904.pkl",
+      "cache_input_text_sha256": "1e155436ae11db4d1e7ad7dad6892bea113d9c31601fdf7ec13832553a6110a0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Monsoon rain then flooded the passages,",
+      "exact_native_cache_key": "c3dd3a6f1b7d42dbbc1a8cf813d12716b5decb6a.pkl",
+      "cache_input_text_sha256": "6396d304cee4ac5b46ad1d74592444af19ed410ec93cd6a87431dbf1d51f8b82",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and the rising water trapped all of them.",
+      "exact_native_cache_key": "bc320955d707ec8e1485237203a8a249fceb8c54.pkl",
+      "cache_input_text_sha256": "7ad8970ee3324f96cd192ab4781eef4bb97cfb1cff4e363b15b7ac8b9c4336a9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Monsoon rain then flooded the passages,",
+      "exact_native_cache_key": "c3dd3a6f1b7d42dbbc1a8cf813d12716b5decb6a.pkl",
+      "cache_input_text_sha256": "6396d304cee4ac5b46ad1d74592444af19ed410ec93cd6a87431dbf1d51f8b82",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and the rising water trapped all of them.",
+      "exact_native_cache_key": "bc320955d707ec8e1485237203a8a249fceb8c54.pkl",
+      "cache_input_text_sha256": "7ad8970ee3324f96cd192ab4781eef4bb97cfb1cff4e363b15b7ac8b9c4336a9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "For nine days their whereabouts were unknown.",
+      "exact_native_cache_key": "035856e97b7a436fc07076667d70a46cf23511fa.pkl",
+      "cache_input_text_sha256": "de2f93ec45fb205397d0efdcb435ae935aacdce417c7dd36a115b466fb829a51",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "For nine days their whereabouts were unknown.",
+      "exact_native_cache_key": "8ddec691b90104ca43d7b8e456efe03f491f4694.pkl",
+      "cache_input_text_sha256": "de2f93ec45fb205397d0efdcb435ae935aacdce417c7dd36a115b466fb829a51",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 2 July two elite British divers, threading through submerged passages, reached an inundated chamber about 4 km from the entrance.",
+      "exact_native_cache_key": "15ccb86cb8f1bd2343f49f61f8cc0d707aa8732c.pkl",
+      "cache_input_text_sha256": "849fa3974450755fcc41b35fbab5893038a1d4d8c3dab0d7d5c3a9537732a5a6",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 2 July two elite British divers, threading through submerged passages, reached an inundated chamber about 4 km from the entrance.",
+      "exact_native_cache_key": "a174a49ea613112c80bc22d56e13540d95423210.pkl",
+      "cache_input_text_sha256": "849fa3974450755fcc41b35fbab5893038a1d4d8c3dab0d7d5c3a9537732a5a6",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 2 July two elite British divers,",
+      "exact_native_cache_key": "8d2574f745595f0fbf4d5d71db727922a10536b1.pkl",
+      "cache_input_text_sha256": "5cc063977ec7ee0b3a2f985370d4b9897fff2bacce6d237b371b03d1333ec31f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "threading through submerged passages,",
+      "exact_native_cache_key": "1a8af7bce1fa16c441e6af9a9ce97ced05e1f075.pkl",
+      "cache_input_text_sha256": "c313e52bf5a1df3366bf17b11555cc32ef1cddb4b17629066eaeadfe440fa3eb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "reached an inundated chamber about 4 km from the entrance.",
+      "exact_native_cache_key": "706ab4d163871cc4bc8600e0c6948a097889e619.pkl",
+      "cache_input_text_sha256": "7e1029374ce4014e044bc2e7e3584a297c14539a6d95a147ebf44d6c0fdb122d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 2 July two elite British divers,",
+      "exact_native_cache_key": "8d2574f745595f0fbf4d5d71db727922a10536b1.pkl",
+      "cache_input_text_sha256": "5cc063977ec7ee0b3a2f985370d4b9897fff2bacce6d237b371b03d1333ec31f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "threading through submerged passages,",
+      "exact_native_cache_key": "1a8af7bce1fa16c441e6af9a9ce97ced05e1f075.pkl",
+      "cache_input_text_sha256": "c313e52bf5a1df3366bf17b11555cc32ef1cddb4b17629066eaeadfe440fa3eb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "reached an inundated chamber about 4 km from the entrance.",
+      "exact_native_cache_key": "706ab4d163871cc4bc8600e0c6948a097889e619.pkl",
+      "cache_input_text_sha256": "7e1029374ce4014e044bc2e7e3584a297c14539a6d95a147ebf44d6c0fdb122d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "All 13 were there, huddled on a muddy mound and perched just above the water, every one of them alive.",
+      "exact_native_cache_key": "eafe7d9264837b8c976ab638829ce8dd722d25d9.pkl",
+      "cache_input_text_sha256": "01f6723466804f2e1e5a3f947a4fbef4cbae367b0283ad4ef40445210fd4d294",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "All 13 were there, huddled on a muddy mound and perched just above the water, every one of them alive.",
+      "exact_native_cache_key": "b734945b8f5749f35e5ffbb4e0967ea943d482b6.pkl",
+      "cache_input_text_sha256": "01f6723466804f2e1e5a3f947a4fbef4cbae367b0283ad4ef40445210fd4d294",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "All 13 were there,",
+      "exact_native_cache_key": "48e2cc78ef37d5384d6b6a510fa3b72a6fcfe201.pkl",
+      "cache_input_text_sha256": "fe3ff5f6ca8c35fecd0cf0224fe905e2fd38df5a9fba9d4bf24276c7d6c0edc1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "huddled on a muddy mound",
+      "exact_native_cache_key": "453275ee1c2d62a0616e73fd9dd1a4412a17ba8d.pkl",
+      "cache_input_text_sha256": "2d1bb7a6d505bbd69f6a62d855788443e527a2349485fb2c148d124ca9b4250d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and perched just above the water,",
+      "exact_native_cache_key": "8f35dc512c48411c8ad28dbd8aec7036b3a2bea7.pkl",
+      "cache_input_text_sha256": "568425ea1f69ceda2b48256bc283fd95806d8431b30d836b0f5bcdffe1a2ba32",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 4,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "every one of them alive.",
+      "exact_native_cache_key": "4fe10f11007c655c7a6a6c112844d5a71774a3a4.pkl",
+      "cache_input_text_sha256": "daf00407c1c859433ccc021a03e0c23721d48d823ebdae456b25b0bea021bf85",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "All 13 were there,",
+      "exact_native_cache_key": "48e2cc78ef37d5384d6b6a510fa3b72a6fcfe201.pkl",
+      "cache_input_text_sha256": "fe3ff5f6ca8c35fecd0cf0224fe905e2fd38df5a9fba9d4bf24276c7d6c0edc1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "huddled on a muddy mound and perched just above the water,",
+      "exact_native_cache_key": "c94fc18c6448301655233d54c971ed7e43f82e94.pkl",
+      "cache_input_text_sha256": "4ace1ca0408abfbe3d94837f9baf2156da5762fad86a2d6def1ed1b8ff49acf8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "every one of them alive.",
+      "exact_native_cache_key": "4fe10f11007c655c7a6a6c112844d5a71774a3a4.pkl",
+      "cache_input_text_sha256": "daf00407c1c859433ccc021a03e0c23721d48d823ebdae456b25b0bea021bf85",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The only exit ran through kilometres of constricted, treacherous passages, many of them navigable only with scuba gear.",
+      "exact_native_cache_key": "d2a7ebc26ce8de35e85066104cd9518b472136dc.pkl",
+      "cache_input_text_sha256": "b33987a04c9f9087837600506d1f4707daccc922c52de22a787c2eb88fc7ddbe",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The only exit ran through kilometres of constricted, treacherous passages, many of them navigable only with scuba gear.",
+      "exact_native_cache_key": "f14c850b587e597eb7bea444caeb95a9781a3aeb.pkl",
+      "cache_input_text_sha256": "b33987a04c9f9087837600506d1f4707daccc922c52de22a787c2eb88fc7ddbe",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The only exit ran through kilometres of constricted, treacherous passages,",
+      "exact_native_cache_key": "1574b3127888f026d68bf432df9c300b00f742c6.pkl",
+      "cache_input_text_sha256": "b36a9919eaa193a256a28bd61abaf8d8770e56ad1d05f8cac5738dbe55c10e5c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "many of them navigable only with scuba gear.",
+      "exact_native_cache_key": "7cddcdb411596cecb3034644a1b38de7a2d4e714.pkl",
+      "cache_input_text_sha256": "fb567618a7b787e87ecdd2343f4c046a7200a3dfa68d2f08b88b03c4ca3796da",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The only exit ran through kilometres of constricted,",
+      "exact_native_cache_key": "6858b59093397f976085637f10e5b83703cf98a1.pkl",
+      "cache_input_text_sha256": "5669dcdb668426942b51edbdf73853b2282dab74e494244476c17cded19d13ef",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "treacherous passages,",
+      "exact_native_cache_key": "1f09d4f338c2054f1e71543a9ad8df414813c98c.pkl",
+      "cache_input_text_sha256": "1795345b914041863b6d1fb16aaad5641abafa23840c5dbcb982464c55f8a87f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "many of them navigable only with scuba gear.",
+      "exact_native_cache_key": "7cddcdb411596cecb3034644a1b38de7a2d4e714.pkl",
+      "cache_input_text_sha256": "fb567618a7b787e87ecdd2343f4c046a7200a3dfa68d2f08b88b03c4ca3796da",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Rescuers began stockpiling oxygen cylinders along the route.",
+      "exact_native_cache_key": "f67e464db0a72fda4620cc40ecf0cc67682cd567.pkl",
+      "cache_input_text_sha256": "e58f448640bc618ea40a55c1f2972ef7646d3bd3e3145ceb5a0ef9e3b7abab9d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Rescuers began stockpiling oxygen cylinders along the route.",
+      "exact_native_cache_key": "17dd45c2977410fdbe6c56fa22cf56b87b495c44.pkl",
+      "cache_input_text_sha256": "e58f448640bc618ea40a55c1f2972ef7646d3bd3e3145ceb5a0ef9e3b7abab9d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 6 July Saman Kunan, a former Thai Navy SEAL, fell unconscious while laying them and died.",
+      "exact_native_cache_key": "e2f25fead088022157efe169514def3ef3e0ca9f.pkl",
+      "cache_input_text_sha256": "1026193fb420042e9b735ca1bd7f20f1a5a15a864924eaa9ef580cdd55591151",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 6 July Saman Kunan, a former Thai Navy SEAL, fell unconscious while laying them and died.",
+      "exact_native_cache_key": "dbe74f8bc5699bb29ab6c1d4bb612fde91d8c08f.pkl",
+      "cache_input_text_sha256": "1026193fb420042e9b735ca1bd7f20f1a5a15a864924eaa9ef580cdd55591151",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 6 July Saman Kunan, a former Thai Navy SEAL,",
+      "exact_native_cache_key": "aed615cc0d6b8a4c65522b36776ee33df4fc13c6.pkl",
+      "cache_input_text_sha256": "924b87e27ecdfd9c4ad1eb2407de40dd9a1a09b48d369d2c7d62dc9336d117f9",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "fell unconscious while laying them and died.",
+      "exact_native_cache_key": "cf55b021938310cc906f0daa76e898a9cf18a931.pkl",
+      "cache_input_text_sha256": "57910ff64a2d25be54085a96c99850860646e73c3199ceb26c59ca63952ebf9b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "On 6 July Saman Kunan,",
+      "exact_native_cache_key": "d3344bdd4d1074b6de9f469d1e7ef173f8e2cd4d.pkl",
+      "cache_input_text_sha256": "66532767713839ca206253882f0403a99795b2f0d02716763f95358016f30b94",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a former Thai Navy SEAL,",
+      "exact_native_cache_key": "eea7aad3f46d589c3363041419283c5c84015087.pkl",
+      "cache_input_text_sha256": "081c51a15a3314ba1c92b313d2820cbe799a1a558215423bba6849fa6ab13110",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "fell unconscious while laying them and died.",
+      "exact_native_cache_key": "cf55b021938310cc906f0daa76e898a9cf18a931.pkl",
+      "cache_input_text_sha256": "57910ff64a2d25be54085a96c99850860646e73c3199ceb26c59ca63952ebf9b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The evacuation began on 8 July, and the boys came out in batches.",
+      "exact_native_cache_key": "7e6e4cb6c514b78c6b6527c07ae8b86c39017fec.pkl",
+      "cache_input_text_sha256": "2ba3d4fc2166dee53402d97dc7521aa934dd9e48cbacbc9867a4c3d097b59d7a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The evacuation began on 8 July, and the boys came out in batches.",
+      "exact_native_cache_key": "f48ce9285644af709e404475b0cba8fbab27c98d.pkl",
+      "cache_input_text_sha256": "2ba3d4fc2166dee53402d97dc7521aa934dd9e48cbacbc9867a4c3d097b59d7a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The evacuation began on 8 July,",
+      "exact_native_cache_key": "4340d4e29c7ad85e4fa845b17d2da27937448d74.pkl",
+      "cache_input_text_sha256": "3ba55c18fceb4f632053a455e0d59eec8713a33d6946e502c90fd8503fa314a0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and the boys came out in batches.",
+      "exact_native_cache_key": "a6b4ad9a658dc38904e8fc0bbf5a2298312ed5a3.pkl",
+      "cache_input_text_sha256": "04ddba399137825dd6512fee85b5f6a204bdfc70289ad7d701248dc72ef7a025",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The evacuation began on 8 July,",
+      "exact_native_cache_key": "4340d4e29c7ad85e4fa845b17d2da27937448d74.pkl",
+      "cache_input_text_sha256": "3ba55c18fceb4f632053a455e0d59eec8713a33d6946e502c90fd8503fa314a0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and the boys came out in batches.",
+      "exact_native_cache_key": "a6b4ad9a658dc38904e8fc0bbf5a2298312ed5a3.pkl",
+      "cache_input_text_sha256": "04ddba399137825dd6512fee85b5f6a204bdfc70289ad7d701248dc72ef7a025",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Each was given doses of sedative, wrapped motionless in a stretcher, and passed from diver to diver, with medics stationed along the route.",
+      "exact_native_cache_key": "81e1c9d82e65bc8ec8a41fe19ceded6125ca2fda.pkl",
+      "cache_input_text_sha256": "3f1b95b456a9889c774317d979714f2069a7e1fed4925fce192e4e34d72deacd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Each was given doses of sedative, wrapped motionless in a stretcher, and passed from diver to diver, with medics stationed along the route.",
+      "exact_native_cache_key": "c94210065bb4ee4efdc6a1dfe9a82c9f6993fd6a.pkl",
+      "cache_input_text_sha256": "3f1b95b456a9889c774317d979714f2069a7e1fed4925fce192e4e34d72deacd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Each was given doses of sedative,",
+      "exact_native_cache_key": "eca9e06980d11f389c623a42241339182839b1bb.pkl",
+      "cache_input_text_sha256": "bddc0b613069a3a86330692bcafdd35da8df83ee466cb24112de0722713aaedf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "wrapped motionless in a stretcher,",
+      "exact_native_cache_key": "d5602e13d7f094245b1c633b9d0ebf5c7f1959ab.pkl",
+      "cache_input_text_sha256": "c57411027523efb567af8086ec73246965478da1130bcbb477200c9602924f27",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and passed from diver to diver,",
+      "exact_native_cache_key": "2439b267e9372a843efe53cd483266e566eb0bed.pkl",
+      "cache_input_text_sha256": "10925d9fa4bdc55e7a868569109caf4b9060806d90362ac0070c79a669f90d98",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 4,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "with medics stationed along the route.",
+      "exact_native_cache_key": "d644ca3cc79021f6db81a35549a31dca3fc98d06.pkl",
+      "cache_input_text_sha256": "1d8c2c6ad7a96139eebbfa6167cf97960b00ef2c46ef767361339f1663caf609",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Each was given doses of sedative,",
+      "exact_native_cache_key": "eca9e06980d11f389c623a42241339182839b1bb.pkl",
+      "cache_input_text_sha256": "bddc0b613069a3a86330692bcafdd35da8df83ee466cb24112de0722713aaedf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "wrapped motionless in a stretcher,",
+      "exact_native_cache_key": "d5602e13d7f094245b1c633b9d0ebf5c7f1959ab.pkl",
+      "cache_input_text_sha256": "c57411027523efb567af8086ec73246965478da1130bcbb477200c9602924f27",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and passed from diver to diver,",
+      "exact_native_cache_key": "2439b267e9372a843efe53cd483266e566eb0bed.pkl",
+      "cache_input_text_sha256": "10925d9fa4bdc55e7a868569109caf4b9060806d90362ac0070c79a669f90d98",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "with medics stationed along the route.",
+      "exact_native_cache_key": "d644ca3cc79021f6db81a35549a31dca3fc98d06.pkl",
+      "cache_input_text_sha256": "1d8c2c6ad7a96139eebbfa6167cf97960b00ef2c46ef767361339f1663caf609",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "On 10 July the last four footballers and their coach were escorted out after their teammates.",
+      "exact_native_cache_key": "55affad495615fe7aa137805473b143847f21fed.pkl",
+      "cache_input_text_sha256": "f7cdd52072042f1e7238d90175899bbccd5d67caabc3f82268a7ec67e36d282f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "On 10 July the last four footballers and their coach were escorted out after their teammates.",
+      "exact_native_cache_key": "848241d15c6ef6e2dcdeaa1239982cabb36299f6.pkl",
+      "cache_input_text_sha256": "f7cdd52072042f1e7238d90175899bbccd5d67caabc3f82268a7ec67e36d282f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "On 10 July the last four footballers and their coach",
+      "exact_native_cache_key": "51c1da5d0a9abca5b40d4aaa3b00268ce87342ae.pkl",
+      "cache_input_text_sha256": "e8e0649c304fe236fe716435caddc2b745a43c53d01266f689235700a1897eb1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "were escorted out after their teammates.",
+      "exact_native_cache_key": "872d2ef566e5e2a2473603ad49d87b3d52c32b43.pkl",
+      "cache_input_text_sha256": "ac8de2d9f746e09d025796938018b661073b70cbc611f108a66c82082457bf84",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The multinational mobilisation was a feat of logistics.",
+      "exact_native_cache_key": "63b5310a6835ae5f187779a5ed51ff5f029abfbe.pkl",
+      "cache_input_text_sha256": "949b3d43651279b6ca9c13dee6e2b556de92d9d3d1eb0a270e133c91f3084bb2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The multinational mobilisation was a feat of logistics.",
+      "exact_native_cache_key": "88373be3f7e2dcab453164154038b3a2e38f9371.pkl",
+      "cache_input_text_sha256": "949b3d43651279b6ca9c13dee6e2b556de92d9d3d1eb0a270e133c91f3084bb2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Some 10,000 people converged on the site, including a contingent of more than 100 divers, plus 2,000 soldiers and 900 policemen, with teams deployed from abroad.",
+      "exact_native_cache_key": "78a4bb6b2c66a78cc8ae144b17facee618fb84ec.pkl",
+      "cache_input_text_sha256": "173e2d095f04733c0d9773b0a8a24319c597b0b906c2887acc21e31e5ba90fba",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Some 10,000 people converged on the site, including a contingent of more than 100 divers, plus 2,000 soldiers and 900 policemen, with teams deployed from abroad.",
+      "exact_native_cache_key": "482f741873233a58ca2d09949c33912d648e8364.pkl",
+      "cache_input_text_sha256": "173e2d095f04733c0d9773b0a8a24319c597b0b906c2887acc21e31e5ba90fba",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Some 10,000 people converged on the site,",
+      "exact_native_cache_key": "412d4aaa42194b6a9a9bee28c1afa18357fb28f0.pkl",
+      "cache_input_text_sha256": "d6604342170942879249b7eb3c2a45e9180a1298937cc64f09178149e27982f9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "including a contingent of more than 100 divers,",
+      "exact_native_cache_key": "9112685e474afcc7e8c95d19333eaa29731cfea7.pkl",
+      "cache_input_text_sha256": "d9de9f88c4fe0ee1f72fa308ef5835b2579af1cd79d2551c9ae0f29cbeb0cb33",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "plus 2,000 soldiers and 900 policemen,",
+      "exact_native_cache_key": "d8ae182172aa5b00febaa72dfeb82369f3f45e71.pkl",
+      "cache_input_text_sha256": "e1275c0a1524423951a627dce1af923b114cb181f6aeed8a0f81983f814cc53f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 4,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "with teams deployed from abroad.",
+      "exact_native_cache_key": "a41fc42b38549805e1d1d6d9102959f990f0e017.pkl",
+      "cache_input_text_sha256": "279f5112fc277c9ea8693b97eac53396e2dcc7bc30aeb4533659273290bfe8e9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Some 10,000 people converged on the site,",
+      "exact_native_cache_key": "412d4aaa42194b6a9a9bee28c1afa18357fb28f0.pkl",
+      "cache_input_text_sha256": "d6604342170942879249b7eb3c2a45e9180a1298937cc64f09178149e27982f9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "including a contingent of more than 100 divers,",
+      "exact_native_cache_key": "9112685e474afcc7e8c95d19333eaa29731cfea7.pkl",
+      "cache_input_text_sha256": "d9de9f88c4fe0ee1f72fa308ef5835b2579af1cd79d2551c9ae0f29cbeb0cb33",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "plus 2,000 soldiers and 900 policemen,",
+      "exact_native_cache_key": "d8ae182172aa5b00febaa72dfeb82369f3f45e71.pkl",
+      "cache_input_text_sha256": "e1275c0a1524423951a627dce1af923b114cb181f6aeed8a0f81983f814cc53f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "with teams deployed from abroad.",
+      "exact_native_cache_key": "a41fc42b38549805e1d1d6d9102959f990f0e017.pkl",
+      "cache_input_text_sha256": "279f5112fc277c9ea8693b97eac53396e2dcc7bc30aeb4533659273290bfe8e9",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The rescue had a sobering postscript: in December 2019 another Navy SEAL died of a blood infection caught during the operation.",
+      "exact_native_cache_key": "076b775c3dbf09837d00044deaad6aac02184502.pkl",
+      "cache_input_text_sha256": "71a816ebed9694b0257fc026df608e1ffd0663dc1654c2877fa8099400ef71d6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The rescue had a sobering postscript: in December 2019 another Navy SEAL died of a blood infection caught during the operation.",
+      "exact_native_cache_key": "11902a8c514f17289cd9634642560feaf0e154f9.pkl",
+      "cache_input_text_sha256": "71a816ebed9694b0257fc026df608e1ffd0663dc1654c2877fa8099400ef71d6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The rescue had a sobering postscript:",
+      "exact_native_cache_key": "78cc841c37ca6932f1b311ff17a86b45867851c1.pkl",
+      "cache_input_text_sha256": "190922a87c13b113248f8049efcf4922fbf34e5a0e7403bc85569c4aff002f5b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "in December 2019 another Navy SEAL died of a blood infection caught during the operation.",
+      "exact_native_cache_key": "4a8bd310bf17c14873513699d7b9e895257a86b2.pkl",
+      "cache_input_text_sha256": "25768b905e5e25316cc2e3a8607a188e998f1a878b857879c71fb672b971e11a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The rescue had a sobering postscript:",
+      "exact_native_cache_key": "78cc841c37ca6932f1b311ff17a86b45867851c1.pkl",
+      "cache_input_text_sha256": "190922a87c13b113248f8049efcf4922fbf34e5a0e7403bc85569c4aff002f5b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "in December 2019 another Navy SEAL died of a blood infection caught during the operation.",
+      "exact_native_cache_key": "4a8bd310bf17c14873513699d7b9e895257a86b2.pkl",
+      "cache_input_text_sha256": "25768b905e5e25316cc2e3a8607a188e998f1a878b857879c71fb672b971e11a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Every boy came home alive, and two rescuers were mourned.",
+      "exact_native_cache_key": "6e4c415eb2d5c3e1789ad79975c27bc4caf791f0.pkl",
+      "cache_input_text_sha256": "bdd33cdba2869dadd9a296978306cd157b07eff737e6f40c54bee760d0cc2f48",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Every boy came home alive, and two rescuers were mourned.",
+      "exact_native_cache_key": "202e029e64cb98eccfa1bc43eff032fd68be8663.pkl",
+      "cache_input_text_sha256": "bdd33cdba2869dadd9a296978306cd157b07eff737e6f40c54bee760d0cc2f48",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Every boy came home alive,",
+      "exact_native_cache_key": "a043db54c739605cdf2c25b39588f842d9ffb1b1.pkl",
+      "cache_input_text_sha256": "63ce12c88210e13169f597a1a397d03af2dcbb4fe7ffe50db9bfb68fef7214fc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and two rescuers were mourned.",
+      "exact_native_cache_key": "e9d3ab5db67db70edef59ace5aa8c1cd4555b0ec.pkl",
+      "cache_input_text_sha256": "957212d7e6f6d8326b4f3e8458a93c30eba8994c7f192683b698c33a6f984267",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Every boy came home alive,",
+      "exact_native_cache_key": "a043db54c739605cdf2c25b39588f842d9ffb1b1.pkl",
+      "cache_input_text_sha256": "63ce12c88210e13169f597a1a397d03af2dcbb4fe7ffe50db9bfb68fef7214fc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and two rescuers were mourned.",
+      "exact_native_cache_key": "e9d3ab5db67db70edef59ace5aa8c1cd4555b0ec.pkl",
+      "cache_input_text_sha256": "957212d7e6f6d8326b4f3e8458a93c30eba8994c7f192683b698c33a6f984267",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    }
+  ],
+  "unique_reference_key_count": 75,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "c97ce2d1717d5be4bb6564256e0fdca3b3a155a5.pkl",
+      "pkl_sha256": "17e2a5ea0961cb7541c0ae869d3135f740f1eb816fd5c4184fbdd71c16cfdb2a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "Thirteen in the Cave",
+          "exact_native_cache_key": "c97ce2d1717d5be4bb6564256e0fdca3b3a155a5.pkl",
+          "cache_input_text_sha256": "f30df3fe086ee1b4d7f842057f20652970b8f368bc4c68ff12943fe869d056fd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "17e2a5ea0961cb75",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        31744
+      ],
+      "unprocessed_array_sha256": "fb61d4a36a75cdc829731f3f0413ff5ef544f98dbb4fab5c91d6ac4ae0f86716"
+    },
+    {
+      "exact_native_cache_key": "d9def0483be9c166675e5c72235fac30b721a7c1.pkl",
+      "pkl_sha256": "4e24499a8ea8eaa07e194748038c827bc008086212d047fd6e9d36d42745b676",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 23 June 2018, twelve boys aged 11 to 16 from a junior football squad went on an outing with their 25-year-old assistant coach.",
+          "exact_native_cache_key": "d9def0483be9c166675e5c72235fac30b721a7c1.pkl",
+          "cache_input_text_sha256": "a009ec0b5770f424dd0ad70b12d798fa2e67f2458242a46bf46ef1c789bb8f98",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "4e24499a8ea8eaa0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        284160
+      ],
+      "unprocessed_array_sha256": "b1dc5d587d4c604aa4b088221d71c6d9388b12e0110cdf75b91f61d4afcb90ea"
+    },
+    {
+      "exact_native_cache_key": "9bcd3916be7a188be4367f8ac913c5e02bb96f9e.pkl",
+      "pkl_sha256": "de5e7b4dcf1e0df5b324f1763486ae396a7df47671d05d0ca5d4eee4dcad09b0",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 23 June 2018, twelve boys aged 11 to 16 from a junior football squad",
+          "exact_native_cache_key": "9bcd3916be7a188be4367f8ac913c5e02bb96f9e.pkl",
+          "cache_input_text_sha256": "90cc3e118f531d6b4d3670fa9ec950f845fb06270b87f802098aa3fc7b0d0651",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "de5e7b4dcf1e0df5",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        178688
+      ],
+      "unprocessed_array_sha256": "957abd4d983fb97667a929ee134fc5b1d18b9256adefa26c12791d66c8567be5"
+    },
+    {
+      "exact_native_cache_key": "aa382b646ae6e67f0ce0535fcf51b8883e418f1a.pkl",
+      "pkl_sha256": "8409046663b5fa0efeb29bc3a6a87c9e4d93a481732b01f29d066c9a7969778c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "went on an outing with their 25-year-old assistant coach.",
+          "exact_native_cache_key": "aa382b646ae6e67f0ce0535fcf51b8883e418f1a.pkl",
+          "cache_input_text_sha256": "90017beeee51028e09f926aa359243452b5dde44b2ce79f47460869906eeff20",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8409046663b5fa0e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        88576
+      ],
+      "unprocessed_array_sha256": "f645f359fd0699a75ff45195d3d533e0bf36c5825d1bdeb381ffa0cc70a59c1e"
+    },
+    {
+      "exact_native_cache_key": "3ecdd5741aff6c3f9992f65ba2d6b84992f0d4e0.pkl",
+      "pkl_sha256": "a4e699bb39822aafa4e30a36992b21979e0998293bf3c00e7bea0aa2b12521d0",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 23 June 2018,",
+          "exact_native_cache_key": "3ecdd5741aff6c3f9992f65ba2d6b84992f0d4e0.pkl",
+          "cache_input_text_sha256": "b9614f99f45f6f6ccb0fef2895c159a9eb99c89ca96ef452a2e706335266f469",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a4e699bb39822aaf",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        63488
+      ],
+      "unprocessed_array_sha256": "b8419addfce934fc0b909fd3b0c48f67e3d34c888285e131e7de572100a04168"
+    },
+    {
+      "exact_native_cache_key": "220fc9a8cff35692420fe8ddaa94106343176cf9.pkl",
+      "pkl_sha256": "122af108b077eb72c2fb7e74d3c9acbcee29a09d2e6373aefb7ab90eb7e71d59",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "twelve boys aged 11 to 16 from a junior football squad went on an outing with their 25-year-old assistant coach.",
+          "exact_native_cache_key": "220fc9a8cff35692420fe8ddaa94106343176cf9.pkl",
+          "cache_input_text_sha256": "b6732167faf59946ca1fadbdbca685488ba69407687d18107a1a5805f712eb77",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "122af108b077eb72",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        209408
+      ],
+      "unprocessed_array_sha256": "34bf10dfd082de6e759491f6d92fdffb17506dd7b07aca6e962cb8b3abb2d635"
+    },
+    {
+      "exact_native_cache_key": "d424c54d8d311997057548570982fbde18a146a2.pkl",
+      "pkl_sha256": "1aa5ffccf414c853f5eb913310bc23bb4c5d3ecabb4f3007fdb78c2506c345b8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "They entered Tham Luang, a sprawling maze of tunnels in northern Thailand, to penetrate its gloom.",
+          "exact_native_cache_key": "d424c54d8d311997057548570982fbde18a146a2.pkl",
+          "cache_input_text_sha256": "49527bf84ef225f484bb4e3c3be7493cc01fa48c80546dbff965ea726617d57d",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1aa5ffccf414c853",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        163328
+      ],
+      "unprocessed_array_sha256": "1bc2975561c215cd3aef18667248f3ac422fede8ccf456f26673170d42e1ed9f"
+    },
+    {
+      "exact_native_cache_key": "aaec20be98f5b6e9b2570f69e5d5a57d2932e348.pkl",
+      "pkl_sha256": "b090ea95932e6957f299ff2a37f7aaab0eb19f3c1fbf62d05e514a6b0685a32c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "They entered Tham Luang,",
+          "exact_native_cache_key": "aaec20be98f5b6e9b2570f69e5d5a57d2932e348.pkl",
+          "cache_input_text_sha256": "006d70d1eac9dd0475bbbc4cc61417f9bc1c060ad5df0b80ff901152ed094005",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "They entered Tham Luang,",
+          "exact_native_cache_key": "aaec20be98f5b6e9b2570f69e5d5a57d2932e348.pkl",
+          "cache_input_text_sha256": "006d70d1eac9dd0475bbbc4cc61417f9bc1c060ad5df0b80ff901152ed094005",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b090ea95932e6957",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35328
+      ],
+      "unprocessed_array_sha256": "94078264c761ebb7df174dfb6785c97cedaaf981ccc8644ca4996b7a6c3f65ca"
+    },
+    {
+      "exact_native_cache_key": "8d2a1d16a953da52d81e4cccb72528f2e7f1dc3d.pkl",
+      "pkl_sha256": "082696be4578732930e31a1439940c953a0c9d2daaceff5f1d9c9f1a3be85903",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a sprawling maze of tunnels in northern Thailand,",
+          "exact_native_cache_key": "8d2a1d16a953da52d81e4cccb72528f2e7f1dc3d.pkl",
+          "cache_input_text_sha256": "8501a1c005436c1eba2addd293140583f9a91af31f143552634c3931948fb5e7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a sprawling maze of tunnels in northern Thailand,",
+          "exact_native_cache_key": "8d2a1d16a953da52d81e4cccb72528f2e7f1dc3d.pkl",
+          "cache_input_text_sha256": "8501a1c005436c1eba2addd293140583f9a91af31f143552634c3931948fb5e7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "082696be45787329",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        68096
+      ],
+      "unprocessed_array_sha256": "4a92ffd59296f83768fe215637c21576b38d7c07135779f137eec0f4d8b2ef64"
+    },
+    {
+      "exact_native_cache_key": "9f82160f029da6cfa08fa9d1bdd87e634da67df2.pkl",
+      "pkl_sha256": "7c3e30077573c3c0d7a41ab0cf17b8a4949f76b107fa22e8b767e6420ab77f8c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "to penetrate its gloom.",
+          "exact_native_cache_key": "9f82160f029da6cfa08fa9d1bdd87e634da67df2.pkl",
+          "cache_input_text_sha256": "195651662e2dfae743a3479ca7b284053597d68bf6c35353a2cb4f9899886c13",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "to penetrate its gloom.",
+          "exact_native_cache_key": "9f82160f029da6cfa08fa9d1bdd87e634da67df2.pkl",
+          "cache_input_text_sha256": "195651662e2dfae743a3479ca7b284053597d68bf6c35353a2cb4f9899886c13",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7c3e30077573c3c0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35840
+      ],
+      "unprocessed_array_sha256": "80f0b9d602c72d559e527d5e49a4e5f08e4fec0838e4475f646e544cf285aeab"
+    },
+    {
+      "exact_native_cache_key": "b9fdb92f17e7471410afaddd9be8d217342d9e53.pkl",
+      "pkl_sha256": "6fcbf042599987457738f17599ece714a1cea5c0beb31bf4cd4f0d96009ef778",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Monsoon rain then flooded the passages, and the rising water trapped all of them.",
+          "exact_native_cache_key": "b9fdb92f17e7471410afaddd9be8d217342d9e53.pkl",
+          "cache_input_text_sha256": "1e155436ae11db4d1e7ad7dad6892bea113d9c31601fdf7ec13832553a6110a0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6fcbf04259998745",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        129536
+      ],
+      "unprocessed_array_sha256": "bdf3ea075d60c45f6587050c88b080bbe618b9c7f2cda6d3df6ee8e5479bf4e5"
+    },
+    {
+      "exact_native_cache_key": "c3dd3a6f1b7d42dbbc1a8cf813d12716b5decb6a.pkl",
+      "pkl_sha256": "33baceb86663c1af486f84c1dec102b946f2277c4bf786b740e02568eafeaab6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Monsoon rain then flooded the passages,",
+          "exact_native_cache_key": "c3dd3a6f1b7d42dbbc1a8cf813d12716b5decb6a.pkl",
+          "cache_input_text_sha256": "6396d304cee4ac5b46ad1d74592444af19ed410ec93cd6a87431dbf1d51f8b82",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Monsoon rain then flooded the passages,",
+          "exact_native_cache_key": "c3dd3a6f1b7d42dbbc1a8cf813d12716b5decb6a.pkl",
+          "cache_input_text_sha256": "6396d304cee4ac5b46ad1d74592444af19ed410ec93cd6a87431dbf1d51f8b82",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "33baceb86663c1af",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        60416
+      ],
+      "unprocessed_array_sha256": "c11f1469ad97bdb7234809582d9a8d20c22e9366e49df6d53972445ca8445c9f"
+    },
+    {
+      "exact_native_cache_key": "bc320955d707ec8e1485237203a8a249fceb8c54.pkl",
+      "pkl_sha256": "4ba700d05cad0663199d19147e3fc745421323dc8a732e614448162623ca91b9",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and the rising water trapped all of them.",
+          "exact_native_cache_key": "bc320955d707ec8e1485237203a8a249fceb8c54.pkl",
+          "cache_input_text_sha256": "7ad8970ee3324f96cd192ab4781eef4bb97cfb1cff4e363b15b7ac8b9c4336a9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S3",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and the rising water trapped all of them.",
+          "exact_native_cache_key": "bc320955d707ec8e1485237203a8a249fceb8c54.pkl",
+          "cache_input_text_sha256": "7ad8970ee3324f96cd192ab4781eef4bb97cfb1cff4e363b15b7ac8b9c4336a9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "4ba700d05cad0663",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        54784
+      ],
+      "unprocessed_array_sha256": "015d3b756e8c625260ec5a89fb55d473fb603ac10b3f3606bfd1da513bf6428d"
+    },
+    {
+      "exact_native_cache_key": "035856e97b7a436fc07076667d70a46cf23511fa.pkl",
+      "pkl_sha256": "b51c361b4d63c5677fa83f771f4b5e05c4ab3ea72e0d4026b59a187413783a24",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "For nine days their whereabouts were unknown.",
+          "exact_native_cache_key": "035856e97b7a436fc07076667d70a46cf23511fa.pkl",
+          "cache_input_text_sha256": "de2f93ec45fb205397d0efdcb435ae935aacdce417c7dd36a115b466fb829a51",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b51c361b4d63c567",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        64512
+      ],
+      "unprocessed_array_sha256": "747545bf68587b389c2514d4940cd8123dd0b8d3eac0f1bf7deaded00616bcf2"
+    },
+    {
+      "exact_native_cache_key": "15ccb86cb8f1bd2343f49f61f8cc0d707aa8732c.pkl",
+      "pkl_sha256": "cc8df76956b77e389f0b8d97f111520bd19ceafa78915b36702ce984aa261d00",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 2 July two elite British divers, threading through submerged passages, reached an inundated chamber about 4 km from the entrance.",
+          "exact_native_cache_key": "15ccb86cb8f1bd2343f49f61f8cc0d707aa8732c.pkl",
+          "cache_input_text_sha256": "849fa3974450755fcc41b35fbab5893038a1d4d8c3dab0d7d5c3a9537732a5a6",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "cc8df76956b77e38",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        261632
+      ],
+      "unprocessed_array_sha256": "a0612b49312fc783586f3fba8e0d379b9cec8f8a6a50caaa311746e72d0bb322"
+    },
+    {
+      "exact_native_cache_key": "8d2574f745595f0fbf4d5d71db727922a10536b1.pkl",
+      "pkl_sha256": "a218b631391f9b75312e008bb1e63bfa84b5e0fa1156f9b92507db7e8cf2c6c2",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 2 July two elite British divers,",
+          "exact_native_cache_key": "8d2574f745595f0fbf4d5d71db727922a10536b1.pkl",
+          "cache_input_text_sha256": "5cc063977ec7ee0b3a2f985370d4b9897fff2bacce6d237b371b03d1333ec31f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 2 July two elite British divers,",
+          "exact_native_cache_key": "8d2574f745595f0fbf4d5d71db727922a10536b1.pkl",
+          "cache_input_text_sha256": "5cc063977ec7ee0b3a2f985370d4b9897fff2bacce6d237b371b03d1333ec31f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a218b631391f9b75",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        76800
+      ],
+      "unprocessed_array_sha256": "e2d82901b6e78f50b71a2c27b610f8bca2b6c4f114f7dfa5bbdb6e16f50d0ae7"
+    },
+    {
+      "exact_native_cache_key": "1a8af7bce1fa16c441e6af9a9ce97ced05e1f075.pkl",
+      "pkl_sha256": "dcdb4a2f925fdb63ba30a77d79f6a1d5a48ca389a399e73c1b9ec739a6ab366a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "threading through submerged passages,",
+          "exact_native_cache_key": "1a8af7bce1fa16c441e6af9a9ce97ced05e1f075.pkl",
+          "cache_input_text_sha256": "c313e52bf5a1df3366bf17b11555cc32ef1cddb4b17629066eaeadfe440fa3eb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "threading through submerged passages,",
+          "exact_native_cache_key": "1a8af7bce1fa16c441e6af9a9ce97ced05e1f075.pkl",
+          "cache_input_text_sha256": "c313e52bf5a1df3366bf17b11555cc32ef1cddb4b17629066eaeadfe440fa3eb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "dcdb4a2f925fdb63",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        51200
+      ],
+      "unprocessed_array_sha256": "9755f4c4300438c1a3719eaa1947d57743992acfe9bb74f6ae268c12685a91f4"
+    },
+    {
+      "exact_native_cache_key": "706ab4d163871cc4bc8600e0c6948a097889e619.pkl",
+      "pkl_sha256": "93bce78919b35b02f3265590390dede248d703441e43750254571400875a83e5",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "reached an inundated chamber about 4 km from the entrance.",
+          "exact_native_cache_key": "706ab4d163871cc4bc8600e0c6948a097889e619.pkl",
+          "cache_input_text_sha256": "7e1029374ce4014e044bc2e7e3584a297c14539a6d95a147ebf44d6c0fdb122d",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "reached an inundated chamber about 4 km from the entrance.",
+          "exact_native_cache_key": "706ab4d163871cc4bc8600e0c6948a097889e619.pkl",
+          "cache_input_text_sha256": "7e1029374ce4014e044bc2e7e3584a297c14539a6d95a147ebf44d6c0fdb122d",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "93bce78919b35b02",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        105472
+      ],
+      "unprocessed_array_sha256": "94ca73a6e241db2effba5182ff1ac0402e8f746226cc30f330c7b1867cf8f28e"
+    },
+    {
+      "exact_native_cache_key": "eafe7d9264837b8c976ab638829ce8dd722d25d9.pkl",
+      "pkl_sha256": "357691bc8c5f2bba44ce0147b23129dd3614e9076e06984fa37ebd92e358cd8d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "All 13 were there, huddled on a muddy mound and perched just above the water, every one of them alive.",
+          "exact_native_cache_key": "eafe7d9264837b8c976ab638829ce8dd722d25d9.pkl",
+          "cache_input_text_sha256": "01f6723466804f2e1e5a3f947a4fbef4cbae367b0283ad4ef40445210fd4d294",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "357691bc8c5f2bba",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        163840
+      ],
+      "unprocessed_array_sha256": "d54323950c4a847a792ea76a80d1bc90b67fdfeda18e59c90c024b078b4147f8"
+    },
+    {
+      "exact_native_cache_key": "48e2cc78ef37d5384d6b6a510fa3b72a6fcfe201.pkl",
+      "pkl_sha256": "de4e654bddc04f5a603d5749083e82172adfe14b19b95d454cbe6fb9690da43a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "All 13 were there,",
+          "exact_native_cache_key": "48e2cc78ef37d5384d6b6a510fa3b72a6fcfe201.pkl",
+          "cache_input_text_sha256": "fe3ff5f6ca8c35fecd0cf0224fe905e2fd38df5a9fba9d4bf24276c7d6c0edc1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "All 13 were there,",
+          "exact_native_cache_key": "48e2cc78ef37d5384d6b6a510fa3b72a6fcfe201.pkl",
+          "cache_input_text_sha256": "fe3ff5f6ca8c35fecd0cf0224fe905e2fd38df5a9fba9d4bf24276c7d6c0edc1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "de4e654bddc04f5a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        32768
+      ],
+      "unprocessed_array_sha256": "b26235f4649754198185fe9434a6d765837e3e8104baa429933de45350a85abb"
+    },
+    {
+      "exact_native_cache_key": "453275ee1c2d62a0616e73fd9dd1a4412a17ba8d.pkl",
+      "pkl_sha256": "c2affa38eef387c10ed311d950c91c41df36f8fff1597dda8943a6233ed43c51",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "huddled on a muddy mound",
+          "exact_native_cache_key": "453275ee1c2d62a0616e73fd9dd1a4412a17ba8d.pkl",
+          "cache_input_text_sha256": "2d1bb7a6d505bbd69f6a62d855788443e527a2349485fb2c148d124ca9b4250d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c2affa38eef387c1",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35840
+      ],
+      "unprocessed_array_sha256": "ce105c2fdad4b52c8b8055ca78d3383fe54c1907e4a911d01195a683e1772829"
+    },
+    {
+      "exact_native_cache_key": "8f35dc512c48411c8ad28dbd8aec7036b3a2bea7.pkl",
+      "pkl_sha256": "73da15cc4114981f7c9f161c5f13518ce922d91083b72d37ac0c49f8d9196339",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and perched just above the water,",
+          "exact_native_cache_key": "8f35dc512c48411c8ad28dbd8aec7036b3a2bea7.pkl",
+          "cache_input_text_sha256": "568425ea1f69ceda2b48256bc283fd95806d8431b30d836b0f5bcdffe1a2ba32",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "73da15cc4114981f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        47104
+      ],
+      "unprocessed_array_sha256": "861c531adb4f8608f2cfd6d17698f316773622256a9e94fc058b17f0a1f8f212"
+    },
+    {
+      "exact_native_cache_key": "4fe10f11007c655c7a6a6c112844d5a71774a3a4.pkl",
+      "pkl_sha256": "9f0ca1cbfa7c7eb45eea09cddc41cf2fe1c794385708395ffb796023ae9a076a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "every one of them alive.",
+          "exact_native_cache_key": "4fe10f11007c655c7a6a6c112844d5a71774a3a4.pkl",
+          "cache_input_text_sha256": "daf00407c1c859433ccc021a03e0c23721d48d823ebdae456b25b0bea021bf85",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S6",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "every one of them alive.",
+          "exact_native_cache_key": "4fe10f11007c655c7a6a6c112844d5a71774a3a4.pkl",
+          "cache_input_text_sha256": "daf00407c1c859433ccc021a03e0c23721d48d823ebdae456b25b0bea021bf85",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9f0ca1cbfa7c7eb4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35840
+      ],
+      "unprocessed_array_sha256": "97194c3b41c9c4b6e8dceeb7e5d999f1aadaa85beb901d9262fe7ab952e30d6e"
+    },
+    {
+      "exact_native_cache_key": "c94fc18c6448301655233d54c971ed7e43f82e94.pkl",
+      "pkl_sha256": "057ea777468107439eeec6ca6a4b68cf4500813a4f93086d75aeb3724ca46f1a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "huddled on a muddy mound and perched just above the water,",
+          "exact_native_cache_key": "c94fc18c6448301655233d54c971ed7e43f82e94.pkl",
+          "cache_input_text_sha256": "4ace1ca0408abfbe3d94837f9baf2156da5762fad86a2d6def1ed1b8ff49acf8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "057ea77746810743",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        86528
+      ],
+      "unprocessed_array_sha256": "5c5df850528233ea50851154080dc67d7a71dd0083c6ef54c33fb91a9633a09b"
+    },
+    {
+      "exact_native_cache_key": "d2a7ebc26ce8de35e85066104cd9518b472136dc.pkl",
+      "pkl_sha256": "1f71286334fcca2e788415372ea2f5141e5b6dd14d443b3300c27316d90751fb",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The only exit ran through kilometres of constricted, treacherous passages, many of them navigable only with scuba gear.",
+          "exact_native_cache_key": "d2a7ebc26ce8de35e85066104cd9518b472136dc.pkl",
+          "cache_input_text_sha256": "b33987a04c9f9087837600506d1f4707daccc922c52de22a787c2eb88fc7ddbe",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1f71286334fcca2e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        193536
+      ],
+      "unprocessed_array_sha256": "f24ec8bb6c21eb19cfdae98cfd3c75e1684b07febb6d9e461968027a4da6a873"
+    },
+    {
+      "exact_native_cache_key": "1574b3127888f026d68bf432df9c300b00f742c6.pkl",
+      "pkl_sha256": "9b1e909805999dbc8066abeff8f576ecb4db3056f4c66f9f8c43b93a974e84b0",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The only exit ran through kilometres of constricted, treacherous passages,",
+          "exact_native_cache_key": "1574b3127888f026d68bf432df9c300b00f742c6.pkl",
+          "cache_input_text_sha256": "b36a9919eaa193a256a28bd61abaf8d8770e56ad1d05f8cac5738dbe55c10e5c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9b1e909805999dbc",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        119808
+      ],
+      "unprocessed_array_sha256": "b4adc3247712fe77b9889799fd74f743a19e4a09e03c14cbb2a6b8782b08f594"
+    },
+    {
+      "exact_native_cache_key": "7cddcdb411596cecb3034644a1b38de7a2d4e714.pkl",
+      "pkl_sha256": "a3930d3576de0deb41ad9f426a1e95f44f7104bac49b03c38b2b2430a6409103",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "many of them navigable only with scuba gear.",
+          "exact_native_cache_key": "7cddcdb411596cecb3034644a1b38de7a2d4e714.pkl",
+          "cache_input_text_sha256": "fb567618a7b787e87ecdd2343f4c046a7200a3dfa68d2f08b88b03c4ca3796da",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S7",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "many of them navigable only with scuba gear.",
+          "exact_native_cache_key": "7cddcdb411596cecb3034644a1b38de7a2d4e714.pkl",
+          "cache_input_text_sha256": "fb567618a7b787e87ecdd2343f4c046a7200a3dfa68d2f08b88b03c4ca3796da",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a3930d3576de0deb",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        68096
+      ],
+      "unprocessed_array_sha256": "884f5bbfc8fc4d974dc1823141ddc0f350a0cc51cdecaa1f6765e388c8c52ceb"
+    },
+    {
+      "exact_native_cache_key": "6858b59093397f976085637f10e5b83703cf98a1.pkl",
+      "pkl_sha256": "623a99fba51664701f2da992ff73866cca26b5c636b5838a2138db8d6dd888e1",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The only exit ran through kilometres of constricted,",
+          "exact_native_cache_key": "6858b59093397f976085637f10e5b83703cf98a1.pkl",
+          "cache_input_text_sha256": "5669dcdb668426942b51edbdf73853b2282dab74e494244476c17cded19d13ef",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "623a99fba5166470",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        80384
+      ],
+      "unprocessed_array_sha256": "841629e8fedecd4e15becfbae3ef292c166993f03a141051b40ce002767dbfec"
+    },
+    {
+      "exact_native_cache_key": "1f09d4f338c2054f1e71543a9ad8df414813c98c.pkl",
+      "pkl_sha256": "532841b80ddcf1b7e1f976b60265e20c8e27b966696d5d9bb41e44def8925219",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "treacherous passages,",
+          "exact_native_cache_key": "1f09d4f338c2054f1e71543a9ad8df414813c98c.pkl",
+          "cache_input_text_sha256": "1795345b914041863b6d1fb16aaad5641abafa23840c5dbcb982464c55f8a87f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "532841b80ddcf1b7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        34304
+      ],
+      "unprocessed_array_sha256": "452ba28bf672e6314942ce93597409a030d84e727f9e30bc5bc2e41beafbb54a"
+    },
+    {
+      "exact_native_cache_key": "f67e464db0a72fda4620cc40ecf0cc67682cd567.pkl",
+      "pkl_sha256": "049ae05ecb3beed9ba001d1ec8e2e64a1e9dd7b7693da2c0d1da98b36c361ff9",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Rescuers began stockpiling oxygen cylinders along the route.",
+          "exact_native_cache_key": "f67e464db0a72fda4620cc40ecf0cc67682cd567.pkl",
+          "cache_input_text_sha256": "e58f448640bc618ea40a55c1f2972ef7646d3bd3e3145ceb5a0ef9e3b7abab9d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "049ae05ecb3beed9",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        98816
+      ],
+      "unprocessed_array_sha256": "961dbe9dbefc047843666d5e4cb6c940f3213c4bc8baa5d9d9b1e2f5010bf8f7"
+    },
+    {
+      "exact_native_cache_key": "e2f25fead088022157efe169514def3ef3e0ca9f.pkl",
+      "pkl_sha256": "6036e7d278e9d21f5724c56b8ea6c98369b521818e02214883dd2aa0baefc86b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 6 July Saman Kunan, a former Thai Navy SEAL, fell unconscious while laying them and died.",
+          "exact_native_cache_key": "e2f25fead088022157efe169514def3ef3e0ca9f.pkl",
+          "cache_input_text_sha256": "1026193fb420042e9b735ca1bd7f20f1a5a15a864924eaa9ef580cdd55591151",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6036e7d278e9d21f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        182784
+      ],
+      "unprocessed_array_sha256": "a8991ea0d99faa1b7ed64cdef65a4cef06a77bce2b422bd8f25e4d6fd83009f4"
+    },
+    {
+      "exact_native_cache_key": "aed615cc0d6b8a4c65522b36776ee33df4fc13c6.pkl",
+      "pkl_sha256": "a4879111655d948914ca286abde03b9f3c0f58bdd8a47b8713ac6d6161f13e7c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 6 July Saman Kunan, a former Thai Navy SEAL,",
+          "exact_native_cache_key": "aed615cc0d6b8a4c65522b36776ee33df4fc13c6.pkl",
+          "cache_input_text_sha256": "924b87e27ecdfd9c4ad1eb2407de40dd9a1a09b48d369d2c7d62dc9336d117f9",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a4879111655d9489",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        105984
+      ],
+      "unprocessed_array_sha256": "f5bbaa10fb33f45667083e4d5a263aaf12596832793ea45715383d9bb763c12c"
+    },
+    {
+      "exact_native_cache_key": "cf55b021938310cc906f0daa76e898a9cf18a931.pkl",
+      "pkl_sha256": "33ee05278ad355cdd0329b58cde3a2f1f746bca40ed0855cf942584b4363a555",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "fell unconscious while laying them and died.",
+          "exact_native_cache_key": "cf55b021938310cc906f0daa76e898a9cf18a931.pkl",
+          "cache_input_text_sha256": "57910ff64a2d25be54085a96c99850860646e73c3199ceb26c59ca63952ebf9b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S9",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "fell unconscious while laying them and died.",
+          "exact_native_cache_key": "cf55b021938310cc906f0daa76e898a9cf18a931.pkl",
+          "cache_input_text_sha256": "57910ff64a2d25be54085a96c99850860646e73c3199ceb26c59ca63952ebf9b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "33ee05278ad355cd",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        59904
+      ],
+      "unprocessed_array_sha256": "726a14fde243d0458116f478a3ad4c4cfc819dcbb8f6e777a831abfd2aec82a2"
+    },
+    {
+      "exact_native_cache_key": "d3344bdd4d1074b6de9f469d1e7ef173f8e2cd4d.pkl",
+      "pkl_sha256": "4d93d9383b6bc059a80f2b02b727149cd7dcfd8f276856a54ba673d2a7e3bc38",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "On 6 July Saman Kunan,",
+          "exact_native_cache_key": "d3344bdd4d1074b6de9f469d1e7ef173f8e2cd4d.pkl",
+          "cache_input_text_sha256": "66532767713839ca206253882f0403a99795b2f0d02716763f95358016f30b94",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "4d93d9383b6bc059",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        57856
+      ],
+      "unprocessed_array_sha256": "029afc93e23bcdd57f8ac7f2a3ffce76caf3482f2cdaa4eccd112fa5dc3e9b84"
+    },
+    {
+      "exact_native_cache_key": "eea7aad3f46d589c3363041419283c5c84015087.pkl",
+      "pkl_sha256": "87b8e2da56cd0f9cdfcff8651adde13c7c7292fffd4ccd0196b047efd790a096",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a former Thai Navy SEAL,",
+          "exact_native_cache_key": "eea7aad3f46d589c3363041419283c5c84015087.pkl",
+          "cache_input_text_sha256": "081c51a15a3314ba1c92b313d2820cbe799a1a558215423bba6849fa6ab13110",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "87b8e2da56cd0f9c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        37888
+      ],
+      "unprocessed_array_sha256": "8a8542ef1f88991a3effb44c623036fe7b849b1461e734fa132dfb882983ba9c"
+    },
+    {
+      "exact_native_cache_key": "7e6e4cb6c514b78c6b6527c07ae8b86c39017fec.pkl",
+      "pkl_sha256": "780d5e129c3372a4055cec8f70fed84b357424a0b2edd5885eff0d3e844b36d3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The evacuation began on 8 July, and the boys came out in batches.",
+          "exact_native_cache_key": "7e6e4cb6c514b78c6b6527c07ae8b86c39017fec.pkl",
+          "cache_input_text_sha256": "2ba3d4fc2166dee53402d97dc7521aa934dd9e48cbacbc9867a4c3d097b59d7a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "780d5e129c3372a4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        125440
+      ],
+      "unprocessed_array_sha256": "9fe5688c947b6b3a05542cd8362e834bb14633cc6a2f2bf3afb74834827087d8"
+    },
+    {
+      "exact_native_cache_key": "4340d4e29c7ad85e4fa845b17d2da27937448d74.pkl",
+      "pkl_sha256": "cbb85a4ea4f0ef6da486b981b041336382b1e45b106ec1f49dadfd780190b320",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The evacuation began on 8 July,",
+          "exact_native_cache_key": "4340d4e29c7ad85e4fa845b17d2da27937448d74.pkl",
+          "cache_input_text_sha256": "3ba55c18fceb4f632053a455e0d59eec8713a33d6946e502c90fd8503fa314a0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The evacuation began on 8 July,",
+          "exact_native_cache_key": "4340d4e29c7ad85e4fa845b17d2da27937448d74.pkl",
+          "cache_input_text_sha256": "3ba55c18fceb4f632053a455e0d59eec8713a33d6946e502c90fd8503fa314a0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "cbb85a4ea4f0ef6d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        67072
+      ],
+      "unprocessed_array_sha256": "191f6dedd9435317a492ecb06b2ab94aa071db6d205e738937c54a1e46099727"
+    },
+    {
+      "exact_native_cache_key": "a6b4ad9a658dc38904e8fc0bbf5a2298312ed5a3.pkl",
+      "pkl_sha256": "262bab6773ffa56c727c5929eb94a6b5a9c08426abe27f7a6282557b15f4efa7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and the boys came out in batches.",
+          "exact_native_cache_key": "a6b4ad9a658dc38904e8fc0bbf5a2298312ed5a3.pkl",
+          "cache_input_text_sha256": "04ddba399137825dd6512fee85b5f6a204bdfc70289ad7d701248dc72ef7a025",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and the boys came out in batches.",
+          "exact_native_cache_key": "a6b4ad9a658dc38904e8fc0bbf5a2298312ed5a3.pkl",
+          "cache_input_text_sha256": "04ddba399137825dd6512fee85b5f6a204bdfc70289ad7d701248dc72ef7a025",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "262bab6773ffa56c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        45056
+      ],
+      "unprocessed_array_sha256": "665af9ef5847184908fea1db01ae97220e337faac89a63f91d52306e4c5a6a36"
+    },
+    {
+      "exact_native_cache_key": "81e1c9d82e65bc8ec8a41fe19ceded6125ca2fda.pkl",
+      "pkl_sha256": "965ac4f354366b5bf16ac400c148992cd8902038758e1eb9a31376851d4f4828",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Each was given doses of sedative, wrapped motionless in a stretcher, and passed from diver to diver, with medics stationed along the route.",
+          "exact_native_cache_key": "81e1c9d82e65bc8ec8a41fe19ceded6125ca2fda.pkl",
+          "cache_input_text_sha256": "3f1b95b456a9889c774317d979714f2069a7e1fed4925fce192e4e34d72deacd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "965ac4f354366b5b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        218624
+      ],
+      "unprocessed_array_sha256": "8c9215cb6cb29b741ba40cf71c8efb8ad26d943761615d82db645eacbdcb3d85"
+    },
+    {
+      "exact_native_cache_key": "eca9e06980d11f389c623a42241339182839b1bb.pkl",
+      "pkl_sha256": "93b84fdbdb917b1edb16320fc50b958f08eb625f87b86070c927ea5fa678379f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Each was given doses of sedative,",
+          "exact_native_cache_key": "eca9e06980d11f389c623a42241339182839b1bb.pkl",
+          "cache_input_text_sha256": "bddc0b613069a3a86330692bcafdd35da8df83ee466cb24112de0722713aaedf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Each was given doses of sedative,",
+          "exact_native_cache_key": "eca9e06980d11f389c623a42241339182839b1bb.pkl",
+          "cache_input_text_sha256": "bddc0b613069a3a86330692bcafdd35da8df83ee466cb24112de0722713aaedf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "93b84fdbdb917b1e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        51200
+      ],
+      "unprocessed_array_sha256": "3a06e4ff4621ca08be08aa112e36c119b6e22b44603581736d3fc4785c883bec"
+    },
+    {
+      "exact_native_cache_key": "d5602e13d7f094245b1c633b9d0ebf5c7f1959ab.pkl",
+      "pkl_sha256": "167921c9ce63dff4b299030c0cc309bb2f42f7bda19645628ce42d94362aacb2",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "wrapped motionless in a stretcher,",
+          "exact_native_cache_key": "d5602e13d7f094245b1c633b9d0ebf5c7f1959ab.pkl",
+          "cache_input_text_sha256": "c57411027523efb567af8086ec73246965478da1130bcbb477200c9602924f27",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "wrapped motionless in a stretcher,",
+          "exact_native_cache_key": "d5602e13d7f094245b1c633b9d0ebf5c7f1959ab.pkl",
+          "cache_input_text_sha256": "c57411027523efb567af8086ec73246965478da1130bcbb477200c9602924f27",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "167921c9ce63dff4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        43520
+      ],
+      "unprocessed_array_sha256": "abb3183d68d940d2a1b04af646e50d92f41406ec6ec6bd8dc985559d88c6ae43"
+    },
+    {
+      "exact_native_cache_key": "2439b267e9372a843efe53cd483266e566eb0bed.pkl",
+      "pkl_sha256": "d80d5f3c5732c0cb3af6897ba62a180da1c32bf44987375b500e8954f5f39377",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and passed from diver to diver,",
+          "exact_native_cache_key": "2439b267e9372a843efe53cd483266e566eb0bed.pkl",
+          "cache_input_text_sha256": "10925d9fa4bdc55e7a868569109caf4b9060806d90362ac0070c79a669f90d98",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and passed from diver to diver,",
+          "exact_native_cache_key": "2439b267e9372a843efe53cd483266e566eb0bed.pkl",
+          "cache_input_text_sha256": "10925d9fa4bdc55e7a868569109caf4b9060806d90362ac0070c79a669f90d98",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d80d5f3c5732c0cb",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        44032
+      ],
+      "unprocessed_array_sha256": "1f524e44f15c5c4207919e0d7dc61d2e1587c05832182be616f9b98a359fdf97"
+    },
+    {
+      "exact_native_cache_key": "d644ca3cc79021f6db81a35549a31dca3fc98d06.pkl",
+      "pkl_sha256": "44afb6044f98d72a77f9526a1081ec398a25b710644dd3f01bbac6310b6ddd9d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "with medics stationed along the route.",
+          "exact_native_cache_key": "d644ca3cc79021f6db81a35549a31dca3fc98d06.pkl",
+          "cache_input_text_sha256": "1d8c2c6ad7a96139eebbfa6167cf97960b00ef2c46ef767361339f1663caf609",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S11",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "with medics stationed along the route.",
+          "exact_native_cache_key": "d644ca3cc79021f6db81a35549a31dca3fc98d06.pkl",
+          "cache_input_text_sha256": "1d8c2c6ad7a96139eebbfa6167cf97960b00ef2c46ef767361339f1663caf609",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "44afb6044f98d72a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        47104
+      ],
+      "unprocessed_array_sha256": "d00b9268f04d83d27abc1da507acc63f80fc5953b872c82773253a031edadb98"
+    },
+    {
+      "exact_native_cache_key": "55affad495615fe7aa137805473b143847f21fed.pkl",
+      "pkl_sha256": "7e99da6c6482619d3cd13b093574dc27a8b406d55447d7f6a9610cdb071907af",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "On 10 July the last four footballers and their coach were escorted out after their teammates.",
+          "exact_native_cache_key": "55affad495615fe7aa137805473b143847f21fed.pkl",
+          "cache_input_text_sha256": "f7cdd52072042f1e7238d90175899bbccd5d67caabc3f82268a7ec67e36d282f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7e99da6c6482619d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        148480
+      ],
+      "unprocessed_array_sha256": "059c576b53e81ac56ab10371d5ead41d620d9fb8ee931aaee744b24b2ca7313f"
+    },
+    {
+      "exact_native_cache_key": "51c1da5d0a9abca5b40d4aaa3b00268ce87342ae.pkl",
+      "pkl_sha256": "5d0b63c5b9704362606cf7c409f6b97d2a7ec7cad231ef3ed05c7abad6be97b6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "On 10 July the last four footballers and their coach",
+          "exact_native_cache_key": "51c1da5d0a9abca5b40d4aaa3b00268ce87342ae.pkl",
+          "cache_input_text_sha256": "e8e0649c304fe236fe716435caddc2b745a43c53d01266f689235700a1897eb1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "5d0b63c5b9704362",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        76800
+      ],
+      "unprocessed_array_sha256": "c503baa09fe10408403afa41f2f7819521eb41ee6ecddcfa7fd9b13075a61d73"
+    },
+    {
+      "exact_native_cache_key": "872d2ef566e5e2a2473603ad49d87b3d52c32b43.pkl",
+      "pkl_sha256": "7f354f78e71cf74c6aa8f1ce2e415b915201bcadd796c545f16021c7fe59e2ec",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "were escorted out after their teammates.",
+          "exact_native_cache_key": "872d2ef566e5e2a2473603ad49d87b3d52c32b43.pkl",
+          "cache_input_text_sha256": "ac8de2d9f746e09d025796938018b661073b70cbc611f108a66c82082457bf84",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7f354f78e71cf74c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        53760
+      ],
+      "unprocessed_array_sha256": "d94bf6572bf01c092ac69d0ddcc628cc4d3846b3910f18f62190865db1c7fceb"
+    },
+    {
+      "exact_native_cache_key": "63b5310a6835ae5f187779a5ed51ff5f029abfbe.pkl",
+      "pkl_sha256": "659ea5f209933b3e9de2429efd897a38b33f35d81f50b7e615d28c6e7fad0755",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The multinational mobilisation was a feat of logistics.",
+          "exact_native_cache_key": "63b5310a6835ae5f187779a5ed51ff5f029abfbe.pkl",
+          "cache_input_text_sha256": "949b3d43651279b6ca9c13dee6e2b556de92d9d3d1eb0a270e133c91f3084bb2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "659ea5f209933b3e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        93696
+      ],
+      "unprocessed_array_sha256": "b47ba2f19d0135d4288c4ff7078875356639fa054296fe111ff10c4309b277bf"
+    },
+    {
+      "exact_native_cache_key": "78a4bb6b2c66a78cc8ae144b17facee618fb84ec.pkl",
+      "pkl_sha256": "8efe48cbeb49bf055bb49accb8245f5b2ebf7972ea6cceca35f2c2d38bc08c72",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Some 10,000 people converged on the site, including a contingent of more than 100 divers, plus 2,000 soldiers and 900 policemen, with teams deployed from abroad.",
+          "exact_native_cache_key": "78a4bb6b2c66a78cc8ae144b17facee618fb84ec.pkl",
+          "cache_input_text_sha256": "173e2d095f04733c0d9773b0a8a24319c597b0b906c2887acc21e31e5ba90fba",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8efe48cbeb49bf05",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        317952
+      ],
+      "unprocessed_array_sha256": "0c7663ad71fe906cd226b7834013cdb6fcb96e2bb5840b2d138d2e43603c4fb8"
+    },
+    {
+      "exact_native_cache_key": "412d4aaa42194b6a9a9bee28c1afa18357fb28f0.pkl",
+      "pkl_sha256": "469a17743a717ae82de92b602677b5d27e9b7727b11f3000a03177dd13c8c663",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Some 10,000 people converged on the site,",
+          "exact_native_cache_key": "412d4aaa42194b6a9a9bee28c1afa18357fb28f0.pkl",
+          "cache_input_text_sha256": "d6604342170942879249b7eb3c2a45e9180a1298937cc64f09178149e27982f9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Some 10,000 people converged on the site,",
+          "exact_native_cache_key": "412d4aaa42194b6a9a9bee28c1afa18357fb28f0.pkl",
+          "cache_input_text_sha256": "d6604342170942879249b7eb3c2a45e9180a1298937cc64f09178149e27982f9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "469a17743a717ae8",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        91136
+      ],
+      "unprocessed_array_sha256": "c25ecf48c6af537c50a0851c8db186c2c65704598ede294d56d16cb8c75ba169"
+    },
+    {
+      "exact_native_cache_key": "9112685e474afcc7e8c95d19333eaa29731cfea7.pkl",
+      "pkl_sha256": "55aef3ab519d5eea1279cfe800b1e1f9cd2b860da556b008e3a44fac101944c4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "including a contingent of more than 100 divers,",
+          "exact_native_cache_key": "9112685e474afcc7e8c95d19333eaa29731cfea7.pkl",
+          "cache_input_text_sha256": "d9de9f88c4fe0ee1f72fa308ef5835b2579af1cd79d2551c9ae0f29cbeb0cb33",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "including a contingent of more than 100 divers,",
+          "exact_native_cache_key": "9112685e474afcc7e8c95d19333eaa29731cfea7.pkl",
+          "cache_input_text_sha256": "d9de9f88c4fe0ee1f72fa308ef5835b2579af1cd79d2551c9ae0f29cbeb0cb33",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "55aef3ab519d5eea",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        86528
+      ],
+      "unprocessed_array_sha256": "429342abe0a133782cb7d2391c080a4a3908b8d12a766fce90bb31b40156785f"
+    },
+    {
+      "exact_native_cache_key": "d8ae182172aa5b00febaa72dfeb82369f3f45e71.pkl",
+      "pkl_sha256": "2bf4d6c23378ed46087fd347a352a64f82e6a42abc5ebd0bae9b9662da05d61b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "plus 2,000 soldiers and 900 policemen,",
+          "exact_native_cache_key": "d8ae182172aa5b00febaa72dfeb82369f3f45e71.pkl",
+          "cache_input_text_sha256": "e1275c0a1524423951a627dce1af923b114cb181f6aeed8a0f81983f814cc53f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "plus 2,000 soldiers and 900 policemen,",
+          "exact_native_cache_key": "d8ae182172aa5b00febaa72dfeb82369f3f45e71.pkl",
+          "cache_input_text_sha256": "e1275c0a1524423951a627dce1af923b114cb181f6aeed8a0f81983f814cc53f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2bf4d6c23378ed46",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        110592
+      ],
+      "unprocessed_array_sha256": "3de94554a54e273143bd9aa89158f1ff71b67388bb5118f50d328661711e5676"
+    },
+    {
+      "exact_native_cache_key": "a41fc42b38549805e1d1d6d9102959f990f0e017.pkl",
+      "pkl_sha256": "f61f8e990574725c3a3e8d93b17a9c090692ee84e7f2dc4b6f0728474651d7b6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "with teams deployed from abroad.",
+          "exact_native_cache_key": "a41fc42b38549805e1d1d6d9102959f990f0e017.pkl",
+          "cache_input_text_sha256": "279f5112fc277c9ea8693b97eac53396e2dcc7bc30aeb4533659273290bfe8e9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "with teams deployed from abroad.",
+          "exact_native_cache_key": "a41fc42b38549805e1d1d6d9102959f990f0e017.pkl",
+          "cache_input_text_sha256": "279f5112fc277c9ea8693b97eac53396e2dcc7bc30aeb4533659273290bfe8e9",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f61f8e990574725c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        47104
+      ],
+      "unprocessed_array_sha256": "5b9b08a9d8dfca8100040c39bdeb67aaa32fa8f6d9464ec9d0cb98146ee9cc88"
+    },
+    {
+      "exact_native_cache_key": "076b775c3dbf09837d00044deaad6aac02184502.pkl",
+      "pkl_sha256": "25617d3f8cd0817f118644a8f8568bd9ec4d9d9a335245e4034f817280e94804",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The rescue had a sobering postscript: in December 2019 another Navy SEAL died of a blood infection caught during the operation.",
+          "exact_native_cache_key": "076b775c3dbf09837d00044deaad6aac02184502.pkl",
+          "cache_input_text_sha256": "71a816ebed9694b0257fc026df608e1ffd0663dc1654c2877fa8099400ef71d6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "25617d3f8cd0817f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        226304
+      ],
+      "unprocessed_array_sha256": "ffb62fc8b6a3197efc8613ac2b7d10dcfd72fbe014d67b7470f0ba05885ce758"
+    },
+    {
+      "exact_native_cache_key": "78cc841c37ca6932f1b311ff17a86b45867851c1.pkl",
+      "pkl_sha256": "74806be923009b25a5242394f4c3c17d3212a335b106860162835c4af5779930",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The rescue had a sobering postscript:",
+          "exact_native_cache_key": "78cc841c37ca6932f1b311ff17a86b45867851c1.pkl",
+          "cache_input_text_sha256": "190922a87c13b113248f8049efcf4922fbf34e5a0e7403bc85569c4aff002f5b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The rescue had a sobering postscript:",
+          "exact_native_cache_key": "78cc841c37ca6932f1b311ff17a86b45867851c1.pkl",
+          "cache_input_text_sha256": "190922a87c13b113248f8049efcf4922fbf34e5a0e7403bc85569c4aff002f5b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "74806be923009b25",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        52736
+      ],
+      "unprocessed_array_sha256": "3b24413ca944476f16e55e9e4874206684ea0ceac9da10b6d114d0fb542a1d5f"
+    },
+    {
+      "exact_native_cache_key": "4a8bd310bf17c14873513699d7b9e895257a86b2.pkl",
+      "pkl_sha256": "835807a9c318425fd0796a10164e61839d437fdf1f349bb78deb784ceec6b70f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "in December 2019 another Navy SEAL died of a blood infection caught during the operation.",
+          "exact_native_cache_key": "4a8bd310bf17c14873513699d7b9e895257a86b2.pkl",
+          "cache_input_text_sha256": "25768b905e5e25316cc2e3a8607a188e998f1a878b857879c71fb672b971e11a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "in December 2019 another Navy SEAL died of a blood infection caught during the operation.",
+          "exact_native_cache_key": "4a8bd310bf17c14873513699d7b9e895257a86b2.pkl",
+          "cache_input_text_sha256": "25768b905e5e25316cc2e3a8607a188e998f1a878b857879c71fb672b971e11a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "835807a9c318425f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        163840
+      ],
+      "unprocessed_array_sha256": "f04804111d4b3ae777b2e3054ba02888cdfe684455f2ac58ab11a8667f120ca1"
+    },
+    {
+      "exact_native_cache_key": "6e4c415eb2d5c3e1789ad79975c27bc4caf791f0.pkl",
+      "pkl_sha256": "1d97d7a26b53431e5a3ee376253ea5b38b9274bdf986d3dcf870ae0fca7d35b3",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Every boy came home alive, and two rescuers were mourned.",
+          "exact_native_cache_key": "6e4c415eb2d5c3e1789ad79975c27bc4caf791f0.pkl",
+          "cache_input_text_sha256": "bdd33cdba2869dadd9a296978306cd157b07eff737e6f40c54bee760d0cc2f48",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1d97d7a26b53431e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        91136
+      ],
+      "unprocessed_array_sha256": "2dd0f40a1851225d2b6c5042e4f55f6dad133b510a81df09b2bd7a132f75aaac"
+    },
+    {
+      "exact_native_cache_key": "a043db54c739605cdf2c25b39588f842d9ffb1b1.pkl",
+      "pkl_sha256": "9789aaa5a6e1029e51e3052050e03cdf3497ce001b290e17db1b47935b444d8e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Every boy came home alive,",
+          "exact_native_cache_key": "a043db54c739605cdf2c25b39588f842d9ffb1b1.pkl",
+          "cache_input_text_sha256": "63ce12c88210e13169f597a1a397d03af2dcbb4fe7ffe50db9bfb68fef7214fc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Every boy came home alive,",
+          "exact_native_cache_key": "a043db54c739605cdf2c25b39588f842d9ffb1b1.pkl",
+          "cache_input_text_sha256": "63ce12c88210e13169f597a1a397d03af2dcbb4fe7ffe50db9bfb68fef7214fc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9789aaa5a6e1029e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        42496
+      ],
+      "unprocessed_array_sha256": "ce9c6277df5b3f34ca071b5c3353436aca51b08193fc455ff7a6e8d6fbcad87c"
+    },
+    {
+      "exact_native_cache_key": "e9d3ab5db67db70edef59ace5aa8c1cd4555b0ec.pkl",
+      "pkl_sha256": "28d2938b6aef2e76987312d1666599ad70baa55e006946c64c872cccee958c0f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and two rescuers were mourned.",
+          "exact_native_cache_key": "e9d3ab5db67db70edef59ace5aa8c1cd4555b0ec.pkl",
+          "cache_input_text_sha256": "957212d7e6f6d8326b4f3e8458a93c30eba8994c7f192683b698c33a6f984267",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S16",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and two rescuers were mourned.",
+          "exact_native_cache_key": "e9d3ab5db67db70edef59ace5aa8c1cd4555b0ec.pkl",
+          "cache_input_text_sha256": "957212d7e6f6d8326b4f3e8458a93c30eba8994c7f192683b698c33a6f984267",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "28d2938b6aef2e76",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        41984
+      ],
+      "unprocessed_array_sha256": "8931edf0ef7d87e31894776870c3aeec757c0dc8e549949177cdb26cf85e26ba"
+    }
+  ],
+  "missing_reference_key_count": 0,
+  "observed_missing_keys_covered": [],
+  "new_private_cache_names": [],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11514,
+  "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "bbec2c018d69dd44991365d5f0ee7a3d73865b3a85ca87f34e010e53595b019c",
+  "accepted_aac_adts_sha256_after": "bbec2c018d69dd44991365d5f0ee7a3d73865b3a85ca87f34e010e53595b019c",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}
