@@ -1,0 +1,3586 @@
+{
+  "article": "67",
+  "passed": true,
+  "repair_applied": true,
+  "diagnostic_only": false,
+  "production_delivery_eligible": true,
+  "kind": "root-approved-current-source-controlled-audio-repair",
+  "official_gates_replaced_or_thresholds_modified": false,
+  "official_full_gates_are_separate_required_precondition": true,
+  "program_sha256": "c6d5b17c6a3c0d6606e3fad60965f9851570c2ce1a8fdd6117179970b97ba531",
+  "reference_sha256": "fe9bcc108298b0c69bc2482057587808551bd5fba243180e83c20ab7ddeefce3",
+  "checks": [
+    {
+      "name": "exact-approved-fingerprint:request_source_sha256",
+      "passed": true,
+      "actual": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb",
+      "expected": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb"
+    },
+    {
+      "name": "exact-approved-fingerprint:request_generator_sha256",
+      "passed": true,
+      "actual": "0cf862922d09043fc617739e45a1cf690365fdd99faf7eb29882fc2c5eef3230",
+      "expected": "0cf862922d09043fc617739e45a1cf690365fdd99faf7eb29882fc2c5eef3230"
+    },
+    {
+      "name": "exact-approved-fingerprint:actual_raw_WAV_sha256",
+      "passed": true,
+      "actual": "a134119bc6caf3f1fd167cf7119f3414f44486643ee42ce17a6c9a247f3a9241",
+      "expected": "a134119bc6caf3f1fd167cf7119f3414f44486643ee42ce17a6c9a247f3a9241"
+    },
+    {
+      "name": "exact-approved-fingerprint:accepted_video_sha256",
+      "passed": true,
+      "actual": "fd026c420a146db9324d90c2486e5abc2b1a98ac0beb3c8b8bd24ce5201d40d7",
+      "expected": "fd026c420a146db9324d90c2486e5abc2b1a98ac0beb3c8b8bd24ce5201d40d7"
+    },
+    {
+      "name": "exact-approved-fingerprint:canonical_AAC_ADTS_sha256",
+      "passed": true,
+      "actual": "e9ea80df817aa07649361244a87ddd96bf88fc56e0a0c7b82f28389064ceec70",
+      "expected": "e9ea80df817aa07649361244a87ddd96bf88fc56e0a0c7b82f28389064ceec70"
+    },
+    {
+      "name": "exact-approved-fingerprint:accepted_AAC_ADTS_sha256",
+      "passed": true,
+      "actual": "d000709a63d3d0af11bfe52f42332d1e35d8bf7ca3d347549b09796cfe9008ad",
+      "expected": "d000709a63d3d0af11bfe52f42332d1e35d8bf7ca3d347549b09796cfe9008ad"
+    },
+    {
+      "name": "exact-request-nonreview-document",
+      "passed": true
+    },
+    {
+      "name": "actual-entire-nonreview-source-exact-approved-document",
+      "passed": true,
+      "actual_nonreview_sha256": "5435855d43a4f178e689144e6af52625da52843553bf5cb8f82beebc72ee0dca",
+      "exact_approved_nonreview_sha256": [
+        "6185eeb845f357156519026ae81215e2b231360b44aaf1294f4dc5dd7ad4ab2c",
+        "3d5d005fe58d33c62c85c75b54637242415d2ef1f45a8c6f7e7cfeee7a88c9e0"
+      ],
+      "permitted_review_only_keys": [
+        "核对确认",
+        "区间声音指纹"
+      ],
+      "original_consent_move": {
+        "original_pending_wrap_consent_consumed": true,
+        "exact_move_valid": true,
+        "normalized_sorted_nonreview_sha256": "efb10a642900caa9826e6f78a5e19f1d293e4d5b92b33e1cb3c00affc258aa26",
+        "all_other_nonreview_fields_exact": true
+      }
+    },
+    {
+      "name": "all-approved-audio-controls-exact",
+      "passed": true,
+      "actual": {
+        "分段增益dB": {
+          "S7": {
+            "1": -1.5,
+            "2": 1.5
+          },
+          "S9": {
+            "4": 2.5,
+            "3": 1.9
+          },
+          "S4": {
+            "3": 1.5,
+            "2": 1.5
+          },
+          "S1": {
+            "1": -2.5,
+            "2": -2.0,
+            "4": 2.0
+          }
+        },
+        "句子增益dB": null,
+        "段内渐变dB": {
+          "S1": {
+            "1": [
+              0.0,
+              6.0
+            ]
+          }
+        },
+        "停顿插入点": {
+          "S4": {
+            "1": [
+              0.64375,
+              "交界"
+            ]
+          },
+          "S10": {
+            "2": [
+              1.272292,
+              "交界"
+            ]
+          },
+          "S13": {
+            "2": [
+              4.566583,
+              "交界"
+            ]
+          }
+        },
+        "停顿删除区间": null,
+        "非人声区间": {
+          "S1": [
+            [
+              2.08,
+              2.345708,
+              "紧贴词头"
+            ],
+            [
+              7.73,
+              7.971167,
+              "紧贴词头"
+            ]
+          ],
+          "S6": [
+            [
+              2.475,
+              2.743625,
+              "紧贴词头"
+            ]
+          ],
+          "S8": [
+            [
+              2.525,
+              2.825
+            ]
+          ],
+          "S9": [
+            [
+              7.01,
+              7.19
+            ],
+            [
+              8.815,
+              9.07
+            ]
+          ],
+          "S10": [
+            [
+              2.06,
+              2.343417,
+              "紧贴词头"
+            ]
+          ],
+          "S12": [
+            [
+              5.055,
+              5.277,
+              "紧贴词头"
+            ]
+          ],
+          "S13": [
+            [
+              5.76,
+              5.98
+            ]
+          ],
+          "S15": [
+            [
+              4.72,
+              4.988708,
+              "紧贴词头"
+            ],
+            [
+              9.195,
+              9.43
+            ]
+          ],
+          "S16": [
+            [
+              4.315,
+              4.523625,
+              "紧贴词头"
+            ]
+          ],
+          "S2": [
+            [
+              2.365,
+              2.605
+            ],
+            [
+              6.815,
+              6.905375,
+              "紧贴词头"
+            ]
+          ],
+          "S4": [
+            [
+              0.994667,
+              1.19,
+              "紧贴词尾"
+            ]
+          ]
+        },
+        "词尾除阻": {
+          "S14": {
+            "1": [
+              3.195,
+              "k"
+            ]
+          }
+        },
+        "停顿处除阻": null,
+        "除阻加强": {
+          "S12": {
+            "1": [
+              4.79,
+              4.84,
+              6.0
+            ]
+          },
+          "S13": {
+            "1": [
+              3.44,
+              3.505,
+              6.0
+            ]
+          },
+          "S16": {
+            "句末": [
+              7.34,
+              7.37,
+              6.0
+            ]
+          }
+        },
+        "列举逗号": null,
+        "结尾句": {
+          "S18": {
+            "前段语速": 0.9,
+            "最后一段语速": 0.78,
+            "最后一段前停顿": 0.7,
+            "接点": [
+              97980,
+              122340
+            ],
+            "依据": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“the originals being inaccessible to them.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（40 ms）的正中 4.082 s，0.78 那遍（110 ms）的正中 5.098 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）"
+          }
+        },
+        "合成标点": null
+      },
+      "expected": {
+        "分段增益dB": {
+          "S7": {
+            "1": -1.5,
+            "2": 1.5
+          },
+          "S9": {
+            "4": 2.5,
+            "3": 1.9
+          },
+          "S4": {
+            "3": 1.5,
+            "2": 1.5
+          },
+          "S1": {
+            "1": -2.5,
+            "2": -2.0,
+            "4": 2.0
+          }
+        },
+        "句子增益dB": null,
+        "段内渐变dB": {
+          "S1": {
+            "1": [
+              0.0,
+              6.0
+            ]
+          }
+        },
+        "停顿插入点": {
+          "S4": {
+            "1": [
+              0.64375,
+              "交界"
+            ]
+          },
+          "S10": {
+            "2": [
+              1.272292,
+              "交界"
+            ]
+          },
+          "S13": {
+            "2": [
+              4.566583,
+              "交界"
+            ]
+          }
+        },
+        "停顿删除区间": null,
+        "非人声区间": {
+          "S1": [
+            [
+              2.08,
+              2.345708,
+              "紧贴词头"
+            ],
+            [
+              7.73,
+              7.971167,
+              "紧贴词头"
+            ]
+          ],
+          "S6": [
+            [
+              2.475,
+              2.743625,
+              "紧贴词头"
+            ]
+          ],
+          "S8": [
+            [
+              2.525,
+              2.825
+            ]
+          ],
+          "S9": [
+            [
+              7.01,
+              7.19
+            ],
+            [
+              8.815,
+              9.07
+            ]
+          ],
+          "S10": [
+            [
+              2.06,
+              2.343417,
+              "紧贴词头"
+            ]
+          ],
+          "S12": [
+            [
+              5.055,
+              5.277,
+              "紧贴词头"
+            ]
+          ],
+          "S13": [
+            [
+              5.76,
+              5.98
+            ]
+          ],
+          "S15": [
+            [
+              4.72,
+              4.988708,
+              "紧贴词头"
+            ],
+            [
+              9.195,
+              9.43
+            ]
+          ],
+          "S16": [
+            [
+              4.315,
+              4.523625,
+              "紧贴词头"
+            ]
+          ],
+          "S2": [
+            [
+              2.365,
+              2.605
+            ],
+            [
+              6.815,
+              6.905375,
+              "紧贴词头"
+            ]
+          ],
+          "S4": [
+            [
+              0.994667,
+              1.19,
+              "紧贴词尾"
+            ]
+          ]
+        },
+        "词尾除阻": {
+          "S14": {
+            "1": [
+              3.195,
+              "k"
+            ]
+          }
+        },
+        "停顿处除阻": null,
+        "除阻加强": {
+          "S12": {
+            "1": [
+              4.79,
+              4.84,
+              6.0
+            ]
+          },
+          "S13": {
+            "1": [
+              3.44,
+              3.505,
+              6.0
+            ]
+          },
+          "S16": {
+            "句末": [
+              7.34,
+              7.37,
+              6.0
+            ]
+          }
+        },
+        "列举逗号": null,
+        "结尾句": {
+          "S18": {
+            "前段语速": 0.9,
+            "最后一段语速": 0.78,
+            "最后一段前停顿": 0.7,
+            "接点": [
+              97980,
+              122340
+            ],
+            "依据": "全篇结尾句按 07 定下的标准（用户 2026-10-10 同意并要求所有视频统一）：前段 0.9、最后一段“the originals being inaccessible to them.” 0.78、前面停 0.7 秒。接点由 结尾句接点.py 自动找：0.9 那遍最后一个标点后最长静音（40 ms）的正中 4.082 s，0.78 那遍（110 ms）的正中 5.098 s，所在帧和两侧各 5 ms 都低于 -55 dB（程序以 08 校准：与人工核实的接点落在同一段静音里）"
+          }
+        },
+        "合成标点": null
+      }
+    },
+    {
+      "name": "actual-raw-WAV-shape",
+      "passed": true,
+      "actual": {
+        "rate": 24000,
+        "channels": 1,
+        "width": 2,
+        "samples": 3510360
+      }
+    },
+    {
+      "name": "actual-original-audio-format",
+      "passed": true
+    },
+    {
+      "name": "production-actual-original-canonical-4K-present",
+      "passed": true
+    },
+    {
+      "name": "actual-no-digital-clipping-or-nonfinite",
+      "passed": true,
+      "sample_peak_dbfs": -0.979552626945635
+    },
+    {
+      "name": "actual-true-peak-below-zero",
+      "passed": true,
+      "actual_dbtp": -1.0
+    },
+    {
+      "name": "whole-track-level-preserved",
+      "passed": true,
+      "delta_lu": 0.09999999999999787
+    },
+    {
+      "name": "duration-preserved",
+      "passed": true,
+      "delta_s": 0.0
+    },
+    {
+      "name": "encoding-alignment-only",
+      "passed": true,
+      "lag_samples": 0,
+      "local_lags_samples": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "outside-approved-active-coverage",
+      "passed": true,
+      "actual_active_frames": 8681
+    },
+    {
+      "name": "outside-approved-ranges-same-voice-timing-gain",
+      "passed": true,
+      "gain_db": 0.00043695146924977303,
+      "correlation": 0.9999983428211944,
+      "gain_compensated_residual_snr_db": 54.79599561365219,
+      "p95_absolute_frame_gain_db": 0.003910775223403107
+    },
+    {
+      "name": "every-untouched-active-one-second-block-preserved",
+      "passed": true,
+      "checked_blocks": 126,
+      "failed_blocks": []
+    },
+    {
+      "name": "no-new-click-or-noise-in-modified-pauses",
+      "passed": true,
+      "maximum_actual_10ms_dbfs": -68.36511652737953
+    },
+    {
+      "name": "actual-gain-and-same-waveform:S1_part4",
+      "passed": true,
+      "expected_gain_db": 2.0,
+      "actual_lufs_delta": 2.03465278422296,
+      "accepted": {
+        "start_s": 9.32,
+        "end_s": 10.7,
+        "crop_bs1770_lufs": -24.978967165154142,
+        "gated_400ms_lufs": -25.06815762709401,
+        "max_400ms_lufs": -22.8,
+        "active_10ms_rms_dbfs": -24.12189165904173,
+        "rms_dbfs": -24.620517149034033,
+        "sample_peak_dbfs": -10.063453134973926
+      },
+      "actual": {
+        "start_s": 9.32,
+        "end_s": 10.7,
+        "crop_bs1770_lufs": -22.944314380931182,
+        "gated_400ms_lufs": -23.044010223466977,
+        "max_400ms_lufs": -20.8,
+        "active_10ms_rms_dbfs": -22.170469977212832,
+        "rms_dbfs": -22.59948993454699,
+        "sample_peak_dbfs": -8.059137345416218
+      },
+      "gain_db": 2.0204637431195254,
+      "correlation": 0.9999351300655862,
+      "gain_compensated_residual_snr_db": 38.86884284907771
+    },
+    {
+      "name": "actual-gain-and-same-waveform:S9_part2",
+      "passed": true,
+      "expected_gain_db": 1.5,
+      "actual_lufs_delta": 1.5201593219291922,
+      "accepted": {
+        "start_s": 66.12,
+        "end_s": 66.92,
+        "crop_bs1770_lufs": -23.082679745436476,
+        "gated_400ms_lufs": -22.685624089585993,
+        "max_400ms_lufs": -22.3,
+        "active_10ms_rms_dbfs": -23.291979299594235,
+        "rms_dbfs": -23.809070671333707,
+        "sample_peak_dbfs": -10.17264080273069
+      },
+      "actual": {
+        "start_s": 66.12,
+        "end_s": 66.92,
+        "crop_bs1770_lufs": -21.562520423507284,
+        "gated_400ms_lufs": -21.15869851144093,
+        "max_400ms_lufs": -20.8,
+        "active_10ms_rms_dbfs": -21.89623631788433,
+        "rms_dbfs": -22.293363675328337,
+        "sample_peak_dbfs": -8.609911465409134
+      },
+      "gain_db": 1.5153727480127634,
+      "correlation": 0.9999615190181552,
+      "gain_compensated_residual_snr_db": 41.13698791088262
+    },
+    {
+      "name": "actual-gain-and-same-waveform:S9_part3",
+      "passed": true,
+      "expected_gain_db": 1.9,
+      "actual_lufs_delta": 1.9437143501210805,
+      "accepted": {
+        "start_s": 67.4,
+        "end_s": 68.85,
+        "crop_bs1770_lufs": -23.796036012342377,
+        "gated_400ms_lufs": -24.48457970469939,
+        "max_400ms_lufs": -21.8,
+        "active_10ms_rms_dbfs": -22.89882220116707,
+        "rms_dbfs": -23.57750134109773,
+        "sample_peak_dbfs": -4.011664814498738
+      },
+      "actual": {
+        "start_s": 67.4,
+        "end_s": 68.85,
+        "crop_bs1770_lufs": -21.852321662221296,
+        "gated_400ms_lufs": -22.54045708089283,
+        "max_400ms_lufs": -19.8,
+        "active_10ms_rms_dbfs": -21.081425537026064,
+        "rms_dbfs": -21.656736119912978,
+        "sample_peak_dbfs": -2.1457044714206543
+      },
+      "gain_db": 1.9202671561911018,
+      "correlation": 0.9999426597925268,
+      "gain_compensated_residual_snr_db": 39.40473389264171
+    },
+    {
+      "name": "actual-gain-and-same-waveform:S9_part4",
+      "passed": true,
+      "expected_gain_db": 2.5,
+      "actual_lufs_delta": 2.5254934898945436,
+      "accepted": {
+        "start_s": 69.35,
+        "end_s": 70.75,
+        "crop_bs1770_lufs": -23.8588707315453,
+        "gated_400ms_lufs": -24.548804192793373,
+        "max_400ms_lufs": -18.5,
+        "active_10ms_rms_dbfs": -21.746404869843396,
+        "rms_dbfs": -22.343258788818016,
+        "sample_peak_dbfs": -5.120551117033212
+      },
+      "actual": {
+        "start_s": 69.35,
+        "end_s": 70.75,
+        "crop_bs1770_lufs": -21.333377241650755,
+        "gated_400ms_lufs": -22.027420540575037,
+        "max_400ms_lufs": -16.0,
+        "active_10ms_rms_dbfs": -19.30514061847853,
+        "rms_dbfs": -19.831619938483676,
+        "sample_peak_dbfs": -2.550293955262743
+      },
+      "gain_db": 2.511277864322405,
+      "correlation": 0.9999584408131136,
+      "gain_compensated_residual_snr_db": 40.80275888373236
+    },
+    {
+      "name": "actual-gain-and-same-waveform:S15_prior_post_objective",
+      "passed": true,
+      "expected_gain_db": 0.4,
+      "actual_lufs_delta": 0.4562632371747952,
+      "accepted": {
+        "start_s": 116.6,
+        "end_s": 117.72,
+        "crop_bs1770_lufs": -22.0219864398554,
+        "gated_400ms_lufs": -22.183098670541995,
+        "max_400ms_lufs": -20.9,
+        "active_10ms_rms_dbfs": -21.50638055222852,
+        "rms_dbfs": -22.041891580959078,
+        "sample_peak_dbfs": -5.712777056068554
+      },
+      "actual": {
+        "start_s": 116.6,
+        "end_s": 117.72,
+        "crop_bs1770_lufs": -21.565723202680605,
+        "gated_400ms_lufs": -21.683098670541995,
+        "max_400ms_lufs": -20.4,
+        "active_10ms_rms_dbfs": -21.07560973669326,
+        "rms_dbfs": -21.6111027553033,
+        "sample_peak_dbfs": -5.300881719121865
+      },
+      "gain_db": 0.43008729272299207,
+      "correlation": 0.9999192362978991,
+      "gain_compensated_residual_snr_db": 37.917011707984926
+    },
+    {
+      "name": "actual-approved-ramp-waveform:S1_name_ramp",
+      "passed": true,
+      "gain_db": -0.10246181507542786,
+      "correlation": 0.9999139909020468,
+      "gain_compensated_residual_snr_db": 37.64369578715251
+    },
+    {
+      "name": "actual-approved-smooth-ramp:S1_name_ramp",
+      "passed": true,
+      "active_frames": 98,
+      "median_error_db": 0.1003957791455301,
+      "p95_error_db": 0.14193965885343762
+    },
+    {
+      "name": "original-audio-health-all-items",
+      "passed": true,
+      "metrics": {
+        "削波": [
+          0,
+          ""
+        ],
+        "直流偏移": [
+          7.732688046479394e-05,
+          "第3句"
+        ],
+        "咔哒": [
+          1.3708736553286267,
+          "第12句"
+        ],
+        "句尾截断": [
+          -56.09757899000208,
+          "第18句"
+        ],
+        "句首突起": [
+          -46.1777144191847,
+          "第13句"
+        ],
+        "齿音": [
+          4.339069383071525,
+          "第6句"
+        ],
+        "音色突变": [
+          0.40942305685762687,
+          "第4句"
+        ],
+        "语速突变": [
+          0.28886658680984156,
+          "第11句"
+        ]
+      },
+      "failures": [],
+      "original_confirmation_notes": []
+    },
+    {
+      "name": "original-whole-track-loudness",
+      "passed": true,
+      "global_lufs": -23.770855707111384,
+      "failures": [],
+      "summary": "全片 -23.8 LUFS，峰值 -1.0 dBFS，18 句，逐句与全片差 -0.8～+1.1 LU"
+    },
+    {
+      "name": "independent-title-and-every-body-sentence-map",
+      "passed": true,
+      "actual_spans": [
+        [
+          0.0,
+          1.9293333333333333
+        ],
+        [
+          2.9194791666666666,
+          14.767375
+        ],
+        [
+          15.741041666666666,
+          25.8920625
+        ],
+        [
+          27.002854166666665,
+          32.16110416666667
+        ],
+        [
+          33.100833333333334,
+          36.366479166666664
+        ],
+        [
+          37.29385416666667,
+          40.00425
+        ],
+        [
+          40.9941875,
+          46.418875
+        ],
+        [
+          47.403375,
+          51.729625
+        ],
+        [
+          52.9195,
+          59.10254166666667
+        ],
+        [
+          60.092729166666665,
+          70.860125
+        ],
+        [
+          71.84497916666666,
+          77.6674375
+        ],
+        [
+          78.58120833333334,
+          81.14233333333334
+        ],
+        [
+          82.3330625,
+          92.70427083333334
+        ],
+        [
+          93.6928125,
+          102.90627083333334
+        ],
+        [
+          103.89004166666666,
+          110.472125
+        ],
+        [
+          111.66166666666666,
+          123.00066666666666
+        ],
+        [
+          123.97833333333334,
+          131.34
+        ],
+        [
+          132.3299375,
+          135.79483333333334
+        ],
+        [
+          136.77804166666667,
+          144.29579166666667
+        ]
+      ],
+      "expected_count": 19
+    },
+    {
+      "name": "original-within-sentence-adjacent-level-rule",
+      "passed": true,
+      "failures": [],
+      "comparisons": [
+        [
+          "S1",
+          1,
+          [
+            2.92,
+            4.17
+          ],
+          [
+            4.58,
+            5.17
+          ],
+          -1.7421656846743012
+        ],
+        [
+          "S1",
+          2,
+          [
+            4.58,
+            5.17
+          ],
+          [
+            5.59,
+            8.88
+          ],
+          1.408115281742969
+        ],
+        [
+          "S1",
+          3,
+          [
+            5.59,
+            8.88
+          ],
+          [
+            9.3,
+            10.77
+          ],
+          -0.2993977589382162
+        ],
+        [
+          "S1",
+          4,
+          [
+            9.3,
+            10.77
+          ],
+          [
+            11.19,
+            14.77
+          ],
+          0.038977516890707165
+        ],
+        [
+          "S2",
+          1,
+          [
+            15.74,
+            22.080000000000002
+          ],
+          [
+            22.52,
+            25.89
+          ],
+          -0.04521206407587286
+        ],
+        [
+          "S3",
+          1,
+          [
+            27.0,
+            28.19
+          ],
+          [
+            28.63,
+            32.160000000000004
+          ],
+          0.9871819198013085
+        ],
+        [
+          "S4",
+          1,
+          [
+            33.1,
+            33.730000000000004
+          ],
+          [
+            34.13,
+            34.480000000000004
+          ],
+          -0.21444085023605197
+        ],
+        [
+          "S4",
+          2,
+          [
+            34.13,
+            34.480000000000004
+          ],
+          [
+            34.89,
+            36.37
+          ],
+          0.2286341793876936
+        ],
+        [
+          "S6",
+          1,
+          [
+            40.99,
+            43.28
+          ],
+          [
+            43.71,
+            46.42
+          ],
+          -1.5720195173109168
+        ],
+        [
+          "S7",
+          1,
+          [
+            47.4,
+            48.14
+          ],
+          [
+            48.57,
+            51.730000000000004
+          ],
+          1.9831814139742328
+        ],
+        [
+          "S9",
+          1,
+          [
+            60.09,
+            65.67
+          ],
+          [
+            66.09,
+            66.97
+          ],
+          0.14914321623037807
+        ],
+        [
+          "S9",
+          2,
+          [
+            66.09,
+            66.97
+          ],
+          [
+            67.39,
+            68.92
+          ],
+          1.8853822607865496
+        ],
+        [
+          "S9",
+          3,
+          [
+            67.39,
+            68.92
+          ],
+          [
+            69.34,
+            70.86
+          ],
+          0.026908381149031158
+        ],
+        [
+          "S12",
+          1,
+          [
+            82.33,
+            87.15
+          ],
+          [
+            87.58,
+            92.7
+          ],
+          -0.6106289934968316
+        ],
+        [
+          "S14",
+          1,
+          [
+            103.89,
+            107.17
+          ],
+          [
+            107.60000000000001,
+            110.47
+          ],
+          -0.2526132650719255
+        ],
+        [
+          "S15",
+          1,
+          [
+            111.66,
+            116.14
+          ],
+          [
+            116.58,
+            117.78
+          ],
+          0.20633675224443593
+        ],
+        [
+          "S15",
+          2,
+          [
+            116.58,
+            117.78
+          ],
+          [
+            118.19,
+            120.74000000000001
+          ],
+          -0.7128812287444717
+        ],
+        [
+          "S15",
+          3,
+          [
+            118.19,
+            120.74000000000001
+          ],
+          [
+            121.16,
+            123.0
+          ],
+          -0.5639689468374698
+        ],
+        [
+          "S16",
+          1,
+          [
+            123.98,
+            128.06
+          ],
+          [
+            128.51,
+            131.34
+          ],
+          -1.1518477833272769
+        ],
+        [
+          "S18",
+          1,
+          [
+            136.78,
+            140.3
+          ],
+          [
+            141.03,
+            144.3
+          ],
+          -1.262557376714657
+        ]
+      ]
+    },
+    {
+      "name": "original-suppressed-segment-rule-every-body-sentence",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "all-body-including-S1-global-level:S1",
+      "passed": true,
+      "effective_lufs": -24.446235887972268,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-global-level:S2",
+      "passed": true,
+      "effective_lufs": -24.10689614203081,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S1-S2",
+      "passed": true,
+      "difference_lu": 0.33933974594145866,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S3",
+      "passed": true,
+      "effective_lufs": -24.421858454090366,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S2-S3",
+      "passed": true,
+      "difference_lu": -0.3149623120595564,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S4",
+      "passed": true,
+      "effective_lufs": -22.96446383246605,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S3-S4",
+      "passed": true,
+      "difference_lu": 1.4573946216243172,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S5",
+      "passed": true,
+      "effective_lufs": -23.231294423804872,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S4-S5",
+      "passed": true,
+      "difference_lu": -0.2668305913388238,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S6",
+      "passed": true,
+      "effective_lufs": -23.88682422620069,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S5-S6",
+      "passed": true,
+      "difference_lu": -0.6555298023958187,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S7",
+      "passed": true,
+      "effective_lufs": -22.679943737863983,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S6-S7",
+      "passed": true,
+      "difference_lu": 1.206880488336708,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S8",
+      "passed": true,
+      "effective_lufs": -23.936121788267112,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S7-S8",
+      "passed": true,
+      "difference_lu": -1.256178050403129,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S9",
+      "passed": true,
+      "effective_lufs": -23.131733830565498,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S8-S9",
+      "passed": true,
+      "difference_lu": 0.8043879577016142,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S10",
+      "passed": true,
+      "effective_lufs": -24.233999481319557,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S9-S10",
+      "passed": true,
+      "difference_lu": -1.1022656507540596,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S11",
+      "passed": true,
+      "effective_lufs": -23.683802048213714,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S10-S11",
+      "passed": true,
+      "difference_lu": 0.5501974331058435,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S12",
+      "passed": true,
+      "effective_lufs": -24.27496464538037,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S11-S12",
+      "passed": true,
+      "difference_lu": -0.5911625971666545,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S13",
+      "passed": true,
+      "effective_lufs": -24.004067827303107,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S12-S13",
+      "passed": true,
+      "difference_lu": 0.2708968180772615,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S14",
+      "passed": true,
+      "effective_lufs": -23.24392736367792,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S13-S14",
+      "passed": true,
+      "difference_lu": 0.7601404636251878,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S15",
+      "passed": true,
+      "effective_lufs": -23.67968061919592,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S14-S15",
+      "passed": true,
+      "difference_lu": -0.4357532555180015,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S16",
+      "passed": true,
+      "effective_lufs": -23.96350718434599,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S15-S16",
+      "passed": true,
+      "difference_lu": -0.28382656515006843,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S17",
+      "passed": true,
+      "effective_lufs": -23.854982710382547,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S16-S17",
+      "passed": true,
+      "difference_lu": 0.10852447396344189,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "all-body-including-S1-global-level:S18",
+      "passed": true,
+      "effective_lufs": -23.969601993904337,
+      "global_lufs": -23.79136986945434,
+      "original_limit_lu": 2.0
+    },
+    {
+      "name": "all-body-including-S1-adjacent-level:S17-S18",
+      "passed": true,
+      "difference_lu": -0.1146192835217903,
+      "original_limit_lu": 2.5
+    },
+    {
+      "name": "actual-production-all-piece-times-and-effective-gains",
+      "passed": true,
+      "actual_public_piece_metadata": {
+        "S1": [
+          {
+            "段": 1,
+            "增益": -4.0,
+            "停顿": 0.4,
+            "时刻": [
+              2.895,
+              4.165
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 3.0,
+            "停顿": 0.4,
+            "时刻": [
+              4.545,
+              5.165
+            ]
+          },
+          {
+            "段": 3,
+            "增益": -2.0,
+            "停顿": 0.4,
+            "时刻": [
+              5.545,
+              8.88
+            ]
+          },
+          {
+            "段": 4,
+            "增益": 2.0,
+            "停顿": 0.4,
+            "时刻": [
+              9.26,
+              10.775
+            ]
+          },
+          {
+            "段": 5,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              11.155,
+              14.73
+            ]
+          }
+        ],
+        "S2": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              15.73,
+              22.085
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              22.465,
+              25.785
+            ]
+          }
+        ],
+        "S3": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              26.985,
+              28.195
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              28.575,
+              32.08
+            ]
+          }
+        ],
+        "S4": [
+          {
+            "段": 1,
+            "增益": -4.0,
+            "停顿": 0.4,
+            "时刻": [
+              33.08,
+              33.7037
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 3.0,
+            "停顿": 0.4,
+            "时刻": [
+              34.1037,
+              34.465
+            ]
+          },
+          {
+            "段": 3,
+            "增益": 1.5,
+            "停顿": null,
+            "时刻": [
+              34.845,
+              36.28
+            ]
+          }
+        ],
+        "S5": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              37.28,
+              39.97
+            ]
+          }
+        ],
+        "S6": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              40.97,
+              43.295
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              43.675,
+              46.385
+            ]
+          }
+        ],
+        "S7": [
+          {
+            "段": 1,
+            "增益": -1.5,
+            "停顿": 0.4,
+            "时刻": [
+              47.385,
+              48.15
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 1.5,
+            "停顿": null,
+            "时刻": [
+              48.53,
+              51.695
+            ]
+          }
+        ],
+        "S8": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              52.895,
+              59.07
+            ]
+          }
+        ],
+        "S9": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              60.07,
+              65.68
+            ]
+          },
+          {
+            "段": 2,
+            "增益": -2.5,
+            "停顿": 0.4,
+            "时刻": [
+              66.06,
+              66.965
+            ]
+          },
+          {
+            "段": 3,
+            "增益": 1.9,
+            "停顿": 0.4,
+            "时刻": [
+              67.345,
+              68.91
+            ]
+          },
+          {
+            "段": 4,
+            "增益": 2.5,
+            "停顿": null,
+            "时刻": [
+              69.29,
+              70.82
+            ]
+          }
+        ],
+        "S10": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.2,
+            "时刻": [
+              71.82,
+              72.505
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": 0.2,
+            "时刻": [
+              72.705,
+              73.2823
+            ]
+          },
+          {
+            "段": 3,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              73.4823,
+              77.565
+            ]
+          }
+        ],
+        "S11": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              78.565,
+              81.11
+            ]
+          }
+        ],
+        "S12": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              82.31,
+              87.145
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              87.525,
+              92.67
+            ]
+          }
+        ],
+        "S13": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.2,
+            "时刻": [
+              93.67,
+              97.165
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": 0.2,
+            "时刻": [
+              97.345,
+              98.1016
+            ]
+          },
+          {
+            "段": 3,
+            "增益": 0.0,
+            "停顿": 0.2,
+            "时刻": [
+              98.3016,
+              99.305
+            ]
+          },
+          {
+            "段": 4,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              99.485,
+              102.875
+            ]
+          }
+        ],
+        "S14": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              103.875,
+              107.165
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              107.545,
+              110.44
+            ]
+          }
+        ],
+        "S15": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              111.64,
+              116.165
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              116.545,
+              117.775
+            ]
+          },
+          {
+            "段": 3,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              118.155,
+              120.74
+            ]
+          },
+          {
+            "段": 4,
+            "增益": 1.0,
+            "停顿": null,
+            "时刻": [
+              121.12,
+              122.965
+            ]
+          }
+        ],
+        "S16": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              123.965,
+              128.07
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              128.45,
+              131.305
+            ]
+          }
+        ],
+        "S17": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              132.305,
+              135.76
+            ]
+          }
+        ],
+        "S18": [
+          {
+            "段": 1,
+            "增益": 0.0,
+            "停顿": 0.4,
+            "时刻": [
+              136.76,
+              140.31
+            ]
+          },
+          {
+            "段": 2,
+            "增益": 0.0,
+            "停顿": null,
+            "时刻": [
+              140.99,
+              144.265
+            ]
+          }
+        ]
+      },
+      "actual_file_sha256": "612e37a4ecfd07fff572dff3288ae6c97fd0a07aa8761a77d7a43aa5ea22b90d"
+    },
+    {
+      "name": "S9-repair-original-rule-20-40ms-boundaries:independent",
+      "passed": true,
+      "checked_variants": 25,
+      "failures": []
+    },
+    {
+      "name": "S9-repair-original-rule-20-40ms-boundaries:producer",
+      "passed": true,
+      "checked_variants": 25,
+      "failures": []
+    },
+    {
+      "name": "actual-pitch-preserved:title",
+      "passed": true,
+      "voiced_pairs": 90,
+      "median_absolute_cents": 0.004657538752450152,
+      "p90_absolute_cents": 0.053980774291125175
+    },
+    {
+      "name": "actual-pitch-preserved:S1",
+      "passed": true,
+      "voiced_pairs": 697,
+      "median_absolute_cents": 0.007349526464725407,
+      "p90_absolute_cents": 0.29248769375439226
+    },
+    {
+      "name": "actual-pitch-preserved:S2",
+      "passed": true,
+      "voiced_pairs": 592,
+      "median_absolute_cents": 0.0039008555642094933,
+      "p90_absolute_cents": 0.04508428713142975
+    },
+    {
+      "name": "actual-pitch-preserved:S3",
+      "passed": true,
+      "voiced_pairs": 305,
+      "median_absolute_cents": 0.0033707297284197406,
+      "p90_absolute_cents": 0.03305210465881778
+    },
+    {
+      "name": "actual-pitch-preserved:S4",
+      "passed": true,
+      "voiced_pairs": 155,
+      "median_absolute_cents": 0.003084465746823582,
+      "p90_absolute_cents": 0.06210736107553201
+    },
+    {
+      "name": "actual-pitch-preserved:S5",
+      "passed": true,
+      "voiced_pairs": 141,
+      "median_absolute_cents": 0.0016649169502696334,
+      "p90_absolute_cents": 0.020681636131647634
+    },
+    {
+      "name": "actual-pitch-preserved:S6",
+      "passed": true,
+      "voiced_pairs": 327,
+      "median_absolute_cents": 0.0026630742164349764,
+      "p90_absolute_cents": 0.03176150240605237
+    },
+    {
+      "name": "actual-pitch-preserved:S7",
+      "passed": true,
+      "voiced_pairs": 267,
+      "median_absolute_cents": 0.0024571755510802815,
+      "p90_absolute_cents": 0.027010452957341034
+    },
+    {
+      "name": "actual-pitch-preserved:S8",
+      "passed": true,
+      "voiced_pairs": 386,
+      "median_absolute_cents": 0.004103847630744251,
+      "p90_absolute_cents": 0.047957157422877525
+    },
+    {
+      "name": "actual-pitch-preserved:S9",
+      "passed": true,
+      "voiced_pairs": 574,
+      "median_absolute_cents": 0.016139821694574653,
+      "p90_absolute_cents": 0.3349429556434484
+    },
+    {
+      "name": "actual-pitch-preserved:S10",
+      "passed": true,
+      "voiced_pairs": 315,
+      "median_absolute_cents": 0.0038788930100988506,
+      "p90_absolute_cents": 0.030710288695563356
+    },
+    {
+      "name": "actual-pitch-preserved:S11",
+      "passed": true,
+      "voiced_pairs": 160,
+      "median_absolute_cents": 0.00854581499155198,
+      "p90_absolute_cents": 0.07709733950664782
+    },
+    {
+      "name": "actual-pitch-preserved:S12",
+      "passed": true,
+      "voiced_pairs": 619,
+      "median_absolute_cents": 0.0033667777527581883,
+      "p90_absolute_cents": 0.04101393641582634
+    },
+    {
+      "name": "actual-pitch-preserved:S13",
+      "passed": true,
+      "voiced_pairs": 554,
+      "median_absolute_cents": 0.0038520078301658356,
+      "p90_absolute_cents": 0.03754474708060298
+    },
+    {
+      "name": "actual-pitch-preserved:S14",
+      "passed": true,
+      "voiced_pairs": 352,
+      "median_absolute_cents": 0.003954962772280659,
+      "p90_absolute_cents": 0.04491291712699917
+    },
+    {
+      "name": "actual-pitch-preserved:S15",
+      "passed": true,
+      "voiced_pairs": 647,
+      "median_absolute_cents": 0.003296545868685253,
+      "p90_absolute_cents": 0.08093051778732926
+    },
+    {
+      "name": "actual-pitch-preserved:S16",
+      "passed": true,
+      "voiced_pairs": 428,
+      "median_absolute_cents": 0.0021103501267314183,
+      "p90_absolute_cents": 0.02287024928957125
+    },
+    {
+      "name": "actual-pitch-preserved:S17",
+      "passed": true,
+      "voiced_pairs": 191,
+      "median_absolute_cents": 0.0016266376924002897,
+      "p90_absolute_cents": 0.026755515042241322
+    },
+    {
+      "name": "actual-pitch-preserved:S18",
+      "passed": true,
+      "voiced_pairs": 450,
+      "median_absolute_cents": 0.002885156239093351,
+      "p90_absolute_cents": 0.023644548954686196
+    }
+  ],
+  "private_caches_GT_or_PCM_exported": false,
+  "subjective_listening_claimed": false,
+  "fingerprints": {
+    "request_source_sha256": "6839a46ebdb51cdcff6a65ca238efc228f1e114efd1734cee6c994ca659a29cb",
+    "request_generator_sha256": "0cf862922d09043fc617739e45a1cf690365fdd99faf7eb29882fc2c5eef3230",
+    "actual_full_source_sha256": "cd275b4312a864a115164f43dc3c0319075f36a6f405309e5f3ba31de731c70e",
+    "actual_raw_WAV_sha256": "a134119bc6caf3f1fd167cf7119f3414f44486643ee42ce17a6c9a247f3a9241",
+    "accepted_video_sha256": "fd026c420a146db9324d90c2486e5abc2b1a98ac0beb3c8b8bd24ce5201d40d7",
+    "canonical_video_sha256": "af0724f56664e3155ac84c6bcf31400821eac8b1716fe46e9becf819e9b7901e",
+    "canonical_AAC_ADTS_sha256": "e9ea80df817aa07649361244a87ddd96bf88fc56e0a0c7b82f28389064ceec70",
+    "accepted_AAC_ADTS_sha256": "d000709a63d3d0af11bfe52f42332d1e35d8bf7ca3d347549b09796cfe9008ad"
+  },
+  "source_current_sha256": "cd275b4312a864a115164f43dc3c0319075f36a6f405309e5f3ba31de731c70e",
+  "accepted_sha256": "fd026c420a146db9324d90c2486e5abc2b1a98ac0beb3c8b8bd24ce5201d40d7",
+  "canonical_sha256": "af0724f56664e3155ac84c6bcf31400821eac8b1716fe46e9becf819e9b7901e",
+  "accepted_global": {
+    "integrated_lufs": -23.9,
+    "true_peak_dbtp": -1.0,
+    "lra_lu": 3.7
+  },
+  "actual_global": {
+    "integrated_lufs": -23.8,
+    "true_peak_dbtp": -1.0,
+    "lra_lu": 3.7
+  },
+  "outside_measurements": {
+    "outside": {
+      "gain_db": 0.00043695146924977303,
+      "correlation": 0.9999983428211944,
+      "gain_compensated_residual_snr_db": 54.79599561365219
+    },
+    "blocks": [
+      {
+        "gain_db": 0.0003248255120842213,
+        "correlation": 0.9999983278959902,
+        "gain_compensated_residual_snr_db": 54.75705626526279,
+        "start_s": 0.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.002971938838742169,
+        "correlation": 0.9999949483571158,
+        "gain_compensated_residual_snr_db": 49.955340720473274,
+        "start_s": 1.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00010049783674187339,
+        "correlation": 0.9999993621953955,
+        "gain_compensated_residual_snr_db": 58.94281938323526,
+        "start_s": 4.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00018177071618153887,
+        "correlation": 0.9999998337252684,
+        "gain_compensated_residual_snr_db": 64.78143638250657,
+        "start_s": 5.0,
+        "passed": true
+      },
+      {
+        "gain_db": 2.4097609065395816e-06,
+        "correlation": 0.9999998991535126,
+        "gain_compensated_residual_snr_db": 66.9530916014588,
+        "start_s": 6.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0021821498060820956,
+        "correlation": 0.9999970000723624,
+        "gain_compensated_residual_snr_db": 52.218572708228415,
+        "start_s": 7.0,
+        "passed": true
+      },
+      {
+        "gain_db": 4.221836923504723e-06,
+        "correlation": 0.9999997886018553,
+        "gain_compensated_residual_snr_db": 63.73868695017056,
+        "start_s": 8.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00015764879234223347,
+        "correlation": 0.9999988640943681,
+        "gain_compensated_residual_snr_db": 56.436270113300935,
+        "start_s": 11.0,
+        "passed": true
+      },
+      {
+        "gain_db": 3.317700423264898e-05,
+        "correlation": 0.9999995076305846,
+        "gain_compensated_residual_snr_db": 60.066786153091876,
+        "start_s": 12.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00020810223483936794,
+        "correlation": 0.9999991159684541,
+        "gain_compensated_residual_snr_db": 57.525016655182725,
+        "start_s": 13.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0001689477244044271,
+        "correlation": 0.9999989919845343,
+        "gain_compensated_residual_snr_db": 56.95502151986199,
+        "start_s": 14.0,
+        "passed": true
+      },
+      {
+        "gain_db": -8.021692219143729e-07,
+        "correlation": 0.9999999622804565,
+        "gain_compensated_residual_snr_db": 71.22403541006251,
+        "start_s": 15.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0002476927881287039,
+        "correlation": 0.9999992302748042,
+        "gain_compensated_residual_snr_db": 58.12633799931989,
+        "start_s": 16.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00022873288196211192,
+        "correlation": 0.9999993395141314,
+        "gain_compensated_residual_snr_db": 58.79106043741818,
+        "start_s": 17.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0004901249285179264,
+        "correlation": 0.9999985044254049,
+        "gain_compensated_residual_snr_db": 55.24160950498039,
+        "start_s": 18.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0012339032043656435,
+        "correlation": 0.9999969926773735,
+        "gain_compensated_residual_snr_db": 52.20788023368742,
+        "start_s": 19.0,
+        "passed": true
+      },
+      {
+        "gain_db": -0.00013772016898737764,
+        "correlation": 0.9999990441106799,
+        "gain_compensated_residual_snr_db": 57.18561771853381,
+        "start_s": 20.0,
+        "passed": true
+      },
+      {
+        "gain_db": 3.2368635149172696e-05,
+        "correlation": 0.9999995317985575,
+        "gain_compensated_residual_snr_db": 60.28536951519405,
+        "start_s": 21.0,
+        "passed": true
+      },
+      {
+        "gain_db": -9.27739318320363e-06,
+        "correlation": 0.9999998352211521,
+        "gain_compensated_residual_snr_db": 64.8206843410123,
+        "start_s": 22.0,
+        "passed": true
+      },
+      {
+        "gain_db": -9.741931297205653e-05,
+        "correlation": 0.9999991829778844,
+        "gain_compensated_residual_snr_db": 57.86735659478252,
+        "start_s": 23.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.004020864970704253,
+        "correlation": 0.9999939754441642,
+        "gain_compensated_residual_snr_db": 49.19041045833196,
+        "start_s": 24.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0008406513591721142,
+        "correlation": 0.999995333346768,
+        "gain_compensated_residual_snr_db": 50.299614335711304,
+        "start_s": 25.0,
+        "passed": true
+      },
+      {
+        "gain_db": 4.815520711433193e-05,
+        "correlation": 0.999999766235555,
+        "gain_compensated_residual_snr_db": 63.30191393933663,
+        "start_s": 27.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0005537507919345222,
+        "correlation": 0.9999942271190555,
+        "gain_compensated_residual_snr_db": 49.37573642579434,
+        "start_s": 28.0,
+        "passed": true
+      },
+      {
+        "gain_db": -1.4263692826337242e-05,
+        "correlation": 0.9999994208219091,
+        "gain_compensated_residual_snr_db": 59.361575015260826,
+        "start_s": 29.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0001554660403622139,
+        "correlation": 0.9999987229158296,
+        "gain_compensated_residual_snr_db": 55.927496503386706,
+        "start_s": 30.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.000582220889343565,
+        "correlation": 0.9999987001752193,
+        "gain_compensated_residual_snr_db": 55.850843450413876,
+        "start_s": 31.0,
+        "passed": true
+      },
+      {
+        "gain_db": 2.0933702221078145e-05,
+        "correlation": 0.9999997320766651,
+        "gain_compensated_residual_snr_db": 62.70959288146549,
+        "start_s": 33.0,
+        "passed": true
+      },
+      {
+        "gain_db": 3.5145817887407496e-06,
+        "correlation": 0.9999997788753507,
+        "gain_compensated_residual_snr_db": 63.54332702269473,
+        "start_s": 34.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00027830824350342446,
+        "correlation": 0.9999985901398779,
+        "gain_compensated_residual_snr_db": 55.497930590029405,
+        "start_s": 35.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00020270432415034519,
+        "correlation": 0.9999994458038738,
+        "gain_compensated_residual_snr_db": 59.55306157229408,
+        "start_s": 37.0,
+        "passed": true
+      },
+      {
+        "gain_db": 1.1410714514628237e-05,
+        "correlation": 0.9999997696975531,
+        "gain_compensated_residual_snr_db": 63.36671300820537,
+        "start_s": 38.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0022832919853858075,
+        "correlation": 0.9999953048277116,
+        "gain_compensated_residual_snr_db": 50.273154124126336,
+        "start_s": 39.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00018975512804720934,
+        "correlation": 0.9999988720168892,
+        "gain_compensated_residual_snr_db": 56.466666720935244,
+        "start_s": 41.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0004691417576685642,
+        "correlation": 0.9999985849760434,
+        "gain_compensated_residual_snr_db": 55.48205289777505,
+        "start_s": 42.0,
+        "passed": true
+      },
+      {
+        "gain_db": 1.7668964552253675e-05,
+        "correlation": 0.9999995585993813,
+        "gain_compensated_residual_snr_db": 60.541367785649825,
+        "start_s": 43.0,
+        "passed": true
+      },
+      {
+        "gain_db": 1.1130550738317188e-05,
+        "correlation": 0.9999997693363656,
+        "gain_compensated_residual_snr_db": 63.35990722175025,
+        "start_s": 44.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0016125762822303664,
+        "correlation": 0.9999944191577076,
+        "gain_compensated_residual_snr_db": 49.522666186338206,
+        "start_s": 45.0,
+        "passed": true
+      },
+      {
+        "gain_db": 6.352095838451631e-05,
+        "correlation": 0.9999996150029794,
+        "gain_compensated_residual_snr_db": 61.13512383677451,
+        "start_s": 46.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0005599645937750788,
+        "correlation": 0.9999993256213886,
+        "gain_compensated_residual_snr_db": 58.70065777021076,
+        "start_s": 47.0,
+        "passed": true
+      },
+      {
+        "gain_db": 4.1392768815646e-07,
+        "correlation": 0.9999999616946507,
+        "gain_compensated_residual_snr_db": 71.15710543642068,
+        "start_s": 48.0,
+        "passed": true
+      },
+      {
+        "gain_db": 4.6322729520721475e-05,
+        "correlation": 0.9999991642157163,
+        "gain_compensated_residual_snr_db": 57.76875259306681,
+        "start_s": 49.0,
+        "passed": true
+      },
+      {
+        "gain_db": 1.3610085939308262e-05,
+        "correlation": 0.999999326624641,
+        "gain_compensated_residual_snr_db": 58.707123450346366,
+        "start_s": 50.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00034221704514250895,
+        "correlation": 0.9999981615260451,
+        "gain_compensated_residual_snr_db": 54.3451132483247,
+        "start_s": 51.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0005859345022357262,
+        "correlation": 0.9999976724849006,
+        "gain_compensated_residual_snr_db": 53.32075980874795,
+        "start_s": 53.0,
+        "passed": true
+      },
+      {
+        "gain_db": 1.3869473873887588e-05,
+        "correlation": 0.9999996242962367,
+        "gain_compensated_residual_snr_db": 61.24124213804428,
+        "start_s": 54.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00033420616277528563,
+        "correlation": 0.999999282615418,
+        "gain_compensated_residual_snr_db": 58.432174978185394,
+        "start_s": 55.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0005615470792124762,
+        "correlation": 0.9999846735013933,
+        "gain_compensated_residual_snr_db": 45.135170698442806,
+        "start_s": 56.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.002230339655976652,
+        "correlation": 0.9999974100609165,
+        "gain_compensated_residual_snr_db": 52.85678767611061,
+        "start_s": 57.0,
+        "passed": true
+      },
+      {
+        "gain_db": 5.472884251650866e-05,
+        "correlation": 0.9999997174304435,
+        "gain_compensated_residual_snr_db": 62.478444498888514,
+        "start_s": 58.0,
+        "passed": true
+      },
+      {
+        "gain_db": 2.1611147540727567e-05,
+        "correlation": 0.99999890733672,
+        "gain_compensated_residual_snr_db": 56.60482943946814,
+        "start_s": 60.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0005868058759799441,
+        "correlation": 0.9999990011670495,
+        "gain_compensated_residual_snr_db": 56.99476492651392,
+        "start_s": 61.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0024159085522269903,
+        "correlation": 0.9999969476571317,
+        "gain_compensated_residual_snr_db": 52.143346996707194,
+        "start_s": 62.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00013090502661907642,
+        "correlation": 0.9999985133367129,
+        "gain_compensated_residual_snr_db": 55.26756418944916,
+        "start_s": 63.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0017755697309910033,
+        "correlation": 0.9999970519022662,
+        "gain_compensated_residual_snr_db": 52.2942620674077,
+        "start_s": 64.0,
+        "passed": true
+      },
+      {
+        "gain_db": 1.639863747452344e-05,
+        "correlation": 0.9999990952851453,
+        "gain_compensated_residual_snr_db": 57.424576935985755,
+        "start_s": 65.0,
+        "passed": true
+      },
+      {
+        "gain_db": -8.040952972467214e-09,
+        "correlation": 0.9999998016981783,
+        "gain_compensated_residual_snr_db": 64.01643170001378,
+        "start_s": 71.0,
+        "passed": true
+      },
+      {
+        "gain_db": -9.821637203508995e-06,
+        "correlation": 0.9999932303057466,
+        "gain_compensated_residual_snr_db": 48.683965395728414,
+        "start_s": 72.0,
+        "passed": true
+      },
+      {
+        "gain_db": -0.00015389782816793672,
+        "correlation": 0.999996841468095,
+        "gain_compensated_residual_snr_db": 51.99482678479035,
+        "start_s": 73.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0011535650311321655,
+        "correlation": 0.9999955443356872,
+        "gain_compensated_residual_snr_db": 50.50054637752248,
+        "start_s": 74.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00016904588103064578,
+        "correlation": 0.9999979726975758,
+        "gain_compensated_residual_snr_db": 53.920501438131666,
+        "start_s": 75.0,
+        "passed": true
+      },
+      {
+        "gain_db": 5.0903557206435035e-05,
+        "correlation": 0.9999978676764406,
+        "gain_compensated_residual_snr_db": 53.7011550975781,
+        "start_s": 76.0,
+        "passed": true
+      },
+      {
+        "gain_db": 6.103968304098681e-06,
+        "correlation": 0.9999993307345018,
+        "gain_compensated_residual_snr_db": 58.7337113115405,
+        "start_s": 77.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.003959363131126943,
+        "correlation": 0.9999946043321747,
+        "gain_compensated_residual_snr_db": 49.66921284051091,
+        "start_s": 78.0,
+        "passed": true
+      },
+      {
+        "gain_db": 2.1422211453631598e-05,
+        "correlation": 0.999999344096519,
+        "gain_compensated_residual_snr_db": 58.82129641064134,
+        "start_s": 79.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00153188104768989,
+        "correlation": 0.9999958688333956,
+        "gain_compensated_residual_snr_db": 50.82894603170081,
+        "start_s": 80.0,
+        "passed": true
+      },
+      {
+        "gain_db": 3.733189288398583e-07,
+        "correlation": 0.9999999145408451,
+        "gain_compensated_residual_snr_db": 67.67211352632896,
+        "start_s": 82.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0015479542151273003,
+        "correlation": 0.9999973690535011,
+        "gain_compensated_residual_snr_db": 52.788562737245435,
+        "start_s": 83.0,
+        "passed": true
+      },
+      {
+        "gain_db": -0.0001229266923664823,
+        "correlation": 0.9999988226929922,
+        "gain_compensated_residual_snr_db": 56.280795081603294,
+        "start_s": 84.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0014269586412969195,
+        "correlation": 0.9999962740106061,
+        "gain_compensated_residual_snr_db": 51.277259626587764,
+        "start_s": 85.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.001225392816474854,
+        "correlation": 0.9999979317072396,
+        "gain_compensated_residual_snr_db": 53.83356645003178,
+        "start_s": 86.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0007000443471498975,
+        "correlation": 0.9999956821657884,
+        "gain_compensated_residual_snr_db": 50.63701228433288,
+        "start_s": 87.0,
+        "passed": true
+      },
+      {
+        "gain_db": 6.853655760427827e-05,
+        "correlation": 0.9999998197127329,
+        "gain_compensated_residual_snr_db": 64.43004829637812,
+        "start_s": 88.0,
+        "passed": true
+      },
+      {
+        "gain_db": 6.444021154422724e-05,
+        "correlation": 0.9999996882397485,
+        "gain_compensated_residual_snr_db": 62.0514905714623,
+        "start_s": 89.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0001309064539835084,
+        "correlation": 0.9999993921356896,
+        "gain_compensated_residual_snr_db": 59.15162962463619,
+        "start_s": 90.0,
+        "passed": true
+      },
+      {
+        "gain_db": 1.8980602186075572e-05,
+        "correlation": 0.9999996656787022,
+        "gain_compensated_residual_snr_db": 61.7480574191406,
+        "start_s": 91.0,
+        "passed": true
+      },
+      {
+        "gain_db": 8.16930279653827e-06,
+        "correlation": 0.9999995761286117,
+        "gain_compensated_residual_snr_db": 60.71735625300131,
+        "start_s": 92.0,
+        "passed": true
+      },
+      {
+        "gain_db": -0.0001446670410778741,
+        "correlation": 0.9999995228539299,
+        "gain_compensated_residual_snr_db": 60.20318341858235,
+        "start_s": 93.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00010267305861555769,
+        "correlation": 0.9999996796967732,
+        "gain_compensated_residual_snr_db": 61.93408481190229,
+        "start_s": 94.0,
+        "passed": true
+      },
+      {
+        "gain_db": 7.887664795281144e-05,
+        "correlation": 0.99999864478283,
+        "gain_compensated_residual_snr_db": 55.66960225946117,
+        "start_s": 95.0,
+        "passed": true
+      },
+      {
+        "gain_db": -0.0006897376965686067,
+        "correlation": 0.9999445023564513,
+        "gain_compensated_residual_snr_db": 39.54659306476797,
+        "start_s": 96.0,
+        "passed": true
+      },
+      {
+        "gain_db": 9.476908260706796e-08,
+        "correlation": 0.9999998387704613,
+        "gain_compensated_residual_snr_db": 64.91525285847699,
+        "start_s": 97.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0012473455578912189,
+        "correlation": 0.9999956410667653,
+        "gain_compensated_residual_snr_db": 50.59586947641919,
+        "start_s": 98.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0027256846948628885,
+        "correlation": 0.9999983782165927,
+        "gain_compensated_residual_snr_db": 54.889760949908755,
+        "start_s": 99.0,
+        "passed": true
+      },
+      {
+        "gain_db": 6.347070082597725e-05,
+        "correlation": 0.9999995519985784,
+        "gain_compensated_residual_snr_db": 60.476903196662576,
+        "start_s": 100.0,
+        "passed": true
+      },
+      {
+        "gain_db": 8.937241933480437e-05,
+        "correlation": 0.9999991652289281,
+        "gain_compensated_residual_snr_db": 57.774020695063655,
+        "start_s": 101.0,
+        "passed": true
+      },
+      {
+        "gain_db": -2.1308058546190124e-06,
+        "correlation": 0.9999992592512595,
+        "gain_compensated_residual_snr_db": 58.29298599762247,
+        "start_s": 102.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00020831860516995894,
+        "correlation": 0.999998752722759,
+        "gain_compensated_residual_snr_db": 56.03006193719442,
+        "start_s": 103.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0008921012798824131,
+        "correlation": 0.9999986816877638,
+        "gain_compensated_residual_snr_db": 55.78950862062805,
+        "start_s": 104.0,
+        "passed": true
+      },
+      {
+        "gain_db": 3.5293572770947895e-05,
+        "correlation": 0.9999996622185409,
+        "gain_compensated_residual_snr_db": 61.70333975898063,
+        "start_s": 105.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00014764617212480288,
+        "correlation": 0.9999994887228116,
+        "gain_compensated_residual_snr_db": 59.90313254343328,
+        "start_s": 106.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.002592638590991607,
+        "correlation": 0.9999975358590298,
+        "gain_compensated_residual_snr_db": 53.07302849402013,
+        "start_s": 107.0,
+        "passed": true
+      },
+      {
+        "gain_db": -3.7462254595433116e-05,
+        "correlation": 0.9999996612007017,
+        "gain_compensated_residual_snr_db": 61.690272806830734,
+        "start_s": 108.0,
+        "passed": true
+      },
+      {
+        "gain_db": 1.7134081442593543e-05,
+        "correlation": 0.9999996410693186,
+        "gain_compensated_residual_snr_db": 61.439591861912035,
+        "start_s": 109.0,
+        "passed": true
+      },
+      {
+        "gain_db": 4.466910075792538e-05,
+        "correlation": 0.9999992451771754,
+        "gain_compensated_residual_snr_db": 58.21124488584566,
+        "start_s": 110.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.002133748185322876,
+        "correlation": 0.9999982960334236,
+        "gain_compensated_residual_snr_db": 54.675078224552465,
+        "start_s": 111.0,
+        "passed": true
+      },
+      {
+        "gain_db": 7.580892744018685e-05,
+        "correlation": 0.9999996257779648,
+        "gain_compensated_residual_snr_db": 61.25840403739696,
+        "start_s": 112.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00022238790440089003,
+        "correlation": 0.999999405496978,
+        "gain_compensated_residual_snr_db": 59.24815549943233,
+        "start_s": 113.0,
+        "passed": true
+      },
+      {
+        "gain_db": 7.333388859081018e-05,
+        "correlation": 0.9999994867031224,
+        "gain_compensated_residual_snr_db": 59.88601046762846,
+        "start_s": 114.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00016058749818351957,
+        "correlation": 0.999998882232771,
+        "gain_compensated_residual_snr_db": 56.5061790313914,
+        "start_s": 115.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0009894874751238051,
+        "correlation": 0.9999993703869579,
+        "gain_compensated_residual_snr_db": 58.998958779677935,
+        "start_s": 118.0,
+        "passed": true
+      },
+      {
+        "gain_db": -1.341201519851791e-05,
+        "correlation": 0.999999463678577,
+        "gain_compensated_residual_snr_db": 59.695445095950184,
+        "start_s": 119.0,
+        "passed": true
+      },
+      {
+        "gain_db": 3.8061352729920076e-06,
+        "correlation": 0.9999995010992362,
+        "gain_compensated_residual_snr_db": 60.00955510123684,
+        "start_s": 120.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.00015357658647368436,
+        "correlation": 0.9999996804272627,
+        "gain_compensated_residual_snr_db": 61.9440007287497,
+        "start_s": 121.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0001318803560342015,
+        "correlation": 0.9999990559221201,
+        "gain_compensated_residual_snr_db": 57.23961566967687,
+        "start_s": 122.0,
+        "passed": true
+      },
+      {
+        "gain_db": -6.705062610957875e-05,
+        "correlation": 0.9999998929381014,
+        "gain_compensated_residual_snr_db": 66.69334991721121,
+        "start_s": 124.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0003115506347390604,
+        "correlation": 0.9999995683325601,
+        "gain_compensated_residual_snr_db": 60.63820430871354,
+        "start_s": 125.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0006032405840521626,
+        "correlation": 0.9999979217406615,
+        "gain_compensated_residual_snr_db": 53.812689096917495,
+        "start_s": 126.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0001094183990323216,
+        "correlation": 0.9999995497215621,
+        "gain_compensated_residual_snr_db": 60.45488559418776,
+        "start_s": 127.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0025166290641594254,
+        "correlation": 0.9999958091675136,
+        "gain_compensated_residual_snr_db": 50.76666972383051,
+        "start_s": 128.0,
+        "passed": true
+      },
+      {
+        "gain_db": -9.89485014711259e-05,
+        "correlation": 0.9999993842328819,
+        "gain_compensated_residual_snr_db": 59.09553108777005,
+        "start_s": 129.0,
+        "passed": true
+      },
+      {
+        "gain_db": 4.5373602471527596e-05,
+        "correlation": 0.9999990443221004,
+        "gain_compensated_residual_snr_db": 57.1865783856738,
+        "start_s": 130.0,
+        "passed": true
+      },
+      {
+        "gain_db": 5.5228192824044086e-05,
+        "correlation": 0.9999994864883046,
+        "gain_compensated_residual_snr_db": 59.88419329986698,
+        "start_s": 131.0,
+        "passed": true
+      },
+      {
+        "gain_db": 1.3196488068126533e-05,
+        "correlation": 0.9999998160212048,
+        "gain_compensated_residual_snr_db": 64.34202112575748,
+        "start_s": 132.0,
+        "passed": true
+      },
+      {
+        "gain_db": 2.465391388504546e-07,
+        "correlation": 0.9999998967498436,
+        "gain_compensated_residual_snr_db": 66.85079215082293,
+        "start_s": 133.0,
+        "passed": true
+      },
+      {
+        "gain_db": -0.0005485672820485234,
+        "correlation": 0.9999965513858575,
+        "gain_compensated_residual_snr_db": 51.613231528111015,
+        "start_s": 134.0,
+        "passed": true
+      },
+      {
+        "gain_db": 3.445490283376151e-05,
+        "correlation": 0.9999991827530733,
+        "gain_compensated_residual_snr_db": 57.866161757416336,
+        "start_s": 135.0,
+        "passed": true
+      },
+      {
+        "gain_db": -8.929352945003161e-06,
+        "correlation": 0.9999978625641802,
+        "gain_compensated_residual_snr_db": 53.69075528699522,
+        "start_s": 136.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0006445534470473123,
+        "correlation": 0.9999980292673796,
+        "gain_compensated_residual_snr_db": 54.04341015135535,
+        "start_s": 137.0,
+        "passed": true
+      },
+      {
+        "gain_db": 3.123357895065451e-05,
+        "correlation": 0.9999995651678651,
+        "gain_compensated_residual_snr_db": 60.606480886132125,
+        "start_s": 138.0,
+        "passed": true
+      },
+      {
+        "gain_db": 4.186909909897591e-06,
+        "correlation": 0.9999994224027245,
+        "gain_compensated_residual_snr_db": 59.373444914952636,
+        "start_s": 139.0,
+        "passed": true
+      },
+      {
+        "gain_db": 1.9825224877480628e-05,
+        "correlation": 0.9999998651754726,
+        "gain_compensated_residual_snr_db": 65.69201008869317,
+        "start_s": 140.0,
+        "passed": true
+      },
+      {
+        "gain_db": 1.6800199642127972e-05,
+        "correlation": 0.9999998503716248,
+        "gain_compensated_residual_snr_db": 65.23955945797405,
+        "start_s": 141.0,
+        "passed": true
+      },
+      {
+        "gain_db": 3.0611666743982435e-05,
+        "correlation": 0.9999993657339601,
+        "gain_compensated_residual_snr_db": 58.96698131971745,
+        "start_s": 142.0,
+        "passed": true
+      },
+      {
+        "gain_db": -3.2145645371212317e-06,
+        "correlation": 0.9999998371335462,
+        "gain_compensated_residual_snr_db": 64.87138257382178,
+        "start_s": 143.0,
+        "passed": true
+      },
+      {
+        "gain_db": 0.0001229112084723587,
+        "correlation": 0.9999988983650094,
+        "gain_compensated_residual_snr_db": 56.56931564867626,
+        "start_s": 144.0,
+        "passed": true
+      }
+    ]
+  },
+  "actual_waveform_fits": {
+    "S1_part4": {
+      "gain_db": 2.0204637431195254,
+      "correlation": 0.9999351300655862,
+      "gain_compensated_residual_snr_db": 38.86884284907771
+    },
+    "S9_part2": {
+      "gain_db": 1.5153727480127634,
+      "correlation": 0.9999615190181552,
+      "gain_compensated_residual_snr_db": 41.13698791088262
+    },
+    "S9_part3": {
+      "gain_db": 1.9202671561911018,
+      "correlation": 0.9999426597925268,
+      "gain_compensated_residual_snr_db": 39.40473389264171
+    },
+    "S9_part4": {
+      "gain_db": 2.511277864322405,
+      "correlation": 0.9999584408131136,
+      "gain_compensated_residual_snr_db": 40.80275888373236
+    },
+    "S15_prior_post_objective": {
+      "gain_db": 0.43008729272299207,
+      "correlation": 0.9999192362978991,
+      "gain_compensated_residual_snr_db": 37.917011707984926
+    },
+    "S1_name_ramp": {
+      "gain_db": -0.10246181507542786,
+      "correlation": 0.9999139909020468,
+      "gain_compensated_residual_snr_db": 37.64369578715251
+    }
+  },
+  "original_full_track_supplement": {
+    "title": {
+      "start": 0.0,
+      "end": 1.9293333333333333,
+      "raw_lufs": -23.062439276018605
+    },
+    "global_lufs": -23.79136986945434,
+    "sentences": [
+      {
+        "sentence": "S1",
+        "start": 2.9194791666666666,
+        "end": 14.767375,
+        "effective_lufs": -24.446235887972268,
+        "parts": [
+          {
+            "part": 1,
+            "start": 2.92,
+            "end": 4.17,
+            "raw_lufs": -22.60999426452928,
+            "effective_lufs": -24.60999426452928,
+            "peak_momentary_lufs": -21.0
+          },
+          {
+            "part": 2,
+            "start": 4.58,
+            "end": 5.17,
+            "raw_lufs": -24.352159949203582,
+            "effective_lufs": -26.352159949203582,
+            "peak_momentary_lufs": -21.3
+          },
+          {
+            "part": 3,
+            "start": 5.59,
+            "end": 8.88,
+            "raw_lufs": -24.944044667460613,
+            "effective_lufs": -24.944044667460613,
+            "peak_momentary_lufs": -21.6
+          },
+          {
+            "part": 4,
+            "start": 9.3,
+            "end": 10.77,
+            "raw_lufs": -23.24344242639883,
+            "effective_lufs": -25.24344242639883,
+            "peak_momentary_lufs": -20.8
+          },
+          {
+            "part": 5,
+            "start": 11.19,
+            "end": 14.77,
+            "raw_lufs": -25.204464909508122,
+            "effective_lufs": -25.204464909508122,
+            "peak_momentary_lufs": -21.9
+          }
+        ]
+      },
+      {
+        "sentence": "S2",
+        "start": 15.741041666666666,
+        "end": 25.8920625,
+        "effective_lufs": -24.10689614203081,
+        "parts": [
+          {
+            "part": 1,
+            "start": 15.74,
+            "end": 22.080000000000002,
+            "raw_lufs": -24.03646079657976,
+            "effective_lufs": -24.03646079657976,
+            "peak_momentary_lufs": -19.2
+          },
+          {
+            "part": 2,
+            "start": 22.52,
+            "end": 25.89,
+            "raw_lufs": -24.081672860655633,
+            "effective_lufs": -24.081672860655633,
+            "peak_momentary_lufs": -19.5
+          }
+        ]
+      },
+      {
+        "sentence": "S3",
+        "start": 27.002854166666665,
+        "end": 32.16110416666667,
+        "effective_lufs": -24.421858454090366,
+        "parts": [
+          {
+            "part": 1,
+            "start": 27.0,
+            "end": 28.19,
+            "raw_lufs": -23.68139849100265,
+            "effective_lufs": -25.68139849100265,
+            "peak_momentary_lufs": -20.1
+          },
+          {
+            "part": 2,
+            "start": 28.63,
+            "end": 32.160000000000004,
+            "raw_lufs": -24.69421657120134,
+            "effective_lufs": -24.69421657120134,
+            "peak_momentary_lufs": -19.9
+          }
+        ]
+      },
+      {
+        "sentence": "S4",
+        "start": 33.100833333333334,
+        "end": 36.366479166666664,
+        "effective_lufs": -22.96446383246605,
+        "parts": [
+          {
+            "part": 1,
+            "start": 33.1,
+            "end": 33.730000000000004,
+            "raw_lufs": -22.08555914976395,
+            "effective_lufs": -24.08555914976395,
+            "peak_momentary_lufs": -21.4
+          },
+          {
+            "part": 2,
+            "start": 34.13,
+            "end": 34.480000000000004,
+            "raw_lufs": -22.3,
+            "effective_lufs": -24.3,
+            "peak_momentary_lufs": -22.3
+          },
+          {
+            "part": 3,
+            "start": 34.89,
+            "end": 36.37,
+            "raw_lufs": -22.071365820612307,
+            "effective_lufs": -24.071365820612307,
+            "peak_momentary_lufs": -18.7
+          }
+        ]
+      },
+      {
+        "sentence": "S5",
+        "start": 37.29385416666667,
+        "end": 40.00425,
+        "effective_lufs": -23.231294423804872,
+        "parts": [
+          {
+            "part": 1,
+            "start": 37.29,
+            "end": 40.0,
+            "raw_lufs": -23.231294423804872,
+            "effective_lufs": -23.231294423804872,
+            "peak_momentary_lufs": -19.7
+          }
+        ]
+      },
+      {
+        "sentence": "S6",
+        "start": 40.9941875,
+        "end": 46.418875,
+        "effective_lufs": -23.88682422620069,
+        "parts": [
+          {
+            "part": 1,
+            "start": 40.99,
+            "end": 43.28,
+            "raw_lufs": -23.005412519106024,
+            "effective_lufs": -23.005412519106024,
+            "peak_momentary_lufs": -19.4
+          },
+          {
+            "part": 2,
+            "start": 43.71,
+            "end": 46.42,
+            "raw_lufs": -24.57743203641694,
+            "effective_lufs": -24.57743203641694,
+            "peak_momentary_lufs": -21.2
+          }
+        ]
+      },
+      {
+        "sentence": "S7",
+        "start": 47.403375,
+        "end": 51.729625,
+        "effective_lufs": -22.679943737863983,
+        "parts": [
+          {
+            "part": 1,
+            "start": 47.4,
+            "end": 48.14,
+            "raw_lufs": -22.48207210235149,
+            "effective_lufs": -24.48207210235149,
+            "peak_momentary_lufs": -21.5
+          },
+          {
+            "part": 2,
+            "start": 48.57,
+            "end": 51.730000000000004,
+            "raw_lufs": -22.49889068837726,
+            "effective_lufs": -22.49889068837726,
+            "peak_momentary_lufs": -19.1
+          }
+        ]
+      },
+      {
+        "sentence": "S8",
+        "start": 52.9195,
+        "end": 59.10254166666667,
+        "effective_lufs": -23.936121788267112,
+        "parts": [
+          {
+            "part": 1,
+            "start": 52.92,
+            "end": 59.1,
+            "raw_lufs": -23.936121788267112,
+            "effective_lufs": -23.936121788267112,
+            "peak_momentary_lufs": -18.9
+          }
+        ]
+      },
+      {
+        "sentence": "S9",
+        "start": 60.092729166666665,
+        "end": 70.860125,
+        "effective_lufs": -23.131733830565498,
+        "parts": [
+          {
+            "part": 1,
+            "start": 60.09,
+            "end": 65.67,
+            "raw_lufs": -24.08885439874099,
+            "effective_lufs": -24.08885439874099,
+            "peak_momentary_lufs": -16.8
+          },
+          {
+            "part": 2,
+            "start": 66.09,
+            "end": 66.97,
+            "raw_lufs": -21.939711182510614,
+            "effective_lufs": -23.939711182510614,
+            "peak_momentary_lufs": -20.8
+          },
+          {
+            "part": 3,
+            "start": 67.39,
+            "end": 68.92,
+            "raw_lufs": -22.054328921724064,
+            "effective_lufs": -22.054328921724064,
+            "peak_momentary_lufs": -18.7
+          },
+          {
+            "part": 4,
+            "start": 69.34,
+            "end": 70.86,
+            "raw_lufs": -22.027420540575033,
+            "effective_lufs": -22.027420540575033,
+            "peak_momentary_lufs": -16.0
+          }
+        ]
+      },
+      {
+        "sentence": "S10",
+        "start": 71.84497916666666,
+        "end": 77.6674375,
+        "effective_lufs": -24.233999481319557,
+        "parts": [
+          {
+            "part": 1,
+            "start": 71.84,
+            "end": 77.67,
+            "raw_lufs": -24.233999481319557,
+            "effective_lufs": -24.233999481319557,
+            "peak_momentary_lufs": -18.0
+          }
+        ]
+      },
+      {
+        "sentence": "S11",
+        "start": 78.58120833333334,
+        "end": 81.14233333333334,
+        "effective_lufs": -23.683802048213714,
+        "parts": [
+          {
+            "part": 1,
+            "start": 78.58,
+            "end": 81.14,
+            "raw_lufs": -23.683802048213714,
+            "effective_lufs": -23.683802048213714,
+            "peak_momentary_lufs": -20.6
+          }
+        ]
+      },
+      {
+        "sentence": "S12",
+        "start": 82.3330625,
+        "end": 92.70427083333334,
+        "effective_lufs": -24.27496464538037,
+        "parts": [
+          {
+            "part": 1,
+            "start": 82.33,
+            "end": 87.15,
+            "raw_lufs": -23.961718792478674,
+            "effective_lufs": -23.961718792478674,
+            "peak_momentary_lufs": -18.0
+          },
+          {
+            "part": 2,
+            "start": 87.58,
+            "end": 92.7,
+            "raw_lufs": -24.572347785975506,
+            "effective_lufs": -24.572347785975506,
+            "peak_momentary_lufs": -20.4
+          }
+        ]
+      },
+      {
+        "sentence": "S13",
+        "start": 93.6928125,
+        "end": 102.90627083333334,
+        "effective_lufs": -24.004067827303107,
+        "parts": [
+          {
+            "part": 1,
+            "start": 93.69,
+            "end": 102.91,
+            "raw_lufs": -24.004067827303107,
+            "effective_lufs": -24.004067827303107,
+            "peak_momentary_lufs": -17.1
+          }
+        ]
+      },
+      {
+        "sentence": "S14",
+        "start": 103.89004166666666,
+        "end": 110.472125,
+        "effective_lufs": -23.24392736367792,
+        "parts": [
+          {
+            "part": 1,
+            "start": 103.89,
+            "end": 107.17,
+            "raw_lufs": -23.628242869528787,
+            "effective_lufs": -23.628242869528787,
+            "peak_momentary_lufs": -19.4
+          },
+          {
+            "part": 2,
+            "start": 107.60000000000001,
+            "end": 110.47,
+            "raw_lufs": -23.880856134600712,
+            "effective_lufs": -23.880856134600712,
+            "peak_momentary_lufs": -17.3
+          }
+        ]
+      },
+      {
+        "sentence": "S15",
+        "start": 111.66166666666666,
+        "end": 123.00066666666666,
+        "effective_lufs": -23.67968061919592,
+        "parts": [
+          {
+            "part": 1,
+            "start": 111.66,
+            "end": 116.14,
+            "raw_lufs": -23.987509489051742,
+            "effective_lufs": -23.987509489051742,
+            "peak_momentary_lufs": -18.2
+          },
+          {
+            "part": 2,
+            "start": 116.58,
+            "end": 117.78,
+            "raw_lufs": -21.781172736807306,
+            "effective_lufs": -23.781172736807306,
+            "peak_momentary_lufs": -20.4
+          },
+          {
+            "part": 3,
+            "start": 118.19,
+            "end": 120.74000000000001,
+            "raw_lufs": -24.494053965551778,
+            "effective_lufs": -24.494053965551778,
+            "peak_momentary_lufs": -21.8
+          },
+          {
+            "part": 4,
+            "start": 121.16,
+            "end": 123.0,
+            "raw_lufs": -25.058022912389248,
+            "effective_lufs": -25.058022912389248,
+            "peak_momentary_lufs": -19.0
+          }
+        ]
+      },
+      {
+        "sentence": "S16",
+        "start": 123.97833333333334,
+        "end": 131.34,
+        "effective_lufs": -23.96350718434599,
+        "parts": [
+          {
+            "part": 1,
+            "start": 123.98,
+            "end": 128.06,
+            "raw_lufs": -23.573078337499556,
+            "effective_lufs": -23.573078337499556,
+            "peak_momentary_lufs": -19.1
+          },
+          {
+            "part": 2,
+            "start": 128.51,
+            "end": 131.34,
+            "raw_lufs": -24.724926120826833,
+            "effective_lufs": -24.724926120826833,
+            "peak_momentary_lufs": -20.6
+          }
+        ]
+      },
+      {
+        "sentence": "S17",
+        "start": 132.3299375,
+        "end": 135.79483333333334,
+        "effective_lufs": -23.854982710382547,
+        "parts": [
+          {
+            "part": 1,
+            "start": 132.33,
+            "end": 135.79,
+            "raw_lufs": -23.854982710382547,
+            "effective_lufs": -23.854982710382547,
+            "peak_momentary_lufs": -18.3
+          }
+        ]
+      },
+      {
+        "sentence": "S18",
+        "start": 136.77804166666667,
+        "end": 144.29579166666667,
+        "effective_lufs": -23.969601993904337,
+        "parts": [
+          {
+            "part": 1,
+            "start": 136.78,
+            "end": 140.3,
+            "raw_lufs": -23.350222502784376,
+            "effective_lufs": -23.350222502784376,
+            "peak_momentary_lufs": -18.2
+          },
+          {
+            "part": 2,
+            "start": 141.03,
+            "end": 144.3,
+            "raw_lufs": -24.612779879499033,
+            "effective_lufs": -24.612779879499033,
+            "peak_momentary_lufs": -18.8
+          }
+        ]
+      }
+    ],
+    "mapping_valid": true
+  },
+  "actual_public_piece_ranges": {
+    "S1:1": [
+      2.895,
+      4.165
+    ],
+    "S1:2": [
+      4.545,
+      5.165
+    ],
+    "S1:3": [
+      5.545,
+      8.88
+    ],
+    "S1:4": [
+      9.26,
+      10.775
+    ],
+    "S1:5": [
+      11.155,
+      14.73
+    ],
+    "S2:1": [
+      15.73,
+      22.085
+    ],
+    "S2:2": [
+      22.465,
+      25.785
+    ],
+    "S3:1": [
+      26.985,
+      28.195
+    ],
+    "S3:2": [
+      28.575,
+      32.08
+    ],
+    "S4:1": [
+      33.08,
+      33.7037
+    ],
+    "S4:2": [
+      34.1037,
+      34.465
+    ],
+    "S4:3": [
+      34.845,
+      36.28
+    ],
+    "S5:1": [
+      37.28,
+      39.97
+    ],
+    "S6:1": [
+      40.97,
+      43.295
+    ],
+    "S6:2": [
+      43.675,
+      46.385
+    ],
+    "S7:1": [
+      47.385,
+      48.15
+    ],
+    "S7:2": [
+      48.53,
+      51.695
+    ],
+    "S8:1": [
+      52.895,
+      59.07
+    ],
+    "S9:1": [
+      60.07,
+      65.68
+    ],
+    "S9:2": [
+      66.06,
+      66.965
+    ],
+    "S9:3": [
+      67.345,
+      68.91
+    ],
+    "S9:4": [
+      69.29,
+      70.82
+    ],
+    "S10:1": [
+      71.82,
+      72.505
+    ],
+    "S10:2": [
+      72.705,
+      73.2823
+    ],
+    "S10:3": [
+      73.4823,
+      77.565
+    ],
+    "S11:1": [
+      78.565,
+      81.11
+    ],
+    "S12:1": [
+      82.31,
+      87.145
+    ],
+    "S12:2": [
+      87.525,
+      92.67
+    ],
+    "S13:1": [
+      93.67,
+      97.165
+    ],
+    "S13:2": [
+      97.345,
+      98.1016
+    ],
+    "S13:3": [
+      98.3016,
+      99.305
+    ],
+    "S13:4": [
+      99.485,
+      102.875
+    ],
+    "S14:1": [
+      103.875,
+      107.165
+    ],
+    "S14:2": [
+      107.545,
+      110.44
+    ],
+    "S15:1": [
+      111.64,
+      116.165
+    ],
+    "S15:2": [
+      116.545,
+      117.775
+    ],
+    "S15:3": [
+      118.155,
+      120.74
+    ],
+    "S15:4": [
+      121.12,
+      122.965
+    ],
+    "S16:1": [
+      123.965,
+      128.07
+    ],
+    "S16:2": [
+      128.45,
+      131.305
+    ],
+    "S17:1": [
+      132.305,
+      135.76
+    ],
+    "S18:1": [
+      136.76,
+      140.31
+    ],
+    "S18:2": [
+      140.99,
+      144.265
+    ]
+  },
+  "original_boundary_sensitivity": [
+    {
+      "basis": "independent",
+      "checked": 25,
+      "failures": []
+    },
+    {
+      "basis": "producer",
+      "checked": 25,
+      "failures": []
+    }
+  ],
+  "pitch_comparison": {
+    "title": {
+      "voiced_pairs": 90,
+      "median_absolute_cents": 0.004657538752450152,
+      "p90_absolute_cents": 0.053980774291125175
+    },
+    "S1": {
+      "voiced_pairs": 697,
+      "median_absolute_cents": 0.007349526464725407,
+      "p90_absolute_cents": 0.29248769375439226
+    },
+    "S2": {
+      "voiced_pairs": 592,
+      "median_absolute_cents": 0.0039008555642094933,
+      "p90_absolute_cents": 0.04508428713142975
+    },
+    "S3": {
+      "voiced_pairs": 305,
+      "median_absolute_cents": 0.0033707297284197406,
+      "p90_absolute_cents": 0.03305210465881778
+    },
+    "S4": {
+      "voiced_pairs": 155,
+      "median_absolute_cents": 0.003084465746823582,
+      "p90_absolute_cents": 0.06210736107553201
+    },
+    "S5": {
+      "voiced_pairs": 141,
+      "median_absolute_cents": 0.0016649169502696334,
+      "p90_absolute_cents": 0.020681636131647634
+    },
+    "S6": {
+      "voiced_pairs": 327,
+      "median_absolute_cents": 0.0026630742164349764,
+      "p90_absolute_cents": 0.03176150240605237
+    },
+    "S7": {
+      "voiced_pairs": 267,
+      "median_absolute_cents": 0.0024571755510802815,
+      "p90_absolute_cents": 0.027010452957341034
+    },
+    "S8": {
+      "voiced_pairs": 386,
+      "median_absolute_cents": 0.004103847630744251,
+      "p90_absolute_cents": 0.047957157422877525
+    },
+    "S9": {
+      "voiced_pairs": 574,
+      "median_absolute_cents": 0.016139821694574653,
+      "p90_absolute_cents": 0.3349429556434484
+    },
+    "S10": {
+      "voiced_pairs": 315,
+      "median_absolute_cents": 0.0038788930100988506,
+      "p90_absolute_cents": 0.030710288695563356
+    },
+    "S11": {
+      "voiced_pairs": 160,
+      "median_absolute_cents": 0.00854581499155198,
+      "p90_absolute_cents": 0.07709733950664782
+    },
+    "S12": {
+      "voiced_pairs": 619,
+      "median_absolute_cents": 0.0033667777527581883,
+      "p90_absolute_cents": 0.04101393641582634
+    },
+    "S13": {
+      "voiced_pairs": 554,
+      "median_absolute_cents": 0.0038520078301658356,
+      "p90_absolute_cents": 0.03754474708060298
+    },
+    "S14": {
+      "voiced_pairs": 352,
+      "median_absolute_cents": 0.003954962772280659,
+      "p90_absolute_cents": 0.04491291712699917
+    },
+    "S15": {
+      "voiced_pairs": 647,
+      "median_absolute_cents": 0.003296545868685253,
+      "p90_absolute_cents": 0.08093051778732926
+    },
+    "S16": {
+      "voiced_pairs": 428,
+      "median_absolute_cents": 0.0021103501267314183,
+      "p90_absolute_cents": 0.02287024928957125
+    },
+    "S17": {
+      "voiced_pairs": 191,
+      "median_absolute_cents": 0.0016266376924002897,
+      "p90_absolute_cents": 0.026755515042241322
+    },
+    "S18": {
+      "voiced_pairs": 450,
+      "median_absolute_cents": 0.002885156239093351,
+      "p90_absolute_cents": 0.023644548954686196
+    }
+  },
+  "failed_checks": []
+}
