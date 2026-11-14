@@ -12,8 +12,7 @@ S = [(1,
      ('involving', '涉及'),
      ('many institutes,', '多家机构，')],
     '（a covert military mission…：同位语，补充说明 Project 523；\ninvolving many institutes：现在分词短语作后置定语）'],
-   [[('was named', '得名'),
-     ('after', '于'),
+   [[('**was named after**', '**得名于**(was named after)'),
      ('its', '它的'),
      ('launch', '启动'),
      ('date,', '日期，'),
@@ -165,7 +164,9 @@ S = [(1,
     '奖项/荣誉场景：award recipient = 获奖者 / 得主\n'
     '物品/信息场景：email recipient = 邮件收件人；\n'
     'welfare recipient = 福利领取者）'],
-   [[('its **jury**', '该奖的**评审团**(jury)'), ('credited the drug with saving millions.', '将挽救了数百万人的功劳归功于这种药物。')],
+   [[('its **jury**', '该奖的**评审团**(jury)'),
+     ('**credited** the drug **with** saving millions.',
+      '**将**(credited with)挽救了数百万人的功劳**归功于**(credited with)这种药物。')],
     '（credit A with B：把 B 的功劳归于 A（或：认为 B 是 A 的成就））']]),
  (5,
   [[[('On 5 October 2015', '2015年10月5日，'),
@@ -209,7 +210,9 @@ out = {'no': '28',
                                                                                         'training 只有两项',
                    'S12 to assess its toxicity, Tu and': '不是三项并列：to assess its toxicity 是目的状语，并列的只有 Tu 和 two '
                                                          'colleagues 两项'},
-          '方向': {'S1-2 after→于': 'after 属于 be named after（以……命名），不是时间方向词，“得名于”方向不涉及先后'},
+          '方向': {'S1-2 after→于': 'after 属于 be named after（以……命名），不是时间方向词，“得名于”方向不涉及先后',
+                 'S1-2 after→得名于': 'after属于完整be named '
+                                   'after（以……命名），本句523项目得名于1967年5月23日启动日期，不是时间先后方向；用户030只得名于三字重点。'},
           '短语': {'S4 compiled … from': '不是搭配：from 属于 extracts from some 200 medicinal herbs（来自……的提取物），compiled '
                                        '的宾语是 640 prescriptions',
                  'S4 evaluated … from': '不是搭配：from 引出提取物的来源（extracts from herbs），evaluated 的宾语是 about 380 '
@@ -388,7 +391,9 @@ out = {'no': '28',
                   'S16 raw 7.3800-7.7250': '2026-10-15 删除段对应 非人声区间 [[7.385, 7.715]]（w 秒）：自动切点.py '
                                            '用实际声音按规则判定是吸气声/噗声（听得见的部分七成以上重心 1.8–3.8 kHz、低频 < -10 dB、周期 < '
                                            "0.35，没有连续 20 ms >4 kHz 的擦音），贴词一侧切在紧挨词 40 ms 内最安静处的过零点；复核报 ['lost'] "
-                                           '是删掉的呼吸声本身偏响（-34～-47 dB），不是词'}},
+                                           '是删掉的呼吸声本身偏响（-34～-47 dB），不是词'},
+          '同词异译': {'credited with：将/归功于': '不是两种译法：credit A with '
+                                          'B的同一中文意思将B归功于A，被挽救了数百万人的功劳隔开；用户031明确只将与归功于两处同色，中间具体内容普通。'}},
  '结尾解说': '简述',
  '高亮按实际开口': True,
  '高亮开口门槛': 40,
@@ -441,7 +446,7 @@ out = {'no': '28',
           'S13': [['Hainan, and', 'Hainan; and']],
           'S4': [['recipes, compiled', 'recipes; compiled']]},
  '除阻加强': {'S3': {'1': [6.44, 6.47, 4.5]}},
- 'allow_clash': ['extracts', 'switched to'],
+ 'allow_clash': ['extracts', 'switched to', 'was named after', 'credited', 'with'],
  '说明放宽特批': {'S17': {'倍数': '整屏',
                     '依据': '用户 2026-10-28 原话（直接对本会话说，用户同意 S17 结尾简述整屏，特批）：“第17句的简述铺满整屏，同意放宽”；用户 2026-10-28 原话（看 '
                           '28 S17 '
