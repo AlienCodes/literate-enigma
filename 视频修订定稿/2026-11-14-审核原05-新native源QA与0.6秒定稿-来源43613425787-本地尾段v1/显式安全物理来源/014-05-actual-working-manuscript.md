@@ -1,0 +1,103 @@
+# EN: The Fingerprint in the Blood
+# ZH: 血里的指纹
+
+## 英文
+In November 1983 a 15-year-old girl was murdered in the Leicestershire village of Narborough, and the **homicide** went **unsolved**. In the summer of 1986 a second 15-year-old was **slain** near **neighbouring** Enderby. A 17-year-old local youth **confessed** to the second killing, and to **detectives** the **perplexing** **investigation** was **seemingly** **resolved**.
+
+The **revelation** had come two years **previously**. On 10 September 1984 Alec Jeffreys, a **geneticist** at the University of Leicester, **discerned** on an X-ray film **molecular** **markers** whose **layout** **varied** **considerably** from person to person. He called them DNA fingerprints, since, like fingerprints, they **differentiated** individuals. The journal Nature **promptly** carried his paper in March 1985.
+
+Police **enlisted** Jeffreys, and his **genetic** tests **overturned** the **erroneous** **confession**. The youth was not the **perpetrator**, and the same **attacker** had killed both girls. The youth became the first person known to be cleared by DNA evidence. The **forensic** **innovation** had freed an **innocent** before it **implicated** anyone.
+
+In January 1987 police **commenced** the world's first **large-scale** DNA **screening**, asking more than 5,000 men in three villages for blood or **saliva**. None matched. The **elusive** killer, a local **baker**, had **induced** a **co-worker** to give a sample in his name, **evading** **suspicion**. In August 1987 someone **overheard** the **co-worker** discussing the **substitution** and **notified** police.
+
+Colin Pitchfork was **detained** on 19 September 1987, and his DNA **profile** matched. In January 1988 he **pleaded** guilty and was **jailed** for life, the first person **convicted of** murder on the basis of DNA evidence. A **tip-off**, not the screening, had **unmasked** him. The test's first **beneficiary** had been a **blameless** **juvenile** who had **falsely** admitted the **offence**.
+
+## 中文
+
+1983年11月，一名15岁的女孩在莱斯特郡的纳伯勒村遇害，这起**凶杀案**(homicide)一直**未能侦破**(unsolved)。（go + un-类形容词：一直处于这种状态，如 go unnoticed）1986年夏天，又一名15岁的女孩在**邻近的**(neighbouring)恩德比附近被**杀害**(slain)。一名17岁的当地青年**供认了**(confessed)第二起命案，在**警探**(detectives)看来，这场**扑朔迷离的**(perplexing)**调查**(investigation)**似乎**(seemingly)已经**了结**(resolved)。（to sb：在某人看来）
+
+这个**意外发现**(revelation)，早在两年**以前**(previously)就已经出现了。（had come：过去完成时，比上一段1986年的事更早）1984年9月10日，亚历克·杰弗里斯，一位**遗传学家**(geneticist)在莱斯特大学（任职），在一张X光片上**辨认出**(discerned)一些**分子**(molecular)**标记**(markers)，这些标记的**排布**(layout)在人与人之间**相差**(varied)**相当大**(considerably)。（宾语 molecular markers 带着 whose 从句，所以放到了状语后面）他把这些标记称为DNA指纹，因为像指纹一样，它们能把不同的人**区分**(differentiated)开来。（since：因为，不是“自从”；like fingerprints 是插入成分）《自然》期刊**很快**(promptly)就在1985年3月刊登了他的论文。（carry：指报刊刊登、登载）
+
+警方**请来了**(enlisted)杰弗里斯，他的**基因**(genetic)检测**推翻了**(overturned)那份**错误的**(erroneous)**供词**(confession)。（enlist：请来帮忙、争取帮助；本义是“征募入伍”）那名青年不是**行凶者**(perpetrator)，而且是同一个**袭击者**(attacker)杀害了这两名女孩。这名青年成为已知第一个凭DNA证据被证明清白的人。（known to be cleared…：后置定语，修饰 the first person）这项**法医学**(forensic)**创新**(innovation)早已让一名**无辜者**(innocent)重获自由，在它**牵连**(implicated)到任何人之前。（A before B：先 A 后 B；implicate：牵连，表明……涉案）
+
+1987年1月，警方**开始了**(commenced)世界上首次**大规模的**(large-scale)DNA**筛查**(screening)，请三个村庄的5,000多名男子提供血液或**唾液**(saliva)。（ask sb for sth：请某人提供某物；asking… 是伴随状语）没有一份样本吻合。这个**难以找到的**(elusive)凶手，一名当地的**面包师**(baker)，事先**诱使**(induced)一名**同事**(co-worker)冒他的名字提供了样本，**躲过了**(evading)**怀疑**(suspicion)。（induce sb to do sth：诱使某人做某事；in his name：以他的名义）（evading…：分词作结果状语，逻辑主语是凶手，不是同事）1987年8月，有人**无意中听到**(overheard)这名**同事**(co-worker)在谈论**冒名顶替**(substitution)的事，并**通知了**(notified)警方。
+
+科林·皮奇福克在1987年9月19日被**拘留**(detained)，他的DNA**图谱**(profile)（与凶手的）吻合。1988年1月，他**承认**(pleaded)有罪并被终身**监禁**(jailed)，（成为）第一个依据DNA证据**被判**(convicted of)谋杀**罪**(convicted of)的人。（the first person… 是 he 的同位语；convicted of：被判……罪）是一条**举报**(tip-off)，而不是那次筛查，**揭穿了**(unmasked)他的真面目。（A, not B, had done：是 A 而不是 B 做了……）这项检测的第一个**受益者**(beneficiary)是一名**清白的**(blameless)**少年**(juvenile)，他曾**虚假地**(falsely)认下这项**罪行**(offence)。（简述：▸发现：杰弗里斯发现，人体DNA中的一些遗传标记排列因人而异，▹可以像手指指纹一样区分不同的人，因此提出DNA指纹技术。▸洗冤：两名少女遇害后，一名少年供认第二起命案；▹警方请杰弗里斯检验，发现少年并非凶手，两案却出自同一人。▸漏网：警方随后向五千多名男子收集血液或唾液，开展大规模DNA筛查，▹却没有找到吻合者，因为真凶让同事冒名提供了样本。▸破案：有人听见同事谈论顶替采样并举报，警方循线逮捕皮奇福克，▹核对DNA后确认身份；皮奇福克认罪，被判终身监禁。▸意义：这项技术先让一名作了虚假供认的无辜少年获释，▹后来才帮助判定真凶有罪；揭穿冒名靠的是举报，DNA则为身份认定提供了证据。）
+
+## 速查表
+| 词 | 释义 | 段 |
+|---|---|---|
+| homicide | 本文：凶杀案；n. 凶杀，杀人案（a homicide detective；the homicide rate） | 1 |
+| unsolved | 本文：未能侦破；adj. 未解决的，未侦破的（an unsolved mystery/crime） | 1 |
+| neighbouring | 本文：邻近的；adj. 邻近的，相邻的（neighbouring countries/towns） | 1 |
+| slain | 本文：杀害；v. (slay) 杀害（多用于新闻、文学）（be slain in battle） | 1 |
+| confessed | 本文：供认了；v. (confess) 供认，坦白（confess to a crime；confess that…） | 1 |
+| detectives | 本文：警探；n. (detective) 侦探，警探（a private detective；detectives are investigating） | 1 |
+| perplexing | 本文：扑朔迷离的；adj. 令人困惑的，扑朔迷离的（a perplexing problem/question） | 1 |
+| investigation | 本文：调查；n. 调查，侦查（carry out an investigation；under investigation） | 1 |
+| seemingly | 本文：似乎；adv. 似乎，看来（a seemingly endless queue；seemingly simple） | 1 |
+| resolved | 本文：了结；v. (resolve) 解决，了结（resolve a dispute/conflict） | 1 |
+| revelation | 本文：意外发现；n. 揭示，意外的发现（a startling revelation；come as a revelation） | 2 |
+| previously | 本文：以前；adv. 以前，先前（two days previously；as previously mentioned） | 2 |
+| geneticist | 本文：遗传学家；n. 遗传学家（a leading geneticist） | 2 |
+| discerned | 本文：辨认出；v. (discern) 看出，辨别（discern a pattern；barely discernible） | 2 |
+| molecular | 本文：分子；adj. 分子的（molecular biology/structure） | 2 |
+| markers | 本文：标记；n. (marker) 标记，标志物（a genetic marker；a marker of success） | 2 |
+| layout | 本文：排布；n. 布局，排布（the layout of a page/house） | 2 |
+| varied | 本文：相差；v. (vary) 变化，各不相同（prices vary from shop to shop） | 2 |
+| considerably | 本文：相当大；adv. 相当大地，非常（considerably larger；vary considerably） | 2 |
+| differentiated | 本文：区分；v. (differentiate) 区分，区别（differentiate between A and B；what differentiates us from apes） | 2 |
+| promptly | 本文：很快；adv. 迅速地，立即；准时地（reply promptly；arrive promptly at nine） | 2 |
+| enlisted | 本文：请来了；v. (enlist) 请求（帮助），争取；入伍（enlist sb's help/support） | 3 |
+| genetic | 本文：基因；adj. 基因的，遗传的（genetic engineering；a genetic disorder） | 3 |
+| overturned | 本文：推翻了；v. (overturn) 推翻，撤销（overturn a ruling/verdict） | 3 |
+| erroneous | 本文：错误的；adj. 错误的（an erroneous belief/assumption） | 3 |
+| confession | 本文：供词；n. 供认，供词（make/retract a confession） | 3 |
+| perpetrator | 本文：行凶者；n. 作恶者，行凶者（the perpetrators of the attack） | 3 |
+| attacker | 本文：袭击者；n. 袭击者（describe one's attacker to police） | 3 |
+| forensic | 本文：法医学；adj. 法医的，刑侦的（forensic science/evidence） | 3 |
+| innovation | 本文：创新；n. 创新，新方法（technological innovation；encourage innovation） | 3 |
+| innocent | 本文：无辜者；n./adj. 无辜者；无辜的（an innocent bystander；kill innocents） | 3 |
+| implicated | 本文：牵连；v. (implicate) 牵连，表明……涉案（be implicated in a scandal） | 3 |
+| commenced | 本文：开始了；v. (commence) 开始（正式用语）（commence work/proceedings） | 4 |
+| large-scale | 本文：大规模的；adj. 大规模的（a large-scale survey/operation） | 4 |
+| screening | 本文：筛查；n. 筛查；筛选（screen 的名词形式；DNA screening：DNA筛查） | 4 |
+| saliva | 本文：唾液；n. 唾液（a saliva test；saliva samples） | 4 |
+| elusive | 本文：难以找到的；adj. 难以捉摸的，难找到的（an elusive goal；prove elusive） | 4 |
+| baker | 本文：面包师；n. 面包师，烘焙师 | 4 |
+| induced | 本文：诱使；v. (induce) 诱使，劝说（induce sb to do sth） | 4 |
+| co-worker | 本文：同事；n. 同事（a former co-worker） | 4 |
+| evading | 本文：躲过了；v. (evade) 躲避，逃避（evade capture/taxes/a question） | 4 |
+| suspicion | 本文：怀疑；n. 怀疑，嫌疑（arouse suspicion；under suspicion） | 4 |
+| overheard | 本文：无意中听到；v. (overhear) 无意中听到（overhear a conversation） | 4 |
+| substitution | 本文：冒名顶替；n. 替换，顶替（the substitution of A for B） | 4 |
+| notified | 本文：通知了；v. (notify) 通知，告知（notify the police/authorities of sth） | 4 |
+| detained | 本文：拘留；v. (detain) 拘留，扣押（be detained for questioning） | 5 |
+| profile | 本文：图谱；n. 概况，简介；（DNA 等的）图谱（a company profile；a genetic profile） | 5 |
+| pleaded | 本文：承认；v. (plead) 认（罪）；恳求（plead guilty/not guilty） | 5 |
+| jailed | 本文：监禁；v. (jail) 判……入狱，监禁（be jailed for fraud） | 5 |
+| convicted of | 本文：被判……罪；v. (convict sb of sth 的被动形式) 被判……罪（be convicted of murder：被判谋杀罪） | 5 |
+| tip-off | 本文：举报；n. 密报，举报（an anonymous tip-off；act on a tip-off） | 5 |
+| unmasked | 本文：揭穿了；v. (unmask) 揭露，揭穿真面目（unmask a spy/fraud） | 5 |
+| beneficiary | 本文：受益者；n. 受益者，受惠人（the main beneficiary of a will/policy） | 5 |
+| blameless | 本文：清白的；adj. 无过错的，清白的（lead a blameless life） | 5 |
+| juvenile | 本文：少年；n./adj. 少年；少年的（juvenile crime；a juvenile court） | 5 |
+| falsely | 本文：虚假地；adv. 虚假地，错误地，不实地（falsely accused；falsely claim credit） | 5 |
+| offence | 本文：罪行；n. 罪行，违法行为（commit an offence；a criminal offence） | 5 |
+
+## 史实与来源
+- 【T1】1984年9月10日上午（约9时05分），莱斯特大学的杰弗里斯冲洗出一张X光片，看到DNA图案因人而异；正文不写钟点。S1
+- 【T2】他称之为"DNA指纹"；论文刊于《自然》第314卷，1985年3月7日。英文 promptly 译"很快"。S1
+- 【T3】1983年11月，一名15岁女孩在莱斯特郡纳伯勒遇害；1986年夏（7月31日失踪，8月初发现），另一名15岁少女在恩德比附近遇害。按约稿单不写受害者姓名与犯罪细节。S3
+- 【T4】一名17岁当地青年供认第二起命案（1986年8月被起诉）；不写其姓名。S3；S6
+- 【T5】杰弗里斯的检测排除了这名青年，并显示两案为同一人所为；年份不写。英文 the same attacker 译"同一个袭击者"；"The youth became…"译"这名青年成为…"。S3；S6
+- 【T6】他是已知第一个因 DNA 证据洗清嫌疑的人；"known to be"译"已知"，保留限定。S6；S7
+- 【T7】1987年1月起，警方在恩德比、纳伯勒和利特尔索普三村开展世界首次大规模DNA筛查，涉及5,000多名男子；各来源精确数字和年龄段不一，正文不写。S4；S9
+- 【T8】无一吻合；凶手是当地面包师，曾让一名同事冒名替他提供样本；不写同事姓名。S3；S9
+- 【T9】1987年8月，有人听到这名同事谈起冒名一事并报警。举报人身份各来源说法不一（S9称面包店的一名女子，S6称酒馆里的旁听者），正文写"有人"，不写性别、地点。S6；S9
+- 【T10】科林·皮奇福克1987年9月19日被捕，DNA相符。英文 detained 译"拘留"。S3
+- 【T11】1988年1月认罪，被判终身监禁（判决日有22日、23日两说，正文只写月份；最低刑期不写）。S3；S6；S9
+- 【T12】第一个依据 DNA 证据被判谋杀罪的人，不加"世界"。S6；S9
+- 【补】"two years earlier"：从1986年夏回溯到1984年9月，约两年。
+- 【补】凭 DNA 定罪的首例（任何罪名）是1987年11月13日的一起强奸案（罗伯特·梅利亚斯，正文不写），早于皮奇福克案，所以正文限定为"谋杀"。S8
+- 【说明】所有来源均为检索摘要（网页无法直接打开），正文未用直接引语。正文不写受害者、该青年和那名同事的姓名，不写作案细节。保留对冲与限定：seemingly 译"似乎"，known to be 译"已知"，someone 译"有人"，不点明性别。"A tip-off, not the screening, had unmasked him"照译为"一条举报"，中文不写成"筛查抓住凶手"。英文未写明的因果，中文不加"因此""于是"。

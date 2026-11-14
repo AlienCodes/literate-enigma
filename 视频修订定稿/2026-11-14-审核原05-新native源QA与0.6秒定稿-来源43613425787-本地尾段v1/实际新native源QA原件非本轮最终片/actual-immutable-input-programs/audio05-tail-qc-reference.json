@@ -1,0 +1,249 @@
+{
+  "kind": "root-approved05-single-preserved-screening-nasal-controlled-audio-reference",
+  "article": "05",
+  "approved_request_sha256": "96116f6806b8783cc8abe9583424047683505025dab6c3bc5b38629bbafb418b",
+  "accepted_sha256": "216f567cca37e44bb5403d5b8d8aa7fcb0bf9aaf335f0c3d8516e996dcd42d9a",
+  "accepted_aac_sha256": "5188374d44bb921341e7dec82349be693ff09da80704ae86bc2f1b12af1f5cc2",
+  "expected_actual_pcm_sha256": "f5f4279e3dc0674cb267b8ca03db9b0cd78f524265bd431bcf1437fec64d181b",
+  "expected_actual_aac_sha256": "ad8c85c03e78c00056b0bf4fc3a53d0a992c3610a204ee3dc22cf87ee2292b99",
+  "old_change_span_s": [
+    92.18,
+    92.575
+  ],
+  "audio_control_keys": [
+    "非人声区间",
+    "停顿删除区间",
+    "停顿插入点",
+    "词尾除阻",
+    "停顿处除阻",
+    "除阻加强",
+    "分段增益dB",
+    "句子增益dB",
+    "段内渐变dB",
+    "结尾句",
+    "合成标点",
+    "列举逗号"
+  ],
+  "approved_audio_controls": {
+    "非人声区间": {
+      "S1": [
+        [
+          2.035,
+          2.325
+        ]
+      ],
+      "S2": [
+        [
+          2.1,
+          2.365
+        ]
+      ],
+      "S3": [
+        [
+          5.2615,
+          5.49
+        ]
+      ],
+      "S5": [
+        [
+          6.9675,
+          7.2175
+        ],
+        [
+          10.53,
+          10.817042,
+          "紧贴词头"
+        ]
+      ],
+      "S6": [
+        [
+          4.030125,
+          4.16,
+          "紧贴词尾"
+        ]
+      ],
+      "S7": [
+        [
+          1.0425,
+          1.305
+        ]
+      ],
+      "S8": [
+        [
+          1.84,
+          2.05375,
+          "紧贴词头"
+        ]
+      ],
+      "S9": [
+        [
+          2.005,
+          2.211208,
+          "紧贴词头"
+        ]
+      ],
+      "S11": [
+        [
+          1.395458,
+          1.537917,
+          "紧贴两头"
+        ]
+      ],
+      "S12": [
+        [
+          1.378417,
+          1.565,
+          "紧贴词尾"
+        ],
+        [
+          6.7,
+          6.96625,
+          "紧贴词头"
+        ]
+      ],
+      "S15": [
+        [
+          1.3975,
+          1.6225
+        ],
+        [
+          5.955,
+          6.15125,
+          "紧贴词头"
+        ]
+      ],
+      "S16": [
+        [
+          3.1225,
+          3.1425
+        ],
+        [
+          5.0675,
+          5.300583,
+          "紧贴词头"
+        ]
+      ],
+      "S17": [
+        [
+          2.235,
+          2.42
+        ],
+        [
+          3.6,
+          3.84875,
+          "紧贴词头"
+        ]
+      ],
+      "S18": [
+        [
+          1.443458,
+          1.6375,
+          "紧贴词尾"
+        ]
+      ],
+      "S19": [
+        [
+          1.802042,
+          2.00025,
+          "紧贴两头"
+        ],
+        [
+          3.81,
+          4.02
+        ]
+      ]
+    },
+    "停顿删除区间": {
+      "S6": {
+        "2": [
+          2.77,
+          3.005
+        ]
+      },
+      "S14": {
+        "1": [
+          1.1595,
+          1.1975
+        ]
+      }
+    },
+    "词尾除阻": {},
+    "除阻加强": {
+      "S16": {
+        "句末": [
+          7.435,
+          7.48,
+          3.5
+        ]
+      }
+    },
+    "分段增益dB": {
+      "S6": {
+        "1": -3.0,
+        "3": 1.0
+      },
+      "S13": {
+        "1": -2.5
+      },
+      "S14": {
+        "1": -2.0
+      },
+      "S18": {
+        "1": -4.5
+      }
+    },
+    "结尾句": {
+      "S19": {
+        "整句语速": 0.95,
+        "依据": "旧验音轨的默认语速显式记录：05篇原已验源没有结尾句设置，原制作程序默认SPEED=0.95。2026-11-14以原G72核验母素材、原整句与带时长输出、原sentence_audio及原句增益后处理逐样本核实，显式整句0.95与该隐式默认结果完全相同；原非人声区间、切点、增益、词尾加强及逐处确认均保留。这里只透明记下既有语速，不新增双速或放慢。正式重制仍须原全部质量门通过，并与已验AAC逐字节相同。"
+      }
+    }
+  },
+  "weak_nasal_preservation_evidence": {
+    "original_raw_sample_interval": [
+      154500,
+      154800
+    ],
+    "original_raw_weak_ng_array_sha256": "472aec9d3584a24f50255d1dee39b4ade38771a457010f3fb11f4f6186d6d077",
+    "candidate_sentence_sample_interval": [
+      151620,
+      151920
+    ],
+    "exact_retained_original_float_samples": true,
+    "original_isolated_audit_tail_cut_ms_before": 30,
+    "original_isolated_audit_tail_cut_ms_after": 0,
+    "original_isolated_audit_onset_cut_ms_after": 0,
+    "whole_PCM_SHA256_binds_actual_signal_to_this_exact_original_function_candidate": true,
+    "fulltrack_source_proof_SHA256": "f30bcebab6886909e2c32eade84a7391f478b848f39e7c5e48f2746cfd10fd74",
+    "original_isolated_evidence_SHA256": "c4624dc8a14d78d71af6d8b74363dfa58213d8eab1fec440ba2e5ff83c0a61cd",
+    "full_restored_tail_raw_span_s": [
+      6.415,
+      6.505
+    ],
+    "removed_small_NV_value": [
+      6.45675,
+      6.485,
+      "紧贴词尾"
+    ],
+    "root_authorized_new_minimum_removal": true,
+    "pending_candidate_proposal_sha256": "c3fc7257f6751a1980e0335cf7339960c4bc87584ee0945d2c6669f0bc7f378c"
+  },
+  "notes": "Formal original complete audio/video checks remain required; no new pre/lost edge confirmation is granted by this supplemental reference.",
+  "tail_duration_restored_s": 0.105,
+  "expected_S12_comma_times_s": [
+    92.295,
+    92.675
+  ],
+  "state": "root-approved-S12-sole-NV-removal-and-exact-existing-S15-edge-record-original-private-gates-passed",
+  "approved_generator_sha256": "211083a2a845b5b1e503da8a8b91a80f592c2865d00dd2011658f4ebc3ffc8c4",
+  "implementation_application_record_sha256": "a3d8546f2cf35d913c2d226b7a9835c3ded5df40e3420722d9307b529c467345",
+  "physical_delta_only_from_fa9": {
+    "remove_path": "/非人声区间/S12/1",
+    "old_value": [
+      6.45675,
+      6.485,
+      "紧贴词尾"
+    ]
+  },
+  "specific_existing_S15_record_key": "S15 raw 5.9500-6.1612"
+}
