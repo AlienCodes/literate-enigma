@@ -8,6 +8,7 @@ permissions:
   contents: write
 jobs:
   publish-review:
+    if: github.repository == 'alienalgorithm/postgraduate-vocabulary'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
