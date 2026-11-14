@@ -1,0 +1,89 @@
+{
+  "recorded_at_utc": "2026-11-14T00:07:07.681070+00:00",
+  "latest_scope": {
+    "main_pdf_latest_correction": "799页含解析版本仅未发布本地历史草稿，主册改为v4-compact；小字/句析/语法/练习均从主册移除，解析材料源码留存供以后单独解析书，本轮不制作解析册",
+    "video": "全部70篇真正重渲3840×2160，按书中最新顺序编号排列，不用旧片补数",
+    "source": "重点词、指定译文、小字、全70简述、末页字号和居中、全篇排版核对",
+    "audio": "实际新成片全轨检查，重点10/12/44/51；质量未通过则修复并重验",
+    "pdf": "按用户最新纠正，沿原400多页B5规格：只插图、中英文章、重点词短语及篇末简述，保留先前批准第2页序言和成套封底；不额外增加解析/练习",
+    "pdf_editorial": "删阅读小册、点击目录可跳转、新顺序版及模板/软件/制作说明；采用正式书名考研学人、副题70篇趣味英语阅读",
+    "preface": "准确统计重点词与短语、解释类型与70篇选文；无官方考研词表时不得宣称全部标词都是大纲词",
+    "attribution": "全部新PDF保留默认隐藏、可开启的朋克英语来源图层",
+    "release": "最新要求只放整本正式PDF和全部70部4K视频，编号篇名严格对齐书序；源码及详细QC保存在GitHub仓库",
+    "old_release": "用户要求替换旧Release；等新整套实际验收及上传核对后处理明确旧对象，尚未删除任何Release或Git历史"
+  },
+  "state": "COMPACT_475_PAGE_BOOK_APPROVED_AND_DUAL_ARCHIVED; ALL70_TEXT_STATIC_LAYOUT_PASSED; TWO_ILLUSTRATED_4K_VIDEOS_PASSED; REMAINING_AUDIO_PRODUCTION_IN_PROGRESS",
+  "production": {
+    "new_final_videos_passed": 2,
+    "required_videos": 70,
+    "passed_videos": [
+      {
+        "original_id": "53",
+        "book_order": "35",
+        "sha256": "b82966baa6439b194a6fa1e2c222f226517982318ef398ae631efcd5c562d588"
+      },
+      {
+        "original_id": "64",
+        "book_order": "63",
+        "sha256": "78ef9444e6a65a07ed934c8f9b7f7b51dbcb6d0d6e783db9f61b99a5659b40c9"
+      }
+    ],
+    "passed_video_ending": "实际正文结束后，书中对应插图60帧，再简述60帧；3840×2160、30fps；原正文编码与AAC包及绝对时间保持不变",
+    "official_producer_run_for_passed_two": 43523430839,
+    "active_runs_at_recording": {
+      "article26_official_rerender": 43529134759,
+      "keep_reviewed_gain_original_native_regression": 43530603703
+    },
+    "readonly_diagnostics_run": 43528832985,
+    "observed_blockers": [
+      "草稿声音程序会额外改写已审句内增益；最小保留模式补丁正在原完整回归认证",
+      "同一实际PCM在不同CPU上新推TTS参考不逐样本相同，已证实并着手修复原始create母素材读取；保留原自检、阈值及真实声学问题检查",
+      "原生参考输入枚举、全70词汇上下文、简述续行装饰比较已修，其他真实声音和高亮疑点继续逐篇处理"
+    ],
+    "new_final_pdfs_passed": 1,
+    "whole_book": {
+      "pages": 475,
+      "bytes": 375955024,
+      "sha256": "65bc695c7b789fbc397c443ea6a387ee616f2569865a4350edc0137ddcff089e",
+      "format": "B5 176×250mm；只插图、中英文章、词汇短语和简述；保留批准封面/第2页序言/目录/封底",
+      "primary_pinned_commit": "8404ddff99dfa094aa005fec70643d9da55e21fc",
+      "archive_prefix": "考研学人印刷版/2026-11-13-v4/",
+      "frozen_asset_count": 637,
+      "dual_archive_verified": true,
+      "full_pdf_in_git": "原字节四分片、完整SHA、复组程序；Release交付单个完整PDF"
+    },
+    "release_published": false,
+    "old_release_deleted": false
+  },
+  "primary_source_commit": "3780cfe73b8cca0b431c79b3402fe7a6f314fd16",
+  "backup_source_commit": "5652e0e783e49653198129f3a888dafe85d81438",
+  "files_source_archive": 952,
+  "PDF": {
+    "path": "/workspace/work/punk-print-20261113-v4-compact/signed/book/PUNK-ENGLISH-70-STORIES.pdf",
+    "pages": 475,
+    "bytes": 375955024,
+    "sha256": "65bc695c7b789fbc397c443ea6a387ee616f2569865a4350edc0137ddcff089e",
+    "format": "B5 176×250mm；只插图、中英文章、词汇短语和简述；保留批准封面/第2页序言/目录/封底",
+    "primary_pinned_commit": "8404ddff99dfa094aa005fec70643d9da55e21fc",
+    "archive_prefix": "考研学人印刷版/2026-11-13-v4/",
+    "frozen_asset_count": 637,
+    "dual_archive_verified": true,
+    "full_pdf_in_git": "原字节四分片、完整SHA、复组程序；Release交付单个完整PDF"
+  },
+  "prior_799_page_draft": "SUPERSEDED-NOT-FOR-DELIVERY, local historical source only; no upload",
+  "actual_53_64_V3_validation": "/workspace/work/video-revision-delivery/actual53-64-validation/report.json",
+  "archive_primary_with_receipts": "2118010a9e108fa8ce82b58550e62ce8e39c604a",
+  "archive_backup_with_receipts": "8aeaab43d517275aac147f4ffdb2e3e6e9b0bec0",
+  "latest_data_sources": {
+    "12": "e3bfbcce6f1a8e14cfe451d656574353321e297c90c62f5a7b422f37478311d5",
+    "44": "de8e191aa9f383586189d21449d75c159866009dbd3b3e398a8070093f5fbcef",
+    "51": "dc06b8312b8bcd2041e0a904caa95147b3d4274ed5dc87949ab5088c892fcc45"
+  },
+  "next_steps": [
+    "dual-archive actually passed53/64 fullnew4K with source+QC now",
+    "finish original keep-gain and raw-mother reference input fixes without lowering original quality thresholds",
+    "rerender remaining68 through officialentry, finalize illustration60+summary60 frames",
+    "assemble exactlyone475pagewholePDF andall70MP4 inbookorder; upload andverify",
+    "replace explicitlyidentified oldRelease onlyafter newfullaccepted; preserveGithistory"
+  ]
+}
