@@ -106,8 +106,11 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
     expected = {'10':'15f47fa51add', '11':'5da69def8d01', '12':'04f94362f377',
                 '44':'21efe6263229', '51':'ff0728857c2d',
                 '15':'7e5ea2bdb6d3', '17':'0ef19e50999f',
-                '18':'76b99c620981', '30':'93a277750d35', '02':None}
-    exact_old_pcm = {'02':'c21872d4db894f37b1b8b5db752917f9f6ef60680834ca4cccef9b806b5c1c52'}
+                '18':'76b99c620981', '30':'93a277750d35', '02':None,
+                '69':'8b8618454b80'}
+    exact_old_pcm = {'02':'c21872d4db894f37b1b8b5db752917f9f6ef60680834ca4cccef9b806b5c1c52',
+                     '69':'d04e5e1b057dfaa788bf86dcd6fe7da7b88fc1a254f8abd0a695621f074c2837'}
+    prior_public_aac = {'69':'2b15b4811866afd03ef5962f6ce99717d28d7e97704750d9ede91bd7799eed15'}
     if NO not in expected:
         return
     script = W / f'scripts/{NO}.json'
@@ -116,10 +119,17 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
     old_source.write_bytes(baseline_bytes)
     proof = {'article':NO, 'purpose':'diagnostic old accepted PCM reconstruction only; not a QC verdict',
              'quality_acceptance':False, 'old_source_sha256':sha(old_source),
-             'expected_accepted_pcm_md5_first12':expected[NO],
-             'expected_accepted_pcm_sha256':exact_old_pcm.get(NO),
+             'expected_accepted_pcm_md5_first12':expected[NO] if NO not in prior_public_aac else None,
+             'expected_accepted_pcm_sha256':exact_old_pcm.get(NO) if NO not in prior_public_aac else None,
              'old_pcm_matches_accepted_confirmation_fingerprint':False,
              'private_PCM_or_cache_exported':False}
+    if NO in prior_public_aac:
+        proof.update({'purpose':'diagnostic exact prior public native PCM for original confirmation migration; not a QC verdict',
+                      'reference_kind':'actual_prior_public_native_render_not_the_accepted_voice',
+                      'original_public_run_id':43543967031,
+                      'expected_prior_public_native_pcm_md5_first12':expected[NO],
+                      'expected_prior_public_native_pcm_sha256':exact_old_pcm[NO],
+                      'expected_prior_public_native_aac_adts_sha256':prior_public_aac[NO]})
     proof_file = OUT / f'{NO}-accepted-prior-pcm-probe.json'
     try:
         script.write_bytes(baseline_bytes)
@@ -135,13 +145,16 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
             shutil.copyfile(W / f'work_{NO}/分段.json', old_segments)
             actual_fp = hashlib.md5(old_wav.read_bytes()).hexdigest()[:12]
             proof.update({'actual_old_pcm_md5_first12':actual_fp, 'actual_old_pcm_sha256':sha(old_wav),
-                          'old_pcm_matches_accepted_confirmation_fingerprint':actual_fp == expected[NO],
+                          'old_pcm_matches_accepted_confirmation_fingerprint':actual_fp == expected[NO] and NO not in prior_public_aac,
+                          'old_pcm_matches_existing_confirmation_fingerprint':actual_fp == expected[NO],
                           'old_reconstructed_aac_adts_sha256':aac_hash(output),
                           'accepted_prior_aac_adts_sha256':accepted_aac,
                           'old_reconstructed_aac_exactly_matches_accepted':aac_hash(output) == accepted_aac,
                           'old_segment_metadata_sha256':sha(old_segments)})
             old_pcm_bound = (sha(old_wav) == exact_old_pcm[NO]) if NO in exact_old_pcm else actual_fp == expected[NO]
-            proof['old_pcm_matches_independently_bound_accepted_reference'] = old_pcm_bound
+            proof['old_pcm_matches_independently_bound_reference'] = old_pcm_bound
+            proof['old_pcm_matches_independently_bound_accepted_reference'] = (
+                old_pcm_bound and proof['old_reconstructed_aac_exactly_matches_accepted'])
             BASELINE_AUDIO_FILES = {'old_wav':old_wav, 'old_source':old_source,
                                     'old_segments':old_segments, 'proof':proof_file}
     except Exception as exc:
@@ -151,8 +164,17 @@ def prepare_accepted_pcm_continuity(baseline_bytes, accepted_aac):
         proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
         status['accepted_prior_pcm_probe'] = proof
         save()
-    if not BASELINE_AUDIO_FILES or not proof.get('old_pcm_matches_independently_bound_accepted_reference', False):
+    if not BASELINE_AUDIO_FILES or not proof.get('old_pcm_matches_independently_bound_reference', False):
         return
+    if NO in prior_public_aac:
+        bound = proof.get('old_reconstructed_aac_adts_sha256') == prior_public_aac[NO]
+        proof['old_reconstructed_aac_exactly_matches_prior_public_native'] = bound
+        proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
+        if not bound:
+            proof['migration_not_attempted'] = 'Prior native reconstruction did not reproduce its actual public AAC.'
+            proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
+            save()
+            return
     if NO in A21_AUDIO_REPAIRS | {'02'} and not proof.get('old_reconstructed_aac_exactly_matches_accepted', False):
         proof['migration_not_attempted'] = 'Old reconstruction did not exactly reproduce the accepted AAC.'
         proof_file.write_text(json.dumps(proof, ensure_ascii=False, indent=2) + '\n')
