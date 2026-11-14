@@ -1005,6 +1005,18 @@ try:
     assert '定稿' in authorization['用于'] and '撤回' not in authorization['用于']
     agreement = T / '用户同意记录.json'
     records = json.loads(agreement.read_text())
+    # Transfer only the already-reviewed real038 statement omitted by the first launcher.
+    # The official consent/text checker is unchanged and reads the real original words.
+    if NO == '47':
+        supplement = request / '真实用户同意补充.json'
+        assert sha(supplement) == 'ddefeead2ea53cb3f3a49e66ac73ba743003edd64f71eda061dc568c6409afac'
+        attached = json.loads(supplement.read_text())
+        assert attached['article'] == NO and len(attached['records']) == 1
+        for actual_record in attached['records']:
+            assert actual_record['篇'] == NO and actual_record['原话'].strip()
+            if actual_record not in records['记录']:
+                records['记录'].append(actual_record)
+        status['actual_original_user_consent_supplement_sha256'] = sha(supplement)
     supplied_agreement = request / '视频/工具/用户同意记录.json'
     if supplied_agreement.is_file():
         supplied_records = json.loads(supplied_agreement.read_text())
