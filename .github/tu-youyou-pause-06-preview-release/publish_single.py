@@ -41,6 +41,8 @@ def main():
     assert config['actual_dual_permanent_archive_passed'] is True
     assert set(config['reviewed_terms']) == {'was named after', 'credit … with'}
     assert config['preview_only'] is True and config['end_reading_pause_seconds'] == 0.6
+    assert config['nominal_extra_hold_frames_at_30fps'] == 18
+    assert 0.6 <= config['actual_end_reading_pause_seconds'] < 0.633334
     spec = config['video']
     assert spec['release_name'] == '29-Tu-Youyou-End-Pause-0.6s-4K-Preview.mp4'
     assert spec['width'] == 3840 and spec['height'] == 2160
