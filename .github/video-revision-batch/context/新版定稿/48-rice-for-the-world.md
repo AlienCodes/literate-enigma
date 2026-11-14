@@ -1,27 +1,27 @@
 # EN: Rice for the World
 # ZH: 稻济天下
 ## 英文
-In July 1964, **inspecting** rice ear by ear in a **paddy** at Anjiang Agricultural School in Hunan province, the **instructor** Yuan Longping spotted a **peculiar** plant. It was male-**sterile**, **shedding** no **viable** **pollen**. Rice **pollinates itself**, so breeding **hybrid** seed **in bulk** depends on such plants. In February 1966 he **detailed** the **anomaly** in the **journal** Chinese Science Bulletin.
+In July 1964, **inspecting** rice ear by ear in a **paddy** at Anjiang Agricultural School in Hunan province, the **instructor** Yuan Longping **spotted** a **peculiar** plant. It was male-**sterile**, **shedding** no **viable** **pollen**. Rice **pollinates itself**, so breeding **hybrid** seed **in bulk** depends on such plants. In February 1966 he **detailed** the **anomaly** in the **journal** Chinese Science Bulletin.
 
 The **specimen** **launched** a six-year **hunt**: Yuan and his **colleagues** could not **breed** a sterile line whose **offspring** **reliably** **inherited** the **trait**. The **breakthrough** came on 23 November 1970, in a **marsh** near Nanhong Farm in Sanya, Hainan. Yuan's assistant, Li Bihu, and Feng Keshan, a farm **technician**, found wild rice whose pollen was **abortive**.
 
-Then came Yuan's **decisive** move: rather than **withhold** the **strain**, he **distributed** it **to** **collaborators** **nationwide**. Hybrids need three **distinct** lines: a sterile line, one to **maintain** its **sterility**, and one to **restore** **fertility** in the hybrids. Yan Longan's team in Jiangxi bred sterile lines and Zhang Xiancheng in Guangxi first **identified** a restorer line. In October 1973, at a **national conference** in Suzhou, Yuan **declared** the three-line system complete.
+Then came Yuan's **decisive** move: rather than **withhold** the **strain**, he **distributed** it **to** **collaborators** **nationwide**. **Hybrids** need three **distinct** lines: a sterile line, one to **maintain** its **sterility**, and one to **restore** **fertility** in the hybrids. Yan Longan's team in Jiangxi bred sterile lines and Zhang Xiancheng in Guangxi first **identified** a restorer line. In October 1973, at a **national conference** in Suzhou, Yuan **declared** the three-line system complete.
 
 By 1976 hybrids were **under cultivation** on about 140,000 **hectares**. The World Food Prize Foundation **estimates** that hybrid rice can **yield** up to a fifth more **grain** than **conventional** **varieties**. By the early 2000s it **covered** almost half of China's **rice fields**.
 
-Yuan, who shared the 2004 **World Food Prize** with Sierra Leone's Monty Jones, died in Changsha on 22 May 2021, aged 91. Yet popular **myth** **portrays** him **as** a **solitary** **genius**. His eye began the search; his **generosity** let many hands **bring in the harvest**.
+Yuan Longping, who shared the 2004 **World Food Prize** with Sierra Leone's Monty Jones, died in Changsha on 22 May 2021, aged 91. Yet popular **myth** **portrays** him **as** a **solitary** **genius**. His eye began the search; his **generosity** let many hands **bring in the harvest**.
 
 ## 中文
 
-1964年7月，一穗一穗地**检查**(inspecting)水稻时，在湖南省安江农校的一块**稻田**(paddy)里，**教员**(instructor)袁隆平发现了一株**奇特的/奇怪的**(peculiar)稻子。（inspecting…：现在分词短语作伴随状语；ear by ear：一穗一穗地）（the instructor Yuan Longping：同位语，说明袁隆平的身份）它是雄性**不育**(sterile)株，**散播**(shedding)不出**能生长发育的**(viable)**花粉**(pollen)。（shedding no viable pollen：现在分词短语作伴随状语，补充说明 male-sterile）水稻**自花授粉**(pollinates itself)，所以，要**大批地**(in bulk)培育**杂交**(hybrid)种子，就得靠这样的植株。（breeding… in bulk：动名词短语作主语；in bulk：大批，大量地）1966年2月，他**详细描述了**(detailed)这一**反常现象**(anomaly)，文章发表在**期刊**(journal)《科学通报》上。（Chinese Science Bulletin：《科学通报》，中国的学术期刊）
+1964年7月，一穗一穗地**检查**(inspecting)水稻时，在湖南省安江农校的一块**稻田**(paddy)里，**教员**(instructor)袁隆平**发现了**(spotted)一株**奇特的/奇怪的**(peculiar)稻子。（inspecting…：现在分词短语作伴随状语；ear by ear：一穗一穗地）（the instructor Yuan Longping：同位语，说明袁隆平的身份）它是雄性**不育**(sterile)株，**散播**(shedding)不出**能生长发育的**(viable)**花粉**(pollen)。（shedding no viable pollen：现在分词短语作伴随状语，补充说明 male-sterile）水稻**自花授粉**(pollinates itself)，所以，要**大批地**(in bulk)培育**杂交**(hybrid)种子，就得靠这样的植株。（breeding… in bulk：动名词短语作主语；in bulk：大批，大量地）1966年2月，他**详细描述了**(detailed)这一**反常现象**(anomaly)，文章发表在**期刊**(journal)《科学通报》上。（Chinese Science Bulletin：《科学通报》，中国的学术期刊）
 
 这株**标本**(specimen)**开启了**(launched)一场长达六年的**搜寻**(hunt)：袁隆平和**同事们**(colleagues)始终**培育**(breed)不出一个不育系，其**后代**(offspring)能**稳定地**(reliably)**遗传**(inherited)这一**性状**(trait)。（whose…：定语从句，修饰 a sterile line）1. 想要超级高产的水稻 -> 必须让两种水稻杂交（A和B结合）。2. 想杂交但做不到 -> 水稻自己给自己授粉，B的花粉进不去。3. 怎么破解 -> 必须找到一种“自己没花粉的A（不育水稻）”。4. 找到之后干嘛 -> 种在田里，让B的花粉吹过来给它授粉。5. 结果如何 -> 结出超级高产的杂交种子。因为杂交必须要有不育的母本，袁隆平找到了这株标本；但花了6年发现，这株标本的后代无法稳定遗传，实验陷入了死胡同（卡在了这里）**突破**(breakthrough)出现在1970年11月23日，地点是一片**沼泽**(marsh)，在海南三亚南红农场附近。袁隆平的助手李必湖和农场**技术员**(technician)冯克珊找到了一种野生稻，它的花粉**败育**(abortive)。（a farm technician：同位语，补充说明 Feng Keshan）（whose…：定语从句，修饰 wild rice）
 
-随后，袁隆平迈出了**决定性的**(decisive)一步：而非**扣留**(withhold)这个**品系**(strain)在自己手里，他把它**分给**(distributed to)**全国各地的**(nationwide)**协作者**(collaborators)。（Then came…：倒装句，主语是 Yuan's decisive move）（rather than…：而不是……）（distribute A to B：把 A 分给 B）杂交稻需要三个**各不相同的**(distinct)系：不育系，**保持**(maintain)其**不育性**(sterility)的保持系，以及使杂交种**恢复**(restore)**育性**(fertility)的恢复系。（one to…：不定式作后置定语，修饰 one（= line））颜龙安的团队在江西育成了不育系，张先程在广西率先**找出了**(identified)恢复系。1973年10月，在苏州召开的**全国性会议**(national conference)上，袁隆平**宣布**(declared)三系已经配套。（national conference：指汇集全国代表参加的、全国性的大型会议（或全国代表大会）。）（declare＋宾语＋形容词：宣布……已经……）
+随后，袁隆平迈出了**决定性的**(decisive)一步：而非**扣留**(withhold)这个**品系**(strain)在自己手里，他把它**分给**(distributed to)**全国各地的**(nationwide)**协作者**(collaborators)。（Then came…：倒装句，主语是 Yuan's decisive move）（rather than…：而不是……）（distribute A to B：把 A 分给 B）**杂交水稻**(Hybrids)需要三个**各不相同的**(distinct)系：不育系，**保持**(maintain)其**不育性**(sterility)的保持系，以及使杂交种**恢复**(restore)**育性**(fertility)的恢复系。（one to…：不定式作后置定语，修饰 one（= line））颜龙安的团队在江西育成了不育系，张先程在广西率先**找出了**(identified)恢复系。1973年10月，在苏州召开的**全国性会议**(national conference)上，袁隆平**宣布**(declared)三系已经配套。（national conference：指汇集全国代表参加的、全国性的大型会议（或全国代表大会）。）（declare＋宾语＋形容词：宣布……已经……）
 
 到1976年，杂交水稻已经处于大面积**种植**(under cultivation)，占地面积大约140000**公顷**(hectares)。（under cultivation：在耕种中，正被种植）据世界粮食奖基金会**估计**(estimates)，杂交稻比**常规**(conventional)**品种**(varieties)最多可多**产**(yield)五分之一的**稻谷**(grain)。（estimate that…：估计……）（up to a fifth more…than…：比……最多多五分之一）到21世纪初，杂交稻已**覆盖**(covered)近一半的中国**稻田**(rice fields)。
 
-袁隆平曾与塞拉利昂的蒙蒂·琼斯共获2004年**世界粮食奖**(World Food Prize)，2021年5月22日在长沙逝世，享年91岁。（who…：非限制性定语从句，补充说明 Yuan）然而，一种流传甚广的**错误的观点**(myth)**把**(portrays as)他**描绘成**(portrays as)一个**单枪匹马的**(solitary)**天才**(genius)。（portray A as B：把 A 描绘成 B）他的慧眼开启了这场搜寻；他的**慷慨**(generosity)，让许多双手一起**迎来了丰收**(bring in the harvest)。（bring in the harvest：收庄稼，这里指迎来丰收）（简述：▸难题：水稻通常自己授粉，要大批量杂交，得用不产有效花粉的母株，让它接受另一种稻的花粉。袁隆平1964年找到这种稻，却难让后代稳定保持这一特性。▸协作：1970年，李必湖、冯克珊找到关键野生稻。袁隆平把材料分给全国团队，颜龙安团队育成不育系，张先程率先找到恢复系。▸配套：1973年三类稻株配齐：不育系当母株；保持系给它授粉，繁殖出仍不产有效花粉的母株；恢复系再与母株杂交，得到能正常结实的下一代。▸推广：1976年已开始大面积种植，21世纪初覆盖中国近半稻田。世界粮食奖基金会估计，产量最多可比常规稻高两成。▸贡献：成果来自发现、材料共享与全国协作。袁隆平2004年共获世界粮食奖，2021年去世。）
+袁隆平曾与塞拉利昂的蒙蒂·琼斯共获2004年**世界粮食奖**(World Food Prize)，2021年5月22日在长沙逝世，享年91岁。（who…：非限制性定语从句，补充说明 Yuan Longping）然而，一种流传甚广的**错误的观点**(myth)**把**(portrays as)他**描绘成**(portrays as)一个**单枪匹马的**(solitary)**天才**(genius)。（portray A as B：把 A 描绘成 B）他的慧眼开启了这场搜寻；他的**慷慨**(generosity)，让许多双手一起**迎来了丰收**(bring in the harvest)。（bring in the harvest：收庄稼，这里指迎来丰收）（简述：▸难题：水稻通常自己授粉，要大批量杂交，得用不产有效花粉的母株，让它接受另一种稻的花粉。袁隆平1964年找到这种稻，却难让后代稳定保持这一特性。▸协作：1970年，李必湖、冯克珊找到关键野生稻。袁隆平把材料分给全国团队，颜龙安团队育成不育系，张先程率先找到恢复系。▸配套：1973年三类稻株配齐：不育系当母株；保持系给它授粉，繁殖出仍不产有效花粉的母株；恢复系再与母株杂交，得到能正常结实的下一代。▸推广：1976年已开始大面积种植，21世纪初覆盖中国近半稻田。世界粮食奖基金会估计，产量最多可比常规稻高两成。▸贡献：成果来自发现、材料共享与全国协作。袁隆平2004年共获世界粮食奖，2021年去世。）
 
 ## 速查表
 | 词 | 释义 | 段 |
@@ -29,6 +29,7 @@ Yuan, who shared the 2004 **World Food Prize** with Sierra Leone's Monty Jones, 
 | inspecting | 本文：检查；v. (inspect) 检查，察看，视察（inspect sth for defects 检查有无缺陷）；inspection n. 检查；inspector n. 检查员 | 1 |
 | paddy | 本文：稻田；n. 稻田（= paddy field）；稻谷 | 1 |
 | instructor | 本文：教员；n. 教员，教师；（技能的）教练（a driving instructor）；instruct v. 指导，命令 | 1 |
+| spotted | 本文：发现了；v. (spot) 发现，注意到，认出（spot something/someone）；n. 地点；斑点 | 1 |
 | peculiar | 本文：奇特的/奇怪的；adj. 奇特的，奇怪的，异样的；特有的，独特的（be peculiar to 为……所特有） | 1 |
 | sterile | 本文：不育；adj. 不育的，不结果实的；无菌的，消过毒的；（思想等）枯燥的，无新意的 | 1 |
 | shedding | 本文：散播；v. (shed) 散播，脱落，散落（花粉、叶子、皮毛）；摆脱，去除（shed jobs/weight）；流（泪、血）；散发（光）（shed light on 阐明）；n. 棚，小屋 | 1 |
@@ -59,6 +60,7 @@ Yuan, who shared the 2004 **World Food Prize** with Sierra Leone's Monty Jones, 
 | distributed to | 本文：分给；v. (distribute) 分发，分配（distribute A to/among B）；散布，分布（be widely distributed）；distribution n. | 3 |
 | nationwide | 本文：全国各地的；adj./adv. 全国范围的（地），全国性的（地）（a nationwide survey） | 3 |
 | collaborators | 本文：协作者；n. (collaborator) 合作者，协作者；（贬）通敌者（collaborate v. 合作；collaboration n.） | 3 |
+| Hybrids | 本文：杂交水稻；n. (hybrid) 杂交种，杂交体（复数 hybrids）；此处指杂交水稻 | 3 |
 | distinct | 本文：各不相同的；adj. 截然不同的，有区别的（be distinct from 与……不同）；清楚的，明显的（a distinct possibility） | 3 |
 | maintain | 本文：保持；v. 保持，维持（maintain order/contact）；维修，保养；坚持认为，主张（maintain that…） | 3 |
 | sterility | 本文：不育性；n. 不育，不育性；无菌（sterile adj. 不育的；无菌的） | 3 |

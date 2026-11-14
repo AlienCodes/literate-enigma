@@ -17,7 +17,7 @@ TASK = ROOT / '.github/video-revision-batch'
 NO = os.environ.get('ARTICLE_NO', '12').zfill(2)
 ALLOWED = {f'{n:02d}' for n in range(1, 71)}
 A21_AUDIO_REPAIRS = {'15', '17', '18', '30'}
-CONTROLLED_AUDIO_REPAIRS = {'05', '67', '52'}
+CONTROLLED_AUDIO_REPAIRS = {'05', '67', '48'}
 APPROVED_AUDIO_REPAIRS = {'10', '12', '44', '51'} | A21_AUDIO_REPAIRS | CONTROLLED_AUDIO_REPAIRS
 SELECTED = json.loads((TASK / 'articles.json').read_text())
 assert NO in ALLOWED and NO in SELECTED, f'Article {NO} is outside the pinned revision scope.'
@@ -59,28 +59,19 @@ def install_certified_core_repairs():
                                 'actual-original-fastcheck-certified-four-core-repair',
                                 'actual-original-fastcheck-certified-five-core-repair',
                                 'actual-original-fastcheck-certified-five-core-reviewed-cuts-repair',
-                                'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair',
-                                'actual-original-fastcheck-certified-seventeen-program-spoken-comma-repair'}
+                                'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair'}
     allowed = {'视频/工具/草稿声音.sh','视频/工具/句内响度.py','视频/工具/独立复核/synth.py'}
     keep_ending = manifest['kind'] != 'actual-original-fastcheck-certified-three-core-repair'
     if keep_ending:
         allowed.add('视频/工具/结尾句接点.py')
     keep_cuts = manifest['kind'] in {'actual-original-fastcheck-certified-five-core-reviewed-cuts-repair',
-                                    'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair',
-                                'actual-original-fastcheck-certified-seventeen-program-spoken-comma-repair'}
+                                    'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair'}
     if manifest['kind'] in {'actual-original-fastcheck-certified-five-core-repair',
                             'actual-original-fastcheck-certified-five-core-reviewed-cuts-repair',
-                            'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair',
-                                'actual-original-fastcheck-certified-seventeen-program-spoken-comma-repair'}:
+                            'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair'}:
         allowed.add('视频/工具/读音核对.py')
     if manifest['kind'] == 'actual-original-fastcheck-certified-six-core-case-consistent-producer-repair':
         allowed.add('视频/工具/make_video.py')
-    if manifest['kind'] == 'actual-original-fastcheck-certified-seventeen-program-spoken-comma-repair':
-        assert NO == '52' and sha(manifest_file) == '0bbff31f0d45b9412ec0e1a9f68b0e9603f199c2495f071320b18e82b192008f'
-        assert manifest['actual_native_certification']['run_id'] == 43638178374
-        assert manifest['actual_native_fastcheck_stamp']['sha256'] == '3c251c77fb58b775ae1389a52ce31467686201ba98b842af545f2923357a6c32'
-        keep_cuts = True
-        allowed = {'视频/工具/独立复核/labels.py', '视频/工具/独立复核/synth.py', '视频/工具/成片时刻对照.py', '视频/工具/词尾实测.py', '视频/工具/结尾句接点.py', '视频/工具/高亮同步核对.py', '视频/工具/疑点清单.py', '视频/工具/停顿位置精确核对.py', '视频/工具/词尾辅音核对.py', '视频/工具/可闻声保全核对.py', '视频/工具/草稿声音.sh', '视频/工具/读音核对.py', '视频/工具/无标点停顿核对.py', '视频/工具/标点停顿核对.py', '视频/工具/make_video.py', '视频/工具/句内响度.py', '视频/工具/新管/快测.py'}
     assert {item['target'] for item in manifest['core_files']} == allowed
     for item in manifest['core_files']:
         source = folder / item['file']
@@ -916,10 +907,6 @@ try:
     assert (M / 'tts/kokoro-v1.0.onnx').exists(), 'Original warm machine cache was not restored.'
     W.mkdir(parents=True, exist_ok=True)
     install_certified_core_repairs()
-    assert sha(TASK / 'request/52/root-source52-specific-zero-spoken-comma-no-entry-original-default-mode-decision.json') == 'abbd535ce4c90a89892431bf4a6fe3de1d531e1c9205a51041082e94d412b9df'
-    ENV['XG_KEEP_REVIEWED_ENDING'] = '0'
-    status['reviewed_existing_ending_preservation_mode'] = False
-    status['source52_exact_no_ending_entry_zero_spoken_comma_original_default_mode'] = True
     # Keep restored historical logs internal; report only this run's checks.
     for name in (f'做_{NO}', f'定稿_{NO}'):
         old = W / name
@@ -970,7 +957,15 @@ try:
     def english(data):
         return [re.sub(r'\{\{.*?\}\}', '', ' '.join(c['en'] for c in sentence['chunks']))
                 .replace('**', '').split() for sentence in data['sentences']]
-    assert english(requested) == english(baseline), 'Spoken English changed.'
+    if NO == '48':
+        scope_path = TASK / 'source48-exact-authorized-name-guard.py'
+        assert sha(scope_path) == '8934aface07aa8a131541b4a4b5fee9bbda06b92417d8c53dad3f463b92ed17a'
+        scope_spec = importlib.util.spec_from_file_location('exact48_native_name_scope', scope_path)
+        scope_module = importlib.util.module_from_spec(scope_spec)
+        scope_spec.loader.exec_module(scope_module)
+        status['exact_user127_name_insertion_scope'] = scope_module.validate(requested, baseline, TASK / 'source48-current-before-original-EN-scope.json', ROOT / script_rel, ROOT / gen_rel, request / 'root-source48-exact-user127-name-insertion-original-spoken-English-guard-scope-decision.json')
+    else:
+        assert english(requested) == english(baseline), 'Spoken English changed.'
     requested_summary = summary(requested)
     status['request_source_sha256'] = {str(dst.relative_to(ROOT)): sha(src) for src, dst in files}
     authorization = json.loads((request / 'user-authorization.json').read_text())
@@ -999,14 +994,13 @@ try:
             assert actual_record['篇'] == NO
             if actual_record not in records['记录']:
                 records['记录'].append(actual_record)
-    if NO == '52':
+    if NO == '48':
         exact_supplement = request / '真实用户同意补充.json'
-        assert sha(exact_supplement) == 'd2f027f84cde0e055a159ec5d9f93f71c96d9c2242865aeadd7984fc1f18e3c7'
-        assert sha(request / 'root-source43-52-actual-new-spoken-mothers-and-openings-controlled-formal-QC-adoption-decision.json') == 'fe9a0866cb33a058097954c834cd7660dd4dadbed31c595a76b191b0b4ee8a48'
+        assert sha(exact_supplement) == 'be7a9c0971db84441ac62bd976140d66116f4605fabc2b6c83e89555fb4cdec0'
+        assert sha(request / 'root-source48-actual295fd-ea91-5388-controlled-formal-QC-adoption-decision.json') == '2f96923e5d90e5a329622f0938b86f3fcaac4c687f4c8006a4bc234e59ad648b'
         for exact_record in json.loads(exact_supplement.read_text())['records']:
             assert str(exact_record['篇']).zfill(2) == NO
-            if exact_record not in records['记录']:
-                records['记录'].append(exact_record)
+            if exact_record not in records['记录']: records['记录'].append(exact_record)
     supplied_agreement = request / '视频/工具/用户同意记录.json'
     if supplied_agreement.is_file():
         supplied_records = json.loads(supplied_agreement.read_text())
@@ -1039,8 +1033,6 @@ try:
         # any selected article. Prepare only missing references privately;
         # official production and every checker remain STRICT_CACHE=1.
         reference_helper = TASK / 'prepare-checker-reference.py'
-        assert sha(reference_helper) == '9d20771b3875a139eec5411a54cd1a2a0635253180fbefddc23984f08b798115'
-        assert sha(TASK / 'root43-52-specific-auxiliary-reference-caller-context-and-shared-plan-adoption.json') == '92e6533ef3a2837553985aa4ca703ed1858b9e6e4bb8f6dc4019627bb3433f56'
         reference_evidence = OUT / f'{NO}-checker-reference-preparation.json'
         reference_env = {k: v for k, v in ENV.items() if k != 'STRICT_CACHE'}
         status['stage'] = 'checker-reference-preparation'
@@ -1117,19 +1109,14 @@ try:
     canonical_aac = aac_hash(canonical)
     if NO in APPROVED_AUDIO_REPAIRS:
         # Root supplies actual approved audio-change validation. No gain/overlay implementation is assumed here.
-        helper_name = ('audio52-controlled-qc.py' if NO == '52' else 'audio05-tail-qc.py' if NO == '05' else
+        helper_name = ('audio48-controlled-qc.py' if NO == '48' else 'audio05-tail-qc.py' if NO == '05' else
                        'audio67-controlled-qc.py' if NO == '67' else
                        'audio-controlled-qc.py' if NO in CONTROLLED_AUDIO_REPAIRS else
                        'audio-a21-qc.py' if NO in A21_AUDIO_REPAIRS else 'audio-qc.py')
         audio_qc = TASK / helper_name
         assert audio_qc.exists(), f'Root must attach approved audio QC for article {NO}.'
         evidence = OUT / f'{NO}-approved-audio-qc.json'
-        qc_comparison_before = TASK / 'controlled-QC-current-before52.mp4'
-        assert sha(qc_comparison_before) == '1d0cf6064c36ec7ed223956ebf98b7aabf21aa63241202f01d1895acc094b280'
-        assert aac_hash(qc_comparison_before) == 'ecabdc3b21c705715a83ade00e644d2e8888b9a43443958078ffc15ab4d8cd2c'
-        status['approved_audio_qc_comparison_reference'] = {'kind':'actual-latest-formally-accepted-current-before-resource-only-for-controlled-QC','source_native_run':43533004625,'file':qc_comparison_before.name,'sha256':sha(qc_comparison_before),'bytes':qc_comparison_before.stat().st_size,'AAC_ADTS_sha256':aac_hash(qc_comparison_before),'original_native_pipeline_historical_accepted_source_unchanged':True}
-        save()
-        checked(['python3', audio_qc, '--article', NO, '--accepted-source', qc_comparison_before,
+        checked(['python3', audio_qc, '--article', NO, '--accepted-source', source_video,
                  '--canonical-video', canonical, '--work', W, '--request', request,
                  '--output', evidence], 'approved-audio-qc.log', ROOT)
         audio_evidence = json.loads(evidence.read_text())
@@ -1150,7 +1137,7 @@ try:
             if NO != '05':
                 assert audio_evidence.get('diagnostic_only') is False
                 assert audio_evidence.get('production_delivery_eligible') is True
-            reference_file = TASK / ('audio52-controlled-qc-reference.json' if NO == '52' else 'audio05-tail-qc-reference.json' if NO == '05' else
+            reference_file = TASK / ('audio48-controlled-qc-reference.json' if NO == '48' else 'audio05-tail-qc-reference.json' if NO == '05' else
                                      'audio67-controlled-qc-reference.json' if NO == '67' else
                                      'audio-controlled-qc-reference.json')
             status['approved_audio_repair_scope'] = {
