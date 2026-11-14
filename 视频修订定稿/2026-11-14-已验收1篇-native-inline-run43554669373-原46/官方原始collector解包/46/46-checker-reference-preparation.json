@@ -1,0 +1,3079 @@
+{
+  "article": "46",
+  "purpose": "prepare original checker title/whole/punctuation/chunk references; not audio acceptance",
+  "reference_prepared": true,
+  "acceptance": false,
+  "basis": "视频/制作记录/改门_GitHub化.md:39; original single-thread cache preparation before strict production",
+  "source_sha256": "c8c7ce7a76226f5274a91af693d24410d5eacfa59206b085a70d133f3634c12b",
+  "maker_sha256": "4c85e1fbdd2e82c5646d5f58df63c85eca60af4ef521f1d36f765575a568d6f3",
+  "checker_program_sha256": {
+    "停顿位置精确核对.py": "6a735daa5aeaa8c0f00d1c5836438878c5d726cc0a8acbad3e6e241d1d12aa94",
+    "高亮同步核对.py": "4ff2557b5373fc361491d248a52e301afb5ef33ed003513f93cbbbfc33e29893",
+    "句首句尾与停顿位置核对.py": "e1a8eb0f4ce60a607f5b1bcb8caf837b0ea72c32d60c1e3485c600d09e69e635",
+    "可闻声保全核对.py": "1286dc0aaf5824c004939ac2887cb4b2950b2d5196878e67130cab8188ba3c63",
+    "词尾辅音核对.py": "b479569558f2867f59014e26384d190690df509383b6c3dbf6bab30d15a2f19e",
+    "疑点清单.py": "c55db5722dd2792d51d12efc3ea8225edb1bcec236b69c684ee220f79cf6ecea"
+  },
+  "reference_calls": [
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-raw",
+      "method": "create",
+      "source_slice": "Lost in the Glare",
+      "exact_native_cache_key": "69dd8042a699262631339b834c2fc05c91c14de2.pkl",
+      "cache_input_text_sha256": "87de3933d606055f29e77fcde4286b4586d5461163039e7ed88c4b5da74e52d2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "标题",
+      "piece": null,
+      "reference_kind": "title-default-timed",
+      "method": "create_timed",
+      "source_slice": "Lost in the Glare",
+      "exact_native_cache_key": "44155bb3e3345a3eff9b98f0e4cfa70436f3dd84.pkl",
+      "cache_input_text_sha256": "87de3933d606055f29e77fcde4286b4586d5461163039e7ed88c4b5da74e52d2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "A moth skims over an ultraviolet lamp and flips upside down, belly to the sky.",
+      "exact_native_cache_key": "43c1da454512c8e6638fd62b08e5305f0258e1b9.pkl",
+      "cache_input_text_sha256": "47d61c93c12016eb53d663634c4c2bc552ddba2b1d5c097457629d82f59c22f6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "A moth skims over an ultraviolet lamp and flips upside down, belly to the sky.",
+      "exact_native_cache_key": "62c2867486e484af61c56ff821e836ce61a9aac2.pkl",
+      "cache_input_text_sha256": "47d61c93c12016eb53d663634c4c2bc552ddba2b1d5c097457629d82f59c22f6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "A moth skims over an ultraviolet lamp",
+      "exact_native_cache_key": "1351d328dada8b7994c1c013abadc1766dcd5e76.pkl",
+      "cache_input_text_sha256": "bbf57d2b36859cdd5eeb47519de1b53e76dfb20311af45dd285c26e234fbbd6d",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and flips upside down, belly to the sky.",
+      "exact_native_cache_key": "56d3d23e4b779e496c43ae32a75ef8a13232d1f2.pkl",
+      "cache_input_text_sha256": "bc2befaa6f0bade5858b290cc17ad8afa8e5a71c48d173ac61217319b2712b8a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "A moth skims over an ultraviolet lamp and flips upside down,",
+      "exact_native_cache_key": "9d5b61d01782ae33f86e8ab781fd803e8dc8d4b9.pkl",
+      "cache_input_text_sha256": "14f4267c3c4945759d9d50eba3d160e3a687ba721dafa3bc79d54b9fb2c903e4",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S1",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "belly to the sky.",
+      "exact_native_cache_key": "0101b0171532de5515739a222a47c299565c2597.pkl",
+      "cache_input_text_sha256": "b80b34337009561616eb6fa1fc8cbb9653b851f35a028fb9cc5a90089cfc42e2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In Costa Rica's misty Monteverde cloud-forest, stereo cameras caught such acrobatics for a 2024 Imperial College study that unravelled an age-old puzzle, the helpless swirl of insects round porch lights.",
+      "exact_native_cache_key": "f3db27ec1b8b845b68030e8f6b5a03a74db1ec4e.pkl",
+      "cache_input_text_sha256": "977659b9478a8e422609fd1db9f527541cf3eff196274dbd400e3d103651df6d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In Costa Rica's misty Monteverde cloud-forest, stereo cameras caught such acrobatics for a 2024 Imperial College study that unravelled an age-old puzzle, the helpless swirl of insects round porch lights.",
+      "exact_native_cache_key": "7937a3f303148e08fe4dc5c00b345a32e8fed6d3.pkl",
+      "cache_input_text_sha256": "977659b9478a8e422609fd1db9f527541cf3eff196274dbd400e3d103651df6d",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In Costa Rica's misty Monteverde cloud-forest,",
+      "exact_native_cache_key": "47afa1e421ac8c4fc60194db04a554e829e4f827.pkl",
+      "cache_input_text_sha256": "9abe2920f58b63fe0a877fb01b01ed1b937d08f66f3a9fa27762f612e7df4525",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "stereo cameras caught such acrobatics for a 2024 Imperial College study",
+      "exact_native_cache_key": "3bd5e008dbc52fd2e61b8d9c3823bbf89c88dc73.pkl",
+      "cache_input_text_sha256": "866b232e58165b8af61d326b2f2a315baca461361e988af0d5099c467203a796",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "that unravelled an age-old puzzle,",
+      "exact_native_cache_key": "9ba07e20f59d4e591e499712cf4e95fdd482e3b6.pkl",
+      "cache_input_text_sha256": "7b534335da210727e7f03aa4471e80726681138e943901c40ab72fc927a927dd",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 4,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "the helpless swirl of insects round porch lights.",
+      "exact_native_cache_key": "6eafefd3c2e427aa497c93fa8eeec94621d4d1dc.pkl",
+      "cache_input_text_sha256": "4fec4db1c76136fad47cb02b52ab30254a0cfeba1eb7f2224320627fe5793475",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In Costa Rica's misty Monteverde cloud-forest,",
+      "exact_native_cache_key": "47afa1e421ac8c4fc60194db04a554e829e4f827.pkl",
+      "cache_input_text_sha256": "9abe2920f58b63fe0a877fb01b01ed1b937d08f66f3a9fa27762f612e7df4525",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "stereo cameras caught such acrobatics for a 2024 Imperial College study that unravelled an age-old puzzle,",
+      "exact_native_cache_key": "4f4301d043325257073effa953b3d90534c96bd0.pkl",
+      "cache_input_text_sha256": "bc1f852e4aa338ead1e4560f9ac93da7df0c6f0b9975157b1a6810e4f5262de1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S2",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "the helpless swirl of insects round porch lights.",
+      "exact_native_cache_key": "6eafefd3c2e427aa497c93fa8eeec94621d4d1dc.pkl",
+      "cache_input_text_sha256": "4fec4db1c76136fad47cb02b52ab30254a0cfeba1eb7f2224320627fe5793475",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Folk wisdom blames the circling on attraction.",
+      "exact_native_cache_key": "44ab82acd92556c5ba1e741dbdfe995fc9c21e55.pkl",
+      "cache_input_text_sha256": "39e87e7d9e7cb09b27a8631d566f020ef0e914511684667c4931de285ffa4c67",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S3",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Folk wisdom blames the circling on attraction.",
+      "exact_native_cache_key": "aa594787afbb787a04fdabe736e95fd3e94c270f.pkl",
+      "cache_input_text_sha256": "39e87e7d9e7cb09b27a8631d566f020ef0e914511684667c4931de285ffa4c67",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In fact, insects instinctively keep their backs to whatever shines brightest, normally the sky, to stay level.",
+      "exact_native_cache_key": "63519e0a2c90385cf10e69e519c5ca0b6b9f4382.pkl",
+      "cache_input_text_sha256": "adf60979a2d6cdcf53cbe04457610f9923aab916039b20c3f8e6b79af90c24c6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In fact, insects instinctively keep their backs to whatever shines brightest, normally the sky, to stay level.",
+      "exact_native_cache_key": "32f8f466ddcae08333d59801580c49a7a577376f.pkl",
+      "cache_input_text_sha256": "adf60979a2d6cdcf53cbe04457610f9923aab916039b20c3f8e6b79af90c24c6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "In fact, insects instinctively keep their backs to whatever shines brightest,",
+      "exact_native_cache_key": "f1db3bd5573e14efd4219f9ff348cd30cb46551f.pkl",
+      "cache_input_text_sha256": "0e6624b74445473b890817420648e3d60269d2e24c195b9c80b2556655f39792",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "normally the sky, to stay level.",
+      "exact_native_cache_key": "30a403b6ebc3457f095d4f3890ec780ad1d3e212.pkl",
+      "cache_input_text_sha256": "fecd0723e465cd685c85be3a6452d00d8f223b6a0cdbb175414042c92378a1d1",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In fact,",
+      "exact_native_cache_key": "2647fcf380382efb4d8ec46583a368732cdb6b0d.pkl",
+      "cache_input_text_sha256": "90ced0fe770d15d08b7f5ae0c4b0d8f2948a47d8b05ba3d298a98775f273c8eb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "insects instinctively keep their backs to whatever shines brightest,",
+      "exact_native_cache_key": "042c67a69ce546a859dd1b193ccaed1a80c2f756.pkl",
+      "cache_input_text_sha256": "0e67917282ab6a794c20df1c1d3ef41fd6ee51e4e645bc560a285785cedaca9c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "normally the sky,",
+      "exact_native_cache_key": "f48672764d7120ad752390efbc2c4cf0678b3f5b.pkl",
+      "cache_input_text_sha256": "3fd88403b7389353ec53e3a673e0a121cbb28d7afdc8052f4664f9633466702c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S4",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "to stay level.",
+      "exact_native_cache_key": "fff3f1cd326327c22a9ff16bf404f662bc7d6219.pkl",
+      "cache_input_text_sha256": "d1d82f46d4fe6e5f0a52cee4520db3a1a28a2fe930f43cb33057517d524146ca",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "A lamp, a counterfeit sky, hijacks this built-in habit, leaving insects eddying in its halo or inverted above it.",
+      "exact_native_cache_key": "d5cf3c1243341d81a35ff8d0f8559b62c78cd235.pkl",
+      "cache_input_text_sha256": "059dcdcb2d5b1cf82b6565eb24d118ac701be83ccfd09ee87ba55bc3a059634a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "A lamp, a counterfeit sky, hijacks this built-in habit, leaving insects eddying in its halo or inverted above it.",
+      "exact_native_cache_key": "56e9bf0ef7e5f0729e3df2d696397655b14df79e.pkl",
+      "cache_input_text_sha256": "059dcdcb2d5b1cf82b6565eb24d118ac701be83ccfd09ee87ba55bc3a059634a",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "A lamp, a counterfeit sky,",
+      "exact_native_cache_key": "dda525418ea121dd4d1162c2bbe4347a152776f2.pkl",
+      "cache_input_text_sha256": "f13791ab9e679c8a5a90aa7af473893962af2ae2b2d2810560b8019104551232",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "hijacks this built-in habit,",
+      "exact_native_cache_key": "2515fdad2015eaf9a9c9e78cb647fbc225262c57.pkl",
+      "cache_input_text_sha256": "7ce6db61bb96589b8c428eed031fc4fc0ffd2e3c33670a0157e73e8c6fe5574a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "leaving insects eddying in its halo or inverted above it.",
+      "exact_native_cache_key": "535176a61fec8029893cf71a415b6ded53339af4.pkl",
+      "cache_input_text_sha256": "b5516be3ddccf330d0228afc3216df4b7cede1713ef2a26b9cfb02740ecf6c77",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "A lamp,",
+      "exact_native_cache_key": "897454d1c77df20a28255a04a0a6aeb0177a4b0f.pkl",
+      "cache_input_text_sha256": "828bcdb85785aa6e8451beda9e7258456431972a51109ccd8202390b58b85650",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a counterfeit sky,",
+      "exact_native_cache_key": "49cbf509d289045f9743499406a31189d2738717.pkl",
+      "cache_input_text_sha256": "2b59fdd7b1c94c5f9635eb3bf222d3317db79dde0f1a6e2c1490cc96577e1817",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "hijacks this built-in habit,",
+      "exact_native_cache_key": "2515fdad2015eaf9a9c9e78cb647fbc225262c57.pkl",
+      "cache_input_text_sha256": "7ce6db61bb96589b8c428eed031fc4fc0ffd2e3c33670a0157e73e8c6fe5574a",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S5",
+      "piece": 4,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "leaving insects eddying in its halo or inverted above it.",
+      "exact_native_cache_key": "535176a61fec8029893cf71a415b6ded53339af4.pkl",
+      "cache_input_text_sha256": "b5516be3ddccf330d0228afc3216df4b7cede1713ef2a26b9cfb02740ecf6c77",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "In 477 field clips, precious few darted straight at the light.",
+      "exact_native_cache_key": "3c72a12f5624fac9ee3638d00e59c094c03031a2.pkl",
+      "cache_input_text_sha256": "8025aa13a1806bbc98951326d6ffa11123477a303e8241d0d09b156b4f8610e5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "In 477 field clips, precious few darted straight at the light.",
+      "exact_native_cache_key": "522af1b4b7af8e1fa8154346d8ee024df987cd16.pkl",
+      "cache_input_text_sha256": "8025aa13a1806bbc98951326d6ffa11123477a303e8241d0d09b156b4f8610e5",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "In 477 field clips,",
+      "exact_native_cache_key": "32c179bdd88f914e993ba92e034801409fe17b8d.pkl",
+      "cache_input_text_sha256": "9b400005c1dee215e0e528b56ad8abae79608b8fd83517eb3482e3bad630cb0b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S6",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "precious few darted straight at the light.",
+      "exact_native_cache_key": "0d93063cb4fa32fb07b86418cdce3560213eeead.pkl",
+      "cache_input_text_sha256": "3c0a75d4e9e307c078a4224d34a8906ac8522c22363b93c53c76c7f9eb40e24c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Many fireflies flirt with their lanterns.",
+      "exact_native_cache_key": "5b2a321e4610036086935c3a6fa892a160c71ed7.pkl",
+      "cache_input_text_sha256": "32e454d6b580d36bca90a17594550a593572bb44d89c82baa47e0ee7a3c3413c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S7",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Many fireflies flirt with their lanterns.",
+      "exact_native_cache_key": "9d6926af92d6082b56382df86a6510edd9fb317a.pkl",
+      "cache_input_text_sha256": "32e454d6b580d36bca90a17594550a593572bb44d89c82baa47e0ee7a3c3413c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "A male blinks an overture, a female winks back, and bright nights smother the banter.",
+      "exact_native_cache_key": "aa8bcff94b60f36135afedd6b72c407786a8fdfa.pkl",
+      "cache_input_text_sha256": "6e9352cb7113e3b556edef27af8e83646bd0750c2b4a230715c21a3a9e87411f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "A male blinks an overture, a female winks back, and bright nights smother the banter.",
+      "exact_native_cache_key": "a0f77fee3b23c268d95ae1b58c6e5de072cdf771.pkl",
+      "cache_input_text_sha256": "6e9352cb7113e3b556edef27af8e83646bd0750c2b4a230715c21a3a9e87411f",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "A male blinks an overture,",
+      "exact_native_cache_key": "03c5970909a447131e27fad430cffc15d65c3eed.pkl",
+      "cache_input_text_sha256": "f3b1ad271532388f497ce30de886af52a7ade9dc0b8af17b2cf66a054d553fda",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "a female winks back,",
+      "exact_native_cache_key": "eea1e38c0ab46d63d8463224abd4c8b0943e614a.pkl",
+      "cache_input_text_sha256": "6e8458e3491f146e0825f78d21d28d10213363e053472cfb3c5e76b1a44d0668",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and bright nights smother the banter.",
+      "exact_native_cache_key": "ccf4ecc44d26b02b323356de07e97277b4bde968.pkl",
+      "cache_input_text_sha256": "6444cb3e0c482930bb1db5ae28a15610e41c4c9280cb0656a39b389cc8daaa40",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "A male blinks an overture,",
+      "exact_native_cache_key": "03c5970909a447131e27fad430cffc15d65c3eed.pkl",
+      "cache_input_text_sha256": "f3b1ad271532388f497ce30de886af52a7ade9dc0b8af17b2cf66a054d553fda",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a female winks back,",
+      "exact_native_cache_key": "eea1e38c0ab46d63d8463224abd4c8b0943e614a.pkl",
+      "cache_input_text_sha256": "6e8458e3491f146e0825f78d21d28d10213363e053472cfb3c5e76b1a44d0668",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S8",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and bright nights smother the banter.",
+      "exact_native_cache_key": "ccf4ecc44d26b02b323356de07e97277b4bde968.pkl",
+      "cache_input_text_sha256": "6444cb3e0c482930bb1db5ae28a15610e41c4c9280cb0656a39b389cc8daaa40",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "At Tufts University, suitors under artificial light mustered about five flash patterns a minute instead of ten.",
+      "exact_native_cache_key": "28218a6ab9ca2ecc0e81421469b254a6fc227c3f.pkl",
+      "cache_input_text_sha256": "6618491c0616c8bd9073043774378a9acbbf6070ba8e948c8a7d880bebecab78",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "At Tufts University, suitors under artificial light mustered about five flash patterns a minute instead of ten.",
+      "exact_native_cache_key": "61f70dcf61e55657aa5d3bb22b3379e9be554950.pkl",
+      "cache_input_text_sha256": "6618491c0616c8bd9073043774378a9acbbf6070ba8e948c8a7d880bebecab78",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "At Tufts University, suitors under artificial light",
+      "exact_native_cache_key": "f2fef569914e639a8748d6d71a5582b99d10185e.pkl",
+      "cache_input_text_sha256": "13ffba8685ded7908828ddcf895c446b36a4a2faf281ec28160430380fb03b95",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "mustered about five flash patterns a minute instead of ten.",
+      "exact_native_cache_key": "4ff104d1d3016773bd5c91dc9c1001cd7ecc1587.pkl",
+      "cache_input_text_sha256": "6ca2d99caa54e3503968960d5a5a0cb9801d9ff9c61111ff8c923b33bcecdb25",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "At Tufts University,",
+      "exact_native_cache_key": "256a057f3376ac7fc9b4fe498e47032563968967.pkl",
+      "cache_input_text_sha256": "56357c2d70bb376e3de5c6828ce25e313aa87eba94f38013e1093f9f520f692c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S9",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "suitors under artificial light mustered about five flash patterns a minute instead of ten.",
+      "exact_native_cache_key": "81a4a11bf7c5628611c52326bf39e134ef12797a.pkl",
+      "cache_input_text_sha256": "c698eccff3cd3d7a0663351d7f019d8570af3a782e861eef3052e9261cff59e8",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Females reciprocated about half as often under red or blue light, scarcely at all under white, and never under amber.",
+      "exact_native_cache_key": "74271f98fc27466bf5461557eab35223ed245a8d.pkl",
+      "cache_input_text_sha256": "6897627ef9cd9eb1f71188c51083e0139d88b07cc93196bb5094176fd34580d0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Females reciprocated about half as often under red or blue light, scarcely at all under white, and never under amber.",
+      "exact_native_cache_key": "f82ba45b5ff98a608dd924c9a698044f248f73db.pkl",
+      "cache_input_text_sha256": "6897627ef9cd9eb1f71188c51083e0139d88b07cc93196bb5094176fd34580d0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Females reciprocated about half as often under red or blue light,",
+      "exact_native_cache_key": "9749515830444a230a199b2d707a4ce35771b6ae.pkl",
+      "cache_input_text_sha256": "b7ab207386ca57220624af291ab7821ce7a4d0b199457b96f030d83c89a1581e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "scarcely at all under white, and never under amber.",
+      "exact_native_cache_key": "09f670c5bc5b53a1f8a0d4cb4c17963e60f7556d.pkl",
+      "cache_input_text_sha256": "856d2267a1f68c469a5969bcbf33a4c82ba83401bf5f9c958d140df86ac6507b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Females reciprocated about half as often under red or blue light,",
+      "exact_native_cache_key": "9749515830444a230a199b2d707a4ce35771b6ae.pkl",
+      "cache_input_text_sha256": "b7ab207386ca57220624af291ab7821ce7a4d0b199457b96f030d83c89a1581e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "scarcely at all under white,",
+      "exact_native_cache_key": "b958506fe20c3760e18a3bab4d44e5fbde804848.pkl",
+      "cache_input_text_sha256": "b415585ad81fe73dae21e33bc6fa15ddfbcd6d33a1a941365948ea316200d6eb",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S10",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and never under amber.",
+      "exact_native_cache_key": "8283446920210abff8953c099f738ec1e70d1e9b.pkl",
+      "cache_input_text_sha256": "969dbc229bc1bd203668a0c83037b54163f974161b35812ab67e2b8a6e317c4c",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The harm spills into the ecosystem.",
+      "exact_native_cache_key": "8cae8b4e1c5c4c9c061b274dd7e86bee297cd817.pkl",
+      "cache_input_text_sha256": "ddcea6b1b3b93771228fa61e15cb9fd09d891c61963b3df413d0cf758dc469f7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S11",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The harm spills into the ecosystem.",
+      "exact_native_cache_key": "34ecbb25e80ede2d7426896d5538155392af5e99.pkl",
+      "cache_input_text_sha256": "ddcea6b1b3b93771228fa61e15cb9fd09d891c61963b3df413d0cf758dc469f7",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Along 55 Thames Valley roadsides, lamp-lit hedges held 47% fewer moth caterpillars than dark ones, with harsh white LEDs worse than mellower sodium lamps.",
+      "exact_native_cache_key": "5b13940451ebbc3bf174252bdeff0dcb352ca871.pkl",
+      "cache_input_text_sha256": "5b50144f3c3ba3e1ab139b844c4eda23c3cbb8d2579352a45c932fbc843c9ae0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Along 55 Thames Valley roadsides, lamp-lit hedges held 47% fewer moth caterpillars than dark ones, with harsh white LEDs worse than mellower sodium lamps.",
+      "exact_native_cache_key": "5671f85e1c4e4b3b778d561b6674afd5a3c33fc1.pkl",
+      "cache_input_text_sha256": "5b50144f3c3ba3e1ab139b844c4eda23c3cbb8d2579352a45c932fbc843c9ae0",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Along 55 Thames Valley roadsides,",
+      "exact_native_cache_key": "879aa06e228da44b09e9403899cd5f6eb5455cfc.pkl",
+      "cache_input_text_sha256": "4c06841b1ef247f4a7d0458d8401489e783c4131f4ab4b5938efcfa2b2bf8323",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "lamp-lit hedges held 47% fewer moth caterpillars than dark ones,",
+      "exact_native_cache_key": "c30e274dcbac30bfa4f5b6075ae47786b0927bdb.pkl",
+      "cache_input_text_sha256": "f42a318f506d233d0fe0e59ff3a675a4125b1f416cd94ba57a3ed3166d43eade",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 3,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "with harsh white LEDs worse than mellower sodium lamps.",
+      "exact_native_cache_key": "f3f740a1b7fc7a453ee8b6fddde7328e20e80072.pkl",
+      "cache_input_text_sha256": "c0e7daad05a1747650febf26d7d80a91d4c480db2675c745b6a0b594bcf84a1f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Along 55 Thames Valley roadsides,",
+      "exact_native_cache_key": "879aa06e228da44b09e9403899cd5f6eb5455cfc.pkl",
+      "cache_input_text_sha256": "4c06841b1ef247f4a7d0458d8401489e783c4131f4ab4b5938efcfa2b2bf8323",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "lamp-lit hedges held 47% fewer moth caterpillars than dark ones,",
+      "exact_native_cache_key": "c30e274dcbac30bfa4f5b6075ae47786b0927bdb.pkl",
+      "cache_input_text_sha256": "f42a318f506d233d0fe0e59ff3a675a4125b1f416cd94ba57a3ed3166d43eade",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S12",
+      "piece": 3,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "with harsh white LEDs worse than mellower sodium lamps.",
+      "exact_native_cache_key": "f3f740a1b7fc7a453ee8b6fddde7328e20e80072.pkl",
+      "cache_input_text_sha256": "c0e7daad05a1747650febf26d7d80a91d4c480db2675c745b6a0b594bcf84a1f",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Street lamps rigged up in seven of 14 Swiss meadows cut nocturnal pollinator visits by 62%.",
+      "exact_native_cache_key": "5919091006296b54c08762b8dd9e796218df1226.pkl",
+      "cache_input_text_sha256": "44dcc6dc758d054877ba8d0de3ac9ab04eefc595ffa08bc3f46db5d41da7b5e3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Street lamps rigged up in seven of 14 Swiss meadows cut nocturnal pollinator visits by 62%.",
+      "exact_native_cache_key": "171acf852b06079ad09dc4567e271f2909b8a152.pkl",
+      "cache_input_text_sha256": "44dcc6dc758d054877ba8d0de3ac9ab04eefc595ffa08bc3f46db5d41da7b5e3",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Street lamps rigged up in seven of 14 Swiss meadows",
+      "exact_native_cache_key": "afb1851355dddbc643d93803ed872c832ba71e73.pkl",
+      "cache_input_text_sha256": "f911e6ac03c7cbfad02ca62ac1f7bdf8a26dec630522c5c02dfa5d978d8b67dc",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S13",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "cut nocturnal pollinator visits by 62%.",
+      "exact_native_cache_key": "4da05522378179c76050dc7a950ad15cf860e3e6.pkl",
+      "cache_input_text_sha256": "233acc1c3c6916d59f152c7283b93828910197aa686602275483ded59c77b728",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "The plants set fewer fruit, and daytime pollinators proved poor understudies.",
+      "exact_native_cache_key": "ef7887a6511cd158aafbd65cce6cdb608639c297.pkl",
+      "cache_input_text_sha256": "c3051f7aaa5f606cbdbd95995aaab863066c262ebfabd94595cd08f7418a78c7",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "The plants set fewer fruit, and daytime pollinators proved poor understudies.",
+      "exact_native_cache_key": "c4ee5b29e3304708d66ed84af8bbc0dc7d8753a4.pkl",
+      "cache_input_text_sha256": "c3051f7aaa5f606cbdbd95995aaab863066c262ebfabd94595cd08f7418a78c7",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "The plants set fewer fruit,",
+      "exact_native_cache_key": "2b6b02edfaf2418a187c8bbfeaa7eef5b27edb60.pkl",
+      "cache_input_text_sha256": "303a3667cc33bd4c850fd304540a8e34b9aa47c40e0a7a24ad58641c0ef81a5b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "and daytime pollinators proved poor understudies.",
+      "exact_native_cache_key": "27608ef0393b1f1ac88a58a9ca0c8ac0fa08bbc6.pkl",
+      "cache_input_text_sha256": "53e2c5673710257c4d01eb7e1e108d91b6332c3323cd04a01cc7c1575db3be6e",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "The plants set fewer fruit,",
+      "exact_native_cache_key": "2b6b02edfaf2418a187c8bbfeaa7eef5b27edb60.pkl",
+      "cache_input_text_sha256": "303a3667cc33bd4c850fd304540a8e34b9aa47c40e0a7a24ad58641c0ef81a5b",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S14",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "and daytime pollinators proved poor understudies.",
+      "exact_native_cache_key": "27608ef0393b1f1ac88a58a9ca0c8ac0fa08bbc6.pkl",
+      "cache_input_text_sha256": "53e2c5673710257c4d01eb7e1e108d91b6332c3323cd04a01cc7c1575db3be6e",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Over 80% of humanity lives beneath a luminous veil, which hides the pale ribbon of the Milky Way from more than a third.",
+      "exact_native_cache_key": "aabf37d19e6e3ea368aa41c1380e40e094286163.pkl",
+      "cache_input_text_sha256": "234a554618c1f60691eb5ae021105ecd7e993559a1d9de188dc932f45b96fa01",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Over 80% of humanity lives beneath a luminous veil, which hides the pale ribbon of the Milky Way from more than a third.",
+      "exact_native_cache_key": "88cc75780e094df1a793ad090947e543978b860b.pkl",
+      "cache_input_text_sha256": "234a554618c1f60691eb5ae021105ecd7e993559a1d9de188dc932f45b96fa01",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "Over 80% of humanity lives beneath a luminous veil,",
+      "exact_native_cache_key": "c7b3e7372034318d89e817961e264b4f653e1208.pkl",
+      "cache_input_text_sha256": "ed57a7f5d7b57bd4f1b01dd4044ad9518c17734585dffdc5e4f89851015f88c3",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "which hides the pale ribbon of the Milky Way from more than a third.",
+      "exact_native_cache_key": "bb4a8aa7666987cdf8b4b08bdd11c5f8e149ed2f.pkl",
+      "cache_input_text_sha256": "88c83ee4dae74f4b609564a2550096653967474cc7f762e8daafcba6a61816cf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "Over 80% of humanity lives beneath a luminous veil,",
+      "exact_native_cache_key": "c7b3e7372034318d89e817961e264b4f653e1208.pkl",
+      "cache_input_text_sha256": "ed57a7f5d7b57bd4f1b01dd4044ad9518c17734585dffdc5e4f89851015f88c3",
+      "cache_input_is_phonemes": true,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S15",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "which hides the pale ribbon of the Milky Way from more than a third.",
+      "exact_native_cache_key": "bb4a8aa7666987cdf8b4b08bdd11c5f8e149ed2f.pkl",
+      "cache_input_text_sha256": "88c83ee4dae74f4b609564a2550096653967474cc7f762e8daafcba6a61816cf",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "Citizen scientists' star counts from 2011 to 2022 show the sky brightening about 9.6% a year.",
+      "exact_native_cache_key": "1c25ba10ff243ccb5375be8d6b2e68a87f36968f.pkl",
+      "cache_input_text_sha256": "133abcd78e3a6ff48ddf56a1476da6bceece557e948acd44abf7bab9cb69345e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S16",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "Citizen scientists' star counts from 2011 to 2022 show the sky brightening about 9.6% a year.",
+      "exact_native_cache_key": "0e3132fc3e80667390aef168a065f12d4c44035f.pkl",
+      "cache_input_text_sha256": "133abcd78e3a6ff48ddf56a1476da6bceece557e948acd44abf7bab9cb69345e",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-raw",
+      "method": "create",
+      "source_slice": "At that pace, a child born where 250 stars twinkle would see about 100 by their eighteenth birthday.",
+      "exact_native_cache_key": "67dde670ec821d4e88bbbd961589a8ee585a8f35.pkl",
+      "cache_input_text_sha256": "72e9ea39ba892205198f5a448143f21d571551c6e088d221505b562e4c5377e2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": null,
+      "reference_kind": "whole-default-timed",
+      "method": "create_timed",
+      "source_slice": "At that pace, a child born where 250 stars twinkle would see about 100 by their eighteenth birthday.",
+      "exact_native_cache_key": "9f965a0dc2d2fe3bc4152582aef98fa093882e33.pkl",
+      "cache_input_text_sha256": "72e9ea39ba892205198f5a448143f21d571551c6e088d221505b562e4c5377e2",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "At that pace, a child born where 250 stars twinkle",
+      "exact_native_cache_key": "8ac11e1d0756c5437ed5a698afb85744ff6eddfd.pkl",
+      "cache_input_text_sha256": "74a895e3f5c232bec6f61841f15cbfa352a44d9828a99252fdd7be319cb79642",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "highlight-display-chunk",
+      "method": "create",
+      "source_slice": "would see about 100 by their eighteenth birthday.",
+      "exact_native_cache_key": "36fea80277a154cad648f0317a2c1a3deadb8a40.pkl",
+      "cache_input_text_sha256": "95d582cbff09b0d00ee2434f6989d9dc195b0865d64141d5edb69e6e8da3dc77",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 1,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "At that pace,",
+      "exact_native_cache_key": "00dd834301806f1181c72790217baf0cf6b5d347.pkl",
+      "cache_input_text_sha256": "b766aba666fabfa00c5901e8360deed2ecfe1a22125daa648e82ec9c8ccd6ce6",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    },
+    {
+      "sentence": "S17",
+      "piece": 2,
+      "reference_kind": "pause-punctuation-slice",
+      "method": "create",
+      "source_slice": "a child born where 250 stars twinkle would see about 100 by their eighteenth birthday.",
+      "exact_native_cache_key": "7f07d9c5749c83c88067c6190413734dd1e0750f.pkl",
+      "cache_input_text_sha256": "f22614c1b06daa7a4a4049767094a0649c1cbe0f64a89d49dad6696b4c0a1b24",
+      "cache_input_is_phonemes": false,
+      "cache_preexisted": true
+    }
+  ],
+  "unique_reference_key_count": 82,
+  "raw_mother_cache_scalar_manifest": [
+    {
+      "exact_native_cache_key": "69dd8042a699262631339b834c2fc05c91c14de2.pkl",
+      "pkl_sha256": "46502a27a7d486ae0e1649ef318118ecc6754d8a5bf30308810f648784f0e100",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "标题",
+          "piece": null,
+          "reference_kind": "title-default-raw",
+          "method": "create",
+          "source_slice": "Lost in the Glare",
+          "exact_native_cache_key": "69dd8042a699262631339b834c2fc05c91c14de2.pkl",
+          "cache_input_text_sha256": "87de3933d606055f29e77fcde4286b4586d5461163039e7ed88c4b5da74e52d2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "46502a27a7d486ae",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        27136
+      ],
+      "unprocessed_array_sha256": "8eb655be217ba8ca7c185a481a1c1433832bb66d1017687a3a57079f30e43184"
+    },
+    {
+      "exact_native_cache_key": "43c1da454512c8e6638fd62b08e5305f0258e1b9.pkl",
+      "pkl_sha256": "ec350d91736cd85abe6a2a052536330f75c36898a4579d3325b84e6705650f30",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A moth skims over an ultraviolet lamp and flips upside down, belly to the sky.",
+          "exact_native_cache_key": "43c1da454512c8e6638fd62b08e5305f0258e1b9.pkl",
+          "cache_input_text_sha256": "47d61c93c12016eb53d663634c4c2bc552ddba2b1d5c097457629d82f59c22f6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ec350d91736cd85a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        132608
+      ],
+      "unprocessed_array_sha256": "44cded6980c2ada20bc1590758856e149170ec81288795fda8b4e2935a6ab030"
+    },
+    {
+      "exact_native_cache_key": "1351d328dada8b7994c1c013abadc1766dcd5e76.pkl",
+      "pkl_sha256": "3155e760c7c13b4db2154159e3d240e9c02a96a1243a4b45b3227b87412cec28",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A moth skims over an ultraviolet lamp",
+          "exact_native_cache_key": "1351d328dada8b7994c1c013abadc1766dcd5e76.pkl",
+          "cache_input_text_sha256": "bbf57d2b36859cdd5eeb47519de1b53e76dfb20311af45dd285c26e234fbbd6d",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "3155e760c7c13b4d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        57344
+      ],
+      "unprocessed_array_sha256": "72d0ce03c1f42696add83853190cfc3412c6989b6866ae03c182c74b4c327316"
+    },
+    {
+      "exact_native_cache_key": "56d3d23e4b779e496c43ae32a75ef8a13232d1f2.pkl",
+      "pkl_sha256": "d2d88c690d418bac9537f981f10721625af329b7536a8c5ff33b0ec17b857b12",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and flips upside down, belly to the sky.",
+          "exact_native_cache_key": "56d3d23e4b779e496c43ae32a75ef8a13232d1f2.pkl",
+          "cache_input_text_sha256": "bc2befaa6f0bade5858b290cc17ad8afa8e5a71c48d173ac61217319b2712b8a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d2d88c690d418bac",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        64000
+      ],
+      "unprocessed_array_sha256": "5022f60a664525fe7d4c4bf44281c1de75d8b6cb5b1a9cf11004953ff3cea441"
+    },
+    {
+      "exact_native_cache_key": "9d5b61d01782ae33f86e8ab781fd803e8dc8d4b9.pkl",
+      "pkl_sha256": "9a5e9220edeb209662b3d045d849489063a69199d82244bc57e465aa07e9d350",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A moth skims over an ultraviolet lamp and flips upside down,",
+          "exact_native_cache_key": "9d5b61d01782ae33f86e8ab781fd803e8dc8d4b9.pkl",
+          "cache_input_text_sha256": "14f4267c3c4945759d9d50eba3d160e3a687ba721dafa3bc79d54b9fb2c903e4",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9a5e9220edeb2096",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        101376
+      ],
+      "unprocessed_array_sha256": "f144a88237ea4b1ea937d1b318de07da5dfb0536130177d61d4f39b48c98d048"
+    },
+    {
+      "exact_native_cache_key": "0101b0171532de5515739a222a47c299565c2597.pkl",
+      "pkl_sha256": "7fd40935e352281738637a311928504ed082c8e36aba4633b99cb739079e8302",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S1",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "belly to the sky.",
+          "exact_native_cache_key": "0101b0171532de5515739a222a47c299565c2597.pkl",
+          "cache_input_text_sha256": "b80b34337009561616eb6fa1fc8cbb9653b851f35a028fb9cc5a90089cfc42e2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7fd40935e3522817",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        29184
+      ],
+      "unprocessed_array_sha256": "1cc4ff6c0edc45440b16e16bd25562bd60a49b0d29764197d4af1af37e6893d8"
+    },
+    {
+      "exact_native_cache_key": "f3db27ec1b8b845b68030e8f6b5a03a74db1ec4e.pkl",
+      "pkl_sha256": "108ee939749197b4a43c699f6fa265022d7a475bb6f1381af8c0d93200ff82d6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In Costa Rica's misty Monteverde cloud-forest, stereo cameras caught such acrobatics for a 2024 Imperial College study that unravelled an age-old puzzle, the helpless swirl of insects round porch lights.",
+          "exact_native_cache_key": "f3db27ec1b8b845b68030e8f6b5a03a74db1ec4e.pkl",
+          "cache_input_text_sha256": "977659b9478a8e422609fd1db9f527541cf3eff196274dbd400e3d103651df6d",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "108ee939749197b4",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        387584
+      ],
+      "unprocessed_array_sha256": "9c3593691f0b014da9569d3cb80cb83f999faa9589f04a571f2c55082475e251"
+    },
+    {
+      "exact_native_cache_key": "47afa1e421ac8c4fc60194db04a554e829e4f827.pkl",
+      "pkl_sha256": "d2a47410250e059f568e00a4d6cf31d87e1563ba6dc3067e72f1103d65194dfa",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In Costa Rica's misty Monteverde cloud-forest,",
+          "exact_native_cache_key": "47afa1e421ac8c4fc60194db04a554e829e4f827.pkl",
+          "cache_input_text_sha256": "9abe2920f58b63fe0a877fb01b01ed1b937d08f66f3a9fa27762f612e7df4525",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In Costa Rica's misty Monteverde cloud-forest,",
+          "exact_native_cache_key": "47afa1e421ac8c4fc60194db04a554e829e4f827.pkl",
+          "cache_input_text_sha256": "9abe2920f58b63fe0a877fb01b01ed1b937d08f66f3a9fa27762f612e7df4525",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d2a47410250e059f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        84992
+      ],
+      "unprocessed_array_sha256": "c5a32f48a69b8a8aa1e3c871127253647680bb98c89be85ae3bea1a6396c68f3"
+    },
+    {
+      "exact_native_cache_key": "3bd5e008dbc52fd2e61b8d9c3823bbf89c88dc73.pkl",
+      "pkl_sha256": "7144e88199dedd1b45edcc1430cdd3995d6e8482b98f3bc7ecc830b37482a1f1",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "stereo cameras caught such acrobatics for a 2024 Imperial College study",
+          "exact_native_cache_key": "3bd5e008dbc52fd2e61b8d9c3823bbf89c88dc73.pkl",
+          "cache_input_text_sha256": "866b232e58165b8af61d326b2f2a315baca461361e988af0d5099c467203a796",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7144e88199dedd1b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        136192
+      ],
+      "unprocessed_array_sha256": "4ac395df2c01c749ff915b4bb63fbb30c93ecc4a6dc45529fad3cc9f5d9bce5e"
+    },
+    {
+      "exact_native_cache_key": "9ba07e20f59d4e591e499712cf4e95fdd482e3b6.pkl",
+      "pkl_sha256": "41813c9f9d82bd336b98071061c91f1e39a670941cb9c7daa9a0ce5c2cfc7f22",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "that unravelled an age-old puzzle,",
+          "exact_native_cache_key": "9ba07e20f59d4e591e499712cf4e95fdd482e3b6.pkl",
+          "cache_input_text_sha256": "7b534335da210727e7f03aa4471e80726681138e943901c40ab72fc927a927dd",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "41813c9f9d82bd33",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        51712
+      ],
+      "unprocessed_array_sha256": "d96e1ddaee943e7b33327c0a44afaa9dfdb6b9e9b44ed41e643b5f7ff6680888"
+    },
+    {
+      "exact_native_cache_key": "6eafefd3c2e427aa497c93fa8eeec94621d4d1dc.pkl",
+      "pkl_sha256": "7eba64d5340b16fbb3f9720f77828d37d011c758c1ab33b3d204c4cf086b7e1e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 4,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "the helpless swirl of insects round porch lights.",
+          "exact_native_cache_key": "6eafefd3c2e427aa497c93fa8eeec94621d4d1dc.pkl",
+          "cache_input_text_sha256": "4fec4db1c76136fad47cb02b52ab30254a0cfeba1eb7f2224320627fe5793475",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S2",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "the helpless swirl of insects round porch lights.",
+          "exact_native_cache_key": "6eafefd3c2e427aa497c93fa8eeec94621d4d1dc.pkl",
+          "cache_input_text_sha256": "4fec4db1c76136fad47cb02b52ab30254a0cfeba1eb7f2224320627fe5793475",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7eba64d5340b16fb",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        72704
+      ],
+      "unprocessed_array_sha256": "7224457e9c36921f096e0ad583278e6110bd35c9e93ad4b60e3ea00c763b86e9"
+    },
+    {
+      "exact_native_cache_key": "4f4301d043325257073effa953b3d90534c96bd0.pkl",
+      "pkl_sha256": "ac85f9662660b9e2341ae77c77cf567277383a768ad01f3995801b531f3bd858",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S2",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "stereo cameras caught such acrobatics for a 2024 Imperial College study that unravelled an age-old puzzle,",
+          "exact_native_cache_key": "4f4301d043325257073effa953b3d90534c96bd0.pkl",
+          "cache_input_text_sha256": "bc1f852e4aa338ead1e4560f9ac93da7df0c6f0b9975157b1a6810e4f5262de1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ac85f9662660b9e2",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        207872
+      ],
+      "unprocessed_array_sha256": "d45729b638f0d1925582edf8ccc8f53796a06ecd4ce142de185e96fb4c66e823"
+    },
+    {
+      "exact_native_cache_key": "44ab82acd92556c5ba1e741dbdfe995fc9c21e55.pkl",
+      "pkl_sha256": "a3dcd81780b9d564089752f8da938b4efdae2b5be6385a7fef3e84f294f1a238",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S3",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Folk wisdom blames the circling on attraction.",
+          "exact_native_cache_key": "44ab82acd92556c5ba1e741dbdfe995fc9c21e55.pkl",
+          "cache_input_text_sha256": "39e87e7d9e7cb09b27a8631d566f020ef0e914511684667c4931de285ffa4c67",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a3dcd81780b9d564",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        71680
+      ],
+      "unprocessed_array_sha256": "12e0ae0fe083ab42ae3ff840091d83d3f8188b82b6e97529dc8e05cade661e98"
+    },
+    {
+      "exact_native_cache_key": "63519e0a2c90385cf10e69e519c5ca0b6b9f4382.pkl",
+      "pkl_sha256": "2e309ac901ec2448afdf7343d090878e421d005ffbf24c9a3d7bbe0622487110",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In fact, insects instinctively keep their backs to whatever shines brightest, normally the sky, to stay level.",
+          "exact_native_cache_key": "63519e0a2c90385cf10e69e519c5ca0b6b9f4382.pkl",
+          "cache_input_text_sha256": "adf60979a2d6cdcf53cbe04457610f9923aab916039b20c3f8e6b79af90c24c6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "2e309ac901ec2448",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        171008
+      ],
+      "unprocessed_array_sha256": "6a0ca5a7d453aeec9e73840146f7d76e562db178fe979692d179d94eac23f34a"
+    },
+    {
+      "exact_native_cache_key": "f1db3bd5573e14efd4219f9ff348cd30cb46551f.pkl",
+      "pkl_sha256": "32f9320f26b55e6f8c792fcc996118beb7a7a48c96b7fd947c528fca93e0f7f9",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "In fact, insects instinctively keep their backs to whatever shines brightest,",
+          "exact_native_cache_key": "f1db3bd5573e14efd4219f9ff348cd30cb46551f.pkl",
+          "cache_input_text_sha256": "0e6624b74445473b890817420648e3d60269d2e24c195b9c80b2556655f39792",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "32f9320f26b55e6f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        111616
+      ],
+      "unprocessed_array_sha256": "712f8ceff62aaa3c2c9b8ef294ed13fc64b5765a7ea697a24456754b4e0016d0"
+    },
+    {
+      "exact_native_cache_key": "30a403b6ebc3457f095d4f3890ec780ad1d3e212.pkl",
+      "pkl_sha256": "353792041b227ada5ce11e3cc1aedd43b95892a2da12285eabc5a2b7bc568f7e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "normally the sky, to stay level.",
+          "exact_native_cache_key": "30a403b6ebc3457f095d4f3890ec780ad1d3e212.pkl",
+          "cache_input_text_sha256": "fecd0723e465cd685c85be3a6452d00d8f223b6a0cdbb175414042c92378a1d1",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "353792041b227ada",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        50688
+      ],
+      "unprocessed_array_sha256": "e78b3506ba984b990c04d9cb641dc52ea206b2d66237761d0fdcfa509201ba11"
+    },
+    {
+      "exact_native_cache_key": "2647fcf380382efb4d8ec46583a368732cdb6b0d.pkl",
+      "pkl_sha256": "3c2591c9d6e9907e73219ab4aa77bd70bd24739b115ec84ee4e0ddc27c9adb55",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In fact,",
+          "exact_native_cache_key": "2647fcf380382efb4d8ec46583a368732cdb6b0d.pkl",
+          "cache_input_text_sha256": "90ced0fe770d15d08b7f5ae0c4b0d8f2948a47d8b05ba3d298a98775f273c8eb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "3c2591c9d6e9907e",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        19456
+      ],
+      "unprocessed_array_sha256": "442c49e63013a23b664d0bfe17d47d4fe91d51f91a4dd73f944c6e9596d0101c"
+    },
+    {
+      "exact_native_cache_key": "042c67a69ce546a859dd1b193ccaed1a80c2f756.pkl",
+      "pkl_sha256": "367127002f95cc8586c4f7521c442c911fcd0fd672893ca3e06272f83e425ed0",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "insects instinctively keep their backs to whatever shines brightest,",
+          "exact_native_cache_key": "042c67a69ce546a859dd1b193ccaed1a80c2f756.pkl",
+          "cache_input_text_sha256": "0e67917282ab6a794c20df1c1d3ef41fd6ee51e4e645bc560a285785cedaca9c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "367127002f95cc85",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        95232
+      ],
+      "unprocessed_array_sha256": "165cf7f42e737daf06b6c8df76d3224997d1279b3ba03f63638e5f86a4eb09dd"
+    },
+    {
+      "exact_native_cache_key": "f48672764d7120ad752390efbc2c4cf0678b3f5b.pkl",
+      "pkl_sha256": "c024b36d6210760dbbfaf2735ca365947bcf9e157cec160a160b40e88186daad",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "normally the sky,",
+          "exact_native_cache_key": "f48672764d7120ad752390efbc2c4cf0678b3f5b.pkl",
+          "cache_input_text_sha256": "3fd88403b7389353ec53e3a673e0a121cbb28d7afdc8052f4664f9633466702c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c024b36d6210760d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        30720
+      ],
+      "unprocessed_array_sha256": "25e43b58bc8f018b771c00c749da89c7253fafe1934ad6544aa1a20d11a90165"
+    },
+    {
+      "exact_native_cache_key": "fff3f1cd326327c22a9ff16bf404f662bc7d6219.pkl",
+      "pkl_sha256": "001118a2f49bdc04930523e21accf3aa694e081bc95dec60a0aa004ba8bd736e",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S4",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "to stay level.",
+          "exact_native_cache_key": "fff3f1cd326327c22a9ff16bf404f662bc7d6219.pkl",
+          "cache_input_text_sha256": "d1d82f46d4fe6e5f0a52cee4520db3a1a28a2fe930f43cb33057517d524146ca",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "001118a2f49bdc04",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        26112
+      ],
+      "unprocessed_array_sha256": "049e84cadb0c9d6c6006f0e4fe7094b3343c65329225e39b37fa3b49ae205342"
+    },
+    {
+      "exact_native_cache_key": "d5cf3c1243341d81a35ff8d0f8559b62c78cd235.pkl",
+      "pkl_sha256": "884894ee971808111735a55970fd3c3bd3938c5d582e6de3898f46d9e6bb234f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A lamp, a counterfeit sky, hijacks this built-in habit, leaving insects eddying in its halo or inverted above it.",
+          "exact_native_cache_key": "d5cf3c1243341d81a35ff8d0f8559b62c78cd235.pkl",
+          "cache_input_text_sha256": "059dcdcb2d5b1cf82b6565eb24d118ac701be83ccfd09ee87ba55bc3a059634a",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "884894ee97180811",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        193536
+      ],
+      "unprocessed_array_sha256": "0a800ff828f0372bf4a89afe0e7ce185f6cadbb401bd481c59f64dffa2a74819"
+    },
+    {
+      "exact_native_cache_key": "dda525418ea121dd4d1162c2bbe4347a152776f2.pkl",
+      "pkl_sha256": "f0d7f5a17015678d459c81792e2514f94627a34387aa4f1ef66876f118582da8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A lamp, a counterfeit sky,",
+          "exact_native_cache_key": "dda525418ea121dd4d1162c2bbe4347a152776f2.pkl",
+          "cache_input_text_sha256": "f13791ab9e679c8a5a90aa7af473893962af2ae2b2d2810560b8019104551232",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f0d7f5a17015678d",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        42496
+      ],
+      "unprocessed_array_sha256": "337c50fbf2259211dbef2f4a8208ca9876c0ddeea3f82998eb0e4154ae68de32"
+    },
+    {
+      "exact_native_cache_key": "2515fdad2015eaf9a9c9e78cb647fbc225262c57.pkl",
+      "pkl_sha256": "6469dd567737ecfa9a3d33f261267a1c36d485adbb1c8e84b8345fe7029e9104",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "hijacks this built-in habit,",
+          "exact_native_cache_key": "2515fdad2015eaf9a9c9e78cb647fbc225262c57.pkl",
+          "cache_input_text_sha256": "7ce6db61bb96589b8c428eed031fc4fc0ffd2e3c33670a0157e73e8c6fe5574a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "hijacks this built-in habit,",
+          "exact_native_cache_key": "2515fdad2015eaf9a9c9e78cb647fbc225262c57.pkl",
+          "cache_input_text_sha256": "7ce6db61bb96589b8c428eed031fc4fc0ffd2e3c33670a0157e73e8c6fe5574a",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6469dd567737ecfa",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        42496
+      ],
+      "unprocessed_array_sha256": "a1eced137d1c85c8ccb86d034bc623ef7c37797f3f17fc1b2c18d578c062bf07"
+    },
+    {
+      "exact_native_cache_key": "535176a61fec8029893cf71a415b6ded53339af4.pkl",
+      "pkl_sha256": "e50b5aed1a811c6626b05534c461896b115231f771dd1abdfdc3beb4db4161f9",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "leaving insects eddying in its halo or inverted above it.",
+          "exact_native_cache_key": "535176a61fec8029893cf71a415b6ded53339af4.pkl",
+          "cache_input_text_sha256": "b5516be3ddccf330d0228afc3216df4b7cede1713ef2a26b9cfb02740ecf6c77",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S5",
+          "piece": 4,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "leaving insects eddying in its halo or inverted above it.",
+          "exact_native_cache_key": "535176a61fec8029893cf71a415b6ded53339af4.pkl",
+          "cache_input_text_sha256": "b5516be3ddccf330d0228afc3216df4b7cede1713ef2a26b9cfb02740ecf6c77",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "e50b5aed1a811c66",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        89600
+      ],
+      "unprocessed_array_sha256": "d060506054bd4d2a4386eff82da15295afe0d920e674edc2949c61054ae57a2c"
+    },
+    {
+      "exact_native_cache_key": "897454d1c77df20a28255a04a0a6aeb0177a4b0f.pkl",
+      "pkl_sha256": "e94a83979cb7fdf9dad67c121594ec8b1d995b5ad67bbd94735c77b9b58cac59",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A lamp,",
+          "exact_native_cache_key": "897454d1c77df20a28255a04a0a6aeb0177a4b0f.pkl",
+          "cache_input_text_sha256": "828bcdb85785aa6e8451beda9e7258456431972a51109ccd8202390b58b85650",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "e94a83979cb7fdf9",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        18432
+      ],
+      "unprocessed_array_sha256": "9793ff73c2f9be73b1ba77813d4926c8552c4c62fd654a6ec90c23e56039d7b5"
+    },
+    {
+      "exact_native_cache_key": "49cbf509d289045f9743499406a31189d2738717.pkl",
+      "pkl_sha256": "7ffeff722f084574ada84e338d7dd00ff88e74b76af90538b9f13006b09ab258",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S5",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a counterfeit sky,",
+          "exact_native_cache_key": "49cbf509d289045f9743499406a31189d2738717.pkl",
+          "cache_input_text_sha256": "2b59fdd7b1c94c5f9635eb3bf222d3317db79dde0f1a6e2c1490cc96577e1817",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7ffeff722f084574",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        33280
+      ],
+      "unprocessed_array_sha256": "2be493e2f21e302adb4991c06f07e2df36e4d3b15b10fd8ae9df9ecd54cdbd65"
+    },
+    {
+      "exact_native_cache_key": "3c72a12f5624fac9ee3638d00e59c094c03031a2.pkl",
+      "pkl_sha256": "4e93f15808c9a893a66aacc3bb4feac8c3b9f726e182fb44b01fdde31614124a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "In 477 field clips, precious few darted straight at the light.",
+          "exact_native_cache_key": "3c72a12f5624fac9ee3638d00e59c094c03031a2.pkl",
+          "cache_input_text_sha256": "8025aa13a1806bbc98951326d6ffa11123477a303e8241d0d09b156b4f8610e5",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "4e93f15808c9a893",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        124928
+      ],
+      "unprocessed_array_sha256": "f8ab2c6881d3bd7e56386f9652a0d016b4519f1c433a3e918773f2ac5ea2c826"
+    },
+    {
+      "exact_native_cache_key": "32c179bdd88f914e993ba92e034801409fe17b8d.pkl",
+      "pkl_sha256": "9a97169409abc9cce12366b0795a6d295b93d91fdedb5a7ae80ae6d54638fa13",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "In 477 field clips,",
+          "exact_native_cache_key": "32c179bdd88f914e993ba92e034801409fe17b8d.pkl",
+          "cache_input_text_sha256": "9b400005c1dee215e0e528b56ad8abae79608b8fd83517eb3482e3bad630cb0b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "9a97169409abc9cc",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        62464
+      ],
+      "unprocessed_array_sha256": "5ed47cade43de1263f8275f4a7a667d471dc58f2fabececadd36356300687d9c"
+    },
+    {
+      "exact_native_cache_key": "0d93063cb4fa32fb07b86418cdce3560213eeead.pkl",
+      "pkl_sha256": "89c57ca87b1c03076b9fc91191722ae2d30b44a5fd2f0cf97144048da8ff3c9b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S6",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "precious few darted straight at the light.",
+          "exact_native_cache_key": "0d93063cb4fa32fb07b86418cdce3560213eeead.pkl",
+          "cache_input_text_sha256": "3c0a75d4e9e307c078a4224d34a8906ac8522c22363b93c53c76c7f9eb40e24c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "89c57ca87b1c0307",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        51712
+      ],
+      "unprocessed_array_sha256": "e6f9a0b23fe39ed58563ecd60863059d6ea5042f075d7608706c4b3ab7b0bc31"
+    },
+    {
+      "exact_native_cache_key": "5b2a321e4610036086935c3a6fa892a160c71ed7.pkl",
+      "pkl_sha256": "a5d417f2afab39b0a5c432db8b9107da7cb2298de84c10025587c867f8d0a901",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S7",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Many fireflies flirt with their lanterns.",
+          "exact_native_cache_key": "5b2a321e4610036086935c3a6fa892a160c71ed7.pkl",
+          "cache_input_text_sha256": "32e454d6b580d36bca90a17594550a593572bb44d89c82baa47e0ee7a3c3413c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a5d417f2afab39b0",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        57856
+      ],
+      "unprocessed_array_sha256": "d82a85f1e73231c8a3ee5545bdac4991ee4b1d7864fa83383dbe4a0d058c7fc1"
+    },
+    {
+      "exact_native_cache_key": "aa8bcff94b60f36135afedd6b72c407786a8fdfa.pkl",
+      "pkl_sha256": "c5cd8915291028d1fe55cdffab50af4faf639a3b51e87246f8f7555ef8211d3d",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "A male blinks an overture, a female winks back, and bright nights smother the banter.",
+          "exact_native_cache_key": "aa8bcff94b60f36135afedd6b72c407786a8fdfa.pkl",
+          "cache_input_text_sha256": "6e9352cb7113e3b556edef27af8e83646bd0750c2b4a230715c21a3a9e87411f",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c5cd8915291028d1",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        130048
+      ],
+      "unprocessed_array_sha256": "dd2cda4fc4cd2f91fabf46f03c0b41582526fe6dc56c5c9674d348867084d176"
+    },
+    {
+      "exact_native_cache_key": "03c5970909a447131e27fad430cffc15d65c3eed.pkl",
+      "pkl_sha256": "00cac03448d9a28586a692e55506b346537fb2d18fefa0d2a54fe3acd0456b82",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "A male blinks an overture,",
+          "exact_native_cache_key": "03c5970909a447131e27fad430cffc15d65c3eed.pkl",
+          "cache_input_text_sha256": "f3b1ad271532388f497ce30de886af52a7ade9dc0b8af17b2cf66a054d553fda",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "A male blinks an overture,",
+          "exact_native_cache_key": "03c5970909a447131e27fad430cffc15d65c3eed.pkl",
+          "cache_input_text_sha256": "f3b1ad271532388f497ce30de886af52a7ade9dc0b8af17b2cf66a054d553fda",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "00cac03448d9a285",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        40960
+      ],
+      "unprocessed_array_sha256": "870bec37ba99a6c78e3e04d74715dd2a42a06aecbd82f31157d1490c70d0c137"
+    },
+    {
+      "exact_native_cache_key": "eea1e38c0ab46d63d8463224abd4c8b0943e614a.pkl",
+      "pkl_sha256": "6223ec0feb366faad66a55334a0e43904b9e1919ccc6567a36370554dc8eecaa",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "a female winks back,",
+          "exact_native_cache_key": "eea1e38c0ab46d63d8463224abd4c8b0943e614a.pkl",
+          "cache_input_text_sha256": "6e8458e3491f146e0825f78d21d28d10213363e053472cfb3c5e76b1a44d0668",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a female winks back,",
+          "exact_native_cache_key": "eea1e38c0ab46d63d8463224abd4c8b0943e614a.pkl",
+          "cache_input_text_sha256": "6e8458e3491f146e0825f78d21d28d10213363e053472cfb3c5e76b1a44d0668",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6223ec0feb366faa",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        34304
+      ],
+      "unprocessed_array_sha256": "1fcdfae76e377a8db2848e27e1f2e881ca02ad5f057a5409f25ca311c203d193"
+    },
+    {
+      "exact_native_cache_key": "ccf4ecc44d26b02b323356de07e97277b4bde968.pkl",
+      "pkl_sha256": "d9af5165d5b80a09941da6fcc1e7e61e007eb2a858ceea5b2b17d0a88b4d98bd",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and bright nights smother the banter.",
+          "exact_native_cache_key": "ccf4ecc44d26b02b323356de07e97277b4bde968.pkl",
+          "cache_input_text_sha256": "6444cb3e0c482930bb1db5ae28a15610e41c4c9280cb0656a39b389cc8daaa40",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S8",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and bright nights smother the banter.",
+          "exact_native_cache_key": "ccf4ecc44d26b02b323356de07e97277b4bde968.pkl",
+          "cache_input_text_sha256": "6444cb3e0c482930bb1db5ae28a15610e41c4c9280cb0656a39b389cc8daaa40",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "d9af5165d5b80a09",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        46592
+      ],
+      "unprocessed_array_sha256": "e87f997c86083fb93dd28c78cf5574bb44f51f409a81a562926500f563e24164"
+    },
+    {
+      "exact_native_cache_key": "28218a6ab9ca2ecc0e81421469b254a6fc227c3f.pkl",
+      "pkl_sha256": "ab8959e2fd0f549193bfd0f68f9d2e1bc7739e1ce4f516bb30f7dd24750136fa",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "At Tufts University, suitors under artificial light mustered about five flash patterns a minute instead of ten.",
+          "exact_native_cache_key": "28218a6ab9ca2ecc0e81421469b254a6fc227c3f.pkl",
+          "cache_input_text_sha256": "6618491c0616c8bd9073043774378a9acbbf6070ba8e948c8a7d880bebecab78",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "ab8959e2fd0f5491",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        181760
+      ],
+      "unprocessed_array_sha256": "7b00083c7dcd09674d0e4a1b150b3960a1f301f22a4bfcacf0d1456e2767fa47"
+    },
+    {
+      "exact_native_cache_key": "f2fef569914e639a8748d6d71a5582b99d10185e.pkl",
+      "pkl_sha256": "91d501f64dcc78e73a3012a76d3f772db4ef6d95fabd93c4a970f1f83f4743bb",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "At Tufts University, suitors under artificial light",
+          "exact_native_cache_key": "f2fef569914e639a8748d6d71a5582b99d10185e.pkl",
+          "cache_input_text_sha256": "13ffba8685ded7908828ddcf895c446b36a4a2faf281ec28160430380fb03b95",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "91d501f64dcc78e7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        88064
+      ],
+      "unprocessed_array_sha256": "b0cab9eabc820d327299651c8a7164ef133615d7d98afd713adf4ea2fb6ef975"
+    },
+    {
+      "exact_native_cache_key": "4ff104d1d3016773bd5c91dc9c1001cd7ecc1587.pkl",
+      "pkl_sha256": "1bf5ab8c03b729d7dd7d15d3281eb93026d940703d8f2cf695c52cbf6e348aa7",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "mustered about five flash patterns a minute instead of ten.",
+          "exact_native_cache_key": "4ff104d1d3016773bd5c91dc9c1001cd7ecc1587.pkl",
+          "cache_input_text_sha256": "6ca2d99caa54e3503968960d5a5a0cb9801d9ff9c61111ff8c923b33bcecdb25",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "1bf5ab8c03b729d7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        87040
+      ],
+      "unprocessed_array_sha256": "35cad719acf7fd2d9535a52737526fd8af16f93457648d15ff0c72832f20c702"
+    },
+    {
+      "exact_native_cache_key": "256a057f3376ac7fc9b4fe498e47032563968967.pkl",
+      "pkl_sha256": "599f69acf5924fa531254a1b236ca032371a4259d3f3d7bddf5366d5a9001643",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "At Tufts University,",
+          "exact_native_cache_key": "256a057f3376ac7fc9b4fe498e47032563968967.pkl",
+          "cache_input_text_sha256": "56357c2d70bb376e3de5c6828ce25e313aa87eba94f38013e1093f9f520f692c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "599f69acf5924fa5",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        35328
+      ],
+      "unprocessed_array_sha256": "61458907eaa41c88fd87402744b559d61c85108c324ebcf1894e950fee2a63b1"
+    },
+    {
+      "exact_native_cache_key": "81a4a11bf7c5628611c52326bf39e134ef12797a.pkl",
+      "pkl_sha256": "fb0eb85f0fe077e93ec6de28c434f705021508d9ab5462fba54ba287ca1eb68a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S9",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "suitors under artificial light mustered about five flash patterns a minute instead of ten.",
+          "exact_native_cache_key": "81a4a11bf7c5628611c52326bf39e134ef12797a.pkl",
+          "cache_input_text_sha256": "c698eccff3cd3d7a0663351d7f019d8570af3a782e861eef3052e9261cff59e8",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "fb0eb85f0fe077e9",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        145920
+      ],
+      "unprocessed_array_sha256": "3fe5f9299cb09d186144e9aa6b116f62b06fd46576c974b646f11212a195f10e"
+    },
+    {
+      "exact_native_cache_key": "74271f98fc27466bf5461557eab35223ed245a8d.pkl",
+      "pkl_sha256": "a1e51c7fa442f44420b44851193d0ea2d890da681cecf05cfe0f5ad3c561ef72",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Females reciprocated about half as often under red or blue light, scarcely at all under white, and never under amber.",
+          "exact_native_cache_key": "74271f98fc27466bf5461557eab35223ed245a8d.pkl",
+          "cache_input_text_sha256": "6897627ef9cd9eb1f71188c51083e0139d88b07cc93196bb5094176fd34580d0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a1e51c7fa442f444",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        202240
+      ],
+      "unprocessed_array_sha256": "b68570bd07917b17581e6ecb66502a1cc72eb0e21ac0a2ccc35250948c321169"
+    },
+    {
+      "exact_native_cache_key": "9749515830444a230a199b2d707a4ce35771b6ae.pkl",
+      "pkl_sha256": "90e1ab352e1b318232fb3a263434caa1e02fa1d7c436afd36b8e094ea52eda2b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Females reciprocated about half as often under red or blue light,",
+          "exact_native_cache_key": "9749515830444a230a199b2d707a4ce35771b6ae.pkl",
+          "cache_input_text_sha256": "b7ab207386ca57220624af291ab7821ce7a4d0b199457b96f030d83c89a1581e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S10",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Females reciprocated about half as often under red or blue light,",
+          "exact_native_cache_key": "9749515830444a230a199b2d707a4ce35771b6ae.pkl",
+          "cache_input_text_sha256": "b7ab207386ca57220624af291ab7821ce7a4d0b199457b96f030d83c89a1581e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "90e1ab352e1b3182",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        111616
+      ],
+      "unprocessed_array_sha256": "e8990a2089662f2ac69dfac513559228ed5a60284f64801cb2bfe4a43b286323"
+    },
+    {
+      "exact_native_cache_key": "09f670c5bc5b53a1f8a0d4cb4c17963e60f7556d.pkl",
+      "pkl_sha256": "f7098672b3f78c64361aea83cf354b5973d7a9901cda69f8176ba645c06a985f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "scarcely at all under white, and never under amber.",
+          "exact_native_cache_key": "09f670c5bc5b53a1f8a0d4cb4c17963e60f7556d.pkl",
+          "cache_input_text_sha256": "856d2267a1f68c469a5969bcbf33a4c82ba83401bf5f9c958d140df86ac6507b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "f7098672b3f78c64",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        76288
+      ],
+      "unprocessed_array_sha256": "91a23fbff81fbd80e72672dfbaf759641ce3424fd47398f8badbd1df548dc8b9"
+    },
+    {
+      "exact_native_cache_key": "b958506fe20c3760e18a3bab4d44e5fbde804848.pkl",
+      "pkl_sha256": "871c8113c8688acfeb361e8669bd085720e0aab18f2414622270459887e05b40",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "scarcely at all under white,",
+          "exact_native_cache_key": "b958506fe20c3760e18a3bab4d44e5fbde804848.pkl",
+          "cache_input_text_sha256": "b415585ad81fe73dae21e33bc6fa15ddfbcd6d33a1a941365948ea316200d6eb",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "871c8113c8688acf",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        41472
+      ],
+      "unprocessed_array_sha256": "d70c1155d331dc50e5ab3cd6981eefbccd510c78cfcb1a8f9ef5652295fa363f"
+    },
+    {
+      "exact_native_cache_key": "8283446920210abff8953c099f738ec1e70d1e9b.pkl",
+      "pkl_sha256": "99b2d24ca4dadd5b9884773db1595bb6cfcd763e32262a95e442ae4d45f21362",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S10",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and never under amber.",
+          "exact_native_cache_key": "8283446920210abff8953c099f738ec1e70d1e9b.pkl",
+          "cache_input_text_sha256": "969dbc229bc1bd203668a0c83037b54163f974161b35812ab67e2b8a6e317c4c",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "99b2d24ca4dadd5b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        34304
+      ],
+      "unprocessed_array_sha256": "0f4db9ad9be15d78c5f5fd47e750a60ba32e3c02ca25c2edde9206449d32a2ad"
+    },
+    {
+      "exact_native_cache_key": "8cae8b4e1c5c4c9c061b274dd7e86bee297cd817.pkl",
+      "pkl_sha256": "7116879de1cff4252eecc7d78f91189709d45ff2da6bc94bbf67f6f3052ffebe",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S11",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The harm spills into the ecosystem.",
+          "exact_native_cache_key": "8cae8b4e1c5c4c9c061b274dd7e86bee297cd817.pkl",
+          "cache_input_text_sha256": "ddcea6b1b3b93771228fa61e15cb9fd09d891c61963b3df413d0cf758dc469f7",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7116879de1cff425",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        54272
+      ],
+      "unprocessed_array_sha256": "b614bcc8670c89630ce1ada4077028b81a7c8df2e3a5136e6c68431f3a4f1a8c"
+    },
+    {
+      "exact_native_cache_key": "5b13940451ebbc3bf174252bdeff0dcb352ca871.pkl",
+      "pkl_sha256": "0fe345d63cb4c4d99be8bead5f3a3118950d1fc83bf68e7bbdd26f4a8d5d9274",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Along 55 Thames Valley roadsides, lamp-lit hedges held 47% fewer moth caterpillars than dark ones, with harsh white LEDs worse than mellower sodium lamps.",
+          "exact_native_cache_key": "5b13940451ebbc3bf174252bdeff0dcb352ca871.pkl",
+          "cache_input_text_sha256": "5b50144f3c3ba3e1ab139b844c4eda23c3cbb8d2579352a45c932fbc843c9ae0",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "0fe345d63cb4c4d9",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        308736
+      ],
+      "unprocessed_array_sha256": "70a98b86a140af0ccdf87fb275aea94f59e18dded1dcb66b0e02f37ba1433e28"
+    },
+    {
+      "exact_native_cache_key": "879aa06e228da44b09e9403899cd5f6eb5455cfc.pkl",
+      "pkl_sha256": "05c54df75c5d48b72c8b2f9083d414433e89e08a0e8a3c7b8c49bb194ba3e3b8",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Along 55 Thames Valley roadsides,",
+          "exact_native_cache_key": "879aa06e228da44b09e9403899cd5f6eb5455cfc.pkl",
+          "cache_input_text_sha256": "4c06841b1ef247f4a7d0458d8401489e783c4131f4ab4b5938efcfa2b2bf8323",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Along 55 Thames Valley roadsides,",
+          "exact_native_cache_key": "879aa06e228da44b09e9403899cd5f6eb5455cfc.pkl",
+          "cache_input_text_sha256": "4c06841b1ef247f4a7d0458d8401489e783c4131f4ab4b5938efcfa2b2bf8323",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "05c54df75c5d48b7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        62464
+      ],
+      "unprocessed_array_sha256": "91e039326951b5725ab017ab319a565b52a2a7f3274cb78060da8f3f2ba10e3c"
+    },
+    {
+      "exact_native_cache_key": "c30e274dcbac30bfa4f5b6075ae47786b0927bdb.pkl",
+      "pkl_sha256": "b19926506599b67ae86521e8778d2d72bb5af8a4918d796d2ae5129cd8c4c501",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "lamp-lit hedges held 47% fewer moth caterpillars than dark ones,",
+          "exact_native_cache_key": "c30e274dcbac30bfa4f5b6075ae47786b0927bdb.pkl",
+          "cache_input_text_sha256": "f42a318f506d233d0fe0e59ff3a675a4125b1f416cd94ba57a3ed3166d43eade",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "lamp-lit hedges held 47% fewer moth caterpillars than dark ones,",
+          "exact_native_cache_key": "c30e274dcbac30bfa4f5b6075ae47786b0927bdb.pkl",
+          "cache_input_text_sha256": "f42a318f506d233d0fe0e59ff3a675a4125b1f416cd94ba57a3ed3166d43eade",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b19926506599b67a",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        128000
+      ],
+      "unprocessed_array_sha256": "5ca06be023458b6ea5a01d335b3a2524212fd0eeb1df85d4b01f411d0dda93a4"
+    },
+    {
+      "exact_native_cache_key": "f3f740a1b7fc7a453ee8b6fddde7328e20e80072.pkl",
+      "pkl_sha256": "e2a7e306eaab4efc909478ebeafdb2c921fb4f0c8fec2e124c7e187f6f770d8c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S12",
+          "piece": 3,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "with harsh white LEDs worse than mellower sodium lamps.",
+          "exact_native_cache_key": "f3f740a1b7fc7a453ee8b6fddde7328e20e80072.pkl",
+          "cache_input_text_sha256": "c0e7daad05a1747650febf26d7d80a91d4c480db2675c745b6a0b594bcf84a1f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S12",
+          "piece": 3,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "with harsh white LEDs worse than mellower sodium lamps.",
+          "exact_native_cache_key": "f3f740a1b7fc7a453ee8b6fddde7328e20e80072.pkl",
+          "cache_input_text_sha256": "c0e7daad05a1747650febf26d7d80a91d4c480db2675c745b6a0b594bcf84a1f",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "e2a7e306eaab4efc",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        93696
+      ],
+      "unprocessed_array_sha256": "087e3facb19164265031d8f11a19e81132fb8431865fd9dc93df4df410a3cb6f"
+    },
+    {
+      "exact_native_cache_key": "5919091006296b54c08762b8dd9e796218df1226.pkl",
+      "pkl_sha256": "5cb4aac1738e98ff356aeff0ce427fd6c0d8fbb85682f690ffa52562cf834412",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Street lamps rigged up in seven of 14 Swiss meadows cut nocturnal pollinator visits by 62%.",
+          "exact_native_cache_key": "5919091006296b54c08762b8dd9e796218df1226.pkl",
+          "cache_input_text_sha256": "44dcc6dc758d054877ba8d0de3ac9ab04eefc595ffa08bc3f46db5d41da7b5e3",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "5cb4aac1738e98ff",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        183296
+      ],
+      "unprocessed_array_sha256": "7d12ee08d8154f24b6ba541519e5dc5afbd6fd216820af68b2ba855f5465d27d"
+    },
+    {
+      "exact_native_cache_key": "afb1851355dddbc643d93803ed872c832ba71e73.pkl",
+      "pkl_sha256": "89d48168a3b39184f4ca6dbde62d5cb4a2c750d3fe7110f1d771989880a30e0f",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Street lamps rigged up in seven of 14 Swiss meadows",
+          "exact_native_cache_key": "afb1851355dddbc643d93803ed872c832ba71e73.pkl",
+          "cache_input_text_sha256": "f911e6ac03c7cbfad02ca62ac1f7bdf8a26dec630522c5c02dfa5d978d8b67dc",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "89d48168a3b39184",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        85504
+      ],
+      "unprocessed_array_sha256": "b89bcea2d6e64e823ae4edcb2f069a3728831d6bccb5fd38b98a1e1f5f8e2c6e"
+    },
+    {
+      "exact_native_cache_key": "4da05522378179c76050dc7a950ad15cf860e3e6.pkl",
+      "pkl_sha256": "36b4105db207cbef29e1083a5c0ed1334e256a0f5b025dc704280d13c7ed55cd",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S13",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "cut nocturnal pollinator visits by 62%.",
+          "exact_native_cache_key": "4da05522378179c76050dc7a950ad15cf860e3e6.pkl",
+          "cache_input_text_sha256": "233acc1c3c6916d59f152c7283b93828910197aa686602275483ded59c77b728",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "36b4105db207cbef",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        80896
+      ],
+      "unprocessed_array_sha256": "feabcbdfd40d1d15ee2b3613e656c6564bd3c2a5025bfeaa9665f752b68beb3f"
+    },
+    {
+      "exact_native_cache_key": "ef7887a6511cd158aafbd65cce6cdb608639c297.pkl",
+      "pkl_sha256": "6eeedc982d12071cce0025908f1e35c2fef7042769f67d252c88bd3c318c3fc6",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "The plants set fewer fruit, and daytime pollinators proved poor understudies.",
+          "exact_native_cache_key": "ef7887a6511cd158aafbd65cce6cdb608639c297.pkl",
+          "cache_input_text_sha256": "c3051f7aaa5f606cbdbd95995aaab863066c262ebfabd94595cd08f7418a78c7",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "6eeedc982d12071c",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        121344
+      ],
+      "unprocessed_array_sha256": "77b553f004f6a673456d646380ecd499d4e0d80b2c6b7004a4234e99392a087d"
+    },
+    {
+      "exact_native_cache_key": "2b6b02edfaf2418a187c8bbfeaa7eef5b27edb60.pkl",
+      "pkl_sha256": "4f3d39954696a36bd2f0d9e4149ee3307542d520a9254e0bcd06b99507b88903",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "The plants set fewer fruit,",
+          "exact_native_cache_key": "2b6b02edfaf2418a187c8bbfeaa7eef5b27edb60.pkl",
+          "cache_input_text_sha256": "303a3667cc33bd4c850fd304540a8e34b9aa47c40e0a7a24ad58641c0ef81a5b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "The plants set fewer fruit,",
+          "exact_native_cache_key": "2b6b02edfaf2418a187c8bbfeaa7eef5b27edb60.pkl",
+          "cache_input_text_sha256": "303a3667cc33bd4c850fd304540a8e34b9aa47c40e0a7a24ad58641c0ef81a5b",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "4f3d39954696a36b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        38400
+      ],
+      "unprocessed_array_sha256": "7a156bb99f0e8f1f856e5a42202724db2152fba343defb0027d353dfb6da7f26"
+    },
+    {
+      "exact_native_cache_key": "27608ef0393b1f1ac88a58a9ca0c8ac0fa08bbc6.pkl",
+      "pkl_sha256": "7c61296a0795f0da86dbafed3d454caf6106c581af2e3ad97b19d00e62f445b1",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "and daytime pollinators proved poor understudies.",
+          "exact_native_cache_key": "27608ef0393b1f1ac88a58a9ca0c8ac0fa08bbc6.pkl",
+          "cache_input_text_sha256": "53e2c5673710257c4d01eb7e1e108d91b6332c3323cd04a01cc7c1575db3be6e",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S14",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "and daytime pollinators proved poor understudies.",
+          "exact_native_cache_key": "27608ef0393b1f1ac88a58a9ca0c8ac0fa08bbc6.pkl",
+          "cache_input_text_sha256": "53e2c5673710257c4d01eb7e1e108d91b6332c3323cd04a01cc7c1575db3be6e",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "7c61296a0795f0da",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        73216
+      ],
+      "unprocessed_array_sha256": "d7c86c4569da45fbfd4d974dd0f05392e3e0bb7515e3a4ae9f82d44b0b341145"
+    },
+    {
+      "exact_native_cache_key": "aabf37d19e6e3ea368aa41c1380e40e094286163.pkl",
+      "pkl_sha256": "8a1d69de3b35c1775f9101f1e78bcdba382edf5383e0065b64ffb14075d71fa4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Over 80% of humanity lives beneath a luminous veil, which hides the pale ribbon of the Milky Way from more than a third.",
+          "exact_native_cache_key": "aabf37d19e6e3ea368aa41c1380e40e094286163.pkl",
+          "cache_input_text_sha256": "234a554618c1f60691eb5ae021105ecd7e993559a1d9de188dc932f45b96fa01",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8a1d69de3b35c177",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        207360
+      ],
+      "unprocessed_array_sha256": "7470a0bd675053400910952602a32b3be41ed45ab3ebd6d42cac6d30a0ad3bdc"
+    },
+    {
+      "exact_native_cache_key": "c7b3e7372034318d89e817961e264b4f653e1208.pkl",
+      "pkl_sha256": "e4c78d61af5786d58c293f936dbfbe86036a504744cc3c013e0509429393ffea",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "Over 80% of humanity lives beneath a luminous veil,",
+          "exact_native_cache_key": "c7b3e7372034318d89e817961e264b4f653e1208.pkl",
+          "cache_input_text_sha256": "ed57a7f5d7b57bd4f1b01dd4044ad9518c17734585dffdc5e4f89851015f88c3",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "Over 80% of humanity lives beneath a luminous veil,",
+          "exact_native_cache_key": "c7b3e7372034318d89e817961e264b4f653e1208.pkl",
+          "cache_input_text_sha256": "ed57a7f5d7b57bd4f1b01dd4044ad9518c17734585dffdc5e4f89851015f88c3",
+          "cache_input_is_phonemes": true,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "e4c78d61af5786d5",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        101376
+      ],
+      "unprocessed_array_sha256": "bdb28744cd26f279738f50ae6b730b702a4f2a7cbe59627ec31881e6d9ecdbbf"
+    },
+    {
+      "exact_native_cache_key": "bb4a8aa7666987cdf8b4b08bdd11c5f8e149ed2f.pkl",
+      "pkl_sha256": "c85491e142d1ddc7f20d97e69d840ecf7870bd2cb28b8264412a0994392cbbc4",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "which hides the pale ribbon of the Milky Way from more than a third.",
+          "exact_native_cache_key": "bb4a8aa7666987cdf8b4b08bdd11c5f8e149ed2f.pkl",
+          "cache_input_text_sha256": "88c83ee4dae74f4b609564a2550096653967474cc7f762e8daafcba6a61816cf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        },
+        {
+          "sentence": "S15",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "which hides the pale ribbon of the Milky Way from more than a third.",
+          "exact_native_cache_key": "bb4a8aa7666987cdf8b4b08bdd11c5f8e149ed2f.pkl",
+          "cache_input_text_sha256": "88c83ee4dae74f4b609564a2550096653967474cc7f762e8daafcba6a61816cf",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "c85491e142d1ddc7",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        98304
+      ],
+      "unprocessed_array_sha256": "fef143d74332d18cf763f43d8a8892ec50e72445b5b3c120d59100eae068eb17"
+    },
+    {
+      "exact_native_cache_key": "1c25ba10ff243ccb5375be8d6b2e68a87f36968f.pkl",
+      "pkl_sha256": "b729ce5387a1d37bf02ec4bf518782750856656bbe2ffaa3d670d200ce6caf9b",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S16",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "Citizen scientists' star counts from 2011 to 2022 show the sky brightening about 9.6% a year.",
+          "exact_native_cache_key": "1c25ba10ff243ccb5375be8d6b2e68a87f36968f.pkl",
+          "cache_input_text_sha256": "133abcd78e3a6ff48ddf56a1476da6bceece557e948acd44abf7bab9cb69345e",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "b729ce5387a1d37b",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        231936
+      ],
+      "unprocessed_array_sha256": "43db59448aca84d0bd3f23718ea398eda63e006cceb1e6b12897efdcb2a6f827"
+    },
+    {
+      "exact_native_cache_key": "67dde670ec821d4e88bbbd961589a8ee585a8f35.pkl",
+      "pkl_sha256": "8832f9a84f521bf39177f51e1fbc2ed6bcd653e66bebd822dbda92aab5b5c0f5",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": null,
+          "reference_kind": "whole-default-raw",
+          "method": "create",
+          "source_slice": "At that pace, a child born where 250 stars twinkle would see about 100 by their eighteenth birthday.",
+          "exact_native_cache_key": "67dde670ec821d4e88bbbd961589a8ee585a8f35.pkl",
+          "cache_input_text_sha256": "72e9ea39ba892205198f5a448143f21d571551c6e088d221505b562e4c5377e2",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "8832f9a84f521bf3",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        185856
+      ],
+      "unprocessed_array_sha256": "23a21ff3597ac2bac738811b7af204e42e8502677b298b58ba90e3d85fce34fc"
+    },
+    {
+      "exact_native_cache_key": "8ac11e1d0756c5437ed5a698afb85744ff6eddfd.pkl",
+      "pkl_sha256": "15bcddc912fe4a4f537156e2c12462e1577aca5908704343f7c6c13c09281471",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "At that pace, a child born where 250 stars twinkle",
+          "exact_native_cache_key": "8ac11e1d0756c5437ed5a698afb85744ff6eddfd.pkl",
+          "cache_input_text_sha256": "74a895e3f5c232bec6f61841f15cbfa352a44d9828a99252fdd7be319cb79642",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "15bcddc912fe4a4f",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        98304
+      ],
+      "unprocessed_array_sha256": "0a8f0a0063b46e8547e552773fa1372a26391525c85e6ec33c4e08532b1857d9"
+    },
+    {
+      "exact_native_cache_key": "36fea80277a154cad648f0317a2c1a3deadb8a40.pkl",
+      "pkl_sha256": "99f555c016f937e5d6cdf90e54e5164005668cdcfa8a42f79d0da3f6527ca51a",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "highlight-display-chunk",
+          "method": "create",
+          "source_slice": "would see about 100 by their eighteenth birthday.",
+          "exact_native_cache_key": "36fea80277a154cad648f0317a2c1a3deadb8a40.pkl",
+          "cache_input_text_sha256": "95d582cbff09b0d00ee2434f6989d9dc195b0865d64141d5edb69e6e8da3dc77",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "99f555c016f937e5",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        76288
+      ],
+      "unprocessed_array_sha256": "73465a717f3f3224b2ff48927fd50963863ed34b7ea7291102f77eacd3ac62c3"
+    },
+    {
+      "exact_native_cache_key": "00dd834301806f1181c72790217baf0cf6b5d347.pkl",
+      "pkl_sha256": "a055c0276c4236056641280ff7f2a5ab79b9d05082a1197569fd2dc2b280232c",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 1,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "At that pace,",
+          "exact_native_cache_key": "00dd834301806f1181c72790217baf0cf6b5d347.pkl",
+          "cache_input_text_sha256": "b766aba666fabfa00c5901e8360deed2ecfe1a22125daa648e82ec9c8ccd6ce6",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "a055c0276c423605",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        24064
+      ],
+      "unprocessed_array_sha256": "5470fe198fcc16e9881155a43af8fc0271fc9adc9d04184fc8ee30c8521f1c6e"
+    },
+    {
+      "exact_native_cache_key": "7f07d9c5749c83c88067c6190413734dd1e0750f.pkl",
+      "pkl_sha256": "4183d66e70d53c01a08295f1e3061824f4dd82ba305a6bf9c3af003950880ae9",
+      "native_single_thread_marker_present": true,
+      "input_proofs": [
+        {
+          "sentence": "S17",
+          "piece": 2,
+          "reference_kind": "pause-punctuation-slice",
+          "method": "create",
+          "source_slice": "a child born where 250 stars twinkle would see about 100 by their eighteenth birthday.",
+          "exact_native_cache_key": "7f07d9c5749c83c88067c6190413734dd1e0750f.pkl",
+          "cache_input_text_sha256": "f22614c1b06daa7a4a4049767094a0649c1cbe0f64a89d49dad6696b4c0a1b24",
+          "cache_input_is_phonemes": false,
+          "cache_preexisted": true
+        }
+      ],
+      "native_single_thread_marker_value": "4183d66e70d53c01",
+      "native_single_thread_marker_matches": true,
+      "container_type": "tuple",
+      "container_length": 2,
+      "sample_rate": 24000,
+      "dtype": "float32",
+      "shape": [
+        163840
+      ],
+      "unprocessed_array_sha256": "1e493acdbf20bf65fe7938f4c190cbd1b07fb9870ecd7dbed31c1982d6260c4b"
+    }
+  ],
+  "missing_reference_key_count": 0,
+  "observed_missing_keys_covered": [],
+  "new_private_cache_names": [],
+  "native_single_thread_marker_verified": true,
+  "single_thread_sessions": [
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    },
+    {
+      "intra_op_num_threads": 1,
+      "inter_op_num_threads": 1
+    }
+  ],
+  "models_sha256": {
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "kokoro-v1.0-timed.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "fixed_voice_sha256": "1f97658bb5a4280cc3f6c01dc644dff471bf57c970fc8b99f3049d6991c4f6c8",
+  "existing_private_cache_count": 11514,
+  "existing_private_cache_inventory_sha256_before": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_inventory_sha256_after": "e4b084f2d448943fb382896809b837cfcfd461cb519ced97a135479c8636aa5f",
+  "existing_private_cache_bytes_unchanged": true,
+  "public_repository_cache_inventory_sha256": "8b8f1d9b2f14182a2845d2a70575f7bc95d94593baaa09c9d407739ac81c793a",
+  "public_repository_cache_unchanged": true,
+  "producer_pcm_existed_before": false,
+  "producer_pcm_sha256_before": null,
+  "producer_pcm_sha256_after": null,
+  "accepted_aac_adts_sha256_before": "deed9b94fd8870132256eeda357a75dd007ccebf4245eed285efd3a00483108d",
+  "accepted_aac_adts_sha256_after": "deed9b94fd8870132256eeda357a75dd007ccebf4245eed285efd3a00483108d",
+  "strict_cache_disabled_only_for_this_reference_preparation_subprocess": true,
+  "private_cache_exported": false
+}
